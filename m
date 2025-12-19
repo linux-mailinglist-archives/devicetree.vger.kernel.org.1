@@ -1,61 +1,113 @@
-Return-Path: <devicetree+bounces-248349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C059ACD1A8A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 20:37:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C93CD1ADB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 20:49:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ACB1A310C88C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:32:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7E0EC3008D4A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE125347FED;
-	Fri, 19 Dec 2025 19:32:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F422C34AAF6;
+	Fri, 19 Dec 2025 19:49:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B2Hk/sUS"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="KAqaGfMJ";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="Po8y2tHI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95096341050;
-	Fri, 19 Dec 2025 19:32:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 578BB34AAE2
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 19:49:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766172746; cv=none; b=c/jejM91fuX1HV1OMl8FgvQFDW0khOfKlyBMBb6pMhqay1ZSrssSDbP49XsQcV7v+/xix/iM7VrtLIJjMFsBrJfrFtRf3Rfn9Wl9BlxpDIFY/YVcVD8hqfVN79VGT1rmUQHng8OJGWVDXP3zeDuh1wQrjlBYRiZgNxOujey7Pco=
+	t=1766173745; cv=none; b=HigZTIrisz56X2uuZSObCzpzrSULDJoKfUl834c/OfGhtQJ7n32SSD2MwZixwrkKwkatFFU4hSfqSd5OHmVN+NIzqiUhfpcOkLIq3slQf5aUiUbFK+25s42zlboNgyGlvDphr4EXX6fzppw5KsAp74KLUeBgY88wnNUNWXfSQ9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766172746; c=relaxed/simple;
-	bh=dxdW68X2kvLQgIr4oNlWMogIiBjhXtoI9Gpq80I84oM=;
+	s=arc-20240116; t=1766173745; c=relaxed/simple;
+	bh=7QHParoqmwM/fv693piLNFSOhOcM5vYfUKurXmOY6eg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eH7Sgy0zeiuSPmsZ0cG+lHWd1lfKHSsPvYrFOt3l0VVAUJfyJsiN2A3ezKEU3tTRoaFoJ7AqKUGd60uL/+2egj0emW647cbNiPnyuAJaXw4Ei2wtScFZGKunyD5tFvVKlIj4BQfSnoScOaOvLJLWm/OQuW1vUiYi5/C2Uc6iyxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B2Hk/sUS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 227CDC116B1;
-	Fri, 19 Dec 2025 19:32:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766172746;
-	bh=dxdW68X2kvLQgIr4oNlWMogIiBjhXtoI9Gpq80I84oM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B2Hk/sUSg4OqBlDtU58XABw0wWGbLVpkC2I8FBz9kZo0dTu6zsCwm+ICKhyWBm9Wo
-	 Ujn72u37NBQmzYsiyI1avGwf2y8P0OdLCFSY7VEFgu8C9OeXhGvHfO1Bv8JosjqLdD
-	 LSVEaNb9NOX32DcFw6Sveko/O3UJYx/p48+PdXp/3uYxrqq1oXJP2AwSOXK3Pj9IZb
-	 opuTk7YvtGsNKsPHzrK2XZFx2fkaZFGmgOZi3+O4fWpVQelsUvMlVYCYewmUO5EDxM
-	 UcXbIUo6skcH1CjiL5IFUoTlbuCTVnXxpmWATECg26ZW9wP6cFatZo+dznw6sZz2l+
-	 UG4+aUp7gy+0A==
-Date: Fri, 19 Dec 2025 11:32:24 -0800
-From: Drew Fustini <fustini@kernel.org>
-To: Yao Zi <ziyao@disroot.org>, Yao Zi <me@ziyao.cc>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=TJ58Q1AyBdk/lEGI/Cw1GU1ZH5bA3HzfrwFYWOxiLgtDH0W97iKg9TtEImZ3kd1seJftacbHAWQ8MjjdjzslrA85PgzuDWYMmB2eCP+DwEkSDuLGTUTLTQT/DC2TKojmrBYRPu6iG9UnK8r12aC/rezXLIbOF1OU/++9MXnPjac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=KAqaGfMJ; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=Po8y2tHI; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1766173743;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7QHParoqmwM/fv693piLNFSOhOcM5vYfUKurXmOY6eg=;
+	b=KAqaGfMJVNLAaVtN0ua6ijH2K2pMSy+o3HSVnerXsRxOt0HNrTupBwCJgJdXloFPznD20s
+	qevHKGSwJBJXo6LZUi3wlHpfBXRTCMI2knSsYSuWLK5MuJsZzU9ZgOYXOfsTdTbNbdIJ7U
+	3ajFEcTtRgljnso56mrpH234CUvWLT4=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-133-0yKeAiZ7Nd2IuNS8JWKUIg-1; Fri, 19 Dec 2025 14:49:02 -0500
+X-MC-Unique: 0yKeAiZ7Nd2IuNS8JWKUIg-1
+X-Mimecast-MFC-AGG-ID: 0yKeAiZ7Nd2IuNS8JWKUIg_1766173741
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b9fa6f808cso568725885a.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 11:49:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1766173741; x=1766778541; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7QHParoqmwM/fv693piLNFSOhOcM5vYfUKurXmOY6eg=;
+        b=Po8y2tHIcg6lj3E6SRnKYYH7Qbuf817Caezk27chUeAy28/3Oi61amy2cYywhCua8n
+         wnx3flgmsBDGYM1yhNNCT0RHdTWmF5ow0v8OGosXzeDOGqIn6gPjmQpvEShUTYEQ7zTr
+         VoHW73GXELOu005QGpEb7yT6oYGgIHsGyMi7iqjNP5L5LXmySzg23PXtnSNqCKmIBd3l
+         WyTWDNcTZAwg+B7A4g2gPWSB8H1UX+Hsoo1G6kbNF/h7ezvoFYr1gd2KsAmN2wG2bQ9s
+         SVpgSnQ0uD1+hMJa+z6OZO0oLFFGuW6wccxvVp27UkW/2o6/ULnVutA2owIfBwj97WHD
+         uhQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766173741; x=1766778541;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=7QHParoqmwM/fv693piLNFSOhOcM5vYfUKurXmOY6eg=;
+        b=BkTOjvap8LOU3/M3FPE0PNlH2xlBGtOiDn96z6xhRtfyXxY2xvzUUi7YT/ZpecvGq2
+         FBpiBnFpvpu6wxDGMDrb9+VcL1GaMDV7xPqBbLOYPAXfvEe+j2HuFN+sIX3wwrlcthqz
+         nsQ6kEQSzAxPgQM+5kj95iCbuWvm7yd1zhNe1GKJ1gnP5ain+QEozkc7F1ZdTUMZdKoE
+         V1oR/2DzeDq0CkWOsIji6P+bz9n2i0o58vu5XJ2oTvjMZSQ3xd1mDcxJhd5GnZDpoSYF
+         uG8eKhIvjA7lAihqyhAkqUJvdEZ2thqCMxDmLixHCdDMsds22i7CcxPW9NXINeP9lwwO
+         HNmA==
+X-Forwarded-Encrypted: i=1; AJvYcCUg9YBvv/m/7WAvqMKRomg35vV4Vid0DTK2h99AWwreHv42AgGB8AV4mFaUqsXLoBeBr9PtKmrdS9FE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1TMk+9bw4LoHqN5SicNesVSjkBdbMxnRKcelQ+/+o+xDoxSj9
+	FSwe/VTULAO2MyOiFo28uvFPkckXPE3C1pPz57ICp7LAjeQANALPttUT3GW/OUkNzxD6utayFo8
+	SuyN6cgwqgyxN1McGBAjHaLmv7eHKYWGgSVEfG25LcyeZQX8roE6MtKx0KT1mSH4=
+X-Gm-Gg: AY/fxX6d9Gm028jh9Lqq1j5bZG7pSb+yAZYA+yjhlLdwz5PKXqeuyXG7leJYd6WKC3X
+	MZNQe8UTYiMyWoRinWs7TAHpIquKh793ASGNjbf8YMjvzB5nCq0q6Nfph8s6UYvWFolI6M9Ig6L
+	M+ntrpiCpwlKlE4Ijpp54Cg4obETslmbhr9FTAwJPcPipdB4svUzzikIwoxbc3+OAROMmLUtOll
+	NPrb1BajP2Q/fyQeP97tmyQRZifQLm8evQdWRG5eYH8geex5WaSIIoFkisAkAeY4IGtA9EvVtOi
+	gSaoUYBBTZB/pYVtj3MBNEcBnvXKZFJYeSooNozmHNlziTZ8rFhrE5eVKcLflRdbILB6ImUS4wz
+	xMDF4ZlGv
+X-Received: by 2002:a05:620a:2915:b0:8b2:e922:5282 with SMTP id af79cd13be357-8c08fbde546mr650955785a.26.1766173741557;
+        Fri, 19 Dec 2025 11:49:01 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEhmkU84dkGCcwT8u/xbGrBML5VLUNpWzlUIRhCANoKaN5hf3mFDRW42eqFLJM185p9R9rh3A==
+X-Received: by 2002:a05:620a:2915:b0:8b2:e922:5282 with SMTP id af79cd13be357-8c08fbde546mr650953885a.26.1766173741234;
+        Fri, 19 Dec 2025 11:49:01 -0800 (PST)
+Received: from redhat.com ([2600:382:8519:53fe:9d9a:13fe:abf1:fb80])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c096783a81sm248019585a.9.2025.12.19.11.48.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Dec 2025 11:49:00 -0800 (PST)
+Date: Fri, 19 Dec 2025 14:48:56 -0500
+From: Brian Masney <bmasney@redhat.com>
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Han Gao <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
-Subject: Re: [PATCH 0/7] Implement CPU frequency scaling for TH1520
-Message-ID: <aUWoSNI2mFaPARfI@x1>
-References: <20251120131416.26236-1-ziyao@disroot.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Sebin Francis <sebin.francis@ti.com>, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v6 0/6] clk: Support spread spectrum and use it in
+ clk-scmi
+Message-ID: <aUWsKAMDm9_5jxsg@redhat.com>
+References: <20251128-clk-ssc-v6-2-v6-0-cfafdb5d6811@nxp.com>
+ <aTvpmQAPE6HfIy+r@shlinux89>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,61 +116,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251120131416.26236-1-ziyao@disroot.org>
+In-Reply-To: <aTvpmQAPE6HfIy+r@shlinux89>
+User-Agent: Mutt/2.2.14 (2025-02-20)
 
-On Thu, Nov 20, 2025 at 01:14:09PM +0000, Yao Zi wrote:
-> On TH1520 SoC, c910_clk feeds the CPU cluster. It could be glitchlessly
-> reparented to one of the two PLLs: either to cpu_pll0 indirectly through
-> c910_i0_clk, or to cpu_pll1 directly. This series fixes a bug in PLL
-> enabling code, supports rate change for PLL, and finally implements
-> frequency scaling support for c910_clk.
-> 
-> However, to achieve reliable frequency scaling, CPU voltage must be
-> adjusted together with frequency, and AON-firmware-based PMIC support
-> for TH1520 SoC is still missing in mainline. Thus PATCH 7 that fills OPP
-> table for TH1520 CPU and enables CPUfreq is only for testing purpose,
-> not intended for upstream (yet).
-> 
-> Testing is done on Lichee Pi 4A board, only operating points safe
-> to be used with the the default PMIC configuration are enabled in
-> devicetree. I've confirmed there's a performance gain when running
-> coremark and some building work compared to the case without cpufreq.
-> 
-> This series is based on next-20251120, thanks for your time and review.
-> 
-> Yao Zi (7):
->   dt-bindings: clock: thead,th1520-clk-ap: Add ID for C910 bus clock
->   clk: thead: th1520-ap: Poll for PLL lock and wait for stability
->   clk: thead: th1520-ap: Add C910 bus clock
->   clk: thead: th1520-ap: Support setting PLL rates
->   clk: thead: th1520-ap: Add macro to define multiplexers with flags
->   clk: thead: th1520-ap: Support CPU frequency scaling
->   [Not For Upstream] riscv: dts: thead: Add CPU clock and OPP table for
->     TH1520
-> 
->  arch/riscv/boot/dts/thead/th1520.dtsi         |  35 ++
->  drivers/clk/thead/clk-th1520-ap.c             | 350 +++++++++++++++++-
->  .../dt-bindings/clock/thead,th1520-clk-ap.h   |   1 +
->  3 files changed, 379 insertions(+), 7 deletions(-)
-> 
-> -- 
-> 2.51.2
-> 
+On Fri, Dec 12, 2025 at 06:08:25PM +0800, Peng Fan wrote:
+> Sorry for top-posting. There is only one comment from Krzysztof regarding
+> cleanup API usage. Since 6.19 rc1 still not out, I will wait two more weeks
+> to collect comments, then post v7. Hopefully, you are ok with current
+> clk-scmi-oem stuff.
 
-Applied to thead-clk-for-next, thanks!
+I can't speak to the SCMI OEM extensions, however the other clk patches
+look good to me FWIW. My Reviewed-by tags still apply.
 
-[1/7] dt-bindings: clock: thead,th1520-clk-ap: Add ID for C910 bus clock
-      https://git.kernel.org/fustini/c/5f352125f8a0
-[1/7] clk: thead: th1520-ap: Poll for PLL lock and wait for stability
-      https://git.kernel.org/fustini/c/892abfbed71e
-[2/7] clk: thead: th1520-ap: Add C910 bus clock
-      https://git.kernel.org/fustini/c/b436f8a82aaa
-[3/7] clk: thead: th1520-ap: Support setting PLL rates
-      https://git.kernel.org/fustini/c/238cc6316a88
-[5/7] clk: thead: th1520-ap: Add macro to define multiplexers with flags
-      https://git.kernel.org/fustini/c/5dbee3503771
-[6/7] clk: thead: th1520-ap: Support CPU frequency scaling
-      https://git.kernel.org/fustini/c/30441a56b1d1
+Brian
 
--Drew
 
