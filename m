@@ -1,241 +1,234 @@
-Return-Path: <devicetree+bounces-248283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0FFBCD17EE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:58:45 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C793CD0B95
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 17:05:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8E9AE303B1B9
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 18:56:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 59F82303F5D9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:04:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C5E35BDD0;
-	Fri, 19 Dec 2025 15:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240F8366DCC;
+	Fri, 19 Dec 2025 15:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GNjjTnv7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jHsauULH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1289F35BDC6;
-	Fri, 19 Dec 2025 15:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECCC0366DC0;
+	Fri, 19 Dec 2025 15:55:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766159461; cv=none; b=qCS8xH4mzl3VhNfcLxV8G3NK86LQ7XsN2Y5xBCX25ODmU6zzK1tve4xXR/sdM61njYQtr+7PsJzZTyU9Usti6VBy9lduDtK3MaUT5Cx53sUNzaWiSZQxTwZ5Zaa/RUdQsOISO6DqqkaCYwG7+duNVqh3LqrMlPMtodLJGkgK+qw=
+	t=1766159750; cv=none; b=gEQCypvaAK6jOv2lbfz5zvBH399SjSDOTbei9arnoSt7vVm3OCdTiM9bNSXHSHS8rPQ/A4VZ1fVgiJVKRGMNgaAKVBJ0gCnMorZIxHXEVJUmwat+abVZnmFJMzlX35oJYsgweBt4VrQL9L1KRcXIkXSDHGXDWNws/iRWa9q9Hic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766159461; c=relaxed/simple;
-	bh=ECixEB5vR8WOwJfTX1zOhq2Kg4Wi8uKygBEwL4mEW6c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OiHOS36RmmyXwlL3sUHQ1ahApWQq3vsrkK2Fkov18YEpGkLX6dcD6gd+SFgx58TaWScBI20dMLN52KUHOt08E1QReLX011lDEvTonV2fx6xS6zfkN8sUVSwSt5dbC6m/q2WQLC11T3HRWG6gFjGKmVDZOHvZR5jogdTJ4Fjpze4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GNjjTnv7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD06EC113D0;
-	Fri, 19 Dec 2025 15:50:53 +0000 (UTC)
+	s=arc-20240116; t=1766159750; c=relaxed/simple;
+	bh=qKyYm1wjY1/f9MKBEYaGT5Ko0GUkJLFzRCDD89BnQZU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=reGWzMi0Bo1QYYTtfxrhJKYpdz7lxe/xLTjIChS9ByB3kOWc0gi/ap+Zd1tifvBFufu6U8N61MI6CT/QLohsX4C/yLc341h3siuwWm8FI3Z9U5/QJuM/8vX0fc8TvRvcf7Kdqa9XY+Dr4eX7v1RarUUYxuIUrHhaYRThV16TIdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jHsauULH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52169C116D0;
+	Fri, 19 Dec 2025 15:55:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766159460;
-	bh=ECixEB5vR8WOwJfTX1zOhq2Kg4Wi8uKygBEwL4mEW6c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GNjjTnv7g/GngOKuT190RJE64h4jw0VHuSD7p7VvZPvFQOSPMgHt+kfUrtnz61cIz
-	 i2/uK0DrLhk4Tc9k3yZsAG3m1xKvL9HkgRqlTlgnWVbu+Dw9ggutas+eR3jVsU3GCH
-	 1iyzIwvtcOmAt1n0X7+XVvsN4w7D0oMUd7GCoyaB/IaN33DxDQilKXGPsgz6qwtUEB
-	 q304qcdnM3LAJ8uNMBlf3nGAfKzW0dj5jT94xxAyDQKT9zP3oktCflnZJKoIs/+0Nl
-	 kcwC7p7b157oRYxK08SKXYQ1PCrFWwDhhNHYYdNuUU8clBXdRTy27nTI0F0klBkCHi
-	 VuYcSuQsJT2oQ==
-Message-ID: <7ea6cb11-b9a7-4944-bfa1-63c063eb421e@kernel.org>
-Date: Fri, 19 Dec 2025 16:50:47 +0100
+	s=k20201202; t=1766159749;
+	bh=qKyYm1wjY1/f9MKBEYaGT5Ko0GUkJLFzRCDD89BnQZU=;
+	h=Date:From:To:Cc:Subject:From;
+	b=jHsauULHdTbhTus1B5noKbsEQY5GPd9bzTKNhTRRqZBglF38UM3V3H4lp+82Qt3oU
+	 l7275yyWbyQiUQ8BgM08U11lsPr65oWxpWHvYn4Hz1FZIEjwlHfbv3FSIdQj/0X9Zi
+	 zJGaaRFj0PXqcfLawh8Eu6Ble1833hSVcECMhjex/gmJsx5Gu3fQFGYl8PW6eyjBOs
+	 83G5pni8cXFgBnxkQeL7DMA5EsReTXwpZEOvTUDme702CHhM5cSLwsXFfnHsZwLIF7
+	 vs/kuWkI09Cw1GvaQM3o5hrN/xwOc/bQTccrErofaE6NhkVP7g9+mlkzo0EyCrPwJp
+	 ZVV5oWo9KrWtA==
+Date: Fri, 19 Dec 2025 09:55:46 -0600
+From: Rob Herring <robh@kernel.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree fixes for v6.19, part 1
+Message-ID: <20251219155546.GA3433312-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: iio: dac: Add max22007
-To: Janani Sunil <janani.sunil@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Alexandru Ardelean <alexandru.ardelean@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20251219-max22007-dev-v1-0-242da2c2b868@analog.com>
- <20251219-max22007-dev-v1-1-242da2c2b868@analog.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251219-max22007-dev-v1-1-242da2c2b868@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On 19/12/2025 16:31, Janani Sunil wrote:
-> Devicetree bindings for MAX22007 4-channel
-> 12-bit DAC that drives a voltage or current
-> output on each channel
+Linus,
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+Please pull DT fixes for 6.19.
 
-> 
-> Signed-off-by: Janani Sunil <janani.sunil@analog.com>
-> ---
->  .../devicetree/bindings/iio/dac/adi,max22007.yaml  | 116 +++++++++++++++++++++
->  MAINTAINERS                                        |   7 ++
->  2 files changed, 123 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml b/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml
-> new file mode 100644
-> index 000000000000..c2f65d9e42d4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml
-> @@ -0,0 +1,116 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/dac/adi,max22007.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices MAX22007 DAC device driver
+Still one DTB warning after this, but I'm told the fix for it is getting 
+applied today (via soc tree).
 
-Bindings are for hardware, drop all device driver references.
-
-> +
-> +maintainers:
-> +  - Janani Sunil <janani.sunil@analog.com>
-> +
-> +description:
-> +  The MAX22007 is a quad-channel, 12-bit digital-to-analog converter (DAC)
-> +  with integrated precision output amplifiers and current output capability.
-> +  Each channel can be independently configured for voltage or current output.
-> +  Datasheet available at https://www.analog.com/en/products/max22007.html
-> +
-> +$ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: adi,max22007
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 500000
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  vdd-supply:
-> +    description: Low-Voltage Power Supply from +2.7V to +5.5V.
-> +
-> +  hvdd-supply:
-> +    description:
-> +      Positive High-Voltage Power Supply from +8V to (HVSS +24V) for
-> +      the Output Channels.
-> +
-> +  hvss-supply:
-> +    description:
-> +      Negative High-Voltage Power Supply from -2V to 0V for the Output Channels.
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO used for hardware reset of the device.
-
-Drop description, redundant, because not saying anything other than
-schema already said. You could say whether it is active low for example
-if you wanted to add something useful.
-
-> +
-> +patternProperties:
-> +  "^channel@[0-3]$":
-> +    allOf:
-> +      - $ref: /schemas/iio/dac/dac.yaml#
-> +      - type: object
-
-Drop allOf. I don't get where did you get this syntax, it's not needed.
-
-> +        description:
-> +          Represents the external channels which are connected to the DAC.
-> +          Channels not specified in the device tree will be powered off.
-> +
-> +        properties:
-> +          reg:
-> +            description: Channel number
-> +            maxItems: 1
-> +
-> +          adi,type:
-> +            description: Channel output type.
-> +            $ref: /schemas/types.yaml#/definitions/string
-> +            enum: [voltage, current]
-
-Why would it matter if this is voltage or current? That's the first time
-this property appears. Why none of existing fit?
-
-> +
-> +        required:
-> +          - reg
-> +          - adi,type
-> +
-> +        unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +anyOf:
-> +  - required: [channel@0]
-> +  - required: [channel@1]
-> +  - required: [channel@2]
-> +  - required: [channel@3]
-> +
-> +unevaluatedProperties: false
+Rob
 
 
-Best regards,
-Krzysztof
+The following changes since commit 8f0b4cce4481fb22653697cced8d0d04027cb1e8:
+
+  Linux 6.19-rc1 (2025-12-14 16:05:07 +1200)
+
+are available in the Git repository at:
+
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.19-1
+
+for you to fetch changes up to ce7b1d58609abc2941a1f38094147f439fb74233:
+
+  arm64: dts: mediatek: Apply mt8395-radxa DT overlay at build time (2025-12-19 09:18:27 -0600)
+
+----------------------------------------------------------------
+Devicetree fixes for v6.19, part 1:
+
+- Fix warnings for Mediatek overlays not getting applied
+
+- Fix regression in handling elfcorehdr region
+
+- Fix creating cpufreq device on OPPv1 platforms
+
+- Add GE7800 GPU in Renesas R-Car V3U
+
+- Simplify dma-coherent property in TI display bindings
+
+- Allow "reg" in sprd,sc9860-clk binding
+
+- Update Linus Walleij's email
+
+----------------------------------------------------------------
+Frank Wunderlich (2):
+      arm64: dts: mediatek: mt7986: add dtbs with applied overlays for bpi-r3
+      arm64: dts: mediatek: mt7988: add dtbs with applied overlays for bpi-r4 (pro)
+
+Jianpeng Chang (1):
+      arm64: kdump: Fix elfcorehdr overlap caused by reserved memory processing reorder
+
+Krzysztof Kozlowski (2):
+      dt-bindings: display/ti: Simplify dma-coherent property
+      cpufreq: dt-platdev: Fix creating device on OPPv1 platforms
+
+Linus Walleij (1):
+      dt-bindings: Updates Linus Walleij's mail address
+
+Niklas Söderlund (1):
+      dt-bindings: gpu: img,powervr-rogue: Document GE7800 GPU in Renesas R-Car V3U
+
+Rob Herring (Arm) (2):
+      dt-bindings: clock: sprd,sc9860-clk: Allow "reg" for gate clocks
+      arm64: dts: mediatek: Apply mt8395-radxa DT overlay at build time
+
+ .../devicetree/bindings/arm/arm,integrator.yaml    |  2 +-
+ .../devicetree/bindings/arm/arm,realview.yaml      |  2 +-
+ Documentation/devicetree/bindings/arm/arm,scu.yaml |  2 +-
+ .../bindings/arm/arm,versatile-sysreg.yaml         |  2 +-
+ .../devicetree/bindings/arm/arm,versatile.yaml     |  2 +-
+ .../devicetree/bindings/arm/arm,vexpress-juno.yaml |  2 +-
+ Documentation/devicetree/bindings/arm/gemini.yaml  |  2 +-
+ .../devicetree/bindings/arm/intel-ixp4xx.yaml      |  2 +-
+ Documentation/devicetree/bindings/arm/ux500.yaml   |  2 +-
+ .../devicetree/bindings/ata/ata-generic.yaml       |  2 +-
+ .../bindings/ata/cortina,gemini-sata-bridge.yaml   |  2 +-
+ .../devicetree/bindings/ata/faraday,ftide010.yaml  |  2 +-
+ .../bindings/ata/intel,ixp4xx-compact-flash.yaml   |  2 +-
+ .../devicetree/bindings/ata/pata-common.yaml       |  2 +-
+ .../devicetree/bindings/ata/sata-common.yaml       |  2 +-
+ .../bindings/auxdisplay/arm,versatile-lcd.yaml     |  2 +-
+ .../devicetree/bindings/clock/sprd,sc9860-clk.yaml | 26 ----------
+ .../bindings/clock/stericsson,u8500-clks.yaml      |  2 +-
+ .../bindings/crypto/intel,ixp4xx-crypto.yaml       |  2 +-
+ .../bindings/display/dsi-controller.yaml           |  2 +-
+ .../bindings/display/faraday,tve200.yaml           |  2 +-
+ .../bindings/display/panel/arm,rtsm-display.yaml   |  2 +-
+ .../display/panel/arm,versatile-tft-panel.yaml     |  2 +-
+ .../bindings/display/panel/ilitek,ili9322.yaml     |  2 +-
+ .../bindings/display/panel/novatek,nt35510.yaml    |  2 +-
+ .../bindings/display/panel/samsung,lms380kf01.yaml |  2 +-
+ .../bindings/display/panel/samsung,lms397kf04.yaml |  2 +-
+ .../bindings/display/panel/samsung,s6d16d0.yaml    |  2 +-
+ .../bindings/display/panel/sony,acx424akp.yaml     |  2 +-
+ .../bindings/display/panel/ti,nspire.yaml          |  2 +-
+ .../bindings/display/panel/tpo,tpg110.yaml         |  2 +-
+ .../devicetree/bindings/display/ste,mcde.yaml      |  2 +-
+ .../bindings/display/ti/ti,am65x-dss.yaml          |  3 +-
+ .../bindings/display/ti/ti,j721e-dss.yaml          |  3 +-
+ .../devicetree/bindings/dma/stericsson,dma40.yaml  |  2 +-
+ .../devicetree/bindings/extcon/fcs,fsa880.yaml     |  2 +-
+ .../intel,ixp4xx-network-processing-engine.yaml    |  2 +-
+ .../devicetree/bindings/gnss/brcm,bcm4751.yaml     |  2 +-
+ .../bindings/gpio/faraday,ftgpio010.yaml           |  2 +-
+ .../bindings/gpio/gpio-consumer-common.yaml        |  2 +-
+ .../devicetree/bindings/gpio/gpio-ep9301.yaml      |  2 +-
+ .../devicetree/bindings/gpio/gpio-mmio.yaml        |  2 +-
+ .../bindings/gpio/intel,ixp4xx-gpio.yaml           |  2 +-
+ .../devicetree/bindings/gpio/mrvl-gpio.yaml        |  2 +-
+ .../devicetree/bindings/gpio/pl061-gpio.yaml       |  2 +-
+ .../devicetree/bindings/gpio/st,nomadik-gpio.yaml  |  2 +-
+ .../devicetree/bindings/gpio/st,stmpe-gpio.yaml    |  2 +-
+ .../devicetree/bindings/gpu/img,powervr-rogue.yaml |  4 +-
+ .../devicetree/bindings/hwmon/ntc-thermistor.yaml  |  2 +-
+ .../devicetree/bindings/hwmon/winbond,w83781d.yaml |  2 +-
+ .../devicetree/bindings/i2c/arm,i2c-versatile.yaml |  2 +-
+ .../devicetree/bindings/i2c/st,nomadik-i2c.yaml    |  2 +-
+ .../bindings/iio/accel/bosch,bma255.yaml           |  2 +-
+ .../bindings/iio/adc/qcom,pm8018-adc.yaml          |  2 +-
+ .../bindings/iio/gyroscope/invensense,mpu3050.yaml |  2 +-
+ .../bindings/iio/light/capella,cm3605.yaml         |  2 +-
+ .../bindings/iio/light/sharp,gp2ap002.yaml         |  2 +-
+ .../iio/magnetometer/asahi-kasei,ak8974.yaml       |  2 +-
+ .../bindings/iio/magnetometer/yamaha,yas530.yaml   |  2 +-
+ .../devicetree/bindings/iio/st,st-sensors.yaml     |  2 +-
+ .../devicetree/bindings/input/atmel,maxtouch.yaml  |  2 +-
+ .../input/touchscreen/cypress,cy8ctma140.yaml      |  2 +-
+ .../input/touchscreen/cypress,cy8ctma340.yaml      |  2 +-
+ .../bindings/input/touchscreen/melfas,mms114.yaml  |  2 +-
+ .../bindings/input/touchscreen/zinitix,bt400.yaml  |  2 +-
+ .../arm,versatile-fpga-irq.yaml                    |  2 +-
+ .../interrupt-controller/faraday,ftintc010.yaml    |  2 +-
+ .../intel,ixp4xx-interrupt.yaml                    |  2 +-
+ .../bindings/leds/backlight/kinetic,ktd253.yaml    |  2 +-
+ .../devicetree/bindings/leds/register-bit-led.yaml |  2 +-
+ .../devicetree/bindings/leds/regulator-led.yaml    |  2 +-
+ .../devicetree/bindings/leds/richtek,rt8515.yaml   |  2 +-
+ .../intel,ixp4xx-expansion-bus-controller.yaml     |  2 +-
+ .../intel,ixp4xx-expansion-peripheral-props.yaml   |  2 +-
+ .../bindings/mfd/arm,dev-platforms-syscon.yaml     |  2 +-
+ .../devicetree/bindings/mfd/st,stmpe.yaml          |  2 +-
+ .../devicetree/bindings/mfd/stericsson,ab8500.yaml |  2 +-
+ .../bindings/mfd/stericsson,db8500-prcmu.yaml      |  2 +-
+ .../misc/intel,ixp4xx-ahb-queue-manager.yaml       |  2 +-
+ .../devicetree/bindings/mmc/arm,pl18x.yaml         |  2 +-
+ .../mtd/partitions/arm,arm-firmware-suite.yaml     |  2 +-
+ .../bindings/mtd/partitions/redboot-fis.yaml       |  2 +-
+ .../devicetree/bindings/mtd/partitions/seama.yaml  |  2 +-
+ .../bindings/net/bluetooth/brcm,bluetooth.yaml     |  2 +-
+ .../bindings/net/cortina,gemini-ethernet.yaml      |  2 +-
+ .../devicetree/bindings/net/dsa/micrel,ks8995.yaml |  2 +-
+ .../devicetree/bindings/net/dsa/realtek.yaml       |  2 +-
+ .../bindings/net/dsa/vitesse,vsc73xx.yaml          |  2 +-
+ .../bindings/net/intel,ixp46x-ptp-timer.yaml       |  2 +-
+ .../bindings/net/intel,ixp4xx-ethernet.yaml        |  2 +-
+ .../devicetree/bindings/net/intel,ixp4xx-hss.yaml  |  2 +-
+ .../devicetree/bindings/pci/faraday,ftpci100.yaml  |  2 +-
+ .../devicetree/bindings/pci/intel,ixp4xx-pci.yaml  |  2 +-
+ .../devicetree/bindings/pci/v3,v360epc-pci.yaml    |  2 +-
+ .../devicetree/bindings/pinctrl/pincfg-node.yaml   |  2 +-
+ .../devicetree/bindings/pinctrl/pinctrl.yaml       |  2 +-
+ .../devicetree/bindings/pinctrl/pinmux-node.yaml   |  2 +-
+ .../bindings/power/supply/samsung,battery.yaml     |  2 +-
+ .../devicetree/bindings/rng/intel,ixp46x-rng.yaml  |  2 +-
+ .../devicetree/bindings/rtc/faraday,ftrtc010.yaml  |  2 +-
+ .../bindings/spi/arm,pl022-peripheral-props.yaml   |  2 +-
+ .../devicetree/bindings/spi/spi-pl022.yaml         |  2 +-
+ .../bindings/timer/faraday,fttmr010.yaml           |  2 +-
+ .../bindings/timer/intel,ixp4xx-timer.yaml         |  2 +-
+ .../devicetree/bindings/timer/st,nomadik-mtu.yaml  |  2 +-
+ .../devicetree/bindings/usb/faraday,fotg210.yaml   |  2 +-
+ .../devicetree/bindings/usb/intel,ixp4xx-udc.yaml  |  2 +-
+ .../bindings/watchdog/faraday,ftwdt010.yaml        |  2 +-
+ .../bindings/watchdog/maxim,max63xx.yaml           |  2 +-
+ arch/arm64/boot/dts/mediatek/Makefile              | 55 ++++++++++++++++++++++
+ drivers/cpufreq/cpufreq-dt-platdev.c               |  7 +--
+ drivers/of/fdt.c                                   |  2 +-
+ 112 files changed, 170 insertions(+), 140 deletions(-)
 
