@@ -1,354 +1,170 @@
-Return-Path: <devicetree+bounces-248095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1684BCCED54
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:48:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AFD6CCED75
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:50:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ABB4E3007C6C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 07:46:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 92DC4301738D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 07:49:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32481241CB7;
-	Fri, 19 Dec 2025 07:46:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1CD72FE56F;
+	Fri, 19 Dec 2025 07:49:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="W557ofhZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jZxJbtS1";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FAfFlGiL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay50-hz3.antispameurope.com (mx-relay50-hz3.antispameurope.com [94.100.134.239])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B3623E334
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:46:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.239
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766130415; cv=pass; b=Y/UkJFROnrR1o88cr1jxWhaELBo7AHrzZq99k5g0xCSl3ErWuwer3UeOBrCUZ34DtWLxBTBXZc0HHiJxGpfoFABkBM0JpZlwbKegC8RTvRFCiNvNpMcxvMo1nKg8choXUfolSGxSR0bIQv1MX2ZPFGDLm6wver3AIZqJdi2aP74=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766130415; c=relaxed/simple;
-	bh=lyWY5fexHjWzT5nxIzJlcIK8R3UIUXXesvpwdpZ4fZE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YO6U9LL4PhO8Ajo5gPvjC+ZG+0KCL4C+lUTSWvgVqcWmp5fMzPwktq7qHdjXKNPrZIOGlEMOKtkM5emOkiKrEDH7EnUknuBQK6oyrYMTr7JkUS7PY/dtX7x9Pnktz8esZALX4kEHJNeOIyceCCBdL/Kwy5yJlzhXSEo2D8SZP1A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=W557ofhZ; arc=pass smtp.client-ip=94.100.134.239
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate50-hz3.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com
- smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
- header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=Q1abUH1CXgHaEMujIjDYzavepPIEdL4AH5/kt7YuC1c=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1766130370;
- b=X8hL8sDtu1OGh+t2FZy/TyFCQXzB1LVNLyygpqpBcrrIbfhNrFS5/AVfJRv4tMmaj2epEnVl
- P1hePZURDmAib/8mkx8lQRAvAJmycgMfwijQIpimuM05AbP5SzRRAvCYifGqJigOjHL4rpLYHCo
- xubL3rfZcfB3LiZa4rXtNTPuIY2qztUPJGIqZD7p9TKkXqeiNOAW14nVJyiJH8zEDq+3RKVZa8N
- wN6N53rhi96g1T4Lj41KW1oWwzz8hc7ukLf8YsxyUykANuJ0iu/0swmwS+PBUGrhAUnIA/52/V/
- 2yjMWgFp1CbcLBTN6lFa/hgO0xYL8Wrop43sgu+iZSiNw==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1766130370;
- b=Gry+N/k4blCGIpAvdhrhcWcXU8zlLJEkQAfUMOHhobTcdi+WgqaZ9VGdthsAesqf8hLgEnm4
- JGZU3l0OSzSHtGXo/5N7+U/ggTZ/a7GOJWTKyRNuJqrCmVmttAMtArJFCaT+M16aIEUkqkX2XT5
- bBmthr4zXLAxQNWIxvv4pMI/4IyBjc9pjO3o0n/nL8r3wgM5MN1y7df3XLEF+jHayxdePeRLska
- NS+kSppFMTXFDyYlEQ03DMqfx8QJRXhbT07AL8X9AQDERa/F0PfNXLfvsGyiMAraaI/ntBPwHet
- cCo2iY3SwV4StTyQTe2r0odul6X1hOtqWtigSvfP6zZ0g==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay50-hz3.antispameurope.com;
- Fri, 19 Dec 2025 08:46:09 +0100
-Received: from steina-w.localnet (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id C0DFBCC0DAC;
-	Fri, 19 Dec 2025 08:45:57 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v7 1/3] dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC subnode
- to schema and example
-Date: Fri, 19 Dec 2025 08:45:57 +0100
-Message-ID: <7637686.lOV4Wx5bFT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20251218190841.pmn3kwghq6lxsfl4@pengutronix.de>
-References:
- <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
- <3210190.mvXUDI8C0e@steina-w>
- <20251218190841.pmn3kwghq6lxsfl4@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8880127B4FA
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766130598; cv=none; b=Q4oDrYVS/+XGLX1uUxNdek6qQlZRytHSt4XtnvnDQbhyraVo7Mim0MR5/auQXCJln1EcC4Zn1u72xiK1fIC/y0c02Ut4kmn7eR6GYsshpeV912d9/mfPP9TG/qykn0on+uHVIz6AtcBvQbmj9roZAVPv9FlRdmzxicrfegqZNHU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766130598; c=relaxed/simple;
+	bh=u1nqXpoKUqnz91oo4RRHaJ6BqI0Bn3Yn9+6jh/B4hfc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZGALel9ksMdTHW6zeI6cZ8zu4Elzg5h9CX7sDQahnnEoIr2Q164KPUtrv0TyTDwQDaf9O/Q+23ny2xd3tOrBRdr7dijR/rsuQiCdZkJH4TdBn1KoBwnB5I6YGNUCjGx3FiSa6hJRZqDfrn/mKT1NvX2up+PF+OMchBQ0tg3jlQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jZxJbtS1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FAfFlGiL; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJ4bxJx3939127
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:49:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	HZlzaaEJ6wxrrcHssXM1jJEht5vIfXbpqNRS80n6cZ8=; b=jZxJbtS1W6GgHqih
+	mSQIj+D1ySnkzbLM9dida1U9KcUTKSx7SCo3yNCosar9C5FdSiSlcGLC001spZHQ
+	rZK+aFA9mgjPeGU4XSe+caMW4MGosjZjDHKNnpM/1L/mDnc45vwlQ31iO1P/VN8x
+	0qN1eUDM5kCCxh76fBV1/pigynGoeSm0KOcdknRO/5lCE3LTWSfEOU9nNOMgNDjL
+	sQOlG3eG9lOyT01j2BVLjSDJkEFaxEtLieb1Bh0NNM20yFsAdVNnO2v2YtecgMzU
+	6lYXXzw8LFLtjWFGZuPO83cJwyrcAPwevp/vTFg/7YgzBmU1953+rg7CFiWnWk3x
+	kz2cZQ==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r2c1rxd-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:49:55 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88a31ce8214so34157106d6.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 23:49:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766130595; x=1766735395; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HZlzaaEJ6wxrrcHssXM1jJEht5vIfXbpqNRS80n6cZ8=;
+        b=FAfFlGiLlVx0VqJSeC3/ur9Wc3iLHkmBZgl/4XJ3m/QTEXCCoj2zp7rkpEXmnWwE7k
+         lKa4I9hFdKkOl3Md+Zer2OsjhsKdv5ekB18vcp94g0ztU9rUsH06q6v1YSIqnFv9y05x
+         k2hkOfTEMC3zl1VQMRuNNVzyWmuHNiviJ2n2alVrb8bTAEQzsFLldSdRYpy0Tfv1zJ1D
+         YjSGQpCupEf+adhSd1MToqjOI0auIUHcAu4GZT6wGb7Ak4erEkL+YtF4TM3oSc6J/4Jh
+         9yzWfA0zDeFWY0xbAH47oPmrpp0k+z6UtIcOeCJCux/y3b82sxNg34Cjfu8b5elMifot
+         YWzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766130595; x=1766735395;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HZlzaaEJ6wxrrcHssXM1jJEht5vIfXbpqNRS80n6cZ8=;
+        b=n1VGbIRgUk2j99E1GEHEWByaOJ9cXekNtTiFR/KD9BEvVX/pGG2jAQwAjPy68ZxJn3
+         PH9cWv3bP+T+FR0iR1LjKQbP8kj5TlTzQxd82y3V15JbmniDbv+Yb0BQL4rC8pfp/7zW
+         hVsBVTK+lTRWsqCvsC9aHPPuvwu7jz9rR52WpDSMifSaj+KqWvLgrRFeMQRjIV5bBl3p
+         8Jq2UOGn2ElIK6RlS/77hiJLt2/CYZLKrO7FRekLGbNksXMy0Rqydpkm6qAlRj2Qe7nE
+         Z0BFRT0FiOPxh3UTac7MdEXmyl7WnvtFmaVGwBO/pT4rYGHbk9T3jK6RbE8FYVV5QuOQ
+         u57g==
+X-Forwarded-Encrypted: i=1; AJvYcCWgVRRFppg8L2WDr1yKsSpmQwOYuKPrT38A6gdGeWOTZ18AUuBKmZVCOllttQWQ0XJCadq320iVhoj+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2+h3PSW9kX2aRkUn9lFD4ufq0Q6wOCTwl1BuJK4NpVPNTfqbz
+	8KCRaXURTSZd15Htp4WdVP7E23gA7QEM9eJpiH7+yKsGJG0KHbO/JVnWPLWx59zAMKswi37h1Id
+	1u25/Hh/Nf83dIamfXCJ5o6q4JNsxeRvTWoifC7urRgnV5F6nC0x0Bc6t8pSHEiQx
+X-Gm-Gg: AY/fxX6BeydqNDU4Y8KZsZIoV/ldSB3ECJ9/X/gaRzV2gLjHH+zT59jOx6HGRL9hy02
+	vE/Pv7Nz7uAlyI218sDbYBaac50ZQvcLkAr4vFUNujUbetRcCRfuvHt0fYQiNEwKpZFdl+zfF0c
+	8aT7lFz2IPcoyKrAnxzVPR87f8lHQ+RPcj6G61tuaryBnv+Qn2fbR988NreMTlnIlHzzKMUO/v6
+	qTCC6lsM9X2xCZcM4yhN+po6mWc9DCAOlrBq8MJljo5HmtkEHEK/NRKg+f+9wtumI1DxW0JJcHv
+	NZroFrpU7yoP3Npm3muJXlwF8VGz92mcp6HtbimqCZWHj7QEu4zU0jNmeEkMiSVNAfEmdGw7FAB
+	pGJpslYLs0dAd2583iscitfHQ/Lv2LGVJ4tw/g7H9nwz0cpsqWcDLrLFQJMeLcA7dbsyncQuKJN
+	0sQSNOyjrwj9fXtgkk9iCDwoA=
+X-Received: by 2002:a05:622a:1f15:b0:4ee:87a:4d10 with SMTP id d75a77b69052e-4f4abdb63a4mr23026491cf.78.1766130594721;
+        Thu, 18 Dec 2025 23:49:54 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE0rwAFeOYFYWNd8aqh9qwfojG37bl+Qt7bAMn6Hl/AMKiwrZmA4fsYM77wdMC6YdUhqmP2Xg==
+X-Received: by 2002:a05:622a:1f15:b0:4ee:87a:4d10 with SMTP id d75a77b69052e-4f4abdb63a4mr23026211cf.78.1766130594219;
+        Thu, 18 Dec 2025 23:49:54 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a185d5ea6sm487096e87.5.2025.12.18.23.49.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Dec 2025 23:49:53 -0800 (PST)
+Date: Fri, 19 Dec 2025 09:49:51 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: jerome.debretagne@gmail.com
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Hans de Goede <hansg@kernel.org>,
+        Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+        Jeff Johnson <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-wireless@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+        ath12k@lists.infradead.org, Dale Whinham <daleyo@gmail.com>
+Subject: Re: [PATCH v4 4/6] platform/surface: aggregator_registry: Add
+ Surface Pro 11 (QCOM)
+Message-ID: <njdekii3plrcrbno743lpspc7vxozbfkf2s4vdft5huoo6iyan@usu5pn4527kx>
+References: <20251218-surface-sp11-for-next-v4-0-7bcf83c1504a@gmail.com>
+ <20251218-surface-sp11-for-next-v4-4-7bcf83c1504a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay50-hz3.antispameurope.com with 4dXfjM6trLz2nJ7p
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:f6d1fa41e90d3fcf88d8c9a603ba697f
-X-cloud-security:scantime:3.688
-DKIM-Signature: a=rsa-sha256;
- bh=Q1abUH1CXgHaEMujIjDYzavepPIEdL4AH5/kt7YuC1c=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1766130369; v=1;
- b=W557ofhZUDCxRTZTFLPU0AfcoxKLDB9NM9WySLHgJqKUVUxfGxBIlXuI8z4tLIUtYVUbeOj9
- /ISDfMjANf75DVJfbAeLz4c9NqFCqNY/MEHP3Cu0umd8upQe7uVq9IRLjIgBKNjYp1d9CREtOP3
- n3DcZK7/kcdC+sEzrbEqwYKV3/9OwRADBjF0Mo4IL8XaNAObSv1Gfvk9BS5a29NPdZpFlr3pFdM
- W0lfPufNotkzKXaBHNFXcmaABIVDn1OuQlxnYGdb0yeJTzg/xphhTM1NlT2Y7KhcnUtINFXQb9J
- NEWPA2meT0yoeP38pre3JLumkx2RZ0x1JShHxkPoyX79Q==
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251218-surface-sp11-for-next-v4-4-7bcf83c1504a@gmail.com>
+X-Proofpoint-GUID: ke6W_AC7sybSvwW9swq-Zj4YKuVnxG5I
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDA2MyBTYWx0ZWRfX3q8lFgACzb8i
+ SQLGWlbBFqPKYLy0PZFl2k/RLTL4/H22nVypIJmkfkLH3Eu1G5AQwIYriP2oX6+yJaacHP3vGcL
+ n2FvOmmiijtuiWtmNh1zSWTkOg2AR7M7lWSIgHHPuMJca823D/9N8n8/FOr9ByRzGZF7O9NyMdB
+ Azw9WayPspQN9oDJ7C2Dx+NdoGixc0c7gdZY5Q+lMXq6Gl6B9AALjfI0gSg2IaFh68U2Fd3A7Ud
+ WfRDYGuJ48qGxCqkYQRFIz3hpqPVLkPA9P80fGCPNiJ6cPg8Y22XBjWXzm4twfgT3AxX1vvoJuC
+ zmVRhC93fQuc3FDGtKFVH2wA0wXL2K+xVZQm7AOUvjciXRGMeKhZNFCMWAex+fSXhPdfnu7orOu
+ l4uk++P7XJhye6/mAuU3U67GHxEx+AYMqK5GCjkRR7omaDzP20uhj6mZK9k+dzl6PbjURCabggh
+ 4OD0cQwpd3hGWpPaONg==
+X-Authority-Analysis: v=2.4 cv=feSgCkQF c=1 sm=1 tr=0 ts=694503a3 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=3uxqv5YaM5NtnTnEUcoA:9 a=3ZKOabzyN94A:10
+ a=wPNLvfGTeEIA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-ORIG-GUID: ke6W_AC7sybSvwW9swq-Zj4YKuVnxG5I
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-19_02,2025-12-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512190063
 
-Hi Marco,
+On Thu, Dec 18, 2025 at 11:22:10PM +0100, Jérôme de Bretagne via B4 Relay wrote:
+> From: Dale Whinham <daleyo@gmail.com>
+> 
+> This enables support for the Qualcomm-based Surface Pro 11.
+> 
+> Signed-off-by: Dale Whinham <daleyo@gmail.com>
+> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+> Reviewed-by: Maximilian Luz <luzmaximilian@gmail.com>
+> ---
+>  drivers/platform/surface/surface_aggregator_registry.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
 
-Am Donnerstag, 18. Dezember 2025, 20:08:41 CET schrieb Marco Felsch:
-> Hi Alexander,
->=20
-> On 25-12-16, Alexander Stein wrote:
-> > Hi,
-> >=20
-> > Am Montag, 15. Dezember 2025, 18:54:36 CET schrieb Marco Felsch:
-> > > Hi Liu,
-> > >=20
-> > > sorry I didn't fully answer you please see below.
-> > >=20
-> > > On 25-12-08, Liu Ying wrote:
-> > > > Hi Marco,
-> > > >=20
-> > > > On 12/02/2025, Marco Felsch wrote:
-> > > > > From: Liu Ying <victor.liu@nxp.com>
-> > > > >=20
-> > > > > i.MX93 SoC mediamix blk-ctrl contains one DISPLAY_MUX register wh=
-ich
-> > > > > configures parallel display format by using the "PARALLEL_DISP_FO=
-RMAT"
-> > > > > field. Document the Parallel Display Format Configuration(PDFC) s=
-ubnode
-> > > > > and add the subnode to example.
-> > > > >=20
-> > > > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > > > > [m.felsch@pengutronix.de: port to v6.18-rc1]
-> > > > > [m.felsch@pengutronix.de: add bus-width]
-> > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > > > ---
-> > > > >  .../bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml | 92 ++++++++=
-++++++++++++++
-> > > > >  1 file changed, 92 insertions(+)
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-=
-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-m=
-edia-blk-ctrl.yaml
-> > > > > index 34aea58094e55365a2f9c86092f637e533f954ff..6e2d86d9341c75108=
-b492bcbabc8a560d8e707cd 100644
-> > > > > --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-b=
-lk-ctrl.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-b=
-lk-ctrl.yaml
-> > > > > @@ -26,6 +26,12 @@ properties:
-> > > > >    reg:
-> > > > >      maxItems: 1
-> > >=20
-> > > ...
-> > >=20
-> > > > > +            properties:
-> > > > > +              endpoint:
-> > > > > +                $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> > > > > +                unevaluatedProperties: false
-> > > > > +
-> > > > > +                properties:
-> > > > > +                  bus-width:
-> > > >=20
-> > > > In v1-v5, I thought the output bus format can be determined by the =
-sink
-> > > > device(a panel or a bridge) hence properties like bus-width were no=
-t needed.
-> > > > But, if this property is really needed, then reference video-interf=
-aces.yaml
-> > > > since bus-width is documented there.  Should we reference bus-type =
-defined
-> > > > in video-interfaces.yaml too?
-> > >=20
-> > > You're right, the bus-width should be determined by the connected pan=
-el.
-> > > But there are cases where a 24-bit panel is connected but only the lo=
-wer
-> > > 18-bits are muxed. I added the bus-width property to handle this case.
-> > > In the end most users don't have to specify this since the correct
-> > > bus-width is coming from the panel bus-fmt.
-> > >=20
-> > > > > +                    enum: [ 16, 18, 24 ]
-> > > >=20
-> > > > The PARALLEL_DISP_FORMAT field of DISPLAY_MUX register says this IP=
- supports
-> > > > below formats.  It seems that the enum here may tell RGB888, RGB666=
- and RGB565.
-> > > > How can we tell RGB555, YCbCr 24 bits and YUV444 then?
-> > > >=20
-> > > > 000b RGB888 -> RGB888
-> > > > 001b RGB888 -> RGB666
-> > > > 010b RGB565 -> RGB565
-> > > > 011b RGB555 -> RGB555
-> > > > 100b YUV -> YCbCr 24 bits
-> > > > 101b YUV -> YUV444
-> > >=20
-> > > This enum is about the physical bus width. RGB565 =3D=3D 16-bit, YUV =
-=3D=3D
-> > > 24-bit.
-> > >=20
-> > > That said, I don't think that you need to specify the bus-fmt since t=
-his
-> > > is coming from the panel. As said above, my itension with the bus-wid=
-th
-> > > property is to provide integrators (dts-writers) a possibility to lim=
-it
-> > > the physical available bus width.
-> >=20
-> > Mh, isn't [1] exactly about this? Not sure about the outcome at that ti=
-me.
->=20
-> Thanks for the pointer, I wasn't aware of this discussion. I skimmed
-> through the dt-bindings thread and I agree with Rob and Maxime.
->=20
-> We do have the bus-width endpoint property already. This property is
-> alredy used by media and drm bridge drivers. Why not making use of for
-> this simple bridge driver too?
->=20
-> Furthermore I doubt, that a simple drm-bridge MEDIA_BUS_FMT_* convert
-> driver solves all the problem in a generic way for all platforms, all
-> connectors, all routing options.
-
-Nobody knows what new hardware comes up with =C2=AF\_ (=E3=83=84)_/=C2=AF
-Anyway we already have a similar problem on our MBa6ULx mainboard.
-Current downstream workaround is to clone the display timings but
-change the bus format. See [1]. Although I would like to get rid of it.
-This is just the display connector on the mainboard causing the shift.
-
-Best regards
-Alexander
-
-[1] https://github.com/tq-systems/linux-tqmaxx/commit/777c02480182d3054264a=
-aaf80e1dbc40a02cfc1
-
-> If the i.MX93 NXP-EVKs in [1] would have connected the upper LCD_DAT*
-> pads instead of the lower ones, there would be no conversion needed by
-> the PDFC bridge driver, albeit the physical bus is cut to 18-bit width
-> due to the RPi ext. header limit, which is expanded to 24-bit again later=
- on
-> via the Adafruit board panel FPC connector.
->=20
-> In such scenario the output width of the PDFC has to be 24-bit else
-> you would lose not only the two LSBs but also the two MSBs for each
-> channel. I tried to visualize what I meant for the blue channel:
->=20
->                  24-bit PDFC bridge
-> 		 ------------------
->         +----+----+----+----+----+----+----+----+
->  LCDIF  | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
->         +----+----+----+----+----+----+----+----+
->           |    |    |    |    |    |    |    |
->         +----+----+----+----+----+----+----+----+
->  PDFC   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
->         +----+----+----+----+----+----+----+----+
->                     |    |    |    |    |    |
->         +----+----+----+----+----+----+----+----+
-> SOC_PAD | xx | xx | D2 | D3 | D4 | D5 | D6 | D7 |
->         +----+----+----+----+----+----+----+----+
->                     |    |    |    |    |    |
->         +----+----+----+----+----+----+----+----+
->  ext.   | xx | xx | B2 | B3 | B4 | B5 | B6 | B7 |
->  HDR    +----+----+----+----+----+----+----+----+
->                     |    |    |    |    |    |
->                     |    |    |    |    |    |
->                     |    |    |    |    |    |
->           +-----------------------------+    |
->           |    +-----------------------------+
->           |    |    |    |    |    |    |    |
->         +----+----+----+----+----+----+----+----+
->  Ada.   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
->  FPC    +----+----+----+----+----+----+----+----+
->=20
->                  18-bit PDFC bridge
-> 		 ------------------
->         +----+----+----+----+----+----+----+----+
->  LCDIF  | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
->         +----+----+----+----+----+----+----+----+
->           |    |    |    |    |    |    |    |
->         +----+----+----+----+----+----+----+----+
->  PDFC   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
->         +----+----+----+----+----+----+----+----+
->                     |    |    |    |    |    |
->           +---------+    |    |    |    |    |
->           |    +---------+    |    |    |    |
->           |    |    +---------+    |    |    |
->           |    |    |    +---------+    |    |
->           |    |    |    |    +---------+    |
->           |    |    |    |    |    +---------+
->           |    |    |    |    |    |
->         +----+----+----+----+----+----+----+----+
-> SOC_PAD | xx | xx | D2 | D3 | D4 | D5 | D6 | D7 |
->         +----+----+----+----+----+----+----+----+
->                     |    |    |    |    |    |
->         +----+----+----+----+----+----+----+----+
->  ext.   | xx | xx | B2 | B3 | B4 | B5 | B6 | B7 |
->  HDR    +----+----+----+----+----+----+----+----+
->                     |    |    |    |    |    |
->                     |    |    |    |    |    |
->                     |    |    |    |    |    |
->           +-----------------------------+    |
->           |    +-----------------------------+
->           |    |    |    |    |    |    |    |
->         +----+----+----+----+----+----+----+----+
->  Ada.   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
->  FPC    +----+----+----+----+----+----+----+----+
->=20
->=20
-> The mapping can get quite difficult for a single SoC already, just by
-> using a slighlty different HW routing (the upper D[ata] pads).
->=20
-> Therefore I would keep it simple and device/ip specific (in this case
-> PDFC specific) by making use of the bus-width. Specifying the bus-width
-> property could be also wrong albeit it's the case physically, as you can
-> see in my above example.
->=20
-> Therefore the bus-width property must have a good description.
->=20
-> Regards,
->   Marco
->=20
-> > Best regards,
-> > Alexander
-> >=20
-> > [1] https://lore.kernel.org/all/20250304101530.969920-1-victor.liu@nxp.=
-com/
-> >=20
-> > > [snip]
->=20
->=20
->=20
->=20
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 
-=2D-=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-http://www.tq-group.com/
-
-
+-- 
+With best wishes
+Dmitry
 
