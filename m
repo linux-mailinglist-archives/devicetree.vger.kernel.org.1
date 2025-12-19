@@ -1,86 +1,229 @@
-Return-Path: <devicetree+bounces-248369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B461DCD1F01
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 22:12:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0357CD1F91
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 22:33:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2DD713002163
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 21:12:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 41745300C292
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 21:33:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DEB03242B1;
-	Fri, 19 Dec 2025 21:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97EDE33F8A1;
+	Fri, 19 Dec 2025 21:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hLUnDZiv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="R4k+IDbt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C8B194C96;
-	Fri, 19 Dec 2025 21:12:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A6C17C77
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 21:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766178737; cv=none; b=WBaA4BTmh0hUQgJ/7tvFRy+t9Dta9zAR+DIqFCxHL/NMmavMDuFcOxxaEA5HTVmieobmtqMcPwwC5yCMzqCKo/GkPOxwUasCrhgWAvGe5RpVYP/WNl4cVVuFtJTZShFHLrr4FtqStR10eWDZZPAOV9Zt7lZeHPKvNgRyAFV5Nxk=
+	t=1766180011; cv=none; b=MotYKkgEJOgE1ukFp4GNyOZBHeVskjYsd8WMdBWoblhz6+ACvQZ8FIHKpQNw5kWsvz5KHJ6BbGebt5lxIX62brDHtqTwOO+BGB2P2JYhD499XENHAxnTGbO0wNCfZLCjOf2QiD8iLlFExvakxpPwm1eo8E1Q60qYQclMXVhYfTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766178737; c=relaxed/simple;
-	bh=IiUbZyP5yaT6FmHbdxpDbkxvX0JenMyPi3Qa9YrULgU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LhYEMFahM3UmYMwhbhKpsAac8WPMnyRZJ7pBA5Y40E5CIK3IrQVIxq0Mu8EmYwCpMdC82YV8FeydC9mKpS0mj8vrbUL3+hjYfqWu/pgUIMvLhfsTzWC9b9xvSI6W6vmxdJsZmOQp93z9fJ1fIb/Sgqt9yX0QfeElVlboF3Kjk8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hLUnDZiv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0271C4CEF1;
-	Fri, 19 Dec 2025 21:12:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766178737;
-	bh=IiUbZyP5yaT6FmHbdxpDbkxvX0JenMyPi3Qa9YrULgU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hLUnDZiv675B+5Q2jSqIid9T21CvlvG3m3TxQY4eb0rrhVjkW66cAjGoXLXs+4TyK
-	 ewX7LDrtBC/wR+AP6OxuRO3LWxbR8JtHbSRjpt+cCwD/D8VdrKdhUw5nhLcEV219G3
-	 uUZfJlfkUMbJCvHQHLHU7k0gsPpYeZCnJ6M9zw2Q9GaR/H8n/nqIVQ5fDVKOvxNJ0y
-	 A0JsKGhsgDCBUp+BwohEeI3n+AEmgx0L/KKoAMcTRKtiJ1a3C8k61lPps6WMI5WBgE
-	 JUd+TMizJLGYKgrf6LV0Iw8zgyrfx3KuC6WNZK5kJi3vOOTmIaZsKOPWpbFEPZG5nA
-	 jt9YjJdLk0qhw==
-Date: Fri, 19 Dec 2025 15:12:14 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Zhaoming Luo <zhml@posteo.com>
-Cc: linux-scsi@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, Bart Van Assche <bvanassche@acm.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
-	Avri Altman <avri.altman@wdc.com>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: ufs: Fix several grammar errors
-Message-ID: <176617873434.3944803.4539768491338614991.robh@kernel.org>
-References: <20251217-fix-minor-grammar-err-v3-1-9be220cdd56a@posteo.com>
+	s=arc-20240116; t=1766180011; c=relaxed/simple;
+	bh=7j7Mhbg90xSzHED8l/clDqlKrqKh2bnUjRe+8uj7ie0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pcFYAshgqTNkXMlHEIWRp/WC8tj8qiilFUY/6aGt5pukR/HF8Ickw8FFz0WvJf11RL+88E9u9IBtPIbgiXcyECVNMgLiplWdzO+vrrIDWZIWB2kb3fYgB83us7yyiBprhE7gxDHsaM81f7kTkphb6gMYMNxdWcEdlXK/6hIlZVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=R4k+IDbt; arc=none smtp.client-ip=209.85.210.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7c77fc7c11bso2308181a34.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:33:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1766180008; x=1766784808; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cGq9VvIUtHaafoMX9MKtWZKVfVDLWd2Cnsr/0BUU6N0=;
+        b=R4k+IDbthcRITWM2FPdL9O0hN9sry7k8Y+kPMapevgHy4ONWuqKhe6azytaLdPKAPo
+         +s65WAPofqvOBS7u9f9Or8Vcbb1uTCpOhEfFftWmm+AWcUYi2IKPMlZ6IqPLxi2UmSNh
+         9rmiH0g7/C7aL75UlvXdumqnjlv02US6QQeMOEmHf2sbfSU1Nl9AfNhhTm9UIGQnwDQl
+         Gl2Nez2aepLUUBeIrk2uuTBdPEpbDj2I9lEtlNKpddFVrlOG3ItvV4a4hSt/plfIp13x
+         WhTSodRJTtDlIpUjOOxFo97XNU3Zw+vg4qiwSnnIzKdrWJ3S7uhp7Ye9pSMEPwHKSvBg
+         m15Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766180008; x=1766784808;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cGq9VvIUtHaafoMX9MKtWZKVfVDLWd2Cnsr/0BUU6N0=;
+        b=BkbQN1AlFXZ7lJCMnOy5glmrrTM1awuVS0r5s9ptFN7K0mvq3BtABlQi8N8YRCb4mJ
+         DS8NXk13O1LOTF9kJXlXuqIVz7Fb4IlDhiwZ9WlI3Zgc0h5GSrCCSZIIJoLYC1YDmb5x
+         kAhCozIq9tBJZ3yYRspStYdbaZiW7R0doL+BcnjfU21dXarIWb4BveQhhLoTsBOGOkTK
+         UiEySLYl1qaMwTtjVb1wf16gacG+Kk321NU0ddcP5EtDt/s9po43MwBdILdFcJdoSbS7
+         5jYzvFE7HN5dYo7NFuTJ3doEZPj5zjebRnuyrsiMc1xuHUOmS42+bPYHq3aGk18s6n4+
+         cL8A==
+X-Forwarded-Encrypted: i=1; AJvYcCUL8pWWynac8w+Dvmp1oKCIrAc66CcmIiE89Q/kM/Xya6HTLYKDfqAAJlpNbpbSA1qgGt542duDZk4e@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaQ6v9FmoEZTXZi4QVANe2By/VvrbSoyjuYdEVBR71Qm3baX7V
+	71JZL7idWGl7G1BRqS9mSIDaKrRNZmoJ/3GGomcGe4yNtPCaruEDB54xc3cVMyp7cMI=
+X-Gm-Gg: AY/fxX5LdSJT5Yubfqw709Zt86+W9xsZnab9K1i4CxkuxohHmViqAk5wPtfT+YeXWUT
+	hrUGU4hA4ytPrHxL6HZyqiT77mdP01vHRgRYVpUabECUy7xGv6xX4+JQ0dftd2viZZjemsIqUwP
+	hkScn9pa/s8DuwOuB6K3QmN4AfetrRkYOusLhxWM3Jk1RFtfc+985OU7ZoovGGI/kzKtd6B4Bno
+	ApX+MUpVebSwDUe6dVEv7qWu9zGjXoAIIRDzhmbx5te/cJG8fCbiRzxxi7sFPsN1YcI6L8Tgtc9
+	GtuyYS6gYMtQyXw9hlLrxXhw1ShQDum+QVsOdHTfjvXER863ah2Z3VRrzHwg5cowlEAgR4aACqR
+	KBUTMHRJnGDNX5dAIcW2/OqIaqc9qSuJWZOrgbp0l9L2OQUfPsz2hGmL1lPD75xL7yzDEENG1vs
+	VhgsmZL8vAslUXSg==
+X-Google-Smtp-Source: AGHT+IHT+jQUaBkRwcfZMx50SHEhmDlF+7KC5RBX8VWqbplJItdm2aIku1mBWh9Rd41kLXnoreJuCQ==
+X-Received: by 2002:a05:6830:2463:b0:7c7:538a:c6fd with SMTP id 46e09a7af769-7cc5926f92amr3264434a34.12.1766180008123;
+        Fri, 19 Dec 2025 13:33:28 -0800 (PST)
+Received: from [127.0.1.1] ([2600:8803:e7e4:500:9b20:bac4:9680:435])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7cc667563ffsm2485045a34.13.2025.12.19.13.33.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Dec 2025 13:33:27 -0800 (PST)
+From: David Lechner <dlechner@baylibre.com>
+Subject: [PATCH v4 0/9] spi: add multi-lane support
+Date: Fri, 19 Dec 2025 15:32:08 -0600
+Message-Id: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251217-fix-minor-grammar-err-v3-1-9be220cdd56a@posteo.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33Oy27DIBAF0F+xWHcihodjsup/VF1gM26Q4kcBW
+ 4ki/3sIWUSqKi8v6J47dxYpeIrsVN1ZoNVHP405qI+KdWc7/hB4lzMTXGjeoIY4e7DOwbBckod
+ 2iRCXeZ5CAmyldlx3WvU1y/05UO+vxf76fuVAv0ueSK9H1tpI0E3D4NOpGuma4DmDAg17Fs4+p
+ incym0rlkb556h2zlgReHZM06Fwda/7z9beLr4NdMhTBV7FG0N+3MNExhprRG2kROXMP5h8Y4L
+ jHiYzJhVxfTToqJF/sG3bHpoicvCQAQAA
+X-Change-ID: 20250815-spi-add-multi-bus-support-1b35d05c54f6
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marcelo Schmitt <marcelo.schmitt@analog.com>, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>
+Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5547; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=7j7Mhbg90xSzHED8l/clDqlKrqKh2bnUjRe+8uj7ie0=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpRcRjMtzknafQySd4Eu28JCWxvVFH5PYmHeQM7
+ uiVAwQs5JSJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaUXEYwAKCRDCzCAB/wGP
+ wBEcB/45ZOyTag78NIigTuDGygj4v6mfQzOcQ2nC+XRi8YWqx8pJa6jbSi1HnQad5ANPVdKhJNU
+ 0bLei/xudpOG0rGHdLBTkO0/fsv755o6tLr9JQ0TuGlw1Rcum9hI7os1GHcBpVlraR7J66MAZ0+
+ Y+kEfO23CaV61V3tNT7gpOzLcENlihSnUyyeyspYvdyiGCBI+46Er1iFmn7PVFNuZHuunsCjPYO
+ 6/s7Tmz2LmcVVwG1O/MOHJ25jIoLqKaBhI6VQ2I+KDfWZRaI1hpAogtpVkzBjVNcbopbVW8vB4z
+ hbn3rSnM0U5xHUX6BND/IH1v6PI2S0++w9Wk7+0mJ6BNkGTX
+X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
+ fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
+This series is adding support for SPI controllers and peripherals that
+have multiple SPI data lanes (data lanes being independent sets of
+SDI/SDO lines, each with their own serializer/deserializer).
 
-On Wed, 17 Dec 2025 22:03:38 +0800, Zhaoming Luo wrote:
-> Fix several grammar errors.
-> 
-> Signed-off-by: Zhaoming Luo <zhml@posteo.com>
-> ---
-> Changes in v3:
-> - Further improvement on the grammar as suggested by Rob Herring.
->   See https://lore.kernel.org/linux-scsi/20251217010112.GA3464453-robh@kernel.org/
-> - Link to v2: https://lore.kernel.org/r/20251213-fix-minor-grammar-err-v2-1-b32be57caa13@posteo.com
-> 
-> Changes in v2:
-> - The subject prefixes match the subsystem as suggested in the
->   documentation.
-> - The necessary To/Cc entries are included.
-> - Link to v1: https://lore.kernel.org/linux-scsi/20251212131112.5516-1-zhml@posteo.com/
-> ---
->  Documentation/devicetree/bindings/ufs/ufs-common.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
+This series covers this specific use case:
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
++--------------+    +---------+
+| SPI          |    | SPI     |
+| Controller   |    | ADC     |
+|              |    |         |
+|          CS0 |--->| CS      |
+|         SCLK |--->| SCLK    |
+|          SDO |--->| SDI     |
+|         SDI0 |<---| SDOA    |
+|         SDI1 |<---| SDOB    |
+|         SDI2 |<---| SDOC    |
+|         SDI3 |<---| SDOD    |
++--------------+     +--------+
+
+The ADC is a simultaneous sampling ADC that can convert 4 samples at the
+same time. It has 4 data output lines (SDOA-D) that each contain the
+data of one of the 4 channels. So it requires a SPI controller with 4
+separate deserializers in order to receive all of the information at the
+same time.
+
+This should also work for the use case in [1] as well. (Some of the
+patches in this series were already submitted there). In that case the
+SPI controller is used kind of like it is two separate SPI controllers,
+each with its own chip select, clock, and data lines.
+
+[1]: https://lore.kernel.org/linux-spi/20250616220054.3968946-1-sean.anderson@linux.dev/
+
+The DT bindings are a fairly straight-forward mapping of which pins on
+the peripheral are connected to which pins on the controller. The SPI
+core code parses this and makes the information available to drivers.
+When a peripheral driver sees that multiple data lanes are wired up, it
+can chose to use them when sending messages.
+
+The SPI message API is a bit higher-level than just specifying the
+number of data lines for a SPI transfer though. I did some research on
+other SPI controllers that have this feature. They tend to be the kind
+meant for connecting to two flash memory chips at the same time but can
+be used more generically as well. They generally have the option to
+either use one lane at a time (Sean's use case), or can mirror the same
+data on multiple lanes (no users of this yet) or can perform striping
+of a single data FIFO/DMA stream to/from the two lanes (our use case).
+
+For now, the API assumes that if you want to do mirror/striping, then
+you want to use all available data lanes. Otherwise, it just uses the
+first data lane for "normal" SPI transfers.
+
+Signed-off-by: David Lechner <dlechner@baylibre.com>
+---
+Changes in v4:
+- New patch to change spi-{rx,tx}-bus-width to array. This will cover
+  most use cases.
+- Split data-lanes property into spi-{rx,tx}-lane-map. These properties
+  are now only needed for special cases instead of being the primary
+  property for multi-lane support.
+- Didn't pick up Rob's acks since all DT bindings are significantly changed.
+- Rework other code to accommodate the above changes.
+- New documentation patch.
+- Link to v3: https://lore.kernel.org/r/20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com
+
+Changes in v3:
+- Use existing data-lanes devicetree property name instead of creating a
+  new one.
+- Renamed "buses" to "lanes" everywhere to match the devicetree property
+  name.
+- Clarified bindings description about how to specify data lanes.
+- Link to v2: https://lore.kernel.org/r/20251107-spi-add-multi-bus-support-v2-0-8a92693314d9@baylibre.com
+
+Changes in v2:
+- Renamed devicetree property spi-buses to spi-data-buses. (Driver code
+  was already using spi->data_buses, so it matches).
+- Fixed a small bug in the AXI ADC driver changes.
+- Moved one line of code in the ADC driver changes.
+- Link to v1: https://lore.kernel.org/r/20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com
+
+---
+David Lechner (9):
+      spi: dt-bindings: change spi-{rx,tx}-bus-width to arrays
+      spi: dt-bindings: add spi-{tx,rx}-lane-map properties
+      spi: support controllers with multiple data lanes
+      spi: add multi_lane_mode field to struct spi_transfer
+      spi: Documentation: add page on multi-lane support
+      spi: dt-bindings: adi,axi-spi-engine: add multi-lane support
+      spi: axi-spi-engine: support SPI_MULTI_LANE_MODE_STRIPE
+      dt-bindings: iio: adc: adi,ad7380: add spi-rx-bus-width property
+      iio: adc: ad7380: add support for multiple SPI lanes
+
+ .../bindings/display/panel/sitronix,st7789v.yaml   |   5 +-
+ .../devicetree/bindings/iio/adc/adi,ad4030.yaml    |  42 +++-
+ .../devicetree/bindings/iio/adc/adi,ad4695.yaml    |   5 +-
+ .../devicetree/bindings/iio/adc/adi,ad7380.yaml    |  23 +++
+ .../bindings/spi/adi,axi-spi-engine.yaml           |  15 ++
+ .../bindings/spi/allwinner,sun4i-a10-spi.yaml      |   6 +-
+ .../bindings/spi/allwinner,sun6i-a31-spi.yaml      |   6 +-
+ .../bindings/spi/nvidia,tegra210-quad.yaml         |   6 +-
+ .../bindings/spi/spi-peripheral-props.yaml         |  40 +++-
+ Documentation/spi/index.rst                        |   1 +
+ Documentation/spi/multiple-data-lanes.rst          | 217 +++++++++++++++++++++
+ drivers/iio/adc/ad7380.c                           |  49 +++--
+ drivers/spi/spi-axi-spi-engine.c                   | 145 +++++++++++++-
+ drivers/spi/spi.c                                  | 114 ++++++++++-
+ include/linux/spi/spi.h                            |  30 +++
+ 15 files changed, 668 insertions(+), 36 deletions(-)
+---
+base-commit: b96bcfba104c65db41378a04f5ccac186f79578f
+change-id: 20250815-spi-add-multi-bus-support-1b35d05c54f6
+
+Best regards,
+-- 
+David Lechner <dlechner@baylibre.com>
 
 
