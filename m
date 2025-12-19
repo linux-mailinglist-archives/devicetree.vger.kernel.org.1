@@ -1,118 +1,151 @@
-Return-Path: <devicetree+bounces-248110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4038CCEE83
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:13:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 966E8CCEE56
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:10:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 37C72301C97B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:13:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 09F5D301F7C1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D2262C17A0;
-	Fri, 19 Dec 2025 08:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8292DC781;
+	Fri, 19 Dec 2025 08:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hUEVguAS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eeTT4Q3j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FC1D27AC31;
-	Fri, 19 Dec 2025 08:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B4A52E11BC
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 08:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766131986; cv=none; b=HPl7ZMRUWZYou3g70N7TSjIIYOAZiR9JGFLdvyEqcRobu7seQXMeyikBJjiE6W0H69zW/8tCAWXgVglsgTiRFr6nhwXsT6ifKoY0CNtWKW/L0EBJei2irzvNt/3/NXLPhUg+LgWhTY/YsIATcZE30JwiTomSv4QnOnTc2EnVIls=
+	t=1766131809; cv=none; b=EIfTlYlrdV+STE2v7koB1nzANPJFnM4R8hJ2hvtGznYxMoHTronkyKzLq/vrd0BFnM8Gi/1WzsbDaaocAoVAGQH8j/Opdy94qD5aHKSm91MXTPsgaYYZsTOrTrbpNm3ug1XF4Zhz/bGYuEGgWfwvQHDIcric0i95V9kP8Sb8oCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766131986; c=relaxed/simple;
-	bh=f+RrjfVCBgq3UY1No8gqDTUXVFcFPU09Uy5DhqORVsA=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=J1RmM5aQRIaQldEUcO/vyxJgKSWWN2IHvb1SINkYD7Y5/JsVL+kfqZa00AZAQ1CKUjy9+3pwr/NjEj8ixXXGyKyH5U0cP207oUjhRT4aSJ14nyyxS8HD1d2v7QqsTEfuQ8Ks5nPQvp2EbY90jT01G3bBe9psZsI3mBr33gp/o4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hUEVguAS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE4B5C4CEF1;
-	Fri, 19 Dec 2025 08:13:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766131985;
-	bh=f+RrjfVCBgq3UY1No8gqDTUXVFcFPU09Uy5DhqORVsA=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=hUEVguASheuvLht0vG4bqerZ4qXyBJDhgQ9N4gICfgoYkp2tcOdnUvuiXsQbR5vWb
-	 2MRjucnHZFaLP+IyIrhDMjtcQrimJtAiPF3eUaYbb2pq1JHNoCEVbrjjm5QWaXWmap
-	 5t+8ZZ0LESAAJYtRcrtT0UanhCz7t6IbAF+FGuj2iKcJ3RqMcK20pjvwfSWFdumvv+
-	 9gGAeSRfvGhR5vWbNnUhVPf5wDsGT21A/Qu8Ua227VjPGRBi4Z9KPd2O2dfldfod2r
-	 5YTbgYdRs8RmbJJZqTH1Z7OaiqsZxWPr3t+G0ETOpmGiz8S5gwVnw9jwhs/lv+SVDn
-	 dfEXWXMQvPrqQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id F3005380AA50;
-	Fri, 19 Dec 2025 08:09:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1766131809; c=relaxed/simple;
+	bh=PuGP3tDDyva66stpyd0PfJUp+oeZiyMMNMGNoISiM78=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=EG97n4Owy+RgzxDLaBDJ2FeQP3KlmagyGXX3XisSeVZEBFdbh+qQJuYqYfp7HWDZBKNIUXvj3K5ja2O704Ec7uaG2btzQRyy+15sMYWLRlF4gMVJcFkzVMGWMfRQQmy3BXB1KI/tQwJ+xTeQ/j/xKqqGi6drtpVKuCHy62PWKZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eeTT4Q3j; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7bc0cd6a13aso940086b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 00:10:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766131805; x=1766736605; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=34Z/wqK33nY+/r9/my4gnemDx7jJlFUXcUiWHmEPYyc=;
+        b=eeTT4Q3jv5FVInv4UR3sIannvw/TX2RXdtgUDYDpdzwgMu/kdrSX+P+v+KWx+cypWI
+         +HAxJxlxS1zZB9hufhVrVE2Mzv/t99GNqcVpJKhjBoBRlNXwCdMTmNWItj5tyFC0JyYg
+         RkGDGZNcJ4FoN8+5n0SJLRI4NDyKwPaNaVNRxcj6jndItGxtBLXEK4huQHJtd1cDifAk
+         iysEJuWF+ncR6x2n0VTZxn3j2QIpEnyaEz9XWakxxB9pxo4kIwHWMnUsd004uOSvoQSL
+         bou11UVVRkJsIcJR52gJQH5BjsIpqZL00RYNotIF1tQblK0pDURMZHurS62EmjNIvpQr
+         DSeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766131805; x=1766736605;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=34Z/wqK33nY+/r9/my4gnemDx7jJlFUXcUiWHmEPYyc=;
+        b=EEINMX5/eXge/t7ERncCI1dgnQGZN5cwubomnLAPh0ta88KsR/rbn9Zp+DsWN66bUT
+         /uC0MJKS8eL0GfKYGdLS/88jXSTr3ngepNX3DTyCkK47lcSTOsQo6xNNmzrFNm7lctsj
+         xBEjM12Hwki6Huox8dKnC3MeoYFRQE0NFRKHvTS25u+tdLzPNI6wtcD3ep/aOaRPFQq+
+         xkUy9t9Fp1QLmPSj28sVmdbTdrzy7/4gpIMsaLmOzpkPE4n+eF2inaB0+ZScihhVFyYu
+         3WxtxrFAbv86UBzQKgJNwnbJ+APZuvHVui3LAoZEHJ0Mga86Ie/dM4zFwWtq8s7LSEEJ
+         RuRQ==
+X-Gm-Message-State: AOJu0Yys5Soi4SDc2iNPbCqORsuWgW1yHGN6KIe4LtiI1BFhxfjQWBD7
+	rPjHomphBrinM0rClWq5+m0AHrz1ZSI19L4QVMqdt7z0YcHiwWU0/vjw
+X-Gm-Gg: AY/fxX4Gk42xYwAAF7PC+ZZklUK1tZCeFVbTm1Vyb95WvJ0uyDtgmp5ERSq5gU9Rt6b
+	jfzFMefa2cukA3HA0U+dF9lUWU6SfvGOXvDVZhJ6yiqS8xrFU8oDmuOx5Km5XZcuvMHqda7Uogd
+	KvYt+4ly2Fsyeka2/RHUwR5iAlVOWz8jGwBZII8vwzQ2CLD644QJ3THxC0mWkJDIK/TsP2KCVxm
+	lFpqpoLH5NWg2jg7BAMt4XY3bJ7qh+NA+Hhbf1FO7KebSDv/9I2a1WMx6isyDPzp0watbz0fs5/
+	dutJ184ujOCoP+p1Yir9LOQyi5OwvjbuzmDpuEKtPpQ58oD0CM+I8URk/NmghJlVCeOnyj5UfgD
+	NKD1AHjWEM7fRU2NWTAddZ61sGGWWGLD5uw/aXepHKjehtK5kTCZjzddPMmuztw4v49wuyH1EFd
+	qqb9q25NIFNUOoZTFedWslpo0IWUVDxE4U4d2mbMasgGN1MaBCVPcTux0PYMBXcugJfXjCpsB2u
+	t1W+uZ/HNzuWaUdqaImxtvCfRLRcgM1JO+n19F5thRyXyUsvemZNfD8V0NVWm5C5wEwsHOqxu5s
+	hGmNpUJ7Rr69+8rSNcFUpA==
+X-Google-Smtp-Source: AGHT+IGqfS6t0BtWWUQ+A8QtFK38ikOJaZeZ58xc+M9BKY805z21T0J3RpJjQXDHps61ueUVFOAmaA==
+X-Received: by 2002:a05:6a00:4514:b0:78a:f6be:74f2 with SMTP id d2e1a72fcca58-7ff5284da68mr2523709b3a.5.1766131805321;
+        Fri, 19 Dec 2025 00:10:05 -0800 (PST)
+Received: from 2001-b400-e3ff-afb4-41b8-b31c-89b3-0a14.emome-ip6.hinet.net (2001-b400-e3ff-afb4-41b8-b31c-89b3-0a14.emome-ip6.hinet.net. [2001:b400:e3ff:afb4:41b8:b31c:89b3:a14])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7b423d86sm1597274b3a.26.2025.12.19.00.10.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Dec 2025 00:10:05 -0800 (PST)
+From: Kevin Tung <kevin.tung.openbmc@gmail.com>
+Date: Fri, 19 Dec 2025 16:09:55 +0800
+Subject: [PATCH v3 2/5] ARM: dts: aspeed: yosemite5: Remove ambiguous power
+ monitor DTS nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 0/6] Add support for StarFive VisionFive 2 Lite board
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <176613179479.3684357.2451207324135136166.git-patchwork-notify@kernel.org>
-Date: Fri, 19 Dec 2025 08:09:54 +0000
-References: <20251125075604.69370-1-hal.feng@starfivetech.com>
-In-Reply-To: <20251125075604.69370-1-hal.feng@starfivetech.com>
-To: Hal Feng <hal.feng@starfivetech.com>
-Cc: linux-riscv@lists.infradead.org, conor+dt@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, palmer@dabbelt.com, pjw@kernel.org,
- aou@eecs.berkeley.edu, rafael@kernel.org, viresh.kumar@linaro.org,
- lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
- bhelgaas@google.com, lgirdwood@gmail.com, broonie@kernel.org,
- emil.renner.berthing@canonical.com, heinrich.schuchardt@canonical.com,
- e@freeshell.de, devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251219-yv5_revise_dts-v3-2-ca1d5a382013@gmail.com>
+References: <20251219-yv5_revise_dts-v3-0-ca1d5a382013@gmail.com>
+In-Reply-To: <20251219-yv5_revise_dts-v3-0-ca1d5a382013@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Amithash Prasasd <amithash@meta.com>, Kevin Tung <Kevin.Tung@quantatw.com>, 
+ Ken Chen <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>, 
+ Kevin Tung <kevin.tung.openbmc@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766131796; l=1501;
+ i=kevin.tung.openbmc@gmail.com; s=20250924; h=from:subject:message-id;
+ bh=PuGP3tDDyva66stpyd0PfJUp+oeZiyMMNMGNoISiM78=;
+ b=ty83E+CYPB7Z6jW6eduvzKPvIngjQn4TpP4Y6GcwiwBZ0tmTuJIQuwghpPnsofiRPA6UAL0hO
+ BjCASEV0a3fAYR1htzZYqxa15v0nKqfsi4GSl0D+O9I7qe5YfHNYPRy
+X-Developer-Key: i=kevin.tung.openbmc@gmail.com; a=ed25519;
+ pk=PjAss0agA0hiuLfIBlA9j/qBmJaPCDP+jmQIUB6SE7g=
 
-Hello:
+Two different power monitor devices, using different drivers, reuse
+I2C addresses 0x40 and 0x45 on bus 10 across Yosemite5 board variants.
+Defining these devices statically in the DTS can lead to incorrect
+driver binding on newer boards when the wrong device is instantiated.
 
-This series was applied to riscv/linux.git (fixes)
-by Conor Dooley <conor.dooley@microchip.com>:
+Therefore, remove 10-0040 and 10-0045 device nodes, and let the driver
+selection is instead handled in user space by the OpenBMC Entity
+Manager based on the actual board configuration.
 
-On Tue, 25 Nov 2025 15:55:58 +0800 you wrote:
-> VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S industrial
-> SoC which can run at -40~85 degrees centigrade and up to 1.25GHz.
-> 
-> Board features:
-> - JH7110S SoC
-> - 4/8 GiB LPDDR4 DRAM
-> - AXP15060 PMIC
-> - 40 pin GPIO header
-> - 1x USB 3.0 host port
-> - 3x USB 2.0 host port
-> - 1x M.2 M-Key (size: 2242)
-> - 1x MicroSD slot (optional non-removable 64GiB eMMC)
-> - 1x QSPI Flash
-> - 1x I2C EEPROM
-> - 1x 1Gbps Ethernet port
-> - SDIO-based Wi-Fi & UART-based Bluetooth
-> - 1x HDMI port
-> - 1x 2-lane DSI
-> - 1x 2-lane CSI
-> 
-> [...]
+Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts | 14 --------------
+ 1 file changed, 14 deletions(-)
 
-Here is the summary with links:
-  - [v4,1/6] PCI: starfive: Use regulator APIs instead of GPIO APIs to enable the 3V3 power supply of PCIe slots
-    (no matching commit)
-  - [v4,2/6] dt-bindings: riscv: Add StarFive JH7110S SoC and VisionFive 2 Lite board
-    https://git.kernel.org/riscv/c/7a1e15b248d6
-  - [v4,3/6] riscv: dts: starfive: jh7110-common: Move out some nodes to the board dts
-    https://git.kernel.org/riscv/c/84853940a733
-  - [v4,4/6] riscv: dts: starfive: Add common board dtsi for VisionFive 2 Lite variants
-    https://git.kernel.org/riscv/c/2ad6d71a0de8
-  - [v4,5/6] riscv: dts: starfive: Add VisionFive 2 Lite board device tree
-    https://git.kernel.org/riscv/c/900b32fd601b
-  - [v4,6/6] riscv: dts: starfive: Add VisionFive 2 Lite eMMC board device tree
-    https://git.kernel.org/riscv/c/ae264ae12442
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+index 7991e9360847532cff9aad4ad4ed57d4c30668a0..45b8ac2e8c65a4f672e64571631b7f6944f26213 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+@@ -674,20 +674,6 @@ gpio-expander@22 {
+ 			"PWRGD_P3V3_AUX","ALERT_TEMP";
+ 	};
+ 
+-	power-sensor@40 {
+-		compatible = "ti,ina233";
+-		reg = <0x40>;
+-		shunt-resistor = <2000>;
+-		ti,maximum-expected-current-microamp = <32768000>;
+-	};
+-
+-	power-sensor@45 {
+-		compatible = "ti,ina233";
+-		reg = <0x45>;
+-		shunt-resistor = <2000>;
+-		ti,maximum-expected-current-microamp = <32768000>;
+-	};
+-
+ 	adc@48 {
+ 		compatible = "ti,ads7830";
+ 		reg = <0x48>;
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.52.0
 
 
