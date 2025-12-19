@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-248326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D4F6CD14E1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:11:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00156CD14CC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:09:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A274C30F3CDC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 18:07:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5986630B84B5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 18:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 178F134E24A;
-	Fri, 19 Dec 2025 17:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0273B34E772;
+	Fri, 19 Dec 2025 17:59:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QDNPeeNg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b/3ccyM4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6BA234E248;
-	Fri, 19 Dec 2025 17:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38CD34E765;
+	Fri, 19 Dec 2025 17:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766167066; cv=none; b=etACYvQkenFBvOCCr9JIiy2QJgtv6zgG5Qbli1AUdGe7WZLPl8H2IRWqKk0RXwelzb3zFg3/THKlL0hPwIH1GcXwbkFDb0x3A9onro+xCe9NTAawAf/Z8cS3eeyAamD55HSSGXkaIPaUEAxkrChCuTp4l/djwFYhrqhpcT0e8mE=
+	t=1766167144; cv=none; b=NB06JnFV6mGm6jtj44bPYulW5lhNl3oRPhnxEIyODa72Ps+uUDHANwZoX8iMt3sozkjuM1OQ1ZPpI3lV566+LJXM8QlbYZS2AReeW+cJUTUrO/EvPLkRz3SshPgJ5Q5+njZ1iTWKoFWNymbbE/AldQWkHmY8/gjxSRSV4CrTG8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766167066; c=relaxed/simple;
-	bh=/c3WAXrPSKtM5JIz9AmY46BlWAhxgPGA/GsVYvGpEjk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=eXCqP7BkHKm+5xP2CgXQjZiXTjkXUstLhg56vveykOVmzZs4fiY2EWlTAj5HrUHHvFgS7q6Lem3AFAR+iyyijwWtMLGx+n0a4aldBYWHOWNw/OiCZKFlyQbhMk6DDoelB7DDAJtmbc+yaeP0ohVkGFJkspG1LGCeHFT8SgL5Y8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QDNPeeNg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59754C4CEF1;
-	Fri, 19 Dec 2025 17:57:43 +0000 (UTC)
+	s=arc-20240116; t=1766167144; c=relaxed/simple;
+	bh=BgII/XIC7/UdrP/Cy9XhWkO3ox0hyDHgmK6J3w+u4qs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mDqUShnHVfsisZFVyLN1fvIGH5dkbY4m4FKO02tPcAA6cohV8IzHKRz4u5eavXcG3OmUo+FbD858NPnqgnwoT0NkBelkaLtkdiOQyjXc9o9EiW3TkCynM+L3rajGl7BIHKQIAzIladFlETr8V55b6YnVWnr60VU5oN1/Tk+rKxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b/3ccyM4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98702C4CEF1;
+	Fri, 19 Dec 2025 17:58:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766167066;
-	bh=/c3WAXrPSKtM5JIz9AmY46BlWAhxgPGA/GsVYvGpEjk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=QDNPeeNgD29Zh7u0fmq5p0W5UPCp2OYG1NIvE8HSpQ60TajdV18g5sFIAhfJaIa4q
-	 Sk/JpyCnJxfN0W++9HFcy4MCFlgJeG27e10byCcqN5ZA8T2rUkjBxGNBkj0YhhT+x6
-	 V4dpn/8NhZzmiC1aTPsmWGV0g1Myi01/ET5dLOzCWDbj8FDJr1hLBf0YJutb3dCy6D
-	 DZc2FbagciBSOVBXDYwbqJms/E+6VvR/4aHkF1bfswTPAOEtPdptZ5NamwIlZ3OPc1
-	 s7snDAG87MRciRsA/fyaWTRcazb5Kak7nNKA33nrYRBA5gVA/UhqA8GZqDwF1gu2a1
-	 /8HqzW1rASOxA==
-Message-ID: <630cc8c7-0b3f-4479-88fe-780201e78b92@kernel.org>
-Date: Fri, 19 Dec 2025 18:57:41 +0100
+	s=k20201202; t=1766167144;
+	bh=BgII/XIC7/UdrP/Cy9XhWkO3ox0hyDHgmK6J3w+u4qs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=b/3ccyM4GiY04OLIXnc4xyrPjADlUQlglPW7Xz3BLT97XPAA8nncOkKhQHV/CD6Hv
+	 eKwnmYlMIwCQlXq8E0YkYvqvDNYIT+p228HwW/5q7OPI4q1IQaVYE3n5hColhD1X6B
+	 mGfCttW9QrP54CBTlUV85xkeb6VWHH/KsdKVWyTCHe0/mQgEw0r1cAA1Rf/wS/MNEH
+	 CSdl1iAGhK5kOq/BmIbiLzCG8OJXFlSKIr+34GRfPkza7ltHZ7IZWCmA7L/Oq+eOyX
+	 V0C28WyYyEebp59SavAV7sO6usf+j0b9v4LcfL/JLIAPq67Zy+t00GxyIMJOfC4969
+	 I2o87KuMnD7Sg==
+Message-ID: <72c8f3bd-03c2-46df-a28b-65b7fbfd2095@kernel.org>
+Date: Fri, 19 Dec 2025 18:58:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,15 +48,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] mux: adg1736: add driver support
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 1/2] media: dt-bindings: Add CSI Pixel Formatter DT
+ bindings
+To: Guoniu Zhou <guoniu.zhou@oss.nxp.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251219143554.22793-1-antoniu.miclaus@analog.com>
- <20251219143554.22793-3-antoniu.miclaus@analog.com>
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Frank Li <frank.li@nxp.com>
+Cc: imx@lists.linux.dev, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Guoniu Zhou <guoniu.zhou@nxp.com>
+References: <20251219-csi_formatter-v3-0-8680d6d87091@nxp.com>
+ <20251219-csi_formatter-v3-1-8680d6d87091@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,23 +109,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251219143554.22793-3-antoniu.miclaus@analog.com>
+In-Reply-To: <20251219-csi_formatter-v3-1-8680d6d87091@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2025 15:35, Antoniu Miclaus wrote:
-> +	ret = devm_mux_chip_register(dev, mux_chip);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	dev_info(dev, "ADG1736 %u dual SPDT mux controllers registered\n",
-> +		 mux_chip->controllers);
+On 19/12/2025 02:50, Guoniu Zhou wrote:
+> From: Guoniu Zhou <guoniu.zhou@nxp.com>
+> 
+> The i.MX9 CSI pixel formatting module uses packet info, pixel and
+> non-pixel data from the CSI-2 host controller and reformat them to
+> match Pixel Link(PL) definition.
+> 
+> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
 
 
-This does not look like useful printk message. Drivers should be silent
-on success:
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
