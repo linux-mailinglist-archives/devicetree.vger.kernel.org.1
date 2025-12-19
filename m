@@ -1,264 +1,319 @@
-Return-Path: <devicetree+bounces-248295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8DBFCD0F29
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 17:43:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94BD7CD0E8B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 17:38:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 55AFF301B381
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:43:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9054230596AC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:37:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14DB83845D6;
-	Fri, 19 Dec 2025 16:14:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DC3D390DBE;
+	Fri, 19 Dec 2025 16:19:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bPNWQLhW";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="M+gPEKSc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KzfCMohl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394AE3845CC
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 16:14:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68607390DB8
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 16:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766160862; cv=none; b=dqtM8dxL3YP7E4qEz2L9G3QLqAJb/Nw+IzJbWHviRySPVuWhNYiV6j5E2ou6G9VQ2kBwMMV3PT6kZJYRk+4YQIsWLf4ygUwSO+QWlnFHSPLBcw75cZLPdOXdfDX83cyAwpXxN2YWzAMVaNoh56uB1Or8F5XJftBmv9QnxuIXc/s=
+	t=1766161141; cv=none; b=V+WQRgiSVzZK7jr0/HPIF44c4sc7Vp+hCu214uH0zSP3GqrkoeLBVo2ZCpLuFShhORiORruCyvWyRQ23QLP1tlmF7zdcBn63+oR/bnA+pV7lGYW34me75ixWEwZuxrWaoPI1IYgXEyBiEwAuLE5UtRAEhaUiWy9l+ASE2XkhhHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766160862; c=relaxed/simple;
-	bh=uUBZMafbxvXCgbEsErGwbKr0lA9sPi0q830kWH1ILaE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CmwpPjIP/qhZyuWpveJMnwv77orVnnY4Dzv/lqMGiDc0VYVV2fGJC4O1eBhHhXiOHiPNu/Je5CaW2L3VXOL14Pi5/DW6S5x9X3xP4a1+RWSbXagIakdZhlFz6UIt6Nk2ddV0Ggtn4qldLU048WZzCFVMdHSzGQH0eKkZp6TidLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bPNWQLhW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=M+gPEKSc; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJFjXsi1425304
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 16:14:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=iiIQVLlVLOqTqlglYAiv5W2jU8h6e00ZieP
-	H+OB2zQ8=; b=bPNWQLhWUBH2EIM3MQjD2KBP4rpkJkSWom5KrWtMsYsp64FBsHv
-	HDgLm+pRdEZtu0qE8GS4kT/asF6CZKqjnFjftwemj3tNpiXBvXSrjYBaJyrsXnSo
-	1xfgXmFo1Xl/51vb64hcz4O8kDMrvqRIqWhCZ9bAkU9cbjClHUIZZcwD2eNi3yHJ
-	/9Sjk73/oMs39a/eTTDRv7MHVTzBKxYa1WQJPxci3WM0XAH54pCmR6xv/KxpKh+x
-	AIyOh1vM8HzMz7KtF36OV3D0vQuR8YWnaQdTcorSBate3fuG+bKG/iq5NvTbS41C
-	ku5uuoLk48TslR/KWur9y6RSnVifXO+LHKg==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r2ek6bh-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 16:14:17 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-29f27176aa7so35445715ad.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 08:14:17 -0800 (PST)
+	s=arc-20240116; t=1766161141; c=relaxed/simple;
+	bh=76McvnfT1vgXqcmj5nLToKdiSaYoQdSKm0XytE77Gg8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Bymoh8kcxogWv8Dl0ulg9awWjgd0coQnl3Wlp6sTu+5j8e01sfh91toug/ODkbgpiWoZZBrFeKauz107GzXPc/s9rheD+ebdBMWsrF/P2zC0fo0ZAJnbBZeaZrjam+EXG09dfbD+UiBeweHSarZx2zeeU7+I8ZaSsm11D1M+ie0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KzfCMohl; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-597c418b79eso133915e87.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 08:18:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766160857; x=1766765657; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=iiIQVLlVLOqTqlglYAiv5W2jU8h6e00ZiePH+OB2zQ8=;
-        b=M+gPEKScTz/75IazYOi7rou58XSbp2qMTUd7JIu9ZqcGDeDFpM15bygi+O3G9AHx2/
-         YA0xR7RVACij8bJ8w+zdM9dfC4ghmE4KXSRdaczfe9jC2Kb1lunHOUlsb2vH1Lu9yvTP
-         drYbFsJ3fNaxcRP13kPz1gR4NDElFQWllMenIJvw64l3QeRBADEnua3IEguRj35b9yEl
-         vCHAJXa+Q8UYvtirsCFY52WSkAUtCXykR2hVGHMmqcJBBSpaiaOXQOwvVGgnaTIQEWtX
-         jx6+MbDHmnCpknri6qmq1nw6g3409AmgBIS4J6KBgKLCMWV4Udbff6w3K8xWXSsZauQZ
-         Qozg==
+        d=linaro.org; s=google; t=1766161138; x=1766765938; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X/Hi71EFMwbT8ptNwXW/+PuikNBEe+nI+EX1MWn7rrc=;
+        b=KzfCMohluoFutBJeB+siIcTTjLp9eupIKWdc6piLhDQHCmm04hQMdqAxuYH7tMz4xA
+         p5TVLapzwt3prWDVYqKNmXCtf0JWnzwU8VcCrke2HNZOOre4mrZ5l47z55u3m3+Xn77b
+         GY6cq3NV2xHFxKUW3XNPTOqhnzGte6FFvaUBWTwzqDnpkmUNc8VQzX6IFdoUI2tj9owN
+         96eNkT/w1sMzNuQQM+uDf98hYU29Tzo3op/X6+MfYxxfAbv5sXlgF47eRSp7fG1/SvVn
+         KfwF/DW8Vidin1MexpMBs2WNp88yTVt0ypmUi9D7njC0DYfnwbhvR3W32T7WkQvluR44
+         YnGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766160857; x=1766765657;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iiIQVLlVLOqTqlglYAiv5W2jU8h6e00ZiePH+OB2zQ8=;
-        b=tItnhq6Z9giPVDxhgZNm3Wd2uDmGycit+aGASD6fEcjdlER7AxVsLii/cHo49MqnFN
-         aMcs9scow5QDQE3aBoS6uHVyefCs8/PhlnCjpMMdJXnHwilK2xuHE1uoqOr+sa7w7Kaa
-         0J5I6akvu+XfBTKbRbR0IO0C34EbOtLpkgxwNnDy115SXGKlBzqphhZ5qpRRGVt7v10W
-         k0r3PqWbtpah6cIs9+vtEhupsPM69hYLKsuVKae4I2x4jgc1IfTGR/ZphnqBvhLp6tmV
-         QJ7NPE4HUNbuqEkuNtkzCI78Q/pE05hgOcchyyUaeqc8We0ejnr//RJyhUPN9lRMk+Td
-         /raw==
-X-Forwarded-Encrypted: i=1; AJvYcCUwJ1M5tidx3guzXvAl3nVrZSUlh+QZ0MZ1NQ1746nVotGf0eDB05H3HanBT3z1npKRrH1EnlWYb7Zy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yya9MuDEGt6j3nXy/CV85RkQx9M0j5U8l3fZzLIUDgPja3qnpL/
-	Wn8KpQiGD+MGqTC2G5Udzi4L7t3T/m9jc6zeCAMNCcKlxlzNiIIYuFFqlMDiT2qmnuclRDoLw8X
-	JbrJaAdxk+GpWEDB+yj/LZxni/1JS6NGUnsXTznxIbMG7Z4N6682PkN726ev/4cA2
-X-Gm-Gg: AY/fxX7/FuIC+P2qV9pUa46jl+BJMCoSn37Y1m0FkIoOJYQ55ctWG/vlBmB1uTBXDAg
-	iKKmygVBK+m7NlUOxZzHL0TNtiKubDzks+tbQXx7+t95dOEYuOG17AOSpC6w/seJi4JtiAVTPGG
-	SANvFp2vrSpEqJAlP5WNBFMOgl3k8Wn+Qrj0/ofkjPr55OxRhz8ViBGtz8r1WoWObg58vWlo88k
-	cgYUSLw6R9FjDY+PKi5E/neNf1gsbTeSVgXONG/MmaqzdtaSWRH5HJEYIifPirmILUWhsS3cvA5
-	xgMvTSao+kf9/q9bu3f6rkDQ2+LLSTHHcxJe6rMMRSmOUFOzxq/E8i6QWAY7G+RRmaRLRdIC+eI
-	QAd/CrkkeYt3iUAMzKlwY4RJ1KV32uhuag2KcdayJLrijyz8=
-X-Received: by 2002:a17:903:4405:b0:295:565b:c691 with SMTP id d9443c01a7336-2a2f22292e6mr38202965ad.17.1766160856900;
-        Fri, 19 Dec 2025 08:14:16 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGUovbz+IQVwXUSlmpgzob2VqkixosM6m6qbOPt6+nuRwTuDua8k1xXagbSByh1JMNjuTXe1A==
-X-Received: by 2002:a17:903:4405:b0:295:565b:c691 with SMTP id d9443c01a7336-2a2f22292e6mr38202625ad.17.1766160856400;
-        Fri, 19 Dec 2025 08:14:16 -0800 (PST)
-Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d5d566sm26593725ad.71.2025.12.19.08.14.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Dec 2025 08:14:15 -0800 (PST)
-From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v3] arm64: dts: qcom: hamoa-iot-evk: Add vbus regulator support for Type-A ports
-Date: Fri, 19 Dec 2025 21:44:07 +0530
-Message-Id: <20251219161407.2075701-1-krishna.kurapati@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1766161138; x=1766765938;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X/Hi71EFMwbT8ptNwXW/+PuikNBEe+nI+EX1MWn7rrc=;
+        b=FsALAyJlBJx177thkYaptBfmLfPFRSC0NPOO4HDaWJgSbqKnvdE32RRabo+YhL5vy5
+         v+XKk6kzJSbeUs8RJA2j/HlsRRomMQbImV4l9Q1cI3KQzGx0GwUHCpOsrplZC6jEKtZV
+         3FjlBAedpQlbPf12g/jkqAPH8bzr1F4gx7L0lXblgr325GyY5KAby6PSnogO9v0rBdtU
+         g5GnI/mVk1x0n5RVooZnOyDglHib0mQmu9MP4/qzoyGVqiDUTSk6heHF023Z/vaFAlY1
+         U59rzezMpD/jAovln2AQpRt0MvMBbhkgvPUo2XJMxlcAGfvyhoIs33qa6tiGRwSnjAna
+         HoYw==
+X-Forwarded-Encrypted: i=1; AJvYcCXnp8BbvY8/cGnfqhZMunZv84trZJeHMmt+1BRYrksaDkb+4iYoeeU4dpYRob+w9F5NODW88SZLASnP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeSSUphOlZjTJtrMhBxhxzvgM/3sTOOP1zelIRbQ8cN6TMNV/K
+	m9DucJ37J7d7+wYMcw0HiAJWacVdNmQ+7eGXzmSu2EPBU9KoTCue3kMXtfKPDkPlRaM=
+X-Gm-Gg: AY/fxX75JANmb2lw3sYs3CKKuHgJBN7M1hW794FfsyR8lKX5DRenomVf7wjVP3cibYS
+	KMvFIniwM7DiGInCdW/1Qi1jDx4jVWcp2t4+VwoYywWC/h25vHCAtpctJuc6uEk3QHmzKPpRHEG
+	ep00tB4zor44e+MgVH8xij6U+KAMEJk1/q4GmsJyi2MTeyleMh3HXylgwrBmedlKDyTB8zyytvW
+	E6zOTklbkI/zSkLMtynNiPVkRS6dPw9tVxkKdzVP7HfxbKaMQhIDCI30y/qkiyjPtyVF1xFdbaE
+	s1U931mjsSiWn9692H5xyNwCkjVulk320+4AqWMmdQc4rSY8X34H4bZOLnG4o2x5uCh33V0WOvY
+	ehtzbIP5EP8+S4zN8lBz9dwpYXEeDu9YHMhNnMNpVYAUZeQdGS2h2jDjXTtkJ+NJvYJlWi1gv1k
+	7RcppQaWo+B0kPueI54ZAl2cL1DPlF4otw3CijzDHW8Gs9SDhWyWaAyMXddI5RN5csew==
+X-Google-Smtp-Source: AGHT+IGGG9s0wXtoxGsq0U0Depu7p7I9nYSz8VthyzwNRgLyv2wgLeIEplXVM9vmQjg7e233jqdPoA==
+X-Received: by 2002:a05:6512:3d91:b0:57e:ed2d:190f with SMTP id 2adb3069b0e04-59a17d96fa9mr709065e87.7.1766161137426;
+        Fri, 19 Dec 2025 08:18:57 -0800 (PST)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a185d5ef1sm795622e87.2.2025.12.19.08.18.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Dec 2025 08:18:57 -0800 (PST)
+Message-ID: <2ae1a0a3-b105-4c0d-abbc-4b9d708b0272@linaro.org>
+Date: Fri, 19 Dec 2025 18:18:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: camss: Add qcom,sm6350-camss
+Content-Language: ru-RU
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bryan O'Donoghue <bod@kernel.org>, Luca Weiss <luca.weiss@fairphone.com>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251114-sm6350-camss-v2-0-d1ff67da33b6@fairphone.com>
+ <20251114-sm6350-camss-v2-1-d1ff67da33b6@fairphone.com>
+ <de7ad562-80bc-498e-a6fb-cc26bb6343f0@linaro.org>
+ <r6EgtiSu8pqs2ouFERTw7fx8kYZ3RcSbGklwd17UPxNGGd3sbRDl2BPyplkABZVu3qyfrIzRMisa0qTSrm89BA==@protonmail.internalid>
+ <DE8FV81S45S5.CH6K1QAX940D@fairphone.com>
+ <a428f8b9-c338-4404-8dc1-da6daae37d5c@kernel.org>
+ <d7dfeb7e-c0b2-426e-8572-023715c33674@linaro.org>
+ <272d039c-25a0-4db5-96a3-c28907882cd2@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <272d039c-25a0-4db5-96a3-c28907882cd2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: XuyYrDQ0Zfs0w6sDlW2s20b2rFy4tdbp
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDEzNSBTYWx0ZWRfX8ykiauoGhlxD
- s0Iu869wLp9PFYSAdC157VueoeqYbqUD3WCvs+NePIOh3TGH+SK/fqKvqUk8nBAx7a2ggIW77r8
- lrxulIVVePYwoe8gsybjLM8H8aOM7n2gvYc98kXsio+5VOD64aWVdfZpQwXhZ3rUy+MWqWsJ325
- lDzLjo6L9AF/tzB9Hkn8YylM3gbI5dMa1KkzVy1sCyxosjT0be4KF09fOR2cTEqDkXIdLzJwSSE
- 4UCL1in/i4MhhDtRjNkLESY5eH4Vt5oifXOFHQDhtXPkAHF3QfP/5/KaoDTwJbFM4iahMy8yCpP
- ebRkdNLRN5ArX2oc3jzGybI0EOwTiPkBE0G7BpC0QLK8CQ+sCx54d46NqlW4o4jHeM67Jh7YMLH
- 5ZqN7M4z4NfG5cNP9O7JWiAOoPn3oUbGeeN6OLUFx4hpqxHs1sce6XWV8B8OG7Vlq24likgJ0xM
- lPCvARBBjM13Dd0Vr2g==
-X-Proofpoint-ORIG-GUID: XuyYrDQ0Zfs0w6sDlW2s20b2rFy4tdbp
-X-Authority-Analysis: v=2.4 cv=EabFgfmC c=1 sm=1 tr=0 ts=694579da cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=KCX8l4TVFeEM4KXXM5cA:9
- a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-19_06,2025-12-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
- bulkscore=0 suspectscore=0 priorityscore=1501 adultscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512190135
 
-The Multiport controller on Hamoa EVK platform is connected to Two Type-A
-ports. VBUS for each of these ports are provided by a TPS2559QWDRCTQ1
-regulator, controlled from PMIC GPIOs.
+On 11/16/25 16:05, Bryan O'Donoghue wrote:
+> On 14/11/2025 17:06, Vladimir Zapolskiy wrote:
+>> On 11/14/25 18:09, Bryan O'Donoghue wrote:
+>>> On 14/11/2025 13:06, Luca Weiss wrote:
+>>>> Hi Vladimir,
+>>>>
+>>>> On Fri Nov 14, 2025 at 1:40 PM CET, Vladimir Zapolskiy wrote:
+>>>>> Hi Luca.
+>>>>>
+>>>>> On 11/14/25 13:15, Luca Weiss wrote:
+>>>>>> Add bindings for the Camera Subsystem on the SM6350 SoC.
+>>>>>>
+>>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>>> ---
+>>>>>>      .../bindings/media/qcom,sm6350-camss.yaml          | 349 ++++++
+>>>>>> +++++++++++++++
+>>>>>>      1 file changed, 349 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/media/qcom,sm6350-
+>>>>>> camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm6350-
+>>>>>> camss.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..d812b5b50c05
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/media/qcom,sm6350-camss.yaml
+>>>>>> @@ -0,0 +1,349 @@
+>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>>> +%YAML 1.2
+>>>>>> +---
+>>>>>> +$id: http://devicetree.org/schemas/media/qcom,sm6350-camss.yaml#
+>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>> +
+>>>>>> +title: Qualcomm SM6350 Camera Subsystem (CAMSS)
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Luca Weiss <luca.weiss@fairphone.com>
+>>>>>> +
+>>>>>> +description:
+>>>>>> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm
+>>>>>> platforms.
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    const: qcom,sm6350-camss
+>>>>>> +
+>>>>>> +  reg:
+>>>>>> +    maxItems: 12
+>>>>>> +
+>>>>>> +  reg-names:
+>>>>>> +    items:
+>>>>>> +      - const: csid0
+>>>>>> +      - const: csid1
+>>>>>> +      - const: csid2
+>>>>>> +      - const: csid_lite
+>>>>>> +      - const: csiphy0
+>>>>>> +      - const: csiphy1
+>>>>>> +      - const: csiphy2
+>>>>>> +      - const: csiphy3
+>>>>>> +      - const: vfe0
+>>>>>> +      - const: vfe1
+>>>>>> +      - const: vfe2
+>>>>>> +      - const: vfe_lite
+>>>>>> +
+>>>>>> +  clocks:
+>>>>>> +    maxItems: 30
+>>>>>> +
+>>>>>> +  clock-names:
+>>>>>> +    items:
+>>>>>> +      - const: cam_ahb_clk
+>>>>>> +      - const: cam_axi
+>>>>>> +      - const: soc_ahb
+>>>>>> +      - const: camnoc_axi
+>>>>>> +      - const: core_ahb
+>>>>>> +      - const: cpas_ahb
+>>>>>> +      - const: csiphy0
+>>>>>> +      - const: csiphy0_timer
+>>>>>> +      - const: csiphy1
+>>>>>> +      - const: csiphy1_timer
+>>>>>> +      - const: csiphy2
+>>>>>> +      - const: csiphy2_timer
+>>>>>> +      - const: csiphy3
+>>>>>> +      - const: csiphy3_timer
+>>>>>> +      - const: slow_ahb_src
+>>>>>> +      - const: vfe0_axi
+>>>>>> +      - const: vfe0
+>>>>>> +      - const: vfe0_cphy_rx
+>>>>>> +      - const: vfe0_csid
+>>>>>> +      - const: vfe1_axi
+>>>>>> +      - const: vfe1
+>>>>>> +      - const: vfe1_cphy_rx
+>>>>>> +      - const: vfe1_csid
+>>>>>> +      - const: vfe2_axi
+>>>>>> +      - const: vfe2
+>>>>>> +      - const: vfe2_cphy_rx
+>>>>>> +      - const: vfe2_csid
+>>>>>> +      - const: vfe_lite
+>>>>>> +      - const: vfe_lite_cphy_rx
+>>>>>> +      - const: vfe_lite_csid
+>>>>>
+>>>>> The sorting order of this list does not follow the sorting order
+>>>>> accepted
+>>>>> in the past.
+>>>>
+>>>> What file should I best reference?
+>>>
+>>> Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+>>>
+>>>>>
+>>>>> I'm very sorry for the vagueness, but I can not pronounce the accepted
+>>>>> sorting order name, because it triggers people.
+>>>>>
+>>>>>> +
+>>>>>> +  interrupts:
+>>>>>> +    maxItems: 12
+>>>>>> +
+>>>>>> +  interrupt-names:
+>>>>>> +    items:
+>>>>>> +      - const: csid0
+>>>>>> +      - const: csid1
+>>>>>> +      - const: csid2
+>>>>>> +      - const: csid_lite
+>>>>>> +      - const: csiphy0
+>>>>>> +      - const: csiphy1
+>>>>>> +      - const: csiphy2
+>>>>>> +      - const: csiphy3
+>>>>>> +      - const: vfe0
+>>>>>> +      - const: vfe1
+>>>>>> +      - const: vfe2
+>>>>>> +      - const: vfe_lite
+>>>>>> +
+>>>>>> +  interconnects:
+>>>>>> +    maxItems: 4
+>>>>>> +
+>>>>>> +  interconnect-names:
+>>>>>> +    items:
+>>>>>> +      - const: ahb
+>>>>>> +      - const: hf_mnoc
+>>>>>> +      - const: sf_mnoc
+>>>>>> +      - const: sf_icp_mnoc
+>>>>>
+>>>>> Please remove sf_mnoc and sf_icp_mnoc, they are not needed for enabling
+>>>>> IP to produce raw images, and one day you may use them somewhere else.
+>>>>
+>>>> Ack, will give it a try.
+>>>
+>>> Disagree with this.
+>>>
+>>> See the Kanaapali patches. I'm asking new submissions to be as complete
+>>> as possible, instead of limiting the hardware description to the RDI.
+>>>
+>>> So listing the ICP noc is the right thing to do.
+>>>
+>>> So please include register banks for
+>>>
+>>> - bps
+>>> - cdm
+>>> - icp
+>>> - ipe
+>>> - jpeg
+>>> - lrme
+>>
+>> This suggests to get a DT backward compatibility lock forever,
+> 
+> I'm not entirely sure what this comment means.
+> 
+> The objective here is to get a full and complete DT describing camera
+> hardware that can be consumed by
+> 
+> - CAMSS RDI
+> - CAMSS RDI + future goodness
 
-Add the necessary regulators and GPIO configuration to power these.
+Here the problem is manifested, there is no even a raw idea of "future
+goodness" and how it looks like practically.
 
-Implement connector nodes to embed the vbus supply within them. Since
-there is no entity currently that can read vbus supply from a Type-A
-connector and control it, mark the supplies as always on.
+Hardware can be represented in DT in many ways, why one arbitrary chosen,
+and never tested or even verified for correctness, representation is
+selected over any other one?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
----
-Changes in v3:
-- Added connector-a nodes and embedded vbus supply in them
-- Added RB Tag of Konrad from internal review after adding connector nodes
+Let's start from the beginning, why putting everything into one unstructured
+pile is better than accurate splitting of various CAMSS IPs into own
+device tree nodes? Downstream has different device tree nodes layout,
+why is it worse, should it be expected that Qualcomm in downstream moves
+to a "better" proposed layout of device tree nodes for CAMSS or only
+upstream Linux shall suffer?
 
-Link to v2:
-https://lore.kernel.org/all/20251209041701.3245452-1-krishna.kurapati@oss.qualcomm.com/
+Somebody said that there is an idea for "future goodness" to modularize
+CAMSS, did it change?
 
-Changes in v2:
-- Re-ordered nodes to be in sorted order.
+> - FreeBSD
+> - Any other DT consumer of upstream data perhaps even CamX
 
-Link to v1:
-https://lore.kernel.org/all/20251208085152.2597818-1-krishna.kurapati@oss.qualcomm.com/
+FreeBSD or CamX are software, and they shall be excluded from consideration.
 
- arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 63 ++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+There shall be no guesses about software usage, the only concern is if
+the hardware desription in the shape of device tree nodes is proper or not.
 
-diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-index 36dd6599402b..88e3e7bed998 100644
---- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "hamoa-iot-som.dtsi"
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- 
- / {
- 	model = "Qualcomm Technologies, Inc. Hamoa IoT EVK";
-@@ -48,6 +49,32 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	connector3 {
-+		compatible = "usb-a-connector";
-+		label = "USB-3-Type-A";
-+		power-role = "source";
-+
-+		vbus-supply = <&regulator_usb3_vbus>;
-+
-+		port {
-+			connector_3_in: endpoint {
-+			};
-+		};
-+	};
-+
-+	connector6 {
-+		compatible = "usb-a-connector";
-+		label = "USB-6-Type-A";
-+		power-role = "source";
-+
-+		vbus-supply = <&regulator_usb6_vbus>;
-+
-+		port {
-+			connector_4_in: endpoint {
-+			};
-+		};
-+	};
-+
- 	pmic-glink {
- 		compatible = "qcom,x1e80100-pmic-glink",
- 			     "qcom,sm8550-pmic-glink",
-@@ -344,6 +371,26 @@ vreg_rtmr2_3p3: regulator-rtmr2-3p3 {
- 		regulator-boot-on;
- 	};
- 
-+	regulator_usb3_vbus: regulator-usb3-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB3_VBUS";
-+		gpio = <&pm8550ve_9_gpios 4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&usb3_en>;
-+		pinctrl-names = "default";
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	regulator_usb6_vbus: regulator-usb6-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB6_VBUS";
-+		gpio = <&pm8550ve_9_gpios 5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&usb6_en>;
-+		pinctrl-names = "default";
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
- 	vph_pwr: regulator-vph-pwr {
- 		compatible = "regulator-fixed";
- 
-@@ -877,6 +924,22 @@ usb0_1p8_reg_en: usb0-1p8-reg-en-state {
- 		input-disable;
- 		output-enable;
- 	};
-+
-+	usb3_en: usb3-en-state {
-+		pins = "gpio4";
-+		function = "normal";
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
-+		output-enable;
-+		power-source = <0>;
-+	};
-+
-+	usb6_en: usb6-en-state {
-+		pins = "gpio5";
-+		function = "normal";
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
-+		output-enable;
-+		power-source = <0>;
-+	};
- };
- 
- &pmc8380_5_gpios {
+Partial verifiable description is a proper description, and adding unknowns
+of "future goodness" does not serve any reasonable technical purpose, it
+adds an illusion of a proper description only, and it was proven that this
+illision shatters even for CAMSS, see CAMSS CSIPHY case, when a wrong DT
+choice can not be undone anymore for legacy platforms. It is good to acquire
+an ability to learn from the past.
+
+Everything can be added ad-hoc while keeping the hardware description in
+a proper and correct state.
+
 -- 
-2.34.1
-
+Best wishes,
+Vladimir
 
