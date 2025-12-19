@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-248233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 977F7CD014E
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E8DCD014D
 	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:36:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4538E3010ABD
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:36:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 314DF300DBA9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7FF831ED94;
-	Fri, 19 Dec 2025 13:36:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1980D322A13;
+	Fri, 19 Dec 2025 13:36:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022093.outbound.protection.outlook.com [40.107.75.93])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022077.outbound.protection.outlook.com [52.101.126.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461A12E973F;
-	Fri, 19 Dec 2025 13:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBA39303C9E;
+	Fri, 19 Dec 2025 13:36:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.77
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766151362; cv=fail; b=OiVGLX74Esg87ZZB7jbdDxLvAhe5jARCYhYInvSNGSz0z77WPoFFl5/j5AStgFkdwbfx+msqP528fDELgmGxHeF7aPo7jh/6NRvjRwNUT8Mya4q8wXr2Yx74rcNntbsln5Gi+4ksCOuGYw2YN0hADGz0ef3ix/h3lZoBEcsEvBE=
+	t=1766151364; cv=fail; b=SCffQ5XdyFIiiDeN68neps+QqapDTam6quolx1xq1e7XrBjVlNrFwvWd4pslG1wo67HwHNqYp5F0HNaoH37zaEkp2de6vVruASh7G6tOBY2T8/apqejvA+FJwMstBLr2oeTVTbrIzqziQjegA7CaKi0BOQmzQpSVVHTaYIM43QM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766151362; c=relaxed/simple;
-	bh=u2gvMxUoWMF0/EbFyVeP0eH0JX80cl3zY53wGr0K71U=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=E849TPeS3PkPvB2zekGGn26Dc6NCjwmRdQ3n+p3QruhWk0nNZbv/H+gucwCWAeZgTVXAWQM0mMx+XJvt4JaT4M65/Xv54uo6b/sJzJ7ZUiQDssIA2Ca7JuKUvZ8j8DC040GykopONqhfqqse2/B4OGTxgHwY3l0erzbRLUGa4WY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.93
+	s=arc-20240116; t=1766151364; c=relaxed/simple;
+	bh=maGpV6WNr2VD0SmLsoMrPz+rsQBI0COdA3Z8z6Nlslk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=euoXqUiDBxDd8X9oPRE+5Cv0ZmQG8yX8AmHOJD1tTke7gNRP8Nj6l82mP9eNa+ZbB1I/QQMdSiMUi9S5Yd+SpvwudNBKUShqulwwvgw2xMXTL/VqjPKDHTOnL08ABXXcb6p3Dy9p80YzI+6w14zPcFgaRvTo+8Swf4QykMCdTIs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.77
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Np9odcM3skzv+IcqZHHQm6WtqiLHYo80ueeK8PaxT3EtWkZWkcYOBAcLFW2MpRQlUecOvKz8LVO7wV3s7PDGK81UOeHkqYxgSYU6/LqwP8R3K8bTRW/1OVbAhy2BOJnXe4e5T0lrXUMXU8v3HAbGhvMY+RlLvu2THrwirOxVjcCtL0O4NlZeDjIjxcvfblu/thrIg1MGHYaSiym8njKlXNqfZ5TkYQpPr9a6c/CDWr488U2XMAdHfxtoMJL/+8NxR1APi65Dr7nf6U81U1Ygey9Jllgv9A5ZARb/1PbwXZSfr9o3b7bsvxhRhwmIaipcGn0p45IHPvDyzZT3A+s7Pw==
+ b=SPOEAgdZ0XLg8BR/SBV1g6G+F4afInXbvbz6Fi3mWkuj7ialZfYYAooGqMJ1tjcDk0y/IQUfXkGK2t8ReI9NkkijpxYKjJPuZejug96HEQ/GKwTR5Zlcnvg4Iqf+hhln7Ha8UJ5x8fxNhZm7Q125FZJmkiqhp2ZUvIRL/THa1mGC9jIEtU6VsR637weBuYWXTTuWE6TavNCvwxzmKkJ9sDsXuqFyBSRwP0minrrjJstdxIN13hhOj3k4UPkSIH5rjeXcNYvrU7YTUWLOqUQCffpskYgsza78TjiCtLbccHm2DDZ0xbNGokTGFvdaauW6Y7slMohW1w1n5n+/sabFjg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YCzuf0WpryQ79fMV/HKtcqAu6KpDi/hiMhF8CQnXfcY=;
- b=k2DAL9S5a8FfilBGAFlX23F7Bsssskn845yWFSBn7jD/ymnqperfFz444UgrHrbFcJPpBumoYCWivyC75KImPgCJsuPk4SmtWsownnPJpS+co77jSibf3stJOemam25iEvyzDmbWoJnSeKL4kEBeDC6c6CeKqUWhg6yr8dyxe00r+h9aYierS+C0pKSWSMKccRqTFw52KO0I/Dino9lVwRrO49fclspfoI1YZwC/GgnIcczR7gA4nmgP9JTG2X/xSAcFGzKF9E5KgoOX//6sr78Aufep0wShybxfd7vj2KjmTKeamWwz3GgaCOKGHdoYPNO/YHVjQfwSICzxGUBHkA==
+ bh=y2Nheuyov1UJxN2l+RxmCg7ItFrMZFIywhc1Cdm+BNc=;
+ b=RHOGZXZqgk1l2HAgE+ilem5NUo1+zvco/u4lt4WlPGcy7EBvaMyMTm/LkedVljdCiFh4QcgRxR8eudEExb7zeK2kN+QqGjt5w6GY0HrDaMRgMkSHPCOKfqh4XBy3H+CE6QfOotd3IAQ3YfGbzgXno1WnVCGGLLp3e8dyT3nOvvuRNkXsRXfEspiF9L1HzC2bkn6yneoL5QpWMsTOIZexfMqtRfm4j0K6I6KfUD16gjmScGtXyFnFaIEzJzqR0eiJ66cd1G6GXLGA03X4sBu1c951qtpWbbPgDvDZ7RcsZWid4zaVcWjSTw7JB9H0ofzrFofbboJLyOJPyEoWCGTukA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
  dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
  not signed); arc=none (0)
-Received: from SG2PR04CA0164.apcprd04.prod.outlook.com (2603:1096:4::26) by
- PUZPR06MB5902.apcprd06.prod.outlook.com (2603:1096:301:119::12) with
+Received: from OS7PR01CA0233.jpnprd01.prod.outlook.com (2603:1096:604:25d::11)
+ by OSQPR06MB7132.apcprd06.prod.outlook.com (2603:1096:604:296::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.9; Fri, 19 Dec
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Fri, 19 Dec
  2025 13:35:56 +0000
-Received: from SG2PEPF000B66D0.apcprd03.prod.outlook.com
- (2603:1096:4:0:cafe::ee) by SG2PR04CA0164.outlook.office365.com
- (2603:1096:4::26) with Microsoft SMTP Server (version=TLS1_3,
+Received: from OSA0EPF000000CA.apcprd02.prod.outlook.com
+ (2603:1096:604:25d:cafe::10) by OS7PR01CA0233.outlook.office365.com
+ (2603:1096:604:25d::11) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.9 via Frontend Transport; Fri,
  19 Dec 2025 13:35:53 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
@@ -54,11 +55,11 @@ Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
  222.71.101.198 as permitted sender) receiver=protection.outlook.com;
  client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
 Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66D0.mail.protection.outlook.com (10.167.240.26) with Microsoft
+ OSA0EPF000000CA.mail.protection.outlook.com (10.167.240.56) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.9434.6 via Frontend Transport; Fri, 19 Dec 2025 13:35:54 +0000
 Received: from localhost.localdomain (unknown [172.16.64.196])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id E306C4126FFD;
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id E5FED4143A8D;
 	Fri, 19 Dec 2025 21:35:53 +0800 (CST)
 From: Gary Yang <gary.yang@cixtech.com>
 To: peter.chen@cixtech.com,
@@ -71,10 +72,12 @@ Cc: linux-cix-kernel-upstream@cixtech.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Gary Yang <gary.yang@cixtech.com>
-Subject: [PATCH v2 0/2] Add OrangePi 6 Plus board
-Date: Fri, 19 Dec 2025 21:35:51 +0800
-Message-ID: <20251219133553.1440970-1-gary.yang@cixtech.com>
+Subject: [PATCH v2 1/2] dt-bindings: arm: cix: add OrangePi 6 Plus board
+Date: Fri, 19 Dec 2025 21:35:52 +0800
+Message-ID: <20251219133553.1440970-2-gary.yang@cixtech.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20251219133553.1440970-1-gary.yang@cixtech.com>
+References: <20251219133553.1440970-1-gary.yang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,76 +87,82 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66D0:EE_|PUZPR06MB5902:EE_
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000CA:EE_|OSQPR06MB7132:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: a189d615-5a76-4236-c3d4-08de3f038931
+X-MS-Office365-Filtering-Correlation-Id: 3538658a-a413-48ff-97b1-08de3f038959
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
+	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?MueSCaBTfxPFHkteUvg8wVg7tK27Ff0YVK2maVRIAGMDwIGBCvm+RsGAyxNF?=
- =?us-ascii?Q?xrDkpe4bcAdGZVTIlFGpLqyJe6ZuL5uWdpRlG3/zM5evW8SvuhmKL54AUGvr?=
- =?us-ascii?Q?mVMLVimR1LHLn2lRV+c0qm/dCK+syxJob2NQgwqrInRDTAsGjfIqVN/psGqB?=
- =?us-ascii?Q?r5OZ/lrJBE0pNBJrs+L9uqLRf2R6RVBzKvsoolZ2KfXejBJ4bwAKyVSs2Grb?=
- =?us-ascii?Q?x2MeKb6h4OFbGShBx21RNkBx3b7RMU5Bmg+IuPVSYdC1it0Vh+HADXrsDKeX?=
- =?us-ascii?Q?tcA79DT921XTR8butOKaviIKknJYdoZ7IhJ29Ct75xFRiVmUAN7RhntYvmAo?=
- =?us-ascii?Q?qBygIbtS9dSO+QN61n5OKSRb5B/dmLwDGljSgtcmQnauljmVxveDypOxv7Il?=
- =?us-ascii?Q?v2SlWypaRuZueaWetkC1pWEFsEKJ2JdIDf1ZUDuBrpK08uOUC2s7ZPdQ+c7B?=
- =?us-ascii?Q?BjKXIz13yS8s2St7QX/6lp79SicLH1el5EJHi6wnH6R03pHY6gDuebWbUI/g?=
- =?us-ascii?Q?jWRzTjlKWW//5ddubQ42F/ptfIifgXKDQ3GTyTfgYUsld9P1w4XnDCuF4wEm?=
- =?us-ascii?Q?8xuy/ww9qvYWsDCd53vEoZgp+k3NeWFQLwskU/NNBs3+deMrEY9usINtDTj6?=
- =?us-ascii?Q?OOjQrG5r0VhsdBgOVzSSSC64pe6h5+dJhrRIO4Fzshxwxz6+Wfdp0lA3LRZt?=
- =?us-ascii?Q?MV05/J58/YxSrqP7QPbeg647sM7NFg+TiocedAlmnvYQaZUB4Z30rQt5dLZU?=
- =?us-ascii?Q?TtGUIznpUgw9KsXJjMHl37Rsrnjkk6OZhY3ON3tv/sYSgcgvX3yH1M4o0KRW?=
- =?us-ascii?Q?dDugy5JYbdctMauYUWHO8cuMSxoRVDHFK5TfS/1h1/HCxgD5WvhGkEy9XdeV?=
- =?us-ascii?Q?lJbeijzrBl1Xt94jZLO0aF+GASF1+lbsfFH6WPebuZhvavJmWnIMMdqII4oz?=
- =?us-ascii?Q?mO6uGmcabk4GgrCPDD0aSE/SPhDdTvXboSufipBsbSdxfsYn7E7+YyLhvXmW?=
- =?us-ascii?Q?MXe6kcYIZRG9v40URQa55W6UPwq4wwkNTYKr0MMSEYqacz1Q0JSkXZCY0Wn+?=
- =?us-ascii?Q?yd86T5ejS1J5rfT6e7RIhSXBZd23mUM1ip3591LJnPt8KAGiVX4PgB/Wzrl5?=
- =?us-ascii?Q?0s3SNNLvc8T0O1GUEn2XYjne0WgDSqZzSUg6lgdkTn5mtX/yg8vevUcEBTY9?=
- =?us-ascii?Q?77H9mHrgdbKU/bwMUdhYaWQ26SZWHKY6SnEAAJR3CpI8i7ywvhxTxtrQ+SoR?=
- =?us-ascii?Q?QpANc01bxttaMtLtXc682qG1PtouHH8HbvvZFwiZ3WPDmseYAcGzWwZirrGj?=
- =?us-ascii?Q?gzqWSeergDVV54kes3wt6kk6uSL8N9CePrAJsfYSLl2XhzYyTWL6HooBBIsz?=
- =?us-ascii?Q?6eMc+nBJV59M6Q+rgDi1o1RyF46G9iOle2YrXeSvY9jd+H0svSFIemTYmPfl?=
- =?us-ascii?Q?gSaXK1m9UyMvN1Ap7ii3AH7jfqiP/2ontBluendPabThfEg5FOGgYoIYLLWw?=
- =?us-ascii?Q?gDHZs/jzNZAo0HCI6qr2ovLkLI40h21c0tvXS+x2VXGqgyVNYrVirBMDrOCU?=
- =?us-ascii?Q?f2H3f4EhNd+5D7CnOmY=3D?=
+	=?us-ascii?Q?NzcGxCUyTC2HdIfoNBTYe24BgkTCFS6XjDGlMZ38DIXM5rOuwVaD6aIZFgrt?=
+ =?us-ascii?Q?aow2K/0wqhqx/XDgzkRn9qVn9FNVVS55TGMk2FwNR2dQt2SmUIw3qqsCHo/G?=
+ =?us-ascii?Q?V3o08Y8wEYNXv7THRLBl73HSjpVsgd1mosTl1QXOeNNsfsRWowL2uBkoa7Yi?=
+ =?us-ascii?Q?v9E6Kh8YHMBkr492bo9IJVYJD2EgUY7Jrvrp43wxV3mSRHFl++wZoHDL9+zm?=
+ =?us-ascii?Q?i1PC78qmyqEGclYRSIEiilXx+qxwk2EXMcw8DDwMdAtvzeatDU6Mhpv1bBwY?=
+ =?us-ascii?Q?og2DUTUtW2Bmw18NK7ZaCsFs5GzXPg8iwXWlWXexX20oxql8M7601QRvwJh8?=
+ =?us-ascii?Q?G/AbfJMO7fk0vw+uL1RkwYRCdblo8r8N8GEKQ9EEJ7jwcEMJAVMzPlgtVZFy?=
+ =?us-ascii?Q?7G5mFU3EX8QCv/k4miiPcwfnKX5XDPjz2s9CqFwTI6Ekve+8eCYO95CCbuYh?=
+ =?us-ascii?Q?fzdnVuorGA01C3VqploVh28L9y6bYEAkGK3K5AUi/xBzie1WDO8A/jXEgAep?=
+ =?us-ascii?Q?pmdo2mOWxsMeCJ1xoD1mE2PoGMShdtD94Kxu74kBT0L6jUZQ80aBmisK9xXt?=
+ =?us-ascii?Q?szd8+Lj+Dxk0m/hd1YuA/FgrkG0Edx8EZaaCXDohYDk6JR4tY2yr8eW3/NqD?=
+ =?us-ascii?Q?v2W7bvuZRl1/kuEs1SLbVXrbLt1tjo9G+E18Y1KFZiLBkY71pRxLjKjRjscH?=
+ =?us-ascii?Q?Us+ZBf5sbHEUSGeCmmC0jVBb9sYzRWpyuwNwlS4veGxrgYTbJlOaF+oJscVJ?=
+ =?us-ascii?Q?dcIcbBZuHuF40YlY1kkJALZ68sgjF+oxd8U70Uf1IFbYZK9lyqt4sWtIiRZU?=
+ =?us-ascii?Q?9pShOS3uDa02F/ZyFGxwaIM5e2430fAKhTk9RwAP6PhAzSdwdE/KSPJItnav?=
+ =?us-ascii?Q?MYMhXiReXmxWMpofd5RTbRqRJtooVopEga8GwOq+vLqgR4gxAHO80ybUVXX4?=
+ =?us-ascii?Q?z584HSPuzUzncrPhMQ36WOMyYwA2vTSwcDuOup8+pVSRhki1xgzGcapkaLgf?=
+ =?us-ascii?Q?xcKrACg2GaSR011lhQ2bTVMVRlkwILhhZ2dDEOALy45d1iV9KEsSuYYdNw9R?=
+ =?us-ascii?Q?GoHhA8juA62AJsHvWOFMpTIsQowLREd3RQPSCiSp102VKSoTDiy5f2PEdBBj?=
+ =?us-ascii?Q?68S4v47sWLC8ih2wUQgFqGnwOx31YNtbhDINgpp7dkVqAZfo3OwfaAWNy8De?=
+ =?us-ascii?Q?spmxHqmmk/rvlPwIwn1IS5LjZnaTSzrHaGasL/Nh/RlEmxWYCvc34zc2HlQL?=
+ =?us-ascii?Q?HOSrp1GeBsEDjCOm/eAqHNBhQfHylHI/pullixVlRorePUZUxULkVm06/HWp?=
+ =?us-ascii?Q?3MUdSX6GiwBnYjtZXRqOmzcLablfUjMATQKuu449sGBld09NpK4VKXSVfCyQ?=
+ =?us-ascii?Q?1BrkJ0ID6NxCXbUrX5pLrNhMPQ3Ymeptf4+CVllQTGl/lVWi52tFFLw1dr4F?=
+ =?us-ascii?Q?bUtEloLsBBytXkLUYpG1TBm63Opone4BSTRQt/fWGCio2V11fNisiXltuAJm?=
+ =?us-ascii?Q?ostjqcFCr6lGBhE1x+TvuWknbqzbwEk6OGhgS0Rpce1D+ZCTTONe2f/Frg8h?=
+ =?us-ascii?Q?9jR3r6GJmk7WGMV8PrI=3D?=
 X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1102;
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1102;
 X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2025 13:35:54.8514
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2025 13:35:54.9674
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a189d615-5a76-4236-c3d4-08de3f038931
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3538658a-a413-48ff-97b1-08de3f038959
 X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66D0.apcprd03.prod.outlook.com
+	OSA0EPF000000CA.apcprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB5902
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSQPR06MB7132
 
-Patch 1: add compatible strings for OrangePi 6 Plus board
-Patch 2: add dts file for OrangePi 6 Plus board
+OrangePi 6 Plus adopts CIX CD8180/CD8160 SoC,
+built-in 12-core 64-bit processor + NPU processor,
+integrated graphics processor, equipped with 16GB/32GB/64GB
+LPDDR5, and provides two M.2 KEY-M interfaces 2280 for NVMe SSD,
+as well as SPI FLASH and TF slots to meet the needs of fast
+read/write and high-capacity storage;
 
-OrangePi 6 Plus board is powered by Cix Sky1. You could find brief
-introduction for SoC and related boards at:
-http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-6-Plus.html
+Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+---
+ Documentation/devicetree/bindings/arm/cix.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Currently, to run upstream kernel at OrangePi 6 Plus board, you need to
-use BIOS released by OrangePi, and add "clk_ignore_unused=1" at bootargs.
-http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-6-Plus.html
-
-Gary Yang (2):
-  dt-bindings: arm: cix: add OrangePi 6 Plus board
-  arm64: dts: cix: Add OrangePi 6 Plus board support
-
- .../devicetree/bindings/arm/cix.yaml          |  4 +-
- arch/arm64/boot/dts/cix/Makefile              |  1 +
- arch/arm64/boot/dts/cix/sky1-xcp.dts          | 83 +++++++++++++++++++
- 3 files changed, 87 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/cix/sky1-xcp.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/cix.yaml b/Documentation/devicetree/bindings/arm/cix.yaml
+index 114dab4bc4d2..e2cc0bb8b908 100644
+--- a/Documentation/devicetree/bindings/arm/cix.yaml
++++ b/Documentation/devicetree/bindings/arm/cix.yaml
+@@ -18,7 +18,9 @@ properties:
+ 
+       - description: Radxa Orion O6
+         items:
+-          - const: radxa,orion-o6
++          - enum:
++              - radxa,orion-o6
++              - xunlong,orangepi-6-plus
+           - const: cix,sky1
+ 
+ additionalProperties: true
 -- 
 2.49.0
 
