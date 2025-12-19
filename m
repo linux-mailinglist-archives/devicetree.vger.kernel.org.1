@@ -1,117 +1,302 @@
-Return-Path: <devicetree+bounces-248175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D38F9CCF9DD
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 12:39:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB00CCF9FE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 12:43:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D988F300DCF3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 11:39:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1F0E3305FE49
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 11:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0DD3176E1;
-	Fri, 19 Dec 2025 11:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8073131AA86;
+	Fri, 19 Dec 2025 11:42:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RzTHsM0X";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="G0J1nVhD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED8423505E;
-	Fri, 19 Dec 2025 11:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158F831AAB3
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 11:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766144375; cv=none; b=DfYmEh9UpKcvBhi3TDpo7Em0V+bqiVAt0ruW9EY9e0zHIFIFX3YFKcy3PrJVXBPUv4Kn0KTiGk93WmomEptSfbcn3VKSieqgIwsIeRItALfwbegpmtuwrI1XnG2t9ttWYboS9I5boPvR1jHwyO+zSbZ8OFV1euhzbFX9yCuW/Hc=
+	t=1766144568; cv=none; b=q9Y2ESiC/SXEyGBsRh1PwbK8c80Jos1cqOiAgfWCnze/0kH6sTENVHt9xMNvjp5+e6cZHDjlbt2Tm16XQ8D6nu0WkNL3MSxvTrQ6vei0JNPQZo/Ly/GiFkYgqTkLJegGt6WiTubJyMrmE2ExubL63PL9alkmGtOZHtsEuxtqL/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766144375; c=relaxed/simple;
-	bh=5S+syRwNSwqWMhXvvG4pJJcEMFzZkRm5ziltYQh58O0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YVKxGYfpDq9dpChharQ1GI3yKLw+eIgfli7Qs45UWIXJ4rmXaVksdJ4+EDWCp4hHRclBAxMimFmUldXgWbwP3/0NgUqM3ELTv7i2jP5tWi6pLGGj55zQVfajgECNKDFsUWoH+eL9F2rbXI5vrrQx0E87ILs6CeJ+DtvUwJdEqhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.18.222])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 31EB2340E1E;
-	Fri, 19 Dec 2025 11:39:31 +0000 (UTC)
-Date: Fri, 19 Dec 2025 19:39:25 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: linux-kernel@vger.kernel.org, Alex Elder <elder@riscstar.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Subject: Re: [PATCH 0/3] riscv: dts: spacemit: Add PMIC and regulators
- constraints for Milk-V Jupiter
-Message-ID: <20251219113925-GYA1958363@gentoo.org>
-References: <20251206134532.1741648-1-javierm@redhat.com>
+	s=arc-20240116; t=1766144568; c=relaxed/simple;
+	bh=UaHO7/eOvI9UQifWvLpwmCqdh2eotyE0wYd3BHrZ6yo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=X6BYYmn9dkMZFSWd/ArIB18B1MPZua5OMcOzKWh4YTfdfdbEqxQgR3g3e1Clp+u6tBzm3sqaUmwJcIY48G+XaZ+Idn0Npd1rcYBCbZETw67XDNeHtbZ7r+F/3kegjCRqBrqZYECdIZRjZJxa8MdX/3PouTYFWUI44wt0Q6p/OuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RzTHsM0X; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=G0J1nVhD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJBR8544145419
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 11:42:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=pWp06pWmbjSJvf7fIHkRuG
+	NgN8f0S0siEmA5b1mlZsk=; b=RzTHsM0X2eAVgNkpqzV4KcHaBNbRa8NsXlPAxt
+	42E1B9C8t4UZ7DRJQSLJNmBT5HoZanJhTGHOxwQKdKRMzjO7VmRpjYny/gJm4cHA
+	c/AKbn+yDDxMez/LuoP93x4n/kWRXNYw+w1PiQ0+X1HFdesFVQE2Wd5EQleXpOFi
+	P83ccJH61gP+B9P8A93PaamGzq9B+v6Oe7VGpyWSMt9ao2wgvUb17b6whR9repqz
+	YeF3uEKa1nOJuHRgSyLVO9IAFAb8fI5BbH0PJuY35JZufcCGQ6O/9N/IXR5huMcc
+	PotSODojz7ryMlBtHRIcEZeP3WTb766UV6I2+1UisFqKPLLQ==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r2dth9e-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 11:42:44 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ee21a0d326so27633931cf.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 03:42:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766144564; x=1766749364; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pWp06pWmbjSJvf7fIHkRuGNgN8f0S0siEmA5b1mlZsk=;
+        b=G0J1nVhD1y9wMNYtcmuJ7qB1lA/yvR71m+J4YO/+fqIirxPMiXL78pCEX/FWuVvS6o
+         T2SU9gr7HhgorakXkTPpnBEzeeHD24XKx3pEfdG80Ol8ZwFB4TVChfFUQwEIP0b7yc37
+         MHRyZBf9JEJ0NsnWvpU6AQ50lsyAMBP0cZhcQFkp9MzNygSMa0zorjvjfyxpCrcEX9I7
+         skhHITM1z2iq2ZgAYAOPVQRmEDNNQXFgjFrW7IUDBb5BPFXNBRliV4O+HYiFMlbEy4cV
+         b18oSBTZHx90FutqfWVHE4TUaPypjqY42AA4QbvIQ97sgk24MeJOm7uu7gzZJjqLgl94
+         rBSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766144564; x=1766749364;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pWp06pWmbjSJvf7fIHkRuGNgN8f0S0siEmA5b1mlZsk=;
+        b=dHubSGoezTGAthzkhytRS6AcVmnNxmNQUl16Gl4X89t9+QdWnhh0Q9WinGfBUOJczH
+         9KMGs1mnpwbZGoc75y5NLMgoZgtSIJQ/KbqiUAZmnc0X43kKEKJ1iTVvBolj0V/qHXeu
+         L3ciB2WNNQVqOO5siqAGT5UMDtdYBjkcU29kdSBLNX75DkACPufiFdhZbcrmqfTQnF+E
+         XQ8m8LxUgZIifpUro7Tc1NH9ph40gXOvDyDYt8K4Etvus+3Q6HqisRdZTC7N91fOzJ6K
+         8VKMZyEBHU02Bysf5241dp7Whf/OQd86jk4y0XvZjADNthU9UyEVGwJNshnMhA3cy8Zr
+         1dWA==
+X-Forwarded-Encrypted: i=1; AJvYcCXPgTKmQZCvpaKrnFpZkrlCS1GLcG8f53zhmS+24mRjzTbV+dRHX7n+k5eE1FYob+lJnZHOCtFtc3W7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMrh+PA4/pWQJVNMzsmevBTa1uifJ2J643KaVSmwIZM5e+sXzo
+	BK0UUo2I0LQBLgBFRZzqTj/smvLzppY/Rbetdm9630MIlOut/jdqZooBahGlvSx24gjpVWA7Q7m
+	yvo+OfUceW+B4viXMn5uxsnEITZcuowG9jGuKSLxwwIQlk4Q5olNKDkuAUDpYw657
+X-Gm-Gg: AY/fxX7WLhUtmgVs1WKaS+Yn/0Lif8p02g/9F4+bclipozXb1nGvCbR9OyGkpgGcyrQ
+	q0Udi00zF7aJY6qIFntU/ZhIAjuY6+Nfo809w6EA2MLoAK3OFDLnthvi8l412xJ5mn/vTTtvJ3f
+	aJydFYARDICzpkPvKGDKC1UYNnw1X8K2bb0CtqfIdFpDuZI3JHOoGgskEGUf/OTI9LNEzKqhYD6
+	9kVJEOb5VLY10PYRI/ybFSedSGEK6jwOMV8xnWdlft8eGkhB9em6PyWJZ21N2zj+Ldgz0NDTbzl
+	T6aZJ8EwAoT5V5aYHJoUEzDZC9ExP3rVFmBprkXzaFFlolBXeDoa01TOoM9DzBnJbXVV8wS7Sdg
+	4VpKPX1mpklvidnC8fVO53sV/0czfuE6sdBKSiMI=
+X-Received: by 2002:a05:622a:250c:b0:4ee:24b8:2275 with SMTP id d75a77b69052e-4f4abcf6df2mr32638711cf.1.1766144564332;
+        Fri, 19 Dec 2025 03:42:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHmBbFYUgOlr6WN956Einac/qKi2Xml3/A2v+AE7uUKmhMDZRt/gScziSp2QVRxwtyeDwUkJA==
+X-Received: by 2002:a05:622a:250c:b0:4ee:24b8:2275 with SMTP id d75a77b69052e-4f4abcf6df2mr32637891cf.1.1766144563807;
+        Fri, 19 Dec 2025 03:42:43 -0800 (PST)
+Received: from brgl-qcom.local ([2a01:cb1d:dc:7e00:d857:5c4e:6d25:707c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d193d4f09sm41134425e9.12.2025.12.19.03.42.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Dec 2025 03:42:43 -0800 (PST)
+From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: [PATCH v6 0/7] net: stmmac: qcom-ethqos: add support for SCMI
+ power domains
+Date: Fri, 19 Dec 2025 12:42:15 +0100
+Message-Id: <20251219-qcom-sa8255p-emac-v6-0-487f1082461e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251206134532.1741648-1-javierm@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABc6RWkC/23PywoCMQwF0F+Rrq2k7fQxrvwPcRFrRgs61VaKI
+ vPvVgUfOMsbyEnujWVKgTKbT24sUQk5xL4GM50wv8N+SzxsamYSpAYLDT/5eOAZndT6yOmAnrv
+ GgFQavRaS1b1joi5cnuZyVfMu5HNM1+eJIh7Tl9YKGNGK4MCVRNv6TpAxbrEPPaY4i2nLHlxRb
+ 0KAtGOEqoTV1th1KxXg+o9oPoQY7VSaSnTWGAPgrCf8I/Q3MfqFrgSIjSKF2Cn3W2QYhjugyuI
+ afAEAAA==
+X-Change-ID: 20250704-qcom-sa8255p-emac-8460235ac512
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Matthew Gerlach <matthew.gerlach@altera.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Keguang Zhang <keguang.zhang@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com,
+        Romain Gantois <romain.gantois@bootlin.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Heiko Stuebner <heiko@sntech.de>, Chen Wang <unicorn_wang@outlook.com>,
+        Inochi Amaoto <inochiama@gmail.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Minda Chen <minda.chen@starfivetech.com>,
+        Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Fu Wei <wefu@redhat.com>,
+        Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shuang Liang <liangshuang@eswincomputing.com>,
+        Zhi Li <lizhi2@eswincomputing.com>,
+        Shangjuan Wei <weishangjuan@eswincomputing.com>,
+        "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
+        Clark Wang <xiaoning.wang@nxp.com>, Linux Team <linux-imx@nxp.com>,
+        Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        Swathi K S <swathi.ks@samsung.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Drew Fustini <dfustini@tenstorrent.com>, linux-sunxi@lists.linux.dev,
+        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+        imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
+        linux-riscv@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4401;
+ i=bartosz.golaszewski@oss.qualcomm.com; h=from:subject:message-id;
+ bh=UaHO7/eOvI9UQifWvLpwmCqdh2eotyE0wYd3BHrZ6yo=;
+ b=owEBbQKS/ZANAwAKAQWdLsv/NoTDAcsmYgBpRTokWXsa2gKI4nKr8h3MYxFUimxm2O4dHtXW6
+ KCiHQiv+CiJAjMEAAEKAB0WIQSR5RMt5bVGHXuiZfwFnS7L/zaEwwUCaUU6JAAKCRAFnS7L/zaE
+ w5TBD/0VsHh57NK5nQksuR+8VSL79RDSjE5N4Uss3l4JwiFExzXFJZFpCwifvwH9coSoqlwSmi/
+ HJxLjwprjYGZnaU+rNXkOiZ0EsDovcObvNYahOJjd6Lo56NFM5cKuvxZIPtBE+iyaBwmzxnLmu/
+ T2hRwgo12C7kTrrBKQUhlfxq8n1b/ffXt8j3ZcPGUYWSirWStJVUES0McEPRujOtu1OkWm1SPmV
+ Ejrd9L49HQ+nO6ayV3/BwwVVypRf+179KBzXtsYmh2ARvDwjC12TUaLQ1v4RX9OXsYdoYgch/S6
+ yvKvCxXExRkXnvfNQShDqpwxsqQH+ugBqbTLmnyBt4Yr9mDyozKPTqaktQISbSrpK229wF+8Wqv
+ 8y4/UN1sWaRnu0hyRREDiaMQRMu9WPHyGDpBBS8WNsUk7q//HXhhNZhgg3nn9uvVNiEqwD0mE/F
+ awDlTEUaCzTLaExwn/CKC+RL+ri68hNQj1CiAfnruILFOSDcjcS6x2jWeVHJ2DjVby4z6+Gf2vV
+ oduw+zcDEJ1Xe9k2AEYXRVqWBwYmIbh2NxHM9AaMWrxwouwIUENXthjhKxJB9V+Z08rtzMIYqnf
+ jYCydlPUBZgHMvymTXbhPio9aTl7NoQa5wAPhUk2jOJbwWYIDgFqegzo+VSItUKDNtUvi8/qrdR
+ +XbsmEDfNuXywwQ==
+X-Developer-Key: i=bartosz.golaszewski@oss.qualcomm.com; a=openpgp;
+ fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
+X-Proofpoint-ORIG-GUID: YBbhk5euL6n761L-dKTS-UKhG_T4SUHC
+X-Authority-Analysis: v=2.4 cv=A7ph/qWG c=1 sm=1 tr=0 ts=69453a34 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=PHq6YzTAAAAA:8
+ a=h7uu4O38hj_b6GN6T5YA:9 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+ a=cvBusfyB2V15izCimMoJ:22 a=ZKzU8r6zoKMcqsNulkmm:22
+X-Proofpoint-GUID: YBbhk5euL6n761L-dKTS-UKhG_T4SUHC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDA5NiBTYWx0ZWRfX92Mn9UXj+hrN
+ 5V0+kRGIBSmleJ29iMvH3CyZlYCXQ6QGQEnLiefCxeaVq+UL93ija/ity18p9xYcL0PDhpRpUVs
+ GeCZY2eogUr3SqFYlmMuX2MJOChKqWhKLbzfMQY5Ig352hVRJrWqQeSg7n8bO1c+T4jVz55zz/U
+ cMdk2Wfr0aB3cm1OFW2AyhMRtpCtPusigfp2o5Wfb6wzq6/ph6wJmZdUTSkdf8+MW7ttXcVbUnq
+ RIZxgZ2tCT08J/OUX0M4Vwy0dnzKb+JUmSef2VviWG6pGiCWLzpCwLenNtNSshB4kgm3Z3nCfq2
+ XOHZJ/6sniYIWroh0C1QZ27JIzVZrdDDHw/5Ic5SVNEXd7pDWztB+O/6szVqkaHwOzS+CKo8jw+
+ snHPpaKqtnfszZvOSjtlVnzbHXJKKudVP7VtnKA2eYjR/3MaHStONCUEEn2Jn8ZIgp6fyGQ9Hpg
+ Gmw+rGcCCvrKaZjLUYA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-19_03,2025-12-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 priorityscore=1501 lowpriorityscore=0 impostorscore=0 spamscore=0
+ phishscore=0 suspectscore=0 malwarescore=0 clxscore=1015 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512190096
 
+Add support for the firmware-managed variant of the DesignWare MAC on
+the sa8255p platform. This series contains new DT bindings and driver
+changes required to support the MAC in the STMMAC driver.
 
-On 14:44 Sat 06 Dec     , Javier Martinez Canillas wrote:
-> Hello,
-> 
-> This patch series enables the i2c8 adapter, the PMIC, and voltage regulators
-> for the Milk-V Jupiter board.
-> 
-> The power management hardware design on the Milk-V Jupiter is identical to the
-> Banana Pi BPI-F3, so the DT Nodes were copied from the k1-bananapi-f3.dts file.
-> 
-> I have verified the I2C address and regulator constraints against the vendor's
-> downstream DTS to ensure accuracy. I have also dumped the regulator_summary
-> debugfs entry to check that the regulators and constraints are registered:
-> 
-> $ cat /sys/kernel/debug/regulator/regulator_summary
->  regulator                      use open bypass  opmode voltage current     min     max
-> ---------------------------------------------------------------------------------------
->  regulator-dummy                  1    0      0 unknown     0mV     0mA     0mV     0mV
->  dc_in_12v                        2    1      0 unknown 12000mV     0mA 12000mV 12000mV
->     vcc_4v                        7   10      0 unknown  4000mV     0mA  4000mV  4000mV
->        buck1                      1    0      0 unknown  1050mV     0mA   500mV  3425mV
->        buck2                      1    0      0 unknown   900mV     0mA   500mV  3425mV
->        buck3                      1    0      0 unknown  1800mV     0mA   500mV  1800mV
->        buck4                      1    0      0 unknown  3300mV     0mA   500mV  3300mV
->        buck5                      3    7      0 unknown  2100mV     0mA   500mV  3425mV
->           dldo1                   0    0      0 unknown  1200mV     0mA   500mV  3125mV
->           dldo2                   0    0      0 unknown   500mV     0mA   500mV  3125mV
->           dldo3                   0    0      0 unknown   500mV     0mA   500mV  3125mV
->           dldo4                   1    0      0 unknown  1800mV     0mA   500mV  3125mV
->           dldo5                   0    0      0 unknown   500mV     0mA   500mV  3125mV
->           dldo6                   1    0      0 unknown  1800mV     0mA   500mV  3125mV
->           dldo7                   0    0      0 unknown   500mV     0mA   500mV  3125mV
->        buck6                      1    0      0 unknown  1100mV     0mA   500mV  3425mV
->        aldo1                      0    0      0 unknown  1800mV     0mA   500mV  3125mV
->        aldo2                      0    0      0 unknown   500mV     0mA   500mV  3125mV
->        aldo3                      0    0      0 unknown   500mV     0mA   500mV  3125mV
->        aldo4                      0    0      0 unknown   500mV     0mA   500mV  3125mV
-> 
-> Best regards,
-> Javier
-> 
-> 
-> Javier Martinez Canillas (3):
->   riscv: dts: spacemit: Enable i2c8 adapter for Milk-V Jupiter
->   riscv: dts: spacemit: Define fixed regulators for Milk-V Jupiter
->   riscv: dts: spacemit: Define the P1 PMIC regulators for Milk-V Jupiter
-> 
->  .../boot/dts/spacemit/k1-milkv-jupiter.dts    | 135 ++++++++++++++++++
->  1 file changed, 135 insertions(+)
-> 
-The series looks good, I will queue it, thanks
+It also reorganizes the ethqos code quite a bit to make the introduction
+of power domains into the driver a bit easier on the eye.
 
-Reviewed-by: Yixun Lan <dlan@gentoo.org>
+The DTS changes will go in separately.
 
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+---
+Changes in v6:
+- Fix $id value in the bindings
+- Drop patch 3/8 from the series
+- Update init/exit callback signatures
+- Link to v5: https://lore.kernel.org/r/20251107-qcom-sa8255p-emac-v5-0-01d3e3aaf388@linaro.org
+
+Changes in v5:
+- Name the DT binding document after the new compatbile
+- Add missing space
+- Make the power-domains limits stricter
+- Link to v4: https://lore.kernel.org/r/20251104-qcom-sa8255p-emac-v4-0-f76660087cea@linaro.org
+
+Changes in v4:
+- Remove the phys property from the SCMI bindings
+- Mark the power-domain-names property as required
+- Set maxItems for power-domains to 1 for all existing bindings to
+  maintain the current requirements after modifying the value in the
+  top-level document
+- Link to v3: https://lore.kernel.org/r/20251027-qcom-sa8255p-emac-v3-0-75767b9230ab@linaro.org
+
+Changes in v3:
+- Drop 'power' and 'perf' prefixes from power domain names
+- Rebase on top of Russell's changes to dwmac
+- Rebase on top of even more changes from Russell that are not yet
+  in next (E1vB6ld-0000000BIPy-2Qi4@rmk-PC.armlinux.org.uk)
+- Link to v2: https://lore.kernel.org/all/20251008-qcom-sa8255p-emac-v2-0-92bc29309fce@linaro.org/
+
+Changes in v2:
+- Fix the power-domains property in DT bindings
+- Rework the DT bindings example
+- Drop the DTS patch, it will go upstream separately
+- Link to v1: https://lore.kernel.org/r/20250910-qcom-sa8255p-emac-v1-0-32a79cf1e668@linaro.org
+
+---
+Bartosz Golaszewski (7):
+      dt-bindings: net: qcom: document the ethqos device for SCMI-based systems
+      net: stmmac: qcom-ethqos: use generic device properties
+      net: stmmac: qcom-ethqos: wrap emac driver data in additional structure
+      net: stmmac: qcom-ethqos: split power management fields into a separate structure
+      net: stmmac: qcom-ethqos: split power management context into a separate struct
+      net: stmmac: qcom-ethqos: define a callback for setting the serdes speed
+      net: stmmac: qcom-ethqos: add support for sa8255p
+
+ .../bindings/net/allwinner,sun7i-a20-gmac.yaml     |   3 +
+ .../bindings/net/altr,socfpga-stmmac.yaml          |   3 +
+ .../bindings/net/amlogic,meson-dwmac.yaml          |   3 +
+ .../devicetree/bindings/net/eswin,eic7700-eth.yaml |   3 +
+ .../devicetree/bindings/net/intel,dwmac-plat.yaml  |   3 +
+ .../bindings/net/loongson,ls1b-gmac.yaml           |   3 +
+ .../bindings/net/loongson,ls1c-emac.yaml           |   3 +
+ .../devicetree/bindings/net/nxp,dwmac-imx.yaml     |   3 +
+ .../devicetree/bindings/net/nxp,lpc1850-dwmac.yaml |   3 +
+ .../devicetree/bindings/net/nxp,s32-dwmac.yaml     |   3 +
+ .../devicetree/bindings/net/qcom,ethqos.yaml       |   3 +
+ .../bindings/net/qcom,sa8255p-ethqos.yaml          |  98 ++++++
+ .../devicetree/bindings/net/renesas,rzn1-gmac.yaml |   3 +
+ .../bindings/net/renesas,rzv2h-gbeth.yaml          |   3 +
+ .../devicetree/bindings/net/rockchip-dwmac.yaml    |   3 +
+ .../devicetree/bindings/net/snps,dwmac.yaml        |   5 +-
+ .../bindings/net/sophgo,cv1800b-dwmac.yaml         |   3 +
+ .../bindings/net/sophgo,sg2044-dwmac.yaml          |   3 +
+ .../bindings/net/starfive,jh7110-dwmac.yaml        |   3 +
+ .../devicetree/bindings/net/stm32-dwmac.yaml       |   3 +
+ .../devicetree/bindings/net/tesla,fsd-ethqos.yaml  |   3 +
+ .../devicetree/bindings/net/thead,th1520-gmac.yaml |   3 +
+ .../bindings/net/toshiba,visconti-dwmac.yaml       |   3 +
+ MAINTAINERS                                        |   1 +
+ drivers/net/ethernet/stmicro/stmmac/Kconfig        |   2 +-
+ .../ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c    | 344 +++++++++++++++++----
+ 26 files changed, 454 insertions(+), 59 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20250704-qcom-sa8255p-emac-8460235ac512
+
+Best regards,
 -- 
-Yixun Lan (dlan)
+Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+
 
