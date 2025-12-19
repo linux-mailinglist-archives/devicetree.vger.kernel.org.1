@@ -1,146 +1,134 @@
-Return-Path: <devicetree+bounces-248218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA727CCFF19
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:01:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B8FECCFF85
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:07:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1D56B3028110
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:01:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4A5CB30EC2BE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CDE43002BA;
-	Fri, 19 Dec 2025 13:01:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98631324B23;
+	Fri, 19 Dec 2025 13:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Nxw1pCJe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YKoQLMor"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429F63246F4
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A85C72DF140
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766149265; cv=none; b=Ii+iM+4u7pW3CfgYYE1TAhH6TW4StOLPO9oz+boIVXMjW3ppvSx6SB0Zu/jBMxVJ4pW8B1w5h4Rkjkx6vFUh/yN5gg+ytlfP3Dbe9o8n6AKG5hVz4yTcYBGtWHxozJfBp5uazPoqTPfaolDWTbN8TxJ6DCRYu/0+nggep/hbRGc=
+	t=1766149325; cv=none; b=OFn5PUm+iWjNweCG96OxTB9XSj/la5e5ywGmBQVdZR0M88CcydJYiikxvd57zZ9ikHAdTgtvcWk8Ee6/JEunMljPLbbV1todrnS2OqgnPZPvK6v59B26liDRoth1MHg0LK/V+8JH6YIftnq1gBnMVtvEAtxoig5RMVmXIfoVKc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766149265; c=relaxed/simple;
-	bh=OMj7xeqwJMwjOl9SBTbfE9Y8LYVng9ddlrSM4o/HdWk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=Iuz0RsOLA5Ds/aMoZ4HUfQenoUFWgZXHxI8229q20nJuOVq2C9DU+8hhhWFly+dRh/M5ph7QgMzzWf+Io5suARnVaby9oysMAkUtOOtrClGvtXfN17s0AETpVu4Pd9pRqriPKtSgcMjSgaGrXW1K3sUzkBuaQZPELkqTPUb7Nyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Nxw1pCJe; arc=none smtp.client-ip=209.85.208.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-64c893f3a94so206360a12.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 05:01:00 -0800 (PST)
+	s=arc-20240116; t=1766149325; c=relaxed/simple;
+	bh=f26vqX1MsTCBTlZUhohkUiFdKOZcgzwakoC4ZMDUOYU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=svY6yfAeugjgsgUPsW0sY2x/oRycy/a9DJo6WMVAeAFfsOeo9lZPBrPEb8KK6JMN/1SVAEiIeDReAho/tUkyKnjIjy/0Ga+d6iN9H/5xJoyxFzfzLGm5/wuCHciQK5ulJmkhBhKAfMypSz/NLiUXHj+2h8HkuY5RVsc6EZxiYAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YKoQLMor; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7aae5f2633dso1715259b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 05:02:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1766149258; x=1766754058; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QH9a092t0vWzb6LlKTi2ntIznrIkgJiQ0lVDXHwlCgM=;
-        b=Nxw1pCJeW6oYa0o7jXMT8/6bl0Qhufe/V6WkUqMzXlQARU542McV65Oi/jPSqlsZn/
-         1GLdq0p/m3WxvDD27Z0cwi61SyEJ8ka7YygzMCSArhE+byrxS8Hr8HnQc+mFNmbWRhh/
-         ZewHkSu1CVwenStJijMPshEsPoHM5V38SiDf9YLrQ4DMYZGTURGhWO5HZibBeZLdl2Tf
-         H7WM76XqfwudX4lwdNHmTLSmc98SAmLrhTuJZUtEPCx04ER10yFEww5SUJ1pz8sbXLMC
-         nMhYEuF9q32CvQYex+TBIFv+YYIcSczWUJet0EPT/rwbpBo1SnPYWfpEOISQpAJPq9RM
-         iLIQ==
+        d=gmail.com; s=20230601; t=1766149321; x=1766754121; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=24yMvMWLE20TGqIKZ+WjeZL7Jsjdd4RyEuPRvODfMUs=;
+        b=YKoQLMorgCWWtcJM3ztn+6LRVZoj9lPS6VGqWVxlPE8pku5yv/7TG2zv2q1LPDu/Ju
+         klb1+eBZUKPdK2q2hihESPl8UY0yup7RJi7Ft9kXeYUsMctXeNE5Zw/QkjzY/P5Z5QV5
+         3ZakhefNB/cVEMtYlNbwCMxroNFWA+OxvS/mZ/+1C3C3ZChP/SDqrVzxtF69gp+NnKGI
+         D4vNMr7pIU6V/bPGKziallTEgwiE2122OH+Uu4SZFdot5nc3R4i1Td3gHJjCWRPswbSV
+         x93J0lGqaQI5IPjm3KDsGRJpZdqOHt/l0wNhNZydy8X/v5tQv2EfQqKhX/PcZ6xaBEjm
+         u5mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766149258; x=1766754058;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QH9a092t0vWzb6LlKTi2ntIznrIkgJiQ0lVDXHwlCgM=;
-        b=FvLXshEex3EypCpqoRQ4ErnstUxlwPS/z2cnIOjrIg2Bb2ePRsxMuVtZW7NHzxxue/
-         8V2/K6GGielNiKdGvVziNZEZJv3QBVd7kbHEoUqQBXRuXPuKgu5RjXpX1LXBSu4p3ARC
-         0Z4e4yoTv04KMFz/HjY6lO2jp09kt/ZaI8/ae1j0v+FC07mrcFRiTDnMRDdNHsqbOZiQ
-         +zfqXgAoO6uoV9pRtt+A6pnZ/QrJywmP98BtzFZnnVHsL0sDOrLXgE8S7OmTAi9VNC/f
-         wGkIKo9Xhn7Og+9ZLYynnkQJ5VaKlQST02H7QN4vE4jtbSFM0bbb78s+5rjN4GDl8M6O
-         eHUw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjeqg2vUODGv+vaIqjilZAGzoi4kg6WobpJkppZK6wa3jTphnOhYw7Xl6QObQiuJGH/T3dlZdiKFDA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMSK5RPOeYCcW+46C+1QctQjn9Mq5hzDgeP+/NxQFdF8ZsYmHC
-	8Fx6sqJQUjl6lWJ7kGpYdcftMq/0JqWhtKg3A59Ik66MBoxDTldqQ/ilY8HmzbS6Xj8=
-X-Gm-Gg: AY/fxX470rBeGMAYlwzojYTg32p6FN4sf0i915Idln51kvACF/fxZ+PTkG1UUZPKjHS
-	Y3Q9jmUz/RpTLB6LNZ4IR+hsvfGVSIZY+CgSHJQxnGIvf00b3O4tefRNcS7J0lFnq8FF9NCAI8a
-	+34iiHPHjDeWAo+OKcUMi0csYUjE5l7Yk62WbX/11DXvi9XK/txwc4kWdQA7J7XgoEfrLoUdJIv
-	YUnL4LahBQluaCkZ9l+e0/h9mbixyqiYzNXCMCvNnNRBqOMBGU0Gy5qZ6Bd6Q+WUY9fu4fvgJed
-	y+MlKZlXWoYFw/Ws00pc0BGgezcMbzueYp1NzfAVTE+5HMLo500qbBe7v6MBhSo7u0fLIyDMSQ5
-	mNGShdd04QmyMyhnaHn9Alm/D6Zt+FgXjk3WcwdcnzXyntwS1KjihzuRGQB+sgmfkq4v01Yv993
-	+coPpmazDLof0Lxdf0tbeo8y4E6BTG/wg8Pg5kGipeKg6j8ZQKzSG8R5mvNqRxjT74a6ZLf7HoM
-	RMKsWwpjKB+BWumEi1WdwFO
-X-Google-Smtp-Source: AGHT+IHLGt3dLozOmdXSlTcHVXCnuuxt1U6E7k8MjKzoQF2b3nEBMoU2ft3Yv3cwbA/6YNKG+iAu0A==
-X-Received: by 2002:a17:907:fdc1:b0:b7d:266a:772c with SMTP id a640c23a62f3a-b803574c34fmr311215066b.21.1766149258484;
-        Fri, 19 Dec 2025 05:00:58 -0800 (PST)
-Received: from localhost (2001-1c00-3b89-c600-71a4-084f-6409-1447.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b89:c600:71a4:84f:6409:1447])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037de11e5sm223530866b.39.2025.12.19.05.00.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Dec 2025 05:00:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1766149321; x=1766754121;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=24yMvMWLE20TGqIKZ+WjeZL7Jsjdd4RyEuPRvODfMUs=;
+        b=UrhDIXcHNHP/sDaf57Tdp2S0t2uQbrghQav6H1iA8ZtBNiiUDk5dwwO5gBPkL5ACeP
+         umI55pQx9ZbSSmd66WIz+L1g8YMg6fdGxACoV00NQAmYMjpYS9T22VU++T+CkmgMBBIn
+         z1ws0kBg8nToGYTmOXMBw/lyv8/2OTrrE7+j5AbCKuyYr2qTBEM/Ovx1loi6QkAMsivn
+         5GQFGQtPTriXCGGdyhdjsOjemzEGWiPvsZ70MDCOLEK9x1YdLGzDpyoONEOLrqe+KBJI
+         gB4Qdb0tZPcohLRkqAFYGE/Yx9+9BWATcqLgQ/ZOzk+R+45+z2Shkbfzq3Ya2OegB3UJ
+         XaiA==
+X-Forwarded-Encrypted: i=1; AJvYcCXzZxeyU+02Th97vh9XMO95XJpbPuW7UqflRSDaYFON4/BFCRzgVOSXp5rgwmmZeFiWHzMTi6wV5UwL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyda/3w3fowkTn6EmRdt8xySQZ9RObUFy8e76eQNb8kgOzXVBkH
+	LynVRa5EFwRd3MXyU5x3cm1fwdRY98Ib94EoZ2E5kG+nyIMGVLZapWKe
+X-Gm-Gg: AY/fxX74RCb3KvhN7UcsURelJ6oCkv7Tmlfa06vJ3pzxlG1gYEVUv8IZN0dQHKI71Gp
+	hSvpCSb8EMD1sS0lBEfp+JYvZdiSqcYwVCYXtL5/vsyUQQF5BhDs20IWtVDmKOMl++DB6MPkEjO
+	+WtqTrF8uJKOg9ii58KZhSZWlN/krpFs+DfbdESHZxN1N8BpOZ+pYaMt2pDzxmBN5XVkfC8kZzj
+	QFcOXpBLnWsjP2DcsR7F+bQ0tItVGmotfxFC+jYyp9KeRtd4eIFbG+hOm4WE+fnXPpsHOEthaoY
+	CU2oeMxMPc0eyu5LcjJVk0q0IMPKJXi5FlFvFIXgzM6JVHesSfp0QstLO6ZNnH8bK4rfMnulbHL
+	6b8yyDx10r+vEpzX7ciS05OAtAzbdsPmib3LQ+2Q5Gzez01gfmFjfMiwdu94NsFZXq9m12nNsLC
+	gruqj8GdXf1M/7g4xFT+iihG7XyI4iHHnwCdE=
+X-Google-Smtp-Source: AGHT+IEBqpXOFOWi9FGHEozwoDXLvtpUzvbmhTqq3flj5sLnIKGcxLY/pvvsjMhuIZGpBau79KLMHA==
+X-Received: by 2002:a05:6a00:1d9f:b0:7aa:f791:4ece with SMTP id d2e1a72fcca58-7ff6430ce50mr2560201b3a.11.1766149320567;
+        Fri, 19 Dec 2025 05:02:00 -0800 (PST)
+Received: from localhost.localdomain ([60.51.11.72])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e797aadsm2401152b3a.61.2025.12.19.05.01.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Dec 2025 05:02:00 -0800 (PST)
+From: Khairul Anuar Romli <karom.9560@gmail.com>
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Khairul Anuar Romli <karom.9560@gmail.com>
+Subject: [PATCH 1/2] arm64: dts: socfpga: agilex: fix CHECK_DTBS DTC_FLAGS warning
+Date: Fri, 19 Dec 2025 21:01:54 +0800
+Message-ID: <20251219130155.13727-1-karom.9560@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 19 Dec 2025 14:00:57 +0100
-Message-Id: <DF27NRY60F8J.19D014VO387TN@fairphone.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-crypto@vger.kernel.org>
-Subject: Re: [PATCH v4 3/9] dt-bindings: qcom,pdc: document the Milos Power
- Domain Controller
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Luca Weiss" <luca.weiss@fairphone.com>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Viresh Kumar" <viresh.kumar@linaro.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Manivannan Sadhasivam"
- <mani@kernel.org>, "Herbert Xu" <herbert@gondor.apana.org.au>, "David S.
- Miller" <davem@davemloft.net>, "Vinod Koul" <vkoul@kernel.org>, "Thomas
- Gleixner" <tglx@linutronix.de>, "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251210-sm7635-fp6-initial-v4-0-b05fddd8b45c@fairphone.com>
- <20251210-sm7635-fp6-initial-v4-3-b05fddd8b45c@fairphone.com>
-In-Reply-To: <20251210-sm7635-fp6-initial-v4-3-b05fddd8b45c@fairphone.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
+Add start address and ranges to eccmgr. This change corrects the warning:
 
-On Wed Dec 10, 2025 at 2:43 AM CET, Luca Weiss wrote:
-> Document the Power Domain Controller on the Milos SoC.
->
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+socfpga_agilex.dtsi:612.10-669.5: Warning (simple_bus_reg): /soc@0/eccmgr:
+missing or empty reg/ranges property
 
-Looking at other commits in qcom,pdc.yaml, you're the person who usually
-picks up these patches.
+Refs:
+  Intel® Agilex™ Hard Processor System Address Map and Register
+  Definitions
+  https://www.intel.com/content/www/us/en/programmable/hps/agilex/hps.html
 
-Could you please pick this patch up, it has been on the lists since
-months, blocking the arm64 dts from going in.
+Signed-off-by: Khairul Anuar Romli <karom.9560@gmail.com>
+---
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Regards
-Luca
-
-> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml | 1=
- +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,=
-pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.=
-yaml
-> index 38d0c2d57dd6..0c80bf79c162 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yam=
-l
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yam=
-l
-> @@ -27,6 +27,7 @@ properties:
->      items:
->        - enum:
->            - qcom,glymur-pdc
-> +          - qcom,milos-pdc
->            - qcom,qcs615-pdc
->            - qcom,qcs8300-pdc
->            - qcom,qdu1000-pdc
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+index 0dfbafde8822..a977402cfd10 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+@@ -609,7 +609,7 @@ sdr: sdr@f8011100 {
+ 			reg = <0xf8011100 0xc0>;
+ 		};
+ 
+-		eccmgr {
++		eccmgr: eccmgr@ff8c0000 {
+ 			compatible = "altr,socfpga-s10-ecc-manager",
+ 				     "altr,socfpga-a10-ecc-manager";
+ 			altr,sysmgr-syscon = <&sysmgr>;
+@@ -618,7 +618,7 @@ eccmgr {
+ 			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+-			ranges;
++			ranges = <0 0xff8c0000 0xc400>;
+ 
+ 			sdramedac {
+ 				compatible = "altr,sdram-edac-s10";
+-- 
+2.43.0
 
 
