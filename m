@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-248325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E50FCD145A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:01:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D4F6CD14E1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:11:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7A9AF301CE50
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 18:01:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A274C30F3CDC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 18:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84F42D3A69;
-	Fri, 19 Dec 2025 17:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 178F134E24A;
+	Fri, 19 Dec 2025 17:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WjhOqUn3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QDNPeeNg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EEC02BD58C;
-	Fri, 19 Dec 2025 17:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6BA234E248;
+	Fri, 19 Dec 2025 17:57:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766166747; cv=none; b=pq7OhgZ+wPUd5iZ41FzplxoSsGsE99y6G4Z4+x+aNr1a4+5y0oAVBB63LeiF+v1EzAssAagzi6SHpCgMTmbnk8KoVNduTS9Vc+wmTVoy4QUrHZx/+J5wkXybFg8EQeNHluDEGFMITb0ZJlW6ubCvsWlaLp+7Zl0z/N/6CsbmT18=
+	t=1766167066; cv=none; b=etACYvQkenFBvOCCr9JIiy2QJgtv6zgG5Qbli1AUdGe7WZLPl8H2IRWqKk0RXwelzb3zFg3/THKlL0hPwIH1GcXwbkFDb0x3A9onro+xCe9NTAawAf/Z8cS3eeyAamD55HSSGXkaIPaUEAxkrChCuTp4l/djwFYhrqhpcT0e8mE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766166747; c=relaxed/simple;
-	bh=nPpUA6C5LaWQvcqwvb9J+SkaEScOjybsv/fwrTVVI/o=;
+	s=arc-20240116; t=1766167066; c=relaxed/simple;
+	bh=/c3WAXrPSKtM5JIz9AmY46BlWAhxgPGA/GsVYvGpEjk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=IiaGBkYcgSHxI5GX+5rlIK1yLJpk2YiWayH2KEeBR6s8MxqsqfHjlA7ZjSfksY+pGMemxA1ByYA8vPAGIzO0qNGPkwqOTAlPkE0mrw8F4L2HE51NIWWg772RfoJ+vGcBjUYiWAP//cqEv0W06qQwj2aN/KQCRHvDaXaUEyYOBpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WjhOqUn3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6230C116B1;
-	Fri, 19 Dec 2025 17:52:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eXCqP7BkHKm+5xP2CgXQjZiXTjkXUstLhg56vveykOVmzZs4fiY2EWlTAj5HrUHHvFgS7q6Lem3AFAR+iyyijwWtMLGx+n0a4aldBYWHOWNw/OiCZKFlyQbhMk6DDoelB7DDAJtmbc+yaeP0ohVkGFJkspG1LGCeHFT8SgL5Y8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QDNPeeNg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59754C4CEF1;
+	Fri, 19 Dec 2025 17:57:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766166747;
-	bh=nPpUA6C5LaWQvcqwvb9J+SkaEScOjybsv/fwrTVVI/o=;
+	s=k20201202; t=1766167066;
+	bh=/c3WAXrPSKtM5JIz9AmY46BlWAhxgPGA/GsVYvGpEjk=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=WjhOqUn3ZtzyITW21i8T302ogXylMOUcr55Tm4Sif3qY2ljzctsB9MYMBAejTYaOv
-	 M17pzZ4lYlD1jK5h73X5LkjfeUbYjMgiOWVMdTOLgAGqFw+HmGIFvB3EitJRu1mWNG
-	 WK9KG3KM+txkqhv8aFJBENrbDhFzuqXGouMr1ZG7xBt57x+XyGWwTy34m573qIROOD
-	 NCk1Dv9t4+HBNbLa2Ozyp1U02kHw2MpYTcKNmJ7Omi6VHZTxf9f6ncJZImzPZccofA
-	 7FhSZk8Kb5MjPEcJ3aaf1PwzS2EOjC99oBa12frPv4iu4V7k97R5pRIngS1yqH9A9k
-	 6nYqCPEHNvEQg==
-Message-ID: <5ba1d58f-6c54-4727-9152-152de70e5ffb@kernel.org>
-Date: Fri, 19 Dec 2025 18:52:20 +0100
+	b=QDNPeeNgD29Zh7u0fmq5p0W5UPCp2OYG1NIvE8HSpQ60TajdV18g5sFIAhfJaIa4q
+	 Sk/JpyCnJxfN0W++9HFcy4MCFlgJeG27e10byCcqN5ZA8T2rUkjBxGNBkj0YhhT+x6
+	 V4dpn/8NhZzmiC1aTPsmWGV0g1Myi01/ET5dLOzCWDbj8FDJr1hLBf0YJutb3dCy6D
+	 DZc2FbagciBSOVBXDYwbqJms/E+6VvR/4aHkF1bfswTPAOEtPdptZ5NamwIlZ3OPc1
+	 s7snDAG87MRciRsA/fyaWTRcazb5Kak7nNKA33nrYRBA5gVA/UhqA8GZqDwF1gu2a1
+	 /8HqzW1rASOxA==
+Message-ID: <630cc8c7-0b3f-4479-88fe-780201e78b92@kernel.org>
+Date: Fri, 19 Dec 2025 18:57:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,15 +48,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mux: adg1736: add support
+Subject: Re: [PATCH 2/2] mux: adg1736: add driver support
 To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
  Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org,
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20251219143554.22793-1-antoniu.miclaus@analog.com>
- <20251219143554.22793-2-antoniu.miclaus@analog.com>
+ <20251219143554.22793-3-antoniu.miclaus@analog.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,111 +102,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251219143554.22793-2-antoniu.miclaus@analog.com>
+In-Reply-To: <20251219143554.22793-3-antoniu.miclaus@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 19/12/2025 15:35, Antoniu Miclaus wrote:
-> Add device tree bindings for ADG1736 analog multiplerer.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
->  .../devicetree/bindings/mux/adi,adg1736.yaml  | 77 +++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mux/adi,adg1736.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mux/adi,adg1736.yaml b/Documentation/devicetree/bindings/mux/adi,adg1736.yaml
-> new file mode 100644
-> index 000000000000..0ba662ffc9cc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mux/adi,adg1736.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mux/adi,adg1736.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +	ret = devm_mux_chip_register(dev, mux_chip);
+> +	if (ret < 0)
+> +		return ret;
 > +
-> +title: Analog Devices ADG1736 Dual SPDT Switch Multiplexer
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +
-> +description: |
-> +  Bindings for Analog Devices ADG1736 dual single-pole, double-throw (SPDT)
-
-Describe hardware, not bindings.
-
-> +  switch. The device features two independent SPDT switches, each functioning
-> +  as a 2:1 multiplexer. Each switch can connect its common drain terminal (D)
-> +  to one of two source terminals (SA or SB).
-> +
-> +  The device has two independent mux controllers (mux 0 and mux 1), each with
-> +  two states:
-> +    * 0: SxB to Dx (control GPIO low)
-> +    * 1: SxA to Dx (control GPIO high)
-> +
-> +  The EN pin is shared between both switches and can disable all channels when
-> +  set low (inactive).
-> +
-> +allOf:
-> +  - $ref: mux-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: adi,adg1736
-> +
-> +  ctrl-gpios:
-> +    description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +      GPIO pins connected to the control inputs IN1 and IN2. Index 0 controls
-> +      switch 1 (S1A/S1B to D1) and index 1 controls switch 2 (S2A/S2B to D2).
-
-So just list the items with description.
-
-This is basically gpio-mux with enable pin, so use at least matching
-naming - mux-gpios.
+> +	dev_info(dev, "ADG1736 %u dual SPDT mux controllers registered\n",
+> +		 mux_chip->controllers);
 
 
-> +    minItems: 2
-> +    maxItems: 2
+This does not look like useful printk message. Drivers should be silent
+on success:
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
 
-And drop these.
-
-> +
-> +  en-gpios:
-
-Use standard gpios, see gpio-consumer-common schema.
-
-
-> +    description: |
-> +      GPIO connected to the EN (enable) pin. When low, all switches are
-> +      disabled (high-impedance). When high, switches are controlled by
-> +      their respective ctrl-gpios.
-
-So just active high?
-
-> +    maxItems: 1
-> +
-> +  '#mux-control-cells':
-> +    const: 1
-> +    description: |
-> +      Mux controller index (0 or 1) to select which SPDT switch to control.
-> +
-> +required:
-> +  - compatible
-> +  - ctrl-gpios
-> +  - en-gpios
-> +  - '#mux-control-cells'
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/mux/mux.h>
 Best regards,
 Krzysztof
 
