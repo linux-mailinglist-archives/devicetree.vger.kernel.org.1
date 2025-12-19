@@ -1,112 +1,125 @@
-Return-Path: <devicetree+bounces-248266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B11DECD06C4
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:00:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCB93CD06EB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:02:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F14873025F9F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:57:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 680AE30B6023
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677D51E1C02;
-	Fri, 19 Dec 2025 14:57:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B938338925;
+	Fri, 19 Dec 2025 14:58:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="INOM8+kH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N6KRafHD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92CBA258EC1
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 14:57:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BA4B328605;
+	Fri, 19 Dec 2025 14:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766156230; cv=none; b=pFWJgKOJ66t+mTopCTDwpwr8Rqgs9q0B+TPocg7GuGva59t3RDArwIQEUU36dHIt0dVAC8so9puj5CqLQNOCEM9LAOMd475fwY4Rv9U2LQFUVbN2AXfhZUlBGxjdgh75eeKw02ohKwwynNCLqDi0gwmhcEnjRfS5IRD9SUSCVAg=
+	t=1766156288; cv=none; b=EseD2/1Fvy6tlqLFDC5tacqXW0RY7WVNlYw3ZXArhHy51O/hyJ/YRqLeSfQYrdQqphrMQzxYA0eozoS0Ug/i3lWNRzdMOjVtbzonMErxxLJdX8DfPpCOMSKmBNFzUaFMKj5k5C26CuKjEpS3c4ibgAE4YVVQppB3bAwIPHQZCbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766156230; c=relaxed/simple;
-	bh=8wGFJgfb4wEXs8e+H5Ec45dLu3UmfZvwKEULZrNoyMI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Nh/288qE5iq7fSnAixLkKNVid/CWvqcUULlqmj0jZpMacpVD5sEmJFxsAWypvfiYlYm1C3c/wwp4nozJFnbD+KxR113sAPzpTABhRNpAOpuPJSlfdV4fRrkL7wmJ5amfJVh7PuerdXYT5chLRI44pYlzbi8S52PHVj3LP0LbhIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=INOM8+kH; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-47789cd2083so10903745e9.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 06:57:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766156227; x=1766761027; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=8wGFJgfb4wEXs8e+H5Ec45dLu3UmfZvwKEULZrNoyMI=;
-        b=INOM8+kHvgdlaIm0/qVMNyeInM3E6tpkB6SUZ0Lpn2kXTtaGOouIatjvAyieH/+tjn
-         HAAVB4qQVE+dwj4Yp8Tq6yqWkwb1a55sJ6ZAzuyMSACvwjmK9InM1C54VoMorWtCXUnC
-         XrbfV5YxuBvFSs+cQPZUwtPT3M1h1O0dmA6KkPaJqJIgSnPTgjq64u3rl9uMYAtvkAAR
-         VyG9fCF7I3fS2w/iRVpGNumiAy6GwKAhoSaG3eZ36ky6csu1u12YR4NFEvExiTZ6/RvI
-         MORVX5IznHFKggVdBzLeOKX0YEzo1u4jZJBoId9p0Cmoig4UQIP3cDcrw3H7p0hkON+m
-         +/cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766156227; x=1766761027;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8wGFJgfb4wEXs8e+H5Ec45dLu3UmfZvwKEULZrNoyMI=;
-        b=d+ah+bN22VkzXIY9IsYjaAX9/tL1NEIQsYZlbKMEQ6g7EChsMD5i37RXXo/zQyCsJF
-         5p6ZBRT4IqVsegdvBXpgtvt1S+x4nJ7A5syd3ayb89Se76lqPpAcI7TTTyUUSJ6nm4Sm
-         2EJaZ1SvOcDzBrV/CNVzja3hwkBIQj2GjbXvRf5EguwQqZeOuWTtdpq+31oD/vi/wpe7
-         lZs0kY9DwVgPx0NOD8GUO/T1WLUwB7AgOZ1yzSnQUkZaAG5N9oKqpaPl2bZjQaNnxM7Q
-         LYap9izkEqqbZkAbaAHri7WYjZyamaFM9gHPT3Y+zvpCtAheTk6uw1acfgXtEEc0XBIb
-         6jsw==
-X-Forwarded-Encrypted: i=1; AJvYcCXZSZn5cZ3nEs0ZaMtoonz8YbV2Ca//vBjuJakdqPk7PbQ2DGvM9zH3vL61EKq13jCrE9HYFVWqBAc3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3A5uLoJ6WllgngRO65nBVzzuiUxtHr41FCbDfmQw9IPgw8WMu
-	QHeojz2w5tt+XTVY8+rBPOHdq+NAnhHh55L8uZra5dB5LbyTI3ZblyeA+wLR5Iu6uv4=
-X-Gm-Gg: AY/fxX7XJpnrRWBB+fXu5hGfg8vs3+9ldxPzFYKYuqwRRT42Fk9WugatQ11PS+fVSCj
-	evxusnNprOzM100ANSHLx56FLcppB9HN9hBdDV9DH2CjO2dWcUDjp2BD1vyMczm1kRVlN7vK/7n
-	0OsWtRyR0AUkt88R5GzybxCgvEwNIUA4f46TBsgn3t9O/OGLY0OvS7O6nSkidHnppy9a5Z8/DqN
-	iQ2JruoIhTuuyIjS4OyqQo0DJzVKN4czxIy6dvoyK+w14Crv/ST6irXroqziQxWDBzOBgEZAT5h
-	KNq+szN1LIl6yyUkspe6KhnU5VtuUeaSuYPN2b4AwoKicZ/5nagd6wG9jsWgGhHImyOtQ5OAN/k
-	w5ovRmngRXHvIOylpPzvD9oJxQVfCJP+ygUgJblNdhB7IHsQUSyS0WzcPQmcvXsKuCyhvaC1D6f
-	eQlzf6MZYt/QRc3+xhHQ==
-X-Google-Smtp-Source: AGHT+IG0kuzKihAK2EYClDOPCu190trNqH7HRizVwD4ck4omkH7iQRBsiAgdxyr0jD3KRQLHTUyGMw==
-X-Received: by 2002:a05:600c:1c91:b0:47a:7fd0:9efc with SMTP id 5b1f17b1804b1-47d19555b78mr36411585e9.15.1766156226855;
-        Fri, 19 Dec 2025 06:57:06 -0800 (PST)
-Received: from draszik.lan ([212.129.80.126])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d193d4e91sm47624915e9.13.2025.12.19.06.57.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Dec 2025 06:57:06 -0800 (PST)
-Message-ID: <da80f729ae5c8899181f3b35b0f30b59f11535a8.camel@linaro.org>
-Subject: Re: [PATCH v3 2/6] soc: samsung: exynos-chipid: use dev_err_probe
- where appropiate
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar	 <alim.akhtar@samsung.com>, Peter
- Griffin <peter.griffin@linaro.org>,  Srinivas Kandagatla	 <srini@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, semen.protsenko@linaro.org, 
-	willmcvicker@google.com, kernel-team@android.com,
- devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, 	linux-kernel@vger.kernel.org
-Date: Fri, 19 Dec 2025 14:57:13 +0000
-In-Reply-To: <20251120-gs101-chipid-v3-2-1aeaa8b7fe35@linaro.org>
-References: <20251120-gs101-chipid-v3-0-1aeaa8b7fe35@linaro.org>
-	 <20251120-gs101-chipid-v3-2-1aeaa8b7fe35@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1766156288; c=relaxed/simple;
+	bh=q7oapfRvjOItGCBaWMc+JPGaOrmVsH8zTKsn1vbZa2Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iHGmW0PT8PHA9Q077ETF0o7h9aTBNuVJAOXgeLLZcnPrJlZqb0be5+tHI+Y+L4Pyqo9IgHR3b3/ks3fEFQZWgdOAa9Ee3wdbX+XxvIH4XOTTERiBWss5ww2J1jR+uNvGoBis2m/SxwA5w753Ag+rElYdvOW+t3vb3U0+AlMI5Iw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N6KRafHD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ADEFC4CEF1;
+	Fri, 19 Dec 2025 14:57:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766156284;
+	bh=q7oapfRvjOItGCBaWMc+JPGaOrmVsH8zTKsn1vbZa2Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=N6KRafHDnIc5hXBq0SB7MWUvzLHGeeTAeXyfijDrJZw+zyM30Gdr2FDMp9I9dh9ex
+	 l/SoN95QL+ro3XhJvxfmfQ3Kb7LucWEsd4DBGMixriVihVwcaBLAGZy36wfz+zwaZX
+	 rsWrdlPJGdJZMCaBwmmagjVYH4OzOptCC0yxj4HGOdohozx0kBUlomrKcL6kR/mUiV
+	 ix0T7KDNirY5wcgpxc99iK4J3bXvQnXiItWIthEXUg7rd5FUh2ePpzvMwu7y6HHZa6
+	 OwLlerjp2wt3gGkO9p999jNejnTLpiAkc/X31UpodT9sor9nba3ROS2kofcmSsjyI+
+	 xoEC24LACkwrw==
+Message-ID: <ee084ec9-31a4-492f-97c7-009dbfd77613@kernel.org>
+Date: Fri, 19 Dec 2025 15:57:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] arm64: defconfig: Enable Glymur configs for boot
+ to shell
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rajendra.nayak@oss.qualcomm.com,
+ sibi.sankar@oss.qualcomm.com
+References: <20251219-upstream_v3_glymur_introduction-v3-0-32271f1f685d@oss.qualcomm.com>
+ <20251219-upstream_v3_glymur_introduction-v3-2-32271f1f685d@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251219-upstream_v3_glymur_introduction-v3-2-32271f1f685d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2025-11-20 at 11:29 +0000, Tudor Ambarus wrote:
-> Use dev_err_probe() to benefit of the standardized format of the error
-> code (e.g. "ENODEV" instead of -19), to get meanigful error messages, and
-> for more compact error paths.
->=20
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
-> =C2=A0drivers/soc/samsung/exynos-chipid.c | 26 ++++++++++++++------------
-> =C2=A01 file changed, 14 insertions(+), 12 deletions(-)
+On 19/12/2025 15:46, Pankaj Patil wrote:
+> The serial engine must be properly setup before kernel reaches
+> "init",so UART driver and its dependencies needs to be built in.
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+Missing spaces before ,
+
+> Enable its dependency clocks,interconnect and pinctrl as built-in
+> to boot Glymur CRD board to UART console with rootfs on nvme storage.
+
+Nvidia Glymur CRD? Standard comment - you look at kernel and defconfig
+as it only Qualcomm ever existed...
+
+Best regards,
+Krzysztof
 
