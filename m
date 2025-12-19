@@ -1,196 +1,141 @@
-Return-Path: <devicetree+bounces-248089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EABFCCECD9
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7D19CCECE8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:42:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0B3943011A45
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 07:40:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ADFA03011ED6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 07:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DF252C234A;
-	Fri, 19 Dec 2025 07:40:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89672D6621;
+	Fri, 19 Dec 2025 07:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eceOhw7M";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="c3EJ0v1L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gc1WJmks"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 956971A267
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:40:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 324C51A267
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:42:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766130048; cv=none; b=SW5r8fqo6PsHdWlSs2rbg3ZKMa4ifSvk1cjN8EXfVoq7aub+c7yBVkZa6HBi9SL7hRn8Y3KSR5tE1DB8U+ca/33NJ+PV/gIN8RDiCAjX1dnpgBRHaRH7w7w7VMLIuSr+Iw5SvaPoyli6OCZW7Fcv6cwNqeHrO6hw4Nkokt0g2FM=
+	t=1766130154; cv=none; b=WMegKn6+vcO+NHYGCeVokFjiHnbe4d3SMcd/1d1FXGxIm0RayK4gqBF1lh9UE/C+nFr1TkcNXXrOtP45sAd0Occ+u95LNz8t8Udyfi6pPMDUi+YU3LS2unWr9eWXO++eNksYq8kcLxYhRbzTNNW5azJHWWtH5bKeOIeCcwYdbbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766130048; c=relaxed/simple;
-	bh=Pj+5rF1JzrlA2iWQvzCZRORhOwCpPgy2lS1f3GmBXaQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dDv9rdvL7YpLpTQyXQefW4t9YAqEGdd5qEOxU0i+XvnyklV3Gp9tpMjqkSdyHrzqL5SuylOqHnZLKb45r1/MZ+GM4VKwj+TmJoPajt6s1CQztDONt1wF6qw6pqx5V+uYGw4oNhLZYIq90vLl3QPN3fL76+GFBOEzfqWg9qMnofU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eceOhw7M; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=c3EJ0v1L; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJ4bwKf3975443
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:40:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=7vIv/ZqdFpIpDMymuJJe93Re2tS4+Ah+sbi
-	Kzhp+N5A=; b=eceOhw7MHcNJBA4Q0lTL8Xlrni7bLyZOSqMbCPrqfaEmaBcDkOI
-	fjsook5rfL4kdOyjFe5ziRLha6s6hyB2B+YQ+hh77uFIPEMz7eDivoCSsxc8HTzv
-	UmuTLpw9/tsjlKWumtqh5eKAC0kqquxGOZkzkR2/LDHdk3usKh+AJLNB21YnneTT
-	ILDotgp+YZfTzhpGiJpxe9JjgM6Fnv8pQlD+MuxKdmISpIH2ZewkdlSTLp2UVlmj
-	1NziJmuUnl0WD7cyfYu5SaANylX+nZuErx6MqAb5EFTddA/uvUq1rpZeSKRxUvX8
-	fLySNg2iYKi/610scmOt/GMWRYhsqJZVwAA==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r2fhpcw-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:40:45 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4f35dcb9d4fso48698981cf.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 23:40:45 -0800 (PST)
+	s=arc-20240116; t=1766130154; c=relaxed/simple;
+	bh=qNd7Kkg/H2zhSsCmeKqv5XE2BPxplo29/JW30z7IwFc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hnpsUZ3lyCSF3FeXnDPqYzi87T2MVbRK7WEFRy+q78jhuxB5zLXf+1ELqiv1UIRttvYBwhNaiPBVukEJm3la3ks6TruS1Yg6npZ0ua8Daydw5aiasNBI20HxZeQ61f3TboKIYbN8k3zzxwzkGs3v6FoD2BKfLDDD/HjUWP0j/vk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gc1WJmks; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-7b9215e55e6so991730b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 23:42:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766130045; x=1766734845; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7vIv/ZqdFpIpDMymuJJe93Re2tS4+Ah+sbiKzhp+N5A=;
-        b=c3EJ0v1LZ9OI/q1rwugPVjW4APxC0ONzj/weAJQQTxJemE4DSSiRtbVssexIOmbXP8
-         OuUtWZQstqTYq+gwQ60TRz0Jm3sZXq8gGjiTxMW17HIk8JvxK2W/du2vyBApAy/gBolJ
-         +GHDCGQDpnnXOgRZiBwvKsjSgW0u+x0g5b723joIZXC6qbOcAP75Z0yTd0QPqhwa0+QY
-         zISQ4wPUqHIbqp2XwGER9QAwQWKvxet7NaPG+aBwxWccNeP7I0135hbYsg8zb+tebHNU
-         UEOFt8AicNjY2fkIMXefhI1JTzFYYXLyvBm3nrZi5rsJoer4FCxTgoQKyZKbxT4ubV3Q
-         8mQw==
+        d=gmail.com; s=20230601; t=1766130152; x=1766734952; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qGrTuvEwjjViNUMt3QJcRhb16ogXp7GtzCI+L0Kabag=;
+        b=gc1WJmksF1zmwkXjLOJCzqXbDBQaLbN445ip2IHqYpJQe+5pbFqOvlSY861Nd7+wgn
+         I+lrtQVJm8y5ls34p4bSOfVnHxCvK2d76iRq3UwuGPySN5lBJICJ9Er0EZayvGb1fxRL
+         1gInMvTTNbTtxFCslAgI8Bx6S4gxe3N86J9fAy20ircw2cBhPUJmB/3C9fls/7TcQuzp
+         tIpyVuW5ODyTYKuLsQrEKyJKiNy6sru/+BDbpozwSK5EdD2+e9wVnpoUQQN+j2GFoqN/
+         NjDSfcUiOVSAxf1ax22n9qtsoUBTdBPLE3XmKe4jP4VDZccTXk+5xPr18RWS0JbkdYVG
+         QE7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766130045; x=1766734845;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1766130152; x=1766734952;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7vIv/ZqdFpIpDMymuJJe93Re2tS4+Ah+sbiKzhp+N5A=;
-        b=VOskaevqNg5fixHLZh/UbMJJqjSLyVaRvzcu9lsrFq0Nr7Tvce6FTPkj1P/7IsGtVv
-         R5fdLGm7z+INPfKqj+wIfE0/3WuNYu/uo33BebB7AYZCAqGNIRborURDu4oJWoSsVvqD
-         BU6rqrHmKUHQiLdQnJ/KOMSqXpzYTdsj+A7QxhztinqqunoTAM/Qqze4SzVPcAiHoU+n
-         NlVUjvMu6GcqlzXsHHepngAaWLsWiv+73m8MIN1jTZ/8txdwf0EC3UFXYj8qhPFYna2+
-         GAInnIQMyUP2YdWLWaIoeM5gSOEIO9pz9TkDT0RtlO6hOv81e7hsdHHk/rcrp2foBXpa
-         OPiw==
-X-Forwarded-Encrypted: i=1; AJvYcCUuIrz7Os4khNnLGWDZmXfrHh6ElHK6biUhs+14zDzngMpiT0PM3yTkVs+c38P4sg90KsW/MOQZDDIn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz40dq8XpVipd1CSK0EpkN2WgWC+SE3+jxOReBaagXqYYh3jzhf
-	a/fNLx58EfyZycJSsox4X698fDzjlmChyEqGlp3AUJFZMzAgXdnN3jTyxLk/RxgqjCar2Gj0Iif
-	fFTCMdP6YBIeVoalRZF95jlIlPVTGqFNAOz/OTONhTexrUQ9XDkdwooQ3ioqzz5lA
-X-Gm-Gg: AY/fxX6RHuGAQ/3ZSbuD88UfXLWY1EuU/FnF0XDoePWvPtfjQ/BtHap9ognxEqx5G/5
-	Tk+0cn1mNqIJ9nGCm74pLl7HlQ5MMipP1tK8gUrTJ4tqyK5hoZr/m+t8u+kls3rDWYJd+vSh16g
-	0HSI6zATkXud1HhwojZpPohAgzNe5ExosXEE5lp3hx0kYEKafVoJYhmDaCV5fjfUfBoWWrLyidZ
-	xt1wW57r8NglYvb5R3e1GcN8wc6mJwYChlfZFaWgBhSgrha+ejSpDR70hdLOuWuY0OvBesrODQi
-	flpISJboqppI6GNhXYcA05ZBO0vKnD8chH24sd+JIuHNcCttfFfqgwx+Rrx6xLCm3+qpJcw581O
-	Rom/X57JbDsKDlRB9KtcHnB4xdLJ9FIjth+TQ1uUns8geLFlNf/PDInHk1mIc8vrwbTA=
-X-Received: by 2002:a05:622a:4106:b0:4ee:1913:9616 with SMTP id d75a77b69052e-4f4abd6e3camr26272811cf.51.1766130044825;
-        Thu, 18 Dec 2025 23:40:44 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFZEHmexCkpUpnJU3gD8Mpws4Lb3U3S6CxCEkKP17IE4LRT4jWtCCJFbvZtGo1Vj8vdU/D+Ww==
-X-Received: by 2002:a05:622a:4106:b0:4ee:1913:9616 with SMTP id d75a77b69052e-4f4abd6e3camr26272671cf.51.1766130044437;
-        Thu, 18 Dec 2025 23:40:44 -0800 (PST)
-Received: from quoll.home (83.31.98.88.ipv4.supernova.orange.pl. [83.31.98.88])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037a614b7sm163174266b.1.2025.12.18.23.40.43
+        bh=qGrTuvEwjjViNUMt3QJcRhb16ogXp7GtzCI+L0Kabag=;
+        b=k5ID9Wvl+rrsiv+8B/9ouCskgtsZsUSSxy4c8MKNF0a19HoXEaHZ796HSMrwJowH6u
+         y0X3CXugoL4zoxViDUzM8k8ajX8qp2XekTAkTz8KdW9T3lvK4aGZL08bPGGZ9p6A1wYW
+         bekYUbKFR5vCbArl8WILbpuAaGrZYE3RZSUtAkxlwI62fuGR9VdWF2/Oivw2EFy66m2H
+         S8f+3u4ECz7RzxOb7SokWuUW6UG1v0ptJp5XuyLQ6R7MaWjt7VHCuLIGRu23xv9mPR1F
+         7lIDyPhhuHKgFfHSY1Zugb8SKt9Zbp2oLy5AeIE7kvXT/ipq7OIX0ojTkbB+dctU0k8P
+         oYbw==
+X-Forwarded-Encrypted: i=1; AJvYcCX7pMQJhgxr5O1Yjskke9zgH38I0HHnTokWfRg4XTdxm2kxU6HT5GsGguPfq+2jyOJMY/Co8P7PL4ry@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9GAdMYIe++OCUdcF46phRPDsiAqiKOxleOsVzGo5hx+Z8yqSs
+	YAB2xVprk47q0eAwU/epsHFxfSegQtQzajEzCjXGubj83+WJnXGSRMKn
+X-Gm-Gg: AY/fxX60XyJ1A9ozNjtu6UkiDgliocGvAFS2kxzU0BLUzyikt5D8ouE+5KchVlrTVdi
+	Z+M2er30jaHxaM1ZKqEX8R+eagcu1mgvzdDan8h8B5pnAN2W7XgN54k/OPXvPvo0M8NkMXu61Jj
+	DocumxfNFl64a9vqlvwYLGRudxobcnRAyWLBw5YqksfCPdhYd5aHrncJ8WqGT3/HWa9PlMJNN0c
+	7cgTpVGrGlDd3fvAWJtkIsdlyhs2ascIMkuwdloxOXLAorJzajCc4fN39mtxg30PI3iZXsrRDG/
+	d2lmgUQxnAs5SJwqYjLVCzNW6RyXOpA1X1BTRKjevyRZ1LXb7JAP0cABCAyz23ORBtmhargvzgE
+	kEeXTv9iXtS56xyampCA/bqX+2V48YSeVNKcUwdHZ5Kxx9OarpUzR
+X-Google-Smtp-Source: AGHT+IHvlxajrZyvgu5NAl/VwkuEOt/upecy4ZBkpxVWB19Jg5A5qRKqAiwdH54bqOmcRQaHwjRFZg==
+X-Received: by 2002:a05:6a00:2995:b0:7e8:4587:e8bf with SMTP id d2e1a72fcca58-7ff664798e5mr1631925b3a.50.1766130152282;
+        Thu, 18 Dec 2025 23:42:32 -0800 (PST)
+Received: from localhost ([221.192.179.86])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e493123sm1489676b3a.50.2025.12.18.23.42.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Dec 2025 23:40:43 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-Subject: [PATCH] dt-bindings: mediatek: Drop inactive MandyJH Liu
-Date: Fri, 19 Dec 2025 08:40:36 +0100
-Message-ID: <20251219074035.13001-2-krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: git-send-email 2.51.0
+        Thu, 18 Dec 2025 23:42:31 -0800 (PST)
+From: Encrow Thorne <jyc0019@gmail.com>
+Subject: [PATCH v2 0/3] i2c: spacemit: add reset support
+Date: Fri, 19 Dec 2025 15:42:19 +0800
+Message-Id: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1965; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=Pj+5rF1JzrlA2iWQvzCZRORhOwCpPgy2lS1f3GmBXaQ=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpRQFzVSyGI1P+7P7LeiMXwYB/UU4cmRnFddVZ2
- NZtxkX9aC6JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaUUBcwAKCRDBN2bmhouD
- 19JYD/9CCbYGdUgNg/6wlO7AqltOh1PNwU+mESZeL+tKQSbY6m3VjAiplRsoDiNUJMowDAcxJTK
- PqxdrWg63SHJpgaE1xS7p8x4AHVwSQhVR62MzrUwNPBtSHLBV29cJA3BJVmTWTFzovTLFjyGiOo
- 90UGzia4vNxO7PVXsP//ULpayHUp7dtpDtvvlaV6F/d8788bUcGBOVzgAsP9n6HvW0kwFr9dnKb
- wVpEjEDipSGJ4LepDYYIHKMpw1g/xio3Db3fPaLGZK3w4ayniYVttpBpXHnYgek/gNEXaghXdd6
- vc+r6fJI8AFGSaVmixFdWAzmFeDphvbL/0TQOsa9NHO0b5u7UwenNGTl0mn8r2fymKSOCfNyIyC
- yYkuTf30W2plhYnuC4BrhQnSGztgyDl4NMYRyiT5S74VW6D4ZQ/q6Vk+o3KedRPX0N7z6KtQSh3
- GVosI6Ib+OAu2fjlmMV9A4AleOQntd+jXRmDNqeNWK7oFM6daOXN+SGUDqT7CVlcqe9ZX2PvL44
- X5lVWuprTJh44StcfRB0EuxSRRbsadKHZuZSsngcIgKNun43ygOJV0wlKlKCPm6YUNtoQuwTT6n
- 9Kb3YrVRn7ZoNDGadO+CC6OSzzZ9TqSl41Ci6g1j6CoN0P2Q9Zs2rmuDtYSzUgH+Ks9OdMwyb3M Q7fvNxtKKfCKL+w==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=NODYOk6g c=1 sm=1 tr=0 ts=6945017d cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=qe4J/qXhiWkb1JZGYKbLYA==:17
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=mpaa-ttXAAAA:8 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
- a=QX4gbG5DAAAA:8 a=pGLkceISAAAA:8 a=iox4zFpeAAAA:8 a=RAb97dgWUv9LPol2dIoA:9
- a=a_PwQJl-kcHnX1M80qC6:22 a=sptkURWiP4Gy88Gu7hUp:22 a=AbAUZ8qAyYyZVLSsDulk:22
- a=WzC6qhA0u3u7Ye7llzcV:22
-X-Proofpoint-ORIG-GUID: AC2hsWWge_FYwXXhqDqyT6xp7kusnalI
-X-Proofpoint-GUID: AC2hsWWge_FYwXXhqDqyT6xp7kusnalI
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDA2MiBTYWx0ZWRfX8sxUeq9suKPy
- 9nfDBc49s5Z5du0XbE6bjBLreqaS7pqk72PMgnNXw3771ay+gJZwIAs/LgbWT7OFzL7kRhbxpqj
- 2stTpFfgDDA7/YmOLK0mJbD6e0PrFuU8zMP+COq9WT9fsdrxX7siAvYLUVvWflcNYGkhb+fjHLU
- 5DC7g3GlJF6D+7/NvFqcJf3Y96KSoA4VQwLNxjV7x5x6t9Qt8lhNwhffqn5Lsx8KVgKncV9MZdY
- yuENJWcxxARfYHXGuesSuelyVyk94jybbwuqsVmQCpKxmc/YQH7z5xyeFFiOmVDgftGkkwCKSDT
- iRbI9jfOUOOh5hyHegScwEeHT0VG+Za4B1Mia0oPLpb3pzHvCimLpwD9y/GOy/qtCmIMWlec+rd
- hXuYEN4Hiwde6KTmwGbpCleSquVFWhdRnDfjXh4VeLM23fk7O37tYttsIFEpKWFwDFHzNjss2xW
- hkL+1mWES0gXbi4VwPg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-19_02,2025-12-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 suspectscore=0 impostorscore=0 bulkscore=0
- adultscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512190062
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANsBRWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDI1NDI0ML3UyjZN2i1OLUEt1E86RUQ2NLI0PjlFQloPqCotS0zAqwWdGxtbU
+ Ao4A1YFsAAAA=
+X-Change-ID: 20251218-i2c-reset-a7be139213de
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Troy Mitchell <troymitchell988@gmail.com>, 
+ Guodong Xu <guodong@riscstar.com>, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Encrow Thorne <jyc0019@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766130147; l=1131;
+ i=jyc0019@gmail.com; s=20251009; h=from:subject:message-id;
+ bh=qNd7Kkg/H2zhSsCmeKqv5XE2BPxplo29/JW30z7IwFc=;
+ b=IP9PYiLnxh4jarsPPV3BBgqvdAZV84EWSlqmOsx0gleAv9VAbPkrnmv1JaYOb/jF/whJbat21
+ mM7tks7h+8dDHF63uWqww3whwCH//d9Myr1eKBAj41dpiIhog/DiS+4
+X-Developer-Key: i=jyc0019@gmail.com; a=ed25519;
+ pk=nnjLv04DUE0FXih6IcJUOjWFTEoo4xYQOu7m5RRHvZ4=
 
-There are no emails from MandyJH Liu, no reviews [1] of these bindings, so
-clearly no maintenance is happening here.  Switch to Mediatek SoC
-maintainers.
+Add reset support for the K1 I2C driver. A reset ensures that the
+controller starts in a clean and known state.
 
-Cc: MandyJH Liu <mandyjh.liu@mediatek.com>
-Link: https://lore.kernel.org/all/?q=f%3Amandyjh.liu%40mediatek.com [1]
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reset ensures that the I2C hardware is in a clean state. We cannot assume
+that no program used I2C before the kernel booted.
+
+Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
 ---
- .../devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml        | 3 ++-
- .../devicetree/bindings/power/mediatek,power-controller.yaml   | 2 +-
- 2 files changed, 3 insertions(+), 2 deletions(-)
+Changes in v2:
+- Replace reset property in dt-bindings.
+- Use devm_reset_control_get_optional_exclusive_deasserted() instead.
+- Rebase to v6.19-rc1.
+- Link to v1: https://lore.kernel.org/r/20251119-i2c-k1_reset-support-v1-0-0e9e82bf9b65@gmail.com
 
-diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-index 0e1d43c96fb9..1cb9d6797b92 100644
---- a/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-+++ b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-@@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: MediaTek System Control Processor System
- 
- maintainers:
--  - MandyJH Liu <mandyjh.liu@mediatek.com>
-+  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+  - Matthias Brugger <matthias.bgg@gmail.com>
- 
- description:
-   MediaTek System Control Processor System (SCPSYS) has several
-diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-index f8a13928f615..9507b342a7ee 100644
---- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-+++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Mediatek Power Domains Controller
- 
- maintainers:
--  - MandyJH Liu <mandyjh.liu@mediatek.com>
-+  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-   - Matthias Brugger <mbrugger@suse.com>
- 
- description: |
+---
+Encrow Thorne (3):
+      dt-bindings: i2c: spacemit: add optional resets
+      i2c: k1: add reset support
+      riscv: dts: spacemit: add reset property
+
+ Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml | 3 +++
+ arch/riscv/boot/dts/spacemit/k1.dtsi                       | 8 ++++++++
+ drivers/i2c/busses/i2c-k1.c                                | 7 +++++++
+ 3 files changed, 18 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251218-i2c-reset-a7be139213de
+
+Best regards,
 -- 
-2.51.0
+Encrow Thorne <jyc0019@gmail.com>
 
 
