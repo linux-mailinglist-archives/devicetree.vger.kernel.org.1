@@ -1,234 +1,280 @@
-Return-Path: <devicetree+bounces-248284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C793CD0B95
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 17:05:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B776ECD0D0A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 17:20:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 59F82303F5D9
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:04:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BAEE130F9EF5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240F8366DCC;
-	Fri, 19 Dec 2025 15:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D617D357A3A;
+	Fri, 19 Dec 2025 15:57:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jHsauULH"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="NRn77t/P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013009.outbound.protection.outlook.com [52.101.83.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECCC0366DC0;
-	Fri, 19 Dec 2025 15:55:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766159750; cv=none; b=gEQCypvaAK6jOv2lbfz5zvBH399SjSDOTbei9arnoSt7vVm3OCdTiM9bNSXHSHS8rPQ/A4VZ1fVgiJVKRGMNgaAKVBJ0gCnMorZIxHXEVJUmwat+abVZnmFJMzlX35oJYsgweBt4VrQL9L1KRcXIkXSDHGXDWNws/iRWa9q9Hic=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766159750; c=relaxed/simple;
-	bh=qKyYm1wjY1/f9MKBEYaGT5Ko0GUkJLFzRCDD89BnQZU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=reGWzMi0Bo1QYYTtfxrhJKYpdz7lxe/xLTjIChS9ByB3kOWc0gi/ap+Zd1tifvBFufu6U8N61MI6CT/QLohsX4C/yLc341h3siuwWm8FI3Z9U5/QJuM/8vX0fc8TvRvcf7Kdqa9XY+Dr4eX7v1RarUUYxuIUrHhaYRThV16TIdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jHsauULH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52169C116D0;
-	Fri, 19 Dec 2025 15:55:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766159749;
-	bh=qKyYm1wjY1/f9MKBEYaGT5Ko0GUkJLFzRCDD89BnQZU=;
-	h=Date:From:To:Cc:Subject:From;
-	b=jHsauULHdTbhTus1B5noKbsEQY5GPd9bzTKNhTRRqZBglF38UM3V3H4lp+82Qt3oU
-	 l7275yyWbyQiUQ8BgM08U11lsPr65oWxpWHvYn4Hz1FZIEjwlHfbv3FSIdQj/0X9Zi
-	 zJGaaRFj0PXqcfLawh8Eu6Ble1833hSVcECMhjex/gmJsx5Gu3fQFGYl8PW6eyjBOs
-	 83G5pni8cXFgBnxkQeL7DMA5EsReTXwpZEOvTUDme702CHhM5cSLwsXFfnHsZwLIF7
-	 vs/kuWkI09Cw1GvaQM3o5hrN/xwOc/bQTccrErofaE6NhkVP7g9+mlkzo0EyCrPwJp
-	 ZVV5oWo9KrWtA==
-Date: Fri, 19 Dec 2025 09:55:46 -0600
-From: Rob Herring <robh@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.19, part 1
-Message-ID: <20251219155546.GA3433312-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E6F357A33;
+	Fri, 19 Dec 2025 15:57:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.9
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766159851; cv=fail; b=MYMK1tA7knBf1qjCw29lOeW7Y+fuZOUsYrCUHDqrnd95iaotx/+beTmm1/t3XvGHciOzNlZ6kmoU5RKM64d2zID5691+MSulVMIF8U/ApXXpJ0McQG5Jt9zp/FQw+GOi3Daqgskrd8qboM/otACvRp3+1UPUE1feMpouIi4qsp0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766159851; c=relaxed/simple;
+	bh=PVBxhvnuVGUQyZv5hO93mkmAQ2aFm66VIaAbKJX8llI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=DCg159Wo9ab1vV0jo5wtxbue9y/LTPO5lXqCSw2oC/6RO6OcBnv4tYMWk6T1S2HSX6AygTqfOdDkNCGc7S8uLRPenOURxvvl/eldcV9C7SjhXFtm9Fuedgo4A1ygqRTm73qJMHti+Wpga2Cw8lFjGJDHD9Ju2a9DU/93ADDSx6w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=NRn77t/P; arc=fail smtp.client-ip=52.101.83.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hhxnfVJBqiXTBEEZtcrNljsmgPZcmRWwfFyyJdtVbvx0zLNnIKpzuzUxMl9LINhlRiCrCGeHBEeUAWJqiOczg/h15+DhDv1l2aTjNbz9Eo6P11XIrAHeDHIQvyDsathZylZLuwn0h/n1caxZLXELvnZmYhMn1Z1YtNzzZ/fVHxCLhZwH8EnbYKwBp3PpWDC/tB8kEQ5TNKoFBw3Lj07S8S/XQp0qGPvsp1GQl3hsD/UjeKjQvS6dj32NeoV7tzRvOorRtboi+R4+jmFcAA1pveDc4V0QyK7F9v8BiQPSWZ+JOEXd8P53SjKXr2HjWb1p6dTO4v6hU+LcstJSoPH7tg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IQwzC6yeixx6jTXLDf/rWVlisGaiAwwkdgPMre9ahHI=;
+ b=xcTc9fWV3leJphWNUVmgGV98A9cm+iRcj4E3y1M/LVzRyqv3waM0W0LZf7Pw5JQBMWkqdDjw0lJNEdhHT1yHLJ3M7ydzPw+K1dwY9exyfXwyrEyET5UgSeJC42Ql5NbWBI93dBwSSjwllz7JTq3nXNAJqrvnPGDQb5nYXYLO4lpHkKA+IhzMev7+slE0Gn0rvATqVTcAyrkWd8RxQFTEtl+sOiHonwvC8WnBfylVTw9jBPTldpfpGcvNSv8L9eQOZpGgy5sW63HxlnhFzQ2IkzyTUWt+Kbeq0JEGNNexz1OcWXJoXbBz+JlxGmZA1Z10mPH3j4eliFGS5VfxrDI+Sw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IQwzC6yeixx6jTXLDf/rWVlisGaiAwwkdgPMre9ahHI=;
+ b=NRn77t/Pl22BSaS9gj2/GsjmcQKMmixv7B2H7ZG539hplI6AX0tGD8hNPFp9HUmCqDSHVMSZzYhYP7LJWaZzFlhcAb1t+j0xFhSeJDlY+AyAkegSQAj4T1MCHimyll8txtudXOo2gyDNjSv9bTwkx8vP5oelFnQEsKr0XpJ67Kb1OBAweYIm728vFA7qTNe1oslXmB20tSyfQfvoC98NR2ZYwhcddI1jYc9j610qpezD3SiwMVNftNSx8JshVU1tWfLot9riSoTy+qON6ySLZVf3ZhT9kSDK2oKh9axTOTvfSNQ58uS4ezKHj/rrMm7g2TvnQyilDt9lxWMvnLZP2g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
+ by AM0PR04MB11914.eurprd04.prod.outlook.com (2603:10a6:20b:6f9::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.9; Fri, 19 Dec
+ 2025 15:57:26 +0000
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9434.001; Fri, 19 Dec 2025
+ 15:57:25 +0000
+Date: Fri, 19 Dec 2025 10:57:16 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	imx@lists.linux.dev, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Guoniu Zhou <guoniu.zhou@nxp.com>
+Subject: Re: [PATCH v3 1/2] media: dt-bindings: Add CSI Pixel Formatter DT
+ bindings
+Message-ID: <aUV13BHFn71ZIXfv@lizhi-Precision-Tower-5810>
+References: <20251219-csi_formatter-v3-0-8680d6d87091@nxp.com>
+ <20251219-csi_formatter-v3-1-8680d6d87091@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251219-csi_formatter-v3-1-8680d6d87091@nxp.com>
+X-ClientProxiedBy: BY5PR13CA0014.namprd13.prod.outlook.com
+ (2603:10b6:a03:180::27) To DU2PR04MB8951.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e2::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|AM0PR04MB11914:EE_
+X-MS-Office365-Filtering-Correlation-Id: 54bc8474-4059-4410-9477-08de3f174db7
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|19092799006|52116014|7416014|376014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?irwORScwA3SMlECb+MCaKYfEDv6YFlWmVYOB3zPzdhvpBMuvGjbcFHjOHAWe?=
+ =?us-ascii?Q?HawLE+I9y+m9T0bleuYGvlIi4WCNsaAu6l4H+NPObLkjWFP9SDx2FmUOU+MW?=
+ =?us-ascii?Q?TOIu6j/pjqnt3LpIrlH7v7uDNAF+kapnAOVNIfxfRDXti4hr83M8WUhpJZbk?=
+ =?us-ascii?Q?L8Uy6aKRMpgpoyZbTkpRuBKyTKUf80A/BW3JTjQBHfnFUIsHtSdHYfnEhe4z?=
+ =?us-ascii?Q?hYwM/B77uNwz2cpZKFAfS0KhH3mdK10yPZWAuKY09sUMwprecPtaHl33gbgB?=
+ =?us-ascii?Q?CaWO5d6N4xZflQTuJik0aHU7HRjewN3bXeuOfEoEeXxnoPYHwWKbErnmSEns?=
+ =?us-ascii?Q?n3fIo7Caj/lze2KbvSn+RIvoWx+p9FPK5G9whXFwmBfJ23jsIzNDrPlPyhrA?=
+ =?us-ascii?Q?myptjrdJ/MCEOGZI9cAZiaSpOU/fDqx9m4/A2Pz5wntjy6TTu7spw/DqTwX6?=
+ =?us-ascii?Q?7xijh2AjFR69fb8GBCjKpWeohkfvIkGlI7K8SlDMIvtzPnYMpwBLYa5/Tclz?=
+ =?us-ascii?Q?tAnGvYjoDPSSQxUCnCBsZb61LLLkVxqUn7/J04mKsBE/2nE9AeAikG1O1uZP?=
+ =?us-ascii?Q?UlCENTn+9zFeJjigkdpWZG7MhIB8FfZlH2+N6kJmAPoFeIBAxLQMH7OYDH1n?=
+ =?us-ascii?Q?jPAB6Q/SiFjE/EChDNzPZDAJdkWAARJvwePstaaS7noh2GoRX0PvC/bINeso?=
+ =?us-ascii?Q?eIuNzxEXJXfM8q89Cf9Q8t/Cyc945V2yE3HoZEe3RkS5MkQi+5pXERSaAKIs?=
+ =?us-ascii?Q?B/pydmA9/LuUwv6iNwsygEcG7Hgmz3hfzj9rF6Zf3jhWSQXy9y2Z+8AhUBMn?=
+ =?us-ascii?Q?fyZU9W9u6nBPFI0mkEvxxBbUvhokycDcdlhz+d62X5crG5oUK58rlqgZvKYk?=
+ =?us-ascii?Q?/me4Eh95dfQ/OPfT99ksiNiyavFxqUNQzLAgQzDrPHFGLdgyGk15GVofkPsr?=
+ =?us-ascii?Q?Gi/A53IDeUkBMnDe2g8TLcFpRZiUzf0nqj72upnqq2D26LRR4imTfPqr4NDp?=
+ =?us-ascii?Q?gLUnfU2N8Dg5YpZOCsVQIon8bpB/vVM3RjwwKThWSr2M8xDzhXEPawnKc3yq?=
+ =?us-ascii?Q?7u0Bru04gzIsKOszZevzgHw+ZtHodjDD9JmFJM4lph76mVzQ3u/mMaFAsXOg?=
+ =?us-ascii?Q?A4WU93d5mdwUOxhjoIYaOglQKfnzbbcZzhmg5oRkuVsa2PhjtdiS5eTppuSm?=
+ =?us-ascii?Q?Uekt8TUY4g/H6HWP4fB9QdWdulQXiwAExO9irglCWX0rKFZEWXfb5Bm36uGk?=
+ =?us-ascii?Q?Ivc/HQC0LwQDzwgahH+PV9Xz5T5Pcdkdbhlc58flpngdIAJ3QsL5bByLovda?=
+ =?us-ascii?Q?dNyfqqBzpUZXROdORGAKulib94cidAbfBCjondM+Cai5stxhhzucwbaPO5v5?=
+ =?us-ascii?Q?zQri/dHn3ykT7mPUGFSBsq7FB6N+0Uh/n3wlTaFiQB6RNNMvWgGFBOGldau0?=
+ =?us-ascii?Q?KhEShcwzpqve5PPev6nig4CPQ1ju3UHuKUPd9Pb20pVYIIDzTEk8Hg=3D=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(52116014)(7416014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?KPxI0owBvlPeXyYUbgREOSW0PgDwoyNRJhdU96LdpgtPIxwYlbJEO+dMKDYm?=
+ =?us-ascii?Q?+5QRCm8/QViA5dflloHLQTLblUlbb+OkoklGz+f82mdxVFDa7vRFktV4maiU?=
+ =?us-ascii?Q?NN/CK4aObZL8mRqrbuphNHGCZTbFBtuIPopKSKYVWHowqFG9GaYeoQD00fzR?=
+ =?us-ascii?Q?zUZbNFuceAgk9A2ueP9PUCRqyAIEQCJBcmiMWH9jEmDYHA9dWwK4aHk6p+Qi?=
+ =?us-ascii?Q?2I+NS1W3MacgX9g4sr1OZB0EeYN1AphT+UOyboPpoIqLZmgIBuR1EnSfnJZ0?=
+ =?us-ascii?Q?b23A6kNrVnhoqDi2DEqnWlIxhZGeI/agOqT8W+8XyIPQIQ0T0Tl4C3U/tgEL?=
+ =?us-ascii?Q?N11c46FLuNBMaosjCSU7Rp4gpzlDaXkh9hwXa1+pAgDrr6F07FK83wmzdEzq?=
+ =?us-ascii?Q?CJ0ejG3ytFVKPD/j+PeLtb/yVzYr7cGDGu0zMK2ayphMyRolXktlotVGWbAS?=
+ =?us-ascii?Q?6egvy/nsH5fZ8F5pMejH7NdKomclNY2JzOEURw8nn7PaLl5Zd/JjXKDROxmL?=
+ =?us-ascii?Q?Nb6hnAFHkFXZtwxxWy3MDeKyu/NFFnMD+T6D2FxDdpY9L1osJ6sR9fLeojzG?=
+ =?us-ascii?Q?/S/EqOQufRN+ynJtHnd91EDwy9dpXa1ucu3bjXWQFhq0rX/HULuioQ4Yt+YV?=
+ =?us-ascii?Q?S2zbov7OuPyryzUyie6Dtf5ZG28tsqTcGJ45E398JJTK2jMG6Alkqwd/AxlY?=
+ =?us-ascii?Q?oq93oRLM0CLHixJLk5RfltXlY80kL6ItpSxi6A+lAeXQ7QoWkSpKUQtFfj2y?=
+ =?us-ascii?Q?njS9yB01RKKALFej9E9fTFBC4gNI8pTQQN8GManKCnEDFAROfKeK/oYSwNTK?=
+ =?us-ascii?Q?hBCvtjNr/azrEJ/pqPX5zTW2ukA67BJI9OQVJKXB2MkHEkDhdNOsgsYjpI42?=
+ =?us-ascii?Q?jfC+UxrxW6aMF8Sbv6BDnaOyh+rQFLZfWc2gVLzfmgxCkxUsWhkCGVKcIFT9?=
+ =?us-ascii?Q?/uoVm35Gzs+jVrvCL0IGyc461RHKv/UWTQEzNvTmctmZ47ncPUxTuBpRYxhA?=
+ =?us-ascii?Q?k4y6iKsyHtt7KudRY2lCzHJuDeTDrM/ZjdFCk9CKeCyLsOdHy9njbQQw5hO3?=
+ =?us-ascii?Q?a7UBRMN5aXZCX28YODRQW2Xa/RsF+rBOjqtWnFDBCtLcWXgUSHft7ZyYIx4Z?=
+ =?us-ascii?Q?F6fp883UkoOti7SXVmZ8n7vWzizQ/GIDHirxhli0rrELtgeZs/Xkmk4kTB7L?=
+ =?us-ascii?Q?JU9CnsCZ4k9WACbEiK5IYo2UsANeXjzI3hFhWh2A1/uAnxvMhpQAGnRT3RGW?=
+ =?us-ascii?Q?4Zv1Sqxpx7WUpGGUPqAJW4Y+AD1SGbi6qEUZ0Npu1izmnuZF512+qUd+fi8Y?=
+ =?us-ascii?Q?2yUhu5ymCQwtMpPehCRu+I0g5iD3eubFvyZZk+gbA0XcLnjeXHduKJKMTg6w?=
+ =?us-ascii?Q?PhB09Ps8BTgR8E7lIZjK42e0kcXZ0D54PG15CAR+5vj6eXGUKMpAoD2pXRpn?=
+ =?us-ascii?Q?ncv2SZxtHFIXJbBn2KoZw+u4vtuKEUIjs3kpRT9nNxHwudYPeQ1N7MS6VMCT?=
+ =?us-ascii?Q?kAVZ4HYzvvSRFYFVBWUgoOQCL3aUUyfjuNgefd3pEwvWIUBsgjpciDpE89h9?=
+ =?us-ascii?Q?3rEvBKw6NgWZVtzk2kv52iTh7brr4D6sM+0DCoOs+BKe2IKdmM1blJnb+0MZ?=
+ =?us-ascii?Q?X1bpuuNWHG3iyVnasbu1LQn2ryQJ0WZN6IeaG7NavGyjC5AyRdIt1PhufjBq?=
+ =?us-ascii?Q?8t9ejn3mf4aDwm/2QKFDWXDqbjd3ETBcEVc3/d9WbVkRirFGyPzUiiBsQkeC?=
+ =?us-ascii?Q?WmDpq2Cujg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54bc8474-4059-4410-9477-08de3f174db7
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2025 15:57:25.6580
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iEd6ttjSbiZs7B/DhUHpN9Fo6ZC03Wh1CkJLpWI+FBUypcBBx5ykDSgrgKj9wjeLY5kxq/2M5ng1wqwwantrZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB11914
 
-Linus,
+On Fri, Dec 19, 2025 at 09:50:57AM +0800, Guoniu Zhou wrote:
+> From: Guoniu Zhou <guoniu.zhou@nxp.com>
+>
+> The i.MX9 CSI pixel formatting module uses packet info, pixel and
+> non-pixel data from the CSI-2 host controller and reformat them to
+> match Pixel Link(PL) definition.
+>
+> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
+> ---
 
-Please pull DT fixes for 6.19.
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Still one DTB warning after this, but I'm told the fix for it is getting 
-applied today (via soc tree).
-
-Rob
-
-
-The following changes since commit 8f0b4cce4481fb22653697cced8d0d04027cb1e8:
-
-  Linux 6.19-rc1 (2025-12-14 16:05:07 +1200)
-
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.19-1
-
-for you to fetch changes up to ce7b1d58609abc2941a1f38094147f439fb74233:
-
-  arm64: dts: mediatek: Apply mt8395-radxa DT overlay at build time (2025-12-19 09:18:27 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for v6.19, part 1:
-
-- Fix warnings for Mediatek overlays not getting applied
-
-- Fix regression in handling elfcorehdr region
-
-- Fix creating cpufreq device on OPPv1 platforms
-
-- Add GE7800 GPU in Renesas R-Car V3U
-
-- Simplify dma-coherent property in TI display bindings
-
-- Allow "reg" in sprd,sc9860-clk binding
-
-- Update Linus Walleij's email
-
-----------------------------------------------------------------
-Frank Wunderlich (2):
-      arm64: dts: mediatek: mt7986: add dtbs with applied overlays for bpi-r3
-      arm64: dts: mediatek: mt7988: add dtbs with applied overlays for bpi-r4 (pro)
-
-Jianpeng Chang (1):
-      arm64: kdump: Fix elfcorehdr overlap caused by reserved memory processing reorder
-
-Krzysztof Kozlowski (2):
-      dt-bindings: display/ti: Simplify dma-coherent property
-      cpufreq: dt-platdev: Fix creating device on OPPv1 platforms
-
-Linus Walleij (1):
-      dt-bindings: Updates Linus Walleij's mail address
-
-Niklas Söderlund (1):
-      dt-bindings: gpu: img,powervr-rogue: Document GE7800 GPU in Renesas R-Car V3U
-
-Rob Herring (Arm) (2):
-      dt-bindings: clock: sprd,sc9860-clk: Allow "reg" for gate clocks
-      arm64: dts: mediatek: Apply mt8395-radxa DT overlay at build time
-
- .../devicetree/bindings/arm/arm,integrator.yaml    |  2 +-
- .../devicetree/bindings/arm/arm,realview.yaml      |  2 +-
- Documentation/devicetree/bindings/arm/arm,scu.yaml |  2 +-
- .../bindings/arm/arm,versatile-sysreg.yaml         |  2 +-
- .../devicetree/bindings/arm/arm,versatile.yaml     |  2 +-
- .../devicetree/bindings/arm/arm,vexpress-juno.yaml |  2 +-
- Documentation/devicetree/bindings/arm/gemini.yaml  |  2 +-
- .../devicetree/bindings/arm/intel-ixp4xx.yaml      |  2 +-
- Documentation/devicetree/bindings/arm/ux500.yaml   |  2 +-
- .../devicetree/bindings/ata/ata-generic.yaml       |  2 +-
- .../bindings/ata/cortina,gemini-sata-bridge.yaml   |  2 +-
- .../devicetree/bindings/ata/faraday,ftide010.yaml  |  2 +-
- .../bindings/ata/intel,ixp4xx-compact-flash.yaml   |  2 +-
- .../devicetree/bindings/ata/pata-common.yaml       |  2 +-
- .../devicetree/bindings/ata/sata-common.yaml       |  2 +-
- .../bindings/auxdisplay/arm,versatile-lcd.yaml     |  2 +-
- .../devicetree/bindings/clock/sprd,sc9860-clk.yaml | 26 ----------
- .../bindings/clock/stericsson,u8500-clks.yaml      |  2 +-
- .../bindings/crypto/intel,ixp4xx-crypto.yaml       |  2 +-
- .../bindings/display/dsi-controller.yaml           |  2 +-
- .../bindings/display/faraday,tve200.yaml           |  2 +-
- .../bindings/display/panel/arm,rtsm-display.yaml   |  2 +-
- .../display/panel/arm,versatile-tft-panel.yaml     |  2 +-
- .../bindings/display/panel/ilitek,ili9322.yaml     |  2 +-
- .../bindings/display/panel/novatek,nt35510.yaml    |  2 +-
- .../bindings/display/panel/samsung,lms380kf01.yaml |  2 +-
- .../bindings/display/panel/samsung,lms397kf04.yaml |  2 +-
- .../bindings/display/panel/samsung,s6d16d0.yaml    |  2 +-
- .../bindings/display/panel/sony,acx424akp.yaml     |  2 +-
- .../bindings/display/panel/ti,nspire.yaml          |  2 +-
- .../bindings/display/panel/tpo,tpg110.yaml         |  2 +-
- .../devicetree/bindings/display/ste,mcde.yaml      |  2 +-
- .../bindings/display/ti/ti,am65x-dss.yaml          |  3 +-
- .../bindings/display/ti/ti,j721e-dss.yaml          |  3 +-
- .../devicetree/bindings/dma/stericsson,dma40.yaml  |  2 +-
- .../devicetree/bindings/extcon/fcs,fsa880.yaml     |  2 +-
- .../intel,ixp4xx-network-processing-engine.yaml    |  2 +-
- .../devicetree/bindings/gnss/brcm,bcm4751.yaml     |  2 +-
- .../bindings/gpio/faraday,ftgpio010.yaml           |  2 +-
- .../bindings/gpio/gpio-consumer-common.yaml        |  2 +-
- .../devicetree/bindings/gpio/gpio-ep9301.yaml      |  2 +-
- .../devicetree/bindings/gpio/gpio-mmio.yaml        |  2 +-
- .../bindings/gpio/intel,ixp4xx-gpio.yaml           |  2 +-
- .../devicetree/bindings/gpio/mrvl-gpio.yaml        |  2 +-
- .../devicetree/bindings/gpio/pl061-gpio.yaml       |  2 +-
- .../devicetree/bindings/gpio/st,nomadik-gpio.yaml  |  2 +-
- .../devicetree/bindings/gpio/st,stmpe-gpio.yaml    |  2 +-
- .../devicetree/bindings/gpu/img,powervr-rogue.yaml |  4 +-
- .../devicetree/bindings/hwmon/ntc-thermistor.yaml  |  2 +-
- .../devicetree/bindings/hwmon/winbond,w83781d.yaml |  2 +-
- .../devicetree/bindings/i2c/arm,i2c-versatile.yaml |  2 +-
- .../devicetree/bindings/i2c/st,nomadik-i2c.yaml    |  2 +-
- .../bindings/iio/accel/bosch,bma255.yaml           |  2 +-
- .../bindings/iio/adc/qcom,pm8018-adc.yaml          |  2 +-
- .../bindings/iio/gyroscope/invensense,mpu3050.yaml |  2 +-
- .../bindings/iio/light/capella,cm3605.yaml         |  2 +-
- .../bindings/iio/light/sharp,gp2ap002.yaml         |  2 +-
- .../iio/magnetometer/asahi-kasei,ak8974.yaml       |  2 +-
- .../bindings/iio/magnetometer/yamaha,yas530.yaml   |  2 +-
- .../devicetree/bindings/iio/st,st-sensors.yaml     |  2 +-
- .../devicetree/bindings/input/atmel,maxtouch.yaml  |  2 +-
- .../input/touchscreen/cypress,cy8ctma140.yaml      |  2 +-
- .../input/touchscreen/cypress,cy8ctma340.yaml      |  2 +-
- .../bindings/input/touchscreen/melfas,mms114.yaml  |  2 +-
- .../bindings/input/touchscreen/zinitix,bt400.yaml  |  2 +-
- .../arm,versatile-fpga-irq.yaml                    |  2 +-
- .../interrupt-controller/faraday,ftintc010.yaml    |  2 +-
- .../intel,ixp4xx-interrupt.yaml                    |  2 +-
- .../bindings/leds/backlight/kinetic,ktd253.yaml    |  2 +-
- .../devicetree/bindings/leds/register-bit-led.yaml |  2 +-
- .../devicetree/bindings/leds/regulator-led.yaml    |  2 +-
- .../devicetree/bindings/leds/richtek,rt8515.yaml   |  2 +-
- .../intel,ixp4xx-expansion-bus-controller.yaml     |  2 +-
- .../intel,ixp4xx-expansion-peripheral-props.yaml   |  2 +-
- .../bindings/mfd/arm,dev-platforms-syscon.yaml     |  2 +-
- .../devicetree/bindings/mfd/st,stmpe.yaml          |  2 +-
- .../devicetree/bindings/mfd/stericsson,ab8500.yaml |  2 +-
- .../bindings/mfd/stericsson,db8500-prcmu.yaml      |  2 +-
- .../misc/intel,ixp4xx-ahb-queue-manager.yaml       |  2 +-
- .../devicetree/bindings/mmc/arm,pl18x.yaml         |  2 +-
- .../mtd/partitions/arm,arm-firmware-suite.yaml     |  2 +-
- .../bindings/mtd/partitions/redboot-fis.yaml       |  2 +-
- .../devicetree/bindings/mtd/partitions/seama.yaml  |  2 +-
- .../bindings/net/bluetooth/brcm,bluetooth.yaml     |  2 +-
- .../bindings/net/cortina,gemini-ethernet.yaml      |  2 +-
- .../devicetree/bindings/net/dsa/micrel,ks8995.yaml |  2 +-
- .../devicetree/bindings/net/dsa/realtek.yaml       |  2 +-
- .../bindings/net/dsa/vitesse,vsc73xx.yaml          |  2 +-
- .../bindings/net/intel,ixp46x-ptp-timer.yaml       |  2 +-
- .../bindings/net/intel,ixp4xx-ethernet.yaml        |  2 +-
- .../devicetree/bindings/net/intel,ixp4xx-hss.yaml  |  2 +-
- .../devicetree/bindings/pci/faraday,ftpci100.yaml  |  2 +-
- .../devicetree/bindings/pci/intel,ixp4xx-pci.yaml  |  2 +-
- .../devicetree/bindings/pci/v3,v360epc-pci.yaml    |  2 +-
- .../devicetree/bindings/pinctrl/pincfg-node.yaml   |  2 +-
- .../devicetree/bindings/pinctrl/pinctrl.yaml       |  2 +-
- .../devicetree/bindings/pinctrl/pinmux-node.yaml   |  2 +-
- .../bindings/power/supply/samsung,battery.yaml     |  2 +-
- .../devicetree/bindings/rng/intel,ixp46x-rng.yaml  |  2 +-
- .../devicetree/bindings/rtc/faraday,ftrtc010.yaml  |  2 +-
- .../bindings/spi/arm,pl022-peripheral-props.yaml   |  2 +-
- .../devicetree/bindings/spi/spi-pl022.yaml         |  2 +-
- .../bindings/timer/faraday,fttmr010.yaml           |  2 +-
- .../bindings/timer/intel,ixp4xx-timer.yaml         |  2 +-
- .../devicetree/bindings/timer/st,nomadik-mtu.yaml  |  2 +-
- .../devicetree/bindings/usb/faraday,fotg210.yaml   |  2 +-
- .../devicetree/bindings/usb/intel,ixp4xx-udc.yaml  |  2 +-
- .../bindings/watchdog/faraday,ftwdt010.yaml        |  2 +-
- .../bindings/watchdog/maxim,max63xx.yaml           |  2 +-
- arch/arm64/boot/dts/mediatek/Makefile              | 55 ++++++++++++++++++++++
- drivers/cpufreq/cpufreq-dt-platdev.c               |  7 +--
- drivers/of/fdt.c                                   |  2 +-
- 112 files changed, 170 insertions(+), 140 deletions(-)
+>  .../bindings/media/fsl,imx9-csi-formatter.yaml     | 87 ++++++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/media/fsl,imx9-csi-formatter.yaml b/Documentation/devicetree/bindings/media/fsl,imx9-csi-formatter.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..774d37d2b987a679f0bb6378897a6dd196ea4f13
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/fsl,imx9-csi-formatter.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/fsl,imx9-csi-formatter.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: i.MX9 CSI Pixel Formatter
+> +
+> +maintainers:
+> +  - Guoniu Zhou <guoniu.zhou@nxp.com>
+> +
+> +description:
+> +  The CSI pixel formatting module uses packet info, pixel and non-pixel
+> +  data from the CSI-2 host controller and reformat them to match Pixel
+> +  Link(PL) definition.
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx9-csi-formatter
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: MIPI CSI-2 RX IDI interface
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Pixel Link Interface
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - power-domains
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/nxp,imx95-clock.h>
+> +
+> +    formatter@20 {
+> +        compatible = "fsl,imx9-csi-formatter";
+> +        reg = <0x20 0x100>;
+> +        clocks = <&cameramix_csr IMX95_CLK_CAMBLK_CSI2_FOR0>;
+> +        power-domains = <&scmi_devpd 3>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +
+> +                endpoint {
+> +                    remote-endpoint = <&mipi_csi_0_out>;
+> +                };
+> +            };
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +
+> +                endpoint {
+> +                    remote-endpoint = <&isi_in_2>;
+> +                };
+> +            };
+> +        };
+> +    };
+>
+> --
+> 2.34.1
+>
 
