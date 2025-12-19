@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-248251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B366ECD04F5
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 15:40:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 348FDCD059A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 15:47:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 90B4030014EF
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:40:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 82121306341D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884DA2459DD;
-	Fri, 19 Dec 2025 14:40:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6CC322A24;
+	Fri, 19 Dec 2025 14:40:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="eVOI0Vam"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="eArD2JBJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 031C8246BB2;
-	Fri, 19 Dec 2025 14:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF5529C325;
+	Fri, 19 Dec 2025 14:40:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766155209; cv=none; b=Q4vEk4OwwZ4oyVZvjJ16yrsKuL/PW/7DxPuxO+FePKO+fGNOKtSPwfDkFf01WMZSybGxfqjHPDfHwKCefgwOLEPsrP7ptCQrKJ+BdYEB0FhejxhlZE45vy5+p3qEkewlhXMbx8rrBTuuXNUP1mTAPdLUHZ94wEuIqfbSb4kAE78=
+	t=1766155217; cv=none; b=EFA4F9AuKQ7k3bTUGvn2n/XzN0vNeQty1pGjzLWovAKjko4AlXrtNB/SjEtkqno4wFqteJH/PsBxvdH9tnAntaGA5D3+C8w/4WiHcbVahMMs7uJ7MUgejBDJcpV7dLPkxOREUz+UNmVBisf2EPJc8tLX56jvoh59UW0AwpjDEjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766155209; c=relaxed/simple;
-	bh=fZ1upxlIUcXmy16ztAev94wh7MIdtpRXVSYsx1Vr3gI=;
+	s=arc-20240116; t=1766155217; c=relaxed/simple;
+	bh=setYfkKCLD84PMVV7SoKIS5ItUQm+iZN4WXv3o5E4rQ=;
 	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bsvFFKq5re8G+kCY+RGj1gVIIAkUF/FajjR/hyO+/Qc/2yy3mK1FsM5tDK3yTQL0uQocs37k7Ofi4i54FkP8/4MzpV6mbXYI3Qt3WsDpyZbPj5CHDo5R87NGNhknv/UbOpSZy8ks3z844SMc/xELH6DeHCeVX8UJCNMx1sNwfF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=eVOI0Vam; arc=none smtp.client-ip=148.163.135.77
+	 MIME-Version:Content-Type; b=fTZOBvUhGlCWw/Va9Oq5OXCDEWE5jLBEDh810LTv5ho2rwANGh6NNrd/EKmDhQRsqKZVAwepSnK9WqFoU4Z8o7oFUFSx/NIn36DjeWWw2tXlIBOg2PlUdmB1xqp/GVNZm9fr9cKE+sFbfuSAhQ2mQxwReFWlxv6lNJ/c5TON9WI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=eArD2JBJ; arc=none smtp.client-ip=148.163.135.77
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
 Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJEPkSx799637;
-	Fri, 19 Dec 2025 09:39:59 -0500
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJEYuVx800064;
+	Fri, 19 Dec 2025 09:40:08 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
 	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=eJkx7
-	V4DuyJH1jtHtGejgQqP+aXR0VDdmRs9mQnSFeg=; b=eVOI0VamywqR8P9I75sX5
-	ua9MsUQvzWo+QA0KQjcUbzS7FVjr5MYxLcKjqPZSNMfyXJbVfPgwdLlcsoOXOcms
-	Gm9H5KICoRo/eYpsYQ/pfT2T5qe1/Cjgka2T5C5e4hnMWBUbYGwGQ95zdkGoX7FO
-	oJqq4ayTpNtPNWXe1vvhTHIe5Kd4fjfU6fxoLBTJNhdcF4G5U3I/rzNVZqvGhDA5
-	a1PN1iAB8j6tUExejAIEg83Dwx5YyqxHTRj28K+RseMT2NbIE9mm63K3hy2nWEy5
-	3Kf+sU+iVG/DKzgd2ncM9jshKKsDL17SFR0uODE2mssN6szC3uAN/JO0pIFg47Q4
-	Q==
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=Mv+bg
+	bQLiCxrbqycZ9+lQzhQvyL1+UP9Ot7gGy0gGew=; b=eArD2JBJPrF25NK30+f5p
+	i1iCtcvgOLWaYjUzdvJx1iv50wU8i17k35HcwItnOHE6dGaWhDtBaK2GDvSkroV6
+	g54ZzfzJ5GeBaSFUF0Lu8oyPFMNirvU56HIL50Lmr2XlzZFGT/AuiJ5JVI4O32Xh
+	RwX3h7Vg/HNJKPZwRYr12u6un1UrNsr7WRHK3+SRb0r3l+VHHMLCUCdyghq3sN4C
+	dcciuvcjgwQIkh6G1VcGse2DWRPrmYI041Z7nu0Yp+8BQpjbba0ntKZOv96c5F0q
+	P19WAAV5r0D8TT6PgcktGFlKl3SMzXFiQ7yZ3sXhcqwBqedsXXE5FZKYLkfs5/Fj
+	A==
 Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4b4r3tvcc8-1
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4b4r3tvccu-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Dec 2025 09:39:59 -0500 (EST)
+	Fri, 19 Dec 2025 09:40:07 -0500 (EST)
 Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5BJEdwIA045668
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5BJEe6aY045719
 	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 19 Dec 2025 09:39:58 -0500
+	Fri, 19 Dec 2025 09:40:06 -0500
 Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
  ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 19 Dec 2025 09:39:58 -0500
+ 15.2.1748.37; Fri, 19 Dec 2025 09:40:06 -0500
 Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
  ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 19 Dec 2025 09:39:58 -0500
+ 15.2.1748.37; Fri, 19 Dec 2025 09:40:06 -0500
 Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
  (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 19 Dec 2025 09:39:57 -0500
+ Transport; Fri, 19 Dec 2025 09:40:06 -0500
 Received: from HYB-b1tGeUj4GP1.ad.analog.com ([10.32.13.98])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5BJEdROg001448;
-	Fri, 19 Dec 2025 09:39:49 -0500
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5BJEdROh001448;
+	Fri, 19 Dec 2025 09:39:58 -0500
 From: Antoniu Miclaus <antoniu.miclaus@analog.com>
 To: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
         "Krzysztof
@@ -71,13 +71,13 @@ To: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
         "Antoniu
  Miclaus" <antoniu.miclaus@analog.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/2] dt-bindings: mux: adg1736: add support
-Date: Fri, 19 Dec 2025 16:35:26 +0200
-Message-ID: <20251219143554.22793-2-antoniu.miclaus@analog.com>
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 2/2] mux: adg1736: add driver support
+Date: Fri, 19 Dec 2025 16:35:27 +0200
+Message-ID: <20251219143554.22793-3-antoniu.miclaus@analog.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251219143554.22793-1-antoniu.miclaus@analog.com>
 References: <20251219143554.22793-1-antoniu.miclaus@analog.com>
@@ -90,20 +90,20 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: jHQDQXxX4gHJAQ8uChLm-iIQVbbYUbWi
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDEyMyBTYWx0ZWRfX+Lsc+2ehORNI
- obAsCcXlJJo8TMDZfd+x4N1qJXzC97NRTg/H4WDU9CUncW1PXvlXgGfFTUN9/wKSw7Sk0Ha+au4
- jbV9FFUxf6QQvN3CjUMkaAfOgLO/oM+3SHjQcA/ugQBvWuHWFY63IkYlx2Kdhd0tWRRLi+p3yTk
- hEYCqD5PtqjszC33dLWpNNGoidYL7v05/8rvVT9fM+sLSIvDFZFC8lOtTlkmX4uBiC6CTpTCQCM
- jOfkdpOCpgxh4GjS3hONHDa6mZQeap1iZ6zNnxA9V3yoeB11bvv3SRZTT6THW16QtaGBpLBwnLs
- Sa8cijQtX14GtWgzJgPZZJWHlk9geamU1DtelvD0TlFNkuJC8xg/FYhOJ4zbQUoejvcoY9VOass
- n2JJ6NhNVEX5sVJt94fZ59P28TycMdTjQ7FIKOfBNA7fCJyZXbbUGALi7DBj67ymdW4vn09Tgwr
- FJbCvlPJM9yqf6zXNfQ==
-X-Proofpoint-GUID: jHQDQXxX4gHJAQ8uChLm-iIQVbbYUbWi
-X-Authority-Analysis: v=2.4 cv=Ba3VE7t2 c=1 sm=1 tr=0 ts=694563bf cx=c_pps
+X-Proofpoint-ORIG-GUID: pSmigbKaMwuRvPocK5ckLf1h4jjEFepI
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDEyMyBTYWx0ZWRfX0jpbrrmrIjgu
+ cutGAbAzHZyRjeSA0LEP5cQdU+dN+P1ozsvLB9RqNYvWFVJ/58tXRbB8qJgjqoaLGY3cGOjUXkJ
+ mk+UsDzu+RSadFAmPpDxDlNbGfhPYp/RcIYhOkX32tCSNyL/ss58V0474kGDPHd4i/S8GG0FjMJ
+ v3kXQxxLepsGOUGuN+B/zM1XAIdMLecgfzbPGon7m+HTT68DnWGR3JBhblkBHmlLcN6ETUscl6w
+ iMrmR+c0hywNrQB5y5xbL8XsOf/N4quF0MIVr6GeXs3nTbrFG12YrZqEX6ZXZzikqmEJULS+Orv
+ KE0mDws5tw5NDdJINuEpTGhAvEY9c99XpRpcaiIgb49wsmhVqxAmDqSz1/A8EwfdPmUGxYwwmCT
+ KBH8PrQkdQ5KzMa8cmrWh0v0NKZHaBHPGF4caRbmZulkzon7pRR6eZ5SGP0w+OinL6wVMxNCPOc
+ v8DxX/QxIHbLdxikVJw==
+X-Proofpoint-GUID: pSmigbKaMwuRvPocK5ckLf1h4jjEFepI
+X-Authority-Analysis: v=2.4 cv=Ba3VE7t2 c=1 sm=1 tr=0 ts=694563c7 cx=c_pps
  a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=gAnH3GRIAAAA:8
- a=V2S3m-czYbn6XYG_RjgA:9 a=sptkURWiP4Gy88Gu7hUp:22
+ a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=gAnH3GRIAAAA:8
+ a=BqQK6mSdUCODrsEznTYA:9
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-19_05,2025-12-17_02,2025-10-01_01
@@ -113,97 +113,216 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512190123
 
-Add device tree bindings for ADG1736 analog multiplerer.
+Add support for ADG1736 analog multiplexer. The device
+features two independent 2:1 analog multiplexers, each
+controlled by a GPIO pin. Each switch connects its drain
+terminal (D) to one of two source terminals (SA or SB) based on
+the control input state.
+
+The driver implements two independent mux controllers with a shared
+enable GPIO that can disable all switches when set low. Each mux
+controller supports idle-state configuration for disconnecting
+when not in use.
 
 Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 ---
- .../devicetree/bindings/mux/adi,adg1736.yaml  | 77 +++++++++++++++++++
- 1 file changed, 77 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mux/adi,adg1736.yaml
+ drivers/mux/Kconfig   |  12 ++++
+ drivers/mux/Makefile  |   2 +
+ drivers/mux/adg1736.c | 143 ++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 157 insertions(+)
+ create mode 100644 drivers/mux/adg1736.c
 
-diff --git a/Documentation/devicetree/bindings/mux/adi,adg1736.yaml b/Documentation/devicetree/bindings/mux/adi,adg1736.yaml
+diff --git a/drivers/mux/Kconfig b/drivers/mux/Kconfig
+index c68132e38138..bdf16e0983cc 100644
+--- a/drivers/mux/Kconfig
++++ b/drivers/mux/Kconfig
+@@ -21,6 +21,18 @@ config MUX_ADG792A
+ 	  To compile the driver as a module, choose M here: the module will
+ 	  be called mux-adg792a.
+ 
++config MUX_ADG1736
++	tristate "Analog Devices ADG1736 Dual SPDT Switch Multiplexer"
++	depends on GPIOLIB || COMPILE_TEST
++	help
++	  ADG1736 Dual SPDT (single-pole, double-throw) Switch.
++
++	  The driver supports two independent 2:1 multiplexers, each
++	  controlled by a GPIO pin.
++
++	  To compile the driver as a module, choose M here: the module will
++	  be called mux-adg1736.
++
+ config MUX_ADGS1408
+ 	tristate "Analog Devices ADGS1408/ADGS1409 Multiplexers"
+ 	depends on SPI
+diff --git a/drivers/mux/Makefile b/drivers/mux/Makefile
+index 6e9fa47daf56..f1497c319bcf 100644
+--- a/drivers/mux/Makefile
++++ b/drivers/mux/Makefile
+@@ -5,12 +5,14 @@
+ 
+ mux-core-objs			:= core.o
+ mux-adg792a-objs		:= adg792a.o
++mux-adg1736-objs		:= adg1736.o
+ mux-adgs1408-objs		:= adgs1408.o
+ mux-gpio-objs			:= gpio.o
+ mux-mmio-objs			:= mmio.o
+ 
+ obj-$(CONFIG_MULTIPLEXER)	+= mux-core.o
+ obj-$(CONFIG_MUX_ADG792A)	+= mux-adg792a.o
++obj-$(CONFIG_MUX_ADG1736)	+= mux-adg1736.o
+ obj-$(CONFIG_MUX_ADGS1408)	+= mux-adgs1408.o
+ obj-$(CONFIG_MUX_GPIO)		+= mux-gpio.o
+ obj-$(CONFIG_MUX_MMIO)		+= mux-mmio.o
+diff --git a/drivers/mux/adg1736.c b/drivers/mux/adg1736.c
 new file mode 100644
-index 000000000000..0ba662ffc9cc
+index 000000000000..b3998121487e
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/mux/adi,adg1736.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mux/adi,adg1736.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/mux/adg1736.c
+@@ -0,0 +1,143 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Analog Devices ADG1736 Dual SPDT Switch Multiplexer driver
++ *
++ * Copyright 2025 Analog Devices Inc.
++ *
++ * Author: Antoniu Miclaus <antoniu.miclaus@analog.com>
++ */
 +
-+title: Analog Devices ADG1736 Dual SPDT Switch Multiplexer
++#include <linux/err.h>
++#include <linux/gpio/consumer.h>
++#include <linux/mod_devicetable.h>
++#include <linux/module.h>
++#include <linux/mux/driver.h>
++#include <linux/platform_device.h>
++#include <linux/property.h>
 +
-+maintainers:
-+  - Antoniu Miclaus <antoniu.miclaus@analog.com>
++#define ADG1736_MUX_CONTROLLERS	2
++#define ADG1736_MUX_STATES	2
 +
-+description: |
-+  Bindings for Analog Devices ADG1736 dual single-pole, double-throw (SPDT)
-+  switch. The device features two independent SPDT switches, each functioning
-+  as a 2:1 multiplexer. Each switch can connect its common drain terminal (D)
-+  to one of two source terminals (SA or SB).
++struct adg1736_mux {
++	struct gpio_desc *ctrl_gpios[ADG1736_MUX_CONTROLLERS];
++	struct gpio_desc *en_gpio;
++};
 +
-+  The device has two independent mux controllers (mux 0 and mux 1), each with
-+  two states:
-+    * 0: SxB to Dx (control GPIO low)
-+    * 1: SxA to Dx (control GPIO high)
++static int adg1736_set(struct mux_control *mux, int state)
++{
++	struct adg1736_mux *adg1736 = mux_chip_priv(mux->chip);
++	unsigned int controller = mux_control_get_index(mux);
 +
-+  The EN pin is shared between both switches and can disable all channels when
-+  set low (inactive).
++	if (controller >= ADG1736_MUX_CONTROLLERS)
++		return -EINVAL;
 +
-+allOf:
-+  - $ref: mux-controller.yaml#
++	if (state == MUX_IDLE_DISCONNECT) {
++		/* When idle disconnect is requested, disable the EN pin */
++		if (controller == 0)
++			gpiod_set_value_cansleep(adg1736->en_gpio, 0);
++		return 0;
++	}
 +
-+properties:
-+  compatible:
-+    const: adi,adg1736
++	/* Set the control GPIO for this mux controller */
++	gpiod_set_value_cansleep(adg1736->ctrl_gpios[controller], state);
 +
-+  ctrl-gpios:
-+    description: |
-+      GPIO pins connected to the control inputs IN1 and IN2. Index 0 controls
-+      switch 1 (S1A/S1B to D1) and index 1 controls switch 2 (S2A/S2B to D2).
-+    minItems: 2
-+    maxItems: 2
++	/* Enable the mux if disabled */
++	gpiod_set_value_cansleep(adg1736->en_gpio, 1);
 +
-+  en-gpios:
-+    description: |
-+      GPIO connected to the EN (enable) pin. When low, all switches are
-+      disabled (high-impedance). When high, switches are controlled by
-+      their respective ctrl-gpios.
-+    maxItems: 1
++	return 0;
++}
 +
-+  '#mux-control-cells':
-+    const: 1
-+    description: |
-+      Mux controller index (0 or 1) to select which SPDT switch to control.
++static const struct mux_control_ops adg1736_ops = {
++	.set = adg1736_set,
++};
 +
-+required:
-+  - compatible
-+  - ctrl-gpios
-+  - en-gpios
-+  - '#mux-control-cells'
++static int adg1736_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct mux_chip *mux_chip;
++	struct adg1736_mux *adg1736;
++	s32 idle_state[ADG1736_MUX_CONTROLLERS];
++	char gpio_name[16];
++	int ret, i;
 +
-+unevaluatedProperties: false
++	mux_chip = devm_mux_chip_alloc(dev, ADG1736_MUX_CONTROLLERS,
++				       sizeof(*adg1736));
++	if (IS_ERR(mux_chip))
++		return PTR_ERR(mux_chip);
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/mux/mux.h>
++	adg1736 = mux_chip_priv(mux_chip);
++	mux_chip->ops = &adg1736_ops;
 +
-+    mux-controller {
-+        compatible = "adi,adg1736";
-+        #mux-control-cells = <1>;
++	/* Get control GPIOs (IN1, IN2) */
++	for (i = 0; i < ADG1736_MUX_CONTROLLERS; i++) {
++		snprintf(gpio_name, sizeof(gpio_name), "ctrl%d", i);
++		adg1736->ctrl_gpios[i] = devm_gpiod_get_index(dev, "ctrl", i,
++							      GPIOD_OUT_LOW);
++		if (IS_ERR(adg1736->ctrl_gpios[i]))
++			return dev_err_probe(dev, PTR_ERR(adg1736->ctrl_gpios[i]),
++					     "failed to get ctrl%d gpio\n", i);
++	}
 +
-+        ctrl-gpios = <&gpio 10 GPIO_ACTIVE_HIGH>,
-+                     <&gpio 11 GPIO_ACTIVE_HIGH>;
-+        en-gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
++	/* Get enable GPIO (EN) */
++	adg1736->en_gpio = devm_gpiod_get(dev, "en", GPIOD_OUT_LOW);
++	if (IS_ERR(adg1736->en_gpio))
++		return dev_err_probe(dev, PTR_ERR(adg1736->en_gpio),
++				     "failed to get en gpio\n");
 +
-+        /* Disconnect both switches when idle */
-+        idle-states = <MUX_IDLE_DISCONNECT MUX_IDLE_DISCONNECT>;
-+    };
++	/* Read idle-state property */
++	ret = device_property_read_u32_array(dev, "idle-state",
++					     (u32 *)idle_state,
++					     ADG1736_MUX_CONTROLLERS);
++	if (ret < 0) {
++		/* Default to AS_IS if not specified */
++		idle_state[0] = MUX_IDLE_AS_IS;
++		idle_state[1] = MUX_IDLE_AS_IS;
++	}
 +
-+...
++	/* Configure each mux controller */
++	for (i = 0; i < ADG1736_MUX_CONTROLLERS; i++) {
++		struct mux_control *mux = &mux_chip->mux[i];
++
++		mux->states = ADG1736_MUX_STATES;
++
++		switch (idle_state[i]) {
++		case MUX_IDLE_DISCONNECT:
++		case MUX_IDLE_AS_IS:
++		case 0 ... ADG1736_MUX_STATES - 1:
++			mux->idle_state = idle_state[i];
++			break;
++		default:
++			dev_err(dev, "invalid idle-state[%d] = %d\n",
++				i, idle_state[i]);
++			return -EINVAL;
++		}
++	}
++
++	ret = devm_mux_chip_register(dev, mux_chip);
++	if (ret < 0)
++		return ret;
++
++	dev_info(dev, "ADG1736 %u dual SPDT mux controllers registered\n",
++		 mux_chip->controllers);
++
++	return 0;
++}
++
++static const struct of_device_id adg1736_dt_ids[] = {
++	{ .compatible = "adi,adg1736", },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, adg1736_dt_ids);
++
++static struct platform_driver adg1736_driver = {
++	.driver = {
++		.name = "adg1736",
++		.of_match_table = adg1736_dt_ids,
++	},
++	.probe = adg1736_probe,
++};
++module_platform_driver(adg1736_driver);
++
++MODULE_DESCRIPTION("Analog Devices ADG1736 Dual SPDT Switch Multiplexer driver");
++MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
++MODULE_LICENSE("GPL");
 -- 
 2.43.0
 
