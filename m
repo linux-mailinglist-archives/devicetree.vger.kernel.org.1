@@ -1,178 +1,266 @@
-Return-Path: <devicetree+bounces-248073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 857CACCEA7A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 07:35:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D43A5CCEAF2
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 07:58:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3EFF1301A702
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 06:35:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7AB5C30206A2
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 06:58:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9038029E117;
-	Fri, 19 Dec 2025 06:35:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="issiJqG9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5B327FD54;
+	Fri, 19 Dec 2025 06:58:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013015.outbound.protection.outlook.com [40.107.162.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075DA26B2B0;
-	Fri, 19 Dec 2025 06:35:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766126147; cv=fail; b=k8t+lT+pTYd13xnEixZnFagmDw+kUMrYVoNRmmwvW7WmYuKV7Iz0s6Pr1LeA/oQVLkbPwcWRngQNFSg6dm9AXk7MCs+oiZMXpJXhVR/jAKeQiW7usjxgAM40AqAOjWNymMedzw4Te/w/EdXBwVdKPIweSPDl8a1hvZd0gaeRI1c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766126147; c=relaxed/simple;
-	bh=gvVj+Ka5fn4UdgT+dS5LJk8Ba0JTuK1wp5X87lXFGCM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=hHU/K8X7CteBxBot4rzwiBB0SnN+hc3UplnPljB84S1Yq3kmFBWjSZ9IQeD/oIKXoK/4qq7ifsm+npySHubYhfauv2+iyD7D03UYdgyP7sna2wCmJhY4acb190QVYIPBdjQOe1adl8kbnQQI3g8wVIKij7rIIAP+w0hWBwrJRbw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=issiJqG9; arc=fail smtp.client-ip=40.107.162.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mD9cWYodxM+YiX5ITHf15MenZh9yZ65b+7g3Rcuvd/cXbHoMYki8wQWtVd5ETC8YxeaENexRpxPXhvjaRjfs0ri5Z37AMqXOnNZRzuWFbqtMejLyogHodxDN4aZvBbUvqlc//DTZro05+qYlUUksV67a7+TKxb6iU43MhY85hk1OCqIcBURQfFbp0AQppJmQKZNspu5MHwxkhwVGroNBFBgneYYDbnqMkeUwqZZQrmk4tfQLjjHnAWmPR+lZiePZshDKDux+0E4LXig6BtmpD72+34Rpvclyxcxp9gGqsLc+pYjQwvu+rkLTCZJpsPNFI0ReU+P36lAQN7n2529gmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MzecqinKIGMvOs9fsCuNiHV3v0TYa7Dj0rnyxkN/uNQ=;
- b=Nq78Jsrgcw5pg8rmqnJf3eZWdjbWoCLdeEx3kILKnHxfIv6NSmb7vpTGkl428GpZeUYFyxK+AjLEPYAJ0RUkogDbkuNaoOxN/4Mwc8drBN01ixwjPRqYB1WUkMauje3znUl6dnv7KfuevVroiJJIgWU2Xrkf5RkZKDn+VM34ajR4LHH3Dw5jjidmkpqIjjWkoIFOk+D/njjfTnvryKKvVk8KQxG8MygyoJ4NJd0sMlUxL7kKaHj4i9iBdWOO7oecfmAN0EXSmuNCEINHgw4p/GZPxD5TdbOE1LoSBnkwZifNs4IrVS+DPZ9tbWqUCJF59HoNoWdI+wOQmhNK8F3rnw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MzecqinKIGMvOs9fsCuNiHV3v0TYa7Dj0rnyxkN/uNQ=;
- b=issiJqG95s10Ifs0lNNwObq/DSSaC+VVDDIpALKLap9eCEmsM/Gv4aZtXwRHBKcUq5VAWv7zSI/ejzcHiofWkdwZMD9R6BYhy/g40ZONkRPhRIF8w/HBRHpiNJKWMFsGlw9vLVajw3gSWhsX7XA+crOUIJgzhjUeTkQq6LaabgbUBTjeMS0NW0XMKk6VBm3UNmQ5sz9RkVKwzy2OqnFK8dRl8Q+JOmHwKWMN1V5MutioVuv6gW5kjzVC6H0kaj6Gao/aj1AQjZMTLFJumi1CM+oWoVufup/fTqeomOblmrkMMDk6Dsy75lzWDRt0kYHVF6e4N1WoT9KAfe0nR0Tofg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by GV1PR04MB10077.eurprd04.prod.outlook.com (2603:10a6:150:1a5::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.8; Fri, 19 Dec
- 2025 06:35:37 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.9434.009; Fri, 19 Dec 2025
- 06:35:37 +0000
-Date: Fri, 19 Dec 2025 14:36:48 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C30424290D;
+	Fri, 19 Dec 2025 06:58:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766127489; cv=none; b=Y1b+sCkHNsnGpaML/ts0hhRbDiJA/6vAwTuW9Wam59kGOR+6fh4U6jS0BXb6rQpBlEgoq+SoQ+/0hPy/Y/X9SiLPRvB0bvDRDXhBVKBh2FklE8Oc5uS0xKR0rBwf7qxyef+T5QVr3zcgm0SaIhAVEvXNwvpRMZdJZW3uVOh+z4o=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766127489; c=relaxed/simple;
+	bh=jQ7aAEVhuaVvlkf3K/L3WD5qp9CJsXHd3Ak+Xkxr1kg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UP2K5eoeswi1sTmSKXZuhNZsIUu7MEp2PVTvzqJoqXVLLhBhgT7vwfYaaLq6/rI7HzE13Bx/tUH4L1WQsMTNZ29eEe18smEu+JIKo636GRFyAEWCn1tS421jrFw8rv9HDeHLPKbNpqKzXxqmrcFHF0+MfN7R6+nEAk2InSShRCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [223.160.207.22])
+	by APP-05 (Coremail) with SMTP id zQCowAA3yQxe90RphiUoAQ--.14517S2;
+	Fri, 19 Dec 2025 14:57:36 +0800 (CST)
+Date: Fri, 19 Dec 2025 14:57:33 +0800
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: Xukai Wang <kingxukai@zohomail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v23 0/7] firmware: imx: driver for NXP secure-enclave
-Message-ID: <aUTybpjIEoFFOC3o@shlinux89>
-References: <20251219-imx-se-if-v23-0-5c6773d00318@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251219-imx-se-if-v23-0-5c6773d00318@nxp.com>
-X-ClientProxiedBy: SI1PR02CA0050.apcprd02.prod.outlook.com
- (2603:1096:4:1f5::12) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Troy Mitchell <TroyMitchell988@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v9 0/3] riscv: canaan: Add support for K230 clock
+Message-ID: <aUT3XYQmn51tLItg@duge-virtual-machine>
+References: <20251127-b4-k230-clk-v9-0-3aa09e17faf5@zohomail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|GV1PR04MB10077:EE_
-X-MS-Office365-Filtering-Correlation-Id: 85b918c1-f179-4884-610a-08de3ec8d23c
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|19092799006|52116014|1800799024|376014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?iL2z89vID4242XAug0qW3JgRpOwqtmK/j2uQJchMIBnOHhh42xr/wPMdeYn7?=
- =?us-ascii?Q?EVt0Vsm1ky2SjbeGT2deT0FT1dsb1GnVhK1onucr6cLn+0Oe5ZaM4dfgkd+W?=
- =?us-ascii?Q?1FWVAEkO3wK3Vc18cKzQ8QmtoGuRE15Uo23B/IQVGLAFqLSbxXAbSjJvjUEH?=
- =?us-ascii?Q?dXJyIPjJNZTefahgTQUVEnQdru1mpJBH+eC5s+UoBXj8N8VhpmOLTDAvCVRI?=
- =?us-ascii?Q?IcV2x/4zYxGZ6RKCd1cwok2eoC87KXwq7HdjDHxEASMOLTk3GuDYfj6bIhv8?=
- =?us-ascii?Q?65ggwZYvSRjIp2bfHV5pfiuOFJcorPcW49y7pMshrCzuNWqZWHgyDAq3IVAw?=
- =?us-ascii?Q?CIGx23jz6RZSQn0MCTQvxD6TNypG3zuXwh53Xvh3RGYud7UDSzwNp/tQ18Hh?=
- =?us-ascii?Q?5J4JNCU3xQWctG9AXbaGuccSI5CkKsvbITriRq1+dduDviI6J7wvwgLS+hKi?=
- =?us-ascii?Q?OMyZVkZ5J5EU3Kw26EbZoTqdh9+n1xZlKBvQP4ZwXNZrinrG+5DLAaBYW913?=
- =?us-ascii?Q?przSe1a8wVqU99gj0G+jFvf2vf24NG9ly+och4MV2MDesCYI7ULJFsuX53Ye?=
- =?us-ascii?Q?wfVGoAA1WuCOns7f9zWtK8DWy5Xn1BOuer2+gpOfA4zhLWrteAt0L/75pAsJ?=
- =?us-ascii?Q?/4BfS5NCqj1v5JRTORDyBRde9ea7tipaOy+jR4vI0RAbfkCIi5vDz3tckIGQ?=
- =?us-ascii?Q?88qdocZDCcilRnp7QdrcdkDPPnkJfiIDAaA5ZSh/su3WkKVJhChb7rQju6th?=
- =?us-ascii?Q?PG8nm7Phfg0uPL0cfWvI6xacjdmgkD81RMCnY4vV14v6WgIvk+byPCFGIKvc?=
- =?us-ascii?Q?2iJ/gscl7Cbmj6JflJ3tPjen6iOmCEz5sGh6IWYILXxWSZbnXo3eRrCWQDSp?=
- =?us-ascii?Q?6rFQh6b6BA07pSCW+fPEMvHIGCpauMkgVG/tug48VLQNbfigfhVszfOdBWRi?=
- =?us-ascii?Q?QDX7p/31R3aB6yBmkAhjUE4HCpf6EuIZYKEC7qZF2rCQjvWnGKPJFAXv+JXS?=
- =?us-ascii?Q?60GhmmZY3lobpM6NfJgXlVPCsMtAUkvYRWe5Gweg12KBNA8Vfuq/WsxaG5tz?=
- =?us-ascii?Q?/9lavzAdNsVmKs1B4ms2H2yssA/XMwWtxrvXV96nNZtXay8QPVTpjqupuxsp?=
- =?us-ascii?Q?oC0XDIr6WGDEvP4nAoE2TUvXx7aZkkAPt3NKJ37pnb4ptCVpmMPxHF6tSDMc?=
- =?us-ascii?Q?RFUnke6sw1VOYefxN0zbJ3PUlM41hoWaKbOi/0KbPDtt4Kv6/BZ/UF4/3Jxx?=
- =?us-ascii?Q?aZ+xUpIbrcnExTQorOPc5KkX2tfxQJFMLy5gg/51pOTYiKm1i6lRjfGY3N+x?=
- =?us-ascii?Q?WTEEKOOfuZiqFU2vYd1gMTF/wlw9ppr2RzDPoddv1GvM2tdl2dB7lsa8Gzln?=
- =?us-ascii?Q?BRrOmgC88l6ZPcg2jE5OAE5ZcyNgMfx22Rzslcy4xcN6AdLG03DGwqUJvPc6?=
- =?us-ascii?Q?ImfpYvz85QidQI6NkWngx+NkIJO2Mr/rKSlrRZA3W+hAZ/r+/9i9gtRM849A?=
- =?us-ascii?Q?9x7+fOPTFkNaI7pnog459A/LwC8ADNKhvfRT?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(19092799006)(52116014)(1800799024)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Ie4E+rhWrAurqUBvdhMV83FIiX21xrbo3yGUqajOvAQkZtnKlin6eV7jqGt1?=
- =?us-ascii?Q?h6an+G75/a3cS++OKH294t6wwfiwI8MghqJ/ffyy0sFwZWDmYjoB++cYYemR?=
- =?us-ascii?Q?HiAprY3+s9peOaHV88XIPw3TJkuQ9IJYHqLRRtCD6msz1VVGek1mG/KDOSEQ?=
- =?us-ascii?Q?EoEQJ1UD03mjmxh71bXjvtms+DMlMRAjwSJ30/qyes3cpO5qOKOujoPPYPX2?=
- =?us-ascii?Q?3z6N1npxKOmf61iSpS7+mvRED4IA+vP1v1qupUnMiWhi3klIC2V2du8KR3L5?=
- =?us-ascii?Q?I+9DFnKfEKpB0OY1eYRSUD2+F2wkKxvsW8edVWn3RnttapuI4tVN4YGn9IIo?=
- =?us-ascii?Q?Ftfg84GNbEec4fQskCJp2sl00Ujz9MsFDrVdfXuBE8PbtoVaercOIN4HClrX?=
- =?us-ascii?Q?0INTRxBqnZsT2lhPRg++KYVgHKr/pkPEFaW1cf2CIhStUnin/MGBE1Oduw2R?=
- =?us-ascii?Q?l6/FTESbjOgjvaqMX19zuCM+IicJUpvHvVs7Ag9KOUqcwRQo7NQ1mDEKiqfO?=
- =?us-ascii?Q?FNiBWj9vgYcWQA1WEBO7TVPWOK0NG+lDbwvEdeB1F5T9zrl1jSiQbkTgIw2r?=
- =?us-ascii?Q?5XvF6atrR1H7LmHZXsMPYCp1RE5pEJHKOnRCvPFA6cnB/4O9iebQNLqIJnVz?=
- =?us-ascii?Q?TQRAgI5xX9B3I0kBMGADqoEBjZ0QfEpV6VkN98oE1UeMO5T78+KghVKSiJJA?=
- =?us-ascii?Q?iPNq3Arr6ekNeDCZ3EfkSRKclYW2KD936JHzWOSTDK3EQQZVE29C3Haac5MK?=
- =?us-ascii?Q?m49iSxTLU3Iwl7dim1YXhfzEsYFawe7hPS5PBMquRaBqRT8HoRMRSPSXG9lu?=
- =?us-ascii?Q?NGFR5KnB8R51Tpiu9ZLahHBvJKZEqMIFbDEKIEQDchuW7ls//dgqgnsrH8UV?=
- =?us-ascii?Q?NKt8QTHx2Y7/4B5jOHFRUiLbq5MMbRcgvZnKHOoimgdNVHSti1pFqe4M8VY1?=
- =?us-ascii?Q?MedRsqjzWUliESukat7QkFY1p/mCV2bdlghEwoaPQU0itcdHvIBWWQ7eWeVO?=
- =?us-ascii?Q?CYeUi3+uvFQFjM/+kfFdWbhItNMqpSHym3hJ4KR3CZnI3Mac3C+uNfjRJwtD?=
- =?us-ascii?Q?z5g15d2hfYZNIuUKMglAhsBbo3r1RyRbvuCSSP7SVBO5sCyktjS55putP6wp?=
- =?us-ascii?Q?f8MO148DsR6FgNCKZ9F5IMI5s3SQ8UKbXYDv+RsZu6h4iu5EvdJ62ZKXS4qz?=
- =?us-ascii?Q?nmDSue/cYXh+wTzoMRRgrMt9MQFJ5HVmRBiEDEPiZzlkgTOPJz6v4xN9zTX0?=
- =?us-ascii?Q?i0funhHpeOGUoDPQYoSGJ1uh0VeOpLIi1niFm52LELbKdi/HXRDMjdSbX3Wz?=
- =?us-ascii?Q?cutqFyHIvJka3rfp624ppGStiBfg4PrcBJd4sWCmd/A+5cbocRuXSiyTSfT+?=
- =?us-ascii?Q?J4r9rdqrvg84/at71A7VE1ghVdC4Sn6biM1CoQ7lGoU6kp5ZUY+bRvKBsPzD?=
- =?us-ascii?Q?Yygs48fBP198IGXCZEitXgcmBp5kJTHVDkpSTHLCHCAR3ageC73NpCNQWzqX?=
- =?us-ascii?Q?ZEXNESK4clQEfZcqtd60YD71/2rjc1n1AfoWkga2iSZ6TeIECCMMItvZMStO?=
- =?us-ascii?Q?3ccTuOYuXHKqaTqgTAus0yM0pj7KnFYzZgQDpMmD?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85b918c1-f179-4884-610a-08de3ec8d23c
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2025 06:35:37.7204
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OMYSE62jUA+q6Pz7LK+szfC0/VOBD+tVS2Z5l9Ax9gDu/zi/pAefyZGerAIfphZiOY8ifdDEI/JLMrRMqjAinQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10077
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251127-b4-k230-clk-v9-0-3aa09e17faf5@zohomail.com>
+X-CM-TRANSID:zQCowAA3yQxe90RphiUoAQ--.14517S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxtryUCrykAw4kCFyfZrWkJFb_yoW7WrWkpr
+	Wa9w1xtF1jqw4fXanFq348Aan5Ga1xKan8Wa4Iv3s3AF43GFWjqFnagr1xtF47tryI93yj
+	qrWUJrW3Za4UCFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6r1S6rWUM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxUvwvKDUUUU
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 
->Pankaj Gupta (7):
->      Documentation/firmware: add imx/se to other_interfaces
->      dt-bindings: arm: fsl: add imx-se-fw binding doc
->      firmware: imx: add driver for NXP EdgeLock Enclave
->      firmware: imx: device context dedicated to priv
->      firmware: drivers: imx: adds miscdev
->      arm64: dts: imx8ulp: add secure enclave node
->      arm64: dts: imx8ulp-evk: add reserved memory property
->
+I'm writing to share test results and the corresponding patch for 
+K230 clock configuration issues, covering critical clock flag 
+settings and HS/SD subsystem clock adjustments.
 
-Tested-by: Peng Fan <peng.fan@nxp.com> #i.MX8ULP-EVK
+1.  Critical Clock Protection for CPU Subsystems
+I found that cpu0/cpu1 core-related clocks (src/plic/apb/noc_ddrcp4 
+etc.) had no protection, risking accidental disabling and subsystem 
+malfunctions. I added the `CLK_IS_CRITICAL` flag to these clock 
+nodes to block unintended disable operations.
 
-Regards
-Peng.
+2.  HS/SD Clock Setting Fixes
+Two hardware-spec mismatches were fixed:
+- Adjusted `hs_hclk_src_gate` from register bit1 to bit0, and 
+  updated its parent clock from `hs_hclk_high_src_rate` to 
+  `hs_hclk_high_gate`.
+- Corrected `hs_sd_card_src_rate` parent clock from `pll0_div4` to 
+  `hs_sd_card_src_gate`, fixing SD controller clock source 
+  misconfiguration.
+
+3.  Test Verification
+Post-fix on-board testing confirmed all modified clock nodes align 
+with K230 hardware specs and the clock tree relationships are 
+correct.
+The CPU core and HS/SD subsystems run stably without any clock-
+related errors or anomalies.
+
+The patch modifies `drivers/clk/clk-k230.c` (19 insertions, 19 
+deletions), with the full diff attached below for your review.
+
+Best regards,
+Jiayu Du
+
+---
+ drivers/clk/clk-k230.c | 38 +++++++++++++++++++-------------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
+
+diff --git a/drivers/clk/clk-k230.c b/drivers/clk/clk-k230.c
+index 8750e9cbac..43a4e61a0c 100644
+--- a/drivers/clk/clk-k230.c
++++ b/drivers/clk/clk-k230.c
+@@ -317,7 +317,7 @@ struct clk_fixed_factor *k230_pll_divs[] = {
+ 
+ K230_CLK_GATE_FORMAT(cpu0_src_gate,
+ 		     K230_CPU0_SRC_GATE,
+-		     0, 0, 0, 0,
++		     0, 0, CLK_IS_CRITICAL, 0,
+ 		     &pll0_div2.hw);
+ 
+ K230_CLK_RATE_FORMAT(cpu0_src_rate,
+@@ -325,7 +325,7 @@ K230_CLK_RATE_FORMAT(cpu0_src_rate,
+ 		     1, 16, 1, 0xF,
+ 		     16, 16, 0, 0x0,
+ 		     0x0, 31, mul, 0x0,
+-		     false, 0,
++		     false, CLK_IS_CRITICAL,
+ 		     &cpu0_src_gate.clk.hw);
+ 
+ K230_CLK_RATE_FORMAT(cpu0_axi_rate,
+@@ -333,12 +333,12 @@ K230_CLK_RATE_FORMAT(cpu0_axi_rate,
+ 		     1, 1, 0, 0,
+ 		     1, 8, 6, 0x7,
+ 		     0x0, 31, div, 0x0,
+-		     0, 0,
++		     0, CLK_IS_CRITICAL,
+ 		     &cpu0_src_rate.clk.hw);
+ 
+ K230_CLK_GATE_FORMAT(cpu0_plic_gate,
+ 		     K230_CPU0_PLIC_GATE,
+-		     0x0, 9, 0, 0,
++		     0x0, 9, CLK_IS_CRITICAL, 0,
+ 		     &cpu0_src_rate.clk.hw);
+ 
+ K230_CLK_RATE_FORMAT(cpu0_plic_rate,
+@@ -346,17 +346,17 @@ K230_CLK_RATE_FORMAT(cpu0_plic_rate,
+ 		     1, 1, 0, 0,
+ 		     1, 8, 10, 0x7,
+ 		     0x0, 31, div, 0x0,
+-		     false, 0,
++		     false, CLK_IS_CRITICAL,
+ 		     &cpu0_plic_gate.clk.hw);
+ 
+ K230_CLK_GATE_FORMAT(cpu0_noc_ddrcp4_gate,
+ 		     K230_CPU0_NOC_DDRCP4_GATE,
+-		     0x60, 7, 0, 0,
++		     0x60, 7, CLK_IS_CRITICAL, 0,
+ 		     &cpu0_src_rate.clk.hw);
+ 
+ K230_CLK_GATE_FORMAT(cpu0_apb_gate,
+ 		     K230_CPU0_APB_GATE,
+-		     0x0, 13, 0, 0,
++		     0x0, 13, CLK_IS_CRITICAL, 0,
+ 		     &pll0_div4.hw);
+ 
+ K230_CLK_RATE_FORMAT(cpu0_apb_rate,
+@@ -364,7 +364,7 @@ K230_CLK_RATE_FORMAT(cpu0_apb_rate,
+ 		     1, 1, 0, 0,
+ 		     1, 8, 15, 0x7,
+ 		     0x0, 31, div, 0x0,
+-		     false, 0,
++		     false, CLK_IS_CRITICAL,
+ 		     &cpu0_apb_gate.clk.hw);
+ 
+ static const struct clk_parent_data k230_cpu1_src_mux_pdata[] = {
+@@ -376,12 +376,12 @@ static const struct clk_parent_data k230_cpu1_src_mux_pdata[] = {
+ K230_CLK_MUX_FORMAT(cpu1_src_mux,
+ 		    K230_CPU1_SRC_MUX,
+ 		    0x4, 1, 0x3,
+-		    0, 0,
++		    CLK_IS_CRITICAL, 0,
+ 		    k230_cpu1_src_mux_pdata);
+ 
+ K230_CLK_GATE_FORMAT(cpu1_src_gate,
+ 		     K230_CPU1_SRC_GATE,
+-		     0x4, 0, CLK_IGNORE_UNUSED, 0,
++		     0x4, 0, CLK_IS_CRITICAL, 0,
+ 		     &cpu1_src_mux.clk.hw);
+ 
+ K230_CLK_RATE_FORMAT(cpu1_src_rate,
+@@ -389,7 +389,7 @@ K230_CLK_RATE_FORMAT(cpu1_src_rate,
+ 		     1, 1, 0, 0,
+ 		     1, 8, 3, 0x7,
+ 		     0x4, 31, div, 0x0,
+-		     false, 0,
++		     false, CLK_IS_CRITICAL,
+ 		     &cpu1_src_gate.clk.hw);
+ 
+ K230_CLK_RATE_FORMAT(cpu1_axi_rate,
+@@ -397,12 +397,12 @@ K230_CLK_RATE_FORMAT(cpu1_axi_rate,
+ 		     1, 1, 0, 0,
+ 		     1, 8, 12, 0x7,
+ 		     0x4, 31, div, 0x0,
+-		     false, 0,
++		     false, CLK_IS_CRITICAL,
+ 		     &cpu1_src_rate.clk.hw);
+ 
+ K230_CLK_GATE_FORMAT(cpu1_plic_gate,
+ 		     K230_CPU1_PLIC_GATE,
+-		     0x4, 15, CLK_IGNORE_UNUSED, 0,
++		     0x4, 15, CLK_IS_CRITICAL, 0,
+ 		     &cpu1_src_rate.clk.hw);
+ 
+ K230_CLK_RATE_FORMAT(cpu1_plic_rate,
+@@ -410,12 +410,12 @@ K230_CLK_RATE_FORMAT(cpu1_plic_rate,
+ 		     1, 1, 0, 0,
+ 		     1, 8, 16, 0x7,
+ 		     0x4, 31, div, 0x0,
+-		     false, 0,
++		     false, CLK_IS_CRITICAL,
+ 		     &cpu1_plic_gate.clk.hw);
+ 
+ K230_CLK_GATE_FORMAT(cpu1_apb_gate,
+ 		     K230_CPU1_APB_GATE,
+-		     0x4, 19, 0, 0,
++		     0x4, 19, CLK_IS_CRITICAL, 0,
+ 		     &pll0_div4.hw);
+ 
+ K230_CLK_RATE_FORMAT(cpu1_apb_rate,
+@@ -423,7 +423,7 @@ K230_CLK_RATE_FORMAT(cpu1_apb_rate,
+ 		     1, 1, 0, 0,
+ 		     1, 8, 15, 0x7,
+ 		     0x0, 31, div, 0x0,
+-		     false, 0,
++		     false, CLK_IS_CRITICAL,
+ 		     &cpu1_apb_gate.clk.hw);
+ 
+ K230_CLK_GATE_FORMAT_PNAME(pmu_apb_gate,
+@@ -446,8 +446,8 @@ K230_CLK_GATE_FORMAT(hs_hclk_high_gate,
+ 
+ K230_CLK_GATE_FORMAT(hs_hclk_src_gate,
+ 		     K230_HS_HCLK_SRC_GATE,
+-		     0x18, 1, 0, 0,
+-		     &hs_hclk_high_src_rate.clk.hw);
++		     0x18, 0, 0, 0,
++		     &hs_hclk_high_gate.clk.hw);
+ 
+ K230_CLK_RATE_FORMAT(hs_hclk_src_rate,
+ 		     K230_HS_HCLK_SRC_RATE,
+@@ -560,7 +560,7 @@ K230_CLK_RATE_FORMAT(hs_sd_card_src_rate,
+ 		     2, 8, 12, 0x7,
+ 		     0x1C, 31, div, 0x0,
+ 		     false, 0,
+-		     &pll0_div4.hw);
++		     &hs_sd_card_src_gate.clk.hw);
+ 
+ K230_CLK_GATE_FORMAT(hs_sd0_card_gate,
+ 		     K230_HS_SD0_CARD_GATE,
+
 
