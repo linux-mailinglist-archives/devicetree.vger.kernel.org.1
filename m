@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-248324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8FBCD149C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:07:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E50FCD145A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:01:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0DE0D3035C07
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 18:06:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7A9AF301CE50
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 18:01:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085AC357710;
-	Fri, 19 Dec 2025 17:47:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84F42D3A69;
+	Fri, 19 Dec 2025 17:52:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZJV6wqOx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WjhOqUn3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3ADF357708;
-	Fri, 19 Dec 2025 17:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EEC02BD58C;
+	Fri, 19 Dec 2025 17:52:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766166462; cv=none; b=m4RIseawz04g0IUw7p84cbb3JCGb2pQzsPnXsCwIEpPOg/wWQ1OmUJkmAjQD1KejWYDqrLwapK9nzqjFAGM1GSLzs/bYiDoIni8xUY6cWbCODaRRWRtDNOukBvKaug7XSHav9BMdWGtpi3lo4Zd0wVe1aGwX5zFK9jhiifE4HTc=
+	t=1766166747; cv=none; b=pq7OhgZ+wPUd5iZ41FzplxoSsGsE99y6G4Z4+x+aNr1a4+5y0oAVBB63LeiF+v1EzAssAagzi6SHpCgMTmbnk8KoVNduTS9Vc+wmTVoy4QUrHZx/+J5wkXybFg8EQeNHluDEGFMITb0ZJlW6ubCvsWlaLp+7Zl0z/N/6CsbmT18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766166462; c=relaxed/simple;
-	bh=LBMUKj9d114Xs5ZOpfvFmGFsszYLWdllbKLyP8bnA0o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yz/gJrysiGVL91J1I1bEirXjeE0zHC/8be1fbrdrReQIPyUUXM45Ea/jdsI7wAcysWBkqB2ZoS/Icb882LA0yYju0DssKO+2Gnmo/hwWclygmEFeTj3QPkJIHa2gu2gVriZ053CZ5Z0nDqQWmeTURW8W7FJZ2c129SaobupvaGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZJV6wqOx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B26E3C116B1;
-	Fri, 19 Dec 2025 17:47:35 +0000 (UTC)
+	s=arc-20240116; t=1766166747; c=relaxed/simple;
+	bh=nPpUA6C5LaWQvcqwvb9J+SkaEScOjybsv/fwrTVVI/o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=IiaGBkYcgSHxI5GX+5rlIK1yLJpk2YiWayH2KEeBR6s8MxqsqfHjlA7ZjSfksY+pGMemxA1ByYA8vPAGIzO0qNGPkwqOTAlPkE0mrw8F4L2HE51NIWWg772RfoJ+vGcBjUYiWAP//cqEv0W06qQwj2aN/KQCRHvDaXaUEyYOBpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WjhOqUn3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6230C116B1;
+	Fri, 19 Dec 2025 17:52:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766166462;
-	bh=LBMUKj9d114Xs5ZOpfvFmGFsszYLWdllbKLyP8bnA0o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZJV6wqOxhD5QxAbRnWxfLZPGoBGBJxTdi+D8yfDVYsXSMx+UEddB2/PZ9e8o1Ntl7
-	 E4MxJGavdBInH7R6CGwGMfuIWqqNspD4SpYGHtVrwV/KWtTkPBt88vYTgB9y0gLQks
-	 JzhcoDPd8YjIJwHJwf76BjUL7v7AKiulKCD6Zrvs8NbuIWQB/4r+HqvMdt28zuSVby
-	 CDNzhTVMU9QrgVyphanfgLT/NHxciKU9F1b4S/sPYPkcRU0YxD9BT6Sy/3klfzJ3iN
-	 vKwojIayPnZi+2AxC+Eg381osWwzwUfV8U/067tXFcBbJuL15KUF4tbEJPHGeXNbdb
-	 jpsOJm8SAJP8Q==
-Message-ID: <de00f21e-7fc7-4caa-93ec-afbcc5d9e12d@kernel.org>
-Date: Fri, 19 Dec 2025 18:47:33 +0100
+	s=k20201202; t=1766166747;
+	bh=nPpUA6C5LaWQvcqwvb9J+SkaEScOjybsv/fwrTVVI/o=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=WjhOqUn3ZtzyITW21i8T302ogXylMOUcr55Tm4Sif3qY2ljzctsB9MYMBAejTYaOv
+	 M17pzZ4lYlD1jK5h73X5LkjfeUbYjMgiOWVMdTOLgAGqFw+HmGIFvB3EitJRu1mWNG
+	 WK9KG3KM+txkqhv8aFJBENrbDhFzuqXGouMr1ZG7xBt57x+XyGWwTy34m573qIROOD
+	 NCk1Dv9t4+HBNbLa2Ozyp1U02kHw2MpYTcKNmJ7Omi6VHZTxf9f6ncJZImzPZccofA
+	 7FhSZk8Kb5MjPEcJ3aaf1PwzS2EOjC99oBa12frPv4iu4V7k97R5pRIngS1yqH9A9k
+	 6nYqCPEHNvEQg==
+Message-ID: <5ba1d58f-6c54-4727-9152-152de70e5ffb@kernel.org>
+Date: Fri, 19 Dec 2025 18:52:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,22 +48,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/6] arm64: dts: qcom: Add support for Surface Pro 11
-To: jerome.debretagne@gmail.com, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: mux: adg1736: add support
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Johannes Berg <johannes@sipsolutions.net>,
- Lorenzo Bianconi <lorenzo@kernel.org>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, ath12k@lists.infradead.org,
- Dale Whinham <daleyo@gmail.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20251218-surface-sp11-for-next-v4-0-7bcf83c1504a@gmail.com>
- <20251218-surface-sp11-for-next-v4-5-7bcf83c1504a@gmail.com>
+ <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251219143554.22793-1-antoniu.miclaus@analog.com>
+ <20251219143554.22793-2-antoniu.miclaus@analog.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,76 +102,111 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251218-surface-sp11-for-next-v4-5-7bcf83c1504a@gmail.com>
+In-Reply-To: <20251219143554.22793-2-antoniu.miclaus@analog.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 18/12/2025 23:22, Jérôme de Bretagne via B4 Relay wrote:
-> From: Dale Whinham <daleyo@gmail.com>
+On 19/12/2025 15:35, Antoniu Miclaus wrote:
+> Add device tree bindings for ADG1736 analog multiplerer.
 > 
-> Add device trees for the Qualcomm X1E and X1P-based Microsoft Surface
-> Pro 11 machines (codenamed 'Denali').
-> 
-> This device is very similar to the Surface Laptop 7 ('Romulus').
-> 
-> Use a similar strategy to x1-asus-zenbook-a14.dtsi so that we can create
-> x1e and x1p-specific flavors of the device tree without too much code
-> duplication.
-> 
-> Hardware support is similar to other X1 machines. The most notable
-> missing features are:
-> 
-> - Touchscreen and pen
-> - Cameras (and status LEDs)
-> 
-> Signed-off-by: Dale Whinham <daleyo@gmail.com>
-> Tested-by: Dale Whinham <daleyo@gmail.com>
-
-Drop, authorship implies this. Otherwise this suggest none of other
-authors test their code before sending.
-
-> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile                  |    4 +
->  arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi  | 1324 ++++++++++++++++++++
->  .../dts/qcom/x1e80100-microsoft-denali-oled.dts    |   20 +
->  .../boot/dts/qcom/x1p64100-microsoft-denali.dts    |   16 +
->  4 files changed, 1364 insertions(+)
+>  .../devicetree/bindings/mux/adi,adg1736.yaml  | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mux/adi,adg1736.yaml
 > 
-
-This DTS fails dtbs_check.
-
-
-> diff --git a/arch/arm64/boot/dts/qcom/x1p64100-microsoft-denali.dts b/arch/arm64/boot/dts/qcom/x1p64100-microsoft-denali.dts
+> diff --git a/Documentation/devicetree/bindings/mux/adi,adg1736.yaml b/Documentation/devicetree/bindings/mux/adi,adg1736.yaml
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..93f1620ad8c71c6cf36ba3ec34b9eebc47bf3f18
+> index 000000000000..0ba662ffc9cc
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/x1p64100-microsoft-denali.dts
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-
-How exactly is this copyrighted by Qualcomm? I don't think Qualcomm ever
-prepared DTS for this, so can you point us to the original work?
-
-> + * Copyright (c) 2025 Dale Whinham <daleyo@gmail.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/mux/adi,adg1736.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mux/adi,adg1736.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +/dts-v1/;
+> +title: Analog Devices ADG1736 Dual SPDT Switch Multiplexer
 > +
-> +#include "hamoa.dtsi"
-> +#include "x1-microsoft-denali.dtsi"
+> +maintainers:
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
 > +
-> +/ {
-> +	model = "Microsoft Surface Pro 11th Edition (LCD)";
-> +	compatible = "microsoft,denali-lcd", "microsoft,denali",
-> +		     "qcom,x1p64100", "qcom,x1e80100";
-> +};
-> 
+> +description: |
+> +  Bindings for Analog Devices ADG1736 dual single-pole, double-throw (SPDT)
+
+Describe hardware, not bindings.
+
+> +  switch. The device features two independent SPDT switches, each functioning
+> +  as a 2:1 multiplexer. Each switch can connect its common drain terminal (D)
+> +  to one of two source terminals (SA or SB).
+> +
+> +  The device has two independent mux controllers (mux 0 and mux 1), each with
+> +  two states:
+> +    * 0: SxB to Dx (control GPIO low)
+> +    * 1: SxA to Dx (control GPIO high)
+> +
+> +  The EN pin is shared between both switches and can disable all channels when
+> +  set low (inactive).
+> +
+> +allOf:
+> +  - $ref: mux-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: adi,adg1736
+> +
+> +  ctrl-gpios:
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      GPIO pins connected to the control inputs IN1 and IN2. Index 0 controls
+> +      switch 1 (S1A/S1B to D1) and index 1 controls switch 2 (S2A/S2B to D2).
+
+So just list the items with description.
+
+This is basically gpio-mux with enable pin, so use at least matching
+naming - mux-gpios.
 
 
+> +    minItems: 2
+> +    maxItems: 2
+
+And drop these.
+
+> +
+> +  en-gpios:
+
+Use standard gpios, see gpio-consumer-common schema.
+
+
+> +    description: |
+> +      GPIO connected to the EN (enable) pin. When low, all switches are
+> +      disabled (high-impedance). When high, switches are controlled by
+> +      their respective ctrl-gpios.
+
+So just active high?
+
+> +    maxItems: 1
+> +
+> +  '#mux-control-cells':
+> +    const: 1
+> +    description: |
+> +      Mux controller index (0 or 1) to select which SPDT switch to control.
+> +
+> +required:
+> +  - compatible
+> +  - ctrl-gpios
+> +  - en-gpios
+> +  - '#mux-control-cells'
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/mux/mux.h>
 Best regards,
 Krzysztof
 
