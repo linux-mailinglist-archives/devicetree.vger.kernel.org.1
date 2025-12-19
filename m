@@ -1,117 +1,108 @@
-Return-Path: <devicetree+bounces-248162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECFFBCCF735
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 11:47:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB79CCF78F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 11:52:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 553293097CAC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 10:42:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 334F9300ACED
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 10:48:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D10A2FFDF9;
-	Fri, 19 Dec 2025 10:42:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E6222BEFFF;
+	Fri, 19 Dec 2025 10:48:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B566D2882A9;
-	Fri, 19 Dec 2025 10:42:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A94074BE1;
+	Fri, 19 Dec 2025 10:48:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766140966; cv=none; b=O566JSuVhgLWjDz4OJ4fjRABtamhr/lx7avGfuWyRQTSsMUNr74MA6/nF3qjPo4RR1/ZNnRCy0wzRBxEH/VtF2Pa6RoKmeDzGcY9X9FismXPrCFymTQPYUdK4t4qYSVV39Y6ep3lw+Tpsuq51QBsOYvyM/xeChbJ3+LOtXauyQQ=
+	t=1766141292; cv=none; b=uzsoicJF60cjoynCqayxeBekAZXwisdwzIEr86XWlWd5SU+hmNZNYMx/HmjHsl2S3VQCOsf1eZIwSOodwAQHo+syyRR8reIRzTdmh5ub1GsFyD+bjCxdQRSezD5lyc1DiLOODBPUCMRu7rhhFaE1jyGg+hu1ATouSi+93TjqdKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766140966; c=relaxed/simple;
-	bh=j80u/3tGqchMI0uX25fhG4G01nqVVbFk3nPN3+udHKc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NLoez0pvlDlf6BpQ8RAdBckv8Wnj5Q3USbn6vD/j12ZwFsFze30DpT6m8srSrNQUsoagEO2NkOlrCnG5Ph857xDBC5IKRkgcbORGnll1VH5JYLyUxwGJbsndTQEUvGqMMj0x0WzssqBATQcLWAxWI45sUCGcXVKJbUMpRTmS8p0=
+	s=arc-20240116; t=1766141292; c=relaxed/simple;
+	bh=mGsn0FM6mPE/Zvdf2Mf1taBhL3tfR6lmIzngSQM89TM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gmfBxIw7+ch+ax3SPCzj4qXqc+A5RyibSYvX5Hqzynh+yj+nfO0kpNc+CnMVIAhtWztL7CZ0n8dNOIn8F/zG+56+mus6iFW7DlwoHtZAG6OA9xhZX+J5CpwmoYd11VqEQaa3gp4V4okMIqDoJbxIe/rsAP0sqK+dlsh5ZFuJyFI=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2DF2C106F;
-	Fri, 19 Dec 2025 02:42:37 -0800 (PST)
-Received: from localhost (e132581.arm.com [10.1.196.87])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DE2FB3F5CA;
-	Fri, 19 Dec 2025 02:42:43 -0800 (PST)
-Date: Fri, 19 Dec 2025 10:42:41 +0000
-From: Leo Yan <leo.yan@arm.com>
-To: yuanfang zhang <yuanfang.zhang@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Leo Yan <leo.yan@linux.dev>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, kernel@oss.qualcomm.com,
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, maulik.shah@oss.qualcomm.com,
-	Jie Gan <jie.gan@oss.qualcomm.com>
-Subject: Re: [PATCH v2 00/12] coresight: Add CPU cluster
- funnel/replicator/tmc support
-Message-ID: <20251219104241.GB9788@e132581.arm.com>
-References: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
- <20251218104027.GA1790402@e132581.arm.com>
- <927f15d5-da2a-4282-b80f-c1c7563a4367@oss.qualcomm.com>
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9B75DFEC;
+	Fri, 19 Dec 2025 02:48:03 -0800 (PST)
+Received: from e134710.manchester.arm.com (e134710.arm.com [10.33.10.82])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BD0803F5CA;
+	Fri, 19 Dec 2025 02:48:08 -0800 (PST)
+From: Ahmed Tiba <ahmed.tiba@arm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: tony.luck@intel.com,
+	bp@alien8.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	rafael@kernel.org,
+	linux-doc@vger.kernel.org,
+	Dmitry.Lamerov@arm.com,
+	Michael.Zhao2@arm.com,
+	Ahmed.Tiba@arm.com
+Subject: Re: [PATCH 10/12] dt-bindings: ras: document estatus provider
+Date: Fri, 19 Dec 2025 10:47:53 +0000
+Message-ID: <20251219104759.2726164-1-ahmed.tiba@arm.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <57772b40-e4d9-4152-9709-04ba897608d0@kernel.org>
+References: 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <927f15d5-da2a-4282-b80f-c1c7563a4367@oss.qualcomm.com>
 
-On Fri, Dec 19, 2025 at 09:50:18AM +0800, yuanfang zhang wrote:
 
-[...]
+On 19/12/2025 10:53, Krzysztof Kozlowski wrote:
+>> On 17/12/2025 12:41, Krzysztof Kozlowski wrote:
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: arm,ras-ffh
+>>>
+>>> Again ras - what's that? Your patch or binding must explain that.
+>>
+>> That updated description will explicitly expand the Arm RAS acronym so the
+>> compatible string is self-explanatory.
+>>
+>>>> +
+>>>> +  reg:
+>>>> +    minItems: 1
+>>>
+>>> Why is this flexible?
+>>
+>> I'll keep `reg` describing the CPER status buffer, cap it at two entries, and
+>> document the second entry as the optional doorbell register that some firmware
+>> requires before reusing the buffer.
+>
+> I still do not understand why this is flexible or in other words - why
+> second address space appears and disappears.
 
-> It is due to the particular characteristics of the CPU cluster power domain.
-> Runtime PM for CPU devices works little different, it is mostly used to manage hierarchical
-> CPU topology (PSCI OSI mode) to talk with genpd framework to manage the last CPU handling in
-> cluster.
-> It doesn’t really send IPI to wakeup CPU device (It don’t have .power_on/.power_off) callback
-> implemented which gets invoked from .runtime_resume callback. This behavior is aligned with
-> the upstream Kernel.
+The second address space is only present for firmware that exposes an ACK register.
+Not all platforms require this extra handshake so that address shows up only
+when the extra handshake exists. I’ll say that clearly in the binding
+so it’s obvious the region is optional.
 
-Just for easier understanding, let me give an example:
+>>
+>>>> +    items:
+>>>> +      - description: CPER status block exposed by firmware
+>>>> +      - description:
+>>>> +          Optional 32- or 64-bit acknowledgment register. Firmware watches this
+>>>> +          register and expects bit 0 to be written to 1 once the OS consumes the
+>>>> +          status buffer so it can reuse the record.
+>>>> +
 
-    funnel0: funnel@10000000 {
-        compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-        reg = <0x10000000 0x1000>;
 
-        clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
-        clock-names = "apb_pclk", "atclk";
-        power-domains = <&cluster0_pd>;
-    }
-
-If funnel0 is bound to cluster's power domain, kernel's genPD will
-automatically enable cluster power domain before access registers.
-
-My understanding is your driver or firmware fails to turn on a cluster
-power domain without waking up a CPU (and without sending IPI).  It is
-not a kernel issue or limitation, and no any incorrect in PSCI OSI.
-
-As Suzuki said, you might directly reply Sudeep's questions.  We would
-confirm if any flaw in common code.
-
-> > P.s., currently you can use "taskset" as a temporary solution without
-> > any code change, something like:
-> > 
-> >   taskset -c 0 echo 1 > /sys/bus/coresight/devices/etm0/enable_source
-> 
-> This can address the runtime issue, but it does not resolve the problem during the probe phase.
-
-Indeed.  If you insmod mode, you might can temporarily disable idle
-states?
-
-    exec 3<> /dev/cpu_dma_latency; echo 0 >&3
-    insmod
-    exec 3<>-
-
-Thanks,
-Leo
+Best regards,
+Ahmed
 
