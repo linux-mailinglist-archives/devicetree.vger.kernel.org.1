@@ -1,113 +1,62 @@
-Return-Path: <devicetree+bounces-248350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81C93CD1ADB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 20:49:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1144CD1BCB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 21:24:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7E0EC3008D4A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:49:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1457330572F8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 20:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F422C34AAF6;
-	Fri, 19 Dec 2025 19:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C342FD1C1;
+	Fri, 19 Dec 2025 20:24:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="KAqaGfMJ";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="Po8y2tHI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VWSrEy8P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 578BB34AAE2
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 19:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5A32D6E67;
+	Fri, 19 Dec 2025 20:24:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766173745; cv=none; b=HigZTIrisz56X2uuZSObCzpzrSULDJoKfUl834c/OfGhtQJ7n32SSD2MwZixwrkKwkatFFU4hSfqSd5OHmVN+NIzqiUhfpcOkLIq3slQf5aUiUbFK+25s42zlboNgyGlvDphr4EXX6fzppw5KsAp74KLUeBgY88wnNUNWXfSQ9c=
+	t=1766175856; cv=none; b=HNqC125jEhbQ+UiduOSqZgp3EkGz1z6eMSYsOeDX5im4PDDXoOFF3adnh1vIH9YDg6THi0Ot0QmJxQ4ekel9q4S+vOX80lS/hrsDVvUo20u88o+MX2CLBRgMgaStQnq3CRptnsGd0qW4HaLJTNb2FZ3VH9XJjqw5kC0hnMESBKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766173745; c=relaxed/simple;
-	bh=7QHParoqmwM/fv693piLNFSOhOcM5vYfUKurXmOY6eg=;
+	s=arc-20240116; t=1766175856; c=relaxed/simple;
+	bh=tjw5omJgmncSGdDGAhBBAQ35dB1nl7kl9X0vKueltY0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TJ58Q1AyBdk/lEGI/Cw1GU1ZH5bA3HzfrwFYWOxiLgtDH0W97iKg9TtEImZ3kd1seJftacbHAWQ8MjjdjzslrA85PgzuDWYMmB2eCP+DwEkSDuLGTUTLTQT/DC2TKojmrBYRPu6iG9UnK8r12aC/rezXLIbOF1OU/++9MXnPjac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=KAqaGfMJ; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=Po8y2tHI; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1766173743;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7QHParoqmwM/fv693piLNFSOhOcM5vYfUKurXmOY6eg=;
-	b=KAqaGfMJVNLAaVtN0ua6ijH2K2pMSy+o3HSVnerXsRxOt0HNrTupBwCJgJdXloFPznD20s
-	qevHKGSwJBJXo6LZUi3wlHpfBXRTCMI2knSsYSuWLK5MuJsZzU9ZgOYXOfsTdTbNbdIJ7U
-	3ajFEcTtRgljnso56mrpH234CUvWLT4=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-133-0yKeAiZ7Nd2IuNS8JWKUIg-1; Fri, 19 Dec 2025 14:49:02 -0500
-X-MC-Unique: 0yKeAiZ7Nd2IuNS8JWKUIg-1
-X-Mimecast-MFC-AGG-ID: 0yKeAiZ7Nd2IuNS8JWKUIg_1766173741
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b9fa6f808cso568725885a.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 11:49:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1766173741; x=1766778541; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7QHParoqmwM/fv693piLNFSOhOcM5vYfUKurXmOY6eg=;
-        b=Po8y2tHIcg6lj3E6SRnKYYH7Qbuf817Caezk27chUeAy28/3Oi61amy2cYywhCua8n
-         wnx3flgmsBDGYM1yhNNCT0RHdTWmF5ow0v8OGosXzeDOGqIn6gPjmQpvEShUTYEQ7zTr
-         VoHW73GXELOu005QGpEb7yT6oYGgIHsGyMi7iqjNP5L5LXmySzg23PXtnSNqCKmIBd3l
-         WyTWDNcTZAwg+B7A4g2gPWSB8H1UX+Hsoo1G6kbNF/h7ezvoFYr1gd2KsAmN2wG2bQ9s
-         SVpgSnQ0uD1+hMJa+z6OZO0oLFFGuW6wccxvVp27UkW/2o6/ULnVutA2owIfBwj97WHD
-         uhQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766173741; x=1766778541;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=7QHParoqmwM/fv693piLNFSOhOcM5vYfUKurXmOY6eg=;
-        b=BkTOjvap8LOU3/M3FPE0PNlH2xlBGtOiDn96z6xhRtfyXxY2xvzUUi7YT/ZpecvGq2
-         FBpiBnFpvpu6wxDGMDrb9+VcL1GaMDV7xPqBbLOYPAXfvEe+j2HuFN+sIX3wwrlcthqz
-         nsQ6kEQSzAxPgQM+5kj95iCbuWvm7yd1zhNe1GKJ1gnP5ain+QEozkc7F1ZdTUMZdKoE
-         V1oR/2DzeDq0CkWOsIji6P+bz9n2i0o58vu5XJ2oTvjMZSQ3xd1mDcxJhd5GnZDpoSYF
-         uG8eKhIvjA7lAihqyhAkqUJvdEZ2thqCMxDmLixHCdDMsds22i7CcxPW9NXINeP9lwwO
-         HNmA==
-X-Forwarded-Encrypted: i=1; AJvYcCUg9YBvv/m/7WAvqMKRomg35vV4Vid0DTK2h99AWwreHv42AgGB8AV4mFaUqsXLoBeBr9PtKmrdS9FE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1TMk+9bw4LoHqN5SicNesVSjkBdbMxnRKcelQ+/+o+xDoxSj9
-	FSwe/VTULAO2MyOiFo28uvFPkckXPE3C1pPz57ICp7LAjeQANALPttUT3GW/OUkNzxD6utayFo8
-	SuyN6cgwqgyxN1McGBAjHaLmv7eHKYWGgSVEfG25LcyeZQX8roE6MtKx0KT1mSH4=
-X-Gm-Gg: AY/fxX6d9Gm028jh9Lqq1j5bZG7pSb+yAZYA+yjhlLdwz5PKXqeuyXG7leJYd6WKC3X
-	MZNQe8UTYiMyWoRinWs7TAHpIquKh793ASGNjbf8YMjvzB5nCq0q6Nfph8s6UYvWFolI6M9Ig6L
-	M+ntrpiCpwlKlE4Ijpp54Cg4obETslmbhr9FTAwJPcPipdB4svUzzikIwoxbc3+OAROMmLUtOll
-	NPrb1BajP2Q/fyQeP97tmyQRZifQLm8evQdWRG5eYH8geex5WaSIIoFkisAkAeY4IGtA9EvVtOi
-	gSaoUYBBTZB/pYVtj3MBNEcBnvXKZFJYeSooNozmHNlziTZ8rFhrE5eVKcLflRdbILB6ImUS4wz
-	xMDF4ZlGv
-X-Received: by 2002:a05:620a:2915:b0:8b2:e922:5282 with SMTP id af79cd13be357-8c08fbde546mr650955785a.26.1766173741557;
-        Fri, 19 Dec 2025 11:49:01 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEhmkU84dkGCcwT8u/xbGrBML5VLUNpWzlUIRhCANoKaN5hf3mFDRW42eqFLJM185p9R9rh3A==
-X-Received: by 2002:a05:620a:2915:b0:8b2:e922:5282 with SMTP id af79cd13be357-8c08fbde546mr650953885a.26.1766173741234;
-        Fri, 19 Dec 2025 11:49:01 -0800 (PST)
-Received: from redhat.com ([2600:382:8519:53fe:9d9a:13fe:abf1:fb80])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c096783a81sm248019585a.9.2025.12.19.11.48.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Dec 2025 11:49:00 -0800 (PST)
-Date: Fri, 19 Dec 2025 14:48:56 -0500
-From: Brian Masney <bmasney@redhat.com>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=OWqQ/CwdlmJ1CPDjdDSv5rKuQ/6/l8DPK231fvcUHtVO9z9h6g+x8KQIinBAjNpooEv7p0/bdb/Z64u8zncIEut9gWS6wmOWpzccB1aq7mIkqfTXI95KMaLuZwy/8Ic+41pB3uNLYxrkEjF4+19+svBxSjm5f/1/bZx1WSbfcBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VWSrEy8P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0081AC116B1;
+	Fri, 19 Dec 2025 20:24:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766175856;
+	bh=tjw5omJgmncSGdDGAhBBAQ35dB1nl7kl9X0vKueltY0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VWSrEy8PuCSL1pDxehzh2AuVS4vJlemyNgHpYFfOzHXb42Dj51LG1JIhskyqWRFHu
+	 Ekd+WUko5IDeaphAFK1mGgDyD/oEV7sVPg9tckSpTZZj0ZR9h4Q+Sh1OWX5yoNGrIA
+	 s6CwnmsDdWJ3zl9QMz++zLpoccHNWI9ZGPfs8pyvpL/t/4+e7yHonGvFXNV+nq51m/
+	 RV9Z/D+51JS5e7yENJLCQNsR4gO+tPbVXQMVFyOPQa5if3fWtKdMnZGy/ou6CYao01
+	 AGzaWXmLdF5XxrZ6P5mq+AvMxb85nGTkPwvZJjQ6EaIYK4trntMyyIb3oG+YrlgC2t
+	 13CS7aSPtfbVg==
+Date: Fri, 19 Dec 2025 14:24:14 -0600
+From: Rob Herring <robh@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Sebin Francis <sebin.francis@ti.com>, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v6 0/6] clk: Support spread spectrum and use it in
- clk-scmi
-Message-ID: <aUWsKAMDm9_5jxsg@redhat.com>
-References: <20251128-clk-ssc-v6-2-v6-0-cfafdb5d6811@nxp.com>
- <aTvpmQAPE6HfIy+r@shlinux89>
+	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: brcm,amac: Allow "dma-coherent"
+ property
+Message-ID: <20251219202414.GA3873318-robh@kernel.org>
+References: <20251215212709.3320889-1-robh@kernel.org>
+ <982376c5-ad72-4923-9653-7f01c1e608a2@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -116,18 +65,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aTvpmQAPE6HfIy+r@shlinux89>
-User-Agent: Mutt/2.2.14 (2025-02-20)
+In-Reply-To: <982376c5-ad72-4923-9653-7f01c1e608a2@redhat.com>
 
-On Fri, Dec 12, 2025 at 06:08:25PM +0800, Peng Fan wrote:
-> Sorry for top-posting. There is only one comment from Krzysztof regarding
-> cleanup API usage. Since 6.19 rc1 still not out, I will wait two more weeks
-> to collect comments, then post v7. Hopefully, you are ok with current
-> clk-scmi-oem stuff.
+On Fri, Dec 19, 2025 at 10:14:36AM +0100, Paolo Abeni wrote:
+> Hi Rob,
+> 
+> On 12/15/25 10:27 PM, Rob Herring (Arm) wrote:
+> > The Broadcom AMAC controller is DMA coherent on some platforms, so allow
+> > the dma-coherent property.
+> > 
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> 
+> I assume you are targeting net-next here? 
 
-I can't speak to the SCMI OEM extensions, however the other clk patches
-look good to me FWIW. My Reviewed-by tags still apply.
+Well, yes. I remember to add "net-next" about 50% of the time. Sigh.
 
-Brian
+> If so, please be aware that
+> net-next is currently closed due to the winter break up to Jan 2.
+> Otherwise feel free to take it via the device tree.
 
+Okay, I'll just take it.
+
+Rob
 
