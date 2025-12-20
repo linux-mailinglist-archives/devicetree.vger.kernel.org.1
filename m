@@ -1,115 +1,92 @@
-Return-Path: <devicetree+bounces-248454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB806CD2C58
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 10:37:01 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 567ACCD2CE1
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 11:05:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0E0793010ABF
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:36:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 10CB23006E33
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 10:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F210E23A984;
-	Sat, 20 Dec 2025 09:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UgxVDZjl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB5062ED16D;
+	Sat, 20 Dec 2025 10:05:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C35D14A35;
-	Sat, 20 Dec 2025 09:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 338A12DEA90;
+	Sat, 20 Dec 2025 10:05:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766223411; cv=none; b=UdM+7qASXZaYr0tR/JbuqfrpT4kmmvyXIC48BeShYFi8P3y2zK3RgboSDv2wlwt8Rb6Sx4Hk8Y5tXABWxU+k05T1MJFfD5I08wgnPMxTnVNhe0JYK1XV/DxrDmKuERanIdZYeXF7nMG/1130v5sVhQIAL0T/JwdSzblaHWp1GkI=
+	t=1766225134; cv=none; b=t0n3dO3hp1elp4nHOEtTM+L8ZdgxjarUXaYiOZzP97wi0nx0B7DoE4DLOXYNh+QwpenLj2VedcHEKV2TnaSE766/OTCysTNuqgupW6PFzNC7k/fteTS8vkQu6rPR0OrucPu+e2SYyAaVllRgsILGgv2hXn1bPu2bVae4HJqB9jA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766223411; c=relaxed/simple;
-	bh=QOvv/T1GkTwBLvIOmgnWChvdwKFUOXir6r1DlwNXLPY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g41jNuEAOeComvLkbyjp2TdiZkx2Gbaj5indtyVoPSEFSPYvNejiIEh8tzqQiSrTYHlVxLCVFoG0v9vS4XVirpiGHQtgsyEOu1SF0+JHqNCfo3jmOwvNg+o32uvEV8I0NLrcMZKFczrqGtLY25RLN3TT8EvvlFVJdNOLgM0wIKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UgxVDZjl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81AC0C4CEF5;
-	Sat, 20 Dec 2025 09:36:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766223411;
-	bh=QOvv/T1GkTwBLvIOmgnWChvdwKFUOXir6r1DlwNXLPY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UgxVDZjls3ACYi1NpRxei6Hp1UEsL6kyv095NGkULlZ0qMYXP0yY7g1//DlErYAw3
-	 CjeumAuY2BTgqgMcHqfk6CZf5kUUJAl8jaRMIHODtn1CPd7wbXenlQ2fB0wdrREzBn
-	 o2ZVD398rlzktvXU3lm1CxpbwHPhtkErt5kksIPcoRyHjaYGY8TVVONsQ9eBqLzonm
-	 GvroYMCNz1TKYApMP97GynIWPOpgk3kESY6x2wCValbaJTBIuxPzJZqnAXBrhnssiu
-	 e02xHwSRh2L+gXkThEHmAig+EKBHw6dqJEHSFh4gMZwuUXR+udFVDK1UF2R87XJamD
-	 6ntnPjYWLP8cQ==
-Date: Sat, 20 Dec 2025 10:36:46 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Vaishnav Achath <vaishnav.a@ti.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	=?utf-8?B?SGVydsOp?= Codina <herve.codina@bootlin.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Santhosh Kumar K <s-k6@ti.com>, 
-	Pratyush Yadav <pratyush@kernel.org>, Pascal Eberhard <pascal.eberhard@se.com>, 
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 13/13] ARM: dts: r9a06g032: Describe the QSPI controller
-Message-ID: <20251220-shapeless-mussel-of-temperance-2c4874@quoll>
-References: <20251219-schneider-6-19-rc1-qspi-v1-0-8ad505173e44@bootlin.com>
- <20251219-schneider-6-19-rc1-qspi-v1-13-8ad505173e44@bootlin.com>
+	s=arc-20240116; t=1766225134; c=relaxed/simple;
+	bh=DfDGX9FIsfGQwcsPIJDeQIRJk0yJia7ApjJt70iFoxk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gIEtXnDOFbYeEsB2qBUF2KfPhAqy3vHAyb1HTcOhNV8YPh0vjsdBOxA7KDm4XfKQNWuWxKxz9j02wZCK7N3X1DlGGt8lDcOPnrnsB2wEcR18noysY6saF+kDUw7yNoCD+7hbp4mQc7D3ik/D3MrOtOD9A7Lh0g0kQy/auxl2snA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.214.229])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2df715f9e;
+	Sat, 20 Dec 2025 18:00:18 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/3] arm64: dts: rockchip: remove rtc regulator for ArmSoM Sige5
+Date: Sat, 20 Dec 2025 18:00:08 +0800
+Message-Id: <20251220100010.26643-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251219-schneider-6-19-rc1-qspi-v1-13-8ad505173e44@bootlin.com>
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9b3b33f23803a2kunmb12117682b9085
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGkxLVk5CGEsYQh1LSUIaHlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VJSUJZV1kWGg8SFR0UWUFZT0tIVUpLSUJDQ0xVSktLVU
+	tZBg++
 
-On Fri, Dec 19, 2025 at 08:22:15PM +0100, Miquel Raynal (Schneider Electric) wrote:
-> Add a node describing the QSPI controller.
-> There are 2 clocks feeding this controller:
-> - one for the reference clock
-> - one that feeds both the ahb and the apb interfaces
-> As the binding expect either the ref clock, or all three (ref, ahb and
-> apb) clocks, it makes sense to provide the same clock twice.
-> 
-> Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
-> ---
->  arch/arm/boot/dts/renesas/r9a06g032.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-> index 8debb77803bb..a6f4670f5c45 100644
-> --- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-> +++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-> @@ -66,6 +66,20 @@ soc {
->  		#size-cells = <1>;
->  		ranges;
->  
-> +		qspi0: spi@40005000 {
-> +			compatible = "renesas,r9a06g032-qspi", "renesas,rzn1-qspi", "cdns,qspi-nor";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x40005000 0x1000>, <0x10000000 0x10000000>;
+According to the schematic, RTC is powered by vcc_3v3_s3.
+The vcc_3v3_rtc_s5 regulator does not exist, remove it.
 
-reg is always the second property.
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-> +			interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&sysctrl R9A06G032_CLK_QSPI0>, <&sysctrl R9A06G032_HCLK_QSPI0>,
-> +				 <&sysctrl R9A06G032_HCLK_QSPI0>;
-> +			clock-names = "ref", "ahb", "apb";
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0>;
-> +			status = "disabled";
-> +		};
-> +
->  		rtc0: rtc@40006000 {
->  			compatible = "renesas,r9a06g032-rtc", "renesas,rzn1-rtc";
->  			reg = <0x40006000 0x1000>;
-
-Even nodes around tend to agree...
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+index 3386084f6318..392ba83ab05a 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+@@ -156,16 +156,6 @@ vcc_3v3_pcie: regulator-vcc-3v3-pcie {
+ 		vin-supply = <&vcc_5v0_sys>;
+ 	};
+ 
+-	vcc_3v3_rtc_s5: regulator-vcc-3v3-rtc-s5 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vcc_3v3_rtc_s5";
+-		regulator-boot-on;
+-		regulator-always-on;
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-		vin-supply = <&vcc_5v0_sys>;
+-	};
+-
+ 	vcc_3v3_s0: regulator-vcc-3v3-s0 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc_3v3_s0";
+-- 
+2.25.1
 
 
