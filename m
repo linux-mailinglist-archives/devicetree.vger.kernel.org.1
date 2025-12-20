@@ -1,209 +1,143 @@
-Return-Path: <devicetree+bounces-248397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C61B1CD24A3
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 02:04:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11BA8CD250D
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 02:40:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 51B81301D5A3
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 01:04:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E3908300C15C
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 01:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631951EB1AA;
-	Sat, 20 Dec 2025 01:04:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AWDtzS4K"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CD6247291;
+	Sat, 20 Dec 2025 01:40:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com [74.125.224.43])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B47249EB
-	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 01:04:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3499F15746E;
+	Sat, 20 Dec 2025 01:40:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766192676; cv=none; b=bpuC9GWckUFw1e1ZIod8Tp0RaPf5yH6QTF9RDhe9vjoix4g6xVKtQ5AUFacZehbjYOvhGZIVMIz5/Mu/uiQkJwL7GR8Ig7qFiHRjVOY40MNUh4VNmMdPlhL1dc5/5hnJsPqLH/PUZKnuPQYf5viZLQidNftLXFa1zk4laJoUgBI=
+	t=1766194831; cv=none; b=K9/XCn+GZ+gTbz9uk5OZTGyjOQfJ5rHGfyGloFdv3Xb0rfo3jo8CR+h4Bt7h/tSYzGa02b3uvL78BspUP0C/NO443gdKX/M/lwWKQOYxtjrZcxFWeTzCjlRheQ6h+qmbAm/8ONCFyucfYfRlfuDrTbgQ7YM3g+A351fN0Wd9Ph4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766192676; c=relaxed/simple;
-	bh=5nB8Ayg0KSqVD5B3LU63W8FbW3zQ+m5TUKuxdmyfZ3w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pZ7oNzTjKl/eIu6Cgz69zq+PMyfEPFvhG0S8U7vcXeiSSwWrz0m1OZp6ty4esBalmgYON85imQe9BdiAt1tTLo7B9OgODBqGTMSubglFc+8rRzb8LJOmp5rme8BRubLFYmI+gYSHe8OeKjBhkpl7hws5920l+8w0DAdmS2L/Fns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AWDtzS4K; arc=none smtp.client-ip=74.125.224.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f43.google.com with SMTP id 956f58d0204a3-640c9c85255so2373515d50.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 17:04:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766192673; x=1766797473; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uvfEcA4ngmwX8Z/ReyrjfSyYYOfbBzOa2QWavuhPe1g=;
-        b=AWDtzS4KClzFTmkb87Tsx6ivgdfU6F+cJSj77tIJrB+cJVOi/ESo1VoA6a8bj5/KYS
-         esUxbuLg93+UH9yobP3gBlqXRIDoKr5aC/O73+2DXkyw5cxWvFcvYjnUdZJ9JXVMBVk+
-         5DukfQR+KnLtuKBtNrAZtBCjOSgIXuaTs6N1u7KRwtbFqJBxnVPAmvTdc/Co2zXIzNBo
-         nDd22cqS1tvLQn32g5lb6Zb6O4FXNaTT2twJz5R2ZT/7/2qErrLqGjzUfh/bbfJoVgjC
-         TuhebO+VmMHxGj3zpfJDqiZGkXtfh7eAfL3QAS5Ku+L/MhPnw9uE+2LNgMWbfLy5U0qH
-         3yJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766192673; x=1766797473;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=uvfEcA4ngmwX8Z/ReyrjfSyYYOfbBzOa2QWavuhPe1g=;
-        b=jktcFG7Hnuc/3Ovvsr/JwEWK89388nhhcanKiKFgDBkzwlWT8I26vxP9yqoTfw8ait
-         HAoH8v1JWmzLCN7y/3upsMW7OU+GKBEtehS5Mz9AFjUwFxUH5Lc6mXWTGaHdDs4ca+dd
-         LCjFhRjCS/s4WOyvehVjKdqEPgo9qlo8lj5L/RrX34QcPmyZcRNh+RhZeJtELKLuFc1P
-         8mqtRvrZOu20uZuLf8pXzkBan/lf6xe+Qr8PSri21u8MbXUZkWnkdeDxkuHAT2gakvXO
-         eL0EfsRsmm/OyUmj+T/d/DPKqv9L3jSL6jOmbVCVXoqtFBIzZ9Pw6Kn6iuJYJBYRtXn5
-         ZLrw==
-X-Forwarded-Encrypted: i=1; AJvYcCVm+8NdTnelw9AVEX0zY+hmQeg2svUtXDisS+APNQRGL6wfE6t3ryUHNyhu1f9wJqFhS197QsXfZPmE@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPqJxLwVf+d1WGwSF+LbBMz6ekbilFqLRjtqpmsvkEuMyPdcWE
-	V47P66TfvL/YSr2wJQxEZcY1Iq1E52qpeNh95kfnEueEHQmGYaioXN5cv9Fzi6DvWmvZb6/eLZD
-	aV76uYj3dFHH0Y/vQFO0Ly6gn/hYrOOc=
-X-Gm-Gg: AY/fxX43uNPtSSJYnU0txSNo3jO+OLlGEHbsFcwKhlv7icyF0rK4irbGcq1pH4imsCj
-	SpHyVzpBnGbDHw1VoeorCy4GkeOF5OFSZ+KJbzBaSGQEp5G8DLo960IqXWP0vQybpf1e3/GEMg8
-	gmc/mbH/rrqk8v3ULp/ilDSof+08A6hi+AFFJ+94laEJtPH5M5pZCOJ+/HBHtTgmxR/1gGDbynH
-	mvbD+IC/P9kxRmyx3LjZlZ/3H/ZrmvAAvvdxTI4DOHSPHdBnt6sG+bAq1iuRa/i9mPigf1N945e
-	TsAbevdhgzy14v5J0uNIYNJjPWnq
-X-Google-Smtp-Source: AGHT+IEnRAac6u07uzA3LUk5jCrz4OGRvCsnGojqOSsZK7RLqvjo5JYP+wh5edVRUn03IOrbdzCAkAqdhNZxSYFsGbc=
-X-Received: by 2002:a05:690e:3c9:b0:645:5467:29f3 with SMTP id
- 956f58d0204a3-6466a859780mr2828699d50.39.1766192673550; Fri, 19 Dec 2025
- 17:04:33 -0800 (PST)
+	s=arc-20240116; t=1766194831; c=relaxed/simple;
+	bh=3hXRpQvFyucVlxMLGngwSvQY5C6Miw94XqZj97q0aI8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Vdf3E7Qo9kObWcmwceDL+QRRF1dCK9vsyynf6Z3C5Yk5QZHhQlI9P+hNlo/kwA8uZzNg3zj6PU/fVQr2G1yj8T5mfJ6hBOl1VlsLyDPIyHJaR0IQykjfR1Ofq2gOMn+qHFQ8Taq5khPypAWI1stAZiadyGwT/I8hmXXUzPKy4l0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from [127.0.0.1] (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 67DA43415E7;
+	Sat, 20 Dec 2025 01:40:25 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH RFC v2 0/4] Add clock support for SpacemiT K3 SoC
+Date: Sat, 20 Dec 2025 09:39:54 +0800
+Message-Id: <20251220-k3-clk-v2-0-1297b46a7340@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251217-mt8196-shader-present-v1-0-f6f8f3aa1e93@collabora.com> <20251217-mt8196-shader-present-v1-4-f6f8f3aa1e93@collabora.com>
-In-Reply-To: <20251217-mt8196-shader-present-v1-4-f6f8f3aa1e93@collabora.com>
-From: Chia-I Wu <olvaffe@gmail.com>
-Date: Fri, 19 Dec 2025 17:04:22 -0800
-X-Gm-Features: AQt7F2pOYJ6wtBd4hNgFJlclGwmWabkkUpx6tjcAEWdTtCs7JRe062F7FH3q2go
-Message-ID: <CAPaKu7TVeaEFRWBt7rF_uVUyYO72GHqFwKi7D52juPTRAk7URw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] pmdomain: mediatek: mtk-mfg: Expose shader_present as
- nvmem cell
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, 
-	Liviu Dudau <liviu.dudau@arm.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGz+RWkC/2XOS2rDMBCA4asErTtGM3ZiqatAoQfotmShyBNbO
+ JJayTUtIXevkFsodDkPPv6byJwcZ/G4u4nEq8suhjLQw07YyYSRwQ1lFiRpjyQ7mFuw1xmGM0l
+ UrdKGW1Ge3xJf3GeFXsXL85M4leXk8hLTV8VXrKfNQfx1VgQJirnrbS/t/myPI4clxiamUZzum
+ 5z4/aOULT+855xNLSuh1SMJ8gAzVtJG72PY5OFCykij8UD4Vy7ufwW1RFKom66TuidAcCHayRl
+ vjqM37toUukTdvwEEa7L4NgEAAA==
+X-Change-ID: 20251204-k3-clk-db2018389ae3
+To: Stephen Boyd <sboyd@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Haylen Chu <heylenay@4d2.org>, Guodong Xu <guodong@riscstar.com>, 
+ Inochi Amaoto <inochiama@gmail.com>, Yao Zi <me@ziyao.cc>, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Yixun Lan <dlan@gentoo.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2796; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=3hXRpQvFyucVlxMLGngwSvQY5C6Miw94XqZj97q0aI8=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpRf55LlAlPyhdM/vbDPipNg024LU0U722zw2+j
+ ysQPPQ7DD2JAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCaUX+eRsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+0Rgw/8DWOgPhKFPbtrETwlA5Xg4P8rz0wsYQFQSR/KX0myK7RXyEDvHxNK9
+ FqVveJan/3xQ9eWP+/aqvtk+SkkXmlD4h4+UwVvF8yOz+yDKaeL+HoyenkRiTVTK+wgznrEwsm5
+ mKNUd1BWGW53m2rvKu00QkCR/MByks+2YAqdhaLdE11NgRSQq/bov48IS5D8QzkFAMjl/Myid4Q
+ zJYmmm3bUloAJti/MjCM/7JmU1VzuMvVFBBYeMzRCjHNMklz5NCr1LR35R+IexsXZ/0RSYs4r94
+ RQS+/Y/HA7zG3GEGc4yQv5jNSxiaJEC1CVQBepESFgIzTx32C829pNAKEoByuJ+jfLTjnyDIaGU
+ 2Y+zr7o4sPrCfEag24uZGLAufHyH2XY/BEnhpbmopXuBiA1rs2Q3qkC1E6Y9Nezfn+khEVVS7sO
+ Mz/Lgxas3EQSeH9gQG6FaPcyAq5UW/RJxXSDaEsCb3BtvgZRieKixfi3boOSzFhQJXQ/3K7MQ7L
+ wOee2q5cvEXQoH8bJbgq6jQE4q/IY+eJIH5eiR7jl2rNnbi+c8f45lXPF2tggCYL+gDTwwHR6kd
+ qlOkDLFsaw3LSBbe53A55EWyfMEjO2bj8HsoB3mixGDEWH/P4t7ehH21iL5yR5HSNIGzq3qko3M
+ 8lUWtLUJ4VoPgP5aYWJvqHL2WrFNZM=
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
-On Wed, Dec 17, 2025 at 9:04=E2=80=AFAM Nicolas Frattaroli
-<nicolas.frattaroli@collabora.com> wrote:
->
-> Implement nvmem-provider functionality in mtk-mfg-pmdomain, such that it
-> can expose its GF_REG_SHADER_PRESENT value in the shared memory as an
-> nvmem cell for panthor.
->
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c | 57 ++++++++++++++++++++++=
-++++++
->  1 file changed, 57 insertions(+)
->
-> diff --git a/drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c b/drivers/pmdom=
-ain/mediatek/mtk-mfg-pmdomain.c
-> index 9bad577b3ae4..725ebc678f1b 100644
-> --- a/drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c
-> +++ b/drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c
-> @@ -10,6 +10,7 @@
->  #include <linux/clk-provider.h>
->  #include <linux/container_of.h>
->  #include <linux/iopoll.h>
-> +#include <linux/nvmem-provider.h>
->  #include <linux/mailbox_client.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> @@ -872,6 +873,58 @@ static int mtk_mfg_init_clk_provider(struct mtk_mfg =
-*mfg)
->         return 0;
->  }
->
-> +static int mtk_mfg_read_nvmem(void *priv, unsigned int offset, void *val=
-, size_t bytes)
-> +{
-> +       struct mtk_mfg *mfg =3D priv;
-> +       u32 *buf =3D val;
-> +
-> +       if (bytes !=3D 4)
-> +               return -EINVAL;
-> +
-> +       if (!mfg->shared_mem)
-> +               return -ENODEV;
-> +
-> +       if (offset + bytes >=3D mfg->shared_mem_size)
-> +               return -EINVAL;
-> +
-> +       *buf =3D readl(mfg->shared_mem + offset);
-> +
-> +       return 0;
-> +}
-> +
-> +static int mtk_mfg_init_nvmem_provider(struct mtk_mfg *mfg)
-> +{
-> +       struct device *dev =3D &mfg->pdev->dev;
-> +       struct nvmem_cell_info cell =3D {};
-> +       struct nvmem_config config =3D {};
-> +       struct nvmem_device *nvdev;
-> +       int ret;
-> +
-> +       config.reg_read =3D mtk_mfg_read_nvmem;
-> +       config.dev =3D dev;
-> +       config.read_only =3D true;
-> +       config.priv =3D mfg;
-> +       config.size =3D 4;
-> +       config.word_size =3D 4;
-> +
-> +       nvdev =3D devm_nvmem_register(dev, &config);
-> +       of_node_put(config.of_node);
-This looks like a dead line.
-> +       if (IS_ERR(nvdev))
-> +               return dev_err_probe(dev, PTR_ERR(nvdev), "Couldn't regis=
-ter nvmem provider\n");
-> +
-> +       cell.name =3D "shader-present";
-> +       cell.offset =3D GF_REG_SHADER_PRESENT;
-> +       cell.bytes =3D 4;
-> +       cell.np =3D of_get_child_by_name(dev->of_node, cell.name);
-> +
-> +       ret =3D nvmem_add_one_cell(nvdev, &cell);
-> +       /* cell.np purposefully not put as nvmem_add_one_cell does not in=
-crease refcount */
-I think you still need to of_node_put on errors.
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "Couldn't add cell %s\n", =
-cell.name);
-> +
-> +       return 0;
-> +}
-> +
->  static int mtk_mfg_probe(struct platform_device *pdev)
->  {
->         struct mtk_mfg *mfg;
-> @@ -984,6 +1037,10 @@ static int mtk_mfg_probe(struct platform_device *pd=
-ev)
->         if (ret)
->                 goto err_power_off;
->
-> +       ret =3D mtk_mfg_init_nvmem_provider(mfg);
-> +       if (ret)
-> +               goto err_power_off;
-> +
->         ret =3D of_genpd_add_provider_simple(dev->of_node, &mfg->pd);
->         if (ret) {
->                 dev_err_probe(dev, ret, "Failed to add pmdomain provider\=
-n");
->
-> --
-> 2.52.0
->
+I'm marking this series as RFC for now, as the driver is based on vendor code,
+and only tested on FPGA, the production SoC chip isn't ready yet.
+
+The SpacemiT K3 SoC's CCU (clock control unit) is similar to old K1 generation,
+the clock and reset functionalities are distributed across several IP blocks,
+therefore, we model them as several clock tree accordingly.
+
+The PLL clocks has changed register setting layout, so introduce a PLLA type.
+Some gate clocks has inverted enable/disable logic which writing 1 to disable,
+while writing 0 to enable.
+
+This patch will depend on two clock series a) fix building for modules [1],
+b) refacor common ccu driver [2]
+
+Link: https://lore.kernel.org/all/20251219012819.440972-1-inochiama@gmail.com/ [1]
+Link: https://lore.kernel.org/all/20251220-06-k1-clk-common-v1-0-df28a0a91621@gentoo.org [2]
+
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
+---
+Changes in v2:
+- has dependency on ccu common patch
+- fix wrong indention of DT docs
+- fix kfree() missing header issue
+- Link to v1: https://lore.kernel.org/r/20251211-k3-clk-v1-0-8ee47c70c5bc@gentoo.org
+
+---
+Yixun Lan (4):
+      dt-bindings: soc: spacemit: add k3 syscon compatible
+      clk: spacemit: ccu_mix: add inverted enable gate clock
+      clk: spacemit: ccu_pll: add plla type clock
+      clk: spacemit: k3: add the clock tree
+
+ .../devicetree/bindings/clock/spacemit,k1-pll.yaml |    9 +-
+ .../bindings/soc/spacemit/spacemit,k1-syscon.yaml  |   13 +-
+ drivers/clk/spacemit/Kconfig                       |    6 +
+ drivers/clk/spacemit/Makefile                      |    3 +
+ drivers/clk/spacemit/ccu-k3.c                      | 1482 ++++++++++++++++++++
+ drivers/clk/spacemit/ccu_common.c                  |    3 +-
+ drivers/clk/spacemit/ccu_common.h                  |    1 +
+ drivers/clk/spacemit/ccu_mix.c                     |   12 +-
+ drivers/clk/spacemit/ccu_mix.h                     |   12 +
+ drivers/clk/spacemit/ccu_pll.c                     |  118 ++
+ drivers/clk/spacemit/ccu_pll.h                     |   57 +-
+ include/dt-bindings/clock/spacemit,k3-clocks.h     |  390 ++++++
+ include/soc/spacemit/k3-syscon.h                   |  273 ++++
+ 13 files changed, 2359 insertions(+), 20 deletions(-)
+---
+base-commit: f2e01863fa4ca97dfd4b94654cadd805d34cf986
+change-id: 20251204-k3-clk-db2018389ae3
+prerequisite-message-id: 20251220-06-k1-clk-common-v1-0-df28a0a91621@gentoo.org
+prerequisite-patch-id: 273ee04bcff7701d6645e78566d8624fd8a2cbd9
+prerequisite-patch-id: 64047b0d0d79d767c9686cc7876316d983bea4e6
+prerequisite-message-id: 20251219012819.440972-1-inochiama@gmail.com
+prerequisite-patch-id: df430730ed961011cee5c5d47b7ace84b3c5ebb7
+prerequisite-patch-id: 64003618c33be925602e46b7543f2c13d3f36474
+
+Best regards,
+-- 
+Yixun Lan
+
 
