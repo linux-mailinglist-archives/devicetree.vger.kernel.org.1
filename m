@@ -1,145 +1,130 @@
-Return-Path: <devicetree+bounces-248407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0371CD25C6
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 03:49:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9FDECD2628
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 04:26:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 90FFD3013EF2
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 02:49:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A0343024E7C
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 03:26:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9354F1A38F9;
-	Sat, 20 Dec 2025 02:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 795D12DAFA8;
+	Sat, 20 Dec 2025 03:26:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b="M/f85/qf"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="OQUB7307"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail6.out.flockmail.com (mail6.out.flockmail.com [18.204.122.208])
+Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68DD7E0E4
-	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 02:48:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.204.122.208
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8092A2BEFED
+	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 03:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766198940; cv=none; b=T1UjhedAGPgT5y3GHZc/Qrx0oJWnKjlcyzhRWHsw5zzZtKC10p6ZLriQYB3iGz0IwldvBLgX+HeAhhmxvUPhtfg84fxD+dN7pD7q5PcJeQVK2ooJkKrJv1wU+882YcikJPjz7Jl2mpLWxjHhnGjjMnedLxcKe5Qyw6Dc5VsyLxo=
+	t=1766201164; cv=none; b=jAqTOhS8jteLAOxhKKnkjOGYkm/bKBW+Lz8ESAV3BAktXA/2GnPCJUdhaIysA36azeqdmoPs6kU7Q5V7iNi+tDzPhxsJgvowP2WXCyOYbZHUMFkelSdS0Ef3ArzVfph+i18V34TgbDc+vjxRMsosrLFlgaCmzd6tYFG3F+GQWUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766198940; c=relaxed/simple;
-	bh=m2Ah9/mD8Z6fhlkypXmz8p9HUX/8q/HEg/WIFvEGCzs=;
+	s=arc-20240116; t=1766201164; c=relaxed/simple;
+	bh=7eatRauTI6/dprxpeQO2aNgUSBjCWvSs24FopHtwCk0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rHwA0xP0XNKRY65NZEOmPCYMsnf1dY07ReU6tqofbPr/EhaL2Mlo1QgO8LrcUwBwPvbgKQLl+RAEJXdpcL4jurCYduHcwX1O7A8r7CGI1eIRBfDNPYyXmhG60/uPkr3cf/fREpjPV887aEy4O7R4JHEg8+ID5CM42nCdeqd/N2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b=M/f85/qf; arc=none smtp.client-ip=18.204.122.208
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-Received: from localhost (localhost [127.0.0.1])
-	by smtp-out.flockmail.com (Postfix) with ESMTP id 4dY8440vgrz2xCv;
-	Sat, 20 Dec 2025 02:48:52 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; bh=9hs/mZnXRigs3cVOr+/B8POWZbewDtqV2rmBsfTbDWM=;
-	c=relaxed/relaxed; d=ziyao.cc;
-	h=cc:subject:date:from:references:in-reply-to:to:message-id:mime-version:from:to:cc:subject:date:message-id:in-reply-to:references:reply-to;
-	q=dns/txt; s=titan1; t=1766198932; v=1;
-	b=M/f85/qfW08nQRYIBpNbEjp184VrhycoRo3YXYO38q7f3n7nA//0VcqX6P/J9dnUzGg7tnxO
-	OZbcKlq9JtraIdn5MVcsNpMbYnukrAmaF2FSHLFM3s3csWhorlZTS34g0fHsaT+aHTFFEeQlJ+3
-	Z+epGopsLFMpYwU6lW0HACvA=
-Received: from pie (unknown [117.171.66.90])
-	by smtp-out.flockmail.com (Postfix) with ESMTPA id 4dY83v45t9z2xB2;
-	Sat, 20 Dec 2025 02:48:43 +0000 (UTC)
-Date: Sat, 20 Dec 2025 02:48:34 +0000
-Feedback-ID: :me@ziyao.cc:ziyao.cc:flockmailId
-From: Yao Zi <me@ziyao.cc>
-To: Guodong Xu <guodong@riscstar.com>, Conor Dooley <conor@kernel.org>
-Cc: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@sifive.com>,
-	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
-	linux-serial@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@gentoo.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: Re: [PATCH 7/8] riscv: dts: spacemit: add initial device tree of
- SpacemiT K3 SoC
-Message-ID: <aUYOgl8ffcJ0Xfwg@pie>
-References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
- <20251216-k3-basic-dt-v1-7-a0d256c9dc92@riscstar.com>
- <60948ca2-ed3d-485b-9b11-15df7ef8791d@canonical.com>
- <CAH1PCMb=+TvB1w+G6a2ANDp05HUwC4r6CFBDHXFwSmoP3Mm8xw@mail.gmail.com>
- <f9b6b5e2-ec9e-4208-8267-77020e0a9411@canonical.com>
- <20251218-basil-quantum-225ce16e4699@spud>
- <CAH1PCMZ3KM9-D3NJ1N2LUHTHFSDVKmGKT5fU8knAL7NnV9E-gw@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fGkj84SV2L713pNcTBkYlQDV0U7VjJrPtIsy5k2aFSQfJihJDI3FrJnnquF+WlitDaRK0WZJFBN2gu6Qa3X2fnCVqxfrhVeMr7/6uKGjSsNNDyJzjFJ48ILC5qHs3N1h21kgvfwUtiHfiMlAJDDegAXwwm8uIpLP5XEexKM8Z9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=OQUB7307; arc=none smtp.client-ip=91.218.175.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Sat, 20 Dec 2025 11:25:48 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1766201154;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=A9HZSvwW4qmMonse9RS2qNPLZKcbtYx2zJp4auwFwjU=;
+	b=OQUB7307V4G5M3PRO7JpGLdo1MemhLz1bFIqtwnjK0BnIhVJ2fwHy2Nadr+16Pv0V9yNg+
+	2K7wy3eMnvjD5IsmnlYNVBJl0lazbRfvMWbtFOj7kzX3wR0Y96KZ7B+LD0WYg48ZC3dtwJ
+	F279XmdJQensQq7MUjoG0ypz4G2tiWM=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Troy Mitchell <troy.mitchell@linux.dev>
+To: Bo Gan <ganboing@gmail.com>, Troy Mitchell <troy.mitchell@linux.dev>,
+	dongxuyang@eswincomputing.com, mturquette@baylibre.com,
+	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	bmasney@redhat.com
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: [PATCH v8 2/3] clock: eswin: Add eic7700 clock driver
+Message-ID: <aUYXPBFhqz3Frdmo@troy-wujie14pro-arch>
+References: <20251113013637.1109-1-dongxuyang@eswincomputing.com>
+ <20251113013846.1222-1-dongxuyang@eswincomputing.com>
+ <aUS9bLVLhIPMOcWa@kernel.org>
+ <ade7690d-14d1-413a-b4b5-eda91d64207c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAH1PCMZ3KM9-D3NJ1N2LUHTHFSDVKmGKT5fU8knAL7NnV9E-gw@mail.gmail.com>
-X-F-Verdict: SPFVALID
-X-Titan-Src-Out: 1766198931978633735.27573.7898649982977667917@prod-use1-smtp-out1001.
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.4 cv=a8/K9VSF c=1 sm=1 tr=0 ts=69460e93
-	a=rBp+3XZz9uO5KTvnfbZ58A==:117 a=rBp+3XZz9uO5KTvnfbZ58A==:17
-	a=IkcTkHD0fZMA:10 a=MKtGQD3n3ToA:10 a=CEWIc4RMnpUA:10 a=VwQbUJbxAAAA:8
-	a=jDTaAnbEAQuvd0Yd3F0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-	a=3z85VNIBY5UIEeAh_hcH:22 a=NWVoK91CQySWRX1oVYDe:22
+In-Reply-To: <ade7690d-14d1-413a-b4b5-eda91d64207c@gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Fri, Dec 19, 2025 at 10:03:24AM +0800, Guodong Xu wrote:
-> Hi, Conor and Heinrich
+On Fri, Dec 19, 2025 at 02:39:41PM -0800, Bo Gan wrote:
+> Hi ESWIN folks,
 > 
-> On Thu, Dec 18, 2025 at 8:56 AM Conor Dooley <conor@kernel.org> wrote:
-> >
-> > On Wed, Dec 17, 2025 at 09:07:14AM +0100, Heinrich Schuchardt wrote:
-> > > On 12/17/25 08:11, Guodong Xu wrote:
-> >
-> > > > Specifically, I must adhere to
-> > > > Documentation/devicetree/bindings/riscv/extensions.yaml (and cpus.yaml for
-> > > > properties like 'riscv,sv39' which stands for the extension Sv39). If I
-> > > > add extension strings that are not yet defined in these schemas, such as
-> > > > supm, running 'make dtbs_check W=3' fails with: 'supm' is not one of
-> > > > ['i', 'm', 'a', ...], followed by "Unevaluated properties are not allowed."
-> > >
-> > > If Documentation/devicetree/bindings/riscv/extensions.yaml is incomplete
-> > > with respect to ratified extensions, I guess the right approach is to amend
-> > > it and not to curtail the CPU description.
-> >
-> > Absolutely. If the cpu supports something that is not documented, then
-> > please document it rather than omit from the devicetree.
+> Please refer to my comments below
 > 
+> On 12/18/25 18:50, Troy Mitchell wrote:
+> > Hi Xuyang,
+> > This is a quick review.
+> > 
+> > On Thu, Nov 13, 2025 at 09:38:46AM +0800, dongxuyang@eswincomputing.com wrote:
+> > > From: Xuyang Dong <dongxuyang@eswincomputing.com>
+> > > 
+> 
+> ...
+> 
+> > > +static int clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+> > > +			    unsigned long parent_rate)
+> > > +{
+> > > +	struct eswin_clk_pll *clk = to_pll_clk(hw);
+> > > +	struct clk *clk_cpu_lp_pll = NULL;
+> > > +	struct clk *clk_cpu_mux = NULL;
+> > > +	struct clk *clk_cpu_pll = NULL;
+> > > +	u32 postdiv1_val = 0, refdiv_val = 1;
+> > > +	u32 frac_val, fbdiv_val, val;
+> > > +	bool lock_flag = false;
+> > > +	int try_count = 0;
+> > > +	int ret;
+> > > +
+> > > +	ret = eswin_calc_pll(&frac_val,  &fbdiv_val, (u64)rate, clk);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	/* Must switch the CPU to other CLK before we change the CPU PLL. */
+> > > +	if (clk->id == EIC7700_CLK_PLL_CPU) {
+> > > +		clk_cpu_mux = __clk_lookup("mux_cpu_root_3mux1_gfree");
+> > It seems you want to switch to a safe clock source before setting up the
+> > PLL, right?
+> > 
+> > I am not sure whether your approach is correct, but the use of
+> > __clk_lookup() should be avoided whenever possible.
+> > Would it be feasible to obtain a proper clock handle somewhere and
+> > perform the necessary configuration from within a clk_notifier instead?
+> > > +		if (!clk_cpu_mux) {
+> > > +			pr_err("failed to get clk: %s\n",
+> > > +			       "mux_cpu_root_3mux1_gfree");
+> > > +			return -EINVAL;
+> > > +		}
+> 
+> I have a strong feeling that this switch to safe clock and back to PLL
+> can be done with something very similar to this:
+> 
+> "Add notifier for PLL0 clock and set it 1.5GHz on the JH7110 SoC"
+> https://lore.kernel.org/all/20240826080430.179788-1-xingyu.wu@starfivetech.com/
+> 
+YES, That's what I want.
+Thanks for your link!
 
-...
-
-> Strictly describing the SpacemiT X100/K3 (or any core) as RVA23-compliant
-> requires adding these extensions that are currently missing from
-> the kernel bindings:
-> RVA23U64: Ziccif, Ziccamoa, Zicclsm, Za64rs
-> RVA23S64: Ss1p13, Ssccptr, Sstvecd, Sstvala, Sscounterenw, Ssu64xl,
->           Sha, Shcounterenw, Shvstvala, Shtvala, Shvstvecd, Shvsatpa, Shgatpa
-> Plus 'Supm', 'Zic64b', 'Ssstateen', 'B' where the kernel supports them but
-
-Please note B is just the abbreviation of "zba", "zbb", and "zbs", all
-of them have been documented in extensions.yaml.
-
-> they are not literally documented in yaml.
+                    - Troy
+> Please take a look. Thanks!
 > 
-> Is this approach acceptable to you? If so, I will proceed with submitting them.
-> 
-> Thank you very much.
-> 
-> Best regards,
-> Guodong Xu
-> 
-
-Regards,
-Yao Zi
+> Bo
 
