@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-248452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B19A1CD2C42
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 10:34:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE1FFCD2C51
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 10:36:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AC915300D30B
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:34:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D66AF30124EE
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FB013043D5;
-	Sat, 20 Dec 2025 09:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B852A3043DE;
+	Sat, 20 Dec 2025 09:36:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YnQt/gUr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+pY4w9H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD12C2FE067;
-	Sat, 20 Dec 2025 09:34:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 764A22FA0DB;
+	Sat, 20 Dec 2025 09:36:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766223266; cv=none; b=nSS85zs+EL6K+gU/ejmRh7jnJ+sWrjRR+qTA8aYCoPI1D1HtIs13Nsf09dSJhRyEU3ZO/q6Ex9WgYRVjz7hKw3K5/HeHvvIJYiBzPAW0Tj4niVv2BNmmHAPGbzvwQ4fGWdjJUYJgjUBEwfMS2TiTrXcigG4SLWwDvVPBOhOWRUA=
+	t=1766223361; cv=none; b=HOR8Gl4iS+zwD0de2cLTIgVWPGgze9VD6gkTBxaEM5EpMRewGMkvFbTkVa5ir2prQa3LPeqzmqcgRCznwLmujSmvqv1lAcnI1U7Qqs1ZgDbmbzpFCcZDaljxpjeSbdWQ6M4Jv99ETzCbRym7F2xvKQS5KNsUeVZfcFGX6AUNjhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766223266; c=relaxed/simple;
-	bh=eIyfjlT66Z7KZMioqTIcLRoNnJpoh8HRfoh4oqlm0qQ=;
+	s=arc-20240116; t=1766223361; c=relaxed/simple;
+	bh=OLnLlx4v/AIwvRcwbXZaYDlKruE1sfOVkuJwxYp+QPU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=beNVbr6UCH5Yfpm9StdLVMOJXEPFCT9nJFkCxriZeiqkT/GqeIZ2okaKeEeRJIP1NHTZRwO/BV+ABx2tCyPjeVMv5I+QdS5rZMeeR6aZXwHphZSvWIDBgsfzAf1OIs326jgYBQlQvjXMTc88boalyQRwDqQAcEJvlCpjb5//co8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YnQt/gUr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94BCBC4CEF5;
-	Sat, 20 Dec 2025 09:34:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PwaLaKw6JVqgzAFOo4ZRLc/nWJ2yKmHZrHM1vr0UvDe2wnnkmpT3Jft9WZ0cvAz01LKhzQV546xaR+azD2VKi18AUdCXMLSuq3OF539Pbu+PHN9CX56wa34ljvfXa63uKNDeozjWZvupC4NciD0sIswMVYhh4x78buR0vZ3EZTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i+pY4w9H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09BB1C4CEF5;
+	Sat, 20 Dec 2025 09:35:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766223265;
-	bh=eIyfjlT66Z7KZMioqTIcLRoNnJpoh8HRfoh4oqlm0qQ=;
+	s=k20201202; t=1766223361;
+	bh=OLnLlx4v/AIwvRcwbXZaYDlKruE1sfOVkuJwxYp+QPU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YnQt/gUrcZGskZZpV/DTEu6HW8WyedgO/EqRvoeRonOWfQsBHETo9w+wxcT6dTnl/
-	 85oKA7QtUYAb7Pwk5OAcifycQ8Un28CYwE/NWF0IQNBSuWJD69ZGhHKp2kWvffg0io
-	 ZqlmDXZTavHZ4yVTPPoQz5IhFNyrbjTwc0g2TZGlz5m9P4jITtkclkuQJyS7dVZVhE
-	 qbW4IAhsu35ysHSJf95hYvzee7Zle/RO2saQNwhaa0Fuq40CHZsu/2+TUiqjazqLH9
-	 WwCqoSKEMcKzZOUaqa6ZvrHZ55aLpHWZJAiAXf2G0ik2Xr21qz5/gI+vw89X1ENRXC
-	 PZ+q2+Ohx3wtQ==
-Date: Sat, 20 Dec 2025 10:34:21 +0100
+	b=i+pY4w9Hvd5FUbuJ+ZRmcXX2WNziypRgOlzHjASYcFTnSrOCPcKuogOj0Y/f890bb
+	 ErK5bT/+96bFrEJ+A+2MP9IApmrtwbQ4zxF4mTM4mHv7vEDOwJeukKM1JYD59LAChy
+	 MZbySzTor3sM6rfg6HUh75+OANhOLP10nnUUfaLc/vjN32qyu1GdjQkXOtsNQtSJ+U
+	 Csx7Wu/sQlN6zF2d0/XU8xXZ6uBfhH6loiYAdf/1Y658lJOHBWN0HvHF54KfJvMqqY
+	 ZXHy8yAy/F92adZJ6p7cgwHWo2TAg1pXsAr5daDXrPgEqgSmyFUas407tur0cf9JFl
+	 0FMvh4rC8nUkg==
+Date: Sat, 20 Dec 2025 10:35:56 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alain Volmat <alain.volmat@foss.st.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Hugues Fruchet <hugues.fruchet@foss.st.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/6] dt-bindings: media: st: dcmipp: add 'power-domains'
- property
-Message-ID: <20251220-sociable-bald-partridge-7a67ab@quoll>
-References: <20251219-stm32-mp2x-dcmipp-csi-power-domain-v1-0-a6edb2aa8154@foss.st.com>
- <20251219-stm32-mp2x-dcmipp-csi-power-domain-v1-4-a6edb2aa8154@foss.st.com>
+To: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Vaishnav Achath <vaishnav.a@ti.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	=?utf-8?B?SGVydsOp?= Codina <herve.codina@bootlin.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Santhosh Kumar K <s-k6@ti.com>, 
+	Pratyush Yadav <pratyush@kernel.org>, Pascal Eberhard <pascal.eberhard@se.com>, 
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 01/13] spi: dt-bindings: cdns,qspi-nor: Add Renesas
+ RZ/N1D400 to the list
+Message-ID: <20251220-sexy-feathered-gorilla-3a6aab@quoll>
+References: <20251219-schneider-6-19-rc1-qspi-v1-0-8ad505173e44@bootlin.com>
+ <20251219-schneider-6-19-rc1-qspi-v1-1-8ad505173e44@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +64,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251219-stm32-mp2x-dcmipp-csi-power-domain-v1-4-a6edb2aa8154@foss.st.com>
+In-Reply-To: <20251219-schneider-6-19-rc1-qspi-v1-1-8ad505173e44@bootlin.com>
 
-On Fri, Dec 19, 2025 at 04:58:06PM +0100, Alain Volmat wrote:
-> STM32 DCMIPP may be in a power domain which is the case for the
-> STM32MP2x based boards.
-> Allow a single 'power-domains' entry for STM32 DCMIPP.
+On Fri, Dec 19, 2025 at 08:22:03PM +0100, Miquel Raynal (Schneider Electric) wrote:
+> Add support for the Renesas RZ/N1D400 QSPI controller.
 > 
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> ---
->  Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> This SoC is identified in the bindings with its other name: r9a06g032.
+> It is part of the RZ/N1 family, which contains a "D" and a "S"
+> variant. Align the compatibles used with all other IPs from the same
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+I don't get it. I see only one front compatible, so what is exactly
+aligned?
+
+> SoC, which requires providing 3 compatibles (the SoC specific
+> compatible, the family compatible, and the original Cadence IP).
+> 
+> Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> index 53a52fb8b819..62948990defb 100644
+> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> @@ -80,6 +80,10 @@ properties:
+>            # controllers are meant to be used with flashes of all kinds,
+>            # ie. also NAND flashes, not only NOR flashes.
+>            - const: cdns,qspi-nor
+> +      - items:
+> +          - const: renesas,r9a06g032-qspi
+
+This should be enum, knowing how Renesas adds more devices.
+
+> +          - const: renesas,rzn1-qspi
+> +          - const: cdns,qspi-nor
 
 Best regards,
 Krzysztof
