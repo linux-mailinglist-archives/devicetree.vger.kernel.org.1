@@ -1,53 +1,57 @@
-Return-Path: <devicetree+bounces-248433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E460CD2B1A
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:50:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21870CD2B20
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:54:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AF34D3001625
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 08:50:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0F32D30094A1
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 08:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7952E2E54AA;
-	Sat, 20 Dec 2025 08:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6432EDD6C;
+	Sat, 20 Dec 2025 08:54:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NQ7WTYEz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OLDHIbD7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD3D4A35;
-	Sat, 20 Dec 2025 08:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 251524A35;
+	Sat, 20 Dec 2025 08:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766220650; cv=none; b=tY1noGgT9eQff8Rfwcp0KNLLNLDT8LFfh2jJSgrtseRmVDKSMfv9DQMDnAigMEVBjUgNcFfbJ8djTodemm+dX6/NZchSRjnexD5RJxJo8boibqn+nfAX5Cfs7OFTTHdCH1YeyLG/EI4Hc7Vk7mbCSaJmQ3C0RgyDVguF1GP8vDY=
+	t=1766220846; cv=none; b=dL1k3VSUvH4c1pkal5rAeOQc6P8C/7ZtJVOQAYyBZu62VtOd+xxnv6nKEjb6TjdcBO/c0YTwH34dSOkXinVmFR2ZM7iRw0LNG3ll1GV+z72A6hk65Nhtnrkof0l8YZF8Ucl95kgY4TaEWYelUMhujWS1eu6JuVLY4TxOfJjj1bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766220650; c=relaxed/simple;
-	bh=KMGRJxlzAk+Zjh9XzcPMcNYeP3+MhI920DxzhKPK+7E=;
+	s=arc-20240116; t=1766220846; c=relaxed/simple;
+	bh=ME1PQR0kwfmB/h9m9Q9QgcF8LIQq656uWfk3ydEYZN0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hlUi4LRfXCY18t/H4sX+vzGx9NfNRdbdLW2ljB7zZSTQ4LZB83T0PZSwW5tSnLrVVMr9Y/lbRRO8toFc9qJBhBmKcEhTKHzIj/7NOselgihjWHZQnydyJAKfjeO6ep0kgseJrP8qVmjlHb8jalUySGdK9DBrEvI9/RyJ1QcgL1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NQ7WTYEz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7708C113D0;
-	Sat, 20 Dec 2025 08:50:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MZTUR6AmxHmdZqxAYTa9yxLiOG5UfQpVdotTeSU1/aAfLiBxfNsbRdDXyG7BL94Bf/opuIY9/kuNjdzl8vLNbuD0BrAi6Fa9Xa4lGWlA/HnRuCGFtxJYjPLXeOErE269ic/nO2upp3zNHwwHLciH8U7HD0YZam3BTCadrKA2MOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OLDHIbD7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20292C4CEF5;
+	Sat, 20 Dec 2025 08:54:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766220649;
-	bh=KMGRJxlzAk+Zjh9XzcPMcNYeP3+MhI920DxzhKPK+7E=;
+	s=k20201202; t=1766220845;
+	bh=ME1PQR0kwfmB/h9m9Q9QgcF8LIQq656uWfk3ydEYZN0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NQ7WTYEzzfbjDdoO/QuQaA0CK/JT2Lm2UQS9zvmWR2AtyVp4pmq5AMf1JzIHs4OdP
-	 daQifxpDMQrA8O4Bd7F3DqI2swCOLQ9LSpTH4kuu+NRYmnkAqGf3Qe0k5F2BxqNCU+
-	 5q/593xFifVpWI9niLJGPxwjbQndnhwBrfeI0VvlqJf/DBQxdkNNKoXmqC7vfY6Ywd
-	 csPVH2wFeZeOHTmFYsUyFt5dDRn4NEuDg3gyMptCcYJjwe7jufuJESFRrmc72EdJ0y
-	 Zdq8MjVCdQZQTARx5KhY3rdPP7cPkjEa5lhg/lyI0Ch/PNKYbc39hBDbI1kx/lhJAf
-	 oZhwGQ4TI933A==
-Date: Sat, 20 Dec 2025 09:50:45 +0100
+	b=OLDHIbD7oyU8mmVmkoxmE4E8Qtb3yibI9KJsX+HvXPVAyAr3c8LgGbndyfebXe3EA
+	 ChmOfPNoXcJIs/ZzW2KG/jCc83M/I84b4DmASvqXTKXRoKKFQH4GBhtOVxWAWj3Zf8
+	 wtv6+IuSWStMJwvB05lsUzD5I7mcSDZY9q8AKxsqVYBNSkbUsofgBlz16o8fndLRHE
+	 /xSveaX3vLihZqpX3TQtIDlWyopKGidVepz+xAv1vItCyZLnFlpbGidNrYfeyPpe6K
+	 zTZz3oFkxYENiF73YVXVBB3iBEE8Vjg4VC4DHzXIJ9BhUo2l0qz3rbBPIIpwzWZJ8U
+	 GEqOJ3cvLE8fw==
+Date: Sat, 20 Dec 2025 09:54:02 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: Add Bitmain BM1880 System Controller
-Message-ID: <20251220-savvy-ninja-sparrow-ebfcbc@quoll>
-References: <20251215212639.3320085-1-robh@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Alexandru Gagniuc <mr.nuke.me@gmail.com>, andersson@kernel.org, 
+	mathieu.poirier@linaro.org, krzk+dt@kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/9] dt-bindings: remoteproc: qcom: add IPQ9574 image
+ loader
+Message-ID: <20251220-imaginary-merciful-quoll-a91a4c@quoll>
+References: <20251219043425.888585-1-mr.nuke.me@gmail.com>
+ <20251219043425.888585-2-mr.nuke.me@gmail.com>
+ <20251219144433.GA3163791-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,19 +60,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251215212639.3320085-1-robh@kernel.org>
+In-Reply-To: <20251219144433.GA3163791-robh@kernel.org>
 
-On Mon, Dec 15, 2025 at 03:26:38PM -0600, Rob Herring (Arm) wrote:
-> Add the already in use Bitmain BM1880 System Controller binding. All the
-> child nodes already have schemas.
+On Fri, Dec 19, 2025 at 08:44:33AM -0600, Rob Herring wrote:
+> On Thu, Dec 18, 2025 at 10:34:10PM -0600, Alexandru Gagniuc wrote:
+> > Document the IPQ9574 native (non-PAS) WCSS image loader. It is similar
+> > to IPQ8074 WCSS, but requires several new clocks. These clocks must be
+> > enabled by the host in non-PAS mode, and are not optional. Add an
+> > example that uses the "qcom,ipq9574-wcss-pil" binding.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../bindings/mfd/bitmain,bm1880-sctrl.yaml    | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/bitmain,bm1880-sctrl.yaml
+> Is the new example really much different and unique. If not, drop it 
+> (especially since it wasn't even tested).
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+There is simply no example for existing devices, so this is fine. It
+could be mentioned here WHY it is being added, which would solve two
+people's questions (yours and mine earlier). If only people knew and
+said WHY they are doing something.
 
 Best regards,
 Krzysztof
