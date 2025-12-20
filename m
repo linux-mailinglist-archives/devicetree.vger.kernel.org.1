@@ -1,91 +1,145 @@
-Return-Path: <devicetree+bounces-248406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F2E6CD2582
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 03:07:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0371CD25C6
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 03:49:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2876D300FA36
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 02:07:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 90FFD3013EF2
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 02:49:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B882E8B67;
-	Sat, 20 Dec 2025 02:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9354F1A38F9;
+	Sat, 20 Dec 2025 02:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pu1atnqP"
+	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b="M/f85/qf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail6.out.flockmail.com (mail6.out.flockmail.com [18.204.122.208])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753562E62C8;
-	Sat, 20 Dec 2025 02:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68DD7E0E4
+	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 02:48:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.204.122.208
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766196421; cv=none; b=QtIPQNPlC/0FkLq8KyO/Xf3tJYEeaVCQbLDY0ApbuljOWfYw2CeCKXqkCz7Y7/t9LuZPpJHsqjaiDVR7/OFGp7naJZIhQWNHCHN1wmH6zUGxOPgcDojiUxcsG06Xf2jrrzQFiF9s/okQzgZIgf3BjDWTMvQExBD9kS2FDLGKLWo=
+	t=1766198940; cv=none; b=T1UjhedAGPgT5y3GHZc/Qrx0oJWnKjlcyzhRWHsw5zzZtKC10p6ZLriQYB3iGz0IwldvBLgX+HeAhhmxvUPhtfg84fxD+dN7pD7q5PcJeQVK2ooJkKrJv1wU+882YcikJPjz7Jl2mpLWxjHhnGjjMnedLxcKe5Qyw6Dc5VsyLxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766196421; c=relaxed/simple;
-	bh=wEXvmEKyIFrnHKRquW8HLOdmbtTIV8EBnBes5n6SzFI=;
+	s=arc-20240116; t=1766198940; c=relaxed/simple;
+	bh=m2Ah9/mD8Z6fhlkypXmz8p9HUX/8q/HEg/WIFvEGCzs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aoHpHPfPFXk70wdhS6hfZVFY6HWHoRRtUg+QUBty2CfghOuL85mKgY2JzG/zTNkOyIbnNZj3bA/6DJ2PNkECeY6/V5sHOCiLWAICva23ny2vHV9etSKbSsAf/l0oT31mSPjaCseynIHSdvRD2oMUr21D+4A681grGuf8tJ853rk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pu1atnqP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11690C4CEF1;
-	Sat, 20 Dec 2025 02:07:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766196421;
-	bh=wEXvmEKyIFrnHKRquW8HLOdmbtTIV8EBnBes5n6SzFI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pu1atnqPB+6Plnmla0u814Vr+bOstL6yGKPEBrVZReTYp0Sfg/2484wUdqfAeV+Zn
-	 tNn3ftAEz3VwF/xX/KBdb2OZLjOZKZMaMajFcQEgy2AMROFRwIzXAoWOGcY8MSUZ6T
-	 p3Up0w2hYUmqT0Sz9/OJHdJ0nfyb5cLIpfIDedJAwdpZf2CbM4+DURHn46yzdZZkCk
-	 cb1rg6YdJUp3FRZvC5dwuB//UFZ9m3+YybaHpUFvxKHE3CXQWL6zQnUo0xR9o64aW1
-	 GBbfs/ekwST6PPVlZ5r1x03UzcjM6WhV49J2VVjGfwO+DEKVx11Xk5WQhYDvDXvCOm
-	 EBzeDyA1rjEuQ==
-Date: Fri, 19 Dec 2025 20:06:59 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: linux@ew.tq-group.com, Peter Chen <peter.chen@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
-	linux-usb@vger.kernel.org, Marek Vasut <marex@denx.de>,
-	Markus Niebel <Markus.Niebel@tq-group.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=rHwA0xP0XNKRY65NZEOmPCYMsnf1dY07ReU6tqofbPr/EhaL2Mlo1QgO8LrcUwBwPvbgKQLl+RAEJXdpcL4jurCYduHcwX1O7A8r7CGI1eIRBfDNPYyXmhG60/uPkr3cf/fREpjPV887aEy4O7R4JHEg8+ID5CM42nCdeqd/N2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b=M/f85/qf; arc=none smtp.client-ip=18.204.122.208
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
+Received: from localhost (localhost [127.0.0.1])
+	by smtp-out.flockmail.com (Postfix) with ESMTP id 4dY8440vgrz2xCv;
+	Sat, 20 Dec 2025 02:48:52 +0000 (UTC)
+DKIM-Signature: a=rsa-sha256; bh=9hs/mZnXRigs3cVOr+/B8POWZbewDtqV2rmBsfTbDWM=;
+	c=relaxed/relaxed; d=ziyao.cc;
+	h=cc:subject:date:from:references:in-reply-to:to:message-id:mime-version:from:to:cc:subject:date:message-id:in-reply-to:references:reply-to;
+	q=dns/txt; s=titan1; t=1766198932; v=1;
+	b=M/f85/qfW08nQRYIBpNbEjp184VrhycoRo3YXYO38q7f3n7nA//0VcqX6P/J9dnUzGg7tnxO
+	OZbcKlq9JtraIdn5MVcsNpMbYnukrAmaF2FSHLFM3s3csWhorlZTS34g0fHsaT+aHTFFEeQlJ+3
+	Z+epGopsLFMpYwU6lW0HACvA=
+Received: from pie (unknown [117.171.66.90])
+	by smtp-out.flockmail.com (Postfix) with ESMTPA id 4dY83v45t9z2xB2;
+	Sat, 20 Dec 2025 02:48:43 +0000 (UTC)
+Date: Sat, 20 Dec 2025 02:48:34 +0000
+Feedback-ID: :me@ziyao.cc:ziyao.cc:flockmailId
+From: Yao Zi <me@ziyao.cc>
+To: Guodong Xu <guodong@riscstar.com>, Conor Dooley <conor@kernel.org>
+Cc: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@sifive.com>,
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
+	linux-serial@vger.kernel.org, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Pawel Laszczak <pawell@cadence.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Roger Quadros <rogerq@kernel.org>, linux-clk@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>
-Subject: Re: [PATCH 4/6] dt-bindings: arm: fsl: add bindings for TQMa8x
-Message-ID: <176619641876.374149.1170239999077862047.robh@kernel.org>
-References: <20251218152058.1521806-1-alexander.stein@ew.tq-group.com>
- <20251218152058.1521806-5-alexander.stein@ew.tq-group.com>
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: Re: [PATCH 7/8] riscv: dts: spacemit: add initial device tree of
+ SpacemiT K3 SoC
+Message-ID: <aUYOgl8ffcJ0Xfwg@pie>
+References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
+ <20251216-k3-basic-dt-v1-7-a0d256c9dc92@riscstar.com>
+ <60948ca2-ed3d-485b-9b11-15df7ef8791d@canonical.com>
+ <CAH1PCMb=+TvB1w+G6a2ANDp05HUwC4r6CFBDHXFwSmoP3Mm8xw@mail.gmail.com>
+ <f9b6b5e2-ec9e-4208-8267-77020e0a9411@canonical.com>
+ <20251218-basil-quantum-225ce16e4699@spud>
+ <CAH1PCMZ3KM9-D3NJ1N2LUHTHFSDVKmGKT5fU8knAL7NnV9E-gw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251218152058.1521806-5-alexander.stein@ew.tq-group.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH1PCMZ3KM9-D3NJ1N2LUHTHFSDVKmGKT5fU8knAL7NnV9E-gw@mail.gmail.com>
+X-F-Verdict: SPFVALID
+X-Titan-Src-Out: 1766198931978633735.27573.7898649982977667917@prod-use1-smtp-out1001.
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.4 cv=a8/K9VSF c=1 sm=1 tr=0 ts=69460e93
+	a=rBp+3XZz9uO5KTvnfbZ58A==:117 a=rBp+3XZz9uO5KTvnfbZ58A==:17
+	a=IkcTkHD0fZMA:10 a=MKtGQD3n3ToA:10 a=CEWIc4RMnpUA:10 a=VwQbUJbxAAAA:8
+	a=jDTaAnbEAQuvd0Yd3F0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+	a=3z85VNIBY5UIEeAh_hcH:22 a=NWVoK91CQySWRX1oVYDe:22
 
-
-On Thu, 18 Dec 2025 16:20:51 +0100, Alexander Stein wrote:
-> TQMa8x is a SOM family using NXP i.MX8QM CPU family
-> MBa8x is an evaluation mainboard for this SOM.
+On Fri, Dec 19, 2025 at 10:03:24AM +0800, Guodong Xu wrote:
+> Hi, Conor and Heinrich
 > 
-> Signed-off-by: Markus Niebel <Markus.Niebel@tq-group.com>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> On Thu, Dec 18, 2025 at 8:56 AM Conor Dooley <conor@kernel.org> wrote:
+> >
+> > On Wed, Dec 17, 2025 at 09:07:14AM +0100, Heinrich Schuchardt wrote:
+> > > On 12/17/25 08:11, Guodong Xu wrote:
+> >
+> > > > Specifically, I must adhere to
+> > > > Documentation/devicetree/bindings/riscv/extensions.yaml (and cpus.yaml for
+> > > > properties like 'riscv,sv39' which stands for the extension Sv39). If I
+> > > > add extension strings that are not yet defined in these schemas, such as
+> > > > supm, running 'make dtbs_check W=3' fails with: 'supm' is not one of
+> > > > ['i', 'm', 'a', ...], followed by "Unevaluated properties are not allowed."
+> > >
+> > > If Documentation/devicetree/bindings/riscv/extensions.yaml is incomplete
+> > > with respect to ratified extensions, I guess the right approach is to amend
+> > > it and not to curtail the CPU description.
+> >
+> > Absolutely. If the cpu supports something that is not documented, then
+> > please document it rather than omit from the devicetree.
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+...
 
+> Strictly describing the SpacemiT X100/K3 (or any core) as RVA23-compliant
+> requires adding these extensions that are currently missing from
+> the kernel bindings:
+> RVA23U64: Ziccif, Ziccamoa, Zicclsm, Za64rs
+> RVA23S64: Ss1p13, Ssccptr, Sstvecd, Sstvala, Sscounterenw, Ssu64xl,
+>           Sha, Shcounterenw, Shvstvala, Shtvala, Shvstvecd, Shvsatpa, Shgatpa
+> Plus 'Supm', 'Zic64b', 'Ssstateen', 'B' where the kernel supports them but
+
+Please note B is just the abbreviation of "zba", "zbb", and "zbs", all
+of them have been documented in extensions.yaml.
+
+> they are not literally documented in yaml.
+> 
+> Is this approach acceptable to you? If so, I will proceed with submitting them.
+> 
+> Thank you very much.
+> 
+> Best regards,
+> Guodong Xu
+> 
+
+Regards,
+Yao Zi
 
