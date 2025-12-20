@@ -1,112 +1,87 @@
-Return-Path: <devicetree+bounces-248505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A345CCD3443
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 18:14:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD5B7CD3446
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 18:15:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 78958301226A
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 17:14:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 81A14300E031
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 17:15:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C443D30E84E;
-	Sat, 20 Dec 2025 17:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3EB30DEBD;
+	Sat, 20 Dec 2025 17:15:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BRXw6uzL";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="h57BNvza"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="S8phQJ1J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49EE830C379
-	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 17:14:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2ADA19B5A3;
+	Sat, 20 Dec 2025 17:15:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766250850; cv=none; b=MX8uAQmZWzo9unLEolQjDWmKGLItMs5Js/iHZH5SmN8UP4RnA2RSTVYa65pjekiK5FSn1Vo3WT4c9Wovl+I1npdGKiG7uS9/abexJqi5XS14Uy60TX8wu4z5Zwzjr7uAGqrpLoSF1QXF7R7z/sHrgEdgfpUpY+13RRjwtCYa97o=
+	t=1766250936; cv=none; b=HONAN+5k9tbxe9XYfYIUjDC629T1vwlFxlmuBv47Y5DMtdju1lyNx/2qpZf0gxtndsMjV/wNizPNYb7fPpPRILnPxp5yFYhlek8F7NaBL+NUbipQXMk6zsbp179bUcsnWkKA7/NawGjzMhC8PXBCKRsN7adVolNbH7yItAM2Udg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766250850; c=relaxed/simple;
-	bh=2HP7cyfnaW6jIR1poNT4mAzbIUboZJHSQiyaw6iKHJw=;
+	s=arc-20240116; t=1766250936; c=relaxed/simple;
+	bh=Hcqx9K9e2DdZM+fc4kG1hUDJm+AVPCZc+SF3IRp/b7A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GHjHjDY7feG/Z6RCldGOGQpa9sGCzg3Y8tBDoQVU7oxTeH+nZfJMr2jJhr9eslBIJqbkkhdqutHKQ/C5MvurQjho39mb+S6ExXt8jEBPQsAtRyYzPuSs3rTOWHV7eRQHC7R8K7WiFj5eB7hshoxAKC0OFnB3Ll9UN1Cv+jl+X5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BRXw6uzL; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=h57BNvza; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BKBP2xt3403072
-	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 17:14:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=WSzOEHcq0zxLmpCA6MvjFUl2
-	Z97V94MIOLL7JeO36gg=; b=BRXw6uzLGEFpJ1n16EyLxMmtypKebxecMYdDA/od
-	iJ0Nf97F3oAzToCiFrURAqFYoETSvsy3ZWiTPFx4tB7jaMUIjy+B0bal/D8gC1pf
-	BLliDBv9Y7oZ3krL7lugF90tdhEwnJ5lV8fBiWXCqdqAO7z3ZepiefzgfeiHCLS5
-	yGivBHUtntg9Hxw9qyDI6pYepAe8vbOYkF5ShCJLv5+4prwwodgYGzoK4wmTRIGL
-	wpTdYHcZjMynLBEzwME6xrhXxTLokhVYm/3KvFQIdfVJISjlS6D3ldW219iEsvMU
-	Gxv9aSVJLPtvdp1omT/hScLhJwvuFU/B1BN4rf/lB22Dtw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b5mtqh16y-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 17:14:07 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-8804b991a54so90613216d6.2
-        for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 09:14:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766250846; x=1766855646; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WSzOEHcq0zxLmpCA6MvjFUl2Z97V94MIOLL7JeO36gg=;
-        b=h57BNvzancjQcVN64gdFGFAQeKRO3kcU5714CRs0AuT3mIKFPvk5Vx9hkocr0MoMpU
-         3LSMbF9tUj3daVUeDou0UeqrEQqDABD2fgAOcb2XgJ+XrHEeEQ1NOLkqNB0Yj5uAtuwp
-         jzLhOr8oHX2A/3plqytNH2StIGf9ijIIa1PJfqwdvqXBVeu84iS5ROSvv2ZBPHYhWdrQ
-         qU1sfhcYLPnhKS/1iW5hNB8Hj6I2Insja9hPI32pbcmey69MncrdNLctdbsa10g4g0M2
-         INWEEXnElqt1bVVGjI14f5yGr2zVzUNlvKWZBob+jvZJQ9PndeIYtaEmWwCmyLnua4G4
-         I6MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766250846; x=1766855646;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WSzOEHcq0zxLmpCA6MvjFUl2Z97V94MIOLL7JeO36gg=;
-        b=IPdbYasSdysKsEW1HtGVmCgCIu/bwZTl2A5v8mkqU9MTPrSAzVqZh8CjuAvY4bEaK/
-         m2L3gY1auWowyoz8djbLtHhkEBuzAxY1YKyMHRHLaf70w1JZ3iEYgT1d+4R2I7C1l4V9
-         Dipp3sYzBx/jS/uYBOUuYH26QgaWlXIsaYWY9SvNpfWspUg0C4+/viaj9VyzVbbH3du8
-         RP0bDmhPgqFkdi2/6Z3H97bJejfEIjboD9QgwsRdk1sBIRhHSIi1d6qkOj1z/AXvgBTC
-         XlCC8vfdaWmeC0otwkNu5UX5MKnJoeAS4L6JYuqRYfRfBcng/Ebrb/14w1Kbgq2MokgW
-         r11w==
-X-Forwarded-Encrypted: i=1; AJvYcCU+b9KiX6xWX1AGRa8F8MW6zhoP252iOSMYBJEJYPckXLnvv/4SsOIpdUSZ4JqbIQ0L/xkFNhK/lqsE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeA1+N+2vlNJ5cJ4SNCwBbsvweg7JH24HV/EDA0jhTaMoiOPjf
-	NXQlCtMcwx5jetKiI0/EMujHhx6lrm8TJY16ZoTGU8xMg65o+UzBVfZcWUbrv2Tm4o4ZiVtpGri
-	ZWC2xb/mJSfqUkW0W+wssA+i0sLMbJPwm6FELNEL8mkrrS6F8epIrFY+qF2a/OFqr
-X-Gm-Gg: AY/fxX6UpyGBF+4wtXtiALy9RHanbc231CVSHXVPlN2KaDe/hxorzquUBLJNK1wEV+D
-	cJ1CrXN+b1N04uSaho6mUgCJ7BPAkKWbHlOLYzjfyYwgbNIDSqp6rAMTHbttYK+4/nl0thMp6at
-	9CBDLFqHI6c5wikJpRGASVruMChMX6eKIlrFMoD+p8Ed1HQ/MK0RDF1dRrsdTJ6b29cD+FvkBe8
-	eZdcQHuC3RssxkJp4GVf0rvSgzL7TCc8QQHr5H9gLA5puHSMb49Bvnb/iYgv2B1/HulsCfQ4tAz
-	06Hp9EX4BJQkXI/va967MBZ99/HwNKixgwTInjKsfXw0Ib/7qYZCuMzikXTK3cFGBNtQKBjaUEy
-	AEx+Z2Aq1UiMHYrljLFK6upGzaU3XN5UZ7bnyhLruDtbn3cyF82V/Fo6aX2BOm1TGWXDhMcZa2Z
-	Ca0653KIboxpyIvcWzvEKzIig=
-X-Received: by 2002:a05:6214:5191:b0:882:4555:f164 with SMTP id 6a1803df08f44-88d876066d5mr98959626d6.40.1766250846195;
-        Sat, 20 Dec 2025 09:14:06 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE8qZrv9VxLeGT2ry7p5S5eSnV2ALEFgspQzmYK4flM4NAF7DHnxDEWWiIAMWKPU4yOK5/ChA==
-X-Received: by 2002:a05:6214:5191:b0:882:4555:f164 with SMTP id 6a1803df08f44-88d876066d5mr98959136d6.40.1766250845538;
-        Sat, 20 Dec 2025 09:14:05 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a186280b1sm1610706e87.89.2025.12.20.09.14.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Dec 2025 09:14:04 -0800 (PST)
-Date: Sat, 20 Dec 2025 19:14:03 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rajendra.nayak@oss.qualcomm.com, sibi.sankar@oss.qualcomm.com
-Subject: Re: [PATCH v3 2/4] arm64: defconfig: Enable Glymur configs for boot
- to shell
-Message-ID: <gqmwj35n56yc6cd3sebyyrxakb3d7qw5pb45amhmefzj2253nv@plnbjof5zfws>
-References: <20251219-upstream_v3_glymur_introduction-v3-0-32271f1f685d@oss.qualcomm.com>
- <20251219-upstream_v3_glymur_introduction-v3-2-32271f1f685d@oss.qualcomm.com>
- <ee084ec9-31a4-492f-97c7-009dbfd77613@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hWcrR9pxiSbK3aP5LXgO55IvZVBzgeJseIfJVzZMVmqG82tyE3ryN3bac9U1OWOFlUUqLISikcj0xVFqlykEJD7TrjnogHaMOw3EWnCm3yrNFTpQJu3B3Tu72SnF2nhQxvlIOUuSH9841MzWIK+KWEum3MI60vilk+M1seVGyQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=S8phQJ1J; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1766250935; x=1797786935;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Hcqx9K9e2DdZM+fc4kG1hUDJm+AVPCZc+SF3IRp/b7A=;
+  b=S8phQJ1JVVKq1xaksOH/tKV2tsSO/+vETjCCmZBLGdFae+MnrWF2/EoV
+   6EdowpKCX4i+KrgK68Sv9wjaeZdynZgH0MX7MuNOQ5/WDS2GEymwq2+/x
+   LZ81N27FirK8mVsLaxJq+GGNyWqLMGTNbQWWeQco1IYO4cq170R4NRipD
+   +llU5z3E7c3Zv7HlI9fd7AcDq+B06oiqXzgm0fep6rVba8COMcWMCamr8
+   8QmVDSYaKZoUQMBOAHETeI7q1AHJP70S9TCz1NKI4BGFmTsuDn1+7MxwN
+   oo3SrtZ2kv0mRzlJJaGohS84ayMoARRWdKEjc7ai3XsPr8PcrxROquf0t
+   A==;
+X-CSE-ConnectionGUID: zSAf1TxTRPK0epPO6FoLjg==
+X-CSE-MsgGUID: vre2GazjRKWShyHJHCdgPQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11648"; a="67931018"
+X-IronPort-AV: E=Sophos;i="6.21,164,1763452800"; 
+   d="scan'208";a="67931018"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2025 09:15:34 -0800
+X-CSE-ConnectionGUID: xj9DdeaKSq6vz1gN+HADYg==
+X-CSE-MsgGUID: upGwtnYiSQCeULUBwleOSQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,164,1763452800"; 
+   d="scan'208";a="199046442"
+Received: from lkp-server01.sh.intel.com (HELO 0d09efa1b85f) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 20 Dec 2025 09:15:30 -0800
+Received: from kbuild by 0d09efa1b85f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vX0YB-000000004vl-3lXj;
+	Sat, 20 Dec 2025 17:15:27 +0000
+Date: Sun, 21 Dec 2025 01:15:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alain Volmat <alain.volmat@foss.st.com>,
+	Hugues Fruchet <hugues.fruchet@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org,
+	Alain Volmat <alain.volmat@foss.st.com>
+Subject: Re: [PATCH 01/12] media: stm32: dcmi: Switch from __maybe_unused to
+ pm_sleep_ptr()
+Message-ID: <202512210044.xNNW6QJZ-lkp@intel.com>
+References: <20251218-stm32-dcmi-dma-chaining-v1-1-39948ca6cbf6@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,47 +90,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ee084ec9-31a4-492f-97c7-009dbfd77613@kernel.org>
-X-Proofpoint-GUID: NhMg71XciuoPE2XRaL0NfBCsxThakXCN
-X-Authority-Analysis: v=2.4 cv=dPWrWeZb c=1 sm=1 tr=0 ts=6946d95f cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=6FEy_uRmnU_CNISU7XMA:9 a=CjuIK1q_8ugA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-ORIG-GUID: NhMg71XciuoPE2XRaL0NfBCsxThakXCN
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIwMDE0OSBTYWx0ZWRfX4+pPiDM/Mutc
- X96JWXaY2FyGCk2tZkqVjNWZPl5v4bG2AZLsehL3iNe/D93c6WK+pk9WVze0SKvbqx8MkkPIiZP
- 5IX9VjVTTkY7q534x7qM+bhguJ+DTxQsV9uRLBAeIu3ztBiF2wEeeuS8ZnsQD0+l1u941zVTRML
- oyg+40Yg01X8wRj5bt7ZCKBHDwZJO5LpL6QVvXn3P2byD76CPEEtA1X40LftKGI2t/HIFovDSsF
- ldiQvgudDBFDc/SykSu02x7gkbkSZzK6HSBfHCBO9AyHlh8jLDj+b0y4WPzlyz8qnolJ1wRFybb
- fDEuqOvURFk1b47t0Xa76l089UfBYNdgiUcSHPXHsFCgMOIePYDBTRGHZ7law9jlB1sWdCay+si
- DWR5Bce+IXtrsYfUS9nP1i7QLTtqYB3hYlXEV3Oxdtd2HU17V25td0etvvwch9jGgo9fh4/U85y
- 5duWhxkp7c9LUeN++9w==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-20_04,2025-12-19_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
- adultscore=0 lowpriorityscore=0 clxscore=1015 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512200149
+In-Reply-To: <20251218-stm32-dcmi-dma-chaining-v1-1-39948ca6cbf6@foss.st.com>
 
-On Fri, Dec 19, 2025 at 03:57:57PM +0100, Krzysztof Kozlowski wrote:
-> On 19/12/2025 15:46, Pankaj Patil wrote:
-> > The serial engine must be properly setup before kernel reaches
-> > "init",so UART driver and its dependencies needs to be built in.
-> 
-> Missing spaces before ,
+Hi Alain,
 
-I hope, you mean after comma, not before.
+kernel test robot noticed the following build warnings:
 
-> 
-> > Enable its dependency clocks,interconnect and pinctrl as built-in
-> > to boot Glymur CRD board to UART console with rootfs on nvme storage.
-> 
-> Nvidia Glymur CRD? Standard comment - you look at kernel and defconfig
-> as it only Qualcomm ever existed...
+[auto build test WARNING on atorgue-stm32/stm32-next]
+[also build test WARNING on robh/for-next linus/master v6.19-rc1 next-20251219]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Alain-Volmat/media-stm32-dcmi-Switch-from-__maybe_unused-to-pm_sleep_ptr/20251219-024836
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32.git stm32-next
+patch link:    https://lore.kernel.org/r/20251218-stm32-dcmi-dma-chaining-v1-1-39948ca6cbf6%40foss.st.com
+patch subject: [PATCH 01/12] media: stm32: dcmi: Switch from __maybe_unused to pm_sleep_ptr()
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20251221/202512210044.xNNW6QJZ-lkp@intel.com/config)
+compiler: arc-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251221/202512210044.xNNW6QJZ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512210044.xNNW6QJZ-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/media/platform/st/stm32/stm32-dcmi.c:2127:12: warning: 'dcmi_resume' defined but not used [-Wunused-function]
+    2127 | static int dcmi_resume(struct device *dev)
+         |            ^~~~~~~~~~~
+>> drivers/media/platform/st/stm32/stm32-dcmi.c:2116:12: warning: 'dcmi_suspend' defined but not used [-Wunused-function]
+    2116 | static int dcmi_suspend(struct device *dev)
+         |            ^~~~~~~~~~~~
+
+
+vim +/dcmi_resume +2127 drivers/media/platform/st/stm32/stm32-dcmi.c
+
+  2115	
+> 2116	static int dcmi_suspend(struct device *dev)
+  2117	{
+  2118		/* disable clock */
+  2119		pm_runtime_force_suspend(dev);
+  2120	
+  2121		/* change pinctrl state */
+  2122		pinctrl_pm_select_sleep_state(dev);
+  2123	
+  2124		return 0;
+  2125	}
+  2126	
+> 2127	static int dcmi_resume(struct device *dev)
+  2128	{
+  2129		/* restore pinctl default state */
+  2130		pinctrl_pm_select_default_state(dev);
+  2131	
+  2132		/* clock enable */
+  2133		pm_runtime_force_resume(dev);
+  2134	
+  2135		return 0;
+  2136	}
+  2137	
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
