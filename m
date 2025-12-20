@@ -1,175 +1,95 @@
-Return-Path: <devicetree+bounces-248530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C095CD38C0
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 00:23:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71E9ECD38CC
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 00:36:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CF5A3300DC8A
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 23:23:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4DF83300E025
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 23:36:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F71D218AD4;
-	Sat, 20 Dec 2025 23:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002D626A1CF;
+	Sat, 20 Dec 2025 23:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hINoR2IE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CH3ezA7E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 527F53A1E66;
-	Sat, 20 Dec 2025 23:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C918278F4F;
+	Sat, 20 Dec 2025 23:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766272996; cv=none; b=hRu8ohhsYzR8nDHJx+JacIB9elqeUzXgugGXQ3/I8ZCR3QEzNJazwsoHsMWYO1+UG0a2qpt2ARlx0SQKvdYl+i0/DDqE8DsK2eq1VLJQr/aaxTOIXkJ+KgG3PI7SuOtf1d+uadyk5Omk6X/0QQIZGMMlW+LWCksQTKFvMTCbBuw=
+	t=1766273774; cv=none; b=ouqrcJnAF5nsGEO1sPUPlwnRqGTYfzphSHy5B9wbtr+sKu7hYvJhlrjyuUftggonbuFwL1E2Y+7W4PqMvWh5sQiZtwIkSg+4/Ba9RCR/XvvJsrqzsoKc3MEl/kXxDGUgkw6yJ+1FstofiJW00zSxrMJCnFv9ELz1Nut/H1Sq3Cg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766272996; c=relaxed/simple;
-	bh=DYYss6ZWpYzoGvO9RlSxm0H4tZWSG7kfM2Z3uoM3hWc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UN9YpCdtHoeKZBcyosMkdVsLOtxGv5DXZlnT271GG8s6XDDTnHInJz/8xEhjwzKFGdzbJy5H7DX577G9Kmzr0reZ9iPeUFKbL6du3NEIsdCwso31k+DfjAa8zbPWYb2hQWxBmW9k9OZuYm+TMN4GM9G+uaYzdJRgGyTxf0c/gg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hINoR2IE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48A2EC4CEF5;
-	Sat, 20 Dec 2025 23:23:11 +0000 (UTC)
+	s=arc-20240116; t=1766273774; c=relaxed/simple;
+	bh=iiY7uGZhU8PM+EyETBd5Dq0Z6cb10ORJF5o1ZB4aU4w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=O+VVO3fbjbsCu3EIFJCqo/oJwW+YauYIzoxBrMQhnUJzBA1c3ZUwB/r8qyzbkg0U2wXTEnc8CWdlj7JzB94ggcGpcbnz2qX2E2Te1hdys5ydvTV3BKVvli2yyx7Z7fkbuWO6Oa+V6lCpew1CX+6nP2pFe8idy9fH+wZ80RehvrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CH3ezA7E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98678C4CEF5;
+	Sat, 20 Dec 2025 23:36:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766272995;
-	bh=DYYss6ZWpYzoGvO9RlSxm0H4tZWSG7kfM2Z3uoM3hWc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hINoR2IEQqKuQb88S/+IK4isI2+0Cta8wVGyqPiZuiTa+HptnTzQ/sKsoiDWmZT2j
-	 +XNI5LkNczhbCTnMnfwnjPb2SHnBaHZZ4Nk3V9t3uHlNOyYr81l9K9gthH9pDNKYAP
-	 kD/M5W7bLLFZmWW2l55EbGOU3PYvmSo+2eqB2HSLcxeqIFQKL7drdfwfVZljv8ochd
-	 lNe3wWRbTFL7z2MJyyWURThyprh8rWCXWU/ZSVc6J3NKoTWAbUl21XGJQ1VxKbiTsA
-	 I866Xp11qS38rVRlSwptzLkQ35+gnCIq/yVxJ9hl9q5iFoSi5AZ2RZEN2myEOr2TDh
-	 ciAWa+J8TKkPA==
-Date: Sat, 20 Dec 2025 23:23:08 +0000
+	s=k20201202; t=1766273774;
+	bh=iiY7uGZhU8PM+EyETBd5Dq0Z6cb10ORJF5o1ZB4aU4w=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=CH3ezA7Egf3Dpmrdai70Saj1XZ1pDz1nNKHcjnfO1CLWquUleT2Hu4FXebujyMilU
+	 1B4Uo+NJnTZlZIwIFb85RRnYI9J6VeXesnVb4HAtH72/ajF17VFquFLswHhA8I3svL
+	 yooNZlMNeHwQ6yRJ9DRtG1cufnPkWspTGYFsrHUHGB0niIwSQYsx/iW+TVfyqTv5dq
+	 ujtur/TxP6sfsWOgQz9zdg33DZu1ZVSCgH6u9XJUhWWPBRMm3YLYQJ8Grw1HUzcTkx
+	 RuIebiCBSpyrckNGnvUiilbamYc0WtSjSjfZ9Xn4fyRiekz5wmGgqgtvNJn8xcVCoY
+	 IYelnCICIXCUQ==
 From: Conor Dooley <conor@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@sifive.com>,
-	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
-	linux-serial@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+To: Paul Walmsley <pjw@kernel.org>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@gentoo.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: Re: [PATCH 7/8] riscv: dts: spacemit: add initial device tree of
- SpacemiT K3 SoC
-Message-ID: <20251220-repacking-football-c79e660e788a@spud>
-References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
- <20251216-k3-basic-dt-v1-7-a0d256c9dc92@riscstar.com>
- <60948ca2-ed3d-485b-9b11-15df7ef8791d@canonical.com>
- <CAH1PCMb=+TvB1w+G6a2ANDp05HUwC4r6CFBDHXFwSmoP3Mm8xw@mail.gmail.com>
- <f9b6b5e2-ec9e-4208-8267-77020e0a9411@canonical.com>
- <20251218-basil-quantum-225ce16e4699@spud>
- <CAH1PCMZ3KM9-D3NJ1N2LUHTHFSDVKmGKT5fU8knAL7NnV9E-gw@mail.gmail.com>
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	E Shattow <e@freeshell.de>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] riscv: dts: starfive: Append starfive,jh7110 compatible to VisionFive 2 Lite
+Date: Sat, 20 Dec 2025 23:34:41 +0000
+Message-ID: <20251220-faceless-sedate-4053b07c5725@spud>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251212211934.135602-1-e@freeshell.de>
+References: <20251212211934.135602-1-e@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="SLqy3GCJri0eonfM"
-Content-Disposition: inline
-In-Reply-To: <CAH1PCMZ3KM9-D3NJ1N2LUHTHFSDVKmGKT5fU8knAL7NnV9E-gw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=968; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=xFqiQeRPv1OHoeevUPaQHHXdpxwyUMvRPKwdQRmtyEc=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnuRhPv1sWnMgceNr18KuHq8+shnXJv67y2x0+d4vyja W25nNrfjlIWBjEuBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEyEs5SR4eHb1DtvK/xfZspt XPdO2a2Nv+58ZDuTH1fM/cVtTP5Rlgz/Yw5LpPsdOnNh95fbxdEyzZF9lesbeRzNL7ZM/Fr2m3U KMwA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---SLqy3GCJri0eonfM
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 12 Dec 2025 13:19:17 -0800, E Shattow wrote:
+> Append "starfive,jh7110" compatible to VisionFive 2 Lite and VisionFive 2
+> Lite eMMC in the least-compatible end of the list.
+> 
+> Appending "starfive,jh7110" reduces the number of compatible strings to
+> check in the OpenSBI platform driver. JH-7110S SoC on these boards is the same
+> as JH-7110 SoC however rated for thermal, voltage, and frequency
+> characteristics for a maximum of 1.25GHz operation.
+> 
+> [...]
 
-On Fri, Dec 19, 2025 at 10:03:24AM +0800, Guodong Xu wrote:
-> Hi, Conor and Heinrich
->=20
-> On Thu, Dec 18, 2025 at 8:56=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Wed, Dec 17, 2025 at 09:07:14AM +0100, Heinrich Schuchardt wrote:
-> > > On 12/17/25 08:11, Guodong Xu wrote:
-> >
-> > > > Specifically, I must adhere to
-> > > > Documentation/devicetree/bindings/riscv/extensions.yaml (and cpus.y=
-aml for
-> > > > properties like 'riscv,sv39' which stands for the extension Sv39). =
-If I
-> > > > add extension strings that are not yet defined in these schemas, su=
-ch as
-> > > > supm, running 'make dtbs_check W=3D3' fails with: 'supm' is not one=
- of
-> > > > ['i', 'm', 'a', ...], followed by "Unevaluated properties are not a=
-llowed."
-> > >
-> > > If Documentation/devicetree/bindings/riscv/extensions.yaml is incompl=
-ete
-> > > with respect to ratified extensions, I guess the right approach is to=
- amend
-> > > it and not to curtail the CPU description.
-> >
-> > Absolutely. If the cpu supports something that is not documented, then
-> > please document it rather than omit from the devicetree.
->=20
-> Thanks for the review. May I clarify one thing? Both of you mentioned
-> document them, given the amount of missing extensions, is it acceptable if
-> I submit a prerequisite patch that only documents these strings in
-> riscv/extensions.yaml plus the necessary hwprobe export? Leaving the actu=
-al
-> usage of these extensions (named features) to the future patches.
->=20
-> To provide some context on why I ask: I've investigated the commits & lkml
-> history of RISC-V extensions since v6.5, and I summarized the current sta=
-tus
-> regarding the RVA23 profile here:
-> [1] status in v6.18 (inc. v6.19-rc1):
-> https://docularxu.github.io/rva23/linux-kernel-coverage.html
-> [2] support evolution since v6.5:
-> https://docularxu.github.io/rva23/rva23-kernel-support-evolution.html
->=20
-> Strictly describing the SpacemiT X100/K3 (or any core) as RVA23-compliant
-> requires adding these extensions that are currently missing from
-> the kernel bindings:
-> RVA23U64: Ziccif, Ziccamoa, Zicclsm, Za64rs
-> RVA23S64: Ss1p13, Ssccptr, Sstvecd, Sstvala, Sscounterenw, Ssu64xl,
->           Sha, Shcounterenw, Shvstvala, Shtvala, Shvstvecd, Shvsatpa, Shg=
-atpa
+Applied to riscv-dt-for-next, thanks! I dropped the Fixes tags in the end,
+I just didn't feel like they were correct. I made the links into Link tags.
 
+[1/3] dt-bindings: riscv: starfive: Append JH-7110 SoC compatible to VisionFive 2 Lite board
+      https://git.kernel.org/conor/c/d2091990c5c1
+[2/3] riscv: dts: starfive: Append JH-7110 SoC compatible to VisionFive 2 Lite board
+      https://git.kernel.org/conor/c/7c9a5fd6bb19
+[3/3] riscv: dts: starfive: Append JH-7110 SoC compatible to VisionFive 2 Lite eMMC board
+      https://git.kernel.org/conor/c/4297ddbf1d14
 
-> Plus 'Supm', 'Zic64b', 'Ssstateen', 'B' where the kernel supports them but
-> they are not literally documented in yaml.
-
-I don't think Supm is suitable for devicetree, doesn't it describe
-what the kernel/userspace are capable of rather than hardware?
-Zic64b doesn't sound like hardware description (so not really suitable
-for devicetree either) but block size information is already represented
-by some existing properties (see riscv,cbo*-block-size in riscv/cpus.yaml)
-and duplicating that information is not really a great idea.
-
-I'll admit that I do not really understand Sxstateen and how they work,
-but my understanding was that knowing about Smstateen is sufficient and
-implied Sstateen, but having Ssstateen defined seems harmless and
-possible. I think kvm is the only user of this at the moment, so
-probably worth CCing Anup and maybe Drew Jones on the patch adding
-Ssstateen to make sure it makes sense.
-
---SLqy3GCJri0eonfM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUcv2QAKCRB4tDGHoIJi
-0iR2AP9Yk3/6cNreOG5xP/f/Ga3J0EIzYWjEal9Q3S4fWg1J/wD/W51HcFJ+XVx8
-UNjjhag+wvjdA/6x6J2/eZYqdoVHUQA=
-=M6ap
------END PGP SIGNATURE-----
-
---SLqy3GCJri0eonfM--
+Thanks,
+Conor.
 
