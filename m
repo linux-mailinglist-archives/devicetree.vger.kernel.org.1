@@ -1,97 +1,97 @@
-Return-Path: <devicetree+bounces-248502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7339DCD3402
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 17:52:13 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48892CD341C
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 18:02:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2D753300B91F
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 16:52:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C23963008490
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 17:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 325162D3EC7;
-	Sat, 20 Dec 2025 16:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69969257828;
+	Sat, 20 Dec 2025 17:02:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Lew08moB";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eDUuAP7P"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="V0ZtsFbp";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KL4iGs2O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B55F3287510
-	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 16:52:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE5C1684B0
+	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 17:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766249531; cv=none; b=aTx1keoQizlkbKmvUv9/5gNsCODMhPvE0ZMuB6YJNfigNcTtoTNn1kaRtv+9iX7pCJABhh6fVdQztnhIqqN9LWrQMWvnBhT8DT32+pW8d2vzzX2b3nne/7QnmG6aTlhfVvk+uKl0OQJm4Tnr58IZ546+9BDRdiL7o76HWUC6ONU=
+	t=1766250150; cv=none; b=AIoQx391M2Z+01atOMv/x6d6cKbRNyIT7QP9dPdz26NghgcZhzYjJoi8ywVYV4H4+xApxeydd/UaixMe3Ec7pbpmCvKWvWiGdA+mRmnK8qaWiPGWvYclwusdvcFU9NVAXukHph5i5z/DgwS2D+3EdfRxJ/QHYU6AY0gmWMyBexo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766249531; c=relaxed/simple;
-	bh=OPq2jgXtjTjqBqxOYiuLvmvpLqAJDVsRGupbqBGx7rc=;
+	s=arc-20240116; t=1766250150; c=relaxed/simple;
+	bh=j565nFHJHn1mebFOxFoCZYLC7GLbbGX08KLa29DuT3I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iT7LIBQ2/RkcsaojWVGIc/ptSXuiB80KpeaUPJvNwEK2s3XWZyjB6EJtkkPXUbiXxniKz6GQ9ofXMwXoz8GtApQb9yQyt0TuiA3dr0t48o7AjgtoNa82sMtOm42etIYdfj3uMaNa+9/ixLeny/OzukeMziF3Y5ur62uVIKGdmjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Lew08moB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=eDUuAP7P; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=V6JoqlASAG3F3yxgHRyqcp5dVCLoDiTbq8MC15RnSg+s1Yr5BBmbY8wA8DqPDZqn2p/zpOE4hDlw76VpvSAmBnci/JcUkdWfWBWQ9wu7nzzl9HdTaHMoS3EEKtu8OuuTWtRdVs59nPjhTUBIjzxMwsZSY/Jij4n1BgBY5XRiF/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=V0ZtsFbp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KL4iGs2O; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BKBPLlO3590550
-	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 16:52:09 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BKBsCoc4153136
+	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 17:02:27 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=md820MSJFmMhxzBhoy9K+H94
-	1G1BAf7npRq1mwTR9kI=; b=Lew08moBKmsRyNrL9SesOrsXUaVNS0HMRZ6xjred
-	dIzNReB6N8e/4pAtN4YPXoTQR6By4GSvBp+61ubKABL2PmWQk8+SR8swpBmSHbbN
-	QfhgGr2697eMHBLSs9TYNAcgC4U0NpgdgYk+WGPCRM7EFJgoHyX2vMCw2Q670yrz
-	55yenpkIGWRxOnV9Iei8/HLHV98+BffG+4SdXsVnaEMNkWVkZxXs6YsDYAjRwzJG
-	FKrW3pQtblUqMgk3I9sTqH3BU7KD/EZ1GoQ9c4styrV2QeWcVr8TASDSHVs1umf5
-	Kl3UQmcl0aB5ulsv5svVbeRcjyyTFsiVvVy0Ifs55vncAw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b5mtb0yyr-1
+	:references:subject:to; s=qcppdkim1; bh=muHpxzp0mWPMtZXrnlHeN3Ky
+	e5NXimJKWqyDnE2yCnY=; b=V0ZtsFbpdQnnyNQFamV4ZQY28x1B0+H7xzHfvdLJ
+	MnALC/9UVit5qx+ZzMPrbeDRG7efFVOvjTr4VXjDWThcL1MVP1eALYiSmvNs7SLN
+	fS651V0Djfw2o/SOJNVWaOmscOz52uCppGfexd8ma8/R+cEvh6uM/gmEBVMmXy7P
+	+zKWuZQYe0N0Tyh8O2k6WwtQufSu40SqEYTF+8yDE+pLEzcJeOHYVEVN4GiVMZle
+	tw5Gz/FaRt4Rk+daGTIGRA+8U6GlzXN/De0znTnNS69V116ZiZB9gmKbmi/4sJwP
+	UjHLjLEAVA0OdTuB2FPlcnODhcpswiVTLDwun78tFqchrg==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b5mux0ypn-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 16:52:09 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ee0c1d1b36so83594241cf.0
-        for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 08:52:08 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 17:02:27 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88233d526baso74889696d6.1
+        for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 09:02:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766249528; x=1766854328; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1766250147; x=1766854947; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=md820MSJFmMhxzBhoy9K+H941G1BAf7npRq1mwTR9kI=;
-        b=eDUuAP7PYK8x7i5RG6R9xFIxhRm+sP+7Wb0inki1JaA1OrrKNaki/e1gf1aNx0EEeF
-         B3yGTA5mDr8+gIs3WaCmbe4/05BnSETAz3tjbXno8a2KQcu/BF2IG4ZszCaQ5rmzHvKP
-         K/JovzF4D4AHWG9sACIy2yPiF+R4xTP1941exQUREbrIOnnL/Jvskfq9BdB4PwVB0tpE
-         Gm7oKnGKNGMK3cpIfiWlauhAm00iuCDuCEIMWRkplSpVcG9+a8QS0/Bgh7YFQs6tplAJ
-         FOwUroJvwJtDRDtMIHELouV1HnhJnANQxLTyGnY4r24bn72h9vPKCXTOGR8Fo4+MHrIq
-         XmeA==
+        bh=muHpxzp0mWPMtZXrnlHeN3Kye5NXimJKWqyDnE2yCnY=;
+        b=KL4iGs2OHGbrXalqzw9UM+CXpuy/dZqeEFqnAozQR8LBbjtF9Pn4deRfwCRlAZRe84
+         kHE+xCXbFYVP3RRuDCr+sKzozkyOX4+NzlcwZHL1jcyRoT7/noUGwkV6HpClzEI/uqqv
+         TpYJcozZ5kj/qnbIy6l1rnCJjE95FRtImVoznL652uLCXpJt1+1rbrUdDzBilkNQQYWw
+         GWf6CzyKY9l7Dle/aYm13SX3KzvQwPHKnFJY93Dcwtn8ptrH0LUY5BB4tMAPoScnCvX+
+         wH0xLrHcn68yb+r1UsR9mQQpxvuS9qSh8KQFO9AK4XcST+sERpOAkeegZeSAM0vIwSiV
+         yO9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766249528; x=1766854328;
+        d=1e100.net; s=20230601; t=1766250147; x=1766854947;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=md820MSJFmMhxzBhoy9K+H941G1BAf7npRq1mwTR9kI=;
-        b=oAk3GvZ9DB2bjh2I2qShx8C9yS5DzNiz4F+03YEsf+I08pKBxBqqrvNUoMtbmX2ppR
-         Fb53C2z/wcvPh0APZ4RTiFKrVxs+D+b6Wgy6fQhlAf2Y/NHOCJ2Y2UKha0RGQizSWylw
-         jQefbB1HoUeNLyQH8Ermn7G86TvFDUcTw9WCKB/E4FC7ovHhRh9WlcZLXKU5RdmeJ6oA
-         cef+auVFy41Pg36Ygdqkaxi9cvyfyg6gdHtWx0lbFs7szIRoaqb1e516PYok4jOS8qbk
-         YZF5sw7S0bu4A30cnmzVT6MY90ccFUhnSUMloszPeEKv+ptEuacl7/6EXUe+dlSB+Drj
-         Kt8w==
-X-Forwarded-Encrypted: i=1; AJvYcCUOGJv9sEA1calSZC3vOSpI6UuKrW37UdT8wqStlOx4PVsC4KUDUXD4vApTlFYWuLjRog9I31fmAovu@vger.kernel.org
-X-Gm-Message-State: AOJu0YwT21EuNYOSnrHr5kBLTNqbJvCs5f1W4jntFXQK2Wuhh9V8AC8/
-	9by5ZjOGIibmyy2fM4IRIX0C2B34cmtkhp/kt7B6E8kpREdfHoHq8csjCPnVqDzoXoWxyBfLdLe
-	SzeEjXUqAZdMo77lafGB5N3NcFGCZburegN8KPFydIWjG84KA5yvi52PAvDzCzwJO
-X-Gm-Gg: AY/fxX7igJJaPpr1zGKWy+Cv2cON22JG30VXqJXSAbchg6IArSenexrviGikOXaqV+j
-	c/FGS+joytawVPVVPmtjPVqzOb+Kxttr/nz0gSKTIGA+Q175jWfR5w3R/havP6cPIeYZgz368zP
-	PFwS2x0DhLQvuVFJ0kBaET7e5WWJipKMiqol6SrZm8ewThvdbCNXBswwr2XwVws0OFOPqVZ+JAg
-	G/jAtjSimKSxFCnkCmwzDG6Qe5HgFdvuFyEMvgAcXa8QnbA9c2iUorEWkr2eNDagORAbrf8VydL
-	6leJx59WP52aNKK6Ke/jPG9qwbbn5nHh6KMBnXEFDhw/6MS355+mlClqOV5lMM1f3iUWyIQ6N1H
-	pCvO2dg3b+2lDg1Vzah2ryhggbOHj2fsOppHZ/mdw95aCCO3+ibVmUhxVkO0DV6zTwD9NkICvJk
-	qU6bXziVOrYm7Y65r5B5IfaEA=
-X-Received: by 2002:ac8:7f81:0:b0:4f3:4b53:a917 with SMTP id d75a77b69052e-4f35f43a9damr148411901cf.22.1766249528035;
-        Sat, 20 Dec 2025 08:52:08 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH6MpmVZ7ZQhZ40pLdCdrBIOL53YEAOVIlZxLQot31bDGrYAK4K35/1+HqCakHdqkzMA7+JTA==
-X-Received: by 2002:ac8:7f81:0:b0:4f3:4b53:a917 with SMTP id d75a77b69052e-4f35f43a9damr148411641cf.22.1766249527582;
-        Sat, 20 Dec 2025 08:52:07 -0800 (PST)
+        bh=muHpxzp0mWPMtZXrnlHeN3Kye5NXimJKWqyDnE2yCnY=;
+        b=n3d9CztP8F536TolBcqRwBXu2ZkRUAGfMFCuNIXnzQNKbXkaWdJDXNpBAcOq9ob2Zy
+         TF772CGRHNNHJyzRdXXSo1lG+EdBpVCWW+mkW2qz4a7NfTIa8Ml8tm9wodXXQ9autzhQ
+         +G2/gX+zNjZTatRS/fLzYEf1dDsOUAARoWPCPRgzGRaOUppKkwknLYrgHW0hcmTOH2P2
+         TQsjrbt3OnxNdgOiiiV213+JUSV/kA73J3UC2kR64hSD9J7DrRn4ZrNfDyQ37TYcmx5d
+         LkcFy3fUy838IE8KiSdd9HQt05Wy7VAN/SVjZYrRHT6b+q18euSSrwlPwpEbki5g59wZ
+         osJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUKiT+H9NnLXwoIuKMNPZzbAcRM5E2HQit10CiGQCwKTFqAjd1QtsqFAXFD+K0f4/A2EW3bTZ9+idh6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpMGrEimAWxLAWv1fX8JdG47Z8Q0MGavN4qCEPQNRaWbyV7Wkz
+	lY0KiQjzZ6xs81ezXjyeu4VD4KAdXrqo30dGiM04iwMpZ83LBjz0yti6VuFT7vT1+7QH5jpXJZ4
+	bT8Sj8hvj3l1zhDYJK1nb9HK/IE/+S7IoFzXoXbJcJTm9Mfd7wmV9C6QEDtkfCS0W
+X-Gm-Gg: AY/fxX4kwIYIj0X+LGNQqIfTTEVTZXZJyLwrxIZL/URTtJHb356Be3LFrk8Qe1hDQSw
+	DrO/PmR1OyvKZRvXXS9vCfbz8L9CA7Yf3HoJDMDxpauwDyEoiTC7N3n9+K20AgPDIb/TGuOqleh
+	ahJbKyMEogJRZ6T6YnqasM4JVULlWxah8cxrP3xkwgcmKpeTfUcSp/CkeHdtM4K7R7vVF28yvsb
+	HR7yjV28/JrSuKFKXtYsSutQkR9OlEKBV2+MFl+M0mcZrIr4/epBPmGwgBZHulEcxWxhQSNk63i
+	g/K2/Hzna84kYt1fZyh52UWUWHfS6jy47mOCy5NwfcaPKMp3PI7qNMh2kMfpa3oKES2KBiR3kAB
+	iOC5z9ADZLPkdhTphrMgk89c/GhNJ7sVYJgTKBtRsXrvdPkQWuu2RwtrMkiI7vFyRb2JNVm7uqn
+	GXvG8dzh6+chv+9cQ00HRRLk4=
+X-Received: by 2002:a05:6214:5082:b0:88a:2b73:db72 with SMTP id 6a1803df08f44-88d87af3aacmr113092026d6.55.1766250146488;
+        Sat, 20 Dec 2025 09:02:26 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEg/1RBfHw+woAUc0vABdJ/opFRYi37tNkSwPvNj8QYal/2x+X0HQjAbtdaZCmo1lf7JXhkXg==
+X-Received: by 2002:a05:6214:5082:b0:88a:2b73:db72 with SMTP id 6a1803df08f44-88d87af3aacmr113091166d6.55.1766250145815;
+        Sat, 20 Dec 2025 09:02:25 -0800 (PST)
 Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3812262b36dsm13394911fa.30.2025.12.20.08.52.05
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a186f957asm1600493e87.28.2025.12.20.09.02.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Dec 2025 08:52:05 -0800 (PST)
-Date: Sat, 20 Dec 2025 18:52:03 +0200
+        Sat, 20 Dec 2025 09:02:25 -0800 (PST)
+Date: Sat, 20 Dec 2025 19:02:23 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Luca Weiss <luca.weiss@fairphone.com>
 Cc: Bjorn Andersson <andersson@kernel.org>,
@@ -110,10 +110,10 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 3/6] drm/msm: mdss: Add Milos support
-Message-ID: <475izg5bi56oefqtqkvqeyspx2por66zrw4tgqbb3f2ziaghyt@tccm73sl2u2e>
+Subject: Re: [PATCH RFC 4/6] drm/msm/dpu: Add Milos support
+Message-ID: <aez6lla3spda5au6krk7z65gbtis43ww7tf34tk6pyc6o53ulk@x64q7r43ddi7>
 References: <20251219-milos-mdss-v1-0-4537a916bdf9@fairphone.com>
- <20251219-milos-mdss-v1-3-4537a916bdf9@fairphone.com>
+ <20251219-milos-mdss-v1-4-4537a916bdf9@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -122,44 +122,452 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251219-milos-mdss-v1-3-4537a916bdf9@fairphone.com>
-X-Authority-Analysis: v=2.4 cv=E/HAZKdl c=1 sm=1 tr=0 ts=6946d439 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <20251219-milos-mdss-v1-4-4537a916bdf9@fairphone.com>
+X-Proofpoint-ORIG-GUID: XBJaZgfqGIekfQgAFJxSMqoPm6JxpPgn
+X-Authority-Analysis: v=2.4 cv=EvnfbCcA c=1 sm=1 tr=0 ts=6946d6a3 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=Ybx_Rsa12JF0X6GijNIA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIwMDE0NiBTYWx0ZWRfX3MAwBeTp1g/j
- w/IvIpVII5zVLuDsMl3KnuTiDb2IgG9h74IWniycYWoIMONozMSp2lbBrwygWQgkYKVzmRj6j04
- pgZp/aazsnpAJ/ixj0iFgGFCqVhoWrLD1gAYMw8XD2ubrDD0ZF+0G3NXRrVhEw07cMx2zQIznPu
- Fbd6V6nV/q1bvfJukGvXa3cmj7BGLJHacNXPa4VaZTEfu09H1FjMpMw+cQhexlaVc76g2LZuKW3
- 07fZIXtlndxP0Evg/iC0CkX/FUBk5v9lZIq7aSl5jZ2cFvsToIrWo28VqZHRDQwARz6ulFaNJD0
- 3fF2ehcn4QXFX5JWN0KBJ3/04c2K2RCimXZqhNZSyRMzx4bZtQsmPjOugmrx91AYnynCWCkryLN
- ZqEIAgk8e3yYGeDV+WHNYWcXUtKpI/aN3byfZlTicqV/81X2tLGpglwO8mRw6IHjvwVfb9bmIHk
- JrfcuEG1KcvBg26WKaA==
-X-Proofpoint-GUID: v6XTqhwktuRdKiElap6gc0AJOOlxT58v
-X-Proofpoint-ORIG-GUID: v6XTqhwktuRdKiElap6gc0AJOOlxT58v
+ a=6H0WHjuAAAAA:8 a=-pIA5zGUeOoPg8vqJHkA:9 a=CjuIK1q_8ugA:10
+ a=1HOtulTD9v-eNWfpl4qZ:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-GUID: XBJaZgfqGIekfQgAFJxSMqoPm6JxpPgn
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIwMDE0OSBTYWx0ZWRfX7PQJ6LgAeano
+ Ern+HG4ScM5F8PDq99eUxcO0Y4vpQoD0dCSodAbc9GWEoYt/6QfPeBJGdW5/psGqQFgAcKHDyzq
+ KGN5a/oCvlYlK5l5s+oM0aRkguwLCoPMCcd2IUxOnOQptM4lTYILR+zLTb4RxVZHxof80L0zp9u
+ 2Z3tBhUeYpqJByQbB5QhcUGwBqrTQafeaQE8l+TBca7yiqahmhHMvLT8k/PIAn6hNdtrgcslFZk
+ 46BF7EdphdXS7dKz7xPwoitCtmM6onKS5ChoxLKQ2g1zasCqpmr+Q7FSMH4qx6s8oYBkAT1RwuV
+ rZ0zOoCkb46KOLyqZD7TfhVk5Piqh+fodfRrYC2mLQSOf8iYCxF0J4nf9RZ8k2jzew+bsS/27fn
+ z4H/9YAuZ6Z3NjBu4pb0aZ0DOuMJqkg90o2vqLmzICJKKoxZCcchkG1euOhmWrXBwzAQNqUfipr
+ UQyTscvw8MjRMvRwgZA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-20_03,2025-12-19_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 phishscore=0 malwarescore=0 priorityscore=1501
- suspectscore=0 spamscore=0 impostorscore=0 bulkscore=0 clxscore=1015
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ bulkscore=0 suspectscore=0 phishscore=0 adultscore=0 clxscore=1015
+ priorityscore=1501 spamscore=0 impostorscore=0 lowpriorityscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2512200146
+ definitions=main-2512200149
 
-On Fri, Dec 19, 2025 at 05:41:09PM +0100, Luca Weiss wrote:
-> Add support for MDSS on Milos.
+On Fri, Dec 19, 2025 at 05:41:10PM +0100, Luca Weiss wrote:
+> Add definitions for the display hardware used on the Qualcomm Milos
+> platform.
 > 
 > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
->  drivers/gpu/drm/msm/msm_mdss.c | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../gpu/drm/msm/disp/dpu1/catalog/dpu_10_2_milos.h | 284 +++++++++++++++++++++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |  22 ++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
+>  4 files changed, 308 insertions(+)
 > 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_10_2_milos.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_10_2_milos.h
+> new file mode 100644
+> index 000000000000..75deec923897
+> --- /dev/null
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_10_2_milos.h
+> @@ -0,0 +1,284 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2022. Qualcomm Innovation Center, Inc. All rights reserved.
+> + * Copyright (c) 2015-2018, 2020 The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2025, Luca Weiss <luca.weiss@fairphone.com>
+> + */
+> +
+> +#ifndef _DPU_10_2_MILOS_H
+> +#define _DPU_10_2_MILOS_H
+> +
+> +static const struct dpu_caps milos_dpu_caps = {
+> +	.max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH, // OK
+> +	.max_mixer_blendstages = 0x7, // OK
+> +	.has_src_split = true, // OK
+> +	.has_dim_layer = true, // OK
+> +	.has_idle_pc = true, // OK?
+> +	.has_3d_merge = true, // OK?
+> +	.max_linewidth = 8192, // OK
+> +	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE, // OK
+> +};
+> +
+> +static const struct dpu_mdp_cfg milos_mdp = {
+> +	.name = "top_0",
+> +	.base = 0, .len = 0x494, // TODO? maybe qcom,sde-len = <0x488>;
+> +	.clk_ctrls = {
+> +		[DPU_CLK_CTRL_REG_DMA] = { .reg_off = 0x2bc, .bit_off = 20 }, // OK
+> +	},
+> +};
+> +
+> +static const struct dpu_ctl_cfg milos_ctl[] = { // number of ctl is okay, base probably also
+> +	{
+> +		.name = "ctl_0", .id = CTL_0,
+> +		.base = 0x15000, .len = 0x1000,
+> +		.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 9), // FIXME?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Why is it questionable?
 
-Though 14000 seems lower than the value for all other platforms.
+> +	}, {
+> +		.name = "ctl_1", .id = CTL_1,
+> +		.base = 0x16000, .len = 0x1000,
+> +		.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 10),
+> +	}, {
+> +		.name = "ctl_2", .id = CTL_2,
+> +		.base = 0x17000, .len = 0x1000,
+> +		.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 11),
+> +	}, {
+> +		.name = "ctl_3", .id = CTL_3,
+> +		.base = 0x18000, .len = 0x1000,
+> +		.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 12),
+> +	},
+> +};
+> +
+> +static const struct dpu_sspp_cfg milos_sspp[] = {
+> +	{
+> +		.name = "sspp_0", .id = SSPP_VIG0, // OK
+> +		.base = 0x4000, .len = 0x344, // OK
+> +		.features = VIG_SDM845_MASK_SDMA, // TODO?
+> +		.sblk = &dpu_vig_sblk_qseed3_3_3, // TODO?
+
+Yes  to both.
+
+> +		.xin_id = 0, // OK
+> +		.type = SSPP_TYPE_VIG, // OK
+> +	}, {
+> +		.name = "sspp_8", .id = SSPP_DMA0, // FIXME name?
+
+ok
+
+> +		.base = 0x24000, .len = 0x344,
+> +		.features = DMA_SDM845_MASK_SDMA,
+> +		.sblk = &dpu_dma_sblk,
+> +		.xin_id = 1, // OK
+> +		.type = SSPP_TYPE_DMA, // OK
+> +	}, {
+> +		.name = "sspp_9", .id = SSPP_DMA1,
+> +		.base = 0x26000, .len = 0x344,
+> +		.features = DMA_SDM845_MASK_SDMA,
+> +		.sblk = &dpu_dma_sblk,
+> +		.xin_id = 5, // OK
+> +		.type = SSPP_TYPE_DMA, // OK
+> +	}, {
+> +		.name = "sspp_10", .id = SSPP_DMA2,
+> +		.base = 0x28000, .len = 0x344,
+> +		.features = DMA_SDM845_MASK_SDMA,
+> +		.sblk = &dpu_dma_sblk,
+> +		.xin_id = 9, // OK
+> +		.type = SSPP_TYPE_DMA, // OK
+> +	},
+> +};
+> +
+> +static const struct dpu_lm_cfg milos_lm[] = {
+> +	{
+> +		.name = "lm_0", .id = LM_0, // OK
+> +		.base = 0x44000, .len = 0x400,// OK
+> +		.features = MIXER_MSM8998_MASK, // TODO
+> +		.sblk = &sdm845_lm_sblk, // OK
+> +		.pingpong = PINGPONG_0, // TODO
+> +		.dspp = DSPP_0, // TODO
+
+Yes to both
+
+> +	}, {
+> +		.name = "lm_2", .id = LM_2,
+> +		.base = 0x46000, .len = 0x400,
+> +		.features = MIXER_MSM8998_MASK,
+> +		.sblk = &sdm845_lm_sblk, // OK
+> +		.lm_pair = LM_3, // OK
+> +		.pingpong = PINGPONG_2,
+> +		//.dspp = DSPP_2, // FIXME?
+
+none
+
+> +	}, {
+> +		.name = "lm_3", .id = LM_3,
+> +		.base = 0x47000, .len = 0x400,
+> +		.features = MIXER_MSM8998_MASK,
+> +		.sblk = &sdm845_lm_sblk, // OK
+> +		.lm_pair = LM_2, // OK
+> +		.pingpong = PINGPONG_3,
+> +		//.dspp = DSPP_3, // FIXME?
+
+none
+
+> +	},
+> +};
+> +
+> +static const struct dpu_dspp_cfg milos_dspp[] = {
+> +	{
+> +		.name = "dspp_0", .id = DSPP_0, // OK
+> +		.base = 0x54000, .len = 0x1800, // OK
+> +		.sblk = &sdm845_dspp_sblk, // TODO
+
+yes
+
+> +	},
+> +};
+> +
+> +static const struct dpu_pingpong_cfg milos_pp[] = {
+> +	{
+> +		.name = "pingpong_0", .id = PINGPONG_0, // OK
+> +		.base = 0x69000, .len = 0, // OK
+> +		.sblk = &sc7280_pp_sblk, // OK
+> +		.merge_3d = MERGE_3D_0, // OK
+
+none
+
+> +		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 8), // TODO
+
+assumingly correct
+
+> +	}, {
+> +		.name = "pingpong_2", .id = PINGPONG_2, // TODO
+
+Yes
+
+> +		.base = 0x6b000, .len = 0, // OK
+> +		.sblk = &sc7280_pp_sblk, // OK
+> +		.merge_3d = MERGE_3D_1, // OK
+> +		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 10),
+> +	}, {
+> +		.name = "pingpong_3", .id = PINGPONG_3,
+> +		.base = 0x6c000, .len = 0, // OK
+> +		.sblk = &sc7280_pp_sblk, // OK
+> +		.merge_3d = MERGE_3D_1, // OK
+> +		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 11),
+> +	}, {
+> +		.name = "pingpong_cwb_0", .id = PINGPONG_CWB_0,
+> +		.base = 0x66000, .len = 0, // OK
+> +		.sblk = &sc7280_pp_sblk, // OK
+> +	},
+> +};
+> +
+> +static const struct dpu_merge_3d_cfg milos_merge_3d[] = {
+> +	{
+> +		.name = "merge_3d_1", .id = MERGE_3D_1, // TODO
+> +		.base = 0x4f000, .len = 0x8,
+> +	},
+> +};
+> +
+> +/*
+> + * NOTE: Each display compression engine (DCE) contains dual hard
+> + * slice DSC encoders so both share same base address but with
+> + * its own different sub block address.
+> + */
+> +static const struct dpu_dsc_cfg milos_dsc[] = {
+> +	{
+> +		.name = "dce_0_0", .id = DSC_0, // OK
+> +		.base = 0x80000, .len = 0x6, // OK
+> +		.features = BIT(DPU_DSC_NATIVE_42x_EN), // TODO
+> +		.sblk = &dsc_sblk_0, // TODO
+
+Yes
+
+> +	}, {
+> +		.name = "dce_0_1", .id = DSC_1, // OK
+> +		.base = 0x80000, .len = 0x6, // OK
+> +		.features = BIT(DPU_DSC_NATIVE_42x_EN), // TODO
+> +		.sblk = &dsc_sblk_1, // TODO
+> +	},
+> +};
+> +
+> +static const struct dpu_wb_cfg milos_wb[] = {
+> +	{
+> +		.name = "wb_2", .id = WB_2, // TODO
+> +		.base = 0x65000, .len = 0x2c8, // OK
+> +		.features = WB_SDM845_MASK, // TODO
+> +		.format_list = wb2_formats_rgb_yuv, // TODO
+> +		.num_formats = ARRAY_SIZE(wb2_formats_rgb_yuv), // TODO
+> +		.xin_id = 6, // OK
+> +		.vbif_idx = VBIF_RT, // TODO
+> +		.maxlinewidth = 4096, // OK
+> +		.intr_wb_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 4), // TODO
+
+Yes
+
+> +	},
+> +};
+> +
+> +static const struct dpu_cwb_cfg milos_cwb[] = {
+> +	{
+> +		.name = "cwb_0", .id = CWB_0,
+> +		.base = 0x66200, .len = 0x8,
+> +	},
+> +};
+> +
+> +static const struct dpu_intf_cfg milos_intf[] = {
+> +	{
+> +		.name = "intf_0", .id = INTF_0, // OK
+> +		.base = 0x34000, .len = 0x280, // OK size=0x300?
+
+I think, 0x280 is correct
+
+> +		.type = INTF_DP, // OK
+> +		.controller_id = MSM_DP_CONTROLLER_0, // OK?
+> +		.prog_fetch_lines_worst_case = 24, // TODO
+> +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 24), // TODO
+> +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 25), // TODO
+> +	}, {
+> +		.name = "intf_1", .id = INTF_1, // OK
+> +		.base = 0x35000, .len = 0x300, // OK size=0x300?
+> +		.type = INTF_DSI, // OK
+> +		.controller_id = MSM_DSI_CONTROLLER_0, // OK?
+> +		.prog_fetch_lines_worst_case = 24, // TODO
+> +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 26), // TODO
+> +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 27), // TODO
+> +		.intr_tear_rd_ptr = DPU_IRQ_IDX(MDP_INTF1_TEAR_INTR, 2), // TODO
+> +	}, {
+> +		.name = "intf_3", .id = INTF_3, // TODO?
+> +		.base = 0x37000, .len = 0x280, // OK size=0x300?
+> +		.type = INTF_DP, // OK
+> +		.controller_id = MSM_DP_CONTROLLER_1, // FIXME, only one DP controller?
+
+It should be INTF_NONE / MSM_DP_CONTROLLER_0 for now, it's an MST
+counterpart of INTF_0
+
+> +		.prog_fetch_lines_worst_case = 24, // TODO
+> +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 30), // TODO
+> +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 31), // TODO
+> +	},
+> +};
+> +
+> +static const struct dpu_perf_cfg milos_perf_data = {
+> +	.max_bw_low = 7100000,
+> +	.max_bw_high = 9800000,
+> +	.min_core_ib = 2500000,
+> +	.min_llcc_ib = 0,
+> +	.min_dram_ib = 1600000,
+> +	.min_prefill_lines = 35, // TODO
+
+40
+
+> +	/* FIXME: lut tables */
+> +	.danger_lut_tbl = {0x3ffff, 0x3ffff, 0x0}, // TODO
+> +	.safe_lut_tbl = {0xfe00, 0xfe00, 0xffff}, // TODO
+
+0xff00, 0xfff0, 0xfff
+
+> +	.qos_lut_tbl = { // TODO
+> +		{.nentry = ARRAY_SIZE(sc7180_qos_linear),
+> +		.entries = sc7180_qos_linear
+> +		},
+> +		{.nentry = ARRAY_SIZE(sc7180_qos_macrotile),
+> +		.entries = sc7180_qos_macrotile
+> +		},
+> +		{.nentry = ARRAY_SIZE(sc7180_qos_nrt),
+> +		.entries = sc7180_qos_nrt
+> +		},
+> +		/* TODO: macrotile-qseed is different from macrotile */
+> +	},
+> +	.cdp_cfg = { // TODO
+> +		{.rd_enable = 1, .wr_enable = 1},
+> +		{.rd_enable = 1, .wr_enable = 0}
+> +	},
+> +	.clk_inefficiency_factor = 105, // TODO
+> +	.bw_inefficiency_factor = 120, // TODO
+> +};
+> +
+> +static const struct dpu_mdss_version milos_mdss_ver = {
+> +	.core_major_ver = 10,
+> +	.core_minor_ver = 2,
+> +};
+> +
+> +const struct dpu_mdss_cfg dpu_milos_cfg = {
+> +	.mdss_ver = &milos_mdss_ver,
+> +	.caps = &milos_dpu_caps,
+> +	.mdp = &milos_mdp,
+> +	.cdm = &dpu_cdm_5_x,
+> +	.ctl_count = ARRAY_SIZE(milos_ctl),
+> +	.ctl = milos_ctl,
+> +	.sspp_count = ARRAY_SIZE(milos_sspp),
+> +	.sspp = milos_sspp,
+> +	.mixer_count = ARRAY_SIZE(milos_lm),
+> +	.mixer = milos_lm,
+> +	.dspp_count = ARRAY_SIZE(milos_dspp),
+> +	.dspp = milos_dspp,
+> +	.pingpong_count = ARRAY_SIZE(milos_pp),
+> +	.pingpong = milos_pp,
+> +	.dsc_count = ARRAY_SIZE(milos_dsc),
+> +	.dsc = milos_dsc,
+> +	.merge_3d_count = ARRAY_SIZE(milos_merge_3d),
+> +	.merge_3d = milos_merge_3d,
+> +	.wb_count = ARRAY_SIZE(milos_wb),
+> +	.wb = milos_wb,
+> +	.cwb_count = ARRAY_SIZE(milos_cwb),
+> +	.cwb = milos_cwb,
+> +	.intf_count = ARRAY_SIZE(milos_intf),
+> +	.intf = milos_intf,
+> +	.vbif_count = ARRAY_SIZE(milos_vbif),
+> +	.vbif = milos_vbif,
+> +	.perf = &milos_perf_data,
+> +};
+> +
+> +#endif
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+> index 9f8d1bba9139..4d5b57d6295f 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+> @@ -555,6 +555,26 @@ static const struct dpu_vbif_cfg sdm845_vbif[] = {
+>  	},
+>  };
+>  
+> +static const struct dpu_vbif_cfg milos_vbif[] = {
+> +	{
+> +	.name = "vbif_rt", .id = VBIF_RT, // OK
+> +	.base = 0, .len = 0x1074, // OK
+> +	.features = BIT(DPU_VBIF_QOS_REMAP), // TODO
+> +	.xin_halt_timeout = 0x4000, // TODO
+> +	.qos_rp_remap_size = 0x40, // TODO
+> +	.qos_rt_tbl = { // TODO
+> +		.npriority_lvl = ARRAY_SIZE(sm8650_rt_pri_lvl),
+> +		.priority_lvl = sm8650_rt_pri_lvl,
+> +		},
+> +	.qos_nrt_tbl = { // TODO
+> +		.npriority_lvl = ARRAY_SIZE(sdm845_nrt_pri_lvl),
+> +		.priority_lvl = sdm845_nrt_pri_lvl,
+> +		},
+> +	.memtype_count = 16, // OK
+> +	.memtype = {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}, // OK?
+
+Yep
+
+> +	},
+> +};
+> +
+>  static const struct dpu_vbif_cfg sm8550_vbif[] = {
+>  	{
+>  	.name = "vbif_rt", .id = VBIF_RT,
+> @@ -725,4 +745,6 @@ static const struct dpu_qos_lut_entry sc7180_qos_nrt[] = {
+>  #include "catalog/dpu_9_2_x1e80100.h"
+>  
+>  #include "catalog/dpu_10_0_sm8650.h"
+> +#include "catalog/dpu_10_2_milos.h"
+> +
+>  #include "catalog/dpu_12_0_sm8750.h"
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> index f0768f54e9b3..1f6b14f1c4d6 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> @@ -749,6 +749,7 @@ struct dpu_mdss_cfg {
+>  	const struct dpu_format_extended *vig_formats;
+>  };
+>  
+> +extern const struct dpu_mdss_cfg dpu_milos_cfg;
+>  extern const struct dpu_mdss_cfg dpu_msm8917_cfg;
+>  extern const struct dpu_mdss_cfg dpu_msm8937_cfg;
+>  extern const struct dpu_mdss_cfg dpu_msm8953_cfg;
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> index 4e5a8ecd31f7..7afd7dc7a0b4 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> @@ -1505,6 +1505,7 @@ static const struct dev_pm_ops dpu_pm_ops = {
+>  };
+>  
+>  static const struct of_device_id dpu_dt_match[] = {
+> +	{ .compatible = "qcom,milos-dpu", .data = &dpu_milos_cfg, },
+>  	{ .compatible = "qcom,msm8917-mdp5", .data = &dpu_msm8917_cfg, },
+>  	{ .compatible = "qcom,msm8937-mdp5", .data = &dpu_msm8937_cfg, },
+>  	{ .compatible = "qcom,msm8953-mdp5", .data = &dpu_msm8953_cfg, },
+> 
+> -- 
+> 2.52.0
+> 
 
 -- 
 With best wishes
