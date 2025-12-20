@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-248426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 530DCCD2A2D
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:22:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8106CCD2A36
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:23:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A96CF300F59B
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 08:21:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 139EA30057FA
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 08:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD782F6591;
-	Sat, 20 Dec 2025 08:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B791F2F2604;
+	Sat, 20 Dec 2025 08:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iFEdnhH7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BgyoeYQ3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AC872D9499;
-	Sat, 20 Dec 2025 08:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8221618FDAF;
+	Sat, 20 Dec 2025 08:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766218909; cv=none; b=ra4w3mvi1ANbmXYDIwbzDnFtEOfworHNZHsOc1/w6wFsmzSTxCwjBZceKm2sDpFtxnM2vL/GEqN+JFtm0/u3+stBkhIEjVfL3ReFPer/x4gYSmdE83U5K+wwAQrq1KRp3yCLrY90ax3zOce/Lo0CeBmnfs/Vyj684RVvzaH/XHI=
+	t=1766218996; cv=none; b=oE5e9xZ88J64Wqzzv10S6s5qa6r6uRYJ2c+jG+KHRJonkZwq4uvBeV+qMjpFzVCxaDMNj3eGkJ993rUzdwm/GAPc26sz7O7MeMXgxugAucuRoS9qCtBFaVW+d9Zw2syEZFDz0TGgwY/A00bATsJhr5DGDXi642phjwj91vPBCcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766218909; c=relaxed/simple;
-	bh=yrugSePDwpe4Ssgzv/R5w8uZRznKl7iqkGx4mh7kJno=;
+	s=arc-20240116; t=1766218996; c=relaxed/simple;
+	bh=HgLN0WjF1FqakrkkLzZkJJzv3INiseeQhBi0bnj2Q6U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ofSPSYhBul8+ckEf7y5Mc6r6hKxYvEYKyqdsA2npMh8jMOzhnZ1F/XXvg+bxFqotl6WKVlLeG3FsQP0VvgBalzFBSCMDXQC3RQ92ie+CMlYhXkdRPEqMPEEqAeDSzo/gxw0JGeeWEiRxCzyxEGnazrBI9IJduLmhFk8pg/4DnVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iFEdnhH7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5360DC4CEF5;
-	Sat, 20 Dec 2025 08:21:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RJqvgouJ9vir2qksUqygxKbDsEEXwybtWzl2931cae8UXfMXZrMmMWjqFA84PiAfSgiqxAHheirzkdOitRFp1l3/39qVSxm9qhsgw+qqYPkXIQhRKmY9TrJA16StPZ6EJupYPpneCfWQqEdxIL8BA/dtis39mB2h4bxGF3aUp2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BgyoeYQ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5616EC4CEF5;
+	Sat, 20 Dec 2025 08:23:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766218908;
-	bh=yrugSePDwpe4Ssgzv/R5w8uZRznKl7iqkGx4mh7kJno=;
+	s=k20201202; t=1766218996;
+	bh=HgLN0WjF1FqakrkkLzZkJJzv3INiseeQhBi0bnj2Q6U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iFEdnhH7J3HIdCJn0BJVFAVk2oxnHGqaznhtB8E/mYat0CpNiGqjMhBTh8Bx26Qha
-	 4hJ9N34aPd/BgITuAM5R4TxNZ0s6i/CHVZMHQAjGAN+KrESnNnns4ocl5VMTbLE9OU
-	 +wsWAD4FS6gD1rgHstqrBq+mvjirL8iyJpJyt/1PqF9wzEIIYEVC1y9tsfLCjXCsBk
-	 2SnRG/HRGujso/6rKze/7iy2YD6q8K1dJaO5Wndh/KLwVVM9ZcbfqQfoM0DQJO0ZWV
-	 V2AC3W+xnep68cERCKxYURJ7D/cIutTnDEgc7ZfasM8QwPd/o8bDFW+U8E4DEDW9dk
-	 Qt6URvz3UocOQ==
-Message-ID: <7fc87b59-0a34-42a6-8012-7dc59223f0ce@kernel.org>
-Date: Sat, 20 Dec 2025 09:21:37 +0100
+	b=BgyoeYQ3gYDsTlHxZqK/Sm2V1D2iVJYngJzMlDauX4pD32bcJzqtB86w45BJ7XruT
+	 KrICSvGgust4ZQmknJzTL9MF2QLufiaszowMpIHdMEZ57CAj5cT1KbrLARbNYrU62u
+	 UYvawqcG/hOQjDAA3REJKSPYzqxL79mamf4bUB55G3vyUwRVNObdu4mZq5BwqAc2mS
+	 DFcvlDUu6wrzlrfLZ40nzcZfiu3gnLF6c3OY9fhyfdG2aVKWU5CxzvHAMrH+ljdiUC
+	 HTxh1+rsQW9zD0uolInX9zH97YHM3TMfnFsU2696KFA7PYTQgXmJY6htB6melwWATC
+	 NYl263J8NVQog==
+Message-ID: <30f6f550-45c3-41dc-8af0-4a80fabd49b6@kernel.org>
+Date: Sat, 20 Dec 2025 09:23:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,26 +48,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: media: i2c: Add os05b10 sensor
-To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, robh@kernel.org,
- krzk+dt@kernel.org, sakari.ailus@linux.intel.com
-Cc: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
- Hans de Goede <hansg@kernel.org>, Mehdi Djait <mehdi.djait@linux.intel.com>,
- =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Dongcheng Yan <dongcheng.yan@intel.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
- Svyatoslav Ryhel <clamor95@gmail.com>,
- Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
- Jingjing Xiong <jingjing.xiong@intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251219084526.22841-1-himanshu.bhavani@siliconsignals.io>
- <20251219084526.22841-2-himanshu.bhavani@siliconsignals.io>
+Subject: Re: [PATCH v4 5/6] arm64: dts: qcom: Add support for Surface Pro 11
+To: Dale Whinham <daleyo@gmail.com>, jerome.debretagne@gmail.com,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Johannes Berg <johannes@sipsolutions.net>,
+ Lorenzo Bianconi <lorenzo@kernel.org>,
+ Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, ath12k@lists.infradead.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20251218-surface-sp11-for-next-v4-0-7bcf83c1504a@gmail.com>
+ <20251218-surface-sp11-for-next-v4-5-7bcf83c1504a@gmail.com>
+ <de00f21e-7fc7-4caa-93ec-afbcc5d9e12d@kernel.org>
+ <d4a87f75-92a3-4c09-9f9c-e906f0b7ae70@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,23 +111,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251219084526.22841-2-himanshu.bhavani@siliconsignals.io>
+In-Reply-To: <d4a87f75-92a3-4c09-9f9c-e906f0b7ae70@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2025 09:45, Himanshu Bhavani wrote:
-> From: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
+On 19/12/2025 20:27, Dale Whinham wrote:
+> On 19/12/2025 17:47, Krzysztof Kozlowski wrote:
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>>
+>> How exactly is this copyrighted by Qualcomm? I don't think Qualcomm ever
+>> prepared DTS for this, so can you point us to the original work?
 > 
-> Add bindings for Omnivision OS05B10 sensor.
+> As mentioned in the commit message, this device is very similar to 
+> Microsoft Romulus (Surface Laptop 7).
 > 
-> Add MAINTAINERS entry for Omnivision OS05B10 binding documentation
-> 
-> Signed-off-by: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
-> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Its associated device tree (x1e80100-microsoft-romulus.dtsi) was used as 
 
+DTS, not DTSI, although about that I would also have same question.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> a starting point for SP11, and so I felt it would be courteous to keep 
+> the original copyright notice there.
+> 
+> If this isn't appropriate, then that's fair enough and we can remove it.
+
+There are just few lines in this DTS, but if you still copied them from
+other one, then it is fine.
 
 Best regards,
 Krzysztof
