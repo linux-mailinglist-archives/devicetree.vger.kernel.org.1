@@ -1,148 +1,186 @@
-Return-Path: <devicetree+bounces-248469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1395BCD2FE3
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 14:47:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6523CD3088
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 15:03:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 742023011EC0
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 13:47:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9FD65301B83C
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 14:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB47726D4F7;
-	Sat, 20 Dec 2025 13:47:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E00422F74A;
+	Sat, 20 Dec 2025 14:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HCmLMJOG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jsT6tVcM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117642641FC;
-	Sat, 20 Dec 2025 13:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9341A1F94A
+	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 14:03:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766238422; cv=none; b=sBwzXjOO3OikQQ++9x4Gx91Muqnve6p/nfjGOd+V2lwGjl71S7GsK60jMzfBZWVbRuRfHMmG6vC4g4nKXXRiNFqMSqmD9sp9Ee1UARKYqINZDJTkPxsMj9cFZgxc7ReynW1OGmj09MDzh1Bu/hCbVYybUK9FObFi5yvnublXZg4=
+	t=1766239397; cv=none; b=QHNbZpGlb1zddkYBTlcXu59F4EINJXkVQYp6hbU8kykcNC4DzKe1yJy6uh+ZvT6iddJpFWCr/GK2BLBZLRuR428ovodoWRaOfV1MRHdP9v4uAXY7QheDVEZ+6nB1TVbduyKI0woL16XUjYyBkWxu4rztin9yypQB1lvuykDkWys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766238422; c=relaxed/simple;
-	bh=mg0C+4JvGjCoIqDQ0gw+w3ko0LP3L+QMx2EtAcbTWXY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KrGLdBTjDOrsIsypJgEvMqw/Og7pM4YifghpEjnUxsnmW8UI2YNii+nx+FVGynUGlr/CpK79LgjebeP51lB5X0d53RqyO8lSe12Ch5vYqd0thg3FOXA35S1hW3N95T7Wcgo+Wu4F0mnLAAtxDABIriUKu/XbHy7zd3f8qA1ozKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HCmLMJOG; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1766238420; x=1797774420;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=mg0C+4JvGjCoIqDQ0gw+w3ko0LP3L+QMx2EtAcbTWXY=;
-  b=HCmLMJOGeoCo08qxNOAkg2DxY5JB+UBfcp45M/u9lxUkEY391IRIj3Ck
-   BLaYzn5LU5nIDQY8dFwGNWBjwQaWv4wmB7jivW8cao3zrqZKaz6+vyrvT
-   SzBZi/AUOEZICVlZ1tlu9F1f/5OXZ50R7R4iTDRKw1VGqr/ltqNQP8RUV
-   3cYNbzPA2A6U/TmbhCyT+NjTk2oYd1wW3BW6fiKR2Z7/Lqsnw5LPE4rrP
-   W4AdrFV4f2pwp8k2AcpyrFHRdQzILw0GkmZVuM3tPRqgwkICO6G4TIqMQ
-   Ik9+mCoFHpY82avNPUmzp+OMTLfqCSRV9LV4QJGOhFFHnk0qdICCvm56r
-   g==;
-X-CSE-ConnectionGUID: joPC7Y9AScGl8/HQJU1WGg==
-X-CSE-MsgGUID: oRoN9JEcRWGaQOUb77GIbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="68110717"
-X-IronPort-AV: E=Sophos;i="6.20,256,1758610800"; 
-   d="scan'208";a="68110717"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2025 05:47:00 -0800
-X-CSE-ConnectionGUID: JzUVON0yTAWl/bhgOMz6qg==
-X-CSE-MsgGUID: uPZuWzmvSUCYCu6PZRn0bQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,164,1763452800"; 
-   d="scan'208";a="198864810"
-Received: from lkp-server01.sh.intel.com (HELO 0d09efa1b85f) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 20 Dec 2025 05:46:55 -0800
-Received: from kbuild by 0d09efa1b85f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vWxIK-000000004Zt-3NbM;
-	Sat, 20 Dec 2025 13:46:52 +0000
-Date: Sat, 20 Dec 2025 21:46:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Linus Walleij <linusw@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>
-Subject: Re: [PATCH 05/13] pinctrl: eyeq5: Use match data
-Message-ID: <202512202102.TqCsNdqY-lkp@intel.com>
-References: <20251217-eyeq6lplus-v1-5-e9cdbd3af4c2@bootlin.com>
+	s=arc-20240116; t=1766239397; c=relaxed/simple;
+	bh=U92C7ajF9y/pESK6SVDL/9uXSTMr9EvRTNP1cZpQmZs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TNo+a6OpHqZJ2wciVLmrNhWhS1Zg02w2JPi7AsRO0Slxm7wh5OsDGebKDBZ4HAYQ7QuzO4hY5U/0RddsFbjq+Y2/R7A9Mf5q3e/g2atQgOWILBBC2/jqpimk2ZrL6sICsgVSNk61Xm8q2HtaszTvNLz0+bbUZktyu6U21Zf+6Yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jsT6tVcM; arc=none smtp.client-ip=209.85.219.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-8888a1c50e8so32497886d6.0
+        for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 06:03:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766239394; x=1766844194; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vTIPtqzMduKujdd0veJ2LC19WzlWxxZcItU+/SfvSHQ=;
+        b=jsT6tVcMNb4IkV7xg9NZmw2+gDmYL5vOhaNZy1so78ROnnVW9mF7oRbOdAIEzkcMy9
+         xBDLkwrzFXtJ7yA9MhuTkL0rXBrVfmZbZG1owRbKBP4RBnJVQM4yQNmexDkCaZIej7wo
+         12jWE3becB8RYY8IkbynNZqiEW5Qeip+y2jwuo4QlyIC+iMySUsnKyyQwDHVCKoDV4rd
+         8r2YlhMdWz48tX5TLUEOu2uOWCgqQ45j2ICqmxi3N+6AtQwPfSMJOCnhj/FtquGRN3Wb
+         0L18jv8BmZagtunARZnmtuS0+1ysqUhnps7oGaMutHcEUWiSDGP4j869IiN1YykaLkQd
+         B/0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766239394; x=1766844194;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=vTIPtqzMduKujdd0veJ2LC19WzlWxxZcItU+/SfvSHQ=;
+        b=l2uaRmgy8vlU90XwKWWxEtslKq/jCXVkLXgufiQFp5/ULUdf4uTAbWLyAdBavOo0OU
+         TS/ZW3vHoAqcBzvrNPkB8QqUNMlmTuL55LP0b7qsZxvbt6m3p3+INBmuPSqO+XKZpsns
+         rhhpG2vJn7MGxUzYHvDXD51i7dtTQRN9U4SCbYcakBIoZ30AxCT08pmJTth0UqOO/P+l
+         CZu18r6NvkLAW1kkR8kJTkkZ6QIbIXZQWySoBxCsplfzuG2TtW/puc2JvwdWuBRMc78l
+         KvxWIzyyFvmufAMdaYWAeC0kNO4GGTp5tt9Fzt0LKPJhpGVeUM4fYvxK6mh4s1iJkSrg
+         I8BA==
+X-Forwarded-Encrypted: i=1; AJvYcCVh/H5D4Lo0IrcGtjjsc3oYCjAFdPkP4BOlco8M59apuTbwdgIDOrKXwVJzNTSSLp235GSyEEaDwSAl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMh0AL9nAnVBB6HfhnNROVCDyfFTnImFwBHzha+AqKLmnUUXx9
+	QaNNq6NdrFf2pg/i6+D6BMdcIgB//it0DbFh25GRgxiNbUhwFuKUE3UgQYyJzErt7P83u5J+imX
+	UMPnydP3AZj8fv82wfOUfSsM7Tn4CEA==
+X-Gm-Gg: AY/fxX7tyYaaGQm5wMn+1l3aOpGCrTjtE05yWj4rSNClnRCnMDgkKBC9PeYl2/P5kv6
+	Qvq0/XFBsegeNLoRWtoYFKNDGje6BEBd5jpd2/BLulxJA4iWrzJlenLxnb9fxz+anCAcITNS78F
+	oq5kAU3dAvniJjzeJKbIDVjocKGdB4ezPb0lWVVjE7VdpNFZZ/RvSbmMcnrpLrj3kdxyIMbAiR7
+	8tYZD6lqFZNB3L/pdjSiEhAF8LeSWxfRYeph0He+uJ1rh/zv379YMXnVWG+JxAriPX7hKsXMPm/
+	5GGcpj0yNd4r1yaZe1bCAjEP5i8=
+X-Google-Smtp-Source: AGHT+IFp4fR8Wc2qjRuYRZCvAQmroP/eyGv/wjwh1rGAG5pfcUyLHfpF6uaQ82FZr3MKIP8d6MaoUKVouxW6yw2G3dY=
+X-Received: by 2002:a05:6214:248b:b0:70f:a4b0:1eb8 with SMTP id
+ 6a1803df08f44-88d8203f029mr99469936d6.13.1766239393583; Sat, 20 Dec 2025
+ 06:03:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251217-eyeq6lplus-v1-5-e9cdbd3af4c2@bootlin.com>
+References: <20251220-surface-sp11-for-next-v5-0-16065bef8ef3@gmail.com>
+ <M7kfFb5fz-WB43U_xCUwgxpmBJ4TNdp4jE6yFu6HmemIcDx5tXO6H4xnW_pEQz6DMkKm-3POdB9hIdB092zhGQ==@protonmail.internalid>
+ <20251220-surface-sp11-for-next-v5-2-16065bef8ef3@gmail.com>
+ <e0e9e690-c56e-4b56-90f9-2af46a7feaf3@nxsw.ie> <20251220-fervent-mamba-of-sunshine-f680a8@quoll>
+In-Reply-To: <20251220-fervent-mamba-of-sunshine-f680a8@quoll>
+From: =?UTF-8?B?SsOpcsO0bWUgZGUgQnJldGFnbmU=?= <jerome.debretagne@gmail.com>
+Date: Sat, 20 Dec 2025 15:02:36 +0100
+X-Gm-Features: AQt7F2qSP3aNPDvdAnYCQhdwd2yv91UgJ5ZtJLf3svJOCJgsank9Z_-67rvi34Y
+Message-ID: <CA+kEDGEB-c1SuEdR4W8mnxYQLxN5bqW0v3G6wb=e+a8LY8+OTg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/7] dt-bindings: wireless: ieee80211: Add
+ disable-rfkill property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "Bryan O'Donoghue" <bod.linux@nxsw.ie>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johannes Berg <johannes@sipsolutions.net>, Lorenzo Bianconi <lorenzo@kernel.org>, 
+	Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
+	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Jeff Johnson <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-wireless@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+	ath12k@lists.infradead.org, Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+	Dale Whinham <daleyo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Benoît,
+Le sam. 20 d=C3=A9c. 2025 =C3=A0 10:12, Krzysztof Kozlowski <krzk@kernel.or=
+g> a =C3=A9crit :
+>
+> On Sat, Dec 20, 2025 at 06:04:00AM +0000, Bryan O'Donoghue wrote:
+> > On 20/12/2025 00:21, J=C3=A9r=C3=B4me de Bretagne via B4 Relay wrote:
+> > > From: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.com>
+> > >
+> > > For some devices, Wi-Fi is entirely hard blocked by default making
+> > > the Wi-Fi radio unusable, except if rfkill is disabled as expected
+> > > on those models.
+> > >
+> > > Commit c6a7c0b09d5f ("wifi: ath12k: Add Support for enabling or
+> > > disabling specific features based on ACPI bitflag") added a way to
+> > > support features set via ACPI, including the DISABLE_RFKILL bit.
+> > >
+> > > Add a disable-rfkill property to expose the DISABLE_RFKILL bit
+> > > equivalent for devices described by a Devicetree instead of ACPI.
+> > >
+> > > Signed-off-by: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.=
+com>
+> > > ---
+> > >   Documentation/devicetree/bindings/net/wireless/ieee80211.yaml | 6 +=
++++++
+> > >   1 file changed, 6 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/net/wireless/ieee80211=
+.yaml b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> > > index d89f7a3f88a71d45d6f4ab2ae909eae09cbcaf9a..c10a4675640be947cd0b5=
+eaec2c7ff367fd93945 100644
+> > > --- a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> > > @@ -29,6 +29,12 @@ properties:
+> > >         different 5 GHz subbands. Using them incorrectly could not wo=
+rk or
+> > >         decrease performance noticeably
+> > >
+> > > +  disable-rfkill:
+> > > +    type: boolean
+> > > +    description:
+> > > +      Disable rfkill for some devices on which Wi-Fi would be entire=
+ly hard
+> > > +      blocked by default otherwise
+> > > +
+> > >   additionalProperties: true
+> > >
+> > >   examples:
+> > >
+> > > --
+> > > 2.47.3
+> > >
+> > >
+> > >
+> >
+> > Is this really a hardware description though ?
+> >
+> > Its really more of a logical/functional description. It tells the runti=
+me
+> > what todo, not what the hardware is.
+> >
+> > You could also have a list of quirks in ath12k for this or have a user-=
+space
+> > utility look for the appropriate platform device string name and disabl=
+e
+> > rfkill.
+> >
+> > I think this logic belongs in drivers/net/wireless/ath/ath12k/ triggeri=
+ng on
+> > a compat string.
+>
+> This is good point. Either this could be deducible from the compatible
 
-kernel test robot noticed the following build warnings:
+Thank you Bryan and Krzysztof for your feedback, I will drop the
+disable-rfkill patches from this patchset in v6 then. I will work on
+a separate patch using a list of quirks in ath12k as suggested.
 
-[auto build test WARNING on 8f0b4cce4481fb22653697cced8d0d04027cb1e8]
+> or this should actually describe the hardware and whatever is there
+> wired/configured, not what OS should do.
+>
+> Best regards,
+> Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Beno-t-Monin/dt-bindings-mips-Add-Mobileye-EyeQ6Lplus-SoC/20251217-214926
-base:   8f0b4cce4481fb22653697cced8d0d04027cb1e8
-patch link:    https://lore.kernel.org/r/20251217-eyeq6lplus-v1-5-e9cdbd3af4c2%40bootlin.com
-patch subject: [PATCH 05/13] pinctrl: eyeq5: Use match data
-config: parisc-randconfig-r051-20251218 (https://download.01.org/0day-ci/archive/20251220/202512202102.TqCsNdqY-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251220/202512202102.TqCsNdqY-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512202102.TqCsNdqY-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from include/linux/bits.h:5,
-                    from include/linux/ratelimit_types.h:5,
-                    from include/linux/ratelimit.h:5,
-                    from include/linux/dev_printk.h:16,
-                    from include/linux/device.h:15,
-                    from include/linux/auxiliary_bus.h:11,
-                    from drivers/pinctrl/pinctrl-eyeq5.c:21:
-   drivers/pinctrl/pinctrl-eyeq5.c: In function 'eq5p_pinconf_set':
->> include/vdso/bits.h:7:40: warning: 'offset' is used uninitialized [-Wuninitialized]
-       7 | #define BIT(nr)                 (UL(1) << (nr))
-         |                                 ~~~~~~~^~~~~~~~
-   drivers/pinctrl/pinctrl-eyeq5.c:533:19: note: in expansion of macro 'BIT'
-     533 |         u32 val = BIT(offset);
-         |                   ^~~
-   drivers/pinctrl/pinctrl-eyeq5.c:532:22: note: 'offset' declared here
-     532 |         unsigned int offset;
-         |                      ^~~~~~
-
-
-vim +/offset +7 include/vdso/bits.h
-
-3945ff37d2f48d Vincenzo Frascino 2020-03-20  6  
-3945ff37d2f48d Vincenzo Frascino 2020-03-20 @7  #define BIT(nr)			(UL(1) << (nr))
-cbdb1f163af2bb Andy Shevchenko   2022-11-28  8  #define BIT_ULL(nr)		(ULL(1) << (nr))
-3945ff37d2f48d Vincenzo Frascino 2020-03-20  9  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+J=C3=A9r=C3=B4me
 
