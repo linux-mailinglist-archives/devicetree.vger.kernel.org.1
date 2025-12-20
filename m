@@ -1,123 +1,125 @@
-Return-Path: <devicetree+bounces-248526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9996ECD36C9
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 21:44:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6429CD37F6
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 23:03:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9D01E300912A
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 20:44:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DBB2C3009131
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 22:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78AA30F808;
-	Sat, 20 Dec 2025 20:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359F02FD660;
+	Sat, 20 Dec 2025 22:03:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="cWjngpa4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BIHxvnvR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E61E2F3609;
-	Sat, 20 Dec 2025 20:44:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99DED2DEA9B
+	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 22:03:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766263492; cv=none; b=QQ9/rIqAnWsHOJxe6rDuTFhf9Q7LfwaqdIQpo39HFwtHyLp1eUx4hiX/XhVHqsPSy7Ar7u4TwfOWzDURWaRrJ8DbpwYt2kud4Un9sog3KT+0xfSlh5szva3VbtugckG/cB6MHtfBB9hmjpbaWCYxv7N4w8s94myG2d6ZZu2saXc=
+	t=1766268218; cv=none; b=ANLMafPdZ1kFcNRVf5Cz62mDyRqmga1LPlxGpDT4SsCboktsfIPZrxJgfQNcTIUKSaeEeVlDn14+7NE44G7GBVnt8dgTaIr2pGX+Dm12ZY7ttnZ97L4fNojTMDiFgNjkjIaYlbis6OUjCeyhcXASxAs8L1to33eK6PbGLbPUUtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766263492; c=relaxed/simple;
-	bh=Lzk1Ok3BTaaFHpZupHeCiDZY8/Dy+OZE5zgQHvrutgM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pa603WO5x5UVIAnVF4Y0TEUmZXZD2Ig8khu3jS5tccUjLkOHLdzd6HT9eO6IkYzoczCGELycNCleX/YiauJyvx4HdZ+jZbP14GKBc3WEYOFR/395F032pnjTp8wOX00LhQfUYac0xcPm37IHA4eyyq2CfeMjwvt+am1UMSn29gM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=cWjngpa4; arc=none smtp.client-ip=212.227.17.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+	s=arc-20240116; t=1766268218; c=relaxed/simple;
+	bh=Z/CcaMqE2F9hQ373hh+TK08NHmxmRfaRGf+PqPGAoTU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=osV2mgE4uB0HRdhrN2o0WxKFt2rCv3SXVqykTfqGf7glzDUuGbPzr0vWI7pSTo+yvzm/H+kd01JJQgL4N0yyVf0QcCW0uKvtsOsOT+GnA4NOfv0KB2JFAsISxROx5g0D2CcvSBemnQ8VJ+Zg4JKXn8oXBn//gnLdOckG+NCR5Xc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BIHxvnvR; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7b7828bf7bcso3149610b3a.2
+        for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 14:03:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1766263488; x=1766868288;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=koDcGig5xLflj819KhwLIEcNAMdfnUESnwP9JoYSg2Y=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=cWjngpa4nmPB7An7QhDAU8etLeTUKqsUX/t4K+xita2RbQ0iaTwr2wzjvQGTcudI
-	 rMCBSJgtkU63NZ5GQK/bZ0c4TMFl6ao2g/21t3e+h+XfS9o1IaksdqrgvR+ea9pgi
-	 hII4DSRO5YSp+xISE8JlNa2fSIgEMSt45nArv2qekqvP5B/anSrkt9FosWFS5tLoW
-	 v6pElfDY3hgNkqsybgiG1R/uAL57NCG6SGFz+JyP0XT/m3cSf6UB6RroTPJHGB3H+
-	 +RwnGYpDW3E6R6fSom9jt9s4qUVfYYx4clKNsGlIYssOcb7TA/gXS0XpsxG/KJ2Yt
-	 +OLvlP6D/KBtHxzLnA==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([91.64.235.193]) by mrelayeu.kundenserver.de
- (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1M6EOc-1vdgAw0aIi-0056At; Sat, 20 Dec 2025 21:18:38 +0100
-Message-ID: <da036d7f-e509-483a-98d2-f511deda8d5e@oldschoolsolutions.biz>
-Date: Sat, 20 Dec 2025 21:18:36 +0100
+        d=gmail.com; s=20230601; t=1766268216; x=1766873016; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c+VagBe28+HbfctXznw2EgljC1Oa7V0N70ONS8x29vE=;
+        b=BIHxvnvRcZUaC1lLPMHLLDH4IcAg/wFZGxT22OkZeLC++E/FiLhIuwbUHNNuvAW3/s
+         n4M4SzlFM/5X+pOoUtBN2f23G2Qx/3xWd61zcWc94sqtkktwjn8ur0Kd3y+1fBIOyOpj
+         S3N6mS67nF7Af0Rp+InfYyApNDzB5xji+oWKItWtbDIpZLhisdW2Cl+sZbWaqHyFgo8e
+         Q4twBFKAea0/pivcbocFhNfktumai4q7v2+dlOO0xrmnHFCMq7OEJ1z6WZQCHZKjASD9
+         HHfgZL7ghFDbob+Bw1BncpbS2tv8JZVKxyKuB7baLsfBs2jDpwr3E8s/L7GyqIetyvP2
+         2ZSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766268216; x=1766873016;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c+VagBe28+HbfctXznw2EgljC1Oa7V0N70ONS8x29vE=;
+        b=XCWSd8oOrkISjm8foaGMUTgaIC2HgBEfb8SIDE8Ax2ovkmJrRIJnzND7P48Y26l8Yk
+         Cjwsgl7/EByvCbFSFNZNACUEip55qG5qg53c9dc6K3BXcEYpz5lHsceSmPEX2Sl16T63
+         XT/Cpm/KHgo/0fOjn4PDfVYDOwkyjA/Tpxr6j4nd1YokuO/SjLGvFxyNGv16ExmLmGCW
+         aXMCeSWxJfyXe/fzsMFhnOyivQjUWOCRLQbsWJGvdTFufsLRv8b7/cscZ5ifxt0+LNGu
+         hJFe+Yf4wMh+BLowXBKsEKd0xO37/Y6pk/k+oK1mV8NZpitxmz0BLAN7sKAghuXB7ZB4
+         PogA==
+X-Forwarded-Encrypted: i=1; AJvYcCWIemHcjuPiG0w8VA3KMHtso3LSmp1GAWrekozZ3OV10glGzRnfmpftcOVA29movRrvN2IqmbheJzNS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIngn1/EGk05tRUIQFgIRL0D0DkyCYXCzyC+nicoFm4i8SauXQ
+	sGex3f6DCgbhKTsbDzQnMTZD+2wGbnyJO/J4etIF/JeB3UQrrE6jU7ho
+X-Gm-Gg: AY/fxX7W4AN6xeN7qw78hK1Vpab3mnudRb9mLz6yQSPAz8axAqitr6aQ/743BW+R38O
+	1MUodkvIblLzYwZoGJ3HdNZ4mp+SuylsJSAko+ad2AqW9x9RwFBhcCW8/uExA98NFa1oXkdtkDN
+	MkoBskEv/1YdxW8T6yu6WxZKQrunM/S4Inr5NYN4GbN/QvjwNd0HumFw+qwAeKiWb6BWH3PGdDT
+	pxwahS+h/unHk81AGfIJjC+BH7R04c/iNOyWAGZNadOd66QZNNL1JsXPtnQo087ewTfl2Fbndmz
+	pgu5CUsGGR4YO9YDdwu0l/cIkkxHNltsWFMRU9rEmrtfSGcrIIokj/CZTEWIqWPIveBPT+UmldO
+	uRhhs6pMTSNOq7m0GVQDjxWeRfMTps2y1/oVz8X8AzyZugortJk1MhUzptiyXsJphdSzaNr4+TH
+	E07vKnN3LGNSdsWE17RIC3UQ==
+X-Google-Smtp-Source: AGHT+IHD0+Hy08F0BoxdPC82bOj6VLwI2/R2BIv1B/jwa4RcqT6yeUW6JFcApxTmDsVMSB+1P6jvjg==
+X-Received: by 2002:a05:7022:699d:b0:11f:3483:bbb0 with SMTP id a92af1059eb24-121722c2521mr6731973c88.19.1766268215651;
+        Sat, 20 Dec 2025 14:03:35 -0800 (PST)
+Received: from fedora ([172.59.162.202])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1217254cd77sm25010164c88.14.2025.12.20.14.03.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Dec 2025 14:03:35 -0800 (PST)
+From: Alex Tran <alex.t.tran@gmail.com>
+To: mchehab@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: pavel@kernel.org,
+	sakari.ailus@linux.intel.com,
+	mehdi.djait@linux.intel.com,
+	alex.t.tran@gmail.com,
+	laurent.pinchart@ideasonboard.com,
+	hverkuil+cisco@kernel.org,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] media: dt-bindings: Convert toshiba,et8ek8 and ti,omap3isp to YAML schema
+Date: Sat, 20 Dec 2025 14:03:23 -0800
+Message-ID: <cover.1766123192.git.alex.t.tran@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: x1p42100-lenovo-thinkbook-16: force
- usb2-only mode on usb_1_ss2_dwc3
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Val Packett <val@packett.cool>
-References: <20251220-tb16-hdmi-v1-0-18b1e20b396e@oldschoolsolutions.biz>
- <20251220-tb16-hdmi-v1-1-18b1e20b396e@oldschoolsolutions.biz>
- <3zazejrynu6cl4ah36virtjl2jthlrjw4h3inkp4zjaovbtaif@2dnywhywqyzb>
-Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <3zazejrynu6cl4ah36virtjl2jthlrjw4h3inkp4zjaovbtaif@2dnywhywqyzb>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:2ykD2jDZXKqDQv+3I+TPm4iVpzDLp/cH2G7HMAHN3Ru5xtQ3Dvu
- Cur/HqemO4h/hymHH+3TQvnkn1dlQf1eIOER2seb/zo9rS7Y4+/4tZ5hq+BSbymKgfsdmFV
- 8YHYKSLAdEIs53IlpbaKxVK2gRMMxf9F4CFUHyd38MwCC3E8q+xl42p0IyEkjllAxbqwoXd
- Ak4MZyqhx83P63kJb9ncw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:x7W2dwohhqI=;OumdA1WVPairt3xgNyuFA+hvSlF
- tquNqtaDA2/fJH2dVKzJNdOjNNc6ROD7T1bm5xrRJki89a18KZfPf1GLEtMW4P7jHnT44Ne/x
- mGvh7UiKDPoSrhXQADh1CYJgDGO1iJfpJaje/5MORK5Nz3W1G6LEEnYLI4fS3MWuIda9szC70
- Tx5I2+Wqzt+m228aYH0PG9yfZ996B5Jv5zMnFQVlwCQwlOODFGysVs1uPI7RhGGtYEeQRkSk7
- SNO8YKpuXhHwIkcXEV/PSNnqNjY9wFMtGtWuehWqO6yYd6/dRvZAJs7TjMJRE46ub4Fm/+he0
- xMAC9E4SdXcQyBkqzKNzpixUuzyNdeHgA+ddu3hGOrmQGDFsdlSdX/zXn9bVRK8XmGYNGo6eb
- 6T1x0M5b3yEYuJd3h3V6d5aGpCq4BeiXH1KHEqtionqbivr6oTo+nwS6A8ReL2QHb2U4fAUX3
- dAGI3KyVzNwlJJ7TyIUPuElrtr26FugRmITGrzt4FIawYXJqnu3YzSsQrVEGOkVc8L7hYsv89
- B54Mw5oAQYP4GyoFYYKJhvrzNEoCz62s6VkkhhbemIzffM6S53CDZUjRD/Wl/FOMcLphcdCzY
- vM30YUna4KcD3uhZvhwXpP1AVybL79VkAqCKulsOFdE5D1M63UFM68qi3nAopFX+aFzGBrYvN
- LX7u3MUOZaLHXFAgTkVxLJ5Z7TwTlB/zIz1Sj+L/WI6g8czpRR4XnWkxf4k3bVmZVktYQNCpp
- ptJQCf8wFI46QvYnkfN2eN1XkVYUSFgQG/gEckbkDuGuVItPy7Z+GvC0mdmfReS+kI04LP7/l
- qbFaxizwzhaT9ln1pTmhpY2XYFoYm1skDoj2yAMARXvn/I9TWvJp34db3u+6srdUTCzsm4COS
- gBNGAA8Z/uYDY/UFTscY1nrzE7GNMDONbui6NWlxgXVKzrDpY3RZoMjDsrPVUB+Ow4t7ISdHl
- v+rYa7Bl/OhuKSMTzRhyYepp1kVGyNfsUAs2YKWYWWzo3JjsE8vQNEyaTcmaNI0U2GETJhfhV
- zysJMRTL7ptokVoOjcLy9cRgb21hLOactKF8KoIYEJ2CZkuhsXj9d8jHrkjXN/oQsdRmWnvOE
- c0l1ukn6LbeSUhSZ/FFPyOiKrhloDMIJruAuQjqJQXor3/S9bUdKr6FQWy0n0uR2VzDoo9gWy
- fcdkF7Uv4y5zatJX5qyPVmqrIwjHqm752h5Fflilo9Uvy1fO8Fu2iY++sZZzrKTm1VQanAZAS
- Hf1xcloKK2fzzJg/Lrym+SK2a1djHT1t4bNchd3KuOE+umkKG57D+a+aemmkMGtVrOIJF29/p
- sQkm/w88KnnkUsk4d/ez8FMNcceCBIwq+QTcUInt0kNAs5pnV9Bmu7duoQDjzL5cIN45+BNuv
- 2u0C3Ny1ZMApIVmjWs2q1dCUPMo/NOwCUpL7EnJpzYvMJHDcn60xZVRArFLKZVaCaqv5oQPFq
- vKlOGaKW/BBALgqjCojxNgcxHeluoPjRDr2sewzX5YgNe3LpWIs65vuzu07+8pHEB8bOkLTM2
- TQxi63+rl9ptTpxfIUDbSX4RVnUtQuJpoAm29rSbRTfPv3FKH+taxCm3Iu7qm2WYp4IxC0eUl
- UJ0J3tvTJXqsLEIVgJsmwiJ3YiGBWvnZyzQWKgiOMIax6WXTSRBvdioRoNOSTIiox+z0u807B
- hmuwI42DdJ7zNMhJFqBK4HWltqp5/+olt83v9auGXoi/AGifa7fdX2bWElPZACpg5mYZhPtw7
- SAE+ScPkMr38SfASJDKLXgqjO1kTKhYiZnHpJCBMRTA8AbHQVA1H9BzkCMIqHSKJyXVzM3QXT
- mtO7
+Content-Transfer-Encoding: 8bit
 
-On 20.12.25 19:54, Dmitry Baryshkov wrote:
-> On Sat, Dec 20, 2025 at 06:47:09PM +0100, Jens Glathe via B4 Relay wrote:
->> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
->>
->> +
->> +	/delete-property/ ports;
-> Just delete port@1 or only &usb_1_ss2_dwc3_ss endpoint.
+This patch series converts the dt-bindings for media components
+toshiba,et8ek8 and ti,omap3isp from the TXT to YAML schema.
 
-Good catch, will do in v2.
+The series is composed of:
+Patch 1: Converts the Toshiba ET8EK8 sensor binding and updates
+the MAINTAINERS file under the NOKIA N900 CAMERA SUPPORT accordingly.
+Patch 2: Converts the TI OMAP 3 ISP binding.
 
-[...]
+Alex Tran (2):
+  media: i2c: toshiba,et8ek8: dt-bindings: Convert to DT schema
+  media: ti,omap3isp: dt-bindings: Convert to DT schema
 
+ .../bindings/media/i2c/toshiba,et8ek8.txt     |  55 ------
+ .../bindings/media/i2c/toshiba,et8ek8.yaml    |  91 +++++++++
+ .../devicetree/bindings/media/ti,omap3isp.txt |  71 -------
+ .../bindings/media/ti,omap3isp.yaml           | 182 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 5 files changed, 274 insertions(+), 126 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/ti,omap3isp.txt
+ create mode 100644 Documentation/devicetree/bindings/media/ti,omap3isp.yaml
+
+-- 
+2.51.0
 
 
