@@ -1,81 +1,77 @@
-Return-Path: <devicetree+bounces-248523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAC71CD3616
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 20:25:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE220CD3680
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 21:14:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 75AC1300E795
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 19:25:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9C7A63010CE5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 20:14:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E75330C37B;
-	Sat, 20 Dec 2025 19:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D56C230EF7B;
+	Sat, 20 Dec 2025 20:14:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Jj64k9pz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DshIZa6u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2213E2EDD50
-	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 19:24:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE9EF8248B;
+	Sat, 20 Dec 2025 20:14:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766258701; cv=none; b=JYxinYgcDaOL0rA0XOcqKF7ckaTPOXJqgCI+w7mUxMpxVJNgfhnssUC+V2zT+T3vz0inYsq60Mpto0HsdcAniURIBVedel7SrRmroW/cRAMrt8uuBfCzfZ46TAMWA1nP02fVBs9flijEXIZ8EYw3ZS9irHoLF5NCXWL92RkKyvo=
+	t=1766261671; cv=none; b=UNoCCWDM/juvSbz6YdQ0hpxFNyaEpX1FU3ZPEuTaR5P25k3ILntUKXNJjpqrDpHmS3qNBtr503THMXcTbbJyDA3hwblNO6GrPN9tDrblNQb3Jhku867o3wruAtNilz/ALYT5yTunmHuYGAxygVrZAzCwN5AytzYN8RaCU1RwSTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766258701; c=relaxed/simple;
-	bh=qVp2+mWBxzuU/FDV5kWYnu9qcia2eqzsX5hrcUNMGzo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W81Q60TpEVE8YpZzfEzr1g4thQrffslHFVMB0jb9/G+KA5pOjrRZn6Gg2cQTOCtBfC43pWen1fOFg5waB7S624tK1vwj920cVikyTVM+bC7OOnwKe4kc9Apehgf6qZZBj0fIFTi6BRaB5dEzBXXjna8lh8zTxUykjMLnIkoXmcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Jj64k9pz; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=dnT1
-	LhAyVtqrUEmWipFHKfL/LLTql2Rg7FUq04Nl+Rs=; b=Jj64k9pziHjykH4xvBNB
-	z3kQ3k4aMzQkzva6eEP7948vTFSOXvU5ILvMIj/XCTgpo3kbaaySFhs74K80kVAO
-	HGX6G+RSKEk27ljAoyaNNlQTIJQJRKLrf2k6ZJFFwe6FjCevO4lErWOOFLnhuyHv
-	9X0qrkrWAGDK+nocBH9cAX3g+Io5siX2JQJYDj2JcnOgM8rT/YrrxZhEUeubljIs
-	Q9X0U+l0nisWHZxnMQbG0ki/2i1kVIoY7L3MD1H+M2MuJyImiWPwTa0GtngUK/l5
-	pj4cdK64hMFHMPU6kUH64AMD9yqNrTqWijXu31FfLgmAcJNWs+MpwFFVOxISG2P2
-	iQ==
-Received: (qmail 3183234 invoked from network); 20 Dec 2025 20:24:50 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Dec 2025 20:24:50 +0100
-X-UD-Smtp-Session: l3s3148p1@v8zIJWdGaL8ujnvT
-Date: Sat, 20 Dec 2025 20:24:49 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: microchip: Drop usb_a9g20-dab-mmx.dtsi
-Message-ID: <aUb4AfDf8Ouh6vtD@shikoro>
-References: <20251212203226.458694-8-robh@kernel.org>
- <aTytWyyZiYFnyauo@shikoro>
- <20251213010934353f1efe@mail.local>
- <0ec01064-2755-401a-b2c8-76ad6ce686af@microchip.com>
+	s=arc-20240116; t=1766261671; c=relaxed/simple;
+	bh=KbW7OA0swDrv2Tfm37MP01RIiwJNmnKHQBs5zClGphE=;
+	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=FrtTen9cPMyVKGJwTZtDuh30a+IW9r1iX4XtvDFouC+cCaoyjrteol6XwXiUrEhpK6j1glWxolhxf0K2XyXBkphjdzye4+/6i2QKeoey0XJi6qGvOLMljanmHEox3jDKwRfhleuGpMlArs9+S5PULt6qtKBqfkmzoHWDxeIdrds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DshIZa6u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C7D9C4CEF5;
+	Sat, 20 Dec 2025 20:14:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766261671;
+	bh=KbW7OA0swDrv2Tfm37MP01RIiwJNmnKHQBs5zClGphE=;
+	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+	b=DshIZa6uQyL6m6qbW0IGCKkxeIMQoBE5MVtx/kc8uCY7lW2ZlEXFGT/kyhx8O0jjN
+	 Gk8/Ty1+D+9kHXWTdnF6sgV1UIUkUzypZDXeNRUj83CWmf/igB8nQDOkJXZFA6Q0Tw
+	 WYqdp1t25BGyFBiFwnTiVphEWTizsjPHS9j4MSVnnXYhkSPIVcKSYpj1x2b8lFHPvu
+	 kz6/TqTaH/JxrnzfgSzh/+TIUGxsqPlppQw/AyknjxSrZ5sXM++QtVFxf/YkLLsXZ0
+	 ng0izu9/gWF5oWdvQbLzG4iIcgZWeYkw0YMOhG91QUy9mRVundy+IcnxsD1wKJHrwf
+	 OM21S75gw+aQg==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id BCB873809A05;
+	Sat, 20 Dec 2025 20:11:20 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v6.19, part 1
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <20251219155546.GA3433312-robh@kernel.org>
+References: <20251219155546.GA3433312-robh@kernel.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20251219155546.GA3433312-robh@kernel.org>
+X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.19-1
+X-PR-Tracked-Commit-Id: ce7b1d58609abc2941a1f38094147f439fb74233
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: d571fe47bb86c107ec57dd546b1ba4ccc209eb27
+Message-Id: <176626147925.129879.13205737753772343669.pr-tracker-bot@kernel.org>
+Date: Sat, 20 Dec 2025 20:11:19 +0000
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0ec01064-2755-401a-b2c8-76ad6ce686af@microchip.com>
 
+The pull request you sent on Fri, 19 Dec 2025 09:55:46 -0600:
 
-> > I don't think this will be missed by anyone. Unless you actually have
-> > one of the boards, I would simply drop this.
-> 
-> +1
+> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.19-1
 
-Okay, then
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/d571fe47bb86c107ec57dd546b1ba4ccc209eb27
 
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
 
