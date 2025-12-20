@@ -1,199 +1,109 @@
-Return-Path: <devicetree+bounces-248411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C3CCCD281A
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 06:35:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C423ACD283E
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 06:53:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E78363024886
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 05:34:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 36BFA300E913
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 05:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76F482F39BE;
-	Sat, 20 Dec 2025 05:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197F51F874C;
+	Sat, 20 Dec 2025 05:53:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b="f98oswgv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i/ZOCOoy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11021074.outbound.protection.outlook.com [52.101.65.74])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD1D2F39CF;
-	Sat, 20 Dec 2025 05:34:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.74
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766208894; cv=fail; b=KMfbWQYSY4D/vJULa4WBM25dEKydcqdwsadrgwO+OO8cc7/fcbF+Y97DYeHmXHOseVFCcGBETGNhfZeslBVxi8kEBachn1uidvjWaocTWZbLjlOqsR836nUmIPmm5iWwtafYTuJNsTg2qfJDt1ClscwcS4u570CgovqVUqb7iPA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766208894; c=relaxed/simple;
-	bh=+UAhc/zzPiPCaXbF/XbVfQxRuLYEafKKsFNMdbe1wSI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=SKx9ux9AtEwMA4Fa3UKs7pdC0AI9bAH/mMiDi5Bv4bRvNX8JH3hiAtVTz6DTGj34z6m6i2++IDxu8UXTkDF0Uc0SoWS0riBQ1+Q1GBVUbZAIcSKWvoiy1HjpJAuMK4affOPlKnW1sA41fxd4XZEnf7jZpcKpTQc43cjJZB0DYto=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b=f98oswgv; arc=fail smtp.client-ip=52.101.65.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d784TByfNwH4kmTUjthWbW1xE/ZUk3DBONLMNlbb3ZmV5i4xTmW32IdyXW+OSE7GMUum3DNvzBImZ2a7+Io2H1hJFAcd5peGzJvuBMI949mduRw1OQMHyr5vRlnB/xp03iId01MLwPldOwGItRg65kYugCZUsmMBGuOT0FXewe+1YuvJsRjYeIcIyQYpyJCRtsK5iIvzqUi9YhgQsVd76Ejhs5Mt5XXxG4YwyGwdlb2mC7IOhEDjDY40b6AK64JQJdvwblaPUS069q4QrEGypf6/1Eh51cMwVxF8CAOEVtoMfs9drq4qw/pgyGlJsMa4fRsR1dfLJTi3EUR08bBCRg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ADTHSpRp+uv+dVOZtQkY5yAvdQXOfCFG4kzF4oSxP9Q=;
- b=wZg4MwxESPP2ONBmxscyUg7+JYfvsUsNfQJ3h++ddPrCN4suReKv74L61bQOONcQbdLfHdcGMphV1wsyAEzI6YZQ9h9+E1H95xqT93nHhW3RHKwvKDvO54Rsp+WCVlNcRXqhkL9uWba0rt6abrhlGQAloTx5wam9gRgJYKxj0V5SC+e0vd5CtGxPHHVaVQF75lCK51/JyTWtFvQzM+90+0cR7kDHAQDk66gdX5ABaYYKiNYe9g5EDugTYBYE+nlgQN9QZ3OOPhv/j/HIdh90AFvABAkkcOEy56VbcWww7ksHgt7olJRJZ5vL+ICU0W5PU0Fg0nRKhkEvwa1F8lXNJA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=iopsys.eu;
- dkim=pass header.d=iopsys.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iopsys.eu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ADTHSpRp+uv+dVOZtQkY5yAvdQXOfCFG4kzF4oSxP9Q=;
- b=f98oswgvOxF6T2m1xoyCysueCKE22Gc2yXlOUJZPVPrUfFtdcsfR3WE/L3kxD5pUlQGLP/3zCeRg2xDJ7PK1qijq/nA+5BRjYb1Mxy4p3f223pjnpG8ANxO3g2iPVa8DIySJ9YyF0NG9vbtlp99x8FZ9Z+Z1tKaYop4yPV0iIDkij3GMO6JLrAjlzc3raTuleNMhQW5wWSJ3z6XIxCsKHPf8JDjgOah6TSbwJpLnBubNO+iCRXP/xjQCCUaANuFEQWxXJ5Tv6WITr5WSOZ6849QkFGDUoW/iCx8XqEpYavOdoaie/CPvCL9P1mGd93f1Gage1qGaADMKaz1fWaqktw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=iopsys.eu;
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com (2603:10a6:150:7d::22)
- by GV2PR08MB11795.eurprd08.prod.outlook.com (2603:10a6:150:303::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.9; Sat, 20 Dec
- 2025 05:34:46 +0000
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0]) by GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0%3]) with mapi id 15.20.9434.009; Sat, 20 Dec 2025
- 05:34:46 +0000
-From: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
-	Andreas Gnau <andreas.gnau@iopsys.eu>
-Subject: [PATCH RESEND v2 2/2] ARM: dts: airoha: en7523: add reset-controller support
-Date: Sat, 20 Dec 2025 08:34:30 +0300
-Message-ID: <20251220053431.288158-3-mikhail.kshevetskiy@iopsys.eu>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251220053431.288158-1-mikhail.kshevetskiy@iopsys.eu>
-References: <20251220053431.288158-1-mikhail.kshevetskiy@iopsys.eu>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MI0P293CA0007.ITAP293.PROD.OUTLOOK.COM
- (2603:10a6:290:44::10) To GV2PR08MB8121.eurprd08.prod.outlook.com
- (2603:10a6:150:7d::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D551A1339A4;
+	Sat, 20 Dec 2025 05:53:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766209990; cv=none; b=CR7DFp+NRwLbzc1LaUHMASYyxoeZrS7x5lzqBMxIf4blX5e5SPjlSSy72JzEcckobk9BeisQT1bbUHMKh1SqO4TTNLHZ0qUhrqHKV8n6TbfTX7iysbolvgWpUfdAgYJnopSwT5b1c/IvdqbBMquG1k3ey5hwmJ5tmVgyp5TZ9do=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766209990; c=relaxed/simple;
+	bh=yzcnx8V5iL0PoVqDyA0xiWyoLqVGZT95qqXiDASFiCY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UMOvh3QDYhynaB6Y3Og3rAgU9unds/AlMhjV3BiUUSqG3ra/mXTjvqXRQNCBIq2xT5pGn1k8d1r4WcqEhSk1F4QHxy8YTksbH7rcai50qFortfnAF+hIl5/bkBAjHib1FP4zSy21+jy/of6I9FfPN/o8ZD+dUeWZ4sZ1XpsjItI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i/ZOCOoy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB0D9C4CEF5;
+	Sat, 20 Dec 2025 05:53:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766209989;
+	bh=yzcnx8V5iL0PoVqDyA0xiWyoLqVGZT95qqXiDASFiCY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=i/ZOCOoyQR7Wq6Tft4CKtU2ceU2InluE0kD6Xefj/hzDNJedwSgWfBVnt+nY2Kbdv
+	 d3Hflg4atRLo3a5M6Ddmv+7tk6cutpBLQYlIUQp1GQW9EmqwQePOdPWyGMItqQtQfx
+	 iCa45bG3kRNjTSngXrdAHR9XM9v1M0GE66c1HeLXxca28woybj5iPhMrjCvB0RwsQp
+	 pEqQJZh0nnUDZFz2FPDIw+lX7IMJ+269+snkjzl5kjDHvPsF1jbwjSLg3zg6CIvwTi
+	 ZdbqguiQggoBxhSukX7XnVENyarFzoEC6tOwGEH3NITi0RDvqtL2G1DLk46SLfGWZY
+	 Zkd8mEwQdPv7A==
+Message-ID: <0337e0dd-d25c-4f22-968b-f1a3c364d025@kernel.org>
+Date: Sat, 20 Dec 2025 05:53:03 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR08MB8121:EE_|GV2PR08MB11795:EE_
-X-MS-Office365-Filtering-Correlation-Id: 84c69a54-ff0a-401e-28e9-08de3f897c4e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|366016|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?bReiv2KZGPeQ2LPnv7Vq6kAafoENboDO0AD562lSMV+8uibS/IhRH1o3rcH6?=
- =?us-ascii?Q?3wRyhqg8QRM3yWsj5P4wOLYF5o4paKus2wj1n9i5uv5joeK/jscYdbP9Hk4R?=
- =?us-ascii?Q?WfYA9aCLGRPTauw28ZSybhdzaVyYLFixjFluML+ebuYYqxJ7MWowIwkfc900?=
- =?us-ascii?Q?GQpU4OBBKlc34yFmwL51AhVpflFc8jGhN1vEJoX4gUqn6xhPnNr9f6t2S44P?=
- =?us-ascii?Q?3WTcOJFyXGyqKiYZdxd42uqDNKNguhLKG1PQpxMAWdheBMpWtddFeDKiShu0?=
- =?us-ascii?Q?G9rIqb/q8uq1l1ZtikYq5R8eFwJCHZfEeEdoywfuraB09xVzfy6XYQNjhQ1t?=
- =?us-ascii?Q?BdWmD+Z9ZYoQFh1URaKsQ6dAk6dqmXB8kuQWCYE0MPF1dVQsjZaEJV8mqi5q?=
- =?us-ascii?Q?OEbCkGaonQ5ylM6GRvSrldvgxnHR7k4Ak6nzIy8LEdHItvHiBSLpCjnDhjZB?=
- =?us-ascii?Q?jXcpGsgDXUrC1UM4fTABm8G0ggmhTj3xoMef498c4ev/6iWbtH2zvg76gu6J?=
- =?us-ascii?Q?52JOgVZ/RpAsa8fGKuo8ZixyPwWdbUSEpCxFjilrETTWij0FCecM1dXhznLd?=
- =?us-ascii?Q?lujskOhA3RuUWOgCpfAg4wjihQyg7QaJm7J5n2Sankc0gA+MT1PDtHz4IOoF?=
- =?us-ascii?Q?QUs8RM6Oz4QbxD6M8N7tN0SQvaQPHjslixl0mIHgWHGfs+KrhapOMcv1H12c?=
- =?us-ascii?Q?hfOEprY0ZgMLJ2aMSNeIMery9Lu8Hlac3LREEd/ZaeAe5UwLKcFrmMlDpr2P?=
- =?us-ascii?Q?3LK1NrDmJU7LQq/tF5pv6ZGe6+5KEJREfwHsYuhA1szfW3S+xTIpa+nnBbZ1?=
- =?us-ascii?Q?vydvtFtsXN1DgrAC8Z0g7qJo/qnBj5BXkxiFSReO5dw2xKddEGzJ2QSiPnxZ?=
- =?us-ascii?Q?HMnNCoZQPmWBfy4vRFp0EhYehzam+RsL6tLWYCr+IoZOJSKcTHQKPhSyO/Yk?=
- =?us-ascii?Q?tY9kb2p/geQThohy8H9Fa1wnCAqsa8XwFV+62jjYs4n0LTTZoEHE6RFYGe1i?=
- =?us-ascii?Q?ZYOFGMWLteLOr8BpsVSmJmLJGQekBrirzkxRDxphjdUX7fGELl6P7qnMZoHW?=
- =?us-ascii?Q?kSvB8DuYd+lZuD+d6POY24OQ6iFMiVY5XTrfBLT1ad+j9C+Ai8DieF+hRvWO?=
- =?us-ascii?Q?7wuyADOpBrZFetH3U1Sr+7EZnlGTEefrFByT+iacBqmPatyum7J85/+MEee6?=
- =?us-ascii?Q?13U40jHVFj6NIskCcpbzhkZXKUREhm/PmMvpdj+z24r+5neeb+/RJhDQRCuF?=
- =?us-ascii?Q?W0P0zDu9T5X5mX0qvUkQzM35+4QNt4wFCKLUgbEqsni72BDvm2l8CrDe4VVq?=
- =?us-ascii?Q?/El3BzfDp3c8UgFvTgbGsagnSXCCCXmVUBb95b2b7Ta8wJLhkwYDUuofHADf?=
- =?us-ascii?Q?88Qgs4rKnFhEsnf9Tb4EFW1phhcNSC75QRdLSDgO02tV/S56OagRmjyVSHv5?=
- =?us-ascii?Q?S8FkbV6shF31/6dNE1vsmr/Tioh7oqG/wv4Dg4cxK2wW+rvxtuz5Vuc0HwpB?=
- =?us-ascii?Q?2ahzCwl8aYoWLsi+EtWlnN6Zh96eikSFc+VP?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR08MB8121.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(366016)(376014)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?b8A3RXrEfJc2zH6XlebPubJ4T53h8q0UDxBxvxPDRLutH3jg1lYxMiTjq8WK?=
- =?us-ascii?Q?cezPTXv4RD4rgQib2tkzp3JK7908eZxw03Uore2XY8vo+5rXARZsIv1KT8Xu?=
- =?us-ascii?Q?jSLNC+5KaKZLhBYLwhJZlqVez+451PdvtFWaNNkqOsDAlpRhWZzkjkO/22Zh?=
- =?us-ascii?Q?uYvpb4In9nR7HxrtW4O5mARPCxkDQIZ6E64QIP3DfEk/83o7IletWSUXBsQf?=
- =?us-ascii?Q?bvuYth1owBpQFzBCJ4sp8VmKesF34riPan1O8G/FYqNYiMsSL7GSjSox2Atz?=
- =?us-ascii?Q?h+nrTr0a3QUR+kmS3mDT+EQcZKYveQ/oII91RrVD6qMLcMSBPGpY1xxWy+vI?=
- =?us-ascii?Q?u+8DZeiNS+nME3sIBZv+wUOjuafdFN5582CxFTbsB0+S31RMYL8KasXndNiL?=
- =?us-ascii?Q?tQBGrpCOpUtJArtz2giarlq3lf/BAzMnDJRLk+csemVrfKCnE6KqaMxuL0s+?=
- =?us-ascii?Q?FSXfdVDb/vdLNzEzWkbyeFB3X9aQz1/u9HDZMP9p8aErKhVluM/YS6gvR6AT?=
- =?us-ascii?Q?6mr59YjCDwN4RPF+euxn24RC8ROmedhXWE+v/uwzaXFi2RG4ctt+ifjYUP7Y?=
- =?us-ascii?Q?xjUCd+8VLHTR6VNuxHhZu4tYH29creRKDxWV5OpAgUk5WcJK2/sq74qsySsd?=
- =?us-ascii?Q?I+5h5CzsD5haqF9v0rCTbV08cEpOszu6wGdh4Gx/wc8S5tT/CHiw9LhNk808?=
- =?us-ascii?Q?nO76kg+bQhG8nScs/QC/DG6qZsHX5Pcb70vpBSBa1BtSV8cRzrYhmyzw+/KE?=
- =?us-ascii?Q?gU4GLAtXLYvMYd6hKAwaM3cpM/LUCe3B4egT1PIEBj17hYey7mbpsJXMjMu0?=
- =?us-ascii?Q?CO7AevWP4hHbR9zUBj9OtcsojGumdzooaigP2gEPnckmwfEUzIFJB9bN2P3k?=
- =?us-ascii?Q?MGj1ZpJYzHFsp8JJ7aCrdkiPT0JcZ8b9w40VvQftYJVRlLfOVEynzSPvlOXM?=
- =?us-ascii?Q?zENuIaDB56JqQ4KyfduHYVsppi9f+tB9Tbd7KYWPV+1BePgYkN68/i0rDGQs?=
- =?us-ascii?Q?u58vBukRIrclMcv4oMdj75esNozJDhUlA4lxh32TzS9H5Sm2KIFpXxGXFkzV?=
- =?us-ascii?Q?m58FgaHy4RS3nZosQYIpbSxDqCR3n8g38H1s510Y+VQ80Q2EY1HOMdtZEIBT?=
- =?us-ascii?Q?L98MOvSgmVoDPbAFDNItrOUWWUT7uDX6vsSl8XJkildTiE89ZYnqKiK/oe9R?=
- =?us-ascii?Q?n5IvrBOMV6J7T8NkfK8cx47L2BYw6mbyOUfCkXOnArmFar9EWxpU9dKQ6E7P?=
- =?us-ascii?Q?3vPFAIBBmCbzLzQpFNZWvvCPMwOH2p0dEADVBW777xwb2blCbleHLNj+uGfO?=
- =?us-ascii?Q?GBu9u8TLs8LIDUR/J4kWw1xW7YyCZcMVf4iKDIcmufUjUPAPeWE+uBFvuhkQ?=
- =?us-ascii?Q?dxm1NyU8kDv0pPHJosT83tAuwfyLJwPzXnbBu1qPE67/c++isL05Zd/HV4TR?=
- =?us-ascii?Q?ndFGoWSES+OEZcTdf28UQpt8sMdPOfTUxyLFCVINsA7ZOGy61PtuCaZU+iOz?=
- =?us-ascii?Q?T2qp4Z8GiyuBEbZBmw87/uz8D3vxPBj++ln95q/nYHTt0waEZoZXemcEtXAb?=
- =?us-ascii?Q?a9SgewxIGCpdi7kFVdgtoKH76vy1Hoz74VbDbET+3M+M5E36YTNvJfLXE8vF?=
- =?us-ascii?Q?ahoZkcbO9Xk7Ad2XRWaS/icLJAUkZ9h3aw50f+MxKomwWHs+qPPmXtrlHK17?=
- =?us-ascii?Q?GBawdWgo6NJhQfMq3fBXrbJB16rLMK3SfefV4WupmiVCPVK5gBRtUea3l2LK?=
- =?us-ascii?Q?OMBKtCeicnKDse4QdgGEYdH5t47OQRU=3D?=
-X-OriginatorOrg: iopsys.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84c69a54-ff0a-401e-28e9-08de3f897c4e
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR08MB8121.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2025 05:34:46.5501
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SK8qEgVAozhx6TEAdVnNjDua9mNdE/g1KrZKb3dQeEAaxkc+VsQjiCF+Ds/7OYmc34Q0rG7mSZCPLX/98t24NqpfLAVvmbsNOJiF7jwjh6U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR08MB11795
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: camss: Add qcom,sm6350-camss
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Luca Weiss <luca.weiss@fairphone.com>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251114-sm6350-camss-v2-0-d1ff67da33b6@fairphone.com>
+ <20251114-sm6350-camss-v2-1-d1ff67da33b6@fairphone.com>
+ <de7ad562-80bc-498e-a6fb-cc26bb6343f0@linaro.org>
+ <r6EgtiSu8pqs2ouFERTw7fx8kYZ3RcSbGklwd17UPxNGGd3sbRDl2BPyplkABZVu3qyfrIzRMisa0qTSrm89BA==@protonmail.internalid>
+ <DE8FV81S45S5.CH6K1QAX940D@fairphone.com>
+ <a428f8b9-c338-4404-8dc1-da6daae37d5c@kernel.org>
+ <d7dfeb7e-c0b2-426e-8572-023715c33674@linaro.org>
+ <272d039c-25a0-4db5-96a3-c28907882cd2@linaro.org>
+ <BBiBFB2AXdUoKHu6w0f7yyiLvTOr8mHRahPT-C1AYGm7_MaZ8yoyxdj6blE8utr5s4UtgEDJYkBckzM7Rvl8KA==@protonmail.internalid>
+ <2ae1a0a3-b105-4c0d-abbc-4b9d708b0272@linaro.org>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <2ae1a0a3-b105-4c0d-abbc-4b9d708b0272@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This patch updates EN7523 dtsi to reflect the reset-controller
-support for EN7523 SoC.
+On 19/12/2025 16:18, Vladimir Zapolskiy wrote:
+> FreeBSD or CamX are software, and they shall be excluded from consideration.
+> 
+> There shall be no guesses about software usage, the only concern is if
+> the hardware desription in the shape of device tree nodes is proper or not.
+> 
+> Partial verifiable description is a proper description, and adding unknowns
+> of "future goodness" does not serve any reasonable technical purpose, it
+> adds an illusion of a proper description only, and it was proven that this
+> illision shatters even for CAMSS, see CAMSS CSIPHY case, when a wrong DT
+> choice can not be undone anymore for legacy platforms. It is good to acquire
+> an ability to learn from the past.
+> 
+> Everything can be added ad-hoc while keeping the hardware description in
+> a proper and correct state.
 
-Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Are all of the VFE Lite's verified ?
+
+Even some of them ? I think not.
+
+We are seeing in multiple places how failure to properly articulate SIDs 
+results in mess.
+
+So full description of the hardware > partial.
+
+BTW your statement about not being able to change DT bindings is wrong. 
+You just need a good argument and to make that case successfully upstream.
+
 ---
- arch/arm/boot/dts/airoha/en7523.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/airoha/en7523.dtsi b/arch/arm/boot/dts/airoha/en7523.dtsi
-index 31191b8d1430..115cc44093ab 100644
---- a/arch/arm/boot/dts/airoha/en7523.dtsi
-+++ b/arch/arm/boot/dts/airoha/en7523.dtsi
-@@ -4,6 +4,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/clock/en7523-clk.h>
-+#include <dt-bindings/reset/airoha,en7523-reset.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -91,6 +92,7 @@ scu: system-controller@1fa20000 {
- 		reg = <0x1fa20000 0x400>,
- 		      <0x1fb00000 0x1000>;
- 		#clock-cells = <1>;
-+		#reset-cells = <1>;
- 	};
- 
- 	gic: interrupt-controller@9000000 {
--- 
-2.51.0
-
+bod
 
