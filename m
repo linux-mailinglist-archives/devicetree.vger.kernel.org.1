@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-248447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19F0ACD2C09
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 10:17:49 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46D84CD2C15
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 10:21:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C15C3011F88
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:17:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A5880300163D
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842982FE592;
-	Sat, 20 Dec 2025 09:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84ED52FFDEB;
+	Sat, 20 Dec 2025 09:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WD04EP1X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dqqswYzE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D8D92FE577;
-	Sat, 20 Dec 2025 09:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FAA0156678;
+	Sat, 20 Dec 2025 09:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766222254; cv=none; b=MtA3ccADWjQRBR9YFg+UEAP6g3w2+YvAoSWN3X9fm5YTxsYvxE0GNPc1nW/Yfr2lQAEZExtyXm//EjH0pOCMVTEsEwfPQnAsqk9PYwL2VasuS9ngwk0lo/u4+IA7p2e4s1fZv6a3ZUJae7RfIzyPZRt3SnUEuFLbB/+Mt4wZzrY=
+	t=1766222489; cv=none; b=Y9SiGmpMhKfa/N7Ad8zaPItvWkMwyNbHNFXRhvUxFWb8RJtRXzhpY3QsMkLT1rSj85dJ5HqH4f9t3EZZayhaE1eAEOneYHScBIgFBk43g8AFoZXG2dJH8ih4Ny+FOazn+j5q6bsEgavoQ6wOZsKFChVyzGjknYlkpCtSzCxGTYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766222254; c=relaxed/simple;
-	bh=+jTxt28fw4qnhNHpHKvUV1SQFK1gzA7qo8dTmeuYUOE=;
+	s=arc-20240116; t=1766222489; c=relaxed/simple;
+	bh=A5E7SDuf7s71s7Xpwhh1fIjfwD+NEhAu730QEr/YR9M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mK9gjrP3jncC76aCpxtWWuMm4et8hrH+UCNkYK66AS21GBRxlkT7Olz1gPEY/Mb/nAaWFLSFwjAtyHvwtKgbONR7yYvTrA15FDt3HpyIGcO7fJcMrvtOk9F3m3Xa7i21K993GTK3hSBky6gqFRhG2LfY4ARNXbWB5N63/t7oGAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WD04EP1X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04627C4CEF5;
-	Sat, 20 Dec 2025 09:17:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mK7dSkvJTUBD6/U67zzf7Wy6mP8vDhMxBXBKz8nCupyc3yJRA6DBig0LLauvGOAWJKO1IEeXv1LjVpo2oY//IQzPByT4a3iuHBJpZ5NyeVYeQFkC6XIncDTmgAIvXRN+6Ngop4TDWEjahstuWaYqt2m3JCkodT63ZnvblmdHq30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dqqswYzE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02E60C4CEF5;
+	Sat, 20 Dec 2025 09:21:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766222253;
-	bh=+jTxt28fw4qnhNHpHKvUV1SQFK1gzA7qo8dTmeuYUOE=;
+	s=k20201202; t=1766222488;
+	bh=A5E7SDuf7s71s7Xpwhh1fIjfwD+NEhAu730QEr/YR9M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WD04EP1XXqvqkxpnwP16ZBSod7NMhGBMnZEmQKMN7MCbZJsHFnFAWWatkonkyZcR0
-	 kMbB9ia4JhimbHvWG79OfSLvAvrfcvw1VyTuNvOElRAoBoXywa32YT1sDHZl9G9sYB
-	 3+94agXESpgRmDgs9LL+Z5/1Li++ulUPKd8PbYuHdULGXqAy8+y52fFJnlKb0bsN99
-	 lFkPs4rS7Mdqc1XHj7WOCbkpXKXW5eFXXOGjkDEzJds4f0JPc8BeJcGEpqEigXkayl
-	 dR5oNrH8Itbg5UY5PWLrc4fHRbHuZelBTm5NBhPeLVW2yW8YueabrpdRR2JDiutYsG
-	 iPRlkdwAxP2EA==
-Date: Sat, 20 Dec 2025 10:17:30 +0100
+	b=dqqswYzEb0SJWK5KIEnkChjiHjGZsCWbXgmOh+tu2STfrQPnvDqeT5Mqc52UhQ2zS
+	 3nwJiXD7eyexOzfNlqS8mQFREpSwQfQUBIY382JOyat0qcPlwAQ8Iu+su90fnBHQEe
+	 3crbxb8FkZhV/V32s/1hy+BmWze1Tc6uQo50/wOH21l7QD/kOm1t3NQrzE5/GTIWuD
+	 8Ui7bqiMXrBurxqpYoV/nqA36DO056HpMRhcrQxlNq250pYvo7ereGLVjlbEa5aTtj
+	 CVtY4UypiNIqYcr0rXnjCLCrnPF/ysuNSxJfswIWpsGk4+6HlRIdU2XfbcDoivCiF/
+	 VRsK+rODWXuvg==
+Date: Sat, 20 Dec 2025 10:21:25 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+To: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>, 
-	Matthias Kaehlcke <mka@chromium.org>, J =?utf-8?Q?=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
-	Mike Looijmans <mike.looijmans@topic.nl>, Catalin Popescu <catalin.popescu@leica-geosystems.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Pin-yen Lin <treapking@chromium.org>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: usb: Add binding for Genesys Logic
- GL3590 hub
-Message-ID: <20251220-economic-gay-firefly-1873a9@quoll>
-References: <20251220063537.3639535-1-swati.agarwal@oss.qualcomm.com>
- <20251220063537.3639535-2-swati.agarwal@oss.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v2 1/6] dt-bindings: iio: frequency: add adf41513
+Message-ID: <20251220-bouncy-perky-tarantula-d9b3be@quoll>
+References: <20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com>
+ <20251219-adf41513-iio-driver-v2-1-be29a83d5793@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,28 +60,110 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251220063537.3639535-2-swati.agarwal@oss.qualcomm.com>
+In-Reply-To: <20251219-adf41513-iio-driver-v2-1-be29a83d5793@analog.com>
 
-On Sat, Dec 20, 2025 at 12:05:34PM +0530, Swati Agarwal wrote:
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - usb5e3,625
-> +    then:
-> +      properties:
-> +        peer-hub: true
-> +        vdd-supply: false
+On Fri, Dec 19, 2025 at 12:34:48PM +0000, Rodrigo Alencar wrote:
+> dt-bindings for ADF41513, an ultralow noise PLL frequency synthesizer that
+> can be used to implement local oscillators (LOs) as high as 26.5 GHz.
+> Most properties refer to existing PLL driver properties (e.g. ADF4350).
 
-This is not true. I clearly see VP33, AVDD and VP10 (and maybe more)
-supplies. Not only in pin list, but high level diagram clearly marks two
-supplies.
+What is "existing PLL driver"? I know about motor drivers, but can you
+drive PLL?
 
-Please read again datasheet carefully, because that's your task, not
-mine. I do not have even access to most of the datasheets, so  you
-expecting me to do it is just unfair.
+And how is ADF4350 related to this binding. I do not see ADF4350
+compatible here at all. Describe hardware, a real one.
+
+
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> ---
+>  .../bindings/iio/frequency/adi,adf41513.yaml       | 246 +++++++++++++++++++++
+>  MAINTAINERS                                        |   7 +
+>  2 files changed, 253 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,adf41513.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,adf41513.yaml
+> new file mode 100644
+> index 000000000000..01ceb2a7d21b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,adf41513.yaml
+> @@ -0,0 +1,246 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/frequency/adi,adf41513.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices ADF41513 PLL Frequency Synthesizer
+> +
+> +maintainers:
+> +  - Rodrigo Alencar <rodrigo.alencar@analog.com>
+> +
+> +description:
+> +  The ADF41513 is an ultralow noise frequency synthesizer that can be used to
+> +  implement local oscillators (LOs) as high as 26.5 GHz in the upconversion and
+> +  downconversion sections of wireless receivers and transmitters. The ADF41510
+> +  supports frequencies up to 10 GHz.
+> +
+> +  https://www.analog.com/en/products/adf41513.html
+> +  https://www.analog.com/en/products/adf41510.html
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,adf41510
+> +      - adi,adf41513
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 25000000
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: Clock that provides the reference input frequency.
+> +
+> +  avdd1-supply:
+> +    description: PFD and Up and Down Digital Driver Power Supply (3.3 V)
+> +
+> +  avdd2-supply:
+> +    description: RF Buffer and Prescaler Power Supply (3.3 V)
+> +
+> +  avdd3-supply:
+> +    description: N Divider Power Supply (3.3 V)
+> +
+> +  avdd4-supply:
+> +    description: R Divider and Lock Detector Power Supply (3.3 V)
+> +
+> +  avdd5-supply:
+> +    description: Sigma-Delta Modulator and SPI Power Supply (3.3 V)
+> +
+> +  vp-supply:
+> +    description: Charge Pump Power Supply (3.3 V)
+> +
+> +  enable-gpios:
+> +    description:
+> +      GPIO that controls the chip enable pin. A logic low on this pin
+> +      powers down the device and puts the charge pump output into
+> +      three-state mode.
+> +    maxItems: 1
+> +
+> +  lock-detect-gpios:
+> +    description:
+> +      GPIO for lock detect functionality. When configured for digital lock
+> +      detect, this pin will output a logic high when the PLL is locked.
+> +    maxItems: 1
+> +
+> +  adi,power-up-frequency:
+
+Nothing improved.
+
+You ignored comments, did not bother to respond to them and then sent
+the same.
+
+NAK
 
 Best regards,
 Krzysztof
