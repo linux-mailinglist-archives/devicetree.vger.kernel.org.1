@@ -1,276 +1,143 @@
-Return-Path: <devicetree+bounces-248443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E484CCD2BB0
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 10:07:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35284CD2BD2
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 10:12:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9D6F3303E3D2
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:06:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CC3F13010A8D
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:12:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10ABA2FD69F;
-	Sat, 20 Dec 2025 09:06:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE38F2F691B;
+	Sat, 20 Dec 2025 09:12:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iwXr1U4p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tww/limY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B93F42EBDE9
-	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 09:06:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 882C68287E;
+	Sat, 20 Dec 2025 09:12:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766221563; cv=none; b=dym/l0PlujoFMqlO4aC66WXrFXE2kAbE2MWkj3zttLjTMdpKVfOmlOoYFzqEnkyAj+k8jWTK4bUo2P9mNcOeRvDHKxYemR45J6yU1ZH9Ycji9Ja/t67UBjNKlIY6ILghXyq+K4QlRh5msj+ucLixmDZjejqWkE9fX6yRP1YQUEA=
+	t=1766221939; cv=none; b=gfYPBSO+VpbW8nLpyyz0ofSCobeBvfa//n4V2Edr4U/i9UHYAK17VkYKstMuCUyKKcbRoclBe+DgnZ4LgSD4F1Sk+l0d8ztrI0XU0ZJ5DnmLa7gzxyDwoqgcERCVzUZ3AH5dR3OBT9E1rWFKHwavYuPqavavyRetdSBec4lGCW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766221563; c=relaxed/simple;
-	bh=/Z6zZxIOHE0bexMt7q7vSkBhyGsyTsuiXJos9cuRaKY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ov2xtprQ22WuqElLeCs69vHEZ+HRVE3QkpvlzKzOCytl8IsYMnOHJscPdny93kfXVzQJ/+qIXnufHCe4BU0DjZPACizRC6dhIahXKEYRY6xf6U50f+dL93RYgvgls3MvYTBArVARFuP/tqgCUgYpsYCgYVjVfoXiV9n7RlQt8rI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iwXr1U4p; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47796a837c7so18035735e9.0
-        for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 01:06:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766221559; x=1766826359; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PT6Q5dW5KkgWP7tZaLfWqSYR2o+Foff/zTHPq2XLG/U=;
-        b=iwXr1U4pHBVFKUsW5iHtsallGwffMOdrr7XsfqgeipDGfGQ+BNDy73GDbC1ShlpABu
-         Yo0XJlDS8FkBFjw1Vmqlrj9o4RjcbhUtrEvjm4QAQ3HknYdG3aQ8AsL/Rfb/Jo3ftUyj
-         B3VJTIX9eNb/FlnU4oT8IDikx61Tn0CTDF5AqTpY5Kh8J9FpNpzKfbb48zMdOXnZyFlE
-         P9zKy2CAM0dun1Xw2bx8YGNpKlcBeghLFOxEAQq9k/bcRTEtkEJ6fI20M01v64lGWf5o
-         3fYP4qjJL5OepwBDAqfunWFOmKffeu3Xhih7TOD0+iwQ6OHdJB3lJULs//DnUlXR1vt0
-         AnBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766221559; x=1766826359;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PT6Q5dW5KkgWP7tZaLfWqSYR2o+Foff/zTHPq2XLG/U=;
-        b=USIcNvDGi3MzjOC2+tFOeBD0WvrgXE1xnWVjlDEBeuAbPdCHMlVxWhbKTETbQQUH2v
-         VCl4+TdfHvk1+pNNo3tp+q9FhwfkbwJwDi4YWrz6kVAqqFNa+lr1xiXpc8toxU/F1zgV
-         uZWtpU2/BR4tha/4Pv2JxBqzWG9M68ez/OJLsPTtCcYC6IRAXO2LNPSnsImP3DRjtWMH
-         biZwnLACBW+tuQ84E1SQrnp/DJg/lQ5tYOOglGfNvGTD/OYeDIaCjLfl5ATFG7GvvGps
-         Ddub4Lf65GJIvNHGeoIIY7x7DFgahxXt68gCXSFpPkTqMUL+vAO7qdlr5PCfqy420P+P
-         iNkw==
-X-Forwarded-Encrypted: i=1; AJvYcCWKK3iIylFyS8H0yDRIIFxWjoXKhdMnInnGPHcugsdHph70a23rQjI3r2xXkx0j+e2bdOeyD8I8XBfB@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZRJm8Pp3xyA4aDLjI1qoA3W61m/rKfVdoRq83pAXX2ovSTay/
-	xOuno9L/fa+mHJv8nj04wrruh2oYaSXgPixXG23CT+4hpeC/2f4/Ugvp3aPXgzQPCD8=
-X-Gm-Gg: AY/fxX6bwL0sBCEV/OFBXRwiz2w9N+bNlxprmteZuO0FFi/rk3FqpcaOEJLcawhrgZ2
-	hV56j+l8CFFXzULkYaw7PTSJLThZPM4kEFPitWWn86UN3Rp75H/vndBvD3ymaEe5yR0zcquZ72P
-	4oljM7s7WyV+85gV4B26TUZFnMmCjyaKvWqMQQQv/SiVavql92+HZTGSiORyDhzdqC18v0IbHA4
-	rqGt691kw2l2u8LLCzpZ1GbY1UuA5v2RxqA7j8T3HAAl471LxJCnJaTUQHH4fCBrDMQfNKc0XOd
-	TCdRDdFlDUvgrvYwQ3aY68OqFYzftDEicBQOI7tbMG7vldlbE7iCyLsFtyy/Asc/5pB+ZsyfTAl
-	5IOzR0cm+CihbhZoEJL5WHJZIQ6pF8JQyWKX+Fqf0CO+vy6ke3MUFYb6mpoZSYKM84FhCby1HWc
-	d2Mwrkm/60DBX9ebJNGGhQFL+ESPVTGNIcEzRFVyw=
-X-Google-Smtp-Source: AGHT+IFCUXWI6aw3Mi0uQPnoiCABpAeI+lRIlbv8QjWYLfVthEPpi5pHmK0OXgUKHYpht3AdIb214A==
-X-Received: by 2002:a05:600c:470e:b0:46e:506b:20c5 with SMTP id 5b1f17b1804b1-47d19589469mr52722335e9.26.1766221558592;
-        Sat, 20 Dec 2025 01:05:58 -0800 (PST)
-Received: from gpeter-l.roam.corp.google.com ([150.228.9.32])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d1936d220sm88466685e9.8.2025.12.20.01.05.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Dec 2025 01:05:57 -0800 (PST)
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Sat, 20 Dec 2025 09:05:42 +0000
-Subject: [PATCH v6 4/4] clk: samsung: gs101: Enable auto_clock_gate mode
- for each gs101 CMU
+	s=arc-20240116; t=1766221939; c=relaxed/simple;
+	bh=hYDqeJLk4fMx9mP+F0+rMSTvt8DAR2pALIwmlOoKT0s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iNR/2mbZxHiVsx1HXyyNth6bfHeFJ0Lg9b1+VR923A8YStHgyNp7hHyhlxUFIhK98GGHFSKv7HbxYU5O2xbXWiWYJejVlXx71Arcf4ClYCAIsvCbQ4D3Q2nySZDkr7W8L7al/LbEV487CElKBB6LVxgr3RAFdXKuSSkvZ8eS7NI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tww/limY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB4EFC4CEF5;
+	Sat, 20 Dec 2025 09:12:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766221939;
+	bh=hYDqeJLk4fMx9mP+F0+rMSTvt8DAR2pALIwmlOoKT0s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Tww/limY7l44Ini+Fmz+2jiIpRCWzR2fioOWFxZ6aozbV+o/WbMg73uNPvqNnjBdC
+	 pd7EaqOPoQTNyRR+RW0G5t0mxMGluoBZ6/1azAv3+cRtCEKTxxeZoJwfWalbSJsAei
+	 xgv6aLd4KMdGDS5ZqNRwE3UgtMzbuKcbgwkqVlU+YBNeXqgY29TPn+qYV+MmwY2NLq
+	 NoOSL3iH2wt/C/aU7KiLk69LiLYJ+KWnu54alTHyHZ6BWIGENTOGo7nWOiF4HgeEgb
+	 qnXa1tAINbNZd/CvwaFHyTukYOgN7yPFiay8mU+O1PZr8JiPHxrbql8JQEPMdPwzFE
+	 obCx4ZIhguAuw==
+Date: Sat, 20 Dec 2025 10:12:14 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Bryan O'Donoghue <bod.linux@nxsw.ie>
+Cc: jerome.debretagne@gmail.com, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johannes Berg <johannes@sipsolutions.net>, Lorenzo Bianconi <lorenzo@kernel.org>, 
+	Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Jeff Johnson <jjohnson@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-wireless@vger.kernel.org, platform-driver-x86@vger.kernel.org, ath12k@lists.infradead.org, 
+	Jeff Johnson <jeff.johnson@oss.qualcomm.com>, Dale Whinham <daleyo@gmail.com>
+Subject: Re: [PATCH v5 2/7] dt-bindings: wireless: ieee80211: Add
+ disable-rfkill property
+Message-ID: <20251220-fervent-mamba-of-sunshine-f680a8@quoll>
+References: <20251220-surface-sp11-for-next-v5-0-16065bef8ef3@gmail.com>
+ <M7kfFb5fz-WB43U_xCUwgxpmBJ4TNdp4jE6yFu6HmemIcDx5tXO6H4xnW_pEQz6DMkKm-3POdB9hIdB092zhGQ==@protonmail.internalid>
+ <20251220-surface-sp11-for-next-v5-2-16065bef8ef3@gmail.com>
+ <e0e9e690-c56e-4b56-90f9-2af46a7feaf3@nxsw.ie>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251220-automatic-clocks-v6-4-36c2f276a135@linaro.org>
-References: <20251220-automatic-clocks-v6-0-36c2f276a135@linaro.org>
-In-Reply-To: <20251220-automatic-clocks-v6-0-36c2f276a135@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6078;
- i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=/Z6zZxIOHE0bexMt7q7vSkBhyGsyTsuiXJos9cuRaKY=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBpRmbuBqmDI4GAqQs79cB1AkMOySGopviN+P3hb
- uecIYdF8IuJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaUZm7gAKCRDO6LjWAjRy
- um/vEACicphWUljDI3ykObAXL+bUHs0wN+2joaKqvPwVqdTWr6a25rNAvmK3kwjLayHZikDoLTd
- 9TOeYdv8s6+1+g5zXx5RH4TtF+KNUlZpNkri3jjQKxWBLf0awRS/FVYr0rX+/+f8ECt92C81q95
- MMY8xU+jGvZ53TrxVmfSsnl/Wots3TaO9Bk499iz60mLtg/p1otQfObAeCBdL0XiguSEVQRBmIC
- k49HVnccEQ8k4lQagnSqG/V9YQ/PHYcMF0c4AAdBTvTKIgDBLN8bwiR/XR/49eBQSXIu7y44ok1
- Vrjf53DKBHZ9QNCAaVTS3qLRnXbPPrim7jUhRuLpo1SAMDZTejpfZRe+HTj+Fcio/tz9V+Au/LV
- R27RI11sZeZonax2PEHqRYlP/Z9PC1lGodEIOCs7y4YIaUy20zfevGfXJyPJL2Vqlq1hu2g3bt5
- e26Ss7JlxP1Eq+G/VVjx2rEK3HoaWe5Qrbib80x/oJs5K27+26PrVXeH3Fl/h/JAFY01/jtc2ad
- VZujbRnRRbK9b3e6c6kQ56v95kftLQIzUH3hsuYO3cr1A3BqiNyVmFNQJ5XJ4PldhvID8Egj9et
- wJJF1hAIHd7iDYaECNe/mSGc0MN989glz6BeSgMFTfivQnJOuSC86d4Y4DQ/Xbitiq6ZEL+Wc4W
- rgbbAo4+V6U6cYQ==
-X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
- fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <e0e9e690-c56e-4b56-90f9-2af46a7feaf3@nxsw.ie>
 
-Enable auto clock mode, and define the additional fields which are used
-when this mode is enabled.
+On Sat, Dec 20, 2025 at 06:04:00AM +0000, Bryan O'Donoghue wrote:
+> On 20/12/2025 00:21, J=C3=A9r=C3=B4me de Bretagne via B4 Relay wrote:
+> > From: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.com>
+> >=20
+> > For some devices, Wi-Fi is entirely hard blocked by default making
+> > the Wi-Fi radio unusable, except if rfkill is disabled as expected
+> > on those models.
+> >=20
+> > Commit c6a7c0b09d5f ("wifi: ath12k: Add Support for enabling or
+> > disabling specific features based on ACPI bitflag") added a way to
+> > support features set via ACPI, including the DISABLE_RFKILL bit.
+> >=20
+> > Add a disable-rfkill property to expose the DISABLE_RFKILL bit
+> > equivalent for devices described by a Devicetree instead of ACPI.
+> >=20
+> > Signed-off-by: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.co=
+m>
+> > ---
+> >   Documentation/devicetree/bindings/net/wireless/ieee80211.yaml | 6 +++=
++++
+> >   1 file changed, 6 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/wireless/ieee80211.y=
+aml b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> > index d89f7a3f88a71d45d6f4ab2ae909eae09cbcaf9a..c10a4675640be947cd0b5ea=
+ec2c7ff367fd93945 100644
+> > --- a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> > +++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> > @@ -29,6 +29,12 @@ properties:
+> >         different 5 GHz subbands. Using them incorrectly could not work=
+ or
+> >         decrease performance noticeably
+> >=20
+> > +  disable-rfkill:
+> > +    type: boolean
+> > +    description:
+> > +      Disable rfkill for some devices on which Wi-Fi would be entirely=
+ hard
+> > +      blocked by default otherwise
+> > +
+> >   additionalProperties: true
+> >=20
+> >   examples:
+> >=20
+> > --
+> > 2.47.3
+> >=20
+> >=20
+> >=20
+>=20
+> Is this really a hardware description though ?
+>=20
+> Its really more of a logical/functional description. It tells the runtime
+> what todo, not what the hardware is.
+>=20
+> You could also have a list of quirks in ath12k for this or have a user-sp=
+ace
+> utility look for the appropriate platform device string name and disable
+> rfkill.
+>=20
+> I think this logic belongs in drivers/net/wireless/ath/ath12k/ triggering=
+ on
+> a compat string.
 
-/sys/kernel/debug/clk/clk_summary now reports approximately 308 running
-clocks and 298 disabled clocks. Prior to this commit 586 clocks were
-running and 17 disabled.
+This is good point. Either this could be deducible from the compatible
+or this should actually describe the hardware and whatever is there
+wired/configured, not what OS should do.
 
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
----
-Changes in v4:
-- Remove unnecessary header of_address.h (Peter)
----
- drivers/clk/samsung/clk-gs101.c | 55 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
-
-diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
-index 70b26db9b95ad0b376d23f637c7683fbc8c8c600..8551289b46eb88ec61dd1914d0fe782ae6794000 100644
---- a/drivers/clk/samsung/clk-gs101.c
-+++ b/drivers/clk/samsung/clk-gs101.c
-@@ -26,6 +26,10 @@
- #define CLKS_NR_PERIC0	(CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
- #define CLKS_NR_PERIC1	(CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
- 
-+#define GS101_GATE_DBG_OFFSET 0x4000
-+#define GS101_DRCG_EN_OFFSET  0x104
-+#define GS101_MEMCLK_OFFSET   0x108
-+
- /* ---- CMU_TOP ------------------------------------------------------------- */
- 
- /* Register Offset definitions for CMU_TOP (0x1e080000) */
-@@ -1433,6 +1437,9 @@ static const struct samsung_cmu_info top_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_TOP,
- 	.clk_regs		= cmu_top_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(cmu_top_clk_regs),
-+	.auto_clock_gate	= true,
-+	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-+	.option_offset		= CMU_CMU_TOP_CONTROLLER_OPTION,
- };
- 
- static void __init gs101_cmu_top_init(struct device_node *np)
-@@ -1900,6 +1907,11 @@ static const struct samsung_gate_clock apm_gate_clks[] __initconst = {
- 	     CLK_CON_GAT_GOUT_BLK_APM_UID_XIU_DP_APM_IPCLKPORT_ACLK, 21, CLK_IS_CRITICAL, 0),
- };
- 
-+static const unsigned long dcrg_memclk_sysreg[] __initconst = {
-+	GS101_DRCG_EN_OFFSET,
-+	GS101_MEMCLK_OFFSET,
-+};
-+
- static const struct samsung_cmu_info apm_cmu_info __initconst = {
- 	.mux_clks		= apm_mux_clks,
- 	.nr_mux_clks		= ARRAY_SIZE(apm_mux_clks),
-@@ -1912,6 +1924,12 @@ static const struct samsung_cmu_info apm_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_APM,
- 	.clk_regs		= apm_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(apm_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
-+	.auto_clock_gate	= true,
-+	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- /* ---- CMU_HSI0 ------------------------------------------------------------ */
-@@ -2375,7 +2393,14 @@ static const struct samsung_cmu_info hsi0_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_HSI0,
- 	.clk_regs		= hsi0_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(hsi0_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= HSI0_CMU_HSI0_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- /* ---- CMU_HSI2 ------------------------------------------------------------ */
-@@ -2863,7 +2888,14 @@ static const struct samsung_cmu_info hsi2_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_HSI2,
- 	.clk_regs		= cmu_hsi2_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(cmu_hsi2_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= HSI2_CMU_HSI2_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- /* ---- CMU_MISC ------------------------------------------------------------ */
-@@ -3423,7 +3455,14 @@ static const struct samsung_cmu_info misc_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_MISC,
- 	.clk_regs		= misc_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(misc_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate	= true,
-+	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-+	.option_offset		= MISC_CMU_MISC_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- static void __init gs101_cmu_misc_init(struct device_node *np)
-@@ -4010,6 +4049,10 @@ static const struct samsung_gate_clock peric0_gate_clks[] __initconst = {
- 	     21, 0, 0),
- };
- 
-+static const unsigned long dcrg_sysreg[] __initconst = {
-+	GS101_DRCG_EN_OFFSET,
-+};
-+
- static const struct samsung_cmu_info peric0_cmu_info __initconst = {
- 	.mux_clks		= peric0_mux_clks,
- 	.nr_mux_clks		= ARRAY_SIZE(peric0_mux_clks),
-@@ -4020,7 +4063,13 @@ static const struct samsung_cmu_info peric0_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_PERIC0,
- 	.clk_regs		= peric0_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(peric0_clk_regs),
-+	.sysreg_clk_regs	= dcrg_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= PERIC0_CMU_PERIC0_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
- };
- 
- /* ---- CMU_PERIC1 ---------------------------------------------------------- */
-@@ -4368,7 +4417,13 @@ static const struct samsung_cmu_info peric1_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_PERIC1,
- 	.clk_regs		= peric1_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(peric1_clk_regs),
-+	.sysreg_clk_regs	= dcrg_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= PERIC1_CMU_PERIC1_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
- };
- 
- /* ---- platform_driver ----------------------------------------------------- */
-
--- 
-2.52.0.351.gbe84eed79e-goog
+Best regards,
+Krzysztof
 
 
