@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-248435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B85CD2B34
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:57:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 823A3CD2B4A
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 09:58:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B7DCD3009106
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 08:57:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3DE553012DF7
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 08:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707F62F744F;
-	Sat, 20 Dec 2025 08:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 751562F6928;
+	Sat, 20 Dec 2025 08:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AKgEWuq0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QnLoiBHO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41BF84A35;
-	Sat, 20 Dec 2025 08:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE044A35;
+	Sat, 20 Dec 2025 08:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766221021; cv=none; b=hVZl+FLNr+hnzi0CQd7WWGwgd96Zqjpo7rJlXj2nmCRBXmyIV/JmM7+bPKobe8FOeGk0dyGw0OQOm2aUhz5YzMJ32s65i3d5y3OdIrmLdj4s+QajSwc2Da/Q4cMM11Qdp/UQEhAaEQyM+lVp0ZmYkUZVHQt1Sx6WYVoMeEP3k9M=
+	t=1766221074; cv=none; b=Gg3vL3WlAdys+glbeSrxuqrFPA2QH8/LWBuoqEDkmPmwpbJSvrCKb/UI8UgzFTIy9TZe3CoBbTjLP8wlncM1DkwTeph7A3STVQREh3zy/UCOzKOsxVkqvaf+uzxMJcooJ97Yq2YEqC9W1SEjwjhaYqG3iGR/x9SpIwbbGDb6a9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766221021; c=relaxed/simple;
-	bh=WnsUmdn4a/nYxPM7z7GAsLIyt/ZsTh54ZgIdj6D2txg=;
+	s=arc-20240116; t=1766221074; c=relaxed/simple;
+	bh=tffN5+aRCom1c+A8K5hJYGEMEBNHdQ8p2T9tfKHv+0o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iIKXMuaArSCZT/kbVrJzjBwHtQLbMsl7mXdG8cDes34SCO9qgKvlh1UPThDNiWnE6Z4xASft+AxfTjfQ57CvtFOop9MjKhZf/0YKg3NtTya9nNImsFOzyiiJQnGLEDwguGf8X6dyKvTX/wTRwdWJJtZGlP+Yf86u4QqiLlIIk9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKgEWuq0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E167CC4CEF5;
-	Sat, 20 Dec 2025 08:56:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cNkhu1z3FGf/Y3IdGftO97zQbmJdQfmS6AFLBH5QyD1gWSxWqLnkj4p1tdFFiVgLhSu5aoptCA1LKrHRa+EIY9+9gOWA3ZNeqBtJmaYlJzYn/Cz5Z/GakjdAzD03N48TrNpSwafI70HLsTZdZhXCnItqWU042ciabXg8yzYfl5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QnLoiBHO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3A7BC4CEF5;
+	Sat, 20 Dec 2025 08:57:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766221021;
-	bh=WnsUmdn4a/nYxPM7z7GAsLIyt/ZsTh54ZgIdj6D2txg=;
+	s=k20201202; t=1766221074;
+	bh=tffN5+aRCom1c+A8K5hJYGEMEBNHdQ8p2T9tfKHv+0o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AKgEWuq0U6C7wqAlOf+5cATc36Vv9IkOmfv6EscUD/Joe3uciufw2Uy1s/o2WQ5RM
-	 Dz2Kgp9BdIgOKrcCbVd2B4lJvG0ycblGHmsNfOZwZRj25GvJqVloEw7QniBke6pe5e
-	 O2So3MC1l34rVa9ir1o/HZSIunmtrNKcZRZfOdwlnJglLFxPAfx+Ih5DzwTZLneqvD
-	 T0GNrE76qRuG4brti6fir5LViNazkR9ZM9sSr9HdNvpjAo6GdxFCZ1BOmlkJBsf8bM
-	 Xf7I037SYry2u5pAiuSeEEqxrt8Se5kxKPDaP4TMNeiw4geWJTw3qIYylpQsF6Uek/
-	 HJ6vIITkKaqXw==
-Date: Sat, 20 Dec 2025 09:56:57 +0100
+	b=QnLoiBHO+2csqUknGm2baOomibBnPB+7sR/GLRUImB/myhMUF9xHauxg5zNBD4VH6
+	 suKtRiKo9+CrT2N+qySStsduuZRs5rJiogxi+f+/MwrojnZcOyLWAMDrpGewefU/yi
+	 Mpy/ro8wgjSUKqkQHProBAj4uEOpfuOmPWe+F552zrnA515jP1zgJmq5HvYVYYmFyY
+	 Gr6336E/g8k19lSz3UJ7eWGAbsMXGYFBofF11oZ5x0CzlbMWnZtAorYZ+MYvmsTaGl
+	 8UyDt957IK63DK8PqcfaL0DOsGpdeRGowczqzYkenSCDGgw0BLF3A5M+HSG6inZvth
+	 aCfSi4BJHcGvQ==
+Date: Sat, 20 Dec 2025 09:57:50 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, krzk+dt@kernel.org, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+To: cy_huang@richtek.com
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Alan Lan <alan_lan@richtek.com>, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: remoteproc: qcom: add IPQ9574 image
- loader
-Message-ID: <20251220-fantastic-koala-of-coffee-e8ba1f@quoll>
-References: <20251219043425.888585-1-mr.nuke.me@gmail.com>
- <20251219043425.888585-2-mr.nuke.me@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: rt5739: Add compatible for
+ rt8092
+Message-ID: <20251220-camouflaged-bug-of-ampleness-ff0c6c@quoll>
+References: <cover.1766125676.git.cy_huang@richtek.com>
+ <9b67b2d2b4268d356f41ae2d0c3202e7813ea6b1.1766125676.git.cy_huang@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,77 +59,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251219043425.888585-2-mr.nuke.me@gmail.com>
+In-Reply-To: <9b67b2d2b4268d356f41ae2d0c3202e7813ea6b1.1766125676.git.cy_huang@richtek.com>
 
-On Thu, Dec 18, 2025 at 10:34:10PM -0600, Alexandru Gagniuc wrote:
-> Document the IPQ9574 native (non-PAS) WCSS image loader. It is similar
-> to IPQ8074 WCSS, but requires several new clocks. These clocks must be
-> enabled by the host in non-PAS mode, and are not optional. Add an
-> example that uses the "qcom,ipq9574-wcss-pil" binding.
+On Fri, Dec 19, 2025 at 02:36:19PM +0800, cy_huang@richtek.com wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+> Append rt8092 compatible in rt5739 document.
+> 
+> Compared to rt5739, RT8092 can offer up to 4A output current.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 > ---
->  .../remoteproc/qcom,ipq8074-wcss-pil.yaml     | 115 +++++++++++++++++-
->  1 file changed, 113 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,ipq8074-wcss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,ipq8074-wcss-pil.yaml
-> index dea46cb9f93fe..a665b704a835f 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,ipq8074-wcss-pil.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,ipq8074-wcss-pil.yaml
-> @@ -18,6 +18,7 @@ properties:
->    compatible:
->      enum:
->        - qcom,ipq8074-wcss-pil
-> +      - qcom,ipq9574-wcss-pil
->        - qcom,qcs404-wcss-pil
->  
->    reg:
-> @@ -49,10 +50,10 @@ properties:
->        - const: wcss_q6_reset
->  
->    clocks:
-> -    maxItems: 10
+>  .../devicetree/bindings/regulator/richtek,rt5739.yaml        | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-Either you miss minItems or you are changing existing devices without
-any explanation.
-
-> +    maxItems: 13
->  
->    clock-names:
-> -    maxItems: 10
-> +    maxItems: 13
->  
->    cx-supply:
->      description:
-> @@ -107,6 +108,7 @@ allOf:
->            contains:
->              enum:
->                - qcom,ipq8074-wcss-pil
-> +              - qcom,ipq9574-wcss-pil
->      then:
->        properties:
->          qcom,smem-states:
-> @@ -117,9 +119,47 @@ allOf:
->            items:
->              - const: shutdown
->              - const: stop
-
-So why all devices have now 13 clocks?
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,ipq8074-wcss-pil
-
-Just keep the if:then: per device, don't mix it up.
-
-> +    then:
-> +      properties:
->          clock-names: false
->          clocks: false
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
