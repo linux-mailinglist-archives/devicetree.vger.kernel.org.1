@@ -1,222 +1,147 @@
-Return-Path: <devicetree+bounces-248510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 440F9CD3494
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 18:47:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87AD5CD34D9
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 19:05:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 16776300A281
-	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 17:47:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9B4523010FEA
+	for <lists+devicetree@lfdr.de>; Sat, 20 Dec 2025 18:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C558430BF6F;
-	Sat, 20 Dec 2025 17:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AEA02F260E;
+	Sat, 20 Dec 2025 18:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R1I2U7hM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lOYHFivu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9766223AE62;
-	Sat, 20 Dec 2025 17:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D911279DB1
+	for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 18:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766252836; cv=none; b=O7JeGbwHSKKeHt8EUyuULFivsI1jJMX/zNjSo5DQFiCAqKA9qYtSmuykCEjK1zSdUnYVtzFsu4I3qD2qKhfY7M0iVMjxClyKhdfUSRUCK+wBZIk6bwRTRwnc8Ow/TpkIFru2lMFjKgqFE550ic+8q7NimZ1BZeYSNLT5lQasusY=
+	t=1766253942; cv=none; b=W8J3hDQ6T601+cp/gH8ppCgRqzyJyZhBWh8z0xx3ruvswNdyXLx7AkqFW/+chIsEBMdNXKv08k0iN4myan5exEnYVeE9WG1BYZm7SdVqmwiAwbeIq3AO9Wb5zokdeSMmCcaRCeRlp+OpKHi66vMlN6hPeEpNCfqOSWC1xVP8B/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766252836; c=relaxed/simple;
-	bh=zs58iPHc9dVMILZf+f0sXG/xtW4XWxiXDfAKslwS8p8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=t2AHO9vwo0oL0CEBnJsbqLN89jhRthAMNltnhTPnu0V01gyhB11AiK8XU9FVTMJ7Hw7TcKm+Q6WbSk5Hua7O3+4+dZxMmZ0tKw3tEVi7QxC8GV6wKi4EbGwHctf+5NKSPhoFZmtOCePghMSmUhpuR5NqdKzIdVgrpfGL7KLdOPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R1I2U7hM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 22B1FC116C6;
-	Sat, 20 Dec 2025 17:47:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766252836;
-	bh=zs58iPHc9dVMILZf+f0sXG/xtW4XWxiXDfAKslwS8p8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=R1I2U7hMNmhZJgXE+D/aTsAEyhNhq3dlnetcA9wwFJ5RjWpUTulxqywso81eSSIEO
-	 7ttJ/7g/3o85oQOa2+hZLqbZ75n7cZrYSS0kgu/ELfJc4gTgGb6JSp1QWkFcVl2Sre
-	 luFqSDd8Nxm59syaKeZ+UuVX9yGlXh60fR03hU815KB/xk9/mXAi658GDASMNhzj8Y
-	 cF1GtruB9m+Vapb5InWhuZqH9PaiqDfNn4iOubHSaV8EDxWsu2uqpNk+DdyvXyUHTS
-	 jBz+v1Fldzw4YCAL7aJrKwSRF6TfUD5cK6VxUmwvyXJTu4CArPp/erfU9FY3MSHxap
-	 RU1KvVRdYeNPg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FD45E668B4;
-	Sat, 20 Dec 2025 17:47:16 +0000 (UTC)
-From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
-Date: Sat, 20 Dec 2025 18:47:10 +0100
-Subject: [PATCH 2/2] arm64: dts: qcom: x1p42100-lenovo-thinkbook-16: add
- hdmi bridge with enable pin
+	s=arc-20240116; t=1766253942; c=relaxed/simple;
+	bh=ION7h3GiimdnrChMZfYJ4FJw5Q0+r+Pu4ixf/ze1IGg=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qDBwMOEBkiHRlmc01wUxCqJaDMyiPSRkxmzyArO0nlkPElZUUUu2Ac7axhAWHoT1z3I0LDXA740otv9Qst8S0TPpX1lMAUkOwHlPQh6nh4tTVjlXapBkaPr00o8iaFJ5ldwuX9DZvbMUjsk+hu9uvlY6U+zZV57K54rqKHda1fo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lOYHFivu; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-42b3b0d76fcso1670969f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 10:05:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766253939; x=1766858739; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ION7h3GiimdnrChMZfYJ4FJw5Q0+r+Pu4ixf/ze1IGg=;
+        b=lOYHFivuvy/kA+SQDrYDMUwxTuMvxgUOcbu7wjsTMR6tQ4hXDSszzWK2E4oTdoIhOC
+         vxQm+fv6SMp6xX9f8hcicy0lz7ud32UiqFxHX5dXUSCDaLP0Ef49a3ZYuZhur34opY40
+         fPnHuMWDrnAV4R+5QUv1md081Rm5oGzxVMbdxI155AD5nn4tZ8trdzENUkbTOmVFOgWH
+         023776+yDW16lg7T4yXHKks1taQnjO+cmlIM0oiZNJevQCAk4ixYBkiM5FMtlEUycI7W
+         rGVfLB3C1E6pckpziE7YebQ5muDyGxpPnKPsnDdbFccGDAdCAyCA/q3GO9/JNnqwpd5p
+         +i8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766253939; x=1766858739;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ION7h3GiimdnrChMZfYJ4FJw5Q0+r+Pu4ixf/ze1IGg=;
+        b=KC2H9cky+BECUKnxfR78UjPGmizEiUh6UCUq+SSFW/i9GIyOK1JSDd80RHIBx6qdUh
+         Eoj8jA/x25dHLx3tke+/cGupoqVRbDthkU/UK8EsVdVZux+7Lsp80EBUJHP0XVqrJ+Ox
+         TsAUb/Vk9kfqIxlLxf1A6459VhsvogK+7NxuD+0uoTnBe5VjVv/0lgFbsoywjL0ASdlY
+         VLGKp5YjWUiIF89hGvyLdcuwtp3cZ9h0A4vUuOpz5B76TdqTnCuxKRAzgDMPqwn1n3P+
+         5oYosk8Zc9TuDSXEKxQOg5F8iIlc9PJEUueB6BV/ccpdXs6ccwTa1EJa5pORZI5Dxe4v
+         vdvw==
+X-Forwarded-Encrypted: i=1; AJvYcCUpdxDwgGW9Vwgxt9Vygztkm/BaI7oq+YsWKumh/pW+Pj78uTxNpZphfV0nrhO91GwTCHCl+b1eClAv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWuF1sazbjPrDWEZM6sYEjTOg5w6E+TQHVgMiks6VcIM0NnhGF
+	GCZax5d+Vi9CFj3BDRBh5S+P4gqYHJvZaqa/SCppwpY9Zw5FLB2V5riN
+X-Gm-Gg: AY/fxX63pS0L67kozgr9LJp+JEMCm2EplS+YqZwrJTZC+OXIZiJ5JthFLNjJ0sF9d5K
+	jw+mo5eo/doOeRe2Cvz7iGHYYwmHXvn48TNot2Y4u9VAJ4eJrJfa13AW+vQTw2EyXrXxpY54bTV
+	USI7WSj2mU9j/09rpnrhqy9k7HNq+MPIQd4vlhEJZb5hbNI8OE0rEjHW+i3siglHekG/TIvI+K6
+	JthwwkjIxGn+t41V27dCtNfwi4JPt9eFG2yoFa+obV3dMoDXMdWDS0IWvDwD9mRuWN5arFJe5Xs
+	BWKqlE7VfUOjlfrwdYbbdoy1uQwCx+U4eY1SaUXjbI7FMOJr9hMspi3JwC/N33Y3igK88LFR8Gb
+	wR7r76+IApF6JSIjdQRqDO/9LvCtVxq8JfT+WK//wef/Q/kNE8dJLncDzORRd9VxGk3dcxHYpRr
+	IgB+3R55j8WY+eU9A2ClH4imOdplHa9w4WjjiQvr+Fvzr+kK5yKI+x00lf/ePpJlWztw83UHxek
+	zPl+sxxtxKPxZ0=
+X-Google-Smtp-Source: AGHT+IFdh7686Hic2EQT/ge0CqMXmqAJuelRm9kiOsqQ7eXjvB0HmW7I0JGYyXOswbWut1zyR+Yt7w==
+X-Received: by 2002:a05:6000:40db:b0:430:fa52:9eaf with SMTP id ffacd0b85a97d-4324e70ecf1mr7519861f8f.60.1766253938486;
+        Sat, 20 Dec 2025 10:05:38 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324ea82e9fsm12234440f8f.26.2025.12.20.10.05.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Dec 2025 10:05:37 -0800 (PST)
+From: 455.rodrigo.alencar@gmail.com
+X-Google-Original-From: rdealenc@rdealenc-l01.ad.analog.com
+Date: Sat, 20 Dec 2025 18:05:34 +0000
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Rodrigo Alencar <rodrigo.alencar@analog.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v2 1/6] dt-bindings: iio: frequency: add adf41513
+Message-ID: <gz36kmewv4bhwqz6d3xqatcx65uzukqcgsvfbwhr7c3yhw225z@edeggfhjws2h>
+References: <20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com>
+ <20251219-adf41513-iio-driver-v2-1-be29a83d5793@analog.com>
+ <20251220-bouncy-perky-tarantula-d9b3be@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251220-tb16-hdmi-v1-2-18b1e20b396e@oldschoolsolutions.biz>
-References: <20251220-tb16-hdmi-v1-0-18b1e20b396e@oldschoolsolutions.biz>
-In-Reply-To: <20251220-tb16-hdmi-v1-0-18b1e20b396e@oldschoolsolutions.biz>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Val Packett <val@packett.cool>, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766252834; l=3182;
- i=jens.glathe@oldschoolsolutions.biz; s=20240919;
- h=from:subject:message-id;
- bh=G6F6G3AffDaqVvF/PzUgapReH3Uv+q5DJWksfE18o8U=;
- b=2qSiY6qbhNn9vDJLCu36cyhlYfB41DU45Lq9nZfDS0i2IoiFrnuKgYqhWEdg61nY2tPkfaWG8
- im/8Yb8+UDiAIky8PoWdVHFvezMZUVa4ifWaPaQFmI8w+2ei/SRWhS/
-X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
- pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
-X-Endpoint-Received: by B4 Relay for
- jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
-X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Reply-To: jens.glathe@oldschoolsolutions.biz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251220-bouncy-perky-tarantula-d9b3be@quoll>
 
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Hi Krzystof,
 
-Add TLMM 119 for hdmi bridge enable. AeoB has this gpio.
-In general this is the same setup as on the T14s. Since its using simple-bridge
-and also is Lenovo, we also use the same realtek,rtd2171 compatible.
-The real chip identity is not known yet. The bridge is wired with un-swapped
-lanes, though.
+thanks for taking a look into this again. It was my first patch it didn't want
+to draw more attention or discussion to the V1 patch as it was declared not ready
+at its very first review.
 
-As for gpio119 being used twice: It doesn't work if you don't, so it may be a case
-of TLMM multiplexing hpd for both ports.
+On 25/12/20 10:21AM, Krzysztof Kozlowski wrote:
+> On Fri, Dec 19, 2025 at 12:34:48PM +0000, Rodrigo Alencar wrote:
+> > dt-bindings for ADF41513, an ultralow noise PLL frequency synthesizer that
+> > can be used to implement local oscillators (LOs) as high as 26.5 GHz.
+> > Most properties refer to existing PLL driver properties (e.g. ADF4350).
+>
+> What is "existing PLL driver"? I know about motor drivers, but can you
+> drive PLL?
+>
+> And how is ADF4350 related to this binding. I do not see ADF4350
+> compatible here at all. Describe hardware, a real one.
 
-Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
----
- .../boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts | 88 ++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+ADF4350 is an older one, and its bindings can be found at:
+Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
+It is a similar part, but yet very different.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
-index b505a4cbb4350a962bbf779ec788265c7583bf20..80172f3059a42c8656eb682682495194015d3bbc 100644
---- a/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
-+++ b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
-@@ -78,6 +78,47 @@ camera {
- 		vdd-supply = <&vreg_cam_5p0>;
- 	};
- 
-+	hdmi-bridge {
-+		compatible = "realtek,rtd2171";
-+
-+		enable-gpios = <&tlmm 119 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&hdmi_hpd_default>;
-+		pinctrl-names = "default";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				hdmi_bridge_dp_in: endpoint {
-+					remote-endpoint = <&usb_1_ss2_qmpphy_out_dp>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				hdmi_bridge_tmds_out: endpoint {
-+					remote-endpoint = <&hdmi_con>;
-+				};
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con: endpoint {
-+				remote-endpoint = <&hdmi_bridge_tmds_out>;
-+			};
-+		};
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
-@@ -1038,6 +1079,14 @@ &mdss_dp1_out {
- 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
- };
- 
-+&mdss_dp2 {
-+	status = "okay";
-+};
-+
-+&mdss_dp2_out {
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+};
-+
- &mdss_dp3 {
- 	/delete-property/ #sound-dai-cells;
- 
-@@ -1327,6 +1376,19 @@ hall_int_n_default: hall-int-n-state {
- 		bias-disable;
- 	};
- 
-+	hdmi_bridge_en: hdmi-bridge-en-state {
-+		pins = "gpio119";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	hdmi_hpd_default: hdmi-hpd-default-state {
-+		pins = "gpio126";
-+		function = "usb2_dp";
-+		bias-disable;
-+	};
-+
- 	kybd_default: kybd-default-state {
- 		pins = "gpio67";
- 		function = "gpio";
-@@ -1585,6 +1647,32 @@ &usb_1_ss2_hsphy {
- 	status = "okay";
- };
- 
-+&usb_1_ss2_qmpphy {
-+	vdda-phy-supply = <&vreg_l2j_1p2>;
-+	vdda-pll-supply = <&vreg_l2d_0p9>;
-+
-+	/delete-property/ mode-switch;
-+	/delete-property/ orientation-switch;
-+
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			/delete-node/ endpoint;
-+
-+			usb_1_ss2_qmpphy_out_dp: endpoint@0 {
-+				reg = <0>;
-+
-+				data-lanes = <0 1 2 3>;
-+				remote-endpoint = <&hdmi_bridge_dp_in>;
-+			};
-+		};
-+	};
-+};
-+
- &usb_2 {
- 	status = "okay";
- };
+>
+> Nothing improved.
+>
+> You ignored comments, did not bother to respond to them and then sent
+> the same.
 
--- 
-2.51.0
+Sorry for not responding on the V1 thread, but the previous patch had to be reviewed internally
+first. It is not true that nothing is improved, in fact, it has changed a lot, here are some notes:
+* adi,power-up-frequency is not carrying the -hz postfix because it forces to be a uint32 by
+the dt-bindings check. For that variable it needs to be uint64 as the part supports up to 26.5 GHz > 2^32
+* The properties related to the reference input signal path: reference-div-factor, reference-doubler-enable
+reference-div2-enable are declared here because they are constraints for the PFD frequency definition,
+which is the frequency that the output signal is updated, important for the loop-filter and VCO design.
+* added support for all different power supply regulators.
+* adi,lock-detect-precision and adi,lock-detect-bias-microamp: removed, now set
+with adf41513_set_ld_window() following datasheet recommendation
+* adi,fast-lock-enable: removed, faster lock detect clock is set depending on the lock-detect-count value
+* adi,phase-resync-enable, adi,12bit-clk-divider and adi,12bit-clk2-divider: removed, now set with
+adf41513_set_phase_resync(), based on the t_sync (from the datasheet: Phase Resync section)
+value determined by adi,phase-resync-period-ns, which is also bound to the loop filter design.
 
+kind regards,
 
+Rodrigo Alencar
 
