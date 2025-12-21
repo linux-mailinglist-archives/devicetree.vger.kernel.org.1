@@ -1,186 +1,157 @@
-Return-Path: <devicetree+bounces-248579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 504E8CD41AE
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 16:05:30 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C39BCD41C0
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 16:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B483530076B2
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 15:05:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F38BF30062A0
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 15:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D8C287517;
-	Sun, 21 Dec 2025 15:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ABEA2FE566;
+	Sun, 21 Dec 2025 15:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KDT7bNDn"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="KbcmyuSG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625471A9F82;
-	Sun, 21 Dec 2025 15:05:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766329526; cv=none; b=I5sigFcV5pH78RBDT9XIGx4gGd362wsN2Qt7ZtbVos+9zDKrdvlNk6vmRkG9L6og9otmCIlbtDbd6Xoj3ne+PtOPu0RozfTYQysO+goHtK+hcEd3K08NE8XVpd9ZiGdVKwCO4AO1Nw1MGprrA4O5Zln5hALH8sDDcX2pgnKvcfg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766329526; c=relaxed/simple;
-	bh=a5rkjxtX7AuL/LxUauXAcT8aTJ80b2v9CZnwBWziTEY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l8jqQtNNRSg8wTvkhm4Ll5njY20MEv9iaXGw0mxi5XZt+e9wfsT3wYzNP9Pd0MEP6VC+BKMWtfTjHP/WwJvWb1peeqV0wAuYG9F1F1deu+1LzkARtnNhwxjWRmPv+wtge/qSsAuqv3m/Azhf7bGLEU4a3tQ2V5dqXOtJkYHrCVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KDT7bNDn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40C64C4CEFB;
-	Sun, 21 Dec 2025 15:05:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766329525;
-	bh=a5rkjxtX7AuL/LxUauXAcT8aTJ80b2v9CZnwBWziTEY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KDT7bNDn5tAOaA3ze7KWGoydGs7fNXb31BKe7rWZzUnD0QurneirLNcLmS2WGNzKk
-	 7JF8BzWqae5jCEcSk558Dbn3hnWrSj3yZ+qsvczeXQUsKa1R/nQwxpP/YT4D6oBlh/
-	 6QhQQz2ebRiWJNVfstOhWB6qhL3VfPVuVcoV6+p3FFAwDkzgp7jSBGvMZxkTpqvZy/
-	 oHNwn6RwpWiY6wN/svU3ZQu2ZR0/TloKi+n3pPL3YxMLQySWPh1t8QgkweUI/Gvn6K
-	 rSGqL51+YskqI/Cx4O7abH6tLOYjFc7lCR55A06SbBz6i8Suf3o22dK7c5zIWpcCRl
-	 NymK8rbwhzzPw==
-Date: Sun, 21 Dec 2025 16:05:22 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alex Tran <alex.t.tran@gmail.com>
-Cc: mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, pavel@kernel.org, sakari.ailus@linux.intel.com, 
-	mehdi.djait@linux.intel.com, laurent.pinchart@ideasonboard.com, hverkuil+cisco@kernel.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] media: dt-bindings: i2c: toshiba,et8ek8: Convert
- to DT schema
-Message-ID: <20251221-platinum-mongoose-of-might-feec86@quoll>
-References: <cover.1766123192.git.alex.t.tran@gmail.com>
- <6f34ec79ac21d5ab9ad3fafe34a0bf6aca49a10d.1766123192.git.alex.t.tran@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B91938003D;
+	Sun, 21 Dec 2025 15:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766329766; cv=pass; b=LXdbCqHcT7iI0QaUjq+lN8HZOwtc9NdHtRi0FiNMqBxTXIVU+xrt36wMf7l/wQEQsjMdJzlB/LjKF+z4JR/pXZc+1jvTOiJMX0gi4GUfw11kNvjRbMp3QfIotqb7whCWoB1ZW7uFdkIV0opHBcq3aYU9EJZP97FDjVi3AhXlkoE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766329766; c=relaxed/simple;
+	bh=CdMIlybao4EMye4wO7C68HcPhsVrb7qluhHpYQK5HjI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=A/AQPqRmt9JrVLM3LL/1AjeeSKLA2UPpiChrUtV0CelHzB/rOP8y6yjD7e7T/oSv76+HeFc9piLMlporej8g0nkWd0+AJyxk+TtcG2AnzJOIwW26oSKEN8IVUd44iDaRat6kJe+4MN/mVyKr5a2isgQWXpodPMqSByrqjFSiMr0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=KbcmyuSG; arc=pass smtp.client-ip=136.143.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1766329740; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=GCdIr7q++CZ1rnJO2UDv1Hs/4sS3X7ostA7dPNs3XLRw0oghG6bfNU98/8kHZp6962p13b5pFX9DFR36BuUORATVMwzjJnpQwWjr67nclcUUP4GIfol9M56HN1EmRkdOAf2BOxeF+ST0kBFdAkkEG7nc08A1K96RLzcfMbbJRvE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1766329740; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=UX0Ujw2PD/K2tYYP3yHJDgWY39Znwpjg+z+cHhIZ01Q=; 
+	b=F4zFLvkcCQJ4t9ORemcG9vbE5miBoqhO8TqUBS9vv4QwJmOm1E/2x4k5tEsZWizbXzDAbC8l4PNX7qMXd2yoE9VEvSSI7MY0fjYyzT+s0DTQ7KUFxHCLxYLrzKwzl3qEfUaq+WAMhPAjyNfkHiJKCa6iIk1pBLI/fVO4c1+EZV8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1766329740;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
+	bh=UX0Ujw2PD/K2tYYP3yHJDgWY39Znwpjg+z+cHhIZ01Q=;
+	b=KbcmyuSGXiOQ9JwvDhm55JQDIvuuUmkDGc70KEXgTpf2YdsKrLKS7cbTIlDa1wON
+	kGD6A01mpgpKSlwK1YvAEctcgrH92OlrVp+fYvFSyUIkV5yOhUap+85PYXVBbFVNYG/
+	1wPebABxJ/6BwT9LVmPGNDR0KGfBhzJcP9nmk5R4=
+Received: by mx.zohomail.com with SMTPS id 1766329732031723.5314899504488;
+	Sun, 21 Dec 2025 07:08:52 -0800 (PST)
+Message-ID: <159615d3-cc52-43be-bf6d-5fe717ef1cc4@zohomail.com>
+Date: Sun, 21 Dec 2025 23:08:32 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <6f34ec79ac21d5ab9ad3fafe34a0bf6aca49a10d.1766123192.git.alex.t.tran@gmail.com>
-
-On Sat, Dec 20, 2025 at 02:03:24PM -0800, Alex Tran wrote:
-> diff --git a/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.yaml b/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.yaml
-> new file mode 100644
-> index 000000000000..68a8134df8fc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.yaml
-> @@ -0,0 +1,91 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/toshiba,et8ek8.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Toshiba et8ek8 5MP sensor
-> +
-> +maintainers:
-> +  - Pavel Machek <pavel@ucw.cz>
-> +  - Sakari Ailus <sakari.ailus@iki.fi>
-> +
-> +description:
-> +  Toshiba et8ek8 5MP sensor is an image sensor found in Nokia N900 device
-> +
-> +properties:
-> +  compatible:
-> +    const: toshiba,et8ek8
-> +
-> +  reg:
-> +    description:
-> +      I2C address (0x3e, or an alternative address)
-> +    maxItems: 1
-> +
-> +  vana-supply:
-> +    description:
-> +      Analogue voltage supply (VANA), 2.8 volts
-> +
-> +  clocks:
-> +    description:
-> +      External clock to the sensor
-
-If there is going to be new version: drop description, obvious.
-
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description:
-> +      XSHUTDOWN GPIO. The XSHUTDOWN signal is active low. The sensor
-> +      is in hardware standby mode when the signal is in the low state.
-> +    maxItems: 1
-> +
-> +  flash-leds:
-> +    $ref: /schemas/media/video-interfaces.yaml#
-
-This and...
-
-> +
-> +  lens-focus:
-> +    $ref: /schemas/media/video-interfaces.yaml#
-
-... this are weird. LEDs are not video interfaces, for sure. lens focus
-shouldn't be video interface, either.
-
-You also miss unevaluatedProps there.
-
-This needs careful fixing/rewriting, with explanation in commit msg.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 2/3] clk: canaan: Add clock driver for Canaan K230
+To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Troy Mitchell <TroyMitchell988@gmail.com>
+References: <20251127-b4-k230-clk-v9-0-3aa09e17faf5@zohomail.com>
+ <20251127-b4-k230-clk-v9-2-3aa09e17faf5@zohomail.com>
+ <aUUGeGnYR+joVR8c@duge-virtual-machine>
+From: Xukai Wang <kingxukai@zohomail.com>
+Content-Language: en-US
+In-Reply-To: <aUUGeGnYR+joVR8c@duge-virtual-machine>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Feedback-ID: rr080112272dacd3307bc12eb9efc14afb000030c0ea914924bd42e65f6f8bd29054d56c70272add6ef00a72:zu08011227952f7c85760f0a0815f8be44000025411d7b5419e31de20d2757fa5e43bee102f9986953eac086:rf0801122c48b7d601294da21e6fedbda600008d0ec30cf86e9c4eb95b2e97d86358f1eed49f07556fd17cc812a72020dc:ZohoMail
+X-ZohoMailClient: External
 
 
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          remote-endpoint: true
+On 2025/12/19 16:02, Jiayu Du wrote:
+> On Thu, Nov 27, 2025 at 08:45:13PM +0800, Xukai Wang wrote:
+>> This patch provides basic support for the K230 clock, which covers
+>> all clocks in K230 SoC.
+>>
+>> The clock tree of the K230 SoC consists of a 24MHZ external crystal
+>> oscillator, PLLs and an external pulse input for timerX, and their
+>> derived clocks.
+>>
+>> Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
+>> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+>> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
+>> ---
+>>  drivers/clk/Kconfig    |    6 +
+>>  drivers/clk/Makefile   |    1 +
+>>  drivers/clk/clk-k230.c | 2443 ++++++++++++++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 2450 insertions(+)
+> ...
+>> diff --git a/drivers/clk/clk-k230.c b/drivers/clk/clk-k230.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..8750e9cbac04f30e31d8f2eb395c9b49027ca278
+>> --- /dev/null
+>> +++ b/drivers/clk/clk-k230.c
+>> @@ -0,0 +1,2443 @@
+...
+> Incorrect register bit setting (bit1) and wrong parent
+> clock reference (hs_hclk_high_src_rate) for hs_hclk_src_gate,
+> which does not comply with K230 hardware specifications.
+> Here is correcting advice:
+> Register bit correction: `0x18, 1, 0, 0,` -> `0x18, 0, 0, 0,`
+You're right, thanks for the correction. The bit index should be 0, not 1.
+> Parent clock correction: `&hs_hclk_high_src_rate.clk.hw` ->
+> `&hs_hclk_high_gate.clk.hw`
 
-Drop, pointless.
+According to the vendor's code [1], the parent clock of hs_hclk_src is
+hs_hclk_high_src.
 
+>
+>> +K230_CLK_RATE_FORMAT(hs_hclk_src_rate,
+>> +		     K230_HS_HCLK_SRC_RATE,
+> ...
+>> +K230_CLK_RATE_FORMAT(hs_sd_card_src_rate,
+>> +		     K230_HS_SD_CARD_SRC_RATE,
+>> +		     1, 1, 0, 0,
+>> +		     2, 8, 12, 0x7,
+>> +		     0x1C, 31, div, 0x0,
+>> +		     false, 0,
+>> +		     &pll0_div4.hw);
+>> +
+> The parent clock of hs_sd_card_src_rate is incorrectly pointed
+> to pll0_div4.
+> Here is correcting advice:
+> `&pll0_div4.hw` → `&hs_sd_card_src_gate.clk.hw`
+You're right, that's my mistake. Thanks for pointing it out.
+>
+>> +K230_CLK_GATE_FORMAT(hs_sd0_card_gate,
+>> +		     K230_HS_SD0_CARD_GATE,
+>> +		     0x18, 15, 0, 0,
+> ...
+>> +	},
+>> +	.probe = k230_clk_probe,
+>> +};
+>> +builtin_platform_driver(k230_clk_driver);
+>>
+>> -- 
+>> 2.34.1
+>>
+Link:
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vana-supply
-> +  - clocks
-> +  - reset-gpios
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera@3e {
-> +            compatible = "toshiba,et8ek8";
-> +            reg = <0x3e>;
-> +            vana-supply = <&vaux4>;
-> +            clocks = <&isp 0>;
-> +            assigned-clocks = <&isp 0>;
-> +            assigned-clock-rates = <9600000>;
-> +            reset-gpios = <&gpio4 6 GPIO_ACTIVE_HIGH>;
-> +
-> +            port {
-> +                csi_cam1: endpoint {
-> +                    remote-endpoint = <&csi_out1>;
-> +                };
-
-Please make the example complete - missing flash-leds and lens-focus. If
-you provided them, you would see your binding is not correct.
-
-
-Best regards,
-Krzysztof
+[1]
+https://github.com/kendryte/k230_sdk/blob/main/src/little/linux/arch/riscv/boot/dts/kendryte/clock_provider.dtsi#L578
 
 
