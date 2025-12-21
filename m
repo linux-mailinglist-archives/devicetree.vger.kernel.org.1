@@ -1,430 +1,181 @@
-Return-Path: <devicetree+bounces-248594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B0A2CD438F
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 19:00:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA221CD4443
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 19:53:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E76283007696
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 18:00:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 20B183004F16
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 18:52:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57AE92222D1;
-	Sun, 21 Dec 2025 18:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 266CD3093DF;
+	Sun, 21 Dec 2025 18:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U2Mj/XfA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KzfXdfh6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D1C3A1E72;
-	Sun, 21 Dec 2025 18:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D48BC307AF4
+	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 18:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766340029; cv=none; b=JxLCqcGfwxJ2qQO31BzRZTkuDuBmXrwk91IRcQ1xsvc3wRibj1+CkBaqD6BwWHzzegZ2Tr4eyNERwOo3CO6bFL53b4v149MvtFo4Z6us8kCYpgaoBgNfh7Lsh5x0HnQ6bzMZDUmV0H7w8n1JfDh66PV9sxcvGG/IRKDimucQ/6o=
+	t=1766343177; cv=none; b=uv1obkikjOyWf+TRHuYYmgdjoXdGlFGb/gHwakrDIwVILCtpdRdyX1eMXk5An7QmyZtmP40AlO5krB6tFo5EflzmNA7+0iRQFF0ulAiA2U6B1fW6jqRsw87qHm0f82tmqSDVNAExW4jT0z1ktd+hie08Fxxx9UmWSb9Be4KtEzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766340029; c=relaxed/simple;
-	bh=AglZt3tZupYqSNzCTUmoK+7PJBBPWAQ9WujwdD2rvyw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nxTJnIqGVe3mRyw4LKh/MmqESexk4pWH4u4TMKgFlbTa/yFfAgD0gvQ15YqZozk9ETxqFXFP7ztf6cnynQ7mq89K0VOF0/iLKGFcXpNa8Tgs5sa7aPJdKgqukP9zbB9D0RTT7oj3NM63HwPo8Vvs9wzT3TNtkPhWf2XzH9bYyM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U2Mj/XfA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA155C4CEFB;
-	Sun, 21 Dec 2025 18:00:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766340028;
-	bh=AglZt3tZupYqSNzCTUmoK+7PJBBPWAQ9WujwdD2rvyw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=U2Mj/XfAF2jxDUAT6ljm+JY/nJFEQgNBDAe7Izq3oQS0bdUKhOLvRg1DukbnbwH3E
-	 QeVGGGLQbOYnHo/qJi01nIRBCbBBd4Oe6dTj9RlUug4v/Gjxktcfn4jJU1lMQWVM52
-	 CwUu3aXFh3g306az9E9X/RXsFrd0m9uuVPehAXZ07OBtFzhZ+4c6ybs+POgKZ29dof
-	 5MzFcU6kqDPM1NnIKmAmWtB74CqEd/vn8tMupqzsnE4wgAq168ASMU+fmhpC6cCVCh
-	 fnE1OThQ79Jz+7fuiL6huKcLHz01QRJcZckTgX9dLQr+YeSbfKfI1JyiXOUcnYsNtg
-	 NYhPe84wDkS3Q==
-Date: Sun, 21 Dec 2025 18:00:18 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v2 5/6] docs: iio: add documentation for adf41513 driver
-Message-ID: <20251221180018.488cbac5@jic23-huawei>
-In-Reply-To: <20251219-adf41513-iio-driver-v2-5-be29a83d5793@analog.com>
-References: <20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com>
-	<20251219-adf41513-iio-driver-v2-5-be29a83d5793@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1766343177; c=relaxed/simple;
+	bh=wTYyJ6KNs7lcO1LDw5mry706MHNd9SS12sadjX2FW+o=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bCubiyCEWwbLZfuLOaAGfrMPF9duXvEGZ49fQoDYeCs42UO8vFA4ueCVXUm5+M2NhcLnc3RU0ExZ60qZOtavmEZe8sCPqMh55sSAgm7Il1/tXKWDfDnUVnCSU7sXWK406YRkxRGzxGdFpsK+a8fyQgRMiRb5VDDe3GFY8TIRz/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KzfXdfh6; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-42e2d02a3c9so2200660f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 10:52:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766343172; x=1766947972; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EkFUuskD3aXQcMoKgf00kBQMcF6mPoLg5bi7MGfjH3A=;
+        b=KzfXdfh6NwIpnEQ4xNJnZZg+yOATN0UgK0sDOfv83+I7tzjFOsfhCiCOfWou024bSY
+         EMD90GWxJYj22UpfJPEDq+7Sg2rowa9AVgDxPZ/udfGKvDRk3CRtfoXY3v3DtZBM12Td
+         DIDYD4f5mgRF5XliMEgO5SoNHPQBgJWoO4YkU4Wdmf8SiMSYrdd/bvBIrKeA8MfzDcjf
+         wz/8t9zs0Cb5Kbc3mCPBqqmsVtgg5MOJXuBQZk5THfpGDCePrZfr7T8J/YMIiQ6MvL0q
+         5cV7C4bmeDJ4RCLxjRh1vmELDTuzCFUQt4lJukGsaW1HKDF5goh/KSCSN2c/Pl9fzt9d
+         CQdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766343172; x=1766947972;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=EkFUuskD3aXQcMoKgf00kBQMcF6mPoLg5bi7MGfjH3A=;
+        b=ZnZxDf41KTf3gps6jTcWdxdkXBJoDhEIoxvmPQuAytgiq5TxbRuEoj+CNEKehHSnim
+         PJUO7TspJIDrKapobl/miDW8xw7cjhTDm6afon696M8MzmAjYKREpZxtTZV+q/Dt3lMA
+         3Q4AP2pA7VzIB0F5m+/W4Q9YXUQ8I7CQx+zWTSOFxXBYAIrukAoEC67ZOVQcreXU1QOs
+         0wGGsR7wEB4zPjFEvgzBbgAyYX87crw2Rxg8QplcurCIEvRVDjV9eZo7JL6BAZtFJnTR
+         rOe2c7B04NiWCzwZHtuCxkmQkwy7ctHZmccEX42MxNaYcWbC42FOcZhzHsQ0D6V9qKQi
+         aUnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUx89NOSqPXm6aSTd1AhwANX3YNAShWu0yamynPdpVL7wMvWcX4karhtIflEmUAMPq1PPaBDRAduzEP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJB8aLNoxFS9gW+T++3pcaa+tnKZj2GGt/lz8RjJM649nYnWH5
+	3ayLcRdYKqFPYX8IPEhuFZJ9Ao8RCLWj9MgvJLB1veazzZYNC9FRqFNx
+X-Gm-Gg: AY/fxX4C7jwrPPrxbVblypOzUIz2/zcE/QCjKAdGEuUKS1wSfqOiSoO0TS9b+Cuv0Dl
+	NXqcJgu0s9AowLvp0lWN1KwMFn97YdRKfslLK48ffxnrWB7iP+HGcMBNwXbAZYzrvDmM+JYm9iw
+	Lcr0ycFJaOeeCPmWp0Tj1vXdxfsgmGu+P6IBX72Euvw4uJp3SHutgdGlHGCbrMcSi42+RyLQIX/
+	DM+Sm4zGkEKodyc4uF7ZwqAMMdmkJI+mPqrk0+o8VqGbutGv+RD7NFBdRE8MDmwHkLpVQSS57fF
+	laH9BRUL76azEb7pUk/ycTK2onX4m4VgmsBQdv1BMk6/jxoefQZfJBmLcg5oIGvlQI6EnAZtPq9
+	wSyS3iNvX3TCJmmb/jftScVStQCz+pPB8F9Qt0uccDWsDNhsgEjHkZQ/b9Z5O+5sEM4WDRiqysp
+	SkXC93zS3BRzlK5WnUAzLa2kbMT56M2jZVrfc7duRRJrad7J1mJYWonwTVhVIaHzoSjiHQ
+X-Google-Smtp-Source: AGHT+IEkkDr9J9+zdibSJ3aQ9iWL0xgIJ5GrJUheHH61EjSouzXE+O5/goeHQ+aazrE5IYrzxVO9HA==
+X-Received: by 2002:a05:6000:4008:b0:430:f241:a11f with SMTP id ffacd0b85a97d-4324e4fa8a7mr8787306f8f.30.1766343171984;
+        Sun, 21 Dec 2025 10:52:51 -0800 (PST)
+Received: from jernej-laptop.localnet (82-192-45-213.dynamic.telemach.net. [82.192.45.213])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4325d10cc48sm7775667f8f.16.2025.12.21.10.52.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Dec 2025 10:52:51 -0800 (PST)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Richard Genoud <richard.genoud@bootlin.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Richard Genoud <richard.genoud@bootlin.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Subject:
+ Re: [PATCH v2 1/4] dt-bindings: pwm: allwinner: add h616 pwm compatible
+Date: Sun, 21 Dec 2025 19:52:50 +0100
+Message-ID: <10771871.nUPlyArG6x@jernej-laptop>
+In-Reply-To: <20251217082504.80226-2-richard.genoud@bootlin.com>
+References:
+ <20251217082504.80226-1-richard.genoud@bootlin.com>
+ <20251217082504.80226-2-richard.genoud@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Fri, 19 Dec 2025 12:34:52 +0000
-Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org=
-> wrote:
-
-> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Dne sreda, 17. december 2025 ob 09:25:01 Srednjeevropski standardni =C4=8Da=
+s je Richard Genoud napisal(a):
+> Allwinner H616 PWM block is quite different from the A10 or H6, but at
+> the end, it uses the same clocks as the H6; so the sun4i pwm binding can
+> be used.
+> It has 6 channels than can generate PWM waveforms or clocks if bypass is
+> enabled.
 >=20
-> add documentation for ADF41513 driver which describes the device
-Add
-
-> driver files and shows how userspace may consume the ABI for various
-> tasks
-.
-
->=20
-> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
 > ---
->  Documentation/iio/adf41513.rst | 255 +++++++++++++++++++++++++++++++++++=
-++++++
->  Documentation/iio/index.rst    |   1 +
->  MAINTAINERS                    |   1 +
->  3 files changed, 257 insertions(+)
+>  .../bindings/pwm/allwinner,sun4i-a10-pwm.yaml | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
 >=20
-> diff --git a/Documentation/iio/adf41513.rst b/Documentation/iio/adf41513.=
-rst
-> new file mode 100644
-> index 000000000000..568e71bc21e4
-> --- /dev/null
-> +++ b/Documentation/iio/adf41513.rst
-> @@ -0,0 +1,255 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +ADF41513 driver
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +This driver supports Analog Devices' ADF41513 and ADF41510 PLL frequency
-> +synthesizers on SPI bus.
-Avoid lists of part numbers inline with text. Those become very noisy
-if more parts are added in future. Given next block has bullet point list
-of parts no need to mention them here.  Instead use
-ADF41513 and similar SPI PLL frequency synthesizers.
-> +
-> +1. Supported devices
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +* `ADF41510 <https://www.analog.com/ADF41510>`_
-> +* `ADF41513 <https://www.analog.com/ADF41513>`_
-> +
-> +The ADF41513 is an ultralow noise frequency synthesizer that can be used=
- to
-> +implement local oscillators (LOs) as high as 26.5 GHz in the upconversio=
-n and
-> +downconversion sections of wireless receivers and transmitters. The ADF4=
-1510
-> +is a similar device that supports frequencies up to 10 GHz.
-> +
-> +Both devices support integer-N and fractional-N operation modes, providi=
-ng
-> +excellent phase noise performance and flexible frequency generation
-> +capabilities.
-> +
-> +Key Features:
-> +
-> +- **ADF41513**: 1 GHz to 26.5 GHz frequency range
-> +- **ADF41510**: 1 GHz to 10 GHz frequency range
-Keep them in alphanumeric order. Makes it easier to add more parts by
-keeping the placement obvious.
+> diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pw=
+m.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
+> index 1197858e431f..4f58110ec98f 100644
+> --- a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
+> @@ -14,6 +14,9 @@ properties:
+>    "#pwm-cells":
+>      const: 3
+> =20
+> +  "#clock-cells":
+> +    const: 1
 
-> +- Integer-N and fractional-N operation modes
-> +- Ultra-low phase noise (-235 dBc/Hz integer-N, -231 dBc/Hz fractional-N)
-> +- High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
-> +- 25-bit fixed modulus or 49-bit variable modulus fractional modes
-> +- Programmable charge pump currents with 16x range
-> +- Digital lock detect functionality
-> +- Phase resync capability for consistent output phase
-> +
-> +2. Device attributes
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +The ADF41513 driver provides the following IIO extended attributes for
-> +frequency control and monitoring:
-> +
-> +Each IIO device has a device folder under ``/sys/bus/iio/devices/iio:dev=
-iceX``,
-> +where X is the IIO index of the device. Under these folders reside a set=
- of
-> +device files that provide access to the synthesizer's functionality.
-> +
-> +The following table shows the ADF41513 related device files:
-> +
-> ++----------------------+------------------------------------------------=
--------+
-> +| Device file          | Description                                    =
-       |
-> ++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D+=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D+
-> +| frequency            | RF output frequency control and readback (Hz)  =
-       |
-> ++----------------------+------------------------------------------------=
--------+
-> +| frequency_resolution | Target frequency resolution control (Hz)       =
-       |
-> ++----------------------+------------------------------------------------=
--------+
-> +| refin_frequency      | Reference input frequency control and readback =
-(Hz)   |
-> ++----------------------+------------------------------------------------=
--------+
-> +| powerdown            | Power management control (0=3Dactive, 1=3Dpower=
- down)     |
-> ++----------------------+------------------------------------------------=
--------+
-> +| phase                | RF output phase adjustment and readback (degree=
-s)     |
-> ++----------------------+------------------------------------------------=
--------+
-> +
-> +2.1 Frequency Control
-> +----------------------
-> +
-> +The ``frequency`` attribute controls the RF output frequency with sub-Hz
-> +precision. The driver automatically selects between integer-N and fracti=
-onal-N
-> +modes to achieve the requested frequency with the best possible phase no=
-ise
-> +performance.
-> +
-> +**Supported ranges:**
-> +
-> +- **ADF41513**: 1,000,000,000 Hz to 26,500,000,000 Hz (1 GHz to 26.5 GHz)
-> +- **ADF41510**: 1,000,000,000 Hz to 10,000,000,000 Hz (1 GHz to 10 GHz)
-Alpha numeric order here as well.
+Why #clock-cells? I don't see any reason to add it.
+
+Other properties seem fine.
+
+Best regards,
+Jernej
 
 > +
-> +The frequency is specified in Hz, for sub-Hz precision use decimal notat=
-ion.
-> +For example, 12.102 GHz would be written as "12102000000.000000".
+>    compatible:
+>      oneOf:
+>        - const: allwinner,sun4i-a10-pwm
+> @@ -36,6 +39,7 @@ properties:
+>            - const: allwinner,sun50i-h5-pwm
+>            - const: allwinner,sun5i-a13-pwm
+>        - const: allwinner,sun50i-h6-pwm
+> +      - const: allwinner,sun50i-h616-pwm
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -62,7 +66,9 @@ allOf:
+>        properties:
+>          compatible:
+>            contains:
+> -            const: allwinner,sun50i-h6-pwm
+> +            enum:
+> +              - allwinner,sun50i-h6-pwm
+> +              - allwinner,sun50i-h616-pwm
+> =20
+>      then:
+>        properties:
+> @@ -83,6 +89,17 @@ allOf:
+>          clocks:
+>            maxItems: 1
+> =20
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              const: allwinner,sun50i-h616-pwm
 > +
-> +2.2 Frequency Resolution Control
-> +--------------------------------
+> +    then:
+> +      properties:
+> +        "#clock-cells": false
 > +
-> +The ``frequency_resolution`` attribute controls the target frequency res=
-olution
-> +that the driver attempts to achieve. This affects the choice between int=
-eger-N
-> +and fractional-N modes, including fixed modulus (25-bit) and variable mo=
-dulus
-> +(49-bit) fractional-N modes:
-> +
-> +- **Integer-N**: Resolution =3D f_PFD
-> +- **Fixed modulus**: Resolution =3D f_PFD / 2^25 (~3 Hz with 100 MHz PFD)
-> +- **Variable modulus**: Resolution =3D f_PFD / 2^49 (=C2=B5Hz resolution=
- possible)
-> +
-> +Default resolution is 1 Hz (1,000,000 =C2=B5Hz).
-> +
-> +2.3 Reference Input Control
-> +---------------------------
-> +
-> +The ``refin_frequency`` attribute allows control of the reference input
-> +frequency when using a programmable reference clock. The supported range=
- is
-> +10 MHz to 800 MHz.
+>  required:
+>    - compatible
+>    - reg
+>=20
 
-I'm not really sure why need this as opposed to having a standard clock
-provide it.  What's the use case?
-
-> +
-> +2.4 Power Management
-> +--------------------
-> +
-> +The ``powerdown`` attribute provides software power control:
-> +
-> +- **0**: Device active and operational
-> +- **1**: Device in power-down mode (low power consumption)
-
-This one is fairly standard for DACs etc. I'd not necessarily bother
-documenting it specifically here.
-
-> +
-> +2.5 Phase adjustment
-> +--------------------
-> +
-> +The ``phase`` attribute allows adjustment of the output phase in degrees.
-
-As per driver feedback, I don't think this is compliant with existing ABI.
-
-> +Setting this attribute enables phase adjustment. It can be set from 0 to=
- 360
-> +degrees. Reading this attribute returns the current phase offset of the =
-output
-> +signal. To create a consistent phase relationship with the reference sig=
-nal,
-> +the phase resync feature needs to be enabled by setting a non-zero value=
- to the
-> +``adi,phase-resync-period-ns`` device property, which triggers a phase
-> +resynchronization after locking is achieved.
-> +
-> +3. Operating modes
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +3.1 Integer-N Mode
-> +------------------
-> +
-> +When the requested frequency can be achieved as an integer multiple of t=
-he PFD
-> +frequency (within the specified resolution tolerance), the driver automa=
-tically
-> +selects integer-N mode for optimal phase noise performance.
-> +
-> +In integer-N mode:
-> +
-> +- Phase noise: -235 dBc/Hz normalized floor
-> +- Frequency resolution: f_PFD (same as PFD frequency)
-> +- Maximum PFD frequency: 250 MHz
-> +- Bleed current: Disabled for best performance
-> +
-> +3.2 Fractional-N Mode
-> +---------------------
-> +
-> +When sub-integer frequency steps are required, the driver automatically =
-selects
-> +fractional-N mode using either fixed or variable modulus.
-> +
-> +**Fixed Modulus (25-bit)**:
-> +
-> +- Used when variable modulus is not required
-> +- Resolution: f_PFD / 2^25
-> +- Simpler implementation, faster settling
-> +
-> +**Variable Modulus (49-bit)**:
-> +
-> +- Used for maximum resolution requirements
-> +- Resolution: f_PFD / 2^49 (theoretical)
-> +- Exact frequency synthesis capability
-> +
-> +In fractional-N mode:
-> +
-> +- Phase noise: -231 dBc/Hz normalized floor
-> +- Maximum PFD frequency: 125 MHz
-> +- Bleed current: Automatically enabled and optimized
-> +- Dithering: Enabled to reduce fractional spurs
-> +
-> +3.3 Automatic Mode Selection
-> +----------------------------
-> +
-> +The driver automatically selects the optimal operating mode based on:
-> +
-> +1. **Frequency accuracy requirements**: Determined by frequency_resoluti=
-on setting
-> +2. **Phase noise optimization**: Integer-N preferred when possible
-> +3. **PFD frequency constraints**: Different limits for integer vs fracti=
-onal modes
-> +4. **Prescaler selection**: Automatic 4/5 vs 8/9 prescaler selection bas=
-ed on frequency
-> +
-> +4. Usage examples
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +4.1 Basic Frequency Setting
-> +----------------------------
-> +
-> +Set output frequency to 12.102 GHz:
-> +
-> +.. code-block:: bash
-> +
-> +    root:/sys/bus/iio/devices/iio:device0> echo 12102000000 > out_altvol=
-tage0_frequency
-> +
-> +Read current frequency:
-> +
-> +.. code-block:: bash
-> +
-> +    root:/sys/bus/iio/devices/iio:device0> cat out_altvoltage0_frequency
-> +    12101999999.582767
-> +
-> +4.2 High Resolution Frequency Control
-> +-------------------------------------
-> +
-> +Configure for sub-Hz resolution and set a precise frequency:
-> +
-> +.. code-block:: bash
-> +
-> +    # Set resolution to 0.1 Hz (100,000 =C2=B5Hz)
-> +    root:/sys/bus/iio/devices/iio:device0> echo 0.1 > out_altvoltage0_fr=
-equency_resolution
-> +
-> +    # Set frequency to 12.102 GHz (1 =C2=B5Hz precision)
-> +    root:/sys/bus/iio/devices/iio:device0> echo 12102000000 > out_altvol=
-tage0_frequency
-> +    root:/sys/bus/iio/devices/iio:device0> cat out_altvoltage0_frequency
-> +    12101999999.980131
-> +
-> +4.3 Reference Frequency Control
-> +-------------------------------
-> +
-> +Change reference input frequency (if using programmable reference):
-> +
-> +.. code-block:: bash
-> +
-> +    # Set reference to 122.88 MHz
-> +    root:/sys/bus/iio/devices/iio:device0> echo 122880000 > out_altvolta=
-ge0_refin_frequency
-> +
-> +    # Verify the change
-> +    root:/sys/bus/iio/devices/iio:device0> cat out_altvoltage0_refin_fre=
-quency
-> +    122880000
-> +
-> +4.4 Power Management
-> +--------------------
-> +
-> +Power down the device:
-> +
-> +.. code-block:: bash
-> +
-> +    root:/sys/bus/iio/devices/iio:device0> echo 1 > out_altvoltage0_powe=
-rdown
-> +
-> +    # Power back up
-> +    root:/sys/bus/iio/devices/iio:device0> echo 0 > out_altvoltage0_powe=
-rdown
-
-I'd skip this section as being very standard.
-
-> +
-> +4.5 PFD Frequency Monitoring
-> +----------------------------
-> +
-> +Read the current PFD frequency:
-> +
-> +.. code-block:: bash
-> +
-> +    root:/sys/bus/iio/devices/iio:device0> cat out_altvoltage0_pfd_frequ=
-ency
-
-This one isn't standard ABI or in your ABI doc.
-Perhaps drop for now?
-
-> +    100000000.000000
-> +
-> +This shows the PFD is operating at 100 MHz, which means the frequency re=
-solution
-> +in integer-N mode would be 100 MHz steps.
-> +
-> +4.6 Monitor Lock Status
-> +-----------------------
-> +
-> +When lock detect GPIO is configured, check if PLL is locked:
-> +
-> +.. code-block:: bash
-> +
-> +    # Read frequency - will return error if not locked
-> +    root:/sys/bus/iio/devices/iio:device0> cat out_altvoltage0_frequency
-> +
-> +If the PLL is not locked, the frequency read will return ``-EBUSY`` (Dev=
-ice or
-> +resource busy).
 
 
 
