@@ -1,630 +1,159 @@
-Return-Path: <devicetree+bounces-248620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F00CCD46E1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 00:33:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0645CD474D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 00:41:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C3D893005030
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 23:32:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9EEC2301B4B6
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 23:40:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69ED73090CB;
-	Sun, 21 Dec 2025 23:32:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675F630F529;
+	Sun, 21 Dec 2025 23:40:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cno3pLJj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 956F4279DCA
-	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 23:32:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.162
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248EB2BE7AB;
+	Sun, 21 Dec 2025 23:40:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766359953; cv=none; b=hcQ1heey9IQLS/x51Fq3LoBXmT1QKgN/9p1ydPvqLWiiw/0ohwYBGHCqFK1DUnzJNmqzMMeGuk+3sW3jAw2jUoRsLoUxW8023z7nUJR90KKBUQpi35Y6f9+h0G3wWvNJ3EetAOZkZeKcDG/RrGHS6SU/IAgFtQ21aUCvlxCEACg=
+	t=1766360420; cv=none; b=OtX/EC/QDapPsbDEp4OmHsWIqD4A44oVRcleE+8sBECs0FaMDKBMONkHIX9ayNejujl6JmypZo9ofSOqzsM4GO+gEhOU9rZZ5QTmj341ELY80sSYl7xLGvEzoSLY95tC5SAY6yw4IoW3VyU+kQWalJqP8CtK34nr2f7CJAnDxWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766359953; c=relaxed/simple;
-	bh=ZwAlx21oQfm+SIs6bP1zmqrCoZSpLJr7y9lu5q+M5/E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GTDvg8fRY6+1lwNbiiaxaTQSFYbY8vLpvykQyO6Apt46Wu+oBw/tcSqjoAFYNMhJQ6drjMlISvNC2LkeMoQzCDVYHL3bAyW6f4bhvt+KwpKcT2WJW7OL/jSSEEosH1bH/h5FZ1/rbmpEedy+Nfa0vUekvnUuO32PudTSUKpEHjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.162
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
-Received: from Marijn-Arch-PC.localdomain (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 2EB221F8F9;
-	Mon, 22 Dec 2025 00:32:26 +0100 (CET)
-From: Marijn Suijten <marijn.suijten@somainline.org>
-Date: Mon, 22 Dec 2025 00:32:17 +0100
-Subject: [PATCH v2 11/11] drm/panel: Add panel driver for Samsung ANA6707
- DDIC
+	s=arc-20240116; t=1766360420; c=relaxed/simple;
+	bh=e9eJeejx8g4//rFgeHHEHuKIrp9YsEoXUX37jxFDU1k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fea7kaKXTH8AZCIyHbFHb+d9Xx7duwXuZ9gZ+QvabS0tOK5SA5xcZxrlgwFhSAnUmIeEHPGnvKQhcV4pqwsFY6jObDQdpO6XUHtK1rPrqUQkfsKUWKWO43UGhMoMKCozt7KQzpvrzAjdJ+Cp5G8f/xGAPUQA/1QjIwuFF3SL3Ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cno3pLJj; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1766360417; x=1797896417;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=e9eJeejx8g4//rFgeHHEHuKIrp9YsEoXUX37jxFDU1k=;
+  b=cno3pLJjQRQUuWZiDjIqzomHdiGyApocZZF1ySBK4eshAIExXweueDpp
+   M3YQofGhamMnJwvAOeylnT/DbcfRohwKygwn1jwrLdm2/vAeAaACExn6r
+   RezkCW/+3CKiWRjBY0HdcINC1IHqEFbmWcZcLdsxAYP92glKgf/Z//wpI
+   dSkpsp9qOl2vA7Ny3TSnVuUy+csm9g8Jxd9QSjoPG8U4rN7goVCIHgxIh
+   FF1SkMsARrRZL7mRbUOg1tNVbWsOCzaFlDsSqhENfIsMNJsPX4l4w9EBC
+   X/uAj+84nb8n81F54SKMec3opltn2SHvwQitqG5WLyE1jc1lz0P5ql9fz
+   g==;
+X-CSE-ConnectionGUID: 80GOKc8hT4CK2yDtGaOH/Q==
+X-CSE-MsgGUID: smJ7yMIxSPmX6G9PGspCFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11649"; a="85805556"
+X-IronPort-AV: E=Sophos;i="6.21,167,1763452800"; 
+   d="scan'208";a="85805556"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2025 15:40:14 -0800
+X-CSE-ConnectionGUID: IAayTUEtQcmpvCzIfBzPsw==
+X-CSE-MsgGUID: tZ7Ss/XWR3ibjJDzWPED2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,167,1763452800"; 
+   d="scan'208";a="230040405"
+Received: from igk-lkp-server01.igk.intel.com (HELO 8a0c053bdd2a) ([10.211.93.152])
+  by orviesa002.jf.intel.com with ESMTP; 21 Dec 2025 15:40:09 -0800
+Received: from kbuild by 8a0c053bdd2a with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vXT1z-000000005H6-24HZ;
+	Sun, 21 Dec 2025 23:40:07 +0000
+Date: Mon, 22 Dec 2025 00:39:10 +0100
+From: kernel test robot <lkp@intel.com>
+To: Ahmed Tiba <ahmed.tiba@arm.com>, linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, tony.luck@intel.com, bp@alien8.de,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	catalin.marinas@arm.com, will@kernel.org,
+	linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
+	linux-doc@vger.kernel.org, Dmitry.Lamerov@arm.com,
+	Michael.Zhao2@arm.com, ahmed.tiba@arm.com
+Subject: Re: [PATCH 03/12] ras: add estatus vendor handling and processing
+Message-ID: <202512220010.sdcS5LYV-lkp@intel.com>
+References: <20251217112845.1814119-4-ahmed.tiba@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251222-drm-panels-sony-v2-11-82a87465d163@somainline.org>
-References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
-In-Reply-To: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Simona Vetter <simona@ffwll.ch>, Casey Connolly <casey.connolly@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Simona Vetter <simona.vetter@ffwll.ch>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, 
- Martin Botka <martin.botka@somainline.org>, 
- Jami Kettunen <jami.kettunen@somainline.org>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Kuogee Hsieh <quic_khsieh@quicinc.com>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=17963;
- i=marijn.suijten@somainline.org; h=from:subject:message-id;
- bh=ZwAlx21oQfm+SIs6bP1zmqrCoZSpLJr7y9lu5q+M5/E=;
- b=owEBbQKS/ZANAwAKAfFi0jHH5IZ2AcsmYgBpSIN8zwY4fgnDif6LDQ5tiPfdKhUxGZYidcxUl
- lpdL1dLnQ6JAjMEAAEKAB0WIQROiwG5pb6la1/WZxbxYtIxx+SGdgUCaUiDfAAKCRDxYtIxx+SG
- ds+DD/9Ty0bj2LsnMHBOsp2IwrVatrVerRU5vg+G2QAiIFSNpRCdIwcvwgvgCj06S588WcjpzTN
- jTM0+3wVEq42ms0ap5wqJTyHHKVw/iM2UMqIWdrqqhxx+2fOsZzlaBU7Yo+5Bs5nArzQaxpindx
- E31r4OeDJ7SVX73S55z0SwOdGEZstRWJQlJ3t6HCkNW3UgbQ3frjqk5Ji0sNK94h0p6pFmY3Cwt
- pW6Tc/G6kh58iejy8qiblrbEScwt/9o9NFOJOuojij06TE9kV/V7DcKgSL3fdPlbx5XMJ3M4VqE
- bwBs3mGUMoKvLDgCtGDikZ6oRDn8cnK5312VidVo0qNVPpl+w8ESr9BFt8jXMcn6ds39QEEtSsh
- axeq2dR6LIAxv53cGzCBc/thNVGoM8XwuCWVHBA3McF+7BEnf/2wZ5mXFR/IQF5vcBu+Ehk+r4J
- yN2ZQUDyge2b9eLZ8Heglq+ht5JGiAzfEmTCpgSniv7QL31p3GoPJW7jaJWj/4QFxkmYYZHpW6N
- YyxM8BY/qmjzIxhVGGqsylImLdobe/sAQdNvE4CCLOQs7bBuJUpxhUSFAUB/I8ZZyP80aUMcFsn
- RwvhLzZJv+Ve2USbQcS+xuexaBmhL/SQ++c7QZz1cWheDvmmjUEGpAhp7auZ4RN30V6EmXgaQDH
- G0kIOiErPeuWWiQ==
-X-Developer-Key: i=marijn.suijten@somainline.org; a=openpgp;
- fpr=4E8B01B9A5BEA56B5FD66716F162D231C7E48676
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251217112845.1814119-4-ahmed.tiba@arm.com>
 
-The ANA6707 Display-Driver-IC is paired with the amb650yl01 panel in the
-Sony Xperia 1 III, Sony Xperia 1 IV and Sony Xperia V smartphones.  It
-uses Display Stream Compression 1.1 and requires dual DSI interfaces to
-satisfy the bandwidth requirements to run at 1644x3840 at 120Hz.
+Hi Ahmed,
 
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
----
- MAINTAINERS                                   |   1 +
- drivers/gpu/drm/panel/Kconfig                 |  16 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- drivers/gpu/drm/panel/panel-samsung-ana6707.c | 461 ++++++++++++++++++++++++++
- 4 files changed, 479 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 148b1f66c98b..b29adf972dfc 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8150,6 +8150,7 @@ DRM DRIVER FOR SAMSUNG ANA6707 DDIC
- M:	Marijn Suijten <marijn.suijten@somainline.org>
- S:	Maintained
- F:	Documentation/devicetree/bindings/display/panel/samsung,ana6707.yaml
-+F:	drivers/gpu/drm/panel/panel-samsung-ana6707.c
- 
- DRM DRIVER FOR SAMSUNG DB7430 PANELS
- M:	Linus Walleij <linusw@kernel.org>
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 3cca1c580d50..eda808b9d466 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -752,6 +752,22 @@ config DRM_PANEL_SAMSUNG_AMS639RQ08
- 	  Say Y or M here if you want to enable support for the
- 	  Samsung AMS639RQ08 FHD Plus (2340x1080@60Hz) CMD mode panel.
- 
-+config DRM_PANEL_SAMSUNG_ANA6707
-+	tristate "Samsung ANA6707 DSI cmd mode panels"
-+	depends on GPIOLIB
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	select DRM_DISPLAY_DSC_HELPER
-+	select DRM_DISPLAY_HELPER
-+	help
-+	  Say Y here if you want to enable support for the Samsung 4k 6.5" OLED dual-DSI
-+	  command mode amb650yl01 panel found in the Sony Xperia 1 III, Sony Xperia 1 IV
-+	  and Sony Xperia V smartphones.
-+
-+	  This Display-IC uses Display Stream Compression 1.1 and features a 1644x3840
-+	  and 1096x2560 resolution which can both be driven at 60Hz and 120Hz.
-+
- config DRM_PANEL_SAMSUNG_S6E88A0_AMS427AP24
- 	tristate "Samsung AMS427AP24 panel with S6E88A0 controller"
- 	depends on GPIOLIB && OF && REGULATOR
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index c19429b9e48d..146750b93455 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -74,6 +74,7 @@ obj-$(CONFIG_DRM_PANEL_RENESAS_R69328) += panel-renesas-r69328.o
- obj-$(CONFIG_DRM_PANEL_RONBO_RB070D30) += panel-ronbo-rb070d30.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_AMS581VF01) += panel-samsung-ams581vf01.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_AMS639RQ08) += panel-samsung-ams639rq08.o
-+obj-$(CONFIG_DRM_PANEL_SAMSUNG_ANA6707) += panel-samsung-ana6707.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_ATNA33XC20) += panel-samsung-atna33xc20.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_DB7430) += panel-samsung-db7430.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_LD9040) += panel-samsung-ld9040.o
-diff --git a/drivers/gpu/drm/panel/panel-samsung-ana6707.c b/drivers/gpu/drm/panel/panel-samsung-ana6707.c
-new file mode 100644
-index 000000000000..83bf954e89d3
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-samsung-ana6707.c
-@@ -0,0 +1,461 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2023 Marijn Suijten <marijn.suijten@somainline.org>
-+ *
-+ * Based on the following Sony downstream DTS command sequences:
-+ * - Xperia 1 III (sagami pdx215): https://github.com/sonyxperiadev/kernel-copyleft-dts/blob/61.2.A.0.xxx/somc/dsi-panel-ana6707_amb650yl01-uhd-pvt.dtsi
-+ * - Xperia 1 IV (nagara pdx223): https://github.com/sonyxperiadev/kernel-copyleft-dts/blob/64.1.A.0.xxx/display-devicetree/display/dsi-panel-ana6707_amb650yl01-uhd-pdx223.dtsi
-+ * - Xperia 1 V (yodo pdx234): https://github.com/sonyxperiadev/kernel-copyleft-dts/blob/67.0.A.1.xxx/display-devicetree/display/dsi-panel-ana6707_amb650yl01-uhd.dtsi
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/of_graph.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_probe_helper.h>
-+#include <drm/display/drm_dsc.h>
-+#include <drm/display/drm_dsc_helper.h>
-+
-+#define WRITE_CONTROL_DISPLAY_BACKLIGHT BIT(5)
-+
-+/*
-+ * TODO: This should be communicated via the mode when .prepare
-+ * receives atomic commit info
-+ */
-+static const bool enable_4k = false, enable_120hz = true;
-+
-+const struct regulator_bulk_data samsung_ana6707_supplies[] = {
-+	{ .supply = "vddio", /* 1.8 V */ },
-+	{ .supply = "vci", /* 3.0 V */ },
-+};
-+
-+struct samsung_ana6707 {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi[2];
-+	struct drm_dsc_config dsc;
-+	struct regulator_bulk_data *supplies;
-+	struct gpio_desc *reset_gpio;
-+};
-+
-+static inline struct samsung_ana6707 *
-+to_samsung_ana6707(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct samsung_ana6707, panel);
-+}
-+
-+static void samsung_ana6707_reset(struct samsung_ana6707 *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(5000, 6000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(1000, 2000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+}
-+
-+static int samsung_ana6707_program(struct samsung_ana6707 *ctx)
-+{
-+	const u16 hdisplay = enable_4k ? 1644 : 1096;
-+	const u16 vdisplay = enable_4k ? 3840 : 2560;
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi[0] };
-+
-+	ctx->dsi[0]->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+	ctx->dsi[1]->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 15);
-+
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x16);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x44);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x04);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xbd, 0x00, 0xa0);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xed, 0x46, 0x00, 0x0e, 0x90);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x60,
-+				     enable_4k ? 0x00 : 0x04,
-+				     enable_120hz ? 0x00 : 0xc0);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
-+
-+	mipi_dsi_dcs_set_column_address_multi(&dsi_ctx, 0, hdisplay - 1);
-+	mipi_dsi_dcs_set_page_address_multi(&dsi_ctx, 0, vdisplay - 1);
-+	mipi_dsi_dcs_set_tear_on_multi(&dsi_ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
-+
-+	/*
-+	 * Warning: downstream codes this to 3840 only in 1069x2560@60Hz mode, which causes
-+	 * tearing and an ugly DSC-corruption-like line at the top of the screen.
-+	 * enable_4k | enable_120hz ? 0 : 3840
-+	 */
-+	mipi_dsi_dcs_set_tear_scanline_multi(&dsi_ctx, 0);
-+
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x09);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb9, 0x09, 0x78);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY,
-+				     WRITE_CONTROL_DISPLAY_BACKLIGHT);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x0b);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x92, 0x27, 0x25);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd7, 0x82);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
-+	mipi_dsi_msleep(&dsi_ctx, 110);
-+
-+	return 0;
-+}
-+
-+static int samsung_ana6707_prepare(struct drm_panel *panel)
-+{
-+	struct samsung_ana6707 *ctx = to_samsung_ana6707(panel);
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi[0] };
-+	struct mipi_dsi_device *dsi = ctx->dsi[0];
-+	struct device *dev = &dsi->dev;
-+	struct drm_dsc_picture_parameter_set pps;
-+	int ret;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(samsung_ana6707_supplies), ctx->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	samsung_ana6707_reset(ctx);
-+
-+	msleep(120);
-+
-+	ret = samsung_ana6707_program(ctx);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		goto fail;
-+	}
-+
-+	msleep(120);
-+
-+	drm_dsc_pps_payload_pack(&pps, &ctx->dsc);
-+
-+	mipi_dsi_picture_parameter_set_multi(&dsi_ctx, &pps);
-+	mipi_dsi_compression_mode_multi(&dsi_ctx, true);
-+	mipi_dsi_msleep(&dsi_ctx, 28);
-+
-+	ret = dsi_ctx.accum_err;
-+
-+	if (ret < 0)
-+		goto fail;
-+
-+	return 0;
-+
-+fail:
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(samsung_ana6707_supplies), ctx->supplies);
-+	return ret;
-+}
-+
-+static int samsung_ana6707_enable(struct drm_panel *panel)
-+{
-+	struct samsung_ana6707 *ctx = to_samsung_ana6707(panel);
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi[0] };
-+
-+	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 10);
-+
-+	return dsi_ctx.accum_err;
-+}
-+
-+static int samsung_ana6707_disable(struct drm_panel *panel)
-+{
-+	struct samsung_ana6707 *ctx = to_samsung_ana6707(panel);
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi[0] };
-+
-+	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 20);
-+
-+	return dsi_ctx.accum_err;
-+}
-+
-+static int samsung_ana6707_unprepare(struct drm_panel *panel)
-+{
-+	struct samsung_ana6707 *ctx = to_samsung_ana6707(panel);
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi[0] };
-+
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 120);
-+
-+	ctx->dsi[0]->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+	ctx->dsi[1]->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(samsung_ana6707_supplies), ctx->supplies);
-+
-+	return dsi_ctx.accum_err;
-+}
-+
-+static const int fake_porch_4k = 120;
-+
-+/*
-+ * All of the horizontal values here are x2 of what's specified in the downstream device-tree,
-+ * as the information there has already been pre-divided by the number of DSI hosts
-+ */
-+
-+static const struct drm_display_mode samsung_ana6707_mode_4k = {
-+	.clock = (1644 + fake_porch_4k) * 3840 * 60 / 1000,
-+	.hdisplay = 1644,
-+	.hsync_start = 1644,
-+	.hsync_end = 1644,
-+	.htotal = 1644 + fake_porch_4k,
-+	.vdisplay = 3840,
-+	.vsync_start = 3840,
-+	.vsync_end = 3840,
-+	.vtotal = 3840,
-+	.width_mm = 65,
-+	.height_mm = 152,
-+	.type = DRM_MODE_TYPE_DRIVER,
-+};
-+
-+static const int fake_porch_4k_120 = 216;
-+
-+static const struct drm_display_mode samsung_ana6707_mode_4k_120 = {
-+	.clock = (1644 + fake_porch_4k_120) * 3840 * 120 / 1000,
-+	.hdisplay = 1644,
-+	.hsync_start = 1644,
-+	.hsync_end = 1644,
-+	.htotal = 1644 + fake_porch_4k_120,
-+	.vdisplay = 3840,
-+	.vsync_start = 3840,
-+	.vsync_end = 3840,
-+	.vtotal = 3840,
-+	.width_mm = 65,
-+	.height_mm = 152,
-+	.type = DRM_MODE_TYPE_DRIVER,
-+};
-+
-+static const int fake_porch = 100;
-+
-+static const struct drm_display_mode samsung_ana6707_mode = {
-+	.clock = (1096 + fake_porch) * 2560 * 60 / 1000,
-+	.hdisplay = 1096,
-+	.hsync_start = 1096,
-+	.hsync_end = 1096,
-+	.htotal = 1096 + fake_porch,
-+	.vdisplay = 2560,
-+	.vsync_start = 2560,
-+	.vsync_end = 2560,
-+	.vtotal = 2560,
-+	.width_mm = 65,
-+	.height_mm = 152,
-+	.type = DRM_MODE_TYPE_DRIVER,
-+};
-+
-+static const int fake_porch_120 = 130;
-+
-+static const struct drm_display_mode samsung_ana6707_mode_120 = {
-+	.clock = (1096 + fake_porch_120) * 2560 * 120 / 1000,
-+	.hdisplay = 1096,
-+	.hsync_start = 1096,
-+	.hsync_end = 1096,
-+	.htotal = 1096 + fake_porch_120,
-+	.vdisplay = 2560,
-+	.vsync_start = 2560,
-+	.vsync_end = 2560,
-+	.vtotal = 2560,
-+	.width_mm = 65,
-+	.height_mm = 152,
-+	.type = DRM_MODE_TYPE_DRIVER,
-+};
-+
-+static int samsung_ana6707_get_modes(struct drm_panel *panel,
-+					struct drm_connector *connector)
-+{
-+	const struct drm_display_mode *mode;
-+
-+	/*
-+	 * TODO: return all 4 modes when drm_bridge/drm_panel get it back in an
-+	 * atomic_prepare callback
-+	 */
-+	if (enable_4k) {
-+		if (enable_120hz)
-+			mode = &samsung_ana6707_mode_4k_120;
-+		else
-+			mode = &samsung_ana6707_mode_4k;
-+	} else {
-+		if (enable_120hz)
-+			mode = &samsung_ana6707_mode_120;
-+		else
-+			mode = &samsung_ana6707_mode;
-+	}
-+
-+	return drm_connector_helper_get_modes_fixed(connector, mode);
-+}
-+
-+static const struct drm_panel_funcs samsung_ana6707_panel_funcs = {
-+	.prepare = samsung_ana6707_prepare,
-+	.enable = samsung_ana6707_enable,
-+	.disable = samsung_ana6707_disable,
-+	.unprepare = samsung_ana6707_unprepare,
-+	.get_modes = samsung_ana6707_get_modes,
-+};
-+
-+static int samsung_ana6707_bl_update_status(struct backlight_device *bl)
-+{
-+	struct mipi_dsi_device *dsi = bl_get_data(bl);
-+	u16 brightness = backlight_get_brightness(bl);
-+
-+	return mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
-+}
-+
-+static const struct backlight_ops samsung_ana6707_bl_ops = {
-+	.update_status = samsung_ana6707_bl_update_status,
-+};
-+
-+static int samsung_ana6707_probe(struct mipi_dsi_device *dsi)
-+{
-+	const struct backlight_properties props = {
-+		.type = BACKLIGHT_RAW,
-+		.brightness = 3000,
-+		.max_brightness = 4095,
-+	};
-+	const u16 hdisplay = enable_4k ? 1644 : 1096;
-+	struct mipi_dsi_host *dsi_sec_host;
-+	struct samsung_ana6707 *ctx;
-+	struct device *dev = &dsi->dev;
-+	struct device_node *dsi_sec;
-+	int ret, i;
-+
-+	ctx = devm_drm_panel_alloc(dev, struct samsung_ana6707, panel,
-+				   &samsung_ana6707_panel_funcs,
-+				   DRM_MODE_CONNECTOR_DSI);
-+	if (IS_ERR(ctx))
-+		return PTR_ERR(ctx);
-+
-+	ret = devm_regulator_bulk_get_const(
-+		dev,
-+		ARRAY_SIZE(samsung_ana6707_supplies),
-+		samsung_ana6707_supplies,
-+		&ctx->supplies);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to get regulators\n");
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	dsi_sec = of_graph_get_remote_node(dsi->dev.of_node, 1, -1);
-+	if (!dsi_sec)
-+		return dev_err_probe(dev, -ENODEV,
-+				     "Cannot find secondary DSI OF node\n");
-+
-+	dev_info(dev, "Using Dual-DSI with OF node `%s`\n", dsi_sec->name);
-+	const struct mipi_dsi_device_info info = { "ANA6707", 0,
-+						   dsi_sec };
-+
-+
-+	dsi_sec_host = of_find_mipi_dsi_host_by_node(dsi_sec);
-+	of_node_put(dsi_sec);
-+	if (!dsi_sec_host)
-+		return dev_err_probe(dev, -EPROBE_DEFER,
-+				     "Cannot get secondary DSI host\n");
-+
-+	ctx->dsi[1] = devm_mipi_dsi_device_register_full(dev, dsi_sec_host, &info);
-+	if (IS_ERR(ctx->dsi[1]))
-+		return dev_err_probe(dev, PTR_ERR(ctx->dsi[1]),
-+				     "Cannot register secondary DSI device\n");
-+
-+	mipi_dsi_set_drvdata(ctx->dsi[1], ctx);
-+
-+	ctx->dsi[0] = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	ctx->panel.prepare_prev_first = true;
-+
-+	ctx->panel.backlight = devm_backlight_device_register(
-+		dev, dev_name(dev), dev, dsi,
-+		&samsung_ana6707_bl_ops,
-+		&props);
-+	if (IS_ERR(ctx->panel.backlight))
-+		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
-+				     "Failed to create backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	ctx->dsc.dsc_version_major = 1;
-+	ctx->dsc.dsc_version_minor = 1;
-+
-+	ctx->dsc.slice_height = 32;
-+	/* One slice per encoder */
-+	ctx->dsc.slice_count = 1;
-+	ctx->dsc.slice_width = hdisplay / 2; /* 2 encoders */
-+	ctx->dsc.bits_per_component = 8;
-+	ctx->dsc.bits_per_pixel = 8 << 4; /* 4 fractional bits */
-+	ctx->dsc.block_pred_enable = true;
-+
-+	for (i = 0; i < ARRAY_SIZE(ctx->dsi); i++) {
-+		/* This panel only supports DSC; unconditionally enable it */
-+		ctx->dsi[i]->dsc = &ctx->dsc;
-+
-+		ctx->dsi[i]->lanes = 4;
-+		ctx->dsi[i]->format = MIPI_DSI_FMT_RGB888;
-+		ctx->dsi[i]->mode_flags = MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+
-+		ret = devm_mipi_dsi_attach(dev, ctx->dsi[i]);
-+		/* TODO: Detach dsi0 if dsi1 failed? */
-+		if (ret < 0) {
-+			drm_panel_remove(&ctx->panel);
-+			return dev_err_probe(dev, ret,
-+					     "Failed to attach to DSI%d\n", i);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static void samsung_ana6707_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct samsung_ana6707 *ctx = mipi_dsi_get_drvdata(dsi);
-+	int ret, i;
-+
-+	for (i = 0; i < ARRAY_SIZE(ctx->dsi); i++) {
-+		ret = mipi_dsi_detach(ctx->dsi[i]);
-+		if (ret < 0)
-+			dev_err(&ctx->dsi[i]->dev, "Failed to detach from DSI%d host: %d\n",
-+				i, ret);
-+	}
-+
-+	drm_panel_remove(&ctx->panel);
-+}
-+
-+static const struct of_device_id samsung_ana6707_of_match[] = {
-+	{ .compatible = "samsung,ana6707-amb650yl01" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, samsung_ana6707_of_match);
-+
-+static struct mipi_dsi_driver samsung_ana6707_driver = {
-+	.probe = samsung_ana6707_probe,
-+	.remove = samsung_ana6707_remove,
-+	.driver = {
-+		.name = "panel-samsung-ana6707",
-+		.of_match_table = samsung_ana6707_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(samsung_ana6707_driver);
-+
-+MODULE_AUTHOR("Marijn Suijten <marijn.suijten@somainline.org>");
-+MODULE_DESCRIPTION("DRM panel driver for Samsung ANA6707 Display-Driver-IC panels");
-+MODULE_LICENSE("GPL");
+[auto build test ERROR on efi/next]
+[also build test ERROR on rafael-pm/linux-next rafael-pm/bleeding-edge robh/for-next arm64/for-next/core linus/master v6.19-rc1 next-20251219]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ahmed-Tiba/ras-add-estatus-core-interfaces/20251217-200718
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/efi/efi.git next
+patch link:    https://lore.kernel.org/r/20251217112845.1814119-4-ahmed.tiba%40arm.com
+patch subject: [PATCH 03/12] ras: add estatus vendor handling and processing
+config: x86_64-rhel-9.4 (https://download.01.org/0day-ci/archive/20251222/202512220010.sdcS5LYV-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251222/202512220010.sdcS5LYV-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512220010.sdcS5LYV-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/firmware/efi/estatus.c: In function 'estatus_source_fixmap':
+>> drivers/firmware/efi/estatus.c:126:24: error: 'FIX_HOLE' undeclared (first use in this function)
+     126 |                 return FIX_HOLE;
+         |                        ^~~~~~~~
+   drivers/firmware/efi/estatus.c:126:24: note: each undeclared identifier is reported only once for each function it appears in
+   drivers/firmware/efi/estatus.c: In function 'estatus_handle_arm_hw_error':
+   drivers/firmware/efi/estatus.c:656:9: error: too few arguments to function 'log_arm_hw_error'
+     656 |         log_arm_hw_error(err);
+         |         ^~~~~~~~~~~~~~~~
+   In file included from drivers/firmware/efi/estatus.c:23:
+   include/linux/ras.h:27:6: note: declared here
+      27 | void log_arm_hw_error(struct cper_sec_proc_arm *err, const u8 sev);
+         |      ^~~~~~~~~~~~~~~~
+   In file included from drivers/firmware/efi/estatus.c:30:
+   drivers/firmware/efi/estatus.c: In function 'estatus_do_proc':
+   include/linux/estatus.h:231:71: warning: passing argument 2 of 'estatus_section_iter_next' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+     231 |              ((_section) = estatus_section_iter_next(&__estatus_iter, (_estatus))); \
+         |                                                                       ^~~~~~~~~~
+   drivers/firmware/efi/estatus.c:817:9: note: in expansion of macro 'estatus_for_each_section'
+     817 |         estatus_for_each_section(estatus, gdata) {
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/estatus.h:208:51: note: expected 'struct acpi_hest_generic_status *' but argument is of type 'const struct acpi_hest_generic_status *'
+     208 |                           estatus_generic_status *estatus)
+         |                                                   ^
+   drivers/firmware/efi/estatus.c: At top level:
+   drivers/firmware/efi/estatus.c:947:13: warning: 'estatus_print_queued_estatus' defined but not used [-Wunused-function]
+     947 | static void estatus_print_queued_estatus(void)
+         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/firmware/efi/estatus.c:118:12: warning: 'estatus_panic_timeout' defined but not used [-Wunused-variable]
+     118 | static int estatus_panic_timeout __read_mostly = 30;
+         |            ^~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/FIX_HOLE +126 drivers/firmware/efi/estatus.c
+
+   122	
+   123	static enum fixed_addresses estatus_source_fixmap(struct estatus_source *source)
+   124	{
+   125		if (WARN_ON_ONCE(!source->fixmap_idx))
+ > 126			return FIX_HOLE;
+   127	
+   128		return source->fixmap_idx;
+   129	}
+   130	
 
 -- 
-2.52.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
