@@ -1,134 +1,107 @@
-Return-Path: <devicetree+bounces-248542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2838FCD3CBB
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 09:09:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B540CD3CD1
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 09:21:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 22F42300A86D
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 08:09:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB709300ACCE
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 08:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5FFE23E229;
-	Sun, 21 Dec 2025 08:09:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="1cHEaqpQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F9B223708;
+	Sun, 21 Dec 2025 08:20:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F257C21D599;
-	Sun, 21 Dec 2025 08:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F6F4145B3E;
+	Sun, 21 Dec 2025 08:20:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766304557; cv=none; b=ImbVKcoC7GkDADoX4HiXBtxbpbC5DSsynSHsams2/JkyqB1trHwje2hm8S3k3XNt18TjvUv8h5veEMA0OHn+l0wM/d7TVP4fV2vz3CzsibiFzIKhYnztPsamHgg+hJH5baGaBa6iVS7PjoPBy5WIaFoSOaOPp/R2XWapezC0JzI=
+	t=1766305256; cv=none; b=fVcLVG2RB3vIgn74IQWba8uGS4cRobmded6jBIZFUgqYQvlhiilncslmwuKm5riORdDXiU29zuw4QU4fVAxspmDBIc+qMNhHOJv8RZLwhiUnMg5N+JjdbSHjyp9GsnOv7zthGZOTMKF4vCg9lg4EY/CKrMyBo+mcSNmkLH6FAHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766304557; c=relaxed/simple;
-	bh=Letj9I5VO5F7aclP1k2MCJk+2Ona6XiNB8LdSfLghhk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IqcFDmzWQOd+kG+5z0DyPTWoCgm6rpsR4zedD16uhu1exWUOjcxZtpLJJGGNYVU63ddFnAPicANNTqfMig9mOhMsKXgWDjn/9lzdW/zPJyCGXkom9dzbVe5AjhRzAiUZRuF0JYNmcpXwL9YhXvGXKgdVKmVc9asdV28vVy8JN8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=1cHEaqpQ; arc=none smtp.client-ip=212.227.17.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1766304553; x=1766909353;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=Letj9I5VO5F7aclP1k2MCJk+2Ona6XiNB8LdSfLghhk=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=1cHEaqpQhJHi9t2wFO/ScvMmWf40pfTqLCRmw2SHcR7Urmawn2PGLEAcMH7HE1k6
-	 B15T2f2WAADfyoW/YxJTuE4lmTExNVJLFInXqnVOoxV57ohb8qQRS3hNZXYXwFD+7
-	 qyMmhKGqWpwoll+HgDohJbir/4N9g7KroqVrjbYVL4Kc/yDylx8vLVzK32GSsTfK+
-	 eg+NreyVmPr40L4iGcF8kqmieuvuGIr0aE/IcNOAq86NnMiUJb1Jq8k+uLqReUprG
-	 avnWevhCc76r0O9/UIIlB6RNUIUzi4b2wYCPERLRF8yAA3LuTAI6zPZ7edP7R9F31
-	 pnD2nJIGm+LDpnhbLQ==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([91.64.235.193]) by mrelayeu.kundenserver.de
- (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1M5fQq-1vdI9R2Oqo-008hmN; Sun, 21 Dec 2025 09:03:31 +0100
-Message-ID: <124d3c41-1826-4927-b4de-1d2d1ccaf5d4@oldschoolsolutions.biz>
-Date: Sun, 21 Dec 2025 09:03:30 +0100
+	s=arc-20240116; t=1766305256; c=relaxed/simple;
+	bh=fwDvpWFME/C3CoNwdgQwLHWmN81cJv0j91O9vkwGH0c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cjwLZxuOYSDO0b0CYizezRce+IvxzKQB3Svj8Y8RcrXqcvZSDw8BFmIQ9JGSPEfa62DYSX9YEMCt/nTjlRIYft7EBxlEMNIpXSP4zJ8INjAdpXp4ZN7yFCLEuLsq4yv9WZWMgs7SyxJh8Fx7W/YkAkbuQarx1YWlxsAk+mwQ1TU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from [127.0.0.1] (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 38FBC341073;
+	Sun, 21 Dec 2025 08:20:48 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH 0/3] mmc: sdhci-of-k1: add reset support
+Date: Sun, 21 Dec 2025 16:20:25 +0800
+Message-Id: <20251221-07-k1-sdhci-reset-v1-0-6780af7fa6e7@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1p42100-lenovo-thinkbook-16: add
- hdmi bridge with enable pin
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Val Packett <val@packett.cool>
-References: <20251220-tb16-hdmi-v1-0-18b1e20b396e@oldschoolsolutions.biz>
- <20251220-tb16-hdmi-v1-2-18b1e20b396e@oldschoolsolutions.biz>
- <72bq7sblm7iprtxg6oo65mit7vsheux2xatqlk3csf6sp7ersg@77p5hloqf555>
- <8b562354-1c6f-4b13-be55-b23a6a93d9be@oldschoolsolutions.biz>
- <x2zwsjk4vv73a4i4pj2aphvajtjgkw6mkzs5brg6adlm4gnxpu@r7pbypzvcsi6>
-Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <x2zwsjk4vv73a4i4pj2aphvajtjgkw6mkzs5brg6adlm4gnxpu@r7pbypzvcsi6>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:tVL9hds6vwyiPrvHgK4Y1JRo8PA3UCnwGBZEjhnyMVflDuNd467
- Y6Gq7qFE2nWh6AeoBHQ6cWsS5xef7/cus63Yc/DX1iz7LF6fNnipebWLJ8emTcIsYgFFvrP
- oGlmjVJJXM41Bt3EgwIqV+iwbBcWMDq1akinKjOD9xsgt2k9cdjJVkoDer4CKtZI9w3wDY4
- 6K2LHkwjnTWpOF5yhqizA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:eL5EABDKFFU=;4gWBem5V5/wxvWoB7qZ068bbzNw
- sJc17IYZSHxpcqUpyXgqBSRwsjcFaGSrq8dYx0PqyU9OAcH39q8Pe8zIdTSveP8q/IJ5JOj5i
- 2Om0fHQPr88voewuFPlNFApcjT0WRI9Ifji08AZqW3epgdKiR88537NZOfWyRBvGWcu6Hs7MW
- oCu6mSzaTti7ept84WnIofwaynplVTzQMXDWf1+r+FAJWc2lrvQIKN1/gZm24maRtd0TR8fMY
- lLpHQ2bjSNWUThekxkVsg03ZSQFCIdE8gwZhEEycWe9vrWNQYrwdHXVXkeJfUOardYKsuAsXx
- zOBiTYQ46KpUoMOpr/D8GiGMF6bqACbCrMzxO0PMDqtshzQhvOxIMX7HsERLvJQFiIirrZGEp
- M5fjq6/bavXTLWAfP62r/b4L7Ldj3Z3YOa/32eGRwhmiRYhyN7/tp9NQWdZmyEWRpCYOGBK2R
- 7S2NlEM9uTV9VSg50AB5TAQuvvRPyEaHO+NAIcTxe8YIPqZnJ2uHJIhVwZz7jZV+NyautVxfH
- YCaapUHcGAud6fO4WfBcoRYgt9eXCwzGRuem3N0Zr1V9RVsiwXTgR1OeRaylqb8A3yVdB3krt
- VcyhnxXXlTonNor5Nk8OaZcQDAlAOr6xFD3s3xwyDbDJlPNB+NkmhIDebWb2krNik1a2T2dA5
- AePDxh/IjEDTDmsil218InsuDQ9i0XMMRQLTnkP/b7/NWVyb0ob/FexM3ez53mf7c4n1UTqwl
- yF+83NErZwKrEQpeWJB+EZ3QJrxw3gz90qOjwIJmeG/lL3HIMwruTM3IviHeMZL9G4i1dLkiO
- bre1B9agtnYt0EQ7In2mAwameZ1bW97HY0hVjP4bD8bm0yWmIQVhOX2SOcLxTxboFTVApLixQ
- +osf/7v5altynMuByMAgHE0Zm8AsttZJxwBISatKF8eX7WGqHdTWfSb2yIKp5jmVG1e+RdP4t
- ByslrWHZU8NP9YBoIwPmMW2vuITKrPAxyq2aK2Z2d3pwpLbrYxAMJ9HSRcBiq/F8IEj43uifB
- JJVJhd/PAFB0J37VeF0AVdWy4kYlUKt6Kk8aSuZV1oyzi1lkIG9CQ2OWwHoYy/7jEdhq4mrUG
- UmU/eJmyrUv94gTTIo110I33jHwS1+a7Uep92zen2X7g5uxB7LX2mlbMmjymaUY/tDPBBKoHE
- N+DuoIVtNYFTn74NQXT6ScnWIgtzvGDvgrOO6Kgt+OHQaZVANerKIo0oJp3cuep0OpYxu5XqE
- OD+2aDDZzfor09B0MBq6m0irZfq9ZACP5ZA4XMm21vz2JNBLmeuVj9Pg7+dmB2KABOI+O+nTN
- bPlkNIOEOXBeBgBNgAyUCE3xEWYqoFp8g3b5w+IrKyglSN1yEdGCELN8nTCX9cxE+Eo1gxfjF
- mW/l/52JKW0GdNzEXCN9omESbWnTDfNs7d0tKajyUZBLO7EEDxHyyc8K4mRoeNY0xEAJps0yQ
- /7cURzEdAzwWtYzH/q58EJQo1Dg0iovP2F41Ikav8go9f43RrhROvysfWNGHYwMxzxJBsCAUh
- habRQoJYpgaxF3qe5MBgx5Tl+R1/QxqYFPvRBVhn21zMQWc7zoTBarUlFpil7IXhIf6ao9zrp
- c9HWgUOBEJ6SshTUw8X5kMeOcxLIBIeb0W+Wav7+OQCI3fMgsPfPqgmg3hY/j/tO/54vX/pBY
- YLTugfrQqPH+94gNAT83FgWd3uWOpY8jrPUZkXZvePdMrpWwIeDhcImJXEXvWa6bb79FPvGB6
- lHpT1i8gVmwLA8l4dv4nts+eH9hwcj0rUoLYm5MuEQT9sebsTZUyIP9fXUglJDiDJ9fR0o/CN
- T+Fj
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMmtR2kC/x3MMQqAMAxA0atIZgNNVUq9ijiIjTYIKo2IULy7x
+ fEN/2dQTsIKfZUh8S0qx15AdQVznPaVUUIxWGM7spbQONwINcRZMLHyheS9CUTOtI2D0p2JF3n
+ +5zC+7weVBIgGYwAAAA==
+X-Change-ID: 20251221-07-k1-sdhci-reset-1990d1170437
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Iker Pedrosa <ikerpedrosam@gmail.com>, linux-mmc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Yixun Lan <dlan@gentoo.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=959; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=fwDvpWFME/C3CoNwdgQwLHWmN81cJv0j91O9vkwGH0c=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpR63TYA7dRtb2KLL1GGbovWqV0rjPXrxxtgSgP
+ P3Of3F6n6GJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCaUet0xsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+07Ug//UVu3AxsoKrERtL5yNRs3jBYzDq6Cv5supSGRzMfHGcancvH7MiOf+
+ ZZ07qWPFJ1a1qV5yoDwqTVDpWGzBt2pOsO8Q1TZPhMqu5G6Zt8TdXJHvbLRqEeykTSyDIY0Zz4+
+ qOl6c9nxbyJaxpDHNa+/Blqe2gEzWs6hX5qcSqI4bhZhl8IbFK20NxNTfrKG7pl40/Rupn4Xdl/
+ QJy66SL/YOSFH1F8mYIyABcDHZ92Uq3+5ITYP/IezvMHQvkunxvF3UZna2susEHMHGbcpxCuv8R
+ JrtCr/HOn0GoRc4+BzXwQEBwjCENoL2EnprQpWOzHKhJsyjQOuWU1URn6829rA8W+4m3UCYwJAv
+ 6Pm6ljmbnTav8jCeAC9LgQft+2b88EuVtDYZi9OaQq7+kIuciedBomikfhZcQgoabumVrTLeol+
+ GUm3DcMIpd374rUoSCnOAAfSdnAHPVUcEwl2Dh00H/wmWNAsQT13LeKHilKBOAdYthvCrLAiY2E
+ O3QYCYqrp4TB6qEMgbfGa9vxff4AsqRdmeuHJ6Cjh9muHf4ZGauakHyi0sp+DHX/dKRt1SWkia0
+ XP0pb1kNgD47u834WVk8Ahum6d0c4ccWY42ALVOXkB6uIxJuSczqN+Y1uZsLdC3cfL3zHXg2TJ0
+ o2GPCUD7THxT7qqBMprv7EtDql/vnM=
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
-On 21.12.25 03:49, Dmitry Baryshkov wrote:
-> Photos / scans of the mainboard?
-Haven't found good ones where you could even see a chip (let alone=20
-markings) in the vicinity of the hdmi connector.
-> Okay, I might be misunderstanding something. What do you mean here by
-> "gpio119 being used twice"?
+This series try to add reset support explicitly to SpacemiT SDHCI controller.
+Previous it works well for eMMC due to it's already initialized at brom or
+bootloader phase.
+  The controller has two reset lines, one connect to AXI bus which shared by
+all controllers, while another one connect to individual controller separately.
 
-/me trying to explain something and confusing people :) Sorry for that.=20
-The whole dts has actually one place where the TLMM 119 is explicitly=20
-specified, on the hdmi-bridge. It is defined again on the tlmm node for=20
-pinctrl as hdmi_bridge_en (function gpio), so far so normal. gpio 119=20
-(on the TLMM) is also defined and used as edp_hpd_default on the=20
-mdss_dp3 node, there with function edp0_hot.
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
+---
+Yixun Lan (3):
+      dt-bindings: mmc: spacemit,sdhci: add reset support
+      mmc: sdhci-of-k1: add reset support
+      riscv: dts: spacemit: sdhci: add reset support
 
-You need the hdmi_bridge_en and the edp_hpd definition in the dts for=20
-both to work. And both use gpio 119, on the TLMM, which might be a bit=20
-confusing.
+ .../devicetree/bindings/mmc/spacemit,sdhci.yaml      | 14 ++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi                 |  3 +++
+ drivers/mmc/host/sdhci-of-k1.c                       | 20 ++++++++++++++++++++
+ 3 files changed, 37 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251221-07-k1-sdhci-reset-1990d1170437
 
-with best regards
-
-Jens
+Best regards,
+-- 
+Yixun Lan
 
 
