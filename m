@@ -1,93 +1,95 @@
-Return-Path: <devicetree+bounces-248602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AFBDCD4502
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 20:45:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 387A5CD4532
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 20:56:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 78518300757E
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 19:45:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C35A93005E8B
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 19:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F9601F9F7A;
-	Sun, 21 Dec 2025 19:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C9C3090E8;
+	Sun, 21 Dec 2025 19:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aiXbbWx4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T+LMxpIK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40068238C3A
-	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 19:45:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227D22877EA
+	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 19:56:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766346324; cv=none; b=MRcS0wMuRwpwl1oM5QnBINGn+abh6F42UDLNF4EwCRg/pm/Tr7k3mgVrTaBTnvqUxcXYcxMRmKXiSDuSZM5DrT0zcB5vnSWWTjrTqGc2mw+68yqwEB9PaSaL4ZcB1/6RhMfhSmBJejTrzK4fiELh7APRhfhTSux8MXbkHEYSUO0=
+	t=1766346997; cv=none; b=WBNZJY7I/x7PTejy0VNqIH5R/Ytwi/WrnvKB7zmO2etv5AoOHvhPCOAKBN83BRsDQBu7tBiaWLqz3de0A4IUbH8Pah+sRg5fBAaxKcg8lLdg7kjIm/QHgl9WYTPaY8jPqxaydUxKaX9kIeqW+Tx4x5rBGH+pE3uTUTno0ks+fzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766346324; c=relaxed/simple;
-	bh=cSTfWtKPoKhckOr3jRJj3j0TxOGe28VrRa/l9N3NMqw=;
+	s=arc-20240116; t=1766346997; c=relaxed/simple;
+	bh=Zg2cyqa43/fS38leRVp+Cmg9KBJTxkiqZ9lPUseRZvM=;
 	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bLYf/jkTGi9CeJMdqbStvnvlJi00/WXTkVtYt7fzgXQg965pvQszcshff8xXeCqNGFcA77VEZOoc874bxk5wWTuHO9ojxOv+1KT+/aRNA9w5/Lh0iz+0lj5xv2CTeUV0YaPgf4izTyHUPr7Z2w5+7clho9DKdAsrbCOAW4N6hn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aiXbbWx4; arc=none smtp.client-ip=209.85.128.54
+	 Content-Type:Content-Disposition:In-Reply-To; b=atwQTs1lylSg9mG3e9Ar7XPALwJp8aPaC4lK0lHicy1IO2v5bWyixox2WMd0yIzrtA2KLhJHpuiWwuit/+rCgPRNDSnVArOgPyM3NbNrS0oUW1FZOBBH11e/IhDdj0bgUQrUKhGdPcY7FWerJwuEkqEKt6h/l4HWlvBV5JZzHfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T+LMxpIK; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-47796a837c7so22928355e9.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 11:45:22 -0800 (PST)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-430f3ef2d37so2479739f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 11:56:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766346321; x=1766951121; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1766346994; x=1766951794; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=iTecQnEOiM4cqOp9HNhUH1paLZE1WIZf/qWmCV1hARc=;
-        b=aiXbbWx4JAxuuenNxxGmwCK9I8wnpWsE1uKCotfZEiKsxJyf2c6psPkMa2gwWP8pbN
-         GWdmM9wbY2LmqIXtMGfCc9gVllEjNNF+UPb0xT9Pb5DPvyjp/dELdw+yPpZf081LznlA
-         xyyplTa+ziAT6++NznzWc9S3b2tf+vGHxwgXf/VcfiDjgCBFbK7stMHvGjLRKxGzKS6/
-         ifvmHqelQ17NMry3RmtBqn6k2fkzr4dHPo14KRvT/cjl6PLsnYHQr0AIQXhTBEayPsfL
-         wAATmITRBCMTZ7igRGwZDLnm8ROg7zxXoUdRXOz86IGuHtPV2iuA7T/PJGfVgB2vqvw/
-         QwsA==
+        bh=oanJNjBi0nhu6Fe7NXetWbEAkPhL+bUTYUyYexZzPZQ=;
+        b=T+LMxpIKh1dcLBtuOMlBEal96W4YgLygV971/X+mll/ezZ/E2GKraZbjUJBomYYsCn
+         vnLvs+YyrfR6GmK6L9JKEluMdDQEBvD6I8jDoFKVQm1Jfhesqbir0AEceAgfEykySaYr
+         5ppc4mhL0a48zjl2rN1+YqtZDK9T+yy+Ne8iaG9Jb5N8cLipradLAVXrbMWxXfPm3Afz
+         VIGluewzXI5pYtDYd18DQF+zVUYx95d6IH7Q97rqP5iORo14vrZjL6Q2W+Y0fiDquhDe
+         0xOv/ClobM7/HxSpxtxC7EdRxtQAokp6AITfazpNSyLteZx2Kg3XAWVJ8w0W3wsxjDCT
+         7SRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766346321; x=1766951121;
+        d=1e100.net; s=20230601; t=1766346994; x=1766951794;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=iTecQnEOiM4cqOp9HNhUH1paLZE1WIZf/qWmCV1hARc=;
-        b=PVIde1JRK4sgZ34hR62XyOfRhkJRPG9LLQMwlIstV6iGdRs902bmPkTJUSnoWgiUac
-         MAqMwITsMPIG40xupkCu/BP1mXob43aYmOHYYoJ7SF6AB6WwbIQbzKEgv4fCHeNAP6Cl
-         67jstfWFg8E4H0yEBrSsF7WhxccLgXLQPNOHBvsYc6mT3GGWON5qIkWaHZtEozNORgUo
-         3TSeQPI1kmW3lyhhArJqOH3L0OpH/TLCyqH8tZGnK4N0RXR/utf87cj5fYguEOXk6ndf
-         wBH9ESaUQpHy5Fz1491v5QwHiuU+oSxr8aDx/v9iA8qj7aQlWymLIB4bDK42pYHgVyy9
-         pgTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAm9tBOchAOsARRTq9samngXcGYx0k5T7G4FoCkfw0cYGhPAOGeGcgYiFvYx2+r3c2f1Hu07G5nbOH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpuLZcouSTWPlbavl9KC1R4wgretvprqBEWmeGT3fSbYP68kmz
-	ZTVzL+AVtWjyC2JdoMdEsEBiW0u1IO5dy/CJoH/tEjjgzcrpbkOlZo64
-X-Gm-Gg: AY/fxX69TWLpFTULrivfwHVe4uH0/3EP888ThBFiCoMBSd279ikcHlAhvrRPE3+KOv6
-	ukfNp5qahskKmpUhgswDPTyfwvNAiVX0rn+xeqNvmov9uwWgCkwQMaIw3EdmdQK7bPlyvpQwiBH
-	rgnTzsdEV2Pq0ur2lNvnzjqinwbN+BryuaWd20gE/sgu3XG1EO7zb1P6Id0GwtuZCr1wQXHrjxe
-	2t5J77D5H4b2MNvx+LFYpuV7CSuKSg8WQVXW7pDNjchi2hPnOK5tHi8/9aONSSmYeAarVe0qM0Y
-	nMuxf1ldf0ILUt43Iek8n2ZpbO/+XfyeRdRYInFcWTnlETpkPCwdJqRqLBFVM8LlG2PtmFbnCLj
-	dplnUrLikVPcQ2L8XFj+aBtpS7U4nRnostsiBz3E9+NsaxiBchdQAsdXKDLb8MeNLWSNnYhntoc
-	m/RTE25vldhh2BdF7CAl1ie8ODrpVleLAnu4s1+SEKmGiqZ3eXn/90fd78GXi0fRPCWDX0eDjZu
-	uNu
-X-Google-Smtp-Source: AGHT+IFTts7ykm/dTtNEBPERRiikHRCeJkCXmDKtdntcwtIRm4AZRPX9IX3X0hecxYJbCjN/4/xU4Q==
-X-Received: by 2002:a05:600c:4e8f:b0:479:3a89:121d with SMTP id 5b1f17b1804b1-47d1959c74fmr90402945e9.36.1766346320235;
-        Sun, 21 Dec 2025 11:45:20 -0800 (PST)
+        bh=oanJNjBi0nhu6Fe7NXetWbEAkPhL+bUTYUyYexZzPZQ=;
+        b=QugnGqJ/s9sxWQHrzh7eZ+T+B1vn0/1BnIlR5PCMOZfuTqOpiBycmp1nmGDKrm4bKt
+         bK4VmiPWLjTYd5I6mqR07TkUk0qbHgo1zHY9Rp+Wi1y9qgFwRi7ZbTxYnaSWDja7WIyj
+         72vqsIyfdTL0R6Ydozvd0Q+x7s+aknYYkX8YqvIRdxNTKiHA3+vtUCPBwKhUfUiwaGfR
+         qB8y1wtDE/iI7XR+BRD9h3pZSgEa9um7XJPe95FpDZZKz26S4crGYgLMQM8Knt8J3ETC
+         2ossJffmHXxvNpTj9chFVjnLXza6a8c6aqy4ps705TwIhX2XkzI1B1CwUPNqKKBzWroK
+         ZJHw==
+X-Forwarded-Encrypted: i=1; AJvYcCXKrh1qOhoXctHvJYfw/j6deeuAGhF7Y0T4MRKrF7cdxLeA9I5ytOCXGWxhzow1oJqFP+e9SPzgxOC/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJ34pdoVxW2lehNltsbfrL1GhA+X+Y1lz/ZZGQNYhuTlMbmoOE
+	kfbMxvyPOPshakzwXXdGsem52TsOmZHdB3euFbbAOBm4/6BCXJ/igCCJ
+X-Gm-Gg: AY/fxX6ZQHcUM5ct17vZyDfiAIvUc6JQHmwz0sHwfs8DNEqW+wYrA86BGnNo/ULwBbY
+	GqkOVb0Fb0fYbeQULhLARaCMJ9F0xYY8ev+aSaVNt1DNULbCR+p0VS+BQAuuLXfW+/3ag0x/7Cs
+	ecnItflHqzA8hwuE7QCDNgWc548IdYl3cF21kZ1gWVSoQsf1rdkln/O9Qx9szCvz3h6KHG6trUV
+	TuBL66Rs7soD2joBFIl2eO0xvoqVYcApnOPE9+3IECaS3nBD2ExuCTMMGsCQb9wvoTLca8/HqAM
+	AZHx2oJPFuFlQowCMn+FLUJtFLfD6cX/94AE859Gp8DpK0YLaOhTKlggpGM45TzH4dTOOwl8BUv
+	mYXnicaQih5MveE1HOc4/99MzKd7q9umiQW0unbi40XfSaMJd+klgfArLR9J4GIxkGxticG1G5H
+	MaeEjCu7gZluW0xutiZJ1bnFbZUBh5/q9Mq6CQj24NpLmZL4KMc5PuyI/5W4sbNUh2ietlnKLRL
+	ya6
+X-Google-Smtp-Source: AGHT+IHwwBwTv7Y5lI87hzfx1K3wKJyr/X7181zxigbdOJRrLUvysf2AdPVllDEHu3OPucj3Mid0Tg==
+X-Received: by 2002:a5d:5f90:0:b0:42b:3b62:cd86 with SMTP id ffacd0b85a97d-4324e4c38bcmr8908861f8f.6.1766346994214;
+        Sun, 21 Dec 2025 11:56:34 -0800 (PST)
 Received: from RDEALENC-L01.ad.analog.com ([24.206.116.131])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d19346dfcsm185559065e9.1.2025.12.21.11.45.18
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43264613923sm1327943f8f.26.2025.12.21.11.56.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Dec 2025 11:45:19 -0800 (PST)
+        Sun, 21 Dec 2025 11:56:33 -0800 (PST)
 From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
 X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Sun, 21 Dec 2025 19:45:11 +0000
-To: Jonathan Cameron <jic23@kernel.org>, 
-	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Date: Sun, 21 Dec 2025 19:56:29 +0000
+To: Jonathan Cameron <jic23@kernel.org>, 455.rodrigo.alencar@gmail.com
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Rodrigo Alencar <rodrigo.alencar@analog.com>, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>
 Subject: Re: [PATCH v2 1/6] dt-bindings: iio: frequency: add adf41513
-Message-ID: <2tpnfgcrr4k27ghdz4ciwkoekf3gof4l4rnp5xr7ukxi37ouls@c33ey3kytevc>
+Message-ID: <s2dy34ui3ed3ay3yp4dpar3vysbg7mtksfmlboj7izoa7mt2uk@lxsrakxmvke2>
 References: <20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com>
  <20251219-adf41513-iio-driver-v2-1-be29a83d5793@analog.com>
- <20251221165928.324db536@jic23-huawei>
+ <20251220-bouncy-perky-tarantula-d9b3be@quoll>
+ <gz36kmewv4bhwqz6d3xqatcx65uzukqcgsvfbwhr7c3yhw225z@edeggfhjws2h>
+ <20251221155611.6af6ce1b@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,265 +98,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251221165928.324db536@jic23-huawei>
+In-Reply-To: <20251221155611.6af6ce1b@jic23-huawei>
 
-
-Hi Jonathan, thanks for your time.
-
-On 25/12/21 04:59PM, Jonathan Cameron wrote:
-> On Fri, 19 Dec 2025 12:34:48 +0000
-> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
+On 25/12/21 03:56PM, Jonathan Cameron wrote:
+> On Sat, 20 Dec 2025 18:05:34 +0000
+> 455.rodrigo.alencar@gmail.com wrote:
 > 
-> > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> > Hi Krzystof,
 > > 
-> > dt-bindings for ADF41513, an ultralow noise PLL frequency synthesizer that
-> > can be used to implement local oscillators (LOs) as high as 26.5 GHz.
-> > Most properties refer to existing PLL driver properties (e.g. ADF4350).
-> 
-> "Refer" implies a cross reference in this document.   Based upon is probably a better
-> way to put this.
-> 
-> Otherwise I've mostly commented on properties that to me don't sound like
-> they belong in the dt-binding as they are policy things that we want
-> to make runtime configurable.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
+> > thanks for taking a look into this again. It was my first patch it didn't want
+> > to draw more attention or discussion to the V1 patch as it was declared not ready
+> > at its very first review.
 > > 
-> > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > ---
-> >  .../bindings/iio/frequency/adi,adf41513.yaml       | 246 +++++++++++++++++++++
-> >  MAINTAINERS                                        |   7 +
-> >  2 files changed, 253 insertions(+)
+> > On 25/12/20 10:21AM, Krzysztof Kozlowski wrote:
+> > > On Fri, Dec 19, 2025 at 12:34:48PM +0000, Rodrigo Alencar wrote:  
+> > > > dt-bindings for ADF41513, an ultralow noise PLL frequency synthesizer that
+> > > > can be used to implement local oscillators (LOs) as high as 26.5 GHz.
+> > > > Most properties refer to existing PLL driver properties (e.g. ADF4350).  
+> > >
+> > > What is "existing PLL driver"? I know about motor drivers, but can you
+> > > drive PLL?
+> > >
+> > > And how is ADF4350 related to this binding. I do not see ADF4350
+> > > compatible here at all. Describe hardware, a real one.  
 > > 
-> > diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,adf41513.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,adf41513.yaml
-> > new file mode 100644
-> > index 000000000000..01ceb2a7d21b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/frequency/adi,adf41513.yaml
-> > @@ -0,0 +1,246 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/frequency/adi,adf41513.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Analog Devices ADF41513 PLL Frequency Synthesizer
-> > +
-> > +maintainers:
-> > +  - Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > +
-> > +description:
-> > +  The ADF41513 is an ultralow noise frequency synthesizer that can be used to
-> > +  implement local oscillators (LOs) as high as 26.5 GHz in the upconversion and
-> > +  downconversion sections of wireless receivers and transmitters. The ADF41510
-> > +  supports frequencies up to 10 GHz.
-> > +
-> > +  https://www.analog.com/en/products/adf41513.html
-> > +  https://www.analog.com/en/products/adf41510.html
-> > +
-> > +$ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - adi,adf41510
-> > +      - adi,adf41513
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 25000000
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +    description: Clock that provides the reference input frequency.
-> > +
-> > +  avdd1-supply:
-> > +    description: PFD and Up and Down Digital Driver Power Supply (3.3 V)
-> > +
-> > +  avdd2-supply:
-> > +    description: RF Buffer and Prescaler Power Supply (3.3 V)
-> > +
-> > +  avdd3-supply:
-> > +    description: N Divider Power Supply (3.3 V)
-> > +
-> > +  avdd4-supply:
-> > +    description: R Divider and Lock Detector Power Supply (3.3 V)
-> > +
-> > +  avdd5-supply:
-> > +    description: Sigma-Delta Modulator and SPI Power Supply (3.3 V)
-> > +
-> > +  vp-supply:
-> > +    description: Charge Pump Power Supply (3.3 V)
-> > +
-> > +  enable-gpios:
-> > +    description:
-> > +      GPIO that controls the chip enable pin. A logic low on this pin
-> > +      powers down the device and puts the charge pump output into
-> > +      three-state mode.
-> > +    maxItems: 1
-> > +
-> > +  lock-detect-gpios:
-> > +    description:
-> > +      GPIO for lock detect functionality. When configured for digital lock
-> > +      detect, this pin will output a logic high when the PLL is locked.
+> > ADF4350 is an older one, and its bindings can be found at:
+> > Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
+> > It is a similar part, but yet very different.
+> > 
+> > >
+> > > Nothing improved.
+> > >
+> > > You ignored comments, did not bother to respond to them and then sent
+> > > the same.  
+> > 
+> > Sorry for not responding on the V1 thread, but the previous patch had to be reviewed internally
+> > first. It is not true that nothing is improved, in fact, it has changed a lot, here are some notes:
+> > * adi,power-up-frequency is not carrying the -hz postfix because it forces to be a uint32 by
+> > the dt-bindings check. For that variable it needs to be uint64 as the part supports up to 26.5 GHz > 2^32
 > 
-> This seems to be one potential use of the muxout pin.  So to me feels like
-> a policy decision that belongs with the driver or userspace, not in dt.
-> mux-out-gpios:
-> would make more sense to me.
-> Some of the potential settings probably don't make sense but then we just
-> don't support those in the driver if this is connected to a gpio.
- 
-Actually, there is the DLD pin (separate pin from muxout) dedicated for lock detection.
+> What granularity is necessary?  E.g. Could -mhz work here? It's already defined in dts schema for MHz.
 
-> > +    maxItems: 1
-> > +
-> > +  adi,power-up-frequency:
-> > +    $ref: /schemas/types.yaml#/definitions/uint64
-> > +    minimum: 1000000000
-> > +    maximum: 26500000000
-> > +    default: 10000000000
-> > +    description:
-> > +      The PLL tunes to this frequency (in Hz) during the initialization
-> > +      sequence. This property should be set to a frequency supported by the
-> > +      loop filter and VCO used in the design. Range is 1 GHz to 26.5 GHz for
-> > +      ADF41513, and 1 GHz to 10 GHz for ADF41510.
+That is a good point, granularity is needed when we want to compensate for a
+offset flagged during a calibration. That part supports micro Hz resolution
+with the dual-modulus support, but that is something I cant have it here.
+Since the important thing for this property is to have a frequency in a range
+supported by the loop-filter/VCO design, MHz should be fine.
+
 > 
-> Why is this in DT?  Feels like this should be done by userspace control
-> prior to setting an enable rather than being in DT.
-
-The initialization sequence of the PLL requires the write of all the registers.
-This property exist so that meaningful values are written at start up.
-Here it is desired to have a frequency value that is within the range supported
-by the loop-filter and the external VCO.  
- 
-> > +
-> > +  adi,reference-div-factor:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 1
-> > +    maximum: 32
-> > +    default: 1
-> > +    description:
-> > +      Value for the reference division factor (R Counter). The driver will
-> > +      increment R Counter as needed to achieve a PFD frequency within the
-> > +      allowed range. High R counter values will reduce the PFD frequency, which
-> > +      lowers the frequency resolution, and affects phase noise performance.
-> 
-> Why is this in DT?  Is there not a 'best' choice to be made given a particular
-> input frequency and desired output frequency?
-
-When designing the external circuitry to the PLL, customers often refers to
-https://www.analog.com/en/lp/resources/adisimpll.html
-which is a piece of software that assists the choice of some parts and
-simulates performance metrics. After having the suggested design simulated,
-it turns out that the reference signal path defines the output frequency
-of the Phase-Frequency Detector (PFD), which is set as a constraint for
-the loop-filter design. Therefore, those properties (reference-div-factor,
-reference-doubler-enable and reference-div2-enable) are meant to reflect
-a hardware constraint for a PFD frequency value expected by the loop-filter/VCO
-
-> > +
-> > +  adi,reference-doubler-enable:
-> > +    description:
-> > +      Enables the reference doubler. The maximum reference frequency when
-> > +      the doubler is enabled is 225 MHz.
-> As above.
-
-explained above as part of a hardware constraint for external circuitry design
-
-> > +    type: boolean
-> > +
-> > +  adi,reference-div2-enable:
-> > +    description:
-> > +      Enables the reference divide-by-2 function. This provides a 50%
-> > +      duty cycle signal to the PFD.
-> As above.
-
-same
-
-> > +    type: boolean
-> > +
-> > +  adi,charge-pump-resistor-ohms:
-> > +    minimum: 1800
-> > +    maximum: 10000
-> > +    default: 2700
-> > +    description:
-> > +      External charge pump resistor (R_SET) value in ohms. This sets the maximum
-> > +      charge pump current along with the charge pump current setting.
-> > +
-> > +  adi,charge-pump-current-microamp:
-> > +    description:
-> > +      Charge pump current (I_CP) in microamps. The value will be rounded to the
-> > +      nearest supported value. Range of acceptable values depends on the
-> > +      charge pump resistor value, such that 810 mV <= I_CP * R_SET <= 12960 mV.
-> > +      This value depends on the loop filter design.
-> > +
-> > +  adi,muxout-select:
-> > +    description:
-> > +      On chip multiplexer output selection.
-> > +      high_z - MUXOUT Pin set to high-Z. (default)
-> > +      muxout_high - MUXOUT Pin set to high.
-> > +      muxout_low - MUXOUT Pin set to low.
-> > +      f_div_rclk - MUXOUT Pin set to R divider output
-> > +      f_div_nclk - MUXOUT Pin set to N divider output
-> > +      lock_detect - MUXOUT Pin set to Digital lock detect
-> > +      serial_data - MUXOUT Pin set to Serial data output
-> > +      readback - MUXOUT Pin set to Readback mode
-> > +      f_div_clk1 - MUXOUT Pin set to CLK1 divider output
-> > +      f_div_rclk_2 - MUXOUT Pin set to R divider/2 output
-> > +      f_div_nclk_2 - MUXOUT Pin set to N divider/2 output
-> > +    enum: [high_z, muxout_high, muxout_low, f_div_rclk, f_div_nclk, lock_detect,
-> > +           serial_data, readback, f_div_clk1, f_div_rclk_2, f_div_nclk_2]
-> 
-> This needs explanation of 'why' it should be in DT?  To me it seems mostly
-> to be a debug feature that should be controlled perhaps via a debugfs interface.
-
-There has been a discussion on that, and I understand the concerns.
-Altough it looks like a debug pin, I suppose some board designs might
-expect the muxout pin to be working as a specific function.
-The device driver provides register access through the debugfs interface,
-so worst case, the muxout select value could be changed there.
-
-> > +
-> > +  adi,muxout-level-1v8-enable:
-> > +    description:
-> > +      Set MUXOUT and DLD logic levels to 1.8V. Default is 3.3V.
-> > +    type: boolean
-> > +
-> > +  adi,phase-detector-polarity-positive-enable:
-> > +    description:
-> > +      Set phase detector polarity to positive. Default is negative.
-> > +      Use positive polarity with non-inverting loop filter and VCO with
-> > +      positive tuning slope, or with inverting loop filter and VCO with
-> > +      negative tuning slope.
-> > +    type: boolean
-> > +
-> > +  adi,lock-detector-count:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 64
-> > +    description:
-> > +      Sets the value for Lock Detector count of the PLL, which determines the
-> > +      number of consecutive phase detector cycles that must be within the lock
-> > +      detector window before lock is declared. Lower values increase the lock
-> > +      detection sensitivity.
-> > +    enum: [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192]
-> 
-> Sounds like policy.  Maybe it is related to the circuit design and there
-> is a right choice for  particular board? If not we should figure out how to leave
-> this to userspace control.  Probably as some form of event property.
-
-There was also a internal discussion around that. I'd say that this might
-be related to the application where the design is being used. There should
-be value on making it configurable at runtime, mostly for tunning for
-specific needs, but this is not a value to be changed at runtime in
-field-deployed products.
-
+> > * The properties related to the reference input signal path: reference-div-factor, reference-doubler-enable
+> > reference-div2-enable are declared here because they are constraints for the PFD frequency definition,
+> > which is the frequency that the output signal is updated, important for the loop-filter and VCO design.
+> > * added support for all different power supply regulators.
+> > * adi,lock-detect-precision and adi,lock-detect-bias-microamp: removed, now set
+> > with adf41513_set_ld_window() following datasheet recommendation
+> > * adi,fast-lock-enable: removed, faster lock detect clock is set depending on the lock-detect-count value
+> > * adi,phase-resync-enable, adi,12bit-clk-divider and adi,12bit-clk2-divider: removed, now set with
+> > adf41513_set_phase_resync(), based on the t_sync (from the datasheet: Phase Resync section)
+> > value determined by adi,phase-resync-period-ns, which is also bound to the loop filter design.
+> > 
 kind regards,
-
+ 
 Rodrigo Alencar
 
