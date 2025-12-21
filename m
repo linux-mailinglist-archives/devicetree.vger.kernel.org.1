@@ -1,148 +1,203 @@
-Return-Path: <devicetree+bounces-248547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82E33CD3D07
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 09:39:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F47CD3DC9
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 10:36:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1F0ED30056F5
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 08:39:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B9D91300B29E
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 09:36:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52D6274669;
-	Sun, 21 Dec 2025 08:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C843C27FD52;
+	Sun, 21 Dec 2025 09:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l9XpxzEb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fC4E1Fbl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com [209.85.210.193])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F63A78F2B
-	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 08:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF4C22F755
+	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 09:36:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766306371; cv=none; b=TKsZfkYv7SMiQPAEz+ifBp/Eif+f9P0SlRku3+q2Kho+cOoC2mIuvrSk7hHex63bCR0mZNj6nkkt+aVkS0K3m3mVtoED130/KHLoC+Jls5a6QeW6/oLqTwO4z9sHN9GR3kFXmeRYfPLj/qmM8bvRJTc41LX28e98aiarmP02JpQ=
+	t=1766309790; cv=none; b=BXYbSGee/q4RLnJQjZIAHxsC1KE1tiegT9OqUrhFFVewoMLMqNDL6Cl75iuLtr63QGNg36a7lTQzwRzTGxCSFgYEyLx0tLTspcpSkk40gVaLFqqkDUlpCL/GaXbZhe5g9wuIUtfzzmDk63K6RUKeqzN0wVJLqdPtkqEzP18wwgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766306371; c=relaxed/simple;
-	bh=lpb9/3DK7ALY+1M/QPt26J7EyO42orqOgUYOaDKIbU0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DLkCT6fI5GuGkoyMsoiuwGlP5j0yttrL4zDLULapdDyN6E4cCOmpmgHVL7jHUQGsEC3gu2dedV8yxk78be49HvthLtRjCDeI0k2qrsRGAvviy38HTtnQLbPLfngUAWvc+0vO/RLIkUhtAP66TFIiE6KJSH00LCEKedj5lrvE7yU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l9XpxzEb; arc=none smtp.client-ip=209.85.210.193
+	s=arc-20240116; t=1766309790; c=relaxed/simple;
+	bh=eyUwGI0ieunvRa2JS4DDwPNE6CUzg0WKFA2me2XXi8Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=M55M5oMRayTQN9XoPO9aex2lpHELEzaettB0cvsmoYi3ENFlIxnWEntx4mJg3JUnPNkh+n9pn6RS/vwm9FJhQgKmGhQK++VMp4tZ/YPS7uay0/Y3OtQpyDc0/dOVNpGWSWuTz02sKZzEMDcyXYn9bSHHVvRkXodkwQfhi19Ag0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fC4E1Fbl; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f193.google.com with SMTP id d2e1a72fcca58-7f89d0b37f0so2049640b3a.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 00:39:30 -0800 (PST)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2a07f8dd9cdso33254265ad.1
+        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 01:36:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766306369; x=1766911169; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RJdCkCbfYuG1MRzNXkV+YupMxNU5tXNQgZDynoVb6bo=;
-        b=l9XpxzEbLlqsE7+L2lAqI9s68YtjlTHYppSGxUJ4eOI2iFJRHScEVJNqva0ur35v4D
-         pG0SU4IkhyInnMySn//R4AEXPSTEkqX2i5EdtPHcja4lwWM31FSXvPDK6GCaX4Ua+cmK
-         0E1M22eYcRusAjs71twZqEx3X+2TG3jI7C/MsDws8L+Ylbdv9q/UOAKLvpf5GAWqSoc/
-         vjlgLPiMxOWSC8IP1PLh8qGSVTNRewrbpPE0n16+q+LN/CkkFAELWmotyHHHrdbtnNji
-         74M7PFZVcRchv9V3IkuqZE5GFwuBZTCZSbvRQriAf3J1EG7joUd2RCh8/TazpkEIuMyk
-         YKDw==
+        d=gmail.com; s=20230601; t=1766309787; x=1766914587; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=F5nB8fHKMaIzWNuSxdIiCgEFq4ZfOznDuDPNBRfGesY=;
+        b=fC4E1FblWOO0sGx58SDJmA1s1ydKzM11roHQLWWHe6fi/c6PayNkbhorVMJ6I4pkqM
+         Oj+NIs5EQ4NMWueB/gm14xWxDMbRC9egDFbHB/RFLfMsn6cd9E9enX8T/r+h9wmpTT2F
+         2/u3nUvBm5VEEZawsrrtVAfjjiF4v+cxopSIo8Wyf6Cipif/S0sRRD/foxvv2h9n35cF
+         bl828BtuqEajdmpWtnPra/8OuJBwxDRzRkniPh8MBzpWDBXeP5Il153tLiKzuXY1h+Xq
+         lvaEPWNmHovkFqTQ8guUVBEmcaLgmIf3Vxa1esxJMHoUmuM4NdE0ViOZwK2gbQ08F67X
+         IW7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766306369; x=1766911169;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1766309787; x=1766914587;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RJdCkCbfYuG1MRzNXkV+YupMxNU5tXNQgZDynoVb6bo=;
-        b=qrhieWc0IqlIgW+WN5ajirRtKPKvmJmo1c7iVDWN44FYhLrx2E/nFw5MQl9PbxXpny
-         n/f+MzjrM7HbAehQ47AuG8z/Yt9kE09qpdQ/lQO8FOTH30e3RLAP6TYs88SGo00cMNmO
-         5ZKSj/qtZzKMSxMRtx/3K4zp+iZvqvGdzdWp+OKQuXmP5veOpsvYHe202r/AIEzN/0Fd
-         nldHlzNNGZ1d90ponXLXB/opugn97Z7S0TE/Orxi1/iempGYgHqF0nma7dK5Jw7YTXwc
-         OTH2Xob3ghTnGlyyZVXfYfJCf2yrOAqfaiVj9J1m7vXzC15V2EnW4f8ZZohUGBS2w6iN
-         eEvg==
-X-Forwarded-Encrypted: i=1; AJvYcCUkaZeNTC8wIeQVrJ1tUyo36dJeWK75opLKi51fZmIFUPn4aZlXnTrUUjGpdcV8uqogEnWVqaN6pivq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxesaviXX7haBT2y0yyEh/7hbSSyFFzOBV6kt1LsjBHS+TLx0zD
-	eBoXarH6CaJtkZhhYWTufUZ50esNMkLbb4tmVGd3Xs7kv03NTAw/vJ4N
-X-Gm-Gg: AY/fxX7C8MXhMOPi1tZfWVZpxvhAjJXpAb6NG+e4YUpJ0PCqrJpablhweItP/+Gt/vD
-	0YnCaPVINrCIwHWew9Gug6LBcOXMS+XJ6z+lCb9cSJ0xDCfpcPbISDrjUCC655/tkL5y05aknZo
-	xEXoh94TV/yIdBojSDJUKm4BMo+xt266wGYfX8b8NPNkJXlxCOdxwR0YZxqiWUvZ1z+azf+cj6Y
-	ushjaQCWKiF9LLK670kgfdzDU8MqUyqCGaM8YRVmfHMSwkIhaqw9+4gz9jn9sFyzt5fjkx7e4pE
-	Yz2fzWjmvMgKVyEt2b1us/aR9gVCsMdapzuhb5Ii2ODGQawMm0tCAKrpU7muu/e8FhyldWDZe04
-	popnYLfLMWuoNf+j07D6Jqyp+rR0GtBfLkfgy5Zp4JNkprKdyvj4Wocm0AgGQpJJ0e98t7+l9rD
-	IyhiLkmLHORHJpnA==
-X-Google-Smtp-Source: AGHT+IHXUQeCPQBqGmqZFoHhbNBLeMa9tKpuVdgrE/dzWGTwr6zB+0eGuvqwal9ABefR5JWG7Cqztw==
-X-Received: by 2002:aa7:930d:0:b0:781:1110:f175 with SMTP id d2e1a72fcca58-7ff5330cca8mr8545745b3a.14.1766306369511;
-        Sun, 21 Dec 2025 00:39:29 -0800 (PST)
-Received: from Ubuntu24.. ([103.187.64.31])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e48f258sm6932678b3a.47.2025.12.21.00.39.22
+        bh=F5nB8fHKMaIzWNuSxdIiCgEFq4ZfOznDuDPNBRfGesY=;
+        b=KbAtKo9kzFtd/wbq8se3JGAmB5XmysiUsQljNPZRUEzeu3shcVMBkkcARN/a9rEPCf
+         0pzi4UKGIUwauFd5BsfC1A7J33BB+6lQIO68kcxdm5CSvBc7f2F1MKv5MHAkYCzXV4VC
+         Zih8xIGgPqvOORAJ5as9VezFed4cLM1X5Es54NhXbkQkDL3Ev6hxGUWToCispTFWTUrw
+         GiLyVa/SEpFQ+Vn2STtb5T7tTFmDzki1wm6HDxpCCuSpyeTSymgfw01aOvLnb+2CVVJa
+         XqTQRvEVyU3/wlAjWZUS2yT/AkmwIp9frXlSfJJWcjj09td4ecvE+qzMPWkwJKhlep8w
+         qwAw==
+X-Forwarded-Encrypted: i=1; AJvYcCUkZe2oqP49UKfCsYJ1pJ/0fCTRnMSDcVRnko1/UtTfXu0OlXHGGEmQyLz17GGC3aaPQ+8/sQe8z/DM@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywa2auzrp4csW6ydT8sbFMhxVgczRrO+t99FWuNJeAxKrrSMZxn
+	/rMJlUB2FyFGRqDf6C72kfaH3zFT2g+Bt/qglgvKdLgRnHKQvfXwWkqZ
+X-Gm-Gg: AY/fxX7PfaIVENR4xH/E/VW9RbYgNq6+23VDQffjoLfe5B97YEKvrHKeNYAvfwsjY9M
+	6Bm6nMMxaLfikrbXVfjCjdcnojsxrqHv0f7s/wTD7inHplFJ36ejNtGv1wd2ORDKSBY+Mzszdvh
+	pWXMx0DCX+Ik3gAfjwe+7xJgYoYX0ROJaWuPWnRbDsT4wj59P1ifxAeYAZQlopfUlQV7rXfWZ0J
+	+0fKaKc/PAp1InTaDyJedlIBbXzCn/K6tIYVEggvbjL8GzxIIlsPZwLLzVmlE+Cy7zwN6r5oD4H
+	aYXnGBrWKVOFehPE2HzKPBi5TXvbr4JoH4c8WGuGYWPVjPZqdke6NDWyxUJiO1CHTJoPp868ISH
+	SdB0ziysRwRg9n8OdMcuPJ9bO2F3IyGMWAiai9xfikoOgStZHPDCSDdl2QGmdeS0MRdvQP14hI8
+	6m2yC1DmbmiGQvWSWAN1luXB4Yp6kUWtFhQaELb6NCtaqzEnMNyASdd0uyYrKzlMNNcNTUT6cpu
+	/ECm3x9/3y5pLvVVKBsqO8ktAlh01aNK1UOc8axqp/eXsNFOlqnF3CqYIJAIPTM2ugIi8Es+zex
+	K0mAUsOhKXpzCNgYeslcpOYWI4FlP+wtq+DXjyTW0DJI+9KulOM=
+X-Google-Smtp-Source: AGHT+IE26hfD24ZsQ6mXHiG/tj55lbvStfyPTDRxrA921e8bn7nv2J67tWRAQHGaVgY7xl65mVGtVg==
+X-Received: by 2002:a17:903:110d:b0:2a0:9402:2175 with SMTP id d9443c01a7336-2a2f2427be6mr68478635ad.27.1766309787305;
+        Sun, 21 Dec 2025 01:36:27 -0800 (PST)
+Received: from [192.168.2.3] (2403-580a-80ed-0-4835-5a07-49e7-f115.ip6.aussiebb.net. [2403:580a:80ed:0:4835:5a07:49e7:f115])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d4d363sm67629495ad.62.2025.12.21.01.36.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Dec 2025 00:39:28 -0800 (PST)
-From: Shrikant Raskar <raskar.shree97@gmail.com>
-To: jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	heiko@sntech.de,
-	neil.armstrong@linaro.org,
-	skhan@linuxfoundation.org,
-	david.hunter.linux@gmail.com,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Shrikant Raskar <raskar.shree97@gmail.com>
-Subject: [PATCH v3 0/4] iio: proximity: Add interrupt support for RFD77402
-Date: Sun, 21 Dec 2025 14:08:58 +0530
-Message-ID: <20251221083902.134098-1-raskar.shree97@gmail.com>
-X-Mailer: git-send-email 2.43.0
+        Sun, 21 Dec 2025 01:36:26 -0800 (PST)
+From: James Calligeros <jcalligeros99@gmail.com>
+Subject: [PATCH v2 0/7] ASoC: basic support for configuring bus keepers
+Date: Sun, 21 Dec 2025 19:35:56 +1000
+Message-Id: <20251221-tdm-idle-slots-v2-0-ed4d96413aec@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHy/R2kC/12MywrCMBBFf6XM2kgStVhX/od0kce0HUgaSUJQS
+ v7dWHDj8pzLPRskjIQJbt0GEQslCmsDeejALGqdkZFtDJLLi5BcsGx9Uw5ZciEnJrhWQ5t6q87
+ QTs+IE7324GNsvFDKIb73fhFf+0sN/6kiGGenq1V66rXhAu+zV+SOJngYa60fkP3BKKwAAAA=
+X-Change-ID: 20251201-tdm-idle-slots-10ba92516da4
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+ Shengjiu Wang <shengjiu.wang@nxp.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>, 
+ Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, asahi@lists.linux.dev, 
+ James Calligeros <jcalligeros99@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4113;
+ i=jcalligeros99@gmail.com; h=from:subject:message-id;
+ bh=eyUwGI0ieunvRa2JS4DDwPNE6CUzg0WKFA2me2XXi8Y=;
+ b=owGbwMvMwCV2xczoYuD3ygTG02pJDJnu+/tkzmRK8Wo3Rfg3fvMzOrKLlWlqg2sPv59u01mrb
+ k6t2xc7JrIwiHExWIopsmxoEvKYbcR2s1+kci/MHFYmkCHSIg0MQMDCwJebmFdqpGOkZ6ptqGdo
+ qGOsY8TAxSkAU71zA8M/rZsTLl+4MlUl0P1s7sXn/XGciRdPLTS6MTdS36NSfNFnVYb/3lySG2q
+ faJuIzKzd+/CE5y6/VY4XYtUvBegf10n8cE+KFQA=
+X-Developer-Key: i=jcalligeros99@gmail.com; a=openpgp;
+ fpr=B08212489B3206D98F1479BDD43632D151F77960
 
-This patch series adds:
- - Add RF Digital vendor prefix
- - YAML binding for RFD77402
- - Add OF device ID for enumeration via DT
- - Use kernel helper for result polling
- - Interrupt handling support
- 
-These changes enable DT-based configuration and event-driven
-operation for the RFD77402 Time-of-Flight sensor.
+Hi all,
 
-Changelog:
-Changes since v2:
-- Add 'Reviewed-by' tag to dt-binding patch.
-- Update commit message in OF device ID patch.
-- Update commit message in the third patch.
-- Replace rfd77402_result_polling() with read_poll_timeout().
-- Add 'struct rfd77402_data' details in kernel-doc format.
-- Arrange includes in order.
-- Add comment for completion timeout value.
-- Remove blank lines.
-- Indent the comments to code.
-- Convert mutex_init() to devm_mutex_init().
-- Remove 'IRQF_TRIGGER_FALLING' flag from devm_request_threaded_irq().
-- Drop the duplicate message.
-- Replace 'dev_info' with 'dev_dbg()'.
-- Update 'dev_id' to 'pdata' in rfd77402_interrupt_handler().
-- Drop 'interrupt mode' comment
-- Use 'if(ret)' instead of 'if(ret < 0) for consistency.
-- Use 'return i2c_smbus_write_byte_data()' in 'rfd77402_config_irq'.
+This series introduces some infrastructure to allow platform drivers
+to specify what a DAI should be doing when it is not active on the
+bus. The primary use case for this is configuring bus keepers which
+may be integrated into various codecs. The instigating use case for
+this functionality is an interesting bus topology on Apple Silicon
+laptops with multiple codecs.
 
-Shrikant Raskar (4):
-  dt-bindings: iio: proximity: Add RF Digital RFD77402 ToF sensor
-  iio: proximity: rfd77402: Add OF device ID for enumeration via DT
-  iio: proximity: rfd77402: Use kernel helper for result polling
-  iio: proximity: rfd77402: Add interrupt handling support
+Most Apple Silicon laptops have six codecs split into groups of
+three, driving a pair of dual opposed woofers and a tweeter for
+L/R stereo sound. These codecs report the voltage and current across
+their connected voice coils back to the SoC via the SDOUT pin,
+represented as PCM data sent via configurable TDM slots. This data is
+used in conjunction with the connected speaker's Thiele/Small Parameters
+to ensure that the speaker is not being driven to levels that would
+permanently damage them. This is integrated into CoreAudio on macOS.
+speakersafetyd[1] handles this for Linux.
 
- .../iio/proximity/rfdigital,rfd77402.yaml     |  53 +++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- drivers/iio/proximity/rfd77402.c              | 149 +++++++++++++++---
- 3 files changed, 183 insertions(+), 21 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
+All of the codec SDOUT pins are attached to a single receiver port
+on the SoC's I2S peripheral, however are split across two physical
+data lines (one each for the left and right codec groups). The receiver
+has an OR gate in front of it, which is used to sum the two lines.
 
+If at any point a codec is trying to transmit data, and the "opposite"
+line ends up floating high, the transmitting codec's data will be
+corrupted. We need to guarantee that the idle line stays idle.
 
-base-commit: d8ba32c5a460837a5f0b9619dac99fafb6faef07
+In the downstream Asahi Linux kernel[2], we set up one codec in each
+group to zero-fill or pull down its line while a codec on the opposite
+line is actively transmitting. This is done entirely in the codec
+driver, however this approach is over-fit for this one use case. This
+sort of functionality may also be of use for other hardware, so following
+previous mailing list discussions[3], I have tried to expose the
+functionality in a more configurable and generic way.
+
+I have integrated this approach into our downstream platform driver
+and select Devicetrees as an example of how this mechanism is intended
+to be used[4].
+
+Regards,
+James
+
+[1] https://github.com/AsahiLinux/speakersafetyd
+[2] https://github.com/AsahiLinux/linux/tree/bits/070-audio
+[3] https://lore.kernel.org/asahi/20250227-apple-codec-changes-v3-17-cbb130030acf@gmail.com/
+[4] https://github.com/chadmed/tree/tdm-revised2
+
+---
+Changes in v2:
+- Reworked tdm-slot.yaml schema to silence dtschema warnings
+- Properly referenced new tdm-slot.yaml schema in affected bindings,
+  again silencing dtschema warnings
+- Add PULLUP and DRIVE_HIGH as possible bus keeper modes
+- Reworded commit messages and cover letter to more clearly explain
+  what the goal is here
+- Link to v1: https://lore.kernel.org/r/20251209-tdm-idle-slots-v1-0-38dabf6bc01e@gmail.com
+
+---
+James Calligeros (7):
+      ASoC: dt-bindings: convert tdm-slot to YAML
+      ASoC: dt-bindings: update tdm-slot.txt references to tdm-slot.yaml
+      ASoC: dt-bindings: add TDM slot idle mode properties
+      ASoC: soc-dai: define possible idle TDM slot modes
+      ASoC: soc-dai: add common operation to set TDM idle mode
+      ASoC: tas2764: expose SDOUT bus keeper via set_tdm_idle operation
+      ASoC: tas2770: expose SDOUT bus keeper via set_tdm_idle
+
+ .../bindings/sound/imx-audio-card.yaml   | 14 ++--
+ .../bindings/sound/simple-card.yaml      | 14 +---
+ .../bindings/sound/tdm-slot.txt          | 29 --------
+ .../bindings/sound/tdm-slot.yaml         | 82 +++++++++++++++++++++
+ include/sound/soc-dai.h                  | 22 ++++++
+ sound/soc/codecs/tas2764.c               | 95 +++++++++++++++++++++++++
+ sound/soc/codecs/tas2764.h               | 11 +++
+ sound/soc/codecs/tas2770.c               | 75 +++++++++++++++++++
+ sound/soc/codecs/tas2770.h               | 12 ++++
+ sound/soc/soc-dai.c                      | 40 +++++++++++
+ 10 files changed, 345 insertions(+), 49 deletions(-)
+---
+base-commit: c8d8605fc53e8072848aadc7a5aa00c2f5143cac
+change-id: 20251201-tdm-idle-slots-10ba92516da4
+
+Best regards,
 -- 
-2.43.0
+James Calligeros <jcalligeros99@gmail.com>
 
 
