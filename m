@@ -1,41 +1,42 @@
-Return-Path: <devicetree+bounces-248610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00E90CD46D5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 00:33:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52AE5CD46DE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 00:33:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 619D0300A1E2
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 23:32:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6EC793010292
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 23:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D7E5279DCE;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6BC8280A5C;
 	Sun, 21 Dec 2025 23:32:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F922773CA
-	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 23:32:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB111CAA65
+	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 23:32:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.164
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766359945; cv=none; b=s4Prv6zQ27hnZayOvgMDWn8McJhyaKaaIIDYlse34vGkxY62wTv1oD7XGtXE38FQZg/dwjbxLKMVZxBGIEeEO83zVwxiJB4alAAUX3qMwInlkMMmYv/2juXpjtPmXl282wG4xDMLxLLI+//YlcFh8lmyHiYV8IBG39zWFyuDGrk=
+	t=1766359945; cv=none; b=vF7m/4VZhKfHZVJ5iuRHGnOuR5+SawtTjXU6KVAzANyVPwId1P8GYWpHVGc1mT66APKNJPH11xNv1RTd+HG/vG0Zz5bkMm33rIlqgJMb3xQtJlGTG1W02fWQvaYYSRFWuNW8vLP4HPDGhQ9JhGISXy4RBsRUcC+x3uLeYYOhTXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1766359945; c=relaxed/simple;
-	bh=R7ygj3sXg+oAXbbRM/q5auC9FtLhrQvwvzv1PlldSxw=;
+	bh=OK1k8FK0F6DLCPjBBSuTHt+z5WcOjkmIrAgnrfTzVRQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=a/A8Q1ZtpGlb2Ns59vm5WQ5Ziu7IgGdC2iLxLomsExNpcksxf9vgVbHQDSpL9SHLqfBasr4CA39ruhV07l3E9mCHcxsJ3e3+jnolCRNw5uibsRUYjaKw7F9db/Ub9jfl/wtjC+dug+ThSoW7VeGXqfq4KEYXIzJSlPt1LFl7E4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.163
+	 In-Reply-To:To:Cc; b=b8TR0cTzP1uCavNq890sVH67gjxJsSn/buo5jRiE7MKT1x3JS/XhftlzynnrtqOePJdhDnAe1ywqs2H2K+9Zm7Ivd2ZdMDj3v3LurW90T3+imFpcxKWN8GEI+D3YrJKJvNB4+oZG1z3CWKBiZ1m72IaqAvm5ktShNB1kvA8lJsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.164
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
 Received: from Marijn-Arch-PC.localdomain (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by m-r1.th.seeweb.it (Postfix) with ESMTPSA id AD6381F8B0;
-	Mon, 22 Dec 2025 00:32:13 +0100 (CET)
+	by m-r1.th.seeweb.it (Postfix) with ESMTPSA id E41A61F8B3;
+	Mon, 22 Dec 2025 00:32:14 +0100 (CET)
 From: Marijn Suijten <marijn.suijten@somainline.org>
-Date: Mon, 22 Dec 2025 00:32:07 +0100
-Subject: [PATCH v2 01/11] drm/panel: Clean up SOFEF00 config dependencies
+Date: Mon, 22 Dec 2025 00:32:08 +0100
+Subject: [PATCH v2 02/11] dt-bindings: display: panel: Describe LGD
+ LH599QH3-EDB1 panel
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,7 +45,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251222-drm-panels-sony-v2-1-82a87465d163@somainline.org>
+Message-Id: <20251222-drm-panels-sony-v2-2-82a87465d163@somainline.org>
 References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
 In-Reply-To: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -73,54 +74,131 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht,
  Marijn Suijten <marijn.suijten@somainline.org>, 
  Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1303;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3041;
  i=marijn.suijten@somainline.org; h=from:subject:message-id;
- bh=R7ygj3sXg+oAXbbRM/q5auC9FtLhrQvwvzv1PlldSxw=;
- b=owEBbQKS/ZANAwAKAfFi0jHH5IZ2AcsmYgBpSIN6UQDO54L6rIrmpqdVcX6dt/oPQRr3W8KuO
- 1Bpq8sSFIOJAjMEAAEKAB0WIQROiwG5pb6la1/WZxbxYtIxx+SGdgUCaUiDegAKCRDxYtIxx+SG
- dvqtD/95qRWMUrwqbS8tWHKGgR3x4KyNXRzJ1CKvCuOcNm8/ifds2qhXw7sQDmfBvih3FyMGjG/
- H40ivnqyVKKgiyaVoAjryOuzlN4IUiUqfKPSXgPC5Y/1JyHEqhEPOhIpLjG/UKhZPggf9xGEVxz
- YstJQ9UHrhfefOtC7GMhUmJdLLz+MVstefhalZPwUII4Hy9q9kHuPEzZzRwywjwM8CdFWXI4Mt3
- zGynjhskaEqckO+91REWq/jm8LXzdlisrrCiupHhJy32saLvHZh8WKuD/kFsJgKC24h7ESrfAll
- h+gPdRh4fIvdA7Qq5jk0CBBtgZD4YCrLXA/vDuTu82zu66Ogz73HwP+tW7Muv9iEivsjP1YCFY1
- fzmTZJdQRbygxrk4MMJ8eqermuRjsfPeniaSyM0AHueJd4egoPc3ZfFb3Gol0+Ks+mGncHIxaiU
- u1OI8Up1TxS5mRo6+lAjBsxqcIdpCtMRJyhNB0HY24/FI2OyfcOsZ0TYVF5+23QBReaaBqqQpEp
- Tr7XOqWUL+9GsA57i2T9F10k9JBmVllyjo1VzeobmYNXee00yGe3Xa6cAAspWgP3RN8YjJF3bHg
- 2bX73xOi2HUfd2A79JRQplT9pnXt22wtPc+gEHowZa3qH/22GFhQ6Wxb94sPJBBBDNQEm/3aTr0
- dPy1/XRuIbian4w==
+ bh=OK1k8FK0F6DLCPjBBSuTHt+z5WcOjkmIrAgnrfTzVRQ=;
+ b=owEBbQKS/ZANAwAKAfFi0jHH5IZ2AcsmYgBpSIN6tM8c5Y6IC95UptfyrwrfbIkEq5rrRAziY
+ bmBMuRHW0aJAjMEAAEKAB0WIQROiwG5pb6la1/WZxbxYtIxx+SGdgUCaUiDegAKCRDxYtIxx+SG
+ du0NEAC1IbOXq8fmVLdxsasmg9ueFVTuDKmvcw3GmzRqRfWE2ZDVJXxWOM6YZ85DsLJhVQsqmw0
+ ZZNMn7otoX8UZKuD2bcU4ct/uYoayQAAOHZa0SA7WqVX9Rb/iGmmYingLW5MnNmLIVkv2+kLlS7
+ CzXnrsckd9qkulEjRREHXrpHgP7pr+weKWmGL7b3mT1liq9oY/WqbXXN0DNrq9AdEfR7regiJRj
+ 8gA+FEyF5zM2fNygB9M/b0E7ylwI9TyTxyZ2vzjsVSma9P4Rh6YcxosZuDZaVSRdJcNp6WYqxfR
+ 2cnq7EzhcW4MVpVWVvb5cTUvqA+y71eXmlADcNw1kwxrs1i3wu2UqUvZ3gr4WXC2amxxpu1vdOm
+ jQNV63u1zxq6uu9eaTdwifNKbJNZWC4QxbPk3nFlI4FWr5h3lyuYkFAiSKZv+f/wupznM3H8IjR
+ LrBLL6QAtB1DNa8cqweIDVxd+ra6GuPDh1kEezATOJUU7DlJTbZY/hngKL+FohQ/R5K2DY1TqMz
+ 44VPPHWPHwJdT+jdGloOG0wasIjd6Vbxuq3ioDOgOcT/ZO6vGQm2anhZ3BgFzTnTuAKBxTcLIvJ
+ pVoIsb8jX7BniBRtroWrL6DtjPuaPHMTrbn3hepKjQ68Fa0UoFwenZGlEE/6I0LjCZIZDgjnSIO
+ 7AY8K8r3M2Rww7Q==
 X-Developer-Key: i=marijn.suijten@somainline.org; a=openpgp;
  fpr=4E8B01B9A5BEA56B5FD66716F162D231C7E48676
 
-As per the config name this Display IC features a DSI command-mode
-interface (or the command to switch to video mode is not
-known/documented) and does not use any of the video-mode helper
-utilities, hence should not select VIDEOMODE_HELPERS.  In addition it
-uses devm_gpiod_get() and related functions from GPIOLIB.
+Document the LG-Display LH599QH3-EDB1 OLED DSI panel found on the Sony
+Xperia XZ3.
 
-Fixes: 5933baa36e26 ("drm/panel/samsung-sofef00: Add panel for OnePlus 6/T devices")
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Casey Connolly <casey.connolly@linaro.org>
 Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 ---
- drivers/gpu/drm/panel/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/display/panel/lgd,lh599qh3-edb1.yaml  | 76 ++++++++++++++++++++++
+ MAINTAINERS                                        |  5 ++
+ 2 files changed, 81 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 307152ad7759..9242fb894511 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -908,10 +908,10 @@ config DRM_PANEL_SAMSUNG_S6E8AA5X01_AMS561RA01
+diff --git a/Documentation/devicetree/bindings/display/panel/lgd,lh599qh3-edb1.yaml b/Documentation/devicetree/bindings/display/panel/lgd,lh599qh3-edb1.yaml
+new file mode 100644
+index 000000000000..245d14c0a1a2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/lgd,lh599qh3-edb1.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/lgd,lh599qh3-edb1.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LG Display LH599QH3-EDB1 1440x2880 6.0" OLED DSI command-mode panel
++
++maintainers:
++  - Marijn Suijten <marijn.suijten@somainline.org>
++
++description: |
++  LG Display LH599QH3-EDB1 6.0" 1440x2880 (9:18 aspect ratio) 60Hz panel, found
++  in the Sony Xperia XZ3 smartphone.  It is always programmed with Display
++  Stream Compression 1.1 enabled.
++
++  The assembly features an Atmel maXTouch digitizer, described separately as
++  atmel,maxtouch.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: lgd,lh599qh3-edb1-um1
++
++  port: true
++
++  reg:
++    maxItems: 1
++    description: DSI virtual channel
++
++  reset-gpios: true
++
++  avdd-supply:
++    description: Analog voltage supply (3.0V)
++
++  vddio-supply:
++    description: I/O voltage supply (1.8V)
++
++required:
++  - compatible
++  - port
++  - reg
++  - reset-gpios
++  - avdd-supply
++  - vddio-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        panel@0 {
++            compatible = "lgd,lh599qh3-edb1-um1";
++            reg = <0>;
++
++            avdd-supply = <&vreg_l28a_2p8>;
++            vddio-supply = <&vreg_l14a_1p8>;
++
++            reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
++
++            port {
++                panel_in: endpoint {
++                    remote-endpoint = <&dsi0_out>;
++                };
++            };
++        };
++    };
++
++...
++
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 0dbf349fc1ed..6a358fee4cae 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -7931,6 +7931,11 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
+ F:	Documentation/devicetree/bindings/display/panel/lg,sw43408.yaml
+ F:	drivers/gpu/drm/panel/panel-lg-sw43408.c
  
- config DRM_PANEL_SAMSUNG_SOFEF00
- 	tristate "Samsung SOFEF00 DSI panel controller"
-+	depends on GPIOLIB
- 	depends on OF
- 	depends on DRM_MIPI_DSI
- 	depends on BACKLIGHT_CLASS_DEVICE
--	select VIDEOMODE_HELPERS
- 	help
- 	  Say Y or M here if you want to enable support for the Samsung AMOLED
- 	  panel SOFEF00 DDIC and connected panel.
++DRM DRIVER FOR LGD LH599QH3-EDB1 PANELS
++M:	Marijn Suijten <marijn.suijten@somainline.org>
++S:	Maintained
++F:	Documentation/devicetree/bindings/display/panel/lgd,lh599qh3-edb1.yaml
++
+ DRM DRIVER FOR LOGICVC DISPLAY CONTROLLER
+ M:	Paul Kocialkowski <paulk@sys-base.io>
+ S:	Supported
 
 -- 
 2.52.0
