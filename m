@@ -1,220 +1,173 @@
-Return-Path: <devicetree+bounces-248532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F7FCD392F
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 01:10:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12008CD3945
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 01:33:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5D1243007215
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 00:10:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F216C300CBA6
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 00:33:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57EC45661;
-	Sun, 21 Dec 2025 00:10:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E884A1BD9CE;
+	Sun, 21 Dec 2025 00:33:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="IbYPLoRl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ObLK/bMu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f47.google.com (mail-yx1-f47.google.com [74.125.224.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C4B7173
-	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 00:10:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31BEA72634
+	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 00:33:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766275829; cv=none; b=TVVr3AZTyqSUnZjFgSXEUJ3ka9ZF9lPKPGco5LhE/Y2fO/cUNx3gFlWOoKceZKw0MzkLcc0ys/q/1Lx0WTuH0vD+nNQcGDfVurun24F0g8u1GGG1apeNS/kvw1nRs7t40NWiot8nm7SWMkshwmZfJmci+uUh/zwuhpmwiCt5VHk=
+	t=1766277220; cv=none; b=ZBo7GvGwlcCLg2M/F/WB7ci2GtL7Vlvcth9nBWf3B7rzNAOEwuXEqb534hkLsVE5rZETeVT60cP8Ekg9VurX3YZKIgbMyT6/H95Dd7ZyKj8IYiGB0I7KOJO7BZ5S48Lp+uS7DDn78E1njJ090kwqY62JbUKqUvFlhrEp8uDZb2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766275829; c=relaxed/simple;
-	bh=TzVjlRDTSZ/J5eOfKeVeOT1iSXWkpMVWS1/WX4Qttmw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YA4gRJHU4xhouBSRlsSvwq3h7mCpNKEFKNG5FNW1ufi+MCveHRi3jffPuVXoc/kUzSh4FWzq+G1H1U74f1xK6To3Ikbgf602MAk4AmHq8oLvEnj0N1ZkhrnsOreMuinCHN2aXb/00X010ZoAMKnb3D81zTWnaViq0a2RWYNyqDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=IbYPLoRl; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id ECE4F401AD
-	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 00:10:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1766275819;
-	bh=EQ5RLiXnHo1F0yqQLHlxodf/GRaWJlOplqUmCNv4d9U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type;
-	b=IbYPLoRlao1vOAWV7vcl5QrTFAHk4wh7xZftuEeW9j+xS3mwR9BQCIsRKLPA0WqW2
-	 c0lZkbxB1dwxUbisqtcTbwU1Y6G6UcQvb2NaJ5JYwSLIYQkQexWnjQWOMDzrlthnWl
-	 tngNFVGTz0Wrc5rWHB3X5XRjREqJNuEa6p6BuGF+nCpIomPKT26LfCqotQ/Wea8dnt
-	 QjmBGkq/+fmbIuWlE7NWcR7ehLjdOAtIiCNpCFlSnAS1KYHskxBKv2Qa2Mjdki70Wg
-	 Iy2eJjYx9SgnJaTUa74H0Z7O3uXkkaJ5+HaDOKoQtCnM1alDOeHmCX73E54V7xhxIV
-	 LXbxRjqIIp/yjRhkmAy1kUAP1ooxeKdGnT8AeodXtZzE+NXwXhqThVfjKnaQpB0zm6
-	 7TgbzQsNapBe5tMU24C1vj0/9QMqXydT3pxDXsAO9QjVR9OE6p6nxiqHFUgdNAyXvn
-	 mgewoo1hQbhFgrdwFhxH6Fuke9SnjtdKlUniatGRHR2n3qUJcLPVV42jQp46ybpHT7
-	 yQhtqhVVw8Bg3TilJTk2u9QyzhMacdf6X7VnDYwphkH4kV7Dk9NAIPatOJ/hvAuskp
-	 fW5nzOfYBqFQcBiDFAQCJP6JQAAPbp3RQ6KZHpboFnuBWcMC+Yr1irALonEmtQCJdx
-	 RrIdUwOPFBRA6NchlzBdz2M4=
-Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-b7a7049e202so335713466b.1
-        for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 16:10:19 -0800 (PST)
+	s=arc-20240116; t=1766277220; c=relaxed/simple;
+	bh=HMPSgVSQTL+epLIc/kC163AC8T4yQPlj7ZsUDuK4jB4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XSr6zeB6bLoyEQX0EImJC3FymWCb347c3sbYcqF2p7uec1Jiutcl35VD8DHxEL3gDgmk7QopO+aPECERwRyqUxyU5qBu4u/ysyxkqOUR2rYUccT7tNPgMswKLAVEPnKwHj5ImzApQDu2k3NREvfUd9fFZcPzcLmaRFTo9stn9Uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ObLK/bMu; arc=none smtp.client-ip=74.125.224.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yx1-f47.google.com with SMTP id 956f58d0204a3-6467bed0d2fso262797d50.0
+        for <devicetree@vger.kernel.org>; Sat, 20 Dec 2025 16:33:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766277218; x=1766882018; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X8G9KmswsznvRwWx5QwQoiucqBCNKeB6cJ130wl/F5s=;
+        b=ObLK/bMuYBq2EEpGmODMAy3+JxaEEH1OsKwNLseeP2BaY4hMc8Ko/oeOd2gwA1udv+
+         1Gy3wQpaYJNAD0hSdGZgTuTtGYHRDu0dxXF7R/UuSUWR/mv/BJWGsylGMAi6qpzb8Bvl
+         U6N7mLn0HJdvOSk/ZqE7+rzllZFplqB3sUiYYPKJBq0+FJJobCHNfAR4R0o4ZalSgC0A
+         gbaMw4QJ6FGQXa/neBtGga0wDdIPjTRIzBsdRcBo6SC9+xhJQpklb/iTiEFSlvthm+3T
+         HfxZaqxjKNYxA3En55P5jc1x+CaVVq3YOCCZoT3CqsUHiwjTfc1CVszATmq2RmQv0mm1
+         KB0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766275819; x=1766880619;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EQ5RLiXnHo1F0yqQLHlxodf/GRaWJlOplqUmCNv4d9U=;
-        b=L0dSL5dzYvurYTAYiHluBsLh/sEHZulDkoN+1al9HgUinJab/sB7Ad7ISoD6SdTuNX
-         XHpCGKhkEKlhPJnYsQSey3HSuPzK13dCJ9lg4Q1kfyLdSX52/Zsv3F1sPx1opHKBE4RI
-         Cb9Ub2A7y4gxBO2vuIFaqt7HSCcgFSALtIkI68jyZR4DgQK1fflaDx+o22LtrDtSw4/p
-         FVoj0AptZrzmf0Uo45dS1A9l7ZsRJF/u6P+LMSUdFTvmaubxnNNJC5ix1Cq3lLlvaKgi
-         q3AMFVN2huXMvin94g3DCarG3vjcuXpnIW0WM0JaJoHDhXr8EISiYzHoVN1eP3hJZN/d
-         dJrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXxJWn7upZPVGJeKAOACo1/RQmCcJbbkQOBqEBmrUfRXG9hyKl5yvGoNBZd5EFKVs+BhD6lapgM07qw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUD75keSb/6e/UDzuFlbIYpEBldmkK5eE8BcVjM87Sf5YlpXDX
-	oRCBMExadkByQGRddaRQeVi5sD1FNMPjXnCyD1ekdKL407Q1oPu4P5Q0iwnBCt+x9iD8NifHVs9
-	5wByfLsWY+vZxru1JmhwXKrJlTXxE/K1J1HyPuH3oeVLFZTTMSHIP9NkJApFzH6e1yn71/Jc4U3
-	V1QtA=
-X-Gm-Gg: AY/fxX7VVgDo/gEjOBrr0hF9JkJF5/O9xhjy7VV5Ij+t37pANRR83ykAsL4TNMl8fE7
-	V//yAC/YlkTKGeJCuZY+8ldljDrXz1UtSARPp6/88mejYECtNNizDWJH0RKEJFZ4TJuIcpOAKmf
-	j+kbEJ+UjR765pAU4Ps2V7Q7JFakEmxjFPwWXnxNI4g/Rm+RypcmJKApaaJg0s24DjjGJym52ED
-	EntiU+Tncgz/i+JD6QFzhU0/vq3zhBgrA9NDvNfxk+n++logudLXsO8bBep34QyJ/6MV4f5P5Hk
-	B2OBnmzgsZCIlUsGtrwKz6Elaoo3L1GD0xABLPTAs88o6A5giWeOg8vNVKLv6Ct4nTM2ODJxEIc
-	1N//qPS3Mv+BBf6oQ0me4P3C7tLiYGMBL05ZoRMDNgYZyj/mkLiAlZi54QD8abDg66DSf+t4VUI
-	CrrA==
-X-Received: by 2002:a17:907:1b0f:b0:b72:6ace:e5b6 with SMTP id a640c23a62f3a-b8036eba993mr656861466b.10.1766275819262;
-        Sat, 20 Dec 2025 16:10:19 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEjDNV981RWKgeVrEVOLEEbudUqo1wYPVxXW39PfSBF57U8UaF/sswqkvNfymrxCDZi7QfOUw==
-X-Received: by 2002:a17:907:1b0f:b0:b72:6ace:e5b6 with SMTP id a640c23a62f3a-b8036eba993mr656860466b.10.1766275818725;
-        Sat, 20 Dec 2025 16:10:18 -0800 (PST)
-Received: from ?IPV6:2a02:3037:6e1:c5c5:8b4c:2e28:afe4:1483? ([2a02:3037:6e1:c5c5:8b4c:2e28:afe4:1483])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8044f4acdbsm455456466b.22.2025.12.20.16.10.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 20 Dec 2025 16:10:18 -0800 (PST)
-Message-ID: <4e4c9e7b-d95c-4157-94c3-b06002f94a48@canonical.com>
-Date: Sun, 21 Dec 2025 01:10:15 +0100
+        d=1e100.net; s=20230601; t=1766277218; x=1766882018;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=X8G9KmswsznvRwWx5QwQoiucqBCNKeB6cJ130wl/F5s=;
+        b=Z8vbeHIhbMlELnq6mS5cbYLImFrDJTZCbTm99ZjCq9a92b24HTWOt3f7NqDazXZQo3
+         p1/UqakLmCfDIMgZ1wUSY65Mt24SQAI6A8uOCbAYbrPqnMJ3No6dgl5iaA3ezKnT4UfQ
+         0aIjCrJD5ZtN2dKPcSTW5Flz7Bl6tzeLzJMt4c6q58xYazZ2cdklYYdA1xXMV4kA/7Gh
+         4l6aHw2eu+bg7s6mWKqpvoCu4TK0/xBluHPkqBv7XraXN3uGUTTW6kam69qUWch1w46d
+         8G2kEtyzGrGPQWcjzXOtBOi01493itfFBv85g8kgIQ3aAUQR4+5aGnYHO+jNwznV+wT9
+         kZSw==
+X-Forwarded-Encrypted: i=1; AJvYcCU8ZCOgqGPAT0DlmMa4hzgwNyhGY1FfcZYd/rPKXbzrcmaAXuzeeJXFwSF96kjq99H1U7ZogtqB2O4+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNLZL9AAPGNf6WDg0oT6cQfhyucxTUB9TtupJzkx59051QlGJF
+	Fp3F0L1vVKhoGy2CNpA4aQ6qVh9Cn4sWWR944kHHQjvFvfVjE+w4K0yCuHv67B+9Q0TGLFZ3Bgj
+	/meK2N/CHZXk08Xax9LUPBHlbIws+0nQ=
+X-Gm-Gg: AY/fxX7smLhEaE848nSxIb8CNSYayS6HluD2E5ByydnqhHKpQwkMBSnN+M+g/3zyHC/
+	T7EB79XO2z/luAe3bi1irrn03QjK/JKq7NR7A3yPNF65I5C17VJkmeq6V3IoYBqoBkVLy6TnmRf
+	dFWxT7qLTwcDsvqKIw7Wa+NBejSJC5NKSTAgRNNcmIsiXSITDulmeVVTtXexFvck1wwnM2NVHt5
+	FjD+vZ+K6LxHwwHAkRRutirpbo+CCvhVGPiVuGu+Q/F5FaeZkzBZNC5u38hKDR+Ws/HD87AunZ9
+	VGo2K0UE6f6/GQE4fDV6mEVeqnIz
+X-Google-Smtp-Source: AGHT+IF+DcP7RBnj1eO65Ay4KAdaw9prgtbEqd38CqDRILia9eh90RWgdc07UopBt80TakLnfpkNrhhTAdF11Rmi1Ew=
+X-Received: by 2002:a53:b08c:0:b0:644:6422:cb2 with SMTP id
+ 956f58d0204a3-6466a8c09ddmr4928743d50.47.1766277218122; Sat, 20 Dec 2025
+ 16:33:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] riscv: dts: spacemit: add initial device tree of
- SpacemiT K3 SoC
-To: Conor Dooley <conor@kernel.org>, Guodong Xu <guodong@riscstar.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@sifive.com>,
- Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
- linux-serial@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Samuel Holland <samuel.holland@sifive.com>, Anup Patel
- <anup@brainfault.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Yangyu Chen <cyy@cyyself.name>
-References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
- <20251216-k3-basic-dt-v1-7-a0d256c9dc92@riscstar.com>
- <60948ca2-ed3d-485b-9b11-15df7ef8791d@canonical.com>
- <CAH1PCMb=+TvB1w+G6a2ANDp05HUwC4r6CFBDHXFwSmoP3Mm8xw@mail.gmail.com>
- <f9b6b5e2-ec9e-4208-8267-77020e0a9411@canonical.com>
- <20251218-basil-quantum-225ce16e4699@spud>
- <CAH1PCMZ3KM9-D3NJ1N2LUHTHFSDVKmGKT5fU8knAL7NnV9E-gw@mail.gmail.com>
- <20251220-repacking-football-c79e660e788a@spud>
-Content-Language: en-US
-From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-In-Reply-To: <20251220-repacking-football-c79e660e788a@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20251220-mt8196-shader-present-v2-0-45b1ff1dfab0@collabora.com>
+In-Reply-To: <20251220-mt8196-shader-present-v2-0-45b1ff1dfab0@collabora.com>
+From: Chia-I Wu <olvaffe@gmail.com>
+Date: Sat, 20 Dec 2025 16:33:26 -0800
+X-Gm-Features: AQt7F2pQeCDszCkhBlVBNoYZ8W1xv30ESuUDKy-HkDBic1PvCA7PvceQ4heu6Pg
+Message-ID: <CAPaKu7QST65NPQ7rZAGhqLsb4FN21D-rOvUf-UzgsBCrOv1skA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] Make MT8196 get its Mali GPU shader_present from nvmem
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/21/25 00:23, Conor Dooley wrote:
-> On Fri, Dec 19, 2025 at 10:03:24AM +0800, Guodong Xu wrote:
->> Hi, Conor and Heinrich
->>
->> On Thu, Dec 18, 2025 at 8:56 AM Conor Dooley <conor@kernel.org> wrote:
->>>
->>> On Wed, Dec 17, 2025 at 09:07:14AM +0100, Heinrich Schuchardt wrote:
->>>> On 12/17/25 08:11, Guodong Xu wrote:
->>>
->>>>> Specifically, I must adhere to
->>>>> Documentation/devicetree/bindings/riscv/extensions.yaml (and cpus.yaml for
->>>>> properties like 'riscv,sv39' which stands for the extension Sv39). If I
->>>>> add extension strings that are not yet defined in these schemas, such as
->>>>> supm, running 'make dtbs_check W=3' fails with: 'supm' is not one of
->>>>> ['i', 'm', 'a', ...], followed by "Unevaluated properties are not allowed."
->>>>
->>>> If Documentation/devicetree/bindings/riscv/extensions.yaml is incomplete
->>>> with respect to ratified extensions, I guess the right approach is to amend
->>>> it and not to curtail the CPU description.
->>>
->>> Absolutely. If the cpu supports something that is not documented, then
->>> please document it rather than omit from the devicetree.
->>
->> Thanks for the review. May I clarify one thing? Both of you mentioned
->> document them, given the amount of missing extensions, is it acceptable if
->> I submit a prerequisite patch that only documents these strings in
->> riscv/extensions.yaml plus the necessary hwprobe export? Leaving the actual
->> usage of these extensions (named features) to the future patches.
->>
->> To provide some context on why I ask: I've investigated the commits & lkml
->> history of RISC-V extensions since v6.5, and I summarized the current status
->> regarding the RVA23 profile here:
->> [1] status in v6.18 (inc. v6.19-rc1):
->> https://docularxu.github.io/rva23/linux-kernel-coverage.html
->> [2] support evolution since v6.5:
->> https://docularxu.github.io/rva23/rva23-kernel-support-evolution.html
->>
->> Strictly describing the SpacemiT X100/K3 (or any core) as RVA23-compliant
->> requires adding these extensions that are currently missing from
->> the kernel bindings:
->> RVA23U64: Ziccif, Ziccamoa, Zicclsm, Za64rs
->> RVA23S64: Ss1p13, Ssccptr, Sstvecd, Sstvala, Sscounterenw, Ssu64xl,
->>            Sha, Shcounterenw, Shvstvala, Shtvala, Shvstvecd, Shvsatpa, Shgatpa
-> 
-> 
->> Plus 'Supm', 'Zic64b', 'Ssstateen', 'B' where the kernel supports them but
->> they are not literally documented in yaml.
-> 
-> I don't think Supm is suitable for devicetree, doesn't it describe
-> what the kernel/userspace are capable of rather than hardware?
-> Zic64b doesn't sound like hardware description (so not really suitable
-> for devicetree either) but block size information is already represented
-> by some existing properties (see riscv,cbo*-block-size in riscv/cpus.yaml)
-> and duplicating that information is not really a great idea.
-> 
-> I'll admit that I do not really understand Sxstateen and how they work,
-> but my understanding was that knowing about Smstateen is sufficient and
-> implied Sstateen, but having Ssstateen defined seems harmless and
-> possible. I think kvm is the only user of this at the moment, so
-> probably worth CCing Anup and maybe Drew Jones on the patch adding
-> Ssstateen to make sure it makes sense.
-
-Supm is described in
-
-RISC-V Pointer Masking
-Version 1.0, 10/2024: Ratified
-https://raw.githubusercontent.com/riscv/riscv-j-extension/master/zjpm-spec.pdf
-
-The interpretation taken by QEMU has been:
-
-* Supm implies Ssnpm and Smnpm
-* RVA23 capable machine models display it in the device-tree
-
-If Supm is not shown in the device-tree, software might assume that the 
-system does not support pointer masking in user mode and is not RVA23 
-compliant.
-
-Hence I would suggest:
-
-If the X100 cores have Ssnpm and Smnpm, add Supm to the device-tree.
-
-If the kernel does not support user space pointer masking, the kernel 
-should filter out Supm and not announce it, neither in /proc/cpuinfo nor 
-via hwprobe.
-
-Best regards
-
-Heinrich
+On Sat, Dec 20, 2025 at 10:50=E2=80=AFAM Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+>
+> The MediaTek MT8196 SoC's Mali SHADER_PRESENT register does not list
+> only functional shader cores, but also those that are fused off to
+> improve yield.
+>
+> The SHADER_PRESENT bitmask with the one fused off core omitted is to be
+> found in an efuse. However, the efuse address is considered
+> confidential, and is not public knowledge.
+>
+> The MT8196 GPUEB MCU, which does the power management for the Mali GPU
+> on this SoC, knows and reads the efuse however, and exposes it in the
+> shared memory intended to communicate state to the application
+> processor. Reading the bitmask from this shared memory area is the
+> vendor's intended solution.
+>
+> This series models this in the binding and implements it in the
+> corresponding Linux drivers:
+> - the mali-valhall-csf binding gets an nvmem-cells/nvmem-cell-names
+>   property to declare that shader-present is in a different castle
+> - the mt8196-gpufreq binding requires nodes to expose the shader-present
+>   cell
+> - panthor checks for the presence of the shader-present cell and uses it
+>   as the shader-present value if it's found, instead of the Mali GPU
+>   register contents
+> - mtk-mfg-pmdomain becomes an nvmem provider and will happily serve
+>   queries for the shader-present cell
+>
+> While it would be preferable if we could read the efuse directly, it's
+> not possible as things stand, and insisting on it will just keep this
+> hardware from working in mainline. Running a GPU workload with a
+> SHADER_PRESENT bitmask that includes a faulty core results in corrupt
+> GPU rendering output.
+>
+> Modelling the mt8196-gpufreq device as a nvmem-cell provider however is
+> not lying about the hardware's capabilities, as it truly does provide
+> access to the nvmem-cell, even if it acts as a proxy.
+>
+> From a bindings and panthor perspective, this is also generic enough to
+> where hypothetical other vendors doing the same thing (even with direct
+> efuse access) can rely on the same cell name and implementation.
+>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Series is Reviewed-by: Chia-I Wu <olvaffe@gmail.com>
+> ---
+> Changes in v2:
+> - panthor: move to nvmem_cell_read_variable_le_u64
+> - mtk-mfg-pmdomain: put of_node in error path
+> - mtk-mfg-pmdomain: remove leftover stray of_node_put on NULL
+> - Link to v1: https://lore.kernel.org/r/20251217-mt8196-shader-present-v1=
+-0-f6f8f3aa1e93@collabora.com
+>
+> ---
+> Nicolas Frattaroli (4):
+>       dt-bindings: gpu: mali-valhall-csf: Add shader-present nvmem cell
+>       dt-bindings: power: mt8196-gpufreq: Describe nvmem provider ability
+>       drm/panthor: Implement reading shader_present from nvmem
+>       pmdomain: mediatek: mtk-mfg: Expose shader_present as nvmem cell
+>
+>  .../bindings/gpu/arm,mali-valhall-csf.yaml         | 14 +++++
+>  .../bindings/power/mediatek,mt8196-gpufreq.yaml    | 13 +++++
+>  drivers/gpu/drm/panthor/panthor_hw.c               | 36 ++++++++++---
+>  drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c       | 59 ++++++++++++++++=
+++++++
+>  4 files changed, 116 insertions(+), 6 deletions(-)
+> ---
+> base-commit: 638148c6ffa31d2e4958d51708ff3675221e2da7
+> change-id: 20251217-mt8196-shader-present-e2dc3f97fc74
+>
+> Best regards,
+> --
+> Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+>
 
