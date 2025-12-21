@@ -1,419 +1,225 @@
-Return-Path: <devicetree+bounces-248608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063DDCD45FC
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 22:38:14 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 028B2CD46A9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 00:32:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 765543020CFA
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 21:36:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 543C33008CE7
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 23:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C882627EC;
-	Sun, 21 Dec 2025 21:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IcPyaoZf";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bVXVGK0x"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921CD27FB2D;
+	Sun, 21 Dec 2025 23:32:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB6E2580F2
-	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 21:36:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E952620D2
+	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 23:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.162
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766353007; cv=none; b=lrUWf286YcJIzCvYw3KlgzPBB1rRf0v2u2qrESyROYcZO9dOmlIFHMINETsyW3KEqOwhqX8zxW9ue4iqDvbTL0t2cTHgd+4fQc+0R1P/I+2bRUYlf0iQeUD5mdHtPXFDHSuH+WL8OoUVNgZ0Wi8JVLpZMbB5ACkdvOT+5PPyN+w=
+	t=1766359945; cv=none; b=B/e7XUQlrVIFQ/y9suO3cMDQ1FeaNVun/Ze+J6pPo4GKR1tWFktH/WpWi+53G0L9GPBMxTAEbv8u5ClSEmQ99b+eUu2KrIsk86NUOROmjVJ1FfbvD/yNR3mK8u6pQBl48vgKrZs++qmVI52sBfaPqc9+UhaW1uEt21V8h7bxd18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766353007; c=relaxed/simple;
-	bh=76x0waUT0Gi8/G+fPPa1V6w6ovWJhH1EZ6CFW2yDzKI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fgUmrtsb8gH7MmXXKteN0102vz2/yP5U4LHgNQEOBTJL+jbV3EAEKEsqE3L/m4Sv38nzTXcKY2ypgMk0QFtRIPvQlhS23OlRc9iNhSjcmdf/seAo6lEgE5P/lS7YqifLKj9htSJ7dSZOyPyrr1TkPR8rj1fcTaRgkHGm53mEUTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IcPyaoZf; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bVXVGK0x; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BL6SKXS1870478
-	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 21:36:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=lTfUooU6YQ/
-	6LN/6Wkk5DxaIFgRPD3nxUH9oNYW4Q6s=; b=IcPyaoZfxMeMxuH0tA75qrQ/t7f
-	y5JuT69+LLOSAtvMdivQPIiRrgjFrtDwZH1A78hHwzOt7zoDcFZoCJuxFytpB9uZ
-	aqSws+3dz2oEmEpsAviFZ7AjPBGelQNJ7BTWgRz9kkFp5vHOELcsJu0ssiFl970v
-	37xRrv2QyIPbwzQrveMZ1QGIcN5a1L3o9QzTZLxNtzCk+rny3oKk4GncUXgHZ2Qu
-	KmwiBJWHD7Eg7j/cN/Kh0myZS4RwSYckL9ZgZfIFlCYgRauHNobo1f0kGfHvhr5s
-	71IBE7cy1Nqn23T1vOX0Nxqpg90nF3mrqwEPkoMDJ2EkKz6CFM0qHyZ2Cvw==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b5mru2x7u-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 21:36:43 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-34c93f0849dso3109270a91.1
-        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 13:36:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766353003; x=1766957803; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lTfUooU6YQ/6LN/6Wkk5DxaIFgRPD3nxUH9oNYW4Q6s=;
-        b=bVXVGK0xU3n6yFMLlYeD37HxGQ4bdYPStlGGL2vHypjDcJdNDbb9RFHpLtAWya46Vd
-         Na7hPi8srVW/o5Ra4fyDjLY0HnYlb+GCGx4woPI8s+SD5gKb9+Qm8qruhOuOHiceC2Ql
-         THbdku1hxPjqYwH/+9LTiRIX9+6Y1XwQVes+r5nHx/2nIdiQdAyWoRI/rtbb3Bq/z80z
-         p4+n5xSidFJsGRRMc3W5HIjJHxJ9ec8FPItKiDtaGi4bNqHMr6Ji8UsgsgDMopCKL7r3
-         CJg9waOl8/moKiBVcf0bsazr6BRjfNH49Uvh7cbunYUtjgCsnR86fIAhLm11PJ9oBWVp
-         +DDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766353003; x=1766957803;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lTfUooU6YQ/6LN/6Wkk5DxaIFgRPD3nxUH9oNYW4Q6s=;
-        b=vnaY55Mofsgaw+bLT3l3sqYt2TlgY/dQhZsSeMotEUdIqrOhCaB0u1xpx4RJ7WrH2z
-         t01C/l4xF1lDhHklQiWWg3ghHdHkQkwRstpIftrbw+TysERAQL2J+LyB8Gbm8vSxIkzv
-         dG9chdBCHoOcW3V6pOD41gbN9+LvBp1T0+Qzli5szgoG5IOUL4Lgl3xsLpoinnRjtJ1h
-         0YsmNqeOwLHezp5aA21iqokKqqaErGbzyHuO4ImnK+RcwF360hxK1ZHxW2PmQuUDwktK
-         youeMP+I3L0d38wsvg5x1bCfIyI8ndNurJE0J6Wav2yV1NZveRw/7liod8ObbGYPYCbm
-         158Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV/fXSa1zztxUrg2i8+zqXVMEU7xqFNQRm257BgXRyPSi9K6GDRxRsCt7jsQwZ2aqg5cY/Ef5SFWENe@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfVEx9MusVG7WRR4W81wNfY5kjHrI+3y464wxDYkNXzQWZMcPv
-	KUFbI1oX9Vbg7DjxDoK8nZPGUlhuGcU2G+Ihamv4KTBBedU7EEFM6I42AHhoURzWpLS28TmTp8e
-	9sHAlWOEt/AT6PSXsZJc+vmLmY4lvDPnFQmW7ekfBKG4ucZl0GZuRbrQmpW2uQEM4
-X-Gm-Gg: AY/fxX7YHP0NMterW4L0sHtPnVv+gK4Z7Gj6l8XRdKNQTjIOMn+vzJsKsu8GFikVxUI
-	8p25trn1p0yovihqeRrWBHggaD+Kibg77/KkUQ+x/VFT51vZIIKXQ3mBfozTvDpPuypn8+UovKv
-	4qtisVk8pzwHsARx2yeX548UW6zisvuRh2pglNtnEgJIgk6+UYkYNe/5BC+kFuhO6K0h/ePQXo5
-	GFeFQNiOeB79Rxztc4aWgTpp/jNLB7/5MWp8fPxC7lEjXKy7pfw5PJMbgQ0Qlk4jpLPLmPeu1AU
-	LUd1Ag34BgSQvye2K2Eqa2K5k2rb1kJuwoaOJtz0cPJy5jwC5Ktox2l2xeyEgAHDtaEBYVg+tLc
-	GFCQoYI3sjhPrCdSxM41/ADF5sQDy6AoVUZlQw7wB9rPA
-X-Received: by 2002:a17:90b:2cce:b0:343:6a63:85d5 with SMTP id 98e67ed59e1d1-34e90de2570mr8296057a91.16.1766353002566;
-        Sun, 21 Dec 2025 13:36:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IExqI7Jno+XhZu6DZAHUuo8szMM/almYtDUdvO8izu0OaxMl7ybeXGhn2dL8JLTkTnp/7rKSg==
-X-Received: by 2002:a17:90b:2cce:b0:343:6a63:85d5 with SMTP id 98e67ed59e1d1-34e90de2570mr8296045a91.16.1766353002020;
-        Sun, 21 Dec 2025 13:36:42 -0800 (PST)
-Received: from hu-vjitta-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34e70dcc7c8sm10950163a91.15.2025.12.21.13.36.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Dec 2025 13:36:41 -0800 (PST)
-From: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-To: robin.murphy@arm.com, will@kernel.org, joro@8bytes.org, robh@kernel.org,
-        dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
-        bjorn.andersson@oss.qualcomm.com, bod@kernel.org, conor+dt@kernel.org,
-        krzk+dt@kernel.org, saravanak@google.com,
-        prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com
-Cc: iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-Subject: [PATCH v3 3/3] of: Respect #{iommu,msi}-cells in maps
-Date: Mon, 22 Dec 2025 03:06:02 +0530
-Message-Id: <20251221213602.2413124-4-vijayanand.jitta@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251221213602.2413124-1-vijayanand.jitta@oss.qualcomm.com>
-References: <20251221213602.2413124-1-vijayanand.jitta@oss.qualcomm.com>
+	s=arc-20240116; t=1766359945; c=relaxed/simple;
+	bh=K67x8906beDdx2WsWxtu475jpx65pzBUTHCGk31JWeI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aOsot6Umsn9ON4GQiJrfETMmIxS78HJAxoO9rQTvqgfA8XZz1Zz10lIPMabNMYMC10/DXj2fshMQjxoInFdn89FYGRk8Dj9Fjc3xc/mXlrPVyeGDVzZiT7y/Aem75ipD4qAYQ4QR6Ph9R1Zn5d8wS7oTjmgHaIjw5q9DW7IMdzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.162
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
+Received: from Marijn-Arch-PC.localdomain (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 6F28E1F6FC;
+	Mon, 22 Dec 2025 00:32:12 +0100 (CET)
+From: Marijn Suijten <marijn.suijten@somainline.org>
+Subject: [PATCH v2 00/11] drm/panel: Add 5 DDIC panel drivers for 14 Sony
+ phones
+Date: Mon, 22 Dec 2025 00:32:06 +0100
+Message-Id: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIxMDIwNCBTYWx0ZWRfXw4Wary2u6B3J
- 8+rw6skhhVpLKkdRU/zuPNzY4GwISuBxhE01amPUktKhIGCCs9T0g8lrDWRS53Ya37jELXRUn6o
- RVKEDE2eCwWlAC+Evwc+jde+WzBh9gEOQDtG2xEYXCss70oMke7cLCmadxbaJeC6FyFRaeZO1qp
- f99Iyo6iVVkjFERQim9JghBFMvW9QN7qOJuYjOTgm5J338oX+T24B7KmJCQt97uXHOAwyyxwJtG
- e6632DY50WBr9rFizXW4pKmILLuPVYZxi0Bems9KrWjSAT0hAJK4g1vKQNR1ZiZaHXfCvkqjJvY
- yNnbVgUQFmdrFoRDO317HfRTYiMZTNTxHQutr00Ggseqs28marc+COSk/urrzgShU5dzm8Pxri1
- 5l8uIN44RCDTqsgzb9oNj7+Uh+OnqPHp3yVolP4jyfSj/fdILRPmIu9e8mqdEFgTFuUIjwSJxuk
- SeU0pa8FWiSY2fC0JDw==
-X-Authority-Analysis: v=2.4 cv=VMnQXtPX c=1 sm=1 tr=0 ts=6948686b cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=7CQSdrXTAAAA:8 a=EUspDBNiAAAA:8 a=wJGdY9mNwEi-N7fqGJcA:9
- a=rl5im9kqc5Lf4LNbBjHf:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-ORIG-GUID: kp-nlTclzYsDCpCNOs4j8UFxE38S5elO
-X-Proofpoint-GUID: kp-nlTclzYsDCpCNOs4j8UFxE38S5elO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-21_05,2025-12-19_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 phishscore=0 suspectscore=0 lowpriorityscore=0
- spamscore=0 adultscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512210204
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHeDSGkC/3WNQQ6CMBAAv0J6dg1tQY0n/mE4lLLCJmVLukokh
+ L9buXucSSazKcFEKOpebCrhQkKRM5hTofzoeECgPrMypbFlbTT0aYLZMQYBibyC9bXz1uhbZa4
+ qV50ThC459mPu+B1ClnPCJ32OzaPNPJK8YlqP66J/9v9g0VBCXWlvK91fOsRG4uSIAzGeYxpUu
+ +/7FyvVGTLIAAAA
+X-Change-ID: 20230521-drm-panels-sony-3c5ac3218427
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Simona Vetter <simona@ffwll.ch>, Casey Connolly <casey.connolly@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Simona Vetter <simona.vetter@ffwll.ch>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, 
+ Martin Botka <martin.botka@somainline.org>, 
+ Jami Kettunen <jami.kettunen@somainline.org>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Kuogee Hsieh <quic_khsieh@quicinc.com>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5747;
+ i=marijn.suijten@somainline.org; h=from:subject:message-id;
+ bh=K67x8906beDdx2WsWxtu475jpx65pzBUTHCGk31JWeI=;
+ b=owEBbQKS/ZANAwAKAfFi0jHH5IZ2AcsmYgBpSIN6YkG9pGec0D26HJiZ4bHB25d/8INCjaU9i
+ YBMsf9neEOJAjMEAAEKAB0WIQROiwG5pb6la1/WZxbxYtIxx+SGdgUCaUiDegAKCRDxYtIxx+SG
+ duL5D/0VcS96EtxOGwu/7DcTf+QxrcQUXaRUkZIa/j66BbxcC6JH6IkGwBFStuemq+wbisssVNs
+ DzKAADfjTy0in0o4Hp7pTtQ7rVubzo7Ipkhrk3epb9LXPjCTt17N5UVWriR2WNGEiHDrO/Pqgvr
+ GrMGK7w8yXx+7+U8woTCLZ4J2YC+cg6YbmJfxm6xh3xAP+Ddo7MIcSfSuMR7kC/A5H4GSiYYd3L
+ gjrj9p7Tl05RCgJIuIAs8fBZUSleFfSQtSb3Gz8Xe4ltFfjLIh5RFXGKJlFK4PxBjzfGTT0u4ue
+ zS0/Zdc6NbxzV0x7Owp9U9yxj8ZWRTuH0GQIU5IsB41uEarhnrXd3yo+sgaMXD0mESKLxOmdzNl
+ uQ1aE2QnrjqX8nv4hjR1yeiAvJQBSya5swLnBftXXBYAcIqq3F6u1nL7MFnCRL1p/ToAr2TjVzC
+ XLtMxbwOLU2zLjpwa6zQXgxkFQIiQ3ng2QCol0EvOZKTQgGjqVymSnjRb+D2eZIF1KouCYnynGX
+ vDHBMzPiSUDKGeQV6toWuiEzR2GYT3Ip3KrAbutarvqWEiHa5DzkLQBjExZYqixVXEEq6G1xy5r
+ jO7q71u1GCrD5VXXgCRh2zxtPM87O0q8CIbX0PnfOg3NUqCk6wIt6NTwFOggfhP09ND3IO8Opt6
+ Fn5wQ/l1ZxD9X3A==
+X-Developer-Key: i=marijn.suijten@somainline.org; a=openpgp;
+ fpr=4E8B01B9A5BEA56B5FD66716F162D231C7E48676
 
-From: Robin Murphy <robin.murphy@arm.com>
+This is the second version of a largely reshaped series that brings 5
+new DDIC panel drivers (4 Samsung, 1 LGD) that are compatible with 14
+Sony phones:
 
-So far our parsing of {iommu,msi}-map properites has always blindly
-asusmed that the output specifiers will always have exactly 1 cell.
-This typically does happen to be the case, but is not actually enforced
-(and the PCI msi-map binding even explicitly states support for 0 or 1
-cells) - as a result we've now ended up with dodgy DTs out in the field
-which depend on this behaviour to map a 1-cell specifier for a 2-cell
-provider, despite that being bogus per the bindings themselves.
+- LGD LG699QH3-EDB1 (1440x2880@60Hz, DSC):
+  - Sony Xperia XZ3
+- Samsung SOFEF01 (1080x2520@60Hz):
+  - Sony Xperia 5
+  - Sony Xperia 10 II
+  - Sony Xperia 10 III
+  - Sony Xperia 10 IV (yet untested)
+  - Sony Xperia 10 V (yet untested)
+  - Sony Xperia 10 VI (yet untested)
+- Samsung SOFEF03 (1080x2520@120Hz, DSC):
+  - Sony Xperia 5 II
+  - Sony Xperia 5 III
+- Samsung SOUXP00 (1644x3840@60Hz, DSC):
+  - Sony Xperia 1
+  - Sony Xperia 1 II
+- Samsung ANA6707 (1644x3840@120Hz, DSC, dual-DSI):
+  - Sony Xperia 1 III
+  - Sony Xperia 1 IV (yet untested)
+  - Sony Xperia 1 V (yet untested)
 
-Since there is some potential use in being able to map at least single
-input IDs to multi-cell output specifiers (and properly support 0-cell
-outputs as well), add support for properly parsing and using the target
-nodes' #cells values, albeit with the unfortunate complication of still
-having to work around expectations of the old behaviour too.
+DTS changes will follow shortly to collectively enable the GPU,
+touchscreen and configure this panel driver for aforementioned (tested)
+devices.  After that we can focus on the untested devices and ultimately
+all newer devices that are not even mentioned here.
 
-Since there are multi-cell output specifiers, the callers of of_map_id()
-may need to get the exact cell output value for further processing.
-Added support for that part --charan
+The ANA6707 driver depends on [1] (revert of quad-DSC over dual-DSI) to
+function correctly.
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+A few limitations/issues with these drivers:
+
+- Panels/drivers featuring multiple modes
+
+  Most of these drivers support multiple modes, for example to save
+  bandwidth/energy by running on lower resolutions or framerates.
+  These can be picked via mode selection by userspace, but are not yet
+  forwarded to the drm_panel abstractions.
+
+  Work is underway to bring those atomic modeset calls to drm_panel
+  together with moving where drm_dsc_config lives, since its
+  configuration depends on the resolution for example.
+
+  For now the choice between either mode has been hardcoded behind a
+  static const bool.
+
+- pclk
+
+  The brunt of some older discussion was around getting these command
+  mode panels functioning at their desired 60Hz or 120Hz refresh rate
+  without tearing/artifacts, and without hacks.  Part of that discussion
+  around DSC-specific timing adjustments is happening in [2], but
+  the SOFEF01 (non-DSC) Driver-IC is also struggling on the Xperia 5
+  specifically, as outlined in that specific patch.  That is currently
+  "addressed" with a "porch hack" but should probably have some sort of
+  overhead / transfer time taken into account in the MSM DSI driver.
+
+  Let me know what the best place is to collate all the relevant info
+  (links to downstream panel DTS, outcomes with different patches and
+  tweaks, etc).  A new fd.o drm/msm issue?
+
+- Flickering on brightness changes
+
+  Likely because of the missing "transfer overhead" calculations and/or
+  proper sequencing in the DSI host driver, changing brightness results
+  in corruption on all (Samsung) panels excluding the LGD panel for the
+  XZ3.  It is yet unknown why this is happening and likely requires more
+  debugging outside of these panel drivers.
+
+[1]: https://lore.kernel.org/linux-arm-msm/20251219-drm-msm-dpu-revert-quad-pipe-broken-v1-0-654b46505f84@oss.qualcomm.com/
+[2]: https://gitlab.freedesktop.org/drm/msm/-/issues/24#note_1917707
+
+Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 ---
- drivers/iommu/of_iommu.c |   2 +-
- drivers/of/base.c        | 116 +++++++++++++++++++++++++++++++--------
- include/linux/of.h       |  16 +++---
- 3 files changed, 102 insertions(+), 32 deletions(-)
+Changes in v2:
+- Names of all panels are now included;
+- All drivers are rewritten against the latest _multi() API with dsi_ctx
+  struct;
+- DSC structures are no longer optional;
+- get_brightness is removed;
+- set_brightness no longer takes DSI out of LPM - specifically on the
+  SOFEF01 brightness changes are ignored otherwise;
+- Regulators converted to regulator_bulk_data;
+- Panel driver for ANA6707 following up on my dual-DSI-dual-DSC work
+  in MSM DPU is now included;
+- Possibly more that I've either forgotten or been too careless to
+  diff properly with the *over 2.5 years old!* v1:
+- Link to v1: https://lore.kernel.org/r/20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org
 
-diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-index 74779b77ba13..ece830ec4c19 100644
---- a/drivers/iommu/of_iommu.c
-+++ b/drivers/iommu/of_iommu.c
-@@ -45,7 +45,7 @@ static int of_iommu_configure_dev_id(struct device_node *master_np,
- 				     struct device *dev,
- 				     const u32 *id)
- {
--	struct of_phandle_args iommu_spec = { .args_count = 1 };
-+	struct of_phandle_args iommu_spec = {};
- 	struct of_map_id_arg arg = {
- 		.map_args = iommu_spec,
- 	};
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 4dca3d37a34b..aedff1c03995 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -2045,11 +2045,38 @@ int of_find_last_cache_level(unsigned int cpu)
- 	return cache_level;
- }
- 
-+/*
-+ * Some DTs have an iommu-map targeting a 2-cell IOMMU node while
-+ * specifying only 1 cell. Fortunately they all consist of value '1'
-+ * as the 2nd cell entry with the same target, so check for that pattern.
-+ *
-+ * Example:
-+ * 	IOMMU node:
-+ * 		#iommu-cells = <2>;
-+ *
-+ *	Device node:
-+ *		iommu-map = <0x0000 &smmu 0x0000 0x1>,
-+ *			    <0x0100 &smmu 0x0100 0x1>;
-+ */
-+static bool of_check_bad_map(const __be32 *map, int len)
-+{
-+	__be32 phandle = map[1];
-+
-+	if (len % 4)
-+		return false;
-+	for (int i = 0; i < len; i += 4) {
-+		if (map[i + 1] != phandle || map[i + 3] != cpu_to_be32(1))
-+			return false;
-+	}
-+	return true;
-+}
-+
- /**
-  * of_map_id - Translate an ID through a downstream mapping.
-  * @np: root complex device node.
-  * @id: device ID to map.
-  * @map_name: property name of the map to use.
-+ * @cells_name: property name of target specifier cells.
-  * @map_mask_name: optional property name of the mask to use.
-  * @arg: contains the optional params, wrapped in a struct of_phandle_args,
-  *	which includes:
-@@ -2067,18 +2094,19 @@ int of_find_last_cache_level(unsigned int cpu)
-  *
-  * Return: 0 on success or a standard error code on failure.
-  */
--int of_map_id(const struct device_node *np, u32 id,
--	       const char *map_name, const char *map_mask_name,
--	       struct of_map_id_arg *arg)
-+int of_map_id(const struct device_node *np, u32 id, const char *map_name,
-+	      const char *cells_name, const char *map_mask_name,
-+	      struct of_map_id_arg *arg)
- {
- 	u32 map_mask, masked_id;
--	int map_len;
-+	int map_bytes, map_len, offset = 0;
-+	bool bad_map = false;
- 	const __be32 *map = NULL;
- 
- 	if (!np || !map_name || !arg || (!arg->map_args.np && !arg->map_args.args))
- 		return -EINVAL;
- 
--	map = of_get_property(np, map_name, &map_len);
-+	map = of_get_property(np, map_name, &map_bytes);
- 	if (!map) {
- 		if (arg->map_args.np)
- 			return -ENODEV;
-@@ -2087,11 +2115,9 @@ int of_map_id(const struct device_node *np, u32 id,
- 		return 0;
- 	}
- 
--	if (!map_len || map_len % (4 * sizeof(*map))) {
--		pr_err("%pOF: Error: Bad %s length: %d\n", np,
--			map_name, map_len);
--		return -EINVAL;
--	}
-+	if (map_bytes % sizeof(*map))
-+		goto err_map_len;
-+	map_len = map_bytes / sizeof(*map);
- 
- 	/* The default is to select all bits. */
- 	map_mask = 0xffffffff;
-@@ -2104,27 +2130,64 @@ int of_map_id(const struct device_node *np, u32 id,
- 		of_property_read_u32(np, map_mask_name, &map_mask);
- 
- 	masked_id = map_mask & id;
--	for ( ; map_len > 0; map_len -= 4 * sizeof(*map), map += 4) {
-+	while (offset < map_len) {
- 		struct device_node *phandle_node;
--		u32 id_base = be32_to_cpup(map + 0);
--		u32 phandle = be32_to_cpup(map + 1);
--		u32 out_base = be32_to_cpup(map + 2);
--		u32 id_len = be32_to_cpup(map + 3);
-+		u32 id_base, phandle, id_len, id_off, cells = 0;
-+		const __be32 *out_base;
-+
-+		if (map_len - offset < 2)
-+			goto err_map_len;
-+
-+		id_base = be32_to_cpup(map + offset);
- 
- 		if (id_base & ~map_mask) {
--			pr_err("%pOF: Invalid %s translation - %s-mask (0x%x) ignores id-base (0x%x)\n",
--				np, map_name, map_name,
-+			pr_err("%pOF: Invalid %s translation - %s (0x%x) ignores id-base (0x%x)\n",
-+				np, map_name, map_mask_name,
- 				map_mask, id_base);
- 			return -EFAULT;
- 		}
- 
--		if (masked_id < id_base || masked_id >= id_base + id_len)
--			continue;
- 
-+		phandle = be32_to_cpup(map + offset + 1);
- 		phandle_node = of_find_node_by_phandle(phandle);
- 		if (!phandle_node)
- 			return -ENODEV;
- 
-+		if (!bad_map && of_property_read_u32(phandle_node, cells_name, &cells)) {
-+			pr_err("%pOF: missing %s property\n", phandle_node, cells_name);
-+			return -EINVAL;
-+		}
-+
-+		if (map_len - offset < 3 + cells)
-+			goto err_map_len;
-+
-+		if (offset == 0 && cells == 2) {
-+			bad_map = of_check_bad_map(map, map_len);
-+			if (bad_map) {
-+				pr_warn_once("%pOF: %s mismatches target %s, assuming extra cell of 0\n",
-+				np, map_name, cells_name);
-+				cells = 1;
-+			}
-+		}
-+
-+		out_base = map + offset + 2;
-+		offset += 3 + cells;
-+
-+		id_len = be32_to_cpup(map + offset - 1);
-+		if (id_len > 1 && cells > 1) {
-+			/*
-+			 * With 1 output cell we reasonably assume its value
-+			 * has a linear relationship to the input; with more,
-+			 * we'd need help from the provider to know what to do.
-+			 */
-+			pr_err("%pOF: Unsupported %s - cannot handle %d-ID range with %d-cell output specifier\n",
-+				np, map_name, id_len, cells);
-+			return -EINVAL;
-+		}
-+		id_off = masked_id - id_base;
-+		if (masked_id < id_base || id_off >= id_len)
-+			continue;
-+
- 		if (arg->map_args.np)
- 			of_node_put(phandle_node);
- 		else
-@@ -2133,12 +2196,15 @@ int of_map_id(const struct device_node *np, u32 id,
- 		if (arg->map_args.np != phandle_node)
- 			continue;
- 
--		if (arg->map_args.args)
--			*arg->map_args.args = masked_id - id_base + out_base;
-+		for (int i = 0; arg->map_args.args && i < cells; i++)
-+			arg->map_args.args[i] += (id_off + be32_to_cpu(out_base[i]));
-+
-+		if (arg->map_args.args_count)
-+			arg->map_args.args_count = cells;
- 
- 		pr_debug("%pOF: %s, using mask %08x, id-base: %08x, out-base: %08x, length: %08x, id: %08x -> %08x\n",
--			np, map_name, map_mask, id_base, out_base,
--			id_len, id, masked_id - id_base + out_base);
-+			np, map_name, map_mask, id_base, be32_to_cpup(out_base),
-+			id_len, id, id_off + be32_to_cpup(out_base));
- 		return 0;
- 	}
- 
-@@ -2149,5 +2215,9 @@ int of_map_id(const struct device_node *np, u32 id,
- 	if (arg->map_args.args)
- 		*arg->map_args.args = id;
- 	return 0;
-+
-+err_map_len:
-+	pr_err("%pOF: Error: Bad %s length: %d\n", np, map_name, map_bytes);
-+	return -EINVAL;
- }
- EXPORT_SYMBOL_GPL(of_map_id);
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 0b0d545b80a3..ee07e8642133 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -460,9 +460,9 @@ const char *of_prop_next_string(const struct property *prop, const char *cur);
- 
- bool of_console_check(const struct device_node *dn, char *name, int index);
- 
--int of_map_id(const struct device_node *np, u32 id,
--	       const char *map_name, const char *map_mask_name,
--	       struct of_map_id_arg *arg);
-+int of_map_id(const struct device_node *np, u32 id, const char *map_name,
-+	      const char *cells_name, const char *map_mask_name,
-+	      struct of_map_id_arg *arg);
- 
- phys_addr_t of_dma_get_max_cpu_address(struct device_node *np);
- 
-@@ -909,9 +909,9 @@ static inline void of_property_clear_flag(struct property *p, unsigned long flag
- {
- }
- 
--static inline int of_map_id(const struct device_node *np, u32 id,
--			     const char *map_name, const char *map_mask_name,
--			     struct of_map_id_arg *arg)
-+static inline int of_map_id(const struct device_node *np, u32 id, const char *map_name,
-+			    const char *cells_name, const char *map_mask_name,
-+			    struct of_map_id_arg *arg);
- {
- 	return -EINVAL;
- }
-@@ -1442,7 +1442,7 @@ static inline int of_property_read_s32(const struct device_node *np,
- static inline int of_map_iommu_id(const struct device_node *np, u32 id,
- 				  struct of_map_id_arg *arg)
- {
--	return of_map_id(np, id, "iommu-map", "iommu-map-mask", arg);
-+	return of_map_id(np, id, "iommu-map", "#iommu-cells", "iommu-map-mask", arg);
- }
- 
- static inline int of_map_msi_id(const struct device_node *np, u32 id,
-@@ -1456,7 +1456,7 @@ static inline int of_map_msi_id(const struct device_node *np, u32 id,
- 		},
- 	};
- 
--	return of_map_id(np, id, "msi-map", "msi-map-mask", &arg);
-+	return of_map_id(np, id, "msi-map", "#msi-cells", "msi-map-mask", &arg);
- }
- 
- #define of_for_each_phandle(it, err, np, ln, cn, cc)			\
+---
+Marijn Suijten (11):
+      drm/panel: Clean up SOFEF00 config dependencies
+      dt-bindings: display: panel: Describe LGD LH599QH3-EDB1 panel
+      drm/panel: Add LGD LH599QH3-EDB1 panel driver for Sony Xperia XZ3
+      dt-bindings: display: panel: Describe Samsung SOFEF01-M DDIC
+      drm/panel: Add panel driver for Samsung SOFEF01 DDIC
+      dt-bindings: display: panel: Describe Samsung SOFEF03-M DDIC
+      drm/panel: Add panel driver for Samsung SOFEF03-M DDIC
+      dt-bindings: display: panel: Describe Samsung SOUXP00-A DDIC
+      drm/panel: Add panel driver for Samsung SOUXP00-A DDIC
+      dt-bindings: display: panel: Describe Samsung ANA6707 DDIC
+      drm/panel: Add panel driver for Samsung ANA6707 DDIC
+
+ .../bindings/display/panel/lgd,lh599qh3-edb1.yaml  |  76 ++++
+ .../bindings/display/panel/samsung,ana6707.yaml    |  91 ++++
+ .../bindings/display/panel/samsung,sofef01-m.yaml  | 120 ++++++
+ .../bindings/display/panel/samsung,sofef03-m.yaml  |  79 ++++
+ .../bindings/display/panel/samsung,souxp00-a.yaml  |  79 ++++
+ MAINTAINERS                                        |  30 ++
+ drivers/gpu/drm/panel/Kconfig                      |  84 +++-
+ drivers/gpu/drm/panel/Makefile                     |   5 +
+ drivers/gpu/drm/panel/panel-lgd-lh599qh3-edb1.c    | 340 +++++++++++++++
+ drivers/gpu/drm/panel/panel-samsung-ana6707.c      | 461 ++++++++++++++++++++
+ drivers/gpu/drm/panel/panel-samsung-sofef01.c      | 463 +++++++++++++++++++++
+ drivers/gpu/drm/panel/panel-samsung-sofef03.c      | 373 +++++++++++++++++
+ drivers/gpu/drm/panel/panel-samsung-souxp00.c      | 399 ++++++++++++++++++
+ 13 files changed, 2599 insertions(+), 1 deletion(-)
+---
+base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+change-id: 20230521-drm-panels-sony-3c5ac3218427
+
+Best regards,
 -- 
-2.34.1
+Marijn Suijten <marijn.suijten@somainline.org>
 
 
