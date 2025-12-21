@@ -1,102 +1,86 @@
-Return-Path: <devicetree+bounces-248577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4518DCD40E9
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 14:53:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B14DCD4195
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 15:57:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7435E3016712
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 13:52:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C95C63007634
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 14:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1CD92FBDED;
-	Sun, 21 Dec 2025 13:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B302FBDED;
+	Sun, 21 Dec 2025 14:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a1ujjf31"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YMbZENqP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C628A1E86E;
-	Sun, 21 Dec 2025 13:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976331DF965;
+	Sun, 21 Dec 2025 14:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766325174; cv=none; b=itLOMFDs2oizBgfKrQe6Mfepy22hemRDixhaJMDN/MQh8n+MuxZCauVtBsExpjIDwcn/cXWlas8jY4VDDAU886tBAYr4DL8imCvLCZtHdkEBcR8uwNBqCfeWSTJHMZxet7nqEUr7oynJ0pu53oi0QiNCTrKm+XDfGrae8en+lU0=
+	t=1766329040; cv=none; b=tD4bdxL+YCMcm0PJdI/GmAp3QiK5AHJ5xwjtSp6K3GCKwdxkOefmcfxz5uBjuy52HHMEZC3zQFV9V3ToDO5iy4xU7NyXeqVAoAYeUS884QN08VM6QJEbMI7f4sdw4+pLHWTTArsc/w5U702J6jp27wHdyCTDdUHNIHC1emyDvYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766325174; c=relaxed/simple;
-	bh=/24ODsP51o0qqTwmmiMCCQNi1FpJhNQSQeQadjdYgQI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=oM+m9Zwd3G3V0JGp/OTUMMkmwJBdK7e5pbaIDFspFZZqNNHUwbpddjk19Yexuo5FfabCrZCBCAPL/GtzwDzyjwWBPGF0SYx2jB8izIZQcn8KcLdhhtbtECvstkZSQ7j3rTZCDCU8mBm7yiAbjdcPDruse+Rtdvtl9R4rIHMCtqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a1ujjf31; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 199C3C4CEFB;
-	Sun, 21 Dec 2025 13:52:49 +0000 (UTC)
+	s=arc-20240116; t=1766329040; c=relaxed/simple;
+	bh=gXezM1bnjGNNpxw6I9viVcMTnNHHDgBxUYAlExvm5zU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FqJVAyZQ/fHkqfY06AcdTW556zjC48AJOvInS3Vvlpt++FL6sCnDG3fHq5OlzAWKmbOdrAERV5iiL0nP/6LVmf+1dLd8fxwD/87uVAIjmuAN+0B7ZfoE8eUlJEHXBouybWb58hG+IIDQFuX4FV16NkxR2EpPPz/IcP6IRprNUqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YMbZENqP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EE92C4CEFB;
+	Sun, 21 Dec 2025 14:57:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766325174;
-	bh=/24ODsP51o0qqTwmmiMCCQNi1FpJhNQSQeQadjdYgQI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=a1ujjf31SAsrUBQ7M2yuCs/P0ZS7RJJKJbOGYiIHW6kmA6ChF5MO+vqpX490i4wpr
-	 AH1SnFBxv5FYiCsfAmh/ZyMAjUSitEbuB8+CngW0RNbi83TurIvL5z8zQio8iy/Q/8
-	 C7fAhR62eFZh9l26tBhHh5YujwHRMuxltA7+bLiXr2bItLL30eJKDnO1F/0YqpN+nL
-	 uodq8sOvNsQyfLC4nblA9I8S3s3cfgCwFsRYCYOD5aFYuMkESreXEXIUBALHtfHPtw
-	 SKYPP699Jw5sEm9mcbAPNIg7DNpTa3EqcsTYpGHVoBZhsqe049NQmcwiBdI/7Bj8lu
-	 jVkTnetHjIewg==
+	s=k20201202; t=1766329040;
+	bh=gXezM1bnjGNNpxw6I9viVcMTnNHHDgBxUYAlExvm5zU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YMbZENqP187mdl0rMzLH4pjuik3cpqVZSnjRoWQkN9nvhRh47aH6Z4yLmw9Rzgf+2
+	 1LYieuF7cJ/N2eDV1C6u3fzHwD+h/Er8kAlmPFzrc02iVpvEvVdueaACHS0f0zuVXv
+	 4rulFJ9RVi/7Dg74W0X1lxPVTa7mFqEk8eqyPjcW7z5z+LnlV9D1spVJkbQW0/EYMF
+	 IaIvFhLSxooM1/MYKshxAE4yCSL760t9gODL+xhWPG/Qff5u7zpVBof47/iGgQaVYt
+	 pOe4LmAuPA0gu/Ts1UIvAo3CPN0SBjmYZJmNBqzeDxu0LPyMhJQE4jbzWasHldL7BG
+	 QGSgTNmpCKipw==
+Date: Sun, 21 Dec 2025 15:57:15 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Srinivas Kandagatla <srini@kernel.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: semen.protsenko@linaro.org, willmcvicker@google.com, 
- kernel-team@android.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20251120-gs101-chipid-v3-0-1aeaa8b7fe35@linaro.org>
-References: <20251120-gs101-chipid-v3-0-1aeaa8b7fe35@linaro.org>
-Subject: Re: (subset) [PATCH v3 0/6] soc: samsung: exynos-chipid: add gs101
- support
-Message-Id: <176632516971.32657.9705305853301180066.b4-ty@kernel.org>
-Date: Sun, 21 Dec 2025 14:52:49 +0100
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: peter.chen@cixtech.com, fugang.duan@cixtech.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-cix-kernel-upstream@cixtech.com, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: cix: add OrangePi 6 Plus board
+Message-ID: <20251221-conscious-apricot-crayfish-8df20b@quoll>
+References: <20251219133553.1440970-1-gary.yang@cixtech.com>
+ <20251219133553.1440970-2-gary.yang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251219133553.1440970-2-gary.yang@cixtech.com>
 
+On Fri, Dec 19, 2025 at 09:35:52PM +0800, Gary Yang wrote:
+> OrangePi 6 Plus adopts CIX CD8180/CD8160 SoC,
+> built-in 12-core 64-bit processor + NPU processor,
+> integrated graphics processor, equipped with 16GB/32GB/64GB
 
-On Thu, 20 Nov 2025 11:29:34 +0000, Tudor Ambarus wrote:
-> Dependency
-> ==========
-> Typical dependency of the DT patch depending on the bindings patch,
-> thus the bindings patch could go via the Samsung SoC tree with
-> Srinivas's ack.
+If there is going to be resend/new version, please re-wrap it.
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+No need to resend just for this.
+
+> LPDDR5, and provides two M.2 KEY-M interfaces 2280 for NVMe SSD,
+> as well as SPI FLASH and TF slots to meet the needs of fast
+> read/write and high-capacity storage;
 > 
-> Description
-> ===========
-> GS101 is different (but also e850 and autov9 I assume) from the SoCs
-> that are currently handled by the exynos-chipid driver because the
-> chip ID info is part of the OTP registers. GS101 OTP has a clock, an
-> interrupt line, a register space (that contains product and chip ID,
-> TMU data, ASV, etc) and a 32Kbit memory space that can be
-> read/program/locked with specific commands. On GS101 the "ChipID block"
-> is just an abstraction, it's not a physical device. When the power-on
-> sequence progresses, the OTP chipid values are loaded to the OTP
-> registers.
-> 
-> [...]
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
 
-Applied, thanks!
-
-[1/6] soc: samsung: exynos-chipid: use devm action to unregister soc device
-      https://git.kernel.org/krzk/linux/c/1b3376d2167766e9f5ac05a03ca4625777090ce7
-[2/6] soc: samsung: exynos-chipid: use dev_err_probe where appropiate
-      https://git.kernel.org/krzk/linux/c/8dfbb5fcb773a6481407ec890280cc3b1ff8e234
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzk@kernel.org>
+Krzysztof
 
 
