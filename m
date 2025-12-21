@@ -1,179 +1,169 @@
-Return-Path: <devicetree+bounces-248623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEC0DCD484B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 02:41:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FFF3CD407E
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 14:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A783F3003BDC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 01:41:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4E8FC30010F1
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 13:03:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF2C730F950;
-	Mon, 22 Dec 2025 01:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAFF22F656E;
+	Sun, 21 Dec 2025 13:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="Fa9WENIm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o20VzUNC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1A930C619;
-	Mon, 22 Dec 2025 01:41:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766367706; cv=pass; b=H2AGSrfOPl1LFS3V7US4IqmL4xwLu8OUnP9l3STy4KJhRKAw1BPGFS//EGEe5x4ktpCfX6qViTDyrJRbrtBJ1aRSekx6tWtIFeJROIVJPTBo2qQ7CM+6s6Y1EqAgdGbb+ZhjTPzR2WySVgOoSuUSwlwVFIfu7+X4DA92WyIB1hI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766367706; c=relaxed/simple;
-	bh=uJ+HVrOMWfCJQUaeMyKudL48kiEZzBMGryL54qhKwJ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W0bDnOVwBj4y26FNzp8srGworPC2/DxD1F1l8KR0A29Qu1NmIYfnRKs/J0R54t/WlfcOjQxyXgPjIN2eSkQk/2+Zp4KH5qdmJdxNYczC6TXPMs01oMPxxY+UVpaC1/GK/+s9Jn5TibqTOil1JMDEz3ULR6MAQc3sAeJhkC9HP8g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=Fa9WENIm; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1766367577; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=KBsLHSAarQUwN6Mc/W7D0mvxXCxlmBViJtujrrxHpqDl6XuBwH36BN7Wc4+S8eLGII7u+7NxBQ7k2loyhS7G1ZXkWvHrkR9LOqypXAEHoL6NPzs3fkNB2BPq4DCnaZw8W8kzN36yaQHDfsJaQWIDeOyWzsD5hKVuFNWS6KUwAV8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1766367577; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=wKm6BelI5UzQkTJhxf1DHtTgxvzKM+zOwwM2yQXybfQ=; 
-	b=AfuIufjLv07lvqXqtsuamUkU2fBI7k3RXEwah1GEm1bae4F71Q8i4BP8gNQXZNQi5S25j3bNjqfkbXTFP0TLDsiD0HWxvfiZPSgtnX/q6GwOIZyhVoxHuqXzum+jCvdibfrpnkXLQuBvvtVJZdfCN+hMyTMLFuLmtcLoa31+bpg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1766367577;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=wKm6BelI5UzQkTJhxf1DHtTgxvzKM+zOwwM2yQXybfQ=;
-	b=Fa9WENImYUxUomi3mgm0BE9irq1DhT/eWSo73KBWD74p9DNtPklPc/i8B6YIO4x3
-	o+1s0DAYn9+d8KTxsKoSlHolALtbF89Vfm71trajh7vFdejbeWgP8NdH5RNHgfMxbWx
-	qnh0QqiEx2opoIXomGdb/Jo88MkdXiBXzCtJd+AM=
-Received: by mx.zohomail.com with SMTPS id 1766367574825926.5109115965784;
-	Sun, 21 Dec 2025 17:39:34 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id CDA3A181972; Sun, 21 Dec 2025 21:57:01 +0900 (JST)
-Date: Sun, 21 Dec 2025 21:57:01 +0900
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kamal.wadhwa@oss.qualcomm.com, 
-	fenglin.wu@oss.qualcomm.com
-Subject: Re: [PATCH 2/2] power: supply: core: Add SiLION battery technology
-Message-ID: <aUft_bUIhiMJF_2A@venus>
-References: <20251124-add_silion_battery-v1-0-3c86b70d2543@oss.qualcomm.com>
- <20251124-add_silion_battery-v1-2-3c86b70d2543@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8783D286422;
+	Sun, 21 Dec 2025 13:03:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766322180; cv=none; b=X0+XLpLOyUCwnLqmZlQoeJiwZ2m3VocoYFgSgwWbtDxDoMDnBROMMV0tZ0u+3ZjwdfLR8W3Yg1o6O8HIMHaXNjIVA7sXPJn2fdZIGZaFUQ3Tv6FaAw4ByHf6YHDW5OQNAE3J9PEHXmjfknWlNZUVIGw8zj/DuGoFhp1kKJK8vgo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766322180; c=relaxed/simple;
+	bh=tpcVf81xYJEjtwqPKa0hlT7quahUwBDwxVtEoAIA+bI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FJXoFmHx3XCNwrA86oYBZxouj7dXwJ2X+CfBPgEuh+aphFWWX3bLlKjsLQ/HMQ2kDl+L5xUcylYJwVdMhBu/R8WeKD/7814sm2ruRmW+HU5uRlh8+SW1/IBwgUZualJM1cbWlaIhfG0twKmd3gns8581H13indH7sdLP7cPEjPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o20VzUNC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AC1CC116C6;
+	Sun, 21 Dec 2025 13:02:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766322180;
+	bh=tpcVf81xYJEjtwqPKa0hlT7quahUwBDwxVtEoAIA+bI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=o20VzUNC0RvFOBwdM6RUA43CEcYZD8UzAP4g0bn0/Ia2PqpCvlmHCQHe1ZnRfxgMU
+	 0Yu4fS7Id1dzDxgMEwCKBHFhtWhgOJe8mi1eN5cJoe4v/+V/zB00ko5c/Py+4eDe55
+	 rNJM0K+PxS8FMTz5s4SMavXEY65CryOFZU6kIeqGeiHmSrF8rM+knSc2Z20yb7Nba8
+	 4pY3Ldeea9Byo1SISKKVao5OpghXO3nQtG5igbtaFW4uiIrEHSBZsvB854ciXEbcJL
+	 xb5V6+k9JV2DAlE7Yds2LiL81Bd015Pkwp6Pns8p66gZC8fniDjmR/2hKdJKE2rLJT
+	 O1cnOVgSaBpGw==
+Message-ID: <326c3e83-059e-4e96-ab99-d4a33eb3b56f@kernel.org>
+Date: Sun, 21 Dec 2025 14:02:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251124-add_silion_battery-v1-2-3c86b70d2543@oss.qualcomm.com>
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: iio: frequency: add adf41513
+To: 455.rodrigo.alencar@gmail.com,
+ Rodrigo Alencar <rodrigo.alencar@analog.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+References: <20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com>
+ <20251219-adf41513-iio-driver-v2-1-be29a83d5793@analog.com>
+ <20251220-bouncy-perky-tarantula-d9b3be@quoll>
+ <gz36kmewv4bhwqz6d3xqatcx65uzukqcgsvfbwhr7c3yhw225z@edeggfhjws2h>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <gz36kmewv4bhwqz6d3xqatcx65uzukqcgsvfbwhr7c3yhw225z@edeggfhjws2h>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On Mon, Nov 24, 2025 at 04:42:41PM +0530, Rakesh Kota wrote:
-> Add support for lithium-ion-silicon-anode (SiLION) battery technology
-> to enable proper identification of devices using this newer battery
-> chemistry. Without this change, such batteries would report as
-> unknown technology.
+On 20/12/2025 19:05, 455.rodrigo.alencar@gmail.com wrote:
+> Hi Krzystof,
 > 
-> Introduce POWER_SUPPLY_TECHNOLOGY_SiLION and update technology
-> mappings across core, sysfs, and test interfaces.
+> thanks for taking a look into this again. It was my first patch it didn't want
+> to draw more attention or discussion to the V1 patch as it was declared not ready
+> at its very first review.
 > 
-> Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-> ---
-
-The change itself looks good to me, but it must be submitted with a
-user (e.g. an update to the qcom_battmgr) as a follow-up patch.
-
-Greetings,
-
--- Sebastian
-
->  Documentation/ABI/testing/sysfs-class-power | 2 +-
->  drivers/power/supply/power_supply_core.c    | 2 ++
->  drivers/power/supply/power_supply_sysfs.c   | 1 +
->  drivers/power/supply/test_power.c           | 3 ++-
->  include/linux/power_supply.h                | 1 +
->  5 files changed, 7 insertions(+), 2 deletions(-)
+> On 25/12/20 10:21AM, Krzysztof Kozlowski wrote:
+>> On Fri, Dec 19, 2025 at 12:34:48PM +0000, Rodrigo Alencar wrote:
+>>> dt-bindings for ADF41513, an ultralow noise PLL frequency synthesizer that
+>>> can be used to implement local oscillators (LOs) as high as 26.5 GHz.
+>>> Most properties refer to existing PLL driver properties (e.g. ADF4350).
+>>
+>> What is "existing PLL driver"? I know about motor drivers, but can you
+>> drive PLL?
+>>
+>> And how is ADF4350 related to this binding. I do not see ADF4350
+>> compatible here at all. Describe hardware, a real one.
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-class-power b/Documentation/ABI/testing/sysfs-class-power
-> index 4b21d5d2325136be65126d4d1d6e64608280fe44..1f42e6f138ea8ae0fe8c232c38d0ff6fb20180e7 100644
-> --- a/Documentation/ABI/testing/sysfs-class-power
-> +++ b/Documentation/ABI/testing/sysfs-class-power
-> @@ -525,7 +525,7 @@ Description:
->  
->  		Valid values:
->  			      "Unknown", "NiMH", "Li-ion", "Li-poly", "LiFe",
-> -			      "NiCd", "LiMn"
-> +			      "NiCd", "LiMn", "Si-Li-ion"
->  
->  
->  What:		/sys/class/power_supply/<supply_name>/voltage_avg,
-> diff --git a/drivers/power/supply/power_supply_core.c b/drivers/power/supply/power_supply_core.c
-> index 9a28381e2607d650fa9b719b683af375bb118fad..385ab8aa7e69f3f804e7ac0ee3782446f18e2c3f 100644
-> --- a/drivers/power/supply/power_supply_core.c
-> +++ b/drivers/power/supply/power_supply_core.c
-> @@ -677,6 +677,8 @@ int power_supply_get_battery_info(struct power_supply *psy,
->  			info->technology = POWER_SUPPLY_TECHNOLOGY_LiFe;
->  		else if (!strcmp("lithium-ion-manganese-oxide", value))
->  			info->technology = POWER_SUPPLY_TECHNOLOGY_LiMn;
-> +		else if (!strcmp("lithium-ion-silicon-anode", value))
-> +			info->technology = POWER_SUPPLY_TECHNOLOGY_SiLION;
->  		else
->  			dev_warn(&psy->dev, "%s unknown battery type\n", value);
->  	}
-> diff --git a/drivers/power/supply/power_supply_sysfs.c b/drivers/power/supply/power_supply_sysfs.c
-> index 198405f7126f96a57a549cd1ecb9b71089b9c3d0..f2a5ec519b2ef60fb5ede101ca461d899218e186 100644
-> --- a/drivers/power/supply/power_supply_sysfs.c
-> +++ b/drivers/power/supply/power_supply_sysfs.c
-> @@ -122,6 +122,7 @@ static const char * const POWER_SUPPLY_TECHNOLOGY_TEXT[] = {
->  	[POWER_SUPPLY_TECHNOLOGY_LiFe]		= "LiFe",
->  	[POWER_SUPPLY_TECHNOLOGY_NiCd]		= "NiCd",
->  	[POWER_SUPPLY_TECHNOLOGY_LiMn]		= "LiMn",
-> +	[POWER_SUPPLY_TECHNOLOGY_SiLION]	= "Si-Li-ion",
->  };
->  
->  static const char * const POWER_SUPPLY_CAPACITY_LEVEL_TEXT[] = {
-> diff --git a/drivers/power/supply/test_power.c b/drivers/power/supply/test_power.c
-> index 2c0e9ad820c0db23165758303a16bddac1a1634b..64bd4a1147ca06566a909513a80760ad707a8605 100644
-> --- a/drivers/power/supply/test_power.c
-> +++ b/drivers/power/supply/test_power.c
-> @@ -437,6 +437,7 @@ static struct battery_property_map map_technology[] = {
->  	{ POWER_SUPPLY_TECHNOLOGY_LiFe, "LiFe" },
->  	{ POWER_SUPPLY_TECHNOLOGY_NiCd, "NiCd" },
->  	{ POWER_SUPPLY_TECHNOLOGY_LiMn, "LiMn" },
-> +	{ POWER_SUPPLY_TECHNOLOGY_SiLION, "SiLION" },
->  	{ -1,				NULL   },
->  };
->  
-> @@ -733,7 +734,7 @@ MODULE_PARM_DESC(battery_present,
->  
->  module_param(battery_technology, battery_technology, 0644);
->  MODULE_PARM_DESC(battery_technology,
-> -	"battery technology <NiMH|LION|LIPO|LiFe|NiCd|LiMn>");
-> +	"battery technology <NiMH|LION|LIPO|LiFe|NiCd|LiMn|SiLION>");
->  
->  module_param(battery_health, battery_health, 0644);
->  MODULE_PARM_DESC(battery_health,
-> diff --git a/include/linux/power_supply.h b/include/linux/power_supply.h
-> index 360ffdf272dab86241f1aac4650d1a91a088a84b..04996037219d5a22d2b2a7f136e5d3565a4507ca 100644
-> --- a/include/linux/power_supply.h
-> +++ b/include/linux/power_supply.h
-> @@ -83,6 +83,7 @@ enum {
->  	POWER_SUPPLY_TECHNOLOGY_LiFe,
->  	POWER_SUPPLY_TECHNOLOGY_NiCd,
->  	POWER_SUPPLY_TECHNOLOGY_LiMn,
-> +	POWER_SUPPLY_TECHNOLOGY_SiLION,
->  };
->  
->  enum {
+> ADF4350 is an older one, and its bindings can be found at:
+> Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
+> It is a similar part, but yet very different.
 > 
-> -- 
-> 2.34.1
+>>
+>> Nothing improved.
+>>
+>> You ignored comments, did not bother to respond to them and then sent
+>> the same.
 > 
+> Sorry for not responding on the V1 thread, but the previous patch had to be reviewed internally
+> first. It is not true that nothing is improved, in fact, it has changed a lot, here are some notes:
+
+Process is not like that. You first review internally, then you send.
+After you sent and receive comments, you respond to these comments.
+
+> * adi,power-up-frequency is not carrying the -hz postfix because it forces to be a uint32 by
+> the dt-bindings check. For that variable it needs to be uint64 as the part supports up to 26.5 GHz > 2^32
+
+And what granularity do you need? Why mhz does not work?
+
+> * The properties related to the reference input signal path: reference-div-factor, reference-doubler-enable
+> reference-div2-enable are declared here because they are constraints for the PFD frequency definition,
+> which is the frequency that the output signal is updated, important for the loop-filter and VCO design.
+> * added support for all different power supply regulators.
+
+Sorry, but I cannot respond that way. We discuss inline, so I have
+entire picture, not some parts of message semi-quoted here. I don't
+remember what was there and I am not going to keep looking for that.
+
+You need to adjust to mailing list discussion style, not introduce the
+others. I have just way too many other patches to deal with, so
+implement the feedback or respond properly.
+
+Best regards,
+Krzysztof
 
