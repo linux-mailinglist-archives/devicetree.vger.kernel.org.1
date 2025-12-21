@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-248549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44590CD3DC6
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 10:36:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EC51CD3DD2
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 10:36:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AA2FE3003BCB
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 09:36:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BF081300508B
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 09:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DA2327FB25;
-	Sun, 21 Dec 2025 09:36:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA8D627FB2E;
+	Sun, 21 Dec 2025 09:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KPO4igy3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L0w3cdoR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ADDB27FB1E
-	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 09:36:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1676E27FB12
+	for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 09:36:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766309797; cv=none; b=UamLI2uqHTAmGZBOljhOLHB3ryrNcBcTihaI1uj0Arr+mU5VX54Y3eGOmG8kiygdH3YoCS7gZD0j4EyDVc9ggGXk+J7nLAv+hRNSqmtj47XbJ1Sai5FZKx7Zbep7ruFUADQvxarp03cWiW/kABroNN9AT5UiVAuVxtm4rXxGqKw=
+	t=1766309804; cv=none; b=cDqoBe9qZBPBofUi3RHmNBQnw8dTWGBdstFw60l7M2zeT1d7g7/2rmsCU6rfPNKtvyeXw60Jly4INZIGuPhIjCAUuChZVQT84RuFvXT7MJziRF5HIK4Ov0WFBkmLl7bcSeYhAvaQSR2uV2xqzcCFy9poAMeeI8gKDXD5LThUHNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766309797; c=relaxed/simple;
-	bh=wLNKDK1Ksa8IvBF9PuBpNgl2cqbJ5Zaav5WKCmNUHgQ=;
+	s=arc-20240116; t=1766309804; c=relaxed/simple;
+	bh=J/JGbSI46p8HTL2RHYE+qUnCr5BQESuhvOilzbTTq48=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VxDtWADPwTsPny/HhGSFl1qYAex32V1L87V8aXSzqQFcRKbqpjDwuJNkr4ZMPfjNi8yDDvYqW1l+KFzzzKu8i3ibFgVNNZByxDH4G9oRJVBADRmLaNczRl1B6tjFkQWu4EFfBDP544P7hTB10EIjU4b0Q3umR7k7Dh4nzwpo3yQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KPO4igy3; arc=none smtp.client-ip=209.85.214.176
+	 In-Reply-To:To:Cc; b=he82RYzHgnOKAYn/zNIkGcCVfgPcxddMNbHlyVkcQYDv4ZzmQR8jzoN+2c0Qn7mWbf0muyCT0GlOdTyL4IIHZ6WHCfqmph1X83n2Pshc0tFsarn2y4oX6mG7u/OdgL5lzr0ULZKYU0rHijWPU+1a/ofNydnDIKvPjeFUsdXzKJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L0w3cdoR; arc=none smtp.client-ip=209.85.214.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2a081c163b0so28938945ad.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 01:36:35 -0800 (PST)
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2a0bae9aca3so43195345ad.3
+        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 01:36:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766309795; x=1766914595; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1766309802; x=1766914602; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=iFOikY9o36gvsPAMhtc9DtXREspO4Xxm21xH4vlh1IU=;
-        b=KPO4igy3MwzF8i/DFjYB1wELeJRD8s3RWklK1wZqCuZWu/ufdJiH4sKPKlGl3Snzok
-         zPQ2RJ/WJkD//q2XnSQ2iM077axjlNM6ArGQxrQ3Dcpmpy4lRkW/jv1+uEF0HDtna70r
-         bNEqkS86Covw06wvkcE6gnx+3ooAejyVUe4qh5uWHyo4eYPQIPNUX8T48UM5J4NrjZTP
-         HKF0R6S98YllSb8T7Z/RxjGwqmK7J5XlEfBaYr1NrK7vT+gZoFiN8TLbWThUgHfzBFdC
-         BWuUGZsPim3rkF7cMZQDlFSypJljyvCn9NphqRFRK9v9PmKBl7zcpjDeh6k580jNXSQs
-         dhcg==
+        bh=FeZmpsDdG1RUrBzKUX3sBiMLnau+8z4mBhxLnyXrfgM=;
+        b=L0w3cdoRq8SShIxxbw9BZiYw6wRLnHfbkBwZfQ+pOJl0rkbK9tZP+dLXNPr6A46aH7
+         xz898AU3KuRe9ZrP7hKCWionxZbqKUX3txLZvsWBDP6EzVWCjFJA+IcqShsb/+8y5dhM
+         ntUkYlKHnRcJWivFyJMy5EROLbv0FMJrMLm7uBVsV34XdsVe3mednQg7IaGkRFFam0+E
+         CbTxo3QqWP3q7qy8rZGsDKrbk5Gr0s++jkLfBSoipn+k7E9MlloRKsnmlcx9FsEcmjZD
+         WHWmTYpyGdzTboRleCrDEU/fM+nHgLQOkMnL/5/97wMbIRsrJLoyJX8yygxVMzoyXFPe
+         dvZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766309795; x=1766914595;
+        d=1e100.net; s=20230601; t=1766309802; x=1766914602;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=iFOikY9o36gvsPAMhtc9DtXREspO4Xxm21xH4vlh1IU=;
-        b=YBPY7h6PswlrhZgQVK7EshYV/Azq8BycAjljGG+hJHXdMT0HbN6/QcZ5fU2ANquAUk
-         3PiBmcrAKXwaufCVI+bZu9paJLG0hYBxgpQoQcJjagvr6YDVlALy0Bigs/WwBBPx7YJc
-         Tc2QuEclUWRNR5KXZo/HjOhrSmUZD7STsTX4tptOZAqAaiQz5hd+cUz+WQ/VqbeuaDd6
-         FmrgTsVGiSBvd9ylgDuY81MNcdsfIxx68vftVCmOrqdByNoCvpGcJu2i45N+PGgp7D9J
-         wUCbFqRMSiDZ3FzmILr/tLVPiGNUqiu8VBHI/AYQKnG4rD0G5zRu185ZdxOXgdn7zqtH
-         kybQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUS7r9F++WH2fUCAHXLI8X9TokuekTSDeVykDpaDQSzNqKGe7gjWadKntnAeeSszepfyLBHf43PSIsF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQ44pmAHg7x0pF6eQGia71enjqmCBOSLncWgk18PM7STFEGYgj
-	PNL7HrsnDA7Mp+ve+8Bsn6dvw3RPfj57Kucf50f8y44aWKOBf3qqwrSI
-X-Gm-Gg: AY/fxX5kUQGL+GNgcutdpvpHlI4amYgCezgjJgf/SLPwr9a/rHlZzPdPSNKtglZPAnU
-	aCYka/CKbZwpCYuKH5JIA7c4wMLSKfq2u06R2SuKEklpTvOx5zK64EttgJ1FVqeYRJEzThSu1Tb
-	eOyp2pz+pW0AYOFjP31+Yt0DYLVx/SkpOzvEWWCH3BI61kyywc0OMQsLcx+XshK5QC4h+IgDljX
-	Qn+5EOsB7rH2mX2Uy+7sMnJjr50pn9DvVmADhTgmurkg6LqEeattVtwvqw4vBgACV3XlFJSJb9H
-	JlFPAiiFTkpCihSgPNkJ2+jBR1TBFuikoXmm/Gn5ajxbsbw7lO+UhXWQ9iYZAwLlLcCaHXIw2r7
-	xGwrTkAJVxbfVoQAIqCZ8MH5KZ/Af8AeDs/S4neKsftmkLLk9fJMXN2YN2QX+zz9c1AUn7MYGN0
-	7/CBgS2uY/WINSthtunG3hfzxbXGO1j4pPquIUIUDmiltqgPIWK1AtNh0WSuiut8NcHyfwHnPrs
-	pV+DdyeIlzr67ZU14glqW1ukRJab814R3RqZb0BfutdWLSEwB/M6s+Xelk1iEVKg+bmz8BfKKxx
-	0he0BOV9eL8wfyl+bRCeHSxbFIaaMSq11nDmy96+at7hrYLn/TU=
-X-Google-Smtp-Source: AGHT+IFs8ZLMfIE3d3XHgVfBBRp9N/Xz/7Q3Yciu4Zx1KzdlptYhBCkrmMcDSDnGkifXqXR+tynCEQ==
-X-Received: by 2002:a17:902:d2c4:b0:2a0:d662:7285 with SMTP id d9443c01a7336-2a2f1f789ffmr84830365ad.0.1766309794882;
-        Sun, 21 Dec 2025 01:36:34 -0800 (PST)
+        bh=FeZmpsDdG1RUrBzKUX3sBiMLnau+8z4mBhxLnyXrfgM=;
+        b=TSnf8U672UUl0gvXpPz5o5WP74BhUEpVbACMEYSOVq/BC2OaNneaTQLJLmrG88m+01
+         c2Lt/W+3oQP9NInlDTO4YCCBRBYp/9Qc/hkx6XE+Q82u0xXc4HZHFgPQiBwL6PBeSE7R
+         BMY8ELCCO/Pus6Wu6aCiRbGkhqWWueVSgxuqOvj9uu24ywi7WSHsbR8r82xFAOm46vbH
+         Wl4j/g3bvVimhfTAAFZZRL/UmAmVq1A47F+meUDGwyLdss4Hojl9HAiT5sbh8INyRosP
+         2TIvqpEsKufAJBA8JtlL/Q8tc/O4mu9aY1V7cMdiB2R7/TdtJ88tJkIEMnHrIAjXg0Li
+         RwnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWAkYP9v15mGtAfgG8agcAkCBjSJKcWuSGZr2dcezngyxk67GhEkYmVIAwA2A40E6Tf5d+o4AlrIFCj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyP7EKVi3YFfGq8kDrsI4EJPrOR2BL7h81S1A2eUfIhHBl6GGZ
+	/SepbAc8m6A5KHDE4Jlk+Lsp+XDoFDXG/VyGjnxDirXhg3kATGNSRXhA
+X-Gm-Gg: AY/fxX7km0l9XDC/Yvl4nqlhdOS7C6wvvfZChaMlbKfIJy3eMkjoBt858zCt+8X28fI
+	67Ob8l3mO3JClKqbbwcbqiKV9MuYaPFjLTNGzlH1YktWky3cAxbCfoWtrocuq89JG9DdG9U5099
+	zXW5Cz85vKxM0czMj2SmxCKO5RNBKw6uN7mIZXW5C7SgZx4T7Dses+/KQ/0VOdpUKQU1jDj+OW5
+	zmxUZaUDsS1Jb2QXzJTdPrZVOXTd5Y4owEKBthmlmoExSxgVC0Bcuea6pL4KIpE+i9HXkgSOydd
+	SQ7ZRG39wU1UqEGNfa9GYBMDz2QhqE41e3AizMHfASvhYm60QxuY+FWSgQCd+LN7YlkBZHbqEqU
+	JUp7db9oYTnwvl2M/WOSklbKLWvxnxLFvD7zDg+WNLSrFJ52PspAj6j7tsqThJWm5CTFIeB6c0e
+	r3wjOEbghFJCUWZKNXC+l903al9QyeGlyRfAbgqKqxBmFMhST7cWQjnOfN8PrHMoPLYOADfwgay
+	Goc3zLSsCZooJHK9/8QtGcQ3S18sLTBLL/yZdl52itQ+0DaDtzAjkYxLHyATMD9UJNiKeOJCRLe
+	xwvkDVtJMXd02+uiF+gTuM6ayeCj3aPy6e23RP4745HsmcIs2Bzgt06lk1+9Ag==
+X-Google-Smtp-Source: AGHT+IGmGZRoabrxlFiBda/1xG97X0TAK54HY5FazNa28CSCbtrIjPg0PALs67RO4ic8ZL4omZOAvQ==
+X-Received: by 2002:a17:903:4b0c:b0:2a2:dc1f:78d8 with SMTP id d9443c01a7336-2a2f293d04cmr67609985ad.42.1766309802436;
+        Sun, 21 Dec 2025 01:36:42 -0800 (PST)
 Received: from [192.168.2.3] (2403-580a-80ed-0-4835-5a07-49e7-f115.ip6.aussiebb.net. [2403:580a:80ed:0:4835:5a07:49e7:f115])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d4d363sm67629495ad.62.2025.12.21.01.36.27
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d4d363sm67629495ad.62.2025.12.21.01.36.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Dec 2025 01:36:34 -0800 (PST)
+        Sun, 21 Dec 2025 01:36:42 -0800 (PST)
 From: James Calligeros <jcalligeros99@gmail.com>
-Date: Sun, 21 Dec 2025 19:35:57 +1000
-Subject: [PATCH v2 1/7] ASoC: dt-bindings: convert tdm-slot to YAML
+Date: Sun, 21 Dec 2025 19:35:58 +1000
+Subject: [PATCH v2 2/7] ASoC: dt-bindings: update tdm-slot.txt references
+ to tdm-slot.yaml
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251221-tdm-idle-slots-v2-1-ed4d96413aec@gmail.com>
+Message-Id: <20251221-tdm-idle-slots-v2-2-ed4d96413aec@gmail.com>
 References: <20251221-tdm-idle-slots-v2-0-ed4d96413aec@gmail.com>
 In-Reply-To: <20251221-tdm-idle-slots-v2-0-ed4d96413aec@gmail.com>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -103,114 +104,96 @@ Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, asahi@lists.linux.dev, 
  James Calligeros <jcalligeros99@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3628;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2794;
  i=jcalligeros99@gmail.com; h=from:subject:message-id;
- bh=wLNKDK1Ksa8IvBF9PuBpNgl2cqbJ5Zaav5WKCmNUHgQ=;
- b=owGbwMvMwCV2xczoYuD3ygTG02pJDJnu+ycZpng++NQindbr/C9KSs30ZOAJX/aXPs5dTfV8S
- bnH2e91TGRhEONisBRTZNnQJOQx24jtZr9I5V6YOaxMIEOkRRoYgICFgS83Ma/USMdIz1TbUM/Q
- UMdYx4iBi1MApjqiieEn4xTv9YWv4p0dmxtFL/Bt7eC45cV1atOedhmG6OuVur9jGBlO7/aRtj8
- 5tYbbamVp7TlGR8O5y6pl6xu5+yY5LPznK8MHAA==
+ bh=J/JGbSI46p8HTL2RHYE+qUnCr5BQESuhvOilzbTTq48=;
+ b=owGbwMvMwCV2xczoYuD3ygTG02pJDJnu+yfNENmnr37sueAd3tzaNTZ3sqsW8Jh0uRewa79W3
+ JQxpSG0YyILgxgXg6WYIsuGJiGP2UZsN/tFKvfCzGFlAhkiLdLAAAQsDHy5iXmlRjpGeqbahnqG
+ hjrGOkYMXJwCMNWvexj+6XktOBa64faCSAYXoROlpwQKz4VnvXmq/fORfa2E2mnVGoZ/2jEv/Bt
+ 3CZ3bYaGv51FbZajFc+0Y/6Ez7lb3yl9FvvvOAgA=
 X-Developer-Key: i=jcalligeros99@gmail.com; a=openpgp;
  fpr=B08212489B3206D98F1479BDD43632D151F77960
 
-This schema was still in plaintext form. Convert to YAML format.
+Ensure that all references to tdm-slot.txt have been updated to
+tdm-slot.yaml, and are schema-compliant.
 
 Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
 ---
- .../bindings/sound/tdm-slot.txt          | 29 ---------------
- .../bindings/sound/tdm-slot.yaml         | 49 +++++++++++++++++++++++++
- 2 files changed, 49 insertions(+), 29 deletions(-)
+ .../bindings/sound/imx-audio-card.yaml   | 14 ++++++--------
+ .../bindings/sound/simple-card.yaml      | 14 ++------------
+ 2 files changed, 8 insertions(+), 20 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/tdm-slot.txt b/Documentation/devicetree/bindings/sound/tdm-slot.txt
-deleted file mode 100644
-index 4bb513ae62fc..000000000000
---- a/Documentation/devicetree/bindings/sound/tdm-slot.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--TDM slot:
+diff --git a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+index 3c75c8c78987..eb702f48d694 100644
+--- a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
++++ b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+@@ -31,6 +31,12 @@ patternProperties:
+         $ref: /schemas/types.yaml#/definitions/string
+         maxItems: 1
+ 
++      dai-tdm-slot-num:
++        $ref: tdm-slot.yaml#/$defs/dai-tdm-slot-num
++
++      dai-tdm-slot-width:
++        $ref: tdm-slot.yaml#/$defs/dai-tdm-slot-width
++
+       format:
+         description: audio format.
+         items:
+@@ -38,14 +44,6 @@ patternProperties:
+             - i2s
+             - dsp_b
+ 
+-      dai-tdm-slot-num:
+-        description: see tdm-slot.txt.
+-        $ref: /schemas/types.yaml#/definitions/uint32
 -
--This specifies audio DAI's TDM slot.
+-      dai-tdm-slot-width:
+-        description: see tdm-slot.txt.
+-        $ref: /schemas/types.yaml#/definitions/uint32
 -
--TDM slot properties:
--dai-tdm-slot-num : Number of slots in use.
--dai-tdm-slot-width : Width in bits for each slot.
--dai-tdm-slot-tx-mask : Transmit direction slot mask, optional
--dai-tdm-slot-rx-mask : Receive direction slot mask, optional
+       playback-only:
+         description: link is used only for playback
+         $ref: /schemas/types.yaml#/definitions/flag
+diff --git a/Documentation/devicetree/bindings/sound/simple-card.yaml b/Documentation/devicetree/bindings/sound/simple-card.yaml
+index 533d0a1da56e..a14716b2732f 100644
+--- a/Documentation/devicetree/bindings/sound/simple-card.yaml
++++ b/Documentation/devicetree/bindings/sound/simple-card.yaml
+@@ -27,14 +27,6 @@ definitions:
+     description: dai-link uses bit clock inversion
+     $ref: /schemas/types.yaml#/definitions/flag
+ 
+-  dai-tdm-slot-num:
+-    description: see tdm-slot.txt.
+-    $ref: /schemas/types.yaml#/definitions/uint32
 -
--For instance:
--	dai-tdm-slot-num = <2>;
--	dai-tdm-slot-width = <8>;
--	dai-tdm-slot-tx-mask = <0 1>;
--	dai-tdm-slot-rx-mask = <1 0>;
+-  dai-tdm-slot-width:
+-    description: see tdm-slot.txt.
+-    $ref: /schemas/types.yaml#/definitions/uint32
 -
--And for each specified driver, there could be one .of_xlate_tdm_slot_mask()
--to specify an explicit mapping of the channels and the slots. If it's absent
--the default snd_soc_of_xlate_tdm_slot_mask() will be used to generating the
--tx and rx masks.
--
--For snd_soc_of_xlate_tdm_slot_mask(), the tx and rx masks will use a 1 bit
--for an active slot as default, and the default active bits are at the LSB of
--the masks.
--
--The explicit masks are given as array of integers, where the first
--number presents bit-0 (LSB), second presents bit-1, etc. Any non zero
--number is considered 1 and 0 is 0. snd_soc_of_xlate_tdm_slot_mask()
--does not do anything, if either mask is set non zero value.
-diff --git a/Documentation/devicetree/bindings/sound/tdm-slot.yaml b/Documentation/devicetree/bindings/sound/tdm-slot.yaml
-new file mode 100644
-index 000000000000..5bc46048d689
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/tdm-slot.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/tdm-slot.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+   system-clock-frequency:
+     description: |
+       If a clock is specified and a multiplication factor is given with
+@@ -115,6 +107,8 @@ definitions:
+ 
+   dai:
+     type: object
++    $ref: tdm-slot.yaml#
 +
-+title: Time Division Multiplexing (TDM) Slot Parameters
-+
-+maintainers:
-+  - Liam Girdwood <lgirdwood@gmail.com>
-+
-+select: false
-+
-+$defs:
-+  dai-tdm-slot-num:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Number of slots in use
-+
-+  dai-tdm-slot-width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Width, in bits, of each slot
-+
-+  dai-tdm-slot-tx-mask:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: Transmit direction slot mask. Optional. Drivers may specify an
-+      .xlate_tdm_slot_mask() to generate a slot mask dynamically. If neither
-+      this property nor a driver-specific function are specified, the default
-+      snd_soc_xlate_tdm_slot_mask() function will be used to generate a mask.
-+      The first element of the array is slot 0 (LSB). Any nonzero value will be
-+      treated as 1.
-+
-+  dai-tdm-slot-rx-mask:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: Receive direction slot mask. Optional. Identical to TX mask.
-+
-+properties:
-+  dai-tdm-slot-num:
-+    $ref: "#/$defs/dai-tdm-slot-num"
-+
-+  dai-tdm-slot-width:
-+    $ref: "#/$defs/dai-tdm-slot-width"
-+
-+  dai-tdm-slot-tx-mask:
-+    $ref: "#/$defs/dai-tdm-slot-tx-mask"
-+
-+  dai-tdm-slot-rx-mask:
-+    $ref: "#/$defs/dai-tdm-slot-rx-mask"
-+
-+additionalProperties: true
+     properties:
+       sound-dai:
+         maxItems: 1
+@@ -133,10 +127,6 @@ definitions:
+       bitclock-master:
+         $ref: /schemas/types.yaml#/definitions/flag
+ 
+-      dai-tdm-slot-num:
+-        $ref: "#/definitions/dai-tdm-slot-num"
+-      dai-tdm-slot-width:
+-        $ref: "#/definitions/dai-tdm-slot-width"
+       clocks:
+         maxItems: 1
+       system-clock-frequency:
 
 -- 
 2.52.0
