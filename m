@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-248572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FFF3CD407E
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 14:03:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52AD9CD409D
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 14:26:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4E8FC30010F1
-	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 13:03:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7929230062D7
+	for <lists+devicetree@lfdr.de>; Sun, 21 Dec 2025 13:26:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAFF22F656E;
-	Sun, 21 Dec 2025 13:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D54802FC003;
+	Sun, 21 Dec 2025 13:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o20VzUNC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OSEwjr8J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8783D286422;
-	Sun, 21 Dec 2025 13:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11D1155322;
+	Sun, 21 Dec 2025 13:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766322180; cv=none; b=X0+XLpLOyUCwnLqmZlQoeJiwZ2m3VocoYFgSgwWbtDxDoMDnBROMMV0tZ0u+3ZjwdfLR8W3Yg1o6O8HIMHaXNjIVA7sXPJn2fdZIGZaFUQ3Tv6FaAw4ByHf6YHDW5OQNAE3J9PEHXmjfknWlNZUVIGw8zj/DuGoFhp1kKJK8vgo=
+	t=1766323597; cv=none; b=eK8WK4Y8+mdgA0lH7QDHdQZbTZXrf8FSfOjj6hSTgIeVRvkmBmAdHgSbauHc20v4+tjoFPLHNa2NKRfM38Jfwt0D3kfS1kh55uZfJ4L7f+dYH/sui3kc1c0OaAzysUl8TfdXHEOme9iQmgGa4rUqCIR8ysJNwrRZqN3NvZLzSeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766322180; c=relaxed/simple;
-	bh=tpcVf81xYJEjtwqPKa0hlT7quahUwBDwxVtEoAIA+bI=;
+	s=arc-20240116; t=1766323597; c=relaxed/simple;
+	bh=7uu8Cf6pnmQ0EvcFNFySVt+XjU4StaGESLINwYgeJEw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FJXoFmHx3XCNwrA86oYBZxouj7dXwJ2X+CfBPgEuh+aphFWWX3bLlKjsLQ/HMQ2kDl+L5xUcylYJwVdMhBu/R8WeKD/7814sm2ruRmW+HU5uRlh8+SW1/IBwgUZualJM1cbWlaIhfG0twKmd3gns8581H13indH7sdLP7cPEjPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o20VzUNC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AC1CC116C6;
-	Sun, 21 Dec 2025 13:02:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pSPnJT+JQJsV6fmCjkyK7/OLGklCV7jMGGOtw+ff9QMsrPlgRrYsVayx44LOYxjEVitPV0CY8gB/ZFQCTLT7cyeuBMhItTKqvQzmxdEtj8MVG2AkeQtjc8zMGDH84/hfAMNe4dZBXqEaCE9CJIYIWpOjzRsWT4HJApZ46lP8dn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OSEwjr8J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 213BEC4CEFB;
+	Sun, 21 Dec 2025 13:26:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766322180;
-	bh=tpcVf81xYJEjtwqPKa0hlT7quahUwBDwxVtEoAIA+bI=;
+	s=k20201202; t=1766323597;
+	bh=7uu8Cf6pnmQ0EvcFNFySVt+XjU4StaGESLINwYgeJEw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=o20VzUNC0RvFOBwdM6RUA43CEcYZD8UzAP4g0bn0/Ia2PqpCvlmHCQHe1ZnRfxgMU
-	 0Yu4fS7Id1dzDxgMEwCKBHFhtWhgOJe8mi1eN5cJoe4v/+V/zB00ko5c/Py+4eDe55
-	 rNJM0K+PxS8FMTz5s4SMavXEY65CryOFZU6kIeqGeiHmSrF8rM+knSc2Z20yb7Nba8
-	 4pY3Ldeea9Byo1SISKKVao5OpghXO3nQtG5igbtaFW4uiIrEHSBZsvB854ciXEbcJL
-	 xb5V6+k9JV2DAlE7Yds2LiL81Bd015Pkwp6Pns8p66gZC8fniDjmR/2hKdJKE2rLJT
-	 O1cnOVgSaBpGw==
-Message-ID: <326c3e83-059e-4e96-ab99-d4a33eb3b56f@kernel.org>
-Date: Sun, 21 Dec 2025 14:02:51 +0100
+	b=OSEwjr8JBdRpzaFaEp2uDyb305z3sBFhHgZKmUM42h0bdPCXh5dxS48OAZL8z7urN
+	 fFOy8CAnRBcR5oE4wwItPaseVwkM8lM3jgTkG7zcv+YwX/j/bINRIBgdFZ9oEaxF+J
+	 hFRuoUEy5EQrc6n/q+NsXfGR223r/LKgbkQfEAFlrBtGW7Xa2PgwPz/1gczASCaVE2
+	 fQkLvLcaGAh7a9Ds95LU14H3Qomzhq6aqN0hleCeIXxspbLJBtc6Ayh/21m1+0OiN4
+	 TtEBgYONJ9m5LvcCaeXXLVbXr96Zb1Q/KhCx5LZd8vmidSnZa+hWMCKTq0BDMRGv+c
+	 G6bbw8q0v/Z1w==
+Message-ID: <215eb434-683f-4cf2-9bcd-0860991ae23e@kernel.org>
+Date: Sun, 21 Dec 2025 14:26:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,20 +48,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: iio: frequency: add adf41513
-To: 455.rodrigo.alencar@gmail.com,
- Rodrigo Alencar <rodrigo.alencar@analog.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
- Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-References: <20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com>
- <20251219-adf41513-iio-driver-v2-1-be29a83d5793@analog.com>
- <20251220-bouncy-perky-tarantula-d9b3be@quoll>
- <gz36kmewv4bhwqz6d3xqatcx65uzukqcgsvfbwhr7c3yhw225z@edeggfhjws2h>
+Subject: Re: [PATCH v6 1/4] dt-bindings: clock: google,gs101-clock: add
+ samsung,sysreg property as required
+To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ kernel-team@android.com
+References: <20251220-automatic-clocks-v6-0-36c2f276a135@linaro.org>
+ <20251220-automatic-clocks-v6-1-36c2f276a135@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,62 +110,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <gz36kmewv4bhwqz6d3xqatcx65uzukqcgsvfbwhr7c3yhw225z@edeggfhjws2h>
+In-Reply-To: <20251220-automatic-clocks-v6-1-36c2f276a135@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/12/2025 19:05, 455.rodrigo.alencar@gmail.com wrote:
-> Hi Krzystof,
+On 20/12/2025 10:05, Peter Griffin wrote:
+> Each CMU (with the exception of cmu_top) has a corresponding sysreg bank
+> that contains the BUSCOMPONENT_DRCG_EN and optional MEMCLK registers.
+> The BUSCOMPONENT_DRCG_EN register enables dynamic root clock gating of
+> bus components and MEMCLK gates the sram clock.
 > 
-> thanks for taking a look into this again. It was my first patch it didn't want
-> to draw more attention or discussion to the V1 patch as it was declared not ready
-> at its very first review.
+> Now the clock driver supports automatic clock mode, to fully enable dynamic
+> root clock gating it is required to configure these registers. Update the
+> bindings documentation so that all CMUs (with the exception of
+> gs101-cmu-top) have samsung,sysreg as a required property.
 > 
-> On 25/12/20 10:21AM, Krzysztof Kozlowski wrote:
->> On Fri, Dec 19, 2025 at 12:34:48PM +0000, Rodrigo Alencar wrote:
->>> dt-bindings for ADF41513, an ultralow noise PLL frequency synthesizer that
->>> can be used to implement local oscillators (LOs) as high as 26.5 GHz.
->>> Most properties refer to existing PLL driver properties (e.g. ADF4350).
->>
->> What is "existing PLL driver"? I know about motor drivers, but can you
->> drive PLL?
->>
->> And how is ADF4350 related to this binding. I do not see ADF4350
->> compatible here at all. Describe hardware, a real one.
+> Note this is NOT an ABI break, as if the property isn't specified the
+> clock driver will fallback to the current behaviour of not initializing
+> the registers. The system still boots, but bus components won't benefit
+> from dynamic root clock gating and dynamic power will be higher (which has
+> been the case until now anyway).
 > 
-> ADF4350 is an older one, and its bindings can be found at:
-> Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
-> It is a similar part, but yet very different.
+> Additionally update the DT example to included the correct CMU size as
+> registers in that region are used for automatic clock mode.
 > 
->>
->> Nothing improved.
->>
->> You ignored comments, did not bother to respond to them and then sent
->> the same.
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+> Changes in v5:
+> - Invert the test for google,gs101-cmu-top (Andre)
 > 
-> Sorry for not responding on the V1 thread, but the previous patch had to be reviewed internally
-> first. It is not true that nothing is improved, in fact, it has changed a lot, here are some notes:
 
-Process is not like that. You first review internally, then you send.
-After you sent and receive comments, you respond to these comments.
 
-> * adi,power-up-frequency is not carrying the -hz postfix because it forces to be a uint32 by
-> the dt-bindings check. For that variable it needs to be uint64 as the part supports up to 26.5 GHz > 2^32
+<form letter>
+This is a friendly reminder during the review process.
 
-And what granularity do you need? Why mhz does not work?
+It looks like you received a tag and forgot to add it.
 
-> * The properties related to the reference input signal path: reference-div-factor, reference-doubler-enable
-> reference-div2-enable are declared here because they are constraints for the PFD frequency definition,
-> which is the frequency that the output signal is updated, important for the loop-filter and VCO design.
-> * added support for all different power supply regulators.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
 
-Sorry, but I cannot respond that way. We discuss inline, so I have
-entire picture, not some parts of message semi-quoted here. I don't
-remember what was there and I am not going to keep looking for that.
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-You need to adjust to mailing list discussion style, not introduce the
-others. I have just way too many other patches to deal with, so
-implement the feedback or respond properly.
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
+
 
 Best regards,
 Krzysztof
