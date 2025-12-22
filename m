@@ -1,86 +1,99 @@
-Return-Path: <devicetree+bounces-248695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99A7CCD51E9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 09:43:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60595CD51FA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 09:44:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A6746300162F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 08:43:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 02382300162D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 08:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 861C43043D2;
-	Mon, 22 Dec 2025 08:43:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A022F30FC2E;
+	Mon, 22 Dec 2025 08:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="I41QMdz8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WzDR2hUR";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VirQHyN6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011055.outbound.protection.outlook.com [52.101.62.55])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0F91285CA3;
-	Mon, 22 Dec 2025 08:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766393012; cv=fail; b=C8Fn/bFPeVz4rLAJgT2QNyOH1QqbbzWc13RdFLCB7Z+tZw+Nv61Az1jYaorsbGEo70mGS13YoK54W+dNNiazWm6nKQFVzGvdYQk5Hg+3Z3rnJdBe/Q9qRstMRCgZv7d1gmLb3JQnRHVH//l0KSfZv3InRlZ3Z/U9QhgVn/o7jBg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766393012; c=relaxed/simple;
-	bh=cEl4qRZ+nuG7aUBu8OXm33K8UUfWym+lunqyLGqlSWE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=M8jOwfQKUZd7eBZVko1eRYW4/xqEt1A1jO7QbR/zaU7y6r0ndfF/vUAJ5E23sweVCBHybCIL+rtt5Fsc0YDVGhF4VWVv55BcENbe3o1eBQWm8IbSKx2aG5LHXOPVfLjdMeu5CtGLcdMjNAg28WavAz03/ypikxADybB9sYOlg/E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=I41QMdz8; arc=fail smtp.client-ip=52.101.62.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZMFZArzqipxkDajQDVCmlu54CHJBBsUGnCLdXxI+ifgzUllJoa6CwetLszmSRB/POcn2mgJkk/D/WjyIIQvTTNs7eqqMhTVuzVHuRhKr0Ued0voKx1uCDX/8BlTcr2ERgfZubEjGCAvMp3mCBu6gm+pVo5kuyHbLvNNJLZ9mrDpw4ILhxXStpR8M7DB1d8WHskTdqehv4IjerOKWpPNOstcN/ymC91lDTceMCxIk1Gc3ndQh1ruqYVYAe392VqVoT2dsz5pNVXxtiVPLUq4mq5X4BluwMcKzvcwmmwm1ucX/RvsAtVbwy+c+FFOSzyhRKiEgic821lIHobLh/LIjOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kAqiz6XB7CDs3cHGETeSe8UB5lp4HnPiPOiCxdguPqM=;
- b=s7gyh0AX+bAepWGI0mms9TyaAkbhFpNyrE/h25czlkVPZO3TTj8rWS2LQ/SPAQVGgut54yhLqR6J95++bV3jjSTLavmNoqlNaugnSuWC5b4MJBAlHrcRb3oBX/m8B15suUr72yLlMBPavNSwjKP/Hxvs4gFSX9U0WUe+cFddAkKDYO+ZLlXzWS2srS1sBaEdrNBSkxH09UaeQjPec83mpyTB/GChK+LbGiK0JBQvHM/Z3k512/Qo8F9tIdA4B5UnTvefGrZKH2lsJXU8mQhE9bF7DFNrfyBI4ddPqncpaiJzF1HaGigPHvB3YFEZapmq0wWDjaPcuUVnpQk+ArKHUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kAqiz6XB7CDs3cHGETeSe8UB5lp4HnPiPOiCxdguPqM=;
- b=I41QMdz8VY9uIUIAG12QF/zJ8oiw1FBXhDQmkDGP3cmpVaWHulBSZoblSthLSGWG/Cr6ns+zJipA/wdVC07aJU34gTlA2u5iKZ1IdPzhfs1u/ZcceneWFL0hSyRI9tyk5aipDhcNfFBgtB6yiYDbtfmF9ZubZGxRMDj0tCAYWMU=
-Received: from BY5PR17CA0037.namprd17.prod.outlook.com (2603:10b6:a03:167::14)
- by DM4PR10MB5966.namprd10.prod.outlook.com (2603:10b6:8:b2::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.11; Mon, 22 Dec
- 2025 08:43:24 +0000
-Received: from SJ5PEPF000001F6.namprd05.prod.outlook.com
- (2603:10b6:a03:167:cafe::14) by BY5PR17CA0037.outlook.office365.com
- (2603:10b6:a03:167::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.10 via Frontend Transport; Mon,
- 22 Dec 2025 08:43:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- SJ5PEPF000001F6.mail.protection.outlook.com (10.167.242.74) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9456.9 via Frontend Transport; Mon, 22 Dec 2025 08:43:22 +0000
-Received: from DFLE208.ent.ti.com (10.64.6.66) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 22 Dec
- 2025 02:43:20 -0600
-Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE208.ent.ti.com
- (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 22 Dec
- 2025 02:43:20 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE204.ent.ti.com
- (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 22 Dec 2025 02:43:20 -0600
-Received: from localhost (dhcp-172-24-233-105.dhcp.ti.com [172.24.233.105])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BM8hJQZ978694;
-	Mon, 22 Dec 2025 02:43:19 -0600
-From: Anshul Dalal <anshuld@ti.com>
-Date: Mon, 22 Dec 2025 14:13:14 +0530
-Subject: [PATCH v6] dt-bindings: arm: keystone: add boot_* mboxes to ti,sci
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2177330F526
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 08:44:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766393069; cv=none; b=bz0/KkiD3kE7JD7QwY9aEsJsBEsKdWVb+5vK3a9OhT/EWPWzZc77eJAbfKeGcuAk41ZMxtR2sGS3aIKTSo656s+SBWo6MN8BsVkXby6CD/MKnGOfDFP1FzKoIjAy34EC8tVk/v2sb9rx02US9vG/ysCpOAGQV4UJiunZ6xCyFNk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766393069; c=relaxed/simple;
+	bh=+65XFLjmzkBfsSXsN4uZBfj8j9rlxmw6Qkdl91guMDs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ct/6nu1QlaxollitSQq/ftS9J2Mr0V8pYUWFzinTwyH+aGwPWDURxUBBYbEVUREcxf2Q/yQGf+kkDsnT8OnS5sjjYQD5eAoZ51u10ZLdpGF5FJ2QNuugH47xcvtQdGf08ahoLQe9HnlpM/PXa6rFD0dyqAsDSsFkpcKXoseJ5TA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WzDR2hUR; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VirQHyN6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BM5CYvA1783581
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 08:44:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=FUKnIotoxp2c8hNstV45OI
+	ejvixZ1FAP2laOOHlZegU=; b=WzDR2hUR3vs3NN7gaOK1e+N2RoSK+yG/kHG/zT
+	l7cRKxrmwLPVeeDZsmunh32GrEpwVGCaUd7/ikbuZoxTNLykjbDlk1t8whIVodQJ
+	xJU4zS+wQMjw4xTENalxGi7XcVmcCa34LYPfbtuJz4VEzin2IpPwiRJa74YLSxAY
+	/VIPlQ6rFu8gEyulDw+GO8EZA/RMEXISUySfu8LZOXwz09oYi/7AzTl87LLojTUR
+	rhdWrQlR4pLf/S/WvMQZsv/M90I9Vhws4lG12qm2+k7Mle6f8qWgIDN11dNUeKEH
+	U/Wjw4Ulyl8ZHgCDvu0N7lj0a/elzf/sVOwoAGrxtkkxZRDg==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b5mtqmcgm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 08:44:24 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b24a25cff5so1091905985a.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 00:44:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766393064; x=1766997864; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FUKnIotoxp2c8hNstV45OIejvixZ1FAP2laOOHlZegU=;
+        b=VirQHyN6amjvQVU3bEPFZ0ozjMB34RERZbhvc1IzG6lrIYhlJfHyxe+Tq5+lezuoOC
+         XAGLjt30l1TFfgvlgftgQ7yCuZy+n3UYvetUmIWMNzmkLHwOqK1+MEwS4ZIWFfrLK+qg
+         VctEEi9N/ZotL/D9uYZfx2hFQdKaNzaUUo+QqhITd3zlDH2FTS/XpqGqQjJE++8piiQz
+         mhUCDrYdEPJFJa+7ljYPg7phtkTXEa4k/GRTVYwvb5zhyim0vnd2fXpjdz5CnqsqCyhG
+         r4ezfELd5whNzVFHnQk3U1RJfhkNOYnOlDfkqwuJwkzMo0y4/O6xRe+mAzw6kp/WoGNO
+         blZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766393064; x=1766997864;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FUKnIotoxp2c8hNstV45OIejvixZ1FAP2laOOHlZegU=;
+        b=DcczksIldR25dciVWSKwxfMWKRte9KIm4LNKwzuori1YWaI3bugstDxpkLBPaYcwn6
+         GDzJ3gmVErA8NWrUOONfRuse5KqtMQBSn9e4tw3KMP8HqzpEBnfOzIc6wyxgS8IZUo5Q
+         p4go+uSVcsmiZurEiHtI1jSRg3tFqYkwv4DFXPVLR2hMpQInNSbXdNPrDv/fv/OH5fXD
+         m5VJbiZh0fd3AgN/5XMOmu5Z1WFVskxfQlJENP+S1VoUSnxfB+CYk5NuYO2r2Jqn5fLs
+         fDe6hxVO/XNKy1ASVC7VrpRm2Sf+ZWd0wN8BE5ZlWO0rx/jNQ2lfnaTgP/xnqZ/lsNPP
+         +e1A==
+X-Forwarded-Encrypted: i=1; AJvYcCVn4+32gvRYVzrQ7kwOq6jmM2ciMmdP2fwQJ9gqJNc5GcK7EIV5RH1ELZvvXLDcvv+oWkbfycAsKnHC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGiA0ipTgTdv/4JBJUXLLZDy58g7yr9nJAsCdOu0iTjqse9lX3
+	uAhf48SqNr2SWVbrHukEOTwjhRkTgMu+FlWu4bjyi+uo7K8krNokrNHPBeSumBAwX4mA/8CZas7
+	T6xDtBhUQ2r5+g9G3i3jksPxMXOVUor4fSBzWUjXPtd56YFhcYXRUcBccJa9DFei+
+X-Gm-Gg: AY/fxX4KRT1IF6XbqrSs0NgfTmtcoYrLJceIrlm4h3PXnrpUBiM/IUvaC1VWKpDB7AR
+	GhUDdSXeD7wfvHXfUaoNQSnUCdbjyorpVYM1ZMWLs+uG1/RFcHCoMrfxBI2BAxwSZBsV72ZYxn6
+	s4ePKAMCi8MEaWZyFP0cgvBbq57RY/touow8B2Yy7iNOFDGgnHGl9eydjT9sYBoSNedeT5d+BbU
+	BdCd9DztKl+W800088rXl/q++eKPRsEF3xssNFRlirWwLkDbp+PpuJfPn0DVQn8RS7cdEPaqgN3
+	veC/F4LtKL4DdD1H1sH+cy8g3vK3xa/wCF4XxAlVF4eFAsNddadNf7JSFRUcw4azAP4u8mACTsA
+	XxGxtU0XD3jFonQ5fFqnx04MXq7+TLAZpK+3hESyI6EjkPgmPQ9IHV5OVdqVwffZzLqpIIgkotc
+	DH
+X-Received: by 2002:a05:620a:2699:b0:8b2:e561:78c9 with SMTP id af79cd13be357-8c08fa9f0f3mr1560389185a.43.1766393063968;
+        Mon, 22 Dec 2025 00:44:23 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFW1SRKpIvC/1h/9jR0hbT6ol8vDr8W2OUoCBZbvQryIDaTonOx9XFKfEWt3VF2eh7VFgh7Lg==
+X-Received: by 2002:a05:620a:2699:b0:8b2:e561:78c9 with SMTP id af79cd13be357-8c08fa9f0f3mr1560387085a.43.1766393063471;
+        Mon, 22 Dec 2025 00:44:23 -0800 (PST)
+Received: from WENMLIU-LAB01.ap.qualcomm.com (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c0975ec0f0sm782975385a.50.2025.12.22.00.44.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Dec 2025 00:44:23 -0800 (PST)
+From: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+Subject: [PATCH 0/3] Add CCI and imx577 sensor support for Talos evk
+Date: Mon, 22 Dec 2025 16:44:13 +0800
+Message-Id: <20251222-sm6150_evk-v1-0-4d260a31c00d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,270 +102,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20251222-k3_syscon_add_boot_mailboxes-v6-1-b93ada9f1d47@ti.com>
-X-B4-Tracking: v=1; b=H4sIAKEESWkC/5XQy2rDMBAF0F8JWlfFM3pY6qr/UYrRsxFtrGIZk
- RD875VDIfGmpss7izOXeyUlTCkU8nK4kinUVFIeW5BPB+KOZvwINPmWCXYoADpBP9lQLsXlcTD
- eDzbneTiZ9GXzORSquEDrvVZaImnE9xRiOt/4t/eWj6nMebrcvlVYr78wwN9wBQpUoDbYR4Sul
- 69zenb5RFa14qOEOxLSjppgHQTeW6ZhI7H/SKx1khKEMByZ9G4j8buEe7NV3iQVEGS0Smm+7SQ
- eJNiTxLqTUTEI2UfP7tKyLD/13L1v7QEAAA==
-X-Change-ID: 20251105-k3_syscon_add_boot_mailboxes-8452bdd98962
-To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, "Santosh
- Shilimkar" <ssantosh@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Andrew
- Davis" <afd@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
-	"Anshul Dalal" <anshuld@ti.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766392998; l=5738;
- i=anshuld@ti.com; s=20251022; h=from:subject:message-id;
- bh=cEl4qRZ+nuG7aUBu8OXm33K8UUfWym+lunqyLGqlSWE=;
- b=GYrdZl+I5SwCNEEfIv41qr+ZAgt620OqaYrLeqOFgnyjpBIiXdoCLCKaje06SDXUO3hJ+FKoj
- k71P71CHSFiDQd63uI2aHaS9lXCtlzOz3KbvJeJVsAnv9z+DHaErkzl
-X-Developer-Key: i=anshuld@ti.com; a=ed25519;
- pk=Kv8FlQElcrR6efyEHmjtE83y8e0HKvqPyvVY+PJ4UFw=
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F6:EE_|DM4PR10MB5966:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4e7ccd36-a433-4de5-4e59-08de41362a54
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?aGRLTC9aVXZLY2JSQU13UFRTcjU0RHBkK2tSa2xKejdmaElFSzJhMzBjS3BI?=
- =?utf-8?B?ak1pVlI4RDRnVUh0WXlzcGg1cjAxRXdGd0QrbzQ3aHdtWXk3VHJDRWMzVVBw?=
- =?utf-8?B?V29mOWl6OVY1RUNPY0Q3bUFFMit5dEFvTGxVeEN0Y1U4eHdkVUkrckZuamJv?=
- =?utf-8?B?a2dqWHdZZGxFTGpwM05DRHUyQzc4c0JzdDhPQmtRMVlRRXlpMkx3cGdoQWRV?=
- =?utf-8?B?QUppR2o2TzYxYit0ZGVRMUxqSG9sN0NISDhNQkNrUEdXZkhEWkdXR0pOcWF6?=
- =?utf-8?B?VmhXMDR6SUdiYlgrY2RPZlRUNzhXcmExY2FrdGxwTHgwdDc3VWtkWU5NTGx6?=
- =?utf-8?B?LzhuSC9kZ2NPWnFDVW1Zb3YvMmhBU0w0UXh6KzRVUFFSaTJlUUk3MjB2STNV?=
- =?utf-8?B?c1JIZm5aM2poOEIvK1Nyd0QybWRaN1I3MVlaUGhnMFlTZG5tNDdtc0N0V1hi?=
- =?utf-8?B?TGhEbjFhZ29zR2Y3L2VLMTJQa2VrSWRVQnJIcW1pUVN3Kyt3UFFydkptSDll?=
- =?utf-8?B?d1loWElCdFdENGpNT1MvY0xFT3c3OVZYNlVKYWlUWU04V3VlZlhwTWtHbDI2?=
- =?utf-8?B?RC8wdk1DaDVPMTdBbS8rWit5ekFpSWRIT3hDcElmZHFYVzVGOTNqcFk4RU9H?=
- =?utf-8?B?bUxYL0hEWHplSmExZ3k3T0JibEdaYlpvaTJaVERlbG9GUlJ2cGFBRjJjcjkx?=
- =?utf-8?B?ZkM0dDFIMUMyeDFoR0Z5OThHKzRzZjFNaDVxWG41VTJZYmNscUpIODVwUDlk?=
- =?utf-8?B?RGgrM0piYUxTUDg0NlhXMTdhdTR3UHJ3L3FXRHlFWGI4cG9vcUFvaG83czA4?=
- =?utf-8?B?UnhmejRuWk1mb0F3M0xVL2VNRXBEaDA0Z2U1MmdTck12ZDFYSTFlUjVZaWJi?=
- =?utf-8?B?VmVWc3BTa0l1clVjSTRYOHVST21oRkpiSGpVazg0bGkySCsrZ2x3ajFhNGEw?=
- =?utf-8?B?MnZiQ3FEZFFSbnEzK3cvMWk2MXh5TDZMVjZPcXdtaFI0bW1CM0pjc0FzOEdB?=
- =?utf-8?B?SWlEWXg5T1BzS0ZWc2hXUDc5ZHk0VDRIemx6S25RanU3Ylg0Y1o1a3hBQWcv?=
- =?utf-8?B?RUhicy92UUkxd3F5QlJ4bFBIUC9td3NsV3p5MVI0R3RFc0dCMStRVSsxU2U1?=
- =?utf-8?B?Rno5bDB3eHhMZlRHUVJGMHlhZDZNeVdaK1cxNHRUZnNnVGswQ2N4WVpHUFZL?=
- =?utf-8?B?cUwrNVBWK095UHdwYmhWQnFQVUlkK3ZPbHNHWG5qQnRKakZheDdGRGpMQmw2?=
- =?utf-8?B?c2ptYnhlR2ZqMTdjaGV2cHllZXc0dWpjMDdDd09DVlpWeDBEMHA2N1g0Wi80?=
- =?utf-8?B?Z0RyZHFJRE1Ld3FkK2ZQYjBibWFpYkRxVkdFK1NkU0JiTnhlSXAvUitucWRa?=
- =?utf-8?B?OWFSTlhQK3phVmJkRmowRFA1OGRteXpkeldLajNHS1l4NU9rb2ZsZmsxcGVw?=
- =?utf-8?B?cUNqaVpvMkFFb1NQbjFxUzVRK2w4UStOWjVnQldrUy9TS3MwRDZ1Z3N4WitM?=
- =?utf-8?B?bWZMZzVWSkxhazJmWmliZTF2MTV0Q2puQkl3OWwrVi96QlN2dkJESCthZ2Ex?=
- =?utf-8?B?OEVCbVdOK0xURHNzWkJzL1VQSUZtanlRbWxjTTZNRmtLbE9oRjFXRWQvaEZQ?=
- =?utf-8?B?WmF4VE5sRXF1YWszcEdINzVVUGR2ckJZNk5BbWdNSlFpbEh5MzVUbldhR0I1?=
- =?utf-8?B?Zy81MDAxNlV1ZGtxU3JXbTNaZEFqMDMrZHU5bFIzV3F5MWZqRk5mZ2taendr?=
- =?utf-8?B?ZDZLaWpLdURXSlVhWjE4Q2YwS1hRcXROaEIvU1dtRndOWWR5Mkx5RkRObHdr?=
- =?utf-8?B?RTlTUkQ2ZVI4bnhHbCtiK003bjY3QjdHOHRKTml3dFJERWtQcVF2WUo5R21j?=
- =?utf-8?B?dGkvWHNDYlFRL0hwSTk1ek8vYXRxUm5IMUYzY1Z3cC90WDZKYVBvakVkUXZI?=
- =?utf-8?B?eTBENzdxd085SUtZWmo1SzFITWU1ckg2UnBtMFBRMkZ5T21HQmpPZ1JKRE5C?=
- =?utf-8?B?R3ptYi9janZna2FMaEJGYmFSK05mVFRuT1R0YklhLy9iU05vTmpabjN1QUcz?=
- =?utf-8?B?YzNwcFhIOHk1OEJhOE41eGxnMnljbXQrMDYreXRWVk9VSTJsekx1WWxiQVM5?=
- =?utf-8?Q?N4lg=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Dec 2025 08:43:22.6643
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e7ccd36-a433-4de5-4e59-08de41362a54
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001F6.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR10MB5966
+X-B4-Tracking: v=1; b=H4sIAN4ESWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDIyMj3eJcM0NTg/jUsmxdi9Sk1BTLVMs046RkJaCGgqLUtMwKsGHRsbW
+ 1AJgf9XNcAAAA
+X-Change-ID: 20251222-sm6150_evk-8ebed9e9f3bc
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766393057; l=1724;
+ i=wenmeng.liu@oss.qualcomm.com; s=20250925; h=from:subject:message-id;
+ bh=+65XFLjmzkBfsSXsN4uZBfj8j9rlxmw6Qkdl91guMDs=;
+ b=C6TNkm8SuVEhjmlqbdKYWWJosiC8UXwKP2nZJNyOCqJzSsCZw7bFA/lEluUNhPHpJge+YWHL3
+ bBT11TKsJyzA8wpCOeYYxIiIB7opwhGjpIPexaYUGTUqJt7Gq8cnGJ+
+X-Developer-Key: i=wenmeng.liu@oss.qualcomm.com; a=ed25519;
+ pk=fQJjf9C3jGDjE1zj2kO3NQLTbQEaZObVcXAzx5WLPX0=
+X-Proofpoint-GUID: jkUGi2BhssTcSqryYS85jNipRQuOx43D
+X-Authority-Analysis: v=2.4 cv=dPWrWeZb c=1 sm=1 tr=0 ts=694904e8 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8
+ a=1eq2e09OEcjZih1k5uoA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-ORIG-GUID: jkUGi2BhssTcSqryYS85jNipRQuOx43D
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIyMDA3OCBTYWx0ZWRfX73XRBxecMVBa
+ tr3CESz3xoTyrNLk7zAuDmedmbuPIvEd76KayDUbaga8AHnA3viex8ytgzdeJV5kYdGkOs+2mOd
+ iEUxhHLNIyLBBrwH4Ven0gSrC2XFdhLInih3Uyn1Mwyf1fKxjIhvEtj8oAsGTOB+TugLb4VwpJw
+ uPhE6ytdMurCIagRqED9GTSkn05iP+pLtIrgyfbkqgReQY3lSLhSvrU2DZ9p3qk8r4avMIfkDhy
+ C2iyYUfPytDqPIRLCFqnF1qSVx7s41ivWa7tvWKFWISSjpnoQe+Dca9Ua4W3BZB9Xxg8niLhASA
+ I7DalcUDt7W4EJoFu6gRBKyIed019B+ghfPLlSOcc5DqAyNF7GLCoelT5NIogmX12qL4kGiIjSZ
+ 8NYJ/Ujdd8IRxuZ2vkC1qtxYmxdMTBMDwGMeqVtRawvmfpp87bmztVaMLlLKmPM1c0Rzqd5xB3e
+ r82tAcOM2z52TYEMzAA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-21_05,2025-12-19_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
+ adultscore=0 lowpriorityscore=0 clxscore=1015 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512220078
 
-The bootloader on K3 devices makes use of mailboxes as per the ROM spec
-which might be different than one's available to the kernel (firmware
-spec).
+Talos EVK is  based on the Qualcomm SM6150 SoC.
+It lacks a camera sensor in its default configuration.
+This series adds CCI support and enables the IMX577 sensor via CSIPHY1
+through device tree overlay.
 
-Therefore, this patch adds the missing mailbox entries to the DT binding
-if the matching compatible is ti,am654-sci to represent the mailboxes
-exposed by the hardware during boot for the purpose of loading the
-firmware.
+We have tested IMX577 Sensor on CCI1 with following commands:
+- media-ctl -d /dev/media0 --reset
+- media-ctl -d /dev/media0 -V '"imx577 1-001a":0[fmt:SRGGB10/4056x3040 field:none]'
+- media-ctl -d /dev/media0 -V '"msm_csiphy1":0[fmt:SRGGB10/4056x3040]'
+- media-ctl -d /dev/media0 -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
+- media-ctl -d /dev/media0 -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
+- media-ctl -d /dev/media0 -l '"msm_csiphy1":1->"msm_csid0":0[1]'
+- media-ctl -d /dev/media0 -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+- yavta -B capture-mplane -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0 --capture=5
 
-The new ti,am642-sci compatible is also added to represent SoCs which do
-not expose a "notify" channel as part of their TI-SCI spec such as AM64x
-or the AM62 family. The newly added mboxes are made optional by keeping
-minItems as 2 to remain compliant with existing device-trees.
-
-Signed-off-by: Anshul Dalal <anshuld@ti.com>
----
-Changes in v6:
-- Added ti,am642-sci compatible to represent SoCs without a "notify" channel
-- Added new examples instead of editing existing ones
-- Link to v5: https://lore.kernel.org/r/20251215-k3_syscon_add_boot_mailboxes-v5-1-5a8fe567fd31@ti.com
-
-Changes in v5:
-- Added commit description for the optional mailboxes
-- Link to v4: https://lore.kernel.org/r/20251205-k3_syscon_add_boot_mailboxes-v4-1-8e216fb88941@ti.com
-
-Changes in v4:
-- Make new boot_* mboxes conditional on ti,am654-sci compatible
-- Link to v3: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mailboxes-v3-1-66155a4236dc@ti.com
-
-Changes in v3:
-- Drop [1/2] of the last patch series
-- Update existing example with boot_* mailboxes instead of adding a new one
-- Link to v2: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mailboxes-v2-0-aebc1e47b391@ti.com
-
-Changes in v2:
-- Remove maxItems entry
-- Remove RFC tag from patch (added by mistake in v1)
-- Document the new mailboxes in mboxes instead of mbox-names
-- Provide example with all the mailboxes set
-- Update commit title to have "ti,sci"
-- Split into two patches
-- Link to v1: https://lore.kernel.org/r/20251111-k3_syscon_add_boot_mailboxes-v1-1-529a27f21076@ti.com
----
- .../devicetree/bindings/arm/keystone/ti,sci.yaml   | 94 +++++++++++++++++++++-
- 1 file changed, 91 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-index 25a2b42105e5..0f2c764eae5a 100644
---- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-+++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-@@ -40,6 +40,9 @@ properties:
-       - description: System controller on TI AM654 SoC
-         items:
-           - const: ti,am654-sci
-+      - description: System controller on TI AM642 SoC
-+        items:
-+          - const: ti,am642-sci
- 
-   reg-names:
-     description: |
-@@ -51,15 +54,15 @@ properties:
-     minItems: 1
- 
-   mbox-names:
-+    minItems: 2
-+    maxItems: 6
-     description: |
-       Specifies the mailboxes used to communicate with TI-SCI Controller
-       made available from TI-SCI controller.
--    items:
--      - const: rx
--      - const: tx
- 
-   mboxes:
-     minItems: 2
-+    maxItems: 6
- 
-   ti,host-id:
-     $ref: /schemas/types.yaml#/definitions/uint32
-@@ -79,6 +82,66 @@ properties:
-     type: object
-     $ref: /schemas/reset/ti,sci-reset.yaml#
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: ti,am654-sci
-+then:
-+  properties:
-+    mbox-names:
-+      minItems: 2
-+      items:
-+        - const: rx
-+        - const: tx
-+        - const: notify
-+        - const: boot_rx
-+        - const: boot_tx
-+        - const: boot_notify
-+    mboxes:
-+      minItems: 2
-+      items:
-+        - description: RX thread
-+        - description: TX thread
-+        - description: Notify thread
-+        - description: boot stage RX thread
-+        - description: boot stage TX thread
-+        - description: boot stage Notify thread
-+else:
-+  if:
-+    properties:
-+      compatible:
-+        contains:
-+          const: ti,am642-sci
-+  then:
-+    properties:
-+      mbox-names:
-+        minItems: 2
-+        items:
-+          - const: rx
-+          - const: tx
-+          - const: boot_rx
-+          - const: boot_tx
-+          - const: boot_notify
-+      mboxes:
-+        minItems: 2
-+        items:
-+          - description: RX thread
-+          - description: TX thread
-+          - description: boot stage RX thread
-+          - description: boot stage TX thread
-+          - description: boot stage Notify thread
-+  else:
-+    properties:
-+      mbox-names:
-+        items:
-+          - const: rx
-+          - const: tx
-+      mboxes:
-+        items:
-+          - description: RX thread
-+          - description: TX thread
-+
- required:
-   - compatible
-   - mbox-names
-@@ -122,3 +185,28 @@ examples:
-         #reset-cells = <2>;
-       };
-     };
-+
-+  - |
-+    system-controller@44083000 {
-+      compatible = "ti,am654-sci";
-+      ti,host-id = <4>;
-+      mbox-names = "rx", "tx", "notify", "boot_rx", "boot_tx";
-+      mboxes = <&secure_proxy_mcu 6>, <&secure_proxy_mcu 8>,
-+        <&secure_proxy_mcu 5>, <&secure_proxy_mcu 5>, <&secure_proxy_mcu 4>;
-+
-+      reg-names = "debug_messages";
-+      reg = <0x44083000 0x1000>;
-+    };
-+
-+  - |
-+    system-controller@44083000 {
-+      compatible = "ti,am642-sci";
-+      ti,host-id = <35>;
-+      mbox-names = "rx", "tx", "boot_rx", "boot_tx";
-+      mboxes = <&secure_proxy_main 0>, <&secure_proxy_main 1>,
-+        <&secure_proxy_main 0>, <&secure_proxy_main 1>;
-+
-+      reg-names = "debug_messages";
-+      reg = <0x44083000 0x1000>;
-+    };
-+
+This patch series depends on patch series:
+https://lore.kernel.org/all/20251222-sm6150-camss-v2-0-df8469a8343a@oss.qualcomm.com/
+https://lore.kernel.org/all/20251201172222.3764933-1-tessolveupstream@gmail.com/
 
 ---
-base-commit: 4427259cc7f7571a157fbc9b5011e1ef6fe0a4a8
-change-id: 20251105-k3_syscon_add_boot_mailboxes-8452bdd98962
+Wenmeng Liu (3):
+      dt-bindings: i2c: qcom-cci: Document sm6150 compatible
+      arm64: dts: qcom: talos: Add CCI definitions
+      arm64: dts: qcom: talos-evk-camera: Add DT overlay
+
+ .../devicetree/bindings/i2c/qcom,i2c-cci.yaml      | 18 ++++
+ arch/arm64/boot/dts/qcom/Makefile                  |  2 +
+ arch/arm64/boot/dts/qcom/talos-evk-camera.dtso     | 64 ++++++++++++++
+ arch/arm64/boot/dts/qcom/talos.dtsi                | 97 ++++++++++++++++++++++
+ 4 files changed, 181 insertions(+)
+---
+base-commit: 1d9566d56c3b6d42b8d3684e940561ef783fe6a1
+change-id: 20251222-sm6150_evk-8ebed9e9f3bc
 
 Best regards,
 -- 
-Anshul Dalal <anshuld@ti.com>
+Wenmeng <wenmeng.liu@oss.qualcomm.com>
 
 
