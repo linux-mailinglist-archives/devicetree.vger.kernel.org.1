@@ -1,140 +1,127 @@
-Return-Path: <devicetree+bounces-248926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C04E1CD6CA1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 18:17:26 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 915B6CD690C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:36:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7AA8130024A4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 17:17:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0DFF0301BF89
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:36:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A9AE2F6594;
-	Mon, 22 Dec 2025 17:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC0D32D0E9;
+	Mon, 22 Dec 2025 15:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KrSHkMZO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 973FD339713
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 17:17:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730882DC334;
+	Mon, 22 Dec 2025 15:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766423842; cv=none; b=FPDGggddVA+Smz78c6rVM1T3QkjXKYexfXgcbSf8bRrmbx065BRTZo5ecdWu8iytMIQOL0k8Bw9zidVqcxi1o7d1Z96HLfusIWukdklpJraGtdHcAa0hTyrcuKwhY+lDUCT4CCGERJKVKPQh4eMaSaxOaIhqeI4zIdtscaIf3OM=
+	t=1766417759; cv=none; b=qc9act5i+DnZgnDqb5Iw9Z4knBft3kH0uWDx4krHZBi9W68kVBkXpiHMps08R0K8dHaWy8oJygAsOJVtSoGKhwZGfw176KF1bzB0kJUJ/Q1e6vo7xgJbFUO7KrlV+3sh1gBNH1b6P1s4GhImo7IxkGKC15DrxfzbhJKmmJJgKQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766423842; c=relaxed/simple;
-	bh=ARCeP+FjHLyRQ/TFOxypXSIG5GzrN1OmBElkgW/ggfU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XCy7SYkFXl3gw6anF9HgDLfxe8QW8NgUzj7JuzE3INlUB+qQRRyCBIg3dw7wUGDzBrDN6NqGbjDNDi5f89IwkudZtU9rXZaLe9XAztMzDZBlECjBP3Hf2dce7urLI0Qv6NA7AXzpC4fw6VjCOvf4GEJUaApkDRRZOEu6fziHL1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5dfae681ff8so2859835137.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 09:17:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766423838; x=1767028638;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sE9KE2Jyhtg/iXF/CUsw7RlDbWGUrFQq1WT3oqM9mXY=;
-        b=MBepieE3frhObCPafWZcWENcGmJMLKE9At3ujGVIiUJWxefunr7FtWuViEiKkq4cjG
-         o9LB7qRFtd92q4pUqVOtJy8fKbUD6Rhe6oPW+kBR3ivMPodnvpHQHLfxOFoJNqX2i6R7
-         K8LNZ2FUF04wqu2xaYKyoYHWnEsz8UTmsxi/IM/xxoCe6ZF3HoYZd0DKXF66JA/ETy4k
-         UrGAB9L5Zhm9K/yuaAMFXOifzRtxS3JnMCLMw2Nv65vxEjboC68M2F/+BtyOM6+Hy9s+
-         NQx0UwGj+Tp6VRMOFHuR/Hfl9O0wVxfUassYdB2g9+45hD1qn0FMlkGx22qCVFGKZoZ9
-         6FcA==
-X-Forwarded-Encrypted: i=1; AJvYcCWCLwf2HhcXT1ZHVdqjAg0q1MjU9jLHLYbIX8m+oQ2tAaQzzbtcRSHqjcNVS8ECpwMGfZP4BLyZyRTa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxhd4/INTnbHT8AYXyuev//Q5Qgerq0aS3f7mw1HSwfjCjD+zNB
-	vUyhaCiCvhH+l3Ocln6czgPWXzxrIEYxC9r2vyxBEopAl1nAnER/879SeqUoakft
-X-Gm-Gg: AY/fxX4/uc+Gz+IxEsARveT6od38Ec/+H/6HljzG/S/EifUBeGbChIvEIk+pVS6oIDo
-	xJwsNEfvvYaZWqTR4onEPGR/YrAxWh3l3f0QE+Tl3UIPiEiY8vf/7Wj0RlN9/oFkGK/7CrRGTHj
-	hgVaTc/62UtznwS3KNUMw5M49ExaV7pqFqmFIJ6oELx01Qn+XgWN27cw8PvE9LSs6BzWA6QhFmz
-	38SWXJySz4iFM8LkV7PMtg2UmlLYt6o45BPyjbJP/WbVf7xqD056PgE8Ik4h/GCi/YrHtHwElOl
-	0oZxJsJEDeOnC7qXf7KSEHrlzz1tA5B3Pu1ysHQkkwM9xqJbp37tnwyiB5xVCaxfWzyvVSA697w
-	sWUOQD4cYeAntfiuUq27N3xJih2LVhUTCys3OEF/h+gitivr4A4AjZdkYvdsbaQ+SyGHpVzakt2
-	LjOF/eviW05P/6UGwa+aHEbyMN/J3+G+0QLUSEQ/89WkyWKoL3R3jM
-X-Google-Smtp-Source: AGHT+IEZe/i4u5GBECZovjWaIaKTvKKuirEoFa5r2jYo+FSA2Tgrmot40Ned9DSZhFUUsuBdlJXObA==
-X-Received: by 2002:a05:622a:115:b0:4ed:b134:38ea with SMTP id d75a77b69052e-4f4abd798c3mr161880051cf.41.1766418073307;
-        Mon, 22 Dec 2025 07:41:13 -0800 (PST)
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com. [209.85.222.169])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88d9623fe52sm81935316d6.11.2025.12.22.07.41.13
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Dec 2025 07:41:13 -0800 (PST)
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-8c15e8b2f1aso58901985a.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 07:41:13 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVSbL9B5YnwMNiFGBTnmttSjBbP9nxXMGM2mxKDOkiS8FHZkhp2c3muny1Eoo5QNZ82yhqKCBTvfSJ/@vger.kernel.org
-X-Received: by 2002:a05:6122:4f97:b0:557:c697:a30c with SMTP id
- 71dfb90a1353d-5615be24746mr3595228e0c.15.1766417747921; Mon, 22 Dec 2025
- 07:35:47 -0800 (PST)
+	s=arc-20240116; t=1766417759; c=relaxed/simple;
+	bh=1BrPRtIaRZkigDvceVxTfGfW9ywl1myRoS6jz9f0JMU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UQOVn1YtHMntZ4OTZ+sTpI5ZNg5XyPA9D1qcnEpsjr+RxNAu8aF0tSjOK0DgeMbGj2brfu4qGIESt8PbwnmqudkUOh5GCosbteZdJMK4Q+Zzb1X+8Fvt5aeND3O3ImrY5bzwjRcxrEhwl79b+zai9rRP0DsE1z+3QbfphykNlw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KrSHkMZO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0D71C4CEF1;
+	Mon, 22 Dec 2025 15:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766417759;
+	bh=1BrPRtIaRZkigDvceVxTfGfW9ywl1myRoS6jz9f0JMU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KrSHkMZOZLtRF2xouca6+OfZ73fItrvzcx67r79mkw5YlGyYiLzP3Nths5optEBiX
+	 4cTqVGMj/p+65voEPxODIWXB8i/7KEZ00jpGtA09J0LvYHz4d8L9zZg0TD7uVOOM0e
+	 IKXT05q/a/EZDSMEFfbmEvDOOYvOe6nDuxtVv66g3Tt2KhaewwK0eCEhRlxaQ3YOqQ
+	 7fJEmsy/QUa3Wndpd3OyYWoX01cbWRr/e4Q+8jhgcNCftxKi/GqQLP7PtUkS0vyr/n
+	 8fpA80oO4M7qRh67UurpoNyl7aBJD52TPtqRHqq6O5B3bbzQp418GwS1PfnoY16hlL
+	 knIMrok10WMEQ==
+Message-ID: <a3431383-c0b3-4f76-b059-c81d5f9c681b@kernel.org>
+Date: Mon, 22 Dec 2025 16:35:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251215142836.167101-1-herve.codina@bootlin.com> <aUZEHSNqiMuHrCWb@shikoro>
-In-Reply-To: <aUZEHSNqiMuHrCWb@shikoro>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 22 Dec 2025 16:35:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXTZ2LDs-nFQRh+Q5YAW_LD+j6j=Mzv0RxyB-1wnJgbuQ@mail.gmail.com>
-X-Gm-Features: AQt7F2qPotDDz05zRLM4l-WdqTP8Y-ChrCcklHPqoMfDZgCa2sIooFyMFfI1kSs
-Message-ID: <CAMuHMdXTZ2LDs-nFQRh+Q5YAW_LD+j6j=Mzv0RxyB-1wnJgbuQ@mail.gmail.com>
-Subject: Re: [PATCH v7 0/8] gpio: renesas: Add support for GPIO and related
- interrupts in RZ/N1 SoC
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring <robh@kernel.org>, 
-	Thomas Gleixner <tglx@linutronix.de>
-Cc: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] media: dt-bindings: Correct camss supply description
+To: david@ixit.cz, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vikram Sharma <quic_vikramsa@quicinc.com>,
+ Kapatrala Syed <akapatra@quicinc.com>,
+ Hariram Purushothaman <hariramp@quicinc.com>,
+ Richard Acayan <mailingradian@gmail.com>, Bryan O'Donoghue <bod@kernel.org>,
+ Hans Verkuil <hverkuil@kernel.org>, Depeng Shao <quic_depengs@quicinc.com>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org
+References: <20251222-docs-camss-fixes-v4-1-914a4e5f7822@ixit.cz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251222-docs-camss-fixes-v4-1-914a4e5f7822@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Wolfram, Rob, Thomas,
+On 22/12/2025 15:16, David Heidelberg via B4 Relay wrote:
+> From: David Heidelberg <david@ixit.cz>
+> 
+> Usually, the supply is around 1.2 V, not 1.8 V, and also correct wording.
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
-On Sat, 20 Dec 2025 at 07:37, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> > This series adds support for GPIO and GPIO IRQ mux available in the
-> > RZ/N1 SoCs.
-> >
-> > The first patches in this series are related to a new helper introduced
-> > to parse an interrupt-map property.
-> >   - patch 1: Introduce the helper (for_each_of_imap_item)
-> >   - patch 2: Add a unittest for the new helper
-> >   - patch 3 and 4: convert existing drivers to use this new helper
-> >
-> > Patch 5 adds support for GPIO (device-tree description)
-> >
-> > The last patches (6, 7 and 8) of the series are related to GPIO
-> > interrupts and GPIO IRQ multiplexer.
->
-> I think this series is ready and I would really like to see it upstream
-> soon. I wonder, however, if the path to upstream has already been
-> discussed? It touches various subsystems, so I don't see immediately who
-> should pick the whole series? Or if parts should go to different
-> subsystems offering immutable branches? I bring this up because I want
-> to avoid losing a cycle just because this is unclear...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-We actually did[1]. Unfortunately that plan was never executed.
-The DTS patches I can easily take through renesas-devel, as they have
-no hard dependencies.
-For the remaining patches, I see two options:
-  A. Rob takes the first two patches, and provides an immutable branch.
-     Then Thomas takes the irqchip patches, and I take the rest.
-  B. Rob and Thomas provide acks, and I take the whole series.
-
-Thanks!
-
-[1] https://lore.kernel.org/20251114124045.16204839@bootlin.com
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
