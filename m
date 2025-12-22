@@ -1,146 +1,156 @@
-Return-Path: <devicetree+bounces-248846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43373CD6246
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:25:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B51CD624F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:26:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AA4163029BA9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:24:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DE694305DCD8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80E2B2DC787;
-	Mon, 22 Dec 2025 13:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6CCC2DC787;
+	Mon, 22 Dec 2025 13:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="ei3NnpuT"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="hUlu/r69"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A3C6227E83;
-	Mon, 22 Dec 2025 13:24:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766409887; cv=none; b=IXH7bnRIFWmmZIpM5e7HLoW6ZCafoR+ORkz+x9glHOML1xt/VOLK1TUjCXm+bV/kwWfrIzAqFXsRTouk5dvy+0Qas0RUNGHVFbZyx9IzkZULeKj0gTAawtA23StY33MzEvRpLmK3GKjcr+ek+ORY40mDBmqtK0MyojoNyPzLf0g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766409887; c=relaxed/simple;
-	bh=CBzPZJiYQzOouUYmyZ3aTlJxin+UE8JGzemB7huEd4Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HLWy0T7g6/hF7M6rjtbbdYJP5UCJ6WEpEDBH/W6DUyDk/6FZtx5YEYGaP2mKOfnT3KXV5LevPx7yW9vVyIJ4RJwjslWhBrkX0sy5PoLiT6Usgl1a0/voGmYyT2rCricbSiJbSM7qtDdTTD8VbOBDgOFpD0rG7SSBV/KzBPfiJ1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=ei3NnpuT; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [192.168.136.28] (78-80-96-111.customers.tmcz.cz [78.80.96.111])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id A70475340CDC;
-	Mon, 22 Dec 2025 14:24:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1766409870;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=gLptg8CkM0dtSh1z2ypvw4PNv7j78rQ2+Zocv81oMU8=;
-	b=ei3NnpuT7W0EXoJJn20RHhcfJd2PBnKx+jXZj3wrmn2raKC9gevCgad5NlgZHCjWOTOW6w
-	Y6BjYZVDBfaFrlfhaQm8EcuP5VyVGnZryUe0OJ/2qMM58dc1FtSAFiaHyse9MGIVaP5+Lu
-	tPswf6XAthiCmeE7iaEpCEi3jRNisro=
-Message-ID: <56dc18db-c1e8-43b8-be9e-667544b7508d@ixit.cz>
-Date: Mon, 22 Dec 2025 14:24:26 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E32A129B204;
+	Mon, 22 Dec 2025 13:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766409936; cv=pass; b=BSL1J76qY/WodRNnk2lrlLLxs0VOxrp0VepNxtxrf8IBHhqTdZtbfjdrpgFJ8wKsU7ao60EZK5aA0UNOimjQN3vOqJJZQ6RYLyddy97TKAH1E4UzjPMgnpfTXQOi4aNJthiZCOx9BUhlF233htdbGZW6/ZloRS6hCSiHUWyVPtU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766409936; c=relaxed/simple;
+	bh=lZ/Q8oX8dX5uaEj/uhsbncDoO/1ZJiXs4jnVHSDdKUo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ANfLCYL+zUBhlYrha2016VZyaYBBwCeIf7eEfhgORNP9DzdLVy20V9FqdkU6kNeCr6U1dMoysywLlZnZj7DZ7r+DV0OB0r8RK7Z8GJPb9XjSQ0R4jDPRm7dBDswK0+c95kp0OUk4wdaWmH1/xjUrli9gqhQ6p48y4CmQiep3ABk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=hUlu/r69; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1766409903; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=c+Z93QpcfHesOO97mynYUGkc9xrKLrso8ILtdtzBtu8ZCqh/0Ob2rOYTIjSNu6yoTweQl7E/i2sfc45/4FOfjJiPlxpCg4XXRthvk6aD4WOwmpafqG9w3VMgeBz9RPfcbIXAQjvmFDAt4yDMjGSwZa00cRL031wSGlb3Y6a8HHA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1766409903; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=UkKu+9+jYP9nuseT5iH6tA6Rgk4e8wwX3XyCsgeyjiA=; 
+	b=ejieEUpX7nHdpc+r9u6rzxuWYfxP1Ql/S/3O4NXKaXP0g/8rgJpLBmB/ES/FmiRXVK2+YNDSSUJrHLAabPzyjeedpbg7h9LVLwIrmlSCSuyfr88QEj3HqQbWB/VE2StIntPiwyfRkI+dDlDLxd9kAjAO5R+r5NCOpIlWxtiVTC8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1766409903;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=UkKu+9+jYP9nuseT5iH6tA6Rgk4e8wwX3XyCsgeyjiA=;
+	b=hUlu/r69leKWJdLf2wYh4hepEi8kHfB1a7rIcSE1yFM86BFmP2rHtPfjSZYsBvFN
+	2AIHE5FG526VYG4dxyEYEWewqy8ksFinpw6N/3MQDFVJMpJ/nkZuYCGo+QJEEFnMFPy
+	Ir/zissG4s1+FD2kgYvF8PAmpyv99O+abvQhMiEY=
+Received: by mx.zohomail.com with SMTPS id 1766409901397690.5053360104508;
+	Mon, 22 Dec 2025 05:25:01 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id 9D32C180421; Mon, 22 Dec 2025 22:24:57 +0900 (JST)
+Date: Mon, 22 Dec 2025 14:24:57 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: remove rtc regulator for
+ ArmSoM Sige5
+Message-ID: <aUlGPGFYYf8Ndn5D@venus>
+References: <20251220100010.26643-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] arm64: dts: qcom: sdm845-oneplus: Add alert-slider
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Jonathan Corbet <corbet@lwn.net>, Jiri Kosina <jikos@kernel.org>,
- Benjamin Tissoires <bentiss@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Casey Connolly <casey.connolly@linaro.org>,
- =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
-Cc: linux-input@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
- Gergo Koteles <soyer@irl.hu>, Casey Connolly <casey@connolly.tech>
-References: <20251113-op6-tri-state-v8-0-54073f3874bc@ixit.cz>
- <20251113-op6-tri-state-v8-2-54073f3874bc@ixit.cz>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20251113-op6-tri-state-v8-2-54073f3874bc@ixit.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="l4zvrrqo2paksgxc"
+Content-Disposition: inline
+In-Reply-To: <20251220100010.26643-1-amadeus@jmu.edu.cn>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.5.1/266.382.52
+X-ZohoMailClient: External
 
-On 13/11/2025 17:02, David Heidelberg via B4 Relay wrote:
-> From: Gergo Koteles <soyer@irl.hu>
-> 
-> The alert-slider is a tri-state sound profile switch found on the
-> OnePlus 6, Android maps the states to "silent", "vibrate" and "ring".
-> Expose them as ABS_SND_PROFILE events.
-> The previous GPIO numbers were wrong. Update them to the correct ones.
-> 
-> Co-developed-by: Casey Connolly <casey@connolly.tech>
-> Signed-off-by: Casey Connolly <casey@connolly.tech>
-> Signed-off-by: Gergo Koteles <soyer@irl.hu>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Tested-by: Guido Günther <agx@sigxcpu.org> # oneplus,fajita & oneplus,enchilada
-> Reviewed-by: Guido Günther <agx@sigxcpu.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-[...]
 
-As the first patch of the series got applied on the input tree,
+--l4zvrrqo2paksgxc
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: remove rtc regulator for
+ ArmSoM Sige5
+MIME-Version: 1.0
 
-https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git/log/?h=for-linus
+Hi,
 
-hopefully now there is anything blocking this one? =)
+On Sat, Dec 20, 2025 at 06:00:08PM +0800, Chukun Pan wrote:
+> According to the schematic, RTC is powered by vcc_3v3_s3.
+> The vcc_3v3_rtc_s5 regulator does not exist, remove it.
+>=20
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
 
-Thank you and enjoy the holidays!
-David
+That's true for all board revisions that have a public schematic
+(1.1, 1.2 and 1.3), so:
+
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+-- Sebastian
+
+>  arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 10 ----------
+>  1 file changed, 10 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/=
+arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+> index 3386084f6318..392ba83ab05a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+> @@ -156,16 +156,6 @@ vcc_3v3_pcie: regulator-vcc-3v3-pcie {
+>  		vin-supply =3D <&vcc_5v0_sys>;
+>  	};
+> =20
+> -	vcc_3v3_rtc_s5: regulator-vcc-3v3-rtc-s5 {
+> -		compatible =3D "regulator-fixed";
+> -		regulator-name =3D "vcc_3v3_rtc_s5";
+> -		regulator-boot-on;
+> -		regulator-always-on;
+> -		regulator-min-microvolt =3D <3300000>;
+> -		regulator-max-microvolt =3D <3300000>;
+> -		vin-supply =3D <&vcc_5v0_sys>;
+> -	};
+> -
+>  	vcc_3v3_s0: regulator-vcc-3v3-s0 {
+>  		compatible =3D "regulator-fixed";
+>  		regulator-name =3D "vcc_3v3_s0";
+> --=20
+> 2.25.1
+>=20
+>=20
+
+--l4zvrrqo2paksgxc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlJRqUACgkQ2O7X88g7
++poaSA/7BTJMdVFTQwTR1IPZ16ROOZ3W7/y+6Yh2XxJrD7tqpAbD8yCP0VNxAYr0
+YPcI4Bj2XDNCXZFu264NSB0ZFCbA8ZMdVcxa6raHElOJZ2UkutF5ZDEVtTR8aW+d
+abMz+yx1xQ2BW4o+tkZWkHs2Qcwbq8SkgDc96Mqx832+FN9cM6wgHn/qnaBAlfga
+CWucPY17ElMRPaPCjSre5290qnOXNeqn5Jj5EJq2hMh+A9OLWyTm7bh2rP6uskXS
+76L9+6mjH+2swVXGRPLfx72tkasXmO/HA8G9DobZ8ZejE1ocoVs14+vofZaLzLjy
+FK4qh8HsZp530RTsfzkF/DwIv0VkTqd6/dhVdSDro583Qr5JCc6TNRHxdILQKFkW
+ayvn9NIikq+c5IskB/KKSQm6/JMfXj7D0DSIyYdHj9nF7b8zDt8gTRkBshty50eu
+DFJan56BvVxVaL1cbecSfAjmmCnPeRwDOM7U+qI/G2qCw2JGZ3biHZgA4auWWIQ/
+11B3OirJDAvSGCDG2VlXwkZ9WXH8Nm0iAhYITNBOipiJJ1bxvvTSq4/CRd+gR68g
+v/zMDHx9XLcB3a4VvxPHpPLNXA/fyQ3JIWEcl22QMConaRiwl4yF9OcOohSm/lpy
+YlYVCyShnFjajvOIsBjgvBw6rNBJRlYDadoKyYEIkiFSLlnjyK4=
+=kfCP
+-----END PGP SIGNATURE-----
+
+--l4zvrrqo2paksgxc--
 
