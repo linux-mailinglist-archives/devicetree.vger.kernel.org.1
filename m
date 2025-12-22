@@ -1,277 +1,175 @@
-Return-Path: <devicetree+bounces-248770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D7D4CD5923
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:25:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CED69CD58A8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:23:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 574DC3014131
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:24:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4B9613010C46
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEBF231987B;
-	Mon, 22 Dec 2025 10:22:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9342732A3FD;
+	Mon, 22 Dec 2025 10:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lg47hCeS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W6sC2Icn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45250315D43
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 10:22:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60269329E65;
+	Mon, 22 Dec 2025 10:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766398954; cv=none; b=mYchFySmUN6zNKSRbhHJC+y2RAtrXmbvh0SYZNLfsd8lkyedbx3zC4z4KNS4/L96+dU8Fh2Asxu+SwZnr6t6419P+O+uqllKoBqx7x3Qm/DMNvOt52WTlF9JwV6o+WBLtqh49tsqfV1cUxDJv0b0RXcTYhUe/JL/84JKNOyp6Vg=
+	t=1766399005; cv=none; b=gmpR8UYaEMq9iEt3qn4jB0+xiLWNr89z9Xef6cFDdsUrZk04gQ02sCSZwWshD51GnKoRhiKV7OPDaH+M3qnsA1sVb5EVmrxOzl4P0BluEx+D+oecuWKQ/UjVVfUTln77fAyP77JQJ5MwTom5C2c33lEGgH066WECEEvS7uQpfBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766398954; c=relaxed/simple;
-	bh=/Z6zZxIOHE0bexMt7q7vSkBhyGsyTsuiXJos9cuRaKY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=R5TC0F9yUgcDnWqnT+xZBkENj/8zEpgrgqnHIVSsvnl/y4p55Qaef5ON1QxR5Hr9dZ0C2QOuvhd+vDijQRRSciG07e52pZFzGssx+vsuCFOPhakYI51OxthlqV/jfgVXOkTQ4/zANoFnb359E374YfCRuiujwz1XOR3Xe3FQaU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lg47hCeS; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-42b3b0d76fcso2303799f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 02:22:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766398951; x=1767003751; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PT6Q5dW5KkgWP7tZaLfWqSYR2o+Foff/zTHPq2XLG/U=;
-        b=lg47hCeSmMjUvQrEtb7Ezuxlb16OX7yrns6rgEIhkV5XxN1j/6gdcrGiWsJ900OeBr
-         K6RoL5Tk347+AFFWB3yOlZHpa0Wo9fQzg05GSrZZ3ymbv5UOqDvRpCWaMz1ldebzN9FY
-         kqMPeQLCIvSJC/HI2cdHm0IdbDjTHCPvFqmQ9ShQSZCpdLP+cP7M+8etUlL+hhwK2nNr
-         FbN93hCpKdcvuf8uiboRFZpItxJUwUOr+XCXOTrRxQEAGwkUVWOdJa9/GYrc15d78G/x
-         0dA+0ViljaUfRL2z7g9q+FiJKoFs74QIgpt98WhQwDvY7WG2RuUy3Zl9jkP8bDTtc/Ge
-         oZwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766398951; x=1767003751;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PT6Q5dW5KkgWP7tZaLfWqSYR2o+Foff/zTHPq2XLG/U=;
-        b=qTnKaavaLh95NuF6C7wOOeK04AGZWuNsI05sYeTABfREej/GUMxFTi7Fqay7W/jS5W
-         JlEO/DcFUiYR9sgnOZ+rpVPjAabnq7nTo3ccqeoq/IutvlXxN6FM+I+b/acjcWLmwzbB
-         KH2lcJMnojap+3BJY36BZdsdIui0QAwcuM1f64P1V1RVa6MHop7W8Z9A5WSvx+nHKb8h
-         NrOh5P3t+C28RzKeUMy0BzbSc2m1PVvhc2h7PyaZ95OwOMkznKm5/biyX1BdYG9/c0NA
-         BJ1HvRBS8E3m4+bFojvZQ5kjbljnvltFCqFwgcMpmr9NsdPxG0JJdubEQHJ8DXy9T1Ti
-         6yCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXNQyl7Y+F2nboufNkLYzQojwHMTZJ3SArEnPyF5fM8NIliMm8//Kcq+0BQEIJIlU3XBnFK8UtSZu4x@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3nbxPMAbCCHLGgX0FmUrQwFdZzIY7T1l4CXK2jtpteMI0dz0l
-	x3T0PVbQGWYfU3F7GtT9GRq0ngJXTTC3RJ0gN48xE1RWH88A3b/q57YXln7s/07KOiUjThz0LQD
-	Lu+8K
-X-Gm-Gg: AY/fxX7AnnqYlIltSKaAzbB8eghiGMLQsk0fZZfguFJ8+niJMFfnCdJ+NdPWQAcf6Mh
-	ln4rARKePByGbGL31RnipUSvDyezAFROiAZhmfEavDiuXePUXR5SZxY81acpt96+MWF7WIglT5f
-	nG/kCI4lO9x4MpupzPJCYu+Ygrqc9OwOWccZmrEoePsoHKYhjXjG811FyvWYtEXLv/M/YeYk4jQ
-	TfODm3sSAQ9EbaPbyM3lqFeS85bNIWYOWWC02GnvjhiINbB9pnPHtv92Pqw7h2KjuTFJiP3pzWP
-	5dMSFu1FjyV6y6uzjTN5P2tJ2t9MTspfHIeEE7YN9qKz4ZSlhfB9fy/wFE+Y3IPxNGLz5XGWsHR
-	Cub03hjng5GZz7YkABXoRK/W/CzSKMdiCGO/uefiZSzdhbkm/a8SQ069b6YFs8YbirWTh8zsFB4
-	gZtMkD7+mNQL6+7OrBlA9JWuqRohD6Z4YLOYUVvog=
-X-Google-Smtp-Source: AGHT+IGxik5wZb6PJ3ZvxaBK6HnP18pgqXLZsVTlxUcURxM01dwk5X4GOejTSgcqBo9Mh0RevTTv5Q==
-X-Received: by 2002:a05:6000:2203:b0:431:4c6:724d with SMTP id ffacd0b85a97d-4324e4fdb00mr12420505f8f.29.1766398950600;
-        Mon, 22 Dec 2025 02:22:30 -0800 (PST)
-Received: from gpeter-l.roam.corp.google.com ([150.228.9.32])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324ea82feasm21082813f8f.24.2025.12.22.02.22.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Dec 2025 02:22:29 -0800 (PST)
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 22 Dec 2025 10:22:15 +0000
-Subject: [PATCH v7 4/4] clk: samsung: gs101: Enable auto_clock_gate mode
- for each gs101 CMU
+	s=arc-20240116; t=1766399005; c=relaxed/simple;
+	bh=FWAzzIL1x1PVb5pw3WRq7KOwgjGFCl6UQKfwo1uVKc0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cdrR8MQlK9c/ECFCElPXdu7TTJH1qanbDLGmcE56ktnwWURBkYZgaUUqtU+0+4iW7lSfzrUPGXlKJ5IZhUMUBfBrm3zXQrjh0glW0tlZzCxPB2HXymv0e6shjL5wFkkWCHUQC82naNJubwKfgla5g3Xv6A6+RUJnBLW63qSZRKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W6sC2Icn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06207C4CEF1;
+	Mon, 22 Dec 2025 10:23:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766399005;
+	bh=FWAzzIL1x1PVb5pw3WRq7KOwgjGFCl6UQKfwo1uVKc0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=W6sC2IcnGt71ZuEzFn7MTJ1rEEbh9mKgXHqAPPCWUdldtNqvlcVWixNcjVm5Eik0F
+	 eSXvXLLEciWBV8hJYFtCVePMBiFkkhYWC/bkDYyeW7RghoZH0nJBsWTISXH4VNAOYF
+	 yOTYfti6RyDab3wgQwkyy4SIMNB5MJeZseAuvsyM3rZoh5UIVlgTCjqSxFHkmRt+gH
+	 G93m47K3btiYtzavzG0INPh7iU7fGO9XMazOuYPMQW8ZEzzxkEmA54utKlvC19keww
+	 oAXOZ3ILDjmAimwFm7PiFfqFVAE3gQ3v0ox4gy50qkWFWHzlV3ru5gXR+2Ui9k/7Gi
+	 POjGFbhai9UPA==
+Message-ID: <c29de60c-c7c6-45d7-8d90-616df23df01c@kernel.org>
+Date: Mon, 22 Dec 2025 11:23:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251222-automatic-clocks-v7-4-fec86fa89874@linaro.org>
-References: <20251222-automatic-clocks-v7-0-fec86fa89874@linaro.org>
-In-Reply-To: <20251222-automatic-clocks-v7-0-fec86fa89874@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6078;
- i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=/Z6zZxIOHE0bexMt7q7vSkBhyGsyTsuiXJos9cuRaKY=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBpSRve79sRE6Wiibe1gwos813YqTCmnceQ/Jgxj
- ODyrBDXma2JAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaUkb3gAKCRDO6LjWAjRy
- up+3EACCbn7AeVJ7SP/7s4uvGaRUCmaTr06pvM6zozJEYE+UeOH9TaLN9jslCVOvFFCAwS8b8tf
- NjFfpkUdp3yqWM6Nq0k79AKldDt85/ay/S8coqz4d/HxeJizxgKnnXUes1aYZgPk3Gj6qsCDzjP
- WigzwpGEZGeUWlEng5E6AX1p/GDo38haM4tasUTJSKJ9fIub8K3+HrMur/vncCKwR5o0Y/HQuPS
- I/1cNb559uo+JhGUmkpoMZFprCBxZquuOxL/YGas0tv7xP+rKXT9PhxI9Rn8YDh+TTAfc9C/X+t
- jCBIKqNUq4seCMq0JQsnRIKWklAmMvysUBZii0rTk1e2G6zKUXfmjEbplMIV+Y5ko6oWXTX7Rk9
- FeSvR7UAGlBM2zOgxAXszmYI6uOnIBL01bV7nE1Bc93DtbH1N8G9kboJcOiwzz/eXdD1kxEc+cC
- yAig1+wRjENdZhs9fTx4Ugmm+FhOR28v3peBDOZBi7XSgAxNKYgqbStE67MQxBjYT5/kt+beTlt
- 7JXRW9/792mhNEBAL6VN+daYxGsD4gpJ8iCuO4FIHabBNke+wTv/35hZfI6HLy1WbprqkP3mp4P
- +22N9tplsARHac5+SPa1Pq+yW3EFdM0erf1ZuW1RoG3P3G4J5xpdJ8imcy758Dxo0iJ0YIQPWqV
- RZM4gcywVoUk0bg==
-X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
- fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/7] dt-bindings: wireless: ieee80211: Add
+ disable-rfkill property
+To: Bryan O'Donoghue <bod.linux@nxsw.ie>, jerome.debretagne@gmail.com,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Johannes Berg <johannes@sipsolutions.net>,
+ Lorenzo Bianconi <lorenzo@kernel.org>,
+ Maximilian Luz <luzmaximilian@gmail.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Jeff Johnson <jjohnson@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, ath12k@lists.infradead.org,
+ Jeff Johnson <jeff.johnson@oss.qualcomm.com>, Dale Whinham <daleyo@gmail.com>
+References: <20251220-surface-sp11-for-next-v5-0-16065bef8ef3@gmail.com>
+ <M7kfFb5fz-WB43U_xCUwgxpmBJ4TNdp4jE6yFu6HmemIcDx5tXO6H4xnW_pEQz6DMkKm-3POdB9hIdB092zhGQ==@protonmail.internalid>
+ <20251220-surface-sp11-for-next-v5-2-16065bef8ef3@gmail.com>
+ <e0e9e690-c56e-4b56-90f9-2af46a7feaf3@nxsw.ie>
+From: Hans de Goede <hansg@kernel.org>
+Content-Language: en-US, nl
+In-Reply-To: <e0e9e690-c56e-4b56-90f9-2af46a7feaf3@nxsw.ie>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Enable auto clock mode, and define the additional fields which are used
-when this mode is enabled.
++Cc Mani
 
-/sys/kernel/debug/clk/clk_summary now reports approximately 308 running
-clocks and 298 disabled clocks. Prior to this commit 586 clocks were
-running and 17 disabled.
+Hi,
 
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
----
-Changes in v4:
-- Remove unnecessary header of_address.h (Peter)
----
- drivers/clk/samsung/clk-gs101.c | 55 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
+On 20-Dec-25 07:04, Bryan O'Donoghue wrote:
+> On 20/12/2025 00:21, Jérôme de Bretagne via B4 Relay wrote:
+>> From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+>>
+>> For some devices, Wi-Fi is entirely hard blocked by default making
+>> the Wi-Fi radio unusable, except if rfkill is disabled as expected
+>> on those models.
+>>
+>> Commit c6a7c0b09d5f ("wifi: ath12k: Add Support for enabling or
+>> disabling specific features based on ACPI bitflag") added a way to
+>> support features set via ACPI, including the DISABLE_RFKILL bit.
+>>
+>> Add a disable-rfkill property to expose the DISABLE_RFKILL bit
+>> equivalent for devices described by a Devicetree instead of ACPI.
+>>
+>> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+>> ---
+>>   Documentation/devicetree/bindings/net/wireless/ieee80211.yaml | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+>> index d89f7a3f88a71d45d6f4ab2ae909eae09cbcaf9a..c10a4675640be947cd0b5eaec2c7ff367fd93945 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+>> @@ -29,6 +29,12 @@ properties:
+>>         different 5 GHz subbands. Using them incorrectly could not work or
+>>         decrease performance noticeably
+>>
+>> +  disable-rfkill:
+>> +    type: boolean
+>> +    description:
+>> +      Disable rfkill for some devices on which Wi-Fi would be entirely hard
+>> +      blocked by default otherwise
+>> +
+>>   additionalProperties: true
+>>
+>>   examples:
+>>
+>> -- 
+>> 2.47.3
+>>
+>>
+>>
+> 
+> Is this really a hardware description though ?
 
-diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
-index 70b26db9b95ad0b376d23f637c7683fbc8c8c600..8551289b46eb88ec61dd1914d0fe782ae6794000 100644
---- a/drivers/clk/samsung/clk-gs101.c
-+++ b/drivers/clk/samsung/clk-gs101.c
-@@ -26,6 +26,10 @@
- #define CLKS_NR_PERIC0	(CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
- #define CLKS_NR_PERIC1	(CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
- 
-+#define GS101_GATE_DBG_OFFSET 0x4000
-+#define GS101_DRCG_EN_OFFSET  0x104
-+#define GS101_MEMCLK_OFFSET   0x108
-+
- /* ---- CMU_TOP ------------------------------------------------------------- */
- 
- /* Register Offset definitions for CMU_TOP (0x1e080000) */
-@@ -1433,6 +1437,9 @@ static const struct samsung_cmu_info top_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_TOP,
- 	.clk_regs		= cmu_top_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(cmu_top_clk_regs),
-+	.auto_clock_gate	= true,
-+	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-+	.option_offset		= CMU_CMU_TOP_CONTROLLER_OPTION,
- };
- 
- static void __init gs101_cmu_top_init(struct device_node *np)
-@@ -1900,6 +1907,11 @@ static const struct samsung_gate_clock apm_gate_clks[] __initconst = {
- 	     CLK_CON_GAT_GOUT_BLK_APM_UID_XIU_DP_APM_IPCLKPORT_ACLK, 21, CLK_IS_CRITICAL, 0),
- };
- 
-+static const unsigned long dcrg_memclk_sysreg[] __initconst = {
-+	GS101_DRCG_EN_OFFSET,
-+	GS101_MEMCLK_OFFSET,
-+};
-+
- static const struct samsung_cmu_info apm_cmu_info __initconst = {
- 	.mux_clks		= apm_mux_clks,
- 	.nr_mux_clks		= ARRAY_SIZE(apm_mux_clks),
-@@ -1912,6 +1924,12 @@ static const struct samsung_cmu_info apm_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_APM,
- 	.clk_regs		= apm_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(apm_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
-+	.auto_clock_gate	= true,
-+	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- /* ---- CMU_HSI0 ------------------------------------------------------------ */
-@@ -2375,7 +2393,14 @@ static const struct samsung_cmu_info hsi0_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_HSI0,
- 	.clk_regs		= hsi0_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(hsi0_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= HSI0_CMU_HSI0_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- /* ---- CMU_HSI2 ------------------------------------------------------------ */
-@@ -2863,7 +2888,14 @@ static const struct samsung_cmu_info hsi2_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_HSI2,
- 	.clk_regs		= cmu_hsi2_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(cmu_hsi2_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= HSI2_CMU_HSI2_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- /* ---- CMU_MISC ------------------------------------------------------------ */
-@@ -3423,7 +3455,14 @@ static const struct samsung_cmu_info misc_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_MISC,
- 	.clk_regs		= misc_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(misc_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate	= true,
-+	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-+	.option_offset		= MISC_CMU_MISC_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- static void __init gs101_cmu_misc_init(struct device_node *np)
-@@ -4010,6 +4049,10 @@ static const struct samsung_gate_clock peric0_gate_clks[] __initconst = {
- 	     21, 0, 0),
- };
- 
-+static const unsigned long dcrg_sysreg[] __initconst = {
-+	GS101_DRCG_EN_OFFSET,
-+};
-+
- static const struct samsung_cmu_info peric0_cmu_info __initconst = {
- 	.mux_clks		= peric0_mux_clks,
- 	.nr_mux_clks		= ARRAY_SIZE(peric0_mux_clks),
-@@ -4020,7 +4063,13 @@ static const struct samsung_cmu_info peric0_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_PERIC0,
- 	.clk_regs		= peric0_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(peric0_clk_regs),
-+	.sysreg_clk_regs	= dcrg_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= PERIC0_CMU_PERIC0_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
- };
- 
- /* ---- CMU_PERIC1 ---------------------------------------------------------- */
-@@ -4368,7 +4417,13 @@ static const struct samsung_cmu_info peric1_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_PERIC1,
- 	.clk_regs		= peric1_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(peric1_clk_regs),
-+	.sysreg_clk_regs	= dcrg_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= PERIC1_CMU_PERIC1_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
- };
- 
- /* ---- platform_driver ----------------------------------------------------- */
+I would say yes it is. The wifi chip has an rfkill input pin and
+things will be broken when that pin is hardwired to a fixed value
+rather then being actually connected to a GPIO from say
+the embedded controller.
 
--- 
-2.52.0.351.gbe84eed79e-goog
+So I think that we would need here is not a disable-rfkill property
+but some way to indicate in the DT-node that the rfkill input pin
+is not connected and thus should be ignored.
+
+This (the rfkill input pin being not-connected) IMHO very much
+is hw-description.
+
+Also see the
+"[PATCH 0/9] Add support for handling PCIe M.2 Key E connectors in devicetree"
+series and then specifically:
+
+https://lore.kernel.org/platform-driver-x86/20251112-pci-m2-e-v1-7-97413d6bf824@oss.qualcomm.com/
+
+Which adds:
+
++  w_disable1-gpios:
++    description: GPIO controlled connection to W_DISABLE1# signal. This signal
++      is used by the system to disable WiFi radio in the M.2 card. Refer, PCI
++      Express M.2 Specification r4.0, sec 3.1.12.3 for more details.
++    maxItems: 1
+
+What if there is no such GPIO, because the W_DISABLE1# signal is hardwired
+in a specific implementation of the M.2 slot ?
+
+In that case we will also need some way to propagate that info to the wifi
+driver, having some sort of generic devicetree property for wifi-cards
+which can be injected as a software-node property in the PCI-device being
+instantiated for the WIFI card to let the driver no not to honor to
+W_DISABLE1# signal will be useful here too and this is as hardware-description
+as hardware-description can get.
+
+So how about: "w_disable1-not-connected" + "w_disable2-not-connected" boolean
+properties in a generic WIFI devicetree binding and also use that here?
+
+> I think this logic belongs in drivers/net/wireless/ath/ath12k/ triggering on a compat string.
+
+See above, I do not believe that abusing compat-strings for this is the way
+to go.
+
+Regards,
+
+Hans
+
 
 
