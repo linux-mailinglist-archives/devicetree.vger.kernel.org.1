@@ -1,151 +1,221 @@
-Return-Path: <devicetree+bounces-248849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E97A9CD6285
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:30:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C702FCD628B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:30:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97F5C303EF77
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:28:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 331343015400
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:30:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3C92C2ABF;
-	Mon, 22 Dec 2025 13:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2AB42F2918;
+	Mon, 22 Dec 2025 13:30:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="XoJusC6u"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HXoZtkov"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E687E2C3278;
-	Mon, 22 Dec 2025 13:28:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766410110; cv=pass; b=IqT10cRzWS9xf+cCgGA2v6Tl2PVxMTeVukatQOMNXnoMzPx3EwBQd0t0nL6f0VkiBpRRGCadRXGkUbclabnK8fREV71GtQLdgpqe8P1vRdYb2ltwQIzMbK7kVBVlvnxpTfA3BvM0G8RFlcoDTj0rQHbwgHtr0W5OnqiyThJrYZ8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766410110; c=relaxed/simple;
-	bh=KIjq/u+sGhc3aom0jKrhUsrA6Yz6hVFTsidc5ynAPio=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC53B2F25EB;
+	Mon, 22 Dec 2025 13:30:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766410246; cv=none; b=ur6lhpC0f3/aHx5k7K4sToXUtEeG0s9Mr0XQk1OynXbPtrRnoOQYNIr6OsnF1ij4JzOirXI7Kp+6/OBtlLWgSRBu/nHrnRQ6kLx1XGbd71RKDS6q1aV8apfalbSlT6Gcmbc+Rq840I/pVkEuvmU+PBcu3so4MO+OLFXnbRon+Jg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766410246; c=relaxed/simple;
+	bh=xywLRq/TVdW8R65dbpzTh0nzVMEX2c5JYTa8jXNBQso=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VsWWdHl/u5YzOf16I9VaXp07aUz0mWV+OgwWsQ699YyJJI2UmteoQ9eTsz/Oe/IBzD8MIWlJMb/bOOktU8EFDZ9+1GUUc4CONKN0AwWiVqxNjz7lANuxbVNghVXKw0sdd254p7yyA/qCoGwXLLiBR7Ig+DkX6jYs3rQzzLF/Ku8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=XoJusC6u; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1766410093; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=L1/IFsv93jm9dJPfOH5z5exRx8KEx9Y8Eox/Zlu2ucOjCqwOzUjxdx6KP5IPWa4riBbXda2jmEBVd9YmDlEo7rltJ6/NQAB0hgYeTRjcGW7UqrNR//zyJBn7VFhGGGvB62MXApRXART6ndGVu2eniKDUKReI0H832FRCLr2vDs0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1766410093; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=XcPyVo/INbG+mgbLBjB/e28X/tzSMYtvIP/ykLtkGFg=; 
-	b=XYLFaN+IIL/Dp8El9QsMlCTLpVLPDOFxnKsCnPyZQ6XIxqLG0oQQTshhR1+g9L101ICKJBoR4a9PH4OyvGWHdlzp7HtlF8oyj5x8oKQyCqV4z02eQi9xwcQ0aRSzjBKk+ZrRDfkNoFWm1gdiI/Ht9xlnlrteMRZfx7uKLnJL7YI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1766410092;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=XcPyVo/INbG+mgbLBjB/e28X/tzSMYtvIP/ykLtkGFg=;
-	b=XoJusC6uNbe5XnHn1TU9hF55SAj9huta4r9Xv0+kf8fGsn59qFkvmHi0Qar+f0mk
-	qXWZBzTsx4ACT7cK/E8Ix37vC172EN2tlbb6dnh3BxlR596v+ffpwZBk8WI79J/WcVK
-	gAXIa4KCVuTf0vxFgHtcWSZ9k6jFDAjzB00ydlDY=
-Received: by mx.zohomail.com with SMTPS id 176641009056882.95030986245024;
-	Mon, 22 Dec 2025 05:28:10 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 34ED0180421; Mon, 22 Dec 2025 22:28:07 +0900 (JST)
-Date: Mon, 22 Dec 2025 14:28:07 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: fix hp-det pin for ArmSoM Sige5
-Message-ID: <aUlGrcNAwp9AK8Mc@venus>
-References: <20251220100010.26643-1-amadeus@jmu.edu.cn>
- <20251220100010.26643-2-amadeus@jmu.edu.cn>
+	 Content-Type:Content-Disposition:In-Reply-To; b=T9yIoyk0fUwi8swoQ241J6vfg5vcaZ3SbqI9MLuA8uWN95saeUYTvPUlr8a7mrwaUKyVWIXF9FOEO0MvArprBhxi/Kjyr45uTJk80TcwYWZscGL91DNQGcGs1zAKFNchki15fKA3QuUFNQ0M80Pa8ucH5IHC40XY9Op6/OUxUxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=HXoZtkov; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-152.bb.dnainternet.fi [81.175.209.152])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 4A2CFE1F;
+	Mon, 22 Dec 2025 14:30:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1766410227;
+	bh=xywLRq/TVdW8R65dbpzTh0nzVMEX2c5JYTa8jXNBQso=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HXoZtkov8W9TN4rqMJp4hgb5i4vG37F3x2VLnfwOVZaeypAVHYEswNPYuo+hzfkH6
+	 t2oeQ6Vi+epiVhWYZCjfJ5Qnq/bo5fPSfKDy24ej8/tE+/j14wxQcp+2s7IL1N5cLO
+	 7X1SNrUlFjTdWPcO2t9aVi0ls4VuEPfUNrlgn3es=
+Date: Mon, 22 Dec 2025 15:30:18 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Alan Stern <stern@rowland.harvard.edu>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Svyatoslav Ryhel <clamor95@gmail.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Hao Yao <hao.yao@intel.com>
+Subject: Re: [PATCH v6 2/2] media: i2c: add Himax HM1246 image sensor driver
+Message-ID: <20251222133018.GB5317@pendragon.ideasonboard.com>
+References: <20251202-hm1246-v6-0-3e96ed6b3ffa@emfend.at>
+ <20251202-hm1246-v6-2-3e96ed6b3ffa@emfend.at>
+ <aUXRsv-r9-sQvpAm@kekkonen.localdomain>
+ <2c6c4b36-6b97-4260-8c01-6861b6f36cea@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mavwqnpbh2afphvy"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251220100010.26643-2-amadeus@jmu.edu.cn>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.5.1/266.382.52
-X-ZohoMailClient: External
+In-Reply-To: <2c6c4b36-6b97-4260-8c01-6861b6f36cea@emfend.at>
 
+On Mon, Dec 22, 2025 at 12:17:56PM +0100, Matthias Fend wrote:
+> Am 19.12.2025 um 23:29 schrieb Sakari Ailus:
+> > Hi Matthias,
+> > 
+> > Thanks for the update.
+> > 
+> > On Tue, Dec 02, 2025 at 04:26:06PM +0100, Matthias Fend wrote:
+> > 
+> > ...
+> > 
+> >> +static int hm1246_calc_pll(struct hm1246 *hm1246, u32 xclk, u32 link_freq,
+> >> +			   u32 clocks_per_pixel, u8 *pll1, u8 *pll2, u8 *pll3)
+> >> +{
+> >> +	const u8 pclk_div_table[] = { 4, 5, 6, 7, 8, 12, 14, 16 };
+> >> +	const u8 sysclk_div_table[] = { 1, 2, 3, 4 };
+> >> +	const u8 post_div_table[] = { 1, 2, 4, 8 };
+> >> +	const int sysclk_pclk_ratio = 3; /* Recommended value */
+> >> +	u32 pclk, vco_out, best_vco_diff;
+> >> +	int pclk_div_index, sysclk_div_index, post_div_index;
+> >> +	u8 pre_div = 0, multiplier_h = 0, multiplier_l = 0;
+> >> +	bool sysclk_pclk_ratio_found = false;
+> >> +
+> >> +	if (link_freq < HM1246_PCLK_MIN || link_freq > HM1246_PCLK_MAX)
+> >> +		return -EINVAL;
+> >> +
+> >> +	/*
+> >> +	 * In raw mode (1 pixel per clock) the pixel clock is internally
+> >> +	 * divided by two.
+> >> +	 */
+> >> +	pclk = 2 * link_freq / clocks_per_pixel;
+> >> +
+> >> +	/* Find suitable PCLK and SYSCLK dividers. */
+> >> +	for (pclk_div_index = 0; pclk_div_index < ARRAY_SIZE(pclk_div_table);
+> >> +	     pclk_div_index++) {
+> >> +		for (sysclk_div_index = 0;
+> >> +		     sysclk_div_index < ARRAY_SIZE(sysclk_div_table);
+> >> +		     sysclk_div_index++) {
+> >> +			if (sysclk_div_table[sysclk_div_index] *
+> >> +				    sysclk_pclk_ratio ==
+> >> +			    pclk_div_table[pclk_div_index]) {
+> >> +				sysclk_pclk_ratio_found = true;
+> >> +				break;
+> >> +			}
+> >> +		}
+> >> +		if (sysclk_pclk_ratio_found)
+> >> +			break;
+> >> +	}
+> >> +
+> >> +	if (!sysclk_pclk_ratio_found)
+> >> +		return -EINVAL;
+> >> +
+> >> +	/* Determine an appropriate post divider. */
+> >> +	for (post_div_index = 0; post_div_index < ARRAY_SIZE(post_div_table);
+> >> +	     post_div_index++) {
+> >> +		vco_out = pclk * pclk_div_table[pclk_div_index] *
+> >> +			  post_div_table[post_div_index];
+> >> +
+> >> +		if (vco_out >= HM1246_PLL_VCO_MIN &&
+> >> +		    vco_out <= HM1246_PLL_VCO_MAX)
+> >> +			break;
+> >> +	}
+> >> +	if (post_div_index >= ARRAY_SIZE(post_div_table))
+> >> +		return -EINVAL;
+> >> +
+> >> +	/* Find best pre-divider and multiplier values. */
+> >> +	best_vco_diff = U32_MAX;
+> >> +	for (u32 div = DIV_ROUND_UP(xclk, HM1246_PLL_INCLK_MAX);
+> >> +	     div <= xclk / HM1246_PLL_INCLK_MIN; div++) {
+> >> +		u32 multi, multi_h, multi_l, vco, diff;
+> >> +
+> >> +		multi = DIV_ROUND_CLOSEST_ULL((u64)vco_out * div, xclk);
+> >> +		if (multi < HM1246_PLL_MULTI_MIN ||
+> >> +		    multi > HM1246_PLL_MULTI_MAX)
+> >> +			continue;
+> >> +
+> >> +		multi_h = multi / (HM1246_PLL_MULTI_H_MIN *
+> >> +				   HM1246_PLL_MULTI_L_MAX) +
+> >> +			  2;
+> >> +		multi_l = multi / multi_h;
+> >> +		vco = div_u64((u64)xclk * multi_h * multi_l, div);
+> >> +
+> >> +		diff = abs_diff(vco_out, vco);
+> >> +
+> >> +		if (diff < best_vco_diff) {
+> >> +			best_vco_diff = diff;
+> >> +			pre_div = div;
+> >> +			multiplier_h = multi_h;
+> >> +			multiplier_l = multi_l;
+> >> +		}
+> >> +
+> >> +		if (!diff)
+> >> +			break;
+> >> +	}
+> >> +
+> >> +	if (best_vco_diff == U32_MAX)
+> >> +		return -EINVAL;
+> > 
+> > How much difference is acceptable? Isn't any difference a bug either in DT
+> > or the code above? In other words, I'd return an error in that case.
+> 
+> Hard to tell, but almost every input clock will result in a slight 
+> difference. Even the recommended reference register configuration 
+> doesn't create a perfect match. Therefore, I don't think it's a good 
+> idea to treat every deviation as an error.
 
---mavwqnpbh2afphvy
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: fix hp-det pin for ArmSoM Sige5
-MIME-Version: 1.0
+I understand that the PLL won't be able to produce the exact nominal
+expected frequency, but can't we require the link-frequencies property
+in DT to match the PLL output exactly ? That's what we do with other
+sensors.
 
-Hi,
+> However, every supported input frequency (6-27MHz) will result in a 
+> pixel clock deviation of less than 0.5%. Since the sensor uses a 
+> parallel interface, these frequencies will all work without any 
+> problems. The frame timings may, of course, be slightly different.
+> 
+> To change this and prevent any deviation, one would probably have to 
+> replace the PLL calculation with one or more dedicated frequency-setup 
+> pairs (with adjusted pixelclocks). Which wouldn't be ideal, as the 
+> solution isn't very flexible - and I've invested quite a bit of effort 
+> in the PLL calculation ;)
+> 
+> >> +
+> >> +	*pll1 = HM1246_PLL1CFG_MULTIPLIER(multiplier_l - 1);
+> >> +	*pll2 = HM1246_PLL2CFG_PRE_DIV(pre_div - 1) |
+> >> +		HM1246_PLL2CFG_MULTIPLIER(multiplier_h - 2);
+> >> +	*pll3 = HM1246_PLL3CFG_POST_DIV(post_div_index) |
+> >> +		HM1246_PLL3CFG_SYSCLK_DIV(sysclk_div_index) |
+> >> +		HM1246_PLL3CFG_PCLK_DIV(pclk_div_index);
+> >> +
+> >> +	return 0;
+> >> +}
 
-On Sat, Dec 20, 2025 at 06:00:09PM +0800, Chukun Pan wrote:
-> Although the hp_det pin is not used, according to the schematic,
-> the headphone detection pin is GPIO4_B0. Fix the incorrect pin.
->=20
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
+-- 
+Regards,
 
-Apparently all of the public schematics (board rev 1.1 - 1.3) have
-HP_DET_L connected to GPIO4_B0. It's also easy to see how the wrong
-pin ended up in the DT: the schematics also added HP_DET_L as a
-comment to GPIO0_D3 (which is actually connected to TP_RST_L)!
-
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
--- Sebastian
-
->  arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/=
-arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> index 392ba83ab05a..a0d8f52a706f 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> @@ -812,8 +812,8 @@ gmac1_rst: gmac1-rst {
->  	};
-> =20
->  	headphone {
-> -		hp_det: hp-det {
-> -			rockchip,pins =3D <0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		hp_det_l: hp-det-l {
-> +			rockchip,pins =3D <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
->  		};
->  	};
-> =20
-> --=20
-> 2.25.1
->=20
->=20
-
---mavwqnpbh2afphvy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlJR2YACgkQ2O7X88g7
-+pqWog//X+vOJzl7Gh9baLrsAMP1sxkw4DPfvqF0IvGB7q5lqKZVfRcvE68kskwA
-zbp+frT64ebUM0dQ8F5jdYoy0AnWQvuO48aEg3P4QnQByU5NZ7KDILQuJByonHzB
-VcWhh0FCuxhs8iPE5EJ3U2aUKDO6110nfskA3+wkeXJDy5S5DEZCOnaiaVAeaW5M
-GZ3fRdtz3OvJFbUGvKFDTTRfCS9O9EKdZwBETEVLa/rID+M/i1qYnjHi7DxOf6tP
-YO0rDyEwK3fyWuw2TzbuK2flvtzpS06lNco4pQrKInCfbrHGxI9VpguF/wo0lxim
-XJAj4fbJt14Csfpycjr91sCgBEf3Q3jiDv465ZvVTX2KF8oU047JsCQs0kh6VD1k
-ihWm/Fgi+O7D4CWvzMBLztcjnxvG8zGPUNRfD0HLs48jUutM+xobROO53qcm8DWO
-AwpgNXGH7ZmZYkMRz9xPnutX5NE9FGOOQhMMIeC/NutbByPoZZ2uei/0hDx7OFst
-izCfG3MAHzl0Ze8b49tZTUOQ73vzieAFE/f7ffrUbdX9qR0yKoGP9Dw5R4giOVqC
-QHyRqWC8Xn31X5RlOYQAaeYg+Yk/Nq8TRxzXU/Y5mgwe0FM04qIfFLpQIJo9usHR
-LOdEtyNMv/DC/M4yqRISba6qV4Xs0EZzakBVYHFUhkQNoNLxpcs=
-=GMVl
------END PGP SIGNATURE-----
-
---mavwqnpbh2afphvy--
+Laurent Pinchart
 
