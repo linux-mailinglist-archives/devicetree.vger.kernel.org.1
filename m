@@ -1,217 +1,222 @@
-Return-Path: <devicetree+bounces-248816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22909CD5EF7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:11:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F2DCD5F06
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:12:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E3AD43025312
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:11:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B70093017659
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:12:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B759226CF1;
-	Mon, 22 Dec 2025 12:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9DF26ED35;
+	Mon, 22 Dec 2025 12:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fUOuym0D"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Bu8l7sgq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ObJ6O55C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31A061EEA5F;
-	Mon, 22 Dec 2025 12:11:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17C423BD02
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 12:12:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766405482; cv=none; b=KxIaWWQUdZuhVlGh/d0vbV0hu5Mo9k6/PyyrOy9PDqjN9vFP5q+McGiqNVI82aNVb6KxiwBmva+N9ZVA3IRcR0oREq4cq5MzaSr591aIwa6Nnbr1S4NoDexQtvSjeki8DmCwbSgvqUoW0mtvFl7kcrDmdCBOncYezL2GmJK0qVM=
+	t=1766405543; cv=none; b=Itzevyb9FLn1LpuOR2jzEEPHhWkwDRE5bwVbG62gy3c3m9xW/Y4o4Y7+MERwn5LFFsRSfo2gNvFxQVawepOGelAaIAmzaVk68Im2A/ow0ieKx+YErq7H+/Md/WiCrKnQcQpESP6lKuSDZY+m+JhFYbwM+ylEtN35WVPFTeuzlxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766405482; c=relaxed/simple;
-	bh=qYqS5AOmgZbKh2/+9KAewAbPsoBCxm2V4OOSlP4vuaw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N1vekic+H7LR73iojpl4UhV3cOUsEn/M3Qkj1M5SLtzhc1X7cQsMqDv1AnXO++8DZksFomjkd/Bc1uRK9+ha/h2ZNEZc/nq3szKew9OXn7nFcyYgbfMiB3sGwQn68bsUKDOQf1e7ZkRAV3E9sOmjbFl0AzHmwNZnBKjYUGogERY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fUOuym0D; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1766405480; x=1797941480;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qYqS5AOmgZbKh2/+9KAewAbPsoBCxm2V4OOSlP4vuaw=;
-  b=fUOuym0Dwh+NXydW6rs5CxdZVllT9vhutBUVvaHVUgkz4oTVJLRXeD6B
-   SmFlB0j+1h3NgIe+C2DWPn7r9KqHw9r1nHeqnqqgHGSRm1WYD27MmXlns
-   N+lQ+sJWSf1SDFL2W002ZhUJm/t2se+1tlNUszzIR2bRQ0ZhMq84B+9wZ
-   3kuMx9thRucB5ciCB69j5FxoDoazq1eMb3PZ68jl9QXiH4hRDobjtpgSJ
-   Zajv2RPHNCTzEUO5GhIHihC5eT2uWNYTpUiQVcy+a9O3SJYbO6/JIjV3D
-   WoZP2vGHoUJfOFqW27oiXEZuRd0tQBRsN2qsSqTPK67Wfxee2z5SNEvxt
-   w==;
-X-CSE-ConnectionGUID: Jvkk8JgmSf6ufYnIQhsKOw==
-X-CSE-MsgGUID: c2emOoN5ROKi23MjJklviA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11649"; a="67453701"
-X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; 
-   d="scan'208";a="67453701"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2025 04:11:19 -0800
-X-CSE-ConnectionGUID: kph5wOWtQZOOe3dIXRQTUw==
-X-CSE-MsgGUID: 4LdxMEzZR06DSIP2Qn1fpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; 
-   d="scan'208";a="199270460"
-Received: from lkp-server02.sh.intel.com (HELO dd3453e2b682) ([10.239.97.151])
-  by orviesa009.jf.intel.com with ESMTP; 22 Dec 2025 04:11:16 -0800
-Received: from kbuild by dd3453e2b682 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vXekr-000000000Uf-0nOg;
-	Mon, 22 Dec 2025 12:11:13 +0000
-Date: Mon, 22 Dec 2025 20:11:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v23 3/7] firmware: imx: add driver for NXP EdgeLock
- Enclave
-Message-ID: <202512222045.Ldg7WTWR-lkp@intel.com>
-References: <20251219-imx-se-if-v23-3-5c6773d00318@nxp.com>
+	s=arc-20240116; t=1766405543; c=relaxed/simple;
+	bh=AA/H1AwMu0/+HGYb42u80iYLOfuHJUzLVpfiRBlUCl8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YIWb3Hk1lOARhJlcPZeuovTS/+uOtgDB8st7GLQBS40shBrMuF6TNkffrMpXIKQ9bu8LpouomtJJ5ItApX2944gHmbgItPucqFUIUC2/EznM/E2+fUq3bAQwv9fohn1yyahanKeQAhdC3q7yhQpt6QewcsMC4yQmsC+sZc4aT3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Bu8l7sgq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ObJ6O55C; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BM5g5vv2189486
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 12:12:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	w9A2rpTt2uE3PjipyspjAkGmTHHrWLfeNYFHtdiCOzY=; b=Bu8l7sgqGSTJp37b
+	6auUGnrwa5A71zvgLn9RENLm5UTQKAnt80WFqnU4AZjZvnb4m6rw1vOEl2e24Y2z
+	SmNgU6KhbAtwR0p4mr5IWsXzIWOvmQwCK/s/Tjx+DoVEBQqS8WsD6RVi+VyqW84X
+	OZvwh+vYMUFOGl8TfnK/e3i8hw+TogjBWt0YdJGluPVfr2UYkmgTRrx1xmnArrCn
+	Yiq6GZ1lo+6NPqmCyBOFrV8BegGeiPEJdKoHeLOJEdu9TkuBWEIH0njZki1Pr/Xv
+	3VZqXEG9P+6wgMMH1lSVo9rQ+EbsOXNhRp5FkNfihMtgQL2F6pxoAIip7kvYpOO6
+	ka9DeQ==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b702t94rb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 12:12:21 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ed82af96faso77536461cf.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 04:12:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766405540; x=1767010340; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w9A2rpTt2uE3PjipyspjAkGmTHHrWLfeNYFHtdiCOzY=;
+        b=ObJ6O55CZ9EwT0BqmmkFgfMO+IM1ECVErvneqx1prSRBOgMPM/XJDoYio0sOII6UD1
+         1vppv/Q1Flq2DFhMaZwAgMDQH4ePP+FaOtB9ofluWKudlMO1mwPHFNl3s9+k6+moz0MZ
+         LVmWFpJ+wY5Yb+J9RJk1ItRuRtcyzoYu4YJvk0Ha0Npw+rH0TDTFyMZxTJ3cZU1L1BMn
+         fGEoRysq1Ndhs7e/XMo55v1LikU87vDGmvSz73zpoZVG4lUbA0JBZLaG8zB2/PqVMVGM
+         SVi3Ll9FEzRyohj9kL0jm8jJeF9f9pqNnpYa0FgwwdSHQWcuttNL99Pkq5iLJeiNFKDI
+         xL/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766405540; x=1767010340;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w9A2rpTt2uE3PjipyspjAkGmTHHrWLfeNYFHtdiCOzY=;
+        b=Cmn1Gym53ep8jT6yB5DNg1ETmVYzR5yK+4yYi+S22iYki+iepmx8z9MrouGj0/Yc+E
+         YTbobPXDiXLoWq3LlhpiLUW5pMtQSI9vlBjpx4jxQPR3qiHg5xgVUYtdCHnZUKVXlHkJ
+         oJDz/xvtreWyavuRyYBt7YeWRyy8d+nldqvjBdV4K6+HXdicgD3MHxzQzEVke7oae6/H
+         ostPd1kVTVYFErpJdBGWqEmjSJa8oQmvdWjexACyBophrliObL3qNVehRo0h+CgI+WIn
+         E3PLS02XSQkMHxTt8JMHDgNJSsMiPh3UlUZ092fSK0OoPbIoBp7YgJEK1pA8m6tBF8qn
+         Y3Ww==
+X-Forwarded-Encrypted: i=1; AJvYcCW8y0PAjrxmQ5rBay22IeSrUWaBBiTWLgMzxrCevaDgzFz6HJLsUP18mhnksjmYbo+a+CbejI+eBL2q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+8tKcuoSNzsjx+JoBcSRDGhjG4bSOsVTqPq0Pj+xD8CQGuCRe
+	yVvsXX3/M2p4O1RnASkjz2hefXCPsnP+ivj6IYbvfcaJX2oIjC3hF6b6shgMfL7tHO1MgF91rAh
+	mldjiybZuynDgbkV4d8s/qFGlHZLxfiyM5Zf+za5zWKSV1OHMthy+HP9iyrC21xi+
+X-Gm-Gg: AY/fxX7ohIE46IXZs5juV+oaIgAW2Pz0x5IGSLU3haCInFoiQXDSwj+eN5bYDnjfQNN
+	5gJh8es/zf0kk/DIu42cJMXlVm+9NjFEBl9MsOhiacX9Is6nHWeU7bBjlY7b6qYYPH0SixdwWST
+	Kb3SQxXjYOG7eFVk4vignGEBbKWTDV3s1tyN2+af5lmPj3IorbIVM7fxZKH1yd1ZBbzFuc1yqgl
+	K9vnBMvhgzGt+HyptS8AJXj0g9uT2pd2iUXhSnmZkF85+Rtw/b04lU8z7diL/hl8jRywo6nb5vw
+	UcguX3nwqP9+L83/ucLK3N76hPbVXm7e4SrxWQF6vivWE4dnOIk0zJu5hTW36mWkLTPYZxm+VVV
+	X9HK13OdWKog+W/iYugf8u3dovR15ZAxUDAyTbUMDEbFxLZLa3f/2bmWY0PGnoKwL1S6j8DWy
+X-Received: by 2002:a05:622a:1c0a:b0:4f0:2378:59a1 with SMTP id d75a77b69052e-4f4abdba1e1mr143600851cf.72.1766405540141;
+        Mon, 22 Dec 2025 04:12:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEetvXA37qUNAKlm0YVtJ0qQ13Cm52fDVIhm0qqQAfEAJpzxHGDJOG+J/9gsIp6zMV8sNDsAQ==
+X-Received: by 2002:a05:622a:1c0a:b0:4f0:2378:59a1 with SMTP id d75a77b69052e-4f4abdba1e1mr143600481cf.72.1766405539785;
+        Mon, 22 Dec 2025 04:12:19 -0800 (PST)
+Received: from [10.38.247.176] (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88d997aeebesm79120156d6.35.2025.12.22.04.12.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Dec 2025 04:12:19 -0800 (PST)
+Message-ID: <8b265a82-4470-4f13-9959-0dec32cd99c9@oss.qualcomm.com>
+Date: Mon, 22 Dec 2025 20:12:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251219-imx-se-if-v23-3-5c6773d00318@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: qcom-cci: Document sm6150
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+References: <20251222-sm6150_evk-v1-0-4d260a31c00d@oss.qualcomm.com>
+ <20251222-sm6150_evk-v1-1-4d260a31c00d@oss.qualcomm.com>
+ <43efa6fd-53c3-4680-8aca-7b37089ca295@kernel.org>
+ <68dffe33-fe4a-4c4b-890e-87e0229d84bf@oss.qualcomm.com>
+ <196d6884-4ad2-4b74-8aee-01ba252072c2@kernel.org>
+Content-Language: en-US
+From: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+In-Reply-To: <196d6884-4ad2-4b74-8aee-01ba252072c2@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=SIhPlevH c=1 sm=1 tr=0 ts=694935a5 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=_QOpqvZ3r_VspIhoNjUA:9
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-ORIG-GUID: jXdMM-K7smw2WQhOF6Rl59THXEZbJeqf
+X-Proofpoint-GUID: jXdMM-K7smw2WQhOF6Rl59THXEZbJeqf
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIyMDExMCBTYWx0ZWRfX/2U8k0Jn1UCT
+ hvS2/u/JE4XQjUz6xV9oCLNQ4BOvsb1qzDpYdcesDHeM61H4WAvXGPAwX9yu46BiosDDTCmBXDO
+ 2YmrdjJEotUF5PmKduXsbUQjspcBZD9qepyTxd361bGx53Keg3+3GnoXematq6eyvXNElCd57+n
+ wyOStf7+dsGVWyF3zyYj/a+Ueobdvrgzt52124lhoHdG6joe2jWAORuTnCJmKdgRENMnsM2831U
+ SfNx21rgBvgo45vC5MEKSpzNGcRbpz2zJpFlv3z07niaCQfflL8drYyvKY5uq62sNaLUqgnE9XJ
+ u5lPJHcuzLmFwiz8ndBxjIpTGd4yt4mg2Z81sxpq+XjfaJwJOJB6UdmlE95fgFcb30OsnXm8AD+
+ mVlZdPVYH81BnLj+ciLQj1VI/HY/NhUtTgIZte29EeOQwewqu4dRnD3zv7CFE820SoxrSNixIbb
+ u0VuXogkWoKJTxXSYwA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-21_05,2025-12-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
+ adultscore=0 phishscore=0 spamscore=0 suspectscore=0 clxscore=1015
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2512220110
 
-Hi Pankaj,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on 4a26e7032d7d57c998598c08a034872d6f0d3945]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Pankaj-Gupta/Documentation-firmware-add-imx-se-to-other_interfaces/20251219-132830
-base:   4a26e7032d7d57c998598c08a034872d6f0d3945
-patch link:    https://lore.kernel.org/r/20251219-imx-se-if-v23-3-5c6773d00318%40nxp.com
-patch subject: [PATCH v23 3/7] firmware: imx: add driver for NXP EdgeLock Enclave
-config: arm-randconfig-r054-20251222 (https://download.01.org/0day-ci/archive/20251222/202512222045.Ldg7WTWR-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251222/202512222045.Ldg7WTWR-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512222045.Ldg7WTWR-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/firmware/imx/se_ctrl.c:343:9: error: incompatible pointer types passing 'phys_addr_t *' (aka 'unsigned int *') to parameter of type 'dma_addr_t *' (aka 'unsigned long long *') [-Werror,-Wincompatible-pointer-types]
-     343 |                                                                 &load_fw->imem.phyaddr,
-         |                                                                 ^~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dma-mapping.h:707:15: note: passing argument to parameter 'dma_handle' here
-     707 |                 dma_addr_t *dma_handle, gfp_t gfp)
-         |                             ^
-   1 error generated.
 
 
-vim +343 drivers/firmware/imx/se_ctrl.c
+On 12/22/2025 7:58 PM, Krzysztof Kozlowski wrote:
+> On 22/12/2025 10:13, Wenmeng Liu wrote:
+>>
+>>
+>> On 12/22/2025 4:58 PM, Krzysztof Kozlowski wrote:
+>>> On 22/12/2025 09:44, Wenmeng Liu wrote:
+>>>> Add the sm6150 CCI device string compatible.
+>>>>
+>>>> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+>>>> ---
+>>>>    .../devicetree/bindings/i2c/qcom,i2c-cci.yaml          | 18 ++++++++++++++++++
+>>>>    1 file changed, 18 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>>> index a3fe1eea6aece9685674feaa5ec53765c1ce23d8..cb5e6fd5b2ad1de79a9b29d54869d093c952d778 100644
+>>>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>>> @@ -33,6 +33,7 @@ properties:
+>>>>                  - qcom,sc8280xp-cci
+>>>>                  - qcom,sdm670-cci
+>>>>                  - qcom,sdm845-cci
+>>>> +              - qcom,sm6150-cci
+>>>>                  - qcom,sm6350-cci
+>>>>                  - qcom,sm8250-cci
+>>>>                  - qcom,sm8450-cci
+>>>> @@ -263,6 +264,23 @@ allOf:
+>>>>                - const: cpas_ahb
+>>>>                - const: cci
+>>>>    
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            enum:
+>>>> +              - qcom,sm6150-cci
+>>>> +    then:
+>>>> +      properties:
+>>>> +        clocks:
+>>>> +          minItems: 3
+>>>> +          maxItems: 3
+>>>> +        clock-names:
+>>>> +          items:
+>>>> +            - const: soc_ahb
+>>>
+>>>
+>>> Isn't this just camnoc_axi for this device (pay attention: to this device)?
+>>>
+>>
+>> On this SOC, both soc_ahb and camnoc_axi exist.
+> 
+> Hm? That's not the question. Pay attention to the part called "pay
+> attention". I emphasized it on purpose and you just ignored it.
 
-   266	
-   267	static int se_if_probe(struct platform_device *pdev)
-   268	{
-   269		const struct se_soc_info *se_info;
-   270		const struct se_if_node *if_node;
-   271		struct se_fw_load_info *load_fw;
-   272		struct device *dev = &pdev->dev;
-   273		struct se_if_priv *priv;
-   274		int ret;
-   275	
-   276		if_node = device_get_match_data(dev);
-   277		if (!if_node)
-   278			return -EINVAL;
-   279	
-   280		se_info = if_node->se_info;
-   281	
-   282		priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-   283		if (!priv)
-   284			return -ENOMEM;
-   285	
-   286		priv->dev = dev;
-   287		priv->if_defs = &if_node->if_defs;
-   288		dev_set_drvdata(dev, priv);
-   289	
-   290		ret = devm_add_action_or_reset(dev, se_if_probe_cleanup, pdev);
-   291		if (ret)
-   292			return ret;
-   293	
-   294		/* Mailbox client configuration */
-   295		priv->se_mb_cl.dev		= dev;
-   296		priv->se_mb_cl.tx_block		= false;
-   297		priv->se_mb_cl.knows_txdone	= true;
-   298		priv->se_mb_cl.rx_callback	= se_if_rx_callback;
-   299	
-   300		ret = se_if_request_channel(dev, &priv->tx_chan, &priv->se_mb_cl, MBOX_TX_NAME);
-   301		if (ret)
-   302			return ret;
-   303	
-   304		ret = se_if_request_channel(dev, &priv->rx_chan, &priv->se_mb_cl, MBOX_RX_NAME);
-   305		if (ret)
-   306			return ret;
-   307	
-   308		mutex_init(&priv->se_if_cmd_lock);
-   309	
-   310		init_completion(&priv->waiting_rsp_clbk_hdl.done);
-   311		init_completion(&priv->cmd_receiver_clbk_hdl.done);
-   312	
-   313		if (if_node->pool_name) {
-   314			priv->mem_pool = of_gen_pool_get(dev->of_node, if_node->pool_name, 0);
-   315			if (!priv->mem_pool)
-   316				return dev_err_probe(dev, -ENOMEM,
-   317						     "Unable to get sram pool = %s.",
-   318						     if_node->pool_name);
-   319		}
-   320	
-   321		if (if_node->reserved_dma_ranges) {
-   322			ret = of_reserved_mem_device_init(dev);
-   323			if (ret)
-   324				return dev_err_probe(dev, ret,
-   325						    "Failed to init reserved memory region.");
-   326		}
-   327	
-   328		if (if_node->if_defs.se_if_type == SE_TYPE_ID_HSM) {
-   329			ret = get_se_soc_info(priv, se_info);
-   330			if (ret)
-   331				return dev_err_probe(dev, ret, "Failed to fetch SoC Info.");
-   332		}
-   333	
-   334		/* By default, there is no pending FW to be loaded.*/
-   335		if (se_info->se_fw_img_nm.seco_fw_nm_in_rfs) {
-   336			load_fw = get_load_fw_instance(priv);
-   337			load_fw->se_fw_img_nm = &se_info->se_fw_img_nm;
-   338			load_fw->is_fw_tobe_loaded = true;
-   339	
-   340			if (load_fw->se_fw_img_nm->prim_fw_nm_in_rfs) {
-   341				/* allocate buffer where SE store encrypted IMEM */
-   342				load_fw->imem.buf = dmam_alloc_coherent(priv->dev, ELE_IMEM_SIZE,
- > 343									&load_fw->imem.phyaddr,
-   344									GFP_KERNEL);
-   345				if (!load_fw->imem.buf)
-   346					return dev_err_probe(dev, -ENOMEM,
-   347							     "dmam-alloc-failed: To store encr-IMEM.");
-   348				load_fw->imem_mgmt = true;
-   349			}
-   350		}
-   351		dev_info(dev, "i.MX secure-enclave: %s0 interface to firmware, configured.",
-   352			 get_se_if_name(priv->if_defs->se_if_type));
-   353	
-   354		return ret;
-   355	}
-   356	
+--- Isn't this just camnoc_axi for this device (pay attention: to this 
+device)?
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+For this, yes, I think so.
+Also tested replacing soc_ahb with camnoc_axi for the CCI device, but 
+the hardware did not function correctly with that configuration.
+
+
+Thanks
+Wenmeng
+
+
 
