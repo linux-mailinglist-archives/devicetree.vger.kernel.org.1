@@ -1,241 +1,217 @@
-Return-Path: <devicetree+bounces-248815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27C82CD5EB8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:05:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22909CD5EF7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:11:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D379304DA32
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:03:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E3AD43025312
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260081DB551;
-	Mon, 22 Dec 2025 12:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B759226CF1;
+	Mon, 22 Dec 2025 12:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="a1IawWYV";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CD8Uvjow"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fUOuym0D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63D047FBA2
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 12:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31A061EEA5F;
+	Mon, 22 Dec 2025 12:11:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766404988; cv=none; b=VBRz3yCzcPvYlfgKZ3h+uerbgeRWe3M9DaPrpKFx13PbiU2uiLmrogRDDAS/MHaEABv4k7PeYec2q9JuFdNbMV3VLFvh56J12USJ2Ve5FA1Yj6N6TUYNZzdIKfKfAejlFZ8E6Vqx8uviGU0QA/1cFL/8g6n9bIpEBfKt70uMOWU=
+	t=1766405482; cv=none; b=KxIaWWQUdZuhVlGh/d0vbV0hu5Mo9k6/PyyrOy9PDqjN9vFP5q+McGiqNVI82aNVb6KxiwBmva+N9ZVA3IRcR0oREq4cq5MzaSr591aIwa6Nnbr1S4NoDexQtvSjeki8DmCwbSgvqUoW0mtvFl7kcrDmdCBOncYezL2GmJK0qVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766404988; c=relaxed/simple;
-	bh=EEiXRPFzsVPrhbOGSrty83xBpp6CMxPT3aJ96lTIK0M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eRjUYOBWQOwl+QMrY93ZPcgLJv3ATQ2xnqHsZrP4Bfb+KslFqEEfiFfo2V1dv9wF+YHHXLuu8IVn8AcwlLHU+koF9qV7UumI41HabELQzGzWlsz7fLJDVprpRvGfNDI6Q/OaSXbBRpPucMtH9nj+pfchAe11QQF+tHrKVWk7J1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=a1IawWYV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CD8Uvjow; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BM8E7pT090094
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 12:03:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=p2gg/ryxBBsJ2sBbFd283vDJ
-	AmmXdp+K9EbHpIl1scQ=; b=a1IawWYVWby0G3PXzSFItLN/rCj0LdDnJLUKwePZ
-	kuatO0+PWocscOcqAijMRUdEU3RWA3uEFATsAiN0jx69AYFmPoC4IKQHXBsNTYLQ
-	AzRPyBDiyCEF8Q0VZVckwg3G6AEmgZBX0aIUN8r4gcNW6HSKX7d8TKqVn6UqDz34
-	1swS36pZ+K0NcBczp9soYOhSmy07gom13FFLROTNytzDAoMhHvcOPHmvJqnNqC7c
-	/6bnBGQD0Mkq3G/JVHhY8GsMjR0aqaK4JNt+BNOnoOiNV108ZrROkZPH1aAR9Lez
-	K93HF6zYgf9Eg8KPgqqBWFCsEaD7C86X4cYC/iJPQDo+xQ==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b5mracw31-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 12:03:05 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-34c43f8ef9bso4524622a91.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 04:03:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766404984; x=1767009784; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=p2gg/ryxBBsJ2sBbFd283vDJAmmXdp+K9EbHpIl1scQ=;
-        b=CD8UvjowGISmG1LqyYET+0XLAW0MDgKGupwPz0Di10f6Q6FSvGgcdjaOaKpH8dOsgA
-         uicT1C7IlvRaL88lFsRPm0fEB1T0cK5zs4UzlGk7NydFQe+is4hSzpzAasfahHQ9/u+3
-         hQdheEHX+6mozhkathlZFohogFC4FL4ON0+xKnfF5+Sidgtt4ipIUMOiIBpStNJVHXk6
-         K8X3hmBrzhK62YKiRavf66qc7xAgAnFkgCD9BGB8mOHDQmYB3N3LX6eqJDNUL1aiPsGC
-         a8syI9H8OQgbCjKoaYBr+GLTk1hhN8RzG2tLVcDCfb5xRsl+m83BnbkHUkbB4R/F3HKi
-         FQUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766404984; x=1767009784;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p2gg/ryxBBsJ2sBbFd283vDJAmmXdp+K9EbHpIl1scQ=;
-        b=UeTXu+YOJxuiv/D9HI/WROj0d2aGsrpEyMHpzJfza8VyyMRg55Zw58iCx6OYEWij7S
-         0XTW9apXl/EpoZRXcTpVUiS+KNMElb/nCJ4sRRpAya+7JyyWbXwxjcDRiQ/DhK7EUCk3
-         oH8l3WPqv00smfltEF68Wpk+96Vm/E9oBhh+MFP9k803+C6Gi40Ggt/fveMYopdMZ+5h
-         qRRx1Ad1Yue8ym6ccwGXIOUWRfhvmK+bsTo15XXOZw32k8RtmEcQW1uiuJxpPUj5p3j2
-         sTw/pPtWaYvKIfe12drBWW8tMXmkuyuCdUE/9l7PxZknFgFSWs+X9S0xc6Ud78h7/ct6
-         yMfg==
-X-Forwarded-Encrypted: i=1; AJvYcCUIFpDHjEb+qmssbqusJe1C3WzQEBw/pKHop6XniM1gOqzrw59Oif3tB4fIhMoInOiFjAya7NLr/uh3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5UUdse+u219TRydFZS5kmqhLFUmskjWKYdPGgmxf/wT0j/2si
-	jGmUHbLAN2LurH8YujpW6+A5+Dl6zW5JhEPIVidfqXD8EkMntkULYy42/sLEdm0NWDDRA9z47PU
-	KRDEbIMJSn2GcS1322AWDPCJaV1rbfP9rduIDzrDp0IvNF1p/+iTDbpGCuJLOu9Q+pSzWZxyMGF
-	hcglbZ16zU4UjPyigHjycev2NMncXY3czncFJMLXg=
-X-Gm-Gg: AY/fxX5lLI4KUUDD8oymoPYV04kikv7wTZzcDa1AgpVoksA1q5raFcS0LNRLGfqaiip
-	GsLB9IDZdwTQFn1E92gszMipAmsj4tPoszgDhHJTvlG0AziwO7NDB23rz7jKNJfjq8BmXQBYEZ8
-	urlWFtJN1VuKQBnBjzSaaWhrFYoWsEpdfhNHWPIj0hsLVmpR5+YF8QsvPak/eulmFcGskaRoD20
-	empldGO
-X-Received: by 2002:a17:90b:4c4a:b0:343:3898:e7c9 with SMTP id 98e67ed59e1d1-34e71d6901cmr12908837a91.2.1766404983985;
-        Mon, 22 Dec 2025 04:03:03 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGUCY5ziK+Yi6Z2VGIwSN1Md/1ZaAhYLCl4h0bRtjPtwJr89S+ORuVEAoEdJaNMJqVGAHBOi1aGU5whF+6LzXc=
-X-Received: by 2002:a17:90b:4c4a:b0:343:3898:e7c9 with SMTP id
- 98e67ed59e1d1-34e71d6901cmr12908770a91.2.1766404983257; Mon, 22 Dec 2025
- 04:03:03 -0800 (PST)
+	s=arc-20240116; t=1766405482; c=relaxed/simple;
+	bh=qYqS5AOmgZbKh2/+9KAewAbPsoBCxm2V4OOSlP4vuaw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N1vekic+H7LR73iojpl4UhV3cOUsEn/M3Qkj1M5SLtzhc1X7cQsMqDv1AnXO++8DZksFomjkd/Bc1uRK9+ha/h2ZNEZc/nq3szKew9OXn7nFcyYgbfMiB3sGwQn68bsUKDOQf1e7ZkRAV3E9sOmjbFl0AzHmwNZnBKjYUGogERY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fUOuym0D; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1766405480; x=1797941480;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=qYqS5AOmgZbKh2/+9KAewAbPsoBCxm2V4OOSlP4vuaw=;
+  b=fUOuym0Dwh+NXydW6rs5CxdZVllT9vhutBUVvaHVUgkz4oTVJLRXeD6B
+   SmFlB0j+1h3NgIe+C2DWPn7r9KqHw9r1nHeqnqqgHGSRm1WYD27MmXlns
+   N+lQ+sJWSf1SDFL2W002ZhUJm/t2se+1tlNUszzIR2bRQ0ZhMq84B+9wZ
+   3kuMx9thRucB5ciCB69j5FxoDoazq1eMb3PZ68jl9QXiH4hRDobjtpgSJ
+   Zajv2RPHNCTzEUO5GhIHihC5eT2uWNYTpUiQVcy+a9O3SJYbO6/JIjV3D
+   WoZP2vGHoUJfOFqW27oiXEZuRd0tQBRsN2qsSqTPK67Wfxee2z5SNEvxt
+   w==;
+X-CSE-ConnectionGUID: Jvkk8JgmSf6ufYnIQhsKOw==
+X-CSE-MsgGUID: c2emOoN5ROKi23MjJklviA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11649"; a="67453701"
+X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; 
+   d="scan'208";a="67453701"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2025 04:11:19 -0800
+X-CSE-ConnectionGUID: kph5wOWtQZOOe3dIXRQTUw==
+X-CSE-MsgGUID: 4LdxMEzZR06DSIP2Qn1fpg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; 
+   d="scan'208";a="199270460"
+Received: from lkp-server02.sh.intel.com (HELO dd3453e2b682) ([10.239.97.151])
+  by orviesa009.jf.intel.com with ESMTP; 22 Dec 2025 04:11:16 -0800
+Received: from kbuild by dd3453e2b682 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vXekr-000000000Uf-0nOg;
+	Mon, 22 Dec 2025 12:11:13 +0000
+Date: Mon, 22 Dec 2025 20:11:06 +0800
+From: kernel test robot <lkp@intel.com>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v23 3/7] firmware: imx: add driver for NXP EdgeLock
+ Enclave
+Message-ID: <202512222045.Ldg7WTWR-lkp@intel.com>
+References: <20251219-imx-se-if-v23-3-5c6773d00318@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251222102400.1109-1-yuanjie.yang@oss.qualcomm.com>
-In-Reply-To: <20251222102400.1109-1-yuanjie.yang@oss.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Mon, 22 Dec 2025 14:02:52 +0200
-X-Gm-Features: AQt7F2qayOLXWOsVKODIpcNdatE0N7FpfRdRn0Mn_n6HFQmRjmFa3GkTXG1ipgY
-Message-ID: <CAO9ioeVXqVJ=d1xArUJOfz89o0UTVMcUZknMpHSZ-k4RCTZK3Q@mail.gmail.com>
-Subject: Re: [PATCH v4 00/11] drm/msm: Add support for Kaanapali
-To: yuanjie yang <yuanjie.yang@oss.qualcomm.com>
-Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, jesszhan0024@gmail.com,
-        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
-        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, neil.armstrong@linaro.org,
-        konrad.dybcio@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        tingwei.zhang@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
-        yongxing.mou@oss.qualcomm.com
-Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-ORIG-GUID: kdAHwoPtc4iMOTam-o4oSrHQqQj89VU0
-X-Proofpoint-GUID: kdAHwoPtc4iMOTam-o4oSrHQqQj89VU0
-X-Authority-Analysis: v=2.4 cv=e9wLiKp/ c=1 sm=1 tr=0 ts=69493379 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=qC_FGOx9AAAA:8 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=5hTnvsBZC3hnunZ897kA:9 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=fsdK_YakeE02zTmptMdW:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIyMDEwOSBTYWx0ZWRfX270+ube/JGWX
- DVsFuCaqdEk9Nrja0kYo3nyeERMZIgnkbUB7YniekmqWM0wSOanlumq0j2pq6N/N6g0mPwuRFEB
- KMSyDVR7u84wvxCXFhQ2PSEv8NYM11AiFuqi2ymWMpLBNSdyzs/HB/pJ+u/RJmqimeoamE1Y93k
- zr8TbmQqVDGLPiiAiQqNmOivFQ1Wf0EP+GeaG+afUuLom6ohvZeMx3kdebyUwwgjZkHA4JfARUi
- IPx4aSeaEF6wodZu/u6C4mBuydoKpNIlkbVbc8htgkxD2wecdVojTmuGar3tOOiAovkPzdUMbeS
- SoN/fmoYn42shWNLcjsZqVAkg8vKfQZCl2A0jY7OCUDP0dOCnj/fif9I0qcOKiw5d8GAOxU+kBJ
- M/WF7wi1gqqEE5TMoi2dVgMN/txG4PZGpQtb/Q7PLmoPQSETjmmUsPB1q5RaZc797f3xWieaweX
- GGYO4DrwNYmqpjeP9RA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-21_05,2025-12-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 malwarescore=0 impostorscore=0 clxscore=1015 phishscore=0
- adultscore=0 spamscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512220109
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251219-imx-se-if-v23-3-5c6773d00318@nxp.com>
 
-On Mon, 22 Dec 2025 at 12:24, yuanjie yang
-<yuanjie.yang@oss.qualcomm.com> wrote:
->
-> From: Yuanjie Yang <yuanjiey@qti.qualcomm.com>
->
-> The Kaanapali MDSS has some differences compared to the SM8750 MDSS:
-> - DSI PHY/DSI base address have some changes.
-> - DPU 13.0:
->   - SSPP layout has a great change.
->   - interrupt INTF layout has some changes.
->
-> This patchset contains DSI PHY, DSI Controller, DPU & MDSS bindings
-> in addition to the driver changes.
->
-> We have already tested the display functionality using the Kaanapali-mtp
-> device on the Kaanapali branch of kernel-qcom repository.
-> Test command: "modetest -r -v"
-> kernel-qcom repository: https://git.codelinaro.org/clo/linux-kernel/kernel-qcom/-/tree/kaanapali
->
-> [PATCH v4 05/11] drm/msm/mdss: Add support for Kaanapali
-> compile depend on qcom-soc tree patch: https://lore.kernel.org/lkml/20250930-kaana-gpu-support-v1-1-73530b0700ed@oss.qualcomm.com/
->
-> Co-developed-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
-> ---
-> Changes in v4:
-> - fix qcom,kaanapali-mdss.yaml compile error
-> - reorganize SSPP patch order
-> - fix Dmitry ohter comment
+Hi Pankaj,
 
-Which 'comment'? Please be specific in the changelog.
+kernel test robot noticed the following build errors:
 
-> - rebase on top of msm-next
-> - Link to v3: https://lore.kernel.org/all/20251215083854.577-1-yuanjie.yang@oss.qualcomm.com/
->
-> Changes in v3:
-> - split SSPP refactor patch
-> - add devicetree email list
-> - fix Dmitry comment
-> - rebase on top of msm-next
-> - Link to v2: https://lore.kernel.org/all/20251125064758.7207-1-yuanjie.yang@oss.qualcomm.com/
->
-> Changes in v2:
-> - Drop panel patch
-> - adjust patch order (bindings then drivers)
-> - add dpu_hw_ssppv13.c to complete kaanapali SSPP function
-> - fix bindings example dts compile error
-> - fix other comment
-> - rebase on top of msm-next
-> - Link to v1: https://lore.kernel.org/all/20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com/
->
-> ---
-> Yuanjie Yang (11):
->   dt-bindings: display/msm: qcom,kaanapali-dpu: Add Kaanapali
->   dt-bindings: display/msm: dsi-phy-7nm: Add Kaanapali DSI PHY
->   dt-bindings: display/msm: dsi-controller-main: Add Kaanapali
->   dt-bindings: display/msm: qcom,kaanapali-mdss: Add Kaanapali
->   drm/msm/mdss: Add support for Kaanapali
->   drm/msm/dsi/phy: Add support for Kaanapali
->   drm/msm/dsi: Add support for Kaanapali
->   drm/msm/dpu: Add interrupt registers for DPU 13.0.0
->   drm/msm/dpu: Refactor SSPP to compatible DPU 13.0.0
->   drm/msm/dpu: Add Kaanapali SSPP sub-block support
->   drm/msm/dpu: Add support for Kaanapali DPU
->
->  .../display/msm/dsi-controller-main.yaml      |   2 +
->  .../bindings/display/msm/dsi-phy-7nm.yaml     |   1 +
->  .../display/msm/qcom,kaanapali-mdss.yaml      | 297 +++++++++++
->  .../bindings/display/msm/qcom,sm8650-dpu.yaml |   1 +
->  drivers/gpu/drm/msm/Makefile                  |   1 +
->  .../disp/dpu1/catalog/dpu_13_0_kaanapali.h    | 492 ++++++++++++++++++
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |  41 ++
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  15 +
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c |  89 +++-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c   | 123 +++--
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h   |  56 ++
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_sspp_v13.c   | 321 ++++++++++++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c   |  18 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h   |   3 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c     |  17 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
->  drivers/gpu/drm/msm/dsi/dsi_cfg.c             |  13 +
->  drivers/gpu/drm/msm/dsi/dsi_cfg.h             |   1 +
->  drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         |   2 +
->  drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |   1 +
->  drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c     |  23 +
->  drivers/gpu/drm/msm/msm_mdss.c                |  10 +-
->  22 files changed, 1474 insertions(+), 54 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,kaanapali-mdss.yaml
->  create mode 100644 drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_13_0_kaanapali.h
->  create mode 100644 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp_v13.c
->
->
-> base-commit: 06aa394d58c11406569bcbd4a69b81290edf3f63
-> --
-> 2.34.1
->
+[auto build test ERROR on 4a26e7032d7d57c998598c08a034872d6f0d3945]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Pankaj-Gupta/Documentation-firmware-add-imx-se-to-other_interfaces/20251219-132830
+base:   4a26e7032d7d57c998598c08a034872d6f0d3945
+patch link:    https://lore.kernel.org/r/20251219-imx-se-if-v23-3-5c6773d00318%40nxp.com
+patch subject: [PATCH v23 3/7] firmware: imx: add driver for NXP EdgeLock Enclave
+config: arm-randconfig-r054-20251222 (https://download.01.org/0day-ci/archive/20251222/202512222045.Ldg7WTWR-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251222/202512222045.Ldg7WTWR-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512222045.Ldg7WTWR-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/firmware/imx/se_ctrl.c:343:9: error: incompatible pointer types passing 'phys_addr_t *' (aka 'unsigned int *') to parameter of type 'dma_addr_t *' (aka 'unsigned long long *') [-Werror,-Wincompatible-pointer-types]
+     343 |                                                                 &load_fw->imem.phyaddr,
+         |                                                                 ^~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dma-mapping.h:707:15: note: passing argument to parameter 'dma_handle' here
+     707 |                 dma_addr_t *dma_handle, gfp_t gfp)
+         |                             ^
+   1 error generated.
+
+
+vim +343 drivers/firmware/imx/se_ctrl.c
+
+   266	
+   267	static int se_if_probe(struct platform_device *pdev)
+   268	{
+   269		const struct se_soc_info *se_info;
+   270		const struct se_if_node *if_node;
+   271		struct se_fw_load_info *load_fw;
+   272		struct device *dev = &pdev->dev;
+   273		struct se_if_priv *priv;
+   274		int ret;
+   275	
+   276		if_node = device_get_match_data(dev);
+   277		if (!if_node)
+   278			return -EINVAL;
+   279	
+   280		se_info = if_node->se_info;
+   281	
+   282		priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+   283		if (!priv)
+   284			return -ENOMEM;
+   285	
+   286		priv->dev = dev;
+   287		priv->if_defs = &if_node->if_defs;
+   288		dev_set_drvdata(dev, priv);
+   289	
+   290		ret = devm_add_action_or_reset(dev, se_if_probe_cleanup, pdev);
+   291		if (ret)
+   292			return ret;
+   293	
+   294		/* Mailbox client configuration */
+   295		priv->se_mb_cl.dev		= dev;
+   296		priv->se_mb_cl.tx_block		= false;
+   297		priv->se_mb_cl.knows_txdone	= true;
+   298		priv->se_mb_cl.rx_callback	= se_if_rx_callback;
+   299	
+   300		ret = se_if_request_channel(dev, &priv->tx_chan, &priv->se_mb_cl, MBOX_TX_NAME);
+   301		if (ret)
+   302			return ret;
+   303	
+   304		ret = se_if_request_channel(dev, &priv->rx_chan, &priv->se_mb_cl, MBOX_RX_NAME);
+   305		if (ret)
+   306			return ret;
+   307	
+   308		mutex_init(&priv->se_if_cmd_lock);
+   309	
+   310		init_completion(&priv->waiting_rsp_clbk_hdl.done);
+   311		init_completion(&priv->cmd_receiver_clbk_hdl.done);
+   312	
+   313		if (if_node->pool_name) {
+   314			priv->mem_pool = of_gen_pool_get(dev->of_node, if_node->pool_name, 0);
+   315			if (!priv->mem_pool)
+   316				return dev_err_probe(dev, -ENOMEM,
+   317						     "Unable to get sram pool = %s.",
+   318						     if_node->pool_name);
+   319		}
+   320	
+   321		if (if_node->reserved_dma_ranges) {
+   322			ret = of_reserved_mem_device_init(dev);
+   323			if (ret)
+   324				return dev_err_probe(dev, ret,
+   325						    "Failed to init reserved memory region.");
+   326		}
+   327	
+   328		if (if_node->if_defs.se_if_type == SE_TYPE_ID_HSM) {
+   329			ret = get_se_soc_info(priv, se_info);
+   330			if (ret)
+   331				return dev_err_probe(dev, ret, "Failed to fetch SoC Info.");
+   332		}
+   333	
+   334		/* By default, there is no pending FW to be loaded.*/
+   335		if (se_info->se_fw_img_nm.seco_fw_nm_in_rfs) {
+   336			load_fw = get_load_fw_instance(priv);
+   337			load_fw->se_fw_img_nm = &se_info->se_fw_img_nm;
+   338			load_fw->is_fw_tobe_loaded = true;
+   339	
+   340			if (load_fw->se_fw_img_nm->prim_fw_nm_in_rfs) {
+   341				/* allocate buffer where SE store encrypted IMEM */
+   342				load_fw->imem.buf = dmam_alloc_coherent(priv->dev, ELE_IMEM_SIZE,
+ > 343									&load_fw->imem.phyaddr,
+   344									GFP_KERNEL);
+   345				if (!load_fw->imem.buf)
+   346					return dev_err_probe(dev, -ENOMEM,
+   347							     "dmam-alloc-failed: To store encr-IMEM.");
+   348				load_fw->imem_mgmt = true;
+   349			}
+   350		}
+   351		dev_info(dev, "i.MX secure-enclave: %s0 interface to firmware, configured.",
+   352			 get_se_if_name(priv->if_defs->se_if_type));
+   353	
+   354		return ret;
+   355	}
+   356	
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
