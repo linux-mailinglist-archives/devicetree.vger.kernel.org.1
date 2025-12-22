@@ -1,154 +1,154 @@
-Return-Path: <devicetree+bounces-248885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68531CD650A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:04:38 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4040ECD6513
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:05:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CE1103033712
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:01:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AC27030170CB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C13127FB2F;
-	Mon, 22 Dec 2025 14:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="0V6uobjQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F7F62BFC7B;
+	Mon, 22 Dec 2025 14:05:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f195.google.com (mail-vk1-f195.google.com [209.85.221.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15576FC5;
-	Mon, 22 Dec 2025 14:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C30F29E0E9
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 14:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766412092; cv=none; b=KIe7AKX5mHI9oaBivmUGiJzlpmxWTVfbWZbMZQfZlcjA/cl6nyZGHNONJY7cU/Y3a4/9Laq4Ialr5nOdHDNQ5k2k+xrPEPVxjA1HApUGgTOcK4xAbGveQwGm4zhFV6UKFLYl8Tpr0CusI2O9V5CgqSfMSwETywVKwDK3ReGcS+Q=
+	t=1766412342; cv=none; b=IivkKeI5ok+QkGP3frZTfsjCLWWKX1qyoJ/J5MycMY85U3D5yCKdRRlfjxSk8MTvt7sJzccRNELKgcb0Qa8Jf9CqSRduF1G8b6W58vMGqQE+P30wSwBCC0cOZ2OLjW83GWRvDU8U8zJWojbrcjUm1ITdhUo2gmUt2E0CHvcz2Ag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766412092; c=relaxed/simple;
-	bh=PusaHigErO05TgG4Vucoaj4/WBG2ExfgestHJdFX62s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mCvwjDA2xqGAziTHnmqFutNm2vY7Q8m9G1INt7AiinRKTFcINcf8WneUfcQjr+Ygw6ba9YEcXtA0olkkNQhi7tLH4egaj6gp89iX8v2rMS9qX/T7llt8+lJUvoLM5drVGYB+k2KA3dUck7UacIsMwqrMlXm8j94v92IrWXVp0Dc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=0V6uobjQ; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [192.168.136.28] (78-80-96-111.customers.tmcz.cz [78.80.96.111])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id C4A4F53409E4;
-	Mon, 22 Dec 2025 15:01:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1766412084;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=N1qdfjO0147Ai2vSJqmHPykKPgwTDBEt2ek4Q7arHWw=;
-	b=0V6uobjQxdK1IQWqlru15b9alAeNKETl1AJc1qwbPe0vTQUvHoGXwCQQ3DUM9yG0owRH22
-	5GaxM7lBLoq9vHLRN7Amu3kGcldAbTlP6jAwSdGbSf4hHvyxijt4rRuBLCNQhZ8uXMrOcf
-	QErGKUkW+hDGQhEgpwM4I4Z3Yv8baDE=
-Message-ID: <eabea4d4-366c-491a-bdcf-cbbfede66bd1@ixit.cz>
-Date: Mon, 22 Dec 2025 15:01:23 +0100
+	s=arc-20240116; t=1766412342; c=relaxed/simple;
+	bh=bTIKHcqn0C6gaQNho2yhzTYPlbw5mXBtl6Xpga087bc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qOmqzhvSCYs27956BAjlu+QeUnFt3fWoVJpZ5FNw0JtADHZfLaR/q69Tj5n0lGhCz7BBNUCa5uLsq4wF75Hv46NLkK25DHq6OV92zfFc8YfKu1Io9EXTxjWD0HqDTy9/aknCEHaGWDbJRnRdoghX+sFUNnl3bEZ09KI+Wv+KB2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f195.google.com with SMTP id 71dfb90a1353d-55b104727c8so1098773e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 06:05:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766412339; x=1767017139;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ICwOHcWbMK0sAN8WZ7Ku00mtmBrZPHA5/DlsAdljbVM=;
+        b=Oc7LbCsnNkdDDCBrOwu5+WcjwbCtyz3RjDmQvrSvsJgN5LoicsqnM5I9oDZS08owwX
+         olh+qFYyzdfLJFxZ9wyRjt6cgzeWnAGPHLYCIFUCmI1iyoEo/wcu/q1KES7myAiljTWJ
+         5VbH3VJAXK/o5EN39FkTrOcGcV0/R7+omFHdVaGIyVLmJn1KO5zOzX81fNTR8TCYFQjx
+         3ZgrMuvvZFux2VmaYzG7W0zzExLhK3bhw1BLlhuHaDhR+xWl0mezr6e/rpvmuEFlm+UA
+         4FWdPsPcmIxcXE4LNT3+9VZi/lt6UUiK4VIVKLqaqbhSKLiY2nzMhyO3mBl55ZZzPG1D
+         vSrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVZZ1NT0hbIuNk/OZYQjYDIsRyEc7wRWLIT7eyC61kwJzka4CEu7G4s0WIqiOBBA8CQgnW6/W8WClRd@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRfblgJb7NGGNR8oL8zFMXIXE4CU1AM1Lau/9rCpkiodf7AQRE
+	NhpdZVGM4Vv8WknQgYInIRfQ2j/N0k4pkv6y7lSbnEF/LCAaQJzuwKeKayVd8LGf
+X-Gm-Gg: AY/fxX7yJp09oASpwULZ1d9YjU4ye2g/rhU9A6oF1W7qqY3Rp0jR1IeCMNX3OZKIPUI
+	85LDFmUFnzkov3316sDVX5c+cVaaQho9fiYNXGvBmFglxO9jSDPTrjDQ7ehdLSs4FKtug6NUeUI
+	3a8Q0K4UxTts4/Jh6A7yvk07rV/EXsLO+jRQHA76fX/yAGOxGOqQn6NVw0ExKRVT4sXcFGxPOgI
+	DgQ52m8UTJhMDLMqD/qhZou2UmuAfcu2EnjU76rQpAWCciinMd0NTPaZDQCPPDTed81KXq2cchS
+	kpo/rRtVREoHi0s10GdfbW2nIYM+4UW3+X5JpzRtvXn9Q+VoNk5N0uBn3qznunLyH4rDsYsWuHj
+	bYJjgXAVqOoI8xK/FJCfJ9n+R7Wm5+N9NDe7FOUeRUvtIIhlCqG2356EVOQe1FVuMNGi1yQNsUK
+	08bCZpAToRaqxeEnCBtgswZTt+ABzwvVpz/d50Cha6X9swgSNfdUup
+X-Google-Smtp-Source: AGHT+IHiEAps4eDWes8OBhwkqc3TDi+rZ5hI3egTJnwClogQ60nl2sh4CMUoEtKD42lhYei8qDoNOw==
+X-Received: by 2002:a05:6122:2a52:b0:55f:c41f:e841 with SMTP id 71dfb90a1353d-5615bed1815mr3290762e0c.19.1766412338923;
+        Mon, 22 Dec 2025 06:05:38 -0800 (PST)
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com. [209.85.221.175])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5615d16c900sm3382725e0c.22.2025.12.22.06.05.38
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Dec 2025 06:05:38 -0800 (PST)
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-559934e34bcso995583e0c.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 06:05:38 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU2X65/2KUJBBUBDkpU07DiD3lKgZ9a5tzU/e1CG0ssP85R4aieUfvRbqhPIwORd/uDriV3ZTa5C0+f@vger.kernel.org
+X-Received: by 2002:a05:6122:2a52:b0:55f:c41f:e841 with SMTP id
+ 71dfb90a1353d-5615bed1815mr3290676e0c.19.1766412338007; Mon, 22 Dec 2025
+ 06:05:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sdm845-db845c: Use pad fn
- instead of defining own
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Robert Foss <rfoss@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20251217-sdm845-mclk-v2-0-7028c2d09145@ixit.cz>
- <20251217-sdm845-mclk-v2-2-7028c2d09145@ixit.cz>
- <f86b483d-c674-4901-b2c8-19a535df4234@oss.qualcomm.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <f86b483d-c674-4901-b2c8-19a535df4234@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251129164325.209213-1-biju.das.jz@bp.renesas.com> <20251129164325.209213-4-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20251129164325.209213-4-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 22 Dec 2025 15:05:26 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWpsjQ=cL1z5vMX39TwnfWsfEhMOktBPL-zF0-QJug-Xw@mail.gmail.com>
+X-Gm-Features: AQt7F2oETRYAhevlCJEPv5BI6M299_NGlsvNoOTDm0Qmrwm2Eeqa8eGBJP7zVJo
+Message-ID: <CAMuHMdWpsjQ=cL1z5vMX39TwnfWsfEhMOktBPL-zF0-QJug-Xw@mail.gmail.com>
+Subject: Re: [PATCH v5 03/17] serial: rsci: Add set_rtrg() callback
+To: Biju <biju.das.au@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 18/12/2025 13:25, Konrad Dybcio wrote:
-> On 12/17/25 12:39 PM, David Heidelberg via B4 Relay wrote:
->> From: David Heidelberg <david@ixit.cz>
->>
->> Instead of defining own pad function for master clock, pick one offered
->> by sdm845 device-tree include.
-> 
-> I'm a little bitter about the wording - the pad function here is "cam_mclk",
-> whereas what you're doing is inheriting a common pinmux/pincfg node that
-> refers to that function
-> 
-> [...]
-> 
->> -		mclk0-pins {
->> -			pins = "gpio13";
->> -			function = "cam_mclk";
->> -
->> -			drive-strength = <16>;
-> 
-> This patch changes the drive-strength (16 -> 2 mA)
-> 
-> FWIW it's 2 on reference designs and Sony boards, check your
-> downstream kernel
+Hi Biju,
 
-I don't have any. I'm fine with this patch not getting applied, but I'll 
-CC Robert who added the support, maybe he can verify.
+On Sat, 29 Nov 2025 at 17:43, Biju <biju.das.au@gmail.com> wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> The rtrg variable is populated in sci_init_single() for RZ/T2H. Add
+> set_rtrg() callback for setting the rtrg value.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v5:
+>  * New patch.
 
-David
+Thanks for your patch, which is now commit b346e5d7dbf66961 ("serial:
+rsci: Add set_rtrg() callback") in tty/tty-next.
 
-> 
-> Konrad
+> --- a/drivers/tty/serial/rsci.c
+> +++ b/drivers/tty/serial/rsci.c
+> @@ -151,6 +151,22 @@ static void rsci_start_rx(struct uart_port *port)
+>         rsci_serial_out(port, CCR0, ctrl);
+>  }
+>
+> +static int rsci_scif_set_rtrg(struct uart_port *port, int rx_trig)
+> +{
+> +       u32 fcr = rsci_serial_in(port, FCR);
+> +
+> +       if (rx_trig >= port->fifosize)
+> +               rx_trig = port->fifosize - 1;
+> +       else if (rx_trig < 1)
+> +               rx_trig = 0;
+> +
+> +       fcr &= ~FCR_RTRG4_0;
+> +       fcr |= field_prep(FCR_RTRG4_0, rx_trig);
+
+FIELD_PREP(), as FCR_RTRG4_0 is a constant.
+However, this can be combined with the previous line, using
+FIELD_MODIFY().
+
+I have sent a follow-up patch: "[PATCH] serial: rsci: Convert to
+FIELD_MODIFY()".
+https://lore.kernel.org/ada3faf4698155a618ae6371b35eab121eb8b19c.1766411924.git.geert+renesas@glider.be
+
+
+> +       rsci_serial_out(port, FCR, fcr);
+> +
+> +       return rx_trig;
+> +}
+> +
+>  static void rsci_set_termios(struct uart_port *port, struct ktermios *termios,
+>                              const struct ktermios *old)
+>  {
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-David Heidelberg
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
