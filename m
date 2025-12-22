@@ -1,221 +1,153 @@
-Return-Path: <devicetree+bounces-248850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C702FCD628B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:30:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A27B6CD62A6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:33:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 331343015400
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:30:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8E12F300250E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:33:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2AB42F2918;
-	Mon, 22 Dec 2025 13:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7CB2DFA32;
+	Mon, 22 Dec 2025 13:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HXoZtkov"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="U9CcIWgz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC53B2F25EB;
-	Mon, 22 Dec 2025 13:30:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766410246; cv=none; b=ur6lhpC0f3/aHx5k7K4sToXUtEeG0s9Mr0XQk1OynXbPtrRnoOQYNIr6OsnF1ij4JzOirXI7Kp+6/OBtlLWgSRBu/nHrnRQ6kLx1XGbd71RKDS6q1aV8apfalbSlT6Gcmbc+Rq840I/pVkEuvmU+PBcu3so4MO+OLFXnbRon+Jg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766410246; c=relaxed/simple;
-	bh=xywLRq/TVdW8R65dbpzTh0nzVMEX2c5JYTa8jXNBQso=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352BA28690;
+	Mon, 22 Dec 2025 13:33:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766410411; cv=pass; b=S38PSmq5oMv/IPNkzKBJSEwlb5g3D50j5IM+2LcSfaCTe+EPbsDWOdtzwAKg1Lm1zkc64hp6mOKsGdwZad5N0YL4IHWQ1P6FVock37q7vt5pGlsO+i4UAjacwc12XlJm/zNq8rVYrU0eI9fYzFp+vWRohT3e3yP/ABupR7HPhwU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766410411; c=relaxed/simple;
+	bh=8R+nwIKqGeVccSD8+AiJ9SbR+E8BoMZnQHJbxxAoHT8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T9yIoyk0fUwi8swoQ241J6vfg5vcaZ3SbqI9MLuA8uWN95saeUYTvPUlr8a7mrwaUKyVWIXF9FOEO0MvArprBhxi/Kjyr45uTJk80TcwYWZscGL91DNQGcGs1zAKFNchki15fKA3QuUFNQ0M80Pa8ucH5IHC40XY9Op6/OUxUxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=HXoZtkov; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-152.bb.dnainternet.fi [81.175.209.152])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 4A2CFE1F;
-	Mon, 22 Dec 2025 14:30:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1766410227;
-	bh=xywLRq/TVdW8R65dbpzTh0nzVMEX2c5JYTa8jXNBQso=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HXoZtkov8W9TN4rqMJp4hgb5i4vG37F3x2VLnfwOVZaeypAVHYEswNPYuo+hzfkH6
-	 t2oeQ6Vi+epiVhWYZCjfJ5Qnq/bo5fPSfKDy24ej8/tE+/j14wxQcp+2s7IL1N5cLO
-	 7X1SNrUlFjTdWPcO2t9aVi0ls4VuEPfUNrlgn3es=
-Date: Mon, 22 Dec 2025 15:30:18 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>,
-	Tarang Raval <tarang.raval@siliconsignals.io>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Alan Stern <stern@rowland.harvard.edu>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	Svyatoslav Ryhel <clamor95@gmail.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Hao Yao <hao.yao@intel.com>
-Subject: Re: [PATCH v6 2/2] media: i2c: add Himax HM1246 image sensor driver
-Message-ID: <20251222133018.GB5317@pendragon.ideasonboard.com>
-References: <20251202-hm1246-v6-0-3e96ed6b3ffa@emfend.at>
- <20251202-hm1246-v6-2-3e96ed6b3ffa@emfend.at>
- <aUXRsv-r9-sQvpAm@kekkonen.localdomain>
- <2c6c4b36-6b97-4260-8c01-6861b6f36cea@emfend.at>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CgX0Tps5ODGDLxhtJQBdgOk2bVl3dVY8/SoTnc6aW4MhnwxpEtSRWI08haC4q4A5+5tfsjJ3ydxwGR9gYPEDD1qeVJsxmFKp2TI3kgRXT+z+R0tuZs/aT5q5j1epwFSfWBLGXGLJEJhMJypum/yrVJciugFqJ4+Z003QtU0t9X0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=U9CcIWgz; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1766410379; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=euv+u++lrBDdHfL/UveqiiNdvqYsULgbwGwJ606ibleQy3JzBUf97GfdEeY47aDhJR2gP0pYVm/Q2iaeB3FNFdH2jqOnAU9C2YgQ9gikt+wMfZLUYQZdz7waqv9kUY2cIqfitTjRcrdgX4YiKX2fP6FaAHTo8RJNrDSWVzF2w0E=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1766410379; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=xIQHEpYlJdjAzhSSiNHyixl/z+6+WF1tijlCEgseJiQ=; 
+	b=MC8cftZ4Wh4hyIumUsTMAmISv5hgKEkPXguuFGIUwCyJB4sGqTN66OwyPe3jMVqzOWC69YZ+7ae4d/VmjlWt806zg/IhbC1Z9x1t3glIIQ1WYN4+UBfr+IJTQXzokViSG5AyaK2WUI7nuuYvM6BcfknsD0pvUzhAbUARfjkMxyk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1766410379;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=xIQHEpYlJdjAzhSSiNHyixl/z+6+WF1tijlCEgseJiQ=;
+	b=U9CcIWgzlnf3M1Uf9mk7bDddsdZxtOg2plSWZjj8XrKbU5Q/A275Y/q6MO8tZRLq
+	P/qtGRy31txKLEmk6NA4hg1y6/xC3Dawv7U/Qn2jwzX2Eg1kCVVK167eIKP6XQtxxW9
+	wfZ0JPyR4I89UUe2Vb+rtOtPsES691q4OqBPZxp8=
+Received: by mx.zohomail.com with SMTPS id 1766410376673158.54540855926552;
+	Mon, 22 Dec 2025 05:32:56 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id 13169180421; Mon, 22 Dec 2025 22:32:53 +0900 (JST)
+Date: Mon, 22 Dec 2025 14:32:53 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: enable saradc for ArmSoM Sige5
+Message-ID: <aUlHa-QhCLOk8AGa@venus>
+References: <20251220100010.26643-1-amadeus@jmu.edu.cn>
+ <20251220100010.26643-3-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fqerxpmbaspw64pr"
 Content-Disposition: inline
-In-Reply-To: <2c6c4b36-6b97-4260-8c01-6861b6f36cea@emfend.at>
+In-Reply-To: <20251220100010.26643-3-amadeus@jmu.edu.cn>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.5.1/266.382.52
+X-ZohoMailClient: External
 
-On Mon, Dec 22, 2025 at 12:17:56PM +0100, Matthias Fend wrote:
-> Am 19.12.2025 um 23:29 schrieb Sakari Ailus:
-> > Hi Matthias,
-> > 
-> > Thanks for the update.
-> > 
-> > On Tue, Dec 02, 2025 at 04:26:06PM +0100, Matthias Fend wrote:
-> > 
-> > ...
-> > 
-> >> +static int hm1246_calc_pll(struct hm1246 *hm1246, u32 xclk, u32 link_freq,
-> >> +			   u32 clocks_per_pixel, u8 *pll1, u8 *pll2, u8 *pll3)
-> >> +{
-> >> +	const u8 pclk_div_table[] = { 4, 5, 6, 7, 8, 12, 14, 16 };
-> >> +	const u8 sysclk_div_table[] = { 1, 2, 3, 4 };
-> >> +	const u8 post_div_table[] = { 1, 2, 4, 8 };
-> >> +	const int sysclk_pclk_ratio = 3; /* Recommended value */
-> >> +	u32 pclk, vco_out, best_vco_diff;
-> >> +	int pclk_div_index, sysclk_div_index, post_div_index;
-> >> +	u8 pre_div = 0, multiplier_h = 0, multiplier_l = 0;
-> >> +	bool sysclk_pclk_ratio_found = false;
-> >> +
-> >> +	if (link_freq < HM1246_PCLK_MIN || link_freq > HM1246_PCLK_MAX)
-> >> +		return -EINVAL;
-> >> +
-> >> +	/*
-> >> +	 * In raw mode (1 pixel per clock) the pixel clock is internally
-> >> +	 * divided by two.
-> >> +	 */
-> >> +	pclk = 2 * link_freq / clocks_per_pixel;
-> >> +
-> >> +	/* Find suitable PCLK and SYSCLK dividers. */
-> >> +	for (pclk_div_index = 0; pclk_div_index < ARRAY_SIZE(pclk_div_table);
-> >> +	     pclk_div_index++) {
-> >> +		for (sysclk_div_index = 0;
-> >> +		     sysclk_div_index < ARRAY_SIZE(sysclk_div_table);
-> >> +		     sysclk_div_index++) {
-> >> +			if (sysclk_div_table[sysclk_div_index] *
-> >> +				    sysclk_pclk_ratio ==
-> >> +			    pclk_div_table[pclk_div_index]) {
-> >> +				sysclk_pclk_ratio_found = true;
-> >> +				break;
-> >> +			}
-> >> +		}
-> >> +		if (sysclk_pclk_ratio_found)
-> >> +			break;
-> >> +	}
-> >> +
-> >> +	if (!sysclk_pclk_ratio_found)
-> >> +		return -EINVAL;
-> >> +
-> >> +	/* Determine an appropriate post divider. */
-> >> +	for (post_div_index = 0; post_div_index < ARRAY_SIZE(post_div_table);
-> >> +	     post_div_index++) {
-> >> +		vco_out = pclk * pclk_div_table[pclk_div_index] *
-> >> +			  post_div_table[post_div_index];
-> >> +
-> >> +		if (vco_out >= HM1246_PLL_VCO_MIN &&
-> >> +		    vco_out <= HM1246_PLL_VCO_MAX)
-> >> +			break;
-> >> +	}
-> >> +	if (post_div_index >= ARRAY_SIZE(post_div_table))
-> >> +		return -EINVAL;
-> >> +
-> >> +	/* Find best pre-divider and multiplier values. */
-> >> +	best_vco_diff = U32_MAX;
-> >> +	for (u32 div = DIV_ROUND_UP(xclk, HM1246_PLL_INCLK_MAX);
-> >> +	     div <= xclk / HM1246_PLL_INCLK_MIN; div++) {
-> >> +		u32 multi, multi_h, multi_l, vco, diff;
-> >> +
-> >> +		multi = DIV_ROUND_CLOSEST_ULL((u64)vco_out * div, xclk);
-> >> +		if (multi < HM1246_PLL_MULTI_MIN ||
-> >> +		    multi > HM1246_PLL_MULTI_MAX)
-> >> +			continue;
-> >> +
-> >> +		multi_h = multi / (HM1246_PLL_MULTI_H_MIN *
-> >> +				   HM1246_PLL_MULTI_L_MAX) +
-> >> +			  2;
-> >> +		multi_l = multi / multi_h;
-> >> +		vco = div_u64((u64)xclk * multi_h * multi_l, div);
-> >> +
-> >> +		diff = abs_diff(vco_out, vco);
-> >> +
-> >> +		if (diff < best_vco_diff) {
-> >> +			best_vco_diff = diff;
-> >> +			pre_div = div;
-> >> +			multiplier_h = multi_h;
-> >> +			multiplier_l = multi_l;
-> >> +		}
-> >> +
-> >> +		if (!diff)
-> >> +			break;
-> >> +	}
-> >> +
-> >> +	if (best_vco_diff == U32_MAX)
-> >> +		return -EINVAL;
-> > 
-> > How much difference is acceptable? Isn't any difference a bug either in DT
-> > or the code above? In other words, I'd return an error in that case.
-> 
-> Hard to tell, but almost every input clock will result in a slight 
-> difference. Even the recommended reference register configuration 
-> doesn't create a perfect match. Therefore, I don't think it's a good 
-> idea to treat every deviation as an error.
 
-I understand that the PLL won't be able to produce the exact nominal
-expected frequency, but can't we require the link-frequencies property
-in DT to match the PLL output exactly ? That's what we do with other
-sensors.
+--fqerxpmbaspw64pr
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: enable saradc for ArmSoM Sige5
+MIME-Version: 1.0
 
-> However, every supported input frequency (6-27MHz) will result in a 
-> pixel clock deviation of less than 0.5%. Since the sensor uses a 
-> parallel interface, these frequencies will all work without any 
-> problems. The frame timings may, of course, be slightly different.
-> 
-> To change this and prevent any deviation, one would probably have to 
-> replace the PLL calculation with one or more dedicated frequency-setup 
-> pairs (with adjusted pixelclocks). Which wouldn't be ideal, as the 
-> solution isn't very flexible - and I've invested quite a bit of effort 
-> in the PLL calculation ;)
-> 
-> >> +
-> >> +	*pll1 = HM1246_PLL1CFG_MULTIPLIER(multiplier_l - 1);
-> >> +	*pll2 = HM1246_PLL2CFG_PRE_DIV(pre_div - 1) |
-> >> +		HM1246_PLL2CFG_MULTIPLIER(multiplier_h - 2);
-> >> +	*pll3 = HM1246_PLL3CFG_POST_DIV(post_div_index) |
-> >> +		HM1246_PLL3CFG_SYSCLK_DIV(sysclk_div_index) |
-> >> +		HM1246_PLL3CFG_PCLK_DIV(pclk_div_index);
-> >> +
-> >> +	return 0;
-> >> +}
+Hi,
 
--- 
-Regards,
+On Sat, Dec 20, 2025 at 06:00:10PM +0800, Chukun Pan wrote:
+> Add ADC support to ArmSoM Sige5 board.
+>=20
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
 
-Laurent Pinchart
+The reference voltage is different between the different board
+revisions. Older boards (1.1 and 1.2) have SARADC_AVDD1V8 connected
+to &vcca_1v8_s0, but newer boards (1.3) use VCCA1V8_PLDO2_S0
+instead. I guess considering &vcca1v8_pldo2_s0 is marked as always
+on, we can ignore this difference, but I think it's worth a comment
+in the DT and the commit description. Otherwise:
+
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+-- Sebastian
+
+>  arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/=
+arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+> index a0d8f52a706f..d372ba252af8 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+> @@ -897,6 +897,11 @@ &sai6 {
+>  	status =3D "okay";
+>  };
+> =20
+> +&saradc {
+> +	vref-supply =3D <&vcca_1v8_s0>;
+> +	status =3D "okay";
+> +};
+> +
+>  &sdhci {
+>  	bus-width =3D <8>;
+>  	full-pwr-cycle-in-suspend;
+> --=20
+> 2.25.1
+>=20
+>=20
+
+--fqerxpmbaspw64pr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlJSIQACgkQ2O7X88g7
++ppiNA/+Oz78Q2ztqHrQtTLANPeQP2v3zZOQNOq3eUh37wBDzqR6NPJp/jgf56d4
+JYluiTzA/Wc2O55RRMQwzm50fDYR+4sYiQnS7iv4pf9re7amtGEAUYM+Qi0RMJ4u
+Ff7DJKq8h52cIwKKwZyPAJPBplMYN2jjMYB9fck1s81VJnY0yVEqSzCmdgYA+NHu
+rmEFp0RJWGYqbvoa5F6RUrjkpR0LpxxYVrPAdrNyh+I3ASzkPzx9EaxfQDdfPN0M
+kxNqUNQ4tEkuJTTq5NSGJLeQkYULB0+0bbRMov9KU5pG5Hjng3ExHMXrzRMSyl5a
+iJ/McrXu+PAp0MUjXVjt4eEMaqHnYVn0n5DWs0NChJ2+ebGigtXQAAcF4C8ME+YK
+FrdU2C3+lYw/XVTSHFoO434BPfQUOoF0VvvqVXtIAufLgNpzy8HtpvVtNdjZulkU
+E/a6qxrOjdChJJIiH4QOV/HBPOx3RPeLWL2y/6BFIZkYkrKDY9zdK1qnw/05S3PB
+6py22qpb8sQ9PnE+0xnu+S+PauFu/i2KviLFBSpASae70tVuFZBg0gK3t2tK122V
+w7LfdYcriQXK8QLNVCTn8YWCmNA1BRqe3k9WCC/8P/XtepI6OJwrX1ogCmScoTqp
+psWg7UDw6A5UqSMjWdY/lVZ8mha+7BMVp3cf1mwXme0+dcyIzsw=
+=YKZm
+-----END PGP SIGNATURE-----
+
+--fqerxpmbaspw64pr--
 
