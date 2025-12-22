@@ -1,140 +1,199 @@
-Return-Path: <devicetree+bounces-248827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8B99CD6120
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:56:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AAF8CD6153
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:06:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 03B77301F8CB
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:56:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3C3FC302F685
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:06:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350CC2BD5A7;
-	Mon, 22 Dec 2025 12:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D7D2D73BC;
+	Mon, 22 Dec 2025 13:06:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="kHFpYTF4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+Received: from mail-pj1-f66.google.com (mail-pj1-f66.google.com [209.85.216.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF412C08C2
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 12:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F5D2D46BB
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 13:06:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766408159; cv=none; b=MsWAjtGhv66YxfVk3/JKOPgN2odhad699IgLAs4s8leddXVJD1ta1sIKm0Ip3yu/YEPumtALEY9cZhDZAF4poDdwBmT04ELw+LAudl2nmR72fAJcCLFb+/VqohIFFqczWnuDP/bvhk2lnoqBALTJbBw/MIWVps1gUPisHkEP6J4=
+	t=1766408775; cv=none; b=El4c6THN64G8Dl0xPcn3jshy1hddGy/0jmZrmx+qinKnsOHYUFBLWwpz7M7+iyUmqdJ3pikruMwSxI/gca6c8orLAJFwksuXVlPzfhAvwpWKf5eAa0Bf3pdKwdhIZbHT2+k4MIzMnyZwwhyTefShZP4vIm26OObZfmpc6vfH5Cg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766408159; c=relaxed/simple;
-	bh=Xp2JxaURk7cqCR/j5M2KjzDOwxRykTFTwS1VU/qCsh8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RbRzxGOZbpYjqAkKGJNHzLP8uqlzTVmldfbZpXcMH1AYD/bP6tVdAr7x/SGaPD9Y36JEh5T890TNoE0lLzZXIyV8d36MOGvgQb75XeBiLKmc7rCJOebCP4XeM9slo/dZpgxiZME/9mlkC65TA8PQfiJr8+2Bgj6ng9KvLxdSuhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-4503ee5c160so2359308b6e.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 04:55:57 -0800 (PST)
+	s=arc-20240116; t=1766408775; c=relaxed/simple;
+	bh=6X67lCmir/2S11a1n7DUM2/s4Tf0fqpcdoiIQ36e88U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=G7X8fuBuKgiC4V4/JBAPWeR4GUmx0WxJFqN6E91bxWa8yOgTOI8j6TI3nSSpPNuWyhl6qwBupeOWZuhZNzA/xqwEW92l6DK35xF1z97d82E68K0yabj7rfTftBxCNes1QFEl0IKZ5YO+rgg0yCIa/v2jYhnARWrulqkIoTzmfNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=kHFpYTF4; arc=none smtp.client-ip=209.85.216.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pj1-f66.google.com with SMTP id 98e67ed59e1d1-34aa62f9e74so5199127a91.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 05:06:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1766408772; x=1767013572; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gSLBcbUhwlgDEaLrs1/PzmUOuvFFTI4tz34GWoit1b0=;
+        b=kHFpYTF46RZSFDHHPaqL5AFkShfMAqiQg2ktyM6gaYjMeIFtyJft2qOW8BmkZ+IK4B
+         MslR5UKRf7a2euo3D7WfyiEsDZIGzaoapmuUlCcSAb5HXhNNbtgSt0sqUYP3W6NftWaf
+         OZ51Dre69FhhlcfQphmCbxVw8okRgUcT1CRJlsa/FGd2PH9PtJ7q7tBBRS3Cvqol4FHk
+         F5nhS42Uq5YrRIQSgqlwTSh3g44/lJVE4A6B9lLD8dZgNMyVpchf6gBtttEQ0ajpFWVz
+         UKuO2jSN17E5yCWc6xNNwRtqO2aHkNQsfQvHMp2IM4fKHfHwl8H2O5K1ydP1GVZnn8ll
+         kxRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766408156; x=1767012956;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1766408772; x=1767013572;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VgM9E2RUaWwSmEYTs8cEM73rjhci1votspeG4LjZ3Jk=;
-        b=Iobqh2LNN3eB5K93xDEGE1j5l8FdhoRiqv3qHGSV9OYRxMR/qWfSZZ3VRrkm26Ufhk
-         Y7wihxGql3pzFWrtbfYJgPavrVWo30qlvAFqcF5HtSsmmqc1w8r6LBODv5n7y/l1ikm2
-         aVity3xXQmU/v49ZaFwJ30dHkNo4x9QOlp6UuZzLNoFHpkssLlEmb7lTq9AsIHTiH49J
-         P9HQkrAheCBy/v5JihdxybV8vnqUFInItV6hGuIOuPojrlXXsaFZEqC+kblhS9aNR38C
-         G0FqQzaJaNy8Rtuc61FlT+jPU0MlNdW6hM1TGUxgprQYAHjY0FeYf8Q0uhipTUee5SGV
-         fZKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWDNaCfAfiKTlCgLnxvrvridr5++J8nbjOwCGNTbFzj3GpBvp6zjQp0C25sVxbnqzGjxJ1YGOYDBlPR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaNsThJtTinjd2oKd89ddkHUEuq4zX23VebHVj3Ta/qzrWcu5j
-	8LmGcKgHqpDpphxlrS0MIfVBrQaImqBdBWWfrhVHHhgnvumA2nShubPWmAoC9ghk
-X-Gm-Gg: AY/fxX5CXCUEaZqgRawdohijfYHbhWKTNL/AZWgB2mXCGb8K2WT5/aBQ5vwom4s+J5F
-	+UdGlXgVRGEi2XKCx7ZkklDAVXiVkoijUIHWgAsKYgxGGyQ9ix5g2NAM/Yalhu9uqiYzA1tHXUx
-	e+fuqdEJ/jDwrgM7Ke1vpftmL5T23sbWM7cH0x7x9KhUfh9rrGTXcjg+WZ9pxD81TRhkdONu4Ji
-	O03KEM9kYp5dovAY9q2vylZTAnRqtbVJH6Kntk4Bh01HJ5lTPftyPq1kQVyv6HAU7O/KNtw2QXL
-	PqBVPOM4N0MUwa9rAcR6FxENqDVaLYJBGcnrEIZJ0ngyUhz/ww95hzRr2JYn+idNG10ObK2TrAe
-	6aVkshopXUimZwHDmrludnafJ1rqGb/2kT/noLWCVoY4kMGE+wPHwEW2AdhylGemJk3AYt2ovFB
-	Vgbof5O2K0n1kzW72V/K7W0v5QIGqKzJj/Qr+t4u5zL2hBEUIeJXVF
-X-Google-Smtp-Source: AGHT+IHZROzRx7BqTF11eNmu5Dn37xRW0aKOKfuIZxLrO9NQ6AmvQ5MwHgJ/NuClEwZIWhJQB7lNRA==
-X-Received: by 2002:a05:6808:2e4d:b0:44d:bc43:11a4 with SMTP id 5614622812f47-457b2061dafmr5454613b6e.4.1766408156258;
-        Mon, 22 Dec 2025 04:55:56 -0800 (PST)
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com. [209.85.167.169])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3fdaa931b0esm6730630fac.8.2025.12.22.04.55.55
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Dec 2025 04:55:55 -0800 (PST)
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-450b5338459so2318909b6e.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 04:55:55 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWBy8QL3/NIexCPPH/cit9aLz4up7dTgEg/4exTU/w0+ze14OjHzXMptPz4dOQX+E5dSFAJII6BZqhk@vger.kernel.org
-X-Received: by 2002:a05:6122:a04:b0:55b:180f:fed6 with SMTP id
- 71dfb90a1353d-5615be677b9mr2876994e0c.13.1766407711710; Mon, 22 Dec 2025
- 04:48:31 -0800 (PST)
+        bh=gSLBcbUhwlgDEaLrs1/PzmUOuvFFTI4tz34GWoit1b0=;
+        b=iaTgIuBQHkcbwP7g3aD0eq0VkN45tM9hBfw+Y4gsTtw+vYxqUr0XJICg2iGQwz/tn0
+         oY2dg3WK+uHLD6OFNEsn/2GumY+ePiWPpZf4WpB1xrrEpc4Sx/tSiakRd/1belCx8ptP
+         vDv6HiHj1WbNkMRPWfySSe92QCRPHrJuTF6sHpFrSlkzzjK1PiognJLBlryXn7rW4zEx
+         DEPCLp79yxOIaAGjT+FemBZGhHxw+csLUvr0VIKh9HOKIDqZl/piW6/ktQBTcmvNsDYP
+         wZUYSyLjhccXIVE58vlNfOK5KbVkZe1dk1FL668Sc6jDCqF0FlcjwKv1M/fp5p/TDDzL
+         oe8A==
+X-Forwarded-Encrypted: i=1; AJvYcCVODE5p0Wz4HIynLhUWY7j1aZa6GODJDNAv/jM0uZtRdvzESwW0lZAYUTx44t+IT9iab7/BnofEc2gY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxClt2P1nmr0AJir0sAyJp5/qmWc73ClfACKPtF906yLqXGjbjM
+	cK3OXNBe8+E0Xr8W5qZ6S7DCKa1Uaf3DhzasXFrJE9HtIpdVvFMBxkqsahraWKcaoyk=
+X-Gm-Gg: AY/fxX6To9aR+X7MXBhLNANyNHrxJrg6czcs83ux0c6XAVUgLVsoQu7BkZiEBDYch96
+	grfTVl73zH68DrYO4dvnc2C3X6Kst45eRJf0WmeHwEBtrc5Ztd9tjXMO6nj7ESA7EnNqn2EJFOE
+	+FvrSdk9sYIhEJySuzezTUCisRzFVcV6I5TTxf6mBrgQGaahi5fd4AGrdY6jLH/NvYHTmz8vQNE
+	CvSLeNs8BTUI3G0TDzFhBCv3DxvaBcJpxytQjIn6MigGss1jYz2wBgqfGLdmQDhv54arGHvxl/K
+	UxADhamp/Chsl54AY835s65WrwOcN8N/DhhU5M/kPogOVmv4rW/MSGvkoo9vZW4xWheNF4v+MQc
+	pC+++/RS2yL940HPzR7/kDDMyKOpoD58GIO25AIcY5vPWNCqbc5oOIzSSQFOXgXOA9C4NevWLTZ
+	XgxmcGM3RTAUtZg2cYd5110qUUfdbVg91Zx2yiNRT3Gw==
+X-Google-Smtp-Source: AGHT+IHXI9Uk+L57JPJ2MjX19LtjvDYEjxYY7iQ/11Hl0xX72T2G5hRIIcsMHGDw/P1z/NE6Wuw7Mg==
+X-Received: by 2002:a17:90b:3c4e:b0:338:3789:2e7b with SMTP id 98e67ed59e1d1-34e92139f2dmr9527010a91.13.1766408772522;
+        Mon, 22 Dec 2025 05:06:12 -0800 (PST)
+Received: from [127.0.1.1] ([2a12:a305:4::402f])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34e70c932casm12970405a91.0.2025.12.22.05.05.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Dec 2025 05:06:11 -0800 (PST)
+From: Guodong Xu <guodong@riscstar.com>
+Subject: [PATCH v2 00/13] riscv: spacemit: Add SpacemiT K3 SoC and K3
+ Pico-ITX board
+Date: Mon, 22 Dec 2025 21:04:10 +0800
+Message-Id: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251219-schneider-6-19-rc1-qspi-v1-0-8ad505173e44@bootlin.com> <20251219-schneider-6-19-rc1-qspi-v1-7-8ad505173e44@bootlin.com>
-In-Reply-To: <20251219-schneider-6-19-rc1-qspi-v1-7-8ad505173e44@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 22 Dec 2025 13:48:20 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVBwZW1JCrtpYe7mc55FzEv0BZOWC5NNNVejxXSzDLCpQ@mail.gmail.com>
-X-Gm-Features: AQt7F2orBW9lxEBIu81Xb5vtVrPMESy_KNg1aazPhtOsl5NUSmaZ5WtqS55gX-s
-Message-ID: <CAMuHMdVBwZW1JCrtpYe7mc55FzEv0BZOWC5NNNVejxXSzDLCpQ@mail.gmail.com>
-Subject: Re: [PATCH 07/13] spi: cadence-qspi: Fix probe error path and remove
-To: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Vaishnav Achath <vaishnav.a@ti.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	=?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Santhosh Kumar K <s-k6@ti.com>, Pratyush Yadav <pratyush@kernel.org>, 
-	Pascal Eberhard <pascal.eberhard@se.com>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMpBSWkC/23MQQrCMBCF4auUWTuSRFOMK+8hXcRJtIPYlplQl
+ NK7G7t2+T943wKahbPCuVlA8szK41DD7RqgPg6PjJxqgzPOW2dbfB7wFpUJU0FKwR+NaW04Bai
+ PSfKd35t27Wr3rGWUz4bP9rf+d2aLBqNJzrcUEgV3EVbSEmVP4wu6dV2/t9tfw6kAAAA=
+X-Change-ID: 20251216-k3-basic-dt-cd9540061989
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Anup Patel <anup@brainfault.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
+ Yangyu Chen <cyy@cyyself.name>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
+ Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
+ Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
+ Anup Patel <anup@brainfault.org>, Andrew Jones <ajones@ventanamicro.com>, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
+ linux-serial@vger.kernel.org, Guodong Xu <guodong@riscstar.com>, 
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
 
-Hi Miquel,
+This series introduces basic support for the SpacemiT K3 SoC and the
+K3 Pico-ITX evaluation board.
 
-On Fri, 19 Dec 2025 at 20:23, Miquel Raynal (Schneider Electric)
-<miquel.raynal@bootlin.com> wrote:
-> The probe has been modified by many different users, it is hard to track
-> history, but for sure its current state is partially broken. One easy
-> rule to follow is to drop/free/release the resources in the opposite
-> order they have been queried.
->
-> Fix the labels, the order for freeing the resources, and add the
-> missing DMA channel step. Replicate these changes in the remove path as
-> well.
->
-> Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
+This series (starting from v2) also adds descriptions about ISA extensions
+mandated by the RVA23 Profile Version 1.0 into riscv/extensions.yaml. These
+additions are implemented in Patches 7 through 11.
 
-Thanks for your patch!
+The SpacemiT K3 is an SoC featuring 8 SpacemiT X100 RISC-V cores.
+The X100 is a 4-issue, out-of-order core compliant with the RVA23
+profile, targeting high-performance scenarios. [1]
 
-> --- a/drivers/spi/spi-cadence-quadspi.c
-> +++ b/drivers/spi/spi-cadence-quadspi.c
+The K3 Pico-ITX is an evaluation board built around the K3 SoC.
 
-> @@ -1995,7 +1995,7 @@ static int cqspi_probe(struct platform_device *pdev)
->         ret = cqspi_setup_flash(cqspi);
->         if (ret) {
->                 dev_err(dev, "failed to setup flash parameters %d\n", ret);
-> -               goto probe_setup_failed;
-> +               goto disable_controller;
+From an RVA23 profile compliance perspective, the X100 supports all
+mandatory extensions required by RVA23U64 and RVA23S64.
 
-FTR, this conflicts with commit 9f0736a4e136a6eb ("spi: cadence-quadspi:
-Parse DT for flashes with the rest of the DT parsing") in spi/for-next.
+This v2 series includes:
+ - DT bindings for SpacemiT X100 core, K3 SoC, and Pico-ITX board.
+ - DT bindings for K3 integrated peripherals: CLINT, APLIC, IMSIC, and UART.
+ - Initial Device Tree for K3 SoC and Pico-ITX board.
+ - Add DT bindings for mandatory extensions of RVA23.
 
->         }
->
->         host->num_chipselect = cqspi->num_chipselect;
+This series has been rebased to v6.19-rc2.
 
-Gr{oetje,eeting}s,
+Link: https://www.spacemit.com/en/spacemit-x100-core/ [1]
 
-                        Geert
+Patches 7 and 8 from the v1 series have been renumbered to Patches 12 and 13.
 
+Changes in v2:
+- Patch 1:
+   Fixed alphanumeric sorting order of compatible strings (swapped x100 and
+     x60) as per Krzysztof's feedback.
+   Update commit message with more information about X100 featurs per
+     Yixun's feedback.
+- Patch 4:
+   Fixed the order to keep things alphabetically.
+- Patch 6:
+   Use "one blank space" between name and email address.
+- Patch 7 ~ 11:
+   New patches. Add description of RVA23 mandatory extensions into riscv
+    binding YAML file.
+- Patch 12 (Patch 7 in v1):
+   Removed aliases node.
+   Updated 'riscv,isa-extensions' with new extension strings available
+- Patch 13 (Patch 8 in v1):
+   Updated the memory address to the hardware truth.
+   Added aliases node in board dts.
+- Patch 1,2,3,5: Add Reviewed-by and Acked-by collected.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Link to v1: https://lore.kernel.org/r/20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Signed-off-by: Guodong Xu <guodong@riscstar.com>
+---
+Guodong Xu (13):
+      dt-bindings: riscv: add SpacemiT X100 CPU compatible
+      dt-bindings: timer: add SpacemiT K3 CLINT
+      dt-bindings: interrupt-controller: add SpacemiT K3 APLIC
+      dt-bindings: interrupt-controller: add SpacemiT K3 IMSIC
+      dt-bindings: serial: 8250: add SpacemiT K3 UART compatible
+      dt-bindings: riscv: spacemit: add K3 and Pico-ITX board bindings
+      dt-bindings: riscv: Add B ISA extension description
+      dt-bindings: riscv: Add descriptions for Za64rs, Ziccamoa, Ziccif, and Zicclsm
+      dt-bindings: riscv: Add Ssccptr, Sscounterenw, Sstvala, Sstvecd, Ssu64xl
+      dt-bindings: riscv: Add Sha and its comprised extensions
+      dt-bindings: riscv: Add Supm extension description
+      riscv: dts: spacemit: add initial device tree of SpacemiT K3 SoC
+      riscv: dts: spacemit: add SpacemiT K3 Pico-ITX board device tree
+
+ .../bindings/interrupt-controller/riscv,aplic.yaml |   1 +
+ .../interrupt-controller/riscv,imsics.yaml         |   1 +
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |   1 +
+ .../devicetree/bindings/riscv/extensions.yaml      | 180 +++++++
+ .../devicetree/bindings/riscv/spacemit.yaml        |   4 +
+ Documentation/devicetree/bindings/serial/8250.yaml |   1 +
+ .../devicetree/bindings/timer/sifive,clint.yaml    |   1 +
+ arch/riscv/boot/dts/spacemit/Makefile              |   1 +
+ arch/riscv/boot/dts/spacemit/k3-pico-itx.dts       |  38 ++
+ arch/riscv/boot/dts/spacemit/k3.dtsi               | 548 +++++++++++++++++++++
+ 10 files changed, 776 insertions(+)
+---
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20251216-k3-basic-dt-cd9540061989
+
+Best regards,
+-- 
+Guodong Xu <guodong@riscstar.com>
+
 
