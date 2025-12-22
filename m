@@ -1,88 +1,154 @@
-Return-Path: <devicetree+bounces-248883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B26F9CD64DF
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:00:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68531CD650A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:04:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4AA1C30ED725
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:56:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CE1103033712
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC8531D74C;
-	Mon, 22 Dec 2025 13:56:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C13127FB2F;
+	Mon, 22 Dec 2025 14:01:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="W7tEVU6g"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="0V6uobjQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE7F2853F8;
-	Mon, 22 Dec 2025 13:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15576FC5;
+	Mon, 22 Dec 2025 14:01:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766411802; cv=none; b=bJ4qZ4eaBo4HDCNgofhhIhhidj6rS8SX9JUxuDz/1Hqwocl09xhtwmgMIKLv9IHVZamKjyq4bpB8b7kvHTvFRCsA8cpPN2SQMSzS9hoTMWldgj2DMh7AcmpLqEyvEQQTBTzJRWmEp/pmlC9e5YkYdOlsNCzVN7hb+stx5tgkYEE=
+	t=1766412092; cv=none; b=KIe7AKX5mHI9oaBivmUGiJzlpmxWTVfbWZbMZQfZlcjA/cl6nyZGHNONJY7cU/Y3a4/9Laq4Ialr5nOdHDNQ5k2k+xrPEPVxjA1HApUGgTOcK4xAbGveQwGm4zhFV6UKFLYl8Tpr0CusI2O9V5CgqSfMSwETywVKwDK3ReGcS+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766411802; c=relaxed/simple;
-	bh=PyVHX6rngIYrwSpZ0m9chKG9rXk9tAhIEN/55VWHhUk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gTrzWsOl/vQTDr+HdVsfnqnkUjOmHdNSG1o7j4yI8ODiyq9zzq0/X85uQmBLacwxLp7AC64EEE2SMAla1zWjo0zSz3C+I1qw9P2SXXDdNbHQAMUYLpLer+NgJY1f+mF9w5jxEKNgZFag4qMwGAGhSYQ45SqejXFSs5oZT8u+7Z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=W7tEVU6g; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=EF9j4Zh6hODxeJEZzwpl1vVN/ET5lq8w58TpeUPzcjU=; b=W7tEVU6gLErw90KYq1AQazMwWA
-	9s9tdvm/2q9+qaPtBrb3/SEi7FAczy1LpoKf4AXSt8M3FOLZqCTjsijm8AmE82h23b/29xH0oF7Vp
-	TkM4m3pT9MbUhKWTpcskmUi0sjdEDNnkfaViOdN/CSuWl28l5lL2aryR7ymCIG8PxPF2qwicJAi60
-	0rfys1AGk4mNW37uJTTXrzGYNOO6N+Qy5n/Pyp6ZhBgWefbhlp+RxZ+11vTOunEYC79+gyIdepm5N
-	1i5Jo/2vUBzYBflpJC7lmJZdN7AUEEiTaNWq+Vq3lX7ZbQVjX5SABnBt+yW/D2LfebaS/576Ja5S0
-	e6aRyExA==;
-Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vXgOn-00063E-VY; Mon, 22 Dec 2025 14:56:34 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	=?UTF-8?q?Rapha=C3=ABl=20Jakse?= <raphael.kernel@jakse.fr>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix Bluetooth on the RockPro64 board
-Date: Mon, 22 Dec 2025 14:56:30 +0100
-Message-ID: <176641178738.1651325.3752551269386396461.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251130161259.9828-1-raphael.kernel@jakse.fr>
-References: <20251130161259.9828-1-raphael.kernel@jakse.fr>
+	s=arc-20240116; t=1766412092; c=relaxed/simple;
+	bh=PusaHigErO05TgG4Vucoaj4/WBG2ExfgestHJdFX62s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mCvwjDA2xqGAziTHnmqFutNm2vY7Q8m9G1INt7AiinRKTFcINcf8WneUfcQjr+Ygw6ba9YEcXtA0olkkNQhi7tLH4egaj6gp89iX8v2rMS9qX/T7llt8+lJUvoLM5drVGYB+k2KA3dUck7UacIsMwqrMlXm8j94v92IrWXVp0Dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=0V6uobjQ; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [192.168.136.28] (78-80-96-111.customers.tmcz.cz [78.80.96.111])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id C4A4F53409E4;
+	Mon, 22 Dec 2025 15:01:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1766412084;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=N1qdfjO0147Ai2vSJqmHPykKPgwTDBEt2ek4Q7arHWw=;
+	b=0V6uobjQxdK1IQWqlru15b9alAeNKETl1AJc1qwbPe0vTQUvHoGXwCQQ3DUM9yG0owRH22
+	5GaxM7lBLoq9vHLRN7Amu3kGcldAbTlP6jAwSdGbSf4hHvyxijt4rRuBLCNQhZ8uXMrOcf
+	QErGKUkW+hDGQhEgpwM4I4Z3Yv8baDE=
+Message-ID: <eabea4d4-366c-491a-bdcf-cbbfede66bd1@ixit.cz>
+Date: Mon, 22 Dec 2025 15:01:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sdm845-db845c: Use pad fn
+ instead of defining own
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Robert Foss <rfoss@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20251217-sdm845-mclk-v2-0-7028c2d09145@ixit.cz>
+ <20251217-sdm845-mclk-v2-2-7028c2d09145@ixit.cz>
+ <f86b483d-c674-4901-b2c8-19a535df4234@oss.qualcomm.com>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <f86b483d-c674-4901-b2c8-19a535df4234@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Sun, 30 Nov 2025 17:12:59 +0100, Raphaël Jakse wrote:
-> The RockPro64 board has an optional BCM4345C5 Bluetooth device on UART0.
+On 18/12/2025 13:25, Konrad Dybcio wrote:
+> On 12/17/25 12:39 PM, David Heidelberg via B4 Relay wrote:
+>> From: David Heidelberg <david@ixit.cz>
+>>
+>> Instead of defining own pad function for master clock, pick one offered
+>> by sdm845 device-tree include.
 > 
-> This patch fixes audio stutters by setting its correct max-speed and
-> compatible properties.
+> I'm a little bitter about the wording - the pad function here is "cam_mclk",
+> whereas what you're doing is inheriting a common pinmux/pincfg node that
+> refers to that function
 > 
+> [...]
 > 
+>> -		mclk0-pins {
+>> -			pins = "gpio13";
+>> -			function = "cam_mclk";
+>> -
+>> -			drive-strength = <16>;
+> 
+> This patch changes the drive-strength (16 -> 2 mA)
+> 
+> FWIW it's 2 on reference designs and Sony boards, check your
+> downstream kernel
 
-Applied, thanks!
+I don't have any. I'm fine with this patch not getting applied, but I'll 
+CC Robert who added the support, maybe he can verify.
 
-[1/1] arm64: dts: rockchip: Fix Bluetooth on the RockPro64 board
-      commit: 9c68a9483e31a9ad25c5399bb5f066b2e4980ad5
+David
 
-Best regards,
+> 
+> Konrad
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+David Heidelberg
+
 
