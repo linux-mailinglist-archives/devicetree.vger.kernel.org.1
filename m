@@ -1,113 +1,144 @@
-Return-Path: <devicetree+bounces-248911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5723CD6A1D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 17:09:15 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35FF2CD6A54
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 17:19:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A7ADE300F1A3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:09:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 108063002FC0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:18:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 584A532B9AA;
-	Mon, 22 Dec 2025 16:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9164311953;
+	Mon, 22 Dec 2025 16:18:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RM6dykp0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e9hY362Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1DBC2D738E;
-	Mon, 22 Dec 2025 16:09:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D66230BF6
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 16:18:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766419753; cv=none; b=fPp2Oazpr8xrXnuVDaaLrGQUUR275ArGXHyl3rwaUzDbsiYCjCvmwFKRsUGeyNziaEFJv79VgjSvJAjhEKduc1kPY1WhzRHBnteQSNeyJtH8ydSmdLy/CIAH51M4/4CjcrM50nF4GTd40MCzC8PDGjfe/idu5uAS/4/PruC2gdM=
+	t=1766420336; cv=none; b=ihZG3Pppu9JKOiGTbkVYNywOlMlZkf2GAAASyp2sKTnE5bKy+gWvNz4jncku+jvEAXXBBaPaG9PJ0Xw2zWCj/vfXM89l8Qs2T8Jt/kjplTwlI5NCywRkSbgfbpLb2YKb3XImMqJ1gzucD7fZXzEcQuEtcVtNCgRKOClPixWjDO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766419753; c=relaxed/simple;
-	bh=YRRJl3r7nubr/gZvWBfmQO5L5902vmk5zfQskYHp9cU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pKgS6fzmykhBg+gJjIDt4e0iLzCfSov4DM99D7Uat/9mpK5yYkmsumxQ5TkNcuhur+zGuLENgBviK1KcktiUrsThRM+VC+cBTpW1scorW/E/8nHHirWKer+SRolnnsypj6oaEHldvphxYJnnuvevmbLU5FYh/jX+spUOwhYM3H0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RM6dykp0; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1766419751; x=1797955751;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=YRRJl3r7nubr/gZvWBfmQO5L5902vmk5zfQskYHp9cU=;
-  b=RM6dykp0ZUY8n5L+Ra2Tddcg/8nicF/YEG7hKedG5M6QtBEhIkDgL2ej
-   tNCQDIMrzuFNLDJcZPGlnQhFTp2rvULamX4M9ZbdoZdB/6qIXBuMUQaIs
-   yiT1GKEZOEfOviGc7Fcie28Vsi2lU1k0RwMe1pvLFtT5eErnbGc31ncEa
-   vCsfFoiF4PBGpXxlelswRDTkonAcYekdj0zyTFV28ciCLvBxsIrF5oZcX
-   OloTiGzRhzfy7gZfXD3ebLCQUiUskG5/to6UYwKlAjHoamCC7n+XXThgs
-   aNnGUrUXCs158vkdkZoGuU8D/kH3pniOcMemavYbPQhbTqYqm8Q6zarku
-   Q==;
-X-CSE-ConnectionGUID: egoffsdqRLKt+Stnf6zhiQ==
-X-CSE-MsgGUID: SYjvRWVoQc+OQM+RwBAKCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="78909944"
-X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; 
-   d="scan'208";a="78909944"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2025 08:09:10 -0800
-X-CSE-ConnectionGUID: YDcCXh6DSs69r7XZZ/nsEA==
-X-CSE-MsgGUID: w+PiDWgVRym8/2DMC6Dprw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; 
-   d="scan'208";a="199587485"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.245.232])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2025 08:09:05 -0800
-Date: Mon, 22 Dec 2025 17:08:58 +0100
-From: Mehdi Djait <mehdi.djait@linux.intel.com>
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, 
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>, Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>, 
-	Hans de Goede <hansg@kernel.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>, Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
-	Sylvain Petinot <sylvain.petinot@foss.st.com>, Dongcheng Yan <dongcheng.yan@intel.com>, 
-	Svyatoslav Ryhel <clamor95@gmail.com>, Jingjing Xiong <jingjing.xiong@intel.com>, 
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 2/2] media: i2c: add os05b10 image sensor driver
-Message-ID: <ndagbg3vtiunj4bzx3dti56vnu7i6savr3qoz236vnvzutukcc@rxrvgnyng3rk>
-References: <20251219084526.22841-1-himanshu.bhavani@siliconsignals.io>
- <20251219084526.22841-3-himanshu.bhavani@siliconsignals.io>
- <7p46ga3lc5ky2234q6c222gz5ftpcaqfvax5ouysr4cj5sczlf@47ukejyhblbq>
- <PN3P287MB1829A7B4AA56CBF22F758AAC8BB6A@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1766420336; c=relaxed/simple;
+	bh=T1RNwuLYyNmJ+j/mip3aJ5UxSQC/Uf5uzOBFEfaK2lQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oLh68igntrG0QZnFJ9K4D/sVXCba1AQOLWwROwyiCLD+oINGnDcY4EMas9zdUCXn2y1PqN38DMVQeJu3uTDjDlGdtUDQ3zAw7uhmtOh370z+t8xDmVuYmAgtouOC1lWYP26AlPVdBHZM2otZVWhiUVwpQZS7UOX/8HZvpBxxTBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e9hY362Y; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-47775fb6cb4so26115625e9.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 08:18:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766420333; x=1767025133; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Wn+1o5H5M2D3/1CjW1oNLSmHryy2WgYugla7KkAVPw=;
+        b=e9hY362YWQoryx+dLZp2HPFm9LwSJ4iOD7PgZPEOqOrac+UIszEetjHpf0q1G99UK1
+         p3wmN7wPWkviHirDi1U1AJFGJkbQnt6nNs9G2FhgfoUEILt2whyTvItvDJshtgKVtZ2l
+         HKEq6n9uizaUPOvVHNKZEY7PPf556PCLG2akLD1JkLoKe5dleQxCtTRjyfYjGGwaT388
+         VVCMu6WnKCSa4sZp71uFXYhvNfp2fvVOsgYciiQWUnBIcpVn5OLA6pWZwEk4SvAfXBa3
+         zTnqlhZbzksOqxcBerptWmip4vKrLtEhLjnrnwtJyebg15S5rXBd6Kw+S4mL5vI95ZUc
+         nTKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766420333; x=1767025133;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6Wn+1o5H5M2D3/1CjW1oNLSmHryy2WgYugla7KkAVPw=;
+        b=KTs/m55ph+TBxb/p2jjpNE1ojXRz5RYjF/jkhVCjZMrCuucsEb7zsWSpMZZFNTG4OE
+         5+ueUhjp4mXqBheBXK2D/zHra7YrLmTVv1tUcCy5qr92vpYU96Zhx87HVU4WnDKpUTPN
+         OT0Pq5muWU8LG13tIxjheYH+DXRiNhITPusv/TVHtO/Wn6G8F9ua8yWQrgCbWkrBNF9o
+         w3s5//lALYwI/xqeKDT0PGeytyMMFpTEAha4dqwMxE/jbIW9xQehB7toCvI9UL/CjDHu
+         RogL4TkzWAyC6zXIZ4PCM63O8BSeWgzKZ2d01VYLGqUHw4r77Y15u+9y+YeARg3q/nED
+         nqVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWY65OSDjQcsHMgV8LHCpekVq9wTacE+GhYJ8OHbvs4oDqxuDPsSUkvfVhefB83Lsa8JduC5glomQ0R@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyt2udApxjpVgdpgEmEGE0dYuxECIEOUjFHCOwq1q3DkVxjn+aX
+	08DUWADGFiDp+bMXfxhIcO7Wdyl3Af4x9D7MlGTqbDTZkjC7Rbcc4cvy
+X-Gm-Gg: AY/fxX5jo14gGg+LOKNA2ca0ptkNpU3YuOkqNRmp2c9sTV4boi699dMJ2TOrYDs1zp5
+	KGxWKQo2qMDsuO941AtK8KFkulFESMNJH/+iXzSke5K4tZCDuzAJYhVfEp7r0/wo/nCqBrQdhGH
+	aB459F+SZTZHaWqKWTAG1sapJ47GDeR8rF6H1Nbul13ULSyLmMe79iHbmzmlDCMgbyK8FoTeJKd
+	8/xGY2AgBww5YMcMN0Jjzd/x0iCA1LRfT3/YBdYJ7ywWaM9viCb1KGdwBd1z3MPOXzfQdZnko6Z
+	p67yUiCfJGcJlH9H9+mf4NWwQLBzi5vQO8ofD4yUTFeN88zLBYM/kFVTkS7WUXvAKPpzxX0zvcP
+	ON1EEndOz8B3+Gt1wsXiWVHhAykMg+LRLFXsj072nbnwrEpCJkNyUbqb+y7Unb6BVKPAU7ty0hJ
+	TZJTxG5xloKJFcovRXc7LZ/P8+3ZRrT+XWSjK02c5UKqBffK8nz3MmHeyCn/PJBSQKkPY+g2Kx8
+	YzeMii6heniL4Egwp8eC9BbDdUlqhmF9w==
+X-Google-Smtp-Source: AGHT+IG3GUrdE4PQHrsdSst16Dgk6RAbxwgJpO7Qwn77alrqhBYIPCIPtLmfjtOzLdRdyTl/fZZyVA==
+X-Received: by 2002:a05:600c:35c4:b0:475:dd9a:f791 with SMTP id 5b1f17b1804b1-47d195869e7mr135907925e9.28.1766420332821;
+        Mon, 22 Dec 2025 08:18:52 -0800 (PST)
+Received: from iku.Home ([2a06:5906:61b:2d00:4dd:df38:7864:a996])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47be279c637sm238662805e9.11.2025.12.22.08.18.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Dec 2025 08:18:52 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>
+Cc: linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2] dt-bindings: phy: renesas,rzg3e-usb3-phy: Add RZ/V2H(P) and RZ/V2N support
+Date: Mon, 22 Dec 2025 16:18:46 +0000
+Message-ID: <20251222161846.152952-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <PN3P287MB1829A7B4AA56CBF22F758AAC8BB6A@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
 
-Hi Tarang,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Sat, Dec 20, 2025 at 06:01:43AM +0000, Tarang Raval wrote:
+Add compatibles for the USB3.0 PHY used in the RZ/V2H(P) and RZ/V2N SoCs.
+These SoCs integrate the same USB3 PHY IP block as the RZ/G3E, so the
+RZ/G3E compatible is used as a fallback for both.
 
-> > If you can go the extra mile and document some of these registers like in the
-> > imx219 driver, that would be nice!
-> 
-> we are planning to add two more modes and also work on enabling HDR mode, and 
-> I will be sending a separate series on top of this driver for that. In that 
-> series, I also plan to split the register array into common and mode 
-> sections, and document all known registers.
-> 
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+v1->v2:
+- Added Acked-by tag.
 
-This sounds good!
+v1: https://lore.kernel.org/all/20251118180712.4191384-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+---
+ .../devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml  | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-> For now, if it is okay with you, I would prefer to proceed with the current 
-> implementation as it is.
+diff --git a/Documentation/devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml b/Documentation/devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml
+index b86dc7a291a4..6d97e038a927 100644
+--- a/Documentation/devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml
+@@ -11,7 +11,14 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: renesas,r9a09g047-usb3-phy
++    oneOf:
++      - const: renesas,r9a09g047-usb3-phy # RZ/G3E
++
++      - items:
++          - enum:
++              - renesas,r9a09g056-usb3-phy # RZ/V2N
++              - renesas,r9a09g057-usb3-phy # RZ/V2H(P)
++          - const: renesas,r9a09g047-usb3-phy
+ 
+   reg:
+     maxItems: 1
+-- 
+2.52.0
 
-Ack.
-
---
-Kind Regards
-Mehdi Djait
 
