@@ -1,192 +1,160 @@
-Return-Path: <devicetree+bounces-248760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC0DCCD59A1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:33:08 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 823E8CD5786
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:10:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C4EC30365B4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:31:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E3A3930126A8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:10:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9B332E69F;
-	Mon, 22 Dec 2025 10:14:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF294313283;
+	Mon, 22 Dec 2025 10:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VEpA52Ej";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HDiIuvIh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D70032E699
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 10:14:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8276C3128AA
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 10:10:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766398493; cv=none; b=PrauaFjpIfncFeIRRTnfdi3VfS340dDVUd4oQUNaJWCSfHwDfk2guemI//vVPtp3hIvwsKP8b/8GgXi8IMWSt0LfV/yKePiKq8yue+E0LEv+jaGKRIXY994TZ8CpJTKMySmGPvpBEiI1Epn6UD1w5AhACcLp7Gz/lpUDG63lIOs=
+	t=1766398233; cv=none; b=FUmEMkl6pMkpLCJuuX6IMk4BO4hd2tN0R65xL/sRWIIklAZlDU5UM+QtMYU9VptEVA32b07ocrBVHQvqbalqMYys2rCCl4sCQX2IIekt/9rVRd3TYwZlJ1oXY0SyMXdI75JS+CIAwKskw+q0Np5BSb5XAxh++3ZTiu12DAvHUx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766398493; c=relaxed/simple;
-	bh=pYxC0xGJLfaMlKM2nphME9JmmJ1biPNjHd+MZwrmnFM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ozDujfvYpS3+LsAEmGVZoVhw3eO5aiu73ER/S68WZzIaTCCetVUWdHG4da2PpFOq/jv1N8aUL/I3uHiYe01k2HHeqpFySx6MP6etZ/mUZBV9FxjvIWDqMZygxXmhsm1/VPurHm5hjSUhLYK0GZ5K8a+WlpdVnziobfeUs2mTk40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-4507605e19aso2541687b6e.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 02:14:51 -0800 (PST)
+	s=arc-20240116; t=1766398233; c=relaxed/simple;
+	bh=8N8IhOlkR6SaGn8pM1RZD5eFFxTxauBnScjxroX5Yyg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HKZmaBFEOstV/MCZxEHpdZ2TCZpE7C64maywxeWHfgBcjd7JEoO1eQS9jWdyYm6QbskpHAVTa8CyXnjMi4ypiWabtHce3bvzSttCWT8C8GSlBmcgWew8yMHog8PARaSGO1tMwcpCF7/lOH/G/iXr49EwV4FP9yIMsOw5tQsccfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VEpA52Ej; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HDiIuvIh; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BM948Z03964176
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 10:10:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Zq50Sq0ciKk8DmE/W8JVLSXSe6FrFYQ0P4yxO//qdV8=; b=VEpA52Ej2hRgcVWg
+	nO0R1gXMXeQVsk+9T2CjM5rQ2OQi4wWVMrNb8aShbTT2vVAqJY929KDwt9VN12uO
+	dRcklMUGYbVPAHXvleeYix/bFCw7jfmG6YiXgCOk6V7siQdn9wlidtEy36QIMyO8
+	9fgVWhojV2SMnuvhxSe62STUur3NvlVJNeeO4No4s/oRqvHo0dCLmka/uwWsDBee
+	Kd94OpEUiW7dFrb7s2WV/sIDSQ9L8qA0PLN+yk8rqVbllWk+iHeEDz4ansvE2RoN
+	h5TgGydSvlJjx/PBapGpIuO9odNDRVrXRRHfrXm5MkRNiBmXyDoYFF9RXADw8LJz
+	wnzI9w==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b6vk6hbg6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 10:10:31 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee07f794fcso11552031cf.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 02:10:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766398229; x=1767003029; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Zq50Sq0ciKk8DmE/W8JVLSXSe6FrFYQ0P4yxO//qdV8=;
+        b=HDiIuvIh/7qSvAe9b6pXW28yAPV4iFszIXiSQMED7l6pa3NJ3zFEO/BGmfUC5lV34N
+         DjUoqvVP9T3yIfVzyt9jNVLiTGj1iFcQE5rZKWqCgM9+6qP5YRgVFQg/bKv2T5iqFCDl
+         CM1eHTStNyUjYkODkEujTTG/Wts1TIS+vSbHquKEi0u7l60ute3Dl4f1nkUJg1ZZl2Mt
+         lYhgEmv3p0CzFIcnu8j+6K2k1yGTyjEZSzJnK8fLW3KMxTyrQFtFoGdLEL/me+GmQ1K5
+         EaO0VghuMafFQy9Az/ztoT2sOLv/YEAuJgaSD9lPuDgKtGhAYDtIBl4liblqINW1lCXI
+         zDPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766398491; x=1767003291;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VEzlntz/A3Digs4sjukIlKb5qv62LH8yawTgFzZ88fo=;
-        b=bqlwXDEcM78wrCkBQkQ8rdAup2FBAzgKAV4ts6vt9evk3BMKToR2O4/wprjV9OyRLo
-         CElqb9xi7pV8ElXbWxtupXDPy/sTgho649oiAKWKzb95sgmZGbB/AzEJfoEEGicX3Uu5
-         aoelWSuC5kEKEH/ltsh9eddMrQhvYngJLACCLtDDdDnvxoZvf/LIcPNxzrYtGFSEkVRr
-         g6zB+4zFGpU5ha/5DBMnfTy1SA0PgsWx88nyVuB18vDjvWBbehNVt83Vm1Yn9647JUMJ
-         spm3KQ/NJfPJAxLOUn2sTt9qLz/nSz+jDOS0vMv6fBMmcpRg3axklUUL+ItyN/3wq3VV
-         ab9A==
-X-Forwarded-Encrypted: i=1; AJvYcCWUBHCOsazhV40id5MEbWCnN9K0+98SQi2/IRaC+nmJow48Po9xmJa+rxwDa0JUplRDb5Gq6M0KG7ie@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxJxW3lzt9Mod5gYsUua2GSXofKE+iFztTwhP1BYQvhQM5FNNR
-	Ua9HqDF8zkC1NMsZDA6xJjWNonSbUFJ2Ld+H+qXlKg5rT3WMYUBwBiXX/tGWTCv4
-X-Gm-Gg: AY/fxX6NLJLBMNF94engmBBRORTRNpjY+VdI6/klJUDubf7nj1jIOQ/zsZ2PXh0DT/a
-	y74ib+BVt4rNV8kw2yWWDYQrERAQjHpkJTcBnTWFp2sulbSdoYMpD0TF3PjEtY9EIxbXpioL578
-	HS6h0w0qE5zhcCItd20ZG4zdymEBTWtcCpJi0lzIEUucpHQQYm/Fb630PVnPSGpv6sLFWragOKE
-	T8CIoUQ2aqpnwY1gdA7ek1nZMty9QZXJyAPsIU/1gPsiYQd9kAzoG+uTybIipPvs4SGsXu3Of2K
-	xlaio12HH489YzOAsvWHbWevyLTWqD3JzpocxDH8lkEHl/7ybATgEIND4DUIY+OfwsqmcSvtOG1
-	2wA8WwtTOj1BNlgsZCD66fejxcqkUK7Wei0KjnMFu+J7Rg70CzfWdE/dB5JM+nQybxG4EuJ34Py
-	iPbB7CS5W+9Jk8aSvLpAa/9biCP+fF/+08xaKDUqmw73OvPWaFG0RBIs4s9owcSCE=
-X-Google-Smtp-Source: AGHT+IHtMqhLeZjgT2qeIsZbwkeW3YZv/g/ZUdKcsDGv5ssL24PP/TokRXb8wEDOFHXpYnpK6yjHlQ==
-X-Received: by 2002:a05:6808:1b85:b0:450:3ff9:f501 with SMTP id 5614622812f47-457b1fc2580mr5405541b6e.7.1766398491026;
-        Mon, 22 Dec 2025 02:14:51 -0800 (PST)
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com. [209.85.167.170])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-457b3cbd567sm5145714b6e.13.2025.12.22.02.14.50
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1766398229; x=1767003029;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Zq50Sq0ciKk8DmE/W8JVLSXSe6FrFYQ0P4yxO//qdV8=;
+        b=GKD6ZEs54U4W6JV1HPMx/a0UdM1Ecje6uy3RA3YK4dJPx9dmsVyNZiSipJNiHKvJ4N
+         yiofeHp1hybPP6dRCTM//vpNHThmvSeX2+yFMO7xEc4HqsFUVA6XwKEDuKLN5163mFd0
+         7biSqtUx3MEUFSBMp1EWq3MmtG7NRh3YXLAs7oBFEeOBadO4lxGktGWZO/d1gkr0VUIh
+         pwLq/FZbIbYwaEqTQ6sF9Gh56N+BSBmWSmqTxk3pXBHj3EdZ+2UyQDXVQc64D/feTXZs
+         E1W21Y+T3atZTr0tzFIEqVIRJmIAC5u7Xr8U1fYcoaAfX4+jdW8B0MXR6JlMYSriElAS
+         lYkA==
+X-Forwarded-Encrypted: i=1; AJvYcCUIR6mreO63hpA4gD5expDuaZ+fZMb6Ygig4FU8JV3SMqj3rkDQxsNrFhDx8mkTJnX01D8TsV8IEETs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/qCrud5XuZZO7fY+H9FpUQJt6Y9IPQTI7C9dxeRXmAKDORvN/
+	SUvjTNNb2pqIIgwzdGeTg9QvrEW2fjtD+Wu4QxYrj0YzqmN8vveyC0NbcqdGcEQdWMAlYxnCDnv
+	va5CmU2FWuc8+KHCfHn2SZQ6aLkNJo1Kxf2dzICaSbYBPD0CRyQF0gSCM8ySL4r8h
+X-Gm-Gg: AY/fxX4ufPErPX3F9xhilXT11/fSDwLCNfsKXOZHuTfuYu7+bH5c+LLk0tyF9KJpc6Z
+	ifpnj84+dTMbVLKjHwjr3IFAcF1jisXYFKtUqfnP+BE9wIAc4vEZKyEqBKEOAtS6EDNye46fYvL
+	A6Hxp4XNTo57GSfxi7+E/qCKQCt1YDKEWjcvWDjPWxefpLkO8rXePu2MYFJ3Az46pR5WDQcK8ns
+	qIYLgEU9Wf2vOYVL1RYcGahTt+ZUmhx9P8frhyhbE+HB+c+7qYUZ1WqdfJWPwpxbL2m/QmrkA98
+	egHaYoaCGqz/B5j+M2WCRl40SzZpp6vSEaQD4ZbY/j26BhWmC75Iz7nhP5fngQcB1mS+4RGcPBz
+	FdftXcoEuv7hrHNL2WqGNr5jaHYe7K1nfTdHiRQSrmWwFOAGATXNFFG+sV0P8TTpRuw==
+X-Received: by 2002:a05:622a:1983:b0:4ee:1924:c6fc with SMTP id d75a77b69052e-4f4abcb50acmr125305381cf.1.1766398229048;
+        Mon, 22 Dec 2025 02:10:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGuV8jrI6GwsxsvZRsBtWpY3d8jh1cRr25s2rnJOJtrkSWKjv4VtiCCKcwVaPh2BOuCy3uBVQ==
+X-Received: by 2002:a05:622a:1983:b0:4ee:1924:c6fc with SMTP id d75a77b69052e-4f4abcb50acmr125305071cf.1.1766398228599;
+        Mon, 22 Dec 2025 02:10:28 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037ab4f0dsm1047311466b.15.2025.12.22.02.10.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Dec 2025 02:14:50 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-4507605e19aso2541678b6e.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 02:14:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV2gwc/Nqa1cBYytGCBITpNEYknEC9oGDQsmUz0dYm1mGwRiEfdcoWHLeNmyjd+tu+OISw8q03jMm49@vger.kernel.org
-X-Received: by 2002:a05:6102:3a0e:b0:5d7:de89:8dc6 with SMTP id
- ada2fe7eead31-5eb1a616c74mr2760273137.6.1766398102025; Mon, 22 Dec 2025
- 02:08:22 -0800 (PST)
+        Mon, 22 Dec 2025 02:10:28 -0800 (PST)
+Message-ID: <068f0183-2f21-41cd-83be-81bd712ab5d6@oss.qualcomm.com>
+Date: Mon, 22 Dec 2025 11:10:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251210-rz-sdio-mux-v3-0-ca628db56d60@solid-run.com> <20251210-rz-sdio-mux-v3-2-ca628db56d60@solid-run.com>
-In-Reply-To: <20251210-rz-sdio-mux-v3-2-ca628db56d60@solid-run.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 22 Dec 2025 11:08:11 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXjAS6HOYy5=uxcK0RZL5X6agRoHG67QUw4xh5+ovZaJQ@mail.gmail.com>
-X-Gm-Features: AQt7F2qgJlv5WWEn-8R7_EQWn45G6An5kBRt8R2C89e3bKVxcY7XZ_y43fEdjFs
-Message-ID: <CAMuHMdXjAS6HOYy5=uxcK0RZL5X6agRoHG67QUw4xh5+ovZaJQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/6] mux: Add helper functions for getting optional and
- selected mux-state
-To: Josua Mayer <josua@solid-run.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Peter Rosin <peda@axentia.se>, 
-	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
-	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
-	Tony Lindgren <tony@atomide.com>, Vignesh R <vigneshr@ti.com>, 
-	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Mikhail Anikin <mikhail.anikin@solid-run.com>, Yazan Shhady <yazan.shhady@solid-run.com>, 
-	Jon Nettleton <jon@solid-run.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] phy: qualcomm: phy-qcom-eusb2-repeater: Add
+ squelch detect param update
+To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abel Vesa <abelvesa@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251219173108.2119296-1-krishna.kurapati@oss.qualcomm.com>
+ <20251219173108.2119296-3-krishna.kurapati@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251219173108.2119296-3-krishna.kurapati@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 4-BI4xT7PFTqSp3dfvXWykkwnetUAz_J
+X-Authority-Analysis: v=2.4 cv=cuuWUl4i c=1 sm=1 tr=0 ts=69491917 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=oUfybq1hb7wxsWnyzuYA:9
+ a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIyMDA5MSBTYWx0ZWRfX5+6MH7rMhGJU
+ 9XJ37VfboDI4QyI5fs/MK0rVAKTsR8Vr1dnU1h0gk+lTc/1UvHAE+2bA/jSTtu0TxFBX0ihZt9p
+ qWT+YvaRoDP9TPiumt9n1Lo72Mh4a30Sls6sis+uuKfF+UjqYyRUseUoL5uK5aq8j/jD+MRFLog
+ /zwnJY0Z/y6SWqjVvsbqdbwJK/c+Em5vQzX6yogHO6YHI7SskA2JjvKOyiMu6QttyActz31P5Za
+ HGsLHMw/W1FgAlkMSMswgQEsOs9BhXTJzNfqrav4xgNVoypRaHMKTk3ERvBDqUzQcPxNTyHdT2W
+ H4d+iiZGdCnQ7MCR7g7nQrP0SB3oGaaOSw/TJvQ+YY/PyVHfUqDZzqCtZ2IAwkAJ/yUE5lPyWue
+ FdToOIaIjKcjWBhhNDE38EyPePcDUl2WsKKt6wBBHOjGwHjczSEzV7NSXx60siPgp7VTbc0BQ6C
+ F/dwBzyeRk3b+3nZ1EQ==
+X-Proofpoint-GUID: 4-BI4xT7PFTqSp3dfvXWykkwnetUAz_J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-21_05,2025-12-19_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2512220091
 
-Hi Josua,
+On 12/19/25 6:31 PM, Krishna Kurapati wrote:
+> Add support for overriding Squelch Detect parameter.
+> 
+> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> ---
 
-On Wed, 10 Dec 2025 at 18:39, Josua Mayer <josua@solid-run.com> wrote:
-> In-tree phy-can-transceiver driver has already implemented a local
-> version of devm_mux_state_get_optional.
->
-> The omap-i2c driver gets and selects an optional mux in its probe
-> function without using any helper.
->
-> Add new helper functions covering both aforementioned use-cases:
->
-> - devm_mux_state_get_optional:
->   Get a mux-state if specified in dt, return NULL otherwise.
-> - devm_mux_state_get_optional_selected:
->   Get and select a mux-state if specified in dt, return error or NULL.
->
-> Existing mux_get helper function is changed to return -ENOENT in case dt
-> did not specify a mux-state or -control matching given name (if valid).
-> This matches of_parse_phandle_with_args semantics which also returns
-> -ENOENT if the property does nto exists, or its value is zero.
->
-> The new helper functions check for ENOENT to return NULL for optional
-> muxes.
->
-> Commit e153fdea9db04 ("phy: can-transceiver: Re-instate "mux-states"
-> property presence check") noted that "mux_get() always prints an error
-> message in case of an error, including when the property is not present,
-> confusing the user."
->
-> The first error message covers the case that a mux name is not matched
-> in dt. This is removed as the returned error code (-ENOENT) is clear.
->
-> The second error message is based on of_parse_phandle_with_args return
-> value. In case mux description is missing from DT, it returns -ENOENT.
-> Print error message only for other error codes.
->
-> This ensures that the new helper functions will not confuse the user
-> either.
->
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Thanks for your patch!
-
-> --- a/drivers/mux/core.c
-> +++ b/drivers/mux/core.c
-> @@ -542,11 +542,8 @@ static struct mux_control *mux_get(struct device *dev, const char *mux_name,
->                 else
->                         index = of_property_match_string(np, "mux-control-names",
->                                                          mux_name);
-> -               if (index < 0) {
-> -                       dev_err(dev, "mux controller '%s' not found\n",
-> -                               mux_name);
-> -                       return ERR_PTR(index);
-> -               }
-> +               if (index < 0)
-> +                       return ERR_PTR(-ENOENT);
->         }
->
->         if (state)
-> @@ -558,8 +555,10 @@ static struct mux_control *mux_get(struct device *dev, const char *mux_name,
->                                                  "mux-controls", "#mux-control-cells",
->                                                  index, &args);
->         if (ret) {
-> -               dev_err(dev, "%pOF: failed to get mux-%s %s(%i)\n",
-> -                       np, state ? "state" : "control", mux_name ?: "", index);
-> +               if (ret != -ENOENT)
-
-I think the non-optional variant should still print an error message in
-case of -ENOENT, else this has to be duplicated in all drivers using it.
-
-This is typically handled by having a non-printing core helper function,
-and having printing non-optional, and non-printing/ignoring optional wrappers
-around the former.
-
-> +                       dev_err(dev, "%pOF: failed to get mux-%s %s(%i)\n",
-> +                               np, state ? "state" : "control",
-> +                               mux_name ?: "", index);
->                 return ERR_PTR(ret);
->         }
->
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Konrad
 
