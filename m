@@ -1,249 +1,133 @@
-Return-Path: <devicetree+bounces-248785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3B16CD59AA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:33:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB517CD5A64
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:46:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8EC3A3002FC5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:33:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4C64630021D5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:46:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B6F4311951;
-	Mon, 22 Dec 2025 10:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EFCD32C938;
+	Mon, 22 Dec 2025 10:46:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="TKr4Tt0u"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="AyfPsy4o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 735B030C613
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 10:33:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4929220C001;
+	Mon, 22 Dec 2025 10:46:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766399587; cv=none; b=pwm10gvAkCZfXEfrREqftrwsm/gIpFkGtfoRPNTsZ9PjxlSR47K4jXVf+6cUB+AAJp4hSZJ+80XuSmfxSJhVlR/Xa61/ZNnvgi9ryUqMY0ZoUv34hikiZyv1XvSlizqfZuxHxRhGktQsejjxBUI+HGL/Q+Fmm30ysZk/SQpvkks=
+	t=1766400377; cv=none; b=CCSuwryOMjlxgg+v5rfuFMT9HLqVyfjHew2ntlOzHHW/dAIUdE7l7y3Ej23yolsMeyXScPUU44oFy8tMJwwsQNlvuHkiGY+Wz2fId03gzdNi473gXUXMzOEDHVaPiH6qc8A7tP6ExMSSTr15ALNcpRAXUk0QAuycj/HrKxKcHV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766399587; c=relaxed/simple;
-	bh=ihhp8bMDgIJqPrScN02hWbwazhMSfMq+SetcfZIMviI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ufDunMc9VPr/UrBkU3snLbhjyyQTTD3PbGedsPEHfb6Ea91I1c3AmX/QYHscrG5TJ+48wJked4xCXP2f7CZYHLHrYy6AhvZDGHUYv9PX8FTKk3Umf5kWQwDAywxYfxwpEbfLNEtJyzeu/fTCmzDrH/eip1jydtduZcsRSSM/l74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=TKr4Tt0u; arc=none smtp.client-ip=74.125.224.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-64476c85854so3236151d50.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 02:33:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1766399583; x=1767004383; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HZ0SU/C2/oKhfWTKzkhs1nGoI5MFAeFhWmplQ9HQCxc=;
-        b=TKr4Tt0u9wmraLPTuUJvBZE9tlSYd+Hqi7HlkNWpsL5jyvidcwJCBn6Chn9vFMh8OX
-         bMrfDB8AX7UUMQQajvREy7GdjQH25C1ftDl4AqaFr7qAw3DEXSldemtlkQLN6JOQmLS1
-         CteEoPs9mW4/wIHXqOptkYFhaojf5IWXRPhQWjpzqNIgxWHJdxcvfXG5bwxjt/xjTCOk
-         Zl+18dwPFD8mwQakii/09NrQA3vgjYpqQXhF7HUaIOHDR0RZWyZqXBlxQDxRB3ih7FRi
-         el6OTlzJGJNpvxNo2dUiIzcwbNUeayefc8JGG7h8KiN7tjqxysjBMUE5+/CTeyI9SJkn
-         k2ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766399583; x=1767004383;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=HZ0SU/C2/oKhfWTKzkhs1nGoI5MFAeFhWmplQ9HQCxc=;
-        b=a4CGW9wSvdX9axQPQATbyHCyG/GHyo+t73/u75zsb8N0IG6SSjormRQSTAfTcebIqM
-         v8mnhbRKyiHnBaII3NOegSmVWfzfjegb+4qakkq0jG7leRoqJvgCCBDJidKU35F2qtML
-         0lpbACouX3v9VGu5gSvgAplUjrIkdKMP0qNHLBcwBR5nmNWr1cV32jGXZsAcWDhYLHH+
-         n0nexxRMDK71hf8o7sOysmDDJhYlLm8JbEU3TX+rDLceEUSu1D54kcNBgScbXaOcjnsA
-         CbhDzN6U5XUrwgZ0MbH8GgnnbkQzuItbvdA96ti+1yTXUxtPt5YtJAU9XKmlT6A+RGqh
-         pGUg==
-X-Forwarded-Encrypted: i=1; AJvYcCWz02fxBsj6KADX35Qnngv6Oa4g88pGRKhCZTFu2uphqH50t1xvV2K3J2GLtVNJS71HuL+J9NUq4zLR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwydAxzVUmcqRn9Z/ii6wpF7nOXyjYEu2JSrjp13tDfhWC8RNBT
-	lUmPV1ackmqTzX5lsYLfKT2VFXzJIc8YZq0PE78vrMgl5pb9MHobvfROo94EOb7iBbAi6B1b2QB
-	obFs2cMwQ04ei01tRyMUj15VCYcSy6516q/07i5MLyw==
-X-Gm-Gg: AY/fxX7iIJj2T/7wRG0lGPgsMA2jmwLiVPP8qsKwC0+zZ2h7X4RC1pGNPuka2fF8jVc
-	Xfx/mYsNdRqo2NZ1Kv481HAmYknt+6SlTIG7dmIeNrZ/Vx20zKPsnWXdliX/36PP78Cu1Kf7BVl
-	ni7DMTmGQZlxVY6Ce52gkl2DcDMsgylmMAWVhogLWLvuAAhhWxMvE1soUqZCvV3sk1skoi7MYLG
-	TfQpP9bOZ98ZAOAasBa3PQksY0g8WRhkmq0PHDebD0LtLUiO8O5t5cIqoeG8kgP0z+oRCipaNZC
-	x2EUMowu00VjCMcgZXEwcluiCQwPDdVgSM8HIhbYH3kJKuS61Y+D55Y=
-X-Google-Smtp-Source: AGHT+IHqSiya5Umbgv2VxGxG9x9i1trhsH7NUVZ065ciZZb3qy1mhHOdemYINnIm8Q+mAKDGyPq9nLimncteuIce7dM=
-X-Received: by 2002:a05:690c:2601:b0:78c:697e:738 with SMTP id
- 00721157ae682-78fb3f37a5amr188030327b3.18.1766399583277; Mon, 22 Dec 2025
- 02:33:03 -0800 (PST)
+	s=arc-20240116; t=1766400377; c=relaxed/simple;
+	bh=IWUCKP5shSjb6TK1QDcnntBY2zp34+0vjdZrWYJvbNI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qAcDcKYB4QEtpz64yetMuFndMMSeCj9LlgkOhnKDHScuO0/xBikxE39bwp8dVcSOO1x5RwE++uRuc+l2pfTX7UjA8b4+eMUuRWohM8ZnWxaQnr5+uv24VS46q7Hel6mV3u3Ffe5ZPdoL5VNl+hRTDxJhZMLApt8IPxTiEkXBLcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=AyfPsy4o; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0386AC77;
+	Mon, 22 Dec 2025 11:45:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1766400358;
+	bh=IWUCKP5shSjb6TK1QDcnntBY2zp34+0vjdZrWYJvbNI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AyfPsy4ow1vPRDlPb9a7TXUtJn2pSrMZ1N2IEM6NqbjooCu+kycJU89/R7vAJgw4s
+	 RTwUOwQhL9YvfrLjrHkgrjoS4QLro9mefwkJxK05nJHehB+4aZUFO6lbtvRhWjsj+R
+	 4D4XMFybDCdZZlMOWwZFZkUDXJA/Ot1BuhXZlnIE=
+Message-ID: <fb0b0f13-0d0b-47f9-b8df-5e5551a61d1b@ideasonboard.com>
+Date: Mon, 22 Dec 2025 12:46:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
- <20251216-k3-basic-dt-v1-7-a0d256c9dc92@riscstar.com> <60948ca2-ed3d-485b-9b11-15df7ef8791d@canonical.com>
- <CAH1PCMb=+TvB1w+G6a2ANDp05HUwC4r6CFBDHXFwSmoP3Mm8xw@mail.gmail.com>
- <f9b6b5e2-ec9e-4208-8267-77020e0a9411@canonical.com> <20251218-basil-quantum-225ce16e4699@spud>
- <CAH1PCMZ3KM9-D3NJ1N2LUHTHFSDVKmGKT5fU8knAL7NnV9E-gw@mail.gmail.com>
- <20251220-repacking-football-c79e660e788a@spud> <4e4c9e7b-d95c-4157-94c3-b06002f94a48@canonical.com>
-In-Reply-To: <4e4c9e7b-d95c-4157-94c3-b06002f94a48@canonical.com>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Mon, 22 Dec 2025 18:32:51 +0800
-X-Gm-Features: AQt7F2oSFOE7ZFGZpkCtU3yoYwoQ_PEUIGqA90_XBkS-5NyyoL-mIJR7aV4jufs
-Message-ID: <CAH1PCMZ=-ONwVuOFLPLOXvW7GfiUsFDxXX8P+mSSvhgDrWTHUA@mail.gmail.com>
-Subject: Re: [PATCH 7/8] riscv: dts: spacemit: add initial device tree of
- SpacemiT K3 SoC
-To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Cc: Conor Dooley <conor@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@sifive.com>, Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
-	linux-serial@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Lubomir Rintel <lkundrak@v3.sk>, Yangyu Chen <cyy@cyyself.name>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 2/4] media: i2c: ds90ub960: Use enums for chip type and
+ chip family
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ hverkuil@xs4all.nl, sakari.ailus@linux.intel.com,
+ laurent.pinchart@ideasonboard.com
+Cc: hansg@kernel.org, mehdi.djait@linux.intel.com, ribalda@chromium.org,
+ git@apitzsch.eu, vladimir.zapolskiy@linaro.org,
+ benjamin.mugnier@foss.st.com, dongcheng.yan@intel.com, u-kumar1@ti.com,
+ jai.luthra@linux.dev, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251219122955.2078270-1-y-abhilashchandra@ti.com>
+ <20251219122955.2078270-3-y-abhilashchandra@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20251219122955.2078270-3-y-abhilashchandra@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi, Conor, Heinrich
+Hi,
 
-On Sun, Dec 21, 2025 at 8:10=E2=80=AFAM Heinrich Schuchardt
-<heinrich.schuchardt@canonical.com> wrote:
->
-> On 12/21/25 00:23, Conor Dooley wrote:
-> > On Fri, Dec 19, 2025 at 10:03:24AM +0800, Guodong Xu wrote:
-> >> Hi, Conor and Heinrich
-> >>
-> >> On Thu, Dec 18, 2025 at 8:56=E2=80=AFAM Conor Dooley <conor@kernel.org=
-> wrote:
-> >>>
-> >>> On Wed, Dec 17, 2025 at 09:07:14AM +0100, Heinrich Schuchardt wrote:
-> >>>> On 12/17/25 08:11, Guodong Xu wrote:
-> >>>
-> >>>>> Specifically, I must adhere to
-> >>>>> Documentation/devicetree/bindings/riscv/extensions.yaml (and cpus.y=
-aml for
-> >>>>> properties like 'riscv,sv39' which stands for the extension Sv39). =
-If I
-> >>>>> add extension strings that are not yet defined in these schemas, su=
-ch as
-> >>>>> supm, running 'make dtbs_check W=3D3' fails with: 'supm' is not one=
- of
-> >>>>> ['i', 'm', 'a', ...], followed by "Unevaluated properties are not a=
-llowed."
-> >>>>
-> >>>> If Documentation/devicetree/bindings/riscv/extensions.yaml is incomp=
-lete
-> >>>> with respect to ratified extensions, I guess the right approach is t=
-o amend
-> >>>> it and not to curtail the CPU description.
-> >>>
-> >>> Absolutely. If the cpu supports something that is not documented, the=
-n
-> >>> please document it rather than omit from the devicetree.
-> >>
-> >> Thanks for the review. May I clarify one thing? Both of you mentioned
-> >> document them, given the amount of missing extensions, is it acceptabl=
-e if
-> >> I submit a prerequisite patch that only documents these strings in
-> >> riscv/extensions.yaml plus the necessary hwprobe export? Leaving the a=
-ctual
-> >> usage of these extensions (named features) to the future patches.
-> >>
-> >> To provide some context on why I ask: I've investigated the commits & =
-lkml
-> >> history of RISC-V extensions since v6.5, and I summarized the current =
-status
-> >> regarding the RVA23 profile here:
-> >> [1] status in v6.18 (inc. v6.19-rc1):
-> >> https://docularxu.github.io/rva23/linux-kernel-coverage.html
-> >> [2] support evolution since v6.5:
-> >> https://docularxu.github.io/rva23/rva23-kernel-support-evolution.html
-> >>
-> >> Strictly describing the SpacemiT X100/K3 (or any core) as RVA23-compli=
-ant
-> >> requires adding these extensions that are currently missing from
-> >> the kernel bindings:
-> >> RVA23U64: Ziccif, Ziccamoa, Zicclsm, Za64rs
-> >> RVA23S64: Ss1p13, Ssccptr, Sstvecd, Sstvala, Sscounterenw, Ssu64xl,
-> >>            Sha, Shcounterenw, Shvstvala, Shtvala, Shvstvecd, Shvsatpa,=
- Shgatpa
-> >
-> >
-> >> Plus 'Supm', 'Zic64b', 'Ssstateen', 'B' where the kernel supports them=
- but
-> >> they are not literally documented in yaml.
-> >
-> > I don't think Supm is suitable for devicetree, doesn't it describe
-> > what the kernel/userspace are capable of rather than hardware?
+On 19/12/2025 14:29, Yemike Abhilash Chandra wrote:
+> Replace chip-specific boolean flags with chip_type and chip_family enums.
+> This simplifies the process of adding support for newer devices and also
+> improves code readability.
+> 
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> ---
+> Changelog:
+> Changes in v3:
+> - Change conditional checks to check for applicable chips over negated checks. (Tomi)
+> - Keep the model name in the ub960_hw_data structure and remove the switch-case from the probe function. (Tomi)
+> 
+>  drivers/media/i2c/ds90ub960.c | 38 +++++++++++++++++++++++------------
+>  1 file changed, 25 insertions(+), 13 deletions(-)
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-I see your point. While the Pointer Masking spec (v1.0) does distinguishes
-Supm (and Sspm) as extensions describing an execution environment, it also
-states these are intended to be used in profile specs.
+ Tomi
 
-With RVA23 ratification, Supm is formally included as a mandatory extension
-in the RVA23S64 profile.
-
-If riscv,isa-extensions property is the standard way (and I believe it is)
-to describe a RISC-V CPU about its compliance with ratified profile, then I
-believe Supm should be included in the YAML binding, alongside other
-extensions.
-
-> > Zic64b doesn't sound like hardware description (so not really suitable
-> > for devicetree either) but block size information is already represente=
-d
-> > by some existing properties (see riscv,cbo*-block-size in riscv/cpus.ya=
-ml)
-> > and duplicating that information is not really a great idea.
-
-Yes. Thanks for clarifying this.
-
-Even Zic64b can be add, then some kind of schema check should be implemente=
-d
-to avoid the potential and possible mismatch, and ensure
-riscv,cob*-block-size in cpus.yaml are 64 bytes. Duplication is not good.
-
-> >
-> > I'll admit that I do not really understand Sxstateen and how they work,
-> > but my understanding was that knowing about Smstateen is sufficient and
-> > implied Sstateen, but having Ssstateen defined seems harmless and
-> > possible. I think kvm is the only user of this at the moment, so
-> > probably worth CCing Anup and maybe Drew Jones on the patch adding
-> > Ssstateen to make sure it makes sense.
-
-I will Cc them. Thanks for your advice.
-
->
-> Supm is described in
->
-> RISC-V Pointer Masking
-> Version 1.0, 10/2024: Ratified
-> https://raw.githubusercontent.com/riscv/riscv-j-extension/master/zjpm-spe=
-c.pdf
->
-> The interpretation taken by QEMU has been:
->
-> * Supm implies Ssnpm and Smnpm
-> * RVA23 capable machine models display it in the device-tree
->
-> If Supm is not shown in the device-tree, software might assume that the
-> system does not support pointer masking in user mode and is not RVA23
-> compliant.
->
-> Hence I would suggest:
->
-> If the X100 cores have Ssnpm and Smnpm, add Supm to the device-tree.
-
-Thanks. Heinrich.
-Let me add Supm in my next version.
-
-BR,
-Guodong
-
->
-> If the kernel does not support user space pointer masking, the kernel
-> should filter out Supm and not announce it, neither in /proc/cpuinfo nor
-> via hwprobe.
->
-> Best regards
->
-> Heinrich
 
