@@ -1,227 +1,170 @@
-Return-Path: <devicetree+bounces-248665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF996CD4EFC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 09:13:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACF5FCD4F17
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 09:16:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DB34E30052BA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 08:13:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 79E0130054BE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 08:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2CF330BB98;
-	Mon, 22 Dec 2025 08:13:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCF48221F1C;
+	Mon, 22 Dec 2025 08:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R+xFP6nK"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HOdcAyPP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DEEE24E4C3;
-	Mon, 22 Dec 2025 08:13:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B82249EB;
+	Mon, 22 Dec 2025 08:15:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766391221; cv=none; b=F06rvlsd7dlVrGb3lJSDzjf12pxQ8OOhz0Ya43LvH4s/8lZ8gwxzeyFRUZBHdrMtyOkXnq7QxZK3L9/iYugfUgumhaQiRS250+zIB2MkSnpqGP8wXGOhoZbsv1FhLKOK098B8wV/3xIukgLLCIgWlGMoP5lspCTGS6wfYJdHsSE=
+	t=1766391363; cv=none; b=GMElSH3CW8FaxV3pH0R0cwFdCIiT0rJ4mf/Nxrt57aiqJYjb2KvGYWZdiAluAvAz6dTYo1Mlu0JMgl/GOkCgoe+TF+ffbuocFL49qcGIvpILBUL3Eut/SzqyO1kpSv8TDIKJhmI+4zTYo6kJblaDnUbernSPSE+iOxJKWmy5L9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766391221; c=relaxed/simple;
-	bh=+LZc9sH1FCeBixh1w4vXv6wQcF1lRDxb/ilDg7ghLhQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FicflmfnslndAfEfzgzlfNV4/asrqRLbzcsWrKPBCLPrHXfGOO9wqGOsxhY+mNOr0NTWOwGjVr+2T7U4yjfrXRjlT5YAK0vkeq0kVSZprrwguJlWdwPjHIk42s30I7XYpkvxakGekqC6l5pRLVDJols1HqIynXcffQm9cXv3Yv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R+xFP6nK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD91EC4CEF1;
-	Mon, 22 Dec 2025 08:13:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766391220;
-	bh=+LZc9sH1FCeBixh1w4vXv6wQcF1lRDxb/ilDg7ghLhQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=R+xFP6nK0qe53POnY7jjyszn3iOUZuinw6ZqS6AJsoqWcuZII35RkzQ7YGVYI1xeK
-	 LQE264oNB8kS+JJ5I3UO561Y3JAxbMY/Zf5Vi3PjC7YxsXnP/dPk+0tWsSiMPcd732
-	 /olnqcnrwQ6tECTPRewTAgLaNLMGayFaJi8zIzSAmQAG8ZzZuW+5VQmFraNq2XDYE/
-	 oHRotrUO1oKqgjF1gSLrHo2x7YcBsUUyGzXES/pEXpIT/lxGg6TJ2AStLzGOzjSvRE
-	 0JTBn7ixNl1imKBUIDCPicOnAe5qbaF4/hzD6C1QAZidh6OB6uCAWY6P8ZjyYQddYh
-	 oX2BxKQQyK2+g==
-Date: Mon, 22 Dec 2025 09:13:34 +0100
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Ahmed Tiba <ahmed.tiba@arm.com>
-Cc: linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
- tony.luck@intel.com, bp@alien8.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
- linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
- linux-doc@vger.kernel.org, Dmitry.Lamerov@arm.com, Michael.Zhao2@arm.com,
- linux-efi@vger.kernel.org
-Subject: Re: [PATCH 03/12] ras: add estatus vendor handling and processing
-Message-ID: <20251222091334.5cb8465f@foz.lan>
-In-Reply-To: <20251219181226.2859763-1-ahmed.tiba@arm.com>
-References: <euhams5heiuaawxq4e5ty7iijuvwt5gvdx3flsm4npligjeulq@lv3cwekyb2o2>
-	<20251219181226.2859763-1-ahmed.tiba@arm.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1766391363; c=relaxed/simple;
+	bh=5MHnsyD89NROSfexwZ1Dtrw/+AKtFeDxCn/EqKpiCWQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=c8vz2f/0YKfXEgGhoubg78APJGOCo33Wk6pLOiy6Tj7o/HXclbcSHRJRrraU8FpJDrRzHpI+IOIJ5K3/01bu3cSmBVOFw+wYdJHf3I4ZjARlBjAb9BM0aig9i7327Ycem5qV92GHGufKN3laoue9/OIhZnPncgvBqT5m9vhWgWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=HOdcAyPP; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c66:aa51:d08b:9316:9524:9005])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CB0E0E1F;
+	Mon, 22 Dec 2025 09:15:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1766391342;
+	bh=5MHnsyD89NROSfexwZ1Dtrw/+AKtFeDxCn/EqKpiCWQ=;
+	h=From:Subject:Date:To:Cc:From;
+	b=HOdcAyPPiFUgtCMGxl9rVFu5RGR+BW+moF5363HnJHcgImbeySg0hIVn6+QmR0xhm
+	 lgr4k9pejsswqZhBdNiNkLQCb9B8+0r0z7C744al7VccOYf3/2IwnIkvvbHY6FHh4+
+	 wNFpEKvNjxHLQSZczWdzpykzXyP1AuIROi6r2Q3E=
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Subject: [PATCH v4 00/17] media: i2c: Miscellaneous features and fixes for
+ OV5647
+Date: Mon, 22 Dec 2025 13:45:24 +0530
+Message-Id: <20251222-b4-rpi-ov5647-v4-0-b949c7309280@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABz+SGkC/3XQwW7CMAwG4Fepcl6mxHGawIn3mHZoUnfkQANJi
+ TYh3n0GhJBgO/62/k+yT6JSSVTFujuJQi3VlGcO+NaJuB3mL5Jp5CxAgdUKUAaUZZ9kbrZHJ5U
+ NvVLOeteD4M6+0JS+r97HJ+dtqksuP1e+6cv0LvknqWmppFp51AYtTpY2aaSh5jnkoYzvMe/EB
+ WzwQLR+QYARS86Ti8FNq/APYh4IaPuMGEYwgiUTvTcB/kDOt1sLHY78suV2sAhDJcn7XVrWnZ9
+ UwBgJ0WsunH8BhrRoMGsBAAA=
+X-Change-ID: 20251024-b4-rpi-ov5647-05b600758762
+To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ Jacopo Mondi <jacopo@jmondi.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Naushir Patuck <naush@raspberrypi.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ David Plowman <david.plowman@raspberrypi.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Peter Robinson <pbrobinson@gmail.com>, Stefan Wahren <wahrenst@gmx.net>, 
+ "Ivan T. Ivanov" <iivanov@suse.de>, 
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+ Jai Luthra <jai.luthra@ideasonboard.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3243;
+ i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
+ bh=5MHnsyD89NROSfexwZ1Dtrw/+AKtFeDxCn/EqKpiCWQ=;
+ b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBpSP4gun4xQxrKTu8RJoSPUZSKFt4Oktq6ZTUs+
+ ttc6/1fez2JAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCaUj+IAAKCRBD3pH5JJpx
+ RfEGD/0Xd92pMqQUYgTGVojne5TFKtBni5vhUiB65p0vUQmDqOxfOVoTy5TW8ozXNN+oikrqfr3
+ Y+seNRF9CKQw85ZIjlrlIVmzlNN9IYPToISpkMtD+FjmeUc3PU07LialaGb6oX13iQtoDa30iUZ
+ +KF+oG10BDq2Jw+KO1BkIKwxfNaz01x5rlVRDl7eOdOjOMINOTPDAA2bFPvrBP+8lNKFrjc+K3r
+ FZq1bo1IEUO4nasGuiE0yGsFBb5FnrDim4CfwaLmm1pTE8nv1HymVyxvi4aD0PIYpnXr/5gRKNF
+ 5jCMVbYqFPb3tfeJBCL3T/8WsuoCSGpeqcUm0rtZXlkXr/ikvaZGez5BnakC0ySJoS8AOYMUMdt
+ MtWnDgm5kGjNtd3OqXwPRkO0F7JxHVhYS0jiC3/RjOJ7ot2Q85dw/ije4x91EiUyZh1LFFRwWvy
+ 2vGpm7btALL7TMfU0d91AEmimMtOqGou177XaoH9BaFCw+uOgPLxA7dJbKS2R4zziI9NO+zMHlz
+ Hca1ZxYYcV0NBysGadyO2Amsekl7uXkbXZs0qeYtDX4LXhoGHEnucCVnnzP9vtrJctglgL4J2zJ
+ R/mPCns+wsqIbWdeJFlap2nS/DhdmmauUzOk+9Zj4GGoRujI+PmDIHZH066zmaI8GC56jmxDTRi
+ PtzcpIjB/mF968w==
+X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 
-Em Fri, 19 Dec 2025 18:11:54 +0000
-Ahmed Tiba <ahmed.tiba@arm.com> escreveu:
+This series adds support for some important features, like controls for
+H/VFLIP, horizontal blanking, link frequency and regulator support that
+is present in the downstream kernel to support the Raspberry Pi v1 camera
+module.
 
-> On Fri, Dec 19, 2025 at 04:30:40PM +0100, Mauro Carvalho Chehab wrote:
-> >On Fri, Dec 19, 2025 at 02:49:02PM +0000, Ahmed Tiba wrote: =20
-> >>
-> >> On Wed, Dec 18, 2025 at 05:04:53PM +0100, Mauro Carvalho Chehab wrote:
-> >> =20
-> >> >> Teach the estatus core how to walk CPER records and expose the vend=
-or
-> >> >> record notification path. This adds the section iteration helpers,
-> >> >> the logging helpers that mirror the GHES behaviour, and the deferred
-> >> >> work used to hand vendor GUIDs to interested drivers. No users swit=
-ch
-> >> >> over yet; this simply moves the common logic out of GHES so the next
-> >> >> patches can wire it up.
-> >> >>
-> >> >> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com> =20
-> >> >
-> >> >...
-> >> > =20
-> >> >> +static bool estatus_handle_arm_hw_error(estatus_generic_data *gdat=
-a, int sev, bool sync) =20
-> >> >
-> >> > Huh?
-> >> >
-> >> > This is a CPER record from GHES. Why are you moving CPER code out
-> >> > of ghes.c, placing in a file named estatus.c? Doesn't make much
-> >> > sense on my eyes...
-> >> >
-> >> > Same applies to to other GHES CPER record types. =20
-> >>
-> >> GHES still fills in the CPER record, but the parsing and logging logic=
- is
-> >> shared with the new DeviceTree provider so I pulled those helpers into=
- the
-> >> estatus core. =20
-> >
-> > I see, but this is not really estatus core. Instead, it is part of GHES=
- CPER
-> > handling logic, which is defined at ACPI and UEFI specs. moving it to e=
-status
-> > sounds odd, at least on my eyes.
-> >=20
-> > Perhaps I'm failing to see where at ACPI/UEFI specs how CPER would be
-> > integrated with an OpenFirmware approach to handle CPER without GHES.
-> > Care to point to the relevant specs, if any? =20
->=20
-> ACPI/APEI (via GHES) defines how CPER records are discovered and notified=
- on ACPI systems,
-> but there is no ACPI or UEFI-defined equivalent for OpenFirmware/DeviceTr=
-ee platforms.
-> UEFI standardises the CPER record format itself, not the transport or dis=
-covery mechanism.
->=20
-> On non-ACPI systems we still receive the same UEFI-defined CPER payload
-> from firmware, but Linux needs a different, platform-specific contract
-> to locate and acknowledge it. The DT binding is a Linux-side description
-> of that contract rather than something defined by ACPI/UEFI.
+Additionally, it also fixes some known issues with streaming lockups and
+wrong pixel array size.
 
-That's where I'm failing to understand: CPER is part of UEFI spec, and
-the only deliverable mechanism I'm aware of for CPER is via GHES or
-GHESv2 - e.g. via ACPI.
+Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+---
+Changes in v4:
+- Separate out fix for VGA mode's pixel rate as [PATCH 5/17]
+- Use correct link frequency for VGA mode in [PATCH 17/17]
+- Link to v3: https://lore.kernel.org/r/20251215-b4-rpi-ov5647-v3-0-4c25e3c883b2@ideasonboard.com
 
-Within the scope of https://uefi.org/specifications, I'm failing
-to see any other deliverable mechanism.
-=20
-> >> Both providers already call into the same notifier chain and
-> >> memory-pool helpers; this patch just moves the generic CPER walking ro=
-utines
-> >> next to the rest of the common code so the DT path doesn=E2=80=99t hav=
-e to grow its
-> >> own copy. If you=E2=80=99d prefer a different file layout or naming to=
- make that
-> >> intent clearer, I=E2=80=99m happy to adjust. =20
->=20
-> > Moving the code from ghes.c to estatus.c or to elsewhere shouldn't make=
- any
-> > difference, as the DT handling logic could simply be calling the functi=
-ons
-> > from ghes.c (or estatus.c). I fail to see why they need to be moved. =20
->=20
-> The motivation is to provide a shared implementation for non-ACPI provide=
-rs,
-> so that the DT path does not depend on ACPI/APEI.
->=20
-> While the helpers currently live in ghes.c, they are CPER-specific and do=
- not rely on ACPI tables,
-> APEI infrastructure, or GHES notification semantics. Keeping them there e=
-ffectively makes GHES
-> the only place those helpers can live, even though the logic itself is pr=
-ovider-agnostic.
+Changes in v3:
+- Match the default register value in all mode tables with the default
+  value for the horizontal flip control (i.e. 0x3281[1] = 1)
+- Update pixel rate for VGA mode as discussed in [PATCH v1 13/13]
+- Set default link frequency value using the default mode as Jacopo
+  suggested in v2
+- Add review/ack tags from Dave, Jacopo and Krzysztof
+- Link to v2: https://lore.kernel.org/r/20251118-b4-rpi-ov5647-v2-0-5e78e7cb7f9b@ideasonboard.com
 
-The logic is related to GHES, as this seems to be the only standardized
-mechanism to report CPER records. As it is part of APEI, get_maintainers
-points to the people that have been maintaining it as:
+Changes in v2:
+- Drop [PATCH 4/13] as it is already present in mainline
+- Add a fix for a potential segfault by reordering ov5647_init_controls
+  after v4l2_i2c_subdev_init in the probe
+- Add 2 new patches updating dt-bindings for regulators and
+  rotation/orientation
+- Add a patch for cleaning up the PIXEL_RATE control
+- Reorder the patches in the series, moving all fixes at the start
+- Fix review comments from Jacopo, Stefan, Kieran and Dave, picking
+  Jacopo's R-by tag on a few patches
+- Link to v1: https://lore.kernel.org/r/20251028-b4-rpi-ov5647-v1-0-098413454f5e@ideasonboard.com
 
-	$ ./scripts/get_maintainer.pl -f ./drivers/acpi/apei/ghes.c
-	"Rafael J. Wysocki" <rafael@kernel.org> (maintainer:ACPI APEI,commit_signe=
-r:6/13=3D46%)
-	Tony Luck <tony.luck@intel.com> (reviewer:ACPI APEI,commit_signer:3/13=3D2=
-3%)
-	Borislav Petkov <bp@alien8.de> (reviewer:ACPI APEI,removed_lines:5/62=3D8%)
-	Hanjun Guo <guohanjun@huawei.com> (reviewer:ACPI APEI,commit_signer:4/13=
-=3D31%)
-	Mauro Carvalho Chehab <mchehab@kernel.org> (reviewer:ACPI APEI,authored:1/=
-13=3D8%,removed_lines:6/62=3D10%)
-	Shuai Xue <xueshuai@linux.alibaba.com> (reviewer:ACPI APEI,commit_signer:5=
-/13=3D38%,authored:2/13=3D15%,added_lines:56/218=3D26%,removed_lines:34/62=
-=3D55%)
-	Len Brown <lenb@kernel.org> (reviewer:ACPI)
-	Jonathan Cameron <Jonathan.Cameron@huawei.com> (commit_signer:5/13=3D38%)
-	Breno Leitao <leitao@debian.org> (authored:2/13=3D15%,added_lines:38/218=
-=3D17%)
-	Smita Koralahalli <Smita.KoralahalliChannabasappa@amd.com> (authored:2/13=
-=3D15%,added_lines:103/218=3D47%)
-	Ankit Agrawal <ankita@nvidia.com> (authored:1/13=3D8%,removed_lines:6/62=
-=3D10%)
-	Jason Tian <jason@os.amperecomputing.com> (removed_lines:7/62=3D11%)
-	linux-acpi@vger.kernel.org (open list:ACPI APEI)
-	linux-kernel@vger.kernel.org (open list)
+---
+Dave Stevenson (7):
+      media: i2c: ov5647: Add support for regulator control
+      media: i2c: ov5647: Use v4l2_async_register_subdev_sensor for lens binding
+      media: i2c: ov5647: Add control of V4L2_CID_HBLANK
+      media: i2c: ov5647: Tidy up mode registers to make the order common
+      media: i2c: ov5647: Separate out the common registers.
+      media: i2c: ov5647: Use the same PLL config for full, 1080p, and binned modes
+      media: i2c: ov5647: Add V4L2_CID_LINK_FREQUENCY control
 
-Moving it elsewhere would make it confusing, as the expected deliverable
-mechanism for CPER is via GHES - as this is the only one defined at the
-uefi.org specs.
+David Plowman (4):
+      media: i2c: ov5647: Correct pixel array offset
+      media: i2c: ov5647: Correct minimum VBLANK value
+      media: i2c: ov5647: Sensor should report RAW color space
+      media: i2c: ov5647: Support HFLIP and VFLIP
 
-While it might be moved to EFI and placed under cper.c,=20
-get_maintainers.pl would point to:
+Jai Luthra (5):
+      media: i2c: ov5647: Initialize subdev before controls
+      media: i2c: ov5647: Fix PIXEL_RATE value for VGA mode
+      dt-bindings: media: ov5647: Add optional regulators
+      dt-bindings: media: ov5647: Allow props from video-interface-devices
+      media: i2c: ov5647: Tidy up PIXEL_RATE control
 
-	$ ./scripts/get_maintainer.pl -f ./drivers/firmware/efi/cper.c
-	Ard Biesheuvel <ardb@kernel.org> (maintainer:EXTENSIBLE FIRMWARE INTERFACE=
- (EFI))
-	linux-efi@vger.kernel.org (open list:EXTENSIBLE FIRMWARE INTERFACE (EFI))
-	linux-kernel@vger.kernel.org (open list)
+Laurent Pinchart (1):
+      media: i2c: ov5647: Parse and register properties
 
-which is not the people that have been maintaining RAS.
+ .../devicetree/bindings/media/i2c/ovti,ov5647.yaml |  14 +-
+ drivers/media/i2c/ov5647.c                         | 465 ++++++++++-----------
+ 2 files changed, 235 insertions(+), 244 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251024-b4-rpi-ov5647-05b600758762
 
-Placing it under a "estatus.c" file would make it completely
-dissociated with UEFI/ACPI specs, as this name means nothing at
-the specs.
+Best regards,
+-- 
+Jai Luthra <jai.luthra@ideasonboard.com>
 
-Also, adding a new maintainer's entry won't make any sense, as the
-people that currently reviews and maintains GHES/CPER records
-should be kept.
-
-> By moving the CPER parsing and logging pieces into a common location,
-> both GHES and the DT provider can reuse the same implementation,
-> while the ACPI-specific discovery and notification code remains under dri=
-vers/acpi/apei/.
-> This avoids having the DT provider reach into GHES internals or duplicate=
- CPER handling code.
-
-As Boris mentioned on patch 00/12, we need to better understand
-the high level scenario, as it is still not clear to me how a
-firmware-first notification would happen without ACPI.
-
-> If the current naming or file layout makes that separation unclear, I=E2=
-=80=99m happy to adjust it.
-
-Thanks,
-Mauro
 
