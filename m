@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-248918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DED1ACD6AB2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 17:30:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D99BDCD6AB5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 17:31:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C26C2301513A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:30:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 821A9301937A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CC473328E9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD47A3328ED;
 	Mon, 22 Dec 2025 16:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N80xDzGN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pzxGsBaq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01243321A0
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 16:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE3B3321B2
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 16:30:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766421040; cv=none; b=kfSK02J7IwuyaWPIO9CQ72rulsOEg9J3EDX8yqUpP0M7AGiCCBeJHsJ1VzTsccH5FRXFWEEIYQuxJt6ctbkTGo0ege/zNcq/P83uEOBhrhxWzSDk94eQhYV/P8u3OuwrlpgKigsXpm80B+ybW49BLMVayB44sbszB9+lLLrl4eY=
+	t=1766421040; cv=none; b=oqmBile5suhd+xG+HBbvlVnCnq+u9RXpJkm0ROsCRLV/ABFJvzOvYVgjyuATNmlzTkD8PZPzGXa0umPF9E0/Lrj5zMuC0v+NM43V9Yc1P1bQA8TdvIE9i6/O3AF0UeZ72CAnSDsGWDQDeqG8pQLrWtofhFx3KWfthNZvrAUAO/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1766421040; c=relaxed/simple;
-	bh=M/Ht02RXnwpyI8/d82bw2pNNTOH9KcOIpttNOEpsz50=;
+	bh=gIK455PpaZxVuvfXEfRmg3pjfE8OD78NBBkTr9I0h8k=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Yz7iqCmnBqLArdfpBrF1xHYpVhIWIjlQp3+fvGrDej5mynoJnN3HYa5vioPYU55D+2iPg0hfMNtQnJ31l7FBmq/2XX4mCC/vNmwXx1lF+InSxR+rv7YSydgybecnmW90Sj5mXRCTh60D3C/WuVn6HIafkNcCamtXEWmzQUbTAy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N80xDzGN; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:To:Cc; b=A53sca/hsIACqjuq/Qv2+jCcV1ERZZvVNQ+6qXiyI4RdleoLpyQrl/p+aOGv6GGGnT0lJm8Ahr8DJXX8BNum2MdEoq/4+GXZpiE6LgztqEJa8nZwbee6+NToe4cKAmGzXQGOzVcwdVM4Sf6whiH54mIBCj3HpraBkRJjP4Ua3nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pzxGsBaq; arc=none smtp.client-ip=209.85.128.66
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-477b198f4bcso27107855e9.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 08:30:37 -0800 (PST)
+Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-477619f8ae5so23713335e9.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 08:30:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766421036; x=1767025836; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1766421037; x=1767025837; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OdZvrS1dE5qeSW0XzFKBJXtmzMM/4cC+vHFcMxasvWQ=;
-        b=N80xDzGNXBLPzr952CwRB5mid4zJhYXE99Cl7wThVS+TOY4NzohzHLeyu2dndgiphO
-         Hdx0FkU2kmqi654GRmUc0dCn7WvsXLIRd9MlVE5pmtmw1MJKsbX0M3QI2XkiSFaoIpHj
-         kY+m+6/ROr7+IjJhc505YdJ8lYQLW6tggBLlk7ZnHQtXVUrtSv1CTLmdx/zOGAML6Y1I
-         2yScXoegVvgDdW6JcxbiXl6dwVixbhjIO0jWJ3jd81I6QYHKkem97sGWGfGbUwvzp+0w
-         GmdZqZiBifBU3b7mra4LBViXnDY/BPJxGGMmxw39zQVlwtaULcqsNakhI0DVR55P1AU2
-         gWCQ==
+        bh=3XQM+4zgvXw282DuJseaia2aL/kiD6COjiN6mT8vpSk=;
+        b=pzxGsBaqITxWx11xZOF8gGFErKWexFpbKRI/nMbKYQPZfBzTaY9CmbFwk4RlkSipaj
+         ds+dA2pxV24R0vx8X1eAD4mOeHRfL5NdisGITp8C3glyg/+zuPdRA2NSG713JL78Clbc
+         5vspDGeM2Hx2JY+FbI6SYFhxuIm+Voi0HhhYzzl9PmT+emHmrsmiL6ERAyr0KPEMDpJB
+         pzE3nzMzwCsgNuoqxuYNwPLtkvHh5Uloze4rPWGdxnreWfwIYAHGE9IAqd4PpeXignJy
+         J0K2VSJJRr20+HYNwbbv4nBEOGd/BkJ/U3hCWkGMc9xKyxzmIlxrAGHxVEhe9qA90qIP
+         hmUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766421036; x=1767025836;
+        d=1e100.net; s=20230601; t=1766421037; x=1767025837;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=OdZvrS1dE5qeSW0XzFKBJXtmzMM/4cC+vHFcMxasvWQ=;
-        b=U1muIsSeq+zXVXvZyvaFC76TTK+CNeVjeESSt6b+uzJI0PGoKmCd5u0enF9Pk52P5f
-         GwouCxG5mtXiTi3jQV4hBj8ExAYaMK4Zl6F5JaB/d3P0Zn7/IgT2YkeapCJcH57/liP2
-         87RCVhHDsbsMCH+BSoD6so+P3vXOpLekNjnLtF+4Jpx+IYXw57474BhYsTOAt3SE8kuQ
-         cQpHtfNbPE13+5H2jkC84Wg4n+sHfpLP2b1nLio2RpHIpYg6MngeZfcPWvIvfct2ZjAi
-         BlIg5YR4Iaz46d1lvCy6t2i2r4pC/16SXzSPrdkFh0SDIL0r8w3Rd5uxSqgF0Ym49+XO
-         0AVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW1xQHAHUTOQ7Qdbsz9jqDDHRZB8j+kbUHaZSt8Ji7TNqbWllFw2sAah3YIkvc+Ym3Oyr+0mvqEcqsk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyB0wkgCbrl62cG9VmGVqMaMSYR8rSCRAMncd1kapuf8cOmZt4R
-	XYI64dOAehKFQS7FXny8TfCnQYQ5+PwqsNj9YR7yKNdisXrJE66YhhxN+WkgY/jSvt4=
-X-Gm-Gg: AY/fxX4zu1JxjPQxc0RPEJwTQjCzBUQr5bByCBqv4F+i7M6hQOP7LmERArdyNKQ0nmU
-	9oSyGbngd/C74W9wnFc0lBi/6KdLRO36l3BFjmGFPQR2XvXK3ZOTT0bubjm2w7Uvsoh+Dxj3o+n
-	uK9YNYnOzZQ6TS6paGtlRJmp6aScdDi/dwWi/r+fGlEJv0FeyUwbpevMQFMhUynrohHWcbKDTyI
-	BEt6rg8q58OxXAsA3pXx4lSMtOt6Wln4rmd+Qxn5myC5lC/3Iydpl/VcazANcNsaAQdDCUZqYaA
-	irHTI5O6UxvV/TY0t5H8W17LIa8EkzOdb2fpxH5bUf7FUoC1pJrahlKs2dKc+SF8emFu1ATKNii
-	9w3LJngdpLQJc32V0GIA9Y+R3ObJtvje+LJic99nfnGdSOrQal8Cd3a2TMJ/p/L3dX/CijON0CM
-	/hFxP+WjvWVhHYa8MssE0A9+1l9mP27Imw7kYUqRXPM3dgcdbw/KE35/Y8w0e85Uzi
-X-Google-Smtp-Source: AGHT+IFNrAPWGxzcsoaQLoabTeny92MuV3z4VFx51LTPkZKLWoAPMlDB5aYM21GbjGHuz92+M8hP8w==
-X-Received: by 2002:a05:600c:3489:b0:479:2a09:9262 with SMTP id 5b1f17b1804b1-47d1953dabamr123231785e9.9.1766421036091;
+        bh=3XQM+4zgvXw282DuJseaia2aL/kiD6COjiN6mT8vpSk=;
+        b=i3vQ2o7d0drtoxbBMJACIEw13PrW6kMlItva/3SKjkgM8YWqvYflzJ4KH/YwqwqTK9
+         HU/EgV7Z9uf+0kDAtbUIAEeOdVQxy3AfbXGBbPFFGPQwwTjdRRW72VpFTq274YffjfDD
+         1gShnl9YVbqqrnmcCzxCtPhqAw2M12fT8Gyvbs5I1DrWrpzTRrdIOmt7TdD2QUEtur4T
+         o5C8S/CT1lXm3xfotaic0OTlqNPkG8Nqze66ALC3cYyXtHkKUa49ctBCglMNVZJgZ0S+
+         KWPnGlNReNGwbHrg+PxMIgbQPyo8cjwjVBI+qr2T3uWZ0DqCO82bPND4m8gmadIZil63
+         2P7g==
+X-Forwarded-Encrypted: i=1; AJvYcCX9P0KC76bxKCemdUYot1QXDfu0N5sq5cbMPStxDAJ0T4S5taMVX3kcPQP47DzFfWHZLxRPiZ4lRitm@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPxhyu/EVYJ4sLaCFQwbNVOrP//7dXIimuryMCNWOS6tPNE6Re
+	MhLOa7ExIgnxSJA/706LyAw9FV05iWZ0Aqs6VdC1ruyKAx8muJppKd6zQzRWHVKmyEQ=
+X-Gm-Gg: AY/fxX7wvEDOYz4lZRhDVp238+tAabuMxGRSu+B84DM2EEIof0jb1Bn4XzaGOZIbC8I
+	0yIAvTnn6/2IzUilXhXBj4e1cIA8A3Gce0UcrlK+kaWBiiv5+LVvBaUtBg+E0Q1N2bnugtEnsvS
+	klhgfYG10OK4PMihD9kjVpJSP9t+xoDOhviEs55k08fi8mRfuEQaaReNGFiInObcZl4Vpil4SnV
+	/7wSvILM7mK5b0i/WPnFz6tenOA9q4MXz5K5/EvwOFJK5/M8N1xIZ1bzCEfHjZPExxKFEL5Emzx
+	qhMZzVF+/x0wwO9xoU7qMur0yvJlKR6mNE6ciIs7+fywBEKt+fswG7mqzgnPufRRFEIEL4SeNxN
+	kSuHU7CERWTpsaPF67ReogFJt+Rt0l3wcptdSEPwaSsFWhFCUR/UoODHlexlhu6vN79UJR3wv9D
+	uxV1fX+Phfu8PkuDT1K1SO6zSy4YQeQMhCF9/6NvFK2XWcbGdK1aQv9baJsOJ1MnZt3Ogrho7Pl
+	yg=
+X-Google-Smtp-Source: AGHT+IHvRDRIoHQjA1rZCLMaSDTKsCyWp+0hB7b+F+L1wF0MQiyzngVj5PEvlpySW13JHDQ1ncylpg==
+X-Received: by 2002:a05:600c:3b87:b0:477:aed0:f3fd with SMTP id 5b1f17b1804b1-47d1953b7b0mr130487085e9.8.1766421036654;
         Mon, 22 Dec 2025 08:30:36 -0800 (PST)
 Received: from ta2.c.googlers.com (62.221.76.34.bc.googleusercontent.com. [34.76.221.62])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324eaa4749sm23071258f8f.37.2025.12.22.08.30.35
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324eaa4749sm23071258f8f.37.2025.12.22.08.30.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Dec 2025 08:30:35 -0800 (PST)
+        Mon, 22 Dec 2025 08:30:36 -0800 (PST)
 From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Mon, 22 Dec 2025 16:30:08 +0000
-Subject: [PATCH v4 4/5] soc: samsung: exynos-chipid: add google,gs101-otp
- support
+Date: Mon, 22 Dec 2025 16:30:09 +0000
+Subject: [PATCH v4 5/5] arm64: dts: exynos: gs101: add OTP node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251222-gs101-chipid-v4-4-aa8e20ce7bb3@linaro.org>
+Message-Id: <20251222-gs101-chipid-v4-5-aa8e20ce7bb3@linaro.org>
 References: <20251222-gs101-chipid-v4-0-aa8e20ce7bb3@linaro.org>
 In-Reply-To: <20251222-gs101-chipid-v4-0-aa8e20ce7bb3@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -98,173 +98,40 @@ Cc: Krzysztof Kozlowski <krzk@kernel.org>, semen.protsenko@linaro.org,
  linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Tudor Ambarus <tudor.ambarus@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766421032; l=5635;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766421032; l=992;
  i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=M/Ht02RXnwpyI8/d82bw2pNNTOH9KcOIpttNOEpsz50=;
- b=0wI3TjHRprHCL0MH4xmRPJElU8StjYDtY2qkStptCp0VsYE/h9uYZem6ZSzBlAAqwPiTmCoj4
- eZhUU35XhVfA61saeDelePzXlNVEEF0o5EqhMfSa1e/APSjAs9qjfVa
+ bh=gIK455PpaZxVuvfXEfRmg3pjfE8OD78NBBkTr9I0h8k=;
+ b=Q9f7t/RCDmUJ75u/2IeLiK62QNaGafJ83CtoJmOgrtY4/ERxZXfJ3qSw/mnSIdVKgntbdJN2k
+ VlgZHF4bS6DBaN5xNMz0xRTYlAR8/L3MPQHerwTH77W0JbgdWIwFRme
 X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
  pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-GS101 is different (but also e850 and autov9 I assume) from the SoCs
-that are currently handled by the exynos-chipid driver because the
-chip ID info is part of the OTP registers. GS101 OTP has a clock, an
-interrupt line, a register space (that contains product and chip ID,
-TMU data, ASV, etc) and a 32Kbit memory space that can be
-read/program/locked with specific commands. On GS101 the "ChipID block"
-is just an abstraction, it's not a physical device. When the power-on
-sequence progresses, the OTP chipid values are loaded to the OTP
-registers.
-
-Add the GS101 chip ID support. The support is intentionally added in the
-exynos-chipid driver, and not in a dedicated Exynos OTP driver, because
-we estimate that there will not be any OTP consumers in the kernel other
-than the chip ID/SoC interface. The downstream GS101 drivers confirm
-this supposition.
+Add the OTP controller node.
 
 Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 ---
- drivers/soc/samsung/exynos-chipid.c | 70 ++++++++++++++++++++++++++++++++-----
- 1 file changed, 61 insertions(+), 9 deletions(-)
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
-index 5c8660374269c87ec38ebca242918bd7b1d362e5..6ef9751e2509c94bd9625072d0b81ddb93048d4a 100644
---- a/drivers/soc/samsung/exynos-chipid.c
-+++ b/drivers/soc/samsung/exynos-chipid.c
-@@ -15,7 +15,8 @@
- #include <linux/array_size.h>
- #include <linux/device.h>
- #include <linux/device/devres.h>
--#include <linux/errno.h>
-+#include <linux/err.h>
-+#include <linux/ioport.h>
- #include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
-@@ -28,9 +29,11 @@
- #include "exynos-asv.h"
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+index 9b38c2248016aa65293c0abf9ccaf20857d89693..e078344c9e3e558aa5d58845d0fa2849832b857b 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+@@ -571,6 +571,14 @@ soc: soc@0 {
+ 		#size-cells = <1>;
+ 		ranges = <0x0 0x0 0x0 0x40000000>;
  
- struct exynos_chipid_variant {
--	unsigned int rev_reg;		/* revision register offset */
-+	unsigned int main_rev_reg;	/* main revision register offset */
-+	unsigned int sub_rev_reg;	/* sub revision register offset */
- 	unsigned int main_rev_shift;	/* main revision offset in rev_reg */
- 	unsigned int sub_rev_shift;	/* sub revision offset in rev_reg */
-+	bool efuse;
- };
- 
- struct exynos_chipid_info {
-@@ -69,6 +72,8 @@ static const struct exynos_soc_id {
- 	{ "EXYNOS990", 0xE9830000 },
- 	{ "EXYNOSAUTOV9", 0xAAA80000 },
- 	{ "EXYNOSAUTOV920", 0x0A920000 },
-+	/* Compatible with: google,gs101-otp */
-+	{ "GS101", 0x9845000 },
- };
- 
- static const char *exynos_product_id_to_name(unsigned int product_id)
-@@ -93,19 +98,53 @@ static int exynos_chipid_get_chipid_info(struct device *dev,
- 		return dev_err_probe(dev, ret, "failed to read Product ID\n");
- 	soc_info->product_id = val & EXYNOS_MASK;
- 
--	if (data->rev_reg != EXYNOS_CHIPID_REG_PRO_ID) {
--		ret = regmap_read(regmap, data->rev_reg, &val);
-+	if (data->sub_rev_reg == EXYNOS_CHIPID_REG_PRO_ID) {
-+		/* exynos4210 case */
-+		main_rev = (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
-+		sub_rev = (val >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
-+	} else {
-+		unsigned int val2;
++		efuse@10000000 {
++			compatible = "google,gs101-otp";
++			reg = <0x10000000 0xf084>;
++			clocks = <&cmu_misc CLK_GOUT_MISC_OTP_CON_TOP_PCLK>;
++			clock-names = "pclk";
++			interrupts = <GIC_SPI 752 IRQ_TYPE_LEVEL_HIGH 0>;
++		};
 +
-+		ret = regmap_read(regmap, data->sub_rev_reg, &val2);
- 		if (ret < 0)
- 			return dev_err_probe(dev, ret,
- 					     "failed to read revision\n");
-+
-+		if (data->main_rev_reg == EXYNOS_CHIPID_REG_PRO_ID)
-+			/* gs101 case */
-+			main_rev = (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
-+		else
-+			/* exynos850 case */
-+			main_rev = (val2 >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
-+
-+		sub_rev = (val2 >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
- 	}
--	main_rev = (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
--	sub_rev = (val >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
-+
- 	soc_info->revision = (main_rev << EXYNOS_REV_PART_SHIFT) | sub_rev;
- 
- 	return 0;
- }
- 
-+static struct regmap *exynos_chipid_get_efuse_regmap(struct platform_device *pdev)
-+{
-+	struct resource *res;
-+	void __iomem *base;
-+
-+	base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(base))
-+		return ERR_CAST(base);
-+
-+	const struct regmap_config reg_config = {
-+		.reg_bits = 32,
-+		.reg_stride = 4,
-+		.val_bits = 32,
-+		.use_relaxed_mmio = true,
-+		.max_register = (resource_size(res) - reg_config.reg_stride),
-+	};
-+
-+	return devm_regmap_init_mmio_clk(&pdev->dev, "pclk", base, &reg_config);
-+}
-+
- static void exynos_chipid_unregister_soc(void *data)
- {
- 	soc_device_unregister(data);
-@@ -127,7 +166,11 @@ static int exynos_chipid_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, -EINVAL,
- 				     "failed to get match data\n");
- 
--	regmap = device_node_to_regmap(dev->of_node);
-+	if (drv_data->efuse)
-+		regmap = exynos_chipid_get_efuse_regmap(pdev);
-+	else
-+		regmap = device_node_to_regmap(dev->of_node);
-+
- 	if (IS_ERR(regmap))
- 		return dev_err_probe(dev, PTR_ERR(regmap),
- 				     "failed to get regmap\n");
-@@ -177,19 +220,28 @@ static int exynos_chipid_probe(struct platform_device *pdev)
- }
- 
- static const struct exynos_chipid_variant exynos4210_chipid_drv_data = {
--	.rev_reg	= 0x0,
- 	.main_rev_shift	= 4,
- 	.sub_rev_shift	= 0,
- };
- 
- static const struct exynos_chipid_variant exynos850_chipid_drv_data = {
--	.rev_reg	= 0x10,
-+	.main_rev_reg	= 0x10,
-+	.sub_rev_reg	= 0x10,
- 	.main_rev_shift	= 20,
- 	.sub_rev_shift	= 16,
- };
- 
-+static const struct exynos_chipid_variant gs101_chipid_drv_data = {
-+	.sub_rev_reg	= 0x10,
-+	.sub_rev_shift	= 16,
-+	.efuse = true,
-+};
-+
- static const struct of_device_id exynos_chipid_of_device_ids[] = {
- 	{
-+		.compatible	= "google,gs101-otp",
-+		.data		= &gs101_chipid_drv_data,
-+	}, {
- 		.compatible	= "samsung,exynos4210-chipid",
- 		.data		= &exynos4210_chipid_drv_data,
- 	}, {
+ 		cmu_misc: clock-controller@10010000 {
+ 			compatible = "google,gs101-cmu-misc";
+ 			reg = <0x10010000 0x10000>;
 
 -- 
 2.52.0.322.g1dd061c0dc-goog
