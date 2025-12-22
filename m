@@ -1,97 +1,79 @@
-Return-Path: <devicetree+bounces-248660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECBC9CD4DE1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 08:30:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C4FCD4E42
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 08:46:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C8E3D300647E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 07:30:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 87F97300D41C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 07:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B355B306D2A;
-	Mon, 22 Dec 2025 07:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F92C226CF1;
+	Mon, 22 Dec 2025 07:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ggfQWPqA";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ctdUEu9R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jXFOjNC0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333381F5846
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 07:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F6919755B
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 07:46:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766388639; cv=none; b=HwibgbVbFwBi7A63/OjQ10E8Cy3Yy9cTf32y5idq9L/5kyXv8mfWsV2iH9YRNW6JKgrud/Jwi+AvZjsy6mI7k7cqKZwCM6H03fgEmj2qWl8Tgi0+18gxXZzxQZpdi1hieOwrbgNQglIfCb3xyMKLQzAo2PYNAsvBgy2MNXADIwQ=
+	t=1766389565; cv=none; b=RXnyxapoTDJjxPWic7ltKnz7PQPX9qn8Wt1/I7omt/YSEYO6sql6tCCaderuw8JPKu/veHGcfbOtaPqTS8Jdn41fD6KM308V7WS4tHRdiIhApKnW5m6Jx741bymebNch3wEEgjdGP4Yz3ZfjDUjIm8iG0tCR8cYpO6l0WeHcDbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766388639; c=relaxed/simple;
-	bh=qW1dCynVSQHJl3GfWl5279VWZIV36Iu0VGCn/rkz/PY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=g8P6cHDuD7k49yahViCJiOV+aJ9I6YDW0MWJyrPNwzkywoMbKGXC/CX5osSkXINmufsxnqBBMWy190eNyFAAaz1vy+S7TYLoh7/2AeWUqGtTIjNLYMGbq13URFwUyqU244PU0H6qCTIR57byiPpJcGKXzkSpIjKuivoEDfQ6TXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ggfQWPqA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ctdUEu9R; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BLNFexD3841451
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 07:30:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=pOw7S4DuLhrD4R0rtDZpc9
-	Lki/mxYUK9+TJeC3HNIpI=; b=ggfQWPqAvYSVn3/W/zZXrc7YEX4p3jliDmzj5X
-	5DziLF62dx3PSkspK85TcBF/SISGvoDcCwdB27JvrDtH1e7CWiow5DQkujORQBp6
-	3IbU5ZQTNDLo587r/GS+EnyppG8QCS3aJAAVnCCPmHFgAF+XSmiHzT6hD/uUBhuy
-	EoIYv8kSJpCCwP+S1Yv81Lp8DTB9Y5kb+uEsBAR8XCAFPyPrs4tVFxOQTnwX13g+
-	2vshY65iDoy/JZcbl/pQzd6uVzzVabUzsnfq9zG3KEYCO150NI+QzUookii6EAru
-	koo7tJpjhGewaJ4dv0B3fUgph/WuNj1seojXftZDFv+whlag==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b5mry42p7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 07:30:36 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2a0fe4ade9eso38876755ad.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 23:30:36 -0800 (PST)
+	s=arc-20240116; t=1766389565; c=relaxed/simple;
+	bh=1U45K3W9FRxsfbvvzg7mdtDjI/jjVfHl92eXMQxiWlM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gSNekSdIph1M/jdA6WBJJWxBloliqqNHvViOaTHFkK2pwFY701liJ6jWFWoWYQEJtelDb62utotPy0B5ilyzelT2B7NupN+7ijJ9iM3e0OJJ4CxlIMi8nL9ZB89iVcfL37iXfzTzy9330yePotbaH+ONj0D/fSkPHmIsAsIRSQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jXFOjNC0; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2a1022dda33so29795045ad.2
+        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 23:46:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766388636; x=1766993436; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pOw7S4DuLhrD4R0rtDZpc9Lki/mxYUK9+TJeC3HNIpI=;
-        b=ctdUEu9Rn7sJ3Ptaio6helwgDPOF6hSK4WUCN1tzKndS0SW94ZqD5xCm+LEAr6oXa5
-         FHwS09J970SW7xESaXb++025OeEnFH0hpjY/WPZlVUDauzyOCYfTvz5ZhNIpGD78vf09
-         XqpQGMq8Q8ahSaDMmBk6r+2oEHofB+IVsNAOnx84q2q8EFvpJpyPwOZm+gA5RTgkHGdl
-         kbdEm7+4a9BIRsmnauHNGujcj3P+OZSSsH1Ib7hoE98VuDZEz9Kko6SwVjiNY/7Wc4kW
-         zMDwGldw+nraBUeHME5ZbXNwaOf4UdAF/JooULLinXM/qZzAOavBhuS2sI94qnt9nan1
-         fnxA==
+        d=gmail.com; s=20230601; t=1766389562; x=1766994362; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Fm0ytkCzzsZtMoWmt94fz5Tfw5Toxhya5YWhR+90lM=;
+        b=jXFOjNC0aDKKvRH326wDKTJyEGq3MU8CahpFCWg6mvKf53ge+Ej4iVumDBS6u5Dvi1
+         +xSagbGmIIjKzLCmaN7ja/6jP2XscbQNuaTNCUDjmNfmE2gc3xFsh+jRXgg4UK+6mlfo
+         +jBv9WyWbuU/IF4mS0q1kb9hBGDpcgpGBw17hHh5syx9EzHsn1Hu0JJTPSzd0SiC9bs7
+         DpUYeFIyVmS+P8SCBc7G3vkXkh7w3cQyV73sc3rcDUJnJEsKnjIFYqZSsZ5EVXW7LrlQ
+         YFhiRXSOCAbWk8HsdTVshZyRG05s0Y3S40XGcd+tekc3dfC7nIZUh5Bm1Q5tCN+t00LN
+         P0YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766388636; x=1766993436;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1766389562; x=1766994362;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pOw7S4DuLhrD4R0rtDZpc9Lki/mxYUK9+TJeC3HNIpI=;
-        b=T/TdaLWF/HMWWlHD8jTWUmwzZ1c1FiwFJR//XW+8St8KUAyAirypmv0EoTjEW2hbGn
-         nR2agt3taDNIcPrve6KpCgkPh4YN8smB5jMNbSK/tVZoLafv2aXuQg5Y459wOD9vdl/x
-         4oNDsphLy+Av9j4xs6Tg6/53IAPA1pMFSlFVUtVdu04YjHIIWIytf4T4HsjBBgQOa8Qf
-         AP0t1Gra9V/1Hp540Kd2QEOU1HsDkl14Wj6ATs+48eKgq07IEmGniY4F80sN59iccAQZ
-         K++ainf5gVKggnfQjKpQWXW3PBhh93k3qBCtoPWo00K/dIm0aAUs1Glvh43xR+QSash3
-         zTjA==
-X-Forwarded-Encrypted: i=1; AJvYcCX3WIgIfHpuPV0MPwr67jOkA4mMWLpOcEEr95ZtuNeJUEMTmye147svfC2OamRr4qVE2D4qrayQAUC8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHP6FG+gkYfc7zSqnYvR5DAAFSLy+6vWzLnd3yA8f6Y+zu08Ds
-	0mSxad8xZ4+snlLfa5Pqlq2+KqWMtUlzDTM3zDyNPlG5W4tsZKl+P0Y84qZMmqprA5tUqsP3wvv
-	8bMAsAoZ1SeMrNaIBapDvgPm7z8iIASNyWQDZwxOZaTV6Mr+deVMnWcGxes7VwOlEdpbGoo7l
-X-Gm-Gg: AY/fxX7T30/KbQT9A3dcH0ah08sfmez1vLlvvgsxFSDkRe8sPql2lG4ViS4mRPB5HmI
-	E0+ro2hqFCqS4Hh/5ycTzN0s3DlebLQN/eKtBkXLWxYiiR/TMRV+r4stHPmUWdkwdt2sHBc89EU
-	qK5UqoBLjZTOiJqgpDMSp2H96q69Y3ZotrxpNBxyDTy+cjdwXciKyoZG+jLhzFVtmH8O3zG4YCu
-	/rlMUImJoXwqBvBy7Auk913Za3FSkv+i3yNJmrRVKO3AI8azlHJ/nW+7sgrbowp2oxEqQ5VA/KG
-	0r84zV1j7EjP5TciL//+uILYvY5Yb+h7Le1SXN2qzFu9iCwg1C+inM2S43m4qW84FFAZaM1AHBz
-	nTBVyHntFF+L4j1WxxOPyPPmtX/8ODnXAuKHaQRAXTRMdpdc=
-X-Received: by 2002:a17:902:d488:b0:2a0:9b4f:5ebd with SMTP id d9443c01a7336-2a2f2229d26mr90282715ad.15.1766388635683;
-        Sun, 21 Dec 2025 23:30:35 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFyG7vVnroKfDbK+1jLSNTAu8S2yVfhu3vCAJeQSMcNFKnEvbSuRLlnUpWEfy50d5f4FVP4OQ==
-X-Received: by 2002:a17:902:d488:b0:2a0:9b4f:5ebd with SMTP id d9443c01a7336-2a2f2229d26mr90282335ad.15.1766388635179;
-        Sun, 21 Dec 2025 23:30:35 -0800 (PST)
-Received: from hu-arakshit-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3c82a9asm89052925ad.30.2025.12.21.23.30.32
+        bh=1Fm0ytkCzzsZtMoWmt94fz5Tfw5Toxhya5YWhR+90lM=;
+        b=chxaVro/D1f89Gj/QO1REzBuGHRhASX2rMNue3mFwjQ9mjKFI1B3/H5drawITia7SP
+         WcVZPZwDLqCTdr9wh7i06chVcbdJr7TwQhsNVQ4KkGaKCDFws9OLV2gLXPWXI3bVSr2q
+         lbyHd5apQXpOQl3aIklsoRlWLm3rkWW4qzLoI675CcvCjm6R8sWWbsEied597E/JMPn+
+         lOTyNYPHSbL0JrL0tb6MGsaY9yAwz89rXJtWDauGZTsgHNNd/QmkpFCirNGvCaBE0VaR
+         L13+ZkmaxH0xgRqd8/KbY1EzTa5DZ2nskmCbSz3DRp5Vys//r+xayxTiN67Z7ZM8aKSA
+         sCbw==
+X-Gm-Message-State: AOJu0Yy5gMKAaDCAzCNt2WlSp4V7Mcw3nrOfy6iyfvjLx60YutiOqwaZ
+	BWACjL/TRss+kd8i6kaq6MsflBm5q3TuZY+TnUdM4+AIjtcEsFyouwai
+X-Gm-Gg: AY/fxX6J4CO3+c5a2ApWSBVabp6Mg6MEYtcDpNV6iTGphWvmNmMy/LR7CFGb+eUglRf
+	qz0ggg86sJemjKLuYUMb7n1uAHGFLNYgrWuV9DMs5C+P9K9elfxlUEEX9JpSzmlLGOFOL4pY3az
+	oZgDsbSZR9F1rnk+BzHHV3gGmkyWqzVt+lLqB4s+kxm+ty1jZUhbWxJ+f03JNw8bbA262aWacOh
+	FZWFLIMLt12tbs8q1rDJghFazDmeg3PTNUfdq6D8SsUvrINudpio6M7ekLNQ/p3eyeLVmgo7CyN
+	del5g6lSN2k3n7YvPagQyKivetBXPVy7/eRfsWMnYWMRNcqksf8qEQ9DuV5zdBy5MGQYH9n0vrQ
+	sqTyMqrQgAneqtHHSvQto935NZSh80Rki2CizJ/qo6K0SjudcFR3geHxmEdLVrDhGcQE5iL212f
+	vhwVIPdZHZHcHMndDvbca4X5M8ZYjIHfMiUl7k8M1w6Ac2dfay+H+1SQX5s2yYEN1p6BKTavY1B
+	sn8TjQEuF9vSyTI
+X-Google-Smtp-Source: AGHT+IHZy+xdBVzO/GB6/G2tv0TmbUIkORQVBt6UpRip9g/newtl6CMwaiALwAcivww2CRbJvKrmhA==
+X-Received: by 2002:a17:902:f68a:b0:295:99f0:6c66 with SMTP id d9443c01a7336-2a2f2836964mr104720125ad.36.1766389561828;
+        Sun, 21 Dec 2025 23:46:01 -0800 (PST)
+Received: from [127.0.1.1] (2001-b400-e3a0-2ead-fb96-4f50-681a-bce4.emome-ip6.hinet.net. [2001:b400:e3a0:2ead:fb96:4f50:681a:bce4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d4cbb7sm89605105ad.59.2025.12.21.23.45.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Dec 2025 23:30:34 -0800 (PST)
-From: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-Date: Mon, 22 Dec 2025 13:00:19 +0530
-Subject: [PATCH] arm64: dts: qcom: monaco: add QCrypto node
+        Sun, 21 Dec 2025 23:46:01 -0800 (PST)
+From: Kyle Hsieh <kylehsieh1995@gmail.com>
+Subject: [PATCH 0/2] Add Meta(Facebook) ventura2 BMC(AST2600)
+Date: Mon, 22 Dec 2025 15:45:42 +0800
+Message-Id: <20251222-ventura2_initial_dts-v1-0-1f06166c78a3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,90 +82,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251222-enable-qualcomm-crypto-engine-for-monaco-v1-1-06741d6ea66a@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAIrzSGkC/x2NQQrCQAwAv1JyNuAGdKlfEQ/bbVoD3aRmVZTSv
- 7t4nDnMbFDZhStcug2c31LFtEE4dJDvSWdGGRsDHekUiAhZ07AwPl5pyVYKZv+uT2t6FmWczLG
- YpmwY83noQ6AY+xFabnWe5PNfXW/7/gOcjSa8egAAAA==
-X-Change-ID: 20251222-enable-qualcomm-crypto-engine-for-monaco-7c6b9112779d
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Authority-Analysis: v=2.4 cv=cbbfb3DM c=1 sm=1 tr=0 ts=6948f39d cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=cVBMcqNyiYGVgfMZcJoA:9
- a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIyMDA2NyBTYWx0ZWRfX09iP7GV4N+Wg
- E+gpSk6OEgLx+8aMQdZOIXYZyEYi0BooR75XEPDH0BenOPWp/ws4UuPx8sm0mBHCBqOjGed+h67
- M6vSccyy7hsX7xvv571hKbrEZIsGubsWndCiSKUQ03l3hYHtyt5PxGpzQXDSK9NEBfDc6oh2wKu
- U20mDSg4XVU1QG0UDj+shogSOPJLxOl+N9TXNUk2eWc4l0++9GObZ0Q9rt0Qh8zmsTr8W0vpmhZ
- DPBFcpU67JMIVdoeHcqJb7ZajczbK6/7Nfp+Q7HBsk3opa2p91FhDm0O6L2dzdRmDy/hWcWYa0h
- wGslTH1Nq072IL45PJ7+oSbYRfHLHuahPGti5JsYhLh30r9PHCIhscN17Gu9ubvku2T1WiJEyJQ
- URQNwAJ3uECUGWqMnUgVyllHT2vTAS9Buxk6tDKjhf+DLuLM4F8k65asRZ4KIrW5Rv1OGWiZ2DI
- J2Ie3In8S+s4b0Mizhg==
-X-Proofpoint-GUID: rrVXLVctlo4oLWozgwckRILaK-KbBSk5
-X-Proofpoint-ORIG-GUID: rrVXLVctlo4oLWozgwckRILaK-KbBSk5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-21_05,2025-12-19_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 clxscore=1015 phishscore=0 malwarescore=0 adultscore=0
- lowpriorityscore=0 impostorscore=0 bulkscore=0 suspectscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512220067
+X-B4-Tracking: v=1; b=H4sIACf3SGkC/x3MQQqAIBBA0avIrBNyosKuEhGWUw2EhVoE0t2Tl
+ m/xf4JAnilAJxJ4ujnw4TJUIWDejFtJss0GLLFWiChvcvHyBkd2HNnso41B6lJPFbatbZoacnp
+ 6Wvj5t/3wvh/iKNU9ZgAAAA==
+X-Change-ID: 20251222-ventura2_initial_dts-909b3277d665
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Kyle Hsieh <kylehsieh1995@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=735;
+ i=kylehsieh1995@gmail.com; h=from:subject:message-id;
+ bh=1U45K3W9FRxsfbvvzg7mdtDjI/jjVfHl92eXMQxiWlM=;
+ b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBpSPc1Shs0Q0pMY4uKrv/B9B9j/btwZgk1uTBRM
+ mt4115VUEaJATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCaUj3NQAKCRClg0K3CVbE
+ gSqoCACl+GJeVtCd6QqxE6qc5Fxc86uBRSxPbrzRkBEviqVGBcy2mry3Uy3SkDFxPZePkHmFY8U
+ 2et+EtaBHVuzCWQYHRJESKKwWbpOlGCxX8oL9xaLbmUxbnb61aNxd3QGuICWWc9jiR7/H5scRjb
+ MFZ8Vn4CIHlfQZEntkPzDWj9R2mbvzoSUVRFVTPpzkmqDFL0Pu0YpvXKJe94xDm94DZ1mAKXnpr
+ JaEv/N1vjUm7W4BdKHMNjBR49ezPwzeATHpwwcTpnLWik0W9xCAOjhrEAJnWv7xiXF0I3tHNaN4
+ Q08DP5L6ufRxcAb0cV7ndXyvyzfFEaGP5dltz45ztEr2J3jw
+X-Developer-Key: i=kylehsieh1995@gmail.com; a=openpgp;
+ fpr=C91EC68D64E758F931C6A897A58342B70956C481
 
-Add Qualcomm Crypto Engine device node for Monaco platform.
-Bindings and Crypto DMA nodes for the same platform is already
-present in the tree.
+Summary:
+Add linux device tree entry related to Meta(Facebook) ventura2.
+specific devices connected to BMC(AST2600) SoC.
 
-QCE and Crypto DMA nodes patch was applied as part of the
-commit a86d84409947 ("arm64: dts: qcom: qcs8300: add QCrypto nodes"),
-however was reverted due to compatible string being miss-matched
-against schema.
-
-Resubmitting the enablement of QCE device node for monaco platform
-with compatible-string being aligned with qcom-qce schema.
-
-Signed-off-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/monaco.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Kyle Hsieh (2):
+      dt-bindings: arm: aspeed: add Meta ventura2 board
+      ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
 
-diff --git a/arch/arm64/boot/dts/qcom/monaco.dtsi b/arch/arm64/boot/dts/qcom/monaco.dtsi
-index 816fa2af8a9a663b8ad176f93d2f18284a08c3d1..dd0b9ea27fe1cdfbf6aba07e98183871be7ee889 100644
---- a/arch/arm64/boot/dts/qcom/monaco.dtsi
-+++ b/arch/arm64/boot/dts/qcom/monaco.dtsi
-@@ -2350,6 +2350,18 @@ ice: crypto@1d88000 {
- 			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
- 		};
- 
-+		crypto: crypto@1dfa000 {
-+			compatible = "qcom,qcs8300-qce", "qcom,sm8150-qce", "qcom,qce";
-+			reg = <0x0 0x01dfa000 0x0 0x6000>;
-+			dmas = <&cryptobam 4>, <&cryptobam 5>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x480 0x00>,
-+				 <&apps_smmu 0x481 0x00>;
-+			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE0 QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "memory";
-+		};
-+
- 		tcsr_mutex: hwlock@1f40000 {
- 			compatible = "qcom,tcsr-mutex";
- 			reg = <0x0 0x01f40000 0x0 0x20000>;
-
+ .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
+ arch/arm/boot/dts/aspeed/Makefile                  |    1 +
+ .../dts/aspeed/aspeed-bmc-facebook-ventura2.dts    | 2950 ++++++++++++++++++++
+ 3 files changed, 2952 insertions(+)
 ---
-base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
-change-id: 20251222-enable-qualcomm-crypto-engine-for-monaco-7c6b9112779d
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20251222-ventura2_initial_dts-909b3277d665
 
 Best regards,
 -- 
-Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+Kyle Hsieh <kylehsieh1995@gmail.com>
 
 
