@@ -1,144 +1,125 @@
-Return-Path: <devicetree+bounces-248903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B9AECD67A3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:07:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180B7CD68FD
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:34:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4212C300A6C9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:07:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 23972308CDB3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:33:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2433F2F9C37;
-	Mon, 22 Dec 2025 15:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867F232D7E0;
+	Mon, 22 Dec 2025 15:33:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TOfac077"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L3nyI1Ff"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C7B26CE05;
-	Mon, 22 Dec 2025 15:07:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1B8732D0E9;
+	Mon, 22 Dec 2025 15:33:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766416053; cv=none; b=CVM2ZaGVmFSsD77s/KJJLSKbUNeqSSC6ivtwuhSd4Al4WRL0uRVbb+tMey48SpP7ClWRIOJOonJCkXVlomPsA5FW/Ze/RmxIMUupl6Vg9qnwkOgNT0qg6c3niWAsjXlqjsLw3tVn5MIUNPHPa9a4XGJ/lhPRUcEGgNLpF0nB/CY=
+	t=1766417608; cv=none; b=VTEEIJ12cUqa9u+ziIveIUjDK8RE6fBLd/VxucgB8DEMfFcrgrkH83hPOYo84f7rxguDE6iuytPfSCp2AEgmrv1k4NJo0EIy+5co7E1faiTGKZs9s8c5Cpq9elaA0637BfUzXwvM6CjjE57ZJu42P/FOi4aZn382X1JPMvMyGaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766416053; c=relaxed/simple;
-	bh=n24GBhvAvBMltS9mF9GmhmK1Fc4IRbcCrliteW2XgqA=;
+	s=arc-20240116; t=1766417608; c=relaxed/simple;
+	bh=oevZNtJK/umXqU3Iu+7UzKkPRbb+1+8qqTTjLfmC6wU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m9MlWF63z7UNXUiQywZ6NxvXw3sAAypzwVoLo9dpoRdVnyyh75OaKFoNFpZ1iotpy/TGFENAxfHMWE2eax6NOdz9tnaTDIgYFxT6dPoyI9XonEIJdHqSU1LrWWUzGePMU9cdy37bUgejpLpPOXi/aTwLGtlcetcWjXOtTVXrCyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TOfac077; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA691C4CEF1;
-	Mon, 22 Dec 2025 15:07:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766416052;
-	bh=n24GBhvAvBMltS9mF9GmhmK1Fc4IRbcCrliteW2XgqA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TOfac0770JyqmHO67mYIW0IiJSfQkq178k9kfZFdLXZQCSNKPtFL9n1/mPqLxIi1Y
-	 cYjlK9TsByM9c9Bfm5LCA7abDOh6jCmFJezTqA+GPAGR0QGmUDq6lL1ZZfgwTISAi+
-	 6OiAuOyRjP/TttFgikWE8gDuQ6CZ4g81xZRPg2scdZ53WXQuxUZ2rxwYixOtsq+O+G
-	 y69vYkzhWVz3xT07H0yNkIT10uryA7quszckSLPvlKJLHGuqBOAMl/zqjIJXtAK7r5
-	 jTSXd97+kU1fG7PidvaqjwYJ4VT7MTtGDuhx512o8BHe/42TPAfGUKCQjm+mohENVf
-	 EOEkbx+p6xO/A==
-Date: Mon, 22 Dec 2025 15:07:28 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH 2/2] regulator: Add TPS65185 driver
-Message-ID: <2e850c1c-67ed-44af-94b1-2ccc35e50bb8@sirena.org.uk>
-References: <20251222-tps65185-submit-v1-0-34986b504d5f@kemnade.info>
- <20251222-tps65185-submit-v1-2-34986b504d5f@kemnade.info>
- <84fdaf7c-4d4b-491f-975c-ebb14350fafd@sirena.org.uk>
- <20251222144522.33d7c734@kemnade.info>
+	 Content-Type:Content-Disposition:In-Reply-To; b=h7cHvIpvBsllMtm1FF7E79gG/dQOCQ7w8Dl0TDwgt1UOfVwfsqWsWqC+NIJEEz3p5v/X4FYtwV5rqOIaudJgRUOSPaOQ5tw5P3rYbmB20ZYpOh/rGvsq2AQEqHj4koq5Byb9s65keQVq8EdyIuGYbYhYjGGMOphVCy7pZ24GS2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L3nyI1Ff; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1766417607; x=1797953607;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oevZNtJK/umXqU3Iu+7UzKkPRbb+1+8qqTTjLfmC6wU=;
+  b=L3nyI1FfLjZjPyirgy6rU+eQju5nZXHNh9NTcof+mggV1JOoRk9Px/RJ
+   FDRg+pLrzqF1NGdrrHHD8kH12AQmCFrJLjmJCiwD7AU171LjxfYn4ICOr
+   dsQTnudhJ74QCOMQi4xO6wqH9HnCM0ACFDGgz7E/gLIsFBGtmyMyXRK0s
+   HiDmwcEPuvHKFXkfqEgRmt2Cu3jc3uwVxvZZ03XPNJoIGNYroHHfmkLQX
+   FTDgEqUqSExmXfAL0KNMF25M4I38jCKRmcuk4xBnzEh0m0WySw3NhYvhF
+   GqurEIg3zrZCVIxOe20DCcRzgvYEUQihL0sji0rHUoD0x0gP+61YVjSJ+
+   w==;
+X-CSE-ConnectionGUID: MFVnQTJaSNSliFv3pBX/dA==
+X-CSE-MsgGUID: cInLD3vRQduXKCZ75RwCwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68026712"
+X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; 
+   d="scan'208";a="68026712"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2025 07:33:26 -0800
+X-CSE-ConnectionGUID: ukAZI8NMSOiEtpG5QUZ/Uw==
+X-CSE-MsgGUID: L8+GSCwISZyJ+reXBPVunA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; 
+   d="scan'208";a="223033237"
+Received: from igk-lkp-server01.igk.intel.com (HELO 8a0c053bdd2a) ([10.211.93.152])
+  by fmviesa002.fm.intel.com with ESMTP; 22 Dec 2025 07:33:22 -0800
+Received: from kbuild by 8a0c053bdd2a with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vXhuR-000000005Y0-3SMV;
+	Mon, 22 Dec 2025 15:33:19 +0000
+Date: Mon, 22 Dec 2025 16:32:53 +0100
+From: kernel test robot <lkp@intel.com>
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>, joro@8bytes.org,
+	will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+	nicolas.dufresne@collabora.com, p.zabel@pengutronix.de,
+	mchehab@kernel.org
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+	kernel@collabora.com,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: Re: [PATCH v10 5/7] media: verisilicon: AV1: Restore IOMMU context
+ before decoding a frame
+Message-ID: <202512221600.vlUX9PF6-lkp@intel.com>
+References: <20251215085349.10155-6-benjamin.gaignard@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kPlSyEmGk/3dQI4m"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251222144522.33d7c734@kemnade.info>
-X-Cookie: Be different: conform.
+In-Reply-To: <20251215085349.10155-6-benjamin.gaignard@collabora.com>
 
+Hi Benjamin,
 
---kPlSyEmGk/3dQI4m
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+kernel test robot noticed the following build warnings:
 
-On Mon, Dec 22, 2025 at 02:45:22PM +0100, Andreas Kemnade wrote:
-> Mark Brown <broonie@kernel.org> wrote:
+[auto build test WARNING on linus/master]
+[also build test WARNING on v6.19-rc2 next-20251219]
+[cannot apply to robh/for-next rockchip/for-next arm64/for-next/core]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> > The reason for having GPIO controlled enables on devices with register
-> > maps is that it's generally substantially faster to update a GPIO than
-> > to do I2C I/O.
+url:    https://github.com/intel-lab-lkp/linux/commits/Benjamin-Gaignard/dt-bindings-vendor-prefixes-Add-Verisilicon/20251215-165740
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20251215085349.10155-6-benjamin.gaignard%40collabora.com
+patch subject: [PATCH v10 5/7] media: verisilicon: AV1: Restore IOMMU context before decoding a frame
+config: openrisc-kismet-CONFIG_VSI_IOMMU-CONFIG_VIDEO_HANTRO_ROCKCHIP-0-0 (https://download.01.org/0day-ci/archive/20251222/202512221600.vlUX9PF6-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20251222/202512221600.vlUX9PF6-lkp@intel.com/reproduce)
 
-> well we are talking about 30ms turning on time here.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512221600.vlUX9PF6-lkp@intel.com/
 
-> [  130.816647] tps65185 1-0068: turning on...
-> [  130.849970] tps65185 1-0068: turned on
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for VSI_IOMMU when selected by VIDEO_HANTRO_ROCKCHIP
+   WARNING: unmet direct dependencies detected for VSI_IOMMU
+     Depends on [n]: IOMMU_SUPPORT [=n] && (ARCH_ROCKCHIP && ARM64 || COMPILE_TEST [=y])
+     Selected by [y]:
+     - VIDEO_HANTRO_ROCKCHIP [=y] && MEDIA_SUPPORT [=y] && MEDIA_PLATFORM_SUPPORT [=y] && MEDIA_PLATFORM_DRIVERS [=y] && VIDEO_HANTRO [=y] && (ARCH_ROCKCHIP || COMPILE_TEST [=y])
 
-> So if we have 100khz i2c, so, we have around 0.1ms per byte, so
-> the read/modify/write sequence should be done in <1ms. So I guess that is
-> neglectible and allows the flexibility to not have that pin.
-
-Every little helps, and not every I2C controller is a model of
-efficiency and programmability.  Note that we do have core support for
-GPIO enables, it's not really any effort to support them.
-
-> > > +{ =20
-
-> > Implementing runtime suspend in a regulator is *very* non-idiomatic and
-> > is leading to large amounts of open coding throughout the driver.
-> > What's the story here?  I'm very surprised that this wasn't in the
-> > changelog.
-
-> OK, lets look around in the datasheet. We are apparently dealing
-> with 130=B5A here which can be saved. But that should be acceptable to be
-> only done on system suspend even if the regulator is off most times.
-> So no really strong technical reason here. I am just too used to testing
-> power management using runtime suspend.
-
-It does feel like something where if we're going to do it we should
-update the core to take runtime PM references rather than open coding it
-in a driver that's otherwise able to use the standard helpers.  I do
-worry about the impact on enable times (you'd have to power up the
-supply and sync the register cache) but I guess people could disable
-runtime PM for specific devices if it's an issue, and it'll never apply
-to primary PMICs anyway.
-
-> > > +static irqreturn_t tps65185_irq_thread(int irq, void *dev_id)
-> > > +{
-
-> > This unconditionally reports an interrupt even if none was detected.
-
-> Hmm, this seems like some common pattern, if some irq occurs,
-> check some registers and if something is set, do something about it,
-> and then unconditionally return IRQ_HANDLED.
-
-It is a common bug but it's a bug nontheless, it means that genirq can't
-detect and mitigate stuck interrupts and that the interrupt can't be
-shared.
-
---kPlSyEmGk/3dQI4m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlJXq8ACgkQJNaLcl1U
-h9DI8wf9GLCZd220kTXGUaVL3vUwotSL6Wq8pcMK/Z4kK8JiOp4qt9f3MSdOBln0
-+IXWGhMkJS2MlWvcnbpcuN2Jp8rClZamZ7WiUlOzn6br5Z8NVMAqzPznWeG0IQh1
-/4QlOL1mRvtAlmT57eFIxkWhcziaHz1gxYwWZxOY7xhUhU/y9D43hencthnPLIMQ
-qw4rn7syvFjjOMuhpQXYG29XxmeLq4DPQPJ1PvjMDhGPvqs0v6aKjkvBBj0zbXjw
-w2EwQVI0ehyiVA2XfaTQS4bmd/6iDoWOOkbFQjfeM88yTLQrvrxQlI9SqgQ8I2/6
-f2Jpdb+7suGZRjx04rLK38PZmolcfQ==
-=OJM+
------END PGP SIGNATURE-----
-
---kPlSyEmGk/3dQI4m--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
