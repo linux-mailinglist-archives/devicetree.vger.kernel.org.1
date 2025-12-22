@@ -1,164 +1,221 @@
-Return-Path: <devicetree+bounces-248764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06235CD5894
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:21:30 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA6BBCD58BA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:24:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EACEC3032FDA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:21:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 37E27300F629
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79DC9337B9A;
-	Mon, 22 Dec 2025 10:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CD9C26056E;
+	Mon, 22 Dec 2025 10:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZlW+lxbk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GL48gxBd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5324E30B50D
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 10:20:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1BB28690
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 10:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766398861; cv=none; b=fxEIV0mteVhao7ed6fxeQnSmgzvnwRUtbhT5PtQWXMZoxqcfbh7CTB7hTta2iEUhP6nkVwH6LTQFKtsZwFIXiBl4IeqJTo7+e4s+bTCgrD8TKvoC4M6ADbDPPH/nLZARgn5Bei9jN7KiN00XLSO1Rdlltt03T576VnlBNu2/oUk=
+	t=1766398908; cv=none; b=JpqevX6gP9fG0I5FGj/a4y+lfN43US7mXuUCmrI8NQcOiWGCM46dc3zrrpbhz40yRWZ+LF7IsCGnj0rmLVq3iiDy6QPjndNqF6IlOom30ZDwFoj7yEBASPTF2wUhV59aCB3IJP2fqAchMoqkvok76JBeYElIBBHT0RBhCIQ7RL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766398861; c=relaxed/simple;
-	bh=IGX6q1EwizBQuQDLpaywg7mzFMLwjK5EiQRcSXh1QdI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lQp5iqzb7oJhulNutTakwQ80tsYuTnP2kAUDFbytv40/p7C7usNlDaD2G4kMgvp+oxcJrE/YIgcJgFX7dLJxhO1N1866pKXo+J6g0b8cczfEcBcyozQcJgPbIg9Q80EZqk51WsyOQElziiUhu04cAGLojiW+q/iGjv/nPrm70l4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZlW+lxbk; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-64b4f730a02so6015812a12.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 02:20:58 -0800 (PST)
+	s=arc-20240116; t=1766398908; c=relaxed/simple;
+	bh=fiu+7IDZg7iGHWuMWejacCouV4YQDEBOd326O/hrIX8=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZIs70jUlaog2zJXKLrv7TNw7xC/0Pm8+KTCgok/O0PN/E0zTzLqKIaIlBOm2GwmaCrqDjXsQ2rc3h8OVajFPOM0S7E80BX3hKXOy5g6WBYq0h0m6/LiZgCYI1eIvbLtawcz6cP8JMTWKseRJXO0ToowElNCxGcyS919XWmp9n/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GL48gxBd; arc=none smtp.client-ip=209.85.222.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-8b29ff9d18cso424795785a.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 02:21:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766398857; x=1767003657; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=IGX6q1EwizBQuQDLpaywg7mzFMLwjK5EiQRcSXh1QdI=;
-        b=ZlW+lxbkZJmLBU5QhW+NN5Bii7GuAYKJPGGLTYJOzeafotfrNPrd+ui4Rq90VcrVIB
-         /BeKYPGOm9BOtoJyi19L1ZzazcVejpUP6JvUl7I/Buf0PNx6yKmCrBZZHCNpIoVZFpQz
-         B0UgAQDPmQO+FAlizpdVVQn+CTaF5oPh3BNKzAfcpaYwuQVg9Dahwm4Wrx7tMGyfEfEY
-         UvT0OdMGiqwPjITGRla3Jwzyovy87mWzR1kYs5BmXyNbaW/PjR2dGLwBgDTMIXWuyT0D
-         AgPx0efbB2H1TGoCRCBQXbCJOB4baxk8enI8ClSibuVvDV9EVzeijoj9Zp0vL032p2YH
-         wnDg==
+        d=gmail.com; s=20230601; t=1766398902; x=1767003702; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iSVxw9ZmIdQgXSzndsIC58cZVndwux1ConW+UpHN898=;
+        b=GL48gxBdXZCGyrlGuWsIte5fkUaFwCdD9cjI3PSxCNkUuG5nmnSfMlqtUHmNoxsv69
+         vEBO1qCXSmbGpXV+5wpXfo+TeMWQgpDbwkfd+aXNlQLuCh01gEwMMbCT6jN6juqRCckr
+         IPy5tJmaNXfpiAVCpTKwSeicN/JpXlve0xKWIG/mEFjS/P7PBRgegFMK9S55UVfV5bjm
+         tnVntLGIe4rGBjj0U02UPGkWjlQCFv2woLwNSUW8LjP3IQBj3Rye2IMaKQQog0QdeMbt
+         +Z11OowUyw2kR8i5fsqfVqxqOaNTa1IFbL9UNSvRGcBx3KS+mdqfTVJ2HWENoAT+Kgy0
+         hXfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766398857; x=1767003657;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IGX6q1EwizBQuQDLpaywg7mzFMLwjK5EiQRcSXh1QdI=;
-        b=n9Ed9ZC1xyT0HDQkMEmrE1SfXGHql6KPwEf7b664c4Bg4EZol6/gyRoYWMBEzGxcQq
-         YXoFApXuyvtrbaEhYw4LwWqOfddMXFiknvRZ0LqEFx4zAdm5Vz68tnPF0H9EoF91ZtgR
-         ZXMJuXNCnjCYf2cYk+e/VzFefIZJ6/qn2MET2UL/Vr1hF0U9+TslZRfARL4SNuYi/jhU
-         QFRJNIhE4pTJnO+QhsaXetoFFtN5lpNIgV3q8lqkiEArG/YT3YTfndbnuOFvzWlzlG9Y
-         Z3Rcj1EZPhg+9WSQm0/i97nZV9x5/VEoIuEGPXAeSOgYYB8NkhahtKCr1LyWYoR2DE1b
-         ItXA==
-X-Forwarded-Encrypted: i=1; AJvYcCWpmV6WqjFYkbq61YhErQsm6h1VCW67RbK9yAjqpS8O7xSCNuVMYemagoMh0ljXcDkPfEPhp6ptXVMh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxngqpQBLazBypEsoaXplY0d58FtL1nCfIbseVtyoxHiCtV2j7r
-	ZE0q5IIHSt2vnYfyg/I38zUMw8qarmcaITB5gcFjtK7q75012KP4p5Vtfbe8h50LW+X0tlGs8BA
-	Yp/tCggqY24LdmqJGdEeH3lIvEkH/wb61yuUdyGIZxA==
-X-Gm-Gg: AY/fxX7DQZArrrR90f8UgeeHTXtJFO9xUxsyX2YSutk4gPqBA7Ayw+LAiPYwO+Th/t2
-	ms7IHVWydwLluSyyQz8G7QDNn46DZdDBEx6k+p6Np1fAWnmodSNoKE2nXD/lfpghS7zau9KzkYj
-	1kk636EzCZ1aRJVIyF3ooM+Tg7zGFaYBqmyO7o0c73ZqhzSMfMki67dXKzNRCH1tU3g0rLuG+Kj
-	j7gpgeIL7ZUNU2kmDXb43EdwdVjMzQynemfLE00l9c/RZePnAoSA/GhVDUgiobEkTIDug==
-X-Google-Smtp-Source: AGHT+IEqXEGu9cvltqcnQjyMesMjaoRtKgOECBN5qmN3T1OJaLoUGgTcyks/ZkPJRdcjfHofOWpRzwLbozye182dWTE=
-X-Received: by 2002:a05:6402:3591:b0:64c:69e6:ad64 with SMTP id
- 4fb4d7f45d1cf-64c69e6b268mr7653426a12.24.1766398856513; Mon, 22 Dec 2025
- 02:20:56 -0800 (PST)
+        d=1e100.net; s=20230601; t=1766398902; x=1767003702;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iSVxw9ZmIdQgXSzndsIC58cZVndwux1ConW+UpHN898=;
+        b=TzfaWJZRj6lh0ekJz1wkDdgpdVwLHJZETHslfnxl1mso7xNdOa82eaj5xL5dA6u+Cw
+         QrlI22A3cyASsjln1r7qrGCsbiSnOvg3YcMny4QcowAgBM2/rABQ+3CzPbMeo+fQw/59
+         YunmqvnYw/vzQglUYvxg+jeGMxlfSeiDgGdPHo15/KmwqAiEcCV0ML9jCcPCMTLKrrv7
+         6ANQa9rOqCqI/ciRfz/YbRPudQNrOyN1vEP5mIPKqrD24UKs9Bj9VZhXeeNRgI+HS6hJ
+         qGBPVMh4EgNE8wBh0gYuje8ZEwE5bUkmr77xlPuY0GPiXR0jFDZN+rqWXUagDtx0khUP
+         oS8w==
+X-Forwarded-Encrypted: i=1; AJvYcCX3yKfaOloICqiHj3vsC/oROQ65lvu2Xddv6XZEnAMfnD9Acd0P4T7Rq6eTCJcwvoeK9Kcx0JOn/zd0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxC6RQjsuoMtVzsqnzoXb3EJsOFdB+8elKTxzBrzM94/SFqnJYQ
+	tzwA4vJFSJduWnXx9Phgt0utBCgyeFfXETPqGEezW8myoZ1neL85HHW/
+X-Gm-Gg: AY/fxX4ugiE9GAjdBpMn9pcRyWiU0czwFDe14UQ5E50Xzaa5+fxeljVEwQ8IGnAl6TK
+	aebyj+mfYTkLHavFt5KSSOc46mqj2WeXfoqeK15tcmvhwsaAMoS2uCUWKll3MLSmTlBRtiwHNtq
+	q6VZR0bqL68jt6gjFYyZqr5yEH/GJvNxYakrgUNc/5JVtZ3odZ/DzlBPD6cZOOa1VtSp7MaT4Sa
+	aYSdyAgxzal77wfARoH8MHXbz2Fm2mmjhxMgZb4kVLEdc46qNyLmweGfCDnojFlQ18UCjcrxf7U
+	zzakc9NPGl8yHsuXTjcykqa4Ds0tWF+TFaq0Ye2qhkbOePgGWnRdv/0dyepLcxVvUC8gl/1CkXM
+	T1AiUJfUfMBRm+I7/OlcuotS8H+EwPvLPcJY+GhS505nipxhsuLZNj19OW3ECNlNrwYTqgKEh90
+	D0X1aZ1XK/lIB6gTFN+mzy8TBGWe/E2t6l3LH1wJ1dM4rZQnWzAQxCmE66C7zpW5p+xH1SJG5mX
+	T9w
+X-Google-Smtp-Source: AGHT+IElhBkWJr2Owy7kS2H7e5EkrIkHXV9GSmGV4saFfOnNmCFz9qEFMfmL8CLkpnT41AF4gm0Big==
+X-Received: by 2002:a05:620a:31a8:b0:8b2:6b9e:5396 with SMTP id af79cd13be357-8c0906fc8bcmr1532358385a.83.1766398902393;
+        Mon, 22 Dec 2025 02:21:42 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c096783662sm828237685a.5.2025.12.22.02.21.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Dec 2025 02:21:41 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Mon, 22 Dec 2025 10:21:32 +0000
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Rodrigo Alencar <rodrigo.alencar@analog.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v2 1/6] dt-bindings: iio: frequency: add adf41513
+Message-ID: <3mmzedwjwraepmhams5w3navb3cyga3wr7fvkrdgls2zkzdqwb@vogpd527ovgr>
+References: <20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com>
+ <20251219-adf41513-iio-driver-v2-1-be29a83d5793@analog.com>
+ <20251220-bouncy-perky-tarantula-d9b3be@quoll>
+ <gz36kmewv4bhwqz6d3xqatcx65uzukqcgsvfbwhr7c3yhw225z@edeggfhjws2h>
+ <326c3e83-059e-4e96-ab99-d4a33eb3b56f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251220-automatic-clocks-v6-0-36c2f276a135@linaro.org>
- <20251220-automatic-clocks-v6-1-36c2f276a135@linaro.org> <215eb434-683f-4cf2-9bcd-0860991ae23e@kernel.org>
- <CADrjBPoWcONhJJdCeovkwQ9Oha+t+dpHY_ohKPV7BQS1tougGw@mail.gmail.com> <d7a749e2-1d00-459f-adbb-0841190b7849@kernel.org>
-In-Reply-To: <d7a749e2-1d00-459f-adbb-0841190b7849@kernel.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 22 Dec 2025 10:20:44 +0000
-X-Gm-Features: AQt7F2okhEmetfhP-OZXD27I-iFbBBEDggeAe_X29tbibS3bKuDBCabzrOTR_5o
-Message-ID: <CADrjBPpv9OB5zjsE=+dUyZCz2xSs6XXWkpbK2qbFAdUyTaXXhQ@mail.gmail.com>
-Subject: Re: [PATCH v6 1/4] dt-bindings: clock: google,gs101-clock: add
- samsung,sysreg property as required
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <326c3e83-059e-4e96-ab99-d4a33eb3b56f@kernel.org>
 
-Hi Krzysztof,
+On 25/12/21 02:02PM, Krzysztof Kozlowski wrote:
+> On 20/12/2025 19:05, 455.rodrigo.alencar@gmail.com wrote:
+> > Hi Krzystof,
+> > 
+> > thanks for taking a look into this again. It was my first patch it didn't want
+> > to draw more attention or discussion to the V1 patch as it was declared not ready
+> > at its very first review.
+> > 
+> > On 25/12/20 10:21AM, Krzysztof Kozlowski wrote:
+> >> On Fri, Dec 19, 2025 at 12:34:48PM +0000, Rodrigo Alencar wrote:
+> >>> dt-bindings for ADF41513, an ultralow noise PLL frequency synthesizer that
+> >>> can be used to implement local oscillators (LOs) as high as 26.5 GHz.
+> >>> Most properties refer to existing PLL driver properties (e.g. ADF4350).
+> >>
+> >> What is "existing PLL driver"? I know about motor drivers, but can you
+> >> drive PLL?
+> >>
+> >> And how is ADF4350 related to this binding. I do not see ADF4350
+> >> compatible here at all. Describe hardware, a real one.
+> > 
+> > ADF4350 is an older one, and its bindings can be found at:
+> > Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
+> > It is a similar part, but yet very different.
+> > 
+> >>
+> >> Nothing improved.
+> >>
+> >> You ignored comments, did not bother to respond to them and then sent
+> >> the same.
+> > 
+> > Sorry for not responding on the V1 thread, but the previous patch had to be reviewed internally
+> > first. It is not true that nothing is improved, in fact, it has changed a lot, here are some notes:
+> 
+> Process is not like that. You first review internally, then you send.
+> After you sent and receive comments, you respond to these comments.
 
-On Mon, 22 Dec 2025 at 09:53, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 22/12/2025 10:39, Peter Griffin wrote:
-> > Hi Krzysztof,
-> >
-> > On Sun, 21 Dec 2025 at 13:26, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >>
-> >> On 20/12/2025 10:05, Peter Griffin wrote:
-> >>> Each CMU (with the exception of cmu_top) has a corresponding sysreg bank
-> >>> that contains the BUSCOMPONENT_DRCG_EN and optional MEMCLK registers.
-> >>> The BUSCOMPONENT_DRCG_EN register enables dynamic root clock gating of
-> >>> bus components and MEMCLK gates the sram clock.
-> >>>
-> >>> Now the clock driver supports automatic clock mode, to fully enable dynamic
-> >>> root clock gating it is required to configure these registers. Update the
-> >>> bindings documentation so that all CMUs (with the exception of
-> >>> gs101-cmu-top) have samsung,sysreg as a required property.
-> >>>
-> >>> Note this is NOT an ABI break, as if the property isn't specified the
-> >>> clock driver will fallback to the current behaviour of not initializing
-> >>> the registers. The system still boots, but bus components won't benefit
-> >>> from dynamic root clock gating and dynamic power will be higher (which has
-> >>> been the case until now anyway).
-> >>>
-> >>> Additionally update the DT example to included the correct CMU size as
-> >>> registers in that region are used for automatic clock mode.
-> >>>
-> >>> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> >>> ---
-> >>> Changes in v5:
-> >>> - Invert the test for google,gs101-cmu-top (Andre)
-> >>>
-> >>
-> >>
-> >> <form letter>
-> >> This is a friendly reminder during the review process.
-> >>
-> >> It looks like you received a tag and forgot to add it.
-> >>
-> >> If you do not know the process, here is a short explanation:
-> >> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-> >> of patchset, under or above your Signed-off-by tag, unless patch changed
-> >> significantly (e.g. new properties added to the DT bindings). Tag is
-> >> "received", when provided in a message replied to you on the mailing
-> >> list. Tools like b4 can help here. However, there's no need to repost
-> >> patches *only* to add the tags. The upstream maintainer will do that for
-> >> tags received on the version they apply.
-> >>
-> >> Please read:
-> >> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-> >>
-> >> If a tag was not added on purpose, please state why and what changed.
-> >> </form letter>
-> >
-> > Apologies, your tag should have been added.... got kind of sidetracked
-> > bisecting the linux-next regression with the serial console and then
-> > forgot to apply it.
->
-> I think it was more than one tag, so I decided not to look for them.
-> Please send v7 with all tags collected.
+ack.
+ 
+> > * adi,power-up-frequency is not carrying the -hz postfix because it forces to be a uint32 by
+> > the dt-bindings check. For that variable it needs to be uint64 as the part supports up to 26.5 GHz > 2^32
+> 
+> And what granularity do you need? Why mhz does not work?
 
-Sure, will resend shortly.
+~Hz granularity is needed to adjust frequency offsets spotted by calibration,
+but I suppose that is a whim that can be dropped indeed, as the important
+thing about this property is to populate frequency configs for the initialization
+sequence, which requires all registers to be written.
 
-Peter
+> > * The properties related to the reference input signal path: reference-div-factor, reference-doubler-enable
+> > reference-div2-enable are declared here because they are constraints for the PFD frequency definition,
+> > which is the frequency that the output signal is updated, important for the loop-filter and VCO design.
+> > * added support for all different power supply regulators.
+> 
+> Sorry, but I cannot respond that way. We discuss inline, so I have
+> entire picture, not some parts of message semi-quoted here. I don't
+> remember what was there and I am not going to keep looking for that.
+> 
+> You need to adjust to mailing list discussion style, not introduce the
+> others. I have just way too many other patches to deal with, so
+> implement the feedback or respond properly.
+
+ack. Will adjust to the requested style. Already deviating from it again,
+but those were the comments from the V1 review:
+(https://lore.kernel.org/all/20251111-feathered-winged-bloodhound-b7e1a3@kuoka/)
+
+> 
+> Please organize the patch documenting compatible (DT bindings) before their user.
+> See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+
+done.
+
+> > +
+> > +  chip-enable-gpios:
+> 
+> enable-gpios
+
+done.
+
+> > +  adi,power-up-frequency:
+> > +    $ref: /schemas/types.yaml#/definitions/uint64
+> 
+> Use standard unit suffixes. Frequency is in Hz for example.
+
+sorry, this was the problem, will use -mhz as suggested.
+
+> > +  adi,reference-div-factor:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 1
+> > +    maximum: 32
+> > +    description:
+> > +      Reference division factor (R Counter). If not specified, the driver
+> > +      will calculate the optimal value automatically.
+> 
+> Then why do you need this property? If driver calculates the optimal,
+> why anyone would put wrong or sub-optimal value to DT?
+> 
+> Drop.
+
+The description was bad so I rewrote this. The value is hardware constraint
+for the output frequency of the Phase-Frequency Detector (PFD),
+which is important for the external loop-filter/VCO design. The driver may
+only change the R counter if the PFD frequency goes off limits. In that case,
+some designs can acomodate different PFD frequencies, but that is not usual
+and likely not recommended.
+
+> > +
+> > +        /* Example with advanced features enabled */
+> > +        pll_advanced@0 {
+> 
+> pll@
+
+done
+
+thanks for the patience.
+
+kind regards,
+
+Rodrigo Alencar
 
