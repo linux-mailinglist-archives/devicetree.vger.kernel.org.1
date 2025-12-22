@@ -1,193 +1,174 @@
-Return-Path: <devicetree+bounces-248924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06060CD6BAB
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 17:57:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D80FCD6BC1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 18:00:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 28E99304E17C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:57:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3BC7E3026B2F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 17:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE09B3502A4;
-	Mon, 22 Dec 2025 16:57:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4661132D7E0;
+	Mon, 22 Dec 2025 17:00:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lye7C4yi";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BUvrZjuf"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="DynX/JLy";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="noqQNVzH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FEC234FF7B
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 16:57:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 869B62FFFBE
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 17:00:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766422633; cv=none; b=nENnfGApPSV2XaL25nM69VFIkAEIUXLHtJkD0Hk9LIbvUwktcyfLwAOmHTdkbWeU40k85pH8cvh1w9oyBnKEmk2jEJv55r4kRksyh+jIiUW/Y/jyRBjH5Gt9eZ70YC2hwsCl1waspFoFxCM2JXZPWX4QRcdfWVFxMzH1X0woLRM=
+	t=1766422806; cv=none; b=dTmwDsOzlnNkzTxs4riYxP5XRnOQh/qM0lBmJeDMiRIL0d1K3nUA6BxvW8xaDIQeqZF7sfFxEd2hDW0ROeJ5iKuG4s0j7qQ/JdVYWXeizVRBTaIh8HgarOW/IJZ02hUZfYVdFz7RI8p84RKUbSnHSwUGctMzCCIIEFpGchhmwK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766422633; c=relaxed/simple;
-	bh=xV6tWgjxZaXKfkrPw5l/uzOAaZsuSpJiThtogYYnDTU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=momKsHIy8kzNJN8FxRGdXptGuni7EWOIvXNJmEr+hEZI8JztgmuKUBdQYZ7U7c5iKmTxVWvt7kLvFr7aWUd49z9GMIgNfg/EN2+Sw8w1dKrHAnPVfmr8HTj9NNaroz8qHYpm89VxZ8MI1NDHcNmIqGjRJ1U1CaMWC3rCTSAi7kw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lye7C4yi; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BUvrZjuf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BMEC9xN2199053
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 16:57:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4itgOftOBi39v3+Y6wa7zx7cM8P0meLsOdf8/g/via4=; b=lye7C4yiuqPLel88
-	HPjm+8uaBtuxa3yyOHwh+GY3XIatjzgnZCsGY2fsw1lPxqqMMamgVc0ktvkg/0nU
-	05DH+C2j7hcGr4pOk30N4qYefy/mBWQnnKLwTWqOBKGZ+imEAVCe1Ozjp6jeiqkn
-	i39hcH2pVNn0JxF+ITsmzv+FRazzD4vydZEfLWRzTdEgfTV+tSB9y8JPK8BdM1FE
-	d+yG5AVxDufijhKCnBvKHHt8jIkUcB+3ICYyGQtwc0khA3zHQvPZ5+6mjy/HsHi2
-	5+ZUuvM9Dxu0ys9sZ3OIOeAgngMdiEVYvcgiXLwOWSmBhMr1oi++5T5Vm/KyTQ1a
-	JwEnkA==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b73fws4xf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 16:57:09 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a07fa318fdso73840305ad.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 08:57:09 -0800 (PST)
+	s=arc-20240116; t=1766422806; c=relaxed/simple;
+	bh=VIFf1U5GRy0XwNaSKn2IE50Ho6S8Qyrd1XW4SiN5kJ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LJvkMPF9r3MwHw1t9bXTE3fY36DLMQirMeKDDAAL+dSnPGBOmPIyaHZHbtBCfR50cmEU7lqPO6z3aOurebnD6KftqjXsXEzGoHyY9cNjngqWTNWIzmg22NL43bLXaN3Eav3XxNneq0kNwlV5v1rxkH4WF3StRldl+lPWel7pSbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=DynX/JLy; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=noqQNVzH; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1766422803;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0f4fyk4zQd9fdm0CypX1izzvghVD+Nvn4s4UeRXutpY=;
+	b=DynX/JLywm7WGzHdQeYUDFRE67wpzJImZS2RNXAvPtjf3hAcKq1y+ZsxJELoCwnv8V10DX
+	W4seGhz+4taPvZrRd+H9dvyRUPrp4xF5UB2tgBwPNhkrmMjAw3lZD9zPqQn2YRCwPoZaoj
+	/FsiHyjw+advtHQBisYYqyRH9WwP7Uc=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-365-uPlN0ictM4W-F1AyypZEfg-1; Mon, 22 Dec 2025 12:00:02 -0500
+X-MC-Unique: uPlN0ictM4W-F1AyypZEfg-1
+X-Mimecast-MFC-AGG-ID: uPlN0ictM4W-F1AyypZEfg_1766422801
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b51db8ebd9so1317117985a.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 09:00:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766422629; x=1767027429; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4itgOftOBi39v3+Y6wa7zx7cM8P0meLsOdf8/g/via4=;
-        b=BUvrZjufjNZiV46lq+7neHqdgxSSJiH7IMrC7M3zQGKRoT3/ZQBFuP6GAVG8RN/RDc
-         shgGHcNdcb/Jsmj0oPuoK84lja9v/vivhWzkcJDg/+d/WObcdOVncvj45aGuLyqEvRJQ
-         NH17xh0CsHFSrMZJpPKNqzFISLFRgHH8z17yljCsqs5kZ8Aj/v9RhMcGGkTetBj8J3Vy
-         KhMLX49tCHLFTbKBxg1YdL0oNma1m6wxoBrtQS7WrPhU7DM+fBIhWlB4rldVwkt067pb
-         ef98vDQb5yJuXdOe/gKYRFZSYn67aBvbzTIXYzEsxcsXTRu+Ko7NJxZcdlTyXkF3ucRc
-         merw==
+        d=redhat.com; s=google; t=1766422801; x=1767027601; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0f4fyk4zQd9fdm0CypX1izzvghVD+Nvn4s4UeRXutpY=;
+        b=noqQNVzHciN3yMdTX8Dps/u2bH4VTzq0tnVvPTofml8KAZrO+4P0lpIIMO3/T2vodi
+         PQNClCNfQs9EjrbREkdMuszY2rGCVl4NPbCIh2XIa0n8Vv/Y1dQAm2z+GAAXJYlgQFG8
+         UYTZxrzJIPSVy00b0cBTQ7MCkQ/uWHwr2AyvLqxXGc7HNKUtvNWrDr9NN1jLW2xLcLtG
+         1tUfD3aECYCKF/ew/6o3rcfX8pSP8uwp0IFN/8SCXnh8GZDEFIGojS1yRh55o6RVFmyA
+         CMFGze0BpNxTeJiYCZx0zM9idpYSOUCaJtzgU5mDBtGVWxZ7AHnThZEAknwtkvMA2n7J
+         Rvlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766422629; x=1767027429;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4itgOftOBi39v3+Y6wa7zx7cM8P0meLsOdf8/g/via4=;
-        b=d3QaLBDGTN26xOUksZWwDS2S7slqWSMevK5pxkvtry10y81RFADVCachnemhDt0job
-         3FPoORCQkSbUTwpvU1KfnUTy54fNBYxqh2cQ/UTY8LinlD+RpYDuH886MtJijt6eJpxf
-         mIDnA1ggvor0YkP/eT3pgeTfY1CzkvfMObLR84BPX859ul18gWIKmg0EQ3SVCqs7IcHG
-         LOSOIR1HJnSkgHQffL9BO1vNQ33wTKD1YpeyhZgzp7ag54fdKNwhwikHaBVvMdWoKO68
-         T6lHWuKmeNOzH/Ykp0bTr4ZwbcSYUj92652+mU2mhw1NLsft1HKub1caW/0YXceLYuzg
-         6vEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXVpj5xAHszS9xhuMrhzjD3YevP5ri7wnfQYcBDjvbgfjzf2Wt2mqIRRWVu+Ra85Kpq6wCh0gGFbwzq@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEgl9b+UP0wFppOC7gWEFF0eLsKZ2fKXdInNTrG3MMyLoSEZrc
-	J2Z09NFmvKUj09BFTWWNnXDf0gz13MHeR3qiTweJVHmQ1jlomBnvPz45knzEFRO9/dSvf4D7m0D
-	u0E3f5GKkY/ctiTCK1vyK/FzxrRASwIoQdkM/r41UVPFwZA6/iEJMbJB4+IwuVSBK
-X-Gm-Gg: AY/fxX7SJiyHmbe4B6RTAzTIu/u9NYTWRqCYd5BaWZMEyoZkpZi7QmdadMdJduFZj53
-	ohuqBZ/1nQp9Q+86eFaV+bjUmqcx67GUQp2YwFav/+jxwvxaoU3GmecZwKq9rnrQiWMuxOecxYn
-	OnUUTtbsIec//+cglnbN0chHPyZETB8L84YS/Q/INmGym/6p0wF1vOcNPzZCc6Ci4w5XX1Whxr8
-	55JzJOBAYGpYxZe2KfSSjzyY5ZPwv4FS6y/HyqEfAq3JzbAsM8jsBegAP/IO0NOsEi9LCjJEkI4
-	j8ja5WKLyFiz/rI6TpM7cCG0ZJgP3T4EIhbrpbTZbiIRZOK7SjcH39yX2KwdIKdfTwk8e2YJqiK
-	uxcEupFZyc4mNWperRsebmdcUu6BjJI130NOo
-X-Received: by 2002:a17:903:2448:b0:2a0:b7d3:1bf4 with SMTP id d9443c01a7336-2a2f2212833mr125103745ad.5.1766422628899;
-        Mon, 22 Dec 2025 08:57:08 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFDKazaiIoCtCLvy9WCpAv5NHiSa0bEoYQsJ/tn3nK095kVKTp+ibCk6SgPCiILA+nQ1SiDjw==
-X-Received: by 2002:a17:903:2448:b0:2a0:b7d3:1bf4 with SMTP id d9443c01a7336-2a2f2212833mr125103405ad.5.1766422628416;
-        Mon, 22 Dec 2025 08:57:08 -0800 (PST)
-Received: from [192.168.1.5] ([27.57.93.98])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3c9b51esm101496025ad.43.2025.12.22.08.57.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Dec 2025 08:57:08 -0800 (PST)
-Message-ID: <698bb8b4-d6ae-4a97-8cc3-9e48ea8afd2e@oss.qualcomm.com>
-Date: Mon, 22 Dec 2025 22:27:01 +0530
+        d=1e100.net; s=20230601; t=1766422801; x=1767027601;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=0f4fyk4zQd9fdm0CypX1izzvghVD+Nvn4s4UeRXutpY=;
+        b=OR6SoK6q/0YrL1lxTFQau5Z6POd0ttErpPARPE1+INjM2xzcEhl2E76LAOBcyVNZuI
+         XOwxF69e7+THsF9g4nP8Z7ld4rb5nGu7jZkSciV2iW4aIjXkd3Hx3yaPEtoF97BM3ydD
+         ZDaQ3RZB+FpN/hlqep+k7SpWYhNRGeZNc10rkFwH9+tUMIKzLDNYZf2+P+6/Q6VDY3+Y
+         blnPkOjTCVS6t9HEDbC7eDkSkHdp9AnZ72BcLHLXOVPHuB7KespMNSoH3u8FPLz6/M8r
+         9ElGSPKbQTDDtQXKe//kQcjyUGqq6Sj4XfY+0uhzY6lhCiY//SYngSyks4xTqeTrVL2v
+         shHg==
+X-Forwarded-Encrypted: i=1; AJvYcCXskuySh7HEVz6+VRLm2RIR+6EAXws2PwbxEkU3uBB7eQFBjf5rbh7ilXxVpr+FWwLhAC9tv7hgOyyP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoUdWgRTJO1sBdZj3MrkZIz51/3WQ+PaM330i9xcik0PDJ8doy
+	P+E76ybkXhJkverDO1z1rgrDatKL1ImyAlkYH6ASzpO/jzzeLytoL29aJ2y9q5CdcoPKIDPrc+G
+	hP1dsdmdmWHPb72L4+ZKT9j9kLfYOS7rbagsep+MVpefyVtImCosEnIlELgaVRLs=
+X-Gm-Gg: AY/fxX6GBvr5gSpv4pheSwZw/mMhNs2OZKpjK5uTE8czGkR53XmJNGuyXD9P6iWLMqJ
+	UpyapgKnI24hw5Zh1WYsvlqUpS5lpT4ST/aPwc2nYhDTwladvuhGLcAYb5bLg5R1sn+jTGA1cor
+	kMXV/NN4Oup6fv+lv4gST1oqVbzQVJimbXeRHV5XGTDd7T6DE2Ww/6Le9JazTlTOSHG3T1XfKJU
+	dgqkqIJWW/TakGgBGfVT9X3fVUnjVnk+kHM0XiqHLpjc7C70szA4BYpy3gPnTvcjIKtjS1YaO8U
+	giVhM0x/ffbTJ8WYHAqcP8DnGLu8WDq0Gwb6FschQx5CvYskzk0h0Dfm9rDT6srh8ifG9/2vWEB
+	Y8RTIU5cvIb7m24WDzvNqOcdo8aphZy2s6Owl9yY59lSX
+X-Received: by 2002:a05:620a:691a:b0:8a3:22d7:6ca3 with SMTP id af79cd13be357-8c08f66c311mr1952380285a.31.1766422801382;
+        Mon, 22 Dec 2025 09:00:01 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEAXWK3aLK/w4OobjiC8eVjtvAbAxtwT1W5l5sKLlnUZ5at1LIDG+lvn7LFEDMGYJA0qFTMJw==
+X-Received: by 2002:a05:620a:691a:b0:8a3:22d7:6ca3 with SMTP id af79cd13be357-8c08f66c311mr1952376385a.31.1766422800985;
+        Mon, 22 Dec 2025 09:00:00 -0800 (PST)
+Received: from redhat.com (c-73-183-52-120.hsd1.pa.comcast.net. [73.183.52.120])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88d997addd5sm86399716d6.33.2025.12.22.08.59.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Dec 2025 09:00:00 -0800 (PST)
+Date: Mon, 22 Dec 2025 11:59:56 -0500
+From: Brian Masney <bmasney@redhat.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Mo Elbadry <elbadrym@google.com>,
+	Rom Lemarchand <romlem@google.com>,
+	William Kennington <wak@google.com>,
+	Yuxiao Zhang <yuxiaozhang@google.com>,
+	"wthai@nvidia.com" <wthai@nvidia.com>,
+	"leohu@nvidia.com" <leohu@nvidia.com>,
+	"dkodihalli@nvidia.com" <dkodihalli@nvidia.com>,
+	"spuranik@nvidia.com" <spuranik@nvidia.com>
+Subject: Re: [PATCH v15 3/3] clk: aspeed: add AST2700 clock driver
+Message-ID: <aUl5DPMq8jC1xjRu@redhat.com>
+References: <20251010072540.666673-1-ryan_chen@aspeedtech.com>
+ <20251010072540.666673-4-ryan_chen@aspeedtech.com>
+ <TY2PPF5CB9A1BE64DCD487138F3BAC4FD34F2FCA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: qcs8300: Add clocks for QoS
- configuration
-To: Krzysztof Kozlowski <krzk@kernel.org>, Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mike Tipton <mike.tipton@oss.qualcomm.com>
-References: <20251128150106.13849-1-odelu.kukatla@oss.qualcomm.com>
- <20251128150106.13849-4-odelu.kukatla@oss.qualcomm.com>
- <8b8d35d4-ee88-4d91-aef5-0e77f03f59b0@kernel.org>
-Content-Language: en-US
-From: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-In-Reply-To: <8b8d35d4-ee88-4d91-aef5-0e77f03f59b0@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=ELgLElZC c=1 sm=1 tr=0 ts=69497865 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=luqpl2TCSyK2LuNNAmtdDg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=P0VVE0QUFgw9kxqKfqoA:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIyMDE1NSBTYWx0ZWRfX/ddYaOkV0HTd
- LzE0BNCI9pmKfKkouwRUDc0Nd/2yg8UODBlXGz0Lbz9Pe4dotj/P2QsMXm7Sj6cjcFgHi6za6CN
- d9LrZeTAz9CRsMnkLFo5243NUjYvRE0en5ph151bHPQ5OpRntnEAa/LLECsFub4W2GJQKPOB+14
- MEVsA9foAtzgR3+rDbZKapiLZ00kGuPYu0tnMhBhxaWcnwcINzwrI3G49xqL/QHD8NWRolBvPSI
- fPMFqN3+32EHHbBdbLRK0KhccDhQsFBY6dmtrngm/KIZr6X1nwYvMF70GZZsL8bVxUKG/9rNutR
- Mmuiriwl3R5RdBsFW6+eKyFozzTT3xR7k1u8bpAMu0NuFwoty4ceyRGXRkWpRC3868qcrznFu1w
- nZewOF7OG57m2SMopPC9Rmh3XsjeZUnyK/vkIORsWrorm5kBgYc3JSdXsNURdjWk1ZglzmPlhfq
- 4BlCXBduJi3SG0QqbyQ==
-X-Proofpoint-GUID: nBRN-ui0Lk-D6lRSRgKDFOzFbM-tK96Y
-X-Proofpoint-ORIG-GUID: nBRN-ui0Lk-D6lRSRgKDFOzFbM-tK96Y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-22_02,2025-12-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 malwarescore=0 spamscore=0 phishscore=0 impostorscore=0
- suspectscore=0 adultscore=0 clxscore=1015 priorityscore=1501 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512220155
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TY2PPF5CB9A1BE64DCD487138F3BAC4FD34F2FCA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+User-Agent: Mutt/2.2.14 (2025-02-20)
 
+Hi Ryan,
 
+On Mon, Oct 27, 2025 at 06:24:59AM +0000, Ryan Chen wrote:
+> Hello Stephen,
+> 	Will this be accepted in clk-next?
 
-On 11/29/2025 3:04 PM, Krzysztof Kozlowski wrote:
-> On 28/11/2025 16:01, Odelu Kukatla wrote:
->> Add clocks which need to be enabled for configuring QoS on
->> qcs8300 SoC.
->>
->> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/monaco.dtsi | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/monaco.dtsi b/arch/arm64/boot/dts/qcom/monaco.dtsi
->> index 816fa2af8a9a..6139511ea525 100644
->> --- a/arch/arm64/boot/dts/qcom/monaco.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/monaco.dtsi
->> @@ -2226,6 +2226,10 @@
->>  			reg = <0x0 0x016c0000 0x0 0x17080>;
->>  			#interconnect-cells = <2>;
->>  			qcom,bcm-voters = <&apps_bcm_voter>;
->> +			clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
->> +				 <&gcc GCC_AGGRE_NOC_QUPV3_AXI_CLK>,
->> +				 <&gcc GCC_AGGRE_USB2_PRIM_AXI_CLK>,
->> +				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
-> 
-> Your binding said all interconnects have clocks, so please update all of
-> them. Not only three out of 10-or-whatever-in-total-you-have.
-> 
+Given that aspeed is a SoC vendor, and you already have multiple clk
+drivers, I think at this point your best bet is to do what the other SoC
+vendors currently do. I think you should:
 
-Thanks Krzysztof!
-Not all interconnects have clocks/MMIO, I will update the bindings as
-you suggested in the fix:
-https://lore.kernel.org/all/20251129094612.16838-2-krzysztof.kozlowski@oss.qualcomm.com/
+- Create a new subdirectory drivers/clk/aspeed/
+- Move the existing aspeed clk drivers into this subdirectory, and
+  update the Makefiles / Kconfigs as appropriate.
+- Add a new entry to the MAINTAINERS file for the aspeed clk drivers.
+  You probably also want to have that entry cover the reset driver,
+  and any other aspeed-specific drivers as well.
+- Post that patch set. Include this new clk driver as a separate patch
+  in that series. Feel free to CC me to the series and I'll review it
+  for you.
+- After it's reviewed, wait a week or two, and send Stephen a 
+  'GIT PULL' using git request-pull. I can help you with the workflow
+  if needed.
+  
+  One important detail is that you want to base your branch for the GIT
+  PULL on the lowest common denominator, which is usually the latest rc1
+  from Linus. So even if Linus is at rc5, try to base yours on rc1, unless
+  there's some issue, and you need to document why. Stephen should get the
+  merge to newer rcX branches from Linus, and not you.
 
+When you send a PULL to Stephen, you can use 'b4 am' to assemble the
+contents of your branch. When I sent him a PULL a few months ago, I
+included the b4 commands that I used.
 
-Thanks,
-Odelu
+https://lore.kernel.org/all/aL8MXYrR5uoBa4cB@x1/
 
-> 
-> Best regards,
-> Krzysztof
+If he accepts the pull, you'll still need to post your patches to the
+clk mailinglist, and have them reviewed on list. Folks from aspeed
+should do that review publicly on the list.
+
+Brian
 
 
