@@ -1,46 +1,101 @@
-Return-Path: <devicetree+bounces-248803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3788ECD5CF3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:30:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21023CD5D05
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:30:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7B62A302218D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:30:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 21C0A3009F1B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:30:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D0733176F4;
-	Mon, 22 Dec 2025 11:30:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFA16314D13;
+	Mon, 22 Dec 2025 11:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="dorGyaAK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jyu/xtFB";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TptO/QrL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F7831353E;
-	Mon, 22 Dec 2025 11:30:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44673254849
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 11:30:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766403004; cv=none; b=P5bGxdgm6C9pw3csNYQoVjSNyIpnYQMrxABoyp4FGc/7fyJ/4K1BvY+23gkmZZ9nbWDDAIgnnFVzI/FKwQYctk/q7oh+FgmfjC37qAKwOg53OXlool4kb4GjhhAK6MASMs6j+z938qI1eR1zZ78Qg/egcYfsHgQYPbNcKDlGkc0=
+	t=1766403053; cv=none; b=mbuDIZs796D4/I7TBnVuxj2BHMqD5JAERso/v3uqzHGZ0Jr+x+AoSCT8baHUFNv8cC+QsbhZEvzTWO7A812exBvDEFPZ7e+Dl+LhkTfdr0y4q7QUEr0DgXBNcVLORMQM3HFW5dX8DjifnGwBEtGs3yxvZr+OKrtB+milEBCVZwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766403004; c=relaxed/simple;
-	bh=dFIGGEqfmsWzdarRQMv07dt5eUZ/Gq5nkb9FVZUG7xg=;
+	s=arc-20240116; t=1766403053; c=relaxed/simple;
+	bh=J+qGX9283XKPGj9VPHtYDwNAeHDm101bHLdCgphELnY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j7pFEQunShSbN6BPcYN85wFvv5WSv7IbVhiuwM3yqNfKkN7gUx+9iBSPCG3HmBCt17bCw7Y+laCp1uZ/dxwYP7CziJACgeXM2E+QJTYJy7HAVuL3JkFM63bR5/zgo9XqVLhNVSnNb5mUKQB8J7wRWYYN7wXRQ+LLMnv31s/nH5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=dorGyaAK; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6927EC77;
-	Mon, 22 Dec 2025 12:29:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1766402990;
-	bh=dFIGGEqfmsWzdarRQMv07dt5eUZ/Gq5nkb9FVZUG7xg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dorGyaAKE93O04w4g/JA/uWHu+DO5wZbjNehfIBrdH7Kaw3Qt5pecD6n6WR0pAY/v
-	 bH/+3ZNhJX1+Abdhf7yqlKjtHR1pTZzud2Tguh8aQXAtlSkrTONHTq4e5NHaZr77A7
-	 hKDHu2ZEEwg42m1VZzF9/0PRBNyku2K+Ex/emL0o=
-Message-ID: <07cef607-365f-4c09-a57e-5ddbdfde7027@ideasonboard.com>
-Date: Mon, 22 Dec 2025 13:29:56 +0200
+	 In-Reply-To:Content-Type; b=IuT5xNqeXfJr5y5LohZlaZvbo9kDMP+UC/lbHGukfBetEbis+IVWI3dQ0ro5bjKiE8JBgkezww5lAwpYzbTmDfH7l4r6DdzfQdpndTSdR7KnJ9Gy35Pd++WBisicJJl+r9Hxyt/0Vae27aVL9qkul8eoBcHxKz5ADpr0wbnG+ro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jyu/xtFB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TptO/QrL; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BM6Zthl4117802
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 11:30:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	l/50mFVpl+vSF+YtHUv7DBjqqeMMgq2k9/krZo1nbuw=; b=jyu/xtFB+JJlfTXu
+	4vpZW5c1EQCPir+DUOrBQkyBUcOXOaY8Ktf8qFev6Ypglghs5W64ayKq+SWu3NSk
+	XTF5s5xdawCGco7jKRvA1bdCb9Lu7e3rlVD2Ybnku0k7PteQ4SWzEVr6xXAlCY8C
+	UXvCR1vURd++cNXKtc/ojdROLggCvTphV7+Q4j9muOVLlocJgCyyJKX2Umg1w8SZ
+	4EZSqxpF1t816xgWNgNHY5JSZVQls6EVbVT5p2DKrA1N4YQLd9butNQY6SYOfVNg
+	V97aISE/05SRQypPNmV7shaU0zOYmZ7EKOguJOQp5Ih74GZiMeq21UYgSyAiJBrd
+	rqK2NQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b70v28u98-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 11:30:51 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ed7591799eso93412001cf.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 03:30:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766403051; x=1767007851; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l/50mFVpl+vSF+YtHUv7DBjqqeMMgq2k9/krZo1nbuw=;
+        b=TptO/QrLY4gC4emiIYDMlNLClvNAVWTqFxbVFrnDGX3sLiibzzt0kmfrW94wjGAs6B
+         sDUPlTvWRGB0Y5IHDz069QqJIRtO/ZchxLvD4vebNzHP8rofBWQ90UmM2wrMpiSBelzh
+         4SaCXKdznHnPZjUoizPw22NaI7t+reeOamS4EVQeyep0y7zuZk0ovDON/rbGuDauwKzT
+         IH0WgR57NQRuE6WJVD9wB9eq8nOWSVIn2haqPL8Yp09eBBxCXaWHDq8wOf5xs/rJgJa1
+         nJo4BrCbBVDGZc0uJYxEahDBD1e5Uc4a6ycoaM0cy0KVFRwRK5tOGFLIRRXVfe3Mk39M
+         O1Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766403051; x=1767007851;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l/50mFVpl+vSF+YtHUv7DBjqqeMMgq2k9/krZo1nbuw=;
+        b=uNSIrsF/0wFrLY4izzdbp7AcvtIt/FEl0sgDVww5hplIVjTIudziKjEzPBfZ7FpAuq
+         E6lrttDhjetBdXG7PYZJ02dJySd3FF+RKgitBTqUHNltyWtIWB7+uSnK3upwCFtSj+Gm
+         pGnaASelpbsVXeqVkM0DrPOpFKqWw9ct/DlzOBU95LybZXQiM4dYDufJ1zbX81fx/8qz
+         0D2XwRA8/08GshHYwzomfpQ6ThwaahzmACPJFKmqzOftJ2US005ld//wQGVoof/5vU1t
+         ftBCZ5209beZtPIbVVsWNBZ47z52XQdJxDeXL/pVe2B7DQZtv560sSRve1A2F8kqJXHC
+         GYmw==
+X-Forwarded-Encrypted: i=1; AJvYcCUD1j8t9ig3ab5U+JTxUeAxG8Ukb/1dMG1zzQQtgX8lccKWqrvkv86S5NSQcadv8a/c8gHc29MuyIKP@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywkel2UJrbJOkkvjAa2N3Bz6nzcHumI1RvnSmv2JrATvOPCz8SW
+	wd8LXxObALIDY7dXD11Zawzb0I5ySCQbtW+qgyEeVSBqYbVzevuWDUPzqUY6mR+VcujRUVmQ0RX
+	BtjfMO+Ltsh0BlM1HZHmylFBNDyL4yVBORqt7ZlzPzVDGEBrfEaAVuJ2+SZ/Tn7uA
+X-Gm-Gg: AY/fxX6+Nt8DFXW86wUD7kC2lzRBkRHxAkvlWxy4O1aS79kytmmXLGL0xFbyHjMSsLQ
+	nUgInaZnRxPzyQbD8yUFNY/ob+OqwtFOJSya5tlJWiq0nf5eHMRPt5EUqTZTypteA0LFw3CFtFf
+	CVzftpinlx04gQyTIXTliqZFb5UyfptNzWNFAbdIU9w4SH/fpztjZrpLUPnF7LIH2Y7cs6+8yGH
+	5osY8mpxP/hPth8ipF9fFvR4BbJC5y/9sDyNj61/s4eCRNpOIN4mID6mj/80c5XpjKeui0UDEJr
+	KDflML6P2MJmVpYmwomvf0kYcirrv+3kIo1CPkiPKWsyZrNBMUD0/0Pac3leZgkJKARChKHlY3/
+	C5ESY4XCxh8jSONc1F0/MX7d4rHPhppv7NOdI0co3cnZslh61rFgW3zuJF4iR23ECEB7tsFI4OG
+	ygqrmJFIwH+eWg
+X-Received: by 2002:ac8:4993:0:b0:4f4:bfc8:b7be with SMTP id d75a77b69052e-4f4bfc8b803mr79264271cf.12.1766403050497;
+        Mon, 22 Dec 2025 03:30:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEwPSEdGj2eB0wB84JQpAY0aD7J8Vf/6//zqzjefaPQdLMbLICsvYwAoThyUi0Lcjt/sdy05A==
+X-Received: by 2002:ac8:4993:0:b0:4f4:bfc8:b7be with SMTP id d75a77b69052e-4f4bfc8b803mr79263841cf.12.1766403050050;
+        Mon, 22 Dec 2025 03:30:50 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a073:af00::4c9? (2001-14ba-a073-af00--4c9.rev.dnainternet.fi. [2001:14ba:a073:af00::4c9])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-381224de366sm26808781fa.2.2025.12.22.03.30.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Dec 2025 03:30:49 -0800 (PST)
+Message-ID: <748385b8-0764-4665-baae-5876be334a47@oss.qualcomm.com>
+Date: Mon, 22 Dec 2025 13:30:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,228 +103,112 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 3/4] media: dt-bindings: ti,ds90ub960: Add support for
- DS90UB954-Q1
-To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-Cc: hansg@kernel.org, mehdi.djait@linux.intel.com, ribalda@chromium.org,
- git@apitzsch.eu, vladimir.zapolskiy@linaro.org,
- benjamin.mugnier@foss.st.com, dongcheng.yan@intel.com, u-kumar1@ti.com,
- jai.luthra@linux.dev, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, hverkuil@xs4all.nl, sakari.ailus@linux.intel.com,
- laurent.pinchart@ideasonboard.com
-References: <20251219122955.2078270-1-y-abhilashchandra@ti.com>
- <20251219122955.2078270-4-y-abhilashchandra@ti.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: Add dts for Medion SPRCHRGD 14
+ S1
+To: Georg Gottleuber <g.gottleuber@tuxedocomputers.com>,
+        Georg Gottleuber <ggo@tuxedocomputers.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ettore Chimenti <ettore.chimenti@linaro.org>,
+        Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
+        stephan.gerhold@linaro.org, wse@tuxedocomputers.com, cs@tuxedo.de
+References: <20251204155212.230058-1-ggo@tuxedocomputers.com>
+ <20251204155212.230058-6-ggo@tuxedocomputers.com>
+ <b2ofd5pxifqhznqo25byc5jksneeasy2zlli5jpqezllj2ja4j@tscydfwesmk5>
+ <3f52419a-2494-4852-96cd-dd5607e45760@tuxedocomputers.com>
 Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20251219122955.2078270-4-y-abhilashchandra@ti.com>
-Content-Type: text/plain; charset=UTF-8
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <3f52419a-2494-4852-96cd-dd5607e45760@tuxedocomputers.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: vXZ45aK9OjNfJE97YzA-yyDFAlwevlD-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIyMDEwNCBTYWx0ZWRfX1codVtnIMMvZ
+ 6kqhuA7LzVVOUd00tp7/MAk1oBI9sPazs2eY/lJAhxd6wXeG3B96fGOyPJODqFj93227jOuwYI/
+ QT6OA+Kx+DQejMkuv0v45rHoCDJSgXC9aRF+fZVWU49+29PtE78RaeRpAh5FiJ4YCmYmHZ/7Yjm
+ PxK+anz5mfSeyWWJSq1tbasIIJkrucaK50vpBrgHfyjwthz4VVHNUciBE0K7muFoKweB7xjLOz7
+ yEzrUHUH2QGyMH5lwtMoG7CMZpnWXgDSukgwbfNbUXF8Au79O1gIO/HorcbfqY7Vj1lT3DkES02
+ DducOXes8m96TDHfSgxs4sBwKXw0MgeX2wXdkk49fRUfr+Q/+xf6LI8Mr9Sf+JPYig+pX3gE9q8
+ 8J8+z3jxgQqjLCnq54OKa856ek/4lcHxgdTMeytbUdf5Y4938m0+i5GgtYsWrfoFS3zPJNq5QQJ
+ o2rFy5C+xl6Q7jci3Rw==
+X-Authority-Analysis: v=2.4 cv=YOKSCBGx c=1 sm=1 tr=0 ts=69492beb cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=yDUiu3_GAAAA:8 a=tXVFJDDfIfXu0v-9UuwA:9
+ a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
+ a=gafEeHOdjwYkg5oUpzAY:22
+X-Proofpoint-ORIG-GUID: vXZ45aK9OjNfJE97YzA-yyDFAlwevlD-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-21_05,2025-12-19_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 clxscore=1015 impostorscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 malwarescore=0 adultscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2512220104
 
-Hi,
-
-On 19/12/2025 14:29, Yemike Abhilash Chandra wrote:
-> DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
-> compatible with DS90UB960-Q1. The main difference is that it supports
-> half of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX
-> port. Therefore, add support for DS90UB954 within the existing bindings.
+On 22/12/2025 13:29, Georg Gottleuber wrote:
 > 
-> Link: https://www.ti.com/lit/gpn/ds90ub954-q1
-> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-> ---
-> Changelog:
-> Changes in v3:
-> - Remove the example added for DS90UB954, as it is just a subset of the DS90UB960 example. (Rob)
 > 
->  .../bindings/media/i2c/ti,ds90ub960.yaml      | 113 ++++++++++++------
->  1 file changed, 77 insertions(+), 36 deletions(-)
+> Am 22.12.25 um 01:32 schrieb Dmitry Baryshkov:
+>> On Thu, Dec 04, 2025 at 04:52:07PM +0100, Georg Gottleuber wrote:
+>>> Initial support for the Medion SPRCHRGD 14 S1, which is based on the
+>>> Qualcomm Snapdragon X Elite SoC (X1E78100).
+>>>
+>>> Working:
+>>> * Touchpad
+>>> * Keyboard
+>>> * eDP
+>>> * NVMe
+>>> * USB Type-C port
+>>> * USB-C DP altmode
+>>> * HDMI-A port
+>>> * WiFi
+>>> * Bluetooth
+>>> * GPU
+>>> * Video decoding
+>>> * USB Type-A
+>>> * Audio, speakers, microphones
+>>>          - 4x speakers.
+>>>          - 2x dmic
+>>>          - headset
+>>> * Camera
+>>> * Fingerprint reader
+>>>
+>>> Co-developed-by: Srinivas Kandagatla <srini@kernel.org>
+>>> Signed-off-by: Srinivas Kandagatla <srini@kernel.org>
+>>> Co-developed-by: Ettore Chimenti <ettore.chimenti@linaro.org>
+>>> Signed-off-by: Ettore Chimenti <ettore.chimenti@linaro.org>
+>>> Signed-off-by: Georg Gottleuber <ggo@tuxedocomputers.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/Makefile             |    2 +
+>>>   .../qcom/x1e80100-medion-sprchrgd-14-s1.dts   | 1515 +++++++++++++++++
+>>>   2 files changed, 1517 insertions(+)
+>>>   create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts
+>>
+>>> +
+>>> +&gpu {
+>>> +	status = "okay";
+>>> +
+>>> +	zap-shader {
+>>> +		firmware-name = "qcom/x1e80100/medion/qcdxkmsuc8380.mbn";
+>>
+>> Please use the `qcom/SoC/Vendor/Device` path for the firmware. In your
+>> case it should be:
+>>
+>> 		firmware-name = "qcom/x1e80100/Medion/sprchrgd-14-s1/qcdxkmsuc8380.mbn";
+>>
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> index cc61604eca37..8e2b82d6dc81 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> @@ -13,12 +13,10 @@ description:
->    The TI DS90UB9XX devices are FPD-Link video deserializers with I2C and GPIO
->    forwarding.
->  
-> -allOf:
-> -  - $ref: /schemas/i2c/i2c-atr.yaml#
-> -
->  properties:
->    compatible:
->      enum:
-> +      - ti,ds90ub954-q1
->        - ti,ds90ub960-q1
->        - ti,ds90ub9702-q1
->  
-> @@ -129,39 +127,6 @@ properties:
->        Ports represent FPD-Link inputs to the deserializer and CSI TX outputs
->        from the deserializer. The number of ports is model-dependent.
->  
-> -    properties:
-> -      port@0:
-> -        $ref: '#/$defs/FPDLink-input-port'
-> -        description: FPD-Link input 0
-> -
-> -      port@1:
-> -        $ref: '#/$defs/FPDLink-input-port'
-> -        description: FPD-Link input 1
-> -
-> -      port@2:
-> -        $ref: '#/$defs/FPDLink-input-port'
-> -        description: FPD-Link input 2
-> -
-> -      port@3:
-> -        $ref: '#/$defs/FPDLink-input-port'
-> -        description: FPD-Link input 3
-> -
-> -      port@4:
-> -        $ref: '#/$defs/CSI2-output-port'
-> -        description: CSI-2 Output 0
-> -
-> -      port@5:
-> -        $ref: '#/$defs/CSI2-output-port'
-> -        description: CSI-2 Output 1
-> -
-> -    required:
-> -      - port@0
-> -      - port@1
-> -      - port@2
-> -      - port@3
-> -      - port@4
-> -      - port@5
-> -
->  required:
->    - compatible
->    - reg
-> @@ -204,6 +169,82 @@ $defs:
->            - data-lanes
->            - link-frequencies
->  
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-atr.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - ti,ds90ub960-q1
-> +              - ti,ds90ub9702-q1
-> +    then:
-> +      properties:
-> +        ports:
-> +          properties:
-> +            port@0:
-> +              $ref: '#/$defs/FPDLink-input-port'
-> +              description: FPD-Link input 0
-> +
-> +            port@1:
-> +              $ref: '#/$defs/FPDLink-input-port'
-> +              description: FPD-Link input 1
-> +
-> +            port@2:
-> +              $ref: '#/$defs/FPDLink-input-port'
-> +              description: FPD-Link input 2
-> +
-> +            port@3:
-> +              $ref: '#/$defs/FPDLink-input-port'
-> +              description: FPD-Link input 3
-> +
-> +            port@4:
-> +              $ref: '#/$defs/CSI2-output-port'
-> +              description: CSI-2 Output 0
-> +
-> +            port@5:
-> +              $ref: '#/$defs/CSI2-output-port'
-> +              description: CSI-2 Output 1
-> +
-> +          required:
-> +            - port@0
-> +            - port@1
-> +            - port@2
-> +            - port@3
-> +            - port@4
-> +            - port@5
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: ti,ds90ub954-q1
-> +    then:
-> +      properties:
-> +        ports:
-> +          properties:
-> +            port@0:
-> +              $ref: '#/$defs/FPDLink-input-port'
-> +              description: FPD-Link input 0
-> +
-> +            port@1:
-> +              $ref: '#/$defs/FPDLink-input-port'
-> +              description: FPD-Link input 1
-> +
-> +            port@2:
-> +              $ref: '#/$defs/CSI2-output-port'
-> +              description: CSI-2 Output 0
-> +
-> +          required:
-> +            - port@0
-> +            - port@1
-> +            - port@2
-> +
-> +        links:
-> +          properties:
-> +            link@2: false
-> +            link@3: false
-I can't help but think if this is good or not. In other words, if we
-specifically add ports per compatible, why wouldn't we also add
-specifically links per compatible? Or, if we just disable links as
-above, why don't we do it the same way for ports?
+> Ack, but this patch was applied 2025-12-18. I assume there is no way to
+> change this before the merge into mainline, right?
 
- Tomi
+I will send a fix later.
 
+-- 
+With best wishes
+Dmitry
 
