@@ -1,156 +1,187 @@
-Return-Path: <devicetree+bounces-248847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3B51CD624F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:26:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F267CD627F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:30:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE694305DCD8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:25:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ECC3130124F0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6CCC2DC787;
-	Mon, 22 Dec 2025 13:25:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6B472C235E;
+	Mon, 22 Dec 2025 13:28:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="hUlu/r69"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mVRAx//h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E32A129B204;
-	Mon, 22 Dec 2025 13:25:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766409936; cv=pass; b=BSL1J76qY/WodRNnk2lrlLLxs0VOxrp0VepNxtxrf8IBHhqTdZtbfjdrpgFJ8wKsU7ao60EZK5aA0UNOimjQN3vOqJJZQ6RYLyddy97TKAH1E4UzjPMgnpfTXQOi4aNJthiZCOx9BUhlF233htdbGZW6/ZloRS6hCSiHUWyVPtU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766409936; c=relaxed/simple;
-	bh=lZ/Q8oX8dX5uaEj/uhsbncDoO/1ZJiXs4jnVHSDdKUo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ANfLCYL+zUBhlYrha2016VZyaYBBwCeIf7eEfhgORNP9DzdLVy20V9FqdkU6kNeCr6U1dMoysywLlZnZj7DZ7r+DV0OB0r8RK7Z8GJPb9XjSQ0R4jDPRm7dBDswK0+c95kp0OUk4wdaWmH1/xjUrli9gqhQ6p48y4CmQiep3ABk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=hUlu/r69; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1766409903; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=c+Z93QpcfHesOO97mynYUGkc9xrKLrso8ILtdtzBtu8ZCqh/0Ob2rOYTIjSNu6yoTweQl7E/i2sfc45/4FOfjJiPlxpCg4XXRthvk6aD4WOwmpafqG9w3VMgeBz9RPfcbIXAQjvmFDAt4yDMjGSwZa00cRL031wSGlb3Y6a8HHA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1766409903; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=UkKu+9+jYP9nuseT5iH6tA6Rgk4e8wwX3XyCsgeyjiA=; 
-	b=ejieEUpX7nHdpc+r9u6rzxuWYfxP1Ql/S/3O4NXKaXP0g/8rgJpLBmB/ES/FmiRXVK2+YNDSSUJrHLAabPzyjeedpbg7h9LVLwIrmlSCSuyfr88QEj3HqQbWB/VE2StIntPiwyfRkI+dDlDLxd9kAjAO5R+r5NCOpIlWxtiVTC8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1766409903;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=UkKu+9+jYP9nuseT5iH6tA6Rgk4e8wwX3XyCsgeyjiA=;
-	b=hUlu/r69leKWJdLf2wYh4hepEi8kHfB1a7rIcSE1yFM86BFmP2rHtPfjSZYsBvFN
-	2AIHE5FG526VYG4dxyEYEWewqy8ksFinpw6N/3MQDFVJMpJ/nkZuYCGo+QJEEFnMFPy
-	Ir/zissG4s1+FD2kgYvF8PAmpyv99O+abvQhMiEY=
-Received: by mx.zohomail.com with SMTPS id 1766409901397690.5053360104508;
-	Mon, 22 Dec 2025 05:25:01 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 9D32C180421; Mon, 22 Dec 2025 22:24:57 +0900 (JST)
-Date: Mon, 22 Dec 2025 14:24:57 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: remove rtc regulator for
- ArmSoM Sige5
-Message-ID: <aUlGPGFYYf8Ndn5D@venus>
-References: <20251220100010.26643-1-amadeus@jmu.edu.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21ED52C0F6D
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 13:28:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766410103; cv=none; b=Lu7x3BgEn1RBTzvIq0PI3zqmDSZ8iXVgCYYQ04mIoXlGPElwrPvyrfM8fcVTMkj9zu09D20gwrcfrf8s1bGDFyOehdWIeT6Mw9xauD3fRyw+TWKiEG+2iT3GIYZYu/6v0QoNQx5x9tWaetSHr6oD1m21lmBF13OOE1EDFh34faU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766410103; c=relaxed/simple;
+	bh=dk5aD3tdcsXBfXQU0MPK+lTdNXgbMO/WcnmeWhzm3BE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Nur5ALZIY3DSKXoZrzIPsycOTR26hADAZ95BcsVBZiSWE52RHgGP4MnK7dRiibCQnfSm/gXV+h/lhiRRvHh5mZEJ+3iSB821ZxygZCL1tHTAwOSE6RiOBA3VKZtILBj2fCv39zY6XQm3TXkCn9mQH27/W71obRiy7klY13KyMF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mVRAx//h; arc=none smtp.client-ip=209.85.160.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4ed66b5abf7so50041621cf.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 05:28:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766410101; x=1767014901; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YDlebowKLSytReXRSPBwIovISOjJgg7iMWjU9xn2E0E=;
+        b=mVRAx//hDxhTw9PHhKGroce/FvHJ3vLPuHOdZCNIDp0IW+TpOs4YVj0jwEogCzRmN8
+         BzolSAIVj418Arvm45zvXQide9Ry/P5e5bsn484YTebHBej+TM4XOGjh7tDJLv+maZ+B
+         eJhNWVUHwmxroXhs6Y/rQPQIl3exxe2j75V7amwCOpRD9Q4+3WvzkIZGTqaaEjE8V86p
+         miNwD6s5i9JDmebke9qTRzW1wwHUjfLgx2S9/CTopILRY/jUKovfiPZTzq/Zrxooz5NL
+         XNmeqOhmYS99f/I57P+rZAmbLGmY2MD4sxZL8pa7KVQE6L9sWK9JfFvs2646zif1n3LA
+         FODw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766410101; x=1767014901;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=YDlebowKLSytReXRSPBwIovISOjJgg7iMWjU9xn2E0E=;
+        b=p9PRxbJ1aDuk1q7NE0hYRVvlXri91ORfweOzR/dbtWGT3NYTHSMVs1mnDowjZ8YsuG
+         2PfxNa5DP7E5A6cJS0/w16vw7u/kSdaHVlOEyw8xz7ozjSj0m885Q4sHBST50fX0sWuR
+         CQpvxK2jFZfP4iYqOewf/Ld2g7MN6ZKx6Z82iBZSvYrk6lf1TtrpbpMMEiHBhWPoHjRu
+         QZCpXu9tmR/vzhOVSG10GVKDQA8MeGcWuhaY519Vby/JRvQh5YcEtJfXn3fzW+ydsAkg
+         KOL3SoH1IB3JwiNWdhaLwQIFex4zlbD0csv0197W1p/qsJu461CaejUwGctTT1715BNe
+         KBqA==
+X-Forwarded-Encrypted: i=1; AJvYcCVOCwHtPG8DNnCbvhnkuo7wkwmKY9AL7Vv4GUVxgT/6Sgpu1E/EIXW96uglnWD3ZV42kdVTutxsN+yr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4Y2oPcHIkHmZJoKLoazHQrgUaMXbhixv4+w8kCBl3kZPCeFTN
+	LnnT5vhi1t/aMxZc0NZXdXAq7imTPLE6Y0SF/wMRceLrWsyir7XPsi0IZwCe/WrUpg2rvDciFR+
+	0a/7vbFkRfyMuyhtGX0cDOO5GruZgSG0=
+X-Gm-Gg: AY/fxX6Gjp2G8pVp5vhyHuxsMTfjzP2+8mWEttCFdFGeBisThbYG62uBv726dAZNmSX
+	e+SFEgO1kHnOBCZtvQjMzmo1987E41RCD9UqD/zeVxt8XdFfrAp4QccxDsfedQY7g5OG3/KULVD
+	OQRtULeTknYQhDGg1MLaq1HdVuBroAKEJHDaV12uXaiNhonExlaJYU8G0FGnrFmtChHcHPr6Mnl
+	UK8BCzcAqdJtzmUX3PNJKnHknzpljgRYcEt/up496DWsujDh36p9lek1Ccb+9LlN6KqkCwzhBOE
+	jqDNpnMHIi9tZIJL1yWQhg+W
+X-Google-Smtp-Source: AGHT+IHAC1B0IqYscWngHVEOOgH6nPUg7BF7svekT7WeCJSzKv/KaP+4UG0eF0tY45F5jYxheY2blzrxV+thgMpT02A=
+X-Received: by 2002:a05:622a:411b:b0:4f0:31bd:2aaa with SMTP id
+ d75a77b69052e-4f4aac5db91mr179071981cf.4.1766410100766; Mon, 22 Dec 2025
+ 05:28:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="l4zvrrqo2paksgxc"
-Content-Disposition: inline
-In-Reply-To: <20251220100010.26643-1-amadeus@jmu.edu.cn>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.5.1/266.382.52
-X-ZohoMailClient: External
-
-
---l4zvrrqo2paksgxc
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+References: <20251201-nanopi-m5-ufs-v2-1-ece9c0ee17c4@gmail.com>
+ <CABjd4Ywc-L0jvXwk253MDZwgN3srY6WQ5EhoKZ6wb+Hae376_A@mail.gmail.com> <119070978.nniJfEyVGO@phil>
+In-Reply-To: <119070978.nniJfEyVGO@phil>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Mon, 22 Dec 2025 17:28:07 +0400
+X-Gm-Features: AQt7F2ofyZnqEtwWu-6gIroppVlUF0KWZIJCYmIw9FL9qTliLfl7M3hB0GDErVw
+Message-ID: <CABjd4YyCgVBFP4GG5FK5xO3SY=at5fpYicTO+ghaSCJaP_+XJQ@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: enable UFS controller on
+ FriendlyElec NanoPi M5
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: remove rtc regulator for
- ArmSoM Sige5
-MIME-Version: 1.0
 
-Hi,
+Hi Heiko,
 
-On Sat, Dec 20, 2025 at 06:00:08PM +0800, Chukun Pan wrote:
-> According to the schematic, RTC is powered by vcc_3v3_s3.
-> The vcc_3v3_rtc_s5 regulator does not exist, remove it.
->=20
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
+On Mon, Dec 22, 2025 at 4:41=E2=80=AFPM Heiko Stuebner <heiko@sntech.de> wr=
+ote:
+>
+> Hi Alexey,
+>
+> Am Donnerstag, 18. Dezember 2025, 15:05:39 Mitteleurop=C3=A4ische Normalz=
+eit schrieb Alexey Charkov:
+> > Hi Heiko,
+> >
+> > On Mon, Dec 1, 2025 at 3:35=E2=80=AFPM Alexey Charkov <alchark@gmail.co=
+m> wrote:
+> > >
+> > > The NanoPi M5 board supports pluggable UFS modules using the UFSHC
+> > > inside its Rockchip RK3576 SoC.
+> > >
+> > > Enable the respective devicetree node and add its supply regulators.
+> > >
+> > > Link: https://wiki.friendlyelec.com/wiki/images/9/97/NanoPi_M5_LP5_24=
+11_SCH.pdf
+> > > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > > ---
+> > > Changes in v2:
+> > > - Describe UFS supply regulators
+> > > - Add link to schematic
+> > > - Link to v1: https://lore.kernel.org/r/20251127-nanopi-m5-ufs-v1-1-0=
+d28d157712c@gmail.com
+> > > ---
+> > >  arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts | 27 +++++++++++++=
+++++++++++
+> > >  1 file changed, 27 insertions(+)
+> >
+> > Would you mind pulling this one, or do you have any reservations?
+> > There hasn't been any discussion, but it looks like a pretty simple
+> > change, runtime tested and schema-tested.
+>
+> Your patch fell directly into the dead-zone between -rc7 and -rc1 ;-)
 
-That's true for all board revisions that have a public schematic
-(1.1, 1.2 and 1.3), so:
+Understood :)
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > +     vcc1v2_ufs_vccq: regulator-vcc1v2-ufs-vccq {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-min-microvolt =3D <1200000>;
+> > +             regulator-max-microvolt =3D <1200000>;
+> > +             regulator-name =3D "vcc1v2_ufs_vccq";
+> > +             vin-supply =3D <&vcc5v0_sys_s5>;
+> > +             en-supply =3D <&vcc_3v3_s3>;
+> > +     };
+> > +
+> > +     vcc1v8_ufs_vccq2: regulator-vcc1v8-ufs-vccq2 {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-min-microvolt =3D <1800000>;
+> > +             regulator-max-microvolt =3D <1800000>;
+> > +             regulator-name =3D "vcc1v8_ufs_vccq2";
+> > +             vin-supply =3D <&vcc_1v8_s3>;
+> > +             en-supply =3D <&vdda_1v2_s0>;
+> > +     };
+>
+>
+> But where does the "en-supply" come from? For the life of me, I can't fin=
+d
+> any reference to it in either the bindings in the kernel, nor the dt-sche=
+ma.
+>
+> Can you please point me to the part of the documentation where that is
+> described?
 
--- Sebastian
+The bindings [1] describe supplies by a wildcard pattern '.*-supply$',
+and the device in question is a DC-DC regulator (see page 17 of the
+schematic [2]), which produces the 1.2V power for the chip, its VIN
+pin directly wired to VCC5V0_SYS_S5 and its EN pin directly wired to
+VCC_3V3_S3, both of which need to be active for the 1.2V feed to
+appear - thus both are 'supplies' of sorts. VCCQ2 is similar, but
+implemented using a simple gate circuit. This is done to ensure
+correct power sequencing, from what I understood.
 
->  arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 10 ----------
->  1 file changed, 10 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/=
-arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> index 3386084f6318..392ba83ab05a 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> @@ -156,16 +156,6 @@ vcc_3v3_pcie: regulator-vcc-3v3-pcie {
->  		vin-supply =3D <&vcc_5v0_sys>;
->  	};
-> =20
-> -	vcc_3v3_rtc_s5: regulator-vcc-3v3-rtc-s5 {
-> -		compatible =3D "regulator-fixed";
-> -		regulator-name =3D "vcc_3v3_rtc_s5";
-> -		regulator-boot-on;
-> -		regulator-always-on;
-> -		regulator-min-microvolt =3D <3300000>;
-> -		regulator-max-microvolt =3D <3300000>;
-> -		vin-supply =3D <&vcc_5v0_sys>;
-> -	};
-> -
->  	vcc_3v3_s0: regulator-vcc-3v3-s0 {
->  		compatible =3D "regulator-fixed";
->  		regulator-name =3D "vcc_3v3_s0";
-> --=20
-> 2.25.1
->=20
->=20
+I've just checked the fixed regulator driver though, and it only
+handles 'vin-supply', not any other '.*-supply$' - thus, technically,
+it doesn't currently implement the full schema :) Not sure if there is
+another existing facility to model multi-parent regulators that I
+missed, or if it's a good idea to extend the fixed.c driver to handle
+an arbitrary number of supplies?
 
---l4zvrrqo2paksgxc
-Content-Type: application/pgp-signature; name="signature.asc"
+Any guidance would be appreciated.
 
------BEGIN PGP SIGNATURE-----
+Thanks a lot,
+Alexey
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlJRqUACgkQ2O7X88g7
-+poaSA/7BTJMdVFTQwTR1IPZ16ROOZ3W7/y+6Yh2XxJrD7tqpAbD8yCP0VNxAYr0
-YPcI4Bj2XDNCXZFu264NSB0ZFCbA8ZMdVcxa6raHElOJZ2UkutF5ZDEVtTR8aW+d
-abMz+yx1xQ2BW4o+tkZWkHs2Qcwbq8SkgDc96Mqx832+FN9cM6wgHn/qnaBAlfga
-CWucPY17ElMRPaPCjSre5290qnOXNeqn5Jj5EJq2hMh+A9OLWyTm7bh2rP6uskXS
-76L9+6mjH+2swVXGRPLfx72tkasXmO/HA8G9DobZ8ZejE1ocoVs14+vofZaLzLjy
-FK4qh8HsZp530RTsfzkF/DwIv0VkTqd6/dhVdSDro583Qr5JCc6TNRHxdILQKFkW
-ayvn9NIikq+c5IskB/KKSQm6/JMfXj7D0DSIyYdHj9nF7b8zDt8gTRkBshty50eu
-DFJan56BvVxVaL1cbecSfAjmmCnPeRwDOM7U+qI/G2qCw2JGZ3biHZgA4auWWIQ/
-11B3OirJDAvSGCDG2VlXwkZ9WXH8Nm0iAhYITNBOipiJJ1bxvvTSq4/CRd+gR68g
-v/zMDHx9XLcB3a4VvxPHpPLNXA/fyQ3JIWEcl22QMConaRiwl4yF9OcOohSm/lpy
-YlYVCyShnFjajvOIsBjgvBw6rNBJRlYDadoKyYEIkiFSLlnjyK4=
-=kfCP
------END PGP SIGNATURE-----
-
---l4zvrrqo2paksgxc--
+[1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/regulator/regulator.yaml#L246-L248
+[2] https://wiki.friendlyelec.com/wiki/images/9/97/NanoPi_M5_LP5_2411_SCH.p=
+df
 
