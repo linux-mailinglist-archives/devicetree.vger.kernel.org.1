@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-248661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C4FCD4E42
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 08:46:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F13DFCD4E3E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 08:46:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 87F97300D41C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 07:46:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 533C130050B6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 07:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F92C226CF1;
-	Mon, 22 Dec 2025 07:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C851C84AB;
+	Mon, 22 Dec 2025 07:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jXFOjNC0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GG6L+hcl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F6919755B
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 07:46:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3B21F5846
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 07:46:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766389565; cv=none; b=RXnyxapoTDJjxPWic7ltKnz7PQPX9qn8Wt1/I7omt/YSEYO6sql6tCCaderuw8JPKu/veHGcfbOtaPqTS8Jdn41fD6KM308V7WS4tHRdiIhApKnW5m6Jx741bymebNch3wEEgjdGP4Yz3ZfjDUjIm8iG0tCR8cYpO6l0WeHcDbE=
+	t=1766389568; cv=none; b=p4mEeBpcm0JweMY4Tph4rXhv5qwitcbR9lEN+5nwgb3IlTn6tfQ9iBrWCLc+yFWb25lqytLlrqCg/KEUqmS5cjhJFgfMMjmNf2NIU10Op9L+42L5WadduzMZ+HTlI2OC70HvyNvr2Vq3EoV7vjsqqMvlwrJsxYX3/tZ16LpVssw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766389565; c=relaxed/simple;
-	bh=1U45K3W9FRxsfbvvzg7mdtDjI/jjVfHl92eXMQxiWlM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gSNekSdIph1M/jdA6WBJJWxBloliqqNHvViOaTHFkK2pwFY701liJ6jWFWoWYQEJtelDb62utotPy0B5ilyzelT2B7NupN+7ijJ9iM3e0OJJ4CxlIMi8nL9ZB89iVcfL37iXfzTzy9330yePotbaH+ONj0D/fSkPHmIsAsIRSQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jXFOjNC0; arc=none smtp.client-ip=209.85.214.172
+	s=arc-20240116; t=1766389568; c=relaxed/simple;
+	bh=6cfmAXzuvyWCriW+9K5ER4DTlYWIvpG7m38YclJ5GzI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=i5lV1PQbqIRNNk8Uwca1tdtfy+w4InyTNQRJcD4fg0O94ZXXun9WFGKYQ3uvil8JPzuP5kOmUAzfBVAOxjXqt7BH0Rx0dJAYhH/SEo4KJog0OC6Y15tuDjykpQ6DT2asdVMdebz1JmdgRP/VTaYBWBmFHtoUOjif9pldfINxJWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GG6L+hcl; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2a1022dda33so29795045ad.2
-        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 23:46:02 -0800 (PST)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2a0833b5aeeso50778775ad.1
+        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 23:46:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766389562; x=1766994362; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Fm0ytkCzzsZtMoWmt94fz5Tfw5Toxhya5YWhR+90lM=;
-        b=jXFOjNC0aDKKvRH326wDKTJyEGq3MU8CahpFCWg6mvKf53ge+Ej4iVumDBS6u5Dvi1
-         +xSagbGmIIjKzLCmaN7ja/6jP2XscbQNuaTNCUDjmNfmE2gc3xFsh+jRXgg4UK+6mlfo
-         +jBv9WyWbuU/IF4mS0q1kb9hBGDpcgpGBw17hHh5syx9EzHsn1Hu0JJTPSzd0SiC9bs7
-         DpUYeFIyVmS+P8SCBc7G3vkXkh7w3cQyV73sc3rcDUJnJEsKnjIFYqZSsZ5EVXW7LrlQ
-         YFhiRXSOCAbWk8HsdTVshZyRG05s0Y3S40XGcd+tekc3dfC7nIZUh5Bm1Q5tCN+t00LN
-         P0YA==
+        d=gmail.com; s=20230601; t=1766389565; x=1766994365; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FhSoLSk0toWUxTDlJMgUw8U4nRCTEhSOzea+DI4TDjA=;
+        b=GG6L+hcl4VoC4hbII5oPpck0AjGYXESfIq0K287iMyk9lGuskcJrFeGdWvqeS0c7iD
+         ZZRqXaWAKtlV+Dsk70CslKVCQy0k1+EhilSKSSnm7uXHT1uqhoqWV/mtaD2L2TjjeFux
+         pNHAyTMuArzMZk4/10ptaM7hsxp/1JJgS56BRvf8FMhdTAsrYw5oEQj8hoTr1K4XW9Va
+         QAt78pPv03ZdUc+rDNGP8Mg+ompa5cl4Z3BphZlVlvziS/evK0Ik6pbBfqIRqClzkXHZ
+         TT3pwl1mXvoSBlCam+ga753Iofo3grrm5YwS918xjenj3hMJ/MU1XzeX2aK0Zy2wAaIB
+         yusQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766389562; x=1766994362;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1Fm0ytkCzzsZtMoWmt94fz5Tfw5Toxhya5YWhR+90lM=;
-        b=chxaVro/D1f89Gj/QO1REzBuGHRhASX2rMNue3mFwjQ9mjKFI1B3/H5drawITia7SP
-         WcVZPZwDLqCTdr9wh7i06chVcbdJr7TwQhsNVQ4KkGaKCDFws9OLV2gLXPWXI3bVSr2q
-         lbyHd5apQXpOQl3aIklsoRlWLm3rkWW4qzLoI675CcvCjm6R8sWWbsEied597E/JMPn+
-         lOTyNYPHSbL0JrL0tb6MGsaY9yAwz89rXJtWDauGZTsgHNNd/QmkpFCirNGvCaBE0VaR
-         L13+ZkmaxH0xgRqd8/KbY1EzTa5DZ2nskmCbSz3DRp5Vys//r+xayxTiN67Z7ZM8aKSA
-         sCbw==
-X-Gm-Message-State: AOJu0Yy5gMKAaDCAzCNt2WlSp4V7Mcw3nrOfy6iyfvjLx60YutiOqwaZ
-	BWACjL/TRss+kd8i6kaq6MsflBm5q3TuZY+TnUdM4+AIjtcEsFyouwai
-X-Gm-Gg: AY/fxX6J4CO3+c5a2ApWSBVabp6Mg6MEYtcDpNV6iTGphWvmNmMy/LR7CFGb+eUglRf
-	qz0ggg86sJemjKLuYUMb7n1uAHGFLNYgrWuV9DMs5C+P9K9elfxlUEEX9JpSzmlLGOFOL4pY3az
-	oZgDsbSZR9F1rnk+BzHHV3gGmkyWqzVt+lLqB4s+kxm+ty1jZUhbWxJ+f03JNw8bbA262aWacOh
-	FZWFLIMLt12tbs8q1rDJghFazDmeg3PTNUfdq6D8SsUvrINudpio6M7ekLNQ/p3eyeLVmgo7CyN
-	del5g6lSN2k3n7YvPagQyKivetBXPVy7/eRfsWMnYWMRNcqksf8qEQ9DuV5zdBy5MGQYH9n0vrQ
-	sqTyMqrQgAneqtHHSvQto935NZSh80Rki2CizJ/qo6K0SjudcFR3geHxmEdLVrDhGcQE5iL212f
-	vhwVIPdZHZHcHMndDvbca4X5M8ZYjIHfMiUl7k8M1w6Ac2dfay+H+1SQX5s2yYEN1p6BKTavY1B
-	sn8TjQEuF9vSyTI
-X-Google-Smtp-Source: AGHT+IHZy+xdBVzO/GB6/G2tv0TmbUIkORQVBt6UpRip9g/newtl6CMwaiALwAcivww2CRbJvKrmhA==
-X-Received: by 2002:a17:902:f68a:b0:295:99f0:6c66 with SMTP id d9443c01a7336-2a2f2836964mr104720125ad.36.1766389561828;
-        Sun, 21 Dec 2025 23:46:01 -0800 (PST)
+        d=1e100.net; s=20230601; t=1766389565; x=1766994365;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=FhSoLSk0toWUxTDlJMgUw8U4nRCTEhSOzea+DI4TDjA=;
+        b=TYo953DElk1mCUJdyvYFR8fb+NPlEjI8mAyTxF520DReYa4KYma63MoCuc7+ROzexv
+         ZbwFo+gPXy0T9nECJpXR9cOMq5r/VchdN6QxHFc+C156Un3AxE5t7cLnPxcMbNJt5sXj
+         mWUNpqJTYX65smEuk0GOW3lm7HhuMmhRt4nF10y77ubnlVlOvCXXbwBUjyHqXERYOyJF
+         0ztt3hquwlTDDtMr+T2JTIf7KHccKjFiVAeywqo/jEmISbZnSpVfveQk43Zrw7d21xcc
+         mR0hIgqY4RdUROWdSMT4rf/3ZOzK/tjsLJpYoD/UGyv/S80gGvJR4ynr24NmLPwh+ToY
+         zDxg==
+X-Gm-Message-State: AOJu0Yxw7l8jpU9lNdyjy/POUGAt/apeZTuVHeXiup/DoxCirWuhJ7xA
+	VRbn7VsfieZ2CPN9PWRecycXjWVLZpsInbtLtLicmfNlG0b+RCvbwKveGwMN4Q==
+X-Gm-Gg: AY/fxX7nQ+meRt8q2Mv5a1c1iQXFrwN7VU6YU7MNBJEZJ3SsLIzGaXSDLsb4sHmAagT
+	9Ai5I5ibQBwmPDph+1ihwqC2wnJww7mI/yVp7IdinHoLIsnadjqFdOT1DfTmBXRXLVn3GJ8yR41
+	EBbIbbpkBUQ1JU8RKp3OTCRXsomE7JfC7x5HuNRobducE6OkyUuSPoBkwa+OYZYXyXEbvs9I+yG
+	275AMhvszPv/XAh0b+zXGrBsyOVA2aDmSr6yZqI8frK6OY6IXVlF/M1VSVfhOXOSQmnYrUWvacd
+	CEBnYHnojPOp68tggICnVqH+55xPwRuS9hYby0IaGkJmJ6YqqXGgAUX8GF1D4qGFGmSzYtBF8eB
+	UAETwngr1fLwJhs5d1APQDUoTVEf6MEORV/Q43Dko/hYP3kTWF1Z+lm025v9t1dmpqG2+N0+xNG
+	T6qrCUC+F9kZtKZVFlrUnjMP3p5ghrJluWw/6G/uvzS2Ted4cpNxvX1VvbrIDwK0ofVTGFQd23S
+	ZZvjlsjZ5hKDZA9
+X-Google-Smtp-Source: AGHT+IGhqnlFI6apowaKrJQSUtx5Uo4lIBRTl0LtnZmF1bt+yilUxHMwYLSA8kTDgE5JJmMxhl6Q8Q==
+X-Received: by 2002:a17:903:32c3:b0:298:616a:ba93 with SMTP id d9443c01a7336-2a2f220cc86mr83489825ad.9.1766389564695;
+        Sun, 21 Dec 2025 23:46:04 -0800 (PST)
 Received: from [127.0.1.1] (2001-b400-e3a0-2ead-fb96-4f50-681a-bce4.emome-ip6.hinet.net. [2001:b400:e3a0:2ead:fb96:4f50:681a:bce4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d4cbb7sm89605105ad.59.2025.12.21.23.45.59
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d4cbb7sm89605105ad.59.2025.12.21.23.46.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Dec 2025 23:46:01 -0800 (PST)
+        Sun, 21 Dec 2025 23:46:04 -0800 (PST)
 From: Kyle Hsieh <kylehsieh1995@gmail.com>
-Subject: [PATCH 0/2] Add Meta(Facebook) ventura2 BMC(AST2600)
-Date: Mon, 22 Dec 2025 15:45:42 +0800
-Message-Id: <20251222-ventura2_initial_dts-v1-0-1f06166c78a3@gmail.com>
+Date: Mon, 22 Dec 2025 15:45:43 +0800
+Subject: [PATCH 1/2] dt-bindings: arm: aspeed: add Meta ventura2 board
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,10 +83,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIACf3SGkC/x3MQQqAIBBA0avIrBNyosKuEhGWUw2EhVoE0t2Tl
- m/xf4JAnilAJxJ4ujnw4TJUIWDejFtJss0GLLFWiChvcvHyBkd2HNnso41B6lJPFbatbZoacnp
- 6Wvj5t/3wvh/iKNU9ZgAAAA==
-X-Change-ID: 20251222-ventura2_initial_dts-909b3277d665
+Message-Id: <20251222-ventura2_initial_dts-v1-1-1f06166c78a3@gmail.com>
+References: <20251222-ventura2_initial_dts-v1-0-1f06166c78a3@gmail.com>
+In-Reply-To: <20251222-ventura2_initial_dts-v1-0-1f06166c78a3@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
  Andrew Jeffery <andrew@codeconstruct.com.au>
@@ -93,39 +93,40 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
  Kyle Hsieh <kylehsieh1995@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=735;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=839;
  i=kylehsieh1995@gmail.com; h=from:subject:message-id;
- bh=1U45K3W9FRxsfbvvzg7mdtDjI/jjVfHl92eXMQxiWlM=;
- b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBpSPc1Shs0Q0pMY4uKrv/B9B9j/btwZgk1uTBRM
- mt4115VUEaJATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCaUj3NQAKCRClg0K3CVbE
- gSqoCACl+GJeVtCd6QqxE6qc5Fxc86uBRSxPbrzRkBEviqVGBcy2mry3Uy3SkDFxPZePkHmFY8U
- 2et+EtaBHVuzCWQYHRJESKKwWbpOlGCxX8oL9xaLbmUxbnb61aNxd3QGuICWWc9jiR7/H5scRjb
- MFZ8Vn4CIHlfQZEntkPzDWj9R2mbvzoSUVRFVTPpzkmqDFL0Pu0YpvXKJe94xDm94DZ1mAKXnpr
- JaEv/N1vjUm7W4BdKHMNjBR49ezPwzeATHpwwcTpnLWik0W9xCAOjhrEAJnWv7xiXF0I3tHNaN4
- Q08DP5L6ufRxcAb0cV7ndXyvyzfFEaGP5dltz45ztEr2J3jw
+ bh=6cfmAXzuvyWCriW+9K5ER4DTlYWIvpG7m38YclJ5GzI=;
+ b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBpSPc25eqwxQH4wWyUJKBjJILcziSHssSo8q/H+
+ 3afSzty0vuJATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCaUj3NgAKCRClg0K3CVbE
+ gUTcB/9THA8dYDR325r29fI/xAe4YjAOYulMOMSzWKqhT8wmQoP3GO2VZ1yoyPxLUg4w3f5YSpW
+ 9T4pKSUq7CoInDyDV23/BZ6z/27l/O358C4Q4Vnz4xIOTOqhXETyLAxAViA9OKDC26T39y3fYKL
+ XI827vGlVlVwZkVWypMOQSUpx2HTUAgTKpt7cwcAHHs/oYaIgc543Qn7dX/UvOFVzcB/nTDQADw
+ PLdVHv8ySkrc6x5IlC+romxV+9DWyclGtiSz6SxZR9+JnAK/gLzP+1O2PGqCzVqk06GViCnrhhj
+ 7PTd9vbIeyyur7sw2e0MlNrA5nIHc6rHQUzY9ttNMKLlNIhK
 X-Developer-Key: i=kylehsieh1995@gmail.com; a=openpgp;
  fpr=C91EC68D64E758F931C6A897A58342B70956C481
 
-Summary:
-Add linux device tree entry related to Meta(Facebook) ventura2.
-specific devices connected to BMC(AST2600) SoC.
+Document the new compatibles used on Facebook ventura2.
 
 Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
 ---
-Kyle Hsieh (2):
-      dt-bindings: arm: aspeed: add Meta ventura2 board
-      ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
- arch/arm/boot/dts/aspeed/Makefile                  |    1 +
- .../dts/aspeed/aspeed-bmc-facebook-ventura2.dts    | 2950 ++++++++++++++++++++
- 3 files changed, 2952 insertions(+)
----
-base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
-change-id: 20251222-ventura2_initial_dts-909b3277d665
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index 9298c1a75dd1..24e19b8d108a 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -92,6 +92,7 @@ properties:
+               - facebook,harma-bmc
+               - facebook,minerva-cmc
+               - facebook,santabarbara-bmc
++              - facebook,ventura2-bmc
+               - facebook,yosemite4-bmc
+               - facebook,yosemite5-bmc
+               - ibm,balcones-bmc
 
-Best regards,
 -- 
-Kyle Hsieh <kylehsieh1995@gmail.com>
+2.34.1
 
 
