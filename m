@@ -1,101 +1,113 @@
-Return-Path: <devicetree+bounces-248860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12EC3CD62F4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:39:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAAE0CD6304
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:39:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 26FFD304D572
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:39:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 92821303D6AC
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:39:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F18F231C562;
-	Mon, 22 Dec 2025 13:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="rHrHYFL5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD9A31A7F9;
+	Mon, 22 Dec 2025 13:39:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3FA31A558;
-	Mon, 22 Dec 2025 13:38:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622B63126D0
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 13:39:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766410730; cv=none; b=kwmzpFknSQ7/JdoGld55+qblya4lHfpj2iELh09AWl8AISNQwzFEVg7n9V9dbAi6geAlThVelOpddN5fwGTgF2rpMOjW4YZzD2djZhTY5imMEoS/W1pUW3JUrzs44pcWHU5E9IMUQQx/jdlRIhDJjAIc5V71mwoKrQDyZ3sfXTs=
+	t=1766410775; cv=none; b=O07DZ8EAKFL1QjwXI0TIKlawDuSj98V5O9tFCphbLaPk0FNa4sfwCElUD8Wpaj56syOrGLzlnznw/8f6iJkBe5sEjBlDS2VCtdoYeyxFCOYcPiZEgC8UnwjT4wOG/1zpImJNnWXdTvbqHuAWGwz2Dj6HMfR3bRejHYFt93w6ejs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766410730; c=relaxed/simple;
-	bh=NPJThb2dDEfwsH8tKnfnK/e4aHjj1B1Rp863vlZvNLk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o+Yw1FWDKr+5kYKLwQcMa4NMsY4TW4IbDBrDtpHd7iwWeXWmzNJOzwVOwvVzVw61zTkSjYArkcUY8h3zvA+oKQOogkxOvr56CHX4vauYthaPPU4Lm5a3PVL+/4Q3IT7ckwLnolTp7JDEfiWEV68l2Oao7D5JQSBIjzrtxuymZFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=rHrHYFL5; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=8WOqfT0iXUSzbNTa8nAUHhSbOAmz10UkS+7JzgNrtjw=; b=rHrHYFL5PwnRRsPxLr3aK+RpVO
-	OIC38pXMVpGXnNN4zlPYcZSrZ1w+U6UiP15rrfENe1uCmslW0lIe1Vck5p158S7xmGTPbMfHKKyEC
-	O2GZT5zU1IlLeI7UWFf8MyumU+kqRMQ3tlq/Y/Tk+f68TnZf+l2nJpRBGeY2O3anX1YkRNeiSLOEt
-	ryqTHmtUWy8bKFvSONHmE41PEKOsrODBQ8d7oDE7M8CkjtDRcqkkdvdxS9513yyc4x0m9PTuqAB9H
-	xFW/TZsMe46a6PA1fEQhtVufRuYjK6wl9eN/uuevhqzLvszMxWQ5k9sxQoqGzlqi/iK9bA1FFAxT6
-	YKFZNy7Q==;
-Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vXg7L-0005s2-T1; Mon, 22 Dec 2025 14:38:31 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	brgl@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dsimic@manjaro.org,
-	didi.debian@cknow.org,
-	wens@kernel.org,
-	nicolas.frattaroli@collabora.com,
-	detlev.casanova@collabora.com,
-	stephen@radxa.com,
-	sebastian.reichel@collabora.com,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: (subset) [RESEND PATCH 0/3] Add Belling EEPROMs found in Radxa boards
-Date: Mon, 22 Dec 2025 14:38:26 +0100
-Message-ID: <176641067344.1648325.2735972831616663937.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251202084941.1785-1-naoki@radxa.com>
-References: <20251202084941.1785-1-naoki@radxa.com>
+	s=arc-20240116; t=1766410775; c=relaxed/simple;
+	bh=aLorWmYRvNIHl/ChpwP0b5mSgCM9jBpYeqRPfx8gvZk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YoBOFBTiygOX5WZlCIVT8mNyXTJoyYuc6ZutyrRtm9ZaAACwlgj2T9zLtFejQAXkJ0l1dZTOCgtHuESAA/BFgEpKSq0Bu996qsBcrSQ0y2hc37uyGZPrYm6dc9LIH/IxqQ2wUYczCenRAveX5y+9+y3ICxK/g8fnH1B7mUi5K8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-55b265f5122so913224e0c.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 05:39:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766410773; x=1767015573;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mYo5pX+aZSSpkX0T6WbXVuuCRV96o2JsBCIYhgvV9O8=;
+        b=JW7u0mgwvt4NsGp+KQvMjzNzZtm1kJ7s9dvWiT3dYiWOrPMtctmAF78SEUad1PcxOK
+         kKO7+/eh9OGY/2c8851lETqt4dZfeLL3UJ1eJq+2HUzFmNGV3w5fxIPyifLjYgm06bny
+         4EmHHmL8Gj5h/yiMXQwGSpWic4bZUu4neuKGf+f3feHtUgpijwk9xUhmeROU2ZbhSBaR
+         WurvKfoMY5w0zytUM5r/AY4Uk9cSRvMdRAX/am1VRfvc03sv+fB4YPYC3OxGyexid+8Y
+         j0DrUUph1nV7xHSXuLW/CoFpImoO4jYDFWTHOgnfqedy0Lv/P+NpLynTCjk9asYyIEaM
+         r34Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXfUvO3LBqvViDd5+8jxQ6U1zbHLZWmRz3lUbpGOR4hSj/GphMH+0JqaQg5J33eugbEvXQ630XWPKZm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBZP+LlVkEwpph+Im1NrEhXSXeB6C5p2IM5TYqrSmUGkvy2Jik
+	Kgc5jhmlqjJOkFs9nJhRk3TSRzj/NYnCpo3zeVMik4jKdpvBb6hSszNbgXB0n2G8
+X-Gm-Gg: AY/fxX52+1BPS/eMmF68BjgkYv0osXi6H9T/6zu/pnQKont4EPA5F5U65lKbf2GnMvI
+	DQnTAnARUxSSELIACvMWYnkufpGfYYNtRg7GEM/RVv2XzlxlrEg0fxTriE4QJ0R4ZT6oGH6I56y
+	metejf43hxH6q2p5w6CdQAjTH2JhuFz8J+GxtDKyypoaH8COYVo/0ALy8BEvlhqwxl4solTAgPG
+	qxBbsBsTNx9vDEv44SpEKLOpcWQQQaBImUF+RmyEuN3Kof50rYDhndLLaxSfr1aZJnNJf7XZSDd
+	Kf4SoicvIYJUkpC85gi4N1t2bIjtvDEmvuOj5LhJCPn7KY5ImiST3TkMjKOkEh0y7k03a95qlay
+	dPQdbtHrPzUoj5Y3RiRQAxtmUoGCIe4Di5CzM+Rp2lHqkGmJBOgyerib36/5Ax5kelViA6QK8Zw
+	rYF2FXOOAjo/lsuxrypMNngWj3oXMOODCvUEMffIL9PYnRRM14eOOgzIlC7m0=
+X-Google-Smtp-Source: AGHT+IFjFkP4AMUyUA5dbJzeLdHvLV1E+x9yhQvCjuHjExAXt/mi9kbrUbFtIbbBy8Tkn4l73uKbuw==
+X-Received: by 2002:a05:6122:923:b0:559:85d5:bfbd with SMTP id 71dfb90a1353d-5615bd867e2mr3096725e0c.9.1766410773336;
+        Mon, 22 Dec 2025 05:39:33 -0800 (PST)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9434167aa35sm3025839241.5.2025.12.22.05.39.32
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Dec 2025 05:39:32 -0800 (PST)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-94369e02193so225151241.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 05:39:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUTDvLG8t5oS8PhWW7zAL45BhfHpAbRyj181yJmqZhJuqsHl9I/+U1ZOg/YPB0WeJbrP/h2cy93kaMy@vger.kernel.org
+X-Received: by 2002:a05:6102:e0d:b0:5db:e297:2c75 with SMTP id
+ ada2fe7eead31-5eb1a690d56mr3146711137.18.1766410771741; Mon, 22 Dec 2025
+ 05:39:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20251023212314.679303-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251023212314.679303-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251023212314.679303-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 22 Dec 2025 14:39:20 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVgsaLA8oLkKmnvZ-4-BHh9zokH7ELBLzULhiFtxNEYsA@mail.gmail.com>
+X-Gm-Features: AQt7F2rUSnyhEsMU58-_oHkLcTQAMyF45jFSROU--OEfcy25k207D_YCitdMMXw
+Message-ID: <CAMuHMdVgsaLA8oLkKmnvZ-4-BHh9zokH7ELBLzULhiFtxNEYsA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable
+ DU and DSI
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
+On Thu, 23 Oct 2025 at 23:23, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Enable DU, DSI and adv7535 HDMI encoder on RZ/V2H Evaluation Kit.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Tue, 02 Dec 2025 08:49:38 +0000, FUKAUMI Naoki wrote:
-> This patch series adds Belling BL24C04A, BL24C16A, and BL24C16F EEPROM
-> found in Radxa boards.
-> 
-> FUKAUMI Naoki (3):
->   dt-bindings: eeprom: at24: Add compatible for Belling
->     BL24C04A/BL24C16F
->   arm64: dts: rockchip: Add EEPROMs for Radxa ROCK 4 boards
->   arm64: dts: rockchip: Add EEPROMs for Radxa boards
-> 
-> [...]
+LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.20.
 
-Applied, thanks!
+Gr{oetje,eeting}s,
 
-[2/3] arm64: dts: rockchip: Add EEPROMs for Radxa ROCK 4 boards
-      commit: 1b2d6b75e2b3374157c9015435381b217a887145
-[3/3] arm64: dts: rockchip: Add EEPROMs for Radxa boards
-      commit: e3b12fc3336240e7dee4989b9e8634be3c959c94
+                        Geert
 
-Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
