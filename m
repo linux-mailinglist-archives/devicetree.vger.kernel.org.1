@@ -1,245 +1,196 @@
-Return-Path: <devicetree+bounces-248942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B00CD702B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 20:51:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 762C3CD7061
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 20:57:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B3572300F189
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 19:51:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E7A773015E38
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 19:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BD573090F7;
-	Mon, 22 Dec 2025 19:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A2633BBD5;
+	Mon, 22 Dec 2025 19:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="nNFswqg9"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="pFZJUB+P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D592BE058;
-	Mon, 22 Dec 2025 19:51:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3BE2206AC
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 19:57:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766433080; cv=none; b=h7Ce5PLYc1zgSLoVsBQblyO4i4g1ReRK0t1JB2NGwlHsDMhx8eqAoz/WOUPJhndxTJTR3mwrzftKnr6BrVTYupd6Xko5DPlY7A6LAlPRd0dxajruze9gmluqGoDGhF1sdybH62q5EJPlihaO3NojVd2et8b97xtjuuDHUSbDmy8=
+	t=1766433450; cv=none; b=eG0KLx18elCl9ELgG+Hw0msiwCQmjcb20EgHSDuoWmaEoCeGy0AD7GwRPYJHR4/tWyfZ+WRrtFM+Wa2Vn+3cbv6+HW32jvd1xhlmuobHGp+95Xa37gzF2NiT88P3nqTtSm7o67eV4UU1bqQA+xWVl7X58eevuJIelWwn/+2QyKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766433080; c=relaxed/simple;
-	bh=laXSDc0LvGBCtakLKZRFmi7NTIJt8OH9TSTIhSvN0ZA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i1ZxBmYpVzn4amjdGZSYI5zwLxDWdgJJ0+Kht6UOp2R9apItH6yuvvMhCVIy1rBabOSueEtUcc1ybAMPQtn+mH0r+5fawFbE8EyUvwGVSsRTUuYEayhWxEQloEFpNZvfFymwVPP+Kx7EUqVcv4CJGVh8RhUKP9CyqHkjarwxBDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=nNFswqg9; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 2C06B5340D28;
-	Mon, 22 Dec 2025 20:51:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1766433072;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=sWJjDwIX27c6gSieVEeo9HhjvU+gXMbAhgHUz27X4qw=;
-	b=nNFswqg9AHEde1hXN9fQicffAseOL4Mh4+s4K1VtLByYzAn+aZuCxhHfSMtBOp+PwaPkmg
-	330v95caGDIkSWzpGUXMjfaPjZo9KtqhNTWkuyXEksZ/BygYdMVhS2usJCMwO+Bz6RTmm5
-	+D2E/r2KmbhxCapi3wr6XSoN8cZweus=
-Message-ID: <17490007-73b9-423b-af49-b89e33ee51f3@ixit.cz>
-Date: Mon, 22 Dec 2025 20:51:11 +0100
+	s=arc-20240116; t=1766433450; c=relaxed/simple;
+	bh=gqq7zNg4tUJJ0SmUCTR/rfb6bSKF7C5JMh5yMLNWhsw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aiPSNpFIf09npWMZ8gnVa2+z/LEOAIwESic5/poKKg9PznY0Cogfq2W3fPyQEPsZBU1vOTcrG+j2J4RB6d0wFiOdGNT6hDVXp+hNTUlbrNTLj0zQFVD+/Ab3y3XXJxQ+wojgoJqiH8AGilNUI4z4WvkAUoT8v2i2QOmfW42N/WU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=pFZJUB+P; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b7ffbf4284dso516078266b.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 11:57:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura; t=1766433445; x=1767038245; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h1Ffz7SUjA9uiSla9hHoS8dAeCi7tewQV/vP2Eehn8A=;
+        b=pFZJUB+PHZWLjPcQpowiytkshEGhxGj5eXPYicVBekCOyv5edtd/D/8QBRD4WducvS
+         rVpLJLuIAiUIWS2Km205Ah9T/sgmRQOZ9OER7gw0sEWH7OPUrzpo5AnmT6KDq00vmhqT
+         rBAs+UNDSUzDVSyWeqrZ7/t88wbpQXA7+rjHwGcjOD8V5mBeydw3VSesk/wA0KPiQC2/
+         tjj+RokSHTTJfyDwGuAWCGrrUkqM8ridBPmhsAs205vnT73lATgHhsCYpiusiPmgDrnx
+         3SiCZo4Noj8qZLChLZyEKiDBavbPc5IJU72tnwwaSUuh+9kbmKY3J/twONeia8BofiN+
+         Y9Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766433445; x=1767038245;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=h1Ffz7SUjA9uiSla9hHoS8dAeCi7tewQV/vP2Eehn8A=;
+        b=XEYWpwl+e+9pTFZM7nsSnMeZDmT4THBeP3SSN/w0N4PbteChJ+5iVXD2AnFNhYPXMM
+         6Wo8kOmmS7OchGz7ImDUFBKWXWHnMcAU/bpDWs05TcgpMZoXSvxM8Y9InM+a0L2IbbTb
+         QXDDCPMMNWRndM6aAgs/vAcxX+V+81YGdbgZyUcqtcJtonlGLlAXfRCuiO20bwu80Q6g
+         5fPYX6DCe0l8V4P0gMIrsBfqKnnIAFcWsm1DdzUs9ldZbfn74w0ZvYbE7qljip1kxKJI
+         FfOTLKRlWuLP8vBJdAxveTlQspvZKlxsQhg+KhFyWKgHLiRvnA4MOzS+m3+OPHb3g1s+
+         /91w==
+X-Forwarded-Encrypted: i=1; AJvYcCUVfyylwDliPM490YaUR3kJOWkWKIaEqm0GFbDhStarVwH25kvWBYJZbclxXDRlSi8ruuEiqLlwuGVZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZ69YW2LKO81hIg/b8Ba0iOX5QFTjsgQgvEfJE4zfLgYQf8F8d
+	GZI5tZ7pu9HRVC//93bETtQayIx40/1N8HlWUJfIinpKOSWZ1AfZV8sdU0REFH9Ptz//oY6Pon8
+	lgJYBBMlNUNYtVmfak6QD5o613zmG/n95GlQkB+tViQ==
+X-Gm-Gg: AY/fxX7QPkkFy7zbHSjL1qkydjULQL+D/Ia1mijkq8WMspatfc7wxtvScqIFkEZEXTn
+	c+JMz439hbK40c/xUSiqkBbgFStB8SyjOfZkJEsPrcQtKt/ywFUKiZNrvla8zTYABn1r+XndmO3
+	WBdzFMgye+HOHS/TJI3wPZjCx82WQXRpYhLHcm10wn1Pv6CXNlMauhfoLv2Qn2dY1n8hg80Gk5F
+	hvHksDMQqPFE8yCwdkcsi1CvPPxGhUX0dRXAg7Ucl2OmnzMwaNWBsoqqvzngXNsDlzt315smWcm
+	Zzps5fWsQ4WszUUkyaYWqyRHUz/4kWE2IbhkzPxHmJ+HVX2OoQ==
+X-Google-Smtp-Source: AGHT+IEdtGGJL6owR7mmmwSv2zTvtla84ek3MFk4eZNiNP2lYiWN2sfcs6M8h0fxDoYpaxxvqE+4ieXBeUSoFs/4WBA=
+X-Received: by 2002:a17:907:3ccb:b0:b73:8cea:62bb with SMTP id
+ a640c23a62f3a-b80371a3d87mr1355933366b.31.1766433444769; Mon, 22 Dec 2025
+ 11:57:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845-oneplus: Update firmware
- paths
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251222-oneplus6-new-fw-path-v1-0-a2d366f9eb89@ixit.cz>
- <20251222-oneplus6-new-fw-path-v1-1-a2d366f9eb89@ixit.cz>
- <a8cc09c0-6acd-409a-a907-c3809b4f4db3@oss.qualcomm.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <a8cc09c0-6acd-409a-a907-c3809b4f4db3@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251215163820.1584926-1-robert.marko@sartura.hr>
+ <20251215163820.1584926-16-robert.marko@sartura.hr> <20251216-payback-ceremony-cfb7adad8ef1@spud>
+In-Reply-To: <20251216-payback-ceremony-cfb7adad8ef1@spud>
+From: Robert Marko <robert.marko@sartura.hr>
+Date: Mon, 22 Dec 2025 20:57:14 +0100
+X-Gm-Features: AQt7F2rDm7ZgyJ9ixNo09GJcdYbsF1DFNHNC0FIPR01SjncTPp1tTulCOrRyRyg
+Message-ID: <CA+HBbNESUZ6KB0BbpZUMfh1rjZTZMgY1SwmFQbx+CRP+a_1x9g@mail.gmail.com>
+Subject: Re: [PATCH v2 16/19] dt-bindings: pinctrl: pinctrl-microchip-sgpio:
+ add LAN969x
+To: Conor Dooley <conor@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	claudiu.beznea@tuxon.dev, Steen.Hegelund@microchip.com, 
+	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com, 
+	herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org, 
+	linux@roeck-us.net, andi.shyti@kernel.org, lee@kernel.org, 
+	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org, 
+	pabeni@redhat.com, linusw@kernel.org, olivia@selenic.com, 
+	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, mturquette@baylibre.com, 
+	sboyd@kernel.org, richardcochran@gmail.com, wsa+renesas@sang-engineering.com, 
+	romain.sioen@microchip.com, Ryan.Wanner@microchip.com, 
+	lars.povlsen@microchip.com, tudor.ambarus@linaro.org, 
+	charan.pedumuru@microchip.com, kavyasree.kotagiri@microchip.com, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	dmaengine@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, netdev@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-clk@vger.kernel.org, mwalle@kernel.org, 
+	luka.perkov@sartura.hr
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22/12/2025 20:31, Akhil P Oommen wrote:
-> On 12/23/2025 12:35 AM, David Heidelberg via B4 Relay wrote:
->> From: David Heidelberg <david@ixit.cz>
->>
->> Conform to the new firmware path scheme.
->> Includes cosmetic cleanups.
->>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>   .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 23 ++++++++++++++--------
->>   1 file changed, 15 insertions(+), 8 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
->> index db6dd04c51bb5..f1c63794db979 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
->> @@ -181,8 +181,9 @@ panel_vddi_poc_1p8: panel-vddi-poc-regulator {
->>   };
->>   
->>   &adsp_pas {
->> +	firmware-name = "qcom/sdm845/OnePlus/enchilada/adsp.mbn";
->> +
->>   	status = "okay";
->> -	firmware-name = "qcom/sdm845/oneplus6/adsp.mbn";
->>   };
->>   
->>   &apps_rsc {
->> @@ -353,8 +354,9 @@ vreg_s3c_0p6: smps3 {
->>   };
->>   
->>   &cdsp_pas {
->> +	firmware-name = "qcom/sdm845/OnePlus/enchilada/cdsp.mbn";
->> +
->>   	status = "okay";
->> -	firmware-name = "qcom/sdm845/oneplus6/cdsp.mbn";
->>   };
->>   
->>   &gcc {
->> @@ -370,7 +372,7 @@ &gpu {
->>   };
->>   
->>   &gpu_zap_shader {
->> -	firmware-name = "qcom/sdm845/oneplus6/a630_zap.mbn";
->> +	firmware-name = "qcom/sdm845/OnePlus/enchilada/a630_zap.mbn";
-> 
-> I believe this is considered as breaking backward compatibility. How
-> about creating a symlink in linux-firmware instead.
+On Tue, Dec 16, 2025 at 6:34=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Mon, Dec 15, 2025 at 05:35:33PM +0100, Robert Marko wrote:
+> > Document LAN969x compatibles for SGPIO.
+> >
+> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > ---
+> >  .../pinctrl/microchip,sparx5-sgpio.yaml       | 20 ++++++++++++++-----
+> >  1 file changed, 15 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/microchip,sparx5=
+-sgpio.yaml b/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sg=
+pio.yaml
+> > index fa47732d7cef..9fbbafcdc063 100644
+> > --- a/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.=
+yaml
+> > +++ b/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.=
+yaml
+> > @@ -21,10 +21,15 @@ properties:
+> >      pattern: '^gpio@[0-9a-f]+$'
+> >
+> >    compatible:
+> > -    enum:
+> > -      - microchip,sparx5-sgpio
+> > -      - mscc,ocelot-sgpio
+> > -      - mscc,luton-sgpio
+> > +    oneOf:
+> > +      - enum:
+> > +          - microchip,sparx5-sgpio
+> > +          - mscc,ocelot-sgpio
+> > +          - mscc,luton-sgpio
+> > +      - items:
+> > +          - enum:
+> > +              - microchip,lan9691-sgpio
+> > +          - const: microchip,sparx5-sgpio
+> >
+> >    '#address-cells':
+> >      const: 1
+> > @@ -80,7 +85,12 @@ patternProperties:
+> >      type: object
+> >      properties:
+> >        compatible:
+> > -        const: microchip,sparx5-sgpio-bank
+>
+> This should just be able to become "compatible: contains: const: microchi=
+p,sparx5-sgpio-bank.
+> pw-bot: changes-requested
 
-See discussion here:
+Hi Conor,
+I have tried using contains, but it would fail to match with the
+following error:
+arch/arm64/boot/dts/microchip/lan9696-ev23x71a.dtb:
+/axi/gpio@e2010230/gpio@0: failed to match any schema with compatible:
+['microchip,lan9691-sgpio-bank', 'microchip,sparx5-sgpio-bank']
+arch/arm64/boot/dts/microchip/lan9696-ev23x71a.dtb:
+/axi/gpio@e2010230/gpio@1: failed to match any schema with compatible:
+['microchip,lan9691-sgpio-bank', 'microchip,sparx5-sgpio-bank']
 
-https://lore.kernel.org/linux-arm-msm/CAO9ioeW9=TPde4P=AOcQANvPv90K-9MkcRRgb7HNwe8KiOpFjQ@mail.gmail.com/
+Regards,
+Robert
+>
+> > +        oneOf:
+> > +          - items:
+> > +              - enum:
+> > +                  - microchip,lan9691-sgpio-bank
+> > +              - const: microchip,sparx5-sgpio-bank
+> > +          - const: microchip,sparx5-sgpio-bank
+> >
+> >        reg:
+> >          description: |
+> > --
+> > 2.52.0
+> >
 
-I understood the conclusion was "let's do it".
 
-We have more-less 3 consumers here,
-  - postmarketOS (Alpine)
-  - Mobian (Debian)
-  - NixOS Mobile (NixOS)
 
-some of these using droid-juicer, which can be easily updated to update 
-paths.
-
-David
-
-> 
-> -Akhil.
-> 
->>   };
->>   
->>   &i2c10 {
->> @@ -422,7 +424,8 @@ rmi4_f12: rmi4-f12@12 {
->>   &ipa {
->>   	qcom,gsi-loader = "self";
->>   	memory-region = <&ipa_fw_mem>;
->> -	firmware-name = "qcom/sdm845/oneplus6/ipa_fws.mbn";
->> +	firmware-name = "qcom/sdm845/OnePlus/enchilada/ipa_fws.mbn";
->> +
->>   	status = "okay";
->>   };
->>   
->> @@ -474,8 +477,10 @@ &mdss_dsi0_phy {
->>   
->>   /* Modem/wifi */
->>   &mss_pil {
->> +	firmware-name = "qcom/sdm845/OnePlus/enchilada/mba.mbn",
->> +			"qcom/sdm845/OnePlus/enchilada/modem.mbn";
->> +
->>   	status = "okay";
->> -	firmware-name = "qcom/sdm845/oneplus6/mba.mbn", "qcom/sdm845/oneplus6/modem.mbn";
->>   };
->>   
->>   &pm8998_gpios {
->> @@ -593,7 +598,8 @@ &qup_uart9_tx {
->>   };
->>   
->>   &slpi_pas {
->> -	firmware-name = "qcom/sdm845/oneplus6/slpi.mbn";
->> +	firmware-name = "qcom/sdm845/OnePlus/enchilada/slpi.mbn";
->> +
->>   	status = "okay";
->>   };
->>   
->> @@ -744,7 +750,7 @@ bluetooth {
->>   		 * This path is relative to the qca/
->>   		 * subdir under lib/firmware.
->>   		 */
->> -		firmware-name = "oneplus6/crnv21.bin";
->> +		firmware-name = "OnePlus/enchilada/crnv21.bin";
->>   
->>   		vddio-supply = <&vreg_s4a_1p8>;
->>   		vddxo-supply = <&vreg_l7a_1p8>;
->> @@ -906,8 +912,9 @@ speaker_default: speaker-default-state {
->>   };
->>   
->>   &venus {
->> +	firmware-name = "qcom/sdm845/OnePlus/enchilada/venus.mbn";
->> +
->>   	status = "okay";
->> -	firmware-name = "qcom/sdm845/oneplus6/venus.mbn";
->>   };
->>   
->>   &wcd9340 {
->>
-> 
-
--- 
-David Heidelberg
-
+--=20
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura d.d.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
 
