@@ -1,349 +1,230 @@
-Return-Path: <devicetree+bounces-248636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA15ECD4988
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 04:07:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D78F5CD49A7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 04:10:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 72B9D3005488
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 03:07:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E9AB30053E1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 03:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFAFD3242B8;
-	Mon, 22 Dec 2025 03:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780EA324B33;
+	Mon, 22 Dec 2025 03:10:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PgIYrdOg";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OTqYBXof"
+	dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b="OKbIpPKS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from ironport.ite.com.tw (219-87-157-213.static.tfn.net.tw [219.87.157.213])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 315D52D3EE5
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 03:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7191A0728;
+	Mon, 22 Dec 2025 03:10:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.87.157.213
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766372821; cv=none; b=fFn3oLE2g8vlQD30U4AyxiQp6CQRmZaVtspA+tvTuDxjSN8QNtussYsZTTovQfe8FD9+l/WUnJB+H5l7TLImjW1JZQGgW+XbK5gPm6FZUZhTfT7Wh9x4awhfMQVtcYxztOw/kCH3y7Z1YBu5/PTBqxA/o+ekBQrgmISsBK+e5gI=
+	t=1766373046; cv=none; b=nCYIw3Cnt1t+0p+NnGozA8hgQNWr4A4buZKxdEn0XAJvlLb9DfwyBFN4vBAtwRgByrRSX4vmZ72UKTp/7V8ElWE58wOMhW8JNh7ILCEl3UOhdGKZlYIwjSUjEfwfY8UAxwJC5l5Fvee3tDPLJg6k6F7H9jJSZvyrf5FNEer/aIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766372821; c=relaxed/simple;
-	bh=V50vCeXuxeJLbmlKSUhQjnCteF4ZySqM1KaWoPGK+d8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dHtrFDcVHvRDOu839R8IeP3yP2yUF0cSoI/mk70rIh1H+naf+4JmKIrogmy2ltalI3SOxpGMKx0Jut0eYWU5GiEN7v7qOuZ0I/RmT8uMk6j+SOw3DyscwtrLu/ptS8lnL0Cz4EPwofkxpTurMHzXd90/QcpSEFHzP9OAhUV7ar8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PgIYrdOg; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OTqYBXof; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BLJj1gL983038
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 03:06:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SeCrpSAem0l6kJVOq1JnyUO91eCa1P1yPgmrmdkHcU0=; b=PgIYrdOgas+1a5GO
-	YAo57qEpgOhEgA1Drloyv/WcE65w/2BVV+NMQIirQU51R/VLj08ICbfzPOxndU68
-	4Nb7s0wEQs/tpriukz0hR204D+hnnWdfuJBC7pPLKOmvblpDabvoma9d0P0QxFpc
-	MFB97wbjVs9jqztxddBPR0JjxKc1K3S1+f7SDtHLSbZ/QzU/DNt4vLsNc08Eex05
-	pr3jc2+FTOZb9uF2emtK3bQhYeHPkOY0NBw/ubhp0vn05Z87Zh2FALMoK7H8Q7Wy
-	KqEgIBES469BTVB6bT/fQis79EC5qPr8AeWxWDdJZwpTw9nX713voUjYf6C/gQSj
-	fFC2NQ==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b5mydud1c-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 03:06:58 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7ba9c366057so6134458b3a.1
-        for <devicetree@vger.kernel.org>; Sun, 21 Dec 2025 19:06:58 -0800 (PST)
+	s=arc-20240116; t=1766373046; c=relaxed/simple;
+	bh=3tP3aJdxuXr0O/RcIqyXwc7HArCvJIp1dl6elqRsih8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=K/n2+vK7KkZXdZE5cAvsN18JglLSsYsZ0sf4/jx2yHlE2I3wnrOwepKa0P6jW2iP6hw5C+4ROFoMFGIsuXrAsni8MJQIhNdkpqgD+v7wEeTF3I66ufp0dZPaiFOtVJIJ5FO/gfki3zm28c+WGO+DFatEZG7a91bVgwen9FPwfbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw; spf=pass smtp.mailfrom=ite.com.tw; dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b=OKbIpPKS; arc=none smtp.client-ip=219.87.157.213
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ite.com.tw
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766372818; x=1766977618; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SeCrpSAem0l6kJVOq1JnyUO91eCa1P1yPgmrmdkHcU0=;
-        b=OTqYBXof5Y0CjyfHthhMVQf72tancxUpmxulY/2v3HhIQPv4UAcRhxMOHo/vWwYjrP
-         R46DfCdAoq41RrYjkruu0q6DuKqioeW2vyhF0VTbi7aZ5wPvQ6PNV4GUmd3JCPQSbmtk
-         0lw6LWxntQalFedqAY9agpzwYGfrvKbRaOPZkeyV0On70vEi5+lgMDWY2H4I1ANM3ZT2
-         whwet2Hrn5GziAcCYZy6N8KwHooTJF4ktn3K/uFC67aoN4YOzFDwNFYlrEPVqACzLedg
-         ltFLe8dn8dF6xpdvFD+qVWrwGo1Q4hndGVhAb7AvK+1vFAaYrL/eRnHa8vsb7Q3IvFkO
-         38qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766372818; x=1766977618;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SeCrpSAem0l6kJVOq1JnyUO91eCa1P1yPgmrmdkHcU0=;
-        b=eI1Wn7xdGnrKOJTWTUTNOKHfubCzC1VC7/mrzIa/Yv+7ASibYo1epymcs9k/ChmCvD
-         sFvsFJVpsA0nkmxYgncq+O2ng783NtZHpN8po+RTD0RzCUsh4PmcJLN/ZmjCm4WskhPx
-         IPAsJu+fqnR/GYqDIwxPU+g570KLdprZaLG+taVeL5vG2Yqsm1pwZRPoBKQOUXnlxL63
-         dfbMgAoNLrOpygLEpPGIpPMvOAKSuxbjetyMGiURdIy6ldH3IA0OYzz5HM+1XMGoX2+f
-         GYJgUfDjqrisMgVjcNblr7iM6BNUQpsFgXxmWezFWbo8NlfVM82ziAqZ9Hqwh3OVCHK2
-         8rKg==
-X-Forwarded-Encrypted: i=1; AJvYcCXsmt+N/Jwsyw0pldUUXY+qHqYgRtyw59dHC1Gh5yu8pZCT4PuNQv5avXmvw7z+7I8e/rD1zkfIU4XZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVAcH46Odm3R7N2Q8YZ7AFOgyjbRczv48ruKvibLRBoshv2oqL
-	Ylmf/5erB8OSlFBCro4Jq4WEf0H4fGgt0J9g/uVTLjTKbbgln1Hdyee2GqLO++zvobWk25P90qG
-	iZsGL0EZXI+VFqBb7PjIqAEMNjjDrONHZlrq1veUJUP4vxI3aV8Y3n53TSZlOahml
-X-Gm-Gg: AY/fxX6dqwPrBwU1u5aFmoUQ4oKfliwynu3nfcYVlbbMTAS5M1Sps09u38jg5evAg0J
-	lp3xHGmseYfbn9qi0C+HSo7ZxnClMKOOoQXfsgI+0Sas3V0D0lB8dXgW6vwLxf9QgpqoDyGvUr1
-	+pdXDmEuVqr02mZC7Maxrl5V85WH7evE2qFYVo5onSgE6nUhFmShaJd8WcSFGDnRu62rlzmMtWX
-	LD0UNtGtstRTykDChOKZnFD/2q6K/NXrB7/PZeW18ZvY6RuB7Q5f/q0gDVNsSPzVr3p6+NbsVES
-	Aixh5+Hwd7m2aGTISnFT9mi8Rm17pKVGrVx01HPC+dKVXRpNAzwlzenFdpEg6PxaO0AdSFTbaKc
-	XDozsuNYr5KQrb64qhpr01796hHWG4yeXojoNcBBM0SsI6tbpNGMMUlSDEmnxwyrbYWr6DurwX3
-	E=
-X-Received: by 2002:aa7:9a85:0:b0:7f7:5d81:172b with SMTP id d2e1a72fcca58-7ff664807a0mr9440326b3a.42.1766372817696;
-        Sun, 21 Dec 2025 19:06:57 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHiRUjmcbd0tX2U9/3iVcDu3SiKtj8NFf3VTBuPJbtWPRdBoriq3syFrTSFOJ/S6kYkjTfv4A==
-X-Received: by 2002:aa7:9a85:0:b0:7f7:5d81:172b with SMTP id d2e1a72fcca58-7ff664807a0mr9440297b3a.42.1766372817208;
-        Sun, 21 Dec 2025 19:06:57 -0800 (PST)
-Received: from [10.133.33.169] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7aa32916sm8651050b3a.8.2025.12.21.19.06.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Dec 2025 19:06:56 -0800 (PST)
-Message-ID: <0d3064be-c333-4ec4-9607-5122baa0f256@oss.qualcomm.com>
-Date: Mon, 22 Dec 2025 11:06:49 +0800
+  d=ite.com.tw; s=dkim;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=FfkIe9it3nJLAgUj2fJkjH/Yv3OxEc+L9dVnQ+zcAbY=;
+  b=OKbIpPKSe5OIYuxRyxboh24ecHqgBdz3BUE9emf9CT0MYMsdsInjiBXj
+   Kj2vBYArky4XWg5H0Fw8Rg+/pqJS79kS9SlJpm7PDlsnajqnLwSU3VBuw
+   IiKWj6zQ37ZLz8jFb8ahKiEs0J4eR/g31umGzu8Jf/i1iYsPdtQwvHl8p
+   aqgCDWual3FqX3zMHs+MhQWiYqHMganVdOKO55/Zwth46HJXvsRLMnG2q
+   YmYKMWIoG4OHAO9TaAfWrxmnB+6XwGgJ/mVzPh+wTCahzgrbhAwl2S0UN
+   xpr0A+YKAkZHDosLLvrIH44X1IVYqH5fFY2Czk2VDlX73w0Uve6hsx/Mp
+   Q==;
+X-CSE-ConnectionGUID: x8I5ee7pRBmRy+YBKX1jYg==
+X-CSE-MsgGUID: 6l3rtsF/SMWmKwF2zGyOtg==
+Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
+  by ironport.ite.com.tw with ESMTP; 22 Dec 2025 11:10:25 +0800
+Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL1.internal.ite.com.tw [192.168.65.58])
+	by mse.ite.com.tw with ESMTP id 5BM3AX4w076381;
+	Mon, 22 Dec 2025 11:10:33 +0800 (+08)
+	(envelope-from Pet.Weng@ite.com.tw)
+Received: from [127.0.1.1] (192.168.72.40) by CSBMAIL1.internal.ite.com.tw
+ (192.168.65.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Mon, 22 Dec
+ 2025 11:10:33 +0800
+From: Pet Weng <pet.weng@ite.com.tw>
+Subject: [PATCH v5 0/3] Add ITE IT61620 MIPI DSI to HDMI bridge driver
+Date: Mon, 22 Dec 2025 11:10:11 +0800
+Message-ID: <20251222-it61620-0714-v5-0-afb6479ad3ca@ite.com.tw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: monaco: Add CTCU and ETR nodes
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
-        Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio
- <konrad.dybcio@oss.qualcomm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20251103-enable-ctcu-for-monaco-v4-0-92ff83201584@oss.qualcomm.com>
- <20251103-enable-ctcu-for-monaco-v4-2-92ff83201584@oss.qualcomm.com>
-Content-Language: en-US
-From: Jie Gan <jie.gan@oss.qualcomm.com>
-In-Reply-To: <20251103-enable-ctcu-for-monaco-v4-2-92ff83201584@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: rO-UnpfFVE9lLs3vYIAOv27a0nIZYGg6
-X-Proofpoint-ORIG-GUID: rO-UnpfFVE9lLs3vYIAOv27a0nIZYGg6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIyMDAyNiBTYWx0ZWRfXyQ7K7MNRDJ2J
- DfUbBvLMBPdBFNbXgYEf+e+e8AqT+B3gJWzpPxtw6Tem34spz/x5QpwdFiLUBtdjLKPYzMO+dVN
- WKOkvv4jiJy2uGD7aarSfbXLArWMAgtJvv3PQ9/Mr/LR+bbOu29PRbZi7qBg+AJpmnR1gRO4wua
- AgauIS2ueQDxZJKQ5Gvk7ygZ2nZRFDX7krGRiw/Z3Bsv7EDk/pofOuU+Kol+mGZiEvmoE/qZ3v9
- ucnDWqv4ttGKVdVwcxaXpibYbrSa7hlPHEkr/f2sQpgib9RBb/yqUoWSJhPx1naay4YfsOZ18Ah
- qPvXv4CzjJxQ/e4f5NMI2VDZEllMMw28QMiGUlTQitfUYCBF7NLb5J3Ex9DJCZFt0nNMWOj0Uzf
- PzPAQ8X5hIQKsF9cH4OdnMO+z/iOlp3fSBBi8tfNUe33lA3vwMYBg17AIAZ6DHUAkoWlocpdScO
- NaC70zBktvO8H7p9c9g==
-X-Authority-Analysis: v=2.4 cv=N6wk1m9B c=1 sm=1 tr=0 ts=6948b5d2 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=mHaL0BgOlZfMPfi31Y0A:9
- a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-21_05,2025-12-19_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 phishscore=0 malwarescore=0 bulkscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 clxscore=1015 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512220026
+X-B4-Tracking: v=1; b=H4sIAJO2SGkC/3XMQQ6CMBCF4auYrq3pDNPSuvIexgXQqXahGCCoI
+ dzdwkIixmQ2/yTfG0TLTeRW7DeDaLiPbaxvKfR2I6pLcTuzjD61QIVa5UAydgYMKjlHUVK6ikN
+ AJxK5Nxzic547nlJfYtvVzWte72H6/hnqQSqZ5QbAkFels4fY8a6qr7vuIaalHhdt0a40Jq2tC
+ dpl5HX41dlHg1JupbNJe2PRK7RE8KNp0QhmpSlp5zFwkVvKC/7S4zi+ATaNTgZjAQAA
+X-Change-ID: 20250714-it61620-0714-ab4ab4ceff29
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart
+	<Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej
+ Skrabec <jernej.skrabec@gmail.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hermes Wu <hermes.Wu@ite.com.tw>,
+        Kenneth
+ Hung <kenneth.Hung@ite.com.tw>,
+        Pet Weng <pet.weng@ite.com.tw>, Pin-yen Lin
+	<treapking@google.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766373040; l=5601;
+ i=pet.weng@ite.com.tw; s=20250702; h=from:subject:message-id;
+ bh=3tP3aJdxuXr0O/RcIqyXwc7HArCvJIp1dl6elqRsih8=;
+ b=MAd+DAQIR+C6XNxVYJbhgfyKi++i5qAUVrQHSEUUESgyaMBNVvGpXbQNdbgpS8P3f/sAPbIeC
+ GVinsQ5YuI7DgIW6tv79idtpqbvMLJPryemSsp0PIfQvwhIHUndt6P3
+X-Developer-Key: i=pet.weng@ite.com.tw; a=ed25519;
+ pk=wd08uBtTLb93x2ixbKVNsxiZPdMh1Ov4z5klodh2bqo=
+X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
+ CSBMAIL1.internal.ite.com.tw (192.168.65.58)
+X-TM-SNTS-SMTP:
+	B03AAA2265D21CF44FE61DB48A3298EF3C649CEE349251965F3015D6CAEBBF502002:8
+X-MAIL:mse.ite.com.tw 5BM3AX4w076381
 
+This patch series adds support for the ITE IT61620 MIPI DSI to HDMI 
+bridge chip.
 
+The IT61620 is an I2C-controlled bridge that receives MIPI DSI input 
+and outputs HDMI signals. A single-port MIPI DSI input is converted to 
+an HDMI 1.4 output. This series introduces:
+- A device tree binding YAML file describing the hardware
+- A new DRM bridge driver implementing the basic functionality
+- A MAINTAINERS entry for the driver
 
-On 11/3/2025 3:06 PM, Jie Gan wrote:
-> Add CTCU and ETR nodes in DT to enable expected functionalities.
-> 
-> Acked-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
->   arch/arm64/boot/dts/qcom/monaco.dtsi | 153 +++++++++++++++++++++++++++++++++++
->   1 file changed, 153 insertions(+)
-> 
+Signed-off-by: Pet Weng <pet.weng@ite.com.tw>
+---
+Changes in v5:
+- Fix dt_binding_check errors by adding missing unevaluatedProperties constraints
+  for port and endpoint nodes in the device tree binding.		[Rob]
+- Link to v4: https://lore.kernel.org/r/20251216-it61620-0714-v4-0-9d2fea7847ae@ite.com.tw
 
-Gentle reminder.
+Changes in v4:
+- In patch 1								[Krzysztof]
+ 1. Remove redundant "description" fields from interrupts and regulators
+ 2. Drop pinctrl-names and pinctrl-0; driver does not require them
+ 3. Remove port/endpoint properties already covered by video interfaces schema
+ 4. Fix example indentation to 4 spaces for readability
+- In patch 2								[Jani]
+ 1. Use connector->display_info from DRM helper instead of parsing EDID manually
+- In patch 2								[Dmitry]
+ 1. Remove redundant powered check in reg access
+ 2. Use TMDS character rate instead of pixel clock for N/CTS
+ 3. Use consistent lowercase naming for tmds.
+ 4. Use test_bit() instead of custom bit-test helper
+ 5. Use tmds_char_rate_valid instead of custom mode_valid
+ 6. Use custom EDID read instead of DDC bus for segment handling
+ 7. Drop redundant atomic feature check
+ 8. Pass flags directly to drm_bridge_attach()
+ 9. Check DRM_BRIDGE_ATTACH_NO_CONNECTOR flag before drm_bridge_attach()
+ 10. Short-circuit HPD update if connector status unchanged
+ 11. Remove unnecessary NULL check for connector state
+ 12. Rename cached_edid to edid since it's no longer cached
+ 13. Remove redundant sample rate checks; rely on hdmi-codec validation
+ 14. Remove unsupported 18-bit audio sample size; rely on hdmi-codec
+ 15. Remove unnecessary fmt switch; rely on hdmi-codec defaults
+ 16. Check and propagate errors from it61620_audio_update_hw_params instead of
+     ignoring them
+- In patch 3								[Krzysztof]
+ 1. Remove unnecessary T: field pointing to git; subsystem already defines it
+- Link to v3: https://lore.kernel.org/r/20251009-it61620-0714-v3-0-5d682d028441@ite.com.tw
 
-The dt-binding patch has applied to Coresight tree.
+Changes in v3:
+- Wrapped description lines to comply with 80-character line length limit
+  in patch 1.								[Rob]
+- Renamed node from "it61620@58" to "bridge@58" in patch 1.		[Rob]
+- Add port@2 for I2S audio input in patch 1.				[Dmitry]
+- Updated the Kconfig dependency from CRYPTO and CRYPTO_HASH to 
+  CRYPTO_LIB_SHA1 in patch 2.						[Eric]
+- In patch 2								[Dmitry]
+ 1. Audio and InfoFrame
+   - Rename audfmt to i2s_input_format for clarity.
+   - Remove unused infoframe[HDMI_INFOFRAME_SIZE(AUDIO)].
+ 2. Platform data and structure
+   - Drop platform data usage; migrate members into struct it61620
+ 3. Code organization
+   - Reorder functions to avoid the need for forward declarations.
+   - Add static inline to small helper functions
+     (e.g. bridge_to_it61620()).
+ 4. HDCP handling
+   - Make HDCP enable/disable conditional on conn_state->content_protection.
+   - Report authentication result using drm_hdcp_update_content_protection().
+ 5. Error handling
+   - Replace manual error path with dev_err_probe().
+ 6. Power management
+   - Inline suspend/resume callbacks.
+   - Use DEFINE_RUNTIME_DEV_PM_OPS() instead of explicit struct definition.
+ 7. Bridge callbacks
+   - Drop empty bridge_detach().
+   - Inline it61620_bridge_mode_valid().
+ 8. EDID handling
+   - Remove unnecessary cached EDID duplication.
+ 9. Mode set and pixel clock
+   - Move mode handling to atomic_enable().
+   - Keep only pixelclock for future N/CTS audio calculations.
+ 10. Logging
+    - Replace noisy drm_err() calls with drm_dbg().
+ 11. InfoFrame support
+    - Add support for SPD and Vendor InfoFrames.
+- Link to v2: https://lore.kernel.org/r/20250828-it61620-0714-v2-0-586f5934d5f8@ite.com.tw
 
-> diff --git a/arch/arm64/boot/dts/qcom/monaco.dtsi b/arch/arm64/boot/dts/qcom/monaco.dtsi
-> index 816fa2af8a9a..1966dfad2dcc 100644
-> --- a/arch/arm64/boot/dts/qcom/monaco.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/monaco.dtsi
-> @@ -2483,6 +2483,35 @@ lpass_ag_noc: interconnect@3c40000 {
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
-> +		ctcu@4001000 {
-> +			compatible = "qcom,qcs8300-ctcu", "qcom,sa8775p-ctcu";
-> +			reg = <0x0 0x04001000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb";
-> +
-> +			in-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					ctcu_in0: endpoint {
-> +						remote-endpoint = <&etr0_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					ctcu_in1: endpoint {
-> +						remote-endpoint = <&etr1_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->   		stm@4002000 {
->   			compatible = "arm,coresight-stm", "arm,primecell";
->   			reg = <0x0 0x04002000 0x0 0x1000>,
-> @@ -2677,6 +2706,122 @@ qdss_funnel_out: endpoint {
->   			};
->   		};
->   
-> +		replicator@4046000 {
-> +			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-> +			reg = <0x0 0x04046000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				port {
-> +					qdss_rep_in: endpoint {
-> +						remote-endpoint = <&swao_rep_out0>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					qdss_rep_out0: endpoint {
-> +						remote-endpoint = <&etr_rep_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		tmc@4048000 {
-> +			compatible = "arm,coresight-tmc", "arm,primecell";
-> +			reg = <0x0 0x04048000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +			iommus = <&apps_smmu 0x04c0 0x00>;
-> +
-> +			arm,scatter-gather;
-> +
-> +			in-ports {
-> +				port {
-> +					etr0_in: endpoint {
-> +						remote-endpoint = <&etr_rep_out0>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					etr0_out: endpoint {
-> +						remote-endpoint = <&ctcu_in0>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		replicator@404e000 {
-> +			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-> +			reg = <0x0 0x0404e000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				port {
-> +					etr_rep_in: endpoint {
-> +						remote-endpoint = <&qdss_rep_out0>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					etr_rep_out0: endpoint {
-> +						remote-endpoint = <&etr0_in>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					etr_rep_out1: endpoint {
-> +						remote-endpoint = <&etr1_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		tmc@404f000 {
-> +			compatible = "arm,coresight-tmc", "arm,primecell";
-> +			reg = <0x0 0x0404f000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +			iommus = <&apps_smmu 0x04a0 0x40>;
-> +
-> +			arm,scatter-gather;
-> +			arm,buffer-size = <0x400000>;
-> +
-> +			in-ports {
-> +				port {
-> +					etr1_in: endpoint {
-> +						remote-endpoint = <&etr_rep_out1>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					etr1_out: endpoint {
-> +						remote-endpoint = <&ctcu_in1>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->   		tpdm@4841000 {
->   			compatible = "qcom,coresight-tpdm", "arm,primecell";
->   			reg = <0x0 0x04841000 0x0 0x1000>;
-> @@ -3106,6 +3251,14 @@ out-ports {
->   				#address-cells = <1>;
->   				#size-cells = <0>;
->   
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					swao_rep_out0: endpoint {
-> +						remote-endpoint = <&qdss_rep_in>;
-> +					};
-> +				};
-> +
->   				port@1 {
->   					reg = <1>;
->   
-> 
+Changes in v2:
+- Call the sha1() library function instead of using the crypto_shash
+  "sha1" in patch 2.
+- Rewrite it61620_hdmi_ddc_wait() with readx_poll_timeout() in patch 2.	[Pin-yen]
+- Rewrite it61620_hdmi_hdcp_wait_ksv_list() with readx_poll_timeout() in
+  patch 2.
+- Replace interrupts-extended with interrupts in patch 1.		[Rob]
+- Replace dsi-lanes with the standard property data-lanes from the graph
+  binding.								[Rob]
+- Replace "#/$defs/port-base" with "#/properties/port" in patch 1.	[Rob]
+- Drop unused labels and "hdmi" for the node name.			[Rob]
+- Drop status in patch 1.						[Rob]
+- Link to v1: https://lore.kernel.org/r/20250714-it61620-0714-v1-0-3761164d0b98@ite.com.tw
+
+---
+Pet Weng (3):
+      dt-binding: display: Add ITE IT61620 MIPI DSI to HDMI bridge
+      drm/bridge: Add ITE IT61620 MIPI DSI to HDMI bridge driver
+      MAINTAINERS: Add entry for ITE IT61620 MIPI to HDMI bridge driver
+
+ .../bindings/display/bridge/ite,it61620.yaml       |  142 +
+ MAINTAINERS                                        |    7 +
+ drivers/gpu/drm/bridge/Kconfig                     |   18 +
+ drivers/gpu/drm/bridge/Makefile                    |    1 +
+ drivers/gpu/drm/bridge/ite-it61620.c               | 2787 ++++++++++++++++++++
+ 5 files changed, 2955 insertions(+)
+---
+base-commit: a238d16695610c0e7e83770f206ce1a655e83f6c
+change-id: 20250714-it61620-0714-ab4ab4ceff29
+
+Best regards,
+-- 
+Pet Weng <pet.weng@ite.com.tw>
 
 
