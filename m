@@ -1,174 +1,210 @@
-Return-Path: <devicetree+bounces-248947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 040F0CD72E8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 22:17:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2DCCD7329
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 22:31:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DC7B53010FD5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 21:17:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DBD7E30012D0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 21:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B11973019AA;
-	Mon, 22 Dec 2025 21:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F25E52FF140;
+	Mon, 22 Dec 2025 21:31:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HvrOQ6FD"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="hLfFBIUB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f74.google.com (mail-pj1-f74.google.com [209.85.216.74])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B5D72617;
-	Mon, 22 Dec 2025 21:17:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B9428369D
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 21:31:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.74
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766438261; cv=none; b=ZyhcxM4J0DSRf+YnVUPrrpBQTU2Ql1AAuMfen2A1HVgZ1ME+WRtotCtABa/x1ZuQ7hSk1kv8LQ5dOdaAZQPShwHWpo1xt5J1aGpuj78HneHCbwyu+04ysslg2HTcPvdk2dEUjuYzKW5+6IEpkwqu9IC3phHpltAYx47auOIOBHA=
+	t=1766439104; cv=none; b=d01IpuKHTnB4Ffwrn7ygvRG2RWT+yuJyz3bHdvOzVOLWvSNuHt6s0J7rlALNAj4159wKbhWuNk5QW3JC3N9IAVQdMdm/Btl1jHCL5K89dIR9z9YsN3OdtanbvKTL6YZjFGqdmcfVtsFaYMNe2YmaIPAHlCaTpegH+nlE4YW3B4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766438261; c=relaxed/simple;
-	bh=GfY5s1jBkGPXNhoUhVc6wQFpoyh0UvGJ5YyvJZLCOU8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tjNgFjgZfiCx7RfsT/7CQqstK53A7OPplLvfu46wII7klhe+jqawhpdl0Spy4Hl/W+UGpRrZVrmRcT/PiOOLSg07H7OiwBF1JvQEUKuZkupwS08mxUfhkoPlDTwpiXLYNntM+BDpFGU+Bh2SoPcZNJ9lq78ktYGcUgl50tlIiwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HvrOQ6FD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF833C4CEF1;
-	Mon, 22 Dec 2025 21:17:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766438261;
-	bh=GfY5s1jBkGPXNhoUhVc6wQFpoyh0UvGJ5YyvJZLCOU8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HvrOQ6FDET9p406hSffOsoZvYWTj6v5TN/N2i4HCb/CTWVTnLjRppHqXHYq7U3nRu
-	 tVoBFjZw5R60v+rGElR8NJjk1ZkPfGENW7HgJvll8x1HZDxXsVuSHvWl3VFhz/r+6l
-	 Q3CwBUak5YyrBNanchDTVwCI3BIQy8/BFQ3E1icYkgfjxLPpbLxenbLXOiWmtIuX81
-	 F7JxNLyvBo8yoF9/XqA01X6SmAresQnRV8pKbz4Gty80uMMlDv7gZURB403V7Kcmv7
-	 F7OdgVDHIQSQ/3l57b5Ljl3QO4uYOhRKv1zzTpcEEcMIzlk+qcWJosqth23TVSWDVv
-	 UzufiPLm68s9A==
-Date: Mon, 22 Dec 2025 21:17:31 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@gentoo.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Heinrich Schuchardt <xypron.glpk@gmx.de>,
-	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v2 07/13] dt-bindings: riscv: Add B ISA extension
- description
-Message-ID: <20251222-stitch-preachy-3fab87fd6f0f@spud>
-References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
- <20251222-k3-basic-dt-v2-7-3af3f3cd0f8a@riscstar.com>
+	s=arc-20240116; t=1766439104; c=relaxed/simple;
+	bh=8GRHby7CsgIUuMvd/G3w3lvZBnsDPhPngnyEMQAQyNA=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=d3ICIaDlhpt7WHPtsOAk1SXBr4w8neyUcU1uNs3XqxLL+Hqv9a4NVP+f7wiqMRUdRv9xSRJbYXNVDO11B3qDCm+zJ+Ykit2U/ng8fXuzRN7C6WvXZquEDWZUI3cDlWW7D1uH56YRynAsMgtdD374e/L3zeqFo/tfczMVP+BC53I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=hLfFBIUB; arc=none smtp.client-ip=209.85.216.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com
+Received: by mail-pj1-f74.google.com with SMTP id 98e67ed59e1d1-34e70e2e363so9058597a91.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 13:31:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1766439102; x=1767043902; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HU401KItDdT/cw2a60PpMgYx8O0lKu7re6GHYWC/yFA=;
+        b=hLfFBIUB8au5BwTy3ittgiD1Yt9vMfjI5RbEIWqQeePdIWN9chG/Rfm5Rrgo59VQMP
+         sKriEqbTv1u0RJjUXoIMyEtdWxkQA/QbyQzniyl6VcBv0YFo55Cb7MN7Tar0MFU2X8lX
+         o0RMbVP9rvL5MLJfDU8N+ubA/jxDa/kEh1H09bEoJ05BXtW2xnYIrRd5vXA64Uh0ghwl
+         fgcPtm4m7esSGM+Z09M9WTcqy+Vyor0L/LHo65ip5L9MfBFwro4LYY1jtr/sTRtQuT2g
+         2pH4nTTTZ8SnAoRKBtAbckbps86gpedASSPo156FDd86d2p+oE7yDWCyGKXWR5z2k9eR
+         x3Hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766439102; x=1767043902;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HU401KItDdT/cw2a60PpMgYx8O0lKu7re6GHYWC/yFA=;
+        b=JsLsm2Vv+9BVlSKX6CRwDJCNBnw4s3UdajlJEKrlFPulVFzD8LGQdSDwRv8ot2NJVO
+         ezXzDnnVtmCQMy1yNnUaBav7Vt9MjF2iL4aXMnsdFMiuJ/7Sux8w5VKy6DxyVxCogp7J
+         JajN4e0SO2h+/pchz/0yAjpOjs7t6EhPtFC6o09eX9/N9zYOUQ9kvS6kpSGblXHKe7Zt
+         1TMP+P2lUpjw0q8q/DY7O/J2Mf7xlgjNdzTQ8t2RMIITCdOUOtE+wL8+UfdBOLQJiX+W
+         7A2civxcJd+GN8Vvc/XrYdMj0bVTaxqK5H2oynLyezgKqDN0yCicuK5XJVc+oUe8uCyj
+         e5yA==
+X-Forwarded-Encrypted: i=1; AJvYcCWQSwvkdxIGoAkwXTs7cAmu8CA03Mc8fee6N3DtXzPAIZDfV+qC/OoekkpUbSLdvXZnBr1FFH1yUYB0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjO88/A1on+KhYXBn3hVj3eOTcnGu9EoF4W8lnLDhSCCtjCGa8
+	CSin7K62EGHKPnMWGnpd83a4Rsq6u6iFUoKAaa7L+Q1cNdMyQc0h5eoNWr/tdHYB+bX7qs+mtRD
+	ChRZdOw==
+X-Google-Smtp-Source: AGHT+IGLgMx8/9lh4/3RKudWfKdHcAxrgOSVcELrAv1teNjtA01GeB/gBYB47ZMjb9I6/D90qEYg2B0QupY=
+X-Received: from dlai24.prod.google.com ([2002:a05:701b:2718:b0:11b:9bdf:e45c])
+ (user=royluo job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7022:6709:b0:11a:29e5:12e5
+ with SMTP id a92af1059eb24-121722ebc26mr14702784c88.30.1766439102487; Mon, 22
+ Dec 2025 13:31:42 -0800 (PST)
+Date: Mon, 22 Dec 2025 21:31:25 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ycfAa/SXC6QLLG2U"
-Content-Disposition: inline
-In-Reply-To: <20251222-k3-basic-dt-v2-7-3af3f3cd0f8a@riscstar.com>
+Mime-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIAK64SWkC/2XOQW7CMBAF0Ksgr2s0M5k4dle9R9WFMePEEmDk0
+ KgRyt3rIBBUXX5p3v9zVaOUJKN631xVkSmNKZ9qcG8bFQZ/6kWnfc2KgFpEdPo8zDvWJND4LjC
+ 7wKrenovE9HPr+fyqOZZ81JehiH9qIEfI0NC2wa4lgxp1yfPhO3/0OfcH2YZ8XMuGNF5ymW8/T
+ WatvM8T3Ocno0HvjHEsGCH4+Nqw7k/dK8MH6yrbR8McvSG08I/ZJyNoH8xWFlon3oJnbu0ftiz LL2FNd0VGAQAA
+X-Change-Id: 20251119-phyb4-2e03a7c449c4
+X-Developer-Key: i=royluo@google.com; a=ed25519; pk=nTq1n8WcJActRWe1s8jdcy+TzpTK4a+IYRCIWvQfq5k=
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766439100; l=5442;
+ i=royluo@google.com; s=20251120; h=from:subject:message-id;
+ bh=8GRHby7CsgIUuMvd/G3w3lvZBnsDPhPngnyEMQAQyNA=; b=OlbCSy62DL0WMqBZhy7cQn+WYiE1/az9EYugvDiloHKYmktgSFXT2UsCxs4UBYsxzGWdMMWG4
+ E7V9svn6TXdDg0XogHakbyVOn19OIthHHWE5SH7UfkCd9bEzkutuqmS
+X-Mailer: b4 0.14.2
+Message-ID: <20251222-phyb4-v9-0-82c0b671b070@google.com>
+Subject: [PATCH v9 0/2] Add Google Tensor SoC USB PHY support
+From: Roy Luo <royluo@google.com>
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, 
+	"=?utf-8?q?Andr=C3=A9_Draszik?=" <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Badhri Jagan Sridharan <badhri@google.com>, Doug Anderson <dianders@google.com>, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>, Roy Luo <royluo@google.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
 
+This series introduces USB PHY support for the Google Tensor G5
+SoC (codename: Laguna), a new generation of Google silicon first
+launched with Pixel 10 devices.
 
---ycfAa/SXC6QLLG2U
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The Tensor G5 represents a significant architectural overhaul compared
+to previous Tensor generations (e.g., gs101), which were based on Samsung
+Exynos IP. Although the G5 still utilizes Synopsys IP for the USB
+components, the custom top-level integration introduces a completely new
+design for clock, reset scheme, register interfaces and programming
+sequence, necessitating new drivers and device tree bindings.
 
-On Mon, Dec 22, 2025 at 09:04:17PM +0800, Guodong Xu wrote:
-> Add description of the single-letter "B" extennsion for Bit Manipulation.
-> B is mandatory for RVA23U64.
->=20
-> The B extension is ratified in the 20240411 version of the unprivileged
-> ISA specification. According to the ratified spec, "the B standard
-> extension comprises instructions provided by the Zba, Zbb, and Zbs
-> extensions.
->=20
-> Hence add a schema check rule to enforce that B implies Zba, Zbb and Zbs.
->=20
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> ---
-> v2: New patch.
-> ---
->  .../devicetree/bindings/riscv/extensions.yaml         | 19 +++++++++++++=
-++++++
->  1 file changed, 19 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index 565cb2cbb49b552959392810a9b731b43346a594..385e1deb23996d294e7662693=
-f1257f910a6e129 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -109,6 +109,13 @@ properties:
->              The standard C extension for compressed instructions, as rat=
-ified in
->              the 20191213 version of the unprivileged ISA specification.
-> =20
-> +        - const: b
-> +          description:
-> +            The standard B extension for bit manipulation instructions, =
-as
-> +            ratified in the 20240411 version of the unprivileged ISA
-> +            specification. The B standard extension comprises instructio=
-ns
-> +            provided by the Zba, Zbb, and Zbs extensions.
-> +
->          - const: v
->            description:
->              The standard V extension for vector operations, as ratified
-> @@ -735,6 +742,18 @@ properties:
->          then:
->            contains:
->              const: f
-> +      # b comprises the following extensions
-> +      - if:
-> +          contains:
-> +            const: b
+The USB subsystem on Tensor G5 integrates a Synopsys DWC3 USB 3.1
+DRD-Single Port controller with hibernation support, and a custom PHY
+block comprising Synopsys eUSB2 and USB 3.2/DP combo PHYs. The controller
+support is sent as a separate patch series.
 
-What's the value in adding b, if it depends on having all 3 of the
-components defined individually too? Currently all "superset" types of
-extensions are permitted without their component parts also being defined,
-this doesn't follow convention and therefore needs to be explained.
+Co-developed-by: Joy Chakraborty <joychakr@google.com>
+Signed-off-by: Joy Chakraborty <joychakr@google.com>
+Co-developed-by: Naveen Kumar <mnkumar@google.com>
+Signed-off-by: Naveen Kumar <mnkumar@google.com>
+Signed-off-by: Roy Luo <royluo@google.com>
+---
+Changes in v9:
+- Per Greg's feedback, remove Kconfig dependency on ARCH_GOOGLE || COMPILE_TEST.
+  Remove ARCH_GOOGLE as it's not yet in the kernel, and COMPILE_TEST is no longer needed without it.
+Link to v8: https://lore.kernel.org/r/20251205-phyb4-v8-0-c59ea80a4458@google.com
 
-You obviously need this construct because the kernel does not understand
-"b", and even if you added support for interpreting "b" to the kernel
-this is probably still needed to make sure the ABI is maintained for
-anything importing a devicetree from the kernel.
+Changes in v8:
+- Update the Kconfig dependency to depends on ARCH_GOOGLE || COMPILE_TEST
+  Note that ARCH_GOOGLE does not exist yet but will eventually
+  be there when the following patch lands
+  https://lore.kernel.org/r/20251111112158.3.I35b9e835ac49ab408e5ca3e0983930a1f1395814@changeid/
+- Mention SoC codename Laguna in Kconfig description.
+- Sort the header alphabetically and sort the variables using the
+  reverse christmas tree ordering.
+- Add driver and binding files to the Tensor SoC MAINTAINER entry.
+- Add detailed comment for phy_mutex
+Link to v7: https://lore.kernel.org/r/20251121-phyb4-v7-0-df644fa62180@google.com
 
-> +        then:
-> +          allOf:
-> +            - contains:
-> +                const: zba
-> +            - contains:
-> +                const: zbb
-> +            - contains:
-> +                const: zbs
->        # Zcb depends on Zca
->        - if:
->            contains:
->=20
-> --=20
-> 2.43.0
->=20
+Changes in v7:
+- Change the device tree binding example node name to usb-phy to follow
+ the hyphen-separated naming convention and remove label.
+Link to v6: https://lore.kernel.org/r/20251120-phyb4-v6-0-b6694e1f0caf@google.com
 
---ycfAa/SXC6QLLG2U
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v6:
+- Use "lga" as SoC name instead of "gs5" to align with Tensor G5 device
+  tree https://lore.kernel.org/lkml/20251111192422.4180216-1-dianders@chromium.org 
+- Add "usb2_core" to the reg property to define the MMIO space for
+  the eUSB 2.0 PHY IP.
+- Rename "usb3_top" reg as "usbdp_top" and update the description to
+  reflect its nature as a top-level wrapper and align with internal
+  documentation.
+- Use syscon to access the "usb2_cfg" MMIO space.
+- Remove minItems for clocks and resets, making all listed clocks and
+  resets (including USB3) mandatory.
+Link to v5: https://lore.kernel.org/linux-phy/20251029214032.3175261-1-royluo@google.com
 
------BEGIN PGP SIGNATURE-----
+Changes in v5:
+- Add usb3 registers/clks/resets to binding as suggested by Krzysztof
+  Kozlowski. This ensures completeness of the binding, though the
+  driver has not yet ultilized the resources. The usb3 clks and resets
+  are optional if usb2-only operation is desired, this is denoted by
+  minItems and descriptions in the clocks and resets properties.
+  Additionally, rename existing binding entries for consistency and to
+  better differntiate between usb2 and usb3.
+- Move the description of the phy select to phy-cells in binding as
+  suggested by Krzysztof Kozlowski.
+Link to v4: https://lore.kernel.org/linux-phy/20251017235159.2417576-1-royluo@google.com
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUm1awAKCRB4tDGHoIJi
-0vUSAP0fICE8zvMf7nKsGMB1PUziS2TeQFTUfBwL6F1gkBjJBgD9Hx+1K5//DD3s
-nFLDmffVAL3rtA/B5gNBII8pxhYASwQ=
-=bj2o
------END PGP SIGNATURE-----
+Changes in v4:
+- Separate controller and phy changes into two distinct patch series.
+- Remove usb2only mode configuration and the corresponding usb_top_cfg
+  reg (moved to controller)
+- Add more descriptions to dp_top reg to indicate it's not DP specific.
+- Add u2phy_apb clk/reset
+Link to v3: https://lore.kernel.org/linux-usb/20251010201607.1190967-1-royluo@google.com
 
---ycfAa/SXC6QLLG2U--
+Changes in v3:
+- Align binding file name with the compatible string
+- Simplify the compatible property in binding to a single const value.
+- Add descriptive comments and use item list in binding.
+- Rename binding entries for clarity and brevity.
+Link to v2: https://lore.kernel.org/linux-usb/20251008060000.3136021-1-royluo@google.com
+
+Changes in v2:
+- Reorder patches to present bindings first.
+- Update dt binding compatible strings to be SoC-specific (google,gs5-*).
+- Better describe the hardware in dt binding commit messages and
+  descriptions.
+- Adjust PHY driver commit subjects to use correct prefixes ("phy:").
+- Move PHY driver from a subdirectory to drivers/phy/.
+Link to v1: https://lore.kernel.org/linux-usb/20251006232125.1833979-1-royluo@google.com/
+
+---
+Roy Luo (2):
+      dt-bindings: phy: google: Add Google Tensor G5 USB PHY
+      phy: Add Google Tensor SoC USB PHY driver
+
+ .../bindings/phy/google,lga-usb-phy.yaml           | 133 ++++++++++
+ MAINTAINERS                                        |   2 +
+ drivers/phy/Kconfig                                |  10 +
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/phy-google-usb.c                       | 295 +++++++++++++++++++++
+ 5 files changed, 441 insertions(+)
+---
+base-commit: ea1013c1539270e372fc99854bc6e4d94eaeff66
+change-id: 20251119-phyb4-2e03a7c449c4
+
+Best regards,
+-- 
+Roy Luo <royluo@google.com>
+
 
