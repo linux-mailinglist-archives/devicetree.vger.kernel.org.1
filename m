@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-248750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3E4CD570C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:02:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03A1FCD5754
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:07:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AFF74300E3E1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:02:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2AD4B302EF43
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40417310785;
-	Mon, 22 Dec 2025 10:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52DEC31283A;
+	Mon, 22 Dec 2025 10:02:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BBLzC2Fi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h3n8B0Gc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E702264DC;
-	Mon, 22 Dec 2025 10:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29BC030C600;
+	Mon, 22 Dec 2025 10:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766397727; cv=none; b=oSVcUvnAdJ//9jULOXNmz8IFAT9mzQRNEBDbn38tkhNUZuGd1LTzhR6tEND7qMeUJhGCX/4xpVrB6OmMVlIWoRoc6m8kF9DaC1Tslv/YUTM4jBUrZwFMYE9RAKKPOoA3ZfT4gi65LbyTqZtsu9MXQ6bHG/HBTdJIEc3tln7JKUE=
+	t=1766397731; cv=none; b=FKcUfImM+o6CMcuZnoBV+IUKoXxoFxN3kY4vcvENr4yJQE73ht/cwKx+nLypnzD9dzUkLMR8ck4IgTo8h+TOAyDv5lOoLWe79zbdeRijpvpWMeHeRdnUN1no/9AmssSvBpBmZbUQ5DK4kDsdONMWHLiiDkcw7/CJPvevlamJT8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766397727; c=relaxed/simple;
-	bh=n1/yuiAnVsAmCFPgMru6RgX6r8QPzwyjLtjdTdEgdOk=;
+	s=arc-20240116; t=1766397731; c=relaxed/simple;
+	bh=rFDFoU7W0N6i/K6WZlv3Euk+Qwss6Rke6zV6jwkns94=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=GU2bFTUjvXwNcsTmMY9m6O4+y8jd5G5aJBGS73zFMEZpeXDHp10ZwuSRgJrsGM3nZYG7dP3OlImRM47/iJiRRxHZJ8jmMo2HcUsVKreccTRImpIRsRD4arw8/xCHuufxYJRbJROQMDRoudmwhKvFLkMfnYeGnKkpJ1pzR1y/Ec4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BBLzC2Fi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 601BCC4CEF1;
-	Mon, 22 Dec 2025 10:02:04 +0000 (UTC)
+	 MIME-Version:Content-Type; b=X2tW5Ang2Yrrpli7GRM4JPOJyFgLIuSe3xMxEeMAvQNGKZtl94Ct3zuNbHUXivA/StHUZVBMyWs+9DTpu9HfFeDgdmG80MHJXzK4tsVYPYVUjjURMkFx1btLUeOTQNonUrehxop6IbM44brQk5w/Bj/zgwd+Um0v4Z2SE9A1C0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h3n8B0Gc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69AF6C16AAE;
+	Mon, 22 Dec 2025 10:02:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766397726;
-	bh=n1/yuiAnVsAmCFPgMru6RgX6r8QPzwyjLtjdTdEgdOk=;
+	s=k20201202; t=1766397730;
+	bh=rFDFoU7W0N6i/K6WZlv3Euk+Qwss6Rke6zV6jwkns94=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=BBLzC2FijLYTL0ZkjnfodrhwJAsq0ABTMVNcbLqj1J+R9XSEHRsP4hqE/ypwaMW4V
-	 cYF+dhyLi46PCV5zwhglbd2sbgNQSDmIjQxO4/JVITdQDC1R0Fgt5XC/qi84R50YlS
-	 SFQqLiBtqNLCudUOD58WSk/EPsuY4r9tdc3hpB8WY6k/yIoRW5FTxfIUItTuW+kwbo
-	 M7StzmqgI7s6MD00h3YZ36VUGRuWXjMi1R3dlMLoX7maWd3ehP0l67THjtehxMix86
-	 pAA9sqO3L+N5oFjz1z/8gw+TkEw3lKP/U2kdwr2Khgr5fropZmOMPacGnJH7if9iCX
-	 CWYdXQu1Na/Wg==
+	b=h3n8B0GcwOwrEEuevWY2gH95coluf18Sdd4ZAnaytzJoiNpItO+UtayaErOhsoOtB
+	 MxRxcDesm01E8cLyRD9khYKbpgBSVjOd669wySRauxhAOgOXukFruBMF4AUsJRJBsr
+	 MDxeJu3DVQkOzMdBPuQkuvREJTmsQcDYhmb1/izo4GivHhWMoKTnRb//lwvbTCAXnJ
+	 1kPm5n/ejnB5oACkBURpF94kTK/f6CkE7l1x5SmAKj4NtUu8ceDesATMDa7mMNG9Fz
+	 9EVTxRt67WkrXkeQSU5a7TDmbxlca0Qyu0k62krikesKCE4UZAc0CSadCrxwedjgyB
+	 5Jr1XOz4KsQHw==
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: soc@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- Chunyan Zhang <zhang.lyra@gmail.com>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20251216180029.2792676-2-robh@kernel.org>
-References: <20251216180029.2792676-2-robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: sprd: Use recommended node names
-Message-Id: <176639772400.31420.3898753067946211850.b4-ty@kernel.org>
-Date: Mon, 22 Dec 2025 11:02:04 +0100
+To: soc@kernel.org, Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20251216180055.2793215-2-robh@kernel.org>
+References: <20251216180055.2793215-2-robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: toshiba: Use recommended node names
+Message-Id: <176639772702.31420.9343688718392781751.b4-ty@kernel.org>
+Date: Mon, 22 Dec 2025 11:02:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,8 +61,8 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.3
 
 
-On Tue, 16 Dec 2025 12:00:29 -0600, Rob Herring (Arm) wrote:
-> Update Spreadtrum platforms node name to the recommended standard node
+On Tue, 16 Dec 2025 12:00:54 -0600, Rob Herring (Arm) wrote:
+> Update Toshiba TMPV7708 node name to the recommended standard node
 > names. Generally, node names and paths aren't considered ABI, so it
 > is safe to change them.
 > 
@@ -70,8 +70,8 @@ On Tue, 16 Dec 2025 12:00:29 -0600, Rob Herring (Arm) wrote:
 
 Applied, thanks!
 
-[1/1] arm64: dts: sprd: Use recommended node names
-      https://git.kernel.org/krzk/linux-dt/c/714b5a789f957871f18433645aa39d9109f194fb
+[1/1] arm64: dts: toshiba: Use recommended node names
+      https://git.kernel.org/krzk/linux-dt/c/22fbe6e21450d629642e4bdc8d8d329219abeb46
 
 Best regards,
 -- 
