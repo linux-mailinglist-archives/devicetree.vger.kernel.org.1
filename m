@@ -1,122 +1,144 @@
-Return-Path: <devicetree+bounces-248902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F852CD6713
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:57:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9AECD67A3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:07:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 69547305D110
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:54:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4212C300A6C9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18497302767;
-	Mon, 22 Dec 2025 14:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2433F2F9C37;
+	Mon, 22 Dec 2025 15:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TOfac077"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95A2B2F291A
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 14:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C7B26CE05;
+	Mon, 22 Dec 2025 15:07:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766415271; cv=none; b=UXAWLQusH7XHi+c94o7gJof2u9KGIzPDMrgPpsyjSe4xjzIJfjSXse/TJ9KDI2KXEmLl0Mc86yWFLnlXWwR7lSG+gyoP+CvX3EwVw4efHyYY/qKu4Tvpd67OJrMPNJwr0aGR+3I9jG1i5ARbEBjQ0/hgV5o5CVBEkbrmY+FW5mk=
+	t=1766416053; cv=none; b=CVM2ZaGVmFSsD77s/KJJLSKbUNeqSSC6ivtwuhSd4Al4WRL0uRVbb+tMey48SpP7ClWRIOJOonJCkXVlomPsA5FW/Ze/RmxIMUupl6Vg9qnwkOgNT0qg6c3niWAsjXlqjsLw3tVn5MIUNPHPa9a4XGJ/lhPRUcEGgNLpF0nB/CY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766415271; c=relaxed/simple;
-	bh=W/crAT6LJo4Q3kHr6K4TRNPNZxeeFPpC48n0pdXsNEs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jznPvi88bcgaLTMnCoohj8WvNhoUZru2plj0COpLa7BozzjJEpBuGszdXIx92VG/8c/aFpfAAL1KX18+mFZj8PeuUcq5j5Z7u5UI+6NaUsLFySx2Zf3w8FhQM7uaPmqny1Tp+LeLl6zYADCpYH5nvauaaeqK4GXBxljlX5ndg+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-5dfd2148bf3so1348480137.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 06:54:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766415268; x=1767020068;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FdTNXu74m6lC+RoCxXIKV4XklNctrQtG+yWlvlzun/Q=;
-        b=eyxZlMAHzxsoFQjWtnRwfyMHBtatUmDyjr5qNsahovNM1ixdHon3rFSLAU53os6BDE
-         0exGMSA00+18u21lUBvWqhLHEPoR7ahxjTZrDSTzhSIoD55Bnq9lmpJ9A6Vu5xRtT/jq
-         KawO4cSXbktEn77oHMN1Qbz8yTQlHl1xC0ZXbWkSHWdUuSWVZ4Uz+36WNsBMIqZFBCaW
-         5MokTWs2PWa656p/MTiZ9vuTuUQKjK7dZV/E5Gs74jlcjXlJwkLIeYyjRDiRrb5fHjZD
-         qeQp/mHwru2rA9vs3ABpp/MYT/4Zl/RqZ2S/0KVgnXTnKnb9iDM+vR4dmWS0ADGgdqH3
-         neGw==
-X-Forwarded-Encrypted: i=1; AJvYcCUKxu7lAECGaZp2zhJRgnwWMDTTqYd65Y2JeDCd3/n2OcLwq5XJ8EhBIy6prUrveW1p/xAguNj6oArR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3cF5PLT7Gk45r4uCF17j7ma33pnXbxPI9exvtQ35WkmvaUO5m
-	qYjVAaQ+g8ua8XPuL3TuPYSzD7P1SC104IxRw/2Tw4vu7qgqbiJj3EC9jyh5KlEB
-X-Gm-Gg: AY/fxX7zuQ+VL/38x7yplhQZjP9ZJ184Tt7OSa/ZmJdRohgqdqLkr4Jx4OZjgU6w72M
-	7RoEwM7mhjAPiKlfyKMBL7KEwOdmLmDvr8UZnzzTr/mB3wm2pdlCYTpTXxLFb3eFzHbH5h3HJFC
-	7qu0tg7ziTklXtDdo3XIJXOFrwCINEiBRfSyZ6UEy/7WUHA9SChxn3o0MJt/IkUPggXc1UJoUj8
-	AremUXuiKjsV4H5FwmULvwEVEVXtTQEgaaifnE83RaCjOR6m1A/EsZH9K7zPXpHKpC5krxpaYRX
-	3tlOl29prAyY7sVOLsqNDAjgx5ElYa5zw7BVgvPeMmdf5uyuv8D7miMEOCYrDl3Ou09XISoJHsw
-	7yfZnfnRpgr2OkZlOxGLjG5ZPt8G0RMQUv5GEUm8Ne/asSabozK0XvrFKOTXBnJq3js1leZrzur
-	26bsBbYUjNckHgmjfJwumVXCc3rDsEPsmBNCwM1nh4J4oJWouT
-X-Google-Smtp-Source: AGHT+IFCC2snJTZoYe5REE1jcgr6rDdV7S+l5QxJPRYtiNHqllTPrAU8HvGKfD6m3vC8hhFsqCPMTg==
-X-Received: by 2002:a05:6102:3fa6:b0:5dd:b2ee:c6ff with SMTP id ada2fe7eead31-5eb1a61665fmr3039106137.8.1766415268383;
-        Mon, 22 Dec 2025 06:54:28 -0800 (PST)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-943416554absm2855075241.4.2025.12.22.06.54.28
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Dec 2025 06:54:28 -0800 (PST)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5dd6fbe50c0so1360039137.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 06:54:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVKyHbXIHmCkn0a6zsSqjp4kN3gMOL8hFGxut3oqYYlelMMJ+f+zxN4jfaEqlQCXFUfDX0+d0jLGVzw@vger.kernel.org
-X-Received: by 2002:a05:6102:2922:b0:59e:68dd:4167 with SMTP id
- ada2fe7eead31-5eb1a6171d7mr3065752137.7.1766415268040; Mon, 22 Dec 2025
- 06:54:28 -0800 (PST)
+	s=arc-20240116; t=1766416053; c=relaxed/simple;
+	bh=n24GBhvAvBMltS9mF9GmhmK1Fc4IRbcCrliteW2XgqA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m9MlWF63z7UNXUiQywZ6NxvXw3sAAypzwVoLo9dpoRdVnyyh75OaKFoNFpZ1iotpy/TGFENAxfHMWE2eax6NOdz9tnaTDIgYFxT6dPoyI9XonEIJdHqSU1LrWWUzGePMU9cdy37bUgejpLpPOXi/aTwLGtlcetcWjXOtTVXrCyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TOfac077; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA691C4CEF1;
+	Mon, 22 Dec 2025 15:07:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766416052;
+	bh=n24GBhvAvBMltS9mF9GmhmK1Fc4IRbcCrliteW2XgqA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TOfac0770JyqmHO67mYIW0IiJSfQkq178k9kfZFdLXZQCSNKPtFL9n1/mPqLxIi1Y
+	 cYjlK9TsByM9c9Bfm5LCA7abDOh6jCmFJezTqA+GPAGR0QGmUDq6lL1ZZfgwTISAi+
+	 6OiAuOyRjP/TttFgikWE8gDuQ6CZ4g81xZRPg2scdZ53WXQuxUZ2rxwYixOtsq+O+G
+	 y69vYkzhWVz3xT07H0yNkIT10uryA7quszckSLPvlKJLHGuqBOAMl/zqjIJXtAK7r5
+	 jTSXd97+kU1fG7PidvaqjwYJ4VT7MTtGDuhx512o8BHe/42TPAfGUKCQjm+mohENVf
+	 EOEkbx+p6xO/A==
+Date: Mon, 22 Dec 2025 15:07:28 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH 2/2] regulator: Add TPS65185 driver
+Message-ID: <2e850c1c-67ed-44af-94b1-2ccc35e50bb8@sirena.org.uk>
+References: <20251222-tps65185-submit-v1-0-34986b504d5f@kemnade.info>
+ <20251222-tps65185-submit-v1-2-34986b504d5f@kemnade.info>
+ <84fdaf7c-4d4b-491f-975c-ebb14350fafd@sirena.org.uk>
+ <20251222144522.33d7c734@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251129185203.380002-1-biju.das.jz@bp.renesas.com> <20251129185203.380002-4-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20251129185203.380002-4-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 22 Dec 2025 15:54:16 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXPeU=e_Vbr_G=P3UjXgt0EOd3hpZ+pM+jqYoxV=98jJg@mail.gmail.com>
-X-Gm-Features: AQt7F2pKNIqVrEWsDr5mq2QiOn6lFfp6Q_VuIAeMjfO6UauwedaSfqmkH0yZxiA
-Message-ID: <CAMuHMdXPeU=e_Vbr_G=P3UjXgt0EOd3hpZ+pM+jqYoxV=98jJg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] arm64: dts: renesas: r9a09g047e57-smarc: Enable
- rsci{2,4,9} nodes
-To: Biju <biju.das.au@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kPlSyEmGk/3dQI4m"
+Content-Disposition: inline
+In-Reply-To: <20251222144522.33d7c734@kemnade.info>
+X-Cookie: Be different: conform.
 
-On Sat, 29 Nov 2025 at 19:52, Biju <biju.das.au@gmail.com> wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Enable device rsci{2,4,9} nodes for the RZ/G3E SMARC EVK.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:
->  * Rearranged pincrl entries order by port number.
->  * Updated the comments to reflect the board signals.
->  * Added missing pins CTS4N and RTS4N.
->  * rsci2 is guarded by macros SW_SER2_EN and SW_SER0_PMOD.
->  * rsci4 is guarded by macros SW_LCD_EN and SW_SER0_PMOD.
->  * rsci9 is guarded by macro SW_LCD_EN.
->  * Added uart-has-rtscts to rsci4.
->  * Dropped rsci{2,4,9} nodes from renesas-smarc2.dtsi as RZ/G3S does not
->    have RSCI interfaces.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.20.
+--kPlSyEmGk/3dQI4m
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Gr{oetje,eeting}s,
+On Mon, Dec 22, 2025 at 02:45:22PM +0100, Andreas Kemnade wrote:
+> Mark Brown <broonie@kernel.org> wrote:
 
-                        Geert
+> > The reason for having GPIO controlled enables on devices with register
+> > maps is that it's generally substantially faster to update a GPIO than
+> > to do I2C I/O.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> well we are talking about 30ms turning on time here.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> [  130.816647] tps65185 1-0068: turning on...
+> [  130.849970] tps65185 1-0068: turned on
+
+> So if we have 100khz i2c, so, we have around 0.1ms per byte, so
+> the read/modify/write sequence should be done in <1ms. So I guess that is
+> neglectible and allows the flexibility to not have that pin.
+
+Every little helps, and not every I2C controller is a model of
+efficiency and programmability.  Note that we do have core support for
+GPIO enables, it's not really any effort to support them.
+
+> > > +{ =20
+
+> > Implementing runtime suspend in a regulator is *very* non-idiomatic and
+> > is leading to large amounts of open coding throughout the driver.
+> > What's the story here?  I'm very surprised that this wasn't in the
+> > changelog.
+
+> OK, lets look around in the datasheet. We are apparently dealing
+> with 130=B5A here which can be saved. But that should be acceptable to be
+> only done on system suspend even if the regulator is off most times.
+> So no really strong technical reason here. I am just too used to testing
+> power management using runtime suspend.
+
+It does feel like something where if we're going to do it we should
+update the core to take runtime PM references rather than open coding it
+in a driver that's otherwise able to use the standard helpers.  I do
+worry about the impact on enable times (you'd have to power up the
+supply and sync the register cache) but I guess people could disable
+runtime PM for specific devices if it's an issue, and it'll never apply
+to primary PMICs anyway.
+
+> > > +static irqreturn_t tps65185_irq_thread(int irq, void *dev_id)
+> > > +{
+
+> > This unconditionally reports an interrupt even if none was detected.
+
+> Hmm, this seems like some common pattern, if some irq occurs,
+> check some registers and if something is set, do something about it,
+> and then unconditionally return IRQ_HANDLED.
+
+It is a common bug but it's a bug nontheless, it means that genirq can't
+detect and mitigate stuck interrupts and that the interrupt can't be
+shared.
+
+--kPlSyEmGk/3dQI4m
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlJXq8ACgkQJNaLcl1U
+h9DI8wf9GLCZd220kTXGUaVL3vUwotSL6Wq8pcMK/Z4kK8JiOp4qt9f3MSdOBln0
++IXWGhMkJS2MlWvcnbpcuN2Jp8rClZamZ7WiUlOzn6br5Z8NVMAqzPznWeG0IQh1
+/4QlOL1mRvtAlmT57eFIxkWhcziaHz1gxYwWZxOY7xhUhU/y9D43hencthnPLIMQ
+qw4rn7syvFjjOMuhpQXYG29XxmeLq4DPQPJ1PvjMDhGPvqs0v6aKjkvBBj0zbXjw
+w2EwQVI0ehyiVA2XfaTQS4bmd/6iDoWOOkbFQjfeM88yTLQrvrxQlI9SqgQ8I2/6
+f2Jpdb+7suGZRjx04rLK38PZmolcfQ==
+=OJM+
+-----END PGP SIGNATURE-----
+
+--kPlSyEmGk/3dQI4m--
 
