@@ -1,127 +1,94 @@
-Return-Path: <devicetree+bounces-248645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57727CD4AA3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 04:51:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C212ECD4AAF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 04:53:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0F4F23015A80
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 03:51:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5EDBE3006AA2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 03:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CAF0327210;
-	Mon, 22 Dec 2025 03:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ByEwSWJC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF1032573C;
+	Mon, 22 Dec 2025 03:52:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0646327200;
-	Mon, 22 Dec 2025 03:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 233DA1E1A17;
+	Mon, 22 Dec 2025 03:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766375472; cv=none; b=BC7Johr+F7tdMW7Fw64u9dMg94q6A9hcDuoj+T51Q8PYEKu4zn+0kB8R3LyIglA5vDIouyf9aHt02gURLIkRcbhVV/AS5SYf3v91FDVTUGnswKGzk96hba3n4n4UOHmOcUaZ3MtQqnEGTy65YNrtjk5bM3eML5an8ZnRHtAcHOY=
+	t=1766375566; cv=none; b=FzknpOKlLcWCioGI8B5g8KdwhvCJcnNdQyIj+ncMLSIWaDfven//CEgV4DH1EXijDMXZkZeEp+Ci/ljD3k+m3NyUU41MCyClKnhuiwvlF5gZb8jPXgobeaZAnL9iH36nTzIOl8bTs/XduSV5oUMNwwmJRgc9oJMOiROwQBVpx7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766375472; c=relaxed/simple;
-	bh=bmZtYfujMFG4w/cR+R5ItWw4bZeevnK8Lo5r2PAD8ys=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Rflbvn8PXcV+YBn5h3H813LCFlp5WH5qWE4N/PgKb69yJ/VEsTHiig2MfV1qzDL/qGlJA1OHGnUb6lqynxhbByKDv8u/NUf2RUT/ajrGorp/gHhKHX3HIkRhm1BwET6Q2lETrfT/ZdB+qio2mJJuabCy66aR4HSZqKIiZbG1ywE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ByEwSWJC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49B80C113D0;
-	Mon, 22 Dec 2025 03:51:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766375471;
-	bh=bmZtYfujMFG4w/cR+R5ItWw4bZeevnK8Lo5r2PAD8ys=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ByEwSWJCLdRrdAp6Sq/q2e9XkscSVPpC2fZlFw5EUGMSpfWcZ3VSPAwBHXiSb0L5M
-	 89a3DqsLXrKohyzANQx1Lr62g6fLwMSRbn1c03iQu9pUYNim+88xyHmAlPjBEDJ7d/
-	 WIW3Ppkp5N7yq9gVVw1vj5kezF7+dpUnpo8oXZAbrug/1a9sBDVbuGkem5QC5AFIch
-	 AWgW1e5XN6jV7wog/DjsWXCFXYyo8KesHY7i1YeQOsvXt306TzyEhS2rcoEevV+J30
-	 vglNciEiqSQx8BeAnyBtYG8s8vBts8jGFFV4CdxHoVT5O+kyi48hPm/ik79fqGkOy3
-	 MarP4YHGoLz5w==
-Date: Sun, 21 Dec 2025 21:51:10 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1766375566; c=relaxed/simple;
+	bh=lNjcJZs99nj+n2wCzcKNElXGlj4aHIpj14jiEAzsOiA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RktBamLNv5qBHOyd6+D2aO+iGq+KOnGqqdm+E0AjiMzRsFxkmdoXkXD26CdJ+gwny3SvEHEPxBtG87ScTDl545HnO3dlQZ/0+U21fjP3CLzx+prZWmibaysUn6RfUbXpHKh1ePqhUTBcYklxVT5yXJQ1IHbtEicau7Qw2XCUTWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 21C9F340F69;
+	Mon, 22 Dec 2025 03:52:43 +0000 (UTC)
+Date: Mon, 22 Dec 2025 11:52:39 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 3/3] pinctrl: spacemit: k3: adjust drive strength and
+ schmitter trigger
+Message-ID: <20251222035239-GYB1977180@gentoo.org>
+References: <20251220-02-k3-pinctrl-v1-0-f6f4aea60abf@gentoo.org>
+ <20251220-02-k3-pinctrl-v1-3-f6f4aea60abf@gentoo.org>
+ <408BBF8CF676D97D+aUiy2w1iP1LJoUOW@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, 
- Kuogee Hsieh <quic_khsieh@quicinc.com>, Andy Gross <agross@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Simona Vetter <simona@ffwll.ch>, Dmitry Baryshkov <lumag@kernel.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, 
- Maxime Ripard <mripard@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
- David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Martin Botka <martin.botka@somainline.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Casey Connolly <casey.connolly@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Simona Vetter <simona.vetter@ffwll.ch>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Jami Kettunen <jami.kettunen@somainline.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Sam Ravnborg <sam@ravnborg.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>
-To: Marijn Suijten <marijn.suijten@somainline.org>
-In-Reply-To: <20251222-drm-panels-sony-v2-10-82a87465d163@somainline.org>
-References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
- <20251222-drm-panels-sony-v2-10-82a87465d163@somainline.org>
-Message-Id: <176637546768.2070916.15396482062955238978.robh@kernel.org>
-Subject: Re: [PATCH v2 10/11] dt-bindings: display: panel: Describe Samsung
- ANA6707 DDIC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <408BBF8CF676D97D+aUiy2w1iP1LJoUOW@kernel.org>
 
+Hi Troy,
 
-On Mon, 22 Dec 2025 00:32:16 +0100, Marijn Suijten wrote:
-> The ANA6707 Display-Driver-IC is paired with the amb650yl01 panel in the
-> Sony Xperia 1 III, Sony Xperia 1 IV and Sony Xperia V smartphones.  It
-> uses Display Stream Compression 1.1 and requires dual DSI interfaces to
-> satisfy the bandwidth requirements to run at 1644x3840 at 120Hz.
+On 10:54 Mon 22 Dec     , Troy Mitchell wrote:
+> Hi Yixun,
 > 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->  .../bindings/display/panel/samsung,ana6707.yaml    | 91 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 ++
->  2 files changed, 96 insertions(+)
-> 
+> On Sat, Dec 20, 2025 at 06:14:55PM +0800, Yixun Lan wrote:
+> > K3 SoC expand drive strength to 4 bits which support even larger
+> > settings table comparing to old SoC generation. Also schmitter trigger
+> > setting is changed to 1 bit.
+> > 
+> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > ---
+> >  drivers/pinctrl/spacemit/pinctrl-k1.c | 163 ++++++++++++++++++++++++----------
+> >  1 file changed, 116 insertions(+), 47 deletions(-)
+> > 
+> > diff --git a/drivers/pinctrl/spacemit/pinctrl-k1.c b/drivers/pinctrl/spacemit/pinctrl-k1.c
+> > index 441817f539e3..8ca247fb8ba0 100644
+> > --- a/drivers/pinctrl/spacemit/pinctrl-k1.c
+> > +++ b/drivers/pinctrl/spacemit/pinctrl-k1.c
+> [...]
+> > -		val = spacemit_get_driver_strength(type, drv_strength);
+> > +		val = spacemit_get_driver_strength(type, dconf, drv_strength);
+> >  
+> > -		v &= ~PAD_DRIVE;
+> > -		v |= FIELD_PREP(PAD_DRIVE, val);
+> > +		v &= ~dconf->drive_mask;
+> > +		v |= (arg << __ffs(dconf->drive_mask)) & dconf->drive_mask;
+>             ^^^^
+> use val here.
+ should be s/arg/val/, thanks for the catch!
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/samsung,sofef01-m.example.dtb: panel@0 (samsung,sofef01-m-amb609tc01): 'vci-supply' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/panel/samsung,sofef01-m.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/samsung,ana6707.example.dtb: panel@0 (samsung,ana6707-amb650yl01): 'ports' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/panel/samsung,ana6707.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/samsung,ana6707.example.dtb: panel@0 (samsung,ana6707-amb650yl01): 'port' is a required property
-	from schema $id: http://devicetree.org/schemas/display/panel/samsung,ana6707.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20251222-drm-panels-sony-v2-10-82a87465d163@somainline.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+Yixun Lan (dlan)
 
