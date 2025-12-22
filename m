@@ -1,107 +1,135 @@
-Return-Path: <devicetree+bounces-248824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7685FCD5FF2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:37:08 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE2A5CD604C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:43:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 772523002845
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:37:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4BA5D30170CA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85CC929B783;
-	Mon, 22 Dec 2025 12:37:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA752D0C68;
+	Mon, 22 Dec 2025 12:41:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uBrCgH0q"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Xb9+ukEq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57FCC283FC5;
-	Mon, 22 Dec 2025 12:37:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D61D2D061F;
+	Mon, 22 Dec 2025 12:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766407023; cv=none; b=ZYkU32zjPngfMNfNATpfR+ofLqijlw4Ir94V8ouSEAUL4dbD1Tzhkc1h6KDO9VLih6wdbWxZ5Q4Bh9B6XgKUTMFayZdMxLpb+wIXd6Bk8yJKYbVoAj/D8yFURC8j3FK71tgWZGB6zPz5kaAM1CiJ/7NolOAzmIXzdfuIps09UKY=
+	t=1766407311; cv=none; b=OFMGcnntYY5ACylOILTx+9Xl5a5zI4yJXqmNE0J5ykg9CoGZ6JmcDqWTfMAtvS497/89QqHZW9P+Q5Up79HRabrsiZpU1JZnk/RlySE8e9obGWa8MKFNGgabtdXJQEBwDyxwtQhQycnoXEGnrb366LhWvLKIgxrUDy2nwDVb46E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766407023; c=relaxed/simple;
-	bh=JizgybxxUWC/2HrnoU2NhswkyZVW++LprQBKnIr4rxY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GosN0rVfI046/C9Ki7mb837ETsF9OEjrVoVfTuVoU/07eSx464HMbLl1ciJ1J24QDavdjcnn7AxOppLxDjgm0P7dxVD6r9dvrea/0Re0nlOE/4+TRTa757RHXhog9bIA6wnT3+rRn3W9gR4Jlgf/Fo+RPp1KrGmrJ3VvLA2vXHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uBrCgH0q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 214E5C4CEF1;
-	Mon, 22 Dec 2025 12:37:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766407023;
-	bh=JizgybxxUWC/2HrnoU2NhswkyZVW++LprQBKnIr4rxY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uBrCgH0qZLBqLYpsYyOuU95D2K9qf3eP95kd/XRP6tKebUo8jgOmyMgnwparGoA1V
-	 lWb8jc9OMqNS2loinlJgn8khUiWjBZT4fWEHAux0h9xzuOZ4oaBUDuuQ4M57JtjETR
-	 FDCm4o+N9j3T8OIbzAR4Wn/NYTinOHeX7p+c/A5GieZL4nX8qVASrFw6vA2/Lg0uWg
-	 vWZmzUaMI7t0L6JM9xfrPsdcNLAuBef/tb1OPlccS9UX3x9u8AEcXOifhmnEm1R0L5
-	 NYyzImQEjNa9jHwa5XAl6wOcPk7i7DI1CCAhDj6D3MMmNrUZWvHA5Ayh5mN0WXMh2a
-	 yvDVSFsDUB7zw==
-Date: Mon, 22 Dec 2025 12:36:58 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add TI TPS65185
-Message-ID: <f316a771-14f7-4ce9-aa45-c9494e641c1e@sirena.org.uk>
-References: <20251222-tps65185-submit-v1-0-34986b504d5f@kemnade.info>
- <20251222-tps65185-submit-v1-1-34986b504d5f@kemnade.info>
+	s=arc-20240116; t=1766407311; c=relaxed/simple;
+	bh=0jLWywMwvub9ANVFh+BovBjJEWgC/UVgIbx367Jkk14=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rVnWICY7SgtPwFtyK07OGALEfQobUnq/bzI/oGb1KylamUnSzwALhzX0iTEjBeniVvQozW9gEjMWBNhESVo5EbMCv7p4JowhXRcwu6Rzal4QNw0JhDJkwvorpVIlp6gq9SArlyteTf2JLxwQ1c92j63jopNMav6rb91zhgRqhd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Xb9+ukEq; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=vIp/UwT1ukgYhBEE+L8xIDZ0mrAdvInVqlAbyQDVXto=; b=Xb9+ukEqRoYiOZV+Jj4NrtRYVi
+	cBCR/H+pxxaNLfeXG8gNjtuAwmzFfHi4LpRuWOjVnnE82P48AWzBxEnCZbDjKzj+jx2DDrNSKGmWO
+	RvSIBa5ut+fPbnPl5gKPLovH92Zba3MjmSs5YBs7UBxYu0JeeVS3trpvNE5Z30BtbVs4/omnd1ZX4
+	0jph7KSv16WfDQuYgMbX/vqPIHcYed6A3avRPtwQgAz7zNkZ/sEOvHdU+U2+oHQ27Go965Msj0S8U
+	qOCyytjGdoQ93CFPql0HJrRNi/4OyvcZewXZR2GbfduOXT8BCtVIkr6+gVJUPaHeQCnFzi2fQiyfw
+	BP505BBA==;
+Received: from [194.95.143.137] (helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vXfEO-0005U6-94; Mon, 22 Dec 2025 13:41:44 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alexey Charkov <alchark@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v2] arm64: dts: rockchip: enable UFS controller on FriendlyElec
+ NanoPi M5
+Date: Mon, 22 Dec 2025 13:41:43 +0100
+Message-ID: <119070978.nniJfEyVGO@phil>
+In-Reply-To:
+ <CABjd4Ywc-L0jvXwk253MDZwgN3srY6WQ5EhoKZ6wb+Hae376_A@mail.gmail.com>
+References:
+ <20251201-nanopi-m5-ufs-v2-1-ece9c0ee17c4@gmail.com>
+ <CABjd4Ywc-L0jvXwk253MDZwgN3srY6WQ5EhoKZ6wb+Hae376_A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WRJulVs+j+cHwkrq"
-Content-Disposition: inline
-In-Reply-To: <20251222-tps65185-submit-v1-1-34986b504d5f@kemnade.info>
-X-Cookie: Be different: conform.
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+Hi Alexey,
+
+Am Donnerstag, 18. Dezember 2025, 15:05:39 Mitteleurop=C3=A4ische Normalzei=
+t schrieb Alexey Charkov:
+> Hi Heiko,
+>=20
+> On Mon, Dec 1, 2025 at 3:35=E2=80=AFPM Alexey Charkov <alchark@gmail.com>=
+ wrote:
+> >
+> > The NanoPi M5 board supports pluggable UFS modules using the UFSHC
+> > inside its Rockchip RK3576 SoC.
+> >
+> > Enable the respective devicetree node and add its supply regulators.
+> >
+> > Link: https://wiki.friendlyelec.com/wiki/images/9/97/NanoPi_M5_LP5_2411=
+_SCH.pdf
+> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > ---
+> > Changes in v2:
+> > - Describe UFS supply regulators
+> > - Add link to schematic
+> > - Link to v1: https://lore.kernel.org/r/20251127-nanopi-m5-ufs-v1-1-0d2=
+8d157712c@gmail.com
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts | 27 +++++++++++++++=
+++++++++
+> >  1 file changed, 27 insertions(+)
+>=20
+> Would you mind pulling this one, or do you have any reservations?
+> There hasn't been any discussion, but it looks like a pretty simple
+> change, runtime tested and schema-tested.
+
+Your patch fell directly into the dead-zone between -rc7 and -rc1 ;-)
+
+> +	vcc1v2_ufs_vccq: regulator-vcc1v2-ufs-vccq {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-min-microvolt =3D <1200000>;
+> +		regulator-max-microvolt =3D <1200000>;
+> +		regulator-name =3D "vcc1v2_ufs_vccq";
+> +		vin-supply =3D <&vcc5v0_sys_s5>;
+> +		en-supply =3D <&vcc_3v3_s3>;
+> +	};
+> +
+> +	vcc1v8_ufs_vccq2: regulator-vcc1v8-ufs-vccq2 {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-min-microvolt =3D <1800000>;
+> +		regulator-max-microvolt =3D <1800000>;
+> +		regulator-name =3D "vcc1v8_ufs_vccq2";
+> +		vin-supply =3D <&vcc_1v8_s3>;
+> +		en-supply =3D <&vdda_1v2_s0>;
+> +	};
 
 
---WRJulVs+j+cHwkrq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+But where does the "en-supply" come from? For the life of me, I can't find
+any reference to it in either the bindings in the kernel, nor the dt-schema.
 
-On Mon, Dec 22, 2025 at 01:18:30PM +0100, Andreas Kemnade wrote:
-> Document the TPS65185. GPIO names are same as in the datasheet except for
-> the PWRUP pad which is described as "enable". That pin is optional because
-> the rising edge corresponds to setting one register bit and falling edge
-> to another register bit.
+Can you please point me to the part of the documentation where that is
+described?
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+Thanks
+Heiko
 
-> +required:
-> +  - compatible
-> +  - reg
-> +  - pg-gpios
 
-Unless the device can operate without power the supplies should be
-required.
 
---WRJulVs+j+cHwkrq
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlJO2kACgkQJNaLcl1U
-h9ApnAf+Nqo0yHYwxatVkYtMdcrKFnak4l5lGUWZ8TlakR7I6gVZ5IBE1duUF9sk
-JUIvHFk2KzCaASA09E7xB7ZvLN68w5eSEIu6POaYMmJ+3wRHslxdMn1UtegCkZje
-QjYiS+0rXmCHp5+uCfZwEbjROQvpzPLiqra5+FFRuVyVw3dp+3B9SfeHYIcXAYdx
-oModelxFdoH9XtRLbClfA1XxBMAY9UYlgRl0dwGa7yqi/jKCnsC/ga1vCfel/B3m
-Azq9uNDKEYzVsSDGXorKWCLQMCiBpVR8NDncpY8/NZeMImgkThK/OYHqwpPp4e2J
-MKy6qj2iy/LV03yvsP5J0BvdjEvkYQ==
-=V+Tv
------END PGP SIGNATURE-----
-
---WRJulVs+j+cHwkrq--
 
