@@ -1,187 +1,138 @@
-Return-Path: <devicetree+bounces-248810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C60CD5D68
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:45:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEC26CD5DBC
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 12:50:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5AC3D3015862
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:45:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4EA683003FE7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 11:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAAD831328E;
-	Mon, 22 Dec 2025 11:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F397C32E156;
+	Mon, 22 Dec 2025 11:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I6GBvEeK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tcxe08P4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A3521FF23;
-	Mon, 22 Dec 2025 11:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12A532E148;
+	Mon, 22 Dec 2025 11:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766403923; cv=none; b=lYo51k/PyzqC7N/D1VnC4d345gJNlL7RQpDbuvVWO6IArY+twPXZDp3DfJCpVByqXOEjRGOOWgXFMbeKhqjBogDzQK09kAnTAA1hT3H7eyLYjUb/tLCpRquKZ0Ql+GBSw/bPW2dCaqZFfJEgOPcd+G6qxT/lDXSUMi/fHtgdgCQ=
+	t=1766404219; cv=none; b=Rq7W0uiOKn3aS8MKrV0m2yOLe7H/RnbJo+0jnv9MssVCmJqfFmyeinxxds4J46DkgsOfYu4Fy83sHSbbFxecL88fD7D5VVGJ+Hu4VRnwEeR0UvSYyn31YgfmhA2Co61+hy7AOJ7enXT7LUbkpudoVJb++yypHWkGBUAvwkcrqOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766403923; c=relaxed/simple;
-	bh=a3HAZXboIYJtAUAVesMtixmEpYZ6agiytIhdOW9P2HU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OOy31/fDZxZjseG57AFfmu5E1WV8SgpR6TMONn6+/PCzaCn0HGtehLBRJ63llVkWaV2FvoHPV9S2MNVotvyjlET54wfzUnyWwMukv884DBo+N8k0sRUpPsLOaZLqFDyYsWfgKU9wlkiV/czUhK0Lq2mQ31vFMYAB12KerDavYo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I6GBvEeK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FA7DC4CEF1;
-	Mon, 22 Dec 2025 11:45:15 +0000 (UTC)
+	s=arc-20240116; t=1766404219; c=relaxed/simple;
+	bh=gzbQRYRtSaVIkOfTrNHOjl5PMLV4sCPPprHgXs8PBwM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CeyjJLaMXXuJZQutTSsrdMG5pVkc4XpbEsmSH9nDjjiDRMZQbD8u12G5mHxbYWuwD+V5uMO1jB9hHHt4t7bkNOVKJd9BU1JB8DIeRPGus3bkoSYOg05HZOUnYc9innkFR0zlNYgXXhGn3vnXj2kZOuBKpaPlH2lS5nUBfiUVOUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tcxe08P4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 385EEC4CEF1;
+	Mon, 22 Dec 2025 11:50:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766403923;
-	bh=a3HAZXboIYJtAUAVesMtixmEpYZ6agiytIhdOW9P2HU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I6GBvEeK7QJIwyVC0RguQ8ppbhf51QHCw6gAC9fbdnqgVssO3G4JNHD4Dag9JsdU8
-	 gH/BPSeZZ2RbMHrvJSd3yGXap6TfLSEA78UkcgthxVw9F9jgOl3jghxJh3OQw40Ilj
-	 RYkBP5lOkDJvbkcgJVyAWND1g2rHAARICk89OBfJ9SCd2to93kVQjsA4D9JG92aqOY
-	 2gGgc47Xi5xvRX6rnaHUTjP9/soKRV70zOW4zdd0n4ncZtFIY5+FfjtM+eJc7V1RsN
-	 0hajoj0KmFqLiZZR5bjuug2o7TycznWf+owlgZLVJEiTsjkPzwm3vMzz9jTFcbMZlS
-	 c5iC2jQalglEA==
-Date: Mon, 22 Dec 2025 17:15:05 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Hans de Goede <hansg@kernel.org>
-Cc: Bryan O'Donoghue <bod.linux@nxsw.ie>, jerome.debretagne@gmail.com, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Johannes Berg <johannes@sipsolutions.net>, 
-	Lorenzo Bianconi <lorenzo@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Jeff Johnson <jjohnson@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, platform-driver-x86@vger.kernel.org, ath12k@lists.infradead.org, 
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>, Dale Whinham <daleyo@gmail.com>
-Subject: Re: [PATCH v5 2/7] dt-bindings: wireless: ieee80211: Add
- disable-rfkill property
-Message-ID: <v4hxei4t7n6ebvw6heoccei2t3mskq7uo7zejv6dyvvq5fr5sv@xzpsiic5x7a4>
-References: <20251220-surface-sp11-for-next-v5-0-16065bef8ef3@gmail.com>
- <M7kfFb5fz-WB43U_xCUwgxpmBJ4TNdp4jE6yFu6HmemIcDx5tXO6H4xnW_pEQz6DMkKm-3POdB9hIdB092zhGQ==@protonmail.internalid>
- <20251220-surface-sp11-for-next-v5-2-16065bef8ef3@gmail.com>
- <e0e9e690-c56e-4b56-90f9-2af46a7feaf3@nxsw.ie>
- <c29de60c-c7c6-45d7-8d90-616df23df01c@kernel.org>
+	s=k20201202; t=1766404219;
+	bh=gzbQRYRtSaVIkOfTrNHOjl5PMLV4sCPPprHgXs8PBwM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tcxe08P4Uv9Im2/uJrZqAX22PUhHoZWWraBn+oXAATcsXJjMRaoS14vIZHW8369nf
+	 MxnAGXk9sDuwcTgbChjqVJF+OQKTXBoic0jIO9rprQezQ8kQEBKCrMMTdDrEJ9LAAo
+	 b55QxVdKfHBC/z8sb25ujwQNyWRXHfpOEcMRoZuhK4cr+X/L761mThoPTYuRVnYh3S
+	 VWVNgjCz79c+NdbBmKcxug77MTleZVEs7Lyg/E6hUonQEF7jiUI9PvyRgjIHgI4SGl
+	 EIXnmnx2qo6+YKxbru4OqeLJCnshjB9Uh9bU9L6+/kCkZxehyEuKdULUlVjmNK7+e3
+	 h3+M2AEahhN1Q==
+Message-ID: <c0eeae31-6951-47ca-8651-868db18d349e@kernel.org>
+Date: Mon, 22 Dec 2025 12:50:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c29de60c-c7c6-45d7-8d90-616df23df01c@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 0/4] Implement hardware automatic clock gating (HWACG)
+ for gs101
+To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ kernel-team@android.com
+References: <20251222-automatic-clocks-v7-0-fec86fa89874@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251222-automatic-clocks-v7-0-fec86fa89874@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 22, 2025 at 11:23:18AM +0100, Hans de Goede wrote:
-> +Cc Mani
+On 22/12/2025 11:22, Peter Griffin wrote:
+> Hi folks,
 > 
-> Hi,
-> 
-> On 20-Dec-25 07:04, Bryan O'Donoghue wrote:
-> > On 20/12/2025 00:21, Jérôme de Bretagne via B4 Relay wrote:
-> >> From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
-> >>
-> >> For some devices, Wi-Fi is entirely hard blocked by default making
-> >> the Wi-Fi radio unusable, except if rfkill is disabled as expected
-> >> on those models.
-> >>
-> >> Commit c6a7c0b09d5f ("wifi: ath12k: Add Support for enabling or
-> >> disabling specific features based on ACPI bitflag") added a way to
-> >> support features set via ACPI, including the DISABLE_RFKILL bit.
-> >>
-> >> Add a disable-rfkill property to expose the DISABLE_RFKILL bit
-> >> equivalent for devices described by a Devicetree instead of ACPI.
-> >>
-> >> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
-> >> ---
-> >>   Documentation/devicetree/bindings/net/wireless/ieee80211.yaml | 6 ++++++
-> >>   1 file changed, 6 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
-> >> index d89f7a3f88a71d45d6f4ab2ae909eae09cbcaf9a..c10a4675640be947cd0b5eaec2c7ff367fd93945 100644
-> >> --- a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
-> >> +++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
-> >> @@ -29,6 +29,12 @@ properties:
-> >>         different 5 GHz subbands. Using them incorrectly could not work or
-> >>         decrease performance noticeably
-> >>
-> >> +  disable-rfkill:
-> >> +    type: boolean
-> >> +    description:
-> >> +      Disable rfkill for some devices on which Wi-Fi would be entirely hard
-> >> +      blocked by default otherwise
-> >> +
-> >>   additionalProperties: true
-> >>
-> >>   examples:
-> >>
-> >> -- 
-> >> 2.47.3
-> >>
-> >>
-> >>
-> > 
-> > Is this really a hardware description though ?
-> 
-> I would say yes it is. The wifi chip has an rfkill input pin and
-> things will be broken when that pin is hardwired to a fixed value
-> rather then being actually connected to a GPIO from say
-> the embedded controller.
+> This series addresses an issue with Samsung Exynos based upstream clock driver
+> whereby the upstream clock driver sets all the clock gates into "manual mode"
+> (which uses a bit that is documented as reserved in the gate registers).
 > 
 
-IIUC, even if the M.2 slot has the W_DISABLE1# signal routed from the host,
-the device won't make use of it as there is no physical connection. So you want
-the WLAN driver to change the state through SW?
+Applied. There were several checkpatch notices/less important warnings
+of which most were result of existing code but few were introduced.
+Please be sure you do not introduce new warnings NEXT TIME.
 
-> So I think that we would need here is not a disable-rfkill property
-> but some way to indicate in the DT-node that the rfkill input pin
-> is not connected and thus should be ignored.
-> 
-> This (the rfkill input pin being not-connected) IMHO very much
-> is hw-description.
-> 
+Also, DTS cannot be in the middle of the patchset. It's almost always
+wrong, like in this case as well. This was raised, also by me, multiple
+times on the lists and it is explicitly documented in submitting
+patches. Putting it in the middle suggests you try to fix up broken
+unbisectable things by reordering patches, but you cannot. Things will
+be broken anyway, because DTS ALWAYS goes separate (also documented in
+maintainers profile).
 
-Though we can argue this way, I would prefer to handle it in the driver. For
-example, with my M.2 series, we will end up describing the M.2 slot:
-
-	connector {
-		compatible = "pcie-m2-e-connector";
-		w-disable1-gpios = <&tlmm 117 GPIO_ACTIVE_LOW>;
-		...
-		ports {
-			...
-			endpoint@0 {
-				reg = <0>;
-				remote-endpoint = <&pcie4_port0_ep>;
-			};
-		};
-	};
-
-Then if we use a DT property to convey the RFKILL pin state of the device, we
-would need to describe the endpoint device in DT and hardcode the state:
-
-	&pcie4_port0 {
-		...
-		port {
-			pcie4_port0_ep: endpoint {
-				remote-endpoint = <&m2_e_pcie_ep>;
-				disable-rfkill;
-			};
-		};
-	};
-
-So this will essentially make the M.2 device non-swappable unless you change the
-DT since you've how hardcoded the device property in the binding. This is
-something I try to avoid to make the M.2 slot really swappable.
-
-For this reason, I would prefer to handle the RFKILL state in the WLAN driver
-using the device specific compatible. This will be problematic only if multiple
-cards of the same Device ID have different RFKILL state and the devices are not
-distinguishable even with sub IDs.
-
-FWIW, ACPI support added with commit c6a7c0b09d5f, suffers from the same
-limitation.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Best regards,
+Krzysztof
 
