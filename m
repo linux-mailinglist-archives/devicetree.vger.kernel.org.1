@@ -1,175 +1,176 @@
-Return-Path: <devicetree+bounces-248732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84B9BCD54F3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:24:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 708D0CD5517
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 10:27:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6D69E30056D7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 09:24:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6D8BF3006457
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 09:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13DA30FF3A;
-	Mon, 22 Dec 2025 09:24:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3337F30FC1C;
+	Mon, 22 Dec 2025 09:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LPRRKjgN"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="zyG5EqIA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com [209.85.222.193])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB93730DD21
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 09:24:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 578972FE579
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 09:27:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766395462; cv=none; b=rJTUgwaCVUEiqYUYZ8AGlb3JymnfTMTaSFK5e08QWn9zGRFhEzRQftp7Av4jru79pB5WPial6JD7KvUXgdgWNizNeAm65ct+g+UIrFWED4cs5sF+gEA5mmS3jGV+BBj+Ghj4BSfct1WhaKMw4nbl6+0MKkbMeZbNgzsZtkys/Rs=
+	t=1766395639; cv=none; b=f78AMbhfcbFXuMU9+uhAvrf3FPsH7FCAmmHd0m2OYIub6NzAOC2jSi8XKawYQBxy4z6B628nx8YXOi8WVJSVPPeSRU6iMk7A+6RJA3CxPVKM+OIH0+gJEPJBkiNYlR2ZkCucWDagUVA9wQobY/UoKIbp8arV8Gh6kyzBuCWmTNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766395462; c=relaxed/simple;
-	bh=bAyLP6n1PUSnQP/5Sor/5DmDifmF7sxR57YXwCBKk8A=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=spJgXTip+Bl/KQUMwaeqF2VeTv2MQF1U3s8di/UIoSy4ZPQdxnQWPPDcagm/efqMxL4U2rpyntq5uatMwiLdnbl9h+nm0oMlXT7k0m4sXi1mDWpqSPU6dVxy39oH0NyXoO2r0yCKPXRyMdni/rhPpAMrzymhqpUdIkoCTc2QwEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LPRRKjgN; arc=none smtp.client-ip=209.85.222.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f193.google.com with SMTP id af79cd13be357-8c15e8b2f1aso29946485a.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 01:24:20 -0800 (PST)
+	s=arc-20240116; t=1766395639; c=relaxed/simple;
+	bh=f3aAd8TRGvgzszWxZ6Ud1mmv3jorF91PLX3uVFKYvuc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pI2zr1BBa6q19s+T/vswWwYpXeKoGka6IuL/KaoWYmk2auWVyknv3ydK+PDonmSmOL/HYKwoVzCLBYR8MUnCD/IqnlDiZ3YE4kAPC12vO03rCD/CIMxlhBjWB2JxgCXrwBPUuxWRxD99+nGYP5BdEe6gbctZ0e1vKwV8yO34cXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=zyG5EqIA; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-78fba1a1b1eso30458357b3.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 01:27:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766395459; x=1767000259; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=OvmZHUHsU4s7pfLTXA++XjM3WOwGAV+1VFEV7wMCCv8=;
-        b=LPRRKjgNhaTitcxJy+stnIJf8tDwhJhz7lljQYnZ6dy71OVmG6MeEGyb73SRL+Iwe4
-         E5reR1RLOGk1yx842mX+R0Fs0OXxquWaNUadBDf5WGiqnM6QzcJXOYo/SdUdtf2SAERL
-         5uPcDZnzOauAjKCQkjFvfzpmi90+6hpMM20BbcDfIi4Gv92+ZOTQCKE+H2lfpCI4RlnU
-         gCg3Askw8TbAKimSJIbYamILj0a8GjUWoXogcZoN+CE+mRg34Ty9qrNO9umMhbEvkLwg
-         SspaQCaIS0ggWNaaWc5KEIAMKVRkE/u1C8UVd/BtIX7PkM+/BGWA6ze/QqNwlnn1X294
-         13Ww==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1766395636; x=1767000436; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X9JR9FWj1NW5H0iyl0VHxuC1HgCMCwXIwoDdNUbZEwk=;
+        b=zyG5EqIAV5+afClVBqWa4ItpkDw05aFETmX6I99ZpK6uWLBbhZdtsAlRa/EXU115gq
+         /UULI7aq2VcBVHLSQUFAsNCxpUhxnNSI2q/3u19efciM5Bu2/uA8J0jqDRO+AKCo3n8f
+         TkjEvg2ZOtXFdiK8Y45r3FK7l6IKqcfl5ozKk3X2Ke74fPLSxlSQo0kP1bUXYN7VvitV
+         p17lkgHfLcPQtLAcINKKvVupX8r1SGPrlBLbKDWZtIibVuDbUK0NkpZZAASJkoPCihYd
+         ipHznlPZVlIRRiC/Z5OuFkBf4+uPp94iI2VCRQGkkDEdf3tsi2afdLdi7zmtOt/p0INl
+         htOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766395459; x=1767000259;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OvmZHUHsU4s7pfLTXA++XjM3WOwGAV+1VFEV7wMCCv8=;
-        b=NZR5MJDGaVh+TzsrjE+3jAZ8yRz9CwZOgr93TQVThSA/FoeTjX8YtQt/lstax2GUdK
-         llW4L7wPiDafrkXYdyFwcalzeAMYJfHyMx6bq5Ciebd7C3IW46eomPekZI9sQn0EO5tv
-         a3IHtskNVAVTWs7lebQuhlChSKNGPp0WeEUj2laSBPACWFzjykjqBgRO49UFxA0kXeKw
-         u8yPvgen/NPDPW1MZ+5q8DY+YqSBGv2sZ2dyrDKf2JF54fu5jxfc7ecTfq8u4Vtvxrkn
-         N1kfqvJ2+SEFHnhGdMNVGfvajG2F9yG1EeQLkYfGLZLkyr1dKBXyam/XhKJc2pFgGXu0
-         pNDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVapAaUNe4z7nDUUGUHL1jW1OJIF43GV2atxTSewHS6bqHPkfKC3hAFlngDqvr5NHJywKHUYgdL6NZt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjLwFkFQa7EiS5AGzOmzGITJ62pY8OSlhnkI6xiQe9Gxo/hMy3
-	sfW/GP5Zd+3VsE9FXykdyEmGTjEYV7fqGAS1l1tJ5JPyRL+VF+gqrEq2
-X-Gm-Gg: AY/fxX5pjBJ4U2a9KSv4nlmqfeIm+5PuZiAbVOFCCtPn68sxXqu5H/6hy181OjFMg3E
-	OGLQ0+lbn1T7pXTti21zUMswhs4jc82WuCY6cSrGoKM8tFoiaKjfzCqqhx5jj+XJNXcvPOS2lHD
-	E2PJEpANim4lt72Ey1edWRvNhFiywFRgRweeZPImqengMwvjWSiT9+m9bKUyWaGv+7XlZAkwo7Q
-	bgZD0H0DImcOT/aJ2jQYocmg8HYJ6hK3xomkkULAxOHD6EklzfHol17bILxiUPBJWalaqAkvteU
-	y9sEF7Hl2rtttC5793ridK9x7fvv6WHM901AQxj9dlqg9fMVdhjXWvnJa5s6wWJkU+xYB1vqIo1
-	zZIcz/+FhGzPCquDMEp4HVUyzK1BW0hppZ8LEO3UOQ87sy+LQYuVFn7uXhiv4EbQrYt9i4HsL3N
-	3UdnwiCYSuu9QZLPai++UBYM0FtYO+EJutfYJXZ4AtAJgNk9O5lGyFwm83W8cY+I1pZEqJxYRAg
-	9I9q2pQUwLnAPE=
-X-Google-Smtp-Source: AGHT+IGcUkieeN5SMBrYzsLDCuuaXwX0HW9pDymSmeokduZF4f2T9HBSmI5nY2mxs5I2NKVprEKeNg==
-X-Received: by 2002:a05:620a:28cb:b0:89e:d562:7b93 with SMTP id af79cd13be357-8c08fbd210bmr1650156785a.83.1766395459535;
-        Mon, 22 Dec 2025 01:24:19 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com ([24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c0975eeb4bsm798522785a.52.2025.12.22.01.24.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Dec 2025 01:24:19 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Mon, 22 Dec 2025 09:24:13 +0000
-To: Jonathan Cameron <jic23@kernel.org>, 
-	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v2 6/6] Documentation: ABI: testing: add support for
- ADF41513
-Message-ID: <eefdt4y56c3mh653kcker2t6sfpb2wu6kcahqnkgf2mqjfotbj@owcdihpzibkb>
-References: <20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com>
- <20251219-adf41513-iio-driver-v2-6-be29a83d5793@analog.com>
- <20251221175249.11b5ff02@jic23-huawei>
+        d=1e100.net; s=20230601; t=1766395636; x=1767000436;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=X9JR9FWj1NW5H0iyl0VHxuC1HgCMCwXIwoDdNUbZEwk=;
+        b=dSG4Tbx4CwMcB2h5lnzOglaNXtj6yin9GwXUJmi1qlTd/ScRUT+7XmmVX3pFsyySiT
+         bGYfjJc+MuWF8ZY7ZIObfcNplYzFoo/DYdpx/VeAxuzbekL9LBQivPzKNFH44jgs7szN
+         lMKesN/8kQ4kug+Kale+FEJ00LaQnueIcOcEUaG+sywE1wVKdm3MdxxMsOSLzuuYfHGV
+         DCC5MDyJ6xcixhcs/eZbH6EF/s8yU89dQdJkXDz7FqCHDDzpczyF8wvRuId2EmgumvOb
+         g4N25r8WS+T2HOKlpv9mLzT+RK91Q9d5pUPPh/lK1ePIggr7cKuhtuB+DG6Q4QIemuO2
+         8O7A==
+X-Forwarded-Encrypted: i=1; AJvYcCXZ3VPCB7HrlTtbu7E9+SQe035eHikjl7mUHqby/d9LhllM3vN05KvtKon5exzhN+exy1vgJfU0ItGV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPSKO/jm8LQYNVD0q/udueYpkAbfA3jPCg3Q6mfpneEpaAFGsl
+	Fv7qTyNY/E7D9wVVITZYLG4Gltg+EC8sfJt3GClqDCKPIYuWEuSfV5I+xCV4B1CtG60k8Rs6UM+
+	RwejLYj4bVmf+uMZmJkP6dEGUYW8/M0GNfEEyLWF1Jw==
+X-Gm-Gg: AY/fxX4Q15XL0i7pcHbh55SXvGZ22j+KyG3TRGmPN9igK8AkFmNiWnz5SKWov2EZouO
+	TBNKYqZz8NsBOHbgnsmhSRxzn4bvMU18Mj4F+FEyZR/6+DRtZLLYtJOv50s2fHPXRi6CiaoYCS+
+	S6od2XlnxM+uQNlUXdNXQtvBv+rBKqz/sHeMuMDsjlvUnjwbeUvEmsELK730iHTsHxOJHGdg0g6
+	PcQyqwV7bckf1zQNCPnIf1WlCaR/HJSEIyaEYJERURk4aX+rNOdDFILJSH9V8Y6y2Ip6Ez5yEMc
+	CSUTjmIRxaMaWswKNMKx6WLA+Y7UnbCZnieIXAlLn2/D
+X-Google-Smtp-Source: AGHT+IEopdaH4VEXup08bA/QV1AhBuiIpBK4mPcZpQfYrRFDnvPhOVpgLeIitUz/0ef9xzGYyIV1deEuXbqK8/M1Otw=
+X-Received: by 2002:a53:d056:0:10b0:645:527b:bc25 with SMTP id
+ 956f58d0204a3-646632e04d3mr8907715d50.43.1766395636333; Mon, 22 Dec 2025
+ 01:27:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251221175249.11b5ff02@jic23-huawei>
+References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
+ <20251216-k3-basic-dt-v1-7-a0d256c9dc92@riscstar.com> <60948ca2-ed3d-485b-9b11-15df7ef8791d@canonical.com>
+ <CAH1PCMb=+TvB1w+G6a2ANDp05HUwC4r6CFBDHXFwSmoP3Mm8xw@mail.gmail.com>
+ <f9b6b5e2-ec9e-4208-8267-77020e0a9411@canonical.com> <20251218-basil-quantum-225ce16e4699@spud>
+ <CAH1PCMZ3KM9-D3NJ1N2LUHTHFSDVKmGKT5fU8knAL7NnV9E-gw@mail.gmail.com> <aUYOgl8ffcJ0Xfwg@pie>
+In-Reply-To: <aUYOgl8ffcJ0Xfwg@pie>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Mon, 22 Dec 2025 17:27:04 +0800
+X-Gm-Features: AQt7F2rD9S1VFl45xvpftmdWgFdR_R_Ul403nTlRAGDTs5jIW1Osdpar_Os9kF0
+Message-ID: <CAH1PCMb7aUNt7VnYiZF=_V4nVziM-A0JpAqmU26ezwgk36=kKQ@mail.gmail.com>
+Subject: Re: [PATCH 7/8] riscv: dts: spacemit: add initial device tree of
+ SpacemiT K3 SoC
+To: Yao Zi <me@ziyao.cc>
+Cc: Conor Dooley <conor@kernel.org>, 
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@sifive.com>, 
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	spacemit@lists.linux.dev, linux-serial@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Lubomir Rintel <lkundrak@v3.sk>, Yangyu Chen <cyy@cyyself.name>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 25/12/21 05:52PM, Jonathan Cameron wrote:
-> On Fri, 19 Dec 2025 12:34:53 +0000
-> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
-> 
-> > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > 
-> > Add ABI documentation for ADF41513 PLL sysfs interfaces
-> > 
-> > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> Do this in the patches that add the ABI, or in a patch before them.
-> 
-> Also try building docs.  Unless something changed recently that will
-> moan about duplication.
-> 
-> When ABI is generalized from one driver to many we have to move
-> the documentation (and make it generic) such that is is shared by
-> the relevant drivers. In this case
-> sysfs-bus-iio-frequency is probably the appropriate file.
+On Sat, Dec 20, 2025 at 10:48=E2=80=AFAM Yao Zi <me@ziyao.cc> wrote:
+>
+> On Fri, Dec 19, 2025 at 10:03:24AM +0800, Guodong Xu wrote:
+> > Hi, Conor and Heinrich
+> >
+> > On Thu, Dec 18, 2025 at 8:56=E2=80=AFAM Conor Dooley <conor@kernel.org>=
+ wrote:
+> > >
+> > > On Wed, Dec 17, 2025 at 09:07:14AM +0100, Heinrich Schuchardt wrote:
+> > > > On 12/17/25 08:11, Guodong Xu wrote:
+> > >
+> > > > > Specifically, I must adhere to
+> > > > > Documentation/devicetree/bindings/riscv/extensions.yaml (and cpus=
+.yaml for
+> > > > > properties like 'riscv,sv39' which stands for the extension Sv39)=
+. If I
+> > > > > add extension strings that are not yet defined in these schemas, =
+such as
+> > > > > supm, running 'make dtbs_check W=3D3' fails with: 'supm' is not o=
+ne of
+> > > > > ['i', 'm', 'a', ...], followed by "Unevaluated properties are not=
+ allowed."
+> > > >
+> > > > If Documentation/devicetree/bindings/riscv/extensions.yaml is incom=
+plete
+> > > > with respect to ratified extensions, I guess the right approach is =
+to amend
+> > > > it and not to curtail the CPU description.
+> > >
+> > > Absolutely. If the cpu supports something that is not documented, the=
+n
+> > > please document it rather than omit from the devicetree.
+> >
+>
+> ...
+>
+> > Strictly describing the SpacemiT X100/K3 (or any core) as RVA23-complia=
+nt
+> > requires adding these extensions that are currently missing from
+> > the kernel bindings:
+> > RVA23U64: Ziccif, Ziccamoa, Zicclsm, Za64rs
+> > RVA23S64: Ss1p13, Ssccptr, Sstvecd, Sstvala, Sscounterenw, Ssu64xl,
+> >           Sha, Shcounterenw, Shvstvala, Shtvala, Shvstvecd, Shvsatpa, S=
+hgatpa
+> > Plus 'Supm', 'Zic64b', 'Ssstateen', 'B' where the kernel supports them =
+but
+>
+> Please note B is just the abbreviation of "zba", "zbb", and "zbs", all
+> of them have been documented in extensions.yaml.
+>
 
-that makes sense, will do. thanks.
- 
-> > ---
-> >  .../ABI/testing/sysfs-bus-iio-frequency-adf41513   | 27 ++++++++++++++++++++++
-> >  MAINTAINERS                                        |  1 +
-> >  2 files changed, 28 insertions(+)
-> > 
-> > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf41513 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf41513
-> > new file mode 100644
-> > index 000000000000..11ffd248eedb
-> > --- /dev/null
-> > +++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf41513
-> > @@ -0,0 +1,27 @@
-> > +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_resolution
-> > +KernelVersion:	6.20
-> > +Contact:	linux-iio@vger.kernel.org
-> > +Description:
-> > +		Stores channel Y frequency resolution/channel spacing in Hz.
-> > +		The value given directly influences the choice of operation:
-> > +
-> > +		- integer-N: requested frequency is a multiple of the Phase Detector
-> > +		frequency.
-> > +		- fixed modulus: fractional-N mode with fixed modulus.
-> > +		- variable modulus: dual-modulus fractional-N mode with extra variable
-> > +		modulus added on top of the fixed one.
-> > +
-> > +		It is assumed that the algorithm that is used to compute the various
-> > +		dividers, is able to generate proper values for multiples of channel
-> > +		spacing.
-> > +
-> > +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_refin_frequency
-> > +KernelVersion:	6.20
-> > +Contact:	linux-iio@vger.kernel.org
-> > +Description:
-> > +		Sets channel Y REFin frequency in Hz. In some clock chained
-> > +		applications, the reference frequency used by the PLL may change during
-> > +		runtime. This attribute allows the user to adjust the reference
-> > +		frequency accordingly.
-> > +		To avoid glitches in the RF output, consider using out_altvoltageY_powerdown
-> > +		to power down the PLL and its RFOut buffers during REFin changes.
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index c536c3afc1ae..48fa1011b797 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -1606,6 +1606,7 @@ M:	Rodrigo Alencar <rodrigo.alencar@analog.com>
-> >  L:	linux-iio@vger.kernel.org
-> >  S:	Supported
-> >  W:	https://ez.analog.com/linux-software-drivers
-> > +F:	Documentation/ABI/testing/sysfs-bus-iio-frequency-adf41513
-> >  F:	Documentation/devicetree/bindings/iio/frequency/adi,adf41513.yaml
-> >  F:	Documentation/iio/adf41513.rst
-> >  F:	drivers/iio/frequency/adf41513.c
-> > 
-> 
+Yes, Yao Zi. I'll include 'B' in my next version, and add the schema check.
+Thanks.
+
+BR,
+Guodong Xu
+
+> > they are not literally documented in yaml.
+> >
+> > Is this approach acceptable to you? If so, I will proceed with submitti=
+ng them.
+> >
+> > Thank you very much.
+> >
+> > Best regards,
+> > Guodong Xu
+> >
+>
+> Regards,
+> Yao Zi
 
