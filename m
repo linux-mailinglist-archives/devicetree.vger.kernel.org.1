@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-248908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B5BACD69C9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:47:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 332D9CD69E1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 16:50:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E275B306C736
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:47:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 548FA305114A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 15:50:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50D9532E735;
-	Mon, 22 Dec 2025 15:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9386632E736;
+	Mon, 22 Dec 2025 15:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ko3Kyb5m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PYZsnfHh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA47632D44F
-	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 15:46:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9492F2580D7
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 15:50:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766418421; cv=none; b=UJnmtfz1CojRMGYzmtC/DrJXuAShNMy1BJ7L3uMTE5pHElxvYR8xsN5Fg5CmXVQpMAeN0wXL5YIl1GYWgw8DMsknQ/Rkoqe1zts6BFhsnKOSdAmaZJM9K2Mi2cITcl91fJpfryRLFZcVEu3XhunQMW+fJfdXAZiatEhdhzqObXQ=
+	t=1766418628; cv=none; b=dVyBgR5o2HVhFkPXnCfOnW7sOPVE4SZD0TAwg8d9g2yM5bB6mc2KLstsgFhpK7CazAHV0iIuryvKFQyx8puEhgRZMBzatCK4ifdZ3sWx+IY6glElRcJppdCGGZHIE/FESEONRe9lf3DmeQxncGtQeOhXFGe2Rv1mA4pl0+1EjrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766418421; c=relaxed/simple;
-	bh=GGjaLoQhCp+2no7ekK/HLa/7i2pLriK1t4fSCLCjjzY=;
+	s=arc-20240116; t=1766418628; c=relaxed/simple;
+	bh=qCaw8AecTqvnpTYslVOSBCuOt9l5TDhTjG01WAGiQVw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iRBofJRJz9eAtsNsrvtIZm5luJChh1Fg1rHpOpCz8/TkItdWn2eWqCvNGJPfoz5OAVL9O68pqVj9jJE9R4Jjowhp/XhjuBDtLvz45ajqyCGH3+Ha1nWi+566fTKO5uV9j6wbyiknaW1domNlLhb0JGmApmqbdcOyCDQXtgaf5jc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ko3Kyb5m; arc=none smtp.client-ip=209.85.167.46
+	 In-Reply-To:Content-Type; b=PhjiTjqjrA4V6Qw1c+FTp7NE23niPWRm8RKH3XBLc9/5GB/Cpw376J4D729k6zq6aLMkTQH8Wy75lBgeWLgkGAkilf3QhH0msOjGSnL7Gz3jfqMT0vAiUS3fSrFbDSu8xqAii4zQGN12PK2qpe0a9zZKY3SNXvQY9VDA7HnAoo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PYZsnfHh; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-59a10f2bbb8so178031e87.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 07:46:58 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-47aa03d3326so25909355e9.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 07:50:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766418416; x=1767023216; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XQA+t0BLvG8fOA4teeYPO1i6EIFLXHkisNI387Ij+Uo=;
-        b=ko3Kyb5m0Ss76GDJyfVKtsUmcbNMT8ItM0jKcunFuyqjbaGugONCnKTIkS70OyPigE
-         K4Jnao9v0TQJ5S+eSrxn8kExEaiONiaZXXenXkpS88QHZU5bxVCC+NOp4T31DQ7RB9A/
-         eoGn/yfK4czxjDphq9NblT4luj3je2OZqIKbZ9B5LgdAu2y1xRh+aoJ00AjHWxWe9+uq
-         ncDjZyKDber9PLqtj1JFexJ55b9QST1z8ja4rFwA05vH5qNod/yPUpMKOfLsyUO34lnv
-         S+sY8jn1Ss/ZTrMVvD1sJxgWStytw7ax29V+UZZ/IuBsfsajoIkNS+DtYtRzEiBfQuwK
-         plig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766418416; x=1767023216;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+        d=linaro.org; s=google; t=1766418624; x=1767023424; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XQA+t0BLvG8fOA4teeYPO1i6EIFLXHkisNI387Ij+Uo=;
-        b=VkA+8NHZdjOh0+Vxuz0OC7PDRt5eBh5BiveQtmciZuohERta04KKGB4jjBsVxBQmEM
-         5k3wjUhnqMYqEW3Z83YkipFujJX7N740KRwgwNJKGK6hd1MiJvriPYSy3LdU9sKoYe3W
-         xfQkqBWk0HSdi2utgKCLdugNhEAhb1BxQMPEX9QyL36Z15onkvtRvFO6kVxbC67BXEkG
-         IhpKCv81C20w+0XMwVt7p5A/11CZjJe98+FUm6tbtujJ3Wq9/UcNM03MM4uvrcnBaZCc
-         OcozY5b0Wc7CVhrjrBcBcpKgUqsFBMrhRtY4+oleJlVaSEoVdLs9HY0yEbPqb+slWwmm
-         MIiA==
-X-Forwarded-Encrypted: i=1; AJvYcCW/mxpEaO1JhaJx415O0IODP1oB3yblXQpGE+XisTVn7xxvImUCYKPfTFCd61HFOnU/gNZ8UGSSn4Un@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjI+WNOEK8mmU++yUTA2IugQWymKHCPmMe9fvrXfOQAk1Yirn4
-	giM/gGvbzpTMPZ5iEnHMkmFjOhFChK0Eox96XFfwaDoaAZUcSxbprpBOpQ9qprDCQbY=
-X-Gm-Gg: AY/fxX5f+f/jxKXD3bd5f63UnAC+s4YcLL96b9r7g8yJ4cUjUGMw7lCiZgsdMCO5J3N
-	qQ4OhPaKP+HsAJbN9JDdukzMZvEyTonh0Bxd8qN8WjTcAQMiXeQ6K0/RpLRvkAEIRx51wQS3g7u
-	2vGIrCwjaOxaP892BZ0/22m8AFwkrXLirch/Zy+B03MswOQGfI5hPlqjC2/e9kksGusiuwzXyrG
-	fhicMYOhTVassWTstESye5pmX5widA4Is+KeTJ8nJOeHBURKyvIBHg6f1KR/N4Gnf8e6ICmYp4p
-	wlmzjQHhnpko2WTqitiEQnRxapqasYc84g4qx78YqZ+s86vOyOItAAbq+wT/Ha2eY20t8J3bet4
-	hLXeFu49b0hFhi8goM3yzyzE01YD2/vHpmbHKLalk9ZZPoqcGCPQX81wPhQ22o5To3zUwrv2lL6
-	T7ExUYsqb0orjDWC87PBlLshLI/IDilDFx1JGIOP3SQVXQlYZnzvjBpKXmOZLDzh+NXQ==
-X-Google-Smtp-Source: AGHT+IFQx5aNaZttip8OpGBoWMCmObEm/k41TzjlVuJvY0HKmyBGQ4yTX7ngXbHyytCtqPSY3zkLCQ==
-X-Received: by 2002:a05:6512:61a1:b0:59a:11b8:88a7 with SMTP id 2adb3069b0e04-59a17d073c6mr2364604e87.1.1766418416446;
-        Mon, 22 Dec 2025 07:46:56 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a185d5cbesm3367729e87.13.2025.12.22.07.46.53
+        bh=MGab5CiD2jPfRBpHkXEMh/Ov2EOaoVnUhQp2EuD9XIo=;
+        b=PYZsnfHhYbdm4IXW0iBfSnfe/eFErLMoAx5eL9pPxqjCnv+MWiSod6WAz4dEfnZdah
+         IVOthkCYQtRHSNFf9n027nO0JH6YNLYblhYWDoqT6aE8xgGOL02Z7FEixzH7hR1Da+3u
+         clcIOJj3EzmKoaCtsdlpsYryoxqoew/RWdl7rIsdv44bvAQdAzRNMV5iemaY6r6RB61s
+         61/PYZ9sumEQYsMkCjt2ZksVqO8PKeTdoMMTywm43p8swMB+4Xqf3GO23wPKmxZm0VkX
+         j8LTKIJUMotQOMEyIWjoqLCXdDNQMyD41bpOTRj72lAmjbySEtcoBgiycuZ+eNIM8Z2D
+         rcIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766418624; x=1767023424;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MGab5CiD2jPfRBpHkXEMh/Ov2EOaoVnUhQp2EuD9XIo=;
+        b=YGrUl5tUVLq1E5UnJURPCwjQ7IT5wjtEqmA6X63MKu7kip8nU3HyNHNIS6UIWgsemb
+         5VMncN1ARY0A3gPvXHN90sPEuj3uqw2nnyFaiDgkzJ09zaucZoWXpr8c3JZfI0ytEg91
+         Oy4E1PhfDOnQsZHEQEp12oicwoG/jIvT7JLvyBp1zT864zqa2slEf5YlmScQ3oyeW8Rh
+         vydfuTj6d6uFapcbrzhCCvJPuiA6q6LY1Z4DcbdCXLorBN+2LvxtD2XoiERLaCx5Qxd7
+         RQG0gMSUKK7eQMvJjSUcFMMX94OA2j1fWOMsvISSw9OwgPBwYupbYn11QhTdwOLny4tf
+         CA5g==
+X-Forwarded-Encrypted: i=1; AJvYcCVq25nJy2ESINN5kEi9dTwg5SxBgERJQwrbutEZZtvirkhrbjqzfF1GAc8fWy+myjTfhe3DWPUDlr8y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqwMvxZtLYDwljWwNzm+Filr0ZJIZokzaMbY6zZv99bV/Y+meD
+	TipwdR9eC37BHg3V2CzCnYxU0wvsQBvxVwjX209iim3WzXe9pHPAWDanEpqRtlYB+C4=
+X-Gm-Gg: AY/fxX74rO43Gzds3fsRNaZhpVhRj8H8Egv3ziwyx+XPJjG57SSYwk2oLMtEASEoHnk
+	6VwBULDqpDL9O5410uYwRd4eHWG5ImyZvcj+gfwhTGns5WZbG2oiuuoAoRAm4Lo9bDDHHzVcxyB
+	3awOE0YhPvyOyffFJE6GNeOfH+yW3CFfEh4XdhUsT62snBuf1EgQLGAJDu+Ii+vWhxlcVe9CG22
+	EImfoc+2xy4LVG4Cku++RrIuH8kvJnROjcZcje/qhi7yVdRgegzJXC/fsUX/UbZBaCQNa9Ci3uH
+	9lyCkoDL8A4oOLxTTEXwJbTTmzhRwhUce68Lea2RyeduIiuNLQ/zZ57PBtqGTBTfzUi05iK9Q/5
+	DEP33FXmWmbiduY3laf/gluKMi52mBpCBe6/Hy2f3OQtvB0n3wF3RUzJh3zYHeitB2jaQMTZb+n
+	4v6A/IjTbezRqhB4NbcqRXFPRta5RIG9M0b5Tzs0pEJJ3AqBRch32o
+X-Google-Smtp-Source: AGHT+IEnNeIB7reQ9q4c4bCwKMSYMzsv5bCPVpus/n3dmX0FSxO1gTmCSFGyNJQfHYz24HlzhWIwfw==
+X-Received: by 2002:a05:600c:3b15:b0:479:3a88:de5d with SMTP id 5b1f17b1804b1-47d247132b8mr82213085e9.36.1766418623769;
+        Mon, 22 Dec 2025 07:50:23 -0800 (PST)
+Received: from [192.168.0.40] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47be279c5f8sm237816905e9.9.2025.12.22.07.50.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Dec 2025 07:46:55 -0800 (PST)
-Message-ID: <d135e715-8949-4348-bf3f-cff01911c988@linaro.org>
-Date: Mon, 22 Dec 2025 17:46:53 +0200
+        Mon, 22 Dec 2025 07:50:23 -0800 (PST)
+Message-ID: <517d6611-7540-4026-91ca-26c3d712517b@linaro.org>
+Date: Mon, 22 Dec 2025 15:50:21 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +85,7 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v4] media: dt-bindings: Correct camss supply description
 To: david@ixit.cz, Robert Foss <rfoss@kernel.org>,
  Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
  Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Vikram Sharma <quic_vikramsa@quicinc.com>,
@@ -96,12 +97,13 @@ Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  phone-devel@vger.kernel.org
 References: <20251222-docs-camss-fixes-v4-1-914a4e5f7822@ixit.cz>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
 In-Reply-To: <20251222-docs-camss-fixes-v4-1-914a4e5f7822@ixit.cz>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/22/25 16:16, David Heidelberg via B4 Relay wrote:
+On 22/12/2025 14:16, David Heidelberg via B4 Relay wrote:
 > From: David Heidelberg <david@ixit.cz>
 > 
 > Usually, the supply is around 1.2 V, not 1.8 V, and also correct wording.
@@ -113,10 +115,185 @@ On 12/22/25 16:16, David Heidelberg via B4 Relay wrote:
 > documentation or also no access to the internal resources.
 > 
 > Thank you
+> ---
+> Changes in v4:
+> - Everything in one commit. (Krzysztof)
+> - Dropped Fixes tag. (Bryan)
+> - Updated rest of the files to make them in sync.
+> - Link to v3: https://lore.kernel.org/r/20251216-docs-camss-fixes-v3-0-c238b6810771@ixit.cz
+> 
+> Changes in v3:
+> - Add commit improving vdda-phy-supply description to match more recent
+>    bindings.
+> - Double-checked and specified it's 1.2 V vdda-pll-supply. (Vladimir)
+> - Link to v2: https://lore.kernel.org/r/20251213-docs-camss-fixes-v2-1-a8a4d4d51c6c@ixit.cz
+> 
+> Changes in v2:
+> - Applied suggestion to clarify the description. (Krzysztof)
+> - Link to v1: https://lore.kernel.org/r/20251212-docs-camss-fixes-v1-1-5c011505ff59@ixit.cz
+> ---
+>   Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml  | 4 ++--
+>   Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml   | 4 ++--
+>   Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml | 4 ++--
+>   Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml   | 4 ++--
+>   Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml   | 4 ++--
+>   Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml   | 4 ++--
+>   Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml   | 4 ++--
+>   Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml | 4 ++--
+>   8 files changed, 16 insertions(+), 16 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
+> index 019caa2b09c32..48f280e998096 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
+> @@ -126,11 +126,11 @@ properties:
+>   
+>     vdda-phy-supply:
+>       description:
+> -      Phandle to a regulator supply to PHY core block.
+> +      0.88V supply to CSIPHY IP blocks.
+>   
+>     vdda-pll-supply:
+>       description:
+> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
+> +      1.2V supply to CSIPHY IP blocks.
+>   
+>     ports:
+>       $ref: /schemas/graph.yaml#/properties/ports
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
+> index ee35e3bc97ffd..b1c54c5b01b28 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
+> @@ -125,11 +125,11 @@ properties:
+>   
+>     vdda-phy-supply:
+>       description:
+> -      Phandle to a regulator supply to PHY core block.
+> +      0.88V supply to CSIPHY IP blocks.
+>   
+>     vdda-pll-supply:
+>       description:
+> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
+> +      1.2V supply to CSIPHY IP blocks.
+>   
+>     ports:
+>       $ref: /schemas/graph.yaml#/properties/ports
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
+> index c99fe4106eee9..354130aba9fc9 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
+> @@ -264,11 +264,11 @@ properties:
+>   
+>     vdda-phy-supply:
+>       description:
+> -      Phandle to a regulator supply to PHY core block.
+> +      0.88V supply to CSIPHY IP blocks.
+>   
+>     vdda-pll-supply:
+>       description:
+> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
+> +      1.2V supply to CSIPHY IP blocks.
+>   
+>   required:
+>     - clock-names
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
+> index 35c40fe223767..46cc7fff15992 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
+> @@ -91,11 +91,11 @@ properties:
+>   
+>     vdda-phy-supply:
+>       description:
+> -      Phandle to a regulator supply to PHY core block.
+> +      0.88V supply to CSIPHY IP blocks.
+>   
+>     vdda-pll-supply:
+>       description:
+> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
+> +      1.2V supply to CSIPHY IP blocks.
+>   
+>     ports:
+>       $ref: /schemas/graph.yaml#/properties/ports
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+> index 82bf4689d3300..be09cf3a3b3b8 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+> @@ -207,11 +207,11 @@ properties:
+>   
+>     vdda-phy-supply:
+>       description:
+> -      Phandle to a regulator supply to PHY core block.
+> +      0.88V supply to CSIPHY IP blocks.
+>   
+>     vdda-pll-supply:
+>       description:
+> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
+> +      1.2V supply to CSIPHY IP blocks.
+>   
+>   required:
+>     - clock-names
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+> index ebf68ff4ab961..a509d4bbcb4aa 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+> @@ -296,11 +296,11 @@ properties:
+>   
+>     vdda-phy-supply:
+>       description:
+> -      Phandle to a regulator supply to PHY core block.
+> +      0.88V supply to CSIPHY IP blocks.
+>   
+>     vdda-pll-supply:
+>       description:
+> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
+> +      1.2V supply to CSIPHY IP blocks.
+>   
+>   required:
+>     - clock-names
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml
+> index cd34f14916b42..4b9ab1352e914 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml
+> @@ -134,11 +134,11 @@ properties:
+>   
+>     vdda-phy-supply:
+>       description:
+> -      Phandle to a regulator supply to PHY core block.
+> +      0.88V supply to CSIPHY IP blocks.
+>   
+>     vdda-pll-supply:
+>       description:
+> -      Phandle to 1.2V regulator supply to PHY refclk pll block.
+> +      1.2V supply to CSIPHY IP blocks.
+>   
+>     ports:
+>       $ref: /schemas/graph.yaml#/properties/ports
+> diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
+> index b87a13479a4bf..2d1662ef522b7 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
+> @@ -120,11 +120,11 @@ properties:
+>   
+>     vdd-csiphy-0p8-supply:
+>       description:
+> -      Phandle to a 0.8V regulator supply to a PHY.
+> +      0.8V supply to a PHY.
+>   
+>     vdd-csiphy-1p2-supply:
+>       description:
+> -      Phandle to 1.2V regulator supply to a PHY.
+> +      1.2V supply to a PHY.
+>   
+>     ports:
+>       $ref: /schemas/graph.yaml#/properties/ports
+> 
+> ---
+> base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+> change-id: 20251212-docs-camss-fixes-0fa525271951
+> 
+> Best regards,
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+I think the 'to a PHY' bit is redundant but sure, leave it as is.
 
--- 
-Best wishes,
-Vladimir
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
