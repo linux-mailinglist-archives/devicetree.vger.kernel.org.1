@@ -1,66 +1,61 @@
-Return-Path: <devicetree+bounces-248864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC100CD6332
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:41:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1FBDCD6369
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 14:43:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 60747305BC45
-	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:41:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C03CE30076A5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Dec 2025 13:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F91B31B136;
-	Mon, 22 Dec 2025 13:41:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZVkD/5at"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 296BA327BE7;
+	Mon, 22 Dec 2025 13:43:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D44529B79B;
-	Mon, 22 Dec 2025 13:41:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67796327C0D
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 13:42:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766410875; cv=none; b=HPH1ICbn+mLBo4YNV0sZH5xlAP27dm7dOnc5TW6c0GG2qsBzZk6f+nYhUsG+6cAnlFf4NGkCt3CSEqzLLAM6glmqVdLHA7YslQeC5N0yR3JV872oKWVDbSOYpyKPjjjzKc6Gah/00fPDkwM+eSwwnapbqaMlsPI4VIjX7xs8K3Q=
+	t=1766410980; cv=none; b=Qo07s6oy5hWLD0+ruOmiuuI/VWWy7jGWwprZmxohq4nLSaV9BLBeEM2J1DLIRrz2aNMysxl8Io578tYiwYgPZKSYHN/1sH6yHNNcq8a1yOVn4PYDKwjh8zHyaddH1+2EmkTgJeuNiC2JuEcK6FZA1EKzA/uvvxr5PFIuGN8DHvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766410875; c=relaxed/simple;
-	bh=gozjiCvCKUHkQ7zvIbR/FS8BYdH0M32Xk68KgX2ZM9s=;
+	s=arc-20240116; t=1766410980; c=relaxed/simple;
+	bh=zx83YMM/Rs69+JYQjm7BnV7oovtvQh9xVVwoTU6BPw0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f9aHAoCTvN4BSD4vP+TFNlwAtj9L8kBeGuTTUIwLv0V2rpR4cPXiQgLC63mr95ICZ6ACy375KlWN4LTYqg+YTi6TJ+b0MVf9MNqktpI6nOpVzOBYDF/6UvaMA5aFqSRY8pE56LnLdfMSq+Qy0llCoMPd2qL7pxhLnOz3rAvlW/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZVkD/5at; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB299C113D0;
-	Mon, 22 Dec 2025 13:41:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766410874;
-	bh=gozjiCvCKUHkQ7zvIbR/FS8BYdH0M32Xk68KgX2ZM9s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZVkD/5atvlwCS2K1gr3VL1yiHu7zRHBK2n2/O3EaHySwbc+BNMMFNm6VCZ4lyMD9X
-	 qS0ErK18FC5wTPaH8OV38OSDkIeDWRU/wRAVLH60r79CyG7RvQWLzauLrbng1Sp3QT
-	 ljcdFD6dztH9pHljynh8GkrylqV0XiKAssvEPbdoFSzfHnsWXRv6sO7G6aupj8zTOp
-	 aqn4ysA1X1KFcou9FnJ0elLV1+MJDzqAuuZ1k/85kUHcbEfePcbRtFg1m1MWi8txXA
-	 qCEQwUblVJ48Wlt4Q+xXRv0vLFz9YPiMGEXaBZ/L43G4sT5DLTJTHptmWivdFl7oSA
-	 WFa0nCzDmFa/Q==
-Date: Mon, 22 Dec 2025 19:11:03 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Hans de Goede <hansg@kernel.org>
-Cc: Bryan O'Donoghue <bod.linux@nxsw.ie>, jerome.debretagne@gmail.com, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Johannes Berg <johannes@sipsolutions.net>, 
-	Lorenzo Bianconi <lorenzo@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Jeff Johnson <jjohnson@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, platform-driver-x86@vger.kernel.org, ath12k@lists.infradead.org, 
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>, Dale Whinham <daleyo@gmail.com>
-Subject: Re: [PATCH v5 2/7] dt-bindings: wireless: ieee80211: Add
- disable-rfkill property
-Message-ID: <blbyjjkcxwnm5otgkodckxl2gx5ncelhnpqire7jt3yfdvszef@jgk6o7yvn2vo>
-References: <20251220-surface-sp11-for-next-v5-0-16065bef8ef3@gmail.com>
- <M7kfFb5fz-WB43U_xCUwgxpmBJ4TNdp4jE6yFu6HmemIcDx5tXO6H4xnW_pEQz6DMkKm-3POdB9hIdB092zhGQ==@protonmail.internalid>
- <20251220-surface-sp11-for-next-v5-2-16065bef8ef3@gmail.com>
- <e0e9e690-c56e-4b56-90f9-2af46a7feaf3@nxsw.ie>
- <c29de60c-c7c6-45d7-8d90-616df23df01c@kernel.org>
- <v4hxei4t7n6ebvw6heoccei2t3mskq7uo7zejv6dyvvq5fr5sv@xzpsiic5x7a4>
- <2ff993a7-0fda-4337-9acc-92aaa75be750@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=UXffFFSazXvNFyBXiC06VwBnVVVbnyxLEcoWvoW2Ffh9Doy1xWCqGAzODjCGVkm8CaFkOsei14PmKO2BH3h5P2d0EEb5Dpi4UlB0zT7gvMjdDvDj2vLSlbQzNMMChgQ8gXYWans00qgrZQfPtd79rdqIHI8/eoaH4C/b7DeLp5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7FCE7497
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 05:42:50 -0800 (PST)
+Received: from [169.254.77.58] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 54F683F778
+	for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 05:42:57 -0800 (PST)
+Date: Mon, 22 Dec 2025 13:41:52 +0000
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+	Steven Price <steven.price@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Chen-Yu Tsai <wenst@chromium.org>, Chia-I Wu <olvaffe@gmail.com>,
+	kernel@collabora.com, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] drm/panthor: Implement reading shader_present
+ from nvmem
+Message-ID: <aUlKoHKb084vm_p-@e142607>
+References: <20251220-mt8196-shader-present-v2-0-45b1ff1dfab0@collabora.com>
+ <20251220-mt8196-shader-present-v2-3-45b1ff1dfab0@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,146 +64,108 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2ff993a7-0fda-4337-9acc-92aaa75be750@kernel.org>
+In-Reply-To: <20251220-mt8196-shader-present-v2-3-45b1ff1dfab0@collabora.com>
 
-On Mon, Dec 22, 2025 at 01:41:48PM +0100, Hans de Goede wrote:
-> Hi Mani,
+On Sat, Dec 20, 2025 at 07:49:54PM +0100, Nicolas Frattaroli wrote:
+> On some platforms, notably MediaTek MT8196, the shader_present bitmask
+> in the Mali GPU register for it has cores enabled that may be faulty.
+> The true shader_present bitmask is found in an efuse instead.
 > 
-> On 22-Dec-25 12:45, Manivannan Sadhasivam wrote:
-> > On Mon, Dec 22, 2025 at 11:23:18AM +0100, Hans de Goede wrote:
-> >> +Cc Mani
-> >>
-> >> Hi,
-> >>
-> >> On 20-Dec-25 07:04, Bryan O'Donoghue wrote:
-> >>> On 20/12/2025 00:21, Jérôme de Bretagne via B4 Relay wrote:
-> >>>> From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
-> >>>>
-> >>>> For some devices, Wi-Fi is entirely hard blocked by default making
-> >>>> the Wi-Fi radio unusable, except if rfkill is disabled as expected
-> >>>> on those models.
-> >>>>
-> >>>> Commit c6a7c0b09d5f ("wifi: ath12k: Add Support for enabling or
-> >>>> disabling specific features based on ACPI bitflag") added a way to
-> >>>> support features set via ACPI, including the DISABLE_RFKILL bit.
-> >>>>
-> >>>> Add a disable-rfkill property to expose the DISABLE_RFKILL bit
-> >>>> equivalent for devices described by a Devicetree instead of ACPI.
-> >>>>
-> >>>> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
-> >>>> ---
-> >>>>   Documentation/devicetree/bindings/net/wireless/ieee80211.yaml | 6 ++++++
-> >>>>   1 file changed, 6 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
-> >>>> index d89f7a3f88a71d45d6f4ab2ae909eae09cbcaf9a..c10a4675640be947cd0b5eaec2c7ff367fd93945 100644
-> >>>> --- a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
-> >>>> @@ -29,6 +29,12 @@ properties:
-> >>>>         different 5 GHz subbands. Using them incorrectly could not work or
-> >>>>         decrease performance noticeably
-> >>>>
-> >>>> +  disable-rfkill:
-> >>>> +    type: boolean
-> >>>> +    description:
-> >>>> +      Disable rfkill for some devices on which Wi-Fi would be entirely hard
-> >>>> +      blocked by default otherwise
-> >>>> +
-> >>>>   additionalProperties: true
-> >>>>
-> >>>>   examples:
-> >>>>
-> >>>> -- 
-> >>>> 2.47.3
-> >>>>
-> >>>>
-> >>>>
-> >>>
-> >>> Is this really a hardware description though ?
-> >>
-> >> I would say yes it is. The wifi chip has an rfkill input pin and
-> >> things will be broken when that pin is hardwired to a fixed value
-> >> rather then being actually connected to a GPIO from say
-> >> the embedded controller.
-> >>
-> > 
-> > IIUC, even if the M.2 slot has the W_DISABLE1# signal routed from the host,
-> > the device won't make use of it as there is no physical connection. So you want
-> > the WLAN driver to change the state through SW?
-> > 
-> >> So I think that we would need here is not a disable-rfkill property
-> >> but some way to indicate in the DT-node that the rfkill input pin
-> >> is not connected and thus should be ignored.
-> >>
-> >> This (the rfkill input pin being not-connected) IMHO very much
-> >> is hw-description.
-> >>
-> > 
-> > Though we can argue this way, I would prefer to handle it in the driver. For
-> > example, with my M.2 series, we will end up describing the M.2 slot:
-> > 
-> > 	connector {
-> > 		compatible = "pcie-m2-e-connector";
-> > 		w-disable1-gpios = <&tlmm 117 GPIO_ACTIVE_LOW>;
-> > 		...
-> > 		ports {
-> > 			...
-> > 			endpoint@0 {
-> > 				reg = <0>;
-> > 				remote-endpoint = <&pcie4_port0_ep>;
-> > 			};
-> > 		};
-> > 	};
-> > 
-> > Then if we use a DT property to convey the RFKILL pin state of the device, we
-> > would need to describe the endpoint device in DT and hardcode the state:
-> > 
-> > 	&pcie4_port0 {
-> > 		...
-> > 		port {
-> > 			pcie4_port0_ep: endpoint {
-> > 				remote-endpoint = <&m2_e_pcie_ep>;
-> > 				disable-rfkill;
-> > 			};
-> > 		};
-> > 	};
-> > 
-> > So this will essentially make the M.2 device non-swappable unless you change the
-> > DT since you've how hardcoded the device property in the binding. This is
-> > something I try to avoid to make the M.2 slot really swappable.
-> > 
-> > For this reason, I would prefer to handle the RFKILL state in the WLAN driver
-> > using the device specific compatible. This will be problematic only if multiple
-> > cards of the same Device ID have different RFKILL state and the devices are not
-> > distinguishable even with sub IDs.
+> Implement reading shader_present from an nvmem cell if one is present,
+> falling back to the Mali register if it's absent. The error codes are
+> trickled up through to the probe function so that probe deferral works.
 > 
-> I think we're miscommunicating here. I'm not talking about the card having
-> a broken rfkill implementation, I'm talking about the M.2 slot on the mainboard
-> having e.g. W_DISABLE1# hardwired in such a way that cards would interpret it as
-> having to always disable their wifi radio which is very similar to what is
-> happening on the surface device. Except that on the Surface there is no M.2 slot,
-> the wifi is just soldered onto the mainboard I believe.
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
+Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
+
+Best regards,
+Liviu
+
+> ---
+>  drivers/gpu/drm/panthor/panthor_hw.c | 36 ++++++++++++++++++++++++++++++------
+>  1 file changed, 30 insertions(+), 6 deletions(-)
 > 
-
-Ah, sorry for the confusion. I did misinterpret what you said.
-
-> Based on experience I'm pretty sure we will encounter M.2 slots which such
-> a hardwired W_DISABLE1# signal sooner rather then later.
+> diff --git a/drivers/gpu/drm/panthor/panthor_hw.c b/drivers/gpu/drm/panthor/panthor_hw.c
+> index 87ebb7ae42c4..80c521784cd3 100644
+> --- a/drivers/gpu/drm/panthor/panthor_hw.c
+> +++ b/drivers/gpu/drm/panthor/panthor_hw.c
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0 or MIT
+>  /* Copyright 2025 ARM Limited. All rights reserved. */
+>  
+> +#include <linux/nvmem-consumer.h>
+>  #include <drm/drm_print.h>
+>  
+>  #include "panthor_device.h"
+> @@ -109,7 +110,25 @@ static char *get_gpu_model_name(struct panthor_device *ptdev)
+>  	return "(Unknown Mali GPU)";
+>  }
+>  
+> -static void panthor_gpu_info_init(struct panthor_device *ptdev)
+> +static int overload_shader_present(struct panthor_device *ptdev)
+> +{
+> +	u64 contents;
+> +	int ret;
+> +
+> +	ret = nvmem_cell_read_variable_le_u64(ptdev->base.dev, "shader-present",
+> +					      &contents);
+> +	if (!ret)
+> +		ptdev->gpu_info.shader_present = contents;
+> +	else if (ret == -ENOENT)
+> +		return 0;
+> +	else
+> +		return dev_err_probe(ptdev->base.dev, ret,
+> +				     "Failed to read shader-present nvmem cell\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int panthor_gpu_info_init(struct panthor_device *ptdev)
+>  {
+>  	unsigned int i;
+>  
+> @@ -143,13 +162,18 @@ static void panthor_gpu_info_init(struct panthor_device *ptdev)
+>  		ptdev->gpu_info.tiler_present = gpu_read64(ptdev, GPU_TILER_PRESENT);
+>  		ptdev->gpu_info.l2_present = gpu_read64(ptdev, GPU_L2_PRESENT);
+>  	}
+> +
+> +	return overload_shader_present(ptdev);
+>  }
+>  
+> -static void panthor_hw_info_init(struct panthor_device *ptdev)
+> +static int panthor_hw_info_init(struct panthor_device *ptdev)
+>  {
+>  	u32 major, minor, status;
+> +	int ret;
+>  
+> -	panthor_gpu_info_init(ptdev);
+> +	ret = panthor_gpu_info_init(ptdev);
+> +	if (ret)
+> +		return ret;
+>  
+>  	major = GPU_VER_MAJOR(ptdev->gpu_info.gpu_id);
+>  	minor = GPU_VER_MINOR(ptdev->gpu_info.gpu_id);
+> @@ -172,6 +196,8 @@ static void panthor_hw_info_init(struct panthor_device *ptdev)
+>  		 "shader_present=0x%0llx l2_present=0x%0llx tiler_present=0x%0llx",
+>  		 ptdev->gpu_info.shader_present, ptdev->gpu_info.l2_present,
+>  		 ptdev->gpu_info.tiler_present);
+> +
+> +	return 0;
+>  }
+>  
+>  static int panthor_hw_bind_device(struct panthor_device *ptdev)
+> @@ -218,7 +244,5 @@ int panthor_hw_init(struct panthor_device *ptdev)
+>  	if (ret)
+>  		return ret;
+>  
+> -	panthor_hw_info_init(ptdev);
+> -
+> -	return 0;
+> +	return panthor_hw_info_init(ptdev);
+>  }
 > 
-
-But it makes no sense IMO. Vendors will usually connect unimplemented W_DISABL1#
-GPIOs to a pull-up resistor so that the radios are operational all the time. I
-don't see how they would expect a WLAN or any device with a radio to be
-connected to the slot if they hardwire the pin to low.
-
-Are you sure that on the surface the pin is actually hardwired to low and not
-connected to a GPIO that drivers the signal low?
-
-It is just hard to believe that board designers can do a blunder like this.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+> -- 
+> 2.52.0
+> 
 
