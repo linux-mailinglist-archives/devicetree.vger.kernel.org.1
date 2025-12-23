@@ -1,94 +1,96 @@
-Return-Path: <devicetree+bounces-249185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B521CD9C38
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3772ECD9C37
 	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:24:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 25A863031CD5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:24:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D8AC2301B819
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:24:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB90229DB65;
-	Tue, 23 Dec 2025 15:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6717129BD9A;
+	Tue, 23 Dec 2025 15:24:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YlkIAk37";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JFjgnvxS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Tafw+Bv9";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TYTg8sEW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1655B29B8D9
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741DB29C347
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:24:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766503448; cv=none; b=n4kRQ0kv2DZfj03Gr4vlMjRR25dFzad7XAej1pMg8I6IRAVR1cyBwoh6Gb0iR75dLUjSkAQ088Acr9TRURZaTy/mR0OS6zGisgquM+5Y0lRTHiHbS3VazXa4LYLkO0psSF2J0TdM+Naoe06WJBjSgDemy2UtWtIg8gtYc847GGo=
+	t=1766503451; cv=none; b=PSMELJ0LfWDRibQEIVqyY2JwBivPtzZX1iVWvkX04bMLigsqsXaz+PlRzzyhrApuyVvYx768tY2MogMQqWMY5ZFQNDdy3nZSLuSCnrmhWfa0yEYQWvVLIOOLYrdnt2WIRyKSKYw3oP0U3PZSb7UMqYz+mD07LHr+D+s1ZdYdcas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766503448; c=relaxed/simple;
-	bh=c66B3V+WWte7SdY1FIaza3AAO7PtnnIBv68KPmSgVmc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jFKXEhw8cKMECkKMuZacvPDhuWwEsJXPDfKtW4BFYjLF104kG5jFOcsSZERj8bkCmUPS0qvu5/eXJtEou5x1bW8/W56MiHBvRQw+13whT0S/ZiCFGfLwgeHfm9UkGJZZD71ZPBBRzRsB8Z/ni1gy4PZnyxSG06PN39R6ySzzyx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YlkIAk37; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JFjgnvxS; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1766503451; c=relaxed/simple;
+	bh=qSfWwDgs97LdiYoHtgF54xbNKw+lI7sBOXcblme8tuo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=NBsPgFGuJTHMU5XRl4e91KwV2msCsqgwun1bxx7oHzGzFSd46MfHRnHSoADMs1uq7OUWf3ReQCTY7eLpGLTUKIN6HVZMHSJW8iUcm8FVLBd65kvHpRerYc7gOjXiQflaXvxTa7oGhwVkdcFaGunhf9U4H2omuxYUqnWwoI1OtxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Tafw+Bv9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TYTg8sEW; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BN7abxP4044651
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:24:05 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BNFEQR51630835
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:24:08 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=3l2OvpWnazsd8alkcAS9q2RDcBacYram7Jq
-	cIQFWlgw=; b=YlkIAk37QFTHUsdE/eYS9AXgeCwn2soq2RE2tObUpRFTRmBzS1P
-	xdioaY80rBtRFkiXQaOZfaPPuAzjmaftIHVxYpvwcv/KdvdKFsANbovX1Ss6jLO5
-	+UMXE7YtNcr/HZNej/Q3HVfqK8EXzrH9AQ3v3ijPWhh91OBwh4xKqXpNduOok53J
-	0WtYFE0sQ5H/x761l+zeokcnAp5FCbqq2hRxfSZH8hGIvNwG6xfO5XEW5sQu9+zi
-	ht6bIiJzNwuAurb3oQ4sjd9R/1WyOKiHvvjjwzLZqRpcNNfq/sXZ3RRMaKQ7e5zr
-	5GeyV63ffUbTlCrlJM1vJDRczWHMCvC2/FA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7cuhb2nd-1
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=pJtjSdBc6am
+	BYowr025xAo962LjpwgMpRL6m54Ryp4Y=; b=Tafw+Bv9sfmveWxwb9S8Bs2CCwF
+	deBiXGjVafMcUBN0DmNlhKXgewKTuRdL9O7qjroztxjLyysqQLucr0N+zns9Ut9F
+	WaM1zJPpms046lAHZ/dDnAWL55ohpw4Ft3aM8M8hrxZ1XqYWr/hGVkXzQzbh+90t
+	SfwBGj5YABUzhj+UGGzXXlrAd+yXAiz2C1jwB5PcxGhEIX7vwqy/YDBYgrF8j1K+
+	g2QofWRRrCtafgyTTc/SKVMfzQ4Ga2fRc5RP+ElKbVsT9Tn+jm5bTar29MTEhzd8
+	iXhb5S8ASGJ5VU41k62b2fLQuKjeouqQ2lMjB7Q0onO/umpz/PSe5lPpxZw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7ck8k5ks-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:24:05 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4f1b39d7ed2so112061131cf.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 07:24:05 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:24:07 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee0995fa85so143602851cf.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 07:24:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766503444; x=1767108244; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3l2OvpWnazsd8alkcAS9q2RDcBacYram7JqcIQFWlgw=;
-        b=JFjgnvxSO/qt/T+rbSqbw6eDQ8Nfyu0gZWBcT6GaCqMpFOF1xLYYs1J6pbY+PhNOuK
-         MXhBLLLFuaaF3OwzxZYvM7ey82gel8B9oFCB2IBzCdVWMxc2kCQwic50vZlniHikdkSp
-         uh7S/i9/bU7aMEQJqFKRjD63o2Z5Q4HfI5Ba6RVGxV9Frgbz0meutN6X4Ipai/NpxE9A
-         e434JTzkdELZlH46+hjMptqH/7AddxWeUVnV316LnJf0EjDFFnvBc3OEnGY/vpHm/qTF
-         JSDMVoXpjU/QAjLhDHyeBsjLLF+qTtoEpJ6usC8Jt00BdpYjaxC6R11D7o5Xl1HwaR5y
-         BT4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766503444; x=1767108244;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=oss.qualcomm.com; s=google; t=1766503447; x=1767108247; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3l2OvpWnazsd8alkcAS9q2RDcBacYram7JqcIQFWlgw=;
-        b=oPgYFzDfBA8KAG8qrE2k1j+oftjiY0Zw1n9zdGpaA6D6Id3Bj8YvxH0ypr2mBYKR68
-         yM9UIYKfJYYxkhn1+A7Zr7H4krUqwGiYJDZnoXyggUxhIcBzumC/+eRsXP7oSATMO6Rm
-         cjiZVPDfmTHF3HurBJSJFedqd5DPIhOZUk2oid6V1NhUlcVOmXYGPTcvUJ3VuotJlYKw
-         IK7LIPuiEvuzr+wLXOk4RigL41MkDvbI9blGdoIIx5yZesDyeJyH8Nlk+VflT2rrfcSt
-         lAlJ3RHS68f/g8JFZIO1TQbTUNwVnF+Q1d48TUZr3yC6KlYK69ZgwrTYB0q/6n2kaFeu
-         bgtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVilGh3gCsrGVaLjvsea1rajaW/R79vikdT3uTUv8HikTcLdeVHeCdfaYSKNygPArTx0+hmU7kFyjPx@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqrNBI9tBD9CSnGkT2vPSggn/gaUD/RjsrOfL/S5yQNbmkySfJ
-	99Qa+x8NDJVEFLbWD13vRY86et1UGlemXiUybLCyOdVDJo2a4Q4/fwWiBKE+cz0gZSxhzqMquqf
-	uFinqWqb9UIKffrLLb7LgjJntBceV/qQT/d0og+B4NK4PVd7wb2TGBbS9yFcvz95T
-X-Gm-Gg: AY/fxX6dflQhCm3BYhx48LN3Tt6iyt1BImmjmaQRu3RTuNS7dvxcJL1QTLyy4xg+43c
-	sZXLFo2FPInAGai/5uAC9CVd0YsSCkpVgIZqO56USSfOHdeYmsLcWt9ETDrSMkdhvJNGrZI5Ohx
-	vhej/CdZVQCxJ6oBqvdTsJlAGBfGXsRihatpFJqloWH877iqchFzHfJp3G4K0ejqOyTnQxAzzHV
-	UxgLIU7hGK7xa3YcTH2IEKp7raYi3/DLp8sQfitljO0EagseR34n/EgTGgVUGm11b4jxnVbL1q7
-	8p0nUBH16XYS35IP7+kSobO2oNxQMTPntR2NqauQg7v4ZL79W25hTRPa8dZgA9YM6t2mlpNQsb8
-	a3cmQjVChu7BLze86tXXNneqJ/oLx0mMx1iQ6P3nnEY/7amJhw5NPZ3YXhCC92m0jikw=
-X-Received: by 2002:a05:622a:410e:b0:4f3:4cde:1637 with SMTP id d75a77b69052e-4f4abccebedmr189805031cf.10.1766503443993;
-        Tue, 23 Dec 2025 07:24:03 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHAZ0CofaZ1CXl6fkipQqMqDa5McjkT/3PQ4ymoUwCIp5eso+MhGndh2jvQcnH8uheozTSAxw==
-X-Received: by 2002:a05:622a:410e:b0:4f3:4cde:1637 with SMTP id d75a77b69052e-4f4abccebedmr189804551cf.10.1766503443505;
-        Tue, 23 Dec 2025 07:24:03 -0800 (PST)
+        bh=pJtjSdBc6amBYowr025xAo962LjpwgMpRL6m54Ryp4Y=;
+        b=TYTg8sEWqIboF26UuWT6/RYcudDzTw0FVarkdUFf8HrRgNd2rjQjInvWLhWwlzQSbP
+         G2UOEpnGhIy5AeWDIMCu9q6nLe7INolWA1Jxn+auiRp1NVgwgcY+ItFiWjE2Cv0vmoWW
+         rrc6ww/z4WMSQfGe/vmulnTDentAFzKPgZW5txBKYxk8L5sJERQY11V25TcLyAR7IrUT
+         hyAT26l9QggJBPSLOFlxyTnsOlHaFQ9SY5/rhZcGN8j+FxnGqiP6UrtTUYf89srySFTU
+         qN33WtwqPFqsTA/XI40WfIE35B9ys1Y8ma+iGuFa6WbrXROuPqvHl1QfNssHj18tcu9t
+         k8fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766503447; x=1767108247;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=pJtjSdBc6amBYowr025xAo962LjpwgMpRL6m54Ryp4Y=;
+        b=GWZTI0WMWxsOi/ElCGjIRDBvOCoCrAfwNFaQ1tichAmR4hVMDV2H/mgxMQKyDv8qdj
+         NB3impsgJPYKVJvzkdBjNecYv8owDxPdDTKck6ui7NeP1tSjZd6Ar0iSrrrBuSQLFkaX
+         kTUIaQi9TYDTrlgw2Kw9UzSfhgBG8PsA0fYqI9y5LaEr1DZOko1OZZIockNVoZz1NpBF
+         fH8kaIQZYNfp5ZJfpqA6NysnIlydYbVOTeLCvHuIRlM85LJVRX4yGdjOEa2uswJ9j+fJ
+         9cHaZ3/zWGxOhm394TIwyJyHERz3YoGs3MPHirQZFz67gov99kqexd4P13auHRFClpo3
+         UGJw==
+X-Forwarded-Encrypted: i=1; AJvYcCXBcvvBN3VcVcesQ+VjJ9l42DK93CUom+M9uII3rqN2FSCrfvlS1mufRCHOjHf7LBAragPLob8y/KbT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVshfB8CKhZ3B1HNzCbxU6DfKw4vHAIqXNzYe/qVqvfjxRROLW
+	mwYQxsvfHU85FxZ7bxJX5k3hXae1ccxoVxeu5+wTivDO3kOuoz13yhEgFIxpPgUqoGEU9Eob7VD
+	/KPBn8F/CEASDHlsYw8d//z3ZRTdcW3wTZxKzOHshyGIaS1juyjx1z3mPMSr9Woct
+X-Gm-Gg: AY/fxX5jfhLJfSNIFM7/QwUtg5teDK/ZzP93FxUGOZdv4PlFlhhghKD7yycZHuJcH8g
+	jw4ZM8ZXtDK3JD+OmqUgpDjpGopc1uOIaAGrrDyfHihotOpB8f6CuwbOP2sGgiUsjWCQpzi6HYB
+	haIh+rXHSIAFvZCyt5GWFqJR9O+e7YwWeTBgrz3DSPTZ5+/7z8GY8KFQZXwUPPTvEDcACNtuPVc
+	q9rt6YlZQCXr11wysgNlEmuNhKCdwlCQpXaium9As0cIM/FdV7DUmhajkZECYITDorEE/IVV4K9
+	QJEDJpju5E9yX6Lyzi1ilmqRl+kK3DtnLMvS6biCQDMrNaIGVYC4xOqEN6cAlomuJ9OCdfFr4l4
+	SZQN51W0aKm1FHoN7XlQ0SpCVECYkJ+4HP0EbJvyL0h+3LY1R+/OSc1XZdehSZYpEeC0=
+X-Received: by 2002:a05:622a:7502:b0:4f4:df23:ab5d with SMTP id d75a77b69052e-4f4e39243a4mr6935441cf.75.1766503445880;
+        Tue, 23 Dec 2025 07:24:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF+RwaUamzisROa/2FJXw4rIlxwNFnT5uOXtpIgJ7thRl4qkS7WxqCn1G0+s1JOpPZp31g1/g==
+X-Received: by 2002:a05:622a:7502:b0:4f4:df23:ab5d with SMTP id d75a77b69052e-4f4e39243a4mr6934851cf.75.1766503445147;
+        Tue, 23 Dec 2025 07:24:05 -0800 (PST)
 Received: from quoll.home (83.31.98.88.ipv4.supernova.orange.pl. [83.31.98.88])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f13847sm1391221766b.57.2025.12.23.07.24.02
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f13847sm1391221766b.57.2025.12.23.07.24.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Dec 2025 07:24:02 -0800 (PST)
+        Tue, 23 Dec 2025 07:24:04 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
         Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
@@ -96,57 +98,58 @@ To: Geert Uytterhoeven <geert+renesas@glider.be>,
         Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH 1/2] arm64: dts: renesas: Use hyphen in node names
-Date: Tue, 23 Dec 2025 16:23:59 +0100
-Message-ID: <20251223152358.152533-3-krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH 2/2] arm64: dts: renesas: Use lowercase hex
+Date: Tue, 23 Dec 2025 16:24:00 +0100
+Message-ID: <20251223152358.152533-4-krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251223152358.152533-3-krzysztof.kozlowski@oss.qualcomm.com>
+References: <20251223152358.152533-3-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3856; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=c66B3V+WWte7SdY1FIaza3AAO7PtnnIBv68KPmSgVmc=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpSrQOW+evM+zKx48uDpLpfQT5HbXerd1TUVyn9
- PNVGXXHVyWJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaUq0DgAKCRDBN2bmhouD
- 11baD/0W5PIaeesSGHNi1mwlvy5QrXnhlpxXgHWrItsbkOxFsbPN5xdsn5psFaxDOS1ye+KuKQz
- CEScAoeZgLQ14H6B34mvXGSt7JDZIn54XCxGsAbWjuOxdJ+0PbGmcN3C03MCdw4Y635oClNgNIM
- GeStByM6FybmkOORmailupmtGNQdRmSIM41oz9dBi8fYyXVZh+clI5hLdI90e9aL2ieax9FpTRx
- NHlXc+5i7u8n/GnCtbl8tPgx5p8rj3QL56cw9Ximesx6QsnNIIk81Fx7TnWGTMHujZRb1vkZQc2
- wyQ/M/p6iPGITjLqNyf+ZXoRYJrZnG16jhJT3KiTQb4JKRcEd//eUJ7pGOmH+87BdG18q/3yaWa
- 17BduO83KpMoY63de5JzhLW/mWBUln0lodymGerjJhHoDU4oqLehSSUapOqB4sMzP1RqBSKDIcu
- EYFU9LHYfCQOKG4fmESxsqEULXVH4d969GmbwSqGUSlYE5hXodsxF0K6v7488LCeKL+DS0l4S0q
- thXZVdClpjANuZl2habRp7ELFKCjYpRK9LgdbCWQ2IyKBAmpX57nr36EE2D5khwZAgappQRQk6N
- oHvHYsIDD0XWYFA/2Ki2sgLJCbCQAOYpdQl8IYYKTsu3AZhAF0K/zZbFkNkdOoeYPytQ+nXumPC fOfOcAGDrObNRuw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=39898; i=krzysztof.kozlowski@oss.qualcomm.com;
+ h=from:subject; bh=qSfWwDgs97LdiYoHtgF54xbNKw+lI7sBOXcblme8tuo=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpSrQPNtXM97spghofO+47DYnYDmWC+hGsnL0LS
+ Dt1/pNf+SSJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaUq0DwAKCRDBN2bmhouD
+ 1zSyEACR4vpE3iQMkegHABJA2ABFZaJ+tglDTzj1CrWWOMYEXe1V2URvhywjtzrVjKLY5KLWgMe
+ koQfmBx/8+XngQfospO/QXN8AxYfREeih5WeDwJGc9iFGx2Rp2MjZ3ONwFU3aDQIUqGD1IJRBy2
+ jBxfPaygx6DM00XJhUyLDrcodgRcvj6OV5bpf6QdELPfhcjd27WOvN5FnjSJOtOi9a3tTiyLroG
+ yeJCNY8Cw1DHhG7DyE+kL9U6OtW943Wwpza1eNxSxAmZc6Rnwfo3X4OjnBZYnUIKHCHdl/wix/O
+ 229j8PJrGAdq6VtWzRziL9uxYKbZkpergFHeUhHZqlaXTvYxkbzObb92aiQ0EKUnVg82SITkwwc
+ hYAcEOSv83j8BNosBa9pAX5rDyTlnX02L7NU8xC6tgAdybs/a0OPcfxMcjoKO1Y+xOnqDjovg+O
+ GcFXfr+nEUH1vU+mkK5DAIHPn/CGocxCwbf0M+7qxDQ+TmdL/VPlJvSNnQZKciE2mR4kYp65Cr3
+ T0oIVc8KKYbtC8lAdJGuTaAjeFAorNqyFng+zVp7AmxzmH0+1xRnwQCtqO0Us54DySlQ8WmrNvp
+ qnLsUJB2YCuRL936R/LQM02MY4iphraYAtpNwhsbGVMUfdKvPMW/vqu5v0LO0L6QR14+8Mp58Oj 16y46BB1wNMan8A==
 X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: g3-tgUG9e0EqqoF971vFxakI35QcL0-c
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDEyNyBTYWx0ZWRfX8TPRNEzyhazz
- ov1c2ug3wuN+Bxtk3q+secPcAYTqGNqqUltSmOamTqnqW9E/XpMjfhLUDzc492URutLmqGDl6WG
- EHlRFGdkDOL/I8wqRT70Cs8x6fZFACPysUo7tq2Gx0N4qBSv8hDv8K3wNt0VTZtctdidtq3RzpQ
- lcovo7/J/Fb1Kb7YjxEEoKt24s4TCu/uRZwbDIhnTMthjnGi724o0qE0v57uYmABCeEV+o5M+jR
- drkxN+1SfK3wx7MIZIsrGpAwv/CesF/oV9jHpLcJ21Vqn8ImfzRrN9EPHEF6mnMvFg6i6LKDAw3
- 4ErzJ/I9N7l09bjBYdbsnGNaFiuUhWqgUHuIO++4+o6JQlIu4fI17ugOH8U2U23NyN6aoSuxYR2
- yUa2KPrQpZmxN+RNjtn39jwWvkSZx1+QFh7YcNG4TbZJ8cMQJruPBD1SrAPCLsycSf0fyjOS6lv
- IIDEIK/aNvSV4V34z0g==
-X-Proofpoint-GUID: g3-tgUG9e0EqqoF971vFxakI35QcL0-c
-X-Authority-Analysis: v=2.4 cv=NZDrFmD4 c=1 sm=1 tr=0 ts=694ab415 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=qe4J/qXhiWkb1JZGYKbLYA==:17
+X-Proofpoint-ORIG-GUID: SkK0Y0OuPDsBbkUYHQI5WpFQGEM8J4Vu
+X-Proofpoint-GUID: SkK0Y0OuPDsBbkUYHQI5WpFQGEM8J4Vu
+X-Authority-Analysis: v=2.4 cv=asi/yCZV c=1 sm=1 tr=0 ts=694ab417 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=qe4J/qXhiWkb1JZGYKbLYA==:17
  a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=FUnLEkIPDp6DTj-5v1EA:9 a=kacYvNCVWA4VmyqE58fU:22
+ a=EUspDBNiAAAA:8 a=fzms0QyhRIQr47BOOiQA:9 a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDEyNyBTYWx0ZWRfX3kIDwKjMP95D
+ YvAd07+9WZ9BUMfwGLtDtuEf5pGlXgkp9iMNZv5myN1XgUXznnzkQ0A/k3BHNopJbGaUSDGUoA9
+ YrpRwaVTIWQBZIQfwD0Zv5gQZEyJ30lBpZvuezWjo6a7QuDvhLJf48QVMhxEM0VXZmhSw3C/CCU
+ GU3Xu7pCjZEVYtnQ3OxpUIwtf2FnTnvDEGXJB8+56werMuGOatLFSzIRYaD/ryCyJwYCw0RzBra
+ Pp0qt4r1QPT8/Wzq33jAjhYHe6RXux56H3KePpgPLAtMEfpuAWhBdQM7JGan7hO2J91UBpEOYV6
+ vFavITwu2j4oj41mtnyk5sc6RM0Ua41txQEkoTy43rvoB+QEtCiAuBBQUW0dynSoKoqVCQMZ58Y
+ 46ch8n+cb6KdoBFN3IAcvTTJvBVds435TqmZSlZsHVZYNQyU34LE/JbP+y1IcsUkRr64LiyF0dL
+ 8pl/XYZjMDTcCOvXGbw==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-23_03,2025-12-22_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 clxscore=1015 impostorscore=0 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 adultscore=0 lowpriorityscore=0
+ clxscore=1015 priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0
+ phishscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512230127
 
-DTS coding style prefers hyphens instead of underscores in the node
-names.  Change should be safe, because node names are not considered an
-ABI.
+The DTS code coding style expects lowercase hex for values and unit
+addresses.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
@@ -155,114 +158,1261 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Patches done with sed, verified with comparing unflattened DTB and
 dtx_diff.
 ---
- arch/arm64/boot/dts/renesas/r8a77970-eagle.dts   | 4 ++--
- arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts   | 4 ++--
- arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts   | 4 ++--
- arch/arm64/boot/dts/renesas/salvator-common.dtsi | 4 ++--
- arch/arm64/boot/dts/renesas/ulcb.dtsi            | 2 +-
- 5 files changed, 9 insertions(+), 9 deletions(-)
+ arch/arm64/boot/dts/renesas/r8a774a1.dtsi     | 52 +++++++++----------
+ arch/arm64/boot/dts/renesas/r8a774b1.dtsi     | 52 +++++++++----------
+ arch/arm64/boot/dts/renesas/r8a774e1.dtsi     | 52 +++++++++----------
+ arch/arm64/boot/dts/renesas/r8a77951.dtsi     | 52 +++++++++----------
+ arch/arm64/boot/dts/renesas/r8a77960.dtsi     | 52 +++++++++----------
+ arch/arm64/boot/dts/renesas/r8a77961.dtsi     | 52 +++++++++----------
+ arch/arm64/boot/dts/renesas/r8a77965.dtsi     | 52 +++++++++----------
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  2 +-
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi    |  2 +-
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |  2 +-
+ .../boot/dts/renesas/r9a09g057h48-kakip.dts   |  2 +-
+ 11 files changed, 186 insertions(+), 186 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts b/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
-index b7328f9f7d4b..b26c5a709777 100644
---- a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
-@@ -364,7 +364,7 @@ cr7@40000 {
- 				reg = <0x00040000 0x080000>;
- 				read-only;
+diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+index f0729a482cef..36675f5bcdea 100644
+--- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+@@ -1901,7 +1901,7 @@ ssiu03: ssiu-3 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu04: ssiu-4 {
+-					dmas = <&audma0 0x3F>, <&audma1 0x40>;
++					dmas = <&audma0 0x3f>, <&audma1 0x40>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu05: ssiu-5 {
+@@ -1909,7 +1909,7 @@ ssiu05: ssiu-5 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu06: ssiu-6 {
+-					dmas = <&audma0 0x4F>, <&audma1 0x50>;
++					dmas = <&audma0 0x4f>, <&audma1 0x50>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu07: ssiu-7 {
+@@ -1921,7 +1921,7 @@ ssiu10: ssiu-8 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu11: ssiu-9 {
+-					dmas = <&audma0 0x4B>, <&audma1 0x4C>;
++					dmas = <&audma0 0x4b>, <&audma1 0x4c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu12: ssiu-10 {
+@@ -1929,23 +1929,23 @@ ssiu12: ssiu-10 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu13: ssiu-11 {
+-					dmas = <&audma0 0x59>, <&audma1 0x5A>;
++					dmas = <&audma0 0x59>, <&audma1 0x5a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu14: ssiu-12 {
+-					dmas = <&audma0 0x5F>, <&audma1 0x60>;
++					dmas = <&audma0 0x5f>, <&audma1 0x60>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu15: ssiu-13 {
+-					dmas = <&audma0 0xC3>, <&audma1 0xC4>;
++					dmas = <&audma0 0xc3>, <&audma1 0xc4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu16: ssiu-14 {
+-					dmas = <&audma0 0xC7>, <&audma1 0xC8>;
++					dmas = <&audma0 0xc7>, <&audma1 0xc8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu17: ssiu-15 {
+-					dmas = <&audma0 0xCB>, <&audma1 0xCC>;
++					dmas = <&audma0 0xcb>, <&audma1 0xcc>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu20: ssiu-16 {
+@@ -1957,27 +1957,27 @@ ssiu21: ssiu-17 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu22: ssiu-18 {
+-					dmas = <&audma0 0x6B>, <&audma1 0x6C>;
++					dmas = <&audma0 0x6b>, <&audma1 0x6c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu23: ssiu-19 {
+-					dmas = <&audma0 0x6D>, <&audma1 0x6E>;
++					dmas = <&audma0 0x6d>, <&audma1 0x6e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu24: ssiu-20 {
+-					dmas = <&audma0 0xCF>, <&audma1 0xCE>;
++					dmas = <&audma0 0xcf>, <&audma1 0xce>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu25: ssiu-21 {
+-					dmas = <&audma0 0xEB>, <&audma1 0xEC>;
++					dmas = <&audma0 0xeb>, <&audma1 0xec>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu26: ssiu-22 {
+-					dmas = <&audma0 0xED>, <&audma1 0xEE>;
++					dmas = <&audma0 0xed>, <&audma1 0xee>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu27: ssiu-23 {
+-					dmas = <&audma0 0xEF>, <&audma1 0xF0>;
++					dmas = <&audma0 0xef>, <&audma1 0xf0>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu30: ssiu-24 {
+@@ -2001,15 +2001,15 @@ ssiu34: ssiu-28 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu35: ssiu-29 {
+-					dmas = <&audma0 0x29>, <&audma1 0x2A>;
++					dmas = <&audma0 0x29>, <&audma1 0x2a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu36: ssiu-30 {
+-					dmas = <&audma0 0x2B>, <&audma1 0x2C>;
++					dmas = <&audma0 0x2b>, <&audma1 0x2c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu37: ssiu-31 {
+-					dmas = <&audma0 0x2D>, <&audma1 0x2E>;
++					dmas = <&audma0 0x2d>, <&audma1 0x2e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu40: ssiu-32 {
+@@ -2021,19 +2021,19 @@ ssiu41: ssiu-33 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu42: ssiu-34 {
+-					dmas = <&audma0 0x19>, <&audma1 0x1A>;
++					dmas = <&audma0 0x19>, <&audma1 0x1a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu43: ssiu-35 {
+-					dmas = <&audma0 0x1B>, <&audma1 0x1C>;
++					dmas = <&audma0 0x1b>, <&audma1 0x1c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu44: ssiu-36 {
+-					dmas = <&audma0 0x1D>, <&audma1 0x1E>;
++					dmas = <&audma0 0x1d>, <&audma1 0x1e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu45: ssiu-37 {
+-					dmas = <&audma0 0x1F>, <&audma1 0x20>;
++					dmas = <&audma0 0x1f>, <&audma1 0x20>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu46: ssiu-38 {
+@@ -2065,7 +2065,7 @@ ssiu90: ssiu-44 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu91: ssiu-45 {
+-					dmas = <&audma0 0x7F>, <&audma1 0x80>;
++					dmas = <&audma0 0x7f>, <&audma1 0x80>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu92: ssiu-46 {
+@@ -2077,19 +2077,19 @@ ssiu93: ssiu-47 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu94: ssiu-48 {
+-					dmas = <&audma0 0xA3>, <&audma1 0xA4>;
++					dmas = <&audma0 0xa3>, <&audma1 0xa4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu95: ssiu-49 {
+-					dmas = <&audma0 0xA5>, <&audma1 0xA6>;
++					dmas = <&audma0 0xa5>, <&audma1 0xa6>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu96: ssiu-50 {
+-					dmas = <&audma0 0xA7>, <&audma1 0xA8>;
++					dmas = <&audma0 0xa7>, <&audma1 0xa8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu97: ssiu-51 {
+-					dmas = <&audma0 0xA9>, <&audma1 0xAA>;
++					dmas = <&audma0 0xa9>, <&audma1 0xaa>;
+ 					dma-names = "rx", "tx";
+ 				};
  			};
--			cert_header_sa3@c0000 {
-+			cert-header-sa3@c0000 {
- 				reg = <0x000c0000 0x080000>;
- 				read-only;
+diff --git a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
+index c9857ea944ed..ceef0104f75e 100644
+--- a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
+@@ -1785,7 +1785,7 @@ ssiu03: ssiu-3 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu04: ssiu-4 {
+-					dmas = <&audma0 0x3F>, <&audma1 0x40>;
++					dmas = <&audma0 0x3f>, <&audma1 0x40>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu05: ssiu-5 {
+@@ -1793,7 +1793,7 @@ ssiu05: ssiu-5 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu06: ssiu-6 {
+-					dmas = <&audma0 0x4F>, <&audma1 0x50>;
++					dmas = <&audma0 0x4f>, <&audma1 0x50>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu07: ssiu-7 {
+@@ -1805,7 +1805,7 @@ ssiu10: ssiu-8 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu11: ssiu-9 {
+-					dmas = <&audma0 0x4B>, <&audma1 0x4C>;
++					dmas = <&audma0 0x4b>, <&audma1 0x4c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu12: ssiu-10 {
+@@ -1813,23 +1813,23 @@ ssiu12: ssiu-10 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu13: ssiu-11 {
+-					dmas = <&audma0 0x59>, <&audma1 0x5A>;
++					dmas = <&audma0 0x59>, <&audma1 0x5a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu14: ssiu-12 {
+-					dmas = <&audma0 0x5F>, <&audma1 0x60>;
++					dmas = <&audma0 0x5f>, <&audma1 0x60>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu15: ssiu-13 {
+-					dmas = <&audma0 0xC3>, <&audma1 0xC4>;
++					dmas = <&audma0 0xc3>, <&audma1 0xc4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu16: ssiu-14 {
+-					dmas = <&audma0 0xC7>, <&audma1 0xC8>;
++					dmas = <&audma0 0xc7>, <&audma1 0xc8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu17: ssiu-15 {
+-					dmas = <&audma0 0xCB>, <&audma1 0xCC>;
++					dmas = <&audma0 0xcb>, <&audma1 0xcc>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu20: ssiu-16 {
+@@ -1841,27 +1841,27 @@ ssiu21: ssiu-17 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu22: ssiu-18 {
+-					dmas = <&audma0 0x6B>, <&audma1 0x6C>;
++					dmas = <&audma0 0x6b>, <&audma1 0x6c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu23: ssiu-19 {
+-					dmas = <&audma0 0x6D>, <&audma1 0x6E>;
++					dmas = <&audma0 0x6d>, <&audma1 0x6e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu24: ssiu-20 {
+-					dmas = <&audma0 0xCF>, <&audma1 0xCE>;
++					dmas = <&audma0 0xcf>, <&audma1 0xce>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu25: ssiu-21 {
+-					dmas = <&audma0 0xEB>, <&audma1 0xEC>;
++					dmas = <&audma0 0xeb>, <&audma1 0xec>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu26: ssiu-22 {
+-					dmas = <&audma0 0xED>, <&audma1 0xEE>;
++					dmas = <&audma0 0xed>, <&audma1 0xee>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu27: ssiu-23 {
+-					dmas = <&audma0 0xEF>, <&audma1 0xF0>;
++					dmas = <&audma0 0xef>, <&audma1 0xf0>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu30: ssiu-24 {
+@@ -1885,15 +1885,15 @@ ssiu34: ssiu-28 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu35: ssiu-29 {
+-					dmas = <&audma0 0x29>, <&audma1 0x2A>;
++					dmas = <&audma0 0x29>, <&audma1 0x2a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu36: ssiu-30 {
+-					dmas = <&audma0 0x2B>, <&audma1 0x2C>;
++					dmas = <&audma0 0x2b>, <&audma1 0x2c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu37: ssiu-31 {
+-					dmas = <&audma0 0x2D>, <&audma1 0x2E>;
++					dmas = <&audma0 0x2d>, <&audma1 0x2e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu40: ssiu-32 {
+@@ -1905,19 +1905,19 @@ ssiu41: ssiu-33 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu42: ssiu-34 {
+-					dmas = <&audma0 0x19>, <&audma1 0x1A>;
++					dmas = <&audma0 0x19>, <&audma1 0x1a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu43: ssiu-35 {
+-					dmas = <&audma0 0x1B>, <&audma1 0x1C>;
++					dmas = <&audma0 0x1b>, <&audma1 0x1c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu44: ssiu-36 {
+-					dmas = <&audma0 0x1D>, <&audma1 0x1E>;
++					dmas = <&audma0 0x1d>, <&audma1 0x1e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu45: ssiu-37 {
+-					dmas = <&audma0 0x1F>, <&audma1 0x20>;
++					dmas = <&audma0 0x1f>, <&audma1 0x20>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu46: ssiu-38 {
+@@ -1949,7 +1949,7 @@ ssiu90: ssiu-44 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu91: ssiu-45 {
+-					dmas = <&audma0 0x7F>, <&audma1 0x80>;
++					dmas = <&audma0 0x7f>, <&audma1 0x80>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu92: ssiu-46 {
+@@ -1961,19 +1961,19 @@ ssiu93: ssiu-47 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu94: ssiu-48 {
+-					dmas = <&audma0 0xA3>, <&audma1 0xA4>;
++					dmas = <&audma0 0xa3>, <&audma1 0xa4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu95: ssiu-49 {
+-					dmas = <&audma0 0xA5>, <&audma1 0xA6>;
++					dmas = <&audma0 0xa5>, <&audma1 0xa6>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu96: ssiu-50 {
+-					dmas = <&audma0 0xA7>, <&audma1 0xA8>;
++					dmas = <&audma0 0xa7>, <&audma1 0xa8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu97: ssiu-51 {
+-					dmas = <&audma0 0xA9>, <&audma1 0xAA>;
++					dmas = <&audma0 0xa9>, <&audma1 0xaa>;
+ 					dma-names = "rx", "tx";
+ 				};
  			};
-@@ -372,7 +372,7 @@ bl2@140000 {
- 				reg = <0x00140000 0x040000>;
- 				read-only;
+diff --git a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
+index 52920a6bf592..9df5f1a42400 100644
+--- a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
+@@ -1944,7 +1944,7 @@ ssiu03: ssiu-3 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu04: ssiu-4 {
+-					dmas = <&audma0 0x3F>, <&audma1 0x40>;
++					dmas = <&audma0 0x3f>, <&audma1 0x40>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu05: ssiu-5 {
+@@ -1952,7 +1952,7 @@ ssiu05: ssiu-5 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu06: ssiu-6 {
+-					dmas = <&audma0 0x4F>, <&audma1 0x50>;
++					dmas = <&audma0 0x4f>, <&audma1 0x50>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu07: ssiu-7 {
+@@ -1964,7 +1964,7 @@ ssiu10: ssiu-8 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu11: ssiu-9 {
+-					dmas = <&audma0 0x4B>, <&audma1 0x4C>;
++					dmas = <&audma0 0x4b>, <&audma1 0x4c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu12: ssiu-10 {
+@@ -1972,23 +1972,23 @@ ssiu12: ssiu-10 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu13: ssiu-11 {
+-					dmas = <&audma0 0x59>, <&audma1 0x5A>;
++					dmas = <&audma0 0x59>, <&audma1 0x5a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu14: ssiu-12 {
+-					dmas = <&audma0 0x5F>, <&audma1 0x60>;
++					dmas = <&audma0 0x5f>, <&audma1 0x60>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu15: ssiu-13 {
+-					dmas = <&audma0 0xC3>, <&audma1 0xC4>;
++					dmas = <&audma0 0xc3>, <&audma1 0xc4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu16: ssiu-14 {
+-					dmas = <&audma0 0xC7>, <&audma1 0xC8>;
++					dmas = <&audma0 0xc7>, <&audma1 0xc8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu17: ssiu-15 {
+-					dmas = <&audma0 0xCB>, <&audma1 0xCC>;
++					dmas = <&audma0 0xcb>, <&audma1 0xcc>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu20: ssiu-16 {
+@@ -2000,27 +2000,27 @@ ssiu21: ssiu-17 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu22: ssiu-18 {
+-					dmas = <&audma0 0x6B>, <&audma1 0x6C>;
++					dmas = <&audma0 0x6b>, <&audma1 0x6c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu23: ssiu-19 {
+-					dmas = <&audma0 0x6D>, <&audma1 0x6E>;
++					dmas = <&audma0 0x6d>, <&audma1 0x6e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu24: ssiu-20 {
+-					dmas = <&audma0 0xCF>, <&audma1 0xCE>;
++					dmas = <&audma0 0xcf>, <&audma1 0xce>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu25: ssiu-21 {
+-					dmas = <&audma0 0xEB>, <&audma1 0xEC>;
++					dmas = <&audma0 0xeb>, <&audma1 0xec>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu26: ssiu-22 {
+-					dmas = <&audma0 0xED>, <&audma1 0xEE>;
++					dmas = <&audma0 0xed>, <&audma1 0xee>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu27: ssiu-23 {
+-					dmas = <&audma0 0xEF>, <&audma1 0xF0>;
++					dmas = <&audma0 0xef>, <&audma1 0xf0>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu30: ssiu-24 {
+@@ -2044,15 +2044,15 @@ ssiu34: ssiu-28 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu35: ssiu-29 {
+-					dmas = <&audma0 0x29>, <&audma1 0x2A>;
++					dmas = <&audma0 0x29>, <&audma1 0x2a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu36: ssiu-30 {
+-					dmas = <&audma0 0x2B>, <&audma1 0x2C>;
++					dmas = <&audma0 0x2b>, <&audma1 0x2c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu37: ssiu-31 {
+-					dmas = <&audma0 0x2D>, <&audma1 0x2E>;
++					dmas = <&audma0 0x2d>, <&audma1 0x2e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu40: ssiu-32 {
+@@ -2064,19 +2064,19 @@ ssiu41: ssiu-33 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu42: ssiu-34 {
+-					dmas = <&audma0 0x19>, <&audma1 0x1A>;
++					dmas = <&audma0 0x19>, <&audma1 0x1a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu43: ssiu-35 {
+-					dmas = <&audma0 0x1B>, <&audma1 0x1C>;
++					dmas = <&audma0 0x1b>, <&audma1 0x1c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu44: ssiu-36 {
+-					dmas = <&audma0 0x1D>, <&audma1 0x1E>;
++					dmas = <&audma0 0x1d>, <&audma1 0x1e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu45: ssiu-37 {
+-					dmas = <&audma0 0x1F>, <&audma1 0x20>;
++					dmas = <&audma0 0x1f>, <&audma1 0x20>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu46: ssiu-38 {
+@@ -2108,7 +2108,7 @@ ssiu90: ssiu-44 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu91: ssiu-45 {
+-					dmas = <&audma0 0x7F>, <&audma1 0x80>;
++					dmas = <&audma0 0x7f>, <&audma1 0x80>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu92: ssiu-46 {
+@@ -2120,19 +2120,19 @@ ssiu93: ssiu-47 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu94: ssiu-48 {
+-					dmas = <&audma0 0xA3>, <&audma1 0xA4>;
++					dmas = <&audma0 0xa3>, <&audma1 0xa4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu95: ssiu-49 {
+-					dmas = <&audma0 0xA5>, <&audma1 0xA6>;
++					dmas = <&audma0 0xa5>, <&audma1 0xa6>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu96: ssiu-50 {
+-					dmas = <&audma0 0xA7>, <&audma1 0xA8>;
++					dmas = <&audma0 0xa7>, <&audma1 0xa8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu97: ssiu-51 {
+-					dmas = <&audma0 0xA9>, <&audma1 0xAA>;
++					dmas = <&audma0 0xa9>, <&audma1 0xaa>;
+ 					dma-names = "rx", "tx";
+ 				};
  			};
--			cert_header_sa6@180000 {
-+			cert-header-sa6@180000 {
- 				reg = <0x00180000 0x040000>;
- 				read-only;
+diff --git a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+index 9ad700bde4ba..607f62a448d8 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+@@ -2176,7 +2176,7 @@ ssiu03: ssiu-3 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu04: ssiu-4 {
+-					dmas = <&audma0 0x3F>, <&audma1 0x40>;
++					dmas = <&audma0 0x3f>, <&audma1 0x40>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu05: ssiu-5 {
+@@ -2184,7 +2184,7 @@ ssiu05: ssiu-5 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu06: ssiu-6 {
+-					dmas = <&audma0 0x4F>, <&audma1 0x50>;
++					dmas = <&audma0 0x4f>, <&audma1 0x50>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu07: ssiu-7 {
+@@ -2196,7 +2196,7 @@ ssiu10: ssiu-8 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu11: ssiu-9 {
+-					dmas = <&audma0 0x4B>, <&audma1 0x4C>;
++					dmas = <&audma0 0x4b>, <&audma1 0x4c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu12: ssiu-10 {
+@@ -2204,23 +2204,23 @@ ssiu12: ssiu-10 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu13: ssiu-11 {
+-					dmas = <&audma0 0x59>, <&audma1 0x5A>;
++					dmas = <&audma0 0x59>, <&audma1 0x5a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu14: ssiu-12 {
+-					dmas = <&audma0 0x5F>, <&audma1 0x60>;
++					dmas = <&audma0 0x5f>, <&audma1 0x60>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu15: ssiu-13 {
+-					dmas = <&audma0 0xC3>, <&audma1 0xC4>;
++					dmas = <&audma0 0xc3>, <&audma1 0xc4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu16: ssiu-14 {
+-					dmas = <&audma0 0xC7>, <&audma1 0xC8>;
++					dmas = <&audma0 0xc7>, <&audma1 0xc8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu17: ssiu-15 {
+-					dmas = <&audma0 0xCB>, <&audma1 0xCC>;
++					dmas = <&audma0 0xcb>, <&audma1 0xcc>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu20: ssiu-16 {
+@@ -2232,27 +2232,27 @@ ssiu21: ssiu-17 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu22: ssiu-18 {
+-					dmas = <&audma0 0x6B>, <&audma1 0x6C>;
++					dmas = <&audma0 0x6b>, <&audma1 0x6c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu23: ssiu-19 {
+-					dmas = <&audma0 0x6D>, <&audma1 0x6E>;
++					dmas = <&audma0 0x6d>, <&audma1 0x6e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu24: ssiu-20 {
+-					dmas = <&audma0 0xCF>, <&audma1 0xCE>;
++					dmas = <&audma0 0xcf>, <&audma1 0xce>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu25: ssiu-21 {
+-					dmas = <&audma0 0xEB>, <&audma1 0xEC>;
++					dmas = <&audma0 0xeb>, <&audma1 0xec>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu26: ssiu-22 {
+-					dmas = <&audma0 0xED>, <&audma1 0xEE>;
++					dmas = <&audma0 0xed>, <&audma1 0xee>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu27: ssiu-23 {
+-					dmas = <&audma0 0xEF>, <&audma1 0xF0>;
++					dmas = <&audma0 0xef>, <&audma1 0xf0>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu30: ssiu-24 {
+@@ -2276,15 +2276,15 @@ ssiu34: ssiu-28 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu35: ssiu-29 {
+-					dmas = <&audma0 0x29>, <&audma1 0x2A>;
++					dmas = <&audma0 0x29>, <&audma1 0x2a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu36: ssiu-30 {
+-					dmas = <&audma0 0x2B>, <&audma1 0x2C>;
++					dmas = <&audma0 0x2b>, <&audma1 0x2c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu37: ssiu-31 {
+-					dmas = <&audma0 0x2D>, <&audma1 0x2E>;
++					dmas = <&audma0 0x2d>, <&audma1 0x2e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu40: ssiu-32 {
+@@ -2296,19 +2296,19 @@ ssiu41: ssiu-33 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu42: ssiu-34 {
+-					dmas = <&audma0 0x19>, <&audma1 0x1A>;
++					dmas = <&audma0 0x19>, <&audma1 0x1a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu43: ssiu-35 {
+-					dmas = <&audma0 0x1B>, <&audma1 0x1C>;
++					dmas = <&audma0 0x1b>, <&audma1 0x1c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu44: ssiu-36 {
+-					dmas = <&audma0 0x1D>, <&audma1 0x1E>;
++					dmas = <&audma0 0x1d>, <&audma1 0x1e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu45: ssiu-37 {
+-					dmas = <&audma0 0x1F>, <&audma1 0x20>;
++					dmas = <&audma0 0x1f>, <&audma1 0x20>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu46: ssiu-38 {
+@@ -2340,7 +2340,7 @@ ssiu90: ssiu-44 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu91: ssiu-45 {
+-					dmas = <&audma0 0x7F>, <&audma1 0x80>;
++					dmas = <&audma0 0x7f>, <&audma1 0x80>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu92: ssiu-46 {
+@@ -2352,19 +2352,19 @@ ssiu93: ssiu-47 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu94: ssiu-48 {
+-					dmas = <&audma0 0xA3>, <&audma1 0xA4>;
++					dmas = <&audma0 0xa3>, <&audma1 0xa4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu95: ssiu-49 {
+-					dmas = <&audma0 0xA5>, <&audma1 0xA6>;
++					dmas = <&audma0 0xa5>, <&audma1 0xa6>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu96: ssiu-50 {
+-					dmas = <&audma0 0xA7>, <&audma1 0xA8>;
++					dmas = <&audma0 0xa7>, <&audma1 0xa8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu97: ssiu-51 {
+-					dmas = <&audma0 0xA9>, <&audma1 0xAA>;
++					dmas = <&audma0 0xa9>, <&audma1 0xaa>;
+ 					dma-names = "rx", "tx";
+ 				};
  			};
-diff --git a/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts b/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts
-index f18d26360610..343f9610f892 100644
---- a/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts
-@@ -255,7 +255,7 @@ cr7@40000 {
- 				reg = <0x00040000 0x080000>;
- 				read-only;
+diff --git a/arch/arm64/boot/dts/renesas/r8a77960.dtsi b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+index e03b1f7cbfd6..e64c7b1aebc4 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+@@ -2101,7 +2101,7 @@ ssiu03: ssiu-3 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu04: ssiu-4 {
+-					dmas = <&audma0 0x3F>, <&audma1 0x40>;
++					dmas = <&audma0 0x3f>, <&audma1 0x40>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu05: ssiu-5 {
+@@ -2109,7 +2109,7 @@ ssiu05: ssiu-5 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu06: ssiu-6 {
+-					dmas = <&audma0 0x4F>, <&audma1 0x50>;
++					dmas = <&audma0 0x4f>, <&audma1 0x50>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu07: ssiu-7 {
+@@ -2121,7 +2121,7 @@ ssiu10: ssiu-8 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu11: ssiu-9 {
+-					dmas = <&audma0 0x4B>, <&audma1 0x4C>;
++					dmas = <&audma0 0x4b>, <&audma1 0x4c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu12: ssiu-10 {
+@@ -2129,23 +2129,23 @@ ssiu12: ssiu-10 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu13: ssiu-11 {
+-					dmas = <&audma0 0x59>, <&audma1 0x5A>;
++					dmas = <&audma0 0x59>, <&audma1 0x5a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu14: ssiu-12 {
+-					dmas = <&audma0 0x5F>, <&audma1 0x60>;
++					dmas = <&audma0 0x5f>, <&audma1 0x60>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu15: ssiu-13 {
+-					dmas = <&audma0 0xC3>, <&audma1 0xC4>;
++					dmas = <&audma0 0xc3>, <&audma1 0xc4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu16: ssiu-14 {
+-					dmas = <&audma0 0xC7>, <&audma1 0xC8>;
++					dmas = <&audma0 0xc7>, <&audma1 0xc8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu17: ssiu-15 {
+-					dmas = <&audma0 0xCB>, <&audma1 0xCC>;
++					dmas = <&audma0 0xcb>, <&audma1 0xcc>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu20: ssiu-16 {
+@@ -2157,27 +2157,27 @@ ssiu21: ssiu-17 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu22: ssiu-18 {
+-					dmas = <&audma0 0x6B>, <&audma1 0x6C>;
++					dmas = <&audma0 0x6b>, <&audma1 0x6c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu23: ssiu-19 {
+-					dmas = <&audma0 0x6D>, <&audma1 0x6E>;
++					dmas = <&audma0 0x6d>, <&audma1 0x6e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu24: ssiu-20 {
+-					dmas = <&audma0 0xCF>, <&audma1 0xCE>;
++					dmas = <&audma0 0xcf>, <&audma1 0xce>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu25: ssiu-21 {
+-					dmas = <&audma0 0xEB>, <&audma1 0xEC>;
++					dmas = <&audma0 0xeb>, <&audma1 0xec>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu26: ssiu-22 {
+-					dmas = <&audma0 0xED>, <&audma1 0xEE>;
++					dmas = <&audma0 0xed>, <&audma1 0xee>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu27: ssiu-23 {
+-					dmas = <&audma0 0xEF>, <&audma1 0xF0>;
++					dmas = <&audma0 0xef>, <&audma1 0xf0>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu30: ssiu-24 {
+@@ -2201,15 +2201,15 @@ ssiu34: ssiu-28 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu35: ssiu-29 {
+-					dmas = <&audma0 0x29>, <&audma1 0x2A>;
++					dmas = <&audma0 0x29>, <&audma1 0x2a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu36: ssiu-30 {
+-					dmas = <&audma0 0x2B>, <&audma1 0x2C>;
++					dmas = <&audma0 0x2b>, <&audma1 0x2c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu37: ssiu-31 {
+-					dmas = <&audma0 0x2D>, <&audma1 0x2E>;
++					dmas = <&audma0 0x2d>, <&audma1 0x2e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu40: ssiu-32 {
+@@ -2221,19 +2221,19 @@ ssiu41: ssiu-33 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu42: ssiu-34 {
+-					dmas = <&audma0 0x19>, <&audma1 0x1A>;
++					dmas = <&audma0 0x19>, <&audma1 0x1a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu43: ssiu-35 {
+-					dmas = <&audma0 0x1B>, <&audma1 0x1C>;
++					dmas = <&audma0 0x1b>, <&audma1 0x1c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu44: ssiu-36 {
+-					dmas = <&audma0 0x1D>, <&audma1 0x1E>;
++					dmas = <&audma0 0x1d>, <&audma1 0x1e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu45: ssiu-37 {
+-					dmas = <&audma0 0x1F>, <&audma1 0x20>;
++					dmas = <&audma0 0x1f>, <&audma1 0x20>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu46: ssiu-38 {
+@@ -2265,7 +2265,7 @@ ssiu90: ssiu-44 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu91: ssiu-45 {
+-					dmas = <&audma0 0x7F>, <&audma1 0x80>;
++					dmas = <&audma0 0x7f>, <&audma1 0x80>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu92: ssiu-46 {
+@@ -2277,19 +2277,19 @@ ssiu93: ssiu-47 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu94: ssiu-48 {
+-					dmas = <&audma0 0xA3>, <&audma1 0xA4>;
++					dmas = <&audma0 0xa3>, <&audma1 0xa4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu95: ssiu-49 {
+-					dmas = <&audma0 0xA5>, <&audma1 0xA6>;
++					dmas = <&audma0 0xa5>, <&audma1 0xa6>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu96: ssiu-50 {
+-					dmas = <&audma0 0xA7>, <&audma1 0xA8>;
++					dmas = <&audma0 0xa7>, <&audma1 0xa8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu97: ssiu-51 {
+-					dmas = <&audma0 0xA9>, <&audma1 0xAA>;
++					dmas = <&audma0 0xa9>, <&audma1 0xaa>;
+ 					dma-names = "rx", "tx";
+ 				};
  			};
--			cert_header_sa3@c0000 {
-+			cert-header-sa3@c0000 {
- 				reg = <0x000c0000 0x080000>;
- 				read-only;
+diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+index 31b11bdab69b..89f6c052c5e0 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+@@ -1981,7 +1981,7 @@ ssiu03: ssiu-3 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu04: ssiu-4 {
+-					dmas = <&audma0 0x3F>, <&audma1 0x40>;
++					dmas = <&audma0 0x3f>, <&audma1 0x40>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu05: ssiu-5 {
+@@ -1989,7 +1989,7 @@ ssiu05: ssiu-5 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu06: ssiu-6 {
+-					dmas = <&audma0 0x4F>, <&audma1 0x50>;
++					dmas = <&audma0 0x4f>, <&audma1 0x50>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu07: ssiu-7 {
+@@ -2001,7 +2001,7 @@ ssiu10: ssiu-8 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu11: ssiu-9 {
+-					dmas = <&audma0 0x4B>, <&audma1 0x4C>;
++					dmas = <&audma0 0x4b>, <&audma1 0x4c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu12: ssiu-10 {
+@@ -2009,23 +2009,23 @@ ssiu12: ssiu-10 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu13: ssiu-11 {
+-					dmas = <&audma0 0x59>, <&audma1 0x5A>;
++					dmas = <&audma0 0x59>, <&audma1 0x5a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu14: ssiu-12 {
+-					dmas = <&audma0 0x5F>, <&audma1 0x60>;
++					dmas = <&audma0 0x5f>, <&audma1 0x60>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu15: ssiu-13 {
+-					dmas = <&audma0 0xC3>, <&audma1 0xC4>;
++					dmas = <&audma0 0xc3>, <&audma1 0xc4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu16: ssiu-14 {
+-					dmas = <&audma0 0xC7>, <&audma1 0xC8>;
++					dmas = <&audma0 0xc7>, <&audma1 0xc8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu17: ssiu-15 {
+-					dmas = <&audma0 0xCB>, <&audma1 0xCC>;
++					dmas = <&audma0 0xcb>, <&audma1 0xcc>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu20: ssiu-16 {
+@@ -2037,27 +2037,27 @@ ssiu21: ssiu-17 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu22: ssiu-18 {
+-					dmas = <&audma0 0x6B>, <&audma1 0x6C>;
++					dmas = <&audma0 0x6b>, <&audma1 0x6c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu23: ssiu-19 {
+-					dmas = <&audma0 0x6D>, <&audma1 0x6E>;
++					dmas = <&audma0 0x6d>, <&audma1 0x6e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu24: ssiu-20 {
+-					dmas = <&audma0 0xCF>, <&audma1 0xCE>;
++					dmas = <&audma0 0xcf>, <&audma1 0xce>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu25: ssiu-21 {
+-					dmas = <&audma0 0xEB>, <&audma1 0xEC>;
++					dmas = <&audma0 0xeb>, <&audma1 0xec>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu26: ssiu-22 {
+-					dmas = <&audma0 0xED>, <&audma1 0xEE>;
++					dmas = <&audma0 0xed>, <&audma1 0xee>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu27: ssiu-23 {
+-					dmas = <&audma0 0xEF>, <&audma1 0xF0>;
++					dmas = <&audma0 0xef>, <&audma1 0xf0>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu30: ssiu-24 {
+@@ -2081,15 +2081,15 @@ ssiu34: ssiu-28 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu35: ssiu-29 {
+-					dmas = <&audma0 0x29>, <&audma1 0x2A>;
++					dmas = <&audma0 0x29>, <&audma1 0x2a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu36: ssiu-30 {
+-					dmas = <&audma0 0x2B>, <&audma1 0x2C>;
++					dmas = <&audma0 0x2b>, <&audma1 0x2c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu37: ssiu-31 {
+-					dmas = <&audma0 0x2D>, <&audma1 0x2E>;
++					dmas = <&audma0 0x2d>, <&audma1 0x2e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu40: ssiu-32 {
+@@ -2101,19 +2101,19 @@ ssiu41: ssiu-33 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu42: ssiu-34 {
+-					dmas = <&audma0 0x19>, <&audma1 0x1A>;
++					dmas = <&audma0 0x19>, <&audma1 0x1a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu43: ssiu-35 {
+-					dmas = <&audma0 0x1B>, <&audma1 0x1C>;
++					dmas = <&audma0 0x1b>, <&audma1 0x1c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu44: ssiu-36 {
+-					dmas = <&audma0 0x1D>, <&audma1 0x1E>;
++					dmas = <&audma0 0x1d>, <&audma1 0x1e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu45: ssiu-37 {
+-					dmas = <&audma0 0x1F>, <&audma1 0x20>;
++					dmas = <&audma0 0x1f>, <&audma1 0x20>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu46: ssiu-38 {
+@@ -2145,7 +2145,7 @@ ssiu90: ssiu-44 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu91: ssiu-45 {
+-					dmas = <&audma0 0x7F>, <&audma1 0x80>;
++					dmas = <&audma0 0x7f>, <&audma1 0x80>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu92: ssiu-46 {
+@@ -2157,19 +2157,19 @@ ssiu93: ssiu-47 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu94: ssiu-48 {
+-					dmas = <&audma0 0xA3>, <&audma1 0xA4>;
++					dmas = <&audma0 0xa3>, <&audma1 0xa4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu95: ssiu-49 {
+-					dmas = <&audma0 0xA5>, <&audma1 0xA6>;
++					dmas = <&audma0 0xa5>, <&audma1 0xa6>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu96: ssiu-50 {
+-					dmas = <&audma0 0xA7>, <&audma1 0xA8>;
++					dmas = <&audma0 0xa7>, <&audma1 0xa8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu97: ssiu-51 {
+-					dmas = <&audma0 0xA9>, <&audma1 0xAA>;
++					dmas = <&audma0 0xa9>, <&audma1 0xaa>;
+ 					dma-names = "rx", "tx";
+ 				};
  			};
-@@ -263,7 +263,7 @@ bl2@140000 {
- 				reg = <0x00140000 0x040000>;
- 				read-only;
+diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+index 4e730144e5fd..425561e658ca 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+@@ -1911,7 +1911,7 @@ ssiu03: ssiu-3 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu04: ssiu-4 {
+-					dmas = <&audma0 0x3F>, <&audma1 0x40>;
++					dmas = <&audma0 0x3f>, <&audma1 0x40>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu05: ssiu-5 {
+@@ -1919,7 +1919,7 @@ ssiu05: ssiu-5 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu06: ssiu-6 {
+-					dmas = <&audma0 0x4F>, <&audma1 0x50>;
++					dmas = <&audma0 0x4f>, <&audma1 0x50>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu07: ssiu-7 {
+@@ -1931,7 +1931,7 @@ ssiu10: ssiu-8 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu11: ssiu-9 {
+-					dmas = <&audma0 0x4B>, <&audma1 0x4C>;
++					dmas = <&audma0 0x4b>, <&audma1 0x4c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu12: ssiu-10 {
+@@ -1939,23 +1939,23 @@ ssiu12: ssiu-10 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu13: ssiu-11 {
+-					dmas = <&audma0 0x59>, <&audma1 0x5A>;
++					dmas = <&audma0 0x59>, <&audma1 0x5a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu14: ssiu-12 {
+-					dmas = <&audma0 0x5F>, <&audma1 0x60>;
++					dmas = <&audma0 0x5f>, <&audma1 0x60>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu15: ssiu-13 {
+-					dmas = <&audma0 0xC3>, <&audma1 0xC4>;
++					dmas = <&audma0 0xc3>, <&audma1 0xc4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu16: ssiu-14 {
+-					dmas = <&audma0 0xC7>, <&audma1 0xC8>;
++					dmas = <&audma0 0xc7>, <&audma1 0xc8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu17: ssiu-15 {
+-					dmas = <&audma0 0xCB>, <&audma1 0xCC>;
++					dmas = <&audma0 0xcb>, <&audma1 0xcc>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu20: ssiu-16 {
+@@ -1967,27 +1967,27 @@ ssiu21: ssiu-17 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu22: ssiu-18 {
+-					dmas = <&audma0 0x6B>, <&audma1 0x6C>;
++					dmas = <&audma0 0x6b>, <&audma1 0x6c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu23: ssiu-19 {
+-					dmas = <&audma0 0x6D>, <&audma1 0x6E>;
++					dmas = <&audma0 0x6d>, <&audma1 0x6e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu24: ssiu-20 {
+-					dmas = <&audma0 0xCF>, <&audma1 0xCE>;
++					dmas = <&audma0 0xcf>, <&audma1 0xce>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu25: ssiu-21 {
+-					dmas = <&audma0 0xEB>, <&audma1 0xEC>;
++					dmas = <&audma0 0xeb>, <&audma1 0xec>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu26: ssiu-22 {
+-					dmas = <&audma0 0xED>, <&audma1 0xEE>;
++					dmas = <&audma0 0xed>, <&audma1 0xee>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu27: ssiu-23 {
+-					dmas = <&audma0 0xEF>, <&audma1 0xF0>;
++					dmas = <&audma0 0xef>, <&audma1 0xf0>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu30: ssiu-24 {
+@@ -2011,15 +2011,15 @@ ssiu34: ssiu-28 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu35: ssiu-29 {
+-					dmas = <&audma0 0x29>, <&audma1 0x2A>;
++					dmas = <&audma0 0x29>, <&audma1 0x2a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu36: ssiu-30 {
+-					dmas = <&audma0 0x2B>, <&audma1 0x2C>;
++					dmas = <&audma0 0x2b>, <&audma1 0x2c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu37: ssiu-31 {
+-					dmas = <&audma0 0x2D>, <&audma1 0x2E>;
++					dmas = <&audma0 0x2d>, <&audma1 0x2e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu40: ssiu-32 {
+@@ -2031,19 +2031,19 @@ ssiu41: ssiu-33 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu42: ssiu-34 {
+-					dmas = <&audma0 0x19>, <&audma1 0x1A>;
++					dmas = <&audma0 0x19>, <&audma1 0x1a>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu43: ssiu-35 {
+-					dmas = <&audma0 0x1B>, <&audma1 0x1C>;
++					dmas = <&audma0 0x1b>, <&audma1 0x1c>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu44: ssiu-36 {
+-					dmas = <&audma0 0x1D>, <&audma1 0x1E>;
++					dmas = <&audma0 0x1d>, <&audma1 0x1e>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu45: ssiu-37 {
+-					dmas = <&audma0 0x1F>, <&audma1 0x20>;
++					dmas = <&audma0 0x1f>, <&audma1 0x20>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu46: ssiu-38 {
+@@ -2075,7 +2075,7 @@ ssiu90: ssiu-44 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu91: ssiu-45 {
+-					dmas = <&audma0 0x7F>, <&audma1 0x80>;
++					dmas = <&audma0 0x7f>, <&audma1 0x80>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu92: ssiu-46 {
+@@ -2087,19 +2087,19 @@ ssiu93: ssiu-47 {
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu94: ssiu-48 {
+-					dmas = <&audma0 0xA3>, <&audma1 0xA4>;
++					dmas = <&audma0 0xa3>, <&audma1 0xa4>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu95: ssiu-49 {
+-					dmas = <&audma0 0xA5>, <&audma1 0xA6>;
++					dmas = <&audma0 0xa5>, <&audma1 0xa6>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu96: ssiu-50 {
+-					dmas = <&audma0 0xA7>, <&audma1 0xA8>;
++					dmas = <&audma0 0xa7>, <&audma1 0xa8>;
+ 					dma-names = "rx", "tx";
+ 				};
+ 				ssiu97: ssiu-51 {
+-					dmas = <&audma0 0xA9>, <&audma1 0xAA>;
++					dmas = <&audma0 0xa9>, <&audma1 0xaa>;
+ 					dma-names = "rx", "tx";
+ 				};
  			};
--			cert_header_sa6@180000 {
-+			cert-header-sa6@180000 {
- 				reg = <0x00180000 0x040000>;
- 				read-only;
- 			};
-diff --git a/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts b/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts
-index 2da63b4daa0a..8ccf669b2cf0 100644
---- a/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts
-@@ -236,7 +236,7 @@ cr7@40000 {
- 				reg = <0x00040000 0x080000>;
- 				read-only;
- 			};
--			cert_header_sa3@c0000 {
-+			cert-header-sa3@c0000 {
- 				reg = <0x000c0000 0x080000>;
- 				read-only;
- 			};
-@@ -244,7 +244,7 @@ bl2@140000 {
- 				reg = <0x00140000 0x040000>;
- 				read-only;
- 			};
--			cert_header_sa6@180000 {
-+			cert-header-sa6@180000 {
- 				reg = <0x00180000 0x040000>;
- 				read-only;
- 			};
-diff --git a/arch/arm64/boot/dts/renesas/salvator-common.dtsi b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-index fa8bfee07b3c..d4a921bed4c3 100644
---- a/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-@@ -501,7 +501,7 @@ ak4613_endpoint: endpoint {
- 		};
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+index bd52d60bafb9..29273da81995 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+@@ -1371,7 +1371,7 @@ wdt0: watchdog@12800800 {
+ 		wdt1: watchdog@12800c00 {
+ 			compatible = "renesas,r9a07g044-wdt",
+ 				     "renesas,rzg2l-wdt";
+-			reg = <0 0x12800C00 0 0x400>;
++			reg = <0 0x12800c00 0 0x400>;
+ 			clocks = <&cpg CPG_MOD R9A07G044_WDT1_PCLK>,
+ 				 <&cpg CPG_MOD R9A07G044_WDT1_CLK>;
+ 			clock-names = "pclk", "oscclk";
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
+index 4e0256d3201d..0dee48c4f1e4 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
+@@ -1379,7 +1379,7 @@ wdt0: watchdog@12800800 {
+ 		wdt1: watchdog@12800c00 {
+ 			compatible = "renesas,r9a07g054-wdt",
+ 				     "renesas,rzg2l-wdt";
+-			reg = <0 0x12800C00 0 0x400>;
++			reg = <0 0x12800c00 0 0x400>;
+ 			clocks = <&cpg CPG_MOD R9A07G054_WDT1_PCLK>,
+ 				 <&cpg CPG_MOD R9A07G054_WDT1_CLK>;
+ 			clock-names = "pclk", "oscclk";
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+index a865bf404dfb..788bbf15869f 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+@@ -50,7 +50,7 @@ key-wakeup {
+ 	memory@48000000 {
+ 		device_type = "memory";
+ 		/* first 128MB is reserved for secure area. */
+-		reg = <0x0 0x48000000 0x1 0xF8000000>;
++		reg = <0x0 0x48000000 0x1 0xf8000000>;
  	};
  
--	cs2000: clk_multiplier@4f {
-+	cs2000: clk-multiplier@4f {
- 		#clock-cells = <0>;
- 		compatible = "cirrus,cs2000-cp";
- 		reg = <0x4f>;
-@@ -890,7 +890,7 @@ bl2@40000 {
- 				reg = <0x00040000 0x140000>;
- 				read-only;
- 			};
--			cert_header_sa6@180000 {
-+			cert-header-sa6@180000 {
- 				reg = <0x00180000 0x040000>;
- 				read-only;
- 			};
-diff --git a/arch/arm64/boot/dts/renesas/ulcb.dtsi b/arch/arm64/boot/dts/renesas/ulcb.dtsi
-index a9e53b36f1d9..241caf737abb 100644
---- a/arch/arm64/boot/dts/renesas/ulcb.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ulcb.dtsi
-@@ -413,7 +413,7 @@ bl2@40000 {
- 				reg = <0x00040000 0x140000>;
- 				read-only;
- 			};
--			cert_header_sa6@180000 {
-+			cert-header-sa6@180000 {
- 				reg = <0x00180000 0x040000>;
- 				read-only;
- 			};
+ 	memory@240000000 {
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+index adf3ab8aef2b..bfe3cd5fdf0f 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+@@ -27,7 +27,7 @@ chosen {
+ 	memory@48000000 {
+ 		device_type = "memory";
+ 		/* first 128MB is reserved for secure area. */
+-		reg = <0x0 0x48000000 0x1 0xF8000000>;
++		reg = <0x0 0x48000000 0x1 0xf8000000>;
+ 	};
+ 
+ 	reg_3p3v: regulator-3v3 {
 -- 
 2.51.0
 
