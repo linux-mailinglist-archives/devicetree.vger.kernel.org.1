@@ -1,62 +1,55 @@
-Return-Path: <devicetree+bounces-249119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C38CD95FA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:54:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76D6CD9618
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:58:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C7BF6300B811
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 12:54:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5977E3011743
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 12:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADD832860B;
-	Tue, 23 Dec 2025 12:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A1232D0EA;
+	Tue, 23 Dec 2025 12:58:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M803tHby"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ibrV99l8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE2527F4F5;
-	Tue, 23 Dec 2025 12:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DD5328B79;
+	Tue, 23 Dec 2025 12:58:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766494460; cv=none; b=sGQc4PitDVyNDRvSEPzAUE810j17w4X8RllYOH+8nL5q6r3GBjQzutWiStBfzq/Poz3FJWqCu2PMyL9PAUboRGFW9G3sb12VWJvmNYyJ7D+5V/+mmUXx85wID6q6UVnMwUkKh4Fc7ZxWddJir3vdXkQh5LdQ5debud+4bQIMdYY=
+	t=1766494704; cv=none; b=jL7eOeSNPNW/ZAWpPPH4izvIXaKn4FQbCm16t7QJjwz/iq4/pGnYrnghPlFTIot57UnBn/G4TIkjcEVg/WHbHhl42nvhApf3M3VB6FrcKPKTrhFxjdHQFMvhz2s8rI0d0rn5sbabgRwV3QR/RVqKIaxjlP7dghlqGQ7aaoXc+9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766494460; c=relaxed/simple;
-	bh=KHfodc6xnjl4ekjBVCgvm0UOgXTUzxfnIsD/WyuNdgs=;
+	s=arc-20240116; t=1766494704; c=relaxed/simple;
+	bh=GelePM2/rzKVnTx6xZkND24wIhH+GyObS5uf8hoVE9U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xb7SWB8JdU4Ueva8jm33RN823rf06/JbGBiArZz3BSnNqlUNOHexLwR7z5Htk1OCcxFrfFQj97AZkxeoKK4ytfmLzUMOcbL0HU/MjPe35R1HnQcLPv9m5trisDyxsyrVskd3we00m+vfvNI2Mcl0mae/Lt8zGc5ZRfB2xzISrRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M803tHby; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0A7EC113D0;
-	Tue, 23 Dec 2025 12:54:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZJPnJuqlSe+rc1L0NMxNhWBvpcaAycbaqpuqtLXibpy+ni9BLxk6Bxo1FX3jr3caGtxJCsZktK4DMVBtNaWZJtXHjaJD1zI38CWoEb4e10qBnzhOA6n8hYXY8pjq2u/kcUUAOfufoSss3ovWyvV8I+LXhjDpuXBjztU/Fxn08rA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ibrV99l8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE669C113D0;
+	Tue, 23 Dec 2025 12:58:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766494459;
-	bh=KHfodc6xnjl4ekjBVCgvm0UOgXTUzxfnIsD/WyuNdgs=;
+	s=k20201202; t=1766494703;
+	bh=GelePM2/rzKVnTx6xZkND24wIhH+GyObS5uf8hoVE9U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M803tHbyEDczI6AoP2oQUbt7vkta82oKc8iQ2rxcAtF2sU8GZ8Z4nqT/beSqoDNXe
-	 jq+q+ssebnPTVbD8hGniUE8HZ9DwrF2giNznZ4wWbkbaCTVd7EVJjHXazWtwIYP0aj
-	 ebAxvXyvXeOc2w9rA2YVEjeFZ84730adPbC0B99SyjV58HXyghQWBgHEW35Or5CPJh
-	 ZQiii4SerjDex2sChT9NqykoxFmB8zYSi1wMOFY7hmgisycXbkxg4BRkBAd6dqyvzz
-	 p9FwlcQRhIipQyRhvYz3QjZXSv1XektgW6hT2cwhkJssnAdK47JsaICXtyF50vUBBc
-	 q5oQ44Doazcnw==
-Date: Tue, 23 Dec 2025 13:54:15 +0100
+	b=ibrV99l8yC9mtRis5bOw5djBep9SwSZ2NeVCvmcu32HrM7M2VdL9QH/SkCMCQeZNs
+	 EpGkmF1cAz4LHE5PtNs28eCP7y1i4WHvbJKSVCZZmJpA2BO1qBZ3S58dwXwicPY6AP
+	 /Q7PkufHXRNkSNgeAgUWYCFecV97K5CnT7/Vh4BzHSaY3NOLOGX515eNdnrpDV9bFY
+	 r2gFMgAEq958KhHmuV+1f+hbWRpuigvGlaMbCmhz+XKwiOvZWXTc/cNlPR+lPhTynw
+	 UnlAFc/ISIkLzbjkQa8oAD4zPg/B+6DCxQ+/orP1g4DylY/OpH3vnGQAGb9CWcFiHE
+	 /ZHGKmGtbdIIw==
+Date: Tue, 23 Dec 2025 13:58:19 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Bjorn Andersson <andersson@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, quic_vbadigan@quicinc.com, quic_shazhuss@quicinc.com, 
-	konrad.dybcio@oss.qualcomm.com, Rama Krishna <quic_ramkri@quicinc.com>, 
-	Ayiluri Naga Rashmi <quic_nayiluri@quicinc.com>, Nitesh Gupta <quic_nitegupt@quicinc.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: PCI: qcom,sa8255p-pcie-ep: Document
- firmware managed PCIe endpoint
-Message-ID: <20251223-glorious-goose-from-betelgeuse-b5b91b@quoll>
-References: <20251223-firmware_managed_ep-v4-0-7f7c1b83d679@oss.qualcomm.com>
- <20251223-firmware_managed_ep-v4-1-7f7c1b83d679@oss.qualcomm.com>
+To: Charles Hsu <hsu.yungteng@gmail.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: add STEF48H28
+Message-ID: <20251223-hissing-wonderful-sawfly-1b41ce@quoll>
+References: <20251223014832.1813114-1-hsu.yungteng@gmail.com>
+ <20251223014832.1813114-2-hsu.yungteng@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,18 +58,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251223-firmware_managed_ep-v4-1-7f7c1b83d679@oss.qualcomm.com>
+In-Reply-To: <20251223014832.1813114-2-hsu.yungteng@gmail.com>
 
-On Tue, Dec 23, 2025 at 02:46:20PM +0530, Mrinmay Sarkar wrote:
-> Document the required configuration to enable the PCIe Endpoint controller
-> on SA8255p which is managed by firmware using power-domain based handling.
+On Tue, Dec 23, 2025 at 09:48:31AM +0800, Charles Hsu wrote:
+> Add device tree bindings for the hot-swap controller STEF48H28.
 > 
-> Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+> Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
 > ---
->  .../bindings/pci/qcom,sa8255p-pcie-ep.yaml         | 110 +++++++++++++++++++++
->  1 file changed, 110 insertions(+)
+>  .../bindings/hwmon/pmbus/st,stef48h28.yaml    | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+I do not understand what happened here and nothing is explained WHY in
+the cover letter.
+
+You did not respond to any comments
+
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
+> new file mode 100644
+> index 000000000000..e4711c4ef38a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/pmbus/st,stef48h28.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Infineon XDP730 hot-swap controller with PMBus interface
+> +
+> +maintainers:
+> +  - Charles Hsu <hsu.yungteng@gmail.com>
+> +
+> +description: |
+> +  The STEF48H28 is an advanced 30A integrated electronic fuse for
+> +  the 9-80V DC power lines.
+> +
+> +  Datasheet:
+> +    https://www.infineon.com/assets/row/public/documents/24/49/infineon-xdp730-001-datasheet-en.pdf
+> +
+> +allOf:
+> +  - $ref: /schemas/regulator/regulator.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - st,stef48h28
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        stef48h28@11 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+> +            compatible = "st,stef48h28";
+> +            reg = <0x11>;
+
+Incomplete. Where are all other regulator properties (you claim this is
+regulator), suplies, etc.
 
 Best regards,
 Krzysztof
