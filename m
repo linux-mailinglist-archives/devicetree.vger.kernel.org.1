@@ -1,143 +1,111 @@
-Return-Path: <devicetree+bounces-249120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76D6CD9618
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:58:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 718B6CD962E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:00:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5977E3011743
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 12:58:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 81D81300C1A5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A1232D0EA;
-	Tue, 23 Dec 2025 12:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ibrV99l8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79B9B233D88;
+	Tue, 23 Dec 2025 13:00:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DD5328B79;
-	Tue, 23 Dec 2025 12:58:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A88331235
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 13:00:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766494704; cv=none; b=jL7eOeSNPNW/ZAWpPPH4izvIXaKn4FQbCm16t7QJjwz/iq4/pGnYrnghPlFTIot57UnBn/G4TIkjcEVg/WHbHhl42nvhApf3M3VB6FrcKPKTrhFxjdHQFMvhz2s8rI0d0rn5sbabgRwV3QR/RVqKIaxjlP7dghlqGQ7aaoXc+9o=
+	t=1766494812; cv=none; b=lIaeYL6Jv18v0gF2yQDBMRuLSN47lOR5vNrm1kxnWCjchJRrOPjBrjlhJiZDjST3hmPj8K3fsdeiLrlPZjEW+11HrAYh/G0QtZo+cT782yqS8M2l5etYxGBwLa15Pk5eHV+pqpyazbtbu/XwWrZz26vJkcaZO9p0i60QwJgeiSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766494704; c=relaxed/simple;
-	bh=GelePM2/rzKVnTx6xZkND24wIhH+GyObS5uf8hoVE9U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZJPnJuqlSe+rc1L0NMxNhWBvpcaAycbaqpuqtLXibpy+ni9BLxk6Bxo1FX3jr3caGtxJCsZktK4DMVBtNaWZJtXHjaJD1zI38CWoEb4e10qBnzhOA6n8hYXY8pjq2u/kcUUAOfufoSss3ovWyvV8I+LXhjDpuXBjztU/Fxn08rA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ibrV99l8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE669C113D0;
-	Tue, 23 Dec 2025 12:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766494703;
-	bh=GelePM2/rzKVnTx6xZkND24wIhH+GyObS5uf8hoVE9U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ibrV99l8yC9mtRis5bOw5djBep9SwSZ2NeVCvmcu32HrM7M2VdL9QH/SkCMCQeZNs
-	 EpGkmF1cAz4LHE5PtNs28eCP7y1i4WHvbJKSVCZZmJpA2BO1qBZ3S58dwXwicPY6AP
-	 /Q7PkufHXRNkSNgeAgUWYCFecV97K5CnT7/Vh4BzHSaY3NOLOGX515eNdnrpDV9bFY
-	 r2gFMgAEq958KhHmuV+1f+hbWRpuigvGlaMbCmhz+XKwiOvZWXTc/cNlPR+lPhTynw
-	 UnlAFc/ISIkLzbjkQa8oAD4zPg/B+6DCxQ+/orP1g4DylY/OpH3vnGQAGb9CWcFiHE
-	 /ZHGKmGtbdIIw==
-Date: Tue, 23 Dec 2025 13:58:19 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Charles Hsu <hsu.yungteng@gmail.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: add STEF48H28
-Message-ID: <20251223-hissing-wonderful-sawfly-1b41ce@quoll>
-References: <20251223014832.1813114-1-hsu.yungteng@gmail.com>
- <20251223014832.1813114-2-hsu.yungteng@gmail.com>
+	s=arc-20240116; t=1766494812; c=relaxed/simple;
+	bh=/HGcUjd+rldHrGgw+/2LMI43pg6m/SpY71YJmNi45YM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jvf0QrE7CcPObwRO77A4K3rDtqR9MmAkQXRiccIPRZUTxVVqPx4HB8cMxnPlRNZoj0t161u3e1lF40nHt2KV/L8x4wt0bwd69j0kIlnS8sD9AYMU5Pjpb9UloyMDwQdtK1GkGZBaDUYjCd3Fo9tiKr+y2fPlBBDZ9OSh98UtVSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-55ad466ad1eso1256036e0c.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 05:00:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766494809; x=1767099609;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=TTXbUPXuA0xDnhafe/vn+TvF0Mds5OJ7HH8a+9lQG4Q=;
+        b=upyfpP70GLTlIwGWHPmLJH8RMEJCKe8akd3XpaoYm7deexxY3reTiTO2jiNLTymTR8
+         +Xhni1xosWlode/WPMOxHwn5mvHQXDAwuIZYpJd17sQOH5AaNZGHOUZlpWTRci1wu4IK
+         EdKJUmW2ZnE/RJ/qKj5rZzk7WDqKvDLWzg01LzCRJ2FrydYVxTigiF7ElxKWEDULF1xV
+         jE6usPHucHd6ZUGLh6EexQmawCONl2J2WFlubqZtX0wRYf51vuD9oyFxq/d/INBAjVPY
+         yskw/KDHND5Lt/qMjDesdiaYkKe7KPA5Lx3b4kaNTs/gaVi5JmseTtQ9NVsSnZ/P0Kw8
+         8LVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU167WAApKhRyiCvpFEzskarnzM+v02P+V2IXIHqCWvYc1WHOUj1dtVxv8PqEkCtXs+SlOILhlr+xsy@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywm3w01fN/J464XR2GM7NnK4f5p4ECm/J+pI0VW5uylmUYgMWYA
+	iOZ5C83LAw0jCs16sXJqdNYcyWZUVAQmpvI0yD0PV4tMBBZMjXLeAH/bdHFqqbHM
+X-Gm-Gg: AY/fxX7kladhnxncatabsVhioLPlqFJ8TJ2RgcSyZpg3Fcz5G7bgX69pqsvVkIe5ySz
+	Au7jKGSaZGSqkkDsgqPzpW2a0UVzqN1cFnzI0rBTySSVw5cieWz5y+tJh1WA11SdCCWHluA3PXo
+	dTauYx1/TaMpotVT+AQAcy095NTIDTgzf8WJPolh59q9wZ5s1cDLpCFnCZ/oF2bb4g/Yqngs1mv
+	fUDOXuBA/PqweyUmtzHkzr/ayR/Z7aa9769rtt+tc4XJ6NtQ3c9y0xwgOHvdbqkK64OF570SUlY
+	Dr93Gr9E79b8I2olY2ER5zeTBXTS/NEFv/eYWzisv/+R9/v7+8Z+UxP7SQbjl5CTeYGUDu4C4cx
+	UeD2y8OC+s/IRpoTwyR1R2KoVME1SNmeQ/V/jUeIqBwJ976UBP5uzvlB3sUDSbHl4MyQX4aOPL5
+	dcj/kdb8W8m7RzPA6OFDBjidsjQROkeAEvQ4qQJrfY3mp3b3mx
+X-Google-Smtp-Source: AGHT+IHSpsDk7mOIwO9VBvTOsHgVbih9umoQcmKal7HWVGjX+8l4Y9QIgFefSSQKF04Ztqlr8YugJA==
+X-Received: by 2002:a05:6122:883:b0:55b:d85:507a with SMTP id 71dfb90a1353d-5615bd2a12fmr4343368e0c.7.1766494808844;
+        Tue, 23 Dec 2025 05:00:08 -0800 (PST)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5615d1665f2sm4578444e0c.21.2025.12.23.05.00.07
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Dec 2025 05:00:08 -0800 (PST)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5dfb5fcf063so1597930137.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 05:00:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXCqzD8cOfG4rAupMbO1lOTOpEGILCXhOt9bgVnpAzFpH/YwfDT6OX3c7l7A1R91diIuZc0GlFtdr9O@vger.kernel.org
+X-Received: by 2002:a05:6102:f92:b0:5de:694:15e0 with SMTP id
+ ada2fe7eead31-5eb1a836ae9mr4138531137.45.1766494807481; Tue, 23 Dec 2025
+ 05:00:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251223014832.1813114-2-hsu.yungteng@gmail.com>
+References: <20251215034715.3406-8-wsa+renesas@sang-engineering.com> <20251215034715.3406-11-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20251215034715.3406-11-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 23 Dec 2025 13:59:56 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW7hVALx0pWb4T1LzwCWYGUAg=rY=fRA7OiKR1ScvD8rA@mail.gmail.com>
+X-Gm-Features: AQt7F2rcODnJ7kIz2qCSlRU0AoTajvhbnpqvSDaRnRnKco6ge-a6KDHZReHmBIM
+Message-ID: <CAMuHMdW7hVALx0pWb4T1LzwCWYGUAg=rY=fRA7OiKR1ScvD8rA@mail.gmail.com>
+Subject: Re: [PATCH 3/6] arm64: dts: renesas: r8a779a0: Add WWDT nodes
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 23, 2025 at 09:48:31AM +0800, Charles Hsu wrote:
-> Add device tree bindings for the hot-swap controller STEF48H28.
-> 
-> Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
-> ---
->  .../bindings/hwmon/pmbus/st,stef48h28.yaml    | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
-> 
+On Mon, 15 Dec 2025 at 04:48, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Tested-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.se>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-I do not understand what happened here and nothing is explained WHY in
-the cover letter.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.20.
 
-You did not respond to any comments
+Gr{oetje,eeting}s,
 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
-> new file mode 100644
-> index 000000000000..e4711c4ef38a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/pmbus/st,stef48h28.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Infineon XDP730 hot-swap controller with PMBus interface
-> +
-> +maintainers:
-> +  - Charles Hsu <hsu.yungteng@gmail.com>
-> +
-> +description: |
-> +  The STEF48H28 is an advanced 30A integrated electronic fuse for
-> +  the 9-80V DC power lines.
-> +
-> +  Datasheet:
-> +    https://www.infineon.com/assets/row/public/documents/24/49/infineon-xdp730-001-datasheet-en.pdf
-> +
-> +allOf:
-> +  - $ref: /schemas/regulator/regulator.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,stef48h28
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        stef48h28@11 {
+                        Geert
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-> +            compatible = "st,stef48h28";
-> +            reg = <0x11>;
-
-Incomplete. Where are all other regulator properties (you claim this is
-regulator), suplies, etc.
-
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
