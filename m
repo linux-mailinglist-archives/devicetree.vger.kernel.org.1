@@ -1,116 +1,225 @@
-Return-Path: <devicetree+bounces-249315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D95CDABDC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 23:14:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D44CDABF4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 23:16:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 827C2303302B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 22:13:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8F5AB303273C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 22:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DDB327C1E;
-	Tue, 23 Dec 2025 22:13:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4865313E20;
+	Tue, 23 Dec 2025 22:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ARsk4y2L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hEMABgWW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622F23271F2
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 22:13:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C886613635E
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 22:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766528013; cv=none; b=Eqk4eCbBlUDmSAKucEk33NzxW2OfJaRTOsBPiR6PlOaWZmUnVvCeIZ+Q9+v+xlgHkguXcZSYz3lSWKsLWW7j5Wn/BnyuXEVBo9SZ47dPmfX3tp7VsZtM/cGNw39GkXcUcwNF4vEuuEbxn90sd5zcawRGSU8kuypPFKbFM05rqYM=
+	t=1766528172; cv=none; b=KkQ1wu0/i73WlnfORbGTV2NUgDZyU1OSMCKnsD+sJ+fMOWb64vmPRlIbWY1+a/7xzZJYh+LSF7AfGxXLkR3HFW7P8ilWAv7TQ9UJtPBghpERqRoXtbS8S6pmObrNIThA9kEMo/g/Ve9V44csfbM6KXAYoe+MVtQma3O1ipgUF8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766528013; c=relaxed/simple;
-	bh=sMUBMbrK7/ZzTN2ifHo0idjCHc3u2IqyKo1PdHLi5oA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Z3tbJ3hfNc90hVxOlMNBwrcsd7ggpLejZ0TBZ1kO7PUDOLAJokXlqZj8BQOJs6uXfyvlJYuuRAc8ppc19B9/phoT516SZoPq2K80uDh7C8DGam5d9IStO4QCSYqhE1ypZyE5HcV9h8dxChPynbfbx54xCYvzyI3cTVuUhHHLMws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ARsk4y2L; arc=none smtp.client-ip=209.85.216.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-34c868b197eso5698451a91.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 14:13:31 -0800 (PST)
+	s=arc-20240116; t=1766528172; c=relaxed/simple;
+	bh=yzbHwEjuUh5QG9F4g4O/Qg7p+yrh30QLZ0ZwvpnIAUw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BWRHqRzlS8n3k3DhKJqdoxOuMzj4B4T/iXACxaOyYMo5+FK1x6XntTH2PUgY6M0lH0ARpjFWXDKrgGUG8kbPZeeqXnMwEMfgxyYnuD/9prmSHEr/udy2FX2REGiR8g/5ORmI8OytK2LXjOWHQt+EsvhqMAtL8D/AA/5dezIghwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hEMABgWW; arc=none smtp.client-ip=209.85.218.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f67.google.com with SMTP id a640c23a62f3a-b7a6e56193cso899618866b.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 14:16:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766528011; x=1767132811; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qbMxF+gY7bPHqJ8ldPkOL73xrNsVRUkggRkHgQFozfo=;
-        b=ARsk4y2L9vKJ/C6xcHRJVa1W35aenPVGMU5cLNJO4hcrtFuL6Mfx7IWoynZyG66G1N
-         VK7IAWxGn0+9WG9pxWE9blQijIKVUUjPlBpB2EvXwMoc+3TZbAu6JRLzUyL6CfWbeJb5
-         PCRBZmutep+HFqlZ6UYxHgTp1E4fF2evtDOmHm9pb3vf27iagEIZ6L2S3IarHbiBmzCe
-         Nh3n3ZXYytZa40+0wN867AaVxVZl3nHSg2qHZ8PTi3pqge0WPiiJClIRAzDLpTBm5XMU
-         yfUaYFJef8Q9dxCfrdUhac8aPwUNTOch97nrEuOGu/cimp95exUn/SCBVtFP0MIlYc4I
-         RONA==
+        d=linaro.org; s=google; t=1766528169; x=1767132969; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5UyYhutUWgIRgYB1MC5/PxDmOAUg51biGCRnLKpp0Ys=;
+        b=hEMABgWWHG7rzDOoId5jZputCtI2cNCo3OmyU0wGr/0s1UFPrp+Z17h+WtZGnGNEWI
+         gz6L9Nmr5UMbO8tiTovZyn4yZqfaF/8OORjVnL9AG9qR/OdmzH1plwu5S3XisPZb99JW
+         v69iRHUmqZpjpcymLX1XeO1P5iI6uYEfwNbFvYkW9uopVjAZbkzNu6yl4/i1MnnyKwO4
+         ekxVS/JhRBo5C9IcbJM0NALNBDQZ6mR8gS9VLwQ2WfjA+kCY7GBD5ZpRcXkeeiv3T18T
+         W1g1ZSVqCAuSKwzxuhqeVNlNUmv/IFrxKPFi2r046OPbp2Y30LUWxfQu+76zU7tfP+Dz
+         4YGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766528011; x=1767132811;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qbMxF+gY7bPHqJ8ldPkOL73xrNsVRUkggRkHgQFozfo=;
-        b=FnkynXjF5r2oVktahIU/JvZ706kK7Oms+sA8EbLaixtOS5hdak8DLv25N3a+epxrd+
-         c80d5KJ+tAmMpstgJqqY4WulfYotwI9fdZxh2KOZjed5/wLQdlSl6A9h77KzP6M0QkTu
-         UOoY+qCj5BBGwiOQQLTRqCd6JkGRdbENuIolttct9fMVqh3lBa/76rbODENCLNF0gcgw
-         vjydQZ6bQf4b//mbnETNQmmrGKv4Kd6anCQRkBn3nFG4ClKg5W0O+i3rjX+QaIfkEOQn
-         EI8/NorpU3uH7X9CiMt+PaTh4EZ08QBO9SDUT9JoqG5NxYpArcT9CUTTQM2FZUpUmrA+
-         yeIA==
-X-Forwarded-Encrypted: i=1; AJvYcCWBAj3p9vmlHkoxXaI57MV+bgSV1DfcZM/NgWkKMzNz9rLS7WcK/KpYmnPMT61tIBWLSf7t3tEBBvAM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQQR60XbHjr+jHILtq6DPHGcRDADgt6Oxp4XrKjy2qmRJDfzoh
-	bHe10mZbJFUAz/Pa9yuBgS5lBih5uFX7f0hUrIwGbmVCfq70CqKYcuIo
-X-Gm-Gg: AY/fxX40GPbIJ9wpbZO9EXS8lXq+DwLBxLqF9VSjMAI6GhysNEebgLE6d7RhUbaTC+5
-	YlgGZTx3Sj7HVaMwapDaDF+exJUVqsTNKeEG7ylPqtY8N8O6Ikdwk89+OfBTBg77uPXqSSINfwy
-	X2wfgacT8mzeb36VCFw1oP/8KywFrCCswYvReMzXpBXBWxX/gwPwSFZnS5drAUFDhQd82csMDZU
-	Xcvuml2Uh/xypwqkKxQcP+zxv/YnKqbicGcG3xpajJLs5gsuPMy8jglokn3EJaN7GGARkTh608c
-	fEQGbnGMNOe9UdOthi+BssFycLirUdn+6FKaFQksDYrgy9tHpJM69Uxt/srUTPFaY5X8V3bGDvx
-	/E2KAulZ/Z5uzLOEoGI3IJsGoP+UIXGhB+MaDF0N1pgwG5r7V4mU+ZqXhwBXbPaNH6q5Pb4BB1u
-	C4chF02jlBGLQlzSgcdVsHs32/GqOGBlxwY2dILSeuug==
-X-Google-Smtp-Source: AGHT+IGikOIURWcD46OTUx3VcgjIsTTbayXLK7FFPsek16ZYnMoDIlgfP2L9P5rmA4oZ7WKOU3FoVg==
-X-Received: by 2002:a17:90b:1f82:b0:340:ff7d:c26 with SMTP id 98e67ed59e1d1-34e921557bamr14728161a91.16.1766528010571;
-        Tue, 23 Dec 2025 14:13:30 -0800 (PST)
-Received: from localhost.localdomain ([2401:4900:8838:aa50:ded0:d1bf:9b7c:5ce5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34e70d65653sm16742889a91.5.2025.12.23.14.13.24
+        d=1e100.net; s=20230601; t=1766528169; x=1767132969;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5UyYhutUWgIRgYB1MC5/PxDmOAUg51biGCRnLKpp0Ys=;
+        b=B+CDg8gW7rTqgp/V+wY3kqPVFK4ywgwv8nme9TsSeEdD3HY1ytvbrE0Yk4dNzANt04
+         aI7WTlkScHDvqmkJ7C8YXZldGFHz+y00Ma/EznGOb2pvZbn6+VkY/TExGe4+fMxpGB9N
+         kjfIrUGmai3iksGxCsx6D4SPTxs1YO/0gePlqFjshGMSn/j0bYy63jhMqmUR64s9Bc1w
+         WwwYisfsDJDNyh6VXmPYCtninUkVwXXTUZPjgIxleTw88b+3WzlJ+1IJnXHVjy5SvZxb
+         lwxlW8dCDHVNTHgK/yz2BRv+O76DFKOjLUeNut/uUikxFUre0nMoSnO0RquYDZ1zKmMV
+         +FUg==
+X-Forwarded-Encrypted: i=1; AJvYcCWCvWw4OGp2RV8Ndu91riTkMLGgEmMDbVi9BLS8U9y+K0wzZRUSLxyFPpVYI2zDVntOKk+LwAB62AHO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyV6oAXmCIT61Uhw4msv6PdhRZ4iY9q+BMOVMJNFlXtWuGH0Xkq
+	cmQbFlLleSlIZlythnTU7hCoaMrA/Z8s9NK9w62XOBlyRWtWVwHu3KmNoYy+SeG2yFw=
+X-Gm-Gg: AY/fxX5kJptsLqN4p7de57soWc23+ECEKoq9kBWYRIylV1D06wuZGxcVozYYGC3LiNw
+	+B2oEctHdU92fAR2QJwXzYKvlCWcSnJ/nwpZA/u8SuQGLsL9I56YyMmDwgOlDqIeRh+87e0YRMi
+	Hm62agE12bz4YPUdBd1YXGwgjggFyrdFl/N/TXJWq6CbOF60gm+SAqlSVJyZLnKm01Ddyh8qe1f
+	iPomlQjbXUq1Db93i5qwpIGKwjOUB4rJzP7CxQMXMHkwaAB8S7O580rMbvPNUdw/Y8AqXf5qti1
+	Ug2gb5zmvFkA7UEx9pqn5PbOkdkjnEf9duNgLRz4VEbTGlR7bVVlMv+GX+wjt7/yGw7H3pILAri
+	XMbr51oMQu3r8qKEorvnt1wTzYYxboutC1fDVNis7KYxcZF3Zo2eFEbNQnj3TTq40VT6fGHnTZ2
+	KIyP1e3Xy+qDd6NktP
+X-Google-Smtp-Source: AGHT+IGq+sIPac4pUDc5c2NSoUMS1PyA5G2WwEI/2p2f6em7Z3AmU60xOTfzeGCKspp1fvzaaAIBYw==
+X-Received: by 2002:a17:907:6ea4:b0:b80:f2e:6e1 with SMTP id a640c23a62f3a-b803722a7demr1668448866b.43.1766528167036;
+        Tue, 23 Dec 2025 14:16:07 -0800 (PST)
+Received: from linaro.org ([77.64.146.193])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f4ef1fsm1556445466b.64.2025.12.23.14.16.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Dec 2025 14:13:30 -0800 (PST)
-Received: (nullmailer pid 28846 invoked by uid 1000);
-	Tue, 23 Dec 2025 22:10:36 -0000
-From: Kathara Sasikumar <katharasasikumar007@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, shuah@kernel.org, skhan@linuxfoundation.org, david.hunter.linux@gmail.com, Kathara Sasikumar <katharasasikumar007@gmail.com>
-Subject: [PATCH] docs: dt-bindings: remoteproc: fix Keystone DSP GPIO binding link
-Date: Tue, 23 Dec 2025 22:10:20 +0000
-Message-ID: <20251223221019.28823-2-katharasasikumar007@gmail.com>
-X-Mailer: git-send-email 2.51.0
+        Tue, 23 Dec 2025 14:16:06 -0800 (PST)
+Date: Tue, 23 Dec 2025 23:15:33 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>, aiqun.yu@oss.qualcomm.com,
+	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Gokul krishna Krishnakumar <gokul.krishnakumar@oss.qualcomm.com>
+Subject: Re: [PATCH v3 4/5] remoteproc: qcom: pas: Add late attach support
+ for subsystems
+Message-ID: <aUsUhX8Km275qonq@linaro.org>
+References: <20251223-knp-remoteproc-v3-0-5b09885c55a5@oss.qualcomm.com>
+ <20251223-knp-remoteproc-v3-4-5b09885c55a5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251223-knp-remoteproc-v3-4-5b09885c55a5@oss.qualcomm.com>
 
-make refcheckdocs reports a broken link in the Keystone remoteproc
-binding documentation.
+On Tue, Dec 23, 2025 at 01:13:50AM -0800, Jingyi Wang wrote:
+> From: Gokul krishna Krishnakumar <gokul.krishnakumar@oss.qualcomm.com>
+> 
+> Subsystems can be brought out of reset by entities such as bootloaders.
+> As the irq enablement could be later than subsystem bring up, the state
+> of subsystem should be checked by reading SMP2P bits and performing ping
+> test.
+> 
+> A new qcom_pas_attach() function is introduced. if a crash state is
+> detected for the subsystem, rproc_report_crash() is called. If the
+> subsystem is ready either at the first check or within a 5-second timeout
+> and the ping is successful, it will be marked as "attached". The ready
+> state could be set by either ready interrupt or handover interrupt.
+> 
+> If "early_boot" is set by kernel but "subsys_booted" is not completed
+> within the timeout, It could be the early boot feature is not supported
+> by other entities. In this case, the state will be marked as RPROC_OFFLINE
+> so that the PAS driver can load the firmware and start the remoteproc. As
+> the running state is set once attach function is called, the watchdog or
+> fatal interrupt received can be handled correctly.
+> 
+> Signed-off-by: Gokul krishna Krishnakumar <gokul.krishnakumar@oss.qualcomm.com>
+> Co-developed-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
+>  drivers/remoteproc/qcom_q6v5.c      | 87 ++++++++++++++++++++++++++++++++-
+>  drivers/remoteproc/qcom_q6v5.h      | 11 ++++-
+>  drivers/remoteproc/qcom_q6v5_adsp.c |  2 +-
+>  drivers/remoteproc/qcom_q6v5_mss.c  |  2 +-
+>  drivers/remoteproc/qcom_q6v5_pas.c  | 97 ++++++++++++++++++++++++++++++++++++-
+>  drivers/remoteproc/qcom_q6v5_wcss.c |  2 +-
+>  6 files changed, 195 insertions(+), 6 deletions(-)
+> 
+> [...]
+> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> index 52680ac99589..7e890e18dd82 100644
+> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> [...]
+> @@ -434,6 +440,85 @@ static unsigned long qcom_pas_panic(struct rproc *rproc)
+>  	return qcom_q6v5_panic(&pas->q6v5);
+>  }
+>  
+> +static int qcom_pas_attach(struct rproc *rproc)
+> +{
+> +	int ret;
+> +	struct qcom_pas *pas = rproc->priv;
+> +	bool ready_state;
+> +	bool crash_state;
+> +
+> +	pas->q6v5.running = true;
+> +	ret = irq_get_irqchip_state(pas->q6v5.fatal_irq,
+> +				    IRQCHIP_STATE_LINE_LEVEL, &crash_state);
+> +
+> +	if (ret)
+> +		goto disable_running;
+> +
+> +	if (crash_state) {
+> +		dev_err(pas->dev, "Sub system has crashed before driver probe\n");
+> +		rproc_report_crash(rproc, RPROC_FATAL_ERROR);
 
-Update the reference to point to the current YAML schema.
+Have you tested this case? From quick review of the code in
+remoteproc_core.c I'm skeptical if this will work correctly:
 
-Signed-off-by: Kathara Sasikumar <katharasasikumar007@gmail.com>
----
- .../devicetree/bindings/remoteproc/ti,keystone-rproc.txt        | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ 1. Remoteproc is in RPROC_DETACHED state during auto boot
+ 2. qcom_pas_attach() runs and calls rproc_report_crash(), then fails so
+    RPROC_DETACHED state remains
+ 3. rproc_crash_handler_work() sets RPROC_CRASHED and starts recovery
+ 4. rproc_boot_recovery() calls rproc_stop()
+ 5. rproc_stop() calls rproc_stop_subdevices(), but because the
+    remoteproc was never attached, the subdevices were never started.
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,keystone-rproc.txt b/Documentation/devicetree/bindings/remoteproc/ti,keystone-rproc.txt
-index 463a97c11eff..91f0a3b0c0b2 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,keystone-rproc.txt
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,keystone-rproc.txt
-@@ -66,7 +66,7 @@ The following are the mandatory properties:
- - kick-gpios: 		Should specify the gpio device needed for the virtio IPC
- 			stack. This will be used to interrupt the remote processor.
- 			The gpio device to be used is as per the bindings in,
--			Documentation/devicetree/bindings/gpio/gpio-dsp-keystone.txt
-+			Documentation/devicetree/bindings/gpio/ti,keystone-dsp-gpio.yaml
- 
- SoC-specific Required properties:
- ---------------------------------
--- 
-2.51.0
+In this situation, rproc_stop_subdevices() should not be called. I would
+expect you will need to make some minor changes to the remoteproc_core
+to support handling crashes during RPROC_DETACHED state.
 
+I might be reading the code wrong, but please make sure that you
+simulate this case at runtime and check that it works correctly.
+
+> +		ret = -EINVAL;
+> +		goto disable_running;
+> +	}
+> +
+> +	ret = irq_get_irqchip_state(pas->q6v5.ready_irq,
+> +				    IRQCHIP_STATE_LINE_LEVEL, &ready_state);
+> +
+> +	if (ret)
+> +		goto disable_running;
+> +
+> +	enable_irq(pas->q6v5.handover_irq);
+> +
+> +	if (unlikely(!ready_state)) {
+> +		/* Set a 5 seconds timeout in case the early boot is delayed */
+> +		ret = wait_for_completion_timeout(&pas->q6v5.subsys_booted,
+> +						  msecs_to_jiffies(EARLY_ATTACH_TIMEOUT_MS));
+> +
+
+Again, have you tested this case?
+
+As I already wrote in v2, I don't see how this case will work reliably
+in practice. How do you ensure that the handover resources will be kept
+on during the Linux boot process until the remoteproc has completed
+booting?
+
+Also, above you enable the handover_irq. Let's assume a handover IRQ
+does come in while you are waiting here. Then q6v5_handover_interrupt()
+will call q6v5->handover(q6v5); to disable the handover resources
+(clocks, power domains), but you never enabled those. I would expect
+that you get some bad reference count warnings in the kernel log.
+
+I would still suggest dropping this code entirely. As far as I
+understand the response from Aiqun(Maria) Yu [1], there is no real use
+case for this on current platforms. If you want to keep this, you would
+need to vote for the handover resources during probe() (and perhaps
+more, this case is quite tricky).
+
+Please test all your changes carefully in v4.
+
+Thanks,
+Stephan
+
+[1]: https://lore.kernel.org/linux-arm-msm/c15f083d-a2c1-462a-aad4-a72b36fbe1ac@oss.qualcomm.com/
 
