@@ -1,426 +1,808 @@
-Return-Path: <devicetree+bounces-249274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A7F1CDA6D0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 20:54:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 030B0CDA6D9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 20:54:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1AFF431112AD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 19:48:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1D7F0306BD7D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 19:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617AB34D384;
-	Tue, 23 Dec 2025 19:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8142A346E62;
+	Tue, 23 Dec 2025 19:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="bB7BrKBL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VBu12DG5";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aJWW4PTJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013014.outbound.protection.outlook.com [40.107.162.14])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805B234CFC0;
-	Tue, 23 Dec 2025 19:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766519258; cv=fail; b=Kn0L4ekPMZ0ih1hbV065bzn4zO+L+5IYMRBfZ6m0XA7rurpmamA0JTtV8p2IimtJHPnKpS5DLn6HJw6WGrtNsxlC1w7OqE+mV0UMd0OfjofNBFRsRZV0N9gIiAH7WeDfB2dGDLL5fTw7f8892qe/qOs1KfrPvCseAdySXcIS6bA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766519258; c=relaxed/simple;
-	bh=+A+FHIFRZIZc90VbyrQv5zI122yDa8Z063KFCDqT9tw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Ic9SchtqJHH/Pc+JYlERNrqkm6kORQer9i+tCTjavJoKqn2p1pauVuhwzxLgw2l9Jn7F0gA37v9xoZ9rhDVa+dvN8O67dbF77VI9KuCgKT4/s97ElCMeFJnYzOHR6D9Gt/om/4E3RJ4V+bKWjSX569OtO7QqW4by1c+288GNXRQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=bB7BrKBL; arc=fail smtp.client-ip=40.107.162.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rprXhOQ/G2aGY7x3dHsUSKEc9RnbyXKCYvBheAvsIDgrq9nDGWDsJVVFoGNm2J7jkKrNyGeTU1mszFpInE2hEMVwiGH9qimsEhiFdlskyyWwlP4OJZEhf18q5MiOpP4VACLZwOIdHcGgN0Hr1Kcmdm9j42VsaW8KmIBKBFEXLaFBcyiFRwLq3QYWFO2JCHA6ssnd9j2dGe9Vs4dWFY3+CJIFwNcq2mv4cLKVLk6uhWziPuqVqIxfk299s0X7W4euQGWYt5hqpEnnia2KeYy/qPJ9w8bRNm7/9tnWdQVBK7P0B9dN0M46xBE37v+nkECXXLGOkI9pEuTFHnhc37lCMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BtX68TGEJkFNRfGmmOMFayRFVNQkYoqFzxzC2fqF3AA=;
- b=h8Zbbyt0leDLMnhaIrM8MUUl4izwIu10ScdyrvhdrzkD+tIPL8v8F0PPmQzw45470KnZHexj6X3Pnsw5nLXCAnd56MqfZOM2J+OszaosQD6h2pBvpUrq1mE3tkf2qEGGD99dYpt1C903UGEj3hGC2XtkxkOlV2LOdQ3m290JsFLqsoS5Ctwod9SNUygLVug01B+yTN/CxkThyIWX2YY7Tg0FE15ZvUOyb+MgkK/ZcTFDShRmDZuH+Pr81cUO3wfq/U7B4OeF755c1/b7LsFH0oPrZdxXRLQt+ZdfbP+hkeDjGocsLCArswTqPYx5K060/Un0sCvO+EiLFdp1TNtdbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BtX68TGEJkFNRfGmmOMFayRFVNQkYoqFzxzC2fqF3AA=;
- b=bB7BrKBL7PxqjVRVGRrlalKA1pxaTvot/EbnYOSiZmFLWSNgv483OxLVEZgT6k2JXzYdFD6cBXICYkJxhdcZfgMg1YCCMYLLsHZSjt+VXYmK2IiJKa9+ZAtIv/mGWWMg97vNYLf1OgUzMPKPprr8gij/oTjPFjamKEn2YuqYO+coIzk2yFH0e0SilU2LKeVh449f38P7CLNVkFzbkdDqrDCKm80EGxMKtiXD/w9C6Yk33+n50DQjbeFrU4WWY6+HbhgKBixoZfezPfkXZ2yEWM4PBBcBjyfMhtLjTsarERJoi7rfdqSDOjZkjjuWIL3FLMXxcp1aM1fpQ2BqM3Up+g==
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by AM0PR04MB11854.eurprd04.prod.outlook.com (2603:10a6:20b:6fc::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.11; Tue, 23 Dec
- 2025 19:47:32 +0000
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::21bf:975e:f24d:1612]) by PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::21bf:975e:f24d:1612%5]) with mapi id 15.20.9456.008; Tue, 23 Dec 2025
- 19:47:31 +0000
-From: Shenwei Wang <shenwei.wang@nxp.com>
-To: Bjorn Andersson <andersson@kernel.org>
-CC: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mathieu Poirier
-	<mathieu.poirier@linaro.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng
- Fan <peng.fan@nxp.com>, "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-remoteproc@vger.kernel.org"
-	<linux-remoteproc@vger.kernel.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>, dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH v6 2/5] remoteproc: imx_rproc: Populate devices under
- "rpmsg" subnode
-Thread-Topic: [PATCH v6 2/5] remoteproc: imx_rproc: Populate devices under
- "rpmsg" subnode
-Thread-Index: AQHcdET6fGhxnfabg0KDsjwVOs2row==
-Date: Tue, 23 Dec 2025 19:47:31 +0000
-Message-ID:
- <PAXPR04MB9185AF0B5225CB8DD06F774289B5A@PAXPR04MB9185.eurprd04.prod.outlook.com>
-References: <20251212194341.966387-1-shenwei.wang@nxp.com>
- <20251212194341.966387-3-shenwei.wang@nxp.com>
- <3bbemd2vbsfss3sqpjpokytvvzweoqrtiqygffj5vqazqk3jyq@eobv6ruriiwb>
-In-Reply-To: <3bbemd2vbsfss3sqpjpokytvvzweoqrtiqygffj5vqazqk3jyq@eobv6ruriiwb>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|AM0PR04MB11854:EE_
-x-ms-office365-filtering-correlation-id: b4984bb8-0a94-49fe-ce58-08de425c1cb1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|366016|1800799024|19092799006|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?IkNSSzYtSdLfnSkNzl+I/efFsLqFydjjkK69gj2NNYuBL1OlAPfLUIkNOGmT?=
- =?us-ascii?Q?x4I+Omm7Ak5Z5OWQABq1u0Sua1+BkFqKOU98xYlEtpNLTuWmFoC7X5ZHSgZM?=
- =?us-ascii?Q?QxVASvwhh9afz2QhOZEMXHR95WzR4UoGggyhWEwjxWCuaMpTDi7nhGKf0rXU?=
- =?us-ascii?Q?1oXtUd+nfpsiBUdd4zlnlkbLSTiJN4dylepz91gSSkA2N0K13uCj343IUfQA?=
- =?us-ascii?Q?9sMwT/jO2Dg3W8d5xs6iaLzh621AlkSbvNnmWJ0ZOvnfsgHwmiENgAluYTzj?=
- =?us-ascii?Q?Owpw6FoQBZr9fYWNicy5m1VqBR4MHAlYITPz9HPzyMP/hqLzd+AK8P26SO9b?=
- =?us-ascii?Q?b8KrZQaBEsda55E3xtC0AY3xtyhIGpiclsKLiIktptNknKUeDufiMJijE5dg?=
- =?us-ascii?Q?JAXwi8gCWB9aoNgocyE2ZeThxA5teMphquCs14mc6jE59H9wkpmRhVW6fOdD?=
- =?us-ascii?Q?mWVcAYxNpL/PyB4a0fkk4xSqeNfhJqPswKqEzCvG9ul743tAOJppEwar3nxa?=
- =?us-ascii?Q?rIi08u77+4r0s/4DxC1NCWzVALZCgQLZxB8lZNnihboITTKppZjhRXH0jVFN?=
- =?us-ascii?Q?VYL11ShyklaStyvhwJU18/Pxg8Jj46/9JHfEk742cXkSsWMVX/R01x53pnU9?=
- =?us-ascii?Q?B0giin5qJb+xdBQCwcWyo9/v6HZIsbh1qLMK/8W+uFKo3dmeo23hU5n+NYRF?=
- =?us-ascii?Q?10apy/E1x+f2L8+sQdcUqtwtRld7ugImvbPCn5usA9seOaRzz+AN0Bd7mME0?=
- =?us-ascii?Q?UmEFEnzsd8HZxB3CNf3137vPdAVupYI+5zE72N11RqKSMZbp+q58Wf1XnUjN?=
- =?us-ascii?Q?8ETzEohJ38dPL38KCYXiy3VtHbkTtX5+REqcYEag/QH8VssKVuDtqD/RVUoa?=
- =?us-ascii?Q?S4LhcM1eayNebVIyz3yq4TJsExzE83z6gZRu0puX3aMxdFIeajkEeR4XCpb9?=
- =?us-ascii?Q?g1r+tOXYiD9ji3iSq/CQD04bc091B2vo4986qGjRoRsELCSSQd6vvb7bz9Pt?=
- =?us-ascii?Q?eXuxkDMm+3Uld5mIWNgqnGDxR4gehc4gk4ksS1m+3qbZahzDHQiICFZIZvoR?=
- =?us-ascii?Q?QO2FcBIdSBBaozCXE1JtdwErhgccCU0QFl081eI2aXx5dm/vcu4gbBpTB6HX?=
- =?us-ascii?Q?mLkTME/SbpAU974xUY1QMOKoqMhMbEsWw9Tq6p8+FUNfsobEOFqjJ7Elh05Z?=
- =?us-ascii?Q?Mes+TdJ20GhVGRNrr9iqNdu+MyJUgCNlJPTcAC4qS6+YNTcv7XLBtFV7s6t5?=
- =?us-ascii?Q?zau+MHL5AEdVa4aNykhmkjOAHprECCw1rBXf/ALo0wXTSLvD0gRiWhG2Pbuk?=
- =?us-ascii?Q?DQiLhvrE071CxPuYdZTsFfw5HVxK50on3yLlwM+sOy1BQ0V+ki3j/vIWLX32?=
- =?us-ascii?Q?fKxzWlCBq2EfSWoqkwDK+3Nww28qkiz8FU865c2SC/yvQ7nIe/XsuM01xQUN?=
- =?us-ascii?Q?ij0pzMYiNPIU+rbgAzT4rPqLWbKEHE9TyInuo7AtdYLq/4eu3X9p+QhFIK8Q?=
- =?us-ascii?Q?0Awu5hrp8p3aaZGveqJ32p6JpvAIp5bNQ8QS?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(19092799006)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?GFZS6hgUkQ3wXZX4BF3SFoS8s6Nv6K0X183xADQeQoqstBuLpNgdWzJBMtxU?=
- =?us-ascii?Q?SlF/+G57BvUQ3WIB1TZAhPFQIjF01FDK3L/2z4YsQLBdNxQzMxBeDae7oPSf?=
- =?us-ascii?Q?KYcG7Q/3q/b8eTKOvkl4jDEQIAF6lhfvcMrsgjbDWRq9IFnVWSci8LKz6dnO?=
- =?us-ascii?Q?8JVqr1Hr098yg9dRDxJK/g8s+PLCB8Y385fZr9azEjAYfK7y+a/Og9LNCJ6h?=
- =?us-ascii?Q?nvx+kmC/vfXZhEP0jTdbtclU1wigQesZNr78cnf9x1QdGLHS3BvoWN1YY4Sp?=
- =?us-ascii?Q?y5Qof0AWD/4lCKSSkI9xAvMdhNwB1r8vugiudup7NCU0EZ/aTfATA5l6hpzJ?=
- =?us-ascii?Q?oJB8Juz+slI8VJOW/KpQ8AMt+m692IP3j90lUELlVXhYhTjqlq1V7MtJ79Ux?=
- =?us-ascii?Q?X+2ugDgZDOAeFM/LQXLUH28NkqCjOvaC5XfdVJ4LbtCowkvt0AiRlAaE8REh?=
- =?us-ascii?Q?B+avcohqsn6LchwEB9cq+G9FMAfKnLp5dq85V+nezl+xzGIL3hmH1ZNfAWsW?=
- =?us-ascii?Q?24wNTdF68XtdgP3nJoLjAf8MQjZjLG2c4mlF7CMxoWCs0xbzcBmXytIF/wSI?=
- =?us-ascii?Q?1xS5Rj6QEn9zlkQUcOOcuUqKgWkh8mB5YzfEYqMR2Zg5JSzFsl7lu/XC7ar/?=
- =?us-ascii?Q?itt9Mzzrde/sweCVuCO9CqUHi1Y8wecPpI0XczKQOZK7Fs0gNLS1Dh+TJOjH?=
- =?us-ascii?Q?DwEF6g92PWh8ZeWVQb6QU+3dFZv19fpOI0TEGFrLYj0OlK+SeGcOQcWITZn2?=
- =?us-ascii?Q?oZ0UfAV5U7xoqdRellzwvrY8kEKHFZI9sVqP3CZMxWF5HbxDSoeBwiDTPG2A?=
- =?us-ascii?Q?ErIdSvFjRtiHJkqGpl5GTAaHuSj6NF2tu6Fgw+dPs8jul4gFc8qDHibP9ZHM?=
- =?us-ascii?Q?ADK6WK3FG8sJP5mqMv8awkvMazUZpvuy+csKdldnJVJeO0bW+ZU2LCaPnZ6g?=
- =?us-ascii?Q?269GblQxFeSZumlpQqET0y0R2YzFC+D/3hp91Lh/JH0NqPIwFQa9K/WbFtT/?=
- =?us-ascii?Q?4JBmCtcZ9BvTvebhkuEjjwkbta0QN9PFdN68ijSgfFTOz86AbL/iAtAjjwMD?=
- =?us-ascii?Q?OdYRvwN+IeoaoBGnHV6FCwlIJ2eJLXvP23DXMesHu8GnVK+mRZszfUfggEwi?=
- =?us-ascii?Q?KKjQ9F0K4mI+Ay2w3bTkroY+iP//RSc+H4uWu85DKHtCAEOcJgNAoaV8GwdM?=
- =?us-ascii?Q?9qBUIzyfNxck0RIybzaqDEkj/zTdqFvCYDgSZoUZLMhFGJtXFI/iEgI6sFIF?=
- =?us-ascii?Q?tWO5WAZ3zl09tPZnhs2qSq4SaUYg73ZkW1WpYnZK89eapQHMDmLiWjJDLEIU?=
- =?us-ascii?Q?T51R/9CKrdI1FZMFbPEBKcqBJQD+uZiFLxZBTMvtStqpg8zQL67wRkg5a8IZ?=
- =?us-ascii?Q?7e6O/A9LR27kTKF9u9L4GULJKdu16JoA/YYiPqufYVK2q/QG/nq8eEFzZpTN?=
- =?us-ascii?Q?bXNJi2WZlTdrNehYojWK3N7+tnm35vbZgVbhGqjhbC+zh7h620rcUsS/vap7?=
- =?us-ascii?Q?UOObolzgnFTIEejBeq7hQMBezWgl/tTTmIjXNHA3psBtvoJiPF5Hs2cWOgOI?=
- =?us-ascii?Q?YUp6lc76DwPJBTy4NUW+O3yg7HOhJAUwfkFEE/chbEdgw1MUmLN8G8P0jlZV?=
- =?us-ascii?Q?EEq5KUtJv+AMZO3G+Sebwxp2iCjwQEdjtF8zNIKFLCe8wWE1wA6sHfZESm/y?=
- =?us-ascii?Q?BsyoW2AhomC2oRB9pUcYojJa7Hug/Mt5hj3k4ySdb/0LNFP2?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52DAA225409
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 19:49:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766519371; cv=none; b=KAziae01XIviBIvqjXVQhjZd4tKu9tCzggUVHyhTJAcTTFJCmChZozz4+59zEg2wqXxa6PtnLW8wlfkxbw7hDlVrzc4Tv4N15Fck91C9vTP1oeDrpUPX0M6EBUGpyuyLCN/Ceh/I2Ei/V83Shz7m+QRCluGdN21T4+IdlhIW6A4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766519371; c=relaxed/simple;
+	bh=pT6vyW+MdjFjETtDMxJeher2rMw052fcm1Wp09QqUss=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mDWbhEPaQ4TE2He5ALe9oJ8JHMolxvyw9O/sDQSNDeYCfe4W44M3kWIr64IrMD5c4EIFSaQRFWMesKwYZhqW562eliQ4k9Hc5ssZHduHiV7Nfop0vTSUtsCHjfRBdxcE0XxQBxZTY/PpbKKjUzx4SgABDxXdfdxMoeUFRaUjPuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VBu12DG5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aJWW4PTJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BNFr0k74133842
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 19:49:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=lmeHCaUPtU8kvX1wbxqcDrpB
+	/ByTfQsS8t//LbKXEhM=; b=VBu12DG5QxT4a6HlqEBRplTQhDk4xz9PkRS1m+nz
+	D/t9VJtDyi5YDAXDVE7B8RoCOkQSX1zUjyGUJWucae5BQ5PpKVDtwsOgsWBSzS2a
+	AYlD5upc7ZwNpPxeVQtslpKMVi8DWYVplIAHWszGXxGF2RNFblkfTnK9W0TNaF0N
+	HWXSpe6Kj2yv6g+0Ypu+dnSgDF+tPZbbuiTT1MHXyrW1ogh2iJg/MWuicZnQaWBD
+	F8iA8Je1n3gSJnPwZOp/nwVW46HD+yjfkvqqracVY2InFKD0gcl7phBrre1Msh5K
+	S3Te42kiSNEsl7TOomckV13IeVavLp//dwz5Sc8cwq1VFw==
+Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7x46rr0p-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 19:49:28 +0000 (GMT)
+Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-5de03352dafso9480852137.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 11:49:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766519367; x=1767124167; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lmeHCaUPtU8kvX1wbxqcDrpB/ByTfQsS8t//LbKXEhM=;
+        b=aJWW4PTJbdcf6wNMddbvB2S73OxO1m2NsJ01UxCftVScwQYnzAvpXxX5nDgNtscXi/
+         pwCxqvWxzsOBxJLdlPlyOOIHjtxhnbHU3Q6ZJi1ICnpWMTaQh8sgJm347xtlP7DRU76T
+         hKLzTKh851PlhlkWARuouNORxxwFngqmfbCc/EhYlhrfABoHNkrRnaLDDTEjR1hX+N5f
+         T3kpRH7FMKLbCJFs9a0nF4qAvR6dR6TVYKt5dosbRDICui57fJGT3f8ln3qcsnxPlbsT
+         rGEiYqltkWps53KkGvOv/XM9zLCXDh8kjxNK7kmh8ommv25bDxb9b4kmAOo9ALCFXqwg
+         1+UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766519367; x=1767124167;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lmeHCaUPtU8kvX1wbxqcDrpB/ByTfQsS8t//LbKXEhM=;
+        b=Neh7J2UIS8MMbHYiCE3oaKuepSwUAGAQnb2W0l2Yh2lAkMEvVsiVJ2ngkx40A/B45f
+         9mXgBMDMUKZPH6FumWOZNExwBQ/bq3Yk8WzeU3ZFDKL1EUhrx2jLhF5TPRlAMkz2Jo7x
+         Ubvql+4pFahcPfuzqRkKaMECFFLmWk2/Oy81mlj39tOmKKJaVooEWgnI1918vXo0lKY2
+         59iSP3YJE4o34J7lVE9WmL97yCFrvdcMNL454rTMTUwqw66hv7+nh9z+5ak6GOQHQu1b
+         kkDTBQV8yQrdvTNsfFTtqg/eDnywCCr4G0ihM/r7US1WBtpx9BL37q4pvonC3mLtiNKa
+         c6oQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV/Qx6Ov6AF9QidKVAuaoI/bhnt9dDEhp33H+e7D5rzUwovIfWn3Q0J1MmeX6LoRVJPtLigXXK03qLM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZ+8g1q71BbsL99vr9pyWXdzjUG70hpgW8kRcS7wddxrRp8RND
+	94haYuOpns84QzUfr5LYoFtpxvaK2AFRjxCu0fMX+VM2jzfYF2kqnlDXouwCo6DhzfsrfgBI+ZU
+	QiMVwhb44lpnmz6QBBQqHH2wjgifvL17mEQl0lMMki29dmX6QjabZopJQjkPavZU7
+X-Gm-Gg: AY/fxX7+fOhMrIxK1fs5S/PpyCIENg7/RJp88+xSdsGu2JtMhuk6vQLl3Y3JXD8GvWt
+	YdXKL8y7HglHSLfEkdCaePZ2ixjOZ4oMzI5bJeZzKss3ci3pIjLMM1lpAVVGA3bvlabpPxAGfyS
+	JgH8rMcqpzxskx/ysl4e73nsNY7zMhcSs4bq7V+IZklMweDy0kTmgZkrJPU38XDF9MoKoGDpjRp
+	q4U4wdn8lt6MDATVIXS0E9JebGViCHdlvGBmfp0Vq6Q2HVraJ7vFq2986UtNhUOYyK0iFsZdcIc
+	Kyz8Ns4qvY6b5VBgHlsZSMnKPk6bbNm1ZLYJZ1VkGhFarnF1FFZRNCNWfGmen65/e9FHAep9uiO
+	d4EP0qaHaszL+Lpr5rB0GYQs6soT1ZCOsA2F2FjoVBKap4KLJyikSVz8eyYajSBXCKuRgT/ykoK
+	gUVN8qQJzsHVHlrqvw2FVRpvM=
+X-Received: by 2002:a05:6102:570c:b0:5dd:8992:e38d with SMTP id ada2fe7eead31-5eb1a617e8cmr5224126137.7.1766519367002;
+        Tue, 23 Dec 2025 11:49:27 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH65g8lIWYvUtUuYzsMxBLkJcUhEV5fwMvQrkZ/+tN04fByu75LGfphlI3bKvX5KbnTMVbJ/w==
+X-Received: by 2002:a05:6102:570c:b0:5dd:8992:e38d with SMTP id ada2fe7eead31-5eb1a617e8cmr5224102137.7.1766519366459;
+        Tue, 23 Dec 2025 11:49:26 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38122539ae3sm34329901fa.21.2025.12.23.11.49.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Dec 2025 11:49:24 -0800 (PST)
+Date: Tue, 23 Dec 2025 21:49:21 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, lukasz.luba@arm.com,
+        konradybcio@kernel.org, amitk@kernel.org, mani@kernel.org,
+        casey.connolly@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v1 4/8] thermal: qcom: add qmi-cooling driver
+Message-ID: <gp5alhoqcty3nqj5jgm33nzytjtqp35pq6ycefxyvubqoggjqk@ndip4esdd6oi>
+References: <20251223123227.1317244-1-gaurav.kohli@oss.qualcomm.com>
+ <20251223123227.1317244-5-gaurav.kohli@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4984bb8-0a94-49fe-ce58-08de425c1cb1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Dec 2025 19:47:31.8407
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +iTagWxWczxWf6gSmFCPL99K6mqwT4FMcNlqfTpZVOg6FRoQLuxXz9C6DG2H2vNB2DgfgVCxjRx+4it/F+pbUQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB11854
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251223123227.1317244-5-gaurav.kohli@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: NlCFFJiYEIeXw2oj_tqloBljUHRhmw4_
+X-Proofpoint-GUID: NlCFFJiYEIeXw2oj_tqloBljUHRhmw4_
+X-Authority-Analysis: v=2.4 cv=aOf9aL9m c=1 sm=1 tr=0 ts=694af248 cx=c_pps
+ a=P2rfLEam3zuxRRdjJWA2cw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=jynKgnEbydhz-bdiqXEA:9 a=CjuIK1q_8ugA:10
+ a=ODZdjJIeia2B_SHc_B0f:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDE2NSBTYWx0ZWRfXwI+7O0qA14OF
+ APyFk1O13wWgzaW80WMS+FSA+Z2/SUCfg0Vn7MsPc3mFEDZHgt7zx90iZi6w812ixehrMuf5qKK
+ wMJ8Fro2b4w/JXUtvaN18ViVOD1YD+/OTQXcRZR8x+3Gu+xQO+lpofAvACW+jed6qUr8Br0RENp
+ ujIsXyI6094p6If817fcG31noSa9a6scE8gysxo9VkYsID5NWQWzUoAQm+VLYjsaqYfTradS26o
+ zpqUjNiKm3WEHcX1982eXOxqmHpqbROzkfRm/VOgMv0xjdjXNkXSEJZUXXzl/oMY3zmjpVjirNN
+ ldbrYe+Sy48WZp6f8wMkK6AbMjemioIApaEnfzY4fzx/X8tnkKr9MDERz00Y2tfzN4HhlJj2D0H
+ 7XWvhx06hBTVBm9ez6+ZuPUt9JpZ1CQmzbkkpvun52Uyh7I7voxrZdmPWGPjXqqH4IvMqcx6MpP
+ 5NxUAHc7BQRvO5ZxIVw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-23_04,2025-12-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 suspectscore=0 spamscore=0 bulkscore=0
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2512230165
+
+On Tue, Dec 23, 2025 at 06:02:23PM +0530, Gaurav Kohli wrote:
+> From: Casey Connolly <casey.connolly@linaro.org>
+> 
+> The Thermal Mitigation Device (TMD) service exposes various platform
+> specific thermal mitigations available on remote subsystems (ie the
+> modem and cdsp). The service is exposed via the QMI messaging
+> interface, usually over the QRTR transport.
+> 
+> Qualcomm QMI-based TMD cooling devices are used to mitigate thermal
+> conditions across multiple remote subsystems. These devices operate
+> based on junction temperature sensors (TSENS) associated with thermal
+> zones for each subsystem.
+> 
+> Co-developed-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
+> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+> ---
+>  drivers/soc/qcom/Kconfig           |  13 +
+>  drivers/soc/qcom/Makefile          |   1 +
+>  drivers/soc/qcom/qmi-cooling.c     | 498 +++++++++++++++++++++++++++++
+>  drivers/soc/qcom/qmi-cooling.h     | 428 +++++++++++++++++++++++++
+>  drivers/thermal/qcom/qmi-cooling.h | 428 +++++++++++++++++++++++++
+>  5 files changed, 1368 insertions(+)
+>  create mode 100644 drivers/soc/qcom/qmi-cooling.c
+>  create mode 100644 drivers/soc/qcom/qmi-cooling.h
+>  create mode 100644 drivers/thermal/qcom/qmi-cooling.h
+> 
+> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+> index 2caadbbcf830..905a24b42fe6 100644
+> --- a/drivers/soc/qcom/Kconfig
+> +++ b/drivers/soc/qcom/Kconfig
+> @@ -124,6 +124,19 @@ config QCOM_PMIC_GLINK
+>  	  Say yes here to support USB-C and battery status on modern Qualcomm
+>  	  platforms.
+>  
+> +config QCOM_QMI_COOLING
+> +	tristate "Qualcomm QMI cooling drivers"
+> +	depends on QCOM_RPROC_COMMON
+> +	depends on ARCH_QCOM || COMPILE_TEST
+> +	select QCOM_QMI_HELPERS
+> +	help
+> +	   This enables the remote subsystem cooling devices. These cooling
+> +	   devices will be used by Qualcomm chipset to place various remote
+> +	   subsystem mitigations like remote processor passive mitigation,
+> +	   remote subsystem voltage restriction at low temperatures etc.
+> +	   The QMI cooling device will interface with remote subsystem
+> +	   using Qualcomm remoteproc interface.
+> +
+>  config QCOM_QMI_HELPERS
+>  	tristate
+>  	depends on NET
+> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+> index b7f1d2a57367..b6728f54944b 100644
+> --- a/drivers/soc/qcom/Makefile
+> +++ b/drivers/soc/qcom/Makefile
+> @@ -14,6 +14,7 @@ obj-$(CONFIG_QCOM_PMIC_GLINK)	+= pmic_glink.o
+>  obj-$(CONFIG_QCOM_PMIC_GLINK)	+= pmic_glink_altmode.o
+>  obj-$(CONFIG_QCOM_PMIC_PDCHARGER_ULOG)	+= pmic_pdcharger_ulog.o
+>  CFLAGS_pmic_pdcharger_ulog.o	:=  -I$(src)
+> +obj-$(CONFIG_QCOM_QMI_COOLING) += qmi-cooling.o
+>  obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
+>  qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
+>  obj-$(CONFIG_QCOM_RAMP_CTRL)	+= ramp_controller.o
+> diff --git a/drivers/soc/qcom/qmi-cooling.c b/drivers/soc/qcom/qmi-cooling.c
+> new file mode 100644
+> index 000000000000..1a6afcb96bf6
+> --- /dev/null
+> +++ b/drivers/soc/qcom/qmi-cooling.c
+> @@ -0,0 +1,498 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2017, The Linux Foundation
+> + * Copyright (c) 2025, Linaro Limited
+> + *
+> + * QMI Thermal Mitigation Device (TMD) client driver.
+> + * This driver provides an in-kernel client to handle hot and cold thermal
+> + * mitigations for remote subsystems (modem and DSPs) running the TMD service.
+> + * It doesn't implement any handling of reports from remote subsystems.
+> + */
+> +
+> +#include <linux/cleanup.h>
+> +#include <linux/err.h>
+> +#include <linux/module.h>
+> +#include <linux/net.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/remoteproc/qcom_rproc.h>
+> +#include <linux/remoteproc_cooling.h>
+> +#include <linux/slab.h>
+> +#include <linux/soc/qcom/qmi.h>
+> +#include <linux/thermal.h>
+> +
+> +#include "qmi-cooling.h"
+> +
+> +#define MODEM0_INSTANCE_ID	0x0
+> +#define ADSP_INSTANCE_ID	0x1
+> +#define CDSP_INSTANCE_ID	0x43
+
+Will CDSP1 also use instance ID? What are instance IDs for GPDSP?
+
+> +#define SLPI_INSTANCE_ID	0x53
+> +
+> +#define QMI_TMD_RESP_TIMEOUT msecs_to_jiffies(100)
+> +
+> +/**
+> + * struct qmi_tmd_client - TMD client state
+> + * @dev:	Device associated with this client
+> + * @name:	Friendly name for the remote TMD service
+> + * @handle:	QMI connection handle
+> + * @mutex:	Lock to synchronise QMI communication
+> + * @id:		The QMI TMD service instance ID
+> + * @cdev_list:	The list of cooling devices (controls) enabled for this instance
+> + * @svc_arrive_work: Work item for initialising the client when the TMD service
+> + *		     starts.
+> + * @connection_active: Whether or not we're connected to the QMI TMD service
+> + */
+> +struct qmi_tmd_client {
+> +	struct device *dev;
+> +	const char *name;
+> +	struct qmi_handle handle;
+> +	struct mutex mutex;
+> +	u32 id;
+> +	struct list_head cdev_list;
+> +	struct work_struct svc_arrive_work;
+> +	bool connection_active;
+> +};
+> +
+> +/**
+> + * struct qmi_tmd - A TMD cooling device
+> + * @np:		OF node associated with this control
+> + * @type:	The control type (exposed via sysfs)
+> + * @qmi_name:	The common name of this control shared by the remote subsystem
+> + * @rproc_cdev:	Remote processor cooling device handle
+> + * @cur_state:	The current cooling/warming/mitigation state
+> + * @max_state:	The maximum state
+> + * @client:	The TMD client instance this control is associated with
+> + */
+> +struct qmi_tmd {
+> +	struct device_node *np;
+> +	const char *type;
+> +	char qmi_name[QMI_TMD_MITIGATION_DEV_ID_LENGTH_MAX_V01 + 1];
+> +	struct list_head node;
+> +	struct remoteproc_cdev *rproc_cdev;
+> +	unsigned int cur_state;
+> +	unsigned int max_state;
+> +	struct qmi_tmd_client *client;
+> +};
+> +
+> +/**
+> + * struct qmi_instance_id - QMI instance match data
+> + * @id:		The QMI instance ID
+> + * @name:	Friendly name for this instance
+> + */
+> +struct qmi_instance_data {
+> +	u32 id;
+> +	const char *name;
+> +};
+> +
+> +/* Notify the remote subsystem of the requested cooling state */
+> +static int qmi_tmd_send_state_request(struct qmi_tmd *tmd)
+> +{
+> +	struct tmd_set_mitigation_level_resp_msg_v01 tmd_resp = { 0 };
+> +	struct tmd_set_mitigation_level_req_msg_v01 req = { 0 };
+> +	struct qmi_tmd_client *client;
+> +	struct qmi_txn txn;
+> +	int ret = 0;
+> +
+> +	client = tmd->client;
+> +
+> +	guard(mutex)(&client->mutex);
+> +
+> +	/*
+> +	 * This function is called by qmi_set_cur_state() which does not know if
+> +	 * the QMI service is actually online. If it isn't then we noop here.
+> +	 * The state is cached in tmd->cur_state and will be broadcast via
+> +	 * qmi_tmd_init_control() when the service comes up.
+> +	 */
+> +	if (!client->connection_active)
+> +		return 0;
+> +
+> +	strscpy(req.mitigation_dev_id.mitigation_dev_id, tmd->qmi_name,
+> +		QMI_TMD_MITIGATION_DEV_ID_LENGTH_MAX_V01 + 1);
+> +	req.mitigation_level = tmd->cur_state;
+> +
+> +	ret = qmi_txn_init(&client->handle, &txn,
+> +			   tmd_set_mitigation_level_resp_msg_v01_ei, &tmd_resp);
+> +	if (ret < 0) {
+> +		dev_err(client->dev, "qmi set state %d txn init failed for %s ret %d\n",
+> +			tmd->cur_state, tmd->type, ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = qmi_send_request(&client->handle, NULL, &txn,
+> +			       QMI_TMD_SET_MITIGATION_LEVEL_REQ_V01,
+> +			       TMD_SET_MITIGATION_LEVEL_REQ_MSG_V01_MAX_MSG_LEN,
+> +			       tmd_set_mitigation_level_req_msg_v01_ei, &req);
+> +	if (ret < 0) {
+> +		dev_err(client->dev, "qmi set state %d txn send failed for %s ret %d\n",
+> +			tmd->cur_state, tmd->type, ret);
+> +		qmi_txn_cancel(&txn);
+> +		return ret;
+> +	}
+> +
+> +	ret = qmi_txn_wait(&txn, QMI_TMD_RESP_TIMEOUT);
+> +	if (ret < 0) {
+> +		dev_err(client->dev, "qmi set state %d txn wait failed for %s ret %d\n",
+> +			tmd->cur_state, tmd->type, ret);
+> +		return ret;
+> +	}
+> +
+> +	if (tmd_resp.resp.result != QMI_RESULT_SUCCESS_V01) {
+> +		ret = -tmd_resp.resp.result;
+> +		dev_err(client->dev, "qmi set state %d NOT success for %s ret %d\n",
+> +			tmd->cur_state, tmd->type, ret);
+> +		return ret;
+> +	}
+> +
+> +	dev_dbg(client->dev, "Requested state %d/%d for %s\n", tmd->cur_state,
+> +		tmd->max_state, tmd->type);
+> +
+> +	return 0;
+> +}
+> +
+> +static int qmi_get_max_level(void *devdata, unsigned long *level)
+> +{
+> +	struct qmi_tmd *tmd = devdata;
+> +
+> +	if (!tmd)
+> +		return -EINVAL;
+> +
+> +	*level = tmd->max_state;
+> +
+> +	return 0;
+> +}
+> +
+> +static int qmi_get_cur_level(void *devdata, unsigned long *level)
+> +{
+> +	struct qmi_tmd *tmd = devdata;
+> +
+> +	if (!tmd)
+> +		return -EINVAL;
+> +
+> +	*level = tmd->cur_state;
+> +
+> +	return 0;
+> +}
+> +
+> +static int qmi_set_cur_level(void *devdata, unsigned long level)
+> +{
+> +	struct qmi_tmd *tmd = devdata;
+> +
+> +	if (!tmd)
+> +		return -EINVAL;
+> +
+> +	if (level > tmd->max_state)
+> +		return -EINVAL;
+> +
+> +	if (tmd->cur_state == level)
+> +		return 0;
+> +
+> +	tmd->cur_state = level;
+> +
+> +	return qmi_tmd_send_state_request(tmd);
+> +}
+> +
+> +static const struct remoteproc_cooling_ops qmi_rproc_ops = {
+> +	.get_max_level = qmi_get_max_level,
+> +	.get_cur_level = qmi_get_cur_level,
+> +	.set_cur_level = qmi_set_cur_level,
+> +};
+> +
+> +static int qmi_register_cooling_device(struct qmi_tmd *tmd)
+> +{
+> +	struct remoteproc_cdev *rproc_cdev;
+> +
+> +	rproc_cdev = remoteproc_cooling_register(tmd->np,
+> +						 tmd->type,
+> +						 &qmi_rproc_ops,
+> +						 tmd);
+> +
+> +	if (IS_ERR(rproc_cdev))
+> +		return dev_err_probe(tmd->client->dev, PTR_ERR(rproc_cdev),
+> +				     "Failed to register cooling device %s\n",
+> +				     tmd->qmi_name);
+
+This is being executed outside of the probe() path. What is the point of
+calling dev_err_probe() here?
+
+> +
+> +	tmd->rproc_cdev = rproc_cdev;
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Init a single TMD control by registering a cooling device for it, or
+> + * synchronising state with the remote subsystem if recovering from a service
+> + * restart. This is called when the TMD service starts up.
+> + */
+> +static int qmi_tmd_init_control(struct qmi_tmd_client *client, const char *label,
+> +				u8 max_state)
+> +{
+> +	struct qmi_tmd *tmd = NULL;
+> +
+> +	list_for_each_entry(tmd, &client->cdev_list, node)
+> +		if (!strncasecmp(tmd->qmi_name, label,
+> +				 QMI_TMD_MITIGATION_DEV_ID_LENGTH_MAX_V01 + 1))
+> +			goto found;
+> +
+> +	dev_dbg(client->dev,
+> +		"TMD '%s' available in firmware but not specified in DT\n",
+> +		label);
+> +	return 0;
+> +
+> +found:
+> +	tmd->max_state = max_state;
+> +	/*
+> +	 * If the cooling device already exists then the QMI service went away and
+> +	 * came back. So just make sure the current cooling device state is
+> +	 * reflected on the remote side and then return.
+> +	 */
+> +	if (tmd->rproc_cdev)
+> +		return qmi_tmd_send_state_request(tmd);
+> +
+> +	return qmi_register_cooling_device(tmd);
+> +}
+> +
+> +/*
+> + * When the QMI service starts up on a remote subsystem this function will fetch
+> + * the list of TMDs on the subsystem, match it to the TMDs specified in devicetree
+> + * and call qmi_tmd_init_control() for each
+> + */
+> +static void qmi_tmd_svc_arrive(struct work_struct *work)
+> +{
+> +	struct qmi_tmd_client *client =
+> +		container_of(work, struct qmi_tmd_client, svc_arrive_work);
+> +
+> +	struct tmd_get_mitigation_device_list_req_msg_v01 req = { 0 };
+> +	struct tmd_get_mitigation_device_list_resp_msg_v01 *resp __free(kfree);
+> +	int ret = 0, i;
+> +	struct qmi_txn txn;
+> +
+> +	/* resp struct is 1.1kB, allocate it on the heap. */
+> +	resp = kzalloc(sizeof(*resp), GFP_KERNEL);
+> +	if (!resp)
+> +		return;
+> +
+> +	/* Get a list of TMDs supported by the remoteproc */
+> +	scoped_guard(mutex, &client->mutex) {
+> +		ret = qmi_txn_init(&client->handle, &txn,
+> +				tmd_get_mitigation_device_list_resp_msg_v01_ei, resp);
+> +		if (ret < 0) {
+> +			dev_err(client->dev,
+> +				"Transaction init error for instance_id: %#x ret %d\n",
+> +				client->id, ret);
+> +			return;
+> +		}
+> +
+> +		ret = qmi_send_request(&client->handle, NULL, &txn,
+> +				QMI_TMD_GET_MITIGATION_DEVICE_LIST_REQ_V01,
+> +				TMD_GET_MITIGATION_DEVICE_LIST_REQ_MSG_V01_MAX_MSG_LEN,
+> +				tmd_get_mitigation_device_list_req_msg_v01_ei, &req);
+> +		if (ret < 0) {
+> +			qmi_txn_cancel(&txn);
+> +			return;
+> +		}
+> +
+> +		ret = qmi_txn_wait(&txn, QMI_TMD_RESP_TIMEOUT);
+
+So, we are waiting with the mutex held. What if the remote proc crashes
+and restarts _while_ we are waiting here?
+
+> +		if (ret < 0) {
+> +			dev_err(client->dev, "Transaction wait error for client %#x ret:%d\n",
+> +				client->id, ret);
+> +			return;
+> +		}
+> +		if (resp->resp.result != QMI_RESULT_SUCCESS_V01) {
+> +			ret = resp->resp.result;
+> +			dev_err(client->dev, "Failed to get device list for client %#x ret:%d\n",
+> +				client->id, ret);
+> +			return;
+> +		}
+> +
+> +		client->connection_active = true;
+> +	}
+> +
+> +	for (i = 0; i < resp->mitigation_device_list_len; i++) {
+> +		struct tmd_mitigation_dev_list_type_v01 *device =
+> +			&resp->mitigation_device_list[i];
+> +
+> +		ret = qmi_tmd_init_control(client,
+> +					   device->mitigation_dev_id.mitigation_dev_id,
+> +					   device->max_mitigation_level);
+> +		if (ret)
+> +			break;
+> +	}
+> +}
+> +
+> +static void thermal_qmi_net_reset(struct qmi_handle *qmi)
+> +{
+> +	struct qmi_tmd_client *client = container_of(qmi, struct qmi_tmd_client, handle);
+> +	struct qmi_tmd *tmd = NULL;
+> +
+> +	list_for_each_entry(tmd, &client->cdev_list, node) {
+> +		qmi_tmd_send_state_request(tmd);
+> +	}
+
+Useless braces, please drop.
+
+> +}
+> +
+> +static void thermal_qmi_del_server(struct qmi_handle *qmi, struct qmi_service *service)
+> +{
+> +	struct qmi_tmd_client *client = container_of(qmi, struct qmi_tmd_client, handle);
+> +
+> +	scoped_guard(mutex, &client->mutex)
+> +		client->connection_active = false;
+> +}
+> +
+> +static int thermal_qmi_new_server(struct qmi_handle *qmi, struct qmi_service *service)
+> +{
+> +	struct qmi_tmd_client *client = container_of(qmi, struct qmi_tmd_client, handle);
+> +	struct sockaddr_qrtr sq = { AF_QIPCRTR, service->node, service->port };
+
+C99, please.
+
+> +
+> +	scoped_guard(mutex, &client->mutex)
+> +		kernel_connect(qmi->sock, (struct sockaddr_unsized *)&sq, sizeof(sq), 0);
+> +
+> +	queue_work(system_highpri_wq, &client->svc_arrive_work);
+
+Why?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static struct qmi_ops thermal_qmi_event_ops = {
+> +	.new_server = thermal_qmi_new_server,
+> +	.del_server = thermal_qmi_del_server,
+> +	.net_reset = thermal_qmi_net_reset,
+> +};
+> +
+> +static void qmi_tmd_cleanup(struct qmi_tmd_client *client)
+> +{
+> +	struct qmi_tmd *tmd, *c_next;
+> +
+> +	guard(mutex)(&client->mutex);
+> +
+> +	client->connection_active = false;
+> +
+> +	qmi_handle_release(&client->handle);
+> +	cancel_work(&client->svc_arrive_work);
+> +	list_for_each_entry_safe(tmd, c_next, &client->cdev_list, node) {
+> +		if (tmd->rproc_cdev)
+> +			remoteproc_cooling_unregister(tmd->rproc_cdev);
+> +
+> +		list_del(&tmd->node);
+> +	}
+> +}
+> +
+> +/* Parse the controls and allocate a qmi_tmd for each of them */
+> +static int qmi_tmd_alloc_cdevs(struct qmi_tmd_client *client)
+> +{
+> +	struct device *dev = client->dev;
+> +	struct qmi_tmd *tmd;
+> +	struct device_node *subnode, *node = dev->of_node;
+> +	int ret;
+> +
+> +	for_each_available_child_of_node(node, subnode) {
+
+Hmm...
+
+> +		const char *name;
+> +
+> +		tmd = devm_kzalloc(dev, sizeof(*tmd), GFP_KERNEL);
+> +		if (!tmd)
+> +			return dev_err_probe(client->dev, -ENOMEM,
+> +					     "Couldn't allocate tmd\n");
+> +
+> +		tmd->type = devm_kasprintf(client->dev, GFP_KERNEL, "%s:%s",
+> +						client->name, subnode->name);
+> +		if (!tmd->type)
+> +			return dev_err_probe(dev, -ENOMEM,
+> +					     "Couldn't allocate cooling device name\n");
+> +
+> +		if (of_property_read_string(subnode, "label", &name)) {
+> +			return dev_err_probe(client->dev, -EINVAL,
+> +					     "Failed to parse dev name for %s\n",
+> +					     subnode->name);
+> +		}
+> +
+> +		ret = strscpy(tmd->qmi_name, name,
+> +			      QMI_TMD_MITIGATION_DEV_ID_LENGTH_MAX_V01 + 1);
+> +		if (ret == -E2BIG) {
+> +			return dev_err_probe(dev, -EINVAL, "TMD label %s is too long\n",
+> +					     name);
+> +		}
+> +
+> +		tmd->client = client;
+> +		tmd->np = subnode;
+> +		tmd->cur_state = 0;
+> +		list_add(&tmd->node, &client->cdev_list);
+> +	}
+> +
+> +	if (list_empty(&client->cdev_list))
+> +		return dev_err_probe(client->dev, -EINVAL,
+> +				     "No cooling devices specified for client %s (%#x)\n",
+> +				     client->name, client->id);
+> +
+> +	return 0;
+> +}
+> +
+> +static int qmi_tmd_client_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct qmi_tmd_client *client;
+> +	const struct qmi_instance_data *match;
+> +	int ret;
+> +	client = devm_kzalloc(dev, sizeof(*client), GFP_KERNEL);
+> +	if (!client)
+> +		return -ENOMEM;
+> +
+> +	client->dev = dev;
+> +
+> +	match = of_device_get_match_data(dev);
+> +	if (!match)
+> +		return dev_err_probe(dev, -EINVAL, "No match data\n");
+> +
+> +	client->id = match->id;
+> +	client->name = match->name;
+> +
+> +	mutex_init(&client->mutex);
+> +	INIT_LIST_HEAD(&client->cdev_list);
+> +	INIT_WORK(&client->svc_arrive_work, qmi_tmd_svc_arrive);
+> +
+> +	ret = qmi_tmd_alloc_cdevs(client);
+> +	if (ret)
+> +		return ret;
+> +
+> +	platform_set_drvdata(pdev, client);
+> +
+> +	ret = qmi_handle_init(&client->handle,
+> +			      TMD_GET_MITIGATION_DEVICE_LIST_RESP_MSG_V01_MAX_MSG_LEN,
+> +			      &thermal_qmi_event_ops, NULL);
+> +	if (ret < 0)
+> +		return dev_err_probe(client->dev, ret, "QMI handle init failed for client %#x\n",
+> +			      client->id);
+> +
+> +	ret = qmi_add_lookup(&client->handle, TMD_SERVICE_ID_V01, TMD_SERVICE_VERS_V01,
+> +			     client->id);
+> +	if (ret < 0) {
+> +		qmi_handle_release(&client->handle);
+> +		return dev_err_probe(client->dev, ret, "QMI register failed for client 0x%x\n",
+> +			      client->id);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void qmi_tmd_client_remove(struct platform_device *pdev)
+> +{
+> +	struct qmi_tmd_client *client = platform_get_drvdata(pdev);
+> +
+> +	qmi_tmd_cleanup(client);
+> +}
+> +
+> +static const struct of_device_id qmi_tmd_device_table[] = {
+> +	{
+> +		.compatible = "qcom,qmi-cooling-cdsp",
+
+Where is support for modem cooling? ADSP? SLPI?
+
+> +		.data = &((struct qmi_instance_data) { CDSP_INSTANCE_ID, "cdsp" }),
+
+Define it outside and reference here. Use C99 initializers.
+
+> +	},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, qmi_tmd_device_table);
+> +
+> +static struct platform_driver qmi_tmd_device_driver = {
+> +	.probe = qmi_tmd_client_probe,
+> +	.remove = qmi_tmd_client_remove,
+> +	.driver = {
+> +		.name = "qcom-qmi-cooling",
+> +		.of_match_table = qmi_tmd_device_table,
+> +	},
+> +};
+> +
+> +module_platform_driver(qmi_tmd_device_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("Qualcomm QMI Thermal Mitigation Device driver");
 
 
 
-> -----Original Message-----
-> From: Bjorn Andersson <andersson@kernel.org>
-> Sent: Thursday, December 18, 2025 8:24 PM
-> To: Shenwei Wang <shenwei.wang@nxp.com>
-> Cc: Linus Walleij <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.o=
-rg>;
-> Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
-> Conor Dooley <conor+dt@kernel.org>; Mathieu Poirier
-> <mathieu.poirier@linaro.org>; Shawn Guo <shawnguo@kernel.org>; Sascha
-> Hauer <s.hauer@pengutronix.de>; Jonathan Corbet <corbet@lwn.net>;
-> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
-> <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>; linux-
-> gpio@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-remoteproc@vger.kernel.org; imx@lists.linux=
-.dev;
-> linux-arm-kernel@lists.infradead.org; linux-doc@vger.kernel.org; dl-linux=
--imx
-> <linux-imx@nxp.com>
-> Subject: [EXT] Re: [PATCH v6 2/5] remoteproc: imx_rproc: Populate devices
-> under "rpmsg" subnode
->=20
-> Caution: This is an external email. Please take care when clicking links =
-or opening
-> attachments. When in doubt, report the message using the 'Report this ema=
-il'
-> button
->=20
->=20
-> On Fri, Dec 12, 2025 at 01:43:38PM -0600, Shenwei Wang wrote:
-> > Register the RPMsg channel driver and populate remote devices defined
-> > under the "rpmsg" subnode upon receiving their notification messages.
->=20
-> Please provide a proper description of what "problem" this patch solves.
->=20
-> >
-> > The following illustrates the expected DTS layout structure:
-> >
-> >       cm33: remoteproc-cm33 {
-> >               compatible =3D "fsl,imx8ulp-cm33";
-> >
-> >               rpmsg {
-> >                       rpmsg-io-channel {
-> >                               gpio@0 {
-> >                                       compatible =3D "fsl,imx-rpmsg-gpi=
-o";
-> >                                       reg =3D <0>;
->=20
-> Surely there needs to be some "gpio-controller" and "#gpio-cells" here?
-> Would be useful if the example is somewhat complete, to give a picture of=
- what's
-> actually going on.
->=20
+> diff --git a/drivers/thermal/qcom/qmi-cooling.h b/drivers/thermal/qcom/qmi-cooling.h
+> new file mode 100644
+> index 000000000000..f46b827b4ce6
+> --- /dev/null
+> +++ b/drivers/thermal/qcom/qmi-cooling.h
+> @@ -0,0 +1,428 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2017, The Linux Foundation
+> + * Copyright (c) 2023, Linaro Limited
+> + */
+> +
+> +#ifndef __QCOM_COOLING_H__
+> +#define __QCOM_COOLING_H__
+> +
+> +#include <linux/soc/qcom/qmi.h>
+> +
+> +#define TMD_SERVICE_ID_V01 0x18
+> +#define TMD_SERVICE_VERS_V01 0x01
+> +
+> +#define QMI_TMD_GET_MITIGATION_DEVICE_LIST_RESP_V01 0x0020
+> +#define QMI_TMD_GET_MITIGATION_LEVEL_REQ_V01 0x0022
+> +#define QMI_TMD_GET_SUPPORTED_MSGS_REQ_V01 0x001E
+> +#define QMI_TMD_SET_MITIGATION_LEVEL_REQ_V01 0x0021
+> +#define QMI_TMD_REGISTER_NOTIFICATION_MITIGATION_LEVEL_RESP_V01 0x0023
+> +#define QMI_TMD_GET_SUPPORTED_MSGS_RESP_V01 0x001E
+> +#define QMI_TMD_SET_MITIGATION_LEVEL_RESP_V01 0x0021
+> +#define QMI_TMD_DEREGISTER_NOTIFICATION_MITIGATION_LEVEL_RESP_V01 0x0024
+> +#define QMI_TMD_MITIGATION_LEVEL_REPORT_IND_V01 0x0025
+> +#define QMI_TMD_GET_MITIGATION_LEVEL_RESP_V01 0x0022
+> +#define QMI_TMD_GET_SUPPORTED_FIELDS_REQ_V01 0x001F
+> +#define QMI_TMD_GET_MITIGATION_DEVICE_LIST_REQ_V01 0x0020
+> +#define QMI_TMD_REGISTER_NOTIFICATION_MITIGATION_LEVEL_REQ_V01 0x0023
+> +#define QMI_TMD_DEREGISTER_NOTIFICATION_MITIGATION_LEVEL_REQ_V01 0x0024
+> +#define QMI_TMD_GET_SUPPORTED_FIELDS_RESP_V01 0x001F
+> +
+> +#define QMI_TMD_MITIGATION_DEV_ID_LENGTH_MAX_V01 32
+> +#define QMI_TMD_MITIGATION_DEV_LIST_MAX_V01 32
+> +
+> +struct tmd_mitigation_dev_id_type_v01 {
+> +	char mitigation_dev_id[QMI_TMD_MITIGATION_DEV_ID_LENGTH_MAX_V01 + 1];
+> +};
+> +
+> +static const struct qmi_elem_info tmd_mitigation_dev_id_type_v01_ei[] = {
 
-Okay. Will add those in next version.
+No data objects in the _header_ file.
 
-> >                               };
-> >
-> >                               gpio@1 {
-> >                                       compatible =3D "fsl,imx-rpmsg-gpi=
-o";
-> >                                       reg =3D <1>;
-> >                               };
-> >
-> >                               ...
-> >                       };
-> >
-> >                       ...
-> >               };
-> >       };
-> >
-> > +     drvdata->rpdev =3D rpdev;
-> > +     auxdata[0].compatible =3D devm_kstrdup(dev, imx_rpdrv->compat,
-> GFP_KERNEL);
-> > +     auxdata[0].platform_data =3D drvdata;
-> > +     dev_set_drvdata(dev, drvdata);
-> > +
-> > +     of_platform_populate(drvdata->channel_node, NULL, auxdata, dev);
->=20
-> auxiliary_bus would be a better choice, but I don't understand why you pr=
-obe a
-> rpmsg_device for each "gpio channel" and then from that create a
-> platform_device.
->=20
-> Why don't you just make the rpmsg_device register the gpio controller dir=
-ectly?
->=20
+> +	{
+> +		.data_type = QMI_STRING,
+> +		.elem_len = QMI_TMD_MITIGATION_DEV_ID_LENGTH_MAX_V01 + 1,
+> +		.elem_size = sizeof(char),
+> +		.array_type = NO_ARRAY,
+> +		.tlv_type = 0,
+> +		.offset = offsetof(struct tmd_mitigation_dev_id_type_v01,
+> +				   mitigation_dev_id),
+> +	},
+> +	{
+> +		.data_type = QMI_EOTI,
+> +		.array_type = NO_ARRAY,
+> +		.tlv_type = QMI_COMMON_TLV_TYPE,
+> +	},
+> +};
+> +
 
-The "GPIO channel" is just one example-there are also "PWM channel", "I2C c=
-hannel", and other channels.=20
-The goal is to manage all these channels under a common logic, which helps =
-avoid redundant code and keeps=20
-the implementation consistent.
-
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +     rp_driver->rpdrv.drv.name =3D name;
-> > +     rp_driver->rpdrv.id_table =3D rpdev_id;
-> > +     rp_driver->rpdrv.probe =3D imx_rpmsg_endpoint_probe;
-> > +     rp_driver->rpdrv.remove =3D imx_rpmsg_endpoint_remove;
-> > +     rp_driver->rpdrv.callback =3D imx_rpmsg_endpoint_cb;
-> > +     rp_driver->driver_data =3D driver_data;
-> > +     rp_driver->compat =3D compat;
-> > +
-> > +     register_rpmsg_driver(&rp_driver->rpdrv);
->=20
-> This would then also imply that it's the gpio driver that registers the
-> rpmsg_driver.
->=20
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int rproc_of_rpmsg_node_init(struct platform_device *pdev) {
-> > +     struct device *dev =3D &pdev->dev;
-> > +     const char *compat;
-> > +     int ret;
-> > +
-> > +     struct device_node *np __free(device_node) =3D of_get_child_by_na=
-me(dev-
-> >of_node, "rpmsg");
-> > +     if (!np)
-> > +             return 0;
-> > +
-> > +     for_each_child_of_node_scoped(np, child) {
-> > +             compat =3D imx_of_rpmsg_is_in_map(child->name);
-> > +             if (!compat)
-> > +                     ret =3D of_platform_default_populate(child, NULL,
-> > + dev);
->=20
-> So if you don't recognize the child device node name you just register
-> platform_devices for each of the children?
->=20
-
-Yes. That would register platform_devices without the platform_data.
-
-> > +             else
-> > +                     ret =3D imx_of_rpmsg_register_rpdriver(child, dev=
-,
-> > + child->name, compat);
-> > +
-> > +             if (ret < 0)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> >  static int imx_rproc_probe(struct platform_device *pdev)  {
-> >       struct device *dev =3D &pdev->dev; @@ -1114,6 +1253,10 @@ static
-> > int imx_rproc_probe(struct platform_device *pdev)
-> >               goto err_put_pm;
-> >       }
-> >
-> > +     ret =3D rproc_of_rpmsg_node_init(pdev);
-> > +     if (ret < 0)
-> > +             dev_info(dev, "populating 'rpmsg' node failed\n");
-> > +
-> >       return 0;
-> >
-> >  err_put_pm:
-> > diff --git a/include/linux/rpmsg/rpdev_info.h
-> > b/include/linux/rpmsg/rpdev_info.h
-> > new file mode 100644
-> > index 000000000000..13e020cd028b
-> > --- /dev/null
-> > +++ b/include/linux/rpmsg/rpdev_info.h
-> > @@ -0,0 +1,33 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/* Copyright 2025 NXP */
-> > +
-> > +/*
-> > + * @file linux/rpdev_info.h
-> > + *
-> > + * @brief Global header file for RPDEV Info
-> > + *
-> > + * @ingroup RPMSG
-> > + */
-> > +#ifndef __LINUX_RPDEV_INFO_H__
-> > +#define __LINUX_RPDEV_INFO_H__
-> > +
-> > +#define MAX_DEV_PER_CHANNEL    10
-> > +
-> > +/**
-> > + * rpdev_platform_info - store the platform information of rpdev
-> > + * @rproc_name: the name of the remote proc.
-> > + * @rpdev: rpmsg channel device
-> > + * @device_node: pointer to the device node of the rpdev.
-> > + * @rx_callback: rx callback handler of the rpdev.
-> > + * @channel_devices: an array of the devices related to the rpdev.
-> > + */
-> > +struct rpdev_platform_info {
->=20
-> I don't understand what this structure represents. Why is this glue betwe=
-en the
-> rpmsg_device and a made up platform_device needed?
->=20
-
-The purpose is to have a shared array that can be accessed by all devices w=
-ithin=20
-the same channel.
-
-> > +     const char *rproc_name;
->=20
-> You don't need this, because you can rproc_get_by_child(&self) and then g=
-et the
-> remoteproc name from that.
->=20
-
-Good to know. Will try it in the next version.
-
-> > +     struct rpmsg_device *rpdev;
-> > +     struct device_node *channel_node;
-> > +     int (*rx_callback)(struct rpmsg_device *rpdev, void *data,
-> > +                        int len, void *priv, u32 src);
-> > +     void *channel_devices[MAX_DEV_PER_CHANNEL];
->=20
-> Why 10? What does it mean?
->=20
-
-This is based on practical experience. For example, on the i.MX platform, w=
-e typically don't have=20
-more than eight same devices on the remote system.
-
-> I think this becomes the list of the 10 grandchildren of the remoteproc (=
-per child
-> node). So what happens if those matches against two different drivers, wh=
-at will
-> rx_callback point to?
->=20
-
-This is the limitation. That's why I used the map to populate the known chi=
-ld device for one specific channel.
-
-Thanks,
-Shenwei
-
-> > +};
->=20
-> Regards,
-> Bjorn
->=20
-> > +
-> > +#endif /* __LINUX_RPDEV_INFO_H__ */
-> > --
-> > 2.43.0
-> >
+-- 
+With best wishes
+Dmitry
 
