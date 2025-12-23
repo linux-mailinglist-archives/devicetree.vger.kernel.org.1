@@ -1,254 +1,275 @@
-Return-Path: <devicetree+bounces-249006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA506CD880E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:05:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C09ACD8817
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:06:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CD866301F26F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 09:05:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A518F30139B2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 09:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A936230BE9;
-	Tue, 23 Dec 2025 09:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D622F99AD;
+	Tue, 23 Dec 2025 09:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="UgKTvRCe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YOBtTP8v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013053.outbound.protection.outlook.com [40.107.159.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E7722FAFD;
-	Tue, 23 Dec 2025 09:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766480708; cv=fail; b=TUdwuKSGGgzlPdqO5Iea/qJ8OJ3VfDxTDMHEue0PpCOb3EmhRCS8xrA+qWxyzUteKw3J/qECNjDe7qf3EyFSMZ96MTo0VphcpV6oPw8/1HQGg515M2ArJ12aLCBBkNqKWkH74sEmDeioC6rH3aT5DJHVKzmrIis0XmfeANw2tJc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766480708; c=relaxed/simple;
-	bh=rqS4FdRDQmoic/B86MkVRRgsdBDol0E0S4bMs59OOA0=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=cyC2yQsIzVR7A+/5CoBday8Rc47rVRWka8xWMx4QMCzLlGilqh1jPv8i2Fih8k3ko+nJiVNOzQEBaTz+kVqOl+gBNaUMVv+/PyJ98YaI2xvYX0RLBb0ezrDXHcDKDEZykD2KjHpKXpOa5TXFRPlmCoVFS27tyqgW5WvpR4jbWfg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=UgKTvRCe; arc=fail smtp.client-ip=40.107.159.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A4fotI3oRVdF/oC6WMrGXdtAIa1uaW2FOoAOZmGlXbeDlGm4S6zNuGBTl3YLfg4PXtawANf5VLo8FuQ7wSuzhMhrQSemf7LflEVGdLfq6mvBmsAeJDyxzuNyRd49RGYm5OGTx4sk8i8/2KL9+nJ/gUCxCnTVpx5q03LqwUt6xAnVaEaBWC24HlpaepvPIxia7vmzJvYymUQ4fRcK6wZHDjC0/3XdjfbLx01pWGwhLXz0mlDTu8/iF3SK84llCJ+plZDfvtEaU3QhRyjK98Fp7LQUJuN6JOPpqLVSAIobIQPIS757cQnEfZ+VI52BlBF7Sj7wRNTohVr6aFxrlXVukg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CDopN808M60iaUFMowtCSE8XQQ2mSjwxkevDBWju6ZU=;
- b=dx7SO5DY1ZnF3lWOrUenaqatIwYMDj1tcymGsGA7Uk92HVRWat0o0ASoZTvEy4MKQ1GL8ogMdUfQO3rmEzqUwAz+1im2XOu4GewuGG3FJk4Khefn2zZ6A9ezIAb/OjTlKSrAX82ATSdkZF2Idk1NEL3AFjHg6RQn/9kNMQIhPXcGZnN3AhyRe1u75CS59/o9fSaNG4falM/zo/pwhjDExZvHNOLiCOxabGEnMi2NaLAhPoFWIVMFw0YHbGgaSsFCgIaRGpmDCf8TnGVJlwSFe5P1g+3h5D/n4Z6bxXSlhOA7nUJ94Ea1BmvVPA4re+WOcDpTuVEk/zzwgKGE0T8Eyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CDopN808M60iaUFMowtCSE8XQQ2mSjwxkevDBWju6ZU=;
- b=UgKTvRCeZcpMzR6UG3ja5bX2/7HJutuQubPZ7Hnpl7f1kvSZiRfQLwc4Cf985Ci4ljEHUKdJDr0KZnaU/+ssLqaYI9Cdn7jVo6JqQTeP1h1XGlEto1Q3Wvfs4dxQ+jR6ccX9oYyyr9xceOgGeVuBfvGE/+lC6BoMLSH9FYFJ4QPJIjgtekVE38OcCCG4fLgRBQGASC9Z+6kxANNA41ogS6Qu7W6Q00flNY9HvgZQ9W47SpUxnjERitDwHB9RKjECZw+0UZfRRNAguemKlRFNGlEOQBdiK5zj5Db4W1UpvUsF2PTViz2S+gTOWa/fh4uF5c/oTO5685w7sz0R5AfCPQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU0PR04MB9496.eurprd04.prod.outlook.com (2603:10a6:10:32d::19)
- by PAXPR04MB8912.eurprd04.prod.outlook.com (2603:10a6:102:20f::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.11; Tue, 23 Dec
- 2025 09:05:01 +0000
-Received: from DU0PR04MB9496.eurprd04.prod.outlook.com
- ([fe80::868b:3935:5e0f:6a33]) by DU0PR04MB9496.eurprd04.prod.outlook.com
- ([fe80::868b:3935:5e0f:6a33%6]) with mapi id 15.20.9434.009; Tue, 23 Dec 2025
- 09:05:01 +0000
-From: Haibo Chen <haibo.chen@nxp.com>
-Date: Tue, 23 Dec 2025 17:05:57 +0800
-Subject: [PATCH 2/2] arm64: dts: imx94: add mt35xu512aba spi nor support
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251223-imx943-xspi-dts-v1-2-7c18e5b4f97a@nxp.com>
-References: <20251223-imx943-xspi-dts-v1-0-7c18e5b4f97a@nxp.com>
-In-Reply-To: <20251223-imx943-xspi-dts-v1-0-7c18e5b4f97a@nxp.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Haibo Chen <haibo.chen@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766480776; l=2040;
- i=haibo.chen@nxp.com; s=20250421; h=from:subject:message-id;
- bh=rqS4FdRDQmoic/B86MkVRRgsdBDol0E0S4bMs59OOA0=;
- b=A9kiW4d7TMJDHm0KFPNQuWYXX/CkS/crZExntU7MFc86SxfE3Z1dVQCyVwYnr2IvEZwJqFdIe
- oP/p/kofqKQAkii1G2hhGzKoiBtn5do6sOX/SuyL6s9dQxVcBjK270R
-X-Developer-Key: i=haibo.chen@nxp.com; a=ed25519;
- pk=HR9LLTuVOg3BUNeAf4/FNOIkMaZvuwVJdNrGpvKDKaI=
-X-ClientProxiedBy: SG2PR01CA0183.apcprd01.prod.exchangelabs.com
- (2603:1096:4:189::16) To DU0PR04MB9496.eurprd04.prod.outlook.com
- (2603:10a6:10:32d::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62C60230BE9
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 09:06:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766480788; cv=none; b=dxXBfG4cFT32CTavEIRGEpXBT6fCD9T7CoUIFK+0AaMFgnsBbWtmXS2NJOPoLf6GQwmiQaQl13ioeiOIqhwyskvFmSIGGf8DcurJeIHN6J1K1xDyjaamoM4yVXHu0jxthRkLLlSo8Zmersk13Si4I0TXa6IsavS4CGlJcCMj/Oc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766480788; c=relaxed/simple;
+	bh=e4ELUNJG/H1rXoEc7+6tgON/8evFDIf9Rnxvrs/yfmg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bE50aZiLnm+oKkuBZWNAIjnbDiI5RGCnv5yPhcIi+DmAIREDsOJPuyQN/vSfYNJKqvmRU+7qhX5JKOtdXcB4PSJUozKeXyjrMgetOMfCJJmCgrTuEl8vZVHEPjbbFylwLbD4vn75Ya4fOOniSCgVptNYLSLIFVyWKSkmWZq/1bY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YOBtTP8v; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-64b560e425eso6042298a12.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 01:06:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766480784; x=1767085584; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PcO7KM8DSIAXbK4kBHjpNqRrR826iMchYZvaKYP6ExE=;
+        b=YOBtTP8vweSjFB7Th4ugllAinARdTx2IqUT+x2eOTORt0fANIUQ7A/BXtxzkoyZcjB
+         3uLPJxdvq/KVsYZdn7OPH71FXY0MGoeZuNyhWL6+pmhkbjeyiBy/eRt4r1U/Kf0IBxVj
+         KjCTLiD+fpcVpB+TsazxWKNjZFIJZQD65IDmyc++h5L0PmixCvBAUHBSo2LWhO4OUbiq
+         VVag5ez4mN/CnwlpAjCvSLAT7Gu9Ild8rXIs4e9/d7DtklPJ2mDTs4p1QR0P9HdmDDDS
+         3v3B8b4OehumRpzHZssZQWIdadRPCC0mzIuWfI89XtOulGQeO7j7P16loMrQFH2Bhe+a
+         gMug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766480784; x=1767085584;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=PcO7KM8DSIAXbK4kBHjpNqRrR826iMchYZvaKYP6ExE=;
+        b=Lzrgim3wqnxRcVqt317iJdZkhK6pDTR427aRowOCNlczooJ0o9DOn+aI3QnJIUO18v
+         rOk11IIKTvEvbE8aQ/OLeuV+vj69fRr9EEhYPnA/AErZ2SJSvsDkD4QML91E4PCbFdtz
+         enbiFHEWbohCiw71gUxL3dNcXUmQiePgja68ka2xmNNbixpX8T0Rfbs8i9WVzcnf8VxP
+         Sb+Rww1VPSTeCA9q1Vwe6xtBxrFOsi2vfxOGWai1BcRQWq9SCOlhN9/OMriyWVhtxVZO
+         Yc7MxYrkInlHDJwSjvJQWIfA2P29OXrPXLYXigDHMhX2BRCTW1ak3sN0qeLY5i47fzoo
+         bsow==
+X-Forwarded-Encrypted: i=1; AJvYcCX+ReVBycI9al/huFN3Vkr8EcFNkDlD4O95Bs2LvceEH8HPjU+IebIFBK6EUKrhgT8Q7j0L2foaWoH3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgMa4SQ7PKWpAS7dY/ZeflNURQ6xivq5zcm4wbkYkSuoc2sOMu
+	z7KSpmgOoxv/6K8xsLFp0vBFsA+ssB1lagYNdaJpW8LfAWdQ9laMAWke9GAFh9ttiSZ16vXW4ZE
+	Pl/dMWxMSR3QNJD2iJA/rObsEGW7n6dY=
+X-Gm-Gg: AY/fxX53GYvUn1bH72BzD9H6si97seC0wbNEb48XNyZViF9L2ZAi1umQo9t60hckLdZ
+	gCpUCmAyh5bCoOZcV1fwBOw7EsW3WU7Rq9YaMItVe7BeDYK1CYeW5a3wQohvNod7kAbCPNnk8gB
+	EiqEbqTGXIZaLrG8cMfEifBk8Y+QyGgzUE1+lPdpNoMqnyx56t73ps/9UVx762Pw04qtnRv2myd
+	VAS7QdWrxXzfhyVSJi1XMU79/OjA6evIIj+EySFOzYaxBzt7nktnhdb26BhZ2Ofku5NbUROiI+F
+	qC9dSA==
+X-Google-Smtp-Source: AGHT+IFMFayOUEkIzcUgPVI7ZQmi3rUPQXYR0C65vtOT/zhUo8HOdbjzsQ82aiENsemJWN33WkI1+O2FNLjs2fJN3JI=
+X-Received: by 2002:a17:907:724a:b0:b80:b7f:aa14 with SMTP id
+ a640c23a62f3a-b80371d9ddemr1545543066b.32.1766480783355; Tue, 23 Dec 2025
+ 01:06:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9496:EE_|PAXPR04MB8912:EE_
-X-MS-Office365-Filtering-Correlation-Id: b0e8e196-9f55-4e0a-5430-08de42025a46
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|52116014|19092799006|366016|1800799024|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZEE2NVkzQTdzeWY2K0JkL3Ryc2Q4UFpibitsVHg4SzlNdWhhVldNWWpMRFRL?=
- =?utf-8?B?cGF3ZkxDU0xlVkdhbncyYmsveE1VMzJCanNsNUptNjhzQ0tiWUxBQWp5UjNH?=
- =?utf-8?B?U1UxeVN1ZnJXVmdXSmZLcXZKNkdqUWI0ZjZIcG8reGJNYzhDSStRbUJtMnhk?=
- =?utf-8?B?T2FqK2QyM0hZbXFsem03cEp4a2JmTEMrVDFKaUttSzlnNG8vTEVhK0IrRGNv?=
- =?utf-8?B?SVNYc0prdUVRYm41TmlCZjdnUG4xMStodE53MW13bFpneWNoWHNjL2xvVStQ?=
- =?utf-8?B?WXZ0Tkl4cndaRE9xdnN5cFJxQm93MkE2bTBiekVXU2d4Q1BkTW12aFdxTHFG?=
- =?utf-8?B?a0thVU5qWmdldUQxZGNDbGRCSkpIS3ZJY084YVlneXNwcGp0UnIrc004dmNN?=
- =?utf-8?B?UjBOdTZmSUUvU2RvSTlQZ1ZGMkY3ZHFMcXBnZmVmamZnQnVrcUwzUkROTHE0?=
- =?utf-8?B?ZXZrU3F2amVGTWxJQnVYYzIzclRhbm9uRnNrektPYzcyQXhGcW84N1FPdm5G?=
- =?utf-8?B?MGZPWEhURHp6dWtudmxKR01pWWtmdk9QR1l2YmtCdzVOR0ExOER3N25RZm42?=
- =?utf-8?B?Q1lMeDZBdFdRUUFpSHdKWjFGRkQ4UTdWbDBDQkRNRHp6aVJGZDFoQzQvRHpG?=
- =?utf-8?B?Rm1YMzFYOTdoN2lsK1FVaEpVMW1aazVRYXVvYTZ6RHN5YXRFaG9pbFphZHgy?=
- =?utf-8?B?ZHhiVVZydUlldnJXU0o1Z2F4U01XZlpqdFJYZUhqbTdEQVZ2R3lVMFRuYnF3?=
- =?utf-8?B?ei9lTzNKOG5ndHhiZE1LeEF0S1NGQ1k4S0U0Slp2dUh6Tkg5VmwwKzIxS2Vm?=
- =?utf-8?B?bDhsS25NYVNSdGhpbjU0MHNYNGlSUXRrTzRBM1JxdXFXaUFlWHpzWnFpY2F1?=
- =?utf-8?B?cE9uWTZvYVU5SEZNVWo1NGEzZlB3SlVMdnhDNTRva3dxR1JXZ0R5K3NlODIx?=
- =?utf-8?B?bmdrVzFXSlp0TTVDYmdHRnVXaUN4SEp1Z1dXUTRSRTJ3NE5Hcy9wV21UZ3Jx?=
- =?utf-8?B?b29YWXFYNm5iOUpsSUFYdUl1Yi9vTlA0bHNvS2F5dytQQTBwTmpnaXF5ZGVi?=
- =?utf-8?B?QTU3NHBKeDlHaUVQSmJDVVc2dGFld2RPMGM2UFVpYUhuZE9tR1NxMWgwYnJi?=
- =?utf-8?B?Z1c5eUtuMkIwVlRubHBxUWZ2dzBmMjRTZkpoVVFURUlKNGdiQ1lveGxqQTJV?=
- =?utf-8?B?RWFKUEVDL21XekpXN0VBUEFGN1l5K0tkZklCd1kzWWowTTV5NEk3NXVBbm1R?=
- =?utf-8?B?QkY2RHArakhhRnRxVVJxNFp1SmdRaGtFaGlWKzRJRGlsTUhSM1N5N282N0NV?=
- =?utf-8?B?TFI2dWoyMnpQN25wQURCK0ROVTZaOTIwUXltZy9Ua1BHODM4eHc5RzZXY09C?=
- =?utf-8?B?djZ2QXozbmJHdktMTVZWNDVvbUZmUkpRMWs1NUpVbEFCNlJBMEdpdFk0SFlp?=
- =?utf-8?B?OW5PNXg2bTc3dW5VSXJ6SnBMWTV4NTdZQTRRbVFNTTl1OVpXR0FaUmJoNk8y?=
- =?utf-8?B?S1M1MnNid3RGb0NobzBzeUZHeGpSUzRZRnNVZWxmUFhUdDIzS2lycFRJSk1p?=
- =?utf-8?B?ODRzc0MrYXAyZHRTUGN1THhNcDZEZXRJUVc2NjltdFBDOHJpeUpoNXA4TzBj?=
- =?utf-8?B?bW9CemM1c3czSGkyMVlKRk1tNHNFV2FmTHcwZm1ITVZVUWZINFhUQnluS1NB?=
- =?utf-8?B?aXFHOHh1MG1jUFlXK2hoU2liMWcrODlVTWhPdUZRVXdraXBobDB0QzF4NDdi?=
- =?utf-8?B?R01Ibnh2RDFpMEh4KzRsV1p6TnpqVUlldWhpSHpJNEUyaTIxK3RvcWk4TXFy?=
- =?utf-8?B?aFhDTmdScjE1OWhubmdOZlZoMHhMakpidTkwNHIySVdSTVBIWnRpRFdZbmhM?=
- =?utf-8?B?dkN0SHZOZDNrL2daVnlyM05ndGNBaWVBZzdhZ2dHU2toQnRRWlh3dFZJblg0?=
- =?utf-8?B?VmlVeUZTTmViYXpjbUNLSVJjNHRLK2dKZG12SG1OMGQwd2tFNEYwdVdkSTV1?=
- =?utf-8?B?Q3VOWkEySW1VT3oyWFA3L0g2VmZFNm1tV1V1Kzl5b2tiOW9MR2lZMjNoYnBR?=
- =?utf-8?Q?jFm0C9?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9496.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(19092799006)(366016)(1800799024)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aFZpSHRXbTUzVlpGWEEybEZDcTJuZmJiM2VyQ2FoSFFWWk1tb3M2L2hrZ2hF?=
- =?utf-8?B?YkdPdGFjcGE0QTl2Sjh4VnhHdGV0ZHEvcDNCTHJTVGpoYkk2dkVVUWNPbmx3?=
- =?utf-8?B?MG4zYkR6YVBrUnFDQkVzQ1J6aTJDRDZOa3g5Y29uWmtYL3VJQlFJUGxqeUl5?=
- =?utf-8?B?MWVOcEo2dG9QOXk0cU55QUQyWXBNMmgzZFFiK3hMUHArNUF6L1g1d3ZmNGhz?=
- =?utf-8?B?NjdtZWNlS0ZOckJzdkZXYlhRS1Y0S0p6UmRNYWtHK3dndDM1VFRMZjFLOGZY?=
- =?utf-8?B?c3FNWEg3M29WWjRvTG4rdU85dG56OHMrenR1R1RZaTlvWXV4YkdjeDJNK3dZ?=
- =?utf-8?B?Ny9ZaXVMU2JGQW11ak5GRVlwc0hzbEU2a1ZJMU9TVU1semhyZVgyc25ObFlU?=
- =?utf-8?B?NTNjQVpjOXJwNFgrb0lVUHFleHBiekpRUzhlakcxcTI3SjM2V2lQT0tGNDFj?=
- =?utf-8?B?VDYxd2pYdUxPRjVaMGhQRGowTHMvMWdzVUkxQWQ1ZWtaUGJkZktBQ2VWQUxy?=
- =?utf-8?B?WStKckRLZHNMTEUxR3lXODMrUFpIR05ianhSdDUrSDdGTjh4VkwyQ3Uyb3NT?=
- =?utf-8?B?K2E4eWVqM3ZvN3ZISXJRdCs2ZHRFSFRTc3k5OFVOMnlMWGR0T0x4d3BRWUNo?=
- =?utf-8?B?SHhvV211YWUvRElEZnhFUDlxODAyeU85QUxEWkk5QUNjRkZMc21aT3ZMb0I0?=
- =?utf-8?B?RlBRVUhxU1N6aHVqLytxSms2ZlRlcWFKZUJ5SGtxMFlBWGx1SUJSdVVGdDNW?=
- =?utf-8?B?Sit3ZklMTU9Ob01rMjIrSDFXSkxyQ2ZYY3FxcFpFRkYydmFvRlBkWXc5aUFk?=
- =?utf-8?B?dlJPMEE3WXc4MWw3MGtpQUd3OXVqMGIvVE8rR1lYNWJBT1Zpa0dTa3JaVktH?=
- =?utf-8?B?VEhha1l4QzlucE5qZkJJNkFKQ0NZcGZhNnN1bzUwQlZpSlRQdHoyTTAxckcv?=
- =?utf-8?B?WHdtaWFNbldvUE91UVh6dUdXMHBzaFFOVWQ0WGdXK2ZLL2F2c3V2eXRSd3NO?=
- =?utf-8?B?bjhpczZYZVozeEw1MjNuYjZyc0p6UmNSTGdmcVV3dGk0MGFLU3NLNk9GV0cx?=
- =?utf-8?B?VjQ5akVBemFoaEtNb3VSMVdDWm4yVU9FMWJ5OG1CRG5wSHNhdWN4SklhYWlO?=
- =?utf-8?B?S2FKaUl5TFBiUE5iM2pjdTR2V3diSHdCdURMeHVMSnhkZmRLY0IxM3M2ckhk?=
- =?utf-8?B?RGlQZDlsdW5IcllWek52NWxHMkt5ZnR0TU03TEZtTk5uVHZQU0VQRUdMTDdJ?=
- =?utf-8?B?QTRkVUlhd2ZZOHptZDZOQXhYaEtNMVh4RENMbG1lN0N1aC9xb1BNNkpPK0hH?=
- =?utf-8?B?SGg0ZTdtNTN0WXQzRU9zWVhsMHVGS2xkTDR4TFM0a3BuSk52R2wzQUxKZTkx?=
- =?utf-8?B?KzhtdFgvS00yQ1BsTnkzbnREZmdNZy9BSnRvaStHMG5VSm1DUVlEby91T29l?=
- =?utf-8?B?K1F1amU2L3RDNUQvVDZkYnA4cDdUWG5aVVRXejVHRSswUzVuVVZ1akVHa1JR?=
- =?utf-8?B?RjBaRUdtRERwSW5VZkFiYWx4c1Q5RE5GQUVYaytsbWZvM3ZneG9ydWh1VjNp?=
- =?utf-8?B?YzR4ejhjOFZOLzBjemhUSW1VSTZ4TXRMWnlJL1dab2g2bTBpcWNPcnJqWHJ6?=
- =?utf-8?B?bG5KUDJTTXFyWTNWM3ZJTDk0RFpGSkFWVnpBbllqS2pUbktRWE4xMWdhZ3Uz?=
- =?utf-8?B?R09YNnEyRmVYUzk4WGFPaUVTOG15TDhvalFBcU9yWVQ5MWNBWUFMQXJoaDQv?=
- =?utf-8?B?ckdKaUtHU0o3cU4ySUdzVnA5QUJEaXhodWhpUXZtVGFmQk9qak81djNscWlV?=
- =?utf-8?B?bEFqcEViQXVmUlovVmx6MGo4OEp5bGhyMUVZLzRoYXdYeHBadUtMSndzZW80?=
- =?utf-8?B?UzAvdG02d01PdGpFUnUzQU10RVdueW1JNXlGVmpDMTl4WmVmazZYcUExcUt0?=
- =?utf-8?B?RWVJZmFkbHhWZlZUUjZISkJDNDFKK3NmVDNkNGZEdVNBWVMxM3B1d0hHbXd6?=
- =?utf-8?B?NzY1QTd0clFZZ1VqSmlYR1BManRxaktFVkZicXBRSS9HZldkWDVweUMzNFdH?=
- =?utf-8?B?VTFqN1BweS9Od0t1ZGhvUGxJK2gwSEZEeFdYd1hVSkx1SWY4T3NlQ3BQMWdM?=
- =?utf-8?B?UkgwcFFPNlcrcS9MVS9RZG10RnczREdwb3IwcmlZdUFlaEdaYm1rYkNKQjlY?=
- =?utf-8?B?SHM0cndxTkxLaDZUNTdCTnJlTHh0dVN5c2FSeFFjU1ZORzhsYnM3RTNITUd2?=
- =?utf-8?B?amdDWmV0bXVrVDh2Q2ZCSmpqS1ljMFBIVHlDdFBwWXJPcnhTcXl3c2JFY3do?=
- =?utf-8?B?VjdrNHMrMlpqTmhBNjFjaUJuTEVtc25PM3Aram83eVRUa2lzWDNmQT09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0e8e196-9f55-4e0a-5430-08de42025a46
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9496.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2025 09:05:00.9080
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3JTDVESMhVV7MAT1OsFpf7EOSiZkKd4C+nHEEmkaA5a2dUWxapgRmNqv25Wz1s89MfJ7UYK0DFaGNEzssRK4ng==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8912
+References: <cover.1766471839.git.zhoubinbin@loongson.cn> <6e10c70653b32f1f79e3f98116924e1aad7154bf.1766471839.git.zhoubinbin@loongson.cn>
+ <CAAhV-H5WfEhsV4fEzThR-C95cg0nPpJ+OfQ10NXEsFKneJQQ5A@mail.gmail.com>
+In-Reply-To: <CAAhV-H5WfEhsV4fEzThR-C95cg0nPpJ+OfQ10NXEsFKneJQQ5A@mail.gmail.com>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Tue, 23 Dec 2025 17:06:09 +0800
+X-Gm-Features: AQt7F2pWNeBlrKeCzwvzHQVPM5ZsHh7pzHwo24RT0fsTOcUxXeUUhfW2YT1QJvI
+Message-ID: <CAMpQs4LMkq6BpsrnS+e+cvh2hJshO4=41vX4ETq+tkJEMZ7zdA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] rtc: loongson: Add Loongson-2K0300 support
+To: Huacai Chen <chenhuacai@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-rtc@vger.kernel.org, 
+	Xiaochuang Mao <maoxiaochuan@loongson.cn>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-mips@vger.kernel.org, 
+	Keguang Zhang <keguang.zhang@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add mt35xu512aba spi nor support on imx943-evk board.
-This nor chip support OCT DTR mode.
+Hi:
 
-For the reset pin, since the nor chip side need 1.8v IO
-voltage for reset pin, but the IO expander side use 3.3v
-IO voltage, so to make circuit safe, need to config the
-pad as OPEN DRAIN.
 
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx943-evk.dts | 34 ++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+On Tue, Dec 23, 2025 at 4:40=E2=80=AFPM Huacai Chen <chenhuacai@kernel.org>=
+ wrote:
+>
+> Hi, Binbin,
+>
+> On Tue, Dec 23, 2025 at 2:42=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.=
+cn> wrote:
+> >
+> > The Loongson-2K0300's rtc hardware design is similar to that of the
+> > Loongson-1B, but it does not support the alarm feature.
+> >
+> > Introduce `LOONGSON_RTC_ALARM_WORKAROUND`, which indicates a chip that
+> > does not support the alarm function, and rewritethe related logic in
+> > `loongson_rtc_alarm_setting()`
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  drivers/rtc/rtc-loongson.c | 65 ++++++++++++++++++++++++++------------
+> >  1 file changed, 44 insertions(+), 21 deletions(-)
+> >
+> > diff --git a/drivers/rtc/rtc-loongson.c b/drivers/rtc/rtc-loongson.c
+> > index 2ca7ffd5d7a9..6b076bd4e24e 100644
+> > --- a/drivers/rtc/rtc-loongson.c
+> > +++ b/drivers/rtc/rtc-loongson.c
+> > @@ -67,6 +67,7 @@
+> >   * Accessing the relevant registers will cause the system to hang.
+> >   */
+> >  #define LS1C_RTC_CTRL_WORKAROUND       BIT(0)
+> > +#define LOONGSON_RTC_ALARM_WORKAROUND  BIT(1)
+> Can we reuse existing logic, which means "alarm_irq =3D
+> platform_get_irq(pdev, 0)" return 0 for LS2K0300?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx943-evk.dts b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-index c8c3eff9df1a23c52e74bf2bc5d4ba543bb5a65b..19c02bd49cf5b0410b5d9f513ee279446ff79616 100644
---- a/arch/arm64/boot/dts/freescale/imx943-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-@@ -594,6 +594,22 @@ pinctrl_reg_usdhc2_vmmc: usdhc2regvmmcgrp {
- 			IMX94_PAD_SD2_RESET_B__GPIO4_IO27	0x31e
- 		>;
- 	};
-+
-+	pinctrl_xspi1: xspi1grp {
-+		fsl,pins = <
-+			IMX94_PAD_XSPI1_SCLK__XSPI1_A_SCLK	0x3fe
-+			IMX94_PAD_XSPI1_SS0_B__XSPI1_A_SS0_B	0x3fe
-+			IMX94_PAD_XSPI1_DATA0__XSPI1_A_DATA0	0x3fe
-+			IMX94_PAD_XSPI1_DATA1__XSPI1_A_DATA1	0x3fe
-+			IMX94_PAD_XSPI1_DATA2__XSPI1_A_DATA2	0x3fe
-+			IMX94_PAD_XSPI1_DATA3__XSPI1_A_DATA3	0x3fe
-+			IMX94_PAD_XSPI1_DATA4__XSPI1_A_DATA4	0x3fe
-+			IMX94_PAD_XSPI1_DATA5__XSPI1_A_DATA5	0x3fe
-+			IMX94_PAD_XSPI1_DATA6__XSPI1_A_DATA6	0x3fe
-+			IMX94_PAD_XSPI1_DATA7__XSPI1_A_DATA7	0x3fe
-+			IMX94_PAD_XSPI1_DQS__XSPI1_A_DQS	0x3fe
-+		>;
-+	};
- };
- 
- &usdhc1 {
-@@ -625,3 +641,21 @@ &wdog3 {
- 	fsl,ext-reset-output;
- 	status = "okay";
- };
-+
-+&xspi1 {
-+	pinctrl-0 = <&pinctrl_xspi1>;
-+	pinctrl-1 = <&pinctrl_xspi1>;
-+	pinctrl-names = "default", "sleep";
-+	status = "okay";
-+
-+	mt35xu512aba: flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		reset-gpios = <&pcal6416_i2c6_u50 15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-+		spi-max-frequency = <200000000>;
-+		spi-rx-bus-width = <8>;
-+		spi-tx-bus-width = <8>;
-+	};
-+};
+First of all, as I understand it, platform_get_irq() doesn't normally
+return 0 unless interrupt 0 is configured in the DTS, which doesn't
+seem appropriate.
 
--- 
-2.34.1
+Also, the return value of platform_get_irq() was previously used to
+determine if the alarm feature was supported, which is not
+particularly accurate. It should be an inherent feature of the chip,
+and I think it would be more appropriate to define it in
+loongson_rtc_config.
+>
+> Huacai
+>
+> >
+> >  struct loongson_rtc_config {
+> >         u32 pm_offset;  /* Offset of PM domain, for RTC alarm wakeup */
+> > @@ -89,7 +90,7 @@ static const struct loongson_rtc_config ls1b_rtc_conf=
+ig =3D {
+> >
+> >  static const struct loongson_rtc_config ls1c_rtc_config =3D {
+> >         .pm_offset =3D 0,
+> > -       .flags =3D LS1C_RTC_CTRL_WORKAROUND,
+> > +       .flags =3D LS1C_RTC_CTRL_WORKAROUND | LOONGSON_RTC_ALARM_WORKAR=
+OUND,
+> >  };
+> >
+> >  static const struct loongson_rtc_config generic_rtc_config =3D {
+> > @@ -97,6 +98,11 @@ static const struct loongson_rtc_config generic_rtc_=
+config =3D {
+> >         .flags =3D 0,
+> >  };
+> >
+> > +static const struct loongson_rtc_config ls2k0300_rtc_config =3D {
+> > +       .pm_offset =3D 0x0,
+> > +       .flags =3D LOONGSON_RTC_ALARM_WORKAROUND,
+> > +};
+> > +
+> >  static const struct loongson_rtc_config ls2k1000_rtc_config =3D {
+> >         .pm_offset =3D 0x800,
+> >         .flags =3D 0,
+> > @@ -299,9 +305,41 @@ static const struct rtc_class_ops loongson_rtc_ops=
+ =3D {
+> >         .alarm_irq_enable =3D loongson_rtc_alarm_irq_enable,
+> >  };
+> >
+> > +static int loongson_rtc_alarm_setting(struct platform_device *pdev, vo=
+id __iomem *regs)
+> > +{
+> > +       int ret =3D 0, alarm_irq;
+> > +       struct device *dev =3D &pdev->dev;
+> > +       struct loongson_rtc_priv *priv =3D dev_get_drvdata(dev);
+> > +
+> > +       if (priv->config->flags & LOONGSON_RTC_ALARM_WORKAROUND) {
+> > +               /* Loongson-1C/Loongson-2K0300 RTC does not support ala=
+rm */
+> > +               clear_bit(RTC_FEATURE_ALARM, priv->rtcdev->features);
+> > +               return 0;
+> > +       }
+> > +
+> > +       /* Get RTC alarm irq */
+> > +       alarm_irq =3D platform_get_irq(pdev, 0);
+> > +       if (alarm_irq < 0)
+> > +               return alarm_irq;
+> > +
+> > +       ret =3D devm_request_irq(dev, alarm_irq, loongson_rtc_isr, 0, "=
+loongson-alarm",
+> > +                              priv);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       priv->pm_base =3D regs - priv->config->pm_offset;
+> > +       device_init_wakeup(dev, true);
+> > +
+> > +       if (has_acpi_companion(dev))
+> > +               acpi_install_fixed_event_handler(ACPI_EVENT_RTC,
+> > +                                                loongson_rtc_handler, =
+priv);
+> > +
+> > +       return ret;
+> > +}
+> > +
+> >  static int loongson_rtc_probe(struct platform_device *pdev)
+> >  {
+> > -       int ret, alarm_irq;
+> > +       int ret;
+> >         void __iomem *regs;
+> >         struct loongson_rtc_priv *priv;
+> >         struct device *dev =3D &pdev->dev;
+> > @@ -330,25 +368,9 @@ static int loongson_rtc_probe(struct platform_devi=
+ce *pdev)
+> >                 return dev_err_probe(dev, PTR_ERR(priv->rtcdev),
+> >                                      "devm_rtc_allocate_device failed\n=
+");
+> >
+> > -       /* Get RTC alarm irq */
+> > -       alarm_irq =3D platform_get_irq(pdev, 0);
+> > -       if (alarm_irq > 0) {
+> > -               ret =3D devm_request_irq(dev, alarm_irq, loongson_rtc_i=
+sr,
+> > -                                      0, "loongson-alarm", priv);
+> > -               if (ret < 0)
+> > -                       return dev_err_probe(dev, ret, "Unable to reque=
+st irq %d\n",
+> > -                                            alarm_irq);
+> > -
+> > -               priv->pm_base =3D regs - priv->config->pm_offset;
+> > -               device_init_wakeup(dev, true);
+> > -
+> > -               if (has_acpi_companion(dev))
+> > -                       acpi_install_fixed_event_handler(ACPI_EVENT_RTC=
+,
+> > -                                                        loongson_rtc_h=
+andler, priv);
+> > -       } else {
+> > -               /* Loongson-1C RTC does not support alarm */
+> > -               clear_bit(RTC_FEATURE_ALARM, priv->rtcdev->features);
+> > -       }
+> > +       ret =3D loongson_rtc_alarm_setting(pdev, regs);
+> > +       if (ret)
+> > +               return ret;
+> >
+> >         /* Loongson RTC does not support UIE */
+> >         clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, priv->rtcdev->features)=
+;
+> > @@ -379,6 +401,7 @@ static const struct of_device_id loongson_rtc_of_ma=
+tch[] =3D {
+> >         { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1b_rtc_conf=
+ig },
+> >         { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1c_rtc_conf=
+ig },
+> >         { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_c=
+onfig },
+> > +       { .compatible =3D "loongson,ls2k0300-rtc", .data =3D &ls2k0300_=
+rtc_config },
+> >         { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000_=
+rtc_config },
+> >         { /* sentinel */ }
+> >  };
+> > --
+> > 2.47.3
+> >
+> >
 
+--
+Thanks.
+Binbin
 
