@@ -1,240 +1,256 @@
-Return-Path: <devicetree+bounces-249225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12B0ECD9FA4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:33:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C795ECD9FCE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:37:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 955413005192
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:28:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5F49430456F7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5615F3446C7;
-	Tue, 23 Dec 2025 16:28:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C9232DC765;
+	Tue, 23 Dec 2025 16:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="p7WQcdd+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WTt8Aj8B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0148F33F8BD;
-	Tue, 23 Dec 2025 16:28:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C64912BE7DD
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 16:36:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766507330; cv=none; b=owkC8L7pKXRogiGKY/pMnY+Zcx5bS+osHhQ9LfW4qCwu0BKPf2vTBvj7+pSl1oO/vsVuAEmOpJEAr27wJZgBqshFb8Pa25rGQO859IAGbksI69zCPQt8WZFL62HKo5pRKCma0lL2iwtyNa3B3xRi4sDui0ZhQDmccoFhZgOPnWE=
+	t=1766507797; cv=none; b=ayWUGsdER3bVOXP+rjmmsJ7Mw7Q/rcZZvvgv0MOUlH7Xpw1yPueDMD7cbrFAixC2nctAjAUvI6UtDywqROy3uUtmx1kXoiZAB9dKlS31UaAd1KU7qinWheU/Vu5Tcd4chnrR88CEgTcClbVPVZTEmwwgxaDozzXQM3OKl8BZy3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766507330; c=relaxed/simple;
-	bh=CHvs9LJpxYCd2EIw2XM9AxKgdY1E/pkVHpW1EDLkcyk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=j/ITxqsxGCOXh+TaQ07yMx1Q6+MV9Zl7wjMKy7INw0G2Z2oRDid3UmqGLt390mLxog7lVEzPGseYLiM3mfLQ77sQqK51+wGw+T89s0uK/2HH2qjra/e16so57ZQ3eewdnb2kWDRGAwHj6SAAzEK6R/uHtEgPOHuhJpRYSOfVfD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=p7WQcdd+; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from localhost.localdomain (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
-	by mail11.truemail.it (Postfix) with ESMTPA id D7ED61FE21;
-	Tue, 23 Dec 2025 17:28:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1766507324;
-	bh=c9uSdWg2W+/jZzpQme78vy46Hfh/geU/9mPnscNwTkg=; h=From:To:Subject;
-	b=p7WQcdd+5mSMJcHI4K53cxzrnluu16Blo5CeVgl7zeD5vaGHGcKO64GKoKq0pNkw3
-	 OnRW73XC0twTfHF3Av8v4l7AGqPlf/SucPo4fEvOMX0InEjrYb1e7Q3W1p+K0WHOW0
-	 brxTy5AYkkc9IsiAR1QA2/B9Zi1uhzIYarSV+xs0wBXrYQVWHA1QZWeolt+g3HHrXe
-	 tLkPVx/slXzzv/mZa1myRhnygO77rrvwtUYWaoV20X9bn1EmvT3Ts9kiynYYicZWCs
-	 7CqnT3iUIn0GGiTQp8hebsBmU6lYbcuWIQJb+FfxcXZwgHxizJheqGi5WHqze9v9Sq
-	 2FNAY80a3Noig==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 4/4] arm64: dts: freescale: Add Apalis iMX8QP
-Date: Tue, 23 Dec 2025 17:28:30 +0100
-Message-ID: <20251223162833.138286-5-francesco@dolcini.it>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251223162833.138286-1-francesco@dolcini.it>
-References: <20251223162833.138286-1-francesco@dolcini.it>
+	s=arc-20240116; t=1766507797; c=relaxed/simple;
+	bh=AsonnezPKVC7fI47RBf1taVr00tLuXlLrnBnGNUWfIU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RmMS59pTooqkrzMSRoaUgN1c2aj6iJhJc8R9SG/f6Pk3fx0nH3m5u8KXL1yPlcO2G6g6t0NGFMVH+dnhxQzfPpuAkHnyZRc3VU7JhzVBN3nl8rcST8mGmEakTZaFINfJMPU85GegomthrXhsSKuikPtidy0VNf96Dp1K2XrsYh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WTt8Aj8B; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-37a33bd356fso5353571fa.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 08:36:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1766507793; x=1767112593; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FKS7HHgG53xO1wfAq0YsTD7AWJr4TDXXhEFRUFw3RgU=;
+        b=WTt8Aj8BN1jdpOjjN1beCTPTJ4dVMvp+neXzsbTAqyvK/4jqPIMH0n1tGR8oC4ITrv
+         WKCzS92XE/6ce/dJvQ5TyhC7lFZ5xC5HjxZJszahrAD57fzWaBQXpoIMPAXbdygq+J6B
+         VB9sxRVz2MLXX/KRTQ0tc3bl0q3mstW+uaLSSCNblW/2QWG8EyB7Bx8265mzxEFYJA08
+         hc1MOcagSFuT+hxEBnwj2EXXAo6/bCt4CoBdNbHTVQ1VbDIiNuTMHVXgDe25VR9Oze55
+         L9TB1q73aWZdLLPukK6d8DSoZTWlhXJqL6oU/l0sEh44/MC1Q/g3MrvTkcvMNsY3VeR5
+         5AEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766507793; x=1767112593;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FKS7HHgG53xO1wfAq0YsTD7AWJr4TDXXhEFRUFw3RgU=;
+        b=MIYW9fLeqTOdXnf8JF3HZ/oQzfSBVkx/RNEiSJJySHDEq+8lukONSeauu5eOou9UZX
+         4LFYIOmj6VV5BXyK3dD9JGJeqQcln1fhNfFI20ds/TZ1+mTu+MjZXOK8mB7mm6MukomM
+         PQJMxDPpLdrHgBmd8ISPmPcn11kwisiRIAyZoIlemvpC7yVJH0BeqntRUyd6HsHvhhzN
+         ll5FZQc+dJoBWesl4sqFYD1Dk+/DnzRRhXu5yZl1Tb34z++6X5rJKEJN7vukJ6E2Et+z
+         704Uuuzf1hwUYMe9iUMNrOpOkc+BYH6xAAEO3yBRrU6bgNns6DKHjCHDAkodcFAAdARB
+         59kw==
+X-Forwarded-Encrypted: i=1; AJvYcCURjdvQboJ+bObMbfHE27nJkSwj1AVZ4NXAV8/cIAZCfVw2KzGQMCgQzIcPCmu1GyutstqKqErcSkcm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwB8+ankvu4Hl9n6ImMRZxvtnO+1Q/R0bENKPFneh+1EzyHHeKR
+	XPcEf/4qWtphfxuww1h9jgG5PJV/jHXY2KY0Z7aKF8cws2XQ0xl6aZ8ul23GNmtTLKs=
+X-Gm-Gg: AY/fxX6v7AthpUL5D7QroBXDZx6DkwzFu87jGs4kiWOwDEuJGWDbWDFvyykvMcnWrYj
+	Jf+aUFPBnSrzzoGoqLaWfFf1U5eDISQClOeSpJVni2sQJxrsWRMHIcZs9HVxByNZ70Ukthkgaep
+	4j+YUHtYZySGQT/fZ+U4eM4WwmsV7Hrj3oYc3fRR3TS8SmOYWF4mTO9igrUUtS7cZbvFLN5NXRI
+	wnayrp1c5ZACecUxLd7mpmxXt8c7I2SqgR03euEFnDjF65DD2a1G5qjlH4PpvovYaatbqLWewYc
+	Z34NNgfTYkUvV4MuoJNhJ/b5QjhDShIKre8F86/5ZWQ0XvIiQvRjMhmlqlxK0lUrr+RWZ4nzGPj
+	WWCF9U0qFJkD2JoZHgCoc+yenGpOH28LkPkdAMcjX4SCeOcD+jDBRE/IBwYn7VRz+MdyDTYjng8
+	F6VCHWDSQ3S3uxzDeFvgEyQuw5F1tpxbfuOJ9n2ckgWwFtVpXPu9pgj1qyphAzEJ2IMQ==
+X-Google-Smtp-Source: AGHT+IFzEMRoITpmQ6ZakNQMm/lZNEMEzobgiFj5hsm84XHa9Vri2Ps+bWTD3utj6T3YjxNIu83zkg==
+X-Received: by 2002:a05:651c:b0d:b0:37b:bafc:26a4 with SMTP id 38308e7fff4ca-3812156a320mr27330121fa.1.1766507792755;
+        Tue, 23 Dec 2025 08:36:32 -0800 (PST)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38122693ad3sm33548271fa.49.2025.12.23.08.36.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Dec 2025 08:36:32 -0800 (PST)
+Message-ID: <f5df62d0-6b93-4630-92d0-d8af35432178@linaro.org>
+Date: Tue, 23 Dec 2025 18:36:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: talos-evk-camera: Add DT overlay
+To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20251222-sm6150_evk-v1-0-4d260a31c00d@oss.qualcomm.com>
+ <20251222-sm6150_evk-v1-3-4d260a31c00d@oss.qualcomm.com>
+ <cfb8f192-b327-4bb9-993e-a28184571712@linaro.org>
+ <703a502c-883d-434a-8bcf-f785080f5102@oss.qualcomm.com>
+ <091b863b-fa0a-4d3c-8461-60cdc4970992@linaro.org>
+ <a767acb3-8bb9-45f7-99a6-68a595e4ebb5@oss.qualcomm.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <a767acb3-8bb9-45f7-99a6-68a595e4ebb5@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On 12/23/25 04:16, Wenmeng Liu wrote:
+> 
+> 
+> On 12/22/2025 11:45 PM, Vladimir Zapolskiy wrote:
+>> On 12/22/25 13:41, Wenmeng Liu wrote:
+>>>
+>>>
+>>> On 12/22/2025 7:19 PM, Vladimir Zapolskiy wrote:
+>>>> On 12/22/25 10:44, Wenmeng Liu wrote:
+>>>>> Enable IMX577 via CCI on Taloss EVK Core Kit.
+>>>>>
+>>>>> The Talos EVK board does not include a camera sensor
+>>>>> by default, this overlay reflects the possibility of
+>>>>> attaching an optional camera sensor.
+>>>>> For this reason, the camera sensor configuration is
+>>>>> placed in talos-evk-camera.dtso, rather than
+>>>>> modifying the base talos-evk.dts.
+>>>>>
+>>>>> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+>>>>> ---
+>>>>>     arch/arm64/boot/dts/qcom/Makefile              |  2 +
+>>>>>     arch/arm64/boot/dts/qcom/talos-evk-camera.dtso | 64 ++++++++++++++++
+>>>>> ++++++++++
+>>>>>     arch/arm64/boot/dts/qcom/talos.dtsi            | 21 +++++++++
+>>>>
+>>>> Please split QCS615 MCLK definitions change into a separate commit.
+>>> ACK.>
+>>>>>     3 files changed, 87 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/
+>>>>> qcom/Makefile
+>>>>> index
+>>>>> 60121f133078b2754f98e6f45a3db4031b478cc8..b1d85b1f4a94714f2a5c976d162482d70ae920f2 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>>>> @@ -325,7 +325,9 @@ dtb-$(CONFIG_ARCH_QCOM)    += sm8650-qrd.dtb
+>>>>>     dtb-$(CONFIG_ARCH_QCOM)    += sm8750-mtp.dtb
+>>>>>     dtb-$(CONFIG_ARCH_QCOM)    += sm8750-qrd.dtb
+>>>>>     dtb-$(CONFIG_ARCH_QCOM)    += talos-evk.dtb
+>>>>> +talos-evk-camera-dtbs        := talos-evk.dtb talos-evk-camera.dtbo
+>>>>>     talos-evk-lvds-auo,g133han01-dtbs    := talos-evk.dtb talos-evk-
+>>>>> lvds-auo,g133han01.dtbo
+>>>>> +dtb-$(CONFIG_ARCH_QCOM)    += talos-evk-camera.dtb
+>>>>>     dtb-$(CONFIG_ARCH_QCOM)    += talos-evk-lvds-auo,g133han01.dtb
+>>>>>     x1e001de-devkit-el2-dtbs    := x1e001de-devkit.dtb x1-el2.dtbo
+>>>>>     dtb-$(CONFIG_ARCH_QCOM)    += x1e001de-devkit.dtb x1e001de-devkit-
+>>>>> el2.dtb
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/talos-evk-camera.dtso b/arch/
+>>>>> arm64/boot/dts/qcom/talos-evk-camera.dtso
+>>>>> new file mode 100644
+>>>>> index
+>>>>> 0000000000000000000000000000000000000000..ae1a02295b4dc48212aad40980a329ff458fe69a
+>>>>> --- /dev/null
+>>>>> +++ b/arch/arm64/boot/dts/qcom/talos-evk-camera.dtso
+>>>>> @@ -0,0 +1,64 @@
+>>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>>> +/*
+>>>>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>>>>
+>>>> Please add a missing year of the change.
+>>> Now our requirement is a yearless copyright.>
+>>
+>> Ack. It's a lawyers' domain anyway.
+>>
+>>>>> + */
+>>>>> +
+>>>>> +/dts-v1/;
+>>>>> +/plugin/;
+>>>>> +
+>>>>> +#include <dt-bindings/clock/qcom,qcs615-camcc.h>
+>>>>> +#include <dt-bindings/gpio/gpio.h>
+>>>>> +
+>>>>> +&camss {
+>>>>> +    vdd-csiphy-1p2-supply = <&vreg_l11a>;
+>>>>> +    vdd-csiphy-1p8-supply = <&vreg_l12a>;
+>>>>> +
+>>>>> +    status = "okay";
+>>>>> +
+>>>>> +    ports {
+>>>>> +        #address-cells = <1>;
+>>>>> +        #size-cells = <0>;
+>>>>> +
+>>>>> +        port@1 {
+>>>>> +            reg = <1>;
+>>>>> +
+>>>>> +            csiphy1_ep: endpoint {
+>>>>> +                clock-lanes = <7>;
+>>>>
+>>>> Please remove 'clock-lanes' property.
+>>> ACK.>
+>>>>> +                data-lanes = <0 1 2 3>;
+>>>>> +                remote-endpoint = <&imx577_ep1>;
+>>>>> +            };
+>>>>> +        };
+>>>>> +    };
+>>>>> +};
+>>>>> +
+>>>>> +&cci {
+>>>>> +    status = "okay";
+>>>>> +};
+>>>>> +
+>>>>> +&cci_i2c1 {
+>>>>> +    #address-cells = <1>;
+>>>>> +    #size-cells = <0>;
+>>>>> +
+>>>>> +    camera@1a {
+>>>>> +        compatible = "sony,imx577";
+>>>>> +        reg = <0x1a>;
+>>>>> +
+>>>>> +        reset-gpios = <&tlmm 29 GPIO_ACTIVE_LOW>;
+>>>>> +        pinctrl-0 = <&cam2_default>;
+>>>>> +        pinctrl-names = "default";
+>>>>> +
+>>>>> +        clocks = <&camcc CAM_CC_MCLK2_CLK>;
+>>>>> +        assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
+>>>>> +        assigned-clock-rates = <24000000>;
+>>>>> +
+>>>>> +        avdd-supply = <&vreg_s4a>;
+>>>>
+>>>> Just one voltage supply?
+>>> yes, 22pin camera module only have one pin for power.>
+>>
+>> It's common that mezzanine boards are supplied with power from S4A or VBAT,
+>> I've never seen a camera module supplied with just one voltage regulator,
+>> that's why it attracts attention.
+>>
+>> What is a camera module here, is it on an attachable vision mezzanine like
+>> on RBx series or a part of Talos EVK PCB like on QRD series?
+>>
+>> If it is a mezzanine, the support of mezzanine boards should be done as
+>> a DT overlay.
+>>
+> 
+> It`s like RBx series, does not include a camera sensor
+> by default.
+> 
 
-Add support for the Apalis iMX8QP SoM mated with Apalis Ixora and Apalis
-Evaluation board.
+Then to add the image sensor support please follow the model with DT overlays,
+and it means you shall get a schematics of the mezzanine to describe the
+attachable board.
 
-Apalis iMX8QP is a variant of the Apalis iMX8QM, using an NXP i.MX8QP
-SoC instead of the i.MX8QM. The two SoCs are pin to pin compatible, with
-the i.MX8QP being a lower end variant, with a slower GPU and one Cortex
-A72 core instead of two.
+When you get the schematics, you will get a valid view on voltage distribution,
+sensor supplies will be derivatives from VBAT or S4A anyway, I believe.
 
-The two Apalis SoMs variants share the same schematics and PCB, and the
-iMX8QP variant exists only on revision V1.1 of board.
+See sm8550-hdk-rear-camera-card.dtso or qrb5165-rb5-vision-mezzanine.dtso as
+the references.
 
-Link: https://www.nxp.com/products/i.MX8
-Link: https://www.toradex.com/computer-on-modules/apalis-arm-family/nxp-imx-8
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |  5 ++++
- .../imx8qp-apalis-v1.1-eval-v1.2.dts          | 26 +++++++++++++++++++
- .../dts/freescale/imx8qp-apalis-v1.1-eval.dts | 16 ++++++++++++
- .../imx8qp-apalis-v1.1-ixora-v1.1.dts         | 16 ++++++++++++
- .../imx8qp-apalis-v1.1-ixora-v1.2.dts         | 16 ++++++++++++
- .../dts/freescale/imx8qp-apalis-v1.1.dtsi     | 16 ++++++++++++
- 6 files changed, 95 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-eval-v1.2.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-eval.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-ixora-v1.1.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-ixora-v1.2.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1.dtsi
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index f30d3fd724d0..61c7f0383f91 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -350,6 +350,11 @@ dtb-${CONFIG_ARCH_MXC} += imx8qm-mek-ov5640-csi1.dtb
- imx8qm-mek-ov5640-dual-dtbs := imx8qm-mek.dtb imx8qm-mek-ov5640-csi0.dtbo imx8qm-mek-ov5640-csi1.dtbo
- dtb-${CONFIG_ARCH_MXC} += imx8qm-mek-ov5640-dual.dtb
- 
-+dtb-$(CONFIG_ARCH_MXC) += imx8qp-apalis-v1.1-eval.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8qp-apalis-v1.1-eval-v1.2.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8qp-apalis-v1.1-ixora-v1.1.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8qp-apalis-v1.1-ixora-v1.2.dtb
-+
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-ai_ml.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-aster.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-eval-v3.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-eval-v1.2.dts b/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-eval-v1.2.dts
-new file mode 100644
-index 000000000000..b5318de67cb0
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-eval-v1.2.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8qp-apalis-v1.1.dtsi"
-+#include "imx8-apalis-eval-v1.2.dtsi"
-+
-+/ {
-+	model = "Toradex Apalis iMX8QP V1.1 on Apalis Evaluation Board V1.2";
-+	compatible = "toradex,apalis-imx8-v1.1-eval-v1.2",
-+		     "toradex,apalis-imx8-v1.1",
-+		     "fsl,imx8qp";
-+};
-+
-+/* Apalis MMC1 */
-+&usdhc2 {
-+	/delete-property/ no-1-8-v;
-+};
-+
-+/* Apalis SD1 */
-+&usdhc3 {
-+	/delete-property/ no-1-8-v;
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-eval.dts b/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-eval.dts
-new file mode 100644
-index 000000000000..d558cff2582f
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-eval.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8qp-apalis-v1.1.dtsi"
-+#include "imx8-apalis-eval-v1.1.dtsi"
-+
-+/ {
-+	model = "Toradex Apalis iMX8QP V1.1 on Apalis Evaluation Board";
-+	compatible = "toradex,apalis-imx8-v1.1-eval",
-+		     "toradex,apalis-imx8-v1.1",
-+		     "fsl,imx8qp";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-ixora-v1.1.dts b/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-ixora-v1.1.dts
-new file mode 100644
-index 000000000000..a73a6324f552
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-ixora-v1.1.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8qp-apalis-v1.1.dtsi"
-+#include "imx8-apalis-ixora-v1.1.dtsi"
-+
-+/ {
-+	model = "Toradex Apalis iMX8QP V1.1 on Apalis Ixora V1.1 Carrier Board";
-+	compatible = "toradex,apalis-imx8-v1.1-ixora-v1.1",
-+		     "toradex,apalis-imx8-v1.1",
-+		     "fsl,imx8qp";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-ixora-v1.2.dts b/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-ixora-v1.2.dts
-new file mode 100644
-index 000000000000..71568d7ec8e5
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-ixora-v1.2.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8qp-apalis-v1.1.dtsi"
-+#include "imx8-apalis-ixora-v1.2.dtsi"
-+
-+/ {
-+	model = "Toradex Apalis iMX8QP V1.1 on Apalis Ixora V1.2 Carrier Board";
-+	compatible = "toradex,apalis-imx8-v1.1-ixora-v1.2",
-+		     "toradex,apalis-imx8-v1.1",
-+		     "fsl,imx8qp";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1.dtsi
-new file mode 100644
-index 000000000000..1e5311512344
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1.dtsi
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+#include "imx8qp.dtsi"
-+#include "imx8-apalis-v1.1.dtsi"
-+
-+&cooling_maps_map0 {
-+	cooling-device =
-+		<&A53_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+		<&A53_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+		<&A53_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+		<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+		<&A72_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+};
 -- 
-2.47.3
-
+Best wishes,
+Vladimir
 
