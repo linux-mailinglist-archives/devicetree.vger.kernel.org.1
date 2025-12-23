@@ -1,62 +1,59 @@
-Return-Path: <devicetree+bounces-249251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC214CDA2A6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:47:34 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52A68CDA2A9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:47:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9E498304368B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:45:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3D49E30497DC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4649B3314C2;
-	Tue, 23 Dec 2025 17:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21EC34DCC9;
+	Tue, 23 Dec 2025 17:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q/xtCSU0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s3x4O61l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 178EA2701CF;
-	Tue, 23 Dec 2025 17:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C9EB34B41C;
+	Tue, 23 Dec 2025 17:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766511913; cv=none; b=VBKYoMh8wt2HqRfIuT/ONq//Fw4QYBue5HXzB/QCEPkYKFEtdZpge1DgBpvgJj+IU4aBTkqehySlLPmH3Pu1dXRIUUPGMzUNnEViKG0KX7bGohOve0540i4TpsQtgbKIHiUTRDhAUha44f8GfW7nPsMVxwN8VF3P/l03+6IIHWo=
+	t=1766511916; cv=none; b=JglMRDgoFVrP3DmcdVtkfP/Do20greHCqujjb6rt6GUJVFRUlHw8+PfQJQ1z9RsltprZuMBh2l79revps+/2chAXhaQVJVrtO7AO2e0EJ6V95LVdNF5GFIkFY5GA7whzbrRi9gmeLtaDIlHdKoZQb8zhDPZMH0k8l0OW4t3pfmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766511913; c=relaxed/simple;
-	bh=Fp74yWwB0EL3oH6IPXUmyxxgfVxbhxLvcA5X9IqTBa0=;
+	s=arc-20240116; t=1766511916; c=relaxed/simple;
+	bh=IREpsCbPDjPXBUeM3hVpkzTdgens1z8F0+oisTuZVws=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=qUtgtd245IAAUcu6E6Ao8shqkV6Akevts+KTXNL5ihw5M7bYihmww5HN0npYi5o4ClUM7k9RpRRVR4n6U77dnKVSTvZFnwRykf2WET3iSXkYTkHKty0rVk/vyi7b4mD/ue7bNSveJe08wsOfYS6J85UkPIzrRdbH4pAHerjwxfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q/xtCSU0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1040C19421;
-	Tue, 23 Dec 2025 17:45:06 +0000 (UTC)
+	 MIME-Version:Content-Type; b=OvdyXOJY80Riiq/uzyyPl7dJ2K3sxVvQ4xLnUjM6P0DFfi6SZesRyOLrsXOqm8P/SwSb4R7mv/gjzkhC6wn9iT88daW9IR4/328P4TyF0459JRBy9Oy28X59ow5cxp9V0QEhvji3iLL7ZW8WBQTa+2mxTrQJ5ahNUm1/B2HUml4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s3x4O61l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC5D7C113D0;
+	Tue, 23 Dec 2025 17:45:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766511911;
-	bh=Fp74yWwB0EL3oH6IPXUmyxxgfVxbhxLvcA5X9IqTBa0=;
+	s=k20201202; t=1766511916;
+	bh=IREpsCbPDjPXBUeM3hVpkzTdgens1z8F0+oisTuZVws=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Q/xtCSU0WBdYo290s9OJ4gg0vUURad0KXkqk2QKqkamz84YEETLMwajEYwJ4007ru
-	 MJVJ2QxPAbnuWV0K73kknyuU3FuUeeJgKWKe+lnid7rH7Sv6XXcLQ+wXuMpOAvSsVv
-	 YG5WoYLjRAT6GeniIa8Ct/jOadaaArcdcggHCkt+18CbCvSWkuNzIPDw9WH5p7Mv8S
-	 Pk4///Fxb324F8Vu4XPF/gb7MnCradJHtw6WhgvBfIs2PewX0GvEtZ9LPRIIAa8um7
-	 1Kg6JxyPFCvBkn/C7lA+Ib869TfiurDzQoyS6mS9gpOnBsEUudCqs4ru82GOIWYbas
-	 oPmly00tmDebA==
+	b=s3x4O61lW7g72WQyjOgA0jnBkV5RQhLAD5XHp8bwr9tmAIpAE1UGIxrfc5/+v6jlG
+	 4aNHfOiPZf5XqAtci5PZLnaZQkMQRYtdi7dvd1mSn1wiPTXw/CDxq4IPl5wWR0iM1n
+	 j0SIw6vABuVJ9X46iiSTEmLe0Rlvx/zhVRr9OvS3F5IAUHpC9A/MkSlG9w2j+Xtp36
+	 QGOMfkcPkVifbVoVa60ppQ/yNNg483VPERAIgKEmRygWWyM9TbaUfu9LOeFH0jSrAI
+	 vrzi52ZmBIxKhIVeq8UYtuswy5ojifLhrSpyf+9PUNs7AEdc4qRHbYfxNuzQCbxWNV
+	 gtQfC+pUwHzfg==
 From: Vinod Koul <vkoul@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com, 
- li.liu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251215-add-displayport-support-for-qcs615-platform-v8-0-cbc72c88a44e@oss.qualcomm.com>
-References: <20251215-add-displayport-support-for-qcs615-platform-v8-0-cbc72c88a44e@oss.qualcomm.com>
-Subject: Re: [PATCH v8 00/12] Add DisplayPort support for QCS615 platform
-Message-Id: <176651190661.759340.9506342080628643827.b4-ty@kernel.org>
-Date: Tue, 23 Dec 2025 23:15:06 +0530
+To: Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Sven Peter <sven@kernel.org>
+Cc: linux-kernel@vger.kernel.org, asahi@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Hector Martin <marcan@marcan.st>
+In-Reply-To: <20251214-b4-atcphy-v3-0-ba82b20e9459@kernel.org>
+References: <20251214-b4-atcphy-v3-0-ba82b20e9459@kernel.org>
+Subject: Re: [PATCH v3 0/3] Apple Silicon Type-C PHY
+Message-Id: <176651191159.759340.7918107926279417342.b4-ty@kernel.org>
+Date: Tue, 23 Dec 2025 23:15:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,42 +65,24 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Mon, 15 Dec 2025 20:41:56 +0800, Xiangxu Yin wrote:
-> This series aims to extend the USB-C PHY to support DP mode and enable
-> DisplayPort on the Qualcomm QCS615 platform.
-> 
-> The devicetree modification for DisplayPort on QCS615 will be provided
-> in a future patch.
-> 
+On Sun, 14 Dec 2025 11:51:33 +0000, Sven Peter wrote:
+> This series adds support for the combined Type-C PHY found in Apple
+> Silicon machines and required for USB3, DP-AltMode, and Thunderbolt/USB4
+> support. As in the previous versions, this is limited to USB3 support so
+> far since the other modes need further work in different subsystems.
+> With the dwc3 glue driver being upstream this is however the last part
+> required for upstream USB3 support.
 > 
 > [...]
 
 Applied, thanks!
 
-[01/12] dt-bindings: phy: Add QMP USB3+DP PHY for QCS615
-        commit: 70f12a4cc6a04869b2185be999e3849a6c17439f
-[02/12] phy: qcom: qmp-usbc: Rename USB-specific ops to prepare for DP support
-        commit: 9f5f6083b3bd74c7d25737241e32821adb294e14
-[03/12] phy: qcom: qmp-usbc: Add DP-related fields for USB/DP switchable PHY
-        commit: 0599a4b9ee13b10820fa71f058bef8cc6f06b0b6
-[04/12] phy: qcom: qmp-usbc: Add regulator init_load support
-        commit: 3b19374825676e0b548b808772f5ecbe8af4f9da
-[05/12] phy: qcom: qmp-usbc: Move reset config into PHY cfg
-        commit: 5b2dd08459ad1f61dc7037032a5230c0efd9d797
-[06/12] phy: qcom: qmp-usbc: add DP link and vco_div clocks for DP PHY
-        commit: 049e708e7705534a9992b24c5090d133c8efbca6
-[07/12] phy: qcom: qmp-usbc: Move USB-only init to usb_power_on
-        commit: cb2255822509c9dcdd1fad0cd167032dee7dc6c1
-[08/12] phy: qcom: qmp-usbc: Add TCSR parsing and PHY mode setting
-        commit: 9ab26cb7e652f3cdfb3d59fb42907c0229f2a93f
-[09/12] phy: qcom: qmp-usbc: Add DP PHY ops for USB/DP switchable Type-C PHYs
-        commit: f3198fde573be23de1a8196bc5ebb0abe9c7e02f
-[10/12] phy: qcom: qmp-usbc: Add USB/DP exclude handling
-        commit: 8e7670f7465d46bfa72980b310d39491a3a944d6
-[11/12] phy: qcom: qmp: Add DP v2 PHY register definitions
-        commit: c1282d5f85857d72cf947add3f14240fd82da261
-[12/12] phy: qcom: qmp-usbc: Add QCS615 USB/DP PHY config and DP mode support
-        commit: 81791c45c8e0eaeba9a40927eecd082a8500f709
+[1/3] soc: apple: Add hardware tunable support
+      commit: a722de305eacb382a5d306f9f8e502f81bab682d
+[2/3] dt-bindings: phy: Add Apple Type-C PHY
+      commit: c1538b87caef6b2783502c820457be092a7266be
+[3/3] phy: apple: Add Apple Type-C PHY
+      commit: 8e98ca1e74db2ae051c9b545d42b879efa5a2f6c
 
 Best regards,
 -- 
