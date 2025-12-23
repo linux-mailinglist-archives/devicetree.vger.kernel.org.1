@@ -1,373 +1,183 @@
-Return-Path: <devicetree+bounces-249214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 117F4CD9DFD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:56:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CAFDCD9E12
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:58:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 57061301988B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:55:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 40E603015859
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:58:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAC52750ED;
-	Tue, 23 Dec 2025 15:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF3D26158B;
+	Tue, 23 Dec 2025 15:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="yKB8MM9e"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dY21izoQ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YO7N+BLQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3CC01DA62E;
-	Tue, 23 Dec 2025 15:55:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3AC26F2A1
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766505358; cv=none; b=asW0Tkh5FdrZYSmcxYVnRZKaFgtgXb094G1XqOsP5hASL1i8AJeeidyiJjpZGYkhdtBnK2D2a6xh92sw3EJ5AXKl0aTkC3G/iNKsgRFvfUzKQsC0zhKJsar7pOyVAGa59z1Nz94ZFHTUSzyszH98txH07LQ0XjKYKVVyJNpjsT0=
+	t=1766505517; cv=none; b=s6HU5qH5MhSlCLM4NglX5P/XkzD6WRGReOkHEFYeqKh/qXhOUs3SxfZKYjjxGdVVePIfRmNDNKDB0F5bKmpxG1GwJakgh69o8ntfr3oJpv8Z3GDs34NxIwaxOkbeL0zfC3fJ3k5Wks95PBm+4f0wqN7KFhf+Uh9175JMfd2KjGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766505358; c=relaxed/simple;
-	bh=poZQn7Agu5ywNgg3uB33d1fbiLBYSy8hBxt1Mw++Hog=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=iFiCrbZ5GaNKjJBGhb/CzmILqXp8XdaKcChhsyQUInKKwToZCu4EE3VGzXOWXVSqWa7se29xUlH6FzywRijg0jg8G7Xq06g6f7odVobZC2LqLrQzyuPrxqVjIOYuLW9jxbSko8JK7CCiiZZO+5X6fOpgC1vOr6YNTll3eW7q4XM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=yKB8MM9e; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 1AFC74E41D52;
-	Tue, 23 Dec 2025 15:55:53 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E2E4660716;
-	Tue, 23 Dec 2025 15:55:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 870B010AB0BB1;
-	Tue, 23 Dec 2025 16:55:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1766505351; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=JqvpCgakLbqyOqF8D9gvhpB419I7/mBwXxM7M8O++/8=;
-	b=yKB8MM9e/QwZH9JtiYpwGinoysi+6IbSZGsP5YkJm/eePtwpLIh5/XqVPKnHkRXBBd2+e3
-	lM2wdoQxZQKrqZ/I8BAVDRLFniuGNg4IoQ6/ISo7zFGeIMJ7e0zHXkPS1PFYzhLalylmS3
-	TSGeHmJMGONvk3Gef33DIZL4Ket6MsDbyY0+gJz5oCSSGrO3/uDuJVRLy+M0nOJWATYIQ9
-	4eUJjxj7GwBDoNeheeD/8n6/NJCaruul/Qs+N4qm8yuyJRa7AVB9mY6dqI060XUZTUdvMw
-	Ek6C10o+sDnTIQPkYw6PdpxwjsWUglMx/7F9IbLcgpc7arQW3zFHrunZtywEOg==
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	nuno.sa@analog.com,
-	Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Angelo Dureghello <adureghello@baylibre.com>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Eason Yang <j2anfernee@gmail.com>,
-	Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
-	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
-	duje@dujemihanovic.xyz,
-	herve.codina@bootlin.com,
-	Rodolfo Giometti <giometti@enneenne.com>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com
-Subject: [PATCH 2/2] iio: adc: add driver for Texas Instruments TLA2528 adc
-Date: Tue, 23 Dec 2025 16:55:33 +0100
-Message-ID: <20251223155534.220504-3-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
-References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
+	s=arc-20240116; t=1766505517; c=relaxed/simple;
+	bh=Mtxd/iv3yMWlETS0+3baJ1bxVujZ3ZziEvgBz2Az3SI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=J6Ad+NtTD6Z+9FhBmu0+pbooSNE98EyTAbCyz44S2FP8E0wewTi93CIJHxEfuwSmdV2nlfHd03YG3x2f2p7smQcrLCpO/pdaIoe30AEYbOAuitl8XhOGkQdL857T+yp1xJc3GnQWHwAR8v4M26yePzHV+iZUS2/E0Wqm1fT8XWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dY21izoQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YO7N+BLQ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BNFPvHV2115198
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:58:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jiVMsPmbQP7FZ38DNLit/HG1+5z9nnDnXvMaFIBjNjQ=; b=dY21izoQwZl3PUWu
+	Mb6XE3I9EdcKQO8QjSqkx5MLvjiEwvp7/oOdtyn2XSuWlTf3zVnBSDfvpxeh+aLG
+	uQViOdMN53cJFkPMxDxc7Tz0MrWKgjfFGwWea8YMW8CmOrD3Q9+uVH0+5tnsI3Ed
+	vxfom/ISfZ5X0F9jEgVbRIeCNtAtVoQ28hzi3zolpSY+3CY1+Dtd3NVZJYHXipJu
+	fTZdrdKIAAJ/Pd8qfzGX1MKPf2bTnUOKAR/WlTEpR4vdpBVwdecu0c2rn7UvVrN/
+	YmCQbg4NE2gSVOFz90F80BXLJDXxr/mJHWJxz2cna19+/98SeU6WkHbCYNzBY/kS
+	QCAYsA==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7cudk7em-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:58:35 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-29f177f4d02so114396075ad.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 07:58:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766505514; x=1767110314; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jiVMsPmbQP7FZ38DNLit/HG1+5z9nnDnXvMaFIBjNjQ=;
+        b=YO7N+BLQWnvWUmSdOmGUman1RzVjMDvi84p2xGPICkncZjMFCHnhJPukQ4GDwIWLQ/
+         edbVicG+CRLeD4lccSS97d81ATOEBspudAMr9K7X5KcajhRqq9GOcNQr06pD8Nvj2dPf
+         O+6HhEpJJZQH4zi58N1DWYckUKBWLNwvyVSixRZF0H+Y5RqHmkOVwUdNvXXKanHLE8by
+         En8Z5WjW4T7ER2rWxQ3+rpaRYxwg51AR70iDSiWNCGvN7yoagXGfmcbSxUY0XDJoR2N+
+         qvYzAZztsbVjEmomtDJui+r5pxSZvk/cs3nG5W8FZhXsWMMOfhvvT7KTFdyvJ16HLDgL
+         fFhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766505514; x=1767110314;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=jiVMsPmbQP7FZ38DNLit/HG1+5z9nnDnXvMaFIBjNjQ=;
+        b=XLpXB0/9cFQCYOO+RA7TdS2mHHGHT3US1YqNOhUvZ9I7TAb22Ik+O/cRPaqA2zzVP9
+         II5kmKm0pcMrNLUsfm1WpSvBXzXMSkNaqerRlDEBYgczQ+BP5/I0aWtr6kfSgqgloMja
+         XIJXKMr7YnrSRPfXN/t+LtXZKalZWnH4DDe8Dr5iSyYlsljA4lv3CXHOjD1gEH1IKHoh
+         d7Yh7bw283DSj3cSw6YYVVl38mhpltpnBfHUGDn3uhdKVKnr3P3t05Wx8Wp0QH2AA+a5
+         LQ4BchS2zd67bUl0rSafeOoGaJHk+qdTFnN+BKwCDU5MJD/Lw6TzH8QvMk5bzZw+iHsc
+         m3eA==
+X-Forwarded-Encrypted: i=1; AJvYcCWpRdbmjCepVI2XMIC+Hcdb7+cxOKMpb+hDCEZsU1IDH3TNIup0QqQ2+VnxgckC46lhVxcWbMtWQnTU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRKDGjiFgz0LoJyJQnvYtWvmqKt1ltwpdFAVqEuCckK5lwuVCc
+	ZQ20kIzs/pYtHf/C3pQNNd4mmpwcbv/SJClps32dhQQHIf+P+KpszTppQwahX+t+94/B7SzcM2O
+	MiMgjaHu0nzaP8H/q+j8IAKQ/JBQUHcRQpdxkm3zB/PZl88APg+tn7An0x9prOZfF
+X-Gm-Gg: AY/fxX6ZdvKhXTDV1ojXQSITVA1si+f+bUUysr5JUaoCo1F5Pl89qkoX2enBgbKkLpq
+	dargLEXB43JM86hMGMqowbRKPNo9CwbOrdSpiepoQIlF+HvocodtNUC5s+TN6bX5v0b6P4fS4xx
+	J6WWHfqfhd1ttCjOwGQJTVHNuXF/CddWeENwsUDe1zy/Yx0Hc0GtOGUHmvbabBJ0sDCKSvHDQDG
+	3SZocGc4PyBXUYl3nqrIO0C69G9nUhet3CR9hfFaCZpQSRJ1K5cLjw+QXuBRz+rIihUoPWOlGoO
+	1D99DkKAASNRz62DMVZTc7Zy01ebKTMeR2qEnuZP7KmFzSuNMLJzoCsSOhbhsXhfqcL9yWMg2IJ
+	gJVozkeTQ5g==
+X-Received: by 2002:a17:902:d584:b0:29e:9c82:a91e with SMTP id d9443c01a7336-2a2f21fc506mr163295415ad.7.1766505514305;
+        Tue, 23 Dec 2025 07:58:34 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFhayM1D+7Y1gHqun6N5dRaivrEs0mEAHPs1q25xLW/IAzFnLc7m+vKUO2bdvStmAZD+ZHRIQ==
+X-Received: by 2002:a17:902:d584:b0:29e:9c82:a91e with SMTP id d9443c01a7336-2a2f21fc506mr163295255ad.7.1766505513842;
+        Tue, 23 Dec 2025 07:58:33 -0800 (PST)
+Received: from [192.168.1.102] ([120.56.200.112])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d7754asm131271795ad.100.2025.12.23.07.58.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Dec 2025 07:58:33 -0800 (PST)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+X-Google-Original-From: Manivannan Sadhasivam <mani@kernel.org>
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@codeconstruct.com.au>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: linux-aspeed@lists.ozlabs.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Andrew Jeffery <andrew@aj.id.au>, openbmc@lists.ozlabs.org,
+        linux-gpio@vger.kernel.org
+In-Reply-To: <20251216-upstream_pcie_rc-v7-0-4aeb0f53c4ce@aspeedtech.com>
+References: <20251216-upstream_pcie_rc-v7-0-4aeb0f53c4ce@aspeedtech.com>
+Subject: Re: (subset) [PATCH v7 0/7] Add ASPEED PCIe Root Complex support
+Message-Id: <176650550798.2188958.10356654881464455126.b4-ty@kernel.org>
+Date: Tue, 23 Dec 2025 21:28:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
+X-Authority-Analysis: v=2.4 cv=ebkwvrEH c=1 sm=1 tr=0 ts=694abc2b cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=31AEnvkI3DvSdtIumApubw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=oUgZFhhkZxxgqap4hUAA:9
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-GUID: mv3RAVyC4LTcgFKH6eUOW6TuGsoT05bA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDEzMiBTYWx0ZWRfXyFe/h8XY7X7X
+ AH7c/2Fpd8Sxr1pwP/URfUZqoJJRR+raRiOrDrOVHjMOuucCgsamHFht37ViZOUeQnS24smtsV1
+ 2ptGU189T30PccIIvt6j4dK7iSvW1Nd/5e8FaL+HFxbolir4F2VEkcMnurjLxazVXCCeMjUyBZG
+ R+iraulKqSJV8dM9cjkETCxlVUxOStYpfpFI0KlJ7biyb1gW+9vXVzhvQPiX5BpoFPWlLJ8CiSd
+ vJK+L6Z0j5C39T1mgf9/5SJ0PgyGUO8+IiOE0aiExttt4jW3qqsguqMev00Lq1xGj/PiAAeP1Vj
+ /XDbGBbhX1LcRLeeXn7jskIqm/a+d36zacZSANaI/9KoLTB0MqhWWRDMhwPtBmGEqUmbsqgFlb1
+ 8CMPVqTKLHgKBtOQj+HaY9XgA+dNtSZeYsMICRu3CtiP4q7mnmyFRwrCTKv/cDY4QMw0WKcDUBu
+ nm9rjvUR4BvGH/e+I5g==
+X-Proofpoint-ORIG-GUID: mv3RAVyC4LTcgFKH6eUOW6TuGsoT05bA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-23_03,2025-12-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 malwarescore=0 adultscore=0 suspectscore=0 clxscore=1015
+ priorityscore=1501 bulkscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512230132
 
-This adds a new driver for the TI TLA2528 ADC chip. It ha 8 12-bit
-channels, that can also be configured as 16-bit averaging channels.
 
-Add a very simple driver for it, allowing reading raw values for each
-channel.
+On Tue, 16 Dec 2025 09:49:59 +0800, Jacky Chou wrote:
+> This patch series adds support for the ASPEED PCIe Root Complex,
+> including device tree bindings, pinctrl support, and the PCIe host controller
+> driver. The patches introduce the necessary device tree nodes, pinmux groups,
+> and driver implementation to enable PCIe functionality on ASPEED platforms.
+> Currently, the ASPEED PCIe Root Complex only supports a single port.
+> 
+> Summary of changes:
+> - Add device tree binding documents for ASPEED PCIe PHY and PCIe RC
+> - Update MAINTAINERS for new bindings and driver
+> - Implement ASPEED PCIe PHY driver
+> - Implement ASPEED PCIe Root Complex host controller driver
+> 
+> [...]
 
-Signed-off-by: Rodolfo Giometti <giometti@enneenne.com>
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
- MAINTAINERS                  |   7 ++
- drivers/iio/adc/Kconfig      |  10 ++
- drivers/iio/adc/Makefile     |   1 +
- drivers/iio/adc/ti-tla2528.c | 209 +++++++++++++++++++++++++++++++++++
- 4 files changed, 227 insertions(+)
- create mode 100644 drivers/iio/adc/ti-tla2528.c
+Applied, thanks!
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dc731d37c8fe..5c382ae216c7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25866,6 +25866,13 @@ F:	include/dt-bindings/soc/ti,sci_pm_domain.h
- F:	include/linux/soc/ti/ti_sci_inta_msi.h
- F:	include/linux/soc/ti/ti_sci_protocol.h
- 
-+TEXAS INSTRUMENTS' TLA2528 ADC DRIVER
-+M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
-+F:	drivers/iio/adc/ti-tla2528.c
-+
- TEXAS INSTRUMENTS' TMP117 TEMPERATURE SENSOR DRIVER
- M:	Puranjay Mohan <puranjay@kernel.org>
- L:	linux-iio@vger.kernel.org
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 58da8255525e..67376de410bf 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -1803,6 +1803,16 @@ config TI_LMP92064
- 	  This driver can also be built as a module. If so, the module will be called
- 	  ti-lmp92064.
- 
-+config TI_TLA2528
-+	tristate "Texas Instruments TLA2528 ADC driver"
-+	depends on I2C
-+	help
-+	  Say yes here to build support for Texas Instruments TLA2528
-+	  12-Bit 8-Channel ADC.
-+
-+	  To compile this driver as a module, choose M here: the module will be
-+	  called ti-tla2528.
-+
- config TI_TLC4541
- 	tristate "Texas Instruments TLC4541 ADC driver"
- 	depends on SPI
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index 7cc8f9a12f76..941606defbf7 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -157,6 +157,7 @@ obj-$(CONFIG_TI_ADS8344) += ti-ads8344.o
- obj-$(CONFIG_TI_ADS8688) += ti-ads8688.o
- obj-$(CONFIG_TI_AM335X_ADC) += ti_am335x_adc.o
- obj-$(CONFIG_TI_LMP92064) += ti-lmp92064.o
-+obj-$(CONFIG_TI_TLA2528) += ti-tla2528.o
- obj-$(CONFIG_TI_TLC4541) += ti-tlc4541.o
- obj-$(CONFIG_TI_TSC2046) += ti-tsc2046.o
- obj-$(CONFIG_TWL4030_MADC) += twl4030-madc.o
-diff --git a/drivers/iio/adc/ti-tla2528.c b/drivers/iio/adc/ti-tla2528.c
-new file mode 100644
-index 000000000000..9c572e730ffb
---- /dev/null
-+++ b/drivers/iio/adc/ti-tla2528.c
-@@ -0,0 +1,209 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for Texas Instruments TLA2528 ADC
-+ *
-+ * Copyright (C) 2020-2021 Rodolfo Giometti <giometti@enneenne.com>
-+ * Copyright (C) 2025 Maxime Chevallier <maxime.chevallier@bootlin.com>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <linux/iio/iio.h>
-+
-+#define TLA2528_OP_WRITE_REG		0x08
-+
-+#define TLA2528_DATA_CFG_ADR		0x02
-+
-+/* Datasheet says [5:4] sets the append status, but only bit 4 is used */
-+#define TLA2528_DATA_CFG_APPEND_STATUS	BIT(4)
-+#define TLA2528_PIN_CFG_ADR		0x05
-+#define TLA2528_SEQUENCE_CFG_ADR	0x10
-+#define TLA2528_CHANNEL_SEL_ADR		0x11
-+
-+struct tla2528 {
-+	struct i2c_client *client;
-+	int vref_uv;
-+
-+	/* Protects manual channel selection, i.e. last_read_channel */
-+	struct mutex lock;
-+	u8 last_read_channel;
-+};
-+
-+static s32 tla2528_write_reg(const struct i2c_client *client, u8 reg, u8 val)
-+{
-+	u8 data[3] = {TLA2528_OP_WRITE_REG, reg, val};
-+	int ret;
-+
-+	ret = i2c_master_send(client, data, 3);
-+
-+	return ret < 0 ? ret : 0;
-+}
-+
-+static int tla2528_read_sample(const struct i2c_client *client)
-+{
-+	__be16 data;
-+	int ret;
-+
-+	ret = i2c_master_recv(client, (char *)&data, 2);
-+	if (ret < 0)
-+		return ret;
-+
-+	return be16_to_cpu(data) >> 4;
-+}
-+
-+static int tla2528_read(struct tla2528 *tla2528, u8 channel, int *val)
-+{
-+	struct i2c_client *client = tla2528->client;
-+	int ret;
-+
-+	if (channel != tla2528->last_read_channel) {
-+		ret = tla2528_write_reg(client, TLA2528_CHANNEL_SEL_ADR, channel);
-+		if (ret < 0)
-+			return ret;
-+
-+		tla2528->last_read_channel = channel;
-+	}
-+
-+	ret = tla2528_read_sample(client);
-+	if (ret < 0)
-+		return ret;
-+
-+	*val = ret;
-+
-+	return 0;
-+}
-+
-+static int tla2528_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan,
-+			    int *val, int *val2, long mask)
-+{
-+	struct tla2528 *tla2528 = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		mutex_lock(&tla2528->lock);
-+		ret = tla2528_read(tla2528, chan->channel, val);
-+		mutex_unlock(&tla2528->lock);
-+		if (ret < 0)
-+			return ret;
-+
-+		return IIO_VAL_INT;
-+
-+	case IIO_CHAN_INFO_SCALE:
-+		*val = tla2528->vref_uv / 1000;
-+		*val2 = 12;
-+
-+		return IIO_VAL_FRACTIONAL_LOG2;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+#define TLA2528_CHAN(_chan, _name) { \
-+	.type = IIO_VOLTAGE,					\
-+	.channel = (_chan),					\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-+	.datasheet_name = _name,				\
-+	.indexed = 1,						\
-+}
-+
-+static const struct iio_chan_spec tla2528_channel[] = {
-+	TLA2528_CHAN(0, "AIN0"),
-+	TLA2528_CHAN(1, "AIN1"),
-+	TLA2528_CHAN(2, "AIN2"),
-+	TLA2528_CHAN(3, "AIN3"),
-+	TLA2528_CHAN(4, "AIN4"),
-+	TLA2528_CHAN(5, "AIN5"),
-+	TLA2528_CHAN(6, "AIN6"),
-+	TLA2528_CHAN(7, "AIN7"),
-+};
-+
-+static const struct iio_info tla2528_info = {
-+	.read_raw = tla2528_read_raw,
-+};
-+
-+static int tla2528_probe(struct i2c_client *client)
-+{
-+	struct iio_dev *indio_dev;
-+	struct tla2528 *tla2528;
-+	int ret;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
-+				     I2C_FUNC_SMBUS_WRITE_WORD_DATA))
-+		return -EOPNOTSUPP;
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*tla2528));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	tla2528 = iio_priv(indio_dev);
-+	i2c_set_clientdata(client, indio_dev);
-+	tla2528->client = client;
-+
-+	indio_dev->name = client->name;
-+	indio_dev->info = &tla2528_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = tla2528_channel;
-+	indio_dev->num_channels = ARRAY_SIZE(tla2528_channel);
-+
-+	mutex_init(&tla2528->lock);
-+
-+	tla2528->vref_uv = devm_regulator_get_enable_read_voltage(&client->dev,
-+								  "vref");
-+	if (tla2528->vref_uv < 0)
-+		return tla2528->vref_uv;
-+
-+	/* Set all inputs as analog */
-+	ret = tla2528_write_reg(tla2528->client, TLA2528_PIN_CFG_ADR, 0x00);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = tla2528_write_reg(tla2528->client, TLA2528_DATA_CFG_ADR,
-+				TLA2528_DATA_CFG_APPEND_STATUS);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Set manual mode */
-+	ret = tla2528_write_reg(tla2528->client, TLA2528_SEQUENCE_CFG_ADR, 0x00);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Init private data */
-+	tla2528->last_read_channel = ~0;
-+
-+	return devm_iio_device_register(&client->dev, indio_dev);
-+}
-+
-+static const struct i2c_device_id tla2528_id[] = {
-+	{ "tla2528", 0 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, tla2528_id);
-+
-+static const struct of_device_id tla2528_of_match[] = {
-+	{ .compatible = "ti,tla2528", },
-+	{  },
-+};
-+MODULE_DEVICE_TABLE(of, tla2528_of_match);
-+
-+static struct i2c_driver tla2528_driver = {
-+	.driver = {
-+		.name = "tla2528",
-+		.of_match_table = tla2528_of_match,
-+	},
-+	.probe = tla2528_probe,
-+	.id_table = tla2528_id,
-+};
-+module_i2c_driver(tla2528_driver);
-+
-+MODULE_AUTHOR("Maxime Chevallier <maxime.chevallier@bootlin.com>");
-+MODULE_AUTHOR("Rodolfo Giometti <giometti@enneenne.com>");
-+MODULE_DESCRIPTION("Texas Instruments TLA2528 ADC driver");
-+MODULE_LICENSE("GPL");
+[2/7] dt-bindings: PCI: Add ASPEED PCIe RC support
+      commit: a20df1a7683d6c1416c0f56fb737554b9abe9959
+[5/7] PCI: Add FMT, TYPE and CPL status definition for TLP header
+      commit: 73ce5ba701a53ad89c623a641401288844f526ac
+[6/7] PCI: aspeed: Add ASPEED PCIe RC driver
+      commit: 9aa0cb68fcc16280c8c8bdd22dc770af8dd7349f
+[7/7] MAINTAINERS: Add ASPEED PCIe RC driver
+      commit: e5c2061442dda716fb08cc4eff485220c94e6475
+
+Best regards,
 -- 
-2.49.0
+Manivannan Sadhasivam <mani@kernel.org>
 
 
