@@ -1,388 +1,257 @@
-Return-Path: <devicetree+bounces-249201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025E4CD9D54
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:46:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13B19CD9CD0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:38:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2840730A6BE6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:39:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6FA37308064B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A26346A09;
-	Tue, 23 Dec 2025 15:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B981348454;
+	Tue, 23 Dec 2025 15:26:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TblplG+s";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="F7A5rS4W"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kv/e3bz9";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="krWeaOeb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6F229C351
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8CE7347FC4
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766503575; cv=none; b=RfgwtcL19/55mKrPK1H+Agj0kFTUPO1eXelnwx/O2FnG6MPsNBeyd53uER542Icm0KZDhRBnVdnuHG53c48ldaHgRSC4ypeaDViIwQLI6JUb5/y9Zi55IK6m6PMCuuc0AmIWhtVzZuYLYRJKe7FlRRgYUiEPBUeC3f3qTkLxUdQ=
+	t=1766503593; cv=none; b=HSjDFyXMVRYGOVYQ3W+EwFjDpp0Mawss6GRSts8TyIRM5fYqc2Wahe+Q34FYnlQwYiOGsBX3XqgPm+flIEnd5ShcCQT+G+pLzCKcdUhigfVF85jco4tm54SS0Jf0M5Unw9eO4rqvIhjhuw3pTU+M4A3ssd+C3CnV5k/jw89wEnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766503575; c=relaxed/simple;
-	bh=0CUlnqHNwlFJRp+AYApPStXGaWaesZJjUACCPpA8wSw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dfhrKOikSnCVs9qalnif+fI9PIxitRn0flVoPBtZh/Hc/GHXyS7LGydu4m8kg4a9MizxUQ6z1uhJzA7wxRDl7ajIvMh6gtnjWSAzdkV4gKyNE0w1oONzC1GG+KBnRIx5HVQs9CaBSWhak7Vbr2ghvsRD3A7oYwnXs5e1g0CgRKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TblplG+s; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=F7A5rS4W; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1766503593; c=relaxed/simple;
+	bh=AjBqw0LrXSn7PVqsMBzJk5wO5mqfJHNLvVrqozEl9Xo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PZ+UWoTnx7pRi+UHnOHAyXkDtHU8gfw3pvZjaqPxjQ4FH1CrI/hSmtrIqd0ogTmSaYrF3Htdseg96aCAv34Fh5LB2DX1xRNUOSiL1ejWUbIOXp2ZUd/uunshMvyDpOuIn9FN3oz/csrVeIO8IioMC4g2LGm/10cAJ0oNa+BQ+24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kv/e3bz9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=krWeaOeb; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BNEJgnX2115723
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:26:12 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BNDmcpH1632644
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:26:31 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=fJyzxinltDd
-	SGRuCgEMUAgEIxqHit/CxQ2kaQl1iY2M=; b=TblplG+sFH1CRUNIQWqqJeVlJjf
-	SwtH9AwT3Sw2NDH2YrDWTOy3NXGTH4lkxPzRwZwrCbs2dvb3RuTFevRmTtfetAc9
-	D0i3nQGaNfJ35abjOevcCWRi+0hHgZIrc/8LzIiieTCPvQl3PbN72aHYjh7REhRA
-	voOY9L4SqRfHA3CqfkYRPfnCOYmxyyqf0lelg7At4EatWYY0IDNdzJPbQq7fF/sY
-	6PEsdDGUU684Xp5+nUcl4RC9IFxRsVRa8joGQigMVfD7Jnmvo7uRm4E9GS7XT6Qy
-	IhB7J6KT9x85fyozSDn4/Y0Ktr+BFamBsuah0lKHWpa9zuFG+SZ98HKGTzg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7cudk4gt-1
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=X1DWDmOcDxjUqXVftR07Tf/hOGZFmvvZAzs
+	YJSWm4Sg=; b=kv/e3bz9AHymfz3+5I/afYekbCVwtoEy851+Xyj9B9zKExAJ1BR
+	dNm8oaAN0mc+qXIqI7t09u4qFkXlRDJNhuwAJwQOmnwk3Zbl5ojNRt6MItMDPHVE
+	IAo5o+vXQsL05BhPWKkKrYlbtlODbKj2075kU2JcUPdUc6SvQQdMRL4HEVLDhnuN
+	sncX7A1tycNjHauaG/a36lqE4hFDItUr4JjF2yiHzuJ1fvQE8vrt7CNVhB6DjsH4
+	Bi6VZHMxKmZ7+HPdmTD+JY9nXuPGLGfKP/MSJkPPz0JkkyY//Pp6ftEazYzpep8D
+	UwkGS78/kgYAbhHMGXKjw0AHajNhhPO2UCg==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7ck8k5um-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:26:12 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4f1d60f037bso114498801cf.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 07:26:12 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:26:31 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ed69f9ce96so165441801cf.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 07:26:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766503570; x=1767108370; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fJyzxinltDdSGRuCgEMUAgEIxqHit/CxQ2kaQl1iY2M=;
-        b=F7A5rS4WN2sNfeKUnxtrqo7AtNgvOORl55Xo9RUFi21sVmn6I9Jh2g0gzViGVeOYSk
-         5OP9GzXw0114sLRqA3c7op502e7839ccxn1fjtaFF5cc4eoP/DKMn5bFeIUl73mDsZ/X
-         LbeXsOrxXdg7LPeL83KA97qZ/sfIOy6kqKry+pmyMHOrDf5hXHXWThjj+DYk+83ApjTd
-         xB422k01OP+95RWjsKOHflkSAWyiWeYsqMk/e+WnGi+j8spvRQMEI0xPbLNgx59+0lCX
-         nw2ZpvxVrDhRbZ+e+U7HLiC00Hl2wgb03IasqURTFexZCQUoBzleGDbzmRU/CcTViAMf
-         v//Q==
+        d=oss.qualcomm.com; s=google; t=1766503590; x=1767108390; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=X1DWDmOcDxjUqXVftR07Tf/hOGZFmvvZAzsYJSWm4Sg=;
+        b=krWeaOeb4Sd05Hq1sAM9MI0DZXEuTrKN5W8w5njY7CNr98nJmh2+Dp6nBnw2ydR3SI
+         lm70NQhUFj72VHoB4n1e5IJNFwAlKM5TbJbyjb92eHyFVzqf9v5Z4R9QgKbPxIfo7vVO
+         9SWTSBn1SgLXBVaqdYLhD+tKPZY0JLLpJTUigbOqvw0RFhX+jVByNmEhQyx2b0AUzQVx
+         BlIBCqJswuVreY9pB6wNc6U2HqWQHVrKYbm8qPL3dJp+RFM/DpQvkuRag9bazez9a9it
+         lzn96lZjWRvsBLDFxW2dUj2kPpl6p2Px+bXPz5l1KWbwRUKnJeD8KJfYv8oLoZxglpsW
+         rYew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766503570; x=1767108370;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=fJyzxinltDdSGRuCgEMUAgEIxqHit/CxQ2kaQl1iY2M=;
-        b=PDlNIMT6/2CGRWMykKjTuPSSPymkX2Sq9NPMPE3P0yplXMUKEVR3mX/nsIcSbruMCB
-         tEsv7zB3aSaKtFXq8PjTslulTdG/yEfCjMap8DHnrwkUIFJbXCGC5+gQfURVV1T9STRF
-         LD49nPveWelQcf6uE+8PCSO/fbHTH8XA5TVlSTaWcBiWZeyrQdUjHGbkYHaGi3sP4WR5
-         hjH4v6pwqXuGfosGdKM4axsCd1KSuAgXZuWaMTQingzmjuc4F43SEmX0JDupGlinkyWr
-         mXoel45fHv49O4f+8DBVZHvEY64cj7bu2G5FG3SbwMsVuquaO2t1k/YsJiHki4dNkx/u
-         xgnA==
-X-Forwarded-Encrypted: i=1; AJvYcCWfXQ1QQcYYNV2GJkMBbi+8N8vl5YmZ2nb5f1SnJX/sEna2dAmnqxo0w5xvgeAlcBe4uazzKVQYSAWH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaGDgSe6W/HRzM64Hh6LRllQgzw/g9fKvz+GvKdDiABmuFDQOY
-	9XhWx00XYH/8JSF7hq8I89WkzNW7rcXb0SXtFUjfQZozJp51cF2oC3kwG7kgf63j0mU/MTAdEre
-	nTDIBF/+QKPUl61LLwU0Z73dQUqXVIJeU3Iymf+wL7iMA0tX/VrgFEQ0zeRaQesut
-X-Gm-Gg: AY/fxX6u8CAdKqL9o8VN2iLhE7iVLzH3YvTaP1zOo2VWqD2hkGkUoEJ+v2qieHrdx52
-	0K/C1b4s4u9bSRlTKQrlCWfc0cWsVzyfC0L4dsBZE/h6ji9iWy18+5zshVgihCTTIvifYfWm0C7
-	CHFHW0TEiJEQ7QsBLPxvt7b6q4reGt9EQD26ocI1x+URClPJxIDmI9vw/LvhEM1r/KZ6auXsWiL
-	CVqwVCjQAhkIvVhWueiOn3V3zNwFr0JnwoCgKsMKhJKQZ6a6cJAF/T2HmkRqgUzaiNENbFgkNT7
-	l18vOROBCyb3DHC64sqQHQyxkN5a+gCruWX4z4lGQjID9/cZfwySZUqbfxmsP+qWgP4m27NdCAN
-	d7MRjw8pXsFd/C+5Ps4of+QPLdwCLFKyfAqy4T58oA68Bp2Vspqw3DzWp4gtwdn2pBis=
-X-Received: by 2002:a05:622a:1c0b:b0:4ee:4a3a:bd19 with SMTP id d75a77b69052e-4f4abddba78mr198796481cf.75.1766503570180;
-        Tue, 23 Dec 2025 07:26:10 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHCrCCmaOgNvOOTihnIyQAQdtYsYo5GXIn2ObpofQNTUCNjyEKmO1DXhrY+t12WRUSJwZXYnA==
-X-Received: by 2002:a05:622a:1c0b:b0:4ee:4a3a:bd19 with SMTP id d75a77b69052e-4f4abddba78mr198796111cf.75.1766503569716;
-        Tue, 23 Dec 2025 07:26:09 -0800 (PST)
+        d=1e100.net; s=20230601; t=1766503590; x=1767108390;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X1DWDmOcDxjUqXVftR07Tf/hOGZFmvvZAzsYJSWm4Sg=;
+        b=CzAy2a+b8PqveGJorCv5rvkRd6sHubDaOSUNIM2aTojzO/iJqCdzhA7Zn1ydEOrfAo
+         Dv+al15WEvY7Nxm/WethY+nYLpgeB9XgCKXGUZvOotq/I5lewzPErN48GS3ztQhMwFZo
+         QGIEcVp+7duHYBR+UnUM4U9wWQ3ZY9PQL8a+CiloSCvzPLvAyVvC1Rnz9uNUeePOAgt5
+         2uUvcr4HlNKIJ46BSpVz06zW/jNusYcXIcuuJcTvNsdILJfcQRbcfKnnz7yDDey6YpUr
+         uUR+cXV5gjfpgvKYBERUCxBuvDNeQDGKvs+/rg8tuzQljR11fCUGs3Q/k+cZe2Jb1sa2
+         B+pw==
+X-Forwarded-Encrypted: i=1; AJvYcCUsbSQFf1CL0Lr39h7DMg2ddiYpOgiXmrQJ1LXw31FfXN4QT7PemvVECWMByFyKD8kStf3eoJgb3XK9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLTrMJTWTAdjAXdNAmyMqZHGYD9NftGlqo7a1ytL8Pj0eAENaq
+	oPuzcD2J/mudHhBSVxt1enbuo/uNQf/NDBuh4N9dErV3MU7KxqMYE1eQcMVIUcvRU9tJLdh8gaz
+	huqW8inZY8Th4ckAxwv0TttEAvkqeF0/TKRF9p4yY08vRA3fr3RqeXqIX1PWoE/1q
+X-Gm-Gg: AY/fxX72AurKuH5ESw39YjlLQKm8dMg2karLCZvKz9aO/9WCXBwZY3hfL99qLl4MpPy
+	a7fIIWistwmvxRnv+VQ0JY2Kf2vm0y04fFFUNmF0GEmgjEGjs/LvxxiApom3+onOKEz9JbsB/vv
+	rlEwg/wJ1bD06+U9CxJvlXKpXHZNMrcMs3hBP70nC4RwMTw1D45DiaGpnBQ1KDMdaDejqytj4Xi
+	4dDQgMDkpwm5QBiHR+LvV7vN5nkKYJJZCc+eI9ogqRjEb9Wck0xgJ54qZzbyjUv2ru3IF3ujPhB
+	uLlAOUj77ykSx0SO3V+vUf8RggPz/d32Xl/QOwpV6COC2Ea+Lb1tTmAVi2lcLvfmc7pD5VLv+e3
+	d49l66C6vyzTIVTsXDiZSf85c7JuuaKGd/s9jdLTJ7LC4r2iSNilZ5s1NVCpqhLsQfk4=
+X-Received: by 2002:a05:622a:5c0e:b0:4ee:2352:1bb1 with SMTP id d75a77b69052e-4f4abcb8c77mr256977561cf.5.1766503590263;
+        Tue, 23 Dec 2025 07:26:30 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGhINT4HlTgCPcN4kDXGyPMqNqL00KSDVH433jvdDmzYeBYGVAIeIz8zba5MebY8zKgAtzRoA==
+X-Received: by 2002:a05:622a:5c0e:b0:4ee:2352:1bb1 with SMTP id d75a77b69052e-4f4abcb8c77mr256977011cf.5.1766503589885;
+        Tue, 23 Dec 2025 07:26:29 -0800 (PST)
 Received: from quoll.home (83.31.98.88.ipv4.supernova.orange.pl. [83.31.98.88])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b9ef904bcsm13268409a12.22.2025.12.23.07.26.08
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f3e271sm1454905266b.60.2025.12.23.07.26.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Dec 2025 07:26:09 -0800 (PST)
+        Tue, 23 Dec 2025 07:26:29 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Conor Dooley <conor+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Chester Lin <chester62515@gmail.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+        NXP S32 Linux Team <s32@nxp.com>, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        imx@lists.linux.dev, linux@ew.tq-group.com
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: Use lowercase hex
-Date: Tue, 23 Dec 2025 16:26:02 +0100
-Message-ID: <20251223152559.155703-6-krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH 1/3] arm64: dts: freescale: Use hyphen in node names
+Date: Tue, 23 Dec 2025 16:26:25 +0100
+Message-ID: <20251223152624.155845-4-krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251223152559.155703-4-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20251223152559.155703-4-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9897; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=0CUlnqHNwlFJRp+AYApPStXGaWaesZJjUACCPpA8wSw=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpSrSJjHWsyvx3WHKRIHoalcqXJ+WqqK+LEXrFn
- J8/d1UE4iOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaUq0iQAKCRDBN2bmhouD
- 1ygrD/9eaO/05h32RcwZA7Q+mkx+RBVPH/kvzaes00kTYC8F5qLtV4mQt+sDeZkV9ppC3ES1G5o
- OKnodVL6Bn7TF44Ri3BGKz1Tsa+gdTeQogIjMOsW/GIkLIy9Sp3Xc9XyWftxDQWiGAY+h2iJX5F
- Rwr0Nz2IYFV+DF2AP4GsD59oBpq+jLRT059d1VODD8w/pu38QFBYi2e9vDqSEZOvGwroUqCSMIk
- EjMJdfvYVYCpLaCTbpewUmhVllKd178iGSDBXfAGfVN2u3/LKcNQ7ZKyi10yd+CHZVARwMCGYpw
- 0YPPNNK+cl6SFnSxix4gimik0kDLW7UjTrm5Ep9oas1diMVyJ2BTE+LjAI6dZXrMJuy50HJDldJ
- YOzbNTyDkTedNUcq8k37On4XFoW+9EZ6D7/yqQenhHwE01pVn+R99aWNIyPi1IlqKU27dS6dPZC
- 74CR16nYLnjtKq1Pkwwv/1ijCFjEfl/gy23sgYognbUt1VB8BGkDU5a3pf79VqBnsrRPDfyK3/+
- A5xPkai4PZlZZF29piXahaez0KjICs9ogb9EkhrU//VrJIQM+9KWZIotOLcLo+rYJBnvIS0TJOg
- FDqr4d9F4yOOnsqcAtrAt8yPpBCk5DCUcZaqK++C+ur7UefcBfm/zfYykzO5Wh1+G/ck0x9OZYi E2V48Hw1ES2ctDg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3777; i=krzysztof.kozlowski@oss.qualcomm.com;
+ h=from:subject; bh=AjBqw0LrXSn7PVqsMBzJk5wO5mqfJHNLvVrqozEl9Xo=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpSrSgKRXpkMjgze66mvIN7KDsSXjviyw0Ybzt4
+ l68cYxR+vmJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaUq0oAAKCRDBN2bmhouD
+ 1/v4D/4g3ihOYBcKkCo88QxGxzO8WiWCsDlpTOUkVfmLRkGYVMV/LLkYLX9RcY1RkVjQozHbQkw
+ Sp6NGb1Jtz+aOdS5zT76E58/woi4SS52mpCv0hhnuG5mUvHnSawKwYJlMB2Y9taX2Cmoc0LJbiN
+ u4Xe07glAv9bOVcRGUcYjQDLNZytTosMtj5RRycygHBAo2NZ8yUuyH13nBQQRVAzra4P7+d3g3K
+ HM3mEzVMYFpPF7ufLThUpgBbd6TiyvD2XKbVI2zLEog3gNmcwrRn5edycYBeGfE9WWYrOPAg0zB
+ L3I7uxQIoxW0Tu9zseMTurI296Z6FLykxULFo+ZENulG/KxyvB1s4rvUvJR91bWIHbXRJ2E09hD
+ ylCnj+ePA+yWOtaCumT1Net8zy2pfJo34hCHgbyIUT0K4aBVkaviyWi91Bzblme90jwbaJ+xK/t
+ RHxAVSTSq0819AM6hLZCp4GTP+y9LiNB0NkPXJWeTxDVG0YOPVG1upWK0R4H9hPSy3JWXM4a9QO
+ mAxKyZb2ATZq0rszGdcN5RVR9ZIDdjIaKp4SogmHYS8vdQ6Teq2sOQXWtIoeUAn5RbinpJSfmso
+ X5OCguwixzAcy/zM1CMRS/73CL4W4i5GPRHAeAnjCjX8f9MTj55V8qT1zGFvjp5g/rETXgK/yMK lkKtdn172eBRx8A==
 X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=ebkwvrEH c=1 sm=1 tr=0 ts=694ab494 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=qe4J/qXhiWkb1JZGYKbLYA==:17
+X-Proofpoint-ORIG-GUID: PedB1OOWfdA_jgcoK79xvBDlD233vhGw
+X-Proofpoint-GUID: PedB1OOWfdA_jgcoK79xvBDlD233vhGw
+X-Authority-Analysis: v=2.4 cv=asi/yCZV c=1 sm=1 tr=0 ts=694ab4a7 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=qe4J/qXhiWkb1JZGYKbLYA==:17
  a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=Cs0fXASfUYSKtnxK1F4A:9 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: 2vvFHFRM2yBpMfNJYUVysMM9X2HZKqj_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDEyNyBTYWx0ZWRfXwYk6hrfdgsIO
- NiuK6TxaW+mzAJgzH2XEV+dQmx9VX5Ktgjy/bsT7bFIgFiAylzW1bR6n1S1SSWdpZiXk4Gk9C5X
- Z9dShULvJNWp22QLKIkvLgIgnGiUZQSoi+z8LOgY/3XbW6nTSPuzq91MtAVZQTHqMHXvrx3is9q
- TWCROUrHAt6b+LMepnq4yPLYtXFi0KaGhrGBc/ndL0lz3NHasakdDey6jUsT+qgzooIhugprKjF
- hP0bLfucPB+esMOS4/hvnJL11XKF2u4VfPHbLWyF5mJGYvOj65QWQINw7mOoJQkvIaO0spTf6E8
- wESVP7R0AFPgebezHHVUCL+/k53LV1orbKQt8pQXcQsucPsBSs0ioTSBu+kLaZkx1Wqsv9M2DtI
- OrSjvU1PqHhjNUgRwi1FnzPDItKWJtKgETWMDKQ8dxgC7K7oxXZ8HSf77+TIjATdR49Av6ZYfWk
- kX1SqlgdV4hF9g331uQ==
-X-Proofpoint-ORIG-GUID: 2vvFHFRM2yBpMfNJYUVysMM9X2HZKqj_
+ a=EUspDBNiAAAA:8 a=FUnLEkIPDp6DTj-5v1EA:9 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDEyNyBTYWx0ZWRfX07BLX8+IEEEc
+ kzL8Zmt+Up+AAlMGTcsY+4PSLZa3u5/cyGChxOpjZISBxOkfWFFUAbw6zTbAaIObLTjQ7WjCNDP
+ 834S8jnY8yhQRSRUjtTQcmJqCDEP4eXOyPcwMN5CmfqSn8u/O5rKewc9RzcO4AsboLIlqWZpKxG
+ t3wK9/D/TsaS6IJfaeAWB0dqe3kG2qkivjWuv+7hzy66ZVDOSfmj3Z3fWCFbAdE94wjKha+zfFA
+ Rqh1u5ViTE1eWOh/8GmvBaMuB2gQIZLlc6ssUdSItylRjPiS0ZOEAA1ipQGkdB1KRaBDFvq1WPD
+ 25rxTth2+yonZeReMkH38sX3SiJ7fklky0TE38c9OqkDTErTDphJs2gCwqJZK6I/c/nY1+zxQnp
+ 76tzEx1aQOlw0UBIOP6tvOystIkiQ/QvvBrk3U+8WcWawUawHYjUBkZpUzxIXjzgdDVQNfpxBey
+ 6KmeHprza0AL/BOoogQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-23_03,2025-12-22_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 malwarescore=0 adultscore=0 suspectscore=0 clxscore=1015
- priorityscore=1501 bulkscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0
+ clxscore=1015 priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0
+ phishscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512230127
 
-The DTS code coding style expects lowercase hex for values and unit
-addresses.
+DTS coding style prefers hyphens instead of underscores in the node
+names.  Change should be safe, because node names are not considered an
+ABI.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/hamoa.dtsi                  |  6 +++---
- arch/arm64/boot/dts/qcom/lemans.dtsi                 |  2 +-
- arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi    |  2 +-
- .../boot/dts/qcom/msm8994-huawei-angler-rev-101.dts  |  2 +-
- arch/arm64/boot/dts/qcom/qdu1000.dtsi                |  2 +-
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi               |  4 ++--
- arch/arm64/boot/dts/qcom/sdm630.dtsi                 | 12 ++++++------
- arch/arm64/boot/dts/qcom/sm6115.dtsi                 |  4 ++--
- .../boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts |  2 +-
- arch/arm64/boot/dts/qcom/sm8150.dtsi                 |  2 +-
- arch/arm64/boot/dts/qcom/sm8750.dtsi                 |  2 +-
- 11 files changed, 20 insertions(+), 20 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-index bb7c14d473c9..9de6530fdf2e 100644
---- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-+++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-@@ -3161,7 +3161,7 @@ usb_south_anoc: interconnect@1770000 {
- 
- 		mmss_noc: interconnect@1780000 {
- 			compatible = "qcom,x1e80100-mmss-noc";
--			reg = <0 0x01780000 0 0x5B800>;
-+			reg = <0 0x01780000 0 0x5b800>;
- 
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 
-@@ -4162,7 +4162,7 @@ gem_noc: interconnect@26400000 {
- 
- 		nsp_noc: interconnect@320c0000 {
- 			compatible = "qcom,x1e80100-nsp-noc";
--			reg = <0 0x320C0000 0 0xe080>;
-+			reg = <0 0x320c0000 0 0xe080>;
- 
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 
-@@ -4673,7 +4673,7 @@ lpass_lpiaon_noc: interconnect@7400000 {
- 
- 		lpass_lpicx_noc: interconnect@7430000 {
- 			compatible = "qcom,x1e80100-lpass-lpicx-noc";
--			reg = <0 0x07430000 0 0x3A200>;
-+			reg = <0 0x07430000 0 0x3a200>;
- 
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
-index 132fe92f179e..512f6e004260 100644
---- a/arch/arm64/boot/dts/qcom/lemans.dtsi
-+++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
-@@ -7022,7 +7022,7 @@ compute-cb@11 {
- 
- 		remoteproc_cdsp1: remoteproc@2a300000 {
- 			compatible = "qcom,sa8775p-cdsp1-pas";
--			reg = <0x0 0x2A300000 0x0 0x10000>;
-+			reg = <0x0 0x2a300000 0x0 0x10000>;
- 
- 			interrupts-extended = <&intc GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_cdsp1_in 0 IRQ_TYPE_EDGE_RISING>,
-diff --git a/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
-index b8f2a01bcb96..1e718accf8f5 100644
---- a/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
-@@ -24,7 +24,7 @@ / {
- 	chassis-type = "handset";
- 
- 	qcom,msm-id = <251 0>, <252 0>;
--	qcom,pmic-id = <0x10009 0x1000A 0x0 0x0>;
-+	qcom,pmic-id = <0x10009 0x1000a 0x0 0x0>;
- 
- 	/* Bullhead firmware doesn't support PSCI */
- 	/delete-node/ psci;
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
-index 1aca11daf83c..7775532f154e 100644
---- a/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
-@@ -16,7 +16,7 @@ / {
- 	chassis-type = "handset";
- 	/* required for bootloader to select correct board */
- 	qcom,msm-id = <207 0x20000>;
--	qcom,pmic-id = <0x10009 0x1000A 0x0 0x0>;
-+	qcom,pmic-id = <0x10009 0x1000a 0x0 0x0>;
- 	qcom,board-id = <8026 0>;
- 
- 	aliases {
-diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-index 846e5e5899aa..cdfe40da5d33 100644
---- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-@@ -1592,7 +1592,7 @@ cpufreq_hw: cpufreq@17d90000 {
- 
- 		gem_noc: interconnect@19100000 {
- 			compatible = "qcom,qdu1000-gem-noc";
--			reg = <0x0 0x19100000 0x0 0xB8080>;
-+			reg = <0x0 0x19100000 0x0 0xb8080>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 			#interconnect-cells = <2>;
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index b9e0d9c7c065..706eb1309d3f 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -3041,8 +3041,8 @@ swr1: soundwire@3210000 {
- 			qcom,dout-ports = <5>;
- 
- 			qcom,ports-sinterval-low =	/bits/ 8 <0x03 0x1f 0x1f 0x07 0x00>;
--			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0B 0x01 0x00>;
--			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0B 0x00 0x00>;
-+			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x00>;
-+			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00>;
- 			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0x00 0xff 0xff>;
- 			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0x0f 0xff 0xff>;
- 			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff>;
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 8b1a45a4e56e..90314cb49177 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -262,7 +262,7 @@ perf_cpu_sleep_1: cpu-sleep-1-1 {
- 			pwr_cluster_sleep_0: cluster-sleep-0-0 {
- 				compatible = "arm,idle-state";
- 				idle-state-name = "pwr-cluster-dynamic-retention";
--				arm,psci-suspend-param = <0x400000F2>;
-+				arm,psci-suspend-param = <0x400000f2>;
- 				entry-latency-us = <284>;
- 				exit-latency-us = <384>;
- 				min-residency-us = <9987>;
-@@ -272,7 +272,7 @@ pwr_cluster_sleep_0: cluster-sleep-0-0 {
- 			pwr_cluster_sleep_1: cluster-sleep-0-1 {
- 				compatible = "arm,idle-state";
- 				idle-state-name = "pwr-cluster-retention";
--				arm,psci-suspend-param = <0x400000F3>;
-+				arm,psci-suspend-param = <0x400000f3>;
- 				entry-latency-us = <338>;
- 				exit-latency-us = <423>;
- 				min-residency-us = <9987>;
-@@ -282,7 +282,7 @@ pwr_cluster_sleep_1: cluster-sleep-0-1 {
- 			pwr_cluster_sleep_2: cluster-sleep-0-2 {
- 				compatible = "arm,idle-state";
- 				idle-state-name = "pwr-cluster-retention";
--				arm,psci-suspend-param = <0x400000F4>;
-+				arm,psci-suspend-param = <0x400000f4>;
- 				entry-latency-us = <515>;
- 				exit-latency-us = <1821>;
- 				min-residency-us = <9987>;
-@@ -292,7 +292,7 @@ pwr_cluster_sleep_2: cluster-sleep-0-2 {
- 			perf_cluster_sleep_0: cluster-sleep-1-0 {
- 				compatible = "arm,idle-state";
- 				idle-state-name = "perf-cluster-dynamic-retention";
--				arm,psci-suspend-param = <0x400000F2>;
-+				arm,psci-suspend-param = <0x400000f2>;
- 				entry-latency-us = <272>;
- 				exit-latency-us = <329>;
- 				min-residency-us = <9987>;
-@@ -302,7 +302,7 @@ perf_cluster_sleep_0: cluster-sleep-1-0 {
- 			perf_cluster_sleep_1: cluster-sleep-1-1 {
- 				compatible = "arm,idle-state";
- 				idle-state-name = "perf-cluster-retention";
--				arm,psci-suspend-param = <0x400000F3>;
-+				arm,psci-suspend-param = <0x400000f3>;
- 				entry-latency-us = <332>;
- 				exit-latency-us = <368>;
- 				min-residency-us = <9987>;
-@@ -312,7 +312,7 @@ perf_cluster_sleep_1: cluster-sleep-1-1 {
- 			perf_cluster_sleep_2: cluster-sleep-1-2 {
- 				compatible = "arm,idle-state";
- 				idle-state-name = "perf-cluster-retention";
--				arm,psci-suspend-param = <0x400000F4>;
-+				arm,psci-suspend-param = <0x400000f4>;
- 				entry-latency-us = <545>;
- 				exit-latency-us = <1609>;
- 				min-residency-us = <9987>;
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index 5e2032c26ea3..88513b513871 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -870,7 +870,7 @@ cryptobam: dma-controller@1b04000 {
- 				 <&apps_smmu 0x94 0x11>,
- 				 <&apps_smmu 0x96 0x11>,
- 				 <&apps_smmu 0x98 0x1>,
--				 <&apps_smmu 0x9F 0>;
-+				 <&apps_smmu 0x9f 0>;
+---
+
+Patches done with sed, verified with comparing unflattened DTB and
+dtx_diff.
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi          | 2 +-
+ arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi          | 6 +++---
+ arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso | 2 +-
+ arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts       | 2 +-
+ arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi     | 2 +-
+ 5 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+index ef80bf6a604f..b07022e3b6d5 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+@@ -278,7 +278,7 @@ sfp: efuse@1e80000 {
+ 			clock-names = "sfp";
  		};
  
- 		crypto: crypto@1b3a000 {
-@@ -885,7 +885,7 @@ crypto: crypto@1b3a000 {
- 				 <&apps_smmu 0x94 0x11>,
- 				 <&apps_smmu 0x96 0x11>,
- 				 <&apps_smmu 0x98 0x1>,
--				 <&apps_smmu 0x9F 0>;
-+				 <&apps_smmu 0x9f 0>;
+-		sec_mon: sec_mon@1e90000 {
++		sec_mon: sec-mon@1e90000 {
+ 			compatible = "fsl,sec-v5.4-mon", "fsl,sec-v5.0-mon",
+ 				     "fsl,sec-v4.0-mon";
+ 			reg = <0x0 0x1e90000 0x0 0x10000>;
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+index 22173d69713d..6fefe837f434 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+@@ -851,7 +851,7 @@ pcie1: pcie@3400000 {
+ 			status = "disabled";
  		};
  
- 		usb_qmpphy: phy@1615000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts b/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-index 8848043f95f2..6e2bbf4f060a 100644
---- a/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-@@ -14,7 +14,7 @@ / {
- 	compatible = "sony,pdx213", "qcom,sm6350";
- 	chassis-type = "handset";
- 	qcom,msm-id = <434 0x10000>, <459 0x10000>;
--	qcom,board-id = <0x1000B 0>;
-+	qcom,board-id = <0x1000b 0>;
+-		pcie_ep1: pcie_ep@3400000 {
++		pcie_ep1: pcie-ep@3400000 {
+ 			compatible = "fsl,ls1046a-pcie-ep";
+ 			reg = <0x00 0x03400000 0x0 0x00100000>,
+ 			      <0x40 0x00000000 0x8 0x00000000>;
+@@ -890,7 +890,7 @@ pcie2: pcie@3500000 {
+ 			status = "disabled";
+ 		};
  
- 	chosen {
- 		#address-cells = <2>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index e3ec99972a28..d36a3d214db4 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -2381,7 +2381,7 @@ tlmm: pinctrl@3100000 {
- 			reg = <0x0 0x03100000 0x0 0x300000>,
- 			      <0x0 0x03500000 0x0 0x300000>,
- 			      <0x0 0x03900000 0x0 0x300000>,
--			      <0x0 0x03D00000 0x0 0x300000>;
-+			      <0x0 0x03d00000 0x0 0x300000>;
- 			reg-names = "west", "east", "north", "south";
- 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
- 			gpio-ranges = <&tlmm 0 0 176>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-index 3f0b57f428bb..c0734f6185e1 100644
---- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-@@ -3471,7 +3471,7 @@ pcie0: pcie@1c00000 {
- 			      <0x0 0x40000f20 0x0 0xa8>,
- 			      <0x0 0x40001000 0x0 0x1000>,
- 			      <0x0 0x40100000 0x0 0x100000>,
--			      <0x0 0x01C03000 0x0 0x1000>;
-+			      <0x0 0x01c03000 0x0 0x1000>;
- 			reg-names = "parf",
- 				    "dbi",
- 				    "elbi",
+-		pcie_ep2: pcie_ep@3500000 {
++		pcie_ep2: pcie-ep@3500000 {
+ 			compatible = "fsl,ls1046a-pcie-ep";
+ 			reg = <0x00 0x03500000 0x0 0x00100000>,
+ 			      <0x48 0x00000000 0x8 0x00000000>;
+@@ -929,7 +929,7 @@ pcie3: pcie@3600000 {
+ 			status = "disabled";
+ 		};
+ 
+-		pcie_ep3: pcie_ep@3600000 {
++		pcie_ep3: pcie-ep@3600000 {
+ 			compatible = "fsl,ls1046a-pcie-ep";
+ 			reg = <0x00 0x03600000 0x0 0x00100000>,
+ 			      <0x50 0x00000000 0x8 0x00000000>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso
+index 43d5905f3d72..414f44b85564 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso
++++ b/arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso
+@@ -33,7 +33,7 @@ vdev0vring1: vdev0vring1@b8008000 {
+ 			no-map;
+ 		};
+ 
+-		rsc_table: rsc_table@b80ff000 {
++		rsc_table: rsc-table@b80ff000 {
+ 			reg = <0 0xb80ff000 0 0x1000>;
+ 			no-map;
+ 		};
+diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
+index c1e245ecea9c..ff720c139a7e 100644
+--- a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
+@@ -216,7 +216,7 @@ rsc_table: rsc-table@88220000 {
+ 			no-map;
+ 		};
+ 
+-		vpu_boot: vpu_boot@a0000000 {
++		vpu_boot: vpu-boot@a0000000 {
+ 			reg = <0 0xa0000000 0 0x100000>;
+ 			no-map;
+ 		};
+diff --git a/arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi b/arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi
+index 43418844701b..456129f4a682 100644
+--- a/arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi
+@@ -40,7 +40,7 @@ linux_cma: linux,cma {
+ 			linux,cma-default;
+ 		};
+ 
+-		vpu_boot: vpu_boot@a0000000 {
++		vpu_boot: vpu-boot@a0000000 {
+ 			reg = <0 0xa0000000 0 0x100000>;
+ 			no-map;
+ 		};
 -- 
 2.51.0
 
