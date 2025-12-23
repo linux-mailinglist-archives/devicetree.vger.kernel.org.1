@@ -1,138 +1,101 @@
-Return-Path: <devicetree+bounces-249321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4BA0CDACCE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 00:09:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BF93CDACDA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 00:09:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 719D03018F70
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 23:09:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1C5F73026BE3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 23:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD93430ACE3;
-	Tue, 23 Dec 2025 23:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7263830F529;
+	Tue, 23 Dec 2025 23:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="llDbrej8"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="DQk+IT1W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CEC32F12C9;
-	Tue, 23 Dec 2025 23:09:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C0230C363
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 23:09:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766531368; cv=none; b=L7d2Ck5Z7H6E8UdtLbykNWfdZguRMR3/E/NpA6yerF/DD8tcJiBsV5vVeVjlqdZTJ+qEtACLIdgABk/Hx1JjS2LGHpP7cY25O7iJSizniC0XUx87Kezx3uMcLDSK828xZozv/69o1L3vEAcnMPloEs2WO+5m6g/CicsSkbtBoT0=
+	t=1766531381; cv=none; b=U5JYzwSTxycmmjbC+ljx9eRWLQbj49bdlK78FotgV5u0qR8v5Z0uEb25nKfOqB6YebVFjpPxX0eLyZ7IvpwOkISM1gd/Qx2fx0YnrrMH4ITpQcWHy4sbem2NJY5X37hgzU1UWd395w/W+BNc81RPqYJYqXeh/uJKzyFfdfaeu2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766531368; c=relaxed/simple;
-	bh=sAwwy2sio6lkc47FDsReM8SoyBwcC4MIdfRDutt5yKw=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=RHYMImCGobNis2Pegz2LLkEabB9xvLD9m3bex+wKsR8OtipMPy0y3AtKlo/2/T9dpm5AkFRFcSM8tIb2wowbh31ceZBdKN5cm96XfnMkisHfbJRsPaCAqfuHOlE5l5FaUwsEfIAn4LkvMJ8giu/8rRFxMifDZcuCJBeCGS5sHXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=llDbrej8; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [100.65.0.124] (unknown [20.236.11.102])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 4D2A1212A423;
-	Tue, 23 Dec 2025 15:09:26 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 4D2A1212A423
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1766531366;
-	bh=sAwwy2sio6lkc47FDsReM8SoyBwcC4MIdfRDutt5yKw=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=llDbrej8RnKs7HiCXtYol6Xr74gRhUTQrEcaA/KKSG+N+Sh20qp6TGcYvt3bBlCN2
-	 0wCGNwfDaGB/0eCKtBuNaBLT8jlI36puukcIoq/Um4aRmh5Ai88d/bRPQST+bVbl1Z
-	 i6H3r7qWW4HPJOlfCXGHrhiVESPFH+bwwaFodIEc=
-Message-ID: <10482c90-50c8-4e72-ba40-1d0e6e722128@linux.microsoft.com>
-Date: Tue, 23 Dec 2025 15:09:24 -0800
+	s=arc-20240116; t=1766531381; c=relaxed/simple;
+	bh=m1EjGYP2UGBwtZ05v+i9zGbhr9QL9BrOQBe7XkYsNk8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cwW/xoCoOl8l+o8grCJussz/1je0VizG0PhmxtPEYKrG/eV3vr/WfEvwVU34O34QY48dUfKt1kQjQVsIJVRtA0Vq+7Sl0kgQWBOVQQKT9XtBvEi8na5c0AOPiK5dwhIGc7AJL5J4Y5pWB4c4+povGyo8v8UBWIswiqErmqqtQ5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=DQk+IT1W; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a0834769f0so55147995ad.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:09:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1766531378; x=1767136178; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m1EjGYP2UGBwtZ05v+i9zGbhr9QL9BrOQBe7XkYsNk8=;
+        b=DQk+IT1WHcGXDpTpZL0wZtRtlueKNEBNZu0U4f4PsiT3EY405Wci+RHPPt5+2LPWc4
+         xEJSe+1Gy/bltJibj+dka7rBwe2WEJYjDFE9xHTqtJrz5hWagLCJWIO0uykYmV7oa/e8
+         dEm/l+FM8eVNT5X9SAzJsKPbCn3LBmJVcOMEHq2Q+MOZ+fenGBev/1IuxzSFo7nR42zG
+         AmFQIrvetkg8dEriQUcoE/+AYUe0bYv+2eHuT0QCwB9nES4o3ZwZ633USw3BxRNsbAHe
+         0bZTb9Y70JULYf5ePvDaYZLCEgvrf3dmtIiiEW3xGzbwb2hFbnrdGEGAbYEwADlblcY8
+         /TMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766531378; x=1767136178;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=m1EjGYP2UGBwtZ05v+i9zGbhr9QL9BrOQBe7XkYsNk8=;
+        b=sbL2o5vtyolNkGtSeKZjZggI25HoFYcqYELaM1MEhcDktW3520KzQy/GNOz/viDCO6
+         btQWTb6OjfByntVl71IZCBDFazQqYDsWB6nOp9tkMxKgi1wqhNxE+OEl5HHeTIvWOl41
+         0MscmGFqZ3DGZzb9xDni0qz+RCB/QDPa+sSAR4kGBbSRuWSj7Kbz7ZnmxLPnqhzW/Yqd
+         ZH4FCJiTdcXfY9ysaQgE7/etSogV+CBKWhBSCIu1ZfprRQToPVRqvNVyBlYiYISVzbRZ
+         Z0mVdIPJglMEAr+dgqUn6eb1u3W6zNPxxslz1usBBAYJoIHrDX1/orU6baNDqXanQChQ
+         vgZg==
+X-Forwarded-Encrypted: i=1; AJvYcCU3m9Bnup6Bc3sr+PjHF1mjJTK1gKVXFSm82DU63WVnWEFGQQRlcFfgnSeT6BJ6bjlxk/t9pohwzVom@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzm4bqRAgu857DOZHINinQWeSEJAB/coD+ZZutdW1r6NCVyZ5V0
+	/8lRfXgGtn9OLUWnE1ERVgiv21h/GEfKdEQ73qJdSNUlTYYcbtnRxEUGymXlsQRY9lEIT0Rm3g2
+	JJdIJOiYHAtGEsuTbhq3EUSmlc5xiwlQ=
+X-Gm-Gg: AY/fxX5LmUnCqURdjWgsilN7qMN1d+rAoUhHzxIf1+Y7Rdq0vU6Fket8NXn0aKMSLvL
+	HpQ5OKxXdQcWudO20X+5bQ+Fh541BM5InPpD/0Ye8bKXBcUzusD2XjeLytlPW5zLvJJn5+s6khq
+	8ZqI7hy/YlDt2MgOT4HiKA66M4AYRmKnpkjF2CpVs/4aE2jj5dn0Z49c+yrlMeP5qZoLSWlfZao
+	N/Ne68W8afeTlYJSpg9yZ88yOkBoFg4CU1HD1XDh9AvC/OYcYp0XchuIdNP+fuQBzDIQH/9iB28
+	v7+Y3S3PdxoV+JODHa6Szx04Bddu
+X-Google-Smtp-Source: AGHT+IFUSCkAfRP0I6/HxdHEcLNE7m8wfG7D21SpknHBGNN89HP7uArZIqvkPs7+jmNig3meugYVG6juaO/qZ6BfIYE=
+X-Received: by 2002:a17:903:3508:b0:299:fc47:d7e3 with SMTP id
+ d9443c01a7336-2a2f27350f8mr156126155ad.31.1766531377964; Tue, 23 Dec 2025
+ 15:09:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: [PATCH v5 2/2] Drivers: hv: vmbus: retrieve connection-id from
- DeviceTree
-From: Hardik Garg <hargar@linux.microsoft.com>
-To: kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
- decui@microsoft.com, krzk+dt@kernel.org, robh@kernel.org,
- conor+dt@kernel.org, mhklinux@outlook.com
-Cc: devicetree@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, ssengar@linux.microsoft.com,
- longli@microsoft.com, Naman Jain <namjain@linux.microsoft.com>,
- hargar@microsoft.com
-References: <58cb22cb-b0c8-4694-b9e4-971aa7f0f972@linux.microsoft.com>
-Content-Language: en-US
-In-Reply-To: <58cb22cb-b0c8-4694-b9e4-971aa7f0f972@linux.microsoft.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251223152510.155463-3-krzysztof.kozlowski@oss.qualcomm.com> <20251223152510.155463-4-krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20251223152510.155463-4-krzysztof.kozlowski@oss.qualcomm.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 24 Dec 2025 00:09:26 +0100
+X-Gm-Features: AQt7F2ryDIpXSRh1nF6x1WRfdFopeDKxRaQNT7WxGxtmZzK7QOKWjATFSuNf3mk
+Message-ID: <CAFBinCDRUEKeE1ufjiqX=jr3nrJX6crg-rBVU5DW66WkFA5NAA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: Use lowercase hex
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The connection-id determines which hypervisor communication channel
-the guest should use to talk to the VMBus host. Add steps to read
-this value from the DeviceTree. When this property is not present,
-the driver selects the connection ID based on the protocol version
-(4 for VERSION_WIN10_V5 and newer, or 1 for older versions).
-
-Signed-off-by: Hardik Garg <hargar@linux.microsoft.com>
----
-v4:
-https://lore.kernel.org/all/1750374395-14615-3-git-send-email-hargar@linux.microsoft.com
-v3:
-https://lore.kernel.org/all/6a92ca86-ad6b-4d49-af6e-1ed7651b8ab8@linux.microsoft.com
-v2:
-https://lore.kernel.org/all/096edaf7-cc90-42b6-aff4-c5f088574e1e@linux.microsoft.com
-v1:
-https://lore.kernel.org/all/6acee4bf-cb04-43b9-9476-e8d811d26dfd@linux.microsoft.com
----
- drivers/hv/connection.c |  7 +++++--
- drivers/hv/vmbus_drv.c  |  8 ++++++++
- 2 files changed, 13 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/hv/connection.c b/drivers/hv/connection.c
-index 5d9cb5bf2d62..660cad3886f5 100644
---- a/drivers/hv/connection.c
-+++ b/drivers/hv/connection.c
-@@ -100,12 +100,15 @@ int vmbus_negotiate_version(struct
-vmbus_channel_msginfo *msginfo, u32 version)
-     if (version >= VERSION_WIN10_V5) {
-         msg->msg_sint = VMBUS_MESSAGE_SINT;
-         msg->msg_vtl = ms_hyperv.vtl;
--        vmbus_connection.msg_conn_id = VMBUS_MESSAGE_CONNECTION_ID_4;
-     } else {
-         msg->interrupt_page = virt_to_phys(vmbus_connection.int_page);
--        vmbus_connection.msg_conn_id = VMBUS_MESSAGE_CONNECTION_ID;
-     }
- 
-+    /* Set default connection ID if not provided via DeviceTree */
-+    if (!vmbus_connection.msg_conn_id)
-+        vmbus_connection.msg_conn_id = (version >= VERSION_WIN10_V5) ?
-+            VMBUS_MESSAGE_CONNECTION_ID_4 : VMBUS_MESSAGE_CONNECTION_ID;
-+
-     if (vmbus_is_confidential() && version >= VERSION_WIN10_V6_0)
-         msg->feature_flags = VMBUS_FEATURE_FLAG_CONFIDENTIAL_CHANNELS;
- 
-diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
-index 47fcab38398a..f8c0594ab85f 100644
---- a/drivers/hv/vmbus_drv.c
-+++ b/drivers/hv/vmbus_drv.c
-@@ -2600,10 +2600,18 @@ static int vmbus_device_add(struct
-platform_device *pdev)
-     struct of_range range;
-     struct of_range_parser parser;
-     struct device_node *np = pdev->dev.of_node;
-+   unsigned int conn_id;
-     int ret;
- 
-     vmbus_root_device = &pdev->dev;
- 
-+    /* Read connection ID from DeviceTree */
-+    if (!of_property_read_u32(np, "microsoft,message-connection-id",
-+                  &conn_id)) {
-+        pr_info("VMBus message connection ID: %u\n", conn_id);
-+        vmbus_connection.msg_conn_id = conn_id;
-+    }
-+
-     ret = of_range_parser_init(&parser, np);
-     if (ret)
-         return ret;
--- 
-2.34.1
-
-
+On Tue, Dec 23, 2025 at 4:25=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@oss.qualcomm.com> wrote:
+>
+> The DTS code coding style expects lowercase hex for values and unit
+> addresses.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
