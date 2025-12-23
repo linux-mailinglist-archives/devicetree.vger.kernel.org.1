@@ -1,163 +1,161 @@
-Return-Path: <devicetree+bounces-249303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E6FACDA8F0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 21:43:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBD81CDA8BD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 21:40:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 84F0C305D9A1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 20:41:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 640A330169BD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 20:40:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A6D1315D4E;
-	Tue, 23 Dec 2025 20:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD3A2ECE93;
+	Tue, 23 Dec 2025 20:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HKs9FKN5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hp7zeHqi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F53E31576D;
-	Tue, 23 Dec 2025 20:36:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B402BD5A7;
+	Tue, 23 Dec 2025 20:40:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766522182; cv=none; b=L7GJzhWXwBfbXk6Rt2nns9ChpEharVZH0qIK6O8QZMIwBhfO/uARPl4U2tfNRAf+vHXCjbPTMVEGPwiPBa0to3zC6Um3khUSw1VDEmQX/UURZJvJtXXfOltKN9Thp2mcSa/yNHQ1FXg4ZsGHu8x1TxUzXvwr9a3BSJ+GqZN72Gs=
+	t=1766522427; cv=none; b=F48MnXYQ6RcBIwyNVrPC0/5MtO/WsGX9voFk7u6o31a5bjnrelGLGK6lrbupmrd7w5TR/rHvTVjlVq9yF2sP1nwyxtIUzUjj9tiX3+kX7IFwzLIQi1Cb2P1EIH7kZ5WaEnU9Gv3R0ax0X98OcYCRr5Yy2U3v8SEtUgt3b0XTmfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766522182; c=relaxed/simple;
-	bh=WiaKcg6tqwr+deTq4kuVVXhsBv+dWmCSB3tiAiPsCn0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hkP0IzhXvn1fUUdAiLphzPK9FQumngv3pCwkDNNnt/0NO2K/ezHdX6ksBJK/pUChoL4dhit0efS9ZfXu6fgbfehh//CnRaxyjvPSMYxdRblCZnpI8kGjuurzAnkoTkYFSMzbktsjiy1mH9h9wzEMbclML46ret0ggkouaFs92Kw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HKs9FKN5; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1766522181; x=1798058181;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WiaKcg6tqwr+deTq4kuVVXhsBv+dWmCSB3tiAiPsCn0=;
-  b=HKs9FKN5RG61i9FDGKrCpumLXMQX3rUeoGeilA14P6NbXkgM6Emz8Rsk
-   IVlprorocaVwnJdTITJzyOy2DAIbmG+q2QgiGFL0YN3Xj2QDUXEemCXo3
-   GV6BJCfQPCwD92AueNShZ42kkHGBzaktshQUqeckiQt5iY7pHYJwJIy5V
-   yhltI69+wYA76+xVfUlF6GDS+0eUV4h/Fj0VY2gB2aJ/3TNT2dY/4JyJV
-   4DSk1v+Q2V1W744BCZbgVr1i9Xpb4/2Dnibz8x1c8aaAirL9KgCxQdgtu
-   yota3AO7ygpTKIRm4M4bM/QvTk0PVpsTqgkQLPmzttI/b9W6K/HqCSyQU
-   w==;
-X-CSE-ConnectionGUID: tXwCsw6PS4eIjzfOF6J2vQ==
-X-CSE-MsgGUID: pMuRaMuNS1SDGE/GybzoCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11651"; a="71999157"
-X-IronPort-AV: E=Sophos;i="6.21,171,1763452800"; 
-   d="scan'208";a="71999157"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Dec 2025 12:36:20 -0800
-X-CSE-ConnectionGUID: M3uEnjh3SWGNRRVwUNZ+9A==
-X-CSE-MsgGUID: OK99AN2yRaW09OhWVIaCrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,171,1763452800"; 
-   d="scan'208";a="199520264"
-Received: from lkp-server02.sh.intel.com (HELO dd3453e2b682) ([10.239.97.151])
-  by fmviesa007.fm.intel.com with ESMTP; 23 Dec 2025 12:36:17 -0800
-Received: from kbuild by dd3453e2b682 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vY978-000000002Lv-2ZAk;
-	Tue, 23 Dec 2025 20:36:14 +0000
-Date: Wed, 24 Dec 2025 04:35:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kyle Hsieh <kylehsieh1995@gmail.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Beguin <liambeguin@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Kyle Hsieh <kylehsieh1995@gmail.com>
-Subject: Re: [PATCH 2/2] iio: adc: ltc2309: add support for ltc2305
-Message-ID: <202512240416.ckqhNpHO-lkp@intel.com>
-References: <20251223-add_ltc2305_driver-v1-2-dfa0827fd620@gmail.com>
+	s=arc-20240116; t=1766522427; c=relaxed/simple;
+	bh=f0nIuBBKrHockh9xxshvuChHG+xLcOGUOvfhvGIc9yk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eKAfhNugL0+E69Vqe9Shws1TVnXVNdiJ6EpuSNcIiMpK1A61gcBWHxM3m2jBx6xpVzREwPW9oUrJzd3T0AVHx6LcFJcMOgWMqESLMOKNId2OjxduZQ707niQCFJYTboJ9GUlbDg9YaVNvKryFCNbXOLk7CKfT8e/DNZMVDlgwY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hp7zeHqi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E295FC113D0;
+	Tue, 23 Dec 2025 20:40:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766522426;
+	bh=f0nIuBBKrHockh9xxshvuChHG+xLcOGUOvfhvGIc9yk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hp7zeHqihzcF7SF3Qx55xL2+m0fpB+LZJpimpvUX+q379Wekh9HDQC2mR6CIfI55G
+	 oLi/he7tBOL7cC9+s2A+txcMcJAoa/JZIUSFwgU+AQeuumNfENDIrC7kV8DbR0e3nP
+	 yY36IZLiSIhGYe0jiaB3qaYe56E2U+diqGkIa1he1/JBDq/CESG/nIf2tJiqAthYzc
+	 VKfPZ/IVj6+yJgmowT9Ye4Sw329dPG9QHlzZqU9zTET+PRtHdexKKnW0/JjoCJIbDY
+	 Qmun7bTIe3Ntd5t9OGbKHOzqykFt8f+tbzI47mjuEB74KUqcTmMevbQoCDfxfSmCWn
+	 XQgwjjaQITbaQ==
+Message-ID: <6a033bd5-e9be-49c9-82a7-33874321480b@kernel.org>
+Date: Tue, 23 Dec 2025 21:40:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251223-add_ltc2305_driver-v1-2-dfa0827fd620@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 06/10] can: grcan: optimize DMA by 32-bit accesses
+To: Arun Muthusamy <arun.muthusamy@gaisler.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, mkl@pengutronix.de,
+ mailhol@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-can@vger.kernel.org, Daniel Hellstrom <daniel@gaisler.com>
+References: <20251223105604.12675-1-arun.muthusamy@gaisler.com>
+ <20251223105604.12675-7-arun.muthusamy@gaisler.com>
+Content-Language: en-US
+From: Vincent Mailhol <mailhol@kernel.org>
+Autocrypt: addr=mailhol@kernel.org; keydata=
+ xjMEZluomRYJKwYBBAHaRw8BAQdAf+/PnQvy9LCWNSJLbhc+AOUsR2cNVonvxhDk/KcW7FvN
+ JFZpbmNlbnQgTWFpbGhvbCA8bWFpbGhvbEBrZXJuZWwub3JnPsKZBBMWCgBBFiEE7Y9wBXTm
+ fyDldOjiq1/riG27mcIFAmdfB/kCGwMFCQp/CJcFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcC
+ F4AACgkQq1/riG27mcKBHgEAygbvORJOfMHGlq5lQhZkDnaUXbpZhxirxkAHwTypHr4A/joI
+ 2wLjgTCm5I2Z3zB8hqJu+OeFPXZFWGTuk0e2wT4JzjgEZx4y8xIKKwYBBAGXVQEFAQEHQJrb
+ YZzu0JG5w8gxE6EtQe6LmxKMqP6EyR33sA+BR9pLAwEIB8J+BBgWCgAmFiEE7Y9wBXTmfyDl
+ dOjiq1/riG27mcIFAmceMvMCGwwFCQPCZwAACgkQq1/riG27mcJU7QEA+LmpFhfQ1aij/L8V
+ zsZwr/S44HCzcz5+jkxnVVQ5LZ4BANOCpYEY+CYrld5XZvM8h2EntNnzxHHuhjfDOQ3MAkEK
+In-Reply-To: <20251223105604.12675-7-arun.muthusamy@gaisler.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Kyle,
+On 23/12/2025 at 11:56, Arun Muthusamy wrote:
+> From: Daniel Hellstrom <daniel@gaisler.com>
+> 
+> Optimizes DMA transfers in the GRCAN driver by reorganizing
+> data handling to use 32-bit accesses instead of individual
+> byte accesses.
+> 
+> Signed-off-by: Daniel Hellstrom <daniel@gaisler.com>
+> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
+> ---
+>  drivers/net/can/grcan.c | 22 +++++++++++-----------
+>  1 file changed, 11 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
+> index cac85fbe6acf..8a6c59473cf4 100644
+> --- a/drivers/net/can/grcan.c
+> +++ b/drivers/net/can/grcan.c
+> @@ -1218,7 +1218,7 @@ static int grcan_receive(struct net_device *dev, int budget)
+>  	struct sk_buff *skb;
+>  	u32 wr, rd, startrd;
+>  	u32 *slot;
+> -	u32 i, rtr, eff, j, shift;
+> +	u32 rtr, eff;
+>  	int work_done = 0;
+>  
+>  	rd = grcan_read_reg(&regs->rxrd);
+> @@ -1254,10 +1254,10 @@ static int grcan_receive(struct net_device *dev, int budget)
+>  		if (rtr) {
+>  			cf->can_id |= CAN_RTR_FLAG;
+>  		} else {
+> -			for (i = 0; i < cf->len; i++) {
+> -				j = GRCAN_MSG_DATA_SLOT_INDEX(i);
+> -				shift = GRCAN_MSG_DATA_SHIFT(i);
+> -				cf->data[i] = (u8)(slot[j] >> shift);
+> +			if (cf->can_dlc > 0) {
+> +				memcpy(cf->data, &slot[2], sizeof(u32));
+> +				if (cf->can_dlc > 4)
+> +					memcpy(cf->data + 4, &slot[3], sizeof(u32));
+>  			}
 
-kernel test robot noticed the following build warnings:
+Nitpick: you may instead do:
 
-[auto build test WARNING on 9448598b22c50c8a5bb77a9103e2d49f134c9578]
+	if (cf->can_dlc > 0)
+		memcpy(cf->data, &slot[2], sizeof(u32));
+	if (cf->can_dlc > 4)
+		memcpy(cf->data + 4, &slot[3], sizeof(u32));
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kyle-Hsieh/dt-bindings-adc-ltc2497-add-support-for-ltc2305/20251223-171509
-base:   9448598b22c50c8a5bb77a9103e2d49f134c9578
-patch link:    https://lore.kernel.org/r/20251223-add_ltc2305_driver-v1-2-dfa0827fd620%40gmail.com
-patch subject: [PATCH 2/2] iio: adc: ltc2309: add support for ltc2305
-config: sparc64-randconfig-001-20251224 (https://download.01.org/0day-ci/archive/20251224/202512240416.ckqhNpHO-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251224/202512240416.ckqhNpHO-lkp@intel.com/reproduce)
+and let the compiler take care of the optimization for you ;)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512240416.ckqhNpHO-lkp@intel.com/
+>  
+>  			stats->rx_bytes += cf->len;
+> @@ -1397,8 +1397,7 @@ static netdev_tx_t grcan_start_xmit(struct sk_buff *skb,
+>  	u32 id, txwr, txrd, space, txctrl;
+>  	int slotindex;
+>  	u32 *slot;
+> -	u32 i, rtr, eff, dlc, tmp, err;
+> -	int j, shift;
+> +	u32 rtr, eff, dlc, tmp, err;
+>  	unsigned long flags;
+>  	u32 oneshotmode = priv->can.ctrlmode & CAN_CTRLMODE_ONE_SHOT;
+>  
+> @@ -1451,10 +1450,11 @@ static netdev_tx_t grcan_start_xmit(struct sk_buff *skb,
+>  	slot[1] = ((dlc << GRCAN_MSG_DLC_BIT) & GRCAN_MSG_DLC);
+>  	slot[2] = 0;
+>  	slot[3] = 0;
+> -	for (i = 0; i < dlc; i++) {
+> -		j = GRCAN_MSG_DATA_SLOT_INDEX(i);
+> -		shift = GRCAN_MSG_DATA_SHIFT(i);
+> -		slot[j] |= cf->data[i] << shift;
+> +	if (dlc > 0) {
+> +		memcpy(&slot[2], cf->data, sizeof(u32));
+> +		slot[2] = *(u32 *)(cf->data);
 
-All warnings (new ones prefixed by >>):
+Why do you have both the memcpy() and the "slot[2] =" assignment?
 
-   drivers/iio/adc/ltc2309.c: In function 'ltc2309_probe':
->> drivers/iio/adc/ltc2309.c:195:29: warning: unused variable 'match' [-Wunused-variable]
-     const struct of_device_id *match;
-                                ^~~~~
+> +		if (dlc > 4)
+> +			memcpy(&slot[3], cf->data + 4, sizeof(u32));
+>  	}
+>  
+>  	/* Checking that channel has not been disabled. These cases
+
+Don't forget also to remove the unused macros.
 
 
-vim +/match +195 drivers/iio/adc/ltc2309.c
+Yours sincerely,
+Vincent Mailhol
 
-   192	
-   193	static int ltc2309_probe(struct i2c_client *client)
-   194	{
- > 195		const struct of_device_id *match;
-   196		const struct ltc230x_chip_info *chip_info;
-   197		struct iio_dev *indio_dev;
-   198		struct ltc2309 *ltc2309;
-   199		int ret;
-   200	
-   201		indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*ltc2309));
-   202		if (!indio_dev)
-   203			return -ENOMEM;
-   204	
-   205		ltc2309 = iio_priv(indio_dev);
-   206		chip_info = device_get_match_data(&client->dev);
-   207		if (!chip_info)
-   208			return -EINVAL;
-   209	
-   210		ltc2309->dev = &indio_dev->dev;
-   211		ltc2309->client = client;
-   212	
-   213		indio_dev->name = chip_info->name;
-   214		indio_dev->modes = INDIO_DIRECT_MODE;
-   215		indio_dev->channels = chip_info->channels;
-   216		indio_dev->num_channels = chip_info->num_channels;
-   217		indio_dev->info = &ltc2309_info;
-   218	
-   219		ret = devm_regulator_get_enable_read_voltage(&client->dev, "vref");
-   220		if (ret < 0 && ret != -ENODEV)
-   221			return dev_err_probe(ltc2309->dev, ret,
-   222					     "failed to get vref voltage\n");
-   223	
-   224		ltc2309->vref_mv = ret == -ENODEV ? LTC2309_INTERNAL_REF_MV : ret / 1000;
-   225	
-   226		mutex_init(&ltc2309->lock);
-   227	
-   228		return devm_iio_device_register(&client->dev, indio_dev);
-   229	}
-   230	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
