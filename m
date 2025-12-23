@@ -1,160 +1,123 @@
-Return-Path: <devicetree+bounces-249109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD197CD94E3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:38:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66AC5CD959D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:48:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 564DF3001BF9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 12:38:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9888B3009556
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 12:47:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C00C342527;
-	Tue, 23 Dec 2025 12:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A99732C331;
+	Tue, 23 Dec 2025 12:47:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="b04rYBRR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nS/LYUGG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA91F340263;
-	Tue, 23 Dec 2025 12:38:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2A530E0D8;
+	Tue, 23 Dec 2025 12:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766493495; cv=none; b=q65PDBeVzziS6tCfEGvJYaXRsnmcS6MVjEwcLjDRRrTgGWVIJyaj2ob3fRy6lDBNjdqzWc4nT3XXPqKZ4xxDjWLm7+VWVloNexxuri/+YRtJuRvN0dZ63xfazNX+aCJhj/gyU4vDilw7rVK+aQeLvVTv35cBn3ckoN++eoqWGHc=
+	t=1766494062; cv=none; b=NJ/nctXX7F03oGyDWCevb2GeX17I3yFHlevPRrmCoCvIW6jXM6L6MhmtyaWZEwJrm8mynrV9Ko/YD6oMWVaD/XTwYVIHUJqwm7G/OPPPe9RtCTvkT/wsAh3wjCIhunifs32AdGkHVhQ3SzrpFLRRVyCupqPlRMFWw1UJiUqh+hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766493495; c=relaxed/simple;
-	bh=rdeG2VG+rMbzb7B0nEMR2+rl+ce7ZHv2oNQL6t2d04U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cYAog9LCg/IIZvNekNzcJ65YwCVflbe7jb8jPZRT+ANjlUuycrdEE7DIV7xNlRtttej9eoDw4FW/VA/TCZWDPV1fXVLJLfOgLD4er3Z/7LANEBtLzY3CB5+vUxXYeGCOzTaTyTpVeZBfF/6a4JvMYK67b9cRruD3PF7PpiolhiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=b04rYBRR; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1766493489;
-	bh=rdeG2VG+rMbzb7B0nEMR2+rl+ce7ZHv2oNQL6t2d04U=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=b04rYBRR/4mO98Sme0o6098TUsrxs4tB4X82WU/Mz/E7tCqE63CPYE8aoxvcUTXE0
-	 qqGmM88oz0yF6eP6Pn4tTaAH2RnUCO6hJMbDH3zSz1+/6SapLAVDS6wgVMhlWsL+lE
-	 shxNylYvlrQ6m2ly9PqWj6DK2/kU8ZRvrc5zUQ0AABOaewZInr0AkhBfba75FWpZoT
-	 t3uc0URa7pUSZmd/ohSkrpJnsyaX9S9pHweaVeMFq/EZd28T0MjhXen65wLXkbkq5u
-	 10jIoGM76QjsBlHeVPnrX1tvDsmPnp9E2tsRI7sYCwHvxvkhEWpBy+kOdGSAXeggSu
-	 JsU0plhxjtoBg==
-Received: from beast.luon.net (simons.connected.by.freedominter.net [45.83.240.172])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sjoerd)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3245517E1513;
-	Tue, 23 Dec 2025 13:38:09 +0100 (CET)
-Received: by beast.luon.net (Postfix, from userid 1000)
-	id 69AC1117A067D; Tue, 23 Dec 2025 13:38:08 +0100 (CET)
-From: Sjoerd Simons <sjoerd@collabora.com>
-Date: Tue, 23 Dec 2025 13:37:58 +0100
-Subject: [PATCH v5 8/8] arm64: dts: mediatek: mt7981b-openwrt-one: Enable
- wifi
+	s=arc-20240116; t=1766494062; c=relaxed/simple;
+	bh=vIDLcNDvZkN5LTCFnFI3qztjOOsnOhIPYziKgleG5U4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UXiBa2yMgO+61Tv0jijTozbwGfDtYaO0DtvguzsP6c0L3Nwkh9XUOBgg3hxqy0+fg+RrCXPacPWX5Q6MGs+jrb2GuPW3wlZLEePrcpgeyzUj4E8H1sn+jxnNLNJgXTBmJ7/SiUUToLTy9gPHa1hkgBgebgvlPbKNJoiBcfv4V1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nS/LYUGG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECD6EC113D0;
+	Tue, 23 Dec 2025 12:47:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766494061;
+	bh=vIDLcNDvZkN5LTCFnFI3qztjOOsnOhIPYziKgleG5U4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=nS/LYUGG3bQWx8kgoisYWGHKKh0DWJMRI4/JUwCUzxuCqJhdEffcw8bQ6NJDCLArK
+	 +yD6VkIsifDT4qNnKcj9Y318Gr+O0v8AdqXcjAnSPubjbv3c2DSqAw/x83DeYTgl8A
+	 cTuhu28oH0JFPZn0F5NDPomxfJfbHUnfowah+2KMDXlDg2Td4MsdMTvD8XXuK2xDsI
+	 azj/89k4Qgct2+VIjwZKvEweKsuNrW37HxfPtjBMb0FDBRruLcHNo6B4ek8cvv4QT3
+	 /A/B5HnDGrZgFKBHz9thgkbQkT2EyxyH1qB/r/kDXAiispTT/+youTbGrEvK3FeCHe
+	 pWTuHBusy9TSQ==
+From: Michael Walle <mwalle@kernel.org>
+To: Frank Binns <frank.binns@imgtec.com>,
+	Matt Coster <matt.coster@imgtec.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Andrew Davis <afd@ti.com>,
+	Santosh Shilimkar <ssantosh@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Randolph Sapp <rs@ti.com>
+Cc: linux-clk@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Michael Walle <mwalle@kernel.org>
+Subject: [PATCH v2 0/4] drm/imagination: add AM62P/AM67A/J722S support
+Date: Tue, 23 Dec 2025 13:47:12 +0100
+Message-ID: <20251223124729.2482877-1-mwalle@kernel.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251223-openwrt-one-network-v5-8-7d1864ea3ad5@collabora.com>
-References: <20251223-openwrt-one-network-v5-0-7d1864ea3ad5@collabora.com>
-In-Reply-To: <20251223-openwrt-one-network-v5-0-7d1864ea3ad5@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Ryder Lee <ryder.lee@mediatek.com>, 
- Jianjun Wang <jianjun.wang@mediatek.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Lee Jones <lee@kernel.org>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org, 
- linux-phy@lists.infradead.org, netdev@vger.kernel.org, 
- Daniel Golle <daniel@makrotopia.org>, Bryan Hinton <bryan@bryanhinton.com>, 
- Sjoerd Simons <sjoerd@collabora.com>
-X-Mailer: b4 0.14.3
+Content-Transfer-Encoding: 8bit
 
-Enable Dual-band WiFI 6 functionality on the Openwrt One
+The AM62P and AM67A/J722S feature the same BXS-4 GPU as the J721S2.
+In theory, one have to just add the DT node. But it turns out, that
+the clock handling is not working. If I understood Nishan Menon
+correct, it is working on the J721S2 because there, the clock is
+shared, while on the AM62P the GPU has its own PLL.
+In the latter case, the driver will fail with a WARN() because the
+queried clock rate is zero due to a wrong cached value.
 
-Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
----
-V2 -> V3: replace MTK_DRIVE_4mA with direct value
-V1 -> V2: Update eeprom node label
----
- .../boot/dts/mediatek/mt7981b-openwrt-one.dts      | 24 ++++++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt7981b.dtsi          |  2 +-
- 2 files changed, 25 insertions(+), 1 deletion(-)
+This was tested on the sa67 board which is based on the AM67A SoC.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-index 2aea89900645..3de368c73bc8 100644
---- a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-@@ -180,6 +180,22 @@ conf-pd {
- 			pins = "SPI2_CLK", "SPI2_MOSI", "SPI2_MISO";
- 		};
- 	};
-+
-+	wifi_dbdc_pins: wifi-dbdc-pins {
-+		mux {
-+			function = "eth";
-+			groups = "wf0_mode1";
-+		};
-+
-+		conf {
-+			pins = "WF_HB1", "WF_HB2", "WF_HB3", "WF_HB4",
-+			       "WF_HB0", "WF_HB0_B", "WF_HB5", "WF_HB6",
-+			       "WF_HB7", "WF_HB8", "WF_HB9", "WF_HB10",
-+			       "WF_TOP_CLK", "WF_TOP_DATA", "WF_XO_REQ",
-+			       "WF_CBA_RESETB", "WF_DIG_RESETB";
-+			drive-strength = <4>;
-+		};
-+	};
- };
- 
- &pwm {
-@@ -257,6 +273,14 @@ &usb_phy {
- 	status = "okay";
- };
- 
-+&wifi {
-+	nvmem-cells = <&wifi_factory_calibration>;
-+	nvmem-cell-names = "eeprom";
-+	pinctrl-names = "dbdc";
-+	pinctrl-0 = <&wifi_dbdc_pins>;
-+	status = "okay";
-+};
-+
- &xhci {
- 	phys = <&u2port0 PHY_TYPE_USB2>;
- 	vusb33-supply = <&reg_3p3v>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-index a7be3670e005..66d89495bac5 100644
---- a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-@@ -490,7 +490,7 @@ wo_ccif0: syscon@151a5000 {
- 			interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
--		wifi@18000000 {
-+		wifi: wifi@18000000 {
- 			compatible = "mediatek,mt7981-wmac";
- 			reg = <0 0x18000000 0 0x1000000>,
- 			      <0 0x10003000 0 0x1000>,
+v2:
+ - collect ACKs
+ - rebase onto latest -next
+ - new patch which enables 800MHz operation for the sa67 board
+
+v1:
+ - https://lore.kernel.org/r/20250915143440.2362812-1-mwalle@kernel.org/
+ - Don't set the clock to 800MHz in the soc dtsi. 800MHz is only
+   possible if the core voltage is 0.85V. Just use the hardware
+   default of 720MHz. A board device tree can set the 800MHz if
+   applicable. Thanks Nishan.
+ - Also add the new compatible to a conditional in the DT schema.
+   Thanks Andrew.
+ - Dropped the wrong of_clk_set_defaults() and instead disable
+   caching of the clock rate.
+
+RFC:
+ - https://lore.kernel.org/r/20250716134717.4085567-1-mwalle@kernel.org/
+
+Michael Walle (4):
+  dt-bindings: gpu: img: Add AM62P SoC specific compatible
+  clk: keystone: don't cache clock rate
+  arm64: dts: ti: add GPU node
+  arm64: dts: ti: sa67: set the GPU clock to 800MHz
+
+ .../devicetree/bindings/gpu/img,powervr-rogue.yaml    |  2 ++
+ .../arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 11 +++++++++++
+ arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts |  6 ++++++
+ drivers/clk/keystone/sci-clk.c                        |  8 ++++++++
+ 4 files changed, 27 insertions(+)
 
 -- 
-2.51.0
+2.47.3
 
 
