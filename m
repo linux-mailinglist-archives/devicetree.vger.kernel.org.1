@@ -1,386 +1,126 @@
-Return-Path: <devicetree+bounces-249211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF3CCD9DDC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:54:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06FAACD9DE8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:55:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3229830053E9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:54:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C14C73009800
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359E2242D86;
-	Tue, 23 Dec 2025 15:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8266C26158B;
+	Tue, 23 Dec 2025 15:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ML9nBi3A"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bEakcnVl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B101DA62E;
-	Tue, 23 Dec 2025 15:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43F0F1DA62E
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:55:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766505239; cv=none; b=FJ4Ab1+iJ29i0E+xseRRspbhWAOecXEX3/u8muLJaD7ucSDfbVEOdjdn/CzYFhLNGfR9/Lp0KmlOk+4mXnLRO8sV69BIrLt2wlX1hDBT8FvG9quDEZyAyXGolQrEW0AvZVTVYRRq50WvpYLbRDQcyUZodTPQFLdBtPVjCbvMsmQ=
+	t=1766505351; cv=none; b=TdMVpoBJre9lBNX42Yc+jjD9uBV4N6v6Q00AnQi+Up95PLdjGN7ArOrpL0v769A2xMYzSPJO4T7vqPTK5Aixv1EY3EJ5oIoBFtGtXbaUBi9DEabtPXTAI6AY3Qn/q46caxyaptpfkFkMrqrcRuG5OlCtX9qHKTQ73URUIbGwUmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766505239; c=relaxed/simple;
-	bh=CZrJo1LdW7bruNZUu+2L6WzM2CBpusjxOX4oWgrjvAg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eu+vsHFpeO4MEgYc8R7mt5tumgqWkZSi97f0B+6uNvI8BqZpIDapaiRvZ42XmfDDMvvYNvJ01OFr2MtqPdKT/iFg2i7f+gTpPoTR8qA8s7PimwVwEtuskwmQW55x1K4MR783dH1t5XfrLQPMY9UhTJ0ewcXikoIMea2w5O0XKoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ML9nBi3A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2644DC116C6;
-	Tue, 23 Dec 2025 15:53:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766505238;
-	bh=CZrJo1LdW7bruNZUu+2L6WzM2CBpusjxOX4oWgrjvAg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ML9nBi3A2UxEqoBQvpJw2FYCOwagkl8EmF2lJKZv9Tf3x0t0MNrXw6kXbWS/7OV5C
-	 NrWKOpuV6HgLsf3UgsmQxITSXQMBv05/cmh9m5DAMTPnLz1ouHyKDKe2Wrtai7MmrO
-	 CCDhEltgaIINL00jfFxonf3Pi9bXQi/qkIX7l1g+gLeI2YXHpMAOG5BiPCmeqm+Qz9
-	 GuH3rWjCWp2lhyORyacmg9DJefht43b9N8eqdf/kHAul2ZVdlixE6PWzYfqw9c8zVd
-	 NhANqpA1pmGmX4CXVImx74zY/V0hyl5DmFeZPhZ/pSxc0uyQmlxNVhtDvfw4oxYhGQ
-	 A37UT8IbO3a1A==
-Date: Tue, 23 Dec 2025 21:23:55 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	s=arc-20240116; t=1766505351; c=relaxed/simple;
+	bh=yUYGvgTuhC5BCr5w7y8XuABCLxs2jqzQf+5M2/LR9jE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rWrvxAGiMrPwCOQUIdZJM3aU/fk7IRIjiJzGSuVpxkqBn1rKws/2YDtl7A1e6naxH0r/PuoOChm5EUPj0GUv/FEUf7PWB3B3zP6EksR6xyfISbOMIfO6l/v4kET1ldrC954wpfN2BDDRc/O1zBro0r711+SGiswf8vamokU3Gkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bEakcnVl; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 60954C1AE24;
+	Tue, 23 Dec 2025 15:55:22 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7219B60716;
+	Tue, 23 Dec 2025 15:55:47 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 25EF810AB0BAE;
+	Tue, 23 Dec 2025 16:55:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1766505346; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=p7wDoXQ9uFCE9REkUe1YaH5DAcfutXgAy4GZCWM+c6U=;
+	b=bEakcnVlCWIwhqv5kTi+Wj0JmUDzx0zKUHljOcIxSd0g4XZJaxJQpXpeJr4f/dnQCQlmpA
+	a3DPTIa/pgtR/TE9ibXx88NK4W2AfJgApaxeK4Y1IKTlVSLManE67RnS2Sbp49CxIiaYrC
+	mMOaSRLVQF960wx/rQVKkaZ7N+bkK66YpJMGT3txYDfaxTJNNqbVIFiHq/eQnOJ0sUu8LL
+	0KdFG6RUeyCaVV7Fhn0f+dkUqcPYYN5riSxY+qISfTIGo53K+6Imus8EY+s7gpTu6GMyRb
+	dyUEDXMmhGhNndqLRulGdVTD6QC/wXFYxPCz95XrqNGHtMDW7hm7qra8tauOPg==
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	nuno.sa@analog.com,
+	Andy Shevchenko <andy@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH v5 2/7] phy: Add driver for EyeQ5 Ethernet PHY wrapper
-Message-ID: <aUq7E4yh0OgTfdxF@vaman>
-References: <20251215-macb-phy-v5-0-a9dfea39da34@bootlin.com>
- <20251215-macb-phy-v5-2-a9dfea39da34@bootlin.com>
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Angelo Dureghello <adureghello@baylibre.com>,
+	Tobias Sperling <tobias.sperling@softing.com>,
+	Eason Yang <j2anfernee@gmail.com>,
+	Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
+	duje@dujemihanovic.xyz,
+	herve.codina@bootlin.com,
+	Rodolfo Giometti <giometti@enneenne.com>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com
+Subject: [PATCH 0/2] Add driver for the TI TLA2528 i2c ADC
+Date: Tue, 23 Dec 2025 16:55:31 +0100
+Message-ID: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251215-macb-phy-v5-2-a9dfea39da34@bootlin.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 15-12-25, 17:26, Théo Lebrun wrote:
-> EyeQ5 embeds a system-controller called OLB. It features many unrelated
-> registers, and some of those are registers used to configure the
-> integration of the RGMII/SGMII Cadence PHY used by MACB/GEM instances.
-> 
-> Wrap in a neat generic PHY provider, exposing two PHYs with standard
-> phy_init() / phy_set_mode() / phy_power_on() operations.
-> 
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> ---
->  MAINTAINERS                 |   1 +
->  drivers/phy/Kconfig         |  13 +++
->  drivers/phy/Makefile        |   1 +
->  drivers/phy/phy-eyeq5-eth.c | 249 ++++++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 264 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5b11839cba9d..2f67ec9fad57 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17605,6 +17605,7 @@ F:	arch/mips/boot/dts/mobileye/
->  F:	arch/mips/configs/eyeq5_defconfig
->  F:	arch/mips/mobileye/board-epm5.its.S
->  F:	drivers/clk/clk-eyeq.c
-> +F:	drivers/phy/phy-eyeq5-eth.c
->  F:	drivers/pinctrl/pinctrl-eyeq5.c
->  F:	drivers/reset/reset-eyeq.c
->  F:	include/dt-bindings/clock/mobileye,eyeq5-clk.h
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index 678dd0452f0a..1aa6eff12dbc 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -101,6 +101,19 @@ config PHY_NXP_PTN3222
->  	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
->  	  Speed and High Speed.
->  
-> +config PHY_EYEQ5_ETH
+Hi everyone,
 
-sorted please
+This series is a resurection of a patch sent by Rodolfo Giometti that
+adds support for the Texas Instruments TLA2528 8-channel 12bit ADC
+accessed over i2c : [1]
 
-> +	tristate "Ethernet PHY Driver on EyeQ5"
-> +	depends on OF
-> +	depends on MACH_EYEQ5 || COMPILE_TEST
-> +	select AUXILIARY_BUS
-> +	select GENERIC_PHY
-> +	default MACH_EYEQ5
+With Rodolfo's permission, I've picked up the driver where it was left,
+and made some changes :
 
-hmmm why should it be default? Maybe add this is respective defconfig for
-platform instead..?
+ - All reviews that were made by Jonathan back in 2021 were addressed
+ - I've updated the way we manage the regulator, using the newer
+   devm_regulator_get_enable_read_voltage() helper
+ - There was a bit of renaming for internal variables
+ - I simplified a bit the probe/remove by using devm_iio_device_register
+ - I've added a binding :)
 
-> +	help
-> +	  Enable this to support the Ethernet PHY integrated on EyeQ5.
-> +	  It supports both RGMII and SGMII. Registers are located in a
-> +	  shared register region called OLB. If M is selected, the
-> +	  module will be called phy-eyeq5-eth.
-> +
->  source "drivers/phy/allwinner/Kconfig"
->  source "drivers/phy/amlogic/Kconfig"
->  source "drivers/phy/broadcom/Kconfig"
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index bfb27fb5a494..8289497ece55 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -13,6 +13,7 @@ obj-$(CONFIG_PHY_SNPS_EUSB2)		+= phy-snps-eusb2.o
->  obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
->  obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
->  obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
-> +obj-$(CONFIG_PHY_EYEQ5_ETH)		+= phy-eyeq5-eth.o
+This was tested on a custom board based on imx93, with a 3v3 ref supply.
 
-sorted please
+Thanks Rodolfo for letting me give another shot at getting this driver
+upstream, and to all the reviewers and maintainers that were involved in
+the first round of reviews a few years ago.
 
->  obj-y					+= allwinner/	\
->  					   amlogic/	\
->  					   broadcom/	\
-> diff --git a/drivers/phy/phy-eyeq5-eth.c b/drivers/phy/phy-eyeq5-eth.c
-> new file mode 100644
-> index 000000000000..6e28f7e24835
-> --- /dev/null
-> +++ b/drivers/phy/phy-eyeq5-eth.c
-> @@ -0,0 +1,249 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/errno.h>
-> +#include <linux/gfp_types.h>
-> +#include <linux/init.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/phy.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/slab.h>
-> +#include <linux/types.h>
-> +
-> +#define EQ5_PHY_COUNT	2
-> +
-> +#define EQ5_PHY0_GP	0x128
-> +#define EQ5_PHY1_GP	0x12c
-> +#define EQ5_PHY0_SGMII	0x134
-> +#define EQ5_PHY1_SGMII	0x138
-> +
-> +#define EQ5_GP_TX_SWRST_DIS	BIT(0)		// Tx SW reset
-> +#define EQ5_GP_TX_M_CLKE	BIT(1)		// Tx M clock enable
-> +#define EQ5_GP_SYS_SWRST_DIS	BIT(2)		// Sys SW reset
-> +#define EQ5_GP_SYS_M_CLKE	BIT(3)		// Sys clock enable
-> +#define EQ5_GP_SGMII_MODE	BIT(4)		// SGMII mode
-> +#define EQ5_GP_RGMII_DRV	GENMASK(8, 5)	// RGMII drive strength
-> +
-> +#define EQ5_SGMII_PWR_EN	BIT(0)
-> +#define EQ5_SGMII_RST_DIS	BIT(1)
-> +#define EQ5_SGMII_PLL_EN	BIT(2)
-> +#define EQ5_SGMII_SIG_DET_SW	BIT(3)
-> +#define EQ5_SGMII_PWR_STATE	BIT(4)
-> +#define EQ5_SGMII_PLL_ACK	BIT(18)
-> +#define EQ5_SGMII_PWR_STATE_ACK	GENMASK(24, 20)
-> +
-> +struct eq5_phy_inst {
-> +	struct eq5_phy_private	*priv;
-> +	struct phy		*phy;
-> +	void __iomem		*gp, *sgmii;
-> +	phy_interface_t		phy_interface;
-> +};
-> +
-> +struct eq5_phy_private {
-> +	struct device		*dev;
-> +	struct eq5_phy_inst	phys[EQ5_PHY_COUNT];
-> +};
-> +
-> +static int eq5_phy_init(struct phy *phy)
-> +{
-> +	struct eq5_phy_inst *inst = phy_get_drvdata(phy);
-> +	struct eq5_phy_private *priv = inst->priv;
-> +	struct device *dev = priv->dev;
-> +	u32 reg;
-> +
-> +	dev_dbg(dev, "phy_init(inst=%td)\n", inst - priv->phys);
-> +
-> +	writel(0, inst->gp);
-> +	writel(0, inst->sgmii);
-> +
-> +	udelay(5);
-> +
-> +	reg = readl(inst->gp) | EQ5_GP_TX_SWRST_DIS | EQ5_GP_TX_M_CLKE |
-> +	      EQ5_GP_SYS_SWRST_DIS | EQ5_GP_SYS_M_CLKE |
-> +	      FIELD_PREP(EQ5_GP_RGMII_DRV, 0x9);
-> +	writel(reg, inst->gp);
-> +
-> +	return 0;
-> +}
-> +
-> +static int eq5_phy_exit(struct phy *phy)
-> +{
-> +	struct eq5_phy_inst *inst = phy_get_drvdata(phy);
-> +	struct eq5_phy_private *priv = inst->priv;
-> +	struct device *dev = priv->dev;
-> +
-> +	dev_dbg(dev, "phy_exit(inst=%td)\n", inst - priv->phys);
-> +
-> +	writel(0, inst->gp);
-> +	writel(0, inst->sgmii);
-> +	udelay(5);
+Maxime
 
-this is same patter in init as well...?
+[1] : https://lore.kernel.org/linux-iio/20210802130441.972978-1-giometti@enneenne.com/
 
-> +
-> +	return 0;
-> +}
-> +
-> +static int eq5_phy_set_mode(struct phy *phy, enum phy_mode mode, int submode)
-> +{
-> +	struct eq5_phy_inst *inst = phy_get_drvdata(phy);
-> +	struct eq5_phy_private *priv = inst->priv;
-> +	struct device *dev = priv->dev;
-> +
-> +	dev_dbg(dev, "phy_set_mode(inst=%td, mode=%d, submode=%d)\n",
-> +		inst - priv->phys, mode, submode);
+Maxime Chevallier (2):
+  dt-bindings: iio: adc: add Texas Instruments TLA 2528
+  iio: adc: add driver for Texas Instruments TLA2528 adc
 
-these are good for debug but not for upstream, please drop
+ .../bindings/iio/adc/ti,tla2528.yaml          |  48 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ti-tla2528.c                  | 209 ++++++++++++++++++
+ 5 files changed, 275 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
+ create mode 100644 drivers/iio/adc/ti-tla2528.c
 
-> +
-> +	if (mode != PHY_MODE_ETHERNET)
-> +		return -EOPNOTSUPP;
-> +
-> +	if (!phy_interface_mode_is_rgmii(submode) &&
-> +	    submode != PHY_INTERFACE_MODE_SGMII)
-> +		return -EOPNOTSUPP;
-> +
-> +	inst->phy_interface = submode;
-> +	return 0;
-> +}
-> +
-> +static int eq5_phy_power_on(struct phy *phy)
-> +{
-> +	struct eq5_phy_inst *inst = phy_get_drvdata(phy);
-> +	struct eq5_phy_private *priv = inst->priv;
-> +	struct device *dev = priv->dev;
-> +	u32 reg;
-> +
-> +	dev_dbg(dev, "phy_power_on(inst=%td)\n", inst - priv->phys);
-> +
-> +	if (inst->phy_interface == PHY_INTERFACE_MODE_SGMII) {
-> +		writel(readl(inst->gp) | EQ5_GP_SGMII_MODE, inst->gp);
-> +
-> +		reg = EQ5_SGMII_PWR_EN | EQ5_SGMII_RST_DIS | EQ5_SGMII_PLL_EN;
-> +		writel(reg, inst->sgmii);
-> +
-> +		if (readl_poll_timeout(inst->sgmii, reg,
-> +				       reg & EQ5_SGMII_PLL_ACK, 1, 100)) {
-> +			dev_err(dev, "PLL timeout\n");
-> +			return -ETIMEDOUT;
-> +		}
-> +
-> +		reg = readl(inst->sgmii);
-> +		reg |= EQ5_SGMII_PWR_STATE | EQ5_SGMII_SIG_DET_SW;
-> +		writel(reg, inst->sgmii);
-> +	} else {
-> +		writel(readl(inst->gp) & ~EQ5_GP_SGMII_MODE, inst->gp);
-> +		writel(0, inst->sgmii);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int eq5_phy_power_off(struct phy *phy)
-> +{
-> +	struct eq5_phy_inst *inst = phy_get_drvdata(phy);
-> +	struct eq5_phy_private *priv = inst->priv;
-> +	struct device *dev = priv->dev;
-> +
-> +	dev_dbg(dev, "phy_power_off(inst=%td)\n", inst - priv->phys);
-> +
-> +	writel(readl(inst->gp) & ~EQ5_GP_SGMII_MODE, inst->gp);
-> +	writel(0, inst->sgmii);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops eq5_phy_ops = {
-> +	.init		= eq5_phy_init,
-> +	.exit		= eq5_phy_exit,
-> +	.set_mode	= eq5_phy_set_mode,
-> +	.power_on	= eq5_phy_power_on,
-> +	.power_off	= eq5_phy_power_off,
-> +};
-> +
-> +static struct phy *eq5_phy_xlate(struct device *dev,
-> +				 const struct of_phandle_args *args)
-> +{
-> +	struct eq5_phy_private *priv = dev_get_drvdata(dev);
-> +
-> +	if (args->args_count != 1 || args->args[0] >= EQ5_PHY_COUNT)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	return priv->phys[args->args[0]].phy;
-> +}
-> +
-> +static int eq5_phy_probe_phy(struct eq5_phy_private *priv, unsigned int index,
-> +			     void __iomem *base, unsigned int gp,
-> +			     unsigned int sgmii)
-> +{
-> +	struct eq5_phy_inst *inst = &priv->phys[index];
-> +	struct device *dev = priv->dev;
-> +	struct phy *phy;
-> +
-> +	phy = devm_phy_create(dev, dev->of_node, &eq5_phy_ops);
-> +	if (IS_ERR(phy))
-> +		return dev_err_probe(dev, PTR_ERR(phy),
-> +				     "failed to create PHY %u\n", index);
-> +
-> +	inst->priv = priv;
-> +	inst->phy = phy;
-> +	inst->gp = base + gp;
-> +	inst->sgmii = base + sgmii;
-> +	inst->phy_interface = PHY_INTERFACE_MODE_NA;
-> +	phy_set_drvdata(phy, inst);
-> +
-> +	return 0;
-> +}
-> +
-> +static int eq5_phy_probe(struct auxiliary_device *adev,
-> +			 const struct auxiliary_device_id *id)
-> +{
-> +	struct device *dev = &adev->dev;
-> +	struct phy_provider *provider;
-> +	struct eq5_phy_private *priv;
-> +	void __iomem *base;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->dev = dev;
-> +	dev_set_drvdata(dev, priv);
-> +
-> +	base = (void __iomem *)dev_get_platdata(dev);
-
-no need to cast for void *
 -- 
-~Vinod
+2.49.0
+
 
