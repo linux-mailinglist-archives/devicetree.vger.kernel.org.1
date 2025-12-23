@@ -1,102 +1,138 @@
-Return-Path: <devicetree+bounces-249320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C122DCDACC8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 00:09:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4BA0CDACCE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 00:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BA710300AB23
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 23:09:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 719D03018F70
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 23:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E1A2F747F;
-	Tue, 23 Dec 2025 23:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD93430ACE3;
+	Tue, 23 Dec 2025 23:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Pw685wI2"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="llDbrej8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6844330AD06
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 23:09:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CEC32F12C9;
+	Tue, 23 Dec 2025 23:09:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766531348; cv=none; b=W68z3SQyynU8t9zWu9zCg53crhKl60WydbPei5Sarvi4snI96A9637ymCxfMRBRZjhJpIFGcO/+y6QMgfUunqsuYj/FQL2HpUCloiatkedjpsN2p3jfFPBdMR8X5jlViiktuDXquM5pkZC3o+MEt4i8b72M3xnaIJKTvgK52G+M=
+	t=1766531368; cv=none; b=L7d2Ck5Z7H6E8UdtLbykNWfdZguRMR3/E/NpA6yerF/DD8tcJiBsV5vVeVjlqdZTJ+qEtACLIdgABk/Hx1JjS2LGHpP7cY25O7iJSizniC0XUx87Kezx3uMcLDSK828xZozv/69o1L3vEAcnMPloEs2WO+5m6g/CicsSkbtBoT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766531348; c=relaxed/simple;
-	bh=3eYnNyAgZbYAHDjdiI8Joii1jtgALwPhSG8JcJ7I9sI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SPza788chRuPbl8A2e8fJdMrpCiJycLB3OA1N/vy5qdZWnZgWiEX3eO04o/R6CNjvXBQuW7zdasVDBFZo+/jpbI5YNEj1utS6aEM5WNIhLTRGZSR8uyOvZm/XymbHID7riwsS6V0WOt0H268ns4aqOlFaV60/toChQW7MXvkfn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=Pw685wI2; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2a0bae9aca3so78280455ad.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:09:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1766531346; x=1767136146; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s5HLf0q/HBK2oOHSdb4C+e4jou+vH5BBgCwzF7L7zWA=;
-        b=Pw685wI2m357i3kecB3Lf/46dlxcJRcYTRXzr9ROgB+Zi+x6p05/O/7Vwphcg5ZYU9
-         1QoBtrFQJ9QwJFGkhaoAAYyH//i03/ISAgpES7KjByccw+Mj0mCw46vuSjNLH6EFztA0
-         TMlfoik72R/JG0w76oO0JB+GtbKUQxN0bNYLy9d/zMimOSTxoJdH1IsuLY0iqwytxGEK
-         vTcNOguIKxHmWF81s3+mOZ7XQfqMg77x2785XpuPvT1adoWdGXvLZMv1BCK1r6iaFnxD
-         z6HDiVfCY+cYh9zEZplCAw9f2JDJz5gk/kPPASowlMXeewfwZ0mN6PXkaiTT/8cGnYMI
-         v34Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766531346; x=1767136146;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=s5HLf0q/HBK2oOHSdb4C+e4jou+vH5BBgCwzF7L7zWA=;
-        b=T8xq4zTsfv9lVHOv2LxkHWWQSY+Ledl+U+VcYE5FA71vlq1bxFLTH+p2Uvr6Byigfp
-         Ils31yWwGjqwmSRRpXzTpHQ50t0nuPJU+iUSFaUZ8NX4SaxRR8cYEtVthvz+2zWmbd65
-         NA/yXOOTyLIsA/xdFMOQbYwku03kku3i5jGt2n7DJ1RYSN/bBSMbkBexFeII8stVgNLq
-         uqzJluP7KepsWNCFCz6S7T0EnaztNwkj2pF0E727PNeh0KoUckYma04Pijh4E89ehLwb
-         QcvPnpKtlKgqoKQwaSvnvAsRZbFJZrYomz8anlazYUKwqDhcNohGhm1TRHJBTLa4P4Ln
-         xdcw==
-X-Forwarded-Encrypted: i=1; AJvYcCUWkG4uqHPszA66BPJjsyKrnU58PtZsKKbrXM/VDPaKKRGCE8hV1x5c5T/fHUtMqblqSU9A2q3IOn/b@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXpmo9l9SI1OVH6YsUgeHeWGeEJmB9aoW62LMS8+op7Pi3SJV2
-	xeNabj+SCtUfolYPrcOelpz6bUHJCUdREo1Z+7h+Kc6o0/om0AEgyZlUWL6g0R68dWnMZQsE9+Z
-	yH//hLVJEHOiHKtFcnvuwteP441GdAd8=
-X-Gm-Gg: AY/fxX62Xh3NOo6LVtVjnTOwMudSdKFEOVM1eGeKhUFn3oLrwaYZGVTjHqS95EoIStp
-	ZK75bJZ14q2KwBTTsM2/0UYr3sqbnVGl403cgrVu9P7zF5jBssNY6hJJDTAyn4LuFwgLPPyImsC
-	Zr1eZMIrzHzbl6K7rWhZR/ieDZ7Ea06hjHIPUW2V+JNN8gbPbXy+nCBqi4cln53SMyiIvezV0zX
-	A4bIBOul57DJwvvjXE7HKYPLtKB9qlY9MtFcwdjk7ctoeS2XLdyGVB/4wI2+aZhPCpIUxGXLFvh
-	OIX5qUD6AMx5PG9naIYk7lvU1Fa3
-X-Google-Smtp-Source: AGHT+IGBrwwKbPhbobxkI6bshU6oq1etWG3LvLOZghvlBp/QMqJduCm7VfQs3SMLxHPscaSzyW9EW2Lww4cnklC427s=
-X-Received: by 2002:a17:903:40cb:b0:2a0:f0e5:3f5c with SMTP id
- d9443c01a7336-2a2f283109dmr150600085ad.34.1766531345642; Tue, 23 Dec 2025
- 15:09:05 -0800 (PST)
+	s=arc-20240116; t=1766531368; c=relaxed/simple;
+	bh=sAwwy2sio6lkc47FDsReM8SoyBwcC4MIdfRDutt5yKw=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=RHYMImCGobNis2Pegz2LLkEabB9xvLD9m3bex+wKsR8OtipMPy0y3AtKlo/2/T9dpm5AkFRFcSM8tIb2wowbh31ceZBdKN5cm96XfnMkisHfbJRsPaCAqfuHOlE5l5FaUwsEfIAn4LkvMJ8giu/8rRFxMifDZcuCJBeCGS5sHXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=llDbrej8; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [100.65.0.124] (unknown [20.236.11.102])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 4D2A1212A423;
+	Tue, 23 Dec 2025 15:09:26 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 4D2A1212A423
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1766531366;
+	bh=sAwwy2sio6lkc47FDsReM8SoyBwcC4MIdfRDutt5yKw=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=llDbrej8RnKs7HiCXtYol6Xr74gRhUTQrEcaA/KKSG+N+Sh20qp6TGcYvt3bBlCN2
+	 0wCGNwfDaGB/0eCKtBuNaBLT8jlI36puukcIoq/Um4aRmh5Ai88d/bRPQST+bVbl1Z
+	 i6H3r7qWW4HPJOlfCXGHrhiVESPFH+bwwaFodIEc=
+Message-ID: <10482c90-50c8-4e72-ba40-1d0e6e722128@linux.microsoft.com>
+Date: Tue, 23 Dec 2025 15:09:24 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251223152510.155463-3-krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20251223152510.155463-3-krzysztof.kozlowski@oss.qualcomm.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 24 Dec 2025 00:08:54 +0100
-X-Gm-Features: AQt7F2ohr65ds1Igq3hU6u6MsL2NTAZeKeUfhxNv0PkSbOldUx4jDRZ3zotUZaM
-Message-ID: <CAFBinCBt-Ra__iNTPP2wqbo00VThDQrs-sUWvBR_FisgNwc2kg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: amlogic: Use hyphen in node names
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: [PATCH v5 2/2] Drivers: hv: vmbus: retrieve connection-id from
+ DeviceTree
+From: Hardik Garg <hargar@linux.microsoft.com>
+To: kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
+ decui@microsoft.com, krzk+dt@kernel.org, robh@kernel.org,
+ conor+dt@kernel.org, mhklinux@outlook.com
+Cc: devicetree@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ssengar@linux.microsoft.com,
+ longli@microsoft.com, Naman Jain <namjain@linux.microsoft.com>,
+ hargar@microsoft.com
+References: <58cb22cb-b0c8-4694-b9e4-971aa7f0f972@linux.microsoft.com>
+Content-Language: en-US
+In-Reply-To: <58cb22cb-b0c8-4694-b9e4-971aa7f0f972@linux.microsoft.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 23, 2025 at 4:25=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@oss.qualcomm.com> wrote:
->
-> DTS coding style prefers hyphens instead of underscores in the node
-> names.  Change should be safe, because node names are not considered an
-> ABI.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+The connection-id determines which hypervisor communication channel
+the guest should use to talk to the VMBus host. Add steps to read
+this value from the DeviceTree. When this property is not present,
+the driver selects the connection ID based on the protocol version
+(4 for VERSION_WIN10_V5 and newer, or 1 for older versions).
+
+Signed-off-by: Hardik Garg <hargar@linux.microsoft.com>
+---
+v4:
+https://lore.kernel.org/all/1750374395-14615-3-git-send-email-hargar@linux.microsoft.com
+v3:
+https://lore.kernel.org/all/6a92ca86-ad6b-4d49-af6e-1ed7651b8ab8@linux.microsoft.com
+v2:
+https://lore.kernel.org/all/096edaf7-cc90-42b6-aff4-c5f088574e1e@linux.microsoft.com
+v1:
+https://lore.kernel.org/all/6acee4bf-cb04-43b9-9476-e8d811d26dfd@linux.microsoft.com
+---
+ drivers/hv/connection.c |  7 +++++--
+ drivers/hv/vmbus_drv.c  |  8 ++++++++
+ 2 files changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/hv/connection.c b/drivers/hv/connection.c
+index 5d9cb5bf2d62..660cad3886f5 100644
+--- a/drivers/hv/connection.c
++++ b/drivers/hv/connection.c
+@@ -100,12 +100,15 @@ int vmbus_negotiate_version(struct
+vmbus_channel_msginfo *msginfo, u32 version)
+     if (version >= VERSION_WIN10_V5) {
+         msg->msg_sint = VMBUS_MESSAGE_SINT;
+         msg->msg_vtl = ms_hyperv.vtl;
+-        vmbus_connection.msg_conn_id = VMBUS_MESSAGE_CONNECTION_ID_4;
+     } else {
+         msg->interrupt_page = virt_to_phys(vmbus_connection.int_page);
+-        vmbus_connection.msg_conn_id = VMBUS_MESSAGE_CONNECTION_ID;
+     }
+ 
++    /* Set default connection ID if not provided via DeviceTree */
++    if (!vmbus_connection.msg_conn_id)
++        vmbus_connection.msg_conn_id = (version >= VERSION_WIN10_V5) ?
++            VMBUS_MESSAGE_CONNECTION_ID_4 : VMBUS_MESSAGE_CONNECTION_ID;
++
+     if (vmbus_is_confidential() && version >= VERSION_WIN10_V6_0)
+         msg->feature_flags = VMBUS_FEATURE_FLAG_CONFIDENTIAL_CHANNELS;
+ 
+diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
+index 47fcab38398a..f8c0594ab85f 100644
+--- a/drivers/hv/vmbus_drv.c
++++ b/drivers/hv/vmbus_drv.c
+@@ -2600,10 +2600,18 @@ static int vmbus_device_add(struct
+platform_device *pdev)
+     struct of_range range;
+     struct of_range_parser parser;
+     struct device_node *np = pdev->dev.of_node;
++   unsigned int conn_id;
+     int ret;
+ 
+     vmbus_root_device = &pdev->dev;
+ 
++    /* Read connection ID from DeviceTree */
++    if (!of_property_read_u32(np, "microsoft,message-connection-id",
++                  &conn_id)) {
++        pr_info("VMBus message connection ID: %u\n", conn_id);
++        vmbus_connection.msg_conn_id = conn_id;
++    }
++
+     ret = of_range_parser_init(&parser, np);
+     if (ret)
+         return ret;
+-- 
+2.34.1
+
+
 
