@@ -1,211 +1,165 @@
-Return-Path: <devicetree+bounces-249057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805D9CD8CAF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 11:27:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1024FCD8D31
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 11:35:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EA0A03038F6D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:26:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8DF4B3009F5E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:35:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF12030F542;
-	Tue, 23 Dec 2025 10:18:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D158D352F96;
+	Tue, 23 Dec 2025 10:35:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gng6rYuh"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="GF2uS7wi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DBD2C326B
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 10:18:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB7C34D907
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 10:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766485139; cv=none; b=oTCGJnizDjlFnBVCYr9ho53c5sbNnQun+ny4U+DvfHI8AjTazbRbddYFrIdXria18tIJpdzSEXw9FWuZ0Fh+m/g7lKF/N05tf3HPBb35mA/7bFCck1iMHrDjzrd9Dl1SBvGNBGZlErXuhhbCUXNsbjM9NkVIOajynJ/gL6BbOhk=
+	t=1766486112; cv=none; b=t6GuHvVcnjrJp1RIMitosdjA9YbDfEs9A5VOIlRdH3lHInx9yJS6SxTbJKbMH4CaEeKG+GJLyC709RLv7ZwljBlmKn9kMBay1w//YOtnxaM3QxfQN/Gg6/p9zgeePPW1oigDPy5hQDw5VRVbgeCfK05r2d8kn6zPX+vZyTEbytY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766485139; c=relaxed/simple;
-	bh=u70hgefTY/mXd1G3u+GGwKuQRu6lcXks88nn/gIGKbE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rKJkU1Deom586/njJiO5tA4Lz1wkebUhE0wyC9YZbVwoToEN2rKbaQza0Fd/eXg39upr7YDaC1G28GcROXRudy2ZSmRQWZdnCC9s7yBfs8kW9bMz0dJpWgkP+f0VncN2PvgtZRXf8yqZsB499GIGjQ9qTKlanMZ2c2sIWQY/1YY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=fail smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gng6rYuh; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=linaro.org
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-34c84dc332cso4135764a91.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 02:18:57 -0800 (PST)
+	s=arc-20240116; t=1766486112; c=relaxed/simple;
+	bh=nhnhn/ujbA1yivMUlMSXRd1v6Sz4LmmXkvWUytEJhUI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IdbGl52mTif7g/LCUZah1w1CgHQKTx04XtczdVnV+WLpJ9K8cwWwu29AzAOqSUx66R1IY9AiziEeUn3EwLdxlXU4C9VoNVSSn6W1IqU3Mb1v+aX9GBrtLYcqo5857XNdIKjCbjl6oEd3N9oLh11RZGPQtzZlfkRuRsKoTYuksUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=GF2uS7wi; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b73a9592fb8so913593866b.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 02:35:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766485137; x=1767089937; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=VW/cRPo8LKvRyH919j4YxeyMCTrtYxKo0u6s8/ZPXcs=;
-        b=Gng6rYuhlZ4avygrxZ120HKf6FriVqeBpK7OuqLtykNnkDVoS2x0MIQC0RdIAh17Xk
-         iUi1cRbrCS6gHQPpUXXo68RzR1Cv+2s7RLFRDl57IJbCmVeRNYbQd4rV0bVKV+pc/2+Z
-         jprU0Ey620jAfTFV0H9BU2VcCMtwFjM5gTm/J7IvVjc/LwkUdmrRCNdq2ohXrPDDNV1N
-         8aIiwS8fehytg7kc5fPW5H3Hh7aGmjrT1I4Wn5IWD/mgD46MsQ9QZXxrPwZfcnL2Ltib
-         0p1voQydIF8DlMd3dsJf+fkOhpCIX9o9REcwNAm2QqyZrqgz/I4/XJCYdsRfWuVeywHB
-         yJzg==
+        d=sartura.hr; s=sartura; t=1766486106; x=1767090906; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SWwHgDUayFaSdSqe2T6d6UFJFmjd2ZLae5KHc+yXH7I=;
+        b=GF2uS7wiRyhBmf1kLR0gIF3Rip3N0z7rurwMgvhBqXkpElhZHM//c4ztfkOfl34VXQ
+         1X14GkorXLzezj84xr2Y/dQLW+EfbQhQVOVhtnuM3M454FOIn2PNXJXS36N8bH/whQBV
+         zY0fHit1GfAmUbUyKlPfmB88R6AoVgxYJryPviR3Xhc9pr/mmX1utNgHaFZ5HiT/+TFT
+         EPfJeiatuCcTI+Wko2Rrfq/cDBpi0ycNUhFAp5hGmFIf/u3Ol72pdr/MxF3qgwek5A2i
+         SlQTW3sCFS0UxINftvR9ief03PbV1fiyjZferC+QgdFvMpknr46FIg9k8YC+cFlkaq8w
+         fJHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766485137; x=1767089937;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VW/cRPo8LKvRyH919j4YxeyMCTrtYxKo0u6s8/ZPXcs=;
-        b=DOcJsc9OUAC3RJMrusQGFb0LsjZK5B1sZbvW92gp3r/QhiMHZZVfmImd9RV9jjA0t4
-         SpQGI9ecnDzGfxNcUaBRX2GR6si3TJ6KAMcpfYOI1zQ8kb330qJ5BNtEQxT+5NDuRmWa
-         nXz0fXJqmHUxe5wpDDMC5Z+V0tJc+GlWqAzq9qSi+i66ENrXclf0kx00DeUfLfwA+YK2
-         gBMFyhqpzMTz0sZg6h/gsprdyO0zHFBnRNBcLWbVe+L4VAZOfgClFh47/dwTaSoxUtRr
-         9UTcDMMH6F7RrEjRuNwv0MFQFb05XGysMzMfz1w9Xc+iqOKSnHvZg3LQrnxa5piplUQ7
-         L1vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXMt8m5o410if9Jr/XlAtxqdmdrQF1WKMGaZEcZGCopVGLVp5QfXD6QJJ1SDHluG3mk1HoBkBgsIQww@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrzbZBFwWmvcYeqiND5b+rACQu6Gy7FmtDlxVH37yklhhKFohO
-	IdgST9aGpiPly1Z2Sbonz0vWSiqQbttNuCtW/W9oT2PM0IdhzanYM3hHntM1bBy1JKY=
-X-Gm-Gg: AY/fxX4ZAzyyJvHf30jItMlPE0Ll1C1n5IUz/K5L5jsmKiqa1FvCYAAQOpKaaraw8xy
-	xHsarxT16diFPJh+MNBC8ASdhE4VqTtq9IOr15A6X40S9R2IPHkwgIoGqk4y6txT4Tco291XGp1
-	S9x9vjoZ4mUqqugEPUNtkR5+1X97MCvS+BPMtbCqqzfhMJjX5pdHxPHKUZIOUCL8j9vzlw04LYI
-	mbpSvMVLxC5v5HLHxarrMBFmmBef1S2Hy+1SlRuGHbDAQyY10Pkhyo3WwJ9UeGY3/8ufyyl2DsX
-	9QKIicyjVKRC0+XGhHLFF6ZEZ2CaO+wCA70RnZDrw13GFwOwIf3aiZEhDDW2wI7Dn25nlpf/eA3
-	wwnZ3RPTORmD9oey256rk4s/Aemd0R2SLDuszU5mElK7JxPcbCZq8ZBXzUXN1xYhX7+MV0zeFp2
-	dIgXd86ht18pW9JD7m
-X-Google-Smtp-Source: AGHT+IGp4L0lCDedpR8cpLerixGXZgyRPWS/NrfGTL438LLgC62TRKM17kQJDDB4qVnzc0Z89xbxQQ==
-X-Received: by 2002:a17:90b:5245:b0:349:19a8:e00e with SMTP id 98e67ed59e1d1-34e921bc767mr11429789a91.31.1766485137075;
-        Tue, 23 Dec 2025 02:18:57 -0800 (PST)
-Received: from draszik.lan ([212.129.75.63])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c1e7bd61b4csm11634759a12.18.2025.12.23.02.18.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Dec 2025 02:18:56 -0800 (PST)
-Message-ID: <aa55c3865d151697120a2855e711d59468bdcd0a.camel@linaro.org>
-Subject: Re: [PATCH v4 4/5] soc: samsung: exynos-chipid: add
- google,gs101-otp support
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar	 <alim.akhtar@samsung.com>, Peter
- Griffin <peter.griffin@linaro.org>,  Srinivas Kandagatla	 <srini@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, semen.protsenko@linaro.org, 
-	willmcvicker@google.com, kernel-team@android.com,
- devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, 	linux-kernel@vger.kernel.org
-Date: Tue, 23 Dec 2025 10:18:56 +0000
-In-Reply-To: <20251222-gs101-chipid-v4-4-aa8e20ce7bb3@linaro.org>
-References: <20251222-gs101-chipid-v4-0-aa8e20ce7bb3@linaro.org>
-	 <20251222-gs101-chipid-v4-4-aa8e20ce7bb3@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+        d=1e100.net; s=20230601; t=1766486106; x=1767090906;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=SWwHgDUayFaSdSqe2T6d6UFJFmjd2ZLae5KHc+yXH7I=;
+        b=f/tKnaOPjm/B1ncroIGbv8TVED3NiuflmUJSHZVYEhU9opAlqG9AZyHGdy3JM90Dyz
+         1BZ6SKEAxG/2ovvJ7hYk0bgn7tl51GoWwTJ579CcQLGuaZnwn7apOAlDBl/Byi6/WQPL
+         odAU+28imXUmdyJ4znD+GD6hfSgXCulGg/QdJPA983zCWesut/o7HIBkyHMO9YWaAz+7
+         Mmtc9qkE8bpkoQDDfGtH/ZZF/59+EK9ufp19hX8kt/c3uynXJ0iiVvcm1+flLt2EvFGy
+         Amz2r3qgsFG/2b+VkGHt5Nv02LW/fThcJiJe16hJcXpS57zVHR0gsJ3gnA54OBvGRiro
+         +82g==
+X-Forwarded-Encrypted: i=1; AJvYcCW+PA0UPgIGlQc1NmBXVmhTQRpbJLoxFSqrTolic6g3D+8W0clX+4GIWo8hoXpzTZJcXDtK0+ZgVOcD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyz9o3MdqlsVAjbYRPGaVGjBXF+euJXsYeeKqkk316Rmm8ksewy
+	pU9kO0xcTcedOLnEkugOfx20e+Ldf9QacofKfF9Ot5FE/iJSNpQT/w6bPjHcNqL2p82TUSAI/nP
+	p/uesVEoBFsj2JhO4CstDTpDPzoe1Cpw7rcTHtixQCQ==
+X-Gm-Gg: AY/fxX66Ci3m6uc5pr5hslieh4XCCKeVOtyCRDRIXT5oz2smyiQpVS5eWxCl7KnnJB3
+	oQ7S8qkVqY2+tpyP/CqwGnatznddELNZhJ2q9hKbahtfgCpjprZEYyWNgd3u0rPYy50JOfYYWNR
+	mJ11cgyZTJJ5Aj2zwy+TseH+SiKA+GFGrZmRhiiiQv+80OGhKkFisp5eE+4PlBMLdmrymeE8RsA
+	JKiB6G6O/1DPsNB/a4hEObN9NTouxAPvvfo29lJtMzFMl0exkg7SVGfzASoHyHbOZSLKlKJkuk+
+	Namfg9XNazC9TSAchessFjCOnU0e4UbGw+ug3kIw7Tdk4RbmEg==
+X-Google-Smtp-Source: AGHT+IEJHssgBNa10sdxlMZ0RfBcXjnBKXrp4KRUpqNBX0cKMLRNtJZXOvlDmXwgBRgg1wr13xel6K2BxjWOkHuOL+E=
+X-Received: by 2002:a17:907:a45:b0:b81:ec7c:31fd with SMTP id
+ a640c23a62f3a-b81ec7c321bmr332573366b.13.1766486105902; Tue, 23 Dec 2025
+ 02:35:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20251215163820.1584926-1-robert.marko@sartura.hr>
+ <20251215163820.1584926-18-robert.marko@sartura.hr> <20251216-endorse-password-ae692dda5a9c@spud>
+In-Reply-To: <20251216-endorse-password-ae692dda5a9c@spud>
+From: Robert Marko <robert.marko@sartura.hr>
+Date: Tue, 23 Dec 2025 11:34:55 +0100
+X-Gm-Features: AQt7F2rp1ybXWw2BWzfekoJJeczrMeV1nO2lvHuguNeXKU1awsBcuKjFcFE-_B8
+Message-ID: <CA+HBbNF-=W7A3Joftsqn+A6s170sqOZ77jpS105s5HPqkskQzA@mail.gmail.com>
+Subject: Re: [PATCH v2 18/19] dt-bindings: arm: microchip: document EV23X71A board
+To: Conor Dooley <conor@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	claudiu.beznea@tuxon.dev, Steen.Hegelund@microchip.com, 
+	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com, 
+	herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org, 
+	linux@roeck-us.net, andi.shyti@kernel.org, lee@kernel.org, 
+	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org, 
+	pabeni@redhat.com, linusw@kernel.org, olivia@selenic.com, 
+	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, mturquette@baylibre.com, 
+	sboyd@kernel.org, richardcochran@gmail.com, wsa+renesas@sang-engineering.com, 
+	romain.sioen@microchip.com, Ryan.Wanner@microchip.com, 
+	lars.povlsen@microchip.com, tudor.ambarus@linaro.org, 
+	kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org, 
+	linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-clk@vger.kernel.org, mwalle@kernel.org, luka.perkov@sartura.hr
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2025-12-22 at 16:30 +0000, Tudor Ambarus wrote:
-> GS101 is different (but also e850 and autov9 I assume) from the SoCs
-> that are currently handled by the exynos-chipid driver because the
-> chip ID info is part of the OTP registers. GS101 OTP has a clock, an
-> interrupt line, a register space (that contains product and chip ID,
-> TMU data, ASV, etc) and a 32Kbit memory space that can be
-> read/program/locked with specific commands. On GS101 the "ChipID block"
-> is just an abstraction, it's not a physical device. When the power-on
-> sequence progresses, the OTP chipid values are loaded to the OTP
-> registers.
->=20
-> Add the GS101 chip ID support. The support is intentionally added in the
-> exynos-chipid driver, and not in a dedicated Exynos OTP driver, because
-> we estimate that there will not be any OTP consumers in the kernel other
-> than the chip ID/SoC interface. The downstream GS101 drivers confirm
-> this supposition.
->=20
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
-> =C2=A0drivers/soc/samsung/exynos-chipid.c | 70 ++++++++++++++++++++++++++=
-++++++-----
-> =C2=A01 file changed, 61 insertions(+), 9 deletions(-)
->=20
-> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/ex=
-ynos-chipid.c
-> index 5c8660374269c87ec38ebca242918bd7b1d362e5..6ef9751e2509c94bd9625072d=
-0b81ddb93048d4a 100644
-> --- a/drivers/soc/samsung/exynos-chipid.c
-> +++ b/drivers/soc/samsung/exynos-chipid.c
-> @@ -15,7 +15,8 @@
-> =C2=A0#include <linux/array_size.h>
-> =C2=A0#include <linux/device.h>
-> =C2=A0#include <linux/device/devres.h>
-> -#include <linux/errno.h>
-> +#include <linux/err.h>
-> +#include <linux/ioport.h>
-> =C2=A0#include <linux/mfd/syscon.h>
-> =C2=A0#include <linux/module.h>
-> =C2=A0#include <linux/of.h>
-> @@ -28,9 +29,11 @@
-> =C2=A0#include "exynos-asv.h"
-> =C2=A0
-> =C2=A0struct exynos_chipid_variant {
-> -	unsigned int rev_reg;		/* revision register offset */
-> +	unsigned int main_rev_reg;	/* main revision register offset */
-> +	unsigned int sub_rev_reg;	/* sub revision register offset */
-> =C2=A0	unsigned int main_rev_shift;	/* main revision offset in rev_reg */
-> =C2=A0	unsigned int sub_rev_shift;	/* sub revision offset in rev_reg */
-> +	bool efuse;
-> =C2=A0};
-> =C2=A0
-> =C2=A0struct exynos_chipid_info {
-> @@ -69,6 +72,8 @@ static const struct exynos_soc_id {
-> =C2=A0	{ "EXYNOS990", 0xE9830000 },
-> =C2=A0	{ "EXYNOSAUTOV9", 0xAAA80000 },
-> =C2=A0	{ "EXYNOSAUTOV920", 0x0A920000 },
-> +	/* Compatible with: google,gs101-otp */
-> +	{ "GS101", 0x9845000 },
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const char *exynos_product_id_to_name(unsigned int product_i=
-d)
-> @@ -93,19 +98,53 @@ static int exynos_chipid_get_chipid_info(struct devic=
-e *dev,
-> =C2=A0		return dev_err_probe(dev, ret, "failed to read Product ID\n");
-> =C2=A0	soc_info->product_id =3D val & EXYNOS_MASK;
-> =C2=A0
-> -	if (data->rev_reg !=3D EXYNOS_CHIPID_REG_PRO_ID) {
-> -		ret =3D regmap_read(regmap, data->rev_reg, &val);
-> +	if (data->sub_rev_reg =3D=3D EXYNOS_CHIPID_REG_PRO_ID) {
-> +		/* exynos4210 case */
-> +		main_rev =3D (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
-> +		sub_rev =3D (val >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
-> +	} else {
-> +		unsigned int val2;
-> +
-> +		ret =3D regmap_read(regmap, data->sub_rev_reg, &val2);
-> =C2=A0		if (ret < 0)
-> =C2=A0			return dev_err_probe(dev, ret,
-> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0 "failed to read revision\n");
-> +
-> +		if (data->main_rev_reg =3D=3D EXYNOS_CHIPID_REG_PRO_ID)
-> +			/* gs101 case */
-> +			main_rev =3D (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
-> +		else
-> +			/* exynos850 case */
-> +			main_rev =3D (val2 >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
+On Tue, Dec 16, 2025 at 6:32=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Mon, Dec 15, 2025 at 05:35:35PM +0100, Robert Marko wrote:
+> > Microchip EV23X71A board is an LAN9696 based evaluation board.
+> >
+> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > ---
+> >  Documentation/devicetree/bindings/arm/microchip.yaml | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/microchip.yaml b/Doc=
+umentation/devicetree/bindings/arm/microchip.yaml
+> > index 910ecc11d5d7..b20441edaac7 100644
+> > --- a/Documentation/devicetree/bindings/arm/microchip.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/microchip.yaml
+> > @@ -239,6 +239,14 @@ properties:
+> >            - const: microchip,lan9668
+> >            - const: microchip,lan966
+> >
+> > +      - description: The LAN969x EVB (EV23X71A) is a 24x 1G + 4x 10G
+> > +          Ethernet development system board.
+> > +      - items:
+> > +          - enum:
+> > +              - microchip,ev23x71a
+> > +              - microchip,lan9696
+>
+> This looks wrong, unless "microchip,lan9696" is a board (which I suspect
+> it isn't).
 
-Looking closer, why is this not val? Now you're shifting the sub_rev
-register value by the main rev shift, assigning the sub_rev register
-value to the main rev variable.
+Hi,
+No, LAN9696 is the exact SoC SKU used on the board.
+I will drop it in v3.
 
-And then, all assignments to main_rev become identical and don't need to
-be duplicated.
-
-> +
-> +		sub_rev =3D (val2 >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
-> =C2=A0	}
-> -	main_rev =3D (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
-> -	sub_rev =3D (val >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
-> +
-> =C2=A0	soc_info->revision =3D (main_rev << EXYNOS_REV_PART_SHIFT) | sub_r=
-ev;
-> =C2=A0
-> =C2=A0	return 0;
-> =C2=A0}
+Regards
+Robert
+>
+> > +          - const: microchip,lan9691
+> > +
+> >        - description: The Sparx5 pcb125 board is a modular board,
+> >            which has both spi-nor and eMMC storage. The modular design
+> >            allows for connection of different network ports.
+> > --
+> > 2.52.0
+> >
 
 
-Cheers,
-Andre'
+
+--=20
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura d.d.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
 
