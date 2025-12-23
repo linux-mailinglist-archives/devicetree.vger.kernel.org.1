@@ -1,104 +1,87 @@
-Return-Path: <devicetree+bounces-249174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C657CD9AC4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:34:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25051CD9AB6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:33:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 64DD1300D17A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:33:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0BBDD301E6E9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B6B6342509;
-	Tue, 23 Dec 2025 14:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 348D0279DC3;
+	Tue, 23 Dec 2025 14:33:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PUenk+a4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m6ox7ALc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EDEB342151;
-	Tue, 23 Dec 2025 14:33:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05AE51B4F2C;
+	Tue, 23 Dec 2025 14:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766500398; cv=none; b=fV3ts88SREfwKpSAnGI696nY9XMhhlWt85twrRkz7qDmNE6XWqwsIuB0QKpAuBW+MPOuk6DIC2G0VyP58meviuMUK7fvGw9hV7Tawaxa0AnO6kdUOwpjogAsM90ooiHyM+pLt1daQDlYylub7PudAFmORGLeS4/PfkzKsuEiWPc=
+	t=1766500428; cv=none; b=R6JGzB0IGl7l8vBFyFg+cZHclvyQFAopQm3EOs579mgz03Efu6mmOsHsAnVP7hBQ4JI8tJTrJXX8YHGK0h7tJ6wO06wF7U7R586FVxNVsfiDLQzrxkyvdaAbDsJ5siqNsGUPA3WG1ySEmapYzUNqUgUYZMN3PRgfiC5JGHIqqMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766500398; c=relaxed/simple;
-	bh=SrHPMnHEpJgZWnZhkf17/F6xjv4J13mhWyZ8J187vH8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W0VFIcocylmlLSCiXS8r04G98jscwa7xSin6GUc5x0nPYn9BZkkoiiSsiZue2T/BYpbGTzJ6S6DFuVXB1PcUXCM7StKYbGZr6XQ91kUj5f5yBghR/gvFFA+HWJ6tmkMFUszb8S8jY59DxyOusgMc5psK6Hl5mF26Xi1eQaedBkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PUenk+a4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C817FC113D0;
-	Tue, 23 Dec 2025 14:33:16 +0000 (UTC)
+	s=arc-20240116; t=1766500428; c=relaxed/simple;
+	bh=cGjjSeDUVRN7XKvY8GvELQoF2UpmS7flr7omeR8V4Fw=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=PDNze01a6gRYs14Hm6H1oQhPqF2Fhg3Fkz9rS3bZyIAL2e2kghXRKlxipuItxDuN6EOtwipg9RappRIns57EP8HhQEvcTXazuHnNVe1139/Levg1BwH5g/WN3YTAfz0KfEP9FLVmvhJ30W0xTUR0tz4yet+OWPTuoYhJcoGOCdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m6ox7ALc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D0E9C113D0;
+	Tue, 23 Dec 2025 14:33:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766500397;
-	bh=SrHPMnHEpJgZWnZhkf17/F6xjv4J13mhWyZ8J187vH8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PUenk+a4AkQksDjJCRiPo3D45DzMbOOiFQKKjUALAdCOf+Qyn2yX64yaHImzrzVmc
-	 WAwuSDFFbCrzbj8aCWi20dSYT2zcX6VbQMUWy8WKbWqgM7hs0ocI38LCUfYXV/8XEv
-	 sL1q0hU4qobhO7sl74CeuV4p/OcPX/k98pS/T4PfBZXWILlp8/5PpansFmeH/1BVH7
-	 vUq7nKEEMOeMxcsiPnUyg26fF/j4EllgSFP0WEGTpNwSEXe+Hg9OERwCAmQbj/HxUT
-	 XrwJIxRyAqZ5KLMrbWhiJq0/R0kdjJ4CplOV8r8YvbW31KC0GSiX/MNOKQN6QDBkW0
-	 sO3/BdAyopmFw==
-Date: Tue, 23 Dec 2025 15:33:14 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tzu-Hao Wei <twei@axiado.com>
-Cc: SriNavmani A <srinavmani@axiado.com>, 
-	Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Harshit Shah <hshah@axiado.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Michal Simek <michal.simek@amd.com>, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 0/8] Add Axiado AX3000 eMMC Host Controller Support
-Message-ID: <20251223-black-auk-of-priority-8b48ae@quoll>
-References: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-0-5457d0ebcdb4@axiado.com>
+	s=k20201202; t=1766500427;
+	bh=cGjjSeDUVRN7XKvY8GvELQoF2UpmS7flr7omeR8V4Fw=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=m6ox7ALca3m3aGLWq4b/EqzotXs0co2YqPhCJuh5iAURIiqwAOop6bmscat9Q4Ezi
+	 I9+2BkWjzX8XBEwCX/dSrg9Q45UlmmgjCR6wo9JyYivnY40bqBebnHVg/s2D8rSvGw
+	 XMkSOzhqmApwVirnuxnczv2T+sfWGsrNc75COf9c33STMZw9UwtgucDzYtV8vanDnV
+	 SSRusnEsNPIJglOfvs8fd+Vc1XybkfO3uXVZX6NxcoxDjJ1h267TiC0h7ltSH4cTVu
+	 SroQWuxtWulq0jZVImAHKpU/vvZfFqr3JqF4fM742qHxrJlnptm4MR/dh6fKXE2xcG
+	 FaD7HtE7OX7Iw==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>,  Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  Geert Uytterhoeven <geert+renesas@glider.be>,
+  Magnus Damm <magnus.damm@gmail.com>,  Vaishnav Achath
+ <vaishnav.a@ti.com>,  Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+  =?utf-8?Q?Herv=C3=A9?= Codina <herve.codina@bootlin.com>,  Wolfram Sang
+ <wsa+renesas@sang-engineering.com>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  Santhosh Kumar K <s-k6@ti.com>,  Pratyush Yadav
+ <pratyush@kernel.org>,  Pascal Eberhard <pascal.eberhard@se.com>,
+  linux-spi@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 06/13] spi: cadence-qspi: Make sure we filter out
+ unsupported ops
+In-Reply-To: <20251219-schneider-6-19-rc1-qspi-v1-6-8ad505173e44@bootlin.com>
+	(Miquel Raynal's message of "Fri, 19 Dec 2025 20:22:08 +0100")
+References: <20251219-schneider-6-19-rc1-qspi-v1-0-8ad505173e44@bootlin.com>
+	<20251219-schneider-6-19-rc1-qspi-v1-6-8ad505173e44@bootlin.com>
+Date: Tue, 23 Dec 2025 15:33:40 +0100
+Message-ID: <86cy45b73v.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-0-5457d0ebcdb4@axiado.com>
+Content-Type: text/plain
 
-On Mon, Dec 22, 2025 at 04:44:59PM +0800, Tzu-Hao Wei wrote:
-> This patch series adds support for the eMMC host controller found on
-> the Axiado AX3000 SoC. The implementation includes support for an
-> external Arasan eMMC PHY that enables HS200 mode operation at 200 MHz,
-> significantly improving performance over the default 25 MHz operation.
-> 
-> Hardware Details:
-> 
-> Arasan eMMC host controller on AX3000 SoC
-> External Arasan eMMC PHY (different from internal PHY supported
-> by the standard sdhci-of-arasan driver)
-> Support for HS200 mode (200 MHz) operation
-> Integration with existing SDHCI framework
-> Implementation Overview:
-> The series adds support for the external eMMC PHY required for HS200
-> mode. The existing sdhci-of-arasan.c driver supports internal PHY
-> configurations, but the AX3000 uses an external PHY that requires
-> different configuration. The PHY driver was implemented based on the
-> reference code in sdhci-pci-arasan.c as recommended by the Arasan team.
-> 
-> This series includes:
-> 1. Device tree bindings for the eMMC PHY
-> 2. PHY driver implementation for the external Arasan eMMC PHY
-> 3. Integration of PHY support into the sdhci-of-arasan host driver
-> 4. Device tree bindings for the eMMC host controller variant
-> 5. Device tree source files for the SoC and EVK board
-> 6. MAINTAINERS file update
+On Fri, Dec 19 2025, Miquel Raynal wrote:
 
-You completely disorganized the patch.. dts is mixed all over driver
-code, you combined two or three completely independent subsystems into
-one.
+> The Cadence driver does not support anything else than repeating the
+> command opcode twice while in octal DTR mode. Make this clear by
+> checking for this in the ->supports_op() hook.
+>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Read submitting patches in DT dir to understand how DTS must be sent.
+Reviewed-by: Pratyush Yadav <pratyush@kernel.org>
 
+[...]
 
-Best regards,
-Krzysztof
-
+-- 
+Regards,
+Pratyush Yadav
 
