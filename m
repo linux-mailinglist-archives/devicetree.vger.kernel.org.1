@@ -1,196 +1,94 @@
-Return-Path: <devicetree+bounces-249208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3389CD9D60
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:46:52 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D95A0CD9D75
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:48:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 45668301EB1D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:46:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5C2463002756
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675FF32E6A9;
-	Tue, 23 Dec 2025 15:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43A9F2512DE;
+	Tue, 23 Dec 2025 15:48:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gUVBe1kC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LdtdZydW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33CE9285CB2;
-	Tue, 23 Dec 2025 15:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 142DB1494C2;
+	Tue, 23 Dec 2025 15:48:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766504329; cv=none; b=HS1Vn6MI08w82t1/kD721+yvllo8W5LXwggJS76G3m+qviQRaWmET5dtjn+QMe6r15ZlydXFFgktHDhKYbZbo09HGFdBNTEVdm01hLiCDDbp8nbuO5nrlj4BkuIN2QRg1WGZKrbgy2w6X4zFEl9FzXBLg+5ARt7AWuR0gTY6Ymk=
+	t=1766504882; cv=none; b=Tl0HR7Bgy4LpUxbc70vRULiTk8EvxNuYBncYkiGcb+4rIE818E0q5gpJ4H8lvyxr2GUgO2yq9gw0h/X+LXzJnJvvy27y+3iI212i3fSqzSHxBNMjNK9S832/OrN3UaEaVDXdIlhAj8Yuqzl+y/zJmuNWovLaGKAksm8ZI7UqC7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766504329; c=relaxed/simple;
-	bh=+TcYH6TIplkug/gQDHnsv7nQ7tnduk4LL2LEZzCzTXM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LE8PGfGT/izocNGQaavIfJ4kd+MmgmpyQro8dxuXZZCVLE9uiqlK7Uq9NmjQt7MLgsg4396psgFrBXMWz+dQ3+mPe3Jcp/Pcsaw9A3qKzEkVSr+ABiDM44v6Eg7QfdrrtGQEVdqUHqYuKFz9nea41zkFeLQaJANOYWpw5XieH4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gUVBe1kC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03767C113D0;
-	Tue, 23 Dec 2025 15:38:47 +0000 (UTC)
+	s=arc-20240116; t=1766504882; c=relaxed/simple;
+	bh=Mpr8HzWjcBxOU7Y5X3r2Q1rE7twn+RHWLYcnM80d8PI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=AV/avvhGyqYvmb/DoDcE/1wlKOrHhrDePcjOd/OW3ZhuXnuu6kUPHWq9tjlnhGoBCiWutXVLFs1NF8gy6oWWNzE+uAjuNjFQZ2RcVWS0XmUJ3upY5Adm4JapYlwf2W3ByjrjWJL8b1Dl/NcyLRosU8VhDQAahb/uFn2+q3Cg7vE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LdtdZydW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61763C113D0;
+	Tue, 23 Dec 2025 15:48:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766504328;
-	bh=+TcYH6TIplkug/gQDHnsv7nQ7tnduk4LL2LEZzCzTXM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gUVBe1kCA7fLdvKrVG0h5qsIh/rC+egrV6e7Up8wRserT+b4oT/cWBgXvVYtRkJLx
-	 XXmXOeV3PxUG3J6sTPqcRTPX6LN057jv6T2BTlX/9rvwal2APvWfFe+BdErlJyDw2/
-	 AdgMW+/5AJFvJXeW+knuJIjBvt1lFeHqRZtfjjN77djedCv8pi6aVbcEpHrgQoZWxa
-	 tzBOBqGG5uOt/ASGMox4RtJLubgZXl89Hd6b3x5sbC9M2QvYme51dj+U2EYfFZi87X
-	 raWvWn/d6vOn0FQPFRvGcHrgW9bENrAKpJLfdCk792XxCYhGdFOgxeBqhFZ8siwtx0
-	 zd+8TbCtNY6rg==
-Date: Tue, 23 Dec 2025 21:08:44 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-aspeed@lists.ozlabs.org, linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Andrew Jeffery <andrew@aj.id.au>, openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v7 4/7] PHY: aspeed: Add ASPEED PCIe PHY driver
-Message-ID: <aUq3hF7Xfk-f35Nh@vaman>
-References: <20251216-upstream_pcie_rc-v7-0-4aeb0f53c4ce@aspeedtech.com>
- <20251216-upstream_pcie_rc-v7-4-4aeb0f53c4ce@aspeedtech.com>
+	s=k20201202; t=1766504880;
+	bh=Mpr8HzWjcBxOU7Y5X3r2Q1rE7twn+RHWLYcnM80d8PI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=LdtdZydWjDykDcQ8MwZe/WYc0An3swcSu7m3Zz40XZiFB8j1F4Wa377ckpn+gsy1C
+	 ld6XRBrr8TSgd0fLgqKOwAa2wNKWLwls2oxMe7aQDBIUxpP42n2Ciez4QmAp5ec30+
+	 Cx4SBhT8gYD19wllqRw2tb6WAxB3lmtIQ4UuKDdYBLlSOrwClin4W9k5J5eboUe6za
+	 TzH8qCowUXAai2tJGcM/ibzrTTnbFfDN3pTY8CCsjLny1/I+ezR85wowEzXj/Q9ufS
+	 c8v06YbiziWtwd0oCqeXcTqzDKoNFfw5HDHDjQ52LxhD8FIFiV7Z2ru7fTdbDepwIQ
+	 5zbXhKz1wn9iw==
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 54A5F5F86B;
+	Tue, 23 Dec 2025 23:47:57 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Jernej Skrabec <jernej@kernel.org>, 
+ Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>, 
+ Chen-Yu Tsai <wens@kernel.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20251221110513.1850535-1-wens@kernel.org>
+References: <20251221110513.1850535-1-wens@kernel.org>
+Subject: Re: (subset) [PATCH 0/4] arm64: allwinner: a523: Support SPI
+ controllers
+Message-Id: <176650487726.2524343.9774305641530243477.b4-ty@kernel.org>
+Date: Tue, 23 Dec 2025 23:47:57 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251216-upstream_pcie_rc-v7-4-4aeb0f53c4ce@aspeedtech.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-On 16-12-25, 09:50, Jacky Chou wrote:
-> Introduce support for Aspeed PCIe PHY controller available in
-> AST2600/2700.
-
-What is with the uppercase "PHY" in patch title instead of lowercase
-'phy' as is the convention
-
+On Sun, 21 Dec 2025 19:05:07 +0800, Chen-Yu Tsai wrote:
+> This series adds support for the SPI controllers found in the Allwinner
+> A523 SoC family. The SPI controller is almost the same as the ones in
+> previous generations, except that it moved the "RX buffer count"
+> register field to a separate register, and that register now reports
+> the total count for RX buffer and FIFO.
 > 
-> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
-> ---
->  drivers/phy/Kconfig                  |   1 +
->  drivers/phy/Makefile                 |   1 +
->  drivers/phy/aspeed/Kconfig           |  15 +++
->  drivers/phy/aspeed/Makefile          |   2 +
->  drivers/phy/aspeed/phy-aspeed-pcie.c | 209 +++++++++++++++++++++++++++++++++++
->  5 files changed, 228 insertions(+)
+> In practice the driver has never cared about the buffer count, but if
+> any implementation were to use it, this counts as a non-backward
+> compatible change.
 > 
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index 678dd0452f0a..f6a8f06fd244 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -103,6 +103,7 @@ config PHY_NXP_PTN3222
->  
->  source "drivers/phy/allwinner/Kconfig"
->  source "drivers/phy/amlogic/Kconfig"
-> +source "drivers/phy/aspeed/Kconfig"
->  source "drivers/phy/broadcom/Kconfig"
->  source "drivers/phy/cadence/Kconfig"
->  source "drivers/phy/freescale/Kconfig"
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index bfb27fb5a494..18990c87dfb0 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -15,6 +15,7 @@ obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
->  obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
->  obj-y					+= allwinner/	\
->  					   amlogic/	\
-> +					   aspeed/	\
->  					   broadcom/	\
->  					   cadence/	\
->  					   freescale/	\
-> diff --git a/drivers/phy/aspeed/Kconfig b/drivers/phy/aspeed/Kconfig
-> new file mode 100644
-> index 000000000000..6aeeca84091f
-> --- /dev/null
-> +++ b/drivers/phy/aspeed/Kconfig
-> @@ -0,0 +1,15 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# Phy drivers for Aspeed platforms
-> +#
-> +config PHY_ASPEED_PCIE
-> +	tristate "ASPEED PCIe PHY driver"
-> +	select GENERIC_PHY
-> +	depends on ARCH_ASPEED
-> +	default y
+> [...]
 
-NO! why should this driver be default!
+Applied to sunxi/dt-for-6.20 in local tree, thanks!
 
-> +	help
-> +	  This option enables support for the ASPEED PCIe PHY driver.
-> +	  The driver provides the necessary interface to control and
-> +	  configure the PCIe PHY hardware found on ASPEED SoCs.
-> +	  It is required for proper operation of PCIe devices on
-> +	  platforms using ASPEED chips.
-> \ No newline at end of file
+[3/4] arm64: dts: allwinner: sun55i: Add SPI controllers
+      commit: 1bec3bd1f839f269dfdec3c635dd2afe15e30995
+[4/4] arm64: dts: allwinner: t527: orangepi-4a: Enable SPI-NOR flash
+      commit: bd14ba160bbe863e7b7bc489fd947ae1cdc03047
 
-??
-
-> diff --git a/drivers/phy/aspeed/Makefile b/drivers/phy/aspeed/Makefile
-> new file mode 100644
-> index 000000000000..7203152f44bf
-> --- /dev/null
-> +++ b/drivers/phy/aspeed/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_PHY_ASPEED_PCIE)		+= phy-aspeed-pcie.o
-> \ No newline at end of file
-
-Are we expecting more drivers for aspeed, if not move it to drivers/phy/
-once we have couple of them we can add a directory
-
-> diff --git a/drivers/phy/aspeed/phy-aspeed-pcie.c b/drivers/phy/aspeed/phy-aspeed-pcie.c
-> new file mode 100644
-> index 000000000000..3de43a86ac17
-> --- /dev/null
-> +++ b/drivers/phy/aspeed/phy-aspeed-pcie.c
-> @@ -0,0 +1,209 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2025 Aspeed Technology Inc.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-
-why do you need this
-
-> +#include <linux/phy/pcie.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/reset.h>
-> +#include <linux/slab.h>
-
-
-Do you need all headers here?
-
+Best regards,
 -- 
-~Vinod
+Chen-Yu Tsai <wens@kernel.org>
+
 
