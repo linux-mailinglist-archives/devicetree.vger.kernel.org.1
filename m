@@ -1,93 +1,97 @@
-Return-Path: <devicetree+bounces-249240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1D32CDA232
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:36:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 234F6CDA30F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:59:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0FA34309FC2C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:33:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B42ED3085CF7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:56:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C524D3491D5;
-	Tue, 23 Dec 2025 17:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A5934AAF7;
+	Tue, 23 Dec 2025 17:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e9SlRoip"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jgTj6pjM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95BE5347FD7;
-	Tue, 23 Dec 2025 17:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CA434A3D0;
+	Tue, 23 Dec 2025 17:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766511230; cv=none; b=PTQSTu+TTkoVb0kPwWZd/CC11RuSAW+9NppTIviN1usI09GhrYlZUOC7FsEMRzclF2Qg0+ufFxyQpPZY1nTUfFFgnFh2iOWYVEzkwp/dLukz37fCp21EJ2AL50yUtZDyh/KahmxOSNdezSOCwJleBzRuVmYIUBd3WKMWlpxIz2w=
+	t=1766511552; cv=none; b=quT7ucJBoxwFlz1HPQinMfZHKUJd/xR39s4jOtcdSsM8XmLHTq5SGAL3ibqYuK+5kRRQ//nt0oqoVCHRK8M5yIbrSALxnxhhdLp7RjxWOBN60WU0tt8RKzmvTDkK5/1dB/bjwfRo872nmj7BzgJXswtzR1K4NGCeCqM+11RDk7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766511230; c=relaxed/simple;
-	bh=j4KsScsG1hqXyQGukCHfOZAZLrJ9X3MMZqwShsIdJyI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=sjtjqM+xpLShRkarJv2M/Qr6uh4e0lOoxv4QtenRiLeJ6gYNWY0vCf2JQVQ6H/+IaCSxtqXeHkp35t8F39MNCTK6LHwZwzqpZ2qurDbwduzNC0CsUOgJUbd/N0dnSrmEM/3vtth4OYixhMCQQUhwW/lpnVsSJa4UXnwCYPYzqcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e9SlRoip; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4219FC113D0;
-	Tue, 23 Dec 2025 17:33:42 +0000 (UTC)
+	s=arc-20240116; t=1766511552; c=relaxed/simple;
+	bh=4l8j43J/v5I79EoFnJnHTBkeHnsgVhfsiIRiJM6PJE8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I6sgBOt8wJOeRdov4G3TvCyMigFkrXjdtJ2xG/1NzssgdKdJLAqffd5eIXM9J3ItHFOOqI7X+xyPhOX1GeI8poCa4LIH2npr5Ex7PPjYR2QLZDQwGKor9n9++wgR1utQ/AC9UbEabyL12ny/tsuvJCCj+TVUirQNpFoYE8D0z1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jgTj6pjM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83902C113D0;
+	Tue, 23 Dec 2025 17:39:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766511228;
-	bh=j4KsScsG1hqXyQGukCHfOZAZLrJ9X3MMZqwShsIdJyI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=e9SlRoip9YzcvFE9Od0JKeiTvWcHKTv2tyxqTe/aBpKuDHdHAocPSidEmxIw1nZQk
-	 sNQ2j8SX5Afv5buWq0KL0qfKOrbcUMw5CR+qJ7RfUfWOBigXI8Dveg0W8dQxZDl2tx
-	 UHdMVj/gdFRNqNEJi6rXfmf4YzTf0YijO3g9THLoKYj8XiWb+4wv6Q2YgMdvPoU6xU
-	 ONFFM2npal8IzciF/NAarx+40JjrEgcPjafExcM0Qdvhu0SPdjwofb+BZifFT9/uyV
-	 tBpaKtG6t4K/dswictauUte0tnbk045G5pj4UeCAP7CUDB+LTEkkgmoemvUs5MR08B
-	 0vSdGw2lurMLw==
+	s=k20201202; t=1766511552;
+	bh=4l8j43J/v5I79EoFnJnHTBkeHnsgVhfsiIRiJM6PJE8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jgTj6pjMV/ybwPkT55KhAQMex7OYEaok9RWh3sF7f4izlJkRlnPywmAcN+2twXU5u
+	 /vGOgpa1ohwGHG1zDucBp5MFyKzVvibOutJPMVHKvZ5WxMgj3FFe33zeXUYriRYWV1
+	 38tchg5fUoUps/Ra78769QTK/sWeThL+MNVJN6yAnhs4ZSxaD0G8ClKvyedGz4dYcY
+	 KVLDgzQl18Zs2uxzYnGnGmtfKkar8u6Zd8zGuEGx9Dyw6jQuPSroOh6mL2KWJKRWUG
+	 gvaQ2kUMt31lTXwYLQZhJBtpGiSXS3sXky9inlFC+DUfKpnbknf4O1Qgw7BFTsF9XX
+	 3Lvo9kpbogILw==
+Date: Tue, 23 Dec 2025 23:09:08 +0530
 From: Vinod Koul <vkoul@kernel.org>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com, 
- mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org, 
- bhelgaas@google.com, johan+linaro@kernel.org, kishon@kernel.org, 
- neil.armstrong@linaro.org, abel.vesa@linaro.org, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
- quic_krichai@quicinc.com, quic_vbadigan@quicinc.com, 
- Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-In-Reply-To: <20251128104928.4070050-1-ziyue.zhang@oss.qualcomm.com>
-References: <20251128104928.4070050-1-ziyue.zhang@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v15 0/6] pci: qcom: Add QCS8300 PCIe support
-Message-Id: <176651122191.749296.15336587657057030247.b4-ty@kernel.org>
-Date: Tue, 23 Dec 2025 23:03:41 +0530
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Peter Wang <peter.wang@mediatek.com>,
+	Stanley Jhu <chu.stanley@gmail.com>,
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Chaotian Jing <Chaotian.Jing@mediatek.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	kernel@collabora.com, linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v4 01/25] dt-bindings: phy: Add mediatek,mt8196-ufsphy
+ variant
+Message-ID: <aUrTvAPcHNkyuTol@vaman>
+References: <20251218-mt8196-ufs-v4-0-ddec7a369dd2@collabora.com>
+ <20251218-mt8196-ufs-v4-1-ddec7a369dd2@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251218-mt8196-ufs-v4-1-ddec7a369dd2@collabora.com>
 
-
-On Fri, 28 Nov 2025 18:49:22 +0800, Ziyue Zhang wrote:
-> This series adds document, phy, configs support for PCIe in QCS8300.
-> It also adds 'link_down' reset for sa8775p.
+On 18-12-25, 13:54, Nicolas Frattaroli wrote:
+> The MediaTek MT8196 SoC includes an M-PHY compatible with the already
+> existing mt8183 binding.
 > 
-> Have follwing changes:
-> 	- Add dedicated schema for the PCIe controllers found on QCS8300.
-> 	- Add compatible for qcs8300 platform.
-> 	- Add configurations in devicetree for PCIe0, including registers, clocks, interrupts and phy setting sequence.
-> 	- Add configurations in devicetree for PCIe1, including registers, clocks, interrupts and phy setting sequence.
+> However, one omission from the original binding was that all of these
+> variants may have an optional reset.
 > 
-> [...]
+> Add the new compatible, and also the resets property, with an example.
 
-Applied, thanks!
+Acked-by: Vinod Koul <vkoul@kernel.org>
 
-[1/6] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Update pcie phy bindings for qcs8300
-      commit: 393e132efcc5e3fc4ef2bd9bbed2a096096c9359
 
-Best regards,
 -- 
 ~Vinod
-
-
 
