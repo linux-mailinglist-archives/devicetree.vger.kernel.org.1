@@ -1,111 +1,141 @@
-Return-Path: <devicetree+bounces-249181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB9DCD9B2D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B063CD9B45
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:43:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 06F09301F5EB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:43:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3254030358D3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 710DC342513;
-	Tue, 23 Dec 2025 14:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB8033C520;
+	Tue, 23 Dec 2025 14:43:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SyEpcvzH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MfAKWHuF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8722C235B;
-	Tue, 23 Dec 2025 14:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E171DE4CE;
+	Tue, 23 Dec 2025 14:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766500986; cv=none; b=kLByJBT6nqIOa4ggZaO+Ab9Ms6NTJSiEmokx0rj0fvP5ROa1Eh4pbYLRix6C+teUPywZsyCOIaW9TGerrg0l4J4+vBpVBvFIarjtlXp7SFR5v8BKGHEBkF2TNGPBLKzptjTc/RCeGAwilM4OpvkXdorsKOP8f448JXsY0d0g/cs=
+	t=1766501031; cv=none; b=diOwc07pYdXh/CE6PdckCZ+vuIr2S1DP7rpnEXSrcnEwec5mo7V89RloxCP01LztlMCLs18rTEAd496xWPsmWSIK2XpfKWUKTUbLAQZU9zkKIUwdbnPrK1DhdgU4uHbg87+T21A7vvmH3R4JkGUNcwwWw1KGYX9OwMVAqjKDJQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766500986; c=relaxed/simple;
-	bh=dGSBxeN+GJn8mz9SDAWxeBi3X526sNdmyiKL7f116Nw=;
+	s=arc-20240116; t=1766501031; c=relaxed/simple;
+	bh=dB/+cWWuWt5zZaOF4WBQgVGeqRwXMeabHbV/nLVmbvY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o4sGvzsmECASLxsGMTKymrPVvEIRfuy6FizYZcK+CO5Sq5hXRdbj+7069+BiHRXKnIHvqzV/x0CyJev06BuS5/ZMtCKLyIZwo9XSk0gXYZZWmgfK7reOSeqT/oRbqHSbCsaF/jF7nyHn5Sx4s5Rh2eWeYFjq0kX3OvbATlxZiDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SyEpcvzH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C53F5C113D0;
-	Tue, 23 Dec 2025 14:43:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=afUMqXPURdEdsimcOfigUyw5QTDYU7iMSSmt2aHwZ7z7fgWsfGcWOSA9xefcJgLg7etEHbptUaWlqGnFyqaj8YIapBwr8GRVcwqRgZU/lJmBtdyO53iND/d2BoxdzRg8ANHYnonqNf/hLURzHfmK2YT0k/Zmab1RHv7W2ALggcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MfAKWHuF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 193F0C113D0;
+	Tue, 23 Dec 2025 14:43:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766500985;
-	bh=dGSBxeN+GJn8mz9SDAWxeBi3X526sNdmyiKL7f116Nw=;
+	s=k20201202; t=1766501030;
+	bh=dB/+cWWuWt5zZaOF4WBQgVGeqRwXMeabHbV/nLVmbvY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SyEpcvzH4PwQr/eYYz4pV3Iuv3i/sytNejmHJENaBgTrHpnSJoSMnGv8sH/OPw4Ho
-	 YPEmxA6fUIEyBjWOtCgMACSdqd+C38RQQsv+/6uBEdDFda46W05bYcZkH35M9gg33B
-	 FguIvh641Y2VVbc3+ZSpCZjLXs90S4jGfqgbvP/rrBp3v7+703iaLTBmfLNv5R1vfo
-	 icyIZ+s7TQnI0q4PW0nDAM1DtIIuDRIZWwXr7faZu+nS5Pzaxsolyuavt4TmezVWvU
-	 4EIYNUh3yHfdmNvtGMfUuoCPviIsFVwC0onrs6n+7xtUj3PaCdqSzVAXf3Mhsyl+eH
-	 4xpWkzlI0tmSw==
-Date: Tue, 23 Dec 2025 15:43:01 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tzu-Hao Wei <twei@axiado.com>
-Cc: SriNavmani A <srinavmani@axiado.com>, 
-	Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Harshit Shah <hshah@axiado.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Michal Simek <michal.simek@amd.com>, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 5/8] dt-bindings: mmc: axiado: Add axiado eMMC variant
-Message-ID: <20251223-ludicrous-carmine-mushroom-983c69@quoll>
-References: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-0-5457d0ebcdb4@axiado.com>
- <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-5-5457d0ebcdb4@axiado.com>
+	b=MfAKWHuFbtD0xW1u7oSpiVKbCSBZjKXbHZgHHl/15nnW/uyFFf4XJP00SoR3z9JdD
+	 rYuxJy4cH27U8+zKbhG9PznjFiDGu1ksCvBhMD3oJNWdMMZASOUQMjEAt3urdm9mD/
+	 bHhglQTjnotVIWBdxXhf5rB20ugMOrsi+w8SGJeJyft2KAgP42HsndKPDkA3fEyKC6
+	 qrkF48gedAccR7Gu+3jMczbHecCVYIrFS8TL1t1oj9DsyxGEVyc/jq3ddSmGNNhEcq
+	 iXl7U4o2uZdWtSEG6/m1F/+GqTMGBBhPJN8lA5bBa172Z5ogGGJV9RTOqtTP98FPAF
+	 hNURvzP+WpGwQ==
+Date: Tue, 23 Dec 2025 14:43:39 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, Steen.Hegelund@microchip.com,
+	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
+	herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org,
+	linux@roeck-us.net, andi.shyti@kernel.org, lee@kernel.org,
+	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, linusw@kernel.org, olivia@selenic.com,
+	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com,
+	gregkh@linuxfoundation.org, jirislaby@kernel.org,
+	mturquette@baylibre.com, sboyd@kernel.org, richardcochran@gmail.com,
+	wsa+renesas@sang-engineering.com, romain.sioen@microchip.com,
+	Ryan.Wanner@microchip.com, lars.povlsen@microchip.com,
+	tudor.ambarus@linaro.org, kavyasree.kotagiri@microchip.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-i2c@vger.kernel.org, netdev@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-clk@vger.kernel.org, mwalle@kernel.org,
+	luka.perkov@sartura.hr
+Subject: Re: [PATCH v2 18/19] dt-bindings: arm: microchip: document EV23X71A
+ board
+Message-ID: <20251223-chrome-simile-8cf1e9afe155@spud>
+References: <20251215163820.1584926-1-robert.marko@sartura.hr>
+ <20251215163820.1584926-18-robert.marko@sartura.hr>
+ <20251216-endorse-password-ae692dda5a9c@spud>
+ <CA+HBbNF-=W7A3Joftsqn+A6s170sqOZ77jpS105s5HPqkskQzA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pLErx9Z52ADLmcrz"
+Content-Disposition: inline
+In-Reply-To: <CA+HBbNF-=W7A3Joftsqn+A6s170sqOZ77jpS105s5HPqkskQzA@mail.gmail.com>
+
+
+--pLErx9Z52ADLmcrz
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-5-5457d0ebcdb4@axiado.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 22, 2025 at 04:45:04PM +0800, Tzu-Hao Wei wrote:
-> From: SriNavmani A <srinavmani@axiado.com>
-> 
-> Add device tree binding variant for the Axiado AX3000 Arasan eMMC
-> controller. This variant identifies the specific eMMC controller
-> implementation used on the AX3000 SoC and enables the appropriate
-> driver configuration.
-> 
-> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
-> ---
->  .../devicetree/bindings/mmc/arasan,sdhci.yaml          | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-> index 8e79de97b242a698a2c555b0b94e2975b1761710..47d0e35efea00bf7b1927bd0cfa39c86f0137d44 100644
-> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-> @@ -106,6 +106,12 @@ properties:
->          description:
->            For this device it is strongly suggested to include
->            arasan,soc-ctl-syscon.
-> +      - items:
-> +          - const: axiado,ax3000-sdhci-5.1-emmc
-> +          - const: arasan,sdhci-5.1
-> +        description:
-> +          For this device it is strongly suggested to include
-> +          clock-output-names and '#clock-cells'.
->  
->    reg:
->      maxItems: 1
-> @@ -334,3 +340,15 @@ examples:
->                     <&scmi_clk KEEM_BAY_PSS_SD0>;
->            arasan,soc-ctl-syscon = <&sd0_phy_syscon>;
->      };
-> +
-> +  - |
-> +    mmc@86000000 {
+On Tue, Dec 23, 2025 at 11:34:55AM +0100, Robert Marko wrote:
+> On Tue, Dec 16, 2025 at 6:32=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Mon, Dec 15, 2025 at 05:35:35PM +0100, Robert Marko wrote:
+> > > Microchip EV23X71A board is an LAN9696 based evaluation board.
+> > >
+> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > > ---
+> > >  Documentation/devicetree/bindings/arm/microchip.yaml | 8 ++++++++
+> > >  1 file changed, 8 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/arm/microchip.yaml b/D=
+ocumentation/devicetree/bindings/arm/microchip.yaml
+> > > index 910ecc11d5d7..b20441edaac7 100644
+> > > --- a/Documentation/devicetree/bindings/arm/microchip.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/microchip.yaml
+> > > @@ -239,6 +239,14 @@ properties:
+> > >            - const: microchip,lan9668
+> > >            - const: microchip,lan966
+> > >
+> > > +      - description: The LAN969x EVB (EV23X71A) is a 24x 1G + 4x 10G
+> > > +          Ethernet development system board.
+> > > +      - items:
+> > > +          - enum:
+> > > +              - microchip,ev23x71a
+> > > +              - microchip,lan9696
+> >
+> > This looks wrong, unless "microchip,lan9696" is a board (which I suspect
+> > it isn't).
+>=20
+> Hi,
+> No, LAN9696 is the exact SoC SKU used on the board.
+> I will drop it in v3.
 
-No need for a new example. Please writing bindings and writing schema
-docs first.
+Instead of dropping it, this should become an items list with 3 consts I
+think.
 
-Best regards,
-Krzysztof
+--pLErx9Z52ADLmcrz
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUqqhAAKCRB4tDGHoIJi
+0kmEAPwMbSydapbKFensNMM3LBSQavqvbhont2R2vwPmXc9oUAEA++sW5lHhwJ+e
+9LfhPrkmqekkXDEYUUHTET78Ply7Xgw=
+=FgUt
+-----END PGP SIGNATURE-----
+
+--pLErx9Z52ADLmcrz--
 
