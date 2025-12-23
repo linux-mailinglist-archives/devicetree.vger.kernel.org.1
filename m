@@ -1,134 +1,124 @@
-Return-Path: <devicetree+bounces-248956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22572CD79BA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 02:06:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B06F4CD79D5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 02:15:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B68CC300B2A4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 01:06:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 702F13005FC0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 01:15:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31BF41FF1B5;
-	Tue, 23 Dec 2025 01:06:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3ED1126BF1;
+	Tue, 23 Dec 2025 01:15:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="Z0H9hVyI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="foCxvO+m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B261F63D9;
-	Tue, 23 Dec 2025 01:06:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64F323A1E72
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 01:15:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766451979; cv=none; b=nWgDN57Rlh5qfw5dZ4y72bj3hw6Fjru/BhFC/FQuuOKR/1wIZX5/Rc0USvx4y71iCwoAwTMibVYuIiJXCuSZPEo4FZVyCvCVWJ6pooO9VHaxzxY7qqPURhi71Q4roIiL6R34VcdgTr1G5Bwd07ZRLIJfB5LCSlnlqysJ3MPe/sU=
+	t=1766452536; cv=none; b=EPjjRqWJi5nmwFCGG+56RzjJ9vQUd4ALUoQo9fqHRDb1fWed8v0dQGs5vZ+h+E+ngR63+NyU8VvbmZJtNbC7XB0xk5QBS3kHpNRsOCQsBG1cc7ShLKMKnu+G/2JzViv29SxjLx7p7xBjUFW4PIqwPfPjIimndk4khHqlRf1OxXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766451979; c=relaxed/simple;
-	bh=vHUIN2MhSaYiq1ikZpzEh07Q9PjwN5ENuid+tFKOE7k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NqFs4qMUQ//LGzh2WopbP57qt7Yqrb0gu0rQgd/Jv/y+R4IQhQWLZNiK/wTainoUqnV5u6JHTwhdaTz2msTOr2k6edyKwhKmhBGjt3ctxqlGNLxUZ2opK1VHVXgauXvwgSFvLz9EtQ8zu3VQg398BHmSXWzsk7st9dV7z0coguk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=Z0H9hVyI; arc=none smtp.client-ip=54.254.200.128
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1766451897;
-	bh=tlnRc3+JeeFSrgov+0izuaI1AtYRIEdu/7YYdutYt6Q=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=Z0H9hVyIipLGwzgDLrOSuTukr3aUWOF4xKUFvsr0iSHWWB5qwuwryepA7s87z9Ni1
-	 aSiyE21xz9LEnM+4oySUduS/3xmzBSejk3gLf/WK3AKS8l6DnqJMwLLrd2uLv0uGvv
-	 9TKLpxlej4M/6Q3XdE8YPB0ajppfIx6iUqLeqDqI=
-X-QQ-mid: zesmtpgz4t1766451895te80ab387
-X-QQ-Originating-IP: JtifH4K1sur0WoynFNkDk59IJfvD6Lz1xNwTmdgCjE0=
-Received: from = ( [120.239.196.19])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 23 Dec 2025 09:04:54 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 13030913243295314513
-EX-QQ-RecipientCnt: 11
-Date: Tue, 23 Dec 2025 09:04:54 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Yixun Lan <dlan@gentoo.org>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 2/3] pinctrl: spacemit: k3: add initial pin support
-Message-ID: <B34F6DA41EF01479+aUnqtjkWf1sVJbmD@kernel.org>
-References: <20251220-02-k3-pinctrl-v1-0-f6f4aea60abf@gentoo.org>
- <20251220-02-k3-pinctrl-v1-2-f6f4aea60abf@gentoo.org>
- <74FFF1F2D1BF3EFF+aUjsbTB607IkAY87@kernel.org>
- <20251222230338-GYA1980456@gentoo.org>
+	s=arc-20240116; t=1766452536; c=relaxed/simple;
+	bh=UBoHW78SeE80vBbfzJnc53CgNUmOMLDpe5l6TYu6SZ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=sD6eLq7lowKe5vxUnpXMaQ8zoQCspgzQ8hFAmiDatlCUqRRh6tkMitu7wRoZUiJZ6nLfTDGwzpZAHO+Hf5H/FESVhl3SniTbynW2UKgIbDJwhkb69edoFt1NzMR9GgqzscxfX+64sX2bWUjBngaNhBb0b1MEybrWPOIMrO+oYa8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=foCxvO+m; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2a0c09bb78cso32447375ad.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Dec 2025 17:15:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766452535; x=1767057335; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=X58ps29i4wzDPlToCm/xfI7UgBG6++N5LchJfOB0Ob4=;
+        b=foCxvO+mFQMQoxDT3FChki0BeFOpTEpdgbFX2R8qOpigITHicEOwaxvjwPED9gdUmY
+         EQYg0PhcQGX9phYmFoyPcaF3XawhyK/2LSgIpUBBAftPNNvJuATNdAP3jgJLu38MAtiF
+         xD9xWJ0kTZ+r2e8F/JtCxEoiG/cuaWJbCWMZLbYjLY9jueUq7cY5Cv8EGe86h1guGYnp
+         F1rG1P3xvPFmSA3YdvZEM879dgfr+9PCH4MaMSG0/iNr9KnmEdxcEjXata+uBgicBDHp
+         Mmw+RMrUtf9IPi4o0e94ayIRO800V0N2KDMBA11ipEvWfGQYh0r5NZurZQ1C6i/Ggl3b
+         cClA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766452535; x=1767057335;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X58ps29i4wzDPlToCm/xfI7UgBG6++N5LchJfOB0Ob4=;
+        b=ljVMbji6/YllCjy9J58TE2RBL+IQ/3kmaXGAJVsmTRTPk90rCaabL5EZIVlmsNMDho
+         8qDY9QQWJIGPLDH57Jc2mrgmPY7Wk2bTo1jIf+Cyj7ur/UjeRu7ojNGGo1PkWfH3hIZy
+         AiMzSlAVaMdWm0scpktB8WwLi2N3Ai6QRo1tEyxPSGk5wRTmaN1U+1EZOb25s9ybijFE
+         JE3s8ec0u36gcSkfMz0H9m1VOawN+/AAl42+QOsQZcgYPX5Fgr1m2R1+Fzrb2hmoq96X
+         Un6l0JAyCRZKE0fzZK3eznVYr02KNjcLcnTwJbK/7uCPi0KKPfcW0xLVhp7l8sGnBLD2
+         UHuw==
+X-Forwarded-Encrypted: i=1; AJvYcCWU+AGvQpvi0JhRdsfgMu5mDGRgPCUsxa3nB1lRvcRbLPAu31D0Lh8i/7e3Vucn6DTwR4sI7JRzwPKj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqMLjFN0ewVR3DgvHWqbboUioMqXiJTpLg7n1MQO5dmLWBJylR
+	O1yWEyXKnXMjdVlNKgSVXsz1OpGqEMa5fa9BS5GQBhRFaM1TyqC2NKiF
+X-Gm-Gg: AY/fxX4+LLgVDFOvGjP5PmPtHZT1WuGvWZoMM6Hp8FW0Yep5nTsHfE1FGJUpLs6UmAA
+	0RO2x7PtcpMtVhSKKA0J+FEyj9GeNotdby9QX5xhooNyab1886Loy4P2ZaiHyAJF8sy5Vd9KXS2
+	cQqGtXzC0G0ESY0G27yVjMGulfYxpzoo6br2GmFrl1mOgx7of8sApKKfzEul8MWsOJtcNjuknl7
+	rMo5L3NqMPXMpTqfSPOMyLBhJNKnUcdtcv17uhrnXQqsdYMuTxvMUGG9wtpO9k/u8ZPsgehZpN/
+	bpf4/QipPwbTDLSZI1S+31fTjpfGt3YIV+w8/AjhgfalqMQDLDRK6mwEvE+Ac+unl5V6/7KzAq3
+	UZj4Se5grvXgV+ROcJFvhriqG5CcNwIUHpRPrDgEuZtu6jQFNlAIatpPRYjBb8TRrmFCGLofKBr
+	7K8lYXxOc9ZuFMUxaPJaD/YnySRLVCvgvWSCe+Cg==
+X-Google-Smtp-Source: AGHT+IGuOgb91mGwdOMJYVIABsmW5/J2Hr3wrOJ5nEx768vSMFuI83uK7tzl4NKRCY3JTNFYebfnYA==
+X-Received: by 2002:a17:902:d50f:b0:29f:175b:1ec7 with SMTP id d9443c01a7336-2a2f0d2dbd0mr143434815ad.16.1766452534563;
+        Mon, 22 Dec 2025 17:15:34 -0800 (PST)
+Received: from [192.168.0.213] ([60.51.11.72])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d4d36esm110067235ad.63.2025.12.22.17.15.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Dec 2025 17:15:34 -0800 (PST)
+Message-ID: <963594e9-135f-41b4-9105-f9ea0f88badb@gmail.com>
+Date: Tue, 23 Dec 2025 09:15:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251222230338-GYA1980456@gentoo.org>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: NXFhtRYX6L9xy/OA70OGzMuEvQKnX6EezlhFJARYH/N2fZj3wBg93+Sn
-	aYdm9J/xeTVr8KFf/+21hXt+C3+beB5ThxeVmB0IEmAs2CsDLe/KqGON4o2oBlH35qEnl79
-	mRGGwjFCslfw6GixtEulWyUOJRtL7YWegBGTgkKaMf8oq0WJV9aOyrBRuuiRYaVEkfr2J+8
-	wSVgIgL5f8R2XNeMxjDLo4YAtjUcCX5geXeCsW0ycbJkaExO8YPEK7oUfvGfu+jay25A+Bp
-	7jIw5mqfDUSpp4qXL+YI5/X1vVFvFhxK1UUuRH67bKQnPTW1qOEDcmk6ILD6UEkGMF0tQLz
-	jnWh8jyDuO1pfHEmCNN2YJ57gFFHtqr3qcKbQk+Pt+rY9BZQi3GAW/Qt5OVDzao4u8pwYqs
-	hiEijfdUNpvg55JpwVMEqGb03oMuk+9KfOxkRva3X7Mbs0AkTP3yI6Gbqq9Xq5LnxVXDIiJ
-	VwOuuE4GnTUQHTqUqHfzmE9NIZoujo7HQlwtJduq/4cohI79MOt5TWcnAKNS4gM3/8O8L6i
-	VA73MkO1DCwWKNAB5GFujwHGoG26rffk/iFSU+cE5J4kpxpZnVDd8lsBZ7ZFAIKVrUiiVwg
-	b7Px3GAP5X7bU09R1I0IIUl604y3dQxdJnt81FzoLci/afL6c4vGYYW/IcQc1HY/pn/+TGV
-	kQ2wxoV9s3UsPrxFiUvXOmy4pQuQwjUXmZpJXSi6jlTOlOEhy9Oz/kDbH5SspzaB7mBCB6+
-	7D6vtvAe+Teaz0o7qJPYwe/8yp4vpnHmdk661HusdIqBs7j5sAevBw7zCi+xqZGP3uVbcwO
-	Ccgcwrfd9YD97TXCOmNO4b4CN5bqW8z5ThRD9RADav9fXz5CaUv+OCMFnR8k18s9ZptaLKx
-	xz7JSpyE+/xViWWXKGU+ceO8ZoBnNT7IWn0xKIs08mBbbNgVOnJPj4dp/Zc9LsYYow3MTQX
-	xznUrGq1Pyh6bolzLujkHu4CTt5oUyNETCMtSSC8Quj7E4jdEYMtBxoEi5LT1G6xuxw0BEZ
-	M0c8EnsL/0pwdopUYFYKMqpHTS434snKtx3LsGlA==
-X-QQ-XMRINFO: Nq+8W0+stu50tPAe92KXseR0ZZmBTk3gLg==
-X-QQ-RECHKSPAM: 0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] an/rm64: dts: socfpga: agilex: fix CHECK_DTBS
+ DTC_FLAGS warning
+To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251219234858.7543-1-karom.9560@gmail.com>
+ <ce602264-b685-44c7-a463-e040819a07e4@kernel.org>
+Content-Language: en-US
+From: Khairul Anuar Romli <karom.9560@gmail.com>
+In-Reply-To: <ce602264-b685-44c7-a463-e040819a07e4@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 23, 2025 at 07:03:38AM +0800, Yixun Lan wrote:
-> Hi Troy,
+On 22/12/2025 8:16 pm, Dinh Nguyen wrote:
 > 
-> On 14:59 Mon 22 Dec     , Troy Mitchell wrote:
-> > On Sat, Dec 20, 2025 at 06:14:54PM +0800, Yixun Lan wrote:
-> > > For the pinctrl IP of SpacemiT's K3 SoC, it has different register offset
-> > > comparing with previous SoC generation, so introduce a function to do the
-> > > pin to offset mapping. Also add all the pinctrl data.
-> > > 
-> > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > > ---
-> > >  drivers/pinctrl/spacemit/Kconfig      |   4 +-
-> > >  drivers/pinctrl/spacemit/pinctrl-k1.c | 354 +++++++++++++++++++++++++++++++++-
-> > >  2 files changed, 352 insertions(+), 6 deletions(-)
-> > > 
-> > [...]
-> > > diff --git a/drivers/pinctrl/spacemit/pinctrl-k1.c b/drivers/pinctrl/spacemit/pinctrl-k1.c
-> > [...]
-> > > +static unsigned int spacemit_k3_pin_to_offset(unsigned int pin)
-> > > +{
-> > > +	unsigned int offset = pin > 130 ? (pin + 2) : pin;
-> > Is this necessary? I think it's hard to read. Why not:
-> > ```
-> > if (pin > 130)
-> >   pin += 2;
-> > 
-> > return pin << 2;
-> > ```
-> > This avoids the extra variable and makes the code clearer.
-> > > +
-> > > +	return offset << 2;
-> No, I do not want to change, it's pretty much a personal taste here,
-> I did similar as k1_pin_to_offset(), explicitly introduce a variable offset
-> to let reader know it convert from pin to offsett, which is more readable..
-This is a minor issue. both styles are acceptable to me.
+> 
+> On 12/19/25 17:48, Khairul Anuar Romli wrote:
+>> Add start address and ranges to eccmgr. This change corrects the warning:
+>>
+>> socfpga_agilex.dtsi:612.10-669.5: Warning (simple_bus_reg): /soc@0/ 
+>> eccmgr:
+>> missing or empty reg/ranges property
+>>
+> 
+> Sorry, but I'm not seeing this warning on my local build with v6.19-rc1, 
+> nor at Rob's build[1].
+> 
+> Dinh
+> 
+> [1] https://gitlab.com/robherring/linux-dt/-/jobs?kind=BUILD
 
-                        - Troy
-> 
-> -- 
-> Yixun Lan (dlan)
-> 
+
+The warning observe if we build with DTC_FLAGS=-@.
+
+Thanks.
+
+Regards,
+Khairul
 
