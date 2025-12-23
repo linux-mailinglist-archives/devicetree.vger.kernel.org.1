@@ -1,142 +1,110 @@
-Return-Path: <devicetree+bounces-249220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422ADCD9E9B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:15:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 536F4CD9F95
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:32:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D737D3031CEC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:14:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0072130AC4EE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5E92D9ECF;
-	Tue, 23 Dec 2025 16:14:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07ABD34252F;
+	Tue, 23 Dec 2025 16:28:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="lU9ueyei"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="bfHWyYiz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD9C6221546;
-	Tue, 23 Dec 2025 16:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766506470; cv=pass; b=cj7I9kZ4WSe+2S6JRwgFsCvFAwhsrsUY+ic/SOOKef3Dc2xuj3khyReIt8B38nbsisV2a9Wp9TBl6ote7tEHOXmJ7ROmVShFfzK2WhJJh97sunHwwCrLuvHMd1SaYZVT4ckT74dPVtZIYqDZ+lLonin8ZKmAIhvQmwyGGT2jHns=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766506470; c=relaxed/simple;
-	bh=cQV4r1OcjnxnjBtw9YB7CS90Z9D7xR/nRTb7LOWb+1U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DTxtD2tWcu7Bwt4cNZxM8zWQ5J0VVpYeF1QAYg+7RmZUI+uUMeCgQiA6M3APxCHaCC+yKghYo7zdPD2qzvFvtpBkaINEcYj7DBCLtEOZr1MpNH16EZ2kGOsn+U8E0ErDIp2klFJ9skHkrGCBe3EllUK92dpNSFuZ8jbs2tQlpXs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=lU9ueyei; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1766506430; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=GcLwAerCHEy/SR9JcYm3k6axVMsajNFFuPap2PgzrSCXjh4rWjBHBR68qGTzFmEtN3w7Ltea08lsuyXM5TqbBZ/wEy4Lt0BA0OELULdM6rGXc6Zpm/lcq+V2kll+jr5bGo9G+2hiQRG68jUw/5rriZEB9x1FO9zW043d4D4Ja4w=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1766506430; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=MVFVIKq0sBuyCffyYJ/1sD+iO89pe4U1D3i3N6wh6Y4=; 
-	b=hgp16a5Gt/bQR/q68E5ve1yIbch7gWUfpYZwrYxqEPYRA7AjCYQWufj7UkH2WtntiJJcClOSpAjT8qbQ6hzQpa922gcQfGHjT2HYoNkxzsljhiHj3NZ1a+yqkgkpT8oA9vDxj8bmrSmjcajiXIH/eZp5StcOj4YLKIkQ6YTq43Y=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1766506430;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=MVFVIKq0sBuyCffyYJ/1sD+iO89pe4U1D3i3N6wh6Y4=;
-	b=lU9ueyei4bCn1/G3l4CDl0V7jCJjtHAIWGiYxDcQVWZ69Z0gd87bNml6FjOrSs7q
-	Yr35Hpe+PYjszET5s4SQgWJvKVUq7y1hrqqsKtgZ0Dq8O+HDeUXJ73zJ+et/nhTZ5bH
-	ZLnMXLNksOm4agx1xpj7JKjvKjzSQjIwePAVYmn4=
-Received: by mx.zohomail.com with SMTPS id 1766506427805485.7983551832393;
-	Tue, 23 Dec 2025 08:13:47 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>,
- Chunfeng Yun =?UTF-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>,
- "kishon@kernel.org" <kishon@kernel.org>,
- "James.Bottomley@HansenPartnership.com"
- <James.Bottomley@hansenpartnership.com>,
- "bvanassche@acm.org" <bvanassche@acm.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Chaotian Jing =?UTF-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "vkoul@kernel.org" <vkoul@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- Peter Wang =?UTF-8?B?KOeOi+S/oeWPiyk=?= <peter.wang@mediatek.com>
-Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- "kernel@collabora.com" <kernel@collabora.com>
-Subject: Re: [PATCH v4 07/25] scsi: ufs: mediatek: Rework 0.9V regulator
-Date: Tue, 23 Dec 2025 17:13:39 +0100
-Message-ID: <14003986.uLZWGnKmhe@workhorse>
-In-Reply-To: <8206d9e715f7ef987b5369d0bda68cce13528112.camel@mediatek.com>
-References:
- <20251218-mt8196-ufs-v4-0-ddec7a369dd2@collabora.com>
- <20251218-mt8196-ufs-v4-7-ddec7a369dd2@collabora.com>
- <8206d9e715f7ef987b5369d0bda68cce13528112.camel@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42E06293B75;
+	Tue, 23 Dec 2025 16:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766507328; cv=none; b=iijWQmCEiFbRiJbAWaLgsmLIC5agFrP2F1yW5ZGuK34didtTbqIhQXF+hc1nD31kdZGOpGBRKZSedHmBnWC6OLlpBO4rgm2XVMt9s5rhrnLhwL5ryMyL3hoaAOCelbC4Z+wGYvVQ+kH5va9rRBQJiSTaAoIS5xv94CervWLrOAc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766507328; c=relaxed/simple;
+	bh=Kcmg0/g5tMcm5hh2EiCJlhHd0AxSh5rVXDzvvvfKceI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i09hY/HywsXhxLMINRyMXhr7eVT9+HloSuzzlBc8SX6obRmB941+NNQWUq/+TIgawAnDmzOV24MvXgBLgBDevq+i53GJX6HFd+QJBkauT62Dddd873W1yLYN1xXQLFCad3avubYoYc5HMmt4HhPC7d2tyiJXCiQhUBKP5EfBVsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=bfHWyYiz; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from localhost.localdomain (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
+	by mail11.truemail.it (Postfix) with ESMTPA id 65EF41FE01;
+	Tue, 23 Dec 2025 17:28:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1766507321;
+	bh=0qkh9NDueAgmjfZXlNcUqY3qLpWOOPfkCMJCmVRhSeM=; h=From:To:Subject;
+	b=bfHWyYiz9scdm0bBe8fdoLg+M/oq84E/CM3Imf0YrJMTz7kgk2gmteOD7CWKp9vCR
+	 MVurGEE8WeiY9s/oETwZhSAJz3fBS0tshVKuf+aq+rW1hziimo2uJLlg8IfciKcamg
+	 3YDf9O3pfIoIgoNbvJdE3EdmHFwAfK2v1RSgDwfe7nhkO2fEVAKhC9J6RkwjnDGDdq
+	 E/c5KIco0SBiGJ1q74jGLjS8B3DLZkLymRVyU9nwFZpBKuwfJz7Aga6W8q4LOM29zF
+	 1l9mQxL9auwSVQDepKwk5S34GvtH4cGpcgDTwP9nxzG1kWaaPHQJi58SonUwmZpZhD
+	 vg8CmYon6pPpg==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v1 0/4] arm64: dts: freescale: Add Apalis iMX8QP
+Date: Tue, 23 Dec 2025 17:28:26 +0100
+Message-ID: <20251223162833.138286-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tuesday, 23 December 2025 10:35:39 Central European Standard Time Peter =
-Wang (=E7=8E=8B=E4=BF=A1=E5=8F=8B) wrote:
-> On Thu, 2025-12-18 at 13:54 +0100, Nicolas Frattaroli wrote:
-> >=20
-> > +static int ufs_mtk_get_supplies(struct ufs_mtk_host *host)
-> > +{
-> > +       struct device *dev =3D host->hba->dev;
-> > +       const struct ufs_mtk_soc_data *data =3D
-> > of_device_get_match_data(dev);
-> > +
-> > +       if (!data || !data->has_avdd09)
-> > +               return 0;
-> >=20
->=20
->=20
-> Hi Nicolas,
->=20
-> It seems that has_avdd09 is not necessary, because if the=20
-> platform does not support avdd09, it will return an error
-> (-ENODEV) and bypass the avdd09 flow, right?
->=20
-> Thanks
-> Peter
->=20
->=20
->=20
->=20
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Hi,
+Add support for the NXP i.MX8QP SoC and for Apalis iMX8QP SoM mated with
+Apalis Ixora and Apalis Evaluation board.
 
-that would allow compatibles that are not allowed to have an avdd09
-regulator by the binding (because the SoC doesn't have that pin) to
-have one specified in the device tree get picked up. This would then
-cause those devices with such a device tree to enter
-ufs_mtk_va09_pwr_ctrl(), which is not what we want. While we could
-blame this on the DT being wrong in that case, I think it's better
-if we avoid such a situation entirely.
+Apalis iMX8QP is a variant of the Apalis iMX8QM, using an NXP i.MX8QP
+SoC instead of the i.MX8QM. The two SoCs are pin to pin compatible, with
+the i.MX8QP being a lower end variant, with a slower GPU and one Cortex
+A72 core instead of two.
 
-Kind regards,
-Nicolas Frattaroli
+The two Apalis SoMs variants share the same schematics and PCB, and the
+iMX8QP variant exists only on revision V1.1 of board.
 
+Link: https://www.nxp.com/products/i.MX8
+Link: https://www.toradex.com/computer-on-modules/apalis-arm-family/nxp-imx-8
+
+Francesco Dolcini (4):
+  dt-bindings: arm: fsl: Add Apalis iMX8QP
+  arm64: dts: imx8qm: Add CPU cluster labels
+  arm64: dts: freescale: Add NXP i.MX8QP SoC dtsi
+  arm64: dts: freescale: Add Apalis iMX8QP
+
+ .../devicetree/bindings/arm/fsl.yaml          |  6 +++--
+ arch/arm64/boot/dts/freescale/Makefile        |  5 ++++
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi     |  4 +--
+ .../imx8qp-apalis-v1.1-eval-v1.2.dts          | 26 +++++++++++++++++++
+ .../dts/freescale/imx8qp-apalis-v1.1-eval.dts | 16 ++++++++++++
+ .../imx8qp-apalis-v1.1-ixora-v1.1.dts         | 16 ++++++++++++
+ .../imx8qp-apalis-v1.1-ixora-v1.2.dts         | 16 ++++++++++++
+ .../dts/freescale/imx8qp-apalis-v1.1.dtsi     | 16 ++++++++++++
+ arch/arm64/boot/dts/freescale/imx8qp.dtsi     | 24 +++++++++++++++++
+ 9 files changed, 125 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-eval-v1.2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-eval.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-ixora-v1.1.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1-ixora-v1.2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qp-apalis-v1.1.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qp.dtsi
+
+-- 
+2.47.3
 
 
