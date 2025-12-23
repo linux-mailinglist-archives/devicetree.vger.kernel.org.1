@@ -1,151 +1,146 @@
-Return-Path: <devicetree+bounces-249198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B194CD9D00
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:42:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88575CD9CEE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:41:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9C92A3027167
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:41:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C73AE30CA12C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:36:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B70F346ACD;
-	Tue, 23 Dec 2025 15:25:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D1F52D192B;
+	Tue, 23 Dec 2025 15:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BkZ9QdlJ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NctPEehh"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PVpWRIP6";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ep82BO4d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8195A346A05
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:25:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D12429C351
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766503555; cv=none; b=aAXIk96Fqn8HflhxaYWrVAReCkbW0LFhzpjvyF/8/qfsT8DYZPdkRRooHq3kO/iUUXCBKU64jJhGQrY2rnNEFMAhqzLIhpX+6JQgmJqlQ04pE98ygGt7jWo/bocae57bgNmHVomBrOWyzvynh/9yGdt6p1kQOfoyNM8GDbvKFi8=
+	t=1766503570; cv=none; b=bX4uA6TXlRbd3wrtnXLsWKSk8Fzv27peYN+G9ICMEV5uIjUeQyJNQRmGsXgJ7wwmiQqj0MIYzbNrjaFnr3wyH2nNj7QYrjjImQeJpK17ahABnV2wpX9xkFOxn6UzGeHQcc1K0JA2GQDaQSTAxOP3nRwa8jvDGkBiFWqlK6YXGFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766503555; c=relaxed/simple;
-	bh=FBEZSzQ0rqkvVrjYCGkubQOeZuQXJmK12Qqhdra07SY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=iZwuFrDEf4Ncxm/udLknwWAlE9yOBFv/E5+9CKWLJZ35fmD4qsStnpQP10VfImHciqj1BoHvCTiSDO708cFtapJ1oeSUWDrwCPDKf7/gnlMEEVsVLJlAp1jz7oyyW6vLAra7d9tDVNs35ZoxLol3ckIwLfmWEtqIG3DNkvoU95s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BkZ9QdlJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NctPEehh; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1766503570; c=relaxed/simple;
+	bh=Nb5cz42qvJQ7hyn0jX756pVrOq5QEAsXNNZgRqRzhlA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=a9w6uRa7Z7sRgp6dbEJHgtgnwwusJR+iR6GPYIOsHE8YzEhfNua/hJf6+9NTnUlOu2VKQNiBAnMUdTCyxKAafIFxAs6K6U0+LMigrDyJ81e8D9n48+wsU4qI5t7ui4E4VVuVq5B5qHOBa0fupkAYY3k2pSuwMUPS+9LWWhR3jGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PVpWRIP6; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ep82BO4d; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BN8gooU2748768
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:25:52 GMT
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BN7fjOB4044111
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:26:07 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=UdW1aYhvWI0
-	surAr2E3GwiYANfzJ7XxjkfIeaqYtXoE=; b=BkZ9QdlJ8Z5uZ2zJYghIid4QPgS
-	OSeCArKOoFfat/9sEuS6uH4rAVZwZthBCnhEMhjftv9+JCu9hSXdQ+TbSYRGevrX
-	Ac1DNhga3r6YV4VpejBjP5RxIV33bbRapAQVSCAfa+fxDn3udSwsPKsLHqmWfg1S
-	dyi3Jen9dPKYejBmBlg8UXtdFJVTBBuS5EpLL1bSQCu9j2asqa/uLqCOUpr0hNhZ
-	uJW127TC2BoDH1+t0Fo6g9InwPy67FJDKLnlh4n2uCcUxayFS1CwNt2zfLj7J2+K
-	uVO71QyWBBq6ZT6jqrl2q0tcedgRolU/mEEo3PO7Y3H2OHDjsJYTFbwBO+A==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7h5ctht2-1
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=loserLUTki76e0mv2DkZGtYk0KYhHV04tTK
+	M8DpaI7g=; b=PVpWRIP6UmMYN9Cw4895uXqGxuVDY/JHU9IizH1f6DPnEJQhZZ5
+	QVY1xnAA8phDcrshMfb94UtEpj+IQbvNJNwY2Yn40Yn2oOtoziFhh1L5vKuUDXG/
+	IztmsvMiy0hH5p/kj6ni8g77lbJ66rzZxBu0QcJLW3VPgb2m/v5v6+n8+jkN46EW
+	EpGC3Xa+UQl4oNVdjFMzA7Wjaw0oHi8G4qPyUhnR79nGqc9an5jW/6LfN1rb7Xbc
+	E+0tiEsxgeRmstYofVFIdgdvklXY4ao7OHe7RpkaEu0yak3qzy+vc+4iXiZhRL4v
+	K8EEMm3QSWqr93Yu1yJZr/YuiiikGHYwZtw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7cuhb2v5-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:25:52 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b8738fb141so1508663385a.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 07:25:52 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:26:07 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4f1b39d7ed2so112095101cf.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 07:26:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766503552; x=1767108352; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UdW1aYhvWI0surAr2E3GwiYANfzJ7XxjkfIeaqYtXoE=;
-        b=NctPEehhx00gZQar+Ryzn8MXEmC+MZ2W2WbEXDaxhWHC46K5fFp8PlY71DEfU4rAxr
-         aED0ALBOHL0AxrKOZaYNVI5ocuKdxbvzKNZepb0dMxg4OlUKcQM+clPDAgqe4rIBihFF
-         VgYW/cSbOt/cTa409nFUHBmt2dry4FNh29xV/oiVZK2MclCJGF/vBw4EXFRz/ho6C75F
-         daRowkXB0iUTDGxfUTZwHS9GIXe+F6/ZxsspbgJk/N8ITDfQMUoHjIyAnlUGv8YzSnRR
-         pQ7xVBhs68F7kP0SoOBVIqs6Om/G9McZNvXrbd5M8pBkmtzIvaz2zjGw9ErTwoYyhqtT
-         qG1Q==
+        d=oss.qualcomm.com; s=google; t=1766503566; x=1767108366; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=loserLUTki76e0mv2DkZGtYk0KYhHV04tTKM8DpaI7g=;
+        b=ep82BO4dni0Y20tZYmDl+mwOIcboiLUgWmVfmDhgAVS5oXEM/YHrhtdbBN1gM44d0t
+         x7jQ5iV0iozfHleKfBszq3VVlary3SiN30trx74YqLETHORu+ejdJCMV0aS7gHdJy4f0
+         JDNiCqi4vUOwKy/LIjae8DHjLMBzb5hHzcyU44eoVgSUHkyK2OOoqQE7qZTO3nbxnBP0
+         fkAUjdPf7qqw2zuGTL7Y7MCQz5fhBz9yXXgkRZZnkG42tFRJIGL6m48qRzKSDBZiygdW
+         msP34M/fr9kHMceJ9rzObd/aqn5kjUWvC0FOvgo1NEuzRL5atUMTiDdl6y9rmLrtN5WJ
+         WNDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766503552; x=1767108352;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=UdW1aYhvWI0surAr2E3GwiYANfzJ7XxjkfIeaqYtXoE=;
-        b=aZtR0z0dbqNLyu2+XQhlXbrDOumsY40gWcRKw28Edk9TnJ49K5GWzIrqjA6TKb2THd
-         CbbFUg04uq9OmF7H/KQXvpvLpIMmptrZUYjQ27Ne5xi2gUek2wVzZrVcAUfyb7UXuP76
-         ZmcSSJddreMWILSn/6EXPXuagwg9Mw35jdw2NnozdtYCKLDQFHt03GFZNdwaSvnt76qB
-         XhbxcuL1KM8UpfeqrQ8Jj+Nl3jKvqYABV/jKnZMhVgTZ73w4oVPLuU7VCcq4yYt5G423
-         k5h0FEWFOSfYtvM6vslY6RNHXK0dmwcHxO5dGIyfv2KaEGRbLRwLyQX/q1xVALMMHSZQ
-         4h/A==
-X-Forwarded-Encrypted: i=1; AJvYcCWH535OMnHGN1jUw1nD1VAWH4+nNITRqA5BnZd5gmu/Dhs23bNKn1Q1NYV5Ubv/zHY/BrA0WthJEWEc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVF5KIPSes07ecwgsxs4LfrcfVU5VK+v/tYrv1jxzKgRThnWr/
-	F2vFlCRF7RS+erg1mgRRUPV55BrRyTd7U8vFHrtiBccGisf7tG5bZA4XOYTMjPf4kgWY1mGapon
-	Ux/72QVWo732pO8Z/bImlPX7YmFpxUYRcVIqUbnRO+Pc1NpGovelNt2f2xIL3wlJ0
-X-Gm-Gg: AY/fxX5Ym5ryiVJcjQ7SeZeUFnmQ765saabZW3YsSSXEZZ5BEaiO6IOK1JtgLBKqWRG
-	KZlsKy66rrRtiULPDzo/rnAX3a+QpsWcDwUgssoe4BTLsMG9agl6wVRTyDfFfL2iH4la/2ESWnb
-	uhPOyBacV0qP7q4AoDA+jF3myri86Q00esGrxXWG1i5g9FYFar+b1xD9euPzFghTMwhebgJYIwA
-	/wOJvTF1S/3ZGe+VqG67wpJv1ecZeza5kI5i4yXSoxK18MsBwNVP8RWdrMWIkKEJyxYNK6Ji2Rg
-	LncmzwBvqxgkbeVFDWvP5e1CZMWPVOeXdfJ1mNpPGblO8R9i8kktZzAQBefRggmXJa1XeT09uFc
-	96oFiXWWTmSK3UDfyHdINVF8swtL+bFIzKVpo++ybyFcqFmEPo79NEwpKGVUFaUozC5A=
-X-Received: by 2002:ac8:5a81:0:b0:4ee:26b3:e512 with SMTP id d75a77b69052e-4f35f3b7834mr261949861cf.13.1766503551545;
-        Tue, 23 Dec 2025 07:25:51 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFCNDdleerV1/mr7P7xnuU+g14yJD9qFowrQWc2bYEBnzRPcsjZ3dwIcpaeMjLcAMNRqp69yA==
-X-Received: by 2002:ac8:5a81:0:b0:4ee:26b3:e512 with SMTP id d75a77b69052e-4f35f3b7834mr261949381cf.13.1766503550971;
-        Tue, 23 Dec 2025 07:25:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1766503566; x=1767108366;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=loserLUTki76e0mv2DkZGtYk0KYhHV04tTKM8DpaI7g=;
+        b=B5PZ98tHNyYMcA25xOhZ/3SPYtD8alQdQsJWXqbEiMr2uElbM+/WWlsXuGMUXMxwqt
+         bMIBwOzGGxtjYp8pKNkF0K9tjv4eESHga9lemJdHMTvTpsCtBWCKrqq3jmYygcBA0SmF
+         tyKvLb1uEKDwWzSYJ+aWH++yzCoiOdodl3qIdErZxYyScgOkoqzDuV2aN8PGu9MrwakO
+         1S2pBFJQLCAmxXa48oQUrS/fMUNZQ3oni1129ZWtTYiuHtNEbd3cOhBFwxDP7lhNxq4K
+         Mr9YaPxucWv5QiX8v1HMcFSrCIGD/ey2MUpCvLSPW9HcyDvSut+AAbyN7gsO1nk2kjOX
+         ATzg==
+X-Forwarded-Encrypted: i=1; AJvYcCVh9JdxPSxbvpqWwalmn47RLr9mN+RwsFNIMGmc9FQuVlFCxqLGqcWh+lT61SWTNfJa11YAUiqHibix@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgQYRpPd7KdSqn/Jj+MkjsXJA6t+LXip8AkMnQ4EPKgvVtHdCR
+	SIoHxtvw8CbezPAflW0yxTBc07HTstpPTa9oOKbX28uyZgbZ2tkv3YANbw2ksusifJSKv/dIIwL
+	GN04Xqn4b5jhBAHwwwrmVUer4OCEz6c+d8YA+C8BzV5hq6HLGM5Xd70Zpa+Hd64lC
+X-Gm-Gg: AY/fxX7xPRvA9klmzPX05qvlXivZknn86JCqM16P1eaUWQAb/h44Xkhyl0wKejqj+ms
+	BpDUbtfC5j509QfCZ2A4gFTiy8DwwlYQxs7asBBgRsVmuKyxQ8Q1tRTdQTJ+fRCHjExmWWsyaY1
+	wTzjv7yyqaI4MhZLuz0LNO/gDfU3r5NEn8mi6/nCb+wOuZviNWVznLZdnD2hPWv6N0GGDW1dUkn
+	Zx456ViJFZhxcGb16q8v8g87VZF8uNhrSNqBU2WwyqnZZ7ZC1vvTd+i4FL7oWS9659Zluhw/Zl7
+	HHFeTBbFTBhDH2sKDjSjbOxBSkYOHkKMbCh1FEq5COZNdE+WYnRxsUqlLDr5IQw+Jxr5Ch6hqsO
+	XapSv2C1wY7nMSPapjjw/HgFsIxCn8Y00tdM+zZsvoxSiXfV2AwrtIoVh69d7IcitNCE=
+X-Received: by 2002:a05:622a:5a13:b0:4f0:131f:66fe with SMTP id d75a77b69052e-4f4abdb3a07mr199218991cf.59.1766503565981;
+        Tue, 23 Dec 2025 07:26:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHZzkG1ybsE5+jipmRBJynt+75FLhzoKRzkFARG2q8zp/VVHuNkqHHEENXiKc4+6iU/nKm19w==
+X-Received: by 2002:a05:622a:5a13:b0:4f0:131f:66fe with SMTP id d75a77b69052e-4f4abdb3a07mr199218471cf.59.1766503565443;
+        Tue, 23 Dec 2025 07:26:05 -0800 (PST)
 Received: from quoll.home (83.31.98.88.ipv4.supernova.orange.pl. [83.31.98.88])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f18575sm1401626566b.54.2025.12.23.07.25.49
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b9ef904bcsm13268409a12.22.2025.12.23.07.26.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Dec 2025 07:25:50 -0800 (PST)
+        Tue, 23 Dec 2025 07:26:03 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH 2/2] arm64: dts: st: Minor whitespace cleanup
-Date: Tue, 23 Dec 2025 16:25:46 +0100
-Message-ID: <20251223152544.155637-4-krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH 1/3] arm64: dts: qcom: Minor whitespace cleanup
+Date: Tue, 23 Dec 2025 16:26:00 +0100
+Message-ID: <20251223152559.155703-4-krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251223152544.155637-3-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20251223152544.155637-3-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1983; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=FBEZSzQ0rqkvVrjYCGkubQOeZuQXJmK12Qqhdra07SY=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpSrR5CLCbMPCA+E3qJtui3ASvK8v0kBEUlo0Oy
- NQlwLFyfOWJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaUq0eQAKCRDBN2bmhouD
- 1+QOEACamFldQRPk9FJbt40Z8CFaom3KSBw0pKmn8z0AJWEldRgP1HS/UX4s6dDYER0i144hxw2
- uR4moxseidWd3P20gX34IKLMao+wSN9KLkWbS/ExhknL80EreoZeU2gDW/QapEwsyYJ9nhPCISL
- OEVSYmRU5TnuJKvciCsORmIRx2mav5ze2EBzSvvqGjUuVwaTUcJAZFmtklYltmDwU92dW7xR0f2
- YxOQ2785PllvGACqJBknyip6lqYPfWJKA8c8gb8ZI88xPceP+lJDVN/Qx2DCNEWDVGSaENzcf1w
- bQuWL2YFIMzz/5f9vKWiwfQzlj7hKFVWsNGGOQl8pLSTt+jKBDpDJpXZqw7uhlJUeXcoStLzTi7
- qi0x5H7LcZrlohKtK4pyp0LknbngbouA8MPo+/E2aZnBhqf5S5liZgvv2Xc5b66PmpqPhd8vCSP
- EA4HqT35Isk1gFWSK2gEzT0KZtyfYshB9LNdfaYlvhXH1r8N3MDJg4aLNGzWM4NLRirexwTscHB
- WhqaYDdM7CwmOUIGi2fOlGQBfTgrTFtockKTF3huEw9bNmnGRxon1k8XQsQnxKhW+sIw+HRgM5j
- BIuXJNDOyUr46C2wKZqUBNgkMybEecAEDjVa7Njg1Nhft5OBN4v6gbLEfTNWGrKGc2pKDcC/St2 ep5cAKFKILMBRdw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11615; i=krzysztof.kozlowski@oss.qualcomm.com;
+ h=from:subject; bh=Nb5cz42qvJQ7hyn0jX756pVrOq5QEAsXNNZgRqRzhlA=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpSrSHJI5icWyjEBlsRRKm5n6Up+PncqPkZZcQN
+ vEywIlfjwaJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaUq0hwAKCRDBN2bmhouD
+ 14d7EACNe0LrNQdN1c2/JZigzlDY/MALN978W5K+DPLci2F7CQrCUKpHUp637SfA7KrXGIBfNOR
+ 6VjRKejnwZ2yE5zuHzslfPlksWzU8zSZbhvLKUeIWbi1aUnkzzo7D/hd0GUslyu7BG1/4QATOOw
+ uEqQ2PAmtCbfiEPhYJqmjPV988n5zBHvHRqrkJYAskHVv5q/FikbegahhQtW8cMBJEd4hS3g3Ej
+ PzZdCxjhoOKYoBI81s3G+hjNzQ9PI0O1ds3ioe66JNpeGRO3GzxF3hCo1JaUnYtiaNhBTB9Gq+y
+ /ZXjtPFPKceK28Gsdl+MhEtMDqH+v8oNHexiF32wkCa5Bhy8ciyE32GMI/8YWsi5RwNPzu4epiK
+ 1Ev2oAYmNn5/o8N3VQkN9bg0Tpy4/eVcNxURl6fOAvnuHHuWXUu2hoQaF7y4nLFuHtRWRu8cHmw
+ D4e/FDsASlQmZpXPeByN1kb7feN08CeZldfIiQijTDjrX+9V7lrW6S/bgkwgtexX25WmP0XIorg
+ NNuB7Y/KcF+bxV7sWEGloo2ywKNPgyOk3vC1VWCn4scDl7Phxa+CVwdBZ0pkyQvYAgb+VAy+/nV
+ FwfjWpD2C0rwfvZIqmghT3WRstUt1OT3NfoWxsq4UbGIixN56nRaZke+Nr+teWoshRtpUOV9WM3 GVc/v+FEm/F6y7Q==
 X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDEyNyBTYWx0ZWRfXxXbkkh5m3QVU
- LX0vu/y5Lesh36/p+TAtYFXHgYjZvuE1xWsdPuh5/SY5S8hgc7aqVrZnpI/qo4BJI6B9o26fcmZ
- DG0NGJCsCov7iEEab8RMnChrIqJ6OBRFF0rP/L253HEMFoyd0rCv1cVy33uHl9aeRNeZPpHAqz2
- 9+oETheX+xomvc6hxQdWwJs6UYr3r1xocGSxj/2n6+avwYDSDgylAfYc7nnKboq9PMpUs8alxTK
- OlyU0Tyqld1yHxJVHDkuef3rl4JWq7Lop2ZfM9G1PHB7DuAiE55p6xs9A7KyhaM5lR8vSe1539g
- 77fHc0MT3TvdJUeP+5UicHPT9Ii6S8flxiAVS4OKLnx9jVdraH8jlrHXhxXBZxydRpMHMT3rnuN
- xDVpKpsZSjPp/ICMgj5eMkdGfXvuDjxx98Fk310a1YX3Os8mqvPS1lC6UCsiMyiIIpyayWUyDXB
- S4dYe5kYBT+LrKJXWEA==
-X-Proofpoint-ORIG-GUID: MikOQ7h_SOAbivlmTdTY622iDREhB9hT
-X-Authority-Analysis: v=2.4 cv=LeUxKzfi c=1 sm=1 tr=0 ts=694ab480 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=qe4J/qXhiWkb1JZGYKbLYA==:17
+X-Proofpoint-ORIG-GUID: Ghr5lNBRdEqGsg6L4hIs47S4NFUlnqTI
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDEyNyBTYWx0ZWRfXzjRJly1PrShn
+ 1sGKu0jG7y19pgvpzJ9kqhbCagkOdnbT/1mbvkJNn3Su9T5mV0tjELxkZCub1TOqZZ2O7ZuEBYJ
+ McPO/bqqfSpQvKedgP04hEvXAB53PoiVyaTrSAmLHEs3vYcgPBDGvvw7B6I5OkXkzcdU7VIffex
+ 9RLmEor55zy2QHugA+amPPl8OB6ilE/XhjdC//qjbmdatHFjq6WQbypQTDMYLJLzK1Z1mJKc1M0
+ JSaEnc229Dd9LQgofRPRYZ6xK1RBY70zbxb5iWZ0/OloMHda3ma8CLWAur2ISi6Hj/uBY2y3UF+
+ V9RIEKkM2PDE9cmcRwCSXb8kCJlpFS7CYsAD6vUHA8xWP9H10LI4G8fEoS6E5+wpw4ufvtLxKik
+ MA12PuoSZjwztX87g3inSmbXnCIFXJV6bRWIefN9hx+xB7kn+z4IATeecRsmanyoNwBsCmihck0
+ /qrc9BeOv4VHk2yFwbA==
+X-Proofpoint-GUID: Ghr5lNBRdEqGsg6L4hIs47S4NFUlnqTI
+X-Authority-Analysis: v=2.4 cv=NZDrFmD4 c=1 sm=1 tr=0 ts=694ab48f cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=qe4J/qXhiWkb1JZGYKbLYA==:17
  a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=sndkAbgyudk1eiRVjvgA:9 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: MikOQ7h_SOAbivlmTdTY622iDREhB9hT
+ a=EUspDBNiAAAA:8 a=hlyClpkOwkLfOEj7GOUA:9 a=kacYvNCVWA4VmyqE58fU:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-23_03,2025-12-22_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 suspectscore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
- clxscore=1015 impostorscore=0 adultscore=0 bulkscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 clxscore=1015 impostorscore=0 malwarescore=0
+ suspectscore=0 phishscore=0 bulkscore=0 adultscore=0 lowpriorityscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512230127
 
@@ -153,51 +148,266 @@ The DTS code coding style expects exactly one space around '=' and
 before '{' characters.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- arch/arm64/boot/dts/st/stm32mp235f-dk.dts  | 2 +-
- arch/arm64/boot/dts/st/stm32mp257f-dk.dts  | 2 +-
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp235f-dk.dts b/arch/arm64/boot/dts/st/stm32mp235f-dk.dts
-index c3e688068223..9a2b2f50df76 100644
---- a/arch/arm64/boot/dts/st/stm32mp235f-dk.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp235f-dk.dts
-@@ -93,7 +93,7 @@ mdio {
- 		phy1_eth1: ethernet-phy@1 {
- 			compatible = "ethernet-phy-id001c.c916";
- 			reg = <1>;
--			reset-gpios =  <&gpioa 2 GPIO_ACTIVE_LOW>;
-+			reset-gpios = <&gpioa 2 GPIO_ACTIVE_LOW>;
- 			reset-assert-us = <10000>;
- 			reset-deassert-us = <80000>;
- 		};
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-index e718d888ce21..4a489a8d9aca 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-@@ -93,7 +93,7 @@ mdio {
- 		phy1_eth1: ethernet-phy@1 {
- 			compatible = "ethernet-phy-id001c.c916";
- 			reg = <1>;
--			reset-gpios =  <&gpioa 2 GPIO_ACTIVE_LOW>;
-+			reset-gpios = <&gpioa 2 GPIO_ACTIVE_LOW>;
- 			reset-assert-us = <10000>;
- 			reset-deassert-us = <80000>;
- 		};
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index bb6d6393d2e4..0c5fc7a7be8d 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -186,7 +186,7 @@ mdio {
- 		phy1_eth1: ethernet-phy@4 {
- 			compatible = "ethernet-phy-id001c.c916";
- 			reg = <4>;
--			reset-gpios =  <&gpioj 9 GPIO_ACTIVE_LOW>;
-+			reset-gpios = <&gpioj 9 GPIO_ACTIVE_LOW>;
- 			reset-assert-us = <10000>;
- 			reset-deassert-us = <80000>;
- 		};
+---
+
+Patches done with sed, verified with comparing unflattened DTB and
+dtx_diff.
+---
+ arch/arm64/boot/dts/qcom/kaanapali.dtsi | 226 ++++++++++++------------
+ arch/arm64/boot/dts/qcom/lemans.dtsi    |   2 +-
+ 2 files changed, 114 insertions(+), 114 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/kaanapali.dtsi b/arch/arm64/boot/dts/qcom/kaanapali.dtsi
+index 51f8b3e0749c..9ef57ad0ca71 100644
+--- a/arch/arm64/boot/dts/qcom/kaanapali.dtsi
++++ b/arch/arm64/boot/dts/qcom/kaanapali.dtsi
+@@ -1100,119 +1100,119 @@ apps_smmu: iommu@15000000 {
+ 			compatible = "qcom,kaanapali-smmu-500", "qcom,smmu-500", "arm,mmu-500";
+ 			reg = <0x0 0x15000000 0x0 0x100000>;
+ 
+-			interrupts =<GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 315 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 319 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 321 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 322 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 323 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 327 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 328 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 332 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 333 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 336 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 337 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 339 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 344 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 405 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 412 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 707 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 690 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 691 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 692 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 693 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 694 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 695 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 696 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 697 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 488 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 489 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 490 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 491 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 492 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 493 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 494 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 497 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 498 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 499 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 500 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 501 IRQ_TYPE_LEVEL_HIGH>,
+-				    <GIC_SPI 502 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 315 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 319 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 321 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 322 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 323 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 327 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 328 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 332 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 333 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 336 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 337 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 339 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 344 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 405 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 412 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 707 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 690 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 691 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 692 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 693 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 694 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 695 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 696 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 697 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 488 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 489 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 490 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 491 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 492 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 493 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 494 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 497 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 498 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 499 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 500 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 501 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 502 IRQ_TYPE_LEVEL_HIGH>;
+ 
+ 			#iommu-cells = <2>;
+ 			#global-interrupts = <1>;
+diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+index 0b154d57ba24..132fe92f179e 100644
+--- a/arch/arm64/boot/dts/qcom/lemans.dtsi
++++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+@@ -4928,7 +4928,7 @@ mdss0_dsi0_in: endpoint {
+ 					port@1 {
+ 						reg = <1>;
+ 
+-						mdss0_dsi0_out: endpoint{ };
++						mdss0_dsi0_out: endpoint { };
+ 					};
+ 				};
+ 
 -- 
 2.51.0
 
