@@ -1,165 +1,196 @@
-Return-Path: <devicetree+bounces-249280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF293CDA72D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 21:16:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADF26CDA764
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 21:19:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D14F6300DBB3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 20:15:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 75E2B301635C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 20:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D03FE34C838;
-	Tue, 23 Dec 2025 20:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 239FE34CFC7;
+	Tue, 23 Dec 2025 20:19:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="T0uHMmgc";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bxVt/O/f"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="sp/p1grd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com [209.85.210.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D3EF13777E
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 20:15:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C7732D443
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 20:19:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766520957; cv=none; b=oj1X/GW6WrxmX+K/1GPiAGLXbYEyyH3g1tR62r9WNHMNX1qGvDECQjB2dcc7heHG2Xa55HjqWBETKaEoi7PZNRBjE6xE1DZwdRVUfhx6Lpb2NW6popviRvUN3crJYt8XaZxW+NY0KFAY7AgjKCfEEO0HpYhraR9BgSSouwP0eug=
+	t=1766521182; cv=none; b=lRZ8nGKfCcHIWmsvN6GrE9Omw9nOgnjf4DH603wiMXz2EdqNV5pxZKFaZamaSROYY0isFTr0FQZcWtJ8NgZCvDjV95ZoXTLTWOW5bTSjLFgBh0EV8HuKdUV/szNZdo3xnwP/7iXk6+FO6C6MNT7r0O9mI9mgc0zMoFR/CfX8wKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766520957; c=relaxed/simple;
-	bh=HKaXAFN280w772dBVbyjDj9/rLyHfV369fLHNnVHey0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=psUavqEBFFjLswN4OK/qzU5iEqMuMnFvQk7Y7tN9eYcVqfWjxgD+LmzbvktaDg6yfM/lJZ8lri5pfx/KhvkxHeQYEmno5SaAGhS0p0ZCEAWUVa/Ew9pIKnL7cO7sIqZJlljIOFvMzmL3ixefNyIOJzN1C0ACqTxTKySZ3GK3nkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=T0uHMmgc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bxVt/O/f; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BNJCsGR1056223
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 20:15:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=B26Q6QBnxEEdyF1X89NLCgmm
-	ZgY6Dji0pKhEee0lVvg=; b=T0uHMmgcDN5pm3nMpD3kiJUBg2QuNEP/j5RvkeKU
-	qg7sB2j3ja8czEpmTgY8iI6ZWlgw3oNyEnDxal3YVWP12llGSNfYDbUdKQ8hwX1f
-	h/N1w7AziRNVag2NDGUx7dCavVS1Q1ozOPIzB3V2wOlz4Hkq7xWyXuWz+fjw8eCr
-	b5wRHspqxhVcMlL478GYkz/tUt05VNd+C/tyWZshIvAXFXiwu9x3j63hsGo7MJwP
-	AvIz2y41wrCC9A+VlhkexkBR4YR/Tom+sdPrqK7hXgEMjsoUQ8B1LllUpfOjHpR3
-	YQS7zvwYBV9MsaeV71zt18aQW7FGBIk53r3U/AwBnkxNXA==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b811v076c-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 20:15:54 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ed79dd4a47so113612441cf.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 12:15:54 -0800 (PST)
+	s=arc-20240116; t=1766521182; c=relaxed/simple;
+	bh=dIzeT2bAtbNpWCzGPjuV3B4HClIyvUup/5uZSPzsL1M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NhFAqnV5v6soTNpkapUozP6kY0Nzj50jqFVX5TkTXzS8sJXHW7QyExlMVkVx4YrWJK+nWH79tm3mwQR4jHnIzLxSTVkuTc4FT/DXD9iT0jLhZ5CzEIzPMnW+F9H+zAm+AwAGHJ+efSqxygYsehqoxx9SHa85MZQIsuj3Y8BLCbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=sp/p1grd; arc=none smtp.client-ip=209.85.210.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
+Received: by mail-pf1-f195.google.com with SMTP id d2e1a72fcca58-7fc0c1d45a4so4885365b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 12:19:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766520953; x=1767125753; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=B26Q6QBnxEEdyF1X89NLCgmmZgY6Dji0pKhEee0lVvg=;
-        b=bxVt/O/fFkr8Z8ShGxHsux4hsPNbnkE8i2n6X7VUIsK8053zzU6LiA/UMP2+Aoei+B
-         bBS0QdnmwY1jnuVScLugAn25kyX+p75HkjaKAAZ6Fkq9kuZJRW5dKPFNC7x0eeENYfri
-         Rgu6DCzB1++Oa0pzoxvRMryhn7PmOaybf6o7hmuBr2PyyZlcmSVHloJplUEVe1l466z/
-         /g/dm1yi2bWw3CsZPGsCh1rTo1ii4tSefC/X9X1dpP6UmndHJnjKLOa7NdzTSuk0QlyH
-         2jCiKIUHAipxbqIdTIrb5zzSY+ZlaxZ72BsgmS9jXcccbTGR118Dri2VN31AbI7E708F
-         lwVg==
+        d=sartura.hr; s=sartura; t=1766521179; x=1767125979; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=g1vfXs4RxjLrMI0+CYv1SSuI1FXB9RtpNik5CYzHMIg=;
+        b=sp/p1grd5lkwv7sdu7MGJVw2B0P0H5QVE8/lQhc+Z2UZNVOBBoNa5ucm40go5i/fj9
+         3bRj50JzDaFFJsr8MI2FZzYTHMYcmCqt9nTPUe/PVXN/Ps5bwDnjgwZbERarBuwr46lB
+         OuKPXCXNsGCklL60xZHfTLjhhnEY5kVGOl2EbzI7+pE0JMk7XTcTMKO3iF8NqtWdSiPq
+         CtXHKt9XfTwL4LnbC9WBGzL1k8xf/LnpbWEJ8S0okPTAwOoUaB65017hanldfEULAnHn
+         jvXLRNVzVHerjoc6u2P31IfxpTha4cFgFpF8CMffs77aGOMk+4Me/DGg/qiGyEx6ff9o
+         EWtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766520953; x=1767125753;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B26Q6QBnxEEdyF1X89NLCgmmZgY6Dji0pKhEee0lVvg=;
-        b=cq7+E5SeJjpPt1YNBa4dYly4gEgyhTwj4dD8s9FeRjTEB+m2QNwl18QlaSCksTS7R5
-         jaSQlmSUCR1lpKmyLHWuyKuoHMUMK3+6HFvBPeWAVuxyKXjkOmIJ5yY7xODG16nUot86
-         VDuUuKGyDe3MNcTAAaaJjJ7T9ZIIvVHvKZUe7LOqLMFWntiLKbO0++09WuvYHuzZ1kJ8
-         bukl8dEyntqSUyv2vhpDtjYP/OwYqxq07LzuzYgkysRAzannDEbeVp89eOhUOXskcwWq
-         Tn+XYEk6eWB5UyLoqjcFqXSViam8L9e1nj66T9Vj8RM8eDhaQLOKftZxTBHsR9eFVdYe
-         ns6w==
-X-Forwarded-Encrypted: i=1; AJvYcCVE2FwwnUJmXZTSuXpeudcfy8ZraoiFLl+kNHle1nt9aumITzMnPxd0+za/ke2h06WuPobi48My5HN2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2tgUilR1Xfc9PWC9Cv7T3aiZ9hWfFogwFHY4WNMHv3D9ys/3A
-	swBvf1XjatcQJN8r1G4h3uOKZsgJ9QFaUymNQi997t2aeQdfCp8iLOMHk45I8jZtDbnLlyto4lZ
-	lXtDHaVaQLqDG/hWXHX0K9NvEUix5VoiRZ6AdflimpOVy9V7G6LkhJHhjEtakeNJx
-X-Gm-Gg: AY/fxX4fbxzFnIhIoEMpRbuPQX2q9gq7THKeBHcK2ErzHY4itNKyVcv48z8M7shvWIa
-	fmykbj9ros1HtO+cWOLDXRZ2/n7HZKO8e5t6A9dRMzbIgxOFkG8m/lVPEV2VgMCgHEbldmrf2q3
-	pwlVDEwZv+P07ftTK0KaqYjUmbsnTjzRgN3D2Hq+WsqwAi4RUOhJfCATkfmTnTrNQBEN102b4Al
-	C3HRrG80bZEyTtwTmZLJ/qnmvWN4ksk3KmUG1IdbyIlX/bLnYNQq3flaWJ/2/Y7T7XQXYV3ERao
-	Ztdw8BJ0EEiNi7LH58WAXQra8lWdtGc33wtaKa4rLw3m4KWn8OqjXB03BUHSWJu6As19z1DizPb
-	dbB+TeTSz/ioiuCB36zSTNogS+7oSjcrjxSM3Nqf6O5e1C5QJhf+csyGEsuSq+jJH/lwYyd4zz+
-	oRvvgjQ/BUHEdOHTG/qL2L+c8=
-X-Received: by 2002:a05:622a:610:b0:4ee:225d:ebc9 with SMTP id d75a77b69052e-4f4abcd29bbmr252266181cf.12.1766520953401;
-        Tue, 23 Dec 2025 12:15:53 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFESlK8cUqg2pI93rCBRIT7LmshsGgU8RgzlyuuevZA6TzkJN6XZ4woOf0VjLdPqu2JiIaYmg==
-X-Received: by 2002:a05:622a:610:b0:4ee:225d:ebc9 with SMTP id d75a77b69052e-4f4abcd29bbmr252265601cf.12.1766520952829;
-        Tue, 23 Dec 2025 12:15:52 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a18618d85sm4243398e87.48.2025.12.23.12.15.50
+        d=1e100.net; s=20230601; t=1766521179; x=1767125979;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g1vfXs4RxjLrMI0+CYv1SSuI1FXB9RtpNik5CYzHMIg=;
+        b=EFa61BWUgiEQAKmYqOalqvbhp9aLPw26dQLsL7IERHrirxGEddD/JCN+oaTA5W67QY
+         K016WtXJ3+f+8S2p6/mxJnvvPyqRQ60VayoqQlPG1oJLn+qflCG1p2PwwT1BvpbbQuin
+         MwHNz3KvZBa8D01zYxqb0T8KPxb5ld8tt6LM26pQVfPpRzQdSqkPB6IyTEZkKKsfABFW
+         V3nvBVeZQo4xwLKaMhXbKVaQMZ6umqXnUJc6LGPN+mf15v/CVcRtbm27GgQjnqzMLYhI
+         xK8ObMsef7JjimTaoERtyZyeQQ6YulECyAZytYCpvq8J8JQSvq6yg3422+XiWk3LQMlk
+         8NGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW+aApV7GwJBB17ZpkxzRrrrxIxTPwL/T7YE9NSDFSWfCY09PO3g2C5R2BZQ3w+dMvhvrr4lC1J2Iog@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLgnNFDWLZXYlR12PubsvMUBiMvPnTVSs5rKYcjPjrS8KhIs0z
+	0iuOCuf6rjhgsloaiDwMKSs0r1ZdrINEjZ/fedDzMrMdqtQYw8PinJk4Jq/9c5Ai1IE=
+X-Gm-Gg: AY/fxX64IOPAivnE+g1TmT4JptK2MngH93Sa39w7hXFrlw/lgAqpukJ2QsbDePLzeuk
+	ir01bTMFydyeANt6cSACk0ANqI9GeVK/NPdd5I2rVpZAQ8Wlybkn1mDRd3FSzvXBaTGlO14ajsS
+	NpCaYhmo80/l45uYcDUD2e5pzQWCiXfGnSjm+oet4+CB2JQ7k8YBvFYa8XmR9a+ASTJSq6thRWA
+	AjOEFptvtL0M4gpYDjaPDntTUYy+y6K44HRMMrfxKOhBjvQbdyQUAgueWNQiHYzl86yH3/84xzv
+	JlfyodrTeDMMRGxLbiPdstrzu13vFaqthDq47qHfIxJo02eI1GPVHj2BoCKbq+mDjv4/qMQYnxX
+	zspZEVQpu3YyuE26e1hvid5KlWwUwPGW7L6dYQH1VBFEiFwZmlt3mn4Xq9cdjDP3/7g1iiZCZYO
+	u1lcFobBdQUXDbqVaLUYXDfqfpTfiiCQzR6CTj2p6jJV1G7cBzaLGw94uCxsBEIFNm1pk+s0X5u
+	DYIw3zE
+X-Google-Smtp-Source: AGHT+IElu2DeQr7IoImhfsWaHg06ftf4nZ3LUQN+WUZ/izPfinsCvzTpfHsJa/ze8aScZK07T0eUkA==
+X-Received: by 2002:a05:6a20:918d:b0:35d:d477:a801 with SMTP id adf61e73a8af0-376a7eed254mr14238755637.13.1766521179192;
+        Tue, 23 Dec 2025 12:19:39 -0800 (PST)
+Received: from fedora (dh207-15-53.xnet.hr. [88.207.15.53])
+        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-c1e7cbfa619sm12567549a12.36.2025.12.23.12.19.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Dec 2025 12:15:52 -0800 (PST)
-Date: Tue, 23 Dec 2025 22:15:49 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, aiqun.yu@oss.qualcomm.com,
-        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
-        yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] remoteproc: qcom_q6v5_pas: Add SoCCP node on
- Kaanapali
-Message-ID: <voeleeu4tb7pnef4tag2e32n6vgwecglo2xobfn2qogkpv4tf2@ycn7ucnsqu23>
-References: <20251223-knp-remoteproc-v3-0-5b09885c55a5@oss.qualcomm.com>
- <20251223-knp-remoteproc-v3-5-5b09885c55a5@oss.qualcomm.com>
+        Tue, 23 Dec 2025 12:19:38 -0800 (PST)
+From: Robert Marko <robert.marko@sartura.hr>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev,
+	herbert@gondor.apana.org.au,
+	davem@davemloft.net,
+	vkoul@kernel.org,
+	andi.shyti@kernel.org,
+	lee@kernel.org,
+	andrew+netdev@lunn.ch,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	linusw@kernel.org,
+	Steen.Hegelund@microchip.com,
+	daniel.machon@microchip.com,
+	UNGLinuxDriver@microchip.com,
+	olivia@selenic.com,
+	radu_nicolae.pirea@upb.ro,
+	richard.genoud@bootlin.com,
+	gregkh@linuxfoundation.org,
+	jirislaby@kernel.org,
+	broonie@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	lars.povlsen@microchip.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	netdev@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Cc: luka.perkov@sartura.hr,
+	Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH v3 00/15] Add support for Microchip LAN969x
+Date: Tue, 23 Dec 2025 21:16:11 +0100
+Message-ID: <20251223201921.1332786-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251223-knp-remoteproc-v3-5-5b09885c55a5@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDE2OSBTYWx0ZWRfX6u+ij+XfAFnq
- bXPS6mIWvJ+y97HAI9fpjhI4bB1l3E7hThf1Whh2QRVYDnwuFwi6lwf448LQNJXeMp/BLGciHW1
- iWPk52i1zH+ymGoxUyeNUNKx/DKBk2IsajRFtKKqiVcPJ5f3pAAjUD3hLUG+ebvMfDMK+zR6Un6
- 4eFt3GjWn0Wh2PHo0Pt2/Tl5XiEO0xGR7RqijMmzcZaEkZN6RcX0RA3DaW7X9lCNju4feTK9nC2
- Ak15yC1gv0140ePpn8AsdfKATvs/3TLAvb8YGhQz+ApsG+e2irYc4i9xk9MdDImHwV94hwYHkMq
- 4BnfSigZl8rDDgnoHGIDTurNfE5+KowUAAuZyEzvnFKlchXoOXYXlw7o5YNFo2t+PX/+yeJoRnl
- Yw4Y4xuLLWTs/TpC58WTkUDQzseslFvUxmIYIj26NUglWTDgxubFIYssQn63Reu+oPfC1EOsc6x
- 80jDUPFunsQjr64b22w==
-X-Proofpoint-ORIG-GUID: xaorXg9er2PIKcya0u8dkOPLR428XDCx
-X-Authority-Analysis: v=2.4 cv=WegBqkhX c=1 sm=1 tr=0 ts=694af87a cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=6tj9FcT98Ui8goLqYs8A:9 a=CjuIK1q_8ugA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-GUID: xaorXg9er2PIKcya0u8dkOPLR428XDCx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-23_04,2025-12-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 impostorscore=0 bulkscore=0 adultscore=0 spamscore=0
- phishscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2512230169
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 23, 2025 at 01:13:51AM -0800, Jingyi Wang wrote:
-> The SoC Control Processor (SoCCP) is small RISC-V MCU that controls
-> USB Type-C, battery charging and various other functions on Qualcomm SoCs.
-> It provides a solution for control-plane processing, reducing per-subsystem
-> microcontroller reinvention. Add support for SoCCP PAS loader on Kaanapali
-> platform.
-> 
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
->  drivers/remoteproc/qcom_q6v5_pas.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
+This series adds support for the Microchip LAN969x switch SoC family.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Series is a bit long since after discussions in previous versions, it was
+recommended[1][2] to add SoC specific compatibles for device nodes so it
+includes the required bindings updates.
 
+[1] https://lore.kernel.org/all/20251203-splendor-cubbyhole-eda2d6982b46@spud/
+[2] https://lore.kernel.org/all/173412c8-c2fb-4c38-8de7-5b1c2eebdbf9@microchip.com/
+[3] https://lore.kernel.org/all/20251203-duly-leotard-86b83bd840c6@spud/
+
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+
+Changes in v3:
+* Pick Acked-by from Conor
+* Drop HWMON binding as it was picked into hwmon already
+* Document EV23X71A into AT91 binding
+* Drop SparX-5 and AT91 bindings merge
+* Apply remark from Conor on DMA binding regarding merging cases
+
+Changes in v2:
+* Change LAN969x wildcards to LAN9691 in patches
+* Split SoC DTSI and evaluation board patches
+* Add the suggested binding changes required for SoC specific compatibles
+* Merge SparX-5 and AT91 bindings as suggested[3]
+
+Robert Marko (15):
+  include: dt-bindings: add LAN969x clock bindings
+  dt-bindings: usb: Add Microchip LAN969x support
+  dt-bindings: mfd: atmel,sama5d2-flexcom: add microchip,lan9691-flexcom
+  dt-bindings: serial: atmel,at91-usart: add microchip,lan9691-usart
+  dt-bindings: spi: at91: add microchip,lan9691-spi
+  dt-bindings: i2c: atmel,at91sam: add microchip,lan9691-i2c
+  dt-bindings: rng: atmel,at91-trng: add microchip,lan9691-trng
+  dt-bindings: crypto: atmel,at91sam9g46-aes: add microchip,lan9691-aes
+  dt-bindings: crypto: atmel,at91sam9g46-sha: add microchip,lan9691-sha
+  dt-bindings: dma: atmel: add microchip,lan9691-dma
+  dt-bindings: net: mscc-miim: add microchip,lan9691-miim
+  dt-bindings: pinctrl: pinctrl-microchip-sgpio: add LAN969x
+  arm64: dts: microchip: add LAN969x support
+  dt-bindings: arm: AT91: document EV23X71A board
+  arm64: dts: microchip: add EV23X71A board
+
+ .../devicetree/bindings/arm/atmel-at91.yaml   |   6 +
+ .../crypto/atmel,at91sam9g46-aes.yaml         |   1 +
+ .../crypto/atmel,at91sam9g46-sha.yaml         |   1 +
+ .../bindings/dma/atmel,sama5d4-dma.yaml       |   4 +-
+ .../bindings/i2c/atmel,at91sam-i2c.yaml       |   1 +
+ .../bindings/mfd/atmel,sama5d2-flexcom.yaml   |   1 +
+ .../devicetree/bindings/net/mscc,miim.yaml    |  11 +-
+ .../pinctrl/microchip,sparx5-sgpio.yaml       |  20 +-
+ .../bindings/rng/atmel,at91-trng.yaml         |   1 +
+ .../bindings/serial/atmel,at91-usart.yaml     |   1 +
+ .../bindings/spi/atmel,at91rm9200-spi.yaml    |   1 +
+ .../bindings/usb/microchip,lan9691-dwc3.yaml  |  68 ++
+ arch/arm64/boot/dts/microchip/Makefile        |   1 +
+ arch/arm64/boot/dts/microchip/lan9691.dtsi    | 487 +++++++++++
+ .../boot/dts/microchip/lan9696-ev23x71a.dts   | 757 ++++++++++++++++++
+ include/dt-bindings/clock/microchip,lan9691.h |  24 +
+ 16 files changed, 1376 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/microchip,lan9691-dwc3.yaml
+ create mode 100644 arch/arm64/boot/dts/microchip/lan9691.dtsi
+ create mode 100644 arch/arm64/boot/dts/microchip/lan9696-ev23x71a.dts
+ create mode 100644 include/dt-bindings/clock/microchip,lan9691.h
 
 -- 
-With best wishes
-Dmitry
+2.52.0
+
 
