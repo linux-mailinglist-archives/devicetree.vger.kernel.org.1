@@ -1,81 +1,157 @@
-Return-Path: <devicetree+bounces-249125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58F99CD964A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:02:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 445F6CD96BF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:21:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 277623014A22
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:02:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 42621300DB9B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00ADA334C20;
-	Tue, 23 Dec 2025 13:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A9E337100;
+	Tue, 23 Dec 2025 13:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JOXtAxZY"
+	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b="QZrBurUv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail81.out.titan.email (mail81.out.titan.email [3.216.99.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3B9DBA34;
-	Tue, 23 Dec 2025 13:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD888332ED3
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 13:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=3.216.99.59
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766494970; cv=none; b=CoqbPWgl317cqb/4f6Jx7d/xM9ITHUJLL/k769IXIQYrGzSXIVZccUyd8UcLRo66vapfyF6uFTRicnk5+xenxftcB2SKrArNo/lYnxarAfCxGDz6hrcXyVCndYYsJvUaoxpjOXLrzDIOga/FYbXwibd8vlU4x5ith+YJC4ulX3Y=
+	t=1766496111; cv=none; b=mw9cL9X6czDnoeBFf/iryyJVarQeimiuUQx3vT/2EQwH8TO9bIfz0NagE0K0iZ8PJWwQvS+O8dHZdeRSrjXMv0FrD+F1J8crf48m2nKZQ834PIWcpfi1ozJOKbSo2m1jYY+shOtSXGyHKFSWZVa/Er/DyTkVDLA039H/yg/4sIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766494970; c=relaxed/simple;
-	bh=V0wqiOmpi4CzomRNd3MA/Fpe0+qbU6Doo0s6NTZmI/0=;
+	s=arc-20240116; t=1766496111; c=relaxed/simple;
+	bh=pecVmsoK5qEfj6C5kVS/vQWHu3GxbJmDpCtt4wlz6sw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IYBksI3nUGd8mMbsTdxiFekeEaiRcjEooC4Q9sWbR4TR/FQbHRIJxAFsbrhcxEb3XPMjMQ1FmgcErYX4H1EZKXXPUUmHpTG1USWxsJblnHyXQfhioa8iXfuXbhl/fSZfcoVWIcYMeUmVQqyitEh+mKY0zJ3AQXqgLdfV9tvp6IQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JOXtAxZY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86685C113D0;
-	Tue, 23 Dec 2025 13:02:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766494970;
-	bh=V0wqiOmpi4CzomRNd3MA/Fpe0+qbU6Doo0s6NTZmI/0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JOXtAxZYIghCWzWiYvb+yy0wes7+xe8e/roEQmPo19+qzhou46aEr64ngY4kfi7nm
-	 etI5ah2tueI5yAuYHDmqjn7QEmE8J1yC9I3eFby/IOn8fKlWl0PyFu61Vwkb2gYxb4
-	 cTfXAMI+3FNFXbVCDAyoG+vYl82rNxzlDC3ynlXjF/2nFhmjd0j6hX3pXeNy/CbDFL
-	 fuDdyLyNQuBAwTwjYv6Ju9572hY4hbBNeUnUI0/O+lnRrMFwnfBBD7ZmFTwbNZXjw4
-	 ywrV1wPjZoYQgl4tyAfdPei5JmGsnVT2M5OC3WPPpWIXdKawVvxH6cFVZCBUDkjI+A
-	 PcCJHefRxaGqA==
-Date: Tue, 23 Dec 2025 14:02:46 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
-	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: remoteproc: qcom,sm8550-pas: Add
- Kaanapali ADSP
-Message-ID: <20251223-impetuous-muskox-of-cubism-a3cfbd@quoll>
-References: <20251223-knp-remoteproc-v3-0-5b09885c55a5@oss.qualcomm.com>
- <20251223-knp-remoteproc-v3-1-5b09885c55a5@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bHg9BQetm2ll8Dgs+aO7dU7p86NUAXQJMhI3uUuUZu4pKtFBrSgn5c4z2bmFsOPS9vM7iJ7XRtkD0rSB32n455AZjMRGGl7OtAmkh2CJEj2wGQQHiDj3FazQlEj2vohG7fVKN87BYiYQoquxj9WOxux9JvIwhlgHMtL/X3BQwPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b=QZrBurUv; arc=none smtp.client-ip=3.216.99.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
+Received: from localhost (localhost [127.0.0.1])
+	by smtp-out.flockmail.com (Postfix) with ESMTP id 4dbFZB5nPbz7t8t;
+	Tue, 23 Dec 2025 13:03:46 +0000 (UTC)
+DKIM-Signature: a=rsa-sha256; bh=I76jbNhd2RnmoQzo2cA05wxM926Wl/tgrqz3TL3NnOw=;
+	c=relaxed/relaxed; d=ziyao.cc;
+	h=from:to:subject:mime-version:date:cc:message-id:in-reply-to:references:from:to:cc:subject:date:message-id:in-reply-to:references:reply-to;
+	q=dns/txt; s=titan1; t=1766495026; v=1;
+	b=QZrBurUv3CXhzp3FFy9bI/Z7CVNdjHHS7lMRj4rol2r25ZAfM59ObLsQtz3lhLeahovWgQ12
+	uZC9VD6ALu2KtOhgTkuyKF5u1ftWhweOnCSrfb3LRXpmK8JCTWoz7d4haLsjUQZgeAqKQiclXxx
+	3Uw1XngdPpvWZqdjusB3LSTQ=
+Received: from pie (unknown [117.171.66.90])
+	by smtp-out.flockmail.com (Postfix) with ESMTPA id 4dbFZ26L07z7t88;
+	Tue, 23 Dec 2025 13:03:38 +0000 (UTC)
+Date: Tue, 23 Dec 2025 13:03:27 +0000
+Feedback-ID: :me@ziyao.cc:ziyao.cc:flockmailId
+From: Yao Zi <me@ziyao.cc>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Linus Walleij <linusw@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 2/2] pinctrl: spacemit: support I/O power domain
+ configuration
+Message-ID: <aUqTH_fis1-g42SU@pie>
+References: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-0-5f1090a487c7@linux.spacemit.com>
+ <20251223-kx-pinctrl-aib-io-pwr-domain-v1-2-5f1090a487c7@linux.spacemit.com>
+ <aUpirQFWf3w-5PQ2@inochi.infowork>
+ <B479B24A35F8D731+aUpl0JdKOziIH14S@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251223-knp-remoteproc-v3-1-5b09885c55a5@oss.qualcomm.com>
+In-Reply-To: <B479B24A35F8D731+aUpl0JdKOziIH14S@kernel.org>
+X-F-Verdict: SPFVALID
+X-Titan-Src-Out: 1766495026646385511.30087.5691599438730667089@prod-use1-smtp-out1002.
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.4 cv=a8/K9VSF c=1 sm=1 tr=0 ts=694a9332
+	a=rBp+3XZz9uO5KTvnfbZ58A==:117 a=rBp+3XZz9uO5KTvnfbZ58A==:17
+	a=kj9zAlcOel0A:10 a=MKtGQD3n3ToA:10 a=CEWIc4RMnpUA:10 a=lv0vYI88AAAA:8
+	a=q2HxCz5xri-O7L11LKAA:9 a=CjuIK1q_8ugA:10 a=E7e_GlrEz2WywKPBwZdi:22
+	a=9qqun4PRrEabIEPCFt1_:22 a=3z85VNIBY5UIEeAh_hcH:22
+	a=NWVoK91CQySWRX1oVYDe:22
 
-On Tue, Dec 23, 2025 at 01:13:47AM -0800, Jingyi Wang wrote:
-> Document compatible for Qualcomm Kaanapali SoC ADSP PAS which looks fully
-> compatible with SM8750, which can fallback to SM8550 except for one more
-> interrupt ("shutdown-ack").
+On Tue, Dec 23, 2025 at 05:50:08PM +0800, Troy Mitchell wrote:
+> On Tue, Dec 23, 2025 at 05:42:26PM +0800, Inochi Amaoto wrote:
+> > On Tue, Dec 23, 2025 at 05:11:12PM +0800, Troy Mitchell wrote:
+> > > IO domain power control registers are used to configure the operating
+> > > voltage of dual-voltage GPIO banks. By default, these registers are
+> > > configured for 3.3V operation. As a result, even when a GPIO bank is
+> > > externally supplied with 1.8V, the internal logic continues to
+> > > operate in the 3.3V domain, which may lead to functional failures.
+> > > 
+> > > This patch adds support for programming the IO domain power control
+> > > registers, allowing dual-voltage GPIO banks to be explicitly configured
+> > > for 1.8V operation when required.
+> > > 
+> > > Care must be taken when configuring these registers. If a GPIO bank is
+> > > externally supplied with 3.3V while the corresponding IO power domain
+> > > is configured for 1.8V, external current injection (back-powering)
+> > > may occur, potentially causing damage to the GPIO pin.
+> > > 
+> > > Due to these hardware constraints and safety considerations, the IO
+> > > domain power control registers are implemented as secure registers.
+> > > Access to these registers requires unlocking via the AIB Secure Access
+> > > Register (ASAR) in the APBC block before a single read or write
+> > > operation can be performed.
+> > > 
+> > > Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> > > ---
+> > >  arch/riscv/boot/dts/spacemit/k1.dtsi  |   4 +-
+> > >  drivers/pinctrl/spacemit/pinctrl-k1.c | 131 +++++++++++++++++++++++++++++++++-
+> > >  2 files changed, 131 insertions(+), 4 deletions(-)
+> > > 
+> > 
+> > > diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> > > index 7818ca4979b6a7755722919a5958512aa11950ab..23ecb19624f227f3c39de35bf3078379f7a2490e 100644
+> > > --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> > > +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> > > @@ -565,10 +565,12 @@ i2c8: i2c@d401d800 {
+> > >  
+> > >  		pinctrl: pinctrl@d401e000 {
+> > >  			compatible = "spacemit,k1-pinctrl";
+> > > -			reg = <0x0 0xd401e000 0x0 0x400>;
+> > > +			reg = <0x0 0xd401e000 0x0 0x400>,
+> > > +			      <0x0 0xd401e800 0x0 0x34>;
+> > >  			clocks = <&syscon_apbc CLK_AIB>,
+> > >  				 <&syscon_apbc CLK_AIB_BUS>;
+> > >  			clock-names = "func", "bus";
+> > > +			spacemit,apbc = <&syscon_apbc 0x50>;
+> > >  		};
+> > 
+> > If you insist on a new reg field, you should change the binding as well.
+> Yes, I forgot to modify the binding.
+
+This will also break ABI compatibility with older devicetrees, I
+strongly suggest against a new item in reg property.
+
+Furthermore, it's unreasonable to describe d401_e000 - d401_e400 and
+d401_e800 - d401_e834 as separate memory regions. TRM claims the region
+starting from 0xd401_e000 with length 0xc00 is "Pad Configuration". So I
+think this separation neither simplifies anything nor matches the
+hardware.
+
+> > This change breaks binding, can we use something like <0x0 0xd401e000 0x0 0x1000>?
+
+If the TRM is correct, we probably can and should.
+
+> I'll double check this. Thanks!
 > 
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>                             - Troy
+> > 
+> > Regards,
+> > Inochi
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-Best regards,
-Krzysztof
-
+Regards,
+Yao Zi
 
