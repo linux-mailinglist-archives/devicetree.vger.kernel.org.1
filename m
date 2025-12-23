@@ -1,150 +1,138 @@
-Return-Path: <devicetree+bounces-249087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50611CD92AE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:05:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FABFCD93D2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:27:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 88521301B487
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 12:05:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 12A7A3036C95
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 12:26:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 565342F83A2;
-	Tue, 23 Dec 2025 12:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21CBA335545;
+	Tue, 23 Dec 2025 12:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jEOrOCkF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s/YxtDV6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06DCD32693A;
-	Tue, 23 Dec 2025 12:04:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E64F1310655;
+	Tue, 23 Dec 2025 12:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766491499; cv=none; b=FKiHDpcR8K639QlW+QFL/sJ3s6fldbDDnzMlPdSjW7hauzClPllW7aIQaJ3MMzs0ykxqqdkvTOiE5GyrKStkd9lxdwX8KMFmHYBxiM7/8uLavwKoTKwFcpUTkAC0oqhFmu5aE7lsasg4ltLvnsySgIyjPDQovC7Ceg9wN81YOF4=
+	t=1766492472; cv=none; b=P372NSvVnLcER6tSWVOVQsGAitn3tg+1TN6zt2IiOQ1Lqzg7iJgmW+2pn6UyIicptxNFAlq7I8+MQ0bAlTnvB95rHXW60FpL0bcTupX/qhwvDPqU6mQ4Lg+SySBecBztAv78b9oxeqU3oboB5LTg6Lz/wiU/svG238NG9IOd+LU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766491499; c=relaxed/simple;
-	bh=YBuvzt/NhTYWhzP+XmcIESOEGPy6LMoYjTaUBOofg0o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=igElAJ5SatmcooHM4Z4KrGRHMBWRGqIVP/cB1d4FJ84HGHVAPjBzUlM5pZ+TeC+6PHx8GzfAubMCBtvEX1neHu4Wc6rtv5pzTMKBf6MMMeQSUQfRph233TNdJy9OO6ChPJkFgU+fc3RGCztwaMWjx5zB8k1ktfRT/MSKZHvvZ64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jEOrOCkF; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1766491495;
-	bh=YBuvzt/NhTYWhzP+XmcIESOEGPy6LMoYjTaUBOofg0o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jEOrOCkFycldj1VQlKzLPZ2QbJwhvQDjQ9yat1fYpn21EmGho3vxEKzrBIKqTYatI
-	 wqSjnv9K40+cNzQB2bqONNJEB6cXB3g1My5TnMbmFuLkROFSqxxBBrj+gu2GFpbOEd
-	 9b2U3/U8XN1BWup+cbV00mXqXJ+BuSgZQLsiO4nRgjgtErolMNBK0Dyxbunhor64GA
-	 aXFyXyDhtJjKVOofDnRzC32Xfl9P8s3gEeUJ/5Hr2UtVtwcgef74+C7j2/SYcLJlRU
-	 +/un8LadHThntKUc7/SgNGBZKMt7ceYLm4eWpDWFg759Rtk9W0IaDBOZ+/KQZ/D73o
-	 6d6/oofkxuPkQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D93B617E0125;
-	Tue, 23 Dec 2025 13:04:53 +0100 (CET)
-Message-ID: <ddff4617-884d-4ac2-bc24-28f669104b2e@collabora.com>
-Date: Tue, 23 Dec 2025 13:04:53 +0100
+	s=arc-20240116; t=1766492472; c=relaxed/simple;
+	bh=jhAnj+Jtme12Nuo50V+EmKFGUW7KvEnmq6OcpQAxmfo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pW7wuNBIVNplCvV8XBBBpzPrv8EyGnwcRY8lVMxIr/D6Osv+v+E4LvNGPmvoN3O6q8dj7jxvK3K9jhQoN7kLaecASvbjZOK4Qz0i6Kx4cu+vaYtA9TcgdYfVDv71gssocaIs26nLe0TduJDbmg4dEqLqCnz9pp7AxCofofOc+s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s/YxtDV6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7C41CC116C6;
+	Tue, 23 Dec 2025 12:21:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766492471;
+	bh=jhAnj+Jtme12Nuo50V+EmKFGUW7KvEnmq6OcpQAxmfo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=s/YxtDV6hlZCPbFetCtck8fvPhc+N2vx7pdgCv7duZkOB5vmqXn9KPD5LVC1ToKGs
+	 CdVUndd82gCUotZ9fDPeBMG8kLkah3OT3iVcJ5eKdjIxU7m+OlAmt+qYoQi7zPfdsF
+	 m8iUusFAX+ZonNyGpkpMUa8u9dnrI6wjkvFS+5e+Dji+0s9W2fXoOralefzw/yrFWu
+	 Cz6Ix4SxvGXUec41NP8MfEB9k4H/dak2AHQzPYcyeaVahD/3teQub+Gtuws4T/G4OI
+	 dO7YCUYAWaDOnEBd21A+zPqJpTAKYL3q1ckESeob3j8M9E9t3qvS7K0F7N2ZhjDd5e
+	 xm4UWfKk+HS5g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69069E6B279;
+	Tue, 23 Dec 2025 12:21:11 +0000 (UTC)
+From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v5 0/3] hwmon: Add support for the LTC4283 Hot Swap
+ Controller
+Date: Tue, 23 Dec 2025 12:21:41 +0000
+Message-Id: <20251223-ltc4283-support-v5-0-1152bff59a61@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/25] MediaTek UFS Cleanup and MT8196 Enablement
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Chaotian Jing <Chaotian.Jing@mediatek.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- kernel@collabora.com, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-phy@lists.infradead.org
-References: <20251218-mt8196-ufs-v4-0-ddec7a369dd2@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251218-mt8196-ufs-v4-0-ddec7a369dd2@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFaJSmkC/23OwY7CIBCA4VcxnMUwAy2wp30Ps4dCByXR0kBtd
+ mP67osmakw9/pPMN3NlhXKkwr42V5ZpjiWmoUaz3TB/7IYD8djXZiiwEQaQnyav0EheLuOY8sR
+ Re+MVtda3jtWtMVOIv3dx/1P7GMuU8t/9wAy36cNSK2sGLrgxDj0FrWXA727oTumw8+nMbtiML
+ 8AKuQawAq3zJCw0IFxYAfIJAIgPH8gKKEedsm3QFvoVoF4AfgJUBXonwOrQa2vUG7Asyz/syFO
+ GcgEAAA==
+X-Change-ID: 20250812-ltc4283-support-27c8c4e69c6b
+To: linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
+ Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, "Rob Herring (Arm)" <robh@kernel.org>, 
+ Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766492512; l=2262;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=jhAnj+Jtme12Nuo50V+EmKFGUW7KvEnmq6OcpQAxmfo=;
+ b=zPZqYrKNriSltqV6XCFcc4IVOsfWr3FRco8uAuGRhzOTcsL2dHP7em+w2vcxSObft6G786oVJ
+ 25q+BgYyhV4ADNU5WL+NyG2r3rGS33ctPB5Jjt7zvSgCNrwjh/v9SIa
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
+ auth_id=100
+X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+Reply-To: nuno.sa@analog.com
 
-Il 18/12/25 13:54, Nicolas Frattaroli ha scritto:
-> In this series, the existing MediaTek UFS binding is expanded and
-> completed to correctly describe not just the existing compatibles, but
-> also to introduce a new compatible in the from of the MT8196 SoC.
-> 
-> The resets, which until now were completely absent from both the UFS
-> host controller binding and the UFS PHY binding, are introduced to both.
-> This also means the driver's undocumented and, in mainline, unused reset
-> logic is reworked. In particular, the PHY reset is no longer a reset of
-> the host controller node, but of the PHY node.
-> 
-> This means the host controller can reset the PHY through the common PHY
-> framework.
-> 
-> The resets remain optional.
-> 
-> Additionally, a massive number of driver cleanups are introduced. These
-> were prompted by me inspecting the driver more closely as I was
-> adjusting it to correspond to the binding.
-> 
-> The driver still implements vendor properties that are undocumented in
-> the binding. I did not touch most of those, as I neither want to
-> convince the bindings maintainers that they are needed without knowing
-> precisely what they're for, nor do I want to argue with the driver
-> authors when removing them.
-> 
-> Due to the "Marie Kondo with a chainsaw" nature of the driver cleanup
-> patches, I humbly request that reviewers do not comment on displeasing
-> code they see in the context portion of a patch before they've read the
-> whole patch series, as that displeasing code may in fact be reworked in
-> a subsequent patch of this series. Please keep comments focused on the
-> changed lines of the diff; I know there's more that can be done, but it
-> doesn't necessarily need to be part of this series.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
-> Changes in v4:
-> - bindings: Redo the supply situation, as the avdd pins don't describe
->    the vcc(q2) card supplies.
-> - bindings: format clock in mt8196 example more tersely.
-> - phy: use devm_reset_control_get_optional_exclusive directly
-> - driver: get and enable/disable the aforementioned avdd supplies.
-> - Link to v3: https://lore.kernel.org/r/20251023-mt8196-ufs-v3-0-0f04b4a795ff@collabora.com
-> 
-> Changes in v3:
-> - Split mediatek,ufs bindings change into two patches, one for
->    completing the existing binding, one for the MT8196
-> - Add over a dozen driver cleanup patches
-> - Add explicit support for the MT8196 compatible to the driver
-> - Note: next-20251023, on which I based this, currently has a broken
->    build due to an unrelated OPP core change that was merged with no
->    build testing. I can't use next-20251022 either, as that lacks the
->    recent mediatek UFS changes. It is what it is.
-> - Link to v2: https://lore.kernel.org/r/20251016-mt8196-ufs-v2-0-c373834c4e7a@collabora.com
-> 
-> Changes in v2:
-> - Reorder define in mtk_sip_svc.h
-> - Use bulk reset APIs in UFS host driver
-> - Link to v1: https://lore.kernel.org/r/20251014-mt8196-ufs-v1-0-195dceb83bc8@collabora.com
-> 
+This is v3 for the LTC4283 how swap controller. Main change is that I'm
+now using the auxiliary bus for adding the GPIO device (done depending
+on FW properties).
 
-Whole series is
+Similar to the LTC4282 device, we're clearing some fault logs in the
+reset_history attributes.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Guenter, in [1] you can find some replies for some questions you had in
+v2 that likely you don't remember anymore. Regarding the regmap story I
+ended up adding a secong regmap for the 16 bit wide registers which
+seems like a clean solution (if I'm not missing nothing).
+
+[1]: https://lore.kernel.org/linux-hwmon/0765a0b89779331c62a3f136ef030f7f2f40ea47.camel@gmail.com/
+[2]: https://lore.kernel.org/linux-iio/cover.1761588465.git.geert+renesas@glider.be/
+
+---
+Changes in v5:
+- Patch 2:
+  * Added a secong regmap for the 16bit wide registers;
+  * Add default value for rsense so that we can probe without FW
+    properties;
+  * Make sure to give the right file permissions to the reset_history
+    attrs.
+- Patch 3:
+  * Make sure to get the right regmap (given that the device now has 2);
+  * Add error handling for getting the regmap.
+- Link to v4: https://lore.kernel.org/r/20251204-ltc4283-support-v4-0-db0197fd7984@analog.com
+
+---
+Nuno Sá (3):
+      dt-bindings: hwmon: Document the LTC4283 Swap Controller
+      hwmon: ltc4283: Add support for the LTC4283 Swap Controller
+      gpio: gpio-ltc4283: Add support for the LTC4283 Swap Controller
+
+ .../devicetree/bindings/hwmon/adi,ltc4283.yaml     |  272 +++
+ Documentation/hwmon/index.rst                      |    1 +
+ Documentation/hwmon/ltc4283.rst                    |  266 +++
+ MAINTAINERS                                        |    9 +
+ drivers/gpio/Kconfig                               |   15 +
+ drivers/gpio/Makefile                              |    1 +
+ drivers/gpio/gpio-ltc4283.c                        |  218 +++
+ drivers/hwmon/Kconfig                              |   12 +
+ drivers/hwmon/Makefile                             |    1 +
+ drivers/hwmon/ltc4283.c                            | 1766 ++++++++++++++++++++
+ 10 files changed, 2561 insertions(+)
+---
+base-commit: bc04acf4aeca588496124a6cf54bfce3db327039
+change-id: 20250812-ltc4283-support-27c8c4e69c6b
+--
+
+Thanks!
+- Nuno Sá
 
 
 
