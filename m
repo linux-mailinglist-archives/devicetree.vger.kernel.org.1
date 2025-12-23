@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-249249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CE86CDA26D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:44:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D7BECDA291
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:46:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A7B2D3003D94
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:44:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 532B23033016
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:45:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901923491FB;
-	Tue, 23 Dec 2025 17:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F0B34B1A4;
+	Tue, 23 Dec 2025 17:45:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DgSAqNdE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZBanMw5C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65EE13491CF;
-	Tue, 23 Dec 2025 17:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A19634888A;
+	Tue, 23 Dec 2025 17:45:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766511892; cv=none; b=gqHNAg7EV/ycU0NclLyPSeKS0L2XQ4o1jV/eC+RdNdYJF5GORyOMEO/s713+vWK8boOyxk1DYHVjpiSFBuOxXjJ4SRadaYHYo8PLScEg6CZCdw/vZCrfa+/B75KEL4jtGbeQVmGDgY9QW2CRup70St3nfsSYpw4d5Pp6PCiXuM0=
+	t=1766511900; cv=none; b=V/6tqkAWAltZkHwd0JoKll31uAhvjDyISNJIshR/wEHZo5R3V0QN5Ac+O8eSi9pnrQLvv7QU1a/hLcojF+BUHPZnOEdPG447FmCRUnrv6w0mm5jFA+O6SUSQ5oBDw04dcEHz3zvsnLJz+3CkF/+lTiGA/7NpmtvFCZN7Jn/iLCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766511892; c=relaxed/simple;
-	bh=B7kk1fNbDuaJ0RLmnK/wGum7XnzjK0H2uFMdwBbzvoY=;
+	s=arc-20240116; t=1766511900; c=relaxed/simple;
+	bh=7UcJoh+9uo128/NiZFzblIxses8/TnRGhjyIQQ/1NLk=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=fpBZLFj1oRulZ1AgzUkpUcqwXkEHPnpNqpjwBUDthshDjT36mSYOVkiRvBplAAG/Zus/0/AxMP2Aa+/z4FMFETYWcL2VqDP8gxAjwVrH2HzhG0YKRdEtU8xRxKE+h4gHmdKNMP84QTM6/rO7O/UVW9/K2GwaxFznuNee/onS3rY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DgSAqNdE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4049FC116B1;
-	Tue, 23 Dec 2025 17:44:48 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Elu3tp3FSeGgk3YmKyVl5Ygo+8FA2kmRPM0U1ssO2lHN+Ksjs36t4DckML6eF5ySVe2VWQR40dg1SRWcf0w5cOXFk9J3tbNvf8vx7tUA2h+13LW4yBWk1iuyqRNmYmMGuKzKl2IE4lHHPJtC4NXoFdaQ0SJJxnjAunv8KGN2jeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZBanMw5C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD2E9C116B1;
+	Tue, 23 Dec 2025 17:44:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766511891;
-	bh=B7kk1fNbDuaJ0RLmnK/wGum7XnzjK0H2uFMdwBbzvoY=;
+	s=k20201202; t=1766511900;
+	bh=7UcJoh+9uo128/NiZFzblIxses8/TnRGhjyIQQ/1NLk=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=DgSAqNdEWYeWPdXOl8vXtp473yh7fHEbN8FC1+qS8TVyjyO2ST3sIauqXt9mX/IqZ
-	 X+W7nUtyvAxeMSkENSqooNfk/TrEjOUD2wjaWWuyAsqnxqYNV8zt0tmNMrsKEpSv5I
-	 L74TqG/n2+O0x/qDEAy6cqzLIhE1fiIlX3/sI6rkGvrtEL0O4bZMYU+k1OdmwJZRdK
-	 9EoRinx7UB4+34HLdqjP81pzoduIZM0GtOwHAz14fDbkTylrRZm6XP17tEWtNn/ODi
-	 A2Tel6axY0al8wsU3J0qXkhsERz8wiCnjY11ooJkFXT7uAsS5xw4L7KaToz3tr7bvG
-	 M+ZPsxlRwD0WA==
+	b=ZBanMw5CTV2hTrz20Sz2zEqujCGmBDhmW9ROrWfnaochVVmDu1wtLhzSFeeOm/wq9
+	 0MN+Tzxg9Bodh7VEhhA9FGMNpVLScfbRyN69yQrDqYdCCbDKTKqTjrevUdW81FqL/e
+	 2ItU4Stak97SW12gJFIRYo2cgV9nk1GhRzC0+HJZ7cMY5isl3I/66qi3n31tNeBG1W
+	 vQs3cIAEdoGNr1rOv3nowsXrusJI4Xm9XPtbKCZlh1kte51bth9KUUThZilCYKvwwF
+	 P7Lz2z4WyZRH9gtDW+4QTv7aFZedVs8B6lRycXmM71bPiDFwLweHRpjrJ90G3ar/wg
+	 FAmSkpVTHw62w==
 From: Vinod Koul <vkoul@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Qiang Yu <qiang.yu@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+To: Marc Kleine-Budde <mkl@pengutronix.de>, 
+ Vincent Mailhol <mailhol@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Aswath Govindraju <a-govindraju@ti.com>, 
+ Frank Li <Frank.li@nxp.com>, Prabhakar <prabhakar.csengg@gmail.com>
+Cc: linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Abel Vesa <abel.vesa@linaro.org>, Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20251124-kaanapali-pcie-phy-v4-0-d04ee9cca83b@oss.qualcomm.com>
-References: <20251124-kaanapali-pcie-phy-v4-0-d04ee9cca83b@oss.qualcomm.com>
-Subject: Re: [PATCH v4 0/5] Add PCIe support for Kaanapali
-Message-Id: <176651188789.759340.17238105488730853325.b4-ty@kernel.org>
-Date: Tue, 23 Dec 2025 23:14:47 +0530
+ linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
+ TCAN1046
+Message-Id: <176651189540.759340.9131667922285339029.b4-ty@kernel.org>
+Date: Tue, 23 Dec 2025 23:14:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,29 +68,18 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Mon, 24 Nov 2025 02:24:33 -0800, Qiang Yu wrote:
-> Describe PCIe PHY. Also add required system resources like regulators,
-> clocks and registers configuration for PCIe PHY.
+On Tue, 09 Dec 2025 16:21:19 +0000, Prabhakar wrote:
+> Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 is a
+> dual high-speed CAN transceiver with sleep-mode support and no EN pin,
+> mirroring the behaviour of the NXP TJA1048, which also provides dual
+> channels and STB1/2 sleep-control lines.
 > 
-> Changes in v4:
-> - Rebase on latest linux-phy next branch
-> - Add reviewed-by tag
-> - Link to v3: https://lore.kernel.org/all/20251103-kaanapali-pcie-phy-v3-0-18b0f27c7e96@oss.qualcomm.com/
 > 
-> [...]
 
 Applied, thanks!
 
-[1/5] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Add Kaanapali compatible
-      commit: 4968df19d5dcb22fa2b797b64eb3c2880a239e12
-[2/5] phy: qcom-qmp: qserdes-txrx: Add complete QMP PCIe PHY v8 register offsets
-      commit: 5359da47e066edb3fcd36c7349726913ee8628f2
-[3/5] phy: qcom-qmp: pcs-pcie: Add v8 register offsets
-      commit: ecc12453c8b1aabdedcd663b7e0587f372a2a90d
-[4/5] phy: qcom-qmp: qserdes-com: Add some more v8 register offsets
-      commit: ba13ff85d3cfb92bd0502a8f93366ddbb5d91105
-[5/5] phy: qcom: qmp-pcie: add QMP PCIe PHY tables for Kaanapali
-      commit: e5b4d5935f758c6d685c624343d7615d76bdc931
+[1/1] dt-bindings: phy: ti,tcan104x-can: Document TI TCAN1046
+      commit: 5442f9fd8814932e42602670bd013fcbc10a6906
 
 Best regards,
 -- 
