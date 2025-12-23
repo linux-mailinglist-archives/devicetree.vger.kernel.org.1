@@ -1,172 +1,205 @@
-Return-Path: <devicetree+bounces-249260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B1BCCDA396
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 19:04:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FBA0CDA433
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 19:26:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0ED4A305F308
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:58:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D48930115CB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00573491D6;
-	Tue, 23 Dec 2025 17:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F02852D0C85;
+	Tue, 23 Dec 2025 18:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="npbzClcl"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="S0G+kzVJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout3.routing.net (mxout3.routing.net [134.0.28.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f67.google.com (mail-ot1-f67.google.com [209.85.210.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F142C0F8E;
-	Tue, 23 Dec 2025 17:57:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FDC6276038
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 18:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766512653; cv=none; b=F0Y3nGhAdTyIRyObjABgos7l4lzHr1FtBWDA6PG93OJGVeHE+G+G/8LMP6flcEA9wA7bs1L8At3pLYT0SaaoJThh6S2+XApR/RsyPDkqcMF1wHm4xU+Dd3vqy920rc8shL16rMA+R2+wOLlTX3jc/ijqyoTfxgbFv9ZRDA/XgcY=
+	t=1766514374; cv=none; b=Au/+5/ja3bMr/mUECWfwktuSlqvHMIVEtIChY+1zU+1A3ZXJX+rofwcWicbBJz3iKNcl/zVdOrEL7MdHmL0NthqZvkO2PKzTAHieByTCdufE7yx8GQ4yO5HtOGsvfWFgTfhG5alVSguY7+ie+Dtrym6TJEJtkg9hqIVk43a8ZBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766512653; c=relaxed/simple;
-	bh=fS/y7V1DWGJJ6yTGiMBH2J6unJqICyr0FDu2qnKiWWI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Bsp3mttTqEs3h43MMTuvJGorYkaoUCHS3kQduLBF8UAzLmqWbL2ESEtVynZcwSdzhlgVu4ZicPq6DrnNBQ40jYEX74YpCrTvC3CRVOAznl58cbOxEHTBWKzPKbcJBIL/5DePEoILXOhm33DWJ9gW5yZjgo7O0/0dhFsVszO57vE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=npbzClcl; arc=none smtp.client-ip=134.0.28.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout3.routing.net (Postfix) with ESMTP id 069CA604A6;
-	Tue, 23 Dec 2025 17:57:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=routing; t=1766512642;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=A5e65IGpIhGqP5Bp1BDEsHKNZKGjWq/+tq7PdLVmUW0=;
-	b=npbzClcl8kaXyFa96B1ZIk+8Eh2mJGPe27Q671JQPbl+AAIxn+Rpy7RDsJIODnsVZsco6a
-	j2IozCx7S6Or2BIVhhfAkVQGwuruWNvnvUatm3E0zk9TONgPNjk1cscXtgbFiMW5sVoBeK
-	cEst+8sVsPBhsE6EIj8oGqO5xpgsw7Q=
-Received: from frank-u24.. (fttx-pool-217.61.156.193.bambit.de [217.61.156.193])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id BBCE2122700;
-	Tue, 23 Dec 2025 17:57:21 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>,
-	Mason Chang <mason-cw.chang@mediatek.com>,
-	Balsam CHIHI <bchihi@baylibre.com>,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 2/2] thermal/drivers/mediatek/lvts_thermal: Add mt7987 support
-Date: Tue, 23 Dec 2025 18:56:27 +0100
-Message-ID: <20251223175710.25850-3-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251223175710.25850-1-linux@fw-web.de>
-References: <20251223175710.25850-1-linux@fw-web.de>
+	s=arc-20240116; t=1766514374; c=relaxed/simple;
+	bh=RoHBsR2d7Q7GCEaIb6tf03AqPf/851ZIscm+O+20wZU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CblFcmNwxeBH9DqXC9wIoELmMj4TgYaWOSPp4AK6E0mftFCyIUN239HbfA5qnC8GQRtLW0pvJDPFpaC0Kud1E+SNuii9P2zTrzgcfxLiGD/ejnaqKRsyv89k1I1NR5Tptdxg7e0o0cOmmpvIAzqRJAdWieuF3COP7Lib/Xo79DM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=S0G+kzVJ; arc=none smtp.client-ip=209.85.210.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f67.google.com with SMTP id 46e09a7af769-7c7aee74dceso2018862a34.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 10:26:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1766514371; x=1767119171; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rUORSJ39qI0pVVDF1Dm7SJIUnfZq9zH2suoH4Wp242g=;
+        b=S0G+kzVJ8g9f8KRpI+195+U7anLS1emPBc5PnYGgYbYg4cCP0al8BzDvEnl6zF9LQ6
+         lRDO3SDhOpgsu9sZIKl5OMPl+++zEq8pQ7hp/ZcRjEshd7/oO3KdYWhq3gFH6Z6nb1EE
+         HZLAKwSaTa0lRr0zUr4QYuhqkRMQdiKbVDtLO1Wu5FlSrfjv+9njSrF9se0T1z70XQ74
+         2Wz2wcCdkOlSHi0sD8Fev9QYL4xbgTK7aVp+a1p0/VBCavRgN89ZZqbHOLExJ+rP860e
+         Z6+vZI5uAIzxpu6p8TMcyMlcchak+WLHHoepTpf3vYQSDPndtwiz8sJNg0XXRR6REi8n
+         dw2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766514371; x=1767119171;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rUORSJ39qI0pVVDF1Dm7SJIUnfZq9zH2suoH4Wp242g=;
+        b=KD6gqia16iRhMYWnK/yE4ctlhKu3MDoBi+UFyR9csCFIpoUhwSl6Qoe54VzBYjkiET
+         vkdUgBRPUf1Ww6Mvf6mNTvnrZe1d6TLaMMTTXkOAjV0IUIX0CttSr9rSSPGV4JrzC7Yb
+         dI1tkaEnbiCUtKhwj+epzY6MjKnqFTM6h/GkSD4pa5n5xZdND3sY0cjiMz8xnRAgUp7E
+         AFUK4arx2QdK6YPpkkbztabL6MIUwhxwNSR02Y256CymoRb54xb2twluxyqHHyJ1+dcl
+         tx2Km+Rn/8hTHUVWCRoRWBYR7/cPuExUM3wWlBCuJh2MXqdqDgT4FrCDuP9w5h9nKNqZ
+         +59A==
+X-Forwarded-Encrypted: i=1; AJvYcCVgf+IGyK9Rq0N8w2FFHfco30zW809Ac9tbgi1fg71bDpntCvM7dLX3v7aQU+lEtdWHUQB2zpg79Ox5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmRUU7OjLsS4C4q5Wtk22A7hueuqtfuGGgglWQZ/Q+LZH1L6BB
+	oQUvqD4UhbXnpLXevrD62+7WMrvtpO24SS/E+hRFMbp+WGnaKNEMbBE3GQ/2BMx6VKg=
+X-Gm-Gg: AY/fxX5Slx5SIP5s7dABVo2vqr+On+9rNA2WNW4CYn5zA+nbIBEATW3J4uCwxPEXP7x
+	X4+oyiHYtcV82MLaAlyDWRq6gK8T+cHUWpw7218gDMVZFRwxyNQxRHlSKxY1rMlZ1b4c13XdFgc
+	FirdZz4gXfdf/wAuM0mOCnvCvAGUHn4ZKxA3s03iwb6SyoS3XYeeUYTSRjzD403O6c5AXCAfvp3
+	EcbWooc68ELaFIzFKbGwhhWmAv/qBqTTXQeCg7fxcF0Y1+5PHFEB+txIztlOj5OYViLJz0RO9L5
+	znMMwEGg9fjpmbMhj4BYTz2bVQPo7/NJSOUoIKx7McvOwhC4RbHhkeTlH7jj+JMgzoYi6Qp4s/Y
+	RKC1gKR84zR/3imBinbrWn/ldyfHnagwwm9N+ejwdsyuSEsn0D8tm3MJ++KQaDVI06ezW/i5jWc
+	AHOviQX/ZxWLfRj0MMoZQVO7a7NS9MHsK9ed5TC9MLX1lwk7RGZc9W2nYgewYU
+X-Google-Smtp-Source: AGHT+IFWB9BxicOq7wmIDOM/3f0UNSdBE+rFuZQtSZ+yjTAo0rb918LQDr9/t4N17Ri1ZdbA1IFJXg==
+X-Received: by 2002:a05:6830:230e:b0:7c7:731:7905 with SMTP id 46e09a7af769-7cc66a4b7a2mr6616842a34.24.1766514371411;
+        Tue, 23 Dec 2025 10:26:11 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:fe29:88f1:f763:378b? ([2600:8803:e7e4:500:fe29:88f1:f763:378b])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7cc6673bdabsm9706228a34.10.2025.12.23.10.26.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Dec 2025 10:26:10 -0800 (PST)
+Message-ID: <56c03c7f-1e5b-4586-beb0-47a1fa3bc86c@baylibre.com>
+Date: Tue, 23 Dec 2025 12:26:09 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add Texas Instruments TLA 2528
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Jonathan Cameron <jic23@kernel.org>, nuno.sa@analog.com,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Angelo Dureghello <adureghello@baylibre.com>,
+ Tobias Sperling <tobias.sperling@softing.com>,
+ Eason Yang <j2anfernee@gmail.com>,
+ Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+ Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
+ duje@dujemihanovic.xyz, herve.codina@bootlin.com,
+ Rodolfo Giometti <giometti@enneenne.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com
+References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
+ <20251223155534.220504-2-maxime.chevallier@bootlin.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20251223155534.220504-2-maxime.chevallier@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On 12/23/25 9:55 AM, Maxime Chevallier wrote:
+> The TI TLA 2528 is a simple 8 channel, 12-bit ADC? Add a binding
 
-Add support for MT7987.
+TLA2528 (no space). Also, why the "?"?
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
-v2:
-- drop irq-enable member
-- move mt7987 above mt7988
----
- drivers/thermal/mediatek/lvts_thermal.c | 36 +++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+> documentation for it.
+> 
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> ---
+>  .../bindings/iio/adc/ti,tla2528.yaml          | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml b/Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
+> new file mode 100644
+> index 000000000000..0ee326d77014
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/ti,tla2528.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments TLA2528 8-channel 12bit I2C ADC
 
-diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
-index ab55b20cda47..c345a6191715 100644
---- a/drivers/thermal/mediatek/lvts_thermal.c
-+++ b/drivers/thermal/mediatek/lvts_thermal.c
-@@ -85,6 +85,8 @@
- #define LVTS_GOLDEN_TEMP_DEFAULT	50
- #define LVTS_COEFF_A_MT8195			-250460
- #define LVTS_COEFF_B_MT8195			250460
-+#define LVTS_COEFF_A_MT7987			-204650
-+#define LVTS_COEFF_B_MT7987			204650
- #define LVTS_COEFF_A_MT7988			-204650
- #define LVTS_COEFF_B_MT7988			204650
- 
-@@ -1373,6 +1375,20 @@ static void lvts_remove(struct platform_device *pdev)
- 		lvts_ctrl_set_enable(&lvts_td->lvts_ctrl[i], false);
- }
- 
-+static const struct lvts_ctrl_data mt7987_lvts_ap_data_ctrl[] = {
-+	{
-+		.lvts_sensor = {
-+			{ .dt_id = MT7987_CPU,
-+			  .cal_offsets = { 0x04, 0x05, 0x06 } },
-+			{ .dt_id = MT7987_ETH2P5G,
-+			  .cal_offsets = { 0x08, 0x09, 0x0a } },
-+		},
-+		VALID_SENSOR_MAP(1, 1, 0, 0),
-+		.offset = 0x0,
-+		.mode = LVTS_MSR_FILTERED_MODE,
-+	},
-+};
-+
- static const struct lvts_ctrl_data mt7988_lvts_ap_data_ctrl[] = {
- 	{
- 		.lvts_sensor = {
-@@ -1455,6 +1471,12 @@ static const u32 default_init_cmds[] = {
- 	0xC10300FC, 0xC103009D, 0xC10300F1, 0xC10300E1
- };
- 
-+static const u32 mt7987_init_cmds[] = {
-+	0xC1030300, 0xC1030420, 0xC1030500, 0xC10307A6, 0xC10308C7,
-+	0xC103098D, 0xC1030C7C, 0xC1030AA8, 0xC10308CE, 0xC10308C7,
-+	0xC1030B04, 0xC1030E01, 0xC10306B8
-+};
-+
- static const u32 mt7988_init_cmds[] = {
- 	0xC1030300, 0xC1030420, 0xC1030500, 0xC10307A6, 0xC1030CFC,
- 	0xC1030A8C, 0xC103098D, 0xC10308F1, 0xC1030B04, 0xC1030E01,
-@@ -1753,6 +1775,19 @@ static const struct lvts_ctrl_data mt8195_lvts_ap_data_ctrl[] = {
- 	}
- };
- 
-+static const struct lvts_data mt7987_lvts_ap_data = {
-+	.lvts_ctrl	= mt7987_lvts_ap_data_ctrl,
-+	.num_lvts_ctrl	= ARRAY_SIZE(mt7987_lvts_ap_data_ctrl),
-+	.conn_cmd	= mt7988_conn_cmds,
-+	.init_cmd	= mt7987_init_cmds,
-+	.num_conn_cmd	= ARRAY_SIZE(mt7988_conn_cmds),
-+	.num_init_cmd	= ARRAY_SIZE(mt7987_init_cmds),
-+	.temp_factor	= LVTS_COEFF_A_MT7987,
-+	.temp_offset	= LVTS_COEFF_B_MT7987,
-+	.gt_calib_bit_offset = 32,
-+	.def_calibration = 19380,
-+};
-+
- static const struct lvts_data mt7988_lvts_ap_data = {
- 	.lvts_ctrl	= mt7988_lvts_ap_data_ctrl,
- 	.conn_cmd	= mt7988_conn_cmds,
-@@ -1857,6 +1892,7 @@ static const struct lvts_data mt8195_lvts_ap_data = {
- };
- 
- static const struct of_device_id lvts_of_match[] = {
-+	{ .compatible = "mediatek,mt7987-lvts-ap", .data = &mt7987_lvts_ap_data },
- 	{ .compatible = "mediatek,mt7988-lvts-ap", .data = &mt7988_lvts_ap_data },
- 	{ .compatible = "mediatek,mt8186-lvts", .data = &mt8186_lvts_data },
- 	{ .compatible = "mediatek,mt8188-lvts-mcu", .data = &mt8188_lvts_mcu_data },
--- 
-2.43.0
+12-bit
+
+> +
+> +maintainers:
+> +  - Maxime Chevallier <maxime.chevallier@bootlin.com>
+> +
+> +description: |
+> +  12bit 8-channel I2C ADC.
+
+The title already says this. Either drop it or add new info.
+
+Also, don't need the |.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,tla2528
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vref-supply:
+> +    description: Supply for 2.35V to 5.5V reference voltage
+
+According the the datasheet, there are AVDD and DVDD supplies.
+Nothing named VREF or REF.
+
+So instead:
+
+avdd-supply: true
+dvdd-supply: true
+
+
+It looks like inputs can also be used as GPIOs, so
+
+gpio-controller: true
+#gpio-cells:
+  const: 2
+
+would be appropriate (it doesn't matter if the driver doesn't
+implement it, we know what the correct bindings are).
+
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vref-supply
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@17 {
+> +            compatible = "ti,tla2528";
+> +            reg = <0x17>;
+> +            vref-supply = <&reg_adc_supply>;
+> +            #io-channel-cells = <1>;
+> +        };
+> +    };
+> +...
 
 
