@@ -1,110 +1,186 @@
-Return-Path: <devicetree+bounces-249041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F19ECD8ADA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 11:01:38 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33260CD8AE9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 11:02:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2B629300EDDE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:01:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EBD04300AA4E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:02:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46290234984;
-	Tue, 23 Dec 2025 10:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C5AB30F92D;
+	Tue, 23 Dec 2025 10:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RrjYxCcO"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TmX5VajP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com [209.85.215.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C45203597B
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 10:01:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4247C220F3E;
+	Tue, 23 Dec 2025 10:02:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766484096; cv=none; b=iXN0lS8qvG6P+XSIjAF5Enos8lBhrH0ccTCA2Pp/5q0iFqyhbTgnV2leBwL4pTPH0ScYxMscV5utlfHLSmsiEr7x10FulPz39fL7Qm7VRWwGktYCdVSwWQ/jXfcY4ovNTHioaZ3T8/zIHcCsF5vJmL9tkEl5eV1DhZI6uGlYhuY=
+	t=1766484158; cv=none; b=Dk/Y5rOa99CyacgF0fVEAjjXxmEGVARSWtqrqFaiO2jflnoRgkCtwBMRK93RkvTKa2HLonMP73vDbfiu7Hj0LXinTXcLR8Cn6rxoHNAqsJIUXmpp/VAlXirK+sp3KGiN7DmgBo2IwkleICIVsnfWWGYpGyvQ2gBOZxtoQ4khVx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766484096; c=relaxed/simple;
-	bh=HpBpI/8wSHF7t4KFhnjlrnK8AhfjX0W1uSniYzs6/yA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=WbsWYJo0Ucxt3Tj6iLgDA5TylbHUXRuPGa3YqXGamSjluoJ5v66MIYz5NP8MpzuZ5+8xfV6i3BTfH6qbA2osKMfLJ7ynNfC0tDVhu4FbxbPQkCQWlVEXVUYquB+j2k1MLSwLi90wHR2iyBU3eGltkeFZPsrJeoRleN5BxLgJY2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RrjYxCcO; arc=none smtp.client-ip=209.85.215.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f196.google.com with SMTP id 41be03b00d2f7-bbf2c3eccc9so2197501a12.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 02:01:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766484094; x=1767088894; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=HpBpI/8wSHF7t4KFhnjlrnK8AhfjX0W1uSniYzs6/yA=;
-        b=RrjYxCcObkg8TXURFXJB3x5sO39XyO/8c7fauM7C+LwGjzYYZDQmn9GyY3JnASZP4K
-         nQFgvStgfV3nNtyLMQPREmRk48hryawTu0W8CG8HCrp6Dwv8nIrOGsIIBxlFfHvwYA6e
-         4p3wi1T6pzeeNPYspEgkVsSECYENKP7ptOcf4MEWOUQmmE7tpxlw7TKMyxhNO5zytrhx
-         G3A/2TBcCF8ytWs9LJhqdxRsIAtQ/bJcPTzq+4o/q8Lr4Wxe0owbnW3m7bFEJ5TeMFJf
-         Ub/zdCedld6QTtxaFpulLRyV/RRNE/ynSiRT0u+RS39pNSlLQaAPRjqseD+c0fCvJ81s
-         gWKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766484094; x=1767088894;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HpBpI/8wSHF7t4KFhnjlrnK8AhfjX0W1uSniYzs6/yA=;
-        b=ZxmnYdbKvqZFQX0LMOJsQ1QkrT/Avz4pCot9FPPSDzEtlTI1FhLnkjIeMl1nd+gpUC
-         15T6m2VvqKSkveC1d4cqj/E5hifGetQWKXSSwjYR8be/F1LX9HcmrMYh/MpmX44SDtVq
-         fbrt4DHq1gabWTlv8o0K7CZHdGVFiRQcBZ67flviQbXUw2IUXDzBNjCo9yPKbmywol8j
-         G+m2/it74t+SUhvoxObCx6Gt5XFVERzhaZd698XNIEdDg6rGDjmbyqZ6fsOFhN5iV6/u
-         jZ4+5113Svz+zk+mF9i21AbYvUO3g004BCHcRlNqz0Nx5YpVp+nu3MP/ml1oHdXEGgnU
-         CDPw==
-X-Forwarded-Encrypted: i=1; AJvYcCXD+Em6vfV6dWnYDVXxjet+6/mdpX1+fObDWs1QCeYERvEseudCdvOk68b86RuaBFrMawq8+sstifl+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUX7Q76IGEavfIw9S997/xnEG3cLz7Rnltuf1X0xFLGAz7oEOf
-	q8HCm/jxRIzKKyVtKuJ3hywA4QCwLftrt3kQXQVimG4ejZ2Wov3MYBSalQOC9wr8tZto2QelP97
-	02auTASYGJg==
-X-Gm-Gg: AY/fxX5CtCJWpintOOsr2HnsaIg6x0WS2CROjGFRXr87Ps09w2ZTRZoPYDfcmI9dNw3
-	eU40u6MVKdBfg0cAOCVePH5YiLSHBYn08AIClgRd/aLBhjw8shwweuOQpRneZAJ8Ur3KDUZm96S
-	Pu4gEYpeiLYVG4TbwEUAtSvRTOKLDxrMQdEDwuC2cMoa7kxTsirEoYV+6mF3rPC23Nn4PGZHKUR
-	YvIc1AsTuVoNy9GRJg7ErqVK3kQxWwSlqPruT4USUW5VhsSEk8BSDZw8WLE2hnct1FGH0lnF9Lw
-	zOcI9286GFIBCk6SE9aFhpcvCWcAWcUA2NkYgZcRhRa/Shb+6rE1fdL60WXMdW+WC8Tq+QwiBMV
-	Ezml2QxLLsVaOJPQzdp30DSdffcsfOUT/zxCgTfmFd2rJnVh54I76Kb06ZP4wsaISg11EVngUUY
-	Bceg9XkArhsl1t4ULK
-X-Google-Smtp-Source: AGHT+IFXuV7GadqIyPi+nPYJimRq9WoNp2FQ61ILnYC43nto17QpxsN8ikiDj+xBUwBcc1gocDeCbQ==
-X-Received: by 2002:a17:90b:2e4a:b0:34c:9cec:3898 with SMTP id 98e67ed59e1d1-34e71e29544mr15068089a91.13.1766484093988;
-        Tue, 23 Dec 2025 02:01:33 -0800 (PST)
-Received: from draszik.lan ([212.129.75.63])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34e70d4f7ffsm15451480a91.1.2025.12.23.02.01.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Dec 2025 02:01:33 -0800 (PST)
-Message-ID: <28ead866eb9a11fb3f20ad49839aadd3993f3886.camel@linaro.org>
-Subject: Re: [PATCH v4 5/5] arm64: dts: exynos: gs101: add OTP node
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar	 <alim.akhtar@samsung.com>, Peter
- Griffin <peter.griffin@linaro.org>,  Srinivas Kandagatla	 <srini@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, semen.protsenko@linaro.org, 
-	willmcvicker@google.com, kernel-team@android.com,
- devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, 	linux-kernel@vger.kernel.org
-Date: Tue, 23 Dec 2025 10:01:34 +0000
-In-Reply-To: <20251222-gs101-chipid-v4-5-aa8e20ce7bb3@linaro.org>
-References: <20251222-gs101-chipid-v4-0-aa8e20ce7bb3@linaro.org>
-	 <20251222-gs101-chipid-v4-5-aa8e20ce7bb3@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1766484158; c=relaxed/simple;
+	bh=7CJYGTSN7WTAdsrk5nTSBNcdB82v5ao3fSIminUpoxg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uWOw5ocaWBBh9XkvLxFYXdmXmq4YfpF2LJzQroAMiH4K/k2NlivP7RRk4t3h7DU7CQ+fiMS1Q7jR7OKm4mVq2XoayZrozGFgj+zs7B+AIQj1z3Cp++/pc6Y/fjl6L8T5phlk0KwOH9kxWzuucOuQF7YcgWviwA1L/uHklVxN+zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TmX5VajP; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id EF1251A23A0;
+	Tue, 23 Dec 2025 10:02:28 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B8FBD60716;
+	Tue, 23 Dec 2025 10:02:28 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7728010AB09B8;
+	Tue, 23 Dec 2025 11:02:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1766484147; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=vKXAVXkQkoVX1RqytPUqRo6pHinh5Q8zwojN9SALFLc=;
+	b=TmX5VajPV4iSMDrTOxLZKRMRooArXGamRR0GfkJQtfe1zQwCSGNlcIa20hFyqbfDiBLrbN
+	pLIf57C5fmY8cTBf0IqLfo9b6IW8I0QXWfliwBLDdR5bPqRvfxbSUcSPVqO6Dm7MDHiY4v
+	sutGtWevHE3dkY7teQ6kzW5d3pEH09F8gfiU7RHuRP+5yqFzhe8VvqwRmwFzGgiVSwr1W9
+	JMdEVvQHTP2CMendD3PEAbLHPtpR1y0coisFaK8W93jm7ALCe1ACQIl8EN/Zq9CLzsKgBa
+	5deEOxs91I46DWcSY25VbmhCCG/Xn5YJp9QRAztfRP5p2wnbob7se6HxBp7WqQ==
+From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+Subject: [PATCH v2 00/13] Introducing the Mobileye EyeQ6Lplus SoC
+Date: Tue, 23 Dec 2025 11:02:15 +0100
+Message-Id: <20251223-eyeq6lplus-v2-0-cd1fd21d182c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKdoSmkC/03MQQ6CMBCF4auQWVvTFqyWlfcwLKBMZZJKsUUiI
+ b27FTcu/5e8b4OIgTBCXWwQcKFIfswhDwWYoR3vyKjPDZLLkxDywnDFp3KTe0WmlTCq5JbrikM
+ +TAEtvXfs1uQeKM4+rLu9iO/6Y6Q4/zOLYJyhNn3Xl62tjLx23s+OxqPxD2hSSh/UiCxYpgAAA
+ A==
+X-Change-ID: 20251128-eyeq6lplus-961c630f0940
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Linus Walleij <linusw@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, 2025-12-22 at 16:30 +0000, Tudor Ambarus wrote:
-> Add the OTP controller node.
->=20
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
-> =C2=A0arch/arm64/boot/dts/exynos/google/gs101.dtsi | 8 ++++++++
-> =C2=A01 file changed, 8 insertions(+)
+The Eyeq6Lplus is a new system-on-chip part of Mobileye's EyeQ family
+of SoC aimed at Advanced Driver Assistance Systems (ADAS). It is built
+around a multicore MIPS I6500 with 2 cores and 8 threads and integrates
+controllers and accelerators dedicated to driving assistance.
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+This patchset adds the initial support for the EyeQ6Lplus and its
+evaluation board with the following list of controllers:
+* The OLB ("Other Logic Block") providing clocks, resets and pin controls.
+* One UART from DesignWare.
+* One GPIO controller from DesignWare.
+* Two SPI controllers from DesignWare, one in host mode and one in target
+  mode.
+* One octoSPI flash controller from Cadence, identical to the one found
+  in the EyeQ5.
+* Two I2C controllers from Designware.
+
+The support for the particularities of the I2C controllers is 
+currently under review[1], but basic operations (single read,
+single write, write-then-read) work with the compatible fallback to
+"snps,designware-i2c".
+
+The patch series adds the device tree bindings for the SoC and the OLB. It
+also adds the Kconfig entry for the EyeQ6Lplus, the SoC and evaluation
+board device tree, and the defconfig. For the OLB, the series adds the
+match data to the clk-eyeq, reset-eyeq and pinctrl-eyeq5 drivers.
+
+It also brings three other changes. One for the pinctrl-eyeq5 driver to
+access the pin descriptions, pin functions and pin bank register via
+the match data instead of directly. This is needed to add support for
+the EyeQ6Lplus alongside the EyeQ5 to the pinctrl driver.
+
+To be able to match against compatible entries, An OF node is needed
+but the pinctrl-eyeq5 does not have one as it is an auxiliary device
+of clk-eyeq. As part of his MACB phy series[2], Théo switched to
+devm_auxiliary_device_create() to register the auxiliary devices and this
+helper sets the OF node of the auxiliary device. To avoid a dependency
+between the patch series, eq5p_probe() is able to handle both cases,
+having the of_node field already set in the device structure or getting
+it from the parent device. After both series are merged, a cleanup of
+the pinctrl-eyeq5 probe function can be done.
+
+The two other changes are in the clk-eyeq driver. First we skip the
+post-divisor when computing the PLL frequency in the clk-eyeq driver,
+to match how the clock signal is wired internally in all EyeQ PLL and
+compute the correct frequency for the PLL of the EyeQ6Lplus. Second we
+adjust the accuracy and down spreading computation of the PLL frequency
+as the spread spectrum of all EyeQ PLL is in 1/1024 and not in 1/1000
+as previously thought.
+
+[1]: https://lore.kernel.org/all/20251126-i2c-dw-v4-0-b0654598e7c5@bootlin.com/
+[2]: https://lore.kernel.org/all/20251215-macb-phy-v5-0-a9dfea39da34@bootlin.com/
+
+Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
+---
+Changes in v2:
+- Rebased on v6.19-rc2.
+- Drop spidev nodes from the evaluation board DT, they were
+  here for test only.
+- Fix bug in eq5p_pinconf_set() using uninitialized value.
+- Link to v1: https://lore.kernel.org/r/20251217-eyeq6lplus-v1-0-e9cdbd3af4c2@bootlin.com
+
+---
+Benoît Monin (13):
+      dt-bindings: mips: Add Mobileye EyeQ6Lplus SoC
+      dt-bindings: soc: mobileye: Add EyeQ6Lplus OLB
+      MIPS: Add Mobileye EyeQ6Lplus support
+      reset: eyeq: Add Mobileye EyeQ6Lplus OLB
+      pinctrl: eyeq5: Use match data
+      pinctrl: eyeq5: Add Mobileye EyeQ6Lplus OLB
+      clk: eyeq: Skip post-divisor when computing PLL frequency
+      clk: eyeq: Adjust PLL accuracy computation
+      clk: eyeq: Add Mobileye EyeQ6Lplus OLB
+      MIPS: Add Mobileye EyeQ6Lplus SoC dtsi
+      MIPS: Add Mobileye EyeQ6Lplus evaluation board dts
+      MIPS: config: add eyeq6lplus_defconfig
+      MAINTAINERS: Mobileye: Add EyeQ6Lplus files
+
+ .../devicetree/bindings/mips/mobileye.yaml         |   5 +
+ .../soc/mobileye/mobileye,eyeq6lplus-olb.yaml      | 208 +++++++++
+ MAINTAINERS                                        |   4 +-
+ arch/mips/boot/dts/mobileye/Makefile               |   1 +
+ arch/mips/boot/dts/mobileye/eyeq6lplus-epm6.dts    | 103 +++++
+ arch/mips/boot/dts/mobileye/eyeq6lplus-pins.dtsi   |  84 ++++
+ arch/mips/boot/dts/mobileye/eyeq6lplus.dtsi        | 169 ++++++++
+ arch/mips/configs/eyeq6lplus_defconfig             | 119 ++++++
+ arch/mips/mobileye/Kconfig                         |   3 +
+ arch/mips/mobileye/Platform                        |   1 +
+ drivers/clk/Kconfig                                |   4 +-
+ drivers/clk/clk-eyeq.c                             |  90 +++-
+ drivers/pinctrl/Kconfig                            |   4 +-
+ drivers/pinctrl/pinctrl-eyeq5.c                    | 465 +++++++++++++++------
+ drivers/reset/Kconfig                              |   4 +-
+ drivers/reset/reset-eyeq.c                         |  31 ++
+ .../dt-bindings/clock/mobileye,eyeq6lplus-clk.h    |  37 ++
+ 17 files changed, 1185 insertions(+), 147 deletions(-)
+---
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20251128-eyeq6lplus-961c630f0940
+
+Best regards,
+-- 
+Benoît Monin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
