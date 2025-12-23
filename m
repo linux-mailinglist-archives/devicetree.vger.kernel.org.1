@@ -1,58 +1,55 @@
-Return-Path: <devicetree+bounces-249254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24039CDA2B8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:48:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A6BACDA2C2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:53:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AC4F93044090
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:46:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8DA56303E02B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D047F34E273;
-	Tue, 23 Dec 2025 17:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9622534E750;
+	Tue, 23 Dec 2025 17:45:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IOVibKWi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qvjo0HFw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8DF26ED45;
-	Tue, 23 Dec 2025 17:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69B1134E261;
+	Tue, 23 Dec 2025 17:45:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766511926; cv=none; b=tkgCMuC6bMHurR+3wRXklyEBlpl93VGrs+dh9UVK7Hv4ZRqqd6lU1fx74LvFqWojk8OxScvvAsLMXmN4sq1bq+4WPnFz6DL/lxrYuvrWwWfmKwBNWiSeHGx8Hf7VO5X0NDYem6D2qjtCepNamzypHb82xFv+rcZY4p0HKnwKx8U=
+	t=1766511929; cv=none; b=ioUBCvYsDsyiHvwkMCKiz2JYZ7NFiZVMAPJ0myTi1BTgHtZqRvXMfRt+YiSz2ugOV1VtosNJ9KTS0kYAbZLYCZju9yjnC5gJQrkDHOlHr15UAXzg3CD6WNROTvCNC6NDCNoSpNkb08gwovOAlUXYLA2PHskHuXKg3VJRuArZGQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766511926; c=relaxed/simple;
-	bh=8UvcbaMFBmgqDoEZ2WexuxMmy2IO+bxASIEngueuopk=;
+	s=arc-20240116; t=1766511929; c=relaxed/simple;
+	bh=D/zqMZMrg5bxSBohWp/OUYz4EvL7ZkwbpOyavwaQjSM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Sd2iP1xXqtIpIPQflPU6BZtScFxmEP9evvz/Suf0a1VlnNuLMDgCoKbXT5m395xrkYbANShzMmxgcpuMTh/7DvRFoVrTuOaJGEHR/BL3awgM72Q0l5Tm/kUCAZV6nYT4l642l3JQkjQdTOxbzEp8h+vbCrQtS/4laqpmh5xwNJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IOVibKWi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27597C116B1;
-	Tue, 23 Dec 2025 17:45:22 +0000 (UTC)
+	 MIME-Version:Content-Type; b=PXIjFmBOoaiarM2NWEWZvI36okm7F9R+qI9XNzq4InVIKLPutb1L0NdpChD2DnKeQokr+YaNCYTeRti8IDkEkmMlH5UQ196SC1zr87DsbsXb6pK1zseC/O6wLNphbnSqev88rq0B7CX/Gzee2/p5ThBt6pS3hACDmwjObBs/Q/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qvjo0HFw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EF73C19421;
+	Tue, 23 Dec 2025 17:45:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766511926;
-	bh=8UvcbaMFBmgqDoEZ2WexuxMmy2IO+bxASIEngueuopk=;
+	s=k20201202; t=1766511929;
+	bh=D/zqMZMrg5bxSBohWp/OUYz4EvL7ZkwbpOyavwaQjSM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=IOVibKWi304v5idcNYAWDQMkuEG29LxRmGj/GGqzEpEgrDJEOHtG9HBmAvqmTv7ia
-	 VJeZ+Kpb90JWGTVT0yRVJjO/87dkUOzc9XJiWU2IvHqrV/Mxp9yaan2J6fyK+v0kV1
-	 swXIhRDWjbx/a36rWbBei3QQAj26uVomxzh9ke6n3okx7JmeaD8x7IBIgOiSk0NpDJ
-	 9BlYA7QxF5D+3xEwhIJJg4eW9gH6paaolDo1HEZsGry69VLxdYKppwuC0b7ceLVVnR
-	 lyJSVsLHR4+RytHDWJB6SFXCOwnPPIbSUsxsGUlkpTEWsq1D2afhI8nT3AD4BdWdml
-	 SNgTQn90Cobiw==
+	b=qvjo0HFwSOOPv6GoxFkZW/BIoZo29KqCcJPwrqC30j3UzKgKac1oXPKBJVt0sXx+h
+	 mx+cB4jCnoZDLE3bxmvnCRJK3U+MxwxhwC1a8ldr1l96+4ZyJkXBEl5qNUC21qdsZx
+	 YJfxDCJTgEFrRATdqGufZDczbLaLE6dAaorOxqNBWHx08YNwS0fnE9eJAdHuL1XKrN
+	 2GZVtnylnFHTDD0dULoLuC/59DfFdzlcJm3MgfsTmk6N1qJvuJQAZBpqfasMTjqMYN
+	 YBl/WPdfBVuAjcIRZojgaofYURFPxGrK6X9/vry+47pxh/LidSBf1xF0CZm2m3/ZJD
+	 NfIzrLO5RRI2w==
 From: Vinod Koul <vkoul@kernel.org>
-To: linux-phy@lists.infradead.org, 
- Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: Ioana Ciornei <ioana.ciornei@nxp.com>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Josua Mayer <josua@solid-run.com>, linux-kernel@vger.kernel.org, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-In-Reply-To: <20251125114847.804961-1-vladimir.oltean@nxp.com>
-References: <20251125114847.804961-1-vladimir.oltean@nxp.com>
-Subject: Re: [PATCH v5 phy 00/15] Lynx 28G improvements part 1
-Message-Id: <176651192278.759340.10484878366738732561.b4-ty@kernel.org>
-Date: Tue, 23 Dec 2025 23:15:22 +0530
+To: krzk+dt@kernel.org, abel.vesa@linaro.org, conor+dt@kernel.org, 
+ dmitry.baryshkov@oss.qualcomm.com, robh@kernel.org, 
+ Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20251209-linux-next-12825-v8-0-42133596bda0@oss.qualcomm.com>
+References: <20251209-linux-next-12825-v8-0-42133596bda0@oss.qualcomm.com>
+Subject: Re: [PATCH v8 0/9] Introduce Glymur USB support
+Message-Id: <176651192628.759340.3692338667900024623.b4-ty@kernel.org>
+Date: Tue, 23 Dec 2025 23:15:26 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,60 +61,38 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Tue, 25 Nov 2025 13:48:32 +0200, Vladimir Oltean wrote:
-> This is the first part in upstreaming a set of around 100 patches that
-> were developed in NXP's vendor Linux Factory kernel over the course of
-> several years.
+On Tue, 09 Dec 2025 15:09:36 -0800, Wesley Cheng wrote:
+> **Please consider this for -next
 > 
-> This part is mainly concerned with correcting some historical mistakes
-> which make extending the driver more difficult:
-> - The 3 instances of this SerDes block, as seen on NXP LX2160A, need to
->   be differentiated in order to reject configurations unsupported by
->   hardware. The proposal is to do that based on compatible string.
-> - Lanes cannot have electrical parameters described in the device tree,
->   because they are not described in the device tree.
-> - The register naming scheme forces us to modify a single register field
->   per lynx_28g_lane_rmw() call - leads to inefficient code
-> - lynx_28g_lane_set_sgmii(), lynx_28g_lane_set_10gbaser() are unfit for
->   their required roles when the current SerDes protocol is 25GBase-R.
->   They are replaced with a better structured approach.
-> - USXGMII and 10GBase-R have different protocol converters, and should
->   be treated separately by the SerDes driver.
+> This series enables the PHY level changes that are required to support
+> the type C based controllers and the multiport controller.  The typeC
+> ports utilize a usb43dp based QMP PHY for the SSUSB path, while using
+> the M31 eUSB2 PHY for the HSUSB path.  For the multiport controller,
+> it will utilize two QMP UNI PHYs for the SSUSB path, and two M31 eUSB2
+> PHYs for the HSUSB path.
 > 
 > [...]
 
 Applied, thanks!
 
-[01/15] dt-bindings: phy: lynx-28g: permit lane OF PHY providers
-        commit: bd2f0117c2a1310dc6ea4eed8087eb2c6c03fe78
-[02/15] phy: lynx-28g: refactor lane probing to lynx_28g_probe_lane()
-        commit: a125feee0774e13914601dd6b39c73a27265f7d4
-[03/15] phy: lynx-28g: support individual lanes as OF PHY providers
-        commit: 7df7d58abbd60902751381dcd891a55c8228c523
-[04/15] phy: lynx-28g: avoid memsetting lane already allocated with kzalloc()
-        commit: 2da0b2214f511744a967d370447bb9d511bf1348
-[05/15] phy: lynx-28g: remove LYNX_28G_ prefix from register names
-        commit: 13a5f7e3fd6dbc49adb950592ba7d76f1211105d
-[06/15] phy: lynx-28g: don't concatenate lynx_28g_lane_rmw() argument "reg" with "val" and "mask"
-        commit: 6e3d3e8783ae41a7a678093591a2d93044b94ac0
-[07/15] phy: lynx-28g: use FIELD_GET() and FIELD_PREP()
-        commit: 3b84377c2a31cf35d33da55c6868281aa3aff71a
-[08/15] phy: lynx-28g: convert iowrite32() calls with magic values to macros
-        commit: 90d985a0eb33c92aa83a086bd934d885e2f4fd5b
-[09/15] phy: lynx-28g: restructure protocol configuration register accesses
-        commit: 6af3b6d365579a0b62d24e687f6d55d17f118172
-[10/15] phy: lynx-28g: make lynx_28g_set_lane_mode() more systematic
-        commit: 444bb9a7b3ef07ecb96ca7ae30a6c9daaf865de8
-[11/15] phy: lynx-28g: refactor lane->interface to lane->mode
-        commit: 6a1ae51896284de1a2387aaf2281ac01015277b5
-[12/15] phy: lynx-28g: distinguish between 10GBASE-R and USXGMII
-        commit: 55ce1d64aa51baecdd26d56e3efb250c9671e988
-[13/15] phy: lynx-28g: configure more equalization params for 1GbE and 10GbE
-        commit: 055d08beea2c1a1d0f4eccabbcf570009969e3ce
-[14/15] phy: lynx-28g: use "dev" argument more in lynx_28g_probe()
-        commit: 04dceaa3c97d3cdc51e1d78dce32ed7388872d07
-[15/15] phy: lynx-28g: improve lynx_28g_probe() sequence
-        commit: aecea96492f52364f852248055921c1b3aacbc91
+[1/9] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Add Glymur compatible
+      commit: 2fe80ea29f46332eaf76d8435326e68197bcc9bb
+[2/9] dt-bindings: phy: qcom,qmp-usb: Add Glymur USB UNI PHY compatible
+      commit: 1c0b4539fc6d7cbe352cc12deef8a21d655f9804
+[3/9] dt-bindings: phy: qcom-m31-eusb2: Add Glymur compatible
+      commit: 0278bbd30f7c326740fdcbc3039ce42d7d921cf8
+[4/9] dt-bindings: phy: qcom,snps-eusb2-repeater: Add SMB2370 compatible
+      commit: 18da99126ebce8d8ebc1ee0b84fe983faa138451
+[5/9] phy: qualcomm: eusb2-repeater: Add SMB2370 eUSB2 repeater support
+      commit: 851dd2c9e91f2da1a60050265507a11aa24c767c
+[6/9] phy: qualcomm: qmp-usb: Add support for Glymur USB UNI PHY
+      commit: 7dbba9fb560f35bdf1eb44035f793e3b7f2cdcdb
+[7/9] phy: qualcomm: Update the QMP clamp register for V6
+      commit: c9543cca9417d83f8ca6a8ce0a5279a3fba7a02b
+[8/9] phy: qualcomm: qmp-combo: Update QMP PHY with Glymur settings
+      commit: 5b289913959b9bc93bab9e0beeab269c33c969b7
+[9/9] phy: qualcomm: qmp-combo: Add DP offsets and settings for Glymur platforms
+      commit: d10736db98d25c97bdffacaca69ae0a8d7ca64e3
 
 Best regards,
 -- 
