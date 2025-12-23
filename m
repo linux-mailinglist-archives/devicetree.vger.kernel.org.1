@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-249222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61C3ACD9F92
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:32:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56F8FCD9F9B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:32:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CF71930A744F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:28:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D1DF530AF596
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 16:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C539341066;
-	Tue, 23 Dec 2025 16:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F8B0344046;
+	Tue, 23 Dec 2025 16:28:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="yWHopKvJ"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="S2anlDl2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 536272C3244;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 197F133A9D7;
 	Tue, 23 Dec 2025 16:28:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766507328; cv=none; b=HkKakANpDcxofCF5eiVT2m2BuZVqPub6FmzxABBEP3sTf6Jv0jT8JkoR/xsTVfYO4a6xv0MPKfhspzEBaqPyIvgNQpfWdplWAOytR5RAr5RZ9+5tpTmMbRVhTxnT5kk6WsLYdqR5vFKCr4B5oW1Q5EadbtwyhGzt8VH7GX+8jiw=
+	t=1766507329; cv=none; b=hq2EBez9CP/OFj+wvGkym7LXnzxfcc2yGttKzjp1kfoWMddWr23/B4XBaL3fGbfZibCb3DNykVLw8JuITSTpQIaV+oaSGH7y+GOKzlmgtA7R0ACgpOyAzQqnshxzMucUKSJU83BqgQ1tETsIPF/s+O8tPvS5qjrXp7q3KnjKXyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766507328; c=relaxed/simple;
-	bh=BSsEJxgd8NCNGQR41Rzr1FEvc1jIP1AIAushA+zKdDc=;
+	s=arc-20240116; t=1766507329; c=relaxed/simple;
+	bh=hyau1PCbq35CfU2gKLl0cZE5KAGycWiD9MwmSCBDVUU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hHI8gh2lsBpNNOgUJFH4ze8J93wyU/iYUpU5B4c/bXzIrRmofiurCzSvTyT9HeccB9l00TBqDL13yLF/WEZF7UWeKQepg6WdFz3+rz5Rfj5kQgSrpUCdmIZ0vY9jJbtjMxNMWuVVLPFgpFjmMi/vUV97mZDFUKLuFwJnva+0QTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=yWHopKvJ; arc=none smtp.client-ip=217.194.8.81
+	 MIME-Version; b=DU8kMGGnAjBpjC37drvYgUCRo5Jqb8/xPVm5IzcNB3A8zbvlry/oUNBATZX24FOUSt77amwYWUz6bDcaJ33p3IbFcNgmyY2PaxI9sUm/xSyp3G/05dl1uJVv3VlnT5mRKiyYoORRu+6etP5l+PKwQl7t92TFhBK0V0b1ZV6g3kg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=S2anlDl2; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
 Received: from localhost.localdomain (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
-	by mail11.truemail.it (Postfix) with ESMTPA id 053571FE0B;
-	Tue, 23 Dec 2025 17:28:41 +0100 (CET)
+	by mail11.truemail.it (Postfix) with ESMTPA id 9FF411FE0C;
+	Tue, 23 Dec 2025 17:28:42 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1766507322;
-	bh=3oK1IffVG2CPnfvTGGdHy1OT+9sPDiuPZUecdFiwUmc=; h=From:To:Subject;
-	b=yWHopKvJ1ptTLiqfw4v4LBpnD+S2pdhJJKyNhjR4xzwz0wrIOVnUGF/XltwLsQPZA
-	 BnSn8AF/kFimgsAwGbvMRMECRan4kHFbZPpOsZEfP0+vG1fYHCABlJSeDwG0uDncBQ
-	 O0Y9+9wDibPktgFY0GXUfe+OIWM3BVyj7IJ84EZrntUwu/oSaVo77M1IBBjemguU0r
-	 d97v627XQZKWQ2CxkFV7yzszYdujwJTf2JRBfkIvrTd2D/53ZXINjr1x3hCNvt+n2i
-	 ROXcczZmbrpMiw8vOqyVYu6zH/vaAw8hVnFcqx1gw3sbGOLDyZXr/lLt0P+5QMMORD
-	 gCn0/oDUL4KTw==
+	s=default; t=1766507323;
+	bh=jnFb/IX3ljIxWsMngTBtcXekODzwjzg+jILeoqFZb7A=; h=From:To:Subject;
+	b=S2anlDl21dcTQau6eVPjl9xfm98B/lT5hXIhlsNDw+YCmSzVqh/82dBzXtuiRpek0
+	 gxxG7kCCG2MMFLpVrb0PvH79UaSokk3e3OwPDeXPi85rMqaofOdScXk8Fmcq//uzYH
+	 EoODPGEwmFHmKR28fGMo/esPiE7QUN4HFOTQvzAN3WfHI7rd9Rjwm3A9n9S1PvSNXn
+	 20OzctLHbbRyOsBw/aEcRh8dwoge05h5KAmnbmCIhoulTXix7pbv4hwXSFq+eMOjzb
+	 qFK9vUakDsxxSwz9S7eVBjm477JXAjq6JxsqODgUAoFss7KJ/CKWjSTFAvsILzgQXR
+	 /uYp667RrzdCA==
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -54,9 +54,9 @@ Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
 	linux-kernel@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 1/4] dt-bindings: arm: fsl: Add Apalis iMX8QP
-Date: Tue, 23 Dec 2025 17:28:27 +0100
-Message-ID: <20251223162833.138286-2-francesco@dolcini.it>
+Subject: [PATCH v1 2/4] arm64: dts: imx8qm: Add CPU cluster labels
+Date: Tue, 23 Dec 2025 17:28:28 +0100
+Message-ID: <20251223162833.138286-3-francesco@dolcini.it>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20251223162833.138286-1-francesco@dolcini.it>
 References: <20251223162833.138286-1-francesco@dolcini.it>
@@ -70,48 +70,37 @@ Content-Transfer-Encoding: 8bit
 
 From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Add binding documentation for the Apalis iMX8QP SoM mated with Apalis
-Ixora and Apalis Evaluation board.
+Add labels to the cpu cluster nodes to prepare for the addition of the
+i.MX8QP SoC in which these nodes would need to be adjusted from another
+DT file.
 
-Apalis iMX8QP is a variant of the Apalis iMX8QM, using an NXP i.MX8QP
-SoC instead of the i.MX8QM. The two SoCs are pin to pin compatible, with
-the i.MX8QP being a lower end variant, with a slower GPU and one Cortex
-A72 core instead of two.
-
-The two Apalis SoMs variants share the same schematics and PCB, and the
-iMX8QP variant exists only on revision V1.1 of board.
-
-Link: https://www.nxp.com/products/i.MX8
-Link: https://www.toradex.com/computer-on-modules/apalis-arm-family/nxp-imx-8
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 68a2d5fecc43..611fe36c2884 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1333,7 +1333,7 @@ properties:
-           - const: toradex,apalis-imx8
-           - const: fsl,imx8qm
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm.dtsi b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
+index cb66853b1cd3..e0046f798eca 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
+@@ -38,7 +38,7 @@ cpus {
+ 		#size-cells = <0>;
  
--      - description: i.MX8QM Boards with Toradex Apalis iMX8 V1.1 Modules
-+      - description: i.MX8QM/i.MX8QP Boards with Toradex Apalis iMX8 V1.1 Modules
-         items:
-           - enum:
-               - toradex,apalis-imx8-v1.1-eval       # Apalis iMX8 V1.1 Module on Apalis Eval. V1.0/V1.1 Board
-@@ -1341,7 +1341,9 @@ properties:
-               - toradex,apalis-imx8-v1.1-ixora-v1.1 # Apalis iMX8 V1.1 Module on Ixora V1.1 C. Board
-               - toradex,apalis-imx8-v1.1-ixora-v1.2 # Apalis iMX8 V1.1 Module on Ixora V1.2 C. Board
-           - const: toradex,apalis-imx8-v1.1
--          - const: fsl,imx8qm
-+          - enum:
-+              - fsl,imx8qm
-+              - fsl,imx8qp
+ 		cpu-map {
+-			cluster0 {
++			cluster0: cluster0 {
+ 				core0 {
+ 					cpu = <&A53_0>;
+ 				};
+@@ -53,7 +53,7 @@ core3 {
+ 				};
+ 			};
  
-       - description: i.MX8QXP based Boards
-         items:
+-			cluster1 {
++			cluster1: cluster1 {
+ 				core0 {
+ 					cpu = <&A72_0>;
+ 				};
 -- 
 2.47.3
 
