@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-249252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52A68CDA2A9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:47:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60A2ECDA2AF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:48:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3D49E30497DC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:46:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CAC063078C91
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:46:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21EC34DCC9;
-	Tue, 23 Dec 2025 17:45:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0002A3128A3;
+	Tue, 23 Dec 2025 17:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s3x4O61l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Chi1/a2E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C9EB34B41C;
-	Tue, 23 Dec 2025 17:45:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A75AD349AF7;
+	Tue, 23 Dec 2025 17:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766511916; cv=none; b=JglMRDgoFVrP3DmcdVtkfP/Do20greHCqujjb6rt6GUJVFRUlHw8+PfQJQ1z9RsltprZuMBh2l79revps+/2chAXhaQVJVrtO7AO2e0EJ6V95LVdNF5GFIkFY5GA7whzbrRi9gmeLtaDIlHdKoZQb8zhDPZMH0k8l0OW4t3pfmY=
+	t=1766511922; cv=none; b=Qo8I1yDiS+OStpBuA8Pi+4MrZARJcFfmnEopKbgYdfP2EgUgmjDi3FgFV0hHsNiVWEdKqP7iJU9zdJYc/hzCvlHsLzvrh1sTWjaKtPvm/lNdEzW5ZfWAIwqBEe7XKdEJ7/8LvHMX3mboEV8wBWZupASpmlFsSceB4+Vmx4NC/Ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766511916; c=relaxed/simple;
-	bh=IREpsCbPDjPXBUeM3hVpkzTdgens1z8F0+oisTuZVws=;
+	s=arc-20240116; t=1766511922; c=relaxed/simple;
+	bh=T2nlD48GlaoJgKHs5BjofUYL/ofPr9ZNhb5JsuIEU9o=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=OvdyXOJY80Riiq/uzyyPl7dJ2K3sxVvQ4xLnUjM6P0DFfi6SZesRyOLrsXOqm8P/SwSb4R7mv/gjzkhC6wn9iT88daW9IR4/328P4TyF0459JRBy9Oy28X59ow5cxp9V0QEhvji3iLL7ZW8WBQTa+2mxTrQJ5ahNUm1/B2HUml4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s3x4O61l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC5D7C113D0;
-	Tue, 23 Dec 2025 17:45:11 +0000 (UTC)
+	 MIME-Version:Content-Type; b=RqQQRadq2UjTuGvH5RaP3ckZAgxQcFN71a1uM1bmeKGEp5JblDV45JkDu2bKj6Cr+jH31HkZZLq2DYiTamBtVgBwgTeUbD9FMXtbZ4kmEPfQhkagstemiFZ4NwLLQZEV8xIqgm5XLoLpNQBEsOmuIc2GE0s+Fv8WKtfnqK5Zxys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Chi1/a2E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B177EC19421;
+	Tue, 23 Dec 2025 17:45:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766511916;
-	bh=IREpsCbPDjPXBUeM3hVpkzTdgens1z8F0+oisTuZVws=;
+	s=k20201202; t=1766511922;
+	bh=T2nlD48GlaoJgKHs5BjofUYL/ofPr9ZNhb5JsuIEU9o=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=s3x4O61lW7g72WQyjOgA0jnBkV5RQhLAD5XHp8bwr9tmAIpAE1UGIxrfc5/+v6jlG
-	 4aNHfOiPZf5XqAtci5PZLnaZQkMQRYtdi7dvd1mSn1wiPTXw/CDxq4IPl5wWR0iM1n
-	 j0SIw6vABuVJ9X46iiSTEmLe0Rlvx/zhVRr9OvS3F5IAUHpC9A/MkSlG9w2j+Xtp36
-	 QGOMfkcPkVifbVoVa60ppQ/yNNg483VPERAIgKEmRygWWyM9TbaUfu9LOeFH0jSrAI
-	 vrzi52ZmBIxKhIVeq8UYtuswy5ojifLhrSpyf+9PUNs7AEdc4qRHbYfxNuzQCbxWNV
-	 gtQfC+pUwHzfg==
+	b=Chi1/a2EXD0CKQMuWgr/euJuLk9PeIwxJo4Ad0fSVfmFTxJyLyaMR9hFIPE7eLw3M
+	 Dh97j5qQUJquRz6X8otCn8/i/fOJcHJPK1pmso20pPvzHSmTLA2m2W5+1PbuQUVvun
+	 DD14V2claROpYdReo59+hOqMSLmya+QrGbw8ojQwGlNFK5PWFzwxhbjEtn4tHbKilu
+	 0nQuWxjA5mQkbG66rDOw4/yw/vZuyrOa6ssAFN7xqlE1C/uiHu/Fmdc9OWg8+LtHvB
+	 HKofrm39lylBMF4y3jcx55jZJ6Mitcwj9BJQJ6jusKaDSpLBXWhtiLKP9b98jMuyPZ
+	 NUIFXy8fKQWRQ==
 From: Vinod Koul <vkoul@kernel.org>
-To: Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Sven Peter <sven@kernel.org>
-Cc: linux-kernel@vger.kernel.org, asahi@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Hector Martin <marcan@marcan.st>
-In-Reply-To: <20251214-b4-atcphy-v3-0-ba82b20e9459@kernel.org>
-References: <20251214-b4-atcphy-v3-0-ba82b20e9459@kernel.org>
-Subject: Re: [PATCH v3 0/3] Apple Silicon Type-C PHY
-Message-Id: <176651191159.759340.7918107926279417342.b4-ty@kernel.org>
-Date: Tue, 23 Dec 2025 23:15:11 +0530
+To: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, alim.akhtar@samsung.com, andre.draszik@linaro.org, 
+ peter.griffin@linaro.org, kauschluss@disroot.org, johan@kernel.org, 
+ ivo.ivanov.ivanov1@gmail.com, m.szyprowski@samsung.com, 
+ s.nawrocki@samsung.com, Pritam Manohar Sutar <pritam.sutar@samsung.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com, 
+ dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com, 
+ selvarasu.g@samsung.com
+In-Reply-To: <20251124110453.2887437-1-pritam.sutar@samsung.com>
+References: <CGME20251124105651epcas5p20d9987d882d5d3850b599b4b46cf70d5@epcas5p2.samsung.com>
+ <20251124110453.2887437-1-pritam.sutar@samsung.com>
+Subject: Re: [PATCH v10 0/6] initial usbdrd phy support for Exynosautov920
+ soc
+Message-Id: <176651191635.759340.5010016532880564804.b4-ty@kernel.org>
+Date: Tue, 23 Dec 2025 23:15:16 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,24 +68,31 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Sun, 14 Dec 2025 11:51:33 +0000, Sven Peter wrote:
-> This series adds support for the combined Type-C PHY found in Apple
-> Silicon machines and required for USB3, DP-AltMode, and Thunderbolt/USB4
-> support. As in the previous versions, this is limited to USB3 support so
-> far since the other modes need further work in different subsystems.
-> With the dwc3 glue driver being upstream this is however the last part
-> required for upstream USB3 support.
+On Mon, 24 Nov 2025 16:34:47 +0530, Pritam Manohar Sutar wrote:
+> This SoC has a single USB 3.1 DRD combo phy and three USB2.0 only
+> DRD phy controllers as mentined below
+> 
+>   * Combo phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
+>     compatible to the USB3.0 SS(5Gbps). 'Add-on USB2.0' phy is added
+>     to support USB2.0 HS(480Mbps), FS(12Mbps) and LS(1.5Mbps) data rates.
+>     These two phys are combined to form a combo phy as mentioned below.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/3] soc: apple: Add hardware tunable support
-      commit: a722de305eacb382a5d306f9f8e502f81bab682d
-[2/3] dt-bindings: phy: Add Apple Type-C PHY
-      commit: c1538b87caef6b2783502c820457be092a7266be
-[3/3] phy: apple: Add Apple Type-C PHY
-      commit: 8e98ca1e74db2ae051c9b545d42b879efa5a2f6c
+[1/6] dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 HS phy compatible
+      commit: 28810c0dfe8aa82e6514858bdcd7a83f0848e90a
+[2/6] phy: exynos5-usbdrd: support HS phy for ExynosAutov920
+      commit: 031314bd37cb6ce352b1300ffd4e07a7bebce1ef
+[3/6] dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo hsphy
+      commit: fc58d4628396e4ae2791ff2396793d04940348e1
+[4/6] phy: exynos5-usbdrd: support HS combo phy for ExynosAutov920
+      commit: 22a401c9a2e1e27a136088e4291bec49869cecf5
+[5/6] dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo ssphy
+      commit: 05681c9c7e59c164d7e1fc34696f3130d088bc64
+[6/6] phy: exynos5-usbdrd: support SS combo phy for ExynosAutov920
+      commit: 2fdfc1bb752e393561cf532f5d54607d70e464bc
 
 Best regards,
 -- 
