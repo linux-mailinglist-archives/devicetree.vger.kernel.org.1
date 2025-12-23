@@ -1,387 +1,230 @@
-Return-Path: <devicetree+bounces-249012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B003BCD8856
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:13:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1502DCD8826
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:11:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6E34C3038976
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 09:11:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 93A1730026A9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 09:11:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8B52324B23;
-	Tue, 23 Dec 2025 09:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B891322B67;
+	Tue, 23 Dec 2025 09:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="b25sziMa"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BMPhEjjH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE3FE3242B8;
-	Tue, 23 Dec 2025 09:11:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A069C30E0EC;
+	Tue, 23 Dec 2025 09:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766481107; cv=none; b=hIQoop7db3EJaggJQq7+8KLeZHsj3yPoQBHrZLAqGbqbphZXmPIJ3snOUb8jo/QtNV5Phl2AgBcjuU1TaJKNwgA7XD8zlXwMA4QEOxV5sA3ktDikph2QGdM3BKLUcR1a3Y4NDtXdWxQDWmfi4XEkrBd5BfY4zUsv57WAK4qEXs0=
+	t=1766481095; cv=none; b=o96Xu1Gm9ayCHfJh5nnmDaRn4GDtlcO8qMSOpxfO+0RIIFGJ1pUQzmZxBhYVp4BpsD7H5xdcIodc1hci+tjXc72wui7HrbZPayT/lZ2SVy7CsCpnEjwLRtoRpJcWy0uvWemMwDyBS6nJBkaOuRldgnoPsu6ngpyKE7pOqiuGGRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766481107; c=relaxed/simple;
-	bh=H8MAD1flgSxo90tf4qKPSiR3GbcLMbZ+riVLpJiUFeU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=U8MYOYuhbX0kf9YLY7ck/cvdZ2cxIrOBwV3HcquG+6vngbvOcUWF1h1/SsQS9bV8ztfQ4ARZLdvFBjG4xHBwFNGu3wv6hXBKTQY0PhNJYELhdcqVIVeG/MiX+pXsRDun1tRmYmMEUlezbRbv0Q40ua3+Az1n+AR9qUmnWm6fhi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=b25sziMa; arc=none smtp.client-ip=18.194.254.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1766481092;
-	bh=VrMTiF3Zn2O9PQiW+qTsH5ZlSMA1veprIN9lAh4I/YY=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=b25sziMaYkJj6TWS0rS8sEdVnQPfHQI1F3GvwzvnOy/MOof5HxrL5AzYgAwKTXW0E
-	 wgp/vnPL8wnA5Lb9xq+w4ns8RgIUrSv2zwMjs6gvXYGL7jzCKNo4pAb1rTQS/jN5jS
-	 khB7JdNqDKZWxHzGwuV7NMmFnmMQF3BDkm7YbyZc=
-X-QQ-mid: zesmtpgz6t1766481084t16904670
-X-QQ-Originating-IP: kcO+ntnvqeIk2ReWF769Ryi38sTAnoxbRaBrt9Wf5Cg=
-Received: from = ( [120.237.158.181])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 23 Dec 2025 17:11:21 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 13884977633580607309
-EX-QQ-RecipientCnt: 15
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Tue, 23 Dec 2025 17:11:12 +0800
-Subject: [PATCH 2/2] pinctrl: spacemit: support I/O power domain
- configuration
+	s=arc-20240116; t=1766481095; c=relaxed/simple;
+	bh=ZqET7JDJuYMJb/LzrDvFXdLIdbljPg9n/EknE9F/unk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zgh0huL01GQ/a7P3+wapnbMcdfQYwS7O9xTCXhTCTOly7NK3huwFr+Lghe0k97ePwudg38D+HRJQWbJv8vQUccZhTkGVuOkwh332+3jgcRbXmYtPx795mvtEQ2AKpFDS6l9WA1IdREl8nmBxEjoOj9Pu2WS9pVtni3OtPYTWJoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BMPhEjjH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BN2tDeT1529451;
+	Tue, 23 Dec 2025 09:11:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=zBoAtYPh9Xvs4dL1yvk9zQSK
+	y93obHuhGl8rTezuj5M=; b=BMPhEjjHJZvNP4JVGCTyrcKBhKHBxRgTjn0VKYkT
+	L0MDjw6o0ronPZX43X8RXHs40eN/qwL60huL5nirefbr6cv4l6l//8aD/MZbKV0V
+	TBnP6XqUi2fdJKHcBzP1gVksd+tzJQlu1jDJjvReeddeBKYV8oiuxGW+c/8RGnPI
+	DHNJOsN7gW9nctyZ8x64bAJkloxdUyJdCYBOodCwF3PHH01uJ/sgt8Uu+MXen281
+	GH8fVcBTI+PnK0LqF00xKx/vBUyM/uhs1l4LSzaLNC38vR4xoGW44oBAp/NXUOWg
+	4RiRi/tpTJjfAyjXbHhLxbq2x9T98k0UidZHZAW4X+ccWw==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b758y3a23-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Dec 2025 09:11:29 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5BN9BQjB002134;
+	Tue, 23 Dec 2025 09:11:26 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4b5mvm77vj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Dec 2025 09:11:26 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5BN9BQuc002129;
+	Tue, 23 Dec 2025 09:11:26 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-kotarake-hyd.qualcomm.com [10.213.97.140])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 5BN9BPLU002127
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Dec 2025 09:11:26 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 2389607)
+	id 223B0AB0; Tue, 23 Dec 2025 14:41:25 +0530 (+0530)
+Date: Tue, 23 Dec 2025 14:41:25 +0530
+From: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kamal.wadhwa@oss.qualcomm.com, fenglin.wu@oss.qualcomm.com
+Subject: Re: [PATCH 2/2] power: supply: core: Add SiLION battery technology
+Message-ID: <aUpcvT1IKyfxr7xb@hu-kotarake-hyd.qualcomm.com>
+References: <20251124-add_silion_battery-v1-0-3c86b70d2543@oss.qualcomm.com>
+ <20251124-add_silion_battery-v1-2-3c86b70d2543@oss.qualcomm.com>
+ <aUft_bUIhiMJF_2A@venus>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-2-5f1090a487c7@linux.spacemit.com>
-References: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-0-5f1090a487c7@linux.spacemit.com>
-In-Reply-To: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-0-5f1090a487c7@linux.spacemit.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
- Linus Walleij <linusw@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766481072; l=9633;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=H8MAD1flgSxo90tf4qKPSiR3GbcLMbZ+riVLpJiUFeU=;
- b=Ryg7x+nRbvlWZcilYWuGa/45Bnr1Zz4dgKQfhGSaY7yKcvi1U/0C8htiYBTG/5qUhhyEILGRn
- Obe2NsP1zEBAt2meH8kGgwMXi2+xW2HFXSlP6Tbo4xac8NtGYHNolve
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: M8UYpcaD4/AyS8a3BcSFzGH5h+uKd/n2rApXT1TY9mXtNd18lSE09Pik
-	sFfveubgSWNCOGXbcRsjKvOAnNwNUuqQB6pBn3TPVhDvJ8gn76yVSGP/SJaNnXvI9VV4DoW
-	lKMTo+ZJvOER9mQGN7zE+sBXPJNkB76huFwcJZNrn9GtQGBB5CrKz2mpyktkeVVZp/CnwK7
-	qOes+Omea0fOZ+jR9IwU7cX0HpJr8GAdWBI/ecX4oi1BBLddwP/+NniTR7WQMAOO5/ycwxX
-	+GfcYAPzxpdRmuh2gHm4ZtOA5N58VB6NONeXEATSIRCVWZbVKEUAqCyPMZ06bubvisFJB1p
-	i0TSZj6MPkwXap0BhlgMBBZtqvhlhAyssEc+nkvCtGUTH76x2Z/yJWQ8VLVTdpkpuU4AHc2
-	TtrGcwiLWQuImHnwcKNHPxLiuhLlhQ78kVkf6W6xCnpM7qsupaznoY0HyMdFoGBAvZ2xk5D
-	WCNUZ0apwBuraai8MkCwiUwOAiXXYeIkijWqWvFZXUmMCAXD3qMpa+U4wzvM3JMFZhREg+R
-	Q7fh5a4ckiQvL2Y4Dd61URkMRPvs+pdWueVVQiRgxk2OiH7lQRj93RqR3JT2wVAVwvQzzKw
-	ft3Xn3gV0PuVCZrqKaeYOith7PcJc0/iU0S1D9ZDwUq9C8bQVmzPVruIkBO4vaozT8rt85J
-	Ly/0ExEpiQbGWSc9FViGYTTk9kQszXGASB5dLiMycMcI4Tw56FldDo2xS4+u1BdJNs5HpuS
-	g9W8JDGLIXwbNdP8kidxupM+RICwKLapf8JmiqenBAYMIVlpMNBCE/F1LvvPV/+PYWO/zt2
-	tPh1Zpk3bheVUUacEQsAr6ljVVhWrNptW45UIwp185+fdFjw8ArknUMXvcPZwG1F2h3qXzH
-	kl32xJMDeEsj1az220TRFrGTO8UCbdY3A31zXE7Jao+yyBxRMYeZDrjMUiPgIwx5cBuLWDj
-	n47Mkmo6RlAtsrJsTvpCC/SiF8TpdGL+0eO0g93zmqMQeYF5RW1kVDvOTxPeRBNVuZsxNoi
-	bM3hyn33nkBrqJXDsRX+5KbTKzgY/knfOZo84lOkWgKUa11eWujuH2XZi6h58nRJXI93zRY
-	o3O0H6yUq5gs6YEyWBle7q6pHEHjPu//muFHeNQhn36+h+iJu3RI3Lt3Luwrg0pp7NyHSG2
-	zhtM10YgoVWCR8Q/Sdu7uucXdg==
-X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aUft_bUIhiMJF_2A@venus>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=TOdIilla c=1 sm=1 tr=0 ts=694a5cc2 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=kj9zAlcOel0A:10 a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=aV-ZtTf-xQq4tOraWO8A:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-ORIG-GUID: nNLGhhH7BXUTH2HnSzIyuck3rey-LWnQ
+X-Proofpoint-GUID: nNLGhhH7BXUTH2HnSzIyuck3rey-LWnQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDA3NCBTYWx0ZWRfX8r4rDL4wp12V
+ W5WahnRR0p7f9Xiz5CHao8lO/E1j9ro1BT4SBvllnZ8oRplOF5dVZDCc2/VGSVlsRP5mAM9BLEm
+ 5HkO1MlVxuGUEGNlDb9JkAwb1KicLs6DPOa31u9Cm6kf4HN9iqKKzWRNIG7JmSK91Af7VubLodE
+ NtmV7IGomfAZUR8emRmNCF6bRirdQe86J6b/2dl6H7kR7gm0aJwSa3uE+7KQEZfZmKRqdugbfQV
+ Xr7FD4u5Ntnx0vYm5RhVNEINZov+obF/UvI1VAabBemyaCN+F9DeXrxwFsYIxDWB/59/vxGftoZ
+ NrR86dlXhNT6n67V1Y1j1p4wpUR+fXqv38CfMZILiU6MdzL3JQ3lf0xJOHVr0PEdyIzvUIulC30
+ IERpd0IG7CWskRwIGLRDW9B9nM5p+N+KGWLhfpX4YbUH0+HgG5Q4fGxlgT149VTJHUktd7si2Aj
+ JtGbL4kQTHcyLLD5H9Q==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-23_02,2025-12-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0 priorityscore=1501
+ clxscore=1011 impostorscore=0 bulkscore=0 suspectscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512230074
 
-IO domain power control registers are used to configure the operating
-voltage of dual-voltage GPIO banks. By default, these registers are
-configured for 3.3V operation. As a result, even when a GPIO bank is
-externally supplied with 1.8V, the internal logic continues to
-operate in the 3.3V domain, which may lead to functional failures.
+On Sun, Dec 21, 2025 at 09:57:01PM +0900, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Mon, Nov 24, 2025 at 04:42:41PM +0530, Rakesh Kota wrote:
+> > Add support for lithium-ion-silicon-anode (SiLION) battery technology
+> > to enable proper identification of devices using this newer battery
+> > chemistry. Without this change, such batteries would report as
+> > unknown technology.
+> > 
+> > Introduce POWER_SUPPLY_TECHNOLOGY_SiLION and update technology
+> > mappings across core, sysfs, and test interfaces.
+> > 
+> > Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+> > ---
+> 
+> The change itself looks good to me, but it must be submitted with a
+> user (e.g. an update to the qcom_battmgr) as a follow-up patch.
+>
 
-This patch adds support for programming the IO domain power control
-registers, allowing dual-voltage GPIO banks to be explicitly configured
-for 1.8V operation when required.
+Actually, we do not have any changes in the qcom_battmgr driver or in
+the device tree related to this battery chemistry technology text.
 
-Care must be taken when configuring these registers. If a GPIO bank is
-externally supplied with 3.3V while the corresponding IO power domain
-is configured for 1.8V, external current injection (back-powering)
-may occur, potentially causing damage to the GPIO pin.
+The battery chemistry is obtained from the charger firmware, which runs
+on the remote processor. The charger FW shares the
+battmgr->info.technology value with us, and based on this value the
+power supply framework derives and prints the corresponding battery
+chemistry string. There is no local hard-coding or DT-based battery
+chemistry mapping.
 
-Due to these hardware constraints and safety considerations, the IO
-domain power control registers are implemented as secure registers.
-Access to these registers requires unlocking via the AIB Secure Access
-Register (ASAR) in the APBC block before a single read or write
-operation can be performed.
+Best regards,
+Rakesh
 
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
----
- arch/riscv/boot/dts/spacemit/k1.dtsi  |   4 +-
- drivers/pinctrl/spacemit/pinctrl-k1.c | 131 +++++++++++++++++++++++++++++++++-
- 2 files changed, 131 insertions(+), 4 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 7818ca4979b6a7755722919a5958512aa11950ab..23ecb19624f227f3c39de35bf3078379f7a2490e 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -565,10 +565,12 @@ i2c8: i2c@d401d800 {
- 
- 		pinctrl: pinctrl@d401e000 {
- 			compatible = "spacemit,k1-pinctrl";
--			reg = <0x0 0xd401e000 0x0 0x400>;
-+			reg = <0x0 0xd401e000 0x0 0x400>,
-+			      <0x0 0xd401e800 0x0 0x34>;
- 			clocks = <&syscon_apbc CLK_AIB>,
- 				 <&syscon_apbc CLK_AIB_BUS>;
- 			clock-names = "func", "bus";
-+			spacemit,apbc = <&syscon_apbc 0x50>;
- 		};
- 
- 		pwm8: pwm@d4020000 {
-diff --git a/drivers/pinctrl/spacemit/pinctrl-k1.c b/drivers/pinctrl/spacemit/pinctrl-k1.c
-index 8ca247fb8ba0321c02423f9739130e03277d1053..b3ffb32f88a79ebf6b64e62a7846df60b92799fe 100644
---- a/drivers/pinctrl/spacemit/pinctrl-k1.c
-+++ b/drivers/pinctrl/spacemit/pinctrl-k1.c
-@@ -7,8 +7,10 @@
- #include <linux/io.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/regmap.h>
- #include <linux/seq_file.h>
- #include <linux/spinlock.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/mutex.h>
- 
-@@ -47,6 +49,25 @@
- #define PAD_PULLUP		BIT(14)
- #define PAD_PULL_EN		BIT(15)
- 
-+#define IO_PWR_DOMAIN_GPIO2_Kx  0x0c
-+#define IO_PWR_DOMAIN_MMC_Kx    0x1c
-+
-+#define IO_PWR_DOMAIN_GPIO3_K1  0x10
-+#define IO_PWR_DOMAIN_QSPI_K1   0x20
-+
-+#define IO_PWR_DOMAIN_GPIO1_K3  0x04
-+#define IO_PWR_DOMAIN_GPIO5_K3  0x10
-+#define IO_PWR_DOMAIN_GPIO4_K3  0x20
-+#define IO_PWR_DOMAIN_QSPI_K3   0x2c
-+
-+#define IO_PWR_DOMAIN_V18EN	BIT(2)
-+
-+#define APBC_ASFAR		0x00
-+#define APBC_ASSAR		0x04
-+
-+#define APBC_ASFAR_AKEY		0xbaba
-+#define APBC_ASSAR_AKEY		0xeb10
-+
- struct spacemit_pin_drv_strength {
- 	u8		val;
- 	u32		mA;
-@@ -78,6 +99,10 @@ struct spacemit_pinctrl {
- 	raw_spinlock_t				lock;
- 
- 	void __iomem				*regs;
-+	void __iomem				*io_pd_reg;
-+
-+	struct regmap				*regmap_apbc;
-+	u32					regmap_apbc_offset;
- };
- 
- struct spacemit_pinctrl_data {
-@@ -85,6 +110,7 @@ struct spacemit_pinctrl_data {
- 	const struct spacemit_pin	*data;
- 	u16				npins;
- 	unsigned int			(*pin_to_offset)(unsigned int pin);
-+	unsigned int			(*pin_to_io_pd_offset)(unsigned int pin);
- 	const struct spacemit_pinctrl_dconf	*dconf;
- };
- 
-@@ -146,6 +172,56 @@ static unsigned int spacemit_k3_pin_to_offset(unsigned int pin)
- 	return offset << 2;
- }
- 
-+static unsigned int spacemit_k1_pin_to_io_pd_offset(unsigned int pin)
-+{
-+	unsigned int offset = 0;
-+
-+	switch (pin) {
-+	case 47 ... 52:
-+		offset = IO_PWR_DOMAIN_GPIO3_K1;
-+		break;
-+	case 75 ... 80:
-+		offset = IO_PWR_DOMAIN_GPIO2_Kx;
-+		break;
-+	case 98 ... 103:
-+		offset = IO_PWR_DOMAIN_QSPI_K1;
-+		break;
-+	case 104 ... 109:
-+		offset = IO_PWR_DOMAIN_MMC_Kx;
-+		break;
-+	}
-+
-+	return offset;
-+}
-+
-+static unsigned int spacemit_k3_pin_to_io_pd_offset(unsigned int pin)
-+{
-+	unsigned int offset = 0;
-+
-+	switch (pin) {
-+	case 0 ... 20:
-+		offset = IO_PWR_DOMAIN_GPIO1_K3;
-+		break;
-+	case 21 ... 41:
-+		offset = IO_PWR_DOMAIN_GPIO2_Kx;
-+		break;
-+	case 76 ... 98:
-+		offset = IO_PWR_DOMAIN_GPIO4_K3;
-+		break;
-+	case 99 ... 127:
-+		offset = IO_PWR_DOMAIN_GPIO5_K3;
-+		break;
-+	case 132 ... 137:
-+		offset = IO_PWR_DOMAIN_MMC_Kx;
-+		break;
-+	case 138 ... 144:
-+		offset = IO_PWR_DOMAIN_QSPI_K3;
-+		break;
-+	}
-+
-+	return offset;
-+}
-+
- static inline void __iomem *spacemit_pin_to_reg(struct spacemit_pinctrl *pctrl,
- 						unsigned int pin)
- {
-@@ -365,6 +441,38 @@ static int spacemit_pctrl_check_power(struct pinctrl_dev *pctldev,
- 	return 0;
- }
- 
-+static void spacemit_set_io_pwr_domain(struct spacemit_pinctrl *pctrl,
-+				      const struct spacemit_pin *spin,
-+				      const enum spacemit_pin_io_type type)
-+{
-+	u32 offset = pctrl->data->pin_to_io_pd_offset(spin->pin);
-+	u32 val = 0;
-+
-+	/* Other bits are reserved so don't need to save them */
-+	if (type == IO_TYPE_1V8)
-+		val = IO_PWR_DOMAIN_V18EN;
-+
-+	/*
-+	 * IO power domain registers are protected and cannot be accessed
-+	 * directly. Before performing any read or write to the IO power
-+	 * domain registers, an explicit unlock sequence must be issued
-+	 * via the AIB Secure Access Register (ASAR).
-+	 *
-+	 * The unlock sequence allows exactly one subsequent access to the
-+	 * IO power domain registers. After that access completes, the ASAR
-+	 * keys are automatically cleared, and the registers become locked
-+	 * again.
-+	 *
-+	 * This mechanism ensures that IO power domain configuration is
-+	 * performed intentionally, as incorrect voltage settings may
-+	 * result in functional failures or hardware damage.
-+	 */
-+	regmap_write(pctrl->regmap_apbc, pctrl->regmap_apbc_offset + APBC_ASFAR, APBC_ASFAR_AKEY);
-+	regmap_write(pctrl->regmap_apbc, pctrl->regmap_apbc_offset + APBC_ASSAR, APBC_ASSAR_AKEY);
-+
-+	writel_relaxed(val, pctrl->io_pd_reg + offset);
-+}
-+
- static int spacemit_pctrl_dt_node_to_map(struct pinctrl_dev *pctldev,
- 					 struct device_node *np,
- 					 struct pinctrl_map **maps,
-@@ -572,7 +680,8 @@ static int spacemit_pinconf_get(struct pinctrl_dev *pctldev,
- 
- #define ENABLE_DRV_STRENGTH	BIT(1)
- #define ENABLE_SLEW_RATE	BIT(2)
--static int spacemit_pinconf_generate_config(const struct spacemit_pin *spin,
-+static int spacemit_pinconf_generate_config(struct spacemit_pinctrl *pctrl,
-+					    const struct spacemit_pin *spin,
- 					    const struct spacemit_pinctrl_dconf *dconf,
- 					    unsigned long *configs,
- 					    unsigned int num_configs,
-@@ -646,6 +755,7 @@ static int spacemit_pinconf_generate_config(const struct spacemit_pin *spin,
- 			default:
- 				return -EINVAL;
- 			}
-+			spacemit_set_io_pwr_domain(pctrl, spin, type);
- 		}
- 
- 		val = spacemit_get_driver_strength(type, dconf, drv_strength);
-@@ -701,7 +811,7 @@ static int spacemit_pinconf_set(struct pinctrl_dev *pctldev,
- 	const struct spacemit_pin *spin = spacemit_get_pin(pctrl, pin);
- 	u32 value;
- 
--	if (spacemit_pinconf_generate_config(spin, pctrl->data->dconf,
-+	if (spacemit_pinconf_generate_config(pctrl, spin, pctrl->data->dconf,
- 					     configs, num_configs, &value))
- 		return -EINVAL;
- 
-@@ -724,7 +834,7 @@ static int spacemit_pinconf_group_set(struct pinctrl_dev *pctldev,
- 		return -EINVAL;
- 
- 	spin = spacemit_get_pin(pctrl, group->grp.pins[0]);
--	if (spacemit_pinconf_generate_config(spin, pctrl->data->dconf,
-+	if (spacemit_pinconf_generate_config(pctrl, spin, pctrl->data->dconf,
- 					     configs, num_configs, &value))
- 		return -EINVAL;
- 
-@@ -795,6 +905,7 @@ static const struct pinconf_ops spacemit_pinconf_ops = {
- 
- static int spacemit_pinctrl_probe(struct platform_device *pdev)
- {
-+	struct device_node *np = pdev->dev.of_node;
- 	struct device *dev = &pdev->dev;
- 	struct spacemit_pinctrl *pctrl;
- 	struct clk *func_clk, *bus_clk;
-@@ -816,6 +927,18 @@ static int spacemit_pinctrl_probe(struct platform_device *pdev)
- 	if (IS_ERR(pctrl->regs))
- 		return PTR_ERR(pctrl->regs);
- 
-+	pctrl->io_pd_reg = devm_platform_ioremap_resource(pdev, 1);
-+	if (IS_ERR(pctrl->io_pd_reg))
-+		return PTR_ERR(pctrl->io_pd_reg);
-+
-+	pctrl->regmap_apbc =
-+		syscon_regmap_lookup_by_phandle_args(np, "spacemit,apbc", 1,
-+						     &pctrl->regmap_apbc_offset);
-+
-+	if (IS_ERR(pctrl->regmap_apbc))
-+		return dev_err_probe(dev, PTR_ERR(pctrl->regmap_apbc),
-+				     "failed to get syscon\n");
-+
- 	func_clk = devm_clk_get_enabled(dev, "func");
- 	if (IS_ERR(func_clk))
- 		return dev_err_probe(dev, PTR_ERR(func_clk), "failed to get func clock\n");
-@@ -1118,6 +1241,7 @@ static const struct spacemit_pinctrl_data k1_pinctrl_data = {
- 	.data = k1_pin_data,
- 	.npins = ARRAY_SIZE(k1_pin_desc),
- 	.pin_to_offset = spacemit_k1_pin_to_offset,
-+	.pin_to_io_pd_offset = spacemit_k1_pin_to_io_pd_offset,
- 	.dconf = &k1_drive_conf,
- };
- 
-@@ -1455,6 +1579,7 @@ static const struct spacemit_pinctrl_data k3_pinctrl_data = {
- 	.data = k3_pin_data,
- 	.npins = ARRAY_SIZE(k3_pin_desc),
- 	.pin_to_offset = spacemit_k3_pin_to_offset,
-+	.pin_to_io_pd_offset = spacemit_k3_pin_to_io_pd_offset,
- 	.dconf = &k3_drive_conf,
- };
- 
-
--- 
-2.52.0
-
+> Greetings,
+> 
+> -- Sebastian
+> 
+> >  Documentation/ABI/testing/sysfs-class-power | 2 +-
+> >  drivers/power/supply/power_supply_core.c    | 2 ++
+> >  drivers/power/supply/power_supply_sysfs.c   | 1 +
+> >  drivers/power/supply/test_power.c           | 3 ++-
+> >  include/linux/power_supply.h                | 1 +
+> >  5 files changed, 7 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/ABI/testing/sysfs-class-power b/Documentation/ABI/testing/sysfs-class-power
+> > index 4b21d5d2325136be65126d4d1d6e64608280fe44..1f42e6f138ea8ae0fe8c232c38d0ff6fb20180e7 100644
+> > --- a/Documentation/ABI/testing/sysfs-class-power
+> > +++ b/Documentation/ABI/testing/sysfs-class-power
+> > @@ -525,7 +525,7 @@ Description:
+> >  
+> >  		Valid values:
+> >  			      "Unknown", "NiMH", "Li-ion", "Li-poly", "LiFe",
+> > -			      "NiCd", "LiMn"
+> > +			      "NiCd", "LiMn", "Si-Li-ion"
+> >  
+> >  
+> >  What:		/sys/class/power_supply/<supply_name>/voltage_avg,
+> > diff --git a/drivers/power/supply/power_supply_core.c b/drivers/power/supply/power_supply_core.c
+> > index 9a28381e2607d650fa9b719b683af375bb118fad..385ab8aa7e69f3f804e7ac0ee3782446f18e2c3f 100644
+> > --- a/drivers/power/supply/power_supply_core.c
+> > +++ b/drivers/power/supply/power_supply_core.c
+> > @@ -677,6 +677,8 @@ int power_supply_get_battery_info(struct power_supply *psy,
+> >  			info->technology = POWER_SUPPLY_TECHNOLOGY_LiFe;
+> >  		else if (!strcmp("lithium-ion-manganese-oxide", value))
+> >  			info->technology = POWER_SUPPLY_TECHNOLOGY_LiMn;
+> > +		else if (!strcmp("lithium-ion-silicon-anode", value))
+> > +			info->technology = POWER_SUPPLY_TECHNOLOGY_SiLION;
+> >  		else
+> >  			dev_warn(&psy->dev, "%s unknown battery type\n", value);
+> >  	}
+> > diff --git a/drivers/power/supply/power_supply_sysfs.c b/drivers/power/supply/power_supply_sysfs.c
+> > index 198405f7126f96a57a549cd1ecb9b71089b9c3d0..f2a5ec519b2ef60fb5ede101ca461d899218e186 100644
+> > --- a/drivers/power/supply/power_supply_sysfs.c
+> > +++ b/drivers/power/supply/power_supply_sysfs.c
+> > @@ -122,6 +122,7 @@ static const char * const POWER_SUPPLY_TECHNOLOGY_TEXT[] = {
+> >  	[POWER_SUPPLY_TECHNOLOGY_LiFe]		= "LiFe",
+> >  	[POWER_SUPPLY_TECHNOLOGY_NiCd]		= "NiCd",
+> >  	[POWER_SUPPLY_TECHNOLOGY_LiMn]		= "LiMn",
+> > +	[POWER_SUPPLY_TECHNOLOGY_SiLION]	= "Si-Li-ion",
+> >  };
+> >  
+> >  static const char * const POWER_SUPPLY_CAPACITY_LEVEL_TEXT[] = {
+> > diff --git a/drivers/power/supply/test_power.c b/drivers/power/supply/test_power.c
+> > index 2c0e9ad820c0db23165758303a16bddac1a1634b..64bd4a1147ca06566a909513a80760ad707a8605 100644
+> > --- a/drivers/power/supply/test_power.c
+> > +++ b/drivers/power/supply/test_power.c
+> > @@ -437,6 +437,7 @@ static struct battery_property_map map_technology[] = {
+> >  	{ POWER_SUPPLY_TECHNOLOGY_LiFe, "LiFe" },
+> >  	{ POWER_SUPPLY_TECHNOLOGY_NiCd, "NiCd" },
+> >  	{ POWER_SUPPLY_TECHNOLOGY_LiMn, "LiMn" },
+> > +	{ POWER_SUPPLY_TECHNOLOGY_SiLION, "SiLION" },
+> >  	{ -1,				NULL   },
+> >  };
+> >  
+> > @@ -733,7 +734,7 @@ MODULE_PARM_DESC(battery_present,
+> >  
+> >  module_param(battery_technology, battery_technology, 0644);
+> >  MODULE_PARM_DESC(battery_technology,
+> > -	"battery technology <NiMH|LION|LIPO|LiFe|NiCd|LiMn>");
+> > +	"battery technology <NiMH|LION|LIPO|LiFe|NiCd|LiMn|SiLION>");
+> >  
+> >  module_param(battery_health, battery_health, 0644);
+> >  MODULE_PARM_DESC(battery_health,
+> > diff --git a/include/linux/power_supply.h b/include/linux/power_supply.h
+> > index 360ffdf272dab86241f1aac4650d1a91a088a84b..04996037219d5a22d2b2a7f136e5d3565a4507ca 100644
+> > --- a/include/linux/power_supply.h
+> > +++ b/include/linux/power_supply.h
+> > @@ -83,6 +83,7 @@ enum {
+> >  	POWER_SUPPLY_TECHNOLOGY_LiFe,
+> >  	POWER_SUPPLY_TECHNOLOGY_NiCd,
+> >  	POWER_SUPPLY_TECHNOLOGY_LiMn,
+> > +	POWER_SUPPLY_TECHNOLOGY_SiLION,
+> >  };
+> >  
+> >  enum {
+> > 
+> > -- 
+> > 2.34.1
+> > 
 
