@@ -1,1063 +1,392 @@
-Return-Path: <devicetree+bounces-249027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF19CD890B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:20:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 381BFCD8914
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:23:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0CC5A30530B3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 09:16:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 900113014A27
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 09:23:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0CCC31A579;
-	Tue, 23 Dec 2025 09:16:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBA13148B3;
+	Tue, 23 Dec 2025 09:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="n/kBblxa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Uw9O28d0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8559A322B8A
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 09:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39873262FC0
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 09:23:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766481407; cv=none; b=dDFQYvoNyDb0KZEQslVIcqSlUHR/iTMVNbpstj4QjfZcbPMww5rrqd0ZtuP97OJk0j1scoWxi7p+ioe3YzhTxa0YQSg5TJtQ6ct3MKM63/oyvY7dWfKKBv52GY2xeVGYoAnCIOvFpZeBYHOg7shyLxVS+p3LsPoOlI5wrIMVylw=
+	t=1766481824; cv=none; b=RNKu2Us47MnN0bTvk8BsHft81vRIWlt5oV7OAXSC18alNrkGHWkwZqmnfVixo8WBFmBEsh+AJgINH6SLb2iZZ6nfYzpXyAv84MBte3vUI95F+CffUF0tJFE6xxL8KNEVAhJldkzEsh6a+TbNEm7eJTqKHF/dTUPdsXxI9epQOTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766481407; c=relaxed/simple;
-	bh=bDo9wCUKKmtcwwmGnEjOZJR0HUiThLsMNZjEB6HCBNU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=hthdJCtlxcgWRNsNnS3kFzrJ3WztkxCpkpWTl3s9D3WVa/60rQuUFOVrFZlPeUCVI2YGE0XSRH/QKoZMxSyZfEfETgpwEC0uNo9BMP2vBXzol5NdjLejELas/B1fRoGuZSjTwKFeGRSr18dljXZ5ANQEOstoB5Axfx3VYtyw1lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=n/kBblxa; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-47aa03d3326so30463855e9.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 01:16:43 -0800 (PST)
+	s=arc-20240116; t=1766481824; c=relaxed/simple;
+	bh=Ry8gB3DgXhpsivy1oQ5kWoRFfx8jFSBdYFq4H10RC4I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uJQrIoo088P76Ms1Mgv+1FSfkzNrmREAsfJtE89VgoVaCnpziUHQSJcdVKxswOBhy4d2gryRsugVXnpk1d6okjd78XdImGqfj1THCfjtNPfd1OVF7RdKJY3DQP+BAwedq2tXynN00HYUmxZxLdnfS+fXA3oA1IW7+MNeO4goFd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Uw9O28d0; arc=none smtp.client-ip=209.85.219.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-88a2ad13c24so46051426d6.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 01:23:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1766481402; x=1767086202; darn=vger.kernel.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yvSfPDujDvVm4nq3bpTeDQCsbI/ya66Fr8YKUHpRJAU=;
-        b=n/kBblxaKLfrv49pjQysLfR4waYkR5Q8U0dY/60Fw4pjy+MYRoNoRlUSIW2YOArZbB
-         jH3NsWad9rwlZSveyQ8IOoBhLXvq8RJ2YICVfbptf2W4OlSEipJGmGY3En9ooOzL+Koc
-         3nIp8+PLvNOy9sVKqllRINCHKbZ3hxeWz9Yi4xr2YAISOKPrmLpVcKSPKbT+YxPxqbHl
-         nge4z+/U3rs3tdubZeYz7nHRjeDUmmBFtqlMroIoTkm29IOCv5fGkLgKFu4vDuuI+Lc1
-         gMvDCAY1UH1IRdtEmwQWXFAq45+YjFLYP1/vIzfAGxrnnOvZPbTo49+PUfdCCpgovlgL
-         Ynqw==
+        d=gmail.com; s=20230601; t=1766481821; x=1767086621; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yRgaOqVJltPfW93WFzFyiZc87xoZ8vjuVQgiQi7aU4I=;
+        b=Uw9O28d0SHbdcS/LJj2HIDGTJqHv/pr2itVjWsoyeFNokhjapViqC0gum2gpX9xoLN
+         cuj/QycQ7jw0DeIJrIzAxmdgbaVBN60bq7lbalJtbQfo7KWiFxUHABo99BbHXBXs4sVr
+         5HCTySQ0BUpaaiMpPvyReIFxpOY1XhEqw1VcjsSP3bS1RRwT3gKilazXRWhxx5vwNq2R
+         ocPwkynXdbPueS95i6tuWw+diMU4wTg/LjQWJdyxLTgm3w3FMMK+CT0LOTcrFWSvcR0y
+         Wa/nzGNK6W2b/nm0hDK4AguXRN+a7b4VyeS2OWoR92ymnQCKy4r7roLGEHSMDGaQRNZt
+         nypA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766481402; x=1767086202;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=yvSfPDujDvVm4nq3bpTeDQCsbI/ya66Fr8YKUHpRJAU=;
-        b=VtCrGQMVaMABB+537W9ZhJvYGpHnOiAnnDfRgSmrruOhoUBgbHQ5eIdxdFnoCK/fiv
-         bmV4E1EvEtIA1b+Eirb6E/tnLZ43QmNmI+VgqoL2fjFWSXDLMMXalidjQ9Ax+M2OHniy
-         1qrM/ueVi7hlV5VuBPce/6qU9aNQWgKqecgkEiso44Q8T8oDI8X4A/N2voyyXZukyoQP
-         q44BaOyW5QjmJq7UrqDp/o6tzuhZN7OImW+jDdIut/YVCOGQ5dHa6ub5OIOu/odLzk6i
-         Rc2jguvsBdBSdNpi1ug6WkNYjNqhzhcjwYYcJU3KeGx6vu/Ct+xKzJg3W75FC1RuySuf
-         Xq5g==
-X-Forwarded-Encrypted: i=1; AJvYcCU9lKFytpP8Q7xyv1UH/YgDBv9Yk6znhvJ66+F6hqXNIFTgMC2fHiaFlQuna/wPlUxCcol9IHOljTAC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz35J/5SgQ5ylrkprychAUBK7FHEes6FUgwN9+34ftlAejYt4rx
-	1cum0a9mo0pp7myo6Ao7dnXurtl2PbqnRxJsD+kxq1dXK+uKd+K/HTtNYyRwzDwAuuE=
-X-Gm-Gg: AY/fxX70ciBjmNUWL3t7GCGGNLKzCkTRTtSxADgb/wfGkqOkTRyxq/FgKXlwqoEuolC
-	ahCMlJOeJ7r3HBki2cIx6LCRu9qVkIZq9iXoTwBqnvY8dJjAEAwhoo9tS76e8f9/RSmwf9nXoeu
-	qdqzmZmuxRmnjPyN1Rk/IjojGDf1HXq2+MS1+M5ZihrDEZb+aGgHXddBWpabPYAdvrCDc78XEFH
-	VRXd0kCPd4UethhJdliaqrQz6MWmJ1aoQ7xKi7KfRJ6+50eRZ2oEsOj5CrDsxSbHIlEBJx/LD3H
-	kAlkVYq+SBNaQz/IHucV5vdYbGv6xhTlmfTaQ+ediStjj0rzUZuQntOC44eIOhKNyhfmotKwFBo
-	MLG4P/CNq8EWGPzp86KYAkGsaxdyPqgV6VB3UshAY8rJznQZzPoq0RLrNvnnJXa+G0nkwl9TBfD
-	HS8NQbrFF/Mw==
-X-Google-Smtp-Source: AGHT+IF1KuNBpp5nVPVMd7BsC8CZtBh1T2w+rMtTeF5MApCafwHfMVOXItPob7v54PzlRCRqIgHxGQ==
-X-Received: by 2002:a05:600c:444b:b0:47a:8cce:2940 with SMTP id 5b1f17b1804b1-47d195468a6mr118384075e9.14.1766481401537;
-        Tue, 23 Dec 2025 01:16:41 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:a0c2:899c:2c46:1e7a])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-47be3a210e7sm109864855e9.3.2025.12.23.01.16.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Dec 2025 01:16:40 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Cc: Chuan Liu <chuan.liu@amlogic.com>,  Michael Turquette
- <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  Neil Armstrong <neil.armstrong@linaro.org>,
-  Xianwei Zhao <xianwei.zhao@amlogic.com>,  Kevin Hilman
- <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  linux-kernel@vger.kernel.org,
-  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 5/8] clk: amlogic: Add A5 clock peripherals
- controller driver
-In-Reply-To: <20251028-a5-clk-v4-5-e62ca0aae243@amlogic.com> (Chuan Liu via's
-	message of "Tue, 28 Oct 2025 17:52:31 +0800")
-References: <20251028-a5-clk-v4-0-e62ca0aae243@amlogic.com>
-	<20251028-a5-clk-v4-5-e62ca0aae243@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Tue, 23 Dec 2025 10:16:39 +0100
-Message-ID: <1jpl857e2w.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1766481821; x=1767086621;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=yRgaOqVJltPfW93WFzFyiZc87xoZ8vjuVQgiQi7aU4I=;
+        b=rLSYtQtApLqAvWv2WEjhIVouZFVyETl7yyO9EhA4swBZ3Dst08yrgGNq8LumQy2puc
+         ykaeyPqsbyYNaBXH2gjYXbhRY7lSl4qLf+NTRikH/ddnIcFBOEia7oQSgKMM5uhBjvpN
+         /VXl4ag238CQhm2GhPMQ3Ynf1EP3Eeg87AfGcilVKXYMUfH8BOhenGzlsoP+6m1IGP5y
+         M4T61XsN2MqLErT0avEFIiqt2YgWOXtsN8mTCwokZ/vd/WRgjydgNf/KCy6gpV7Y4itq
+         /5975y8IGzLO1Kr+e4WGbvZNFDKTIpBxVFBh6QBeMygMIppywae0/ZjKf9f8FvW5EcyM
+         XHhA==
+X-Forwarded-Encrypted: i=1; AJvYcCW7WiTWCtBX+RI48z+ArH/3kdtcGbvO1jrz6l/b4lfzIg9g8lxZpmLWDPXC2QPuO6QI/OldvQ+cuwmU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEmg0iBGEiFlnxpaUETdfWaeoro8sxEjGKH0UMszIMsSDC1Iu0
+	wm3nnWzgX+bxlPlTX1IxioF6dW6rUXI6/a9nOvH/wd+LeKzOAkMze1UeTU0SidZ/Gc3bI9dsjr+
+	9gxl3lAkHS7enssDFrjMrl+bMmxk1tJuwAkZ3nA==
+X-Gm-Gg: AY/fxX4k8/si4HvjwZ8vNUBAevu9XrKaXA8Koj3TBviG1KPvdZQfhekSz5MQWLI90UY
+	9jPJGuXBFsGkr8po5iUU0ab9KTghSBrh4qaC9/Msl8QKq3ZDMQh/l3jpzvV0xSurVR3JRsa7JWn
+	+8PTUDObysCFgYOSEGypYIVRh8dRN0vTkfCpB83A9I5s9zs1Stu5W1wMGUQw8eJAk1X7SuEMfJt
+	LhRO5SWp2ZG6V+sR6G5EiDIu82hWTkLYHE+BHNMLA5qDYrl2I0Pc+AtfCBSh9IorDknNqtu89mX
+	eK/B9iCYKyy8jmA/esTLw8WuZro=
+X-Google-Smtp-Source: AGHT+IFoBGoGMK1AwB+5JaUus3NhgS6DL3IN4kS99/cYzOlE5tfIkUewlkbJ9lfanT1+W800KHA0Cfkb3h8MpQ75Sww=
+X-Received: by 2002:a05:6214:3985:b0:880:460a:96ce with SMTP id
+ 6a1803df08f44-88d86e4558amr227453306d6.63.1766481820935; Tue, 23 Dec 2025
+ 01:23:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20251220-surface-sp11-for-next-v5-0-16065bef8ef3@gmail.com>
+ <M7kfFb5fz-WB43U_xCUwgxpmBJ4TNdp4jE6yFu6HmemIcDx5tXO6H4xnW_pEQz6DMkKm-3POdB9hIdB092zhGQ==@protonmail.internalid>
+ <20251220-surface-sp11-for-next-v5-2-16065bef8ef3@gmail.com>
+ <e0e9e690-c56e-4b56-90f9-2af46a7feaf3@nxsw.ie> <c29de60c-c7c6-45d7-8d90-616df23df01c@kernel.org>
+ <v4hxei4t7n6ebvw6heoccei2t3mskq7uo7zejv6dyvvq5fr5sv@xzpsiic5x7a4>
+ <2ff993a7-0fda-4337-9acc-92aaa75be750@kernel.org> <blbyjjkcxwnm5otgkodckxl2gx5ncelhnpqire7jt3yfdvszef@jgk6o7yvn2vo>
+ <8b79b662-931f-4634-9389-6602d353d67a@kernel.org> <2ixwny6hzumlqmok5cjwutvtk7nzmx4t3dhxc44ao4l2u755pj@n6m7jyxf2o62>
+In-Reply-To: <2ixwny6hzumlqmok5cjwutvtk7nzmx4t3dhxc44ao4l2u755pj@n6m7jyxf2o62>
+From: =?UTF-8?B?SsOpcsO0bWUgZGUgQnJldGFnbmU=?= <jerome.debretagne@gmail.com>
+Date: Tue, 23 Dec 2025 10:23:04 +0100
+X-Gm-Features: AQt7F2r6BWEGW9jx_jVMTGjMo3TtOBV47eY3f046xBhruPQH5M5YwVt70mMlRT0
+Message-ID: <CA+kEDGHOpWm6Gbcr9MFfpUKoBo=Xys9Wz8J1+F+saRoYbEdpbw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/7] dt-bindings: wireless: ieee80211: Add
+ disable-rfkill property
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Hans de Goede <hansg@kernel.org>, "Bryan O'Donoghue" <bod.linux@nxsw.ie>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johannes Berg <johannes@sipsolutions.net>, Lorenzo Bianconi <lorenzo@kernel.org>, 
+	Maximilian Luz <luzmaximilian@gmail.com>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Jeff Johnson <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-wireless@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+	ath12k@lists.infradead.org, Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+	Dale Whinham <daleyo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue 28 Oct 2025 at 17:52, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
-
-> From: Chuan Liu <chuan.liu@amlogic.com>
+Le mar. 23 d=C3=A9c. 2025 =C3=A0 07:31, Manivannan Sadhasivam <mani@kernel.=
+org> a =C3=A9crit :
 >
-> Add the peripherals clock controller driver for the Amlogic A5 SoC
-> family.
+> On Mon, Dec 22, 2025 at 03:22:55PM +0100, Hans de Goede wrote:
+> > Hi,
+> >
+> > On 22-Dec-25 14:41, Manivannan Sadhasivam wrote:
+> > > On Mon, Dec 22, 2025 at 01:41:48PM +0100, Hans de Goede wrote:
+> > >> Hi Mani,
+> > >>
+> > >> On 22-Dec-25 12:45, Manivannan Sadhasivam wrote:
+> > >>> On Mon, Dec 22, 2025 at 11:23:18AM +0100, Hans de Goede wrote:
+> > >>>> +Cc Mani
+> > >>>>
+> > >>>> Hi,
+> > >>>>
+> > >>>> On 20-Dec-25 07:04, Bryan O'Donoghue wrote:
+> > >>>>> On 20/12/2025 00:21, J=C3=A9r=C3=B4me de Bretagne via B4 Relay wr=
+ote:
+> > >>>>>> From: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.com>
+> > >>>>>>
+> > >>>>>> For some devices, Wi-Fi is entirely hard blocked by default maki=
+ng
+> > >>>>>> the Wi-Fi radio unusable, except if rfkill is disabled as expect=
+ed
+> > >>>>>> on those models.
+> > >>>>>>
+> > >>>>>> Commit c6a7c0b09d5f ("wifi: ath12k: Add Support for enabling or
+> > >>>>>> disabling specific features based on ACPI bitflag") added a way =
+to
+> > >>>>>> support features set via ACPI, including the DISABLE_RFKILL bit.
+> > >>>>>>
+> > >>>>>> Add a disable-rfkill property to expose the DISABLE_RFKILL bit
+> > >>>>>> equivalent for devices described by a Devicetree instead of ACPI=
+.
+> > >>>>>>
+> > >>>>>> Signed-off-by: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@g=
+mail.com>
+> > >>>>>> ---
+> > >>>>>>   Documentation/devicetree/bindings/net/wireless/ieee80211.yaml =
+| 6 ++++++
+> > >>>>>>   1 file changed, 6 insertions(+)
+> > >>>>>>
+> > >>>>>> diff --git a/Documentation/devicetree/bindings/net/wireless/ieee=
+80211.yaml b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> > >>>>>> index d89f7a3f88a71d45d6f4ab2ae909eae09cbcaf9a..c10a4675640be947=
+cd0b5eaec2c7ff367fd93945 100644
+> > >>>>>> --- a/Documentation/devicetree/bindings/net/wireless/ieee80211.y=
+aml
+> > >>>>>> +++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.y=
+aml
+> > >>>>>> @@ -29,6 +29,12 @@ properties:
+> > >>>>>>         different 5 GHz subbands. Using them incorrectly could n=
+ot work or
+> > >>>>>>         decrease performance noticeably
+> > >>>>>>
+> > >>>>>> +  disable-rfkill:
+> > >>>>>> +    type: boolean
+> > >>>>>> +    description:
+> > >>>>>> +      Disable rfkill for some devices on which Wi-Fi would be e=
+ntirely hard
+> > >>>>>> +      blocked by default otherwise
+> > >>>>>> +
+> > >>>>>>   additionalProperties: true
+> > >>>>>>
+> > >>>>>>   examples:
+> > >>>>>>
+> > >>>>>> --
+> > >>>>>> 2.47.3
+> > >>>>>>
+> > >>>>>>
+> > >>>>>>
+> > >>>>>
+> > >>>>> Is this really a hardware description though ?
+> > >>>>
+> > >>>> I would say yes it is. The wifi chip has an rfkill input pin and
+> > >>>> things will be broken when that pin is hardwired to a fixed value
+> > >>>> rather then being actually connected to a GPIO from say
+> > >>>> the embedded controller.
+> > >>>>
+> > >>>
+> > >>> IIUC, even if the M.2 slot has the W_DISABLE1# signal routed from t=
+he host,
+> > >>> the device won't make use of it as there is no physical connection.=
+ So you want
+> > >>> the WLAN driver to change the state through SW?
+> > >>>
+> > >>>> So I think that we would need here is not a disable-rfkill propert=
+y
+> > >>>> but some way to indicate in the DT-node that the rfkill input pin
+> > >>>> is not connected and thus should be ignored.
+> > >>>>
+> > >>>> This (the rfkill input pin being not-connected) IMHO very much
+> > >>>> is hw-description.
+> > >>>>
+> > >>>
+> > >>> Though we can argue this way, I would prefer to handle it in the dr=
+iver. For
+> > >>> example, with my M.2 series, we will end up describing the M.2 slot=
+:
+> > >>>
+> > >>>   connector {
+> > >>>           compatible =3D "pcie-m2-e-connector";
+> > >>>           w-disable1-gpios =3D <&tlmm 117 GPIO_ACTIVE_LOW>;
+> > >>>           ...
+> > >>>           ports {
+> > >>>                   ...
+> > >>>                   endpoint@0 {
+> > >>>                           reg =3D <0>;
+> > >>>                           remote-endpoint =3D <&pcie4_port0_ep>;
+> > >>>                   };
+> > >>>           };
+> > >>>   };
+> > >>>
+> > >>> Then if we use a DT property to convey the RFKILL pin state of the =
+device, we
+> > >>> would need to describe the endpoint device in DT and hardcode the s=
+tate:
+> > >>>
+> > >>>   &pcie4_port0 {
+> > >>>           ...
+> > >>>           port {
+> > >>>                   pcie4_port0_ep: endpoint {
+> > >>>                           remote-endpoint =3D <&m2_e_pcie_ep>;
+> > >>>                           disable-rfkill;
+> > >>>                   };
+> > >>>           };
+> > >>>   };
+> > >>>
+> > >>> So this will essentially make the M.2 device non-swappable unless y=
+ou change the
+> > >>> DT since you've how hardcoded the device property in the binding. T=
+his is
+> > >>> something I try to avoid to make the M.2 slot really swappable.
+> > >>>
+> > >>> For this reason, I would prefer to handle the RFKILL state in the W=
+LAN driver
+> > >>> using the device specific compatible. This will be problematic only=
+ if multiple
+> > >>> cards of the same Device ID have different RFKILL state and the dev=
+ices are not
+> > >>> distinguishable even with sub IDs.
+> > >>
+> > >> I think we're miscommunicating here. I'm not talking about the card =
+having
+> > >> a broken rfkill implementation, I'm talking about the M.2 slot on th=
+e mainboard
+> > >> having e.g. W_DISABLE1# hardwired in such a way that cards would int=
+erpret it as
+> > >> having to always disable their wifi radio which is very similar to w=
+hat is
+> > >> happening on the surface device. Except that on the Surface there is=
+ no M.2 slot,
+> > >> the wifi is just soldered onto the mainboard I believe.
+> > >>
+> > >
+> > > Ah, sorry for the confusion. I did misinterpret what you said.
+> > >
+> > >> Based on experience I'm pretty sure we will encounter M.2 slots whic=
+h such
+> > >> a hardwired W_DISABLE1# signal sooner rather then later.
+> > >>
+> > >
+> > > But it makes no sense IMO. Vendors will usually connect unimplemented=
+ W_DISABL1#
+> > > GPIOs to a pull-up resistor so that the radios are operational all th=
+e time. I
+> > > don't see how they would expect a WLAN or any device with a radio to =
+be
+> > > connected to the slot if they hardwire the pin to low.
+> >
+> > Pins which are considered "unused" are also often hardwired
+> > to ground. If the m.2 slot is tested with a wifi-module where
+> > the W_DISABLE1# signal is not used on the wifi-module I can
+> > easily see this happen. I've seen a lot crazier / buggy stuff
+> > happen.
+> >
+> > > Are you sure that on the surface the pin is actually hardwired to low=
+ and not
+> > > connected to a GPIO that drivers the signal low?
+> >
+> > I don't know what is the exact problem on the Surface. I just
+> > expect to see this more often, we've certainly seen lots of
+> > issues like this on x86 laptops. Things end up looking like
+> > the hard rfkill is activated all the time (and we often don't know
+> > if this is a fw issue, or an actually hardwired problem).
+> >
+> > Just an example from the top of my head the Broadcom windows
+> > drivers use different BT fw files for the same wifi/bt combo
+> > chip depending on the vend:prod id pair. One of the things which
+> > is different is that some fw files invert the BT rfkill signal
+> > because it is wired wrong (or there is an EC fw bug) and this
+> > is then worked around in the bt fw.
+> >
+> > As we see a growing proliferation of arm64 laptops I fully
+> > expect all the fun from having a gazillion different designs
+> > with a time to market rush behind them result in similar issues
+> > on arm64.
+> >
+> > Note I'm not saying we must tackle this today, we can wait
+> > till we see the first case in the real world I guess.
+> >
+> > I just thought that based on my experience this is more or
+> > less bound to happen, we could comeup with a solution for
+> > this now and then this solution could also nicely serve
+> > the Surface case which started this thread.
+> >
+> > But we can also delay tackling this and come up with some
+> > bespoke solution for the Surface case, like as suggested
+> > maybe a special compatible string ?
+> >
 >
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  drivers/clk/meson/Kconfig          |  13 +
->  drivers/clk/meson/Makefile         |   1 +
->  drivers/clk/meson/a5-peripherals.c | 883 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 897 insertions(+)
+> Hmm. If we want to go with the DT property, I'd use something like
+> 'broken-rfkill' or 'broken-w-disable1' or similar in the connector node, =
+not in
+> the device node. This will convey the fact that the RFKILL switch is brok=
+en
+> in the connector or the hardware topology is not known.
 >
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index b627821da081..5576f351ef8c 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -146,6 +146,19 @@ config COMMON_CLK_A5_PLL
->  	  Say Y if you want the board to work, because PLLs are the parent
->  	  of most peripherals.
->  
-> +config COMMON_CLK_A5_PERIPHERALS
-> +	tristate "Amlogic A5 peripherals clock controller"
-> +	depends on ARM64
-> +	default ARCH_MESON
-> +	select COMMON_CLK_MESON_REGMAP
-> +	select COMMON_CLK_MESON_DUALDIV
-> +	select COMMON_CLK_MESON_CLKC_UTILS
-> +	imply COMMON_CLK_SCMI
-> +	imply COMMON_CLK_A5_PLL
-> +	help
-> +	  Support for the Peripherals clock controller on Amlogic A113X2 device,
-> +	  AKA A5. Say Y if you want the peripherals clock to work.
-> +
->  config COMMON_CLK_C3_PLL
->  	tristate "Amlogic C3 PLL clock controller"
->  	depends on ARM64
-> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index a074aa7e187f..0432027d7e2e 100644
-> --- a/drivers/clk/meson/Makefile
-> +++ b/drivers/clk/meson/Makefile
-> @@ -20,6 +20,7 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
->  obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
->  obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
->  obj-$(CONFIG_COMMON_CLK_A5_PLL) += a5-pll.o
-> +obj-$(CONFIG_COMMON_CLK_A5_PERIPHERALS) += a5-peripherals.o
->  obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
->  obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
->  obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
-> diff --git a/drivers/clk/meson/a5-peripherals.c b/drivers/clk/meson/a5-peripherals.c
-> new file mode 100644
-> index 000000000000..eca9f3dcc256
-> --- /dev/null
-> +++ b/drivers/clk/meson/a5-peripherals.c
-> @@ -0,0 +1,883 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Amlogic A5 Peripherals Clock Controller Driver
-> + *
-> + * Copyright (c) 2024-2025 Amlogic, inc.
-> + * Author: Chuan Liu <chuan.liu@amlogic.com>
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/platform_device.h>
-> +#include "clk-regmap.h"
-> +#include "clk-dualdiv.h"
-> +#include "meson-clkc-utils.h"
-> +#include <dt-bindings/clock/amlogic,a5-peripherals-clkc.h>
-> +
-> +#define RTC_BY_OSCIN_CTRL0		0x8
-> +#define RTC_BY_OSCIN_CTRL1		0xc
-> +#define RTC_CTRL			0x10
-> +#define SYS_CLK_EN0_REG0		0x44
-> +#define SYS_CLK_EN0_REG1		0x48
-> +#define DSPA_CLK_CTRL0			0x9c
-> +#define CLK12_24_CTRL			0xa8
-> +#define AXI_CLK_EN0			0xac
-> +#define TS_CLK_CTRL			0x158
-> +#define ETH_CLK_CTRL			0x164
-> +#define NAND_CLK_CTRL			0x168
-> +#define SD_EMMC_CLK_CTRL		0x16c
-> +#define SPICC_CLK_CTRL			0x174
-> +#define GEN_CLK_CTRL			0x178
-> +#define SAR_CLK_CTRL0			0x17c
-> +#define PWM_CLK_AB_CTRL			0x180
-> +#define PWM_CLK_CD_CTRL			0x184
-> +#define PWM_CLK_EF_CTRL			0x188
-> +#define PWM_CLK_GH_CTRL			0x18c
-> +#define NNA_CLK_CNTL			0x220
-> +
-> +static struct clk_regmap a5_rtc_dualdiv_clkin = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = RTC_BY_OSCIN_CTRL0,
-> +		.bit_idx = 31,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "rtc_dualdiv_clkin",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "oscin",
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static const struct meson_clk_dualdiv_param a5_rtc_dualdiv_table[] = {
-> +	{ 733, 732, 8, 11, 1 },
-> +	{ /* sentinel */ }
-> +};
-> +
-> +static struct clk_regmap a5_rtc_dualdiv = {
-> +	.data = &(struct meson_clk_dualdiv_data) {
-> +		.n1 = {
-> +			.reg_off = RTC_BY_OSCIN_CTRL0,
-> +			.shift   = 0,
-> +			.width   = 12,
-> +		},
-> +		.n2 = {
-> +			.reg_off = RTC_BY_OSCIN_CTRL0,
-> +			.shift   = 12,
-> +			.width   = 12,
-> +		},
-> +		.m1 = {
-> +			.reg_off = RTC_BY_OSCIN_CTRL1,
-> +			.shift   = 0,
-> +			.width   = 12,
-> +		},
-> +		.m2 = {
-> +			.reg_off = RTC_BY_OSCIN_CTRL1,
-> +			.shift   = 12,
-> +			.width   = 12,
-> +		},
-> +		.dual = {
-> +			.reg_off = RTC_BY_OSCIN_CTRL0,
-> +			.shift   = 28,
-> +			.width   = 1,
-> +		},
-> +		.table = a5_rtc_dualdiv_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "rtc_dualdiv",
-> +		.ops = &meson_clk_dualdiv_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_rtc_dualdiv_clkin.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static const struct clk_parent_data a5_rtc_dualdiv_parent_data[] = {
-> +	{ .hw = &a5_rtc_dualdiv.hw },
-> +	{ .hw = &a5_rtc_dualdiv_clkin.hw }
-> +};
-> +
-> +static struct clk_regmap a5_rtc_dualdiv_sel = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = RTC_BY_OSCIN_CTRL1,
-> +		.mask = 0x1,
-> +		.shift = 24,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "rtc_dualdiv_sel",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = a5_rtc_dualdiv_parent_data,
-> +		.num_parents = ARRAY_SIZE(a5_rtc_dualdiv_parent_data),
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_rtc_dualdiv_clkout = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = RTC_BY_OSCIN_CTRL0,
-> +		.bit_idx = 30,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "rtc_dualdiv_clkout",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_rtc_dualdiv_sel.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static const struct clk_parent_data a5_rtc_clk_parent_data[] = {
-> +	{ .fw_name = "oscin" },
-> +	{ .hw = &a5_rtc_dualdiv_clkout.hw },
-> +	{ .fw_name = "pad_osc" }
-> +};
-> +
-> +static struct clk_regmap a5_rtc_clk = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = RTC_CTRL,
-> +		.mask = 0x3,
-> +		.shift = 0,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "rtc_clk",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = a5_rtc_clk_parent_data,
-> +		.num_parents = ARRAY_SIZE(a5_rtc_clk_parent_data),
-> +		.flags = CLK_SET_RATE_PARENT,
+> But we do not have the connector binding merged yet. Until then, I'd sugg=
+est to
+> keep the hack in the WLAN driver by using the platform compatible and Dev=
+ice ID:
 
-NO_REPARENT maybe ?
+If that suggestion is accepted, please keep in mind that this
+issue is also impacting the Surface Laptop 7 family, with the
+"microsoft,romulus13" and "microsoft,romulus15" compatibles.
 
-> +	},
-> +};
-> +
-> +#define A5_PCLK(_name, _reg, _bit, _pdata, _flags)			\
-> +struct clk_regmap a5_##_name = {					\
-> +	.data = &(struct clk_regmap_gate_data) {			\
-> +		.offset = (_reg),					\
-> +		.bit_idx = (_bit),					\
-> +	},								\
-> +	.hw.init = &(struct clk_init_data) {				\
-> +		.name = #_name,						\
-> +		.ops = &clk_regmap_gate_ops,				\
-> +		.parent_data = (_pdata),				\
-> +		.num_parents = 1,					\
-> +		.flags = (_flags),					\
-> +	},								\
-> +}
+The SL7 rfkill issue is mentioned here:
+   https://github.com/bryce-hoehn/linux-surface-laptop-7
+or here:
+   https://github.com/linux-surface/linux-surface/issues/1590
+for reference.
 
-You've complained about the time it took to do the clean-up of amlogic
-clocks, and yet, look what we have here ...
+> diff --git a/drivers/net/wireless/ath/ath12k/core.c b/drivers/net/wireles=
+s/ath/ath12k/core.c
+> index cc352eef1939..481778eb2c95 100644
+> --- a/drivers/net/wireless/ath/ath12k/core.c
+> +++ b/drivers/net/wireless/ath/ath12k/core.c
+> @@ -77,6 +77,16 @@ static int ath12k_core_rfkill_config(struct ath12k_bas=
+e *ab)
+>         if (ath12k_acpi_get_disable_rfkill(ab))
+>                 return 0;
+>
+> +       /*
+> +        * TODO: On Microsoft Surface Pro 11, OS is not able to control t=
+he
+> +        * RFKILL switch. So keep the RFKILL disabled until the OS learns=
+ about
+> +        * it. Ideally, this info should come from the connector node of =
+the
+> +        * board DT file. But since the connector DT node is not availabl=
+e,
+> +        * implement the hack in the driver.
+> +        */
+> +       if (of_machine_is_compatible("microsoft,denali") && (ab->id.devic=
+e =3D=3D 0x1107))
+> +               return 0;
+> +
+>         for (i =3D 0; i < ab->num_radios; i++) {
+>                 ar =3D ab->pdevs[i].ar;
+>
+>
+> Once the connector binding gets merged, hopefully we can add the DT prope=
+rty and
+> use it in the driver.
+>
+> > > It is just hard to believe that board designers can do a blunder like=
+ this.
+> >
+> > Heh, you won't believe all the crap happening on cheap
+> > x86 devices.
+> >
+>
+> Coming from the DT world, I thought the ACPI world is superior, but this =
+reminds
+> of the fact "No world is superior to another" :)
+>
+> - Mani
+>
+> --
+> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
 
-> +
-> +static const struct clk_parent_data a5_sys_pclk_parents = { .fw_name = "sysclk" };
-> +
-> +#define A5_SYS_PCLK(_name, _reg, _bit, _flags) \
-> +	A5_PCLK(_name, _reg, _bit, &a5_sys_pclk_parents, _flags)
-> +
-> +static A5_SYS_PCLK(sys_reset_ctrl,	SYS_CLK_EN0_REG0, 1, 0);
-> +static A5_SYS_PCLK(sys_pwr_ctrl,	SYS_CLK_EN0_REG0, 3, 0);
-> +static A5_SYS_PCLK(sys_pad_ctrl,	SYS_CLK_EN0_REG0, 4, 0);
-> +static A5_SYS_PCLK(sys_ctrl,		SYS_CLK_EN0_REG0, 5, 0);
-> +static A5_SYS_PCLK(sys_ts_pll,		SYS_CLK_EN0_REG0, 6, 0);
-> +
-> +/*
-> + * NOTE: sys_dev_arb provides the clock to the ETH and SPICC arbiters that
-> + * access the AXI bus.
-> + */
-> +static A5_SYS_PCLK(sys_dev_arb,		SYS_CLK_EN0_REG0, 7, 0);
-> +static A5_SYS_PCLK(sys_mailbox,		SYS_CLK_EN0_REG0, 10, 0);
-> +static A5_SYS_PCLK(sys_jtag_ctrl,	SYS_CLK_EN0_REG0, 12, 0);
-> +static A5_SYS_PCLK(sys_ir_ctrl,		SYS_CLK_EN0_REG0, 13, 0);
-> +static A5_SYS_PCLK(sys_msr_clk,		SYS_CLK_EN0_REG0, 15, 0);
-> +static A5_SYS_PCLK(sys_rom,		SYS_CLK_EN0_REG0, 16, 0);
-> +static A5_SYS_PCLK(sys_cpu_apb,		SYS_CLK_EN0_REG0, 18, 0);
-> +static A5_SYS_PCLK(sys_rsa,		SYS_CLK_EN0_REG0, 19, 0);
-> +static A5_SYS_PCLK(sys_saradc,		SYS_CLK_EN0_REG0, 20, 0);
-> +static A5_SYS_PCLK(sys_startup,		SYS_CLK_EN0_REG0, 21, 0);
-> +static A5_SYS_PCLK(sys_secure,		SYS_CLK_EN0_REG0, 22, 0);
-> +static A5_SYS_PCLK(sys_spifc,		SYS_CLK_EN0_REG0, 23, 0);
-> +static A5_SYS_PCLK(sys_dspa,		SYS_CLK_EN0_REG0, 24, 0);
-> +static A5_SYS_PCLK(sys_nna,		SYS_CLK_EN0_REG0, 25, 0);
-> +static A5_SYS_PCLK(sys_eth_mac,		SYS_CLK_EN0_REG0, 26, 0);
-> +static A5_SYS_PCLK(sys_rama,		SYS_CLK_EN0_REG0, 28, 0);
-> +static A5_SYS_PCLK(sys_ramb,		SYS_CLK_EN0_REG0, 30, 0);
-> +static A5_SYS_PCLK(sys_audio_top,	SYS_CLK_EN0_REG1, 0, 0);
-> +static A5_SYS_PCLK(sys_audio_vad,	SYS_CLK_EN0_REG1, 1, 0);
-> +static A5_SYS_PCLK(sys_usb,		SYS_CLK_EN0_REG1, 2, 0);
-> +static A5_SYS_PCLK(sys_sd_emmc_a,	SYS_CLK_EN0_REG1, 3, 0);
-> +static A5_SYS_PCLK(sys_sd_emmc_c,	SYS_CLK_EN0_REG1, 4, 0);
-> +static A5_SYS_PCLK(sys_pwm_ab,		SYS_CLK_EN0_REG1, 5, 0);
-> +static A5_SYS_PCLK(sys_pwm_cd,		SYS_CLK_EN0_REG1, 6, 0);
-> +static A5_SYS_PCLK(sys_pwm_ef,		SYS_CLK_EN0_REG1, 7, 0);
-> +static A5_SYS_PCLK(sys_pwm_gh,		SYS_CLK_EN0_REG1, 8, 0);
-> +static A5_SYS_PCLK(sys_spicc_1,		SYS_CLK_EN0_REG1, 9, 0);
-> +static A5_SYS_PCLK(sys_spicc_0,		SYS_CLK_EN0_REG1, 10, 0);
-> +static A5_SYS_PCLK(sys_uart_a,		SYS_CLK_EN0_REG1, 11, 0);
-> +static A5_SYS_PCLK(sys_uart_b,		SYS_CLK_EN0_REG1, 12, 0);
-> +static A5_SYS_PCLK(sys_uart_c,		SYS_CLK_EN0_REG1, 13, 0);
-> +static A5_SYS_PCLK(sys_uart_d,		SYS_CLK_EN0_REG1, 14, 0);
-> +static A5_SYS_PCLK(sys_uart_e,		SYS_CLK_EN0_REG1, 15, 0);
-> +static A5_SYS_PCLK(sys_i2c_m_a,		SYS_CLK_EN0_REG1, 16, 0);
-> +static A5_SYS_PCLK(sys_i2c_m_b,		SYS_CLK_EN0_REG1, 17, 0);
-> +static A5_SYS_PCLK(sys_i2c_m_c,		SYS_CLK_EN0_REG1, 18, 0);
-> +static A5_SYS_PCLK(sys_i2c_m_d,		SYS_CLK_EN0_REG1, 19, 0);
-> +static A5_SYS_PCLK(sys_rtc,		SYS_CLK_EN0_REG1, 21, 0);
-> +
-> +static const struct clk_parent_data a5_axi_clk_parents = { .fw_name = "axiclk" };
-> +
-> +#define A5_AXI_CLK(_name, _reg, _bit, _flags) \
-> +	A5_PCLK(_name, _reg, _bit, &a5_axi_clk_parents, _flags)
-> +
-> +static A5_AXI_CLK(axi_audio_vad,	AXI_CLK_EN0, 0, 0);
-> +static A5_AXI_CLK(axi_audio_top,	AXI_CLK_EN0, 1, 0);
-> +static A5_AXI_CLK(axi_ramb,		AXI_CLK_EN0, 5, 0);
-> +static A5_AXI_CLK(axi_rama,		AXI_CLK_EN0, 6, 0);
-> +static A5_AXI_CLK(axi_nna,		AXI_CLK_EN0, 12, 0);
-> +
-> +/*
-> + * NOTE: axi_dev1_dmc provides the clock for the peripherals(EMMC, SDIO,
-> + * sec_top, USB, Audio) to access the AXI bus of the DDR.
-> + */
-> +static A5_AXI_CLK(axi_dev1_dmc,	AXI_CLK_EN0, 13, 0);
-> +
-> +/*
-> + * NOTE: axi_dev0_dmc provides the clock for the peripherals(ETH and SPICC)
-> + * to access the AXI bus of the DDR.
-> + */
-> +static A5_AXI_CLK(axi_dev0_dmc,	AXI_CLK_EN0, 14, 0);
-> +static A5_AXI_CLK(axi_dsp_dmc,		AXI_CLK_EN0, 15, 0);
-> +
-> +static struct clk_regmap a5_clk_12_24m_in = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = CLK12_24_CTRL,
-> +		.bit_idx = 11,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "clk_12_24m_in",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "xtal",
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_clk_12_24m = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = CLK12_24_CTRL,
-> +		.shift = 10,
-> +		.width = 1,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "clk_12_24m",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_clk_12_24m_in.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_fclk_25m_div = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = CLK12_24_CTRL,
-> +		.shift = 0,
-> +		.width = 8,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "fclk_25m_div",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "fix",
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_fclk_25m = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = CLK12_24_CTRL,
-> +		.bit_idx = 12,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "fclk_25m",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_fclk_25m_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +/*
-> + * Channel 4 5 8 9 10 11 13 14 15 16 18 are not connected.
-> + *
-> + * gp1 is designed for DSU (DynamIQ Shared Unit) alone. It cannot be changed
-> + * arbitrarily. gp1 is read-only in the kernel and is only open for debug
-> + * purposes.
-> + */
-> +static u32 a5_gen_parent_table[] = { 0, 1, 2, 3, 6, 7, 12, 17, 19, 20, 21, 22,
-> +				    23, 24, 25, 26, 27, 28};
-> +
-> +static const struct clk_parent_data a5_gen_parent_data[] = {
-> +	{ .fw_name = "oscin" },
-> +	{ .hw = &a5_rtc_clk.hw },
-> +	{ .fw_name = "sysplldiv16" },
-> +	{ .fw_name = "ddr" },
-> +	{ .fw_name = "gp1" },
-> +	{ .fw_name = "hifi" },
-> +	{ .fw_name = "clkmsr" },
-> +	{ .fw_name = "cpudiv16" },
-> +	{ .fw_name = "fdiv2" },
-> +	{ .fw_name = "fdiv2p5" },
-> +	{ .fw_name = "fdiv3" },
-> +	{ .fw_name = "fdiv4" },
-> +	{ .fw_name = "fdiv5" },
-> +	{ .fw_name = "fdiv7" },
-> +	{ .fw_name = "mpll0" },
-> +	{ .fw_name = "mpll1" },
-> +	{ .fw_name = "mpll2" },
-> +	{ .fw_name = "mpll3" }
-> +};
-> +
-> +static struct clk_regmap a5_gen_sel = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = GEN_CLK_CTRL,
-> +		.mask = 0x1f,
-> +		.shift = 12,
-> +		.table = a5_gen_parent_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "gen_sel",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = a5_gen_parent_data,
-> +		.num_parents = ARRAY_SIZE(a5_gen_parent_data),
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_gen_div = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = GEN_CLK_CTRL,
-> +		.shift = 0,
-> +		.width = 11,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "gen_div",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_gen_sel.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_gen = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = GEN_CLK_CTRL,
-> +		.bit_idx = 11,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "gen",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_gen_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +#define A5_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
-> +	MESON_COMP_SEL(a5_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
-> +
-> +#define A5_COMP_DIV(_name, _reg, _shift, _width) \
-> +	MESON_COMP_DIV(a5_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
-> +
-> +#define A5_COMP_GATE(_name, _reg, _bit) \
-> +	MESON_COMP_GATE(a5_, _name, _reg, _bit, CLK_SET_RATE_PARENT)
-> +
-> +static const struct clk_parent_data a5_saradc_parent_data[] = {
-> +	{ .fw_name = "oscin" },
-> +	{ .fw_name = "sysclk" }
-> +};
-> +
-> +static A5_COMP_SEL(saradc, SAR_CLK_CTRL0, 9, 0x3, a5_saradc_parent_data);
-> +static A5_COMP_DIV(saradc, SAR_CLK_CTRL0, 0, 8);
-> +static A5_COMP_GATE(saradc, SAR_CLK_CTRL0, 8);
-> +
-> +static const struct clk_parent_data a5_pwm_parent_data[] = {
-> +	{ .fw_name = "oscin" },
-> +	{ .hw = &a5_rtc_clk.hw },
-> +	{ .fw_name = "fdiv4" },
-> +	{ .fw_name = "fdiv3" }
-> +};
-> +
-> +static A5_COMP_SEL(pwm_a, PWM_CLK_AB_CTRL, 9, 0x3, a5_pwm_parent_data);
-> +static A5_COMP_DIV(pwm_a, PWM_CLK_AB_CTRL, 0, 8);
-> +static A5_COMP_GATE(pwm_a, PWM_CLK_AB_CTRL, 8);
-> +
-> +static A5_COMP_SEL(pwm_b, PWM_CLK_AB_CTRL, 25, 0x3, a5_pwm_parent_data);
-> +static A5_COMP_DIV(pwm_b, PWM_CLK_AB_CTRL, 16, 8);
-> +static A5_COMP_GATE(pwm_b, PWM_CLK_AB_CTRL, 24);
-> +
-> +static A5_COMP_SEL(pwm_c, PWM_CLK_CD_CTRL, 9, 0x3, a5_pwm_parent_data);
-> +static A5_COMP_DIV(pwm_c, PWM_CLK_CD_CTRL, 0, 8);
-> +static A5_COMP_GATE(pwm_c, PWM_CLK_CD_CTRL, 8);
-> +
-> +static A5_COMP_SEL(pwm_d, PWM_CLK_CD_CTRL, 25, 0x3, a5_pwm_parent_data);
-> +static A5_COMP_DIV(pwm_d, PWM_CLK_CD_CTRL, 16, 8);
-> +static A5_COMP_GATE(pwm_d, PWM_CLK_CD_CTRL, 24);
-> +
-> +static A5_COMP_SEL(pwm_e, PWM_CLK_EF_CTRL, 9, 0x3, a5_pwm_parent_data);
-> +static A5_COMP_DIV(pwm_e, PWM_CLK_EF_CTRL, 0, 8);
-> +static A5_COMP_GATE(pwm_e, PWM_CLK_EF_CTRL, 8);
-> +
-> +static A5_COMP_SEL(pwm_f, PWM_CLK_EF_CTRL, 25, 0x3, a5_pwm_parent_data);
-> +static A5_COMP_DIV(pwm_f, PWM_CLK_EF_CTRL, 16, 8);
-> +static A5_COMP_GATE(pwm_f, PWM_CLK_EF_CTRL, 24);
-> +
-> +static A5_COMP_SEL(pwm_g, PWM_CLK_GH_CTRL, 9, 0x3, a5_pwm_parent_data);
-> +static A5_COMP_DIV(pwm_g, PWM_CLK_GH_CTRL, 0, 8);
-> +static A5_COMP_GATE(pwm_g, PWM_CLK_GH_CTRL, 8);
-> +
-> +static A5_COMP_SEL(pwm_h, PWM_CLK_GH_CTRL, 25, 0x3, a5_pwm_parent_data);
-> +static A5_COMP_DIV(pwm_h, PWM_CLK_GH_CTRL, 16, 8);
-> +static A5_COMP_GATE(pwm_h, PWM_CLK_GH_CTRL, 24);
-> +
-> +/*
-> + * NOTE: Channel 7 is gp1, because gp1 is designed for DSU, so spicc does not
-> + * support this source in the driver.
-> + */
-> +static const struct clk_parent_data a5_spicc_parent_data[] = {
-> +	{ .fw_name = "oscin" },
-> +	{ .fw_name = "sysclk" },
-> +	{ .fw_name = "fdiv4" },
-> +	{ .fw_name = "fdiv3" },
-> +	{ .fw_name = "fdiv2" },
-> +	{ .fw_name = "fdiv5" },
-> +	{ .fw_name = "fdiv7" }
-> +};
-> +
-> +static A5_COMP_SEL(spicc_0, SPICC_CLK_CTRL, 7, 0x7, a5_spicc_parent_data);
-> +static A5_COMP_DIV(spicc_0, SPICC_CLK_CTRL, 0, 6);
-> +static A5_COMP_GATE(spicc_0, SPICC_CLK_CTRL, 6);
-> +
-> +static A5_COMP_SEL(spicc_1, SPICC_CLK_CTRL, 23, 0x7, a5_spicc_parent_data);
-> +static A5_COMP_DIV(spicc_1, SPICC_CLK_CTRL, 16, 6);
-> +static A5_COMP_GATE(spicc_1, SPICC_CLK_CTRL, 22);
-> +
-> +static const struct clk_parent_data a5_sd_emmc_parent_data[] = {
-> +	{ .fw_name = "oscin" },
-> +	{ .fw_name = "fdiv2" },
-> +	{ .fw_name = "fdiv3" },
-> +	{ .fw_name = "hifi" },
-> +	{ .fw_name = "fdiv2p5" },
-> +	{ .fw_name = "mpll2" },
-> +	{ .fw_name = "mpll3" },
-> +	{ .fw_name = "gp0" }
-> +};
-> +
-> +static A5_COMP_SEL(sd_emmc_a, SD_EMMC_CLK_CTRL, 9, 0x7, a5_sd_emmc_parent_data);
-> +static A5_COMP_DIV(sd_emmc_a, SD_EMMC_CLK_CTRL, 0, 7);
-> +static A5_COMP_GATE(sd_emmc_a, SD_EMMC_CLK_CTRL, 7);
-> +
-> +static A5_COMP_SEL(sd_emmc_c, NAND_CLK_CTRL, 9, 0x7, a5_sd_emmc_parent_data);
-> +static A5_COMP_DIV(sd_emmc_c, NAND_CLK_CTRL, 0, 7);
-> +static A5_COMP_GATE(sd_emmc_c, NAND_CLK_CTRL, 7);
-> +
-> +static struct clk_regmap a5_ts_div = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = TS_CLK_CTRL,
-> +		.shift = 0,
-> +		.width = 8,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "ts_div",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "oscin",
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_ts = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = TS_CLK_CTRL,
-> +		.bit_idx = 8,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "ts",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_ts_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor a5_eth_125m_div = {
-> +	.mult = 1,
-> +	.div = 8,
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "eth_125m_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "fdiv2",
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_eth_125m = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = ETH_CLK_CTRL,
-> +		.bit_idx = 7,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "eth_125m",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_eth_125m_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_eth_rmii_div = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = ETH_CLK_CTRL,
-> +		.shift = 0,
-> +		.width = 7,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "eth_rmii_div",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "fdiv2",
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_eth_rmii = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = ETH_CLK_CTRL,
-> +		.bit_idx = 8,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "eth_rmii",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_eth_rmii_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +/* Channel 6 is gp1. */
-> +static u32 a5_dspa_parent_table[] = { 0, 1, 2, 3, 4, 5, 7};
-
-Considering there is no rate propagation from mux below, is it really a
-problem to have gp1 in here ? 
-
-> +
-> +static const struct clk_parent_data a5_dspa_parent_data[] = {
-> +	{ .fw_name = "oscin" },
-> +	{ .fw_name = "fdiv2p5" },
-> +	{ .fw_name = "fdiv3" },
-> +	{ .fw_name = "rtc" },  /* rtc_pll */
-> +	{ .fw_name = "hifi" },
-> +	{ .fw_name = "fdiv4" },
-> +	{ .hw = &a5_rtc_clk.hw }
-> +};
-> +
-> +static struct clk_regmap a5_dspa_0_sel = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = DSPA_CLK_CTRL0,
-> +		.mask = 0x7,
-> +		.shift = 10,
-> +		.table = a5_dspa_parent_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "dspa_0_sel",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = a5_dspa_parent_data,
-> +		.num_parents = ARRAY_SIZE(a5_dspa_parent_data),
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_dspa_0_div = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = DSPA_CLK_CTRL0,
-> +		.shift = 0,
-> +		.width = 10,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "dspa_0_div",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_dspa_0_sel.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-
-Same comment as the t7 regarding naming and macro usage for the glitch
-free composite clocks. Please adjust accordingly.
-
-> +
-> +static struct clk_regmap a5_dspa_0 = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = DSPA_CLK_CTRL0,
-> +		.bit_idx = 13,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "dspa_0",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_dspa_0_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_dspa_1_sel = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = DSPA_CLK_CTRL0,
-> +		.mask = 0x7,
-> +		.shift = 26,
-> +		.table = a5_dspa_parent_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "dspa_1_sel",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = a5_dspa_parent_data,
-> +		.num_parents = ARRAY_SIZE(a5_dspa_parent_data),
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_dspa_1_div = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = DSPA_CLK_CTRL0,
-> +		.shift = 16,
-> +		.width = 10,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "dspa_1_div",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_dspa_1_sel.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_dspa_1 = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = DSPA_CLK_CTRL0,
-> +		.bit_idx = 29,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "dspa_1",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_dspa_1_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a5_dspa = {
-> +	.data = &(struct clk_regmap_mux_data){
-> +		.offset = DSPA_CLK_CTRL0,
-> +		.mask = 0x1,
-> +		.shift = 15,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "dspa",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a5_dspa_0.hw,
-> +			&a5_dspa_1.hw
-> +		},
-> +		.num_parents = 2,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +#define A5_COMP_SEL_WITH_TAB(_name, _reg, _shift, _mask, _pdata, _table) \
-
-No, adjust your main macro.
-
-> +	MESON_COMP_SEL(a5_, _name, _reg, _shift, _mask, _pdata, _table, 0, 0)
-> +
-> +/* Channel 6 is gp1. */
-> +static u32 a5_nna_parent_table[] = { 0, 1, 2, 3, 4, 5, 7};
-> +
-> +static const struct clk_parent_data a5_nna_parent_data[] = {
-> +	{ .fw_name = "oscin" },
-> +	{ .fw_name = "fdiv2p5" },
-> +	{ .fw_name = "fdiv4" },
-> +	{ .fw_name = "fdiv3" },
-> +	{ .fw_name = "fdiv5" },
-> +	{ .fw_name = "fdiv2" },
-> +	{ .fw_name = "hifi" }
-> +};
-> +
-> +static A5_COMP_SEL_WITH_TAB(nna_core, NNA_CLK_CNTL, 9, 0x7,
-> +			    a5_nna_parent_data, a5_nna_parent_table);
-> +static A5_COMP_DIV(nna_core, NNA_CLK_CNTL, 0, 7);
-> +static A5_COMP_GATE(nna_core, NNA_CLK_CNTL, 8);
-> +
-> +static A5_COMP_SEL_WITH_TAB(nna_axi, NNA_CLK_CNTL, 25, 0x7,
-> +			    a5_nna_parent_data, a5_nna_parent_table);
-> +static A5_COMP_DIV(nna_axi, NNA_CLK_CNTL, 16, 7);
-> +static A5_COMP_GATE(nna_axi, NNA_CLK_CNTL, 24);
-> +
-> +static struct clk_hw *a5_peripherals_hw_clks[] = {
-> +	[CLKID_RTC_DUALDIV_CLKIN]	= &a5_rtc_dualdiv_clkin.hw,
-> +	[CLKID_RTC_DUALDIV]		= &a5_rtc_dualdiv.hw,
-> +	[CLKID_RTC_DUALDIV_SEL]		= &a5_rtc_dualdiv_sel.hw,
-> +	[CLKID_RTC_DUALDIV_CLKOUT]	= &a5_rtc_dualdiv_clkout.hw,
-> +	[CLKID_RTC_CLK]			= &a5_rtc_clk.hw,
-> +	[CLKID_SYS_RESET_CTRL]		= &a5_sys_reset_ctrl.hw,
-> +	[CLKID_SYS_PWR_CTRL]		= &a5_sys_pwr_ctrl.hw,
-> +	[CLKID_SYS_PAD_CTRL]		= &a5_sys_pad_ctrl.hw,
-> +	[CLKID_SYS_CTRL]		= &a5_sys_ctrl.hw,
-> +	[CLKID_SYS_TS_PLL]		= &a5_sys_ts_pll.hw,
-> +	[CLKID_SYS_DEV_ARB]		= &a5_sys_dev_arb.hw,
-> +	[CLKID_SYS_MAILBOX]		= &a5_sys_mailbox.hw,
-> +	[CLKID_SYS_JTAG_CTRL]		= &a5_sys_jtag_ctrl.hw,
-> +	[CLKID_SYS_IR_CTRL]		= &a5_sys_ir_ctrl.hw,
-> +	[CLKID_SYS_MSR_CLK]		= &a5_sys_msr_clk.hw,
-> +	[CLKID_SYS_ROM]			= &a5_sys_rom.hw,
-> +	[CLKID_SYS_CPU_ARB]		= &a5_sys_cpu_apb.hw,
-> +	[CLKID_SYS_RSA]			= &a5_sys_rsa.hw,
-> +	[CLKID_SYS_SARADC]		= &a5_sys_saradc.hw,
-> +	[CLKID_SYS_STARTUP]		= &a5_sys_startup.hw,
-> +	[CLKID_SYS_SECURE]		= &a5_sys_secure.hw,
-> +	[CLKID_SYS_SPIFC]		= &a5_sys_spifc.hw,
-> +	[CLKID_SYS_DSPA]		= &a5_sys_dspa.hw,
-> +	[CLKID_SYS_NNA]			= &a5_sys_nna.hw,
-> +	[CLKID_SYS_ETH_MAC]		= &a5_sys_eth_mac.hw,
-> +	[CLKID_SYS_RAMA]		= &a5_sys_rama.hw,
-> +	[CLKID_SYS_RAMB]		= &a5_sys_ramb.hw,
-> +	[CLKID_SYS_AUDIO_TOP]		= &a5_sys_audio_top.hw,
-> +	[CLKID_SYS_AUDIO_VAD]		= &a5_sys_audio_vad.hw,
-> +	[CLKID_SYS_USB]			= &a5_sys_usb.hw,
-> +	[CLKID_SYS_SD_EMMC_A]		= &a5_sys_sd_emmc_a.hw,
-> +	[CLKID_SYS_SD_EMMC_C]		= &a5_sys_sd_emmc_c.hw,
-> +	[CLKID_SYS_PWM_AB]		= &a5_sys_pwm_ab.hw,
-> +	[CLKID_SYS_PWM_CD]		= &a5_sys_pwm_cd.hw,
-> +	[CLKID_SYS_PWM_EF]		= &a5_sys_pwm_ef.hw,
-> +	[CLKID_SYS_PWM_GH]		= &a5_sys_pwm_gh.hw,
-> +	[CLKID_SYS_SPICC_1]		= &a5_sys_spicc_1.hw,
-> +	[CLKID_SYS_SPICC_0]		= &a5_sys_spicc_0.hw,
-> +	[CLKID_SYS_UART_A]		= &a5_sys_uart_a.hw,
-> +	[CLKID_SYS_UART_B]		= &a5_sys_uart_b.hw,
-> +	[CLKID_SYS_UART_C]		= &a5_sys_uart_c.hw,
-> +	[CLKID_SYS_UART_D]		= &a5_sys_uart_d.hw,
-> +	[CLKID_SYS_UART_E]		= &a5_sys_uart_e.hw,
-> +	[CLKID_SYS_I2C_M_A]		= &a5_sys_i2c_m_a.hw,
-> +	[CLKID_SYS_I2C_M_B]		= &a5_sys_i2c_m_b.hw,
-> +	[CLKID_SYS_I2C_M_C]		= &a5_sys_i2c_m_c.hw,
-> +	[CLKID_SYS_I2C_M_D]		= &a5_sys_i2c_m_d.hw,
-> +	[CLKID_SYS_RTC]			= &a5_sys_rtc.hw,
-> +	[CLKID_AXI_AUDIO_VAD]		= &a5_axi_audio_vad.hw,
-> +	[CLKID_AXI_AUDIO_TOP]		= &a5_axi_audio_top.hw,
-> +	[CLKID_AXI_RAMB]		= &a5_axi_ramb.hw,
-> +	[CLKID_AXI_RAMA]		= &a5_axi_rama.hw,
-> +	[CLKID_AXI_NNA]			= &a5_axi_nna.hw,
-> +	[CLKID_AXI_DEV1_DMC]		= &a5_axi_dev1_dmc.hw,
-> +	[CLKID_AXI_DEV0_DMC]		= &a5_axi_dev0_dmc.hw,
-> +	[CLKID_AXI_DSP_DMC]		= &a5_axi_dsp_dmc.hw,
-> +	[CLKID_12_24M_IN]		= &a5_clk_12_24m_in.hw,
-> +	[CLKID_12M_24M]			= &a5_clk_12_24m.hw,
-> +	[CLKID_FCLK_25M_DIV]		= &a5_fclk_25m_div.hw,
-> +	[CLKID_FCLK_25M]		= &a5_fclk_25m.hw,
-> +	[CLKID_GEN_SEL]			= &a5_gen_sel.hw,
-> +	[CLKID_GEN_DIV]			= &a5_gen_div.hw,
-> +	[CLKID_GEN]			= &a5_gen.hw,
-> +	[CLKID_SARADC_SEL]		= &a5_saradc_sel.hw,
-> +	[CLKID_SARADC_DIV]		= &a5_saradc_div.hw,
-> +	[CLKID_SARADC]			= &a5_saradc.hw,
-> +	[CLKID_PWM_A_SEL]		= &a5_pwm_a_sel.hw,
-> +	[CLKID_PWM_A_DIV]		= &a5_pwm_a_div.hw,
-> +	[CLKID_PWM_A]			= &a5_pwm_a.hw,
-> +	[CLKID_PWM_B_SEL]		= &a5_pwm_b_sel.hw,
-> +	[CLKID_PWM_B_DIV]		= &a5_pwm_b_div.hw,
-> +	[CLKID_PWM_B]			= &a5_pwm_b.hw,
-> +	[CLKID_PWM_C_SEL]		= &a5_pwm_c_sel.hw,
-> +	[CLKID_PWM_C_DIV]		= &a5_pwm_c_div.hw,
-> +	[CLKID_PWM_C]			= &a5_pwm_c.hw,
-> +	[CLKID_PWM_D_SEL]		= &a5_pwm_d_sel.hw,
-> +	[CLKID_PWM_D_DIV]		= &a5_pwm_d_div.hw,
-> +	[CLKID_PWM_D]			= &a5_pwm_d.hw,
-> +	[CLKID_PWM_E_SEL]		= &a5_pwm_e_sel.hw,
-> +	[CLKID_PWM_E_DIV]		= &a5_pwm_e_div.hw,
-> +	[CLKID_PWM_E]			= &a5_pwm_e.hw,
-> +	[CLKID_PWM_F_SEL]		= &a5_pwm_f_sel.hw,
-> +	[CLKID_PWM_F_DIV]		= &a5_pwm_f_div.hw,
-> +	[CLKID_PWM_F]			= &a5_pwm_f.hw,
-> +	[CLKID_PWM_G_SEL]		= &a5_pwm_g_sel.hw,
-> +	[CLKID_PWM_G_DIV]		= &a5_pwm_g_div.hw,
-> +	[CLKID_PWM_G]			= &a5_pwm_g.hw,
-> +	[CLKID_PWM_H_SEL]		= &a5_pwm_h_sel.hw,
-> +	[CLKID_PWM_H_DIV]		= &a5_pwm_h_div.hw,
-> +	[CLKID_PWM_H]			= &a5_pwm_h.hw,
-> +	[CLKID_SPICC_0_SEL]		= &a5_spicc_0_sel.hw,
-> +	[CLKID_SPICC_0_DIV]		= &a5_spicc_0_div.hw,
-> +	[CLKID_SPICC_0]			= &a5_spicc_0.hw,
-> +	[CLKID_SPICC_1_SEL]		= &a5_spicc_1_sel.hw,
-> +	[CLKID_SPICC_1_DIV]		= &a5_spicc_1_div.hw,
-> +	[CLKID_SPICC_1]			= &a5_spicc_1.hw,
-> +	[CLKID_SD_EMMC_A_SEL]		= &a5_sd_emmc_a_sel.hw,
-> +	[CLKID_SD_EMMC_A_DIV]		= &a5_sd_emmc_a_div.hw,
-> +	[CLKID_SD_EMMC_A]		= &a5_sd_emmc_a.hw,
-> +	[CLKID_SD_EMMC_C_SEL]		= &a5_sd_emmc_c_sel.hw,
-> +	[CLKID_SD_EMMC_C_DIV]		= &a5_sd_emmc_c_div.hw,
-> +	[CLKID_SD_EMMC_C]		= &a5_sd_emmc_c.hw,
-> +	[CLKID_TS_DIV]			= &a5_ts_div.hw,
-> +	[CLKID_TS]			= &a5_ts.hw,
-> +	[CLKID_ETH_125M_DIV]		= &a5_eth_125m_div.hw,
-> +	[CLKID_ETH_125M]		= &a5_eth_125m.hw,
-> +	[CLKID_ETH_RMII_DIV]		= &a5_eth_rmii_div.hw,
-> +	[CLKID_ETH_RMII]		= &a5_eth_rmii.hw,
-> +	[CLKID_DSPA_0_SEL]		= &a5_dspa_0_sel.hw,
-> +	[CLKID_DSPA_0_DIV]		= &a5_dspa_0_div.hw,
-> +	[CLKID_DSPA_0]			= &a5_dspa_0.hw,
-> +	[CLKID_DSPA_1_SEL]		= &a5_dspa_1_sel.hw,
-> +	[CLKID_DSPA_1_DIV]		= &a5_dspa_1_div.hw,
-> +	[CLKID_DSPA_1]			= &a5_dspa_1.hw,
-> +	[CLKID_DSPA]			= &a5_dspa.hw,
-> +	[CLKID_NNA_CORE_SEL]		= &a5_nna_core_sel.hw,
-> +	[CLKID_NNA_CORE_DIV]		= &a5_nna_core_div.hw,
-> +	[CLKID_NNA_CORE]		= &a5_nna_core.hw,
-> +	[CLKID_NNA_AXI_SEL]		= &a5_nna_axi_sel.hw,
-> +	[CLKID_NNA_AXI_DIV]		= &a5_nna_axi_div.hw,
-> +	[CLKID_NNA_AXI]			= &a5_nna_axi.hw,
-> +};
-> +
-> +static const struct meson_clkc_data a5_peripherals_clkc_data = {
-> +	.hw_clks = {
-> +		.hws = a5_peripherals_hw_clks,
-> +		.num = ARRAY_SIZE(a5_peripherals_hw_clks),
-> +	},
-> +};
-> +
-> +static const struct of_device_id a5_peripherals_clkc_match_table[] = {
-> +	{
-> +		.compatible = "amlogic,a5-peripherals-clkc",
-> +		.data = &a5_peripherals_clkc_data,
-> +	},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, a5_peripherals_clkc_match_table);
-> +
-> +static struct platform_driver a5_peripherals_clkc_driver = {
-> +	.probe = meson_clkc_mmio_probe,
-> +	.driver = {
-> +		.name = "a5-peripherals-clkc",
-> +		.of_match_table = a5_peripherals_clkc_match_table,
-> +	},
-> +};
-> +module_platform_driver(a5_peripherals_clkc_driver);
-> +
-> +MODULE_DESCRIPTION("Amlogic A5 Peripherals Clock Controller driver");
-> +MODULE_AUTHOR("Chuan Liu <chuan.liu@amlogic.com>");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("CLK_MESON");
-
--- 
-Jerome
+Thank you,
+J=C3=A9r=C3=B4me
 
