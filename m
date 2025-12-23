@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-249139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B54ECD9778
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:41:08 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CBBACD977E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:41:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 76F96302035B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:40:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 21E39300B270
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:41:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A5A4340D9E;
-	Tue, 23 Dec 2025 13:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02569334C02;
+	Tue, 23 Dec 2025 13:41:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="scmq4YeP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W9EFA3UH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 201BF334C02;
-	Tue, 23 Dec 2025 13:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C893D1F3BA4;
+	Tue, 23 Dec 2025 13:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766497239; cv=none; b=eZ1fotTYr72ZOoYUT6pF3EqEwliMARkG6b0xrqQciglXtrd/iW1jKB89yaK/yAnwHwFthjsddVIzcMqo4vFVTTdkTJGWH01MV1tNGMsP/MWj7dsxkzDltJv5OcQ7mzmsYfhF8QBQr2hqkX2esloPIXbET+OpZy0FPzvl+y0VdVk=
+	t=1766497281; cv=none; b=MMZE8L77PsK+yTfd6Qk0E6rO+65DgoVvLlH3DpOwPYpWFUAc0OQHMy5JMAYXZBqLyoq7SPrbqNMI+drmNV2kjAkCE/ungCow/y8tQul5sVPuW/uuPqgHGCowihvA3tMJwMY9xMN92tHyBED2zkj4rQvGFgUwYNDtixWOvX8k8B4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766497239; c=relaxed/simple;
-	bh=u+5lGqkJH8S11/kVvTcEAoQ4aKPzD7cwAjf6HdDtJUo=;
+	s=arc-20240116; t=1766497281; c=relaxed/simple;
+	bh=GPkM94KoAj5LvCsqIUqNsgGiXglHQy6BjRfOfM4X6wo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cLpTSFQgqh/kpEUWtTTw/uDitY4YUEsrjbETi6xJpzZRfxenq5C67GoEckpXrgJCe95MctsTimhnaE0vFPAjVDkSlu0Hoj03r11iSdReM3CTt8DSMgpDN8znBPepXa9alSRN7CoJCcYk+5XGKhRz6RmfRkuyR10meVt+EVzHgpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=scmq4YeP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF638C16AAE;
-	Tue, 23 Dec 2025 13:40:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oNL2DuGWJiqAunv73Xg0dMtmo7h/RDmDJnw98Bf9/dPEpT/k+b8Cz/Yl0EIpVGKQ/qOIO8frytl7Ssg+OQZIcXQYcoCO2b4fHdlXwJUiEV2qqn/CtvdR4YBXtRJEsLc6SsF4ts9Zc0ovyBaQp2bIy9fnYANedUYccJA9fHkaC3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W9EFA3UH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25E62C113D0;
+	Tue, 23 Dec 2025 13:41:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766497238;
-	bh=u+5lGqkJH8S11/kVvTcEAoQ4aKPzD7cwAjf6HdDtJUo=;
+	s=k20201202; t=1766497281;
+	bh=GPkM94KoAj5LvCsqIUqNsgGiXglHQy6BjRfOfM4X6wo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=scmq4YePHxR8C9+2qO9FrwNSgKmoxzhaIdiKNAiS/AtkA4r1Ggo3wklbRi7k3RoMP
-	 QZb6uHwR4g3EOlxLuiGiabFI508Uxrru6iyaR1exg8xEDCMndIHyWQGh87OdAb0cNH
-	 Rjl2Lf8t1LeLAD9/5afN9CHvjQvphTc1qwNncMJ3/XDAcXNxd1t1LNsTY2lil2HCsd
-	 D2TyeqepgF7Xjmxuesckd7JXF1zfEjgs/3KnNAfg2kztIiVfHQEnBCvVVHeoDaDk78
-	 rBunUp0TrYr8DxkayYn99ezh1b32GSAhJDLnVr5JcgWgsYu9Oc8lkMqOWGH9MsKK85
-	 cZidQIEIw6Sxw==
-Message-ID: <e516b73b-2dc3-4ae4-966b-278a946491c8@kernel.org>
-Date: Tue, 23 Dec 2025 14:40:31 +0100
+	b=W9EFA3UHHTZ5b4nxLLHY2+KvRICJrhN0XzBeFTI5ZUp9k68ynWXxFWc2/G9M/X788
+	 ok41diwNMdmgTE7HQezMy+B0Ka/5NNufbSMRHLe3RfQIs49Qe/pqbC7LDWSu8VEkCe
+	 Az2eK76Ag4GTrBTGmw+hU8kf+drJMa93b6S4iCR+wlGqm4vxEclqhCJpeQrucuPHZm
+	 8XtENaXR7A19uE8uoni1+REya93ieEAzeIb8xZALXqjEvdWBQQWATB0mzeYonsGAhB
+	 xnpn17DlWwvh8qt7IDX1VyOEEA0mzpS5sDzr7zZrQuGgKrknCs50W4qIf1ZfK/wDrt
+	 x80ytSoerNUZA==
+Message-ID: <6421f044-2b07-4518-9edc-b9b2ef49f4fb@kernel.org>
+Date: Tue, 23 Dec 2025 14:41:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,17 +48,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6] dt-bindings: arm: keystone: add boot_* mboxes to
- ti,sci
-To: Anshul Dalal <anshuld@ti.com>, Nishanth Menon <nm@ti.com>,
- Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>
-References: <20251222-k3_syscon_add_boot_mailboxes-v6-1-b93ada9f1d47@ti.com>
- <1844147d-543d-4739-a1ec-a59f8a4564fb@kernel.org>
- <DF5GPF5U7NPA.2ODE22YOF8E1R@ti.com>
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: Commonize IQ-X-IOT DTSI
+To: Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+ YijieYang <yijie.yang@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com>
+ <20251222060335.3485729-3-yijie.yang@oss.qualcomm.com>
+ <20251222-fluorescent-turkey-of-gallantry-df0906@quoll>
+ <b8f0e8d9-449e-4f32-832e-f1d5597ff496@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,42 +103,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <DF5GPF5U7NPA.2ODE22YOF8E1R@ti.com>
+In-Reply-To: <b8f0e8d9-449e-4f32-832e-f1d5597ff496@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/12/2025 09:44, Anshul Dalal wrote:
-> On Mon Dec 22, 2025 at 2:23 PM IST, Krzysztof Kozlowski wrote:
->> On 22/12/2025 09:43, Anshul Dalal wrote:
->>> The bootloader on K3 devices makes use of mailboxes as per the ROM spec
->>> which might be different than one's available to the kernel (firmware
->>> spec).
->>>
->>> Therefore, this patch adds the missing mailbox entries to the DT binding
->>> if the matching compatible is ti,am654-sci to represent the mailboxes
->>> exposed by the hardware during boot for the purpose of loading the
->>> firmware.
->>>
->>> The new ti,am642-sci compatible is also added to represent SoCs which do
->>> not expose a "notify" channel as part of their TI-SCI spec such as AM64x
->>> or the AM62 family. The newly added mboxes are made optional by keeping
->>> minItems as 2 to remain compliant with existing device-trees.
->>>
->>> Signed-off-by: Anshul Dalal <anshuld@ti.com>
->>> ---
->>> Changes in v6:
->>> - Added ti,am642-sci compatible to represent SoCs without a "notify" channel
->>> - Added new examples instead of editing existing ones
->>
->> Why? Rob asked not to.
+On 23/12/2025 04:38, Tingwei Zhang wrote:
 > 
-> I had followed what Nishanth had said[1], I'll wait for him and Rob to
-> align first before posting the next revision.
+> 
+> On 12/22/2025 5:11 PM, Krzysztof Kozlowski wrote:
+>> On Mon, Dec 22, 2025 at 02:03:28PM +0800, YijieYang wrote:
+>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>
+>>> HAMOA-IOT-EVK and PURWA-IOT-EVK share a similar board design. Extract
+>>> the common components into separate files for better maintainability.
+>> SoMs do not share actual hardware. DTSI does not represent what looks
+>> similar to you, but actually common parts.
+> Purwa SOM board and Hamoa SOM board share same design. They share same PCB.
+> The difference is only on chip. Purwa SOM board has Purwa and Hamoa SOM board
+> has Hamoa on it. 
 
+I do not speak about boards. Read carefully feedback and respond to the
+actual feedback, not some other arguments.
 
-Existing examples are fine. There is no rule saying you need to keep
-updating examples or keep adding new device to examples. If someone told
-you about such rule, tell them to stop inventing rules...
+NAK
 
 Best regards,
 Krzysztof
