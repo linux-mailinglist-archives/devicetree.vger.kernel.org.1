@@ -1,96 +1,234 @@
-Return-Path: <devicetree+bounces-248997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0DCFCD8655
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 08:37:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D39CD876E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 09:40:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5D5013012BFB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 07:36:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 03FFB301D0FD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 08:40:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51AEC2F12BA;
-	Tue, 23 Dec 2025 07:36:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DF0B31ED8F;
+	Tue, 23 Dec 2025 08:40:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="DbMxoXZj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SI1GrNwT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 042422877FC
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 07:36:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 297A831E10B
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 08:40:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766475408; cv=none; b=pxnCXoidmwLCGbOARpZbI4Jw6+QymRwWh0Z/N/yJvKeHIfX23IqUWXEyj4CtUbTovYx0KQIy9TH8SBCax3RH21vhvBtPyhpqCMpR3LysaRRZFwqSKVd561HFlz4ROIeFBkT/KvBhc4G7iAm5bRdcDo2P3kJ/cyp1IjW+c+h5apM=
+	t=1766479202; cv=none; b=ZMdSPqkkuo2WUyDK3nqji6BWnP5I7MUjcvkkdyLAvEOS6Pctu0kGsPy8qs3m2HEDg0RghcWpLqqjx7S9PYeyHi5uhBa8iBi4B6ItHWgg2aQPNZfqKKc1yXD9iTXanKqher4HMqHc+oT+8A5bIFmcE4BSUBmJXqKpJ2buNHItKAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766475408; c=relaxed/simple;
-	bh=RXFXzlM94y7J9cL6n70mGltPf6pZraGleBfUfnqfVaA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TiDW6UCC4a04J1RGUB1IW0KF4Du98a7DJveN/iGLOPt79pKK7OR91H6UuVEqkGB/S3WDTKRkEXM85NRZx0/fcIR0iiICo55UdXPgsHFFpsK3vZ1U7VsfX3jFQVaie06tONOMc0E6rdw7qbPNZXULc0pg8uTIluHwilpG3lt6+/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=DbMxoXZj; arc=none smtp.client-ip=91.218.175.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <d1e75d9b-0c49-4c52-a77c-c6fe3918e4d6@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1766475393;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vU4D8eVlA0WNfHgjVyUPRNgZqusNXdUnzSVKoGOZJXU=;
-	b=DbMxoXZjq4Nrp7MllryAKeSeF5guIHdtNVeFc1E/f+EZ3Sk6OOHx78ip8+oziqBlhG0QhH
-	9cQ3YYg2lDkb3fG1mZ95lP0AVAtBS6vzQJQXNeVQ/KARz7vifN+BXRNdhEbGlFFBOlhTQJ
-	5lRErhPjSeQpla29Qpv5BmTEt6nD7E4=
-Date: Tue, 23 Dec 2025 07:36:30 +0000
+	s=arc-20240116; t=1766479202; c=relaxed/simple;
+	bh=24X1wEJ+RxZTpNOevrdGVIwC/IfL4R+5yRGPun1LA/s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QVgg+VnSairCNcB3dgouc5hOUE0nWsH+UvvpuP6SZFJgZ+cB2xvOmOvwUxsE1JsTRBu+IldUteF+C324p1tG1QLDNDWN+S43XD/4W4Hgjv/TQPOXdRyU8ze1WTRMIeDLPSqvVo3x9Juv7Uz0gx3h7Yu1kG4bfsWPvMfYZcTwOAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SI1GrNwT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9C86C19425
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 08:40:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766479201;
+	bh=24X1wEJ+RxZTpNOevrdGVIwC/IfL4R+5yRGPun1LA/s=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=SI1GrNwTh1aENVuZrTTkdBUjXviVhnA0AySO6cHPnLIHASnw88V9FhdH89+pn6BSQ
+	 uIlwpVObzn3Npeht2OEeQht24mhyqt4n0T6nHrWH+C6I4pL9CvdRpzi7y74R6VGpz9
+	 KlULm0Ty/BurEIttuQ0kAvFITE9VT4POC0wiOCy+TmfU91O4eNttNjcFfC/gLoGkZk
+	 pIQj5Mu8JSoNR6Zs7XARkHi9038BYkPq7AnUyVA8UTKBxEiTF0dmTQha5I3vsIcqdq
+	 94ssVi2H79ic7ipMtfjYH//IHKe73Q6HSGomRAuh9ZZftglZcFNbuKoGHzdWPC+oQK
+	 E9b8YF7hRO0UQ==
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b734fcbf1e3so920607766b.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 00:40:01 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVT68vIQ/jeLUZ1NbWyJMalBiEOoOQ8VJFsvn9sg4d5ovZMejZkwbAO3ViuyEeE4FD9eGU/Fy1bFWjw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTYbw9IpCKqYB1894KEmWm/ud05vvVtW41/Xux5gErfgQ0V931
+	AbXAG0NGpi3k7abpW6qc9RPqo5EnYHAiTPHvxmiIX8HUl0s6y3qgqaLOwEMg/XO8Qog84gEDrr0
+	eyaoKewvRi7nZKJSBFhyKaStLxdTCKDc=
+X-Google-Smtp-Source: AGHT+IGueURUFYuxtJeDk5ObxUkBLLajrTw98wKcfc6o8XGNqjbSlX7X2SoBHhJCvbmjyWlANxYNg8KttlKo69hdDYQ=
+X-Received: by 2002:a17:907:7f0d:b0:b80:12f5:f6aa with SMTP id
+ a640c23a62f3a-b803722927amr1632952966b.56.1766479200241; Tue, 23 Dec 2025
+ 00:40:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/2] net: phy: adin: enable configuration of the LP
- Termination Register
-To: Osose Itua <osose.itua@savoirfairelinux.com>, netdev@vger.kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- michael.hennerich@analog.com, jerome.oufella@savoirfairelinux.com
-References: <20251222222210.3651577-1-osose.itua@savoirfairelinux.com>
- <20251222222210.3651577-2-osose.itua@savoirfairelinux.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-In-Reply-To: <20251222222210.3651577-2-osose.itua@savoirfairelinux.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+References: <cover.1766471839.git.zhoubinbin@loongson.cn> <6e10c70653b32f1f79e3f98116924e1aad7154bf.1766471839.git.zhoubinbin@loongson.cn>
+In-Reply-To: <6e10c70653b32f1f79e3f98116924e1aad7154bf.1766471839.git.zhoubinbin@loongson.cn>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Tue, 23 Dec 2025 16:40:15 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H5WfEhsV4fEzThR-C95cg0nPpJ+OfQ10NXEsFKneJQQ5A@mail.gmail.com>
+X-Gm-Features: AQt7F2rIkBs3EpQ6a0FQruc11Cj7yTdN5a2QCW2gUTjiMusHb4CpIzOPN_sq7nY
+Message-ID: <CAAhV-H5WfEhsV4fEzThR-C95cg0nPpJ+OfQ10NXEsFKneJQQ5A@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] rtc: loongson: Add Loongson-2K0300 support
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-rtc@vger.kernel.org, 
+	Xiaochuang Mao <maoxiaochuan@loongson.cn>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-mips@vger.kernel.org, 
+	Keguang Zhang <keguang.zhang@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22/12/2025 22:21, Osose Itua wrote:
-> The ADIN1200/ADIN1300 provide a control bit that selects between normal
-> receive termination and the lowest common mode impedance for 100BASE-TX
-> operation. This behavior is controlled through the Low Power Termination
-> register (B_100_ZPTM_EN_DIMRX).
-> 
-> Bit 0 of this register enables normal termination when set (this is the
-> default), and selects the lowest common mode impedance when cleared.
-> 
-> Signed-off-by: Osose Itua <osose.itua@savoirfairelinux.com>
+Hi, Binbin,
+
+On Tue, Dec 23, 2025 at 2:42=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
+>
+> The Loongson-2K0300's rtc hardware design is similar to that of the
+> Loongson-1B, but it does not support the alarm feature.
+>
+> Introduce `LOONGSON_RTC_ALARM_WORKAROUND`, which indicates a chip that
+> does not support the alarm function, and rewritethe related logic in
+> `loongson_rtc_alarm_setting()`
+>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > ---
->   drivers/net/phy/adin.c | 34 ++++++++++++++++++++++++++++++++++
->   1 file changed, 34 insertions(+)
-> 
-> diff --git a/drivers/net/phy/adin.c b/drivers/net/phy/adin.c
-> index 7fa713ca8d45..e8b778cb191d 100644
-> --- a/drivers/net/phy/adin.c
-> +++ b/drivers/net/phy/adin.c
-> @@ -4,6 +4,7 @@
->    *
->    * Copyright 2019 Analog Devices Inc.
->    */
-> +#include <cerrno>
+>  drivers/rtc/rtc-loongson.c | 65 ++++++++++++++++++++++++++------------
+>  1 file changed, 44 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/rtc/rtc-loongson.c b/drivers/rtc/rtc-loongson.c
+> index 2ca7ffd5d7a9..6b076bd4e24e 100644
+> --- a/drivers/rtc/rtc-loongson.c
+> +++ b/drivers/rtc/rtc-loongson.c
+> @@ -67,6 +67,7 @@
+>   * Accessing the relevant registers will cause the system to hang.
+>   */
+>  #define LS1C_RTC_CTRL_WORKAROUND       BIT(0)
+> +#define LOONGSON_RTC_ALARM_WORKAROUND  BIT(1)
+Can we reuse existing logic, which means "alarm_irq =3D
+platform_get_irq(pdev, 0)" return 0 for LS2K0300?
 
-This kind of include is not used in kernel.
-You don't need to include anything in this file to have EINVAL defined.
+Huacai
 
->   #include <linux/kernel.h>
->   #include <linux/bitfield.h>
->   #include <linux/delay.h>
-> @@ -89,6 +90,9 @@
+>
+>  struct loongson_rtc_config {
+>         u32 pm_offset;  /* Offset of PM domain, for RTC alarm wakeup */
+> @@ -89,7 +90,7 @@ static const struct loongson_rtc_config ls1b_rtc_config=
+ =3D {
+>
+>  static const struct loongson_rtc_config ls1c_rtc_config =3D {
+>         .pm_offset =3D 0,
+> -       .flags =3D LS1C_RTC_CTRL_WORKAROUND,
+> +       .flags =3D LS1C_RTC_CTRL_WORKAROUND | LOONGSON_RTC_ALARM_WORKAROU=
+ND,
+>  };
+>
+>  static const struct loongson_rtc_config generic_rtc_config =3D {
+> @@ -97,6 +98,11 @@ static const struct loongson_rtc_config generic_rtc_co=
+nfig =3D {
+>         .flags =3D 0,
+>  };
+>
+> +static const struct loongson_rtc_config ls2k0300_rtc_config =3D {
+> +       .pm_offset =3D 0x0,
+> +       .flags =3D LOONGSON_RTC_ALARM_WORKAROUND,
+> +};
+> +
+>  static const struct loongson_rtc_config ls2k1000_rtc_config =3D {
+>         .pm_offset =3D 0x800,
+>         .flags =3D 0,
+> @@ -299,9 +305,41 @@ static const struct rtc_class_ops loongson_rtc_ops =
+=3D {
+>         .alarm_irq_enable =3D loongson_rtc_alarm_irq_enable,
+>  };
+>
+> +static int loongson_rtc_alarm_setting(struct platform_device *pdev, void=
+ __iomem *regs)
+> +{
+> +       int ret =3D 0, alarm_irq;
+> +       struct device *dev =3D &pdev->dev;
+> +       struct loongson_rtc_priv *priv =3D dev_get_drvdata(dev);
+> +
+> +       if (priv->config->flags & LOONGSON_RTC_ALARM_WORKAROUND) {
+> +               /* Loongson-1C/Loongson-2K0300 RTC does not support alarm=
+ */
+> +               clear_bit(RTC_FEATURE_ALARM, priv->rtcdev->features);
+> +               return 0;
+> +       }
+> +
+> +       /* Get RTC alarm irq */
+> +       alarm_irq =3D platform_get_irq(pdev, 0);
+> +       if (alarm_irq < 0)
+> +               return alarm_irq;
+> +
+> +       ret =3D devm_request_irq(dev, alarm_irq, loongson_rtc_isr, 0, "lo=
+ongson-alarm",
+> +                              priv);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       priv->pm_base =3D regs - priv->config->pm_offset;
+> +       device_init_wakeup(dev, true);
+> +
+> +       if (has_acpi_companion(dev))
+> +               acpi_install_fixed_event_handler(ACPI_EVENT_RTC,
+> +                                                loongson_rtc_handler, pr=
+iv);
+> +
+> +       return ret;
+> +}
+> +
+>  static int loongson_rtc_probe(struct platform_device *pdev)
+>  {
+> -       int ret, alarm_irq;
+> +       int ret;
+>         void __iomem *regs;
+>         struct loongson_rtc_priv *priv;
+>         struct device *dev =3D &pdev->dev;
+> @@ -330,25 +368,9 @@ static int loongson_rtc_probe(struct platform_device=
+ *pdev)
+>                 return dev_err_probe(dev, PTR_ERR(priv->rtcdev),
+>                                      "devm_rtc_allocate_device failed\n")=
+;
+>
+> -       /* Get RTC alarm irq */
+> -       alarm_irq =3D platform_get_irq(pdev, 0);
+> -       if (alarm_irq > 0) {
+> -               ret =3D devm_request_irq(dev, alarm_irq, loongson_rtc_isr=
+,
+> -                                      0, "loongson-alarm", priv);
+> -               if (ret < 0)
+> -                       return dev_err_probe(dev, ret, "Unable to request=
+ irq %d\n",
+> -                                            alarm_irq);
+> -
+> -               priv->pm_base =3D regs - priv->config->pm_offset;
+> -               device_init_wakeup(dev, true);
+> -
+> -               if (has_acpi_companion(dev))
+> -                       acpi_install_fixed_event_handler(ACPI_EVENT_RTC,
+> -                                                        loongson_rtc_han=
+dler, priv);
+> -       } else {
+> -               /* Loongson-1C RTC does not support alarm */
+> -               clear_bit(RTC_FEATURE_ALARM, priv->rtcdev->features);
+> -       }
+> +       ret =3D loongson_rtc_alarm_setting(pdev, regs);
+> +       if (ret)
+> +               return ret;
+>
+>         /* Loongson RTC does not support UIE */
+>         clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, priv->rtcdev->features);
+> @@ -379,6 +401,7 @@ static const struct of_device_id loongson_rtc_of_matc=
+h[] =3D {
+>         { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1b_rtc_config=
+ },
+>         { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1c_rtc_config=
+ },
+>         { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_con=
+fig },
+> +       { .compatible =3D "loongson,ls2k0300-rtc", .data =3D &ls2k0300_rt=
+c_config },
+>         { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000_rt=
+c_config },
+>         { /* sentinel */ }
+>  };
+> --
+> 2.47.3
+>
+>
 
