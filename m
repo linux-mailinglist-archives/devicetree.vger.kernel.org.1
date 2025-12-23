@@ -1,263 +1,297 @@
-Return-Path: <devicetree+bounces-248985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A18CCD8304
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 06:38:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D338ECD8412
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 07:31:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D57AE3020696
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 05:37:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9FAFE3015A89
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 06:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 118472F546D;
-	Tue, 23 Dec 2025 05:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1972C11C4;
+	Tue, 23 Dec 2025 06:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g3eKRBQG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qejrEPDa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC85B2F3C3D;
-	Tue, 23 Dec 2025 05:37:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA2D1A275;
+	Tue, 23 Dec 2025 06:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766468233; cv=none; b=bxkEw154xBtPRjNVtZwqRu0adghcdFnt7KKbzqiD4h71zlwFe7NVnczzhmjVDA6w5hLJSS+JTdaI9mTmb5X/Cvt6ion6+bkc0SVc6XKbZcuoinUOunvu0YJfWh/gkCNfh2Gsz6h3Xsp9O9zITACX97IYY3d5euzt6afHEP7CQUs=
+	t=1766471475; cv=none; b=eE2Xo2xhyn+4NbHKy+Pyhox8T7bqFJqobA94wkCtL1zHh2iu3al+wsqu3u3Q0GVx0l47rD/HeOdVAG6G1EgTdW80/JSg6jxI4MeV1Ivcsy/BTg0JWOoWGY7LR3FihvWRe0UIr1fYAFZRtLX2CUQ1Man9hN0MVAHAWtfMsFQgaME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766468233; c=relaxed/simple;
-	bh=3FcJ2Rscs1H5P0gYjlvTTOCZ2mgtYn4iiRY0FuAWTW0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Vf0lL1OSuQaUmmRgdgi5UrZKKqxuJ/pRQ7OEzyyqgG/mDiMNn+/2GwB5FKxOfcFrz9O8iu7Y56SzOztI2El0sy+d9LjCf7GKH4Z7xpVdDw0gS48tTDrkIWzPvE9oJr04ApN2gnMFAsNj2nBdHFr3yYE+QpWJhhoLTFga5Kvyk7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g3eKRBQG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8D3CAC2BC9E;
-	Tue, 23 Dec 2025 05:37:12 +0000 (UTC)
+	s=arc-20240116; t=1766471475; c=relaxed/simple;
+	bh=RiDJuepokjtCc/A1gz3oaco/FAC3gt7ctaKz2LrTrKc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t0ct70IJ5Y2nXnBMY7rmviCbLU1xplAvMjPVSb9wAX2A5N6qiIu0tSLVYGc5hUm9xxY1S97rqsd1G2lRObKIIhbGQOxezyNzRRiVQICIb+w3XFMrwlIv/ul701eSpoQC7D8N5trWMZ5JnU6AnoMNGuOaRZ4QCiPa3mxW8fX7cYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qejrEPDa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0B30C116B1;
+	Tue, 23 Dec 2025 06:31:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766468232;
-	bh=3FcJ2Rscs1H5P0gYjlvTTOCZ2mgtYn4iiRY0FuAWTW0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=g3eKRBQGbqB0GqfawCD9u1wcL2X9cn/oRsTLnyEH2Gkl+2iSdIAc9Z8xtJlq10XMk
-	 5pPHQPdEcLe0LRknK8Sy8yHKLEOCxaY6E0J8ztCsMS5vFGwW/BMXsCCT0Gq9C7HM2/
-	 JCJ2HXeUeN7lWZYRgVl/wutEP96biPAxjRLjCToZY6sMuD9wA7sBHx1YFubXB7Gde5
-	 TZKHh3FFDZK41LpW4CXAarcxoFsAD3JlmeOh0MTZZOiDtkX6MstsoTc99ZIA2JMZVP
-	 U3OLjLgOJKfZ0Hs6kaogPjwKsV+ZWe1UJaRJ/8T9NddaCxpCvcNu65OqbhkHXfJRlc
-	 Ti5Z86OTXtx5w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 845F0E6ADF9;
-	Tue, 23 Dec 2025 05:37:12 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 23 Dec 2025 05:37:12 +0000
-Subject: [PATCH v2 4/4] arm64: dts: amlogic: Add S7D Reset Controller
+	s=k20201202; t=1766471475;
+	bh=RiDJuepokjtCc/A1gz3oaco/FAC3gt7ctaKz2LrTrKc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qejrEPDakY+OTg7V3I4z7DZaU00Dvvx/S4tIto9ctI1+Z/+flU+mCxJDoMHTSHcqg
+	 oAZefPZ1zx4na2QUpDRsnatlQmhZLqk5ew0i0x83h6l5o3AVj1nPjPC1n/TWT/GpET
+	 zQ7NoVjKwt6KKwAbrymbYpzhpWdktANUbeVJuZMuYN0eESDBf0UVc4wkoY0T30ZU3O
+	 J6LcTSEIShDaG6gxLaFTn8Ie+m4ilFsIbmHWDzMRvrmC7KXP0NB7M8oI6bY1kmYkLf
+	 ADoz3LqBDuT2a652kSwowPyPR/o1MNji7tVt/N8uH+yXBlmYJGmU+fveudwhmMrg/M
+	 swzZ3YkpeKKLQ==
+Date: Tue, 23 Dec 2025 12:01:03 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Hans de Goede <hansg@kernel.org>
+Cc: Bryan O'Donoghue <bod.linux@nxsw.ie>, jerome.debretagne@gmail.com, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Johannes Berg <johannes@sipsolutions.net>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>, 
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Jeff Johnson <jjohnson@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-wireless@vger.kernel.org, platform-driver-x86@vger.kernel.org, ath12k@lists.infradead.org, 
+	Jeff Johnson <jeff.johnson@oss.qualcomm.com>, Dale Whinham <daleyo@gmail.com>
+Subject: Re: [PATCH v5 2/7] dt-bindings: wireless: ieee80211: Add
+ disable-rfkill property
+Message-ID: <2ixwny6hzumlqmok5cjwutvtk7nzmx4t3dhxc44ao4l2u755pj@n6m7jyxf2o62>
+References: <20251220-surface-sp11-for-next-v5-0-16065bef8ef3@gmail.com>
+ <M7kfFb5fz-WB43U_xCUwgxpmBJ4TNdp4jE6yFu6HmemIcDx5tXO6H4xnW_pEQz6DMkKm-3POdB9hIdB092zhGQ==@protonmail.internalid>
+ <20251220-surface-sp11-for-next-v5-2-16065bef8ef3@gmail.com>
+ <e0e9e690-c56e-4b56-90f9-2af46a7feaf3@nxsw.ie>
+ <c29de60c-c7c6-45d7-8d90-616df23df01c@kernel.org>
+ <v4hxei4t7n6ebvw6heoccei2t3mskq7uo7zejv6dyvvq5fr5sv@xzpsiic5x7a4>
+ <2ff993a7-0fda-4337-9acc-92aaa75be750@kernel.org>
+ <blbyjjkcxwnm5otgkodckxl2gx5ncelhnpqire7jt3yfdvszef@jgk6o7yvn2vo>
+ <8b79b662-931f-4634-9389-6602d353d67a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251223-reset-s6-s7-s7d-v2-4-958f341449f1@amlogic.com>
-References: <20251223-reset-s6-s7-s7d-v2-0-958f341449f1@amlogic.com>
-In-Reply-To: <20251223-reset-s6-s7-s7d-v2-0-958f341449f1@amlogic.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766468230; l=4875;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=SQ/+RhX7ekhuQKEJO7YT/ofDufbjSCzRv3EgEaoCzC4=;
- b=Ub3MBC5YyaIU+himfpkVOP5Q8bDpKlARcP8tml9B/2y66FDhQ80E6CczaFlAgXLC9+6ak0Ilp
- +KlBqAvRtcwDlaYT5TcrUe1/uwexbGu9v5qz0gzP7dCCGYd8ZRApO2o
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8b79b662-931f-4634-9389-6602d353d67a@kernel.org>
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Mon, Dec 22, 2025 at 03:22:55PM +0100, Hans de Goede wrote:
+> Hi,
+> 
+> On 22-Dec-25 14:41, Manivannan Sadhasivam wrote:
+> > On Mon, Dec 22, 2025 at 01:41:48PM +0100, Hans de Goede wrote:
+> >> Hi Mani,
+> >>
+> >> On 22-Dec-25 12:45, Manivannan Sadhasivam wrote:
+> >>> On Mon, Dec 22, 2025 at 11:23:18AM +0100, Hans de Goede wrote:
+> >>>> +Cc Mani
+> >>>>
+> >>>> Hi,
+> >>>>
+> >>>> On 20-Dec-25 07:04, Bryan O'Donoghue wrote:
+> >>>>> On 20/12/2025 00:21, Jérôme de Bretagne via B4 Relay wrote:
+> >>>>>> From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+> >>>>>>
+> >>>>>> For some devices, Wi-Fi is entirely hard blocked by default making
+> >>>>>> the Wi-Fi radio unusable, except if rfkill is disabled as expected
+> >>>>>> on those models.
+> >>>>>>
+> >>>>>> Commit c6a7c0b09d5f ("wifi: ath12k: Add Support for enabling or
+> >>>>>> disabling specific features based on ACPI bitflag") added a way to
+> >>>>>> support features set via ACPI, including the DISABLE_RFKILL bit.
+> >>>>>>
+> >>>>>> Add a disable-rfkill property to expose the DISABLE_RFKILL bit
+> >>>>>> equivalent for devices described by a Devicetree instead of ACPI.
+> >>>>>>
+> >>>>>> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+> >>>>>> ---
+> >>>>>>   Documentation/devicetree/bindings/net/wireless/ieee80211.yaml | 6 ++++++
+> >>>>>>   1 file changed, 6 insertions(+)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> >>>>>> index d89f7a3f88a71d45d6f4ab2ae909eae09cbcaf9a..c10a4675640be947cd0b5eaec2c7ff367fd93945 100644
+> >>>>>> --- a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> >>>>>> +++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> >>>>>> @@ -29,6 +29,12 @@ properties:
+> >>>>>>         different 5 GHz subbands. Using them incorrectly could not work or
+> >>>>>>         decrease performance noticeably
+> >>>>>>
+> >>>>>> +  disable-rfkill:
+> >>>>>> +    type: boolean
+> >>>>>> +    description:
+> >>>>>> +      Disable rfkill for some devices on which Wi-Fi would be entirely hard
+> >>>>>> +      blocked by default otherwise
+> >>>>>> +
+> >>>>>>   additionalProperties: true
+> >>>>>>
+> >>>>>>   examples:
+> >>>>>>
+> >>>>>> -- 
+> >>>>>> 2.47.3
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>
+> >>>>> Is this really a hardware description though ?
+> >>>>
+> >>>> I would say yes it is. The wifi chip has an rfkill input pin and
+> >>>> things will be broken when that pin is hardwired to a fixed value
+> >>>> rather then being actually connected to a GPIO from say
+> >>>> the embedded controller.
+> >>>>
+> >>>
+> >>> IIUC, even if the M.2 slot has the W_DISABLE1# signal routed from the host,
+> >>> the device won't make use of it as there is no physical connection. So you want
+> >>> the WLAN driver to change the state through SW?
+> >>>
+> >>>> So I think that we would need here is not a disable-rfkill property
+> >>>> but some way to indicate in the DT-node that the rfkill input pin
+> >>>> is not connected and thus should be ignored.
+> >>>>
+> >>>> This (the rfkill input pin being not-connected) IMHO very much
+> >>>> is hw-description.
+> >>>>
+> >>>
+> >>> Though we can argue this way, I would prefer to handle it in the driver. For
+> >>> example, with my M.2 series, we will end up describing the M.2 slot:
+> >>>
+> >>> 	connector {
+> >>> 		compatible = "pcie-m2-e-connector";
+> >>> 		w-disable1-gpios = <&tlmm 117 GPIO_ACTIVE_LOW>;
+> >>> 		...
+> >>> 		ports {
+> >>> 			...
+> >>> 			endpoint@0 {
+> >>> 				reg = <0>;
+> >>> 				remote-endpoint = <&pcie4_port0_ep>;
+> >>> 			};
+> >>> 		};
+> >>> 	};
+> >>>
+> >>> Then if we use a DT property to convey the RFKILL pin state of the device, we
+> >>> would need to describe the endpoint device in DT and hardcode the state:
+> >>>
+> >>> 	&pcie4_port0 {
+> >>> 		...
+> >>> 		port {
+> >>> 			pcie4_port0_ep: endpoint {
+> >>> 				remote-endpoint = <&m2_e_pcie_ep>;
+> >>> 				disable-rfkill;
+> >>> 			};
+> >>> 		};
+> >>> 	};
+> >>>
+> >>> So this will essentially make the M.2 device non-swappable unless you change the
+> >>> DT since you've how hardcoded the device property in the binding. This is
+> >>> something I try to avoid to make the M.2 slot really swappable.
+> >>>
+> >>> For this reason, I would prefer to handle the RFKILL state in the WLAN driver
+> >>> using the device specific compatible. This will be problematic only if multiple
+> >>> cards of the same Device ID have different RFKILL state and the devices are not
+> >>> distinguishable even with sub IDs.
+> >>
+> >> I think we're miscommunicating here. I'm not talking about the card having
+> >> a broken rfkill implementation, I'm talking about the M.2 slot on the mainboard
+> >> having e.g. W_DISABLE1# hardwired in such a way that cards would interpret it as
+> >> having to always disable their wifi radio which is very similar to what is
+> >> happening on the surface device. Except that on the Surface there is no M.2 slot,
+> >> the wifi is just soldered onto the mainboard I believe.
+> >>
+> > 
+> > Ah, sorry for the confusion. I did misinterpret what you said.
+> > 
+> >> Based on experience I'm pretty sure we will encounter M.2 slots which such
+> >> a hardwired W_DISABLE1# signal sooner rather then later.
+> >>
+> > 
+> > But it makes no sense IMO. Vendors will usually connect unimplemented W_DISABL1#
+> > GPIOs to a pull-up resistor so that the radios are operational all the time. I
+> > don't see how they would expect a WLAN or any device with a radio to be
+> > connected to the slot if they hardwire the pin to low.
+> 
+> Pins which are considered "unused" are also often hardwired
+> to ground. If the m.2 slot is tested with a wifi-module where
+> the W_DISABLE1# signal is not used on the wifi-module I can
+> easily see this happen. I've seen a lot crazier / buggy stuff
+> happen.
+> 
+> > Are you sure that on the surface the pin is actually hardwired to low and not
+> > connected to a GPIO that drivers the signal low?
+> 
+> I don't know what is the exact problem on the Surface. I just
+> expect to see this more often, we've certainly seen lots of
+> issues like this on x86 laptops. Things end up looking like
+> the hard rfkill is activated all the time (and we often don't know
+> if this is a fw issue, or an actually hardwired problem).
+> 
+> Just an example from the top of my head the Broadcom windows
+> drivers use different BT fw files for the same wifi/bt combo
+> chip depending on the vend:prod id pair. One of the things which
+> is different is that some fw files invert the BT rfkill signal
+> because it is wired wrong (or there is an EC fw bug) and this
+> is then worked around in the bt fw.
+> 
+> As we see a growing proliferation of arm64 laptops I fully
+> expect all the fun from having a gazillion different designs
+> with a time to market rush behind them result in similar issues
+> on arm64.
+> 
+> Note I'm not saying we must tackle this today, we can wait
+> till we see the first case in the real world I guess.
+> 
+> I just thought that based on my experience this is more or
+> less bound to happen, we could comeup with a solution for
+> this now and then this solution could also nicely serve
+> the Surface case which started this thread.
+> 
+> But we can also delay tackling this and come up with some
+> bespoke solution for the Surface case, like as suggested
+> maybe a special compatible string ?
+> 
 
-Add the device node and related header file for Amlogic
-S7D reset controller.
+Hmm. If we want to go with the DT property, I'd use something like
+'broken-rfkill' or 'broken-w-disable1' or similar in the connector node, not in
+the device node. This will convey the fact that the RFKILL switch is broken
+in the connector or the hardware topology is not known.
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-s7d-reset.h | 134 ++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi    |   8 ++
- 2 files changed, 142 insertions(+)
+But we do not have the connector binding merged yet. Until then, I'd suggest to
+keep the hack in the WLAN driver by using the platform compatible and Device ID:
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7d-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-s7d-reset.h
-new file mode 100644
-index 000000000000..fb15a93d901e
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s7d-reset.h
-@@ -0,0 +1,134 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2025 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_AMLOGIC_S7D_RESET_H
-+#define _DT_BINDINGS_AMLOGIC_S7D_RESET_H
-+
-+/* RESET0 */
-+#define RESET_USB_DDR0			0
-+#define RESET_USB_DDR1			1
-+#define RESET_USB_DDR2			2
-+#define RESET_USB_DDR3			3
-+#define RESET_USB1			4
-+#define RESET_USB0			5
-+#define RESET_USB1_COMB			6
-+#define RESET_USB0_COMB			7
-+#define RESET_USBPHY20			8
-+#define RESET_USBPHY21			9
-+#define RESET_USBCC			10
-+#define RESET_BC			11
-+#define RESET_AMFC_APB			12
-+/*					13-14	*/
-+#define RESET_HDMI20_AES		15
-+#define RESET_HDMITX_CAPB3		16
-+#define RESET_BRG_VCBUS_DEC		17
-+#define RESET_VCBUS			18
-+#define RESET_VID_PLL_DIV		19
-+#define RESET_VIDEO6			20
-+#define RESET_GE2D			21
-+#define RESET_HDMITXPHY			22
-+#define RESET_VID_LOCK			23
-+#define RESET_VENCL			24
-+#define RESET_VDAC			25
-+#define RESET_VENCP			26
-+#define RESET_VENCI			27
-+#define RESET_RDMA			28
-+#define RESET_HDMI_TX			29
-+#define RESET_VIU			30
-+#define RESET_VENC			31
-+
-+/* RESET1 */
-+#define RESET_AUDIO			32
-+#define RESET_MALI_CAPB3		33
-+#define RESET_MALI			34
-+#define RESET_DDR_APB			35
-+#define RESET_DDR			36
-+#define RESET_DOS_CAPB3			37
-+#define RESET_DOS			38
-+#define RESET_GPU_TS			39
-+#define RESET_PLCK_DBG			40
-+/*					41-47	*/
-+#define RESET_ETH			48
-+/*					49-63	*/
-+
-+/* RESET2 */
-+#define RESET_AM2AXI			64
-+#define RESET_IR_CTRL			65
-+/*					66	*/
-+#define RESET_TEMPSENSOR_PLL		67
-+/*					68-71	*/
-+#define RESET_SMART_CARD		72
-+#define RESET_SPICC0			73
-+/*					74-79	*/
-+#define RESET_MSR_CLK			80
-+/*					81	*/
-+#define RESET_SAR_DIG			82
-+#define RESET_SAR_ANA			83
-+/*					84-85	*/
-+#define RESET_AMFC			86
-+/*					87	*/
-+#define RESET_ACODEC			88
-+#define RESET_CEC			89
-+/*					90	*/
-+#define RESET_WATCHDOG			91
-+/*					92-95	*/
-+
-+/* RESET3 */
-+/* 96 ~ 127 */
-+
-+/* RESET4 */
-+/*					128-131	*/
-+#define RESET_PWM_A			128
-+#define RESET_PWM_B			129
-+#define RESET_PWM_C			130
-+#define RESET_PWM_D			131
-+#define RESET_PWM_E			132
-+#define RESET_PWM_F			133
-+#define RESET_PWM_G			134
-+#define RESET_PWM_H			135
-+#define RESET_PWM_I			136
-+#define RESET_PWM_J			137
-+#define RESET_UART_A			138
-+#define RESET_UART_B			139
-+#define RESET_UART_C			140
-+#define RESET_UART_D			141
-+#define RESET_UART_E			142
-+/*					140-143	*/
-+#define RESET_I2C_S_A			144
-+#define RESET_I2C_M_A			145
-+#define RESET_I2C_M_B			146
-+#define RESET_I2C_M_C			147
-+#define RESET_I2C_M_D			148
-+#define RESET_I2C_M_E			149
-+/*					150-151	*/
-+#define RESET_SD_EMMC_A			152
-+#define RESET_SD_EMMC_B			153
-+#define RESET_SD_EMMC_C			154
-+/*					155-159	*/
-+
-+/* RESET5 */
-+#define RESET_BRG_VDEC_PIPE0		160
-+/*					161-163	*/
-+#define RESET_BRG_GE2D_PIPE0		164
-+#define RESET_BRG_DMC_PIPE0		165
-+#define RESET_BRG_A55_PIPE0		166
-+#define RESET_BRG_MALI_PIPE0		167
-+/*					168	*/
-+#define RESET_BRG_MALI_PIPE1		169
-+/*					170-171	*/
-+#define RESET_BRG_HEVCF_PIPE1		172
-+#define RESET_BRG_HEVCB_PIPE1		173
-+/*					174-182	*/
-+#define RESET_BRG_NIC_EMMC		183
-+/*					164	*/
-+#define RESET_BRG_NIC_SDIOB		185
-+#define RESET_BRG_NIC_SDIOA		186
-+#define RESET_BRG_NIC_VAPB		187
-+#define RESET_BRG_NIC_DSU		188
-+#define RESET_BRG_NIC_CLK81		189
-+#define RESET_BRG_NIC_MAIN		190
-+#define RESET_BRG_NIC_ALL		191
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
-index 0c4417bcd682..bae89ca6c448 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
- #include <dt-bindings/power/amlogic,s7d-pwrc.h>
-+#include "amlogic-s7d-reset.h"
+diff --git a/drivers/net/wireless/ath/ath12k/core.c b/drivers/net/wireless/ath/ath12k/core.c
+index cc352eef1939..481778eb2c95 100644
+--- a/drivers/net/wireless/ath/ath12k/core.c
++++ b/drivers/net/wireless/ath/ath12k/core.c
+@@ -77,6 +77,16 @@ static int ath12k_core_rfkill_config(struct ath12k_base *ab)
+        if (ath12k_acpi_get_disable_rfkill(ab))
+                return 0;
  
- / {
- 	cpus {
-@@ -106,6 +107,13 @@ uart_b: serial@7a000 {
- 				status = "disabled";
- 			};
- 
-+			reset: reset-controller@2000 {
-+				compatible = "amlogic,s7d-reset",
-+					     "amlogic,meson-s4-reset";
-+				reg = <0x0 0x2000 0x0 0x98>;
-+				#reset-cells = <1>;
-+			};
++       /*
++        * TODO: On Microsoft Surface Pro 11, OS is not able to control the
++        * RFKILL switch. So keep the RFKILL disabled until the OS learns about
++        * it. Ideally, this info should come from the connector node of the
++        * board DT file. But since the connector DT node is not available,
++        * implement the hack in the driver.
++        */
++       if (of_machine_is_compatible("microsoft,denali") && (ab->id.device == 0x1107))
++               return 0;
 +
- 			periphs_pinctrl: pinctrl@4000 {
- 				compatible = "amlogic,pinctrl-s7d",
- 					     "amlogic,pinctrl-s7";
+        for (i = 0; i < ab->num_radios; i++) {
+                ar = ab->pdevs[i].ar;
+
+
+Once the connector binding gets merged, hopefully we can add the DT property and
+use it in the driver.
+
+> > It is just hard to believe that board designers can do a blunder like this.
+> 
+> Heh, you won't believe all the crap happening on cheap
+> x86 devices.
+> 
+
+Coming from the DT world, I thought the ACPI world is superior, but this reminds
+of the fact "No world is superior to another" :)
+
+- Mani
 
 -- 
-2.52.0
-
-
+மணிவண்ணன் சதாசிவம்
 
