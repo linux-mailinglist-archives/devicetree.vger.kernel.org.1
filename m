@@ -1,131 +1,179 @@
-Return-Path: <devicetree+bounces-249141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75F33CD978E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:42:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 648E3CD9796
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:45:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3E8CE3013E84
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:42:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E1E83300E3FA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 13:45:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45793339855;
-	Tue, 23 Dec 2025 13:42:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sg/8lcYB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9073B1BD;
+	Tue, 23 Dec 2025 13:45:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D431F3BA4;
-	Tue, 23 Dec 2025 13:42:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83DC0A945
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 13:45:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766497365; cv=none; b=oWbxcCF7IJ2IcYHY2kYrVbkze+OGIy4VBuPadirL82NWIKXJInYCwjl9ACwsSAN49iPzjgXLOg+f7o8MD7Zu/22DTvKizD+7hkKjlj+wRI3xDPL7Qp2IdXIbpXqqHR6co8nHOjOVqNjZyZKIc8I7plohdxD+VVO8CASyDCJDvWU=
+	t=1766497535; cv=none; b=UN9rtQTViI+BpKTy6WvibZRLbGsh+vUuRG+uuu+Z6h/oXw7g/H/BE90bRe1LNlDLr5zhRRYQqxBZ3bhJXlAX16360mxzoTnZFTGdiBhZkE76jYmXz5Lh5pSq4uLSruClmwZefEycCou0/BBTdplVrwuGDSG1hHw50nedp5HX//w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766497365; c=relaxed/simple;
-	bh=YHO3aBYVvxis7F6oSXyMZo3XYGjH0oTyLgEN0dnGwiE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=spyGKu0vfOHC/Jfrv1iMI9Y6DQCx/nXI87Wc1E/iwPvBLgAJgDVyBvOZZ78gv/ABObm6ig0QcvkSmhy8kJ0vpGZmRR7xIsOQEdy1v6XVRCHIax60KJJ47pXOdb9R3uzBQI9epCngKeRHDUgSu1PN+8liNPT9m6PzKOnxj/m9Vlw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sg/8lcYB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41C96C113D0;
-	Tue, 23 Dec 2025 13:42:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766497364;
-	bh=YHO3aBYVvxis7F6oSXyMZo3XYGjH0oTyLgEN0dnGwiE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sg/8lcYBFtMo5GdmhZMTM+Zs1w1pQ2CmCucqVBsa7Hjqq3HL/OZ7kS7F5DLBfmgMd
-	 VLG0XZGiJEi405NMl1V71uwtTpmxB05XWHeXCUoJx5e62ys8iBVYTH5lMMxmXdsf9V
-	 PJUyOuEAMqlPPkrb6AE0TlcPQBK9jJm6cpwuZBaXaBpviK76GE6fbIwVCPqLVjuhRj
-	 EhLbCt18CWWzdNruD49MMuOC0Ks2xZP2bLz7CdJQs+1uDUNO8RCqw5rInmQfcOMPEC
-	 SBxeWAtQzSegYeOrxPMcjKkeJ+P6a5S4iSeYu14KfjEJfMf7bVamFIYl4AeRqMiyZo
-	 LcFAXlGCIRpxg==
-Message-ID: <d105c29d-82fb-4127-bef2-11bc43472dd5@kernel.org>
-Date: Tue, 23 Dec 2025 14:42:39 +0100
+	s=arc-20240116; t=1766497535; c=relaxed/simple;
+	bh=+vgDq4lQzhcJ/PmjToagAIXB+7UjAyqauVh2qc4S2YQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=a6dll5qQFN0mcRWDg30bdjQK11goB/TF8Fn/B03MRpQxDUcgJFhkZQ3PcOtIa4Wiz0W4/OkLlq+g/qsnT4CTOAuC3Qw84Jtdo8UCV7HRG6H6xvTc/RalG2HlyrROH0MVE4WKzp3Z2YOmTTSv/hmMUVd0/UPgb7gepNsxu/NCdzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b7277324204so785361166b.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 05:45:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766497532; x=1767102332;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U258/dz1ml2wi6XM7goSRHkqu3ww0wtWLKndOq5PViQ=;
+        b=drz7rlFsJyt967p2wdRtwvTJbFMFiKn1spcT2tZBh8y+fLuHnmjGMP/RdFr+FA/UQf
+         EEyRtDC+Z5ttBCe5ibcA/rMMrneNACNJtVyYylzcuzM/Mw04lEZSiCkbMclpNnVM4NYJ
+         dJfHbN/u++6LU6yloZwMnHpo77FxMsD7iXLB76C1eRhGlRYE4ydKFLw/E6wrFvuF1wIX
+         giJ534F2aU4aHd/74RmEE4bJPOACSHqlX5Xdo7G9phHrd/ERQEHUmryD6rJ85/jtMQFx
+         5XaKlTXHF+bWcDHGcPxmTL+v57B9gg1OgbTWTcDxv+1W1KPPzxT2gJF2FFDuaH4cNWfE
+         EBUw==
+X-Forwarded-Encrypted: i=1; AJvYcCV3e1NqftyJSngzweCdjN5xR+jYV8IN7EA4T6g8vBgNkuF8oOUlq3ErlUXxZ1ZVCWSJx0/0psghyQaV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzM3IHP3F5sqaXrh9eJBhJ4Rt+mP5BgoWa/2YIA709K0g4onwwF
+	41x4zSQJ4qCiU2rBP4aVVqE/l7YO5ecDLQDmgMVOgZ5B/TKrWMmce2g0vSrT7X0JCo8=
+X-Gm-Gg: AY/fxX7Uaaf+PQtDDozDQ+nWw377xLq15/xLAmKzF3+DAlgWGkTC21IGjazvUPRylAU
+	uojhBdmBqB0Xg7jis1fbyZmml660E57Tem7qO9F1FFffmqKk4M44vcDRf4d0AQFsYhBk7vouzg3
+	c1KEHQAvR0lEdR5OhcH23NKkkaqIoRPgCuuotT5oWgit9jaJxEbr5G2tfmolouHh30mbCnH0dBg
+	PQVXC2ltKVryXl21P9FV13GKKiaovjNjaJtR5va+B2MswjrTgazCoHZwbriy8+F6hd4WyyNtQrX
+	DWg4z2dXY7Yv55nuAewXZVTGPJTVcvAQV2S2g7q4tdkDbR46PuUMp/GSstcQQSzD2velDLfYExT
+	4mSSPA6iEQMnDedSD1A6zdSJpjd9P+ze1gp4vOBVRxTtOm8jitn5b3/3gXLQwQxxaETPM+yJBjf
+	0fO6YLQ3SERr/cpAfiS4s6JO5dYMS6153ZKL21qmGQ5OThDmZX
+X-Google-Smtp-Source: AGHT+IFXEaNaw8HLlS8k4O72eVSU1LZfysP7Fqm7viKkQod0/pFTSUlAz/F+ybgh2V/n7NzHzrhwcA==
+X-Received: by 2002:a17:907:9307:b0:b7a:1bdd:3314 with SMTP id a640c23a62f3a-b80372aa03dmr1238150466b.65.1766497531626;
+        Tue, 23 Dec 2025 05:45:31 -0800 (PST)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com. [209.85.208.45])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f09149sm1396417866b.47.2025.12.23.05.45.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Dec 2025 05:45:28 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64b61f82b5fso6546674a12.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 05:45:28 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVTMMIGppVytMJrJ0gfiU9KoHQIdvK8YRCsbb43da4GOJtU1aKjzxeANFJPmVHqjQ5PAOe3CqxojTr+@vger.kernel.org
+X-Received: by 2002:a05:6402:1e90:b0:64d:4894:776b with SMTP id
+ 4fb4d7f45d1cf-64d48947948mr7064838a12.27.1766497528286; Tue, 23 Dec 2025
+ 05:45:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: Commonize IQ-X-IOT DTSI
-To: Yijie Yang <yijie.yang@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com>
- <20251222060335.3485729-3-yijie.yang@oss.qualcomm.com>
- <20251222-fluorescent-turkey-of-gallantry-df0906@quoll>
- <862aa161-fd99-4938-98c5-73593b03d215@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <862aa161-fd99-4938-98c5-73593b03d215@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251201124911.572395-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251201124911.572395-3-cosmin-gabriel.tanislav.xa@renesas.com>
+In-Reply-To: <20251201124911.572395-3-cosmin-gabriel.tanislav.xa@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 23 Dec 2025 14:45:15 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV=EW4YbEBiXH2p0SeC5Kw-YmYWuQwsudpGgM63pgqcfw@mail.gmail.com>
+X-Gm-Features: AQt7F2oX7CMa_8FU9LCOCZqrziankMeMXgDYxBV-ZhAtoMZJ9gqMth9qd4a31zo
+Message-ID: <CAMuHMdV=EW4YbEBiXH2p0SeC5Kw-YmYWuQwsudpGgM63pgqcfw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] dmaengine: sh: rz_dmac: make register_dma_req() chip-specific
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Johan Hovold <johan@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 23/12/2025 03:00, Yijie Yang wrote:
-> 
-> 
-> On 12/22/2025 5:11 PM, Krzysztof Kozlowski wrote:
->> On Mon, Dec 22, 2025 at 02:03:28PM +0800, YijieYang wrote:
->>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
->>>
->>> HAMOA-IOT-EVK and PURWA-IOT-EVK share a similar board design. Extract
->>> the common components into separate files for better maintainability.
->>
->> SoMs do not share actual hardware. DTSI does not represent what looks
->> similar to you, but actually common parts.
-> 
-> The two SOMs share the same hardware except for the SoC. What are your 
-> suggestions for the file architecture?
+Hi Cosmin,
 
-Not likely. That's like saying SM8650 and SM8550 share the same
-hardware... Take the Som to your hand. Can you remove the soc? No? So
-you're done. Separate device.
+On Mon, 1 Dec 2025 at 13:52, Cosmin Tanislav
+<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
+> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs use a
+> completely different ICU unit compared to RZ/V2H, which requires a
+> separate implementation.
+>
+> To prepare for adding support for these SoCs, add a chip-specific
+> structure and put a pointer to the rzv2h_icu_register_dma_req() function
+> in the .register_dma_req field of the chip-specific structure to allow
+> for other implementations. Do the same for the default request value,
+> RZV2H_ICU_DMAC_REQ_NO_DEFAULT.
+>
+> While at it, factor out the logic that calls .register_dma_req() or
+> rz_dmac_set_dmars_register() into a separate function to remove some
+> code duplication. Since the default values are different between the
+> two, use -1 for designating that the default value should be used.
+>
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 
-Best regards,
-Krzysztof
+Thanks for your patch!
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+You can find a few non-functional nits below...
+
+> --- a/drivers/dma/sh/rz-dmac.c
+> +++ b/drivers/dma/sh/rz-dmac.c
+> @@ -95,9 +95,16 @@ struct rz_dmac_icu {
+>         u8 dmac_index;
+>  };
+>
+> +struct rz_dmac_info {
+> +       void (*register_dma_req)(struct platform_device *icu_dev, u8 dmac_index,
+> +                                u8 dmac_channel, u16 req_no);
+
+icu_register_dma_req, to make clear this is ICU-specific?
+
+> +       u16 dma_req_no_default;
+
+default_dma_req_no, to avoid confusion between literal "no" and an
+abbreviation of "number"?
+
+> +};
+> +
+
+> @@ -1067,9 +1068,18 @@ static void rz_dmac_remove(struct platform_device *pdev)
+>         pm_runtime_disable(&pdev->dev);
+>  }
+>
+> +static const struct rz_dmac_info rz_dmac_v2h_info = {
+> +       .register_dma_req = rzv2h_icu_register_dma_req,
+> +       .dma_req_no_default = RZV2H_ICU_DMAC_REQ_NO_DEFAULT,
+
+Since this is the only remaining user of RZV2H_ICU_DMAC_REQ_NO_DEFAULT,
+and this structure does specify hardware, perhaps just hardcode 0x3ff?
+
+> +};
+> +
+> +static const struct rz_dmac_info rz_dmac_common_info = {
+
+rz_dmac_classic_info, as this is not really common to all variants?
+I am open for a different name ;-)
+
+> +       .dma_req_no_default = 0,
+> +};
+> +
+>  static const struct of_device_id of_rz_dmac_match[] = {
+> -       { .compatible = "renesas,r9a09g057-dmac", },
+> -       { .compatible = "renesas,rz-dmac", },
+> +       { .compatible = "renesas,r9a09g057-dmac", .data = &rz_dmac_v2h_info },
+> +       { .compatible = "renesas,rz-dmac", .data = &rz_dmac_common_info },
+>         { /* Sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, of_rz_dmac_match);
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
