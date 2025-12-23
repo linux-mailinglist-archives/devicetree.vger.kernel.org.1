@@ -1,139 +1,358 @@
-Return-Path: <devicetree+bounces-249029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF17BCD892D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:26:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3F48CD896E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 10:32:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6B7723015ED5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 09:26:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9FC7E3009FD3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 09:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5100A30B521;
-	Tue, 23 Dec 2025 09:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hZ4H2dBM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2E6A3242C0;
+	Tue, 23 Dec 2025 09:32:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C244B2B2D7
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 09:26:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F116E22DFA5;
+	Tue, 23 Dec 2025 09:32:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766481976; cv=none; b=jDMMMPrfYdvRgnQBUlIgN8J4M+E3CoP6W5B1R8z6ecuhX8gR7jg1EAU4usdCDG3tlZFOirGAbymWjautz+ynaiVkS16g2ijwuKzno7Wc15j2EtTFErzSf/a7d+CJu7AkR5wleOqUdzrLl+lEvjvrvjWLeqGPmkY28SSuscVoTcQ=
+	t=1766482355; cv=none; b=HoI+yw3eZzz/MfDvyG4EuHYz5eXniaLe2CHk+DvjMDJ+QPNehwELKBLd9/mCwDD/1dKMFSpV8UYfRX2ygWkc5wPyd4arviJfIMH5L0YMR1EKLhnWNskHXCvuzyjeSTLe13JH6QlOzxn1+FJjDBbLdtGBxLIfulKHBXxSVoTXcIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766481976; c=relaxed/simple;
-	bh=9A2dY0yKAjRQE5xJe+Z2Y6EINYz+gLskH/F/0Hp0vb4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nir7F7O9c879eWfK5ZbMeWbj2ZY6iGD9HaNRg7frRqdVXcrlTBq8YeVDWW0WXaT/IoSsz5tLlS3IUeox3UsDpyymlS2KPwqUPBxlVXMAe3uJJZzeWaGwdS7YwwmP0pI+TiYd3t47ZIGcJM79KhHrpRXmjgetFR4HInlCo6JR2j8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hZ4H2dBM; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-55b24eedd37so3357047e0c.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 01:26:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766481973; x=1767086773; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GTGEyTW46XThYDSb3nGfOTcnTXkOQCNX3Dl5sNqjw6Y=;
-        b=hZ4H2dBMugscvaqbRIVfBO6jsxZCN5RmbcTXO58axZBG6IJgLnYE+NGGopmIQdYDIF
-         eHU1eeE8boUmmhVk6krhxx3ycWfY60H568GK3LusW274FruxDIYPGRfJwp4GiLRr/qr/
-         2zNqZn28MsOaGU4L5w/2/VlQ8AWVKKDeUZWz7qqb44glymEBQ22li0qBk1IRORT+2FFy
-         S/eaNW0RsIcX3k7SqEfSICW9qt90xRFLBDbD8QKF2mH3Tvuo0yqnAcH8QrZf5qS8vZ7o
-         DlATuRRIg7uzFUkkNsHGsz0fmZKRig9U5K2sEAeuLLhrdKMQyxDV4w/HOEHjyy3eJTt/
-         7Ssw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766481973; x=1767086773;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=GTGEyTW46XThYDSb3nGfOTcnTXkOQCNX3Dl5sNqjw6Y=;
-        b=Q7BsjuryiImwQkygzREBhhIPKm0Q1t+kydVlGbke7E4+BdEZIRxPqYcCRQ6NoY3vyy
-         Qu/1YsFzD0EDhwvQA3HCwHfFb9nDGSFcKXm1mTLIItWi+rpn65MJYp6P5rNTN155r4rM
-         GPa1ZhLn5vRFGdG7Zz0XYz6S2rGIX7mHTAIGlnEYn+EUDEGJ/eV4QN4ksvyYiMbpvkAo
-         0cuuljf2gDKw1Ls+bE8vinw8g0UktxiSQEnBrsDu7+j5qCoJAyQFCIpMYcTSa0FjFqLV
-         Cs5ZsRR01a1ASSfN2ljlAwDm3v5sKF1+0B3WeYud3OguDlQr7nCVzJFN6kxnKaXCnYqU
-         t78w==
-X-Forwarded-Encrypted: i=1; AJvYcCWCGl25+dQA46/Joi56DzVoCulSsGoofSKp4IErrlAjiyyDv7l6T02E+aj1TTih5L7B5iRMoCGk7Aqz@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYjNCRHDGqIfApAWgGTB8pUbfBvEC7x23Vgr0FjJrbEiCz22qR
-	A6/GDk8CjtQN/C450jdML56o8nbvCICtwSAIOr/96x5e208xncpa+Jtm3WlwwXrqzZ2Xwr5lgb9
-	/C+pUK9BsQFDDMIgtJPL8TxKx+vnUFf4=
-X-Gm-Gg: AY/fxX6wwfKb7J61uRD6UrGXXShRhB2o/OsAdy3Bd2esUdvnmyTeQAI3lSIq86KQ2Ff
-	iNz5Fob1c9QeDE9kpzQ7PXMZbGAG5G9aNoaOIalfdU9i8OZDcim9HLgx/80JvVhhdD1/3rp0yjT
-	JtxmRWvWjZddwkEqq49att+QIADpEFnAmgNQNmVnuzBg6nvWV2FFGTvCdGF3r0zJheMLZjdICa7
-	HwtIbgRiqLA2DGJFyOD54gBE38+QVYmV4YR5Kl5081K+JC4HEEpDDu2PDONlPN7AwSRiFpyWktb
-	tSUqpQM=
-X-Google-Smtp-Source: AGHT+IGNdoIAhQtLGCBr8mC/SwI6VG9mNcrxVeUK7FLVxcyVEZlSIvEaWHvs6v2NaAD9i9XNu9ROrW3FCi+AlPV3bc8=
-X-Received: by 2002:a05:6122:8c26:b0:559:ebd7:56e4 with SMTP id
- 71dfb90a1353d-5615bceb93amr4461609e0c.5.1766481973546; Tue, 23 Dec 2025
- 01:26:13 -0800 (PST)
+	s=arc-20240116; t=1766482355; c=relaxed/simple;
+	bh=VWjjpO1LK4XCQlL+idU482vlwaxpjBKS1mUogd+WhL8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GDHEQP1zsVwt+NgEGIwSPRJLcRVmrbGVQUC0+IRUwT/reVCp6c37OrYs/Zb8R6bgrg+92JF1BbSwCPJM1GPqr5Ki7xF9Tl6PXjnW9IqHL/eGIcdpamW8rdw/aWmi/lksrCb4nbqHvcx4DgDS6C+n3FiLcrtfWSSGeBiTL88KOzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id EA63E341437;
+	Tue, 23 Dec 2025 09:32:32 +0000 (UTC)
+Date: Tue, 23 Dec 2025 17:32:28 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Linus Walleij <linusw@kernel.org>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 2/2] pinctrl: spacemit: support I/O power domain
+ configuration
+Message-ID: <20251223093228-GYA1986709@gentoo.org>
+References: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-0-5f1090a487c7@linux.spacemit.com>
+ <20251223-kx-pinctrl-aib-io-pwr-domain-v1-2-5f1090a487c7@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251222-ventura2_initial_dts-v1-0-1f06166c78a3@gmail.com>
- <20251222-ventura2_initial_dts-v1-2-1f06166c78a3@gmail.com>
- <c069b452-df22-4afa-bf6a-c48949f40ebc@lunn.ch> <CAF7HswN_jEXOU_9K4LpLnbhvd+RD0qqELAHxMBbp=hGtMjS4kQ@mail.gmail.com>
- <35f3eba9-5ec4-4cba-8a64-fb521dc65b79@lunn.ch>
-In-Reply-To: <35f3eba9-5ec4-4cba-8a64-fb521dc65b79@lunn.ch>
-From: Kyle Hsieh <kylehsieh1995@gmail.com>
-Date: Tue, 23 Dec 2025 17:26:02 +0800
-X-Gm-Features: AQt7F2rfLXR1N_dAP9Rb-QfqDYef379P6Ra9zBB7wrWIZBUMZ5TM9ysNyWSrhdo
-Message-ID: <CAF7HswN0hhJQ-gmE59cKTuPyzrs1A3rM8Xw+Z8i3_AsHRiNcug@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-2-5f1090a487c7@linux.spacemit.com>
 
-On Tue, Dec 23, 2025 at 5:13=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Tue, Dec 23, 2025 at 09:49:02AM +0800, =E8=AC=9D=E6=94=BF=E5=90=89 wro=
-te:
-> > On Mon, Dec 22, 2025 at 5:30=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wr=
-ote:
-> > >
-> > > > +&mdio0 {
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&mac2 {
-> > > > +     status =3D "okay";
-> > > > +     phy-mode =3D "rmii";
-> > > > +     pinctrl-names =3D "default";
-> > > > +     pinctrl-0 =3D <&pinctrl_rmii3_default>;
-> > > > +     fixed-link {
-> > > > +             speed =3D <100>;
-> > > > +             full-duplex;
-> > > > +     };
-> > > > +};
-> > >
-> > > That is an odd combination. You enable the MDIO bus, but don't have
-> > > any PHYs on it, no phandles pointing to it. And you have this
-> > > fixed-link. It makes me think you have an Ethernet switch on the bus,
-> > > and this connects to it?
-> > Thanks for the clarification.
-> > Yes, there is an Ethernet switch in the design.
-> > The MAC is connected to the switch via RMII using a fixed-link
-> > configuration.
->
-> What make/model of switch is it? Is it unmanaged, or does it use SPI
-> or I2C for management?
-The switch is connected via RMII to the MAC and is managed over MDIO.
-On our board, MDIO is not wired directly to the processor; instead, we
-use a USB-to-MPSSE bridge (FT2232) to toggle the MDIO signals for
-switch management.
-So the MDIO bus in the DTS is not used, and enabling it there was a mistake=
-.
->
->         Andrew
-Best Regard,
-Kyle Hsieh
+Hi Troy,
+
+On 17:11 Tue 23 Dec     , Troy Mitchell wrote:
+> IO domain power control registers are used to configure the operating
+> voltage of dual-voltage GPIO banks. By default, these registers are
+> configured for 3.3V operation. As a result, even when a GPIO bank is
+> externally supplied with 1.8V, the internal logic continues to
+> operate in the 3.3V domain, which may lead to functional failures.
+> 
+> This patch adds support for programming the IO domain power control
+> registers, allowing dual-voltage GPIO banks to be explicitly configured
+> for 1.8V operation when required.
+> 
+> Care must be taken when configuring these registers. If a GPIO bank is
+> externally supplied with 3.3V while the corresponding IO power domain
+> is configured for 1.8V, external current injection (back-powering)
+> may occur, potentially causing damage to the GPIO pin.
+> 
+> Due to these hardware constraints and safety considerations, the IO
+> domain power control registers are implemented as secure registers.
+> Access to these registers requires unlocking via the AIB Secure Access
+> Register (ASAR) in the APBC block before a single read or write
+> operation can be performed.
+> 
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> ---
+>  arch/riscv/boot/dts/spacemit/k1.dtsi  |   4 +-
+>  drivers/pinctrl/spacemit/pinctrl-k1.c | 131 +++++++++++++++++++++++++++++++++-
+>  2 files changed, 131 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> index 7818ca4979b6a7755722919a5958512aa11950ab..23ecb19624f227f3c39de35bf3078379f7a2490e 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+dtsi should go as separated patch, then route to SoC tree
+
+> @@ -565,10 +565,12 @@ i2c8: i2c@d401d800 {
+>  
+>  		pinctrl: pinctrl@d401e000 {
+>  			compatible = "spacemit,k1-pinctrl";
+> -			reg = <0x0 0xd401e000 0x0 0x400>;
+> +			reg = <0x0 0xd401e000 0x0 0x400>,
+> +			      <0x0 0xd401e800 0x0 0x34>;
+>  			clocks = <&syscon_apbc CLK_AIB>,
+>  				 <&syscon_apbc CLK_AIB_BUS>;
+>  			clock-names = "func", "bus";
+> +			spacemit,apbc = <&syscon_apbc 0x50>;
+>  		};
+>  
+>  		pwm8: pwm@d4020000 {
+> diff --git a/drivers/pinctrl/spacemit/pinctrl-k1.c b/drivers/pinctrl/spacemit/pinctrl-k1.c
+> index 8ca247fb8ba0321c02423f9739130e03277d1053..b3ffb32f88a79ebf6b64e62a7846df60b92799fe 100644
+> --- a/drivers/pinctrl/spacemit/pinctrl-k1.c
+> +++ b/drivers/pinctrl/spacemit/pinctrl-k1.c
+> @@ -7,8 +7,10 @@
+>  #include <linux/io.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/spinlock.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+>  
+> @@ -47,6 +49,25 @@
+>  #define PAD_PULLUP		BIT(14)
+>  #define PAD_PULL_EN		BIT(15)
+>  
+> +#define IO_PWR_DOMAIN_GPIO2_Kx  0x0c
+> +#define IO_PWR_DOMAIN_MMC_Kx    0x1c
+> +
+> +#define IO_PWR_DOMAIN_GPIO3_K1  0x10
+> +#define IO_PWR_DOMAIN_QSPI_K1   0x20
+> +
+> +#define IO_PWR_DOMAIN_GPIO1_K3  0x04
+> +#define IO_PWR_DOMAIN_GPIO5_K3  0x10
+> +#define IO_PWR_DOMAIN_GPIO4_K3  0x20
+> +#define IO_PWR_DOMAIN_QSPI_K3   0x2c
+> +
+> +#define IO_PWR_DOMAIN_V18EN	BIT(2)
+> +
+> +#define APBC_ASFAR		0x00
+> +#define APBC_ASSAR		0x04
+> +
+> +#define APBC_ASFAR_AKEY		0xbaba
+> +#define APBC_ASSAR_AKEY		0xeb10
+> +
+>  struct spacemit_pin_drv_strength {
+>  	u8		val;
+>  	u32		mA;
+> @@ -78,6 +99,10 @@ struct spacemit_pinctrl {
+>  	raw_spinlock_t				lock;
+>  
+>  	void __iomem				*regs;
+> +	void __iomem				*io_pd_reg;
+> +
+> +	struct regmap				*regmap_apbc;
+> +	u32					regmap_apbc_offset;
+>  };
+>  
+>  struct spacemit_pinctrl_data {
+> @@ -85,6 +110,7 @@ struct spacemit_pinctrl_data {
+>  	const struct spacemit_pin	*data;
+>  	u16				npins;
+>  	unsigned int			(*pin_to_offset)(unsigned int pin);
+> +	unsigned int			(*pin_to_io_pd_offset)(unsigned int pin);
+>  	const struct spacemit_pinctrl_dconf	*dconf;
+>  };
+>  
+> @@ -146,6 +172,56 @@ static unsigned int spacemit_k3_pin_to_offset(unsigned int pin)
+>  	return offset << 2;
+>  }
+>  
+> +static unsigned int spacemit_k1_pin_to_io_pd_offset(unsigned int pin)
+> +{
+> +	unsigned int offset = 0;
+> +
+> +	switch (pin) {
+> +	case 47 ... 52:
+> +		offset = IO_PWR_DOMAIN_GPIO3_K1;
+> +		break;
+> +	case 75 ... 80:
+> +		offset = IO_PWR_DOMAIN_GPIO2_Kx;
+> +		break;
+> +	case 98 ... 103:
+> +		offset = IO_PWR_DOMAIN_QSPI_K1;
+> +		break;
+> +	case 104 ... 109:
+> +		offset = IO_PWR_DOMAIN_MMC_Kx;
+> +		break;
+> +	}
+> +
+> +	return offset;
+> +}
+> +
+> +static unsigned int spacemit_k3_pin_to_io_pd_offset(unsigned int pin)
+> +{
+> +	unsigned int offset = 0;
+> +
+> +	switch (pin) {
+> +	case 0 ... 20:
+> +		offset = IO_PWR_DOMAIN_GPIO1_K3;
+> +		break;
+> +	case 21 ... 41:
+> +		offset = IO_PWR_DOMAIN_GPIO2_Kx;
+> +		break;
+> +	case 76 ... 98:
+> +		offset = IO_PWR_DOMAIN_GPIO4_K3;
+> +		break;
+> +	case 99 ... 127:
+> +		offset = IO_PWR_DOMAIN_GPIO5_K3;
+> +		break;
+> +	case 132 ... 137:
+> +		offset = IO_PWR_DOMAIN_MMC_Kx;
+> +		break;
+> +	case 138 ... 144:
+> +		offset = IO_PWR_DOMAIN_QSPI_K3;
+> +		break;
+> +	}
+> +
+> +	return offset;
+> +}
+> +
+>  static inline void __iomem *spacemit_pin_to_reg(struct spacemit_pinctrl *pctrl,
+>  						unsigned int pin)
+>  {
+> @@ -365,6 +441,38 @@ static int spacemit_pctrl_check_power(struct pinctrl_dev *pctldev,
+>  	return 0;
+>  }
+>  
+> +static void spacemit_set_io_pwr_domain(struct spacemit_pinctrl *pctrl,
+> +				      const struct spacemit_pin *spin,
+> +				      const enum spacemit_pin_io_type type)
+> +{
+> +	u32 offset = pctrl->data->pin_to_io_pd_offset(spin->pin);
+> +	u32 val = 0;
+> +
+> +	/* Other bits are reserved so don't need to save them */
+> +	if (type == IO_TYPE_1V8)
+> +		val = IO_PWR_DOMAIN_V18EN;
+> +
+> +	/*
+> +	 * IO power domain registers are protected and cannot be accessed
+> +	 * directly. Before performing any read or write to the IO power
+> +	 * domain registers, an explicit unlock sequence must be issued
+> +	 * via the AIB Secure Access Register (ASAR).
+> +	 *
+> +	 * The unlock sequence allows exactly one subsequent access to the
+> +	 * IO power domain registers. After that access completes, the ASAR
+> +	 * keys are automatically cleared, and the registers become locked
+> +	 * again.
+> +	 *
+> +	 * This mechanism ensures that IO power domain configuration is
+> +	 * performed intentionally, as incorrect voltage settings may
+> +	 * result in functional failures or hardware damage.
+> +	 */
+> +	regmap_write(pctrl->regmap_apbc, pctrl->regmap_apbc_offset + APBC_ASFAR, APBC_ASFAR_AKEY);
+> +	regmap_write(pctrl->regmap_apbc, pctrl->regmap_apbc_offset + APBC_ASSAR, APBC_ASSAR_AKEY);
+> +
+> +	writel_relaxed(val, pctrl->io_pd_reg + offset);
+> +}
+> +
+>  static int spacemit_pctrl_dt_node_to_map(struct pinctrl_dev *pctldev,
+>  					 struct device_node *np,
+>  					 struct pinctrl_map **maps,
+> @@ -572,7 +680,8 @@ static int spacemit_pinconf_get(struct pinctrl_dev *pctldev,
+>  
+>  #define ENABLE_DRV_STRENGTH	BIT(1)
+>  #define ENABLE_SLEW_RATE	BIT(2)
+> -static int spacemit_pinconf_generate_config(const struct spacemit_pin *spin,
+> +static int spacemit_pinconf_generate_config(struct spacemit_pinctrl *pctrl,
+> +					    const struct spacemit_pin *spin,
+>  					    const struct spacemit_pinctrl_dconf *dconf,
+>  					    unsigned long *configs,
+>  					    unsigned int num_configs,
+> @@ -646,6 +755,7 @@ static int spacemit_pinconf_generate_config(const struct spacemit_pin *spin,
+>  			default:
+>  				return -EINVAL;
+>  			}
+> +			spacemit_set_io_pwr_domain(pctrl, spin, type);
+>  		}
+>  
+>  		val = spacemit_get_driver_strength(type, dconf, drv_strength);
+> @@ -701,7 +811,7 @@ static int spacemit_pinconf_set(struct pinctrl_dev *pctldev,
+>  	const struct spacemit_pin *spin = spacemit_get_pin(pctrl, pin);
+>  	u32 value;
+>  
+> -	if (spacemit_pinconf_generate_config(spin, pctrl->data->dconf,
+> +	if (spacemit_pinconf_generate_config(pctrl, spin, pctrl->data->dconf,
+>  					     configs, num_configs, &value))
+>  		return -EINVAL;
+>  
+> @@ -724,7 +834,7 @@ static int spacemit_pinconf_group_set(struct pinctrl_dev *pctldev,
+>  		return -EINVAL;
+>  
+>  	spin = spacemit_get_pin(pctrl, group->grp.pins[0]);
+> -	if (spacemit_pinconf_generate_config(spin, pctrl->data->dconf,
+> +	if (spacemit_pinconf_generate_config(pctrl, spin, pctrl->data->dconf,
+>  					     configs, num_configs, &value))
+>  		return -EINVAL;
+>  
+> @@ -795,6 +905,7 @@ static const struct pinconf_ops spacemit_pinconf_ops = {
+>  
+>  static int spacemit_pinctrl_probe(struct platform_device *pdev)
+>  {
+> +	struct device_node *np = pdev->dev.of_node;
+>  	struct device *dev = &pdev->dev;
+>  	struct spacemit_pinctrl *pctrl;
+>  	struct clk *func_clk, *bus_clk;
+> @@ -816,6 +927,18 @@ static int spacemit_pinctrl_probe(struct platform_device *pdev)
+>  	if (IS_ERR(pctrl->regs))
+>  		return PTR_ERR(pctrl->regs);
+>  
+> +	pctrl->io_pd_reg = devm_platform_ioremap_resource(pdev, 1);
+> +	if (IS_ERR(pctrl->io_pd_reg))
+> +		return PTR_ERR(pctrl->io_pd_reg);
+> +
+> +	pctrl->regmap_apbc =
+> +		syscon_regmap_lookup_by_phandle_args(np, "spacemit,apbc", 1,
+> +						     &pctrl->regmap_apbc_offset);
+Can you simply use syscon_regmap_lookup_by_phandle(), then define 
+#define APBC_ASFAR		0x50
+#define APBC_ASSAR		0x54
+
+> +
+> +	if (IS_ERR(pctrl->regmap_apbc))
+> +		return dev_err_probe(dev, PTR_ERR(pctrl->regmap_apbc),
+> +				     "failed to get syscon\n");
+> +
+>  	func_clk = devm_clk_get_enabled(dev, "func");
+>  	if (IS_ERR(func_clk))
+>  		return dev_err_probe(dev, PTR_ERR(func_clk), "failed to get func clock\n");
+> @@ -1118,6 +1241,7 @@ static const struct spacemit_pinctrl_data k1_pinctrl_data = {
+>  	.data = k1_pin_data,
+>  	.npins = ARRAY_SIZE(k1_pin_desc),
+>  	.pin_to_offset = spacemit_k1_pin_to_offset,
+> +	.pin_to_io_pd_offset = spacemit_k1_pin_to_io_pd_offset,
+>  	.dconf = &k1_drive_conf,
+>  };
+>  
+> @@ -1455,6 +1579,7 @@ static const struct spacemit_pinctrl_data k3_pinctrl_data = {
+>  	.data = k3_pin_data,
+>  	.npins = ARRAY_SIZE(k3_pin_desc),
+>  	.pin_to_offset = spacemit_k3_pin_to_offset,
+> +	.pin_to_io_pd_offset = spacemit_k3_pin_to_io_pd_offset,
+>  	.dconf = &k3_drive_conf,
+>  };
+>  
+> 
+> -- 
+> 2.52.0
+> 
+
+-- 
+Yixun Lan (dlan)
 
