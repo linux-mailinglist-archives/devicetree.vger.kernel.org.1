@@ -1,246 +1,209 @@
-Return-Path: <devicetree+bounces-249263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7517ACDA49D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 19:39:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 161A0CDA4F6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 20:08:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 735DA301A5B1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:39:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1533730185C4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 19:08:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D61F3446C4;
-	Tue, 23 Dec 2025 18:39:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B4632E72B;
+	Tue, 23 Dec 2025 19:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BQfYetwI"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PfpJMe5/";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WhpuG2Nf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DE463376AC
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 18:38:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34FF0264612
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 19:08:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766515141; cv=none; b=pgSE2KwoGVijs5U2rv6aAoLm2bdOHMeGz/Sy0XvdTGrolLB2OELeBIOWckhw8P8727QCxeyzrFsnjeBF7Pr35fcVTBNM428p8rTS8ktOIrS5nZNbmLPF86OuJ9bNztzka65/TE14emZDiN5j+1PyLDswydRc64HZ8b/CSsMV6Qk=
+	t=1766516926; cv=none; b=QJJMHNc+CSZ7LjyxzBaf1s64TzMz4WFZtGt3Pdx6a7uUgFMNsws/laFfRhCjmeYZ2QSnpNNIRW0yrbF9blPleoJka2EMMwqq/XS8jA8/r4Zp+uQc3+N3ZEfTLIUWa2ukgHhaldScqgnbm9r8jsdHqcno/0+XoFAhEizBn55aloI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766515141; c=relaxed/simple;
-	bh=Dg30BWoao0K62TGW2mJ1fTNWLuURqW6Q2wqseeg4LmM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ipur0wnDgnboa0wsDi2pEVmguo2hCCDY9ciH0Vy+qvPv1RFhspuM8LS0wynkMuFzxkvBAoXB48xSqQAO5q+3bIXRoIeEwtVrHKHJlsiAnObHBb7hEZmTlUQBZ/HH2glS+rsji7LRAlBDthdHq9lwSWzHmTajJZ4iYtZ8q6h/YX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BQfYetwI; arc=none smtp.client-ip=209.85.167.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-4557f0e5ed2so3171650b6e.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 10:38:58 -0800 (PST)
+	s=arc-20240116; t=1766516926; c=relaxed/simple;
+	bh=DLTcc4UnApmdJF/W1Hj2GExnopeZ5YRVc9FY544L5ts=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VjqzgHe7XFxLhzSXBtsdMbUK3MB+8mqrlTMOnNM8X4Yff6/6Voge+aaf/rwAwIVg3hpz0dHSs5CoQD4/bPEVlMWoUzC1H67HWDEJ1DRLcw2nPHfqbtxc7LYRJDYPydE30OxpZQRK6uQ48k8KcvxnAvfx6Ki74p6w/8svrxDjkDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PfpJMe5/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WhpuG2Nf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BNEN8ZR913441
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 19:08:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=QO62dClkkSjUhSgsu+9Nxagr
+	QOnviHb8v87abS5uRHc=; b=PfpJMe5/5vCU3xoqcGYJj+P/k0Wp9b/oTE9Dhoen
+	yN/zwVwNQc8W2Wpcmxka9pgcNFXfn+qkM2dK/vYDmZJzRCIsVeBtYznozj3e52xp
+	lg6312188i1QbFwD3WiSJKTz7IOWz9AGZuw+RNMpe/fxiipv8y1XMIHiOS+202Vs
+	qgCn4ApkV806vlHPiOD7vAzPN2ZTXroZtiUy6W9i2GhSSr1a9p1FMGyCLvb5bMWI
+	qyVQHG+SbCyfbaic4pyCWvHlaQ2HEq4X3Gfr2iqdjr2z81fCts0GVji3IEkVK82K
+	6g34MRcT1AMrSppNdazEiV1shmnj2/CF5J/n7f4fD3x24Q==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7vt2gtmd-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 19:08:42 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88a47331c39so134756786d6.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 11:08:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1766515138; x=1767119938; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hURpEioUMYzBg0kpxK3F2rxqTzLXWyyg9wiThi3lkXI=;
-        b=BQfYetwIQxkjrjuEm+pnbXgLuu2WZP8zFpYaatszid1oAz9hIkNXDYly3EiC7LYzrJ
-         1dFZb11qP5Iw2Qyjo8dVM5zVmOxt2zrO3dAsCnIC9YJW8OljWNEyTfxz/1hiby6Lu4tc
-         pUhsFNNqwj9p4dV3MmaWn2WNiA6ZvOl1CVzWVCiqxcBFInGPowvSMDzSccvMEtV9TvXy
-         HfmG3pB3V+P4rbP4ig0WNNhysZvc53YUzLx1G0XaGXDadZKkGhehBA7oDNyMs5CQ+j7N
-         q2QkqP1hOkyvw2q0RpfOO+a+pszg8AywvGM5QEP5JSRwb1G3jKXFJ/OFXR9OTwjuZCHD
-         b0Eg==
+        d=oss.qualcomm.com; s=google; t=1766516922; x=1767121722; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=QO62dClkkSjUhSgsu+9NxagrQOnviHb8v87abS5uRHc=;
+        b=WhpuG2Nf+05jDOeiHbwbm1XBWVpjn2Mlwm9/uP8NUGEVQ/EswE5lkHyTYHFDhSfRWQ
+         s3T0EAd/nWx13pvbH8zIDiycARlXRowzzenhtc1UbtPf0WfjbemIK5oXjywkPlURmx/K
+         9q1Hk85V4y1DPzDEvLzBB/t/C99KPCatSB0cs+vbbaqIkkOXLC2V5hzeBcKEElzdV2ta
+         SBoH2enFeGlbJ+9gHodfU/x7yH7+jY9evEN0tZOrgCvzKlL6TMJPdwglKKlVWzvl0oME
+         kKGmavjVZGMwnr1asfCGf7pdjPErcB63gFg3fEXCBX2tdSAHHx3TArcEGk4Xrm92RdXu
+         k/tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766515138; x=1767119938;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hURpEioUMYzBg0kpxK3F2rxqTzLXWyyg9wiThi3lkXI=;
-        b=NDmnBU+6OZ20OzSc5l8LNpVJoTCL0akjV9zmg6nPomeBck/EBngGnhsKbI7stotOu6
-         L0dKVQyDnqFjTu1rhFvwuTp3OMWeAHTj0zYSOJNGm8xbAlaySKf8Obt3Xr2LpCiaaZ3l
-         8e74qxO4DCK3dipRZ0kClnw372MmaYuarRQ77oX2APBC9lrBLDjnB10uSC6F2oksrivy
-         /6haMQlUFkE9my4ic55GIQlI3SxIEUg5OiuYHcwRkCwyqI/2M17n5suxRM6sbuKZwhn1
-         srStGb4lqVf7xLAhtNlHCOfK+yquGI6nOABOSYDjan6P62euZDL5kFCeS8tLx9bFD20u
-         +Maw==
-X-Forwarded-Encrypted: i=1; AJvYcCUQONh3RV34IGfAiQfOHmA4877W8JOBlSj/XuJpapVi3MEmxbj7YJBOYX1OQSfxnIsAI3rSllIRZ5Ae@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxdjDextjGR09jBmid0ECN0tY520RMIcXFRzToi2eEWhKj/zXm
-	tE5BQ/uGQjtCkKdlbmL4BAHTfzEC/fF6ljfL3lIduX7B+4pIZUxAntvtojoZWyOETLc=
-X-Gm-Gg: AY/fxX6Pp4WH5/GCjroPLS3jlu9uVFXn45YGL7isJ8BIN52arcOqPYifg4pj16k+QLV
-	B3suwBzlBmeuPTvxa5i/JwHk+YUGaljPYhSyYpbcMm7p3dy7XwzoCUbTuFqPYg3o9VRfE0E8ZhT
-	TTq+oemsPkv66Fzu1BSME6dLV5tLcO62xnCG+m2TWkKh+fe78jcZzqOTkKs/HRRrV035Ri9aNTL
-	trAPGM39GubRhpjODajZEFJ0rKN2K1a4TNqXO2s/H6/C4sD3G+hPaK8a9KozMGUiqI2b8NrMpzk
-	lBcRn0SCltMwI/zlILHCh9zoCYkMcCKouz8ouHOT+kX3KrGflQDMus7Eh3u/b3boFzmat5JAUHr
-	iKGybSCXSlJFMWvHLoyBSgn/f2+ViwWiRxyOLeAV5DdDgP7aX9M/gAEqTuFOA5MqvF1dAFl5EDA
-	Vq4y2XUdJ0DbvmC8quZbylaAjvN1+diOGllSK0zIjwl+h0LjGw2P/H/fkeKzhf
-X-Google-Smtp-Source: AGHT+IG+QT8uIhzhuCO3YEMK3eLJ5rcDiZajqBx6b9CdF4mhoK8ZQHzV2rslL61NEPR94xrxFwXHbQ==
-X-Received: by 2002:a05:6808:c22b:b0:450:3379:3c5c with SMTP id 5614622812f47-457a286f229mr9498605b6e.3.1766515138053;
-        Tue, 23 Dec 2025 10:38:58 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:fe29:88f1:f763:378b? ([2600:8803:e7e4:500:fe29:88f1:f763:378b])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3fdaa931b0esm9150718fac.8.2025.12.23.10.38.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Dec 2025 10:38:56 -0800 (PST)
-Message-ID: <1a257edd-2179-4653-be22-10e44681bb60@baylibre.com>
-Date: Tue, 23 Dec 2025 12:38:55 -0600
+        d=1e100.net; s=20230601; t=1766516922; x=1767121722;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QO62dClkkSjUhSgsu+9NxagrQOnviHb8v87abS5uRHc=;
+        b=oyLm0pZcg/tkxiE2ojhJUK3+zlWsPZWm1gmy4LO5xfTdxDWy3AFDKfZ15dUGJ06hET
+         8XYOeohzzfbYzaDC3X68++6pbFhyCMucCVA3hawomke1sbvs6jl48ZwKKXv7xKRnrJyB
+         2JFxxIlWcL9nzBJrtGgiF91EESVByMd8c2nx0xITnubQLJDsa++J1JoPH+5Wg3TwGLBn
+         QQ/FR9D8vZzTcdrGnsS90iAgrkmd3OpPB+PKDF0zEDnunUlHRM19pdlzk/xlqTeek/3E
+         llEMj9ugahFZ70r5v/85qvqAXCHKB2U5yV3xilAiEKVNzWOGvKoSE7PSaPL6BZqTMqJZ
+         Z0tw==
+X-Forwarded-Encrypted: i=1; AJvYcCVz/z03deOGiXYB6NGGHXAebhhzhxRpuPAu+nBqP8JiJb7SGBLygD9mS+8DcxXXPH9Mxx7hSB7BQek9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTSg82jplhiHT4I8VTIHgmQo1Cx/+0ZVSLcCqKs5VT/s69tInO
+	qfO0P49Az8WAlST+NPumXNB+I/EFo1QMzIcfqm2ngJpXk/0jwwIbGrW8trB/alHMghdZVyW++Rp
+	07RE3jV2wv4EjpBfvZ/sxFpFY8qIqRFPVmnTSjzoMqkz5RFlcBEXCUeXmXGNQbQ25
+X-Gm-Gg: AY/fxX6J/ALeQgradsuaIDsGZ9cIkN/Yz8zFwPiF3sLJ5p6dt9CM+GBgjZIREvL3XAk
+	S59NNfdPN48zit9hxYpCB/ikPH8RRGVWei5hBNllTo34IfPRtt19HnjTe0+Fugpo7MOCAIFQbiE
+	52UIVnBCbNzi1YvBCR3FB+Z3MOPF21c0AgZ8/O8M9e+jPpvgJMrPHscBIzLyNPWKfzyiQejaR7S
+	BDNUrwdfqK1xxCxt+H9rOnd4pE9U18q3babiiS+ecSsWxIeh4JQyzSmwonit+X/fbt2flqH5p0l
+	+ouJy1CP5SRV552U+uQR/lgdEsQev3PGZisciAMG1vttIsf70Q+br/x7KfecP7o1ifM0UXXcixY
+	JUSH77z/ktc9Ik9r5qupnmudA5i5+0irfCDUpVi90NJ25GYwv+xrInUJeA62BeSmHz5eiH58RL1
+	AEE5ytqD9bDjSEtON5tCMziFs=
+X-Received: by 2002:a05:6214:8092:b0:88a:2eed:486f with SMTP id 6a1803df08f44-88d8166a46amr214299126d6.9.1766516922355;
+        Tue, 23 Dec 2025 11:08:42 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFFCSdKwVH5wD13PdUqft6HXd3dcPPbF0TX+I1lL0wNpE7844fv4MmXsU6qhN91InL4Jgp/XA==
+X-Received: by 2002:a05:6214:8092:b0:88a:2eed:486f with SMTP id 6a1803df08f44-88d8166a46amr214298706d6.9.1766516921767;
+        Tue, 23 Dec 2025 11:08:41 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a185ea2d8sm4266990e87.45.2025.12.23.11.08.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Dec 2025 11:08:40 -0800 (PST)
+Date: Tue, 23 Dec 2025 21:08:39 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: Add base PURWA-IOT-EVK board
+Message-ID: <catfa6d7qofd6uwkz3vepidznxa54btpw5a47rokugjdg2ogs3@qqqmo5suq36v>
+References: <20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com>
+ <20251222060335.3485729-4-yijie.yang@oss.qualcomm.com>
+ <woqdn6gvlkgux6nuixpcwmcqkl7siqajgwrvd4x5cuuw3nlrpp@vmq63mgudnoa>
+ <a8784c60-6551-4312-881c-c36523731862@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: adc: ltc2309: add support for ltc2305
-To: Kyle Hsieh <kylehsieh1995@gmail.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251223-add_ltc2305_driver-v1-0-dfa0827fd620@gmail.com>
- <20251223-add_ltc2305_driver-v1-2-dfa0827fd620@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20251223-add_ltc2305_driver-v1-2-dfa0827fd620@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a8784c60-6551-4312-881c-c36523731862@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDE1OSBTYWx0ZWRfX45JJPQaFoWge
+ wY+bzwmMKP/8lf6gOwX5qnjyPOPCig/qJOr5LdA1MyuY4sGD/3+UAyNcWDDc/VY2WnHkiB32YJ3
+ btC5IbYXWUR1dFEtHxMnw6jcFLFrmYytjue/ceqTXXnoDCRFa0dvWlKQkpd9qy1g5tVijDCpQXA
+ v0IHw5wpM7WwJG5PF9jSHqrZJgpdJyaY6g+49073uAWjAaIIvxwWKbwNxxTiZDjEBQa9nI2ppma
+ pw10JDl/SF7Z9nfe4WQFnWSSkpeuZTD/VJAfonGl443pnz6OFsQxjRtnWT1lQ7mtdqEuznwMN+o
+ 1N9KudT4DnsCiQU6VGERb0YXQKIFPDpyHyWiH1eE9xOOB1f0b8ozDsPcZHp4zjm6+kGpn3TmPK8
+ vIaTKwL3le9+UMwjtMsTOLZqzNWqJXTXLfRPhr+VlSlDI6Xg49yhNe5UchRMjlpwlueXAIZUk5B
+ 07xh04PtcwdTOVRM8ag==
+X-Proofpoint-GUID: JALKeVYVzIvA2FQEV2sF6AWU2Vso1CoJ
+X-Proofpoint-ORIG-GUID: JALKeVYVzIvA2FQEV2sF6AWU2Vso1CoJ
+X-Authority-Analysis: v=2.4 cv=brtBxUai c=1 sm=1 tr=0 ts=694ae8ba cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=l_G8NALvrxP8-mubxe4A:9 a=CjuIK1q_8ugA:10
+ a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-23_04,2025-12-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 spamscore=0 adultscore=0 priorityscore=1501
+ malwarescore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512230159
 
-On 12/23/25 3:12 AM, Kyle Hsieh wrote:
-> Add support for the 2-channel LTC2305 ADC in the existing LTC2309 driver.
-> The LTC2305 and LTC2309 share similar features: both are 12-bit,
-> low-noise, low-power SAR ADCs with an I2C interface.
-> The main difference is the number of channels: LTC2305 has 2 channels,
-> while LTC2309 has 8 channels.
+On Tue, Dec 23, 2025 at 10:02:54AM +0800, Yijie Yang wrote:
 > 
-> Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
-> ---
->  drivers/iio/adc/ltc2309.c | 50 +++++++++++++++++++++++++++++++++++++++++++----
->  1 file changed, 46 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/iio/adc/ltc2309.c b/drivers/iio/adc/ltc2309.c
-> index 5f0d947d0615..7a611ddd00d2 100644
-> --- a/drivers/iio/adc/ltc2309.c
-> +++ b/drivers/iio/adc/ltc2309.c
-> @@ -1,9 +1,11 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /*
->   * The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
-> + * The LTC2305 is a  2-Channel, 12-Bit SAR ADC with an I2C Interface.
+> On 12/22/2025 5:22 PM, Dmitry Baryshkov wrote:
+> > On Mon, Dec 22, 2025 at 02:03:29PM +0800, YijieYang wrote:
+> > > From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> > > 
+> > > The PURWA-IOT-EVK is an evaluation platform for IoT products, composed of
+> > > the Purwa IoT SoM and a carrier board. Together, they form a complete
+> > > embedded system capable of booting to UART.
+> > > 
+> > > PURWA-IOT-EVK uses the PS8833 as a retimer for USB0, unlike HAMOA-IOT-EVK.
+> > > Meanwhile, USB0 bypasses the SBU selector FSUSB42. As a result, the glink
+> > > topology differs from that of HAMOA-IOT-EVK.
+> > > 
+> > > Make the following peripherals on the carrier board enabled:
+> > > - UART
+> > > - On-board regulators
+> > > - Regulators on the SOM
+> > > - PMIC GLINK
+> > > - USB0 through USB6 and their PHYs
+> > > - Embedded USB (EUSB) repeaters
+> > > - USB Type-C mux
+> > > - PCIe6a and its PHY
+> > > - PCIe4 and its PHY
+> > > - Reserved memory regions
+> > > - Pinctrl
+> > > - NVMe
+> > > - ADSP, CDSP
+> > > - WLAN, Bluetooth (M.2 interface)
+> > > - USB DisplayPorts
+> > > - Graphic
+> > > - Audio
+> > > 
+> > > Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> > > ---
+> > >   arch/arm64/boot/dts/qcom/Makefile           |   1 +
+> > >   arch/arm64/boot/dts/qcom/purwa-iot-evk.dts  | 100 ++++++++++++++++++++
+> > >   arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi |  11 +++
+> > >   3 files changed, 112 insertions(+)
+> > >   create mode 100644 arch/arm64/boot/dts/qcom/purwa-iot-evk.dts
+> > >   create mode 100644 arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi
+> > > 
+> > 
+> > > +
+> > > +&gpu_zap_shader {
+> > > +	firmware-name = "qcom/x1e80100/gen71500_zap.mbn";
+> > 
+> > This wasn't tested.
+> 
+> It should be qcom/x1p42100/gen71500_zap.mbn. This has been tested locally.
 
-Would be more conventional to list things in low to high order like in the
-dt-bindings. (same applies throughout this patch)
+The DT that you've sent wasn't tested. Please send a fixed version.
 
->   *
->   * Datasheet:
->   * https://www.analog.com/media/en/technical-documentation/data-sheets/2309fd.pdf
-> + * https://www.analog.com/media/en/technical-documentation/data-sheets/23015fb.pdf
->   *
->   * Copyright (c) 2023, Liam Beguin <liambeguin@gmail.com>
->   */
-> @@ -60,6 +62,13 @@ enum ltc2309_channels {
->  	LTC2309_CH7,
->  };
->  
-> +enum ltc2305_channels {
-> +	LTC2305_CH0_CH1 = 0,
-
-Initializer is not strictly needed. I guess it is consistent with the
-existing code though, so OK.
-
-> +	LTC2305_CH1_CH0,
-> +	LTC2305_CH0,
-> +	LTC2305_CH1,
-> +};
-> +
->  #define LTC2309_CHAN(_chan, _addr) {				\
->  	.type = IIO_VOLTAGE,					\
->  	.indexed = 1,						\
-> @@ -99,6 +108,31 @@ static const struct iio_chan_spec ltc2309_channels[] = {
->  	LTC2309_DIFF_CHAN(7, 6, LTC2309_CH7_CH6),
->  };
->  
-> +static const struct iio_chan_spec ltc2305_channels[] = {
-> +	LTC2309_CHAN(0, LTC2305_CH0),
-> +	LTC2309_CHAN(1, LTC2305_CH1),
-> +	LTC2309_DIFF_CHAN(0, 1, LTC2305_CH0_CH1),
-> +	LTC2309_DIFF_CHAN(1, 0, LTC2305_CH1_CH0),
-> +};
-> +
-> +struct ltc230x_chip_info {
-
-We avoid putting "x" in names like this because the pattern breaks too often.
-Just use the main driver prefix of ltc2309.
-
-> +	const char *name;
-> +	const struct iio_chan_spec *channels;
-> +	int num_channels;
-> +};
-> +
-> +static const struct ltc230x_chip_info ltc2309_chip_info = {
-> +	.name = "ltc2309",
-> +	.channels = ltc2309_channels,
-> +	.num_channels = ARRAY_SIZE(ltc2309_channels),
-> +};
-> +
-> +static const struct ltc230x_chip_info ltc2305_chip_info = {
-> +	.name = "ltc2305",
-> +	.channels = ltc2305_channels,
-> +	.num_channels = ARRAY_SIZE(ltc2305_channels),
-> +};
-> +
->  static int ltc2309_read_raw_channel(struct ltc2309 *ltc2309,
->  				    unsigned long address, int *val)
->  {
-> @@ -158,6 +192,8 @@ static const struct iio_info ltc2309_info = {
->  
->  static int ltc2309_probe(struct i2c_client *client)
->  {
-> +	const struct of_device_id *match;
-
-Unused?
-
-> +	const struct ltc230x_chip_info *chip_info;
->  	struct iio_dev *indio_dev;
->  	struct ltc2309 *ltc2309;
->  	int ret;
-> @@ -167,13 +203,17 @@ static int ltc2309_probe(struct i2c_client *client)
->  		return -ENOMEM;
->  
->  	ltc2309 = iio_priv(indio_dev);
-> +	chip_info = device_get_match_data(&client->dev);
-
-Why not i2c_get_match_data()?
-
-> +	if (!chip_info)
-> +		return -EINVAL;
-> +
->  	ltc2309->dev = &indio_dev->dev;
->  	ltc2309->client = client;
->  
-> -	indio_dev->name = "ltc2309";
-> +	indio_dev->name = chip_info->name;
->  	indio_dev->modes = INDIO_DIRECT_MODE;
-> -	indio_dev->channels = ltc2309_channels;
-> -	indio_dev->num_channels = ARRAY_SIZE(ltc2309_channels);
-> +	indio_dev->channels = chip_info->channels;
-> +	indio_dev->num_channels = chip_info->num_channels;
->  	indio_dev->info = &ltc2309_info;
->  
->  	ret = devm_regulator_get_enable_read_voltage(&client->dev, "vref");
-> @@ -189,13 +229,15 @@ static int ltc2309_probe(struct i2c_client *client)
->  }
->  
->  static const struct of_device_id ltc2309_of_match[] = {
-> -	{ .compatible = "lltc,ltc2309" },
-> +	{ .compatible = "lltc,ltc2309", .data = &ltc2309_chip_info },
-> +	{ .compatible = "lltc,ltc2305", .data = &ltc2305_chip_info },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, ltc2309_of_match);
->  
->  static const struct i2c_device_id ltc2309_id[] = {
->  	{ "ltc2309" },
-> +	{ "ltc2305" },
-
-Also need to add chip_infos here.
-
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(i2c, ltc2309_id);
+> 
+> > 
+> > > +};
+> > > -- 
+> > > 2.34.1
+> > > 
+> > 
+> 
+> -- 
+> Best Regards,
+> Yijie
 > 
 
+-- 
+With best wishes
+Dmitry
 
