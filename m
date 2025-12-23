@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-249245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 284B2CDA258
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A491ACDA267
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 18:44:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 469AE301D5A0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:44:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2ABCD3035A59
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 17:44:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCBAB2D192B;
-	Tue, 23 Dec 2025 17:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CCBB3346BC;
+	Tue, 23 Dec 2025 17:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k40Xmgns"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvspivJs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA1C199237;
-	Tue, 23 Dec 2025 17:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FBDA3128A3;
+	Tue, 23 Dec 2025 17:44:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766511863; cv=none; b=KQplbySebHKPfeAeCZD+x6ZPButq+s2VmCDt8vULCzuKvodjGe8qjx10rM2jHIeaz8iY/OsbTO8QDuBAm+8md+Ek2Ie+dMrNEkJmRP7T8+ALjxkjle8Pj1NMesc8ZORsKjCtRiUefzQp43oTfC2T6QWQIS9NiD0uxGJn78Ub4QY=
+	t=1766511868; cv=none; b=soINE1Y7JScciM98EdZHg+lFQ74PWeVB88gsT2Tvg/S759Yzn7ORga3PZpuZ8gLezOhtxzSBqhLvB9rxJHWMAwhBUBaR7vsrjaHqFFORb91v6xv8eIKogUG+4EDV/uhWBG9ByXVptIo2Mfa+OZSjODYAVdwRXDo97cZqFjZJTxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766511863; c=relaxed/simple;
-	bh=9WXabfp5pMYZMhxZhMEvt3+Q8tDLq01QxcspbG8gunQ=;
+	s=arc-20240116; t=1766511868; c=relaxed/simple;
+	bh=P32gz1U3xDoCzfl2+VR66RJPFywlOedw+TA59vavrqM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=FfhcZjZndSl2gEm+pDo5cj+WK6LdlA/u7mHtrGHM+4krjiyFPyOuHv088LBUqwbGiDruASkvarBpHzj7PnCffy9hRtXvxuKulhvI953q/AgB0QegwwUKtyTMAfEHzgcpyneKyz2oYEBxNaxh4HfbH1WltC84b0QnkjeZtDSrezA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k40Xmgns; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F11E9C113D0;
-	Tue, 23 Dec 2025 17:44:19 +0000 (UTC)
+	 MIME-Version:Content-Type; b=o3YEoMiWagw2VNUi5kB2Q9+O5JUoU3vW+HcACvZGpkkrqDcWxkRIZZmtDbFBpXe/eJ7D3jeWQOMb3eMSXW7elQBZ/yWXDy7msJ3Louzf7WbCTKbpaRAFwmDnMH1wvSdW9pm7TgtO64Y6FM66b1yaV0x5mJYS/KAIc1g73zZSU8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvspivJs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD6C6C116B1;
+	Tue, 23 Dec 2025 17:44:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766511863;
-	bh=9WXabfp5pMYZMhxZhMEvt3+Q8tDLq01QxcspbG8gunQ=;
+	s=k20201202; t=1766511867;
+	bh=P32gz1U3xDoCzfl2+VR66RJPFywlOedw+TA59vavrqM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=k40XmgnsVaWCxing7hg9ejSS2FEsM28q//aDws3hh2YeFidSOmP513N8Dp7amknPb
-	 hGIjaPJDFmj9lG0/Ow7zq2wxnocmMf74aM6qsN3lu5yjiaia8f9rKAif7fnyxR96CX
-	 NX0SV1qTGqUN0Tpo7b5kM8xICkHl7UYEu9nJ5Vxk5ACFUbr0mYEut6hqobj4aj66fz
-	 0ozqDWPRDGnyTs+qmob0qw4n5CSwZciehe4+HnpCPG2z5WGlmKug2Yu1gtyoGBw23p
-	 PeS+SAdgWT83v0X6O/Vszs6hE1yRvp03iGI87z9dHsSMoXBCe7cYYFbKdnmj8zVWPp
-	 P2pdyY/mNFi5w==
+	b=XvspivJsIRocXPqGb1tBZQufWCeg6pDpMF8CV8Upoh0wFHwreL0GYwKxtIlAFtmbc
+	 H68tM3n/PhozmfzM9EVbc0fAvtoxhb1+lngM7cxARGvGLsjaZf6mEUAfByr5/KN/ZK
+	 awW3U3HrKocXqszeJbLyzExTQSZLDLz2pTvBzgQpYriAo5vfUFTA/rVvHi7HLY4ciX
+	 vA+JM158xeAsFc1f9olYKEnxkKrNrj5NQFv3oq/Z3rHoQ72JRRCgB8Y8NqxWfgUNBN
+	 P+KRByHoKFSah+mWKaXQtdUud/q2YTEgZWj3DnsXKe6enwpvZTExHZAPYK+Cp4qq9K
+	 8Z91sEgR+BoGw==
 From: Vinod Koul <vkoul@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Qiang Yu <qiang.yu@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+ Prabhakar <prabhakar.csengg@gmail.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
  Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20251103-kaanapali-pcie-phy-v3-0-18b0f27c7e96@oss.qualcomm.com>
-References: <20251103-kaanapali-pcie-phy-v3-0-18b0f27c7e96@oss.qualcomm.com>
-Subject: Re: [PATCH v3 0/5] Add PCIe support for Kaanapali
-Message-Id: <176651185961.759340.1420380637615043254.b4-ty@kernel.org>
-Date: Tue, 23 Dec 2025 23:14:19 +0530
+In-Reply-To: <20251222161846.152952-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20251222161846.152952-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2] dt-bindings: phy: renesas,rzg3e-usb3-phy: Add
+ RZ/V2H(P) and RZ/V2N support
+Message-Id: <176651186340.759340.4570439696222386912.b4-ty@kernel.org>
+Date: Tue, 23 Dec 2025 23:14:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,30 +68,17 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Mon, 03 Nov 2025 19:08:12 -0800, Qiang Yu wrote:
-> Describe PCIe PHY. Also add required system resources like
-> regulators, clocks, interrupts and registers configuration for PCIe.
+On Mon, 22 Dec 2025 16:18:46 +0000, Prabhakar wrote:
+> Add compatibles for the USB3.0 PHY used in the RZ/V2H(P) and RZ/V2N SoCs.
+> These SoCs integrate the same USB3 PHY IP block as the RZ/G3E, so the
+> RZ/G3E compatible is used as a fallback for both.
 > 
-> Changes in v3:
-> - Rebase on 20251017045919.34599-2-krzysztof.kozlowski@linaro.org
-> - Add reviewed-by tag
-> - Remove [PATCH v2 1/6] since it was applied
-> - Link to v2: https://lore.kernel.org/all/20251015-kaanapali-pcie-upstream-v2-0-84fa7ea638a1@oss.qualcomm.com/
 > 
-> [...]
 
 Applied, thanks!
 
-[1/5] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Add Kaanapali compatible
-      commit: 4968df19d5dcb22fa2b797b64eb3c2880a239e12
-[2/5] phy: qcom-qmp: qserdes-txrx: Add complete QMP PCIe PHY v8 register offsets
-      commit: 5359da47e066edb3fcd36c7349726913ee8628f2
-[3/5] phy: qcom-qmp: pcs-pcie: Add v8 register offsets
-      commit: ecc12453c8b1aabdedcd663b7e0587f372a2a90d
-[4/5] phy: qcom-qmp: qserdes-com: Add some more v8 register offsets
-      commit: ba13ff85d3cfb92bd0502a8f93366ddbb5d91105
-[5/5] phy: qcom: qmp-pcie: add QMP PCIe PHY tables for Kaanapali
-      commit: e5b4d5935f758c6d685c624343d7615d76bdc931
+[1/1] dt-bindings: phy: renesas,rzg3e-usb3-phy: Add RZ/V2H(P) and RZ/V2N support
+      commit: 8a203b0571d0a28e227dff7ab81e64cd7aa18e17
 
 Best regards,
 -- 
