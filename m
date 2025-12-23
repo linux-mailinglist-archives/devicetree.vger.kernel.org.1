@@ -1,166 +1,278 @@
-Return-Path: <devicetree+bounces-249171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6AAACD9A4C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:31:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ECFFCD9A91
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 15:32:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C02F730115C7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:30:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 157913032974
+	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 14:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDD7341653;
-	Tue, 23 Dec 2025 14:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B63A341ADD;
+	Tue, 23 Dec 2025 14:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PgFtEb4P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB28734104E
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 14:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E47C53314CB;
+	Tue, 23 Dec 2025 14:32:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766500239; cv=none; b=mBwWQD410TwRnbhlxA1HRw52brU9cEAW4Xb0y+J4PPj5Q6hkfprNT2gnJfESHP4uXgi+uf9I+oaDH6fxqoW06eN+/Ze1GAGtvl6NQQW1o6vL32Ir5DGgwrUyjLD2hUTAEu1T6r7qr78i2vO28shXp5bwwe1MLKJXvtcDjbRhOuY=
+	t=1766500330; cv=none; b=XxsCGRMVDe4rjf0HGvY50twnKWazOIJeS1ScpSukcV51IfxcsM6SYe27+bvtAbabRsFLi9dULfBRGC43cP1Gi1UIDlIv0Cek7oHdb74OknSuWCbFhdE2IwueTAs3xhJ6O8UknjRPt9TtJ8F025Ego9vsTQI/rR3kfq6ScUuJU40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766500239; c=relaxed/simple;
-	bh=xRHgi78/9TJa6RE/uf2fUH6wEG9F+YXSAx9KnXSZTx4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bmmdZmsQ4aBLvOL6qeqRAB6oLvqEiE6Agsup2VRF80mk3tuE4OhekB+j4fsz/cDb/Lm5+QwPE0RppZOrLC3/bmfu8mG5IMz2auBckylXH9dOWz0zQAeMcPs+j5w/WheZK82yv/eY+x+0IPd7pvWnFP5T7z6uFCwxSGnObtMAu6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-94120e0acbeso2703525241.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 06:30:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766500237; x=1767105037;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V9KRWI7ek4fDakJL55ErZIsshqTMY6fNujiPa5ZpWhI=;
-        b=Pbbh1KuNr5/bFlFpaCYHr62dOalyMm+h1WHnoxXLoETJKT+mlFxMyVp6OBts1uIToI
-         MPFdCaUBHkDGPzlbyW5lyucQasWZLrU2xVRae2geoOa/vpCweZuQe36IhLF8v86FjPXn
-         IJMFoOvZvUUm7UpLBcYyn4ymbAdkXxwkZIicVb/aVonGfWBdhBuGsb4i3R1lUGxhYAmh
-         pJmbmRKK1fK1skTzdwyWl00IJXWSId21a5PUwY/u6i+ZGmcI5MIcSX1+vY5wxMJRinyS
-         f9YVCWE6aTBL3gtK9xRxi072ZKgE/yqMfgCWUUHfwvBhSUvjOo7ek4+uefQbFUr8Q9xL
-         RHxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrWV4ZGEVFK5ZJxVsqxhXqjXfznqj5E8kXoQjvKWV11RFZJSbPXAwIxh2W32JlvoUX8LhQI2o0LviD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaBd57eixlvjLMIVvtHSqo/pWwpH9FQaR1ZNoLuvXNkaOoM/Oh
-	1LCFclHmuSVAiiGScFyhdYjDsBQ3jzQxM4mhMeoTxC7XY9Pw3//aCyGvR5Yr/wUwx1s=
-X-Gm-Gg: AY/fxX68ug5LBFVynyp+SeRIjiaygan9UbyBPNV2Akwo7phX1idl9ne8EdFj8RGhpkg
-	UteLmUcdpQL33WAmU6JWCuIPil//ZP7OILFL/+WScPhVnSEOtjl7m6AM86GcKDO2YDhC3jk+kGD
-	pJrnexsX5dQsJJHx4f4dylSdr8AZJpOGzU4F5B1saSA3ORVJ8BzvDQ5vnNTWf+O23U6o0yec+Pe
-	dVgQa4MqZLs/mynjvUAxB8/dewNQfsttzv9oZHJb/WrTfyJHEBrW5tBJFXtAzbH6fm9/3R9vaZS
-	VK5XSCBJIckdYBF//3rZEflJ+iy4Tjt6XPJoOhqhzO0BIXSY4j5UTb6DDQqehNDgUFzZS7sUFwE
-	nGQavKw6xGdA/1UBTmV8HJY3fXiFmxfYqxHsStopeUlHcC45gD4RRzPdj89YUYJR1E10HPfJgTc
-	PI4uJROELRArhmKY+IW2F5NiDqN0FwtxVbkOQbZoVgEkUC74Ctxu/X
-X-Google-Smtp-Source: AGHT+IEB+bj+tr1qJ10I+LLBTbzVGgxtTCSUZqkUPTUGpBIVkigTrlDjIG/B4FmbhvTKOZ06FN8qsA==
-X-Received: by 2002:a05:6102:d87:b0:5b2:d28a:8937 with SMTP id ada2fe7eead31-5eb1a663bb5mr4799322137.12.1766500236607;
-        Tue, 23 Dec 2025 06:30:36 -0800 (PST)
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9434176bf72sm3961724241.10.2025.12.23.06.30.35
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Dec 2025 06:30:35 -0800 (PST)
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-55b24eedd37so3509606e0c.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 06:30:35 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWJhSYwU6+y6B6zWmL9iFcxXA7DYPBOjlY7v4Yw18rBWHLhnICZvYrsNXeb4fnHb+X1ZpCWbZV7E4XM@vger.kernel.org
-X-Received: by 2002:a05:6122:4f97:b0:557:c697:a30c with SMTP id
- 71dfb90a1353d-5615be24746mr4492855e0c.15.1766500234851; Tue, 23 Dec 2025
- 06:30:34 -0800 (PST)
+	s=arc-20240116; t=1766500330; c=relaxed/simple;
+	bh=7StZ2MsJgp6eerhY0+TgSoLxxhzbXurWyNMGpuZCvos=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kEy2Jh0ts8mqNVyR0tRE0ftpQsRaXL2fDyjNkIw1PcWMDUjBCAqfJSApIs1r0AFkkRMpu5KzGHtOBBKnUREXXT+cXjJuszbG9kywBLuCl4g83P/vLBVsSPVMViBtZ1kjYkMXPVzLEdP3OEhfShEBswZLxN7TvPZYVvooqm9ryJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PgFtEb4P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA3FBC113D0;
+	Tue, 23 Dec 2025 14:32:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766500329;
+	bh=7StZ2MsJgp6eerhY0+TgSoLxxhzbXurWyNMGpuZCvos=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PgFtEb4Pc/pLYa36reynve3IHGYEqF5RCn2tbRSi9LzdqZc7BIuL5eECEoS+PROe0
+	 8m0lX5W7YTLDd80neJaRDrlbfHiV1xjC8v79FjHykawNnu8Fn1ssKnt3K4ugV4MCH3
+	 lenlFwC2p+NbjYEs0/2fAUs8BC+hRO0S+/U+YsDfRmkfKq0uAfzUeb4NJ5NHzOwYYX
+	 /Hxlahm7nCIW/Xn+P7QuxGHSpYeZGf8Or16GJVxCzn78CbPXmoaTMO2wFPMx1R3o8k
+	 NJ/aCawVEYoKTtWd+lPOqZZPwTBMu4zYIQhBRQjwB5GZUN2Xt16od+UrlLf6IA3W6V
+	 plgTw3YIkMT5A==
+Date: Tue, 23 Dec 2025 15:32:06 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Tzu-Hao Wei <twei@axiado.com>
+Cc: SriNavmani A <srinavmani@axiado.com>, 
+	Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Harshit Shah <hshah@axiado.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Michal Simek <michal.simek@amd.com>, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Subject: Re: [PATCH 2/8] phy: axiado: add Arasan eMMC-PHY for Axiado
+Message-ID: <20251223-grumpy-daft-loon-6a6186@quoll>
+References: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-0-5457d0ebcdb4@axiado.com>
+ <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-2-5457d0ebcdb4@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251201124911.572395-1-cosmin-gabriel.tanislav.xa@renesas.com>
- <20251201124911.572395-3-cosmin-gabriel.tanislav.xa@renesas.com>
- <CAMuHMdV=EW4YbEBiXH2p0SeC5Kw-YmYWuQwsudpGgM63pgqcfw@mail.gmail.com> <TYYPR01MB1395515AF65F8522AED6B591885B5A@TYYPR01MB13955.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYYPR01MB1395515AF65F8522AED6B591885B5A@TYYPR01MB13955.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 23 Dec 2025 15:30:23 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU1+-o7AOjdJe7yCgU+4x3Kn6d8B5P-EWk6P5_qXsCOZg@mail.gmail.com>
-X-Gm-Features: AQt7F2qE2AtxEG2BOxgdP_v34Yp6lChJ9ZLcTByA9b4yF0Q7ASGmqWvId4Nax_Q
-Message-ID: <CAMuHMdU1+-o7AOjdJe7yCgU+4x3Kn6d8B5P-EWk6P5_qXsCOZg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] dmaengine: sh: rz_dmac: make register_dma_req() chip-specific
-To: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"magnus.damm" <magnus.damm@gmail.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Johan Hovold <johan@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	"dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-2-5457d0ebcdb4@axiado.com>
 
-Hi Cosmin,
+On Mon, Dec 22, 2025 at 04:45:01PM +0800, Tzu-Hao Wei wrote:
+> @@ -15,6 +15,7 @@ obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
+>  obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
 
-On Tue, 23 Dec 2025 at 15:08, Cosmin-Gabriel Tanislav
-<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
-> > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > On Mon, 1 Dec 2025 at 13:52, Cosmin Tanislav
-> > <cosmin-gabriel.tanislav.xa@renesas.com> wrote:
-> > > The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs use a
-> > > completely different ICU unit compared to RZ/V2H, which requires a
-> > > separate implementation.
-> > >
-> > > To prepare for adding support for these SoCs, add a chip-specific
-> > > structure and put a pointer to the rzv2h_icu_register_dma_req() function
-> > > in the .register_dma_req field of the chip-specific structure to allow
-> > > for other implementations. Do the same for the default request value,
-> > > RZV2H_ICU_DMAC_REQ_NO_DEFAULT.
-> > >
-> > > While at it, factor out the logic that calls .register_dma_req() or
-> > > rz_dmac_set_dmars_register() into a separate function to remove some
-> > > code duplication. Since the default values are different between the
-> > > two, use -1 for designating that the default value should be used.
-> > >
-> > > Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 
-> > > @@ -1067,9 +1068,18 @@ static void rz_dmac_remove(struct platform_device *pdev)
-> > >         pm_runtime_disable(&pdev->dev);
-> > >  }
-> > >
-> > > +static const struct rz_dmac_info rz_dmac_v2h_info = {
-> > > +       .register_dma_req = rzv2h_icu_register_dma_req,
-> > > +       .dma_req_no_default = RZV2H_ICU_DMAC_REQ_NO_DEFAULT,
-> >
-> > Since this is the only remaining user of RZV2H_ICU_DMAC_REQ_NO_DEFAULT,
-> > and this structure does specify hardware, perhaps just hardcode 0x3ff?
->
-> In my opinion we should let the macro live in the ICU header as the
-> value is more tied to the ICU block than to the DMAC block, even if
-> the DMAC driver is the only actual user. But if you think this is
-> worth changing, I will change it.
+Where is maintainers file update in this patch? Why shall we take
+unmaintained code?
 
-I have no strong feelings about this.
+>  obj-y					+= allwinner/	\
+>  					   amlogic/	\
+> +					   axiado/	\
+>  					   broadcom/	\
+>  					   cadence/	\
+>  					   freescale/	\
+> diff --git a/drivers/phy/axiado/Kconfig b/drivers/phy/axiado/Kconfig
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..824114e6068da327308321b9884552ad33db9efc
+> --- /dev/null
+> +++ b/drivers/phy/axiado/Kconfig
+> @@ -0,0 +1,15 @@
+> +#
+> +# PHY drivers for Axiado platforms
+> +#
+> +
 
-If it is really more of an internal ICU thingy, an alternative would
-be to remove all public *_ICU_DMAC_REQ_NO_DEFAULT definitions, and
-just pass -1.  Then the ICU drivers become responsible for filling in
-the appropriate default value.
+Missing menuconfig or other if-block for groupping this with your ARCH
+and COMPILE_TEST dependency.
 
-> > > +};
-> > > +
-> > > +static const struct rz_dmac_info rz_dmac_common_info = {
-> >
-> > rz_dmac_classic_info, as this is not really common to all variants?
-> > I am open for a different name ;-)
->
-> rz_dmac_generic_info? I don't have a strong opinion, but I agree that
-> common denotes that it would be shared across all variants, which is
-> not the case.
+Look how other NEW and MAINTAINED platforms did it.
 
-Fine for me, too.
+> +config PHY_AX3000_EMMC
+> +	tristate "Axiado eMMC PHY driver"
+> +	select GENERIC_PHY
+> +	help
+> +	  This enables support for the eMMC PHY block found on the
+> +	  Axiado AX3000 SoCs. The PHY provides the physical layer
+> +	  interface used by the Arasan SDHCI host controller for emmc
+> +	  signaling and timing adjustment.
+> +
+> +	  If you are building a kernel for AX3000 platform with
+> +	  eMMC storage, say Y or N.
 
-Gr{oetje,eeting}s,
+...
 
-                        Geert
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +static void arasan_emmc_phy_write(struct axiado_emmc_phy *ax_phy, u32 offset, u32 data)
+> +{
+> +	writel(data, ax_phy->reg_base + offset);
+> +}
+> +
+> +static int arasan_emmc_phy_read(struct axiado_emmc_phy *ax_phy, u32 offset)
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Useless wrappers. Just use readl/writel directly. You are not making
+code more readable.
+
+> +{
+> +	u32 val = readl(ax_phy->reg_base + offset);
+> +
+> +	return val;
+> +}
+> +
+> +static int axiado_emmc_phy_init(struct phy *phy)
+> +{
+> +	u32 val;
+> +	ktime_t timeout;
+> +
+> +	struct axiado_emmc_phy *ax_phy = phy_get_drvdata(phy);
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_1);
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_1, val | RETB_ENBL | RTRIM_EN);
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_3);
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_3, val | PDB_ENBL);
+> +
+> +	/* Wait max 3000 ms */
+> +	timeout = ktime_add_ms(ktime_get(), LOOP_TIMEOUT);
+> +
+> +	while (1) {
+> +		bool timedout = ktime_after(ktime_get(), timeout);
+> +
+> +		if (arasan_emmc_phy_read(ax_phy, STATUS) & CALDONE_MASK)
+> +			break;
+> +
+> +		if (timedout) {
+> +			dev_err(&phy->dev, "CALDONE_MASK bit is not cleared.");
+> +			return -ETIMEDOUT;
+> +		}
+> +		udelay(TIMEOUT_DELAY);
+> +	}
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_1);
+> +
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_1, val | REN_CMD_EN | PU_CMD_EN);
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_2);
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_2, val | REN_STRB);
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_3);
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_3, val | MAX_CLK_BUF0 |
+> +			MAX_CLK_BUF1 | MAX_CLK_BUF2);
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, CAP_REG_IN_S1_MSB);
+> +	arasan_emmc_phy_write(ax_phy, CAP_REG_IN_S1_MSB, CLK_MULTIPLIER);
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_3);
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_3, val | SEL_DLY_RXCLK |
+> +			SEL_DLY_TXCLK);
+> +
+> +	return 0;
+> +}
+> +
+> +static int axiado_emmc_phy_power_on(struct phy *phy)
+> +{
+> +	struct axiado_emmc_phy *ax_phy = phy_get_drvdata(phy);
+> +
+> +	u32 val;
+> +	ktime_t timeout;
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_1);
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_1, val | RETB_ENBL);
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_3);
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_3, val | PDB_ENBL);
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_2);
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_2, val | OTAP_SEL(OTAP_DLY));
+> +
+> +	arasan_emmc_phy_read(ax_phy, PHY_CTRL_2);
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_1);
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_1, val | DLL_TRM(DLL_TRM_ICP));
+> +
+> +	arasan_emmc_phy_write(ax_phy, STATUS, 0x00);
+> +
+> +	val = arasan_emmc_phy_read(ax_phy, PHY_CTRL_3);
+> +	arasan_emmc_phy_write(ax_phy, PHY_CTRL_3, val | DLL_FRQSEL(FRQ_SEL));
+> +
+> +	/* Wait max 3000 ms */
+> +	timeout = ktime_add_ms(ktime_get(), LOOP_TIMEOUT);
+> +
+> +	while (1) {
+
+You proper read_poll loop.
+
+> +		bool timedout = ktime_after(ktime_get(), timeout);
+> +
+> +		if (arasan_emmc_phy_read(ax_phy, STATUS) & DLL_RDY_MASK)
+> +			break;
+> +
+> +		if (timedout) {
+> +			dev_err(&phy->dev, "DLL_RDY_MASK bit is not cleared.");
+> +			return -ETIMEDOUT;
+> +		}
+> +		udelay(TIMEOUT_DELAY);
+
+...
+
+> +static int axiado_emmc_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct axiado_emmc_phy *ax_phy;
+> +	struct phy_provider *phy_provider;
+> +	struct device *dev = &pdev->dev;
+> +	const struct of_device_id *id;
+> +	struct phy *generic_phy;
+> +	struct resource *res;
+> +
+> +	if (!dev->of_node)
+> +		return -ENODEV;
+> +
+> +	ax_phy = devm_kzalloc(dev, sizeof(*ax_phy), GFP_KERNEL);
+> +	if (!ax_phy)
+> +		return -ENOMEM;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +
+
+Use proper wrapper to combine get resource and ioremap.
+
+> +	ax_phy->reg_base = devm_ioremap_resource(&pdev->dev, res);
+> +
+
+Drop blank line, there's never such.
+
+> +	if (IS_ERR(ax_phy->reg_base))
+> +		return PTR_ERR(ax_phy->reg_base);
+> +
+> +	id = of_match_node(axiado_emmc_phy_of_match, pdev->dev.of_node);
+> +	if (!id) {
+> +		dev_err(dev, "failed to get match_node\n");
+
+What is the point of this? You do not use this match at all, no other
+devices. How can your device bind and still fail the match?
+
+Drop
+
+> +		return -EINVAL;
+> +	}
+> +
+> +	generic_phy = devm_phy_create(dev, dev->of_node, &axiado_emmc_phy_ops);
+> +	if (IS_ERR(generic_phy)) {
+> +		dev_err(dev, "failed to create PHY\n");
+> +		return PTR_ERR(generic_phy);
+
+Syntax is - return dev_err_probe.
+
+Didn't Axiado receive this feedback before? Are you sure that you have
+procedures set inside to avoid repeating same mistakes?
+
+Best regards,
+Krzysztof
+
 
