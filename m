@@ -1,308 +1,155 @@
-Return-Path: <devicetree+bounces-249583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1868CDD05E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 20:10:52 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1281CCDD06D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 20:11:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CCE673009820
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 19:10:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 790FF301C3C2
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 19:11:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE9731B81D;
-	Wed, 24 Dec 2025 19:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817B233E363;
+	Wed, 24 Dec 2025 19:11:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="WmKkZH+i"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="GzfI67hK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f67.google.com (mail-qv1-f67.google.com [209.85.219.67])
+Received: from mail-yx1-f46.google.com (mail-yx1-f46.google.com [74.125.224.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0976313268
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 19:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E5E2C030E
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 19:11:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766603435; cv=none; b=kKAhjq8/Xsk+y3UrnltXZbMLqOW861zndXnqK9iyAePwYrWpuPVMSjJtaJQDfxEDDUyd6Z4vyJjrmtCC01vgPTvsrPU3Dmuk1g8xaVeOIWikWtyDdTQuGoZSpQqdAmlm3IFtB2PexwLawsNftIoraHG04ZAOx4Yt3YhjyMGjp0M=
+	t=1766603509; cv=none; b=qa0X27zcipS+XRUFUK8PAK9kK22bqfTN+rwfjVYJdurZ5YSX8E75lO88e1Y5j6jiGiTOgeTQl0tKRQ6JeNhScBLdkkpuagGxj3YuEKCRmFepxwXF+DVOIRTTjd3zD3NwCbLkRcXjf66YSy0vEuecqCncOzKM0Z3sGwENJhVRVj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766603435; c=relaxed/simple;
-	bh=dAN0G1jjsYS7iXYecflX2BXbHj9pHSN+JkwV709cqgg=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rEmkxniPir+zmhdwM3wFeBmUcZ4WPuK4/NFv5myi5b9A/C3Y2XqK4uy9igNUIkwUKUq0WTbWdk/Ng9r+7ppnCSKCKo79UVYIGoIKr9g/fCnFiypIuKKEAfrOgz9yKHxaVF4/I0BjWHmYcs0b8SbXhv5mKa77sM0MGuvjuKBpGx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=WmKkZH+i; arc=none smtp.client-ip=209.85.219.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qv1-f67.google.com with SMTP id 6a1803df08f44-8887f43b224so88225456d6.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 11:10:33 -0800 (PST)
+	s=arc-20240116; t=1766603509; c=relaxed/simple;
+	bh=k8Byl028CgHsF3DBvdHOc7E8XGBxj49LJk7WEGiE6aI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LK8hUnebswyefLf331hr3xk4b7x7M9QMgCq01jTnax8z+187W0PSnP4FpZLIqBUHqBMd3JEVJ2uE1I39iPLgimOaIMeW/UQ+1lZg7dvrZyjbwcI8BiicSN1zuA/fWA2AsAEUXIA9uWlqEuDfqDknTpT+SRx55yQCeqh3V9SbB6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=GzfI67hK; arc=none smtp.client-ip=74.125.224.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-yx1-f46.google.com with SMTP id 956f58d0204a3-6446c924f9eso5642444d50.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 11:11:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1766603433; x=1767208233; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=WdkhkRib8m1PnipWAZ9dgFe926aVbUVCPdJkvFIgPao=;
-        b=WmKkZH+iMfmAGs0nS6bIFLbl832MQwkpr9Bfdmb8LmRj6hbwuo5Zf0HW5nJIkOTBGs
-         HHNjtLd+hYF0MwZtPD86BBQQ3Ii45n1C3yvfBSCm7dlNQsA1IOfV6mr02FePMajU2fyF
-         4nHITANGMZFFye1B+2vAk6N1BwUukeCIEBA/uWauqg6MvRJ7K7h0viiKRFs2MqpE1XUb
-         /WFAQ/lClBrot7Z6I3ah0mzwfVvxwwyPpZcTHEGVA+K2qTMJxhmUVvVYhXJ84i9dtcrt
-         MU+nd7MRH4uMgCxotxhetowa6hQ66gAJzyQ5NQtn8omN96ywyt3PL70d7GDWt+9n+11r
-         YF0A==
+        d=google.com; s=20230601; t=1766603505; x=1767208305; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oXhnYTRKWSBrdTvGbB7qy2q3xu05EvIJIuYEgLdKQ5w=;
+        b=GzfI67hKYeYlQLM5vk0CbRE07x/BJr8BLGWiDztt24R5JmN8Sy8ahJ2Fsmp0oS3QvX
+         bTvvmZtvmquMg7J9GH1SsZoI9gaff2UIWohHpfzfnTcBCXlRQL3A/eOLV3UZDY5ciGCo
+         I5KMc0ZuR9/W13MeLwgCYErKb95DsS/IMCG7fCHyTXfLyIJ5/1MhkaYB6Pb1vJBh2PIK
+         1fQHKGquv6CVuE0tzGYn7nXdGzECGonkbuc9Rsy/9epAgCtswCfD1CprXbGMWRCzKVpy
+         xm+22BTH3PFgF70Sgwaf78lpb83svr/AJpMWtytRcBWNoSmxwSnc4mL2Be0Hn9Ou6stF
+         AZtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766603433; x=1767208233;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WdkhkRib8m1PnipWAZ9dgFe926aVbUVCPdJkvFIgPao=;
-        b=HgqHjWjftAp8PDJEqPCady1fXHhH3bJR+3Ctw+2WOjSyzZU1Ly37nDuYWdG5TFhuRr
-         Qpuk74py+ytSojeIwrNFpTpsDPu2fUppYXkO2QzyDpkjy45ABei1Yx+7kZilEfiDh5YO
-         rA/SFzv9ovTtyJyACPcKWMO1RYY1Ben0nYljW7hCulQqMIqQHjj3mobvT6+2ggP+eMYD
-         GPujly7HOXRqpCpOy64U4eWzzyc++8tP610S9u+1rqu8/Me3ryNGxpywFz9lPs/wc1iM
-         me+XfmuAOdLYQnwJkHSgSPa07e+FZGTdrAK4aQ4eZmxt3eqpq6cwwhLML4AVJdQkaR1S
-         1ptw==
-X-Forwarded-Encrypted: i=1; AJvYcCWz/4NWuQ9y8h4f4bcOuJlFwYhHvdEc9ywdfroY/C6nOV4AF8mHFr8p0VF5BX0tynRM61XdgU7SB8RT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqbABJuofNP9kQm7PWRHTmkGkeMVziyb8naQUKBZvDJgFDR52d
-	KsQ1Ugd6SeKV68bCFTYHjc4Vx4P6zRXpLWdQqv2rd2CGmkHI8XMfx3yjhHlTgfAMvFs=
-X-Gm-Gg: AY/fxX481GVclMbVfZTL7SdAI4b77ghafEVRwc8iLzK1glkyRXTYvWfhEfzA+Q2DdYO
-	pjGTfMRArw0eUJ5nJsRdGVyNszsszvuFWCbiONyLHxp9jbQAwJcASHhDP8eWNcGPmOhWYyYibvI
-	CBIxVKPNN5870oCtA0urBJ5LIUKJ5tnp0hx+eAzXyroV15awF/wEysfNf93Mi3yMe6wl3c16ysf
-	UHM+Yg2GtnjpYLGubfHXwuIPXAowBQaew5MfL/X27R4nCZUhFrLOhlj2sOxEBVg/9TUANEuTsD1
-	M/lipJQ5ZTspbHjeQi7lF0FJWhYDUc7EcKWrCrPZeb/tRy5yKvghL8vAD8LxpNhy8Rjexg+h5lE
-	KcAeUsh2muPSdJMyQpeLw8WClRWHAFQ1hOFXGZhd1E0X8LJfuU5I2Y5wevBWvPOlVMZSCJK0CAn
-	FwAQfrENJ+MtMHkNSQ
-X-Google-Smtp-Source: AGHT+IEQUsqZXLqkkPxa2+KYv+fyXfZuaLetYcgC91biDM0aZwokVZC4OyDueQEybb9eanIS8m171g==
-X-Received: by 2002:a05:6214:470b:b0:7f1:c596:e1cc with SMTP id 6a1803df08f44-88d820420fdmr269109756d6.19.1766603432784;
-        Wed, 24 Dec 2025 11:10:32 -0800 (PST)
-Received: from ?IPv6:2606:6d00:17:7b4b::c41? ([2606:6d00:17:7b4b::c41])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88d997addd5sm136299236d6.33.2025.12.24.11.10.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Dec 2025 11:10:32 -0800 (PST)
-Message-ID: <92defeb3fdc1f1dac636671f44155e5b73246e79.camel@ndufresne.ca>
-Subject: Re: [PATCH 3/4] media: rkvdec: Add support for the VDPU346 variant
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Christian Hewitt <christianshewitt@gmail.com>, Detlev Casanova	
- <detlev.casanova@collabora.com>, Olivier =?ISO-8859-1?Q?Cr=EAte?=	
- <olivier.crete@collabora.com>, Ezequiel Garcia
- <ezequiel@vanguardiasur.com.ar>,  Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner	
- <heiko@sntech.de>, Diederik de Haas <diederik@cknow-tech.com>, Dmitry
- Osipenko	 <dmitry.osipenko@collabora.com>, Thomas Gleixner
- <tglx@linutronix.de>,  Dragan Simic <dsimic@manjaro.org>, Chukun Pan
- <amadeus@jmu.edu.cn>, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Wed, 24 Dec 2025 14:10:30 -0500
-In-Reply-To: <20251206082809.2040679-4-christianshewitt@gmail.com>
-References: <20251206082809.2040679-1-christianshewitt@gmail.com>
-	 <20251206082809.2040679-4-christianshewitt@gmail.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-yuB6wf+lr8PoWSyb/nWH"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+        d=1e100.net; s=20230601; t=1766603505; x=1767208305;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oXhnYTRKWSBrdTvGbB7qy2q3xu05EvIJIuYEgLdKQ5w=;
+        b=tx8b4963VzcYAZ3vtNrC2q9lf4crWLYu6Q4zGsXmt7dHb8EcbToJPzt9uH254nKYU+
+         sXJMSqMea14p+uJUE8PegdvkPe3iRPKhK5GS6D7elt32K36Ffu5rnVmoP4NM4pdiZA3O
+         o4iXPKlIsH4B6GYHe8HZdxckPrboZdI83Vvu9SBbe/Ecdd9cTKfqYC6Zhbj0mYGHdE/P
+         w3jwM2SAIwehFDl4fPy1nGRAztegIU/tvOmBBHJ1MsmLG/Bvq4B01UcbZ0CCz0zTdhFZ
+         ztCGxXc1ZC2/rddWfaEg19SiB3bpfH8hiUFPKlPOr4YsNGlLrdoMRJNRiCO7aou5U9H5
+         IBzg==
+X-Forwarded-Encrypted: i=1; AJvYcCV0sZR4qHwzwFJW3leunyKxZmrkfSD15EBFGxLQxo8qJux2ouKna3tj5UP0nfwrOkXPu3hTHPlk5kF+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5qvM6J6vQztd7t/uyVqntFT5udVvxXOVNBVBSwijuK0JMNMVQ
+	AkBJ9kHpVilslPMPVp4WGzSN89ZbWUTOtuXjFjqEl99S1WrtybqTO76AKujL1JpOZg==
+X-Gm-Gg: AY/fxX6cC5jkqxEZcoe28wprgxl3gbv8LTJYPyJroyGbtuBlvC14AfhvQ6A2gLIDkya
+	bUDhcKCCo3Hnwc12iPV1NjMIqMFFlZEBO/vinqiGU4tN/TOEhcXL7tFLRhVuB112R/tecYnAyTD
+	Yq+GUCFJQI+7LUkpXScdXHATa44AYkUc9j53Amyjmu+mX8FOfWoS7vFcKA0DpkcvoufLDEsfbjn
+	yecwyCc0apqkLYe/nCc85Or6colaHQi97Ud7MGbzod5d2JaswuREjoL5Yu+A5xI5/cDjAKm63n0
+	WVdsYelUwZobKDJk1MEpXCEGi5tQTFi6Mf5Qs4CRQi5rvG9eG1poe74Li8nU/mDQ0jrAC3/hJB+
+	dlvhlWtNCqRUPzDbmL7jrL1xbxFYYYf540RBcWVpIIE1LDPU2sE5SWQ7+PUJ3dIArS7YqjP71ub
+	DzA09Pd3A4rybaX4/mpGuDVKXrJznqx8bn3IXk96j1aoVp7h7kBhA1R3ExvWU=
+X-Google-Smtp-Source: AGHT+IF4+78/ybW8h2aFs9XZbSKza4sj6Czw5R4tW02KVHwiK1CyevWiPabB7l4R0Pz1pzDMvfJfng==
+X-Received: by 2002:a05:690e:1486:b0:63f:31f7:b956 with SMTP id 956f58d0204a3-6466a898fbbmr15286144d50.27.1766603505319;
+        Wed, 24 Dec 2025 11:11:45 -0800 (PST)
+Received: from ?IPV6:2600:1700:4570:89a0:6872:f79a:c2ff:4f4f? ([2600:1700:4570:89a0:6872:f79a:c2ff:4f4f])
+        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-6466a81d4e4sm8640178d50.0.2025.12.24.11.11.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Dec 2025 11:11:44 -0800 (PST)
+Message-ID: <27d2a9de-487a-409b-8807-d1d3bf9e8ee7@google.com>
+Date: Wed, 24 Dec 2025 11:11:42 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: mfd: maxim,max77759: add charger
+ child node
+To: Krzysztof Kozlowski <krzk@kernel.org>, Sebastian Reichel
+ <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+References: <20251218-max77759-charger-v2-0-2b259980a686@google.com>
+ <20251218-max77759-charger-v2-1-2b259980a686@google.com>
+ <411802b6-517d-497e-bf7b-183e6e6d7a64@kernel.org>
+ <3d156c45-b55d-4ca4-95d6-0d06e067bbdb@kernel.org>
+From: Amit Sunil Dhamne <amitsd@google.com>
+Content-Language: en-US
+In-Reply-To: <3d156c45-b55d-4ca4-95d6-0d06e067bbdb@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
---=-yuB6wf+lr8PoWSyb/nWH
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 12/23/25 5:32 AM, Krzysztof Kozlowski wrote:
+> On 19/12/2025 09:17, Krzysztof Kozlowski wrote:
+>> On 18/12/2025 23:49, Amit Sunil Dhamne via B4 Relay wrote:
+>>> From: Amit Sunil Dhamne <amitsd@google.com>
+>>>
+>>> The Maxim MAX77759 MFD includes a charger function. Extend the max77759
+>>> binding to include the charger. Also, update the example to include
+>>> charger.
+>>>
+>>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>>> ---
+>>>  .../devicetree/bindings/mfd/maxim,max77759.yaml    | 33 ++++++++++++++++++++++
+>>>  1 file changed, 33 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
+>>> index 525de9ab3c2b..1cffdf2e5776 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
+>>> @@ -37,6 +37,30 @@ properties:
+>>>    nvmem-0:
+>>>      $ref: /schemas/nvmem/maxim,max77759-nvmem.yaml
+>>>  
+>>> +  charger:
+>>> +    type: object
+>>> +    description: This is a dual input switch mode battery charger for portable
+>>> +      applications. It supports wired and wireless charging and can operate in
+>>> +      buck and boost mode.
+>>> +
+>>
+>> I do not see any improvements, so same comment: this should be folded
+>> into the parent.
+>>
+>> Please read DTS 101 slides or writing bindings or any other talks...
+>>
+> No responses to my emails for a few days,so I assume discussion is done
+> and I mark it as changes requested in patchwork.
 
-Le samedi 06 d=C3=A9cembre 2025 =C3=A0 08:28 +0000, Christian Hewitt a =C3=
-=A9crit=C2=A0:
-> VDPU346 is derived from VDPU381 but with a single core and limited
-> to 4K60 media. It is also limited to H264 L5.1 and omits AV1 and
-> AVS2 capabilities. It is used with RK3566 and RK3568.
->=20
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Yes please. Sorry about the delay.
 
-Reviewed-by: Nicolas Dufresne <nicolas.collabora@collabora.com>
-
-Please resend whenever there is a dependency update, I believe some of the
-variant stuff is being modified. Another note, I tried bigger resolution, b=
-ut it
-only yielded green images, so the 65K max does not actually work and will n=
-eed
-investigation.
-
-Nicolas
-
-> ---
-> =C2=A0.../media/platform/rockchip/rkvdec/rkvdec.c=C2=A0=C2=A0 | 110 +++++=
-+++++++++++++
-> =C2=A01 file changed, 110 insertions(+)
->=20
-> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-> b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-> index a1c02ef3a97c..cf68454b2217 100644
-> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-> @@ -295,6 +295,62 @@ static const struct rkvdec_ctrls rkvdec_h264_ctrls =
-=3D {
-> =C2=A0	.num_ctrls =3D ARRAY_SIZE(rkvdec_h264_ctrl_descs),
-> =C2=A0};
-> =C2=A0
-> +static const struct rkvdec_ctrl_desc vdpu346_hevc_ctrl_descs[] =3D {
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_SPS,
-> +		.cfg.ops =3D &rkvdec_ctrl_ops,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_PPS,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_SCALING_MATRIX,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_MODE,
-> +		.cfg.min =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-> +		.cfg.max =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-> +		.cfg.def =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_START_CODE,
-> +		.cfg.min =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-> +		.cfg.def =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-> +		.cfg.max =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_PROFILE,
-> +		.cfg.min =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +		.cfg.max =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
-> +		.cfg.menu_skip_mask =3D
-> +			BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
-> +		.cfg.def =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_LEVEL,
-> +		.cfg.min =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
-> +		.cfg.max =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS,
-> +		.cfg.ops =3D &rkvdec_ctrl_ops,
-> +		.cfg.dims =3D { 65 },
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS,
-> +		.cfg.ops =3D &rkvdec_ctrl_ops,
-> +		.cfg.dims =3D { 65 },
-> +	},
-> +};
-> +
-> +static const struct rkvdec_ctrls vdpu346_hevc_ctrls =3D {
-> +	.ctrls =3D vdpu346_hevc_ctrl_descs,
-> +	.num_ctrls =3D ARRAY_SIZE(vdpu346_hevc_ctrl_descs),
-> +};
-> +
-> =C2=A0static const struct rkvdec_ctrl_desc vdpu38x_hevc_ctrl_descs[] =3D =
-{
-> =C2=A0	{
-> =C2=A0		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-> @@ -449,6 +505,43 @@ static const struct rkvdec_coded_fmt_desc
-> rkvdec_coded_fmts[] =3D {
-> =C2=A0	}
-> =C2=A0};
-> =C2=A0
-> +static const struct rkvdec_coded_fmt_desc vdpu346_coded_fmts[] =3D {
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_H264_SLICE,
-> +		.frmsize =3D {
-> +			.min_width =3D 64,
-> +			.max_width =3D=C2=A0 65520,
-> +			.step_width =3D 64,
-> +			.min_height =3D 64,
-> +			.max_height =3D=C2=A0 65520,
-> +			.step_height =3D 16,
-> +		},
-> +		.ctrls =3D &rkvdec_h264_ctrls,
-> +		.ops =3D &rkvdec_vdpu381_h264_fmt_ops,
-> +		.num_decoded_fmts =3D ARRAY_SIZE(rkvdec_h264_decoded_fmts),
-> +		.decoded_fmts =3D rkvdec_h264_decoded_fmts,
-> +		.subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-> +		.capability =3D RKVDEC_CAPABILITY_H264,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
-> +		.frmsize =3D {
-> +			.min_width =3D 64,
-> +			.max_width =3D 65472,
-> +			.step_width =3D 64,
-> +			.min_height =3D 64,
-> +			.max_height =3D 65472,
-> +			.step_height =3D 16,
-> +		},
-> +		.ctrls =3D &vdpu346_hevc_ctrls,
-> +		.ops =3D &rkvdec_vdpu381_hevc_fmt_ops,
-> +		.num_decoded_fmts =3D ARRAY_SIZE(rkvdec_hevc_decoded_fmts),
-> +		.decoded_fmts =3D rkvdec_hevc_decoded_fmts,
-> +		.subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-> +		.capability =3D RKVDEC_CAPABILITY_HEVC,
-> +	},
-> +};
-> +
-> =C2=A0static const struct rkvdec_coded_fmt_desc vdpu381_coded_fmts[] =3D =
-{
-> =C2=A0	{
-> =C2=A0		.fourcc =3D V4L2_PIX_FMT_H264_SLICE,
-> @@ -1654,6 +1747,19 @@ static const struct rkvdec_variant
-> rk3399_rkvdec_variant =3D {
-> =C2=A0			RKVDEC_CAPABILITY_VP9,
-> =C2=A0};
-> =C2=A0
-> +static const struct rkvdec_variant rk3568_vdpu346_variant =3D {
-> +	.coded_fmts =3D vdpu346_coded_fmts,
-> +	.num_coded_fmts =3D ARRAY_SIZE(vdpu346_coded_fmts),
-> +	.rcb_sizes =3D vdpu381_rcb_sizes,
-> +	.num_rcb_sizes =3D ARRAY_SIZE(vdpu381_rcb_sizes),
-> +	.irq_handler =3D vdpu381_irq_handler,
-> +	.colmv_size =3D rkvdec_colmv_size,
-> +	.flatten_matrices =3D transpose_and_flatten_matrices,
-> +	.named_regs =3D true,
-> +	.capabilities =3D RKVDEC_CAPABILITY_H264 |
-> +			RKVDEC_CAPABILITY_HEVC,
-> +};
-> +
-> =C2=A0static const struct rkvdec_variant rk3588_vdpu381_variant =3D {
-> =C2=A0	.coded_fmts =3D vdpu381_coded_fmts,
-> =C2=A0	.num_coded_fmts =3D ARRAY_SIZE(vdpu381_coded_fmts),
-> @@ -1693,6 +1799,10 @@ static const struct of_device_id of_rkvdec_match[]=
- =3D {
-> =C2=A0		.compatible =3D "rockchip,rk3399-vdec",
-> =C2=A0		.data =3D &rk3399_rkvdec_variant,
-> =C2=A0	},
-> +	{
-> +		.compatible =3D "rockchip,rk3568-vdec",
-> +		.data =3D &rk3568_vdpu346_variant,
-> +	},
-> =C2=A0	{
-> =C2=A0		.compatible =3D "rockchip,rk3588-vdec",
-> =C2=A0		.data =3D &rk3588_vdpu381_variant,
-
---=-yuB6wf+lr8PoWSyb/nWH
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUw6pgAKCRDZQZRRKWBy
-9D6EAP9ZsxXS8naP+lmNLuk413EqEubATIC4HWdxSsUsDyvFnwEAmvgTIoFdMMY9
-p9YBQjcz5+pkXo+Btf5Dn1WHEJi/+w4=
-=g1yd
------END PGP SIGNATURE-----
-
---=-yuB6wf+lr8PoWSyb/nWH--
+>
+> Best regards,
+> Krzysztof
 
