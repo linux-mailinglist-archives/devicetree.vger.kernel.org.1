@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-249453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F67CCDBE0A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 11:00:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 326FECDBE31
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 11:03:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 421B8300856C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 10:00:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C854F300A1F4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 10:03:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911ED3321DD;
-	Wed, 24 Dec 2025 10:00:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF923128B1;
+	Wed, 24 Dec 2025 10:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fd75of5M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uLn4NEcT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F0078F20;
-	Wed, 24 Dec 2025 10:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AEF21DED5C;
+	Wed, 24 Dec 2025 10:03:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766570406; cv=none; b=cAVnlg0Ukq2TpkbErSK2RrAVdWd0+0ieAIXEXS+yB/LJyJ/SNS0Yq7FKIoEEJMrLMtiVahekl2lxNmEWJgzIc/M7KGqnio5XFg76Xxl1I7N+GGY9g5xeP5uPA5vkrXkfnmaLGdwKMfLbwXpXODXLHsI2A8aWFH3nyLS7VADXa5Q=
+	t=1766570617; cv=none; b=h8YPO6cWf1O3BbT3utxkTrOWbTpxEKfw9pgPJw+yHV4QKSxzHSx7YCab7BfvKi3Nq6qGzQSf2AQzUXBWYLbm834wgtso0/AQ8m+xI7qhaTdySEXRiHvVrT1MRGKu1SS2N7c3RtoJLs21MTbfxK2SwIEYgTxJ579Y09vBAPAQ1Dc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766570406; c=relaxed/simple;
-	bh=vP1rKQGdVIEjrL9zlD+pqR2dLlLuEXixiE2jqPeLRsI=;
+	s=arc-20240116; t=1766570617; c=relaxed/simple;
+	bh=N3YTmAuaZf+KgOQOjNKuLPHx3jykifDN7Ee4LyNeh1o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lSqrDglSNcwop0zgt6tMoXc0yxPihl/zpgomNYQ7My3rvqNdmBB0dPrdcwcgZJsxezNbhgJtarNkXbGvdnz5cn7q/onbauTgIlUt9ZZk2ARDG1MDdj8RhXqpzwvzlKkqUNrUSNT82p8xuaFkisFF77Fo+psTU9NeKXbykK5nrJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fd75of5M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4511C4CEFB;
-	Wed, 24 Dec 2025 09:59:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=aAkm2m9LA86ogZwo+9QHk1N2m99ZE5baZiVay1UHmzK48/mRDsG8H4zgPV7RwmsvGsExkCayKuHDYmOHJqPzvfzYQ+iz14jb0RVbqIo7g+Vv0cpOxHlzJkM2irw1zIqKA6eU2qG2ew9dGHpXpezs6QasSYmdNx+bDZTRldqSX+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uLn4NEcT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13A8DC4CEFB;
+	Wed, 24 Dec 2025 10:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766570404;
-	bh=vP1rKQGdVIEjrL9zlD+pqR2dLlLuEXixiE2jqPeLRsI=;
+	s=k20201202; t=1766570616;
+	bh=N3YTmAuaZf+KgOQOjNKuLPHx3jykifDN7Ee4LyNeh1o=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fd75of5MKwTzEJJ3g2CRl2Q+sVob2jcsfOhbZVqvP4y8dIBLUodt/AnalRRCEjl10
-	 scYHqaWjilULpAWUdan6O6IG66J5pTs0WspVMv4GQsCxK2EFyxsFnClqCmXVhSuH5w
-	 4OFdTHfZFtbKkCL4MCsZ64IR7RqHIDBJHFCLH/Oy3fDAcShEUEfVGjOOLsYuDRLEuU
-	 wI7sKgvsHzOfCLRCsG5212qN0dJk86GzRxNCdk9hofYbtfoGFnwtsO3jHTFudmm73v
-	 eWF2BJ++IdoycDTOXNdfXccQNN5ifrEMXfSD1hxGYVV2mxKh1jlw7V52hD0zKI0Ude
-	 65uZxrQq0XdQg==
-Message-ID: <c61ea65b-d549-4395-8d33-419afbbcbf26@kernel.org>
-Date: Wed, 24 Dec 2025 10:59:53 +0100
+	b=uLn4NEcT+ZsjsS7E66Oo4Hlwe1OwtBGbJ6jGENPOycThBUY68sua4OFZrcuuhXj/R
+	 ykREksrMviIci68JomlVoM/9utrggx/pETj1DWE0QQj8TgukrdO3NFrgtFU5WpOIBI
+	 X4wLzYTEb2BJy7zrznNLNdgjGj7ZrIg1cMchbx1e8vfQvlvj6IA3sgaCxQ/KJylu3F
+	 U2sHTc1urvD9/StUNDu+dIIFlMU6h0dLWKA+oq9qrGkqN/JHaHrDZA+b5DaZW9KkBO
+	 gZJmZWHQDuphyLgJOJj9GwViI7Wz5TRgQcnZE4ZFaMvdrzqyU2GS4wRAq0maBUBfGG
+	 dztdOH5cMTPpQ==
+Message-ID: <490569f8-a434-4297-b11e-ad34ddc4ae1e@kernel.org>
+Date: Wed, 24 Dec 2025 11:03:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,23 +48,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: bridge: lt9211c: Add bindings
-To: Venkata Gopi Nagaraju Botlagunta <venkata.botlagunta@oss.qualcomm.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Nilesh Laad <nilesh.laad@oss.qualcomm.com>,
- venkata.valluru@oss.qualcomm.com, jessica.zhang@oss.qualcomm.com,
- Yi Zhang <zhanyi@qti.qualcomm.com>
-References: <20251224-add-lt9211c-bridge-v4-0-406e73ec28c5@oss.qualcomm.com>
- <20251224-add-lt9211c-bridge-v4-1-406e73ec28c5@oss.qualcomm.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: add STEF48H28
+To: Charles Hsu <hsu.yungteng@gmail.com>, Guenter Roeck <linux@roeck-us.net>
+Cc: linux-hwmon@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251224084821.2092169-1-hsu.yungteng@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,30 +101,83 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251224-add-lt9211c-bridge-v4-1-406e73ec28c5@oss.qualcomm.com>
+In-Reply-To: <20251224084821.2092169-1-hsu.yungteng@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/12/2025 08:11, Venkata Gopi Nagaraju Botlagunta wrote:
-> From: Yi Zhang <zhanyi@qti.qualcomm.com>
+On 24/12/2025 09:48, Charles Hsu wrote:
+> Add device tree bindings for the hot-swap controller STEF48H28.
 > 
-> Add bindings for lt9211c.
-> 
-> Signed-off-by: Yi Zhang <zhanyi@qti.qualcomm.com>
-> Signed-off-by: Nilesh Laad <nilesh.laad@oss.qualcomm.com>
-> Signed-off-by: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
+> Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
 > ---
->  .../bindings/display/bridge/lontium,lt9211.yaml    | 42 ++++++++++++++++++++--
->  1 file changed, 40 insertions(+), 2 deletions(-)
+
+
+Where is any changelog? You keep sending versions but you never
+responded, never said what happened with this.
+
+>  .../bindings/hwmon/pmbus/st,stef48h28.yaml    | 43 +++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
+> new file mode 100644
+> index 000000000000..c6a4b02bcd84
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/pmbus/st,stef48h28.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics hot-swap controller with PMBus interface
+> +
+> +maintainers:
+> +  - Charles Hsu <hsu.yungteng@gmail.com>
+> +
+> +description: |
+> +  The STEF48H28 is an advanced 30A integrated electronic fuse for
+> +  the 9-80V DC power lines.
+> +
+> +  Datasheet:
+> +    https://www.st.com/resource/en/data_brief/stef48h28.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - st,stef48h28
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@11 {
+
+Your description says something else? Confusing.
 
 
-Subject prefix is not correct one. It's not informative either.
+> +            compatible = "st,stef48h28";
+> +            reg = <0x11>;
 
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+You keep ignoring comments. Can you start responding to them?
+
+NAK
+
+> +        };
+> +    };
+
 
 Best regards,
 Krzysztof
