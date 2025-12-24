@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-249588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ADCECDD116
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 22:07:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EC07CDD141
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 22:46:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 281463018976
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 21:07:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D1C9030184C3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 21:46:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 877B62D46D9;
-	Wed, 24 Dec 2025 21:07:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D839C1DA62E;
+	Wed, 24 Dec 2025 21:46:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IJ2kk+mp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bz7UF/2b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE0013D521
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 21:07:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B69327713
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 21:46:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766610477; cv=none; b=fxjoL6PRZchCCj+TIkgRlolFm8oYUFxUy6RtCiIiNFNhpX7WCqbiy01M2agbJlXrE5AOD7KR9gi3dVGvI2nTdMGTHyKgM8kLYBHZrZ2YtsVSYYSJ4D6FtoDpofE3V0JvHhAFWWxDtzCLpvuz/4ReBOjNLOZllq2+I9CgECM2kfE=
+	t=1766612776; cv=none; b=tK1mP9/IqEpyFkgmjSFoJEwewehcok61DP2hcsvuZgC2o4tOIkObbdDv3ORhcgmOWtTsX052zlCbOl4In/OSdECRAWQWg0xO/gsbVtrxGu9V0EvzBFlHdfliJ9EuHQCHmTSOfLXxkHCODiGv+Zy86Wic8vh9PMfUwEnEX/i+nD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766610477; c=relaxed/simple;
-	bh=iK8yrwDzmNEFEqyLINVb5/IH+5Y1ENvQzdFPFUIzpQE=;
+	s=arc-20240116; t=1766612776; c=relaxed/simple;
+	bh=6Ge/K+shMKL5tSmcSlAVJgWOfH5+fYNv+iVFzBP3Kqk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m4tK01WCq1j7Q9ZQKwTltMEN1GcVZi3gwTEEurKslo6LlgiMi6ocZ9nv/qbHmWnbYzBYJg5lqqt/WxuU9BqcSRqX68nZvpyJEertYYWwtO4zTxsj4YQ+ppE6JyPbjAx0tQseLDZEkvtYNwRBlY4H3V/OShkLcWVL2jIgUmBA+nU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IJ2kk+mp; arc=none smtp.client-ip=209.85.221.178
+	 To:Cc:Content-Type; b=upNTF9baaNRQkaQGXByqnpRVpy2+heiNLA0nf5Fw4JtB+9qVRsqcYCWF5epKyvlNTdXRjHuWZLU+XRoEWQO+I6eqEtRPPB9B+Q4M4jwucysPyYYdIvXKAs3RFVUN5fD77cXRs09chHq+GsiAu0q+9Zz6KMJByIlCuet1QoWluNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bz7UF/2b; arc=none smtp.client-ip=209.85.222.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-55b24eedd37so4369686e0c.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 13:07:55 -0800 (PST)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-9412512e9f3so1738921241.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 13:46:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766610475; x=1767215275; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cCTlQAT+iHxugCwpM8vllJhIqqbWFrkNPusExq9MD84=;
-        b=IJ2kk+mpGb1xmonrLTpgIczMLR1GDmQ+rOTEoS+EMgC7IN00J/xr3rJsJYXBv2LUUM
-         On6W6E2q1bGFrL6ppaLvkhZdF/DHB+LyrMnlpX3T+cjKqocG7lKPdLuGGIdVCFzdfDXC
-         DW+NjvrqyLVLZDKCGUNUafZkFleZKdLtFmaflm4lr8Czqoo0Ta82uxO5ecX1EJd71/1w
-         qMIZgL3k0PaQLAPNpPRjKeLlQ+s8dFt9h5wPM3Y9FXP5yg7L197dOtv3nRbKcKSsw6mW
-         MXsE1Sln5IpYPR1MRL8slqI5eqmTTWhgoiJiT4gzp7ejzhHB+pzsWEQd0ot2cjPvTtwZ
-         ZbWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766610475; x=1767215275;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1766612774; x=1767217574; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cCTlQAT+iHxugCwpM8vllJhIqqbWFrkNPusExq9MD84=;
-        b=ZezCT+ENu9f0aJAdI13SM3mBoqpBBldrc826kUGqdlU5nR44tOnezfE1hBzLQEI30c
-         DzYEG2lFME4aCm3dP0wcJGCJGrQ50kJybWK2md5TQviQkvMb+JmL9NAtOTrhFLUmtBw+
-         psXtorN3GybggBTMsSGYoczEgYj+fWCVqxFZ7mLmHJldK5zMCRH0uro1QBEre59QWYCW
-         iRqMperDyb1/moSbDd6RxolTARb+vxYbWb7iKCVtzxwLOIm6yluuRpIf9wRNJsOdm5A+
-         hUvsJOkSaGGzHyuwVrXfJAsff96iBuPyl05Gn8Rvaj+Cahr7jcXIB+ria9Ev3ZhMJ5sd
-         lLnA==
-X-Forwarded-Encrypted: i=1; AJvYcCW/yclGm8QP//mvlerZfEIQQvnj9xwyMx0GMyB5QcwrtZgRRBKTPWW4wohVM2cmGwaWQz3P6yElqoRy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3soXUNEtfLCpbvOWws0y3rQCyOIupOFTBoMg05ZMBvX8mPJxy
-	ArO6SWwYOjeg8Jp5WNnE1N2RPC42kSFQfOTqykErTzpjBpbCTgbUtPpq/xSS+5qIHh0gIlNsems
-	aR6fWDvKp9dS3t4ei5PVH4dA6TxQADMyNrnmfzdk=
-X-Gm-Gg: AY/fxX55ConTnIQRGQqp/4WGBGxpgUQMWyRSoHtq/U2QpQfVIDX7lTeN055ezSij4pV
-	rgwOSZxxiCvHM2w80zKksRvq780r5PkrNVSZdw103En964fRR2DAz28K82+XHa03Zt/Mpjt+2mx
-	Eg+G/Yu3QsvjjuGTvUeyc3N3Cf77RDA6eoiDAnaAEZUAjEOlmg4UnKhVUnU1bWf5Uk4kUAZf3ez
-	AnVCHYZR+3P0ab8h9tLM9kliMKbhoEZDhgn/1aCwzNHIvwGk9JuDNhpvbwzEG6w0HKa9FXk
-X-Google-Smtp-Source: AGHT+IH7XGdepg4Z/orwm+2GhryRt9V7S6meYAVUOfpXJTMnfPvQsB1UQ1hzQqkl2cujqzwTv1BXxMsNVDFCF1LJO7Y=
-X-Received: by 2002:a05:6122:2a42:b0:55b:305b:4e35 with SMTP id
- 71dfb90a1353d-5615beb20f0mr6131823e0c.21.1766610474927; Wed, 24 Dec 2025
- 13:07:54 -0800 (PST)
+        bh=oNUEoncZiRgf3jQewMIbcXaVWf0xg5zWH0JdNJ2Mm60=;
+        b=Bz7UF/2bUoBz8tOsT3k/YkfkEUvHAPg28QpmN1TVaBMhbYstuVWPeEfwIyNTGpS5F2
+         lvwrHqAOytAMzTP7orX6v7UongKkhU4q2AlKUv87xjNhpahOTilpKke7MQUdNv0usJzj
+         eAi1OkpdxKbu4dBMBYupmjzYOXR32oY1crYI9g0UujaiVo1WM19gYQSXzVveNe/r0WtI
+         agsGxAvoEjJ801yoQZDG594F42qP43H11plM4CEEzIxQsbYwqiCoDJsbPlyS1p/MJXRs
+         3aBIfendTlQS8ixwHNpdPdHyeQRHuGyTd1W7ufj5HKF9x179CYUsO7b3X0UHK76IYJ3M
+         iokA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766612774; x=1767217574;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=oNUEoncZiRgf3jQewMIbcXaVWf0xg5zWH0JdNJ2Mm60=;
+        b=GnK3K/OPADfDWaB+BEbhRe/5rh/5+PqhZsIpjGu+G2jRMa38K6rX2uwUaGF2c7rk8I
+         Dc6lZVbInHt07LxdxeiplMsKq8ib5IdmE0BIXB5jlKwYKvW7fHMseQB69pEV7y4S6kwf
+         sUm6S+1stKTl1GiuhzWODgNhkST2RfGjMIoXaeybwOzf7drmCa3DXeZqLcBAozphSjjg
+         BG73ejzWeKqD1/ti+d0xvqUYxaX9zfUd99v8WtnAvQDKZLs1CYiUpvGI4m5uFJdj4+J9
+         43EccgzmBTf1jM18dcar2+DE2CbMmCvWOTuLzRiLKM/AGv5sq8yg0jQA6MgrxLKoGQtv
+         n5aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUN5ADOxjIohvgf7yvKTDLENnKCUUMV2gMWQ943Da/+aLWfImQcH6Wj6mJk+4l4+FoDChaZ3mcZ0OKR@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDgn8G1ZcQKD9zSnOIypanIBsKspJtcoDQS0Fy2P8JcnPif2mb
+	MdMNz6Pin4CUzFSjzSq8oTLxYNDgzofwcqsOft8bodogerwSS9tcwGvCn+CanneKRItu5ml/Dg2
+	Si180xNOhi9J2nWpzOQnUtGCMdrPrgRI=
+X-Gm-Gg: AY/fxX5c1JvTvRL5WH4MFPGuiEabacVPLX08/5t+DA/6vo37Z8e1xuAO3rzCcsQ+Eu2
+	Hj9CKEcB4mL8YvSHBMa1Q94BmCZ8hI6bm0h3NCjkNwtwvTFqv8BfsdHT9+BMVGhwJqdScsn/uAX
+	eRGZG13CkAH9rBErDxB1t4D1n7EcGK0LGcasNGCp856rSa0I8KpDUWQwClzvmRrq+/eZQnQq8/3
+	OURcyXXsNy7GIHHAq8QW80psEeG3T1JslMAiUift3FdFGJwK4FG4I2ByXCWpNXA1kiR5mLA
+X-Google-Smtp-Source: AGHT+IH6CKgJIRM6QmVDLyHQhTTUcOhOCJa1I/zlddJ2l+Bk4MntXBMMFIceYK+UMkdgn0dAeuBpFI5uhObYlA3Pcwo=
+X-Received: by 2002:a05:6122:3d03:b0:559:6723:628c with SMTP id
+ 71dfb90a1353d-5615bee5a59mr5453601e0c.16.1766612773846; Wed, 24 Dec 2025
+ 13:46:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1766123192.git.alex.t.tran@gmail.com> <6f34ec79ac21d5ab9ad3fafe34a0bf6aca49a10d.1766123192.git.alex.t.tran@gmail.com>
- <20251221-platinum-mongoose-of-might-feec86@quoll>
-In-Reply-To: <20251221-platinum-mongoose-of-might-feec86@quoll>
+References: <cover.1766123192.git.alex.t.tran@gmail.com> <3c5a55cc5873e8d16bd25c5968a0d8b36e180325.1766123192.git.alex.t.tran@gmail.com>
+ <20251221-futuristic-masked-platypus-dfdac4@quoll>
+In-Reply-To: <20251221-futuristic-masked-platypus-dfdac4@quoll>
 From: Alex Tran <alex.t.tran@gmail.com>
-Date: Wed, 24 Dec 2025 13:07:44 -0800
-X-Gm-Features: AQt7F2rZCAW0yhAERGrWnfIke5IXQve9uiOJmP7X9t0yJpOUiJVNJR7wsyfvKGM
-Message-ID: <CA+hkOd4B425PRzirxLW-J2L+mDGusfRDJ5y1nKLwG9a-dd4M8A@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] media: dt-bindings: i2c: toshiba,et8ek8: Convert
- to DT schema
+Date: Wed, 24 Dec 2025 13:46:03 -0800
+X-Gm-Features: AQt7F2oQd__b3wg-g2zCdJw9nlL88_M1AqU-boxtTV5R37L5bT3oCC596Q6IHf0
+Message-ID: <CA+hkOd7zfi+=4tOr8NPUVWc1sdDgjtRSdEJv_YadMV2ZSh0x4w@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] media: dt-bindings: ti,omap3isp: Convert to DT schema
 To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
 	conor+dt@kernel.org, pavel@kernel.org, sakari.ailus@linux.intel.com, 
@@ -88,36 +88,219 @@ Cc: mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
 	hverkuil+cisco@kernel.org, linux-media@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> > +    maxItems: 1
+On Sun, Dec 21, 2025 at 7:08=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Sat, Dec 20, 2025 at 02:03:25PM -0800, Alex Tran wrote:
+>
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
+>
+> > +maintainers:
+> > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > +  - Sakari Ailus <sakari.ailus@iki.fi>
 > > +
-> > +  reset-gpios:
+> > +description:
+> > +  The OMAP 3 ISP is an image signal processor present in OMAP 3 SoCs.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: ti,omap3-isp
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: Core ISP registers up to the end of the SBL block
+> > +      - description: CSI PHYs and receivers registers
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +    description: the ISP interrupt specifier
+>
+> Drop description, obvious.
+>
+> > +
+> > +  iommus:
+> > +    maxItems: 1
+> > +    description: phandle and IOMMU specifier for the IOMMU that serves=
+ the ISP
+>
+> Ditto
+>
+> > +
+> > +  syscon:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    items:
+> > +      - items:
+> > +          - description: phandle to System Control Module
+> > +          - description: register offset to Complex I/O or CSI-PHY reg=
+ister
 > > +    description:
-> > +      XSHUTDOWN GPIO. The XSHUTDOWN signal is active low. The sensor
-> > +      is in hardware standby mode when the signal is in the low state.
-> > +    maxItems: 1
+> > +      Phandle and register offset to the Complex I/O or CSI-PHY regist=
+er
 > > +
-> > +  flash-leds:
-> > +    $ref: /schemas/media/video-interfaces.yaml#
->
-> This and...
->
+> > +  ti,phy-type:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [0, 1]
+> > +    description:
+> > +      0 - OMAP3ISP_PHY_TYPE_COMPLEX_IO (e.g. OMAP 3430)
+> > +      1 - OMAP3ISP_PHY_TYPE_CSIPHY (e.g. OMAP 3630)
 > > +
-> > +  lens-focus:
-> > +    $ref: /schemas/media/video-interfaces.yaml#
+> > +  '#clock-cells':
+> > +    const: 1
+> > +    description:
+> > +      The ISP provides two external clocks, cam_xclka and cam_xclkb,
+> > +      at indices 0 and 1 respectively.
+> > +
+> > +  vdd-csiphy1-supply:
+> > +    description: Voltage supply of the CSI-2 PHY 1
+> > +
+> > +  vdd-csiphy2-supply:
+> > +    description: Voltage supply of the CSI-2 PHY 2
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description: Parallel (CCDC) interface
+> > +
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: /schemas/media/video-interfaces.yaml#
+> > +            unevaluatedProperties: false
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description: |
+> > +          CSIPHY1 interface:
+> > +            OMAP 3630: CSI2C / CCP2B
+> > +            OMAP 3430: CSI1 (CSIb)
+> > +
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: /schemas/media/video-interfaces.yaml#
+> > +            unevaluatedProperties: false
+> > +
+> > +            properties:
+> > +              lane-polarities:
+> > +                description: |
+> > +                  The lane polarity (required on CSI-2):
+> > +                    0 - not inverted
+> > +                    1 - inverted
 >
-> ... this are weird. LEDs are not video interfaces, for sure. lens focus
-> shouldn't be video interface, either.
+> You do not need to describe standard properties. Are the values
+> different than what video-interfaces define?
 >
-> You also miss unevaluatedProps there.
+> Same everywhere else. Look at other bindings how these properties should
+> be defined/written.
 >
-> This needs careful fixing/rewriting, with explanation in commit msg.
+> > +                minItems: 2
+> > +                maxItems: 3
+> > +                items:
+> > +                  enum: [0, 1]
+> > +
+> > +              data-lanes:
+> > +                description: Data lanes (required on CSI-2)
+> > +                minItems: 1
+> > +                maxItems: 2
+> > +                items:
+> > +                  minimum: 1
+> > +                  maximum: 3
+> > +
+> > +              clock-lanes:
+> > +                description: The clock lane (required on CSI-2)
+> > +                maxItems: 1
+> > +                items:
+> > +                  minimum: 1
+> > +                  maximum: 3
+> > +
+> > +      port@2:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description: |
+> > +          CSIPHY2 interface:
+> > +            OMAP 3630: CSI2A / CCP2B
+> > +            OMAP 3430: CSI2 (CSIa)
+> > +
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: /schemas/media/video-interfaces.yaml#
+> > +            unevaluatedProperties: false
+> > +
+> > +            properties:
+> > +              lane-polarities:
+> > +                description: |
+> > +                  The lane polarity (required on CSI-2):
+> > +                    0 - not inverted
+> > +                    1 - inverted
+> > +                minItems: 2
+> > +                maxItems: 3
+> > +                items:
+> > +                  enum: [0, 1]
+> > +
+> > +              data-lanes:
+> > +                description: Data lanes (required on CSI-2)
+> > +                minItems: 1
+> > +                maxItems: 2
+> > +                items:
+> > +                  minimum: 1
+> > +                  maximum: 3
+> > +
+> > +              clock-lanes:
+> > +                description: The clock lane (required on CSI-2)
+> > +                maxItems: 1
+> > +                items:
+> > +                  minimum: 1
+> > +                  maximum: 3
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - iommus
+> > +  - syscon
+> > +  - ti,phy-type
+> > +  - '#clock-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/media/omap3-isp.h>
+> > +
+> > +    isp@480bc000 {
+> > +        compatible =3D "ti,omap3-isp";
+> > +        reg =3D <0x480bc000 0x12fc>,
+> > +              <0x480bd800 0x0600>;
+> > +        interrupts =3D <24>;
+> > +        iommus =3D <&mmu_isp>;
+> > +        syscon =3D <&scm_conf 0x2f0>;
+> > +        ti,phy-type =3D <OMAP3ISP_PHY_TYPE_CSIPHY>;
+> > +        #clock-cells =3D <1>;
+> > +
+> > +        ports {
+> > +            #address-cells =3D <1>;
+> > +            #size-cells =3D <0>;
+>
+> Make example complete, please.
+>
+>
+> Best regards,
+> Krzysztof
 >
 
-My mistake. The correct schema reference for these 2 should be video
-interface devices.
+Thanks for the review. I'll address these in v2. Also the check patch
+script seems to be giving false positive warnings about DT binding
+docs and includes should be a separate patch. This patch series does
+not touch any files under the include/dt-bindings directory at all.
 
--- 
+--=20
 Yours,
 Alex Tran
 
