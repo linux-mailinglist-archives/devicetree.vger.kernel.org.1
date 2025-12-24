@@ -1,829 +1,226 @@
-Return-Path: <devicetree+bounces-249521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BA7ECDC9FF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:06:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A37DCDCA4A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:15:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3C5C63005EBB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 15:06:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 233EE304B03E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 15:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9052033EAEA;
-	Wed, 24 Dec 2025 15:06:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFC8346A1F;
+	Wed, 24 Dec 2025 15:14:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="r3kXzz5N"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GRN5Dlpi";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="SkrAwOQO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2717429A300
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 15:05:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8CB30F540
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 15:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766588762; cv=none; b=P04Sbaeqxn/kOdC9aBJufPxeH2sxV0u4PnL1NBMCQqQjIi59SsYJmcA6tEZUqDvSLMZn0skvjthiDy1qFQQPC4C96aGBe/sdyaO1ZC1LkXu5FbUykbFlsmNEGoN9zvsLCLnWyms7kLnsIfsxtW+hZf1vZONtt02/ot17NU+4/kc=
+	t=1766589286; cv=none; b=W87KwEK6wf+vlYIsIaJkw4ZCgHc66WsavGuaLUaNgQjeZRM72M+DTe272hsw6u0CdXIOEaZEnxW8z/dm4+2B31E6ZzT258VQguOJEgGqF+HulGNEsf8Nn3/ac5yjkhQNrjIUJ4ygQ6PxlJXY6agNCsqgG01Fnh3ocKhuDFRlC54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766588762; c=relaxed/simple;
-	bh=3yU1n9eIyN3B3Aq4V79jmgq1icTynfJn8OFcolLCJts=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gZ3OdBjj54KAY41DlQXavFlwZx4+XgTGZh7oo3LRFZL1rN5SUDKm93/pxTrgAywteLMuAuu07DbAm/U25pSA//GLOvd284t5YA9yCmCTGjMzeBvvD6pvyUbkcYThg7jNJ9dymgmErt3raYUqfGmLqmdj9xwRs1XRkBFwMWSWgu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=r3kXzz5N; arc=none smtp.client-ip=209.85.222.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-8b220ddc189so789401485a.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 07:05:59 -0800 (PST)
+	s=arc-20240116; t=1766589286; c=relaxed/simple;
+	bh=C7VyRgzu8Sv7En4v0737Efe3C7QajOA1haHUuWuktfY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GkheWWAOoDO0UutMscacdtAPKDTtUJMseFUS0s+TwhJ5y5UKrsqcCBWbXjaHUP+v8WqRXcYjQvvU9+4af/rHx7VK3HaHj4cBDUUY9vHe76ce5xGRSUm2UchwxpMgnKZ/Qvowy4Fl/9VKuz6o71KDXaa0+w119BwHpL79510q/BU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GRN5Dlpi; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SkrAwOQO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BO904nT700895
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 15:14:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KKM+jRWTC6pwMTUDyLDny66VCClXvGBoExeSimYocjc=; b=GRN5DlpiY3hSf276
+	jkiZb5F24YTFcTiwK9W9mndw1r2i4LQZIJ9Cd2WyvscJUj+COq72WzZxIDs4JmlM
+	2g8EeEvfDwAXG6skn4+hHl+D7/whOTULGz/PE/OmnhKYNHHiRgcK9Il7qXsfL528
+	bX4urAidKQTDAgGMBjTttV1g4V4X2tRm4C2rLty4sj8uUEzElKolfSaFpwvZv1sD
+	3a2NIUu7ocmJ+qyy009UqA8c8DsKBe79rDcFvKGYyURhOVnhMLtTThH2dmlBxpOI
+	csOmNZi/V4bhemV5rnphcPBJ8GhUtUYJN7ecdeOSj1d4pPMDQEmGXvF9GRFScHFG
+	2UJOBw==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7t7jv173-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 15:14:43 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4edad69b4e8so126651101cf.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 07:14:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1766588759; x=1767193559; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/sj1HHExKGWlQ/Xby6VMx9FFovM/8nIk9CS7FFzB9X8=;
-        b=r3kXzz5N6qdN4wwtaDLVXe/RpJ3jLnWE2nDkWylwaFSRWVppY0EdqA9S0kYcemkXQY
-         K01iMcUfR1VNcIQB588d5GmmxgHwu5skI6paKwYdsARs3g261IA8IOm62fT50+MfaKtx
-         rn4UWP+OmXUyMlkouIm50eI+RCUl3j2Nq+FskGIGSSKYyuwMz6BmJAWsOdU5AyL3hsek
-         zxShq/qmVCl+Xtrq3VYPWe2sNO04F5XqcHVtb8CPRzoAwAvFVaFPkzbY3XzpqCIJIzNK
-         UaIdb10D2v/YZyDrnhCN+grqDXNkdo1rJjqW3aKbyFhdZogOufXOypnOzTvbk+FoxSEI
-         a8Iw==
+        d=oss.qualcomm.com; s=google; t=1766589282; x=1767194082; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KKM+jRWTC6pwMTUDyLDny66VCClXvGBoExeSimYocjc=;
+        b=SkrAwOQOePFkPUap8SPqwjGyn+qdWnyS881ywe453x5FINLkszB1TeaYIQJabIXRv7
+         +OWFy/SvOYZ5zMOdQ3rHFqAtPGF9VwNwmMvMTQVMnd9bFzu88QYfXGD/udE4YIxrpUwu
+         0Lvm3XbPle6M3IiBmVKbiruvjFliwJtFnogTz3CG+t3fAXOQ8cNCcLR+ygS1P20Q9SFb
+         oIheW5aDDTotLO802m5QZ1BXRwD96yxTJToLCaWXf3V8smkHdAPtyi6UGOY1FXFX4PvN
+         zJqlAqCR7njD2329hFZiWoqc7xBRqEVjfhjLs4HJb0NvrTNkcg1ItBg2AAKeeRGdtipu
+         kYwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766588759; x=1767193559;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/sj1HHExKGWlQ/Xby6VMx9FFovM/8nIk9CS7FFzB9X8=;
-        b=RUpTXW4ZPRs481Y02dSQkgCF+FJqmpWbNZAegQXcnTrZaLieWQ1O/Js4sR6ltaH8be
-         5dTilDfUAkXP/jQpJCoSvMuOktCDA+uElRsj4MdtjjY+BdmS3OIg5b4Rycw8I8Z9cU1s
-         CSHX3LKWbWsH27pBgn+mHMz9L1cdKcAkZjA3Hvnb4nCeowVW9aWLt+pRUtL5iKUn+noO
-         1/h6VFG6+j6HuSgb+3ddzeRr34w9nAmdjLQpVIvqzUh2nzPkPUX42Hwc5tD2Yf8oNwNT
-         FFKR82plBMElvrBTRzczfxj9uf69cy9AZMLS0IsZ2Vh75mw69zHNznehQe6wnMnMYo62
-         FoYw==
-X-Forwarded-Encrypted: i=1; AJvYcCX99Okh1dwOiRG4snaofKB49oE6/UsWZdOz1qLGRiizPq0Hwfd3JnyBeLNFuz7kms0j2Z8F9Gwd8LOj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFww7kS07DnpSZHbno4qcmz2IGaZCV9gVdnKQ4h5/P6uEC5J5j
-	dTuIFLXK0uVi+PFa2TbcDyVoYdxEXIQtt2fBa5FkqjEzDb4YSClNiMkRI1QLW4XUAIY=
-X-Gm-Gg: AY/fxX4N2VBHKCWVIk5jGodX2FX/i3eOw1tOKWoctRtIQFAhTnnbAjFebTbfhREMRGB
-	zkCOq02zUejKUHKnc+uUxNf5eNzVZSExSooiReBNeSBd+Paf4gIO0mk80EM6suhkIxeCCN0AlHy
-	+9s3JEk5n4OFsLvVWzHQwiEB3k94Z4HhZsalxmGc9lDnLuAHPWorOMkn9FmxYgMu0rKUQdSiG7R
-	6NQDgPWkkX3BXOc37A+B0xxUcGCXHbwGpQO0BXNKlh8heniPt2hR7a6WEaolCaimG+rkemfUqC9
-	LNWXmDSPKuBTYIOvk5B/5yYdhU9j/yWaOvHYuax+ihzBDbFwvTT3lx4M/Q54RWtpRnRWaEKuSN8
-	UpjZkMrLWywuYoFnxgtVNYncBNUiEgyQJBik1hDQLFG4b4FXDpypWE2IGg2g/oFDDjAiXD8aDsJ
-	Zf6IvXTLF1XhkFfWr/
-X-Google-Smtp-Source: AGHT+IETvBu+Guk12OJYgN5ssBD4uU83lBcS6wq53EZP7h8ORV81/fvJfk/oT/mQb3cIMhQp0AxXLg==
-X-Received: by 2002:a05:622a:1345:b0:4ee:1db1:a605 with SMTP id d75a77b69052e-4f4abcd8b3fmr302509791cf.20.1766588758799;
-        Wed, 24 Dec 2025 07:05:58 -0800 (PST)
-Received: from ?IPv6:2606:6d00:17:7b4b::c41? ([2606:6d00:17:7b4b::c41])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4f4ac62d53dsm126478521cf.19.2025.12.24.07.05.57
+        d=1e100.net; s=20230601; t=1766589282; x=1767194082;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KKM+jRWTC6pwMTUDyLDny66VCClXvGBoExeSimYocjc=;
+        b=dQlgtvwuwsCEkeTMZL18bVgh6tbAvLPkqm4myyxHwAupX48ZoLzYt9hSliTUR43KdD
+         hMNmh5Sit4gAwUVqrHDHnw/vx3SIvovmiNDwMdNIvp6NxT5w+T1apCNp02i+c5yd6xK+
+         PY+P2wBbKOItIj8k2oias4cTbhHAxdjxBqj0zVXFdRdfdPx9akYkzeWssCLYp46S1yj2
+         2gBEzqJHTI54LgdqswWRV00w588dy/nESFMivNwaN03tujVTDtKXEWKSbcRa58MFIfBn
+         xf+ylK+scHcDWIc8bzRCvI7PriOQes2W+dtc6lWx80up7+t+n3L1riMp3dAJXDWrD/xu
+         QS6w==
+X-Forwarded-Encrypted: i=1; AJvYcCVvIutewDy2Fg6xNHlNSBUCN9RRlfwtly/6ftZPihSHB8c11nBH+Alpoe1TtNThhD4I/Z48d21YYhcj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxA1KC4sa46z/Y6nG1Ryt5orO3HiTNE+QhDrLdrPjt+2D313CsU
+	RG+luAwOkuwsUrr2Ai5O9KZ2ReDNFhhWZNGln68lgPLj5aJvQG4L1T7Y/CMzC6jDC7l8qcfpOlC
+	tlpfSeRnFBWc4DFdsTdgEsnAfrZf29H08QNR4kDPdgsMpD/ch6Q5NnqpNOnmQyHmLj0obbu+2
+X-Gm-Gg: AY/fxX7WTgZ1KZMCdrUHamZDYn3AyfQ77a1BJ4QhedFXqfvOm7JqsT5EihINXeATJw5
+	dGLh5yhT0qqUwcr+KL+5UQ/IhiPgQR61dvCCndga+ylyxv3q8OsjAFSg7pES6NHUSwBZ2FrxrkK
+	9kx02IP986xK2y27XRFHolyhFTxISKhWWv5xdmvtgWhlDwYG7OS9+lGG6Q8WViryYSglTcgsx97
+	9US26hXsoi5TiNqTCjqOEhXqA26CA15pZ+PGnKm7/yK5rwx87uxm3bjIoLXhdcoZYVK2k1WR5gu
+	qhR6rfqlaO1ivoKY9PPxDZd/qPdQIX4jZWEjeKNytt2vS+GVLmPxzWxVOeAxnNfNsvR/mndjfGC
+	2gyn+X4zpyDieaCN6Z/5Ib7QTdliwhW+D1aSAQrz1xYbgQcL3on2lI/xTQG6Tmn3Qam4DH7tYLr
+	vDpx1lJ3veJJemedZLQh/1Ss8=
+X-Received: by 2002:a05:622a:199d:b0:4f1:af84:387a with SMTP id d75a77b69052e-4f35f3a0267mr291702141cf.5.1766589282091;
+        Wed, 24 Dec 2025 07:14:42 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEM4HWFmqw6RhOyxQti4OTXb9IzWD2XEC7FAdWT2Mo6yNJBTwSWTrYflgNoT+TqWdbIm/XUHw==
+X-Received: by 2002:a05:622a:199d:b0:4f1:af84:387a with SMTP id d75a77b69052e-4f35f3a0267mr291701801cf.5.1766589281524;
+        Wed, 24 Dec 2025 07:14:41 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a185ea2d8sm4981675e87.45.2025.12.24.07.14.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Dec 2025 07:05:58 -0800 (PST)
-Message-ID: <be6c72090cdbf79d86dab5cc75a05db81cd1585c.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 07/22] media: rockchip: rga: move hw specific parts
- to a dedicated struct
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
-	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	 <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, kernel@pengutronix.de
-Date: Wed, 24 Dec 2025 10:05:57 -0500
-In-Reply-To: <20251203-spu-rga3-v2-7-989a67947f71@pengutronix.de>
-References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
-	 <20251203-spu-rga3-v2-7-989a67947f71@pengutronix.de>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-awLPo3pA3zArYr6dvmmF"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+        Wed, 24 Dec 2025 07:14:40 -0800 (PST)
+Date: Wed, 24 Dec 2025 17:14:38 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Cc: David Heidelberg <david@ixit.cz>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845-oneplus: Update firmware
+ paths
+Message-ID: <nv3uiez57xmrfpcpkvqitvnfrbs6suuqor3a3trwugpvqxvr2j@6loizlgt5l6b>
+References: <20251222-oneplus6-new-fw-path-v1-0-a2d366f9eb89@ixit.cz>
+ <20251222-oneplus6-new-fw-path-v1-1-a2d366f9eb89@ixit.cz>
+ <a8cc09c0-6acd-409a-a907-c3809b4f4db3@oss.qualcomm.com>
+ <17490007-73b9-423b-af49-b89e33ee51f3@ixit.cz>
+ <4a3041af-efda-4345-8298-9602561cb57e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4a3041af-efda-4345-8298-9602561cb57e@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI0MDEzNCBTYWx0ZWRfX35mQPyely/Hr
+ n1tnoPue7K6OblVQvYTSXa8r4BsVE3uVOln3TURiNcG72ChjTtwqt5vSykXAM0pIOm85owC/YTs
+ IHpV4aYSX2PGQSWqVsTyps3eC1CRnkq7sXiSl3uQiAje2488nwgF+bcaUDAA6BUx9bgr9CPTU/v
+ kBsd3tR8pW7//k0eQDy9WHhlb16EzkioR4eP94aBd7FtDj8jBcK097/aoxkRy6RnwQUhe/vZPyo
+ CbcfNIoBsfpcusXINw1Lab3moEdl0gpFERYhRRvkfhwBZATXKP9gTkEvlN98obfbiYVbWArDunr
+ 0C8hwvw6WPPE5vgjRoiNnF24X9zusIn0Pt/ok3CqGhUH/hBNZYuoHRgoytatfn2auR/+QtAH5V2
+ Yxle+Ux7yc9wdGrX2/qKkJwEwVq6LrFkyreVoZpk2BLDXkmo5g0tv/cVSl0xx+x5HUEODO4KbCr
+ L9qhqXfgxGug1k1AJMQ==
+X-Authority-Analysis: v=2.4 cv=IvATsb/g c=1 sm=1 tr=0 ts=694c0363 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=_ZC-_fbanAzVBMKBJqgA:9 a=3ZKOabzyN94A:10
+ a=wPNLvfGTeEIA:10 a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-GUID: ZsSlXN5_RfZSxY-nCxTBcd7LgClh58YI
+X-Proofpoint-ORIG-GUID: ZsSlXN5_RfZSxY-nCxTBcd7LgClh58YI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-24_04,2025-12-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 bulkscore=0 malwarescore=0 impostorscore=0
+ suspectscore=0 priorityscore=1501 lowpriorityscore=0 spamscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512240134
+
+On Wed, Dec 24, 2025 at 06:48:53PM +0530, Akhil P Oommen wrote:
+> On 12/23/2025 1:21 AM, David Heidelberg wrote:
+> > On 22/12/2025 20:31, Akhil P Oommen wrote:
+> >> On 12/23/2025 12:35 AM, David Heidelberg via B4 Relay wrote:
+> >>> From: David Heidelberg <david@ixit.cz>
+> >>>
+> >>> Conform to the new firmware path scheme.
+> >>> Includes cosmetic cleanups.
+> >>>
+> >>> Signed-off-by: David Heidelberg <david@ixit.cz>
+> >>> ---
+> >>>   .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 23 +++++++++++
+> >>> +++--------
+> >>>   1 file changed, 15 insertions(+), 8 deletions(-)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/
+> >>> arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> >>> index db6dd04c51bb5..f1c63794db979 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> >>> @@ -181,8 +181,9 @@ panel_vddi_poc_1p8: panel-vddi-poc-regulator {
+> >>>   };
+> >>>     &adsp_pas {
+> >>> +    firmware-name = "qcom/sdm845/OnePlus/enchilada/adsp.mbn";
+> >>> +
+> >>>       status = "okay";
+> >>> -    firmware-name = "qcom/sdm845/oneplus6/adsp.mbn";
+> >>>   };
+> >>>     &apps_rsc {
+> >>> @@ -353,8 +354,9 @@ vreg_s3c_0p6: smps3 {
+> >>>   };
+> >>>     &cdsp_pas {
+> >>> +    firmware-name = "qcom/sdm845/OnePlus/enchilada/cdsp.mbn";
+> >>> +
+> >>>       status = "okay";
+> >>> -    firmware-name = "qcom/sdm845/oneplus6/cdsp.mbn";
+> >>>   };
+> >>>     &gcc {
+> >>> @@ -370,7 +372,7 @@ &gpu {
+> >>>   };
+> >>>     &gpu_zap_shader {
+> >>> -    firmware-name = "qcom/sdm845/oneplus6/a630_zap.mbn";
+> >>> +    firmware-name = "qcom/sdm845/OnePlus/enchilada/a630_zap.mbn";
+> >>
+> >> I believe this is considered as breaking backward compatibility. How
+> >> about creating a symlink in linux-firmware instead.
+> > 
+> > See discussion here:
+> > 
+> > https://lore.kernel.org/linux-arm-msm/
+> > CAO9ioeW9=TPde4P=AOcQANvPv90K-9MkcRRgb7HNwe8KiOpFjQ@mail.gmail.com/
+> > 
+> > I understood the conclusion was "let's do it".
+> > 
+> > We have more-less 3 consumers here,
+> >  - postmarketOS (Alpine)
+> >  - Mobian (Debian)
+> >  - NixOS Mobile (NixOS)
+> > 
+> > some of these using droid-juicer, which can be easily updated to update
+> > paths.
+> > 
+> 
+> Dmitry,
+> 
+> How is this "not breaking backward compatibility"?
+
+Indeed, it is a very gray zone. There is slight difference: firmware
+loading can go through the userspace, which can provide backwards
+compatibility (in form of fw helper, symlinks or any other ways).
+
+So, yes, we break compatibility, but it is documented so and it can be
+handled. Compare that with the e.g. updated driver rejecting old
+bindings and thus becoming incompatible with the old DT.  This can't be
+worked around in any way.
 
 
---=-awLPo3pA3zArYr6dvmmF
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le mercredi 03 d=C3=A9cembre 2025 =C3=A0 16:52 +0100, Sven P=C3=BCschel a =
-=C3=A9crit=C2=A0:
-> In preparation for the RGA3 unit, move RGA2 specific parts from rga.c
-> to rga-hw.c and create a struct to reference the RGA2 specific functions
-> and formats. This also allows to remove the rga-hw.h reference from the
-> include list of the rga driver.
->=20
-> Also document the command finish interrupt with a dedicated define.
->=20
-> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
-
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
-> ---
-> =C2=A0drivers/media/platform/rockchip/rga/rga-hw.c | 183 ++++++++++++++++=
-++++-
-> =C2=A0drivers/media/platform/rockchip/rga/rga-hw.h |=C2=A0=C2=A0 5 +-
-> =C2=A0drivers/media/platform/rockchip/rga/rga.c=C2=A0=C2=A0=C2=A0 | 228 +=
-++++----------------------
-> =C2=A0drivers/media/platform/rockchip/rga/rga.h=C2=A0=C2=A0=C2=A0 |=C2=A0=
- 23 ++-
-> =C2=A04 files changed, 245 insertions(+), 194 deletions(-)
->=20
-> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media=
-/platform/rockchip/rga/rga-hw.c
-> index f1d5237472941..7419784efc693 100644
-> --- a/drivers/media/platform/rockchip/rga/rga-hw.c
-> +++ b/drivers/media/platform/rockchip/rga/rga-hw.c
-> @@ -437,8 +437,8 @@ static void rga_cmd_set(struct rga_ctx *ctx,
-> =C2=A0		PAGE_SIZE, DMA_BIDIRECTIONAL);
-> =C2=A0}
-> =C2=A0
-> -void rga_hw_start(struct rockchip_rga *rga,
-> -		=C2=A0 struct rga_vb_buffer *src, struct rga_vb_buffer *dst)
-> +static void rga_hw_start(struct rockchip_rga *rga,
-> +			 struct rga_vb_buffer *src,=C2=A0 struct rga_vb_buffer *dst)
-> =C2=A0{
-> =C2=A0	struct rga_ctx *ctx =3D rga->curr;
-> =C2=A0
-> @@ -452,3 +452,182 @@ void rga_hw_start(struct rockchip_rga *rga,
-> =C2=A0
-> =C2=A0	rga_write(rga, RGA_CMD_CTRL, 0x1);
-> =C2=A0}
-> +
-> +static bool rga_handle_irq(struct rockchip_rga *rga)
-> +{
-> +	int intr;
-> +
-> +	intr =3D rga_read(rga, RGA_INT) & 0xf;
-> +
-> +	rga_mod(rga, RGA_INT, intr << 4, 0xf << 4);
-> +
-> +	return intr & RGA_INT_COMMAND_FINISHED;
-> +}
-> +
-> +static void rga_get_version(struct rockchip_rga *rga)
-> +{
-> +	rga->version.major =3D (rga_read(rga, RGA_VERSION_INFO) >> 24) & 0xFF;
-> +	rga->version.minor =3D (rga_read(rga, RGA_VERSION_INFO) >> 20) & 0x0F;
-> +}
-> +
-> +static struct rga_fmt formats[] =3D {
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_ARGB32,
-> +		.color_swap =3D RGA_COLOR_ALPHA_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_ABGR8888,
-> +		.depth =3D 32,
-> +		.uv_factor =3D 1,
-> +		.y_div =3D 1,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_ABGR32,
-> +		.color_swap =3D RGA_COLOR_RB_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_ABGR8888,
-> +		.depth =3D 32,
-> +		.uv_factor =3D 1,
-> +		.y_div =3D 1,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_XBGR32,
-> +		.color_swap =3D RGA_COLOR_RB_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_XBGR8888,
-> +		.depth =3D 32,
-> +		.uv_factor =3D 1,
-> +		.y_div =3D 1,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_RGB24,
-> +		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_RGB888,
-> +		.depth =3D 24,
-> +		.uv_factor =3D 1,
-> +		.y_div =3D 1,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_BGR24,
-> +		.color_swap =3D RGA_COLOR_RB_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_RGB888,
-> +		.depth =3D 24,
-> +		.uv_factor =3D 1,
-> +		.y_div =3D 1,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_ARGB444,
-> +		.color_swap =3D RGA_COLOR_RB_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_ABGR4444,
-> +		.depth =3D 16,
-> +		.uv_factor =3D 1,
-> +		.y_div =3D 1,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_ARGB555,
-> +		.color_swap =3D RGA_COLOR_RB_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_ABGR1555,
-> +		.depth =3D 16,
-> +		.uv_factor =3D 1,
-> +		.y_div =3D 1,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_RGB565,
-> +		.color_swap =3D RGA_COLOR_RB_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_BGR565,
-> +		.depth =3D 16,
-> +		.uv_factor =3D 1,
-> +		.y_div =3D 1,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_NV21,
-> +		.color_swap =3D RGA_COLOR_UV_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_YUV420SP,
-> +		.depth =3D 12,
-> +		.uv_factor =3D 4,
-> +		.y_div =3D 2,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_NV61,
-> +		.color_swap =3D RGA_COLOR_UV_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_YUV422SP,
-> +		.depth =3D 16,
-> +		.uv_factor =3D 2,
-> +		.y_div =3D 1,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_NV12,
-> +		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_YUV420SP,
-> +		.depth =3D 12,
-> +		.uv_factor =3D 4,
-> +		.y_div =3D 2,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_NV12M,
-> +		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_YUV420SP,
-> +		.depth =3D 12,
-> +		.uv_factor =3D 4,
-> +		.y_div =3D 2,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_NV16,
-> +		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_YUV422SP,
-> +		.depth =3D 16,
-> +		.uv_factor =3D 2,
-> +		.y_div =3D 1,
-> +		.x_div =3D 1,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_YUV420,
-> +		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_YUV420P,
-> +		.depth =3D 12,
-> +		.uv_factor =3D 4,
-> +		.y_div =3D 2,
-> +		.x_div =3D 2,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_YUV422P,
-> +		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_YUV422P,
-> +
-> +		.depth =3D 16,
-> +		.uv_factor =3D 2,
-> +		.y_div =3D 1,
-> +		.x_div =3D 2,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_YVU420,
-> +		.color_swap =3D RGA_COLOR_UV_SWAP,
-> +		.hw_format =3D RGA_COLOR_FMT_YUV420P,
-> +		.depth =3D 12,
-> +		.uv_factor =3D 4,
-> +		.y_div =3D 2,
-> +		.x_div =3D 2,
-> +	},
-> +};
-> +
-> +const struct rga_hw rga2_hw =3D {
-> +	.formats =3D formats,
-> +	.num_formats =3D ARRAY_SIZE(formats),
-> +	.cmdbuf_size =3D RGA_CMDBUF_SIZE,
-> +	.min_width =3D MIN_WIDTH,
-> +	.max_width =3D MAX_WIDTH,
-> +	.min_height =3D MIN_HEIGHT,
-> +	.max_height =3D MAX_HEIGHT,
-> +
-> +	.start =3D rga_hw_start,
-> +	.handle_irq =3D rga_handle_irq,
-> +	.get_version =3D rga_get_version,
-> +};
-> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.h b/drivers/media=
-/platform/rockchip/rga/rga-hw.h
-> index cc6bd7f5b0300..f4752aa823051 100644
-> --- a/drivers/media/platform/rockchip/rga/rga-hw.h
-> +++ b/drivers/media/platform/rockchip/rga/rga-hw.h
-> @@ -15,9 +15,6 @@
-> =C2=A0#define MIN_WIDTH 34
-> =C2=A0#define MIN_HEIGHT 34
-> =C2=A0
-> -#define DEFAULT_WIDTH 100
-> -#define DEFAULT_HEIGHT 100
-> -
-> =C2=A0#define RGA_TIMEOUT 500
-> =C2=A0
-> =C2=A0/* Registers address */
-> @@ -178,6 +175,8 @@
-> =C2=A0#define RGA_ALPHA_COLOR_NORMAL 0
-> =C2=A0#define RGA_ALPHA_COLOR_MULTIPLY_CAL 1
-> =C2=A0
-> +#define RGA_INT_COMMAND_FINISHED 4
-> +
-> =C2=A0/* Registers union */
-> =C2=A0union rga_mode_ctrl {
-> =C2=A0	unsigned int val;
-> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/pl=
-atform/rockchip/rga/rga.c
-> index f50fbbab0645e..d8b14c2d9f6a4 100644
-> --- a/drivers/media/platform/rockchip/rga/rga.c
-> +++ b/drivers/media/platform/rockchip/rga/rga.c
-> @@ -25,7 +25,6 @@
-> =C2=A0#include <media/videobuf2-dma-sg.h>
-> =C2=A0#include <media/videobuf2-v4l2.h>
-> =C2=A0
-> -#include "rga-hw.h"
-> =C2=A0#include "rga.h"
-> =C2=A0
-> =C2=A0static int debug;
-> @@ -47,7 +46,7 @@ static void device_run(void *prv)
-> =C2=A0
-> =C2=A0	dst =3D v4l2_m2m_next_dst_buf(ctx->fh.m2m_ctx);
-> =C2=A0
-> -	rga_hw_start(rga, vb_to_rga(src), vb_to_rga(dst));
-> +	rga->hw->start(rga, vb_to_rga(src), vb_to_rga(dst));
-> =C2=A0
-> =C2=A0	spin_unlock_irqrestore(&rga->ctrl_lock, flags);
-> =C2=A0}
-> @@ -55,13 +54,8 @@ static void device_run(void *prv)
-> =C2=A0static irqreturn_t rga_isr(int irq, void *prv)
-> =C2=A0{
-> =C2=A0	struct rockchip_rga *rga =3D prv;
-> -	int intr;
-> =C2=A0
-> -	intr =3D rga_read(rga, RGA_INT) & 0xf;
-> -
-> -	rga_mod(rga, RGA_INT, intr << 4, 0xf << 4);
-> -
-> -	if (intr & 0x04) {
-> +	if (rga->hw->handle_irq(rga)) {
-> =C2=A0		struct vb2_v4l2_buffer *src, *dst;
-> =C2=A0		struct rga_ctx *ctx =3D rga->curr;
-> =C2=A0
-> @@ -184,174 +178,17 @@ static int rga_setup_ctrls(struct rga_ctx *ctx)
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> -static struct rga_fmt formats[] =3D {
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_ARGB32,
-> -		.color_swap =3D RGA_COLOR_ALPHA_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_ABGR8888,
-> -		.depth =3D 32,
-> -		.uv_factor =3D 1,
-> -		.y_div =3D 1,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_ABGR32,
-> -		.color_swap =3D RGA_COLOR_RB_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_ABGR8888,
-> -		.depth =3D 32,
-> -		.uv_factor =3D 1,
-> -		.y_div =3D 1,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_XBGR32,
-> -		.color_swap =3D RGA_COLOR_RB_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_XBGR8888,
-> -		.depth =3D 32,
-> -		.uv_factor =3D 1,
-> -		.y_div =3D 1,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_RGB24,
-> -		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_RGB888,
-> -		.depth =3D 24,
-> -		.uv_factor =3D 1,
-> -		.y_div =3D 1,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_BGR24,
-> -		.color_swap =3D RGA_COLOR_RB_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_RGB888,
-> -		.depth =3D 24,
-> -		.uv_factor =3D 1,
-> -		.y_div =3D 1,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_ARGB444,
-> -		.color_swap =3D RGA_COLOR_RB_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_ABGR4444,
-> -		.depth =3D 16,
-> -		.uv_factor =3D 1,
-> -		.y_div =3D 1,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_ARGB555,
-> -		.color_swap =3D RGA_COLOR_RB_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_ABGR1555,
-> -		.depth =3D 16,
-> -		.uv_factor =3D 1,
-> -		.y_div =3D 1,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_RGB565,
-> -		.color_swap =3D RGA_COLOR_RB_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_BGR565,
-> -		.depth =3D 16,
-> -		.uv_factor =3D 1,
-> -		.y_div =3D 1,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_NV21,
-> -		.color_swap =3D RGA_COLOR_UV_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_YUV420SP,
-> -		.depth =3D 12,
-> -		.uv_factor =3D 4,
-> -		.y_div =3D 2,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_NV61,
-> -		.color_swap =3D RGA_COLOR_UV_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_YUV422SP,
-> -		.depth =3D 16,
-> -		.uv_factor =3D 2,
-> -		.y_div =3D 1,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_NV12,
-> -		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_YUV420SP,
-> -		.depth =3D 12,
-> -		.uv_factor =3D 4,
-> -		.y_div =3D 2,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_NV12M,
-> -		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_YUV420SP,
-> -		.depth =3D 12,
-> -		.uv_factor =3D 4,
-> -		.y_div =3D 2,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_NV16,
-> -		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_YUV422SP,
-> -		.depth =3D 16,
-> -		.uv_factor =3D 2,
-> -		.y_div =3D 1,
-> -		.x_div =3D 1,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_YUV420,
-> -		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_YUV420P,
-> -		.depth =3D 12,
-> -		.uv_factor =3D 4,
-> -		.y_div =3D 2,
-> -		.x_div =3D 2,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_YUV422P,
-> -		.color_swap =3D RGA_COLOR_NONE_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_YUV422P,
-> -		.depth =3D 16,
-> -		.uv_factor =3D 2,
-> -		.y_div =3D 1,
-> -		.x_div =3D 2,
-> -	},
-> -	{
-> -		.fourcc =3D V4L2_PIX_FMT_YVU420,
-> -		.color_swap =3D RGA_COLOR_UV_SWAP,
-> -		.hw_format =3D RGA_COLOR_FMT_YUV420P,
-> -		.depth =3D 12,
-> -		.uv_factor =3D 4,
-> -		.y_div =3D 2,
-> -		.x_div =3D 2,
-> -	},
-> -};
-> -
-> -#define NUM_FORMATS ARRAY_SIZE(formats)
-> -
-> -static struct rga_fmt *rga_fmt_find(u32 pixelformat)
-> +static struct rga_fmt *rga_fmt_find(struct rockchip_rga *rga, u32 pixelf=
-ormat)
-> =C2=A0{
-> =C2=A0	unsigned int i;
-> =C2=A0
-> -	for (i =3D 0; i < NUM_FORMATS; i++) {
-> -		if (formats[i].fourcc =3D=3D pixelformat)
-> -			return &formats[i];
-> +	for (i =3D 0; i < rga->hw->num_formats; i++) {
-> +		if (rga->hw->formats[i].fourcc =3D=3D pixelformat)
-> +			return &rga->hw->formats[i];
-> =C2=A0	}
-> =C2=A0	return NULL;
-> =C2=A0}
-> =C2=A0
-> -static struct rga_frame def_frame =3D {
-> -	.crop.left =3D 0,
-> -	.crop.top =3D 0,
-> -	.crop.width =3D DEFAULT_WIDTH,
-> -	.crop.height =3D DEFAULT_HEIGHT,
-> -	.fmt =3D &formats[0],
-> -};
-> -
-> =C2=A0struct rga_frame *rga_get_frame(struct rga_ctx *ctx, enum v4l2_buf_=
-type type)
-> =C2=A0{
-> =C2=A0	if (V4L2_TYPE_IS_OUTPUT(type))
-> @@ -366,6 +203,18 @@ static int rga_open(struct file *file)
-> =C2=A0	struct rockchip_rga *rga =3D video_drvdata(file);
-> =C2=A0	struct rga_ctx *ctx =3D NULL;
-> =C2=A0	int ret =3D 0;
-> +	u32 def_width =3D clamp(DEFAULT_WIDTH, rga->hw->min_width, rga->hw->max=
-_width);
-> +	u32 def_height =3D clamp(DEFAULT_HEIGHT, rga->hw->min_height, rga->hw->=
-max_height);
-> +	struct rga_frame def_frame =3D {
-> +		.crop.left =3D 0,
-> +		.crop.top =3D 0,
-> +		.crop.width =3D def_width,
-> +		.crop.height =3D def_height,
-> +		.fmt =3D &rga->hw->formats[0],
-> +	};
-> +
-> +	def_frame.stride =3D (def_width * def_frame.fmt->depth) >> 3;
-> +	def_frame.size =3D def_frame.stride * def_height;
-> =C2=A0
-> =C2=A0	ctx =3D kzalloc(sizeof(*ctx), GFP_KERNEL);
-> =C2=A0	if (!ctx)
-> @@ -376,9 +225,9 @@ static int rga_open(struct file *file)
-> =C2=A0	ctx->out =3D def_frame;
-> =C2=A0
-> =C2=A0	v4l2_fill_pixfmt_mp(&ctx->in.pix,
-> -			=C2=A0=C2=A0=C2=A0 ctx->in.fmt->fourcc, DEFAULT_WIDTH, DEFAULT_HEIGHT=
-);
-> +			=C2=A0=C2=A0=C2=A0 ctx->in.fmt->fourcc, def_width, def_height);
-> =C2=A0	v4l2_fill_pixfmt_mp(&ctx->out.pix,
-> -			=C2=A0=C2=A0=C2=A0 ctx->out.fmt->fourcc, DEFAULT_WIDTH, DEFAULT_HEIGH=
-T);
-> +			=C2=A0=C2=A0=C2=A0 ctx->out.fmt->fourcc, def_width, def_height);
-> =C2=A0
-> =C2=A0	if (mutex_lock_interruptible(&rga->mutex)) {
-> =C2=A0		kfree(ctx);
-> @@ -445,12 +294,13 @@ vidioc_querycap(struct file *file, void *priv, stru=
-ct v4l2_capability *cap)
-> =C2=A0
-> =C2=A0static int vidioc_enum_fmt(struct file *file, void *priv, struct v4=
-l2_fmtdesc *f)
-> =C2=A0{
-> +	struct rockchip_rga *rga =3D video_drvdata(file);
-> =C2=A0	struct rga_fmt *fmt;
-> =C2=A0
-> -	if (f->index >=3D NUM_FORMATS)
-> +	if (f->index >=3D rga->hw->num_formats)
-> =C2=A0		return -EINVAL;
-> =C2=A0
-> -	fmt =3D &formats[f->index];
-> +	fmt =3D &rga->hw->formats[f->index];
-> =C2=A0	f->pixelformat =3D fmt->fourcc;
-> =C2=A0
-> =C2=A0	return 0;
-> @@ -475,16 +325,18 @@ static int vidioc_g_fmt(struct file *file, void *pr=
-iv, struct v4l2_format *f)
-> =C2=A0static int vidioc_try_fmt(struct file *file, void *priv, struct v4l=
-2_format *f)
-> =C2=A0{
-> =C2=A0	struct v4l2_pix_format_mplane *pix_fmt =3D &f->fmt.pix_mp;
-> +	struct rockchip_rga *rga =3D video_drvdata(file);
-> +	const struct rga_hw *hw =3D rga->hw;
-> =C2=A0	struct rga_fmt *fmt;
-> =C2=A0
-> -	fmt =3D rga_fmt_find(pix_fmt->pixelformat);
-> +	fmt =3D rga_fmt_find(rga, pix_fmt->pixelformat);
-> =C2=A0	if (!fmt)
-> -		fmt =3D &formats[0];
-> +		fmt =3D &hw->formats[0];
-> =C2=A0
-> =C2=A0	pix_fmt->width =3D clamp(pix_fmt->width,
-> -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (u32)MIN_WIDTH, (u32)MAX_WIDTH);
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 hw->min_width, hw->max_width);
-> =C2=A0	pix_fmt->height =3D clamp(pix_fmt->height,
-> -				(u32)MIN_HEIGHT, (u32)MAX_HEIGHT);
-> +				hw->min_height, hw->max_height);
-> =C2=A0
-> =C2=A0	v4l2_fill_pixfmt_mp(pix_fmt, fmt->fourcc, pix_fmt->width, pix_fmt-=
->height);
-> =C2=A0	pix_fmt->field =3D V4L2_FIELD_NONE;
-> @@ -519,7 +371,7 @@ static int vidioc_s_fmt(struct file *file, void *priv=
-, struct v4l2_format *f)
-> =C2=A0	frm->size =3D 0;
-> =C2=A0	for (i =3D 0; i < pix_fmt->num_planes; i++)
-> =C2=A0		frm->size +=3D pix_fmt->plane_fmt[i].sizeimage;
-> -	frm->fmt =3D rga_fmt_find(pix_fmt->pixelformat);
-> +	frm->fmt =3D rga_fmt_find(rga, pix_fmt->pixelformat);
-> =C2=A0	frm->stride =3D pix_fmt->plane_fmt[0].bytesperline;
-> =C2=A0
-> =C2=A0	/* Reset crop settings */
-> @@ -639,7 +491,7 @@ static int vidioc_s_selection(struct file *file, void=
- *priv,
-> =C2=A0
-> =C2=A0	if (s->r.left + s->r.width > f->pix.width ||
-> =C2=A0	=C2=A0=C2=A0=C2=A0 s->r.top + s->r.height > f->pix.height ||
-> -	=C2=A0=C2=A0=C2=A0 s->r.width < MIN_WIDTH || s->r.height < MIN_HEIGHT) =
-{
-> +	=C2=A0=C2=A0=C2=A0 s->r.width < rga->hw->min_width || s->r.height < rga=
-->hw->min_height) {
-> =C2=A0		v4l2_dbg(debug, 1, &rga->v4l2_dev, "unsupported crop value.\n");
-> =C2=A0		return -EINVAL;
-> =C2=A0	}
-> @@ -748,6 +600,10 @@ static int rga_probe(struct platform_device *pdev)
-> =C2=A0	if (!rga)
-> =C2=A0		return -ENOMEM;
-> =C2=A0
-> +	rga->hw =3D of_device_get_match_data(&pdev->dev);
-> +	if (!rga->hw)
-> +		return dev_err_probe(&pdev->dev, -ENODEV, "failed to get match data\n"=
-);
-> +
-> =C2=A0	rga->dev =3D &pdev->dev;
-> =C2=A0	spin_lock_init(&rga->ctrl_lock);
-> =C2=A0	mutex_init(&rga->mutex);
-> @@ -811,8 +667,7 @@ static int rga_probe(struct platform_device *pdev)
-> =C2=A0	if (ret < 0)
-> =C2=A0		goto rel_m2m;
-> =C2=A0
-> -	rga->version.major =3D (rga_read(rga, RGA_VERSION_INFO) >> 24) & 0xFF;
-> -	rga->version.minor =3D (rga_read(rga, RGA_VERSION_INFO) >> 20) & 0x0F;
-> +	rga->hw->get_version(rga);
-> =C2=A0
-> =C2=A0	v4l2_info(&rga->v4l2_dev, "HW Version: 0x%02x.%02x\n",
-> =C2=A0		=C2=A0 rga->version.major, rga->version.minor);
-> @@ -820,7 +675,7 @@ static int rga_probe(struct platform_device *pdev)
-> =C2=A0	pm_runtime_put(rga->dev);
-> =C2=A0
-> =C2=A0	/* Create CMD buffer */
-> -	rga->cmdbuf_virt =3D dma_alloc_attrs(rga->dev, RGA_CMDBUF_SIZE,
-> +	rga->cmdbuf_virt =3D dma_alloc_attrs(rga->dev, rga->hw->cmdbuf_size,
-> =C2=A0					=C2=A0=C2=A0 &rga->cmdbuf_phy, GFP_KERNEL,
-> =C2=A0					=C2=A0=C2=A0 DMA_ATTR_WRITE_COMBINE);
-> =C2=A0	if (!rga->cmdbuf_virt) {
-> @@ -828,9 +683,6 @@ static int rga_probe(struct platform_device *pdev)
-> =C2=A0		goto rel_m2m;
-> =C2=A0	}
-> =C2=A0
-> -	def_frame.stride =3D (DEFAULT_WIDTH * def_frame.fmt->depth) >> 3;
-> -	def_frame.size =3D def_frame.stride * DEFAULT_HEIGHT;
-> -
-> =C2=A0	ret =3D video_register_device(vfd, VFL_TYPE_VIDEO, -1);
-> =C2=A0	if (ret) {
-> =C2=A0		v4l2_err(&rga->v4l2_dev, "Failed to register video device\n");
-> @@ -843,7 +695,7 @@ static int rga_probe(struct platform_device *pdev)
-> =C2=A0	return 0;
-> =C2=A0
-> =C2=A0free_dma:
-> -	dma_free_attrs(rga->dev, RGA_CMDBUF_SIZE, rga->cmdbuf_virt,
-> +	dma_free_attrs(rga->dev, rga->hw->cmdbuf_size, rga->cmdbuf_virt,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rga->cmdbuf_phy, DMA_ATTR_WR=
-ITE_COMBINE);
-> =C2=A0rel_m2m:
-> =C2=A0	v4l2_m2m_release(rga->m2m_dev);
-> @@ -861,7 +713,7 @@ static void rga_remove(struct platform_device *pdev)
-> =C2=A0{
-> =C2=A0	struct rockchip_rga *rga =3D platform_get_drvdata(pdev);
-> =C2=A0
-> -	dma_free_attrs(rga->dev, RGA_CMDBUF_SIZE, rga->cmdbuf_virt,
-> +	dma_free_attrs(rga->dev, rga->hw->cmdbuf_size, rga->cmdbuf_virt,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rga->cmdbuf_phy, DMA_ATTR_WR=
-ITE_COMBINE);
-> =C2=A0
-> =C2=A0	v4l2_info(&rga->v4l2_dev, "Removing\n");
-> @@ -897,9 +749,11 @@ static const struct dev_pm_ops rga_pm =3D {
-> =C2=A0static const struct of_device_id rockchip_rga_match[] =3D {
-> =C2=A0	{
-> =C2=A0		.compatible =3D "rockchip,rk3288-rga",
-> +		.data =3D &rga2_hw,
-> =C2=A0	},
-> =C2=A0	{
-> =C2=A0		.compatible =3D "rockchip,rk3399-rga",
-> +		.data =3D &rga2_hw,
-> =C2=A0	},
-> =C2=A0	{},
-> =C2=A0};
-> diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/pl=
-atform/rockchip/rga/rga.h
-> index 7ec1fcc03ed32..98635ddd50d7c 100644
-> --- a/drivers/media/platform/rockchip/rga/rga.h
-> +++ b/drivers/media/platform/rockchip/rga/rga.h
-> @@ -14,6 +14,9 @@
-> =C2=A0
-> =C2=A0#define RGA_NAME "rockchip-rga"
-> =C2=A0
-> +#define DEFAULT_WIDTH 100
-> +#define DEFAULT_HEIGHT 100
-> +
-> =C2=A0struct rga_fmt {
-> =C2=A0	u32 fourcc;
-> =C2=A0	int depth;
-> @@ -69,6 +72,8 @@ static inline struct rga_ctx *file_to_rga_ctx(struct fi=
-le *filp)
-> =C2=A0	return container_of(file_to_v4l2_fh(filp), struct rga_ctx, fh);
-> =C2=A0}
-> =C2=A0
-> +struct rga_hw;
-> +
-> =C2=A0struct rockchip_rga {
-> =C2=A0	struct v4l2_device v4l2_dev;
-> =C2=A0	struct v4l2_m2m_dev *m2m_dev;
-> @@ -88,6 +93,8 @@ struct rockchip_rga {
-> =C2=A0	struct rga_ctx *curr;
-> =C2=A0	dma_addr_t cmdbuf_phy;
-> =C2=A0	void *cmdbuf_virt;
-> +
-> +	const struct rga_hw *hw;
-> =C2=A0};
-> =C2=A0
-> =C2=A0struct rga_addr_offset {
-> @@ -138,7 +145,19 @@ static inline void rga_mod(struct rockchip_rga *rga,=
- u32 reg, u32 val, u32 mask)
-> =C2=A0	rga_write(rga, reg, temp);
-> =C2=A0};
-> =C2=A0
-> -void rga_hw_start(struct rockchip_rga *rga,
-> -		=C2=A0 struct rga_vb_buffer *src, struct rga_vb_buffer *dst);
-> +struct rga_hw {
-> +	struct rga_fmt *formats;
-> +	u32 num_formats;
-> +	size_t cmdbuf_size;
-> +	u32 min_width, min_height;
-> +	u32 max_width, max_height;
-> +
-> +	void (*start)(struct rockchip_rga *rga,
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct rga_vb_buffer *src, struct rga_v=
-b_buffer *dst);
-> +	bool (*handle_irq)(struct rockchip_rga *rga);
-> +	void (*get_version)(struct rockchip_rga *rga);
-> +};
-> +
-> +extern const struct rga_hw rga2_hw;
-> =C2=A0
-> =C2=A0#endif
-
---=-awLPo3pA3zArYr6dvmmF
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUwBVQAKCRDZQZRRKWBy
-9EhfAP9NFN5Gi9iSlGoayoestjhwQjvne6kf9ylqAav2YZMMZAEA1vK9QTuK0wzf
-+eOOLadRyOphXELA/ZHF8GxcJghZbAM=
-=ru5T
------END PGP SIGNATURE-----
-
---=-awLPo3pA3zArYr6dvmmF--
+-- 
+With best wishes
+Dmitry
 
