@@ -1,137 +1,228 @@
-Return-Path: <devicetree+bounces-249376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904B9CDB6E2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 06:41:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EFD8CDB6EB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 06:41:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1B40D3036589
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 05:38:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6902C3042199
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 05:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F7632826B;
-	Wed, 24 Dec 2025 05:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CDEC32826B;
+	Wed, 24 Dec 2025 05:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HEzs6za+"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="R6XgnDng"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022093.outbound.protection.outlook.com [52.101.126.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8F932A3D4
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 05:38:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766554737; cv=none; b=jj85JfuQjBMo6RdJvXyzwmOy/ag9T2a1Vf98BADxvlDSigIOkHrDVvmJurqOppdINPaxfWZLfKa93QtrSAgfDwNpec/csMcd2dGmGu64NJLUX+8muQr53s/x4KJFHUgXG4s9b/VoaQhcIk4pcyuw+nOnfAHDeXcrwAWXbJ/4v5M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766554737; c=relaxed/simple;
-	bh=gYJuqgstKIh0GJjfHL+Z+Y8jqbQuzP2SNZTadlMrpwc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZY18Xv3zEnyJC06XaDA+TkUaf7qqxiu+juWqv1bgNQu15iNnJS/Z5CT/dgvJ/h6OxWTLwESjgtNLcwG5YEUsWgtZZTO3y7bjkn43GXuPXBaNFBb8ugFQM6co8al+tPcwBFM+WAjuxG4zVp9xI5iXZfRKdC+tngFg4CtqiNIFJ/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HEzs6za+; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-37d96f97206so43111071fa.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 21:38:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766554732; x=1767159532; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gYJuqgstKIh0GJjfHL+Z+Y8jqbQuzP2SNZTadlMrpwc=;
-        b=HEzs6za+cUrXJh+kQooA9bq6BhJMRFof2QyHck4FC1VqXCAP58wB/1/6XTp2lmRQJE
-         uvcmHO7ZFIJ0nDIztrO7Yq3JKHF8E8P3F10LFIE2lGKDUgARP2QSyHfMAW+mOnH6mK9B
-         33/wpwWC8ccfbHQ8I9h/erK7CjqwYj7h53FsgdHDt4xJfTvsFAWdA/PYcMkVLRg+xK0k
-         GvvP9LJzFwSHoZfS2VvKuA7Vn+PwufBwygPMsn/w+B4O+YuzMoek0a+Sdo7AY3pJMAbV
-         5ZCqiDFxJZgZqVPDHjIEynp5LVGOh5AmF8pPY4Ir6xQ66LfEoiAJcwhkSCEhoXb++2Am
-         Yvrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766554732; x=1767159532;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gYJuqgstKIh0GJjfHL+Z+Y8jqbQuzP2SNZTadlMrpwc=;
-        b=jSSgRfGcw4ugaX3pZJXOckV2UwfTnGgReC7Rfnip/wMl3ecSCo75G+WGCbzev8S1xR
-         Bf8vHiX8e9XMx72sz5a9dGDuL2S6WNw8logTGlhPum+e3m6Y73qanYXeOPvLSNC4f69Y
-         OU/du8PkKcBHdNm8rpDZFTzex9uOACBeX6KfCttMP9XjabLHYxwTOVVzY7Vr7TqHcQES
-         YHEVBMIl7k/zXgICtmJxidyRnW7xwad3wHpbg4pTPry+VqexCO123A7wxHeJh57fHgBs
-         AXvSDe0iM8ofbAv2jMFOQVvgugNxIVrCnHSSqrkOhge+UeyriC2iggu28H5nZBimlyX4
-         teIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXAgDMDILMMDy7XPziINcmaap7/rjxssRp4PC9NvjyiRgMVJSWG/QzdnLtKKTlRufS/Y4LHC3UlFCt4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIjHwB9eOej53Y92FoDPnNXOd1tj1UumMcdfxZrAXV7MBOcKNg
-	7lgT5B7rwsPOUCM3NRjg59cMf8x40vaEq3PjfrdYusZFpPpQ2fGSy0e1Gx52ppX3dge9Bew9UFV
-	Vw5pMYwPtPsdDyzJUoLiv1Rq4gKVIbRU=
-X-Gm-Gg: AY/fxX5Gowo0hdQq+DFqKt5cfBP63CA/9MIR9w/sbNyyxlOOynNu+yv9vbm9t4ZdWMx
-	PKJF5bSWnONUbmeu3qLnRmXhvAimdv3ZmeVojbYIih69CqpZaEQLbsRAyrH3Vh/8h02q1NcnA3v
-	OBW8SWFZ375hi2fbSrcGksyvKJLIie3v+ZVa7u4txVw8/4xhQJWtmS1zgmtjMFTYosXYC+HZroy
-	SGY/LJRFHMX5psWWE47vKEElC3zAP4hxP4sMo2b2uyPWDoGUj9un9rZbiLh9lgJRG1xDUfVQouu
-	y3T8fJ8=
-X-Google-Smtp-Source: AGHT+IEhBbHKWWQqJ0bLZ90EcsrdJcWpLU40nsZoqwzQPtLYH3hGZjtotZ2t+Nq21znTqVIk5zZUzbsS4uHKvlFDmMM=
-X-Received: by 2002:a2e:be20:0:b0:36d:4e3b:f1e3 with SMTP id
- 38308e7fff4ca-381215967a0mr50931101fa.13.1766554732253; Tue, 23 Dec 2025
- 21:38:52 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9828427979A;
+	Wed, 24 Dec 2025 05:39:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.93
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766554776; cv=fail; b=qcXbAVvoQlHh1F6dFcLA0Jw/Fqk63oIQ9wX52WmhqXNbwUPn+ueljyp1pPTHnqdsPIsVNnZ3QUdGAHN7Gse1IXmLTD94UOV8wmSluxjENngI+EeXWPzNFnMVoMFOtWDbkoCYfqj/f5rqK/UNtmhYkw4Ho8lHsfHRtwA1bb8DWUI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766554776; c=relaxed/simple;
+	bh=BnnURos6S40ZT7az1HWtOsw5V83nylZGgSuw2UZZVsI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=WmmacHSk9d/iolExdpNdYtLPGJhwpa4beNk9raGSEcv9otuOXKqCwLAtVpQ4ZNpH8AGaRG/SQStCozkTXFT3N49XWjpXWWIhuPUiWLQWRXf1PO2wFNp0rTQmZWjezEJXzJgyTJQ3fsIXr3KteQu+k4jWsGSLO8v2yai9pIcM/B4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=R6XgnDng; arc=fail smtp.client-ip=52.101.126.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EKTqGpn+PsazIU33X+c1ewtgYP3mB5xkybpdH1fu23JXaz9IYdxkrN3bLAqCn/L5agbtbD1l8MGtl9kyRvhGl0DHTnHlROFGl++MepR1SWX3UOhORij6SO9p1WOWPvTmNgxXgGV08ki3bE+vh85hpUN1oZbr1NzErlkqkNfgifQjIbduBM30xDeV/NV0QU8ptCtuSD1tPzKzetftZxp9iDMm8bQxGjU9giH6TpSpn/3Di0ggfCYNzA36dONsp6hHXQ9ayVC8droKrLo9piSDf5sEV4HN6wZVoSE4ELDvcVdJ3FdmgS9SfP7VSs8VxPsDgYTSd925FOaz5Cw6MHBCfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2qTQw5xW5atoSR+OYcKpWmbmedGgyPtYwQF3SnPg904=;
+ b=SaOJSwzZzdnGam2X3HAU8DKTXjqhdKzq2oLvICiIxiWG8hF88834M/lGPWoGjXkz52Esz2Cg33k8+Ht1MTTmJpSk9Dsk4+/vX33JBz3d73iD3H40baJU2TPyQ+a7tfkZh49KMStUZFFkFvA3G/bsODPfTimrz8GebBqa8p3rHhiPd5UI/HxY0CAC+Oq8hlXM0G4G6f50eBB8vvKJ5lPSC/vRxD73zWdbz5Cm5u98QklSxT2gwqu5c69maohuyZXM5QQhN1qSaBypjDyxM7DhkfTIHYXkRVjP1qFflNEsyRwjuX4z4P6NHL5bDNKG6bA1LAfgboThtx3bbnvebe8A9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2qTQw5xW5atoSR+OYcKpWmbmedGgyPtYwQF3SnPg904=;
+ b=R6XgnDngmczvOL8fmw5ZWUqSYbYjWzr2Hrwd0EfFzkVndAPuaR/VU5ToVCK8cvsSKLT8EsQAeiSlL0LLLvYGVyxFqYyt/BfgIiw7p1qbaP85TUlXpGFuyDk0GD2dtkZpuSvAXM3W5hPhHZARJNQ3fSnXZHGf7ixqedCKuzgWaT5HWLY+xDlXB9awq/liHKVEWI1dO7dlZT1GF4D35Yiuks7DMVfSUbDTQxlQDZpk7/nA7+iK7Nc+ezkLMSIT79+bwHqVAcMkwhggLm4gHm6yYXlklxgntZJIL4AuvJ0QeD9/3VTkEms8FWob7Sgr7tNdQ8XnJPa3UeRS5IzBa61z6w==
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com (2603:1096:408::791)
+ by PS1PPF2FB011D08.apcprd06.prod.outlook.com (2603:1096:308::248) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.11; Wed, 24 Dec
+ 2025 05:39:31 +0000
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::df4f:b1a1:1825:4a80]) by TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::df4f:b1a1:1825:4a80%7]) with mapi id 15.20.9456.008; Wed, 24 Dec 2025
+ 05:39:31 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Brian Masney <bmasney@redhat.com>
+CC: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+	<sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Joel Stanley
+	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, "linux-clk@vger.kernel.org"
+	<linux-clk@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Mo Elbadry <elbadrym@google.com>, Rom
+ Lemarchand <romlem@google.com>, William Kennington <wak@google.com>, Yuxiao
+ Zhang <yuxiaozhang@google.com>, "wthai@nvidia.com" <wthai@nvidia.com>,
+	"leohu@nvidia.com" <leohu@nvidia.com>, "dkodihalli@nvidia.com"
+	<dkodihalli@nvidia.com>, "spuranik@nvidia.com" <spuranik@nvidia.com>
+Subject: RE: [PATCH v15 3/3] clk: aspeed: add AST2700 clock driver
+Thread-Topic: [PATCH v15 3/3] clk: aspeed: add AST2700 clock driver
+Thread-Index: AQHcObcYZfDa5MFRHEuA0bcfdj7WJ7TVoHpQgFi04wCAAmYLEA==
+Date: Wed, 24 Dec 2025 05:39:31 +0000
+Message-ID:
+ <TY2PPF5CB9A1BE61BCB26BC17BE7824D429F2B2A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+References: <20251010072540.666673-1-ryan_chen@aspeedtech.com>
+ <20251010072540.666673-4-ryan_chen@aspeedtech.com>
+ <TY2PPF5CB9A1BE64DCD487138F3BAC4FD34F2FCA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <aUl5DPMq8jC1xjRu@redhat.com>
+In-Reply-To: <aUl5DPMq8jC1xjRu@redhat.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY2PPF5CB9A1BE6:EE_|PS1PPF2FB011D08:EE_
+x-ms-office365-filtering-correlation-id: f39ed406-b9db-4ea4-6566-08de42aecff1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?b+zv4mny1XOSFS4buab/CGIj7UTRskbmLl5N7HnInB/nOaKGb5api1z443pE?=
+ =?us-ascii?Q?QXyjdejOKbPDAcVt3lOqWmYOVYr4ZapwP5X6MmcS7ZjVBTZd7SnmjHN6OgHr?=
+ =?us-ascii?Q?I4Nh+mV8/8CTLoHZD3ev+oQgtvU4c0mZyxahU5kzBK0v89xFq+H93Tiiq5TY?=
+ =?us-ascii?Q?6TJPvNMjZry4DShzYkOZHxfpkb1xF4QLvNfKDs8YcJEylPgacXoLUDlt0fHP?=
+ =?us-ascii?Q?zSSqRD1q/LiSxpoOV5Na0dxKVgV/GCQBn+oixby/Fibc9HcXLFkLtFxvVOLZ?=
+ =?us-ascii?Q?pRRU+1O2w7Q73Ou/RiieP4pPwHeDJrd5GW9u2sCLPpTqzNJIh3mmURYB532+?=
+ =?us-ascii?Q?NmLarDZDPQZ+WMdlebsCyLdlRFIYeZlOEeVScLAMaNvZ1pzWC4YpHGWxCUg5?=
+ =?us-ascii?Q?STjY6LZFeHkbPVUmvioKKZ4SsovLTtRF49vAQQsm8WQa9rz++e2ZN4RM8fXN?=
+ =?us-ascii?Q?S7UfgZTnsfuhJtOiu171JZ7zy51/C8eTlu5iv1ZBUgrO/yAINWK/Ja+BNFG/?=
+ =?us-ascii?Q?bsK4mtDshxfZYZnRuu/25VSugxPTI7Th8/GvX8VuD/0ZIqaL1iYFSmUy5Eiq?=
+ =?us-ascii?Q?wVDiaHi/xLbYF70GM1GK6BHeov+cmY70ERMEILrJQLwmyExdIArxWHeJhIA1?=
+ =?us-ascii?Q?keCj0G8j7Th2qdmFgAxsAU3ZoOiusSF6TdCR43vzOqXuWc1nXUsR7C+8xNFU?=
+ =?us-ascii?Q?GzdYgwvHz3JbKrZg+EtvwV+MGevSKEFfXmkzKsBT9J8YFXLsI6kGraOR2M+s?=
+ =?us-ascii?Q?SQ074swCCXzyq2szPwF1AcK7KM5uxD5wXGjyYcyl66NTNm1EcArF8HGd7cuk?=
+ =?us-ascii?Q?HuBAMy1bSNZiwrQQ9r6E2HTVsqdJBG4hkLwcyEJ5x3sexuChVYTIeoIISZTW?=
+ =?us-ascii?Q?KKZTwTQrEsrbiKcDak9d/D9/E0KvkCpLANHotCdFTaXd66A/A7FufNtnR1BG?=
+ =?us-ascii?Q?KkGo0vzhgCCj5/aP2Dank0jThVq4WUkgLhz7r7y3d7X8L7IKXBV8x6LHzOGc?=
+ =?us-ascii?Q?+lLa6rv3UOdlHkUk66VqwpqNGNy9J6HfNxixXtdodnXXjxoeQeYbqxkrzay0?=
+ =?us-ascii?Q?Uw4U1lT8LuzTbZtwAeez8ttFEtMa4NDoqxzmC7KYFCJx5CG9rQ25N6vLojQy?=
+ =?us-ascii?Q?pACG0CQGX9exs02e2TZWbOHoDJdc9gf/M0Pl5iqRrxxUEHjLP7bqJ/b/plmO?=
+ =?us-ascii?Q?ETAjjhodpw+0Pggms0FsOmjx4KgU6eDIQ2beGP6AxCA5exiUO4JKvuydPjSz?=
+ =?us-ascii?Q?PtvlqOohkmkBhFIGmGP8N4L9q6v4PsWDH+aZVUS1XfogPH+OXxFfY3J1adsz?=
+ =?us-ascii?Q?ckeTIA4QOgvg2VKQ9lE7OJpK2/vuv79oFUGGIFdrr11DsdF2l3TG3ll4D4u9?=
+ =?us-ascii?Q?qWehco3Jqlee06B97JvKkuoZvIJQB4BWf9TMhtchOFXzc80mNiB9F9oPtin1?=
+ =?us-ascii?Q?RSxHKuDbt1tURaeY1HmwvMKt6uME+HpWlhMgfwEvqcdbGIwz/9vkiBaWGuBm?=
+ =?us-ascii?Q?SZrmuKh0ku6U64hHwUfrmPs7yqAm0qyNdCGB?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700021);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?esYyHI6TiED12PT09M6ec0dNUZdUmHApI7Rq/ijtz8HPBXZzSxKEcXIsgX4l?=
+ =?us-ascii?Q?LDsGABwpfppOpNbsdoNlsaXeSvMzscewsxiacbK2fWdDmkLh9K/O+8/HH2KT?=
+ =?us-ascii?Q?a/ruVdHHzr4PiPO2hR6Cg+7G7zPseutfk8YwMuFW09b+3jmRw0bFUNQBcE7G?=
+ =?us-ascii?Q?X+HKhJ/9cerA6SRZF1J0Mm53fn7zEK+q8zA0iFrjbLBQI5I+u0qYtyr5DH9i?=
+ =?us-ascii?Q?xY9jXnFMsYyTQLSX0ntA/v8jyrD5BsS5ydPXykue3l8OQWFJVr+qi63RZ2gY?=
+ =?us-ascii?Q?i7kKZLn36OXFOMzVrS0suksV4zuHSJoU6bpqjsYkUr3Kd3oAT+hOqITIB/KD?=
+ =?us-ascii?Q?5WanYG1aLm2dfVXmiQpyFodvEjAGLYsJvYpx+YfnumXoTmE8m8MM7oWOZWHL?=
+ =?us-ascii?Q?To3/bRDden9g4bCWRZpOh90AXvoKrQKNh1F0suOSCGiz6pctxhDHb7SGq9nO?=
+ =?us-ascii?Q?27/rUlLq0A9tg+EsIPcx7V0MBNvRkAxWh0kpgpAKunhZNGZd6FmfrMEj8S7y?=
+ =?us-ascii?Q?f0XrFES2wdPAx3SfaSYMyoohflp4SefegENc2mOX/r4eFyPxQYe9hhiOUUZW?=
+ =?us-ascii?Q?RrOzpAUg8fH1kRAeCSF5OA18avKfpwP5b/ifRbdifi9pNzi4ihLs3QGaxufU?=
+ =?us-ascii?Q?E4B7aiKjeCLmWZybkcvyVbHgYPgCpyULN8xwJgDHhVfwDTbU4xWhLZTxfwT/?=
+ =?us-ascii?Q?84HsGd8ei2jMgKOPEVvIyb2CeW2fvQLmh2/oci7R6PQ45K3NprHr/w4vFhC9?=
+ =?us-ascii?Q?JxqjFg5YfePpeqd0m3AMibaOFydftO3rxxYqVtfNT3C/MqRrDqAwbPvKyUYv?=
+ =?us-ascii?Q?0J/ZXQ+WDTyVBSlBT/sSKChukxrJgoMbNdRM0xyuDB3Fp9J34FoYa4A/zVVE?=
+ =?us-ascii?Q?zrj6TUNPpCjDx9YENSD+qCFIiMKWmZCmLlPjS6Wy62ERmArq3qBLw9yKtHgi?=
+ =?us-ascii?Q?UvZ2zkvMa8LdyGaoIJl54UTR1o3vemmGpaISrUZyTgiTrEcHndNhmj4UxITW?=
+ =?us-ascii?Q?HAr/BCn6wTLCo9/O84tFXhaTAKB3DmpzmtEEhUgw2BeZB/11eHvA32cOVOFH?=
+ =?us-ascii?Q?vEonrD8mXYZlCRX+pwxo4uqByWJY0SB1m4/Qd22PdcUKgUzsqG4hN2WBeBDk?=
+ =?us-ascii?Q?g0AhSm2CryH9zEWUB5fHc/X+ZiSfyT8862sIsIzUuzSCB6aEF90CbzkqDLw1?=
+ =?us-ascii?Q?eu5UfHokyFFvEn0a4MZSH3YzO8mdxn7+XI66vfIgue2Dog1UNQh35pnxT2TU?=
+ =?us-ascii?Q?Lb1T0CVIGEeRQ6O8lBEPkzuk0lVtEkx5FJ2G3vH66VNsOHEYfTzVonmEJJgg?=
+ =?us-ascii?Q?7J5JuzIFMRM75cIS/vdLpzHE0xpMxtII19G55PQxaG0TY/hgFywQm/g2ytFj?=
+ =?us-ascii?Q?rMe/x3KUGDla8m8ekw7xIIL+uJdsP0A/2MDIvwok+QmON+/Zf7+2F3qfuxSP?=
+ =?us-ascii?Q?PU6UcEYpAfeHbXcojjiXGJfg7Dsb0ef08gFYE9Gj5bGMMgJ9Fxm7ZoMA2Jq3?=
+ =?us-ascii?Q?v7sMriWUt4DRsNBc/7fnkdH7p465WATKSVF2W71vWKUWfv/M3Wqo+uTNAa7f?=
+ =?us-ascii?Q?EZ3zYm4gYpCgdOFrMGx9j1JFXLvWC76uG7flrhz77SG7W6+yvatNOJmsuUsj?=
+ =?us-ascii?Q?wiinHcGX+AlyRvy1LyCRW6sckQ6uMF5zZXhzn3r0plZ1b3CMJdUlGo+6DvL+?=
+ =?us-ascii?Q?bKfwC362psX3c+gMTZ9vV+oVUoY99fUJJoH7WvtGFwB30OX9yD/esG7PoC+v?=
+ =?us-ascii?Q?xwsbJmvMLQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1763415705.git.geraldogabriel@gmail.com>
- <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com>
- <CANAwSgQ726J_vnDKEKd94Kq62kx8ToZzUGysz4r3tNAXvfAbGA@mail.gmail.com>
-In-Reply-To: <CANAwSgQ726J_vnDKEKd94Kq62kx8ToZzUGysz4r3tNAXvfAbGA@mail.gmail.com>
-From: Geraldo Nascimento <geraldogabriel@gmail.com>
-Date: Wed, 24 Dec 2025 02:38:40 -0300
-X-Gm-Features: AQt7F2qOfdS6yP1-vW3vU0Wj_YVm_E2b3cZOlrdQ3B5k7vwUx3LT0aqmG2BtcdU
-Message-ID: <CAEsQvctSY7-RQEQF2TmJU2qKPZOe9TC5g-7Jat0LQKRHYz_6dQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] PCI: rockchip: limit RK3399 to 2.5 GT/s to prevent damage
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Shawn Lin <shawn.lin@rock-chips.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Jonker <jbx6244@gmail.com>, Dragan Simic <dsimic@manjaro.org>, 
-	linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f39ed406-b9db-4ea4-6566-08de42aecff1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Dec 2025 05:39:31.3229
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xRMb1UOahMwoF8w3OkHzXpxNjiGjnHztbuXTlWgbkoZg0wrb7K1bC5Q8HG9xRjZ/o6Xc4c8w+WJhzCf5avvOuI/twKbsoVqv7c3nQQsOJTs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS1PPF2FB011D08
 
-On Wed, Dec 24, 2025 at 2:18=E2=80=AFAM Anand Moon <linux.amoon@gmail.com> =
-wrote:
->
-> Hi Geraldo,
->
-> On Tue, 18 Nov 2025 at 03:17, Geraldo Nascimento
-> <geraldogabriel@gmail.com> wrote:
-> >
-> > Shawn Lin from Rockchip has reiterated that there may be danger in usin=
-g
-> > their PCIe with 5.0 GT/s speeds. Warn the user if they make a DT change
-> > from the default and drive at 2.5 GT/s only, even if the DT
-> > max-link-speed property is invalid or inexistent.
-> >
-> > This change is corroborated by RK3399 official datasheet [1], which
-> > says maximum link speed for this platform is 2.5 GT/s.
-> >
-> > [1] https://opensource.rock-chips.com/images/d/d7/Rockchip_RK3399_Datas=
-heet_V2.1-20200323.pdf
-> >
-> To accurately determine the operating speed, we can leverage the
-> PCIE_CLIENT_BASIC_STATUS0/1 fields.
-> This provides a dynamic mechanism to resolve the issue.
->
-> [1] https://github.com/torvalds/linux/blob/master/drivers/pci/controller/=
-pcie-rockchip-ep.c#L533-L595
->
-> Thanks
-> -Anand
+> Subject: Re: [PATCH v15 3/3] clk: aspeed: add AST2700 clock driver
+>=20
+> Hi Ryan,
+>=20
+> On Mon, Oct 27, 2025 at 06:24:59AM +0000, Ryan Chen wrote:
+> > Hello Stephen,
+> > 	Will this be accepted in clk-next?
+>=20
+> Given that aspeed is a SoC vendor, and you already have multiple clk driv=
+ers, I
+> think at this point your best bet is to do what the other SoC vendors cur=
+rently
+> do. I think you should:
+>=20
+> - Create a new subdirectory drivers/clk/aspeed/
+> - Move the existing aspeed clk drivers into this subdirectory, and
+>   update the Makefiles / Kconfigs as appropriate.
+> - Add a new entry to the MAINTAINERS file for the aspeed clk drivers.
+>   You probably also want to have that entry cover the reset driver,
+>   and any other aspeed-specific drivers as well.
+> - Post that patch set. Include this new clk driver as a separate patch
+>   in that series. Feel free to CC me to the series and I'll review it
+>   for you.
+> - After it's reviewed, wait a week or two, and send Stephen a
+>   'GIT PULL' using git request-pull. I can help you with the workflow
+>   if needed.
+>=20
+>   One important detail is that you want to base your branch for the GIT
+>   PULL on the lowest common denominator, which is usually the latest rc1
+>   from Linus. So even if Linus is at rc5, try to base yours on rc1, unles=
+s
+>   there's some issue, and you need to document why. Stephen should get th=
+e
+>   merge to newer rcX branches from Linus, and not you.
+>=20
+> When you send a PULL to Stephen, you can use 'b4 am' to assemble the
+> contents of your branch. When I sent him a PULL a few months ago, I inclu=
+ded
+> the b4 commands that I used.
+>=20
+> https://lore.kernel.org/all/aL8MXYrR5uoBa4cB@x1/
+>=20
+> If he accepts the pull, you'll still need to post your patches to the clk=
+ mailinglist,
+> and have them reviewed on list. Folks from aspeed should do that review
+> publicly on the list.
+>=20
+Hello Brian,
+	Thanks a lot for your guidance. I send out v16 next.
+Ryan
 
-Hi Anand,
-
-not to put you down but I think your approach adds unnecessary complexity.
-
-All I care really is that the Kernel Project isn't blamed in the
-future if someone happens to lose their data.
-
-Thanks,
-Geraldo Nascimento
 
