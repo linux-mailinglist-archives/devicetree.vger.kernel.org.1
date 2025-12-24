@@ -1,155 +1,95 @@
-Return-Path: <devicetree+bounces-249565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 580A6CDCE5F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:53:14 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E876CDCE74
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:58:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E79E53009AAC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:52:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F19963020208
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1096331A7F2;
-	Wed, 24 Dec 2025 16:52:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4847332572A;
+	Wed, 24 Dec 2025 16:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="dEvno/hn"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="TnEmii2p";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="TnEmii2p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81455145A1F;
-	Wed, 24 Dec 2025 16:52:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78AAC1419A9
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 16:58:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766595132; cv=none; b=C8aePBXOV4Zb+H66nriVNvntci9scWeBzKC3VunO/WPrBQHMx0RM0OJEJGT3x+j3olFfa/mSkaGmWDOjHQhPMQWPXM6zBV9VqR2ZO1qh4PWORRoC/XniTWHxP5qqxff0KY3XdamUKsNLYUX7bhhM/B6rFveviycGu+y1e4UtS0E=
+	t=1766595531; cv=none; b=lkyekZegL6Wfa94SU70DoasMrt9FruRJNmyZ5fIkuZKAHYqQKYCAeuQLXKWMpnjua+XJSQIR2IQ78tXN/Q876g+jGpcaaAvuAIR71bUmwkNwmqWFOhAMwb7YqSzs1Xu3kZuh8UWvCuaWjEK1Fg/Uyr7GRUwFUPzE/ZAi0xx6IGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766595132; c=relaxed/simple;
-	bh=C33Wmkz7HToOa4OG19kHvAVpDFDENgAzSEEehlQUsVA=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=kZ4FYE9eLWl48biQb0fZUJ9hL6QTQ/+jSZvaT4aqe8QXXfXDC2yvhNEgCks4tifuH7nRIJzjBUoW6ouZTzUiw9f2xA07lymx8AGdZ3JigrQhLZBVX38F0E9w1dWcF2mKMN4ek0RSSNCKSVE8Qn9GNIEDjM+4GvN85YSzrxIL/28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=dEvno/hn; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id A395C418A6;
-	Wed, 24 Dec 2025 17:52:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1766595126; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=FAlvebUUG2bzxrDciua9nbFHHFRu5loYHuWIcI/vSNo=;
-	b=dEvno/hnZfKDLt2EyPrnqbHoMqCokv0GPc7Jm8I91GfJpoPGEwhch2O7dQfp1s8hW836sI
-	wFaAFNDJyNtyLf9maDbvEEg4urvKf8jzsX7gYppR0zWFIxgU16vEWkapdEErOcNSKjqWUo
-	1IZWg0Pf/ZVelylRiuqZjULdC3AC972jpo1xLp2wtZ5jGWxCU5qm5oH6SmnvFhim8dFzFz
-	waqBqGmYY4mYo1Umz0pLBa6VuOg1Pg7agGkPEa74d8I0HK7z0YyKIVWQOIVhv32ZF6h+Oj
-	esDxaolb8W5uxwBz8WqrhgwpFgNzjG6nWBJfhceZLRuAWROpPcL6U27JXTVOiQ==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <CANAwSgS6UeR4PJnWDxxcQbdH8u_4uNiQxCTugQS35LcPvpiwMQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-References: <cover.1763415705.git.geraldogabriel@gmail.com>
- <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com>
- <CANAwSgQ726J_vnDKEKd94Kq62kx8ToZzUGysz4r3tNAXvfAbGA@mail.gmail.com>
- <CAEsQvctSY7-RQEQF2TmJU2qKPZOe9TC5g-7Jat0LQKRHYz_6dQ@mail.gmail.com>
- <CANAwSgQPQUBi6VVb+hZNraMt71vnRpki+YK_at=Luo4aPVtOPg@mail.gmail.com> <0afea20b-be22-2404-5a8e-c798ed45f2fd@manjaro.org> <CANAwSgS6UeR4PJnWDxxcQbdH8u_4uNiQxCTugQS35LcPvpiwMQ@mail.gmail.com>
-Date: Wed, 24 Dec 2025 17:52:03 +0100
-Cc: "Geraldo Nascimento" <geraldogabriel@gmail.com>, "Shawn Lin" <shawn.lin@rock-chips.com>, "Lorenzo Pieralisi" <lpieralisi@kernel.org>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Manivannan Sadhasivam" <mani@kernel.org>, "Rob Herring" <robh@kernel.org>, "Bjorn Helgaas" <bhelgaas@google.com>, "Heiko Stuebner" <heiko@sntech.de>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Johan Jonker" <jbx6244@gmail.com>, linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-To: "Anand Moon" <linux.amoon@gmail.com>
+	s=arc-20240116; t=1766595531; c=relaxed/simple;
+	bh=ye+C5uRddAqNX5xzzwVvISOeNHQJNiRYm+Gb5ec+iL0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RQdpK+czhkuJP9yNGTWF9LxKhPwQBxnTbP3pCeGv2QdxBRdGdxF1OC0ILBtigSb8J7224IWQ0HCjYFlSnpdGmS+8E8neIEUt4S55bUBNh70TEZdK6LoSKEKgxvZaOVHQqC8r8l9leen/+qSoA/uprRwCqxBund/R5fdz1p6dMV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=TnEmii2p; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=TnEmii2p; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1766595527; bh=ye+C5uRddAqNX5xzzwVvISOeNHQJNiRYm+Gb5ec+iL0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=TnEmii2pRmJiCzVgsCXlv1ufwc52f7BrI3VTZHT3+QWI+kbSHX+Bi+A4+TC0zMB5H
+	 9bbP+833IPPXYkQfFqT4S1L80UOPY28sI8In9csJ5RgNG5bo/Qrf5+5OqXuZbZk1sa
+	 bOZYIoZ6wOMP5gg6ktgPYrd6nv+AeU6qYjTlX1F16hvV0pjqaCAvs0ajKuQT8HFqa6
+	 pvHdqDJTGwUfaNB8JzyeQOeNxJBNyzoglkC4s6lF2nycuhBc/oofkCrPykKA9/hFsT
+	 bF7ETEPxxWq93EA6Ad6h/tVbMCWU3x2+cKaujdK02jHGWxDKon3KNcLKgQ/wSNc6tF
+	 TRHITWmRGhqsw==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id D37E13E8A84;
+	Wed, 24 Dec 2025 16:58:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1766595527; bh=ye+C5uRddAqNX5xzzwVvISOeNHQJNiRYm+Gb5ec+iL0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=TnEmii2pRmJiCzVgsCXlv1ufwc52f7BrI3VTZHT3+QWI+kbSHX+Bi+A4+TC0zMB5H
+	 9bbP+833IPPXYkQfFqT4S1L80UOPY28sI8In9csJ5RgNG5bo/Qrf5+5OqXuZbZk1sa
+	 bOZYIoZ6wOMP5gg6ktgPYrd6nv+AeU6qYjTlX1F16hvV0pjqaCAvs0ajKuQT8HFqa6
+	 pvHdqDJTGwUfaNB8JzyeQOeNxJBNyzoglkC4s6lF2nycuhBc/oofkCrPykKA9/hFsT
+	 bF7ETEPxxWq93EA6Ad6h/tVbMCWU3x2+cKaujdK02jHGWxDKon3KNcLKgQ/wSNc6tF
+	 TRHITWmRGhqsw==
+Received: from mail.mleia.com (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mleia.com (Postfix) with ESMTPSA id 4DF5F3E837D;
+	Wed, 24 Dec 2025 16:58:47 +0000 (UTC)
+From: Vladimir Zapolskiy <vz@mleia.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/2] ARM: dts: lpc32xx: minor updates to NAND controller nodes
+Date: Wed, 24 Dec 2025 18:58:43 +0200
+Message-ID: <20251224165845.1261926-1-vz@mleia.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <648aa5c0-9e58-2404-4250-e83b8a748601@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH v2 1/4] =?utf-8?q?PCI=3A?==?utf-8?q?_rockchip=3A?= 
- limit RK3399 to =?utf-8?q?2=2E5?= GT/s to prevent damage
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20251224_165847_885325_B1F015E5 
+X-CRM114-Status: UNSURE (   6.57  )
+X-CRM114-Notice: Please train this message. 
 
-On Wednesday, December 24, 2025 17:11 CET, Anand Moon <linux.amoon@gmai=
-l.com> wrote:
-> On Wed, 24 Dec 2025 at 18:25, Dragan Simic <dsimic@manjaro.org> wrote=
-:
-> > On Wednesday, December 24, 2025 09:04 CET, Anand Moon <linux.amoon@=
-gmail.com> wrote:
-> > > On Wed, 24 Dec 2025 at 11:08, Geraldo Nascimento
-> > > <geraldogabriel@gmail.com> wrote:
-> > > > On Wed, Dec 24, 2025 at 2:18=E2=80=AFAM Anand Moon <linux.amoon=
-@gmail.com> wrote:
-> > > > > On Tue, 18 Nov 2025 at 03:17, Geraldo Nascimento
-> > > > > <geraldogabriel@gmail.com> wrote:
-> > > > > > Shawn Lin from Rockchip has reiterated that there may be da=
-nger in using
-> > > > > > their PCIe with 5.0 GT/s speeds. Warn the user if they make=
- a DT change
-> > > > > > from the default and drive at 2.5 GT/s only, even if the DT
-> > > > > > max-link-speed property is invalid or inexistent.
-> > > > > >
-> > > > > > This change is corroborated by RK3399 official datasheet [1=
-], which
-> > > > > > says maximum link speed for this platform is 2.5 GT/s.
-> > > > > >
-> > > > > > [1] https://opensource.rock-chips.com/images/d/d7/Rockchip=5F=
-RK3399=5FDatasheet=5FV2.1-20200323.pdf
-> > > > > >
-> > > > > To accurately determine the operating speed, we can leverage =
-the
-> > > > > PCIE=5FCLIENT=5FBASIC=5FSTATUS0/1 fields.
-> > > > > This provides a dynamic mechanism to resolve the issue.
-> > > > >
-> > > > > [1] https://github.com/torvalds/linux/blob/master/drivers/pci=
-/controller/pcie-rockchip-ep.c#L533-L595
-> > > >
-> > > > not to put you down but I think your approach adds unnecessary =
-complexity.
-> > > >
-> > > > All I care really is that the Kernel Project isn't blamed in th=
-e
-> > > > future if someone happens to lose their data.
-> > > >
-> > > Allow the hardware to negotiate the link speed based on the
-> > > available number of lanes.
-> > > I don=E2=80=99t anticipate any data loss, since PCIe will automat=
-ically
-> > > configure the device speed with link training..
-> >
-> > Please, note that this isn't about performing auto negotiation
-> > and following its results, but about "artificially" limiting the
-> > PCIe link speed to 2.5 GT/s on RK3399, because it's well known
-> > by Rockchip that 5 GT/s on RK3399's PCIe interface may cause
-> > issues and data corruption in certain corner cases.
-> >
-> It=E2=80=99s possible the link speed wasn=E2=80=99t properly tuned. O=
-n my older
-> development board,
-> which supports this configuration, I haven=E2=80=99t observed any dat=
-a loss.
->=20
-> sudo lspci -vvv | grep Speed
->                 LnkCap: Port #0, Speed 5GT/s, Width x1, ASPM L1, Exit
-> Latency L1 <8us
->                 LnkSta: Speed 5GT/s, Width x1
->                 LnkCtl2: Target Link Speed: 5GT/s, EnterCompliance- S=
-peedDis-
->                 LnkCap: Port #1, Speed 5GT/s, Width x1, ASPM L0s L1,
-> Exit Latency L0s unlimited, L1 <2us
->                 LnkSta: Speed 5GT/s, Width x1
->                 LnkCtl2: Target Link Speed: 5GT/s, EnterCompliance- S=
-peedDis-
+The changeset contains two minor updates to NXP LPC32xx NAND controller device
+tree nodes.
 
-Let me clarify, please...  This limitation to 2.5 GT/s came straight fr=
-om
-Rockchip a few years ago, described back then as an undisclosed errata.
-Recently, we got some more details from Rockchip that confirmed 5 GT/s
-as having issues in certain corner cases that cannot be validated by
-performing some field tests or by observing the PCIe behavior under loa=
-d.
-Those corner cases with 5 GT/s, as described by Rockchip, are quite har=
-d
-to reach, but the possibility is still real.
+Vladimir Zapolskiy (2):
+  ARM: dts: lpc32xx: change NAND controllers node names
+  ARM: dts: lpc32xx: describe FLASH_INT of SLC NAND controller
 
-To sum it up, yes, multiple people have reported 5 GT/s as "working for=
- me"
-on their RK3399-based boards and devices, but that unfortunately means
-nothing in this case, due to the specific nature of the underlying issu=
-e.
+ arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+-- 
+2.43.0
 
 
