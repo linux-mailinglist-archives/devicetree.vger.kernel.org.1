@@ -1,75 +1,152 @@
-Return-Path: <devicetree+bounces-249513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92CF7CDC796
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 15:12:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C9ECDC784
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 15:10:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5B99D302C66F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 14:11:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78F8630694DB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 14:08:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3EC73624B1;
-	Wed, 24 Dec 2025 13:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7670B350D76;
+	Wed, 24 Dec 2025 14:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="f13ELqDx"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="OwOktS97"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F523624A0;
-	Wed, 24 Dec 2025 13:53:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A39253358CA
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 14:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766584383; cv=none; b=KHd2tqX4y3xUtDbvzY9+DrNWd28UyDYaj5BXubMUNmaCXxPw2sQIfJEhB9d9fifSB0urR7OIOmDS6ky0VPvLbH3yooD//YaklR3oNYiZbkdkL+WPfjGYbiFPrZsu/lmxrAFL8xR4JPDmzvhvxtYkPqUT08ca7qD5nyBN5zWTFcg=
+	t=1766584887; cv=none; b=FSD1Zb8kbrEeXGf/dA4yJUC3bKzLoYZ1wja07vIqoDjSztppSe7VKtnspxWDJ8RZeLVmwXHABz4AOyoxuL5Ugc5qwrxJz+/9DP5ZZ59OqrLhU1HhIFPQjLJ1aHL8w3fCVOOMwvtqzuwKHETIhBehdz1WsjwgyQ4TU475vxzYzQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766584383; c=relaxed/simple;
-	bh=9PK51ECBkOhdwQhJqIpfxbtYs8gBQMsdpeDhvx6eIxg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A825TgHFVD2cds+tptPvEruia+GcztksS4O4GQqz0K6KU6i13jK6nYOtX2GAoOx6E9WsLZHc1bifwN58F7OHUcsd6qj22DKTqOvk9XZf1fv6RPrexBJioR9YrBG4ouEl11g7DYpnveaI39I+52hDwbNbE/bjg6yrihWLTlVkML8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=f13ELqDx; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ZcUSC+YGvjcYhPt8XzYCqS36AYXBZHGVX6AQ6mImiQc=; b=f13ELqDxa2wtl2GB8W0GjY9s1r
-	W5qgp7pAAFITypJK+RNj9dMsUC+iqlKvbIvnznjPzqepk7WM49M8YCPNqE2IID935oB1bX+XBMH0G
-	w5kMsfjnYKdhK5g582lbacULNObRSJvKBpJlwShuw6WaF/GuMIvpVWBc/A/YeUECaxYM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vYPII-000QFP-JQ; Wed, 24 Dec 2025 14:52:50 +0100
-Date: Wed, 24 Dec 2025 14:52:50 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Akiyoshi Kurita <weibu@redadmin.org>
-Cc: Vladimir Oltean <olteanv@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: dsa: marvell,mv88e6xxx: fix typo
-Message-ID: <647f64c2-6206-42fb-98b6-19840e4e819c@lunn.ch>
-References: <20251224123230.2875178-1-weibu@redadmin.org>
+	s=arc-20240116; t=1766584887; c=relaxed/simple;
+	bh=I7+JGBFRKWqyrnVXzLUaDYsKdcEDRxDNeUF16RxUnpo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mtkjzUwSF8qpcpAuEn20s2TMziiI93uo8UEVNpUF7CDJ4y/PsewAWHeTg539Ac4Kxqk3QhqXaot+RfnC4WBdk5cRA1rowYxAvIHK16S+09iOtEw7CTCPalq4IoHhgls19woom3ByMfRWYtMX1jm0fGSGqkbiRQqwxr5n5498JZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=OwOktS97; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-64b4b35c812so8120332a12.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 06:01:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura; t=1766584884; x=1767189684; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I7+JGBFRKWqyrnVXzLUaDYsKdcEDRxDNeUF16RxUnpo=;
+        b=OwOktS970iZyjTToJrv3vpFIp+TVfoApn5xuvs/UTEwPPJRn+MEeHzVu/i5cdpLGVT
+         c0Qd3a6PUuoevDp7TY7TY2CybeAVSC7N8/jEA5T/5hFTwdqieiluHy54dP4zknESaAGB
+         bNizDukwvsJqgYnyjKPfBCH5tc6upXcXTkq41BQxwzaYcJAi6GMbJAHalK3kUHPjUC6H
+         RPJtAND8ymrvcy8Nq2bqkNF6MRBftJGGzwdXE15I5yysfQ8A66e79CCa10L9imyAbH/P
+         V4ZeStIKcTcR1gknTPgWu9Lclta6kc8pRDXW8YZMteJrXRcw5mrBiaS3bHY8ZvKq8k3r
+         7TAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766584884; x=1767189684;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=I7+JGBFRKWqyrnVXzLUaDYsKdcEDRxDNeUF16RxUnpo=;
+        b=XR2YZLgomjI95UCuZ3DQoVMv2ZS9UjDhiNRwsnxU0PkJoP6+vdp7L3o/OcnyOfMMUw
+         CsN8zG0zMiBeI29h+ECdeSuCGwYKmLWSTX47+0Ezv4Cy3x9MZ/HHDifjX/Cflv/pSAvg
+         ui838emL7DqBuBEIltNh6GyHE5PWKZegKwP/9mDpw11KtOfQkRhm6Qp82LDsMpiWYAEx
+         Jo0g1npQMHJjtcycupqEaV9tLQG0uJgCZql4kf3u8fKWw657o+qLvVc6QFsoi7FS3ZBo
+         vL+ogmzMSzwQQGhaYqkSGi2dXkjslYB3FafOGD1Ys9qB0n7z5CE/EM43fpH9TkUWR8mQ
+         Ta8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXdoPM9p9R1Bp7warHdvCli8M3mnE22FR9Oc3nVvk7VTXo/vnlMzMp5ciyUUmvQpSBoyr3zIiNv/sFQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzChtAkY4mdYaYyJykZqZwLMsIB7TA6qwR/l8Ip3Ua7Ehv+iwWA
+	AIScGuXiud7/VoLtHHBZa0zqgMURRYxs4qB2sq1k4Q/N4m6EIUmWCrtZtkaVewiJnwBOEeMEuY9
+	X51vKUWmp66gJeZTGprPRGlnXTEdzabprxULxrNbBSg==
+X-Gm-Gg: AY/fxX5MIweWZky2xYUyDZbA/3LcFrFPlD8Nsj4XdYazJ/+xN06d7fdckiqrKhkBdZF
+	PseEW8ef6fe+mZJrT3Hzl5ebwxqkjMoLfH6wMLh4DiaR09bItvAsJ7SUUzzoYAhj5hyO3v9Ixrr
+	Znlytm/Bzs4AohbiSjwOcNTUdrKb/Q/UdOumBWqHZNhVyZBwJ3dqVPaXw25I5l8fH2UC9nm26RK
+	PnnK1X4sqCGDu9iy6CkJ8Rblmg9LQqHh5ZQZwVtvGyzuuz0xgH5/3MJD+TJYerC4OpeKpt3pe8G
+	D6HvVoH89HngOhVjSpRtrnFAyuM9IvMzORdnPGtxislqyxZ4og==
+X-Google-Smtp-Source: AGHT+IHCXMeYFxQVcU8rJRtC/cDnDm53nQPvIw0Xbx77plqQqDjE4I50qoqJy3GeuDjgR14U8tTAxFKyl0h6HDv3chw=
+X-Received: by 2002:a17:907:6e91:b0:b73:8639:334a with SMTP id
+ a640c23a62f3a-b8036ebd999mr1821689366b.13.1766584883876; Wed, 24 Dec 2025
+ 06:01:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251224123230.2875178-1-weibu@redadmin.org>
+References: <20251223201921.1332786-1-robert.marko@sartura.hr>
+ <20251223201921.1332786-2-robert.marko@sartura.hr> <20251224-berserk-mackerel-of-snow-4cae54@quoll>
+ <CA+HBbNGym6Q9b166n-P=h_JssOHm0yfyL73JZ+G9P81muK=g4A@mail.gmail.com> <78bf252c-fd5e-4a36-b1a3-ca8ed26fde7a@kernel.org>
+In-Reply-To: <78bf252c-fd5e-4a36-b1a3-ca8ed26fde7a@kernel.org>
+From: Robert Marko <robert.marko@sartura.hr>
+Date: Wed, 24 Dec 2025 15:01:13 +0100
+X-Gm-Features: AQt7F2owdEGYn8vQgdJCyQRcW10NeJzDUOJWapd16DEqGEP6zPqPRLNSqy5Q0Bc
+Message-ID: <CA+HBbNG+ZVD6grGDp32Ninx7H1AyEbGvP0nwc0zUv94tOV8hYg@mail.gmail.com>
+Subject: Re: [PATCH v3 01/15] include: dt-bindings: add LAN969x clock bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	claudiu.beznea@tuxon.dev, herbert@gondor.apana.org.au, davem@davemloft.net, 
+	vkoul@kernel.org, andi.shyti@kernel.org, lee@kernel.org, 
+	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org, 
+	pabeni@redhat.com, linusw@kernel.org, Steen.Hegelund@microchip.com, 
+	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com, olivia@selenic.com, 
+	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, lars.povlsen@microchip.com, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-clk@vger.kernel.org, luka.perkov@sartura.hr
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 24, 2025 at 09:32:30PM +0900, Akiyoshi Kurita wrote:
-> Fix a typo in the interrupt-cells description ("alway" -> "always").
-> 
-> Signed-off-by: Akiyoshi Kurita <weibu@redadmin.org>
+On Wed, Dec 24, 2025 at 2:05=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 24/12/2025 11:30, Robert Marko wrote:
+> > On Wed, Dec 24, 2025 at 11:21=E2=80=AFAM Krzysztof Kozlowski <krzk@kern=
+el.org> wrote:
+> >>
+> >> On Tue, Dec 23, 2025 at 09:16:12PM +0100, Robert Marko wrote:
+> >>> Add the required LAN969x clock bindings.
+> >>
+> >> I do not see clock bindings actually here. Where is the actual binding=
+?
+> >> Commit msg does not help me at all to understand why you are doing thi=
+s
+> >> without actual required bindings.
+> >
+> > I guess it is a bit confusing, there is no schema here, these are the
+> > clock indexes that
+> > reside in dt-bindings and are used by the SoC DTSI.
+>
+> I understand as not used by drivers? Then no ABI and there is no point
+> in putting them into bindings.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+It is not included by the driver directly, but it requires these exact
+indexes to be passed
+so its effectively ABI.
+LAN966x does the same, but they differ in number of clocks and their indexe=
+s.
 
-    Andrew
+Regards,
+Robert
+
+>
+> Best regards,
+> Krzysztof
+
+
+
+--=20
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura d.d.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
 
