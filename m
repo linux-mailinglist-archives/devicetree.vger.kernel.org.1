@@ -1,120 +1,107 @@
-Return-Path: <devicetree+bounces-249504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63DCACDC3D8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 13:42:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1507ECDC3ED
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 13:44:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4AACB30088AA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 12:36:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E0ACB3034EF5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 12:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86963375D5;
-	Wed, 24 Dec 2025 12:36:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A6A2F3614;
+	Wed, 24 Dec 2025 12:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hjJJm7Dr"
+	dkim=pass (1024-bit key) header.d=redadmin.org header.i=@redadmin.org header.b="lZsLg4ZJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www3141.sakura.ne.jp (www3141.sakura.ne.jp [49.212.207.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 402143126B3;
-	Wed, 24 Dec 2025 12:36:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766579805; cv=none; b=M72PkD4XsJSWO71yVkCipUavjt5queqnmR8D63c3hDjhm29KpbbLqo+mqPZhfuuJLSb/zNg60OtZDzfHDzT85TfPKz8CIYs6hZj7/0Oxqj5BtT60OsWMHDE60I3jx2qjvxfMSeSPCFFX/PabOBxkeEH7yDYByElz2enBThKVA4c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766579805; c=relaxed/simple;
-	bh=Zxa6wYaoJtK9JSWFmGIu2ZmFu7iyULrIRXXDjqOunDA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JAz81vmPCLNTMP4J8DiKNibJZESVdAdgz2yNbOTtG2+gelx2OiAzB9Spe4jctwWiuIj3X3Es1VdbrLffNQ3VFiU/RWIu8mcACviLqypemX8g8XkDv9pxFW2sfG37+PYHgv12VtYvExHXEMMUG9Af6BMKnqE82D76JxQJcPGWWjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hjJJm7Dr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C41FDC4CEFB;
-	Wed, 24 Dec 2025 12:36:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766579804;
-	bh=Zxa6wYaoJtK9JSWFmGIu2ZmFu7iyULrIRXXDjqOunDA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hjJJm7DraZD5ZUSiheXmFoAU3BO9n3IMixZfJYtBpIvYICSzDjJw9jSfwvAAsSA1y
-	 Cque53xwmZkoc85Uq9kdOrsM1ZHuPGALwMAxt8DIaIf/McM6200z/DUsYgtZ096DCP
-	 YFyNuwAqsr3TaG2nSzBx2y25vhKsIJDu9zAyYm3qzIYMpUULt5AYdMR5fDjduzHklR
-	 PnKuRVGEDNrIN1FdUoRkK2EnbC/pMvPHYWoz0kibUsbHmN6Bm8bi+GnDgIPCkYCKWp
-	 YRqL0tyjNnYn5pDCmBzReqL8tBn3FeNi4sTD9B5N+DxjEjTsD5Gbc27qfnao19VuP/
-	 HMlXCTAxE06vQ==
-Message-ID: <a5984b03-6c9b-4f5b-ba71-57ef77104e03@kernel.org>
-Date: Wed, 24 Dec 2025 13:36:38 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246EF2E11B0;
+	Wed, 24 Dec 2025 12:38:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=49.212.207.181
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766579928; cv=pass; b=guwXAqn6jHzjxprNeL3ED9KaY98DdvA5YLVTWa1Gc4xVTKXRDWLf0xzSYDVz/odAmgbInsb7cz4pYHYufF4iarwH30zUM4VQcmv+HjFNz3upyTYM6qyhpsrcNs6TwldxxnZEUY28iUZHlZo63X0AWS6Mz0b0xXqRyxQJvvU1uKU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766579928; c=relaxed/simple;
+	bh=b+q5DFY2FRFpj99Z8c2e5Ja3GGR7qBKmhN5yn8gmq/c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=S9eAzGzKXSZSCR7uLaiHjWzfpOVdMOGjm63+8WabcyFgkRGpk6m8rky+TcySBJ6ssfJtDhuABAWSARwP7SESJgS1wj92tIudNSpwoG7dpVEmRI8GQEu8T2yC3cR0MjJdsC6nDy0hYOOowz0Kz9thlqMbyCWLUUiI+5IzKkWPNCk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redadmin.org; spf=pass smtp.mailfrom=redadmin.org; dkim=pass (1024-bit key) header.d=redadmin.org header.i=@redadmin.org header.b=lZsLg4ZJ; arc=pass smtp.client-ip=49.212.207.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redadmin.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redadmin.org
+Received: from www.redadmin.org (bc043154.ppp.asahi-net.or.jp [222.228.43.154])
+	(authenticated bits=0)
+	by www3141.sakura.ne.jp (8.16.1/8.16.1) with ESMTPSA id 5BOCbwNT059760
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Wed, 24 Dec 2025 21:38:02 +0900 (JST)
+	(envelope-from weibu@redadmin.org)
+Received: from localhost (localhost [127.0.0.1])
+	by www.redadmin.org (Postfix) with ESMTP id 28A07109D6C01;
+	Wed, 24 Dec 2025 21:37:57 +0900 (JST)
+X-Virus-Scanned: amavis at redadmin.org
+Received: from www.redadmin.org ([127.0.0.1])
+ by localhost (redadmin.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id BlDxsHDJbzc2; Wed, 24 Dec 2025 21:37:50 +0900 (JST)
+Received: by www.redadmin.org (Postfix, from userid 1000)
+	id 979B8109D6CBD; Wed, 24 Dec 2025 21:37:50 +0900 (JST)
+Authentication-Results: www.redadmin.org; arc=none smtp.remote-ip=127.0.0.1
+ARC-Seal: i=1; a=rsa-sha256; d=redadmin.org; s=20231208space; t=1766579870;
+	cv=none; b=VZ2FqrE3xvkJHlsPENKbYiXOFpiTGyx4QLc8zTRRJiZU3PGHMwaq+ulsRn+LUGfT3i6ev3aV2qX7ygMM7cj9VOkezata2jmxObtIAt3QC+wbh36/MqIrTr9slybrNyWHAu4B/ze4+eP+hiXJ42Mqr7yy5zOfj3eRXS1z1tK/mS8=
+ARC-Message-Signature: i=1; a=rsa-sha256; d=redadmin.org; s=20231208space;
+	t=1766579870; c=relaxed/relaxed;
+	bh=JaJFhAMxeYcUhDj+BkXxIIURTBgE7571e2zutaU/kGk=;
+	h=DKIM-Filter:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
+	 X-Mailer:MIME-Version:Content-Transfer-Encoding; b=XnD5Dh8bxuTDZPyLSMzqn0d1HrOFYoaikRfU5mCafsmnjEdmosIWG54tmKHOmhIIwUJ3CY9CNIqzgo9KHtHH1BG9CYT0hxodeLAUKIIQmmhcGiSFAbeoHPXfC8rYGqMC6wqMcprtQZS8ZANTF5zNdz9nMpddXyPX/LHLnMH3lqw=
+ARC-Authentication-Results: i=1; www.redadmin.org
+DKIM-Filter: OpenDKIM Filter v2.11.0 www.redadmin.org 979B8109D6CBD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redadmin.org;
+	s=20231208space; t=1766579870;
+	bh=JaJFhAMxeYcUhDj+BkXxIIURTBgE7571e2zutaU/kGk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=lZsLg4ZJonX3jV0fbIU2qrV2SOiYbBbEzRQG0hYeOZvfFTGjIRw4qSErlIi9QOJw2
+	 62iGtKtGUFYCW/iYoiezSL/+4TjXdLBj2uTWDCunkbJIFziJwPWx8+6f5F6QYY1e12
+	 XLv5ef9j7PCKuwsj0VBg9mo6rV+k0lvT9fuywVMA=
+From: Akiyoshi Kurita <weibu@redadmin.org>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sowjanya D <lakshmi.sowjanya.d@intel.com>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Akiyoshi Kurita <weibu@redadmin.org>
+Subject: [PATCH] dt-bindings: pinctrl: intel: keembay: fix typo
+Date: Wed, 24 Dec 2025 21:37:48 +0900
+Message-ID: <20251224123748.2875868-1-weibu@redadmin.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: net: dsa: marvell,mv88e6xxx: fix typo
-To: Akiyoshi Kurita <weibu@redadmin.org>, Andrew Lunn <andrew@lunn.ch>
-Cc: Vladimir Oltean <olteanv@gmail.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251224123230.2875178-1-weibu@redadmin.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251224123230.2875178-1-weibu@redadmin.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 24/12/2025 13:32, Akiyoshi Kurita wrote:
-> Fix a typo in the interrupt-cells description ("alway" -> "always").
+Fix a typo in the documentation ("upto" -> "up to").
 
-Please do not send trivial typos one by one, but fix all of occurrences
-per subsystem. This is too much effort to deal with such one liners.
+Signed-off-by: Akiyoshi Kurita <weibu@redadmin.org>
+---
+ .../devicetree/bindings/pinctrl/intel,pinctrl-keembay.yaml      | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> Signed-off-by: Akiyoshi Kurita <weibu@redadmin.org>
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/pinctrl/intel,pinctrl-keemba=
+y.yaml b/Documentation/devicetree/bindings/pinctrl/intel,pinctrl-keembay.ya=
+ml
+index 005d95a9e4d6..ec9848192351 100644
+--- a/Documentation/devicetree/bindings/pinctrl/intel,pinctrl-keembay.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/intel,pinctrl-keembay.yaml
+@@ -33,7 +33,7 @@ properties:
+   interrupts:
+     description:
+       Specifies the interrupt lines to be used by the controller.
+-      Each interrupt line is shared by upto 4 GPIO lines.
++      Each interrupt line is shared by up to 4 GPIO lines.
+     maxItems: 8
+=20
+   interrupt-controller: true
+--=20
+2.47.3
+
 
