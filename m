@@ -1,170 +1,187 @@
-Return-Path: <devicetree+bounces-249545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56CF5CDCCEC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:12:09 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF5D3CDCCEF
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:13:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B89DF3015A91
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:12:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 483443018A2F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:13:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8350327207;
-	Wed, 24 Dec 2025 16:11:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wwi/UPsz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EA4A327207;
+	Wed, 24 Dec 2025 16:13:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F16522DCF70
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 16:11:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C387C241686;
+	Wed, 24 Dec 2025 16:13:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766592719; cv=none; b=jjEK0hrhYc/jbgTxTaFfCFTEAjsU431wRb877tXWG6nUbGe7eK5VOjPm2A9sOpcZGKhtV5oZr6ej18M9cwFO5K/SYNNjs5z8VXP4wuxVGcUKpo6HzVKt/e6C5rpQsIMsdDTIicF9rrHdBideILeF2LZ0sKjYiCb6cpzsIH30J/0=
+	t=1766592787; cv=none; b=XTucKMhaCWzcBz6h+h4CfwMNyVt2r9YgmAQF/XV3GvzpBEvzslT9PVxHo/VUNNShlE6aFZJCsaM2yCr7Q4Y1yGQTqx86bA2vsgKjB+JIWSenq7hIccJQofueN5DCTegoOHF/SSiYSZNjcJxGPqxKFkyOFpzgF0fqRkEOETw5b/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766592719; c=relaxed/simple;
-	bh=kr/DgxJ2m4x8xh7w93LcGUX/UhIt4kM9hmRzY7gFpBw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m5N09wfHOa5CTb4OWdfNewg5an4ebZ1/7u5X5GWE0SANrr8rFpsNv90OzA+uzg4XcSxvFly09tePVcnUvSA9hHDeA/zQkjD4GISeZdfiGQaUztHyvC+F1PcAE2BGdSLKTuKvvf8DD5GdnwvMqsYtXFyeCdhPt68/swgjthMNLC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wwi/UPsz; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b713c7096f9so965477466b.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 08:11:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766592716; x=1767197516; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rFryFaNSwdzD/vSDQgCvIb9qGKYtzkN+fGok+kNOoDo=;
-        b=Wwi/UPszH2RmxxD0keu+5+VGNr6AG9AJmWZf0hGJBP0eyjxb2IGwKy4GkRnfC25TVT
-         Q0G7cHXvr0gCsJLPWQKgXC4HDr2G/QHdeokLfOBMwUmXhJCKtxJvcRKJ8IEkAkXm36Vz
-         r7kWrM6aikusKIhKtmj/ra9wXUCaiQQGes1R2MCWUxkgo6ked6Pl1JS1/r8BiHwFvIB9
-         YuibQKGINtI8Am6q0nLcTASCG7zF68GTTODvWUPdWb1jFeKdjIXZT+wkTiq6CCJ9atMq
-         CL0yHk8erXjZbrQWn9WJ8Jy5w3o7A4xs7gnFHNURi03wDDei7+LMtlyiB/2dhGSkBJnO
-         gLxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766592716; x=1767197516;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=rFryFaNSwdzD/vSDQgCvIb9qGKYtzkN+fGok+kNOoDo=;
-        b=bsJg7bMyKdOqf6ZYiw634lRjoW6Uny1mKIU58l5qxRuVd6WyD4h2CVcahVYMOc17Mm
-         UK8kMEsbw/JuH8DrtORlsdHESnVLX4290q/vvlB9BOfsEFcpokLcza2ywrxopnaO/dSJ
-         1zetLKwmbctY2YO04jOBheh1quxoAz/JECs3jAfCQ+r9/tk5nLc46HcCgvndu89j540r
-         0xIhj5KN3QHyMXLnfbirWF7UOXI7dHEbWjVYLwj0HCudmUw8fbmPJKkwD3Ywi18AYTYt
-         +lLCVkptWGPwN/mqUvNtn3uNAkF/ZT6dmccbcdElSa9AY2VLbGD3S/R+QUDnwG7LkLT1
-         gX5w==
-X-Forwarded-Encrypted: i=1; AJvYcCWTLbhmiTzRSn01b44ye7LKc/JYLcsJ992aU5DUxncfpzR6RDdZSAlK0UtYao6N2HRh1PZrGarDIjnC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZ0ov8tfTOXvpa+LxzGkmbMG86TjTl40yhpUI5ri9Oh5nKbDzJ
-	2dxBdN4pzvJS0qXGtJ0kMdwmnWwRSrQy6QFIKpDnpup/DqQIlfC/Scq163Njqn68febaw1AgnCf
-	gBc3tb8zMPl8BcQl2X9pad16VbPPfDaY=
-X-Gm-Gg: AY/fxX5sJm+aKe7mGGRSOWIJbpNs1jXBpw3W6NJlsq0qMHnqlSRy7XQk6X90V+M7dbi
-	l2bjCgpgiE9te708xHkf5NOZFGtwzpMpnZjs/paK9XYgawXhfXDQp9LGREYlr3gQY6RmoRsOjsM
-	7YGO4snaq09Rzi0e5Pq9Zmayl8K4YGP35/CJT7iJfJ0oJp5VpLYvLL8CUhDHkaYIwPwSo0u/OS7
-	OPrzOTX+CkoRMD2bY/j6XQPL2GkGTgl2QUafh0eqK8OmYrTb1NsUEIUwxo7SOCh3e0=
-X-Google-Smtp-Source: AGHT+IF8JwCFITnsLBTkXmiS0L4MmwBGPqpepuJqg06icSWw77Trn5dPC9ARbJb2q7e916O74g9D6jFvUiAyqH6N2Ek=
-X-Received: by 2002:a17:906:2082:b0:b80:3fb7:84f with SMTP id
- a640c23a62f3a-b803fb70d84mr1260286766b.38.1766592716002; Wed, 24 Dec 2025
- 08:11:56 -0800 (PST)
+	s=arc-20240116; t=1766592787; c=relaxed/simple;
+	bh=tLy3kTevc+aiQ1JQDfjfWmxn/2+uN1GCEbBUDKjhAyw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AO2JTrXmLB6LimXm16Lb8lAl36cY+sSnc5cosAYJcC+BJJVTnfLChWPYPIXCSIIfg8a3XUQrJ6bnI1OljUNoRLNXhLDx+MjMAsMYYI0nFmjp+vJFVVBiMiwg9CT7UzpkANjAgsGoGtZtAop4U+wjz4FQKvCUaMgZ5Y/G/6oiLkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.100.54])
+	by APP-05 (Coremail) with SMTP id zQCowAA3yw7WEExpgGPNAQ--.14041S2;
+	Thu, 25 Dec 2025 00:12:09 +0800 (CST)
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>,
+	Yao Zi <ziyao@disroot.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Subject: [PATCH v4 0/9] Verisilicon DC8200 driver (and adaption to TH1520)
+Date: Thu, 25 Dec 2025 00:11:56 +0800
+Message-ID: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1763415705.git.geraldogabriel@gmail.com>
- <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com>
- <CANAwSgQ726J_vnDKEKd94Kq62kx8ToZzUGysz4r3tNAXvfAbGA@mail.gmail.com>
- <CAEsQvctSY7-RQEQF2TmJU2qKPZOe9TC5g-7Jat0LQKRHYz_6dQ@mail.gmail.com>
- <CANAwSgQPQUBi6VVb+hZNraMt71vnRpki+YK_at=Luo4aPVtOPg@mail.gmail.com> <0afea20b-be22-2404-5a8e-c798ed45f2fd@manjaro.org>
-In-Reply-To: <0afea20b-be22-2404-5a8e-c798ed45f2fd@manjaro.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 24 Dec 2025 21:41:38 +0530
-X-Gm-Features: AQt7F2q-4QkIrb7HCrmK7bnip5LMtE41U74PCnTtsggrekXUlmrVmrAckqk4Lqg
-Message-ID: <CANAwSgS6UeR4PJnWDxxcQbdH8u_4uNiQxCTugQS35LcPvpiwMQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] PCI: rockchip: limit RK3399 to 2.5 GT/s to prevent damage
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Geraldo Nascimento <geraldogabriel@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Jonker <jbx6244@gmail.com>, linux-rockchip@lists.infradead.org, 
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:zQCowAA3yw7WEExpgGPNAQ--.14041S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Aw18Cw1UArykGr1fAw18Zrb_yoW7AFWxpF
+	47AFWFyFyDAa1aqrZ7tF10gay3Aas7JFWfWr47XwnxZ3yqyFy5Zr98AFy5JFWDJr17AryI
+	vF4vkr42kr12yF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0pRWv3bUUUUU=
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 
-Hi Dragan,
+This patchset tries to add a driver for Verisilicon DC8200 driver, and
+demonstrates the driver on T-Head TH1520 with its HDMI output.
 
-On Wed, 24 Dec 2025 at 18:25, Dragan Simic <dsimic@manjaro.org> wrote:
->
-> Hello Anand,
->
-> On Wednesday, December 24, 2025 09:04 CET, Anand Moon <linux.amoon@gmail.=
-com> wrote:
-> > On Wed, 24 Dec 2025 at 11:08, Geraldo Nascimento
-> > <geraldogabriel@gmail.com> wrote:
-> > > On Wed, Dec 24, 2025 at 2:18=E2=80=AFAM Anand Moon <linux.amoon@gmail=
-.com> wrote:
-> > > > On Tue, 18 Nov 2025 at 03:17, Geraldo Nascimento
-> > > > <geraldogabriel@gmail.com> wrote:
-> > > > > Shawn Lin from Rockchip has reiterated that there may be danger i=
-n using
-> > > > > their PCIe with 5.0 GT/s speeds. Warn the user if they make a DT =
-change
-> > > > > from the default and drive at 2.5 GT/s only, even if the DT
-> > > > > max-link-speed property is invalid or inexistent.
-> > > > >
-> > > > > This change is corroborated by RK3399 official datasheet [1], whi=
-ch
-> > > > > says maximum link speed for this platform is 2.5 GT/s.
-> > > > >
-> > > > > [1] https://opensource.rock-chips.com/images/d/d7/Rockchip_RK3399=
-_Datasheet_V2.1-20200323.pdf
-> > > > >
-> > > > To accurately determine the operating speed, we can leverage the
-> > > > PCIE_CLIENT_BASIC_STATUS0/1 fields.
-> > > > This provides a dynamic mechanism to resolve the issue.
-> > > >
-> > > > [1] https://github.com/torvalds/linux/blob/master/drivers/pci/contr=
-oller/pcie-rockchip-ep.c#L533-L595
-> > >
-> > > not to put you down but I think your approach adds unnecessary comple=
-xity.
-> > >
-> > > All I care really is that the Kernel Project isn't blamed in the
-> > > future if someone happens to lose their data.
-> > >
-> > Allow the hardware to negotiate the link speed based on the
-> > available number of lanes.
-> > I don=E2=80=99t anticipate any data loss, since PCIe will automatically
-> > configure the device speed with link training..
->
-> Please, note that this isn't about performing auto negotiation
-> and following its results, but about "artificially" limiting the
-> PCIe link speed to 2.5 GT/s on RK3399, because it's well known
-> by Rockchip that 5 GT/s on RK3399's PCIe interface may cause
-> issues and data corruption in certain corner cases.
->
-It=E2=80=99s possible the link speed wasn=E2=80=99t properly tuned. On my o=
-lder
-development board,
-which supports this configuration, I haven=E2=80=99t observed any data loss=
-.
+This display controller IP is used on StarFive JH7110 too, but as the
+HDMI controller used there isn't as common as the DesignWare one, I
+choose to use TH1520 in this patchset.
 
-sudo lspci -vvv | grep Speed
-                LnkCap: Port #0, Speed 5GT/s, Width x1, ASPM L1, Exit
-Latency L1 <8us
-                LnkSta: Speed 5GT/s, Width x1
-                LnkCtl2: Target Link Speed: 5GT/s, EnterCompliance- SpeedDi=
-s-
-                LnkCap: Port #1, Speed 5GT/s, Width x1, ASPM L0s L1,
-Exit Latency L0s unlimited, L1 <2us
-                LnkSta: Speed 5GT/s, Width x1
-                LnkCtl2: Target Link Speed: 5GT/s, EnterCompliance- SpeedDi=
-s-
+The DC driver is written with other DC-series (mainly DC8000, which is
+known to be used on Eswin EIC7700 SoC) display controllers in mind, and
+uses the identification registers available on all Vivante branded IPs.
+A known exception is DCNano display controller, which is unlikely to be
+supported by this driver because of totally different register map and
+no known identification registers. (P.S. the in-tree loongson DRM driver
+seems to be for some DCNano instances based on the register map.)
 
-Thanks
--Anand
+The HDMI controller seems to come with some common PHY by Synopsys, the
+DesignWare HDMI TX 2.0 PHY. By searching a few register names from the
+BSP driver of that PHY, that PHY seems to be used by a in-tree dw-hdmi
+glue, rcar_dw_hdmi -- an updated downstream version of rcar_dw_hdmi
+contains all 6 registers set here in the th1520-dw-hdmi driver. Some
+more suprising thing is that RK3288 uses the same PHY too, but the
+in-tree dw_hdmi-rockchip driver writes the configuration data array in a
+weird way to reuse the HDMI 3D TX PHY configuring function. It might be
+valuable to add common configuring function and configuration data
+definition for this HDMI 2.0 PHY too, but the current driver in this
+patchset simply duplicated most configuration logic from rcar_dw_hdmi
+driver (but with 3 extra configuration registers configured).
+
+Icenowy Zheng (9):
+  dt-bindings: vendor-prefixes: add verisilicon
+  dt-bindings: display: add verisilicon,dc
+  drm: verisilicon: add a driver for Verisilicon display controllers
+  dt-bindings: display/bridge: add binding for TH1520 HDMI controller
+  drm/bridge: add a driver for T-Head TH1520 HDMI controller
+  riscv: dts: thead: add DPU and HDMI device tree nodes
+  riscv: dts: thead: lichee-pi-4a: enable HDMI
+  MAINTAINERS: assign myself as maintainer for verisilicon DC driver
+  mailmap: map all Icenowy Zheng's mail addresses
+
+ .mailmap                                      |   4 +
+ .../display/bridge/thead,th1520-dw-hdmi.yaml  | 120 +++++++
+ .../bindings/display/verisilicon,dc.yaml      | 144 ++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ .../boot/dts/thead/th1520-lichee-pi-4a.dts    |  26 +-
+ arch/riscv/boot/dts/thead/th1520.dtsi         |  70 ++++
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/bridge/Kconfig                |  10 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/th1520-dw-hdmi.c       | 173 +++++++++
+ drivers/gpu/drm/verisilicon/Kconfig           |  15 +
+ drivers/gpu/drm/verisilicon/Makefile          |   5 +
+ drivers/gpu/drm/verisilicon/vs_bridge.c       | 331 ++++++++++++++++++
+ drivers/gpu/drm/verisilicon/vs_bridge.h       |  40 +++
+ drivers/gpu/drm/verisilicon/vs_bridge_regs.h  |  54 +++
+ drivers/gpu/drm/verisilicon/vs_crtc.c         | 217 ++++++++++++
+ drivers/gpu/drm/verisilicon/vs_crtc.h         |  29 ++
+ drivers/gpu/drm/verisilicon/vs_crtc_regs.h    |  60 ++++
+ drivers/gpu/drm/verisilicon/vs_dc.c           | 205 +++++++++++
+ drivers/gpu/drm/verisilicon/vs_dc.h           |  39 +++
+ drivers/gpu/drm/verisilicon/vs_dc_top_regs.h  |  27 ++
+ drivers/gpu/drm/verisilicon/vs_drm.c          | 177 ++++++++++
+ drivers/gpu/drm/verisilicon/vs_drm.h          |  29 ++
+ drivers/gpu/drm/verisilicon/vs_hwdb.c         | 150 ++++++++
+ drivers/gpu/drm/verisilicon/vs_hwdb.h         |  29 ++
+ drivers/gpu/drm/verisilicon/vs_plane.c        | 102 ++++++
+ drivers/gpu/drm/verisilicon/vs_plane.h        |  68 ++++
+ .../gpu/drm/verisilicon/vs_primary_plane.c    | 157 +++++++++
+ .../drm/verisilicon/vs_primary_plane_regs.h   |  53 +++
+ 31 files changed, 2347 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/thead,th1520-dw-hdmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+ create mode 100644 drivers/gpu/drm/bridge/th1520-dw-hdmi.c
+ create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+ create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_top_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane_regs.h
+
+-- 
+2.52.0
+
 
