@@ -1,155 +1,108 @@
-Return-Path: <devicetree+bounces-249584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1281CCDD06D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 20:11:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 182EFCDD0B3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 20:31:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 790FF301C3C2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 19:11:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A5771300AB17
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 19:31:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817B233E363;
-	Wed, 24 Dec 2025 19:11:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB3A520C023;
+	Wed, 24 Dec 2025 19:31:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="GzfI67hK"
+	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="SN+ObwVE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f46.google.com (mail-yx1-f46.google.com [74.125.224.46])
+Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E5E2C030E
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 19:11:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8F83632;
+	Wed, 24 Dec 2025 19:31:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766603509; cv=none; b=qa0X27zcipS+XRUFUK8PAK9kK22bqfTN+rwfjVYJdurZ5YSX8E75lO88e1Y5j6jiGiTOgeTQl0tKRQ6JeNhScBLdkkpuagGxj3YuEKCRmFepxwXF+DVOIRTTjd3zD3NwCbLkRcXjf66YSy0vEuecqCncOzKM0Z3sGwENJhVRVj0=
+	t=1766604694; cv=none; b=EGeijRr/njqq3CuyUj+DoN70iug7EVmmd6JRrMvQsRxtclT/Fqj1A+pD40TJHOQya0mnH/o6PNUl3jyMSZucKhjd8ZpIsGYpiWFa6/MW4NzIdyEMmFpn8A3VZqRydldjIMgCBa1yLbGO8tVTyv4Nab4dYDyAfaz9Q6QFM/Tc5Bc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766603509; c=relaxed/simple;
-	bh=k8Byl028CgHsF3DBvdHOc7E8XGBxj49LJk7WEGiE6aI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LK8hUnebswyefLf331hr3xk4b7x7M9QMgCq01jTnax8z+187W0PSnP4FpZLIqBUHqBMd3JEVJ2uE1I39iPLgimOaIMeW/UQ+1lZg7dvrZyjbwcI8BiicSN1zuA/fWA2AsAEUXIA9uWlqEuDfqDknTpT+SRx55yQCeqh3V9SbB6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=GzfI67hK; arc=none smtp.client-ip=74.125.224.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-yx1-f46.google.com with SMTP id 956f58d0204a3-6446c924f9eso5642444d50.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 11:11:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1766603505; x=1767208305; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oXhnYTRKWSBrdTvGbB7qy2q3xu05EvIJIuYEgLdKQ5w=;
-        b=GzfI67hKYeYlQLM5vk0CbRE07x/BJr8BLGWiDztt24R5JmN8Sy8ahJ2Fsmp0oS3QvX
-         bTvvmZtvmquMg7J9GH1SsZoI9gaff2UIWohHpfzfnTcBCXlRQL3A/eOLV3UZDY5ciGCo
-         I5KMc0ZuR9/W13MeLwgCYErKb95DsS/IMCG7fCHyTXfLyIJ5/1MhkaYB6Pb1vJBh2PIK
-         1fQHKGquv6CVuE0tzGYn7nXdGzECGonkbuc9Rsy/9epAgCtswCfD1CprXbGMWRCzKVpy
-         xm+22BTH3PFgF70Sgwaf78lpb83svr/AJpMWtytRcBWNoSmxwSnc4mL2Be0Hn9Ou6stF
-         AZtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766603505; x=1767208305;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oXhnYTRKWSBrdTvGbB7qy2q3xu05EvIJIuYEgLdKQ5w=;
-        b=tx8b4963VzcYAZ3vtNrC2q9lf4crWLYu6Q4zGsXmt7dHb8EcbToJPzt9uH254nKYU+
-         sXJMSqMea14p+uJUE8PegdvkPe3iRPKhK5GS6D7elt32K36Ffu5rnVmoP4NM4pdiZA3O
-         o4iXPKlIsH4B6GYHe8HZdxckPrboZdI83Vvu9SBbe/Ecdd9cTKfqYC6Zhbj0mYGHdE/P
-         w3jwM2SAIwehFDl4fPy1nGRAztegIU/tvOmBBHJ1MsmLG/Bvq4B01UcbZ0CCz0zTdhFZ
-         ztCGxXc1ZC2/rddWfaEg19SiB3bpfH8hiUFPKlPOr4YsNGlLrdoMRJNRiCO7aou5U9H5
-         IBzg==
-X-Forwarded-Encrypted: i=1; AJvYcCV0sZR4qHwzwFJW3leunyKxZmrkfSD15EBFGxLQxo8qJux2ouKna3tj5UP0nfwrOkXPu3hTHPlk5kF+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5qvM6J6vQztd7t/uyVqntFT5udVvxXOVNBVBSwijuK0JMNMVQ
-	AkBJ9kHpVilslPMPVp4WGzSN89ZbWUTOtuXjFjqEl99S1WrtybqTO76AKujL1JpOZg==
-X-Gm-Gg: AY/fxX6cC5jkqxEZcoe28wprgxl3gbv8LTJYPyJroyGbtuBlvC14AfhvQ6A2gLIDkya
-	bUDhcKCCo3Hnwc12iPV1NjMIqMFFlZEBO/vinqiGU4tN/TOEhcXL7tFLRhVuB112R/tecYnAyTD
-	Yq+GUCFJQI+7LUkpXScdXHATa44AYkUc9j53Amyjmu+mX8FOfWoS7vFcKA0DpkcvoufLDEsfbjn
-	yecwyCc0apqkLYe/nCc85Or6colaHQi97Ud7MGbzod5d2JaswuREjoL5Yu+A5xI5/cDjAKm63n0
-	WVdsYelUwZobKDJk1MEpXCEGi5tQTFi6Mf5Qs4CRQi5rvG9eG1poe74Li8nU/mDQ0jrAC3/hJB+
-	dlvhlWtNCqRUPzDbmL7jrL1xbxFYYYf540RBcWVpIIE1LDPU2sE5SWQ7+PUJ3dIArS7YqjP71ub
-	DzA09Pd3A4rybaX4/mpGuDVKXrJznqx8bn3IXk96j1aoVp7h7kBhA1R3ExvWU=
-X-Google-Smtp-Source: AGHT+IF4+78/ybW8h2aFs9XZbSKza4sj6Czw5R4tW02KVHwiK1CyevWiPabB7l4R0Pz1pzDMvfJfng==
-X-Received: by 2002:a05:690e:1486:b0:63f:31f7:b956 with SMTP id 956f58d0204a3-6466a898fbbmr15286144d50.27.1766603505319;
-        Wed, 24 Dec 2025 11:11:45 -0800 (PST)
-Received: from ?IPV6:2600:1700:4570:89a0:6872:f79a:c2ff:4f4f? ([2600:1700:4570:89a0:6872:f79a:c2ff:4f4f])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-6466a81d4e4sm8640178d50.0.2025.12.24.11.11.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Dec 2025 11:11:44 -0800 (PST)
-Message-ID: <27d2a9de-487a-409b-8807-d1d3bf9e8ee7@google.com>
-Date: Wed, 24 Dec 2025 11:11:42 -0800
+	s=arc-20240116; t=1766604694; c=relaxed/simple;
+	bh=laVChJNHDMAEia3D9tY89qEJGVGUm43S0WNZqN+Tr7Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kRWt/4YcoJN85+4PDOIfTR2YJjW4i7GHfksLEMjb4uv/7+wvCb4Fm2e9e3PPFlWO4u607tFJxF6oBXCML4cSezsQ9DuF1hV2hrGGaXRKuG4NData9PBl1GQUPm1/riDQSXP102xdbeT+9vgJxSv1wzag4GoXBBtF8Y88N9eIp2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=SN+ObwVE; arc=none smtp.client-ip=37.205.8.231
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
+DKIM-Signature: a=rsa-sha256; bh=laVChJNHDMAEia3D9tY89qEJGVGUm43S0WNZqN+Tr7Q=;
+ c=relaxed/relaxed; d=dujemihanovic.xyz;
+ h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Autocrypt:Openpgp;
+ i=@dujemihanovic.xyz; s=default; t=1766603684; v=1; x=1767035684;
+ b=SN+ObwVEF/zqznQv8SvkdHWJchtv4GCvgsa382pLIH7l8wzC8eYH3kBZ7/0xHo4i+qs04no5
+ Il8QHjJoYawDMSXY31NNLJhoRymV94nQcxMthyZJdFRfiji+8fAIs4pMWdvvIIb8cqTtAzyQtDn
+ vUL3sHnn8/6kmN5+whf+aD/Bq+XlxUnXlA14p7cRDWed9x2wDr+2eO+eMUf+lXi0p8ZNRx3Xqaa
+ pv6GPsm3Vxyo0Reysvn2I6gTAcxhP3V9JwpD2nPvkZI+IZSbsiVcEzgcGkIgJVN6ptqr9EnX6O3
+ P4u7mDsLoamS3zCPGSiR7GwgYHEuuy+kIRPOEngKACxVw==
+Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
+ ESMTPS id d4a10bf5; Wed, 24 Dec 2025 20:14:44 +0100
+From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje@dujemihanovic.xyz>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Karel Balej <balejk@matfyz.cz>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Karel Balej <balejk@matfyz.cz>
+Subject:
+ Re: [PATCH v2 2/2] pmdomain: add audio power island for Marvell PXA1908 SoC
+Date: Wed, 24 Dec 2025 20:14:43 +0100
+Message-ID: <5977726.DvuYhMxLoT@radijator>
+In-Reply-To: <20251213084843.7491-2-balejk@matfyz.cz>
+References:
+ <20251213084843.7491-1-balejk@matfyz.cz>
+ <20251213084843.7491-2-balejk@matfyz.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: mfd: maxim,max77759: add charger
- child node
-To: Krzysztof Kozlowski <krzk@kernel.org>, Sebastian Reichel
- <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
- <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-References: <20251218-max77759-charger-v2-0-2b259980a686@google.com>
- <20251218-max77759-charger-v2-1-2b259980a686@google.com>
- <411802b6-517d-497e-bf7b-183e6e6d7a64@kernel.org>
- <3d156c45-b55d-4ca4-95d6-0d06e067bbdb@kernel.org>
-From: Amit Sunil Dhamne <amitsd@google.com>
-Content-Language: en-US
-In-Reply-To: <3d156c45-b55d-4ca4-95d6-0d06e067bbdb@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Autocrypt: addr=duje@dujemihanovic.xyz;
+ keydata=
+ mDMEZokhzhYJKwYBBAHaRw8BAQdAWJZ0hsI/ytTqHGFV8x6tzd5sB596cTeeDB4CQsTf+wC0KUR
+ 1amUgTWloYW5vdmnEhyA8ZHVqZS5taWhhbm92aWNAc2tvbGUuaHI+iJkEMBYKAEEWIQRt/0HWDf
+ MUtbdrpjCtMZNSRY+tAwUCaJ5XkSMdIEFkZHJlc3MgYm91bmNlcyBhcyBvZiB+MzEvMDgvMjAyN
+ QAKCRCtMZNSRY+tA/N/AQDth3Xl3wNcETvWPqqfYfyw4BFqbOD05A/W0/G0ZIjFzgD+PZVts3sN
+ p5WuEwIxUrWxwavWJQBJwhXeWdru5ol82gmImQQTFgoAQRYhBG3/QdYN8xS1t2umMK0xk1JFj60
+ DBQJmiSH/AhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAAAoJEK0xk1JFj60Dlw
+ 8A/i4lPOL7NaYoYePDql8MaJaR9qoUi+D+HtD3t0Koi7ztAQCdizXbuqP3AVNxy5Gpb1ozgp9Xq
+ h2MRcNmJCHA1YhWAbQoRHVqZSBNaWhhbm92acSHIDxkdWplQGR1amVtaWhhbm92aWMueHl6PoiZ
+ BBMWCgBBFiEEbf9B1g3zFLW3a6YwrTGTUkWPrQMFAmaJIc4CGwMFCQlmAYAFCwkIBwICIgIGFQo
+ JCAsCBBYCAwECHgcCF4AACgkQrTGTUkWPrQPUYAEAlVKitl0w6Wun+hC0JIf8bnc0TnrH8kcDxV
+ f5lAF38fcA/j8RxR/p558NTFUyHZt2Sa5AqxVkaA4aJekySytWe1YGuDgEZokhzhIKKwYBBAGXV
+ QEFAQEHQMRz0l4Dnk6Vl9YqC+ZGDDpr8SkFDyYOXqdBMGad3VccAwEIB4h+BBgWCgAmFiEEbf9B
+ 1g3zFLW3a6YwrTGTUkWPrQMFAmaJIc4CGwwFCQlmAYAACgkQrTGTUkWPrQMbkwD+K6jiXYYMRnV
+ l/5dpL//wXB1cM72ceR9tXYweMXg1lfABAOugzMF0xypW9zwYAEWVNOAaPsqtEPPYfBY3IXxl6m
+ sB
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+On Saturday, 13 December 2025 09:48:13 Central European Standard Time Karel=
+=20
+Balej wrote:
+> Define power domain which needs to be enabled in order for audio to work
+> on the PXA1908-based samsung,coreprimevelte smartphone. In the
+> downstream code, this power-on method is marked as specific to the ULCx
+> series which is allegedly a codename of sorts with ULC1 corresponding to
+> the PXA1908.
+>=20
+> No other audio components needed for sound to work on this phone are
+> currently available mainline but some successful testing was performed
+> with the vendor variants of the respective drivers and with the domain
+> forced always-on.
+>=20
+> Signed-off-by: Karel Balej <balejk@matfyz.cz>
+
+Reviewed-by: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
+
+Regards,
+=2D-
+Duje
 
 
-On 12/23/25 5:32 AM, Krzysztof Kozlowski wrote:
-> On 19/12/2025 09:17, Krzysztof Kozlowski wrote:
->> On 18/12/2025 23:49, Amit Sunil Dhamne via B4 Relay wrote:
->>> From: Amit Sunil Dhamne <amitsd@google.com>
->>>
->>> The Maxim MAX77759 MFD includes a charger function. Extend the max77759
->>> binding to include the charger. Also, update the example to include
->>> charger.
->>>
->>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
->>> ---
->>>  .../devicetree/bindings/mfd/maxim,max77759.yaml    | 33 ++++++++++++++++++++++
->>>  1 file changed, 33 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
->>> index 525de9ab3c2b..1cffdf2e5776 100644
->>> --- a/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
->>> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
->>> @@ -37,6 +37,30 @@ properties:
->>>    nvmem-0:
->>>      $ref: /schemas/nvmem/maxim,max77759-nvmem.yaml
->>>  
->>> +  charger:
->>> +    type: object
->>> +    description: This is a dual input switch mode battery charger for portable
->>> +      applications. It supports wired and wireless charging and can operate in
->>> +      buck and boost mode.
->>> +
->>
->> I do not see any improvements, so same comment: this should be folded
->> into the parent.
->>
->> Please read DTS 101 slides or writing bindings or any other talks...
->>
-> No responses to my emails for a few days,so I assume discussion is done
-> and I mark it as changes requested in patchwork.
-
-Yes please. Sorry about the delay.
-
->
-> Best regards,
-> Krzysztof
 
