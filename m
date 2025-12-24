@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-249576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37E2BCDCF92
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 18:53:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C2D5CDCF8F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 18:53:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 23F3D304D567
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:52:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 51B87301FF4B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 060D033ADB1;
-	Wed, 24 Dec 2025 17:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C10D3329C5B;
+	Wed, 24 Dec 2025 17:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MxSccDkV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T2II4aUA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36A5328B49
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 17:52:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBF8C32938E
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 17:52:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766598742; cv=none; b=btu+UwbaFnxVGchP6ehwjyMnjvRkCYntaoQLLDYfB5DcKD9OH4TOZFHGxOog9zLh9YpfzM2C4WxfnEqrLgkVlUm1JYthIIi9SRcatnpfl6z1vgzLgtFOUlA6nVS0nuTW+5G32Bub5BKcpu/7/YvgfIN3C7Ws++ZQzKgfAvb6qsQ=
+	t=1766598742; cv=none; b=Js8ZaN3DLOsGRrHh5nR7fP3vut6O9iyJU0PKoBYcDQ/tBgXeE8a97kVpcjLZot77pIflkIAgpgHn/rRcJaUng2z6yVmUekGDwLF1FgXuBxjkts87tWs/7oqm+WnfSMSkp8Qeyh2Re1iKgoJavTNogoPFnpRP/yRLfuV0D7P+q54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1766598742; c=relaxed/simple;
-	bh=eT+9QgCFPZlap63qnp3orXT7fSowMWjsilOcxggP40A=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AGI2bM3DH2GebKtwfwhR0GUjWejcfNTSNE7BmntYJwQB2xdavTid/HHrHvEBNAyfU6yb9Ktoaz6R4P2ZSgEzqjFB65DwJgPybkl/Epu6C8jpXgTs+NHSR0EEAJ7tLl0kRt7KbC/ksEYXx8OANvYXE/b9E9EJc+qYtLq51xY4t7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MxSccDkV; arc=none smtp.client-ip=209.85.128.51
+	bh=8Uoqcgrwf5qL0Yfgq3crvcywtGYwLf0Ku71TonoXroA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Ex7FcnJNwAZeDYmb+AY0PNy56MDXAu0tpV45epmQrj0oxcKteXG4ZXmKJ+tUtKBgLBCpCfU5O9LHMqvROg8k3/xWz2AB2IsVLLCoCZdOaVSuaFwST/1Dn7Icbi+7O9dlabruky7fV5wkPQSJ8G1/F6zMEIxqnrttSwwA/gzrBCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T2II4aUA; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso59894255e9.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 09:52:19 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47774d3536dso48052485e9.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 09:52:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766598738; x=1767203538; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=m0OaNkMXVXZZ6oeYQY6wBKIQ8q3WHAsulgnB8VJrqL4=;
-        b=MxSccDkVw+uUTCWVSQ+7l2ZEjGLE1uvX5R7v8tBLsYNbf9N4wzC0LNZDk7AtyVS4+G
-         SYO2QY6gpCrZ8QcC8QeD2YpvAQL4dBq0+uURK02DyywpYqmZAVbu6x85Wk7PmHXCMC76
-         arUy6ifTpLZt3t6/6c6oQ6DJJ2cy7QUuY6Tk5pDiius5ku6aFSrA3iV1nkhzGgOsYdyx
-         bi0vNhu9WCATtSAOUL0KQMCzw/trkeQmrA0cy2pfxTV9hLLlvZ602D2bb52Bg0ANxDgQ
-         KaVraNwWl+SrUuornw65TAIjrOfeohzc+71aYuDH7pvQ0mrUZUT71ffmN/yFLTKwezCq
-         83og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766598738; x=1767203538;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1766598739; x=1767203539; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m0OaNkMXVXZZ6oeYQY6wBKIQ8q3WHAsulgnB8VJrqL4=;
-        b=ZQHEniuVb/JmUEkmsE+iJPLM3BWcqJLBI3CECBzIK1evEk2DBGPN/bpKp/nAtEzWGX
-         HNeX6VNLb9kLehhSw0XBqDqZcytxMmWuXK0u3KqTdbcWffX1sYp92r5lOEEgbUC/jz0W
-         c1At5p8aKAjX8a4ydOGIY22ebvOWjIvBVLVgx+WN24vVLGIDjRmGYh9mtODqtDrmpDNq
-         2AptLRPaPoTntuaywa39vwFbpsqm6YRgGz62IAztI7B4XYxZt2Ma8NHNvj1SRdUL/2VI
-         McyP7PbTMrvUcVrHgSRfNVQVHDMnCeef3QwF/TgZZzm2Ut74L6Y8Q01ddaFxR1CqM3iU
-         yAMw==
-X-Gm-Message-State: AOJu0YyBfbgot3tXarr7jjszKqm7SGZDh1uoRolMFmMATPbQ8ZIw7IuJ
-	XHELP3hxuZ9Q0PQwaSu8DsOrQgkj5WDQvLq99UtJ5oAs+lF8Aj8pQ3Li
-X-Gm-Gg: AY/fxX61WwsehaLDSjCJcc0VZCmTSzKFa3cVdpModu6GUojegHFVjFLZoOJ0plwouk5
-	KW5LLkqrTE2l59Cx0AKcrSoz637BtEewZF0DFZlcYbdHjplji150sCygNewi5a17RbBv6IImND8
-	DFyFmkjhF2+gOByyrdg4kcAVgEbvThrr5rEkebazMVsedutR1kNCsMwEn6B+KgX7Wb3fR2yRH7j
-	RE7TF1wM73H9JNXn3w/fpSl1C/SYnx7rdIRqOUJBYfqDttM3gxzJIBqlyBDqw7c1uzZEYmH+HBu
-	v9o+dQsKbRKEgAZnuBpuJToAi55lSJpTwXmOsZjVb1WYa777l2FpCh48mzGOdB+s1OiPdOOuIPS
-	i5VHhxr1gvpH7Xy0oWQX88qVvuWBGTL3VhIu1Itmjjy0Y03RD5owIidt+Y3W6vI4HzvqrgdBdhG
-	dXqTt555QhXbZ4AxZZ3TmmZ3g09M3FV4ej/131rY8Fw5xHDf41F5I6OhSN7YmquDGniw+ADXtS1
-	DFOpgM352jHxsUnRlMaS2ER
-X-Google-Smtp-Source: AGHT+IFZOrpXp56epHL1X98t6DOAYK7zBQxfI82+mtrgAuJOrnS/IYyJJfXjnl/8TTCjWQu2PNtUVw==
-X-Received: by 2002:a05:600c:4e46:b0:47d:3ffa:5f03 with SMTP id 5b1f17b1804b1-47d3ffa6713mr25858045e9.21.1766598738149;
-        Wed, 24 Dec 2025 09:52:18 -0800 (PST)
+        bh=C8GNYWY73TI1Xhvsf5HSI9OWAeta0wWUObecrUir2UY=;
+        b=T2II4aUAyoNjCBmAAy6ZX07OGsIRaZZet+/kL1xt1jjQdp9VMJJirZCeiLWpnEPbf8
+         hQfcyUHm/TgFF8K/t1+Hs7RPLPLnSQ9P34OgRLFlMVh/OHbX/n5xO1cjJQ5dfRe7teGJ
+         H/KS7cC/Rt2evXdgKUdcgPDmCyM/2HsylUOr3zGKiMoi058Kr6paf9s88Aovtmh7kI8A
+         ckDcoaxs5PLk1D1xdypeVZ8rD9pVUy31lCEEBCAW1ZxGgNL9/oHQB+71xjum6RJIMM14
+         VcgdmKzb2LrxvE3T2Sk37FxVUYPatjmfLf4ZRUuL3nucoz4HNjUJ4dxbm50wZ7UhbkV0
+         Yovw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766598739; x=1767203539;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=C8GNYWY73TI1Xhvsf5HSI9OWAeta0wWUObecrUir2UY=;
+        b=LBRdfu7fZNTRu9YoJzmQe5jBKFocx03qKBCLjxhwUahrG1vCX6MUkNMv+ubs5jUOhy
+         /Mm+U5oaenKzmcsKplf78873BWGqJ1Q3/zouUgxh3ZZVG0dfo/nsPdzcxmB+tJEmvqvD
+         y54TuVncC4SfunTLPnKjb6cqjSe7qHMvIuIoQrQv9sSXbaqNtHUJCGu3jaWqNGImwf3h
+         CVui+c6nun4FLOmwNXGx+bpDqOIyOt6YiHIpBIYysOjhO7rJqV4hWLtrPtThciQjDeH3
+         15vVOJiNG9m7AcSFxLSdenKUOVkRePUmk3nRvOAY1un3P6Cdq9nhA9IPt1UiYACN8cxg
+         Vrsw==
+X-Gm-Message-State: AOJu0YxD00kgFEK0oTqxGRaOLQEnGQ2r0dV3LtQArATeqCfRepuC5W5V
+	fEpu/RUEtkkeSilMlmuB4DKNxCcez9okoC496ejTlmq42EgqIxQAAmVE
+X-Gm-Gg: AY/fxX7EjCvAZ2hMA1b3H0g2xPbuwB0QoiKG9qCHg/sLFJsmf3k1GqWqMUp28J5MTYD
+	97XMUlIquwdGuy7GumEcfGkJHO0FjaT70Ksu5xTUjyLK+UH9xgb8rLtwmAMX8j0sT7HYRh/FDmv
+	8Yuw9nd1hrYONa6GGnBsqsuw+kNMuFsM6DHKgySZffeKbbQKmyMlDzraieAddWfVVdYvdxxy+5j
+	2vIR057cTcSinssMDDKKlsvikLUReumyJkuNyN5+OVyqKCS32XfIbriMnJhzFiG3QcqEdPNYBc2
+	PnSVBEDDebf3Euqu+sTUzgGbTlYoo6I1Uq3w3uI3JOjZyaMbZKJRNKS+Xj3CBg6uleUIilpXRAw
+	aMp0IBYMOwkH0n9hO1/ER7y4a/uKT0kWEbI+nbfq9tEUXU2U4v3JRJYdiE0RgC673OhlUlrz2KC
+	KYzBmeZ2tzcXed6iMp8FStW+rxIa21zMlUSKhHRLz9qM7WYLx8xnqgyDE+kRm5spfWlJAOX6E/e
+	UYbHLSd019GZ6wSuag6DvxI
+X-Google-Smtp-Source: AGHT+IHGhuu93iB9+Iu+92Z7s8P/1XYLIbGEAv3KqcgKPJ7h0I4QlZ2a0T4wLL1di9N4ZpEcKl/sFQ==
+X-Received: by 2002:a05:600c:6610:b0:477:a219:cdc3 with SMTP id 5b1f17b1804b1-47d18bd56b8mr182241985e9.12.1766598739089;
+        Wed, 24 Dec 2025 09:52:19 -0800 (PST)
 Received: from iku.Home ([2a06:5906:61b:2d00:3371:7b65:aaf4:d2e4])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47be3a4651bsm140167935e9.7.2025.12.24.09.52.17
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47be3a4651bsm140167935e9.7.2025.12.24.09.52.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Dec 2025 09:52:17 -0800 (PST)
+        Wed, 24 Dec 2025 09:52:18 -0800 (PST)
 From: Prabhakar <prabhakar.csengg@gmail.com>
 X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -84,10 +86,12 @@ Cc: devicetree@vger.kernel.org,
 	Biju Das <biju.das.jz@bp.renesas.com>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 0/6] Add CANFD support for Renesas R9A09G056/057/077/087 SoCs
-Date: Wed, 24 Dec 2025 17:51:58 +0000
-Message-ID: <20251224175204.3400062-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 1/6] arm64: dts: renesas: r9a09g077: Add CANFD node
+Date: Wed, 24 Dec 2025 17:51:59 +0000
+Message-ID: <20251224175204.3400062-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251224175204.3400062-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20251224175204.3400062-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,42 +102,55 @@ Content-Transfer-Encoding: 8bit
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi All,
+Add support for the CANFD controller on the Renesas RZ/T2H Soc.
 
-This series of patches adds support for the CANFD controller on the
-Renesas RZ/V2H(P) (R9A09G057), RZ/V2N (R9A09G056), RZ/T2H (R9A09G077),
-and RZ/N2H (R9A09G087) SoCs. It includes the addition of CANFD nodes in
-the respective SoC DTSI files, as well as enabling the CANFD controller
-on the RZ/T2H and RZ/N2H evaluation kits. For RZ/V2H(P) and RZ/V2N, the
-CANFD controller can be used on the PMOD connector using an external
-CAN transceiver.
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi | 31 ++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-Note,
-1] This patch series applies on top of the series [0]
-2] The CANFD DT binding and driver changes have been posted separately [1].
-
-[0] https://lore.kernel.org/all/20251222164238.156985-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-[1] https://lore.kernel.org/all/20251224173324.3393675-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-
-Cheers,
-Prabhakar
-
-Lad Prabhakar (6):
-  arm64: dts: renesas: r9a09g077: Add CANFD node
-  arm64: dts: renesas: r9a09g087: Add CANFD node
-  arm64: dts: renesas: r9a09g077m44-rzt2h-evk: Enable CANFD
-  arm64: dts: renesas: r9a09g087m44-rzn2h-evk: Enable CANFD
-  arm64: dts: renesas: r9a09g056: Add CANFD node
-  arm64: dts: renesas: r9a09g057: Add CANFD node
-
- arch/arm64/boot/dts/renesas/r9a09g056.dtsi    | 60 +++++++++++++++++++
- arch/arm64/boot/dts/renesas/r9a09g057.dtsi    | 60 +++++++++++++++++++
- arch/arm64/boot/dts/renesas/r9a09g077.dtsi    | 31 ++++++++++
- .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    | 21 +++++++
- arch/arm64/boot/dts/renesas/r9a09g087.dtsi    | 31 ++++++++++
- .../dts/renesas/r9a09g087m44-rzn2h-evk.dts    | 29 +++++++++
- 6 files changed, 232 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+index 63de8271f47c..19ace8d86160 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+@@ -237,6 +237,37 @@ rspi3: spi@81007000 {
+ 			status = "disabled";
+ 		};
+ 
++		canfd: can@80040000 {
++			compatible = "renesas,r9a09g077-canfd";
++			reg = <0 0x80040000 0 0x20000>;
++			interrupts = <GIC_SPI 633 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 632 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 627 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 628 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 626 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 630 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 631 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 629 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "g_err", "g_recc",
++					  "ch0_err", "ch0_rec", "ch0_trx",
++					  "ch1_err", "ch1_rec", "ch1_trx";
++			clocks = <&cpg CPG_MOD 310>,
++				 <&cpg CPG_CORE R9A09G077_CLK_PCLKH>,
++				 <&cpg CPG_CORE R9A09G077_PCLKCAN>;
++			clock-names = "fck", "ram_clk", "can_clk";
++			assigned-clocks = <&cpg CPG_CORE R9A09G077_PCLKCAN>;
++			assigned-clock-rates = <80000000>;
++			power-domains = <&cpg>;
++			status = "disabled";
++
++			channel0 {
++				status = "disabled";
++			};
++			channel1 {
++				status = "disabled";
++			};
++		};
++
+ 		wdt0: watchdog@80082000 {
+ 			compatible = "renesas,r9a09g077-wdt";
+ 			reg = <0 0x80082000 0 0x400>,
 -- 
 2.52.0
 
