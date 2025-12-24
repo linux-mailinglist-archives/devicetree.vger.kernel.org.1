@@ -1,78 +1,79 @@
-Return-Path: <devicetree+bounces-249528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E9FCDCB3E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:29:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 196E0CDCB47
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:29:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9CB62301B829
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 15:27:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DC364301357D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 15:29:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80FEA34DCE7;
-	Wed, 24 Dec 2025 15:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3D3734D921;
+	Wed, 24 Dec 2025 15:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="X/XxeR7X"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="0H7JImwY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2026534DB67
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 15:26:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ECD034D3AF
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 15:29:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766590007; cv=none; b=rdDC5P5sC0chr3tPenVXE8pa1pvL2VpX3UBNdTELGjlt1ONGU8rlSvC7ypYcbe+zQi6JMB0KiOmXI5CY5zjaPMlpAVo8pop6KQ7Z+tGT7iOCF7k1aUaFHiBT/pwwt9aJ9sSXiQEBU9zI1s5k2NFqmPSuzMbPzh0HEQq0S7JYe7Y=
+	t=1766590190; cv=none; b=h+1XebFFDCzpkie6XoR9qawFRfzdq9+ltJ3uWuKTY0GCREdKxFnDfinK4LHdT87RFH8MqjT7qnuXpGgIzaPZ7d4dnT0hc26Vq8jbPxayF0i6qhVGUOimnKqcYM8OitP8R/RpeNe2cjbI/lfE8AbZr5WRRiPM2u1nznjDg3G5tZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766590007; c=relaxed/simple;
-	bh=WP0+mwaL23abZgrrwF83zlYshZkFUgAYBPREgVmtmt0=;
+	s=arc-20240116; t=1766590190; c=relaxed/simple;
+	bh=0/Yd8o5IAdXD822IxpRMHQuXWwrqJuAv5y9d+H3o9Uw=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=M6ihcFwipdYXswzNglmsabU2k6mhvutXVfk5eOBfufiR6Dtqgppy0a6v8RPemzEXjpcnFmr7pg04eJnqLOrzxD71r2KdngA3C2oQcvi2Qfb2evr4mNryrejTlKitb8q8wX5H1hW2d4Ns+dsL4HIAkLDAktl9L2kQYHFAX7dsSww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=X/XxeR7X; arc=none smtp.client-ip=209.85.222.181
+	 Content-Type:MIME-Version; b=mpmUOs38287RkABftm0zYtgew4CLVni3eNgQYpUrlgjHCB0hs2PVfT6yx9FPXQAnj4EIWrDFr6BeVCFZHe4X/ZlA65JtzgLJSD3/NGAL6tHUV8ywyyTr8n8VolM3uBWjq4b+eaXGZ3c0UJY+AZ5mZIL4HGmOOIwqm4nCwNBedb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=0H7JImwY; arc=none smtp.client-ip=209.85.160.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-8b29ff9d18cso688021485a.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 07:26:43 -0800 (PST)
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-4f4cd02f915so18614811cf.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 07:29:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1766590003; x=1767194803; darn=vger.kernel.org;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1766590183; x=1767194983; darn=vger.kernel.org;
         h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
          :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=8bbVPuOUSFJISPHsFtOzJT5Gm9QNsaqBcyYdq7cSwOQ=;
-        b=X/XxeR7XjWn0Bzv4azMbwTs/nFWMVK7tFcxbLCP41JXsUChytIywn7QIdV9/cOZ+m9
-         hjlkDjkboQEPB734q9nOjv2hmXCAjXVkw8tNWYBXlz2D/p8g9/JGn6+EpSaO1CgPjNgb
-         P0rbFc4rzXDl7nb3Ke5PejAls/vfo0G6ezjB0iLFREabrYYjaHmw0vomiEyt5sNh9LOx
-         xxn6cZ1w4tATcNDmkzzj819bTkyRFqgKoRf+wrJ9GhrW2Bq+rolh8fzWpONw8hGIdKB7
-         nOZsHto7o6O3zXZeEdl7QM0Kvn+n/D26rDkf/n2DUDZwBu3fsIGD7cqIMxOqhQeGAjyy
-         G6Fg==
+        bh=TwkJIIAOyC+iGrxHsI9snh+xrQsvtUQwuewCKc8KNUQ=;
+        b=0H7JImwYYBkaiTmd2rbMh8tM0Gr/BuXNKEO46vZ89RuuRHMUZnhyiM5Tud3c5ktna/
+         swqS85OkyrQ9Y0KLkITl4EVv8m0fSzo5CmdsRjKET5oM7QW8EcAFOtzkzYPp7kiQwKpj
+         N+qgmIJ9bwKNNwwY6TRjwUa2Jtt173gamln07o5Z1gVdhI5/CNOQ59bXf9mBjiv54Gjk
+         ko04W8eKKYsa4hpxm/+Upf/wV8o2hDJYeuE0dSkjX732MCoMXJR62QwuZjMS3kQY8a2r
+         zhbBhnM53Wxqib/PtE6POWnLZ/3XXaizaz3Yl3UGVr+jeL4uD3CVJl6ink0L+5F+aI2J
+         jJVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766590003; x=1767194803;
+        d=1e100.net; s=20230601; t=1766590183; x=1767194983;
         h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
          :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8bbVPuOUSFJISPHsFtOzJT5Gm9QNsaqBcyYdq7cSwOQ=;
-        b=vjbM+NqsKAFnTCTuC3iOZ28tIT4S3E8LEYgt7jq3fGVXbUrTdYxleLpiB7NMCmTp7g
-         SeOASS0krEOP8eA/WqhMejSDHcVOAA0+/DhZJ4k07iAH/15HY+AaBqV77q5TX3DjcHLd
-         j/OlXuZeeIzy1+aiN3ogtQkqm5prY1Mxi59mRIM51h02CzTJ2zXLCp+nTqovyFPNWHwc
-         HPHq2Af1vxcggli63gYxiEWhjim5hLDXBnGQHbdcbczifS8XxAj2L0cVAPhuwtreSxIB
-         T/ENSlepamGoYl1vK0smksXxgiq3+Qe3SbTL47B4uCXUYEXxTI7UOnYnEugCgspAbZWH
-         FiGA==
-X-Forwarded-Encrypted: i=1; AJvYcCWVc47aOyb+MECksmSfk2fmKgJauTUohaSsjZfrGcIDzhQaY6IKdALVHY3sCD5ZoRcqRFt7NY7GuNks@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcplFvYX/ckWpj+LAYoiR3H3o81Oe5wRXWt3DEFUfCl2wOD3Ik
-	vgNqMn5LIufPOYD0v4zoOfuBqY2rzioS5JzNa5eDRVGnClCvjYGoNmi/2dERcIwoBWw=
-X-Gm-Gg: AY/fxX4jwQZ2Yt3qDKCcBCJ43OoHyOIJfxsklrAvV0Ovud1Vp0UPXzHsWv+EYpi7eLZ
-	q+cvvP8+vMxhFh04vL8bu97hKw63KiweJFoqmZ03PdMJK8GPHgqRYNEuMf4nsqEq5tCfjGDrDyQ
-	DTrnjGtgJzR4KpkuCrxIdLN1qswDL08b48HLc7ph12VhYKf90YafEyyM5z0apRtlNwgJYLRsIaq
-	FGGvnG2SJHlY1ee3iV1d1RH1CgdzOUJh/7cosew6r22P36A72dJzULUdUPmBNvmUJBv0Af372vU
-	t05o4+brG71nIMoDwhdmoFcqdMN6EgO9D/qu2OKFeDnbY5CVUEkJG6l85XAclos95+mtr0kXr/t
-	YutEks4xSe5BCBekvImDRpA8MqHFVxjAXxBv7ajuTShgpjdg3ANCrn33l2YqhP4jdx0MVRZ40BF
-	vfFgSNCdNcO/b/cIoj
-X-Google-Smtp-Source: AGHT+IHeKsCki3HFcgXxZjQ/QgbnIiCXYvSNho5+8Aq0rR7GOXT3D1KX6Ecly+e8kf70FyQctlEW8Q==
-X-Received: by 2002:a05:620a:28d2:b0:8b2:74e5:b13 with SMTP id af79cd13be357-8c08fd037camr2602496485a.32.1766590002998;
-        Wed, 24 Dec 2025 07:26:42 -0800 (PST)
+        bh=TwkJIIAOyC+iGrxHsI9snh+xrQsvtUQwuewCKc8KNUQ=;
+        b=WddssmtdssP1NwQicEB0cXcm3Q+UY47nfSR9lwxszq5DYLXCerq+Wl7jmIvkywXxbo
+         EXu69+3R2hVy9j2x7705peFOdoS2HVzXlpLH3e1w9Hjq0hheX7M1bMlSlYYFT6odoLwX
+         51EG31BDyHQPlfzrHwxwFEAkoLsLmPp/u8cmSZgc8fpvtGqC4rEGkse1EdBySBkyFMp1
+         rsABEhPWqWwDwXfPTTe6lfsjaCOyXnffxpQQ1VAGVpo1aqdQXxxd80UUaIV1f+Ym4QSw
+         q7hsnC8pr7WfWS2rkvmhHawuw3BNVEtz76XDbXsx2QCTRANPGjaL7iHgKDfmWZj0yICv
+         FIeg==
+X-Forwarded-Encrypted: i=1; AJvYcCUjc0So9y3+QIo2h8iWBrAANIegrQoBTWwbpMfXyd+5rOfQBVt8Y+2u1GWpJ2qvTG3vYWg/igA0sV3K@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpICpt5oGKrEMLHf2OlAReYNV46wgNgow1E2B06uIRZneANHOV
+	fZHrHf8Xm1slnwIQssObgHIbJSjG4Mou4P2Kt09UxDvUmKhYFfNa+ur9AeLIBCsRn4c=
+X-Gm-Gg: AY/fxX71GvyGsI8T3fkLwC2dIMnGIdDsdWVGbT3tn4aJgoYY2RwA0G1iSVdaHsh98/d
+	oHqAnqv6uJTikhI3cjSiKMptCouULVwhP2IR9nWUZpjQ2Uh4XwwIgkj2ARgUuVArC7LgFfUn5Gq
+	GYB1PjT+SzbRLHj02KlXK+iifM7yzRENHYfv9ki+cTriJzPZ5ylsAWryStRJOpBjJByhiomZzVe
+	qKMDf1w+5pyVYbgecC+TzHH4yrhfPbuIaND2hT/tM7HO0kana1840q1Ku6rBen1F6n5rnko0QoO
+	vGcP+VLtwK/7+nEyPfrmf8TVnaoI6nhpjRaN8BVy2PfwI2ki+4VbLyXDH+WntF27MJG+Tjq75j5
+	x6OM3Z1JhuvniBSJf54bW6653LWAt42H3OD+6XvP174JYjtkVkLzUy5x7pwzHu9Gl4WtbGigCxr
+	b9BeHRYhNLiUJV1pYV
+X-Google-Smtp-Source: AGHT+IFurORRUJNULnlbX94R2za/XCt3vvaDyHm+KjHk3sOKh4CoRdkgBOx3YgO3VJabdA7p5qCnbw==
+X-Received: by 2002:a05:622a:4d93:b0:4e8:96ed:2e65 with SMTP id d75a77b69052e-4f4abcc50e0mr263126051cf.22.1766590182533;
+        Wed, 24 Dec 2025 07:29:42 -0800 (PST)
 Received: from ?IPv6:2606:6d00:17:7b4b::c41? ([2606:6d00:17:7b4b::c41])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c1a674bcaasm237365685a.38.2025.12.24.07.26.41
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4f4ac66841bsm120154681cf.30.2025.12.24.07.29.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Dec 2025 07:26:42 -0800 (PST)
-Message-ID: <98a11ef7e0004267f58a18ad97ea9cb11a68a626.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 09/22] media: rockchip: rga: align stride to 4 bytes
+        Wed, 24 Dec 2025 07:29:41 -0800 (PST)
+Message-ID: <8c3a3299036dd1bab158bdcd589abd027d2864b6.camel@ndufresne.ca>
+Subject: Re: [PATCH v2 10/22] media: rockchip: rga: prepare cmdbuf on
+ streamon
 From: Nicolas Dufresne <nicolas@ndufresne.ca>
 To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
 	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
@@ -83,10 +84,10 @@ To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
 Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
 	devicetree@vger.kernel.org, kernel@pengutronix.de
-Date: Wed, 24 Dec 2025 10:26:41 -0500
-In-Reply-To: <20251203-spu-rga3-v2-9-989a67947f71@pengutronix.de>
+Date: Wed, 24 Dec 2025 10:29:41 -0500
+In-Reply-To: <20251203-spu-rga3-v2-10-989a67947f71@pengutronix.de>
 References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
-	 <20251203-spu-rga3-v2-9-989a67947f71@pengutronix.de>
+	 <20251203-spu-rga3-v2-10-989a67947f71@pengutronix.de>
 Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
  keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
  /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
@@ -101,7 +102,7 @@ Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
  ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
  bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
 Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-NUwMM9wc9tFrS823ocKI"
+	protocol="application/pgp-signature"; boundary="=-wgUFX3W9vJo/GeY1uEul"
 User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -111,7 +112,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
 
---=-NUwMM9wc9tFrS823ocKI
+--=-wgUFX3W9vJo/GeY1uEul
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -119,107 +120,141 @@ Hi,
 
 Le mercredi 03 d=C3=A9cembre 2025 =C3=A0 16:52 +0100, Sven P=C3=BCschel a =
 =C3=A9crit=C2=A0:
-> Add an alignment setting to rga_hw to set the desired stride alignment.
-> As the RGA2 register for the stride counts in word units, the code
-> already divides the bytesperline value by 4 when writing it into the
-> register. Therefore fix the alignment to a multiple of 4 to avoid
-> potential off by one errors due from the division.
+> Prepare the command buffer on streamon to reuse it's contents instead of
+> completely writing it for every frame. Due to the stream settings being
+> fixed after a streamon we only need to replace the source and destination
+> addresses for each frame. This reduces the amount of CPU and memory
+> operations done in each frame.
 
-If you decide to keep the stride alignment to be width alignment, then plea=
-se
-make use struct v4l2_frmsize_stepwise and v4l2_apply_frmsize_constraints
-instead.
+My speculation is that flushing to device is usually more expensive then th=
+is,
+but I didn't check closely if you have enabled the caches. That being said,=
+ this
+is good change. It highlight the inflexible nature of V4L2 imho, which in t=
+his
+case can be used to optimize.
 
-It will also make the per-variant description a lot more clear, with the mi=
-n/max
-resolution exposed.
-
-Nicolas
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 
 >=20
 > Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
 > ---
-> =C2=A0drivers/media/platform/rockchip/rga/rga-hw.c |=C2=A0 1 +
-> =C2=A0drivers/media/platform/rockchip/rga/rga.c=C2=A0=C2=A0=C2=A0 | 11 ++=
-++++-----
+> =C2=A0drivers/media/platform/rockchip/rga/rga-hw.c | 13 +++++++++----
+> =C2=A0drivers/media/platform/rockchip/rga/rga.c=C2=A0=C2=A0=C2=A0 | 13 ++=
+++++++++++-
 > =C2=A0drivers/media/platform/rockchip/rga/rga.h=C2=A0=C2=A0=C2=A0 |=C2=A0=
  1 +
-> =C2=A03 files changed, 8 insertions(+), 5 deletions(-)
+> =C2=A03 files changed, 22 insertions(+), 5 deletions(-)
 >=20
 > diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media=
 /platform/rockchip/rga/rga-hw.c
-> index 79bf911e74779..56a2558539bfb 100644
+> index 56a2558539bfb..8cdfe089fd636 100644
 > --- a/drivers/media/platform/rockchip/rga/rga-hw.c
 > +++ b/drivers/media/platform/rockchip/rga/rga-hw.c
-> @@ -620,6 +620,7 @@ const struct rga_hw rga2_hw =3D {
-> =C2=A0	.max_width =3D MAX_WIDTH,
-> =C2=A0	.min_height =3D MIN_HEIGHT,
-> =C2=A0	.max_height =3D MAX_HEIGHT,
-> +	.stride_alignment =3D 4,
+> @@ -408,8 +408,6 @@ static void rga_cmd_set(struct rga_ctx *ctx,
+> =C2=A0{
+> =C2=A0	struct rockchip_rga *rga =3D ctx->rga;
 > =C2=A0
+> -	memset(ctx->cmdbuf_virt, 0, RGA_CMDBUF_SIZE * 4);
+> -
+> =C2=A0	rga_cmd_set_src_addr(ctx, src->dma_desc_pa);
+> =C2=A0	/*
+> =C2=A0	 * Due to hardware bug,
+> @@ -418,11 +416,9 @@ static void rga_cmd_set(struct rga_ctx *ctx,
+> =C2=A0	rga_cmd_set_src1_addr(ctx, dst->dma_desc_pa);
+> =C2=A0
+> =C2=A0	rga_cmd_set_dst_addr(ctx, dst->dma_desc_pa);
+> -	rga_cmd_set_mode(ctx);
+> =C2=A0
+> =C2=A0	rga_cmd_set_src_info(ctx, &src->offset);
+> =C2=A0	rga_cmd_set_dst_info(ctx, &dst->offset);
+> -	rga_cmd_set_trans_info(ctx);
+> =C2=A0
+> =C2=A0	rga_write(rga, RGA_CMD_BASE, ctx->cmdbuf_phy);
+> =C2=A0
+> @@ -431,6 +427,14 @@ static void rga_cmd_set(struct rga_ctx *ctx,
+> =C2=A0				=C2=A0=C2=A0 PAGE_SIZE, DMA_BIDIRECTIONAL);
+> =C2=A0}
+> =C2=A0
+> +static void rga_hw_setup_cmdbuf(struct rga_ctx *ctx)
+> +{
+> +	memset(ctx->cmdbuf_virt, 0, RGA_CMDBUF_SIZE * 4);
+> +
+> +	rga_cmd_set_mode(ctx);
+> +	rga_cmd_set_trans_info(ctx);
+> +}
+> +
+> =C2=A0static void rga_hw_start(struct rockchip_rga *rga,
+> =C2=A0			 struct rga_vb_buffer *src,=C2=A0 struct rga_vb_buffer *dst)
+> =C2=A0{
+> @@ -622,6 +626,7 @@ const struct rga_hw rga2_hw =3D {
+> =C2=A0	.max_height =3D MAX_HEIGHT,
+> =C2=A0	.stride_alignment =3D 4,
+> =C2=A0
+> +	.setup_cmdbuf =3D rga_hw_setup_cmdbuf,
 > =C2=A0	.start =3D rga_hw_start,
 > =C2=A0	.handle_irq =3D rga_handle_irq,
+> =C2=A0	.get_version =3D rga_get_version,
 > diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/pl=
 atform/rockchip/rga/rga.c
-> index 74d94c7fe31ff..592c977a07cf3 100644
+> index 592c977a07cf3..f02ae02de26ca 100644
 > --- a/drivers/media/platform/rockchip/rga/rga.c
 > +++ b/drivers/media/platform/rockchip/rga/rga.c
-> @@ -234,10 +234,10 @@ static int rga_open(struct file *file)
-> =C2=A0	ctx->in =3D def_frame;
-> =C2=A0	ctx->out =3D def_frame;
+> @@ -523,6 +523,17 @@ static int vidioc_s_selection(struct file *file, voi=
+d *priv,
+> =C2=A0	return ret;
+> =C2=A0}
 > =C2=A0
-> -	v4l2_fill_pixfmt_mp(&ctx->in.pix,
-> -			=C2=A0=C2=A0=C2=A0 ctx->in.fmt->fourcc, def_width, def_height);
-> -	v4l2_fill_pixfmt_mp(&ctx->out.pix,
-> -			=C2=A0=C2=A0=C2=A0 ctx->out.fmt->fourcc, def_width, def_height);
-> +	v4l2_fill_pixfmt_mp_aligned(&ctx->in.pix, ctx->in.fmt->fourcc,
-> +				=C2=A0=C2=A0=C2=A0 def_width, def_height, rga->hw->stride_alignment)=
-;
-> +	v4l2_fill_pixfmt_mp_aligned(&ctx->out.pix, ctx->out.fmt->fourcc,
-> +				=C2=A0=C2=A0=C2=A0 def_width, def_height, rga->hw->stride_alignment)=
-;
+> +static int vidioc_streamon(struct file *file, void *priv,
+> +			=C2=A0=C2=A0 enum v4l2_buf_type type)
+> +{
+> +	struct rga_ctx *ctx =3D file_to_rga_ctx(file);
+> +	const struct rga_hw *hw =3D ctx->rga->hw;
+> +
+> +	hw->setup_cmdbuf(ctx);
+> +
+> +	return v4l2_m2m_streamon(file, ctx->fh.m2m_ctx, type);
+> +}
+> +
+> =C2=A0static const struct v4l2_ioctl_ops rga_ioctl_ops =3D {
+> =C2=A0	.vidioc_querycap =3D vidioc_querycap,
 > =C2=A0
-> =C2=A0	if (mutex_lock_interruptible(&rga->mutex)) {
-> =C2=A0		ret =3D -ERESTARTSYS;
-> @@ -359,7 +359,8 @@ static int vidioc_try_fmt(struct file *file, void *pr=
-iv, struct v4l2_format *f)
-> =C2=A0	pix_fmt->height =3D clamp(pix_fmt->height,
-> =C2=A0				hw->min_height, hw->max_height);
+> @@ -547,7 +558,7 @@ static const struct v4l2_ioctl_ops rga_ioctl_ops =3D =
+{
+> =C2=A0	.vidioc_subscribe_event =3D v4l2_ctrl_subscribe_event,
+> =C2=A0	.vidioc_unsubscribe_event =3D v4l2_event_unsubscribe,
 > =C2=A0
-> -	v4l2_fill_pixfmt_mp(pix_fmt, fmt->fourcc, pix_fmt->width, pix_fmt->heig=
-ht);
-> +	v4l2_fill_pixfmt_mp_aligned(pix_fmt, pix_fmt->pixelformat,
-> +				=C2=A0=C2=A0=C2=A0 pix_fmt->width, pix_fmt->height, hw->stride_align=
-ment);
-> =C2=A0	pix_fmt->field =3D V4L2_FIELD_NONE;
+> -	.vidioc_streamon =3D v4l2_m2m_ioctl_streamon,
+> +	.vidioc_streamon =3D vidioc_streamon,
+> =C2=A0	.vidioc_streamoff =3D v4l2_m2m_ioctl_streamoff,
 > =C2=A0
-> =C2=A0	return 0;
+> =C2=A0	.vidioc_g_selection =3D vidioc_g_selection,
 > diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/pl=
 atform/rockchip/rga/rga.h
-> index f8c932fdec21a..0aef348dddb95 100644
+> index 0aef348dddb95..93162b118d069 100644
 > --- a/drivers/media/platform/rockchip/rga/rga.h
 > +++ b/drivers/media/platform/rockchip/rga/rga.h
-> @@ -152,6 +152,7 @@ struct rga_hw {
-> =C2=A0	size_t cmdbuf_size;
-> =C2=A0	u32 min_width, min_height;
+> @@ -154,6 +154,7 @@ struct rga_hw {
 > =C2=A0	u32 max_width, max_height;
-> +	u8 stride_alignment;
+> =C2=A0	u8 stride_alignment;
 > =C2=A0
+> +	void (*setup_cmdbuf)(struct rga_ctx *ctx);
 > =C2=A0	void (*start)(struct rockchip_rga *rga,
 > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct rga_vb_buffer *src, struct =
 rga_vb_buffer *dst);
+> =C2=A0	bool (*handle_irq)(struct rockchip_rga *rga);
 
---=-NUwMM9wc9tFrS823ocKI
+--=-wgUFX3W9vJo/GeY1uEul
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUwGMQAKCRDZQZRRKWBy
-9KAVAPwIlL025j4b5ptSDvhTlCDvIeLP4/gFKyg++9AzpYF8iwEAzv+K8K6b6xOL
-Fo4QrBq8vaqO5TaTfccJIwMg+DR8jQk=
-=5lUF
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUwG5QAKCRDZQZRRKWBy
+9O4FAP9E2aNeLRZt1zQcbEal6Ub+hRLjCwZuHvx4d6mo+exV+gD8D3fEU7lK1Rbl
+U4jgUBplP0NBwSIZ6m7R2BXkERRjOQA=
+=EAR/
 -----END PGP SIGNATURE-----
 
---=-NUwMM9wc9tFrS823ocKI--
+--=-wgUFX3W9vJo/GeY1uEul--
 
