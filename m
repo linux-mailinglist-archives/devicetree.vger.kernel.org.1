@@ -1,131 +1,157 @@
-Return-Path: <devicetree+bounces-249416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 397E2CDBB26
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 09:44:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AF16CDBB38
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 09:50:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9C163301D5B3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 08:43:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0914A300E15D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 08:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9758632D0E2;
-	Wed, 24 Dec 2025 08:43:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5912D5C91;
+	Wed, 24 Dec 2025 08:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nthCTy+H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BhwYUUMY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A9F278753;
-	Wed, 24 Dec 2025 08:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7444713777E
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 08:50:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766565836; cv=none; b=fITb/mQnwH4AYmnYHD2FnTJH45wwkTB6yfy+alUyAvDfQPqppymtnVbY76gHNPDKtMkG7rapYr2KRmpvq+ZBsLYwCBHwdqw2mfwrFKbmpzoJh5/e1Ftts0IiO7B+Rsk/sFq4k9jdZLy1yuLeratu+yE7VSrnMUvKixhv6+rR5FQ=
+	t=1766566230; cv=none; b=LcuLoL2ChHa27hiK4xVbCUiJ/stbnv320wguFrcnhG91SV2jWAR7irIorLJgNZw6MN+cK2UQtjDwxaiW8+vhC4DrB2Ho+u10RdA/iu1D2UoWpnKkBpQWwI2bF0vVj0UN3IrLjzSDREVCxwBROjSMTM4T+F7oK6TF0em5hprr+Jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766565836; c=relaxed/simple;
-	bh=NLqO3+RTBmQp8Usa5qfQwF919Z3LUMDftSlFWyZyFFI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=UyDSZ2EJuG4rNstCU+B44ZSuKfHRUt0O9GhrHrJ1pzLRThBjCKX9sCt3o5U5kTW9ecHt8x+Tf9+0EINgjRjYlTg1XMsADxn1d0DBG6lDgXTlNEzXYnhGU5cGmlibMd/XgM+1DB9lzCWwueX2BZQn/Ooe+8b2Mj6ioydyprWOsnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nthCTy+H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F085C4CEFB;
-	Wed, 24 Dec 2025 08:43:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766565835;
-	bh=NLqO3+RTBmQp8Usa5qfQwF919Z3LUMDftSlFWyZyFFI=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=nthCTy+HiATubzeyvwbfnO7FSJF6++BgfaXcaKbBG/PZYq1eDK2+oWq6OgR0hzsrx
-	 /ySjJg8XEgh0anwlUCVhPuAELDkuxoM8pXYGEhp6RdaC5EjR5Y9fBSxdz+8cMNO+Ux
-	 7wbceCWm6UySB86IAMZxmE+UBAuSbYqjk3MvrgbJTa7tUaDBI3zSXkH1mTMSQVCcsx
-	 ZVL28rG0X+NRQ8/4uR5/F67NMnNE1zPxlRmmawMEctI2/ESmLlxToRETPSX6MjCmrD
-	 WpT9KP8Vvsozma6FsALl2rVmD8XqEZ2U26BWyChuSnsC8QvqWVvTzLwZUsloitEZo/
-	 tW+TTGHWLE++A==
-Message-ID: <6141feba-adb7-4e9e-8821-00528155639b@kernel.org>
-Date: Wed, 24 Dec 2025 09:43:49 +0100
+	s=arc-20240116; t=1766566230; c=relaxed/simple;
+	bh=14Q2KrQgefP7k2CkV/AvXV2dv7qPTPm5udnPs2slKWQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=eYoqu1UDQLcz2t3O4+r6g+kvhfsSqPZcm40Ti8gCcuF+toQl/6tr7nuMweN2pHMYsRnyICdbIHYXOF6i36WIc837nr3mOftnyLqgQCSCVgMxwQxXv/rxXpsfLzeK2HF6v0JB4TZWw/3tWL+2WJaWwmbYI+++lCh1z/5NpKvFkWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BhwYUUMY; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-34c84dc332cso4926477a91.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 00:50:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766566229; x=1767171029; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EqUvLG+FaPCBDIi8nSafdxPiptVy75Ukg1G+12V+F10=;
+        b=BhwYUUMYW3Xa46ALpJDNKFo6VZi2DT851YcABY7RkevD0rDbLgF02Vo3HKEt1LE1lp
+         3D6RR3EZT2ViOckgvPVSIQcBpQLl+/Tq0nXiKii4yNDthyWls1Q2NV5JkAMsFqtxEAG4
+         iKM9+qdm8awnvtbd0wNUn+FKXToq6ls3cJr1XDCx5RzaWtsP09sp6lbBklSRpujkg6NH
+         Eq3LLgOu21oPQ+IHJ9x7rQXXo4Q3k8E6pQ+1+sL5ko7sQ9ZzWIxVwR4oLU+yc18j4fos
+         XHZ4jCNbVjv9rd+83ykD3PLMNsHO44kakjLhywhDK/5NEIimThRFNFqQVMpYDSfPMmeH
+         Hf+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766566229; x=1767171029;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EqUvLG+FaPCBDIi8nSafdxPiptVy75Ukg1G+12V+F10=;
+        b=K17dHmUyzSzKyqqH3I4sEoIAdBgZfSc/QLbgYKAZm/soCjA3CKYtzTw4NmjeA1Kjmq
+         5YvCyxbV+Ju35DRKTRX4VC7pB60egPqHfZ6SHmd15jMM7rupMbGsAxVxdb4NxvDRaATf
+         7LYGiCB6Ts2XfnN5Ce7znujF0bubRQV8/k0Q51wzRFrN/bPuoQwMok4E7ekGojcXqFUZ
+         JMP6xcmh97SZkk3Uy1EG1cTNkaP/n2d+uZ4Ahf0ef6wI0iPPkNGlSm3NC01/Zoi3Qlxu
+         0EPlFgKc0/bzYp9FWCYZPHcZZ9Yt6Fgm+MU2hMiVIWt+X43gecYbpdKid2XJnE4xiaJO
+         dccw==
+X-Forwarded-Encrypted: i=1; AJvYcCUqbBQ/E9w9fkQo1NmUAL8ztieILThpK/b0N5r6/ow+yA5GRDAuYSQexdxlKb5GFx35oOImKcweYEfJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkiJxlcyJ7Y0eA4paZN1uzGrGEvikrKmNiwBE9hXxwBt7o1TSd
+	x/kaTt5opjWK92nqH6tQ+mLysaQ9E991NrMENZcLvbOFTG5kTtoJQNxO
+X-Gm-Gg: AY/fxX7kT1dbwC/bBXNcbgxQR969iYfDo7DUff18BDrcxAqAEkoSe0SPqB1ZkUDJFaW
+	AUUCtbVGyCjlFQkMQ976yYdlTnz/zN5V71n6Lit++vfgxCiliRJMy7tVIK5kOAaK/9+JgDfG4Fz
+	XJkRehojMOTMRyoecioTGqmrh7zZgEDpgsn+5OGAH2uYyj46cOsINFnQfKvStXIqSFZCxsErlvi
+	Ug4OKByIgjefcWfeOFTi8/O6DB6Qoao8xCrQ61HwwFwyZoggHcgypkC/GSnjQRLEDNlrmeZw9RN
+	TAc/t7vdeeb3ekuEIZYZqqjd7jhYDO0ijZ4h6EptxwFsj3W3L9d9IVjwGu6xSA7y08EFriKTOnX
+	xT0kdk+5fCmKsVginEAFkfga2Vskl+pTDQTvj3GPrcnGVRFc2br3FPDkMltaEQPyLzHq4BnqL5Q
+	JfYaOiAxMDqT6JgJ4v/+4aqsOtLflzPATPUXunjEITzcCZwek+jAgvQrLQp0L2ZbAmmuVcycHmm
+	C5h3xNtwprev5FQP9zm0Z/VB07SJvs=
+X-Google-Smtp-Source: AGHT+IG32bEqtgGX+aUU+Vghs/FHpYAMoBhmbtVYpF3KZbFDPID9DvkIR8rsUWNz2u9SL+Wd3iWElQ==
+X-Received: by 2002:a17:90b:1f8c:b0:349:2936:7f4 with SMTP id 98e67ed59e1d1-34e921bc5c1mr12117693a91.32.1766566228667;
+        Wed, 24 Dec 2025 00:50:28 -0800 (PST)
+Received: from charles-System-Product-Name.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34e9219eb13sm14994055a91.1.2025.12.24.00.50.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Dec 2025 00:50:28 -0800 (PST)
+From: Charles Hsu <hsu.yungteng@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: linux-hwmon@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Charles Hsu <hsu.yungteng@gmail.com>
+Subject: [PATCH v4 1/2] dt-bindings: hwmon: add STEF48H28
+Date: Wed, 24 Dec 2025 16:48:20 +0800
+Message-Id: <20251224084821.2092169-1-hsu.yungteng@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: monaco: add QCrypto node
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20251224-enable-qualcomm-crypto-engine-for-monaco-v3-1-6073430bbc13@oss.qualcomm.com>
- <f11d339f-5400-42d0-bdd1-5723083285bf@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <f11d339f-5400-42d0-bdd1-5723083285bf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 24/12/2025 09:42, Krzysztof Kozlowski wrote:
-> On 24/12/2025 09:33, Abhinaba Rakshit wrote:
->> Add Qualcomm Crypto Engine device node for Monaco platform.
->>
->> QCE and Crypto DMA nodes patch was applied as part of
->> commit a86d84409947 ("arm64: dts: qcom: qcs8300: add QCrypto nodes"),
->> however was partially reverted by commit cdc117c40537 ("arm64: dts: qcom:
->> qcs8300: Partially revert "arm64: dts: qcom: qcs8300: add QCrypto nodes"")
->> due to compatible string being mismatched against schema.
-> 
-> ...due to Qualcomm engineer not ever bothering to build test the code.
-> 
-> Was it build tested now? Typically this is implied by trusting people,
-> but not here. Trust is lost.
+Add device tree bindings for the hot-swap controller STEF48H28.
 
-And to be clear - I found more QCrypto DTS patches which were never
-build tested and never tested on the hardware. This was not a single
-case, but a pattern.
+Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
+---
+ .../bindings/hwmon/pmbus/st,stef48h28.yaml    | 43 +++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
+new file mode 100644
+index 000000000000..c6a4b02bcd84
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
+@@ -0,0 +1,43 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/pmbus/st,stef48h28.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STMicroelectronics hot-swap controller with PMBus interface
++
++maintainers:
++  - Charles Hsu <hsu.yungteng@gmail.com>
++
++description: |
++  The STEF48H28 is an advanced 30A integrated electronic fuse for
++  the 9-80V DC power lines.
++
++  Datasheet:
++    https://www.st.com/resource/en/data_brief/stef48h28.pdf
++
++properties:
++  compatible:
++    enum:
++      - st,stef48h28
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pmic@11 {
++            compatible = "st,stef48h28";
++            reg = <0x11>;
++        };
++    };
+-- 
+2.34.1
+
 
