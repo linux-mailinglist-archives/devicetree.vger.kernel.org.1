@@ -1,101 +1,169 @@
-Return-Path: <devicetree+bounces-249322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BF93CDACDA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 00:09:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21231CDAE03
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 01:09:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1C5F73026BE3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Dec 2025 23:09:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9231430161EB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 00:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7263830F529;
-	Tue, 23 Dec 2025 23:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C753C1B7F4;
+	Wed, 24 Dec 2025 00:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="DQk+IT1W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XmHlMsNd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C0230C363
-	for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 23:09:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9C13C1F;
+	Wed, 24 Dec 2025 00:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766531381; cv=none; b=U5JYzwSTxycmmjbC+ljx9eRWLQbj49bdlK78FotgV5u0qR8v5Z0uEb25nKfOqB6YebVFjpPxX0eLyZ7IvpwOkISM1gd/Qx2fx0YnrrMH4ITpQcWHy4sbem2NJY5X37hgzU1UWd395w/W+BNc81RPqYJYqXeh/uJKzyFfdfaeu2k=
+	t=1766534989; cv=none; b=cmkkbONUVqqw3O9Gaeeo5KehwcVKPf1BLo0mn6u7f3wY5tKgabgok6UsFt4JQKFaC9RcNvls3DilyC9W4BcnpXW6I3I2v74XNnLvt6ObnYFbFgIKTFJ6o7GTbdMypDBGiDj6WHh4ku6fDvbuv0FFynf0ME+qt1LnOLWyUHvXpJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766531381; c=relaxed/simple;
-	bh=m1EjGYP2UGBwtZ05v+i9zGbhr9QL9BrOQBe7XkYsNk8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cwW/xoCoOl8l+o8grCJussz/1je0VizG0PhmxtPEYKrG/eV3vr/WfEvwVU34O34QY48dUfKt1kQjQVsIJVRtA0Vq+7Sl0kgQWBOVQQKT9XtBvEi8na5c0AOPiK5dwhIGc7AJL5J4Y5pWB4c4+povGyo8v8UBWIswiqErmqqtQ5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=DQk+IT1W; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a0834769f0so55147995ad.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 15:09:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1766531378; x=1767136178; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m1EjGYP2UGBwtZ05v+i9zGbhr9QL9BrOQBe7XkYsNk8=;
-        b=DQk+IT1WHcGXDpTpZL0wZtRtlueKNEBNZu0U4f4PsiT3EY405Wci+RHPPt5+2LPWc4
-         xEJSe+1Gy/bltJibj+dka7rBwe2WEJYjDFE9xHTqtJrz5hWagLCJWIO0uykYmV7oa/e8
-         dEm/l+FM8eVNT5X9SAzJsKPbCn3LBmJVcOMEHq2Q+MOZ+fenGBev/1IuxzSFo7nR42zG
-         AmFQIrvetkg8dEriQUcoE/+AYUe0bYv+2eHuT0QCwB9nES4o3ZwZ633USw3BxRNsbAHe
-         0bZTb9Y70JULYf5ePvDaYZLCEgvrf3dmtIiiEW3xGzbwb2hFbnrdGEGAbYEwADlblcY8
-         /TMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766531378; x=1767136178;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=m1EjGYP2UGBwtZ05v+i9zGbhr9QL9BrOQBe7XkYsNk8=;
-        b=sbL2o5vtyolNkGtSeKZjZggI25HoFYcqYELaM1MEhcDktW3520KzQy/GNOz/viDCO6
-         btQWTb6OjfByntVl71IZCBDFazQqYDsWB6nOp9tkMxKgi1wqhNxE+OEl5HHeTIvWOl41
-         0MscmGFqZ3DGZzb9xDni0qz+RCB/QDPa+sSAR4kGBbSRuWSj7Kbz7ZnmxLPnqhzW/Yqd
-         ZH4FCJiTdcXfY9ysaQgE7/etSogV+CBKWhBSCIu1ZfprRQToPVRqvNVyBlYiYISVzbRZ
-         Z0mVdIPJglMEAr+dgqUn6eb1u3W6zNPxxslz1usBBAYJoIHrDX1/orU6baNDqXanQChQ
-         vgZg==
-X-Forwarded-Encrypted: i=1; AJvYcCU3m9Bnup6Bc3sr+PjHF1mjJTK1gKVXFSm82DU63WVnWEFGQQRlcFfgnSeT6BJ6bjlxk/t9pohwzVom@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzm4bqRAgu857DOZHINinQWeSEJAB/coD+ZZutdW1r6NCVyZ5V0
-	/8lRfXgGtn9OLUWnE1ERVgiv21h/GEfKdEQ73qJdSNUlTYYcbtnRxEUGymXlsQRY9lEIT0Rm3g2
-	JJdIJOiYHAtGEsuTbhq3EUSmlc5xiwlQ=
-X-Gm-Gg: AY/fxX5LmUnCqURdjWgsilN7qMN1d+rAoUhHzxIf1+Y7Rdq0vU6Fket8NXn0aKMSLvL
-	HpQ5OKxXdQcWudO20X+5bQ+Fh541BM5InPpD/0Ye8bKXBcUzusD2XjeLytlPW5zLvJJn5+s6khq
-	8ZqI7hy/YlDt2MgOT4HiKA66M4AYRmKnpkjF2CpVs/4aE2jj5dn0Z49c+yrlMeP5qZoLSWlfZao
-	N/Ne68W8afeTlYJSpg9yZ88yOkBoFg4CU1HD1XDh9AvC/OYcYp0XchuIdNP+fuQBzDIQH/9iB28
-	v7+Y3S3PdxoV+JODHa6Szx04Bddu
-X-Google-Smtp-Source: AGHT+IFUSCkAfRP0I6/HxdHEcLNE7m8wfG7D21SpknHBGNN89HP7uArZIqvkPs7+jmNig3meugYVG6juaO/qZ6BfIYE=
-X-Received: by 2002:a17:903:3508:b0:299:fc47:d7e3 with SMTP id
- d9443c01a7336-2a2f27350f8mr156126155ad.31.1766531377964; Tue, 23 Dec 2025
- 15:09:37 -0800 (PST)
+	s=arc-20240116; t=1766534989; c=relaxed/simple;
+	bh=9762YMZ3e4dNH0leV0xqlBgFdKvF9MnhJqn+Wiy6al4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sKU9OzTfOPQv03sVPbqMkYG1uoFnf9rGsafYkWqT0tEPcVFOCjSQ6/dAuJy5oFQiAQREHkn73qengKyNaLgjCCQrfqecNmBklaUHLhd1ejdNu2Rs16SnFGUn+UONANERGdETfMh65NWuL/HTDYzq9bZF8EeIMxejOowvsX4Zkk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XmHlMsNd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3AC5C113D0;
+	Wed, 24 Dec 2025 00:09:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766534989;
+	bh=9762YMZ3e4dNH0leV0xqlBgFdKvF9MnhJqn+Wiy6al4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XmHlMsNddxVT09HRcBH/WYCdWtTAjhgNqDroROJ/EAyO7vCd9ktC5lPaCHV3OnOK4
+	 Mexi8z/9J4MMsfuFpJyc5tPeegMajXKgbapMBe1RlPoi0dRaiiqiqXx4a60KOG1tKi
+	 A5G5ble91/4izwKAn+3DXjs/Z0hXZs4OamgjP7649gyjg5R+Ovk2eQ8YusgjqzEZ0J
+	 d27wfLTnWRrp5ZrU7wrkq7JAZLPe1MSOH6FJty/yJP9T2Ng+h0sGdXP2+Ca7/VhUoY
+	 VrXLZklKFm1mPQwvat6ngYvvfRU8AWlKLp3tuOLhJpp5aDPEcMLl37jKw4J5fL2yrx
+	 bK5yt1IiETvaw==
+Date: Tue, 23 Dec 2025 18:09:44 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Linus Walleij <linusw@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
+	dl-linux-imx <linux-imx@nxp.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v6 4/5] gpio: rpmsg: add generic rpmsg GPIO driver
+Message-ID: <xiqftcgga24bypbux276u56t2lxjy4oxzggixrhy5h7woc4aon@2zbcfxxrzqig>
+References: <20251212194341.966387-1-shenwei.wang@nxp.com>
+ <20251212194341.966387-5-shenwei.wang@nxp.com>
+ <mnpg4xanzl45lal72c6kgog7qmqgk2zcp734eqdpk3gsonq63f@vlewh6jgdjy4>
+ <PAXPR04MB9185B16A2B08E739B2FB64C889B5A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251223152510.155463-3-krzysztof.kozlowski@oss.qualcomm.com> <20251223152510.155463-4-krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20251223152510.155463-4-krzysztof.kozlowski@oss.qualcomm.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 24 Dec 2025 00:09:26 +0100
-X-Gm-Features: AQt7F2ryDIpXSRh1nF6x1WRfdFopeDKxRaQNT7WxGxtmZzK7QOKWjATFSuNf3mk
-Message-ID: <CAFBinCDRUEKeE1ufjiqX=jr3nrJX6crg-rBVU5DW66WkFA5NAA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: Use lowercase hex
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PAXPR04MB9185B16A2B08E739B2FB64C889B5A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 
-On Tue, Dec 23, 2025 at 4:25=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@oss.qualcomm.com> wrote:
->
-> The DTS code coding style expects lowercase hex for values and unit
-> addresses.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Tue, Dec 23, 2025 at 08:20:49PM +0000, Shenwei Wang wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Bjorn Andersson <andersson@kernel.org>
+> > Sent: Thursday, December 18, 2025 9:58 AM
+> > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > Cc: Linus Walleij <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.org>;
+> > Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
+> > Conor Dooley <conor+dt@kernel.org>; Mathieu Poirier
+> > <mathieu.poirier@linaro.org>; Shawn Guo <shawnguo@kernel.org>; Sascha
+> > Hauer <s.hauer@pengutronix.de>; Jonathan Corbet <corbet@lwn.net>;
+> > Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> > On Fri, Dec 12, 2025 at 01:43:40PM -0600, Shenwei Wang wrote:
+> > > On an AMP platform, the system may include two processors:
+[..]
+> > > +static int rpmsg_gpio_callback(struct rpmsg_device *rpdev,
+> > > +                            void *data, int len, void *priv, u32 src)
+> > > +{
+[..]
+> > > +     init_completion(&port->info.cmd_complete);
+> > > +     port->info.rpdev = pltdata->rpdev;
+> > > +     port->info.port_store = pltdata->channel_devices;
+> > > +     port->info.port_store[port->idx] = port;
+> > > +     if (!pltdata->rx_callback)
+> > > +             pltdata->rx_callback = rpmsg_gpio_callback;
+> > 
+> > What happens if you rmmod your rpmsg gpio driver and then trigger an interrupt?
+> > 
+> 
+> The driver has a rpmsg_gpio_remove_action which will clear the devices in the pltdata->channel_devices[].
+> In the rpmsg callback function, it will just return -NODEV error.
+
+When you rmmod the rpmsg_gpio driver, the code will go away, so at the
+address of rpmsg_gpio_callback there's going to be some undefined data.
+
+> 
+>      if (msg)
+>              port = drvdata->channel_devices[msg->port_idx];
+
+So this code is no longer going to be there, or maybe there's some
+remnants of it? But jumping to the address of rpmsg_gpio_callback (not
+the actual rpmsg_gpio_callback) is best case going to result in a crash.
+
+> 
+>      if (!port)
+>              return -ENODEV;
+> 
+> > > +
+[..]
+> > > +static const struct of_device_id rpmsg_gpio_dt_ids[] = {
+> > > +     { .compatible = "rpmsg-gpio" },
+> > > +     { /* sentinel */ }
+> > > +};
+> > > +
+> > > +static struct platform_driver rpmsg_gpio_driver = {
+> > 
+> > It's an "rpmsg gpio driver", but it's a platform_driver...
+> > 
+> > I don't think this is the correct design, but if it is then this needs to be well
+> > documented.
+> > 
+> > Same thing as platform_data forms a strong ABI between some other driver and
+> > this platform_driver, this needs to be well documented (but should be avoided).
+> > 
+> 
+> Are you suggesting to use "rpmsg_driver" framework here?
+> 
+
+Yes, making the functional driver bind to the particular rpmsg channel
+is exactly what I would expect from a "rpmsg gpio driver".
+
+Regards,
+Bjorn
+
+> Thank you very much for the review.
+> Shenwei
+> 
+> > Regards,
+> > Bjorn
+> > 
+> > > +     .driver = {
+> > > +             .name = "gpio-rpmsg",
+> > > +             .of_match_table = rpmsg_gpio_dt_ids,
+> > > +     },
+> > > +     .probe = rpmsg_gpio_probe,
+> > > +};
+> > > +
+> > > +module_platform_driver(rpmsg_gpio_driver);
+> > > +
+> > > +MODULE_AUTHOR("Shenwei Wang <shenwei.wang@nxp.com>");
+> > > +MODULE_DESCRIPTION("generic rpmsg gpio driver");
+> > > +MODULE_LICENSE("GPL");
+> > > --
+> > > 2.43.0
+> > >
 
