@@ -1,202 +1,166 @@
-Return-Path: <devicetree+bounces-249355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCCC0CDB417
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 04:25:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2D3CCDB450
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 04:38:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B522B301F262
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 03:25:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EFC993025311
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 03:38:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5DA032471F;
-	Wed, 24 Dec 2025 03:25:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBC7314D0F;
+	Wed, 24 Dec 2025 03:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NCI5nfKP";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XE15ezuH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g4iKlMnS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433C431C59F
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 03:25:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7232C28FFF6;
+	Wed, 24 Dec 2025 03:38:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766546740; cv=none; b=olWw0urZdrfrIWMXDynC8n08ucO5aYggapy79p/A+QYGCPOxoXnf5Lp+ZTO5VPFY0YDypNzwKn8N/6kRpl2x5ASM7ETGQtglSlUzYwPkOLz1k/YGVpyketbL71w9WLbmycRfyzwnbtVyqhTiUNZdEYeiq6Qav1g4QuChP5acjeg=
+	t=1766547502; cv=none; b=LDJMPLyZjutP6vD+hMJduzY5bsxKcMVwhFuvaqdO14OMaXDb/VT6ya8Wgptu7BKdSRPZPBPm2rlF+qe0XitFxO7Jq6KEzOir/vhq7aIDat3NqYaNfcGXOva1RTozE5qsZ4xR2VIBBqWii8kIUG3sq4LQe5mpNnZceWGTJRsK0MQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766546740; c=relaxed/simple;
-	bh=YogfM7E9Su7cm/a9YnyB49DqKML1dmzxlybb5sP0Zzw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KK8hNAJkTlFu0IgL/xKleIvbcL7aeUQGgozMcxGlr6Qa216djxVnPPz4kBrOd3d6s9UHzna22o20+VDwPF/wWLUNnfl/8LnrFYuWWeoPQoLLs6XG42HUXKKFE+XXkBV7j84OAh0HlE3/ZQApQB7TItiCo7iU8BgBJFENQ6bYd6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NCI5nfKP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XE15ezuH; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BNFcEFo4044261
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 03:25:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3mpuorEh3rn61RCVFKeiQgVrqrzAh38Os865pyepo1g=; b=NCI5nfKPxpL59E/2
-	AnG8H9UrkCwDV7DeNKdilV8E8nEKmZJsdON1mR0XRQGbGbnvjbxj1wS95MS/VD9Y
-	7RTXA5W0Zm/RcuY/ITCm0AyUkdfj9bGJIq4mvbcn8y9A8LbHnpf2+TclYw8Q64da
-	w5ZA7BcbMYuI//pxOAZA4q0G4roiNAjM5Y+kFArlXxOLYnzQoycbGDi9Hc8psgAt
-	GpGdyDOVDBgoVsyhdC/Rk5WunbBakxgLVRXkPIq7U1D82BHJMBY0Rr6In1sQU1oQ
-	Z+Wa5acyR9OG+DaIFbbH+AXDGcm+Ne0U3TRzV0p4r45YLm7Mx3kXlAY+fffNwM1v
-	Hj6lMQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7cuhcvxk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 03:25:35 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee3dfe072dso146008881cf.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 19:25:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766546735; x=1767151535; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3mpuorEh3rn61RCVFKeiQgVrqrzAh38Os865pyepo1g=;
-        b=XE15ezuHe21nPbxKROlAJ71dttokmlc6wtmb5GbfMIt/hQpzlCeMxTrCB378Rjuxq4
-         y8FwZEBcrjlSMzaso4lcx+SCWK4i1m28O9RAgIdQYQ1MVjR+L9p0USsDIhiNcCFfgrKP
-         dOSq8tKTDWYoYmNUY3bx3J6ZNfGmv0ijRBH+wCaJRnWw1/EW5ZADa/hPiORVCqklVd0H
-         HYv8/LxBk6+7pRW258kCGRwoiReZGyoVNyThs+3m614AsStZ3JKb04lZmGjz6nlgBKAP
-         mN1mWjzzqI2pYKB6rmzaPOzlwjlkr7Y/ssnFK51obMjBdpSmJy/bUx9tVHRD2dc1SVl1
-         IVKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766546735; x=1767151535;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3mpuorEh3rn61RCVFKeiQgVrqrzAh38Os865pyepo1g=;
-        b=SOJy4vTKZuDixDnFdu+WgN/ziOi0gwIUR+HySmz9GSCM3Id5nL3BEPQUTzRI29xKtw
-         6TFUarG+4GI3M3n7Rnil6B7iIX0KKvio9516OGN7ebKuAg3YqYfOYSVAd+7dX1yUKwl+
-         EMCd98odyvWwA1beuKYOJQkAzuugAJP5buhSIh5vZnG3se3Xbck0QiO+IUvBHoiVe7C3
-         08/PtrW1i8TcowDmONGx+Lzb9HyYd/yX5aZfUED//jOCjok5mub1Y2n0d+/muzTWKbp9
-         S2+eYEMmOHhc8iq/Ho8Of2vK0N5E0ZyoKTeW+RSz7FBM4HVX19KCuNDxv0BHivMUgUnq
-         4zHg==
-X-Forwarded-Encrypted: i=1; AJvYcCVDY3bnU0LmCiWaaLkTqTJHnEXE9jHupUMdodoMj93etNcYmzwaKNbl6ye+SXlD43cxWeopbih4mGb4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGRfBd+2Z3SM5fJqSEu2Xj06ZxMYhXTvFtLlUtWvWvRRWrB0xB
-	MSxqWzF2oRAkHo+IxkpB5SjakQgXOdTSvitkO92DuuE6uJCppTfb3kdBuGG1iWnZdDlqNWK9qqa
-	R3FXHBbLgIkV4wojYHAU3iAjOvNwhLBbpGvREjIehr2JjCBS1v9W8Hb3G7/9Lu8G3
-X-Gm-Gg: AY/fxX449elJqRF/nB/g6tmRoG8bKSTh9lkXzAsm1vISdK7rVYUJ22+57ZwZ/znTQ6L
-	000YoaArm/E7B7LN9bnT878U4PcDtDxDGLDIAXK/OGqTkp9tWXBYgvtrKe3neQcX9T1EWHTe2vn
-	G+upN88e83EhB/RHgKT85El+Mz0nEus46bsN9t5eBchVRdJmIiRoj3BW6bCYMtj8lCbPF0NVc/t
-	typhDhZgqkIMEvU61WUKvynm3aKgkDIJLH+5p/1CyHgZFl8uDTyExnXvb88Zao6A72V88ri32yu
-	3ZMHK6du9kih9EhPyqcwzyjnRmc+9roqc2/bS0saVNwW7J6luqdf0tadaRiNMkWMOaIKvLuvBj5
-	j5g4lJ5hnknGIONFww/KxECqab2y0A1BqFjL0Om5ChVXJEr6DtLnnlGlg9Vm0jEOfz5kuXFPHkQ
-	==
-X-Received: by 2002:a05:622a:588e:b0:4ee:5aa:9c26 with SMTP id d75a77b69052e-4f4abd974e1mr274607231cf.55.1766546734770;
-        Tue, 23 Dec 2025 19:25:34 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHYVHOqF+RP6O7lF+Z99cznqTsmmDPFAIMPIM0kk0vUzFr6jmKrCTem3hCdVL5gRryFlEJYDQ==
-X-Received: by 2002:a05:622a:588e:b0:4ee:5aa:9c26 with SMTP id d75a77b69052e-4f4abd974e1mr274607031cf.55.1766546734294;
-        Tue, 23 Dec 2025 19:25:34 -0800 (PST)
-Received: from [10.111.161.169] (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4f4ac62f59csm109924131cf.20.2025.12.23.19.25.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Dec 2025 19:25:33 -0800 (PST)
-Message-ID: <40fb63b5-78cd-4c2b-b42d-5d9c3f8dfd15@oss.qualcomm.com>
-Date: Wed, 24 Dec 2025 11:25:26 +0800
+	s=arc-20240116; t=1766547502; c=relaxed/simple;
+	bh=jx5eP+3enRBdEWoLER6u8Qy1rbmoTd1TulfxzryzJJM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iRT/RHtymUf3WuzdArPqmoAWow3tbzzuK21EoJovy0Ps7B/8G4Z+MDsemMoRrG/9GxAvGu9t5sRrCxQONB8tw07H9fospxjS0ZFSzQtQ4SkqWAGL7d7hL2Log75nfBZ5NY+Ga0QvIe4q4iLtRZ/r2IJLkZQIzsuMopWOmS4ZQjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g4iKlMnS; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1766547501; x=1798083501;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jx5eP+3enRBdEWoLER6u8Qy1rbmoTd1TulfxzryzJJM=;
+  b=g4iKlMnSO/w/RH/fqwgoPWiGsDgDSctXNuyVSR35X89eqnXQWs1r+hG/
+   dx1vs+p/ga9VE8G/0w9bY7CwnyZqKZkWYJfrDbYgchdisbxkxb5c+JbaT
+   OBNy4P9lY31adPjBvfkDfh47Xl1QQ+sVZ0RUq+oeV6mc0k59CEG/nF0Pd
+   ujtzzvK/TTlRHCgwUJuRG6Jj13uKTmW8YXYsN+Xvzxq+n+fdS4VXqDo8+
+   QSjV4U7nF293k5R3Ov4oC0M+AitMz6vPBNbspUSYkr61OQiZSLp+ZkcX8
+   Ffov3eDEumb03SWbb+NVrzC6xIDbVQQSViK62ak0PeEES3zx6iAtPS6nf
+   w==;
+X-CSE-ConnectionGUID: LLbapXG3T8qzS85bttl5sw==
+X-CSE-MsgGUID: St+Xr6VBQ2G4TiBZzz4OjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11651"; a="67586959"
+X-IronPort-AV: E=Sophos;i="6.21,172,1763452800"; 
+   d="scan'208";a="67586959"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Dec 2025 19:38:20 -0800
+X-CSE-ConnectionGUID: k3rlYyJiQF69AY+B9kf+0Q==
+X-CSE-MsgGUID: +y3vX6QCQEucg3pwulKRSw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,172,1763452800"; 
+   d="scan'208";a="204428705"
+Received: from lkp-server02.sh.intel.com (HELO dd3453e2b682) ([10.239.97.151])
+  by fmviesa005.fm.intel.com with ESMTP; 23 Dec 2025 19:38:15 -0800
+Received: from kbuild by dd3453e2b682 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vYFhI-000000002dN-1iSv;
+	Wed, 24 Dec 2025 03:38:04 +0000
+Date: Wed, 24 Dec 2025 11:37:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>,
+	robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
+	robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
+	konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
+	bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+	saravanak@google.com, prakash.gupta@oss.qualcomm.com,
+	vikash.garodia@oss.qualcomm.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
+	Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+Subject: Re: [PATCH v3 2/3] of: factor arguments passed to of_map_id() into a
+ struct
+Message-ID: <202512241124.Tl95CT1C-lkp@intel.com>
+References: <20251221213602.2413124-3-vijayanand.jitta@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] media: qcom: camss: Add sm6150 camss support
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251222-sm6150-camss-v2-0-df8469a8343a@oss.qualcomm.com>
- <20251223-cheerful-beetle-from-wonderland-c5334a@quoll>
-Content-Language: en-US
-From: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-In-Reply-To: <20251223-cheerful-beetle-from-wonderland-c5334a@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 9DtLqJKPO0l-C5Bg4gqj0iK1r-56u9fr
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI0MDAyNSBTYWx0ZWRfX0uypvAtndoia
- vCCsUxvXTc1QAS0mClcg0tEkgX9b82BwywoGf7GtAkAOGzh1SE5ca9OAznCWP9NV23f8tM6JRRC
- kqeFuwD/kNCAyiBy3+/q1T/uLiZVgLjqJ6ywwdTz/iUfohiwZyhiQrSUuwl4Jxm6hWKChKLBBLn
- rpy4R5Kwg8kO0atcoJ7JhjnCYm4AKn8WjE99p8WdV7wowD2MHMINpDMCVt6D89oIgYYup3GA7CE
- aBf2b+hv1MeGGLfgiv++nEQaT/PnJbeItOSsgXdKOhvG3aCft/VllZAxoYPsyDEMK1HYFV3hpJF
- XbdGocWYhuJ0sGF/Zu4DFXUi9sU/iZxEJHikQan+7e4U7e3nz83ksmnTfM7T7bMxI1KGCxoAo7Q
- uGb7eE+uFh1AFrt47rLhfBcIRy+dgS8zqWlxuv0UPAEr7AmPEUS/n5BbwpmrtfDXWphPuhqUQHg
- UDlWrhJMn+LfCI6f5Jg==
-X-Proofpoint-GUID: 9DtLqJKPO0l-C5Bg4gqj0iK1r-56u9fr
-X-Authority-Analysis: v=2.4 cv=NZDrFmD4 c=1 sm=1 tr=0 ts=694b5d2f cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=FrERxGTzyKkqrohmcvoA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-24_01,2025-12-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 clxscore=1015 impostorscore=0 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 adultscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512240025
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251221213602.2413124-3-vijayanand.jitta@oss.qualcomm.com>
+
+Hi Vijayanand,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on xen-tip/linux-next]
+[cannot apply to robh/for-next pci/next pci/for-linus linus/master v6.19-rc2 next-20251219]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Vijayanand-Jitta/of-Add-convenience-wrappers-for-of_map_id/20251222-053941
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/xen/tip.git linux-next
+patch link:    https://lore.kernel.org/r/20251221213602.2413124-3-vijayanand.jitta%40oss.qualcomm.com
+patch subject: [PATCH v3 2/3] of: factor arguments passed to of_map_id() into a struct
+config: arm-allnoconfig (https://download.01.org/0day-ci/archive/20251224/202512241124.Tl95CT1C-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 4ef602d446057dabf5f61fb221669ecbeda49279)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251224/202512241124.Tl95CT1C-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512241124.Tl95CT1C-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/of/base.c:2078:71: warning: address of array 'arg->map_args.args' will always evaluate to 'true' [-Wpointer-bool-conversion]
+    2078 |         if (!np || !map_name || !arg || (!arg->map_args.np && !arg->map_args.args))
+         |                                                               ~~~~~~~~~~~~~~~^~~~
+   drivers/of/base.c:2136:21: warning: address of array 'arg->map_args.args' will always evaluate to 'true' [-Wpointer-bool-conversion]
+    2136 |                 if (arg->map_args.args)
+         |                 ~~  ~~~~~~~~~~~~~~^~~~
+   drivers/of/base.c:2149:20: warning: address of array 'arg->map_args.args' will always evaluate to 'true' [-Wpointer-bool-conversion]
+    2149 |         if (arg->map_args.args)
+         |         ~~  ~~~~~~~~~~~~~~^~~~
+   3 warnings generated.
 
 
+vim +2078 drivers/of/base.c
 
-On 12/23/2025 9:35 PM, Krzysztof Kozlowski wrote:
-> On Mon, Dec 22, 2025 at 04:28:38PM +0800, Wenmeng Liu wrote:
->> SM6150 is a Qualcomm flagship SoC. This series adds support to
->> the CSIPHY, CSID, VFE/RDI interfaces in SM6150.
->>
->> The SM6150 platform provides:
->>   - 2 x VFE (version 170), each with 3 RDI
->>   - 1 x VFE Lite (version 170), each with 4 RDI
->>   - 2 x CSID (version 170)
->>   - 1 x CSID Lite (version 170)
->>   - 3 x CSIPHY (version 2.0.0)
->>   - 1 x BPS (Bayer Processing Segment)
->>   - 1 x ICP (Imaging Control Processor)
->>   - 1 x IPE (Image Postprocessing Engine)
->>   - 1 x JPEG Encoder/Decoder
->>   - 1 x LRME (Low Resolution Motion Estimation)
->>
->> Tested on Talos EVK board.
->>
->> Tested with following commands:
->> media-ctl -d /dev/media0 --reset
->> media-ctl -d /dev/media0 -V '"imx577 9-001a":0[fmt:SRGGB10/4056x3040 field:none]'
->> media-ctl -d /dev/media0 -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
->> media-ctl -d /dev/media0 -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
->> media-ctl -d /dev/media0 -l '"msm_csiphy1":1->"msm_csid0":0[1]'
->> media-ctl -d /dev/media0 -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
->> yavta -B capture-mplane  -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0 --capture=5
->>
->> Changes in v2:
->> - Add more resources(BPS, ICP, IPE, JPEG, LRME) and details for CAMSS.
->> - Correct the order of the header files. - bob
->> - Add Csiphy id num, improve the resource name. - Vladimir
->> - Link to v1:
->>    https://lore.kernel.org/all/20251016-sm6150-camss-v1-0-e7f64ac32370@oss.qualcomm.com/
-> 
-> So no changes done in response to what I asked?
-> 
-> Best regards,
-> Krzysztof
-> 
+  2047	
+  2048	/**
+  2049	 * of_map_id - Translate an ID through a downstream mapping.
+  2050	 * @np: root complex device node.
+  2051	 * @id: device ID to map.
+  2052	 * @map_name: property name of the map to use.
+  2053	 * @map_mask_name: optional property name of the mask to use.
+  2054	 * @arg: contains the optional params, wrapped in a struct of_phandle_args,
+  2055	 *	which includes:
+  2056	 *	np: pointer to the target device node
+  2057	 *	args_count: number of arguments
+  2058	 *	args[]: array to receive the translated ID(s).
+  2059	 *
+  2060	 * Given a device ID, look up the appropriate implementation-defined
+  2061	 * platform ID and/or the target device which receives transactions on that
+  2062	 * ID, as per the "iommu-map" and "msi-map" bindings. Either of @target or
+  2063	 * @id_out may be NULL if only the other is required. If @target points to
+  2064	 * a non-NULL device node pointer, only entries targeting that node will be
+  2065	 * matched; if it points to a NULL value, it will receive the device node of
+  2066	 * the first matching target phandle, with a reference held.
+  2067	 *
+  2068	 * Return: 0 on success or a standard error code on failure.
+  2069	 */
+  2070	int of_map_id(const struct device_node *np, u32 id,
+  2071		       const char *map_name, const char *map_mask_name,
+  2072		       struct of_map_id_arg *arg)
+  2073	{
+  2074		u32 map_mask, masked_id;
+  2075		int map_len;
+  2076		const __be32 *map = NULL;
+  2077	
+> 2078		if (!np || !map_name || !arg || (!arg->map_args.np && !arg->map_args.args))
 
-I referred to the comments you raised and the latest reviewed 
-DT-binding, but since this was not explicitly mentioned in my previous 
-patch, I did not include it in the change description.
-
-
-Thanks,
-Wenmeng
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
