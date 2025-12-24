@@ -1,174 +1,144 @@
-Return-Path: <devicetree+bounces-249436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E97ECDBCFF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 10:34:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A5F4CDBD08
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 10:35:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 38989300CB8C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 09:34:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CBFFA30084E9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 09:35:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F66833122F;
-	Wed, 24 Dec 2025 09:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D442330D28;
+	Wed, 24 Dec 2025 09:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ts8Njcwp";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NSwLIqs+"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="T5RUarH7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14932330D28
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 09:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66C2327BF7;
+	Wed, 24 Dec 2025 09:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766568870; cv=none; b=f0ZucrlWqFREku6WI5rQ7buKnjRAND7NSx8L2wwzLSxr5xTHpX6M80HD1xJ5+pYLZ/iImcZLBwvSz3xRQqRovvQNTzYpb3wesTBn36nO4FXHHsE047xM1zuv57bMb+In99pI6Wb8BvNkEI0grO8rUQDVQxup2RL9UrE6UJaKGbM=
+	t=1766568920; cv=none; b=CFho1MgMO/0HcUhaWCG8DRNCRob5auBuEmYnUVwY9dxMcGPhn7iuVhBeAHPwxNrUiL8XEzHe0/CJeABH+C/VVgVV1PXM2npv1ipeepaSmwcEXbyAti4iAsAhrtQzRQRkRZC3YJcY8T47GWIeFH+ouGCwjNRnlzyw34h2TjlbrVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766568870; c=relaxed/simple;
-	bh=3Ha7AV5C6i/BfD6mrWqio7tXgIGx31Sv15gscJnTsxU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NxJKcGd+bsqxetGIgRtVtVw3iViy7KYsIprgsLhWQNAYrszQ974JkDVBW0dmRDSn/z8X55YyI+CKxUuNaqUMA63FKGmlYE8YU66f5KOAhSX9mmSIqWqDhHvj8xcqYOTbNGT/5y0UCMvtc/tHermSqeHDU/jvQBiS4UcRJlmLx6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ts8Njcwp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NSwLIqs+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BO3vJRU4133945
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 09:34:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=/SnWq9XOzIHUZAmkZSJassAH
-	7o+pijJsRIjIiW+sELE=; b=Ts8NjcwpsC2BzbTnWObAC9s419uUtCzW1288pzg7
-	QLSmaw1gfpy6ZLpRLZ8Nnt0IyVrBjxC+F02lR9Zcr7279/wYLK2XvSmHH0r/tbqc
-	0lMCaRcfGDusKdE6LjWYSZDayZszfeMgnLQB55Nq3ZDOJT0ZSxALDQFTPsgRfV0q
-	7qFa070FT8oGRpavmWZNJYSHi3TGO29ToEgtaSiWC3G7IeN5vmXlrjGoauFgAAf4
-	VsF8Ms5+BzFgz+lC04y3EPiB7Of8BaVWq2zxlB59ThPtuA317TK44CtPgsvGH6Dy
-	1yirsGscLBDyoUGvrW6qDgP55/I+aiTllq/rGxaAbtcAbQ==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7x46tmkr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 09:34:28 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-88a47331c39so146990086d6.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 01:34:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766568867; x=1767173667; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/SnWq9XOzIHUZAmkZSJassAH7o+pijJsRIjIiW+sELE=;
-        b=NSwLIqs+BvPqIzon+MFeWdCex0d8pEjKSbJBLfBEZXNcjGdEiC0PYvevGbJGb0tUKb
-         wlmBTBPMIhGIeCWu9NRfWfTqmBmm9ld+KcUS9fA+QAUXNTGBk+tTciVfPj3sRp805IoL
-         R36uFxhZB6m/4VJ6I6+7mJ3Pi4JD58RzruoisBbgBjtVSQjRDqY1o+UG8cS/ShVmyjqb
-         BBcKWAmoEcBAsjol/R2VHPxW5ZjJ5gRHw85uAO5dOMhiWULAFRS2RFuXjRaWiSwWXEJA
-         1Qwczf2W1huTYxeWRjQkiKdrY1PkySf7qok98xyxVww66b7KvhTzMx0gGyplEGYueFKA
-         X/dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766568867; x=1767173667;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/SnWq9XOzIHUZAmkZSJassAH7o+pijJsRIjIiW+sELE=;
-        b=mxKZdvqZ6k2pkX/B8MgF7fNyNhsiT+zTg4L3H0P4OkUjMEc4bRx3vVTDsZJFSn23It
-         LsKXszanXO3cIT27qHfY4PWA6teffUFoldPu/BfBL/bHWaiPhXvYhbWvQtC6WqvbSm08
-         I85KDuzgpnr5R/HhI3L4KNU40IxAcbRKZtiqEasRQSbJexPpZA5h7mp7Ha2RNdNlqnqs
-         WgjU1Wx6Jp6yXBnwf/rjDhiXsgWVuq5Ozt/UGy8pXvuykF/mI3fSvWd02VauzBAooTE4
-         HZwLkg2nrkFqAn5sef7ELruJmaAZQhrIdNUNTQwZ8/cpJuHRtS7nouEeAhEfvBSeV+t2
-         XZng==
-X-Forwarded-Encrypted: i=1; AJvYcCWVMVgfJynCuLWBrn7EnMA07PwhtHU/92MOoHc1WZXxXMbfi2cPImu/ayf8XxaPQL7GMHFErKv5uBJX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVCzL1SGof1yiiztZe1R5m9VtewaKaIx17YbJ/C1UZ0Lc/GFyz
-	xA8qsUa6vcY2m7iw4sTxm/T8TBJVInP1+j694H5o0Y5qEuqvMDAYeHpM2qvl/ajy+H9q6p1dWD9
-	QV/MN4LAq9cRx4hapjcA4C5/+uMrgOPikdYBNrko6S2jjUC2gHxrKoeSPvF4yEqNa
-X-Gm-Gg: AY/fxX7HzRNZvTbTif2xBpZW8KzVEdPrnzfa+s6s+MfT9ON+IsUBsbQruYMD5vp5YKB
-	r670mbtB4vEirNos/HC8bQkUsmcfpWV5hqh5V7iamp5ew3HH+KD3UWQiRybljXLokyX8mCOXwgm
-	8MC5zw8za4N8D1Vvif8UgCWi1zwLhNGS6/pEwKzPUlYANGu5Gwq3aGWIN7V5EX5zX4WkH0k7Y0O
-	6Bksg4bDdFJONLor4qxe8tObLNVI5weSsZQE066dvocPJ0o8UMVydjo/p650alfnm8oxd803CD4
-	xRYBsJ3Vyw6THHXuyIYpR+8habon4lEAI0NNai+YJ4x0B16c4mKGPHh2Uyb+cKEPDmDTCIy8IuY
-	M4FpfiJfgx2IoSiRbewFR2Z7A+8a6xCQ50DA2o7gdJ0FrJ4FHKD1fbDMBHh++/oP0QTFCGZvnLa
-	4o3+ZYBSsPw0nFCMUZB1xRurA=
-X-Received: by 2002:a05:6214:5889:b0:888:6f63:a7d2 with SMTP id 6a1803df08f44-88d8166a014mr252442436d6.4.1766568867317;
-        Wed, 24 Dec 2025 01:34:27 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGmq3/TVmcrZVVPnx0Tj74HOKXwCdoUjVjfqsEz8rjYMcgrAyyXW+c6m6ZOm3yGi2Qmc9dPig==
-X-Received: by 2002:a05:6214:5889:b0:888:6f63:a7d2 with SMTP id 6a1803df08f44-88d8166a014mr252442246d6.4.1766568866916;
-        Wed, 24 Dec 2025 01:34:26 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38122680689sm39599141fa.44.2025.12.24.01.34.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Dec 2025 01:34:26 -0800 (PST)
-Date: Wed, 24 Dec 2025 11:34:24 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Jianping Li <jianping.li@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ekansh.gupta@oss.qualcomm.com, quic_chennak@quicinc.com
-Subject: Re: [PATCH] arm64: dts: qcom: hamoa: fastrpc: set ADSP on secure
- domain
-Message-ID: <dg6xdvvdlp4dhlhsdykus4a3cwc4g6pkhy4gijiepb66g5s3fk@2l25tq7ihxth>
-References: <20251224085709.741-1-jianping.li@oss.qualcomm.com>
+	s=arc-20240116; t=1766568920; c=relaxed/simple;
+	bh=Fmjd7eyRnlV9XTCzyNEV2bPki8dqXkW1yALeD1EYLh8=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=fmjW/nCNSBZkkVP+BVMvtVVQ+dad58xm7aWscDJFzB1JyiyGC7iIYz+vUSd8ITYn3fH4XFD/3gnwsvI8VnimOr1+uNLfc/slQBc3CpBfjGKNSghqUbWPOqkCGA1vjlU7t6W6t0zPyfuUdSpQo1KC+0VUNjJEtfJPRjgRfVdYHXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=T5RUarH7; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=From:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=MOZsQQoHQXrZlTx6X9yhr7Z6zefVXj/8USVC2Ec8vnk=; b=T5RUarH75vSiRSp7xX3oBD8aV4
+	bM8zF1uFgt+wiCLvC0MfasjBl81ulLk/WmDT+OG6sElJyTRMJgpm09RMEl6/N/QVErbcaZp0Ngr09
+	NSLlqp6QtXc/cSN58wum7ALao5Wevu30Ue/xLSXwjq3fb/e3VHlLMQ0566PfbxboUT2tcMeQ3CkWP
+	1jbbYTKpy00848wTwuc1DCR7cq22noY2zVQPgH0dWgtcmTyBoX3wUX8EjVmYEPKuADNnmWYmCFuqX
+	sweiKHlwP2mjudN/aZhwD6/u4LJk166XhThNOV2Z2bo0HeCmFl9uZkepSQ1wr5L08E7DVmUGldSrH
+	ch7ApC/g==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: aaro.koskinen@iki.fi,
+	andreas@kemnade.info,
+	khilman@baylibre.com,
+	rogerq@kernel.org,
+	tony@atomide.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: ti/omap: omap*: fix watchdog node names
+Date: Wed, 24 Dec 2025 10:34:57 +0100
+Message-ID: <20251224093457.558477-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251224085709.741-1-jianping.li@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: IcemZz6FU2Kf6EkT2nEkm4sf6-5ek6k6
-X-Proofpoint-GUID: IcemZz6FU2Kf6EkT2nEkm4sf6-5ek6k6
-X-Authority-Analysis: v=2.4 cv=aOf9aL9m c=1 sm=1 tr=0 ts=694bb3a4 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=dASFcsfJc0BIP6KCgYEA:9 a=CjuIK1q_8ugA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI0MDA4MSBTYWx0ZWRfXw5vDaOmk5XcE
- H5csR/yd5JVBsDNTJejBV0uQtApBKLW/104Mv71bvnblHwykrrDQW96uqlFCbJhSdrF+Rc/j55l
- CsxxXRUnoKxxMKYl75XzboIBpZhxqz7gqYch36YllJ1jmziow6fY3HQczJ02b/qcWNXlo4tCU85
- IlVLpBH4qN5C6igFngzBt0A/RhDCUI6U4S84jWEDO0kBRF4vrdPnSil0Ncawtq4ghYNHV+nuZsz
- xGICc/EkNULxKmfcTrzwixLPuckgHSJFsxf4gP0qKyqlFWeLPitMdIf6mIXRLwSDYI7edptUw1Y
- 9TS+BhRV8KJav7wppRIwm5CNfFUFsd06anz1DlsTC/Prre4/d84BJs2T2vQT8rlZj/7Yr4FCOI6
- 9SNmeptTEoIr/qjN54LyEZqDAmDyoPqspeu8YWfarnGJenht+mwGPWZSosfVQ1D/XjFEiE69mJ6
- 6zAVzNdGRXv484aHySw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-24_02,2025-12-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 suspectscore=0 spamscore=0 bulkscore=0
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2512240081
+Content-Transfer-Encoding: 8bit
 
-On Wed, Dec 24, 2025 at 04:57:09PM +0800, Jianping Li wrote:
-> On Hamoa platforms, ADSP FastRPC should be instantiated as a secure
-> domain. The presence of `qcom,non-secure-domain` under the ADSP fastrpc
-> node causes the kernel to expose a non-secure device node, which is not
-> desired for Hamoa.
+Watchdog nodes should be named watchdog@ and not wdg@. Fix that.
 
-Why? You made some claims, but provided no explanation for them.
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+ arch/arm/boot/dts/ti/omap/omap2430.dtsi     | 2 +-
+ arch/arm/boot/dts/ti/omap/omap3.dtsi        | 2 +-
+ arch/arm/boot/dts/ti/omap/omap4-l4-abe.dtsi | 2 +-
+ arch/arm/boot/dts/ti/omap/omap4-l4.dtsi     | 2 +-
+ arch/arm/boot/dts/ti/omap/omap5-l4.dtsi     | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-> 
-> Signed-off-by: Jianping Li <jianping.li@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/hamoa.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> index a17900eacb20..da62c5741350 100644
-> --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> @@ -4193,7 +4193,6 @@ fastrpc {
->  					compatible = "qcom,fastrpc";
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "adsp";
-> -					qcom,non-secure-domain;
->  					#address-cells = <1>;
->  					#size-cells = <0>;
->  
-> -- 
-> 2.43.0
-> 
-
+diff --git a/arch/arm/boot/dts/ti/omap/omap2430.dtsi b/arch/arm/boot/dts/ti/omap/omap2430.dtsi
+index b9a9e6e45266..222613d2a4d1 100644
+--- a/arch/arm/boot/dts/ti/omap/omap2430.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap2430.dtsi
+@@ -332,7 +332,7 @@ usb_otg_hs: usb_otg_hs@480ac000 {
+ 			interrupts = <93>;
+ 		};
+ 
+-		wd_timer2: wdt@49016000 {
++		wd_timer2: watchdog@49016000 {
+ 			compatible = "ti,omap2-wdt";
+ 			ti,hwmods = "wd_timer2";
+ 			reg = <0x49016000 0x80>;
+diff --git a/arch/arm/boot/dts/ti/omap/omap3.dtsi b/arch/arm/boot/dts/ti/omap/omap3.dtsi
+index 817474ee2d13..959069e24730 100644
+--- a/arch/arm/boot/dts/ti/omap/omap3.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap3.dtsi
+@@ -553,7 +553,7 @@ mmu_iva: mmu@5d000000 {
+ 			status = "disabled";
+ 		};
+ 
+-		wdt2: wdt@48314000 {
++		wdt2: watchdog@48314000 {
+ 			compatible = "ti,omap3-wdt";
+ 			reg = <0x48314000 0x80>;
+ 			ti,hwmods = "wd_timer2";
+diff --git a/arch/arm/boot/dts/ti/omap/omap4-l4-abe.dtsi b/arch/arm/boot/dts/ti/omap/omap4-l4-abe.dtsi
+index 59f546a278f8..78ac3d4eceb5 100644
+--- a/arch/arm/boot/dts/ti/omap/omap4-l4-abe.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap4-l4-abe.dtsi
+@@ -279,7 +279,7 @@ target-module@30000 {			/* 0x40130000, ap 14 0e.0 */
+ 			ranges = <0x0 0x30000 0x1000>,
+ 				 <0x49030000 0x49030000 0x1000>;
+ 
+-			wdt3: wdt@0 {
++			wdt3: watchdog@0 {
+ 				compatible = "ti,omap4-wdt", "ti,omap3-wdt";
+ 				reg = <0x0 0x80>;
+ 				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi b/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
+index 4ee53dfb71b4..4881dd674393 100644
+--- a/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
+@@ -1133,7 +1133,7 @@ target-module@4000 {			/* 0x4a314000, ap 7 18.0 */
+ 			#size-cells = <1>;
+ 			ranges = <0x0 0x4000 0x1000>;
+ 
+-			wdt2: wdt@0 {
++			wdt2: watchdog@0 {
+ 				compatible = "ti,omap4-wdt", "ti,omap3-wdt";
+ 				reg = <0x0 0x80>;
+ 				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm/boot/dts/ti/omap/omap5-l4.dtsi b/arch/arm/boot/dts/ti/omap/omap5-l4.dtsi
+index 9f6100c7c34d..487259132ebf 100644
+--- a/arch/arm/boot/dts/ti/omap/omap5-l4.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap5-l4.dtsi
+@@ -2393,7 +2393,7 @@ target-module@4000 {			/* 0x4ae14000, ap 7 14.0 */
+ 			#size-cells = <1>;
+ 			ranges = <0x0 0x4000 0x1000>;
+ 
+-			wdt2: wdt@0 {
++			wdt2: watchdog@0 {
+ 				compatible = "ti,omap5-wdt", "ti,omap3-wdt";
+ 				reg = <0x0 0x80>;
+ 				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
 -- 
-With best wishes
-Dmitry
+2.47.3
+
 
