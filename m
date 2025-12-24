@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-249498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8FF0CDC2A0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 12:59:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6D31CDC2A6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 12:59:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 507DB3027EA9
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 11:58:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 35B333015A9E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 11:59:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 284BD2C3276;
-	Wed, 24 Dec 2025 11:58:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726502D6E70;
+	Wed, 24 Dec 2025 11:59:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4A11E2834;
-	Wed, 24 Dec 2025 11:58:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4147629B204;
+	Wed, 24 Dec 2025 11:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766577537; cv=none; b=FcHPkP78kk62S1jyO7QAsJvmjvxbQdFk6I0360u4eqoY8+glBbZobxWY2unbvuN7t5/jLvjyz0bja9peGudi+MnWDAT+6nkyjK6QiDLB/pPAB78XNhPSo9EJqg2M+zkB70t3gCD5GPqmu+qpLtAVVDqIDX9eQn89jTFBTxM8Zg4=
+	t=1766577587; cv=none; b=Tx5rX9M2D3eZTJ4LE1oGdlyemtoCF2pb3o2s0utAiv2Swac+J/zdv7FM1cUBYnebRCfyt1Yu/OIGIlOP6CqfD9qTU6jvP7ohSw/f0h7wiI9m/7d/nxMsuHcafw9uV0Tc8m5yWZXUx+h9Egql585WaPbcaIDibhGzFa/4Eg7zdiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766577537; c=relaxed/simple;
-	bh=yolr/oJ4DTtL+SgGKsKuuKp/SDJ2DCPD/rPmZzhfQpI=;
+	s=arc-20240116; t=1766577587; c=relaxed/simple;
+	bh=bfTGN8xkH4pE25S0XH39huKLZSf1YogxexwMc9mdqJE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=jjE/Ba/ITY/G+1l9hKNOZGFrS2qGlxLh2AvUIfZieY1WlEBCWa12sgNzf0YczabLuQ980avwm5BOsb73wVip7SN694GYCeCq1AVFsy11fRfgNuP1dieL0KGjFjQwtb5X8P07+qHfOblnY+I2GKrJmcBUFt29jqJhFbyt0XvGDTI=
+	 In-Reply-To:Content-Type; b=Mq/R+QwXJmfic6CqubCNtyyuUT5x2TcECHgrXoT8fP0AwRi5tYSd7GNmqgV5xyKoMsYF49G1S0bqM1P38tZ39zA/wedFFztYbjAvheSQMhoqHPdOY9EvsQ0ITftBQMm/1t0r8soopA8APvmVKQVS+4d2NylDkHZZTbmy0SOKHjU=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 933C6339;
-	Wed, 24 Dec 2025 03:58:41 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5F028339;
+	Wed, 24 Dec 2025 03:59:37 -0800 (PST)
 Received: from [10.57.11.204] (unknown [10.57.11.204])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9D2043F5A1;
-	Wed, 24 Dec 2025 03:58:46 -0800 (PST)
-Message-ID: <10a089d2-4823-4406-b1a9-d38f05ba0760@arm.com>
-Date: Wed, 24 Dec 2025 11:58:44 +0000
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 07F833F5A1;
+	Wed, 24 Dec 2025 03:59:42 -0800 (PST)
+Message-ID: <161e78f7-1c87-4bd8-9184-f2044e7383a8@arm.com>
+Date: Wed, 24 Dec 2025 11:59:41 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,7 +40,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: arm: Use hyphen in node names
+Subject: Re: [PATCH 2/2] arm64: dts: arm: Use lowercase hex
+Content-Language: en-GB
 To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
  Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -50,66 +51,81 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20251223152457.155392-3-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Language: en-GB
+ <20251223152457.155392-4-krzysztof.kozlowski@oss.qualcomm.com>
 From: Vincenzo Frascino <vincenzo.frascino@arm.com>
-In-Reply-To: <20251223152457.155392-3-krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20251223152457.155392-4-krzysztof.kozlowski@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
 
 On 23/12/2025 15:24, Krzysztof Kozlowski wrote:
-> DTS coding style prefers hyphens instead of underscores in the node
-> names.  Change should be safe, because node names are not considered an
-> ABI.
+> The DTS code coding style expects lowercase hex for values and unit
+> addresses.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->
 
 Acked-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
 
 > ---
+>  arch/arm/boot/dts/arm/arm-realview-eb.dtsi    | 2 +-
+>  arch/arm/boot/dts/arm/arm-realview-pb1176.dts | 2 +-
+>  arch/arm/boot/dts/arm/arm-realview-pb11mp.dts | 2 +-
+>  arch/arm/boot/dts/arm/arm-realview-pbx.dtsi   | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> Patches done with sed, verified with comparing unflattened DTB and
-> dtx_diff.
-> ---
->  arch/arm64/boot/dts/arm/morello-fvp.dts | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/arm/morello-fvp.dts b/arch/arm64/boot/dts/arm/morello-fvp.dts
-> index 2072c0b72325..4a3f217555f7 100644
-> --- a/arch/arm64/boot/dts/arm/morello-fvp.dts
-> +++ b/arch/arm64/boot/dts/arm/morello-fvp.dts
-> @@ -25,25 +25,25 @@ bp_refclock24mhz: clock-24000000 {
->  		clock-output-names = "bp:clock24mhz";
->  	};
->  
-> -	block_0: virtio_block@1c170000 {
-> +	block_0: virtio-block@1c170000 {
->  		compatible = "virtio,mmio";
->  		reg = <0x0 0x1c170000 0x0 0x200>;
->  		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
->  	};
->  
-> -	net_0: virtio_net@1c180000 {
-> +	net_0: virtio-net@1c180000 {
->  		compatible = "virtio,mmio";
->  		reg = <0x0 0x1c180000 0x0 0x200>;
->  		interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
->  	};
->  
-> -	rng_0: virtio_rng@1c190000 {
-> +	rng_0: virtio-rng@1c190000 {
->  		compatible = "virtio,mmio";
->  		reg = <0x0 0x1c190000 0x0 0x200>;
->  		interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
->  	};
->  
-> -	p9_0: virtio_p9@1c1a0000 {
-> +	p9_0: virtio-p9@1c1a0000 {
->  		compatible = "virtio,mmio";
->  		reg = <0x0 0x1c1a0000 0x0 0x200>;
->  		interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm/boot/dts/arm/arm-realview-eb.dtsi b/arch/arm/boot/dts/arm/arm-realview-eb.dtsi
+> index 16f784da5a55..ae370d4eb9d8 100644
+> --- a/arch/arm/boot/dts/arm/arm-realview-eb.dtsi
+> +++ b/arch/arm/boot/dts/arm/arm-realview-eb.dtsi
+> @@ -234,7 +234,7 @@ oscclk0: clock-controller@c {
+>  				reg = <0x0c 0x04>;
+>  				#clock-cells = <0>;
+>  				lock-offset = <0x20>;
+> -				vco-offset = <0x0C>;
+> +				vco-offset = <0x0c>;
+>  				clocks = <&xtal24mhz>;
+>  			};
+>  			oscclk1: clock-controller@10 {
+> diff --git a/arch/arm/boot/dts/arm/arm-realview-pb1176.dts b/arch/arm/boot/dts/arm/arm-realview-pb1176.dts
+> index b9b10cbd65aa..a75d8b107fe1 100644
+> --- a/arch/arm/boot/dts/arm/arm-realview-pb1176.dts
+> +++ b/arch/arm/boot/dts/arm/arm-realview-pb1176.dts
+> @@ -260,7 +260,7 @@ oscclk0: clock-controller@c {
+>  				reg = <0x0c 0x04>;
+>  				#clock-cells = <0>;
+>  				lock-offset = <0x20>;
+> -				vco-offset = <0x0C>;
+> +				vco-offset = <0x0c>;
+>  				clocks = <&xtal24mhz>;
+>  			};
+>  			oscclk1: clock-controller@10 {
+> diff --git a/arch/arm/boot/dts/arm/arm-realview-pb11mp.dts b/arch/arm/boot/dts/arm/arm-realview-pb11mp.dts
+> index db1b6793cd2c..59c78def83f2 100644
+> --- a/arch/arm/boot/dts/arm/arm-realview-pb11mp.dts
+> +++ b/arch/arm/boot/dts/arm/arm-realview-pb11mp.dts
+> @@ -343,7 +343,7 @@ oscclk0: clock-controller@c {
+>  				reg = <0x0c 0x04>;
+>  				#clock-cells = <0>;
+>  				lock-offset = <0x20>;
+> -				vco-offset = <0x0C>;
+> +				vco-offset = <0x0c>;
+>  				clocks = <&xtal24mhz>;
+>  			};
+>  			oscclk1: clock-controller@10 {
+> diff --git a/arch/arm/boot/dts/arm/arm-realview-pbx.dtsi b/arch/arm/boot/dts/arm/arm-realview-pbx.dtsi
+> index e625403a9456..0d3d96ffa6e6 100644
+> --- a/arch/arm/boot/dts/arm/arm-realview-pbx.dtsi
+> +++ b/arch/arm/boot/dts/arm/arm-realview-pbx.dtsi
+> @@ -256,7 +256,7 @@ oscclk0: clock-controller@c {
+>  				reg = <0x0c 0x04>;
+>  				#clock-cells = <0>;
+>  				lock-offset = <0x20>;
+> -				vco-offset = <0x0C>;
+> +				vco-offset = <0x0c>;
+>  				clocks = <&xtal24mhz>;
+>  			};
+>  			oscclk1: clock-controller@10 {
 
 -- 
 Regards,
