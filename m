@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-249516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1E6FCDC838
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 15:24:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A9ECDC989
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 15:55:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0FD3D301E923
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 14:24:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C79A230DF783
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 14:49:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6465E296BB8;
-	Wed, 24 Dec 2025 14:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBAE34E743;
+	Wed, 24 Dec 2025 14:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="0K7GIyoM"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="mHNOAuYt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C9C1B4223
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 14:24:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5405C34E742
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 14:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766586269; cv=none; b=XrRXPRpVHgPrtclktrb+UecDzfHUtWrPgkuqrvKQM5NDFL+rTUiWr0+7Ec5lvivOsgbd65IN9WSLofgjdNblNuRBiEO1gBKoBAd3OR9+nyRnjoGT3Wlbv04X8o/p4UOFNDpc1J3E6WRhDpJv5whsVdcfueTiJ240/RRcwy9+KLY=
+	t=1766587665; cv=none; b=hcCWMhmlXKwR7vgcKwP/4iJ23Q2nHZA3DFoHvcpUCgxek5VxlnsTylqylZtYyUR9rTwroHA5aV33azWXNl9hRHg1q4ZkWrbDlOmYtwy5/jaik2iaarqvZRiF8zQYiJhc94KLisf9T9G7vV89oEfSA7lqCgzHvxCWs1LeDXl7V5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766586269; c=relaxed/simple;
-	bh=i+qFzc+frCs261rZV2/oV2Z5l2+LHQwpDCqA3TqF60o=;
+	s=arc-20240116; t=1766587665; c=relaxed/simple;
+	bh=7qzSvj3aeiWcpjqtT7Dv1wqlepzRA5DFTHfh3aLKkyY=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=E487ZetykDMx93OeQbyii2B13X2vBzKa7FSDPLHq7WshhKGQc63cw73wLKJXhoIPzjYP1vDT/SdHcr9b/lYTv+oeJxf4kjk7oTw0E76wnHDKJxSZPVXMlu/9+JNtDvgO5zdzSezA6dtnKO9wLkDvYXnqLWMWya9wspA8PVSP1rY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=0K7GIyoM; arc=none smtp.client-ip=209.85.219.51
+	 Content-Type:MIME-Version; b=lZRj4liGRrEM7n7fubOvlyXVWguG0+A48orNAAeCQ3OPJSoBu1s/ZmxeMGwi98ZiUJy/MjsmZKnH2+8zeCI8B1tD6traVqNkrtwRdiGNwjcWSKFLeUhMvjP4AEnoU0o7X2+61eLW+pvSxUneZF4G7yGjO6bozsVKQhgH4EsILCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=mHNOAuYt; arc=none smtp.client-ip=209.85.222.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-88ffcb14e11so1950836d6.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 06:24:24 -0800 (PST)
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-8c07bc2ad13so333291985a.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 06:47:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1766586263; x=1767191063; darn=vger.kernel.org;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1766587662; x=1767192462; darn=vger.kernel.org;
         h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
          :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=sbtXpYWxITg7AJr/Jwg+F1OWRFSMP1K1yS5iR5eqeGE=;
-        b=0K7GIyoMnd00TcFsfP2pPEwsBVFDkQYKodfaKx8KzeRQXkQR0beY6Jnw62z43adM2c
-         UcTOOwONdjAbR4UxiqgTVnE4C6O4NBoAhGEJtb3QYiLXjfDjMyvVJzTNjyrRzdt6Yl1F
-         WUc09psfEhmg2U2xDKQYbfEiv3ffZrHhtDor8sitdpZAFOo3oB2KE1zq7lLX3b+vPEr4
-         CVbjF8LYD9W6/uCgKiZLWTii0Bsemjv78RHgTAJ139labLfZcumNH6eNZjXzjcR1kG18
-         NZSPE2fU94+ZfNbbPsOSXOH5B+/McNowLYuJp9UUuIB57oZgMQgYtGzE74ybgrckIwOn
-         cuug==
+        bh=LBEsDivGSChJbJTvUd/3eII9rLd6uaabObDsuMpVJ6k=;
+        b=mHNOAuYtbaucVUozD0DxwbAsLYL0gBJPaBgPWE3Y4ZctoTSNYYk2od1MfiNO2LxurH
+         bV/V0vsBudFvX/V0riVv6UUn2BhNMZ/OfBgYHsL/GXHILkMwtVM+ePzO2lwXCTy3NLoG
+         TJqZeyacLVOzb9CoVntU5Ciqz/znE3v59qCL10UYUsqeZxdBBXx2WPzbI8PRJvRSXAjS
+         HyQedrBR3IN1W7zpELmFVTSeE70PJv1CVYWtiZ2V0W1J1VlAFdBP3gYPCX2AiRPrmzGB
+         EFwh9WjzMntuIWEJU09t4lQRacWrTMQvs98Nire7ozXJVDuPAqNFusNK9yBaGyLkMmHj
+         KNCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766586263; x=1767191063;
+        d=1e100.net; s=20230601; t=1766587662; x=1767192462;
         h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
          :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sbtXpYWxITg7AJr/Jwg+F1OWRFSMP1K1yS5iR5eqeGE=;
-        b=MTNLyRBgxezAHN6Qpt64Jq9zKd3+YUUjbW0R9sEf7TS8m50z18dfU8mmmCusYZaP6a
-         JGX7ItVNyKrOmkxZMzaXy07KO4buEcOHoVmS/Guvot4SEkJeT3EE6agJzqLGrLg4b8L8
-         YGt0S/RbYoA/Dn/qGMe00++K4aYV51SKUZO+mLR38yI+xgkNOwHRfHxWo+7f+lc8GAa7
-         +QG9SfV5zXVkGxUcHeq7plDzjn2yMPv4qA5Px7jIJBsKFCkt+OPF8ie/PS0mvdrKAKFQ
-         13jkt71EG/jOHIDG1uoIayQe+CUI7wYH0DOA7tHeFyNImpLXDLIqiEn/IvUI4VC3+xDV
-         m61g==
-X-Forwarded-Encrypted: i=1; AJvYcCX9idoiCbh1XvvUmRL2iahpw8F3YsyAB0U4KiqBEQHewgxPxCoU4lEwe4E/fGWv74VGhZJDrC5+8d9Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy64roVskZ+jhpwimisZok6FBRhsTYcAPils4pzljLoZhs7v0OS
-	S9vQlaTey8boXj9YkzLlgp5tFp5xLahmfgwUehB24gOcjQWRt2UOAG/vGJwEHNAkzJI=
-X-Gm-Gg: AY/fxX76k+tVmfXlCpNgSWdUZ8J9el09afQfOzrxuslNRRfB5+7pKhCzLTd1RGLW0w4
-	YmOSjt2dD0lCIw/yWA2vqpLB4bAoVccs/w3x0TlLPhWSZ2Wy5ZIzI5MDEeI43FzQICd+fSLDTKg
-	FZlG2y76chkloPNmAp41yRNCnn/wQ3qn/8AbqmzERI9h09x2KJwe77p7Fzo/zjlxK4PMg6KYpa7
-	Q7HDyFjdjrEZM0lBw7po1PgUR1Akzda6/pQTcxjkeB0ym3j7cQcfNtRon74TngswRBi1T5wO0U6
-	7B+cd2xL5NTj6RabhorCl/CgEHVbSBanX9O7N2f9ibh0NqjUgSyu7tD7cl/wc0quLkcK8eXSOB1
-	j2eIIhCZpfaAkEcxaB3JBvR0ZKRKJfH9vtRFjKqmt31L9YNEgO7a2Fn4pfQWJ38PYuB9BRWDoCD
-	loR9a00eVPzj6Spade
-X-Google-Smtp-Source: AGHT+IFBXBD3jYFaArbbRnknDps/xO8oWwhKezx3DwQgqGe5GqPW6vUGgcAoj4hZpaaBRbI7eNh78Q==
-X-Received: by 2002:a05:6214:d04:b0:88f:a4ff:454e with SMTP id 6a1803df08f44-88fa4ff4642mr190361976d6.10.1766586262889;
-        Wed, 24 Dec 2025 06:24:22 -0800 (PST)
+        bh=LBEsDivGSChJbJTvUd/3eII9rLd6uaabObDsuMpVJ6k=;
+        b=sEthPTipmmvcUq4xAIVC/GX9MRkl0SXxTy7+TjQOXxSLrEYDXvnrlGcxYTT2hlQmUx
+         CTiiza/La3RohFn0MqogOe3SfT81Z5wQjGt5PR6QuQWgm2MJlAC4aHcyxo4FUkYl95/t
+         to3WYRrgAs1SK5rQHSSSTsBvPVvq7Eu25VKStCe8FBmR82PX+dCd5ae7h+WJYweV5zMT
+         VIFZVevMecEe3/unimzEXQAhn9H2jGghVif8Bl7NClFtn/UBLhKq4Ld1IMExk7PwJn36
+         6UkIATG3JWKxpsfKVGh0wkIZ143lCpZf01JKAnJcaS7X7toL9D+rkP6pTWqolntk1NcH
+         VbcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhEOmlR131CvOcYnt+scwHqDZk1gDrAxfM6K+K351r2M9RbI6le/P5grf73897Oz/OPMZyjp7X2t5w@vger.kernel.org
+X-Gm-Message-State: AOJu0YxU1S7A75ykdKKfogbCl3G57qciaYKNZrO8+4J4AEPDaoSLwdL4
+	niXRrvpVa4uRodmRNgIZd1Tn/GoA74an9m7P+49fLoUAZJUGqt6m1hYK4c+s9+fG/rc=
+X-Gm-Gg: AY/fxX4v58RP0bS/ra7UDc4rErdkE1t0DZ+2/iPNUQjqyuhCfzChQWUMrIJlB6+fS5Y
+	V81RygiFClHSD9GtjizqOkUMizEY/84VXP4/ynqCfBN8MwVwuadWsEy+J7HzQhidTBMHRlaYgJK
+	wf7H8o9YQdEikkWfVI+SNTnWa4WuWCkUYwNxx+mVCpnKoqGGP8DSrOgBWzCYCGmA+Yi9eGo2uFa
+	8t8MVG86UuOrtXXjn9ZVHz6IczLYyZ8ZvglOy+WKdk3NgxYIPYo1oMj4LJg+frMvtCJJNGeCjjK
+	9mWCEFfI0ey1RKPjpZurafInxkKBc1qjPq3+8y4LYjBwHavGzmp6woDh36+Wjw9Z5lKCtliHCAn
+	ZnJEegZ/1NvT/WOnvMdmAhIK/e4Njda+Q10UrJuss61UNj4u8W5aa4vuqBQnkW84EqU/82RYW6t
+	3WnCW+PFzQfVUlRe/E5fPiRcDzkgc=
+X-Google-Smtp-Source: AGHT+IHkL5S7c322hOUPMSd0JRYhx3f5vqqmst0RYftiEEMVjDrbHdesJAI78R34ucxzMcZvnLJBFg==
+X-Received: by 2002:a05:620a:17a7:b0:8b2:de6a:e3 with SMTP id af79cd13be357-8c09002815fmr2696981385a.81.1766587662056;
+        Wed, 24 Dec 2025 06:47:42 -0800 (PST)
 Received: from ?IPv6:2606:6d00:17:7b4b::c41? ([2606:6d00:17:7b4b::c41])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88d9680dc3bsm128036936d6.14.2025.12.24.06.24.21
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c0973f28e3sm1403379885a.45.2025.12.24.06.47.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Dec 2025 06:24:22 -0800 (PST)
-Message-ID: <fffbec0dbb95fe0aa34e847c89499e91ebc1df43.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 02/22] media: v4l2-common: add has_alpha to
- v4l2_format_info
+        Wed, 24 Dec 2025 06:47:41 -0800 (PST)
+Message-ID: <43c953bd75ad65f249cf71115bb87179b6ba3f47.camel@ndufresne.ca>
+Subject: Re: [PATCH v2 03/22] media: v4l2-common: add
+ v4l2_fill_pixfmt_mp_aligned helper
 From: Nicolas Dufresne <nicolas@ndufresne.ca>
 To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
 	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
@@ -84,10 +84,10 @@ To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
 Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
 	devicetree@vger.kernel.org, kernel@pengutronix.de
-Date: Wed, 24 Dec 2025 09:24:20 -0500
-In-Reply-To: <20251203-spu-rga3-v2-2-989a67947f71@pengutronix.de>
+Date: Wed, 24 Dec 2025 09:47:39 -0500
+In-Reply-To: <20251203-spu-rga3-v2-3-989a67947f71@pengutronix.de>
 References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
-	 <20251203-spu-rga3-v2-2-989a67947f71@pengutronix.de>
+	 <20251203-spu-rga3-v2-3-989a67947f71@pengutronix.de>
 Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
  keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
  /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
@@ -102,7 +102,7 @@ Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
  ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
  bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
 Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-fmKYZ+5/CD21oWsxEXAZ"
+	protocol="application/pgp-signature"; boundary="=-mZ8PQwwqOQIytKI71eZq"
 User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -112,145 +112,198 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
 
---=-fmKYZ+5/CD21oWsxEXAZ
+--=-mZ8PQwwqOQIytKI71eZq
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hi,
+
 Le mercredi 03 d=C3=A9cembre 2025 =C3=A0 16:52 +0100, Sven P=C3=BCschel a =
 =C3=A9crit=C2=A0:
-> Add a has_alpha value to the v4l2_format_info struct to indicate if the
-> format contains an alpha component. The implementation is based on the
-> drm_format_info implementation.
+> Add a v4l2_fill_pixfmt_mp_aligned helper which allows the user to
+> specify a custom stride alignment in bytes. This is necessary for
+> hardware like the Rockchip RGA3, which requires the stride value to be
+> aligned to a 16 byte boundary.
+
+                  byte -> bytes
+
+You way aligned to bytes here ...
+
+
 >=20
 > Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
-
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
 > ---
-> =C2=A0drivers/media/v4l2-core/v4l2-common.c | 14 +++++++-------
+> =C2=A0drivers/media/v4l2-core/v4l2-common.c | 34 ++++++++++++++++++++++++=
+----------
 > =C2=A0include/media/v4l2-common.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
-> =C2=A02 files changed, 9 insertions(+), 7 deletions(-)
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 ++++
+> =C2=A02 files changed, 28 insertions(+), 10 deletions(-)
 >=20
 > diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-c=
 ore/v4l2-common.c
-> index 554c591e11133..2c7ac70c0f486 100644
+> index 2c7ac70c0f486..f86e7d7d29b8e 100644
 > --- a/drivers/media/v4l2-core/v4l2-common.c
 > +++ b/drivers/media/v4l2-core/v4l2-common.c
-> @@ -256,10 +256,10 @@ const struct v4l2_format_info *v4l2_format_info(u32=
- format)
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_XRGB32,=C2=A0 .pixel_enc =3D V4L2_PIXE=
-L_ENC_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, =
-.bpp_div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_RGBX32,=C2=A0 .pixel_enc =3D V4L2_PIXE=
-L_ENC_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, =
-.bpp_div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_HSV32,=C2=A0=C2=A0 .pixel_enc =3D V4L2=
-_PIXEL_ENC_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, =
-0 }, .bpp_div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> -		{ .format =3D V4L2_PIX_FMT_ARGB32,=C2=A0 .pixel_enc =3D V4L2_PIXEL_ENC=
-_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_=
-div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> -		{ .format =3D V4L2_PIX_FMT_RGBA32,=C2=A0 .pixel_enc =3D V4L2_PIXEL_ENC=
-_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_=
-div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> -		{ .format =3D V4L2_PIX_FMT_ABGR32,=C2=A0 .pixel_enc =3D V4L2_PIXEL_ENC=
-_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_=
-div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> -		{ .format =3D V4L2_PIX_FMT_BGRA32,=C2=A0 .pixel_enc =3D V4L2_PIXEL_ENC=
-_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_=
-div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> +		{ .format =3D V4L2_PIX_FMT_ARGB32,=C2=A0 .pixel_enc =3D V4L2_PIXEL_ENC=
-_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_=
-div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1, .has_alpha =3D true },
-> +		{ .format =3D V4L2_PIX_FMT_RGBA32,=C2=A0 .pixel_enc =3D V4L2_PIXEL_ENC=
-_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_=
-div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1, .has_alpha =3D true },
-> +		{ .format =3D V4L2_PIX_FMT_ABGR32,=C2=A0 .pixel_enc =3D V4L2_PIXEL_ENC=
-_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_=
-div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1, .has_alpha =3D true },
-> +		{ .format =3D V4L2_PIX_FMT_BGRA32,=C2=A0 .pixel_enc =3D V4L2_PIXEL_ENC=
-_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_=
-div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1, .has_alpha =3D true },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_RGB565,=C2=A0 .pixel_enc =3D V4L2_PIXE=
-L_ENC_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 2, 0, 0, 0 }, =
-.bpp_div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_RGB565X, .pixel_enc =3D V4L2_PIXEL_ENC=
-_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 2, 0, 0, 0 }, .bpp_=
-div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_RGB555,=C2=A0 .pixel_enc =3D V4L2_PIXE=
-L_ENC_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 2, 0, 0, 0 }, =
-.bpp_div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> @@ -267,10 +267,10 @@ const struct v4l2_format_info *v4l2_format_info(u32=
- format)
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_BGR48_12, .pixel_enc =3D V4L2_PIXEL_EN=
-C_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 6, 0, 0, 0 }, .bpp=
-_div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_BGR48, .pixel_enc =3D V4L2_PIXEL_ENC_R=
-GB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 6, 0, 0, 0 }, .bpp_di=
-v =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_RGB48, .pixel_enc =3D V4L2_PIXEL_ENC_R=
-GB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 6, 0, 0, 0 }, .bpp_di=
-v =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> -		{ .format =3D V4L2_PIX_FMT_ABGR64_12, .pixel_enc =3D V4L2_PIXEL_ENC_RG=
-B, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 8, 0, 0, 0 }, .bpp_div=
- =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> -		{ .format =3D V4L2_PIX_FMT_RGBA1010102, .pixel_enc =3D V4L2_PIXEL_ENC_=
-RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_d=
-iv =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> +		{ .format =3D V4L2_PIX_FMT_ABGR64_12, .pixel_enc =3D V4L2_PIXEL_ENC_RG=
-B, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 8, 0, 0, 0 }, .bpp_div=
- =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1, .has_alpha =3D true },
-> +		{ .format =3D V4L2_PIX_FMT_RGBA1010102, .pixel_enc =3D V4L2_PIXEL_ENC_=
-RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_d=
-iv =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1, .has_alpha =3D true },
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_RGBX1010102, .pixel_enc =3D V4L2_PIXEL=
-_ENC_RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .=
-bpp_div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> -		{ .format =3D V4L2_PIX_FMT_ARGB2101010, .pixel_enc =3D V4L2_PIXEL_ENC_=
-RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_d=
-iv =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> +		{ .format =3D V4L2_PIX_FMT_ARGB2101010, .pixel_enc =3D V4L2_PIXEL_ENC_=
-RGB, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_d=
-iv =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1, .has_alpha =3D true },
+> @@ -404,11 +404,12 @@ static inline unsigned int v4l2_format_block_height=
+(const struct v4l2_format_inf
+> =C2=A0}
 > =C2=A0
-> =C2=A0		/* YUV packed formats */
-> =C2=A0		{ .format =3D V4L2_PIX_FMT_YUYV,=C2=A0=C2=A0=C2=A0 .pixel_enc =3D=
- V4L2_PIXEL_ENC_YUV, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 2, 0=
-, 0, 0 }, .bpp_div =3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 1 },
+> =C2=A0static inline unsigned int v4l2_format_plane_stride(const struct v4=
+l2_format_info *info, int plane,
+> -						=C2=A0=C2=A0=C2=A0 unsigned int width)
+> +						=C2=A0=C2=A0=C2=A0 unsigned int width, u8 alignment)
+> =C2=A0{
+> =C2=A0	unsigned int hdiv =3D plane ? info->hdiv : 1;
+> =C2=A0	unsigned int aligned_width =3D
+> =C2=A0		ALIGN(width, v4l2_format_block_width(info, plane));
+> +	aligned_width =3D ALIGN(aligned_width, alignment);
+
+But you actually align the width, which can already be achieved using frmsi=
+ze-
+>step_width and v4l2_apply_frmsize_constraints(). It would make little sens=
+e for
+the step to not be a multiple of the block for tiled format, but it shows y=
+ou
+forgot to take into considering the fact that block_width has precedence he=
+re,
+since you can't split tiles.
+
+If you go back to your original idea, stride alignment, remember that you c=
+annot
+break the block alignment. For non-mplane format, you also need to special =
+case
+subsampled planer format (3 planes) so that userspace can guess the subsequ=
+ence
+plane strides (which is done by dividing the luma plane stride by 2, and if=
+ you
+need 16 bytes alignment across all strides, then you need the luma plane to=
+ be
+32 bytes alignment). The mplane format don't have this requirement, since y=
+ou
+pass explicitly the stride of each planes, though, you may want to double i=
+t
+anyway for compatibility reason (small cost, big gain).
+
+Nicolas
+
+> =C2=A0
+> =C2=A0	return DIV_ROUND_UP(aligned_width, hdiv) *
+> =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 info->bpp[plane] / info->bpp_=
+div[plane];
+> @@ -425,9 +426,10 @@ static inline unsigned int v4l2_format_plane_height(=
+const struct v4l2_format_inf
+> =C2=A0}
+> =C2=A0
+> =C2=A0static inline unsigned int v4l2_format_plane_size(const struct v4l2=
+_format_info *info, int plane,
+> -						=C2=A0 unsigned int width, unsigned int height)
+> +						=C2=A0 unsigned int width, unsigned int height,
+> +						=C2=A0 u8 stride_alignment)
+> =C2=A0{
+> -	return v4l2_format_plane_stride(info, plane, width) *
+> +	return v4l2_format_plane_stride(info, plane, width, stride_alignment) *
+> =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 v4l2_format_plane_height(info=
+, plane, height);
+> =C2=A0}
+> =C2=A0
+> @@ -448,8 +450,9 @@ void v4l2_apply_frmsize_constraints(u32 *width, u32 *=
+height,
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL_GPL(v4l2_apply_frmsize_constraints);
+> =C2=A0
+> -int v4l2_fill_pixfmt_mp(struct v4l2_pix_format_mplane *pixfmt,
+> -			u32 pixelformat, u32 width, u32 height)
+> +int v4l2_fill_pixfmt_mp_aligned(struct v4l2_pix_format_mplane *pixfmt,
+> +				u32 pixelformat, u32 width, u32 height,
+> +				u8 stride_alignment)
+> =C2=A0{
+> =C2=A0	const struct v4l2_format_info *info;
+> =C2=A0	struct v4l2_plane_pix_format *plane;
+> @@ -466,23 +469,34 @@ int v4l2_fill_pixfmt_mp(struct v4l2_pix_format_mpla=
+ne *pixfmt,
+> =C2=A0
+> =C2=A0	if (info->mem_planes =3D=3D 1) {
+> =C2=A0		plane =3D &pixfmt->plane_fmt[0];
+> -		plane->bytesperline =3D v4l2_format_plane_stride(info, 0, width);
+> +		plane->bytesperline =3D v4l2_format_plane_stride(info, 0, width,
+> +							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 stride_alignment);
+> =C2=A0		plane->sizeimage =3D 0;
+> =C2=A0
+> =C2=A0		for (i =3D 0; i < info->comp_planes; i++)
+> =C2=A0			plane->sizeimage +=3D
+> -				v4l2_format_plane_size(info, i, width, height);
+> +				v4l2_format_plane_size(info, i, width, height,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 stride_alignment);
+> =C2=A0	} else {
+> =C2=A0		for (i =3D 0; i < info->comp_planes; i++) {
+> =C2=A0			plane =3D &pixfmt->plane_fmt[i];
+> =C2=A0			plane->bytesperline =3D
+> -				v4l2_format_plane_stride(info, i, width);
+> +				v4l2_format_plane_stride(info, i, width,
+> +							 stride_alignment);
+> =C2=A0			plane->sizeimage =3D plane->bytesperline *
+> =C2=A0				v4l2_format_plane_height(info, i, height);
+> =C2=A0		}
+> =C2=A0	}
+> =C2=A0	return 0;
+> =C2=A0}
+> +EXPORT_SYMBOL_GPL(v4l2_fill_pixfmt_mp_aligned);
+> +
+> +int v4l2_fill_pixfmt_mp(struct v4l2_pix_format_mplane *pixfmt,
+> +			u32 pixelformat, u32 width, u32 height)
+> +{
+> +	return v4l2_fill_pixfmt_mp_aligned(pixfmt, pixelformat,
+> +					=C2=A0=C2=A0 width, height, 1);
+> +}
+> =C2=A0EXPORT_SYMBOL_GPL(v4l2_fill_pixfmt_mp);
+> =C2=A0
+> =C2=A0int v4l2_fill_pixfmt(struct v4l2_pix_format *pixfmt, u32 pixelforma=
+t,
+> @@ -502,12 +516,12 @@ int v4l2_fill_pixfmt(struct v4l2_pix_format *pixfmt=
+, u32 pixelformat,
+> =C2=A0	pixfmt->width =3D width;
+> =C2=A0	pixfmt->height =3D height;
+> =C2=A0	pixfmt->pixelformat =3D pixelformat;
+> -	pixfmt->bytesperline =3D v4l2_format_plane_stride(info, 0, width);
+> +	pixfmt->bytesperline =3D v4l2_format_plane_stride(info, 0, width, 1);
+> =C2=A0	pixfmt->sizeimage =3D 0;
+> =C2=A0
+> =C2=A0	for (i =3D 0; i < info->comp_planes; i++)
+> =C2=A0		pixfmt->sizeimage +=3D
+> -			v4l2_format_plane_size(info, i, width, height);
+> +			v4l2_format_plane_size(info, i, width, height, 1);
+> =C2=A0	return 0;
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL_GPL(v4l2_fill_pixfmt);
 > diff --git a/include/media/v4l2-common.h b/include/media/v4l2-common.h
-> index f8b1faced79c8..401d8506c24b5 100644
+> index 401d8506c24b5..edd416178c333 100644
 > --- a/include/media/v4l2-common.h
 > +++ b/include/media/v4l2-common.h
-> @@ -520,6 +520,7 @@ enum v4l2_pixel_encoding {
-> =C2=A0 * @vdiv: Vertical chroma subsampling factor
-> =C2=A0 * @block_w: Per-plane macroblock pixel width (optional)
-> =C2=A0 * @block_h: Per-plane macroblock pixel height (optional)
-> + * @has_alpha: Does the format embeds an alpha component?
-> =C2=A0 */
-> =C2=A0struct v4l2_format_info {
-> =C2=A0	u32 format;
-> @@ -532,6 +533,7 @@ struct v4l2_format_info {
-> =C2=A0	u8 vdiv;
-> =C2=A0	u8 block_w[4];
-> =C2=A0	u8 block_h[4];
-> +	bool has_alpha;
-> =C2=A0};
+> @@ -558,6 +558,10 @@ int v4l2_fill_pixfmt(struct v4l2_pix_format *pixfmt,=
+ u32 pixelformat,
+> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0 u32 width, u32 height);
+> =C2=A0int v4l2_fill_pixfmt_mp(struct v4l2_pix_format_mplane *pixfmt, u32 =
+pixelformat,
+> =C2=A0			u32 width, u32 height);
+> +/* @stride_alignment is a power of 2 value in bytes */
+> +int v4l2_fill_pixfmt_mp_aligned(struct v4l2_pix_format_mplane *pixfmt,
+> +				u32 pixelformat, u32 width, u32 height,
+> +				u8 stride_alignment);
 > =C2=A0
-> =C2=A0static inline bool v4l2_is_format_rgb(const struct v4l2_format_info=
- *f)
+> =C2=A0/**
+> =C2=A0 * v4l2_get_link_freq - Get link rate from transmitter
 
---=-fmKYZ+5/CD21oWsxEXAZ
+--=-mZ8PQwwqOQIytKI71eZq
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUv3lAAKCRDZQZRRKWBy
-9ITFAP0SuxSrmoVrRQQArsjL7nVuYkwcZ8G4yi0itFrxxipp4gEAmtXbIy/6hv8m
-dQE9yLNIZrBWsXb+HsoBsrQZxSooGwc=
-=w5st
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUv9CwAKCRDZQZRRKWBy
+9GnoAP9k199P3pJOTxl16yVHL1ryd4uoElf1GW6VBr1Og/rjyAEAlxzgLGtwgB8C
+GSr0/lkk8PfDbueJp3vtdCkiH0HR2wI=
+=+slk
 -----END PGP SIGNATURE-----
 
---=-fmKYZ+5/CD21oWsxEXAZ--
+--=-mZ8PQwwqOQIytKI71eZq--
 
