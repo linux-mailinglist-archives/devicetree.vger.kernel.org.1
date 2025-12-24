@@ -1,161 +1,155 @@
-Return-Path: <devicetree+bounces-249564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FF1ACDCE5C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:52:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 580A6CDCE5F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:53:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0C136304C2AB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:51:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E79E53009AAC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:52:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17BF633D6FC;
-	Wed, 24 Dec 2025 16:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1096331A7F2;
+	Wed, 24 Dec 2025 16:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VAWaDeWr"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="dEvno/hn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4493375CF
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 16:51:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81455145A1F;
+	Wed, 24 Dec 2025 16:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766595067; cv=none; b=D5xmnXA4VxSoG3hNX4UXFV08vPFxz+Ou1uyGwuaJBGaxUv/SCZd9ptf7/hvJ0VLha2SapEQbkdaR+ZV8Y6hPLn/eid+pjanpoheyZT7CUhNJCrBxD2D0iJVHbE9v9FOxjtzwG1THKZXmqq5BnyT1mbRS6sqwAZm0nZEuFZ+PKbo=
+	t=1766595132; cv=none; b=C8aePBXOV4Zb+H66nriVNvntci9scWeBzKC3VunO/WPrBQHMx0RM0OJEJGT3x+j3olFfa/mSkaGmWDOjHQhPMQWPXM6zBV9VqR2ZO1qh4PWORRoC/XniTWHxP5qqxff0KY3XdamUKsNLYUX7bhhM/B6rFveviycGu+y1e4UtS0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766595067; c=relaxed/simple;
-	bh=sd/WcWZKEqm73vDos7FpHpz5Abyv+hzHn8cogK3xUfM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bmiFRaQI9wW261d0AvfR8p7OrUiRvtVPDsBqzAF1KqBz/CgXEywzDSr+3yCZ8qmRk1Ypg/f33otNMZPxijfh7MH4SoWXsyT6iSKL8tMe8mpxRByZywLfMb0NZYycFK7RL9JcU224CsyKGO0Bml2+Cj0m08y+QQDJfhITEaR52ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VAWaDeWr; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4779cc419b2so48224915e9.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 08:51:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766595063; x=1767199863; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YJ9M96GDyiEBVAHo1l70x8EOroyg7krGoMFvHraGU8w=;
-        b=VAWaDeWr1PC0KBVkYSpE9RaCO6l0a+L0X5kPrdm0hY+U80orgJhgzrBRwkcOOI4mtq
-         oYJVy5WzKIlxOeBAtl93PdiH+Fy5hhOlflW8nsQmNAT+QC6eqotA3doPK4mdpe4exlk8
-         thVu2OMC17L9F4qSAZ5FL9lNOd4w/XHlpCUvftlbbzt2g3TOiCeFq67GFxWqqOHxfj3f
-         6fUMTxmhXutjHV0sOOjOdOYxkHAYQ0jfM9oTu38Mckh6LtSvvwkE/2Lecb7Mckuq52tD
-         UBTHWUDAptiiXDD45zKxvz/7Tx2jQ1o74Bc2AMmbjIl/0p1OjHqhpZM1PDaPAvY+01Jo
-         7+pA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766595063; x=1767199863;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=YJ9M96GDyiEBVAHo1l70x8EOroyg7krGoMFvHraGU8w=;
-        b=B6sgbOlafIzHpTsC/2E/+MV76rkLjNWTNfwDG90qRO19aKrsaYgyrWwP76mXZAbVbR
-         5PUlu6VxR00s0F9Cq10DNvc9NfvdEQarAt2jdYbm9PH3x01biuFu8iR6NGe2C07AU/4s
-         1lDQoH+HlQnv68uaTYliBP5uvASvOqvTbqClLNuk3ivsh1Y+tVenptBTeQ+zaJudPz7N
-         rPtE4NopQffezMgwKTfzD70bgTNfwsQumbRNVq5+FVBJukglHSZSh/p7IIRztDXuybWD
-         Lvic7uTMTjEylwxhMxpDhwJceVHHnDUEanyHDIZ/1yOU3zUpkBL8zCw4PezIyFeJRF74
-         iNRA==
-X-Forwarded-Encrypted: i=1; AJvYcCUizP/WwIryA3bFzCBtHL+ybejLhUtl9RUDQhuwTl2yRdnuR2GRc6OlCdSJrs7PGbVQrdw+q+Ghgw4N@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbxjJGeq4Xi/D0GBcwdqhOGPcD4O7Bu0PVRaC6Rj+5jB5UDkQk
-	o8phs/Ds0KDpJ7TrqDjNULha+XkxLWkd7tqzXIOvikBazA03r6LztBAz
-X-Gm-Gg: AY/fxX6T6NAteL96luo89vNmmwZD+l5GUdPHE1C89IQQQknqBVOYPyLZw2vXFKr0OuC
-	pQNWPLN1+LtLd9Jqm7mCmfd7eDxW4okm88zJ/cak6woZ5hffOOz6bF4AKzfZGyDXfV+BTWovNvc
-	4GGticK9+b0mY4qOg4ASyueepZS/fn1AkZxOJDWJv55nlrgyYVEplqEntzUUzD5unDIdxmnX2U0
-	b/idI8kgFwu6uNtKYdFLN6ekVmB79abgA13hbe37hfEOTg9iWFXBUNhD8s3NCZnwetSGtF4W9S1
-	jU2APP6TEiL/JojhcY/ORew9xNdxseZt4CG9MhIHoVTVLhxQ1aMLhDE55XulGJvh4c/b4d9kDW2
-	DUqnyAD74bLU2yXyExbHNM5TRAxxPulI5dZbp0f94s/gA5iFBNb1iKnoA/5Qh2dmn/znV5LPK/J
-	Tze2fYF7RNr7dMlIyM3mrQ2e+r15NQdA7+NV/A7xcBsRZ9bVvyqFzKjVaJc5V9Z/ju7i/Y8ewxz
-	W2JAh61uqsBqT7x7h1BeqPH
-X-Google-Smtp-Source: AGHT+IE+svy3mvCXV6dqgJcZOLRQlow+GqSASBMWQjorBIAS2OCxIB7buoJKJ5BnTPTqa0C5JtouiQ==
-X-Received: by 2002:a05:600c:6388:b0:477:63db:c718 with SMTP id 5b1f17b1804b1-47d19557cd2mr181203505e9.16.1766595063032;
-        Wed, 24 Dec 2025 08:51:03 -0800 (PST)
-Received: from iku.Home ([2a06:5906:61b:2d00:3371:7b65:aaf4:d2e4])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47be3ac5409sm136482305e9.15.2025.12.24.08.51.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Dec 2025 08:51:02 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 4/4] clk: renesas: r9a09g056: Add entries for CANFD
-Date: Wed, 24 Dec 2025 16:50:49 +0000
-Message-ID: <20251224165049.3384870-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251224165049.3384870-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20251224165049.3384870-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1766595132; c=relaxed/simple;
+	bh=C33Wmkz7HToOa4OG19kHvAVpDFDENgAzSEEehlQUsVA=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=kZ4FYE9eLWl48biQb0fZUJ9hL6QTQ/+jSZvaT4aqe8QXXfXDC2yvhNEgCks4tifuH7nRIJzjBUoW6ouZTzUiw9f2xA07lymx8AGdZ3JigrQhLZBVX38F0E9w1dWcF2mKMN4ek0RSSNCKSVE8Qn9GNIEDjM+4GvN85YSzrxIL/28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=dEvno/hn; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id A395C418A6;
+	Wed, 24 Dec 2025 17:52:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1766595126; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=FAlvebUUG2bzxrDciua9nbFHHFRu5loYHuWIcI/vSNo=;
+	b=dEvno/hnZfKDLt2EyPrnqbHoMqCokv0GPc7Jm8I91GfJpoPGEwhch2O7dQfp1s8hW836sI
+	wFaAFNDJyNtyLf9maDbvEEg4urvKf8jzsX7gYppR0zWFIxgU16vEWkapdEErOcNSKjqWUo
+	1IZWg0Pf/ZVelylRiuqZjULdC3AC972jpo1xLp2wtZ5jGWxCU5qm5oH6SmnvFhim8dFzFz
+	waqBqGmYY4mYo1Umz0pLBa6VuOg1Pg7agGkPEa74d8I0HK7z0YyKIVWQOIVhv32ZF6h+Oj
+	esDxaolb8W5uxwBz8WqrhgwpFgNzjG6nWBJfhceZLRuAWROpPcL6U27JXTVOiQ==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <CANAwSgS6UeR4PJnWDxxcQbdH8u_4uNiQxCTugQS35LcPvpiwMQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+References: <cover.1763415705.git.geraldogabriel@gmail.com>
+ <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com>
+ <CANAwSgQ726J_vnDKEKd94Kq62kx8ToZzUGysz4r3tNAXvfAbGA@mail.gmail.com>
+ <CAEsQvctSY7-RQEQF2TmJU2qKPZOe9TC5g-7Jat0LQKRHYz_6dQ@mail.gmail.com>
+ <CANAwSgQPQUBi6VVb+hZNraMt71vnRpki+YK_at=Luo4aPVtOPg@mail.gmail.com> <0afea20b-be22-2404-5a8e-c798ed45f2fd@manjaro.org> <CANAwSgS6UeR4PJnWDxxcQbdH8u_4uNiQxCTugQS35LcPvpiwMQ@mail.gmail.com>
+Date: Wed, 24 Dec 2025 17:52:03 +0100
+Cc: "Geraldo Nascimento" <geraldogabriel@gmail.com>, "Shawn Lin" <shawn.lin@rock-chips.com>, "Lorenzo Pieralisi" <lpieralisi@kernel.org>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Manivannan Sadhasivam" <mani@kernel.org>, "Rob Herring" <robh@kernel.org>, "Bjorn Helgaas" <bhelgaas@google.com>, "Heiko Stuebner" <heiko@sntech.de>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Johan Jonker" <jbx6244@gmail.com>, linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+To: "Anand Moon" <linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Message-ID: <648aa5c0-9e58-2404-4250-e83b8a748601@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v2 1/4] =?utf-8?q?PCI=3A?==?utf-8?q?_rockchip=3A?= 
+ limit RK3399 to =?utf-8?q?2=2E5?= GT/s to prevent damage
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Wednesday, December 24, 2025 17:11 CET, Anand Moon <linux.amoon@gmai=
+l.com> wrote:
+> On Wed, 24 Dec 2025 at 18:25, Dragan Simic <dsimic@manjaro.org> wrote=
+:
+> > On Wednesday, December 24, 2025 09:04 CET, Anand Moon <linux.amoon@=
+gmail.com> wrote:
+> > > On Wed, 24 Dec 2025 at 11:08, Geraldo Nascimento
+> > > <geraldogabriel@gmail.com> wrote:
+> > > > On Wed, Dec 24, 2025 at 2:18=E2=80=AFAM Anand Moon <linux.amoon=
+@gmail.com> wrote:
+> > > > > On Tue, 18 Nov 2025 at 03:17, Geraldo Nascimento
+> > > > > <geraldogabriel@gmail.com> wrote:
+> > > > > > Shawn Lin from Rockchip has reiterated that there may be da=
+nger in using
+> > > > > > their PCIe with 5.0 GT/s speeds. Warn the user if they make=
+ a DT change
+> > > > > > from the default and drive at 2.5 GT/s only, even if the DT
+> > > > > > max-link-speed property is invalid or inexistent.
+> > > > > >
+> > > > > > This change is corroborated by RK3399 official datasheet [1=
+], which
+> > > > > > says maximum link speed for this platform is 2.5 GT/s.
+> > > > > >
+> > > > > > [1] https://opensource.rock-chips.com/images/d/d7/Rockchip=5F=
+RK3399=5FDatasheet=5FV2.1-20200323.pdf
+> > > > > >
+> > > > > To accurately determine the operating speed, we can leverage =
+the
+> > > > > PCIE=5FCLIENT=5FBASIC=5FSTATUS0/1 fields.
+> > > > > This provides a dynamic mechanism to resolve the issue.
+> > > > >
+> > > > > [1] https://github.com/torvalds/linux/blob/master/drivers/pci=
+/controller/pcie-rockchip-ep.c#L533-L595
+> > > >
+> > > > not to put you down but I think your approach adds unnecessary =
+complexity.
+> > > >
+> > > > All I care really is that the Kernel Project isn't blamed in th=
+e
+> > > > future if someone happens to lose their data.
+> > > >
+> > > Allow the hardware to negotiate the link speed based on the
+> > > available number of lanes.
+> > > I don=E2=80=99t anticipate any data loss, since PCIe will automat=
+ically
+> > > configure the device speed with link training..
+> >
+> > Please, note that this isn't about performing auto negotiation
+> > and following its results, but about "artificially" limiting the
+> > PCIe link speed to 2.5 GT/s on RK3399, because it's well known
+> > by Rockchip that 5 GT/s on RK3399's PCIe interface may cause
+> > issues and data corruption in certain corner cases.
+> >
+> It=E2=80=99s possible the link speed wasn=E2=80=99t properly tuned. O=
+n my older
+> development board,
+> which supports this configuration, I haven=E2=80=99t observed any dat=
+a loss.
+>=20
+> sudo lspci -vvv | grep Speed
+>                 LnkCap: Port #0, Speed 5GT/s, Width x1, ASPM L1, Exit
+> Latency L1 <8us
+>                 LnkSta: Speed 5GT/s, Width x1
+>                 LnkCtl2: Target Link Speed: 5GT/s, EnterCompliance- S=
+peedDis-
+>                 LnkCap: Port #1, Speed 5GT/s, Width x1, ASPM L0s L1,
+> Exit Latency L0s unlimited, L1 <2us
+>                 LnkSta: Speed 5GT/s, Width x1
+>                 LnkCtl2: Target Link Speed: 5GT/s, EnterCompliance- S=
+peedDis-
 
-Add clock and reset entries for the CANFD IP.
+Let me clarify, please...  This limitation to 2.5 GT/s came straight fr=
+om
+Rockchip a few years ago, described back then as an undisclosed errata.
+Recently, we got some more details from Rockchip that confirmed 5 GT/s
+as having issues in certain corner cases that cannot be validated by
+performing some field tests or by observing the PCIe behavior under loa=
+d.
+Those corner cases with 5 GT/s, as described by Rockchip, are quite har=
+d
+to reach, but the possibility is still real.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- drivers/clk/renesas/r9a09g056-cpg.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/clk/renesas/r9a09g056-cpg.c b/drivers/clk/renesas/r9a09g056-cpg.c
-index 741df446e24e..e356ed4a3d1d 100644
---- a/drivers/clk/renesas/r9a09g056-cpg.c
-+++ b/drivers/clk/renesas/r9a09g056-cpg.c
-@@ -46,6 +46,7 @@ enum clk_ids {
- 	CLK_PLLCLN_DIV2,
- 	CLK_PLLCLN_DIV8,
- 	CLK_PLLCLN_DIV16,
-+	CLK_PLLCLN_DIV20,
- 	CLK_PLLCLN_DIV64,
- 	CLK_PLLCLN_DIV256,
- 	CLK_PLLCLN_DIV1024,
-@@ -183,6 +184,7 @@ static const struct cpg_core_clk r9a09g056_core_clks[] __initconst = {
- 	DEF_FIXED(".pllcln_div2", CLK_PLLCLN_DIV2, CLK_PLLCLN, 1, 2),
- 	DEF_FIXED(".pllcln_div8", CLK_PLLCLN_DIV8, CLK_PLLCLN, 1, 8),
- 	DEF_FIXED(".pllcln_div16", CLK_PLLCLN_DIV16, CLK_PLLCLN, 1, 16),
-+	DEF_FIXED(".pllcln_div20", CLK_PLLCLN_DIV20, CLK_PLLCLN, 1, 20),
- 	DEF_FIXED(".pllcln_div64", CLK_PLLCLN_DIV64, CLK_PLLCLN, 1, 64),
- 	DEF_FIXED(".pllcln_div256", CLK_PLLCLN_DIV256, CLK_PLLCLN, 1, 256),
- 	DEF_FIXED(".pllcln_div1024", CLK_PLLCLN_DIV1024, CLK_PLLCLN, 1, 1024),
-@@ -431,6 +433,12 @@ static const struct rzv2h_mod_clk r9a09g056_mod_clks[] __initconst = {
- 						BUS_MSTOP(1, BIT(7))),
- 	DEF_MOD("riic_7_ckm",			CLK_PLLCLN_DIV16, 9, 11, 4, 27,
- 						BUS_MSTOP(1, BIT(8))),
-+	DEF_MOD("canfd_0_pclk",			CLK_PLLCLN_DIV16, 9, 12, 4, 28,
-+						BUS_MSTOP(10, BIT(14))),
-+	DEF_MOD("canfd_0_clk_ram",		CLK_PLLCLN_DIV8, 9, 13, 4, 29,
-+						BUS_MSTOP(10, BIT(14))),
-+	DEF_MOD("canfd_0_clkc",			CLK_PLLCLN_DIV20, 9, 14, 4, 30,
-+						BUS_MSTOP(10, BIT(14))),
- 	DEF_MOD("spi_hclk",			CLK_PLLCM33_GEAR, 9, 15, 4, 31,
- 						BUS_MSTOP(4, BIT(5))),
- 	DEF_MOD("spi_aclk",			CLK_PLLCM33_GEAR, 10, 0, 5, 0,
-@@ -599,6 +607,8 @@ static const struct rzv2h_reset r9a09g056_resets[] __initconst = {
- 	DEF_RST(9, 14, 4, 15),		/* RIIC_6_MRST */
- 	DEF_RST(9, 15, 4, 16),		/* RIIC_7_MRST */
- 	DEF_RST(10, 0, 4, 17),		/* RIIC_8_MRST */
-+	DEF_RST(10, 1, 4, 18),		/* CANFD_0_RSTP_N */
-+	DEF_RST(10, 2, 4, 19),		/* CANFD_0_RSTC_N */
- 	DEF_RST(10, 3, 4, 20),		/* SPI_HRESETN */
- 	DEF_RST(10, 4, 4, 21),		/* SPI_ARESETN */
- 	DEF_RST(10, 7, 4, 24),		/* SDHI_0_IXRST */
--- 
-2.52.0
+To sum it up, yes, multiple people have reported 5 GT/s as "working for=
+ me"
+on their RK3399-based boards and devices, but that unfortunately means
+nothing in this case, due to the specific nature of the underlying issu=
+e.
 
 
