@@ -1,114 +1,114 @@
-Return-Path: <devicetree+bounces-249507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B800BCDC4A1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 13:58:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ACC5CDC4AD
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 13:59:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 566DB30361E5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 12:54:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 13ABB3009832
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 12:55:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1009317704;
-	Wed, 24 Dec 2025 12:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053E7336EF6;
+	Wed, 24 Dec 2025 12:55:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redadmin.org header.i=@redadmin.org header.b="n6n5ZWOa"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="rIH3fAA1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www3141.sakura.ne.jp (www3141.sakura.ne.jp [49.212.207.181])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EC829B8EF;
-	Wed, 24 Dec 2025 12:54:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=49.212.207.181
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766580866; cv=pass; b=K52a9T09T/34OoQr8ALDtitn4TVxITjbU1uTgDPCvgTCoGIGJfQ07o2abKTX/jEVtaR8TIeGp5j6lcUekW+WRNHaIh2D6nu9Df1DlCFEG3TCbTuYDKdyirmYOsDyZjTUmHn7eiU0ZciDy/RWgF2fFIwa5nPOP+Qs+SGGYpWpnF0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766580866; c=relaxed/simple;
-	bh=RvSSgF+Ty4E5Q23//WRoOIdOX+/Nhnb0VDFyPNwWrc8=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Hzb2QKcP7WnmN5K93PoYVyKT1mt9dlqocA1DvkMc45S7nSn0HY3Mxo5HD6MVIa2Gmn6pPoxTckLsyH9nTPL4VD1nAaw6Y0a4v1flm5Sl8IkDQnhvQ6obGdymrzwBdsx3UiVfYCBp1k+x2gMDw1VV0LlfFOpnpwrwcB2LlrxPouk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redadmin.org; spf=pass smtp.mailfrom=redadmin.org; dkim=pass (1024-bit key) header.d=redadmin.org header.i=@redadmin.org header.b=n6n5ZWOa; arc=pass smtp.client-ip=49.212.207.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redadmin.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redadmin.org
-Received: from www.redadmin.org (bc043154.ppp.asahi-net.or.jp [222.228.43.154])
-	(authenticated bits=0)
-	by www3141.sakura.ne.jp (8.16.1/8.16.1) with ESMTPSA id 5BOCrCBn075363
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Wed, 24 Dec 2025 21:53:13 +0900 (JST)
-	(envelope-from weibu@redadmin.org)
-Received: from localhost (localhost [127.0.0.1])
-	by www.redadmin.org (Postfix) with ESMTP id 455E0109D6C01;
-	Wed, 24 Dec 2025 21:53:12 +0900 (JST)
-X-Virus-Scanned: amavis at redadmin.org
-Received: from www.redadmin.org ([127.0.0.1])
- by localhost (redadmin.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id v2qtyPeFh8P3; Wed, 24 Dec 2025 21:53:08 +0900 (JST)
-Received: from webmail.redadmin.org (redadmin.org [192.168.11.50])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-256) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: weibu@redadmin.org)
-	by www.redadmin.org (Postfix) with ESMTPSA id 75513109D6CBD;
-	Wed, 24 Dec 2025 21:53:08 +0900 (JST)
-DMARC-Filter: OpenDMARC Filter v1.4.2 www.redadmin.org 75513109D6CBD
-Authentication-Results: www.redadmin.org; arc=none smtp.remote-ip=192.168.11.50
-ARC-Seal: i=1; a=rsa-sha256; d=redadmin.org; s=20231208space; t=1766580788;
-	cv=none; b=lZjC88tO3iuPiGGcjkyzvfJFBBtxD4no11lRDefWVi3JByI8n6+7fgw2Wc2p4lic0l0U61HC3UbF0HiPkgwFQr06qfo1cfon5zhNYvinCR3YmAU7AhPBYV4UAjEHj49ukDczwAEebQH5QQI8mWeZtgy2k3lz60uqoEg2jNUe44M=
-ARC-Message-Signature: i=1; a=rsa-sha256; d=redadmin.org; s=20231208space;
-	t=1766580788; c=relaxed/relaxed;
-	bh=2JBkhuwY3NIkmFyOH8xIaV77KY39PYxYhlDlN5/RPQc=;
-	h=DKIM-Filter:DKIM-Signature:MIME-Version:Date:From:To:Cc:Subject:
-	 In-Reply-To:References:Message-ID:X-Sender:Content-Type:
-	 Content-Transfer-Encoding; b=u97zruLhITYp3ImuWu9Pfk8u+E9n1lJ+kOwNytousBXPc9Nc2sZONQKr9gvsdH9p1noTcLBndwUpeZ0VzkB5TiJxLbdsr+Hv88mcgCaAPyWu/UFuaQFhRZ5A7NWQtY50HQH5mrJWzg6s0zOy89NDue+DwsgXya/WyJ+QbGDDWfg=
-ARC-Authentication-Results: i=1; www.redadmin.org
-DKIM-Filter: OpenDKIM Filter v2.11.0 www.redadmin.org 75513109D6CBD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redadmin.org;
-	s=20231208space; t=1766580788;
-	bh=2JBkhuwY3NIkmFyOH8xIaV77KY39PYxYhlDlN5/RPQc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=n6n5ZWOawRiszxzy74OrLArzo+Prf/lsNA3kqN8PVW4L3vajg+3EoakSHYqop34TT
-	 uQxd/8k9FZ0pR0hktTw2TcfBoJj6Y+vpAya0EQNhjyjbtbRRXc/A9kAFL0pC5jkzzO
-	 DAUgF85MecXNYLBfCL3qAlx/Rg4HNUUDYZKhV3kI=
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5496131771B;
+	Wed, 24 Dec 2025 12:55:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766580944; cv=none; b=ilKn70hx8xqBkErGOUM1ITwUKzbfz06QNde+kykRqlX+jimpL29/Qw2g80raNbRj5GEKQ+/NUCtcte3jFzaM9nOzdnGHdj6gztIeEismn6mA8cl5pDyQuI2ycamnYqgkNFSoOZHjLeu271Ecwy/PIuVcr+Yso5DLRRBB79hgMHc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766580944; c=relaxed/simple;
+	bh=He22hg7Pf60Vb1jpOAaSsU0Q2mSrOPk6nn6TP4vK02Y=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=COE1K+Lyc9vq160Lj54B7Qq3rcLRdiOcI/aF5/3EvRc9LGENyW8DJs0Bm0OPY1dAXRDslb40BGM0xyQARmrmh5sUvUdZ6fpmIGuNkuMvRNHEZ8QWnUF3chrdiQAJiMBi/2FGfDTIlp3ipS3/CmbFNtbN08KshtaM6LhRHFEFBSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=rIH3fAA1; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 06125418A6;
+	Wed, 24 Dec 2025 13:55:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1766580933; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=He22hg7Pf60Vb1jpOAaSsU0Q2mSrOPk6nn6TP4vK02Y=;
+	b=rIH3fAA1weXMcnywGhw9J/NjYO7gM+SD1P8ggPsnJGW0N/G85XXy2sVfaEMeJUa6ars1h3
+	852lv/3i/IkLSgvI1ILhibJABZR4sNHlsMvLKMy2qMPvR4BwSxj4MCh25Bkcj0g4MrQEYn
+	81tFoyjdNzI3EvfwL6K6QBSkg1k/ylSxyBHevgh9Pw22k/hbGYJ3Bdadmi8TniM0jOmk1W
+	Qyyz5uGhdXO//fq37KF+HmSj8Rf1DD3rNpG9xR1RWlXu6e6fIXJIDvnxGN3p4Xc1E82h9Z
+	fXtIuIK3OhE1jg2EhX89ikMCDdrR0z4ASzaXwIMmKSeNyhYUN45R4qOiyIRoQw==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <CANAwSgQPQUBi6VVb+hZNraMt71vnRpki+YK_at=Luo4aPVtOPg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+References: <cover.1763415705.git.geraldogabriel@gmail.com>
+ <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com>
+ <CANAwSgQ726J_vnDKEKd94Kq62kx8ToZzUGysz4r3tNAXvfAbGA@mail.gmail.com> <CAEsQvctSY7-RQEQF2TmJU2qKPZOe9TC5g-7Jat0LQKRHYz_6dQ@mail.gmail.com> <CANAwSgQPQUBi6VVb+hZNraMt71vnRpki+YK_at=Luo4aPVtOPg@mail.gmail.com>
+Date: Wed, 24 Dec 2025 13:55:29 +0100
+Cc: "Geraldo Nascimento" <geraldogabriel@gmail.com>, "Shawn Lin" <shawn.lin@rock-chips.com>, "Lorenzo Pieralisi" <lpieralisi@kernel.org>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Manivannan Sadhasivam" <mani@kernel.org>, "Rob Herring" <robh@kernel.org>, "Bjorn Helgaas" <bhelgaas@google.com>, "Heiko Stuebner" <heiko@sntech.de>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Johan Jonker" <jbx6244@gmail.com>, linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+To: "Anand Moon" <linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Wed, 24 Dec 2025 21:53:08 +0900
-From: weibu@redadmin.org
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
- <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: dsa: marvell,mv88e6xxx: fix typo
-In-Reply-To: <a5984b03-6c9b-4f5b-ba71-57ef77104e03@kernel.org>
-References: <20251224123230.2875178-1-weibu@redadmin.org>
- <a5984b03-6c9b-4f5b-ba71-57ef77104e03@kernel.org>
-Message-ID: <f99d3ebf3b1c1bfd99f6095d32a2da61@redadmin.org>
-X-Sender: weibu@redadmin.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+Message-ID: <0afea20b-be22-2404-5a8e-c798ed45f2fd@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v2 1/4] =?utf-8?q?PCI=3A?==?utf-8?q?_rockchip=3A?= 
+ limit RK3399 to =?utf-8?q?2=2E5?= GT/s to prevent damage
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-Thanks for the feedback. Understood — I will send typo fixes aggregated 
-per subsystem going forward.
+Hello Anand,
 
-2025-12-24 21:36 に Krzysztof Kozlowski さんは書きました:
-> On 24/12/2025 13:32, Akiyoshi Kurita wrote:
->> Fix a typo in the interrupt-cells description ("alway" -> "always").
-> 
-> Please do not send trivial typos one by one, but fix all of occurrences
-> per subsystem. This is too much effort to deal with such one liners.
-> 
->> 
->> Signed-off-by: Akiyoshi Kurita <weibu@redadmin.org>
-> Best regards,
-> Krzysztof
+On Wednesday, December 24, 2025 09:04 CET, Anand Moon <linux.amoon@gmai=
+l.com> wrote:
+> On Wed, 24 Dec 2025 at 11:08, Geraldo Nascimento
+> <geraldogabriel@gmail.com> wrote:
+> > On Wed, Dec 24, 2025 at 2:18=E2=80=AFAM Anand Moon <linux.amoon@gma=
+il.com> wrote:
+> > > On Tue, 18 Nov 2025 at 03:17, Geraldo Nascimento
+> > > <geraldogabriel@gmail.com> wrote:
+> > > > Shawn Lin from Rockchip has reiterated that there may be danger=
+ in using
+> > > > their PCIe with 5.0 GT/s speeds. Warn the user if they make a D=
+T change
+> > > > from the default and drive at 2.5 GT/s only, even if the DT
+> > > > max-link-speed property is invalid or inexistent.
+> > > >
+> > > > This change is corroborated by RK3399 official datasheet [1], w=
+hich
+> > > > says maximum link speed for this platform is 2.5 GT/s.
+> > > >
+> > > > [1] https://opensource.rock-chips.com/images/d/d7/Rockchip=5FRK=
+3399=5FDatasheet=5FV2.1-20200323.pdf
+> > > >
+> > > To accurately determine the operating speed, we can leverage the
+> > > PCIE=5FCLIENT=5FBASIC=5FSTATUS0/1 fields.
+> > > This provides a dynamic mechanism to resolve the issue.
+> > >
+> > > [1] https://github.com/torvalds/linux/blob/master/drivers/pci/con=
+troller/pcie-rockchip-ep.c#L533-L595
+> >
+> > not to put you down but I think your approach adds unnecessary comp=
+lexity.
+> >
+> > All I care really is that the Kernel Project isn't blamed in the
+> > future if someone happens to lose their data.
+> >
+> Allow the hardware to negotiate the link speed based on the
+> available number of lanes.
+> I don=E2=80=99t anticipate any data loss, since PCIe will automatical=
+ly
+> configure the device speed with link training..
+
+Please, note that this isn't about performing auto negotiation
+and following its results, but about "artificially" limiting the
+PCIe link speed to 2.5 GT/s on RK3399, because it's well known
+by Rockchip that 5 GT/s on RK3399's PCIe interface may cause
+issues and data corruption in certain corner cases.
+
 
