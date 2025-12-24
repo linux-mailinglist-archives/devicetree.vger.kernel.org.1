@@ -1,229 +1,123 @@
-Return-Path: <devicetree+bounces-249586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C411BCDD0C2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 20:35:23 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81D5BCDD0FC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 21:57:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 713A93020347
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 19:35:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B4B853019BC4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 20:57:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A97D2BE056;
-	Wed, 24 Dec 2025 19:34:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD8D286D60;
+	Wed, 24 Dec 2025 20:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="gRT1npSX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B74IU/gS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5241C283FC4
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 19:34:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECFBC238C3B
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 20:57:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766604864; cv=none; b=XyFNF/amMWwCeOt3ysyLHZYKKJylCIGkcTwsIq6oTuoNhGj1KAoACOwc+60tSU9RMRTA/rmey2uBwHSy7VW7BmI/wx7w2tvbBUE6JrvExxwuCxK50GdPfonJBL74ynVQm2kRX0ceptPq/KD5LjQtJbc11OCBx6q1Ja4gFUnpR0g=
+	t=1766609835; cv=none; b=YSL6Mb7TxpJ5f3iXyVJshRvErWKp5XdMu2iFC41+cyfwXOtS1OxKaXgTUdlU4OygUbLJd6W3ikFUJvunxoJnscoI96hZ32NI3FLeGMck/ppLqUdoDVVmgrY88zSNnGhMNpuQzEcy/Y67htkJG6HAQNgNldkVtk5Hs1+J56FXPMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766604864; c=relaxed/simple;
-	bh=PluAjAtb7lK7v49qmWgxOxuvH4IrNDDqPtgMaVNWaBo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=iLbTpfPRtTmBZg3LX9Jv7vcKnHLCEMrUImvNOwtSUHbKoZTRyDirMiqmg8IBUnBgclSrpC4qxGSbQyLDz6+2aGc1lGRs1lqvXxqt7VH85h+Inuxm0iAOzy+IlocOfpAimgu8DMVXHCFlNP3x47Yx21QcoGyQWDlSS7ITVYgjkbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=gRT1npSX; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-4ee1fca7a16so51217391cf.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 11:34:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1766604861; x=1767209661; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=x6e16gv7fkGlDB1AoJnkIFe8dWDnsL2zpf8dEOQ9gVg=;
-        b=gRT1npSXX2LaP5gWEHTmO9J3dw+hpmudpZGrqF68BC4pmMeDygREOINBxhEnRrlqYh
-         DWwA66ufxh/jlBqFoAWkdOay+BZ/agBnwnhA74U3kyivnIBqDCW29vAGIVavHpkC4AyL
-         VumPpJmWN5VFgy2iSO6e7n4uytQ6TaGA3VTzhQAmgtD/BwCwZYCDpmyIlOI+AeWfFPHJ
-         k4ViTpvK3MzwPvQIWd2yWVaF1ibpxF5cVH58YtcfpKYfEyCNzLByZvDqJmreG3sAc12r
-         QSqQC11RLfocWYNgpke+fogRNyBcYo4fqor6dTR0x0xaXs7/GZ7efbKaucZBIKxmExNP
-         +18A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766604861; x=1767209661;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=x6e16gv7fkGlDB1AoJnkIFe8dWDnsL2zpf8dEOQ9gVg=;
-        b=LeSoTRFRNlTrSLnPUqONAZazZZqAVQIBKwhWCF/Hou3m7w+gojAcL9N9cVQs0hdX+M
-         4SBuCq/jquIZ6bQnsfT0lCIJxGidMEHMXdIHxY5i+A/VO8Tdn/zrOrtidHvWfOy4fqKt
-         rmAR5qVyCdqv+dZ4nuIdpXXp9p8zo/VGwRHEE1r7SoYAbm1K7CklMWyz4iLz1RmzjUJm
-         5oEKeEJ3sKVXG4dlkBHsP/MQew8h/5aXrkHw2UIHDr/8qRgwIqB8QFahS8w3F6BTPreW
-         vCW1XAmWJkFSjCUbPY8tBx5RUIVDek8MHh+rTqr/fPZPFaG5qAnlau1zYcvT5VXTpv3F
-         Ykcg==
-X-Gm-Message-State: AOJu0YzY98y+37CL0sb567Vd1pysECAjW+IdC0jHWns9bgZoJcxEQzDw
-	DrXtaRVwmlka0gOjKL27iyEqwAjCP+SHooOAItDQjB7w65iEFvQC7AT7Tsq+m0EKZxY=
-X-Gm-Gg: AY/fxX6IOZxlyoyPExBo/T3EXE1WRHO4gHdPFWqX+gLDmcD5Z5oL2Ki9SY4fp/nHSSP
-	Snwa1AJAZCARYy4Ycq3dkXhMS65uJIdDfci1qrVb9xrvLP9qt5EcMu1LOkI/bD8Rhz3HLeGRxQU
-	kjSsRly/7zjsEfRQimnSsXWI+NQRzaRQ7H+RI8NUAfrztn8qiZg6K+TOgzOfKii/t6lj1LX/rVx
-	O8XKxksfGi3ygscX9ltEK6KulOOuid8H+Wh1QDt6/V9C1nPbbjYJIzdAM+FVS3zIDfd5A9yfR/5
-	nnmGve0ybQXG2eLXsC5CkWvsFs3WutdBdAFmYrji7I7bCdMu7lULCs/mx7swAxwLhDeUoFPbELF
-	rtI1RMnIlrAg0p8xTCg5W1J28Ani1vgZ8+tjCLt1G1OFZ+aiuN3prBUdtTvjH9CwTmbpR8QH55X
-	sXzYR8Tlju9onTnnWMbRgqIWYi14c=
-X-Google-Smtp-Source: AGHT+IE5c0d9pz9gNJn0vh5jGGkS4wNXyintuchpyEm5t5iJ8jOJyL4PkY5GG2wEQBxudRt+jOfljw==
-X-Received: by 2002:a05:622a:6a8e:b0:4f4:c10e:fa3e with SMTP id d75a77b69052e-4f4c10efd3fmr133639501cf.3.1766604861041;
-        Wed, 24 Dec 2025 11:34:21 -0800 (PST)
-Received: from ?IPv6:2606:6d00:17:7b4b::c41? ([2606:6d00:17:7b4b::c41])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88d997aedafsm132331276d6.31.2025.12.24.11.34.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Dec 2025 11:34:20 -0800 (PST)
-Message-ID: <2974614b2440ed828f49ff7819ca7935d7bb8109.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 4/4] media: mediatek: jpeg: add compatible for MT8189
- SoC
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Jianhua Lin <jianhua.lin@mediatek.com>, mchehab@kernel.org,
- robh@kernel.org, 	krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, 	angelogioacchino.delregno@collabora.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
- sirius.wang@mediatek.com, 	vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
-Date: Wed, 24 Dec 2025 14:34:19 -0500
-In-Reply-To: <20251224031721.9942-5-jianhua.lin@mediatek.com>
-References: <20251224031721.9942-1-jianhua.lin@mediatek.com>
-	 <20251224031721.9942-5-jianhua.lin@mediatek.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-qqvl0ztmS4O0H5gavPMm"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+	s=arc-20240116; t=1766609835; c=relaxed/simple;
+	bh=rR+IqKZV2+yEt+beuh5Eb/n8EB8pgnm3N+CFdB1tJLU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fY5054KpMO9Bf5W4rui97cGhYMVyYdBe+yqJrCCTh9ZbmZymHSevJEfjbDflHSurE4+h263zD+UjNdZCFDgLb0W4ahjDUPeobmyxeSfSlpsKWVlVXwIuIxxjdHKPI1aVn4yIFzjBr2cp1EZh+wXu0h+dMQbkTzWKDAE7Szhioqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B74IU/gS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89953C116C6
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 20:57:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766609834;
+	bh=rR+IqKZV2+yEt+beuh5Eb/n8EB8pgnm3N+CFdB1tJLU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=B74IU/gSHmJH1Hmz057c/bhb4otoef4wtVCACPubrkCkgNDQzf5trsmEIM9UBYFyV
+	 4Ub75f5XorN/9zHbW3BWGl1H6ghaFfsIrVjcCpmFOqaw6Tw7PwsESmqKZCBnS0waIW
+	 5j2wbwGJMa0XeOLcO+OyUWQhKedRwCquv56WsdTKq9ORQXoG33N0AV7qD67hlKaSBu
+	 WWPV+qdw7ny8M6s3dLClw+tEn8jHVA0MvrY33up1m7RudinlqRobaG3/SKAtGLtwNX
+	 AKlnp4BVwQEO9M0DzRN18I+5zn0+svenyYazmNS0Y7v/o8Kgbp1Q5rGZud+F03BeWW
+	 kRsg+5R9f+4iw==
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-78e7ba9fc29so55933207b3.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 12:57:14 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXfaJLFPSXoRgwM72SdL9AjklXbX8zoPb4zqkWJ5k3z5hZ+sgdlEKLpXrDB1/IcB/JDqfg9N+6uP2xi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9SG8yQ+5g4RicOSwyZPjCdWn34HsYA0r3XXX63qP0N+gS013x
+	MHsz8YhADyHcK7UtM9njmmwmLe0u/KMnXYOPEiFjOvRv6SqDLWsfb6UGpMrj7ZI/GdjkDCoFwqs
+	1j0RnU2a45RLSM5qA9RPpo8AuAEAyKMY=
+X-Google-Smtp-Source: AGHT+IHEpiYtEfh5uCgFo5PCRn5oYZ4PTGqB7Q7v0KfaxIHEA9IkOH/CVczmtklVCspfrNJwswMetaEUvQ9VmbcEId4=
+X-Received: by 2002:a05:690c:3613:b0:78f:f329:db93 with SMTP id
+ 00721157ae682-790077109cdmr18280407b3.41.1766609833858; Wed, 24 Dec 2025
+ 12:57:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-
---=-qqvl0ztmS4O0H5gavPMm
+References: <20251204164228.113587-1-visitorckw@gmail.com>
+In-Reply-To: <20251204164228.113587-1-visitorckw@gmail.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Wed, 24 Dec 2025 21:57:02 +0100
+X-Gmail-Original-Message-ID: <CAD++jLneTBUyMDod_fbJbuy2Y4errGQpWM3H8uVdYbKZeUNEAw@mail.gmail.com>
+X-Gm-Features: AQt7F2qA9XRNnTNTTvbjP3rZWDA-LIjuIfAQFySfGMJgCMAL1iMtQNPxxzDQBZg
+Message-ID: <CAD++jLneTBUyMDod_fbJbuy2Y4errGQpWM3H8uVdYbKZeUNEAw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: integrator: Fix DMA ranges mismatch warning on IM-PD1
+To: Kuan-Wei Chiu <visitorckw@gmail.com>
+Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, arnd@arndb.de, jserv@ccns.ncku.edu.tw, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Le mercredi 24 d=C3=A9cembre 2025 =C3=A0 11:17 +0800, Jianhua Lin a =C3=A9c=
-rit=C2=A0:
-> Compared to the previous generation IC, the MT8189 uses 34-bit iova
-> address-space (16GB) and requires a single clock configuration.
-> Therefore, add new compatible to support the JPEG encoder and decoder
-> of MT8189 SoC.
->=20
-> Signed-off-by: Jianhua Lin <jianhua.lin@mediatek.com>
+On Thu, Dec 4, 2025 at 5:42=E2=80=AFPM Kuan-Wei Chiu <visitorckw@gmail.com>=
+ wrote:
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> When compiling the device tree for the Integrator/AP with IM-PD1, the
+> following warning is observed regarding the display controller node:
+>
+> arch/arm/boot/dts/arm/integratorap-im-pd1.dts:251.3-14: Warning
+> (dma_ranges_format):
+> /bus@c0000000/bus@c0000000/display@1000000:dma-ranges: empty
+> "dma-ranges" property but its #address-cells (2) differs from
+> /bus@c0000000/bus@c0000000 (1)
+>
+> The display node specifies an empty "dma-ranges" property, intended to
+> describe a 1:1 identity mapping. However, the node lacks explicit
+> "#address-cells" and "#size-cells" properties.
 
-I'll have to wait for some ack on the bindings, which looks otherwise fine =
-to
-me. But due to holiday, that might be delayed a little bit.
+(...)
+> +++ b/arch/arm/boot/dts/arm/integratorap-im-pd1.dts
+> @@ -248,6 +248,8 @@ display@1000000 {
+>                 /* 640x480 16bpp @ 25.175MHz is 36827428 bytes/s */
+>                 max-memory-bandwidth =3D <40000000>;
+>                 memory-region =3D <&impd1_ram>;
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <1>;
+>                 dma-ranges;
+>
+>                 port@0 {
 
-cheers,
-Nicolas
+This is for the *port* node and not for the
+stuff mentioned in the commit message, but the port is:
 
-> ---
-> =C2=A0.../platform/mediatek/jpeg/mtk_jpeg_core.c=C2=A0=C2=A0=C2=A0 | 44 +=
-++++++++++++++++++
-> =C2=A01 file changed, 44 insertions(+)
->=20
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> index d08fe365cbb2..9ea8d8f56e9b 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> @@ -1866,6 +1866,10 @@ static struct clk_bulk_data mt8173_jpeg_dec_clocks=
-[] =3D
-> {
-> =C2=A0	{ .id =3D "jpgdec" },
-> =C2=A0};
-> =C2=A0
-> +static struct clk_bulk_data mtk_jpeg_dec_clocks[] =3D {
-> +	{ .id =3D "jpgdec" },
-> +};
-> +
-> =C2=A0static const struct mtk_jpeg_variant mt8173_jpeg_drvdata =3D {
-> =C2=A0	.clks =3D mt8173_jpeg_dec_clocks,
-> =C2=A0	.num_clks =3D ARRAY_SIZE(mt8173_jpeg_dec_clocks),
-> @@ -1897,6 +1901,38 @@ static const struct mtk_jpeg_variant mtk_jpeg_drvd=
-ata =3D
-> {
-> =C2=A0	.multi_core =3D false,
-> =C2=A0};
-> =C2=A0
-> +static const struct mtk_jpeg_variant mtk8189_jpegenc_drvdata =3D {
-> +	.clks =3D mtk_jpeg_clocks,
-> +	.num_clks =3D ARRAY_SIZE(mtk_jpeg_clocks),
-> +	.formats =3D mtk_jpeg_enc_formats,
-> +	.num_formats =3D MTK_JPEG_ENC_NUM_FORMATS,
-> +	.qops =3D &mtk_jpeg_enc_qops,
-> +	.irq_handler =3D mtk_jpeg_enc_irq,
-> +	.hw_reset =3D mtk_jpeg_enc_reset,
-> +	.m2m_ops =3D &mtk_jpeg_enc_m2m_ops,
-> +	.dev_name =3D "mtk-jpeg-enc",
-> +	.ioctl_ops =3D &mtk_jpeg_enc_ioctl_ops,
-> +	.out_q_default_fourcc =3D V4L2_PIX_FMT_YUYV,
-> +	.cap_q_default_fourcc =3D V4L2_PIX_FMT_JPEG,
-> +	.support_34bit =3D true,
-> +};
-> +
-> +static const struct mtk_jpeg_variant mtk8189_jpegdec_drvdata =3D {
-> +	.clks =3D mtk_jpeg_dec_clocks,
-> +	.num_clks =3D ARRAY_SIZE(mtk_jpeg_dec_clocks),
-> +	.formats =3D mtk_jpeg_dec_formats,
-> +	.num_formats =3D MTK_JPEG_DEC_NUM_FORMATS,
-> +	.qops =3D &mtk_jpeg_dec_qops,
-> +	.irq_handler =3D mtk_jpeg_dec_irq,
-> +	.hw_reset =3D mtk_jpeg_dec_reset,
-> +	.m2m_ops =3D &mtk_jpeg_dec_m2m_ops,
-> +	.dev_name =3D "mtk-jpeg-dec",
-> +	.ioctl_ops =3D &mtk_jpeg_dec_ioctl_ops,
-> +	.out_q_default_fourcc =3D V4L2_PIX_FMT_JPEG,
-> +	.cap_q_default_fourcc =3D V4L2_PIX_FMT_YUV420M,
-> +	.support_34bit =3D true,
-> +};
-> +
-> =C2=A0static struct mtk_jpeg_variant mtk8195_jpegenc_drvdata =3D {
-> =C2=A0	.formats =3D mtk_jpeg_enc_formats,
-> =C2=A0	.num_formats =3D MTK_JPEG_ENC_NUM_FORMATS,
-> @@ -1936,6 +1972,14 @@ static const struct of_device_id mtk_jpeg_match[] =
-=3D {
-> =C2=A0		.compatible =3D "mediatek,mtk-jpgenc",
-> =C2=A0		.data =3D &mtk_jpeg_drvdata,
-> =C2=A0	},
-> +	{
-> +		.compatible =3D "mediatek,mt8189-jpgenc",
-> +		.data =3D &mtk8189_jpegenc_drvdata,
-> +	},
-> +	{
-> +		.compatible =3D "mediatek,mt8189-jpgdec",
-> +		.data =3D &mtk8189_jpegdec_drvdata,
-> +	},
-> =C2=A0	{
-> =C2=A0		.compatible =3D "mediatek,mt8195-jpgenc",
-> =C2=A0		.data =3D &mtk8195_jpegenc_drvdata,
+                port@0 {
+                        #address-cells =3D <1>;
+                        #size-cells =3D <0>;
 
---=-qqvl0ztmS4O0H5gavPMm
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+                        clcd_pads_vga_dac: endpoint@0 {
+                                reg =3D <0>;
+                                remote-endpoint =3D <&vga_bridge_in>;
+                                arm,pl11x,tft-r0g0b0-pads =3D <0 8 16>;
+                        };
+                };
 
------BEGIN PGP SIGNATURE-----
+Devoid of any reg, so who cares?
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUxAOwAKCRDZQZRRKWBy
-9JqBAP9i7M2YbOEYsWIhtcAH9zQcvXYutrHtuKt+PmEgNW4g5AD9ECawAwyRxWOa
-fdGbfG5KGblydDkiwIRY9o3Ya2p6XQQ=
-=ZDB6
------END PGP SIGNATURE-----
+Probably the empty dma-ranges should just be deleted again, it is
+pointless for the port.
 
---=-qqvl0ztmS4O0H5gavPMm--
+Yours,
+Linus Walleij
 
