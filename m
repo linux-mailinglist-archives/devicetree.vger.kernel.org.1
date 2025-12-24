@@ -1,131 +1,204 @@
-Return-Path: <devicetree+bounces-249555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35B8BCDCD07
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:13:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AAC6CDCD4D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:17:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B004830215F1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:13:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3B3143044699
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3595332936B;
-	Wed, 24 Dec 2025 16:13:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3FCD328619;
+	Wed, 24 Dec 2025 16:14:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bHoZ5wnf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B908F327210;
-	Wed, 24 Dec 2025 16:13:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35BF328248;
+	Wed, 24 Dec 2025 16:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766592798; cv=none; b=fRkB2DISF5eKk3FnXClQGojCVkfhZu0OuLomly543Ogxl7SNDMloA7te33QkreikMBgfrrT+dRD3kFH/8GwmMzPTuHJ0fO/kaeSHoSDW9YxG1peoLXNKDh1/4mbPtEmcTszpFwnA5KK3RYlmu6MqYAiyjU3BN8nTxOml88F3pqY=
+	t=1766592886; cv=none; b=eXTp26XIKY4Lk7QfEXXPQGFQu2D08TOANgg6ORUlh7w0w4D3dxyRWTEq+DuNbGpvbc9oUh1n5UFRl4/G4jXNu5zS4Tt/hltj2fk9iPGpQqiVJ2hUUguuizHx0lTInzrXfamcin8CU48f4DniFPMLhhf9VRZKayO/mp7foGZMdlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766592798; c=relaxed/simple;
-	bh=ur1E2iiW2+v7enIi0CFiT2Y27Yn1NfGxOQOU5igKqT4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jLb61h+ogiH5lrtgYE5HnJOVnmdWT9EQ1pHg2SuVH3JEVQWjlE8VrtgdpZsvtRe9uriZtPQ+F7Df/5CDQrwYEpKwhYyquxYcVTiFtlcNR8i6rpIwA0ZwMGRhF8ytySxDC/msH4075pfFMYTtdr5GpJshxisXOGYu9yldiicbxCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.100.54])
-	by APP-05 (Coremail) with SMTP id zQCowAA3yw7WEExpgGPNAQ--.14041S11;
-	Thu, 25 Dec 2025 00:12:27 +0800 (CST)
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	s=arc-20240116; t=1766592886; c=relaxed/simple;
+	bh=puWmGZxXE8UpiT7pGZBgzqUpkzDtlP+dMU+x0yn5VaI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o8I9e0Kl5KllJS7Ug0kpb25rGEvlUP0H8fhxbOpGXTqih9+iz3h00d+pLfZxClCJReTRdpEvm42nC2NeWn0KalCMozuXz2d+t3JRYOESNTe2X58LIEcKYmRHYi36loTffE2u4yd2mESr07Lvq1Yqwv5JE+QxKJCLTRnNeEU7Xro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bHoZ5wnf; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1766592882; x=1798128882;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=puWmGZxXE8UpiT7pGZBgzqUpkzDtlP+dMU+x0yn5VaI=;
+  b=bHoZ5wnfmQL35Z0iP1f2ogQ0sURGKPocalIFLQnIknVmz6ZGu4PQjF9Y
+   1fQWfrKJXcQuy4w+atrsuloalUwc30zwoNxlN/a47/K1prk1wIEBnSDui
+   52h4jQkTBg0u1hp53hWNxbspyh2BysS+oBq4J1LvJ9QhlegHCsmEccGz1
+   aXoBRcLqb0ZtQZHD/SDpvGEyEvbkEpPrfr7K7vsvxNhAUGQsBxz4Qk2Me
+   0pZEPvioCBKYVjImO6TKgK+smOhja4wUltpOljIHLXNVoaQ+UWAePsNXM
+   5Y1n9ney/M+yQHaIYK4ve1aXT+xDxcT2BtvN+p75zv0vgrVlvm5tLlDCX
+   g==;
+X-CSE-ConnectionGUID: PlVl4KhMTyu6hbSY4O29KA==
+X-CSE-MsgGUID: VwINpBxURYelfsfXffvQMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11652"; a="93898559"
+X-IronPort-AV: E=Sophos;i="6.21,174,1763452800"; 
+   d="scan'208";a="93898559"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Dec 2025 08:14:38 -0800
+X-CSE-ConnectionGUID: IbXEZ3XjTeGoaTrUH18k5g==
+X-CSE-MsgGUID: BE8WK5MDSv2mgzXQclGqjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,174,1763452800"; 
+   d="scan'208";a="199282595"
+Received: from lkp-server02.sh.intel.com (HELO dd3453e2b682) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 24 Dec 2025 08:14:33 -0800
+Received: from kbuild by dd3453e2b682 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vYRVN-000000003FJ-2PxI;
+	Wed, 24 Dec 2025 16:14:29 +0000
+Date: Thu, 25 Dec 2025 00:13:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marijn Suijten <marijn.suijten@somainline.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
 	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>,
-	Yao Zi <ziyao@disroot.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH v4 9/9] mailmap: map all Icenowy Zheng's mail addresses
-Date: Thu, 25 Dec 2025 00:12:05 +0800
-Message-ID: <20251224161205.1132149-10-zhengxingda@iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
-References: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
+	Casey Connolly <casey.connolly@linaro.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	~postmarketos/upstreaming@lists.sr.ht,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+	Martin Botka <martin.botka@somainline.org>,
+	Jami Kettunen <jami.kettunen@somainline.org>,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Dmitry Baryshkov <lumag@kernel.org>
+Subject: Re: [PATCH v2 05/11] drm/panel: Add panel driver for Samsung SOFEF01
+ DDIC
+Message-ID: <202512242356.EwESE8Qv-lkp@intel.com>
+References: <20251222-drm-panels-sony-v2-5-82a87465d163@somainline.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowAA3yw7WEExpgGPNAQ--.14041S11
-X-Coremail-Antispam: 1UD129KBjvJXoWrKryDWr4ktryDKw4fCFWDXFb_yoW8JrW3pr
-	4xGr4UKFykAwn29r1qgry5XF1kXa95WF4DGw4Yvw18uFZ3JF1kWrsxJayDXr1UJrWS9rW7
-	JFnFvr9agas7A3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmv14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
-	4UJwA2z4x0Y4vEx4A2jsIE14v26r4j6F4UM28EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_
-	Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6x
-	IIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_
-	Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8c
-	xan2IY04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCj
-	c4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4
-	CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4U
-	MIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
-	WUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUv
-	cSsGvfC2KfnxnUUI43ZEXa7sRRjg43UUUUU==
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251222-drm-panels-sony-v2-5-82a87465d163@somainline.org>
 
-From: Icenowy Zheng <uwu@icenowy.me>
+Hi Marijn,
 
-Map all mail addresses Icenowy Zheng had used to the personal mailbox
-prefixed "uwu".
+kernel test robot noticed the following build warnings:
 
-All these mailboxes, except the one of Sipeed (which was only used
-during a summer vacation internship), can accept mails now.
+[auto build test WARNING on cc3aa43b44bdb43dfbac0fcb51c56594a11338a8]
 
-Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
----
-No changes in v4.
+url:    https://github.com/intel-lab-lkp/linux/commits/Marijn-Suijten/drm-panel-Clean-up-SOFEF00-config-dependencies/20251222-073548
+base:   cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+patch link:    https://lore.kernel.org/r/20251222-drm-panels-sony-v2-5-82a87465d163%40somainline.org
+patch subject: [PATCH v2 05/11] drm/panel: Add panel driver for Samsung SOFEF01 DDIC
+config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20251224/202512242356.EwESE8Qv-lkp@intel.com/config)
+compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251224/202512242356.EwESE8Qv-lkp@intel.com/reproduce)
 
-New patch in v3.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512242356.EwESE8Qv-lkp@intel.com/
 
- .mailmap | 4 ++++
- 1 file changed, 4 insertions(+)
+All warnings (new ones prefixed by >>):
 
-diff --git a/.mailmap b/.mailmap
-index 84309a39d329c..0fc9602ddd9b0 100644
---- a/.mailmap
-+++ b/.mailmap
-@@ -316,6 +316,10 @@ Henrik Rydberg <rydberg@bitmath.org>
- Herbert Xu <herbert@gondor.apana.org.au>
- Huacai Chen <chenhuacai@kernel.org> <chenhc@lemote.com>
- Huacai Chen <chenhuacai@kernel.org> <chenhuacai@loongson.cn>
-+Icenowy Zheng <uwu@icenowy.me> <zhengxingda@iscas.ac.cn>
-+Icenowy Zheng <uwu@icenowy.me> <icenowy@aosc.io>
-+Icenowy Zheng <uwu@icenowy.me> <icenowy@aosc.xyz>
-+Icenowy Zheng <uwu@icenowy.me> <icenowy@sipeed.com>
- Ike Panhc <ikepanhc@gmail.com> <ike.pan@canonical.com>
- J. Bruce Fields <bfields@fieldses.org> <bfields@redhat.com>
- J. Bruce Fields <bfields@fieldses.org> <bfields@citi.umich.edu>
+>> drivers/gpu/drm/panel/panel-samsung-sofef01.c:389:20: warning: cast to smaller integer type 'enum panel_type' from 'const void *' [-Wvoid-pointer-to-enum-cast]
+           ctx->panel_type = (enum panel_type)of_device_get_match_data(dev);
+                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
+
+
+vim +389 drivers/gpu/drm/panel/panel-samsung-sofef01.c
+
+   357	
+   358	static int samsung_sofef01_m_probe(struct mipi_dsi_device *dsi)
+   359	{
+   360		const struct backlight_properties props = {
+   361			.type = BACKLIGHT_RAW,
+   362			.brightness = 100,
+   363			.max_brightness = 1023,
+   364		};
+   365		struct device *dev = &dsi->dev;
+   366		struct samsung_sofef01_m *ctx;
+   367		int ret;
+   368	
+   369		ctx = devm_drm_panel_alloc(dev, struct samsung_sofef01_m, panel,
+   370					   &samsung_sofef01_m_panel_funcs,
+   371					   DRM_MODE_CONNECTOR_DSI);
+   372		if (IS_ERR(ctx))
+   373			return PTR_ERR(ctx);
+   374	
+   375		ret = devm_regulator_bulk_get_const(
+   376			dev,
+   377			ARRAY_SIZE(samsung_sofef01_m_supplies),
+   378			samsung_sofef01_m_supplies,
+   379			&ctx->supplies);
+   380		if (ret < 0)
+   381			return dev_err_probe(dev, ret, "Failed to get regulators\n");
+   382	
+   383		ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+   384		if (IS_ERR(ctx->reset_gpio))
+   385			return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+   386					     "Failed to get reset-gpios\n");
+   387	
+   388		ctx->dsi = dsi;
+ > 389		ctx->panel_type = (enum panel_type)of_device_get_match_data(dev);
+   390		if (ctx->panel_type == PANEL_TYPE_TC01)
+   391			ctx->mode = &samsung_sofef01_m_61_142_mode;
+   392		else if (ctx->panel_type == PANEL_TYPE_DK01)
+   393			ctx->mode = &samsung_sofef01_m_61_141_mode;
+   394		else
+   395			ctx->mode = &samsung_sofef01_m_60_139_mode;
+   396		mipi_dsi_set_drvdata(dsi, ctx);
+   397	
+   398		dsi->lanes = 4;
+   399		dsi->format = MIPI_DSI_FMT_RGB888;
+   400		dsi->mode_flags = MIPI_DSI_CLOCK_NON_CONTINUOUS;
+   401	
+   402		ctx->panel.prepare_prev_first = true;
+   403	
+   404		ctx->panel.backlight = devm_backlight_device_register(
+   405			dev, dev_name(dev), dev, dsi,
+   406			&samsung_sofef01_m_bl_ops,
+   407			&props);
+   408		if (IS_ERR(ctx->panel.backlight))
+   409			return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
+   410					     "Failed to create backlight\n");
+   411	
+   412		drm_panel_add(&ctx->panel);
+   413	
+   414		ret = mipi_dsi_attach(dsi);
+   415		if (ret < 0) {
+   416			dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
+   417			drm_panel_remove(&ctx->panel);
+   418			return ret;
+   419		}
+   420	
+   421		return 0;
+   422	}
+   423	
+
 -- 
-2.52.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
