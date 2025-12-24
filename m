@@ -1,134 +1,96 @@
-Return-Path: <devicetree+bounces-249432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD460CDBC4A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 10:12:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34319CDBC50
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 10:13:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F1B3E301EF8B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 09:09:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C3343026537
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 09:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F45B329E4B;
-	Wed, 24 Dec 2025 09:09:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A54BE32ED37;
+	Wed, 24 Dec 2025 09:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aaOLbJ8Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xjj3dNOq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E3F78F20;
-	Wed, 24 Dec 2025 09:09:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B75A32AACB;
+	Wed, 24 Dec 2025 09:10:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766567360; cv=none; b=WpSOZ99h5Kc2Kh88OJu1aGRtFu7k6cInQQRUR7BvVfuVckJvxCCohJAioeSGZaWoOIVNBu8mdxJknqpZQtwrKIMlsIomCDgBcZdcyIUTnm0YdknsXd5n8NieUHcWePy1LEVcvMHZul7P1bsh3rIsHHiTP782z1KUvszdEDvA7rc=
+	t=1766567449; cv=none; b=R41MxzOr5/fcKobZN+kPpfGIBF+97G6jeaW/TN5XGxV8dhOap+yZbV/kIZs1lhwZlPcXKZ6Kk4ysMooA98o814wPvpXJTOtflwGw4zsYdJLKaktBfqmf2SbzServXARI5Si+XyYGkReqBzev1jrdTSZyL/ec8Qn8KK3PaUc4kfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766567360; c=relaxed/simple;
-	bh=aW2pf36SmEznSR6XWh/4HzQHa0IAjDMpBnxJ2LPBU/8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tzeZjebFnNJIQ/dqHXkeSAhogseLeYeVu1GQeWT6G9IWB+MfUgkVex12pZ1DAsbQSoUjIPtLFY7jbcjqB10hCPH7P9hYvk6OMR6duaDez9TWcTprsbqP6Nj2nftElYbDKkhu5+Czyf7k0xHJRn9lQvwcWCdWLESghjQCTx56MiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aaOLbJ8Q; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BO2e32d913644;
-	Wed, 24 Dec 2025 09:09:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c7pjphnT4e/Zd0agRQDQJ9JbAzfx9ojJZd+nQp5/Urw=; b=aaOLbJ8Q4EEjIRT8
-	z32yS+fbeHxmHgVwWmnSZtC0zPp/iFx8uftyN6q+OibzhdUMQVLECWc1+hfyRky8
-	8wDlSVuYbuujoF4C/8Od67n35uLqqUeTzgb59BPAFVqakvv2LWZP6M4mpetIIU7J
-	niEkogMu2jE4+4mfk4/iT1KllUgzUtEZBBdx7OnSbv3cLnc4XhidBKL/zCi3RVlB
-	bsCZASlbRUqhb3f2g7W/4vEUaOYPsMlMEvWHC+8iNlt4X/OzJyN3Xyz+OK23EGu0
-	Fp90718BaHSmLN/9qzrSFCwtuTS3Hin6lWkY/f57/PqKJCEiWNd4qRXU3qXkuIfp
-	wwWHtA==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b7vt2jqub-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Dec 2025 09:09:00 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5BO98wo0012387
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Dec 2025 09:08:58 GMT
-Received: from [10.206.97.61] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 24 Dec
- 2025 01:08:51 -0800
-Message-ID: <9e449e77-5445-4aec-a89a-835d98242876@quicinc.com>
-Date: Wed, 24 Dec 2025 14:38:48 +0530
+	s=arc-20240116; t=1766567449; c=relaxed/simple;
+	bh=5vZOqdUCDqHKRalg9x266UN32kb30vjOJx380+ZbytU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s/4rTQZifAS5IDs4FWf1C1oJYwnSECKwaKTMxov1ViG7oJhglykkvXA1SHZJF1/euTNQkhHbSPAPfcmCZXoS8ZCOgjkaZXi3vFzm+T2FUek+5G4GMLPnRFvcnvkfS19uFsAJOKGjw8ncIjoYmY2F6VcriRh3TT7EvetobE4O5ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xjj3dNOq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63C25C4CEFB;
+	Wed, 24 Dec 2025 09:10:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766567447;
+	bh=5vZOqdUCDqHKRalg9x266UN32kb30vjOJx380+ZbytU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Xjj3dNOqpXV5XAnck73qHs/iMJ1+AxC5UmpkrF64RUM053N/Ws+nZHcmYNLw0WFTF
+	 NeAA3iaE22t3razdlkooo6/U0Jmn7MXtLE8qQtmfjItt0bo4+tTNrVl5Tv6FgKHNlJ
+	 3B+QXSakc7rm0kvDJ5poOz8jgjwFuFtRUo7/ADzVPt7IwSNn6QOHeJGmJ0V7hR9JFV
+	 u+0/tjzBr4q7frg7kZaTpvPHJmc5WtpBK0Ip9JH6bCKFhFpJ0keaX09Gf1IrNDiuGi
+	 WeYQ3m6jY2euXmNPNUlEGywLhotW9aB++iQg/5ezDrabfzblYhIuWIhIzH3xejDI1i
+	 yuoZPQm7SpIlQ==
+Date: Wed, 24 Dec 2025 10:10:43 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kyle Hsieh <kylehsieh1995@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: aspeed: add Meta ventura2 board
+Message-ID: <20251224-bustard-of-major-growth-b9cd89@quoll>
+References: <20251224-ventura2_initial_dts-v2-0-f193ba5d4073@gmail.com>
+ <20251224-ventura2_initial_dts-v2-1-f193ba5d4073@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] dt-bindings: display: msm-dsi-phy-7nm: document
- the QCS8300 DSI PHY
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
-        <sean@poorly.run>, <marijn.suijten@somainline.org>,
-        <andersson@kernel.org>, <robh@kernel.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <konradybcio@kernel.org>, <conor+dt@kernel.org>,
-        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-        <jonathan@marek.ca>, <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
-        <quic_rajeevny@quicinc.com>, <quic_vproddut@quicinc.com>
-References: <20251125013302.3835909-1-quic_amakhija@quicinc.com>
- <20251125013302.3835909-2-quic_amakhija@quicinc.com>
- <20251125-mauve-tamarin-of-education-c94bfb@kuoka>
- <bfuds7xrlgril2r2y3hysmvrboobietm5garm5q6t4gy36jvuq@qyosxqib3nv3>
-Content-Language: en-US
-From: Ayushi Makhija <quic_amakhija@quicinc.com>
-In-Reply-To: <bfuds7xrlgril2r2y3hysmvrboobietm5garm5q6t4gy36jvuq@qyosxqib3nv3>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI0MDA3OCBTYWx0ZWRfXzlFvJAn9ezeZ
- 7aolP5pg8MY+7taJQ1ungLK2VvXlMF+jIE9FUptzSxzcOJ+MYtK+bXkx44ldjbh8RzM/uziAk8E
- W15g9rpeuCJH+eLtyMESzGGS7XuQYjoHQCaIHlTsH6471xWks/n28cmLOkx83Bis67xEHCcq52W
- wC/JjrBIFT2dn6IKGLNBbfCs8aQQAOrk59EBjSghQr7NBx/vkzvTW7NC6UegKlV00CogR7XIJyP
- Ld53S8jQC2+DEk2jPyJt+6nstjlgmnuXbXLzEDV+lnCq5zV42MwCI39Ct2zUOz9rlOhgaDpoV4r
- WVhhbWnLvjejVZbT/cEk6pcnkyIoAM6nUXm/cJStAictOZbu/5+ZIO65ipsWPVsiSrX5lUJfWYA
- JftZgwPUCka47L4c+2kssGWMtipHxgGRnkV7xgDTvbaZD0GATb3euAKEKozQjgWgKqhTp3hPc44
- xQ3XAjVvGyb/xBqql8Q==
-X-Proofpoint-GUID: apC0m7P821iwOqht8RqiSZOpPjmSA4AN
-X-Proofpoint-ORIG-GUID: apC0m7P821iwOqht8RqiSZOpPjmSA4AN
-X-Authority-Analysis: v=2.4 cv=brtBxUai c=1 sm=1 tr=0 ts=694badac cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10
- a=VkNPw1HP01LnGYTKEx00:22 a=YLxF30ALFz6TGyIxud8A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-24_02,2025-12-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 spamscore=0 adultscore=0 priorityscore=1501
- malwarescore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1011
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512240078
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251224-ventura2_initial_dts-v2-1-f193ba5d4073@gmail.com>
 
-On 12/24/2025 12:06 PM, Dmitry Baryshkov wrote:
-> On Tue, Nov 25, 2025 at 10:31:42AM +0100, Krzysztof Kozlowski wrote:
->> On Tue, Nov 25, 2025 at 07:02:58AM +0530, Ayushi Makhija wrote:
->>> Document the DSI PHY on the QCS8300 Platform.
->>
->> Explain the hardware, so your diff would be justified. Instead of
->> stating obvious or copying the subject, say something useful. Why this
->> is compatible with different platforms?
+On Wed, Dec 24, 2025 at 02:44:38PM +0800, Kyle Hsieh wrote:
+> Document the new compatibles used on Facebook ventura2.
 > 
-> Ayushi, any updates?
-> 
+> Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
 
-Hi Dmitry, new patches for the series are ready, will upload them in sometime.
+<form letter>
+This is a friendly reminder during the review process.
 
-Thanks,
-Ayushi
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
+
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
+
+Best regards,
+Krzysztof
 
 
