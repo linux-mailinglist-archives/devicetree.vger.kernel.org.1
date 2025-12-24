@@ -1,167 +1,106 @@
-Return-Path: <devicetree+bounces-249537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4BA1CDCC32
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36590CDCC4E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:53:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A39133006A90
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 15:50:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CD08A300A341
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 15:53:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF9A326D43;
-	Wed, 24 Dec 2025 15:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD72430CD91;
+	Wed, 24 Dec 2025 15:53:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="RDssSKy/"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="na8tgn2F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81C32857C1
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 15:50:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700F730C345;
+	Wed, 24 Dec 2025 15:53:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766591447; cv=none; b=DZu0A8q6hLt8Y8b8nqv8IdHXEM8lghaLjM3fiP97WmHFNktE+8nIezwfD3V2uZf6DPXLDnwnPGFdxHvYQefVPm2yfxpgJFZDsZug6ywRsWLFWzLagDDVuYHWJ6dmaOEm0qf9tCpWCgV1+jbvRYghAuKgtQh8ry3ATcMCxMz4EKQ=
+	t=1766591617; cv=none; b=NXzIm49DAEpIyLr8bLhgdMmjgHZQRShuM+aEHWMofpC2Y3BQxekelNKDrNW1Q0IcTGoTKI2GmkgXuhDWPtI+1POlDoSESbabwZnlAnxu5pnDftY8ohe+P4stMcxDOe/iVhvYkg2rxZjhMuw4P68WP5R4iS5lHW+yfW+xyZVfLek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766591447; c=relaxed/simple;
-	bh=/Ea/rB3LN0HquXeha074nkqVsH9FSf9jy6TvycaFmXw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qNpZzkFJMF3bqZJ4vz7jeg38XkQtjvCV7qUvCik9IEcoP+b8mD7nXGkI1fVG7nmjs4DbEvUXSa+59IIKkApHeJCl8rk2xJ7SWq9d10g3GmQGspOgXl4l5Fv2PwVUKC3oRW8R+jGQpWckyxu/BxUPefB/ZlVmlEfRIXvanQz4jEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=RDssSKy/; arc=none smtp.client-ip=209.85.160.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-4ee19b1fe5dso65794251cf.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 07:50:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1766591445; x=1767196245; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QSdmNzll22GS36dUZyYftlYEWLa006on7/6Z+DJM0ag=;
-        b=RDssSKy/kYmRqnScBofubBXEBWJJj8L+z1l+lE8b2gOFS7cJhQt6lDCKlDpkj4RR6T
-         Fe3ururyLgTIo3HDz2Y8oaSAPWa36OL0RfwWy/w2AsGzSHlpQtdLmGHxu8YCOV/91HH9
-         iu2oZgzqe52V5ZW4D5ZW/zklcS9jFEfZpGMGjBvxmQ6XwWIhGgcrKhUouOD1wTBWqOTC
-         2FsfYZMh7N+oOpE7b/fzdIdY/MmVsYAY6flRi/6njE80aYieVG2arObQWEhImjxhf0Ry
-         g8Y3cXg6vAukk69x02st0+aKmcgYj2VYavqjwKPV3DkDTXHr0CysIHcuvaa/+uzlvWK3
-         Q6Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766591445; x=1767196245;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QSdmNzll22GS36dUZyYftlYEWLa006on7/6Z+DJM0ag=;
-        b=pih4FzSVRHI+1OhNWiu12oeFroYvLIIEtPFP5AyFEQbtrr9ypj7tv20FnMukjzRjX+
-         6x2zV6eUGofyiS0NIa9jQbqJfddguqsXrVGlCqVzJsmmV2Xy0saXdumPCt5syExjOLgr
-         hiDJE2YIvnYaTyUMpxGTahl7QXrn0XA6HhDElq8hBUmddbiYPE2Dd7GrSCXTgjsPJpsF
-         GXGgB4p8XneGQ4we8NUcY9f7PkAcITUmQc8ovywluygOuSIJO/vNXNXHzPAWE61K21OF
-         2KtBUWA7UgZjG877DrDb7GIuhcAC/prjmY82jdHJSEzzm+3ZCUg+FVbKmcz5u2mtpv1m
-         DpjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXlWZMSFTvYdfVnh/y2/BSRMz016Anw/3SoVFVT0txOGBhIRrYGc5gQ8qQ4u/OgUZ+f5osVzTtj9sVO@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYwYMt+147mcuJOgh0S6QVIIKOm0cFRNJAhCy3g2ipaBhKEA4u
-	YizgfHLkR+Q47F5PqydyHtb7Zl9AttjskA5RebFAxhYPDcpZyrqQRj1ZBWG7CFt0cTM=
-X-Gm-Gg: AY/fxX7fJsHfrw9Ta5yvcIhQQRXHIjoJSMdaS/C6TuIL2wyPDdHSGs8CSwEaQ+D4ysL
-	jGXMPUO4WprAZhoDXQFO7zrbVRCzPS7UMjeYs9fod/vQ8Y3IEwADCKUZ5E1XDVx2J4A9N5VO1Bb
-	rofdx9qdEFoiMlKFu84jxadVParmge+640ugpKl7UIZySexPK5skFkTpZ91RyGfEh1F6F3RbLAK
-	baTEeIF5/uZJA4aKewEOJJanlkYu0lfFIJXtSOcApvjEouLQl3UMHNkdnuG1yNDUslKPpY28tv0
-	8o55WF96YUM6Mbow1UfMcKv/Smk15D3AEObcRry6tIdo2rE5LzJkGUVmwggglJ7G80VwMWH7DSz
-	xcbQ1pQCygqF8rnTLyMgfhiKtPo7RZCFtjW+ZwrfWCvPIJqnStXr6aztixBjDPgzo0WC8gs5y/C
-	+FG9XNHGVUlmwQfh5j
-X-Google-Smtp-Source: AGHT+IHFpvl7atlI/XfDElSp1cFHnazASDvVJwr4LLKxB3XCrMdiPROiP2O9X2LigLf12PzE9tOSRw==
-X-Received: by 2002:a05:622a:4013:b0:4ee:4a8b:d9ed with SMTP id d75a77b69052e-4f4abda9f56mr233284001cf.58.1766591444898;
-        Wed, 24 Dec 2025 07:50:44 -0800 (PST)
-Received: from ?IPv6:2606:6d00:17:7b4b::c41? ([2606:6d00:17:7b4b::c41])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4f4ac62d53dsm127169351cf.19.2025.12.24.07.50.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Dec 2025 07:50:44 -0800 (PST)
-Message-ID: <d09691bfde08f80e4cb47cc365d86bd53d0aaa7c.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 15/22] media: rockchip: rga: share the interrupt when
- an external iommu is used
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
-	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	 <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, kernel@pengutronix.de, Michael Olbrich
-	 <m.olbrich@pengutronix.de>
-Date: Wed, 24 Dec 2025 10:50:42 -0500
-In-Reply-To: <20251203-spu-rga3-v2-15-989a67947f71@pengutronix.de>
-References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
-	 <20251203-spu-rga3-v2-15-989a67947f71@pengutronix.de>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-6E1pOz363AUSc4hyqasF"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+	s=arc-20240116; t=1766591617; c=relaxed/simple;
+	bh=itw1VGsb8caeZEnMIi0mGYNuh+cuyTYEgjoEbrWFsa4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OqRh40R5Z4dZen3XSipccQa39DXqPKGHilr+gPhIXBiAkxtFrDS+YqGI++ChHbsNWDPWA7NZb325AG6b0sLxN9Rw9Otkr6KqQKPtGylF21HM3T92MCU1BtXDTxKyGlDIjNo4TU5PO3fjyjMAXtt0AD9a4kFR/HTMMPf5qVeKR8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=na8tgn2F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C2AAC4CEF7;
+	Wed, 24 Dec 2025 15:53:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1766591617;
+	bh=itw1VGsb8caeZEnMIi0mGYNuh+cuyTYEgjoEbrWFsa4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=na8tgn2Fx1vsIkYcIShFC2kkQs5palK2hGDXUPY3eM7gVuxBBrThBP2xZl+f1Mkns
+	 h03B+oe1jaxFou7L4DW8/u88YXrF4YH6jZnW1ebWjq3V6cBdxJeWhyTHSAsnZV2dGj
+	 IgxQ4vcfM4lrOzcEER2C3fkKnZlutWBSXrYF+rwg=
+Date: Wed, 24 Dec 2025 16:53:34 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: joaopeixoto@osyx.tech
+Cc: linux-kernel@vger.kernel.org, ajd@linux.ibm.com, alex@ghiti.fr,
+	aou@eecs.berkeley.edu, bagasdotme@gmail.com,
+	catalin.marinas@arm.com, conor+dt@kernel.org, corbet@lwn.net,
+	dan.j.williams@intel.com, davidmcerdeira@osyx.tech,
+	devicetree@vger.kernel.org, dev@kael-k.io, haren@linux.ibm.com,
+	heiko@sntech.de, jose@osyx.tech, kever.yang@rock-chips.com,
+	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux@armlinux.org.uk, linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, maddy@linux.ibm.com,
+	mani@kernel.org, nathan@kernel.org, neil.armstrong@linaro.org,
+	palmer@dabbelt.com, pjw@kernel.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, robh@kernel.org,
+	will@kernel.org
+Subject: Re: [PATCH 2/5] virt: add Bao IPC shared memory driver
+Message-ID: <2025122459-blimp-bobble-c772@gregkh>
+References: <20251224135217.25350-1-joaopeixoto@osyx.tech>
+ <20251224135217.25350-3-joaopeixoto@osyx.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251224135217.25350-3-joaopeixoto@osyx.tech>
 
-
---=-6E1pOz363AUSc4hyqasF
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le mercredi 03 d=C3=A9cembre 2025 =C3=A0 16:52 +0100, Sven P=C3=BCschel a =
-=C3=A9crit=C2=A0:
-> From: Michael Olbrich <m.olbrich@pengutronix.de>
->=20
-> The RGA3 and the corresponding iommu share the interrupt. So in that
-> case, request a shared interrupt so that the iommu driver can request
-> it as well.
->=20
-> Signed-off-by: Michael Olbrich <m.olbrich@pengutronix.de>
-> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
-
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
+On Wed, Dec 24, 2025 at 01:52:14PM +0000, joaopeixoto@osyx.tech wrote:
+> From: João Peixoto <joaopeixoto@osyx.tech>
+> 
+> Add a new driver providing an interface for communication with guests
+> hosted by the Bao hypervisor using shared-memory channels. The driver
+> exposes read/write regions defined in device tree and notifies the
+> hypervisor via an architecture-specific hypercall (SMC/HVC on ARM and
+> SBI ecall on RISC-V).
+> 
+> The patch introduces:
+>   - drivers/bao/ with the initial Bao IPC shared-memory implementation
+>   - Kconfig entry enabling BAO_SHMEM
+>   - Makefile integration for building the driver
+>   - A character device interface supporting mmap(), read(), and write()
+>   - Platform driver support using DT properties for channel layout
+> 
+> Each device instance maps its assigned shared-memory region, validates
+> read/write channel configuration, and exposes a /dev/baoipc<N> node
+> used by user space to exchange data with Bao guests.
+> 
+> Signed-off-by: João Peixoto <joaopeixoto@osyx.tech>
 > ---
-> =C2=A0drivers/media/platform/rockchip/rga/rga.c | 3 ++-
-> =C2=A01 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/media/platform/rockchip/rga/rga.c
-> b/drivers/media/platform/rockchip/rga/rga.c
-> index f28ec88c186fa..1bfc4021f4a7b 100644
-> --- a/drivers/media/platform/rockchip/rga/rga.c
-> +++ b/drivers/media/platform/rockchip/rga/rga.c
-> @@ -718,7 +718,8 @@ static int rga_probe(struct platform_device *pdev)
-> =C2=A0		goto err_put_clk;
-> =C2=A0	}
-> =C2=A0
-> -	ret =3D devm_request_irq(rga->dev, irq, rga_isr, 0,
-> +	ret =3D devm_request_irq(rga->dev, irq, rga_isr,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rga_has_internal_iommu(rga) ? 0 =
-: IRQF_SHARED,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_name(rga->dev), rga);
-> =C2=A0	if (ret < 0) {
-> =C2=A0		dev_err(rga->dev, "failed to request irq\n");
+>  drivers/virt/Kconfig                 |   2 +
+>  drivers/virt/Makefile                |   1 +
+>  drivers/virt/bao/Kconfig             |   3 +
+>  drivers/virt/bao/Makefile            |   3 +
+>  drivers/virt/bao/ipcshmem/Kconfig    |   9 +
+>  drivers/virt/bao/ipcshmem/Makefile   |   3 +
+>  drivers/virt/bao/ipcshmem/ipcshmem.c | 539 +++++++++++++++++++++++++++
 
---=-6E1pOz363AUSc4hyqasF
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+Why two subdirs deep for a single .c file?  Why not just put this in
+drivers/virt/ instead?
 
------BEGIN PGP SIGNATURE-----
+thanks,
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUwL0gAKCRDZQZRRKWBy
-9LU3APkBQSKkig2rWR6l9nTBHBKlDlfrlSgOBpfmOmasl3/xlwD/f5YFD3P7hHgs
-8Jh8k6G/iOd6tWyXItvEbDbD2Trhzgs=
-=KLzg
------END PGP SIGNATURE-----
-
---=-6E1pOz363AUSc4hyqasF--
+greg k-h
 
