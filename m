@@ -1,107 +1,471 @@
-Return-Path: <devicetree+bounces-249505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1507ECDC3ED
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 13:44:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13188CDC3C9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 13:41:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E0ACB3034EF5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 12:38:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 05B703004CC6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 12:41:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A6A2F3614;
-	Wed, 24 Dec 2025 12:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0558F319619;
+	Wed, 24 Dec 2025 12:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redadmin.org header.i=@redadmin.org header.b="lZsLg4ZJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N3UkfxXB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www3141.sakura.ne.jp (www3141.sakura.ne.jp [49.212.207.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246EF2E11B0;
-	Wed, 24 Dec 2025 12:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=49.212.207.181
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766579928; cv=pass; b=guwXAqn6jHzjxprNeL3ED9KaY98DdvA5YLVTWa1Gc4xVTKXRDWLf0xzSYDVz/odAmgbInsb7cz4pYHYufF4iarwH30zUM4VQcmv+HjFNz3upyTYM6qyhpsrcNs6TwldxxnZEUY28iUZHlZo63X0AWS6Mz0b0xXqRyxQJvvU1uKU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766579928; c=relaxed/simple;
-	bh=b+q5DFY2FRFpj99Z8c2e5Ja3GGR7qBKmhN5yn8gmq/c=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=S9eAzGzKXSZSCR7uLaiHjWzfpOVdMOGjm63+8WabcyFgkRGpk6m8rky+TcySBJ6ssfJtDhuABAWSARwP7SESJgS1wj92tIudNSpwoG7dpVEmRI8GQEu8T2yC3cR0MjJdsC6nDy0hYOOowz0Kz9thlqMbyCWLUUiI+5IzKkWPNCk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redadmin.org; spf=pass smtp.mailfrom=redadmin.org; dkim=pass (1024-bit key) header.d=redadmin.org header.i=@redadmin.org header.b=lZsLg4ZJ; arc=pass smtp.client-ip=49.212.207.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redadmin.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redadmin.org
-Received: from www.redadmin.org (bc043154.ppp.asahi-net.or.jp [222.228.43.154])
-	(authenticated bits=0)
-	by www3141.sakura.ne.jp (8.16.1/8.16.1) with ESMTPSA id 5BOCbwNT059760
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Wed, 24 Dec 2025 21:38:02 +0900 (JST)
-	(envelope-from weibu@redadmin.org)
-Received: from localhost (localhost [127.0.0.1])
-	by www.redadmin.org (Postfix) with ESMTP id 28A07109D6C01;
-	Wed, 24 Dec 2025 21:37:57 +0900 (JST)
-X-Virus-Scanned: amavis at redadmin.org
-Received: from www.redadmin.org ([127.0.0.1])
- by localhost (redadmin.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id BlDxsHDJbzc2; Wed, 24 Dec 2025 21:37:50 +0900 (JST)
-Received: by www.redadmin.org (Postfix, from userid 1000)
-	id 979B8109D6CBD; Wed, 24 Dec 2025 21:37:50 +0900 (JST)
-Authentication-Results: www.redadmin.org; arc=none smtp.remote-ip=127.0.0.1
-ARC-Seal: i=1; a=rsa-sha256; d=redadmin.org; s=20231208space; t=1766579870;
-	cv=none; b=VZ2FqrE3xvkJHlsPENKbYiXOFpiTGyx4QLc8zTRRJiZU3PGHMwaq+ulsRn+LUGfT3i6ev3aV2qX7ygMM7cj9VOkezata2jmxObtIAt3QC+wbh36/MqIrTr9slybrNyWHAu4B/ze4+eP+hiXJ42Mqr7yy5zOfj3eRXS1z1tK/mS8=
-ARC-Message-Signature: i=1; a=rsa-sha256; d=redadmin.org; s=20231208space;
-	t=1766579870; c=relaxed/relaxed;
-	bh=JaJFhAMxeYcUhDj+BkXxIIURTBgE7571e2zutaU/kGk=;
-	h=DKIM-Filter:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
-	 X-Mailer:MIME-Version:Content-Transfer-Encoding; b=XnD5Dh8bxuTDZPyLSMzqn0d1HrOFYoaikRfU5mCafsmnjEdmosIWG54tmKHOmhIIwUJ3CY9CNIqzgo9KHtHH1BG9CYT0hxodeLAUKIIQmmhcGiSFAbeoHPXfC8rYGqMC6wqMcprtQZS8ZANTF5zNdz9nMpddXyPX/LHLnMH3lqw=
-ARC-Authentication-Results: i=1; www.redadmin.org
-DKIM-Filter: OpenDKIM Filter v2.11.0 www.redadmin.org 979B8109D6CBD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redadmin.org;
-	s=20231208space; t=1766579870;
-	bh=JaJFhAMxeYcUhDj+BkXxIIURTBgE7571e2zutaU/kGk=;
-	h=From:To:Cc:Subject:Date:From;
-	b=lZsLg4ZJonX3jV0fbIU2qrV2SOiYbBbEzRQG0hYeOZvfFTGjIRw4qSErlIi9QOJw2
-	 62iGtKtGUFYCW/iYoiezSL/+4TjXdLBj2uTWDCunkbJIFziJwPWx8+6f5F6QYY1e12
-	 XLv5ef9j7PCKuwsj0VBg9mo6rV+k0lvT9fuywVMA=
-From: Akiyoshi Kurita <weibu@redadmin.org>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sowjanya D <lakshmi.sowjanya.d@intel.com>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Akiyoshi Kurita <weibu@redadmin.org>
-Subject: [PATCH] dt-bindings: pinctrl: intel: keembay: fix typo
-Date: Wed, 24 Dec 2025 21:37:48 +0900
-Message-ID: <20251224123748.2875868-1-weibu@redadmin.org>
-X-Mailer: git-send-email 2.47.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0792EF64F
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 12:41:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766580090; cv=none; b=QiaXrQ5DeAc732RV/xCFgi+liVxv7CiHqZq4SmF64SxMezjbLNz1fC/x10uOAg1zOWRp0jc5wjh94amahrUAxzztZ9gQuH3uLCdDLiUh8OIYOXPvvQSEbznhnNYlI5a9gfEFgiCUwhz/X2PtqQlvNxWESPqQCTAY2iuj3yTPMpQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766580090; c=relaxed/simple;
+	bh=zp9SNrsiDP2rnwAtZED37zEHUggE4bbgtXo1JQ91UDc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=h4nlQeG703obNHY+nI4grczX5xYPEWovR3RmKaaKpY/azPaZOVAQtih8sX3O9NImhNNDyi1vBt/U4UuVAnxjC0S1ngs/sYo2Jaggs7TReetGusMcjlfdBbS6PiC9pnvYY3kYSVq9HhqB0/lBh9u6LUKxjL5NPjeqQtRyhI0rbf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N3UkfxXB; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64bea6c5819so6107972a12.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 04:41:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766580087; x=1767184887; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=h57EtuIujQLC/3TT8y/U1ZZGUxIm0DnoUqvIlTL5TPQ=;
+        b=N3UkfxXBl/DdrdADJiZprq9n0Ga5w9BiywqSvdR2HAIFJsYF2ntjgKI0uCtrDqOmOO
+         wkt4Dafy7cpcvrzBMmzBkO1ahLjKqVtLvY3TA8w1TDnytmSNqIgk5UzSTyxc4iAPu+pY
+         le9/WnwR+54CBqGvhe3lrvaXxpvrtgwCC0f6nzX1twQZo93Au8oUYLsVztGcGdQ8X5/w
+         zo+jOHS4gNVsNn+Q01Y7AoLNEXKhs0qt/db4Y6HIdZlS8LtMJ/huVlW2cEwat8LZdbUe
+         yfSCEkWC5GLKmdKo1dVbsaa15FL19m+MXGBP8GvgPsYNqv5lguHIRyytcbxa3hHsE/vb
+         e4OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766580087; x=1767184887;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h57EtuIujQLC/3TT8y/U1ZZGUxIm0DnoUqvIlTL5TPQ=;
+        b=dtfd8YOYRupZD+7qmXmC3hY+195QrhGeJ0eTtvpRhEc/Q2dR7STjVCk7F24iSUBvO/
+         SIVuweZwtihClBXCEg/hCqvgXkQBg/cteD6JD+svthjL1iZIne22Hbpaj7sxFZf6g5Sg
+         mpYyG4821/DhCbantBx+OY6CBQPU+WL10mipn8FdOQDKy22qPKW93Zn7dMZ+Ai8Hwyk9
+         0oHFLLrb2qWUwDjo5+16UXLdXs2UkkviqXa3rvcZKm7sMMdEvljX6/TjL560zOaUNw9X
+         YuBgsFwMwYnjJCK0RELaIfvo71AdFGlxhTb7c6sG9lZrHN0I4YNAiAc4/Kq0Ul41Vqfi
+         jFSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUTVG1hx+Qfi/A4cJwzrNwHB8WzqRpblTScLcPCovdBeGdHPpqUSOuhdxF0M4FU2YlkCFz8IgcZLBO3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuF7n94IQNjZz2Fs1IA292FBCyhkZoWblLGh5cwt59lB8IMUYE
+	zxTUvchwR3xY7WiQzuxsNiE5Ep5KeIMM1ER4CsltiF8WNnmZAzHuiNPQxdrMlBa6Tev9RKJA/Dz
+	4ro7G+S77zty2IvPOSKEWCTeLjaLzWr0=
+X-Gm-Gg: AY/fxX6aG7OK9U69rrqMLxWe69iizuCaLlZLvZRBjDNqBt1ZjOB9WtFNQVtWblVrtej
+	OSCYOnQGyeqaDZbzX4o6y5QK0CUrMndAkH7s7ntd9ueBXFjKO/K8faFxyHYe/1McHJqfg+IjL71
+	TKp6ZGoLiYioRLolt/3h4gG8SjZIHFk4K7ycbEL1Jr5SWhGcJXRirQoYRkWvAukJU4y+DOj3giA
+	NoM9BaUf5NkSUJiU7OmaVRfRIFfdZCVp+sDLHeoqw+TB/T0oS17lYOP+PYv5Yrcm9I=
+X-Google-Smtp-Source: AGHT+IGx/yn+/T8zHK48RzMg6PbmkWkp9LVZgl1ZiDszFLj3UTka2lUfIBhT+pc6jA9HDZNTesdwpa66VP5inrXbWLE=
+X-Received: by 2002:a05:6402:13d6:b0:64d:521e:15f8 with SMTP id
+ 4fb4d7f45d1cf-64d521e19c7mr9754216a12.10.1766580086910; Wed, 24 Dec 2025
+ 04:41:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20251215141603.6749-1-linux.amoon@gmail.com> <20251215141603.6749-2-linux.amoon@gmail.com>
+ <3cd7943c-4d35-4ec9-8826-c20a5d213626@kernel.org>
+In-Reply-To: <3cd7943c-4d35-4ec9-8826-c20a5d213626@kernel.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Wed, 24 Dec 2025 18:11:09 +0530
+X-Gm-Features: AQt7F2qtWybS3yYTJt8QcmL8qChahBGSrigzuYqno2Xmv1WHecx6hqkXOG93U84
+Message-ID: <CANAwSgR7UPrPSHB9RL5newKgWksyn4MoP03ykRQcP2eRSK2SXg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: PCI: Convert nvidia,tegra-pcie to DT schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	"open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	Mikko Perttunen <mperttunen@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Fix a typo in the documentation ("upto" -> "up to").
+Hi Krzysztof,
 
-Signed-off-by: Akiyoshi Kurita <weibu@redadmin.org>
----
- .../devicetree/bindings/pinctrl/intel,pinctrl-keembay.yaml      | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks for your review comments.
+On Tue, 16 Dec 2025 at 11:08, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 15/12/2025 15:15, Anand Moon wrote:
+> > Convert the existing text-based DT bindings documentation for the
+> > NVIDIA Tegra PCIe host controller to a DT schema format.
+>
+> You dropped several properties from the original schema without
+> explanation. That's a no-go. I don't see any reason of doing that, but
+> if you find such reason you must clearly document any change done to the
+> binding with reasoning.
+>
+Well, I have tried to address the review comments from Rob
+[1] https://lkml.org/lkml/2025/9/26/704
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/intel,pinctrl-keemba=
-y.yaml b/Documentation/devicetree/bindings/pinctrl/intel,pinctrl-keembay.ya=
-ml
-index 005d95a9e4d6..ec9848192351 100644
---- a/Documentation/devicetree/bindings/pinctrl/intel,pinctrl-keembay.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/intel,pinctrl-keembay.yaml
-@@ -33,7 +33,7 @@ properties:
-   interrupts:
-     description:
-       Specifies the interrupt lines to be used by the controller.
--      Each interrupt line is shared by upto 4 GPIO lines.
-+      Each interrupt line is shared by up to 4 GPIO lines.
-     maxItems: 8
-=20
-   interrupt-controller: true
---=20
-2.47.3
+Actually  /schemas/pci/pci-pci-bridge.yaml# covers most of the PCIe binding
+So I had not included them, as it would duplicate
+If I remove this file, I am getting the following warning
 
+alarm@rockpi-5b:/media/nvme0/mainline/linux-tegra-6.y-devel$ make
+dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  CHKDT   ./Documentation/devicetree/bindings
+  LINT    ./Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.example.dts
+  DTC [C] Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.example.dtb
+/media/nvme0/mainline/linux-tegra-6.y-devel/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.example.dtb:
+pcie@80003000 (nvidia,tegra20-pcie): Unevaluated properties are not
+allowed ('#address-cells', '#interrupt-cells', '#size-cells',
+'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask',
+'ranges' were unexpected)
+        from schema $id:
+http://devicetree.org/schemas/pci/nvidia,tegra-pcie.yaml
+/media/nvme0/mainline/linux-tegra-6.y-devel/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.example.dtb:
+pcie@1003000 (nvidia,tegra210-pcie): Unevaluated properties are not
+allowed ('#address-cells', '#interrupt-cells', '#size-cells',
+'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask',
+'ranges' were unexpected)
+        from schema $id:
+http://devicetree.org/schemas/pci/nvidia,tegra-pcie.yaml
+
+> I won't be doing extensive review of your code, because you are known of
+> wasting my time, thus only few nits further.
+>
+I will wait for any further comments on the patches
+Then try to submit the next version.
+> >
+> > Cc: Jon Hunter <jonathanh@nvidia.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > v2: Tried to address the isssue Rob pointed
+> > [1] https://lkml.org/lkml/2025/9/26/704
+> > improve the $suject and commit message
+> > drop few examples only nvidia,tegra20-pcie and nvidia,tegra210-pcie
+> >
+> > $ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+> > ---
+> >  .../bindings/pci/nvidia,tegra-pcie.yaml       | 380 ++++++++++
+> >  .../bindings/pci/nvidia,tegra20-pcie.txt      | 670 ------------------
+> >  2 files changed, 380 insertions(+), 670 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+> > new file mode 100644
+> > index 000000000000..e542adfe37b4
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+> > @@ -0,0 +1,380 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/nvidia,tegra-pcie.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NVIDIA Tegra PCIe Controller
+> > +
+> > +maintainers:
+> > +  - Jon Hunter <jonathanh@nvidia.com>
+> > +  - Thierry Reding <treding@nvidia.com>
+> > +
+> > +description:
+> > +  PCIe controller found on NVIDIA Tegra SoCs which supports multiple
+> > +  root ports and platform-specific clock, reset, and power supply
+> > +  configurations.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - nvidia,tegra20-pcie
+> > +      - nvidia,tegra30-pcie
+> > +      - nvidia,tegra124-pcie
+> > +      - nvidia,tegra210-pcie
+> > +      - nvidia,tegra186-pcie
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: PADS registers
+> > +      - description: AFI registers
+> > +      - description: Configuration space region
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: pads
+> > +      - const: afi
+> > +      - const: cs
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: Controller interrupt
+> > +      - description: MSI interrupt
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: intr
+> > +      - const: msi
+> > +
+> > +  clocks:
+> > +    minItems: 3
+> > +    items:
+> > +      - description: PCIe clock
+> > +      - description: AFI clock
+> > +      - description: PLL_E clock
+> > +      - description: Optional CML clock
+> > +
+> > +  clock-names:
+> > +    description: Names of clocks used by the PCIe controller
+> > +    minItems: 3
+> > +    items:
+> > +      - const: pex
+> > +      - const: afi
+> > +      - const: pll_e
+> > +      - const: cml
+> > +
+> > +  resets:
+> > +    items:
+> > +      - description: PCIe reset
+> > +      - description: AFI reset
+> > +      - description: PCIe-X reset
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: pex
+> > +      - const: afi
+> > +      - const: pcie_x
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  interconnects:
+> > +    minItems: 1
+> > +    maxItems: 2
+>
+> This does not match the interconnect-names.
+Ok, will drop minItems
+>
+> > +
+> > +  interconnect-names:
+> > +    items:
+> > +      - const: dma-mem
+> > +      - const: write
+> > +
+> > +  pinctrl-names:
+> > +    items:
+> > +      - const: default
+> > +      - const: idle
+> > +
+> > +  pinctrl-0: true
+> > +  pinctrl-1: true
+> > +
+> > +  operating-points-v2:
+> > +    description:
+> > +      Should contain freqs and voltages and opp-supported-hw property, which
+> > +      is a bitfield indicating SoC speedo ID mask.
+>
+> Look at other bindings how this field is described.
+I have taken this example from nvidia binding.
+ operating-points-v2:
+  description:
+    Defines operating points with required frequency and voltage values,
+    and the opp-supported-hw property.
+
+Is this Ok?
+>
+> > +
+> > +patternProperties:
+> > +  "^pci@[0-9a-f]+(,[0-9a-f]+)?$":
+> > +    type: object
+> > +    allOf:
+> > +      - $ref: /schemas/pci/pci-pci-bridge.yaml#
+> > +
+> > +    properties:
+> > +      reg:
+> > +        maxItems: 1
+> > +
+> > +      nvidia,num-lanes:
+> > +        description: Number of lanes used by this PCIe port
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        enum:
+> > +          - 1
+> > +          - 2
+> > +          - 4
+> > +
+> > +    required:
+> > +      - nvidia,num-lanes
+> > +
+> > +    unevaluatedProperties: false
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - nvidia,tegra20-pcie
+> > +              - nvidia,tegra186-pcie
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          maxItems: 3
+> > +        clock-names:
+> > +          items:
+> > +            - const: pex
+> > +            - const: afi
+> > +            - const: pll_e
+> > +        resets:
+> > +          maxItems: 3
+> > +        reset-names:
+> > +          items:
+> > +            - const: pex
+> > +            - const: afi
+> > +            - const: pcie_x
+>
+> Blank line
+Ok
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - nvidia,tegra30-pcie
+> > +              - nvidia,tegra124-pcie
+> > +              - nvidia,tegra210-pcie
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          maxItems: 4
+> > +        clock-names:
+> > +          items:
+> > +            - const: pex
+> > +            - const: afi
+> > +            - const: pll_e
+> > +            - const: cml
+> > +        resets:
+> > +          maxItems: 3
+> > +        reset-names:
+> > +          items:
+> > +            - const: pex
+> > +            - const: afi
+> > +            - const: pcie_x
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - nvidia,tegra20-pcie
+> > +              - nvidia,tegra30-pcie
+> > +    then:
+> > +      required:
+> > +        - power-domains
+> > +        - operating-points-v2
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - nvidia,tegra186-pcie
+> > +    then:
+> > +      required:
+> > +        - interconnects
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - nvidia,tegra210-pcie
+> > +    then:
+> > +      required:
+> > +        - pinctrl-names
+> > +        - pinctrl-0
+> > +        - pinctrl-1
+> > +
+> > +unevaluatedProperties: false
+>
+> This goes after required.
+>
+Ok
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +  - reset-names
+> > +  - interrupts
+> > +  - interrupt-map
+> > +  - interrupt-map-mask
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +    bus {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +
+> > +        pcie@80003000 {
+> > +            compatible = "nvidia,tegra20-pcie";
+> > +            device_type = "pci";
+> > +            reg = <0x80003000 0x00000800>,
+> > +                  <0x80003800 0x00000200>,
+> > +                  <0x90000000 0x10000000>;
+> > +            reg-names = "pads", "afi", "cs";
+> > +            interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
+> > +            interrupt-names = "intr", "msi";
+> > +            interrupt-parent = <&intc>;
+> > +
+> > +            #interrupt-cells = <1>;
+> > +            interrupt-map-mask = <0 0 0 0>;
+> > +            interrupt-map = <0 0 0 0 &intc GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +            bus-range = <0x00 0xff>;
+> > +            #address-cells = <3>;
+> > +            #size-cells = <2>;
+> > +
+> > +            ranges = <0x02000000 0 0x80000000 0x80000000 0 0x00001000>,
+> > +                     <0x02000000 0 0x80001000 0x80001000 0 0x00001000>,
+> > +                     <0x01000000 0 0          0x82000000 0 0x00010000>,
+> > +                     <0x02000000 0 0xa0000000 0xa0000000 0 0x08000000>,
+> > +                     <0x42000000 0 0xa8000000 0xa8000000 0 0x18000000>;
+> > +
+> > +            clocks = <&tegra_car 70>,
+> > +                     <&tegra_car 72>,
+> > +                     <&tegra_car 118>;
+> > +            clock-names = "pex", "afi", "pll_e";
+> > +            resets = <&tegra_car 70>,
+> > +                     <&tegra_car 72>,
+> > +                     <&tegra_car 74>;
+> > +            reset-names = "pex", "afi", "pcie_x";
+> > +            power-domains = <&pd_core>;
+> > +            operating-points-v2 = <&pcie_dvfs_opp_table>;
+> > +
+> > +            status = "okay";
+>
+> No statuses in the example. Please look at other files to see how this
+> should be written.
+>
+The "status" property is by default "okay", thus it can be omitted.
+Do you want me to remove the status field from the example?
+>
+> Best regards,
+> Krzysztof
+
+Thanks
+-Anand
 
