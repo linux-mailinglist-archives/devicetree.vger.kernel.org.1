@@ -1,152 +1,138 @@
-Return-Path: <devicetree+bounces-249405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 986DECDBA2F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 09:04:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CF9BCDBA4C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 09:12:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 015883015E2F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 08:04:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DE08E3013555
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 08:12:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5230D32826B;
-	Wed, 24 Dec 2025 08:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585A62ECD37;
+	Wed, 24 Dec 2025 08:12:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eHdvNRe9"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="cOB/ydiF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8C12BF002
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 08:04:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E97F3A8F7;
+	Wed, 24 Dec 2025 08:12:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766563485; cv=none; b=CVPLb26fZ5/v2K1zRxh0sranaNw46cvG6KZCiIgWZEWgdUHiHVdiC+5Lz0f8oU3vDyXpDjY2EFasna8Z9AZgI2HCiOMBjSIvztJepVymNEMvpNgTBI/66yWEqbjDflEncPpIAUxWN5N/pb7VznLUwxISGU4P97G8gVUU8T0bF8Q=
+	t=1766563963; cv=none; b=hbwa2RBaGvAbyLA2gBa3n3Fmt94VgVvoGv3axbjXvYzWqaW27lQEgZIhF+e0nVnD4jhq/jC0TCphM/JEhLQyZ8qAIDT0vM06tY3681Be4v1oV+2Jdyvl9tS/BUBazFcYMfBvwdcTqdc9td9nuQ9c4EjRqw+B0WxUjgh6a7BKw/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766563485; c=relaxed/simple;
-	bh=+TfuYlLvMaLWTZmZDZsnA49hO+ryorTTCnTkX2pKAFY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E/Dvs3yUnRxAms/uMUGalOoDOLuFAVT31i69WtDfxKtrYta9rGvCgOsYnZGVu67qtRcWvocsmIvRAJNzhyKz2LpQT6w2BBWHeFXmGjxfNP5Af1lYWNNhevYcrnusqoyYzZtzHrDh5fNQeguk/lJK82VemFnC+IDwvj0P9F1yhWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eHdvNRe9; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-64b83949fdaso6937495a12.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 00:04:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766563481; x=1767168281; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+TfuYlLvMaLWTZmZDZsnA49hO+ryorTTCnTkX2pKAFY=;
-        b=eHdvNRe9hkZqROWeFuDWFlc5wcSJy9zW490I34GWsdhhSgtxAcFToSHsGJwgFg2raq
-         AnwMicqHza3dD0uHLZDzYR1Ynjvk9FO5bpodkKYRMSWaffXnRwLnsGesRV9Iufl/Gm6W
-         0iCJD8fXjchWI9LyVnjjC9LoXNrJFkiTaNu00Ejb63kqZjpiMAiM0doIk9ti9XlQKb9z
-         5HEK0fNHFPD+PSYcYR4PccovDC7H22IZcQ4hsJjJVhG7MaH7tMc2cV5OoqT430ms53tZ
-         46eClMPO6msk1+4d2SDonlXKPegBIl/OHaZMdWXTWjAPmHHaAONMLd6M7pw8OOa5HmKq
-         Q2Ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766563481; x=1767168281;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+TfuYlLvMaLWTZmZDZsnA49hO+ryorTTCnTkX2pKAFY=;
-        b=X4WPjjOA8fdR9N7qiQvPgZ2UEZJNtWYEx9BlRY6lDOnx2PzT5ttONh+n5csSPLdtcn
-         cugD0tpxlbhD3LdgLZPxSP3abSaL6FhV6SOJ2uHu5u+GZyY2plZ9aGr3bM9NW8WTZ/nr
-         ObTdZkMGWxROXpvl9oRrLo99hKlab95itfC/t782ljGEK2JsCDSm3xxL6ty+GMATLrZU
-         mbDm8Ntc/HDcZtm1GDlXZ8/ZXbPc3N5Rh4cC9+hLV2StXgKjA98TAJDd4Uv4hjvHRk91
-         8kw8h7XocTmQfJNPQQeNBGh5Qc3FmRNTEn+PAiqO41zbuMuC40b2ZbZBN+gkEKlxrsrT
-         Cu3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVK1wbUs+RmkRCJSnYLMv/II+yIf1h/EL/qWCGFPylJFUW0VSRtne1PWUM1jD5CHgvJOrvKyJ+IsKU7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4fQWt96cc6rfKbQYYU/hoEm8eI/OJCqd5S/PGWwxzT3yfjmfZ
-	Px4VClDuEJ2pfg8WrjWzJmhC9bEufjFQMYfg0wiIHgKdEnwO3qcvct0g2Bp9E14RYCb1O5e0MT8
-	CWIuEhg2tdVw88xwZXFll5kqNy0ky/J0=
-X-Gm-Gg: AY/fxX6vcwRveKJbjJRJSPpilgbTSbSaSt3Bvh7QMAVlSBG3lxsCffm17us2pwQCiqJ
-	7my4vb28NlErFgC9O9d73lirjW9SfOuE/DlYdUQIKha3y7IrXRpU5BvKt+1DkZIzkx6nr7aLxpK
-	k4noAcUadZilZ50kuJl1g+aS1BUxG/Oordcv0J/iHi5i3mi2Z33G6bK3YAkNJShR85dtN9EcmC9
-	EiaicEBlW3TF9nIAYeJC7bpnA6CrCJFNBF/nM4vYht4FsYfIRF1QPd3C2LVnrkuwX8=
-X-Google-Smtp-Source: AGHT+IFNXz2QU01SE+DL2c1ZCqqAJiAT079DS2+XmSlL7nM5RGPoflTCsCJq7MHCePPbrmgdDllZFgH4/zk85C3yl5w=
-X-Received: by 2002:a05:6402:50cc:b0:64d:4a01:fc23 with SMTP id
- 4fb4d7f45d1cf-64d4a020dfamr9289029a12.10.1766563480975; Wed, 24 Dec 2025
- 00:04:40 -0800 (PST)
+	s=arc-20240116; t=1766563963; c=relaxed/simple;
+	bh=+2BTcmbft6EbJTSaju/QuY53Eo3hhYNJ88HBrpvNugs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nNcBuH1nM1ekjkVm4u9A/qpcn66+l+rx1w3RVcEQcy0ZjoQZfdANph/tRftOhkwugL5ySQAR9rQfbhUcBuE0n/PeiYGWotGRH2FwfC+dGKqDrn2zL6LsksUYqT1ni1814SpDgZ8LN+AzcNZCm3kwZMXI41yycXafe1G3kdB6w0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=cOB/ydiF; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=qDSmecXBDmz3XTt3DW+peKb6ITN3jz/ST8NVFSTwwWA=; b=cOB/ydiF1ZCWlVHPfEQLC6YW1S
+	KElVEfXZXprvOTYkFFvwz/q9d18dXDhyW9NmZwxozOURUgCjaUjoQIq8x241SJmomCwXngQK7vaaw
+	iXcgoXpfvEynCd2lGvqntyzZ8GcQC6rHVUZEmsfUjHcKZfFP3pxNF1WcrE5fnsZnPG/TkGy7lrY9y
+	His7Q71RpeJh4+4m0Kfgl/R9I/LduMNOJQ4SwgDnNYlwyD81M0bcs8SKa915Pns5VrMm7Swma6K1b
+	4gguHf1yeoQz3hd+gdguHabp0gp1dzH4IccJLbd7AbwK7qK1E+tLDoIMFpw8sqnue0sNWP3BSJ05e
+	c1Di5IYA==;
+Date: Wed, 24 Dec 2025 09:12:35 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH 2/2] regulator: Add TPS65185 driver
+Message-ID: <20251224010440.46ad717a@kemnade.info>
+In-Reply-To: <2e850c1c-67ed-44af-94b1-2ccc35e50bb8@sirena.org.uk>
+References: <20251222-tps65185-submit-v1-0-34986b504d5f@kemnade.info>
+	<20251222-tps65185-submit-v1-2-34986b504d5f@kemnade.info>
+	<84fdaf7c-4d4b-491f-975c-ebb14350fafd@sirena.org.uk>
+	<20251222144522.33d7c734@kemnade.info>
+	<2e850c1c-67ed-44af-94b1-2ccc35e50bb8@sirena.org.uk>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1763415705.git.geraldogabriel@gmail.com>
- <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com>
- <CANAwSgQ726J_vnDKEKd94Kq62kx8ToZzUGysz4r3tNAXvfAbGA@mail.gmail.com> <CAEsQvctSY7-RQEQF2TmJU2qKPZOe9TC5g-7Jat0LQKRHYz_6dQ@mail.gmail.com>
-In-Reply-To: <CAEsQvctSY7-RQEQF2TmJU2qKPZOe9TC5g-7Jat0LQKRHYz_6dQ@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 24 Dec 2025 13:34:23 +0530
-X-Gm-Features: AQt7F2qzfCdogAfkIVvQ40sYz72XmKQPz1kBLtv40YPxaEuaYu_edJzXc4ZwP9s
-Message-ID: <CANAwSgQPQUBi6VVb+hZNraMt71vnRpki+YK_at=Luo4aPVtOPg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] PCI: rockchip: limit RK3399 to 2.5 GT/s to prevent damage
-To: Geraldo Nascimento <geraldogabriel@gmail.com>
-Cc: Shawn Lin <shawn.lin@rock-chips.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Jonker <jbx6244@gmail.com>, Dragan Simic <dsimic@manjaro.org>, 
-	linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Geraldo,
+On Mon, 22 Dec 2025 15:07:28 +0000
+Mark Brown <broonie@kernel.org> wrote:
 
-On Wed, 24 Dec 2025 at 11:08, Geraldo Nascimento
-<geraldogabriel@gmail.com> wrote:
->
-> On Wed, Dec 24, 2025 at 2:18=E2=80=AFAM Anand Moon <linux.amoon@gmail.com=
-> wrote:
-> >
-> > Hi Geraldo,
-> >
-> > On Tue, 18 Nov 2025 at 03:17, Geraldo Nascimento
-> > <geraldogabriel@gmail.com> wrote:
-> > >
-> > > Shawn Lin from Rockchip has reiterated that there may be danger in us=
-ing
-> > > their PCIe with 5.0 GT/s speeds. Warn the user if they make a DT chan=
-ge
-> > > from the default and drive at 2.5 GT/s only, even if the DT
-> > > max-link-speed property is invalid or inexistent.
-> > >
-> > > This change is corroborated by RK3399 official datasheet [1], which
-> > > says maximum link speed for this platform is 2.5 GT/s.
-> > >
-> > > [1] https://opensource.rock-chips.com/images/d/d7/Rockchip_RK3399_Dat=
-asheet_V2.1-20200323.pdf
-> > >
-> > To accurately determine the operating speed, we can leverage the
-> > PCIE_CLIENT_BASIC_STATUS0/1 fields.
-> > This provides a dynamic mechanism to resolve the issue.
-> >
-> > [1] https://github.com/torvalds/linux/blob/master/drivers/pci/controlle=
-r/pcie-rockchip-ep.c#L533-L595
-> >
-> > Thanks
-> > -Anand
->
-> Hi Anand,
->
-> not to put you down but I think your approach adds unnecessary complexity=
-.
->
-> All I care really is that the Kernel Project isn't blamed in the
-> future if someone happens to lose their data.
->
-Allow the hardware to negotiate the link speed based on the available
-number of lanes.
-I don=E2=80=99t anticipate any data loss, since PCIe will automatically
-configure the device speed
-with link training..
+> On Mon, Dec 22, 2025 at 02:45:22PM +0100, Andreas Kemnade wrote:
+> > Mark Brown <broonie@kernel.org> wrote: =20
+>=20
+> > > The reason for having GPIO controlled enables on devices with register
+> > > maps is that it's generally substantially faster to update a GPIO than
+> > > to do I2C I/O. =20
+>=20
+> > well we are talking about 30ms turning on time here. =20
+>=20
+> > [  130.816647] tps65185 1-0068: turning on...
+> > [  130.849970] tps65185 1-0068: turned on =20
+>=20
+> > So if we have 100khz i2c, so, we have around 0.1ms per byte, so
+> > the read/modify/write sequence should be done in <1ms. So I guess that =
+is
+> > neglectible and allows the flexibility to not have that pin. =20
+>=20
+> Every little helps, and not every I2C controller is a model of
+> efficiency and programmability.  Note that we do have core support for
+> GPIO enables, it's not really any effort to support them.
+>=20
+If the GPIO is wired... There are a half a dozen different implementations
+of this driver in the wild, and I remember one not using a GPIO
+probably for a device without the enable gpio wired up to the SoC.
+So I think the i2c way of enabling things is required at least
+as a fallback option. So we need some if (enable_gpio) somewhere.
 
-> Thanks,
-> Geraldo Nascimento
+> > > > +{   =20
+>=20
+> > > Implementing runtime suspend in a regulator is *very* non-idiomatic a=
+nd
+> > > is leading to large amounts of open coding throughout the driver.
+> > > What's the story here?  I'm very surprised that this wasn't in the
+> > > changelog. =20
+>=20
+> > OK, lets look around in the datasheet. We are apparently dealing
+> > with 130=C2=B5A here which can be saved. But that should be acceptable =
+to be
+> > only done on system suspend even if the regulator is off most times.
+> > So no really strong technical reason here. I am just too used to testing
+> > power management using runtime suspend. =20
+>=20
+> It does feel like something where if we're going to do it we should
+> update the core to take runtime PM references rather than open coding it
+> in a driver that's otherwise able to use the standard helpers.  I do
+> worry about the impact on enable times (you'd have to power up the
+> supply and sync the register cache) but I guess people could disable
+> runtime PM for specific devices if it's an issue, and it'll never apply
+> to primary PMICs anyway.
+>=20
+hmm, we have REGULATOR_MODE_FAST to maybe disable some pm. I have used
+the autosuspend mechanism, so we do not do the time-consuming register cache
+mechanism on every enable. But putting such into regulator core should be
+more sane than having it in drivers.
 
-Thanks
--Anand
+Using standard helpers is in many places at least not so straight forward.
+See the 6- in vposneg vsel.
+
+vcom vsel has 9bits across two registers. So that is also odd.
+vposneg has 2 bits used in a kind of RS flipflop mode for enable
+if the enable pin is not available.
+
+I would agree to remove the pm runtime stuff for now, so we can get the
+basics in, and care about the optimazations later.
+
+Regards,
+Andreas
 
