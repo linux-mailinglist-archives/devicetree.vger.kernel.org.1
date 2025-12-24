@@ -1,204 +1,199 @@
-Return-Path: <devicetree+bounces-249556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AAC6CDCD4D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:17:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49EAECDCD59
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 17:18:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B3143044699
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:14:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 607FC30060F1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 16:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3FCD328619;
-	Wed, 24 Dec 2025 16:14:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2BF328B7A;
+	Wed, 24 Dec 2025 16:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bHoZ5wnf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FCp+/KOh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35BF328248;
-	Wed, 24 Dec 2025 16:14:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D92262356BE;
+	Wed, 24 Dec 2025 16:18:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766592886; cv=none; b=eXTp26XIKY4Lk7QfEXXPQGFQu2D08TOANgg6ORUlh7w0w4D3dxyRWTEq+DuNbGpvbc9oUh1n5UFRl4/G4jXNu5zS4Tt/hltj2fk9iPGpQqiVJ2hUUguuizHx0lTInzrXfamcin8CU48f4DniFPMLhhf9VRZKayO/mp7foGZMdlA=
+	t=1766593099; cv=none; b=FuhJuXDJNRyUDLz3gSDO96kxZb4aRD8MvcFONZtC6a0aM2Zg3RdYFs6OjwOqj1Ut21dgDPIidfXL7tnFbRVPcINtaSSZdutU98euAk277X9wH9tEaAKLOX5+0ZRu7aXo8hjAqrRYRvjG9mmHmHuvGuEChmIxWq0Ma7NRgd7K1pY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766592886; c=relaxed/simple;
-	bh=puWmGZxXE8UpiT7pGZBgzqUpkzDtlP+dMU+x0yn5VaI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o8I9e0Kl5KllJS7Ug0kpb25rGEvlUP0H8fhxbOpGXTqih9+iz3h00d+pLfZxClCJReTRdpEvm42nC2NeWn0KalCMozuXz2d+t3JRYOESNTe2X58LIEcKYmRHYi36loTffE2u4yd2mESr07Lvq1Yqwv5JE+QxKJCLTRnNeEU7Xro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bHoZ5wnf; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1766592882; x=1798128882;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=puWmGZxXE8UpiT7pGZBgzqUpkzDtlP+dMU+x0yn5VaI=;
-  b=bHoZ5wnfmQL35Z0iP1f2ogQ0sURGKPocalIFLQnIknVmz6ZGu4PQjF9Y
-   1fQWfrKJXcQuy4w+atrsuloalUwc30zwoNxlN/a47/K1prk1wIEBnSDui
-   52h4jQkTBg0u1hp53hWNxbspyh2BysS+oBq4J1LvJ9QhlegHCsmEccGz1
-   aXoBRcLqb0ZtQZHD/SDpvGEyEvbkEpPrfr7K7vsvxNhAUGQsBxz4Qk2Me
-   0pZEPvioCBKYVjImO6TKgK+smOhja4wUltpOljIHLXNVoaQ+UWAePsNXM
-   5Y1n9ney/M+yQHaIYK4ve1aXT+xDxcT2BtvN+p75zv0vgrVlvm5tLlDCX
-   g==;
-X-CSE-ConnectionGUID: PlVl4KhMTyu6hbSY4O29KA==
-X-CSE-MsgGUID: VwINpBxURYelfsfXffvQMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11652"; a="93898559"
-X-IronPort-AV: E=Sophos;i="6.21,174,1763452800"; 
-   d="scan'208";a="93898559"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Dec 2025 08:14:38 -0800
-X-CSE-ConnectionGUID: IbXEZ3XjTeGoaTrUH18k5g==
-X-CSE-MsgGUID: BE8WK5MDSv2mgzXQclGqjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,174,1763452800"; 
-   d="scan'208";a="199282595"
-Received: from lkp-server02.sh.intel.com (HELO dd3453e2b682) ([10.239.97.151])
-  by orviesa010.jf.intel.com with ESMTP; 24 Dec 2025 08:14:33 -0800
-Received: from kbuild by dd3453e2b682 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vYRVN-000000003FJ-2PxI;
-	Wed, 24 Dec 2025 16:14:29 +0000
-Date: Thu, 25 Dec 2025 00:13:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marijn Suijten <marijn.suijten@somainline.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Simona Vetter <simona@ffwll.ch>,
-	Casey Connolly <casey.connolly@linaro.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	~postmarketos/upstreaming@lists.sr.ht,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-	Martin Botka <martin.botka@somainline.org>,
-	Jami Kettunen <jami.kettunen@somainline.org>,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: [PATCH v2 05/11] drm/panel: Add panel driver for Samsung SOFEF01
- DDIC
-Message-ID: <202512242356.EwESE8Qv-lkp@intel.com>
-References: <20251222-drm-panels-sony-v2-5-82a87465d163@somainline.org>
+	s=arc-20240116; t=1766593099; c=relaxed/simple;
+	bh=jzhJfxnvJUvERodafb6uRPp3to4d4hQE2SKWE3YryHY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=ORU73yxV5Qkpu4kLC/mTj4Yrjiiyn3UheV6R8QZ7YkWaCEg+LDrawIwSfbMhs8tHpJvuCowYpHDahF0G7Em6aEKHGAt6xAi3ES7uOReb3tHnWkmZuImUO4kBJRtJFCkxj6uJSm433kKyg6e5KdC14rsEMPCjsRENDP4yMi3cQCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FCp+/KOh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1340CC4CEF7;
+	Wed, 24 Dec 2025 16:18:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766593097;
+	bh=jzhJfxnvJUvERodafb6uRPp3to4d4hQE2SKWE3YryHY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=FCp+/KOhwYp98tnwqGwWl8jrc/X5Z/Q4Q8YJmARm0sL3g9KO7lgOnfT9cmlzHPe9Z
+	 QWjUspxRLmTGsvUvOJCMlErLfQLehAM4kFU8asmQV8KZyxG+CacSkcAIDy8Caf8nm2
+	 NMBZ+th33jQtp81ci0vKx3zV0E99Zvkg1UuWbKhPDEgdWflK19Ujzn60Z/IigTPG85
+	 J2ZhCxsZ8dM4HWxl5+LxVYNmnngUhIj3tm2SXy/kP/vs9fll7dCDCXAydHowKCqCw0
+	 f0yg4Xto3pISXrooax5EKL43DKr+5RXvlk4R4HjmBo6Ev/HfEMWtnJuGCZ3dcI9O7p
+	 R5hOz3toSaeag==
+Date: Wed, 24 Dec 2025 10:18:16 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251222-drm-panels-sony-v2-5-82a87465d163@somainline.org>
-
-Hi Marijn,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on cc3aa43b44bdb43dfbac0fcb51c56594a11338a8]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Marijn-Suijten/drm-panel-Clean-up-SOFEF00-config-dependencies/20251222-073548
-base:   cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
-patch link:    https://lore.kernel.org/r/20251222-drm-panels-sony-v2-5-82a87465d163%40somainline.org
-patch subject: [PATCH v2 05/11] drm/panel: Add panel driver for Samsung SOFEF01 DDIC
-config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20251224/202512242356.EwESE8Qv-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251224/202512242356.EwESE8Qv-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512242356.EwESE8Qv-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/panel/panel-samsung-sofef01.c:389:20: warning: cast to smaller integer type 'enum panel_type' from 'const void *' [-Wvoid-pointer-to-enum-cast]
-           ctx->panel_type = (enum panel_type)of_device_get_match_data(dev);
-                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 warning generated.
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: mani@kernel.org, linux@armlinux.org.uk, linux-riscv@lists.infradead.org, 
+ nathan@kernel.org, devicetree@vger.kernel.org, catalin.marinas@arm.com, 
+ kever.yang@rock-chips.com, dan.j.williams@intel.com, 
+ linux-doc@vger.kernel.org, haren@linux.ibm.com, palmer@dabbelt.com, 
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, alex@ghiti.fr, jose@osyx.tech, 
+ neil.armstrong@linaro.org, gregkh@linuxfoundation.org, heiko@sntech.de, 
+ prabhakar.mahadev-lad.rj@bp.renesas.com, will@kernel.org, corbet@lwn.net, 
+ dev@kael-k.io, aou@eecs.berkeley.edu, krzk+dt@kernel.org, 
+ maddy@linux.ibm.com, bagasdotme@gmail.com, ajd@linux.ibm.com, 
+ pjw@kernel.org, davidmcerdeira@osyx.tech
+To: joaopeixoto@osyx.tech
+In-Reply-To: <20251224135217.25350-4-joaopeixoto@osyx.tech>
+References: <20251224135217.25350-1-joaopeixoto@osyx.tech>
+ <20251224135217.25350-4-joaopeixoto@osyx.tech>
+Message-Id: <176659309471.2305281.17349642622422527927.robh@kernel.org>
+Subject: Re: [PATCH 3/5] dt-bindings: Add Bao I/O dispatcher driver binding
 
 
-vim +389 drivers/gpu/drm/panel/panel-samsung-sofef01.c
+On Wed, 24 Dec 2025 13:52:15 +0000, joaopeixoto@osyx.tech wrote:
+> From: João Peixoto <joaopeixoto@osyx.tech>
+> 
+> This patch adds a Device Tree binding for the Bao I/O Dispatcher kernel
+> module, which can be loaded into backend VMs. The I/O Dispatcher
+> provides the bridge between the Bao hypervisor Remote I/O system and the
+> frontend device model in userspace, offering a unified API to support
+> various VirtIO backends.
+> 
+> The dispatcher handles hypercalls to the Bao hypervisor, IRQ/eventfd
+> forwarding, and provides a character device interface for frontend
+> devices, enabling efficient communication between the hypervisor and
+> userspace device models.
+> 
+> The binding documents the following properties:
+>   - compatible: "bao,io-dispatcher"
+>   - reg: Memory regions for the dispatcher (multiple VirtIO devices)
+>   - interrupts: Interrupts used by the devices
+>   - interrupt-parent: Parent interrupt controller
+> 
+> This enables kernel drivers to correctly instantiate and configure Bao
+> I/O Dispatcher modules based on the DT description.
+> 
+> Signed-off-by: João Peixoto <joaopeixoto@osyx.tech>
+> ---
+>  .../bindings/bao/io-dispatcher.yaml           | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bao/io-dispatcher.yaml
+> 
 
-   357	
-   358	static int samsung_sofef01_m_probe(struct mipi_dsi_device *dsi)
-   359	{
-   360		const struct backlight_properties props = {
-   361			.type = BACKLIGHT_RAW,
-   362			.brightness = 100,
-   363			.max_brightness = 1023,
-   364		};
-   365		struct device *dev = &dsi->dev;
-   366		struct samsung_sofef01_m *ctx;
-   367		int ret;
-   368	
-   369		ctx = devm_drm_panel_alloc(dev, struct samsung_sofef01_m, panel,
-   370					   &samsung_sofef01_m_panel_funcs,
-   371					   DRM_MODE_CONNECTOR_DSI);
-   372		if (IS_ERR(ctx))
-   373			return PTR_ERR(ctx);
-   374	
-   375		ret = devm_regulator_bulk_get_const(
-   376			dev,
-   377			ARRAY_SIZE(samsung_sofef01_m_supplies),
-   378			samsung_sofef01_m_supplies,
-   379			&ctx->supplies);
-   380		if (ret < 0)
-   381			return dev_err_probe(dev, ret, "Failed to get regulators\n");
-   382	
-   383		ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-   384		if (IS_ERR(ctx->reset_gpio))
-   385			return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-   386					     "Failed to get reset-gpios\n");
-   387	
-   388		ctx->dsi = dsi;
- > 389		ctx->panel_type = (enum panel_type)of_device_get_match_data(dev);
-   390		if (ctx->panel_type == PANEL_TYPE_TC01)
-   391			ctx->mode = &samsung_sofef01_m_61_142_mode;
-   392		else if (ctx->panel_type == PANEL_TYPE_DK01)
-   393			ctx->mode = &samsung_sofef01_m_61_141_mode;
-   394		else
-   395			ctx->mode = &samsung_sofef01_m_60_139_mode;
-   396		mipi_dsi_set_drvdata(dsi, ctx);
-   397	
-   398		dsi->lanes = 4;
-   399		dsi->format = MIPI_DSI_FMT_RGB888;
-   400		dsi->mode_flags = MIPI_DSI_CLOCK_NON_CONTINUOUS;
-   401	
-   402		ctx->panel.prepare_prev_first = true;
-   403	
-   404		ctx->panel.backlight = devm_backlight_device_register(
-   405			dev, dev_name(dev), dev, dsi,
-   406			&samsung_sofef01_m_bl_ops,
-   407			&props);
-   408		if (IS_ERR(ctx->panel.backlight))
-   409			return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
-   410					     "Failed to create backlight\n");
-   411	
-   412		drm_panel_add(&ctx->panel);
-   413	
-   414		ret = mipi_dsi_attach(dsi);
-   415		if (ret < 0) {
-   416			dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-   417			drm_panel_remove(&ctx->panel);
-   418			return ret;
-   419		}
-   420	
-   421		return 0;
-   422	}
-   423	
+My bot found errors running 'make dt_binding_check' on your patch:
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/bao/ipcshmem.yaml:4:6: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/bao/ipcshmem.yaml:5:10: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/bao/ipcshmem.yaml:17:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+./Documentation/devicetree/bindings/bao/io-dispatcher.yaml:4:6: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/bao/io-dispatcher.yaml:5:10: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/bao/io-dispatcher.yaml:20:12: [error] string value is redundantly quoted with any quotes (quoted-strings)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bao/ipcshmem.yaml: ignoring, error parsing file
+./Documentation/devicetree/bindings/bao/ipcshmem.yaml:17:1: found a tab character where an indentation space is expected
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bao/io-dispatcher.yaml: properties:reg: 'anyOf' conditional failed, one must be fixed:
+	'type' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'items' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	Additional properties are not allowed ('type' was unexpected)
+		hint: Arrays must be described with a combination of minItems/maxItems/items
+	'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	'type' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	'items' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bao/io-dispatcher.yaml: properties:reg:items: 'anyOf' conditional failed, one must be fixed:
+		'maxItems' is a required property
+			hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+		'type' is not one of ['maxItems', 'description', 'deprecated']
+			hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+		Additional properties are not allowed ('type' was unexpected)
+			hint: Arrays must be described with a combination of minItems/maxItems/items
+		'type' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+			hint: "items" can be a list defining each entry or a schema applying to all items. A list has an implicit size. A schema requires minItems/maxItems to define the size.
+		hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+		from schema $id: http://devicetree.org/meta-schemas/cell.yaml
+	1 was expected
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+	from schema $id: http://devicetree.org/meta-schemas/cell.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bao/io-dispatcher.yaml: properties:reg:type: 'array' is not one of ['boolean', 'object']
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bao/io-dispatcher.yaml: properties:interrupts:type: 'array' is not one of ['boolean', 'object']
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bao/io-dispatcher.yaml: properties:interrupt-parent:type: 'string' is not one of ['boolean', 'object']
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bao/io-dispatcher.yaml: properties:interrupts: 'anyOf' conditional failed, one must be fixed:
+	'type' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'items' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'minItems' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	Additional properties are not allowed ('type' was unexpected)
+		hint: Arrays must be described with a combination of minItems/maxItems/items
+	'type' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	'items' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	'minItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bao/io-dispatcher.yaml: properties:interrupts:items: 'anyOf' conditional failed, one must be fixed:
+		'maxItems' is a required property
+			hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+		'type' is not one of ['maxItems', 'description', 'deprecated']
+			hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+		Additional properties are not allowed ('type' was unexpected)
+			hint: Arrays must be described with a combination of minItems/maxItems/items
+		'type' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+			hint: "items" can be a list defining each entry or a schema applying to all items. A list has an implicit size. A schema requires minItems/maxItems to define the size.
+		hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+		from schema $id: http://devicetree.org/meta-schemas/cell.yaml
+	1 was expected
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+	from schema $id: http://devicetree.org/meta-schemas/cell.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bao/io-dispatcher.yaml: properties: False schema does not allow {'description': 'Parent interrupt controller node', 'type': 'string'}
+	from schema $id: http://devicetree.org/meta-schemas/interrupts.yaml
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/bao/ipcshmem.example.dts'
+Documentation/devicetree/bindings/bao/ipcshmem.yaml:17:1: found a tab character where an indentation space is expected
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/bao/ipcshmem.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1565: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20251224135217.25350-4-joaopeixoto@osyx.tech
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
