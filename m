@@ -1,243 +1,137 @@
-Return-Path: <devicetree+bounces-249375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74799CDB6C7
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 06:39:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 904B9CDB6E2
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 06:41:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 63E47309220C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 05:37:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1B40D3036589
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 05:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB15E2874E6;
-	Wed, 24 Dec 2025 05:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F7632826B;
+	Wed, 24 Dec 2025 05:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RydVFW1K"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HEzs6za+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6194A2EDD63
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 05:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8F932A3D4
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 05:38:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766554652; cv=none; b=BsgLyu+cXETTnLHBtrp+TkbL7Qkjb3YR5W4fMvgRCPcngDJG8Tp+mVdydR5EvJnrr6W//sX3G8aEqg/X4XDRIK+f05wa4pGQw0A5kisvhM7FMRTtdtp/5ROFe7RSnF+BZxdc0got0xIQIqg/lL0ScxHx55GZeP+im+obkMK6150=
+	t=1766554737; cv=none; b=jj85JfuQjBMo6RdJvXyzwmOy/ag9T2a1Vf98BADxvlDSigIOkHrDVvmJurqOppdINPaxfWZLfKa93QtrSAgfDwNpec/csMcd2dGmGu64NJLUX+8muQr53s/x4KJFHUgXG4s9b/VoaQhcIk4pcyuw+nOnfAHDeXcrwAWXbJ/4v5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766554652; c=relaxed/simple;
-	bh=cjUg0AYH48wLnJQtKo5oNwmm0Gt8Cb1FVV1mMjM1uoU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OBJvOt0TlObMLFdvlYMPcNonFv+Kh52228+OrNcTJZ9RTQwxKti37Bq9cYBGFF7Eeph8ZRCjY6qCr9aPKkt4TvrMEUsJkG6xROaS00EWCDxihBOgBxouCFTSNVpwUpSqc5yLgv1jZ9H3tpfKVpLeBNYS/3oZJOuzMj6ror4TWHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RydVFW1K; arc=none smtp.client-ip=209.85.210.178
+	s=arc-20240116; t=1766554737; c=relaxed/simple;
+	bh=gYJuqgstKIh0GJjfHL+Z+Y8jqbQuzP2SNZTadlMrpwc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZY18Xv3zEnyJC06XaDA+TkUaf7qqxiu+juWqv1bgNQu15iNnJS/Z5CT/dgvJ/h6OxWTLwESjgtNLcwG5YEUsWgtZZTO3y7bjkn43GXuPXBaNFBb8ugFQM6co8al+tPcwBFM+WAjuxG4zVp9xI5iXZfRKdC+tngFg4CtqiNIFJ/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HEzs6za+; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-7aab061e7cbso7889858b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 21:37:29 -0800 (PST)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-37d96f97206so43111071fa.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 21:38:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766554649; x=1767159449; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gPsYHGDCdSqdXlYFEwPAX1QjkmAlAOGnYX3XMfo9iss=;
-        b=RydVFW1KIjwz1WB5mY8EE5jBFMbcc3arCadco1hX+cBFjbkDKsQim2JfIDqRTmhKw7
-         WF3asWQZ7pISzG4qEzeBj8k+h+T8XrxfzFfKCG2E8Xdhdbw6ZVZvZQVFqVD6swzyeIUj
-         FFg7JQy1Qlrtb7y9mAhkgT9XAOqaCFyKtcjaat8NeFPMVOqLq19+uJ5zKRLxGF3qQ1C8
-         g1rDkay8I/2OrWRAHVLBVxR08/wjsaflejAMOFC12kVQ74dlY+EBtFfCuDsDF538Dz7s
-         vggoqskjLB/AmJbVduvwyVFeAujW3QKHG0Yg86WhPYOXQdiciUz70B+890W6eq+ttBcx
-         DSUg==
+        d=gmail.com; s=20230601; t=1766554732; x=1767159532; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gYJuqgstKIh0GJjfHL+Z+Y8jqbQuzP2SNZTadlMrpwc=;
+        b=HEzs6za+cUrXJh+kQooA9bq6BhJMRFof2QyHck4FC1VqXCAP58wB/1/6XTp2lmRQJE
+         uvcmHO7ZFIJ0nDIztrO7Yq3JKHF8E8P3F10LFIE2lGKDUgARP2QSyHfMAW+mOnH6mK9B
+         33/wpwWC8ccfbHQ8I9h/erK7CjqwYj7h53FsgdHDt4xJfTvsFAWdA/PYcMkVLRg+xK0k
+         GvvP9LJzFwSHoZfS2VvKuA7Vn+PwufBwygPMsn/w+B4O+YuzMoek0a+Sdo7AY3pJMAbV
+         5ZCqiDFxJZgZqVPDHjIEynp5LVGOh5AmF8pPY4Ir6xQ66LfEoiAJcwhkSCEhoXb++2Am
+         Yvrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766554649; x=1767159449;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gPsYHGDCdSqdXlYFEwPAX1QjkmAlAOGnYX3XMfo9iss=;
-        b=fsYp8IDCx0zSnF8amcU1VHeMLkdzl0Y0K/KI/TGXVX8jP2HfGa7nGP4VZk86MSykg0
-         q+0TPqnhIMnxv7w9Ju9FOoaMimZVhcxKYoFCraY2Efw2tbz5GSybf7id49mZB/5dyV1v
-         8mNiNO5qLZigQ0sJR6SdcpLRtiLB4cervxeMyNAvvILQmfY7UcHDkNKOtWVNwzm53VFO
-         EwFsSCSG8MpA24HP1G5IryCe7c5ObvSixYvqdKeGW/scQC6PcXPiS0T3VpNUMYlHH+qL
-         Il95ZX9lP83hBrcnR2Vzhgy2vLQflD2qvAw++Mp6Vz58LlCpxrFfVks7nIkgThfQAYda
-         EUVw==
-X-Forwarded-Encrypted: i=1; AJvYcCW4eiT59I6alcFgDplidDhB045gGb1l6zJDeVenLeGxDZh4V5pxNSAxFOHo7BOqnmAgBYlL9L1ztV4O@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/IL1Nsf34IsV5iCVUrRLilo8UlmXnJspEwoif66MnjOXpS/hV
-	V2gDLytTjnCkv6qig1a9JcYSXz7dbbT7QuPs6asVR9nyG+FcfA2LXmUV
-X-Gm-Gg: AY/fxX4A+s9daZMGpV6J7N55g9Qgn5jyZK6CVwbMYg07QHwDMYAkclqRWPvlx/Ym/iH
-	8qqDXguERqXGR/DiLXU1s1YsPXlMErvmw5na9WOqVBAX7qdu2YB9yiN/Ws9JwZLI7y52+zuQKaX
-	CePhO3HkUwC8M2aHFjpl8M1W9Vq34XYAnLaN8yDV3QfPGNTy2jAe2/+qMhVdvYxwymk38LTSWf2
-	Q6hZ/1e0bptQilSEQoaHQjYIhuJdZNaovsL+Mlt6Xx5OcEJtMZV2zzEt2d645VQ4XMKFl0jT9vJ
-	jVyr/JtQ0grUIcxNWHxnJ1NJ8V0h/6R8gUSI8sdw00lrP8pMuBuIejfksqn/nLcfwr8xuGmtD4Q
-	7EMx4Tdgncu+J0t/w2MyaxsxJ+nGSecPZVyQGyPfm5znAfKG/RTSftpMNug1nYDDzdsOkh+g97g
-	YwR4B9qEUEwXTFHkncnsNlVvu7Eojrpc4CH1IQ4fb7t1h0sKUoXeY=
-X-Google-Smtp-Source: AGHT+IEc3Oz8jvN7Pk9BkuP7OHjMSdV6mtgCRxxfx2CAgsyqy7ICmNWKMAzAlRq3A2p/HRbyJ0F3Ig==
-X-Received: by 2002:a05:6a00:e11:b0:7f7:a2f:aef4 with SMTP id d2e1a72fcca58-7ff64ece91fmr13273719b3a.29.1766554648597;
-        Tue, 23 Dec 2025 21:37:28 -0800 (PST)
-Received: from [127.0.1.1] (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e588a30sm15540214b3a.55.2025.12.23.21.37.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Dec 2025 21:37:28 -0800 (PST)
-From: Kyle Hsieh <kylehsieh1995@gmail.com>
-Date: Wed, 24 Dec 2025 13:37:15 +0800
-Subject: [PATCH v2 2/2] iio: adc: ltc2309: add support for ltc2305
+        d=1e100.net; s=20230601; t=1766554732; x=1767159532;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=gYJuqgstKIh0GJjfHL+Z+Y8jqbQuzP2SNZTadlMrpwc=;
+        b=jSSgRfGcw4ugaX3pZJXOckV2UwfTnGgReC7Rfnip/wMl3ecSCo75G+WGCbzev8S1xR
+         Bf8vHiX8e9XMx72sz5a9dGDuL2S6WNw8logTGlhPum+e3m6Y73qanYXeOPvLSNC4f69Y
+         OU/du8PkKcBHdNm8rpDZFTzex9uOACBeX6KfCttMP9XjabLHYxwTOVVzY7Vr7TqHcQES
+         YHEVBMIl7k/zXgICtmJxidyRnW7xwad3wHpbg4pTPry+VqexCO123A7wxHeJh57fHgBs
+         AXvSDe0iM8ofbAv2jMFOQVvgugNxIVrCnHSSqrkOhge+UeyriC2iggu28H5nZBimlyX4
+         teIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXAgDMDILMMDy7XPziINcmaap7/rjxssRp4PC9NvjyiRgMVJSWG/QzdnLtKKTlRufS/Y4LHC3UlFCt4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIjHwB9eOej53Y92FoDPnNXOd1tj1UumMcdfxZrAXV7MBOcKNg
+	7lgT5B7rwsPOUCM3NRjg59cMf8x40vaEq3PjfrdYusZFpPpQ2fGSy0e1Gx52ppX3dge9Bew9UFV
+	Vw5pMYwPtPsdDyzJUoLiv1Rq4gKVIbRU=
+X-Gm-Gg: AY/fxX5Gowo0hdQq+DFqKt5cfBP63CA/9MIR9w/sbNyyxlOOynNu+yv9vbm9t4ZdWMx
+	PKJF5bSWnONUbmeu3qLnRmXhvAimdv3ZmeVojbYIih69CqpZaEQLbsRAyrH3Vh/8h02q1NcnA3v
+	OBW8SWFZ375hi2fbSrcGksyvKJLIie3v+ZVa7u4txVw8/4xhQJWtmS1zgmtjMFTYosXYC+HZroy
+	SGY/LJRFHMX5psWWE47vKEElC3zAP4hxP4sMo2b2uyPWDoGUj9un9rZbiLh9lgJRG1xDUfVQouu
+	y3T8fJ8=
+X-Google-Smtp-Source: AGHT+IEhBbHKWWQqJ0bLZ90EcsrdJcWpLU40nsZoqwzQPtLYH3hGZjtotZ2t+Nq21znTqVIk5zZUzbsS4uHKvlFDmMM=
+X-Received: by 2002:a2e:be20:0:b0:36d:4e3b:f1e3 with SMTP id
+ 38308e7fff4ca-381215967a0mr50931101fa.13.1766554732253; Tue, 23 Dec 2025
+ 21:38:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251224-add_ltc2305_driver-v2-2-061f78cf45a3@gmail.com>
-References: <20251224-add_ltc2305_driver-v2-0-061f78cf45a3@gmail.com>
-In-Reply-To: <20251224-add_ltc2305_driver-v2-0-061f78cf45a3@gmail.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Kyle Hsieh <kylehsieh1995@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4154;
- i=kylehsieh1995@gmail.com; h=from:subject:message-id;
- bh=cjUg0AYH48wLnJQtKo5oNwmm0Gt8Cb1FVV1mMjM1uoU=;
- b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBpS3wQL1uQIAdKzmLPmGJrJ1gBoyTk82zWUqsHc
- NOqlRAYV0WJATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCaUt8EAAKCRClg0K3CVbE
- gT9cB/wO/BFC5YmQ/emm1OyASrSnGXvCbv29Hc7gtDDctpHJUzqPgni6pmBvmIMowvTxktJLfeq
- PmGGQamcC2X4D4FcqYoeshBEbHmhy9waFZ70SBin+7+X5wrSC8k7zRAbho5UQM1wJCkNcOlvrsU
- CR3S7ZtMGtChrVWp8YuDu2/izMSQnR2J44cs3V0jofP0MPW7EuyvUQ68yL0PI9xMhPrGdm9hZRD
- tI7RiGJlRzfadFzCxn6hWdeNr0KuL5aFix9N4Rky9jL+6eF6jw1I2+faO9SjEtTCJHB3sVm+AXT
- OpBYZW8GyeUmdzcdFO03AHFNGZWXNeP4zpjNNbzrmsjxUM5n
-X-Developer-Key: i=kylehsieh1995@gmail.com; a=openpgp;
- fpr=C91EC68D64E758F931C6A897A58342B70956C481
+References: <cover.1763415705.git.geraldogabriel@gmail.com>
+ <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com>
+ <CANAwSgQ726J_vnDKEKd94Kq62kx8ToZzUGysz4r3tNAXvfAbGA@mail.gmail.com>
+In-Reply-To: <CANAwSgQ726J_vnDKEKd94Kq62kx8ToZzUGysz4r3tNAXvfAbGA@mail.gmail.com>
+From: Geraldo Nascimento <geraldogabriel@gmail.com>
+Date: Wed, 24 Dec 2025 02:38:40 -0300
+X-Gm-Features: AQt7F2qOfdS6yP1-vW3vU0Wj_YVm_E2b3cZOlrdQ3B5k7vwUx3LT0aqmG2BtcdU
+Message-ID: <CAEsQvctSY7-RQEQF2TmJU2qKPZOe9TC5g-7Jat0LQKRHYz_6dQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] PCI: rockchip: limit RK3399 to 2.5 GT/s to prevent damage
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Shawn Lin <shawn.lin@rock-chips.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johan Jonker <jbx6244@gmail.com>, Dragan Simic <dsimic@manjaro.org>, 
+	linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add support for the 2-channel LTC2305 ADC in the existing LTC2309 driver.
-The LTC2305 and LTC2309 share similar features: both are 12-bit,
-low-noise, low-power SAR ADCs with an I2C interface.
-The main difference is the number of channels: LTC2305 has 2 channels,
-while LTC2309 has 8 channels.
+On Wed, Dec 24, 2025 at 2:18=E2=80=AFAM Anand Moon <linux.amoon@gmail.com> =
+wrote:
+>
+> Hi Geraldo,
+>
+> On Tue, 18 Nov 2025 at 03:17, Geraldo Nascimento
+> <geraldogabriel@gmail.com> wrote:
+> >
+> > Shawn Lin from Rockchip has reiterated that there may be danger in usin=
+g
+> > their PCIe with 5.0 GT/s speeds. Warn the user if they make a DT change
+> > from the default and drive at 2.5 GT/s only, even if the DT
+> > max-link-speed property is invalid or inexistent.
+> >
+> > This change is corroborated by RK3399 official datasheet [1], which
+> > says maximum link speed for this platform is 2.5 GT/s.
+> >
+> > [1] https://opensource.rock-chips.com/images/d/d7/Rockchip_RK3399_Datas=
+heet_V2.1-20200323.pdf
+> >
+> To accurately determine the operating speed, we can leverage the
+> PCIE_CLIENT_BASIC_STATUS0/1 fields.
+> This provides a dynamic mechanism to resolve the issue.
+>
+> [1] https://github.com/torvalds/linux/blob/master/drivers/pci/controller/=
+pcie-rockchip-ep.c#L533-L595
+>
+> Thanks
+> -Anand
 
-Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
----
- drivers/iio/adc/ltc2309.c | 51 ++++++++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 46 insertions(+), 5 deletions(-)
+Hi Anand,
 
-diff --git a/drivers/iio/adc/ltc2309.c b/drivers/iio/adc/ltc2309.c
-index 5f0d947d0615..0cf9bcae36c8 100644
---- a/drivers/iio/adc/ltc2309.c
-+++ b/drivers/iio/adc/ltc2309.c
-@@ -1,8 +1,10 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-+ * The LTC2305 is a  2-Channel, 12-Bit SAR ADC with an I2C Interface.
-  * The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
-  *
-  * Datasheet:
-+ * https://www.analog.com/media/en/technical-documentation/data-sheets/23015fb.pdf
-  * https://www.analog.com/media/en/technical-documentation/data-sheets/2309fd.pdf
-  *
-  * Copyright (c) 2023, Liam Beguin <liambeguin@gmail.com>
-@@ -41,6 +43,13 @@ struct ltc2309 {
- };
- 
- /* Order matches expected channel address, See datasheet Table 1. */
-+enum ltc2305_channels {
-+	LTC2305_CH0_CH1 = 0,
-+	LTC2305_CH1_CH0,
-+	LTC2305_CH0,
-+	LTC2305_CH1,
-+};
-+
- enum ltc2309_channels {
- 	LTC2309_CH0_CH1 = 0,
- 	LTC2309_CH2_CH3,
-@@ -80,6 +89,13 @@ enum ltc2309_channels {
- 	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
- }
- 
-+static const struct iio_chan_spec ltc2305_channels[] = {
-+	LTC2309_CHAN(0, LTC2305_CH0),
-+	LTC2309_CHAN(1, LTC2305_CH1),
-+	LTC2309_DIFF_CHAN(0, 1, LTC2305_CH0_CH1),
-+	LTC2309_DIFF_CHAN(1, 0, LTC2305_CH1_CH0),
-+};
-+
- static const struct iio_chan_spec ltc2309_channels[] = {
- 	LTC2309_CHAN(0, LTC2309_CH0),
- 	LTC2309_CHAN(1, LTC2309_CH1),
-@@ -99,6 +115,24 @@ static const struct iio_chan_spec ltc2309_channels[] = {
- 	LTC2309_DIFF_CHAN(7, 6, LTC2309_CH7_CH6),
- };
- 
-+struct ltc2309_chip_info {
-+	const char *name;
-+	const struct iio_chan_spec *channels;
-+	int num_channels;
-+};
-+
-+static const struct ltc2309_chip_info ltc2305_chip_info = {
-+	.name = "ltc2305",
-+	.channels = ltc2305_channels,
-+	.num_channels = ARRAY_SIZE(ltc2305_channels),
-+};
-+
-+static const struct ltc2309_chip_info ltc2309_chip_info = {
-+	.name = "ltc2309",
-+	.channels = ltc2309_channels,
-+	.num_channels = ARRAY_SIZE(ltc2309_channels),
-+};
-+
- static int ltc2309_read_raw_channel(struct ltc2309 *ltc2309,
- 				    unsigned long address, int *val)
- {
-@@ -158,6 +192,7 @@ static const struct iio_info ltc2309_info = {
- 
- static int ltc2309_probe(struct i2c_client *client)
- {
-+	const struct ltc2309_chip_info *chip_info;
- 	struct iio_dev *indio_dev;
- 	struct ltc2309 *ltc2309;
- 	int ret;
-@@ -167,13 +202,17 @@ static int ltc2309_probe(struct i2c_client *client)
- 		return -ENOMEM;
- 
- 	ltc2309 = iio_priv(indio_dev);
-+	chip_info = i2c_get_match_data(client);
-+	if (!chip_info)
-+		return -EINVAL;
-+
- 	ltc2309->dev = &indio_dev->dev;
- 	ltc2309->client = client;
- 
--	indio_dev->name = "ltc2309";
-+	indio_dev->name = chip_info->name;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
--	indio_dev->channels = ltc2309_channels;
--	indio_dev->num_channels = ARRAY_SIZE(ltc2309_channels);
-+	indio_dev->channels = chip_info->channels;
-+	indio_dev->num_channels = chip_info->num_channels;
- 	indio_dev->info = &ltc2309_info;
- 
- 	ret = devm_regulator_get_enable_read_voltage(&client->dev, "vref");
-@@ -189,13 +228,15 @@ static int ltc2309_probe(struct i2c_client *client)
- }
- 
- static const struct of_device_id ltc2309_of_match[] = {
--	{ .compatible = "lltc,ltc2309" },
-+	{ .compatible = "lltc,ltc2305", .data = &ltc2305_chip_info },
-+	{ .compatible = "lltc,ltc2309", .data = &ltc2309_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ltc2309_of_match);
- 
- static const struct i2c_device_id ltc2309_id[] = {
--	{ "ltc2309" },
-+	{ "ltc2305", (kernel_ulong_t)&ltc2305_chip_info },
-+	{ "ltc2309", (kernel_ulong_t)&ltc2309_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, ltc2309_id);
+not to put you down but I think your approach adds unnecessary complexity.
 
--- 
-2.34.1
+All I care really is that the Kernel Project isn't blamed in the
+future if someone happens to lose their data.
 
+Thanks,
+Geraldo Nascimento
 
