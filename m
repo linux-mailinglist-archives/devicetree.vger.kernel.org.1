@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-249387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39BF6CDB80C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 07:32:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2734BCDB80F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 07:32:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 567153038319
+	by sea.lore.kernel.org (Postfix) with ESMTP id EEEB6303AE8A
 	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 06:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326572ED873;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C21B328B7C;
 	Wed, 24 Dec 2025 06:28:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZRgIe4fb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gdLzoYxW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34068304BBC
-	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 06:28:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 691E02ED86F
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 06:28:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766557702; cv=none; b=srgWPvIskMx/BIlwREeZ2pTx9oxFY5XyCKNhUX7OFaMJnoSl478R1O+aK6KoejFpBtvejjNihm8ZYLxiqQVQlXp81yc6wyKf6Sxvt/D/3g6+Vu9dy+q2LnCkO54Hks2ovLnOJp1sPt4/s6FhB/T2w3lEnsARrygB2Ww0titfPWc=
+	t=1766557702; cv=none; b=HNKZvcPUxNe9u/hgvKV91nSpTx9XdjF0wwSV49ujWWBGRo3jDXe1+qPsa0rBnkXuQbhwl2ZETtZEPsM9AF1A1LFKN0ry64PeRX5UqhmU//nyySHUzjtyt/PPe+/tdWGDj3rs74HaFk8CJ9HNSTfyFMUr4FV/s8KM3NgH7cw+AHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1766557702; c=relaxed/simple;
-	bh=26RMDx29DUf5kUACycbxQrfR/9oPNltu4HoYSs4eW50=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KkPLGtFDIZXrQ1V1n48g7uQP/XJsG3r/aLlVLC39mmrx6T5I/hg1+Yp62qUtXIVkGhE6y50dlVgCDqbgJpLwyWoqvJ8JKVvyWsIKfan9CxI3qwwZAkXnIobqdRBVVumtqNY+WM+YobhCBo7mHkpHvaHTj113WmrwpTTd1sdE43M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZRgIe4fb; arc=none smtp.client-ip=209.85.218.50
+	bh=uyfF3U4m9fvZaf+zqrVUL4jC5sUxU9XqYQjuIQgONaM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=bF0llifjvyGnebEuToQcS4lhAO4eI8jAosywaKTtkk5rk7y+AlBDpzEFbBtlBEMrt7BMQfZFqNBxEDTh2D0o4foJWggWQITOprqj8zYTjtlaYqYVaUAH+NqMLU3M2LZGrwBHJ+kTtllyi8HrWJ/kGLuNWQkeBTfrBS8tp6p83Vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gdLzoYxW; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b7a6e56193cso935243866b.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 22:28:19 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b804646c718so500921366b.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 22:28:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766557698; x=1767162498; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=F4dAiFKwTWptkfRy3Dd68537gC9f6NFHvDz9Jg6ijxs=;
-        b=ZRgIe4fbcqa5SOGXBAg50+d9cSrG7Q+kPXK69dNTvWFpjrRq4IaBAGLKX3QIY4UjBA
-         RMYtNPR0Asq0S+1AbkKUgJd/b0HHBYV4/twy6Iyvkq4jGCCp7lP0zVvDu9ptOsVEm33C
-         wJHmudJ9ZOcFIDPvNK7sSMTAKchrn2DPSmpC2xvUSTyGimWOXxHZHN8aHhJ2TyljIJ+b
-         Gf6Ciw52vSBjzRce3OOtDoSzDrbhUMdmu36dh9mlWJv6boJZVqvi9Av4laH4ncMVUuQL
-         iRdUXcfI+TT5yMCW1qUgEDZ5J/fDvpShGHXkLMvoge4zj6km6rnhsBlOLD95WOMslBUj
-         8tkw==
+        d=linaro.org; s=google; t=1766557699; x=1767162499; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5CnmRbtVX4KWjkCR57DNdl2BztEJTFPfW7BxiAwfS/4=;
+        b=gdLzoYxWoLHFyx0GIx8cjVE/z/BdWwmWrvCi3ezlfwgg2U8DeWTX3T5cpsZvXa+4gu
+         2PmnwvkA2/vBSFyKm0cXfz0hOKvdFion6YMM+dCGLqkE4gpoZxIJjSmWKLafyXyK/7i5
+         etqUVpV9+SoMmLpk0tiKzQ8Awi3a5qTUITvsKwrdno9CDkQQNFDK6v0JLbsucTnDYs+z
+         IebRL219rTFv1sRr7zPOog6InDFw1zfkPAXwkVRP+lUsWeTU9Gro+BYbVoEhixIQ0DaQ
+         eRuIn8SMhKgBMqvUOleWg9wNTm1vROV4lmllQDshyMMXVmc8qq1sSeGJqT4p50Lhb8Qa
+         BOsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766557698; x=1767162498;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F4dAiFKwTWptkfRy3Dd68537gC9f6NFHvDz9Jg6ijxs=;
-        b=vAgNiLSAs9PgZJb73LOxk465v77WkfkDdyssGIy/Un5P+CEERvohjJXKPukuQv8FAQ
-         nqSUTW44bRCugbqTt3RF7W56PUKTR2GJwfk4vig81d6NbKGY7/rGuYTCPEEDH5ny4ldR
-         zTHg9aNbuwUlfoJvXS9fDf9RYDGLG0lbfwBSIJq57Jw/s3dcKcgLyys2VBK/IrIfc2md
-         6cMVG43UeZ2GQrgm1RmdxNlNQpB6T99q7XAA/l1AnVDaikl3kgpYbflXVWzp2Md4sIUi
-         6y1AvEwbx9Se34ynQmrQdEXL/9Ae9khP8idFxRuNm9VQw6wyCOknjcSlvPpogRyzNqqj
-         fv+w==
-X-Forwarded-Encrypted: i=1; AJvYcCXOoAtTWR3KaH5IAHKZLdIhS7f3P1Mbtv8fEtvpUrnWxzJZfWXaapXk9WHKngIvJTcCgretEAoPl72E@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnG0GTDozoVLOASLOFBHHf2k4Q1X3bcm1Zh9ccmmL29SCX8EDs
-	Os9iHhN4uX/SU/erU894uQjAH/0ua6QUWsWso/jf9S7h2gTN+ajRtwPP8k6d/owRxCU=
-X-Gm-Gg: AY/fxX52cXB30Iqbz9f3326xBle2xk0SOdxi1lytEmcdIoYuIGleQLU+Sn3KAxCsiOp
-	9KKd/v3gUlsY9ilt1gumHE9Rjw5/YENr1eSIP4TH8adqTzdGvMRWTx1+s1MRRG1P5RzlVcx0ePy
-	F88IQOAEoXHNDwEcYYtTJ10iAn6SKi3LIJzHeDr9qyYGlX0M6KL18xz/gJETB+v2wXEteqmOJcg
-	3xP+6K3zJeWP36AliizTNfmpZDjCK9ZeEMRkbNOtgA7DX3pRSISrE83nQkPwuzKpUL7UU2uGSDk
-	SvQLlrFvDLBV8oEM7oTfBfX9ZZ8/2LB7n+BRz03CsOD8IPHxE/MwNW7UyJA9jr/QxRi6u4Ahew6
-	9unh0LYv5mmrNliEu8/zByTVuCcNWGi+GoC+hWEHsKwUzTZq7DFRCOuhGRtdv97ba+zZv7sAaea
-	r2i++P1VHFo0gW/fadODWGG2b175Zoh9ilRqO1QZq5O4k2tYfPho8bHDU4EEmGCicYAPpf25lse
-	e7law==
-X-Google-Smtp-Source: AGHT+IHpTGeqQrqbg/3iUSfWdW5r9wslLj0+p+voKM+vw9cuuETMRnt6TZg28rR3+DNHjPB2uu4z2A==
-X-Received: by 2002:a17:907:75fa:b0:b80:3fff:5fe6 with SMTP id a640c23a62f3a-b803fff60f3mr909610366b.9.1766557698300;
+        d=1e100.net; s=20230601; t=1766557699; x=1767162499;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5CnmRbtVX4KWjkCR57DNdl2BztEJTFPfW7BxiAwfS/4=;
+        b=hkZgmWDfHa2J0sZ9cdbvf+HTta1OVDZmPzNpMzfEPmmLyR6IO7GG3l14o99JENpFMF
+         P4vDk+jLNvx5SCSK/eCGtuLmk2AhVnFW2RuRv10ym9Se7q3RPSdJG/Q7f6NWDRis5jKv
+         bGvikBE8JTR9ENxoImtKtZThvaXoLlC58AmCSk0YKcZGeQrSO5IQYpHcKlnpEIkmrSVa
+         qD/ygUDx96uRXj6EBbtegiG+UNTxJcCCRKQzeXbVABdfMqfO4zXvuhYI57FAVJ24z/BU
+         nloewgw3FIs2BQ9NOCLobZ99KwK1+Jvy0a4/xPZuhLk6Ze0N2UrtQN2lMSdNXMjF4Hov
+         kOQg==
+X-Forwarded-Encrypted: i=1; AJvYcCV3d++EqKQegm6NuR5ahJWoS0xQfOO84cuGzZM915nLjpovKNhDzLavpNmLXi4zSN8OlLg0d5qvgFrr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1Vurto1sGsQ3QBC1CN+xhwgIKmHzkL/70NGpXTXW91z3ySEmo
+	Mu1WF3RWekBexmr0zaLXqBuO4QiLgYc7+QKbkb5rZ16/F8u/xsPEFeD3ZvErDgiLnjc=
+X-Gm-Gg: AY/fxX4mfjwN+4l8b8ztk9zSKiv+DO+GZ+7lIuUGNY0jw2hJSpvszt5qWgwaFiBVDQz
+	N9DnSmNQEL2LA0Z9NsnTwIDoQpeqQZIKLu2/ALEF4qvcSgcJ6H1Q/UjwRGIq+swbzyCoEpFLdSw
+	Bd0SZImHzk/K41GYnRtbHMs93mLV8igRfDLjBYN9jKA1utO94Bb/iDroOt82eps5JiqWofQRlrW
+	Sr6pOXLWNL0ska1O10PUXYXo6bWMQkthY+Bg2nsqEcfSRWHN+fws28e1alhEr7RwMFz90x0QlRn
+	w4lj6XAwQHPJA6U/l+ItDts3QBT/BxDZ7mPj4a1+y2ebTe5Bz3fW1KszEv9uhyGvgMiCELsmRKb
+	E8y3WS5l1/AARqvFj+NdCzi3rNv+KmoN1w3rkukO/8jbqMXDUD0f/TG4k829p69nOJnac/RMJ8A
+	pmSQqe/b1X9GjYFBUMJID2oPthDuS8Hu4Sv1pZ0G5ue2Raaw51KeKkXFx9cGLSXptXCNtcUSibd
+	BeaXA==
+X-Google-Smtp-Source: AGHT+IGY8TTf1udnOdufm3EoqY8WYtA/ntlZTGw+8YeGAAdBvWzzBHzyBpPakkpLjhF8o11NY1fmug==
+X-Received: by 2002:a17:907:1c01:b0:b7d:22b1:2145 with SMTP id a640c23a62f3a-b8036f2a9f9mr1638472366b.23.1766557698786;
         Tue, 23 Dec 2025 22:28:18 -0800 (PST)
 Received: from puffmais2.c.googlers.com (244.175.141.34.bc.googleusercontent.com. [34.141.175.244])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f0cc52sm1643366766b.52.2025.12.23.22.28.17
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f0cc52sm1643366766b.52.2025.12.23.22.28.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Dec 2025 22:28:17 -0800 (PST)
+        Tue, 23 Dec 2025 22:28:18 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Subject: [PATCH v2 0/2] dt-bindings: phy: add power-domains to samsung UFS
- and USB phys
-Date: Wed, 24 Dec 2025 06:28:16 +0000
-Message-Id: <20251224-power-domains-dt-bindings-phy-samsung-ufs-phy-v2-0-581089639982@linaro.org>
+Date: Wed, 24 Dec 2025 06:28:17 +0000
+Subject: [PATCH v2 1/2] dt-bindings: phy: samsung,ufs-phy: add
+ power-domains
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,11 +85,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAACIS2kC/53NQQ6CMBCF4auQrh3TFoniynsYFpVOyyTSkg6gh
- HB3K97A5fcW718FYyJkcS1WkXAmphgy9KEQbWeCRyCbLbTUlZLyDEN8YQIbe0OBwY7woGApeIa
- hW4BNz1PwMLmfXYt1hRoNlheRP4eEjt57795kd8RjTMuen9V3/bc0K1Bga1lKq07GVfXtScGke
- IzJi2bbtg9HsAR36wAAAA==
-X-Change-ID: 20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-fce95e2eae38
+Message-Id: <20251224-power-domains-dt-bindings-phy-samsung-ufs-phy-v2-1-581089639982@linaro.org>
+References: <20251224-power-domains-dt-bindings-phy-samsung-ufs-phy-v2-0-581089639982@linaro.org>
+In-Reply-To: <20251224-power-domains-dt-bindings-phy-samsung-ufs-phy-v2-0-581089639982@linaro.org>
 To: Vinod Koul <vkoul@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -105,39 +104,35 @@ Cc: Peter Griffin <peter.griffin@linaro.org>,
  Krzysztof Kozlowski <krzk@kernel.org>
 X-Mailer: b4 0.14.2
 
-Hi,
+The UFS phy can be part of a power domain, so we need to allow the
+relevant property 'power-domains'.
 
-The samsung UFS and USB phys can be part of a power domain, so we need
-to allow the relevant property 'power-domains'.
-
-This v2 is essentially just a resend as the patches still haven't been
-queued.
-
-Note that in v1 the patches were sent individually, while here I've
-folded them into one series as they go via the same tree anyway.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
-Changes in v2:
-- collect tags
-- fold UFS and USB binding patches into same series
-- Link to v1: https://lore.kernel.org/r/20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-v1-1-d9030d14af59@linaro.org
-- Link to v1: https://lore.kernel.org/r/20251007-power-domains-phy-samsung-usb3-drd-phy-v1-1-3cb5f80a72ef@linaro.org
 
 ---
-André Draszik (2):
-      dt-bindings: phy: samsung,ufs-phy: add power-domains
-      dt-bindings: phy: samsung,usb3-drd-phy: add power-domains
-
- Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml      | 3 +++
- Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml | 3 +++
- 2 files changed, 6 insertions(+)
+v2: collect tags
 ---
-base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
-change-id: 20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-fce95e2eae38
+ Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+index d70ffeb6e824bfc19668e0f678276acd879a6217..2b20c0a5e5094889eb3e80dcc21b505943c68523 100644
+--- a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+@@ -36,6 +36,9 @@ properties:
+     minItems: 1
+     maxItems: 4
+ 
++  power-domains:
++    maxItems: 1
++
+   samsung,pmu-syscon:
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+     maxItems: 1
+
 -- 
-André Draszik <andre.draszik@linaro.org>
+2.52.0.351.gbe84eed79e-goog
 
 
