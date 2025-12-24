@@ -1,121 +1,140 @@
-Return-Path: <devicetree+bounces-249367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D797ACDB62B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 06:28:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E2C6CDB63A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 06:30:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A771F3016989
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 05:28:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 21BA73009C17
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 05:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21182E2665;
-	Wed, 24 Dec 2025 05:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A601FBC92;
+	Wed, 24 Dec 2025 05:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bqfPidJQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SISDydji"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41152D7DEC;
-	Wed, 24 Dec 2025 05:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA08F10785;
+	Wed, 24 Dec 2025 05:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766554135; cv=none; b=JKIJm276m0ENNqeZJkPzK4EzFhNYoE0f0v0aHYncQEMPGC9Bu7RviLfqH4QT/aDRCwaUEr6vWxAOZkdZYLZKcDXybpKk8QvEXabbVnbEeSERO51u7IZmIY1THAQ9h3ezhz8kR49lC2E5gVTzRkSD2mAVKM8xebC7aUOz9Pomc7g=
+	t=1766554250; cv=none; b=Te0VYBnSmwHltiASytz33DIk3It8qAqr3VRJ7EUx7oOGtxPaMXV1dVervS8eCK5Ny1mi7f4Q6mG3AjypbSa7M1WU5cneueGirj34Rvd6BUpmzBNKdaW4qm9qVHaslSfgajF/MYE3taa62Rf2ac5uP4UdgGrEqH9dTnwuJgF+k/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766554135; c=relaxed/simple;
-	bh=C/GnFv5Pg+zL30Vai7m1dAM/fuNNOsDmUVTl2nzGmnw=;
+	s=arc-20240116; t=1766554250; c=relaxed/simple;
+	bh=1X9APecdnLI/dPB5jwwC+T1kxLB0WLC073vyb8hkJgE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TdNUikdeRzedwGcpghAefLQPIyKhQcuXf1dMD5W+XTP8WqcSpFJqDA68fKmDRORwXKHdwmP7aKNlUOCsdatBH5eAfPGhUaaO8GLq/B3adRToBf9Q5OUEJM4km+MgAkwpxrnEjkcs46/JK2FffGJy7FJGLnQtqEk+uVDeZbpZyME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bqfPidJQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84A6DC4CEFB;
-	Wed, 24 Dec 2025 05:28:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bueiHLJgHXlXonBuF2r31ogPHm2+bETQvCbwGFcCDSyp9bD7H0p4L537RACAKL8dV8DFoBVNapkZDmV3PcJbT0tMtZfFxgHKaq2OGgIS28w84z0fYerhgKAcAFuk/okvbj5hev1VNfi5bGLpbT4UG+PHvMAz/nj9zXK/DCn+TpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SISDydji; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF1F1C4CEFB;
+	Wed, 24 Dec 2025 05:30:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766554135;
-	bh=C/GnFv5Pg+zL30Vai7m1dAM/fuNNOsDmUVTl2nzGmnw=;
+	s=k20201202; t=1766554250;
+	bh=1X9APecdnLI/dPB5jwwC+T1kxLB0WLC073vyb8hkJgE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bqfPidJQ/miNSrvls/TdR7kU/lfIuBMklmL10AS7LDhpmL3gBNFmwxacDsdB+GUA2
-	 vFSdukiXuF5DEI14JKyOKdXPfKcwqC+b6X82OwNGaVEk7Xxw/7AHyVC0bddeMFqnfj
-	 CVjUoFmMxOOfqfe8H2vyhLrbGxk7u+FqgM8D28+DYj3kWxK5idnuoad//uZxkEQ2SK
-	 JERX6FjcM1IzxmzThOptRHAwlUS+fl1bocqPBhfWm4zP0B45GEHLVrAwCpugABEriT
-	 rZpzTQCa7xyILtgv+UrjNkIQ8ySIpUSoOs/dVk9kelHyxiPtTqoDimKImgSVxQPz0T
-	 SdFeLY6uaNHSQ==
-Date: Wed, 24 Dec 2025 10:58:51 +0530
+	b=SISDydjirDPYMUr4FcfxX40KBetH36Bjt+7pfTrpYmEmu1dd3hfUs3tTGX/NJ9qQF
+	 X9Fm57cx+ptcwhFuNNkN5uGbHO5TM696KG63jvQbPbeLXIMWoSRPgCpeNPlB7uNiNl
+	 RVsK/7XARw8cBznR0jdphIRjJBW9PrBsb5hKiBLaoONmjOQ76AUknCN3p2Gcp6OXPA
+	 uBm0TPM9fBzuM+86esajXU34fbEWeVAd2/uXW+oOWiv5GQ7n5T+CC+/5F+CyCQ9p7O
+	 x0kP0727nRjzkrInVLGaSyPnJR/4lVYXQdVCWjot+cn8BAk/DvXPZM2vtGmk89FaB8
+	 pSw44WM1/otYg==
+Date: Wed, 24 Dec 2025 11:00:46 +0530
 From: Vinod Koul <vkoul@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
+To: Roy Luo <royluo@google.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Abel Vesa <abelvesa@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	Peter Griffin <peter.griffin@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Badhri Jagan Sridharan <badhri@google.com>,
+	Doug Anderson <dianders@google.com>, linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: qcom,snps-eusb2-repeater: Add
- squelch param update
-Message-ID: <aUt6E-AVVVkmo6E5@vaman>
-References: <20251219173108.2119296-1-krishna.kurapati@oss.qualcomm.com>
- <20251219173108.2119296-2-krishna.kurapati@oss.qualcomm.com>
- <aUqjG4pVXWN3H88N@vaman>
- <bb775051-8635-4e2d-a1f9-46d6f0e6bc15@kernel.org>
- <aUq51TxXwiJE2DWb@vaman>
- <niverh5ydbah6axshbtop56wjsoluen64anojp3nvizcn4bthr@h4yickq6gtea>
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	Joy Chakraborty <joychakr@google.com>,
+	Naveen Kumar <mnkumar@google.com>
+Subject: Re: [PATCH v9 2/2] phy: Add Google Tensor SoC USB PHY driver
+Message-ID: <aUt6hobN9DPUGbpz@vaman>
+References: <20251222-phyb4-v9-0-82c0b671b070@google.com>
+ <20251222-phyb4-v9-2-82c0b671b070@google.com>
+ <aUqhbVFHczpL9qnL@vaman>
+ <CA+zupgxP+_2iRYABhPM1OOJtRdkrcOvrsKH=Sxk45XwsiamzTw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <niverh5ydbah6axshbtop56wjsoluen64anojp3nvizcn4bthr@h4yickq6gtea>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+zupgxP+_2iRYABhPM1OOJtRdkrcOvrsKH=Sxk45XwsiamzTw@mail.gmail.com>
 
-On 23-12-25, 21:16, Dmitry Baryshkov wrote:
-> On Tue, Dec 23, 2025 at 09:18:37PM +0530, Vinod Koul wrote:
-> > On 23-12-25, 15:16, Krzysztof Kozlowski wrote:
-> > > On 23/12/2025 15:11, Vinod Koul wrote:
-> > > > On 19-12-25, 23:01, Krishna Kurapati wrote:
-> > > >> Add squelch detect parameter update for synopsys eusb2 repeater. The
-> > > >> values (indicated in basis-points) depict a percentage change with
-> > > >> respect to the nominal value.
-> > > >>
-> > > >> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> > > >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> > > >> ---
-> > > >>  .../devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml | 8 ++++++++
-> > > >>  1 file changed, 8 insertions(+)
-> > > >>
-> > > >> diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
-> > > >> index 5bf0d6c9c025..f2afcf0e986a 100644
-> > > >> --- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
-> > > >> +++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
-> > > >> @@ -59,6 +59,14 @@ properties:
-> > > >>      minimum: 0
-> > > >>      maximum: 7
-> > > >>  
-> > > >> +  qcom,squelch-detector-bp:
-> > > >> +    description:
-> > > >> +      This adjusts the voltage level for the threshold used to detect valid
-> > > >> +      high-speed data.
-> > > >> +    minimum: -6000
-> > > > 
-> > > > 6000Volts, mV, can you please document the units?
-> > > 
-> > > 
-> > > Code is correct, the '-bp' is the unit here. Unless the suffix was
-> > > chosen incorrectly?
-> > 
-> > I was hoping it will be commented in the description here.
-> > For my reference, what is bp and where is it documented ?
+On 23-12-25, 09:53, Roy Luo wrote:
+> On Tue, Dec 23, 2025 at 6:04 AM Vinod Koul <vkoul@kernel.org> wrote:
+> >
+> > On 22-12-25, 21:31, Roy Luo wrote:
+
+> > > +struct google_usb_phy {
+> > > +     struct device *dev;
+> > > +     struct regmap *usb_cfg_regmap;
+> > > +     unsigned int usb2_cfg_offset;
+> > > +     void __iomem *usbdp_top_base;
+> > > +     struct google_usb_phy_instance insts[GOOGLE_USB_PHY_NUM];
+> >
+> > so you have an array for one phy?
 > 
-> Base points, 0.01%
+> While the current patch only supports usb2, I used an array
+> to simplify future support for usb3 and DP. I understand this
+> might seem like over-engineering for now, and we could
+> certainly wait to implement the array until the second phy
+> support is added. I’m happy to move away from array if
+> you’d prefer a simpler approach for this iteration.
 
-Thanks Dmitry, where is this documented for people who dont know
+Rather than do array, allocate mem as probe based on how many phys will
+be there and use that. That would be a better approach than static
+allocation here
+
+> > > +static int google_usb2_phy_exit(struct phy *_phy)
+> > > +{
+> > > +     struct google_usb_phy_instance *inst = phy_get_drvdata(_phy);
+> > > +     struct google_usb_phy *gphy = to_google_usb_phy(inst);
+> > > +     u32 reg;
+> > > +
+> > > +     dev_dbg(gphy->dev, "exiting usb2 phy\n");
+> > > +
+> > > +     guard(mutex)(&gphy->phy_mutex);
+> > > +
+> > > +     regmap_read(gphy->usb_cfg_regmap, gphy->usb2_cfg_offset + USBCS_USB2PHY_CFG21_OFFSET, &reg);
+> > > +     reg &= ~USBCS_USB2PHY_CFG21_PHY_ENABLE;
+> > > +     regmap_write(gphy->usb_cfg_regmap, gphy->usb2_cfg_offset + USBCS_USB2PHY_CFG21_OFFSET, reg);
+> > > +
+> > > +     reset_control_bulk_assert(inst->num_rsts, inst->rsts);
+> > > +     clk_bulk_disable_unprepare(inst->num_clks, inst->clks);
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +
+> > > +static const struct phy_ops google_usb2_phy_ops = {
+> > > +     .init           = google_usb2_phy_init,
+> > > +     .exit           = google_usb2_phy_exit,
+> > > +};
+> >
+> > Only two ops? I would expect more... No power_on/off or set_mode?
+> >
+> > --
+> > ~Vinod
+> 
+> No, configuring usb2 phy is pretty straightforward. The hardware
+> does not distinguish between "initialized" and "powered on" states,
+> it also does not distinguish phy mode.
+
+ok
 
 -- 
 ~Vinod
