@@ -1,65 +1,109 @@
-Return-Path: <devicetree+bounces-249325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 733D3CDAE4A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 01:16:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA157CDAEF8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 01:38:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5645530329EC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 00:15:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6BB2B304E155
+	for <lists+devicetree@lfdr.de>; Wed, 24 Dec 2025 00:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1571DF980;
-	Wed, 24 Dec 2025 00:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 522572BEC52;
+	Wed, 24 Dec 2025 00:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AXEzg/qD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OCRNWuAx";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KeVwF8tM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206EE1A5B9D;
-	Wed, 24 Dec 2025 00:15:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2F192DF6F4
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 00:29:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766535331; cv=none; b=Lxe42Ant7QV8o7Cdsa0PZkFFF7jxGYp0qZNYPN2Z2o5OXcgi0NlvGRtnZPZ6D/Of/ilN0gakeEd7p5mcMivYWhqnEhDsKeGDuHXBg3fr2t+zcq+1mUQpI9GbCPYDeWR/1Xmie5CfRbA5SotH6Lzv0j3fMb9WBsDwQEXvGinFIu8=
+	t=1766536169; cv=none; b=sG2F33SECBhuP7xYpJ4ARk7GLbZ2mdu/Skd90MsdWlz7oZlBO3c7W9yQP/VpyIh/4H2gh4yWbb8bWq5G/7sNvvqGy31jA+qGyYs7YBXalHf6a7V2M+piZ69/QcPd5MvMSPgWwDJyGm4ITYV8iJ18MJfSBIXNvEtVHYkFWTADsZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766535331; c=relaxed/simple;
-	bh=qk+TPjCHtriryA+kZAw0qyFg2zqhGdkatoHam4RPx9g=;
+	s=arc-20240116; t=1766536169; c=relaxed/simple;
+	bh=CPFoVPkXdirpnIpJkbA+pD6Bmx+TLPap+UrhEdXlwrI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tp45SCtXWyJzFV9lNYBRhP9KbwmvXOO2YvhTen5HhhzUquEN1cRg59CQlXI8Fw+9NCVR/pyUtCfaTM0egxsRokw7HhGD0ns5tJK+REwQ2ugjKGNRmnym5t5f/jM5GHsDZuj+ks/btAzw0pK77kz4jZRV/W6AXO0GLsQpvqaBHS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AXEzg/qD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 212BFC113D0;
-	Wed, 24 Dec 2025 00:15:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766535330;
-	bh=qk+TPjCHtriryA+kZAw0qyFg2zqhGdkatoHam4RPx9g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AXEzg/qDGk2n/ubE7jQO6s3yHa2IOqhgBQnSWrOvRuT5/SiUoPdZdpvrLgULoPzZL
-	 PeUS/kexrMEOhDEkMavDbiYX5lw4vwxxKDkTwadKPBca/pQCZNPg1bP4sLviQ6GloG
-	 9gUB5DGtsLvVAml1Hhn+hnip9ug9+W1SGsjJiT8ZYGiu3Ed3p8PiPBkOj/CQDQ762Q
-	 tUVwBDxCSbwFcLnRwy/Ya5iLHBaTHDs+fgTfTx+0mxwUmqbH0jtkyoKM0d0oxQmMft
-	 iHNinYiNA8kEpyclEsfAiecpbwBMfmYoj3/xyaReYbgPeVLTQxnnvupRQ5vnmnX+Du
-	 +clp0FFIOdV9A==
-Date: Tue, 23 Dec 2025 18:15:27 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Shenwei Wang <shenwei.wang@nxp.com>
-Cc: Linus Walleij <linusw@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
-	dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH v6 2/5] remoteproc: imx_rproc: Populate devices under
- "rpmsg" subnode
-Message-ID: <ctrcrgvevo2liu7v4us4aa37pmt5bytkky2mcvacp5bhmkjl22@sfwzfkgemtyf>
-References: <20251212194341.966387-1-shenwei.wang@nxp.com>
- <20251212194341.966387-3-shenwei.wang@nxp.com>
- <3bbemd2vbsfss3sqpjpokytvvzweoqrtiqygffj5vqazqk3jyq@eobv6ruriiwb>
- <PAXPR04MB9185AF0B5225CB8DD06F774289B5A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hqlU96ycwgUppAZfx4W6d7K7qlSbTV3Gl2YJQJeZ80JxjSix21Fd1jSwBRC4F6XOB9d3Ff5HDgTavyUr2TkUP0UlJ8M8/uZ30PoNj5R++5KEqL8yMsSXHKXMMnJFmWMdlj/IcahN4HhTDrufmFzYC17UrdfHEB7V8wGSZYqlL20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OCRNWuAx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KeVwF8tM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BNKXnop1206932
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 00:29:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=UDQ3oxT765FpuHJ/jLNPZAA2
+	mmhp6VU1FmiG62bSSF8=; b=OCRNWuAxrG8upM6GMPbRGXOMfoOZbeh0Y9XwWCAN
+	8qENcEe8xt1exVyYJCJqbLrRjoOg20wdN99zuPfVI2rBF3GPLfw1dUm0GXWsZg01
+	zloJLdTXl5uQ3nIamLycrFCIkmxoXsTQvqdHZHhVozikO377dB+o7VrnvpeLyRdE
+	dmfrUSuhsFKUhDB18K1jtd+BuakD32ugb6uRyC/s1Cl/AzFj7t3WxDfUTogDkFvt
+	IG33ktZQLc50Zy4qqgCULRP9UhSPAHo6MTARXrsG2eSbZCn1uZjTq+xl+3dALN8+
+	3mKC1R6mNaXTCss2YbXS0c0/Zwpwskk/uYEy/IcLtoGn4A==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b827r0en5-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 24 Dec 2025 00:29:23 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88a47331c39so139792586d6.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Dec 2025 16:29:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766536163; x=1767140963; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=UDQ3oxT765FpuHJ/jLNPZAA2mmhp6VU1FmiG62bSSF8=;
+        b=KeVwF8tMgeEct+5hY42IGc9fwHpPUrLnXabcpO+sj+WsayXdOeyitidsl/O0Dj/L7t
+         uxpmwFl3H2Wk25SzD+21PwExqiXyDLre1oqaimfVR+bm/FJzFWn1Gyj9iRFPWslUuIyG
+         3muRpzREnO5I69YyiwxNHxmrpyKAOCd4j8N6/oEs2lMkbJTlnX5y4US37kQDRIjVG0EF
+         2gHUEeM8mf0jLnOyOLP/dKTdCfcsFrSHeUu7DyNyHQdo0gpHH44NPJPLZvTc59UJxV3P
+         E/M7lLc5Bx9el9qvB8dOS74srW9dYvz04GyUQr4sPGB/gGlu+yfwXR9EEuP2KSeorSRc
+         0Yxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766536163; x=1767140963;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UDQ3oxT765FpuHJ/jLNPZAA2mmhp6VU1FmiG62bSSF8=;
+        b=IZQjCOW9t9vu872a4uTxCakDBCpp5TIl6ca6yyEMIiRKYdgZlsFBoleBnoHuflm6Bb
+         zFpCyoVJdZwJQU1sb1UrIAVTOQWyvA5dR4gBJRcbVmj1V8uxtgbjzN2AVAAS54ER/aKB
+         tX5IKD76xEeyP8AKeEj4AQtXbszeeSKFjdZg06vH2xRAjhkdsMnv7gBGn1DakIHXpNIF
+         SQDpwOdBnGP1IdImIh03fCt4YS5VHi9Lajr2NQ+mONEiVlGxnxJ5rSVNiuGBKK400+fX
+         xKDb83Kt50k6WsuJZOMyVh4m2D+3XiyFic/yhg3w8RisFnR0KQNaIGI9MICj+jBomKds
+         /LKw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQOObW531es7NWi+kTq/lS2hVmM9VKmVHg+yH5GZGoc2VSlHEfZhIPe+dkVtjmQVvyaWynL8PPAYwx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYrOm/xy0RTlOuKUwSQbv2MdzZ5GLGSO9aqZzotAimqcZLwQh/
+	erPl+wWqpn8Rn2u9f03l2XJxaAFeNZ7oFfySN1s4j7aIN7BWwM4zF41/Zrd63t1B1ptsuax2FIS
+	/Sh4nrpU4ki4tsKOnb3+dVbeNSr4ydWjM29i8lpEPabMB11oz77hE/rNQBPVQ4Y/F
+X-Gm-Gg: AY/fxX55mt5NW5tewG40QH8oQe/MlRyQxA995KPBzJqAYk15WNiIJWOIS17DqQlL8mH
+	9gov6I71DKoK286iG7imf3r2SkHXaKY5wYJoGmM0P0AqKBqLGxmMNfntnf/3Ej+Iue2Qf0FG88S
+	IqSKDRI+D6kfm1uIz0Jvi+JCmHF9W1JIlXfK9fQkk6Fb1W9UgGcPh6RUHoT/mC6QJgLTWei0UkQ
+	q5bQ66nS0SQ4PEdXlBSRIzMTKw4b/f+59Zd9iFzUbGyhPOhgY55lpE2FZw0h6zVJp3316brTnSo
+	4IsI7cZ5lFnyJY/kTe8VfU+9YxiBUk/O1x78lYdVmj3OKu086H8GnwetNx/zLbxTqyL8DZyI2wa
+	XiH3fGulRM8jxPtlFH/Me2yDTZOtmqeLvCOdi/hFllft33+0iAhpXM7b7NWM16wmc9Fw3UqlIKg
+	odZj0vngH0Q8Kis86U1wHHQZg=
+X-Received: by 2002:a0c:d808:0:b0:880:1be2:82d4 with SMTP id 6a1803df08f44-88d82236803mr187404216d6.26.1766536163080;
+        Tue, 23 Dec 2025 16:29:23 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH7Md7PjYRXQHL3Id19oQhC22zfC7CmSq9X6sXaNWDe87LjPK/TEH3ewnXLSbSHp25fi9bspQ==
+X-Received: by 2002:a0c:d808:0:b0:880:1be2:82d4 with SMTP id 6a1803df08f44-88d82236803mr187404016d6.26.1766536162667;
+        Tue, 23 Dec 2025 16:29:22 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a18618ac6sm4507541e87.47.2025.12.23.16.29.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Dec 2025 16:29:22 -0800 (PST)
+Date: Wed, 24 Dec 2025 02:29:19 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: david@ixit.cz
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sdm845-xiaomi-polaris: Update
+ firmware paths
+Message-ID: <imlvmuludjdqjwmoftazi4dtulasdoypqdmotrg63luamhh5an@glsk5yyfddgf>
+References: <20251222-oneplus6-new-fw-path-v1-0-a2d366f9eb89@ixit.cz>
+ <20251222-oneplus6-new-fw-path-v1-4-a2d366f9eb89@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,257 +112,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <PAXPR04MB9185AF0B5225CB8DD06F774289B5A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <20251222-oneplus6-new-fw-path-v1-4-a2d366f9eb89@ixit.cz>
+X-Proofpoint-ORIG-GUID: p-3XYkydvFbkPY10vUxjn-jGK0rGdMjW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI0MDAwMiBTYWx0ZWRfXwh9OgWgWgoWb
+ 0TtE9bP16UyEHQgcGmRokFuC7uG4/Ws+EbwaTCFiLYWOdUtWzyjxLSaaEC584fLcFvC86i37bLc
+ R+u8OfwEqP5RV5PxxrcTh8yQzsLmTT22NUO1SE2g7CN7b95VFzOkRlfit5gZ6XsALtZrrPahosY
+ YXtRnLs27zQQzoErWeTG59ZP2I4Pi+a94kzmzDPwDzMrjPbVcvtvANjXt1Cl4V31jacaPRDPkZX
+ i4GD61TSiA0ITIOYcCA8vLZTvQUdT4ODj0M3BRZZZ7lKApb57vWuZhyVVY6aHNcz5UGhST/gXgq
+ Uy6ezGAi+JtRyo/tRckp/9YxhMcSwQ5rdHPHvIVsMeOmd71K8f+2hRfeHvaF/Waw4XDuPX82tHH
+ M2rbU+eDqBAWtLUxS2/g8ne4jMUFt/wnYW/XzwR7mRHcpGQioddx3L1Zkjqkd9KN/U1D6svqHM+
+ TW+70kT14nlq1ZhxO7A==
+X-Proofpoint-GUID: p-3XYkydvFbkPY10vUxjn-jGK0rGdMjW
+X-Authority-Analysis: v=2.4 cv=RbSdyltv c=1 sm=1 tr=0 ts=694b33e3 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=Je5-vcQqzLJVh6QI5oIA:9 a=CjuIK1q_8ugA:10
+ a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-23_05,2025-12-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 impostorscore=0 priorityscore=1501 clxscore=1015 phishscore=0
+ adultscore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512240002
 
-On Tue, Dec 23, 2025 at 07:47:31PM +0000, Shenwei Wang wrote:
+On Mon, Dec 22, 2025 at 08:05:40PM +0100, David Heidelberg via B4 Relay wrote:
+> From: David Heidelberg <david@ixit.cz>
 > 
+> Conform to the new firmware path scheme.
+> Includes cosmetic cleanups.
 > 
-> > -----Original Message-----
-> > From: Bjorn Andersson <andersson@kernel.org>
-> > Sent: Thursday, December 18, 2025 8:24 PM
-> > To: Shenwei Wang <shenwei.wang@nxp.com>
-> > Cc: Linus Walleij <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.org>;
-> > Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
-> > Conor Dooley <conor+dt@kernel.org>; Mathieu Poirier
-> > <mathieu.poirier@linaro.org>; Shawn Guo <shawnguo@kernel.org>; Sascha
-> > Hauer <s.hauer@pengutronix.de>; Jonathan Corbet <corbet@lwn.net>;
-> > Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
-> > <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>; linux-
-> > gpio@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; linux-remoteproc@vger.kernel.org; imx@lists.linux.dev;
-> > linux-arm-kernel@lists.infradead.org; linux-doc@vger.kernel.org; dl-linux-imx
-> > <linux-imx@nxp.com>
-> > Subject: [EXT] Re: [PATCH v6 2/5] remoteproc: imx_rproc: Populate devices
-> > under "rpmsg" subnode
-> > 
-> > Caution: This is an external email. Please take care when clicking links or opening
-> > attachments. When in doubt, report the message using the 'Report this email'
-> > button
-> > 
-> > 
-> > On Fri, Dec 12, 2025 at 01:43:38PM -0600, Shenwei Wang wrote:
-> > > Register the RPMsg channel driver and populate remote devices defined
-> > > under the "rpmsg" subnode upon receiving their notification messages.
-> > 
-> > Please provide a proper description of what "problem" this patch solves.
-> > 
-> > >
-> > > The following illustrates the expected DTS layout structure:
-> > >
-> > >       cm33: remoteproc-cm33 {
-> > >               compatible = "fsl,imx8ulp-cm33";
-> > >
-> > >               rpmsg {
-> > >                       rpmsg-io-channel {
-> > >                               gpio@0 {
-> > >                                       compatible = "fsl,imx-rpmsg-gpio";
-> > >                                       reg = <0>;
-> > 
-> > Surely there needs to be some "gpio-controller" and "#gpio-cells" here?
-> > Would be useful if the example is somewhat complete, to give a picture of what's
-> > actually going on.
-> > 
-> 
-> Okay. Will add those in next version.
-> 
-> > >                               };
-> > >
-> > >                               gpio@1 {
-> > >                                       compatible = "fsl,imx-rpmsg-gpio";
-> > >                                       reg = <1>;
-> > >                               };
-> > >
-> > >                               ...
-> > >                       };
-> > >
-> > >                       ...
-> > >               };
-> > >       };
-> > >
-> > > +     drvdata->rpdev = rpdev;
-> > > +     auxdata[0].compatible = devm_kstrdup(dev, imx_rpdrv->compat,
-> > GFP_KERNEL);
-> > > +     auxdata[0].platform_data = drvdata;
-> > > +     dev_set_drvdata(dev, drvdata);
-> > > +
-> > > +     of_platform_populate(drvdata->channel_node, NULL, auxdata, dev);
-> > 
-> > auxiliary_bus would be a better choice, but I don't understand why you probe a
-> > rpmsg_device for each "gpio channel" and then from that create a
-> > platform_device.
-> > 
-> > Why don't you just make the rpmsg_device register the gpio controller directly?
-> > 
-> 
-> The "GPIO channel" is just one example-there are also "PWM channel", "I2C channel", and other channels. 
-> The goal is to manage all these channels under a common logic, which helps avoid redundant code and keeps 
-> the implementation consistent.
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 17 +++++++++++------
+>  1 file changed, 11 insertions(+), 6 deletions(-)
 > 
 
-If you make rpmsg_drivers for each of these channels/functions, then all
-the common code should already be in the rpmsg framework.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-What are you missing there?
 
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +     rp_driver->rpdrv.drv.name = name;
-> > > +     rp_driver->rpdrv.id_table = rpdev_id;
-> > > +     rp_driver->rpdrv.probe = imx_rpmsg_endpoint_probe;
-> > > +     rp_driver->rpdrv.remove = imx_rpmsg_endpoint_remove;
-> > > +     rp_driver->rpdrv.callback = imx_rpmsg_endpoint_cb;
-> > > +     rp_driver->driver_data = driver_data;
-> > > +     rp_driver->compat = compat;
-> > > +
-> > > +     register_rpmsg_driver(&rp_driver->rpdrv);
-> > 
-> > This would then also imply that it's the gpio driver that registers the
-> > rpmsg_driver.
-> > 
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static int rproc_of_rpmsg_node_init(struct platform_device *pdev) {
-> > > +     struct device *dev = &pdev->dev;
-> > > +     const char *compat;
-> > > +     int ret;
-> > > +
-> > > +     struct device_node *np __free(device_node) = of_get_child_by_name(dev-
-> > >of_node, "rpmsg");
-> > > +     if (!np)
-> > > +             return 0;
-> > > +
-> > > +     for_each_child_of_node_scoped(np, child) {
-> > > +             compat = imx_of_rpmsg_is_in_map(child->name);
-> > > +             if (!compat)
-> > > +                     ret = of_platform_default_populate(child, NULL,
-> > > + dev);
-> > 
-> > So if you don't recognize the child device node name you just register
-> > platform_devices for each of the children?
-> > 
-> 
-> Yes. That would register platform_devices without the platform_data.
-> 
-> > > +             else
-> > > +                     ret = imx_of_rpmsg_register_rpdriver(child, dev,
-> > > + child->name, compat);
-> > > +
-> > > +             if (ret < 0)
-> > > +                     return ret;
-> > > +     }
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > >  static int imx_rproc_probe(struct platform_device *pdev)  {
-> > >       struct device *dev = &pdev->dev; @@ -1114,6 +1253,10 @@ static
-> > > int imx_rproc_probe(struct platform_device *pdev)
-> > >               goto err_put_pm;
-> > >       }
-> > >
-> > > +     ret = rproc_of_rpmsg_node_init(pdev);
-> > > +     if (ret < 0)
-> > > +             dev_info(dev, "populating 'rpmsg' node failed\n");
-> > > +
-> > >       return 0;
-> > >
-> > >  err_put_pm:
-> > > diff --git a/include/linux/rpmsg/rpdev_info.h
-> > > b/include/linux/rpmsg/rpdev_info.h
-> > > new file mode 100644
-> > > index 000000000000..13e020cd028b
-> > > --- /dev/null
-> > > +++ b/include/linux/rpmsg/rpdev_info.h
-> > > @@ -0,0 +1,33 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > > +/* Copyright 2025 NXP */
-> > > +
-> > > +/*
-> > > + * @file linux/rpdev_info.h
-> > > + *
-> > > + * @brief Global header file for RPDEV Info
-> > > + *
-> > > + * @ingroup RPMSG
-> > > + */
-> > > +#ifndef __LINUX_RPDEV_INFO_H__
-> > > +#define __LINUX_RPDEV_INFO_H__
-> > > +
-> > > +#define MAX_DEV_PER_CHANNEL    10
-> > > +
-> > > +/**
-> > > + * rpdev_platform_info - store the platform information of rpdev
-> > > + * @rproc_name: the name of the remote proc.
-> > > + * @rpdev: rpmsg channel device
-> > > + * @device_node: pointer to the device node of the rpdev.
-> > > + * @rx_callback: rx callback handler of the rpdev.
-> > > + * @channel_devices: an array of the devices related to the rpdev.
-> > > + */
-> > > +struct rpdev_platform_info {
-> > 
-> > I don't understand what this structure represents. Why is this glue between the
-> > rpmsg_device and a made up platform_device needed?
-> > 
-> 
-> The purpose is to have a shared array that can be accessed by all devices within 
-> the same channel.
-> 
-
-What does this mean? How are multiple functions multiplexed over a
-single rpmsg channel/endpoint?
-
-Please provide a concrete description of how a device with some gpios
-and PWMs would actually look in this model.
-
-> > > +     const char *rproc_name;
-> > 
-> > You don't need this, because you can rproc_get_by_child(&self) and then get the
-> > remoteproc name from that.
-> > 
-> 
-> Good to know. Will try it in the next version.
-> 
-> > > +     struct rpmsg_device *rpdev;
-> > > +     struct device_node *channel_node;
-> > > +     int (*rx_callback)(struct rpmsg_device *rpdev, void *data,
-> > > +                        int len, void *priv, u32 src);
-> > > +     void *channel_devices[MAX_DEV_PER_CHANNEL];
-> > 
-> > Why 10? What does it mean?
-> > 
-> 
-> This is based on practical experience. For example, on the i.MX platform, we typically don't have 
-> more than eight same devices on the remote system.
-> 
-> > I think this becomes the list of the 10 grandchildren of the remoteproc (per child
-> > node). So what happens if those matches against two different drivers, what will
-> > rx_callback point to?
-> > 
-> 
-> This is the limitation. That's why I used the map to populate the known child device for one specific channel.
-> 
-
-So for each rpdev_platform_info there can only be one type of client
-driver. Where is this limitation defined? What happens if I put a PWM
-and a GPIO controller under my rpmsg-io-channel?
-
-Regards,
-Bjorn
-
-> Thanks,
-> Shenwei
-> 
-> > > +};
-> > 
-> > Regards,
-> > Bjorn
-> > 
-> > > +
-> > > +#endif /* __LINUX_RPDEV_INFO_H__ */
-> > > --
-> > > 2.43.0
-> > >
+-- 
+With best wishes
+Dmitry
 
