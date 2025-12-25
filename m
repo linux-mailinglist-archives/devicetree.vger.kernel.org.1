@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-249629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15115CDD818
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 09:34:12 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55642CDD81E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 09:36:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B0509300EA28
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 08:34:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6466C301575B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 08:36:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14DEA2D97A4;
-	Thu, 25 Dec 2025 08:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5750B2FCBF0;
+	Thu, 25 Dec 2025 08:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZD8iJBP8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y49kadE8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA70D2222A9;
-	Thu, 25 Dec 2025 08:34:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AE182222A9;
+	Thu, 25 Dec 2025 08:36:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766651650; cv=none; b=mA7qu5r4w4RSuT0sjhodgc62fGxx4PeOTIrMCNpVLJfg4hylv2fYczeTjkNISov8b39LVoaUnucfuFbZ4VCHy6OfuPzy+WBxhvqJAt8f0s8We3douaP9scxSNTlGPgla5IKVApYW2vk+q/RdrexPf+pKc5xyy7yTIwJGSeduteE=
+	t=1766651801; cv=none; b=NPr7AgtwC1eiTelmt0oPcbRnxGWAlxOHAgQTXl/hyLdDLPzFP/9NN7zig8ir1SRiEtW9QnxRqReLx+5Ey9HHt2oDiuN1DyK/CaTh31Tr5rMhDMm1/crXvj8/KxeXlwf79BLe3LSer/tc9Q2gOp8i/3OZ7ZNVOPMFe4bCC+R7NWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766651650; c=relaxed/simple;
-	bh=T2HvZypfEISRGptuaf4PARKSOQw8mxtwryHv6AL3Jjo=;
+	s=arc-20240116; t=1766651801; c=relaxed/simple;
+	bh=+LTmmExZhYIq3wRPRw18QmDP2pXk7ZkD9j48bgY5Hgs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NMn9TSEKxtSpsGdfaFH95ZRtA4dc2hzf1T6FqDK6GMSDhrYYYYxnmgu/3t3kdoL/xV0nynDLyDQqQQvw0VwAqLHqrc6u92MlZLkxfhck81oQd71AsW/hk+TJi12AG+NoEsesRhNkAOoM75zS4MLxOdXO6OeWvFH51Mezl4+QS6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZD8iJBP8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E406C4CEF1;
-	Thu, 25 Dec 2025 08:34:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=u3p4qnytAsUwp8e3ltyevqxouUeEVLEq7hnvK6ZfuYAJVjlP2zN7qS+vP8tS0gTnaE+uKWIC4Q3nWjKE9Xm+Mdw6Xiyf9yjm3PCWV/dmoYMEV8w0ZZTlQLUO6dkxEsBThoJsXXGBvF7Ami5Z0LedMZJr8/J7VIvJEqHK/JB4Uj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y49kadE8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3F42C4CEF1;
+	Thu, 25 Dec 2025 08:36:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766651649;
-	bh=T2HvZypfEISRGptuaf4PARKSOQw8mxtwryHv6AL3Jjo=;
+	s=k20201202; t=1766651800;
+	bh=+LTmmExZhYIq3wRPRw18QmDP2pXk7ZkD9j48bgY5Hgs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZD8iJBP85IJWQkgyjUKR+z1STR7btyr2VClR/O3gos+eJg6qtqrAvjNxhXe7eOI4p
-	 /Z2R7CgRNyjkXlsJvdvMIWw36LuwWZugxLGr/fBn0V2ORP6Xh7OblUzkudC2IJ5XtE
-	 31vC356afH+EqUG0TSm+YiWl9BFaXJFPT0c/9FBjwiOHVwvSTDAFIVCHlGfL2ODpvB
-	 X25Tmqj+A0UGa0Y2BhF4j0SBN/J3bm9eWvHWFVxO8MUrqCzPquNrd6ZgW6etnqZSWW
-	 UMXKTCEcQLcKAjUQ9Hb5anMi0P9X0IPaB1wiimF/ekkvUv9cPQwPnffq7IEuBBOvLE
-	 7Q3XoFWd8KzVg==
-Message-ID: <7283e3e7-54f6-4946-b526-2fa180f15c50@kernel.org>
-Date: Thu, 25 Dec 2025 09:33:59 +0100
+	b=Y49kadE8vK3VRthElztNnUF2LI97elLlbCHeguKGaq0lZhke/QNdqrZ8ckdZYU7OF
+	 Vh9b3NA6JEWJXHG8SMmP/59gZ7hMBqSNEolfLd14p+KL/iepV6MSzvEZjFyQFDFPC3
+	 9TX7QnsbDclAgVY18zA094ew0RCsSoFSl/oH4sEMiBzhyrwPeuZwofUeFCD3LU0Rm1
+	 BabJZdvQMNdtZs5wlrN/JDVR3Fx+JYKyMw8NRoX0yBGJmMGrZ7Lv2DQW7TdhkG4vIG
+	 ct/QP2lg+Lwe6RdCIitD9pU+fT4PMEjD9BP2+2OUF5p50kEkERMV3lJ25hnpyzP1Gm
+	 Pa+j1M3K5vHJg==
+Message-ID: <f58ccc03-286e-4ca0-acc4-6c6474a9df5c@kernel.org>
+Date: Thu, 25 Dec 2025 09:36:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,18 +48,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: add
- retimers, dp altmode support
-To: Shawn Guo <shawnguo@kernel.org>, jens.glathe@oldschoolsolutions.biz,
- Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 6/7] dt-bindings: pinctrl: rockchip: Add RMIO
+ controller binding
+To: Ye Zhang <ye.zhang@rock-chips.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Clark <robdclark@gmail.com>, Jos Dehaes <jos.dehaes@gmail.com>
-References: <20250417-slim7x-retimer-v2-1-dbe2dd511137@oldschoolsolutions.biz>
- <CAAQ0ZWT=s2BdobfkKuBAhw5H761ZH7uCH70i_UOR+wJ6cjSZJA@mail.gmail.com>
+ <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ tao.huang@rock-chips.com
+References: <20251216112053.1927852-1-ye.zhang@rock-chips.com>
+ <20251216112053.1927852-7-ye.zhang@rock-chips.com>
+ <5154ca76-0f23-4b52-8e6d-07005c52ac6d@kernel.org>
+ <8e126c63-1388-40ff-9046-818f7a8c969f@rock-chips.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,61 +107,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAAQ0ZWT=s2BdobfkKuBAhw5H761ZH7uCH70i_UOR+wJ6cjSZJA@mail.gmail.com>
+In-Reply-To: <8e126c63-1388-40ff-9046-818f7a8c969f@rock-chips.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 25/12/2025 04:29, Shawn Guo wrote:
-> On Fri, Apr 18, 2025 at 12:35 AM Jens Glathe via B4 Relay
-> <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org> wrote:
+On 25/12/2025 04:25, Ye Zhang wrote:
+>>> +/* RMIO function definition */
+>>> +#define RMIO_UART1_TX			1
+>>> +#define RMIO_UART1_RX			2
+>>> +#define RMIO_UART2_TX			3
+>>> +#define RMIO_UART2_RX			4
+>>> +#define RMIO_UART3_TX			5
+>>> +#define RMIO_UART3_RX			6
+>>> +#define RMIO_UART3_CTSN			7
+>>> +#define RMIO_UART3_RTSN			8
+>>> +#define RMIO_UART4_TX			9
+>>> +#define RMIO_UART4_RX			10
+>>> +#define RMIO_UART4_CTSN			11
+>>> +#define RMIO_UART4_RTSN			12
+>>> +#define RMIO_MIPITE			13
+>>> +#define RMIO_CLK_32K			14
+>>> +#define RMIO_I2C0_SCL			15
+>>> +#define RMIO_I2C0_SDA			16
 >>
->> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
->>
->> comparing with CRD and other dts for a more complete support of the 7X
->> only retimers, gpios, regulators, dp outputs
->>
->> Tested-by: Rob Clark <robdclark@gmail.com>
->> Tested-by: Jos Dehaes <jos.dehaes@gmail.com>
->> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
->> ---
->> This patch adds the required nodes to support DP Altmode on all three type-c
->> ports. The definition is derived from the CRD. Since they are all marked 40Gbps,
->> I assume there are 3 PS8830 retimers.
->> This modification is now for ~8 weeks in my tree with little to no complaints. I
->> don't have access to a Yoga Slim 7X, however many people on #aarch64-laptops do
->> and some are using this patch.
->> ---
->> Changes in v2:
->> - removed changes not relevant to retimers and dp altmode (thanks Johan)
->> - Link to v1: https://lore.kernel.org/r/20250417-slim7x-retimer-v1-1-5813a7835903@oldschoolsolutions.biz
->> ---
->>  .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 476 ++++++++++++++++++++-
->>  1 file changed, 470 insertions(+), 6 deletions(-)
-> 
-> Hi,
-> 
-> I'm running a Slim7x China variant (Yoga Air 14s) with Debian 13.
-> While the Debian stock 6.12 kernel works fine to bring up the display
-> (AMOLED eDP panel), newer kernels like 6.18 loses display during boot.
-> I can do either of the following to get the display back to work.
-> 
-> - Enable PS883X driver (Yes, CONFIG_TYPEC_MUX_PS883X is missing from
-> Debian config [1])
+>> I do not see how this is a binding. Please point me to the patch using
+>> this in the driver.
+> These macros are intended to be used in the Device Tree sources to 
+> improve readability, avoiding “magic numbers” for the RMIO function IDs.
 
-Obviously.
+That was not my question. Read again what I asked.
 
-> 
-> OR
-> 
-> - Revert commit 299038d82418 ("arm64: dts: qcom:
-> x1e80100-lenovo-yoga-slim7x: add retimers, dp altmode support")
-> 
-> My understanding is that a PS883X driver is required only for external
-> DP support.  Why would the driver missing impact/break the internal
-> panel support?  Do you guys have any insight on this?  Thanks!
-> 
+So not a binding, remove.
 
-You need all drivers to avoid probe deferrals.
 
 Best regards,
 Krzysztof
