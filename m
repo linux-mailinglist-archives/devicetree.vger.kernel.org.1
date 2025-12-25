@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-249668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B373CDDBF4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 13:25:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55DB1CDDBFD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 13:32:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A725D301A1E4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 12:25:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7628C301E191
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 12:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1056C31A807;
-	Thu, 25 Dec 2025 12:25:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71CF031ED88;
+	Thu, 25 Dec 2025 12:32:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k0DxF03n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qj2bhIu1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA08A2F361B;
-	Thu, 25 Dec 2025 12:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E6C731ED78;
+	Thu, 25 Dec 2025 12:32:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766665512; cv=none; b=P5K89yDNGH6S/kBkoDHLSri6GzEGZLdI1fibd9S4tyT+DdwEb+mpJreGJxn7tQCoeY9NgMotYKdkDKt6Mz3u0DS4es/G/ygndV+UOzqqgyPAhkc0ohF9XJvrdvwdj808dBvBEbXGxmdIzh8AUAaMzAf7QA70tqIA9RNeRFFekPI=
+	t=1766665953; cv=none; b=t//BBtq/5xVyd3QAsYOijKcAwB65RrTTer2Mct4/2U/tzbrSzFdt4i0BltuzbM4+e7iKOLQYbJpjRK+oy46x61Or30xMKzRF9pz1iyjzFMqb/Y0Iamv00NyWStx44Yp9jsKn9VNalflMBDOlxL9y9/79VC+KaOaRCHzw5TRr5qI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766665512; c=relaxed/simple;
-	bh=3q6AduS43sIgNwRnR7yCnvcTOf4iSDobbK49TGHtvf4=;
+	s=arc-20240116; t=1766665953; c=relaxed/simple;
+	bh=95vdqLLNLzVGOuEXnO4RUjZHMcpAzuOvTLWFG7ZW3Cg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T5cPfH/0vCsW2hrc8OeB/B9ZHRz4kuN7IjbBKL17bLtVYjAJxylpN85nHDL+J01RtuuyPOp3Ryo5l3fqwbz9LZDTplS5O4egBqt3xmV9je8/jyMeN6hgrEVvFxM4Nhlh+vrApFu1Ln8WV51FGaER4EyntvFUzwd3X7sAPXnsq1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k0DxF03n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2461DC4CEF1;
-	Thu, 25 Dec 2025 12:25:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TDv8PHaIMWAwcM9x+CmnG8cautOY/I4XmbMaD/NeY/LjtHDZ3ip34uMx4CuEZcNrQos/vUsE1nw5fqs3fMH/blJmNnDmMYD07XYOrkpfxIGyEnGI4+j9Py1qSJlFLyL+hS2bzHKBsNswRcCwMcS0SRgdE3nOaK+Z6pLif4g8UgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qj2bhIu1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2632DC4CEF1;
+	Thu, 25 Dec 2025 12:32:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766665512;
-	bh=3q6AduS43sIgNwRnR7yCnvcTOf4iSDobbK49TGHtvf4=;
+	s=k20201202; t=1766665952;
+	bh=95vdqLLNLzVGOuEXnO4RUjZHMcpAzuOvTLWFG7ZW3Cg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k0DxF03nqojbdIzT6GY7zSe419S/Syk0ikEJHdpOLEs1zGVwViptNm19s68GsTBAr
-	 TALKXZ8lZaddybxXxUzmdwtBs49SpGSoHGWKTFZ+dk2df8cbBFMF0ta0KFKdxqG+Ga
-	 K876hjk0QDPCKIOMr4SZQBPqj9al3TaEY/WeZ+yNw7fROHcPVomzjXT5P0Gy+FniKq
-	 UIXa4l2hSZWWlbNXPiQ9wyMqNlZiq85K8Y5m7LblDhpVWBQE6p1pEvz2MZ4CI8RLyH
-	 0Hqj/PGKFzUzyrVRYk9QYKs43MUfOQIn/byQ0dJgMcE90eTpFcCATk2ef00cN6KXsa
-	 glInIznN1MElw==
-Message-ID: <fd068960-33ca-4a47-9850-fde41de18995@kernel.org>
-Date: Thu, 25 Dec 2025 13:25:07 +0100
+	b=Qj2bhIu1vmlPggCrwGhrRnPXZhopCth98WlqlTWnIeKLBKB3QZ/iHN/xWz5UD/Dvc
+	 ZvsWcb63JlbVmVRSS3jUJFA8wAMp2t+Lmf3FUhGOYhZd2Hb3DpJruGfwGppCAqCR6l
+	 /Z22SUc/sCUL24M21Ub3yQmt3LDJLN2WRkOq84NXQTU15plZ1e735Z2/Jop29sk2qY
+	 tMGG9OIoZgqq1uldcFAbAPPqzfkzXYxXhFGEx3G7AMADIAlUj4Si+54bfriiWsQR3a
+	 nKR6ifvFUpt2tGLWVl2bxfpXb23uV4TIVcGkyVt9uVGzY25C+tKOSY9cQPr8X8rACt
+	 VacamDEpcyOrQ==
+Message-ID: <40bdb779-2620-4c2f-b99e-ed7146e4da8f@kernel.org>
+Date: Thu, 25 Dec 2025 13:32:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,17 +48,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] ARM: dts: allwinner: Fix remaining DT validation
- errors
-To: Chen-Yu Tsai <wens@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jernej Skrabec <jernej@kernel.org>,
- Samuel Holland <samuel@sholland.org>, Linus Walleij <linusw@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
- linux-gpio@vger.kernel.org, linux-media@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251225103616.3203473-1-wens@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: brcm,spi-bcm-qspi: allow hif_mspi as
+ alternative for mspi
+To: Jonas Gorski <jonas.gorski@gmail.com>,
+ Kamal Dasu <kamal.dasu@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc: Kamal Dasu <kdasu.kdev@gmail.com>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mips@vger.kernel.org
+References: <20251225102533.30772-1-jonas.gorski@gmail.com>
+ <20251225102533.30772-2-jonas.gorski@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,20 +109,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251225103616.3203473-1-wens@kernel.org>
+In-Reply-To: <20251225102533.30772-2-jonas.gorski@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/12/2025 11:36, Chen-Yu Tsai wrote:
-> Hi folks,
+On 25/12/2025 11:25, Jonas Gorski wrote:
+> Add "hif_mspi" as an alternative reg-name for brcm,spi-bcm-qspi, as
+> it is in use by BCM7xxx (BMIPS) device trees.
 > 
-> This series gets rid of the remaining DT validation errors for Allwinner
-> (sunxi) ARM 32-bit device trees. The patches are self explaining.
-> 
-> I plan to take all four patches through the sunxi tree.
+> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
 
-It's v1 and not a resend, thus subsystem patches should go via subsystem
-trees.
+Rather fix the DTS or provide reason why they cannot/should not be fixed.
 
 Best regards,
 Krzysztof
