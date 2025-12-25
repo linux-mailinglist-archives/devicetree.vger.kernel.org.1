@@ -1,118 +1,86 @@
-Return-Path: <devicetree+bounces-249696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97027CDE137
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 21:32:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D90E4CDE13D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 21:32:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E7B613000EBB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 20:32:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C8903006A67
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 20:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB4E1D5ABF;
-	Thu, 25 Dec 2025 20:32:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9654025D216;
+	Thu, 25 Dec 2025 20:32:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="N2CqD6rv";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="N2CqD6rv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D6VDcYXt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5693D3A1E70
-	for <devicetree@vger.kernel.org>; Thu, 25 Dec 2025 20:32:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E02199EAD;
+	Thu, 25 Dec 2025 20:32:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766694730; cv=none; b=ktKScCNJdTngr0xjI+hnkqe4tstPKwqfD9wyWyto8SOwOCFR01h+rlJotnCxFdEIzpOjqjWZsva7GQM6mVPb8NNtzuWTStH49Up/voyyaONZigTU+FbZvOP1esKoDvgL2PTEYs8LurckTxKdHn+wO72XnWd8t+j+4VwBRGhSPsU=
+	t=1766694755; cv=none; b=Mf0kOTQmJPcrnNWLyGq51zyoRZ3gBF6k1aZv8+4Sihogbobtsbng1+WEF6+zGkN/m5D+1RQamRluNsLxYsqRI9EP5dJpQTj8KcM5et2pqEV5Rz72YvQM/V0boqLL+m2DSRL3ybldM2bwCOwYKhGrGlv0F+8MhcTHVDPLc4bpz2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766694730; c=relaxed/simple;
-	bh=L2ODFCEIWrcpVeNIcspviFyOkd8/UWF55hgBt4ycF28=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jQhfNIRwYPNDmPEmiW7mwDLyjQmTRyTTUk7bQo3GC3HZXmziwoMW4PhV0rCdV14rooR4uT5Rg5ks35kAYSXxqt7LzruNQbDVgU/HoN3XpJi9QzH3GSFHAWsUVebThbiDOTs08EO24JR08AJJeuMenO47cbb/fgwEwJzj8yccsBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=N2CqD6rv; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=N2CqD6rv; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1766694727; bh=L2ODFCEIWrcpVeNIcspviFyOkd8/UWF55hgBt4ycF28=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=N2CqD6rvPdP67aQEqn7SQygNFoCQ1LPhgDoe3kyKnG0HNK0Xqhy6rg4e+NHm1yK+2
-	 +xe2WY5ksHjEfYCpb1WHVECwsk/pRxnYG27GgYxZOsn/8IcXMy1cd8uPjYFb1BUB6s
-	 daqqYTNHPCEAcFtGllcp+Ojt1aJjym7/wQAJsniAZiDr15e2INopdlXzp1TEDrUsn3
-	 UedPVGtlUPHEhRjueu89q9RLFeCOT37pyQGRMtXZh4hfPY9/JeHPdnq12AUWkIOi6s
-	 Z2TFlEItZMg/a8ZOluH6mM7BKCk4BUYUwPcqhcpQwQHdlyjOvGheQ29W3zyGyzVqwL
-	 Mg7CsMzsT9Psg==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 9EC023E8CBC;
-	Thu, 25 Dec 2025 20:32:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1766694727; bh=L2ODFCEIWrcpVeNIcspviFyOkd8/UWF55hgBt4ycF28=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=N2CqD6rvPdP67aQEqn7SQygNFoCQ1LPhgDoe3kyKnG0HNK0Xqhy6rg4e+NHm1yK+2
-	 +xe2WY5ksHjEfYCpb1WHVECwsk/pRxnYG27GgYxZOsn/8IcXMy1cd8uPjYFb1BUB6s
-	 daqqYTNHPCEAcFtGllcp+Ojt1aJjym7/wQAJsniAZiDr15e2INopdlXzp1TEDrUsn3
-	 UedPVGtlUPHEhRjueu89q9RLFeCOT37pyQGRMtXZh4hfPY9/JeHPdnq12AUWkIOi6s
-	 Z2TFlEItZMg/a8ZOluH6mM7BKCk4BUYUwPcqhcpQwQHdlyjOvGheQ29W3zyGyzVqwL
-	 Mg7CsMzsT9Psg==
-Received: from mail.mleia.com (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mleia.com (Postfix) with ESMTPSA id 288393E8B7A;
-	Thu, 25 Dec 2025 20:32:07 +0000 (UTC)
-From: Vladimir Zapolskiy <vz@mleia.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH RESEND 2/2] ARM: dts: lpc32xx: add DMA properties to NAND flash controllers
-Date: Thu, 25 Dec 2025 22:31:57 +0200
-Message-ID: <20251225203157.1414349-3-vz@mleia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251225203157.1414349-1-vz@mleia.com>
-References: <20251225203157.1414349-1-vz@mleia.com>
+	s=arc-20240116; t=1766694755; c=relaxed/simple;
+	bh=OlMwKRemqpxu1qixxaUujZZmxWqSk+fU5T6TjQIfHes=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dldVZvODbPjl2lPSJGOkeRC9SNyn2aEMQWmeQuQ/Olb26j6ti0rROgbWqmQ05JC8sAE+anPUnkycR7YOKQ4emaS2cDInD3CpFmTqRqL5d7LOeweRC80wBXTvdO7WKA5cg0KXk86iAMX2rEZuM6gHqC8cRc/cJaGslNrBr7hmJ5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D6VDcYXt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E902FC4CEF1;
+	Thu, 25 Dec 2025 20:32:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766694754;
+	bh=OlMwKRemqpxu1qixxaUujZZmxWqSk+fU5T6TjQIfHes=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D6VDcYXtHs6fSm0cvzASNAmckB9F9WPZrJj6GFS1DWeG5AyUtnRS+HTxeEn3lfE0j
+	 X0mk5OLc648E+zRf8EuPlbe4TQjE9uTUaOHE2z+vIO9ZWoFEXzjBUIHF9CG4dzPQve
+	 v83KQkZpwBtEZofvB9fY2BqXuG53ojlepTiUErcgXxbaMiU8EDiz5Q7rpj3SvwxMIA
+	 wcqT0kw6j7feBvZO7hZ35tl45EOx8RVFm5K59tqICB2GXAgBdzsEOQf6hJnpK1sT9v
+	 SP56DGjvycoPe2bHyASKmklE74IU5IZSqnnfhTjhhOa8oWJicVV2cLVw9to6ctdIHr
+	 qTvx4sCsAld6A==
+Date: Thu, 25 Dec 2025 21:32:31 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, 
+	herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org, lee@kernel.org, 
+	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
+	linusw@kernel.org, Steen.Hegelund@microchip.com, daniel.machon@microchip.com, 
+	UNGLinuxDriver@microchip.com, olivia@selenic.com, radu_nicolae.pirea@upb.ro, 
+	richard.genoud@bootlin.com, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
+	broonie@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	lars.povlsen@microchip.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, netdev@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-clk@vger.kernel.org, luka.perkov@sartura.hr, 
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 06/15] dt-bindings: i2c: atmel,at91sam: add
+ microchip,lan9691-i2c
+Message-ID: <plir5hx4hpgrj4emspyu3wyvpnax6zz6tlattwq4l2ye3hohkr@ysbjwf2p53lh>
+References: <20251223201921.1332786-1-robert.marko@sartura.hr>
+ <20251223201921.1332786-7-robert.marko@sartura.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20251225_203207_665090_E41E946D 
-X-CRM114-Status: UNSURE (   9.84  )
-X-CRM114-Notice: Please train this message. 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251223201921.1332786-7-robert.marko@sartura.hr>
 
-Add descriptions of DMA request signals for SLC and MLC NAND flash
-controllers, for reference see Table 69 from NXP LPC32x0 User Manual.
+Hi Robert,
 
-Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
----
- arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+On Tue, Dec 23, 2025 at 09:16:17PM +0100, Robert Marko wrote:
+> Document Microchip LAN969x I2C compatible.
+> 
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-index a49b8e794126..9107476fd071 100644
---- a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-+++ b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-@@ -67,6 +67,8 @@ slc: nand-controller@20020000 {
- 			reg = <0x20020000 0x1000>;
- 			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clk LPC32XX_CLK_SLC>;
-+			dmas = <&dma 1 0>;
-+			dma-names = "rx-tx";
- 			status = "disabled";
- 		};
- 
-@@ -75,6 +77,8 @@ mlc: nand-controller@200a8000 {
- 			reg = <0x200a8000 0x11000>;
- 			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clk LPC32XX_CLK_MLC>;
-+			dmas = <&dma 12 0>;
-+			dma-names = "rx-tx";
- 			status = "disabled";
- 		};
- 
--- 
-2.43.0
+Acked-by: Andi Shyti <andi.shyti@kernel.org>
 
+Thanks,
+Andi
 
