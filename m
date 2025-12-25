@@ -1,86 +1,166 @@
-Return-Path: <devicetree+bounces-249628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B527ACDD7E5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 09:22:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15115CDD818
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 09:34:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D7EE73014B58
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 08:22:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B0509300EA28
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 08:34:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D18730AD06;
-	Thu, 25 Dec 2025 08:22:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14DEA2D97A4;
+	Thu, 25 Dec 2025 08:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tLXJclho"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZD8iJBP8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 470533016FB
-	for <devicetree@vger.kernel.org>; Thu, 25 Dec 2025 08:22:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA70D2222A9;
+	Thu, 25 Dec 2025 08:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766650948; cv=none; b=r0XIctS2KtjO0V9QM41f4q7rleZJsLmiOd8PqXZYg/ez+LW/Dv02eLiXlOujGlHSvWrMS2c7je4Ohwc4HSuMOYoD08hmH0LbFDpsCAuNLywFF3vT/halIXBOTLEp5nLqmgda7sS87o1Qr6UNRNiipIIJG9S46IMRd8GQW3caQCE=
+	t=1766651650; cv=none; b=mA7qu5r4w4RSuT0sjhodgc62fGxx4PeOTIrMCNpVLJfg4hylv2fYczeTjkNISov8b39LVoaUnucfuFbZ4VCHy6OfuPzy+WBxhvqJAt8f0s8We3douaP9scxSNTlGPgla5IKVApYW2vk+q/RdrexPf+pKc5xyy7yTIwJGSeduteE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766650948; c=relaxed/simple;
-	bh=GBIp9kX+hl2mkbN1urGov/Z/70FEgI+eflqjn/ioE4Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=axDT4wF3fVSDEsyaK5q0bIUqbryjZLBuNupj0Pg82Xyjh/ew7hGRZR+aQeYgwQZySnYWXKaahj+SfOzBvyNSBEzeAad7c6l0N78MrXoYCxLXFdAlCdoJ9OnvkL3BUcL2/YRV82hbMa3xs+1bRkBi1Jh7q952ADDwtXFqeY4Y5HI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tLXJclho; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2556C19425
-	for <devicetree@vger.kernel.org>; Thu, 25 Dec 2025 08:22:27 +0000 (UTC)
+	s=arc-20240116; t=1766651650; c=relaxed/simple;
+	bh=T2HvZypfEISRGptuaf4PARKSOQw8mxtwryHv6AL3Jjo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NMn9TSEKxtSpsGdfaFH95ZRtA4dc2hzf1T6FqDK6GMSDhrYYYYxnmgu/3t3kdoL/xV0nynDLyDQqQQvw0VwAqLHqrc6u92MlZLkxfhck81oQd71AsW/hk+TJi12AG+NoEsesRhNkAOoM75zS4MLxOdXO6OeWvFH51Mezl4+QS6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZD8iJBP8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E406C4CEF1;
+	Thu, 25 Dec 2025 08:34:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766650948;
-	bh=GBIp9kX+hl2mkbN1urGov/Z/70FEgI+eflqjn/ioE4Y=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=tLXJclhoGJ0ix5OyqI0QDTFogKnKbKmwfBj+4RTKf3PAqjGz4/FCZy266J8Qeme7Q
-	 SkPtwPEsJqOAOoOwjCULpmYZItwKYuluhTvFlnMZ/6hNfq1d8q4hzTY9YjezQBeXTu
-	 V6AzIHk1DMyaR8wgLGW3uKt1NTTvB4ZwFbXCy/bhOBzXaAWNAdUKf9xg1uGpcyV5CJ
-	 xzZVvrumaa0bD6A1CvBonM86kw6BhmI3dCOyvTf0jyS3QIuzx4HKmqb4aZRYAZtNuU
-	 alvAexP+G0QH+QJw28v9o0/GI1kqEMBPhClJ4fN/co/QaccRM+0u2vK2r5oe09JMuA
-	 mm4+VKKK9Grcg==
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-37bb8bef4cdso61387111fa.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Dec 2025 00:22:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU7WO1KXl44sS86qqNDE5q/i7TN3SWmMox4/kkmcyYf5loDkFb3CAa2pLSQOj0ktohp7i1DrMa1ptMv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmLkGXPv93+yLoxh7tAiyKZyhNhcgM+zhIqjw6HM26OVNelkLG
-	7REetbTVjpbvbn2GWYRm3rL3ojFgz7DQZgeo09EEYvewZn3AnmhLn7KBNcTOYdCwnQMRXe80k8y
-	D+er3apFGnEsvgCFk9iJbfFj2EGFrumE=
-X-Google-Smtp-Source: AGHT+IFppeSVdlVccV8ZLOVWMT/HmjByzAPqOV4k8UjgxAxDAQTT6kTjy5H+aCpOAkmg3adrDHLP6/5j+VdObqpd5IA=
-X-Received: by 2002:a05:651c:544:b0:37b:95ee:f605 with SMTP id
- 38308e7fff4ca-381215af948mr71834481fa.10.1766650946149; Thu, 25 Dec 2025
- 00:22:26 -0800 (PST)
+	s=k20201202; t=1766651649;
+	bh=T2HvZypfEISRGptuaf4PARKSOQw8mxtwryHv6AL3Jjo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZD8iJBP85IJWQkgyjUKR+z1STR7btyr2VClR/O3gos+eJg6qtqrAvjNxhXe7eOI4p
+	 /Z2R7CgRNyjkXlsJvdvMIWw36LuwWZugxLGr/fBn0V2ORP6Xh7OblUzkudC2IJ5XtE
+	 31vC356afH+EqUG0TSm+YiWl9BFaXJFPT0c/9FBjwiOHVwvSTDAFIVCHlGfL2ODpvB
+	 X25Tmqj+A0UGa0Y2BhF4j0SBN/J3bm9eWvHWFVxO8MUrqCzPquNrd6ZgW6etnqZSWW
+	 UMXKTCEcQLcKAjUQ9Hb5anMi0P9X0IPaB1wiimF/ekkvUv9cPQwPnffq7IEuBBOvLE
+	 7Q3XoFWd8KzVg==
+Message-ID: <7283e3e7-54f6-4946-b526-2fa180f15c50@kernel.org>
+Date: Thu, 25 Dec 2025 09:33:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251115141347.13087-1-jernej.skrabec@gmail.com> <20251115141347.13087-2-jernej.skrabec@gmail.com>
-In-Reply-To: <20251115141347.13087-2-jernej.skrabec@gmail.com>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Thu, 25 Dec 2025 16:22:11 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64h5E+hz-G4HEBesVgu4bkFfTi5vNEpU2BQFUYHKCqY8A@mail.gmail.com>
-X-Gm-Features: AQt7F2p6GeAz5pE56ddcluDZYRCFD_O3UDD7G_yS9PvFCxlCXBqEjAn8ZBftz2A
-Message-ID: <CAGb2v64h5E+hz-G4HEBesVgu4bkFfTi5vNEpU2BQFUYHKCqY8A@mail.gmail.com>
-Subject: Re: [PATCH 1/7] drm/sun4i: Add support for DE33 CSC
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: samuel@sholland.org, mripard@kernel.org, maarten.lankhorst@linux.intel.com, 
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com, 
-	sboyd@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: add
+ retimers, dp altmode support
+To: Shawn Guo <shawnguo@kernel.org>, jens.glathe@oldschoolsolutions.biz,
+ Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Clark <robdclark@gmail.com>, Jos Dehaes <jos.dehaes@gmail.com>
+References: <20250417-slim7x-retimer-v2-1-dbe2dd511137@oldschoolsolutions.biz>
+ <CAAQ0ZWT=s2BdobfkKuBAhw5H761ZH7uCH70i_UOR+wJ6cjSZJA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAAQ0ZWT=s2BdobfkKuBAhw5H761ZH7uCH70i_UOR+wJ6cjSZJA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sat, Nov 15, 2025 at 10:14=E2=80=AFPM Jernej Skrabec
-<jernej.skrabec@gmail.com> wrote:
->
-> DE33 has channel CSC units (for each plane separately) so pipeline can
-> be configured to output in desired colorspace.
->
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+On 25/12/2025 04:29, Shawn Guo wrote:
+> On Fri, Apr 18, 2025 at 12:35 AM Jens Glathe via B4 Relay
+> <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org> wrote:
+>>
+>> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>>
+>> comparing with CRD and other dts for a more complete support of the 7X
+>> only retimers, gpios, regulators, dp outputs
+>>
+>> Tested-by: Rob Clark <robdclark@gmail.com>
+>> Tested-by: Jos Dehaes <jos.dehaes@gmail.com>
+>> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>> ---
+>> This patch adds the required nodes to support DP Altmode on all three type-c
+>> ports. The definition is derived from the CRD. Since they are all marked 40Gbps,
+>> I assume there are 3 PS8830 retimers.
+>> This modification is now for ~8 weeks in my tree with little to no complaints. I
+>> don't have access to a Yoga Slim 7X, however many people on #aarch64-laptops do
+>> and some are using this patch.
+>> ---
+>> Changes in v2:
+>> - removed changes not relevant to retimers and dp altmode (thanks Johan)
+>> - Link to v1: https://lore.kernel.org/r/20250417-slim7x-retimer-v1-1-5813a7835903@oldschoolsolutions.biz
+>> ---
+>>  .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 476 ++++++++++++++++++++-
+>>  1 file changed, 470 insertions(+), 6 deletions(-)
+> 
+> Hi,
+> 
+> I'm running a Slim7x China variant (Yoga Air 14s) with Debian 13.
+> While the Debian stock 6.12 kernel works fine to bring up the display
+> (AMOLED eDP panel), newer kernels like 6.18 loses display during boot.
+> I can do either of the following to get the display back to work.
+> 
+> - Enable PS883X driver (Yes, CONFIG_TYPEC_MUX_PS883X is missing from
+> Debian config [1])
 
-Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+Obviously.
+
+> 
+> OR
+> 
+> - Revert commit 299038d82418 ("arm64: dts: qcom:
+> x1e80100-lenovo-yoga-slim7x: add retimers, dp altmode support")
+> 
+> My understanding is that a PS883X driver is required only for external
+> DP support.  Why would the driver missing impact/break the internal
+> panel support?  Do you guys have any insight on this?  Thanks!
+> 
+
+You need all drivers to avoid probe deferrals.
+
+Best regards,
+Krzysztof
 
