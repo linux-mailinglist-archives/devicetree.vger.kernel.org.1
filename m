@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-249630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55642CDD81E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 09:36:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EEABCDD827
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 09:37:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6466C301575B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 08:36:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E71E0300ACF4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 08:37:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5750B2FCBF0;
-	Thu, 25 Dec 2025 08:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 976483081BD;
+	Thu, 25 Dec 2025 08:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y49kadE8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SOqgNpLN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AE182222A9;
-	Thu, 25 Dec 2025 08:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681B02222A9;
+	Thu, 25 Dec 2025 08:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766651801; cv=none; b=NPr7AgtwC1eiTelmt0oPcbRnxGWAlxOHAgQTXl/hyLdDLPzFP/9NN7zig8ir1SRiEtW9QnxRqReLx+5Ey9HHt2oDiuN1DyK/CaTh31Tr5rMhDMm1/crXvj8/KxeXlwf79BLe3LSer/tc9Q2gOp8i/3OZ7ZNVOPMFe4bCC+R7NWI=
+	t=1766651844; cv=none; b=Sg6MAgdJqLWO3NztoGr5gxoJBpma0kgzRFkMfUVLpTxGoMZp26FzTxywss/MnMNRdUUpyGFOgBPuJ1pTk71wRd1aek9lFmQcr4DJWrnCRS9itMrO7W1ReAe9RfA/Q6UZs5NE6f4nr29+OaWRZeEXGToMyRNHU4q0HkUkEVX9If0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766651801; c=relaxed/simple;
-	bh=+LTmmExZhYIq3wRPRw18QmDP2pXk7ZkD9j48bgY5Hgs=;
+	s=arc-20240116; t=1766651844; c=relaxed/simple;
+	bh=kgAIrjuZjHs8OpeqHy6FN4PjDtpOcy88ZQN1QSfUG7s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u3p4qnytAsUwp8e3ltyevqxouUeEVLEq7hnvK6ZfuYAJVjlP2zN7qS+vP8tS0gTnaE+uKWIC4Q3nWjKE9Xm+Mdw6Xiyf9yjm3PCWV/dmoYMEV8w0ZZTlQLUO6dkxEsBThoJsXXGBvF7Ami5Z0LedMZJr8/J7VIvJEqHK/JB4Uj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y49kadE8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3F42C4CEF1;
-	Thu, 25 Dec 2025 08:36:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GxtIz4iCF74yQkcaHmR7BEt2Z2h7fhnehkaUvvVP3LXLsCiKItkKxMO2Rb0aE3bT9aX9XA2lW8bInE3n+VtMei7qPCbhI1ciRxD6fY1rsV2pQkmQNd52JokBwMkjIHLO+2LjXujVahVIK5cdJ8Ts5fPiJLlrHRY7VTCDaujrN3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SOqgNpLN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABFFAC4CEF1;
+	Thu, 25 Dec 2025 08:37:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766651800;
-	bh=+LTmmExZhYIq3wRPRw18QmDP2pXk7ZkD9j48bgY5Hgs=;
+	s=k20201202; t=1766651844;
+	bh=kgAIrjuZjHs8OpeqHy6FN4PjDtpOcy88ZQN1QSfUG7s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y49kadE8vK3VRthElztNnUF2LI97elLlbCHeguKGaq0lZhke/QNdqrZ8ckdZYU7OF
-	 Vh9b3NA6JEWJXHG8SMmP/59gZ7hMBqSNEolfLd14p+KL/iepV6MSzvEZjFyQFDFPC3
-	 9TX7QnsbDclAgVY18zA094ew0RCsSoFSl/oH4sEMiBzhyrwPeuZwofUeFCD3LU0Rm1
-	 BabJZdvQMNdtZs5wlrN/JDVR3Fx+JYKyMw8NRoX0yBGJmMGrZ7Lv2DQW7TdhkG4vIG
-	 ct/QP2lg+Lwe6RdCIitD9pU+fT4PMEjD9BP2+2OUF5p50kEkERMV3lJ25hnpyzP1Gm
-	 Pa+j1M3K5vHJg==
-Message-ID: <f58ccc03-286e-4ca0-acc4-6c6474a9df5c@kernel.org>
-Date: Thu, 25 Dec 2025 09:36:32 +0100
+	b=SOqgNpLN2+ed2GsF6Isdv7e72pG5m2ePrjp4cBmdtlu9iZZH59jb5z67si7cFF+VN
+	 2tfM1hgHDLA97A9VKx+doVxRxdK03++NlnhiiMrp/l0Q9JQyb/ErbxT2myhzBxhSF6
+	 uOvbs0aGa4UuSLzpmlRnRLV1TBSKIDMQdrdmE1SK9QZUjGa5EGhLiATfGDW30c1h9l
+	 QBdqOY7YAJ0Z1GiatfLNx186kv6DPvk/K+BpPT8GD7tiPXYtGMQrh79tnrg9GOk7r2
+	 2dfBBKN8FTWJn/9iVjYEDjzrpKCPMI7s7zntZDawaniuW0QyjvdJ9f9v1a4pLNoiRQ
+	 5tEHIju0Q/F0Q==
+Message-ID: <1e8ec6ac-91e2-411c-8ca5-562b48443be6@kernel.org>
+Date: Thu, 25 Dec 2025 09:37:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,20 +48,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/7] dt-bindings: pinctrl: rockchip: Add RMIO
- controller binding
-To: Ye Zhang <ye.zhang@rock-chips.com>,
- Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- tao.huang@rock-chips.com
-References: <20251216112053.1927852-1-ye.zhang@rock-chips.com>
- <20251216112053.1927852-7-ye.zhang@rock-chips.com>
- <5154ca76-0f23-4b52-8e6d-07005c52ac6d@kernel.org>
- <8e126c63-1388-40ff-9046-818f7a8c969f@rock-chips.com>
+Subject: Re: [PATCH v1 1/2] media: dt-bindings: i2c: toshiba,et8ek8: Convert
+ to DT schema
+To: Alex Tran <alex.t.tran@gmail.com>
+Cc: mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, pavel@kernel.org, sakari.ailus@linux.intel.com,
+ mehdi.djait@linux.intel.com, laurent.pinchart@ideasonboard.com,
+ hverkuil+cisco@kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1766123192.git.alex.t.tran@gmail.com>
+ <6f34ec79ac21d5ab9ad3fafe34a0bf6aca49a10d.1766123192.git.alex.t.tran@gmail.com>
+ <20251221-platinum-mongoose-of-might-feec86@quoll>
+ <CA+hkOd4B425PRzirxLW-J2L+mDGusfRDJ5y1nKLwG9a-dd4M8A@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,38 +105,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <8e126c63-1388-40ff-9046-818f7a8c969f@rock-chips.com>
+In-Reply-To: <CA+hkOd4B425PRzirxLW-J2L+mDGusfRDJ5y1nKLwG9a-dd4M8A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 25/12/2025 04:25, Ye Zhang wrote:
->>> +/* RMIO function definition */
->>> +#define RMIO_UART1_TX			1
->>> +#define RMIO_UART1_RX			2
->>> +#define RMIO_UART2_TX			3
->>> +#define RMIO_UART2_RX			4
->>> +#define RMIO_UART3_TX			5
->>> +#define RMIO_UART3_RX			6
->>> +#define RMIO_UART3_CTSN			7
->>> +#define RMIO_UART3_RTSN			8
->>> +#define RMIO_UART4_TX			9
->>> +#define RMIO_UART4_RX			10
->>> +#define RMIO_UART4_CTSN			11
->>> +#define RMIO_UART4_RTSN			12
->>> +#define RMIO_MIPITE			13
->>> +#define RMIO_CLK_32K			14
->>> +#define RMIO_I2C0_SCL			15
->>> +#define RMIO_I2C0_SDA			16
+On 24/12/2025 22:07, Alex Tran wrote:
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-gpios:
+>>> +    description:
+>>> +      XSHUTDOWN GPIO. The XSHUTDOWN signal is active low. The sensor
+>>> +      is in hardware standby mode when the signal is in the low state.
+>>> +    maxItems: 1
+>>> +
+>>> +  flash-leds:
+>>> +    $ref: /schemas/media/video-interfaces.yaml#
 >>
->> I do not see how this is a binding. Please point me to the patch using
->> this in the driver.
-> These macros are intended to be used in the Device Tree sources to 
-> improve readability, avoiding “magic numbers” for the RMIO function IDs.
+>> This and...
+>>
+>>> +
+>>> +  lens-focus:
+>>> +    $ref: /schemas/media/video-interfaces.yaml#
+>>
+>> ... this are weird. LEDs are not video interfaces, for sure. lens focus
+>> shouldn't be video interface, either.
+>>
+>> You also miss unevaluatedProps there.
+>>
+>> This needs careful fixing/rewriting, with explanation in commit msg.
+>>
+> 
+> My mistake. The correct schema reference for these 2 should be video
+> interface devices.
 
-That was not my question. Read again what I asked.
-
-So not a binding, remove.
-
+No. LEDs are not video interface devices, either. LEDs are LEDs.
 
 Best regards,
 Krzysztof
