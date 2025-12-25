@@ -1,147 +1,100 @@
-Return-Path: <devicetree+bounces-249643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75CEBCDD90F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 10:08:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47255CDD924
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 10:12:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1F9BF3017640
-	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 09:08:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0DBDC301894F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Dec 2025 09:12:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34CB73164C2;
-	Thu, 25 Dec 2025 09:08:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E0F30AD0D;
+	Thu, 25 Dec 2025 09:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U/6xTbdf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UPONcwIA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 086F5242D70;
-	Thu, 25 Dec 2025 09:08:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51CC27707;
+	Thu, 25 Dec 2025 09:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766653736; cv=none; b=jqltb3NoxzgkP+Bqt9/bVIOdWgPKd8mHKTHUlCadK93+HLC8FBtkZVR/9PWmutBruc4YDIbMYQK9qjk8MoIGdVsqI/+3JOkBMV+rK8fsF3Bi158V99zkL/O0ZSQSnIjJn9yO08/cMgBRW8YumZk2ykBIPGu5zZXlqFVDlgX2Rmo=
+	t=1766653948; cv=none; b=rz0dgnFs1i3vfqxfFR9WV36LufiN+z8hNuA9W6PGILDyHodIgFLdklcG6DygnildbVWgg01o0cnjEJa9blKALQn27lfzSRRX7XiK1FnGGBM9c9wjGz094pa0K6qMZoR3qH5j/uqG7GOsSWvmc7mNGXRxf3l6/41PpfyKA26x1hw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766653736; c=relaxed/simple;
-	bh=KPcNnqsFNhUve82kj72QPhYiNTNZ7DpJCaEW1LuOdRA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QfzAaK8qpe6SK5rCLa9xOFqk+lbskp5Vb+MoUUnH/A5hCnzUKn+NaGOLcFxiNtnizuD47XfMPRG4J2ibTwhSl8mq4O4UHFcVR6WM9mz9u28HyyewaVVhpk971ng76IiQ/LHz1pW+0SfT9ljBJY+1qJ5udrEKK5oClQTXAOG4r1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U/6xTbdf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C141C4CEF1;
-	Thu, 25 Dec 2025 09:08:50 +0000 (UTC)
+	s=arc-20240116; t=1766653948; c=relaxed/simple;
+	bh=SEQCeeP0cpyhofiDVSZjIFDJcEgZ0uLCgntShMSc7h8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uAXCATk6tm9yNqaVT5gkT0LG+oIVGhfSy/mzB3UunMAWko16rVaAMf7MvLHI8/D4/1fJZk3KzlRNzjyXwcLtmxmNrVC1woqHhRb5cu747N+rw+qNA4D26vDah1hpMF6Hwmbd7olf3a5X3hkPaJMnutuLdrnoay9+uJQUfUHqc2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UPONcwIA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDA21C4CEF1;
+	Thu, 25 Dec 2025 09:12:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766653735;
-	bh=KPcNnqsFNhUve82kj72QPhYiNTNZ7DpJCaEW1LuOdRA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U/6xTbdfcKOtVhn2W4ar1Q+nCidMdZq+40AYWbMsJf1yYJgsEUqEbAld3MVGtRAm1
-	 G7y3X8QqPBI9OdnTDYJ8dYLCwXsW6tPTqA3mUyOArPltU4ljZPWzSpWV38o5X7jq0m
-	 nfSV7J4IkCBei0JMgxYUZvxYmNGPZX4gkpzPDrIaQ6/lOWjn0u6Xi2KqM0bA3OZEOj
-	 6W+rfLLV+4dGuTd8/s5JSAjPfNLwuwZZ5+G47fl2qcvRwngGc/pbn5qWEtlIMZVJiQ
-	 mYm6ClevT2XGKykKhKY/PpNZ4vBka0HvklD00071EVZmxuvPulW2BLZE5ZPvc6x7SM
-	 mjmU1FSrUessw==
-Message-ID: <ec9a2f6a-4cad-4989-8d40-af7b718a164b@kernel.org>
-Date: Thu, 25 Dec 2025 10:08:47 +0100
+	s=k20201202; t=1766653948;
+	bh=SEQCeeP0cpyhofiDVSZjIFDJcEgZ0uLCgntShMSc7h8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UPONcwIAAX5DIiKDnx2xaHE1tv86977WxFaZrBXShqnNlOTNclXbIxPRxv+IZEyj4
+	 jDHVFu0t9yYvro2bqqLFCGf472FTKqI16bjChFRVQ6hOdWoOMmkDuBvvc/jL8ek9NZ
+	 8GZNFha6WCaAg+F8KzoS1d1TaGjopUx8p0lSKF6Y+sdvHxv1xCJQOLGTBJF0r2rIY1
+	 RVWReCgrdVSrMTEO2lnKwEF9N89PKRnjtKkTvpXJvlWa3WYlNIOGn02KH8fjqHMVdh
+	 s1lbJKmo3+diV2yJq/iR94d96LFz5816/CNlXctpkJy30mxDNIoDxwrXpny8RgAACV
+	 JvTXQSB8K8a/A==
+Date: Thu, 25 Dec 2025 10:12:23 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: joaopeixoto@osyx.tech
+Cc: linux-kernel@vger.kernel.org, ajd@linux.ibm.com, alex@ghiti.fr, 
+	aou@eecs.berkeley.edu, bagasdotme@gmail.com, catalin.marinas@arm.com, 
+	conor+dt@kernel.org, corbet@lwn.net, dan.j.williams@intel.com, 
+	davidmcerdeira@osyx.tech, devicetree@vger.kernel.org, dev@kael-k.io, 
+	gregkh@linuxfoundation.org, haren@linux.ibm.com, heiko@sntech.de, jose@osyx.tech, 
+	kever.yang@rock-chips.com, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux@armlinux.org.uk, linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	maddy@linux.ibm.com, mani@kernel.org, nathan@kernel.org, neil.armstrong@linaro.org, 
+	palmer@dabbelt.com, pjw@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	robh@kernel.org, will@kernel.org
+Subject: Re: [PATCH 4/5] virt: add Bao I/O dispatcher driver
+Message-ID: <20251225-friendly-raptor-of-lightning-fbafc4@quoll>
+References: <20251224135217.25350-1-joaopeixoto@osyx.tech>
+ <20251224135217.25350-5-joaopeixoto@osyx.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: i2c: toshiba,et8ek8: Convert
- to DT schema
-To: Alex Tran <alex.t.tran@gmail.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Pavel Machek <pavel@ucw.cz>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251224-dt-bindings-et8ek8-omap3isp-v2-0-0728cc1fee27@gmail.com>
- <20251224-dt-bindings-et8ek8-omap3isp-v2-1-0728cc1fee27@gmail.com>
- <a7126a74-48f2-467b-91bb-21f28a251400@kernel.org>
- <CA+hkOd4rJAyQPe1kgJYreGX+Wpi+EoX8s-CsD_JCP77WE5a=Mw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CA+hkOd4rJAyQPe1kgJYreGX+Wpi+EoX8s-CsD_JCP77WE5a=Mw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251224135217.25350-5-joaopeixoto@osyx.tech>
 
-On 25/12/2025 09:57, Alex Tran wrote:
-> On Thu, Dec 25, 2025 at 12:40 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 24/12/2025 22:59, Alex Tran wrote:
->>> +
->>> +  reset-gpios:
->>> +    description:
->>> +      XSHUTDOWN GPIO. The XSHUTDOWN signal is active low. The sensor
->>> +      is in hardware standby mode when the signal is in the low state.
->>> +    maxItems: 1
->>> +
->>> +  flash-leds: true
->>> +  lens-focus: true
->>
->> No, where did you find this syntax. I do not see how you carefully fixed
->> it. You need proper schema for these.
->>
->> Best regards,
->> Krzysztof
-> 
-> I saw it used under sony,imx214.yaml and mipi-ccs.yaml. I thought referencing
-> video-interface-devices.yaml in this schema was correct because the flash-leds
-> and lens-focus properties are both specified in that file.
+On Wed, Dec 24, 2025 at 01:52:16PM +0000, joaopeixoto@osyx.tech wrote:
+> +static const struct of_device_id bao_io_dispatcher_driver_dt_ids[] = {
+> +	{ .compatible = "bao,io-dispatcher" },
+> +	{ /* sentinel */ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, bao_io_dispatcher_driver_dt_ids);
+> +
+> +static struct platform_driver bao_io_dispatcher_driver = {
+> +	.probe = bao_io_dispatcher_driver_register,
+> +	.remove = bao_io_dispatcher_driver_unregister,
+> +	.driver = {
+> +		   .name = "bao-io-dispatcher",
+> +		   .of_match_table =
+> +		   of_match_ptr(bao_io_dispatcher_driver_dt_ids),
 
-Ah, so you wanted to reference video-inteface-devices in top-level?
-Wasn't this already before? If that was missing then that's another
-thing to fix.
+You have warnings here. Do extensive building of your code before
+sending.
 
-And then you need to use unevaluatedProperties: false. flash-leds needs
-constraints, number of items. lens-focus you simply remove.
+> +		   .owner = THIS_MODULE,
+
+NAK
+
+Don't send us 12-year-old vendor code. Tools already report this,
+so you just did not run them...
+
+Nothing here is evn formatted correctly...
 
 Best regards,
 Krzysztof
+
 
