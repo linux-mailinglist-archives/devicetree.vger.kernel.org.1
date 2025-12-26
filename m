@@ -1,119 +1,161 @@
-Return-Path: <devicetree+bounces-249743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB7ABCDEAA9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 12:56:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B016CDEAB8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 12:59:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8A5D23007C44
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 11:56:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5C0F53004CD6
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 11:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99DBC23C8C7;
-	Fri, 26 Dec 2025 11:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014C531D372;
+	Fri, 26 Dec 2025 11:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b="D9/r7Fe3"
+	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="23hxyghz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail83.out.titan.email (mail83.out.titan.email [3.216.99.61])
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABBB51624C6;
-	Fri, 26 Dec 2025 11:56:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=3.216.99.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D2B29BDA9
+	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 11:59:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766750177; cv=none; b=jJceqO6fLfkybu2SQiLWi0dqmxKMX4HBXZArngHIY5prHHZg59A7eUlHAu5GCIemFRIM06uPNzd0KYIqP8ADaqeuVZT/CjSjYuQmxDvf7rsKOxDW83WtJ4Zz8U+/l9Wk1q7n2sszvO5jpKDaHix7mWQWU9qBvDtiYbq+Z6gXUwU=
+	t=1766750391; cv=none; b=uiMfn4chG3OgNEap1wEvz84ljU2k0My9jXEfbZVuXumq02de6QZDOPMMaXFaTH+Ua8yrrvNfPWW05Uza1UOoJIY6W1Ur0Juy5YyPJyUCacbx2pxvgCJCCuzaVNRhmmmDpc2a1F7O6PkhwyA8w7uvb09v5NMx7CzhhHKroMts2qI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766750177; c=relaxed/simple;
-	bh=dOSqxv7M/sP8mtGINHrXKZPzyknLBIGnf3emvBHZ/KQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aml60R0pbR0+qDFEsgSVkolY9OuVWAdZgk1CprIpWTI/CutcqaKOHt0OWsl0Yr4rlyscyKnnSCasJCXbuGXE3dIeeRV2EVXfOO1VZnwl6iYJf2oC62tSWwTZVSci1VhDLiCmQnYDsH3j1p0Lu/pzEz53Rl2O6dWC4UXR7I3bz8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b=D9/r7Fe3; arc=none smtp.client-ip=3.216.99.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-Received: from localhost (localhost [127.0.0.1])
-	by smtp-out.flockmail.com (Postfix) with ESMTP id 4dd3ZM6GTQz2xDK;
-	Fri, 26 Dec 2025 11:40:11 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; bh=+MVXjyTjnpv8ySZ72fp3o6XSzP+ZPlo9JjXRLopZJuQ=;
-	c=relaxed/relaxed; d=ziyao.cc;
-	h=subject:message-id:references:date:from:cc:to:mime-version:in-reply-to:from:to:cc:subject:date:message-id:in-reply-to:references:reply-to;
-	q=dns/txt; s=titan1; t=1766749211; v=1;
-	b=D9/r7Fe3rMBLfuc4fqi3N8J4LjrsrtuMNr8iTUFAZQPh9KBGyLDIIa99BMpsrgLdtElBW0Qr
-	GrhABI7KJLjyQufOvYqly+AE9BUn39DAbsrHwvof66q4yFWZXPWAK8W0Ujc+Qqjnek6x1HBeazi
-	urT2WLy1z60o0gY6fMKEDCWk=
-Received: from pie (unknown [117.171.66.90])
-	by smtp-out.flockmail.com (Postfix) with ESMTPA id 4dd3ZG0Hzzz2xBN;
-	Fri, 26 Dec 2025 11:40:05 +0000 (UTC)
-Date: Fri, 26 Dec 2025 11:39:56 +0000
-Feedback-ID: :me@ziyao.cc:ziyao.cc:flockmailId
-From: Yao Zi <me@ziyao.cc>
-To: Yixun Lan <dlan@gentoo.org>, Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Haylen Chu <heylenay@4d2.org>, Guodong Xu <guodong@riscstar.com>,
-	Inochi Amaoto <inochiama@gmail.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] clk: spacemit: k3: add the clock tree
-Message-ID: <aU50DIe9qMneb0GT@pie>
-References: <20251226-k3-clk-v3-0-602ce93bb6c3@gentoo.org>
- <20251226-k3-clk-v3-5-602ce93bb6c3@gentoo.org>
+	s=arc-20240116; t=1766750391; c=relaxed/simple;
+	bh=OWWYLrilFhz9YC8b9tP2fN0oE1fQiFaqy3spTA2lL2M=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=BXhCp6CK/uCExHV/t3rA+KQAuhR2C3mSnwlEzTeOl3oOoVGj/w1/J7UfjBGudagjyh377W0Jn7R1gGYycQkTVBu0rClqUJKZhaSUQ3peFej8OiMOnKtFl6KW+7AmrUQutPvDi8FE5h5pIz6bjtluTzyNCmmDAniPCrDtJ08VGp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=23hxyghz; arc=none smtp.client-ip=84.16.241.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
+Received: from [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8] (2a02-1812-162c-8f00-1e2d-b404-3319-eba8.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sander@svanheule.net)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id 8C6476B8CAB;
+	Fri, 26 Dec 2025 12:59:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+	s=mail1707; t=1766750382;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WtiGe9UVY4DRuvW+VF67JllIQ13Z+/lQWqwadNoyDPI=;
+	b=23hxyghzwayhUxPh7bSQxjkB0B59Vce2uTZ4urCcEqxrCM7VT5aTxuVfGceB/FeN+4KL3A
+	4OydY24Q2CI8/Clu1DrbSowTnyzUrNajPIG+1nW/UHlJQjPXdXhT5M9RsyDn51l6FRCs60
+	o6ny4vB2n9l5KO4Do/pK/8FnWT8rvIv/tf96TgQfjifQae0sluFCcUGoIHpmDKR/kiNJ6k
+	mPOH+gnzsXhmPuLRWy+KKt8j2kdxgnD890CBxQiEj2luZSGoqOEamX4SeCQBlplFoNPDLl
+	IEU+Ftd65iwYsnuLmjnCpGmOzYr9d9Ja6oN1ekrWQwJX0qUz+47o7JtOWVZI+Q==
+Message-ID: <12c98c7c8bead26a61764e3e9611badf2cdfcac5.camel@svanheule.net>
+Subject: Re: [PATCH v9 3/6] mfd: Add RTL8231 core device
+From: Sander Vanheule <sander@svanheule.net>
+To: kernel test robot <lkp@intel.com>, Lee Jones <lee@kernel.org>, Pavel
+ Machek	 <pavel@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Michael Walle	 <mwalle@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Mark Brown	 <broonie@kernel.org>, Andrew Lunn <andrew@lunn.ch>, Heiner
+ Kallweit	 <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ "David S. Miller"	 <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski	 <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>
+Cc: Paul Gazzillo <paul@pgazz.com>, Necip Fazil Yildiran	
+ <fazilyildiran@gmail.com>, oe-kbuild-all@lists.linux.dev, 
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ netdev@vger.kernel.org,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Date: Fri, 26 Dec 2025 12:59:40 +0100
+In-Reply-To: <202512220956.FVakrdhV-lkp@intel.com>
+References: <20251215175115.135294-4-sander@svanheule.net>
+	 <202512220956.FVakrdhV-lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251226-k3-clk-v3-5-602ce93bb6c3@gentoo.org>
-X-F-Verdict: SPFVALID
-X-Titan-Src-Out: 1766749211720356104.27573.6619602783841146947@prod-use1-smtp-out1001.
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.4 cv=WtDRMcfv c=1 sm=1 tr=0 ts=694e741b
-	a=rBp+3XZz9uO5KTvnfbZ58A==:117 a=rBp+3XZz9uO5KTvnfbZ58A==:17
-	a=kj9zAlcOel0A:10 a=MKtGQD3n3ToA:10 a=CEWIc4RMnpUA:10 a=7mOBRU54AAAA:8
-	a=wGuAUZxNjwbEZGsxmboA:9 a=CjuIK1q_8ugA:10 a=wa9RWnbW_A1YIeRBVszw:22
-	a=3z85VNIBY5UIEeAh_hcH:22 a=NWVoK91CQySWRX1oVYDe:22
 
-On Fri, Dec 26, 2025 at 07:01:20PM +0800, Yixun Lan wrote:
-> Add clock support to SpacemiT K3 SoC, the clock tree consist of several
-> blocks which are APBC, APBS, APMU, DCIU, MPUM.
-> 
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> ---
->  drivers/clk/spacemit/Kconfig      |    6 +
->  drivers/clk/spacemit/Makefile     |    3 +
->  drivers/clk/spacemit/ccu-k3.c     | 1482 +++++++++++++++++++++++++++++++++++++
->  drivers/clk/spacemit/ccu_common.c |    3 +-
->  4 files changed, 1493 insertions(+), 1 deletion(-)
+Adding the netdev and regmap maintainers for extra input.
 
-...
+On Mon, 2025-12-22 at 09:43 +0100, kernel test robot wrote:
+> url:=C2=A0=C2=A0=C2=A0 https://github.com/intel-lab-lkp/linux/commits/San=
+der-Vanheule/dt-bindings-leds-Binding-for-RTL8231-scan-matrix/20251216-0155=
+52
+> base:=C2=A0=C2=A0 https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd=
+.git=C2=A0for-mfd-fixes
+> patch link:=C2=A0=C2=A0=C2=A0 https://lore.kernel.org/r/20251215175115.13=
+5294-4-sander%40svanheule.net
+> patch subject: [PATCH v9 3/6] mfd: Add RTL8231 core device
+> config: alpha-kismet-CONFIG_MDIO_BUS-CONFIG_REGMAP_MDIO-0-0 (https://down=
+load.01.org/0day-ci/archive/20251222/202512220956.FVakrdhV-lkp@intel.com/co=
+nfig)
+> reproduce: (https://download.01.org/0day-ci/archive/20251222/202512220956=
+.FVakrdhV-lkp@intel.com/reproduce)
+>=20
 
-> diff --git a/drivers/clk/spacemit/ccu_common.c b/drivers/clk/spacemit/ccu_common.c
-> index f1a837aafb46..5132f73be68d 100644
-> --- a/drivers/clk/spacemit/ccu_common.c
-> +++ b/drivers/clk/spacemit/ccu_common.c
-> @@ -144,7 +144,8 @@ int spacemit_ccu_probe(struct platform_device *pdev)
->  	 * are in APBS region. Reference to MPMU syscon is required to check PLL
->  	 * status.
->  	 */
-> -	if (of_device_is_compatible(dev->of_node, "spacemit,k1-pll")) {
-> +	if (of_device_is_compatible(dev->of_node, "spacemit,k1-pll") ||
-> +		of_device_is_compatible(dev->of_node, "spacemit,k3-pll")) {
+For context: these patches introduce a new MFD with pinctrl and led subdevi=
+ces.
+The RTL8231 MFD is attached to an MDIO bus, but it can also be attached to =
+an
+I2C bus (not currently supported). The drivers use regmap to provide a bus
+abstraction.
 
-To me it's better to add a argument to spacemit_ccu_probe to specify the
-compatible of PLL, so we don't need to modify ccu_common.c each time a
-new SoC is introduced, and the condition won't be pretty long in the
-future.
+> kismet warnings: (new ones prefixed by >>)
+> > > kismet: WARNING: unmet direct dependencies detected for MDIO_BUS when
+> > > selected by REGMAP_MDIO
+> =C2=A0=C2=A0 WARNING: unmet direct dependencies detected for MDIO_BUS
+> =C2=A0=C2=A0=C2=A0=C2=A0 Depends on [n]: NETDEVICES [=3Dn]
+> =C2=A0=C2=A0=C2=A0=C2=A0 Selected by [y]:
+> =C2=A0=C2=A0=C2=A0=C2=A0 - REGMAP_MDIO [=3Dy]
 
-It isn't a serious issue for now, and I think this piece of code is
-acceptable.
+I'm a bit puzzled on how to solve this one. The issue detected here is that=
+ my
+driver (MFD_RTL8231) selects REGMAP_MDIO, which in turn selects MDIO_BUS. T=
+he
+latter is dependent on NETDEVICES, which is not selected in this test.=C2=
+=A0
+The kernel does not yet have any other consumers of REGMAP_MDIO, which is
+probably the reason the dependency issue has gone undetected until now.
 
->  		struct device_node *mpmu = of_parse_phandle(dev->of_node,
->  							    "spacemit,mpmu", 0);
->  		if (!mpmu)
+REGMAP_MDIO is not a visible symbol, so it must be selected by drivers.
 
-Regards,
-Yao Zi
+Other REGMAP_XYZ symbols (almost) exclusively use "depends on XYZ", but if =
+I
+change REGMAP_MDIO to "depends on", the warning just changes to:
+
+   WARNING: unmet direct dependencies detected for REGMAP_MDIO
+     Depends on [n]: MDIO_BUS [=3Dn]
+     Selected by [y]:
+     - MFD_RTL8231 [=3Dy] && HAS_IOMEM [=3Dy]
+
+Trying to make MFD_RTL8231 also depend on MDIO_BUS, like .e.g I2C dependent
+devices do, results in a recursive dependency:
+
+
+   error: recursive dependency detected!
+   	symbol GPIOLIB is selected by PINCTRL_RTL8231
+   	symbol PINCTRL_RTL8231 depends on MFD_RTL8231
+   	symbol MFD_RTL8231 depends on MDIO_BUS
+   	symbol MDIO_BUS is selected by PHYLIB
+   	symbol PHYLIB is selected by ARC_EMAC_CORE
+   	symbol ARC_EMAC_CORE is selected by EMAC_ROCKCHIP
+   	symbol EMAC_ROCKCHIP depends on OF_IRQ
+   	symbol OF_IRQ depends on IRQ_DOMAIN
+   	symbol IRQ_DOMAIN is selected by GENERIC_IRQ_CHIP
+   	symbol GENERIC_IRQ_CHIP is selected by GPIO_MVEBU
+   	symbol GPIO_MVEBU depends on GPIOLIB
+  =20
+The 'quick fix' appears to be to add "select NETDEVICES" to REGMAP_MDIO. Th=
+e
+platforms that use the RTL8231 MFD are typically ethernet switches, so they
+would have NETDEVICES enabled anway, but that feels very heavy handed and
+automatically pulls in a lot of extra stuff. Would this be acceptable or is
+there a more desirable approach I'm not seeing here?
+
+Best,
+Sander
 
