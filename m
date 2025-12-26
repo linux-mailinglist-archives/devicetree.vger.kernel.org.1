@@ -1,135 +1,110 @@
-Return-Path: <devicetree+bounces-249749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6955CCDEB22
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 13:27:19 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69AB4CDEAE6
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 13:18:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 95AD93004F5E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 12:26:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E99A43005F3B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 12:18:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA40320385;
-	Fri, 26 Dec 2025 12:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="j/NhIEhS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C7D225C838;
+	Fri, 26 Dec 2025 12:18:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E2C431DD90;
-	Fri, 26 Dec 2025 12:26:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB21827442;
+	Fri, 26 Dec 2025 12:18:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766752011; cv=none; b=Mk0R6yWqdJ77RiEVJ9wHHrQNAISoHt1hAIlXO+AF096dYnfgNYxWVmnrqa60rGgQoU///LO7U/EPM7OgccyVJ1CQRmDDTkn68zv3Y1zJ/ZP8nC8ydoro46uB91U4df4yukUhLRVFmOvUhKbt0Z9vws4GfoShV61AzDotfF0MIZM=
+	t=1766751500; cv=none; b=qZB5+yJfSpE2xqF4Mh3JhmF/cHdwceYQAiOJfjOJkNnGVXp8Y8U2AqKzBI8oiDQZw0coNXuuODsUAjwPFG7rR4t4I0kbdy+rnoAf1OqIFEuWkWoGyLHb7rHZ4r9N6n149N62/8nJiCMICACyZSmx92ThipA06b4BRcYlyUIu3Jg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766752011; c=relaxed/simple;
-	bh=LPmJ0dRpHT4hBfwUFXbURMPSiWdJTgqaXBAHigZnfOY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=meejlI9FYR2UC8s/KjL+H8ucvIn/7PcpbJjZWnnsQNv0HkMD6Cj7HrhMm6RQP5ZTABvjR4Jc/PaaOGGLg8RW9booYnoSGvj14dbszBxeHVkIgou2TU/lUYKdWz16kUVGdDhfSUPGWCl19lK/38rSwomPcPgoGLg//PxsR/FTykU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=j/NhIEhS; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 531166002994;
-	Fri, 26 Dec 2025 12:18:01 +0000 (WET)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id Wkz6qmqDOtHM; Fri, 26 Dec 2025 12:17:59 +0000 (WET)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 61E8760029AE;
-	Fri, 26 Dec 2025 12:17:58 +0000 (WET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail2; t=1766751478;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=lrAiZQajxWmr2L28Pelew79G5nZQAOdnG1+Yoi4Mu78=;
-	b=j/NhIEhSLKwBNFtnUk+tPXENkZR6TgiJvPXu6xtGDebnFTIiuTrF3PkU2zifpjGVddDKNU
-	tfwP0H97C2Mn+g8wE67efwYjX/Jy7gcFuyKqqdgfM/rbi27m3omPknrVbyvXtJzR8ir7ER
-	u911aha3XR0awD7QR+I0VuIoXyGRJyqSAJWNjni/TUf7lqYDzt/r0/azZSBQY2tOS93+u9
-	YYeAD9v5CKLIHuQpdukj4ftAr1G2/jmErRVcDoMmZj1IFUzCQyKjVIugRjADDCIGeUHkls
-	s0QQUWBMoxK5skIT5geX+u6jCVmjB80rP0r4MwKaTogdWv5M08iRjKgkRSA3XQ==
-Received: from [192.168.1.95] (unknown [IPv6:2001:8a0:fbec:a900:d4fe:ebe9:e3bd:bbef])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 6B13536011F;
-	Fri, 26 Dec 2025 12:17:57 +0000 (WET)
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-Date: Fri, 26 Dec 2025 12:17:32 +0000
-Subject: [PATCH] arm64: tegra: smaug: Enable DisplayPort via USB-C port
+	s=arc-20240116; t=1766751500; c=relaxed/simple;
+	bh=h9CgFTFilRzjMtx4ewKo4ScsC7MNsvFHnDRkjClR7UQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kRdVL5UxCsQRNZwLs/9POIK8ljyTazJlucU5bCXI2kbZB1DnYmswxf5q4TuFwvt+xFW0/MLAYN4kpCEAYcsHJ2XP5x90RcjSFQQVO+xio3Kl5IVBxUT8mwfpqiJmI4fBsvRIr7L9+HZVQmoIXLVZQBGldsLssTNeTZfZt9W9gpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id E0D16341F62;
+	Fri, 26 Dec 2025 12:18:17 +0000 (UTC)
+Date: Fri, 26 Dec 2025 20:18:12 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Yao Zi <me@ziyao.cc>
+Cc: Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@4d2.org>,
+	Guodong Xu <guodong@riscstar.com>,
+	Inochi Amaoto <inochiama@gmail.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] clk: spacemit: k3: add the clock tree
+Message-ID: <20251226121812-GYA2007514@gentoo.org>
+References: <20251226-k3-clk-v3-0-602ce93bb6c3@gentoo.org>
+ <20251226-k3-clk-v3-5-602ce93bb6c3@gentoo.org>
+ <aU50DIe9qMneb0GT@pie>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251226-smaug-typec_dp-v1-1-7eabcd59da4c@tecnico.ulisboa.pt>
-X-B4-Tracking: v=1; b=H4sIANx8TmkC/x3MQQqAIBBA0avErBN0oKKuEhFDTjaLSrSikO6et
- HyL/xNEDsIRuiJB4Eui7FuGKQuYFtocK7HZgBorg1iruNLp1PF4nkbrlWkb1IaILDHkyAee5f6
- H/fC+H9RLTdZgAAAA
-X-Change-ID: 20251226-smaug-typec_dp-197201aaadae
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766751477; l=1281;
- i=diogo.ivo@tecnico.ulisboa.pt; s=20251226; h=from:subject:message-id;
- bh=LPmJ0dRpHT4hBfwUFXbURMPSiWdJTgqaXBAHigZnfOY=;
- b=dJTztMjVfwSTIPq3fQzE8mne3qNcFrCE9KZCc7ZMXtgysCsE5tHNQmARE6UOG6ZOlXGy2cgdw
- ZdycZ/1iUsEBYiUpIC6X/lFd0Al3cPc6P6ycK7hLgs//nEAh/5ccM/w
-X-Developer-Key: i=diogo.ivo@tecnico.ulisboa.pt; a=ed25519;
- pk=x42OmbZ3iy1p2ofzTP2fyOiZoFfRm462OA8WYYqsVUg=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aU50DIe9qMneb0GT@pie>
 
-Enable both SOR and DPAUX modules allowing the USB-C port to transmit
-video in DP altmode. Tested on several monitors with USB-C to HDMI
-adapter.
+Hi Yao,
 
-Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
----
- arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On 11:39 Fri 26 Dec     , Yao Zi wrote:
+> On Fri, Dec 26, 2025 at 07:01:20PM +0800, Yixun Lan wrote:
+> > Add clock support to SpacemiT K3 SoC, the clock tree consist of several
+> > blocks which are APBC, APBS, APMU, DCIU, MPUM.
+> > 
+> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > ---
+> >  drivers/clk/spacemit/Kconfig      |    6 +
+> >  drivers/clk/spacemit/Makefile     |    3 +
+> >  drivers/clk/spacemit/ccu-k3.c     | 1482 +++++++++++++++++++++++++++++++++++++
+> >  drivers/clk/spacemit/ccu_common.c |    3 +-
+> >  4 files changed, 1493 insertions(+), 1 deletion(-)
+> 
+> ...
+> 
+> > diff --git a/drivers/clk/spacemit/ccu_common.c b/drivers/clk/spacemit/ccu_common.c
+> > index f1a837aafb46..5132f73be68d 100644
+> > --- a/drivers/clk/spacemit/ccu_common.c
+> > +++ b/drivers/clk/spacemit/ccu_common.c
+> > @@ -144,7 +144,8 @@ int spacemit_ccu_probe(struct platform_device *pdev)
+> >  	 * are in APBS region. Reference to MPMU syscon is required to check PLL
+> >  	 * status.
+> >  	 */
+> > -	if (of_device_is_compatible(dev->of_node, "spacemit,k1-pll")) {
+> > +	if (of_device_is_compatible(dev->of_node, "spacemit,k1-pll") ||
+> > +		of_device_is_compatible(dev->of_node, "spacemit,k3-pll")) {
+> 
+> To me it's better to add a argument to spacemit_ccu_probe to specify the
+> compatible of PLL, so we don't need to modify ccu_common.c each time a
+> new SoC is introduced, and the condition won't be pretty long in the
+> future.
+Adding extra argument will break {struct platform_driver}.probe() prototype
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-index 49bf23d6f593..b88428aa831e 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-@@ -31,6 +31,11 @@ memory@80000000 {
- 	};
- 
- 	host1x@50000000 {
-+		dpaux1: dpaux@54040000 {
-+			vdd-supply = <&pp3300>;
-+			status = "okay";
-+		};
-+
- 		dsia: dsi@54300000 {
- 			avdd-dsi-csi-supply = <&vdd_dsi_csi>;
- 			status = "okay";
-@@ -58,6 +63,13 @@ link1: panel@0 {
- 			};
- 		};
- 
-+		sor1: sor@54580000 {
-+			avdd-io-hdmi-dp-supply = <&pp1800>;
-+			vdd-hdmi-dp-pll-supply = <&avddio_1v05>;
-+			nvidia,dpaux = <&dpaux1>;
-+			status = "okay";
-+		};
-+
- 		dpaux: dpaux@545c0000 {
- 			status = "okay";
- 		};
+I can think of creating a sepecific helper function for each driver to
+hide the change, but still will bring extra cost, something will like:
+ k1_ccu_probe(pdev) -> spacemit_ccu_probe(pdev, compatible)
 
----
-base-commit: c100317dc8c40c71bfb572353d87ca1735d39fd5
-change-id: 20251226-smaug-typec_dp-197201aaadae
+> 
+> It isn't a serious issue for now, and I think this piece of code is
+> acceptable.
+right, I'd be reluctant to do the change
 
-Best regards,
 -- 
-Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-
+Yixun Lan (dlan)
 
