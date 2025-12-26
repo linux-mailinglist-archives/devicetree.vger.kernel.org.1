@@ -1,152 +1,135 @@
-Return-Path: <devicetree+bounces-249727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487B8CDE822
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 09:38:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E1C4CDE894
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 10:29:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 95F543000EBD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 08:38:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DD1AA3009835
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 09:29:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A60A3314B70;
-	Fri, 26 Dec 2025 08:38:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDD89289E13;
+	Fri, 26 Dec 2025 09:29:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="BYvH9uNa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pJpVyiJ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA90114A8B;
-	Fri, 26 Dec 2025 08:38:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B860728312F
+	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 09:29:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766738289; cv=none; b=ibXBTLd0XKiDEVITlyrjkS67xLY4jMU3jncGa8KX0Kfp1XrxDEPnwyVK9yYTf9v6xYDxU1vgn45R+ylba8Rdp8Cyv6TnxLZh2TpwkHariHACuca8FpEUQNoPjXNiAiAYKzhDFarxthdqESnYVfY9uP46YFzxpTeYrFC0emfg2cc=
+	t=1766741382; cv=none; b=kmKU/urH4Ws9PemzttxJwq//pjNcXFkJoCQOsiIYpQaZEGK+Ilt2maX+9G4y4zU2NwTFTLAsqFNOPuVc+gVH8mandtRxtfkwU5VE/jeV2mpvOw7eGoiMPeQZDfMukfdMfqayyc4dhmIcFQfFXiJfvF6YmsQdIjNTVK6Jm+9BALg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766738289; c=relaxed/simple;
-	bh=LqxyURtloegT4m/zAMO9KjepBqGZM6jzaRvo+Psy7E0=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MGntCptS1JIqlygq36+4K6GB9I8ukea9N+h82OIu+/a0gDZC2zbY9dbhkpXsNNvkK/UmLWDmemBClZvo9mWbVbUTp8jXdtfmvEtTgH8eHkJMCY3t3alc6G7Qn09yJ7zN8/k7Ivvsxwv41XEDKQHvjiaj72w+i7EYLwB4d+OZe5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=BYvH9uNa; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5BQ8bnM433311957, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1766738269; bh=z7Wwgy0d8I6voARKvl0a7KvTVnYk//mpi1lBYRvjR84=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
-	 Content-Transfer-Encoding:Content-Type;
-	b=BYvH9uNasgr8uaxkIk31AkKIrdzs6w2jAHlgSunZnmW9t14i/XdKCojdXkjxPkjFo
-	 nE0qWIC+EDT111bUQXWdaxXNHaiCO5fWg+imUcRhrJ4ORvwmIZjUeNRaQ3XXO2Dkew
-	 Eb1XE9uZQHcbObGAxzc+cEw5VEI09a0YayL9Rn8JJiZYJ2hoxSXWfYS5+CUYrTStmF
-	 eNXqh5ZYk6n61roqr4zENV1EeZ3Abdw7uv2CIBESx4bG8EdjIA0Y2f+xjdImF4apGK
-	 SXTxvtzoDAtVdMKp55hC/0COARTX6mRkS8gOhHzmgvLa7K3JFtXvYFGdwvg5lc25MT
-	 qaY01VYgLBwTQ==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5BQ8bnM433311957
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 26 Dec 2025 16:37:49 +0800
-Received: from RTKEXHMBS03.realtek.com.tw (10.21.1.53) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Fri, 26 Dec 2025 16:37:49 +0800
-Received: from sw-server.localdomain (172.24.54.4) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server id
- 15.2.1748.10 via Frontend Transport; Fri, 26 Dec 2025 16:37:49 +0800
-From: Oder Chiou <oder_chiou@realtek.com>
-To: <cezary.rojewski@intel.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <perex@perex.cz>, <linux-sound@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <flove@realtek.com>, <shumingf@realtek.com>, <jack.yu@realtek.com>,
-        <derek.fang@realtek.com>, Oder Chiou <oder_chiou@realtek.com>
-Subject: [PATCH v11 3/4] ASoC: dt-bindings: realtek,rt5575: add support for ALC5575
-Date: Fri, 26 Dec 2025 16:39:14 +0800
-Message-ID: <20251226083914.1052653-1-oder_chiou@realtek.com>
-X-Mailer: git-send-email 2.52.0
+	s=arc-20240116; t=1766741382; c=relaxed/simple;
+	bh=ajEhdSEL5pNc/Ubh7CXIVerCP1cnWW3WU3kkjZReQfQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rvlMFzzBAJZFkwBdePEynqnsPQ10YUH8hkePI1ihpAC//AOtqrTZOwySQP0yqki+Q+Sh+fSFGRjLGL9aUt8UwjMl7voYHNNIEifxbCGFMevlZc2B904aM3Ifv1loylHI43Rs1OeKFqG6DhOcPPOEQDKsl8Z51sWpaXZJkZk7cM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pJpVyiJ1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56588C4CEF7
+	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 09:29:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766741382;
+	bh=ajEhdSEL5pNc/Ubh7CXIVerCP1cnWW3WU3kkjZReQfQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=pJpVyiJ18DyN3LpXtqImIEX68eyZG78dLXXQxNSv7S1ovw6d39+Omz4G534l+PJ1A
+	 V2vHVoyjTeAT3Y+L7WXqS/dFmTxDSIR6xb2NF7a+/91lwt/2I0qpiKa/ihDRI+/mZh
+	 kxYuLvjOzWcIgjqwPAiCPF8PhDV2dk7eqtJsbuzr1a1LcwSt+ofoh59vNGAQFP7JeS
+	 oVp7GgtUE9QtlX77U/0Mlaopce5jF9ZUZ/ILuHuIDC8l9ZkRkhrFYjKsi/QgW8mkJH
+	 qLCCXjJtrfZM37Ogl81Yjg6q8fbH0qcklBLRjwoscY4JoaegMVDUf3UGlEdUMeHDqF
+	 53S/5imKzBcaA==
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-787eb2d8663so89580367b3.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 01:29:42 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVnGuVWyVnpKUtp7rDlLBTCaR4PiXnd1MrI/ZlRic2frXEoPviAmHg9RTmviWQz/QnvTOygEofJ1dGN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIvEpF66zK5aHAGqMoyju4ZLiusxp/5j21hJtskDuUJq+ypnw8
+	3JqwQwUXVBeCJnGoS+mGez1x51pPV5a52uqeAKAMk+I18DjTQaM0eG4IhN0GxQPNkif1xSZMfvi
+	t6uyDUARgSXA/c1YYbxOGI6OJ3VmpwOw=
+X-Google-Smtp-Source: AGHT+IF3r5BG9hTIHr8zuwTx79GqFycotrCyN/4vMXe9RrjtpXeL6chNB8YbmmqnT/TEhvbFt44GOPJsJC5H2SIP8Og=
+X-Received: by 2002:a05:690c:ed5:b0:787:a126:5619 with SMTP id
+ 00721157ae682-78fa5a8cb44mr238635187b3.11.1766741381741; Fri, 26 Dec 2025
+ 01:29:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20251127-bogged-gauze-74aed9fdac0e@spud> <20251127-approve-parsley-49302c061ea1@spud>
+In-Reply-To: <20251127-approve-parsley-49302c061ea1@spud>
+From: Linus Walleij <linusw@kernel.org>
+Date: Fri, 26 Dec 2025 10:29:31 +0100
+X-Gmail-Original-Message-ID: <CAD++jLnLgLHeCjc7HD6KHQ-pWb9TFHbTUC-KB5X8eCFDXNNOBA@mail.gmail.com>
+X-Gm-Features: AQt7F2ofkXwYRaQ5RRWsRICeS2UHrcZAnOb0uu0G4CApv4Ccik0sbfg0XhOvPco
+Message-ID: <CAD++jLnLgLHeCjc7HD6KHQ-pWb9TFHbTUC-KB5X8eCFDXNNOBA@mail.gmail.com>
+Subject: Re: [RFC v2 2/5] pinctrl: add generic functions + pins mapper
+To: Conor Dooley <conor@kernel.org>
+Cc: linus.walleij@linaro.org, Conor Dooley <conor.dooley@microchip.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Valentina.FernandezAlanis@microchip.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Audio codec with I2S, I2C and SPI.
+Hi Conor,
 
-Signed-off-by: Oder Chiou <oder_chiou@realtek.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/sound/realtek,rt5575.yaml        | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
+sorry for being slow in reviews!
 
-diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5575.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
-new file mode 100644
-index 000000000000..981ebc39b195
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/realtek,rt5575.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ALC5575 audio CODEC
-+
-+maintainers:
-+  - Oder Chiou <oder_chiou@realtek.com>
-+
-+description:
-+  The device supports both I2C and SPI. I2C is mandatory, while SPI is
-+  optional depending on the hardware configuration. SPI is used for
-+  firmware loading if present.
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: realtek,rt5575
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-parent:
-+    description:
-+      Optional phandle reference to the SPI controller used for firmware
-+      loading. The argument specifies the chip select.
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  # I2C-only node
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@57 {
-+            compatible = "realtek,rt5575";
-+            reg = <0x57>;
-+        };
-+    };
-+
-+  # I2C + optional SPI node
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@57 {
-+            compatible = "realtek,rt5575";
-+            reg = <0x57>;
-+            spi-parent = <&spi0 0>; /* chip-select 0 */
-+        };
-+    };
--- 
-2.52.0
+On Thu, Nov 27, 2025 at 11:58=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
 
+> +config GENERIC_PINCTRL_BELLS_AND_WHISTLES
+
+Interesting name :D
+
+A bit like GENERIC_PINCTRL_LOCK_STOCK_AND_BARREL.
+
+Have you considered simply GENERIC_PINCTRL?
+
+> +obj-$(CONFIG_GENERIC_PINCTRL_BELLS_AND_WHISTLES) +=3D pinctrl-generic.o
+
+especially since the file is named like so...
+
+> +/*
+> + * For platforms that do not define groups or functions in the driver, b=
+ut
+> + * instead use the devicetree to describe them. This function will, unli=
+ke
+> + * pinconf_generic_dt_node_to_map() etc which rely on driver defined gro=
+ups
+> + * and functions, create them in addition to parsing pinconf properties =
+and
+> + * adding mappings.
+> + */
+> +int pinctrl_generic_pins_function_dt_node_to_map(struct pinctrl_dev *pct=
+ldev,
+> +                                                struct device_node *np,
+> +                                                struct pinctrl_map **map=
+s,
+> +                                                unsigned int *num_maps)
+
+All code looks fine.
+
+There is just the philosophical question whether groups and functions shoul=
+d
+really be in the device tree, as they can obviously be statically defined a=
+nd
+associated with the compatible.
+
+I got so much pressure to do it this way because so many driver authors rea=
+lly
+wanted to keep this in the device tree (usually because it saves memory in =
+the
+kernel) that I eventually caved in, and I have also been criticized for bei=
+ng to
+lenient on this because the compatible should suffice.
+
+For me this is all fine, and with you submitting this I suppose even the DT
+maintainers think this is fine to keep groups and functions in the device
+tree, so there it is.
+
+I can merge this when it's out of RFC.
+
+Yours,
+Linus Walleij
 
