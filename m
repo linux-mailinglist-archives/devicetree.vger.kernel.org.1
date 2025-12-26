@@ -1,82 +1,72 @@
-Return-Path: <devicetree+bounces-249719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0166CDE6AC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 08:06:51 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD225CDE7CE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 09:31:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 81D55301AD00
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 07:06:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2D0123001039
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 08:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978293148D6;
-	Fri, 26 Dec 2025 07:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B20315D5B;
+	Fri, 26 Dec 2025 08:30:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FR9YVqRx"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="R33qWfpQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF600313E2F;
-	Fri, 26 Dec 2025 07:05:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC15314D28;
+	Fri, 26 Dec 2025 08:30:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766732756; cv=none; b=lgVHwuDAE7LZzn+6t0zyrihlC8A2LVGrDPzll5wbs7FoDhIzsqi+3FFTR5f0ynVXssSqpkW5Kwz94sEJIj8ZavboOmIOA3AkB5xuPCHG+PzIzG8fdvxznwx1+ge27yoHj29oNOc+BQjW19Vo82AFZ0ntuC4HD4d5enAIGz/kfq8=
+	t=1766737805; cv=none; b=GOSyoyti0vpZglf+Jc4RakchVG2N/xZmt7Zhya/v0QduLC7SwT6kKKZE/uZi+6QbQmF39wSJWSmVWL4JIDpCHQwDL/dL0wXnO3ctjo4pCn9i+XQNDfKAX392rUJnLlo8va/LSpGdgrU33IlVCoP6kmCjlnYoyQX7/+WoGg2fGgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766732756; c=relaxed/simple;
-	bh=Fz50QREr/D1/rHTzFEX+Xci6ROtaWvxxJ03v8FmyOtQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=J/TzuCjvsdjZNFHAa6uz1wPuHRy0cI8Qm/+9XBhUQeBZi1DU8CTpfdysSCIJQsaiQ9RxwanW+UZ5pLkI+IbRKTocV+0dHk8tYHSwT2xxrunwXMpMeALb5RKBHmAlTCuE1hGl/19I1n9Aulz/nPkcHb2wkIdy0uldEffz7x2gqKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FR9YVqRx; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BPNugwt3634479;
-	Fri, 26 Dec 2025 07:05:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=jvFS/69PzEc
-	WHl3Hqe8ueX1yuMTuNSHSys3sPH2aIGg=; b=FR9YVqRx8ansJ5vNhh7YgRg5atL
-	WyS26W4OLapvsteFw64r467+fyrQMZIFEdn3aDK5Zxfnpf/ZzmeDBzNPrZNUR5b1
-	c1WSeik1tH0nifPq3dIKwdo39cVHgKsGWugqDmupWPiBX5R3VDtVJNxL6Y/ejzZr
-	jsn8oCDJnvkWELYma8mdpLc+vMcU9u6dIPKrytrJrrkZVnaTSicVohu6dMaZFcU3
-	5C2JhG1A22efhUIYVX8R7OAQAlpcuEl1TBRY9cjgt2VOO5P6l1ToKeIIYwjFeCZh
-	Se51BergoztyE64P9JRnXqIAGA1wtd35PFgmiiR4m0naZA/ah7jendr4ejA==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b8kywk6jp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Dec 2025 07:05:49 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5BQ75kpT023406;
-	Fri, 26 Dec 2025 07:05:46 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 4b5mvn69yp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Dec 2025 07:05:46 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5BQ75jRS023400;
-	Fri, 26 Dec 2025 07:05:45 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-kpallavi-hyd.qualcomm.com [10.147.243.7])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 5BQ75jUv023399
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Dec 2025 07:05:45 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4720299)
-	id 57E64576; Fri, 26 Dec 2025 12:35:44 +0530 (+0530)
-From: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>
-To: kpallavi@qti.qualcomm.com, srini@kernel.org, amahesh@qti.qualcomm.com,
-        arnd@arndb.de, gregkh@linuxfoundation.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>, quic_bkumar@quicinc.com,
-        ekansh.gupta@oss.qualcomm.com, linux-kernel@vger.kernel.org,
-        quic_chennak@quicinc.com, dri-devel@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        jingyi.wang@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
-        ktadakam@qti.qualcomm.com
-Subject: [PATCH v7 4/4] misc: fastrpc: Update dma_bits for CDSP support on Kaanapali SoC
-Date: Fri, 26 Dec 2025 12:35:34 +0530
-Message-Id: <20251226070534.602021-5-kumari.pallavi@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251226070534.602021-1-kumari.pallavi@oss.qualcomm.com>
-References: <20251226070534.602021-1-kumari.pallavi@oss.qualcomm.com>
+	s=arc-20240116; t=1766737805; c=relaxed/simple;
+	bh=50qYJ2DZ96TiSEEgFQEJGsQA5DUBzpAAjzlrDEelmgU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WS8paXsYotfwgs7yWiBKh/TJvzjtqG65PEWIDxPWjJMS8o1ad5CHzTjX40L30mg1aCmJg/stpD7pxAc6GH977AVZc8NTTByhIxELrQoJA02ob6fSWn1AgA2aQp4tmjrsEKrCXfL2CqQH34W0Mip2SGzxmEQYR1vNOhq6bEHAAAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=R33qWfpQ; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5BQ8TLtN43288529, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1766737761; bh=/YCmdqLFVOU0Zv6DNVRLclyXRlZ/6iZL3but2jGhJRk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=R33qWfpQqxycHJ0/c9ZSc/Xsb8yZ3G2kPzYydqhK7L9baoeZrXInQwJCwW3+SKvhh
+	 U9npH1VI772x4HAa9icmYMthPIcLraNJy4TP6mC1IA7fDBxzaP/2A82scwHeBLWLEM
+	 j6jqekONumrPQrCQ7rOifE/2sgVQVuxX9rqm6Rb3iixu75uL1mq6hBKM+FB2ucrv8p
+	 akWyS+gFPLPpNIsmVAV8XERXjspupm+xQvfkMFpb/hNvvZxJJY+uRKUruk052inTV7
+	 hlg2TToUpgc3yDCf/C5H08x1zqsnOa+ot3SuCRXhp4TrlhzL+9bX8RuDPdBetJDhnO
+	 clYRHFPSdI+2Q==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5BQ8TLtN43288529
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 26 Dec 2025 16:29:21 +0800
+Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 26 Dec 2025 16:29:21 +0800
+Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
+ RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 26 Dec 2025 16:29:21 +0800
+Received: from sw-server.localdomain (172.24.54.4) by
+ RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server id
+ 15.2.1748.10 via Frontend Transport; Fri, 26 Dec 2025 16:29:20 +0800
+From: Oder Chiou <oder_chiou@realtek.com>
+To: <cezary.rojewski@intel.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-spi@vger.kernel.org>, <perex@perex.cz>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <flove@realtek.com>,
+        <shumingf@realtek.com>, <jack.yu@realtek.com>,
+        <derek.fang@realtek.com>, Oder Chiou
+	<oder_chiou@realtek.com>
+Subject: [PATCH 0/4] ASoC: rt5575: Add the codec driver for the ALC5575
+Date: Fri, 26 Dec 2025 16:30:15 +0800
+Message-ID: <20251226083015.1052120-1-oder_chiou@realtek.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,112 +74,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI2MDA2NCBTYWx0ZWRfX5NeebwY+bsmc
- bC4zhJcTM2E7EfzHgMWvjDkhOkB9R+Q5QKVJDqgERRGf2PwlHPiOCcTUjHaGnS2P7YaLD3YKied
- Pkn1f0GYX+W408LFMXvTJH/d47X+GVn9pCMqJJSFWHt6EOhtypthsfCRe1Jh/DuwvneUvvcGTMh
- 4j4DMG+jHroOJSK3dCbj4e6iOrKK11z3XF2OrVO4vQT2JvZ6yFhWez6gyVbQ86udCzEgcTGD5WB
- xuypq2ySGcuvD+q1kToGFDIYxAGLLX10PlO92BQK9hBo+vd6qHz3dC2gFCWkvF6oxB1ieGTzWEe
- b0tinMurgx6YFFFKJVvKwh/T8Pe+vt5ETxcXrDuC7paV2ystgU6ept/0JwUEOdVCbOepfFo+MHt
- XMS/7Ht1NKWxw19RifH2S4Y2+iCf6moEIR6TONzRodsuzL6je0d4w4HN6XT8g/VO3ol3ASIHMxt
- 7GXwSRRFgucMQW5bcwg==
-X-Proofpoint-GUID: DeK9FdxI0cMHuKgQa3Usrs7UXJO-5wiO
-X-Authority-Analysis: v=2.4 cv=MKVtWcZl c=1 sm=1 tr=0 ts=694e33cd cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
- a=pfE1wiWnY1F2L3mdSfMA:9
-X-Proofpoint-ORIG-GUID: DeK9FdxI0cMHuKgQa3Usrs7UXJO-5wiO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-26_02,2025-12-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 bulkscore=0 impostorscore=0 phishscore=0
- adultscore=0 clxscore=1015 suspectscore=0 spamscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512260064
+Content-Type: text/plain
 
-DSP currently supports 32-bit IOVA (32-bit PA + 4-bit SID) for
-both Q6 and user DMA (uDMA) access. This is being upgraded to
-34-bit PA + 4-bit SID due to a hardware revision in CDSP for
-Kaanapali SoC, which expands the DMA addressable range.
-Update DMA bits configuration in the driver to support CDSP on
-Kaanapali SoC. Set the default `dma_bits` to 32-bit and update
-it to 34-bit based on CDSP and OF matching on the fastrpc node.
+Hi all,
 
-Signed-off-by: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>
----
- drivers/misc/fastrpc.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+This patch series adds support for the Realtek ALC5575 audio codec.
 
-diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-index fcc80206b7c4..4f5a79c50f58 100644
---- a/drivers/misc/fastrpc.c
-+++ b/drivers/misc/fastrpc.c
-@@ -259,6 +259,8 @@ struct fastrpc_session_ctx {
- 
- struct fastrpc_soc_data {
- 	u32 sid_pos;
-+	u32 dma_addr_bits_cdsp;
-+	u32 dma_addr_bits_default;
- };
- 
- struct fastrpc_channel_ctx {
-@@ -2197,6 +2199,7 @@ static int fastrpc_cb_probe(struct platform_device *pdev)
- 	int i, sessions = 0;
- 	unsigned long flags;
- 	int rc;
-+	u32 dma_bits;
- 
- 	cctx = dev_get_drvdata(dev->parent);
- 	if (!cctx)
-@@ -2210,12 +2213,16 @@ static int fastrpc_cb_probe(struct platform_device *pdev)
- 		spin_unlock_irqrestore(&cctx->lock, flags);
- 		return -ENOSPC;
- 	}
-+	dma_bits = cctx->soc_data->dma_addr_bits_default;
- 	sess = &cctx->session[cctx->sesscount++];
- 	sess->used = false;
- 	sess->valid = true;
- 	sess->dev = dev;
- 	dev_set_drvdata(dev, sess);
- 
-+	if (cctx->domain_id == CDSP_DOMAIN_ID)
-+		dma_bits = cctx->soc_data->dma_addr_bits_cdsp;
-+
- 	if (of_property_read_u32(dev->of_node, "reg", &sess->sid))
- 		dev_info(dev, "FastRPC Session ID not specified in DT\n");
- 
-@@ -2230,9 +2237,9 @@ static int fastrpc_cb_probe(struct platform_device *pdev)
- 		}
- 	}
- 	spin_unlock_irqrestore(&cctx->lock, flags);
--	rc = dma_set_mask(dev, DMA_BIT_MASK(32));
-+	rc = dma_set_mask(dev, DMA_BIT_MASK(dma_bits));
- 	if (rc) {
--		dev_err(dev, "32-bit DMA enable failed\n");
-+		dev_err(dev, "%u-bit DMA enable failed\n", dma_bits);
- 		return rc;
- 	}
- 
-@@ -2319,10 +2326,14 @@ static int fastrpc_get_domain_id(const char *domain)
- 
- static const struct fastrpc_soc_data kaanapali_soc_data = {
- 	.sid_pos = 56,
-+	.dma_addr_bits_cdsp = 34,
-+	.dma_addr_bits_default = 32,
- };
- 
- static const struct fastrpc_soc_data default_soc_data = {
- 	.sid_pos = 32,
-+	.dma_addr_bits_cdsp = 32,
-+	.dma_addr_bits_default = 32,
- };
- 
- static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+Changes in v11:
+- Patch 1/4:
+  - minor fixes
+- Patch 2/4:
+  - change of_find_spi_controller_by_node() gating to CONFIG_OF
+- Patch 3/4:
+  - nothing
+- Patch 4/4:
+  - achieve reverse-christmas-tree notation
+  - remove formal version check
+  - revise check whether the firmware boots from SPI or not
+  - minor fixes
+
+Changes in v10:
+- Patch 1/3:
+  - export of_find_spi_controller_by_node()
+- Patch 2/3:
+  - remove realtek,rt5575-use-spi
+  - add spi-parent for firmware-loading
+- Patch 3/3:
+  - use of_find_spi_controller_by_node() to get the SPI controller and add
+    the spi device for firmware-loading
+- Link to v10: https://lore.kernel.org/all/20251216071853.3929135-1-oder_chiou@realtek.com/
+
+Changes in v9:
+- Patch 1/2:
+  - modify the comment
+  - change the compatible name to "realtek,rt5575-use-spi"
+- Patch 2/2:
+  - remove the standalone rt5575_spi_driver module and integrate its
+    functionality into the I2C driver
+  - move the SPI firmware-loading function to rt5575-spi.c
+  - use the match data to distinguish between w/wo flash
+  - minor fixes
+- Link to v9: https://lore.kernel.org/all/20251211110130.2925541-1-oder_chiou@realtek.com/
+
+Changes in v8:
+- Patch 1/2:
+  - remove the variable rt5575_spi_ready
+  - use the multiple compatible names to distinguish between w/wo flash
+- Patch 2/2:
+  - add compatible enum "realtek,rt5575-with-spi"
+- Link to v8: https://lore.kernel.org/all/20251201105926.1714341-1-oder_chiou@realtek.com/
+
+Changes in v7:
+- Patch 1/2:
+  - add a caption for the tristates
+  - remove the redundant enum of the SPI command
+  - add the error log in the request firmware failure
+  - change the function name rt5575_spi_fw_loaded to rt5575_fw_load_by_spi
+  - minor fixes
+- Patch 2/2:
+  - modify commit message
+- Link to v7: https://lore.kernel.org/all/20251121084112.743518-1-oder_chiou@realtek.com/
+
+Changes in v6:
+- Patch 1/2:
+  - modify commit message
+  - add select SND_SOC_RT5575 to config SND_SOC_RT5575_SPI in the Kconfig
+  - revise the boiler plate in the head of the file
+  - sort the include files
+  - use a structure to transfer the spi data
+  - use the poll() related function instead the for-loop
+  - revise the UUID to the private ID
+  - minor fixes
+- Patch 2/2:
+  - modify description
+- Link to v6: https://lore.kernel.org/all/20251031073245.3629060-1-oder_chiou@realtek.com/
+
+Changes in v2 to v5:
+- Patch 1/2:
+  - move the firmware to the subdirectory
+  - remove the empty functions
+  - remove the cache_type in the regmap_config
+  - add the error log in the run firmware failure
+- Patch 2/2:
+  - nothing
+- Link to v5: https://lore.kernel.org/all/20251015103404.3075684-1-oder_chiou@realtek.com/
+
+Oder Chiou (4):
+  spi: export of_find_spi_controller_by_node()
+  spi: change of_find_spi_controller_by_node() gating to CONFIG_OF
+  ASoC: dt-bindings: realtek,rt5575: add support for ALC5575
+  ASoC: rt5575: Add the codec driver for the ALC5575
+
+ .../bindings/sound/realtek,rt5575.yaml        |  61 +++
+ drivers/spi/spi.c                             |  23 +-
+ include/linux/spi/spi.h                       |   9 +
+ sound/soc/codecs/Kconfig                      |  10 +
+ sound/soc/codecs/Makefile                     |   3 +
+ sound/soc/codecs/rt5575-spi.c                 | 118 ++++++
+ sound/soc/codecs/rt5575-spi.h                 |  27 ++
+ sound/soc/codecs/rt5575.c                     | 352 ++++++++++++++++++
+ sound/soc/codecs/rt5575.h                     |  58 +++
+ 9 files changed, 651 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
+ create mode 100644 sound/soc/codecs/rt5575-spi.c
+ create mode 100644 sound/soc/codecs/rt5575-spi.h
+ create mode 100644 sound/soc/codecs/rt5575.c
+ create mode 100644 sound/soc/codecs/rt5575.h
+
 -- 
-2.34.1
+2.52.0
 
 
