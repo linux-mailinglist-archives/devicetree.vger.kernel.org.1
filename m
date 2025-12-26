@@ -1,196 +1,318 @@
-Return-Path: <devicetree+bounces-249747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B51BCCDEAF8
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 13:19:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60D16CDEB19
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 13:25:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 57C3F30072BB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 12:19:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 24F2D3007202
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 12:25:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE3B32039B;
-	Fri, 26 Dec 2025 12:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EFFB320CD3;
+	Fri, 26 Dec 2025 12:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nj5z+U1X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WxDROA42"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3AD31ED66;
-	Fri, 26 Dec 2025 12:19:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2650320CAB
+	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 12:25:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766751582; cv=none; b=XvVyLCTMOZTQcgiKCZIm0F3HxhQ5dn2QXgOLj4E58ROM9nKtMvuQy9MQqgXTkDY+XXj9BOn8EB4X/V9Krw1FSMlYkk2CYsU4oorRNxqk9QN63FzXu7cg5N9wtDo8llQqp4il7OkEFnnDiVpItRv6KbhYn5bSrTEVbrgxDLVm5UM=
+	t=1766751928; cv=none; b=XohNVUnQ2i9MM04y3xub7fXibTxRHbiaMK+pALakYTVMb3os8DcYN7mhlhv+XqmPUpHB3PWt3X+uGZVa7qYLwyAPuOaHJlKz7w8Q1E0Avo3qwgYagf0g/3XmFmL1VpTkr6Y9ZKXqRNwMriICJLGznTOQkL6pucisBqsR5ajfHnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766751582; c=relaxed/simple;
-	bh=uAxk26knPepIH440iKZ5l20d0wLGzJkjVhWaQLPTqko=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VAYqRU3XQI99eyNrR2aIOkn93jp5ZnzbFXqWNSkPGQxmuFuw0uhrSNS7FkYRyFdidHQ7fj/ZzrmtTvGlJVYdXWkKotBWoW34d+X9gAxM719J2liTm2EW7or7bjUOWmBKjvVrQ38ZtW4PkaNygyGr+3k2+T+4+GvKoLXWcaF/Y6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nj5z+U1X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEFB0C4CEF7;
-	Fri, 26 Dec 2025 12:19:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766751581;
-	bh=uAxk26knPepIH440iKZ5l20d0wLGzJkjVhWaQLPTqko=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Nj5z+U1XgV+GXN87GIVYLhlSzBqc8DsIgU+zyKp5dqIc3VQMby5xJV5RPhxFRR8VP
-	 TCW0zcp5yCiq+ZNrz98jjbqvNblahHeezL0a2x5xw9G3GC9BSA1R5LN/ltLIsLY3H3
-	 RKBgjE7w1IpahppEyYyMePNOyoRpz5T4xeGcBwt8QTz1x/DKaSHxQaBLtgYLEuWWpc
-	 NglBTbeq0Gw45ev5nN0UeWxobArwRHgcV/yrSlEQVQQ7op/RoBwMO5CXcDv4iQrsH7
-	 0aO1ZbQV2YCr5GWVVf0yFXIkptr1C2f7byuZiPf8vekYRCKe3C1C1BEnTvUOl97Rjf
-	 G2W2ol3ok1H5g==
-Message-ID: <a26a5397-7597-49f6-9e73-3eb853915166@kernel.org>
-Date: Fri, 26 Dec 2025 13:19:34 +0100
+	s=arc-20240116; t=1766751928; c=relaxed/simple;
+	bh=s0igInVi2fsL8o4Z4M/V+k7XSMGGxM39qOmVRGDnFFo=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=CJ9ikpx9fgouRcsjP0HyLpdcRk5JQa6xTyNlla9AhzLwoRR2/JZwUc40FQu9eDKjm8HQGK+If0qNp5QXA4p+aCEDVUAzX0GT4Fi5NjBX47WpK2tvSiTLbpuVyvrTWl+/MxiQh6qJnEmzOAHvQXTYkdC8WwM2VA+f05nKpZKLDs4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WxDROA42; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4779cb0a33fso73391695e9.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 04:25:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766751924; x=1767356724; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x/QWZMgTcROcYFJ0cFP0webMTrmmuMu3SFDdjIFr7Xg=;
+        b=WxDROA42RUsr0RY3rgG+wgchKtUffrDJ3mducqIIRnG6S4wXv8RNF/Wxe1NDCsKszJ
+         nJLhqzIzqYWYv3vIYrHNtnKnmXFsnVbalMuCOX5PDYmJrHnzcLnUMhrcQeUj/MANVmuz
+         EwVmyjjdQXAWobnVt9hXJy2uMl6gsobG4YrLrM1lrSECsAMZfEbniPJJ1f5F1yNHSF2Q
+         o91AFXXS3oHFyWmBdnsgmeY3omOg5LUT72ikVUVRrhcT6A0Lte4uoSP1KBwFyoLy3g1D
+         mQ1CIH1y6ZYubF6YW/DYicj8umCJxt5/aisihz654x6GbAyiwxOPGaNUK2Ff96cbX+hl
+         5NEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766751924; x=1767356724;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x/QWZMgTcROcYFJ0cFP0webMTrmmuMu3SFDdjIFr7Xg=;
+        b=O4qftSdHLAwLtFdbr1E+W1LoWWgEDrSS3g8o/UYgx/t0ZE2XajpaEGzGn4qxVFnKPp
+         +bIr1gI65zzeelyFyxcuwUR0C2L+AJjNPHubODDcRTW/BWmjft7nobQobEZcezLZkpYG
+         CpAeZgdLTnxElc5T7sQxepVTT8QX93gmEG+Guj9TT1DJaNICErzTI/4NqFbG0ciLdU0o
+         MZQ+iNon3oun48+7klzBuWvbOhVaj+SH/mOc6+jyS1cgb1eJEdRI7QebNMjBB7h5yuOj
+         w746Hu9cVOC6awPh/mmBqo5nqPPsId4N6vEDp36q4L77isj893+S846oFF8gD9OhXkLR
+         9hYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVeFnO9IFfBkO5+0K+/RGb51KZmDpkSbCpI6Ch6Rwmi9X7pjJ6YHkIfAQLp0GXQi9rePIOIWcdRS9n7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGmA7sa5OIMrEnNbuKb428HX6dMAlnsXMb6kjkhQ0iMvkYbGlL
+	ChgvQajTMXGCpuOddG5pAid1ZUI2NK+02dsP6KUTfflhaE4s4ZaKb9AZ
+X-Gm-Gg: AY/fxX5Pl5WPpq/zIfurl+9QRsgXAPDcV5JrUVQJXKng4bZYr5PQfN6LFrS2FCvoTEL
+	RLBQ4LYLgMT1X2dCEH3Sp2cC0ZGduKcsYMj1vju6KqC1/ramqG+5VJMXi30c8sbb7EmJtk83n5J
+	rmCYKvX5TnnyIkZYwzudnQ8Md444GaSu9OtUJF4k+dz1z/bL/QNoFbnpkfBDhVb5P4b1FVnMLzF
+	x8exFREMdvCtAZPxepu/6q7Njr8cwj4Ha8XazXk6uzX383bQfCQ3cjiAQmwyvlWVV0/Fos+MW+G
+	ADekpy3yQPnpB1Hv0iZwhaOgs/+pHLgmZ6smTpoV7/fDZYSui2p902GMFtRAiy//nMmKUiELBxw
+	HjEwptGOr3TbU6ekgBfU4OTSYQ2LXqe4NXVC1x/YZMPMfEqPRy8XSlQop6ILmZtQKRqXUkdpWQ+
+	0A8Ye60gR2176Kl1EsgUiVNpUU9JxGIgEXVjV1+Gux9wG9mc3Q/PhKdTxYPPXy0EZQYOaW1KV5y
+	sZdgPePMQ==
+X-Google-Smtp-Source: AGHT+IGc8Z2MAoLbOks33fyQFWGK5GI9Gp1WejsRvglw//425ZHkxFEhT7LmB7wnFeheTO44I6eLuA==
+X-Received: by 2002:a05:600c:620d:b0:47b:da85:b9ef with SMTP id 5b1f17b1804b1-47d19569c23mr295125695e9.16.1766751924042;
+        Fri, 26 Dec 2025 04:25:24 -0800 (PST)
+Received: from smtpclient.apple (static.253.36.98.91.clients.your-server.de. [91.98.36.253])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324ea82feasm45346320f8f.24.2025.12.26.04.25.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 26 Dec 2025 04:25:23 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/6] mfd: Add RTL8231 core device
-To: Sander Vanheule <sander@svanheule.net>, kernel test robot
- <lkp@intel.com>, Lee Jones <lee@kernel.org>, Pavel Machek
- <pavel@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Michael Walle <mwalle@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Mark Brown <broonie@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>
-Cc: Paul Gazzillo <paul@pgazz.com>,
- Necip Fazil Yildiran <fazilyildiran@gmail.com>,
- oe-kbuild-all@lists.linux.dev, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20251215175115.135294-4-sander@svanheule.net>
- <202512220956.FVakrdhV-lkp@intel.com>
- <12c98c7c8bead26a61764e3e9611badf2cdfcac5.camel@svanheule.net>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <12c98c7c8bead26a61764e3e9611badf2cdfcac5.camel@svanheule.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.3\))
+Subject: Re: [PATCH v2 2/3] media: rkvdec: Add support for the VDPU346 variant
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <DF84QZ0YBLY8.2DYCSM2EQIF5@cknow-tech.com>
+Date: Fri, 26 Dec 2025 16:25:09 +0400
+Cc: Detlev Casanova <detlev.casanova@collabora.com>,
+ Nicolas Dufresne <nicolas.collabora@collabora.com>,
+ =?utf-8?Q?Olivier_Cr=C3=AAte?= <olivier.crete@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Dragan Simic <dsimic@manjaro.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>,
+ linux-media@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <71EA9FB8-83DB-4785-86C1-2E6BA9C739D9@gmail.com>
+References: <20251226113140.573759-1-christianshewitt@gmail.com>
+ <20251226113140.573759-3-christianshewitt@gmail.com>
+ <DF84QZ0YBLY8.2DYCSM2EQIF5@cknow-tech.com>
+To: Diederik de Haas <diederik@cknow-tech.com>
+X-Mailer: Apple Mail (2.3826.700.81.1.3)
 
-On 26/12/2025 12:59, Sander Vanheule wrote:
-> Adding the netdev and regmap maintainers for extra input.
-> 
-> On Mon, 2025-12-22 at 09:43 +0100, kernel test robot wrote:
->> url:    https://github.com/intel-lab-lkp/linux/commits/Sander-Vanheule/dt-bindings-leds-Binding-for-RTL8231-scan-matrix/20251216-015552
->> base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-fixes
->> patch link:    https://lore.kernel.org/r/20251215175115.135294-4-sander%40svanheule.net
->> patch subject: [PATCH v9 3/6] mfd: Add RTL8231 core device
->> config: alpha-kismet-CONFIG_MDIO_BUS-CONFIG_REGMAP_MDIO-0-0 (https://download.01.org/0day-ci/archive/20251222/202512220956.FVakrdhV-lkp@intel.com/config)
->> reproduce: (https://download.01.org/0day-ci/archive/20251222/202512220956.FVakrdhV-lkp@intel.com/reproduce)
->>
-> 
-> For context: these patches introduce a new MFD with pinctrl and led subdevices.
-> The RTL8231 MFD is attached to an MDIO bus, but it can also be attached to an
-> I2C bus (not currently supported). The drivers use regmap to provide a bus
-> abstraction.
-> 
->> kismet warnings: (new ones prefixed by >>)
->>>> kismet: WARNING: unmet direct dependencies detected for MDIO_BUS when
->>>> selected by REGMAP_MDIO
->>    WARNING: unmet direct dependencies detected for MDIO_BUS
->>      Depends on [n]: NETDEVICES [=n]
->>      Selected by [y]:
->>      - REGMAP_MDIO [=y]
-> 
-> I'm a bit puzzled on how to solve this one. The issue detected here is that my
-> driver (MFD_RTL8231) selects REGMAP_MDIO, which in turn selects MDIO_BUS. The
-> latter is dependent on NETDEVICES, which is not selected in this test. 
-> The kernel does not yet have any other consumers of REGMAP_MDIO, which is
-> probably the reason the dependency issue has gone undetected until now.
-> 
-> REGMAP_MDIO is not a visible symbol, so it must be selected by drivers.
+> On 26 Dec 2025, at 4:00=E2=80=AFpm, Diederik de Haas =
+<diederik@cknow-tech.com> wrote:
+>=20
+> Hi Christian,
+>=20
+> On Fri Dec 26, 2025 at 12:31 PM CET, Christian Hewitt wrote:
+>> VDPU346 is similar to VDPU381 but with a single core and limited
+>> to 4K60 media. It is also limited to H264 L5.1 and omits AV1 and
+>> AVS2 capabilities. VDPU346 is used with RK3566 and RK3568.
+>>=20
+>> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+>> Reviewed-by: Nicolas Dufresne <nicolas.collabora@collabora.com>
+>> ---
+>> .../media/platform/rockchip/rkvdec/rkvdec.c   | 103 =
+++++++++++++++++++
+>> 1 file changed, 103 insertions(+)
+>>=20
+>> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c =
+b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+>> index e547057dc75f..6b39e99d8a8b 100644
+>> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+>> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+>> @@ -236,6 +236,62 @@ static const struct rkvdec_ctrls =
+rkvdec_hevc_ctrls =3D {
+>> .num_ctrls =3D ARRAY_SIZE(rkvdec_hevc_ctrl_descs),
+>> };
+>>=20
+>> +static const struct rkvdec_ctrl_desc vdpu346_hevc_ctrl_descs[] =3D {
+>> + {
+>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
+>> + },
+>> + {
+>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_SPS,
+>> + .cfg.ops =3D &rkvdec_ctrl_ops,
+>> + },
+>> + {
+>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_PPS,
+>> + },
+>> + {
+>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_SCALING_MATRIX,
+>> + },
+>> + {
+>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_MODE,
+>> + .cfg.min =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
+>> + .cfg.max =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
+>> + .cfg.def =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
+>> + },
+>> + {
+>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_START_CODE,
+>> + .cfg.min =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
+>> + .cfg.def =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
+>> + .cfg.max =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
+>> + },
+>> + {
+>> + .cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_PROFILE,
+>> + .cfg.min =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
+>> + .cfg.max =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+>> + .cfg.menu_skip_mask =3D
+>> + BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
+>> + .cfg.def =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
+>> + },
+>> + {
+>> + .cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_LEVEL,
+>> + .cfg.min =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
+>> + .cfg.max =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
+>> + },
+>> + {
+>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS,
+>> + .cfg.ops =3D &rkvdec_ctrl_ops,
+>> + .cfg.dims =3D { 65 },
+>> + },
+>> + {
+>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS,
+>> + .cfg.ops =3D &rkvdec_ctrl_ops,
+>> + .cfg.dims =3D { 65 },
+>> + },
+>> +};
+>> +
+>> +static const struct rkvdec_ctrls vdpu346_hevc_ctrls =3D {
+>> + .ctrls =3D vdpu346_hevc_ctrl_descs,
+>> + .num_ctrls =3D ARRAY_SIZE(vdpu346_hevc_ctrl_descs),
+>> +};
+>> +
+>> static const struct rkvdec_ctrl_desc vdpu38x_hevc_ctrl_descs[] =3D {
+>> {
+>> .cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
+>> @@ -463,6 +519,41 @@ static const struct rkvdec_coded_fmt_desc =
+rk3288_coded_fmts[] =3D {
+>> }
+>> };
+>>=20
+>> +static const struct rkvdec_coded_fmt_desc vdpu346_coded_fmts[] =3D {
+>> + {
+>> + .fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
+>> + .frmsize =3D {
+>> + .min_width =3D 64,
+>> + .max_width =3D 65472,
+>=20
+> This should be 4096 according to page 469 of RK3568 TRM Part 2 ...
+>=20
+>> + .step_width =3D 64,
+>> + .min_height =3D 64,
+>> + .max_height =3D 65472,
+>=20
+> ... and this 2304.
+>=20
+>> + .step_height =3D 16,
+>> + },
+>> + .ctrls =3D &vdpu346_hevc_ctrls,
+>> + .ops =3D &rkvdec_vdpu381_hevc_fmt_ops,
+>> + .num_decoded_fmts =3D ARRAY_SIZE(rkvdec_hevc_decoded_fmts),
+>> + .decoded_fmts =3D rkvdec_hevc_decoded_fmts,
+>> + .subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
+>> + },
+>> + {
+>> + .fourcc =3D V4L2_PIX_FMT_H264_SLICE,
+>> + .frmsize =3D {
+>> + .min_width =3D 64,
+>> + .max_width =3D  65520,
+>=20
+> This too should be 4096 according to page 469 of RK3568 TRM Part 2 ...
+>=20
+>> + .step_width =3D 64,
+>> + .min_height =3D 64,
+>> + .max_height =3D  65520,
+>=20
+> ... and this 2304.
+>=20
+> I guess this also explains the 'green images' Nicolas noticed.
 
-Reminds me old problem, probably the same:
+Quite probably. I=E2=80=99ve picked the above changes into my working =
+tree
+(for those following it) and will send a v3 series in response to
+the next revision of Detlev=E2=80=99s patches.
 
-https://lore.kernel.org/all/20250515140555.325601-2-krzysztof.kozlowski@linaro.org/
+> + .step_height =3D 16,
+>> + },
+>> + .ctrls =3D &rkvdec_h264_ctrls,
+>> + .ops =3D &rkvdec_vdpu381_h264_fmt_ops,
+>> + .num_decoded_fmts =3D ARRAY_SIZE(rkvdec_h264_decoded_fmts),
+>> + .decoded_fmts =3D rkvdec_h264_decoded_fmts,
+>> + .subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
+>> + },
+>=20
+> I see you've reversed the order of the blocks so that HEVC now comes
+> before the H264 block. While that makes it consistent with what Detlev
+> has in their v7 and with the existing code in the driver ... I =
+actually
+> prefer having H264 before HEVC as the alphabetical sorting order is
+> H264 before HEVC.
+> In the existing code the VP9 'stuff' is listed below H264 and HEVC.
+>=20
+> But then Detlev should do that too in their patch set ... and =
+'ideally'
+> the order of the existing code be updated to be alphabetically too.
+>=20
+> OTOH, a consistent order works for me too.
 
-https://lore.kernel.org/all/20250516141722.13772-1-afd@ti.com/
+I believe the reorder was requested by Nic (offline from the list) so
+there=E2=80=99s probably a reason behind it. I=E2=80=99ll keep things =
+aligned to the
+order in Detlev=E2=80=99s series (whatever that is).
 
-Exactly the same MDIO here and there.
+Christian
 
-> 
-> Other REGMAP_XYZ symbols (almost) exclusively use "depends on XYZ", but if I
-> change REGMAP_MDIO to "depends on", the warning just changes to:
-> 
->    WARNING: unmet direct dependencies detected for REGMAP_MDIO
->      Depends on [n]: MDIO_BUS [=n]
->      Selected by [y]:
->      - MFD_RTL8231 [=y] && HAS_IOMEM [=y]
-> 
-> Trying to make MFD_RTL8231 also depend on MDIO_BUS, like .e.g I2C dependent
-> devices do, results in a recursive dependency:
-> 
-> 
->    error: recursive dependency detected!
->    	symbol GPIOLIB is selected by PINCTRL_RTL8231
->    	symbol PINCTRL_RTL8231 depends on MFD_RTL8231
->    	symbol MFD_RTL8231 depends on MDIO_BUS
->    	symbol MDIO_BUS is selected by PHYLIB
->    	symbol PHYLIB is selected by ARC_EMAC_CORE
->    	symbol ARC_EMAC_CORE is selected by EMAC_ROCKCHIP
->    	symbol EMAC_ROCKCHIP depends on OF_IRQ
->    	symbol OF_IRQ depends on IRQ_DOMAIN
->    	symbol IRQ_DOMAIN is selected by GENERIC_IRQ_CHIP
->    	symbol GENERIC_IRQ_CHIP is selected by GPIO_MVEBU
->    	symbol GPIO_MVEBU depends on GPIOLIB
->    
-> The 'quick fix' appears to be to add "select NETDEVICES" to REGMAP_MDIO. The
-> platforms that use the RTL8231 MFD are typically ethernet switches, so they
-> would have NETDEVICES enabled anway, but that feels very heavy handed and
-> automatically pulls in a lot of extra stuff. Would this be acceptable or is
-> there a more desirable approach I'm not seeing here?
 
-Rather fix the same way Andrew did it. Or maybe his patch was not merged?
+> Cheers,
+>  Diederik
+>=20
+>> +};
+>> +
+>> static const struct rkvdec_coded_fmt_desc vdpu381_coded_fmts[] =3D {
+>> {
+>> .fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
+>> @@ -1643,6 +1734,14 @@ static const struct rkvdec_variant_ops =
+vdpu381_variant_ops =3D {
+>> .flatten_matrices =3D transpose_and_flatten_matrices,
+>> };
+>>=20
+>> +static const struct rkvdec_variant vdpu346_variant =3D {
+>> + .coded_fmts =3D vdpu346_coded_fmts,
+>> + .num_coded_fmts =3D ARRAY_SIZE(vdpu346_coded_fmts),
+>> + .rcb_sizes =3D vdpu381_rcb_sizes,
+>> + .num_rcb_sizes =3D ARRAY_SIZE(vdpu381_rcb_sizes),
+>> + .ops =3D &vdpu381_variant_ops,
+>> +};
+>> +
+>> static const struct rkvdec_variant vdpu381_variant =3D {
+>> .coded_fmts =3D vdpu381_coded_fmts,
+>> .num_coded_fmts =3D ARRAY_SIZE(vdpu381_coded_fmts),
+>> @@ -1691,6 +1790,10 @@ static const struct of_device_id =
+of_rkvdec_match[] =3D {
+>> .compatible =3D "rockchip,rk3399-vdec",
+>> .data =3D &rk3399_rkvdec_variant,
+>> },
+>> + {
+>> + .compatible =3D "rockchip,rk3568-vdec",
+>> + .data =3D &vdpu346_variant,
+>> + },
+>> {
+>> .compatible =3D "rockchip,rk3588-vdec",
+>> .data =3D &vdpu381_variant,
 
-Best regards,
-Krzysztof
+
 
