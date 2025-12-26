@@ -1,98 +1,150 @@
-Return-Path: <devicetree+bounces-249731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D76B1CDE943
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 11:24:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CED2CDE9A1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 12:02:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D53673006993
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 10:24:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 355AF30046C3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 11:02:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71B19314A95;
-	Fri, 26 Dec 2025 10:24:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="WLd705T8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6619420E334;
+	Fri, 26 Dec 2025 11:02:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C20E2296BB6
-	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 10:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F638460;
+	Fri, 26 Dec 2025 11:02:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766744684; cv=none; b=W2uiPkqRnEJtdhLmw4jiTMcW2aQt5MekFIr8J8T9DlPD/o7+5MlBhtC0ilq9/+XL2avnMppt0XvgJNCEG9Aceov1ChDt2TKmkSjSVm/1oRAbIbZm1ylpxsoCq8vFmVaQfVWQCijxHSo3krwl/oRGagfsQZ4cY1eporNjkCP4Hf4=
+	t=1766746932; cv=none; b=i1K24bYKbP8gH3whhtMSm3iVaHYqVXSlRom9HZ+n1wOeRtWgzNMctwWITFvzP25vOpDYlw8Hj3/xa4xOlNorVW3YtFCU4hzQlqYlDj9l/J5cpnRbMeoamW2XfXnmK7htNMst4vcOq3eXBaDnSRH12ilHhoI8V0yJkeyUPirBU6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766744684; c=relaxed/simple;
-	bh=w5NuVlZ3Mxd4Dtq/uECrT8SFBmnDLpfFkQLmKl2Nak4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sUSbDcg2gOLfe/dJCHg6URxbaTbLyLaOyVJR0chvB5U2IAlLCPBuM2HKIA+jEdXlhs2z2hMriK/fnqT4aGva6sZ9RI1xhtFLCIRwhYT223H2yhuUXXs2WfG1fOr9M0vaCLpgFS6vbuUrXStnCyhnJ5qvP+yVjWcwGP7XwIp567Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=WLd705T8; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	s=arc-20240116; t=1766746932; c=relaxed/simple;
+	bh=o5Q5BgWbikCBF7nY7vQ1yAQd1YSGpZSdccpou2ssT38=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=W0NsYRX8tX6TAILi+gFQxfyvlN+dURax18DxJos0YiERzdnd/Qq5yKGAxen8ic9thaQold4G/N5+XiSScJmXsQ2YhxyHKjmH8//jU+8ArBMSLqpFxZrlvsL5TwDDj2pTYYMF8JC713d0mdD6dHM7b3kiv4/nE4jPfC7/3Jk7RAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from [127.0.0.1] (unknown [116.232.18.222])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dd1v446tmz9tcZ;
-	Fri, 26 Dec 2025 11:24:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1766744672;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XBkJaHWBMYgOiv48kF1QDYjafSqkHvQlKdfY3CelGy0=;
-	b=WLd705T81Ccq/lqxekWccd52GzH9d1TaFErX6ISqXS0FvdOqOj6nOnDiIYgJu5ybv93BA0
-	78FqoG66elWOdXVYBe8+d7argkB70apgjyITIJfffMH67HV8aR6SGDmbDAskKaA9LYDs1G
-	sii4zE9ZsMZAWXjiTTYeIh+QbJxsr39vtvSdQ/mYCbzWy35xJtCpAVFMs5xJJtWwTUtBVt
-	oCy5G07zb+3p8oLp4wb8IkyTs/VNKUOjDHS6pkWa84738EdTPM7V66f+hOO4o1gVZ2BsXG
-	GsDLgmD2JSyuLeEXnGSAKWvQy7ga88DxcAcXNF3PIeeBYABr76sxhXzIwC7Vsw==
-Message-ID: <14c48d93-8ee6-4769-8dc3-5c527134bc77@mailbox.org>
-Date: Fri, 26 Dec 2025 11:24:29 +0100
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 840A9341F5F;
+	Fri, 26 Dec 2025 11:02:05 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH v3 0/5] Add clock support for SpacemiT K3 SoC
+Date: Fri, 26 Dec 2025 19:01:15 +0800
+Message-Id: <20251226-k3-clk-v3-0-602ce93bb6c3@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: imx8mp: Update Data Modul i.MX8M Plus eDM SBC
- DT to rev.903
-To: "Rob Herring (Arm)" <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20241226171404.84095-1-marex@denx.de>
- <173531253398.3886481.9345779510218290682.robh@kernel.org>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <173531253398.3886481.9345779510218290682.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: c872a8573b8c5cbe46c
-X-MBO-RS-META: 1pimp8jhrujnxcy3xx9ihf7yxt4edirb
+X-B4-Tracking: v=1; b=H4sIAPxqTmkC/2XP0W6DIBQG4FcxXA/DOaJCr/oeyy4QT5VYoQNnt
+ jR991Htli67/An/l/9cWaLoKLFDcWWRVpdc8DlULwWzo/EDcdfnzFBgDSgknypuzxPvOxSgKqU
+ NVSx/vkQ6uc8Nen3LeXRpCfFrc1e4vz4IgB9iBS64IpKtbYWtO3scyC8hlCEO7G6s+NRD8dvD3
+ APUbScb01ZS/Ond9jGR3j/yMcu+iM2UktmOORQPr+Gi4RNspA3zHPwuo+pqLUF1sj89y9n9r4A
+ WgAp0KaXQLXLgzgc7OjOb4zAbdy4znUfdvgFfoE17aQEAAA==
+X-Change-ID: 20251204-k3-clk-db2018389ae3
+To: Stephen Boyd <sboyd@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Haylen Chu <heylenay@4d2.org>, Guodong Xu <guodong@riscstar.com>, 
+ Inochi Amaoto <inochiama@gmail.com>, Yao Zi <me@ziyao.cc>, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Yixun Lan <dlan@gentoo.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3065; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=o5Q5BgWbikCBF7nY7vQ1yAQd1YSGpZSdccpou2ssT38=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpTmsaQ7ZfBmrlUtfkPnHh+LPHIpJ2aX2ZqcOZM
+ pkCgUBlKQ+JAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCaU5rGhsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+2LSQ/+IDqhauokrIcSlXQQ8EuXY3blmyDIaRPVsV4Iwuo87ORtDit48PmsS
+ 7CNoxdPJR6Pn7NVLvGafzyyhbnBVZfFMNUQVpByAd/blIsd45XXQ95ilvNOg5412AER/faM1B/7
+ sC+GbB2ore3GgkNxmY9kPP7Bq/4IJq+h7fhiRMcQoLyjm+A5Hx+w0md4nEI1RfXiL19pofIoxtp
+ sjoCzxChu5KkW5EFxF0zjrcytf4NB+jOkVP78EsJSYWCSDnpCkeay/SQZ2XmTNP0bMjYCFf3I40
+ x1fykP75O0xEebkjDEiZw8lWhCA+cIEidr3T1ivScvfGbN4VCZMuocSlQWs6JHTmsUFZvRO42vn
+ OsAM9cGTdLJA6KixyLS8zzpJ4nMx+5kRRmWTJv6AfMjWbBSfHC3AbBXJYWr5CVPnnBsJ8lsBC+8
+ YEiGhrqcF1OmnajDasAq7c7snN2ww5nx5tHbNGEzMvnu9CBonwWXge8yf9vi8oUOtfg4P2JcCQs
+ 16OGApuUXbKlPrUDQfIq3QluWUQkDx/1RXkvR0VLocCM9a4YhahlCkGD09y3mGvL3AvOkXtGUqj
+ Dh8Q2gbofnaWi22c2mdi3HUEOWoJQgPntMHb022Z8vwdSHZkl6vzWgV5cYjJalMPzL5VipUeg/j
+ sMl9PFKlcWNmAhqE7JjSM0D7zaWm2o=
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
-On 12/27/24 4:18 PM, Rob Herring (Arm) wrote:
+I've dropped the RFC tag as now the driver got tested on K3 SoC.
 
-Hello Shawn,
+The SpacemiT K3 SoC's CCU (clock control unit) is similar to old K1 generation,
+the clock and reset functionalities are distributed across several IP blocks,
+therefore, we model them as several clock tree accordingly.
 
-> On Thu, 26 Dec 2024 18:13:27 +0100, Marek Vasut wrote:
->> Update the DT to match newest Data Modul i.MX8M Plus eDM SBC rev.903
->> board which implements significant changes. Keep some of the rev.900
->> and rev.902 nodes in the DT so that a DTO can be used to support old
->> rev.900 and rev.902 boards easily.
+The PLL clocks has changed register setting layout, so introduce a PLLA type.
+Some gate clocks has inverted enable/disable logic which writing 1 to disable,
+while writing 0 to enable.
 
-[...]
+This patch will depend on two clock series a) fix building for modules [1],
+b) refacor common ccu driver [2]
 
-> arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dtb: tpm@2e: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['st,st33tphf2ei2c', 'tcg,tpm-tis-i2c'] is too long
-> 	'st,st33tphf2ei2c' is not one of ['infineon,slb9673', 'nuvoton,npct75x', 'st,st33ktpm2xi2c']
+Link: https://lore.kernel.org/all/20251219012819.440972-1-inochiama@gmail.com/ [1]
+Link: https://lore.kernel.org/all/20251226-06-k1-clk-common-v2-0-28b59418b4df@gentoo.org
 
-This is addressed in bindings patch [1] . Can this patch and the 
-bindings patch be applied ?
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
+---
+Changes in v3:
+- drop RFC, the driver is tested on K3 SoC
+- extract common header file, shared by clock and reset
+- fix reset name for auxiliary bus
+- Link to v2: https://lore.kernel.org/r/20251220-k3-clk-v2-0-1297b46a7340@gentoo.org
 
-https://lore.kernel.org/all/20241226171124.83735-1-marex@denx.de/
+Changes in v2:
+- has dependency on ccu common patch
+- fix wrong indention of DT docs
+- fix kfree() missing header issue
+- Link to v1: https://lore.kernel.org/r/20251211-k3-clk-v1-0-8ee47c70c5bc@gentoo.org
 
-Thank you.
+---
+Yixun Lan (5):
+      dt-bindings: soc: spacemit: add k3 syscon compatible
+      clk: spacemit: ccu_mix: add inverted enable gate clock
+      clk: spacemit: ccu_pll: add plla type clock
+      clk: spacemit: k3: extract common header
+      clk: spacemit: k3: add the clock tree
+
+ .../devicetree/bindings/clock/spacemit,k1-pll.yaml |    9 +-
+ .../bindings/soc/spacemit/spacemit,k1-syscon.yaml  |   13 +-
+ drivers/clk/spacemit/Kconfig                       |    6 +
+ drivers/clk/spacemit/Makefile                      |    3 +
+ drivers/clk/spacemit/ccu-k3.c                      | 1482 ++++++++++++++++++++
+ drivers/clk/spacemit/ccu_common.c                  |    3 +-
+ drivers/clk/spacemit/ccu_common.h                  |    1 +
+ drivers/clk/spacemit/ccu_mix.c                     |   12 +-
+ drivers/clk/spacemit/ccu_mix.h                     |   12 +
+ drivers/clk/spacemit/ccu_pll.c                     |  118 ++
+ drivers/clk/spacemit/ccu_pll.h                     |   57 +-
+ include/dt-bindings/clock/spacemit,k3-clocks.h     |  390 ++++++
+ include/soc/spacemit/k3-syscon.h                   |  276 ++++
+ 13 files changed, 2362 insertions(+), 20 deletions(-)
+---
+base-commit: 6ec25c2f81b39cbbf5e16c533e7ce3dc64a70ae8
+change-id: 20251204-k3-clk-db2018389ae3
+prerequisite-message-id: 20251226-06-k1-clk-common-v2-0-28b59418b4df@gentoo.org
+prerequisite-patch-id: 478955b6a6ab7c82910cdd9de7caf2d8be95b99f
+prerequisite-patch-id: 9d9f553c3430fa2bda0e980679efa60c46cdd8e9
+prerequisite-patch-id: 50eb74bd253e779458b52b242144e79807675461
+prerequisite-message-id: 20251219012819.440972-1-inochiama@gmail.com
+prerequisite-patch-id: df430730ed961011cee5c5d47b7ace84b3c5ebb7
+prerequisite-patch-id: 64003618c33be925602e46b7543f2c13d3f36474
+
+Best regards,
+-- 
+Yixun Lan
+
 
