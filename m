@@ -1,261 +1,135 @@
-Return-Path: <devicetree+bounces-249745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708F3CDEAC7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 13:00:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6955CCDEB22
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 13:27:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0B39B3004CAB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 12:00:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 95AD93004F5E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 12:26:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5CB6283121;
-	Fri, 26 Dec 2025 12:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA40320385;
+	Fri, 26 Dec 2025 12:26:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="C/A58Ho4"
+	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="j/NhIEhS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A562405EC
-	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 12:00:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E2C431DD90;
+	Fri, 26 Dec 2025 12:26:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766750424; cv=none; b=aSfU0wGDHUdGBHpVpKpNBtn4AxzUr/08uEQzAxD9410QzY/JP0214XgsBpRq179zRT7Mbdhs+4jINx4WAAj28Fd89ZELxY/Jgi14M3ZHbHm0WAnO99ik5RcTrHFP+tksO9oaY/XxqO3M3XQMEWug8ASODYrScuOKck437nUdw/0=
+	t=1766752011; cv=none; b=Mk0R6yWqdJ77RiEVJ9wHHrQNAISoHt1hAIlXO+AF096dYnfgNYxWVmnrqa60rGgQoU///LO7U/EPM7OgccyVJ1CQRmDDTkn68zv3Y1zJ/ZP8nC8ydoro46uB91U4df4yukUhLRVFmOvUhKbt0Z9vws4GfoShV61AzDotfF0MIZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766750424; c=relaxed/simple;
-	bh=uKhfZTz0GoijNXoGGRDwEtdmn8Ncce77Fnm4n0OI0Ko=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=jltzyv5cZ7xKVRBo1tZa4f6fa8OHWVdpKOOeao5OX6+3B1Aya5UDjNCWv/BmQpKaDyLBdB40uKt1ywo/XNj2DnXTL26D96G1yfnhxY0Xtv43Fjx6fGEdcfiPsy+SimMV9q4qU5jV85RRKVagZg5wKNXFs8PgJd/BVYkIGCuc4Hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=C/A58Ho4; arc=none smtp.client-ip=95.215.58.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
+	s=arc-20240116; t=1766752011; c=relaxed/simple;
+	bh=LPmJ0dRpHT4hBfwUFXbURMPSiWdJTgqaXBAHigZnfOY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=meejlI9FYR2UC8s/KjL+H8ucvIn/7PcpbJjZWnnsQNv0HkMD6Cj7HrhMm6RQP5ZTABvjR4Jc/PaaOGGLg8RW9booYnoSGvj14dbszBxeHVkIgou2TU/lUYKdWz16kUVGdDhfSUPGWCl19lK/38rSwomPcPgoGLg//PxsR/FTykU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=j/NhIEhS; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 531166002994;
+	Fri, 26 Dec 2025 12:18:01 +0000 (WET)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id Wkz6qmqDOtHM; Fri, 26 Dec 2025 12:17:59 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 61E8760029AE;
+	Fri, 26 Dec 2025 12:17:58 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail2; t=1766751478;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=lrAiZQajxWmr2L28Pelew79G5nZQAOdnG1+Yoi4Mu78=;
+	b=j/NhIEhSLKwBNFtnUk+tPXENkZR6TgiJvPXu6xtGDebnFTIiuTrF3PkU2zifpjGVddDKNU
+	tfwP0H97C2Mn+g8wE67efwYjX/Jy7gcFuyKqqdgfM/rbi27m3omPknrVbyvXtJzR8ir7ER
+	u911aha3XR0awD7QR+I0VuIoXyGRJyqSAJWNjni/TUf7lqYDzt/r0/azZSBQY2tOS93+u9
+	YYeAD9v5CKLIHuQpdukj4ftAr1G2/jmErRVcDoMmZj1IFUzCQyKjVIugRjADDCIGeUHkls
+	s0QQUWBMoxK5skIT5geX+u6jCVmjB80rP0r4MwKaTogdWv5M08iRjKgkRSA3XQ==
+Received: from [192.168.1.95] (unknown [IPv6:2001:8a0:fbec:a900:d4fe:ebe9:e3bd:bbef])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 6B13536011F;
+	Fri, 26 Dec 2025 12:17:57 +0000 (WET)
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Date: Fri, 26 Dec 2025 12:17:32 +0000
+Subject: [PATCH] arm64: tegra: smaug: Enable DisplayPort via USB-C port
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1766750416;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wCiL6anloSONHQhizAmFuKQ0YGBjJQpCdmeKlo3h5+c=;
-	b=C/A58Ho4/0sxbYSWfMUTH0Dn3ZTEdNlS+amKjOJwQgtW0WijR6aMTbEgs8+ow+efHXNXJk
-	e8IyUzq1rkJODc4YW5pWPXoSoqUoq2wREEtgN4Sm3nBPI+ihNxkokdRrxbnPmcXceC4Q2R
-	pHI0PFJSUTHacoVOZSTGeBd2f6U5Bbe6FXpHZ0yjzIK5e7VeobjBLvNZaBVGE5wqqxCM6P
-	+PwIKWoBDW+bqRjlnUC3mBoM4CtknZfAn73uLmEgHIzQFdrU4e30gtY1amRAranKbsORcP
-	xB2ybKxexps+otWuQJ0H8DNhCa3iA3cRXNEykNuNi/AfZD0eiQkTsStu/dpnlA==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 26 Dec 2025 13:00:04 +0100
-Message-Id: <DF84QZ0YBLY8.2DYCSM2EQIF5@cknow-tech.com>
-Cc: =?utf-8?q?Olivier_Cr=C3=AAte?= <olivier.crete@collabora.com>, "Ezequiel
- Garcia" <ezequiel@vanguardiasur.com.ar>, "Mauro Carvalho Chehab"
- <mchehab@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Heiko Stuebner" <heiko@sntech.de>, "Diederik de Haas"
- <diederik@cknow-tech.com>, "Dmitry Osipenko"
- <dmitry.osipenko@collabora.com>, "Thomas Gleixner" <tglx@linutronix.de>,
- "Dragan Simic" <dsimic@manjaro.org>, "Chukun Pan" <amadeus@jmu.edu.cn>,
- <linux-media@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] media: rkvdec: Add support for the VDPU346
- variant
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "Christian Hewitt" <christianshewitt@gmail.com>, "Detlev Casanova"
- <detlev.casanova@collabora.com>, "Nicolas Dufresne"
- <nicolas.collabora@collabora.com>
-References: <20251226113140.573759-1-christianshewitt@gmail.com>
- <20251226113140.573759-3-christianshewitt@gmail.com>
-In-Reply-To: <20251226113140.573759-3-christianshewitt@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251226-smaug-typec_dp-v1-1-7eabcd59da4c@tecnico.ulisboa.pt>
+X-B4-Tracking: v=1; b=H4sIANx8TmkC/x3MQQqAIBBA0avErBN0oKKuEhFDTjaLSrSikO6et
+ HyL/xNEDsIRuiJB4Eui7FuGKQuYFtocK7HZgBorg1iruNLp1PF4nkbrlWkb1IaILDHkyAee5f6
+ H/fC+H9RLTdZgAAAA
+X-Change-ID: 20251226-smaug-typec_dp-197201aaadae
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766751477; l=1281;
+ i=diogo.ivo@tecnico.ulisboa.pt; s=20251226; h=from:subject:message-id;
+ bh=LPmJ0dRpHT4hBfwUFXbURMPSiWdJTgqaXBAHigZnfOY=;
+ b=dJTztMjVfwSTIPq3fQzE8mne3qNcFrCE9KZCc7ZMXtgysCsE5tHNQmARE6UOG6ZOlXGy2cgdw
+ ZdycZ/1iUsEBYiUpIC6X/lFd0Al3cPc6P6ycK7hLgs//nEAh/5ccM/w
+X-Developer-Key: i=diogo.ivo@tecnico.ulisboa.pt; a=ed25519;
+ pk=x42OmbZ3iy1p2ofzTP2fyOiZoFfRm462OA8WYYqsVUg=
 
-Hi Christian,
+Enable both SOR and DPAUX modules allowing the USB-C port to transmit
+video in DP altmode. Tested on several monitors with USB-C to HDMI
+adapter.
 
-On Fri Dec 26, 2025 at 12:31 PM CET, Christian Hewitt wrote:
-> VDPU346 is similar to VDPU381 but with a single core and limited
-> to 4K60 media. It is also limited to H264 L5.1 and omits AV1 and
-> AVS2 capabilities. VDPU346 is used with RK3566 and RK3568.
->
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> Reviewed-by: Nicolas Dufresne <nicolas.collabora@collabora.com>
-> ---
->  .../media/platform/rockchip/rkvdec/rkvdec.c   | 103 ++++++++++++++++++
->  1 file changed, 103 insertions(+)
->
-> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/me=
-dia/platform/rockchip/rkvdec/rkvdec.c
-> index e547057dc75f..6b39e99d8a8b 100644
-> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-> @@ -236,6 +236,62 @@ static const struct rkvdec_ctrls rkvdec_hevc_ctrls =
-=3D {
->  	.num_ctrls =3D ARRAY_SIZE(rkvdec_hevc_ctrl_descs),
->  };
-> =20
-> +static const struct rkvdec_ctrl_desc vdpu346_hevc_ctrl_descs[] =3D {
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_SPS,
-> +		.cfg.ops =3D &rkvdec_ctrl_ops,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_PPS,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_SCALING_MATRIX,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_MODE,
-> +		.cfg.min =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-> +		.cfg.max =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-> +		.cfg.def =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_START_CODE,
-> +		.cfg.min =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-> +		.cfg.def =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-> +		.cfg.max =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_PROFILE,
-> +		.cfg.min =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +		.cfg.max =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
-> +		.cfg.menu_skip_mask =3D
-> +			BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
-> +		.cfg.def =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_LEVEL,
-> +		.cfg.min =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
-> +		.cfg.max =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS,
-> +		.cfg.ops =3D &rkvdec_ctrl_ops,
-> +		.cfg.dims =3D { 65 },
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS,
-> +		.cfg.ops =3D &rkvdec_ctrl_ops,
-> +		.cfg.dims =3D { 65 },
-> +	},
-> +};
-> +
-> +static const struct rkvdec_ctrls vdpu346_hevc_ctrls =3D {
-> +	.ctrls =3D vdpu346_hevc_ctrl_descs,
-> +	.num_ctrls =3D ARRAY_SIZE(vdpu346_hevc_ctrl_descs),
-> +};
-> +
->  static const struct rkvdec_ctrl_desc vdpu38x_hevc_ctrl_descs[] =3D {
->  	{
->  		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-> @@ -463,6 +519,41 @@ static const struct rkvdec_coded_fmt_desc rk3288_cod=
-ed_fmts[] =3D {
->  	}
->  };
-> =20
-> +static const struct rkvdec_coded_fmt_desc vdpu346_coded_fmts[] =3D {
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
-> +		.frmsize =3D {
-> +			.min_width =3D 64,
-> +			.max_width =3D 65472,
+Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+---
+ arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-This should be 4096 according to page 469 of RK3568 TRM Part 2 ...
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+index 49bf23d6f593..b88428aa831e 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+@@ -31,6 +31,11 @@ memory@80000000 {
+ 	};
+ 
+ 	host1x@50000000 {
++		dpaux1: dpaux@54040000 {
++			vdd-supply = <&pp3300>;
++			status = "okay";
++		};
++
+ 		dsia: dsi@54300000 {
+ 			avdd-dsi-csi-supply = <&vdd_dsi_csi>;
+ 			status = "okay";
+@@ -58,6 +63,13 @@ link1: panel@0 {
+ 			};
+ 		};
+ 
++		sor1: sor@54580000 {
++			avdd-io-hdmi-dp-supply = <&pp1800>;
++			vdd-hdmi-dp-pll-supply = <&avddio_1v05>;
++			nvidia,dpaux = <&dpaux1>;
++			status = "okay";
++		};
++
+ 		dpaux: dpaux@545c0000 {
+ 			status = "okay";
+ 		};
 
-> +			.step_width =3D 64,
-> +			.min_height =3D 64,
-> +			.max_height =3D 65472,
+---
+base-commit: c100317dc8c40c71bfb572353d87ca1735d39fd5
+change-id: 20251226-smaug-typec_dp-197201aaadae
 
-... and this 2304.
-
-> +			.step_height =3D 16,
-> +		},
-> +		.ctrls =3D &vdpu346_hevc_ctrls,
-> +		.ops =3D &rkvdec_vdpu381_hevc_fmt_ops,
-> +		.num_decoded_fmts =3D ARRAY_SIZE(rkvdec_hevc_decoded_fmts),
-> +		.decoded_fmts =3D rkvdec_hevc_decoded_fmts,
-> +		.subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_H264_SLICE,
-> +		.frmsize =3D {
-> +			.min_width =3D 64,
-> +			.max_width =3D  65520,
-
-This too should be 4096 according to page 469 of RK3568 TRM Part 2 ...
-
-> +			.step_width =3D 64,
-> +			.min_height =3D 64,
-> +			.max_height =3D  65520,
-
-... and this 2304.
-
-I guess this also explains the 'green images' Nicolas noticed.
-
-> +			.step_height =3D 16,
-> +		},
-> +		.ctrls =3D &rkvdec_h264_ctrls,
-> +		.ops =3D &rkvdec_vdpu381_h264_fmt_ops,
-> +		.num_decoded_fmts =3D ARRAY_SIZE(rkvdec_h264_decoded_fmts),
-> +		.decoded_fmts =3D rkvdec_h264_decoded_fmts,
-> +		.subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-> +	},
-
-I see you've reversed the order of the blocks so that HEVC now comes
-before the H264 block. While that makes it consistent with what Detlev
-has in their v7 and with the existing code in the driver ... I actually
-prefer having H264 before HEVC as the alphabetical sorting order is
-H264 before HEVC.
-In the existing code the VP9 'stuff' is listed below H264 and HEVC.
-
-But then Detlev should do that too in their patch set ... and 'ideally'
-the order of the existing code be updated to be alphabetically too.
-
-OTOH, a consistent order works for me too.
-
-Cheers,
-  Diederik
-
-> +};
-> +
->  static const struct rkvdec_coded_fmt_desc vdpu381_coded_fmts[] =3D {
->  	{
->  		.fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
-> @@ -1643,6 +1734,14 @@ static const struct rkvdec_variant_ops vdpu381_var=
-iant_ops =3D {
->  	.flatten_matrices =3D transpose_and_flatten_matrices,
->  };
-> =20
-> +static const struct rkvdec_variant vdpu346_variant =3D {
-> +	.coded_fmts =3D vdpu346_coded_fmts,
-> +	.num_coded_fmts =3D ARRAY_SIZE(vdpu346_coded_fmts),
-> +	.rcb_sizes =3D vdpu381_rcb_sizes,
-> +	.num_rcb_sizes =3D ARRAY_SIZE(vdpu381_rcb_sizes),
-> +	.ops =3D &vdpu381_variant_ops,
-> +};
-> +
->  static const struct rkvdec_variant vdpu381_variant =3D {
->  	.coded_fmts =3D vdpu381_coded_fmts,
->  	.num_coded_fmts =3D ARRAY_SIZE(vdpu381_coded_fmts),
-> @@ -1691,6 +1790,10 @@ static const struct of_device_id of_rkvdec_match[]=
- =3D {
->  		.compatible =3D "rockchip,rk3399-vdec",
->  		.data =3D &rk3399_rkvdec_variant,
->  	},
-> +	{
-> +		.compatible =3D "rockchip,rk3568-vdec",
-> +		.data =3D &vdpu346_variant,
-> +	},
->  	{
->  		.compatible =3D "rockchip,rk3588-vdec",
->  		.data =3D &vdpu381_variant,
+Best regards,
+-- 
+Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 
 
