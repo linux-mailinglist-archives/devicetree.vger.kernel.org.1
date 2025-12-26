@@ -1,140 +1,176 @@
-Return-Path: <devicetree+bounces-249769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08EFCDEDA7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 18:43:18 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E49CDEDFC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 19:07:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7FC4A3003511
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 17:43:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A1535300100A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 18:07:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE3232367A2;
-	Fri, 26 Dec 2025 17:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7B5225416;
+	Fri, 26 Dec 2025 18:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pc0PkBLH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sj8Ykdu3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97251DFE26
-	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 17:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE70A2DF68
+	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 18:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766770995; cv=none; b=O44lI7v/Aa6Q+unBZMsUrC/Za7dWO+Er37OZOXZzwKxuh+tYsLi1CWU/PSdfcPndUlMhiKaeQeRpEmjCLs0b9AZ77+hChRWvgiilkJU7M32/bLjzU3mKImOwQ5kM8mKu/72Cld5tIaJ9G8PgphzFsGytCp/RaGBNvNbzfSpyj5Q=
+	t=1766772477; cv=none; b=pZWFeRJRuz4FoMpZh5vG9yqT5VxiS8OCV0+dKT8Y/F7vBh+uM+0sssXMRllGWVUSHpJWPKY02GZTr0bih+xo0Aef8/KRRWAMSmTvni+EJC//qi25TkJgnKhuDn3vpMiTHggl0wFo71YUUtGSMPk4K27P16OMHUqv7DGtD6Tl6YA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766770995; c=relaxed/simple;
-	bh=DkbApBHXFizXs+l3CfaJtpwhufcP1rHmWcrInzAj42k=;
+	s=arc-20240116; t=1766772477; c=relaxed/simple;
+	bh=Mo8DKiQXbP10FfBrG4jSD9A1fN4U7FZm/QO+xQpqVV4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CBUKQ3wWHgGp9DK4vWZqhToFlEn2K36pKd/kU1bA5DLfAhO5SMxKpWC1FmnQi8upP8JnlKeXLdfBUmITeTQooO96AbwMJM+6HHGSBm1L2sOd5QY2HA7VovI+b1ku3rUnO1qmhcWE33pqWA7uKPitSxcS/aJPLCPtq4U0JhuSSn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pc0PkBLH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 627ADC19421
-	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 17:43:15 +0000 (UTC)
+	 To:Cc:Content-Type; b=dq+30OHs6wvHvBqancn5R/qC2ABKgxiLKYFuYUusJWuthcySorZL0/7YSv8pzxdoA9InngERNXuNGHg9n+rzI9bZZLoa3azBFu/iRjoafPjSAZRyxxSEQ11f9x3A+X+rCxHCB4g0YUsb2bDs4HkQAGasueNc36WaMoSf+4ZEHeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sj8Ykdu3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AB14C116B1
+	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 18:07:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766770995;
-	bh=DkbApBHXFizXs+l3CfaJtpwhufcP1rHmWcrInzAj42k=;
+	s=k20201202; t=1766772476;
+	bh=Mo8DKiQXbP10FfBrG4jSD9A1fN4U7FZm/QO+xQpqVV4=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Pc0PkBLH6rpyuoA/3eBSp3r5NdlV3QDE3VhCJslEV4654bdY37xk1FrN4SC+3hFTN
-	 f4E0Y0DklUWkHOfsOMpjjYGcsMoGjnJgWNfcH9oUnXKUszlF/XBZSdOcMX8/+RH11l
-	 2GonYWsu76nxOmiPNzcy94uJYJnFxuzurMaPKeag9/KuAEHr0Xm6ndSFfNebYMNQ7Q
-	 O2JucRB2Y6ZVyvadeuuT/FbYP4Hr+54OF13PwK7BAB3TJVmkCKVhKFQiUs+lm0TsfG
-	 4EHtJEh6OUAC4sVKCJnOli1J0QXEgPvxogdU6eX9IkmVZH2qRv4kXaDM8zE4/vFQgk
-	 6lTLvrV4vu+2Q==
-Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-6420c0cf4abso6034123d50.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 09:43:15 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVgBoEy4mqVbcPoXWm3bnlOyk03fWjZSzu6wYe42fX3SS+aoyfoc1hljm0MBjkGlDQyHPmNgUhW/vNb@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbrU5cgbYRpv4C0wI406K0MKTDmyKO/UZuHVSUoZLpkSTxCjTm
-	qw8o698CgZxaNk66fDBYNCXSentMrfVMDH0hjYVyiT665tfrV6rH9JtglE4ia73ReHjQ5jlR6Rc
-	HrWO6ERxAT0YaqwKIYsWPpie1vaBOMNQ=
-X-Google-Smtp-Source: AGHT+IEThu+SGeShmmu/tYX/llkmUdugrRx2dWhmCKMCWh5GaYfd3cvd12fU6652YXAX2Yh0+H0T9fwaFELFs993l0M=
-X-Received: by 2002:a05:690e:13c8:b0:645:53d0:2d20 with SMTP id
- 956f58d0204a3-6466a8bfd42mr18381088d50.62.1766770994712; Fri, 26 Dec 2025
- 09:43:14 -0800 (PST)
+	b=Sj8Ykdu3Z8gYuEOZSpZfrwpRaD0qg+avjRrmXpPCEaE5KuBdPEaiWo5cVLdXMFOIB
+	 9vAyLQ25/BSc1JusmL2JztNMoApXaSCRXIkJGLO9m2Z8nGbpQd7wEU+dNMwfEWGEth
+	 gYqYlSz0XBVzLtMrC9abdPt82RS9+ES7oqRjUcHpr9HQZy3K5Gk6EjNa0kHq9ohlEn
+	 XIPXPGrA3sYNzMLs6Xn+GVfEGB3c3K+7gGWMgVFEXtC/M7HTc+A9mshE2H+EqS4yYi
+	 n6xaFJNuFFpfw7QjOUsWwjGUYQXpvL6xMI/+WEKOisEhMqyBScG5UMSDE17rNMhvRs
+	 QWthtXmQ/YAeA==
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-78f89501423so88113607b3.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 10:07:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWfzlBh43u20yn8/PeqghRpCBv4CjsP7J3E+sR5ee6gs2k0RlNpPt+7UMNQMg1UOu4d2szYl3N03WyY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/tiarcWvYGibE6Gtovh7rLdnfLTKigWX0BTmgLtfhTNwh32DW
+	ylDud9I2PVQKoxSc5ML/yMJ9Ws5cW35kLwRRDOL/8gh8HSUlMN8Rfm6wqpdZhW0yUvDYno6u9h3
+	C0w6Edzqwrh/ZF4WhYfhfDNBAaqu1dyk=
+X-Google-Smtp-Source: AGHT+IHXFYYWTsvxkiAzCuYl1w+1gAwdOMQor8XIU2GYqR9g+iZUH2rKjwqFU6Vi/SZe0tIuniB4xtJv4Fw3RoZpxPI=
+X-Received: by 2002:a05:690e:11c6:b0:641:f5bc:692a with SMTP id
+ 956f58d0204a3-646632c32fbmr22677636d50.35.1766772475962; Fri, 26 Dec 2025
+ 10:07:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
- <20251222-drm-panels-sony-v2-5-82a87465d163@somainline.org>
- <CAD++jL=X1hX6kmodcOC3+x-w6t+Vg6XTaCMab-Dn=vHAeD82Gw@mail.gmail.com> <aU6XXi2HmgjZY8CY@SoMainline.org>
-In-Reply-To: <aU6XXi2HmgjZY8CY@SoMainline.org>
+References: <20251216112053.1927852-1-ye.zhang@rock-chips.com> <20251216112053.1927852-7-ye.zhang@rock-chips.com>
+In-Reply-To: <20251216112053.1927852-7-ye.zhang@rock-chips.com>
 From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 26 Dec 2025 18:43:03 +0100
-X-Gmail-Original-Message-ID: <CAD++jLn0cFtDhg9WFU2LS6g+cLa7ZMzzcHAJ_W9REVHodFYpAw@mail.gmail.com>
-X-Gm-Features: AQt7F2oBipmE-JjCDy8dZSMq1b64ml7eenWiIcoP2slHVPS-wd747R2LD1C4CGc
-Message-ID: <CAD++jLn0cFtDhg9WFU2LS6g+cLa7ZMzzcHAJ_W9REVHodFYpAw@mail.gmail.com>
-Subject: Re: [PATCH v2 05/11] drm/panel: Add panel driver for Samsung SOFEF01 DDIC
-To: Marijn Suijten <marijn.suijten@somainline.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>, 
-	David Airlie <airlied@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Jessica Zhang <jesszhan0024@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
-	Casey Connolly <casey.connolly@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Simona Vetter <simona.vetter@ffwll.ch>, 
-	~postmarketos/upstreaming@lists.sr.ht, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, 
-	Martin Botka <martin.botka@somainline.org>, Jami Kettunen <jami.kettunen@somainline.org>, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Dmitry Baryshkov <lumag@kernel.org>
+Date: Fri, 26 Dec 2025 19:07:45 +0100
+X-Gmail-Original-Message-ID: <CAD++jLntu4LY=VHOMSXeLKXOBD9MTNziv47B0qkDjxUa1xAsng@mail.gmail.com>
+X-Gm-Features: AQt7F2oo9iVMDuNkiBl10i_Zvh5ka_JIKyMORrwHeD221KqqGenYfp36zyHsPm0
+Message-ID: <CAD++jLntu4LY=VHOMSXeLKXOBD9MTNziv47B0qkDjxUa1xAsng@mail.gmail.com>
+Subject: Re: [PATCH v3 6/7] dt-bindings: pinctrl: rockchip: Add RMIO
+ controller binding
+To: Ye Zhang <ye.zhang@rock-chips.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	tao.huang@rock-chips.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 26, 2025 at 3:16=E2=80=AFPM Marijn Suijten
-<marijn.suijten@somainline.org> wrote:
-> On 2025-12-26 14:21:37, Linus Walleij wrote:
+Hi Ye,
 
-> > The sofef00 driver tell us exactly what this sequence is:
-> >
-> > #define sofef00_test_key_on_lvl2(ctx) \
-> >         mipi_dsi_dcs_write_seq_multi(ctx, 0xf0, 0x5a, 0x5a)
-> > #define sofef00_test_key_off_lvl2(ctx) \
-> >         mipi_dsi_dcs_write_seq_multi(ctx, 0xf0, 0xa5, 0xa5)
-> >
-> > I would just rename these two to sofef01_test_key_on/off_lvl2()
-> > and use the same helpers in this driver to follow the sofef00 pattern.
->
-> Right, yes.  I think I already brought this up in V1, that some existing
-> Samsung drivers call this (the 0xf0 part) the MCS PASSWORD, others call i=
-t the
-> LEVEL_2_KEY or USER_KEY or ACCESSPROT.
+thanks for your patch!
 
-Actually all of the samsung s6e panels are suspected to be s0fef0/1
-display controller variants, which you see if you look inside
-panel-samsung-s6e*, for example panel-samsung-s6e3fc2x01.c has this:
+On Tue, Dec 16, 2025 at 3:50=E2=80=AFPM Ye Zhang <ye.zhang@rock-chips.com> =
+wrote:
 
-#define s6e3fc2x01_test_key_on_lvl1(ctx) \
-        mipi_dsi_dcs_write_seq_multi(ctx, 0x9f, 0xa5, 0xa5)
-#define s6e3fc2x01_test_key_off_lvl1(ctx) \
-        mipi_dsi_dcs_write_seq_multi(ctx, 0x9f, 0x5a, 0x5a)
-#define s6e3fc2x01_test_key_on_lvl2(ctx) \
-        mipi_dsi_dcs_write_seq_multi(ctx, 0xf0, 0x5a, 0x5a)
-#define s6e3fc2x01_test_key_off_lvl2(ctx) \
-        mipi_dsi_dcs_write_seq_multi(ctx, 0xf0, 0xa5, 0xa5)
-#define s6e3fc2x01_test_key_on_lvl3(ctx) \
-        mipi_dsi_dcs_write_seq_multi(ctx, 0xfc, 0x5a, 0x5a)
-#define s6e3fc2x01_test_key_off_lvl3(ctx) \
-        mipi_dsi_dcs_write_seq_multi(ctx, 0xfc, 0xa5, 0xa5)
 
-So there is also the explanation of the 0xfc command.
+> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml=
+ b/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml
 
-> Then there are possibly a lot more constants we can glean from other driv=
-ers,
-> though again without confirmation that it's identical on this DDIC.
+> +  rockchip,rmio-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the syscon node (GRF or PMU) containing the RMIO re=
+gisters.
+> +      This property is required if the RMIO registers are located in a d=
+ifferent
+> +      syscon than the parent pinctrl node.
+> +
+> +  rockchip,offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The offset of the RMIO configuration registers within the GRF.
 
-I think the s0fef0/1 drivers and all the panel-samsung-s6e* drivers
-should probably be unified a bit maybe we can just create a
-local s0fef.h file with the above for all these drivers to use?
+Can't this just be a cell in the phandle?
 
-(If someone has actual datasheets for s0fef0/1 that would be great.)
+> +  rockchip,pins-num:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The number of physical pins supported by this RMIO instance.
+> +      Used for boundary checking and driver initialization.
+
+Isn't this implicit from the compatible? Why is this different
+between two device trees using the same compatible pin
+controller? I don't get it, I think this should be a constant in the
+code based on the compatible instead.
+
+> +patternProperties:
+> +  "^[a-z0-9-]+$":
+> +    type: object
+> +    description:
+> +      Function node grouping multiple groups.
+> +
+> +    patternProperties:
+> +      "^[a-z0-9-]+$":
+> +        type: object
+> +        description:
+> +          Group node containing the pinmux configuration.
+> +
+> +        properties:
+> +          rockchip,rmio:
+> +            $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +            description:
+> +              A list of pin-function pairs. The format is <pin_id functi=
+on_id>.
+> +            minItems: 1
+> +            items:
+> +              items:
+> +                - description: RMIO Pin ID (0 to pins-num - 1)
+> +                  minimum: 0
+> +                  maximum: 31
+> +                - description: Function ID
+> +                  minimum: 0
+> +                  maximum: 98
+
+Please avoid these custom properties and just use the standard
+"pinmux" property. I don't want any more opaque custom bindings
+for functions and groups.
+
+Reference Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml
+and use pinmux from there.
+
+You can use some shifting and defines to shoehorn your config
+into a single u32 and parse that in your driver; i.e. instead of
+rockchip,rmio =3D <1, 2>;
+use
+pinmux =3D <1 << 8 | 2 << 0>;
+these shifter numerals can come from defines.
+In the driver shift & mask out the components you want.
+
+e.g.;
+
+> +            rmio-uart {
+> +                rmio_pin27_uart1_tx: rmio-pin27-uart1-tx {
+> +                    rockchip,rmio =3D <27 RMIO_UART1_TX>;
+
+pinmux =3D <27 << 8 | RMIO_UART1_TX>;
+
+> +++ b/include/dt-bindings/pinctrl/rockchip,rk3506-rmio.h
+
+These number dumps are not appreciated inside the bindings
+despite quite a few found their way in there.
+
+Use something like
+arch/*/dts/rockchip/rk3506-rmio-pins.dtsi
+and include that into your device trees instead.
 
 Yours,
 Linus Walleij
