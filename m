@@ -1,138 +1,152 @@
-Return-Path: <devicetree+bounces-249710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B350CDE49F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 04:27:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98567CDE4D2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 04:44:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C9F773009571
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 03:27:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4A5D6300DA5D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 03:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C686313E13;
-	Fri, 26 Dec 2025 03:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6A91DA61B;
+	Fri, 26 Dec 2025 03:44:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="JANkgSTu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JkmsebiB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05BB6313279;
-	Fri, 26 Dec 2025 03:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE7419CD03;
+	Fri, 26 Dec 2025 03:44:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766719651; cv=none; b=XSvjIMPn9Mmpexp1UfoDVE2dtnktyhUdd+vs/OOkfBaTpSTKY47NCtGLq6B3Gp1LhY97KQgUSHJrxOrf9R8rhe0L6+IXiMIw517XnQZAwdlxwr8s1nIW4joa7i6fxrMo9MsaJPuG+h20hpavty3OmzCTpoy3J71Igd7CFPFXHEg=
+	t=1766720656; cv=none; b=pR+L6DDP0hUOPF7VWoSzHQqJsR8+M03nqV9yXZQxMRzsI9ozmckDisaz7X19WjDNDvugGy8mOMtma67aE0pCToWSjeYi3tGKZsIR/qVT62Z8VAXnx+bF621csILyUTSKVUpGTUTKZNqpf4vhovywqhfnqFGIyr5YTC2weKp/h3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766719651; c=relaxed/simple;
-	bh=BgXzJDqwoyDsix3C/1tUhRxvBXkILq8KJJWurzQ8XnU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rd/+5ESayvDwpfeQG1jJNFaPeWlkTTaYDgJHTG3vAYn4lLpIAdosU70zUVqGbZavJp/BPEKaELIdUkXT0JGd0WZXN9xgC2ixby/OWDiXVbzUkDgZ92/jT+vHXlvzx6W89X6es1lAv3xJROQG4tVbCneppCZG8F6ajTxU9JMz6Zo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=JANkgSTu; arc=none smtp.client-ip=54.207.22.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1766719558;
-	bh=d4wAjrfZaiGw8WX4hHJd4M+lVGETHBvdtA4Tr1bun5g=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=JANkgSTuVRx+6NDdzzzicfV1VHbc5JHd5Vz1D93L0UREW5Zu9GakNyt8QAGb/LZRo
-	 u6kgHasHHosZMxyqYyassWoF8mRCSFfQsKc/lMPrkxpX6cid4/ArN42UM5j+b/rBSE
-	 R06a043S+lDHiDfY358HJ9Mo4P6/cF8ajd/jC+RQ=
-X-QQ-mid: esmtpgz13t1766719550t82a12a29
-X-QQ-Originating-IP: PieMHnuodpUbtX3Z4xQgyrHPViUuOiKsiF0WOIWLd8k=
-Received: from = ( [183.48.244.228])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 26 Dec 2025 11:25:48 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 13964547808078100876
-EX-QQ-RecipientCnt: 20
-Date: Fri, 26 Dec 2025 11:25:48 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Encrow Thorne <jyc0019@gmail.com>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: Troy Mitchell <troymitchell988@gmail.com>,
-	Guodong Xu <guodong@riscstar.com>, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: spacemit: add optional resets
-Message-ID: <65A454B4ACFB1A38+aU4APFpyblOCKqJ4@kernel.org>
-References: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
- <20251219-i2c-reset-v2-1-ad201a602e74@gmail.com>
- <04880c83-0b3a-4197-9043-d657db91f922@kernel.org>
+	s=arc-20240116; t=1766720656; c=relaxed/simple;
+	bh=Ou87PO0R/OWNEEu0ns8K1kPWQXC2moP4qrOtG3wy9A4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tCnaeBvBidfBwuntxhsAfLHNth9y4pRLPgHHBvDlVsOtNin7I9i21CZ+R05hR/Sx8NMVBnrLP3jzV6k99gnoEGjfmII3HPlJHn9ZUF9y1jICCvpKuKlWqyqq79PRaEJ+NyI2d3K/fTSf5Wuj+wMYoBp7rzqcsJYy2zIQH5RzXdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JkmsebiB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 02C01C113D0;
+	Fri, 26 Dec 2025 03:44:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766720656;
+	bh=Ou87PO0R/OWNEEu0ns8K1kPWQXC2moP4qrOtG3wy9A4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=JkmsebiB6tMRQYMmXq3NVYB38HVoHVnwpUkosPj956QFLfUdG6RdmfWe9Qxl2v8hB
+	 VpPWqAHkWfv8DZqbibVmloL36GeHUljL0zqFvBWOkBkSN97SDtN9IDhmT9cfAZtG9A
+	 8677Q6yOJSGJheM9vZHZKbh2+t0f+LMyrMtle7LjRE+NhJbWAMtAa5eTMWRoTXWHjm
+	 saA9RvAu/C/qLgKwHo5ShhP1KT9YWHGldXOslqhWGNF6wko6sxoDrtvfd87dyVQanO
+	 sIIaKi5L7oMUpg2x80aF338vYk5X+fdG8D3kTcqY23R/Aqrj6dtz6gWZvl809ABTCR
+	 hbpB4Hdz8FRYw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DEB1FE776C0;
+	Fri, 26 Dec 2025 03:44:15 +0000 (UTC)
+From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
+Subject: [PATCH v6 0/2] Upstreaming Pinephone Pro Patches
+Date: Thu, 25 Dec 2025 19:43:18 -0800
+Message-Id: <20251225-ppp_light_accel_mag_vol-down-v6-0-8c79a4e87001@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <04880c83-0b3a-4197-9043-d657db91f922@kernel.org>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: MIfPdqFTtU/fn7oLTGYkZ0c/4VuPNpisMQEjcz/egD5/ixeXzTpYrQTv
-	hjXsGTa4IeM0R0jPDjtAtLyJKJJDbZq7wnIHBc45S02KcJl4BCsspRFYdNynRUUyRVYGbCX
-	KubTsh2p2G+tIelw4NUpVyzFjSXY+mPawbjf1xW3zeH4yjPfmXIrJtXiUHuRJ+DpNoCQn0Z
-	EpeAPhU3x/ww7DsxWsuaZdP8mDd3UdvM0A6xy3BhKMUC47DXVSJ8elXNdU0BJMVvdm+uw3y
-	o8dakn4zjJpRwXiEfcD7AYVrg/vttmmpP5DEYVFqTSkn7/t5JP8oxPllktOEwdPhf0JHZAv
-	mUmF7mQiFB7lmaVWGmGMCntQs9nBcKXcMUPKEHWwJI9qEr3eGCaw/bq8/UiU4CbE2/QTNrx
-	FUbzq1c9VJQaKc3PqtR7raaF3qvb1v6d4ynz6e+beQan2FwLDCuYH3UUhVyFVKlHjHfj0WX
-	GhDq9c3sFleL4rQW21ejC8Iprpp2IWluBBW936nmoYxhpVmmnJZl56vvPraa/jbGL49fr1M
-	cB1ZT0SBJfs5YvMfq4cVR54obauBmq0K1RhQZD2b7MxTA16ZLBgyn7sz9xPVRmFfYAkk/vG
-	Mu4nukO6wXbzbv7XVHphj1hzzlxYSD0tfgfQ0Uj2SNKgQ8ojrygY1DM/89K6HetBK+l/nR9
-	tLdIQps17SptGpfy5LH2ifR7MzFw7PHFYNIVQXojyNi/dpzogfU0gj7iKh/s4yphZP2Qgk3
-	lBszomX49tO4dTi56OzZveb8GUoEqYfR86uSG+bhaUB+87UkXPPEXQGDJVf8poMwUGzOrA1
-	dXq8RuhpCylu6PpY0BH1GzjDXAhnhSeAdf7wOG1otKQZ+SmQePhMoBpnF8iWEGFaMuxFn+u
-	EiWY4iafjqaThCrBeAUGyvZhW75c1VbxKkP2EP4Tlcx2zp6ifPMuCjjtxjNcIRoxKbbqWrv
-	VoOpeH5X9cl0c58zhipE6tgepGhEIvR5OpoDm3mM/IMamg1zejOlOm8Zs1WbNbNW6UvrATi
-	MxVM/G6APAsukPmhZUFIOH9IO/HAbcUpVQnrq8g2+/O9f9oOzqGw03xz3idIVBEZ3Tt6kox
-	Q==
-X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFYETmkC/5XOTW6DMBCG4atEXteVbfxHV71HFaHBHoMlwAgiN
+ 1XE3etkUaF0Qbt8Z/F8cyMrLhFX8na6kQVzXGOaSuiXE3E9TB3S6EsTwYRitWB0nudmiF1/acA
+ 5HJoRuiangfr0OVHLjbMyeEDrSSHmBUO8PviPc+k+rpe0fD3WMr9f/whnThl1tm2dr1BgLd+7E
+ eLw6tJI7nAWe4wfYKJgqFvntAMjAZ+x6j9YVTADQWvFgzH46zO5x+oDTBZMq9oGIXwlFX/G1A/
+ GuZAHmCpYqIEzYKAYtnts27Zv3tJQ4fwBAAA=
+X-Change-ID: 20250920-ppp_light_accel_mag_vol-down-817c84fdae8d
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ phone-devel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>, 
+ Ondrej Jirman <megi@xff.cz>, "Leonardo G. Trombetta" <lgtrombetta@gmx.com>, 
+ Pavel Machek <pavel@ucw.cz>, Martijn Braam <martijn@brixit.nl>, 
+ =?utf-8?q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766720655; l=3050;
+ i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
+ bh=Ou87PO0R/OWNEEu0ns8K1kPWQXC2moP4qrOtG3wy9A4=;
+ b=NXdEf3OwQcE6VqJFKTxbvswHHnjmSS571lQw4+wcJjV7dCkSrwcycAfoIy/SeSYs2l/L/RQHz
+ UIJaYULe4ggBZNaMuVIc+OofOTaJ3ywvj5163p+kmRPRtxgWsCzU5VE
+X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
+ pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
+X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
+ auth_id=211
+X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
+Reply-To: guptarud@gmail.com
 
-On Fri, Dec 19, 2025 at 09:03:14AM +0100, Krzysztof Kozlowski wrote:
-> On 19/12/2025 08:42, Encrow Thorne wrote:
-> > The I2C controller requires a reset to ensure it starts from a clean state.
-> > 
-> > Add the 'resets' property to support this hardware requirement.
-> > 
-> > Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-> > index b7220fff2235..1290106e28e6 100644
-> > --- a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-> > +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-> > @@ -32,6 +32,9 @@ properties:
-> >        - const: func
-> >        - const: bus
-> >  
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> 
-> Still between other clock-related properties. You already got such
-> comment...
-Please replace it below clock-frequency.
-With this fix, you can add my tag:
+Throughout the years, many have contributed to the Pinephone Pro (ppp)
+development. Unfortunately, these patches are scattered around various
+repositories in different states.
 
-Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> 
-> >    clock-frequency:
-> >      description: |
-> >        K1 support three different modes which running different frequencies
-> > 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+I will be attempting to upstream these patches. I will start off with the
+following small series:
+- Add light/proximity sensor support
+  - Link: https://codeberg.org/megi/linux/commit/f171bc7013bc7ad3de9af817bfbcbfa548ebe01c
+- Add magnetometer sensor support
+  - Link: https://codeberg.org/megi/linux/commit/2f7e67f451f16eaf15b81aa1dbdf126d54927d35
+- Add mount-matrix for magnetometer
+  - Link: https://codeberg.org/megi/linux/commit/d7cd2eab931e32fa94408a96d73b4e6c0616107a
+
+Already upstreamed:
+- Add accelerometer sensor support
+  - Link: https://codeberg.org/megi/linux/commit/b0bb7633e073a6760fa213b8c4a78ea2e73c7bf1
+- Fix voltage threshold for volume down key
+  - Link: https://codeberg.org/megi/linux/commit/7c496a5cc27ed4e38b740f36c2d8b2c62f80ae54
+
+Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+---
+Changes in v6:
+- rebased to 6.18
+- sorted nodes alphabetically in compass and light/proximity
+- added pinctrl to compass
+- dropped accelerometer and volume patches as they are merged
+- Link to v5: https://lore.kernel.org/r/20251124-ppp_light_accel_mag_vol-down-v5-0-f9a10a0a50eb@gmail.com
+
+Changes in v5:
+- use monitor-sensor to verify accelerometer's mount-matrix, lux, proximity
+- use Leonardo's compass add to verify the compass's mount matrix
+- Link to v4: https://lore.kernel.org/r/20250929-ppp_light_accel_mag_vol-down-v4-0-6598f22d3451@gmail.com
+
+Changes in v4:
+- remove leda-supply and vdd-supply from dts to suppress warning
+- credit Martijn and Kamil for the light sensor and accelerometer patches
+  - Link: https://fosstodon.org/@martijnbraam/115272859701389599
+  - Link: https://codeberg.org/megi/linux/commit/fc5660685ebe4ecf60226bfa27a1ce47c1c1d020
+- combine the magnetometer related patches
+- corrected accelerometer's mount matrix to Documentation/devicetree/bindings/iio/mount-matrix.txt
+- filled out commit messages
+- rebased onto v6.17
+- Link to v3: https://lore.kernel.org/r/20250921-ppp_light_accel_mag_vol-down-v3-0-7af6651f77e4@gmail.com
+
+Changes in v3:
+- change magnetometer mount matrix
+- update volume button threshold
+- Link to v2: https://lore.kernel.org/r/20250921-ppp_light_accel_mag_vol-down-v2-0-e6bcc6ca74ae@gmail.com
+
+Changes in v2:
+- remove usb-typec node in dts from light/proximity sensor patch
+- Link to v1: https://lore.kernel.org/r/20250920-ppp_light_accel_mag_vol-down-v1-0-c8bbcd3e2e94@gmail.com
+
+---
+Ondrej Jirman (2):
+      arm64: dts: rockchip: Add magnetometer sensor to Pinephone Pro
+      arm64: dts: rockchip: Add light/proximity sensor to Pinephone Pro
+
+ .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 39 ++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+---
+base-commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+change-id: 20250920-ppp_light_accel_mag_vol-down-817c84fdae8d
+
+Best regards,
+-- 
+Rudraksha Gupta <guptarud@gmail.com>
+
+
 
