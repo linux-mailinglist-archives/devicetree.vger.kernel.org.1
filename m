@@ -1,129 +1,143 @@
-Return-Path: <devicetree+bounces-249759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A72DCDEBCA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 14:25:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9615FCDEBD5
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 14:29:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5FCF53005030
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 13:25:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 869D03006A6B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 13:29:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B42C6322B76;
-	Fri, 26 Dec 2025 13:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KoKUru12"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FDF0321457;
+	Fri, 26 Dec 2025 13:28:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EB3A3A1E6B
-	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 13:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8623218ADD;
+	Fri, 26 Dec 2025 13:28:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766755516; cv=none; b=VrS886LjKPU/BzPZQzOc959ce+/pJzwGTK6AMLupvF3dI+/5djYDnRuqcSm5dkhGeYjVzLxdEgzut18VzG6sIo9Qq3yrJjBc47iHOCBB2vNeU3m9Wvlpw5LWS8MjwvaMgUHV2QEee1HmOLYMzknZazTe6SVQ6IJnMoC37gr5xw4=
+	t=1766755739; cv=none; b=gHR1/jXYNVTEPhgrzm8XRfzisYJNlWbfgHyNZSBVqbzuVB805AUa9Yp3wLwBhY06zaKBbjNyZgFcAkx5ZLSSR9LcMHPfCY444LHr1/h6YwWBi0FsiuusmqOVN2mJj6kUWaj3LwfFcpTuaqdPhfJmyxFVklOB0OxRt11KI7QpmLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766755516; c=relaxed/simple;
-	bh=N+qW2ZxSsuwmsYTva/gQOv+mTm92bNRglN2W548IvcA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fLZ80Bd6JvHnL5Gl/hYUxLegb6duaL5Zsn2ETPXAzvcxPqJsY0K63Vmi2+SvCjvwrgB3m59K6LLeZ7W3jLkFcKMARqeA3AEQwQhtkCP/ePmZBm645osBjGrr3+SFou9Ku6ASeTobgPFxrLw0nkqEG1WBfGUkkG7FqIMg6OzQg6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KoKUru12; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6934EC19421
-	for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 13:25:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766755516;
-	bh=N+qW2ZxSsuwmsYTva/gQOv+mTm92bNRglN2W548IvcA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=KoKUru127MmKqpxOtiKtGZVqos42eS2rV+eZZsCt+pHnhHZYX5uwop4XJ1sNx58/C
-	 iqnHS22FY3rlWBOKEeslx9wyieiDW53wLUVHmHzweQ9JkNimISJDRmMdOMbo49CS1R
-	 h+pboSIW7cIjrgUV6ILI3naWHXoC84rhRaOAHTHasvK7SWl2mkdWjYNQ2+3cNyKWWJ
-	 rLEtCUmBxZqCkn2g/hyqIFbNsSMDzgHa9eewCCTXdMEf5HISN1FGEvkR7TAtBXlSp8
-	 COKBmfbpTkx293y/H6dGRk6EN5DU2svPtFOWNhZbphoR+nf3WEjO9XZ2QUE01DTTC8
-	 DSvBfR28e7APA==
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-78d6a3c3b77so79512667b3.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Dec 2025 05:25:16 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV9iIoV59mbWLZ7YoP0pM7ODfIMZ3AS5P6OvnhbdSe+hkmXYofrAmjgSiHsO0AO5wX0XV3c7VQCMrMp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+S21gtP5JG/Cnv0yCFgLljfp5LfFLr25jkQbP8LTqDHkB9BHm
-	evhBD0AKurkjxDulsd0LwVvjXsVBTp1qczWXe1zcJm6aAe5b/Q91Y9jtRfjzaoi37PdM/TLFezJ
-	VKBMj9qKIYZjQPXold3/VVpzTS+HAZ9g=
-X-Google-Smtp-Source: AGHT+IHMzaKONrzGJpNhXsdknH/aicOLZRUDH4SPgdgpx5CWGFJAOAxyt9BwJTfc6IFbfEyFRCcvwGHe8FMXyOD1eRI=
-X-Received: by 2002:a05:690e:2519:10b0:641:f5bc:6930 with SMTP id
- 956f58d0204a3-646632e007bmr15196355d50.41.1766755515738; Fri, 26 Dec 2025
- 05:25:15 -0800 (PST)
+	s=arc-20240116; t=1766755739; c=relaxed/simple;
+	bh=A+VcHot3KT8AK/Od3eDwFTTE29eLr7Bk2439rcOpVEU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=PgUvqrYIIWi0cKOn4sO0/CaX54vfUXeqVTy8bq7c8CVgOTUQMdneJ5AZISktacjswzf6FIdHFoLYKKA5hP18Gsi4CeOGmhR9PewTC+vdfuxD1+WbnbM0Nxc1fvRmObRUp9i8eGFlD4gx3l8xiO2O6GvuKQIxdvogzX0MtytulMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.54])
+	by APP-03 (Coremail) with SMTP id rQCowABnaL9ZjU5pk4sYAg--.1008S2;
+	Fri, 26 Dec 2025 21:27:55 +0800 (CST)
+Message-ID: <0eba66980024d001d4ff6d0aed6f2f3e356abf3a.camel@iscas.ac.cn>
+Subject: Re: [PATCH v4 5/9] drm/bridge: add a driver for T-Head TH1520 HDMI
+ controller
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Andy Yan <andyshrk@163.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>, Guo Ren
+ <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Michal Wilczynski
+ <m.wilczynski@samsung.com>, devicetree@vger.kernel.org, Yao Zi
+ <ziyao@disroot.org>,  linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Han Gao <rabenda.cn@gmail.com>,
+ linux-riscv@lists.infradead.org
+Date: Fri, 26 Dec 2025 21:27:53 +0800
+In-Reply-To: <2183e580.8b98.19b5531263f.Coremail.andyshrk@163.com>
+References: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
+	 <20251224161205.1132149-6-zhengxingda@iscas.ac.cn>
+	 <2183e580.8b98.19b5531263f.Coremail.andyshrk@163.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org> <20251222-drm-panels-sony-v2-4-82a87465d163@somainline.org>
-In-Reply-To: <20251222-drm-panels-sony-v2-4-82a87465d163@somainline.org>
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 26 Dec 2025 14:25:04 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmSev3=HJF1j_kTU5j-u2NhxH6TsdE0uUjnD7Vqkt_h-w@mail.gmail.com>
-X-Gm-Features: AQt7F2pPUaVNesdOAXSUmIYRXMzhy6HJ5toLN43bCtVtfp2IOUez4k0c74ZILyE
-Message-ID: <CAD++jLmSev3=HJF1j_kTU5j-u2NhxH6TsdE0uUjnD7Vqkt_h-w@mail.gmail.com>
-Subject: Re: [PATCH v2 04/11] dt-bindings: display: panel: Describe Samsung
- SOFEF01-M DDIC
-To: Marijn Suijten <marijn.suijten@somainline.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>, 
-	David Airlie <airlied@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Jessica Zhang <jesszhan0024@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
-	Casey Connolly <casey.connolly@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Simona Vetter <simona.vetter@ffwll.ch>, 
-	~postmarketos/upstreaming@lists.sr.ht, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, 
-	Martin Botka <martin.botka@somainline.org>, Jami Kettunen <jami.kettunen@somainline.org>, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Dmitry Baryshkov <lumag@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-CM-TRANSID:rQCowABnaL9ZjU5pk4sYAg--.1008S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7CFWkXw18Gry7Ar4DAFyftFb_yoW8Ar4rpF
+	WxJFW3trykGFsagry2vr1rWryYyaykJw45Grn7t3WIvw13CF10qrZrZF90gFykWr4xZr1a
+	yr1Yqr17uF1DAaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I
+	8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxUVhL0UUUUU
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 
-Hi Marijn,
+=E5=9C=A8 2025-12-25=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 19:07 +0800=EF=BC=
+=8CAndy Yan=E5=86=99=E9=81=93=EF=BC=9A
+>=20
+>=20
+> Hello Icenowy:
+>=20
+> At 2025-12-25 00:12:01, "Icenowy Zheng" <zhengxingda@iscas.ac.cn>
+> wrote:
+> > From: Icenowy Zheng <uwu@icenowy.me>
+> >=20
+> > T-Head TH1520 SoC contains a Synopsys DesignWare HDMI controller
+> > (paired
+> > with DesignWare HDMI TX PHY Gen2) that takes the "DP" output from
+> > the
+> > display controller.
+> >=20
+> > Add a driver for this controller utilizing the common DesignWare
+> > HDMI
+> > code in the kernel.
+> >=20
+> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > ---
+> > No changes in v3, v4.
+> >=20
+> > Changes in v2:
+> > - Created a new function to set PHY parameters and refactored the
+> > =C2=A0control flow of the configure_phy callback.
+> >=20
+> > MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > drivers/gpu/drm/bridge/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 10 ++
+> > drivers/gpu/drm/bridge/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > drivers/gpu/drm/bridge/th1520-dw-hdmi.c | 173
+> > ++++++++++++++++++++++++
+> > 4 files changed, 185 insertions(+)
+> > create mode 100644 drivers/gpu/drm/bridge/th1520-dw-hdmi.c
+>=20
+>=20
+> As this is a Synopsys DesignWare based IP, maybe it's better to put
+> it under=C2=A0=C2=A0 "drivers/gpu/drm/bridge/synopsys/"
+> Or just create a dir for thead, I think there will come other display
+> related drivers for thead in the future.
 
-thanks for your patch!
+It's not proper to place vendor glues to synopsys/ .
 
-On Mon, Dec 22, 2025 at 12:32=E2=80=AFAM Marijn Suijten
-<marijn.suijten@somainline.org> wrote:
+As for T-Head, they stopped their embedded SoC business (sold to
+another company) and now they only makes data-center chips, there
+should be no T-Head display drivers in the future.
 
-> Document the Samsung SOFEF01-M Display-Driver-IC and 1080x2520@60Hz
-> command-mode DSI panels found in many Sony phones:
-> - Sony Xperia 5 (kumano bahamut): amb609tc01
-> - Sony Xperia 10 II (seine pdx201): ams597ut01
-> - Sony Xperia 10 III (lena pdx213): ams597ut04
-> - Sony Xperia 10 IV (murray pdx225): ams597ut05
-> - Sony Xperia 10 V (zambezi pdx235): ams605dk01
-> - Sony Xperia 10 VI (columbia pdx246): ams605dk01
->
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-(...)
-> +      - samsung,sofef01-m-amb609tc01 # 6.1"
-> +      - samsung,sofef01-m-ams597ut01 # 6.0"
-> +      - samsung,sofef01-m-ams597ut04 # 6.0"
-> +      - samsung,sofef01-m-ams597ut05 # 6.0"
-> +      - samsung,sofef01-m-ams605dk01 # 6.1"
+>=20
+>=20
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D 8< =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
-So is the assembled product really named like that?
-
-Samsung S0FEF01-M AMS605DK01?
-
-I would more expect the compatible strings to be excluding the DDIC
-name, like:
-
-samsung,ams605dk01
-
-...but it's not like the vendor is helping us here, so I'm practically
-fine either way. They are clearly using the S0FEF01-M display
-controller.
-
-Yours,
-Linus Walleij
 
