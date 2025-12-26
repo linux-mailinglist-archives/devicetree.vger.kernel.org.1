@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-249711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98567CDE4D2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 04:44:30 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75269CDE4CC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 04:44:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4A5D6300DA5D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 03:44:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 13AE73003FC8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Dec 2025 03:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6A91DA61B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B33FA1DEFE9;
 	Fri, 26 Dec 2025 03:44:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JkmsebiB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YhA3GX23"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE7419CD03;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CF311C3314;
 	Fri, 26 Dec 2025 03:44:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766720656; cv=none; b=pR+L6DDP0hUOPF7VWoSzHQqJsR8+M03nqV9yXZQxMRzsI9ozmckDisaz7X19WjDNDvugGy8mOMtma67aE0pCToWSjeYi3tGKZsIR/qVT62Z8VAXnx+bF621csILyUTSKVUpGTUTKZNqpf4vhovywqhfnqFGIyr5YTC2weKp/h3w=
+	t=1766720656; cv=none; b=oVVZkm9u+y1UsPJ7mBxWqcJinFc/zyK+xpcOpgoZYkf8I2tfPPa5e5dsetZp5jGYxWOaDKMhtinBhDEoSP97suvTzXzZm/lit4d51OGZs5yzc3NZikFyv68YXN7bQeWZns4mtMpem8BfQn7gXTozUn4yEfqiUv7BYtXgDd8g9Go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1766720656; c=relaxed/simple;
-	bh=Ou87PO0R/OWNEEu0ns8K1kPWQXC2moP4qrOtG3wy9A4=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tCnaeBvBidfBwuntxhsAfLHNth9y4pRLPgHHBvDlVsOtNin7I9i21CZ+R05hR/Sx8NMVBnrLP3jzV6k99gnoEGjfmII3HPlJHn9ZUF9y1jICCvpKuKlWqyqq79PRaEJ+NyI2d3K/fTSf5Wuj+wMYoBp7rzqcsJYy2zIQH5RzXdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JkmsebiB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 02C01C113D0;
+	bh=Zi4zn3Y9G7BtW8d1C0I9fl8sHSfCuIBZKh7au6k0ucA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=t6ONLu+suoYV1g08J8YWawCajix4CJPyeGTrVMRn1n8JvCDEweqrWKWAer4CtsuOsU2IY3bbbLQCbIfVANydiXDEFN4248f5lJ0HqyYjF9XXxQeAsqgPaOdMuCr0lG0X79qhkS3pVjU3QibH8NJG2FjGcI9WZgFutA0lHMIJdqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YhA3GX23; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 12B2DC116C6;
 	Fri, 26 Dec 2025 03:44:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1766720656;
-	bh=Ou87PO0R/OWNEEu0ns8K1kPWQXC2moP4qrOtG3wy9A4=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=JkmsebiB6tMRQYMmXq3NVYB38HVoHVnwpUkosPj956QFLfUdG6RdmfWe9Qxl2v8hB
-	 VpPWqAHkWfv8DZqbibVmloL36GeHUljL0zqFvBWOkBkSN97SDtN9IDhmT9cfAZtG9A
-	 8677Q6yOJSGJheM9vZHZKbh2+t0f+LMyrMtle7LjRE+NhJbWAMtAa5eTMWRoTXWHjm
-	 saA9RvAu/C/qLgKwHo5ShhP1KT9YWHGldXOslqhWGNF6wko6sxoDrtvfd87dyVQanO
-	 sIIaKi5L7oMUpg2x80aF338vYk5X+fdG8D3kTcqY23R/Aqrj6dtz6gWZvl809ABTCR
-	 hbpB4Hdz8FRYw==
+	bh=Zi4zn3Y9G7BtW8d1C0I9fl8sHSfCuIBZKh7au6k0ucA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=YhA3GX234xtLs4bXoBfNGFukrhuR1ETrR55YY/w59olrXYpTyRDrOj+LIYUtNhzRW
+	 E+KFhPNg8xvM/ghuVGNRA8Xs0PCJKJVIDKKnXPaXu5OBzphr2TaENAY9qNXeCGVPvR
+	 VceNA2co9AP7kSokDwfz7xSUalKGCF0XvbRdtOw2UEhfZlZkzOye9fbSzJhf46L5BL
+	 TXIPJ7YOKOYqyu+rnj2Dq6zfZ6m1JELK1EyszpvIvyWRbZo5rFLuHK7lNqMQBY8/+X
+	 DCM5vdkTScWrvHDlvYiuyYSucH6UWvLR6ot31Zp5+q/SJdiOn412YXD8VuW1WTev8C
+	 gRXYjCp5gf0Bg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DEB1FE776C0;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F3083E6B26F;
 	Fri, 26 Dec 2025 03:44:15 +0000 (UTC)
 From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
-Subject: [PATCH v6 0/2] Upstreaming Pinephone Pro Patches
-Date: Thu, 25 Dec 2025 19:43:18 -0800
-Message-Id: <20251225-ppp_light_accel_mag_vol-down-v6-0-8c79a4e87001@gmail.com>
+Date: Thu, 25 Dec 2025 19:43:19 -0800
+Subject: [PATCH v6 1/2] arm64: dts: rockchip: Add magnetometer sensor to
+ Pinephone Pro
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,26 +54,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAFYETmkC/5XOTW6DMBCG4atEXteVbfxHV71HFaHBHoMlwAgiN
- 1XE3etkUaF0Qbt8Z/F8cyMrLhFX8na6kQVzXGOaSuiXE3E9TB3S6EsTwYRitWB0nudmiF1/acA
- 5HJoRuiangfr0OVHLjbMyeEDrSSHmBUO8PviPc+k+rpe0fD3WMr9f/whnThl1tm2dr1BgLd+7E
- eLw6tJI7nAWe4wfYKJgqFvntAMjAZ+x6j9YVTADQWvFgzH46zO5x+oDTBZMq9oGIXwlFX/G1A/
- GuZAHmCpYqIEzYKAYtnts27Zv3tJQ4fwBAAA=
-X-Change-ID: 20250920-ppp_light_accel_mag_vol-down-817c84fdae8d
+Message-Id: <20251225-ppp_light_accel_mag_vol-down-v6-1-8c79a4e87001@gmail.com>
+References: <20251225-ppp_light_accel_mag_vol-down-v6-0-8c79a4e87001@gmail.com>
+In-Reply-To: <20251225-ppp_light_accel_mag_vol-down-v6-0-8c79a4e87001@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
  phone-devel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>, 
  Ondrej Jirman <megi@xff.cz>, "Leonardo G. Trombetta" <lgtrombetta@gmx.com>, 
- Pavel Machek <pavel@ucw.cz>, Martijn Braam <martijn@brixit.nl>, 
- =?utf-8?q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>
+ Pavel Machek <pavel@ucw.cz>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766720655; l=3050;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766720655; l=1717;
  i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
- bh=Ou87PO0R/OWNEEu0ns8K1kPWQXC2moP4qrOtG3wy9A4=;
- b=NXdEf3OwQcE6VqJFKTxbvswHHnjmSS571lQw4+wcJjV7dCkSrwcycAfoIy/SeSYs2l/L/RQHz
- UIJaYULe4ggBZNaMuVIc+OofOTaJ3ywvj5163p+kmRPRtxgWsCzU5VE
+ bh=0XuYXwAcw7Z+0HhnTrXafixONjaWrvmPAzuL5lX4iks=;
+ b=XlQM56S+SOU0+omqFG/+SCuRoarfUKte6KV5pVrGOYfOtajHB0B+jNhlM8Y0eGL74qnktTGTe
+ n3dqg6nrKQkChDEXMaue9NNWdFhh9sOIY3+FCDVNV506UEEonKowL40
 X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
  pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
 X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
@@ -80,73 +77,68 @@ X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
 X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
 Reply-To: guptarud@gmail.com
 
-Throughout the years, many have contributed to the Pinephone Pro (ppp)
-development. Unfortunately, these patches are scattered around various
-repositories in different states.
+From: Ondrej Jirman <megi@xff.cz>
 
-I will be attempting to upstream these patches. I will start off with the
-following small series:
-- Add light/proximity sensor support
-  - Link: https://codeberg.org/megi/linux/commit/f171bc7013bc7ad3de9af817bfbcbfa548ebe01c
-- Add magnetometer sensor support
-  - Link: https://codeberg.org/megi/linux/commit/2f7e67f451f16eaf15b81aa1dbdf126d54927d35
-- Add mount-matrix for magnetometer
-  - Link: https://codeberg.org/megi/linux/commit/d7cd2eab931e32fa94408a96d73b4e6c0616107a
+Pinephone Pro uses AF8133J according to the schematic.
 
-Already upstreamed:
-- Add accelerometer sensor support
-  - Link: https://codeberg.org/megi/linux/commit/b0bb7633e073a6760fa213b8c4a78ea2e73c7bf1
-- Fix voltage threshold for volume down key
-  - Link: https://codeberg.org/megi/linux/commit/7c496a5cc27ed4e38b740f36c2d8b2c62f80ae54
+The mount-matrix was added by Leonardo on top of Ondrej's work of adding
+the magnetometer. It was verified with Leonardo's compass app:
 
+https://gitlab.com/lgtrombetta/compass
+
+Co-developed-by: Leonardo G. Trombetta <lgtrombetta@gmx.com>
+Signed-off-by: Leonardo G. Trombetta <lgtrombetta@gmx.com>
+Signed-off-by: Ondrej Jirman <megi@xff.cz>
+Reviewed-by: Pavel Machek <pavel@ucw.cz>
 Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
 ---
-Changes in v6:
-- rebased to 6.18
-- sorted nodes alphabetically in compass and light/proximity
-- added pinctrl to compass
-- dropped accelerometer and volume patches as they are merged
-- Link to v5: https://lore.kernel.org/r/20251124-ppp_light_accel_mag_vol-down-v5-0-f9a10a0a50eb@gmail.com
+ .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 23 ++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-Changes in v5:
-- use monitor-sensor to verify accelerometer's mount-matrix, lux, proximity
-- use Leonardo's compass add to verify the compass's mount matrix
-- Link to v4: https://lore.kernel.org/r/20250929-ppp_light_accel_mag_vol-down-v4-0-6598f22d3451@gmail.com
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+index 2dca1dca20b8..1d3baa557c70 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+@@ -537,6 +537,23 @@ mpu6500@68 {
+ 	};
+ };
+ 
++&i2c4 {
++	af8133j: compass@1c {
++		compatible = "voltafield,af8133j";
++		reg = <0x1c>;
++		avdd-supply = <&vcc_3v0>;
++		dvdd-supply = <&vcc_1v8>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&compass_rst_l>;
++		reset-gpios = <&gpio1 RK_PA1 GPIO_ACTIVE_LOW>;
++
++		mount-matrix =
++			"0", "1", "0",
++			"-1", "0", "0",
++			"0", "0", "1";
++	};
++};
++
+ &io_domains {
+ 	bt656-supply = <&vcc1v8_dvp>;
+ 	audio-supply = <&vcca1v8_codec>;
+@@ -649,6 +666,12 @@ dvp_pdn0_h: dvp-pdn0-h {
+ 		};
+ 	};
+ 
++	compass {
++		compass_rst_l: compass-rst-l {
++			rockchip,pins = <1 RK_PA1 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	leds {
+ 		red_led_pin: red-led-pin {
+ 			rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
 
-Changes in v4:
-- remove leda-supply and vdd-supply from dts to suppress warning
-- credit Martijn and Kamil for the light sensor and accelerometer patches
-  - Link: https://fosstodon.org/@martijnbraam/115272859701389599
-  - Link: https://codeberg.org/megi/linux/commit/fc5660685ebe4ecf60226bfa27a1ce47c1c1d020
-- combine the magnetometer related patches
-- corrected accelerometer's mount matrix to Documentation/devicetree/bindings/iio/mount-matrix.txt
-- filled out commit messages
-- rebased onto v6.17
-- Link to v3: https://lore.kernel.org/r/20250921-ppp_light_accel_mag_vol-down-v3-0-7af6651f77e4@gmail.com
-
-Changes in v3:
-- change magnetometer mount matrix
-- update volume button threshold
-- Link to v2: https://lore.kernel.org/r/20250921-ppp_light_accel_mag_vol-down-v2-0-e6bcc6ca74ae@gmail.com
-
-Changes in v2:
-- remove usb-typec node in dts from light/proximity sensor patch
-- Link to v1: https://lore.kernel.org/r/20250920-ppp_light_accel_mag_vol-down-v1-0-c8bbcd3e2e94@gmail.com
-
----
-Ondrej Jirman (2):
-      arm64: dts: rockchip: Add magnetometer sensor to Pinephone Pro
-      arm64: dts: rockchip: Add light/proximity sensor to Pinephone Pro
-
- .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 39 ++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
----
-base-commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
-change-id: 20250920-ppp_light_accel_mag_vol-down-817c84fdae8d
-
-Best regards,
 -- 
-Rudraksha Gupta <guptarud@gmail.com>
+2.52.0
 
 
 
