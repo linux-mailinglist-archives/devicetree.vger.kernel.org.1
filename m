@@ -1,59 +1,55 @@
-Return-Path: <devicetree+bounces-249858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30213CDFC39
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:52:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E7DCDFC5A
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:56:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 41AA8300B91B
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:50:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D920F3001501
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:56:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2400B31985E;
-	Sat, 27 Dec 2025 12:50:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46EC6267B05;
+	Sat, 27 Dec 2025 12:56:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="czEyINwS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jGQk+zaN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DD831A06A;
-	Sat, 27 Dec 2025 12:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1827C1DF970;
+	Sat, 27 Dec 2025 12:56:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766839850; cv=none; b=bvs+Ggj8xnsfa2N2fQID2gCfm9pdL92//sYps62jDEpYd+hr5eDY9XuLPmYFWIPIep/W8gJk8nBn6VjFJpVOEQDK16jdIzTzIS9o1DnnI1xr6xL6NovBroRE+mNJ3mnLiWXRen0SGe5VHKcBgLZLQdstUe8OhkCfUoYFKLypYYw=
+	t=1766840184; cv=none; b=RkUreMvwMX1nYVbtbjv1S4ykt2BO/FbbPvMxCWdmC66ORXHnoQfYlMMUmIisL9LxEJfFHoD7mbcguiPMr8puYOnkXkKiXZxyO8buddtEMLB4J4b9X23WN6TAACWmcZ5GVJM2bVgGh5J0EK1vsvLzcCPiuJAllPXu7yu+TFLrorQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766839850; c=relaxed/simple;
-	bh=NoIiabkLSrEfm+Wn2XfQIhp2qSUkWHgkyhkvdmrWEUs=;
+	s=arc-20240116; t=1766840184; c=relaxed/simple;
+	bh=yoryvVFcSaKexiO8jB8y7NvnyLqka1Dt5kyz1yP69as=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O/oDJCoOTqb1VZSPHM1SfCk5ioNZig7AmRtHg/c+6Eqv0PQ+dTWwRUzNvpNaDagZdPeX7u1jn0kmnRv31Tal5SyQfCIy23J/HKiU49LgAyglgeJ0UpiLgNUttLF8L+TRbdXJUWizidbhWnTsYsWZrl+uEGu4Zy3zJJGt/7tlCDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=czEyINwS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A08BC4CEF1;
-	Sat, 27 Dec 2025 12:50:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PLVUhlg/jD0f0zi3Prg8H7i2YUX/k1aOeR9nrddA257ZwPxc6BLaJj23hgrlwVBqktQTW7uukttT0myIBQFErVXmMGViu7ypmGxbT3Kh4esL98IYYzshdbJ3v9OmKbuzw3BkLUP2M+u+nUw/4blhcLHJBnlHg4KPmwcaZPqo0mE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jGQk+zaN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16EFAC4CEF1;
+	Sat, 27 Dec 2025 12:56:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766839849;
-	bh=NoIiabkLSrEfm+Wn2XfQIhp2qSUkWHgkyhkvdmrWEUs=;
+	s=k20201202; t=1766840183;
+	bh=yoryvVFcSaKexiO8jB8y7NvnyLqka1Dt5kyz1yP69as=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=czEyINwSV/6DJ3pY5shcwPoPwK3alLx1nRFTnjf5SW768UJ26RrFupOJEwMaQcI6P
-	 vCoutClLn8Fez7ZsXkieVXWo2ksY4a+IQ7cPjOtX0j92J3ENCWpHQSlwGb8Jgo2lOS
-	 gO5LDAxGuHIbrMloAymOBazQyBpdL0/lnCR0kT7dUPVhuFSk+LRu5KYnU2n+D0JeY6
-	 5eF79SRu+y3116Ip/NiZ0ls+hz1u3H5ONZxDDVCVyddmOk98r39U16eByR2+PWvbqh
-	 7R19EYGNWrRbCXtE9bw/qy4zhsmexDq7O5rNqt9NwZGIwn4Pmcz/dBeMT1/qK8g38+
-	 vGJjzkPoF3UXg==
-Date: Sat, 27 Dec 2025 13:50:47 +0100
+	b=jGQk+zaNq9pB8MioDbSeO7Qbk76gyiUpv9hHPQHl/OQt4Cv4z6HGvJsEafbbS2hE/
+	 eLzpKfLNCieNDAI2w+DPwAL+F9S5pU5jYRfAIXCVSu95eHDSjjr98ViqXAoLRZZH83
+	 GJlj9rDTwU0nzFemzY+i+VQ5EAgAF5L9tPyPMaLuody6rSZ9rAY8yDfIc5XgRP6UEs
+	 eW+TBZXFyxsVEB7dAq6gsdE0RsAzhTuJbi+roqEb2Pz9ijMC00Qjx69oEfw76Wlwoc
+	 Rz6cVNXaIniZCFGWisZ/212w603/JUuArVhUg8QvUMyTgpgO/syyTbrPQZDq6iF/DA
+	 5aCT0rUOFx6Uw==
+Date: Sat, 27 Dec 2025 13:56:21 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tzu-Hao Wei <twei@axiado.com>
-Cc: SriNavmani A <srinavmani@axiado.com>, 
-	Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Harshit Shah <hshah@axiado.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Michal Simek <michal.simek@amd.com>, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 5/8] dt-bindings: mmc: axiado: Add axiado eMMC variant
-Message-ID: <20251227-industrious-mammoth-of-culture-ff9dbe@quoll>
-References: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-0-5457d0ebcdb4@axiado.com>
- <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-5-5457d0ebcdb4@axiado.com>
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>, Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller:
+ renesas,r9a09g077-icu: Fix reg size in example
+Message-ID: <20251227-bold-herring-of-serendipity-ddbcc4@quoll>
+References: <04fde8ed8301126e1781cf21bf10302b274dd582.1766409087.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +58,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-5-5457d0ebcdb4@axiado.com>
+In-Reply-To: <04fde8ed8301126e1781cf21bf10302b274dd582.1766409087.git.geert+renesas@glider.be>
 
-On Mon, Dec 22, 2025 at 04:45:04PM +0800, Tzu-Hao Wei wrote:
-> From: SriNavmani A <srinavmani@axiado.com>
+On Mon, Dec 22, 2025 at 02:12:54PM +0100, Geert Uytterhoeven wrote:
+> According to Figure 5.1 ("Unified memory map"), the safety register
+> block is 64 KiB large, just like the non-safety register block.
 > 
-> Add device tree binding variant for the Axiado AX3000 Arasan eMMC
-> controller. This variant identifies the specific eMMC controller
-> implementation used on the AX3000 SoC and enables the appropriate
-> driver configuration.
-> 
-> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
+> Fixes: a6568d82091d279c ("dt-bindings: interrupt-controller: Document RZ/{T2H,N2H} ICU")
 
-Incorrect DCO chain.
+That's just example, so nothing really to fix. It can contain incorrect
+values.
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
