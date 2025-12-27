@@ -1,303 +1,130 @@
-Return-Path: <devicetree+bounces-249872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F68CDFDA2
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 15:26:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 773B7CDFDD9
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 15:43:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 47E92301FC1C
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 14:25:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 128303016CD8
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 14:43:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8588631AABB;
-	Sat, 27 Dec 2025 14:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC20319877;
+	Sat, 27 Dec 2025 14:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="DLEx81tS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fQ3ACtem"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12A0227E95
-	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 14:25:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E58313E23;
+	Sat, 27 Dec 2025 14:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766845510; cv=none; b=RmeXap/T1EFES/ypfwu0vAKXnzXNBTq4k2jUqHdMK+ANVrmnX0uthM80OM4bYi3+JpDERrCtUpMXcsVe+ofwqFOpaDnVITEkX5tcilEhjGwbWFyozb/HHqQ37oHa/emI1amNqDqumrSnIAWVN6x6RkU/XBfYKtXDwh3q2Y1tMfs=
+	t=1766846602; cv=none; b=LtjNxDs8jBvfyXqxXchWSqSEeIAGhX1D5blbkv8hnBPKV6ENtQZeAg0p+h3VCm+24kmy/Ag9gaz+Kz6JJZjeaeGW4cYHPJeAKPpDyL5pjr0hzF0MySygibPWAdhvQyx7GqRd5jKh86v7mj/9jh431MYTX1iLnrboKAkw2wCHhTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766845510; c=relaxed/simple;
-	bh=A2NH8q4C7fVPf2dWuZsnLKGtSz5oh/q2W/gIH5638ho=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H/g3LB+6EJgwGq6Jsw6u7G8nDsfjzNKWOUZ9LyOfZCaaKbRRZxWVr69WJHwHXreVTpJwEI4z3MllIN2Bn7VPoK+TZdJx9WeAJEhyPptik3mYoAKOxAA6rDm0aB5kiQkKPSi71Fac65sfgVm5jl6V2eLbD03DFcsvnRKzwpTuOXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=DLEx81tS; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7aa9be9f03aso6482371b3a.2
-        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 06:25:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1766845506; x=1767450306; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qG0+ohKiSx95lCPoeRkBaenAF/9dUpbZ87AcJoxqhPo=;
-        b=DLEx81tSxWtQ7SmK28Q2lr1BXEFKzgihwGi7K6etBrx/PAlP6707La2LXcj60q3ydk
-         r68+NZ3hDmn/2aKYrmrP5AyzgWR1L0P9dp7zT4vRRj79FsSxjYEcS/MpOp8VQ8N7IMxQ
-         EvjrCLhH5h8og+PSNOVamhQtNfDR+k+pipwRU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766845506; x=1767450306;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qG0+ohKiSx95lCPoeRkBaenAF/9dUpbZ87AcJoxqhPo=;
-        b=UBSWMeEjtatwtxFAn1ByAiKsmEH1S6UVk9DOTr2N4c8KOfKF6NNsRvmrkOOa2wzUeT
-         VnyByYcn8kB415Gyds70ZcjpzLBm2pv79QOV8R3ypi97dY6KS9Q60J+HkDz2NPb7bETz
-         gN+mFKzaeqfqSyYEQZdQVYw6vIwTEqxqRfMGSXEFbqonWHoU8J6kdqBL5EPWdUbEkTVS
-         13WBz2nD2w1a5AAhssVIBszytBdims89db1F04JzsfeTsQW3bN4RT5sqmbJ8MY0LMCYA
-         vfKHYNCeUxl6Vj9dRrTRU8u999V/XLlqx3DM8XWjVlgSV6+H0X4yPwVkBxhDxHmw8H8b
-         1Sbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUh8za7bhlFYhyO8MJp7Yk+UP9w08P2Ag9wKkBt5dInuomAH83SARUdEIT9KI1FkYyj8GQ46MYpyK/L@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxcnj8exRoJskxISrGrYFWkduDTuJ2q/Bx6U3IxsFDFVmNBSdzq
-	kkH98eJosnZbpFZP2DBFR3H14EHIe8ks0Z6EJ7v0EWtlPuk6fgeE0g9IeKrn0aZqkMCQPoDoLnh
-	RjZaS0xC/4r4q5gPPwj/EfVQw7WMshmE5ojBMjHj0
-X-Gm-Gg: AY/fxX6KqmEbAEhkFqT/xCBZbsD2gXWQwaG4OXVO+/vH+yc282+da75MgXhRQmKbDn6
-	TkEc7LK7SN+saSJzUghtXhFnmilUmceNJLzOanVMJWFZycEX5GwJYPzCgZGjefU/LazcIr6J4lE
-	p3jJtwSt6oRoXtnOyfDc179gutYm62p4f+zagcL+s2Bc67wONH3h9iThvHIcIj+TWiJ8tB6pQl7
-	NjQ3Z4nasg3SfOfJ1I18ioz9nhWqTRiyA2LKYPYmatYpbMVg4EjYihorQcyKtZKf59EISPN8fFw
-	TU45
-X-Google-Smtp-Source: AGHT+IHnEGOmXdjfQsetVVbNG8ehT65yiF1nHmPBkUVYero3HJqeWEGu77h5h3mI6v4oKE3+iSLjngfGXjPOlcDmCo4=
-X-Received: by 2002:a05:6a20:72a5:b0:34f:68e9:da94 with SMTP id
- adf61e73a8af0-376a81dcc8fmr24774064637.30.1766845505998; Sat, 27 Dec 2025
- 06:25:05 -0800 (PST)
+	s=arc-20240116; t=1766846602; c=relaxed/simple;
+	bh=jRhpJFBeIQCwSY+eClJhUGsIi2sH9CCSnImmG2fb1U0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AcPLMp/dj6BM3kSbADXqiptHf1UwBkWfmNRZTzm/wLITYqirta3V/MjaAatwKTFxEtrvoAPBcOEU8aETfRFxcIl8uyInRp4+oK3Hb1Se6RTUZFAuMk8bNdGdzpCiszglVRx7KL/EtB/he+FL+w1t1jjMK/C0v2ZKRdGCQ1u0Qkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fQ3ACtem; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1766846601; x=1798382601;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jRhpJFBeIQCwSY+eClJhUGsIi2sH9CCSnImmG2fb1U0=;
+  b=fQ3ACtem/o8EHREFPvS6vRP8Lj6K2ZGo4nLn61jYsRiaikU4CW41xQah
+   ZbplKt8K/x9Xna6BuJXfjZzTPFsAp/3hl4tDfRyXug9yLQwyJgvILvmLU
+   uNz23VebQZ7+/HGarIUvF3ujkvs8McQKQ+8z5U3VjAgs4O4gu7iYP5iYz
+   r0HtRqekBKyf8cAgt0WJzd1jB+m8Vttvtc5YB6hxM9v67ctX6mzgN0AcF
+   FT05/V81r4FUPmdlH/sg7MWxQll8aeozOOkwJyPpERgXzcf3onUHC68Xa
+   yDMD1Vs1ViNU3kJ9yf9xzDTygPL3n4Oh5dWHNWbw2ojg5pGYG4k7GYSu6
+   w==;
+X-CSE-ConnectionGUID: z3OZm2QJSzurEHqpdI1Yyg==
+X-CSE-MsgGUID: C5m9ZvhbTpOMSWpUMZ9Dcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11654"; a="68430878"
+X-IronPort-AV: E=Sophos;i="6.21,180,1763452800"; 
+   d="scan'208";a="68430878"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2025 06:43:20 -0800
+X-CSE-ConnectionGUID: 6PIyJQj5TU6SVL89rK3TGQ==
+X-CSE-MsgGUID: 2E9D1v96Tb6jgF4ZnYd5Sw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,180,1763452800"; 
+   d="scan'208";a="205094746"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.211])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2025 06:43:15 -0800
+Date: Sat, 27 Dec 2025 16:43:12 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Jonathan Cameron <jic23@kernel.org>, nuno.sa@analog.com,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Angelo Dureghello <adureghello@baylibre.com>,
+	Tobias Sperling <tobias.sperling@softing.com>,
+	Eason Yang <j2anfernee@gmail.com>,
+	Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
+	duje@dujemihanovic.xyz, herve.codina@bootlin.com,
+	Rodolfo Giometti <giometti@enneenne.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com
+Subject: Re: [PATCH 2/2] iio: adc: add driver for Texas Instruments TLA2528
+ adc
+Message-ID: <aU_wgM_gNvxOLNLM@smile.fi.intel.com>
+References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
+ <20251223155534.220504-3-maxime.chevallier@bootlin.com>
+ <3e9a5df0-c650-46dc-8b64-b8708099262e@bootlin.com>
+ <b2ecbe6f-aed3-44de-b094-022e52d3e5a4@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251224152238.485415-1-fabiobaltieri@chromium.org> <20251224152238.485415-2-fabiobaltieri@chromium.org>
-In-Reply-To: <20251224152238.485415-2-fabiobaltieri@chromium.org>
-From: Simon Glass <sjg@chromium.org>
-Date: Sat, 27 Dec 2025 07:24:33 -0700
-X-Gm-Features: AQt7F2pu5irmQrlelsCWH9CO1JsXgyJlMuIRF8sLAfYATcFturh6KCklaDBGaMQ
-Message-ID: <CAFLszThHmN-eGMwwgUhSFbWcbuOYYs-eFh6d6ZVTXekRGv6Hdg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] Input: cros_ec_keyb - add function key support
-To: Fabio Baltieri <fabiobaltieri@chromium.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>, 
-	Tzung-Bi Shih <tzungbi@kernel.org>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b2ecbe6f-aed3-44de-b094-022e52d3e5a4@baylibre.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Fabio,
+On Tue, Dec 23, 2025 at 11:33:02AM -0600, David Lechner wrote:
+> On 12/23/25 11:12 AM, Maxime Chevallier wrote:
+> > On 23/12/2025 16:55, Maxime Chevallier wrote:
+> >> This adds a new driver for the TI TLA2528 ADC chip. It ha 8 12-bit
+> >> channels, that can also be configured as 16-bit averaging channels.
+> >>
+> >> Add a very simple driver for it, allowing reading raw values for each
+> >> channel.
+> >>
+> >> Signed-off-by: Rodolfo Giometti <giometti@enneenne.com>
+> > 
+> > Looking closer at this, Rodolfo hasn't seen this patch prior to me
+> > sending it, so it should rather be :
+> > 
+> > Orginally-by: Rodolfo Giometti <giometti@enneenne.com>
+> 
+> I think the usual way would be to keep the Signed-off-by: and add
+> Co-developed-by:.
+> 
+> See https://docs.kernel.org/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
 
-On Wed, 24 Dec 2025 at 08:22, Fabio Baltieri <fabiobaltieri@chromium.org> wrote:
->
-> Add support for handling an Fn button and sending separate keycodes for
-> a subset of keys in the matrix defined in the upper half of the keymap.
->
-> Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
-> ---
->  drivers/input/keyboard/cros_ec_keyb.c | 120 ++++++++++++++++++++++----
->  1 file changed, 104 insertions(+), 16 deletions(-)
->
+Hmm... I think the Originally-by is used when the contributor gave
+a PoC / basic idea in a form of code that was (heavily?) rewritten.
 
-Reviewed-by: Simon Glass <sjg@chromium.org>
+The only documentation mentions this tag is
+Documentation/process/maintainer-tip.rst.
 
-I suggest a function comment for the two new functions you add.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> diff --git a/drivers/input/keyboard/cros_ec_keyb.c b/drivers/input/keyboard/cros_ec_keyb.c
-> index 1c6b0461dc35..8b95b4f8a37d 100644
-> --- a/drivers/input/keyboard/cros_ec_keyb.c
-> +++ b/drivers/input/keyboard/cros_ec_keyb.c
-> @@ -29,6 +29,11 @@
->
->  #include <linux/unaligned.h>
->
-> +/* Maximum size of the normal key matrix, this is limited by the host command
-> + * key_matrix field defined in ec_response_get_next_data_v3
-> + */
-> +#define CROS_EC_KEYBOARD_COLS_MAX 18
-> +
->  /**
->   * struct cros_ec_keyb - Structure representing EC keyboard device
->   *
-> @@ -44,6 +49,11 @@
->   * @bs_idev: The input device for non-matrix buttons and switches (or NULL).
->   * @notifier: interrupt event notifier for transport devices
->   * @vdata: vivaldi function row data
-> + * @use_fn_overlay: whether the driver use an fn function overlay
-> + * @normal_key_status: active normal keys map
-> + * @fn_key_status: active function keys map
-> + * @fn_key_pressed: tracks the function key status
-> + * @fn_key_triggered: tracks where any function key fired
->   */
->  struct cros_ec_keyb {
->         unsigned int rows;
-> @@ -61,6 +71,12 @@ struct cros_ec_keyb {
->         struct notifier_block notifier;
->
->         struct vivaldi_data vdata;
-> +
-> +       bool use_fn_overlay;
-> +       u8 normal_key_status[CROS_EC_KEYBOARD_COLS_MAX];
-> +       u8 fn_key_status[CROS_EC_KEYBOARD_COLS_MAX];
-> +       bool fn_key_pressed;
-> +       bool fn_key_triggered;
->  };
->
->  /**
-> @@ -166,16 +182,83 @@ static bool cros_ec_keyb_has_ghosting(struct cros_ec_keyb *ckdev, uint8_t *buf)
->         return false;
->  }
->
-> +static void cros_ec_keyb_process_fn_key(struct cros_ec_keyb *ckdev,
-> +                                       int row, int col, bool state)
-> +{
-> +       struct input_dev *idev = ckdev->idev;
-> +       int pos = MATRIX_SCAN_CODE(row, col, ckdev->row_shift);
-> +
-> +       ckdev->fn_key_pressed = state;
-> +
-> +       if (state) {
-> +               ckdev->fn_key_triggered = false;
-> +       } else if (!ckdev->fn_key_triggered) {
-> +               /*
-> +                * Send the original code if nothing else has been pressed
-> +                * together with Fn.
-> +                */
-> +               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> +               input_report_key(idev, KEY_FN, true);
-> +               input_sync(idev);
-> +
-> +               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> +               input_report_key(idev, KEY_FN, false);
-> +       }
-> +}
-> +
-> +static void cros_ec_keyb_process_one(struct cros_ec_keyb *ckdev,
-> +                                    int row, int col, bool state)
-> +{
-> +       struct input_dev *idev = ckdev->idev;
-> +       const unsigned short *keycodes = idev->keycode;
-> +       int pos = MATRIX_SCAN_CODE(row, col, ckdev->row_shift);
-> +       unsigned int code = keycodes[pos];
-> +
-> +       dev_dbg(ckdev->dev, "changed: [r%d c%d]: byte %02x\n", row, col, state);
-> +
-> +       if (ckdev->use_fn_overlay) {
-> +               if (code == KEY_FN)
-> +                       return cros_ec_keyb_process_fn_key(ckdev, row, col, state);
-> +
-> +               if (!state) {
-> +                       if (ckdev->fn_key_status[col] & BIT(row)) {
-> +                               pos = MATRIX_SCAN_CODE(row + ckdev->rows, col, ckdev->row_shift);
-> +                               code = keycodes[pos];
 
-You might want a helper to do this as it is repeated below
-
-> +
-> +                               ckdev->fn_key_status[col] &= ~BIT(row);
-> +                       } else if (ckdev->normal_key_status[col] & BIT(row)) {
-> +                               ckdev->normal_key_status[col] &= ~BIT(row);
-> +                       } else {
-> +                               /* Discard, key press code was not sent */
-> +                               return;
-> +                       }
-> +               } else if (ckdev->fn_key_pressed) {
-> +                       pos = MATRIX_SCAN_CODE(row + ckdev->rows, col, ckdev->row_shift);
-> +                       code = keycodes[pos];
-> +
-> +                       ckdev->fn_key_triggered = true;
-> +
-> +                       if (!code)
-> +                               return;
-> +
-> +                       ckdev->fn_key_status[col] |= BIT(row);
-> +               } else {
-> +                       ckdev->normal_key_status[col] |= BIT(row);
-> +               }
-> +       }
-> +
-> +       input_event(idev, EV_MSC, MSC_SCAN, pos);
-> +       input_report_key(idev, code, state);
-> +}
->
->  /*
->   * Compares the new keyboard state to the old one and produces key
-> - * press/release events accordingly.  The keyboard state is 13 bytes (one byte
-> - * per column)
-> + * press/release events accordingly.  The keyboard state is one byte
-> + * per column.
->   */
->  static void cros_ec_keyb_process(struct cros_ec_keyb *ckdev,
->                          uint8_t *kb_state, int len)
->  {
-> -       struct input_dev *idev = ckdev->idev;
->         int col, row;
->         int new_state;
->         int old_state;
-> @@ -192,20 +275,13 @@ static void cros_ec_keyb_process(struct cros_ec_keyb *ckdev,
->
->         for (col = 0; col < ckdev->cols; col++) {
->                 for (row = 0; row < ckdev->rows; row++) {
-> -                       int pos = MATRIX_SCAN_CODE(row, col, ckdev->row_shift);
-> -                       const unsigned short *keycodes = idev->keycode;
-> -
->                         new_state = kb_state[col] & (1 << row);
->                         old_state = ckdev->old_kb_state[col] & (1 << row);
-> -                       if (new_state != old_state) {
-> -                               dev_dbg(ckdev->dev,
-> -                                       "changed: [r%d c%d]: byte %02x\n",
-> -                                       row, col, new_state);
-> -
-> -                               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> -                               input_report_key(idev, keycodes[pos],
-> -                                                new_state);
-> -                       }
-> +
-> +                       if (new_state == old_state)
-> +                               continue;
-> +
-> +                       cros_ec_keyb_process_one(ckdev, row, col, new_state);
->                 }
->                 ckdev->old_kb_state[col] = kb_state[col];
->         }
-> @@ -597,12 +673,19 @@ static int cros_ec_keyb_register_matrix(struct cros_ec_keyb *ckdev)
->         struct device *dev = ckdev->dev;
->         struct input_dev *idev;
->         const char *phys;
-> +       unsigned int rows_keymap;
->         int err;
->
->         err = matrix_keypad_parse_properties(dev, &ckdev->rows, &ckdev->cols);
->         if (err)
->                 return err;
->
-> +       if (ckdev->cols > CROS_EC_KEYBOARD_COLS_MAX) {
-> +               dev_err(dev, "keypad,num-columns too large: %d (max: %d)\n",
-> +                       ckdev->cols, CROS_EC_KEYBOARD_COLS_MAX);
-> +               return -EINVAL;
-> +       }
-> +
->         ckdev->valid_keys = devm_kzalloc(dev, ckdev->cols, GFP_KERNEL);
->         if (!ckdev->valid_keys)
->                 return -ENOMEM;
-> @@ -635,7 +718,12 @@ static int cros_ec_keyb_register_matrix(struct cros_ec_keyb *ckdev)
->         ckdev->ghost_filter = device_property_read_bool(dev,
->                                         "google,needs-ghost-filter");
->
-> -       err = matrix_keypad_build_keymap(NULL, NULL, ckdev->rows, ckdev->cols,
-> +       ckdev->use_fn_overlay = device_property_read_bool(dev,
-> +                                       "google,use-fn-overlay");
-> +
-> +       rows_keymap = ckdev->use_fn_overlay ? ckdev->rows * 2 : ckdev->rows;
-> +
-> +       err = matrix_keypad_build_keymap(NULL, NULL, rows_keymap, ckdev->cols,
->                                          NULL, idev);
->         if (err) {
->                 dev_err(dev, "cannot build key matrix\n");
-> --
-> 2.52.0.351.gbe84eed79e-goog
->
-
-Regards,
-Simon
 
