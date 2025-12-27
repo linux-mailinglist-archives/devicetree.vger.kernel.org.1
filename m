@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-249857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8972ACDFBB9
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:45:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30213CDFC39
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:52:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 62304300160B
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:44:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 41AA8300B91B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:50:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A340B319603;
-	Sat, 27 Dec 2025 12:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2400B31985E;
+	Sat, 27 Dec 2025 12:50:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OPrTbs+F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="czEyINwS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7062B316907;
-	Sat, 27 Dec 2025 12:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DD831A06A;
+	Sat, 27 Dec 2025 12:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766839492; cv=none; b=Cx4WPN+514SAXA6sJipr8vacL8hBgJxtIdGKa13YQ+UJnStSpbSI7cUY4IUSR790cj9XKNAYTo0vnUavLirshQBTY7XLy02G0guwi9txP9SQlON8Jq/4spmaxYY1FxfPCED9LI6Jlsl9hFKMwZspokLDFe8D/zAnikjxabnTDbk=
+	t=1766839850; cv=none; b=bvs+Ggj8xnsfa2N2fQID2gCfm9pdL92//sYps62jDEpYd+hr5eDY9XuLPmYFWIPIep/W8gJk8nBn6VjFJpVOEQDK16jdIzTzIS9o1DnnI1xr6xL6NovBroRE+mNJ3mnLiWXRen0SGe5VHKcBgLZLQdstUe8OhkCfUoYFKLypYYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766839492; c=relaxed/simple;
-	bh=2jOj8oNDslYBZVMXX5ja+3Q+899129JuW4oQuGiedZU=;
+	s=arc-20240116; t=1766839850; c=relaxed/simple;
+	bh=NoIiabkLSrEfm+Wn2XfQIhp2qSUkWHgkyhkvdmrWEUs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cSMR4Qqk5fpIqB9AxhnS2w8K+GNzEfhNozz6/nUzGRBjWZ6wzrWvsneZ27G24/oZJTuB0A+MVlb9zmYXY2XjzZGjQ/RTCvoBpxd/gJyO2W/4ul+ibBLMOoLenuqBi+Gh8g13SA2sd2OOLpYsuZfVm76jhIyZeXH7V9j9/ZMDx7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OPrTbs+F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB784C4CEF1;
-	Sat, 27 Dec 2025 12:44:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=O/oDJCoOTqb1VZSPHM1SfCk5ioNZig7AmRtHg/c+6Eqv0PQ+dTWwRUzNvpNaDagZdPeX7u1jn0kmnRv31Tal5SyQfCIy23J/HKiU49LgAyglgeJ0UpiLgNUttLF8L+TRbdXJUWizidbhWnTsYsWZrl+uEGu4Zy3zJJGt/7tlCDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=czEyINwS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A08BC4CEF1;
+	Sat, 27 Dec 2025 12:50:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766839492;
-	bh=2jOj8oNDslYBZVMXX5ja+3Q+899129JuW4oQuGiedZU=;
+	s=k20201202; t=1766839849;
+	bh=NoIiabkLSrEfm+Wn2XfQIhp2qSUkWHgkyhkvdmrWEUs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OPrTbs+F9zMhvOhm4CY31tQTEANFKdTHn/gaoeowfD8R+yE6sgDnWpVvf0d7iz8z+
-	 ok4G4HHjZQWmm93zNuM1zgsXP6f8W3DBb9Vj3VjvvRu6hb1p3MEUfXdhi4El8TSYJ0
-	 tcOVKsa6shZ6drkc+I4xHxQ22bA7GMU7nXgQnTlw2eMhanMtRcaMzfhhn0TVT3DKta
-	 ldGwU1aEph3PENL1DOvYRF3RkRyPnjmV0CjYIyi2Iw4SbGK6CYvjNrLMbjDsTNfhlr
-	 wK+nsXAcLklnPZ3h+CfGbZDvVUBDRC6WmadKeOVhpiyP1ym7UHqLCncKQaYQh+eN41
-	 moBQ8Dex8Y6Pw==
-Date: Sat, 27 Dec 2025 13:44:49 +0100
+	b=czEyINwSV/6DJ3pY5shcwPoPwK3alLx1nRFTnjf5SW768UJ26RrFupOJEwMaQcI6P
+	 vCoutClLn8Fez7ZsXkieVXWo2ksY4a+IQ7cPjOtX0j92J3ENCWpHQSlwGb8Jgo2lOS
+	 gO5LDAxGuHIbrMloAymOBazQyBpdL0/lnCR0kT7dUPVhuFSk+LRu5KYnU2n+D0JeY6
+	 5eF79SRu+y3116Ip/NiZ0ls+hz1u3H5ONZxDDVCVyddmOk98r39U16eByR2+PWvbqh
+	 7R19EYGNWrRbCXtE9bw/qy4zhsmexDq7O5rNqt9NwZGIwn4Pmcz/dBeMT1/qK8g38+
+	 vGJjzkPoF3UXg==
+Date: Sat, 27 Dec 2025 13:50:47 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Fabio Baltieri <fabiobaltieri@chromium.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>, 
-	Guenter Roeck <groeck@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Simon Glass <sjg@chromium.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: google,cros-ec-keyb: add
- use-fn-overlay prop
-Message-ID: <20251227-imperial-ambrosial-emu-bebaae@quoll>
-References: <20251224152238.485415-1-fabiobaltieri@chromium.org>
- <20251224152238.485415-3-fabiobaltieri@chromium.org>
+To: Tzu-Hao Wei <twei@axiado.com>
+Cc: SriNavmani A <srinavmani@axiado.com>, 
+	Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Harshit Shah <hshah@axiado.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Michal Simek <michal.simek@amd.com>, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Subject: Re: [PATCH 5/8] dt-bindings: mmc: axiado: Add axiado eMMC variant
+Message-ID: <20251227-industrious-mammoth-of-culture-ff9dbe@quoll>
+References: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-0-5457d0ebcdb4@axiado.com>
+ <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-5-5457d0ebcdb4@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,17 +62,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251224152238.485415-3-fabiobaltieri@chromium.org>
+In-Reply-To: <20251222-axiado-ax3000-add-emmc-host-driver-support-v1-5-5457d0ebcdb4@axiado.com>
 
-On Wed, Dec 24, 2025 at 03:22:38PM +0000, Fabio Baltieri wrote:
-> Add binding documentation for the use-fn-overlay property.
+On Mon, Dec 22, 2025 at 04:45:04PM +0800, Tzu-Hao Wei wrote:
+> From: SriNavmani A <srinavmani@axiado.com>
 > 
-> Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
-> ---
+> Add device tree binding variant for the Axiado AX3000 Arasan eMMC
+> controller. This variant identifies the specific eMMC controller
+> implementation used on the AX3000 SoC and enables the appropriate
+> driver configuration.
+> 
+> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
 
-Please organize the patch documenting the compatible (DT bindings)
-before the patch using that compatible.
-See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+Incorrect DCO chain.
+
 
 Best regards,
 Krzysztof
