@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-249899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75477CE0034
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 18:19:04 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25003CE006B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 18:46:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 26B97301EF93
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 17:19:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EDF4130049F3
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 17:46:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47DD9255E26;
-	Sat, 27 Dec 2025 17:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EFCA139D0A;
+	Sat, 27 Dec 2025 17:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cno6JRCK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Guaht01e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D992BAF7;
-	Sat, 27 Dec 2025 17:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C983A1E66;
+	Sat, 27 Dec 2025 17:46:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766855942; cv=none; b=MhMP5hbO7U7VmsMibyRyxsj4aU9uDK20xvivBhWgEpF/SAZZn+NhKPhDpdVm8dMVNJTHlYTHs6u53I/kes0XqkQ2b5OUDWlf9Sh361pyHPEgBeM/dnZRlheG43PJiXReuzTIUskKpKdXg9UKR+6ymyIWus1zLD8GwcsPX9IzNF8=
+	t=1766857571; cv=none; b=X10zEy27PB8Ptg6Zi8k5E15G2aZvWzHvriCZOgCcGeDFgyGSwUakgjJX5v5dzX2606YMMnHxwSgRz9/vJFS+707VpAIf2whPQTRELQy0gMmqk2t7ZBguh1QOzDaafxjk4ont8I6GA2C9weXk+KAIOJ7xmwu5eLF2hy+NSwCYj08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766855942; c=relaxed/simple;
-	bh=GTK0czgPMgvbKrEcKKKWzCPyOf2LeVnHgV2YChJ0Ysk=;
+	s=arc-20240116; t=1766857571; c=relaxed/simple;
+	bh=Oe1q4vqbiNucWodqKNEldX869a2igibZ1Zyy/x4dxzI=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IybdlNGoSzljEKHn7CoNWx1PjjjUsqnvN8nh3ToxdrGDdCeW4XxmRdel+0TpWbhlvLXO+EOVMt3sk0hJw1yOuKKRP7ND3Ss2+rvQCEyGrEb9cc/5wrPzuwORm1jPtPLqFkXaSC3htXOnNHm7R7VzlyzU24IN/+QBVOPWZIlmsHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cno6JRCK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37A90C4CEF1;
-	Sat, 27 Dec 2025 17:18:56 +0000 (UTC)
+	 MIME-Version:Content-Type; b=jtNjldqqRiBSvCmMbSJPZuU7tE5fSyug04zAyulpYkdkYo0IEtVc4HVtqmb4RkfynwtgG/qUmIQVjw5YaSe2NKiqxhkV59/ri7t61hpPwkFttSVsS4p5HWAp8GGlHpYHqXY3NUMxqYdqBwbMz0ycSoRRWN53ZTCouE7eCX7ohJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Guaht01e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52410C4CEF1;
+	Sat, 27 Dec 2025 17:46:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766855941;
-	bh=GTK0czgPMgvbKrEcKKKWzCPyOf2LeVnHgV2YChJ0Ysk=;
+	s=k20201202; t=1766857570;
+	bh=Oe1q4vqbiNucWodqKNEldX869a2igibZ1Zyy/x4dxzI=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=cno6JRCKW8Jz8W0YqlNyEpZ+uvi+f8B4xH/PwHeNV9t5k6wVUZgoOQK2iHJOGW+ef
-	 ey5mihGUPaBG20tkJ7NA8hqL/L1nUK9Cdco5eMNHDTF+ulUVAMyqR4S2FIoKQxiscf
-	 Zx1fu0XwNheZTC9f6hF1YHxlLQJuk1zT1xmxbts6lyVx4DImP71XQ677m5DdxDfwTd
-	 d494tj7YxAPU5g83prKa0rDX7uBnPHMGOOAUsNWVQafXB4JUuJX7qXbXZv4VXPQPhU
-	 vmPwvtrLZOtpKjXBrfJpvy6yIvjQU6prqCLJ2nUWjASUI4/sJqHn4uhzQgVOmit04G
-	 MMM/XakhLh8FA==
-Date: Sat, 27 Dec 2025 17:18:50 +0000
+	b=Guaht01elJXwVq7Fdbpz/qQYbI59qU+xUrCAd9PZ81+1ZSLncX6u3OoT7k2MYnKp1
+	 2lRHo1PRPAhe9HqB3rbEFbCWGz40FWAJm0QYJiV20pYfYnbvM63NL1gElE9ykSm+1q
+	 GSEzlbBYItyIQ6Rnj/GaF3WM4ZY63eSaV8uVkfZFnZvsVKYifoa52YYS/o/MNjgi69
+	 B7qRuXsoevhfO1WqIKx9PuFrWLPiBVUz4TBx8FBHIlMTIk3PmJuZ6/fF5/itJ/gT5z
+	 GQUAfZv98j+wtYaGT8h12A4f5yqBqSydQyuKWPE630do/2RjQPFRYv7r1sZ7LwA5RE
+	 EMgg5MIkLNEDg==
+Date: Sat, 27 Dec 2025 17:45:59 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Michael Hennerich <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Sean Anderson
- <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject: Re: [PATCH v4 3/9] spi: support controllers with multiple data
- lanes
-Message-ID: <20251227171850.0c93c1c9@jic23-huawei>
-In-Reply-To: <20251219-spi-add-multi-bus-support-v4-3-145dc5204cd8@baylibre.com>
-References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
-	<20251219-spi-add-multi-bus-support-v4-3-145dc5204cd8@baylibre.com>
+To: Shrikant Raskar <raskar.shree97@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ heiko@sntech.de, neil.armstrong@linaro.org, skhan@linuxfoundation.org,
+ david.hunter.linux@gmail.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/4] iio: proximity: Add interrupt support for
+ RFD77402
+Message-ID: <20251227174559.33539640@jic23-huawei>
+In-Reply-To: <20251221083902.134098-1-raskar.shree97@gmail.com>
+References: <20251221083902.134098-1-raskar.shree97@gmail.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,122 +62,63 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 19 Dec 2025 15:32:11 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+On Sun, 21 Dec 2025 14:08:58 +0530
+Shrikant Raskar <raskar.shree97@gmail.com> wrote:
 
-> Add support for SPI controllers with multiple physical SPI data lanes.
-> (A data lane in this context means lines connected to a serializer, so a
-> controller with two data lanes would have two serializers in a single
-> controller).
-> 
-> This is common in the type of controller that can be used with parallel
-> flash memories, but can be used for general purpose SPI as well.
-> 
-> To indicate support, a controller just needs to set ctlr->num_data_lanes
-> to something greater than 1. Peripherals indicate which lane they are
-> connected to via device tree (ACPI support can be added if needed).
-> 
-> The spi-{tx,rx}-bus-width DT properties can now be arrays. The length of
-> the array indicates the number of data lanes, and each element indicates
-> the bus width of that lane. For now, we restrict all lanes to have the
-> same bus width to keep things simple. Support for an optional controller
-> lane mapping property is also implemented.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
-> 
-> v4 changes:
-> - Update for changes in devicetree bindings.
-> - Don't put new fields in the middle of CS fields.
-> - Dropped acks since this was a significant rework.
-> 
-> v3 changes:
-> * Renamed "buses" to "lanes" to reflect devicetree property name change.
-> 
-> This patch has been seen in a different series [1] by Sean before:
-> 
-> [1]: https://lore.kernel.org/linux-spi/20250616220054.3968946-4-sean.anderson@linux.dev/
-> 
-> Changes:
-> * Use u8 array instead of bitfield so that the order of the mapping is
->   preserved. (Now looks very much like chip select mapping.)
-> * Added doc strings for added fields.
-> * Tweaked the comments.
-> ---
->  drivers/spi/spi.c       | 114 +++++++++++++++++++++++++++++++++++++++++++++++-
->  include/linux/spi/spi.h |  22 ++++++++++
->  2 files changed, 134 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> index e25df9990f82..9caa22583b8f 100644
-> --- a/drivers/spi/spi.c
-> +++ b/drivers/spi/spi.c
-> @@ -2370,7 +2370,52 @@ static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
->  		spi->mode |= SPI_CS_HIGH;
+> This patch series adds:
+>  - Add RF Digital vendor prefix
+>  - YAML binding for RFD77402
+>  - Add OF device ID for enumeration via DT
+>  - Use kernel helper for result polling
+>  - Interrupt handling support
 >  
->  	/* Device DUAL/QUAD mode */
-> -	if (!of_property_read_u32(nc, "spi-tx-bus-width", &value)) {
-> +
-> +	rc = of_property_read_u32_array(nc, "spi-tx-lane-map", spi->tx_lane_map,
-> +					ARRAY_SIZE(spi->tx_lane_map));
+> These changes enable DT-based configuration and event-driven
+> operation for the RFD77402 Time-of-Flight sensor.
 
-Why must there always be a fixed number of these?  Isn't it meant to be
-one per lane in use? Or at least to me that seems reasonable assumption?
-Maybe use of_property_read_variable_u32_array() which takes min and max sizes
-and returns (on success) how many were there.
+Hi Shrikant,
 
+I'm only seeing this cover letter (and lore doesn't seem
+to have the patches either).  Probably need to resend them.
 
+Thanks,
 
-> +	if (rc == -EINVAL) {
-> +		/* Default lane map */
-> +		for (idx = 0; idx < ARRAY_SIZE(spi->tx_lane_map); idx++)
-> +			spi->tx_lane_map[idx] = idx;
-
-Having this fixed in size is fine even if we only use first few elements.
-
-> +	} else if (rc < 0) {
-> +		dev_err(&ctlr->dev,
-> +			"failed to read spi-tx-lane-map property: %d\n", rc);
-> +		return rc;
-> +	}
-> +
-> +	rc = of_property_count_u32_elems(nc, "spi-tx-bus-width");
-> +	if (rc < 0 && rc != -EINVAL) {
-> +		dev_err(&ctlr->dev,
-
-...
-
-> @@ -2394,7 +2439,61 @@ static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
->  		}
->  	}
->  
-> -	if (!of_property_read_u32(nc, "spi-rx-bus-width", &value)) {
-> +	for (idx = 0; idx < spi->num_tx_lanes; idx++) {
-> +		if (spi->tx_lane_map[idx] >= spi->controller->num_data_lanes) {
-> +			dev_err(&ctlr->dev,
-> +				"spi-tx-lane-map has invalid value %d (num_data_lanes=%d)\n",
-> +				spi->tx_lane_map[idx],
-> +				spi->controller->num_data_lanes);
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	rc = of_property_read_u32_array(nc, "spi-rx-lane-map", spi->rx_lane_map,
-> +					ARRAY_SIZE(spi->rx_lane_map));
-
-Similar to above. Not obvious to me why this is fixed size read.
+Jonathan
 
 
-> +	if (rc == -EINVAL) {
-> +		/* Default lane map */
-> +		for (idx = 0; idx < ARRAY_SIZE(spi->rx_lane_map); idx++)
-> +			spi->rx_lane_map[idx] = idx;
-...
-> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-> index cb2c2df31089..7aff60ab257e 100644
-> --- a/include/linux/spi/spi.h
-> +++ b/include/linux/spi/spi.h
-...
+> 
+> Changelog:
+> Changes since v2:
+> - Add 'Reviewed-by' tag to dt-binding patch.
+> - Update commit message in OF device ID patch.
+> - Update commit message in the third patch.
+> - Replace rfd77402_result_polling() with read_poll_timeout().
+> - Add 'struct rfd77402_data' details in kernel-doc format.
+> - Arrange includes in order.
+> - Add comment for completion timeout value.
+> - Remove blank lines.
+> - Indent the comments to code.
+> - Convert mutex_init() to devm_mutex_init().
+> - Remove 'IRQF_TRIGGER_FALLING' flag from devm_request_threaded_irq().
+> - Drop the duplicate message.
+> - Replace 'dev_info' with 'dev_dbg()'.
+> - Update 'dev_id' to 'pdata' in rfd77402_interrupt_handler().
+> - Drop 'interrupt mode' comment
+> - Use 'if(ret)' instead of 'if(ret < 0) for consistency.
+> - Use 'return i2c_smbus_write_byte_data()' in 'rfd77402_config_irq'.
+> 
+> Shrikant Raskar (4):
+>   dt-bindings: iio: proximity: Add RF Digital RFD77402 ToF sensor
+>   iio: proximity: rfd77402: Add OF device ID for enumeration via DT
+>   iio: proximity: rfd77402: Use kernel helper for result polling
+>   iio: proximity: rfd77402: Add interrupt handling support
+> 
+>  .../iio/proximity/rfdigital,rfd77402.yaml     |  53 +++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  drivers/iio/proximity/rfd77402.c              | 149 +++++++++++++++---
+>  3 files changed, 183 insertions(+), 21 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
+> 
+> 
+> base-commit: d8ba32c5a460837a5f0b9619dac99fafb6faef07
 
-> +/* Max no. of data lanes supported per spi device */
 
