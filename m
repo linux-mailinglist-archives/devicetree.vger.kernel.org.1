@@ -1,51 +1,39 @@
-Return-Path: <devicetree+bounces-249794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36CB5CDF386
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 03:02:08 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A454ECDF80E
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 11:37:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD33C3009433
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 02:02:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BC24B3000914
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 10:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96C4C1F419A;
-	Sat, 27 Dec 2025 02:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C1E623817E;
+	Sat, 27 Dec 2025 10:37:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="hqD2aF6b"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="S82G0n9a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
+Received: from mail-m49233.qiye.163.com (mail-m49233.qiye.163.com [45.254.49.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32297487BE;
-	Sat, 27 Dec 2025 02:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D1833EC;
+	Sat, 27 Dec 2025 10:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766800924; cv=none; b=dTc672eC+BbV1wGdrfeDYESsBdCRvqBXJ9fRxX3lR18RoYJ8ruicig0rpGlHCWuJ4flYHD54ZNkCHzXsJcfyOga6OUYJupr5Xd54ZjfzI1vEArBLAbs4i6+cL9wjo0w1ZSCsaXaBmWhjUVfyeLWLLvafzQR83n3sLUgE9VKwlUM=
+	t=1766831858; cv=none; b=EOWz09fP2FkVNQh6iO/NPK3qk4DmkH3Mhpgipf/LlcFbHZWAptDgTWXT4RCYEutQRsR2rsUTGycFPZBcs067nL9YFCqYRYqbErV7SGGxrcvruT+z6tTfyIlvpwnjJJOBVwt0S8VBXebzAdPIcdFIsBy0cSLDFpBkQDl4uEonPOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766800924; c=relaxed/simple;
-	bh=5qQE/jGgTswowfQxH/R6THn/S+v/D8nvTlZVqOUq5tg=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=CHRBDk4IhBgClyKrP3gC72r+YCiNyHyT29rHdrE09h3AY1XjVUmoMI3LUJSCIvfLiQvYY7en8Yp7VKGAP2Xj5MjByy5zMhOf/sPgxo1IvsCAszeUH0eSOrZG5ydk/1TPW7mZFlQkhoj4vbQdB9oOgR186XjaY1mWeTLTOdxGtMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=hqD2aF6b; arc=none smtp.client-ip=15.184.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1766800908;
-	bh=p41JuVTqBNxRCHQKjtwk9ihG/E0dETrJ8qiujU9CX/Q=;
-	h=Message-ID:Date:MIME-Version:To:Subject:From;
-	b=hqD2aF6b03go6drDA+R7qG4KSxoBO3Ry6s1UpTNaW3Gf0JeJnEH1K4uysVwXmVbcs
-	 KlZh0AWXCzVuMQUU8dqLQdE4R1dBB5eQvMwKaQp7zFD6AB1vptyawY4nMLnynIPyxU
-	 Jkc7RZ85fSl4A3+icd8d3PYWEepimtrZL7SMFXig=
-X-QQ-mid: esmtpsz10t1766800904t01fdd883
-X-QQ-Originating-IP: XEmEg72aS76MD4WYEtk9iltG/a16lqIcS6dJYB0LFMQ=
-Received: from [10.0.90.81] ( [120.237.158.181])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Sat, 27 Dec 2025 10:01:42 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 992677309466334211
-Message-ID: <F78A665DD30EECAD+3a96ec99-07a5-4077-946a-85cf2241cf9d@linux.spacemit.com>
-Date: Sat, 27 Dec 2025 10:01:42 +0800
+	s=arc-20240116; t=1766831858; c=relaxed/simple;
+	bh=gZFPHMAazmQJ9ZQkJ9BKBAW3nhx2gVwHprBVP/u1KBI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fxzesURfT7zFPq+SJ0ygdLAES/k3NmIOVc07b/ixUgk+gkfRQtnXReoVeT2tDDaQMSiIfIseKWDIxnq2pChlum81LWGewb65AR9xyUglhqN7iSP5c+6UoCH47f02o1+2oy6fQGQHQn+85MUgeYZVQliLhc4lpFclqrjcM2avRmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=S82G0n9a; arc=none smtp.client-ip=45.254.49.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.16] (gy-adaptive-ssl-proxy-2-entmail-virt205.gy.ntes [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2eb991a79;
+	Sat, 27 Dec 2025 10:40:46 +0800 (GMT+08:00)
+Message-ID: <85032ae4-4d82-4884-aa7c-b69fee76d509@rock-chips.com>
+Date: Sat, 27 Dec 2025 10:40:45 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,58 +41,158 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: huang.ze@linux.dev
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, dlan@gentoo.org,
- huangze@whut.edu.cn, kishon@kernel.org, krzk+dt@kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-riscv@lists.infradead.org, robh@kernel.org, spacemit@lists.linux.dev,
- vkoul@kernel.org
-References: <20251017-k1-usb2phy-v6-0-7cf9ea2477a1@linux.dev>
-Subject: Re: [PATCH v6 0/2] Add USB2.0 PHY support for SpacemiT K1
-Content-Language: en-US
-From: Junzhong Pan <panjunzhong@linux.spacemit.com>
-In-Reply-To: <20251017-k1-usb2phy-v6-0-7cf9ea2477a1@linux.dev>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz5b-2
-X-QQ-XMAILINFO: M5znx2hx04lbmLgcMqC7epNYa7fW5OpzB0ULZAoAYUjsCI64OmaHhzX9
-	fzvbf1J7uvvEADqgX2Io/iZuaC5NAwaY+8yPHCxXimq3WWUzJKy6W6RLAxfoj+qu/G6EMG1
-	cI/lmU9cIjhCDHsFtTczQof/PQqy0f69IZ2QfamWVKdJFutjys+c9WMrxhFCWiAj8p8/OIa
-	0wBonoMOv5qx2Phpgs521qwH/Fsi6q3kpJ2Xxi3mPGoQ1yRfJGbPWqtSf9CtuPbvE7SjLuY
-	bZuoBC4C/BA4Z2GK0AlLZls8Syfg5v0h3nafk3sodiWSef7vfrDnhKnDrDr1OZglPNRYVmk
-	8Ya33LatBZrqgaURsGdVAJYh42iAM+X2HTLKYvFYaQmhqNOTgQmaX5JnWjJ8hUdN5aO8T99
-	xQkY4Z+77LYM+t7gE68gZhID4+RKxsT2GXVLMfk3etLdc+1I9LHayTODQpFqVP+Mz+NWtRJ
-	CaSucGRnwBKE7zKrBjK2ZZZhVpE/Ik9P5zpgSzF0oPECTuGYXV6PZEPQG1pRaiwwCZ5+Swr
-	9+XvhhhyEuxoKtd051P7v2FQ9IUcw1rrp9NbYjfLtd4oQWnRn+eo2ztIDbeJVn5uAtnjJTl
-	I4ovUaDq0WFG5rJorig7CCKoA7ru9rg/hNihGHuE2dJMj3bJ83MxQC50asQaVgNY50MH0xt
-	Ub4WgKpvH6lIsSJRna7jFwMReqhb8nodUgnWWA6dllVhDuD+SDTeQkEvkJ8EdfL8IOG5+sN
-	fhuflpIR+WvxXABCpytC5B1ziB5xLyDIHiRKvcxUbIT5PCwrcpdgLRzF+rC6G53nUjsJ3PE
-	L9NpxOC+mkLGFR4c0i4APieuazE7t4Se2PiVNQD+b8rBtEfn7cpCoGq36FA2ZOkdu8SFosX
-	q8CRuaoCDyipI2wdqbxPzJJhIAYiahZL9hFywAuoL0xd4w2KZsoqpx/qUhjQ5ERutp+fB4u
-	b5Hac55Y/Jcmt0d0ikx6pZTGLPxrf+s9dPfYqKbd9a4poCGV6adI06j1AedtCZzuCbcG42R
-	RYQAb70PN8tovf/2HSo7O/saTZhis=
-X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
-X-QQ-RECHKSPAM: 0
+Subject: Re: [PATCH v3 6/7] dt-bindings: pinctrl: rockchip: Add RMIO
+ controller binding
+To: Linus Walleij <linusw@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner
+ <heiko@sntech.de>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ tao.huang@rock-chips.com
+References: <20251216112053.1927852-1-ye.zhang@rock-chips.com>
+ <20251216112053.1927852-7-ye.zhang@rock-chips.com>
+ <CAD++jLntu4LY=VHOMSXeLKXOBD9MTNziv47B0qkDjxUa1xAsng@mail.gmail.com>
+From: Ye Zhang <ye.zhang@rock-chips.com>
+In-Reply-To: <CAD++jLntu4LY=VHOMSXeLKXOBD9MTNziv47B0qkDjxUa1xAsng@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9b5dae0c4309d8kunm0072215ab85e90
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkxPS1YZTk9IGR4YS0IeQxpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=S82G0n9alxeC/lJ7wczOryWq01BiBFxbD/UAUrYkHAT5q4Gw2jqum7W2VTN3FnmUURwmsfRZc3tjkMpsZjWkngiChIgVP7F+9x/NHNkMdbaMClH28qqiyG9ICq1N0tgwznp1JGm03WC2sw9P7+SpBCDRE95qATcYzcGMl0OO1j8=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=O4w+UFBbBnd7fGgwKE2LjjzpfQNimm6h/LQPdpbH+AY=;
+	h=date:mime-version:subject:message-id:from;
 
-On Fri, 17 Oct 2025 22:49:51 +0800, Ze Huang wrote:
-> This patch series introduces support for the USB2.0 PHY on the SpacemiT
-> K1 SoC. The implementation has been tested on the Milk-V Jupiter and
-> BananaPi-f3.
-> 
-> K1 includes three USB ports as follows[1]:
-> - A USB2.0 OTG Port
-> - A USB2.0 Host Only Port
-> - A USB3.0 Port with a USB2.0 DRD interface
-> 
-> Each of these ports is connected to a USB2.0 PHY responsible for USB2
-> transmission.
-> 
-> This series is based on 6.18-rc1.
-> 
-> Link: https://developer.spacemit.com/documentation?token=AjHDwrW78igAAEkiHracBI9HnTb#part5 [1]
-> 
-> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
-Tested-by: Junzhong Pan <panjunzhong@linux.spacemit.com>
 
+在 2025/12/27 2:07, Linus Walleij 写道:
+> Hi Ye,
+>
+> thanks for your patch!
+>
+> On Tue, Dec 16, 2025 at 3:50 PM Ye Zhang <ye.zhang@rock-chips.com> wrote:
+>
+>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml
+>> +  rockchip,rmio-grf:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      The phandle of the syscon node (GRF or PMU) containing the RMIO registers.
+>> +      This property is required if the RMIO registers are located in a different
+>> +      syscon than the parent pinctrl node.
+>> +
+>> +  rockchip,offset:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      The offset of the RMIO configuration registers within the GRF.
+> Can't this just be a cell in the phandle?
+In my upcoming v4, it will be moved into the driver code.
+>> +  rockchip,pins-num:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      The number of physical pins supported by this RMIO instance.
+>> +      Used for boundary checking and driver initialization.
+> Isn't this implicit from the compatible? Why is this different
+> between two device trees using the same compatible pin
+> controller? I don't get it, I think this should be a constant in the
+> code based on the compatible instead.
+In my upcoming v4, it will be moved into the driver code.
+>> +patternProperties:
+>> +  "^[a-z0-9-]+$":
+>> +    type: object
+>> +    description:
+>> +      Function node grouping multiple groups.
+>> +
+>> +    patternProperties:
+>> +      "^[a-z0-9-]+$":
+>> +        type: object
+>> +        description:
+>> +          Group node containing the pinmux configuration.
+>> +
+>> +        properties:
+>> +          rockchip,rmio:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>> +            description:
+>> +              A list of pin-function pairs. The format is <pin_id function_id>.
+>> +            minItems: 1
+>> +            items:
+>> +              items:
+>> +                - description: RMIO Pin ID (0 to pins-num - 1)
+>> +                  minimum: 0
+>> +                  maximum: 31
+>> +                - description: Function ID
+>> +                  minimum: 0
+>> +                  maximum: 98
+> Please avoid these custom properties and just use the standard
+> "pinmux" property. I don't want any more opaque custom bindings
+> for functions and groups.
+>
+> Reference Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml
+> and use pinmux from there.
+>
+> You can use some shifting and defines to shoehorn your config
+> into a single u32 and parse that in your driver; i.e. instead of
+> rockchip,rmio = <1, 2>;
+> use
+> pinmux = <1 << 8 | 2 << 0>;
+> these shifter numerals can come from defines.
+> In the driver shift & mask out the components you want.
+>
+> e.g.;
+>
+>> +            rmio-uart {
+>> +                rmio_pin27_uart1_tx: rmio-pin27-uart1-tx {
+>> +                    rockchip,rmio = <27 RMIO_UART1_TX>;
+> pinmux = <27 << 8 | RMIO_UART1_TX>;
+
+In v4, I will remove rockchip,rmio.yaml
+
+I understand your preference for standard bindings.  However, there is a 
+specific constraint here: the RMIO acts as a secondary layer of muxing, 
+sitting behind the primary IOMUX controller.
+
+The existing Rockchip pinctrl binding uses the vendor-specific 
+rockchip,pins property for the primary IOMUX configuration.  If I were 
+to use the standard pinmux property for RMIO, the node would contain 
+mixed bindings like this:
+
+node {
+     /* Primary IOMUX (existing binding) */
+     rockchip,pins = <1 RK_PB1 16 &pcfg_pull_none>;
+     /* Secondary RMIO  */
+     pinmux = <(RMIO_ID << 16) | (RMIO_PIN << 8) | RMIO_FUNC>;
+};
+
+Since this node describes a single hardware pin configuration that 
+requires two separate hardware settings (Primary Mux + Secondary RMIO), 
+I thought keeping the secondary config as a vendor-specific property 
+(rockchip,rmio) alongside rockchip,pins would be more consistent and 
+less confusing than mixing legacy custom bindings with standard pinmux.
+
+In v4, I have removed the separate RMIO child node entirely.  The RMIO 
+configuration is now integrated into the main pinctrl group as a 
+supplemental property:
+
+node {
+
+rockchip,pins = <1 RK_PB1 7 &pcfg_pull_none>
+
+/* rmio_id pin_id func_id */
+rockchip,rmio-pins = <0 24 68>;
+};
+
+>
+>> +++ b/include/dt-bindings/pinctrl/rockchip,rk3506-rmio.h
+> These number dumps are not appreciated inside the bindings
+> despite quite a few found their way in there.
+>
+> Use something like
+> arch/*/dts/rockchip/rk3506-rmio-pins.dtsi
+> and include that into your device trees instead.
+In my upcoming v4, rockchip,rk3506-rmio.h will be removed.
 
