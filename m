@@ -1,59 +1,65 @@
-Return-Path: <devicetree+bounces-249816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 528EDCDF8FA
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:25:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27371CDF912
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:34:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E72EB3000B6B
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 11:25:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 257C23002D6A
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 11:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791873128A9;
-	Sat, 27 Dec 2025 11:25:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D680A313281;
+	Sat, 27 Dec 2025 11:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ukx2DgGu"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kc+ZTZzR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 465053126AF;
-	Sat, 27 Dec 2025 11:25:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40453313528;
+	Sat, 27 Dec 2025 11:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766834714; cv=none; b=RFAkRLfZ71psC5lmqMmUkRPkuFwhLt4djNgpOU8eK8ZmiPMKxfXvFDfVYhaqjcSzLim+WrIq34muW5EtG7yVV756E9SL0mIh4Xp0sQByy+isF6BPjgUMzq4hRIY6B2om3e0uSDymQxPwUxRZSlVlFc+/VLnUYfDgq/JgrKaHeEg=
+	t=1766835278; cv=none; b=MHwdGuEGm4OeVo06MvF+aAz1CzRXtxxHdIxxAUaWrfS49HKAbhm7zjPkqoedXH8d04euIalxvErSCx9zCM8OVQCHRJbiwAYbBCR1itnIk1DvSyfFQG88RzpiQIEHNPck7NRFbT72CqIxmVyLTgZh+kbPF+Wx0SkzojigT+aYvp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766834714; c=relaxed/simple;
-	bh=8kGUYYmACHqbfyv/84HV3f5JbyVZmQjIEIeVSleHFXU=;
+	s=arc-20240116; t=1766835278; c=relaxed/simple;
+	bh=abUMk4mPKoPze0G6t+dbbfJOlOkacnwaohQIklcc30Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GkQ8k3V4KLZqYW3yzSgHrnTuO0D3NV+8fXJlg6P1pMgHaGYYu1j4B+gyQMbNyHwkjFbkxPk9tVc7G7LVUTFKBaRCiOgqPbQvS8t3uy4iRR3i4hMRxLi5uW39zVHBBtRXDsRqBcxmnoVCqo+UGMLwg4nK4Z7HjsjZiRkRSqHc2LM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ukx2DgGu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 558CFC4CEF1;
-	Sat, 27 Dec 2025 11:25:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766834713;
-	bh=8kGUYYmACHqbfyv/84HV3f5JbyVZmQjIEIeVSleHFXU=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=ogJWeR7GIMSEYwre6p9pe+0k+jnQQrIia3yo54DDU443acuOJ4OSXLNB6bVA4ciiscWDEUEV8QvlJukQ7aq/a5NzpBpX7AedzrWe0WhnOJQkO29DrGb1MXuqvOWX6b/sudTSdhF8odF8v6+oV1XXuifvgjj6dSHJKCuwh2CXD/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kc+ZTZzR; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-152.bb.dnainternet.fi [81.175.209.152])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 7C857BB;
+	Sat, 27 Dec 2025 12:34:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1766835260;
+	bh=abUMk4mPKoPze0G6t+dbbfJOlOkacnwaohQIklcc30Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ukx2DgGuJJW8VM0jkB5y54tMYE+yR5zUT5DlW3aP2nFAn36KzQ3f4p+WO1XQIJPQA
-	 qKHKRR2LM3VFXPQqZWE/V4yloNs/7P4C1QBl5/dgEoO62JbyWr9IfKbBPo827bWAH2
-	 RYkhchHY79Ln7No3atWXIebFoBaUYn1tylRnx5Tl2TiZ+ZPczhsTcu3ve3nelkbkjY
-	 fq3K69Fpg67sgOLFegbiz7BsOikvBHxT37gp4zisUeW1C6SG5bgDG6gqqj4EGd/ZEL
-	 8/gokM+Ww/KEtkhW+5cPbQH6EraPLeytne7tSUWUOmUpbE0rG7CVriMjYex1Prmj1U
-	 Mh1TsMbSMSpAg==
-Date: Sat, 27 Dec 2025 12:25:11 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Haylen Chu <heylenay@4d2.org>, Guodong Xu <guodong@riscstar.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, Yao Zi <me@ziyao.cc>, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: soc: spacemit: add k3 syscon
- compatible
-Message-ID: <20251227-glaring-aromatic-raven-cbe30c@quoll>
-References: <20251226-k3-clk-v3-0-602ce93bb6c3@gentoo.org>
- <20251226-k3-clk-v3-1-602ce93bb6c3@gentoo.org>
+	b=kc+ZTZzR1f7KIuzA+YNIQigilJ8kwIIXpqwPNW9/0sE3XTiZy31/Tvv0+RY683IV5
+	 6bq00LZUgjW9bz6rHQoWvuOY4kdBaK5TjJ7StJaGBZKyhQnGPH35VOFt+5USajmL7j
+	 Yh2Gv/Rg71N2rDPQWGLDWmevFnovUO+4O4o5N+pU=
+Date: Sat, 27 Dec 2025 13:34:17 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Alex Tran <alex.t.tran@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Pavel Machek <pavel@ucw.cz>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: i2c: toshiba,et8ek8: Convert
+ to DT schema
+Message-ID: <20251227113417.GI4094@pendragon.ideasonboard.com>
+References: <20251224-dt-bindings-et8ek8-omap3isp-v2-0-0728cc1fee27@gmail.com>
+ <20251224-dt-bindings-et8ek8-omap3isp-v2-1-0728cc1fee27@gmail.com>
+ <a7126a74-48f2-467b-91bb-21f28a251400@kernel.org>
+ <CA+hkOd4rJAyQPe1kgJYreGX+Wpi+EoX8s-CsD_JCP77WE5a=Mw@mail.gmail.com>
+ <ec9a2f6a-4cad-4989-8d40-af7b718a164b@kernel.org>
+ <20251227111206.GF4094@pendragon.ideasonboard.com>
+ <b1637433-6bbf-4e08-8f58-0e9bad37b790@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,56 +68,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251226-k3-clk-v3-1-602ce93bb6c3@gentoo.org>
+In-Reply-To: <b1637433-6bbf-4e08-8f58-0e9bad37b790@kernel.org>
 
-On Fri, Dec 26, 2025 at 07:01:16PM +0800, Yixun Lan wrote:
-> The SpacemiT K3 SoC clock IP is scattered over several different blocks,
-> which are APBC, APBS, APMU, DCIU, MPMU, all of them are capable of
-> generating clock and reset signals. APMU and MPMU have additional Power
-> Domain management functionality.
+On Sat, Dec 27, 2025 at 12:23:15PM +0100, Krzysztof Kozlowski wrote:
+> On 27/12/2025 12:12, Laurent Pinchart wrote:
+> > Regarding flash-leds, none of the existing bindings set a constraint on
+> > the number of items. I'm not sure there are use cases for more than two,
+> > but the number of flash LEDs is not an intrinsic properties of the image
+> > sensor. I think listing
+> > 
+> >   flash-leds: true
+> > 
+> > is correct. Sakari may have more information.
 > 
-> Following is a brief list that shows devices managed in each block:
-> 
-> APBC: UART, GPIO, PWM, SPI, TIMER, I2S, IR, DR, TSEN, IPC, CAN
-> APBS: various PPL clocks control
-> APMU: CCI, CPU, CSI, ISP, LCD, USB, QSPI, DMA, VPU, GPU, DSI, PCIe, EMAC..
-> DCID: SRAM, DMA, TCM
-> MPMU: various PLL1 derived clocks, UART, WATCHDOG, I2S
-> 
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> ---
->  .../devicetree/bindings/clock/spacemit,k1-pll.yaml |   9 +-
->  .../bindings/soc/spacemit/spacemit,k1-syscon.yaml  |  13 +-
->  include/dt-bindings/clock/spacemit,k3-clocks.h     | 390 +++++++++++++++++++++
->  3 files changed, 407 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/spacemit,k1-pll.yaml b/Documentation/devicetree/bindings/clock/spacemit,k1-pll.yaml
-> index 06bafd68c00a..02ebbe4061e3 100644
-> --- a/Documentation/devicetree/bindings/clock/spacemit,k1-pll.yaml
-> +++ b/Documentation/devicetree/bindings/clock/spacemit,k1-pll.yaml
-> @@ -4,14 +4,17 @@
->  $id: http://devicetree.org/schemas/clock/spacemit,k1-pll.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: SpacemiT K1 PLL
-> +title: SpacemiT K1/K3 PLL
->  
->  maintainers:
->    - Haylen Chu <heylenay@4d2.org>
->  
->  properties:
->    compatible:
-> -    const: spacemit,k1-pll
-> +    contains:
+> IOW, that's not a pin going from the sensor to the LED but rather final
+> board/system design? And same sensor could be used that way with
+> arbitrary number of LEDs?
 
-No drop, there is no such syntax for this property, so you copied here
-something completely different.
+Yes, those are LEDs typically controlled by a GPIO of the SoC, not LEDs
+tied to a pin of the sensor. No LED, one LED or two LEDs are the most
+common cases (the second LED would typically be an indicator LED, to
+indicate when the camera is active), but a system could use more than
+two at least in theory.
 
-> +      enum:
-> +        - spacemit,k1-pll
-> +        - spacemit,k3-pll
+-- 
+Regards,
 
-Best regards,
-Krzysztof
-
+Laurent Pinchart
 
