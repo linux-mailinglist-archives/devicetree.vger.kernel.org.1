@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-249863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6BB7CDFC88
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 14:00:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1BECDFC91
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 14:04:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C4540300162A
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:00:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0702A3004BB9
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:04:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4642749D6;
-	Sat, 27 Dec 2025 13:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFAD431D374;
+	Sat, 27 Dec 2025 13:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XRgVXU5Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LKlVrq2b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF3617B506;
-	Sat, 27 Dec 2025 13:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C33731CA68;
+	Sat, 27 Dec 2025 13:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766840424; cv=none; b=Wl2Q4HmHop8mVG5Qs2Rd5YNem20cxjPgHuksnu0zMx30/EYG04RLmgPLUkXi021/i088cbHFsrlzP/VXkVRsMLFIRyESFrORNa3DijFzE3lrGPiHv9/oLqqjLFHXx9RZUu9BgqUYN7Wrp7CEf/wQM2Fd86eX+PxvmRFfY6qhHo4=
+	t=1766840557; cv=none; b=XsJ7BsX3Hbnzh53ourUFAGs7n+XbFK4sJZAnazqx8f5HATlsV//gSoXTaOVSmw9Am1DH/r/VNpUNsZ2I5TY5KnTLoWtaqBYGsg12QKj8QcwzXifzt9VVnNFzYUwJ75LQ0ZIJWEr6vPmRsdJprkShcImoc5/fhZzujndCZAzgxyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766840424; c=relaxed/simple;
-	bh=Gh6gqoS5hMGDmiIF264QlqRD2aJHzbjUVlGUqxG43cU=;
+	s=arc-20240116; t=1766840557; c=relaxed/simple;
+	bh=eu9YmoAVPx9G2RqP7sOlI4dEJ+qLQ8lmQAKMzvDuWsY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GxAW1oMCcjHNgYvnn4NwX0j+JpMLjbwlGZo9JUYat1BnQ12Ulfrcm7hhDYBoQ9fvN0PlmVk6KQoM8epvMjxdLKacxkOLYZat0LJRaqrRgTt7JkZvlOtcpJS9LELadHNQvZ5AFaSzeEzIi1ZLwm7cWAeRsJ6Z0tR8sLqsFv3j4y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XRgVXU5Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADFFEC4CEF1;
-	Sat, 27 Dec 2025 13:00:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fTIMv+Hqij4zw43ynrOBvgqhEDSpFqowBK5voXm5EldH8BUb81+zIc2MfzcoDmjI+hDE3Pe+F5T9MY8hj9BixisTYPm8arXvsxpxriLLPeS/AFSlc9ZcPBfxUH6/HOhpm3FGaewsUG25j80UUFkVj45QDMoJa8D46x4tI9QCihE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LKlVrq2b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 767F0C4CEF1;
+	Sat, 27 Dec 2025 13:02:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766840424;
-	bh=Gh6gqoS5hMGDmiIF264QlqRD2aJHzbjUVlGUqxG43cU=;
+	s=k20201202; t=1766840557;
+	bh=eu9YmoAVPx9G2RqP7sOlI4dEJ+qLQ8lmQAKMzvDuWsY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XRgVXU5YOBBADhBt7fo0NPjp5x67v/ZS3Kkc5iQtFeEVf9ojbZuhzwTJ5EX9g7Ad4
-	 Lk0DgezSXYiM6gm73K6CvbfUzrNTQyGM9xqP5VsiST3jUsq6RurBWB7vSkD9AZUi5y
-	 dnZwfCO+feez9AMKLXMr0Pp+CMNDtjEsrtPFASUClKbh3y45B7xosdX5beSLGhomyB
-	 OXYrD+9RkAllOvCBSE68bylE4SRO3Mir03EEsrFlreW54K3SrPGWHBy4dEvOYmtT8M
-	 jBMDuj7Yco6Se8vEQL3Mxq4O4CNs9/D1bdra63n3jLNC4qNqRq0CoUhtiybmOfIZAJ
-	 uyeqLV/Z6rbqQ==
-Date: Sat, 27 Dec 2025 14:00:21 +0100
+	b=LKlVrq2bOy4hP0YLqKJFavJ9XAk3qcaSNstmLmXaSWJTtmxvgzPfKCR5IxIyVfITO
+	 BHCfndgnHaCAiiLY6ViRURNysOKKryRO5DDerfAl/YueantgNOHcfY9Zm+MPLTetHI
+	 Ct0ddu5FJFkVvl6FG+g7aiJtQgLUqcVL9RArpt/UfbtVQGx4kcGM/x83SWxc/LHbBQ
+	 WKgHwN3OAKiQcmCdUluDDGZLPS5aZyBE/n22kmidWFkxAUD680Ch/Zy1+BsbW5DsFp
+	 Fwhwpydgle0/CKnQ77apLrYdLXD7VIdsUACW0oMikGZWCWcjVBa8giyQNdrxVu2WfH
+	 4EzaW++2usE7w==
+Date: Sat, 27 Dec 2025 14:02:34 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Francesco Dolcini <francesco@dolcini.it>
 Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Linus Walleij <linusw@kernel.org>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 2/2] pinctrl: spacemit: support I/O power domain
- configuration
-Message-ID: <20251227-pastel-certain-orca-4b53cf@quoll>
-References: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-0-5f1090a487c7@linux.spacemit.com>
- <20251223-kx-pinctrl-aib-io-pwr-domain-v1-2-5f1090a487c7@linux.spacemit.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Francesco Dolcini <francesco.dolcini@toradex.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 1/4] dt-bindings: arm: fsl: Add Apalis iMX8QP
+Message-ID: <20251227-polite-malachite-chameleon-f446cc@quoll>
+References: <20251223162833.138286-1-francesco@dolcini.it>
+ <20251223162833.138286-2-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,70 +60,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-2-5f1090a487c7@linux.spacemit.com>
+In-Reply-To: <20251223162833.138286-2-francesco@dolcini.it>
 
-On Tue, Dec 23, 2025 at 05:11:12PM +0800, Troy Mitchell wrote:
-> IO domain power control registers are used to configure the operating
-> voltage of dual-voltage GPIO banks. By default, these registers are
-> configured for 3.3V operation. As a result, even when a GPIO bank is
-> externally supplied with 1.8V, the internal logic continues to
-> operate in the 3.3V domain, which may lead to functional failures.
+On Tue, Dec 23, 2025 at 05:28:27PM +0100, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
-> This patch adds support for programming the IO domain power control
-
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
-
-> registers, allowing dual-voltage GPIO banks to be explicitly configured
-> for 1.8V operation when required.
+> Add binding documentation for the Apalis iMX8QP SoM mated with Apalis
+> Ixora and Apalis Evaluation board.
 > 
-> Care must be taken when configuring these registers. If a GPIO bank is
-> externally supplied with 3.3V while the corresponding IO power domain
-> is configured for 1.8V, external current injection (back-powering)
-> may occur, potentially causing damage to the GPIO pin.
+> Apalis iMX8QP is a variant of the Apalis iMX8QM, using an NXP i.MX8QP
+> SoC instead of the i.MX8QM. The two SoCs are pin to pin compatible, with
+> the i.MX8QP being a lower end variant, with a slower GPU and one Cortex
+> A72 core instead of two.
 > 
-> Due to these hardware constraints and safety considerations, the IO
-> domain power control registers are implemented as secure registers.
-> Access to these registers requires unlocking via the AIB Secure Access
-> Register (ASAR) in the APBC block before a single read or write
-> operation can be performed.
+> The two Apalis SoMs variants share the same schematics and PCB, and the
+> iMX8QP variant exists only on revision V1.1 of board.
 > 
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> Link: https://www.nxp.com/products/i.MX8
+> Link: https://www.toradex.com/computer-on-modules/apalis-arm-family/nxp-imx-8
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 > ---
->  arch/riscv/boot/dts/spacemit/k1.dtsi  |   4 +-
 
-No, this never, never comes together with driver code. You cannot fix
-non-bisectability and ABI break that way.
-
-Read carefully maintainers soc profile and submitting patches in DT dir.
-
-...
-
-
->  static int spacemit_pinctrl_probe(struct platform_device *pdev)
->  {
-> +	struct device_node *np = pdev->dev.of_node;
->  	struct device *dev = &pdev->dev;
->  	struct spacemit_pinctrl *pctrl;
->  	struct clk *func_clk, *bus_clk;
-> @@ -816,6 +927,18 @@ static int spacemit_pinctrl_probe(struct platform_device *pdev)
->  	if (IS_ERR(pctrl->regs))
->  		return PTR_ERR(pctrl->regs);
->  
-> +	pctrl->io_pd_reg = devm_platform_ioremap_resource(pdev, 1);
-> +	if (IS_ERR(pctrl->io_pd_reg))
-> +		return PTR_ERR(pctrl->io_pd_reg);
-> +
-> +	pctrl->regmap_apbc =
-> +		syscon_regmap_lookup_by_phandle_args(np, "spacemit,apbc", 1,
-> +						     &pctrl->regmap_apbc_offset);
-> +
-> +	if (IS_ERR(pctrl->regmap_apbc))
-> +		return dev_err_probe(dev, PTR_ERR(pctrl->regmap_apbc),
-> +				     "failed to get syscon\n");
-
-Actual ABI break.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
