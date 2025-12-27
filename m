@@ -1,165 +1,116 @@
-Return-Path: <devicetree+bounces-249881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DF55CDFEFF
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 17:11:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85E88CDFF08
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 17:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4BC86300E3CE
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 16:11:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4FA43300DA64
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 16:13:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547073164D9;
-	Sat, 27 Dec 2025 16:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EB68315D2C;
+	Sat, 27 Dec 2025 16:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fNgTDuW9"
+	dkim=pass (1024-bit key) header.d=mork.no header.i=@mork.no header.b="k57w20PL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from dilbert.mork.no (dilbert.mork.no [65.108.154.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20DBC1A23B9;
-	Sat, 27 Dec 2025 16:11:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210027B3E1;
+	Sat, 27 Dec 2025 16:13:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.108.154.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766851885; cv=none; b=ds7yCTkhq60UIxqDZogLdlRCydMhVG/sc1jcausVumd77/vACZsj9QctMIyGEq1Kz6yQ4dPmpNnNwtvuWA+6Xj8TSDCsX9jkuWFojXSw4pjKCNQ5CBcAfpwEPOXnEFfcgxqGOM9/uYFMvBFPcdOJErapqfpMyphTdhBhrDxVNm0=
+	t=1766852033; cv=none; b=tma1DbhoTIBKPyLnaroRuJGrf1D0ucq7amTP9vtHi4tD6RqC7RiZx8+1Jpi7pInEkeJK6HMO1v3n8CO+6HZbG3doW2z2gxS52rLU3qyfe38nkz7MwknnD3/4wqrPvI+Kx8VGWOuLoZoHF5d8tssBLWTxpylSWYTdco06FwL5/qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766851885; c=relaxed/simple;
-	bh=/Z1HYkA3Z9nkZuzaX5+2e8tSWqn76PSoV2KdJ45cBo0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PBtxwfrMupQ0R2W8rRzRJmDXn3YeAZMzF+ct3q7nGpPAfHM443Dzko/BSuWDon+1DS269y9/tYOhPgfPpk4hc+EX6n7kIZ8OxzYbjVIIv0Cgepa1dRgiRNufVJw75Sxjh2OgED/6qwrRiqoVmo3xBuSdzHMC09JVNcoBIVt9sXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fNgTDuW9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D427C4CEF1;
-	Sat, 27 Dec 2025 16:11:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766851884;
-	bh=/Z1HYkA3Z9nkZuzaX5+2e8tSWqn76PSoV2KdJ45cBo0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=fNgTDuW9pgSJrAHP0F6bppK7UT/vcWpGXQeQKJYVNxjSaqCkXECdSSUO85uISz+ed
-	 apV5tWa/739B7otIEvBxF9o8IUmOJBq9C2xopVwoZzH++K992PvaBXn5T8BiJSRZYY
-	 XxJeuHGaRjhq5JOmk1r/uMkkgfXH1Gcdp7vcTVCOnCUocRDKhzqZnNeslXO2jH6AwX
-	 njN1pq2PUoiSfDXXH9fWki5j/1SfymX7NVqP6pSk2nZ5K+mDDTrhzSR5sZ5BJN60kv
-	 YYib1snTl2OYaLCHlG+0j4vN0Rp4HltClj1WCaCo6CgH+AfA7Q1BgXLYDx/Yq3AJJF
-	 mzyOFF9PtfxNQ==
-Date: Sat, 27 Dec 2025 16:11:15 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
- <Michael.Hennerich@analog.com>, <dlechner@baylibre.com>,
- <nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <jonath4nns@gmail.com>
-Subject: Re: [PATCH v5 5/5] iio: adc: ad7768-1: add support for ADAQ776x-1
- ADC Family
-Message-ID: <20251227161115.5e38e874@jic23-huawei>
-In-Reply-To: <dab6e0ffc1a297d857f5a9c75184794c301d70f3.1765900411.git.Jonathan.Santos@analog.com>
-References: <cover.1765900411.git.Jonathan.Santos@analog.com>
-	<dab6e0ffc1a297d857f5a9c75184794c301d70f3.1765900411.git.Jonathan.Santos@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1766852033; c=relaxed/simple;
+	bh=6xQepFKbLSgWwslvs/nMpOgMMovKMH4umS/FdNhEKCI=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ab/QUW/IBGP4rujZXpu/8lE4WK3ALwUD1qjSHEDbclndRa8TMl5NEz0Mirx82glOAdT0ml1Swk+Vm2o45em6d2/4ppx7U5ppcPKbjTkzAGMCEGh8c+Cf5TdNeXIdS/cLPwMtJJQiVDdnVVwoeuK8WYuGAUfmezDMluurXyLSBdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mork.no; spf=pass smtp.mailfrom=miraculix.mork.no; dkim=pass (1024-bit key) header.d=mork.no header.i=@mork.no header.b=k57w20PL; arc=none smtp.client-ip=65.108.154.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mork.no
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=miraculix.mork.no
+Authentication-Results: dilbert.mork.no;
+	dkim=pass (1024-bit key; secure) header.d=mork.no header.i=@mork.no header.a=rsa-sha256 header.s=b header.b=k57w20PL;
+	dkim-atps=neutral
+Received: from canardo.dyn.mork.no ([IPv6:2a01:799:10e2:d900:0:0:0:1])
+	(authenticated bits=0)
+	by dilbert.mork.no (8.18.1/8.18.1) with ESMTPSA id 5BRGCXea1092612
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Sat, 27 Dec 2025 16:12:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mork.no; s=b;
+	t=1766851953; bh=6xQepFKbLSgWwslvs/nMpOgMMovKMH4umS/FdNhEKCI=;
+	h=From:To:Cc:Subject:References:Date:Message-ID:From;
+	b=k57w20PLkK0NnQT97ZSgjxTiFyMawI1HfymwWSj/dmV9dfAS0qmWGBcJ1DeXhHDTB
+	 Ikjv2Rf43hQPgRm2SkAZK5mFlF3fTrfTBplyddiW09dNafUsFVtDwDIDFTy2FmJol/
+	 uX9FVRLcPgMDx6rz8X0io7qVVg3U2DMkmysnOspg=
+Received: from miraculix.mork.no ([IPv6:2a01:799:10e2:d90a:6f50:7559:681d:630c])
+	(authenticated bits=0)
+	by canardo.dyn.mork.no (8.18.1/8.18.1) with ESMTPSA id 5BRGCXAq1173802
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Sat, 27 Dec 2025 17:12:33 +0100
+Received: (nullmailer pid 1325881 invoked by uid 1000);
+	Sat, 27 Dec 2025 16:12:33 -0000
+From: =?utf-8?Q?Bj=C3=B8rn_Mork?= <bjorn@mork.no>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Daniel Golle <daniel@makrotopia.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        Eric Woudstra <ericwouds@gmail.com>,
+        Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
+        Lee Jones <lee@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: Re: [PATCH net-next 0/9] XPCS polarity inversion via generic device
+ tree properties
+In-Reply-To: <20251122193341.332324-1-vladimir.oltean@nxp.com> (Vladimir
+	Oltean's message of "Sat, 22 Nov 2025 21:33:32 +0200")
+Organization: m
+References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+Date: Sat, 27 Dec 2025 17:12:33 +0100
+Message-ID: <87qzsfewem.fsf@miraculix.mork.no>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Virus-Scanned: clamav-milter 1.4.3 at canardo.mork.no
+X-Virus-Status: Clean
 
-On Wed, 17 Dec 2025 02:53:08 -0300
-Jonathan Santos <Jonathan.Santos@analog.com> wrote:
+Vladimir Oltean <vladimir.oltean@nxp.com> writes:
 
-> Add support for ADAQ7767/68/69-1 series, which includes PGIA and
-> Anti-aliasing filter (AAF) gains. Unlike the AD7768-1, they do not
-> provide a VCM regulator interface.
-> 
-> The PGA gain is configured in run-time through the scale attribute,
-> if supported by the device. PGA is controlled by GPIOs provided in
-> the device tree.
-> 
-> The AAF gain is defined by hardware connections and should be specified
-> in the device tree.
-> 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> This set contains an implementation of a generic feature that should
+> cater to all known needs that were identified during my documentation
+> phase. I've added a new user - the XPCS - and I've converted an existing
+> user - the EN8811H Ethernet PHY.
 
-Hi Jonathan
+Hello Vladimir!
 
-I noted one minor area where I think the code could be slightly cleaner.
-If we didn't have the outstanding question about the comment in the BP definitions
-patch I'd just have merged it as it stands. I don't mind that much if you
-prefer the current form.
+Will there be a new version of this patch set?
 
-Jonathan
-
->  
-> +static int ad7768_parse_aaf_gain(struct device *dev, struct ad7768_state *st)
-> +{
-> +	bool aaf_gain_provided;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = device_property_read_u32(dev, "adi,aaf-gain-bp", &val);
-> +	if (ret == -EINVAL)
-> +		aaf_gain_provided = false;
-> +	else if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to get AAF gain value\n");
-> +	else
-> +		aaf_gain_provided = true;
-> +
-> +	if (!aaf_gain_provided) {
-> +		if (st->chip->has_variable_aaf)
-> +			st->aaf_gain = AD7768_AAF_IN1;
-> +		return 0;
-> +	}
-> +
-> +	if (aaf_gain_provided && !st->chip->has_variable_aaf)
-> +		return dev_err_probe(dev, -EOPNOTSUPP,
-> +				     "AAF gain not supported for %s\n", st->chip->name);
-> +
-
-Might be simpler if we just did the actions for aaf_gain at the point of detecting it.
-
-	if (ret == -EINVAL) {
-		/* If controllable, use default */
-		if (st->chip->has_variable_aaf)
-			st->aaf_gain = AD7768_AAF_IN1;
-		return 0;
-	}
-	if (ret)
-		return dev_err_probe(dev, ret, "Failed to get AAF gain value\n");
-
-	if (!st->chip->has_variable_aaf)
-		return dev_err_probe(dev,, -EOPNOTSUPP,
-		     "AAF gain provided, but variable AFF gain not supported for %s\n", ...)
-
-or maybe make the gain number obvious as the default by doing.
-
-	if (ret == -EINVAL) {
-		if (!st->chip->has_variable_aaf)
-			return 0;
-
-		val = 10000; /* Matches the default from DT */
-	} else if (ret) {
-		return dev_err_probe(dev, ret, "Failed to get AAF gain value\n");
-	} else if (!st->chip->has_variable_aaf) {
-		return dev_err_probe(dev,, -EOPNOTSUPP,
-		     "AAF gain provided, but variable AFF gain not supported for %s\n", ...)
-	}
-
-The first option is simpler, bu the second makes it easier to align with DT binding.
+The firmware for AN8811HB has now been submitted [1], so I plan to move
+forward with the driver. And without this series then I don't see any
+other reasonable alternative than continuing with "airoha,pnswap-rx/tx",
+like the existing EN8811H driver.
 
 
-> +	switch (val) {
-> +	case 10000:
-> +		st->aaf_gain = AD7768_AAF_IN1;
-> +		break;
-> +	case 3640:
-> +		st->aaf_gain = AD7768_AAF_IN2;
-> +		break;
-> +	case 1430:
-> +		st->aaf_gain = AD7768_AAF_IN3;
-> +		break;
-> +	default:
-> +		return dev_err_probe(dev, -EINVAL, "Invalid firmware provided AAF gain\n");
-> +	}
-> +
-> +	return 0;
-> +}
+Bj=C3=B8rn
+
+[1] https://lore.kernel.org/linux-firmware/20251225163003.4797-1-lucienzx15=
+9@gmail.com/T/#u
 
