@@ -1,153 +1,137 @@
-Return-Path: <devicetree+bounces-249877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6482CDFE83
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 16:48:28 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AF0ECDFE96
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 16:52:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EFE9730141EB
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 15:48:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 30C6F30006ED
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 15:52:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F94525FA3B;
-	Sat, 27 Dec 2025 15:48:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC633261593;
+	Sat, 27 Dec 2025 15:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Fk53Uzd4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QCUneI+L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D075B2571DA
-	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 15:48:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A64D25F995;
+	Sat, 27 Dec 2025 15:52:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766850497; cv=none; b=aMpLrMOVM2dwAFinQ4n+uWpCQ7GEyWR8RRSB0RfrPZxK6aftd4oP0x6hbLkXXyvb3rWgmqFmGCDG/AQsZ3abr19ZoGj+KjXLDzkQfhcgq0hbmcnvazjcGYAX+7kM1wReD6f7rYgAYUpt2lMWPAASo/d/hyDnxsCMEOYgx0Ou6kM=
+	t=1766850774; cv=none; b=Jw2CuDboDcWtLsEtv1l77MZvoNrdKMiMxZyPkqj5Svt+tjWG6Q9Ubto7ZC+5bBL6CCq/pBst6uPSkSUoE79LnBq9cK2h15IquC8VmJ0ED3HP5GhQahl3LdEvWKPjgvwo0/23tKp4tmaKEhfGVE/PiaoVdPraaGEh5XL4t94Hlns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766850497; c=relaxed/simple;
-	bh=6EyvenFkUbRfEc/p3VGn5q6/vzpXU8dt1a2C1/gKoHE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IxK/ddH+TV/QImNC3m11Ym5PrXxTPM3ytOcpnrqt05ghpwwnPpTKrwIddny3O+hNMFZGJXaIW1ls1tyn5opkJieMfGEshgFB/aD4ldoV0SI4NH9o9sAbnm8mpQLv8P5OQ/o/n5ih+NRzyZOr/1SX+yN3vnWEUyegZYTod8mYCkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Fk53Uzd4; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47796a837c7so51364385e9.0
-        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 07:48:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1766850494; x=1767455294; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=r+FpSWC3Nc9MHvTyQKmZfza7qICMlSOsmY2JJtFLFDE=;
-        b=Fk53Uzd4i7UdaJwJC6PZ4zKjkdsmvbtL98FOY2BlbEFJix6Q1zsQ227YrJ8dZYzB6X
-         b2ObaJu14FC8AQSmm5ZTatNvhGfA+1VVKeIHhuVHhc3pu6XEHKMtSq3c/Y9rG6NY8QkC
-         3Y9NaHDc6tuSWvvqiPlqky2YRitYTM0k6PYL0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766850494; x=1767455294;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=r+FpSWC3Nc9MHvTyQKmZfza7qICMlSOsmY2JJtFLFDE=;
-        b=fSQ/nXOzNJvObci2MHVlDVWl4HiLf+sJM1DdiXiNH/ourF8A/WI3HR/QMNhUemQvAk
-         kxgQ54uHbX3Ok1yxpmUrWj/7SJa4sNz/rI1exoWPQCkcN+T1dgEYKcrlmbdhizoaqkpu
-         vsN6PkM/gQ3VP8Z0o77jjP3WbmyHA/gCh99BtR3uGRLIqsLZxcov1YnB2hx6BpvyoghH
-         8Wcx/MPsUJIWxov70SmC0NLwcIYvtvPqIJaNCfTVh3V1VaJn64IUfZ4qPejbHaaIkKeS
-         DNpsdrGXk4bH6VQFguDMNeOtEUUlUinT3gbRjyR+p5pcw8l/ujGalYnSXowqFQ9t+gDi
-         RFeg==
-X-Forwarded-Encrypted: i=1; AJvYcCXBxAyZ06p7bGqz3ZHANbFIQvxGZRb4X/Ear75j0ykQVBN13Mqnvy2BPhD9H4zBukMHH41Xcc3hviqH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfMpjWDah0jvfbG4/Cev0yfNvc7nbFgKuboJzZ2y3PHjT0SVaV
-	yQ/71aj8YCgXzBE+2EAhLXeI+kFlznzc5O9Hs20OAu1dx/FeSbGuaCW55LIAAa2Mjg==
-X-Gm-Gg: AY/fxX6OQr8pWXk47sepWyYMuvEayYz50BeQltfBimeF+lNYnSQWcyekjTbFzSpw/Am
-	HZ9TBBnFus33mBAJCZ/i2uvP3o7t9a3aIQXFNHA3flzCmJrj3gBvr/8T3TPJBtjU9gi69yOgtLj
-	LNxt+C6+lIn2d3pz9tczZxh8NWkez8YB4iNRUbOhZLXG6MhIaGuWZNVD/r/iIkm9oIDZ1Hh+GaA
-	OcJxn1w9qSnDJqBrV+0CdPjukTVPJiUC0udHpHlfDjdNAGsNBgZJkthr7HEDIGxmB/13qXIuJuV
-	p4YaoRDSIOVckqV2H3cdaf4oWoZxrL2VIofeAFpus0s/FwuoXvXiwlCie791JxVSgNQ6KeoldtS
-	6eyavDoT+H+l9Z8lOYEVqg5yk+9+vktHnW1GnFs0zYa0pcJ/chGDqkyfZ/tRsaqyE0dg+ieC13a
-	PgqNrCcI2RYULghdK07Q==
-X-Google-Smtp-Source: AGHT+IEgCUZpTF8yVMFQbUK1f2VfqWGes79Q7SFq4BTt5go/LyghCIYXvXp0oSXhz5n1SME9CswxKg==
-X-Received: by 2002:a05:600c:470e:b0:46e:506b:20c5 with SMTP id 5b1f17b1804b1-47d19589469mr282225585e9.26.1766850494231;
-        Sat, 27 Dec 2025 07:48:14 -0800 (PST)
-Received: from google.com ([37.228.206.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324eaa477bsm51705043f8f.36.2025.12.27.07.48.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Dec 2025 07:48:13 -0800 (PST)
-Date: Sat, 27 Dec 2025 15:48:11 +0000
-From: Fabio Baltieri <fabiobaltieri@chromium.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Simon Glass <sjg@chromium.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: google,cros-ec-keyb: add
- use-fn-overlay prop
-Message-ID: <aU__uxDmeUq20Mg3@google.com>
-References: <20251224152238.485415-1-fabiobaltieri@chromium.org>
- <20251224152238.485415-3-fabiobaltieri@chromium.org>
- <20251227-laughing-white-dalmatian-f9d98a@quoll>
+	s=arc-20240116; t=1766850774; c=relaxed/simple;
+	bh=2WJC2VuUA77wKao0U1jHZAdt5NZw4EFA8Cqy4xSS9Qo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iiAVc9xSLaEIb5WGR4NybgzyuQx1EVueQdhQfSojfGjhsGtZPclN6FOYIkby6EzOU4ct6izrSGM6RN5+CfXQmlS1bln+nJAPHH+vdAlSgRnOy/yuQlJqlSm2e3Rl7EkkUmEwcySKAiEsv8NMFN10btg7bhCoRwJnKFg2xG3a8zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QCUneI+L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45340C4CEF1;
+	Sat, 27 Dec 2025 15:52:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766850774;
+	bh=2WJC2VuUA77wKao0U1jHZAdt5NZw4EFA8Cqy4xSS9Qo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=QCUneI+Lslcu0EZNg+IgA47uhiEz37DHOv3WgR8f0xL08WZCxXaEmDj+J4DBhAamU
+	 dh+O4KJzTUG7cY7SDY9wsfVVwNKXPua24e1YVR2A885JG+pJdwy1vztvyTAon4o0RL
+	 xHbN7MgZliyUjWqiY3QxHo70+nzGC/JtR9Q5i+nhkIsRpJodDaqdwGl1D7nsfanjUh
+	 pOuE8FiOodXYnqigmqGFqKsWsEOX2HK0F4yrSD2l/CjVTsvuaWT6zA+bpJNteqlBtx
+	 j5OTWI8FPwqfrJtS2ip2UQJpkzT0A2hmXxlbQIXUx3q7PYeL6Egs+v5Exqd326HSlx
+	 d3WDXCFQ50L+w==
+Date: Sat, 27 Dec 2025 15:52:45 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Ariana Lazar <ariana.lazar@microchip.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/2] iio: dac: adding support for Microchip
+ MCP47FEB02
+Message-ID: <20251227155245.6a3f5344@jic23-huawei>
+In-Reply-To: <20251216-mcp47feb02-v4-2-4b687094ff90@microchip.com>
+References: <20251216-mcp47feb02-v4-0-4b687094ff90@microchip.com>
+	<20251216-mcp47feb02-v4-2-4b687094ff90@microchip.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251227-laughing-white-dalmatian-f9d98a@quoll>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, Dec 27, 2025 at 01:44:26PM +0100, Krzysztof Kozlowski wrote:
-> > diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > index fefaaf46a240..437575cdf352 100644
-> > --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > @@ -44,6 +44,14 @@ properties:
-> >        where the lower 16 bits are reserved. This property is specified only
-> >        when the keyboard has a custom design for the top row keys.
-> >  
-> > +  google,use-fn-overlay:
-> > +    description: |
-> > +      Use a function key overlay. This allows defining an extra set of codes
+On Tue, 16 Dec 2025 14:05:51 +0200
+Ariana Lazar <ariana.lazar@microchip.com> wrote:
+
+> This is the iio driver for Microchip MCP47F(E/V)B(0/1/2)1,
+> MCP47F(E/V)B(0/1/2)2, MCP47F(E/V)B(0/1/2)4 and MCP47F(E/V)B(0/1/2)8 series
+> of buffered voltage output Digital-to-Analog Converters with nonvolatile or
+> volatile memory and an I2C Interface.
 > 
-> What is a function key overlay? Overlays are DT term and therefore are
-> not suitable for bindings.
-
-Ok, guess I can rename it to `use-fn-key` or `use-fn-layer`, open to
-suggestions really.
-
-> > +      that are sent if a key is pressed while the KEY_FN is held pressed as
-> > +      well. The function codes have to be defined in the linux,keymap property
-> > +      with an offset of keypad,num-rows from the normal ones.
-> > +    type: boolean
-> > +
-> >  dependencies:
-> >    function-row-physmap: [ 'linux,keymap' ]
-> >    google,needs-ghost-filter: [ 'linux,keymap' ]
-> > @@ -132,6 +140,23 @@ examples:
-> >              /* UP      LEFT    */
-> >              0x070b0067 0x070c0069>;
-> >      };
-> > +  - |
-> > +    /* With function keys */
-> > +    #include <dt-bindings/input/input.h>
-> > +    keyboard-controller {
-> > +        compatible = "google,cros-ec-keyb";
-> > +        keypad,num-rows = <8>;
-> > +        keypad,num-columns = <18>;
-> > +        google,use-fn-overlay;
+> The families support up to 8 output channels.
 > 
-> Difference in one property does not justify new example.
+> The devices can be 8-bit, 10-bit and 12-bit.
+> 
+> Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
+Hi Ariana,
 
-Sure but when the property is set then one has to specify the extra
-codes in the linux,keymap property and this examples shows how. I'll
-drop it if you want me to but I think there's value in it.
+One stale bit of documentation and I'd be surprised if the
+style of text used in Kconfig short help proves sustainable.
+We often end up over time moving to 'x and similar' to avoid
+very complex pattern matching as more and more parts end up supported
+by a given driver.
 
-> Please organize the patch documenting the compatible (DT bindings)
-> before the patch using that compatible.
-> See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+With those in mind. Applied to the togreg branch of iio.git which I'll initially
+push out as testing to let 0-day take a poke at it.
 
-Ack, will do for v3.
+Thanks
 
-Thanks for the review.
-Fabio
+Jonathan
+
+> diff --git a/drivers/iio/dac/mcp47feb02.c b/drivers/iio/dac/mcp47feb02.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..c04f3b72b1b1fc303b1bde63c281aade8a67b2f9
+> --- /dev/null
+> +++ b/drivers/iio/dac/mcp47feb02.c
+
+> +/**
+> + * struct mcp47feb02_data - chip configuration
+> + * @chdata: options configured for each channel on the device
+> + * @lock: prevents concurrent reads/writes to driver's state members
+> + * @chip_features: pointer to features struct
+> + * @scale_1: scales set on channels that are based on Vref1
+> + * @scale: scales set on channels that are based on Vref/Vref0
+> + * @active_channels_mask: enabled channels
+> + * @client: the i2c-client attached to the device
+
+Not there. I'll tidy this up whilst applying if nothing else
+comes up.
+
+> + * @regmap: regmap for directly accessing device register
+> + * @vref1_buffered: Vref1 buffer is enabled
+> + * @vref_buffered: Vref/Vref0 buffer is enabled
+> + * @phys_channels: physical channels on the device
+> + * @labels: table with channels labels
+> + * @use_vref1: vref1-supply is defined
+> + * @use_vref: vref-supply is defined
+> + */
+> +struct mcp47feb02_data {
+> +	struct mcp47feb02_channel_data chdata[MCP47FEB02_MAX_CH];
+> +	struct mutex lock; /* prevents concurrent reads/writes to driver's state members */
+> +	const struct mcp47feb02_features *chip_features;
+> +	int scale_1[2 * MCP47FEB02_MAX_SCALES_CH];
+> +	int scale[2 * MCP47FEB02_MAX_SCALES_CH];
+> +	unsigned long active_channels_mask;
+> +	struct regmap *regmap;
+> +	bool vref1_buffered;
+> +	bool vref_buffered;
+> +	u16 phys_channels;
+> +	const char *labels[MCP47FEB02_MAX_CH];
+> +	bool use_vref1;
+> +	bool use_vref;
+> +};
+
 
