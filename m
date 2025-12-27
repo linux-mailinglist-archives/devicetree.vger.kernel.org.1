@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-249904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D721CE00DD
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 19:08:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBA98CE00FF
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 19:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3BCC230198DC
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 18:08:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 69C24301A716
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 18:18:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 461BC32570F;
-	Sat, 27 Dec 2025 18:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CED9285CA8;
+	Sat, 27 Dec 2025 18:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KbNptJd1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nfOYI5/E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188C9283FF9;
-	Sat, 27 Dec 2025 18:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D77A5464F;
+	Sat, 27 Dec 2025 18:18:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766858881; cv=none; b=PSvL7CjxzT8xcJIwFxoq5OJrwQPFPRQcuAYOgwkb2ICtqiD70OMdBhAGC6O00laqvPcE4LSnhoqO0EjMIeAX+Ezn3KaORQWyal4Wi3E+iFcJ/Wqz02vqq78USLpeuimqERz1ZBKDtQYGQbFBJaRF1wnOmJ/ii6pe6Kms14lkrlA=
+	t=1766859499; cv=none; b=Ao8Po2FYg4pTMojV4ZG3r1b4eXsMaDa1HKDVjDoiejFLxi3+HPnmvUlM0QH7mDMA3bKCWw+l+APE541uypeHwNgy7TXpKC89YDwvKOS/5VYLoBpapCh9aSN7Y6hr0AjNECfbNo1RtGuZ6pAipx+xH8doYG7pWL+MMW2UFkKoanQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766858881; c=relaxed/simple;
-	bh=0mr9k/inP6CvH0kP2jx1FkfnoUiXRzqbFromlFZgnh4=;
+	s=arc-20240116; t=1766859499; c=relaxed/simple;
+	bh=z53un9l34kelY0KLvqcgvmsyIvHS3HHvIShjZIeLTPs=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BSNRyY8Q3u07Cj2/M592UW5tcJOIXOqlro5EEGF1XyhV6qgUPiscCZzrtqeOTwajVBo8EgVbsWH9p29j9GFviO2P9WTSPeyhNzGpN60tbD4xnaHYYr+O/WdVE958ALHEIg3r/HZXo+rxdYPRFQrdbyI2pcDH8J/B9mmPIwcuhEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KbNptJd1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F627C4CEF1;
-	Sat, 27 Dec 2025 18:07:55 +0000 (UTC)
+	 MIME-Version:Content-Type; b=s1o2QOblV2xTOKcKYKGb1rgv+k2SZ7OcNCF+TNIfZ4zIClBIlfVslK3o4mZIh5DYsKUerOwEV8WVktBIjihRRgvyb2yxWFcDXUceXAayG/1kRDIiShSjxVWA070sBxj95VFDYNbqb3a1XEQ5O0CLQHT/IESXBz/kDcir3CqDPWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nfOYI5/E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6DB7C4CEF1;
+	Sat, 27 Dec 2025 18:18:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766858880;
-	bh=0mr9k/inP6CvH0kP2jx1FkfnoUiXRzqbFromlFZgnh4=;
+	s=k20201202; t=1766859498;
+	bh=z53un9l34kelY0KLvqcgvmsyIvHS3HHvIShjZIeLTPs=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KbNptJd1ur0y0vNUwM+A9mUX9I12BZ8iaEqUjmKHcU7k+4a7LZrhvB1GMG/fxwcPY
-	 dr0/vaIB6T0I1q+MLrLq3zSH8h7i3VFzinmfnlg2MlUAaGQCy7Bp2kP94iRaC2g603
-	 /Rnza4YWIQ0vbXSkiWcYu8AR5kKqarGFkNAfXlY0saUg1Jt1NEqBlcXx3tTuYA6bu2
-	 5d/Sd7MScR7U7toCC9JIuDBCIUQEEgnPZ0pZ3dBgGB5vFoOUvRcUYKC2BdXWtkNQYx
-	 oc/XL7j0i+dKFmyoJEY5/FoHONdxFevSRb0t+5dItzHMFrr3Yum0kpxYhtkOOvfnyf
-	 LBcfjDCYAS/bg==
-Date: Sat, 27 Dec 2025 18:07:50 +0000
+	b=nfOYI5/EcmNmyVZ49Ffz9eEMGkH7zVpeMWHeZC8qum3iA7R5lRzM2DMeW7jOsUaxF
+	 n87y9gZqb8X7iFR7aw7Kpq/DdFmCDQWOod5MLg8CqMO8ftx6XMHuTHLHZuCkx0D2MT
+	 5I7Mck+QD+p/w6OMjP6GgvJh5qmYdBYqloHScXyayR7C8gHoQwh7jXyjYHrCD6KRhd
+	 jv/ZGsRlpg/pDoMVmp5aW7k48jks15z5ZgxQStgvRdFSyHU2c+cjXxDrlzQZWTyvNR
+	 EGYUL2RDK4yRM8n7EbKdopxaSGjhZ4zw6NhMNIUam4AMAVIQn6/eiGRfzqZr6vJtME
+	 iszB4qIjESCLQ==
+Date: Sat, 27 Dec 2025 18:18:08 +0000
 From: Jonathan Cameron <jic23@kernel.org>
 To: Kyle Hsieh <kylehsieh1995@gmail.com>
 Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
@@ -49,11 +49,11 @@ Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
  Conor Dooley <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] iio: adc: ltc2309: add support driver for
- ltc2305
-Message-ID: <20251227180750.1e7fd7d9@jic23-huawei>
-In-Reply-To: <20251224-add_ltc2305_driver-v2-0-061f78cf45a3@gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: ltc2309: add support for ltc2305
+Message-ID: <20251227181808.3dbe5b0a@jic23-huawei>
+In-Reply-To: <20251224-add_ltc2305_driver-v2-2-061f78cf45a3@gmail.com>
 References: <20251224-add_ltc2305_driver-v2-0-061f78cf45a3@gmail.com>
+	<20251224-add_ltc2305_driver-v2-2-061f78cf45a3@gmail.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -64,49 +64,54 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Wed, 24 Dec 2025 13:37:13 +0800
+On Wed, 24 Dec 2025 13:37:15 +0800
 Kyle Hsieh <kylehsieh1995@gmail.com> wrote:
 
-> The series add support for ltc2305 controller from 
-> Linear Technology Corporation(lltc).
-> This is low noise, low power, 2 channels 12-bit successive
-> approximation ADCs.
+> Add support for the 2-channel LTC2305 ADC in the existing LTC2309 driver.
+> The LTC2305 and LTC2309 share similar features: both are 12-bit,
+> low-noise, low-power SAR ADCs with an I2C interface.
+> The main difference is the number of channels: LTC2305 has 2 channels,
+> while LTC2309 has 8 channels.
 > 
 > Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
-> ---
-> Changes in v2:
-> - Reordered chip descriptions and code from low to high order.
-> - Renamed chip info structure to use ltc2309 driver prefix.
-> - Switched to i2c_get_match_data().
-> - Removed unused variables.
-> - Added chip info to i2c_device_id table.
-> - Link to v1: https://lore.kernel.org/r/20251223-add_ltc2305_driver-v1-0-dfa0827fd620@gmail.com
-> 
-Hi Kyle,
+Hi Kyle
 
-Welcome to IIO.
+This is a fairly small patch, so don't bother doing it this time, but
+for future reference, if you are doing a refactor to enable something new
+split it into a refactor patch (which makes no operational changes) and
+a new stuff patch. Here first of those patches would introduce the chip_info
+structure but only for existing supported devices.  That can be reviewed
+easily to make sure there are not functional changes.  The second patch then
+adds the entries for the new device (which can be checked against the datasheet).
 
-General best practice is to always wait at least a few days (I'd typically
-go with a week) between first few versions of a patch so that there is
-time for multiple reviewers to take a look.  That's particularly true
-when holidays are occurring in some parts of the world! 
+When it is very small, in the interests of expediency we sometimes don't
+worry too much about the ideal formation of patches.
 
-Jonathan
-
-
+In line I mention that the ltc2301 would be very easy to add as well if you
+want to do so.  Otherwise looks good to me. I'll leave it on list a little
+while though before applying.
 
 > ---
-> Kyle Hsieh (2):
->       dt-bindings: adc: ltc2497: add support for ltc2305
->       iio: adc: ltc2309: add support for ltc2305
+>  drivers/iio/adc/ltc2309.c | 51 ++++++++++++++++++++++++++++++++++++++++++-----
+>  1 file changed, 46 insertions(+), 5 deletions(-)
 > 
->  .../devicetree/bindings/iio/adc/lltc,ltc2497.yaml  |  7 +++
->  drivers/iio/adc/ltc2309.c                          | 51 +++++++++++++++++++---
->  2 files changed, 53 insertions(+), 5 deletions(-)
-> ---
-> base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
-> change-id: 20251223-add_ltc2305_driver-728fa9161bc7
-> 
-> Best regards,
+> diff --git a/drivers/iio/adc/ltc2309.c b/drivers/iio/adc/ltc2309.c
+> index 5f0d947d0615..0cf9bcae36c8 100644
+> --- a/drivers/iio/adc/ltc2309.c
+> +++ b/drivers/iio/adc/ltc2309.c
+> @@ -1,8 +1,10 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  /*
+> + * The LTC2305 is a  2-Channel, 12-Bit SAR ADC with an I2C Interface.
+>   * The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
+>   *
+>   * Datasheet:
+> + * https://www.analog.com/media/en/technical-documentation/data-sheets/23015fb.pdf
 
+If you wanted to, it should be trivial to also support the 2301 (I looked given the
+odd datasheet file name!)  For families of parts it is common to add support based
+on only have access to a small subset.
+
+
+>   * https://www.analog.com/media/en/technical-documentation/data-sheets/2309fd.pdf
 
