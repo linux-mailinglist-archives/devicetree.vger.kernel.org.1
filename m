@@ -1,146 +1,122 @@
-Return-Path: <devicetree+bounces-249797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A3D3CDF609
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 10:24:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 923F4CDF7A6
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 11:15:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id ED9953000B57
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 09:24:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E1CC03009829
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 10:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9609921770A;
-	Sat, 27 Dec 2025 09:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF667265632;
+	Sat, 27 Dec 2025 10:15:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r8Na6+cF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38EF614AD20;
-	Sat, 27 Dec 2025 09:24:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFEA25485A;
+	Sat, 27 Dec 2025 10:15:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766827454; cv=none; b=L1C5YQ8QBLnmg/nH16Z8YGNqOUe7AA78S6vtqu6l0Pvj8VX2GDavKQ299BG/kb8CVTKtQtvMQ4J9B6blJYdMOmqm/DuK5iu/l58c1z0OguW6qQCrIsNYANrgywhpmJ5LCrNOUs5XlmOOg4OUFQTTj7wly+NqQPspl9zGjLAhmKg=
+	t=1766830514; cv=none; b=AcPnucCZbPUctocsIZtqTGDsQBGpu2ql2ZlNUQRngF+f1+aMas7duyZ/q6mKFSvmvVbZjcetZSBAxviBYbevECOL5E4EEI3o/dbcwSx+lj3hiy1uF4b0P4eQA2qzwFn39RgZWNSq9xsSvab6oYbeHyKYE9Ctse360k3nT4dQL80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766827454; c=relaxed/simple;
-	bh=+WmGn2mC+HePvekP0m+EEsYaUbNG5tDdILiJHQEaXYQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EYeVH5k3XzNvD2JebkALaj088BXYY51PAJpFNot3sL+Z2AUMIYbxdXEwBMVMi/gZbL3Y+rGphEfmLnD3/wbVDsYEKOl+tVY2391skuvH6NjCtCu1rhldgR7zJR8YaMLSiDRp7sJxh9Yod02TioO/9JY6luyf3lSWlETGZSN9qno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine.localdomain (unknown [183.192.221.253])
-	by APP-03 (Coremail) with SMTP id rQCowADH4diwpU9pjCYxAg--.8901S2;
-	Sat, 27 Dec 2025 17:24:02 +0800 (CST)
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: conor@kernel.org
-Cc: cyy@cyyself.name,
-	kingxukai@zohomail.com,
-	jiayu.riscv@isrc.iscas.ac.cn,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] riscv: dts: Correct the formatting issues about k230 dts
-Date: Sat, 27 Dec 2025 17:23:54 +0800
-Message-ID: <20251227092355.42825-1-jiayu.riscv@isrc.iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
+	s=arc-20240116; t=1766830514; c=relaxed/simple;
+	bh=ximwzek5oWpZ5NwclTHmbTef6utaTy7hpNmyyR1E5Uw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kfR4YH8sVKQrgq9fodv7T81CiGq/Igu+4WnWfSI0xm1jctKTBbFue45+CbPf4cQq2HIQKkr/5TlTT8/DvBIFoFGgRH93Se97SuoHbOWXU/+uBEby+7BnMWDtdpyXOroDz2S4tQINrcw5sQBOVUXCCfEJPbo3aIA/2YI6uCMVQas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r8Na6+cF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36882C4CEF1;
+	Sat, 27 Dec 2025 10:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766830514;
+	bh=ximwzek5oWpZ5NwclTHmbTef6utaTy7hpNmyyR1E5Uw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r8Na6+cFPp9VwBT5Z4mY7PQ4RvxhfePGceHc+DTtZlQetFHGrbzR3Vy9m++X9FH78
+	 KrgSOBe0Cz/2sKS21PxD/sBNdJZ2EG22V0kGnHLp4v2FVR2owYFCHQea1S+VEZ6Qqa
+	 /lz8X0c8kdc+Rgn516232eDaNos2fuCZUdPif2+LE/GICLEZfrDyKQeWQVaLP3Gp71
+	 bVwBAp5JVf1onT5TMd69DL67ymbORvRbFgYJbOIb9WFtf6Yv/rz0QV6fzGLaKA5die
+	 gn2aMUnaWSesFeL7/V6J2gUyy7mwmN+HMQ2k+ekFqgX5cePI5j6uhqLT/fFmb4Rg4v
+	 CeN/iwOVAkgcQ==
+Message-ID: <ae0d63fa-ecaf-4b46-a971-e3bae66fc2f3@kernel.org>
+Date: Sat, 27 Dec 2025 11:15:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowADH4diwpU9pjCYxAg--.8901S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7AF4DZr4fZF47Zr13GFWfXwb_yoW5JrWfpw
-	429Fs5Ga93WF1Sk3W2vFWvgry5ZFn8W3W8Ww1YyryUGr45Xry8Kr13Jan5tryUXF43Z3yI
-	9r1Fy34xur12vaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUkm14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r1j
-	6r4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r1j6r
-	4UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
-	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7MxkF7I0En4kS14v26r12
-	6r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI
-	0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCIc40Y
-	0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxV
-	WUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1l
-	IxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjfUYCJmUUUUU
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sm8750: Add capacity and DPC properties
+To: Ankit Sharma <ankit.sharma@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251226123258.1444419-1-ankit.sharma@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20251226123258.1444419-1-ankit.sharma@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Correct the errors in the spacing format, and move the aliases from
-the SoC's dtsi to the board's dts, since it's more standard.
+On 26/12/2025 13:32, Ankit Sharma wrote:
+> The "capacity-dmips-mhz" and "dynamic-power-coefficient" are
+> used to build Energy Model which in turn is used by EAS to take
+> placement decisions.
 
-Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
----
+Don't state the obvious, but rather say how did you get the values.
 
-This patch is based on this initial support for Canaan Kendryte K230
-series v6[1], and it is used to fix the [PATCH v6 10/11] of that series.
-Although the latest version is v8, this problem still persists.
-And this patch hasn't been merged into Conor's branch yet.
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
 
-[1]: https://lore.kernel.org/all/tencent_DF5D7CD182AFDA188E0FB80E314A21038D08@qq.com/
 
-Thanks for your time and review.
-
- arch/riscv/boot/dts/canaan/k230-canmv.dts | 4 ++++
- arch/riscv/boot/dts/canaan/k230-evb.dts   | 4 ++++
- arch/riscv/boot/dts/canaan/k230.dtsi      | 6 +-----
- 3 files changed, 9 insertions(+), 5 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv.dts b/arch/riscv/boot/dts/canaan/k230-canmv.dts
-index 9565915cea..593ca38e68 100644
---- a/arch/riscv/boot/dts/canaan/k230-canmv.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv.dts
-@@ -9,6 +9,10 @@ / {
- 	model = "Canaan CanMV-K230";
- 	compatible = "canaan,canmv-k230", "canaan,kendryte-k230";
- 
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-diff --git a/arch/riscv/boot/dts/canaan/k230-evb.dts b/arch/riscv/boot/dts/canaan/k230-evb.dts
-index f898b8e623..bfa53f2e24 100644
---- a/arch/riscv/boot/dts/canaan/k230-evb.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-evb.dts
-@@ -9,6 +9,10 @@ / {
- 	model = "Kendryte K230 EVB";
- 	compatible = "canaan,k230-usip-lp3-evb", "canaan,kendryte-k230";
- 
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index 7da4949894..6bc599f079 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -11,10 +11,6 @@ / {
- 	#size-cells = <2>;
- 	compatible = "canaan,kendryte-k230";
- 
--	aliases {
--		serial0 = &uart0;
--	};
--
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -72,7 +68,7 @@ soc {
- 		ranges;
- 
- 		plic: interrupt-controller@f00000000 {
--			compatible = "canaan,k230-plic" ,"thead,c900-plic";
-+			compatible = "canaan,k230-plic", "thead,c900-plic";
- 			reg = <0xf 0x00000000 0x0 0x04000000>;
- 			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
- 			interrupt-controller;
--- 
-2.52.0
-
+Best regards,
+Krzysztof
 
