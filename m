@@ -1,180 +1,146 @@
-Return-Path: <devicetree+bounces-249796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0344CDF4F9
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 08:22:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A3D3CDF609
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 10:24:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8B13A30062D7
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 07:22:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id ED9953000B57
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 09:24:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28422238150;
-	Sat, 27 Dec 2025 07:22:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9609921770A;
+	Sat, 27 Dec 2025 09:24:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 135AE211A05;
-	Sat, 27 Dec 2025 07:22:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38EF614AD20;
+	Sat, 27 Dec 2025 09:24:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766820174; cv=none; b=FHHFE4LbGeGc+jgb803LgXMUWqd05BUPDQ2WoF3waH/QUwz2uVEnxdBJAeMQJ2BFe12plyodKqhTu9ZfFPYU2nLn3Z1jqgWUoIAEweo7FLxQpUIdqt8EV/OLgQBUbo4fhc0eufVnhPYimoQd1STSiaerqqxCt6OP3YB68MyTqCk=
+	t=1766827454; cv=none; b=L1C5YQ8QBLnmg/nH16Z8YGNqOUe7AA78S6vtqu6l0Pvj8VX2GDavKQ299BG/kb8CVTKtQtvMQ4J9B6blJYdMOmqm/DuK5iu/l58c1z0OguW6qQCrIsNYANrgywhpmJ5LCrNOUs5XlmOOg4OUFQTTj7wly+NqQPspl9zGjLAhmKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766820174; c=relaxed/simple;
-	bh=q+tPJyX3wK30eAKOj2+fLf2+5m/rKACcvGVRSXt2SfU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FF7MutkTyj0n44kU56lSAM1woUVgxkj4ZSGQLwLRvZNYDDDq33GjkRkXNcingU1CcXypJTLRAAJRpSbQyc02EucCXqQLsZj16MN3wUguXms4plek/f19HB1m2VTHt9MbL387L52TCu2gOMI/gFR9+LXJG3R4mSe3aCGNLIpTFwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.54])
-	by APP-01 (Coremail) with SMTP id qwCowABX_mkeiU9p98L7AQ--.5607S2;
-	Sat, 27 Dec 2025 15:22:07 +0800 (CST)
-Message-ID: <3b5fd30554f91bcd083b2dc450cdf7fe2fa395e2.camel@iscas.ac.cn>
-Subject: Re: Re: [PATCH v4 5/9] drm/bridge: add a driver for T-Head TH1520
- HDMI controller
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Andy Yan <andyshrk@163.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>, Guo Ren
- <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Philipp Zabel
- <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Michal Wilczynski
- <m.wilczynski@samsung.com>, devicetree@vger.kernel.org, Yao Zi
- <ziyao@disroot.org>,  linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Han Gao <rabenda.cn@gmail.com>,
- linux-riscv@lists.infradead.org
-Date: Sat, 27 Dec 2025 15:22:05 +0800
-In-Reply-To: <5ce9d611.1868.19b5e9e7a61.Coremail.andyshrk@163.com>
-References: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
-	 <20251224161205.1132149-6-zhengxingda@iscas.ac.cn>
-	 <2183e580.8b98.19b5531263f.Coremail.andyshrk@163.com>
-	 <0eba66980024d001d4ff6d0aed6f2f3e356abf3a.camel@iscas.ac.cn>
-	 <5ce9d611.1868.19b5e9e7a61.Coremail.andyshrk@163.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	s=arc-20240116; t=1766827454; c=relaxed/simple;
+	bh=+WmGn2mC+HePvekP0m+EEsYaUbNG5tDdILiJHQEaXYQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EYeVH5k3XzNvD2JebkALaj088BXYY51PAJpFNot3sL+Z2AUMIYbxdXEwBMVMi/gZbL3Y+rGphEfmLnD3/wbVDsYEKOl+tVY2391skuvH6NjCtCu1rhldgR7zJR8YaMLSiDRp7sJxh9Yod02TioO/9JY6luyf3lSWlETGZSN9qno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine.localdomain (unknown [183.192.221.253])
+	by APP-03 (Coremail) with SMTP id rQCowADH4diwpU9pjCYxAg--.8901S2;
+	Sat, 27 Dec 2025 17:24:02 +0800 (CST)
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: conor@kernel.org
+Cc: cyy@cyyself.name,
+	kingxukai@zohomail.com,
+	jiayu.riscv@isrc.iscas.ac.cn,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] riscv: dts: Correct the formatting issues about k230 dts
+Date: Sat, 27 Dec 2025 17:23:54 +0800
+Message-ID: <20251227092355.42825-1-jiayu.riscv@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-CM-TRANSID:qwCowABX_mkeiU9p98L7AQ--.5607S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxXr1xGry7urWxJF1DuFyUWrg_yoW5Gw1rpF
-	W8JFW3CryDJFn3Kw1I9w15JryYya1kJw4rWrnxJ3WIvr90kF10qr9rZFyYgFyDWr4fGr42
-	yr1UKrya9r1kJF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvmb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I
-	8E87Iv6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
-	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
-	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
-	MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
-	4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
-	67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
-	x0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2
-	z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnU
-	UI43ZEXa7IU0uHq7UUUUU==
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowADH4diwpU9pjCYxAg--.8901S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7AF4DZr4fZF47Zr13GFWfXwb_yoW5JrWfpw
+	429Fs5Ga93WF1Sk3W2vFWvgry5ZFn8W3W8Ww1YyryUGr45Xry8Kr13Jan5tryUXF43Z3yI
+	9r1Fy34xur12vaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUkm14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r1j
+	6r4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r1j6r
+	4UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7MxkF7I0En4kS14v26r12
+	6r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI
+	0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCIc40Y
+	0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxV
+	WUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1l
+	IxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjfUYCJmUUUUU
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 
-=E5=9C=A8 2025-12-27=E6=98=9F=E6=9C=9F=E5=85=AD=E7=9A=84 15:03 +0800=EF=BC=
-=8CAndy Yan=E5=86=99=E9=81=93=EF=BC=9A
->=20
->=20
-> Hello=EF=BC=8C
->=20
-> =E5=9C=A8 2025-12-26 21:27:53=EF=BC=8C"Icenowy Zheng" <zhengxingda@iscas.=
-ac.cn> =E5=86=99=E9=81=93=EF=BC=9A
-> > =E5=9C=A8 2025-12-25=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 19:07 +0800=EF=
-=BC=8CAndy Yan=E5=86=99=E9=81=93=EF=BC=9A
-> > >=20
-> > >=20
-> > > Hello Icenowy:
-> > >=20
-> > > At 2025-12-25 00:12:01, "Icenowy Zheng" <zhengxingda@iscas.ac.cn>
-> > > wrote:
-> > > > From: Icenowy Zheng <uwu@icenowy.me>
-> > > >=20
-> > > > T-Head TH1520 SoC contains a Synopsys DesignWare HDMI
-> > > > controller
-> > > > (paired
-> > > > with DesignWare HDMI TX PHY Gen2) that takes the "DP" output
-> > > > from
-> > > > the
-> > > > display controller.
-> > > >=20
-> > > > Add a driver for this controller utilizing the common
-> > > > DesignWare
-> > > > HDMI
-> > > > code in the kernel.
-> > > >=20
-> > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > > > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> > > > ---
-> > > > No changes in v3, v4.
-> > > >=20
-> > > > Changes in v2:
-> > > > - Created a new function to set PHY parameters and refactored
-> > > > the
-> > > > =C2=A0control flow of the configure_phy callback.
-> > > >=20
-> > > > MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > > > drivers/gpu/drm/bridge/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 10 ++
-> > > > drivers/gpu/drm/bridge/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > > > drivers/gpu/drm/bridge/th1520-dw-hdmi.c | 173
-> > > > ++++++++++++++++++++++++
-> > > > 4 files changed, 185 insertions(+)
-> > > > create mode 100644 drivers/gpu/drm/bridge/th1520-dw-hdmi.c
-> > >=20
-> > >=20
-> > > As this is a Synopsys DesignWare based IP, maybe it's better to
-> > > put
-> > > it under=C2=A0=C2=A0 "drivers/gpu/drm/bridge/synopsys/"
-> > > Or just create a dir for thead, I think there will come other
-> > > display
-> > > related drivers for thead in the future.
-> >=20
-> > It's not proper to place vendor glues to synopsys/ .
->=20
->=20
-> TI has precedents for doing this with Cadence IP=EF=BC=8C see=20
->=20
-> drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
-> drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-j721e.c=20
+Correct the errors in the spacing format, and move the aliases from
+the SoC's dtsi to the board's dts, since it's more standard.
 
-Well for this kind of things, I prefer to hear from the maintainer of
-DW HDMI bridges (although it seems that this has no dedicated
-MAINTAINERS entry and get_maintainers just returns people for DRM
-DRIVERS FOR BRIDGE CHIPS).
+Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+---
 
->=20
->=20
-> >=20
-> > As for T-Head, they stopped their embedded SoC business (sold to
-> > another company) and now they only makes data-center chips, there
-> > should be no T-Head display drivers in the future.
-> >=20
-> > >=20
-> > >=20
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D 8< =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D
-> >=20
-> >=20
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
+This patch is based on this initial support for Canaan Kendryte K230
+series v6[1], and it is used to fix the [PATCH v6 10/11] of that series.
+Although the latest version is v8, this problem still persists.
+And this patch hasn't been merged into Conor's branch yet.
+
+[1]: https://lore.kernel.org/all/tencent_DF5D7CD182AFDA188E0FB80E314A21038D08@qq.com/
+
+Thanks for your time and review.
+
+ arch/riscv/boot/dts/canaan/k230-canmv.dts | 4 ++++
+ arch/riscv/boot/dts/canaan/k230-evb.dts   | 4 ++++
+ arch/riscv/boot/dts/canaan/k230.dtsi      | 6 +-----
+ 3 files changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/canaan/k230-canmv.dts b/arch/riscv/boot/dts/canaan/k230-canmv.dts
+index 9565915cea..593ca38e68 100644
+--- a/arch/riscv/boot/dts/canaan/k230-canmv.dts
++++ b/arch/riscv/boot/dts/canaan/k230-canmv.dts
+@@ -9,6 +9,10 @@ / {
+ 	model = "Canaan CanMV-K230";
+ 	compatible = "canaan,canmv-k230", "canaan,kendryte-k230";
+ 
++	aliases {
++		serial0 = &uart0;
++	};
++
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+diff --git a/arch/riscv/boot/dts/canaan/k230-evb.dts b/arch/riscv/boot/dts/canaan/k230-evb.dts
+index f898b8e623..bfa53f2e24 100644
+--- a/arch/riscv/boot/dts/canaan/k230-evb.dts
++++ b/arch/riscv/boot/dts/canaan/k230-evb.dts
+@@ -9,6 +9,10 @@ / {
+ 	model = "Kendryte K230 EVB";
+ 	compatible = "canaan,k230-usip-lp3-evb", "canaan,kendryte-k230";
+ 
++	aliases {
++		serial0 = &uart0;
++	};
++
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
+index 7da4949894..6bc599f079 100644
+--- a/arch/riscv/boot/dts/canaan/k230.dtsi
++++ b/arch/riscv/boot/dts/canaan/k230.dtsi
+@@ -11,10 +11,6 @@ / {
+ 	#size-cells = <2>;
+ 	compatible = "canaan,kendryte-k230";
+ 
+-	aliases {
+-		serial0 = &uart0;
+-	};
+-
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -72,7 +68,7 @@ soc {
+ 		ranges;
+ 
+ 		plic: interrupt-controller@f00000000 {
+-			compatible = "canaan,k230-plic" ,"thead,c900-plic";
++			compatible = "canaan,k230-plic", "thead,c900-plic";
+ 			reg = <0xf 0x00000000 0x0 0x04000000>;
+ 			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
+ 			interrupt-controller;
+-- 
+2.52.0
 
 
