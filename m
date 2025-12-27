@@ -1,97 +1,157 @@
-Return-Path: <devicetree+bounces-249908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F01CE0162
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 20:26:30 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D166CE0256
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 22:38:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B67C1300974E
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 19:26:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 408DC3001E07
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 21:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFD0E3128A1;
-	Sat, 27 Dec 2025 19:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A235244661;
+	Sat, 27 Dec 2025 21:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AlOUttL+"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="mXokZZdZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C92E1397;
-	Sat, 27 Dec 2025 19:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B731D5ACE;
+	Sat, 27 Dec 2025 21:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766863588; cv=none; b=dTepqiUPfW+BkPl2TTplXfsKUqVHUgOvPdrcgV92MMaeNYkdTsJ/iazB2OG+2c1jhxh2eQkPSFVewCRC6g1cDUocNABBo4nPY6rejdmBKf9LQZVCkyrPPEigWqKaewxYf8H0OWGzVsoUGjCsFIG4dz4SfZgACHX8Dya+q77Ox5c=
+	t=1766871509; cv=none; b=E0x/rlRfQ/BidrSXTM4uW0AkKTeohe0eIGiEjnlL45L2tfHT8JSpFF8tL3ld+tqbp8BsSog7MYFEWrKkStf1P9stGGil6AbRp265oTDc2Iin1DxnYjBNv6M+/yowZ03wavmRn8NbJJMKb7tn2t194fcwIGbxOUm1u5zzictSD2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766863588; c=relaxed/simple;
-	bh=g6XM4F8uz0727eTzV4+CObVOUm/jIwZfW3Pg+ZtYyqY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N730m/YdRbgq0KwjwiQKV/w1CKou61V/0Q6oktJ+xO7cNPfr8E5qfUh5vNFqb0yVsF1443i6A2HcVCwkY8LQwcioCrPsThQ/Om/JVc01wtwU/BLCmTVf5S1bff3hNKto3lYfEUAmrNpYnEwx3etgLi56AeSKClYMUN3dpK7uiCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AlOUttL+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89A4BC4CEF1;
-	Sat, 27 Dec 2025 19:26:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766863587;
-	bh=g6XM4F8uz0727eTzV4+CObVOUm/jIwZfW3Pg+ZtYyqY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AlOUttL+vXbzz9KSbTnp6sMpeWUu4zX1iCBTZ5zfLx/SuhKrgfxW3fQg9qzMX4A5q
-	 U8PNbnNtxJr3AfJ3S2j0G7Ux3naYZMFitjcriQdkVamRTzpsBum2s7d4es1aXno1q7
-	 OcpI/MWNclC8ExQ3QRQWhWtZJxFJ7mTfnCMXc9IHv4Uq36atnXXDc89lztcMGByIHR
-	 XbtMBELD6KiwpKHZcWfz1VZCaoFDbn+o9TpMB2NB8o7soDB9D6NpiI5op8PgDKUApS
-	 oDhwCTjbLJTLi1RlQ/F60v+KvMlEzdLJDX/+/V597F5E3Z0/0XI86GtAq7Gt6kQsXQ
-	 OX1NcdFeUUOtw==
-Date: Sat, 27 Dec 2025 20:26:14 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Encrow Thorne <jyc0019@gmail.com>, 
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Troy Mitchell <troymitchell988@gmail.com>, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] i2c: k1: add reset support
-Message-ID: <zjrd3dgvcg3pxmn4455iljtugbufr4igyokdycusyhpykbzyl5@nrwgz366wm67>
-References: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
- <20251219-i2c-reset-v2-2-ad201a602e74@gmail.com>
- <2dmrli7yzznpurg74wet4oidhljjf3csdjly2dwpyvyndhrec3@uc6ke7mep6fv>
- <CAH1PCMbGbe6MQtAucf-4W+H_G0LrvPNGyaB_OUyxqf5TF=jixg@mail.gmail.com>
+	s=arc-20240116; t=1766871509; c=relaxed/simple;
+	bh=DI0DJoKUTxqb2A4/47Obc9gSZwHv6pbX1wIH+ApG7Yo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=vD/hwWbiYLgN7k69LXNpbz4X3ll8z7qN94lNGP/X0lIYoyEzCXnVGaBDdySiUfXoz4N2hRj7hvtwOV0PP60NCEWLwug2Tpz8JpzYtMuBoqPCl0jF+3O3FI/mhFFltlY06WWkYcgzZN0Np4afHkkQdPRdKV/y1dNJvsCvtFuv8Kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=mXokZZdZ; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=F+zOPMJ/+XQOoQnBvgthrqy4sMQ6IWP6qjfRNJSiwKc=; b=mXokZZdZCUhEmvIIodt4+AKwvf
+	qV+hn0iP51XPavx8HvYW5FR1ZNN2C6zl3xzZzGppGTUsMWgucwNEQi0xnQ4Uqzu3eMToE795u0r61
+	f3viGkybinu7ceE/m/hqVhfLJnGXNWpJKe/t0TYIXqPoUI2Qy+OGGal/Zaf7ihnl+bcmXp3piO5Gk
+	Phh9R1SCOk3+c4FrrgNjTnhv58qIl/RByk1yPM4/UkC7GzHGOxOU3i/1s1jfvljeREW83SfFYa8IR
+	jTVFx6OZAi/8XSI5tpVrCuYeHC6DWcECq+LU8x1zERvRg5k06rX+xy/NcipPf2EVgnJTIq1xMv3x/
+	srzCshwg==;
+Date: Sat, 27 Dec 2025 22:38:15 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Josua Mayer <josua.mayer@jm0.eu>
+Cc: Jonathan =?UTF-8?B?TmV1c2Now6RmZXI=?= <j.neuschaefer@gmx.net>, Lee Jones
+ <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel
+ <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] power: supply: add battery driver for netronix ec
+Message-ID: <20251227223815.17dea51d@kemnade.info>
+In-Reply-To: <20251227-kobo-aura-battery-v1-1-328a90ef5122@jm0.eu>
+References: <20251227-kobo-aura-battery-v1-0-328a90ef5122@jm0.eu>
+	<20251227-kobo-aura-battery-v1-1-328a90ef5122@jm0.eu>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAH1PCMbGbe6MQtAucf-4W+H_G0LrvPNGyaB_OUyxqf5TF=jixg@mail.gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Guodong,
+On Sat, 27 Dec 2025 17:28:13 +0100
+Josua Mayer <josua.mayer@jm0.eu> wrote:
 
-On Fri, Dec 26, 2025 at 07:38:22AM +0800, Guodong Xu wrote:
-> On Fri, Dec 26, 2025 at 5:01 AM Andi Shyti <andi.shyti@kernel.org> wrote:
-> > > +     rst = devm_reset_control_get_optional_exclusive_deasserted(dev, NULL);
-> > > +     if (IS_ERR(rst))
-> > > +             return dev_err_probe(dev, PTR_ERR(rst),
-> > > +                                  "failed to acquire deasserted reset\n");
-> >
-> > If this is optional, why are we returning with error?
-> >
+> Implement a simple battery driver for monitoring voltage with the
+> netronix embedded controller found in certain ebook readers.
 > 
-> According to include/linux/reset.h, if the requested reset is not
-> specified in the device tree, this function returns NULL instead of
-> an error. Therefore, IS_ERR(rst) will only be true for actual
-> errors (e.g probe deferral).
+> Signed-off-by: Josua Mayer <josua.mayer@jm0.eu>
 
-And this is quite obvious, but you haven't answered my qestion.
+This also produces a value somehow depending on battery voltage
+on the Tolino vision.
+[...]
+> diff --git a/drivers/mfd/ntxec.c b/drivers/mfd/ntxec.c
+> index 08c68de0f01bc..d5059b8862aa8 100644
+> --- a/drivers/mfd/ntxec.c
+> +++ b/drivers/mfd/ntxec.c
+> @@ -139,6 +139,7 @@ static const struct regmap_config regmap_config = {
+> static const struct mfd_cell ntxec_subdev[] = {
+> 	{ .name = "ntxec-rtc" },
+> 	{ .name = "ntxec-pwm" },
+> +	{ .name = "ntxec-battery" },
+> };
+> 
+> static const struct mfd_cell ntxec_subdev_pwm[] = {
 
-Why do we care of internal failures in reset? If reset fails on
-an optional reset control function why should we kill our driver?
-Just ignore the error and move forward as we have done until now.
+I think that should be a separate patch for mfd.
 
-If the kernel is suffering from internal failures (say ENOMEM),
-it will fail anyway or, with some luck, recover.
+[...]
+> +	switch (psp) {
+> +		case POWER_SUPPLY_PROP_VOLTAGE_NOW:
+> +			ret = regmap_read(priv->ec->regmap, NTXEC_REG_READ_BATTERY, &value);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			/* ec value to microvolt conversion:
+> +			 * vendor kernel source suggests linear behaviour from 3V to 4.2V
+> +			 * with readings 767 to 1023; each increment represents 4687,5uV.
+> +			 * adjust 3V boundary slightly to report exactly 4.2V when full.
+> +			 */
+> +			val->intval = 2999872 + (value - 767) * 4688;
+> +			break;
+I find this code both in some kobo 2.6.35.3 code and on the tolino 3.0.35:
 
-Andi
+        const unsigned short battGasgauge[] = {
+        //      3.0V, 3.1V, 3.2V, 3.3V, 3.4V, 3.5V, 3.6V, 3.7V, 3.8V, 3.9V, 4.0V, 4.1V, 4.2V,
+//               743,  767,  791,  812,  835,  860,  885,  909,  935,  960,  985, 1010, 1023,
+                 767,  791,  812,  833,  852,  877,  903,  928,  950,  979,  993, 1019, 1023,
+        };
+
+This does not look very linear... We have offsets
+24
+21
+21
+19
+25
+26
+25
+22
+29
+14
+26
+4
+
+Do you have something looking more sane?
+No idea what should produce such flaky offsets besides of
+improper measurements. At least that should be commented.
+And why do these tables exist at all?
+
+Hmm, the more weird thing is that these voltages are translated linearly
+inot capacity. So maybe they are just adjusted to have the capacity look
+more sane. That would explain the 4 units step between 4.1V and 4.2V.
+Having linear adc result -> voltage and nonlinear voltage-> capcity would
+make more sense.
+
+looking at such code snippet like this:
+case POWER_SUPPLY_PROP_CAPACITY:
+                if (POWER_SUPPLY_STATUS_NOT_CHARGING == g_ntx_bat_di->battery_status) {
+                        val->intval = 100;
+                        return 0;
+                }
+                value = ntx_up_battery_vol();
+[...]
+                                val->intval  = 100 - ((4100000 - value)/7000);
+
+
+I am wondering whether we should just return capacity that way without
+calculating voltage...
+
+Regards,
+Andreas
 
