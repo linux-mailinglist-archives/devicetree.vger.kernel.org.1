@@ -1,157 +1,192 @@
-Return-Path: <devicetree+bounces-249909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D166CE0256
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 22:38:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76411CE027A
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 23:01:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 408DC3001E07
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 21:38:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0D36D301394E
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 22:01:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A235244661;
-	Sat, 27 Dec 2025 21:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FA6128816;
+	Sat, 27 Dec 2025 22:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="mXokZZdZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cNueiVex";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ayCIcRbA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B731D5ACE;
-	Sat, 27 Dec 2025 21:38:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C653022425B
+	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 22:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766871509; cv=none; b=E0x/rlRfQ/BidrSXTM4uW0AkKTeohe0eIGiEjnlL45L2tfHT8JSpFF8tL3ld+tqbp8BsSog7MYFEWrKkStf1P9stGGil6AbRp265oTDc2Iin1DxnYjBNv6M+/yowZ03wavmRn8NbJJMKb7tn2t194fcwIGbxOUm1u5zzictSD2c=
+	t=1766872903; cv=none; b=EnzS/GsVNFw9cjtFdTXiMJAq9vKcss87gyL8DBmqZE6knWZL0EgUMq2ZSlREznb2W/Vi02MI866HnoUXsobeINMRSWmk8MKBYbpID2n4t7FNko4iID8q1w484eD/Wls4H9+wwFEy1C6+H8vWWkDaEZkpw+d5Yz8xFhU3Djg6OGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766871509; c=relaxed/simple;
-	bh=DI0DJoKUTxqb2A4/47Obc9gSZwHv6pbX1wIH+ApG7Yo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=vD/hwWbiYLgN7k69LXNpbz4X3ll8z7qN94lNGP/X0lIYoyEzCXnVGaBDdySiUfXoz4N2hRj7hvtwOV0PP60NCEWLwug2Tpz8JpzYtMuBoqPCl0jF+3O3FI/mhFFltlY06WWkYcgzZN0Np4afHkkQdPRdKV/y1dNJvsCvtFuv8Kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=mXokZZdZ; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=F+zOPMJ/+XQOoQnBvgthrqy4sMQ6IWP6qjfRNJSiwKc=; b=mXokZZdZCUhEmvIIodt4+AKwvf
-	qV+hn0iP51XPavx8HvYW5FR1ZNN2C6zl3xzZzGppGTUsMWgucwNEQi0xnQ4Uqzu3eMToE795u0r61
-	f3viGkybinu7ceE/m/hqVhfLJnGXNWpJKe/t0TYIXqPoUI2Qy+OGGal/Zaf7ihnl+bcmXp3piO5Gk
-	Phh9R1SCOk3+c4FrrgNjTnhv58qIl/RByk1yPM4/UkC7GzHGOxOU3i/1s1jfvljeREW83SfFYa8IR
-	jTVFx6OZAi/8XSI5tpVrCuYeHC6DWcECq+LU8x1zERvRg5k06rX+xy/NcipPf2EVgnJTIq1xMv3x/
-	srzCshwg==;
-Date: Sat, 27 Dec 2025 22:38:15 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Josua Mayer <josua.mayer@jm0.eu>
-Cc: Jonathan =?UTF-8?B?TmV1c2Now6RmZXI=?= <j.neuschaefer@gmx.net>, Lee Jones
- <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel
- <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] power: supply: add battery driver for netronix ec
-Message-ID: <20251227223815.17dea51d@kemnade.info>
-In-Reply-To: <20251227-kobo-aura-battery-v1-1-328a90ef5122@jm0.eu>
-References: <20251227-kobo-aura-battery-v1-0-328a90ef5122@jm0.eu>
-	<20251227-kobo-aura-battery-v1-1-328a90ef5122@jm0.eu>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1766872903; c=relaxed/simple;
+	bh=IWHa7LFv2rEkKl28MWNKuG1g5/7UOdjOTl2oRLBIuIk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WeR6Fs/2GdxYyzeyjLvoeq6gxzcmtLw/2lx70F6V5LIbhgHVAhEiBLeMAoHfqT1DMwzL6h3zw4OjsunobJ+NgIhOMLIfbhKecK0VqqpUXElt/JMdReAN9Ma5A671dgjvBDBl1x2iXclw0Zum58hrS+xGs7i0lZta/1eMbng1fBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cNueiVex; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ayCIcRbA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BRLjX95801264
+	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 22:01:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:to; s=
+	qcppdkim1; bh=pO8sXsjpC1mymyf3RPF2mIgo+wJbilrKb7L1QQvYui0=; b=cN
+	ueiVexldwqznBzp/R9Q+VmlM9mG6a/H7Hwi3ylen8dIGNHZc6kNvsLKYghVXIUGq
+	PLq71ettTybVSNTgsQeMXK7gjIs2ur5FqxWdqqtNBb96g23IcLvzpLorWeQM6moa
+	tWq6GUsN9+BhhhH9Z8Evndn4m1QDjbY5Kx+VkP82SceJpPIkxQtJgqB4Deeaz8Wi
+	tzVwxREX32bfzbbgDZLgnohi78xhbHY3H7Opbwy0Y9X9GsC4ZYSdWuffW/KMl0Xf
+	pncme/F/2uW8ZyqNAyq3J2y2vicp3LxWy/o4kw+cODyh3t91N9P1BIOKeHgreHms
+	O5jQTUHa0lbC5/H735ZA==
+Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com [209.85.210.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ba6sg17mn-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 22:01:40 +0000 (GMT)
+Received: by mail-ot1-f69.google.com with SMTP id 46e09a7af769-7c7599be25cso19200622a34.2
+        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 14:01:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766872900; x=1767477700; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=pO8sXsjpC1mymyf3RPF2mIgo+wJbilrKb7L1QQvYui0=;
+        b=ayCIcRbANVdFBHdVLnjmV4Lc+ANIGlY5wOpsf1Z/GNHc8DIXipA2Ux8BveJoHnl9uI
+         OIY+k1G2vr8Yabnep9o7A2G9zQQjgLgDIvJiG2vZXLX+WwOE85zayiJB8CXkjOLcuQ12
+         V6ZGkZ0A3ajzU7NqbZl3CB+r2AUo5koiyb+ySyTyCMHYDvT2Q2vVID0e1gJtb9n7xG/t
+         +jJQ1iWEiu7xFrsTKdLEbVVGf1qhOFgvOWk7EqF0K32Bk81JP5gLbZfyRog9ffGKloJC
+         mbKQqP0Tb88mAtcFjbEo+g5n5nLHAZDfJQdR1qXyKuGXp5Qp9N5G4UBrKHsIYQ/1qIo1
+         q7QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766872900; x=1767477700;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pO8sXsjpC1mymyf3RPF2mIgo+wJbilrKb7L1QQvYui0=;
+        b=C+Ml6aI5Ax03BnelIfia7YUP3m8kmIs3fS7/97fgEJa0dv0ahtSbixA9fnvNVzYwUs
+         6JmKWyWBmp6BTJKkXbUKqeKi8+GY+3Wcu23gD//xTUSmJTI7wa0fDyKbwtje+H6gu7U0
+         CuKfMFJ8plTgwj5ZeLRaAD1ONMdybxXdMWOLXnJRh4Xo8LaebXgsPiCYScnjmPorcD67
+         OvyPgMYDYXg3pbPsd62vgmrveiNVISuOZbq3jwqd4KUVlH3kI75RRfbW/btE/Cs48i0q
+         P2EJDoUy8vcTXHyO3dcRlNMbwepZvTh0q8SjAPbkZWEUvnT1hV6KSHA6+oti2eeTV5/r
+         +R0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUVcsViE7w55Q6DGLG2TjusAuidQqq74EicMuVeUGSlU9I+sAomLLiL2aY0E10f8ImOufoIDc9KKZyL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7Snnzeaa2ixD2WlYhxc1cs1l8wesqoktrDqTqGPtDBYvmBBLD
+	/aWa3foB6IV/GMw5/eJtk5njAVkHzAONOTHwS1SEZBZ6JXe8wmab0q70QZ7icsL7yfi41Ut+JlW
+	JeWWfJrwV11MCuVlm9DU3EtTDa/ISw3BlvdFCTNkF/0n9dK0HBA+2RgbeVm3N2cMVEkVfvaFMVR
+	o53cUGmh5b1bxpq6nM+uHD46t3iZFedw9mTw8CBwk=
+X-Gm-Gg: AY/fxX41U7hgqWhCcH5OTp5us87sy6X9wnACvVqHT41vpEp3Z3TV+DJSmA0mRBT4sOT
+	EFpxjUTVza1IkNagtlgsKR21zoRsXJBRMV66xv9NSUnGmJIUJpXlqpizfgpdaFAZre78KC7AwRM
+	8a/+yaQ9eZ/lLrpFwCFiQb8FSxlvw1r293UjUNu9BA2tQ9ZqDocELFJVrC0cmcv6iv
+X-Received: by 2002:a05:6820:16a1:b0:659:9a49:8eff with SMTP id 006d021491bc7-65d0e94d552mr11403589eaf.16.1766872899879;
+        Sat, 27 Dec 2025 14:01:39 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHzb4zW4dLjwPdHMOvYj05wm+MfjPb34VcT9TsoehzbCF6wlzIIoa+dPdGc9MuUQSmkC9V5RnjsUikqHujWASk=
+X-Received: by 2002:a05:6820:16a1:b0:659:9a49:8eff with SMTP id
+ 006d021491bc7-65d0e94d552mr11403583eaf.16.1766872899502; Sat, 27 Dec 2025
+ 14:01:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20251227110504.36732-3-krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20251227110504.36732-3-krzysztof.kozlowski@oss.qualcomm.com>
+Reply-To: rob.clark@oss.qualcomm.com
+From: Rob Clark <rob.clark@oss.qualcomm.com>
+Date: Sat, 27 Dec 2025 14:01:27 -0800
+X-Gm-Features: AQt7F2rdY_C4YMdsNJkz061LDwa5bm0PMmdQw-ruVy63uR-ECPDsV4GuxQEQy3Q
+Message-ID: <CACSVV03H_oii=fuhaeBhUZSJk-2mr08jGqAs30Z_h9tzeDgdtw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display/msm/gpu: Narrow reg and
+ reg-names for Adreno 610.0 and alike
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+        Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-GUID: 1O6Vjt7km5pH8SbyuRhBilnRfFU8flzr
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI3MDIxMCBTYWx0ZWRfX4slwUiE29Up5
+ xmLwRi1k7w3suK2tSUpoLAwA7Buqdw08OQJgbW3kmJYbWCJdiaSqM9jKEV0NEYBmtYNib9o1QrD
+ 5GRih81Z+SBbOQNspy6ODajggOBfAxd//8nTEMXIXxj4Uu8CqLhOonnswcIPCo7bxGUboaU8AI2
+ 2OoVYcJyIkovrfK5ejIRC+AWevTU2Rf2jNiEErmT705y0yX+w2wUI6J+XwXmsFc4C6+3pLcQsA2
+ USRbMd0SwZlYy1XwLLl1DQwr4/yHXrOAlIe9R0bFfRsYqP7qsqo5TINaZZZbhfgZF6it2P6o8+9
+ TSiSqgGt7pIANdycaw5gy+PowTvm8ddR9c/JpeMQeurkXP5ZGyNx/Bk289KlNhuMWN9HKqrf88J
+ hROIWyTCgrwC0wipWG1S5TZWUukKmAiNaqx3vYtru453whF8UdKWSWZD9L/LZLiuFd0ePJbu04A
+ Zbtq9mCWVjcrIxK1lRA==
+X-Proofpoint-ORIG-GUID: 1O6Vjt7km5pH8SbyuRhBilnRfFU8flzr
+X-Authority-Analysis: v=2.4 cv=Y+L1cxeN c=1 sm=1 tr=0 ts=69505744 cx=c_pps
+ a=z9lCQkyTxNhZyzAvolXo/A==:117 a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=4-z9Zx1dy9oFOqQo8oMA:9 a=QEXdDO2ut3YA:10 a=EyFUmsFV_t8cxB2kMr4A:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-27_05,2025-12-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 malwarescore=0 clxscore=1015 phishscore=0
+ lowpriorityscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512270210
 
-On Sat, 27 Dec 2025 17:28:13 +0100
-Josua Mayer <josua.mayer@jm0.eu> wrote:
+On Sat, Dec 27, 2025 at 3:05=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@oss.qualcomm.com> wrote:
+>
+> DTS files for qcom,adreno-610.0 and qcom,adreno-07000200 contain only one
+> "reg" entry, not two, and the binding defines the second entry in
+> "reg-names" differently than top-level part, so just simplify it and
+> narrow to only one entry.
 
-> Implement a simple battery driver for monitoring voltage with the
-> netronix embedded controller found in certain ebook readers.
-> 
-> Signed-off-by: Josua Mayer <josua.mayer@jm0.eu>
+I'll defer to Akhil about whether this is actually needed (vs just
+incomplete gpu devcoredump support for certain GPUs).  In general
+cx_dbgc is needed to capture state for gpu devcoredump state
+snapshots, but not directly used in normal operations.  It seems
+similar to the situation with mapping gpucc as part of gmu, ie. not
+something the CPU normally deals with directly, but necessary to
+capture crash state.
 
-This also produces a value somehow depending on battery voltage
-on the Tolino vision.
-[...]
-> diff --git a/drivers/mfd/ntxec.c b/drivers/mfd/ntxec.c
-> index 08c68de0f01bc..d5059b8862aa8 100644
-> --- a/drivers/mfd/ntxec.c
-> +++ b/drivers/mfd/ntxec.c
-> @@ -139,6 +139,7 @@ static const struct regmap_config regmap_config = {
-> static const struct mfd_cell ntxec_subdev[] = {
-> 	{ .name = "ntxec-rtc" },
-> 	{ .name = "ntxec-pwm" },
-> +	{ .name = "ntxec-battery" },
-> };
-> 
-> static const struct mfd_cell ntxec_subdev_pwm[] = {
+BR,
+-R
 
-I think that should be a separate patch for mfd.
-
-[...]
-> +	switch (psp) {
-> +		case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-> +			ret = regmap_read(priv->ec->regmap, NTXEC_REG_READ_BATTERY, &value);
-> +			if (ret < 0)
-> +				return ret;
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/display/msm/gpu.yaml | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Doc=
+umentation/devicetree/bindings/display/msm/gpu.yaml
+> index 826aafdcc20b..1ae5faf2c867 100644
+> --- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
+> @@ -378,11 +378,12 @@ allOf:
+>              - const: xo
+>                description: GPUCC clocksource clock
+>
+> +        reg:
+> +          maxItems: 1
 > +
-> +			/* ec value to microvolt conversion:
-> +			 * vendor kernel source suggests linear behaviour from 3V to 4.2V
-> +			 * with readings 767 to 1023; each increment represents 4687,5uV.
-> +			 * adjust 3V boundary slightly to report exactly 4.2V when full.
-> +			 */
-> +			val->intval = 2999872 + (value - 767) * 4688;
-> +			break;
-I find this code both in some kobo 2.6.35.3 code and on the tolino 3.0.35:
-
-        const unsigned short battGasgauge[] = {
-        //      3.0V, 3.1V, 3.2V, 3.3V, 3.4V, 3.5V, 3.6V, 3.7V, 3.8V, 3.9V, 4.0V, 4.1V, 4.2V,
-//               743,  767,  791,  812,  835,  860,  885,  909,  935,  960,  985, 1010, 1023,
-                 767,  791,  812,  833,  852,  877,  903,  928,  950,  979,  993, 1019, 1023,
-        };
-
-This does not look very linear... We have offsets
-24
-21
-21
-19
-25
-26
-25
-22
-29
-14
-26
-4
-
-Do you have something looking more sane?
-No idea what should produce such flaky offsets besides of
-improper measurements. At least that should be commented.
-And why do these tables exist at all?
-
-Hmm, the more weird thing is that these voltages are translated linearly
-inot capacity. So maybe they are just adjusted to have the capacity look
-more sane. That would explain the 4 units step between 4.1V and 4.2V.
-Having linear adc result -> voltage and nonlinear voltage-> capcity would
-make more sense.
-
-looking at such code snippet like this:
-case POWER_SUPPLY_PROP_CAPACITY:
-                if (POWER_SUPPLY_STATUS_NOT_CHARGING == g_ntx_bat_di->battery_status) {
-                        val->intval = 100;
-                        return 0;
-                }
-                value = ntx_up_battery_vol();
-[...]
-                                val->intval  = 100 - ((4100000 - value)/7000);
-
-
-I am wondering whether we should just return capacity that way without
-calculating voltage...
-
-Regards,
-Andreas
+>          reg-names:
+> -          minItems: 1
+>            items:
+>              - const: kgsl_3d0_reg_memory
+> -            - const: cx_dbgc
+>
+>        required:
+>          - clocks
+> --
+> 2.51.0
+>
 
