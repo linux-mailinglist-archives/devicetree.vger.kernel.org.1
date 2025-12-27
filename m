@@ -1,175 +1,95 @@
-Return-Path: <devicetree+bounces-249846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F496CDFB10
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:29:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 081FFCDFC4B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:53:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6953F304E160
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:26:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B3E543021041
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D78432FA3B;
-	Sat, 27 Dec 2025 12:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74EBA335BA1;
+	Sat, 27 Dec 2025 12:29:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QgjuHIvC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oz9VZtTN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04FB632F75B
-	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 12:24:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45474324B0A;
+	Sat, 27 Dec 2025 12:29:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766838290; cv=none; b=tsu6yVT/UezsRIwHfcZrLXYQfMd/yBeXcMscYmx2G9YgnLs699vsdeFUqLodcE1XGr2ACBngGTYPIyngigv1DEu5VTcCthqJa3Dv5e2Pik7wdbdn0n7nFD+ZVy5bs7PUa7gtTjc3pbsnDqnGsTVBFrrGhnzbY8f81Lo7u/kD5eM=
+	t=1766838579; cv=none; b=Qi1oDZ6wqVPUHQJ7a8f1mMnRwL8djmXfTozLm0lHEgPGiWXwxqOUsAGHbBXusoiGvkl7P2IVddRqqM5iPtn395KykqmERr94sWYDRLQwlIUEUmiJ+u2YsJeSwityJF64vknj8th5fjIkwYEtuW4m5lqA44NxXzYTcsssQl1Dmx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766838290; c=relaxed/simple;
-	bh=61ADjJrgT2o/i8020WOTVait6ro421Ajicl8SlsuO9U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uTy6FFQmG+qIwGWFKNlF0hr7dTaQwizwEqCjWZe+AcQewOOkNf3y7VrNW755sCioPCFxf4zslwKtuHqZvvA6/E4Tx1b0kAPsSbXfVRsFoRg3Iu2+fPs4vF27gB5srJuZe8uGGn3D43o1QPB83gw9XkuMyPSUUaG7sdnzAvSMCBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QgjuHIvC; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-64d0d41404cso8673302a12.0
-        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 04:24:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766838281; x=1767443081; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6RGJHpYPSzzQbbGCB4wy3BgFrQgesxTAcE0/qZgwEOg=;
-        b=QgjuHIvCQ5py7O52/Jj4oZR6bhc4rf8+nVBWdogTfdPsRyC/OHquSadTl163SPvG5A
-         WC9pZDOdodVBwMOWLdIjqDfI4jB/Qb7Er7CXvgSF37SeU8urtVHUDtY0AsI2Rm9wt+4x
-         Lqp+yvsS1Mr1Fnuv+nlmaV13syk3+cgmJsQEoZizieoRVTEUSeJzfMMp3zGqLcJVsdS2
-         znauhuMBjhkCbiTFRABwdht5p/l7tHC0as8ZmgWrSW97+YTbDbq7jF9Ak2ll+nx7l4D1
-         V1XA8gtit4mE/Au8GeCuydaaIYGD3Qf5WKOK2KDV3QxR+qyxCAYldONbMzciJFzOB4NK
-         DM7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766838281; x=1767443081;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6RGJHpYPSzzQbbGCB4wy3BgFrQgesxTAcE0/qZgwEOg=;
-        b=FZ+VCE+wroEEyIkb7bc0QmdgLfSXI86k4hEjuzEUemm8h4ekp6eigv2wJUu/cMrkTt
-         YK5CaxiC2Le6CQVEey8VZ8sbbOzLhJolUSyhlowhddaJzRh3DnxA1k4QajoFl9X3/yEv
-         e/kGTuF0fDy83Y3QGAPlaFDdc1PfX8MqPF3HePI9lxxXxHppFLnj8BWvM9FGCmJq1ou9
-         uIzK5WNJ6SQEsfCUqWhrFmOia6D9w4MzrVQq40F9EKTUtQuxyr5WRR9ZGh7bCngCUyV6
-         SvwDvOT+V6N4MFr0gXxjrN3Tp3HBCQvP9A5x7foB7mH9CsU0Dk7N2TEXrMOLNDrKP9L8
-         M4UQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWGnSyPObmikC5+k8G8IcG74RQNYGRczgHGXYkZXwnjgQI+3TpggoHcpq9ufumsmLWz4Z4wG0PG3ZYC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSkFqZdNlHePJIhIigcJ/KXJOxxdkh+DAdwB5A1u/r5O/csru2
-	4Q6ZmGSmGRjPjttsC2kEjX32sL9YGbMiFm/MnN/Q61dInkhUewwnopld9hHYQsNQ6/c=
-X-Gm-Gg: AY/fxX7ZmTb+CG/2M7MzeGhexUQ6PU3m5fZpN2UzwllL3WOaAQD68kWAF4PuUhv5CpU
-	snOgmrK9E/ndrXl3Cg5ejg0T6sMJ5zMIu8iTKzDMIIaVnn5dkMsHdAVU5nU27ZQ9rcNtCkKc0ee
-	zm0IpTCmeFI4IcmRI90vAgSXLKWiH6F3PlIXySz5u4Cn9AGJjBkqoRvAH8BGazRyJQfXCZ+bqaN
-	gIOUbn52Zlqdtt56TN6Sw4OQawx7MEIVNYcGDFDP9zAzndnnrvjHqTPMS0I3hDWMzq6yOAu3VXi
-	YO8hndzDFtOmwAbWnPoOhYDQEha2qf49l36BtZIr7lPb4sNHenLSFahW/YF/HADacaUbzVkLHIh
-	SsdZd4Nn/rMHbRfj8OqflqkFV8rtGsFt60poMZ+/zn4hotNfKVCWD8/VbPQtCcUUOG+az1TaWJF
-	h6smK+S45NtouKbB+Av/gEhbSR2lgwg0uW3kNCr9uSxvGZ4FNq1SviZEb0ijBLO0YKSeUkrftTa
-	W02mg==
-X-Google-Smtp-Source: AGHT+IEZhhM0KME5WuKQ84Ts8cerCjpsb60R6tSjSyudT0VTKXNA6pzXYu7jRUwWEVFLnHJWn9IpIQ==
-X-Received: by 2002:a05:6402:51cb:b0:64b:3eeb:80b1 with SMTP id 4fb4d7f45d1cf-64b8ec6cb05mr22638603a12.22.1766838281265;
-        Sat, 27 Dec 2025 04:24:41 -0800 (PST)
-Received: from puffmais2.c.googlers.com (244.175.141.34.bc.googleusercontent.com. [34.141.175.244])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b916adc61sm25932659a12.31.2025.12.27.04.24.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Dec 2025 04:24:41 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Sat, 27 Dec 2025 12:24:43 +0000
-Subject: [PATCH v5 21/21] regulator: s2mps11: enable-gpios is optional on
- s2mpg1x
+	s=arc-20240116; t=1766838579; c=relaxed/simple;
+	bh=okqOYN2Xw9qQ/xkSF06ArzAodMAkpQa+jOeYFI3UY9I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qEkd7sf7+Xuz9DhAw3BvlWyn15suGuBRuglfAXDvDmjGELnclfFMho4WNAAFAlifDJ83F34mNUP13u2i88sHp/cKt+zhEsSwH2Z9HxTAt7odFrREBtE8XOtI+k4peTcMuuqHzMyiK5E/lsPinlwc/PRmt1dLOXzmSWvDisRxS5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oz9VZtTN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E50DC4CEF1;
+	Sat, 27 Dec 2025 12:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766838578;
+	bh=okqOYN2Xw9qQ/xkSF06ArzAodMAkpQa+jOeYFI3UY9I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Oz9VZtTN3izEgjQ9u57p1cn0K500+iFjCMxJUslZxAl4hgWxhVvixAwU2Il1fkp+q
+	 z8ICPTFB4B+8toFBHG1Uq2UgZ1KIP6Z1QN1A4ZvwJkFWB4Y++Y23Ia5tRlYiEZeBYq
+	 sLZKXdf6Zcfd4jFF2LFg/i0ZIdO2hx5BKz1ST6zojoa000CbHbt9cMunamF+4gcbA7
+	 5vfcO6hh7JCAIAii/KId+Bewwlon0R59m54jRWlvdbdtO99A4/v31Fv9BMC0yeCPls
+	 zqvhp0IZeHpzNHrBbFcGtL+kgr7JAYEC5NaEJJPXLnwe8sOSPrkLYZesm8vfwD/YC8
+	 QgSCp8/78F69g==
+Date: Sat, 27 Dec 2025 13:29:36 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Osose Itua <osose.itua@savoirfairelinux.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, michael.hennerich@analog.com, 
+	jerome.oufella@savoirfairelinux.com
+Subject: Re: [PATCH v2 2/2] dt-bindings: net: adi,adin: document LP
+ Termination property
+Message-ID: <20251227-perfect-accomplished-wildcat-4fcc75@quoll>
+References: <20251222222210.3651577-1-osose.itua@savoirfairelinux.com>
+ <20251222222210.3651577-3-osose.itua@savoirfairelinux.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251227-s2mpg1x-regulators-v5-21-0c04b360b4c9@linaro.org>
-References: <20251227-s2mpg1x-regulators-v5-0-0c04b360b4c9@linaro.org>
-In-Reply-To: <20251227-s2mpg1x-regulators-v5-0-0c04b360b4c9@linaro.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
- Bartosz Golaszewski <brgl@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, Juan Yescas <jyescas@google.com>, 
- kernel-team@android.com, linux-kernel@vger.kernel.org, 
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-gpio@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251222222210.3651577-3-osose.itua@savoirfairelinux.com>
 
-For s2mpg1x, enable-gpios is optional, but when not given, the driver
-is complaining quite verbosely about the missing property.
+On Mon, Dec 22, 2025 at 05:21:05PM -0500, Osose Itua wrote:
+> Add "adi,low-cmode-impedance" boolean property which, when present,
+> configures the PHY for the lowest common-mode impedance on the receive
+> pair for 100BASE-TX operation.
+> 
+> Signed-off-by: Osose Itua <osose.itua@savoirfairelinux.com>
+> ---
+>  Documentation/devicetree/bindings/net/adi,adin.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Documentation/devicetree/bindings/net/adi,adin.yaml
+> index c425a9f1886d..d3c8c5cc4bb1 100644
+> --- a/Documentation/devicetree/bindings/net/adi,adin.yaml
+> +++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
+> @@ -52,6 +52,12 @@ properties:
+>      description: Enable 25MHz reference clock output on CLK25_REF pin.
+>      type: boolean
+>  
+> +  adi,low-cmode-impedance:
+> +    description: |
+> +      Ability to configure for the lowest common-mode impedance on the
 
-Refactor the code slightly to avoid printing those messages to the
-kernel log in that case.
+Either this is ability or you configure the PHY, as written in commit
+msg. The latter suggests that's a SW property, not hardware, thus not
+for bindings.
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- drivers/regulator/s2mps11.c | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+If the first, then why it is not implied by PHY itself - the compatible
+(which is missing which makes this binding not selectable).
 
-diff --git a/drivers/regulator/s2mps11.c b/drivers/regulator/s2mps11.c
-index 178a032c0dc192874118906aee45441a1bbd8515..2d5510acd0780ab6f9296c48ddcde5efe15ff488 100644
---- a/drivers/regulator/s2mps11.c
-+++ b/drivers/regulator/s2mps11.c
-@@ -352,7 +352,7 @@ static int s2mps11_regulator_set_suspend_disable(struct regulator_dev *rdev)
- }
- 
- static int s2mps11_of_parse_gpiod(struct device_node *np,
--				  const char *con_id,
-+				  const char *con_id, bool optional,
- 				  const struct regulator_desc *desc,
- 				  struct regulator_config *config)
- {
-@@ -371,14 +371,19 @@ static int s2mps11_of_parse_gpiod(struct device_node *np,
- 		if (ret == -EPROBE_DEFER)
- 			return ret;
- 
--		if (ret == -ENOENT)
-+		if (ret == -ENOENT) {
-+			if (optional)
-+				return 0;
-+
- 			dev_info(config->dev,
- 				 "No entry for control GPIO for %d/%s in node %pOF\n",
- 				 desc->id, desc->name, np);
--		else
-+		} else {
- 			dev_warn_probe(config->dev, ret,
- 				       "Failed to get control GPIO for %d/%s in node %pOF\n",
- 				       desc->id, desc->name, np);
-+		}
-+
- 		return 0;
- 	}
- 
-@@ -409,7 +414,8 @@ static int s2mps11_of_parse_cb(struct device_node *np,
- 	else
- 		return 0;
- 
--	return s2mps11_of_parse_gpiod(np, "samsung,ext-control", desc, config);
-+	return s2mps11_of_parse_gpiod(np, "samsung,ext-control", false, desc,
-+				      config);
- }
- 
- static int s2mpg10_of_parse_cb(struct device_node *np,
-@@ -528,7 +534,7 @@ static int s2mpg10_of_parse_cb(struct device_node *np,
- 
- 	++s2mpg10_desc->desc.ops;
- 
--	return s2mps11_of_parse_gpiod(np, "enable", desc, config);
-+	return s2mps11_of_parse_gpiod(np, "enable", true, desc, config);
- }
- 
- static int s2mpg10_enable_ext_control(struct s2mps11_info *s2mps11,
-
--- 
-2.52.0.351.gbe84eed79e-goog
+Best regards,
+Krzysztof
 
 
