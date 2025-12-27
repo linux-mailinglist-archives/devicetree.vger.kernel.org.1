@@ -1,152 +1,80 @@
-Return-Path: <devicetree+bounces-249868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07616CDFCB5
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 14:06:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB7ACDFCB8
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 14:10:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 00A75300A1C4
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:06:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 43A4330057F7
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED38E31DD98;
-	Sat, 27 Dec 2025 13:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4554315794;
+	Sat, 27 Dec 2025 13:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bZWTS3qD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CKCERT6V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C76E7314D3F
-	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 13:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C8F28504D;
+	Sat, 27 Dec 2025 13:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766840761; cv=none; b=bTxz+w+32voYg8fnelfGtGLpTUQaHu/3SFrTP5vlM2qxA+TANoD0TmAgrgSZqrct/xxDHJ6Qi8qE+XJ+7/V5aRr5KtsH5G4tInrvyOHO3xFWnM6n/IOf03CIcOC2IstMoT8fBLvgmlUwWUyXKEqalLH+GRJhwab/EU77Ah+nTyk=
+	t=1766841003; cv=none; b=LkETYGPGFVX9pUlUKx8XYlXBwKCjmdQ0KTLowei2SWnawSPt9L7ofDH7NRtZz1xBOtAb/bwJ167mFj45H0ruVmLj47oiItnWOBLdycmacTlle8YTI6ytFQk54edu36OkYx+zJGlRM7JW9XVhjeOmkibm44i0JcuUfbZkJLbpLsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766840761; c=relaxed/simple;
-	bh=bnlqP3WejZcE6JnNqqMMnXH6+vrOTDNv51u7HrBBnmA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=t5+Aq/CcB3BXoySPeHt2cQYSW1rup64WjY/15f4GbPV9ndKL+nJ1pBWV+ufDXQgQTELJUvkV1KhnnywVGsD2DR3NWJnpmWun/liClb3vDwmx5LUjy95MxK5xPR+t+M20p3knGeY1+KXhormmjOazzzt152NBozZe9PhzmIDQtYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bZWTS3qD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A54FDC116B1
-	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 13:06:01 +0000 (UTC)
+	s=arc-20240116; t=1766841003; c=relaxed/simple;
+	bh=FOIaIYDoEOIiDhgl4/trIXetAmZFNb2eAgvnwP1I3OI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a+DJgRYY2gWbHZX+xzvptSQc9xot7TcZN/c4hpk1VTTRhQbfxLYVakSBnDD+GOeESFi9IexEy4BUtuFt8z3gaSIw/0tAeMkNhb1Tb/GzsaMiVUzg40ciNbnUaKPcKKusY27sAEYeU9y9uBcuyh0eu7bSXikrjmHsSr2pgnrp3Zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CKCERT6V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 916CFC4CEF1;
+	Sat, 27 Dec 2025 13:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766840761;
-	bh=bnlqP3WejZcE6JnNqqMMnXH6+vrOTDNv51u7HrBBnmA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=bZWTS3qD0kscPex9A+70GSUxA/0gBLInlj/ZdKsmID72E9pYgeNZOv9t4L/XUQUIg
-	 YSAVV5ZOoxY1TgPOmM+/Q7O8z5q50D3guxwKSnULQ1Mhi063AUh9YD4n8/AiPhy5fE
-	 Hhg2ws28TXXLE/NbDH4v556s4BODZp9z71eEcUAurWAdifataDUZe/bYcxm3ekMJBQ
-	 Wjql+N6ITOevbHdl97OG3HDuwP7RrOQDC35VZU/S0CRrohF51Mck5eg0qPRa4lekhp
-	 vkhHob6WZMBK45Nr1nbPuRlKxQAUwEFbaXWLWvZUgJWvBA0s+zFpcbqiLDmIT1AEAo
-	 awlvNt5caY+DQ==
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-64b8123c333so11483369a12.3
-        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 05:06:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX0oRcO+K3cloSLUrO3ebYQSQUd7U1W8+SB3BagF1qtZIDRCPI+CnnRk/gR+6vGDRUwfCzIIdcpLT9Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9fwAt532Qj9UIF6XOf0fU8VtSQDoGUscPs2Jh7XbuAw/oqJEy
-	/UHK6Z7yvnXeCalApACfkLGJwvbJ8FK7DNDlvhc2f4ybI6xxy7T7EfUPDTn0bJU7qpFE/+dMQxZ
-	F6k9A4m3byUxgtnvz3nUhkqIv4YmaSNc=
-X-Google-Smtp-Source: AGHT+IESJUVD0Sj7UqDj0ZjPzZA5ArGpUDpGCgH5jqClkFhIx6ezWaGQwsiYVxT8+S+Axq6++0gtGttQ0LThGajnM28=
-X-Received: by 2002:a17:907:1c27:b0:b75:7b39:847a with SMTP id
- a640c23a62f3a-b80372228e5mr2892786466b.60.1766840760220; Sat, 27 Dec 2025
- 05:06:00 -0800 (PST)
+	s=k20201202; t=1766841003;
+	bh=FOIaIYDoEOIiDhgl4/trIXetAmZFNb2eAgvnwP1I3OI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CKCERT6VtqQ2+Sh5OWVsfNDZfC/sXBG7roCad3xT+u4ph8OevXNRtnRju/YXhBNSJ
+	 DTA20ihnx4B6dcaJZnmnLn0h3UOcmlvE0qs1FMaq6LHGy4ut70ZLax+d8MxFBVNpao
+	 ZG4mP6HXvIXHZZ/Bwjkl+5zTi4S5ezfhrod48KNlXboeOf0oCUc1Qg4AQq87FmZK6e
+	 Ypp+XyuNYpv8mgYD2+GmWR09qlPYv21GOHfJk0es9NRoZ4jPVKt+XyAOhOdYxKmrn5
+	 sYY1Nylp6L+jNYM7+SwK7KkrpEa1+Vv3/OzQE24xLdttm/N+fxG8Kkz7/pBtlerN6W
+	 f5oP94MfxxZVg==
+Date: Sat, 27 Dec 2025 14:10:00 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 1/4] dt-bindings: clock: renesas,r9a09g077/87: Add
+ PCLKCAN ID
+Message-ID: <20251227-origami-elk-of-pizza-49e688@quoll>
+References: <20251224165049.3384870-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251224165049.3384870-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1766037997.git.zhoubinbin@loongson.cn> <7a0df6f836e0ec7ddfe4d592c10259c87ef96e4f.1766037997.git.zhoubinbin@loongson.cn>
-In-Reply-To: <7a0df6f836e0ec7ddfe4d592c10259c87ef96e4f.1766037997.git.zhoubinbin@loongson.cn>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Sat, 27 Dec 2025 21:06:18 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H6LoF_raks89e+i3K48g0hmnhu3eJbSu2Tkpr9nNzM6iA@mail.gmail.com>
-X-Gm-Features: AQt7F2ohh5YfPyb2UrWwlmfBbouHVPpjxVIci8u--dXlQ9be3QFY15Nc1ufV8S4
-Message-ID: <CAAhV-H6LoF_raks89e+i3K48g0hmnhu3eJbSu2Tkpr9nNzM6iA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/7] dt-bindings: interrupt-controller:
- loongson,pch-pic: Change to unevaluatedProperties
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Yao Zi <me@ziyao.cc>, Binbin Zhou <zhoubb.aaron@gmail.com>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251224165049.3384870-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi, Binbin,
+On Wed, Dec 24, 2025 at 04:50:46PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Add PCLKCAN ID for CANFD to both R9A09G077 and R9A09G087 SoCs. This
+> definition is required for describing CANFD device in DT.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Fri, Dec 19, 2025 at 4:47=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> Change additionalProperties to unevaluatedProperties because it refs to
-> interrupt-controller.yaml.
->
-> Fix below CHECK_DTBS warnings:
-> arch/loongarch/boot/dts/loongson-2k2000-ref.dtb: interrupt-controller@100=
-00000 (loongson,pch-pic-1.0): '#address-cells' does not match any of the re=
-gexes: '^pinctrl-[0-9]+$'
->         from schema $id: http://devicetree.org/schemas/interrupt-controll=
-er/loongson,pch-pic.yaml
->
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../interrupt-controller/loongson,pch-pic.yaml         | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loong=
-son,pch-pic.yaml b/Documentation/devicetree/bindings/interrupt-controller/l=
-oongson,pch-pic.yaml
-> index b7bc5cb1dff2..cf235ca57a2f 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,pch=
--pic.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,pch=
--pic.yaml
-> @@ -14,6 +14,9 @@ description:
->    transforming interrupts from on-chip devices into HyperTransport vecto=
-rized
->    interrupts.
->
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
->  properties:
->    compatible:
->      const: loongson,pch-pic-1.0
-> @@ -34,14 +37,18 @@ properties:
->    '#interrupt-cells':
->      const: 2
->
-> +  '#address-cells':
-> +    const: 0
-> +
-In the example address-cells is before interrupt-cells, so I think
-here it is better to put it before interrupt -cells.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
->  required:
->    - compatible
->    - reg
->    - loongson,pic-base-vec
->    - interrupt-controller
->    - '#interrupt-cells'
-> +  - '#address-cells'
-The same.
+Best regards,
+Krzysztof
 
-Huacai
-
->
-> -additionalProperties: false
-> +unevaluatedProperties: false
->
->  examples:
->    - |
-> @@ -50,6 +57,7 @@ examples:
->        compatible =3D "loongson,pch-pic-1.0";
->        reg =3D <0x10000000 0x400>;
->        interrupt-controller;
-> +      #address-cells =3D <0>;
->        #interrupt-cells =3D <2>;
->        loongson,pic-base-vec =3D <64>;
->        interrupt-parent =3D <&htvec>;
-> --
-> 2.47.3
->
 
