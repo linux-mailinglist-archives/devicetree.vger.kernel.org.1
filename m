@@ -1,96 +1,116 @@
-Return-Path: <devicetree+bounces-249892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC30DCDFFB7
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 17:55:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3666CDFFC0
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 17:56:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CFCE83032FF1
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 16:53:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B3982303F28D
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 16:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3A2325707;
-	Sat, 27 Dec 2025 16:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1D632571D;
+	Sat, 27 Dec 2025 16:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QDhJKqxm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RlvzTBex"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com [74.125.224.43])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 090B3314B73
-	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 16:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C6E325717
+	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 16:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766854412; cv=none; b=RoTJjAs77SHS54Ns9ahzURf4TrgsWkPXVoIV7s3zow0DTv0enRHU/H+xqtnqJOoJE3ICIgTB9kjMqqKLZm76vV2e6tjZ8xRBZQy0awv7VQYWJeZW9T0o74l86UYBEebiyhBp0y3+YwTfkNG6RbeQD1epyJB4t9GWQdzDMxi8JXk=
+	t=1766854454; cv=none; b=V/13b/anoy/n03TyN9Gc/8kf3dJmQ7ytzNhXSZnmV8LWMZdt+CyY6GEIc0WnsZPItabXlUe7VPhJPoz0yHlzMclMhteV7CsQ/Wa4nQTSgwSVOyuFUnrb/BZF+HYCRoVDKW38TERiKe9NwJijxHFT1JbUzXt6Oi8eJRt7mNX+xgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766854412; c=relaxed/simple;
-	bh=gu4P8yCtGv38ojTrodppXUMSDmAq3ug24zzKR6LldJ4=;
-	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=UJeohn5JPLKOXgvSID06C3cs+yex9qDWRiGh1p8A80M/iYbHgyX1AptGFUdL1KmkxMX8uhObnnilFl9Cio6spRs1u+iMFnsa48mP/E7/nECAJFK+gKmxYUvjUhuDkAWm3UaySN5YiIgYkZd4hwjB6zNmFvv8llY3eTOkagd+8U4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QDhJKqxm; arc=none smtp.client-ip=74.125.224.43
+	s=arc-20240116; t=1766854454; c=relaxed/simple;
+	bh=fEYdGJTBXajaUrNAsrK5tA6o0RHNKjo0+Wl1GKYTiuI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Wdf6i50qfjRG88JhXXul569UwBSDZQMCTxWdLOtc1LIadmoYwrCJOVKOYiUktovBQxrKPA+UmjTK8Xw2VOICuNSKOOhM9mYo4ixhTNoAzyeV48BJf/WFb1vzwmHSXXvNPSEAfBgMXaJSClQ+naBsrTpqm5w11ivwgfvBYTv7kjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RlvzTBex; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f43.google.com with SMTP id 956f58d0204a3-6446d7a8eadso6556897d50.0
-        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 08:53:29 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-64b9d01e473so10747459a12.2
+        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 08:54:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766854409; x=1767459209; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=gu4P8yCtGv38ojTrodppXUMSDmAq3ug24zzKR6LldJ4=;
-        b=QDhJKqxm7FEZ4RFnti2R6tTqK7hH71vHV/VblwD6XBiZr35ArhxkMjygs3OtTmFvtm
-         GQ1AmgwfSWQWL+gElq7vwkuZxf7q15KuUdqRblWZHBa5u5182q8C7A4C2XA4t6uzpKVX
-         +pNd4dtyEqS+H4yN0jP/nFje92W/Rymy9ExrCqlaR3XpzR80zooQy6x8VpCA23ZD4qYf
-         s31Z59m4lqS140QE9rpScOvahBnTZ1C/ToyacjYxwYseGZDw31pF6UDbPh3V7QuYIDxN
-         Qujj3bknKQuzHI2l7qf60TMVrYFbmcw4wq7t6uSL0Ohv3827R1oksyZgH0fG/ILY6khr
-         UNNA==
+        d=gmail.com; s=20230601; t=1766854450; x=1767459250; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fEYdGJTBXajaUrNAsrK5tA6o0RHNKjo0+Wl1GKYTiuI=;
+        b=RlvzTBexLB8vAH9j/twWw+A4hf8zyUwpSag9hVrZrRdef+TBEGjtluQ3iLfRX6EnHx
+         wtDCy/eKiNCXiufxq8HszBiil+7q3FSdE85cP/wRuLKi+XApPDz662t5ZvIQMBAcBOma
+         Z5UR1B4OmqD7WJbmd3zQWk9foHN0RnrhtqoKjYxpyJFpWdAiRsXRraGCEEaNpJxWpMed
+         pK1GUSb7N+JRj4sJzZ2Bxr9kp2r00KKWSSRhaMBFr+IWxrc0ELvPEtR6rjbAojNe6Pt3
+         pqY/oIvwBnYRRmbg65ek2wyq6CGslxXZt3/cnDfm7I7S1GYYHAGH//MAs5TV/NrVCPTT
+         tnMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766854409; x=1767459209;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gu4P8yCtGv38ojTrodppXUMSDmAq3ug24zzKR6LldJ4=;
-        b=HrjBBSVqkigGXCA98rUtYXEE1QA/BmTifgOcWZsVhEkcqTpg7qSEptnC2wiOzyDTd2
-         FBUSl3vjVKeAUljz5zJnty33AxxmfM3EyRgxxO/t9sSN+iarZZUIpH5tcnpvb2MBcxN0
-         Z41gj9EujqktzWNeY8t89faIw74YhQwxOKBuTasGQnOrE5SjlyQHlnog94XBaRk79aMn
-         r0gkqKIrWYo58ubs4qXh/OF4qS/CHRFNi6zdRglZThGZffYwyefgxRK/jX7R1chYekB+
-         d2AxLowhsPjbyBZkQAnNgSrUs3Onzkp3ZVMumZVp0zCU/Q+eGOZ8jqa56OzjyM5NPPeN
-         6iVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUckNducfK7gd/+C9Bf6ArN1JreeoGYb1KbuX4+4+JDjcIrx9y2eQdc6Pn+tOqDbxCDHU3ADmQxCmtA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw91Iz8I3PnPzDFQdiIIwQabOX6TboymewEVNgXlzzG5J5YfQqj
-	WTzsaPAUw+7BQRb1ziWFT28hYuvMUrL0hvUzGk5I7s2cTdmStjmGFdYyFdf63aVXPC+dS7QqP8B
-	T0gTMcpp6+r3JOiZqFTzLwOmChoUSpew=
-X-Gm-Gg: AY/fxX74sTRcl/1yn+nmVM+W/ePsaIiClSGJF94X794KkySZu9UXwWj+5Etg1rOFT9l
-	+/oWrWabYlhtMP6rCYIAZpq78hmzsGNVNJY5BRZzeRQ1qSYA2YMDI89Pn7LdALikuWf3T5qgGTz
-	c7lZZsZTgj5oiewFsG799XzQApBLNjmK/wi7L8UBryQlcr8/pb2FMCXOF4KxFWeLY9TQydcJNBJ
-	5RNobtPawnMzrPW98uw+cXaOlScJMIHdI7sOJvDzowJw6jlLfC7o9JojvVIS4O2e5G+
-X-Google-Smtp-Source: AGHT+IF3Ar92THam/YBoDFLspVYsbTbaPEn4UDgIjGwlo+OzDwvfQfbc5kNYDFIO2HEklpYYD2voIBzsATqCIeii49c=
-X-Received: by 2002:a05:690e:ec3:b0:644:5d3f:844b with SMTP id
- 956f58d0204a3-6466a8a89d6mr15524495d50.54.1766854408938; Sat, 27 Dec 2025
- 08:53:28 -0800 (PST)
+        d=1e100.net; s=20230601; t=1766854450; x=1767459250;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=fEYdGJTBXajaUrNAsrK5tA6o0RHNKjo0+Wl1GKYTiuI=;
+        b=KetdBIT6LXjudGcq9vk/AD57SuKxzV1hFYR+deCMOlR05EsPzKIfqwiqF6Te3hKwKU
+         JDeN3t/SDMRcJ1gG9KUqtWbROCxWY6Cw7waCpI45LL3WtVJnCj5sEb9chcR8W+bGRQb5
+         ZGcWCb6sMMyC3W95csjrkMH+HCQp8DcFYSbbCgM9/bqy42VAzHVz+66eg1KK4z5WMwt+
+         DKtmL4Ru3CB8NKPxASb9EEBoWA8o2QocMUuSeJG7ntpr+VhgchcUkFHOnSKQ8cB64mnY
+         gtmOK69KfTYK2eHtvrTjNAHssvGqUKVnPMA98hzFtrCi7/H/0BNzASTOpdOssXqbxgN+
+         zCQw==
+X-Forwarded-Encrypted: i=1; AJvYcCWLL4AZWMHxTp5+6l8GjNxNfIjgP3utch4eO4rVpD3vCCvOfajD8XelEMmk8R2IvUxearl+ka53rbll@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywwh2UBC9NgNL5YWZnWNKuapdGQsubBtYGiMK0WGcTednDTSIcW
+	DsJO4ftDDMqW/FCzJIu5EuZH6F9QaUTA1KRbLaDmG83/UqMC1ys6ZJUJtoOufCq92KuMCSP+5PD
+	LierjsFnDGh8Clu4/xK1uOBSXSLSNOk0=
+X-Gm-Gg: AY/fxX7KtdamO9iGmfN5URkPm3scgjIv4+wwc7sI8Rh9gSSvF6q6Y2ToDoNrToLiH9Z
+	Tj8MLwhDLSgSPjWVadUxMRhj1RPI5djl9FjM79GtcoL7+XOPNyN8qphKylfHdo1U9wNsATDCkqK
+	COPDJp0WVx0wNSbPKs7ON2EFOziYSKLmp8vJfRmeGMbIUP+BL0UpZEVS90Oy/tsppEKaYfxd7+O
+	0k/LVgxsz+G4UfavxwyOU29GrY4BdWSf5cbw2xe894uTuBL6uKPAVAds+Qe+W9iAtZkPmESlXcD
+	ofOpotYYSJ5npuXCHjL/DmJxo7neF7lEo6UyQKh2Er+1Vqhdn0mrNbHGyJCl/qsi2f27oeM=
+X-Google-Smtp-Source: AGHT+IGzhdKUm2kUh6gBHGyRHPs5NkLVgUF1gZqV6A7v61VPEy5XWWzE5biUv9XfjwATbwqlgPYDe2MvbumQ7GhMMY8=
+X-Received: by 2002:a17:907:3e1c:b0:b79:e974:4060 with SMTP id
+ a640c23a62f3a-b80371d7db3mr2912543166b.48.1766854450421; Sat, 27 Dec 2025
+ 08:54:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>
-Date: Sat, 27 Dec 2025 17:53:18 +0100
-X-Gm-Features: AQt7F2qYKWCD4_nduV_EbKeCZVZL2BRsDeJglVK1M4bYvsM7D9xgKCVpKAP_4SI
-Message-ID: <CAGsSOWWMO8+8vB2EM8s1=hyN1raO6TDpqGBTdrmNrZpfDfn5wQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: dts: switch to RPMPD_* indices
-To: dmitry.baryshkov@oss.qualcomm.com
-Cc: Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, konradybcio@kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, ulf.hansson@linaro.org
+References: <cover.1765900411.git.Jonathan.Santos@analog.com>
+ <43504217d5b3c32da946bed0ce4d81e216f7c7c7.1765900411.git.Jonathan.Santos@analog.com>
+ <20251227155525.6d712f42@jic23-huawei> <CAHp75Vd0n+aTkdzMC53y9LrPW4t0mckpzmmud4Ez5gXbAdLeVg@mail.gmail.com>
+In-Reply-To: <CAHp75Vd0n+aTkdzMC53y9LrPW4t0mckpzmmud4Ez5gXbAdLeVg@mail.gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sat, 27 Dec 2025 18:53:33 +0200
+X-Gm-Features: AQt7F2o5pKu3JZDHtQuLDnXH7bgPd_iJLkPg7pb83Ops5_qMZGPLToR05RzuF8I
+Message-ID: <CAHp75VfA3Ww2N9CA-gUpko7=s===s6DDM2ik=w2NJ=mUQqo4XQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/5] units: add PERCENT and BASIS_POINTS macros
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, lars@metafoo.de, 
+	Michael.Hennerich@analog.com, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	jonath4nns@gmail.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Sat, Dec 27, 2025 at 6:52=E2=80=AFPM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+> On Sat, Dec 27, 2025 at 5:55=E2=80=AFPM Jonathan Cameron <jic23@kernel.or=
+g> wrote:
+> > On Wed, 17 Dec 2025 02:52:45 -0300
+> > Jonathan Santos <Jonathan.Santos@analog.com> wrote:
 
-MSM8937 and MSM8917 MSS would need more power domains like MSM8939 and MSM8953.
-I am planning to send modem related changes soon what are interfering
-with this change.
+...
 
-https://github.com/barni2000/linux/commit/21151cb3d07124897e4d3dad51c833c4af27f6e0
+> Also there are pp (percentage points) and others like per mille
+>
+> https://en.wikipedia.org/wiki/Percentage_point (see "Related units" secti=
+on).
 
-Br,
-Barnabas
+And given most of them are in the PER* namespace I would use those
+names instead of variants.
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
