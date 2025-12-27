@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-249843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52409CDFADA
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:28:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF3ECDFAEF
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:28:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8B231303A8C1
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:26:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2E0E53025327
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C10F31328F;
-	Sat, 27 Dec 2025 12:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A584D331A5E;
+	Sat, 27 Dec 2025 12:24:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a5D2lvHh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T0YCToUV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC51732ED59
-	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 12:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24873330B2B
+	for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 12:24:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766838287; cv=none; b=PPXnKTlUyMMW0vPhEOJfoFtWSzUZvxgWNtwTMdlr+3nLSaKn33x+Q6PD2hdwqH2HfrKRjNVgEzaWuucLkNnVUlx/UVuH+5OPWyNYKYpQWih3+lRW6BBzk9G1z0YhpJcZQdjzsC7mV2gt05seBd3xlN/FlDwg2yln1zSjy9zHs9w=
+	t=1766838288; cv=none; b=N5gF5wFN+sSZt9uEU0ilUznfeRn46yNIEvrHxfPapnswHVZ9rz0kfGhPr/xqD/dlyZOTZ4iNVGE3m53rdYHsoFXuCYSEVwXTSWW52V0T5q/2y97Fd9GOMXSbyXLcnvfEryUkwdOiv/PkF6xiTO2CpUDp+5WF33OeTHT+etOEFrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766838287; c=relaxed/simple;
-	bh=ZtimU7gm1PrFcEfk0MV7OaApuuKINQ3TVVyW7YAfhJo=;
+	s=arc-20240116; t=1766838288; c=relaxed/simple;
+	bh=GmHLRlu6EXu3rlO6sUUFoarZmSsasrc3xFXNGExeInA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=crkjmvGuGyBHMJ2L8iCV1fM1r7T/TX1xMrrxzLJSFeC0QJPiWYvVb774jrc0QXy+tQ36JNRr9k4QJw/2bOUTr+HObDrIraBPpODS0oTMZZBUk2n9S5FcYTExAykQdYQpvq7FAVZgxgC/naMq4qQqCJ1IFbQXFInmBmRJ/hThDjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a5D2lvHh; arc=none smtp.client-ip=209.85.208.53
+	 In-Reply-To:To:Cc; b=BzqTXwTFxvW70PYOWLPtkU8Vu+r5fQUop6JArozAbZ+sIdl+xeqpQp+gUs2cHe5QnqgzbCyPYBaboiW9pcPiYPquq391zMRbJ15HdnvNQVcfFGyVVCCoghaRts6WB2chaHI1y/z4r3BRU6z1WCwmzYgRvwAtilQumptKhwNDPNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T0YCToUV; arc=none smtp.client-ip=209.85.208.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-64b5ed53d0aso11233070a12.3
-        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 04:24:41 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-64d80a47491so9427830a12.1
+        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 04:24:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766838279; x=1767443079; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1766838280; x=1767443080; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=mqjJPQ+Kki9Vjm0bw/2XeIC3VM9xGuMuLb0QgtHhylQ=;
-        b=a5D2lvHht8oyyQOW/Q3Ixnu7h8kTS2EvkzTL3e+uzTSWZl5rcG99yzWmr2RV85MGag
-         mOGcmnNIBOYxsP0sb/ElwrPjtazrr8DzV9SxwkxDgGZ9mOYSGc6B1tZ3D48bWlchpYDa
-         YCBhOYc+1OLDktZ+PvAXVPqViAORGU/rdkC+za3nOe8HqeGWik9bneFxuHm8rks5oU2u
-         9kNjb3yC56rRC+gef1xI3/czxoFFh7hWZwOJqJRGgHSegl6qFiEvJLBBTUTSjszGyeDY
-         DyB8Rwtr/IgEa9mWH5xMwfeiQ2xr/NRia1uNx73et+uW8X0ZeDsRT95dQL5zP29hjMwW
-         zaXA==
+        bh=Mh3sOgyslUyQirT0DcDP+95jn+8TlJEJs45se+3aQEY=;
+        b=T0YCToUVr5aSfTvL9z9DSQPkqJ/s3b/IMMLGH4Jhrv7tSYxAvhXNPYrfWgdEPOMWQy
+         B2CppFhrcxoHrJWhX0HthYSeaaqYsvRzYBuMBcd8kL1RKHpOWOAMfRj07Q7vUZMINid6
+         r7Lmz9hO8hlvhtmEwEokfHXHDvCmLGz3JfduNiNxPfYiZvr9YIX23My9FdygfA65D48B
+         RqZ6MK5DTMUzikPqfjuZKURJkTgvlk1ZWNjRIJRPV/7bJM88rQeVIEBhMH/kh/otYadS
+         jw8OUeJJJwQl6VN3JFkWgUiJkjSDZ0ZygnZCbzwQThqGWh/oFGhTezVxtQgQv7Qtz/V3
+         Xftw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766838279; x=1767443079;
+        d=1e100.net; s=20230601; t=1766838280; x=1767443080;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=mqjJPQ+Kki9Vjm0bw/2XeIC3VM9xGuMuLb0QgtHhylQ=;
-        b=pSmbpVwc7fuRLLLmfYKudLs8Tr3hH0A7QEPwusLJQYXEAiInNcZmd5Z1qDccetfciv
-         SzQ+Nm68o+ctnHBJ2DSqCib/dpF13JvpYfNt7otR0WRKoYphDK3Vfyf5LYrI4IInRElH
-         y0mkdRDW9Sl1W7ngh6qqa89NH00iFz+f8ytAH408CkESe+HCv7iXXT0fS1PaaWuCh0fB
-         UlY8SZm9/ZTCE1s1QTDNqa1cEIuEvajntXzUGQmgLqmaFQQBC41hkFBLKoy60LEm8dAl
-         NjpK2qJrRYfTIGA61ngPFLjNap6kCH58r2QwEABXKCfHUEKvL3Gj+XH2Tc2QAp2pSSN5
-         pR+w==
-X-Forwarded-Encrypted: i=1; AJvYcCUlRzyoftHvNdxzJbsCQMn4JntK0ifC78fzsWhrDW02sTT06QqYxxrupAU62RepfeluTnAn3//T+a7s@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzlXMt1FCQYrXh4DSiVgVslnsEDJN8PTEZY1duX0hc0jykjUK7
-	XK444CDeTHYKiIqSboHEZULV9xaEbRzmACrygy2F2nBqVLPWoiLrfdS/eXcTgpw+BEA=
-X-Gm-Gg: AY/fxX7lEQMgIwEi1jGB2OZQG48TicgGULJ7RcqPigAIDf4ZIzpx94J6pmbOvJk+oIi
-	m8uiOPi3vt92lNtxNjX3CZ+wa9JJiUo8CFhz/aeRIUMyEM+rBbo2KxubrY5uI8TFcI0UFISrT0I
-	0xhY5iNPAUar516k4X3cgBzJ68IfgZdf/eop0KxPpuW98bLpb6aLIT5qPasCjNEFR6bpmSrW+kq
-	OcFVOLKmYUzK0KG48X40Nqb37U4QzKh/hZGa65PrrLqhlqfZnA1FW4OuXGkAsNJ3DpRNNRuoR+6
-	UTcb0w/erGDwns30dfEGbxY0wOEYNF/BjkbitwndaIgMZF+kXHAqSIhpC9Vis5vj2bv85dYr5/x
-	LNLfp4j1P9SOVYeY92OsmXTMloiTMbXSebTpS3sMigXDUVtY8Tg/WfCj/qNZqA5C/MNwhfsy5Fb
-	JmvqohF0rBY2VDDVsc/W0Zn1K3q8J35cpCvAaXjkx8fPKxVe4GKWH+hJTpnj56ex1orpxE9D4SP
-	99FZw==
-X-Google-Smtp-Source: AGHT+IE+QRrVPaBCy56QCbI4QkrRX7vUwMKYczTApOAlpziFFNN55uPCnxuQ1egJcYibXo+YhY/13A==
-X-Received: by 2002:a05:6402:2755:b0:64d:4894:774c with SMTP id 4fb4d7f45d1cf-64d48947a3emr18801609a12.7.1766838279224;
+        bh=Mh3sOgyslUyQirT0DcDP+95jn+8TlJEJs45se+3aQEY=;
+        b=b/+VR2YZHJKXOD2YwUgkJTL9JNSqHYYBjV90zNKs7VylSsffogNnADdA9BGtSZfVeD
+         JW9lT8nC4lfe+2wIQIMNZGw8+tWTDdgH0TjItCB5pvvTiRyd9qn6jHFiheLvBIa1Rz5G
+         H8C3x6tjtKK4Jsu5tWl97TcgjShm3CKqRzsMsNk0n+BJly63osqLA+DhAG3UTQVG+kMW
+         yHvSVLWBa14nUe0dN3U4r0XI2SM1Jo+D7hRJ9eS677Gud9RngCFMa329Pl/y9WZ6AOuA
+         wsD8j1TckOA+ED9BXzxdMiMltt4TgPCXQzMuQbbbvRiqo+IgbvUUh6cpj1MPBO4dnVYb
+         xCww==
+X-Forwarded-Encrypted: i=1; AJvYcCXhDBGr7RqMZeweCm4rfVeFYI+jO8FnsuKQiuLnnxsagxHCbEOLenw+PzOwAVVPvBpQ6Ayi+oRzcEA1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhjdYnK6F4EOrklXigKFVCmwRHisUF+ekJYtWdntjdrSdNpcXK
+	8ctHZJRxXh9FchVlTRRCgH1SQwzS7CNj8Yr+e0v3VsyJs4k0IiHrNfkmtco6P+JVSCA=
+X-Gm-Gg: AY/fxX6cZyBsvr8gnsyZMaWjMWVacKS9q5B/R9t9A7Ok0ohR/NWJHkPEpGFiE6rxb+u
+	tbSIqQeyVcTLFceg5C7jX4jXuwLLhm8MbmYvvwZ857occbj0u6u2/CR2wyADCRZ5fa6CLIp/C4h
+	b2JX/FDcZ5VygQOwP40RQSTTA7n/KoM5iY+DaDfXBKepaJzhsiAmWrPiwjxQFVms4d5vYWSBQbG
+	pUbOHUdlpWhDNyFbml66J+YXW6nSh30MrIBOWQ8oGqJhrUD7LAaHMu+kWt3FsWifW5HSzUq3aFR
+	CyF+RpWF7VQfzkXp3Du0JFR9Liob0K/tX+qivycwHLwvIo9SFZ8nrpHA/jw4t/CPoEEqt2Sbj2q
+	tdVSPJYOXKokHMvRAge42fjWTyQS3IHlk7BsRCvy/fTr5v+ZPz18G5qrOph3gSZkmf9/R+ogstW
+	VSeKbMX+VMixkgxlpOtM0ApV3cmo9HSUYkDZuf6wsHKcwQlhijot1zwf0Y4EbROmhjLfG5EEQ9z
+	S5gDIxYm8mjkiY7
+X-Google-Smtp-Source: AGHT+IGFfpQSFxXNOZag/yIOo6Cnxa4IbO76rSSEb1gcHw8glndKrlYDwAIcv23/8DvUWbbUCEuOuQ==
+X-Received: by 2002:a05:6402:2078:b0:643:eae:b1b6 with SMTP id 4fb4d7f45d1cf-64b584d700dmr22012364a12.12.1766838279747;
         Sat, 27 Dec 2025 04:24:39 -0800 (PST)
 Received: from puffmais2.c.googlers.com (244.175.141.34.bc.googleusercontent.com. [34.141.175.244])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b916adc61sm25932659a12.31.2025.12.27.04.24.38
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b916adc61sm25932659a12.31.2025.12.27.04.24.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Dec 2025 04:24:38 -0800 (PST)
+        Sat, 27 Dec 2025 04:24:39 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Sat, 27 Dec 2025 12:24:39 +0000
-Subject: [PATCH v5 17/21] regulator: s2mps11: refactor S2MPG10
- ::set_voltage_time() for S2MPG11 reuse
+Date: Sat, 27 Dec 2025 12:24:40 +0000
+Subject: [PATCH v5 18/21] regulator: s2mps11: refactor S2MPG10 regulator
+ macros for S2MPG11 reuse
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20251227-s2mpg1x-regulators-v5-17-0c04b360b4c9@linaro.org>
+Message-Id: <20251227-s2mpg1x-regulators-v5-18-0c04b360b4c9@linaro.org>
 References: <20251227-s2mpg1x-regulators-v5-0-0c04b360b4c9@linaro.org>
 In-Reply-To: <20251227-s2mpg1x-regulators-v5-0-0c04b360b4c9@linaro.org>
 To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
@@ -103,78 +103,139 @@ Cc: Peter Griffin <peter.griffin@linaro.org>,
  =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.14.2
 
-The upcoming S2MPG11 support needs a similar, but different version of
-::set_voltage_time(). For S2MPG10, the downwards and upwards ramps for
-a rail are at different offsets at the same bit positions, while for
-S2MPG11 the ramps are at the same offset at different bit positions.
-
-Refactor the existing version slightly to allow reuse.
+Rails in the S2MPG11 share a very similar set of properties with
+S2MPG10 with slight differences. Update the existing macros to allow
+reuse by the upcoming S2MPG11 driver.
 
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
+
 ---
- drivers/regulator/s2mps11.c | 32 ++++++++++++++++++++++----------
- 1 file changed, 22 insertions(+), 10 deletions(-)
+Note: checkpatch complains about unused macro arguments _r_mask,
+_r_table, and _r_table_sz, but these are false-positives due to patch
+context.
+
+v2:
+- fix commit message typos: s2mp1 -> s2mpg1
+- drop duplicated assignment of ::of_parse_cb in
+  regulator_desc_s2mpg1x_buck_cmn() macro
+---
+ drivers/regulator/s2mps11.c | 69 +++++++++++++++++++++++++++------------------
+ 1 file changed, 42 insertions(+), 27 deletions(-)
 
 diff --git a/drivers/regulator/s2mps11.c b/drivers/regulator/s2mps11.c
-index 4924c48ee7502c63f7a1fc620a2d252b7d8ed828..beff85c72580efaa0bbfaaefe6b4386edcb00919 100644
+index beff85c72580efaa0bbfaaefe6b4386edcb00919..34f82762d9549b854d730a1626ed0450c19fbe2e 100644
 --- a/drivers/regulator/s2mps11.c
 +++ b/drivers/regulator/s2mps11.c
-@@ -560,26 +560,23 @@ static int s2mpg10_regulator_buck_enable_time(struct regulator_dev *rdev)
- 		+ DIV_ROUND_UP(curr_uV, s2mpg10_desc->enable_ramp_rate));
+@@ -649,31 +649,44 @@ static const struct regulator_ops s2mpg10_reg_buck_ops[] = {
+  * (12.5mV/μs) while our ::set_voltage_time() takes the value in ramp_reg
+  * into account.
+  */
+-#define regulator_desc_s2mpg10_buck(_num, _vrange, _r_reg) {		\
+-	.name		= "buck"#_num "m",				\
+-	.supply_name	= "vinb"#_num "m",				\
+-	.of_match	= of_match_ptr("buck"#_num "m"),		\
++#define regulator_desc_s2mpg1x_buck_cmn(_name, _id, _supply, _ops,	\
++		_vrange, _vsel_reg, _vsel_mask, _en_reg, _en_mask,	\
++		_r_reg, _r_mask, _r_table, _r_table_sz,			\
++		_en_time) {						\
++	.name		= "buck" _name,					\
++	.supply_name	= _supply,					\
++	.of_match	= of_match_ptr("buck" _name),			\
+ 	.regulators_node = of_match_ptr("regulators"),			\
+ 	.of_parse_cb	= s2mpg10_of_parse_cb,				\
+-	.id		= S2MPG10_BUCK##_num,				\
+-	.ops		= &s2mpg10_reg_buck_ops[0],			\
++	.id		= _id,						\
++	.ops		= &(_ops)[0],					\
+ 	.type		= REGULATOR_VOLTAGE,				\
+ 	.owner		= THIS_MODULE,					\
+ 	.linear_ranges	= _vrange,					\
+ 	.n_linear_ranges = ARRAY_SIZE(_vrange),				\
+ 	.n_voltages	= _vrange##_count,				\
+-	.vsel_reg	= S2MPG10_PMIC_B##_num##M_OUT1,			\
+-	.vsel_mask	= 0xff,						\
+-	.enable_reg	= S2MPG10_PMIC_B##_num##M_CTRL,			\
+-	.enable_mask	= GENMASK(7, 6),				\
+-	.ramp_reg	= S2MPG10_PMIC_##_r_reg,			\
+-	.ramp_mask	= s2mpg10_buck_to_ramp_mask(S2MPG10_BUCK##_num	\
+-						    - S2MPG10_BUCK1),	\
+-	.ramp_delay_table = s2mpg10_buck_ramp_table,			\
+-	.n_ramp_values	= ARRAY_SIZE(s2mpg10_buck_ramp_table),		\
+-	.enable_time	= 30, /* + V/enable_ramp_rate */		\
++	.vsel_reg	= _vsel_reg,					\
++	.vsel_mask	= _vsel_mask,					\
++	.enable_reg	= _en_reg,					\
++	.enable_mask	= _en_mask,					\
++	.ramp_reg	= _r_reg,					\
++	.ramp_mask	= _r_mask,					\
++	.ramp_delay_table = _r_table,					\
++	.n_ramp_values	= _r_table_sz,					\
++	.enable_time	= _en_time, /* + V/enable_ramp_rate */		\
  }
  
--static int s2mpg10_regulator_buck_set_voltage_time(struct regulator_dev *rdev,
--						   int old_uV, int new_uV)
-+static int s2mpg1x_regulator_buck_set_voltage_time(struct regulator_dev *rdev,
-+						   int old_uV, int new_uV,
-+						   unsigned int ramp_reg,
-+						   unsigned int ramp_mask)
- {
--	unsigned int ramp_reg, ramp_sel, ramp_rate;
-+	unsigned int ramp_sel, ramp_rate;
- 	int ret;
- 
- 	if (old_uV == new_uV)
- 		return 0;
- 
--	ramp_reg = rdev->desc->ramp_reg;
--	if (old_uV > new_uV)
--		/* The downwards ramp is at a different offset. */
--		ramp_reg += S2MPG10_PMIC_DVS_RAMP4 - S2MPG10_PMIC_DVS_RAMP1;
--
- 	ret = regmap_read(rdev->regmap, ramp_reg, &ramp_sel);
- 	if (ret)
- 		return ret;
- 
--	ramp_sel &= rdev->desc->ramp_mask;
--	ramp_sel >>= ffs(rdev->desc->ramp_mask) - 1;
-+	ramp_sel &= ramp_mask;
-+	ramp_sel >>= ffs(ramp_mask) - 1;
- 	if (ramp_sel >= rdev->desc->n_ramp_values ||
- 	    !rdev->desc->ramp_delay_table)
- 		return -EINVAL;
-@@ -589,6 +586,21 @@ static int s2mpg10_regulator_buck_set_voltage_time(struct regulator_dev *rdev,
- 	return DIV_ROUND_UP(abs(new_uV - old_uV), ramp_rate);
- }
- 
-+static int s2mpg10_regulator_buck_set_voltage_time(struct regulator_dev *rdev,
-+						   int old_uV, int new_uV)
-+{
-+	unsigned int ramp_reg;
++#define regulator_desc_s2mpg10_buck(_num, _vrange, _r_reg)		\
++	regulator_desc_s2mpg1x_buck_cmn(#_num "m", S2MPG10_BUCK##_num,	\
++		"vinb"#_num "m", s2mpg10_reg_buck_ops, _vrange,		\
++		S2MPG10_PMIC_B##_num##M_OUT1, GENMASK(7, 0),		\
++		S2MPG10_PMIC_B##_num##M_CTRL, GENMASK(7, 6),		\
++		S2MPG10_PMIC_##_r_reg,					\
++		s2mpg10_buck_to_ramp_mask(S2MPG10_BUCK##_num		\
++					  - S2MPG10_BUCK1),		\
++		s2mpg10_buck_ramp_table,				\
++		ARRAY_SIZE(s2mpg10_buck_ramp_table), 30)
 +
-+	ramp_reg = rdev->desc->ramp_reg;
-+	if (old_uV > new_uV)
-+		/* The downwards ramp is at a different offset. */
-+		ramp_reg += S2MPG10_PMIC_DVS_RAMP4 - S2MPG10_PMIC_DVS_RAMP1;
-+
-+	return s2mpg1x_regulator_buck_set_voltage_time(rdev, old_uV, new_uV,
-+						       ramp_reg,
-+						       rdev->desc->ramp_mask);
-+}
-+
- /*
-  * We assign both, ::set_voltage_time() and ::set_voltage_time_sel(), because
-  * only if the latter is != NULL, the regulator core will call neither during
+ #define s2mpg10_regulator_desc_buck_cm(_num, _vrange, _r_reg)		\
+ 	.desc = regulator_desc_s2mpg10_buck(_num, _vrange, _r_reg),	\
+ 	.enable_ramp_rate = 12500
+@@ -737,24 +750,24 @@ static const struct regulator_ops s2mpg10_reg_ldo_ramp_ops[] = {
+ 	}
+ };
+ 
+-#define regulator_desc_s2mpg10_ldo_cmn(_num, _supply, _ops, _vrange,	\
+-		_vsel_reg_sfx, _vsel_mask, _en_reg, _en_mask,		\
++#define regulator_desc_s2mpg1x_ldo_cmn(_name, _id, _supply, _ops,	\
++		_vrange, _vsel_reg, _vsel_mask, _en_reg, _en_mask,	\
+ 		_ramp_delay, _r_reg, _r_mask, _r_table,	_r_table_sz) {	\
+-	.name		= "ldo"#_num "m",				\
++	.name		= "ldo" _name,					\
+ 	.supply_name	= _supply,					\
+-	.of_match	= of_match_ptr("ldo"#_num "m"),			\
++	.of_match	= of_match_ptr("ldo" _name),			\
+ 	.regulators_node = of_match_ptr("regulators"),			\
+ 	.of_parse_cb	= s2mpg10_of_parse_cb,				\
+-	.id		= S2MPG10_LDO##_num,				\
++	.id		= _id,						\
+ 	.ops		= &(_ops)[0],					\
+ 	.type		= REGULATOR_VOLTAGE,				\
+ 	.owner		= THIS_MODULE,					\
+ 	.linear_ranges	= _vrange,					\
+ 	.n_linear_ranges = ARRAY_SIZE(_vrange),				\
+ 	.n_voltages	= _vrange##_count,				\
+-	.vsel_reg	= S2MPG10_PMIC_L##_num##M_##_vsel_reg_sfx,	\
++	.vsel_reg	= _vsel_reg,					\
+ 	.vsel_mask	= _vsel_mask,					\
+-	.enable_reg	= S2MPG10_PMIC_##_en_reg,			\
++	.enable_reg	= _en_reg,					\
+ 	.enable_mask	= _en_mask,					\
+ 	.ramp_delay	= _ramp_delay,					\
+ 	.ramp_reg	= _r_reg,					\
+@@ -769,10 +782,12 @@ static const struct regulator_ops s2mpg10_reg_ldo_ramp_ops[] = {
+ 		_ramp_delay, _r_reg, _r_mask, _r_table,	_r_table_sz,	\
+ 		_pc_reg, _pc_mask)					\
+ 	[S2MPG10_LDO##_num] = {						\
+-		.desc = regulator_desc_s2mpg10_ldo_cmn(_num, _supply,	\
+-				_ops,					\
+-				_vrange, _vsel_reg_sfx, _vsel_mask,	\
+-				_en_reg, _en_mask,			\
++		.desc = regulator_desc_s2mpg1x_ldo_cmn(#_num "m",	\
++				S2MPG10_LDO##_num, _supply, _ops,	\
++				_vrange,				\
++				S2MPG10_PMIC_L##_num##M_##_vsel_reg_sfx, \
++				_vsel_mask,				\
++				S2MPG10_PMIC_##_en_reg, _en_mask,	\
+ 				_ramp_delay, _r_reg, _r_mask, _r_table,	\
+ 				_r_table_sz),				\
+ 		.pctrlsel_reg = _pc_reg,				\
 
 -- 
 2.52.0.351.gbe84eed79e-goog
