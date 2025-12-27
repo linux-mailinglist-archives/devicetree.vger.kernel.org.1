@@ -1,91 +1,89 @@
-Return-Path: <devicetree+bounces-249885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECDC7CDFF3A
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 17:34:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 563AFCDFF4B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 17:35:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ADB32301618D
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 16:34:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 55383300CA2C
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 16:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D14EB32470E;
-	Sat, 27 Dec 2025 16:34:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B24324B31;
+	Sat, 27 Dec 2025 16:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k1xyhjSB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout06.t-online.de (mailout06.t-online.de [194.25.134.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA213126DC;
-	Sat, 27 Dec 2025 16:34:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.25.134.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 130B822652D;
+	Sat, 27 Dec 2025 16:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766853254; cv=none; b=fceO5eAL3hFRPdplDdT9CWbtoeDDDSjXyVKwmmAtNPRxVJKx2hFSgZeoDoShe5MrbOpTdpNiGzWbEgFnZJRpJdDejzZ2oJihFi6uzvBtn6ZqmsYVa2u5HmgjHPNd0/ctwhYU2wgzCCgFHpfOJpjo/MmKosEL7NEWM2yl8o8uNgA=
+	t=1766853318; cv=none; b=JRTDdxhCPaJ+yVOymZHOuJ7kUVT+XPQdhfzLj8GajpS83DfXUvjw1VcvIjy2UJzBD5eTya1LXHU1sJgcZr6arVyfaQqdg6iGFFJstFhlnSgt7sGmsaMCwT44G9Gkmf1hBqrmTO8Z3LGNoyn+iMlLzyfIFzdmSJwxsIvU9StkQnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766853254; c=relaxed/simple;
-	bh=m0Yl10O93KKHXvYZjqVkLtiD3pBYMpo/TSxRpwGagzw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KXQl6DaMjRxNUbduIyo1K8X5FMW7OLBH4tPF2vF7lY2aMOcPrdn5S8UtQrEoiLdp7dxKKetqbBAKVXRLGO79/iWzjUWx9qCZkTs72kJ77kSFmOz3tfvzZOTcUd/OEJyHCCh70RXwcw000gTAv+vmwLFz3yK+YNKXCI8Vc6SxCUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=t-online.de; spf=pass smtp.mailfrom=t-online.de; arc=none smtp.client-ip=194.25.134.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=t-online.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-online.de
-Received: from fwd89.aul.t-online.de (fwd89.aul.t-online.de [10.223.144.115])
-	by mailout06.t-online.de (Postfix) with SMTP id A7F98404;
-	Sat, 27 Dec 2025 17:34:04 +0100 (CET)
-Received: from [192.168.1.232] ([84.179.232.117]) by fwd89.t-online.de
-	with (TLSv1.3:TLS_AES_256_GCM_SHA384 encrypted)
-	esmtp id 1vZXEq-41C9uT0; Sat, 27 Dec 2025 17:33:56 +0100
-Message-ID: <9ab5bb73-6237-4348-a62a-a61af4d4704e@t-online.de>
-Date: Sat, 27 Dec 2025 17:33:56 +0100
+	s=arc-20240116; t=1766853318; c=relaxed/simple;
+	bh=hICSu6Vxrj2xniWAka5RE0nDT7nVND62Yrkq1RNJuCc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Q/MEa6+MBRjL4DFGHt1rYq3UZHHRWjBYWmUmbo7eQrUSLMffCiYw3il1Ui4WXqAN6tulbmXaTzZTjsAPiHwpfY40jpiY4GYehuc829WPlkD+lRkc4GE9q/MZf4r2CBeHYkkyDEQyES3xqc6njlnIvepDjj41Gsu2pyq7XZLIPvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k1xyhjSB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2949DC4CEF1;
+	Sat, 27 Dec 2025 16:35:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766853317;
+	bh=hICSu6Vxrj2xniWAka5RE0nDT7nVND62Yrkq1RNJuCc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=k1xyhjSBtGy8Fk7eM7dfl7B33FD8UlrlJJwAdGxf/lyQUVQCB3f1YPQXHNZ7ap2d2
+	 YBFTsQntiWNvdnXbSwHKrc8TtJUF2Ah3TvqmbUhSfpumYWqnd8MzLU+glKiSQjGrWP
+	 mGt5ayrxU6vp8C0byzuNeofh9cmIribWZNiR8QVUnKTkJORi+dgypZcptvZR0XDtQg
+	 JDdsFBaSsndF1zLxb2kDAurp+WERnYkbH4NHJklljJoUNOnFaBxoq2m1qpRr5ez8Rh
+	 /u0ruAxQbi0vF8b7a9PxqkSjasJiaF3TaxIMFwvWa3TIyyOdrBDl6wLuFyDeFT6ezA
+	 Bb5ajQOt3HAwA==
+Date: Sat, 27 Dec 2025 16:35:06 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jorge Marques <jorge.marques@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Linus
+ Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, Linus Walleij <linusw@kernel.org>
+Subject: Re: [PATCH v4 0/9] Add support for AD4062 device family
+Message-ID: <20251227163506.2fb90815@jic23-huawei>
+In-Reply-To: <20251217-staging-ad4062-v4-0-7890a2951a8f@analog.com>
+References: <20251217-staging-ad4062-v4-0-7890a2951a8f@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] regulator: Add TPS65185 driver
-To: Andreas Kemnade <andreas@kemnade.info>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-References: <20251227-tps65185-submit-v2-0-1882024b8f33@kemnade.info>
- <20251227-tps65185-submit-v2-2-1882024b8f33@kemnade.info>
-Content-Language: en-US
-From: Josua Mayer <josua.m@t-online.de>
-In-Reply-To: <20251227-tps65185-submit-v2-2-1882024b8f33@kemnade.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-TOI-EXPURGATEID: 150726::1766853236-FBFFFA32-52EBCAA4/0/0 CLEAN NORMAL
-X-TOI-MSGID: f6b82a1b-eba3-489f-9cfc-ca12eccde188
 
-Am 27.12.25 um 11:20 schrieb Andreas Kemnade:
+On Wed, 17 Dec 2025 13:13:23 +0100
+Jorge Marques <jorge.marques@analog.com> wrote:
 
-> Add a driver for the TPS65185 regulator. Implement handling of the various
-> gpio pins. Because the PWRUP (=enable) pin functionality can be achieved
-> by just using two bits instead, just ensure that it is set to a stable
-> value.
-> Implement the pair of symmetric LDOs as a single regulator because they
-> share a single voltage set register. As the VCOM regulator sits behind that
-> machinery, just define that one as a supply.
-> For simplicity, just add the temperature sensor (depending on external NTC)
-> directly.
->
-> There is a mechanism to measure some kick-back voltage during a defined EPD
-> operation, to calibrate the VCOM voltage setting and store that
-> non-volatile in the chip to be the power up default setup. That is not
-> implemented yet in the driver, but that also means that there is a
-> non-factory default value in these registers after power-up.
->
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
->   drivers/regulator/Kconfig    |  11 ++
->   drivers/regulator/Makefile   |   1 +
->   drivers/regulator/tps65185.c | 454 +++++++++++++++++++++++++++++++++++++++++++
->   3 files changed, 466 insertions(+)
+> The AD4060/AD4062 are versatile, 16-bit/12-bit, successive approximation
+> register (SAR) analog-to-digital converter (ADC).
+> 
+> The device uses a 2-wire I3C interface. The device simplifies acquisition
+> by providing 4-bytes in the register map, signal-extending the sample
+> reading accordingly.
+> 
+> The device has autonomous monitoring capabilities, that are exposed as
+> IIO events. Since register access requires leaving the monitoring state
+> and returning, any device access exits monitoring mode, disabling the
+> IIO event.
+> 
+Applied to the togreg branch of iio.git, though initially only pushed out as
+testing to give 0-day a first opportunity to poke at it.
 
-Tested on Kobo Aura (N514).
+Thanks,
 
-Tested-by: Josua Mayer <josua.mayer@jm0.eu>
-
+Jonathan
 
