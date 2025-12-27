@@ -1,52 +1,65 @@
-Return-Path: <devicetree+bounces-249807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85D3ACDF86C
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:06:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F4B5CDF870
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:09:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 169063000B69
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 11:06:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1E12530084C3
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 11:09:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F2D26C3A2;
-	Sat, 27 Dec 2025 11:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC12F2D8767;
+	Sat, 27 Dec 2025 11:09:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lsie1DXZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE7F13A244;
-	Sat, 27 Dec 2025 11:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E152D8762;
+	Sat, 27 Dec 2025 11:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766833597; cv=none; b=EDg6LETcCLBvMg1c8jLbJ7ELeq1R2rSDtQsofn84LypFB02XsktnLazP/snn2TyBV9lBiG+eCPvR856YxoM18W0quVWXCfvjN5R3S/tZ3Ah/wqHr6BHFy1cyXxMevO9CoTX7ez43H9lLgRFifKhI2pVzNdn4UyeIk3VhzYkqZ80=
+	t=1766833741; cv=none; b=GKP14+SgkrMG5ToQekvmTNo4VLMiGXHLIJTPaF2p3FMn4wYIV5jJqRRNCk2LiXMv6uv6z7p9lwoyTFaJNIQIz8qLebtyY2v0531lRgbVRMRAlIBQtMAtPm4+L6CgSS8BOdABAFTPH/elbYBlD96jLIH8EgM6DDkA5jwnl0z1k74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766833597; c=relaxed/simple;
-	bh=OsGvZ2T2rTCLhozUFFP9/ahnNJxa9T4SOFN6L9XBMwU=;
+	s=arc-20240116; t=1766833741; c=relaxed/simple;
+	bh=8hBszxXVdm/Dk0txNhipsHcV7UwFW+dyq7Nqm04kZkM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DpaM4atQSBoQMLSthoRLyqvnJU0l423VMtpQVNJjkBl7iviamBxxSFSYgOEpdcUjBKGw1oWFw9HCgx65HlmmxLhKchJy277PzdeXyBEuTSojXgRRxaYBrZEn4fABq+Ohmws6SVChmnZRjDBgelloxp6IqWNi2+spjW63Sr9OQgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C27CC4CEF1;
-	Sat, 27 Dec 2025 11:06:36 +0000 (UTC)
-Date: Sat, 27 Dec 2025 12:06:34 +0100
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Abhinav Kumar <abhinav.kumar@linux.dev>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=osAINWLGZwOVEfO0Nnk7ar5vUsKYYFxAu4Xt7iBjQMSKakd4hL67cAhs5eD1ug/2P4CGCpfDJDDHOJCGW0+/ZquhQz4JWEX9QBksR2iuN6rfeo8/9FB/1cSYj45wF21Gd11ijCDRV+Ul1Sp/E8EpsIrLgodJ4XDRfOSIYkYukv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lsie1DXZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED3CFC4CEF1;
+	Sat, 27 Dec 2025 11:08:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766833740;
+	bh=8hBszxXVdm/Dk0txNhipsHcV7UwFW+dyq7Nqm04kZkM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lsie1DXZczYyLYr2ib7sbI+8evcaDfKod6DUdAfTYEo53baGzb5dwqyeYhKQ/e6SP
+	 Viv7v/REvqSD5610UuQTMr1HnFm+hqQD7IFQLPElDr74vyG4kez5zvcwEfL2GFXjQZ
+	 Mil2UhTYN4cYNut5lTP+FagNRuFrDA3CM+04fZjNZS0bILAW+hXizBejj01C8Anhkp
+	 ORQTIGD7gaq4V1Uujhv6rC4wqIeP22SinwMmbEXA8RxLumETLxrgAAEoRJWwz3KffX
+	 CJFuZHQLo5fAtD41V67N0tAUmF6JR0psWh7R2FXcrrV1WVGjOA50tZbDLCpVXg9W88
+	 7GeBU+7qdJagQ==
+Date: Sat, 27 Dec 2025 12:08:58 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Han Gao (Revy)" <rabenda.cn@gmail.com>
+Cc: Icenowy Zheng <zhengxingda@iscas.ac.cn>, 
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>, Dan Carpenter <dan.carpenter@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Jie Zhang <jie.zhang@oss.qualcomm.com>
-Subject: Re: [PATCH v5 2/8] dt-bindings: display/msm: gpu: Simplify
- conditional schema logic
-Message-ID: <20251227-invaluable-micro-snail-e5bf8c@quoll>
-References: <20251226-qcs615-spin-2-v5-0-354d86460ccb@oss.qualcomm.com>
- <20251226-qcs615-spin-2-v5-2-354d86460ccb@oss.qualcomm.com>
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Michal Wilczynski <m.wilczynski@samsung.com>, Yao Zi <ziyao@disroot.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH v4 2/9] dt-bindings: display: add verisilicon,dc
+Message-ID: <20251227-tacky-corgi-of-inspiration-afffe6@quoll>
+References: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
+ <20251224161205.1132149-3-zhengxingda@iscas.ac.cn>
+ <FBE5FD78-D7E8-4961-BF13-9BDA0F840548@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,26 +68,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251226-qcs615-spin-2-v5-2-354d86460ccb@oss.qualcomm.com>
+In-Reply-To: <FBE5FD78-D7E8-4961-BF13-9BDA0F840548@gmail.com>
 
-On Fri, Dec 26, 2025 at 11:59:35PM +0530, Akhil P Oommen wrote:
-> JSON Schema conditionals can become complex and error-prone when combined
-> with regex patterns. To improve readability and maintainability, replace
-> nested if-else blocks with a flattened structure using explicit enums.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/display/msm/gpu.yaml       | 56 ++++++++++++++--------
->  1 file changed, 36 insertions(+), 20 deletions(-)
+On Thu, Dec 25, 2025 at 05:35:34PM +0800, Han Gao (Revy) wrote:
+ > +
+> > +            dpu_out_dp1: endpoint@1 {
+> > +              reg = <1>;
+> > +              remote-endpoint = <&hdmi_in>;
+> > +            };
+> > +          };
+> > +        };
+> > +      };
+> > +    };
+> > -- 
+> > 2.52.0
+> > 
+> Tested-by: Han Gao <gaohan@iscas.ac.cn <mailto:gaohan@iscas.ac.cn>>
 
-BTW, this will conflict with my series sent now:
-20251227110504.36732-3-krzysztof.kozlowski@oss.qualcomm.com
+No, really, how?
 
-so if my patch gets in earlier, you need to rebase in
-non-blind/non-obvious way.
+Please explain me how can you test a binding (and build process is not
+testing, otherwise we all should keep getting tested-by, especially
+Rob!)
 
-Best regards,
-Krzysztof
+I don't agree on fake tags.
 
 
