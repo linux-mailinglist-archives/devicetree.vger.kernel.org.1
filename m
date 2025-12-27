@@ -1,116 +1,128 @@
-Return-Path: <devicetree+bounces-249882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85E88CDFF08
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 17:13:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E43A8CDFF45
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 17:34:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4FA43300DA64
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 16:13:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5DE3C30173A0
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 16:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EB68315D2C;
-	Sat, 27 Dec 2025 16:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D15D1324B10;
+	Sat, 27 Dec 2025 16:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mork.no header.i=@mork.no header.b="k57w20PL"
+	dkim=pass (2048-bit key) header.d=jm0.eu header.i=@jm0.eu header.b="T+o7cNI3";
+	dkim=permerror (0-bit key) header.d=jm0.eu header.i=@jm0.eu header.b="rUHiDWwh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from dilbert.mork.no (dilbert.mork.no [65.108.154.246])
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210027B3E1;
-	Sat, 27 Dec 2025 16:13:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.108.154.246
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766852033; cv=none; b=tma1DbhoTIBKPyLnaroRuJGrf1D0ucq7amTP9vtHi4tD6RqC7RiZx8+1Jpi7pInEkeJK6HMO1v3n8CO+6HZbG3doW2z2gxS52rLU3qyfe38nkz7MwknnD3/4wqrPvI+Kx8VGWOuLoZoHF5d8tssBLWTxpylSWYTdco06FwL5/qA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766852033; c=relaxed/simple;
-	bh=6xQepFKbLSgWwslvs/nMpOgMMovKMH4umS/FdNhEKCI=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ab/QUW/IBGP4rujZXpu/8lE4WK3ALwUD1qjSHEDbclndRa8TMl5NEz0Mirx82glOAdT0ml1Swk+Vm2o45em6d2/4ppx7U5ppcPKbjTkzAGMCEGh8c+Cf5TdNeXIdS/cLPwMtJJQiVDdnVVwoeuK8WYuGAUfmezDMluurXyLSBdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mork.no; spf=pass smtp.mailfrom=miraculix.mork.no; dkim=pass (1024-bit key) header.d=mork.no header.i=@mork.no header.b=k57w20PL; arc=none smtp.client-ip=65.108.154.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mork.no
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=miraculix.mork.no
-Authentication-Results: dilbert.mork.no;
-	dkim=pass (1024-bit key; secure) header.d=mork.no header.i=@mork.no header.a=rsa-sha256 header.s=b header.b=k57w20PL;
-	dkim-atps=neutral
-Received: from canardo.dyn.mork.no ([IPv6:2a01:799:10e2:d900:0:0:0:1])
-	(authenticated bits=0)
-	by dilbert.mork.no (8.18.1/8.18.1) with ESMTPSA id 5BRGCXea1092612
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
-	Sat, 27 Dec 2025 16:12:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mork.no; s=b;
-	t=1766851953; bh=6xQepFKbLSgWwslvs/nMpOgMMovKMH4umS/FdNhEKCI=;
-	h=From:To:Cc:Subject:References:Date:Message-ID:From;
-	b=k57w20PLkK0NnQT97ZSgjxTiFyMawI1HfymwWSj/dmV9dfAS0qmWGBcJ1DeXhHDTB
-	 Ikjv2Rf43hQPgRm2SkAZK5mFlF3fTrfTBplyddiW09dNafUsFVtDwDIDFTy2FmJol/
-	 uX9FVRLcPgMDx6rz8X0io7qVVg3U2DMkmysnOspg=
-Received: from miraculix.mork.no ([IPv6:2a01:799:10e2:d90a:6f50:7559:681d:630c])
-	(authenticated bits=0)
-	by canardo.dyn.mork.no (8.18.1/8.18.1) with ESMTPSA id 5BRGCXAq1173802
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
-	Sat, 27 Dec 2025 17:12:33 +0100
-Received: (nullmailer pid 1325881 invoked by uid 1000);
-	Sat, 27 Dec 2025 16:12:33 -0000
-From: =?utf-8?Q?Bj=C3=B8rn_Mork?= <bjorn@mork.no>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Daniel Golle <daniel@makrotopia.org>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Eric Woudstra <ericwouds@gmail.com>,
-        Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
-        Lee Jones <lee@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Subject: Re: [PATCH net-next 0/9] XPCS polarity inversion via generic device
- tree properties
-In-Reply-To: <20251122193341.332324-1-vladimir.oltean@nxp.com> (Vladimir
-	Oltean's message of "Sat, 22 Nov 2025 21:33:32 +0200")
-Organization: m
-References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
-Date: Sat, 27 Dec 2025 17:12:33 +0100
-Message-ID: <87qzsfewem.fsf@miraculix.mork.no>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDA93242C2;
+	Sat, 27 Dec 2025 16:34:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766853280; cv=pass; b=M8fi0rrTMHyLGS0TQbIcOJjh5Vlm+EiJ9Tsh7jj062S1HZRDpRvz6ROCCDk6/6gbHBzGGlrklXqNy2NzGm1TdZcm2FXUhGuydOkuK2/MkTY1B5/u3JhDGu4AIESFATvaTPaIuiTbVPc34r3E51fJgX5b8yeNUtnli6t8ia8EtZM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766853280; c=relaxed/simple;
+	bh=QAuf+cMdNxs5eGncOwpfPVnx7bwtpA/mXbQcHusVmDo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EQ69+Mm1sMxCSkZ92bBPeyyH0HwRNDMXykB1ceAV8vFUwM+GVZZyU9+2FH2YZtXPsaqYKXoVI4baHiD1zrBzgALBex3ZlEOORjkPw4M1DbaH2cNoqrB2dFokdfC6jXmTuN4jnAVAVD9H9DxYFka32hjpnSHNJcS15Nu5mqu8a+I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=jm0.eu; spf=none smtp.mailfrom=jm0.eu; dkim=pass (2048-bit key) header.d=jm0.eu header.i=@jm0.eu header.b=T+o7cNI3; dkim=permerror (0-bit key) header.d=jm0.eu header.i=@jm0.eu header.b=rUHiDWwh; arc=pass smtp.client-ip=85.215.255.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=jm0.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=jm0.eu
+ARC-Seal: i=1; a=rsa-sha256; t=1766852904; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=XvdxblLCrdDbLt1mtdBZhtZlmTuE5nTxppeNyM/oq/GQW0k44V9zEHrARUKYZtyY3H
+    wPJ4MLES+X24+Rq67HcWL0ty/mJ5j1oODzVFoGCez2r+LcYvRzE8auhVQLnLjFNBp0rL
+    JBnEhnSRavaFagTjG/QCKo9p1Nm/mv4hOabG3gSCnyZh8KwDfoIoUlaH1znx1odngGg8
+    jMJYJXf19Etq1qcYEYXe1Q09oouoTdusUvtQ0ebwBRNfPhvv9uDXQ0JOK38rkoQj15Au
+    tIgP6LjWySySXRcPrMKWQAWyRcg3/HqAGsbPvYOnVRb+F083f49eO4wDMthEp+zdvy28
+    LYQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1766852904;
+    s=strato-dkim-0002; d=strato.com;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=VyBAzRalal+p5EliBFxBewJN0DK+Unjwn6xANRTpk6A=;
+    b=QXPDqgmxv5Thquo5mJi0Zns3kIPz9/t7T5DN2kyyfQxW2X/weWWEo8BS2FXLgiuP5Y
+    quVPyqnGma2EA15NWS/Bx4ol7UEi9l7ffOhVLCcm6cirG1y8SXD6SuzfDKqVvUbH1FGF
+    A2oywo0Yi0wVOY6j/1Wi1FhM8wta79swyfX6Q/IIvdBIevNiVJ4tPT59shfdq2qZsZ4w
+    aYMH3fVKtDSWuvt70E0Ux+cwvBb3YqBTNJ7t3mZn7LLr/PHmuD7WDAQXUQT5l2uFhWfr
+    e1swh5bjPUTJXhU1EYLlE8HXMA1fZ3xfDzOm2wSrtoMbXf1DkxPguRTNvPUioBQvTym0
+    wbzA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1766852904;
+    s=strato-dkim-0002; d=jm0.eu;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=VyBAzRalal+p5EliBFxBewJN0DK+Unjwn6xANRTpk6A=;
+    b=T+o7cNI3rAMorQJSGUOR/vT+3hzCGh+tO+7Y+gvAY6iHbtrK3+8IutkH9ip7d1nyxQ
+    AgxjzEYsfXlbgW5TIcC7vVRn896qto+Sf0+rCpUmDz7RU8jSMHTuYoads1skFCNZo5LQ
+    U9ioAttHgmYdg/5bOkac3rFL62v4x92omCOr5CqkqYMNBlRrIoKT0RL/p3fqXGW3VKBu
+    gCb0KcP2N9qXT/9wSWEVvbixwvXUBKERhttB2FUVeo5AdjZbdDDMLDOE8URc6tL3dFOT
+    6AdOtmY6nEEqMCvwUxfX7FO2DfJ9YRUOyZ6SPn7C/xDOf2m/C181gnDmnfEywdtXQU+y
+    PttA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1766852904;
+    s=strato-dkim-0003; d=jm0.eu;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=VyBAzRalal+p5EliBFxBewJN0DK+Unjwn6xANRTpk6A=;
+    b=rUHiDWwh+kTD3oR4xdGnTAjOPZ5cDrwBm0tTpCVaOy8xmHy5ZEilzTlUfu4k2gsHpT
+    PQGIAvY/kAPFz4xr8ADA==
+X-RZG-AUTH: ":JmMXYEHmdv4HaV2cbPh7iS0wbr/uKIfGM0EPTeoCaRth8YQvpoIkZXd2bnfIrOV7Mbk="
+Received: from localhost.localdomain
+    by smtp.strato.de (RZmta 54.1.0 DYNA|AUTH)
+    with ESMTPSA id z0d4ec1BRGSNtuH
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Sat, 27 Dec 2025 17:28:23 +0100 (CET)
+From: Josua Mayer <josua.mayer@jm0.eu>
+Subject: [PATCH 0/3] power: supply: add battery driver for netronix ec
+Date: Sat, 27 Dec 2025 17:28:12 +0100
+Message-Id: <20251227-kobo-aura-battery-v1-0-328a90ef5122@jm0.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Virus-Scanned: clamav-milter 1.4.3 at canardo.mork.no
-X-Virus-Status: Clean
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABwJUGkC/x3MQQ5AMBBA0avIrE3SVhCuIhYtg4lEZYqQxt01l
+ m/xf4RAwhSgzSIIXRzYbwk6z2BY7DYT8pgMRplSG1Pj6p1He4pFZ4+D5MGCKuUGXTajriB1u9D
+ E9//s+vf9AFGv+c1jAAAA
+X-Change-ID: 20251227-kobo-aura-battery-3e60bc159d16
+To: =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Andreas Kemnade <andreas@kemnade.info>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, Josua Mayer <josua.mayer@jm0.eu>, 
+ Josua Mayer <josua@solid-run.com>
+X-Mailer: b4 0.14.3
 
-Vladimir Oltean <vladimir.oltean@nxp.com> writes:
+Signed-off-by: Josua Mayer <josua.mayer@jm0.eu>
+---
+Josua Mayer (3):
+      power: supply: add battery driver for netronix ec
+      dt-bindings: mfd: netronix,ntxec: add reference to power-supply
+      ARM: dts: imx: imx50-kobo-aura: add description for battery
 
-> This set contains an implementation of a generic feature that should
-> cater to all known needs that were identified during my documentation
-> phase. I've added a new user - the XPCS - and I've converted an existing
-> user - the EN8811H Ethernet PHY.
+ .../devicetree/bindings/mfd/netronix,ntxec.yaml    |   9 +-
+ arch/arm/boot/dts/nxp/imx/imx50-kobo-aura.dts      |   9 ++
+ drivers/mfd/ntxec.c                                |   1 +
+ drivers/power/supply/Kconfig                       |   9 ++
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/ntxec-battery.c               | 101 +++++++++++++++++++++
+ 6 files changed, 127 insertions(+), 3 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251227-kobo-aura-battery-3e60bc159d16
 
-Hello Vladimir!
+Best regards,
+-- 
+Josua Mayer <josua.mayer@jm0.eu>
 
-Will there be a new version of this patch set?
-
-The firmware for AN8811HB has now been submitted [1], so I plan to move
-forward with the driver. And without this series then I don't see any
-other reasonable alternative than continuing with "airoha,pnswap-rx/tx",
-like the existing EN8811H driver.
-
-
-Bj=C3=B8rn
-
-[1] https://lore.kernel.org/linux-firmware/20251225163003.4797-1-lucienzx15=
-9@gmail.com/T/#u
 
