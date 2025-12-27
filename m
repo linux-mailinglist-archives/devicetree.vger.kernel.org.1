@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-249849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 081FFCDFC4B
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:53:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0762CDFBA9
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 13:43:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B3E543021041
-	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:51:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 68BAD3073196
+	for <lists+devicetree@lfdr.de>; Sat, 27 Dec 2025 12:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74EBA335BA1;
-	Sat, 27 Dec 2025 12:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81388339854;
+	Sat, 27 Dec 2025 12:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oz9VZtTN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cdX+lrnS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45474324B0A;
-	Sat, 27 Dec 2025 12:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55C682D23A5;
+	Sat, 27 Dec 2025 12:31:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766838579; cv=none; b=Qi1oDZ6wqVPUHQJ7a8f1mMnRwL8djmXfTozLm0lHEgPGiWXwxqOUsAGHbBXusoiGvkl7P2IVddRqqM5iPtn395KykqmERr94sWYDRLQwlIUEUmiJ+u2YsJeSwityJF64vknj8th5fjIkwYEtuW4m5lqA44NxXzYTcsssQl1Dmx0=
+	t=1766838675; cv=none; b=HjzHbAEGoP9fxozVSNayz++zq/y+npvTzGJf9IvE2swLPggzquaAZ4y0MZXhnfATdg4ShvKCOj59Rc+ppTu67912aPWPeZRGPNOjGj2TtfT3+NfHZZQP4l1ba3hXH3vn37iTHa5vUwZfc3luXdKZhyX28CoaHQvX2uFUuvuYvHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766838579; c=relaxed/simple;
-	bh=okqOYN2Xw9qQ/xkSF06ArzAodMAkpQa+jOeYFI3UY9I=;
+	s=arc-20240116; t=1766838675; c=relaxed/simple;
+	bh=blzpBhq9e/2lmcYxWv8XlMw+KPraYKJ3bELesYBQ1Pw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qEkd7sf7+Xuz9DhAw3BvlWyn15suGuBRuglfAXDvDmjGELnclfFMho4WNAAFAlifDJ83F34mNUP13u2i88sHp/cKt+zhEsSwH2Z9HxTAt7odFrREBtE8XOtI+k4peTcMuuqHzMyiK5E/lsPinlwc/PRmt1dLOXzmSWvDisRxS5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oz9VZtTN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E50DC4CEF1;
-	Sat, 27 Dec 2025 12:29:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BOUN6bA9oksmrf1/+zOLMVtpf1WB8JplkAi/p1pPCvnPT+p0+qp7BvLxGHqJz+nBgVjzG19aYcR7FsGAooPdLTPMNIz9CEmWWnRL5eTLots5otBjyKv/Dv4NOmfKPjEaA44Z22o6YVicaDzXgJUtfxocGGeEJ2AkTVkKeMYRkdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cdX+lrnS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A633C4CEF1;
+	Sat, 27 Dec 2025 12:31:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766838578;
-	bh=okqOYN2Xw9qQ/xkSF06ArzAodMAkpQa+jOeYFI3UY9I=;
+	s=k20201202; t=1766838673;
+	bh=blzpBhq9e/2lmcYxWv8XlMw+KPraYKJ3bELesYBQ1Pw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Oz9VZtTN3izEgjQ9u57p1cn0K500+iFjCMxJUslZxAl4hgWxhVvixAwU2Il1fkp+q
-	 z8ICPTFB4B+8toFBHG1Uq2UgZ1KIP6Z1QN1A4ZvwJkFWB4Y++Y23Ia5tRlYiEZeBYq
-	 sLZKXdf6Zcfd4jFF2LFg/i0ZIdO2hx5BKz1ST6zojoa000CbHbt9cMunamF+4gcbA7
-	 5vfcO6hh7JCAIAii/KId+Bewwlon0R59m54jRWlvdbdtO99A4/v31Fv9BMC0yeCPls
-	 zqvhp0IZeHpzNHrBbFcGtL+kgr7JAYEC5NaEJJPXLnwe8sOSPrkLYZesm8vfwD/YC8
-	 QgSCp8/78F69g==
-Date: Sat, 27 Dec 2025 13:29:36 +0100
+	b=cdX+lrnSsbOWXg91P/7y8JXRH7FgvCxGp6gOP4O2+Heszi98rAkSoCXd0gaVsBpDj
+	 kAd3lmGmcdobguPrt+ZahAdBnBwUlepzzH6QoI+rKC12to/FgjZAcpchahpQRj1C9c
+	 gWkf44IdeG1axFv8+Vu46ZIMGA4Ua+izS/QcQR8wgUqDWVjxTG0dP0hq8/ukyVoPk7
+	 NpKnwX3prcqRG02DUI/tbAosGGfmKSaLvGaE7PmQbwnyof2PIBxNsR66zvFFBE4sWn
+	 SYs9KvD1ToUc4QePYOvXMone+m5sTRGhTpwEwrvco8dKI7GU0iHq5CshfMmL20kflF
+	 HktKbbHCbf/Sw==
+Date: Sat, 27 Dec 2025 13:31:11 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Osose Itua <osose.itua@savoirfairelinux.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, michael.hennerich@analog.com, 
-	jerome.oufella@savoirfairelinux.com
-Subject: Re: [PATCH v2 2/2] dt-bindings: net: adi,adin: document LP
- Termination property
-Message-ID: <20251227-perfect-accomplished-wildcat-4fcc75@quoll>
-References: <20251222222210.3651577-1-osose.itua@savoirfairelinux.com>
- <20251222222210.3651577-3-osose.itua@savoirfairelinux.com>
+To: Arun Muthusamy <arun.muthusamy@gaisler.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	mkl@pengutronix.de, mailhol@kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-can@vger.kernel.org, 
+	Ludwig Rydberg <ludwig.rydberg@gaisler.com>
+Subject: Re: [PATCH v2 01/10] dt-bindings: Add vendor prefix for Frontgrade
+ Gaisler AB
+Message-ID: <20251227-camouflaged-malkoha-of-economy-d44a2f@quoll>
+References: <20251223105604.12675-1-arun.muthusamy@gaisler.com>
+ <20251223105604.12675-2-arun.muthusamy@gaisler.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,36 +59,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251222222210.3651577-3-osose.itua@savoirfairelinux.com>
+In-Reply-To: <20251223105604.12675-2-arun.muthusamy@gaisler.com>
 
-On Mon, Dec 22, 2025 at 05:21:05PM -0500, Osose Itua wrote:
-> Add "adi,low-cmode-impedance" boolean property which, when present,
-> configures the PHY for the lowest common-mode impedance on the receive
-> pair for 100BASE-TX operation.
+On Tue, Dec 23, 2025 at 11:55:55AM +0100, Arun Muthusamy wrote:
+> From: Ludwig Rydberg <ludwig.rydberg@gaisler.com>
 > 
-> Signed-off-by: Osose Itua <osose.itua@savoirfairelinux.com>
+> Frontgrade Gaisler AB provides IP cores and supporting development tools
+> for embedded processors based on the SPARC and RISC-V architectures.
+> Some essential products are the LEON and NOEL synthesizable processor
+> models together with a complete development environment and a library of
+> IP cores (GRLIB).
+> 
+> The company specializes in digital hardware design (ASIC/FPGA) for both
+> commercial and aerospace applications.
+> 
+> Web site: https://www.gaisler.com/
+> 
+> Signed-off-by: Ludwig Rydberg <ludwig.rydberg@gaisler.com>
+> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
 > ---
->  Documentation/devicetree/bindings/net/adi,adin.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Documentation/devicetree/bindings/net/adi,adin.yaml
-> index c425a9f1886d..d3c8c5cc4bb1 100644
-> --- a/Documentation/devicetree/bindings/net/adi,adin.yaml
-> +++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
-> @@ -52,6 +52,12 @@ properties:
->      description: Enable 25MHz reference clock output on CLK25_REF pin.
->      type: boolean
->  
-> +  adi,low-cmode-impedance:
-> +    description: |
-> +      Ability to configure for the lowest common-mode impedance on the
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Either this is ability or you configure the PHY, as written in commit
-msg. The latter suggests that's a SW property, not hardware, thus not
-for bindings.
-
-If the first, then why it is not implied by PHY itself - the compatible
-(which is missing which makes this binding not selectable).
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
