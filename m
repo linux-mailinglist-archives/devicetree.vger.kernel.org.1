@@ -1,152 +1,249 @@
-Return-Path: <devicetree+bounces-249915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64C2CCE03A1
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 01:43:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1475CE485B
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 03:51:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0B81D301819B
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 00:43:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8E073300508D
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 02:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE311EF39E;
-	Sun, 28 Dec 2025 00:43:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57D8145B27;
+	Sun, 28 Dec 2025 02:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="cr0pGOdP"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="Ff5kLJdN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C9611E8826
-	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 00:42:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E389B1DFFD
+	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 02:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766882581; cv=none; b=ZHVKf/aC8GOJz5n3GcgeeUGdWSZKSjxxyoFLOcDEvVSB2oaIO1fnw0oyv7qGnvH/S/UQka0NMSPygpyGpu+bln3iWxQJBKjT0k7PIltUtVtXNhRUNekVB3thfMpVYa1P3TyM1ShaqkWlNcfEa7WoeilB//l5mwD25LokOfpzAcg=
+	t=1766890292; cv=none; b=DEERQusy7eUmwTeUELQ/u7FsXWpaPkd4bL1FOaT0SSL61WFP3t+YRsPS9cpBPvPuR1buNLdhGOpamlx6/5ZQcVGk5nnmIPKWKA59yJhyndLf/QwDEimhsjQV6R7OnGaTqswvLecyK3n7XMzXG88NsLkd1+Es+wC2KzHGdf4FEEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766882581; c=relaxed/simple;
-	bh=I/NRGNwB9UgcD2l6EIAjGQuseMXjDZYSzJ6ijrVYqFI=;
+	s=arc-20240116; t=1766890292; c=relaxed/simple;
+	bh=pQXGQ5o8UonNog9Yxlk36qtPZV2LXTq+Oq3el+trUIk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H8+OrOR3ReNxcU/ajsYAKcSvVlxqOk3gInk2CYU2Cfe1+UjzmnyqbefZDGs2eoc0zzDxhzX/UFfl9HbcQdGRBy15nY3bZhL4mxlQl1eoO9w0WOQWUl0tLFXiFPZ+2R+rij/sJLb3abA4hfQbbCciszhLi9wPIwkvrd0izmFJ8ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=cr0pGOdP; arc=none smtp.client-ip=209.85.128.182
+	 To:Cc:Content-Type; b=gwtq4bWAre5jTtR+pncVxYbV0E8QfurmIsCHRzmpI4ht2i+uwiGfCH8cLnCEw0Nt2EZr65HO+wqMxRdST6IrbJU1rJ4EPSJzCsjr7dB+M4taoh6VI2K6yI8ddQUHfprTknL4HsIcF5C7bOcjA7H3gMJ76Jgi9PDnI/PMkfwcAio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=Ff5kLJdN; arc=none smtp.client-ip=209.85.128.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-7900ab67562so17396357b3.0
-        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 16:42:59 -0800 (PST)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-786d1658793so71170907b3.1
+        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 18:51:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1766882579; x=1767487379; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1766890290; x=1767495090; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zwhU6tz2IAJuOhbctHFHYJBwk5gc+cswNffBuQKQ3CU=;
-        b=cr0pGOdPyYmNCvkRh2D8Pqhvnr70JqKohViM8o3VCGRSW67IY950R/sZ9W9fvyFLy6
-         doX0s51KtcMiFWPaCRrsQig1srE2ij2NJ85f0gR7hlYyY0VZ+Vz42R96OatQ2xBUjMns
-         YwrhrudFlHw3oXPPTfTrg9xjQN7hVUT6oKp6vuxlxowg7dop7IWmbNtrEGlbDqN60QYi
-         TMPv5uKTUtMaIOo+UNSsXL1wrdEUue2xB3uG86fqDS5V7kgl7Xo57S8fVhm3XJORmrVB
-         cAkB74xFRz+N/L2dIOl9rch2gFpMV4GZiamr+UCFwV4J64fMD71wLFPN+4yKC0OGoSlu
-         brWQ==
+        bh=18qGTvniKulXXWT/wKk72xoOo8IjxyBBayqhOjXKPqU=;
+        b=Ff5kLJdN+q1uu6az8BZmWLYAaOOgNs5rY74Aza7rTYjP3XbO9BODCYnYOiCubKUyDQ
+         RiScfwA58fQm7flAg6l7xprJJG4uB80apTdafPAfq4aasj/SZYdQsy21aLezItsbmRwG
+         7mT/s5iQSzutadUcdeQWC5De9HSGtWfnO1N/GLvUL09PWQQLPaT/vWm7bAzcrGnwb9zd
+         xWKSJMtmsmZF4XGXlZ3kN6q/OhhueRNqA1ZAknR43Qdwr3xZFqFOOT6f29NsLUZ2yban
+         jc8AYk+REFpmddejUtkuuGK1Xq0iqvEV96mwPXVbK1jUVXz0Np93YatPexM56fHWHAB1
+         l9qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766882579; x=1767487379;
+        d=1e100.net; s=20230601; t=1766890290; x=1767495090;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=zwhU6tz2IAJuOhbctHFHYJBwk5gc+cswNffBuQKQ3CU=;
-        b=wWHlbV6fK1tyusbacBlDzxAJCWMicjfiE6l6jgNfhTMmjnGvdinDIoxN779TkBDqKX
-         5Rtmw9FXL9Binl56FKSn4xvry6gpvq4j2ucpsaygfXgKnMuo4iPTVTxtUDtuCDbYYL97
-         88McVGxGjxXsC+W8suWEpjq02xJmpGyK2ewsQD1HIS+rV1KzaTDxvVGFn5G3uTS6+fsr
-         pLgcM1sdRjfANWV4m5q1CAiLZ+7dvvikRxN8dCOhFTwaB8Up3A71edwlErHShCT4rpxs
-         j+uc4m6+sosLsAocphmDuDfpQlrVZ5S1X100QvtfPHVKOxd2osgpY4c/XM6hPqs+NwbT
-         vozA==
-X-Forwarded-Encrypted: i=1; AJvYcCV2sMqf301fh7GdEdJXODxgaO8cMUhK5Fy9yx+ch2z3nmmMDW8fTK7mG0L5SJRva/aTNK4aMuiCJvBr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyaJkwVvfsEY8CJcTZZWc1utRK2rvgxyPi7BUnsv+pEU7IXGS4z
-	/HhI+5cAu+FuZvgpuNrrnIskJpxaN3fW/ZBmWtE+bB9weGBD4Li3gOxIvatpyaXro+0iFCcqLUt
-	hzNIk9ukCY10EZwSbOfPonzo8J1nimOZPipdZ66RujA==
-X-Gm-Gg: AY/fxX4t35zWdrYxh/TEGyqAUZK83OT+zzAp78U35lxrB/A+LUNKLVNVOp+mOJY99Kv
-	UsYyfmr8jQmWY5WAGOgfwluhB81a8fKGjfhUE06M4z8eBBzfObp+qmON/vDHnntwQBuGwPsKbH4
-	gUzUyJHuzN85/ESjGwjnqTgf35xb72BLGa/TWEy91SR0WHAft96lpDL+KfBMOSNmlK4wWmIrWWo
-	XKrC16EWZlqy8q55PxY6XDWg9LXJuibM0flPwjQoWM9z/H9p6QJ4NH/cNZGgW3VgJIPsrXskADm
-	EuOQ6iYOUeSLCSTII2q6wRuWsMvmwJFCymbN11fUhS0w+NCQz6H9A3Q=
-X-Google-Smtp-Source: AGHT+IErlcXBgMih7zxAEH5xWwRllR/TKu/x3r4n41MRYEc1IKi6ZvbVG+UxUtBlusdkfkmh4FvWruwadgCeYqiXZ8Y=
-X-Received: by 2002:a53:b178:0:b0:644:7712:ed72 with SMTP id
- 956f58d0204a3-6466a874977mr19597372d50.43.1766882578983; Sat, 27 Dec 2025
- 16:42:58 -0800 (PST)
+        bh=18qGTvniKulXXWT/wKk72xoOo8IjxyBBayqhOjXKPqU=;
+        b=nM6qG/0L8jT4z69vXfG+Ol7oqthlijqqK08cQnmdf4PkSIoxPNzpgR4TtO1nmyvEwG
+         9wpvi43LXw4qU34jQSaHhbeQwnCJnYGs1tf5IEayCjRaVL/RUOuSfhiX7FU9WpdsOZwp
+         offgJ+1J0AjzPF8LSfkMfWc8lM+xNRs2D3mgKH+UlfypLr54iym5eKGExBcrb5CdqhsD
+         rPIylIgHxP+/yoZKlheGwuEzpHK6N7sPWvkCyab4ukJcVITzPx9XdVFg9U3fZ0nx+pJ5
+         lAyecUkSl+x7dCekSVAG2g2KovP4eZbUFOP/UB4a/mQw9LLft/XRvi+5K/lMV5uaoW5D
+         dRfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW/S6JD3sZJRWujDi52bhj9jVthoPQe79zbs9svwTKgEijAkyUH7frxfiYWp1CqZEQj34zzVxqhSSJN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmIaqyLu5npYsNiaMAg5eTa3ORFdwTWDIK6QyeMh0DiNISyXmO
+	0G9jN/cnGUXqfO1wlLxwEbr6YRr1aAMtRH5BfIuSuO3z88j0qg1XvjhMlloVDPXOzoU063W4uTa
+	kezXCnX+uyhlY9JlLpt4v8EwnQGLArvrWV7tz7AFpaw==
+X-Gm-Gg: AY/fxX4UMtaL6c5pj0/xqV8EO63FBP3Uf/b9shprZlQhOFPawzZxdO651NXZnJzwJwU
+	Py7mgqZk3IRBUQpnHKuYay3Zk/5TH49crR9UwzekJfX5ly8dwyUHeOIsLI5nfWyWwQSb2WxtbFA
+	OH6odu32GRCmOTWGGL4f2AZLuonne7PIaK6dgwV8KHrR809AU50rpE7f+sAsQzK3aMhTo0fV/7f
+	8QU7X0vDHDigycAcrPKZs7+1x34Cba9iCqq+m8k6PhSlo2aw24rYOYm/giH9V1q++1N8OQ32mzj
+	3Iiq9OQTmwov39IQ4c1fsIfuRbLPcwqureLyKWlPJtq3
+X-Google-Smtp-Source: AGHT+IEc7vrvqgLHTFGlN3GYl8BNYF5Xijr5Fz6yp8EHf084aPqSZUjYIDTL+WyA328b2h++sOgSe5PHolFKTubOv/Y=
+X-Received: by 2002:a05:690c:2601:b0:78c:697e:738 with SMTP id
+ 00721157ae682-78fb3f37a5amr462215137b3.18.1766890289821; Sat, 27 Dec 2025
+ 18:51:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
- <20251219-i2c-reset-v2-2-ad201a602e74@gmail.com> <2dmrli7yzznpurg74wet4oidhljjf3csdjly2dwpyvyndhrec3@uc6ke7mep6fv>
- <CAH1PCMbGbe6MQtAucf-4W+H_G0LrvPNGyaB_OUyxqf5TF=jixg@mail.gmail.com> <zjrd3dgvcg3pxmn4455iljtugbufr4igyokdycusyhpykbzyl5@nrwgz366wm67>
-In-Reply-To: <zjrd3dgvcg3pxmn4455iljtugbufr4igyokdycusyhpykbzyl5@nrwgz366wm67>
+References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
+ <20251222-k3-basic-dt-v2-7-3af3f3cd0f8a@riscstar.com> <20251222-stitch-preachy-3fab87fd6f0f@spud>
+ <CAH1PCMZ7ywZ3unLy0yHYK+fFHk0y=q2cEtPnRi=qSpf=fc75rw@mail.gmail.com> <66c0676a-7920-4825-b916-3c00b1648a08@riscstar.com>
+In-Reply-To: <66c0676a-7920-4825-b916-3c00b1648a08@riscstar.com>
 From: Guodong Xu <guodong@riscstar.com>
-Date: Sun, 28 Dec 2025 08:42:47 +0800
-X-Gm-Features: AQt7F2opxPHnMSK_AxzmQeemtfy8x4nXYU2M7Wsw2w8qZ6_eughd9bfR4C5SjDk
-Message-ID: <CAH1PCMY9A3CO1PXo-b5_BGY13xdx3nvAqb-R28hUz1VMLzTHWQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] i2c: k1: add reset support
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Encrow Thorne <jyc0019@gmail.com>, Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yixun Lan <dlan@gentoo.org>, Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
+Date: Sun, 28 Dec 2025 10:51:18 +0800
+X-Gm-Features: AQt7F2qn_DuwN9wJBAHmU8RWoNvuj8xcFk9LYANOqbaLNy2Gt0ggjV_dYt2ZiZQ
+Message-ID: <CAH1PCMbBURb=DpChf+Y-DjYjzpXG-pKgoaHAu=TUuG4oVC56cg@mail.gmail.com>
+Subject: Re: [PATCH v2 07/13] dt-bindings: riscv: Add B ISA extension description
+To: Alex Elder <elder@riscstar.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
 	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Troy Mitchell <troymitchell988@gmail.com>, linux-i2c@vger.kernel.org, 
+	Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Lubomir Rintel <lkundrak@v3.sk>, Yangyu Chen <cyy@cyyself.name>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, Andrew Jones <ajones@ventanamicro.com>, 
 	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
+	linux-serial@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi, Andi
+Hi, Alex
 
-On Sun, Dec 28, 2025 at 3:26=E2=80=AFAM Andi Shyti <andi.shyti@kernel.org> =
-wrote:
+On Sat, Dec 27, 2025 at 5:28=E2=80=AFAM Alex Elder <elder@riscstar.com> wro=
+te:
 >
-> Hi Guodong,
->
-> On Fri, Dec 26, 2025 at 07:38:22AM +0800, Guodong Xu wrote:
-> > On Fri, Dec 26, 2025 at 5:01=E2=80=AFAM Andi Shyti <andi.shyti@kernel.o=
-rg> wrote:
-> > > > +     rst =3D devm_reset_control_get_optional_exclusive_deasserted(=
-dev, NULL);
-> > > > +     if (IS_ERR(rst))
-> > > > +             return dev_err_probe(dev, PTR_ERR(rst),
-> > > > +                                  "failed to acquire deasserted re=
-set\n");
-> > >
-> > > If this is optional, why are we returning with error?
-> > >
+> On 12/23/25 12:51 AM, Guodong Xu wrote:
+> > Hi, Conor
 > >
-> > According to include/linux/reset.h, if the requested reset is not
-> > specified in the device tree, this function returns NULL instead of
-> > an error. Therefore, IS_ERR(rst) will only be true for actual
-> > errors (e.g probe deferral).
+> > On Tue, Dec 23, 2025 at 5:17=E2=80=AFAM Conor Dooley <conor@kernel.org>=
+ wrote:
+> >>
+> >> On Mon, Dec 22, 2025 at 09:04:17PM +0800, Guodong Xu wrote:
+> >>> Add description of the single-letter "B" extennsion for Bit Manipulat=
+ion.
+> >>> B is mandatory for RVA23U64.
+> >>>
+> >>> The B extension is ratified in the 20240411 version of the unprivileg=
+ed
+> >>> ISA specification. According to the ratified spec, "the B standard
+> >>> extension comprises instructions provided by the Zba, Zbb, and Zbs
+> >>> extensions.
+> >>>
+> >>> Hence add a schema check rule to enforce that B implies Zba, Zbb and =
+Zbs.
+> >>>
+> >>> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> >>> ---
+> >>> v2: New patch.
+> >>> ---
+> >>>   .../devicetree/bindings/riscv/extensions.yaml         | 19 ++++++++=
++++++++++++
+> >>>   1 file changed, 19 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml =
+b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >>> index 565cb2cbb49b552959392810a9b731b43346a594..385e1deb23996d294e766=
+2693f1257f910a6e129 100644
+> >>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >>> @@ -109,6 +109,13 @@ properties:
+> >>>               The standard C extension for compressed instructions, a=
+s ratified in
+> >>>               the 20191213 version of the unprivileged ISA specificat=
+ion.
+> >>>
+> >>> +        - const: b
+> >>> +          description:
+> >>> +            The standard B extension for bit manipulation instructio=
+ns, as
+> >>> +            ratified in the 20240411 version of the unprivileged ISA
+> >>> +            specification. The B standard extension comprises instru=
+ctions
+> >>> +            provided by the Zba, Zbb, and Zbs extensions.
+> >>> +
+> >>>           - const: v
+> >>>             description:
+> >>>               The standard V extension for vector operations, as rati=
+fied
+> >>> @@ -735,6 +742,18 @@ properties:
+> >>>           then:
+> >>>             contains:
+> >>>               const: f
+> >>> +      # b comprises the following extensions
+> >>> +      - if:
+> >>> +          contains:
+> >>> +            const: b
+> >>
+> >> What's the value in adding b, if it depends on having all 3 of the
+> >> components defined individually too? Currently all "superset" types of
+> >> extensions are permitted without their component parts also being defi=
+ned,
+> >> this doesn't follow convention and therefore needs to be explained.
+> >>
+> >> You obviously need this construct because the kernel does not understa=
+nd
+> >> "b", and even if you added support for interpreting "b" to the kernel
+> >> this is probably still needed to make sure the ABI is maintained for
+> >> anything importing a devicetree from the kernel.
+> >
+> > Yes, exactly. Unlike other single-letter extensions, "b" was ratified
+> > (Apr/2024) much later than its components zba/zbb/zbs (Jun/2021).
+> > Existing software and the kernel already expect these explicit componen=
+t
+> > strings, so enforcing this dependency ensures cores declaring "b" will
+> > also be correctly understood by older software that only looks for
+> > zba/zbb/zbs.
 >
-> And this is quite obvious, but you haven't answered my qestion.
+> I might be misunderstanding you, but I don't think extension "b"
+> should *require* the other three extensions.  Instead, the "b"
+> extension should be considered *equivalent* to the other three.
+
+You are correct in saying they are equivalent.
+
+> That's what I understand it to mean, anyway.
+>    https://github.com/riscv/riscv-b
 >
-> Why do we care of internal failures in reset? If reset fails on
-> an optional reset control function why should we kill our driver?
+> There's no point in supporting "b" in devicetree to represent
+> the others if it also requires the others to be present.
+>
+> I think that, instead, "b", "zba", "zbb", and "zbs" should all
+> be allowed.
+>
+> I might even go further and harden the requirement, saying that
+> if you specify "b" you should *not* specify "zba", "zbb", or "zbs".
 
-Thanks for the clarification. I see your point now.
+Historical reasons here. "b" came too late. The chip vendors have published
+cores with "zba", "zbb", and "zbs"already.
 
-My reasoning is that if the resets property is explicitly listed in the
-Device Tree, the driver must respect it. If the property is present but
-we encounter an error (like -EPROBE_DEFER), ignoring that failure could
-put the hardware in an undefined or dirty state.
-
-> Just ignore the error and move forward as we have done until now.
-
-I want to double-check what you mean.
-
-I checked other drivers in drivers/i2c/busses (e.g. i2c-riic.c, i2c-mv64xxx=
-.c,
-i2c-designware-platdrv.c), and they seem to follow this pattern of returnin=
-g
-errors even for optional resets.
+That's a migration bridge to require "b" must be listed
+together with the other three.
 
 BR,
 Guodong
 
+> But that might not be normal practice, and it's not necessary
+> because they aren't in conflict.
 >
-> If the kernel is suffering from internal failures (say ENOMEM),
-> it will fail anyway or, with some luck, recover.
+>                                         -Alex
 >
-> Andi
+> > I will update the commit message in v3 to clearly explain this reasonin=
+g.
+> > Does it sound good to you?
+> >
+> > Thank you for the review.
+> >
+> > BR,
+> > Guodong Xu
+> >
+> >>
+> >>> +        then:
+> >>> +          allOf:
+> >>> +            - contains:
+> >>> +                const: zba
+> >>> +            - contains:
+> >>> +                const: zbb
+> >>> +            - contains:
+> >>> +                const: zbs
+> >>>         # Zcb depends on Zca
+> >>>         - if:
+> >>>             contains:
+> >>>
+> >>> --
+> >>> 2.43.0
+> >>>
+> >
+>
 
