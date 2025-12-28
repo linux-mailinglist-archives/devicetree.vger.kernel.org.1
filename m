@@ -1,141 +1,115 @@
-Return-Path: <devicetree+bounces-249918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83946CE495C
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 06:48:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50292CE499E
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 07:52:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 720AC300F581
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 05:48:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 493B6300DA4D
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 06:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DEBF25A2DD;
-	Sun, 28 Dec 2025 05:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E579227A461;
+	Sun, 28 Dec 2025 06:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JbfKqeV1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B2L+Z5OH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7260258CD0
-	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 05:48:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5891259CB6;
+	Sun, 28 Dec 2025 06:52:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766900911; cv=none; b=mfY1yKgTYvESMnjbulKJI+53eXyA3dqDWJ8M2avY8jQ0Qau1o6GKJxmG8xk2AtXMkf+6GIVskg8W9cCw/PFtASEPSCBpvCyNRaO4IFEtUogK5TXu5XCoAwxU9mx3D5cygaN64D7mzWlbYorQ2gY4gw19uLm/Q6BwdiRJb4KGmC8=
+	t=1766904768; cv=none; b=GTAFe+Ld4RUPqT71yL8Qs89Iw0+nDGt+pBtsoBhP6AHRDfV2eTqekCrwS5CqHiiD0P0U6TMcw7KLsiLIxY8DQnBe+SkZCckURpstZ+Ru6Iq5dRGsHUfVyJvACTPSubp3HSlRkPbPSVocegjL7blLjwtJr2UGthFzDTa7AiKV0cM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766900911; c=relaxed/simple;
-	bh=1pJCobo7skl3IqJjut1/aoDj5JGv6MK8u9FvD8pNb2M=;
+	s=arc-20240116; t=1766904768; c=relaxed/simple;
+	bh=uXXoCbWj+ft3G+bbeyfRGBLWRRFRoHtxxL0vn/VevBo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Xv3y8S+zKS/iC8FLYwR+JkUK+XRX2YyvClE7hq7WD/pVlDpEx7hj9R7pOwHkvyQFrsR9ZclzHhxzUxMU61iDoKlFoaAnbbA+AW0copBAkFOTs/5drCX7uh13cttncv3JVr+rqw5CqI9p5pT1c5I7Ei22cWM5bobmV7LxPlog6ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JbfKqeV1; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-59584301f0cso8687216e87.0
-        for <devicetree@vger.kernel.org>; Sat, 27 Dec 2025 21:48:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766900908; x=1767505708; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gpbqpIsug6MH33BRSdVEMnAsF4zSM1dpRpn6fI+y1V8=;
-        b=JbfKqeV1R/D9PDEPPrpO1wYpIfzCnjYN8WzGCDsrD7n0KnJV0u3PDx7jcRD+sYwnIA
-         eVLB3CpQB849HOmn+7qyvDAGHdjogV/RbhTM5RC3nhmHCZ0TyW6xK3JNdZNaqYQmvrUg
-         cdF2N3n6AHfVPNdJ1ryI3wA2QGNWbPVUL4Yf3rtoYhAqO0T+o3WymyughkijcxLCR87V
-         +fnF79OAU7EfREe3nNHWZEso4Y17g0IgnlTErD8PjLZJPzIMAvaP5vrtBPD9WVBks/2a
-         8UcdzNEASY5xEWPA2yfKwUq+h/WI08DI0xTyf9s2SAxgEpPfJCz/aEfymR47u8T5Gj3+
-         bs5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766900908; x=1767505708;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gpbqpIsug6MH33BRSdVEMnAsF4zSM1dpRpn6fI+y1V8=;
-        b=oBthkIgvpsLfh/nHn/dOb0vGR1wKwz3aojr2Mep8U0CtBRYVE/XwVw5SIkC1rsR5iK
-         TpfXAbt2r3xKdxK/JTA8Nr31Jp8sYon48+CqSkJq7SxOE07LJl4ggCOA7RRz3OIuVuSW
-         /7FM6KH7O68KjX3C5lv1S93/02CvZ/bYpMch7/gFSQpVGv/QRgGox1T5U3EgLkrDMmyY
-         9DYyZVj10IGtC/zDtzWmJvbSpzS5GeC+YG1uhKYXgLYJxBD+YMSiT/Oqa6Y9Ih7KYj/P
-         DujkRfp7nonF0Oo84OpAE+vfxdeQzN07OTpUJ47NHxE/OJWBvpvLq/bSbeYggbcRV/Bn
-         TD9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU57Nc1SeO8A+yaPWJXov6DiOSjCSzinFB8HdzpzBsihjSB3lQrJW0W0aZmzIViztkWNF3g22eu45mA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPB+xTfZP80faJC6j5MMvABVR4tdFzWkUhmzqHHeiF94qBJN+y
-	3npxFtCGAwee88Vh+rS6+miTF3P7fwTmgegZdttkxT9y84ebVNBVyXVy
-X-Gm-Gg: AY/fxX6w70we+43/xgpCyOUJRjGAEX83G4ifVLzJOekNmxiPHuvxBa+m81aALpbVKbM
-	U/QJRp7Y987/GDOJx1x0U5WFDQWB8yWTfNLCw64Ha3fZGmWl7kxNa9PnQn6BmMFxH/QpeO+lReW
-	EmKlkbpo/oMIpKnQkqUn6tsvRD/KZDeL0Gkix4UFQRQ98zu+izmx1/6vf88hDnZlStCVpriUFnP
-	Q50XUI0RImjBAggDZSNmdH4G0ubwySt/3aG9ig9zWRGT8SUdTD+hnzOeHUm6imoF3pC+Tkkcnik
-	nDWz24C8Q4GF96t5aF8XLdmU+FJs6GB6zYKxNp/JwBykODgQQuWn4rTwS3C8lPspOxZPkjinWxJ
-	GuMjgjVyv5rlIEhptmPoYVoA8XeEGfY1JgDrHqxwcx6yE345DqlMqdOGOqRLnx85rMm/RgwHlQt
-	gDv3lJFAT2ll4d2VHIDmk=
-X-Google-Smtp-Source: AGHT+IHbwDkZ0ZrkYZSKb3xcvqlBhmZdaEoQdezjtjNsk1jz3+5apfKEePyLYdpuFJXN8OT07eFG0Q==
-X-Received: by 2002:a05:6512:3b9f:b0:595:7cb9:8e51 with SMTP id 2adb3069b0e04-59a17d1fa1dmr9400930e87.12.1766900907593;
-        Sat, 27 Dec 2025 21:48:27 -0800 (PST)
-Received: from localhost ([194.190.17.114])
-        by smtp.gmail.com with UTF8SMTPSA id 2adb3069b0e04-59a185d5ee4sm8077427e87.17.2025.12.27.21.48.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 27 Dec 2025 21:48:27 -0800 (PST)
-From: Askar Safin <safinaskar@gmail.com>
-To: nfraprado@collabora.com
-Cc: Tim.Bird@sony.com,
-	bhelgaas@google.com,
-	dan.carpenter@linaro.org,
-	davidgow@google.com,
+	 MIME-Version; b=bglBtmF1sL4asyBPoNR5sB/m9CwDi38oulZlaKh6S2OeHWK19rtfHcIYCx4hYIQCyqJ9Yo+6mJW1vnJanl3em37mHoNrnjFE6pgOz3lc9DlYWcJeMkES7W30hDF2zNYPaAN1QO/6Gy+/tdeipyB2aUioD3hX8b4bcE6bd1oXwjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B2L+Z5OH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 436C6C4CEFB;
+	Sun, 28 Dec 2025 06:52:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766904767;
+	bh=uXXoCbWj+ft3G+bbeyfRGBLWRRFRoHtxxL0vn/VevBo=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=B2L+Z5OHw3Hd1gGt0E756UjXsqxG8RhwILE1aNPwgIQXC0rK6KeMfUyQmktUja8os
+	 bbjyLS3qPSL2ZDi9DkY7SHSNC2x/P76EJRw68nWV5d8rKpqTZ/FxSGWYLsHkq49Hkm
+	 LNjIQHEv1gEcMRy6ftiW1g+4ZlGVnRzqj0Imem4WYNL9AJNAMEylRD5WIr2OgVV7nN
+	 xPb0W697Zq0lHCMYmgvsp9e74pEDcBrdkHVFRuKK0ZBl+zEgp08u2cZgXyulSSsTzZ
+	 Z338+nSqrne2lBAvIHTtuF+JW2Ix+85u99QmaY+bknGr3tyTOX/BiTC3B1n2ljkEd0
+	 HO6vtHLspJQ6w==
+From: William Breathitt Gray <wbg@kernel.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: William Breathitt Gray <wbg@kernel.org>,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	s32@nxp.com,
 	devicetree@vger.kernel.org,
-	dianders@chromium.org,
-	gregkh@linuxfoundation.org,
-	groeck@chromium.org,
-	kernel@collabora.com,
-	kernelci@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	linux-kselftest@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	robh+dt@kernel.org,
-	saravanak@google.com,
-	shuah@kernel.org
-Subject: Re: [PATCH v4 3/3] kselftest: devices: Add sample board file for XPS 13 9300
-Date: Sun, 28 Dec 2025 08:47:42 +0300
-Message-ID: <20251228054804.2515185-1-safinaskar@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20240122-discoverable-devs-ksft-v4-3-d602e1df4aa2@collabora.com>
-References: <20240122-discoverable-devs-ksft-v4-3-d602e1df4aa2@collabora.com>
+	linux-iio@vger.kernel.org,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 3/3] counter: Add STM based counter
+Date: Sun, 28 Dec 2025 15:52:40 +0900
+Message-ID: <20251228065241.21144-1-wbg@kernel.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251217075000.2592966-4-daniel.lezcano@linaro.org>
+References: <20251217075000.2592966-4-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2114; i=wbg@kernel.org; h=from:subject; bh=uXXoCbWj+ft3G+bbeyfRGBLWRRFRoHtxxL0vn/VevBo=; b=owGbwMvMwCW21SPs1D4hZW3G02pJDJkBl5eV3nC/Oe0pY83T8hc6BcdPKfLm9+5mFD+035VV+ kJtXqRjRykLgxgXg6yYIkuv+dm7Dy6pavx4MX8bzBxWJpAhDFycAjCRaB1Ghs1TzRb95zCbxpir seOwT8ghvW/5s1aLfzTbkFv5Y0VSUhHDP3uzJrP45bUXa/adLkhWex/S6BOXfnXF1lOSr0113Nf MYAcA
+X-Developer-Key: i=wbg@kernel.org; a=openpgp; fpr=8D37CDDDE0D22528F8E89FB6B54856CABE12232B
 Content-Transfer-Encoding: 8bit
 
-"Nícolas F. R. A. Prado" <nfraprado@collabora.com>:
-> Add a sample board file describing the file's format and with the list
-> of devices expected to be probed on the XPS 13 9300 machine as an
-> example x86 platform.
+On Wed, Dec 17, 2025 at 08:49:57AM +0100, Daniel Lezcano wrote:
+> The NXP S32G2 automotive platform integrates four Cortex-A53 cores and
+> three Cortex-M7 cores, along with a large number of timers and
+> counters. These hardware blocks can be used as clocksources or
+> clockevents, or as timestamp counters shared across the various
+> subsystems running alongside the Linux kernel, such as firmware
+> components. Their actual usage depends on the overall platform
+> software design.
+> 
+> In a Linux-based system, the kernel controls the counter, which is a
+> read-only shared resource for the other subsystems. One of its primary
+> purposes is to act as a common timestamp source for messages or
+> traces, allowing correlation of events occurring in different
+> operating system contexts.
+> 
+> These changes introduce a basic counter driver that can start, stop,
+> and reset the counter. It also handles overflow accounting and
+> configures the prescaler value.
+> 
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
-And now "Dell Inc.,XPS 13 9300.yaml" became the only file in the repository,
-which has space in its name:
+Hi Daniel,
 
-$ find . -name '* *'
-./tools/testing/selftests/devices/probe/boards/Dell Inc.,XPS 13 9300.yaml
+It sounds like you're trying to implement a clock for timestamping.
+Although the Generic Counter interface is flexible enough to shoehorn a
+a clock into its representation, I don't believe it's the right
+abstraction for this particular device. Perhaps reimplementing this
+driver under the Linux common clock framework would be a better approach
+to achieve what you want.
 
-I kindly ask you to rename file. New name should not contain space or comma
-in it.
+Regardless, if you do pursue a Counter driver you'll need to follow the
+Generic Counter paradigm[^1] and define at least three core components:
+a Signal, a Synapse, and a Count. Resetting the Count is typically
+implemented by defining a struct counter_ops counter_write()
+callback[^2], while overflows are typically implemented by pushing
+COUNTER_EVENT_OVERFLOW Counter events[^3] that can be watched by
+userspace.
 
-The file name in its current form breaks tools. For example, it breaks
-"xargs".
+William Breathitt Gray
 
-For example, the following will work in "fs" directory:
-
-stable/fs$ find . | xargs chmod -w
-
-But it will not work in root of source tree because of this
-"Dell Inc.,XPS 13 9300.yaml" file:
-
-stable$ find . | xargs chmod -w
-chmod: cannot access './tools/testing/selftests/devices/probe/boards/Dell': No such file or directory
-chmod: cannot access 'Inc.,XPS': No such file or directory
-chmod: cannot access '13': No such file or directory
-chmod: cannot access '9300.yaml': No such file or directory
-
--- 
-Askar Safin
+[^1] https://docs.kernel.org/driver-api/generic-counter.html#paradigm
+[^2] https://docs.kernel.org/driver-api/generic-counter.html#c.counter_ops
+[^3] https://docs.kernel.org/driver-api/generic-counter.html#counter-events
 
