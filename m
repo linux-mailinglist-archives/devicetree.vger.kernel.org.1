@@ -1,299 +1,130 @@
-Return-Path: <devicetree+bounces-249935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC847CE4EAC
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 13:55:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC2D6CE504D
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 14:10:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8D930302EA1A
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 12:53:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B98C63008890
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 13:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 633692D8793;
-	Sun, 28 Dec 2025 12:43:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FE2F288D2;
+	Sun, 28 Dec 2025 13:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="aNzv/H11"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FRRXFBWB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1282D8396
-	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 12:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4DADC2EA;
+	Sun, 28 Dec 2025 13:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766925801; cv=none; b=bJ9hJy2co+tWNnQ4N/AZHR9/udME8fFTe6QzwokL6qSRGbm0eJ4TjVtINvMX+fC00KkkEyxDNPxs4GLOcYYt1YHgrXQ8yXyyIcMuiirYW73+9VCrSzYZ3oSbqo4MX06xSP2vNbM/hxf1Vdab4FWCZtTD7rBhSTflzIYBKwV3xmc=
+	t=1766927365; cv=none; b=rOGc/GSAljRBanEs1Yzb5BTwWnExgiNwQQlemKeoyUxx45fnh7Cnqpb1XlCKJyVmLMGd8lL8+65MCKOtrT36uXVNm23J4tmwHvPkJp4y9LmZAURg2TvYy4gGQy28M48QSwX0QvawsIo1PROZ3v6BRQSK7LdLYmM3t+tFCFLxdGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766925801; c=relaxed/simple;
-	bh=PDtPzIPdNVWEmGWJy4NYLWw9A8mjRLIe0eMacVvyCiU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jPByYwNyVGt1zZejsPFXJT9fSgyFNYeuU7FAHo3jhAW5eE6FB3B7DOU8VhHMDuPFFV2vejPJuwrkrmtIClbnyaaK2f0lrIhf2ZJRdBDBKUyfw6BDaFe3PxUrL//83Sf0lgWZBOYAliIdZcwKosp4eIlyfLhXYcC4SFRLTjC/b4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=aNzv/H11; arc=none smtp.client-ip=74.125.224.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-646b8d2431dso5741d50.2
-        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 04:43:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1766925797; x=1767530597; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ubXvmj1fUdXD8dToAHqKBaQMhIVravK57oAPfXT+X64=;
-        b=aNzv/H11mwIpGNpxNDc1bsUiQ0O/P404g2F+o47h+wzzUrXrBigv/2WbZp9g5VP9Zw
-         ZPFxIQFehEXKtQCwzzgcigwar2VuStJDhfPcpgbcW0KI9JnU3PYQcY3oC1cu6mitm1JZ
-         +yGKkK4gwkVvXvmIv2p5LFUM5hPRJh/mSylDZ9tF4bx6HXH5aXE6oSTfx3XCMB3Y6O79
-         3VixkP7jmRARS9LgTpDpYuR808oL2p2u42rXyTs8tm0WAJok+DqDWYSr5y2iQ3mPx54a
-         6zjqpYSpQIk0jHhhQLpRPRE7NPGNToF27OmkFv1jReNtdbplGz51AR771NNzIO4vgcH8
-         ACKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766925797; x=1767530597;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ubXvmj1fUdXD8dToAHqKBaQMhIVravK57oAPfXT+X64=;
-        b=IfZAw3HmeL5/dAmOk12jndvIt3BEdDT4frMpgPwkFlRx7uTRuUtPCb/NgEMrFct+La
-         czMB61cM3JLgmbhYyqBEiYHwR4yO+JZ2hNR7q0Nl/vUh2wtabVAkMJ0MzWNQ1zb9kdiS
-         N6Hw0917kLfYsBUT9KFnYeCsHyVOL0BrFTf7TQutVZHs7x01H+fZIYU5neNFKOxFoZ39
-         9dmghLwMjCP3mE8RGmoEbj47ZzNZpUHkacF+ATDbuVhG8IKD9lIqWJIzB6sEUixB1+G0
-         oAWaFvL7l1qbu+ZutZz/Qk6IDpPu4NfIOs6krGh5ljmgOrLVoHBVVk8RdJJ/6dImCOW9
-         jUqw==
-X-Forwarded-Encrypted: i=1; AJvYcCVHsgXXbiIa8EspPUn1iJiKYr1uVWsNIbhduxWcqBfwDUw03PkJ2hgx8F0UwQGL7OGdqfZwWi75od8a@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZsrBNEJLD5ZeLlfJVC/MEvd4ZhWbSTlNgnPtqPeicYEtGazhc
-	IzUFxJNtveOjqPyFWqrU6sxmOGe1ZazEFDcprXzsZXTLNCsh9kZf+z/TnxsCRiQT9f4T97cOg2e
-	UyYmFI21mFQRNqowux2hkdsOtZ2qhg7Kpke0VSf4cNw==
-X-Gm-Gg: AY/fxX7sucOLmJb8C4/GYcJL5UtynoBNtjRA7MnBOal9digYegvl9VVdBTTXBCFqYxe
-	T179hnLUVHgMGFw9/GXLDhJLTnxynszGFIsAvHo6GWI5/wA2+bnMqdUO5vwFpOQJB12taITW3N1
-	WtkmlzjCukZUPif2oRJ3yE5UWxferVuj9x/Kau9W9NJ+fsjoL2y1RFuJTlvNFcTPqAITY4STi4j
-	aXX43deDJ9RpRjpcXtkCzY9IAKWaSFAoLAB2GPozP5XsXzj7e7do048Seaio+4/cJvXxFZ+RgR+
-	ARmRAzhRWAk+rYRmvKurxsymgeVAFME1cktHb1bdNl4U
-X-Google-Smtp-Source: AGHT+IHppMMkEW6WFB0HEo0ifxTYnk4oEPsIke/IUQFq16jbr9MVRxACLruWnHcI0AyOA5DYLrW7GjdWONuaMWC32sY=
-X-Received: by 2002:a05:690e:1402:b0:644:60d9:867a with SMTP id
- 956f58d0204a3-6466a8e7f1amr19754124d50.95.1766925796931; Sun, 28 Dec 2025
- 04:43:16 -0800 (PST)
+	s=arc-20240116; t=1766927365; c=relaxed/simple;
+	bh=nkcJp462X6PCzpMNE7nmEmCqQwtVqc5uvNzAnDUhJq4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OC00EEpVGc2VZtnc0bJN6aEcFxCFNQ91BSjvIOKdz31NtHrWlZicYtSMawI8HgQHlFuzeAlcWRKrcWRSAXIUL+uwcl0jjtAJuLb88iCF48BtlKwOp4dWm+1pTZyc6a7YF28IRif23moXdHVWURr0/Wpo/hL7aRraqLjifIemaqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FRRXFBWB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41492C4CEFB;
+	Sun, 28 Dec 2025 13:09:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766927364;
+	bh=nkcJp462X6PCzpMNE7nmEmCqQwtVqc5uvNzAnDUhJq4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FRRXFBWBvuldOMTBKNbLyiS4n0DfmNbcpJ2D4zEDDJXCLRnPa+Naz3Si76SzpSYVP
+	 yxAtEhLxL/IqM34UABG52/2Jz5QRag58euoLONjBiaExLwXRIqP+g7w97GMMh5u6Pz
+	 +OrPkxwSDQXu4E4dE1DBX+611FhtvCn3Eix0BcNjTR7m797i2As85kteP+bMZe/Xn0
+	 4ui8GBd1Q1j36L2GgksBV7Ef9DrynTZ4ENG6EbqabGZLxNRFChwz+bAcaArPByPtwN
+	 omcnvkA/Np4/JLR99Wv1sDrpATdxKP5/jltOTITiG6dyBacuZWUsuMtbDseNPA8l/9
+	 OmtJ69b4AUTbA==
+Message-ID: <2d7308c0-0b74-44c2-99fb-831b7a2de4e5@kernel.org>
+Date: Sun, 28 Dec 2025 14:09:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
- <20251222-k3-basic-dt-v2-10-3af3f3cd0f8a@riscstar.com> <0253c25d-f5fd-46f1-b4d3-ec56909d5eac@riscstar.com>
-In-Reply-To: <0253c25d-f5fd-46f1-b4d3-ec56909d5eac@riscstar.com>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Sun, 28 Dec 2025 20:43:02 +0800
-X-Gm-Features: AQt7F2qXu9cqHVEnLlLdWdHISUhUuV8HhHEXXaEigmu6Qha30-fVIyENTL3svVE
-Message-ID: <CAH1PCMa0NqZGQAknRZppVWUEBzKDE7tcega7bsT187+=wc-_YQ@mail.gmail.com>
-Subject: Re: [PATCH v2 10/13] dt-bindings: riscv: Add Sha and its comprised extensions
-To: Alex Elder <elder@riscstar.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Lubomir Rintel <lkundrak@v3.sk>, Yangyu Chen <cyy@cyyself.name>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, 
-	Heinrich Schuchardt <xypron.glpk@gmx.de>, Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
-	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	spacemit@lists.linux.dev, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: bridge: lt8713sx: Add bindings
+To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Tony <syyang@lontium.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, prahlad.valluru@oss.qualcomm.com,
+ Prahlad Valluru <vvalluru@qti.qualcomm.com>
+References: <20251228-lt8713sx-bridge-driver-v3-0-9169fbef0e5b@oss.qualcomm.com>
+ <20251228-lt8713sx-bridge-driver-v3-1-9169fbef0e5b@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251228-lt8713sx-bridge-driver-v3-1-9169fbef0e5b@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi, Alex
-
-On Sat, Dec 27, 2025 at 5:28=E2=80=AFAM Alex Elder <elder@riscstar.com> wro=
-te:
->
-> On 12/22/25 7:04 AM, Guodong Xu wrote:
-> > Add descriptions for the Sha extension and the seven extensions it
-> > comprises: Shcounterenw, Shgatpa, Shtvala, Shvsatpa, Shvstvala, Shvstve=
-cd,
-> > and Ssstateen.
-> >
-> > Sha is ratified in the RVA23 Profiles Version 1.0 (commit 0273f3c921b6
-> > "rva23/rvb23 ratified") as a new profile-defined extension that capture=
-s
-> > the full set of features that are mandated to be supported along with
-> > the H extension.
-> >
-> > Extensions Shcounterenw, Shgatpa, Shtvala, Shvsatpa, Shvstvala, Shvstve=
-cd,
-> > and Ssstateen are ratified in the RISC-V Profiles Version 1.0 (commit
-> > b1d806605f87 "Updated to ratified state").
-> >
-> > The requirement status for Sha and its comprised extension in RISC-V
-> > Profiles are:
-> >   - Sha: Mandatory in RVA23S64
-> >   - H: Optional in RVA22S64; Mandatory in RVA23S64
-> >   - Shcounterenw: Optional in RVA22S64; Mandatory in RVA23S64
-> >   - Shgatpa: Optional in RVA22S64; Mandatory in RVA23S64
-> >   - Shtvala: Optional in RVA22S64; Mandatory in RVA23S64
-> >   - Shvsatpa: Optional in RVA22S64; Mandatory in RVA23S64
-> >   - Shvstvala: Optional in RVA22S64; Mandatory in RVA23S64
-> >   - Shvstvecd: Optional in RVA22S64; Mandatory in RVA23S64
-> >   - Ssstateen: Optional in RVA22S64; Mandatory in RVA23S64
-> >
-> > Add schema checks to enforce that Sha implies the presence of all its
-> > comprised extensions.
->
-> Like patch 7 in your series, I *think* what you're doing
-> in trying to imply the presence of these other extensions
-> is actually requiring all those extensions to be present
-> *in addition* to just "Sha".  I don't think that's what
-> we want.
-
-I tend to think this schema check block should be removed. Conor expressed
-similar design logic in his comments to my Patch 7/13 of v2 series.
-
-If there is no objection, I will remove it.
-
-BR,
-Guodong
+On 28/12/2025 12:40, Vishnu Saini wrote:
+> Add bindings for lt8713sx.
+> 
+> Co-developed-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
+> Signed-off-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
+> Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
+> ---
 
 
->
->                                         -Alex
->
-> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > ---
-> > v2: New patch.
-> > ---
-> >   .../devicetree/bindings/riscv/extensions.yaml      | 79 +++++++++++++=
-+++++++++
-> >   1 file changed, 79 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/=
-Documentation/devicetree/bindings/riscv/extensions.yaml
-> > index ed7a88c0ab3b7dc7ad4a4d2fd300d6fb33ef050c..1066b7e65dab89704dbac44=
-9db4aa5605c95b9d3 100644
-> > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > @@ -128,6 +128,57 @@ properties:
-> >               version of the privileged ISA specification.
-> >
-> >           # multi-letter extensions, sorted alphanumerically
-> > +        - const: sha
-> > +          description: |
-> > +            The standard Sha extension for augmented hypervisor extens=
-ion as
-> > +            ratified in RVA23 Profiles Version 1.0, with commit 0273f3=
-c921b6
-> > +            ("rva23/rvb23 ratified").
-> > +
-> > +            Sha captures the full set of features that are mandated to=
- be
-> > +            supported along with the H extension. Sha comprises the fo=
-llowing
-> > +            extensions: H, Shcounterenw, Shgatpa, Shtvala, Shvsatpa, S=
-hvstvala,
-> > +            Shvstvecd, and Ssstateen.
-> > +
-> > +        - const: shcounterenw
-> > +          description: |
-> > +            The standard Shcounterenw extension for support writable e=
-nables
-> > +            in hcounteren for any supported counter, as ratified in RI=
-SC-V
-> > +            Profiles Version 1.0, with commit b1d806605f87 ("Updated t=
-o
-> > +            ratified state.")
-> > +
-> > +        - const: shgatpa
-> > +          description: |
-> > +            The standard Shgatpa extension indicates that for each sup=
-ported
-> > +            virtual memory scheme SvNN supported in satp, the correspo=
-nding
-> > +            hgatp SvNNx4 mode must be supported. The hgatp mode Bare m=
-ust
-> > +            also be supported. It is ratified in RISC-V Profiles Versi=
-on 1.0,
-> > +            with commit b1d806605f87 ("Updated to ratified state.")
-> > +
-> > +        - const: shtvala
-> > +          description: |
-> > +            The standard Shtvala extension for htval be written with t=
-he
-> > +            faulting guest physical address in all circumstances permi=
-tted by
-> > +            the ISA. It is ratified in RISC-V Profiles Version 1.0, wi=
-th
-> > +            commit b1d806605f87 ("Updated to ratified state.")
-> > +
-> > +        - const: shvsatpa
-> > +          description: |
-> > +            The standard Shvsatpa extension for vsatp supporting all t=
-ranslation
-> > +            modes supported in satp, as ratified in RISC-V Profiles Ve=
-rsion 1.0,
-> > +            with commit b1d806605f87 ("Updated to ratified state.")
-> > +
-> > +        - const: shvstvala
-> > +          description: |
-> > +            The standard Shvstvala extension for vstval provides all n=
-eeded
-> > +            values as ratified in RISC-V Profiles Version 1.0, with co=
-mmit
-> > +            b1d806605f87 ("Updated to ratified state.")
-> > +
-> > +        - const: shvstvecd
-> > +          description: |
-> > +            The standard Shvstvecd extension for vstvec supporting Dir=
-ect mode,
-> > +            as ratified in RISC-V Profiles Version 1.0, with commit b1=
-d806605f87
-> > +            ("Updated to ratified state.")
-> > +
-> >           - const: smaia
-> >             description: |
-> >               The standard Smaia supervisor-level extension for the adv=
-anced
-> > @@ -186,6 +237,12 @@ properties:
-> >               ratified at commit d70011dde6c2 ("Update to ratified stat=
-e")
-> >               of riscv-j-extension.
-> >
-> > +        - const: ssstateen
-> > +          description: |
-> > +            The standard Ssstateen extension for supervisor-mode view =
-of the
-> > +            state-enable extension, as ratified in RISC-V Profiles Ver=
-sion 1.0,
-> > +            with commit b1d806605f87 ("Updated to ratified state.")
-> > +
-> >           - const: sstc
-> >             description: |
-> >               The standard Sstc supervisor-level extension for time com=
-pare as
-> > @@ -813,6 +870,28 @@ properties:
-> >                   const: zbb
-> >               - contains:
-> >                   const: zbs
-> > +      # sha comprises the following extensions
-> > +      - if:
-> > +          contains:
-> > +            const: sha
-> > +        then:
-> > +          allOf:
-> > +            - contains:
-> > +                const: h
-> > +            - contains:
-> > +                const: shcounterenw
-> > +            - contains:
-> > +                const: shgatpa
-> > +            - contains:
-> > +                const: shtvala
-> > +            - contains:
-> > +                const: shvsatpa
-> > +            - contains:
-> > +                const: shvstvala
-> > +            - contains:
-> > +                const: shvstvecd
-> > +            - contains:
-> > +                const: ssstateen
-> >         # Zcb depends on Zca
-> >         - if:
-> >             contains:
-> >
->
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
+Best regards,
+Krzysztof
 
