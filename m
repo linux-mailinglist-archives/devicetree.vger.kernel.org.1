@@ -1,121 +1,89 @@
-Return-Path: <devicetree+bounces-250002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E56CE57EB
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 23:21:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47995CE57FA
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 23:31:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5526030037B3
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 22:21:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 20D813006A73
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 22:31:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DC9199E94;
-	Sun, 28 Dec 2025 22:21:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="sBJ7fvuG";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="sBJ7fvuG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3FAD278E63;
+	Sun, 28 Dec 2025 22:31:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
+Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [5.144.164.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2175C2EA
-	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 22:21:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964182A1BF;
+	Sun, 28 Dec 2025 22:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766960498; cv=none; b=BKUKw7GyXWrXQFv5v+hsU7COv4dQzVzI6rYzkiiJ+pmWdeIBted6JXVLs9w9Xon8lxcqsjiyzPJoHhXQW4pB7eTdeQrlXY5g4VPNINE7n6L+RO8ZMbbePK+WLjRB5wjndfY+dQ7uzUOivL2TeaYG5gXWE6fqpHVvCM6y5vEXZHk=
+	t=1766961077; cv=none; b=bJ+g0yCBH+Xn/oPmdkygwW9Yk8Bnm+wr7xmZbbZOV2EcxsPv5vcSqk4bO2bKfuOMlDBbqAoZKIMFPhsk57M6p4cbCGT+bbZUIvdi9lQKMcoIrQP9rSJoL5pLdAG2UTSJ1NCjT6Rr1Bx4iNDk1GwrVTzsvbfwqNQ5Sys8oqf2uO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766960498; c=relaxed/simple;
-	bh=CpO1rSWzqrOyPAFxxg06leQheFevM1H2QpJi0wSDqJs=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=YHaWKrwe/naqwDq/I/6FK/7XRh2HqFkbPUhiK+92iFKhQhS83rs8wT2p4SaVnjQuMnpz5CgsR1BbW4zrjxaIJ6HhCik5xSFwLw95xRqO8V61nRomay3wEYORWu2VS+UBkiTkk1QkMOSukEToE8dJdBvU9o61VVuwMqKBs6ehtfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=sBJ7fvuG; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=sBJ7fvuG; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1766960488; bh=CpO1rSWzqrOyPAFxxg06leQheFevM1H2QpJi0wSDqJs=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=sBJ7fvuGIg/zQfIUn4Cz5efgPja03YYCu1+GiDuyjEGH+FZOuEUEHokd0fK979Ypr
-	 Qm/Xr+6rsTJZyf+N6X/40Chug7tBsGm/AvGUWt/ClvQrdX+Zz+nzIL9mL3bGscEui6
-	 3izWdiSNXGCnD21FqOKQQNpWRGp9FMNM10NQnyqSJ65x4YphK96HfUoo1Ghy6So3UJ
-	 e4Z7UOYdUq65ynYWPkTak/tn3vWoscveSE5zwnsY4XbFABUVIbacmXYDsTJBf4ZTC6
-	 Ad6k4zdNVTbULJevV966UtCiqdfCJsXPwTP2Zs/bbWOyGv0RxVwMMONhdkmLfF6t6D
-	 BHsN6KtaQZRwA==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 981B53E90D7;
-	Sun, 28 Dec 2025 22:21:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1766960488; bh=CpO1rSWzqrOyPAFxxg06leQheFevM1H2QpJi0wSDqJs=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=sBJ7fvuGIg/zQfIUn4Cz5efgPja03YYCu1+GiDuyjEGH+FZOuEUEHokd0fK979Ypr
-	 Qm/Xr+6rsTJZyf+N6X/40Chug7tBsGm/AvGUWt/ClvQrdX+Zz+nzIL9mL3bGscEui6
-	 3izWdiSNXGCnD21FqOKQQNpWRGp9FMNM10NQnyqSJ65x4YphK96HfUoo1Ghy6So3UJ
-	 e4Z7UOYdUq65ynYWPkTak/tn3vWoscveSE5zwnsY4XbFABUVIbacmXYDsTJBf4ZTC6
-	 Ad6k4zdNVTbULJevV966UtCiqdfCJsXPwTP2Zs/bbWOyGv0RxVwMMONhdkmLfF6t6D
-	 BHsN6KtaQZRwA==
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	s=arc-20240116; t=1766961077; c=relaxed/simple;
+	bh=788XqJ5dVAenHvJ78SGTaFTWedi+61qLAlv+c8nO2zM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sffMoXCPw72bd8AGngREty426AxMb2wHf0GnoxrCBq0/r5RiEjLqm5xZjT9CVJXwNtRCAS7vL0eIWz/pXFvtGo2HfNKzUqPDgQyors5YU4P5yhK9O+1y23qYSriR9tVt7+iB0VqYZpjF03iCcc2DYl0R2L53DJINBO5sENEq+hQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mail.mleia.com (Postfix) with ESMTPSA id 312F53DAF7E;
-	Sun, 28 Dec 2025 22:21:28 +0000 (UTC)
-Message-ID: <379f38ac-ab4a-4615-894b-e404bea4a6a1@mleia.com>
-Date: Mon, 29 Dec 2025 00:21:21 +0200
+	by m-r1.th.seeweb.it (Postfix) with ESMTPSA id A542A1FA79;
+	Sun, 28 Dec 2025 23:31:06 +0100 (CET)
+Date: Sun, 28 Dec 2025 23:31:05 +0100
+From: Marijn Suijten <marijn.suijten@somainline.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
+	Casey Connolly <casey.connolly@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Simona Vetter <simona.vetter@ffwll.ch>, 
+	~postmarketos/upstreaming@lists.sr.ht, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, Martin Botka <martin.botka@somainline.org>, 
+	Jami Kettunen <jami.kettunen@somainline.org>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>
+Subject: Re: [PATCH v2 06/11] dt-bindings: display: panel: Describe Samsung
+ SOFEF03-M DDIC
+Message-ID: <aVGufYAmikItGgYi@SoMainline.org>
+References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
+ <20251222-drm-panels-sony-v2-6-82a87465d163@somainline.org>
+ <20251222-godlike-mongoose-of-valor-3eeee0@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 0/2] ARM: dts: lpc32xx: set DMA and NAND flash
- controller properties
-From: Vladimir Zapolskiy <vz@mleia.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20251225203157.1414349-1-vz@mleia.com>
-In-Reply-To: <20251225203157.1414349-1-vz@mleia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20251228_222128_636837_195F82B6 
-X-CRM114-Status: GOOD (  14.03  )
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251222-godlike-mongoose-of-valor-3eeee0@quoll>
 
-On 12/25/25 22:31, Vladimir Zapolskiy wrote:
-> The changeset adds a numbed of necessary properties to ARM PrimeCell
-> PL080 DMA controller and to SLC and MLC NAND flash controllers, and now
-> it obsoletes the platform data of the controllers populated on boot.
+On 2025-12-22 09:33:04, Krzysztof Kozlowski wrote:
+> On Mon, Dec 22, 2025 at 12:32:12AM +0100, Marijn Suijten wrote:
+> > Document the Samsung SOFEF03-M Display-Driver-IC and 1080x2520@120Hz DSI
+> > command-mode panels found in the Sony Xperia 5 II and Sony Xperia 5 III.
+> > It requires Display Stream Compression 1.1 which allows the panels to be
+> > driven at 120Hz, even though a 60Hz mode is available too.
+> > 
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 > 
-> To respect any probable users who does not update dtb on the boards,
-> the platform data cannot be removed instantly, but now it's time to
-> declare one year timeout for such a synchronization to be completed,
-> the platform data of DMA and NAND flash controllers will be removed by
-> the end of the next year.
-> 
-> The changeset is based on top of the previously sent changes:
-> * https://lore.kernel.org/linux-arm-kernel/20251224165845.1261926-1-vz@mleia.com
-> 
-> Note, the changeset is marked as the resent one, it's identical to the one
-> https://lore.kernel.org/linux-devicetree/20251225180230.1400420-1-vz@mleia.com/
-> but now the changeset appears on the linux-arm-kernel mailing list as well.
-> 
-> Vladimir Zapolskiy (2):
->    ARM: dts: lpc32xx: add DMA controller properties to the device tree node
->    ARM: dts: lpc32xx: add DMA properties to NAND flash controllers
-> 
->   arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
-> 
+> Your patchset has multiple white space warnings. Apply and see...
 
-Found a previously unapplied change, which is more comprehensive and
-substitutes this series, still have to add {lli,mem}-bus-interface-ahb2
-property to the DMA controller device tree node:
+I am sorry for missing this.  I've asked b4 upstream to include diff --check
+validation in their prep --check pass as I did not save + reapply my own series
+before sending with this workflow.
 
-https://lore.kernel.org/linux-arm-kernel/20240627150046.258795-6-piotr.wojtaszczyk@timesys.com/
-
-Will apply the one from Piotr.
-
--- 
-Best wishes,
-Vladimir
+- Marijn
 
