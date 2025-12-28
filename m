@@ -1,343 +1,248 @@
-Return-Path: <devicetree+bounces-249960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A854CE5282
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 17:00:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D1B8CE52F1
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 18:01:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BE0D4302D5ED
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 15:59:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 15EA330052C6
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 17:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0AD42D542A;
-	Sun, 28 Dec 2025 15:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A394420E6E2;
+	Sun, 28 Dec 2025 17:01:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lwOIMLRu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SyhN8Fj4";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="B+CxNqKk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B012D2D594F
-	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 15:59:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0B1CA59
+	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 17:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766937548; cv=none; b=qMlb9F66TGlQDf/fo2Yb80leGmbrd/7F/TxgTnxjmIjsosx5QfZdefoMkBO+tFfqO1GbS58fUVBN4zYFzrjNu6guE8JZ/231wCPvZtf/eK2aQ9SbbhzSWGjJaSW0GvV97mBMoSfn3Vb3lMrvNYAEHQQpzGcSE6ArGFFr5fVOzeA=
+	t=1766941285; cv=none; b=jLSY+mVdg/xt68vEgf4G9xiQeXjisZbeD3w6JvRjbASVhJ8SjU8fjvA/GtNNmpEi1a9ys8S8lg4OuVURGiWFCGOdXVcTUG3lxTKAOdMfQMZLRxc2T7EZp2ar4CasbcB684DYShHsd2V53lcMy+odoHBA/kXgnaQFV4L1aGcCPOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766937548; c=relaxed/simple;
-	bh=LiouFruLmybp6+y/XLTWPOFhLsAKAnNBnuxqAIwtnjU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UHGiHOLcwdBB+exGCGaLhfVVzETbGZZei/FsuUS6Xj9gnxwYi9kHpr7UN1EjwbeA+s7MRrhIujoUeb3nb/OuHURplGMnCchTFFfrZWglo9wCGPe2isF/LkhhLvIFztSRw2PnCzPTRH12rDqVhvSjRLFP2sixejBWsI0qFwuFzSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lwOIMLRu; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7c76f65feb5so6305634a34.0
-        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 07:59:05 -0800 (PST)
+	s=arc-20240116; t=1766941285; c=relaxed/simple;
+	bh=lCxl2n5aD6Bb9zv77JM6BQ3kRr5ZEjbzp3hesNEVqg0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DsGIYKE0izmM0ErytT2+GWCDuywasTlTpY3qrcnp/bsgYzEXUBt+/3RsqDBxEcQLa0+dZdBpS15sBlQxFBRJrjab/i9L8ZXUtcTnNZG3mbvP+q11rlRriNqEsakKWAZcjru+CfzZ8M3n7Wbh6GPozQTMYtGNJbOQfCvXVFuR99o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SyhN8Fj4; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=B+CxNqKk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BS4Olng2276889
+	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 17:01:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=b+7B9SJgNJm4sR8RVhnBTK
+	Tux/7l5bt1WKzbOSx4CCM=; b=SyhN8Fj4JfHu2Pn5S+cFk04tl0u/LNelNQf+tY
+	D2gcvLE7719Dh6nEBEZyegB0lRiLMOqRL4/+JA2FAV34djTh1Us+Z40oyReEUmy5
+	NOuNfooaYh0JMWMI86yhVYU8/7+zRAG77lMlX3iKJVErQQN/TgcA905uta4+J/KH
+	hFLFH6GHLA+HE0KBHA2JZeuhYuzvfUCuE0g5MHLPwEd6wOFCE1onkjnRw/N5tU6j
+	XCAC8+LFXY9/AUQQxutMAELNIGWC2kL8QSD1+ebG5V9ya4O4bGmiCfx+HZ69Vz5V
+	+cg+xMoXfm909Qj7iZoOMO4EQhJ0Oaiux74uFt4Nt7psYACg==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ba6f62hgq-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 17:01:21 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7b895b520a2so9595543b3a.0
+        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 09:01:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766937544; x=1767542344; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IpMs7DUUJiTVZzkNa0WwVvn6iVCEHIOvp8u0lRuMmRg=;
-        b=lwOIMLRu/PAS/UvMJJ7e9VXmAH5/qhRNzwd6U2wSCVhj4/PG5NDq25pleOyNwNjTX7
-         88TFxL3AlTnfQA8dZh8mrrnY6Bbmj36bKKUHkf9dqU7pRa9IuMCPOBGnl8orkABkTs5o
-         WVaeD3eDBelcMYK1+eyDEnE5STfnPCbAsf9421KnWQXfdilYz5MNIYD6XKP62qSkCye6
-         f9+StdUx219D6bSY+JQcOXtrR2dzXirvfxNV+5PNDRYVlvL+fuyF+976vdiIoS/zZAOo
-         0/gSa7l0nVV5RzRiZGNHQdMYw+NH6nIjHfKBWBrz5ae5NmH3mHSICLR0HFOHV0bAnGvT
-         2X5g==
+        d=oss.qualcomm.com; s=google; t=1766941281; x=1767546081; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b+7B9SJgNJm4sR8RVhnBTKTux/7l5bt1WKzbOSx4CCM=;
+        b=B+CxNqKkfUuFkuNLzmcYxim2GGhWr2/QQCl6LY76LrqF16FYjTsF/CONREVjN5K7Vb
+         a9vGRBfZAh7S9VsGZPmrwwA7V+aOsmHNVGmCGqQbfkhRjMXOpgezQtOzb1KTr98h5830
+         9WHhhxN47a9V0XodGpeCn9cSy06g9z8S9Us5upZzATzH0p2uD0wYBz5YyslipRVF4uMj
+         Y0tx4q6RxCFwZiwEX7u7bp7+KJf0xg7g1feTZSvwUxK0nEpzUEE265xzyqSM/EnoniBS
+         lYPYTG6dFCdJqBx8cNmFhrnNb8hBRxlqN0G73dwi7VLB28G5lbJS6Ojq8OGOWCWWOnmm
+         7dSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766937544; x=1767542344;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=IpMs7DUUJiTVZzkNa0WwVvn6iVCEHIOvp8u0lRuMmRg=;
-        b=NzBegxYkOksWlGJ7IOgQxrYZmeQAzsJF92GgQzK+2Kl9aTbZoGPIWqbmEyhhzdxgmp
-         tEJfLtwGk+T52MS1sYdgmfOrfmRHnHm9kpfWHzBECz3Sde+ojZqKiUCuLLk8bUTYwvn3
-         yKTqrlzALY+rewM3f29Xw9USWUmHxeVA3ZL/YUsmhLViGmmY+1/iOW42wnTCM95OXWFA
-         qNNKQDEDlDb5mT0Y5Kyra9wbqLKiBWRyVBhzwQVASeJLmI0V9QZyDUl6ypEVbP3vLnvS
-         PFRifs66KgAhZb8IU2S7c8gJ5ZAWpgfHubarV+YS+eKJtc45hbuzLhr3Fv9DC1A9MnzN
-         sMhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV7296KVLlx3sbwOVeilA+FLCtI5YBHX5roix80jnQhnQZml2Izsj77l2bh9T917WL0LYemB4x60pOr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRfz5TOCqGRjuHgHia21j9fFldRc5ujcXRojYbdXdVhrSBVdeh
-	YWbV2t2c+YVhm24zakeDlYyDsAM8xbN/m/drMsf5aIprTXJIPRzB+kI1
-X-Gm-Gg: AY/fxX4wBdzGgNyiH/aziHhwoOJz1aSA9JreYzwvrtkQ92DyxWtLwMV6t3S6qNtC8b7
-	/1uUvUSk0V+tAw8ld0ttI2rWA2doC21v4iVv0DeZ9iQaZ3Zee/5LElGM8O5UYsQ1oyjw2oLAkot
-	Z5EGNIsP/ZStuuXznzMxrqZRohik2d22TBaeU2pdmWpT7rszFMMJv25DsBO6y2f5yA4Vx1wPJYW
-	wrKpbEfyHDFU5DmEH36Z/4d44uBe4bgFa7RoDnvcN5TxW2W/fB+BaHrYKLEqIVclZPrTdVKKlDc
-	Yt62mMpIo+KBHws9E+gCEY+6dZBfwhWUXnu5NkcXai2GJOdbwqwwQpLu/k78pguiOkOvglrxhdv
-	7Mbr6HmIgmEGBdBPIz+unwJycFVxMFPAMztsw56aX0F8BiZL06Uph2lwU/vwoJAlgxSj8A8DmV/
-	lvJCfKYP/vF5SxhO5Hg9d7jqtnsWPQt4Mq7UjB4n/PQUCcGARgKQUQ6LWs7UVzyoaytiLE0zCUt
-	VFVRUKummffWvMAAbGbHoCdpq74
-X-Google-Smtp-Source: AGHT+IGA/19UZG5DpvuP1qzpTnG6guQS1kofs5N8t66j8r2IZe+SU0PQExCFDAszQDjgoEZVkKuLXg==
-X-Received: by 2002:a05:6830:2b0c:b0:7c7:68d8:f6ee with SMTP id 46e09a7af769-7cc668ae239mr16048197a34.6.1766937544453;
-        Sun, 28 Dec 2025 07:59:04 -0800 (PST)
-Received: from nukework.lan (c-98-57-15-22.hsd1.tx.comcast.net. [98.57.15.22])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7cc667ecd6esm19004434a34.25.2025.12.28.07.59.02
+        d=1e100.net; s=20230601; t=1766941281; x=1767546081;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b+7B9SJgNJm4sR8RVhnBTKTux/7l5bt1WKzbOSx4CCM=;
+        b=BQRTodmo15g8NH9PqAtORo/UWbOo/tzFLGhtEi5jLLflQj1OIiFwT0LANd8sNChyaE
+         rxPoY6aDOZsSV3Ly32PpQbLwKWKAKNhrCbvqwwk53Mnfd6WYLjEZ6Zru3QHSb7Ih13yk
+         CxozP3ZIHmzg52BDHh5k40dUadqssTf7lZkobbY3mAvaYKFqMupcsNIQS8QZljYsFbca
+         92YK7O61gfilJozX8r5aW4pF9ermnqGAhsqyrLu6nFntsx/WmYdb3nlcq7BzwfV1y8+g
+         lkd3CipwCWGpB1EmrheKvDkFVpiPFJoKEiOJuzIz3BAepf5adsVI/fNSqm2PJyvTQ4He
+         Pg2A==
+X-Forwarded-Encrypted: i=1; AJvYcCU7FQKi7rCUOUW+tsLclou307ZXty1BoBTL04D7iK4NS9jatAvmTR4jCRmWv24K2JDtO7tAWk7wSsAx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxddRzu92lH6DPCSThDEOcOXg3V3IsYdnPZeW0VYL9+IerYAGTz
+	TTrC1GdlLxyOoopbGCGix8vAoji51i723AyCTXsh+Blw/HiEGcil/ls+Amj6dpdtgEcnP/1Gwp7
+	wm3WX7Fwm/07pxopd3cM7dBJbEWQrxo1J93CJVczh/EkmOTwKI/cetxzpzboRb3OD
+X-Gm-Gg: AY/fxX4xxZASWPkcPUw0RIHoKqny8z+KOAm9vGd4Za9VnoRt8ovKXrV1V7BToJNO5z0
+	eY6/GclWJrMbODffp8R8C0IQCo0nqIEd/eSc2qXEuzHLPkrhpw/SKytrQ5OASgBqnPMf7mus0YW
+	+Xb4siUuEVXeQqMcePF2snKOztBMF2tkp1J3TemzNaGSJXg377KXs3r5aFOiMPllTUV3EPqmKoi
+	+9VT7cU8dU8ie8fLdNDoHWmn/b7PS/23YqJ+iKjFkgBFYUmfPG3vo2yfKYMAQ7Z+PCNuLTdecsL
+	GyrgkFnMaowp7+Uah1m5JMDkUcdc0z2SnNyqj95RkbgA680somWD4iX64th7FggL+nG3piqeFLf
+	Lr2It9cxc9uXNXmeiB5/xQZVa7Z1gpzMcrxE=
+X-Received: by 2002:a05:6a00:ac85:b0:7ab:3454:6f22 with SMTP id d2e1a72fcca58-7ff648e4b26mr29080835b3a.16.1766941280323;
+        Sun, 28 Dec 2025 09:01:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHb9mwgHytfvSq+b5K7BOcjZZAV6Gx7cYLWysZuXgYYAy05VYXb5dQJbI15XSLOV5ECpUVkXw==
+X-Received: by 2002:a05:6a00:ac85:b0:7ab:3454:6f22 with SMTP id d2e1a72fcca58-7ff648e4b26mr29080783b3a.16.1766941279755;
+        Sun, 28 Dec 2025 09:01:19 -0800 (PST)
+Received: from work.lan ([2409:4091:a0f4:6806:90aa:5191:e297:e185])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7ae354easm27053925b3a.16.2025.12.28.09.01.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Dec 2025 07:59:03 -0800 (PST)
-From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jjohnson@kernel.org,
-	ath11k@lists.infradead.org
-Cc: johannes@sipsolutions.net,
-	linux-wireless@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Subject: [PATCH 2/2] wifi: ath11k: support ipq9574
-Date: Sun, 28 Dec 2025 09:58:52 -0600
-Message-ID: <20251228155855.2118792-3-mr.nuke.me@gmail.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20251228155855.2118792-1-mr.nuke.me@gmail.com>
-References: <20251228155855.2118792-1-mr.nuke.me@gmail.com>
+        Sun, 28 Dec 2025 09:01:19 -0800 (PST)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Subject: [PATCH v4 0/5] PCI: Add initial support for handling PCIe M.2
+ connectors in devicetree
+Date: Sun, 28 Dec 2025 22:31:00 +0530
+Message-Id: <20251228-pci-m2-v4-0-5684868b0d5f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAExiUWkC/3WNQQ6CMBAAv0J6toRuW2g8+Q/joZStNBHBVhsN4
+ e8WEpSDXjaZzc7sSAJ6h4Hss5F4jC64/ppA7DJiWn09I3VNYgIFSMYKTgfjaAe0KjkvOatLqzV
+ Jx4NH655L6HhK3Lpw7/1r6UY2b9eEXBOR0YIqUUvLLEOJ6tCHkN8e+mL6rsvTIHMpwtZWHxuSj
+ ao2oqlqK6D5Y/ONDd/fPNlGgioEaNSi+mFP0/QGNszM1R8BAAA=
+X-Change-ID: 20251103-pci-m2-7633631b6faa
+To: Bjorn Helgaas <bhelgaas@google.com>,
+        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-ide@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4147;
+ i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
+ bh=lCxl2n5aD6Bb9zv77JM6BQ3kRr5ZEjbzp3hesNEVqg0=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBpUWJZyvHz/45h4posumn1eViZOd0E2qGRJDadW
+ VpJVYQe0AOJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaVFiWQAKCRBVnxHm/pHO
+ 9XXJB/9VGjuweTs1AAQWECsLaA3eY7wzGJFn+vbSYPinXe47ogqWEn4NoAHg6C08SUvgrNYdAKv
+ XP7Drzzma8hav/IYwzhAHA+uRUebMvbiFVtbvio49KAFO4YNm/tb9IOoWGxoZUrKScGKOnnCieW
+ SWdreBMlvafOu/CRTCc/gVCc1j29qsqdVKQ4bEO/7as9VT2gJDh0b9vVpBbz7Rq80zpByeGYVKM
+ dQuJm4h9KdeUWLPTxRNylnpVwINpQz2q/tgC3RpMPd1hL9dVPOF/9VF6tqblzQpruMYpdLpaU2r
+ odu8CdUoZryRE+YQeC2kL7TCwVzAlsvzUAi5GoxQ27L2Z8Kp
+X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
+X-Proofpoint-GUID: RJv__XfFZiHbQhK0Ntfn0Wj-busGWMES
+X-Proofpoint-ORIG-GUID: RJv__XfFZiHbQhK0Ntfn0Wj-busGWMES
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI4MDE1NiBTYWx0ZWRfX37W+5/EpYShc
+ LcqDgAM4d299ZIJU4n+TS84jWFtl1I2oiK4v+j5gHEkHDmC57b5yMRq67yRsmPWWvItClMNBnU0
+ TwcnuLabGFHRdX7QIVP7yyPocAYtqapAa/BML4PC5b8cWOjJ2+U7iyuCDgWCGlLR8V3uX/vgla+
+ f/UQ3FjDbIU+RgdwyjBNKeXRU9REvpwC4vnqfg07dIxBT13/9kzEAu540BAhNOU1WzsLDjkTsgR
+ 11AVASwxag+LbVIKAa7HPqWoZWtGv+JYOUkvZSE1fCS4Cx7isgH3aIAU1AW0j6eqJkTvxXS2cyt
+ JsGJQnbIxSzNolF5sBjZ8keCJFzd3Vfj9P1mrTgXM/DqLkEMZCmPWz4yxW1EAeJ24JMaon0OjtZ
+ 2STfFcotOFrXv8CcJEdyflhjCTxoc9tMqFqgDsx32Vv1/WrfEbAKz306/SrX4a2HtWrBWX1dDyi
+ ST+sajxdC9D2claWT/A==
+X-Authority-Analysis: v=2.4 cv=YuEChoYX c=1 sm=1 tr=0 ts=69516261 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8 a=otkVNQseMVp4AOM4PXIA:9
+ a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-28_06,2025-12-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0
+ adultscore=0 phishscore=0 spamscore=0 clxscore=1015 impostorscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2512280156
 
-The IPQ9574 can be coupled with wifi-6 chips, like QCN5024 to expose
-a wifi device over AHB. Add the data structures necessarry to describe
-the IPQ9574 wifi hardware.
+Hi,
 
-The CE configs are identical to IPQ6018, as confirmed by inspecting
-the out-of-tree qca-wifi-host-cmn (cnss2) driver.
+This series is an initial attempt to support the PCIe M.2 connectors in the
+kernel and devicetree binding. The PCIe M.2 connectors as defined in the PCI
+Express M.2 Specification are widely used in Notebooks/Tablet form factors (even
+in PCs). On the ACPI platforms, power to these connectors are mostly handled by
+the firmware/BIOS and the kernel never bothered to directly power manage them as
+like other PCIe connectors. But on the devicetree platforms, the kernel needs to
+power manage these connectors with the help of the devicetree description. But
+so far, there is no proper representation of the M.2 connectors in devicetree
+binding. This forced the developers to fake the M.2 connectors as PMU nodes [1]
+and fixed regulators in devicetree.
 
-Coldboot calibration does not seem to work. One of two issues are
-seen. (1) The remoteproc firmware crashes with a fatal error, or
-(2) the firmware stops sending qmi responses, appearing to hang. Leave
-coldboot calibration disabled for now.
+So to properly support the M.2 connectors in devicetree platforms, this series
+introduces the devicetree binding for Mechanical Key M connector as an example
+and also the corresponding pwrseq driver and PCI changes in kernel to driver the
+connector.
 
-Tested-on: IPQ5974 WLAN.HK.2.9.0.1-01890-QCAHKSWPL_SILICONZ-1
+The Mechanical Key M connector is used to connect SSDs to the host machine over
+PCIe/SATA interfaces. Due to the hardware constraints, this series only adds
+support for driving the PCIe interface of the connector in the kernel.
 
-Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+Also, the optional interfaces supported by the Key M connectors are not
+supported in the driver and left for the future enhancements.
+
+Testing
+=======
+
+This series, together with the devicetree changes [2] [3] were tested on the
+Qualcomm X1e based Lenovo Thinkpad T14s Laptop which has the NVMe SSD connected
+over PCIe.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts?h=v6.18-rc4&id=d09ab685a8f51ba412d37305ea62628a01cbea57
+[2] https://github.com/Mani-Sadhasivam/linux/commit/40120d02219f34d2040ffa6328f0d406b1e4c04d
+[3] https://github.com/Mani-Sadhasivam/linux/commit/ff6c3075836cc794a3700b0ec6a4a9eb21d14c6f
+
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+---
+Changes in v4:
+- Added graph property to SATA in this series and PCI to dtschema:
+  https://github.com/devicetree-org/dt-schema/pull/180
+- Used 'i2c-parent' instead of SMBus port
+- Reworded the -gpios property description
+- Rebased on top of v6.19-rc1
+- Link to v3: https://lore.kernel.org/r/20251125-pci-m2-v3-0-c528042aea47@oss.qualcomm.com
+
+Changes in v3:
+- Changed the VIO supply name as per dtschema
+- Added explicit endpoint properties to port 0 node for host I/F
+- Used scope based cleanup for OF node in pwrseq driver
+- Collected review tags
+- Link to v2: https://lore.kernel.org/r/20251108-pci-m2-v2-0-e8bc4d7bf42d@oss.qualcomm.com
+
+Changes in v2:
+- Incorporated comments from Bartosz and Frank for pwrseq and dt-binding
+  patches, especially adding the pwrseq match() code.
+- Link to v1: https://lore.kernel.org/r/20251105-pci-m2-v1-0-84b5f1f1e5e8@oss.qualcomm.com
 
 ---
-Most information about the fields cames from the donwstream patch [1].
-Analysis of the out-of-tree driver [2] shows that the IPQ9574 uses the
-same CE configs as IPQ6018.
+Manivannan Sadhasivam (5):
+      dt-bindings: ata: sata: Document the graph port
+      dt-bindings: connector: Add PCIe M.2 Mechanical Key M connector
+      PCI/pwrctrl: Add support for handling PCIe M.2 connectors
+      PCI/pwrctrl: Create pwrctrl device if the graph port is found
+      power: sequencing: Add the Power Sequencing driver for the PCIe M.2 connectors
 
-[1] https://git.codelinaro.org/clo/qsdk/oss/system/feeds/wlan-open/-/raw/NHSS.QSDK.12.4.5.r2/mac80211/patches/324-ath11k-ipq9574-support.patch?inline=false
-[2] https://git.codelinaro.org/clo/external-wlan/qca-wifi-host-cmn/-/blob/caf_migration/wlan-cmn.driver.lnx.2.13/hif/src/ce/ce_assignment.h?ref_type=heads
+ .../devicetree/bindings/ata/sata-common.yaml       |   3 +
+ .../bindings/connector/pcie-m2-m-connector.yaml    | 133 +++++++++++++++++
+ MAINTAINERS                                        |   7 +
+ drivers/pci/probe.c                                |   3 +-
+ drivers/pci/pwrctrl/Kconfig                        |   1 +
+ drivers/pci/pwrctrl/slot.c                         |  35 ++++-
+ drivers/power/sequencing/Kconfig                   |   8 ++
+ drivers/power/sequencing/Makefile                  |   1 +
+ drivers/power/sequencing/pwrseq-pcie-m2.c          | 160 +++++++++++++++++++++
+ 9 files changed, 345 insertions(+), 6 deletions(-)
 ---
- drivers/net/wireless/ath/ath11k/ahb.c  |  4 ++
- drivers/net/wireless/ath/ath11k/core.c | 82 ++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/hw.c   | 51 ++++++++++++++++
- drivers/net/wireless/ath/ath11k/hw.h   |  1 +
- 5 files changed, 139 insertions(+)
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251103-pci-m2-7633631b6faa
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 8dfe9b40c1262..e68bcc6b60692 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -25,6 +25,9 @@ static const struct of_device_id ath11k_ahb_of_match[] = {
- 	/* TODO: Should we change the compatible string to something similar
- 	 * to one that ath10k uses?
- 	 */
-+	{ .compatible = "qcom,ipq9574-wifi",
-+	  .data = (void *)ATH11K_HW_IPQ9574,
-+	},
- 	{ .compatible = "qcom,ipq8074-wifi",
- 	  .data = (void *)ATH11K_HW_IPQ8074,
- 	},
-@@ -1117,6 +1120,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	hw_rev = (uintptr_t)device_get_match_data(&pdev->dev);
- 
- 	switch (hw_rev) {
-+	case ATH11K_HW_IPQ9574:
- 	case ATH11K_HW_IPQ8074:
- 	case ATH11K_HW_IPQ6018_HW10:
- 	case ATH11K_HW_IPQ5018_HW10:
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 812686173ac8a..fed888414005a 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -40,6 +40,88 @@ module_param_named(ftm_mode, ath11k_ftm_mode, bool, 0444);
- MODULE_PARM_DESC(ftm_mode, "Boots up in factory test mode");
- 
- static const struct ath11k_hw_params ath11k_hw_params[] = {
-+	{
-+		.hw_rev = ATH11K_HW_IPQ9574,
-+		.name = "ipq9574",
-+		.fw = {
-+			.dir = "IPQ9574/hw1.0",
-+			.board_size = 256 * 1024,
-+			.cal_offset = 128 * 1024,
-+		},
-+		.max_radios = 1,
-+		.bdf_addr = 0x4B700000,
-+		.hw_ops = &ipq9574_ops,
-+		.ring_mask = &ath11k_hw_ring_mask_ipq8074,
-+		.internal_sleep_clock = false,
-+		.regs = &ipq8074_regs,
-+		.qmi_service_ins_id = ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_IPQ8074,
-+		.host_ce_config = ath11k_host_ce_config_ipq8074,
-+		.ce_count = 12,
-+		.target_ce_config = ath11k_target_ce_config_wlan_ipq8074,
-+		.target_ce_count = 11,
-+		.svc_to_ce_map = ath11k_target_service_to_ce_map_wlan_ipq6018,
-+		.svc_to_ce_map_len = 19,
-+		.ce_ie_addr = &ath11k_ce_ie_addr_ipq8074,
-+		.single_pdev_only = false,
-+		.rxdma1_enable = true,
-+		.num_rxdma_per_pdev = 1,
-+		.rx_mac_buf_ring = false,
-+		.vdev_start_delay = false,
-+		.htt_peer_map_v2 = true,
-+
-+		.spectral = {
-+			.fft_sz = 2,
-+			.fft_pad_sz = 2,
-+			.summary_pad_sz = 0,
-+			.fft_hdr_len = 16,
-+			.max_fft_bins = 512,
-+			.fragment_160mhz = true,
-+		},
-+
-+		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
-+				   BIT(NL80211_IFTYPE_AP) |
-+				   BIT(NL80211_IFTYPE_MESH_POINT),
-+		.supports_monitor = true,
-+		.full_monitor_mode = false,
-+		.supports_shadow_regs = false,
-+		.idle_ps = false,
-+		.supports_sta_ps = false,
-+		.coldboot_cal_mm = false,
-+		.coldboot_cal_ftm = false,
-+		.fw_mem_mode = 0,
-+		.num_vdevs = 16 + 1,
-+		.num_peers = 512,
-+		.supports_suspend = false,
-+		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
-+		.supports_regdb = false,
-+		.fix_l1ss = true,
-+		.credit_flow = false,
-+		.hal_params = &ath11k_hw_hal_params_ipq8074,
-+		.supports_dynamic_smps_6ghz = false,
-+		.alloc_cacheable_memory = true,
-+		.supports_rssi_stats = false,
-+		.fw_wmi_diag_event = false,
-+		.current_cc_support = false,
-+		.dbr_debug_support = true,
-+		.global_reset = false,
-+		.bios_sar_capa = NULL,
-+		.m3_fw_support = false,
-+		.fixed_bdf_addr = true,
-+		.fixed_mem_region = true,
-+		.static_window_map = false,
-+		.hybrid_bus_type = false,
-+		.fixed_fw_mem = false,
-+		.support_off_channel_tx = false,
-+		.supports_multi_bssid = false,
-+
-+		.sram_dump = {},
-+
-+		.tcl_ring_retry = true,
-+		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
-+		.smp2p_wow_exit = false,
-+		.support_dual_stations = false,
-+		.pdev_suspend = false,
-+	},
- 	{
- 		.hw_rev = ATH11K_HW_IPQ8074,
- 		.name = "ipq8074 hw2.0",
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index e8780b05ce11e..9a4acde3acfae 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -142,6 +142,7 @@ struct ath11k_skb_rxcb {
- };
- 
- enum ath11k_hw_rev {
-+	ATH11K_HW_IPQ9574,
- 	ATH11K_HW_IPQ8074,
- 	ATH11K_HW_QCA6390_HW20,
- 	ATH11K_HW_IPQ6018_HW10,
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index caa6dc12a790b..6862b718b0043 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -34,6 +34,17 @@ static u8 ath11k_hw_ipq6018_mac_from_pdev_id(int pdev_idx)
- 	return pdev_idx;
- }
- 
-+static u8 ath11k_hw_ipq9574_mac_from_pdev_id(int pdev_idx)
-+{
-+	/* ipq9574 is a single PHY radio which maps to PHY B(mac3) */
-+	switch (pdev_idx) {
-+	case 0:
-+		return 2;
-+	default:
-+		return ATH11K_INVALID_HW_MAC_ID;
-+	}
-+}
-+
- static void ath11k_hw_ipq8074_tx_mesh_enable(struct ath11k_base *ab,
- 					     struct hal_tcl_data_cmd *tcl_cmd)
- {
-@@ -900,6 +911,46 @@ static u32 ath11k_hw_wcn6750_get_tcl_ring_selector(struct sk_buff *skb)
- 	return skb_get_hash(skb);
- }
- 
-+const struct ath11k_hw_ops ipq9574_ops = {
-+	.get_hw_mac_from_pdev_id = ath11k_hw_ipq9574_mac_from_pdev_id,
-+	.wmi_init_config = ath11k_init_wmi_config_ipq8074,
-+	.mac_id_to_pdev_id = ath11k_hw_mac_id_to_pdev_id_ipq8074,
-+	.mac_id_to_srng_id = ath11k_hw_mac_id_to_srng_id_ipq8074,
-+	.tx_mesh_enable = ath11k_hw_ipq8074_tx_mesh_enable,
-+	.rx_desc_get_first_msdu = ath11k_hw_ipq8074_rx_desc_get_first_msdu,
-+	.rx_desc_get_last_msdu = ath11k_hw_ipq8074_rx_desc_get_last_msdu,
-+	.rx_desc_get_l3_pad_bytes = ath11k_hw_ipq8074_rx_desc_get_l3_pad_bytes,
-+	.rx_desc_get_hdr_status = ath11k_hw_ipq8074_rx_desc_get_hdr_status,
-+	.rx_desc_encrypt_valid = ath11k_hw_ipq8074_rx_desc_encrypt_valid,
-+	.rx_desc_get_encrypt_type = ath11k_hw_ipq8074_rx_desc_get_encrypt_type,
-+	.rx_desc_get_decap_type = ath11k_hw_ipq8074_rx_desc_get_decap_type,
-+	.rx_desc_get_mesh_ctl = ath11k_hw_ipq8074_rx_desc_get_mesh_ctl,
-+	.rx_desc_get_ldpc_support = ath11k_hw_ipq8074_rx_desc_get_ldpc_support,
-+	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld,
-+	.rx_desc_get_mpdu_fc_valid = ath11k_hw_ipq8074_rx_desc_get_mpdu_fc_valid,
-+	.rx_desc_get_mpdu_start_seq_no = ath11k_hw_ipq8074_rx_desc_get_mpdu_start_seq_no,
-+	.rx_desc_get_msdu_len = ath11k_hw_ipq8074_rx_desc_get_msdu_len,
-+	.rx_desc_get_msdu_sgi = ath11k_hw_ipq8074_rx_desc_get_msdu_sgi,
-+	.rx_desc_get_msdu_rate_mcs = ath11k_hw_ipq8074_rx_desc_get_msdu_rate_mcs,
-+	.rx_desc_get_msdu_rx_bw = ath11k_hw_ipq8074_rx_desc_get_msdu_rx_bw,
-+	.rx_desc_get_msdu_freq = ath11k_hw_ipq8074_rx_desc_get_msdu_freq,
-+	.rx_desc_get_msdu_pkt_type = ath11k_hw_ipq8074_rx_desc_get_msdu_pkt_type,
-+	.rx_desc_get_msdu_nss = ath11k_hw_ipq8074_rx_desc_get_msdu_nss,
-+	.rx_desc_get_mpdu_tid = ath11k_hw_ipq8074_rx_desc_get_mpdu_tid,
-+	.rx_desc_get_mpdu_peer_id = ath11k_hw_ipq8074_rx_desc_get_mpdu_peer_id,
-+	.rx_desc_copy_attn_end_tlv = ath11k_hw_ipq8074_rx_desc_copy_attn_end,
-+	.rx_desc_get_mpdu_start_tag = ath11k_hw_ipq8074_rx_desc_get_mpdu_start_tag,
-+	.rx_desc_get_mpdu_ppdu_id = ath11k_hw_ipq8074_rx_desc_get_mpdu_ppdu_id,
-+	.rx_desc_set_msdu_len = ath11k_hw_ipq8074_rx_desc_set_msdu_len,
-+	.rx_desc_get_attention = ath11k_hw_ipq8074_rx_desc_get_attention,
-+	.rx_desc_get_msdu_payload = ath11k_hw_ipq8074_rx_desc_get_msdu_payload,
-+	.reo_setup = ath11k_hw_ipq8074_reo_setup,
-+	.mpdu_info_get_peerid = ath11k_hw_ipq8074_mpdu_info_get_peerid,
-+	.rx_desc_mac_addr2_valid = ath11k_hw_ipq8074_rx_desc_mac_addr2_valid,
-+	.rx_desc_mpdu_start_addr2 = ath11k_hw_ipq8074_rx_desc_mpdu_start_addr2,
-+	.get_ring_selector = ath11k_hw_ipq8074_get_tcl_ring_selector,
-+};
-+
- const struct ath11k_hw_ops ipq8074_ops = {
- 	.get_hw_mac_from_pdev_id = ath11k_hw_ipq8074_mac_from_pdev_id,
- 	.wmi_init_config = ath11k_init_wmi_config_ipq8074,
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 52d9f4c13b136..0ea36c8ebb666 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -273,6 +273,7 @@ struct ath11k_hw_ops {
- 	u32 (*get_ring_selector)(struct sk_buff *skb);
- };
- 
-+extern const struct ath11k_hw_ops ipq9574_ops;
- extern const struct ath11k_hw_ops ipq8074_ops;
- extern const struct ath11k_hw_ops ipq6018_ops;
- extern const struct ath11k_hw_ops qca6390_ops;
+Best regards,
 -- 
-2.45.1
+Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
 
