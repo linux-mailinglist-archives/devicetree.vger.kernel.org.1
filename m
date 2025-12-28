@@ -1,57 +1,110 @@
-Return-Path: <devicetree+bounces-249954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79C43CE51EB
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 16:36:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE7ECE51F7
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 16:43:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4538F3009A94
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 15:36:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 620BB3009F91
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 15:43:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 203E129A32D;
-	Sun, 28 Dec 2025 15:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13952D0C85;
+	Sun, 28 Dec 2025 15:43:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BZus05Gt"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bEZDoLCZ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bzSYq9i5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4693BB40;
-	Sun, 28 Dec 2025 15:36:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC6F29B8DD
+	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 15:43:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766936171; cv=none; b=oBNazbZoFp/+SVsv4qYA2jZfCuE1uQLN4KYbNPtusrZ36kjEko1SyC5/crpmNl54ZwfGd3lCY85LP0yZkyvTDm7AWQYUinVlymh0kuverlkpMB2Ct6NspBPeedeE9qoYkHvCO6buooDGDPovn7+eHCd+EkNecq1wOVOkn2vWGL8=
+	t=1766936626; cv=none; b=q5HoqDlI2Ei91RqulM7/Np6eEg4iScBkBDjdlHyl8hrrrXQD2NWl062TapYnRy6dbfV3Tlqzf0E4/6enzWTYOg74DELyZpjlvak1ARCUKFyFhU+y24xlbgzvdtDibY5m7AVEfeJ1dFITLGZtx5S058Pbt9IfnnSymj9L7hOKICo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766936171; c=relaxed/simple;
-	bh=tRKTQiWnt1XEYDzwoA8IJDDryekjMxsKq6xOlVxHhkc=;
+	s=arc-20240116; t=1766936626; c=relaxed/simple;
+	bh=HdNRxVeFyLxYHLxRF3Ls9nByKYBs4M0TP3G05yjm21M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hLUnDDAze2NgmtHRoXM6Cz7j6ERIm7jmO2qCg1o7cWcq2eaATX73r3L35NhBbtTN2cxdneIyr1OCyX1I/t45XeeJPCxUJDxryFJKku7QH9EeFXZktfbOhd9PsCRg8pEJAWAHV20/8z9Iv0c1vOgHGgHSqjZRIR2NQLd8MbbXhnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BZus05Gt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F261C4CEFB;
-	Sun, 28 Dec 2025 15:36:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766936170;
-	bh=tRKTQiWnt1XEYDzwoA8IJDDryekjMxsKq6xOlVxHhkc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BZus05Gt0xze5D6k6Cf4oliWnX2lQ+Fr4SRuisfqXco7L/g1c0otppnuScHhWBIta
-	 nnRIS63AkaywM3gxweaeposmrJfY9Xk0xR6U/M/hmlcrFzWmRN8Xylw3m500NC98n5
-	 i0mHvJhNjwfi7anv1Y7Q3RyYq/jlmX7NcUljbezwFrqATQ7Y2EstpIJSbIct+rOacg
-	 yqygAA3x3GOiH0s93X9OUheC/TPUD9KtM9TDKB6NeCU6gH0eYzUAZYeb6FGKapCE4t
-	 3nP/u1pcWVj5ew94Gw6FtB1CXK9nj6pLssIFJNIFWIawQrSv0KBKEVWNcIu6hE70bD
-	 jb+ZWpUSl/fNQ==
-Date: Sun, 28 Dec 2025 09:36:09 -0600
-From: Rob Herring <robh@kernel.org>
-To: Stefan Eichenberger <eichest@gmail.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	horms@kernel.org,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: net: micrel: Convert to DT schema
-Message-ID: <20251228153609.GA2198936-robh@kernel.org>
-References: <20251223133446.22401-1-eichest@gmail.com>
- <20251223133446.22401-2-eichest@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uSJsBmhXNt8EKqMjT1dhwnVQtx/jhG+vEXXTpVpnupVAc6X07zCXf7GIZJpI2TTDq2a6eJfpst36XRXLMOSqUKT63DyafDLqy1HyFgProCGsm9/up71Xa1+6TRGcbsNUPPExWeT/c2bDxz89HY8bCYXF0J0MP51nH0Iz09h+nV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bEZDoLCZ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bzSYq9i5; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BSFhDgu3064854
+	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 15:43:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=B9cEtP5oOmPa51VG3+YWKEx9
+	H5Pcp3/wsuSeIdsxj1c=; b=bEZDoLCZpXV5i5HC/FZXIWgKYkYRFqOr6GsdlF2J
+	IHiX2qyDiJs7UlE+GaqyiulZz0rCjI3qTZYNziz6hK8t/0FI8UU/EqUbcHR3qioz
+	3oDCqGpMS7Uz3YykFAvVrrgDj2NwG+1WQzjQ8DujCEKHKVboSbbZnD40gVLY4ls3
+	wQ4Gc3UAKx/4Epnjg6QX75bWLXGAJZuqhuX4LeFPIMMnq08V8f06VqU2qoruQ80k
+	4Jt3z3XqZeEP3MvwqlyeDNQZaSSyMjTX0srFhSJHhwVWsXmA/TQGWfd1BkrK2M/n
+	aYCkenF01veFuYBBdvF62K/qOF3xnz4uAQ0M4RmJbL2I4g==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ba6dr2g6t-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 15:43:44 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4f1d7ac8339so309454891cf.2
+        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 07:43:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766936623; x=1767541423; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=B9cEtP5oOmPa51VG3+YWKEx9H5Pcp3/wsuSeIdsxj1c=;
+        b=bzSYq9i5pFiOmVI3mSq/ZqJh1zqYDTnLQ1Low54rW0DmHe8f5IQbNvyW+4ffE/2BNV
+         7QCtusMsBzVXvrMz69mcsPGQmDTi6aOP0jYq7d1t5gW77qMYdhR6L78/hcoDXKHljCNL
+         y34Kg1ijjHcKgbm2x4sqZZ23dvtCYOihCjVhTaaDD+v0KSYz0u59GEOBBWNiOiyXpspk
+         GTrzfVS/Jg3pyOEsScUAUVfDWNTbPC2a3/GaWNOp7cGDgn70+ody1qq2BAR81epSsGnX
+         4E2qJu7/FIe9fSHHAsUb5VwzTAi2SIGprSMs8OaJsRKB5qzmC3RW+/QB3sqOq9kLXm1b
+         Kwhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766936623; x=1767541423;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B9cEtP5oOmPa51VG3+YWKEx9H5Pcp3/wsuSeIdsxj1c=;
+        b=qf+zA0IU/9Hovc86CWmcxu7gHqVYyUMZt+p0O5ASMWxU/4cWEARtc4B98DJpHL+ClU
+         WvAvNwndDC3ErAdcpNVHGoSvLgN5OS11IgCVPwIU4l4jiBAY6ozz6JVzladEfoKxtie8
+         SrO27t+g05l1VtzHrx0YjVSJX2/GGI5OQofgndu4UCXyQFngwXhyv7QYO8gPt3t6Lk6F
+         iBwkoWuw6RhIniQhLGLBEVaDjNsVxvgOGVuwKSl5GzSJpqTprVSX8ecJLSQQmj1YxCtk
+         qR9i3zse0vQUu87ptYDC+J9lwtzhq7oVL1N5DYeRlkrJUfuBlZY2cgzOdRO1KuZ6n1+P
+         FVdw==
+X-Forwarded-Encrypted: i=1; AJvYcCX0UE60Bt2NMWHQaLiQZhiOITVWqqTyBR8S8vbZ+d7QenbsJgDoGVgb4XZjEiN/+JnmPeqPe1hgVNY6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvRWq0owC+DBB4g74G2OigaNxByaHkYl7JHRDDWAmlC6gijYbR
+	pI12HdM0haYqYFaMuZhkRkRcaLOaP+FHcORkN9l57zKbYI+r3jYhtXhgL7R5OBWPl43fPePNqIo
+	6pq5dMHPxNe9swq2qZ5m8Y+DMPeh0e+QJy8BtBjtCEc46OVJIpRop2SfSbz9cytIP
+X-Gm-Gg: AY/fxX46wFVU9/xknk2P2BMQmtP5V8J175PnYbNGM6ij8L20uCKgz9FGGi7ght0bjWm
+	zC3w0OVSKtgyOmgFBLRqtxVV/7DV0mAjKM/Tli5oow4pz6sl4ghDW9VxDnV8yBqqZ5Y7hUtHVXm
+	HW93Xy8s5W7IMa+fPgfzByXmQONokmBQ2n17EhQMaMYm2NTEm5yCN0NcUxzk5wOGpSDkytljDsb
+	4w3dlT2HGGH59VllzQPztgupvikxnnh4al5noifkwYQEjAWTi1x6I1hvnfDhZTGi9XbPvUCcoKo
+	sej/3LfokjNxj/ff6yMhmyad57eRvkJ0xlkI/PCkky8A+D3S7/rENEMcfNV5AjXan9S4Z6Zyo/N
+	F4raQZNxEHtomE2LlzOddVL5fkLrUKxOCaX04ajwSfWOZKLTAoumi2Q/O2ApHomK7LXW02OSHSe
+	Bvonogofykhem4UOxk2O6U/0U=
+X-Received: by 2002:a05:622a:5513:b0:4ec:e1aa:ba4a with SMTP id d75a77b69052e-4f4abcb5d8fmr414836621cf.1.1766936623461;
+        Sun, 28 Dec 2025 07:43:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFVZ5VQt286PXMgX0lEUrYwem4inmaK5zbVzwaXUNxtSMXNZNnKcu0Ua2Z/ye6HTmsIi6M+vw==
+X-Received: by 2002:a05:622a:5513:b0:4ec:e1aa:ba4a with SMTP id d75a77b69052e-4f4abcb5d8fmr414836401cf.1.1766936623075;
+        Sun, 28 Dec 2025 07:43:43 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a185dd7d3sm8101964e87.27.2025.12.28.07.43.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Dec 2025 07:43:41 -0800 (PST)
+Date: Sun, 28 Dec 2025 17:43:38 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        prahlad.valluru@oss.qualcomm.com,
+        Prahlad Valluru <vvalluru@qti.qualcomm.com>
+Subject: Re: [PATCH v3 0/2] Enable lt8713sx bridge with displayport for
+ monaco-evk
+Message-ID: <bz2vfahgqmkcw5d7eaeipq5nrtjpodfjup7frepbzazv5o2a6d@d6ysttt264rt>
+References: <20251228-lt8713sx-bridge-linux-for-next-v3-0-3f77ad84d7d1@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,236 +113,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251223133446.22401-2-eichest@gmail.com>
+In-Reply-To: <20251228-lt8713sx-bridge-linux-for-next-v3-0-3f77ad84d7d1@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI4MDE0MyBTYWx0ZWRfX623wF2jZsh8j
+ aRd1eowl5asCaiGXeYFqO44RIJ1k6tHUhoGx7tUQtqOzY5n+XW7AuO5Akryjk+eiZcR2zl2DPX6
+ sYxX+aYQzHdMjoWQH9yspZTf1L9MUuBb5iewvXcVTNf/e7nuN4C2Lc4DWAVwmUzBTYQqr+de3a9
+ y5k1qD+vQQGkp2iVDqFAbXDwbZXBgCnOjQhP4ub4CxaEx2TTTCk9Ssa0Duv4DzzQibXQmk2qaAz
+ XPinymg/s6hbKPzzCQP8UE2vHLIo4SG+yrYECUjc2wgggpWX/pRytr7hiFX8h1HDGSjxH2Zsu/C
+ LWPEYttlQdOrJXXUb4IDvkAEb4VtcIWGBZ3wwOM9LzBF8TMwoafgbdrWb/2h/O8q4o9G55pFk8y
+ tkfI9vF6IDM5/KUYHPRfNhDOqAbZ1hvjD2g4XmRefJQIfnbMuLoUJGDOLZXCwXr1QXPt7FsDvpj
+ yv1vdfdp7NhUuQlWCTw==
+X-Authority-Analysis: v=2.4 cv=VdP6/Vp9 c=1 sm=1 tr=0 ts=69515030 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=FNfohRsh_S1gWZ89RWQA:9 a=CjuIK1q_8ugA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-GUID: 1GbYa7VKrjLwW9Z1tYWfCz_18GrrhLnc
+X-Proofpoint-ORIG-GUID: 1GbYa7VKrjLwW9Z1tYWfCz_18GrrhLnc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-28_05,2025-12-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0
+ adultscore=0 clxscore=1015 malwarescore=0 suspectscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512280143
 
-On Tue, Dec 23, 2025 at 02:33:39PM +0100, Stefan Eichenberger wrote:
-> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+On Sun, Dec 28, 2025 at 07:10:37PM +0530, Vishnu Saini wrote:
+> This series enables lt8713sx bridge and displayport on Qualcomm
+> monaco-evk platform.
+
+It can not be merged, the lt8713sx series isn't in yet (and you failed
+to mention it here and include it into the b4 deps).
+
 > 
-> Convert the devicetree bindings for the Micrel PHYs and switches to DT
-> schema.
-> 
-> Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
 > ---
->  .../devicetree/bindings/net/micrel.txt        |  57 --------
->  .../devicetree/bindings/net/micrel.yaml       | 132 ++++++++++++++++++
->  2 files changed, 132 insertions(+), 57 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/micrel.txt
->  create mode 100644 Documentation/devicetree/bindings/net/micrel.yaml
+> Changes in v3:
+> - Used  existing qup_i2c0_data_clk as default i2c0 pinctrl and provided it's drive-strength, bias-pull-up.
+> - Link to v2: https://lore.kernel.org/r/20251219-lt8713sx-bridge-linux-for-next-v2-0-2e53f5490eb9@oss.qualcomm.com
 > 
-> diff --git a/Documentation/devicetree/bindings/net/micrel.txt b/Documentation/devicetree/bindings/net/micrel.txt
-> deleted file mode 100644
-> index 01622ce58112e..0000000000000
-> --- a/Documentation/devicetree/bindings/net/micrel.txt
-> +++ /dev/null
-> @@ -1,57 +0,0 @@
-> -Micrel PHY properties.
-> -
-> -These properties cover the base properties Micrel PHYs.
-> -
-> -Optional properties:
-> -
-> - - micrel,led-mode : LED mode value to set for PHYs with configurable LEDs.
-> -
-> -	Configure the LED mode with single value. The list of PHYs and the
-> -	bits that are currently supported:
-> -
-> -	KSZ8001: register 0x1e, bits 15..14
-> -	KSZ8041: register 0x1e, bits 15..14
-> -	KSZ8021: register 0x1f, bits 5..4
-> -	KSZ8031: register 0x1f, bits 5..4
-> -	KSZ8051: register 0x1f, bits 5..4
-> -	KSZ8081: register 0x1f, bits 5..4
-> -	KSZ8091: register 0x1f, bits 5..4
-> -	LAN8814: register EP5.0, bit 6
-> -
-> -	See the respective PHY datasheet for the mode values.
-> -
-> - - micrel,rmii-reference-clock-select-25-mhz: RMII Reference Clock Select
-> -						bit selects 25 MHz mode
-> -
-> -	Setting the RMII Reference Clock Select bit enables 25 MHz rather
-> -	than 50 MHz clock mode.
-> -
-> -	Note that this option is only needed for certain PHY revisions with a
-> -	non-standard, inverted function of this configuration bit.
-> -	Specifically, a clock reference ("rmii-ref" below) is always needed to
-> -	actually select a mode.
-> -
-> - - clocks, clock-names: contains clocks according to the common clock bindings.
-> -
-> -	supported clocks:
-> -	- KSZ8021, KSZ8031, KSZ8081, KSZ8091: "rmii-ref": The RMII reference
-> -	  input clock. Used to determine the XI input clock.
-> -
-> - - micrel,fiber-mode: If present the PHY is configured to operate in fiber mode
-> -
-> -	Some PHYs, such as the KSZ8041FTL variant, support fiber mode, enabled
-> -	by the FXEN boot strapping pin. It can't be determined from the PHY
-> -	registers whether the PHY is in fiber mode, so this boolean device tree
-> -	property can be used to describe it.
-> -
-> -	In fiber mode, auto-negotiation is disabled and the PHY can only work in
-> -	100base-fx (full and half duplex) modes.
-> -
-> - - coma-mode-gpios: If present the given gpio will be deasserted when the
-> -		    PHY is probed.
-> -
-> -	Some PHYs have a COMA mode input pin which puts the PHY into
-> -	isolate and power-down mode. On some boards this input is connected
-> -	to a GPIO of the SoC.
-> -
-> -	Supported on the LAN8814.
-> diff --git a/Documentation/devicetree/bindings/net/micrel.yaml b/Documentation/devicetree/bindings/net/micrel.yaml
-> new file mode 100644
-> index 0000000000000..a8e532fbcb6f5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/micrel.yaml
-> @@ -0,0 +1,132 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/micrel.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Micrel KSZ series PHYs and switches
-> +
-> +maintainers:
-> +  - Andrew Lunn <andrew@lunn.ch>
-> +  - Stefan Eichenberger <eichest@gmail.com>
-> +
-> +description: |
-
-Don't need '|' if no formatting to preserve.
-
-> +  The Micrel KSZ series contains different network phys and switches.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ethernet-phy-id000e.7237  # KSZ8873MLL
-> +      - ethernet-phy-id0022.1430  # KSZ886X
-> +      - ethernet-phy-id0022.1435  # KSZ8863
-> +      - ethernet-phy-id0022.1510  # KSZ8041
-> +      - ethernet-phy-id0022.1537  # KSZ8041RNLI
-> +      - ethernet-phy-id0022.1550  # KSZ8051
-> +      - ethernet-phy-id0022.1555  # KSZ8021
-> +      - ethernet-phy-id0022.1556  # KSZ8031
-> +      - ethernet-phy-id0022.1560  # KSZ8081, KSZ8091
-> +      - ethernet-phy-id0022.1570  # KSZ8061
-> +      - ethernet-phy-id0022.161a  # KSZ8001
-> +      - ethernet-phy-id0022.1720  # KS8737
-
-blank line
-
-> +  micrel,fiber-mode:
-> +    type: boolean
-> +    description: |
-> +      If present the PHY is configured to operate in fiber mode.
-> +
-> +      The KSZ8041FTL variant supports fiber mode, enabled by the FXEN
-> +      boot strapping pin. It can't be determined from the PHY registers
-> +      whether the PHY is in fiber mode, so this boolean device tree
-> +      property can be used to describe it.
-> +
-> +      In fiber mode, auto-negotiation is disabled and the PHY can only
-> +      work in 100base-fx (full and half duplex) modes.
-
-blank line
-
-> +  micrel,led-mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      LED mode value to set for PHYs with configurable LEDs.
-> +
-> +      Configure the LED mode with single value. The list of PHYs and the
-> +      bits that are currently supported:
-> +
-> +      KSZ8001: register 0x1e, bits 15..14
-> +      KSZ8041: register 0x1e, bits 15..14
-> +      KSZ8021: register 0x1f, bits 5..4
-> +      KSZ8031: register 0x1f, bits 5..4
-> +      KSZ8051: register 0x1f, bits 5..4
-> +      KSZ8081: register 0x1f, bits 5..4
-> +      KSZ8091: register 0x1f, bits 5..4
-> +
-> +      See the respective PHY datasheet for the mode values.
-> +    minimum: 0
-> +    maximum: 3
-> +
-> +allOf:
-> +  - $ref: ethernet-phy.yaml#
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              const: ethernet-phy-id0022.1510
-> +    then:
-> +      properties:
-> +        micrel,fiber-mode: false
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - ethernet-phy-id0022.1510
-> +                - ethernet-phy-id0022.1555
-> +                - ethernet-phy-id0022.1556
-> +                - ethernet-phy-id0022.1550
-> +                - ethernet-phy-id0022.1560
-> +                - ethernet-phy-id0022.161a
-> +    then:
-> +      properties:
-> +        micrel,led-mode: false
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - ethernet-phy-id0022.1555
-> +              - ethernet-phy-id0022.1556
-> +              - ethernet-phy-id0022.1560
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +        clock-names:
-> +          const: rmii-ref
-> +          description: |
-> +            supported clocks:
-
-Drop this line.
-
-> +              - The RMII reference input clock. Used to determine the XI
-> +                input clock.
-> +        micrel,rmii-reference-clock-select-25-mhz:
-> +          type: boolean
-> +          description: |
-> +            RMII Reference Clock Select bit selects 25 MHz mode
-> +
-> +            Setting the RMII Reference Clock Select bit enables 25 MHz rather
-> +            than 50 MHz clock mode.
-> +
-> +dependentRequired:
-> +  micrel,rmii-reference-clock-select-25-mhz: [ clock-names ]
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    ethernet {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ethernet-phy@5 {
-> +            compatible = "ethernet-phy-id0022.1510";
-> +            reg = <5>;
-> +            micrel,led-mode = <2>;
-> +            micrel,fiber-mode;
-> +        };
-> +    };
+> Changes in v2:
+> - Configure DP PHY supplies and DP pinctrl
+> - Configure in/out ports and connectors for lt8713sx bridge
+> - Use correct base commit and fixed build issues 
+> - Link to v1: https://lore.kernel.org/r/20251120-lt8713sx-bridge-linux-for-next-v1-0-2246fc5fb490@qti.qualcomm.com
+> 
+> ---
+> Vishnu Saini (2):
+>       arm64: dts: qcom: monaco: add lt8713sx bridge with displayport
+>       arm64: defconfig: Enable Lontium LT8713sx driver
+> 
+>  arch/arm64/boot/dts/qcom/monaco-evk.dts | 89 +++++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/monaco.dtsi    |  6 +++
+>  arch/arm64/configs/defconfig            |  1 +
+>  3 files changed, 96 insertions(+)
+> ---
+> base-commit: c2469dc74020684c2aed314701d999cc37c95717
+> change-id: 20251120-lt8713sx-bridge-linux-for-next-30838c5a2719
+> 
+> Best regards,
 > -- 
-> 2.51.0
+> Vishnu Saini <vishnu.saini@oss.qualcomm.com>
 > 
+
+-- 
+With best wishes
+Dmitry
 
