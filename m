@@ -1,93 +1,75 @@
-Return-Path: <devicetree+bounces-249989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-249990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA6BECE558F
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 19:23:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92C9DCE55B2
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 19:31:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1B0A8300BEDB
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 18:23:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 266AD3009FA1
+	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 18:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27112238C29;
-	Sun, 28 Dec 2025 18:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA1322259A;
+	Sun, 28 Dec 2025 18:31:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L/1iyM1y"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kN6ukOhZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412AE2367DC
-	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 18:23:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2086019F48D;
+	Sun, 28 Dec 2025 18:31:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766946216; cv=none; b=S1eeuN0QjtRA02akJKEv4480fR23fBfgjSucXrMyT3YecHBYdu4ywWUTABZJegaeRcl3IQpNfAFJMp1HcKPIB1EBA4or2mjOdc61xhvqbkaJqtev7mqQ1tcpKlS0uC3oIT3M8vcRYMYzyQhVoWZ9KMKyfTxkXCE67Y8neYyztjc=
+	t=1766946669; cv=none; b=KMiG9yaqH9qWJd8EpeC1MS4o1B3o3OC8Rky0MLTpIJaWqTYWSVowId5m1RqYCXowEAbh/ieo1Xz0ZH867BHA8A+nM1rj73Bbn2bj7yOA78FqPkR0DABaSBqzTE4LcxICQAKh1ErwIy7XfOvKmPTB4lSz1Kr2ThnpCc6chRrV0g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766946216; c=relaxed/simple;
-	bh=qnxj1dC/cCFhtpEx9uTCMc00ugysyCX2y8hqP+/0TCU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=S9Ztbv84jtdoyy5pujOpnNkVbz45Bax1WXp1RUNMhq2IYBmb5mb1GuQz8o8gATbYiueIEQ12QYBPsWskY9NsWG+T30h2TrRLjgnuchrtViqrwwCR8Eaf5wo7d2mP6aG2xIp6BJQcbNtnu+BmS8SFUgGxJBJ+38jNhiZc4QFkBSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L/1iyM1y; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7f89d0b37f0so4206191b3a.0
-        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 10:23:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766946212; x=1767551012; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8J9+R8OyR5jrsym1MdOdINO4Sn7+ZiEPmIquYIfwATk=;
-        b=L/1iyM1y81rNzdiAaEPs7Mg4WIWE+zpcuSDOrRmUaFXnY94o1l3d0puLyIekqi7oyW
-         +I+ClxYWRUJVPCaUJ5gn/Alle6j4uWx6yUN5TO8QxzSXXtlX8LJcQwVALkb+/zT61KN2
-         pOTzYvU0o2Pvbhm/ZfImt9ld79k7O2qax4AYOfSMCoogDlsW5rmVGpi6XDYPMxkQNRgI
-         mzznq3p5oXrLIcWQeNQQSNw0QYpwtttK+lyHiaMm+lC4iu3zRbnURHFcV7te5aiAKOe3
-         RwR0NDqR1mP+nLNfcOjfcsvDf9jukrLFWUioJZfLl50WZVbCXOmLJ1eIcAyDeKkcwXYl
-         X18Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766946212; x=1767551012;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8J9+R8OyR5jrsym1MdOdINO4Sn7+ZiEPmIquYIfwATk=;
-        b=L7UEZs7M1qewghAXqVlm5yYUmgFkxmAs9fI+XMBQJS+OH2HK+V8T8xVKCO+fC4jk+o
-         anXM3La8EGV0C45p5IZaMvFvyGjmjv1staRvQQIjO06VlL6yFzNXfxtGf/i0Wq8sSyto
-         1PKoCgyrR0SqJwUhHXM7+cbhjpzI06sByNET26hJzhSg0NOwOniN2hIvt4qAp0mnnPCk
-         t0GDq+BxVJ1AyZt7Vu7YI/Bc1qr9KjIEFdn9Spjp6H92JHNb2Kfcw/IGOX6g+TVZcIIp
-         dgJE8Zb0eRFdDCO7HyfnBtTjKN/8jlcVmHECazB3C6OYWsSXsgh+1AcmTWeTkuuEFIuI
-         ++Zw==
-X-Gm-Message-State: AOJu0Ywv9neXuzVamENeM8NMMmbAtfDHa0WskRSmFWvF0yYuVhnZifom
-	TBpuLNnlIdGebciRBBiv7ZHVry91uPoLA+KJKuHASaLVeFMGiliy3JOM
-X-Gm-Gg: AY/fxX7K9oD/5hLWPNDBs+NpfO/Guyvu6R1MsArSr5Umm1+YbW7WxadM9pYlXcKoWdI
-	fZQlKQtMdeevUDtlNU4CRsnrJ35wfr7ExNoe/vJth3fjWZJKILJA52f8mIrb6/w4n1HwlVvTIKs
-	fcMALXChJYGlm5jEJr2KcQAXwq/ItSk7bHOqeGdYnmBc/OiyRrgGY+6nIsSjQ7rukavnfI2VlOw
-	ypFnej8V+ySUTv3heiXSfaBJ3FWhDJTGSHkPXAzBVtshWgYbhw73nyfD+HVrP1YGGbJOziIAnfr
-	DtLUAP0W9w9seUsJUxGGIpNZUwSCrDQ53yTFzoluOweOZZL51LpbO2cP8ZkB0hm5sTQOvUITV6r
-	M3rDrD5g8UaMVQcvBRV+wwuWa8tBip3or7EULBFwS4nF0+l/FB8Y1ymP3222/Ycqqjy9fOl+gUW
-	d+rVC/sbACudPmFBEMiG+5xI/y7c3eCysyKcdh8FAdn08=
-X-Google-Smtp-Source: AGHT+IFxu1X07rvxROoKTd47BW6KRbd9zLwIEqGQ6nrGR/rCPRoC8FEYxber7zuWsEXxprD0hpJ0EA==
-X-Received: by 2002:a05:6a21:328c:b0:342:fa5:8b20 with SMTP id adf61e73a8af0-3769f9332a1mr27553338637.30.1766946212430;
-        Sun, 28 Dec 2025 10:23:32 -0800 (PST)
-Received: from MRSPARKLE.localdomain ([150.228.155.85])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e48f3d7sm27399695b3a.51.2025.12.28.10.23.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Dec 2025 10:23:32 -0800 (PST)
-From: Jonathan Brophy <professorjonny98@gmail.com>
-To: lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Andriy Shevencho <andriy.shevchenko@linux.intel.com>,
+	s=arc-20240116; t=1766946669; c=relaxed/simple;
+	bh=4B6vz/E98nO/rBf7bgxjs44K9mAIJORWzwZ2gzFGS28=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nzm+ICDEILLLS4YDIqTYW42w4TFOvv3j/u1CeMHVq+OlV72yDWqWgXbfGfo3lj3RILkKntUpU+9H59924AnAAKHwRG9ivUh8MrVM8/qxbGY/2YhTPjcrbO5adUGXmSpQ6fVVRxTqsGQEo5QxexFGj9bgBXRoWKnqMxu8IUJoCU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kN6ukOhZ; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1766946667; x=1798482667;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=4B6vz/E98nO/rBf7bgxjs44K9mAIJORWzwZ2gzFGS28=;
+  b=kN6ukOhZp0l9jLaNwmovXNsh4Zvkd7x/ZVoeK3jflK3w50tcHwtMdfkg
+   eTQE2YoQXHl3W8E7i34jKw9dTrx5EILXH31aWyRB0Dowbm3rnsMCUdv7G
+   LhZRIZzEZypxLv1ifGq2L3DEnLKdCeM+EVBs7p4jVlxDfIo4jAyh4l1rb
+   bJrej92rI5iV8jX5O/ilSCu+3WxbSyrtw85K9/B2yCoTRv80HUp5dcMLs
+   9nf25aw237/M1JNPbGeAEkke+NtJe0NGeQ3qAVxfGBDVaPXUuLaY4UIFn
+   sYH5iHknauQotd8Z4wH4QoKvFO5/pafR29Ju456+BPP5is62NKhyY/3RF
+   Q==;
+X-CSE-ConnectionGUID: 65l4tsVyQyOlK/7zpKR6Eg==
+X-CSE-MsgGUID: FBP6/hE0Qk2y/iqSqdmGaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="72206144"
+X-IronPort-AV: E=Sophos;i="6.21,184,1763452800"; 
+   d="scan'208";a="72206144"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Dec 2025 10:31:06 -0800
+X-CSE-ConnectionGUID: aGKbfh2PSC+hOgCiM24Qpg==
+X-CSE-MsgGUID: Bq0yvOvMRka9P8+c7qxsGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,184,1763452800"; 
+   d="scan'208";a="205239858"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.244.236])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Dec 2025 10:31:03 -0800
+Date: Sun, 28 Dec 2025 20:31:01 +0200
+From: Andriy Shevencho <andriy.shevchenko@linux.intel.com>
+To: Jonathan Brophy <professorjonny98@gmail.com>
+Cc: lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
 	Jonathan Brophy <professor_jonny@hotmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-leds@vger.kernel.org
-Subject: [RFC PATCH 2/2] dt-bindings: leds: common: Add led-instance property
-Date: Mon, 29 Dec 2025 07:22:45 +1300
-Message-ID: <20251228182252.1550173-3-professorjonny98@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251228182252.1550173-1-professorjonny98@gmail.com>
+Subject: Re: [RFC PATCH 0/2] leds: Add optional instance identifier for
+ deterministic naming
+Message-ID: <aVF3ZTxqSXWVcCVN@smile.fi.intel.com>
 References: <20251228182252.1550173-1-professorjonny98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -95,127 +77,105 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251228182252.1550173-1-professorjonny98@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-From: Jonathan Brophy <professor_jonny@hotmail.com>
+On Mon, Dec 29, 2025 at 07:22:43AM +1300, Jonathan Brophy wrote:
+> From: Jonathan Brophy <professor_jonny@hotmail.com>
+> 
+> This patch series introduces an optional "led-instance" device tree property
+> to address non-deterministic LED naming when multiple LEDs share the same
+> function and color.
+> 
+> Currently, the LED core appends numerical suffixes (_1, _2, etc.) based on
+> registration order when duplicate function:color combinations exist. This
+> creates several problems:
+> 
+> 1. **Non-deterministic naming**: Registration order determines suffix values,
+>    which can change across boots due to probe ordering, async initialization,
+>    or module load order.
+> 
+> 2. **Non-semantic identifiers**: Names like "lan:green_23" provide no
+>    indication of which physical LED or subsystem they represent.
+> 
+> 3. **Breaks userspace automation**: Network management tools, LED control
+>    daemons, and hardware monitoring cannot reliably identify LEDs.
+> 
+> 4. **Ambiguous numbering**: "lan:green_23" could be mistaken for LAN port 23
+>    when it may actually be the 23rd registered LED of any port.
+> 
+> 5. **Namespace pollution**: The alternative of adding vendor-specific function
+>    names (LED_FUNCTION_LAN_PORT0, LED_FUNCTION_LAN_PORT1...) pollutes the
+>    function namespace. The instance identifier keeps standard functions clean
+>    while allowing contextual differentiation.
+> 
+> 6. **Breaks naming convention**: The _1, _2 suffix was intended only as a
+>    collision avoidance workaround, but has become the de facto standard for
+>    hardware with multiple identical LEDs.
+> 
+> **Example: 48-port network switch**
+> 
+> Current behavior (non-deterministic):
+>   /sys/class/leds/lan:green      ← Port 0? Unknown
+>   /sys/class/leds/lan:green_1    ← Could be any port
+>   /sys/class/leds/lan:green_2    ← Could be any port
+>   ...
+>   /sys/class/leds/lan:green_47   ← Could be port 1 due to probe order
+> 
+> Proposed behavior (deterministic):
+>   /sys/class/leds/lan:green:port0   ← Always port 0
+>   /sys/class/leds/lan:green:port1   ← Always port 1
+>   /sys/class/leds/lan:green:port2   ← Always port 2
+>   ...
+>   /sys/class/leds/lan:green:port47  ← Always port 47
+> 
+> **Example: Multi-domain power indicators**
+> 
+> Current behavior (non-deterministic):
+>   /sys/class/leds/power:red      ← Which power source?
+>   /sys/class/leds/power:red_1    ← Which power source?
+>   /sys/class/leds/power:red_2    ← Which power source?
+> 
+> Proposed behavior (deterministic):
+>   /sys/class/leds/power:red:mains    ← Mains power indicator
+>   /sys/class/leds/power:red:battery  ← Battery power indicator
+>   /sys/class/leds/power:red:usb      ← USB power indicator
+> 
+> **Design principles:**
+> 
+> - Backward compatible: Instance identifier is optional
+> - Extends existing convention: function:color becomes function:color:instance
+> - Follows kernel precedent: Similar to eth0/eth1, gpio0/gpio1 naming patterns
+> - Ignored with deprecated "label" property: Avoids conflicts with legacy code
+> 
+> **Alternative solutions considered:**
+> 
+> 1. function-enumerator: Only supports numbers (0, 1, 2), producing names like
+>    "lan:green-0" which are still non-semantic. The 48-port switch needs "port0"
+>    to match physical port labels.
+> 
+> 2. Deprecated "label" property: Being actively removed from LED bindings. New
+>    code should not rely on deprecated APIs.
+> 
+> 3. Different function names: LED_FUNCTION_LAN_PORT0, LED_FUNCTION_LAN_PORT1...
+>    This pollutes the function namespace with hardware-specific combinations.
 
-Document the optional "led-instance" property for providing deterministic
-LED naming when multiple LEDs share the same function and color.
+> This RFC seeks feedback on:
+> - Property naming: "led-instance" vs "led-subsystem" vs "led-context"
+> - Implementation approach
+> - Additional use cases to document
 
-Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
----
- .../devicetree/bindings/leds/common.yaml      | 93 +++++++++++++++++++
- 1 file changed, 93 insertions(+)
+Hmm... I think the research missed the udev + sysfs approach as done for the
+networking devices. Hence the question: do we have enough data in sysfs for
+leds to understand their HW connections / semantics?
 
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index f4e44b33f56d..0e9611662850 100644
---- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -51,6 +51,33 @@ properties:
-       needed, differing only with an ordinal number.
-     $ref: /schemas/types.yaml#/definitions/uint32
+-- 
+With Best Regards,
+Andy Shevchenko
 
-+  led-instance:
-+    description:
-+      Optional instance identifier for deterministic LED naming when multiple
-+      LEDs share the same function and color. Without this property, the LED
-+      core appends numerical suffixes (_1, _2) based on registration order,
-+      which is non-deterministic and breaks userspace automation.
-+
-+      The instance identifier becomes the third component in the LED name
-+      using the format "function:color:instance" (or "color:function-N:instance"
-+      when function-enumerator is present).
-+
-+      This property is only used with the modern function and color based naming
-+      scheme. It is ignored when the deprecated "label" property is present, as
-+      "label" already provides full control over the LED name.
-+
-+      Common use cases include multi-port network devices ("port0", "port1"),
-+      multi-domain power indicators ("battery", "ac", "usb"), and system state
-+      LEDs ("boot", "upgrade", "panic").
-+
-+      The identifier should be semantic (describes purpose), deterministic
-+      (fixed in hardware description), and concise (under 32 characters).
-+      Only alphanumeric characters, dashes, and underscores are allowed, and
-+      the identifier must start with an alphanumeric character.
-+    $ref: /schemas/types.yaml#/definitions/string
-+    maxLength: 31
-+    pattern: "^[a-zA-Z0-9][a-zA-Z0-9_-]*$"
-+
-   label:
-     description:
-       The label for this LED. If omitted, the label is taken from the node name
-@@ -320,4 +347,70 @@ examples:
-         };
-     };
 
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/leds/common.h>
-+
-+    /* Example: 48-port network switch with deterministic port LEDs */
-+    ethernet-leds {
-+        compatible = "gpio-leds";
-+
-+        led-port0 {
-+            function = LED_FUNCTION_LAN;
-+            color = <LED_COLOR_ID_GREEN>;
-+            led-instance = "port0";
-+            gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
-+            /* Result: /sys/class/leds/green:lan:port0 */
-+        };
-+
-+        led-port1 {
-+            function = LED_FUNCTION_LAN;
-+            color = <LED_COLOR_ID_GREEN>;
-+            led-instance = "port1";
-+            gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
-+            /* Result: /sys/class/leds/green:lan:port1 */
-+        };
-+
-+        led-port47 {
-+            function = LED_FUNCTION_LAN;
-+            color = <LED_COLOR_ID_GREEN>;
-+            led-instance = "port47";
-+            gpios = <&gpio0 47 GPIO_ACTIVE_HIGH>;
-+            /* Result: /sys/class/leds/green:lan:port47 */
-+        };
-+    };
-+
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/leds/common.h>
-+
-+    /* Example: Multiple power domain LEDs */
-+    power-leds {
-+        compatible = "gpio-leds";
-+
-+        led-ac-power {
-+            function = LED_FUNCTION_POWER;
-+            color = <LED_COLOR_ID_GREEN>;
-+            led-instance = "ac";
-+            gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+            /* Result: /sys/class/leds/green:power:ac */
-+        };
-+
-+        led-battery-power {
-+            function = LED_FUNCTION_POWER;
-+            color = <LED_COLOR_ID_GREEN>;
-+            led-instance = "battery";
-+            gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-+            /* Result: /sys/class/leds/green:power:battery */
-+        };
-+
-+        led-usbc-power {
-+            function = LED_FUNCTION_POWER;
-+            color = <LED_COLOR_ID_GREEN>;
-+            led-instance = "usbc";
-+            gpios = <&gpio1 12 GPIO_ACTIVE_HIGH>;
-+            /* Result: /sys/class/leds/green:power:usbc */
-+        };
-+    };
-+
- ...
---
-2.43.0
 
