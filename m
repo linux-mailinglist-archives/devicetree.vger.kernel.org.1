@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-250180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D03CBCE6B95
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 13:38:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 816C2CE6BA4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 13:40:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 81A8C3005B9D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:38:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4DCF23007ECE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:40:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 099E93101B1;
-	Mon, 29 Dec 2025 12:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7E031063B;
+	Mon, 29 Dec 2025 12:40:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lRTMVPBZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBRqOZ3I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96F525291B
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 12:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8579B310625
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 12:40:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767011884; cv=none; b=fTUZXE2dHOLWaZUNSb2kg0+UzlGx/cDwLtfUofPabeQTIOODyN7qmmDrEWxrW+/B4HEqMy9bRDF7j5vjFFINKrjVbChrh6ZTjqyeprdaYdBe7YNib7ht82fDKrTyrNeX84qq7QZS+fBzG32sf3O5zkjlk6HfkyqB1TUGPnYIQ6I=
+	t=1767012005; cv=none; b=O2x3d9cHo5MChlUCX6prp8WDXnCudqfZfFzbOMekiw243a7+JrwWOBm9KjAe6wFpD9gNszWfds6qjuLf2wvur3W6Ip2ubzzAB563EkYPhX50Yc32VipxltF38rRj5C7nmWzjvPI+CBriwQo7UrKUQZxC/3LNHy12qAtpqQ/E3eE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767011884; c=relaxed/simple;
-	bh=rox7wvPh07+CLjjqPOBWQGkUlh+Gyo2uugHFZB5z0+s=;
+	s=arc-20240116; t=1767012005; c=relaxed/simple;
+	bh=na8fdtccQtGXNx7i8pepErKE1n5e5WlnLO8Yn+fK3ZY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fulk1EQlac6NUInKqvDZi8mImC1Rvt6hlnSNkPBGVZ0UVe04XJOnZypyye2Dd1HW/Z0wpg1IE8/PSfaQE0IiCPFfUoJ5sI+vpCApqgpz3ohDCt3+QKwUSlkpYf5FFfD5c5wyqw9ERR844uKLRUFfj6mf9SaDPSmLRHRtlJUqCgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lRTMVPBZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 447E1C2BCAF
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 12:38:04 +0000 (UTC)
+	 To:Cc:Content-Type; b=HVo2HUr4OPfQvUVn5GVIO5m+iuKhKHOixagzxjZa84aJ0Z4HMPpvtBD+5qOBHdqogAjjZ7DxQwjhARsWSxAHuFoOpPCrqPFeLAtV2g5rEt5H7RPtrHNoRj0qmkN/GqlsVUTa7zlwRsdL/0G+irYYU24YSzNgGcRpI+iRvA50Y2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBRqOZ3I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09663C16AAE
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 12:40:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767011884;
-	bh=rox7wvPh07+CLjjqPOBWQGkUlh+Gyo2uugHFZB5z0+s=;
+	s=k20201202; t=1767012005;
+	bh=na8fdtccQtGXNx7i8pepErKE1n5e5WlnLO8Yn+fK3ZY=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=lRTMVPBZDgcRwddGpzXgSGPzbz9RrE5n1iRQoOMioKMSCPyzyYX+7+3flfBtxtXDK
-	 dGvZoQ9kL4D68Vkb6jdaGrDuy5Z8dwHBxk4HHH1kVtuJrk6PFXuXssUvu36mETVGuK
-	 DOIApZ2r37rOrOh/JOokPGNoA52q9swj7IrOoxDsC+ExurzmULUUyP9S0e8aPpQU0h
-	 ZlMRIzgi/Qfg81ZCHrR1hUOC7mFdOmcb6FMI88S+DK6tmG/YIuW9Mfl2xdDNmxkRwj
-	 mg8M3Sk6rDjSjImPFQsmP4PicvLD3Jph7YoKMb3I40Ba1EFHlRgLoWH3j3cfGx5X+S
-	 AXgrM9Ri+6HwA==
-Received: by mail-yx1-f43.google.com with SMTP id 956f58d0204a3-642fcb38f35so6960826d50.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 04:38:04 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV9B6IhOnUQT4kamOIsrSEy/8FVhgASMu1Y/XWBQRVzSgLTXujC9+3bp46mkRtNZlneHFzPHa25QBLi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyiUAHIVnZeFYS8/g5wQE6YlY96rZkn+5W1AUB2VvdpPlpnEFG/
-	yVGRTxZSFU4q1D2yeV7PGlB9lePpYIFDawLuKCyVs9mwKXVW14kqz3xMFclwz3QnphOdKOD0HlY
-	0td/v3zRP+uggJSZDnSIfluzccePzAbY=
-X-Google-Smtp-Source: AGHT+IFsGOCuav1GJIi4G3BawSBpJOo6IwnfMUXLRMGmh8VUt++5hT+HtT5U+iVEJ9F2VpETfK2+Gh1JdS0tq7MWKRo=
-X-Received: by 2002:a05:690e:3cd:b0:644:4f94:c530 with SMTP id
- 956f58d0204a3-6466a84b02amr17388010d50.39.1767011883475; Mon, 29 Dec 2025
- 04:38:03 -0800 (PST)
+	b=bBRqOZ3ITqbKN29ar7XFv6Y1G6o/JSSx1rqESJBgyJnwtAL2zNkcu4HqqlhTHw7bz
+	 +DVs9ZV6aXrW1NBDid/gFlwJbObcUelP54MHoVvzHBHWbs2HhhBsat4EJJT0c5iphC
+	 QQLIa3/dQWg2QyP8cpeF18675bkg+nXNdOSsPxY/NuQxYhCel142pCNJ50qxgYyX1F
+	 XR12UAOLPrZqi1gxbfgVlNuAujmlnu5NjceGUB9cS6JnIK+vag+LghiXc8e4S8R3H9
+	 jSNXci5jUaM7ED8B4Mzx85zQpsT5/k2XueJy5jrsvIvs0nzXvM/AU2JcTQw5eYqSQv
+	 zwZuCKhp2XqKw==
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-787df0d729dso72987497b3.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 04:40:04 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUFFqxvBtXzm1go/WpHZv60NvlSFFsDbGDqbpj0lNUtSOX3acFoimusLR3PRZZr+IWCtax+MJyAqcqc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7iyPzCMdE9A2Wbr4GyFy3VluwKVSYZFzBW6Nw4cYZyA1OmR17
+	unfrN/Bv3q4ho07fj5sggnHcfPpjYPSxgqVFzgHmHZoZaePcMvDjOjD9TnRnTxqpiixP9IXDn40
+	NNZY91uFepRz55rJ1pHg3iI8jaY82nmo=
+X-Google-Smtp-Source: AGHT+IE1CJPM1ECp3Aic0fzUaIWAevOpdqZ/m0oeRwOjevQhJJFuDhlT+7sTL2fxFLBWnt6fezgleEipLHCKXwFl31s=
+X-Received: by 2002:a05:690c:6a02:b0:788:1adf:fa6c with SMTP id
+ 00721157ae682-78fb412e929mr198480127b3.33.1767012004260; Mon, 29 Dec 2025
+ 04:40:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,18 +56,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
- <20251222-drm-panels-sony-v2-4-82a87465d163@somainline.org>
- <CAD++jLmSev3=HJF1j_kTU5j-u2NhxH6TsdE0uUjnD7Vqkt_h-w@mail.gmail.com>
- <aU6QxjOphoq9E1pL@SoMainline.org> <CAD++jL=HDRAcwDVUeYUKFbamqVnOADqz5qpbSr1XVsr3M1iNoQ@mail.gmail.com>
- <aVJpbJEymWWQLK6O@SoMainline.org>
-In-Reply-To: <aVJpbJEymWWQLK6O@SoMainline.org>
+ <20251222-drm-panels-sony-v2-5-82a87465d163@somainline.org>
+ <CAD++jL=X1hX6kmodcOC3+x-w6t+Vg6XTaCMab-Dn=vHAeD82Gw@mail.gmail.com>
+ <aU6XXi2HmgjZY8CY@SoMainline.org> <CAD++jLn0cFtDhg9WFU2LS6g+cLa7ZMzzcHAJ_W9REVHodFYpAw@mail.gmail.com>
+ <aVJou4aNqfGATv3g@SoMainline.org>
+In-Reply-To: <aVJou4aNqfGATv3g@SoMainline.org>
 From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 29 Dec 2025 13:37:51 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkb7my6Dt4CkqRjKZAMM6iT8YvzHZb67TRLt1jOEU0qdg@mail.gmail.com>
-X-Gm-Features: AQt7F2oGDXnIlk3K166SE_nBg82Dd1snbA2UqjpF4XmEvLq6o1P2w_E42qJ58c4
-Message-ID: <CAD++jLkb7my6Dt4CkqRjKZAMM6iT8YvzHZb67TRLt1jOEU0qdg@mail.gmail.com>
-Subject: Re: [PATCH v2 04/11] dt-bindings: display: panel: Describe Samsung
- SOFEF01-M DDIC
+Date: Mon, 29 Dec 2025 13:39:52 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=nthAEi5A3DvShB2qM-ojpzDmGduM7GsKEpbeL0yGKqQ@mail.gmail.com>
+X-Gm-Features: AQt7F2oDH0YmvH5BS4ynnLBstdj4kng_UTIixW0GIbGR8SitLrk_nlb_6iOErx8
+Message-ID: <CAD++jL=nthAEi5A3DvShB2qM-ojpzDmGduM7GsKEpbeL0yGKqQ@mail.gmail.com>
+Subject: Re: [PATCH v2 05/11] drm/panel: Add panel driver for Samsung SOFEF01 DDIC
 To: Marijn Suijten <marijn.suijten@somainline.org>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>, 
 	David Airlie <airlied@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
@@ -84,56 +83,41 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>,
 	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
 	Abhinav Kumar <quic_abhinavk@quicinc.com>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, 
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
 	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
 	Dmitry Baryshkov <lumag@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 29, 2025 at 12:53=E2=80=AFPM Marijn Suijten
+On Mon, Dec 29, 2025 at 12:43=E2=80=AFPM Marijn Suijten
 <marijn.suijten@somainline.org> wrote:
 
-> > Yes that's what I suspect.
+> > Actually all of the samsung s6e panels are suspected to be s0fef0/1
 >
-> Do you still want me to drop it from the compatible, but definitely keep =
-it in
-> the driver filename unless we unify all of the drivers (hopefully in a la=
-ter
-> patch)?
+> Just noting the first 0 is actually the letter o.
 
-The compatible should be as precise as possible, so indicate the
-assembled display with display controller, typically
-samsung,ams605dk01 etc, then the Linux driver is basically
-a Linux intrinsic matter, but we would name that after the display
-controller so as to make the basis of code sharing obvious between
-the compatibles.
+Yeah I'm sloppy :D sorry.
 
-> > > Also, divergence of the driver commands got significant with the last=
- two panels
-> > > / three phones, though that might be down to vendor configuration/cal=
-ibration.
+> > display controller variants, which you see if you look inside
+> > panel-samsung-s6e*, for example panel-samsung-s6e3fc2x01.c has this:
+> ...
+>
+> > I think the s0fef0/1 drivers and all the panel-samsung-s6e* drivers
+> > should probably be unified a bit maybe we can just create a
+> > local s0fef.h file with the above for all these drivers to use?
 > >
-> > That's kind of normal. The defaults suffice for a while, then engineers
-> > want to start poking at different voltages to the display to improve
-> > and tweak things.
+> > (If someone has actual datasheets for s0fef0/1 that would be great.)
 >
-> Makes one wonder if the changes are down to the panel used, or vendor tun=
-ing
-> when they started using these panels in their phones.  To note, I think I=
- booted
-> all these phones on the "original" SOFEF01 driver without problems, befor=
+> If we know exactly what the commands are, and have their arguments docume=
+nted,
+> it'd be nice to have these as constants and functions in a global reusabl=
 e
-> ultimately implementing all diverging commands because I don't know if th=
-ey're
-> defaults, related to color tuning, timings, thermals, manufacturer tolera=
-nces or
-> anything else.
+> header, but it does require being absolutely certain on their meaning and
+> equivalence.
 
-Yeah a datasheet would really help :/
-
-Samsung, if you're reading this, you know what to do: give us the
-datasheets, pretty please with sugar on top.
+Yeah well. When all we have is code dumps all we can do is try to
+split out the stuff we know for sure is shared. Like the different
+unlock commands...
 
 Yours,
 Linus Walleij
