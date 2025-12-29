@@ -1,175 +1,139 @@
-Return-Path: <devicetree+bounces-250250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4038DCE73C1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 16:40:12 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2602BCE73EC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 16:46:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6D938300E3E4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:39:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9C04D300101D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:46:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE460320A22;
-	Mon, 29 Dec 2025 15:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD2432AAC5;
+	Mon, 29 Dec 2025 15:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DwDGlRyB";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QmeiN8Q+"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="H73NCP0E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74106272E41
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 15:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5CA2C15A3
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 15:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767022766; cv=none; b=egMLFperp7ckbdKxG6kfrl8H+SsqS8YEP1Pe/+CcgyJoBZjz6xNJkceceB1IEG71l47oILPYyEwdN2m6VPfqjZOfeEEOMeDjMY6gCbeVzkIUR4tG42n/ExsGyKl546ynhnm7r/1v36YQkV8M0q/2z3xShv+gGT9dyzDVl2szM80=
+	t=1767022774; cv=none; b=jn3OKwhN7dkSp6rDDavOx2fO7rvCZYogPqG1c3Qbrsh2/scgRi/XR5XjymqKzX+jw/LR11cGXJ1y3aMiIBa5ZR5lnzBc+btuRTypn5z14XMNKa5/wHJBlJa66YvyssgJcmzgh5fK+Q0QIZDJpHfFm7MQTwqLR/esd5xvlhq+tyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767022766; c=relaxed/simple;
-	bh=m5wk7DPA5PPC1RkT7jGwYDcd9T8ByltOzgI3xVjVfYk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=YE4oeQdTi2hEIfIhSHLxfeSFQl4CqdaLp2iP+JXsJYSuDA1uzeORFLCKoH9No/fB6b0XhuSk6fS4I/9Z62HnAjb2+YNkbMIJ2nLAL117qBgatfGUGkNWBdLaylqah7IrNZ21gQiO68OIjrseCknvij77A+Km2eD+Zm8kmgOhbls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DwDGlRyB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QmeiN8Q+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BTAHA8E1446519
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 15:39:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QDqhvoKuT1ONkqv4vqVemJrZs971EDuQB/aPFvgZPY4=; b=DwDGlRyBczg1A74/
-	ka+spwa0HE+4kwZbH1S53DnvTiJcm6N39Px+sXfnCD3ILFC9et8/xlHiNopVZdvL
-	XAUsjhoQOSu46guqOZ4sS9yM34lBtHDS9y+QrTszxsH1SQs4riieMiTxEFuaquD2
-	8f//B3i/t4DQzaPXjaW/bwQ7s0eg3ZndXwmZ70meX+rw5K2A1y+/RA2d89hBx9Ah
-	MfORKQn4E/Y1eboaMHQ3yA9shW5I67f1FrNu0TLF+11dtYOekeAAKflxmvOU+QKn
-	q/E7G4qAq2YZHvBZFi+zTPRHv5VKlxlWiN40ZNvsc/Wd5rPi/qyuHTmuqdx01qAL
-	NHxzmw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bavrj376f-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 15:39:24 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4edaa289e0dso30597411cf.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 07:39:24 -0800 (PST)
+	s=arc-20240116; t=1767022774; c=relaxed/simple;
+	bh=RcDGedmXwSRUgRLTsRrQXPhrzcqVDmty+VallOtpd/8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U/f/uDmi5pSrVYtNZcx321FGpn2r2tLgxIyXIPBPlGNVfOfDnGa3bjzvsovxXhs+YhhzjtzW8JDgUOMzB8en9YviRNZ0d938hGWIZaqDMqNGntdoun1nkXoLVjA/xRIAzGOqpUZaZmw/ucSC8+rZkQDx9BI2DAu0RFV7fKpCV4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=H73NCP0E; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47aa03d3326so58511025e9.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 07:39:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767022764; x=1767627564; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=QDqhvoKuT1ONkqv4vqVemJrZs971EDuQB/aPFvgZPY4=;
-        b=QmeiN8Q+wPREL8LVV++Ur4Hty3BHpd/3MAXySEDPKZniffMTqmdYBpCSWMVV47qWL8
-         h7V4lsz1AXhHXT+cnoZOiu5BIVYw8Ut6MHSoe4KglauGASvcKijziG9dF9Sf4RxWd1qd
-         otA8FQoHIThKGLmmeovhFybqr4bFWFala61G04j4qxa9ZjBtssfiPRx66gpo5CyoDkZa
-         MtFyK5+HdpsqAls0NZemh5w+iKfkocfjxPhkExKf0bOgYAHwAleX/BU6VnkNEKJ6/3y7
-         aGJ1u+yQjSnrPgO5SM9efK7bsGfePCw4pdm+n3G67kjlyueqGoasE23VySkBIi0uwl22
-         j1Jg==
+        d=chromium.org; s=google; t=1767022771; x=1767627571; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=SGYWl17fxV3/QSiEObh01QR9aeCd8OVP6SgH7H57To8=;
+        b=H73NCP0E4n/FY1Kx285YMugsoVY8U/mFz5cVF0U06c7i85Nw/xDnpx2Vx/16uMVev+
+         QvLdBGUg6Aap+ry57wq95W7xVFXS2at+0gXp0QgI7iF8CEq8BJitlxIEMY7ZMaUHiZYj
+         hsvFpRWFn5eqKqKgMOWejeQ0tPVSrIHhnvZL4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767022764; x=1767627564;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QDqhvoKuT1ONkqv4vqVemJrZs971EDuQB/aPFvgZPY4=;
-        b=c25y5cdzL2yuNuZlKO5eaqICX/UwUP4oVWDok82FUpMiUUFjKds97o7/4j0of4QfRl
-         386KjLfoUB/3ziwtZzJPKZpSArQol6DGy4jYkDBULf0FwaggItPj3wuu5GWyUtFG69K4
-         5N5HLU2KuUri/68CiFK95+zt2f5sytCwbBakfkY3rlFN4Swmf7GzaZ7r4wH8UxsnDniI
-         VjrvI5/zxihfr7RXo+JZDxx9ZmBJd7pfiD8K1WG33byDKuPTfTSXP98urKci+S+lMSHP
-         OQnU82l2x+9ZmFpTLQ6QMALfFyUaP3hNACAKPahKesq/27vXSPYIx33xq+Abll24dcjY
-         8Z9g==
-X-Forwarded-Encrypted: i=1; AJvYcCX7QwIJML6REl/sWN/TxW6UN8pORjGqNPm048GjjI7jI8HBWJhkhyz761rPMHPXZbt8Su/6vVKnHj0b@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpNLlgHta2I3/7HM8BHRSNmx1lPl+CFHnrdT6JLDBpVgKNwcut
-	ugilBGzMal8D3eNG5nVFCCHaOsnPudYmLPnUoJMNyKWI16phgQiMK3G1rz6979M35fMDPsEIsRA
-	df9Wae+vokrOMwu1pwr3OiJmxLz3Ag1SW7SkkQob/ikVPnJF3GfV1SDvos0o1wtai
-X-Gm-Gg: AY/fxX5c/a2EXcVawh2xJW/FXFIg5TQQQ73/6kEdBQfdgGD98WB6yB2Dnez0qRbVEQ6
-	p6875yOXC1kG4EXe2ZPa+0Lbslmn0OjhjOBsTaBvyIwWXEYBv4mi6GXjMxKsXe4FiEE/8jj2Yvs
-	McW3FUNKbU5OJt9ThTxpjlK5wNNU9Md5eOC6unePdrDjVjqvjJndFKFEBYIrgVYlHIM/gojFTaU
-	aiExKVEKEfcKij1Si1UAuxvQChy190Io/+T3EKkAtULGhTGYNeJI6Cq6+7WqKkSbK7YUo6UjVky
-	AaPBdHzn6gbzBg5LslJP7Z8ecxVL0jNHXh80UO/jYJhcvFSFsLwLxBsYDl79al2DVfYLXDCX6fA
-	6xKmNYBrwCGOnNAIl02zeIc/R36e7dwnViqrxJ9Dnp5HFtgsUMOwX34t693/IX68L7g==
-X-Received: by 2002:a05:622a:5c8:b0:4ed:a574:64cb with SMTP id d75a77b69052e-4f4abd173a9mr354271991cf.3.1767022763633;
-        Mon, 29 Dec 2025 07:39:23 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHN4U3BzOmAKYg1rjSuR+S+ey+f7NfZQwB9jAllO+pOp4YI5Ip8XRHO1clZOJqarYKVd1WNMg==
-X-Received: by 2002:a05:622a:5c8:b0:4ed:a574:64cb with SMTP id d75a77b69052e-4f4abd173a9mr354271661cf.3.1767022763136;
-        Mon, 29 Dec 2025 07:39:23 -0800 (PST)
-Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b910601c7sm31896142a12.14.2025.12.29.07.39.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Dec 2025 07:39:21 -0800 (PST)
-Message-ID: <db8d9bb3-f702-4248-8b48-b610439a2ea4@oss.qualcomm.com>
-Date: Mon, 29 Dec 2025 16:39:19 +0100
+        d=1e100.net; s=20230601; t=1767022771; x=1767627571;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SGYWl17fxV3/QSiEObh01QR9aeCd8OVP6SgH7H57To8=;
+        b=pxrZ+jquXZ85VA/xxK4fRqzmFnkGNGrHjlXWKFIqlNWRETB5FGLlAlCaGgHBAQvLr1
+         0YL24dlb4UyXvb5jnyHQX6eDrKho3s7g3WKj/y169Tz/zLK9C07st9+uv0hpeVHd4UYS
+         0I0LFxPWBaHzNsTVQbX8rY2s+PENzXYs5WGkUHPZf17yYqgmO7ap+3RfePS9KF+bV7P1
+         G4J667x+MqmbXAi6k7+ch5TtbV1MrVC6lCSYbWwL01XrDx/LAp6L+380dpTKp6jYAm0A
+         /CoBKcR7mQEa8lG7TlbxlExUAa/tFdUAAi0KeEaOjRZFOmLLNSPueQPr1UefaoMgWXMA
+         AbvA==
+X-Forwarded-Encrypted: i=1; AJvYcCVa/wuyWDl1+l9Hcu2YWi7pP+IJ6bBLSF1HPAGgJ/vok30jJ08wievxdZ8W3deMKyH/X0XQTC3pRMNQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3ktwxUGHaMj+22BJpWSDHZHprDzOoyXE5nbvTy90dyvd1MCoE
+	ZA6wBHUvgx+BW56/5YrEyZtkNgQfMFe2N5Y2glxGtMafGUeGHyu3WDA3ezSXUMk8VA==
+X-Gm-Gg: AY/fxX7nXtFLv3S9jmYtY0J4fO4Anxxnhqs+pJcG80AjzJ3ZmBFvJuryk11vGnBUebo
+	ndzGS0QXIA2CChv/OYIizyHXL/fx39gUeoRBwTklfFZCc5pEEsXudYuBGdvpfzVV2lTYj10I2+y
+	Q0opKssozITh0DfWSeVl0UEgbSgO0bx8jKnidQncH5VNkkiYa/jFrQPOAe1RF1LMp7IhM3tIw8i
+	SCc0SRRrwGIQrBPcb+iuhHA69uhLcnor9I9PwIXvMOoU9qeNoFOFnuMnJ0+gC//6hU7HKKbjNgx
+	nAwizqOysT9IFNYbXTeomU546N6CNDb5mhOoEqFmu5qIKM4NVgEv+QcMoMumH52ohm0xyhcl1Pa
+	05sXEQGHqvaKr7IvHaT1xjs4PhSvJy9ZDJZWiCoH+ow2yDUf4MFR8vqvTsmny5uLJJT2yl/NZvc
+	njL7/OtzsZXHLrtAZ4sg==
+X-Google-Smtp-Source: AGHT+IFl14WZKwhPmiisq47nhuqUJz7ve89LSx2Bze9QplnBFGeno8tXs3tel78LX13pZskSo/9nSA==
+X-Received: by 2002:a05:600c:4f15:b0:477:b734:8c41 with SMTP id 5b1f17b1804b1-47d19538dfbmr400115935e9.1.1767022770807;
+        Mon, 29 Dec 2025 07:39:30 -0800 (PST)
+Received: from google.com ([37.228.206.31])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43277b0efefsm29752839f8f.25.2025.12.29.07.39.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Dec 2025 07:39:30 -0800 (PST)
+Date: Mon, 29 Dec 2025 15:39:28 +0000
+From: Fabio Baltieri <fabiobaltieri@chromium.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, Simon Glass <sjg@chromium.org>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: google,cros-ec-keyb: add
+ use-fn-overlay prop
+Message-ID: <aVKgsGwb9Rqteekj@google.com>
+References: <20251224152238.485415-1-fabiobaltieri@chromium.org>
+ <20251224152238.485415-3-fabiobaltieri@chromium.org>
+ <20251227-laughing-white-dalmatian-f9d98a@quoll>
+ <aU__uxDmeUq20Mg3@google.com>
+ <0c01fa63-670f-4c82-aa74-dc855cb12a78@kernel.org>
+ <aVKDJhVuOz-V9tb2@google.com>
+ <c539aa2a-e9be-40e7-9b75-1723bdaf0a39@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT] arm64: dts: qcom: sm6125-ginkgo: Fix missing msm-id
- subtype
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Gabriel Gonzales <semfault@disroot.org>
-References: <20251229142806.241088-2-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251229142806.241088-2-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 58xnQfQV1aVZnBFZcdarQuvtJv7H0egr
-X-Proofpoint-GUID: 58xnQfQV1aVZnBFZcdarQuvtJv7H0egr
-X-Authority-Analysis: v=2.4 cv=coiWUl4i c=1 sm=1 tr=0 ts=6952a0ac cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=qntHbeqAf4i1FaGKydUA:9
- a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI5MDE0MyBTYWx0ZWRfX8sieBv4VXiCE
- 330yzeBbc+gutoCRl7059ZbO+5PNQfETOYwpUtmV8R+aiYAC77dNlBYZ1foZRo8z1WobcdXkQsl
- 7Tp6NL8z+lmns3K6FYbEe+Ou6AAD2q43DXHqMFRqZQwGliMJDzJADsOx/UOiPenR9kBNX7+g61e
- mG2/WV8tY1ysH2t0ufzyQ4bxNBQKEFzSX0DTNrnkoSzynlVkZNxAdfoTkow5dTFCiCI7T40x2u+
- E8nhv6aPCI1s27ss2/apb1Q+peY77LyLk19ZmCHbS9zc31aZQre99yT+bhtHfyERJB49xrH8tFi
- 1dkS8Zkqt/y1YyvuT5dRIGtms+1KbTiKQn8/lJUutTfz+csFY4okl5/EKq+3NwWXtOO4JWWHXHE
- JsrKYsKg1BZdIpxlxMX3D0g+Hoi03z5cOUDgkAlZCr13F1Hc1ybanM8aHvn90SyjBu7B4J0+QlU
- 2+j6X5ie4j57tDogFKg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-29_05,2025-12-29_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015
- malwarescore=0 phishscore=0 adultscore=0 priorityscore=1501 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512290143
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c539aa2a-e9be-40e7-9b75-1723bdaf0a39@kernel.org>
 
-On 12/29/25 3:28 PM, Krzysztof Kozlowski wrote:
-> qcom,msm-id property must consist of two numbers, where the second
-> number is the subtype, as reported by dtbs_check:
+On Mon, Dec 29, 2025 at 03:59:44PM +0100, Krzysztof Kozlowski wrote:
+> On 29/12/2025 14:33, Fabio Baltieri wrote:
+> > On Mon, Dec 29, 2025 at 01:49:05PM +0100, Krzysztof Kozlowski wrote:
+> >> On 27/12/2025 16:48, Fabio Baltieri wrote:
+> >>> On Sat, Dec 27, 2025 at 01:44:26PM +0100, Krzysztof Kozlowski wrote:
+> >>>>> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> >>>>> index fefaaf46a240..437575cdf352 100644
+> >>>>> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> >>>>> @@ -44,6 +44,14 @@ properties:
+> >>>>>        where the lower 16 bits are reserved. This property is specified only
+> >>>>>        when the keyboard has a custom design for the top row keys.
+> >>>>>  
+> >>>>> +  google,use-fn-overlay:
+> >>>>> +    description: |
+> >>>>> +      Use a function key overlay. This allows defining an extra set of codes
+> >>>>
+> >>>> What is a function key overlay? Overlays are DT term and therefore are
+> >>>> not suitable for bindings.
+> >>>
+> >>> Ok, guess I can rename it to `use-fn-key` or `use-fn-layer`, open to
+> >>> suggestions really.
+> >>
+> >> Use as Linux should use? Then it's software, so not suitable for DT.
+> > 
+> > Sorry I'm not sure how I understand the comment, this describes how the
+> > driver handles a keyboard with Fn keys, the codes are defined in the DT
 > 
->   sm6125-xiaomi-ginkgo.dtb: / (xiaomi,ginkgo): qcom,msm-id:0: [394] is too short
+> Exactly. The purpose of DT is not to describe how driver should handle
+> anything.
 > 
-> Xiaomi vendor DTS for Trinket IDP and QRD boards uses value of 0x10000,
-> so put it here as well.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
-> index 68a237215bd1..6b68e391cf3e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
-> @@ -19,7 +19,7 @@ / {
->  	chassis-type = "handset";
->  
->  	/* required for bootloader to select correct board */
-> -	qcom,msm-id = <QCOM_ID_SM6125>;
-> +	qcom,msm-id = <QCOM_ID_SM6125 0x10000>;
+> See also DTS101 from this year's ELCE.
 
-+Gabriel (the original contributor)
-
-could you please confirm the phone still boots with that?
-
-Konrad
+Sure so I guess this falls into the "describe the hardware feature"
+category, so is the suggestion to rename it to something like
+"has-fn-key"? That would be the hardware feature.
 
