@@ -1,139 +1,119 @@
-Return-Path: <devicetree+bounces-250155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5422CE692D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:42:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF672CE694B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:44:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6129A301140F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:41:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0AB413016992
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5EA30C370;
-	Mon, 29 Dec 2025 11:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D3030CDA0;
+	Mon, 29 Dec 2025 11:43:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CjPhabs9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YWCpoTWb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CE813093C1;
-	Mon, 29 Dec 2025 11:41:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942A71607A4
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 11:43:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767008508; cv=none; b=Rkq5qZpsEmP3Md64mAOQJSOdlWEwbKRpO16/bTjP4unDl4rzF3LLLKYplY9Guh9+CoIUbMYW1KCa+86xi+8JwGExK1PvW9e5Zv7aAV3AmdBPlUVuf0ImCpBm1hYM48fQPjf9NrcxRf+BLVjvtFUR+L/Y9+90S90R23aQIMezPNg=
+	t=1767008592; cv=none; b=jtucIx0XRAD09kzozAAvpVwes8Da0GIcDEj1v0uGms0Z4EEvXWr9sUect/L+nscKLssR2M5JHZOvC09n9Wl7b5cnvMi1CYWZkflSZdbf0P0Wt6tVGYLUtQAeSpwiy+RuueZynHMGnixmnnLqmPLA1XqO8LpGQ4ui8SpS0XZ1A/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767008508; c=relaxed/simple;
-	bh=AgJkKBTnAePQZOzh6NVfAguauBTO4GywMSEwK2X8WjU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=F4MGIVHijQxgjkEhrntiwYUQiBZy47eT9Lhi3E42KYzxa3rSZPKvdW7UaB0ShMYMG2Fx4ifa4lj/yB5/w8rukFT098y8+BU8JfJk9BU4AbnzbDbwmwdKWQsBwaS0WMxK5ddANm23+YIQeHR8pUOCxHb/u2Zeic/85FzbRnhcSs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CjPhabs9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BD75C4CEF7;
-	Mon, 29 Dec 2025 11:41:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767008506;
-	bh=AgJkKBTnAePQZOzh6NVfAguauBTO4GywMSEwK2X8WjU=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=CjPhabs98ILmiTmTpEtIK41rooqSUuFkIiEXhs6bdEe6TzYs/Mc1Psug/4fhOyxD+
-	 oY9VGEdK55q2Ptxo0WEwoTpIPjD6CicPMGuDvNU0340KDZONkW2PAhOxuyQGqUaqJD
-	 z8Ds5RvcD3bn3XuXcOHfJX6IfWvWOD1ehMVf7hlRedxrQuDpfGPzef0fqXG6i8oS9Q
-	 vOuQrYCGHphyk5HwiUgQyGFwco65DU/gIuCSb9R2jDqKlEqZPAtU8lTbr+7l8oHSVT
-	 rKL4tBvwFx46a7jn0sBsOJQYcVjRaJKv4cFCH9HffH4kzkFWWV2IEUfhQC7OBiGS8i
-	 J+xd8Ll7W9hCg==
-Message-ID: <659ae0db-8bb2-4638-88a0-fe975f5fbd8d@kernel.org>
-Date: Mon, 29 Dec 2025 12:41:40 +0100
+	s=arc-20240116; t=1767008592; c=relaxed/simple;
+	bh=eB3XsZRjJ1YFGjnvrsqrBm1/10oeK+YwC4DIQNxLcCs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nIUR7M+eDlRb7pUjKsmOvSsvkJG4jIcpDXQ2gaCGlfWKuB71f1zhxsoPLqOuRSi6ZdNkZP6GY9p/6vmy+Zeq37wwzrM22fqF6xkA1IyoT4o4vHWU43T9Lu0nZ7Kx+ql/IVPJ5bfCVzun13F4ZLfbgyn8JNG8a5HEhhoIv22J5hM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YWCpoTWb; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-42fb4eeb482so4458654f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 03:43:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767008587; x=1767613387; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eB3XsZRjJ1YFGjnvrsqrBm1/10oeK+YwC4DIQNxLcCs=;
+        b=YWCpoTWbjQNXHJtkkb4+FR+bpQ4qxPiECNSByzCf7V+UE6kEFumH+a0Iyw/jn3JbvK
+         scP9MyxHRlwxhI1/0cdg+TDZO7+KRFIi/bSgXIeszh9tyt+J2433NVsOG0SJf60NJAG4
+         WpkaN6cLlDnvcSO0NBX6Z+lDG7zWva3St34uLwHo88zxZWOQ8/nVhs33chCQ7guCi9zg
+         eddwCn3W8YO8tpioL1p1HNz6jEEEu4QDdFzAi5Ssgd50O/JSXtgDYcgkTu8ZcaF9u/rO
+         be4KIc+tz2ALFpB3K3A6/8nDoM2zVbDNQw+JpO0fmQeMg2I3zVDT2M4qhCSH8XCE0I6M
+         gOIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767008587; x=1767613387;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=eB3XsZRjJ1YFGjnvrsqrBm1/10oeK+YwC4DIQNxLcCs=;
+        b=suwJz9rkFR2TePpfgkJM45G9VcRiBbe+AB5uT5ar6YKMoGezU8HgUOt4sAo1NlzRdZ
+         Ixph9ey3y3vw+HVzHFN53LCOWz05vT0RM6dh5LLkD5vxzf+m/ywcGqq+XKhAxsYEWM6w
+         RRNUirBRWOZokq9FU4O2O8HSwawDZXKW1h0wiNcTxNDCzA7dZzI0ecna/11jltY84IEO
+         8n67D94LYsVlUUlY7o4qfCypv9VdhrNFxzLYindktGlzhV+SWnNDoNE8k4TNPBRJgsdt
+         IwsW4ejxekGszKC27MNAGmgI/Jmw42EPSkecQKeMK2oMiBGNc78K6/cU6cvjxQOHzw9h
+         i+cQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWTNMvhGW/lx3EgjW8Z1zEqqT+9GFZnWoZm9utfxTqym9cPv5d7pQHopnAL+Mr4jFDvkolrM/5DfKhT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZXpp6j9D7hfc2XKkhO5faPbvyXsQFstPbvu0QRTOUhdYLgpUf
+	5byhPx+WXp6mW4lonLkT+gEPlrwCGXGNE6N5asKshv0QoZ2sun335j8F3k6U8PxhtdlKgWZhasL
+	WObJ/WA6HS6zMxUcwVe9k/ouCYOu4pks=
+X-Gm-Gg: AY/fxX5wya/pVBC1O49U6lvZ7zaMNxiOgPmA4Xvj3MbQRU+ATHO9uaoT7XPQKwUOU9r
+	ZoVCaEzn9c4t/C1KTY8Fa6RTT08cuHTiXQeYtlvmB+7GdpgpWjqNH8aEhPThhq47/TaGKrA7pli
+	6VeRpYqQ3ywEZEGx0U8wfAyS1tNWLBwk/OZNJZYUMKPgGyqRa1lUSe4vVkW2WaSVHyP3zzukAGy
+	74LPQMN17MM0z5xHH11/XLxXRHvCVvseELnW4ELXanQ0SAT4kY+1TY9gOpC7R6JalZzWdaJeXRK
+	dcT4ei9KYBIlkAucNzVfJDNECjlhXlhiW/rrUXPoMFSp/Dv92gzlFdVmfkKJkFFGZiBEv5pDLzy
+	eMvrysfyARvF1/g==
+X-Google-Smtp-Source: AGHT+IGBZW6yTetvwnfGicrHJgS8HgNiMNHTIySH+8wEUsN70PrQ6mV0WydgwJ78qbVIDZx67ELX/OVuFUTj4cYkPUE=
+X-Received: by 2002:a5d:4e01:0:b0:432:5ce4:6fed with SMTP id
+ ffacd0b85a97d-4325ce47133mr21404075f8f.9.1767008586940; Mon, 29 Dec 2025
+ 03:43:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: simple-card: add
- 'hp-pin-name-headphone' property
-To: Shengjiu Wang <shengjiu.wang@nxp.com>, broonie@kernel.org,
- kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com, perex@perex.cz,
- tiwai@suse.com, linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org
-References: <20251229111839.4009517-1-shengjiu.wang@nxp.com>
- <20251229111839.4009517-2-shengjiu.wang@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251229111839.4009517-2-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251224173324.3393675-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251224173324.3393675-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251227-tacky-cordial-ostrich-263625@quoll>
+In-Reply-To: <20251227-tacky-cordial-ostrich-263625@quoll>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 29 Dec 2025 11:42:41 +0000
+X-Gm-Features: AQt7F2oSeBaKR2srEY0LF2FWkPeA63InFdu1sEluQEP7fjKOHxwpFhKhpOiS8To
+Message-ID: <CA+V-a8vh5gEfozFzym_J+aE1zDXXVbQwq8OWpr2F6rxLZaWKYw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: can: renesas,rcar-canfd: Specify reset-names
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-can@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 29/12/2025 12:18, Shengjiu Wang wrote:
-> The 'Headphones Jack' name used in current simple-card and audio-graph
-> card driver can't be recognized by user space service daemon like
-> pulseaudio and pipewire, which only recognize the 'Headphone Jack',
-> so add 'hp-pin-name-headphone' property for this case and it won't block
-> original use cases for 'Headphones Jack'
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  Documentation/devicetree/bindings/sound/audio-graph-card2.yaml | 3 +++
->  Documentation/devicetree/bindings/sound/audio-graph.yaml       | 3 +++
->  Documentation/devicetree/bindings/sound/simple-card.yaml       | 3 +++
->  3 files changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml b/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
-> index 40eb1d7d6cf1..803e0a960d2e 100644
-> --- a/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
-> @@ -39,6 +39,9 @@ properties:
->      $ref: audio-graph.yaml#/properties/mic-det-gpios
->    widgets:
->      $ref: audio-graph.yaml#/properties/widgets
-> +  hp-pin-name-headphone:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: Specify 'Headphone' as headphone pin name.
+Hi Krzysztof,
 
-Not a DT property. You described ASoC drivers / core code, not hardware.
+Thank you for the review.
 
-Best regards,
-Krzysztof
+On Sat, Dec 27, 2025 at 1:11=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Wed, Dec 24, 2025 at 05:33:21PM +0000, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Specify the expected reset-names for the Renesas CAN-FD controller on
+> > RZ/G2L and RZ/G3E SoCs.
+>
+> Instead this all mess should be fixed - you need to define all
+> properties in top-level and only override them with specific constraints
+> per variant.
+>
+Ok, I will define the reset-names in the top level and adjust accordingly.
+
+Cheers,
+Prabhakar
 
