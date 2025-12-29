@@ -1,281 +1,130 @@
-Return-Path: <devicetree+bounces-250011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11056CE58F7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 00:50:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E536DCE5A43
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 02:03:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3A2443009FCD
-	for <lists+devicetree@lfdr.de>; Sun, 28 Dec 2025 23:50:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8349F3008E95
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 01:02:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE702E1F06;
-	Sun, 28 Dec 2025 23:50:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10DD3A1E9A;
+	Mon, 29 Dec 2025 01:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="b4zA4f/O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gFyb9DJ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9602E0904
-	for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 23:50:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005431ADC7E
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 01:02:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766965836; cv=none; b=NRrOju0vFci/OrOCBR9mWOCvvLImK0m3/begd2vxAiiGWWZUzYxM2ttf5WDF3cOrAG7dXXouvqX14lr3yzvOP8cUpCYBcGwNHooM8wfQAp916qaIV2YL4GwsVkLw2o5jkgGwr6pZOzwa7ldYwEE2Ln4Jwm14Yd0NX7Ci3396Kkc=
+	t=1766970171; cv=none; b=oCkw1vq9OqeWEFruwZllN1m17USujtR18TS25H3DiXHT10CINHaOhXRCxRj8cX01e8GzLMd8zlcOG8OlyC/dP+NJe1LNAUa457TRp9bMYIgGbr7EhRJs1MspRVJf5LHoc0st8Uj5y5wiOmryCbO4yfDHj6UBPNwi5MHvtoPG2Tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766965836; c=relaxed/simple;
-	bh=X77/aSGTpbbdGl/rmY+MOBIrDf1qSnwab7H3cEy+9ow=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IxE8ETDRd37rudffcWxksITvPnIf1ldafdCveSpZOuh4fL53vE4gj2KA/nrKbVZ4a0bskZXFLb0Jh9ilDLVVWe8I0FTnwmGfockJT9ilPDpwMpTGRE2cPScTlfkw6djz+3nTcqNlEaZ+e6IlVTnXNM2pTTr5wPAJREFHds8D6e0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=b4zA4f/O; arc=none smtp.client-ip=209.85.222.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-8b2d32b9777so1269163785a.2
-        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 15:50:34 -0800 (PST)
+	s=arc-20240116; t=1766970171; c=relaxed/simple;
+	bh=8PsFqhWPWBs5ISCcmLVbxGD3gHbmqyMeDa365kBTSqI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pwG4Bv/psRN68MCbA980MWO2u6g2RobR4wWKf2YQ/SJp7yHsRzaBjXbQS86AeVDqvCf2jc74QOj1nJA3OsFE1xDifL5CICkLEWdK718pY1rwTDktpIv/TXo1+vpn5jREkWQeR7seg/U7XOb5fX/TSO5oz0eUheFYAMt7GncF/BI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gFyb9DJ0; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-64d0d41404cso9851107a12.0
+        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 17:02:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1766965833; x=1767570633; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=32IgmIv8zrlvmLhf4zlKlhWMKh5C1l6H+JNSEz9V4Ck=;
-        b=b4zA4f/OueeO1wsKqtAfbesDwB7zEyec4wluzNJPmQqFc6qd+QXvN+POrTXCaTf/cy
-         F8lwS4Sf/5mZJAE+7KX/JL0zKL6/5u2FJWvWlA72ch98RhKfQxcurItuAakLy4NLXoyO
-         PmvmwPyq/nZr5mFhKwUVdAj8WLM7y6ALiFBxBw8QTt+B4jcUB2I2kYNUFNrKk8Zux79Z
-         adAUzq1QQfb7quvIgIyUakx7VdncetQYlPbrNaWIkJRJUZfkZ9AvDxa4gSMBE9kmfvSR
-         aEEuhqkxE8Xl3ptHaq0EQ+pHaHZuZx1LQ8B5BsJsZ+YvdlxFgOOkyHw2lO9YgofnJSt0
-         BUsg==
+        d=gmail.com; s=20230601; t=1766970166; x=1767574966; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8PsFqhWPWBs5ISCcmLVbxGD3gHbmqyMeDa365kBTSqI=;
+        b=gFyb9DJ0mD7A5/shyLu/l7OAbuW0sjnpjq8EqIAXjZEKmr6FSZDqe0Q243EzFH+ESQ
+         /lg2YmdTU7utkdE87a0gCPr7RCqDCbSHtluUGfpJRXs0fR6X4KsOBUyCf8LANo1fA/8A
+         shQlBnUVgEx9hj0EXCvUAx0V6U1Z5nQalIDcb84mBo64gpfuVxnHhVwJCvkzUQwY+Lic
+         yQBycplhkQwdlSGmXcHL0Lv8KIuH2eo2PonWB+AKpHYtv+ztcZmicL2wWCQkPZ7E9+ld
+         lTRKsuswPdlmMa0/clXeiczCIt3Bfacl2eR/V5lJ1CabGzaliuZMTi8+g+9Ehw3Gexde
+         gq5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766965833; x=1767570633;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=32IgmIv8zrlvmLhf4zlKlhWMKh5C1l6H+JNSEz9V4Ck=;
-        b=B5nsckNrjzwYX20pAqX/Niokd58GRf+8NPMWMzUsvfAekkcMd4s/5j63k2oKuHXl1/
-         ar40laXohtxBwovoN/H5exQyS/+UQUQF/ugBm+AMo0RurOWb6vVoHamVVg+Xx7kw5g2F
-         ztpZzclTT4CXENRBsM2bFY8lmpRmWyU3u5D+4rFl57egqFyojJKJ7J2ohQWH40l7eXHW
-         FGy/FWzF05QZbvQmNv9ucKLLyaGZkwd7xFrrPpIguu7mOrsJbCnVMxyvLWQQV7UdHWGt
-         FMT7dcPrcZv4zQztMfgeCOpdv7IfaSodZkng09fcrxsMPmw8uoAtd6IFajly9fwJ5noI
-         WJIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXv2llmKo7GbM8a6eGvaN3TrdAE1UzDhNIt3GXGkbzadpAJ2bLMNYC449NmQ+i5WOF1TfgO+iqljfDa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxh2oZGesHLGeBIwzC3uLUFYZP7ytcbCVkeYMb4xePOtSz9PO7B
-	1KNLt4yIa1ushgoBfuLcH8rWOdnLbyrMl4erQX+GTnL+WSSH+FbvM8Q9tLpo3AGGNIc=
-X-Gm-Gg: AY/fxX4b/7egIZkXiq1hGRs4c9eeuEeTbBdbZ+iwgPll5+1yzMB6ulADl1Js/IyGs7q
-	kwyEhxTuM0pHTCMZ7U6hQWRSsgT9smfITUBmxV26ljEXq5TslelcUuinMAgkiOJpAulU4VTRhzz
-	wIrl3U6hp+FbhH3EgkaQ+XyM4ZXB7u+ispsJHwYNAqr8XVfe4x3naLC5niyQaKF92mZeEGvnHhN
-	aZTHtnLIJpxAghat+93Pph9ovIdyoOOc/Rl2lL+w6zEcZKRodoBSN+8GS6lzY6lbx9I3X0F01JL
-	/Pnm8HbVKgzYRV+fCP3wgl9eLwf1X7rapZqXBwne//i1yG42a5E9Nq3exUM6ZWAlWxk3PAvTgkq
-	IKdMeaVtGp4P0Kdi7QJOV/CWdxSVmBHw+zXv8KSZGyecRbV/AW0IontAVbnu+B89WYi6zWXlhfu
-	9KcTpRtmRXByYKuxG1z9OHBbUpj94fyRZqKGb5ac35B6ctzSlInyY=
-X-Google-Smtp-Source: AGHT+IGO0rRMB42YAPbAxySM0mJWBXB87uK13FjFxZZQF9ufEaQWAz5zIA8GyT5HoxBqf1wj2KD+tA==
-X-Received: by 2002:a05:620a:172b:b0:8b6:134e:22f3 with SMTP id af79cd13be357-8c08fab7e14mr3980633785a.61.1766965833165;
-        Sun, 28 Dec 2025 15:50:33 -0800 (PST)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c0973f28e3sm2406423185a.45.2025.12.28.15.50.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Dec 2025 15:50:32 -0800 (PST)
-Message-ID: <03f108a3-23ca-492f-8508-3a204861d063@riscstar.com>
-Date: Sun, 28 Dec 2025 17:50:30 -0600
+        d=1e100.net; s=20230601; t=1766970166; x=1767574966;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=8PsFqhWPWBs5ISCcmLVbxGD3gHbmqyMeDa365kBTSqI=;
+        b=lIQPWYMA54OLHthtukDYhxIpXnOCGorAzD0kAmyVAzdRHpe03X+/dEMSlo0nqLSY+U
+         QI+8x7+POyW8q9mH5cT7AFHuc/uCMi7To3WDKQ57iACuNdReHUAfEuPkd1FfRBOfh78F
+         gPccVyaOAQUL8cxdcgoDpGmwRVfaR3Fiw/SyUZma+sGmR4U6Y05btJPFGclUhGXnVBVA
+         dN+uacS3+iOoXhNQX/iZ/ZXQMSPc8zU3gaDC77OTtbDoddC0werpyxf7RhDRtIAaVHie
+         U2fEZSw1W8RSD+ijALVRajs3yOMPbbziOgEMtbMa+yUZEn+0YBBOuj+r0GbOjGiiCUKx
+         CxBg==
+X-Forwarded-Encrypted: i=1; AJvYcCU1I0Tf/KnaAQVJewzok9PZuix+ttp7kvTlrDfLKmk46R6fgthBwG7ZVKl1KX+ipoWK7DQqPddPiGwI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/5pPPRNuKfbOjF7zRJMPzvCrnvn1qSCgdpE6ZSY2HNq8Liefx
+	A+ZwUxXGFFTnyyjt6Yfnnxd57sMmRX7dOUKsmQ8fg9o1+S7HX/GReSRSM+v0hVMOanv0T8fVPZ1
+	78OyXEj1ESs0tQIPnMeRcAtZvwIUZJ3A=
+X-Gm-Gg: AY/fxX4badZUZXnoukl8rrmpBQefJU77CKXBmWPYigNGO1zDSmF6O3zTk6XYK/vlway
+	CbvbmThh8dNj7rhpIExQ2mwOBZLL0SDP7GuUO653njeWjFYZMoLtN6zcbMV3eUd0nDkarqIwMe9
+	10rYCaD48Kv0HkB5OtY29pMm1/FwWGyCDPZwMrbjpTb3jxSBZ2ee6hLn1z6ZAKB9jbbBtNrZLHl
+	RJZt1Q+qp3IxMQ0XolvLJdEtF2xnz9gi4nv2r75jnFhIhZAwsbBKJDDJ3JfsGxAro1aksR3
+X-Google-Smtp-Source: AGHT+IF0IXPQk0C4HhJZXawFNHsaGTIn0geCX5EoGqjfqhQpg8FvQc7ds/jfiREC9pa+fJFmx/dK8aQJP4lzul2NfZQ=
+X-Received: by 2002:a17:907:dab:b0:b73:880a:fdb7 with SMTP id
+ a640c23a62f3a-b80371790d6mr2997016866b.35.1766970166082; Sun, 28 Dec 2025
+ 17:02:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/13] dt-bindings: riscv: Add Sha and its comprised
- extensions
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Samuel Holland <samuel.holland@sifive.com>, Anup Patel
- <anup@brainfault.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Yangyu Chen <cyy@cyyself.name>, Paul Walmsley <paul.walmsley@sifive.com>,
- Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>,
- Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
- Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- spacemit@lists.linux.dev, linux-serial@vger.kernel.org
-References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
- <20251222-k3-basic-dt-v2-10-3af3f3cd0f8a@riscstar.com>
- <0253c25d-f5fd-46f1-b4d3-ec56909d5eac@riscstar.com>
- <CAH1PCMa0NqZGQAknRZppVWUEBzKDE7tcega7bsT187+=wc-_YQ@mail.gmail.com>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <CAH1PCMa0NqZGQAknRZppVWUEBzKDE7tcega7bsT187+=wc-_YQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20251224084821.2092169-1-hsu.yungteng@gmail.com>
+ <490569f8-a434-4297-b11e-ad34ddc4ae1e@kernel.org> <CAFT9tykPEt+zTREF9C4AXtGp0qDh_65LjHZCK9F=NFhE-K4dGQ@mail.gmail.com>
+ <06f97147-5752-4a82-9958-89b138a7d4fe@kernel.org>
+In-Reply-To: <06f97147-5752-4a82-9958-89b138a7d4fe@kernel.org>
+From: Yungteng Hsu <hsu.yungteng@gmail.com>
+Date: Mon, 29 Dec 2025 09:02:35 +0800
+X-Gm-Features: AQt7F2oMdsED5iRMhFHoG-r724fBp1Ay7eOq1wTC5-EPCy0ZZVDBKNYSzRNPoqo
+Message-ID: <CAFT9tynYM0u_cAqA9YPpoUp7EcVpvcwr_sxrk5K=VNMXDwBE=w@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: add STEF48H28
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/28/25 6:43 AM, Guodong Xu wrote:
-> Hi, Alex
-> 
-> On Sat, Dec 27, 2025 at 5:28 AM Alex Elder <elder@riscstar.com> wrote:
->>
->> On 12/22/25 7:04 AM, Guodong Xu wrote:
->>> Add descriptions for the Sha extension and the seven extensions it
->>> comprises: Shcounterenw, Shgatpa, Shtvala, Shvsatpa, Shvstvala, Shvstvecd,
->>> and Ssstateen.
->>>
->>> Sha is ratified in the RVA23 Profiles Version 1.0 (commit 0273f3c921b6
->>> "rva23/rvb23 ratified") as a new profile-defined extension that captures
->>> the full set of features that are mandated to be supported along with
->>> the H extension.
->>>
->>> Extensions Shcounterenw, Shgatpa, Shtvala, Shvsatpa, Shvstvala, Shvstvecd,
->>> and Ssstateen are ratified in the RISC-V Profiles Version 1.0 (commit
->>> b1d806605f87 "Updated to ratified state").
->>>
->>> The requirement status for Sha and its comprised extension in RISC-V
->>> Profiles are:
->>>    - Sha: Mandatory in RVA23S64
->>>    - H: Optional in RVA22S64; Mandatory in RVA23S64
->>>    - Shcounterenw: Optional in RVA22S64; Mandatory in RVA23S64
->>>    - Shgatpa: Optional in RVA22S64; Mandatory in RVA23S64
->>>    - Shtvala: Optional in RVA22S64; Mandatory in RVA23S64
->>>    - Shvsatpa: Optional in RVA22S64; Mandatory in RVA23S64
->>>    - Shvstvala: Optional in RVA22S64; Mandatory in RVA23S64
->>>    - Shvstvecd: Optional in RVA22S64; Mandatory in RVA23S64
->>>    - Ssstateen: Optional in RVA22S64; Mandatory in RVA23S64
->>>
->>> Add schema checks to enforce that Sha implies the presence of all its
->>> comprised extensions.
->>
->> Like patch 7 in your series, I *think* what you're doing
->> in trying to imply the presence of these other extensions
->> is actually requiring all those extensions to be present
->> *in addition* to just "Sha".  I don't think that's what
->> we want.
-> 
-> I tend to think this schema check block should be removed. Conor expressed
-> similar design logic in his comments to my Patch 7/13 of v2 series.
-> 
-> If there is no objection, I will remove it.
+Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B412=E6=9C=8826=
+=E6=97=A5=E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=887:10=E5=AF=AB=E9=81=93=EF=BC=
+=9A
 
-Sounds good.	-Alex
 
-> BR,
-> Guodong
-> 
-> 
->>
->>                                          -Alex
->>
->>> Signed-off-by: Guodong Xu <guodong@riscstar.com>
->>> ---
->>> v2: New patch.
->>> ---
->>>    .../devicetree/bindings/riscv/extensions.yaml      | 79 ++++++++++++++++++++++
->>>    1 file changed, 79 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
->>> index ed7a88c0ab3b7dc7ad4a4d2fd300d6fb33ef050c..1066b7e65dab89704dbac449db4aa5605c95b9d3 100644
->>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
->>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
->>> @@ -128,6 +128,57 @@ properties:
->>>                version of the privileged ISA specification.
->>>
->>>            # multi-letter extensions, sorted alphanumerically
->>> +        - const: sha
->>> +          description: |
->>> +            The standard Sha extension for augmented hypervisor extension as
->>> +            ratified in RVA23 Profiles Version 1.0, with commit 0273f3c921b6
->>> +            ("rva23/rvb23 ratified").
->>> +
->>> +            Sha captures the full set of features that are mandated to be
->>> +            supported along with the H extension. Sha comprises the following
->>> +            extensions: H, Shcounterenw, Shgatpa, Shtvala, Shvsatpa, Shvstvala,
->>> +            Shvstvecd, and Ssstateen.
->>> +
->>> +        - const: shcounterenw
->>> +          description: |
->>> +            The standard Shcounterenw extension for support writable enables
->>> +            in hcounteren for any supported counter, as ratified in RISC-V
->>> +            Profiles Version 1.0, with commit b1d806605f87 ("Updated to
->>> +            ratified state.")
->>> +
->>> +        - const: shgatpa
->>> +          description: |
->>> +            The standard Shgatpa extension indicates that for each supported
->>> +            virtual memory scheme SvNN supported in satp, the corresponding
->>> +            hgatp SvNNx4 mode must be supported. The hgatp mode Bare must
->>> +            also be supported. It is ratified in RISC-V Profiles Version 1.0,
->>> +            with commit b1d806605f87 ("Updated to ratified state.")
->>> +
->>> +        - const: shtvala
->>> +          description: |
->>> +            The standard Shtvala extension for htval be written with the
->>> +            faulting guest physical address in all circumstances permitted by
->>> +            the ISA. It is ratified in RISC-V Profiles Version 1.0, with
->>> +            commit b1d806605f87 ("Updated to ratified state.")
->>> +
->>> +        - const: shvsatpa
->>> +          description: |
->>> +            The standard Shvsatpa extension for vsatp supporting all translation
->>> +            modes supported in satp, as ratified in RISC-V Profiles Version 1.0,
->>> +            with commit b1d806605f87 ("Updated to ratified state.")
->>> +
->>> +        - const: shvstvala
->>> +          description: |
->>> +            The standard Shvstvala extension for vstval provides all needed
->>> +            values as ratified in RISC-V Profiles Version 1.0, with commit
->>> +            b1d806605f87 ("Updated to ratified state.")
->>> +
->>> +        - const: shvstvecd
->>> +          description: |
->>> +            The standard Shvstvecd extension for vstvec supporting Direct mode,
->>> +            as ratified in RISC-V Profiles Version 1.0, with commit b1d806605f87
->>> +            ("Updated to ratified state.")
->>> +
->>>            - const: smaia
->>>              description: |
->>>                The standard Smaia supervisor-level extension for the advanced
->>> @@ -186,6 +237,12 @@ properties:
->>>                ratified at commit d70011dde6c2 ("Update to ratified state")
->>>                of riscv-j-extension.
->>>
->>> +        - const: ssstateen
->>> +          description: |
->>> +            The standard Ssstateen extension for supervisor-mode view of the
->>> +            state-enable extension, as ratified in RISC-V Profiles Version 1.0,
->>> +            with commit b1d806605f87 ("Updated to ratified state.")
->>> +
->>>            - const: sstc
->>>              description: |
->>>                The standard Sstc supervisor-level extension for time compare as
->>> @@ -813,6 +870,28 @@ properties:
->>>                    const: zbb
->>>                - contains:
->>>                    const: zbs
->>> +      # sha comprises the following extensions
->>> +      - if:
->>> +          contains:
->>> +            const: sha
->>> +        then:
->>> +          allOf:
->>> +            - contains:
->>> +                const: h
->>> +            - contains:
->>> +                const: shcounterenw
->>> +            - contains:
->>> +                const: shgatpa
->>> +            - contains:
->>> +                const: shtvala
->>> +            - contains:
->>> +                const: shvsatpa
->>> +            - contains:
->>> +                const: shvstvala
->>> +            - contains:
->>> +                const: shvstvecd
->>> +            - contains:
->>> +                const: ssstateen
->>>          # Zcb depends on Zca
->>>          - if:
->>>              contains:
->>>
->>
-
+>
+> On 26/12/2025 03:46, Yungteng Hsu wrote:
+> > Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B412=E6=9C=
+=8824=E6=97=A5=E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=886:03=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+> >>
+> >> On 24/12/2025 09:48, Charles Hsu wrote:
+> >>> Add device tree bindings for the hot-swap controller STEF48H28.
+> >>>
+> >>> Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
+> >>> ---
+> >>
+> >>
+> >> Where is any changelog? You keep sending versions but you never
+> >> responded, never said what happened with this.
+> >>
+> > Thank you for your feedback.
+> > I realize now that I misunderstood the process.
+> > I previously thought that the changes needed to be included in the cove=
+r letter.
+> > I will follow the proper procedure for discussing updates in the thread=
+.
+>
+> There is no cover letter here at all. You sent only 1/2.
+>
+Thank you for the clarification.
+I would like to confirm the correct approach.
+Should the changes be documented in the cover letter, or should they
+be written directly in the commit message?
+I will resend the complete submission accordingly.
+> Best regards,
+> Krzysztof
 
