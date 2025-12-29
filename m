@@ -1,390 +1,1061 @@
-Return-Path: <devicetree+bounces-250047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BD56CE5F9F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 06:49:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3425CE5FAC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 06:51:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 876D13000B4F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 05:48:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 71D6C3004F4C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 05:50:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3831D1E1C11;
-	Mon, 29 Dec 2025 05:48:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EBD423EA81;
+	Mon, 29 Dec 2025 05:50:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kYPBSpQy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BepUoBKG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012021.outbound.protection.outlook.com [40.107.200.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB01EC2EA;
-	Mon, 29 Dec 2025 05:48:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.21
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766987338; cv=fail; b=sI/7NRQclUPNFltwEL88JuOG/kod8byTALLxlAcrIp0dF4otGwgjl79Q+Kh6tx7bzOoKA2f+9pV8vFAMGZuSzhmD7OLRT0umqwm4lI1bcveBYN64EHQcfwqDgCUzUjSodJnXRNNflPODjpp6RjH2Z/WjsOwJL14mF7qwyH5PTJY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766987338; c=relaxed/simple;
-	bh=HVCN2EZyQYgll2WCL0x2EPSzztCKd2artsy7o+WtDdk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GfjBhz9a6mKo7S4RL3FBp97VcbVlLXI1zXtFuwtL+c0Wm/KPjLqcTY9IOGRgxh12PQTAFv4puzoZSr8yDCGefDbfzZCV4MStFksd9EGXDJAXTv8tgl4NRKvIIc1osSo7xK74BWJPiae+OPw8rcRpwrRBKdr+ylZrPCODJuvq3iM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kYPBSpQy; arc=fail smtp.client-ip=40.107.200.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wgBF36UULMDwHAva3G5QZ8eEsEIHHGQyHC62kRknSY7eS+L4hbVW7A3sHYLRPUbZRuZ7XbDowf41LjuqyASs9F3PbHa8QPUweBijhLdFqcAtIuexYPMropDERD/0a+LA2B+5FXMPlT8FvJciivKZHQ6Eh7BetILDAoTBHyEf+mwx6kZ9vgNCtPIrBP2TMRXLd9J1i8bfDKqeEsheeWau4ZnZEMjsPHu6veS4MwqJp0etH27ASZNsZvB64un9ATom8FA6bKa3o/QRhpkRP/LegWmmIpBeJ8GLc1OmwHIzYflJ/eCftZe6gJ1I+Rv5Vr7NSTNgr4dv4I6DF4Blh9TVfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nb5y8h3ddxfoD8fYner6f5r8Hnvf7scFdpWZ89l/KbM=;
- b=U3rePoaWnGg0VnZBZoYUtmYFt1lxfM2A2qfGFDhA+IN/CEnaT1879ct7nxjMkZOsNYjTLbqTR5P6suYiQsLBmRjJPhKyEEYvB1q7trLb+KiKf+OEXYuZPPhNdd+dJGR/UUAThW4T95VChR2bhjS0vXgt0q+3qImx6tuPEvivgOEfkCjL+sZNkFzkped6lKuoBv0BEEoI+2xju1qm5mhysFYz/cKoH+/fvnZkgzt5fhglVCmc3RFtdlOQX0Pj7fpD4hAQK3j94JHIcseVuuSIWsr6JKuNmIMSZu7ljwgnJhlm7mKP0fh0veYPg7zD7N5x3diFavMC7hjjUnGxJeZklA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=linux.dev smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nb5y8h3ddxfoD8fYner6f5r8Hnvf7scFdpWZ89l/KbM=;
- b=kYPBSpQy/xC1tL2Ywd4p9kcrh9HungZZq52IglFUjSm+7EZ9fex5IJP6c58GhhZL3YXyW2KD+093LaHnA04LBd2eWChUzWI8LoEwoIyLHfNe5H2qAG3/Cl8lmH1ThaRTOLl2RNf/MRjZL6GZnkAbRE0NJ78eKolKGdcj+GayAeY=
-Received: from BY1P220CA0009.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:59d::7)
- by DS0PR10MB7936.namprd10.prod.outlook.com (2603:10b6:8:1b6::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Mon, 29 Dec
- 2025 05:48:52 +0000
-Received: from SJ1PEPF00002310.namprd03.prod.outlook.com
- (2603:10b6:a03:59d:cafe::1e) by BY1P220CA0009.outlook.office365.com
- (2603:10b6:a03:59d::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9456.14 via Frontend Transport; Mon,
- 29 Dec 2025 05:49:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- SJ1PEPF00002310.mail.protection.outlook.com (10.167.242.164) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9478.4 via Frontend Transport; Mon, 29 Dec 2025 05:48:50 +0000
-Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 28 Dec
- 2025 23:48:45 -0600
-Received: from DLEE203.ent.ti.com (157.170.170.78) by DLEE215.ent.ti.com
- (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 28 Dec
- 2025 23:48:45 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Sun, 28 Dec 2025 23:48:45 -0600
-Received: from [172.24.233.20] (a0512632.dhcp.ti.com [172.24.233.20])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BT5me0o2918603;
-	Sun, 28 Dec 2025 23:48:41 -0600
-Message-ID: <d0e9f90b-61f7-43b7-b54c-b9548692911f@ti.com>
-Date: Mon, 29 Dec 2025 11:18:40 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300E72BB17;
+	Mon, 29 Dec 2025 05:50:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766987458; cv=none; b=CrDwL6EvnWgm8nsty87W2cBXPcYbp4WzdnakmqfyKMsatwgAkZ79xCpmN2MmejkTH6FuvAKYa+/OgkUOIBNCNjY0UTA2EAksIqIf7DyG77CsHEFjikz+ytU+THjmoElvLcP3nf3GGkwCHIieSipM44arTOi0fZp1ShZWNLb2rIE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766987458; c=relaxed/simple;
+	bh=ykKeUDnYZrJxDEhkAICgRFnl1W7qGguuej+4QjavPfU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V73wzhsnwngvv0FXnvNnZJGlsE95gbneGTYQj4ZKJ6EzOd8RH/opOxL8AHC5Ro1ITGqMgkolv5Hu7kFk4jxr9R8I1/aZwEEYJZQHdp+MzhV7POBLyB1FFQ7k9t3d5HATDtKVX1vdKvHnRRfiHlVsQoYMEFqQn/5+/cS/h98CitU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BepUoBKG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52DCFC4CEF7;
+	Mon, 29 Dec 2025 05:50:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766987457;
+	bh=ykKeUDnYZrJxDEhkAICgRFnl1W7qGguuej+4QjavPfU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BepUoBKGJDnfvcSU0lLP56MnFRmu1Ny47cfaKfEYBjKoMqO0WQzW6aXhiaoeLpk0M
+	 VIYNpotiwVY1L5NK2sOP0WZgf2kBqOCNxMugUGs2UmTUHWnTpYe6kU99BlXnZZ9QeR
+	 EdiZ2rn5qnryktg5GIjAZ7Qz4BQvDFZsNBuK1K9NnQtO5QXQX0gTH77J9FXoVfOf7G
+	 KRTcHrqTrZyvq31oeekpTzyKoLyyMYH3mYCyh1ilFgIFfVPhdZJaKLJOonzRwZQIBu
+	 C0ecFSPslViLlXKzJeIL/EppINa5s8sWM+oNWgsnp7xExDUNGEeD22OL9GLdVJuzrH
+	 zKc1y4tyaWWiQ==
+Date: Mon, 29 Dec 2025 11:20:47 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v20 5/6] remoteproc: Add TEE support
+Message-ID: <aVIWt5bWP9R9j7nx@sumit-xelite>
+References: <20251217153917.3998544-1-arnaud.pouliquen@foss.st.com>
+ <20251217153917.3998544-6-arnaud.pouliquen@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] drm/tidss: Power up attached PM domains on probe
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <praneeth@ti.com>,
-	<h-shenoy@ti.com>, <u-kumar1@ti.com>, <jyri.sarha@iki.fi>,
-	<airlied@gmail.com>, <simona@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
-	<mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <aradhya.bhatia@linux.dev>
-References: <20251125165942.2586341-1-s-jain1@ti.com>
- <20251125165942.2586341-3-s-jain1@ti.com>
- <b91b00db-b3f1-418a-a686-b417b290eb4b@ideasonboard.com>
-Content-Language: en-US
-From: Swamil Jain <s-jain1@ti.com>
-In-Reply-To: <b91b00db-b3f1-418a-a686-b417b290eb4b@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00002310:EE_|DS0PR10MB7936:EE_
-X-MS-Office365-Filtering-Correlation-Id: e8d54d9d-b997-4856-5294-08de469df18f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|36860700013|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?OFo3bEErMVFzbnRrRFBRbFREVXlsR0RlcTlNS0FtaUtycW1ERVlpZUJjQVBZ?=
- =?utf-8?B?dkZuVXdpRGtRamdYQlFVYXpWTDBsV05EYWxZVFRKTVpnOStqOERXM0ZxNVJ3?=
- =?utf-8?B?WGFlcTVYNzE1TVdUWDNldzR3QjkyazBFVHh0M01OL3RMQW9HMHdlaW50Vlll?=
- =?utf-8?B?eDlTemVSZ2dueGZkdHMrc2tlQW1Bbnc1QXdjTFQ2UkM1cmllWUtEczlrQ2xi?=
- =?utf-8?B?eVNlRmw5V1lGUlUwS2I3dDYvRFBXY0JZQnRFTnB0TGhMS3M1Y0tCQ0VyMW0x?=
- =?utf-8?B?dHBGdnhkR1p6VGEzUnVIY3kvODNXZE9Mc0QxQmdwYnFWQW81M2lONStQTXY5?=
- =?utf-8?B?MVJPTS9WYk1zaytodXdPMG43d2ZoTDFGQVF4ZGZ0RGlUSlJhVDJpV2tzeUdG?=
- =?utf-8?B?UDFNV0ErRnhJNUJCcC81T1pGWkdpQ3J2dFFPZHU1T0lZQ1hJTGJ5eUlqRXZM?=
- =?utf-8?B?Umx2aWNMbmZ3TThxc2pBT29oWnZUamhRNVNUNTZyemV3Smh2QkxqaHNSYmlu?=
- =?utf-8?B?YmFHTXN2dlpFWFNHVmRTVFkxN2gxSEt5MmNNem5XSjhUeHVHdzdGV25aNU5w?=
- =?utf-8?B?SStMSDhYMzErS09TTUpDdmFFcVhNS3d4WktqaW5TNXFRWFF4TDQ5TmZCblly?=
- =?utf-8?B?ajg3cUJXYk5MbHZ5anB6Q2FpSGwycGVwQ1l1UTZMZWhrQzJ2K2tMN2I0aE56?=
- =?utf-8?B?NWw5RWEyYjBtQkJDQUdmMENDandQalVLTXZNYjgwTjRoZCtCbEZMQ3ZLcEdF?=
- =?utf-8?B?aVRNWXoyV1ZJNDFBc0dDSWYyL1ltWkFRSGFpblBWRzFtNFk2U0txaTFmSW9H?=
- =?utf-8?B?d1cvY29Kc3VlVWp4LzJyV3lVdjlTNElJSlhCcWxjSGdtWTBqVHZyTnk2cEZ0?=
- =?utf-8?B?cWlHSXBUWnBxNGF1WEFwQlA5aVJ1UWo2azNMeUdIN1pCSUVMWWhWK3krRVRK?=
- =?utf-8?B?NlNmOG1mSDlHMlpsYmxlenZCa0dmSE1mSzFOUGRZZ0Y0V2FOUkphNjZ6dUMw?=
- =?utf-8?B?N1lyQ0VmNld0WGdXRHBFdGhFTkR1ZndSY0xBa0hCQUd6U3BnYlo0RTJUSWla?=
- =?utf-8?B?eHRTK2ZmVDhKMGtScWNhcUR3dnVPbkxBU1N3bzdDMlBsOFF0MmdGVGtNSzdF?=
- =?utf-8?B?NEhjdEp1U0dMRFR2VGpxTHFpQ0RYOW8rYTlqdHF5aXVwd2FpcHZvMmg0Vk5q?=
- =?utf-8?B?T2NQeHplNjY2R1JTNmpzQTA0dWxTUVZQVkxDWmo4UEd3NVlJSmx4WHRvN2E0?=
- =?utf-8?B?UXcxNnJ1QjNMejNwTm9vUXpVeTdlRkZCOUNQNU9FeXc3NjZNVHMwcmN2bHlK?=
- =?utf-8?B?KzdmNlQ2U1BwVTRVbllieTQ5czMyTGlzeGN1d0M4Q2N3VGswRURyeTVzRjdM?=
- =?utf-8?B?ZDJPY3EzMDRqemlPb0R0UVorVGI0Z2NCc1AxcnRRMmU4OXVrY1A5cS9lNGVp?=
- =?utf-8?B?aS9sU3VyaWFJdDlUMVZCUEJHQTlTOFM4QitYYzltaC83VmN3c20vZ2YvZm4r?=
- =?utf-8?B?TVRhckQwNVk4b0hZTnlxWHBNNzZpblNoMk9nejd3Nk9yZFB4N0lwNDAwZEw4?=
- =?utf-8?B?c2tmLytsSFZtMERvRmhGWk1oYmRzRU8wYlQrVmllaXF4bWVvRHR1QlF0ZXgv?=
- =?utf-8?B?ckoreXgxMUhFTk02aC9lVi82RXJPbXVRNXhwSUc0VTRKQkpGelU2bnZ3RGFx?=
- =?utf-8?B?bGk0NC9PcGZ5T1hSNEtpaVl1Uldpck5wNW5CbHRRQ1hhaHd2cG9xdDhkdmxi?=
- =?utf-8?B?aGhOVWlGTSt5Sm5IZ2xMMmtkU3FoYkJranU5YUlUdm43OVdOQUlGbXJmaVZG?=
- =?utf-8?B?cmtIWnh3UlVuOEVQaGsyRTRNSW9hSUpvZUljZ1VqdFE0UjVpR2N1UjF1VFgv?=
- =?utf-8?B?dy9wS1NZdVlJeUUvUFdRTlJ3VExSWHdRY2x6MHJHUFVKZXZSY0FkN1I1M2Jo?=
- =?utf-8?B?REQ2VHpDNVN4VVQzZlZCMEVZT0YrVXhxb0ZGV1kxbXcxcFZBL0UvS0ZuUUZ3?=
- =?utf-8?B?UUsxMHV2aXVrOXN2NDJ0dEh5ZVNvdVhLeU1wRzl3Y2ppYk83cHJwY0l5T1F1?=
- =?utf-8?B?c3JYcVVQbEhxZmFiUEtpaThyc1phQ1gzVEV6VmxiNTIrU1drMEhxVkEzYU00?=
- =?utf-8?Q?omJ0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2025 05:48:50.8540
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8d54d9d-b997-4856-5294-08de469df18f
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF00002310.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7936
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251217153917.3998544-6-arnaud.pouliquen@foss.st.com>
 
-Hi Tomi,
-Thanks for the feedback.
-
-On 12/1/25 18:10, Tomi Valkeinen wrote:
-> Hi,
+On Wed, Dec 17, 2025 at 04:39:16PM +0100, Arnaud Pouliquen wrote:
+> Add a remoteproc TEE (Trusted Execution Environment) driver that will be
+> probed by the TEE bus. If the associated Trusted application is supported
+> on the secure part, this driver offers a client interface to load firmware
+> by the secure part.
+> This firmware could be authenticated by the secure trusted application.
 > 
-> On 25/11/2025 18:59, Swamil Jain wrote:
->> From: Devarsh Thakkar <devarsht@ti.com>
->>
->> Some SoC's such as AM62P have dedicated power domains
->> for OLDI which need to be powered on separately along
->> with display controller.
->>
->> So during driver probe, power up all attached PM domains
->> enumerated in devicetree node for DSS.
->>
->> This also prepares base to add display support for AM62P.
->>
->> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->> [j-choudhary@ti.com: fix PM call sequence causing kernel crash in OLDI]
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> Signed-off-by: Swamil Jain <s-jain1@ti.com>
->> ---
->>   drivers/gpu/drm/tidss/tidss_drv.c | 88 +++++++++++++++++++++++++++++--
->>   drivers/gpu/drm/tidss/tidss_drv.h |  4 ++
->>   2 files changed, 89 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
->> index 1c8cc18bc53c..50158281715f 100644
->> --- a/drivers/gpu/drm/tidss/tidss_drv.c
->> +++ b/drivers/gpu/drm/tidss/tidss_drv.c
->> @@ -8,6 +8,7 @@
->>   #include <linux/of.h>
->>   #include <linux/module.h>
->>   #include <linux/pm_runtime.h>
->> +#include <linux/pm_domain.h>
->>   #include <linux/aperture.h>
->>   
->>   #include <drm/clients/drm_client_setup.h>
->> @@ -107,6 +108,72 @@ static const struct drm_driver tidss_driver = {
->>   	.minor			= 0,
->>   };
->>   
->> +static int tidss_detach_pm_domains(struct tidss_device *tidss)
->> +{
->> +	int i;
->> +
->> +	if (tidss->num_domains <= 1)
->> +		return 0;
->> +
->> +	for (i = 0; i < tidss->num_domains; i++) {
->> +		if (tidss->pd_link[i] && !IS_ERR(tidss->pd_link[i]))
->> +			device_link_del(tidss->pd_link[i]);
->> +		if (tidss->pd_dev[i] && !IS_ERR(tidss->pd_dev[i]))
->> +			dev_pm_domain_detach(tidss->pd_dev[i], true);
+> A specificity of the implementation is that the firmware has to be
+> authenticated and optionally decrypted to access the resource table.
 > 
-> There's IS_ERR_OR_NULL()
-
-Ack, will replace with IS_ERR_OR_NULL.
-
+> Consequently, the boot sequence is:
 > 
->> +		tidss->pd_dev[i] = NULL;
->> +		tidss->pd_link[i] = NULL;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int tidss_attach_pm_domains(struct tidss_device *tidss)
->> +{
->> +	struct device *dev = tidss->dev;
->> +	int i;
->> +	int ret;
->> +	struct platform_device *pdev = to_platform_device(dev);
->> +	struct device_node *np = pdev->dev.of_node;
->> +
->> +	tidss->num_domains = of_count_phandle_with_args(np, "power-domains",
->> +							"#power-domain-cells");
->> +	if (tidss->num_domains <= 1) {
->> +		dev_dbg(dev, "One or less power domains, no need to do attach domains\n");
+> 1) rproc_parse_fw --> rproc_tee_parse_fw
+>    remoteproc TEE:
+>    - Requests the TEE application to authenticate and load the firmware
+>      in the remote processor memories.
+>    - Requests the TEE application for the address of the resource table.
+>    - Creates a copy of the resource table stored in rproc->cached_table.
 > 
-> I don't think this print is needed. It would be printed on almost all
-> platforms with DSS.
-
-Yeah, true, will remove this in the next version.
-
+> 2) rproc_load_segments --> rproc_tee_load_fw
+>    remoteproc TEE:
+>    - Requests the TEE application to load the firmware. Nothing is done
+>      at the TEE application as the firmware is already loaded.
+>    - In case of recovery, the TEE application has to reload the firmware.
 > 
->> +		return 0;
->> +	}
->> +
->> +	tidss->pd_dev = devm_kmalloc_array(dev, tidss->num_domains,
->> +					   sizeof(*tidss->pd_dev), GFP_KERNEL);
->> +	if (!tidss->pd_dev)
->> +		return -ENOMEM;
->> +
->> +	tidss->pd_link = devm_kmalloc_array(dev, tidss->num_domains,
->> +					    sizeof(*tidss->pd_link), GFP_KERNEL);
->> +	if (!tidss->pd_link)
->> +		return -ENOMEM;
->> +
->> +	for (i = 0; i < tidss->num_domains; i++) {
->> +		tidss->pd_dev[i] = dev_pm_domain_attach_by_id(dev, i);
->> +		if (IS_ERR(tidss->pd_dev[i])) {
->> +			ret = PTR_ERR(tidss->pd_dev[i]);
->> +			goto fail;
->> +		}
->> +
->> +		tidss->pd_link[i] = device_link_add(dev, tidss->pd_dev[i],
->> +						    DL_FLAG_STATELESS |
->> +						    DL_FLAG_PM_RUNTIME | DL_FLAG_RPM_ACTIVE);
->> +		if (!tidss->pd_link[i]) {
->> +			ret = -EINVAL;
->> +			goto fail;
->> +		}
->> +	}
->> +
->> +	return 0;
->> +fail:
->> +	tidss_detach_pm_domains(tidss);
->> +	return ret;
->> +}
->> +
->>   static int tidss_probe(struct platform_device *pdev)
->>   {
->>   	struct device *dev = &pdev->dev;
->> @@ -129,15 +196,24 @@ static int tidss_probe(struct platform_device *pdev)
->>   
->>   	spin_lock_init(&tidss->irq_lock);
->>   
->> +	/* powering up associated OLDI domains */
+> 3) rproc_tee_get_loaded_rsc_table
+>    remoteproc TEE requests the TEE application for the address of the
+>    resource table.
 > 
-> I think the function name is self-explanatory, no comment needed.
-
-Will remove the comment.
-
+> 4) rproc_start --> rproc_tee_start
+>    - Requests the TEE application to start the remote processor.
 > 
->> +	ret = tidss_attach_pm_domains(tidss);
->> +	if (ret < 0) {
->> +		dev_err(dev, "failed to attach power domains %d\n", ret);
->> +		goto err_detach_pm_domains;
+> The shutdown sequence is:
 > 
-> This is not correct. If tidss_attach_pm_domains() fails, it should do
-> its own cleanup, thus there's no need to goto err_detach_pm_domains.
->
-
-Ok, will make tidss_attach_pm_domains do it's own cleanup.
-
-
->> +	}
->> +
->>   	ret = dispc_init(tidss);
->>   	if (ret) {
->>   		dev_err(dev, "failed to initialize dispc: %d\n", ret);
->> -		return ret;
->> +		goto err_detach_pm_domains;
->>   	}
->>   
->>   	ret = tidss_oldi_init(tidss);
->> -	if (ret)
->> -		return dev_err_probe(dev, ret, "failed to init OLDI\n");
->> +	if (ret) {
->> +		dev_dbg(dev, "failed to init OLDI: %d\n", ret);
->> +		goto err_oldi_deinit;
+> 5) rproc_stop --> rproc_tee_stop
+>    - Requests the TEE application to stop the remote processor.
 > 
-> Same here, this is just not correct. Please go through the error
-> handling paths with your patch. This also changes dev_err_probe() to
-> dev_dbg().
-
-Sure.
-
+> 6) rproc_tee_release_fw
+>    This function is used to request the TEE application to perform actions
+>    to return to the initial state on stop or on error during the boot
+>    sequence.
 > 
->> +	}
->>   
->>   	pm_runtime_enable(dev);
->>   
->> @@ -203,8 +279,12 @@ static int tidss_probe(struct platform_device *pdev)
->>   	pm_runtime_dont_use_autosuspend(dev);
->>   	pm_runtime_disable(dev);
->>   
->> +err_oldi_deinit:
->>   	tidss_oldi_deinit(tidss);
->>   
->> +err_detach_pm_domains:
->> +	tidss_detach_pm_domains(tidss);
->> +
->>   	return ret;
->>   }
->>   
->> @@ -232,6 +312,8 @@ static void tidss_remove(struct platform_device *pdev)
->>   	/* devm allocated dispc goes away with the dev so mark it NULL */
->>   	dispc_remove(tidss);
->>   
->> +	tidss_detach_pm_domains(tidss);
->> +
->>   	dev_dbg(dev, "%s done\n", __func__);
->>   }
->>   
->> diff --git a/drivers/gpu/drm/tidss/tidss_drv.h b/drivers/gpu/drm/tidss/tidss_drv.h
->> index e1c1f41d8b4b..6eb17cb32043 100644
->> --- a/drivers/gpu/drm/tidss/tidss_drv.h
->> +++ b/drivers/gpu/drm/tidss/tidss_drv.h
->> @@ -41,6 +41,10 @@ struct tidss_device {
->>   	/* protects the irq masks field and irqenable/irqstatus registers */
->>   	spinlock_t irq_lock;
->>   	dispc_irq_t irq_mask;	/* enabled irqs */
->> +
->> +	int num_domains; /* Handle attached PM domains */
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> ---
+> Version 20 updates:
+> - rework probe. the remoteproc-tee now probe the remoteproc devices
+>   defined in device tree as child.
+>   - creation of rproc-service-80a4c275-0a47-4905-8285-1486a9771a08 compatible
+>   - use of of_find_compatible_node() to find node in DT
+>   - use of of_platform_populate() to probe remoteproc devices
+> - remove device_link_add() as now managed by of_platform_populate)
+> - add "auto_boot" parameter in rproc_tee_register()
+> - rename TA_RPROC_FW_CMD_* TEE CMD in  TA_RPROC_CMD_* command
+> - use of DEFINE_MUTEX
 > 
-> What does the comment mean?
+> Version 19 updates:
+> - rework/fix function headers
+> - use memremap instead of ioremap for the resource table.
+> - realign comments to 80 chars limit, with few exceptions for readability
+> - replace spinlock by mutex and and protect APIs from concurrent access
+> - add support of 64-bit address in rproc_tee_get_loaded_rsc_table()
+> - update copyright year
+> 
+> Version 18 updates:
+> Fix warning:
+> warning: EXPORT_SYMBOL() is used, but #include <linux/export.h> is missing
+> ---
+>  drivers/remoteproc/Kconfig          |  10 +
+>  drivers/remoteproc/Makefile         |   1 +
+>  drivers/remoteproc/remoteproc_tee.c | 771 ++++++++++++++++++++++++++++
+>  include/linux/remoteproc_tee.h      |  89 ++++
+>  4 files changed, 871 insertions(+)
+>  create mode 100644 drivers/remoteproc/remoteproc_tee.c
+>  create mode 100644 include/linux/remoteproc_tee.h
+> 
+> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> index 48a0d3a69ed0..75265f3f5008 100644
+> --- a/drivers/remoteproc/Kconfig
+> +++ b/drivers/remoteproc/Kconfig
+> @@ -23,6 +23,16 @@ config REMOTEPROC_CDEV
+>  
+>  	  It's safe to say N if you don't want to use this interface.
+>  
+> +config REMOTEPROC_TEE
+> +	bool "Remoteproc support by a TEE application"
+> +	depends on OPTEE
+> +	help
+> +	  Support a remote processor that is managed by an application running in a Trusted
+> +	  Execution Environment (TEE). This application is responsible for loading the remote
+> +	  processor firmware image and managing its lifecycle.
+> +
+> +	  It's safe to say N if the remote processor is not managed by a TEE.
+> +
+>  config IMX_REMOTEPROC
+>  	tristate "i.MX remoteproc support"
+>  	depends on ARCH_MXC
+> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
+> index 1c7598b8475d..a1a5201982d4 100644
+> --- a/drivers/remoteproc/Makefile
+> +++ b/drivers/remoteproc/Makefile
+> @@ -11,6 +11,7 @@ remoteproc-y				+= remoteproc_sysfs.o
+>  remoteproc-y				+= remoteproc_virtio.o
+>  remoteproc-y				+= remoteproc_elf_loader.o
+>  obj-$(CONFIG_REMOTEPROC_CDEV)		+= remoteproc_cdev.o
+> +obj-$(CONFIG_REMOTEPROC_TEE)		+= remoteproc_tee.o
+>  obj-$(CONFIG_IMX_REMOTEPROC)		+= imx_rproc.o
+>  obj-$(CONFIG_IMX_DSP_REMOTEPROC)	+= imx_dsp_rproc.o
+>  obj-$(CONFIG_INGENIC_VPU_RPROC)		+= ingenic_rproc.o
+> diff --git a/drivers/remoteproc/remoteproc_tee.c b/drivers/remoteproc/remoteproc_tee.c
+> new file mode 100644
+> index 000000000000..081420c35c88
+> --- /dev/null
+> +++ b/drivers/remoteproc/remoteproc_tee.c
+> @@ -0,0 +1,771 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) STMicroelectronics 2025
+> + * Author: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> + */
+> +
+> +#include <linux/firmware.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/mutex.h>
+> +#include <linux/remoteproc.h>
+> +#include <linux/remoteproc_tee.h>
+> +#include <linux/slab.h>
+> +#include <linux/tee_drv.h>
+> +
+> +#include "remoteproc_internal.h"
+> +
+> +#define MAX_TEE_PARAM_ARRAY_MEMBER	4
+> +
+> +/*
+> + * Authentication and load of the firmware image in the remote processor
+> + * memories by the TEE. After this step the firmware is installed in destination
+> + * memories, which can then be locked to prevent access by Linux.
+> + *
+> + * [in]  params[0].value.a: remote processor identifier
+> + * [in]  params[1].memref:  buffer containing a temporary copy of the signed
+> + *			    image to load.
+> + */
+> +#define TA_RPROC_CMD_LOAD_FW		1
+> +
+> +/*
+> + * Start the remote processor by the TEE
+> + *
+> + * [in]  params[0].value.a: remote processor identifier
+> + */
+> +#define TA_RPROC_CMD_START		2
+> +
+> +/*
+> + * Stop the remote processor by the TEE
+> + *
+> + * [in]  params[0].value.a: remote processor identifier
+> + */
+> +#define TA_RPROC_CMD_STOP		3
+> +
+> +/*
+> + * Return the address of the resource table, or 0 if not found.
+> + *
+> + * [in]  params[0].value.a: remote processor identifier
+> + * [out] params[1].value.a: 32bit LSB resource table memory address
+> + * [out] params[1].value.b: 32bit MSB resource table memory address
+> + * [out] params[2].value.a: 32bit LSB resource table memory size
+> + * [out] params[2].value.b: 32bit MSB resource table memory size
+> + */
+> +#define TA_RPROC_CMD_GET_RSC_TABLE	4
+> +
+> +/*
+> + * Release remote processor firmware images and associated resources.
+> + * This command should be used in case an error occurs between the loading of
+> + * the firmware images (TA_RPROC_CMD_LOAD_FW) and the starting of the remote
+> + * processor (TA_RPROC_CMD_START) or after stopping the remote processor
+> + * to release associated resources (TA_RPROC_CMD_STOP).
+> + *
+> + * [in]  params[0].value.a: remote processor identifier
+> + */
+> +#define TA_RPROC_CMD_RELEASE_FW		6
+> +
+> +struct rproc_tee_context {
+> +	struct list_head	rproc_list;
+> +	struct tee_context	*tee_ctx;
+> +	struct device		*dev;
+> +};
+> +
+> +/**
+> + * struct rproc_tee - TEE remoteproc structure
+> + * @node:       Reference in list
+> + * @rproc:      Remoteproc reference
+> + * @rproc_id:   remote processor identifier
+> + * @session_id: TEE session identifier
+> + */
+> +struct rproc_tee {
+> +	struct list_head node;
+> +	struct rproc *rproc;
+> +	u32 rproc_id;
+> +	u32 session_id;
+> +};
+> +
+> +static struct rproc_tee_context rproc_tee_ctx;
+> +static DEFINE_MUTEX(ctx_lock); /* Protects concurrent manipulations of the rproc_tee_ctx*/
+> +
+> +static struct rproc_tee *rproc_to_trproc(struct rproc *rproc)
+> +{
+> +	struct rproc_tee *trproc;
+> +
+> +	list_for_each_entry(trproc, &rproc_tee_ctx.rproc_list, node)
+> +		if (trproc->rproc == rproc)
+> +			return trproc;
+> +	return NULL;
+> +}
+> +
+> +static void rproc_tee_prepare_args(struct rproc_tee *trproc, int cmd,
+> +				   struct tee_ioctl_invoke_arg *arg,
+> +				   struct tee_param *param,
+> +				   unsigned int num_params)
+> +{
+> +	memset(arg, 0, sizeof(*arg));
+> +	memset(param, 0, MAX_TEE_PARAM_ARRAY_MEMBER * sizeof(*param));
+> +
+> +	arg->func = cmd;
+> +	arg->session = trproc->session_id;
+> +	arg->num_params = num_params + 1;
+> +
+> +	param[0] = (struct tee_param) {
+> +		.attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT,
+> +		.u.value.a = trproc->rproc_id,
+> +	};
+> +}
+> +
+> +/**
+> + * rproc_tee_release_fw() - Release the firmware for a TEE-based remote processor
+> + * @rproc: Pointer to the struct rproc representing the remote processor
+> + *
+> + * This function invokes the TA_RPROC_CMD_RELEASE_FW TEE client function to
+> + * release the firmware. It should only be called when the remoteproc state is
+> + * RPROC_OFFLINE or RPROC_DETACHED. The function requests the TEE remoteproc
+> + * application to release the firmware loaded by rproc_tee_load_fw().
+> + * The request is ignored if the rproc state is RPROC_DETACHED as the remote
+> + * processor is still running.
+> + */
+> +void rproc_tee_release_fw(struct rproc *rproc)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
+> +	struct rproc_tee *trproc;
+> +	struct tee_ioctl_invoke_arg arg;
+> +	int ret;
+> +
+> +	ret = mutex_lock_interruptible(&ctx_lock);
+> +	if (ret)
+> +		return;
+> +
+> +	if (!rproc_tee_ctx.dev)
+> +		goto out;
+> +
+> +	trproc = rproc_to_trproc(rproc);
+> +	if (!trproc)
+> +		goto out;
+> +
+> +	/*
+> +	 * If the remote processor state is RPROC_DETACHED, just ignore the
+> +	 * request, as the remote processor is still running.
+> +	 */
+> +	if (rproc->state == RPROC_DETACHED)
+> +		goto out;
+> +
+> +	if (rproc->state != RPROC_OFFLINE) {
+> +		dev_err(rproc_tee_ctx.dev, "unexpected rproc state: %d\n", rproc->state);
+> +		goto out;
+> +	}
+> +
+> +	rproc_tee_prepare_args(trproc, TA_RPROC_CMD_RELEASE_FW, &arg, param, 0);
+> +
+> +	ret = tee_client_invoke_func(rproc_tee_ctx.tee_ctx, &arg, param);
+> +	if (ret < 0 || arg.ret != 0) {
+> +		dev_err(rproc_tee_ctx.dev,
+> +			"TA_RPROC_CMD_RELEASE_FW invoke failed TEE err: %#x, ret:%d\n",
+> +			arg.ret, ret);
+> +	}
+> +
+> +out:
+> +	mutex_unlock(&ctx_lock);
+> +}
+> +EXPORT_SYMBOL_GPL(rproc_tee_release_fw);
+> +
+> +/**
+> + * rproc_tee_load_fw() - Load firmware from TEE application
+> + * @rproc: Pointer to the struct rproc representing the remote processor
+> + * @fw: Pointer to the firmware structure containing the firmware data and size
+> + *
+> + * This function invokes the TA_RPROC_CMD_LOAD_FW TEE client function to load
+> + * the firmware. It registers the fw->data as a shared memory region with the
+> + * TEE, and request the TEE to load the firmware. This function can be called
+> + * twice during the remote processor boot, a first by rproc_tee_parse_fw() to
+> + * parse the resource table , and a second time by rproc_tee_load_fw().
+> + * The TEE application should ignores the command if the firmware
+> + * is already loaded by rproc_tee_parse_fw().
+> + *
+> + * Return: 0 on success, or an error code on failure
+> + */
+> +int rproc_tee_load_fw(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
+> +	struct rproc_tee *trproc;
+> +	struct tee_ioctl_invoke_arg arg;
+> +	struct tee_shm *fw_shm;
+> +	int ret;
+> +
+> +	ret = mutex_lock_interruptible(&ctx_lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!rproc_tee_ctx.dev) {
+> +		ret = -ENODEV;
+> +		goto out;
+> +	}
+> +
+> +	trproc = rproc_to_trproc(rproc);
+> +	if (!trproc) {
+> +		ret = -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	fw_shm = tee_shm_register_kernel_buf(rproc_tee_ctx.tee_ctx, (void *)fw->data, fw->size);
+> +	if (IS_ERR(fw_shm)) {
+> +		ret = PTR_ERR(fw_shm);
+> +		goto out;
+> +	}
+> +
+> +	rproc_tee_prepare_args(trproc, TA_RPROC_CMD_LOAD_FW, &arg, param, 1);
+> +
+> +	/* Provide the address of the firmware image */
+> +	param[1] = (struct tee_param) {
+> +		.attr = TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INPUT,
+> +		.u.memref = {
+> +			.shm = fw_shm,
+> +			.size = fw->size,
+> +			.shm_offs = 0,
+> +		},
+> +	};
+> +
+> +	ret = tee_client_invoke_func(rproc_tee_ctx.tee_ctx, &arg, param);
+> +	if (ret < 0 || arg.ret != 0) {
+> +		dev_err(rproc_tee_ctx.dev,
+> +			"TA_RPROC_CMD_LOAD_FW invoke failed TEE err: %#x, ret:%d\n",
+> +			arg.ret, ret);
+> +		if (!ret)
+> +			ret = -EIO;
+> +	}
+> +
+> +	tee_shm_free(fw_shm);
+> +
+> +out:
+> +	mutex_unlock(&ctx_lock);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(rproc_tee_load_fw);
+> +
+> +static int rproc_tee_get_loaded_rsc_table(struct rproc *rproc, phys_addr_t *rsc_pa,
+> +					  size_t *table_sz)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
+> +	struct rproc_tee *trproc;
+> +	struct tee_ioctl_invoke_arg arg;
+> +	int ret;
+> +
+> +	ret = mutex_lock_interruptible(&ctx_lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!rproc_tee_ctx.dev) {
+> +		ret = -ENODEV;
+> +		goto out;
+> +	}
+> +
+> +	trproc = rproc_to_trproc(rproc);
+> +	if (!trproc) {
+> +		ret = -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	rproc_tee_prepare_args(trproc, TA_RPROC_CMD_GET_RSC_TABLE, &arg, param, 2);
+> +
+> +	param[1].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_OUTPUT;
+> +	param[2].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_OUTPUT;
+> +
+> +	ret = tee_client_invoke_func(rproc_tee_ctx.tee_ctx, &arg, param);
+> +	if (ret < 0 || arg.ret != 0) {
+> +		dev_err(rproc_tee_ctx.dev,
+> +			"TA_RPROC_CMD_GET_RSC_TABLE invoke failed TEE err: %#x, ret:%d\n",
+> +			arg.ret, ret);
+> +		ret = -EIO;
+> +		goto out;
+> +	}
+> +
+> +	*table_sz = param[2].u.value.a;
+> +	if (sizeof(phys_addr_t) == sizeof(u64))
+> +		*table_sz |= param[2].u.value.b << 32;
+> +
+> +	if (*table_sz) {
+> +		*rsc_pa = param[1].u.value.a;
+> +		if (sizeof(phys_addr_t) == sizeof(u64))
+> +			*rsc_pa |= param[1].u.value.b << 32;
+> +	} else {
+> +		*rsc_pa = 0;
+> +	}
+> +
+> +out:
+> +	mutex_unlock(&ctx_lock);
+> +	return ret;
+> +}
+> +
+> +/**
+> + * rproc_tee_parse_fw() - Get the resource table from TEE application
+> + * @rproc: Pointer to the struct rproc representing the remote processor
+> + * @fw: Pointer to the firmware structure containing the firmware data and size
+> + *
+> + * This function retrieves the loaded resource table and creates a cached_table
+> + * copy. Since the firmware image is signed and potentially encrypted, the
+> + * firmware must be loaded first to access the loaded resource table.
+> + *
+> + * Return: 0 on success, or an error code on failure
+> + */
+> +int rproc_tee_parse_fw(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	phys_addr_t rsc_table;
+> +	void *rsc_va;
+> +	size_t table_sz;
+> +	int ret;
+> +
+> +	if (!rproc)
+> +		return -EINVAL;
+> +
+> +	/* We need first to Load the firmware, to be able to get the resource table. */
+> +	ret = rproc_tee_load_fw(rproc, fw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = rproc_tee_get_loaded_rsc_table(rproc, &rsc_table, &table_sz);
+> +	if (ret)
+> +		goto release_fw;
+> +
+> +	/*
+> +	 * We assume here that the memory mapping is the same between the TEE
+> +	 * and Linux kernel contexts. Else a new TEE remoteproc service could be
+> +	 * needed to get a copy of the resource table.
+> +	 */
+> +	rsc_va = memremap(rsc_table, table_sz, MEMREMAP_WC);
+> +	if (!rsc_va) {
+> +		dev_err(rproc_tee_ctx.dev, "Unable to map memory region: %pa+%zx\n",
+> +			&rsc_table, table_sz);
+> +		ret = -ENOMEM;
+> +		goto release_fw;
+> +	}
+> +
+> +	/*
+> +	 * Create a copy of the resource table to have the same behavior as the
+> +	 * ELF loader. This cached table will be used by the remoteproc core
+> +	 * after the remoteproc stops to free resources and for crash recovery
+> +	 * to reapply the settings.
+> +	 * The cached table will be freed by the remoteproc core.
+> +	 */
+> +	rproc->cached_table = kmemdup(rsc_va, table_sz, GFP_KERNEL);
+> +	memunmap(rsc_va);
+> +
+> +	if (!rproc->cached_table) {
+> +		ret = -ENOMEM;
+> +		goto release_fw;
+> +	}
+> +
+> +	rproc->table_ptr = rproc->cached_table;
+> +	rproc->table_sz = table_sz;
+> +
+> +	return 0;
+> +
+> +release_fw:
+> +	rproc_tee_release_fw(rproc);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(rproc_tee_parse_fw);
+> +
+> +/**
+> + * rproc_tee_find_loaded_rsc_table() - Find the loaded resource table loaded by
+> + *				       the TEE application
+> + * @rproc: Pointer to the struct rproc representing the remote processor
+> + * @fw: Pointer to the firmware structure containing the firmware data and size
+> + *
+> + * This function retrieves the physical address and size of the resource table
+> + * loaded by the TEE application.
+> + *
+> + * Return: pointer to the resource table if found, or NULL if not found or size
+> + * is 0
+> + */
+> +struct resource_table *rproc_tee_find_loaded_rsc_table(struct rproc *rproc,
+> +						       const struct firmware *fw)
+> +{
+> +	phys_addr_t rsc_table;
+> +	size_t table_sz;
+> +	int ret;
+> +
+> +	ret = rproc_tee_get_loaded_rsc_table(rproc, &rsc_table, &table_sz);
+> +	if (ret)
+> +		return NULL;
+> +
+> +	rproc->table_sz = table_sz;
+> +	if (!table_sz)
+> +		return NULL;
+> +
+> +	/*
+> +	 * At this step the memory area that contains the resource table should
+> +	 * have been registered by the remote proc platform driver and allocated
+> +	 * by rproc_alloc_registered_carveouts().
+> +	 */
+> +	return rproc_pa_to_va(rproc, rsc_table, table_sz, NULL);
+> +}
+> +EXPORT_SYMBOL_GPL(rproc_tee_find_loaded_rsc_table);
+> +
+> +/**
+> + * rproc_tee_start() - Request the TEE application to start the remote processor
+> + * @rproc: Pointer to the struct rproc representing the remote processor
+> + *
+> + * This function invokes the TA_RPROC_CMD_START command to start the remote
+> + * processor.
+> + *
+> + * Return: Returns 0 on success, -EINVAL or -EIO on failure
+> + */
+> +int rproc_tee_start(struct rproc *rproc)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
+> +	struct rproc_tee *trproc;
+> +	struct tee_ioctl_invoke_arg arg;
+> +	int ret;
+> +
+> +	ret = mutex_lock_interruptible(&ctx_lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!rproc_tee_ctx.dev) {
+> +		ret = -ENODEV;
+> +		goto out;
+> +	}
+> +
+> +	trproc = rproc_to_trproc(rproc);
+> +	if (!trproc) {
+> +		ret = -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	rproc_tee_prepare_args(trproc, TA_RPROC_CMD_START, &arg, param, 0);
+> +
+> +	ret = tee_client_invoke_func(rproc_tee_ctx.tee_ctx, &arg, param);
+> +	if (ret < 0 || arg.ret != 0) {
+> +		dev_err(rproc_tee_ctx.dev,
+> +			"TA_RPROC_CMD_START invoke failed TEE err: %#x, ret:%d\n", arg.ret, ret);
+> +		if (!ret)
+> +			ret = -EIO;
+> +	}
+> +
+> +out:
+> +	mutex_unlock(&ctx_lock);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(rproc_tee_start);
+> +
+> +/**
+> + * rproc_tee_stop() - Request the TEE application to start the remote processor
+> + * @rproc: Pointer to the struct rproc representing the remote processor
+> + *
+> + * This function invokes the TA_RPROC_CMD_STOP command to stop the remote
+> + * processor.
+> + *
+> + * Return: Returns 0 on success, -EINVAL or -EIO on failure
+> + */
+> +int rproc_tee_stop(struct rproc *rproc)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
+> +	struct rproc_tee *trproc;
+> +	struct tee_ioctl_invoke_arg arg;
+> +	int ret;
+> +
+> +	ret = mutex_lock_interruptible(&ctx_lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!rproc_tee_ctx.dev) {
+> +		ret = -ENODEV;
+> +		goto out;
+> +	}
+> +
+> +	trproc = rproc_to_trproc(rproc);
+> +	if (!trproc) {
+> +		ret = -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	rproc_tee_prepare_args(trproc, TA_RPROC_CMD_STOP, &arg, param, 0);
+> +
+> +	ret = tee_client_invoke_func(rproc_tee_ctx.tee_ctx, &arg, param);
+> +	if (ret < 0 || arg.ret != 0) {
+> +		dev_err(rproc_tee_ctx.dev,
+> +			"TA_RPROC_CMD_STOP invoke failed TEE err: %#x, ret:%d\n", arg.ret, ret);
+> +		if (!ret)
+> +			ret = -EIO;
+> +	}
+> +
+> +out:
+> +	mutex_unlock(&ctx_lock);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(rproc_tee_stop);
+> +
+> +static const struct rproc_ops rproc_tee_default_ops = {
+> +	.start		= rproc_tee_start,
+> +	.stop		= rproc_tee_stop,
+> +	.load		= rproc_tee_load_fw,
+> +	.parse_fw	= rproc_tee_parse_fw,
+> +	.find_loaded_rsc_table = rproc_tee_find_loaded_rsc_table,
+> +	.release_fw	= rproc_tee_release_fw,
+> +};
+> +
+> +static const struct tee_client_device_id rproc_tee_id_table[] = {
+> +	{UUID_INIT(0x80a4c275, 0x0a47, 0x4905, 0x82, 0x85, 0x14, 0x86, 0xa9, 0x77, 0x1a, 0x08)},
+> +	{ /* sentinel */ }
+> +};
+> +
+> +/**
+> + * rproc_tee_register() - Register a remote processor controlled by the TEE application.
+> + * @dev: Pointer to client rproc device
+> + * @rproc: Pointer to the struct rproc representing the remote processor
+> + * @rproc_id: ID of the remote processor
+> + * @auto_boot: flag to indicate if remote processor should be auto-started
+> + *
+> + * This function registers a remote processor that will be managed by a TEE
+> + * application, by opening a session with the TEE client.
+> + *
+> + * Return: Returns 0 on success, or an error code on failure
+> + */
+> +int rproc_tee_register(struct device *dev, struct rproc **rproc,
+> +		       unsigned int rproc_id, bool auto_boot)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
+> +	struct tee_ioctl_open_session_arg sess_arg;
+> +	struct device_node *np = dev->of_node;
+> +	struct tee_client_device *tee_device;
+> +	struct rproc *new_rproc;
+> +	struct rproc_tee *trproc;
+> +	const char *fw_name;
+> +	int ret;
+> +
+> +	ret = mutex_lock_interruptible(&ctx_lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!rproc_tee_ctx.dev) {
+> +		ret = -ENODEV;
+> +		goto out;
+> +	}
+> +
+> +	trproc = kzalloc(sizeof(*trproc), GFP_KERNEL);
+> +	if (!trproc) {
+> +		ret = -ENOMEM;
+> +		goto out;
+> +	}
+> +
+> +	/* Look for an optional firmware name */
+> +	ret = rproc_of_parse_firmware(dev, 0, &fw_name);
+> +	if (ret < 0 && ret != -EINVAL)
+> +		goto free_tproc;
+> +
+> +	new_rproc = rproc_alloc(dev, np->name, &rproc_tee_default_ops,
+> +				fw_name, sizeof(*trproc));
+> +	if (!new_rproc) {
+> +		ret = -ENOMEM;
+> +		goto free_tproc;
+> +	}
+> +
+> +	tee_device = to_tee_client_device(rproc_tee_ctx.dev);
+> +	memset(&sess_arg, 0, sizeof(sess_arg));
+> +
+> +	memcpy(sess_arg.uuid, tee_device->id.uuid.b, TEE_IOCTL_UUID_LEN);
+> +
+> +	sess_arg.clnt_login = TEE_IOCTL_LOGIN_REE_KERNEL;
+> +	sess_arg.num_params = 1;
+> +
+> +	param[0] = (struct tee_param) {
+> +		.attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT,
+> +		.u.value.a = rproc_id,
+> +	};
+> +
+> +	ret = tee_client_open_session(rproc_tee_ctx.tee_ctx, &sess_arg, param);
+> +	if (ret < 0 || sess_arg.ret != 0) {
+> +		dev_err(dev, "tee_client_open_session failed, err: %#x\n", sess_arg.ret);
+> +		ret = -EINVAL;
+> +		goto free_rproc;
+> +	}
+> +
+> +	trproc->rproc_id = rproc_id;
+> +	trproc->session_id = sess_arg.session;
+> +	new_rproc->auto_boot = auto_boot;
+> +
+> +	ret = rproc_add(new_rproc);
+> +	if (ret)
+> +		goto close_tee;
+> +
+> +	trproc->rproc = new_rproc;
+> +	*rproc = new_rproc;
+> +
+> +	list_add_tail(&trproc->node, &rproc_tee_ctx.rproc_list);
+> +
+> +	mutex_unlock(&ctx_lock);
+> +
+> +	return 0;
+> +
+> +close_tee:
+> +	if (tee_client_close_session(rproc_tee_ctx.tee_ctx, trproc->session_id))
+> +		dev_err(rproc_tee_ctx.dev, "tee_client_close_session failed\n");
+> +free_rproc:
+> +	rproc_free(new_rproc);
+> +free_tproc:
+> +	kfree(trproc);
+> +out:
+> +	mutex_unlock(&ctx_lock);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(rproc_tee_register);
+> +
+> +/**
+> + * rproc_tee_unregister - Unregister a remote processor controlled by the TEE
+> + *                        application.
+> + * @dev: Pointer to client rproc device
+> + * @rproc: Pointer to the struct rproc representing the remote processor
+> + *
+> + * This function unregisters a remote processor previously registered by the
+> + * rproc_tee_register() function.
+> + *
+> + * Return: Returns 0 on success, or an error code on failure
+> + */
+> +int rproc_tee_unregister(struct device *dev, struct rproc *rproc)
+> +{
+> +	struct rproc_tee *trproc;
+> +	int ret;
+> +
+> +	if (!rproc_tee_ctx.dev) {
+> +		ret = -ENODEV;
+> +		return ret;
+> +	}
+> +
+> +	trproc = rproc_to_trproc(rproc);
+> +	if (!trproc) {
+> +		ret = -EINVAL;
+> +		return ret;
+> +	}
+> +
+> +	rproc_del(rproc);
+> +	rproc_free(rproc);
+> +
+> +	ret = mutex_lock_interruptible(&ctx_lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = tee_client_close_session(rproc_tee_ctx.tee_ctx, trproc->session_id);
+> +	if (ret < 0)
+> +		dev_err(rproc_tee_ctx.dev, "tee_client_close_session failed, err: %#x\n", ret);
+> +	list_del(&trproc->node);
+> +	kfree(trproc);
+> +	mutex_unlock(&ctx_lock);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(rproc_tee_unregister);
+> +
+> +static int rproc_tee_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
+> +{
+> +	/* Today we support only the OP-TEE, could be extend to other tees */
+> +	return (ver->impl_id == TEE_IMPL_ID_OPTEE);
+> +}
+> +
+> +static const struct of_device_id remoteproc_tee_of_match[] = {
+> +	{ .compatible = "rproc-service-80a4c275-0a47-4905-8285-1486a9771a08" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, remoteproc_tee_of_match);
 
-The number of power domains that needs to be handled, will rephrase it
-to make it more understandable.
+You don't need to define this redundant table but instead...
 
-> 
->   Tomi
-> 
->> +	struct device **pd_dev;
->> +	struct device_link **pd_link;
->>   };
->>   
->>   #define to_tidss(__dev) container_of(__dev, struct tidss_device, ddev)
-> 
+> +
+> +static int rproc_tee_probe(struct device *dev)
+> +{
+> +	struct tee_context *tee_ctx;
+> +	struct device_node *np;
+> +	int ret;
+> +
+> +	pr_err("%s %d", __func__, __LINE__);
+> +	np = of_find_compatible_node(NULL, NULL,
+> +				     remoteproc_tee_of_match[0].compatible);
 
+...you can get the UUID from device being passed here. With that you
+should be able to fetch device specific DT properties.
+
+-Sumit
+
+> +	if (!np) {
+> +		dev_err(dev, "Device node not found\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* Open context with TEE driver */
+> +	tee_ctx = tee_client_open_context(NULL, rproc_tee_ctx_match, NULL, NULL);
+> +	if (IS_ERR(tee_ctx)) {
+> +		ret = PTR_ERR(tee_ctx);
+> +		goto put_node;
+> +	}
+> +
+> +	ret = mutex_lock_interruptible(&ctx_lock);
+> +	if (ret)
+> +		goto close_ctx;
+> +
+> +	rproc_tee_ctx.dev = dev;
+> +	rproc_tee_ctx.tee_ctx = tee_ctx;
+> +	INIT_LIST_HEAD(&rproc_tee_ctx.rproc_list);
+> +
+> +	mutex_unlock(&ctx_lock);
+> +
+> +	ret = device_add_of_node(dev, np);
+> +	if (ret)
+> +		goto clean_ctx;
+> +
+> +	ret = of_platform_populate(np, NULL, NULL, dev);
+> +	if (ret) {
+> +		dev_err(dev, "cannot populate node (%d)\n", ret);
+> +		goto clean_ctx;
+> +	}
+> +
+> +	return 0;
+> +
+> +clean_ctx:
+> +	mutex_lock(&ctx_lock);
+> +	rproc_tee_ctx.dev = NULL;
+> +	rproc_tee_ctx.tee_ctx = NULL;
+> +	mutex_unlock(&ctx_lock);
+> +
+> +close_ctx:
+> +	tee_client_close_context(tee_ctx);
+> +
+> +put_node:
+> +	of_node_put(np);
+> +	return ret;
+> +}
+> +
+> +static int rproc_tee_remove(struct device *dev)
+> +{
+> +	of_platform_depopulate(dev);
+> +
+> +	device_remove_of_node(dev);
+> +
+> +	mutex_lock(&ctx_lock);
+> +	tee_client_close_context(rproc_tee_ctx.tee_ctx);
+> +	rproc_tee_ctx.dev = NULL;
+> +	rproc_tee_ctx.tee_ctx = NULL;
+> +	mutex_unlock(&ctx_lock);
+> +
+> +	return 0;
+> +}
+> +
+> +MODULE_DEVICE_TABLE(tee, rproc_tee_id_table);
+> +
+> +static struct tee_client_driver rproc_tee_fw_driver = {
+> +	.id_table	= rproc_tee_id_table,
+> +	.driver		= {
+> +		.name		= KBUILD_MODNAME,
+> +		.bus		= &tee_bus_type,
+> +		.probe		= rproc_tee_probe,
+> +		.remove		= rproc_tee_remove,
+> +	},
+> +};
+> +
+> +static int __init rproc_tee_fw_mod_init(void)
+> +{
+> +	return driver_register(&rproc_tee_fw_driver.driver);
+> +}
+> +
+> +static void __exit rproc_tee_fw_mod_exit(void)
+> +{
+> +	driver_unregister(&rproc_tee_fw_driver.driver);
+> +}
+> +
+> +module_init(rproc_tee_fw_mod_init);
+> +module_exit(rproc_tee_fw_mod_exit);
+> +
+> +MODULE_DESCRIPTION("remote processor TEE module");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/remoteproc_tee.h b/include/linux/remoteproc_tee.h
+> new file mode 100644
+> index 000000000000..33150cff7a5a
+> --- /dev/null
+> +++ b/include/linux/remoteproc_tee.h
+> @@ -0,0 +1,89 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> +/*
+> + * Copyright(c) 2025 STMicroelectronics
+> + */
+> +
+> +#ifndef REMOTEPROC_TEE_H
+> +#define REMOTEPROC_TEE_H
+> +
+> +#include <linux/tee_drv.h>
+> +#include <linux/firmware.h>
+> +#include <linux/remoteproc.h>
+> +
+> +#if IS_ENABLED(CONFIG_REMOTEPROC_TEE)
+> +
+> +int rproc_tee_register(struct device *dev, struct rproc **rproc,
+> +		       unsigned int rproc_id, bool auto_boot);
+> +int rproc_tee_unregister(struct device *dev, struct rproc *rproc);
+> +int rproc_tee_parse_fw(struct rproc *rproc, const struct firmware *fw);
+> +int rproc_tee_load_fw(struct rproc *rproc, const struct firmware *fw);
+> +void rproc_tee_release_fw(struct rproc *rproc);
+> +struct resource_table *rproc_tee_find_loaded_rsc_table(struct rproc *rproc,
+> +						       const struct firmware *fw);
+> +int rproc_tee_start(struct rproc *rproc);
+> +int rproc_tee_stop(struct rproc *rproc);
+> +int rproc_tee_pa_to_da(struct rproc *rproc, phys_addr_t pa, size_t size, u64 *da);
+> +#else
+> +
+> +static inline int rproc_tee_register(struct device *dev, struct rproc **rproc,
+> +				     unsigned int rproc_id, bool auto_boot)
+> +{
+> +	return -ENODEV;
+> +}
+> +
+> +static inline int rproc_tee_parse_fw(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline int rproc_tee_unregister(struct device *dev, struct rproc *rproc)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline int rproc_tee_load_fw(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline int rproc_tee_start(struct rproc *rproc)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline int rproc_tee_stop(struct rproc *rproc)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline void rproc_tee_release_fw(struct rproc *rproc)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +}
+> +
+> +static inline struct resource_table *
+> +rproc_tee_find_loaded_rsc_table(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return NULL;
+> +}
+> +#endif /* CONFIG_REMOTEPROC_TEE */
+> +#endif /* REMOTEPROC_TEE_H */
+> -- 
+> 2.43.0
+> 
 
