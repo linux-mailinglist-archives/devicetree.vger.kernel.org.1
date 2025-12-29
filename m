@@ -1,453 +1,208 @@
-Return-Path: <devicetree+bounces-250138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7136CCE672C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:05:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 853EBCE6747
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:08:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9842630115E1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:04:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E92A13001C0E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49BB72F6571;
-	Mon, 29 Dec 2025 11:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E52972F9C32;
+	Mon, 29 Dec 2025 11:08:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="GWL/MsaF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="icdti6Ls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A1AD2F5A22
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 11:04:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E10402F7ABB
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 11:08:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767006282; cv=none; b=nmFFkv+jkTp+Pw70uQYa83PBwx/E7T224gGWGBszTtKLkW6Aa+UIafjZrmyquB5XLyrsjDdNf+uvVJT4oxZHnlfN7CxEm73Z9AgspvfCFul9SYqfPZf20yGp19Y/Iv30RkIV5zQewPjE0eCbMIZxvlVs2SlbM2QVXigTXGMMfVs=
+	t=1767006512; cv=none; b=AgNyTujzYSYUY+ROn2L5LwNujhd/0EnouhkIJIVH1n2dCj8lIAsR/NwP2JqAVprEaFvozD7cnoSkNfvYVr57r2jSN5nWTGLir+lUeq9D8Z9366vRXz7//enDnuihaEyS8VdASGwQmCSl9g4jeoFHP/fj+Nw6Nk7RfjwYBEfZLoo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767006282; c=relaxed/simple;
-	bh=RsddBKXcXNBN6uteiOLIgOTh3ySE9OyMuf3EJ4yv7QQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cc7PlqLq/Tabge7U0H7fWKzyFF7pPhBzrxC/uVdbB6f9qUgc2Ua+UmjVuKUUSXz5ECx0cV4tQfb8hgNkwFIQeLdg6o2QIh1dzjvml9IYjvjhBZj5EonaxsiaAbXguUplzXIPzFMjWZmkVguv0nHU9WiFzH0J9vD+hDLIlhis+qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=GWL/MsaF; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7ba55660769so6943412b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 03:04:39 -0800 (PST)
+	s=arc-20240116; t=1767006512; c=relaxed/simple;
+	bh=mvTRMMCL5RZ4BZ6ReS6eys7tkGj6CcSCpfSOhXlEW4U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IK8ckxp8vNvbs4YQGTEDBmjKNLz/OzK9dyiH/XTch+eUobyP7APqXyeYVdVHCqIbJurm13rFPjDQhCTYeK6h7zywChWzV6s5hWs1n6Csb7IS8Rbp2lnO8lDF48H2Y+fvlxr28XnesqW0Xq62IhWtEwVdVb4e1LM2Hrc3kgvVmbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=icdti6Ls; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-64d0d41404cso10300627a12.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 03:08:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767006278; x=1767611078; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NutY8oGnV9Zcjg1HhCkSuN3oUX9zSpR9l+AYE5RL7so=;
-        b=GWL/MsaFiHDsGuE19S23irXkhExuRc5FnM55o+I1yiE5F2pTtYHXT/j3vh8ZicJ0R6
-         N7TqtyJyOwkIjkgBa19Qc5LZWsBTXmwPfuvJVK09huvQba/m4KCpyg+zdiu6dvByLcNG
-         F8voPWBtVwKxzCPRm/p5iDMJAMX2VH3Fuely7Dk11PEogIq/IEEdn1CcpKGxeVzea3jJ
-         my+ATO3MgNrNDjs4k5rUCNiJ8myPO4UzqEtaJ9LKHVkvtLHldMWRI8sNMFvlKCGHob82
-         JsFmakJx619J0O4tKt1ObGsULe57LT2i1fm0vTDxOmhJblNq9GcbnBSyzT7iJhS8bW66
-         B5QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767006278; x=1767611078;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+        d=linaro.org; s=google; t=1767006508; x=1767611308; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=NutY8oGnV9Zcjg1HhCkSuN3oUX9zSpR9l+AYE5RL7so=;
-        b=k50IgNNlsc8CCgpKXmeAqp7XkiUm9NDRbyz79tSOUMZv1EBrXwtJ/xtiwIxs26vq+I
-         efLCjodnjHH9y4wHXdoqaGwun9pgtAou972PvD2yImOG2G6eJaGs+7Npu0yakWJiQvKN
-         2fwnr9ctgC8xl5Xig0DXxcz+wFYWi1IJgg9eYhUB7J7E3sU0ZUoBXIJvaY0gn/OM4exx
-         Z8pkiJ1gRTFu8ks2JHF9gRcATgwIaK1a4GJWb+M4F/KnmoAHYxDEQT0HXyKfaD8HHOJH
-         0HjjWHtf5ybDXGtyAVSkSMqB2JryTlbzRTQHhQncwPMMl+0zjI+Fm+XmLVZqrTz9Q6sq
-         pbHw==
-X-Forwarded-Encrypted: i=1; AJvYcCWgjg4noPxD7YpYjoI4fi0r8H6GwrqoS5H4VXsKY5kd4qrIQZNdyY1DT9rUeU33FkvHhHlbhUbYeVSl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQar6TRddB2DwsLzy9I14DeXVuqpEVSQ1ngMSAOvyYdoyTg1K1
-	v8Re9WKWa966K+K/Tc+DiFV1neynDtNWWAtTtPr3LuDKFU9txQNUuZ93FgjqysmeU84=
-X-Gm-Gg: AY/fxX6I4cGbWeVg3elAUFXQvFjcue+kuZVgf/W7P7RBlNIvf5h+7nqHKdIsDxZh/sh
-	rIt2k4W8hdtVdh9CtsHZYi8jhAO3hZfTVF5FK0vGPUMklUXear04CS3CdQFkiYQIho+lZoaFAco
-	djyfNTH3WeStpxIux5TK7h+PuT/6es75MEmiT5bIQgyljoyJqMqBKDzGyEdak55l/0HFEcGRs79
-	1d3NVHeZ3ILtJD7x0LCDgAxSRBPcQT1sjvE/9j0ly0hz66YdgtwoW0Qj6xi0jRlWaIVk5o/qH43
-	cXbkG4fa48xUOaQZ80b0Ob8znMfPgvLRPLUzOhSKITZh0E2B/Jvhjjb4Tr/kod1dMKwutQHf5sX
-	VQIj7PI6R3enztmINEL1Toj0pGw8rmijY+glenmpfGm1jv+oYFcpqmS5dbGgeWLZicbnH6QkEc4
-	LD+MimisBVFRtktMDqRXUjIzLQx2UTweM=
-X-Google-Smtp-Source: AGHT+IHfeiIksTtfIy4K6stcAIxC74/Hla6q+1XJihM0aXZQApg1DFbJQyfFOwjQsOzrQyXBDO74Fw==
-X-Received: by 2002:a05:6a00:600c:b0:7e8:4471:8d9 with SMTP id d2e1a72fcca58-7ff66974f9amr26857864b3a.58.1767006278498;
-        Mon, 29 Dec 2025 03:04:38 -0800 (PST)
-Received: from [127.0.1.1] ([2a12:a305:4::40d7])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7aa32916sm29338817b3a.8.2025.12.29.03.04.35
+        bh=EDNpH0M3uSivXuXT5U5j0XwxOr48cVPii2SiJVOuw30=;
+        b=icdti6LsWw/+HVAON6tthsJrH+7zWnGbaXLy/O6kgmqgAUpIo0a2txy/M6eyF2KSVK
+         TldkctQTplXkYmPqAHLUZBbl16S8pzXtse18TV1fENnabFjxx8uNdeeGsDRZsZfy+HJ2
+         ZAlAHGet5N1gT8uf6t6US3mHFKZ/IdnAIEySPQ+dkKIbhH8KiSdQqtNneZEg1OWDGAhu
+         QE+ZdLIlzY35V0bPgMHxpMobtDsb57tRQSsV/oh/sQAkpclVNmu22RhIhuiuucsJvsrV
+         e/hCWbGYhQ4v7Icjub2Yny6cm6a6PRoQqO6jlXbA2CelkRQLDR5pxVTGxqpWw9jJPvuE
+         1xbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767006508; x=1767611308;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EDNpH0M3uSivXuXT5U5j0XwxOr48cVPii2SiJVOuw30=;
+        b=MOW2JziHpbdRZy0TYi+Mb+VYvs9A4Gnf6W5HS/h/Gd5pT+NBDs4kXyEHsfqnyllGyp
+         NrvvAAqKdQnkXAQM9kDeYUSQwD1MHHyDetdTsp/GZlX6L5gf+pTGB1iNow0FvHgYUvqE
+         P+vIOUjOE25H7c/KvEXotAdrlTqM/dQzutHOSOd6Ee/fBJasQGmdJb8gfViW4ls/+/Rp
+         1B32XMCQ9vNSo617JDgHemjodT1jSIqIDxvaDVj0WyuOC/3mTT5DnQUE2pjHTblLomWX
+         sTfXkt+Otm5wJpzf3QqTwwcFkyQdwLHs/XQGnO5z4c/CK9xMA5DFUVAin8QRrg8jqJBO
+         4uGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUGwP4Sp+Yyw2a0yWiPbJY/Fjf3me1Mg9n8S3gb24DExyF3x9Z5CQ0W4+CpaBAyrdO9KiIWTaYpGKcK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yymu0M/TY4bMWIMbBBB7C5aJuwDIdCIC+bLBLGbmE1N6UBiDsR9
+	59v8sJxKFI4K/ujlTJiPrsZJybE2aoP/RfeAdwHK0flJWDBlF6QQ+tTXDeDwDJn9aFw=
+X-Gm-Gg: AY/fxX4ibUgamvvfVJDHHdjdy8O820PxWxFnG4DFF32l20hyBqhowRNREkTAVmK2ZpV
+	36DQHiKC1P+nwsNcSZpIeRvUmi0GMD33xpMrvGXgQIz6HX0pQvBJ8FY8CMwWLJoU/3WP5C64Mq0
+	dFmmq/CjkulxnrwaMXMyKU0q9U+8aGjUY3N0rD8LM3mkGM/RAmlzad/ScEWlpCFwctYVhOaBbq7
+	5cyze+03ObtE/MCh9tyvaKuHxM/8x9IKYOnkhEKCFE0DtptcePZATW41h2hj4bogQSvrlB+xoM1
+	27Sp3fxYrUOj+h4DOCDoUX9+dUv0u/xKjDUEupq77RsZFcn5uNVPOzrRyXrTnNyFy+rt86XzYzK
+	Dka3QRE7JXNwevV2PLL1lNRk1yoF/XxEfoidD9VPqHuiskXjwqA7rS3DwEveceMv6tsZh6WOm5/
+	piJHq8tmtwEGY46drj
+X-Google-Smtp-Source: AGHT+IFdqvRMDU+1HShKXzvNt54ZV5MxDiUe71q1HsCeGk+c7DD7LsfJqZBS0W+l8rfo3mlbyZkzHQ==
+X-Received: by 2002:a17:907:d87:b0:b73:5d8c:dd0d with SMTP id a640c23a62f3a-b80371d69e5mr3256854366b.52.1767006508045;
+        Mon, 29 Dec 2025 03:08:28 -0800 (PST)
+Received: from linaro.org ([77.64.146.193])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b91494c03sm31698752a12.18.2025.12.29.03.08.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Dec 2025 03:04:38 -0800 (PST)
-From: Guodong Xu <guodong@riscstar.com>
-Date: Mon, 29 Dec 2025 19:04:06 +0800
-Subject: [PATCH 3/4] reset: spacemit: Extract common K1 reset code
+        Mon, 29 Dec 2025 03:08:27 -0800 (PST)
+Date: Mon, 29 Dec 2025 12:08:15 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stephan Gerhold <stephan@gerhold.net>,
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/8] remoteproc: qcom_q6v5_mss: Add MSM8917
+Message-ID: <aVJhH17XH1srlroL@linaro.org>
+References: <20251228-mss-v1-0-aeb36b1f7a3f@mainlining.org>
+ <20251228-mss-v1-4-aeb36b1f7a3f@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251229-k3-reset-v1-3-eda0747bded3@riscstar.com>
-References: <20251229-k3-reset-v1-0-eda0747bded3@riscstar.com>
-In-Reply-To: <20251229-k3-reset-v1-0-eda0747bded3@riscstar.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>
-Cc: Alex Elder <elder@riscstar.com>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, Guodong Xu <guodong@riscstar.com>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251228-mss-v1-4-aeb36b1f7a3f@mainlining.org>
 
-Extract the common reset controller code from the K1 driver into
-separate reset-spacemit-common.{c,h} files. This prepares for
-additional SpacemiT SoCs that share the same reset controller
-architecture.
+On Sun, Dec 28, 2025 at 03:21:54PM +0100, Barnabás Czémán wrote:
+> Add support for MSM8917 MSS it is similar for MDM9607 MSS
+> only difference is the mss power domain.
+> 
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> ---
+>  drivers/remoteproc/qcom_q6v5_mss.c | 46 ++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 44 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
+> index ffafbe501a05..2579558fb567 100644
+> --- a/drivers/remoteproc/qcom_q6v5_mss.c
+> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+> @@ -259,6 +259,7 @@ enum {
+>  	MSS_MSM8226,
+>  	MSS_MSM8909,
+>  	MSS_MSM8916,
+> +	MSS_MSM8917,
+>  	MSS_MSM8926,
+>  	MSS_MSM8953,
+>  	MSS_MSM8974,
+> @@ -749,13 +750,15 @@ static int q6v5proc_reset(struct q6v5 *qproc)
+>  		goto pbl_wait;
+>  	} else if (qproc->version == MSS_MDM9607 ||
+>  		   qproc->version == MSS_MSM8909 ||
+> +		   qproc->version == MSS_MSM8917 ||
+>  		   qproc->version == MSS_MSM8953 ||
+>  		   qproc->version == MSS_MSM8996 ||
+>  		   qproc->version == MSS_MSM8998 ||
+>  		   qproc->version == MSS_SDM660) {
+>  
+>  		/* Override the ACC value if required */
+> -		if (qproc->version == MSS_MDM9607)
+> +		if (qproc->version == MSS_MDM9607 ||
+> +		    qproc->version == MSS_MSM8917)
+>  			writel(QDSP6SS_ACC_OVERRIDE_VAL_9607,
+>  			       qproc->reg_base + QDSP6SS_STRAP_ACC);
+>  		else if (qproc->version != MSS_MSM8909 &&
+> @@ -817,6 +820,7 @@ static int q6v5proc_reset(struct q6v5 *qproc)
+>  
+>  			/* Turn on L1, L2, ETB and JU memories 1 at a time */
+>  			if (qproc->version == MSS_MDM9607 ||
+> +			    qproc->version == MSS_MSM8917 ||
+>  			    qproc->version == MSS_MSM8953 ||
+>  			    qproc->version == MSS_MSM8996) {
+>  				mem_pwr_ctl = QDSP6SS_MEM_PWR_CTL;
+> @@ -826,7 +830,8 @@ static int q6v5proc_reset(struct q6v5 *qproc)
+>  				 * Set first 5 bits in reverse to avoid
+>  				 * "inrush current" issues.
+>  				 */
+> -				if (qproc->version == MSS_MDM9607)
+> +				if (qproc->version == MSS_MDM9607 ||
+> +				    qproc->version == MSS_MSM8917)
+>  					reverse = 6;
+>  			} else {
+>  				/* MSS_MSM8998, MSS_SDM660 */
+> @@ -2538,6 +2543,42 @@ static const struct rproc_hexagon_res msm8916_mss = {
+>  	.version = MSS_MSM8916,
+>  };
+>  
+> +static const struct rproc_hexagon_res msm8917_mss = {
+> +	.hexagon_mba_image = "mba.mbn",
+> +	.proxy_supply = (struct qcom_mss_reg_res[]) {
+> +		{
+> +			.supply = "pll",
+> +			.uA = 100000,
+> +		},
+> +		{}
+> +	},
+> +	.proxy_clk_names = (char*[]){
+> +		"xo",
+> +		NULL
+> +	},
+> +	.active_clk_names = (char*[]){
+> +		"iface",
+> +		"bus",
+> +		"mem",
+> +		NULL
+> +	},
+> +	.proxy_pd_names = (char*[]) {
+> +		"cx",
+> +		"mx",
+> +		"mss",
 
-The common code now includes handlers for reset assert
-deassert operations and probing for auxiliary bus devices.
+Are you sure mss/pm8937_s1 also works as a power domain? It seems to be
+a plain regulator downstream (similar to msm8226/msm8974).
 
-Signed-off-by: Guodong Xu <guodong@riscstar.com>
----
- drivers/reset/spacemit/Kconfig                 |  17 +++-
- drivers/reset/spacemit/Makefile                |   2 +
- drivers/reset/spacemit/reset-spacemit-common.c |  79 +++++++++++++++++
- drivers/reset/spacemit/reset-spacemit-common.h |  53 ++++++++++++
- drivers/reset/spacemit/reset-spacemit-k1.c     | 113 +++----------------------
- 5 files changed, 158 insertions(+), 106 deletions(-)
+Same thing applies to MSM8953 as well though and there we seem to have
+decided to model it as a power domain ...
 
-diff --git a/drivers/reset/spacemit/Kconfig b/drivers/reset/spacemit/Kconfig
-index 552884e8b72a..56a4858b30e1 100644
---- a/drivers/reset/spacemit/Kconfig
-+++ b/drivers/reset/spacemit/Kconfig
-@@ -1,10 +1,20 @@
- # SPDX-License-Identifier: GPL-2.0-only
- 
--config RESET_SPACEMIT_K1
--	tristate "SpacemiT K1 reset driver"
-+menu "Reset support for SpacemiT platforms"
- 	depends on ARCH_SPACEMIT || COMPILE_TEST
--	depends on SPACEMIT_K1_CCU
-+
-+config RESET_SPACEMIT_COMMON
-+	tristate
- 	select AUXILIARY_BUS
-+	help
-+	  Common reset controller infrastructure for SpacemiT SoCs.
-+	  This provides shared code and helper functions used by
-+	  reset drivers for various SpacemiT SoC families.
-+
-+config RESET_SPACEMIT_K1
-+	tristate "Support for SpacemiT K1 SoC"
-+	depends on SPACEMIT_K1_CCU
-+	select RESET_SPACEMIT_COMMON
- 	default SPACEMIT_K1_CCU
- 	help
- 	  Support for reset controller in SpacemiT K1 SoC.
-@@ -12,3 +22,4 @@ config RESET_SPACEMIT_K1
- 	  unit (CCU) driver to provide reset control functionality
- 	  for various peripherals and subsystems in the SoC.
- 
-+endmenu
-diff --git a/drivers/reset/spacemit/Makefile b/drivers/reset/spacemit/Makefile
-index de7e358c74fd..fecda9f211b2 100644
---- a/drivers/reset/spacemit/Makefile
-+++ b/drivers/reset/spacemit/Makefile
-@@ -1,3 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_RESET_SPACEMIT_COMMON)	+= reset-spacemit-common.o
-+
- obj-$(CONFIG_RESET_SPACEMIT_K1)		+= reset-spacemit-k1.o
- 
-diff --git a/drivers/reset/spacemit/reset-spacemit-common.c b/drivers/reset/spacemit/reset-spacemit-common.c
-new file mode 100644
-index 000000000000..e4b3f0e2c59d
---- /dev/null
-+++ b/drivers/reset/spacemit/reset-spacemit-common.c
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/* SpacemiT reset controller driver - common implementation */
-+
-+#include <linux/container_of.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+
-+#include <soc/spacemit/ccu.h>
-+
-+#include "reset-spacemit-common.h"
-+
-+static int spacemit_reset_update(struct reset_controller_dev *rcdev,
-+				 unsigned long id, bool assert)
-+{
-+	struct ccu_reset_controller *controller;
-+	const struct ccu_reset_data *data;
-+	u32 mask;
-+	u32 val;
-+
-+	controller = container_of(rcdev, struct ccu_reset_controller, rcdev);
-+	data = &controller->data->reset_data[id];
-+	mask = data->assert_mask | data->deassert_mask;
-+	val = assert ? data->assert_mask : data->deassert_mask;
-+
-+	return regmap_update_bits(controller->regmap, data->offset, mask, val);
-+}
-+
-+static int spacemit_reset_assert(struct reset_controller_dev *rcdev,
-+				 unsigned long id)
-+{
-+	return spacemit_reset_update(rcdev, id, true);
-+}
-+
-+static int spacemit_reset_deassert(struct reset_controller_dev *rcdev,
-+				   unsigned long id)
-+{
-+	return spacemit_reset_update(rcdev, id, false);
-+}
-+
-+const struct reset_control_ops spacemit_reset_control_ops = {
-+	.assert		= spacemit_reset_assert,
-+	.deassert	= spacemit_reset_deassert,
-+};
-+EXPORT_SYMBOL_GPL(spacemit_reset_control_ops);
-+
-+static int spacemit_reset_controller_register(struct device *dev,
-+					      struct ccu_reset_controller *controller)
-+{
-+	struct reset_controller_dev *rcdev = &controller->rcdev;
-+
-+	rcdev->ops = &spacemit_reset_control_ops;
-+	rcdev->owner = THIS_MODULE;
-+	rcdev->of_node = dev->of_node;
-+	rcdev->nr_resets = controller->data->count;
-+
-+	return devm_reset_controller_register(dev, &controller->rcdev);
-+}
-+
-+int spacemit_reset_probe(struct auxiliary_device *adev,
-+			 const struct auxiliary_device_id *id)
-+{
-+	struct spacemit_ccu_adev *rdev = to_spacemit_ccu_adev(adev);
-+	struct ccu_reset_controller *controller;
-+	struct device *dev = &adev->dev;
-+
-+	controller = devm_kzalloc(dev, sizeof(*controller), GFP_KERNEL);
-+	if (!controller)
-+		return -ENOMEM;
-+	controller->data = (const struct ccu_reset_controller_data *)id->driver_data;
-+	controller->regmap = rdev->regmap;
-+
-+	return spacemit_reset_controller_register(dev, controller);
-+}
-+EXPORT_SYMBOL_NS_GPL(spacemit_reset_probe, "RESET_SPACEMIT");
-+
-+MODULE_DESCRIPTION("SpacemiT reset controller driver - common code");
-+MODULE_LICENSE("GPL");
-+
-diff --git a/drivers/reset/spacemit/reset-spacemit-common.h b/drivers/reset/spacemit/reset-spacemit-common.h
-new file mode 100644
-index 000000000000..9900a92f2c88
---- /dev/null
-+++ b/drivers/reset/spacemit/reset-spacemit-common.h
-@@ -0,0 +1,53 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * SpacemiT reset controller driver - common definitions
-+ */
-+
-+#ifndef _RESET_SPACEMIT_COMMON_H_
-+#define _RESET_SPACEMIT_COMMON_H_
-+
-+#include <linux/auxiliary_bus.h>
-+#include <linux/regmap.h>
-+#include <linux/reset-controller.h>
-+#include <linux/types.h>
-+
-+struct ccu_reset_data {
-+	u32 offset;
-+	u32 assert_mask;
-+	u32 deassert_mask;
-+};
-+
-+struct ccu_reset_controller_data {
-+	const struct ccu_reset_data *reset_data;	/* array */
-+	size_t count;
-+};
-+
-+struct ccu_reset_controller {
-+	struct reset_controller_dev rcdev;
-+	const struct ccu_reset_controller_data *data;
-+	struct regmap *regmap;
-+};
-+
-+#define RESET_DATA(_offset, _assert_mask, _deassert_mask)	\
-+	{							\
-+		.offset		= (_offset),			\
-+		.assert_mask	= (_assert_mask),		\
-+		.deassert_mask	= (_deassert_mask),		\
-+	}
-+
-+/* Common reset operations */
-+extern const struct reset_control_ops spacemit_reset_control_ops;
-+
-+/* Common probe function */
-+int spacemit_reset_probe(struct auxiliary_device *adev,
-+			 const struct auxiliary_device_id *id);
-+
-+/* Common auxiliary device ID macro */
-+#define SPACEMIT_AUX_DEV_ID(_prefix, _unit) \
-+	{ \
-+		.name = "spacemit_ccu." _K_RST(_unit), \
-+		.driver_data = (kernel_ulong_t)&_prefix ## _ ## _unit ## _reset_data, \
-+	}
-+
-+#endif /* _RESET_SPACEMIT_COMMON_H_ */
-+
-diff --git a/drivers/reset/spacemit/reset-spacemit-k1.c b/drivers/reset/spacemit/reset-spacemit-k1.c
-index 8922e14fa836..111acbdb5040 100644
---- a/drivers/reset/spacemit/reset-spacemit-k1.c
-+++ b/drivers/reset/spacemit/reset-spacemit-k1.c
-@@ -1,41 +1,13 @@
- // SPDX-License-Identifier: GPL-2.0-only
- 
--/* SpacemiT reset controller driver */
-+/* SpacemiT K1 reset controller driver */
- 
--#include <linux/auxiliary_bus.h>
--#include <linux/container_of.h>
--#include <linux/device.h>
- #include <linux/module.h>
--#include <linux/regmap.h>
--#include <linux/reset-controller.h>
--#include <linux/types.h>
- 
--#include <soc/spacemit/k1-syscon.h>
- #include <dt-bindings/clock/spacemit,k1-syscon.h>
-+#include <soc/spacemit/k1-syscon.h>
- 
--struct ccu_reset_data {
--	u32 offset;
--	u32 assert_mask;
--	u32 deassert_mask;
--};
--
--struct ccu_reset_controller_data {
--	const struct ccu_reset_data *reset_data;	/* array */
--	size_t count;
--};
--
--struct ccu_reset_controller {
--	struct reset_controller_dev rcdev;
--	const struct ccu_reset_controller_data *data;
--	struct regmap *regmap;
--};
--
--#define RESET_DATA(_offset, _assert_mask, _deassert_mask)	\
--	{							\
--		.offset		= (_offset),			\
--		.assert_mask	= (_assert_mask),		\
--		.deassert_mask	= (_deassert_mask),		\
--	}
-+#include "reset-spacemit-common.h"
- 
- static const struct ccu_reset_data k1_mpmu_resets[] = {
- 	[RESET_WDT]	= RESET_DATA(MPMU_WDTPCR,		BIT(2), 0),
-@@ -214,91 +186,26 @@ static const struct ccu_reset_controller_data k1_apbc2_reset_data = {
- 	.count		= ARRAY_SIZE(k1_apbc2_resets),
- };
- 
--static int spacemit_reset_update(struct reset_controller_dev *rcdev,
--				 unsigned long id, bool assert)
--{
--	struct ccu_reset_controller *controller;
--	const struct ccu_reset_data *data;
--	u32 mask;
--	u32 val;
--
--	controller = container_of(rcdev, struct ccu_reset_controller, rcdev);
--	data = &controller->data->reset_data[id];
--	mask = data->assert_mask | data->deassert_mask;
--	val = assert ? data->assert_mask : data->deassert_mask;
--
--	return regmap_update_bits(controller->regmap, data->offset, mask, val);
--}
--
--static int spacemit_reset_assert(struct reset_controller_dev *rcdev,
--				 unsigned long id)
--{
--	return spacemit_reset_update(rcdev, id, true);
--}
--
--static int spacemit_reset_deassert(struct reset_controller_dev *rcdev,
--				   unsigned long id)
--{
--	return spacemit_reset_update(rcdev, id, false);
--}
--
--static const struct reset_control_ops spacemit_reset_control_ops = {
--	.assert		= spacemit_reset_assert,
--	.deassert	= spacemit_reset_deassert,
--};
--
--static int spacemit_reset_controller_register(struct device *dev,
--					      struct ccu_reset_controller *controller)
--{
--	struct reset_controller_dev *rcdev = &controller->rcdev;
--
--	rcdev->ops = &spacemit_reset_control_ops;
--	rcdev->owner = THIS_MODULE;
--	rcdev->of_node = dev->of_node;
--	rcdev->nr_resets = controller->data->count;
--
--	return devm_reset_controller_register(dev, &controller->rcdev);
--}
--
--static int spacemit_reset_probe(struct auxiliary_device *adev,
--				const struct auxiliary_device_id *id)
--{
--	struct spacemit_ccu_adev *rdev = to_spacemit_ccu_adev(adev);
--	struct ccu_reset_controller *controller;
--	struct device *dev = &adev->dev;
--
--	controller = devm_kzalloc(dev, sizeof(*controller), GFP_KERNEL);
--	if (!controller)
--		return -ENOMEM;
--	controller->data = (const struct ccu_reset_controller_data *)id->driver_data;
--	controller->regmap = rdev->regmap;
--
--	return spacemit_reset_controller_register(dev, controller);
--}
--
--#define K1_AUX_DEV_ID(_unit) \
--	{ \
--		.name = "spacemit_ccu." _K_RST(_unit), \
--		.driver_data = (kernel_ulong_t)&k1_ ## _unit ## _reset_data, \
--	}
-+#define K1_AUX_DEV_ID(_unit) SPACEMIT_AUX_DEV_ID(k1, _unit)
- 
--static const struct auxiliary_device_id spacemit_reset_ids[] = {
-+static const struct auxiliary_device_id spacemit_k1_reset_ids[] = {
- 	K1_AUX_DEV_ID(mpmu),
- 	K1_AUX_DEV_ID(apbc),
- 	K1_AUX_DEV_ID(apmu),
- 	K1_AUX_DEV_ID(rcpu),
- 	K1_AUX_DEV_ID(rcpu2),
- 	K1_AUX_DEV_ID(apbc2),
--	{ },
-+	{ /* sentinel */ }
- };
--MODULE_DEVICE_TABLE(auxiliary, spacemit_reset_ids);
-+MODULE_DEVICE_TABLE(auxiliary, spacemit_k1_reset_ids);
- 
- static struct auxiliary_driver spacemit_k1_reset_driver = {
- 	.probe          = spacemit_reset_probe,
--	.id_table       = spacemit_reset_ids,
-+	.id_table       = spacemit_k1_reset_ids,
- };
- module_auxiliary_driver(spacemit_k1_reset_driver);
- 
-+MODULE_IMPORT_NS("RESET_SPACEMIT");
- MODULE_AUTHOR("Alex Elder <elder@kernel.org>");
--MODULE_DESCRIPTION("SpacemiT reset controller driver");
-+MODULE_DESCRIPTION("SpacemiT K1 reset controller driver");
- MODULE_LICENSE("GPL");
+> +		NULL
+> +	},
+> +	.need_mem_protection = false,
+> +	.has_alt_reset = false,
+> +	.has_mba_logs = false,
+> +	.has_spare_reg = false,
+> +	.has_qaccept_regs = false,
+> +	.has_ext_bhs_reg = false,
+> +	.has_ext_cntl_regs = false,
+> +	.has_vq6 = false,
+> +	.version = MSS_MSM8917,
 
--- 
-2.43.0
+You could set MSS_MDM9607 here to drop the extra diff above (but not
+sure if that would be clearer).
 
+Thanks,
+Stephan
 
