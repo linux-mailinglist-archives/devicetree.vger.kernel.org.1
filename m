@@ -1,258 +1,724 @@
-Return-Path: <devicetree+bounces-250081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 303F0CE62CE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 08:53:55 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65051CE631C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 08:56:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C049E3008F87
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:53:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 69EF13003BE3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88ACF2D193C;
-	Mon, 29 Dec 2025 07:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="PNtl+6s3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA57266B46;
+	Mon, 29 Dec 2025 07:56:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E46026B0A9;
-	Mon, 29 Dec 2025 07:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6081D9A5F
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 07:56:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766994824; cv=none; b=h0GEmZGlYuYVRUQ61dQhBdn2OBTllZeLZyhfYsome2LLj13NlXQ9QmzGrN7i6d2gRhT/a3cxXn1lEabgCC9om0JOPRypMZP5+qStGoBVSjC5r9WHtHc/s0lh1dX+2NXZQo7q/DSrxSJtYQgpDsrqqTrzD+hJP9UY/ZcnDLTv8vU=
+	t=1766995001; cv=none; b=erdPF/9U7av9ZJY0+2BB0fK7vmIDDKV8EUtKYmzdG08gvkFAK206SYccSH5enXoaAal0NjrrJYj5GLhgRpgNyBLDeg53GTOmD/GtftuoUcLaXq6xmDB/gNPtHcaix4QMY9Vuel3to3voKO8Rzg9xkWfMgole/O+DmVR4QA2pMyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766994824; c=relaxed/simple;
-	bh=h8tFoU5prStasKF6Y4zooaiqU8Sj6ilNg5gkFe0JSvA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Whnvg8BJlgT49jNH63yCDiAkpEJmOBHQiDzl1w8MWdh4j0b79+PMzpJbhQM6M0cyu4AFqadjK0Vv3Ho0WuGjR018XiRU1pC2MQELZj7/MPWZcczWsqRUlDZPN5xWOEoSonybj7+YmGVT3JbZ+LNEgXzhRpUjwq7f1nXmiwLrHK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=PNtl+6s3; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5BT7rGdV5703582, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1766994796; bh=LzxS3dAR1FL5FoF2wVAPXWUmq+bv2sSZlcav75KV1Tc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=PNtl+6s3VuYvT/WlVZ+ZPkcDRKFpfytlrPBY4a5vyMXPtGfXjjN/6piMw1uFXweEX
-	 HBc6WwHC6v0rY372Cxid9iAEg7c7FHgpdsg/bx64e2jdPs7sZ9JYwjpopBbMvfrBrj
-	 foIVFTYPFcxSZbbT/9Fo110SDQi2jrqExUBvQ1xaVjTN+YWCg+0U+ZsN6cFmAutkeD
-	 uM9qZUv6OspiGpTU1BVQyhyEFfvtlrtfWR8YMDMNjfB6v5TpsfPgVtrq+ad/VW8Dot
-	 5nUkdiPcBxj1s+t3B9X0KhFK0+QlACoPDluIRgj32H9H0Yhx9lRZj5+kcSizuwJ2wY
-	 43IyMetmgn+nw==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5BT7rGdV5703582
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 29 Dec 2025 15:53:16 +0800
-Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 29 Dec 2025 15:53:16 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS04.realtek.com.tw
- (10.21.1.54) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Mon, 29 Dec 2025 15:53:16 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
-        <cylee12@realtek.com>, <jyanchou@realtek.com>
-CC: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <james.tai@realtek.com>,
-        <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
-        <eleanor.lin@realtek.com>
-Subject: [PATCH 9/9] clk: realtek: Add RTD1625-ISO clock controller driver
-Date: Mon, 29 Dec 2025 15:53:13 +0800
-Message-ID: <20251229075313.27254-10-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20251229075313.27254-1-eleanor.lin@realtek.com>
-References: <20251229075313.27254-1-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1766995001; c=relaxed/simple;
+	bh=UpyYMLl1wIMoIBUgYguEtpnLBiG+aQUaxbjpeeob7Bw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kWOtQtxt/iTICh5cDoE18dJBqWy8nWtzRig64Z2fwb1edfzh7syMxSCRretn0CpSyKEvEfdIHqvpLGM0SWWDH8tL89hn369T7ZNzeuagwxFjn4GKK26UIhYnpwwnoy6QnzwIht8LtmjXu0AFixL8FHX/VwALfv/wACa8P9QdmGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.194.254.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip2t1766994916t7ee7f656
+X-QQ-Originating-IP: KN3kD2/XR8k/P3MfWGkrqW3OIzDVq6y+kcT0twBPoMw=
+Received: from [IPV6:240f:10b:7440:1:3961:bf03 ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 29 Dec 2025 15:55:13 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 16543962298428795708
+Message-ID: <A7ADEB12E25ED346+00048ee9-c4d6-442d-a02c-cefbdc6be353@radxa.com>
+Date: Mon, 29 Dec 2025 16:55:13 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/3] arm64: dts: rockchip: Add Radxa CM3J
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org, kever.yang@rock-chips.com,
+ jonas@kwiboo.se, michael.opdenacker@rootcommit.com, honyuenkwun@gmail.com,
+ quentin.schulz@cherry.de, dsimic@manjaro.org, alchark@gmail.com,
+ pbrobinson@gmail.com, ziyao@disroot.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20251229073840.25516-1-naoki@radxa.com>
+ <20251229073840.25516-2-naoki@radxa.com>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <20251229073840.25516-2-naoki@radxa.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: OJG2NVWVA7qwfLp6zw6S2X/HCMh8RQYej43v2HbJBwa/jpvW3mCNf3dz
+	GUGrpZwPVteJBVis8Yx7UKkGgLM4M3OF6GWf3/UjsPJwebtprNo3lwQFGuobBYMFSiHXkng
+	wUKDVmQ1gUu0VVWNCBgaT964CZtK7ci2q+fth/siyUzj/5vBX9a5n1jjahY8P7fH2gfcZ4K
+	dQ0TBndbxEDdFTws9IsCV312o0bd/yI5nicHh2iRTtfB5Hyc/nzbgX8crYbmklkAxVCqlYm
+	l8+CzqX8ca9EUgkwWCNq0RLFpl60jkxm1Khh6Ybyx9f2RYKNlN3ALNIuY8k+eN+x1mCf2eR
+	vo3dHsmyqVyHf6AYILFoUEzfQ7Ge24qDrnfebDxA5RYcM7IJ9UQQAmpkHOYGu+TQ65QI61M
+	TWZ/kxZDuTwFV/uZ2XeJ5uSDv8JRQXiRyhSNmY2Wn7zcMm1z+fV5DH0LDMze+r/GJCDo5+y
+	hfiQMmVv9BOlLTL937HKDfvYjNZqOD4yKn+yp+2+5bnDbTKTdhzwjFP0TXWy2xIUKxp3ibO
+	8lzdWiJbFcugoWlcYMoldD+JZT8G5Ioz3xnWqu7muXuwbNpFgjKxwoJ0ZI7vX2jgVpDH2oD
+	Mrnq1g2Yas9ib8C8Rhstbjfw1Ms5ROUFjBtjN6A5OoCyBK0dlz7nTD+JPHPuTg8316m+Zd8
+	9uVHujd7GuaYjmuvkM1XB/tR1rdGSNeNRRAdCEmPmS4pWPPPE5FZrTQs9Hy1EYEa5oqsh+1
+	Jwr/Ma0fk9T8zqy6D1d3r420tMfpsPfrwpexopezUIeWnw6EPuCWLYk52VClQipNkDKGwXM
+	bNMUUJdlJ43LXvtpIq1NHhlXPDwu3ebkGbQ2ICVNlhrSsY1+2fj9w5I66gJI5zR+TVMz6bD
+	jsr6Qtk9NrwA1kK8rYmru2owWDvO2wQAiczT6hr/WvQc+hiJdQgc9wYwhC8GpC5z6RYBWQz
+	DO+upyFpx74nFZJjJ9EOQh4KLCz8qsNheoG8A7XB4HabfYkEBbcMR6xNXfV5EpV+r0r0=
+X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+X-QQ-RECHKSPAM: 0
 
-Add support for the ISO (Isolation) domain clock controller on the Realtek
-RTD1625 SoC. This controller manages clocks in the always-on power domain,
-ensuring essential services remain functional even when the main system
-power is gated.
+Hi all,
 
-Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
-Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
----
- drivers/clk/realtek/Makefile          |   1 +
- drivers/clk/realtek/clk-rtd1625-iso.c | 150 ++++++++++++++++++++++++++
- 2 files changed, 151 insertions(+)
- create mode 100644 drivers/clk/realtek/clk-rtd1625-iso.c
+On 12/29/25 16:38, FUKAUMI Naoki wrote:
+> The Radxa CM3J is a feature rich industrial compute module based on
+> the Rockchip RK3568J SoC. [1]
+> 
+> Specification:
+> - Quad-core Cortex-A55 CPU
+> - Mali-G52 2EE GPU
+> - 1TOPS NPU
+> - Up to 8GB LPDDR4x RAM
+> - Up to 32GB eMMC (optional)
+> - 16MB SPI flash (optional)
+> - Wi-Fi 5 / BT 5.0 with external antenna connector
+> - Gigabit Ethernet PHY
+> - RK809 PMIC
+> - Green (power) LED
+> 
+> [1] https://dl.radxa.com/cm3j/docs/hw/radxa_cm3j_schematic_v1.2_20250115.pdf
+> 
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> ---
+>   .../boot/dts/rockchip/rk3568-radxa-cm3j.dtsi  | 570 ++++++++++++++++++
+>   arch/arm64/configs/linux.radxa.config         |   1 +
+>   2 files changed, 571 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3j.dtsi
+>   create mode 120000 arch/arm64/configs/linux.radxa.config
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3j.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3j.dtsi
+> new file mode 100644
+> index 000000000000..c503e876bcfd
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3j.dtsi
+> @@ -0,0 +1,570 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2025 Radxa Computer (Shenzhen) Co., Ltd.
+> + */
+> +
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/soc/rockchip,vop2.h>
+> +#include "rk3568.dtsi"
+> +
+> +/ {
+> +	aliases {
+> +		mmc0 = &sdhci;
+> +		mmc2 = &sdmmc2;
+> +	};
+> +
+> +	gmac1_clkin: clock-125m {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <125000000>;
+> +		clock-output-names = "gmac1_clkin";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	leds-0 {
+> +		compatible = "gpio-leds";
+> +
+> +		led-0 {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			default-state = "on";
+> +			function = LED_FUNCTION_POWER;
+> +			gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&gpio0_b4_led>;
+> +		};
+> +	};
+> +
+> +	vcc3v3_sys: regulator-3v3-0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&dc5v>;
+> +	};
+> +
+> +	vcc_3v3_1: regulator-3v3-1 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_3v3_1";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc3v3_sys>;
+> +	};
+> +
+> +	sdio_pwrseq: sdio-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		clocks = <&rk809 1>;
+> +		clock-names = "ext_clock";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_reg_on_h_gpio3_d4>;
+> +		reset-gpios = <&gpio3 RK_PD4 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&cpu1 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&cpu2 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&cpu3 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&gmac1 {
+> +	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
+> +	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>, <&gmac1_clkin>;
+> +	clock_in_out = "input";
+> +	phy-handle = <&rgmii_phy1>;
+> +	phy-mode = "rgmii-id";
+> +	phy-supply = <&vcc_3v3_1>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&gmac1m1_miim
+> +		     &gmac1m1_clkinout
+> +		     &gmac1m1_rx_bus2
+> +		     &gmac1m1_tx_bus2
+> +		     &gmac1m1_rgmii_clk
+> +		     &gmac1m1_rgmii_bus>;
+> +};
 
-diff --git a/drivers/clk/realtek/Makefile b/drivers/clk/realtek/Makefile
-index 3cda1e600172..e90fce42a85e 100644
---- a/drivers/clk/realtek/Makefile
-+++ b/drivers/clk/realtek/Makefile
-@@ -11,3 +11,4 @@ clk-rtk-y += reset.o
- 
- clk-rtk-$(CONFIG_RTK_CLK_PLL_MMC) += clk-pll-mmc.o
- obj-$(CONFIG_COMMON_CLK_RTD1625) += clk-rtd1625-crt.o
-+obj-$(CONFIG_COMMON_CLK_RTD1625) += clk-rtd1625-iso.o
-diff --git a/drivers/clk/realtek/clk-rtd1625-iso.c b/drivers/clk/realtek/clk-rtd1625-iso.c
-new file mode 100644
-index 000000000000..eb942487befc
---- /dev/null
-+++ b/drivers/clk/realtek/clk-rtd1625-iso.c
-@@ -0,0 +1,150 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2024 Realtek Semiconductor Corporation
-+ * Author: Cheng-Yu Lee <cylee12@realtek.com>
-+ */
-+
-+#include <dt-bindings/clock/realtek,rtd1625-clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include "clk-regmap-gate.h"
-+
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_usb_p4, 0, 0x08c, 0, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_usb_p3, 0, 0x08c, 1, 0);
-+static CLK_REGMAP_GATE(clk_en_misc_cec0, "clk_en_misc", 0, 0x08c, 2, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_cbusrx_sys, 0, 0x08c, 3, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_cbustx_sys, 0, 0x08c, 4, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_cbus_sys, 0, 0x08c, 5, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_cbus_osc, 0, 0x08c, 6, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_i2c0, 0, 0x08c, 9, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_i2c1, 0, 0x08c, 10, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_etn_250m, 0, 0x08c, 11, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_etn_sys, 0, 0x08c, 12, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_usb_drd, 0, 0x08c, 13, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_usb_host, 0, 0x08c, 14, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_usb_u3_host, 0, 0x08c, 15, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_usb, 0, 0x08c, 16, 0);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_vtc, 0, 0x08c, 17, 0);
-+static CLK_REGMAP_GATE(clk_en_misc_vfd, "clk_en_misc", 0, 0x08c, 18, 0);
-+
-+static struct clk_regmap *rtd1625_clk_regmap_list[] = {
-+	&clk_en_usb_p4.clkr,
-+	&clk_en_usb_p3.clkr,
-+	&clk_en_misc_cec0.clkr,
-+	&clk_en_cbusrx_sys.clkr,
-+	&clk_en_cbustx_sys.clkr,
-+	&clk_en_cbus_sys.clkr,
-+	&clk_en_cbus_osc.clkr,
-+	&clk_en_i2c0.clkr,
-+	&clk_en_i2c1.clkr,
-+	&clk_en_etn_250m.clkr,
-+	&clk_en_etn_sys.clkr,
-+	&clk_en_usb_drd.clkr,
-+	&clk_en_usb_host.clkr,
-+	&clk_en_usb_u3_host.clkr,
-+	&clk_en_usb.clkr,
-+	&clk_en_vtc.clkr,
-+	&clk_en_misc_vfd.clkr,
-+};
-+
-+static struct clk_hw_onecell_data rtd1625_iso_clk_data = {
-+	.num = RTD1625_ISO_CLK_MAX,
-+	.hws = {
-+		[RTD1625_ISO_CLK_EN_USB_P4]      = &__clk_regmap_gate_hw(&clk_en_usb_p4),
-+		[RTD1625_ISO_CLK_EN_USB_P3]      = &__clk_regmap_gate_hw(&clk_en_usb_p3),
-+		[RTD1625_ISO_CLK_EN_MISC_CEC0]   = &__clk_regmap_gate_hw(&clk_en_misc_cec0),
-+		[RTD1625_ISO_CLK_EN_CBUSRX_SYS]  = &__clk_regmap_gate_hw(&clk_en_cbusrx_sys),
-+		[RTD1625_ISO_CLK_EN_CBUSTX_SYS]  = &__clk_regmap_gate_hw(&clk_en_cbustx_sys),
-+		[RTD1625_ISO_CLK_EN_CBUS_SYS]    = &__clk_regmap_gate_hw(&clk_en_cbus_sys),
-+		[RTD1625_ISO_CLK_EN_CBUS_OSC]    = &__clk_regmap_gate_hw(&clk_en_cbus_osc),
-+		[RTD1625_ISO_CLK_EN_I2C0]        = &__clk_regmap_gate_hw(&clk_en_i2c0),
-+		[RTD1625_ISO_CLK_EN_I2C1]        = &__clk_regmap_gate_hw(&clk_en_i2c1),
-+		[RTD1625_ISO_CLK_EN_ETN_250M]    = &__clk_regmap_gate_hw(&clk_en_etn_250m),
-+		[RTD1625_ISO_CLK_EN_ETN_SYS]     = &__clk_regmap_gate_hw(&clk_en_etn_sys),
-+		[RTD1625_ISO_CLK_EN_USB_DRD]     = &__clk_regmap_gate_hw(&clk_en_usb_drd),
-+		[RTD1625_ISO_CLK_EN_USB_HOST]    = &__clk_regmap_gate_hw(&clk_en_usb_host),
-+		[RTD1625_ISO_CLK_EN_USB_U3_HOST] = &__clk_regmap_gate_hw(&clk_en_usb_u3_host),
-+		[RTD1625_ISO_CLK_EN_USB]         = &__clk_regmap_gate_hw(&clk_en_usb),
-+		[RTD1625_ISO_CLK_EN_VTC]         = &__clk_regmap_gate_hw(&clk_en_vtc),
-+		[RTD1625_ISO_CLK_EN_MISC_VFD]    = &__clk_regmap_gate_hw(&clk_en_misc_vfd),
-+		[RTD1625_ISO_CLK_MAX] = NULL,
-+	},
-+};
-+
-+static struct rtk_reset_bank rtd1625_iso_reset_banks[] = {
-+	{ .ofs = 0x88, },
-+};
-+
-+static const struct rtk_clk_desc rtd1625_iso_desc = {
-+	.clk_data        = &rtd1625_iso_clk_data,
-+	.clks            = rtd1625_clk_regmap_list,
-+	.num_clks        = ARRAY_SIZE(rtd1625_clk_regmap_list),
-+	.reset_banks     = rtd1625_iso_reset_banks,
-+	.num_reset_banks = ARRAY_SIZE(rtd1625_iso_reset_banks),
-+};
-+
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_irda, 0, 0x314, 6, 1);
-+static CLK_REGMAP_GATE_NO_PARENT(clk_en_ur10, CLK_IGNORE_UNUSED, 0x314, 8, 1);
-+
-+static struct clk_regmap *rtd1625_iso_s_clk_regmap_list[] = {
-+	&clk_en_irda.clkr,
-+	&clk_en_ur10.clkr,
-+};
-+
-+static struct clk_hw_onecell_data rtd1625_iso_s_clk_data = {
-+	.num = RTD1625_ISO_S_CLK_MAX,
-+	.hws = {
-+		[RTD1625_ISO_S_CLK_EN_IRDA] = &__clk_regmap_gate_hw(&clk_en_irda),
-+		[RTD1625_ISO_S_CLK_EN_UR10] = &__clk_regmap_gate_hw(&clk_en_ur10),
-+		[RTD1625_ISO_S_CLK_MAX] = NULL,
-+	},
-+};
-+
-+static struct rtk_reset_bank rtd1625_iso_s_reset_banks[] = {
-+	{ .ofs = 0x310, .write_en = 1, },
-+};
-+
-+static const struct rtk_clk_desc rtd1625_iso_s_desc = {
-+	.clk_data        = &rtd1625_iso_s_clk_data,
-+	.clks            = rtd1625_iso_s_clk_regmap_list,
-+	.num_clks        = ARRAY_SIZE(rtd1625_iso_s_clk_regmap_list),
-+	.reset_banks     = rtd1625_iso_s_reset_banks,
-+	.num_reset_banks = ARRAY_SIZE(rtd1625_iso_s_reset_banks),
-+};
-+
-+static int rtd1625_iso_probe(struct platform_device *pdev)
-+{
-+	const struct rtk_clk_desc *desc;
-+
-+	desc = of_device_get_match_data(&pdev->dev);
-+	if (!desc)
-+		return -EINVAL;
-+	return rtk_clk_probe(pdev, desc);
-+}
-+
-+static const struct of_device_id rtd1625_iso_match[] = {
-+	{ .compatible = "realtek,rtd1625-iso-clk", .data = &rtd1625_iso_desc },
-+	{ .compatible = "realtek,rtd1625-iso-s-clk", .data = &rtd1625_iso_s_desc },
-+	{ /* sentinel */ }
-+};
-+
-+static struct platform_driver rtd1625_iso_driver = {
-+	.probe = rtd1625_iso_probe,
-+	.driver = {
-+		.name = "rtk-rtd1625-iso-clk",
-+		.of_match_table = rtd1625_iso_match,
-+	},
-+};
-+
-+static int __init rtd1625_iso_init(void)
-+{
-+	return platform_driver_register(&rtd1625_iso_driver);
-+}
-+subsys_initcall(rtd1625_iso_init);
-+
-+MODULE_DESCRIPTION("Realtek RTD1625 ISO Controller Driver");
-+MODULE_AUTHOR("Cheng-Yu Lee <cylee12@realtek.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
+During a cold boot, it does not work in U-Boot:
+
+=> setenv ipaddr 192.168.0.99
+=> ping 192.168.0.1
+ethernet@fe010000 Waiting for PHY auto negotiation to complete....... done
+Using ethernet@fe010000 device
+
+ARP Retry count exceeded; starting again
+ping failed; host 192.168.0.1 is not alive
+
+However, it works fine in Linux, and also in U-Boot after a warm reboot.
+
+> +&gpu {
+> +	mali-supply = <&vdd_gpu>;
+> +	status = "okay";
+> +};
+> +
+> +&hdmi {
+> +	avdd-0v9-supply = <&vdda0v9_image>;
+> +	avdd-1v8-supply = <&vcca1v8_image>;
+> +};
+> +
+> +&hdmi_in {
+> +	hdmi_in_vp0: endpoint {
+> +		remote-endpoint = <&vp0_out_hdmi>;
+> +	};
+> +};
+> +
+> +&hdmi_out {
+> +	hdmi_out_con: endpoint {
+> +		remote-endpoint = <&hdmi_con_in>;
+> +	};
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	rk809: pmic@20 {
+> +		compatible = "rockchip,rk809";
+> +		reg = <0x20>;
+> +		#clock-cells = <1>;
+> +		clock-output-names = "rk809-clkout1", "rk809-clkout2";
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pmic_int_l>;
+> +		system-power-controller;
+> +		vcc1-supply = <&vcc3v3_sys>;
+> +		vcc2-supply = <&vcc3v3_sys>;
+> +		vcc3-supply = <&vcc3v3_sys>;
+> +		vcc4-supply = <&vcc3v3_sys>;
+> +		vcc5-supply = <&vcc3v3_sys>;
+> +		vcc6-supply = <&vcc3v3_sys>;
+> +		vcc7-supply = <&vcc3v3_sys>;
+> +		vcc8-supply = <&vcc3v3_sys>;
+> +		vcc9-supply = <&vcc3v3_sys>;
+> +		wakeup-source;
+> +
+> +		regulators {
+> +			vdd_logic: DCDC_REG1 {
+> +				regulator-name = "vdd_logic";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-ramp-delay = <6001>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vdd_gpu: DCDC_REG2 {
+> +				regulator-name = "vdd_gpu";
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-ramp-delay = <6001>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_ddr: DCDC_REG3 {
+> +				regulator-name = "vcc_ddr";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-initial-mode = <0x2>;
+> +
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +				};
+> +			};
+> +
+> +			vdd_npu: DCDC_REG4 {
+> +				regulator-name = "vdd_npu";
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-ramp-delay = <6001>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			dc1v8: vccio_flash: vcc_1v8: DCDC_REG5 {
+
+It's labeled as '+1.8v' in the schematic. Do you have any other 
+suggestions for the name?
+
+> +				regulator-name = "vcc_1v8";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vdda0v9_image: LDO_REG1 {
+> +				regulator-name = "vdda0v9_image";
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <900000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vdda_0v9: LDO_REG2 {
+> +				regulator-name = "vdda_0v9";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <900000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vdda0v9_pmu: LDO_REG3 {
+> +				regulator-name = "vdda0v9_pmu";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <900000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <900000>;
+> +				};
+> +			};
+> +
+> +			vccio_acodec: LDO_REG4 {
+> +				regulator-name = "vccio_acodec";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vccio_sd: LDO_REG5 {
+> +				regulator-name = "vccio_sd";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc3v3_pmu: LDO_REG6 {
+> +				regulator-name = "vcc3v3_pmu";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <3300000>;
+> +				};
+> +			};
+> +
+> +			vcca_1v8: LDO_REG7 {
+> +				regulator-name = "vcca_1v8";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcca1v8_pmu: LDO_REG8 {
+> +				regulator-name = "vcca1v8_pmu";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <1800000>;
+> +				};
+> +			};
+> +
+> +			vcca1v8_image: LDO_REG9 {
+> +				regulator-name = "vcca1v8_image";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			dc3v3: vcc_3v3: SWITCH_REG1 {
+
+It's labeled as '+3.3v' in the schematic. Do you have any other 
+suggestions for the name?
+
+> +				regulator-name = "vcc_3v3";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc3v3_sd: SWITCH_REG2 {
+> +				regulator-name = "vcc3v3_sd";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	vdd_cpu: regulator@40 {
+> +		compatible = "silergy,syr827";
+> +		reg = <0x40>;
+> +		fcs,suspend-voltage-selector = <1>;
+> +		regulator-name = "vdd_cpu";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <712500>;
+> +		regulator-max-microvolt = <1390000>;
+> +		regulator-ramp-delay = <2300>;
+> +		vin-supply = <&dc5v>;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +
+> +	eeprom@50 {
+> +		compatible = "belling,bl24c16a", "atmel,24c16";
+> +		reg = <0x50>;
+> +		pagesize = <16>;
+> +		read-only;
+> +		vcc-supply = <&gpio_vref>;
+> +	};
+> +};
+> +
+> +&mdio1 {
+> +	rgmii_phy1: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-id001c.c916";
+> +		reg = <0x0>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&gmac1_rstn_gpio3_b0>; // GPIO4_C3
+> +		reset-assert-us = <20000>;
+> +		reset-deassert-us = <100000>;
+> +		reset-gpios = <&gpio4 RK_PC3 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&pinctrl {
+> +	bluetooth {
+> +		bt_reg_on_h_gpio4_b2: bt-reg-on-h-gpio4-b2 {
+> +			rockchip,pins = <4 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+> +		bt_wake_host_h_gpio4_b4: bt-wake-host-h-gpio4-b4 {
+> +			rockchip,pins = <4 RK_PB4 RK_FUNC_GPIO &pcfg_pull_down>;
+> +		};
+> +
+> +		host_wake_bt_h_gpio4_b5: host-wake-bt-h-gpio4-b5 {
+> +			rockchip,pins = <4 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	ethernet {
+> +		gmac1_rstn_gpio3_b0: gmac1-rstn-gpio3-b0 {
+> +			rockchip,pins = <4 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		gpio0_b4_led: gpio0-b4-led {
+> +			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	pcie {
+> +		pcie20_clkreqnm2: pcie20_clkreqnm2 {
+> +			rockchip,pins = <1 RK_PB0 4 &pcfg_pull_none>;
+> +		};
+> +
+> +		pcie_nrst: pcie-nrst {
+> +			rockchip,pins = <1 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	pmic {
+> +		pmic_int_l: pmic-int-l {
+> +			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
+> +		};
+> +	};
+> +
+> +	wifi {
+> +		wifi_reg_on_h_gpio3_d4: wifi-reg-on-h-gpio3-d4 {
+> +			rockchip,pins = <3 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+> +		wifi_wake_host_h_gpio3_d5: wifi-wake-host-h-gpio3-d5 {
+> +			rockchip,pins = <3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_down>;
+> +		};
+> +	};
+> +};
+> +
+> +&pcie2x1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie20_clkreqnm2 &pcie_nrst>;
+> +	reset-gpios = <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>;
+> +	supports-clkreq;
+> +};
+> +
+> +&pmu_io_domains {
+> +	pmuio1-supply = <&vcc3v3_pmu>;
+> +	pmuio2-supply = <&vcc_3v3>;
+> +	vccio1-supply = <&vccio_acodec>;
+> +	vccio2-supply = <&vccio_flash>;
+> +	vccio3-supply = <&vccio_sd>;
+> +	vccio4-supply = <&vcc_1v8>;
+> +	vccio5-supply = <&vcc_3v3>;
+> +	vccio6-supply = <&vcc_1v8>;
+> +	vccio7-supply = <&vcc_3v3>;
+> +	status = "okay";
+> +};
+> +
+> +&saradc {
+> +	vref-supply = <&vcca_1v8>;
+> +	status = "okay";
+> +};
+> +
+> +&sdhci {
+> +	bus-width = <8>;
+> +	cap-mmc-highspeed;
+> +	mmc-hs200-1_8v;
+> +	max-frequency = <200000000>;
+> +	no-sd;
+> +	no-sdio;
+> +	non-removable;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe>;
+> +	vmmc-supply = <&vcc_3v3>;
+> +	vqmmc-supply = <&vccio_flash>;
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc2 {
+> +	#address-cells = <1>;
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	cap-sdio-irq;
+> +	disable-wp;
+> +	keep-power-in-suspend;
+> +	max-frequency = <200000000>;
+> +	mmc-pwrseq = <&sdio_pwrseq>;
+> +	no-mmc;
+> +	no-sd;
+> +	non-removable;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdmmc2m0_bus4 &sdmmc2m0_clk &sdmmc2m0_cmd>;
+> +	sd-uhs-sdr104;
+> +	#size-cells = <0>;
+> +	status = "okay";
+> +
+> +	wifi@1 {
+> +		compatible = "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
+> +		reg = <1>;
+> +#if 0
+> +		// brcmfmac: brcmf_sdio_bus_rxctl: resumed on timeout
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <RK_PD5 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "host-wake";
+> +#endif
+
+It doesn't work if interrupt is enabled. Any ideas?
+
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_wake_host_h_gpio3_d5>;
+> +	};
+> +};
+> +
+> +&sfc {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <104000000>;
+> +		spi-rx-bus-width = <4>;
+> +		spi-tx-bus-width = <4>;
+> +		vcc-supply = <&vccio_flash>;
+> +	};
+> +};
+> +
+> +&tsadc {
+> +	rockchip,hw-tshut-mode = <1>;
+> +	rockchip,hw-tshut-polarity = <0>;
+> +	status = "okay";
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +};
+> +
+> +&uart8 {
+> +	dma-names = "tx", "rx";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart8m0_xfer &uart8m0_ctsn &uart8m0_rtsn>;
+> +	uart-has-rtscts;
+> +	status = "okay";
+> +
+> +	bluetooth {
+> +		compatible = "brcm,bcm4345c5";
+> +		clocks = <&rk809 1>;
+> +		clock-names = "lpo";
+> +		device-wakeup-gpios = <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
+> +		host-wakeup-gpios = <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
+> +		max-speed = <1500000>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_reg_on_h_gpio4_b2
+> +			     &bt_wake_host_h_gpio4_b4
+> +			     &host_wake_bt_h_gpio4_b5>;
+> +		shutdown-gpios = <&gpio4 RK_PB2 GPIO_ACTIVE_HIGH>;
+> +		vbat-supply = <&vcc_3v3_1>;
+> +		vddio-supply = <&vcc_1v8>;
+> +	};
+> +};
+> +
+> +&usb_host0_xhci {
+> +	extcon = <&usb2phy0>;
+> +	maximum-speed = "high-speed";
+> +	phys = <&usb2phy0_otg>;
+> +	phy-names = "usb2-phy";
+> +};
+> +
+> +&vop {
+> +	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
+> +	assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
+> +	status = "okay";
+> +};
+> +
+> +&vop_mmu {
+> +	status = "okay";
+> +};
+> +
+> +&vp0 {
+> +	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+> +		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
+> +		remote-endpoint = <&hdmi_in_vp0>;
+> +	};
+> +};
+> diff --git a/arch/arm64/configs/linux.radxa.config b/arch/arm64/configs/linux.radxa.config
+> new file mode 120000
+> index 000000000000..8af66a0e7a96
+> --- /dev/null
+> +++ b/arch/arm64/configs/linux.radxa.config
+> @@ -0,0 +1 @@
+> +/home/radxa/linux.radxa.config
+> \ No newline at end of file
 
 
