@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-250069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CECE1CE6232
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 08:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81212CE6268
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 08:37:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1DCE1308F316
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:26:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E9CDC3038007
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 318B7314D37;
-	Mon, 29 Dec 2025 07:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E823161B0;
+	Mon, 29 Dec 2025 07:22:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z4JybYQI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="obgoeUrq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00E19314D30;
-	Mon, 29 Dec 2025 07:21:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10192494FE;
+	Mon, 29 Dec 2025 07:22:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766992879; cv=none; b=tuYzHZWaUjMur3IhTyr6U9wSv6cJ3uWRf2hbtt1Z+Dg2k6nZAHdll3q60335aADUi8aiZY8XhPm2118cEQ8EXGD+3zzS9qyCcFqgyH/qgOCLf57lAlK/iLoVT6+4hv7TchkCMNLYmO9GLZzZfCGSmno+NGG/4tHjeS8kM8Zzy7I=
+	t=1766992926; cv=none; b=fsqNMQ/Gl2J0gGWmFhCKBhKaWRW2UWykxMXSkj7youuevCqA39yi/YJ1bk3ZqXSmbaYY4uXd5LnbMgP96NPShzL5kY/LQNCgdTfdgfi7Xnwl/X8xjw0z9D4nMbn5aKR2CAz6cOrz8kvZndBKMl3eGm/365RGhBTpwuUSD2zV6/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766992879; c=relaxed/simple;
-	bh=4dB4OaxVaBYdo6Mh2CdFTMcCYG2VRNM9qBQF3ywr2B4=;
+	s=arc-20240116; t=1766992926; c=relaxed/simple;
+	bh=SxdXLPAWz3KHwvb0HKuudiCfH3vDRUQB1x0W+Jkuy0s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H23mRMmlUKjohsvYbNk0ii5+sJ5QdtjSM1lQU9KX5TPK2GGyroNzSDhernWv9+tqurpAPQT6IFH5IWh/COGyCct9ldt+ZCgINQJCj7ySujfcj112KB+TIiZGv3uqdY0adBPul6ZeBjKKVd6jXjNXkOJY88RvC24UUCOBa1E+5lM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z4JybYQI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73D94C4CEF7;
-	Mon, 29 Dec 2025 07:21:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BWE+k/jaEa3P+wweVJVJDGBzd9ZGBHVlwr4eYTlNxA9vEAftKD0/NM8vDUtF8P6NKGm6Qo0s+zHLhieMAeHPlmdByXV3KGFdVIm2N9kYsLUKcAQXctHp8ZydisYK+VndrOEGgPRs6E2j6DWEcn6kIbBR6C6J38HRRahEKw9p4vU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=obgoeUrq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1FC4C4CEF7;
+	Mon, 29 Dec 2025 07:22:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766992878;
-	bh=4dB4OaxVaBYdo6Mh2CdFTMcCYG2VRNM9qBQF3ywr2B4=;
+	s=k20201202; t=1766992924;
+	bh=SxdXLPAWz3KHwvb0HKuudiCfH3vDRUQB1x0W+Jkuy0s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Z4JybYQI3V6nLG081uvennCMXGeUgZBEFclIHnGZbqJ31+CM+mtO2rBkGlK0XIJcv
-	 DY4ldFNyQA4cQoLDw/J1L2P9JG+43R++kKkZPhnn0s8njuGnxLUplGkKu2lSdZiZMi
-	 B6MLQj/aTeSERX99EeuNp1n4PRUMFkWwyCsVnPYTXtEqdHnc/mbdv406N+EvDMNpMz
-	 0gPC2AkfOvKCucQbFXA5WIJueDWh1sFRD0/qdrqeeZGtWjAOHBqEKpihUsJb5HxbeT
-	 7VkXYlo2rza0TN6gqxspL3Jcu1rQObEMRgvYX2F3D7jQWV+kB+lbWcD9t22WvDK9Sk
-	 11ytnYasVQ0jQ==
-Message-ID: <448f2efa-5b1e-4855-a62d-2e375938b36f@kernel.org>
-Date: Mon, 29 Dec 2025 08:21:13 +0100
+	b=obgoeUrqMXVrucgONq4BEX7wy1ZvGZKmz6idLcSfmcFu1vUoq/g1X7j+UkRTsfmDH
+	 6KSGwUAFndLB4/vRnJN9XkuSKbkrynM2qlUXYbFxPNg4zhPHwAbDbwJEKsQkb+Qow5
+	 FkGQ4iRZQHWia2GeCmNobV4dpktuigC5P8bq0ZbpEyLr9qo8ygjITALW7jRqG+ejyI
+	 ffcTMpDFHmH8wbm3dGSDxauJdKz7rTIsAjxKvaji8QhEBEk37zDkQcCzO9Q+zbYQFk
+	 +V9ZX93hodhPNBqxY1BU58k70WWEO+iaFZqWiT1QRulO1fyYxb/cqXsRW9js0MSuMf
+	 +Q+Zkqlx8fNNg==
+Message-ID: <8690ccf7-2033-4dc3-8a4f-404a93301d6a@kernel.org>
+Date: Mon, 29 Dec 2025 08:21:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,19 +48,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: Commonize IQ-X-IOT DTSI
-To: Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- YijieYang <yijie.yang@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com>
- <20251222060335.3485729-3-yijie.yang@oss.qualcomm.com>
- <20251222-fluorescent-turkey-of-gallantry-df0906@quoll>
- <b8f0e8d9-449e-4f32-832e-f1d5597ff496@oss.qualcomm.com>
- <6421f044-2b07-4518-9edc-b9b2ef49f4fb@kernel.org>
- <8bcf058f-5bf9-46ce-a188-e94954101f2f@oss.qualcomm.com>
- <4f79d090-7d1c-4fb3-a835-a7e4ff96f79c@oss.qualcomm.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: add STEF48H28
+To: Yungteng Hsu <hsu.yungteng@gmail.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251224084821.2092169-1-hsu.yungteng@gmail.com>
+ <490569f8-a434-4297-b11e-ad34ddc4ae1e@kernel.org>
+ <CAFT9tykPEt+zTREF9C4AXtGp0qDh_65LjHZCK9F=NFhE-K4dGQ@mail.gmail.com>
+ <06f97147-5752-4a82-9958-89b138a7d4fe@kernel.org>
+ <CAFT9tynYM0u_cAqA9YPpoUp7EcVpvcwr_sxrk5K=VNMXDwBE=w@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,49 +105,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <4f79d090-7d1c-4fb3-a835-a7e4ff96f79c@oss.qualcomm.com>
+In-Reply-To: <CAFT9tynYM0u_cAqA9YPpoUp7EcVpvcwr_sxrk5K=VNMXDwBE=w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 29/12/2025 02:23, Tingwei Zhang wrote:
+On 29/12/2025 02:02, Yungteng Hsu wrote:
+> Krzysztof Kozlowski <krzk@kernel.org> 於 2025年12月26日週五 下午7:10寫道：
 > 
 > 
-> On 12/24/2025 8:12 AM, Tingwei Zhang wrote:
 >>
->> On 12/23/2025 9:41 PM, Krzysztof Kozlowski wrote:
->>> On 23/12/2025 04:38, Tingwei Zhang wrote:
->>>> On 12/22/2025 5:11 PM, Krzysztof Kozlowski wrote:
->>>>> On Mon, Dec 22, 2025 at 02:03:28PM +0800, YijieYang wrote:
->>>>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
->>>>>>
->>>>>> HAMOA-IOT-EVK and PURWA-IOT-EVK share a similar board design. Extract
->>>>>> the common components into separate files for better maintainability.
->>>>> SoMs do not share actual hardware. DTSI does not represent what looks
->>>>> similar to you, but actually common parts.
->>>> Purwa SOM board and Hamoa SOM board share same design. They share same PCB.
->>>> The difference is only on chip. Purwa SOM board has Purwa and Hamoa SOM board
->>>> has Hamoa on it. 
->>> I do not speak about boards. Read carefully feedback and respond to the
->>> actual feedback, not some other arguments.
->>>
->>> NAK
->> In this change, the SoM hardware except SoC is described by iq-x-iot-som.dtsi since it's common between Hamoa and Purwa. Hamoa and Purwa SoC hardware is described in hamoa.dtsi and purwa.dtsi. Hamoa-iot-som.dtsi includes iq-x-iot-som.dtsi and hamoa.dtsi. This change could reduce the duplicate code and review effort on a totally new purwa-iot-som.dtsi. If we found any bug, it can be fixed in one common file instead of two separate files. Same idea is used in x1-crd.dtsi. X1e80100-crd.dts include x1-crd.dtsi and hamoa.dtsi.
-> Krzysztof,
-> Please let me know your opinion on this. This could be a common case for
-> Hamoa/Purwa boards share same PCB. Share same dtsi file like x1-crd.dtsi
+>> On 26/12/2025 03:46, Yungteng Hsu wrote:
+>>> Krzysztof Kozlowski <krzk@kernel.org> 於 2025年12月24日週三 下午6:03寫道：
+>>>>
+>>>> On 24/12/2025 09:48, Charles Hsu wrote:
+>>>>> Add device tree bindings for the hot-swap controller STEF48H28.
+>>>>>
+>>>>> Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
+>>>>> ---
+>>>>
+>>>>
+>>>> Where is any changelog? You keep sending versions but you never
+>>>> responded, never said what happened with this.
+>>>>
+>>> Thank you for your feedback.
+>>> I realize now that I misunderstood the process.
+>>> I previously thought that the changes needed to be included in the cover letter.
+>>> I will follow the proper procedure for discussing updates in the thread.
+>>
+>> There is no cover letter here at all. You sent only 1/2.
+>>
+> Thank you for the clarification.
+> I would like to confirm the correct approach.
+> Should the changes be documented in the cover letter, or should they
+> be written directly in the commit message?
+> I will resend the complete submission accordingly.
 
-It's not the same PCB.  You did not really respond to my first message,
-so I responded to you - I do not speak about boards. Then again you did
-not respond to it and brought some irrelevant arguments.
-
-> would reduce maintenance effort.
-
-Does not matter, I do not question this. Why are you responding to some
-questions which were never asked?
-
-DTSI represents actual shared physical aspect and you cannot share SoM
-physically. It's not the same PCB, because you do not have a socket on
-the SoM.
+Does not matter, because the problem is  - there is no cover letter. You
+wrote that changelog is in the cover letter. There is no such!
 
 Best regards,
 Krzysztof
