@@ -1,121 +1,134 @@
-Return-Path: <devicetree+bounces-250301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC17CE82D0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 21:49:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FF4CE82E8
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 21:59:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 67F0C302FA26
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 20:48:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D38D23000B50
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 20:59:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20285214813;
-	Mon, 29 Dec 2025 20:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171D72E62DC;
+	Mon, 29 Dec 2025 20:59:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d3NoOfFo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="geKKiV3O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B1672E6CAA;
-	Mon, 29 Dec 2025 20:48:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B97B2D249A
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 20:59:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767041288; cv=none; b=qBofrX9wyzKvPznuTXCRvaR8V+4bdbOwbPBti8u/ndWYhdNOeexO1ML2neeOs8rxXTZsDqXn3tFeas87cRGsWDa9xiuoONn9b+2V5Pi7LY1G0P4P/6Bfi/xRAWbvfXN1iNDJ5mEu9CkQUZf1OS2Stw0PzhntcbTIkjXIpmreyuA=
+	t=1767041945; cv=none; b=OJNtId5eg4N09k5xM74jmHX+cQrJPSutjcoU96l+U9Pjw7cdlXg2q1zMYH8MpSP0VldHk7B8WfaPNhEjmqprQoVZMAUfkfzhbmA4ot5r6eYDkttrABDC8GxNMXSEzyleqNiZWhnhi/Tentchi82yBbUmmD3rjC7PnYAxBc5yG20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767041288; c=relaxed/simple;
-	bh=/HcHUKH9WOn4u11rA/8fd9MG7H3ox7CxfRjWpVBqbEo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OcBb3cbsMkZenap3ZCVoCF1E/a8zxRikR0u2YsBnY6XaxLmXuEvInKvUEEipZKpwNcjvG1STuU1YtT7/GVKCYtWuC6egaoh9ooOsliFknP7MoYCfWZobl4ItLiWvhpGKykI4ZGe48LPC1u1UEFYFhIzyJKUx9rnqNxExNnXL8/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d3NoOfFo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0D87C4CEF7;
-	Mon, 29 Dec 2025 20:48:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767041285;
-	bh=/HcHUKH9WOn4u11rA/8fd9MG7H3ox7CxfRjWpVBqbEo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=d3NoOfFoKEMjGZmhbXTwwY7EDS6Ku7T3w492GkGseh+K35d9e4P6f+N2x6J+ni8Zq
-	 UBN7sD7unM2e8R9CR7F+Sblj0SX4q9EevF+dx0atb+u/Ld7nkz71lHTspu0ODi1gCn
-	 oStxDhEIiBGTzU7cre4vfPqp26lm/AAYu5XLJfIw1D5J8UxTsECl0TjotckY3NU/0a
-	 vkAtHZOuwRrVgw69Oc8JeJbxe0RVc6xDGfzv2BOm/0IgiYd8LhNradgrGJuKykzR5J
-	 R96paUuGljh+Il6QQEn1dtZ1fOzSIeViLWc80+w3OLpdmmGiwa5BWvLYGGnhhuZcOq
-	 gJS2PSjSElhkw==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Mon, 29 Dec 2025 21:47:41 +0100
-Subject: [PATCH RFT 3/3] arm64: dts: qcom: sm6115: Add CX_MEM/DBGC GPU
- regions
+	s=arc-20240116; t=1767041945; c=relaxed/simple;
+	bh=GSEUxsESE1/8GTMWfz0hBGHd90EMa8Seyja17ObPhrs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kQVxwRpt85xFSFIekIM2sVPBN7qJp0RvmPsTod1H2yq8B2t2/3bG6ecqvvQjBzVcVaokWOW073Neb7Bv/4W9a5VVrTWtp4EarfnLJ+TKiZL7VlSFVSbIkFojJPbXK9tY5HlTN3QyrK+pCr+X/Q1K2lxVcACxrvZt5PxqiTGsPt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=geKKiV3O; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42fbc3056afso5060488f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 12:59:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767041942; x=1767646742; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mT72sLXnNV3V/jTjLvqc6CW9rW/yO+T8uURGolooNUk=;
+        b=geKKiV3OiteLGo1VBCspIlWgfU4HC/ji5zLTiEc/FnE6Y39F6USRVJnQ60LYssrRSN
+         eFQD6/ro3l/QY7bIIEs6tNL9fZcMk7NkBarogNL8VUNAfm4hOeHQkAH7q8T48qP9qPoR
+         BmjfWr0yugNWwDS4tF+lAtXcEdNIWfPr5ASneOppG46X/kJGwh621Nd2e2IBChYfuaci
+         zBeFiNL+pIxJOjE+JquPqzKJvOQ4RIvd5UXJda4Q8zpbNQykkQndkao/d4yR1xz/+EIE
+         ERW4OJvH7ESoMsWyyxt63+XUmiyuqVBzbFfHWiEJt7Qyqkvc5JH1uCpftMUHowbJHGLD
+         0Ctw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767041942; x=1767646742;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mT72sLXnNV3V/jTjLvqc6CW9rW/yO+T8uURGolooNUk=;
+        b=oK15127SSGmDseEm5L7B7Vhxfb0WsmGfMLrtXMT3hE77yzMjG5VRJHWnuHDO3QSk5y
+         SOnggVFnDU2HBjCQOfzX5VWhT5zlElK6DXbyNSu8c20o2LWpzTdTrTKQi6f6+3l765gk
+         bmBINs6baWry6Zs4uDkrqRTPL1vGJ/dPeRK6l/X/go0zFgrNuuP0qqZ2x+rAH1UfqLfJ
+         gUT4Q9Zn8LJ+ZoXA2gFyLD5NY/q8biAsH2mUoqMvJjU7vsjGxxFigOBDepz2sdnwcPmY
+         0GPVNVFdmBnsIU8U6WQuOPFy9XX485vt68ou2zLUFgjgKrVjFS4VBzssFkGf90B6p0nF
+         i0Kg==
+X-Gm-Message-State: AOJu0Yw52F5xYCb1CZDKDy0qo0Ip7+MMrikq9GNMt6boo5cCBoZLTBSr
+	nhWTiWo6gb7KcEX8FjgKJNyv/WfzctQXjmZYqiURiRZsjZV+4wgi9W2l
+X-Gm-Gg: AY/fxX4UuYaIVQ8f8EHv5qdkYvmuJgDoquWULpTQx36VBIjDhksbVdxc3W6pjfpj9dX
+	TxNEZP0kDFJxhXzBSPAvoWkjMaQXkRCvfR7Ihmv4xzgLTNjKrMdlPpj4EwjBOGJ3SI/K36Y+cnj
+	nH4AMEKt59a+D77n07MhkYazCSWD1WQYS9MJrCCCww0tf7+zOoDU2ApMUG4xFIZaWbdCgET44MM
+	fce2TZw9dWl8gQaAo4DNR25b/F8msN9p/OCqh8DRnvfIYSemwkFENIp5OonH3wd6n7k6P5HzOkr
+	rspWN6lqO5yBK57leo249FvfO1+zU3Z+YqsL2dXW2aF2vetSnAeREktdjztbEwpSP8rFxJJeqNH
+	uEFBJw7usYOtEjCsvnBe5svnRgFqsRfE92E4uvZ9JaOguLap/+rr0xdoxVa6xLcf3ANWovJNpzr
+	eZube9TLeSbMX6aHgUJWL/hHcnRNvggkBZwQVbm4TmVdqTslx6CIZpbvflcVxcIAm28hl1cKqYE
+	qFT3BkkU398WS9PtooFfJ0GnaM=
+X-Google-Smtp-Source: AGHT+IF+6dfGz8jAW2jy8V3d7wl/tvhBrzoFF1KjAPTCU32EzmQO5hO9Wctj+4CVYLo8hx4OP+5hSg==
+X-Received: by 2002:a05:6000:186e:b0:432:4c01:db00 with SMTP id ffacd0b85a97d-4324e4cff0dmr41189328f8f.27.1767041941354;
+        Mon, 29 Dec 2025 12:59:01 -0800 (PST)
+Received: from Lord-Beerus.station (net-5-94-28-220.cust.vodafonedsl.it. [5.94.28.220])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432613f7e6esm53784810f8f.21.2025.12.29.12.59.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Dec 2025 12:59:00 -0800 (PST)
+Date: Mon, 29 Dec 2025 21:58:58 +0100
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Primoz Fiser <primoz.fiser@norik.com>,
+	Yannic Moog <y.moog@phytec.de>,
+	Markus Niebel <Markus.Niebel@tq-group.com>,
+	Josua Mayer <josua@solid-run.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 3/3] arm64: dts: imx95-var-dart: Add support for
+ Variscite Sonata board
+Message-ID: <aVLrkqgjrsX7jfYw@Lord-Beerus.station>
+References: <20251229150421.57616-1-stefano.r@variscite.com>
+ <20251229150421.57616-4-stefano.r@variscite.com>
+ <0afc0945-af65-410d-8556-1d09792981cb@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251229-topic-6115_2290_gpu_dbgc-v1-3-4a24d196389c@oss.qualcomm.com>
-References: <20251229-topic-6115_2290_gpu_dbgc-v1-0-4a24d196389c@oss.qualcomm.com>
-In-Reply-To: <20251229-topic-6115_2290_gpu_dbgc-v1-0-4a24d196389c@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
- Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, 
- Akhil P Oommen <akhilpo@oss.qualcomm.com>, 
- Abhinav Kumar <abhinav.kumar@linux.dev>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767041261; l=1458;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=aO7/EdvbRTHMZ0mluFQ6+MO7rNiL4vfNS224/qLOXj8=;
- b=LN4bsZucaHqv8euXO3Ye/44gUvEgjH4WpNQ20/BaxYkzodXoPiNWwdV9m0PnkoNAG1vr+UaIO
- pboJrQisvoEBfNunZ6zbLNk5mrai9x5uA8zhE5CRjKzWNmjfiLRlSD1
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0afc0945-af65-410d-8556-1d09792981cb@lunn.ch>
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Mon, Dec 29, 2025 at 07:24:50PM +0100, Andrew Lunn wrote:
+> 
+> What is this ethernet connected to? In the commit message you mention
+> an SFP? So i would expect a phandle pointing to the SFP cage node,
+> which follows:
+> 
+> Documentation/devicetree/bindings/net/sff,sfp.yam
+> 
+> 	Andrew
 
-Describe the GPU register regions, with the former existing but not
-being used much if at all on this silicon, and the latter containing
-various debugging levers generally related to dumping the state of
-the IP upon a crash.
+Hi Andrew,
 
-Fixes: 11750af256f8 ("arm64: dts: qcom: sm6115: Add GPU nodes")
-Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Closes: https://lore.kernel.org/linux-arm-msm/8a64f70b-8034-45e7-86a3-0015cf357132@oss.qualcomm.com/T/#m404f1425c36b61467760f058b696b8910340a063
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+You're absolutely right, thanks for pointing that out!
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index 5e2032c26ea3..4dba724f2c75 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -1715,8 +1715,12 @@ usb_dwc3_ss: endpoint {
- 
- 		gpu: gpu@5900000 {
- 			compatible = "qcom,adreno-610.0", "qcom,adreno";
--			reg = <0x0 0x05900000 0x0 0x40000>;
--			reg-names = "kgsl_3d0_reg_memory";
-+			reg = <0x0 0x05900000 0x0 0x40000>,
-+			      <0x0 0x0599e000 0x0 0x1000>,
-+			      <0x0 0x05961000 0x0 0x800>;
-+			reg-names = "kgsl_3d0_reg_memory",
-+				    "cx_mem",
-+				    "cx_dbgc";
- 
- 			/* There's no (real) GMU, so we have to handle quite a bunch of clocks! */
- 			clocks = <&gpucc GPU_CC_GX_GFX3D_CLK>,
+I mistakenly thought fixed-link alone was sufficient, but after reading
+the sff,sfp.yaml binding I understand the sfp node is needed to properly
+handle the SFP+ cage and transceiver module detection via I2C.
 
--- 
-2.52.0
+I've updated the patch to include the sfp node with i2c-bus and
+los-gpios properties.
 
+Sending v2 shortly.
+
+Thanks,
+Stefano
 
