@@ -1,121 +1,185 @@
-Return-Path: <devicetree+bounces-250057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33CF4CE60C1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:48:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A517DCE60D3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:56:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C2BEB30041BB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 06:48:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E0383003F53
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 06:56:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0BE3238C29;
-	Mon, 29 Dec 2025 06:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92AB423AB9D;
+	Mon, 29 Dec 2025 06:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xFduY41G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cUntOqUx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E03732253B0
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 06:48:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FC42253B0;
+	Mon, 29 Dec 2025 06:56:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766990885; cv=none; b=L4IV3Uq7Wl/ptH4xTKyRDlU7hsUPkZThOkb+YmMlYactfEHnKg5zvnUPBmuy/NNK5Dhh80rA05jar+uvPjXCVjHkmxp20EHNVZf0QFLy0E5fPg0TTfngpaHqfGWIeQbHuENqgiBWJFNUlW7Bn320a92gNtrBY8LMF/b/0jVPfdI=
+	t=1766991405; cv=none; b=Ew+ajhjNDyRPuZC/NKO4hNbPY8HFJV7N3l+XpRUJj5ONmXHPL4i3TGRjpbMiTkbWUBo/AdFrk7nkP7UjcxGNK8zseP7UC2Tb7u7z+JSMi+A3khG29JAKlpIe147vsz0aVq+oAW4WcLQJG+z5tzvO6Js5P+Dytdtzsijldp4B0Ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766990885; c=relaxed/simple;
-	bh=OZvhZ7NpA5Ybm+ZyBhQlb2l5FV9Gu92NCEHcOuIiZT4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CITI2UOWfWxmcX32VJWxYEYbixBN/2hozU5CgvUR2j67XCcWuhnsfm3AbNBEZz5c25yqhOxCpWmoHunUYqZukzHlXwic+RiB0lU++5+meSsPyv3/xSxB+FIQVP9oabqei4nUOKtsYgBBfP1I4fshkgdWTfy5zOEcBckNF64wmlg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xFduY41G; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b713c7096f9so1371133666b.3
-        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 22:48:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1766990882; x=1767595682; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=OZvhZ7NpA5Ybm+ZyBhQlb2l5FV9Gu92NCEHcOuIiZT4=;
-        b=xFduY41Gix57+U7ifvJyavEcSA7re5yz3g5JhhXQqY8cwv6VBP5iGvNlET6qVDohdS
-         9fGbV7771Id/xLUIfDRCb3jSDY6nwnn7+IOZGg/QpolIG+WcVLTpoHJvB5soE8Q3lQY0
-         /+pB+/l9rCvwgrRQFJwZr/hh+xDgbK9SJTHU6Kq2NrltRaQaQdavQ7Ju5ttAWhUwXOj1
-         GGxrZsVyKaaj+CLzhzUMwgIIEFuTAmab5s/wMpngnRccojoaiDVUhnJ3Yhj8J66Cs1vF
-         WUYcCrDaIH/hGPmKTVHVEFyE0Fx72YXKEB1LiOYY07MeXrBAAeCsZgU8kiokujj+7bNL
-         mS7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766990882; x=1767595682;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OZvhZ7NpA5Ybm+ZyBhQlb2l5FV9Gu92NCEHcOuIiZT4=;
-        b=U/tHVtNzwMTXQr2+Drfww7oxNlXse0hmTrp3R/T+n3ICoVJB8F0haCnBtL/fr5igVn
-         IrkGavUhrBK/3iCTRgIf6MsNqM0tPaTmCCSN1f7+lt6N74N+7nCZVEcX89A9NJ2HQXX7
-         AdzD5u3UZSVwX+BfNinifmsylRt4oDfzv4l/FGC1mx49bAMm8eSdazR1MNUFsxQ5oCmy
-         VRHZwJcx6p8ofgrYKnjWJdjhPSXk7rJUnGHVxyc+hgQatt5sSXExgJeDy++teQJ1qcPo
-         rYspiTapIlShpaGtlbmQYD488BGSt/EqXdFawMUtmACFT3zSHocT/fg9qTb06Rm/vyWq
-         5AXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWl5cC0E2Q0UFbUw8SQH9CPmklRTKRfMTVdgOwA4URAQDfpuGOqzizqpOAxQmQVdWIcgP4cFZPRE74h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9J4b28krUu+Yvrj2n7XenbqefVJPOwiW7Ax6cNXWAdvXoRvW4
-	sGuOrOfndqo5lSVdxI/H3tZRfqC1bKEArHJQ6A2u7LrMMHQd/NodPOT4K/R2Sy1ZraY=
-X-Gm-Gg: AY/fxX7doQYAdvEFa26dI6sKi3CYF4lIhRWvk8sgiLER1uJZ96KiP7DZPeAeCLIwIE1
-	knSFb8G8Vk1zYhWsAclWD3KYU6sAGcvTWYYQ3HmNpqKGC5UD26r1kqOPsMg2g/b50qpL6HLTR+U
-	gydu2C7gvaQ+S7lYPvAr/SDL6dmdp3ze0wJYjgbBSBXQDtn49qpala5EscnTfiL1CdjK6o0p0Pq
-	lDdlNicZWaj4kv6lhJ/Gpp9cNg6bvz8XVhghrIlD5yTRnzgBN3cTfh5SBZE6dZEPstJKpbGM9Ey
-	dzuCuPjnPdXDsUz4vNWnjPdGu+Xguy6Y+xEK5xvYlcGfvPwapQp0PgJ96mj1s2Ewj3XxhRWgZdc
-	gbArnIiNpCQ91uDRzl0n59iOGATmG6s2PNyUlwpsn5lTG5KtoToWuwyV7uJIxyqjDAaAgezAKDY
-	DZLTJARqPwGZ32qrJo3A==
-X-Google-Smtp-Source: AGHT+IFKJOEnoMT9pd7t4bMOfdAuLJ3dwRnOBx+hhm/y0iCl4h0HCimfd94oOij5S8bCa43IL/8WUQ==
-X-Received: by 2002:a17:907:7f15:b0:b76:b632:1123 with SMTP id a640c23a62f3a-b8037159828mr3025066266b.42.1766990882195;
-        Sun, 28 Dec 2025 22:48:02 -0800 (PST)
-Received: from draszik.lan ([212.129.79.255])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037ad83dasm3338654666b.25.2025.12.28.22.48.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Dec 2025 22:48:01 -0800 (PST)
-Message-ID: <fe1428dd0d6b744ad3c57bf5797550b54f85ff96.camel@linaro.org>
-Subject: Re: [PATCH v5 00/21] Samsung S2MPG10 regulator and S2MPG11 PMIC
- drivers
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>, Lee
- Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,  Bartosz
- Golaszewski	 <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Linus Walleij	 <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, Will McVicker
-	 <willmcvicker@google.com>, Juan Yescas <jyescas@google.com>, 
-	kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Date: Mon, 29 Dec 2025 06:48:21 +0000
-In-Reply-To: <20251227-s2mpg1x-regulators-v5-0-0c04b360b4c9@linaro.org>
-References: <20251227-s2mpg1x-regulators-v5-0-0c04b360b4c9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1766991405; c=relaxed/simple;
+	bh=2L8Mk5WlWQlOwro+lzGpqFESnl7Z8ZzqFs5ya2vJbDQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=puLkiYa8q/2Y8TP0MnFevoh7FAuUfMl4WZl/zDpFnk8TwLNLIUby4+m6/JJPXwY/2HZJiefThOL4m69d+DN7Y9h0BttSX5MQgWTTtPHMjZpmXS645mbX2LFV5rQHl+OkksD2T52DzJ/SdUM9SHjN0t49sRTTQceKMoYTcjtoI2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cUntOqUx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29BF0C4CEF7;
+	Mon, 29 Dec 2025 06:56:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766991404;
+	bh=2L8Mk5WlWQlOwro+lzGpqFESnl7Z8ZzqFs5ya2vJbDQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cUntOqUx88jhIghah0BtHV123Tman5cFwnDzVOOMvAYksaJNRnWq3CjmRgean4N04
+	 iqBLRzsOdMTU3ApunWnlX+Bxep76Drrj3bbErnOEUHKj70mMeVRFGcbNvY3xbUz2aR
+	 WAj1+AQac4O+dn36O7LVQJUH2awM38yGe/04UBJ3WJbWcANLHTDv1LS+mLBD8qIIq5
+	 /IsjB1NXRI9IJzDgLplHWc7WmtEBGwCqwThO1YR7/smhHyy8w0NEidVyVyHCbhTFKB
+	 ot1wOsmC7rNnr2/wlnCU8Nn7gUTB/bs0BUNZCqANofZZ2Jp49o7HJ6H/nXcX0sXTiN
+	 DODwXttylU7BQ==
+Date: Mon, 29 Dec 2025 08:56:34 +0200
+From: Mike Rapoport <rppt@kernel.org>
+To: Eugen Hristev <eugen.hristev@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mm@kvack.org, tglx@linutronix.de, andersson@kernel.org,
+	pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net,
+	david@redhat.com, mhocko@suse.com, tudor.ambarus@linaro.org,
+	mukesh.ojha@oss.qualcomm.com, linux-arm-kernel@lists.infradead.org,
+	linux-hardening@vger.kernel.org, jonechou@google.com,
+	rostedt@goodmis.org, linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	linux-arch@vger.kernel.org, tony.luck@intel.com, kees@kernel.org
+Subject: Re: [PATCH 18/26] mm/memblock: Add MEMBLOCK_INSPECT flag
+Message-ID: <aVImIneFgOngYdSn@kernel.org>
+References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
+ <20251119154427.1033475-19-eugen.hristev@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251119154427.1033475-19-eugen.hristev@linaro.org>
 
-On Sat, 2025-12-27 at 12:24 +0000, Andr=C3=A9 Draszik wrote:
-> This series extends the existing S2MPG10 PMIC driver to add support for
-> the regulators, and adds new S2MPG11 core and regulator drivers.
->=20
-> As part of this it was necessary to update the regulator core to allow
-> regulator registration to succeed when supplies aren't ready yet,
-> because on the current user of those PMICs (Google Pixel 6) multiple
-> PMICs supply each other and otherwise regulator registration would fail
-> altogether. This is implemented via an additional 'regulator-bus' which
-> allows us to keep track of regulators with missing supply and retry
-> supply resolution whenever new regulators are registered.
+Hi Eugen,
 
-Forgot to drop this paragraph from the message, as I sent a separate
-series series for that in
-https://lore.kernel.org/r/20251227-regulators-defer-v1-0-3104b22d84cb@linar=
-o.org
+On Wed, Nov 19, 2025 at 05:44:19PM +0200, Eugen Hristev wrote:
+> This memblock flag indicates that a specific block is registered
+> into an inspection table.
+> The block can be marked for inspection using memblock_mark_inspect()
+> and cleared with memblock_clear_inspect()
 
-A.
+Can you explain why memblock should treat memory registered for inspection
+differently?
+
+> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
+> ---
+>  include/linux/memblock.h |  7 +++++++
+>  mm/memblock.c            | 36 ++++++++++++++++++++++++++++++++++++
+>  2 files changed, 43 insertions(+)
+> 
+> diff --git a/include/linux/memblock.h b/include/linux/memblock.h
+> index 221118b5a16e..c3e55a4475cf 100644
+> --- a/include/linux/memblock.h
+> +++ b/include/linux/memblock.h
+> @@ -51,6 +51,10 @@ extern unsigned long long max_possible_pfn;
+>   * memory reservations yet, so we get scratch memory from the previous
+>   * kernel that we know is good to use. It is the only memory that
+>   * allocations may happen from in this phase.
+> + * @MEMBLOCK_INSPECT: memory region is annotated in kernel memory inspection
+> + * table. This means a dedicated entry will be created for this region which
+> + * will contain the memory's address and size. This allows kernel inspectors
+> + * to retrieve the memory.
+>   */
+>  enum memblock_flags {
+>  	MEMBLOCK_NONE		= 0x0,	/* No special request */
+> @@ -61,6 +65,7 @@ enum memblock_flags {
+>  	MEMBLOCK_RSRV_NOINIT	= 0x10,	/* don't initialize struct pages */
+>  	MEMBLOCK_RSRV_KERN	= 0x20,	/* memory reserved for kernel use */
+>  	MEMBLOCK_KHO_SCRATCH	= 0x40,	/* scratch memory for kexec handover */
+> +	MEMBLOCK_INSPECT	= 0x80,	/* memory selected for kernel inspection */
+>  };
+>  
+>  /**
+> @@ -149,6 +154,8 @@ unsigned long memblock_addrs_overlap(phys_addr_t base1, phys_addr_t size1,
+>  bool memblock_overlaps_region(struct memblock_type *type,
+>  			      phys_addr_t base, phys_addr_t size);
+>  bool memblock_validate_numa_coverage(unsigned long threshold_bytes);
+> +int memblock_mark_inspect(phys_addr_t base, phys_addr_t size);
+> +int memblock_clear_inspect(phys_addr_t base, phys_addr_t size);
+>  int memblock_mark_hotplug(phys_addr_t base, phys_addr_t size);
+>  int memblock_clear_hotplug(phys_addr_t base, phys_addr_t size);
+>  int memblock_mark_mirror(phys_addr_t base, phys_addr_t size);
+> diff --git a/mm/memblock.c b/mm/memblock.c
+> index e23e16618e9b..a5df5ab286e5 100644
+> --- a/mm/memblock.c
+> +++ b/mm/memblock.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/seq_file.h>
+>  #include <linux/memblock.h>
+>  #include <linux/mutex.h>
+> +#include <linux/meminspect.h>
+>  
+>  #ifdef CONFIG_KEXEC_HANDOVER
+>  #include <linux/libfdt.h>
+> @@ -1016,6 +1017,40 @@ static int __init_memblock memblock_setclr_flag(struct memblock_type *type,
+>  	return 0;
+>  }
+>  
+> +/**
+> + * memblock_mark_inspect - Mark inspectable memory with flag MEMBLOCK_INSPECT.
+> + * @base: the base phys addr of the region
+> + * @size: the size of the region
+> + *
+> + * Return: 0 on success, -errno on failure.
+> + */
+> +int __init_memblock memblock_mark_inspect(phys_addr_t base, phys_addr_t size)
+> +{
+> +	int ret;
+> +
+> +	ret = memblock_setclr_flag(&memblock.memory, base, size, 1, MEMBLOCK_INSPECT);
+> +	if (ret)
+> +		return ret;
+> +
+> +	meminspect_lock_register_pa(base, size);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * memblock_clear_inspect - Clear flag MEMBLOCK_INSPECT for a specified region.
+> + * @base: the base phys addr of the region
+> + * @size: the size of the region
+> + *
+> + * Return: 0 on success, -errno on failure.
+> + */
+> +int __init_memblock memblock_clear_inspect(phys_addr_t base, phys_addr_t size)
+> +{
+> +	meminspect_lock_unregister_pa(base, size);
+> +
+> +	return memblock_setclr_flag(&memblock.memory, base, size, 0, MEMBLOCK_INSPECT);
+> +}
+> +
+>  /**
+>   * memblock_mark_hotplug - Mark hotpluggable memory with flag MEMBLOCK_HOTPLUG.
+>   * @base: the base phys addr of the region
+> @@ -2704,6 +2739,7 @@ static const char * const flagname[] = {
+>  	[ilog2(MEMBLOCK_RSRV_NOINIT)] = "RSV_NIT",
+>  	[ilog2(MEMBLOCK_RSRV_KERN)] = "RSV_KERN",
+>  	[ilog2(MEMBLOCK_KHO_SCRATCH)] = "KHO_SCRATCH",
+> +	[ilog2(MEMBLOCK_INSPECT)] = "INSPECT",
+>  };
+>  
+>  static int memblock_debug_show(struct seq_file *m, void *private)
+> -- 
+> 2.43.0
+> 
+
+-- 
+Sincerely yours,
+Mike.
 
