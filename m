@@ -1,208 +1,141 @@
-Return-Path: <devicetree+bounces-250305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD3FFCE8371
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 22:27:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34A97CE8398
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 22:37:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5A05D3010AAC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 21:27:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DD6F33012741
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 21:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7E732E7BDC;
-	Mon, 29 Dec 2025 21:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9C32E7BB6;
+	Mon, 29 Dec 2025 21:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aXTl7JbQ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="b/LbnNvq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iXtYqSdR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C1E2E7BB6
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 21:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2B0423D2B2
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 21:37:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767043670; cv=none; b=PWqhAoIRv6wx8V76NT3oYCyupUbAn0WLZAx4Ild+E21UhCZlxtnSKIgBBPGW1AzEln7FWjcc6pwrTW00PgwviBTdXIzj8PVY3acdQ3Z+/Ex96T3jjWO5akVtD8Dc/cTX5aJJNxaLUmGFkQ3KBZyur+JPs9GJZxXy/BSh6WVjzZQ=
+	t=1767044256; cv=none; b=svzORfkLz7Bo8uSLB/V+oRPfSNcpTQp9GNdEkrXlNm+T73QLWI0VVKKfgKkMAQjyFgf6cbVSziJymK7Cmoe0ZTkELA8RDGRbTxBpmEj7tmc4Y+Aj9WcvXPovQrQjHGuqcK6qRxkjOhoGUWVxUgHYVJINObKuB4nUlE6iwhD48sQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767043670; c=relaxed/simple;
-	bh=eUdX55keUH8UKS6n+tLhHngVgfQyF9CZ+kXJr1bVJeQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lDkalAvvzdby1IZtL2UMlMLC0weV62VSLicT6XZttEef+D890LIEbKIWx0uVK11/Ah2JFL3dnp4IxxGOQsPydlBtiU6rPwfZiGNUX5o1ZRf/N1QHGdjDNzXtosTqAiBbpAAoW0Mlyhd+DaKVp/XKu3pXJAMtGE6HAcpJg1Y3Sww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aXTl7JbQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=b/LbnNvq; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BTA1dUu3706305
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 21:27:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZzGrE7p9r1QV217uvvuPUMlY4WKhwEyQznFD4rGyAB0=; b=aXTl7JbQd2JdVRG6
-	nYXR8Xx6EeOWt/RMxMjtsbk4M3EfBZglXSzz5rVm62t435oBKiFcsxhii1Dha90R
-	ugK2cFsh1hJQKXwv7eLHpygvfAqZYS+2qMMOW15NhpUjm9pEkLY1DW3CA0FxjjMa
-	1dncpeoWv9xzAsRfXF2bNM9gz/NFvQcT6G/PoM/69r8+JDVZA78yLUWPq/I82/9J
-	i8LHX8bev+gULtOs9qyh8tKeCTeCCzRPk/i3J7jkh0G8wEG9AVzW2lvvkJ8oO9mA
-	O1jiSx/1clW1GGYbcUeZ7N1ooWLPabPk+K1MZLQKteBInm+J0zEvgQnjoegbOYeZ
-	Ci3YOQ==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bbc8ytpc0-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 21:27:48 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-34c21341f56so28446222a91.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 13:27:48 -0800 (PST)
+	s=arc-20240116; t=1767044256; c=relaxed/simple;
+	bh=zIbPbz4p9WDTi045QfNFdh8jBTca3i1CozlJVdUl9KY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sIRyAtVsP2DLNChAvLPAurqlpqb3V3Y10hc7AuyxTbV++f9iLxWnALHr1dAFfe1KcshaY3rroSY0ZJnq+o5ww/ppnHaSxUsfkDvjY+CoQ0+JX3rJViHQbo6AEx0R1gXhbFgPxl8cqSYFgaeY8pWt4SYX8VZqbyEbQcIXfFS4WWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iXtYqSdR; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso90070205e9.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 13:37:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767043668; x=1767648468; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZzGrE7p9r1QV217uvvuPUMlY4WKhwEyQznFD4rGyAB0=;
-        b=b/LbnNvq6BUOookO0WWNvlB4rwKKp/0nmftEGIkIvUSWMtoLZKpwiYq+QhwC3+qDcU
-         HP8ky3P50YjeLdZxNJI5DAUaixEmQb6RwKr2g4AsHRh+jcRrDwwWyqh27eJ9hE55i4V1
-         JHBWAdc8sAqQvgIZufje0B+KpHss3GETWFXFZ+zZNtLcpahAdr8WV8Zca/yKMeQWFGDW
-         Y6l4uoADBCuxeSK/kJBnyiJZAad0+1/yQ/lN9Hjjqpe7JHFhh93rFhWwWtvMpGRF1rcE
-         gj4EbIcXm6NYSuPmMcoGnW5niQ5ND/PGaHj3Wt2oq0uM2Z49nFHmln+s0X8y27FIQy9i
-         gBDQ==
+        d=gmail.com; s=20230601; t=1767044253; x=1767649053; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qGz6E3CsAxGfK1c5nO3wGu40/ZtakdbQb1FmTqKeIMI=;
+        b=iXtYqSdRgpPw8wJMcaAg+Rc6XDKlm/JXX4LLIeR8fUraWAxLa8PJZeUDjn1AHhEw0Y
+         PcxO69SYbCmukLdjYWHuv/z4XoooT5+0U3nb7UNKdoHbfS9UqUphVl1mVNOmf3IarHfC
+         oe3hJcWFtq6G/lN74xGQmRMPv2dJ2XLoKyzDl7lW9ZEwhX2P3KLkWUn0SnW5OF5ZJ2IQ
+         ymWwIWhApEFMtlp+mx2DQcGPNCKbkQUgdCAgu9J9Eap3FxCyLQ4WGwV8ChK/VusdrbX9
+         7Su8V4Hs7fLVnGqG2lcyCfKxHE6teLljg7D7+YfoyAalmmxSCeW0U5DfDT/eBG03pUo4
+         uv6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767043668; x=1767648468;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZzGrE7p9r1QV217uvvuPUMlY4WKhwEyQznFD4rGyAB0=;
-        b=f8o1bTodgjq+eHIQg+yt84VqVF2NsolNbMeBeIVoxNrnWimUiWne6OcVPW5lEno7i6
-         EdGNfkWxWLo3uSZeTJ85z/V0uAWiPzdzI1AJFH+RfLpga/WwOv3uY5/mV2It4Jj77UcF
-         ekBPa0gT5Dj34sO66erc53pGDFYUF3myGlPFsklsYrGWUIzuWHXdUUvyl0sDveRUgmJF
-         X0kxE9ZyKyYzvl7iROFINHJhUaIvfUXFcuHRr+7P+n0IG1RKgoqovZalmPOMSkDzfWf5
-         u6xzqhWYkklQbcwVtLbQddM0u5I1/oVGsAssRu+8a7MCeG31BLnopIhYY2rKevdIC9xK
-         KQIA==
-X-Forwarded-Encrypted: i=1; AJvYcCW7BgwNOalqn9mVpe2wdCKA5CBsE9HsR6vNtrAr5t8r2qxp0PB1sj67TgJ+gaF93ZsdY0W9IEadjugi@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiRTf31qcuUOBHjelmjQnNXVDoDk7nAGwadP4DkTT4kpEoE3NX
-	9tHibTimcXWfFEohUvnvj4pPKzcLQct5iv39p0G+NQsotzq6G6e4JfIEa7iaEdAnWXjqpcpiOAK
-	QY77lFcJ1XklSbbzMmU+uuxHqtHyzj8HzZLBwqn0O03LOXChp8BVH1g9CoNRJr5vL
-X-Gm-Gg: AY/fxX4qZkv1KCw+U7cifc1LwceXcYu65s1/FEiYf9kipFPAk+cgKp1HYAqQ9EfBaPc
-	YMCoWZL370ZwDxvfphRsQcGcYX6xvt1oHK0bogB4jLzm46Hgu/1HSca83kj/mJWNpHG9isFUyPl
-	g/3v+YhpxPiqRUWHEJqb79OYsNZpeFrOe7RIS86SeKDJhc6e1RvfUJDYWq9NKEGdRFXgbK/JSbp
-	g09irfK7/NxfLrh4hxqGINhdRLCtfxfYSnTI5KoSxE6LX+/1Fq04zHdiz1Y8RkpBdYaIvuSsyVV
-	CTSeygLCPKPUNswg8XiKizOEUWSg+ruWRwC1hlvapV9ZL4I3H2uonamXG7Kmmvr0J+4Kfw/MU6p
-	IKsDbIdZhUOJBwB9AkusOvV/bwKa7UsehbA==
-X-Received: by 2002:a17:90b:590b:b0:34e:5aa2:cf61 with SMTP id 98e67ed59e1d1-34e921cc3b8mr25435509a91.28.1767043667824;
-        Mon, 29 Dec 2025 13:27:47 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFXHAhGnOuLepCXE//8KFeJOGRHA5F66kPmbj3lGSSvKyZBhz3mGmiK/YoI35dGeoRty8lD9g==
-X-Received: by 2002:a17:90b:590b:b0:34e:5aa2:cf61 with SMTP id 98e67ed59e1d1-34e921cc3b8mr25435489a91.28.1767043667388;
-        Mon, 29 Dec 2025 13:27:47 -0800 (PST)
-Received: from [192.168.1.5] ([106.222.228.162])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34e76de1e41sm15800112a91.2.2025.12.29.13.27.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Dec 2025 13:27:47 -0800 (PST)
-Message-ID: <8f6d4a58-ed28-481e-b7e8-8b119cf6cda4@oss.qualcomm.com>
-Date: Tue, 30 Dec 2025 02:57:40 +0530
+        d=1e100.net; s=20230601; t=1767044253; x=1767649053;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qGz6E3CsAxGfK1c5nO3wGu40/ZtakdbQb1FmTqKeIMI=;
+        b=oo3VEbAlTFRqIv1qN3P1WozAFapnTtNKL8TZ98VWZYn3fqzKvqSX/87DNGzuuUVRF9
+         m4h6ks3k0DMmwDtvqg2DewXTWB+kjPBEiEPQXf+tPfwo4ziiDKeDAx0MTekmdx2yLVQ+
+         BXcrjJjU5RHlDKsLRUcLs8sLsr23HC9ZBanj3KuK9yqmfqXZCmBf/W0AoQmbNzd2+d35
+         gMwu1gXZ1LJ4ib4gCMSyxGEBhb5OGJUuCZNK3CVrmwskpQzElXvTdY/nwXb5TpWXm/AR
+         qns6+njtzn5muO1wLhBX0Lj91j2ug5HNfpEPnUhjw3nb4M10Xgp4/eKpb4hsfLbaxSiB
+         cCMQ==
+X-Gm-Message-State: AOJu0Yz+mzQEloxOKgl/DYnkQS2uyFr+nOIWmTDOz/LUZIzSCtFKFkr5
+	eSHkkH7ezTS7w4Z1SQBRU8r6GgaBIXeRbZbWo7sW4Yi/9UUEds3Imb2ER8yalnnl
+X-Gm-Gg: AY/fxX5OQPhaDTx6L1mG0GKOzmR/eCO/fOPLUM92WWKFIviGn8LD2EswLJzvCWDFVT8
+	MTkAmiKV4TLq/Zg6TSqBFpyD3YWQmmrI8t24UZXHxzpJqjL70047IFyap8YiWvf5U87eomAzddX
+	3YPc0g8IyfPLBx+uRZa1mmKCfzUtPjCa5z5MoyQB05fwTe196zrBsSVmJSgev1a+W0lpQUVV0ld
+	XFUoeuy9XJ+etvfMPHIyLTQ+nXcz5lvJG5/apzcc5wOzWi4sD8MpWJr+V/PyGyZI45pggeVqi68
+	P3wx3h4wz8Qlv3ivQKaM+1pmF3jSb5T/HeagRdepuOfco36bVLmbj3BHTAF2GqkERnh5Eq/wMyY
+	+Gu401Vri258ooSYRMrjrLE1T45FHy4q9W4qDKG0EdZWhUW+knuT5tP9UVUj2cXUy6XAz/ueFDG
+	QVpoP30LVwfjyK+4IObIWlj5DzPmtLzXYgiaC71xrZO0XWXP9Lq6ic8ryKtjcax19NCMGfuJbf0
+	1bqbW3ap06M+dbl7cqC
+X-Google-Smtp-Source: AGHT+IEJqCt8LPEO1gH1XPCkgXU5Nau72TepR4FWtrEw6Lak1kKcRdl1oqPEMIXKOijGtZuQP2wEew==
+X-Received: by 2002:a05:6000:178e:b0:430:b100:f594 with SMTP id ffacd0b85a97d-4324e50d9bcmr38628906f8f.50.1767044253036;
+        Mon, 29 Dec 2025 13:37:33 -0800 (PST)
+Received: from Lord-Beerus.station (net-5-94-28-220.cust.vodafonedsl.it. [5.94.28.220])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324ea1b36fsm64046230f8f.5.2025.12.29.13.37.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Dec 2025 13:37:32 -0800 (PST)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Yannic Moog <y.moog@phytec.de>,
+	Primoz Fiser <primoz.fiser@norik.com>,
+	Markus Niebel <Markus.Niebel@tq-group.com>,
+	Josua Mayer <josua@solid-run.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/3] Add support for Variscite DART-MX95 and Sonata board
+Date: Mon, 29 Dec 2025 22:37:14 +0100
+Message-ID: <20251229213726.79374-1-stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: agatti: Fix IOMMU DT properties
-To: Sumit Garg <sumit.garg@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org,
-        vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
-        robin.clark@oss.qualcomm.com, lumag@kernel.org,
-        linux-kernel@vger.kernel.org, Sumit Garg <sumit.garg@oss.qualcomm.com>,
-        Prakash Gupta <guptap@qti.qualcomm.com>
-References: <20251229071258.456254-1-sumit.garg@kernel.org>
-Content-Language: en-US
-From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-In-Reply-To: <20251229071258.456254-1-sumit.garg@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI5MDE5NiBTYWx0ZWRfX6aY0ibh5swIt
- ZWAOoh+USASLuI0tMcvR5m2AZ1MwPOdzqNxPaeiQ2OBgsstRA/0d9wQTO8ttZvUdz2v2OnQkJQk
- gEOLdhztKmR3gXSQ0j7NJL0wk1v50rDM2wzcCdQFdBZ8OvXXczOOinmCSWFDTBV6Rx4RSXzX/Qk
- xqA9CU6lkK9zQGQ91WNMSWECH1CeHDdymR0Qy7d+Ngy+Hh2c23AdoytYBGla3mD9q5HKZBPgcXT
- LVstSk9vnUw2eaJROxVBrHlSxGyWN8XJzoNb0BQdUQkBUSJdf8YAQMD9JDrYSt4rrLw99hIuJtx
- 0qC7WsckfH+ARhnGBjNSHp3+4xtY20MIGl7LsFviPoPtOZJaANIn/MMhi/HV/WO8NX/CwIey0G8
- xPG9fU5tSUkbZg5t1YXifD9icqR5g4dfjREUTm0kN3BPKn3UcSkkJ34zvo8Zd20CXz9BBmksVNp
- 4VfRlE/3qGT9RsWtEVw==
-X-Authority-Analysis: v=2.4 cv=cP7tc1eN c=1 sm=1 tr=0 ts=6952f254 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=DNOyb6/IJtREwcjsjFyOSQ==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=M-CakxJLJ1n_a3JhWpwA:9
- a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-ORIG-GUID: rid4QJhP218AybyShzdu3084U_io9GTj
-X-Proofpoint-GUID: rid4QJhP218AybyShzdu3084U_io9GTj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-29_06,2025-12-29_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 malwarescore=0 lowpriorityscore=0
- impostorscore=0 adultscore=0 bulkscore=0 suspectscore=0 spamscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2512290196
+Content-Transfer-Encoding: 8bit
 
-On 12/29/2025 12:42 PM, Sumit Garg wrote:
-> From: Sumit Garg <sumit.garg@oss.qualcomm.com>
-> 
-> Fix IOMMU DT propeties for GPU, display and video peripherals via
-> dropping SMMU stream IDs which relates to secure context bank.
-> 
-> This problem only surfaced when the Gunyah based firmware stack is
-> ported on Agatti replacing the legacy QHEE based firmware stack. Assigning
-> Linux kernel (HLOS) VMID to secure context bank stream IDs is treated
-> as a fault by Gunyah hypervisor which were previously ignored by QHEE
-> hypervisor.
-> 
-> The DT changes should be backwards compatible with legacy QHEE based
-> firmware stack too.
-> 
-> Suggested-by: Prakash Gupta <guptap@qti.qualcomm.com>
-> Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
+From: Stefano Radaelli <stefano.r@variscite.com>
 
-Reviewed-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+This patch series adds support for the Variscite DART-MX95 system on
+module and the Sonata carrier board.
 
--Akhil
+The series includes:
+- Device tree bindings documentation for both SOM and carrier board
+- SOM device tree with on-module peripherals
+- Sonata carrier board device tree with board-specific features
 
-> ---
->  arch/arm64/boot/dts/qcom/agatti.dtsi | 11 +++--------
->  1 file changed, 3 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/agatti.dtsi b/arch/arm64/boot/dts/qcom/agatti.dtsi
-> index 8bf5c5583fc2..e705eb24160a 100644
-> --- a/arch/arm64/boot/dts/qcom/agatti.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/agatti.dtsi
-> @@ -1613,8 +1613,7 @@ gpu: gpu@5900000 {
->  					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>;
->  			interconnect-names = "gfx-mem";
->  
-> -			iommus = <&adreno_smmu 0 1>,
-> -				 <&adreno_smmu 2 0>;
-> +			iommus = <&adreno_smmu 0 1>;
->  			operating-points-v2 = <&gpu_opp_table>;
->  			power-domains = <&rpmpd QCM2290_VDDCX>;
->  			qcom,gmu = <&gmu_wrapper>;
-> @@ -1895,8 +1894,7 @@ mdss: display-subsystem@5e00000 {
->  
->  			power-domains = <&dispcc MDSS_GDSC>;
->  
-> -			iommus = <&apps_smmu 0x420 0x2>,
-> -				 <&apps_smmu 0x421 0x0>;
-> +			iommus = <&apps_smmu 0x420 0x2>;
->  			interconnects = <&mmrt_virt MASTER_MDP0 RPM_ALWAYS_TAG
->  					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
->  					<&bimc MASTER_APPSS_PROC RPM_ALWAYS_TAG
-> @@ -2339,10 +2337,7 @@ venus: video-codec@5a00000 {
->  
->  			memory-region = <&pil_video_mem>;
->  			iommus = <&apps_smmu 0x860 0x0>,
-> -				 <&apps_smmu 0x880 0x0>,
-> -				 <&apps_smmu 0x861 0x04>,
-> -				 <&apps_smmu 0x863 0x0>,
-> -				 <&apps_smmu 0x804 0xe0>;
-> +				 <&apps_smmu 0x880 0x0>;
->  
->  			interconnects = <&mmnrt_virt MASTER_VIDEO_P0 RPM_ALWAYS_TAG
->  					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
+The implementation follows the standard SOM + carrier board pattern
+where the SOM dtsi contains only peripherals mounted on the module,
+while carrier-specific interfaces are enabled in the board dts.
+
+v2:
+- Add SFP cage node for enetc_port2 following sff,sfp.yaml binding
+
+Stefano Radaelli (3):
+  dt-bindings: arm: fsl: add Variscite DART-MX95 Boards
+  arm64: dts: freescale: Add support for Variscite DART-MX95
+  arm64: dts: imx95-var-dart: Add support for Variscite Sonata board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx95-var-dart-sonata.dts   | 595 ++++++++++++++++++
+ .../boot/dts/freescale/imx95-var-dart.dtsi    | 462 ++++++++++++++
+ 4 files changed, 1064 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx95-var-dart-sonata.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx95-var-dart.dtsi
+
+
+base-commit: 40fbbd64bba6c6e7a72885d2f59b6a3be9991eeb
+-- 
+2.47.3
 
 
