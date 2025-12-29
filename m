@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-250066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47958CE6180
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 08:13:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D45E2CE61F0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 08:27:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6E3DB30081A2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:13:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 77B763014A37
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:26:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFBD22F3622;
-	Mon, 29 Dec 2025 07:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 532BD3081BE;
+	Mon, 29 Dec 2025 07:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OZ4vQFjF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nk8PovXg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4762F28E5;
-	Mon, 29 Dec 2025 07:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295EC307AD5;
+	Mon, 29 Dec 2025 07:17:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766992408; cv=none; b=SP2ZaFCk1ld/X1mwX7mTXSPunqvuFnRvBHDOUQ/b9+siTQPi2wb0KPtlSzpI7PGYKw8C86z2LvP6KpWbU5YJePj4SRfgJX5hOROKfXbY8Bs22Puk+UzZ6QlGFQAUYvpDt/Jy0IcVDhaugt60h+95pfYEdXkIhqN8ewZ2bUQf4N0=
+	t=1766992643; cv=none; b=Jw/fzCeEX8SYu2o0bxA5G0vTZC9gTGGWDTLHRc7lSkXqTsW5OXq63vzRjpZ3bv/clF986+CFDMxtMxsXBf21FZhIZOnMdI6Q1EQdJFtpGY3T1XxCtmS4HEHvLFKF3Vn07yhhq6bwABj2FEGNsOr9HZT+0Bo36PI0MsAJCB3tqYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766992408; c=relaxed/simple;
-	bh=5Vi/GObvU8QN0K2K0AXY6SR8LJZXeeQpllqvML422rQ=;
+	s=arc-20240116; t=1766992643; c=relaxed/simple;
+	bh=Sg+bAtSyL7lKgTYWHwnXS3UmgWGF91leNuB0+p3WayA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cYbRo6BofHfV9XUgRqskjuqEoHj4yh9Ja/vP/I5nH11pa62BUSX6DAgvGyAlVns69G4ldJP5IZANv6zzpfkMxPaVQSv/WaqGMfIj7UuxDs6zqf2t5iPfRup+hXvHdahuIT3jaaVuvejQbh0ztVBJ2qHlRRTFecoUw9AIneHoW24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OZ4vQFjF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AC66C4CEF7;
-	Mon, 29 Dec 2025 07:13:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BHRIzySL24dvXW0nfp7H3dcs/347tArTtrkbwwvGVnxZh2xIobVFyeyBbAhbrxQTGET8b7HH925U0ghIctA6XyxwPYNhv3omMjjAiuDyoWIZzUWdJe3ICPaUbqxiabCYpQ6V4iJaXbERscUrZb2ZmnQnefbWsrWVVMWR2s4O5Qc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nk8PovXg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D206C4CEF7;
+	Mon, 29 Dec 2025 07:17:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766992407;
-	bh=5Vi/GObvU8QN0K2K0AXY6SR8LJZXeeQpllqvML422rQ=;
+	s=k20201202; t=1766992641;
+	bh=Sg+bAtSyL7lKgTYWHwnXS3UmgWGF91leNuB0+p3WayA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OZ4vQFjFfNd1GeBy4eSXcR4h5D3HpNLtjcuT9DZSr+qc5dZZ18HwacQofkvBq7aty
-	 McpCDiBV9PNALQgSa0FnWmGP+qxQ1kA2xtw7yzQdK+/1WCAovvK+JR0DIgbVyUlB4Z
-	 8jOfe5vOphGAaTYR0L8uhuAp4l4qIZpiT+WAobhh5Sej89Hv5TCI+PimRavMN4aklI
-	 uOsfsSkJTW5T9zvrQxGj2oJ682v6zbPo/diUrNTTbZdry0A+GpO1CznnWLMI0iY9tr
-	 hUaNXqf87vCey48s+89/e8ssahMl9TqtNUmG1a0h+5TtN+TU7DXjZbccTyfI0ReuDw
-	 LjwDujQz8unoA==
-Message-ID: <9d3c21ad-c265-4e22-b804-ef8c39b7e787@kernel.org>
-Date: Mon, 29 Dec 2025 08:13:20 +0100
+	b=Nk8PovXg+7oNRTF3sI8ETfeS9Q1Cvofc0ov/InczWdgNEHqIPg+0gq6D1sqsHBOHF
+	 +5uUrtnd+DLCFo8j4shkWVWvnUFMtvKys9+ZoN2cQrDwqkJ3hPIo2c+lTwYwkBHKcX
+	 0a0K9jpInysBDoI4l73bvvv7CnlPAjBck4wVbck+dIKmq0CeLGVfjDrUH4SeVbaO0L
+	 Wb1kCk/VG5G6icswfwdqic7JBMy2cIdLtcTyB7IjQZrzzNWIaEKeUwe+BL+7r5BcQW
+	 KLUdSXgx8OdcZKxHRzVJwJrESd1vrHpH2CJKJtqOmGY8uLe1gNlbGUeCjKT/1BkZjP
+	 P4uP8zN8zacPQ==
+Message-ID: <88e9e4c4-13c9-4b96-88cc-abb581011e87@kernel.org>
+Date: Mon, 29 Dec 2025 08:17:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,18 +48,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 2/4] scsi: ufs: qcom: dt-bindings: Add UFSHC compatible
- for Hamoa
-To: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>, vkoul@kernel.org,
- neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, martin.petersen@oracle.com, andersson@kernel.org,
- konradybcio@kernel.org, taniya.das@oss.qualcomm.com,
- dmitry.baryshkov@oss.qualcomm.com
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-scsi@vger.kernel.org, nitin.rawat@oss.qualcomm.com
-References: <20251229060642.2807165-1-pradeep.pragallapati@oss.qualcomm.com>
- <20251229060642.2807165-3-pradeep.pragallapati@oss.qualcomm.com>
+Subject: Re: [PATCH] arm64: dts: cix: Use lowercase hex
+To: Peter Chen <peter.chen@cixtech.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Fugang Duan <fugang.duan@cixtech.com>,
+ CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251223152424.155253-2-krzysztof.kozlowski@oss.qualcomm.com>
+ <aVHb-kbi2QbChxj9@nchen-desktop>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,29 +103,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251229060642.2807165-3-pradeep.pragallapati@oss.qualcomm.com>
+In-Reply-To: <aVHb-kbi2QbChxj9@nchen-desktop>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/12/2025 07:06, Pradeep P V K wrote:
-> Document the UFSHC compatible for Qualcomm Hamoa SoC. Use fallback
-> to indicate the compatibility of UFSHC on Hamoa with that on the
-> SM8550.
-
-Same problem.
-
+On 29/12/2025 02:40, Peter Chen wrote:
+> On 25-12-23 16:24:25, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL
+>>
+>> The DTS code coding style expects lowercase hex for values and unit
+>> addresses.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>>
+>> ---
+>>
+>> Patches done with sed, verified with comparing unflattened DTB and
+>> dtx_diff.
+>> ---
+>>  arch/arm64/boot/dts/cix/sky1.dtsi | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
+>> index 64b76905cbff..fb8c826bbc97 100644
+>> --- a/arch/arm64/boot/dts/cix/sky1.dtsi
+>> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
+>> @@ -523,7 +523,7 @@ pcie_x1_1_rc: pcie@a0e0000 {
+>>                         reg-names = "reg", "cfg", "rcsu_strap", "rcsu_status", "msg";
+>>                         ranges = <0x01000000 0x0 0x38100000 0x0 0x38100000 0x0 0x00100000>,
+>>                                  <0x02000000 0x0 0x38200000 0x0 0x38200000 0x0 0x07e00000>,
+>> -                                <0x43000000 0x0C 0x00000000 0x0C 0x00000000 0x04 0x00000000>;
+>> +                                <0x43000000 0x0c 0x00000000 0x0c 0x00000000 0x04 0x00000000>;
 > 
-> Signed-off-by: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/ufs/qcom,sc7180-ufshc.yaml          | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/ufs/qcom,sc7180-ufshc.yaml b/Documentation/devicetree/bindings/ufs/qcom,sc7180-ufshc.yaml
-> index d94ef4e6b85a..3b5a95db7831 100644
-> --- a/Documentation/devicetree/bindings/ufs/qcom,sc7180-ufshc.yaml
-> +++ b/Documentation/devicetree/bindings/ufs/qcom,sc7180-ufshc.yaml
+> Sorry, I could not apply for v6.19-rc1, could you?
 
-That's older devices binding. Why would Hamoa fit here?
+What do you mean? It applies cleanly on v6.19-rc1 and on next. Your
+branches are not really updated, so maybe you need to fix this.
+
+And no, I cannot apply this, because this would mean CIX is
+legacy/abandoned platform. Shall I mark it as such?
+
 
 Best regards,
 Krzysztof
