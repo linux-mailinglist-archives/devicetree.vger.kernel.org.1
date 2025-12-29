@@ -1,182 +1,150 @@
-Return-Path: <devicetree+bounces-250236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4A2ACE7204
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:50:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ECC0CE725B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:59:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D571D301C953
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 14:50:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CC50330012E0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 14:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC43C32A3C3;
-	Mon, 29 Dec 2025 14:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEF43191A7;
+	Mon, 29 Dec 2025 14:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="WfZytKG6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OPht0P23"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010043.outbound.protection.outlook.com [52.101.193.43])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D057329E4B;
-	Mon, 29 Dec 2025 14:50:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767019814; cv=fail; b=H3DFnCuUTrs1qipaz3ZnfYFqk6WtEI3Ub/Uo+5zWrK5wbjNzv0D0mU9WY0HiuekI09Px2EjAxsH5eZILhP8XVuf1sU4E6ovsqZNTsfgGlQGVCzdkJWIxlj9xI7f4h9bB9BJMcY5Q8NfdLrs+ghAH3NzMcudX74kXG96+Ms2xx7E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767019814; c=relaxed/simple;
-	bh=C/sAl7VPwfUTkSjWIxafMI5oZk3+fb31sg3EEZM1Rpk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O+vvXNt+2mG5jm0F4s1BkxJQ4qwEoufu+Bpy31a958HJVEcHUJPbid4ybDpQt37YgtZz2X1lN499B+unNGlXrv51UoSOP0xmjSKPcGNL0BOzIv+Sqkx5aTLbe7hXPtxWgEkMhDL82IwvF9xdB8zryEGOtViFLPno0Jqaka/ISag=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=WfZytKG6; arc=fail smtp.client-ip=52.101.193.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ogXrNmSdwNp7RXnqmIY0OcGQyFUeZKEK03GzMvsN8AakDxcO/dtcycIEab1zV+C7aeofwmvxj8uz1jwc7Z1ABxvsNmpxnydPX7zEkrKbCm09uwniy604mwPcP2TKwcEreunyRkkQQUXuu8HRtvawIb1w/OfS7CgkgMhZ37lwTg95XHTFipihz5kBPDsRCNqaEiDMvANX5brbaOdTdE+yMpCjsM9F08tJUIxs9Oi/VI60hAjwgTbFiPlG/60XwUp3WNi+0EMQjM3F8iQG/2V+KpCXMvTOOGwHuH2Krv1s7tsLmM81MWXwp7OXjZRlnxea+ZRyaCngW/u/5w3bCqqG9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AC0k9DXPkS25KziSfwKfwuVOSRTBuRSufocteTlocIQ=;
- b=O1nyGmXLrLZ2zoUaW9MStwzqixASRqqjKZ7rZKkbSZeyCsz9d9bbngc9WcWIBGvnAz0++BaAkVo1nBEDKHYEpeu6k5sV+MjIgel+2yyu/pwxyVEdX8Yx7uMvU1X4fifRzSiZTGK9a2E9l3TniMt5B2P2HpEzNYUBS8rvUrVCAl0LI4H1Qx67xuOkodgVFV/92B0KiSLC/XhUqESNipgi1dHkcb+HXKQy/+P+9fVyE/F1e7Wwsi9wuWxKbok+mSLJ/YcAWPS6w0lkGnXzOtssqezyuUdLt+onKWhPDpJU6OA97TpKli4vaPXM73jyFAZbaxhOOUz05Dl7r1u3Sgg6jQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
- pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AC0k9DXPkS25KziSfwKfwuVOSRTBuRSufocteTlocIQ=;
- b=WfZytKG6vqYhfXxQ2wQy3VlL9oiuIXe56wkmDXoeRUFcpqeEtzkkuXz/7Q891mZ+6dyEKj5+ZErRzMiBwkXyjqhjrjjtoKKvvxLkZs6zCmo3YR3ODfjqG8C0Os02GFYWPrqqC4ZxFIKwFZp3E9SVD0BtPhPRcwlkXbJ9uIARmLtQ/0R7VFaMed8FeM5nOySj6MfreKoC8Drqe1Skt8Em9WLtVVKXNRQ/yeXdvvqRz9qEvDIp4EIfDSqy6S40EsV2sGRIa9o6kjZ/O/7fbBC0E8vevxLj9DAhuji/vK9v6pOa2RLBYCmdkOjWtUJKL7gy6OJmrvOyAmAoosOcj0eC3g==
-Received: from SJ0PR05CA0089.namprd05.prod.outlook.com (2603:10b6:a03:332::34)
- by MW6PR22MB4322.namprd22.prod.outlook.com (2603:10b6:303:24b::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Mon, 29 Dec
- 2025 14:50:07 +0000
-Received: from SJ1PEPF00001CEA.namprd03.prod.outlook.com
- (2603:10b6:a03:332:cafe::5c) by SJ0PR05CA0089.outlook.office365.com
- (2603:10b6:a03:332::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9478.4 via Frontend Transport; Mon,
- 29 Dec 2025 14:50:04 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
- smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
-Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
- not designate 165.85.157.49 as permitted sender)
- receiver=protection.outlook.com; client-ip=165.85.157.49;
- helo=mkerelay1.compute.ge-healthcare.net;
-Received: from mkerelay1.compute.ge-healthcare.net (165.85.157.49) by
- SJ1PEPF00001CEA.mail.protection.outlook.com (10.167.242.26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9478.4 via Frontend Transport; Mon, 29 Dec 2025 14:50:06 +0000
-Received: from podman-dev.fihel.lab.ge-healthcare.net (zoo10.fihel.lab.ge-healthcare.net [10.168.174.92])
-	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id EA815F2E5C;
-	Mon, 29 Dec 2025 16:50:02 +0200 (EET)
-From: Nandor Han <nandor.han@gehealthcare.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de
-Cc: kernel@pengutronix.de,
-	festevam@gmail.com,
-	nandor.han@gehealthcare.com,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: watchdog: fsl-imx: document continue in low power mode
-Date: Mon, 29 Dec 2025 16:50:00 +0200
-Message-Id: <20251229145000.421426-3-nandor.han@gehealthcare.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20251229145000.421426-1-nandor.han@gehealthcare.com>
-References: <20251229145000.421426-1-nandor.han@gehealthcare.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58360632;
+	Mon, 29 Dec 2025 14:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767020391; cv=none; b=KQ1eFJTeK+bn48ubwrCxixu/lQBlhLxz35as3hlhYwXcF87XQUVbHQSqxkpSimZQPhhIaq6AS8HduZYZIH+C6/JINxob3puuZHXu8Kkxn4gm6bWROPVL5a/LJtIDvRcFGhPmYs9N/fPH0INthushfsqDJf0jiZ/0D1X6e6dhW9s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767020391; c=relaxed/simple;
+	bh=iLWtLWlrziMWhr0IW/KQbQEleNQpuX30kaYC1A+MDF8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KN0fXFBPOf11q0rJDZBzXmz9ASUWEJ7ViWsb8sqLRJeTKdVKW/4i1c0tpuKW8O+Lbtv/4t3f5LB/8urCpc31VT7RbafoZrkAblwy7ofkyIq6Fc91UWmx6iOIw1jMqk+2gJzuk0G5RS0LrOjs6V04thFuikPrhV8Ad49rX9dNgEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OPht0P23; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABDFCC4CEF7;
+	Mon, 29 Dec 2025 14:59:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767020391;
+	bh=iLWtLWlrziMWhr0IW/KQbQEleNQpuX30kaYC1A+MDF8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OPht0P23BDIDv70l8dTTvs8s2qsl6pn1LBGSpYGGN+rDIslTNDAlSiSLS2YoiLg2C
+	 jqHF+Oay0dyV4P+4mUNPg/AaypW1CF8LYpbzB23u6TghwNP6VJ7997QLU2Tv0548fB
+	 2WZZvxn0aL4x/YWputIErX47VDOobD7v4BjU15eISuZvCcZucLShTRXDvgqsHpDAIM
+	 BFso29hWovyQ75njK/0M2U9a64xFQtrGbZkw8pQoXW6pJ9G8/ckYxjgtmTeMpreYvr
+	 h884K+PYV6HL1lDONwSfLiIOrbSAt0fWDliQi3McBhhvsXptzr7WhXpADKzqdgUZfb
+	 OoDL1p8MLU5lg==
+Message-ID: <c539aa2a-e9be-40e7-9b75-1723bdaf0a39@kernel.org>
+Date: Mon, 29 Dec 2025 15:59:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CEA:EE_|MW6PR22MB4322:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: bf964329-3970-4168-27f3-08de46e98ed5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?iMdscb5eqFbmKbELjf/Dihws+r7vxNy0pAgOeDxf8LtmGT7UcW71xjNWdW+T?=
- =?us-ascii?Q?gmm6JMlx+N7IvceVMfGUfJHrnHBIbv9+PPJWjEqDV9N//j96pRzm3oRGBSjL?=
- =?us-ascii?Q?wZwfORfmlCfyIJ+1yENVq8/OxiD3S7VyYkhi1ZDqoBhkI6SzbOrGFwBSAykQ?=
- =?us-ascii?Q?RJ+zWjO+40JC7gYulQ3jSDVYJUKCbiWpd0LZke8/HsB2+ujjJaazYa6tZBkf?=
- =?us-ascii?Q?zaUholssrJsgu6OzdiPZ/+5M0YZHnbS5+RYdiiYpIW7cPSS5HFn41qpAh7Ag?=
- =?us-ascii?Q?Od8ZCfd/YTlO2vuWM81ryJYyArCxK8KJJx7Wrt4ntEshPG5HtVGMZTkFjokr?=
- =?us-ascii?Q?w5t9Tt5eb7kXyyEHxKRPZ0RAuzfzVlhrcK4ZH7oDoc8VNRmuXZ3ZoCpGBtu2?=
- =?us-ascii?Q?aMYgKKeiEU//02VjmH94cdsS/RUJXk6xmQrQvyGvM9lHNAhYDrExQzHG4JzM?=
- =?us-ascii?Q?C1UfEpexu7nqPGDNLywsEzB3Ay2GdA8Yo1XV1PmMCHaLqn8i2kMqAX5ReYZ0?=
- =?us-ascii?Q?p/+nYhkghe5YIIaHLsfDDzNmphFOTvu/jcProFG8m7mlRsGwSQd63zvv+lRm?=
- =?us-ascii?Q?z5Wg7tFDd7uUbG5FkbGzGhkhQwQhxfebPO19jTJiOthIaqCotTTVAXQpXC7u?=
- =?us-ascii?Q?BlTe1gRRdR9CMyzJX9ZYACrpqFHN8bWUHmIgo5GQztNUrl+b+tmYjvahsXZd?=
- =?us-ascii?Q?fb+WJ0mxQRT/Hw4gkid2eHwYQm9Cz66emNAn7Nfw2Ug+L5eEbOSPbbFO4bW9?=
- =?us-ascii?Q?n13+UE+HPpANS1pAzCxSE1upsqCLC19EQ9a/gQBJSmqHvOvxqCu0Rht/1ze0?=
- =?us-ascii?Q?L1x2sMJRjz/Ag1BMxSO/x6AlJH6kykqfJhin23UkGdWNQig4/8BErVKs6BOS?=
- =?us-ascii?Q?57vEq4OAoxa1qc26kW/PBOYkiofYhfmsWiw+cwv83siUP+zCANjOhvGGW0rC?=
- =?us-ascii?Q?0DImlplzk+0T+cCmHRjC5Lg2izYyEh0mprm9R+kXqL3O0lFSZ/77GBRltGG3?=
- =?us-ascii?Q?w0NjvSSBXokW+Pb9ZZ5UU3qH0v+71FjL2ZXxt+LlkG4ilimurHI+k7SKnTZm?=
- =?us-ascii?Q?vqt79gMVTJR5JanzSFK8AI4x8/3Q18HVRgaF0Cx32iFE3aw/7WtB+QTpQek6?=
- =?us-ascii?Q?cD2azUSos+JW05nbwM74gA+AGrs2JHAGKutYLfXXASDxvvD0TD3QGL7SJmlm?=
- =?us-ascii?Q?eapjaxwARK5/R00yKneqxsVfezvhtp+q0Hr+JwZS4nwUPo9G9eMwE7T7x3AH?=
- =?us-ascii?Q?cTDICMgMhpYyccWhsaFgYTMGyGCKutUtUl9BScMspmwQlyYGUDMHc3qyrYVH?=
- =?us-ascii?Q?MoypIQgRi5vFYRBYjfFyR+2Ty5VjKDxQ4Wq6EBIzy3Mn7LDuANFbs80LRJbF?=
- =?us-ascii?Q?aMPTh1FRUo0R5scRfi5Ee53LRnMCDzNmVz30ty1b07zITNXrMo40aHJgjZYB?=
- =?us-ascii?Q?hXQdcUFxn5snSjk77o2fSjorv8aZOSPIqG/3bT5kZDp6sAVsv0YFDLdWczG0?=
- =?us-ascii?Q?sMgHioJ59xmv/b+WawULZIBY9q39MFJ0NPwFSR+nMZ942Va2GXixPKRFLfpC?=
- =?us-ascii?Q?GoeldCIsv/hNgyOzJjE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mkerelay1.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: gehealthcare.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2025 14:50:06.6997
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf964329-3970-4168-27f3-08de46e98ed5
-X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[mkerelay1.compute.ge-healthcare.net]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-SJ1PEPF00001CEA.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR22MB4322
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: google,cros-ec-keyb: add
+ use-fn-overlay prop
+To: Fabio Baltieri <fabiobaltieri@chromium.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
+ Guenter Roeck <groeck@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>,
+ Simon Glass <sjg@chromium.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20251224152238.485415-1-fabiobaltieri@chromium.org>
+ <20251224152238.485415-3-fabiobaltieri@chromium.org>
+ <20251227-laughing-white-dalmatian-f9d98a@quoll>
+ <aU__uxDmeUq20Mg3@google.com>
+ <0c01fa63-670f-4c82-aa74-dc855cb12a78@kernel.org>
+ <aVKDJhVuOz-V9tb2@google.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <aVKDJhVuOz-V9tb2@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Property "fsl,wdt-continue-in-low-power" allows the watchdog to continue
-running in low power modes (STOP and DOZE). By default, the watchdog is
-suspended in these modes. This property provides the option to keep the
-watchdog active during low power states when needed.
+On 29/12/2025 14:33, Fabio Baltieri wrote:
+> On Mon, Dec 29, 2025 at 01:49:05PM +0100, Krzysztof Kozlowski wrote:
+>> On 27/12/2025 16:48, Fabio Baltieri wrote:
+>>> On Sat, Dec 27, 2025 at 01:44:26PM +0100, Krzysztof Kozlowski wrote:
+>>>>> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+>>>>> index fefaaf46a240..437575cdf352 100644
+>>>>> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+>>>>> @@ -44,6 +44,14 @@ properties:
+>>>>>        where the lower 16 bits are reserved. This property is specified only
+>>>>>        when the keyboard has a custom design for the top row keys.
+>>>>>  
+>>>>> +  google,use-fn-overlay:
+>>>>> +    description: |
+>>>>> +      Use a function key overlay. This allows defining an extra set of codes
+>>>>
+>>>> What is a function key overlay? Overlays are DT term and therefore are
+>>>> not suitable for bindings.
+>>>
+>>> Ok, guess I can rename it to `use-fn-key` or `use-fn-layer`, open to
+>>> suggestions really.
+>>
+>> Use as Linux should use? Then it's software, so not suitable for DT.
+> 
+> Sorry I'm not sure how I understand the comment, this describes how the
+> driver handles a keyboard with Fn keys, the codes are defined in the DT
 
-Signed-off-by: Nandor Han <nandor.han@gehealthcare.com>
----
- Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+Exactly. The purpose of DT is not to describe how driver should handle
+anything.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-index 34951783a633..4dd9cc81c926 100644
---- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-@@ -64,6 +64,12 @@ properties:
-       If present, the watchdog device is suspended in WAIT mode
-       (Suspend-to-Idle). Only supported on certain devices.
- 
-+  fsl,wdt-continue-in-low-power:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      If present, the watchdog device continues to run in low power modes
-+      (STOP and DOZE). By default, the watchdog is suspended in these modes.
-+
- required:
-   - compatible
-   - interrupts
--- 
-2.39.5
+See also DTS101 from this year's ELCE.
 
+Best regards,
+Krzysztof
 
