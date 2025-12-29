@@ -1,195 +1,179 @@
-Return-Path: <devicetree+bounces-250176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56D28CE6B05
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 13:30:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8F6DCE6B11
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 13:31:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 86CC6300E154
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:30:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7AD19300797E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1173D30FC34;
-	Mon, 29 Dec 2025 12:30:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99DEE2DA759;
+	Mon, 29 Dec 2025 12:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="EEAyNpqP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VnhK5I7R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-25.smtpout.orange.fr [80.12.242.25])
-	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D11361946C8;
-	Mon, 29 Dec 2025 12:30:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511EC824BD;
+	Mon, 29 Dec 2025 12:30:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767011423; cv=none; b=ZAVxC5jdOyMP7//jNpkYoVOu8shVnk96AFXmo/vdfuHweEVxUQRbpygC8pFV4sau7Rem8Lb0AMPea5T8a6La7+6FKdZeuK1ctFjkR5ZLLD2ZfNWb0mKt6jwtotjcprxSg+dPTUXfBWzu/Vr1WVM9/jac8hKqVYTrLAH7QTolrEM=
+	t=1767011451; cv=none; b=mIapXFDpnJ66Xfhnhry8rpIrtgN0YHsqhiQW8Q+ZC2PkeT4MteAZCgC8T8Ul37V4lsxBR/t7tS60700NkH0zfFNzhHFFxks4DFQL/KF9KzC+WM4pw1qBt7MXZfn8rKTt1w5ZO2EJsxlDwWyUvOnf/uvKJq/M/b2PMwrBMKz+JbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767011423; c=relaxed/simple;
-	bh=8SqAamIhKPcweeDRupgsAJpevZj1OrLnixFWIuYKX4Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pWnM0zx59galVMvPbZn43qVwcT0FiNMZUhH/efM8BqQa4sRSGS6nktHXzRp05Gt87f0avu4MT2rvvHCixXnNf83rERD5JICjbQvjHvPMmJ1DQ3JkSS3Ak8+AND9eqg74U7eYlCeh5nQ0h1lLsop5ILzn9FUwD5vhr2LOuac4PWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=EEAyNpqP; arc=none smtp.client-ip=80.12.242.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
- ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
-	by smtp.orange.fr with ESMTPA
-	id aCMvvMVMYjSZXaCMvvsf9B; Mon, 29 Dec 2025 13:29:05 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1767011346;
-	bh=fSTbBzZnMi5ZmX6dfCrTLQPupOlRFVbrKDWxqD9sUZk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=EEAyNpqPCs8gLEK/CoU8lCVTUnmZne/tUclR1S++jDjlJQTL6L6Qe/gPlfDt/vJA6
-	 F7fel6HYCEFjXD1cU/Pm0sARlzAwaCTBgp0l5u1X9ORvNNac/zjgNSr80nDUG95Lk4
-	 u3dxHVWWIuubiwYW7GVmeYKYA3BEfDD5ODeSEwfpYmPL0WDNVydwSUf50ZEuIJmffi
-	 +lcWbn1vITXNu/oYwRHiT9XzPlkWFXtyfzer2Uj3mZAW8kevgb+yRJsxcGdyO+nwHy
-	 hR8X1vQvM3LNAcI5QH8U+MvDA5AnZJDbF5i7ueBeNE8BObUseu8IO0wP9/kmCue0yH
-	 hM1It1jzYKiwQ==
-X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Mon, 29 Dec 2025 13:29:06 +0100
-X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
-Message-ID: <37ef98c2-b13f-4292-8db7-df90237c7ce1@wanadoo.fr>
-Date: Mon, 29 Dec 2025 13:28:59 +0100
+	s=arc-20240116; t=1767011451; c=relaxed/simple;
+	bh=M7VKA/2oh3QZPA/RYYsAyJtliwor3w+/3zhjYkQCQpA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EY7N//MJ/qGXkeZEs2k6wW5Wt4uZHM7aB35eN0h2D8Y+Jyf7XOALD/P3u+aYp/wmSTq9SJZg8SDJlILUcJ8XHtRIX1+2RFhgJv7AIQktx+Y1ySGQgSH3AXZnuUK+sxpFuxviNr/9cjCNCVsNVqUVgfNmEOYf+4D6OHwMHnH967w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VnhK5I7R; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1767011449; x=1798547449;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=M7VKA/2oh3QZPA/RYYsAyJtliwor3w+/3zhjYkQCQpA=;
+  b=VnhK5I7RMdCI/ltFDWmCwUgCj56+Sg5EMaS4S0Yd757HKeJXux5M9DXL
+   JJUNCgxSGv8xZmN3YjbTq9E/alN91Ugq2oJ5Y4igwOqqDywgs9WvzTg9P
+   ICz9eFK4bODBHvXhemv5Nmh3hXdL8ckg9b878x1i5fufPjce+/V1yMB7g
+   Jry+zMWY/M4O3+B8KC8OsQmr+aiYe/jz4uVmndAAomN2RuYXbcSI07um1
+   O7EZChAtNEWErip82/G8pWZS5dCeTEgwbfpxsgYwa45pUOjpxGB8UYouh
+   AENUdhitE2BKdpBYY7aKcDhCKGGlLfe6IseDc/Iw/1EZe89KlI81Pxd22
+   A==;
+X-CSE-ConnectionGUID: UGOUN/6YQUC+cY5//xOoRw==
+X-CSE-MsgGUID: TXx75ehyRDqXA5t16uKENw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="67822349"
+X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; 
+   d="scan'208";a="67822349"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2025 04:30:48 -0800
+X-CSE-ConnectionGUID: RjuvxHRkToaD5JW280Kaxw==
+X-CSE-MsgGUID: CgTdBBmWSJ6koPtIlYX7rA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; 
+   d="scan'208";a="224402693"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.31])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2025 04:30:45 -0800
+Date: Mon, 29 Dec 2025 14:30:43 +0200
+From: Andriy Shevencho <andriy.shevchenko@linux.intel.com>
+To: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: Jonathan Brophy <professorjonny98@gmail.com>,
+	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Jonathan Brophy <professor_jonny@hotmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH 0/2] leds: Add optional instance identifier for
+ deterministic naming
+Message-ID: <aVJ0c3injbP7yRIJ@smile.fi.intel.com>
+References: <20251228182252.1550173-1-professorjonny98@gmail.com>
+ <761d6573-3751-47fb-9b0e-8063f3cecf76@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller
- driver
-To: zhangsenchuan@eswincomputing.com, bhelgaas@google.com, mani@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org,
- kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de,
- jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, christian.bruel@foss.st.com,
- mayank.rana@oss.qualcomm.com, shradha.t@samsung.com,
- krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com,
- inochiama@gmail.com, Frank.li@nxp.com
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-References: <20251229113021.1859-1-zhangsenchuan@eswincomputing.com>
- <20251229113208.1893-1-zhangsenchuan@eswincomputing.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20251229113208.1893-1-zhangsenchuan@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <761d6573-3751-47fb-9b0e-8063f3cecf76@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Le 29/12/2025 à 12:32, zhangsenchuan@eswincomputing.com a écrit :
-> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+On Mon, Dec 29, 2025 at 12:16:17PM +0100, Jacek Anaszewski wrote:
+> On 12/28/25 19:22, Jonathan Brophy wrote:
+
+> > This patch series introduces an optional "led-instance" device tree property
+> > to address non-deterministic LED naming when multiple LEDs share the same
+> > function and color.
+> > 
+> > Currently, the LED core appends numerical suffixes (_1, _2, etc.) based on
+> > registration order when duplicate function:color combinations exist. This
+> > creates several problems:
+> > 
+> > 1. **Non-deterministic naming**: Registration order determines suffix values,
+> >     which can change across boots due to probe ordering, async initialization,
+> >     or module load order.
+> > 
+> > 2. **Non-semantic identifiers**: Names like "lan:green_23" provide no
+> >     indication of which physical LED or subsystem they represent.
+> > 
+> > 3. **Breaks userspace automation**: Network management tools, LED control
+> >     daemons, and hardware monitoring cannot reliably identify LEDs.
+> > 
+> > 4. **Ambiguous numbering**: "lan:green_23" could be mistaken for LAN port 23
+> >     when it may actually be the 23rd registered LED of any port.
+> > 
+> > 5. **Namespace pollution**: The alternative of adding vendor-specific function
+> >     names (LED_FUNCTION_LAN_PORT0, LED_FUNCTION_LAN_PORT1...) pollutes the
+> >     function namespace. The instance identifier keeps standard functions clean
+> >     while allowing contextual differentiation.
+> > 
+> > 6. **Breaks naming convention**: The _1, _2 suffix was intended only as a
+> >     collision avoidance workaround, but has become the de facto standard for
+> >     hardware with multiple identical LEDs.
+> > 
+> > **Example: 48-port network switch**
+> > 
+> > Current behavior (non-deterministic):
+> >    /sys/class/leds/lan:green      ← Port 0? Unknown
+> >    /sys/class/leds/lan:green_1    ← Could be any port
+> >    /sys/class/leds/lan:green_2    ← Could be any port
+> >    ...
+> >    /sys/class/leds/lan:green_47   ← Could be port 1 due to probe order
+> > 
+> > Proposed behavior (deterministic):
+> >    /sys/class/leds/lan:green:port0   ← Always port 0
+> >    /sys/class/leds/lan:green:port1   ← Always port 1
+> >    /sys/class/leds/lan:green:port2   ← Always port 2
+> >    ...
+> >    /sys/class/leds/lan:green:port47  ← Always port 47
+> > 
+> > **Example: Multi-domain power indicators**
+> > 
+> > Current behavior (non-deterministic):
+> >    /sys/class/leds/power:red      ← Which power source?
+> >    /sys/class/leds/power:red_1    ← Which power source?
+> >    /sys/class/leds/power:red_2    ← Which power source?
+> > 
+> > Proposed behavior (deterministic):
+> >    /sys/class/leds/power:red:mains    ← Mains power indicator
+> >    /sys/class/leds/power:red:battery  ← Battery power indicator
+> >    /sys/class/leds/power:red:usb      ← USB power indicator
+> > 
+> > **Design principles:**
+> > 
+> > - Backward compatible: Instance identifier is optional
+> > - Extends existing convention: function:color becomes function:color:instance
+> > - Follows kernel precedent: Similar to eth0/eth1, gpio0/gpio1 naming patterns
+> > - Ignored with deprecated "label" property: Avoids conflicts with legacy code
+> > 
+> > **Alternative solutions considered:**
+> > 
+> > 1. function-enumerator: Only supports numbers (0, 1, 2), producing names like
+> >     "lan:green-0" which are still non-semantic. The 48-port switch needs "port0"
+> >     to match physical port labels.
 > 
-> Add driver for the Eswin EIC7700 PCIe host controller, which is based on
-> the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
-> supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
-> interrupts.
-> 
-> Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
-> Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>
-> Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> ---
+> I think that we have currently everything in place to address the issue
+> you're trying to solve with this patch. Just introduce dedicated
+> function like LAN_PORT, and exploit function-enumerator.
 
-Hi,
+The problem as I understood not exactly in this. The reporter wants
+deterministic way of the mapping between HW numbered LEDs and their respective
+names. It seems it was already mentioned that current code depends on the
+arbitrary probe ordering. Saying this, I now think that perhaps GPIO led driver
+should somehow allocate a range of the LEDs and then enumerate them in
+accordance with the DT description?
 
-> +static int eic7700_pcie_host_init(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct eic7700_pcie *pcie = to_eic7700_pcie(pci);
-> +	struct eic7700_pcie_port *port;
-> +	u32 val;
-> +	int ret;
-> +
-> +	pcie->num_clks = devm_clk_bulk_get_all_enabled(pci->dev, &pcie->clks);
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Is this the correct place to call this function?
-
-eic7700_pcie_host_init() is called from eic7700_pcie_resume_noirq() and 
-calling a devm function from a resume function is really unusual and is 
-likely to leak memory.
-
-> +	if (pcie->num_clks < 0)
-> +		return dev_err_probe(pci->dev, pcie->num_clks,
-> +				     "Failed to get pcie clocks\n");
-> +
-> +	/*
-> +	 * The PWR and DBI reset signals are respectively used to reset the
-> +	 * PCIe controller and the DBI register.
-> +	 *
-> +	 * The PERST# signal is a reset signal that simultaneously controls the
-> +	 * PCIe controller, PHY, and Endpoint. Before configuring the PHY, the
-> +	 * PERST# signal must first be deasserted.
-> +	 *
-> +	 * The external reference clock is supplied simultaneously to the PHY
-> +	 * and EP. When the PHY is configurable, the entire chip already has
-> +	 * stable power and reference clock. The PHY will be ready within 20ms
-> +	 * after writing app_hold_phy_rst register bit of ELBI register space.
-> +	 */
-> +	ret = reset_control_bulk_deassert(EIC7700_NUM_RSTS, pcie->resets);
-> +	if (ret) {
-> +		dev_err(pcie->pci.dev, "Failed to deassert resets\n");
-> +		return ret;
-> +	}
-> +
-> +	/* Configure Root Port type */
-> +	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
-> +	val &= ~PCIEELBI_CTRL0_DEV_TYPE;
-> +	val |= FIELD_PREP(PCIEELBI_CTRL0_DEV_TYPE, PCI_EXP_TYPE_ROOT_PORT);
-> +	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
-> +
-> +	list_for_each_entry(port, &pcie->ports, list) {
-> +		ret = eic7700_pcie_perst_reset(port, pcie);
-> +		if (ret)
-> +			goto err_perst;
-> +	}
-> +
-> +	/* Configure app_hold_phy_rst */
-> +	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
-> +	val &= ~PCIEELBI_APP_HOLD_PHY_RST;
-> +	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
-> +
-> +	/* The maximum waiting time for the clock switch lock is 20ms */
-> +	ret = readl_poll_timeout(pci->elbi_base + PCIEELBI_STATUS0_OFFSET, val,
-> +				 !(val & PCIEELBI_PM_SEL_AUX_CLK), 1000,
-> +				 20000);
-> +	if (ret) {
-> +		dev_err(pci->dev, "Timeout waiting for PM_SEL_AUX_CLK ready\n");
-> +		goto err_phy_init;
-> +	}
-> +
-> +	/*
-> +	 * Configure ESWIN VID:DID for Root Port as the default values are
-> +	 * invalid.
-> +	 */
-> +	dw_pcie_dbi_ro_wr_en(pci);
-> +	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, PCI_VENDOR_ID_ESWIN);
-> +	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, PCI_DEVICE_ID_ESWIN);
-> +	dw_pcie_dbi_ro_wr_dis(pci);
-> +
-> +	return 0;
-> +
-> +err_phy_init:
-> +	list_for_each_entry(port, &pcie->ports, list)
-> +		reset_control_assert(port->perst);
-> +err_perst:
-> +	reset_control_bulk_assert(EIC7700_NUM_RSTS, pcie->resets);
-> +
-> +	return ret;
-> +}
-
-...
-
-> +DEFINE_NOIRQ_DEV_PM_OPS(eic7700_pcie_pm, eic7700_pcie_suspend_noirq,
-> +			eic7700_pcie_resume_noirq);
-> +
-> +static const struct of_device_id eic7700_pcie_of_match[] = {
-> +	{ .compatible = "eswin,eic7700-pcie" },
-> +	{},
-
-Nitpick: No need for trailing comma after a terminator.
-
-> +};
-
-CJ
 
 
