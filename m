@@ -1,69 +1,63 @@
-Return-Path: <devicetree+bounces-250311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D883CE857D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 00:35:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9305DCE8589
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 00:35:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A2F163002174
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 23:35:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 96B18300C15A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 23:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D6A2222CC;
-	Mon, 29 Dec 2025 23:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47A426A088;
+	Mon, 29 Dec 2025 23:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RRXPi6EZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BsO+JXlf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C24B3A1E98;
-	Mon, 29 Dec 2025 23:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CFB521CC60;
+	Mon, 29 Dec 2025 23:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767051314; cv=none; b=nWz+NC+qDCHmd965raN454xVeWiYCngD3HW/5soEN/Ac9maKnnYKtCV9P094jLi9+fpv0al1k3r5fa61IaDl2tv6TSmShdcuCU3KoPp7Ye6r57Uud2M/EI2nhPO60tyZs3x9Ue2HinxgbxLTuVGPS6G4FydCNy7sFyhloRp5ahA=
+	t=1767051353; cv=none; b=poA6/qu64adyV1Wi92UiARkLto9kt1I0+emejPG74jQfzhcgDxOVN6K1IrMF0aBfWvAYh5x6WzSDo52B70mpppHxmkJsvEpc8nECBQrEGX3k1dcf3EdSeUNDr8AoxVYNv8dpFh0FCIAcONvNawiEvGIYw1RJcAbTjo327bpJjdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767051314; c=relaxed/simple;
-	bh=sGG51MCoV7W1LUkTO42FAWhTXUFofGiZZFTBsNMdG8I=;
+	s=arc-20240116; t=1767051353; c=relaxed/simple;
+	bh=SnbjmuGKdPhQGT3UsQ381fqZ4/2f2Z0beUvzGjoXWHg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Uu/wJARz23B0tQ7CbFPKsBktRafEmkKBY0LS6qlMPmyD/sSPuHxli4awRb5XPIu65zmDXn/Ok++KVML5/jr0siThqt9Er2cYotuMSy6Hkq0sVxShGu0n4r3TdUOohDnilPse7Sv2BpWdFsHeUuyddVIsUGs1AX9QfWUQUmn6Nxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RRXPi6EZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1A6AC4CEF7;
-	Mon, 29 Dec 2025 23:35:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VNf0D7bykozemgQ1JTaCNCg02TrtAFPL2Y9meJTrCtdPYLgkT+k+mX8+uPgHLDtL1hKuqBz3+u61VyAEW1gmDWXgNvcg3rfOiZPDDZxTurAvzLARmxi8BlquWYuVDI7u+slaEI+TRacbWges79cd7M+f/p7xPcVBNH9gF6KEpSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BsO+JXlf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC460C4CEF7;
+	Mon, 29 Dec 2025 23:35:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767051314;
-	bh=sGG51MCoV7W1LUkTO42FAWhTXUFofGiZZFTBsNMdG8I=;
+	s=k20201202; t=1767051353;
+	bh=SnbjmuGKdPhQGT3UsQ381fqZ4/2f2Z0beUvzGjoXWHg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RRXPi6EZ7Gso9xNo+pfIlQpx5ecEiLkR+m1417tHk4qBetbXx2i1Cn6lIbRvAizVi
-	 zYR71qHUgWt5iXBnPTrlHRXc6qW8su3+sVnlGvZ80MA5iGV7wMZQ4T6IgkaW15bWez
-	 YYEoL9FobDylm4WB9Cpv5ToYIe8dDewrqEA5H2/BPxenSawcOfKdlWgY6TtF++OiYm
-	 Aagtli9tv88PZmE8/a9cFIPIiRbhlcgAbQLqYaPRS8mONySFOpr4+cHdUj88SARWSw
-	 fEvjW+SJXi9F8itTfnqr8DdlTqAd96iZ2oj66LQ19B1vJSJKRtGPMtBKDac5r3CKR5
-	 sUGjkABfmWWlw==
-Date: Mon, 29 Dec 2025 17:35:12 -0600
-From: Rob Herring <robh@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Peter Chen <peter.chen@kernel.org>,
-	Pawel Laszczak <pawell@cadence.com>,
-	Roger Quadros <rogerq@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Magnus Damm <magnus.damm@gmail.com>, Marek Vasut <marex@denx.de>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-usb@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-Subject: Re: [PATCH 2/6] dt-bindings: usb: cdns,usb3: support USB devices in
- DT
-Message-ID: <20251229233512.GA2785770-robh@kernel.org>
-References: <20251218152058.1521806-1-alexander.stein@ew.tq-group.com>
- <20251218152058.1521806-3-alexander.stein@ew.tq-group.com>
+	b=BsO+JXlfIgWasmyd8OiLJ3LMaIAUU1vVvSUWuo2T0S6SwIjEVMb/wEs0U8zOStvB3
+	 pscXDZbJpOj2b/3WmYBPceM5TJtlzYMwv/8UmUCVlpRHo+eZc6mVyzghLlgDg6P0RA
+	 W6lYE/YREV71R5e+Haci3idd42QOagJirDplO4Bkslmcki3YiyH0brY7G0MBAI4h5e
+	 pEXTenYBe6z3a24lXXh/eTAUWEkMJ2mW0hngyFHAJ+b1H0fXcjqCo1csYUijgznPwX
+	 f/WUx/pd1Ng056AQwBK1fFjuSV0LF3PxSS62Tz8w0YuKESAzjvy8KXNWe6W5uUmIFs
+	 MI6E2yZHcRx9A==
+Date: Mon, 29 Dec 2025 17:35:52 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: Aleksander Jan Bajkowski <olek2@wp.pl>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	Jakub Kicinski <kuba@kernel.org>,
+	Michael Klein <michael@fossekall.de>,
+	Russell King <linux@armlinux.org.uk>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	devicetree@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>,
+	Ivan Galkin <ivan.galkin@axis.com>, Andrew Lunn <andrew@lunn.ch>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>
+Subject: Re: [net-next,PATCH v3 1/3] dt-bindings: net: realtek,rtl82xx: Keep
+ property list sorted
+Message-ID: <176705135005.2796637.3826726486129502668.robh@kernel.org>
+References: <20251218173718.12878-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,51 +66,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251218152058.1521806-3-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20251218173718.12878-1-marek.vasut@mailbox.org>
 
-On Thu, Dec 18, 2025 at 04:20:49PM +0100, Alexander Stein wrote:
-> Reference usb-hxci.yaml in host mode in order to support on-board USB
-> hubs.
+
+On Thu, 18 Dec 2025 18:36:12 +0100, Marek Vasut wrote:
+> Sort the documented properties alphabetically, no functional change.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
 > ---
->  Documentation/devicetree/bindings/usb/cdns,usb3.yaml | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Cc: Ivan Galkin <ivan.galkin@axis.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Michael Klein <michael@fossekall.de>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Russell King <linux@armlinux.org.uk>
+> Cc: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> ---
+> V2: No change
+> V3: No change
+> ---
+>  .../devicetree/bindings/net/realtek,rtl82xx.yaml          | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-> index f454ddd9bbaa6..1f7f0adc3b1ed 100644
-> --- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-> @@ -85,6 +85,17 @@ required:
->  
->  allOf:
->    - $ref: usb-drd.yaml#
-> +  - if:
-> +      properties:
-> +        dr_mode:
-> +          const: peripheral
-> +
-> +      required:
-> +        - dr_mode
-> +    then:
-> +      $ref: usb.yaml#
-> +    else:
-> +      $ref: usb-xhci.yaml#
 
-I would just do:
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-allOf:
-  - $ref: usb-drd.yaml#
-  - $ref: usb-xhci.yaml#  (includes usb.yaml)
-
-2 reasons:
-
-As I remember, 'dr_mode' is at least typically what the default mode is 
-rather than the only mode the h/w supports.
-
-Even if you are peripheral only, I don't think it is too important to 
-disallow otherwise valid properties. (It's random, unspecified 
-properties I care about.)
-
-Rob
 
