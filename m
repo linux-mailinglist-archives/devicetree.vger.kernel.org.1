@@ -1,113 +1,185 @@
-Return-Path: <devicetree+bounces-250143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ABB7CE67B9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:14:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC15DCE67CE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:16:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4B5EB300727A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:14:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 844653005EA2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:16:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1CE2FB965;
-	Mon, 29 Dec 2025 11:14:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E18703009CB;
+	Mon, 29 Dec 2025 11:16:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="m9DOU20v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L3+65GmC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6330B28A1D5;
-	Mon, 29 Dec 2025 11:14:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101CE26CE1A
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 11:16:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767006862; cv=none; b=B1HzqSBGG91HNJnEJYvEISMQoyJD7ajiXEb1msByOaW4SGxX5K/d1Ho0Fs+1qNmW8y3wqlE7qlp1K4FOJBc2l/WYJoMw8V+W7Gjw/I3mMMJ9HuUSXkNsivUd7lCLVilYnrHjPJ1iAIzkE3h46ebwtIcxkCxyuPAnpvuFWEKpDCc=
+	t=1767006983; cv=none; b=JMGrgEeh3/B0Z6uOLSKEQb5NacqSBrnkzMecr4ia4RCnSZGTBjLcdgp1UEgLHbGR3ic9r6FasaNISn1Riuyd2FCQBuYYs0Ba3g7xGliIENN/oWQ1QJ9Q2j4TaFlc12kspAN419fr+Esm9NQBA6aWHJrmSTQan1g8URj9Ssd4mxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767006862; c=relaxed/simple;
-	bh=tzMWyGzDvkR93+MIsbVPUSBPShySdJo2u5fGCPTDLDY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Npw3zXnRQVz1rJT9HpjuRKRNWuEFP+LwQNcS7BsaCCo153FYKR/oP7cRy1S6khH+nvPasH8StwNCN9oemGXE/oiNNKWdsV7bDDixPQIDCdC1mhU0Y6OKi4+a+aJzUmCDBZ4/lVs/yTbSaMbbMGasUQczFi0kG5QRKuXHdjjrCPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=m9DOU20v; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767006860; x=1798542860;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tzMWyGzDvkR93+MIsbVPUSBPShySdJo2u5fGCPTDLDY=;
-  b=m9DOU20vpbBpCpj8XVCB1x3bD3+aHQV2Wer8+YjdCsHKuy3xiNtqgyEy
-   LBOTnNfYqYIOA8oIEBEo6IMY1mIRzkweqII2p2SKGkbvAkn9hEYi6XBcc
-   llOEEzXNVjv7MUtCXa53j70aT3gcpvufZyDl53CKwcD1wtx9Gh6/zRt56
-   7u+i3VuP1VaEncZNJsduzrf3Mhw05W9VGsn74PiYtC6twmdYYfYfMo8g4
-   J+a2rzrE26csNPPVPInMXGI7nE7UT05z5bSDoa2lSyHPMo501yJNx+h+j
-   QfVwmxoGzgjUNXmUdgRhaaqVvQesrnyB6UTlovzNgKRe5fTfFl8s8yQ34
-   Q==;
-X-CSE-ConnectionGUID: b5tfc5s/TVW6puD9vgTLkw==
-X-CSE-MsgGUID: mL2g3829TIC9btp38xaOzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="91271951"
-X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; 
-   d="scan'208";a="91271951"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2025 03:14:19 -0800
-X-CSE-ConnectionGUID: eyapc0BTQOGoPXqrx51acw==
-X-CSE-MsgGUID: jouYL/5LTQywze2inlF+0Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; 
-   d="scan'208";a="201172128"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.22])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2025 03:14:15 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 3138C12063E;
-	Mon, 29 Dec 2025 13:14:21 +0200 (EET)
-Date: Mon, 29 Dec 2025 13:14:21 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Rishikesh Donadkar <r-donadkar@ti.com>
-Cc: jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com,
-	mripard@kernel.org, y-abhilashchandra@ti.com, devarsht@ti.com,
-	s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de,
-	conor+dt@kernel.org, hverkuil-cisco@xs4all.nl,
-	tomi.valkeinen@ideasonboard.com, jai.luthra@ideasonboard.com,
-	changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
-	sjoerd@collabora.com, dan.carpenter@linaro.org,
-	hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 12/18] media: cadence: csi2rx: add multistream support
-Message-ID: <aVJijbfKT1uT0ejG@kekkonen.localdomain>
-References: <20251112115459.2479225-1-r-donadkar@ti.com>
- <20251112115459.2479225-13-r-donadkar@ti.com>
- <aR8PMEHTJJVlg0YM@kekkonen.localdomain>
- <c08199da-fa69-494f-bbaa-caf0cb943cde@ti.com>
+	s=arc-20240116; t=1767006983; c=relaxed/simple;
+	bh=ZQQOOq3J06q9HQkwugPKsnI36Nbe/3XF9AOJM8pW3Go=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F6kxi/UMLn+YciFICC2LwnQK/rAYyZJHD9soJGTlwySGHtSfLQiA9Rv8ZK6Y88m7XYsHsDZyPeImMx8rKRqzoInMPwsZ+FTUyrH2hT1RwHWLZ2RCkZmXvUCaVkcJrdjjjy7DcGDgUIvNd95hkzU1+ZAm15KRS+Qxc5KgeWZ3Nz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L3+65GmC; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-598f59996aaso10925092e87.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 03:16:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767006980; x=1767611780; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FSTxVA+UpdDc1ZmElpfIC/aV5PLsLoOrEsjmeAVLdGc=;
+        b=L3+65GmCbpQ7huhzAXDi9LRmYMqL0acz4hJAa86eaqiVAcNGSuiJAl2rOBmZlgqPkz
+         dAQ+MaW6cBL8VX7Pn3I6BjXjgQzzSLSohQIkzr0LOilai5nNBMUysh7JLRy6i20uGKL9
+         22760Hft/bwpaEFN4styJIdRX+3uEJXEajhZCYpTHLrtMhSEw/Z1B7W6CBNznAvahZDo
+         DB9fiwHBgRCWsYp9KfmiZ/qQo4E2icrcfhC8Slac3Z7B1sDg5LG3xib9LnD3mlr9/AAQ
+         kpLMUcOIQb/K2y9By73Ux5YYu/UTQQ754JEWDNEmeEo9aJKy9pPUZd9i9p6Cr+TduOP+
+         Td1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767006980; x=1767611780;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FSTxVA+UpdDc1ZmElpfIC/aV5PLsLoOrEsjmeAVLdGc=;
+        b=xGy1UlKy8uccH+jIOtVX/xy42A6VCo/kpr4Caa4gvORjBNx/JxthvK2bprfXvYFxX0
+         VdPqlerW8Tv2m09aQY6gtZYrvkHh0SDW6b9wHkvkNpphbo4iGCVt7oKh+5dm8NqBJZm/
+         xkU4KyrwQb2z0Muq3Ynv5PPPRL9nWyjaJ0pTielPKCOUBMDDCRUj4CnggUdw+OICiBqk
+         AzSP+SDoCTT5+0DaOpbaHazuf1xME0/uznFW+2LEYf81d5qIQBTTGIA32l5l96W5I+3U
+         FwbNuFqPLBmqviX+uOY8qIX0YtfapMlNypfbh601leT1Zg5ZAnxi8Mcj4lkAKfTowG9A
+         rpsw==
+X-Gm-Message-State: AOJu0Yy9GFGi1XEkpDi4BHZOsxAVClfFsUOges1cSpNIdYV/tDPTpnoW
+	es5Q4BgDTfTO1MpJ3YtPrRkSTIDXG3hOXtEOAleuf9Crk26YoBvm0kvk
+X-Gm-Gg: AY/fxX5aSkK0He+t0sVeDEDbWuCeDv9RPgwFYW6msXCtChDBNtsc97rdyyiJasAx8IN
+	wGptYNz7DKNNopDVXAKbNGvnRxYQU+43uYMRgLc2PVrBUDkONRhZBLk5FWB+ZLmPflrV7pKI/Mw
+	Mp4MQak59z3sPbMsA6T18WkLpve8LQpnBiDHmD4ly4OKeAp2Srdm4b4HZpQLRR5PkcElwCnlPrZ
+	KE9LwN0fNhRGaDhKLWPyWxU4grH7lx7Xgf9VuhX9YceWCpuFgT4Arw/9WZWeyOJmLkfDNJXvq1L
+	ytFvsVDUQQPWTojOdnI9EZkg8RLQ+sgxdUsEug/z6L5ztdnfmb+ogNZgC0XXDd/ILiZpHEEgPa8
+	RVaMAzvo+pU2Ui+6Izbsnya9tc8MOJzkDKeXhgRcjiwCuE7mWbJfzFbHJzlDFYm5TCpfxY7nC9F
+	fklqxVHvjOTVCtnHwqw9EKoLM=
+X-Google-Smtp-Source: AGHT+IFrjSCLmpiymAWVa5hIY6Uie8jA2l6zY469GZ3/K8APJClqrMl9pjFAcdjnwIQ+QfBdIe2z/A==
+X-Received: by 2002:a05:6512:128c:b0:595:7cf5:f7cf with SMTP id 2adb3069b0e04-59a17d4692emr10834823e87.38.1767006979842;
+        Mon, 29 Dec 2025 03:16:19 -0800 (PST)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a185d5ee4sm9350180e87.17.2025.12.29.03.16.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Dec 2025 03:16:19 -0800 (PST)
+Message-ID: <761d6573-3751-47fb-9b0e-8063f3cecf76@gmail.com>
+Date: Mon, 29 Dec 2025 12:16:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c08199da-fa69-494f-bbaa-caf0cb943cde@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/2] leds: Add optional instance identifier for
+ deterministic naming
+To: Jonathan Brophy <professorjonny98@gmail.com>, lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>,
+ Andriy Shevencho <andriy.shevchenko@linux.intel.com>,
+ Jonathan Brophy <professor_jonny@hotmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org
+References: <20251228182252.1550173-1-professorjonny98@gmail.com>
+Content-Language: en-US
+From: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+In-Reply-To: <20251228182252.1550173-1-professorjonny98@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Rishikesh,
+Hi Jonathan,
 
-On Tue, Dec 09, 2025 at 03:13:34PM +0530, Rishikesh Donadkar wrote:
-> > > @@ -538,6 +595,36 @@ static int csi2rx_disable_streams(struct v4l2_subdev *subdev,
-> > >   	return 0;
-> > >   }
-> > > +static int csi2rx_s_stream_fallback(struct v4l2_subdev *sd, int enable)
-> > What do you need this for? I presume you'd have a sub-device driver
-> > downstream calling this, but wouldn't you always use {en,dis}able_streams
-> > from that driver?
+On 12/28/25 19:22, Jonathan Brophy wrote:
+> From: Jonathan Brophy <professor_jonny@hotmail.com>
 > 
+> This patch series introduces an optional "led-instance" device tree property
+> to address non-deterministic LED naming when multiple LEDs share the same
+> function and color.
 > 
-> Yes, Downstream consumer driver that call this are TI Shim and StarFive
-> JH7110 CAMSS. TI Shim uses {en,dis}able_streams, the StarFive JH7110 CAMSS
-> calls the s_stream. I will change the StarFive JH7110 CAMSS to use
-> {en,dis}able_streams.
+> Currently, the LED core appends numerical suffixes (_1, _2, etc.) based on
+> registration order when duplicate function:color combinations exist. This
+> creates several problems:
+> 
+> 1. **Non-deterministic naming**: Registration order determines suffix values,
+>     which can change across boots due to probe ordering, async initialization,
+>     or module load order.
+> 
+> 2. **Non-semantic identifiers**: Names like "lan:green_23" provide no
+>     indication of which physical LED or subsystem they represent.
+> 
+> 3. **Breaks userspace automation**: Network management tools, LED control
+>     daemons, and hardware monitoring cannot reliably identify LEDs.
+> 
+> 4. **Ambiguous numbering**: "lan:green_23" could be mistaken for LAN port 23
+>     when it may actually be the 23rd registered LED of any port.
+> 
+> 5. **Namespace pollution**: The alternative of adding vendor-specific function
+>     names (LED_FUNCTION_LAN_PORT0, LED_FUNCTION_LAN_PORT1...) pollutes the
+>     function namespace. The instance identifier keeps standard functions clean
+>     while allowing contextual differentiation.
+> 
+> 6. **Breaks naming convention**: The _1, _2 suffix was intended only as a
+>     collision avoidance workaround, but has become the de facto standard for
+>     hardware with multiple identical LEDs.
+> 
+> **Example: 48-port network switch**
+> 
+> Current behavior (non-deterministic):
+>    /sys/class/leds/lan:green      ← Port 0? Unknown
+>    /sys/class/leds/lan:green_1    ← Could be any port
+>    /sys/class/leds/lan:green_2    ← Could be any port
+>    ...
+>    /sys/class/leds/lan:green_47   ← Could be port 1 due to probe order
+> 
+> Proposed behavior (deterministic):
+>    /sys/class/leds/lan:green:port0   ← Always port 0
+>    /sys/class/leds/lan:green:port1   ← Always port 1
+>    /sys/class/leds/lan:green:port2   ← Always port 2
+>    ...
+>    /sys/class/leds/lan:green:port47  ← Always port 47
+> 
+> **Example: Multi-domain power indicators**
+> 
+> Current behavior (non-deterministic):
+>    /sys/class/leds/power:red      ← Which power source?
+>    /sys/class/leds/power:red_1    ← Which power source?
+>    /sys/class/leds/power:red_2    ← Which power source?
+> 
+> Proposed behavior (deterministic):
+>    /sys/class/leds/power:red:mains    ← Mains power indicator
+>    /sys/class/leds/power:red:battery  ← Battery power indicator
+>    /sys/class/leds/power:red:usb      ← USB power indicator
+> 
+> **Design principles:**
+> 
+> - Backward compatible: Instance identifier is optional
+> - Extends existing convention: function:color becomes function:color:instance
+> - Follows kernel precedent: Similar to eth0/eth1, gpio0/gpio1 naming patterns
+> - Ignored with deprecated "label" property: Avoids conflicts with legacy code
+> 
+> **Alternative solutions considered:**
+> 
+> 1. function-enumerator: Only supports numbers (0, 1, 2), producing names like
+>     "lan:green-0" which are still non-semantic. The 48-port switch needs "port0"
+>     to match physical port labels.
 
-Thanks!
+I think that we have currently everything in place to address the issue
+you're trying to solve with this patch. Just introduce dedicated
+function like LAN_PORT, and exploit function-enumerator.
 
 -- 
-Sakari Ailus
+Best regards,
+Jacek Anaszewski
 
