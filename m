@@ -1,193 +1,169 @@
-Return-Path: <devicetree+bounces-250016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7E3DCE5AE3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 02:27:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03139CE5AFA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 02:40:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D79BF3008EB6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 01:26:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D67E33006A80
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 01:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5DB422256F;
-	Mon, 29 Dec 2025 01:26:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="A8M6WfqB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31CAE205E3B;
+	Mon, 29 Dec 2025 01:40:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f194.google.com (mail-qt1-f194.google.com [209.85.160.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023097.outbound.protection.outlook.com [40.107.44.97])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82C11EB1AA
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 01:26:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766971603; cv=none; b=f6xTR9ks71SUYQ8ee2yNluVRiBCrs25syUxqfl/4OUyJSoPsVTje7nJmQ4HLlucB0+DiG3m70IeTd18AchY33boRA9zHMkOliRmr0YEke9KUFzC8K0OEG0yfxfbiG3y7qYhba85jZXryA+9LK0jvUaddEVjvWyMsmhaSUvjy+nE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766971603; c=relaxed/simple;
-	bh=6jVZfNQHfE3ib1e3i/fA6aFiwMFZ5z3vI7XwOplm+ho=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DIeRVg90SOt370xKGTbbe8ALNegbfRUW3Bg8h/Re0k/XgTieu5uqQOh8WUTFXXetuV/tz9Fi5EcWYqq/eO9YEHua01SEGlp/+/BlTrKfdAPd0pGgwCfvwZhqDL6fBn6G7afBlb5++ebrClz04xUXJ4RT2NXsWekbH3xcqkRclJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=A8M6WfqB; arc=none smtp.client-ip=209.85.160.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-qt1-f194.google.com with SMTP id d75a77b69052e-4ed7024c8c5so72393191cf.3
-        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 17:26:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1766971600; x=1767576400; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rGBP3a20VsxawgAkzyf8iorKbTSNb1d+2RoMt317030=;
-        b=A8M6WfqBopYAGSNk3ucI0K9YkgjGGKaNXi+6hHXGbRUzwqU3HybXxnja4OZ2A3n7Vg
-         IO6jTazdH5gLhrP4UM8RKyq9J0RiswNDqQ3v6l6J9Gob7VBO1IFw1Zuj7wvVg8ikJSrV
-         LVS6+7m0BLdHJ9tPAhH8+o/ff83MfEPji9MAAm9TctcYYEhjmcVMo+1m2e23frIxE/2+
-         eeHQJEWi/HxGG1L6CiTj+ts6vFemjob1baQDrT+vu/R4j4BViCdQonrjKglQbBkpgsQ/
-         PjGa9VH4qiEETBHozRF/PYK4o5TERGL4lkKvEjFdJ8EtV8NT4IraCbxZHhshOWRZlVGZ
-         Sl2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766971600; x=1767576400;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rGBP3a20VsxawgAkzyf8iorKbTSNb1d+2RoMt317030=;
-        b=RGCAfmokacNp8xXlQCfcT5vpsRRtEqVa1tC7pKP2cvUh9nwdHkAFcbBMJUc0pxtq1A
-         Lq1JTwDoJqM5e4OZUyx7zWqnbHYZDWiM4H+Ax0c5H+ppHNYhP0SMWaadEh66sQQ37sB+
-         zIcqCSB3mar0cAAHGcm9soQaWpXY8ajUHYGiBFPmoaoaEosyCnLqKAx3+dIkvLQCnaGI
-         cn3rvVkVfjnWACqcqXPKGUWx1fnZ3/Pw8zMslIEZG4aZAxh7p5W5vQqxQVUvMAL3gwMN
-         SeNnXAxJi8e7Ysme2Kjv2z9J66RZm6SKP6NM5QS+1efrk0wFw8FHt8VwFXg5Ru7c7dyL
-         mXfA==
-X-Forwarded-Encrypted: i=1; AJvYcCUYaO592yJ7aibJS37dfhltDWyQROO3Cyy6v0uIYcmKDaueXsupTqR4gArnEJ5/Fc29lyoZU3yCj9J6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZCgC4cBzJVzay0eySKT6GK4A+1CkoKbogVCwpHHRRR3HUh2vi
-	nzsXdyColChMoCPFq30A8cQMz1hqHNUZ82GLKVjnOmAwr/jNp3uAO8g0dtOLUIc9+2w=
-X-Gm-Gg: AY/fxX6O37VCp+OD9I0RVmz7WEDsYojAj9RL0MtBo2m3PHX+QX6Q1DQyeffdkgxJojV
-	0budmC9M6WfzXXqNzwbPeVtnKbZlJTnivZiPm9X0vwt4VO7wdlHLShTYSo+ZIbeujhtkVwMBGsw
-	aUF8PjFR6lb9H6ylFZJDk9BgkPOJK5MRs2RzTYqlJpYyleh+HfVi0bJJUS7QYcHcOkFV+j4bk8o
-	TqxTiWqK9l+eah9MgTj/F+Uj7Et73MTan9jTggOwyKokdl7cVS7u1jtjY83WEmYULMvv+VXFAms
-	qaAs3oULJXaw2xC4wY4EqKmmp8HJ0A77XvFg4g0+vyVCPdRNa6b73/5hvPS8c+oh5agBQCBvgpj
-	y58/VLOZ+fQphQTRpqMChaH3X76vNeSCrtelJ58fIE/3dIMQYRqSM0+L1lsHaIwKTFTACAGmgNP
-	mh7w21x2kTnOBprupj4itYGMDfGapVN+rp9951hSd3zISSkunsuM4=
-X-Google-Smtp-Source: AGHT+IGEzqpbI6AbapIJlA3Uz+KnswrSFec0YE5rCA81t7vFfgvpfz5067CC+VvdDzEo7yRutO/rPA==
-X-Received: by 2002:a05:622a:230d:b0:4f1:e8f1:cbda with SMTP id d75a77b69052e-4f4abd839edmr436267011cf.54.1766971599661;
-        Sun, 28 Dec 2025 17:26:39 -0800 (PST)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4f4ac531fa8sm204081481cf.4.2025.12.28.17.26.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Dec 2025 17:26:39 -0800 (PST)
-Message-ID: <ccf5c43c-c7d3-4c89-b578-b40d32dc5b7c@riscstar.com>
-Date: Sun, 28 Dec 2025 19:26:36 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC8313957E;
+	Mon, 29 Dec 2025 01:40:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.97
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766972425; cv=fail; b=pk5YW6nm8fL4WeBhEz/eyLeHlY5hYcqYwcm0HxAs1UdVl4b8WKW2BNiFfrDvr85RGRMPXnXeuSsu20+ueJNxFdT5vKDFsYxADZQWZNXWElxI7u6hLGBDG5fnR2O3Tzzz5jVEbFrdt/LkTquC8mznhpJnO3k+NdqRIKq6h0ZUBXY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766972425; c=relaxed/simple;
+	bh=eot3oJKYpUXfh7fuXTIlifKx+ec/3sPiWeprSY3P+eM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d8hWxFBxAD3NEiyYUuaqqhSKrMzK0s/1nYEQ7XFo5wELEaY2U/rUuKp6Ih3bUrrVKdporpHBKxqS1MSsDOQ/kMGyQyzQPf5OWHs+37oEaCJHFwmTBXqt/45ziYMqxVJ6C9mSqRVvLC+85OGXmHHqYNvSWuE3PZPpntTHLqqpmJ8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dOQEnkKGhq863jAMMPGdudKfPvHd8niB0CqD/AUH4sC0qnsFtvtfTdrCrjK9Z47eM6iJ4ygowgaRDC6Y/ziYzWnBe0sxBsFc+D423PPJM5Ix4AN9QLxgD/T2G8Jvb5SkEcq4oWEOj8xET1biLMtDcFSy+R3Osh/4Tf/12yR8n9BiQWa28hLSyIkBxWwfHFXASggWfrjFYoXvRk1vXCiW0a1EhldfUPrXgech5uORKe4CEFLe3wRI8cd6Vo/vD31BRsXOEnzNCRic9A+bvH6bwkByLgJ+nHshNIfEXH5yQ+1ps6hmVwZL3agAu4Hj6kxwbrIOLL+n+Epj42hiE3jW9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OSddCpnfXF4GAtS3Ir2QJHZMXSwYQJKu0YOU1dNIGoI=;
+ b=ipPS7CbRgFXkgIzYC8MjLsNIgvfZoyoAQyZbKJ3wir15KxdtO1c03/XMdZ7PlP98XE6WXQ8FyGFXkPg/bCYom219ZRmmC1WGVG9fJohemJJNo8WIDYcwwivZlibygG2ooK+5UC/RMM9Vn9srL4V+LX/CVU/8+Xmhx8ZAY/OtL6+fwocOHkhX3OMosdZ3CLhBEvM+DUF/cmFnp6fPvuFqCNAVXjecGh6HVVPrJh3X2Hh+jDa8I5VPSyPR8OS9IK/nIqOhg354FQmxDYmxwdDogFz1XVdMMDnPS1/4C4UzCgLIiGowp1tE5wFJQ6YqC0E57ch+348+ABV2HTDJjXMz6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from PS2PR01CA0037.apcprd01.prod.exchangelabs.com
+ (2603:1096:300:58::25) by OS8PR06MB7321.apcprd06.prod.outlook.com
+ (2603:1096:604:289::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Mon, 29 Dec
+ 2025 01:40:18 +0000
+Received: from OSA0EPF000000CB.apcprd02.prod.outlook.com
+ (2603:1096:300:58:cafe::28) by PS2PR01CA0037.outlook.office365.com
+ (2603:1096:300:58::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9456.14 via Frontend Transport; Mon,
+ 29 Dec 2025 01:40:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000CB.mail.protection.outlook.com (10.167.240.57) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9478.4 via Frontend Transport; Mon, 29 Dec 2025 01:40:17 +0000
+Received: from nchen-desktop (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id D9F5440A5BFE;
+	Mon, 29 Dec 2025 09:40:16 +0800 (CST)
+Date: Mon, 29 Dec 2025 09:40:10 +0800
+From: Peter Chen <peter.chen@cixtech.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Fugang Duan <fugang.duan@cixtech.com>,
+	CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: cix: Use lowercase hex
+Message-ID: <aVHb-kbi2QbChxj9@nchen-desktop>
+References: <20251223152424.155253-2-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/13] dt-bindings: riscv: Add B ISA extension
- description
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Samuel Holland <samuel.holland@sifive.com>, Anup Patel
- <anup@brainfault.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Yangyu Chen <cyy@cyyself.name>, Paul Walmsley <paul.walmsley@sifive.com>,
- Heinrich Schuchardt <xypron.glpk@gmx.de>,
- Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
- Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- spacemit@lists.linux.dev, linux-serial@vger.kernel.org
-References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
- <20251222-k3-basic-dt-v2-7-3af3f3cd0f8a@riscstar.com>
- <20251222-stitch-preachy-3fab87fd6f0f@spud>
- <CAH1PCMZ7ywZ3unLy0yHYK+fFHk0y=q2cEtPnRi=qSpf=fc75rw@mail.gmail.com>
- <66c0676a-7920-4825-b916-3c00b1648a08@riscstar.com>
- <CAH1PCMbBURb=DpChf+Y-DjYjzpXG-pKgoaHAu=TUuG4oVC56cg@mail.gmail.com>
- <5979c8ef-b0fa-40c8-944d-96e226fbcbe8@riscstar.com>
- <CAH1PCMZkQ11-Uk5GnyetLkNLOuO3gs2o0WPWHrFMWVH9R6s8mQ@mail.gmail.com>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <CAH1PCMZkQ11-Uk5GnyetLkNLOuO3gs2o0WPWHrFMWVH9R6s8mQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251223152424.155253-2-krzysztof.kozlowski@oss.qualcomm.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000CB:EE_|OS8PR06MB7321:EE_
+X-MS-Office365-Filtering-Correlation-Id: 82bba2f0-e3f1-4d42-d90d-08de467b38dc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?izyqfHxl/FWmQXaRQ2ei6VqtVkguVvl844Iw/7RDrJ64R5ioQm8dL+IBt6ns?=
+ =?us-ascii?Q?+xAaBR1+L2w6ufKz3XzxcZ20DgvYJ0S7F9/ejZHn6LeL8vkmzPVnDN3zjCHE?=
+ =?us-ascii?Q?WTPhRHfXZxTMAGwIvF4ONFOU940erh2eQibQj8OX+7y5f+uEaO0UR4t9cmIz?=
+ =?us-ascii?Q?OtB4ztl6NU+MBCUtSl00RRDpNNK5jiKykB8oBlNIl8bvxFrUVwGAy8TyzfWS?=
+ =?us-ascii?Q?FVylJgBn29wKghsVN7GfrMFP/Bd7xz/hut6UJTe/IhgISA5RktDa98Zl3MPt?=
+ =?us-ascii?Q?Y21ewgO0ZwvL1lPe73WFyT/oj9nWXnVv3Gwi2NWLTNYiT0bIrKo8k96kO7K4?=
+ =?us-ascii?Q?fIAI1AbWtK0SwA1OlnyfdDE4g0iBGzoe2wP5A4Jki+9U5ZKTH5TfSvcCMnop?=
+ =?us-ascii?Q?5mhNMV0QS4Lh3TbXF9K44sXa2S6Txb5OiUx17ZPWkCAJmqnW+IrBOPiFJiWH?=
+ =?us-ascii?Q?RDKkT75uwLruNYJhyEL+iGYtxkRPrl7AX72c7hmdxZUIvhEwI3eOTPMxPMKl?=
+ =?us-ascii?Q?mNab//9I1DzwBQZ2GMyBmMuREroB/SSZO+rEllkwgEykSBUa0VcFarup8eyx?=
+ =?us-ascii?Q?J+wWvYsPsmKL8e+er1v3dj17fQxRfDbFqKdO8Knok+a45QymxgDSlbLcQH/C?=
+ =?us-ascii?Q?9mFte9rjSKYi0CeaVuTwWC04u8A8rYcmLGGudkUEgyu5/XEeqVSd3BYzpfx4?=
+ =?us-ascii?Q?TGtUxrsw1ngUmBbyZ1NaS4YALNiFS34GmnlOpvNZ4HZirxIPYEdTvexMJ/Dt?=
+ =?us-ascii?Q?tLQZlSsKeL6hC3F+fvYooyCQVuxECUErur3vqznhE90DcestuvLEC2UBIrdL?=
+ =?us-ascii?Q?9qsn0caSi8e9lvSz75YL9oK3fqcjHS9NmI+x9R6StPVBCfwj7bwjI++3nwH4?=
+ =?us-ascii?Q?Zqr6dZRjDwayb5DHtDWZgW6Vci0L1gz7BrOE1pxgPeSbDzoPRsXy+z0hbL99?=
+ =?us-ascii?Q?HE9B16d0eI4hR/AR7pKDaJcZZchOJcpFAwZJzvrYWirzm67K5yB9+p15F/a9?=
+ =?us-ascii?Q?DFrFLtdXXZY8dcG2pax1gRvUNMUB0bHtosLZxdxg+XuQggYKVkVGVR19UQC1?=
+ =?us-ascii?Q?qu7W05Lx9jTlKnD+LzFmq1nGKmoBfMEJLx3vYyhSqQuGTAInIPG6gi5GM1W0?=
+ =?us-ascii?Q?bGhhpKxVYJMRud9c6aBbZDEI7dvCuxudjS3Rv7FVh+hao4IEsaA56p+AdJj6?=
+ =?us-ascii?Q?rAGafXiubq8xAttfzBEjJHk85b/Fwu4+Tryqa2GCGAp+xadqDGV8M5iMIxge?=
+ =?us-ascii?Q?yNWeqIVxewGAX6HKipViPknXCpao0i3UcL8W5mePWQNDfTFz1uUBixE3TmLL?=
+ =?us-ascii?Q?Qe+O6o5Bja5GoZzJGUSiFWNgDqx+l+7c8YkjFYNfqK59YGjns9u7MHQ/apg6?=
+ =?us-ascii?Q?58p+1HBltFKXlp9VfXtN+WO4GgWOW556G0B5gSVaf70OTZ6nBuLrBSMPMg6X?=
+ =?us-ascii?Q?t6oApxSJSeU0208yjEFpFym4EsGxLh8rqdlLLwCAvhP9U6OiJLAsFA5RMaLb?=
+ =?us-ascii?Q?yfQkLD+s8Cd8LUr/y16LLK0GzAwiBBeOL8xIqVwAnI8Kx3ukwoo3nQb1pDa0?=
+ =?us-ascii?Q?IXE+ifUnHW7c0IAV578=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2025 01:40:17.8183
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82bba2f0-e3f1-4d42-d90d-08de467b38dc
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000CB.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS8PR06MB7321
 
-On 12/28/25 7:08 PM, Guodong Xu wrote:
-> On Mon, Dec 29, 2025 at 7:50 AM Alex Elder <elder@riscstar.com> wrote:
->>
->> On 12/27/25 8:51 PM, Guodong Xu wrote:
->>>> That's what I understand it to mean, anyway.
->>>>      https://github.com/riscv/riscv-b
->>>>
->>>> There's no point in supporting "b" in devicetree to represent
->>>> the others if it also requires the others to be present.
->>>>
->>>> I think that, instead, "b", "zba", "zbb", and "zbs" should all
->>>> be allowed.
->>>>
->>>> I might even go further and harden the requirement, saying that
->>>> if you specify "b" you should*not* specify "zba", "zbb", or "zbs".
->>> Historical reasons here. "b" came too late. The chip vendors have published
->>> cores with "zba", "zbb", and "zbs"already.
->>>
->>> That's a migration bridge to require "b" must be listed
->>> together with the other three.
->>
->> Are you saying "b" has already been included with "zba", "zbb", and
->> "zbs" in an existing DTS file?
+On 25-12-23 16:24:25, Krzysztof Kozlowski wrote:
+> EXTERNAL EMAIL
 > 
+> The DTS code coding style expects lowercase hex for values and unit
+> addresses.
 > 
-> The risc-v ratification timeline is:
-> "b" was ratified in Apr/2024, which is about 2 years later than its
-> components zba/zbb/zbs (these were ratified in Jun/2021).
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 > 
-> I can do this in linux kernel, writing a dts file which contains only "b",
-> but no zba/zbb/zbs. The linux kernel can correctly extend "b" to zba/zbb/zbs.
-> ps: after I or somebody adds the logic into cpufeature.c.
-
-Yes, this part I understand.  (Yes, do that...)
-
-> However, the problem is with the older software who reuse kernel's DTS files,
-> and recognizes only 'zba/zbb/zbs'. (If you search in the riscv/boot/dts,
-> you will notice a lot platforms supports zba/zbb/zbs.)
+> ---
 > 
-> When there is only "b", these older software may just disable the features
-> related to 'zba/zbb/zbs', because when they developed their feature,
-> "b" doesn't exist yet.
-
-Yes, old DTS files can and will continue to specify
-"zba+zbb+zbs".  But those old DTS files are not expected
-to be changed to replace "zba+zbb+zbs" with just "h".
-
-Once "cpufeature.c" supports the "h" extension, the
-software supports either one:  "h" or "zba+zbb+zbs".
-
-The key point I'm trying to make is that the binding
-should not require "zba+zbb+zbs" to supplied *on top of*
-the "h" in the list of CPU extensions.  Only one or the
-other should be sufficient.  And I think your binding
-was saying "if "h" then required "zba+zbb+zbs".
-
-> Hopefully I explained the logic clear this time.
-
-I think you have done your best.  I hope I'm not just being
-dense.
-
-					-Alex
-
-> BR,
-> Guodong
+> Patches done with sed, verified with comparing unflattened DTB and
+> dtx_diff.
+> ---
+>  arch/arm64/boot/dts/cix/sky1.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->>
->> What I'm suggesting is that (unless someone has already done this in
->> a DTS file), there is no reason to require "b" *and* the other three.
->> You should allow either "b" *or* all of the other three, not both.
->> That would support older platforms as well as newer ones that use
->> the more concise "b" only.
->>
->>                                          -Alex
+> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
+> index 64b76905cbff..fb8c826bbc97 100644
+> --- a/arch/arm64/boot/dts/cix/sky1.dtsi
+> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
+> @@ -523,7 +523,7 @@ pcie_x1_1_rc: pcie@a0e0000 {
+>                         reg-names = "reg", "cfg", "rcsu_strap", "rcsu_status", "msg";
+>                         ranges = <0x01000000 0x0 0x38100000 0x0 0x38100000 0x0 0x00100000>,
+>                                  <0x02000000 0x0 0x38200000 0x0 0x38200000 0x0 0x07e00000>,
+> -                                <0x43000000 0x0C 0x00000000 0x0C 0x00000000 0x04 0x00000000>;
+> +                                <0x43000000 0x0c 0x00000000 0x0c 0x00000000 0x04 0x00000000>;
 
+Sorry, I could not apply for v6.19-rc1, could you?
+
+-- 
+
+Best regards,
+Peter
 
