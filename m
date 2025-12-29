@@ -1,130 +1,162 @@
-Return-Path: <devicetree+bounces-250012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E536DCE5A43
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 02:03:06 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07DDCCE5A55
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 02:08:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8349F3008E95
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 01:02:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D7AD63000936
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 01:08:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10DD3A1E9A;
-	Mon, 29 Dec 2025 01:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB661F0E2E;
+	Mon, 29 Dec 2025 01:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gFyb9DJ0"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="m8Ttw+Ty"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005431ADC7E
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 01:02:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A55231EDA03
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 01:08:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766970171; cv=none; b=oCkw1vq9OqeWEFruwZllN1m17USujtR18TS25H3DiXHT10CINHaOhXRCxRj8cX01e8GzLMd8zlcOG8OlyC/dP+NJe1LNAUa457TRp9bMYIgGbr7EhRJs1MspRVJf5LHoc0st8Uj5y5wiOmryCbO4yfDHj6UBPNwi5MHvtoPG2Tc=
+	t=1766970524; cv=none; b=N+18RPB65F6KmbCn9NxNJ6SBeHYhZKP+9kMG0ZvtPnN8Ajk0fL40d0Pcs+gC34NcZJYJE/KlhzoLNY+edAiJF9kXhHMbzT3aNFJwj4qfbAyrg164ygOifjp7z0SctUpFjCw7xWR0fUnY6TndKzVRjJ6hCn1VUkfwfMmONmgOEsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766970171; c=relaxed/simple;
-	bh=8PsFqhWPWBs5ISCcmLVbxGD3gHbmqyMeDa365kBTSqI=;
+	s=arc-20240116; t=1766970524; c=relaxed/simple;
+	bh=f8xb7f7Wc6cleIreUIT0R3KFYnTxJ7Zn4E5sKYJ6J/w=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pwG4Bv/psRN68MCbA980MWO2u6g2RobR4wWKf2YQ/SJp7yHsRzaBjXbQS86AeVDqvCf2jc74QOj1nJA3OsFE1xDifL5CICkLEWdK718pY1rwTDktpIv/TXo1+vpn5jREkWQeR7seg/U7XOb5fX/TSO5oz0eUheFYAMt7GncF/BI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gFyb9DJ0; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-64d0d41404cso9851107a12.0
-        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 17:02:47 -0800 (PST)
+	 To:Cc:Content-Type; b=EaX8/uGiduIxDaCl+tqwQU6OBciRXgxpG5HpGoRGhhdEBvZKvibYgla7CHnzjaYkYA6bgw12JzTj3+wsjukngUT3WvWfjgYdj63JbR74VITYfkvRvV26aatifc+0y3z4FiloH1YeeGcV1KplpBoxUUgDjKG/DE6+IpNQIUwNhII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=m8Ttw+Ty; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-78c696717dbso70183147b3.1
+        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 17:08:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766970166; x=1767574966; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1766970521; x=1767575321; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8PsFqhWPWBs5ISCcmLVbxGD3gHbmqyMeDa365kBTSqI=;
-        b=gFyb9DJ0mD7A5/shyLu/l7OAbuW0sjnpjq8EqIAXjZEKmr6FSZDqe0Q243EzFH+ESQ
-         /lg2YmdTU7utkdE87a0gCPr7RCqDCbSHtluUGfpJRXs0fR6X4KsOBUyCf8LANo1fA/8A
-         shQlBnUVgEx9hj0EXCvUAx0V6U1Z5nQalIDcb84mBo64gpfuVxnHhVwJCvkzUQwY+Lic
-         yQBycplhkQwdlSGmXcHL0Lv8KIuH2eo2PonWB+AKpHYtv+ztcZmicL2wWCQkPZ7E9+ld
-         lTRKsuswPdlmMa0/clXeiczCIt3Bfacl2eR/V5lJ1CabGzaliuZMTi8+g+9Ehw3Gexde
-         gq5Q==
+        bh=1UE85kVGf+q8GmraHlXZAv1blLIu7cHa4ZcemBTV+hE=;
+        b=m8Ttw+TyKjH9U+HMyMNR+M8wgMwLaMUG+DgCB3WpJumdxLxKcSvKCasHdZDthzGSR2
+         mIGgeFP80wmFmV04fX28rtiErLIITFyA825hCxKYPyA2OkjAYfsPkzPTLoWfIIaHHtMJ
+         VyeUk+z0pNtotYaGCgwOg1AWcCfjcsq8Xr0Vm/xFlPX8fAHfaW2hrMhPLfA1N4glKvlr
+         4WcV48TQJnycpwjPIiinvmyDhVUgX5iqMvJ/rr3mOQxqy8Usb9hCitylJOlhxdV3e2Hv
+         heTRspCj5kbkHJLkcM8VqpZvCXojl5k0zvk2Sd8dieJLeELMoMrf5OJsclDc91OvHOVM
+         JmYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766970166; x=1767574966;
+        d=1e100.net; s=20230601; t=1766970521; x=1767575321;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=8PsFqhWPWBs5ISCcmLVbxGD3gHbmqyMeDa365kBTSqI=;
-        b=lIQPWYMA54OLHthtukDYhxIpXnOCGorAzD0kAmyVAzdRHpe03X+/dEMSlo0nqLSY+U
-         QI+8x7+POyW8q9mH5cT7AFHuc/uCMi7To3WDKQ57iACuNdReHUAfEuPkd1FfRBOfh78F
-         gPccVyaOAQUL8cxdcgoDpGmwRVfaR3Fiw/SyUZma+sGmR4U6Y05btJPFGclUhGXnVBVA
-         dN+uacS3+iOoXhNQX/iZ/ZXQMSPc8zU3gaDC77OTtbDoddC0werpyxf7RhDRtIAaVHie
-         U2fEZSw1W8RSD+ijALVRajs3yOMPbbziOgEMtbMa+yUZEn+0YBBOuj+r0GbOjGiiCUKx
-         CxBg==
-X-Forwarded-Encrypted: i=1; AJvYcCU1I0Tf/KnaAQVJewzok9PZuix+ttp7kvTlrDfLKmk46R6fgthBwG7ZVKl1KX+ipoWK7DQqPddPiGwI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/5pPPRNuKfbOjF7zRJMPzvCrnvn1qSCgdpE6ZSY2HNq8Liefx
-	A+ZwUxXGFFTnyyjt6Yfnnxd57sMmRX7dOUKsmQ8fg9o1+S7HX/GReSRSM+v0hVMOanv0T8fVPZ1
-	78OyXEj1ESs0tQIPnMeRcAtZvwIUZJ3A=
-X-Gm-Gg: AY/fxX4badZUZXnoukl8rrmpBQefJU77CKXBmWPYigNGO1zDSmF6O3zTk6XYK/vlway
-	CbvbmThh8dNj7rhpIExQ2mwOBZLL0SDP7GuUO653njeWjFYZMoLtN6zcbMV3eUd0nDkarqIwMe9
-	10rYCaD48Kv0HkB5OtY29pMm1/FwWGyCDPZwMrbjpTb3jxSBZ2ee6hLn1z6ZAKB9jbbBtNrZLHl
-	RJZt1Q+qp3IxMQ0XolvLJdEtF2xnz9gi4nv2r75jnFhIhZAwsbBKJDDJ3JfsGxAro1aksR3
-X-Google-Smtp-Source: AGHT+IF0IXPQk0C4HhJZXawFNHsaGTIn0geCX5EoGqjfqhQpg8FvQc7ds/jfiREC9pa+fJFmx/dK8aQJP4lzul2NfZQ=
-X-Received: by 2002:a17:907:dab:b0:b73:880a:fdb7 with SMTP id
- a640c23a62f3a-b80371790d6mr2997016866b.35.1766970166082; Sun, 28 Dec 2025
- 17:02:46 -0800 (PST)
+        bh=1UE85kVGf+q8GmraHlXZAv1blLIu7cHa4ZcemBTV+hE=;
+        b=vuzgEiogx+ifmAeIRNcaANzUKQXCs9EHQD61uuDNsLzZU1/rmp/zkL/19Hgx7dpEpL
+         Yqp9T3dg+iWmRvggE8M70x+cK4LfRqzOYwm+0AcgKOIttu7cPSyvaMUljVs32Np9zt3R
+         zPDVaCAPHrh0Pz0rERYU4HrYtI9EXRnf2fLHpdpsjbsNwLXUX0Ykht0Xh8uapq5Irh/+
+         P3Rn34T/zic3XAQAHRTBB/QYnJTYrUuY6Hb9gvn+h6X+9T6ys6+zh4ODiGivok/5stpg
+         8loQzYgkrqoxECwEjImcTYrmapJTpI7ufRbmUKFiz3YleRJyDAHPJ+Hifpvutauhyzsp
+         zH3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVyCBzTMz94d8x00eU2sy4gWAnZLDqaX3Dsunv4ujnJIaujveZAdxHmFckxnL/CF0CjjQD7R1XQWzq5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFYqp7vXCw3QgX9CsBKL+N6ZXLx1K1xBEmfS6o/+fdyYKWLT71
+	BQvXxP95O60cD0lpi0HyY1kUoyl6ubtVlqvYEnmg3WXiN2YGIt82V2j+aeBPuplj78Zgti9YrGA
+	SrEmBx3scj3qx+syZQl0rzeGSck5gFoPjECiCS7WGu728LrvaPQVpx0xAWQ==
+X-Gm-Gg: AY/fxX6AlxGp16UNOnygH7cvZ3VxWOz1WDw6fen0CqyF0pdaMXnd24beJDkX3lzAAiJ
+	MFXrlNWjLtqwW/qB/zjhcfOK2FqVh1vVmX+IMcpyxG4xKlyWW7XOFlkn/96fpyhe3xg9qpRsPNb
+	0ukTqvhHjrEJR7uAatu+Fih9og0LyHBdUm+8N7RjsJ4WY51LurRCUPPE28v0waEg+wG0yW8bKUR
+	08Ir+v2Z/2W4iAqKvsCZ2CkP56UwW1SFvc9XL+A6pUfyyALonULvpHoZ1mZPs9bxIPGl6d969Hg
+	jHIFSr9xcatzvs4BEbJUkZHDlloscCAtHe9Tqg28L5Ql
+X-Google-Smtp-Source: AGHT+IGlhu2CzzIyPT/4Xs4SuTdCSDyVQF/LBTPCx5u8EgG/qGO3ektOwcMaY7F0RocF4UkJ/Asz5Nn328g1rSwFXmQ=
+X-Received: by 2002:a05:690c:6186:b0:78f:a615:2739 with SMTP id
+ 00721157ae682-78fb418785cmr210976517b3.55.1766970521358; Sun, 28 Dec 2025
+ 17:08:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251224084821.2092169-1-hsu.yungteng@gmail.com>
- <490569f8-a434-4297-b11e-ad34ddc4ae1e@kernel.org> <CAFT9tykPEt+zTREF9C4AXtGp0qDh_65LjHZCK9F=NFhE-K4dGQ@mail.gmail.com>
- <06f97147-5752-4a82-9958-89b138a7d4fe@kernel.org>
-In-Reply-To: <06f97147-5752-4a82-9958-89b138a7d4fe@kernel.org>
-From: Yungteng Hsu <hsu.yungteng@gmail.com>
-Date: Mon, 29 Dec 2025 09:02:35 +0800
-X-Gm-Features: AQt7F2oMdsED5iRMhFHoG-r724fBp1Ay7eOq1wTC5-EPCy0ZZVDBKNYSzRNPoqo
-Message-ID: <CAFT9tynYM0u_cAqA9YPpoUp7EcVpvcwr_sxrk5K=VNMXDwBE=w@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: add STEF48H28
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
+ <20251222-k3-basic-dt-v2-7-3af3f3cd0f8a@riscstar.com> <20251222-stitch-preachy-3fab87fd6f0f@spud>
+ <CAH1PCMZ7ywZ3unLy0yHYK+fFHk0y=q2cEtPnRi=qSpf=fc75rw@mail.gmail.com>
+ <66c0676a-7920-4825-b916-3c00b1648a08@riscstar.com> <CAH1PCMbBURb=DpChf+Y-DjYjzpXG-pKgoaHAu=TUuG4oVC56cg@mail.gmail.com>
+ <5979c8ef-b0fa-40c8-944d-96e226fbcbe8@riscstar.com>
+In-Reply-To: <5979c8ef-b0fa-40c8-944d-96e226fbcbe8@riscstar.com>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Mon, 29 Dec 2025 09:08:30 +0800
+X-Gm-Features: AQt7F2pCBTgDDH1FNzfMutsdekE-nmpYuROoap71sR-N9Z3O3k31kEU3EyBRcKQ
+Message-ID: <CAH1PCMZkQ11-Uk5GnyetLkNLOuO3gs2o0WPWHrFMWVH9R6s8mQ@mail.gmail.com>
+Subject: Re: [PATCH v2 07/13] dt-bindings: riscv: Add B ISA extension description
+To: Alex Elder <elder@riscstar.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Lubomir Rintel <lkundrak@v3.sk>, Yangyu Chen <cyy@cyyself.name>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, Andrew Jones <ajones@ventanamicro.com>, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
+	linux-serial@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B412=E6=9C=8826=
-=E6=97=A5=E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=887:10=E5=AF=AB=E9=81=93=EF=BC=
-=9A
+On Mon, Dec 29, 2025 at 7:50=E2=80=AFAM Alex Elder <elder@riscstar.com> wro=
+te:
+>
+> On 12/27/25 8:51 PM, Guodong Xu wrote:
+> >> That's what I understand it to mean, anyway.
+> >>     https://github.com/riscv/riscv-b
+> >>
+> >> There's no point in supporting "b" in devicetree to represent
+> >> the others if it also requires the others to be present.
+> >>
+> >> I think that, instead, "b", "zba", "zbb", and "zbs" should all
+> >> be allowed.
+> >>
+> >> I might even go further and harden the requirement, saying that
+> >> if you specify "b" you should*not* specify "zba", "zbb", or "zbs".
+> > Historical reasons here. "b" came too late. The chip vendors have publi=
+shed
+> > cores with "zba", "zbb", and "zbs"already.
+> >
+> > That's a migration bridge to require "b" must be listed
+> > together with the other three.
+>
+> Are you saying "b" has already been included with "zba", "zbb", and
+> "zbs" in an existing DTS file?
 
 
+The risc-v ratification timeline is:
+"b" was ratified in Apr/2024, which is about 2 years later than its
+components zba/zbb/zbs (these were ratified in Jun/2021).
+
+I can do this in linux kernel, writing a dts file which contains only "b",
+but no zba/zbb/zbs. The linux kernel can correctly extend "b" to zba/zbb/zb=
+s.
+ps: after I or somebody adds the logic into cpufeature.c.
+
+However, the problem is with the older software who reuse kernel's DTS file=
+s,
+and recognizes only 'zba/zbb/zbs'. (If you search in the riscv/boot/dts,
+you will notice a lot platforms supports zba/zbb/zbs.)
+
+When there is only "b", these older software may just disable the features
+related to 'zba/zbb/zbs', because when they developed their feature,
+"b" doesn't exist yet.
+
+Hopefully I explained the logic clear this time.
+
+BR,
+Guodong
+
 >
-> On 26/12/2025 03:46, Yungteng Hsu wrote:
-> > Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B412=E6=9C=
-=8824=E6=97=A5=E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=886:03=E5=AF=AB=E9=81=93=
-=EF=BC=9A
-> >>
-> >> On 24/12/2025 09:48, Charles Hsu wrote:
-> >>> Add device tree bindings for the hot-swap controller STEF48H28.
-> >>>
-> >>> Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
-> >>> ---
-> >>
-> >>
-> >> Where is any changelog? You keep sending versions but you never
-> >> responded, never said what happened with this.
-> >>
-> > Thank you for your feedback.
-> > I realize now that I misunderstood the process.
-> > I previously thought that the changes needed to be included in the cove=
-r letter.
-> > I will follow the proper procedure for discussing updates in the thread=
-.
+> What I'm suggesting is that (unless someone has already done this in
+> a DTS file), there is no reason to require "b" *and* the other three.
+> You should allow either "b" *or* all of the other three, not both.
+> That would support older platforms as well as newer ones that use
+> the more concise "b" only.
 >
-> There is no cover letter here at all. You sent only 1/2.
->
-Thank you for the clarification.
-I would like to confirm the correct approach.
-Should the changes be documented in the cover letter, or should they
-be written directly in the commit message?
-I will resend the complete submission accordingly.
-> Best regards,
-> Krzysztof
+>                                         -Alex
 
