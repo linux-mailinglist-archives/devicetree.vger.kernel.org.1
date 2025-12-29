@@ -1,147 +1,195 @@
-Return-Path: <devicetree+bounces-250256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7539CE78C1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 17:34:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24DC1CE7B10
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 17:51:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 07D043005F3F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 16:32:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 207A33010E58
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 16:51:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FABC331A45;
-	Mon, 29 Dec 2025 16:32:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97DDE21CC60;
+	Mon, 29 Dec 2025 16:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="OUtfCeto"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dRDyi2dP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011050.outbound.protection.outlook.com [52.101.70.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A01334681
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 16:32:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767025936; cv=none; b=LMTrWFVsg6AEfz/QH98pVQYXa9P384mf+wkpNalc1Pm3CvXngH+xhw3SETeT18Jw4iUeJMZrtW4Cy+Vu+lUsvXkh0do+glsRI3jv0Lc42VQBihgi9ZlZKaEAHw0IB0C8FI+Qt5SX7rHxoMZDbtllbUhmGJXXr8f0QUstXfKAvZo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767025936; c=relaxed/simple;
-	bh=D/5qbu+6DCkne9hn8n6AtJW5EHUE67wjy4QQunH6wQY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=GlezhyfwyL4+8p4JbKXpDMKVgFjhOGGbn6gF/qV4yg82fherZm5z1TWAWg0K7e3vwNmdKp0C94AALO8KACBM5VY/uE1HNAYum6GXFoHJhToPeug6Z41QsWgpfC+BhgJd6ymOKo9JQWGLgZjPAvSvcGj+fzJ8QZZ+78if91wUn5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=OUtfCeto; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20251229163205euoutp026c6d9d801f02361800925bf29a3cc789~FvLevsTuR1147211472euoutp02K
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 16:32:05 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20251229163205euoutp026c6d9d801f02361800925bf29a3cc789~FvLevsTuR1147211472euoutp02K
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1767025925;
-	bh=ExuLuxvl1jriYgk9lUcZeu3ugdqLUTCtudQjE6LZFdU=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=OUtfCeto9if+4bYrYwp+GWsRyDWuD6AyJW8UKJeGrqKoriGKr5kYlYTNdA2Lcs7no
-	 2jmv7sB5rLPYTOX588jBaXA8gQjpZSs7EJ3XOVBFc2/E2i16RBNXcG3L9mhWnQKJgR
-	 WfjSDB8fkHclTM1JBTSCy+WyBwNwrJnNUdNzNAF0=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20251229163205eucas1p1e9395170d400ce20537e79156f44778b~FvLeQqbAc1226212262eucas1p11;
-	Mon, 29 Dec 2025 16:32:05 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20251229163204eusmtip2db25adcf9b918fc714030cdbfc1150d0~FvLdReIoO2218922189eusmtip2Y;
-	Mon, 29 Dec 2025 16:32:04 +0000 (GMT)
-Message-ID: <a1d2fc77-ac57-49d4-a13e-cc391e6e2b92@samsung.com>
-Date: Mon, 29 Dec 2025 17:32:03 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3C9145B27;
+	Mon, 29 Dec 2025 16:51:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767027115; cv=fail; b=XlKcI0zM4No3PN90l7RyqREWhZchoWexX2oTWoY9sfmn+UyrhmsOSp/yZl3turvCTtC/taMbjd+7UjGQIpj5jhUKH79e1WdkgQ87vR45OubIzaXQCN6axh1sMfIzw6vSfY/u/fKQvHnoXNp7c1GVInyQ8snK1LmcEJETSsagQns=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767027115; c=relaxed/simple;
+	bh=ajphW2bjLsO8Uw9DUEaelUOFRfNTrVV6liGPcZ6VWl0=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Pli6LefGeX/we0nitna6EyCeRA728h7gtqdmIXsPKu4gPcQdneE0aNyeD2caBVxRWf1IDgfwij3sSUAEaX5P6pJD/QKhtmwoE8OxHxx2R+X9hUHaUw4sLhAdzsD9YCBcyf5+9gKdsJYi16m8hHC0h5ecA1UcMqNE5Gj3zb2iPqI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dRDyi2dP; arc=fail smtp.client-ip=52.101.70.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WFVcY4D/uxX3Gvs0nBkXQAOd1wLPmsL9YKFfZeIL3P+6QWKaqf9QxlMK9DQYiF4WhP9Q9YJ+SaYLR/0Jpw+BTMuyvejDY9+N0qAQqi5UL4sJ68XdCZ7sTwfQ6r6/SNVoZ7ZzHWZHTszFTOq5qsWd1L3NNR8/ks89QBa+ijFOfuO1mJCh8prNAfk6XB1x6zs67mKbFgbOuMJDbPI+tlpzWEVCPE0NHF3Ig9GT5Lv/yT5vjZQ0tm4Jrivk4E2pA6jP0HbiegfD2y0n8NZg3n/e342nK/42Qcc6+lItKlTosMiEXMnuWGx+l4ObpQEGs06c/i/sA9kEfB7tq3qSYtva9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LQjhwWTj6zWhOTJEHiiKfW5Xk9CaaMthFTjKfV4AVkE=;
+ b=zHL6tH6XP2u29Xh5EqyyUGNYFS0BwpjwbNowB/PdiRz6jIABSaTNNTeSgWlqTQeEhx03MlR+bv9kvwic75xcFzAaZOKIbfDIZ9ctXWqJX0kRksJOYnytcCxxZYPJ1PfJv4Wxt6P9pO1QSDBX5NTh9Kbof7w5nFBMyt1oBkxcXglnNCJTQnceqef6+bDdWRIbKtYFCbyIBhkGCYesACyb5UJB7/MdFHiJEyJMiDLWUZzqy/qqzs7NbTVNsDEtYPWQHPiA3Ty/p9xFkHduCv+if5I+PM9ktR5utA9uI/0l/OMZfNYuc/J1mi/WRiKps/M9kIGmCUQybBYtloKBa3+DNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LQjhwWTj6zWhOTJEHiiKfW5Xk9CaaMthFTjKfV4AVkE=;
+ b=dRDyi2dPgRe9lyTp447gJdYX6Be01GWtcEQzGa1QV6vyn4X1fxPe5l1qsA7kvGw+xwO2rkxhm3nJ/mR4bT5h9yO3HVQRPIgHF05qLDYuhKo179tw6eIyhbIPobGJOYHJCeoCsNc2BcLkj5XCRwnUxtxfw9fI1j3APnRZeWEJp59Nv4mN/SQU8VeP7AOwj4kgQxcSZKdo9D1JOruks+mz3jyYgHQeHLpDkT/BolpviQjqHhksWqQCMH8CUSASHsehGK3ejEzGQ/4h+IWRiS7Wc0KkMC/1XERJcvqmSOBhu4KcHV0Nx12mdBpP0Q8hUFb3qMtWl4qE+vc9hxyk3tGfPg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
+ by GVXPR04MB10611.eurprd04.prod.outlook.com (2603:10a6:150:21c::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Mon, 29 Dec
+ 2025 16:51:49 +0000
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9456.013; Mon, 29 Dec 2025
+ 16:51:49 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] arm64: dts: imx8mp-skov: add pinctrl-name 'reset' to fix CHECK_DTB warning
+Date: Mon, 29 Dec 2025 11:51:27 -0500
+Message-Id: <20251229165127.4006134-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0110.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::25) To DU2PR04MB8951.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e2::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/9] Verisilicon DC8200 driver (and adaption to
- TH1520)
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
-	Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Drew
-	Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
-	<wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner
-	<heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
-	Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
-	<jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20251229163205eucas1p1e9395170d400ce20537e79156f44778b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20251224161255eucas1p24c6de486b021f25007ed1ce24468cab2
-X-EPHeader: CA
-X-CMS-RootMailID: 20251224161255eucas1p24c6de486b021f25007ed1ce24468cab2
-References: <CGME20251224161255eucas1p24c6de486b021f25007ed1ce24468cab2@eucas1p2.samsung.com>
-	<20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|GVXPR04MB10611:EE_
+X-MS-Office365-Filtering-Correlation-Id: f1a082e1-602a-4133-bb5e-08de46fa8f2c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|52116014|19092799006|376014|7416014|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?VJ+OvrU3juxxZj4b8O/rTk27xOPM2YX8H3LF/RrfARli9VTMZ+SYvfiTjf8E?=
+ =?us-ascii?Q?yVVAfwtHJbGv9xs5uLT/eOGUv4EWDeYrq0BNRBc/ZpqnNLw86ED81LhzcoG8?=
+ =?us-ascii?Q?1Asy5EhYVD+yuK1deN1ZdTFIHssyOCWry2FLVr2kPQ0HXvFBy3CSORzW4Q+m?=
+ =?us-ascii?Q?82+XsuIEggEzHHe3gIeF9UrUqHpNN0EtIzUh8qKkmRjrDUSF4+R+mz+gmzGv?=
+ =?us-ascii?Q?nTSbaePwyzIrBLWGXVrfXTmR1KTt+MJL37wIqWWVRi29JsB6mIg21QFHHKwJ?=
+ =?us-ascii?Q?akBwEdKE7U0GFS08YH9xNI92tQ9egPEU9NAUJQPlDFcD9vnj/BIBPVkf/7uy?=
+ =?us-ascii?Q?pfNQbDPC1QioilYSUZAgng+5ksv/bxTsDMSEBPpABxXiJDr/Shcn0EdtAi55?=
+ =?us-ascii?Q?CqQ4LAfQEoS7uNE3J/HEKUKMkbFH1wiWMxRzBJxGgl0RmbxnSs69wXsuBbBj?=
+ =?us-ascii?Q?Es54NqHEqGYFB5TbBJJ8TZUYDabQIDeu3iCWwBEPfuJWGVslymbgXuLl1YrL?=
+ =?us-ascii?Q?gGdgdBdyI+R7QmI1Z08Oz5rVPEQ/RGpGxZqMwlU0lCTcHOsm4S7WecWdDuLc?=
+ =?us-ascii?Q?50XHEZAv3BTSXQEZF5CApq+sD8uXe+3KNUL8aIDihZdyBfnruvKEsxgihOnc?=
+ =?us-ascii?Q?PX2Ixdor6MgTxtbrfi/D6ywHpwYBYPmxtUJM3ruu/mFRDf+AS9ZfSVFtJaD0?=
+ =?us-ascii?Q?/MGHhkd1KrPGcz8uodlqRzmPcWA69eXfiCOqLY9LPi+p4qVeQp8YdgHTZj4l?=
+ =?us-ascii?Q?kpCjjoV8IiPlY1MFyiezCvLgZmUfA22lbpv0wItYVWpcKT8C8WlYqJqwo3LG?=
+ =?us-ascii?Q?oFqKeqgvqHVnpiRDgJH4/Jfgr+ai1y2izXk9Mph93L+NYovVsNtl4exWSRjn?=
+ =?us-ascii?Q?hodxvh3T3uRyOWQ1i7ACjTZcjNlko1S/RrHNQb50opyHvJ8lgPQgB0MGBpMy?=
+ =?us-ascii?Q?gXr4yQAfhrQxzSfY+uvexXxYCArkAY0EMwWTjhxaJtHmAqM3zK1lcrDnWXDs?=
+ =?us-ascii?Q?aG7rtHoVe4aucipE0xc9QYNn2fVJgL0blySPsf5vk5mIJD/qTGH2YZv8hc8s?=
+ =?us-ascii?Q?wIMoTeqOnubmCIUrNePObsZBvrgjOAwdcPjlLGQ4k2MnzmU6wvCfKRyiik6c?=
+ =?us-ascii?Q?b1bw2d6pY9fQQFRBe4BjWNxYywXAmm3gO2JppakSPRch3wW3Pqe6TZJ/adIv?=
+ =?us-ascii?Q?Fq+3faSQlcq9PZJntjKIl+THY7BAIhBLj5aFwt6OxCYoGmRhLiNOr4eaYkcv?=
+ =?us-ascii?Q?vbyiBTlrYEPq7emSZIhNNU1yI92vYhzPQMJkZ9eGlIizLk+OhFX2JJ+5gfAk?=
+ =?us-ascii?Q?p/xLEOUnG+FjxnGTGA8BgDjuUtP8eDE/61/GLS7ZoSyyeIHhkgKgcEUZM08t?=
+ =?us-ascii?Q?9cuab8TSw2Vw1MPh6iwuJZGxjs6sqInKX2FgfasHWP8henubWdTxynQAlZPQ?=
+ =?us-ascii?Q?m9ZCMxa9nUaXEgDmlZCitMlTm5pUGOqI3WjI/pIbjB6CWvyCzZPiehYRSbGG?=
+ =?us-ascii?Q?crHuGaqo3lwC4NU=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(19092799006)(376014)(7416014)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?EiTN6wuoL8zM8BFyHqAh+VoGPpFDeelVmqEjeT6uQ6o1Qqh/piq+BPj8QiDE?=
+ =?us-ascii?Q?d1CLHqytbz8CiqW4LDyAZCdeRs9YEkJV/g8oF98TE905+cB4KMD4bTCUbJPi?=
+ =?us-ascii?Q?g6eLpBG88HvXj1OTynGGUZQON/PbqG9egP51bntgPWj7yjYmyOgkASXiw0vt?=
+ =?us-ascii?Q?+SstCs8Y5LvB3mjubqpczQaZtoXNNjV7rqU+duederdo3Y9JwYvijgpDKwgj?=
+ =?us-ascii?Q?z9aQVVVkoKb93RNtA1/znwdCJPTIBc7sZPPDoGYc9KPEYryBOx5NJNnI6al5?=
+ =?us-ascii?Q?sfzbkkqWGLdovZYeIKHN9ZjHP0uRpVvD0014uL/5vpZzw/8NTgYn5oNvkIQA?=
+ =?us-ascii?Q?5EZfzS6Cm5Fk7vP90fOfFnHkBShpkAWCEEiyDE8U4vONnKey/Jd6QynoH89w?=
+ =?us-ascii?Q?PMLopyyyNGd80y/A89fCP9qKf5aD/Oblzdm7bJyds7D/Ipp6AK5YmC5IJhrs?=
+ =?us-ascii?Q?17WU1UheVb8sigdhXjpqC46Dqbm2vyAUR0hsILdCL8Trg3v8c2zE/GTut9C3?=
+ =?us-ascii?Q?q9IXs0fljg5pZu9VWeJZo+pci27RTNR5+Vb6jLr4IapRVEAMV1M9NqhGgWhN?=
+ =?us-ascii?Q?OqnM9xm3bxC6cLM/Jqv8WtwXij3IE/p/kqsv0u5DXIu25brzeQIieoDqOjeW?=
+ =?us-ascii?Q?JttyWHQ6luLhlXKg9M4PGwHdVZ0leNE55iOik0rNeJuJ9NKdGzLLmjKbFXWY?=
+ =?us-ascii?Q?NBOqmPz7oaHP8NKE9g3ONqnvgCIMhUtmOQY4/6GtISdRTvV+yxGpsWHf0bF7?=
+ =?us-ascii?Q?arNM+lYkev87q9DZe31pqu4IzWLIeEq2DXQAfquusE8FqMVVch4aCCRO7bAb?=
+ =?us-ascii?Q?Zv8li1nsTGV0BVJGoRZ6fDrsvNXJZw9/4lsRlVcmcMFnLLjuZXyIEU1YhwbP?=
+ =?us-ascii?Q?zjyRTonvjJz73q+k55YtrSO0fR1d9hC/Rib7l9kOsbrdY7/y7jWyCleM/ljh?=
+ =?us-ascii?Q?xKYWMeiwdUxtXvisWSpTsiLuWSGdbvswbj5NEb722ktoIB20ivyrLoCLE+fi?=
+ =?us-ascii?Q?T3vk0OMlVH9ruR8BXtLOW1DoryuFE8ajO725h8bb8DzjMhdlDEdPkTYizdFT?=
+ =?us-ascii?Q?lvGwagM1YkJBM0TA0xfxc4T+zQ6Yxyz4mxn3OvcmXH3sH95H1ogNlLtxnjzS?=
+ =?us-ascii?Q?enflqMmaRuK6+U5nrZBEBCvSk7Yr3ySPQa6uDlG0gnQ8sg/eL9aLaQbJMmE7?=
+ =?us-ascii?Q?Cxh9MkIc8b685GmFBAkzjutc0fsnY/uElxlSWoqYJBffMGZ6bYtamC6k4mi1?=
+ =?us-ascii?Q?UIrsjqczIIE61GHJtaRwe6IuAiZdc4CUOeJWLUpeoT6kywjEvIne5ADwKELY?=
+ =?us-ascii?Q?oPvapAoUXYJy04nhEn84PMhIU2nL21T5SX8rp5dZB7FPpImNbCkd93OVfcfG?=
+ =?us-ascii?Q?jLYfuIfKI0XIPPBFs0qGYc8fWunLUMbNe3652qSfHwS3X0u8MEO7uOYMKegP?=
+ =?us-ascii?Q?G90fbSZc3l9R8CO3f6qI7PA+hZL64FzkFfNGe0+SD5SV99iLXY8yDxpaoWZL?=
+ =?us-ascii?Q?4JKajiecI66+5KnxAwj6RppoO1akEq5qFHWOJda6hnc7h/dtxQRikpfZfVXI?=
+ =?us-ascii?Q?x3wF0MDNKxAW7m1qzee9oJzFJC3dYj8HzhGZ5bXORjIURnwqrqxI0VpK6mre?=
+ =?us-ascii?Q?k2EAsls+L2H6LuC7TKd+P8oXh1BPr1H9Jua+0Qi1J2RdGsMiAPIbnEfCLC0x?=
+ =?us-ascii?Q?YxZCk1sy+xa5t1tmK6KgxYHBoy5orpb9kg/LZVBWV0GVEjD4?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f1a082e1-602a-4133-bb5e-08de46fa8f2c
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2025 16:51:49.3907
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: q7ilF8ntOT6GqXqNsAPpNxEeXPwc5xoAvx50hTDsn6bVb++loun2QQiBCXmnNhbBST16h1y4iQCtWY3g3zMdOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10611
 
+Add pinctrl-name 'reset' to fix below CHECK_DTB warnings:
+  arch/arm64/boot/dts/freescale/imx8mp-skov-basic.dtb: switch@5f (microchip,ksz9893): pinctrl-names: ['default'] is too short
+	from schema $id: http://devicetree.org/schemas/net/dsa/microchip,ksz.yaml#
 
+The commit (e469b87e0fb0d dt-bindings: net: dsa: microchip: Add strap
+description to set SPI mode" force use two pinctrl-name 'default' and
+'reset'. switch@5f doesn't use SPI, so it is safe to use the same pinctrl
+setting for both.
 
-On 12/24/25 17:11, Icenowy Zheng wrote:
-> This patchset tries to add a driver for Verisilicon DC8200 driver, and
-> demonstrates the driver on T-Head TH1520 with its HDMI output.
-> 
-> This display controller IP is used on StarFive JH7110 too, but as the
-> HDMI controller used there isn't as common as the DesignWare one, I
-> choose to use TH1520 in this patchset.
-> 
-> The DC driver is written with other DC-series (mainly DC8000, which is
-> known to be used on Eswin EIC7700 SoC) display controllers in mind, and
-> uses the identification registers available on all Vivante branded IPs.
-> A known exception is DCNano display controller, which is unlikely to be
-> supported by this driver because of totally different register map and
-> no known identification registers. (P.S. the in-tree loongson DRM driver
-> seems to be for some DCNano instances based on the register map.)
-> 
-> The HDMI controller seems to come with some common PHY by Synopsys, the
-> DesignWare HDMI TX 2.0 PHY. By searching a few register names from the
-> BSP driver of that PHY, that PHY seems to be used by a in-tree dw-hdmi
-> glue, rcar_dw_hdmi -- an updated downstream version of rcar_dw_hdmi
-> contains all 6 registers set here in the th1520-dw-hdmi driver. Some
-> more suprising thing is that RK3288 uses the same PHY too, but the
-> in-tree dw_hdmi-rockchip driver writes the configuration data array in a
-> weird way to reuse the HDMI 3D TX PHY configuring function. It might be
-> valuable to add common configuring function and configuration data
-> definition for this HDMI 2.0 PHY too, but the current driver in this
-> patchset simply duplicated most configuration logic from rcar_dw_hdmi
-> driver (but with 3 extra configuration registers configured).
-> 
-> Icenowy Zheng (9):
->   dt-bindings: vendor-prefixes: add verisilicon
->   dt-bindings: display: add verisilicon,dc
->   drm: verisilicon: add a driver for Verisilicon display controllers
->   dt-bindings: display/bridge: add binding for TH1520 HDMI controller
->   drm/bridge: add a driver for T-Head TH1520 HDMI controller
->   riscv: dts: thead: add DPU and HDMI device tree nodes
->   riscv: dts: thead: lichee-pi-4a: enable HDMI
->   MAINTAINERS: assign myself as maintainer for verisilicon DC driver
->   mailmap: map all Icenowy Zheng's mail addresses
-> 
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-I tested this patchset on the Lichee Pi 4A (TH1520). I successfully ran a 
-fully hardware accelerated graphics stack using Weston and Zink over the 
-HDMI output.
-
-I have documented the reproduction steps and test results here:
-[1] https://mwilczynski.dev/posts/riscv-gpu-zink/#building-the-stack-reproduction-guide
-
-Great work, thank you!
-
-Feel free to add to driver and DTS patches (3,5,6,7).
-Tested-by: Michal Wilczynski <m.wilczynski@samsung.com>
-
-Best regards,
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
+index 020f20c8ce667..7d2fc5fdd3bd1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
+@@ -373,8 +373,8 @@ &i2c4 {
+ 
+ 	switch: switch@5f {
+ 		compatible = "microchip,ksz9893";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_switch>;
++		pinctrl-names = "default", "reset";
++		pinctrl-0 = <&pinctrl_switch>, <&pinctrl_switch>;
+ 		reset-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
+ 		reg = <0x5f>;
+ 
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+2.34.1
+
 
