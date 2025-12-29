@@ -1,179 +1,184 @@
-Return-Path: <devicetree+bounces-250177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8F6DCE6B11
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 13:31:16 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8273CCE6B2D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 13:33:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7AD19300797E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:30:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A00A330123D6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:33:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99DEE2DA759;
-	Mon, 29 Dec 2025 12:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C512FB99D;
+	Mon, 29 Dec 2025 12:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VnhK5I7R"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="JqQ1dasu";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="m9d7A8fw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511EC824BD;
-	Mon, 29 Dec 2025 12:30:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CBF82DA759;
+	Mon, 29 Dec 2025 12:33:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767011451; cv=none; b=mIapXFDpnJ66Xfhnhry8rpIrtgN0YHsqhiQW8Q+ZC2PkeT4MteAZCgC8T8Ul37V4lsxBR/t7tS60700NkH0zfFNzhHFFxks4DFQL/KF9KzC+WM4pw1qBt7MXZfn8rKTt1w5ZO2EJsxlDwWyUvOnf/uvKJq/M/b2PMwrBMKz+JbA=
+	t=1767011627; cv=none; b=hdt/o+e2HP0zMUyaAGsHCVve9uqF3r7B0/b2BLFbO93/BXCKDL/WEEHR3gd3NX9tQlAw+RGhhminGZmRBcFwuRcaTF4suWgkq3Fp2H16taFKVgZo7lXrLsZXDneRC+KfM2yIpv6I3g4DaioPF9f79c2ZT3HTg9mnHMdYC0Ev4Y0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767011451; c=relaxed/simple;
-	bh=M7VKA/2oh3QZPA/RYYsAyJtliwor3w+/3zhjYkQCQpA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EY7N//MJ/qGXkeZEs2k6wW5Wt4uZHM7aB35eN0h2D8Y+Jyf7XOALD/P3u+aYp/wmSTq9SJZg8SDJlILUcJ8XHtRIX1+2RFhgJv7AIQktx+Y1ySGQgSH3AXZnuUK+sxpFuxviNr/9cjCNCVsNVqUVgfNmEOYf+4D6OHwMHnH967w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VnhK5I7R; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767011449; x=1798547449;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=M7VKA/2oh3QZPA/RYYsAyJtliwor3w+/3zhjYkQCQpA=;
-  b=VnhK5I7RMdCI/ltFDWmCwUgCj56+Sg5EMaS4S0Yd757HKeJXux5M9DXL
-   JJUNCgxSGv8xZmN3YjbTq9E/alN91Ugq2oJ5Y4igwOqqDywgs9WvzTg9P
-   ICz9eFK4bODBHvXhemv5Nmh3hXdL8ckg9b878x1i5fufPjce+/V1yMB7g
-   Jry+zMWY/M4O3+B8KC8OsQmr+aiYe/jz4uVmndAAomN2RuYXbcSI07um1
-   O7EZChAtNEWErip82/G8pWZS5dCeTEgwbfpxsgYwa45pUOjpxGB8UYouh
-   AENUdhitE2BKdpBYY7aKcDhCKGGlLfe6IseDc/Iw/1EZe89KlI81Pxd22
-   A==;
-X-CSE-ConnectionGUID: UGOUN/6YQUC+cY5//xOoRw==
-X-CSE-MsgGUID: TXx75ehyRDqXA5t16uKENw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="67822349"
-X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; 
-   d="scan'208";a="67822349"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2025 04:30:48 -0800
-X-CSE-ConnectionGUID: RjuvxHRkToaD5JW280Kaxw==
-X-CSE-MsgGUID: CgTdBBmWSJ6koPtIlYX7rA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; 
-   d="scan'208";a="224402693"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.31])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2025 04:30:45 -0800
-Date: Mon, 29 Dec 2025 14:30:43 +0200
-From: Andriy Shevencho <andriy.shevchenko@linux.intel.com>
-To: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc: Jonathan Brophy <professorjonny98@gmail.com>,
-	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Jonathan Brophy <professor_jonny@hotmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH 0/2] leds: Add optional instance identifier for
- deterministic naming
-Message-ID: <aVJ0c3injbP7yRIJ@smile.fi.intel.com>
-References: <20251228182252.1550173-1-professorjonny98@gmail.com>
- <761d6573-3751-47fb-9b0e-8063f3cecf76@gmail.com>
+	s=arc-20240116; t=1767011627; c=relaxed/simple;
+	bh=q0Mtfk3/Csce1J0oLHDV930hZvWTnepvDZsbDVs17gM=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=YI2fX6DL/LGeSn7qVJRn7hrMz1h6JZOD10bn63cB0to03HwfE31pCLLpSHA3Cm+9BTOHPmUeSfvW81NTFSduErh0SJqYQeTSDJSYwSHoag3Fpx2E+QnAZ+w0vQba/LUDNq6jTZzFPM27Ije0e+tUn5uqycWHaqoyT5b5rLdro20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=JqQ1dasu; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=m9d7A8fw; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1767011621; bh=LcQHqzHh4nhBC7vPasEJMZd
+	EfKtsGmouwejn7o3sprU=; b=JqQ1dasu5Ysg2pD7SkIdyVvSOhPMSn05PihlmJPYOQ2yTPyt2R
+	bEObUgswANQi1WRuDkRajf+Yppzpcp64xm4jH67W1v/o+ML/ijjmqcMyieeCdwTTKNDBsTJkmTG
+	0P0eBsMXBojV172MzJACWvRFvVYi/QaJaXwtOn+rSTfnAEtDz+smR6KwB5xhSJ1OdgwmauTXB23
+	umHwDsv6kJLsguOZzCDMktlnUgKaFNRSbVK3MuoG0gvlAgjQCJvHiOiFLVNZwdwGTIbrEIuQgTN
+	+nI9GvL/40VAR9trsMD+yO5SMtYFm9MB/H9koxU7qcDowf4O4dqTPpDdLp/9hFwcJkg==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1767011621; bh=LcQHqzHh4nhBC7vPasEJMZd
+	EfKtsGmouwejn7o3sprU=; b=m9d7A8fwcW/wb6RxD5Exfd5E0nRqloHKIbDo2ks0i9n0phC+wk
+	0/o19x+lJ6Evb9R0YM1I9dAxyCHN/XR2LXDA==;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Date: Mon, 29 Dec 2025 13:33:41 +0100
+From: barnabas.czeman@mainlining.org
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+ <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stephan
+ Gerhold <stephan@gerhold.net>, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/8] remoteproc: qcom_q6v5_mss: Add MSM8917
+In-Reply-To: <aVJhH17XH1srlroL@linaro.org>
+References: <20251228-mss-v1-0-aeb36b1f7a3f@mainlining.org>
+ <20251228-mss-v1-4-aeb36b1f7a3f@mainlining.org>
+ <aVJhH17XH1srlroL@linaro.org>
+Message-ID: <d531f1346b59af06c323f393883b1d13@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <761d6573-3751-47fb-9b0e-8063f3cecf76@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Mon, Dec 29, 2025 at 12:16:17PM +0100, Jacek Anaszewski wrote:
-> On 12/28/25 19:22, Jonathan Brophy wrote:
-
-> > This patch series introduces an optional "led-instance" device tree property
-> > to address non-deterministic LED naming when multiple LEDs share the same
-> > function and color.
-> > 
-> > Currently, the LED core appends numerical suffixes (_1, _2, etc.) based on
-> > registration order when duplicate function:color combinations exist. This
-> > creates several problems:
-> > 
-> > 1. **Non-deterministic naming**: Registration order determines suffix values,
-> >     which can change across boots due to probe ordering, async initialization,
-> >     or module load order.
-> > 
-> > 2. **Non-semantic identifiers**: Names like "lan:green_23" provide no
-> >     indication of which physical LED or subsystem they represent.
-> > 
-> > 3. **Breaks userspace automation**: Network management tools, LED control
-> >     daemons, and hardware monitoring cannot reliably identify LEDs.
-> > 
-> > 4. **Ambiguous numbering**: "lan:green_23" could be mistaken for LAN port 23
-> >     when it may actually be the 23rd registered LED of any port.
-> > 
-> > 5. **Namespace pollution**: The alternative of adding vendor-specific function
-> >     names (LED_FUNCTION_LAN_PORT0, LED_FUNCTION_LAN_PORT1...) pollutes the
-> >     function namespace. The instance identifier keeps standard functions clean
-> >     while allowing contextual differentiation.
-> > 
-> > 6. **Breaks naming convention**: The _1, _2 suffix was intended only as a
-> >     collision avoidance workaround, but has become the de facto standard for
-> >     hardware with multiple identical LEDs.
-> > 
-> > **Example: 48-port network switch**
-> > 
-> > Current behavior (non-deterministic):
-> >    /sys/class/leds/lan:green      ← Port 0? Unknown
-> >    /sys/class/leds/lan:green_1    ← Could be any port
-> >    /sys/class/leds/lan:green_2    ← Could be any port
-> >    ...
-> >    /sys/class/leds/lan:green_47   ← Could be port 1 due to probe order
-> > 
-> > Proposed behavior (deterministic):
-> >    /sys/class/leds/lan:green:port0   ← Always port 0
-> >    /sys/class/leds/lan:green:port1   ← Always port 1
-> >    /sys/class/leds/lan:green:port2   ← Always port 2
-> >    ...
-> >    /sys/class/leds/lan:green:port47  ← Always port 47
-> > 
-> > **Example: Multi-domain power indicators**
-> > 
-> > Current behavior (non-deterministic):
-> >    /sys/class/leds/power:red      ← Which power source?
-> >    /sys/class/leds/power:red_1    ← Which power source?
-> >    /sys/class/leds/power:red_2    ← Which power source?
-> > 
-> > Proposed behavior (deterministic):
-> >    /sys/class/leds/power:red:mains    ← Mains power indicator
-> >    /sys/class/leds/power:red:battery  ← Battery power indicator
-> >    /sys/class/leds/power:red:usb      ← USB power indicator
-> > 
-> > **Design principles:**
-> > 
-> > - Backward compatible: Instance identifier is optional
-> > - Extends existing convention: function:color becomes function:color:instance
-> > - Follows kernel precedent: Similar to eth0/eth1, gpio0/gpio1 naming patterns
-> > - Ignored with deprecated "label" property: Avoids conflicts with legacy code
-> > 
-> > **Alternative solutions considered:**
-> > 
-> > 1. function-enumerator: Only supports numbers (0, 1, 2), producing names like
-> >     "lan:green-0" which are still non-semantic. The 48-port switch needs "port0"
-> >     to match physical port labels.
+On 2025-12-29 12:08, Stephan Gerhold wrote:
+> On Sun, Dec 28, 2025 at 03:21:54PM +0100, Barnabás Czémán wrote:
+>> Add support for MSM8917 MSS it is similar for MDM9607 MSS
+>> only difference is the mss power domain.
+>> 
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
+>>  drivers/remoteproc/qcom_q6v5_mss.c | 46 
+>> ++++++++++++++++++++++++++++++++++++--
+>>  1 file changed, 44 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c 
+>> b/drivers/remoteproc/qcom_q6v5_mss.c
+>> index ffafbe501a05..2579558fb567 100644
+>> --- a/drivers/remoteproc/qcom_q6v5_mss.c
+>> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+>> @@ -259,6 +259,7 @@ enum {
+>>  	MSS_MSM8226,
+>>  	MSS_MSM8909,
+>>  	MSS_MSM8916,
+>> +	MSS_MSM8917,
+>>  	MSS_MSM8926,
+>>  	MSS_MSM8953,
+>>  	MSS_MSM8974,
+>> @@ -749,13 +750,15 @@ static int q6v5proc_reset(struct q6v5 *qproc)
+>>  		goto pbl_wait;
+>>  	} else if (qproc->version == MSS_MDM9607 ||
+>>  		   qproc->version == MSS_MSM8909 ||
+>> +		   qproc->version == MSS_MSM8917 ||
+>>  		   qproc->version == MSS_MSM8953 ||
+>>  		   qproc->version == MSS_MSM8996 ||
+>>  		   qproc->version == MSS_MSM8998 ||
+>>  		   qproc->version == MSS_SDM660) {
+>> 
+>>  		/* Override the ACC value if required */
+>> -		if (qproc->version == MSS_MDM9607)
+>> +		if (qproc->version == MSS_MDM9607 ||
+>> +		    qproc->version == MSS_MSM8917)
+>>  			writel(QDSP6SS_ACC_OVERRIDE_VAL_9607,
+>>  			       qproc->reg_base + QDSP6SS_STRAP_ACC);
+>>  		else if (qproc->version != MSS_MSM8909 &&
+>> @@ -817,6 +820,7 @@ static int q6v5proc_reset(struct q6v5 *qproc)
+>> 
+>>  			/* Turn on L1, L2, ETB and JU memories 1 at a time */
+>>  			if (qproc->version == MSS_MDM9607 ||
+>> +			    qproc->version == MSS_MSM8917 ||
+>>  			    qproc->version == MSS_MSM8953 ||
+>>  			    qproc->version == MSS_MSM8996) {
+>>  				mem_pwr_ctl = QDSP6SS_MEM_PWR_CTL;
+>> @@ -826,7 +830,8 @@ static int q6v5proc_reset(struct q6v5 *qproc)
+>>  				 * Set first 5 bits in reverse to avoid
+>>  				 * "inrush current" issues.
+>>  				 */
+>> -				if (qproc->version == MSS_MDM9607)
+>> +				if (qproc->version == MSS_MDM9607 ||
+>> +				    qproc->version == MSS_MSM8917)
+>>  					reverse = 6;
+>>  			} else {
+>>  				/* MSS_MSM8998, MSS_SDM660 */
+>> @@ -2538,6 +2543,42 @@ static const struct rproc_hexagon_res 
+>> msm8916_mss = {
+>>  	.version = MSS_MSM8916,
+>>  };
+>> 
+>> +static const struct rproc_hexagon_res msm8917_mss = {
+>> +	.hexagon_mba_image = "mba.mbn",
+>> +	.proxy_supply = (struct qcom_mss_reg_res[]) {
+>> +		{
+>> +			.supply = "pll",
+>> +			.uA = 100000,
+>> +		},
+>> +		{}
+>> +	},
+>> +	.proxy_clk_names = (char*[]){
+>> +		"xo",
+>> +		NULL
+>> +	},
+>> +	.active_clk_names = (char*[]){
+>> +		"iface",
+>> +		"bus",
+>> +		"mem",
+>> +		NULL
+>> +	},
+>> +	.proxy_pd_names = (char*[]) {
+>> +		"cx",
+>> +		"mx",
+>> +		"mss",
 > 
-> I think that we have currently everything in place to address the issue
-> you're trying to solve with this patch. Just introduce dedicated
-> function like LAN_PORT, and exploit function-enumerator.
-
-The problem as I understood not exactly in this. The reporter wants
-deterministic way of the mapping between HW numbered LEDs and their respective
-names. It seems it was already mentioned that current code depends on the
-arbitrary probe ordering. Saying this, I now think that perhaps GPIO led driver
-should somehow allocate a range of the LEDs and then enumerate them in
-accordance with the DT description?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> Are you sure mss/pm8937_s1 also works as a power domain? It seems to be
+> a plain regulator downstream (similar to msm8226/msm8974).
+> 
+> Same thing applies to MSM8953 as well though and there we seem to have
+> decided to model it as a power domain ...
+They have this at downstream, i guess this is why handled as a power 
+domain.
+vdd_mss-uV = <RPM_SMD_REGULATOR_LEVEL_TURBO>;
+> 
+>> +		NULL
+>> +	},
+>> +	.need_mem_protection = false,
+>> +	.has_alt_reset = false,
+>> +	.has_mba_logs = false,
+>> +	.has_spare_reg = false,
+>> +	.has_qaccept_regs = false,
+>> +	.has_ext_bhs_reg = false,
+>> +	.has_ext_cntl_regs = false,
+>> +	.has_vq6 = false,
+>> +	.version = MSS_MSM8917,
+> 
+> You could set MSS_MDM9607 here to drop the extra diff above (but not
+> sure if that would be clearer).
+> 
+> Thanks,
+> Stephan
 
