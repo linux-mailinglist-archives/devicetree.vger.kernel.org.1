@@ -1,139 +1,178 @@
-Return-Path: <devicetree+bounces-250251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2602BCE73EC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 16:46:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A83CE73D6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 16:43:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9C04D300101D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:46:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 67429300FE3A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD2432AAC5;
-	Mon, 29 Dec 2025 15:39:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 475612FB093;
+	Mon, 29 Dec 2025 15:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="H73NCP0E"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XeMGwU4j";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="T5J/6A0B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5CA2C15A3
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 15:39:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABCD01A2C11
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 15:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767022774; cv=none; b=jn3OKwhN7dkSp6rDDavOx2fO7rvCZYogPqG1c3Qbrsh2/scgRi/XR5XjymqKzX+jw/LR11cGXJ1y3aMiIBa5ZR5lnzBc+btuRTypn5z14XMNKa5/wHJBlJa66YvyssgJcmzgh5fK+Q0QIZDJpHfFm7MQTwqLR/esd5xvlhq+tyM=
+	t=1767023003; cv=none; b=lPp54bwAH+3Tisz5J59ICuq77noD6s8uU3+lWp6cTD4cF/suUoG3YKRuxXjQwLjaj//OF4S/NVjD28md+dqz8YIFmyKQ7Y7KdKzm5OLgCcjfeY/f7Csbsh/HPrgeVxhLdQ8M0isNJKowgOeNWllkaAa7HcZlXSag/9jr2IZAGDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767022774; c=relaxed/simple;
-	bh=RcDGedmXwSRUgRLTsRrQXPhrzcqVDmty+VallOtpd/8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U/f/uDmi5pSrVYtNZcx321FGpn2r2tLgxIyXIPBPlGNVfOfDnGa3bjzvsovxXhs+YhhzjtzW8JDgUOMzB8en9YviRNZ0d938hGWIZaqDMqNGntdoun1nkXoLVjA/xRIAzGOqpUZaZmw/ucSC8+rZkQDx9BI2DAu0RFV7fKpCV4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=H73NCP0E; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47aa03d3326so58511025e9.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 07:39:32 -0800 (PST)
+	s=arc-20240116; t=1767023003; c=relaxed/simple;
+	bh=KyDA5jPbitptgL8V2pPJ7YAiOEfGG065+97UtlBDPwE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UpO3f71q6c3vGVcoWA7xzust+p5RWWU9ot2MPOtFRjeyyNBuhV4rsMC5dFL2pt7ezZ9jTdx/lfzzFWIs/g0hKHn/SRRsY1otgP0IP/E60kadIvwZTrlAwSEhicA7wxY55yUBLKiOWNhUxn9/hXVP3A74NPRxJNwu5Y2souS9b70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XeMGwU4j; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=T5J/6A0B; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BTAavRM3371288
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 15:43:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tDPZx1B4hbN1p8L7tZRDpAuAg6RUpSWIFhPjpfL2tQc=; b=XeMGwU4jp+mQjeAd
+	pMvAeIWNMCKYZlcJJT/bIDE1yOXUnFYFS7boNhHpcXtafjUo7V1nFY5R3foeh2Jm
+	BKfvotKU2wEQfr2JFrYcv5fZZKnWPyJyIBMVlPcxr0wicAxPwFMOa+UKE0d9VE85
+	1yfh2w5Y/Of3eLozY+Qg5tLCJ1jP41o6bdY99c9l2B7GMvAWI9zR09xOJWbkyy2a
+	fPmZ/rq36dQApWPnyzCE1K7lTjjT2nPzXNwZagtvPSra8n0BlH2kSGkPkAQ4rrZ1
+	kG6T9zj435fWZBVQ5xtZloMxkjmpA/1Z1AbOudI2Y/GQNOc/qzG/fDZ2ho/8pk/P
+	+RCB2Q==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ba4tnvxdp-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 15:43:20 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee05927208so41267291cf.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 07:43:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1767022771; x=1767627571; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SGYWl17fxV3/QSiEObh01QR9aeCd8OVP6SgH7H57To8=;
-        b=H73NCP0E4n/FY1Kx285YMugsoVY8U/mFz5cVF0U06c7i85Nw/xDnpx2Vx/16uMVev+
-         QvLdBGUg6Aap+ry57wq95W7xVFXS2at+0gXp0QgI7iF8CEq8BJitlxIEMY7ZMaUHiZYj
-         hsvFpRWFn5eqKqKgMOWejeQ0tPVSrIHhnvZL4=
+        d=oss.qualcomm.com; s=google; t=1767023000; x=1767627800; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tDPZx1B4hbN1p8L7tZRDpAuAg6RUpSWIFhPjpfL2tQc=;
+        b=T5J/6A0BWG/DvHt22pCuLA9uh9sHNrZuPIE1MAxPGDz0Uc/OcsagupvepDmptPibIT
+         k0iVQcUz2GvkX/Z0orAPloEC2IYPhOw/sQWdJbU5jlZkQhqcd7lo598/dS+nMx4TaqzF
+         X20y1WdD+AQdZaIruGJnjVlfdFIOjaBnbr+AKcxP1Ahadf7kVzQsglb72X3sAwFPkYUw
+         SLmkOxa/UUysppaDiDEOf57yH2wPatc26GAP0kuS4M9zpL+pRA7zCOwhEwtKFvGzgjKw
+         HR2a4S3dhFP+QGkO2zJPWHUlGzNGQ0WrKYkL6qz4g+EZYOnegONe6CgPsLgn+e0pK8oo
+         PonA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767022771; x=1767627571;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SGYWl17fxV3/QSiEObh01QR9aeCd8OVP6SgH7H57To8=;
-        b=pxrZ+jquXZ85VA/xxK4fRqzmFnkGNGrHjlXWKFIqlNWRETB5FGLlAlCaGgHBAQvLr1
-         0YL24dlb4UyXvb5jnyHQX6eDrKho3s7g3WKj/y169Tz/zLK9C07st9+uv0hpeVHd4UYS
-         0I0LFxPWBaHzNsTVQbX8rY2s+PENzXYs5WGkUHPZf17yYqgmO7ap+3RfePS9KF+bV7P1
-         G4J667x+MqmbXAi6k7+ch5TtbV1MrVC6lCSYbWwL01XrDx/LAp6L+380dpTKp6jYAm0A
-         /CoBKcR7mQEa8lG7TlbxlExUAa/tFdUAAi0KeEaOjRZFOmLLNSPueQPr1UefaoMgWXMA
-         AbvA==
-X-Forwarded-Encrypted: i=1; AJvYcCVa/wuyWDl1+l9Hcu2YWi7pP+IJ6bBLSF1HPAGgJ/vok30jJ08wievxdZ8W3deMKyH/X0XQTC3pRMNQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3ktwxUGHaMj+22BJpWSDHZHprDzOoyXE5nbvTy90dyvd1MCoE
-	ZA6wBHUvgx+BW56/5YrEyZtkNgQfMFe2N5Y2glxGtMafGUeGHyu3WDA3ezSXUMk8VA==
-X-Gm-Gg: AY/fxX7nXtFLv3S9jmYtY0J4fO4Anxxnhqs+pJcG80AjzJ3ZmBFvJuryk11vGnBUebo
-	ndzGS0QXIA2CChv/OYIizyHXL/fx39gUeoRBwTklfFZCc5pEEsXudYuBGdvpfzVV2lTYj10I2+y
-	Q0opKssozITh0DfWSeVl0UEgbSgO0bx8jKnidQncH5VNkkiYa/jFrQPOAe1RF1LMp7IhM3tIw8i
-	SCc0SRRrwGIQrBPcb+iuhHA69uhLcnor9I9PwIXvMOoU9qeNoFOFnuMnJ0+gC//6hU7HKKbjNgx
-	nAwizqOysT9IFNYbXTeomU546N6CNDb5mhOoEqFmu5qIKM4NVgEv+QcMoMumH52ohm0xyhcl1Pa
-	05sXEQGHqvaKr7IvHaT1xjs4PhSvJy9ZDJZWiCoH+ow2yDUf4MFR8vqvTsmny5uLJJT2yl/NZvc
-	njL7/OtzsZXHLrtAZ4sg==
-X-Google-Smtp-Source: AGHT+IFl14WZKwhPmiisq47nhuqUJz7ve89LSx2Bze9QplnBFGeno8tXs3tel78LX13pZskSo/9nSA==
-X-Received: by 2002:a05:600c:4f15:b0:477:b734:8c41 with SMTP id 5b1f17b1804b1-47d19538dfbmr400115935e9.1.1767022770807;
-        Mon, 29 Dec 2025 07:39:30 -0800 (PST)
-Received: from google.com ([37.228.206.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43277b0efefsm29752839f8f.25.2025.12.29.07.39.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Dec 2025 07:39:30 -0800 (PST)
-Date: Mon, 29 Dec 2025 15:39:28 +0000
-From: Fabio Baltieri <fabiobaltieri@chromium.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Simon Glass <sjg@chromium.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: google,cros-ec-keyb: add
- use-fn-overlay prop
-Message-ID: <aVKgsGwb9Rqteekj@google.com>
-References: <20251224152238.485415-1-fabiobaltieri@chromium.org>
- <20251224152238.485415-3-fabiobaltieri@chromium.org>
- <20251227-laughing-white-dalmatian-f9d98a@quoll>
- <aU__uxDmeUq20Mg3@google.com>
- <0c01fa63-670f-4c82-aa74-dc855cb12a78@kernel.org>
- <aVKDJhVuOz-V9tb2@google.com>
- <c539aa2a-e9be-40e7-9b75-1723bdaf0a39@kernel.org>
+        d=1e100.net; s=20230601; t=1767023000; x=1767627800;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tDPZx1B4hbN1p8L7tZRDpAuAg6RUpSWIFhPjpfL2tQc=;
+        b=f3ud0XAJfxm/aJw/UgogbglKa+fza8bJbyuzFU+f1rjujQV4ME8V7L/ahz/rnD5F/C
+         myilB89kjjMS9N2fmUVkQyWWIotbv2srVCDfApNcrwqJcfv64Nrv8AWcxSaC2V4SH2vU
+         ZvkuebB9duPNA88rgaFs46AtmRmB+LvGyPhhYRZBPERo/J5qIteKjJLjR7jtytI4ilj4
+         sdQwjfaC+LHp+kJElhOik3kowgVX9+E867cPHN5wYYkewhDWB9ny5gr5oTVDibDzWqla
+         bDgVNH8NrKuwuJKRmw297tgBGQWLJRnXvLKg0LgRGTE57DLmsNMD8i8TZ+nmf8lz0s4P
+         pHzA==
+X-Forwarded-Encrypted: i=1; AJvYcCVqAbOdgPrxABZnyaXKC8NcJSGQoiXJ4eWLMaNkLe90RC7jVvK5b4JGSj5oqvMz3zZ+So/lmmP8H2Hj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyojFDX76XQ8fSfDmnqcDhsEtBW5fVpwidLhe0l00PL4RxbXpHx
+	OvFzZ/vmQoTOtpjymL90iEFtejnuhVGUWjRcNZy40kDfSc2mPdVHUBzTDvLlCGxiNY9P81to7X3
+	k1BNiATbpqY9L87DNKC7A/uIoqhNuisi0GdWe5NBK++e1LRmgTufUPtNbpcGh47b2
+X-Gm-Gg: AY/fxX47jATn1+P4l+fVgJ3/IEVOBf9dIPQlu/6EhnAF1+VaKtMlD/uklwUY1MIWy+L
+	E5w8tr/Fh4xkLJM5Hw0Bx2eMsHEMMvHn2gTmvyXxXom52q/0u9CYrp2i/3Z6mqm1dge6p7Zud5O
+	ItRmXfht4wP/9G9NFag8MGrolKxiX6VHW2yVpkTD3hZVnBS0XOjTybmHeNV37CWSaulYi9GH1jd
+	NumBpqMvspbIEWWcvdMvJkU3tNpdSCpRYXP8FIhZZYFm0jC2nPIkSotAVm02sceHHnfMOvxRzWn
+	tKvwZmtD30X2/VkNcmZVkdxxR6sBvWFroV3Iru4R9Zzx8RTyPJNzPy7vIQK5Jw6l/22D1Dz74Mp
+	QTqC9f28k1H2XlpHd+xtE8iewrBNic3OUqZn8LRMAWTZxgPb3IuPH+jEbi9+/Fjn9Ag==
+X-Received: by 2002:ac8:5a46:0:b0:4e6:eaff:3a4b with SMTP id d75a77b69052e-4f4abced018mr342115941cf.4.1767022999982;
+        Mon, 29 Dec 2025 07:43:19 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH4GslQPK0btiYKcbqKhdOiyHZI65pBxoO4J3Cjlea9v68qz5mTSWi+lMtSPy2Ny6eH1xPqGQ==
+X-Received: by 2002:ac8:5a46:0:b0:4e6:eaff:3a4b with SMTP id d75a77b69052e-4f4abced018mr342115521cf.4.1767022999558;
+        Mon, 29 Dec 2025 07:43:19 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b90f53c16sm32305340a12.1.2025.12.29.07.43.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Dec 2025 07:43:18 -0800 (PST)
+Message-ID: <98e90787-885e-4e9f-a854-4a756e33ec9f@oss.qualcomm.com>
+Date: Mon, 29 Dec 2025 16:43:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c539aa2a-e9be-40e7-9b75-1723bdaf0a39@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-tama: Keep labibb on, so kernel
+ can disable it
+To: David Heidelberg <david@ixit.cz>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251202-tama-labibb-v1-1-f8f3fda53d1d@ixit.cz>
+ <ed0bdcae-6fa1-48a4-9618-e0ac09097f9e@oss.qualcomm.com>
+ <e3590c98-785f-4774-bb57-04c65cf12d21@ixit.cz>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <e3590c98-785f-4774-bb57-04c65cf12d21@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=G+YR0tk5 c=1 sm=1 tr=0 ts=6952a198 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=YbIqboIzxJKirXsSkAcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: 0AgUUblKjNYYw8nEg4egD_q2m4NUbRam
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI5MDE0NCBTYWx0ZWRfX2gN9kKfof7a3
+ 6NSdcwrW6KW3TpSguF2IetXhJPUDgoKkV6Hsy5h8K29tEAuueMHB8AVKV0lIyW+vW3ZTU/Ddph1
+ +x5njSJ3Rs7QaNl7U6goIs9fcVazSV10hJAZ+XvenPjSW5IzSIAomqk2Ek8rNEfeYiGhMGwOx9Y
+ wQRqF39KQRBuL3ZrttcZTspF57HLj+UdZMY+jnlQKaXr+mfhyPZqbs45E5blzi+TljKRE3vj7Cn
+ KETSyybvRRDhM1GrZ1hRqVL4UofHASNcccqYKe0IySV4x94VbFq/HJtC+7FCYIS85ysH4q1U9QC
+ IoDSJnC3zXodeqPvDkUXs2SUV8aXnlmdVLwoxNPYe1EfykjzU+xU0pkQDGFeiUd8/MXfXW5Yof1
+ rVyy4kAoIlpov2F0y1F+VXlPIr7d/VGHfUzWqL49JGzvEx94wcudzhUIGM4MRa5mkGeThP0IsEe
+ mf0f5MD9H0tYMebrfeA==
+X-Proofpoint-ORIG-GUID: 0AgUUblKjNYYw8nEg4egD_q2m4NUbRam
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-29_05,2025-12-29_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 bulkscore=0 adultscore=0 spamscore=0
+ lowpriorityscore=0 suspectscore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2512290144
 
-On Mon, Dec 29, 2025 at 03:59:44PM +0100, Krzysztof Kozlowski wrote:
-> On 29/12/2025 14:33, Fabio Baltieri wrote:
-> > On Mon, Dec 29, 2025 at 01:49:05PM +0100, Krzysztof Kozlowski wrote:
-> >> On 27/12/2025 16:48, Fabio Baltieri wrote:
-> >>> On Sat, Dec 27, 2025 at 01:44:26PM +0100, Krzysztof Kozlowski wrote:
-> >>>>> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> >>>>> index fefaaf46a240..437575cdf352 100644
-> >>>>> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> >>>>> @@ -44,6 +44,14 @@ properties:
-> >>>>>        where the lower 16 bits are reserved. This property is specified only
-> >>>>>        when the keyboard has a custom design for the top row keys.
-> >>>>>  
-> >>>>> +  google,use-fn-overlay:
-> >>>>> +    description: |
-> >>>>> +      Use a function key overlay. This allows defining an extra set of codes
-> >>>>
-> >>>> What is a function key overlay? Overlays are DT term and therefore are
-> >>>> not suitable for bindings.
-> >>>
-> >>> Ok, guess I can rename it to `use-fn-key` or `use-fn-layer`, open to
-> >>> suggestions really.
-> >>
-> >> Use as Linux should use? Then it's software, so not suitable for DT.
-> > 
-> > Sorry I'm not sure how I understand the comment, this describes how the
-> > driver handles a keyboard with Fn keys, the codes are defined in the DT
+On 12/15/25 8:07 PM, David Heidelberg wrote:
+> On 02/12/2025 13:55, Konrad Dybcio wrote:
+>> On 12/2/25 12:31 PM, David Heidelberg via B4 Relay wrote:
+>>> From: David Heidelberg <david@ixit.cz>
+>>>
+>>> In case if they were enabled by the bootloader as part of some
+>>> reference/common routine and left hanging. Linux will switch them off if
+>>> they're never used.
+>>>
+>>> Discussion about it can be found here:
+>>>    https://lore.kernel.org/all/20251130-oneplus-labibb-v1-1-bb3653e43120@ixit.cz/
+>>>
+>>> Fixes: 5dcc6587fde2 ("arm64: dts: qcom: sdm845-tama: Add display nodes")
+>>> Suggested-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>>> ---
+>>
+>> Perhaps "keeping it on" is a little bit unfortunate in that the wording
+>> collides with keeping the regulator's output enabled, but anyway
+>>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> Exactly. The purpose of DT is not to describe how driver should handle
-> anything.
+> So, friend fixed tama-akatsuki against -next tree and having labibb nodes there crashes the kernel, so it seems disabling labibb had some reason.
 > 
-> See also DTS101 from this year's ELCE.
+> So, please do not merge until figured out!
 
-Sure so I guess this falls into the "describe the hardware feature"
-category, so is the suggestion to rename it to something like
-"has-fn-key"? That would be the hardware feature.
++Marijn could you take a look?
+
+Konrad
 
