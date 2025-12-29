@@ -1,42 +1,80 @@
-Return-Path: <devicetree+bounces-250090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DAB1CE6325
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 08:59:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B90AFCE6328
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 09:04:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8FCA13000939
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:59:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 88A0A3006A90
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 08:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DEEA26738C;
-	Mon, 29 Dec 2025 07:59:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F5721254B;
+	Mon, 29 Dec 2025 08:04:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BLc6qFRo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E0371D9A5F
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 07:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D0F62B9B9
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 08:04:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766995186; cv=none; b=Kir8E9FTPZFaQaMXrlYnG9tS9peNjsdqvgkpIRr15dUj9XC+Vm6zkbX8rpAIPrGTOqoc9A+r99rREM+HK7DHnORCotRsO2jqu3Mt3vE3Rx3Wg8o4PM4B15i+kyC1ftC007u+BXKetWsh1OB86BtuPs1E/R76imki2E5Gh9yicqY=
+	t=1766995482; cv=none; b=o8+JVS5Y2/DOA4hNJ9ZuETeI+q8/pTfWjCXyvj+Eubx8tyx/79rhrn2v7ZK3u9+4zIg9ehUyGz1Vtpt8Y1RiyzUqlCw4fv0tBpMogESvXqgMlYpyO8XNyBorjCd/K4LdDzdB+2hXlU1rqQe4Szxkk3vy7epOPinXNMWxaSiy8Pc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766995186; c=relaxed/simple;
-	bh=hPoeXbRzNZCysTQ5aMyX/1iYMZTo+XJF7LrQ8EMfRq4=;
+	s=arc-20240116; t=1766995482; c=relaxed/simple;
+	bh=QGq4DPJ0jJ/rHKZagYA/Gwi/I8NZNKw39yi03vPCY6M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AAyROTL3INZZXIzQRGKitzB0EANA35Zpw5p7BfyZWaZabCSK17pPwBKxb8pCN3E7lOe5tLoYmKa5BMOP9AnZ/tYtswiHyLix6ERcmClZnP7uwzppqJsL7sedWYkPf+MroQ6dYp7WpzQykd30+mKitn8xDI5EnMWFnDtFYrAPg/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.19.206
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1766995102t04fb815c
-X-QQ-Originating-IP: aX+gxg3+YMcTyAJHZj8K6KJO/EaqsqmjkAbqeYRXE7Q=
-Received: from [IPV6:240f:10b:7440:1:3961:bf03 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 29 Dec 2025 15:58:19 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 13615831732151771395
-Message-ID: <695F691E743D4DEE+18cf202a-fd78-4b3a-9387-eef18c061f5d@radxa.com>
-Date: Mon, 29 Dec 2025 16:58:19 +0900
+	 In-Reply-To:Content-Type; b=t2L46QefJ/GWxGybsVh/IXSqyxQrFbqgzFnOKY6YQpg8Bgffxu8bg0TVh/jCGc00qB50NTuh/L6IRdGjqe/pYTGX7+a/d97JLop0Kf5s7tg4GY1/ypCuzsHSUJd7j0VAEIxF6q9RfFoJ1EUE2WwJttbjYd9lq8dENaIDntSc+eA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BLc6qFRo; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-598efcf3a89so8602865e87.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 00:04:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766995479; x=1767600279; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Wxgtnknbp9U58qvY6RDKQlVjrvd1hHGIvUEbNeV4crE=;
+        b=BLc6qFRoSzSMuhUVgLfr+SKtUyeDN56/SWuzC48loOe3rmTRkm2u4lidvNDywmKSc6
+         mz2esSwArgp46wP8Of+G1P1cPtMWiyDkkY1gqvytByNBte7o5OYz4KXvXX/G6fqt5V0P
+         seoYiDL+9PoqdZRrB1WMHZzjFZCEx1CX7e4Wvqle1Y/YHRPuzHnZybUliruJctCJf7yL
+         neVsGA3XyIRIZhzIxFuUpiLNqzHBwwmSwtZWHogWKq/P1OD4S92F/HAqd8DNpBbA5enA
+         qrDae9Xxk3FEwjhXfVvRKRx64AM0xfesOeCK6BIUMc7NoM/Og//qCO71l3ZDQ4Ln6iBp
+         Oxyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766995479; x=1767600279;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Wxgtnknbp9U58qvY6RDKQlVjrvd1hHGIvUEbNeV4crE=;
+        b=j09ZB6CAP2yq5d3A6RZiCE+S3nEXKONhh8dOErQGFL6WLHzYcIvmy04Rr3gPKZnD/Y
+         t2XPGAEAcZ1QwOn9Xa8OBKnx59lIPcULD45bg398HC2SCwREYxl9x+7kYJGohI9sar5B
+         dbG/lLGCXkcIsrmiXDMUGx82Kfqa/9E+7bOlT4hxXefnH9bM+MRxcXRXyD7EkUYivDg+
+         q4YiHL77sid46fDwRUrVvvRQkwlRKON4mMGupbVviw6u0iNIyC3ShqwfPZIXxTJLzupK
+         VYoNTNhY/eveL0wm3zoI/IOy3K03af0+FLbNJTo7eSeODynlx6yrlQHjgeP43M9q+HEn
+         653g==
+X-Forwarded-Encrypted: i=1; AJvYcCU+vewmeRBEx8RniaLTsOekU7hjcjfV1jov8FQ8OIkV9nm2yyq1nQPSKoYGbQowb4+z3iah14SIzitN@vger.kernel.org
+X-Gm-Message-State: AOJu0YylANjZyy3WMWBIHnYzsOfXhm6APveYJFE0Z/rJKqRx0Pq+ZaCC
+	NmWZiJ0vSVU/7SCXgfHb81TgbkYWlVKoARvJZoFDD3crEaulIOkk9NJo
+X-Gm-Gg: AY/fxX4HQ27GjZaGorUSYTe0FxG1aWDrKFlLSu3ifcwGCkCCsxn3A0C9OaKHocEceXf
+	od2YnAobHYYaa5VZqtg+DDkWA22kv1G50cH6LnCYTA/Daw+03J0W2DEuY9Eo+A90F9fjQg6LYJp
+	Pm8ATAtg1LE4+gDQ7/uiKtTDykGnxXDdwGdIWvmH6Wag/rLRtHkXw1MmT9l7p+ifQB/Z54UUREm
+	LK7pAZoQbyBa2RgG5dk/4jGdkWijgsaV3QlvDX018zRfOkOgkFXdRKsFSlHdDD2+MW9sBJatgqv
+	gtuWfrtDOjuxlr4BG21wEEAK9MgEyzdW0Pe6zyz6NFt4ey1rDc7HxmtsMKMqqTDMIxrrlwwz/l0
+	A/HXhZ0RSrbDwYJG5LsRYVQdGnxvRK/hsAw8NpUmtESmbofN27tbqiXRo7EKlJexNjstgk7DZxa
+	0rEkG8H4HWv7S3630XVC6rXSUpZv0WpuSfXqJ6oNCXgws0M4Dms5/ShLIzRY40BZhnbNCm
+X-Google-Smtp-Source: AGHT+IHv7BrFv+9Bmci9Wx37WLq70y+3/7ZdPTcagW7BQFhWX9hxw3OqjOFGnEeRtNerT1X0WbSrPA==
+X-Received: by 2002:a05:6512:4016:b0:598:f4cb:aafd with SMTP id 2adb3069b0e04-59a17d958b8mr11139461e87.19.1766995478827;
+        Mon, 29 Dec 2025 00:04:38 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b30f7c322sm4395390e87.59.2025.12.29.00.04.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Dec 2025 00:04:38 -0800 (PST)
+Message-ID: <c386a4bd-9c7d-4b4d-b614-fdec424d57a0@gmail.com>
+Date: Mon, 29 Dec 2025 10:04:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,318 +82,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/3] arm64: dts: rockchip: Add Radxa CM3J on RPi CM4
- IO Board
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- catalin.marinas@arm.com, will@kernel.org, kever.yang@rock-chips.com,
- jonas@kwiboo.se, michael.opdenacker@rootcommit.com, honyuenkwun@gmail.com,
- quentin.schulz@cherry.de, dsimic@manjaro.org, alchark@gmail.com,
- pbrobinson@gmail.com, ziyao@disroot.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251229073840.25516-1-naoki@radxa.com>
- <20251229073840.25516-3-naoki@radxa.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20251229073840.25516-3-naoki@radxa.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add Texas Instruments TLA 2528
+To: David Lechner <dlechner@baylibre.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Jonathan Cameron <jic23@kernel.org>, nuno.sa@analog.com,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Angelo Dureghello <adureghello@baylibre.com>,
+ Tobias Sperling <tobias.sperling@softing.com>,
+ Eason Yang <j2anfernee@gmail.com>,
+ Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+ Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
+ duje@dujemihanovic.xyz, herve.codina@bootlin.com,
+ Rodolfo Giometti <giometti@enneenne.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com
+References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
+ <20251223155534.220504-2-maxime.chevallier@bootlin.com>
+ <56c03c7f-1e5b-4586-beb0-47a1fa3bc86c@baylibre.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <56c03c7f-1e5b-4586-beb0-47a1fa3bc86c@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: NEDcVTmWjWOdhax4sen8UjI1gnikfAatErMeje1KTEubEQ8xKSCBAf7C
-	Xym2CsNtjLhWLzOH2Ew9q6t9T3VeALcOrZTBuzBV8HUY9hBis6A5jnn9Akq9ZigPcZ9cHFr
-	mmcbkvDpElzdTIf7toAPdnePIuj4/jAtwKaPVrcZuNXwpUTldgJAnm2yzczTsV8jpd9DYTX
-	pLDVWXWkXaPklU4UAGzkqv1/JrmEzuM/e75Oxn3Knx6xn7DHBZNbC+DqSyFv+KcKw55I/Ne
-	H/rYF2leKglp3fuwmWNtBRF+VKPcJDc1unYZoRfWwvj0ydT/Dotk6pWA6GeIWNTz+HXwh2W
-	7CmuY/9LuJKM3D3IHN5SIZ9FX4k1arVPQg6hlFcMwwUnwLUKV4HEP3C6o/V2SowERE+8Vdv
-	3OBbqbmunE521M1BnDR5Q7dJkm4qVUfwUrzdVgRndqVvJhBRBF7hW3yon8AJBxAnv/nchlh
-	GfQRAB71UndsFYnvHPlguGX6qEzQquLArm84K2owcS/MgLllWiZMU7gxMBvxaotPk8wqgws
-	7lB/uJuQvkUIWZVnYBiSWjLzVNYzYIm4hvEQJCWKHnlLWjwwdeffivLk01GUUPvE2hyks3j
-	5Ac1DhZAdKF0sVs8XXFsMEsUeV2btTkKwSXX2GHfZITGX49IMVIW4nT3UrGtvcVnqkTuDgE
-	/yBEVsFlOkPxH6nwpO0wZJMV8Xl1GUHP9J++lx5EdxJJDQtQYZqCEKycQ2VesXwjy1tKaT6
-	0N4c9xbbiof2JmJzb+c7LcgjygtCApI+OasGCFDxe6oTLwX2kSveCUF+Sw6NRm0wK8GG4NT
-	kVEB3ASYmPqtPRixk9gZ+NLntPESULsxVKjatVULXr7Z8bcb6PvS2QoZxaZHiaP8A4Ffc+C
-	4HB05+mL0aP/lMT84WQH56rALiPT6e3EIx2HCxqNxIEJKl1c7uCjappVrgjNXXVj2GlVtjy
-	c+kXXChZuCJjUPwPYBWzSLQXK5gpqKN+yIsVxKPnZnIRW8A9HauiSqp99pQyv3RrIH+HVEk
-	Um0FB0R5yruyLAOgYba5NuyCVcraYcHYqz3JECRLfKdLcsoGHuBJznpEReJH94v4MjhLdvp
-	g==
-X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
-X-QQ-RECHKSPAM: 0
 
-Hi all,
-
-On 12/29/25 16:38, FUKAUMI Naoki wrote:
-> The Raspberry Pi Compute Module 4 IO Board is an application board for
-> the Compute Module 4. [1]
+On 23/12/2025 20:26, David Lechner wrote:
+> On 12/23/25 9:55 AM, Maxime Chevallier wrote:
+>> The TI TLA 2528 is a simple 8 channel, 12-bit ADC? Add a binding
 > 
-> This patch adds support for the Radxa CM3J mounted on the RPi CM4 IO
-> Board.
+> TLA2528 (no space). Also, why the "?"?
 > 
-> Specification:
-> - 12V 5521 DC jack
-> - 2x full-size HDMI 2.0 connectors (only HDMI0 is supported with CM3J)
-> - Gigabit Ethernet RJ45 with PoE support
-> - 2x USB 2.0 connectors, with header for two more connectors
-> - Micro USB connector
-> - microSD card socket
-> - PCIe Gen 2 x1 socket
-> - 12V 4-pin PWM fan connector
-> - External power connector (+5V, +12V)
-> - 2x MIPI DSI connectors
-> - 2x MIPI CSI-2 connectors
-> - 40-pin GPIO header
-> - RTC with battery socket
-> - Red (power) and green (heartbeat) LEDs
+>> documentation for it.
+>>
+>> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> ---
+>>   .../bindings/iio/adc/ti,tla2528.yaml          | 48 +++++++++++++++++++
+>>   1 file changed, 48 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml b/Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
+>> new file mode 100644
+>> index 000000000000..0ee326d77014
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
+>> @@ -0,0 +1,48 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iio/adc/ti,tla2528.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Texas Instruments TLA2528 8-channel 12bit I2C ADC
 > 
-> [1] https://datasheets.raspberrypi.com/cm4io/cm4io-datasheet.pdf
+> 12-bit
 > 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
->   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->   .../rockchip/rk3568-radxa-cm3j-rpi-cm4.dts    | 204 ++++++++++++++++++
->   2 files changed, 205 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3j-rpi-cm4.dts
+>> +
+>> +maintainers:
+>> +  - Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> +
+>> +description: |
+>> +  12bit 8-channel I2C ADC.
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index 3fdd1e4832e1..37150e920b01 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -148,6 +148,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-odroid-m1.dtb
->   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-photonicat.dtb
->   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-qnap-ts233.dtb
->   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-qnap-ts433.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-radxa-cm3j-rpi-cm4.dtb
->   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-radxa-e25.dtb
->   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-roc-pc.dtb
->   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3j-rpi-cm4.dts b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3j-rpi-cm4.dts
-> new file mode 100644
-> index 000000000000..b91ac0ca854c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3j-rpi-cm4.dts
-> @@ -0,0 +1,204 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2025 Radxa Computer (Shenzhen) Co., Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include "rk3568-radxa-cm3j.dtsi"
-> +
-> +/ {
-> +	model = "Radxa CM3J on RPi CM4 IO Board";
-> +	compatible = "radxa,cm3j-rpi-cm4", "radxa,cm3j", "rockchip,rk3568";
-> +
-> +	aliases {
-> +		ethernet0 = &gmac1;
-> +		mmc1 = &sdmmc0;
-> +		rtc0 = &pcf85063;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial2:1500000n8";
-> +	};
-> +
-> +	hdmi-con {
-> +		compatible = "hdmi-connector";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_con_in: endpoint {
-> +				remote-endpoint = <&hdmi_out_con>;
-> +			};
-> +		};
-> +	};
-> +
-> +	leds-1 {
-> +		compatible = "gpio-leds";
-> +
-> +		led-1 {
-> +			color = <LED_COLOR_ID_RED>;
-> +			default-state = "on";
-> +			function = LED_FUNCTION_POWER;
-> +			gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_LOW>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&npwr_led>;
-> +		};
-> +
-> +		led-2 {
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			default-state = "on";
-> +			function = LED_FUNCTION_STATUS;
-> +			gpios = <&gpio4 RK_PC6 GPIO_ACTIVE_LOW>;
-> +			linux,default-trigger = "heartbeat";
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pi_nled_activity>;
-> +		};
-> +	};
-> +
-> +	dc12v: regulator-12v0 {
+> The title already says this. Either drop it or add new info.
+> 
+> Also, don't need the |.
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ti,tla2528
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  vref-supply:
+>> +    description: Supply for 2.35V to 5.5V reference voltage
+> 
+> According the the datasheet, there are AVDD and DVDD supplies.
+> Nothing named VREF or REF.
+> 
+> So instead:
+> 
+> avdd-supply: true
+> dvdd-supply: true
+> 
+> 
+> It looks like inputs can also be used as GPIOs, so
+> 
+> gpio-controller: true
+> #gpio-cells:
+>    const: 2
+> 
+> would be appropriate (it doesn't matter if the driver doesn't
+> implement it, we know what the correct bindings are).
+> 
+>> +
+>> +  "#io-channel-cells":
+>> +    const: 1
 
-It's labeled as '+12v' in the schematic. Do you have any other 
-suggestions for the name?
+I didn't check the data-sheet, but if the pins can be set to be GPIOs or 
+ADC inputs, then I would require channels to be specified. It's only 8 
+channels, so always listing channels that are present shouldn't be that 
+big of a problem - and it should avoid one to add extra properties to 
+denote channels used for GPIO if GPIOs need to be supported.
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "dc12v";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +	};
-> +
-> +	dc3v3_pcie: regulator-3v3-2 {
-
-It's labeled as '+3.3v' in the schematic. Do you have any other 
-suggestions for the name?
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "dc3v3_pcie";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&dc12v>;
-> +	};
-> +
-> +	gpio_vref: regulator-3v3-3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "gpio_vref";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&dc3v3>;
-> +	};
-> +
-> +	dc5v: regulator-5v0 {
-
-It's labeled as '+5v' in the schematic. Do you have any other 
-suggestions for the name?
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "dc5v";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&dc12v>;
-> +	};
-> +};
-> +
-> +&combphy0 {
-> +	status = "okay";
-> +};
-> +
-> +&combphy2 {
-> +	status = "okay";
-> +};
-> +
-> +&gmac1 {
-> +	status = "okay";
-> +};
-> +
-> +&gpio0 {
-> +	nextrst-hog {
-> +		gpio-hog;
-> +		/*
-> +		 * GPIO_ACTIVE_LOW + output-low here means that the pin is set
-> +		 * to high, because output-low decides the value pre-inversion.
-> +		 */
-> +		gpios = <RK_PC0 GPIO_ACTIVE_LOW>;
-> +		line-name = "nEXTRST";
-> +		output-low;
-> +	};
-> +};
-> +
-> +&hdmi {
-> +	status = "okay";
-> +};
-> +
-> +&hdmi_sound {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	emc2301: fan-controller@2f {
-> +		compatible = "microchip,emc2301", "microchip,emc2305";
-> +		reg = <0x2f>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		#pwm-cells = <3>;
-> +
-> +		fan@0 {
-> +			reg = <0x0>;
-> +			pwms = <&emc2301 26000 0 1>;
-> +			#cooling-cells = <2>;
-> +		};
-> +	};
-> +
-> +	pcf85063: rtc@51 {
-> +		compatible = "nxp,pcf85063a";
-> +		reg = <0x51>;
-> +		wakeup-source;
-> +	};
-> +};
-> +
-> +&i2s0_8ch {
-> +	status = "okay";
-> +};
-> +
-> +&pinctrl {
-> +	leds {
-> +		npwr_led: npwr-led {
-> +			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
-> +		pi_nled_activity: pi-nled-activity {
-> +			rockchip,pins = <4 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +};
-> +
-> +&pcie2x1 {
-> +	vpcie3v3-supply = <&dc3v3_pcie>;
-> +	status = "okay";
-> +};
-> +
-> +&sdmmc0 {
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	broken-cd;
-> +	disable-wp;
-> +	no-mmc;
-> +	no-sdio;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd>;
-> +	vmmc-supply = <&dc3v3>;
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
-> +
-> +&usb2phy0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb2phy0_otg {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host0_xhci {
-> +	status = "okay";
-> +};
+Well, I am not insisting this, there are folks that know this stuff 
+better than I :)
 
 
+Yours,
+	-- Matti
+
+---
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
