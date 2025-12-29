@@ -1,177 +1,113 @@
-Return-Path: <devicetree+bounces-250142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEADACE67A4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:13:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ABB7CE67B9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:14:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 849A73000533
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:13:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B5EB300727A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:14:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C542F83B8;
-	Mon, 29 Dec 2025 11:13:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1CE2FB965;
+	Mon, 29 Dec 2025 11:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dbos0lCp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="m9DOU20v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F232FA0C6
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 11:13:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6330B28A1D5;
+	Mon, 29 Dec 2025 11:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767006823; cv=none; b=cCsOglaaFIXspPjFja58sx0e8d0J9f3ay1D9Zm3QQKdle1RSVn83TB5IyzzS3VlrQ3Hjhib3hq692nC7GAyIeFH3GbxjYEvVEqGS2b9f4ixuFluc+NRQU+LNtkVC3iZ348ol0iA+9dESQy6ueYQVma3tUV59DQQBaSCBhoKIp8M=
+	t=1767006862; cv=none; b=B1HzqSBGG91HNJnEJYvEISMQoyJD7ajiXEb1msByOaW4SGxX5K/d1Ho0Fs+1qNmW8y3wqlE7qlp1K4FOJBc2l/WYJoMw8V+W7Gjw/I3mMMJ9HuUSXkNsivUd7lCLVilYnrHjPJ1iAIzkE3h46ebwtIcxkCxyuPAnpvuFWEKpDCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767006823; c=relaxed/simple;
-	bh=MNKxZ13dLy0csS0Q8BnwqAOO+/2a6wKxalUKlQsPf5g=;
+	s=arc-20240116; t=1767006862; c=relaxed/simple;
+	bh=tzMWyGzDvkR93+MIsbVPUSBPShySdJo2u5fGCPTDLDY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hkyEEDvhkA7/KWzwDZtGyEGKGbmAVzX7AxlE2Q7O6TbudJWBXwhtCS1hOzrUkYDT6FBWM3JhYSdzowyD0YhgJ2VR9e5kxxAiDNj1YVfI2795JPgZ7Sr2qiBuOSroXA3lPNHcon+0BXSdqxpmD1b+s+7UJC6RqLYVoFhSuMqo4NM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dbos0lCp; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b7eff205947so1268349766b.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 03:13:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767006820; x=1767611620; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=W0BlcXumR4uZaESfBgC79Dk7xaStWlmJAXD7mWPegz8=;
-        b=dbos0lCpZImZirFV8MHi1oFhHsRnaZHfEpwqDGQXR4D5Ney8Ve53LQ/7RCSA1lD1fc
-         l2xVSM5HWDRQMyrr207Gn22ZwEjcYAXf1JrWQ0LKEemuUfr2eE9A0+ur1NPYQFpYRXly
-         Bu817M0qoY9yzoorP9l0azj2+Rs4ds7glpfE9UXOV948DszKr6yMrUpQd7a0pkcebhEz
-         BPGB24FjFQu1F/jMqDPg/kqKJAXfMCR/9bGauEgqysGFG7SbWIHC21w0IHQAogMKzIMi
-         5CyBLNTb6vdADVrm92rtSaUqyCpR10m8tsd7wFOCj8eFpu6fAIO8buXI6sor1ub2eFmY
-         vOWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767006820; x=1767611620;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W0BlcXumR4uZaESfBgC79Dk7xaStWlmJAXD7mWPegz8=;
-        b=S0Ws9lr5MYEk/NhtBhmWvTe9KdlbAJFH56jMMDFRvyIGHbdTGv8mKxZyFMm+hsBsZ1
-         7EyrmrushwB9GX8vEpWfKDKGqrhIPP6tpzxq9Nt6J+2jefvEDbmuPQRWhaJcN797sIuy
-         h3RiivydF+aslOLPMAWLiISJbvJBZAiQe6hGQbrDH5h88LponO3POxucq+2FLXrWqpr9
-         LtEnW+nXABH0Gr/IHn+sQUi5pH5mIYo88J8fisIVblu3ShKOgz+OfsrDW0pjD3Pb8SQU
-         asl3Dw/38aPspxiEWIDx9w+gi+rUxky2gF81agM1G1+LNmzOqHoIG8700j6jtmMjSDaA
-         AKIw==
-X-Forwarded-Encrypted: i=1; AJvYcCXTmjTkilBmRmrCWkR2BxBTflKxzGbWJXKqbAg7q0RiWnSKQD5uI/rfjeUcqTB3pvQpBsfsfbm69ztQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5rEX4/QQ/YmjHCitRRpOu6lLBwpC3Poyy4SROs2GXYOXaaRhr
-	2/1ZoNtPIGzsIRnMkWAWXv5v0axzYOYnVieeIXVoofrn/2Wq8eWKe6+Gvfpa//aTGlo=
-X-Gm-Gg: AY/fxX6dV9IZqrKAgzNcKJDbeoMAg3PPN76eGuv7F5k/EQQazCb2OL8wLXTgWiW5yUi
-	35+8AgXLWB2X/F6F07dF2BQ4BKW0jGShirj73O8ZF6kWyTNzIBCMgrVls1s4rJcIlhsquITseR3
-	ptPCFIZaf2Z68oEgPot4j9IaFBjaAO3AZ8Tr3MXdRbST0bM1775hQ09RxcjnJXwxGhdxcyGJXdY
-	jIOu40M+SIZLch1KXidogtGJxlpbE1KPHs9YO9IEXIe8j57ymA+LKH7DJuUXv9zLLF0qltEk6cI
-	OHSxseM+a2zna0c9AGlV/TUjlo/njx0CSDnNTwXtJnbHjEon86t5Csc/ti0+d8PjdtaqdzkvPpV
-	6fDQrMI4QXCO0zOJfqzpOV8BEOhHuzdonmWgLhiMHwQvN0C5Ugn7+QdhKisVa+rFFPQvzOde2k3
-	14VtgnSRrNM+bAEYV8
-X-Google-Smtp-Source: AGHT+IHpHbSYeUsMKF1bneJOp2e1mcsZqW7jjFgL1tS2yD3fcf9ju47/5ORafIsbEaCJr1G9FTrRbQ==
-X-Received: by 2002:a17:907:94c4:b0:b80:4615:1d2d with SMTP id a640c23a62f3a-b8046151dfbmr2885186966b.3.1767006819915;
-        Mon, 29 Dec 2025 03:13:39 -0800 (PST)
-Received: from linaro.org ([77.64.146.193])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037a61595sm3362188366b.8.2025.12.29.03.13.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Dec 2025 03:13:39 -0800 (PST)
-Date: Mon, 29 Dec 2025 12:13:37 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Stephan Gerhold <stephan@gerhold.net>,
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/8] remoteproc: qcom_q6v5_mss: Add MSM8937
-Message-ID: <aVJiYSbpmHMGJarA@linaro.org>
-References: <20251228-mss-v1-0-aeb36b1f7a3f@mainlining.org>
- <20251228-mss-v1-6-aeb36b1f7a3f@mainlining.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Npw3zXnRQVz1rJT9HpjuRKRNWuEFP+LwQNcS7BsaCCo153FYKR/oP7cRy1S6khH+nvPasH8StwNCN9oemGXE/oiNNKWdsV7bDDixPQIDCdC1mhU0Y6OKi4+a+aJzUmCDBZ4/lVs/yTbSaMbbMGasUQczFi0kG5QRKuXHdjjrCPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=m9DOU20v; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1767006860; x=1798542860;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=tzMWyGzDvkR93+MIsbVPUSBPShySdJo2u5fGCPTDLDY=;
+  b=m9DOU20vpbBpCpj8XVCB1x3bD3+aHQV2Wer8+YjdCsHKuy3xiNtqgyEy
+   LBOTnNfYqYIOA8oIEBEo6IMY1mIRzkweqII2p2SKGkbvAkn9hEYi6XBcc
+   llOEEzXNVjv7MUtCXa53j70aT3gcpvufZyDl53CKwcD1wtx9Gh6/zRt56
+   7u+i3VuP1VaEncZNJsduzrf3Mhw05W9VGsn74PiYtC6twmdYYfYfMo8g4
+   J+a2rzrE26csNPPVPInMXGI7nE7UT05z5bSDoa2lSyHPMo501yJNx+h+j
+   QfVwmxoGzgjUNXmUdgRhaaqVvQesrnyB6UTlovzNgKRe5fTfFl8s8yQ34
+   Q==;
+X-CSE-ConnectionGUID: b5tfc5s/TVW6puD9vgTLkw==
+X-CSE-MsgGUID: mL2g3829TIC9btp38xaOzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="91271951"
+X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; 
+   d="scan'208";a="91271951"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2025 03:14:19 -0800
+X-CSE-ConnectionGUID: eyapc0BTQOGoPXqrx51acw==
+X-CSE-MsgGUID: jouYL/5LTQywze2inlF+0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; 
+   d="scan'208";a="201172128"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.22])
+  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2025 03:14:15 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 3138C12063E;
+	Mon, 29 Dec 2025 13:14:21 +0200 (EET)
+Date: Mon, 29 Dec 2025 13:14:21 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Rishikesh Donadkar <r-donadkar@ti.com>
+Cc: jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com,
+	mripard@kernel.org, y-abhilashchandra@ti.com, devarsht@ti.com,
+	s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de,
+	conor+dt@kernel.org, hverkuil-cisco@xs4all.nl,
+	tomi.valkeinen@ideasonboard.com, jai.luthra@ideasonboard.com,
+	changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
+	sjoerd@collabora.com, dan.carpenter@linaro.org,
+	hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 12/18] media: cadence: csi2rx: add multistream support
+Message-ID: <aVJijbfKT1uT0ejG@kekkonen.localdomain>
+References: <20251112115459.2479225-1-r-donadkar@ti.com>
+ <20251112115459.2479225-13-r-donadkar@ti.com>
+ <aR8PMEHTJJVlg0YM@kekkonen.localdomain>
+ <c08199da-fa69-494f-bbaa-caf0cb943cde@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251228-mss-v1-6-aeb36b1f7a3f@mainlining.org>
+In-Reply-To: <c08199da-fa69-494f-bbaa-caf0cb943cde@ti.com>
 
-On Sun, Dec 28, 2025 at 03:21:56PM +0100, Barnabás Czémán wrote:
-> Add support for MSM8937 MSS it similar to MSM8917 MSS.
-> It differs primarily in that TZ needs to be informed of
-> the modem start address and pas_id.
+Hi Rishikesh,
+
+On Tue, Dec 09, 2025 at 03:13:34PM +0530, Rishikesh Donadkar wrote:
+> > > @@ -538,6 +595,36 @@ static int csi2rx_disable_streams(struct v4l2_subdev *subdev,
+> > >   	return 0;
+> > >   }
+> > > +static int csi2rx_s_stream_fallback(struct v4l2_subdev *sd, int enable)
+> > What do you need this for? I presume you'd have a sub-device driver
+> > downstream calling this, but wouldn't you always use {en,dis}able_streams
+> > from that driver?
 > 
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> ---
->  drivers/remoteproc/qcom_q6v5_mss.c | 49 +++++++++++++++++++++++++++++++++++---
->  1 file changed, 46 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
-> index 2579558fb567..2ffcea7dbc79 100644
-> --- a/drivers/remoteproc/qcom_q6v5_mss.c
-> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
-> @@ -261,6 +261,7 @@ enum {
->  	MSS_MSM8916,
->  	MSS_MSM8917,
->  	MSS_MSM8926,
-> +	MSS_MSM8937,
->  	MSS_MSM8953,
->  	MSS_MSM8974,
->  	MSS_MSM8996,
-> @@ -751,6 +752,7 @@ static int q6v5proc_reset(struct q6v5 *qproc)
->  	} else if (qproc->version == MSS_MDM9607 ||
->  		   qproc->version == MSS_MSM8909 ||
->  		   qproc->version == MSS_MSM8917 ||
-> +		   qproc->version == MSS_MSM8937 ||
->  		   qproc->version == MSS_MSM8953 ||
->  		   qproc->version == MSS_MSM8996 ||
->  		   qproc->version == MSS_MSM8998 ||
-> @@ -758,7 +760,8 @@ static int q6v5proc_reset(struct q6v5 *qproc)
->  
->  		/* Override the ACC value if required */
->  		if (qproc->version == MSS_MDM9607 ||
-> -		    qproc->version == MSS_MSM8917)
-> +		    qproc->version == MSS_MSM8917 ||
-> +		    qproc->version == MSS_MSM8937)
->  			writel(QDSP6SS_ACC_OVERRIDE_VAL_9607,
->  			       qproc->reg_base + QDSP6SS_STRAP_ACC);
->  		else if (qproc->version != MSS_MSM8909 &&
-> @@ -821,6 +824,7 @@ static int q6v5proc_reset(struct q6v5 *qproc)
->  			/* Turn on L1, L2, ETB and JU memories 1 at a time */
->  			if (qproc->version == MSS_MDM9607 ||
->  			    qproc->version == MSS_MSM8917 ||
-> +			    qproc->version == MSS_MSM8937 ||
->  			    qproc->version == MSS_MSM8953 ||
->  			    qproc->version == MSS_MSM8996) {
->  				mem_pwr_ctl = QDSP6SS_MEM_PWR_CTL;
-> @@ -831,7 +835,8 @@ static int q6v5proc_reset(struct q6v5 *qproc)
->  				 * "inrush current" issues.
->  				 */
->  				if (qproc->version == MSS_MDM9607 ||
-> -				    qproc->version == MSS_MSM8917)
-> +				    qproc->version == MSS_MSM8917 ||
-> +				    qproc->version == MSS_MSM8937)
->  					reverse = 6;
->  			} else {
->  				/* MSS_MSM8998, MSS_SDM660 */
-> @@ -1466,7 +1471,8 @@ static int q6v5_mpss_load(struct q6v5 *qproc)
->  			max_addr = ALIGN(phdr->p_paddr + phdr->p_memsz, SZ_4K);
->  	}
->  
-> -	if (qproc->version == MSS_MSM8953) {
-> +	if (qproc->version == MSS_MSM8937 ||
-> +	    qproc->version == MSS_MSM8953) {
->  		ret = qcom_scm_pas_mem_setup(MPSS_PAS_ID, qproc->mpss_phys, qproc->mpss_size);
->  		if (ret) {
->  			dev_err(qproc->dev,
+> Yes, Downstream consumer driver that call this are TI Shim and StarFive
+> JH7110 CAMSS. TI Shim uses {en,dis}able_streams, the StarFive JH7110 CAMSS
+> calls the s_stream. I will change the StarFive JH7110 CAMSS to use
+> {en,dis}able_streams.
 
-I think for consistency it would be cleaner if this was a flag like
-"need_mem_protection" (i.e. something like "need_pas_mem_setup"). Then
-you could reuse the actual reset sequence from MSS_MDM9607 similar to
-MSM8917.
+Thanks!
 
-Thanks,
-Stephan
+-- 
+Sakari Ailus
 
