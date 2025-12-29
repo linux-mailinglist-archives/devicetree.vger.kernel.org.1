@@ -1,187 +1,163 @@
-Return-Path: <devicetree+bounces-250232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B812DCE71AD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:45:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 459CECE71E3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:48:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7C91E30036DD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 14:45:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8AD6B301A1DA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 14:47:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D398E326D4F;
-	Mon, 29 Dec 2025 14:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1E68329E42;
+	Mon, 29 Dec 2025 14:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AE81mOhY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gZK/XVsC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f45.google.com (mail-yx1-f45.google.com [74.125.224.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D218B324B38;
-	Mon, 29 Dec 2025 14:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A124F329C5E
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 14:47:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767019509; cv=none; b=FeZjMUSFYfKdyMZPbogm2xDa8A+jruCP5X8U1NNE2QKQ6aPmV2IX+jnU77boMsWnqiXyKKOnQr5n4NWDY4ANGjwCUOdypA8dD5t26d1jqCIxbKNvHOb4OvY6WUDT7YzhZSpvAS0XWCG6CgAw4j7witNgRXIWocOHRgTwS9RuYv4=
+	t=1767019633; cv=none; b=pRQ+gC3ZCXdXBkySnLcVG68R3F3HYGYPxCNeySu03XgGZhEVH9eI9S2Knjnu6biRGFBehUFd/FH5gdxLRFqw85JRV4eLDrC/l3xAnKvWBvcwoQW91BzfXDz2oYz4nzIQNAcEcGGbmdE1g6ylN4ZB5Oj4BKTPGFyjg5JQM74qv+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767019509; c=relaxed/simple;
-	bh=J1uHplXdrwr0inBDFFyAjDkgJWCZiDHYzKQAZA2t/gw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nWXVagl2D5yNlcXzG68tT1K5kjrgwzBNg8DzGZJBk4fnQs4AAompfj/z7Mz98bDtQzFEp8SayTp58TXWSTHGZ4U0m2sStoLOmwUqqSCSdjVIdB84dlHYR5+o1/f1jpaBKVqZzzfN34b1o9Zpg39LYTPhLqZDSVFAl7l7QPSyh8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AE81mOhY; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767019508; x=1798555508;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=J1uHplXdrwr0inBDFFyAjDkgJWCZiDHYzKQAZA2t/gw=;
-  b=AE81mOhYMPuRbhlJUo81TmR4EerFa/yy7e95gkmquaCO0ICziMVyGw/8
-   atY370CuJxaHGvS/IIgrIqLgXdn/sf9jFXxtdFsNLPedpwp00ptDy5Yps
-   cezFpH4sjr0M2NBtfSTNTIc5epiVCjNNalsLnY7dDtq/FsV7foinfSlCJ
-   IfKDniIegKBr6PnvM9DD0JtN7oQ26AjS5X1QvOKx0OITF6e58hVElPHCj
-   RVe3wUGC2LcE3v6O63S2jmeY6u3XBUGQLk03sc8UiLUt2s5UrNY6/KSZa
-   htNAxIndmOiOFK27LVwFBZO4q7vsaIQE59cbHR8P9vyy2VhL2tt92UoND
-   g==;
-X-CSE-ConnectionGUID: VUKnLocQRNyyo4CvGo7zZg==
-X-CSE-MsgGUID: M5DV3VqqSxKFy/rEbmHcXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11656"; a="79993352"
-X-IronPort-AV: E=Sophos;i="6.21,186,1763452800"; 
-   d="scan'208";a="79993352"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2025 06:45:06 -0800
-X-CSE-ConnectionGUID: ickCDvqaQrCyZLss4i0Zpw==
-X-CSE-MsgGUID: EuQByldwR8WsDY8IrD4ivg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,186,1763452800"; 
-   d="scan'208";a="200932638"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.31])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2025 06:45:03 -0800
-Date: Mon, 29 Dec 2025 16:45:00 +0200
-From: Andriy Shevencho <andriy.shevchenko@linux.intel.com>
-To: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc: Jonathan Brophy <professorjonny98@gmail.com>,
-	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Jonathan Brophy <professor_jonny@hotmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH 0/2] leds: Add optional instance identifier for
- deterministic naming
-Message-ID: <aVKT7PsPTzRFCuOu@smile.fi.intel.com>
-References: <20251228182252.1550173-1-professorjonny98@gmail.com>
- <761d6573-3751-47fb-9b0e-8063f3cecf76@gmail.com>
- <aVJ0c3injbP7yRIJ@smile.fi.intel.com>
- <44ffa209-48b8-439e-a1ce-f9eb2aeb2f26@gmail.com>
+	s=arc-20240116; t=1767019633; c=relaxed/simple;
+	bh=0fdYin/a1kGKTO0aBJq/0xsRm45K7iupOY7iUNqRRJ8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FeT2YWYc6RvvJyGVlHUl5Iahk+7WdqXRsyFYJnHIiot7EzYaF0nGrzTbJhL80D8NPCW1PvTNaMY1Ux0aIrKKk/CJjtspoMP3o+wcJuchAG1eXe49obWCczto9siAZVj5Dk+T30Oc2sIVZSA7Iv5Q37IBneaBUVeZQUC3Kqsxip8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gZK/XVsC; arc=none smtp.client-ip=74.125.224.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yx1-f45.google.com with SMTP id 956f58d0204a3-6420c08f886so11087920d50.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 06:47:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1767019629; x=1767624429; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hiFIGGOCel6e4RtTn/5DW6H0+gmbweG5rl/mIaIEv30=;
+        b=gZK/XVsCELIw+kf+fegZRFaWFH8spENIhMsxFJA+BlEMdUeN7lmgs9xjk+xjOMu8r9
+         LuMgJ12OEOjhLQCbXsljPAEAL95CE9jsH0C59xbNv5GR4wyoZrx+saA1yhMQgr+mA5SM
+         ECNv+N6QlgdCRCP52QCHyZIi3QpkwWubtYi2JnIreHqCTEWYa3Mz8fHipWe+jojkeeqO
+         t98ky7n+6/H/F17HzZsX5AwyKI63KX2fiCenajVFCiVpQIHnt5Kyq06SXY+gr+vH0OAK
+         srIthZ7RGMnHpSLjAWxQALybXyadnZ63Iej55QQm3efWV8MyC1877OC2VyC6YRi6oEB/
+         7K6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767019629; x=1767624429;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hiFIGGOCel6e4RtTn/5DW6H0+gmbweG5rl/mIaIEv30=;
+        b=W80DIiStYGcV0AI4rvA6/znvHOzpdrja1QL0P60lDB6cRa/InSIXeCUHG46EWpQP1n
+         U4W09PbbvXLoOXQ09X64V6OPfKj4OrCfd0Qrg8+1RPKRrkdPit+TllRiMIZjgUSPhFfs
+         0HntzbHwxfy0xxDTEMHGaOA3za7jxa4+DldQcBTuonrZzy5xzkqRIlswvzn4QxpsfcLS
+         ZeErmlGcFBk/JrAKT+OquRM418hmJfUxP8bdUcgsuhHJsggtDMFyTc6kOmiWx1qFkM27
+         uQyc/3bsWGisTaoiFBDGMauBZQBImoAcjoxUngYlt755UQhJboJ2mGY0/FrkbHtZ0P5T
+         dJKA==
+X-Forwarded-Encrypted: i=1; AJvYcCX+JS14KPPInShDvju+q8LIOFkajquyDZrwDLGHQdQELm1FvariALKCQ3XgujRR7JB3YAoaeonC7jJg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjWLklx++OQ9d0XvP5h/+JE+scXWKcEG8UT1Y6eZrjveoAXFoe
+	EtecSp/BgsyXJOxY+3GB/X/ce1HXKTy2/YgL94LASqPqlOYLix62XB+WlflYxqbdXvzmLjyyTcj
+	W39iqcJo4WcymmoOdwTRwM9j869yvWtJhX9NmduYqTA==
+X-Gm-Gg: AY/fxX4nJDxMyELAWnk6w0EKeOn8wQSVhjsWQkGP4bAGb1Hh1F3EmdbTy8l9ZHRCwav
+	a8gB2r/wQrPvdQ+u6rQhpmmFrbZ7huBAAX3VohDfNLjryY8qncHKeFhFTrYNuqsH9GWDyiiT7ZX
+	h8GyOauHcr6t7RzUp745/aHRURqY/yp9lC2Dp0vF72HOFrwEmR4pReAg6mFKUi9afY5hnGAcchQ
+	AbgRrrve6xaurRNupDHD69fIDOxyoWt+nEuSWNnyIezulLxF8QVqWoJDxI8wnjhKEV+P80B
+X-Google-Smtp-Source: AGHT+IGO4whynDnDczZe5aUSFNc6rZ7ClmyTEypWHVE9Jxyg/qzrfMWaETUGVpcInjLrsVhW/aWOBEshOk4ENImI9iE=
+X-Received: by 2002:a05:690e:1881:b0:646:7a21:f05c with SMTP id
+ 956f58d0204a3-6467a21f232mr21185393d50.50.1767019629379; Mon, 29 Dec 2025
+ 06:47:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <44ffa209-48b8-439e-a1ce-f9eb2aeb2f26@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20251210-rz-sdio-mux-v3-0-ca628db56d60@solid-run.com>
+ <20251210-rz-sdio-mux-v3-2-ca628db56d60@solid-run.com> <CAPDyKFoYd3WKGrjD3DEzZH8EfgZPmRkrqL=rdoKNuAADrvz3Eg@mail.gmail.com>
+ <20f2128c-c6cb-4b13-aa08-b93e540f5bd9@solid-run.com> <CAPDyKFo2jsV02qSDBSZTewJjV09AMO8iETU5Uxqz+GBnd0JY6g@mail.gmail.com>
+ <e8b0579d-21b9-4072-857b-5afab92c42e6@solid-run.com>
+In-Reply-To: <e8b0579d-21b9-4072-857b-5afab92c42e6@solid-run.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 29 Dec 2025 15:46:32 +0100
+X-Gm-Features: AQt7F2qjavw22v0M0v4JRnBk0tlNXPSxJSyNw5ogCiPk3Bm42fj5er9DVY64ELg
+Message-ID: <CAPDyKFqN1Yq0atE6YaeigzR75n1Q1BSU8JjLno=ioUBwN8=FSQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] mux: Add helper functions for getting optional and
+ selected mux-state
+To: Josua Mayer <josua@solid-run.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Peter Rosin <peda@axentia.se>, 
+	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
+	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
+	Tony Lindgren <tony@atomide.com>, Vignesh R <vigneshr@ti.com>, 
+	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Mikhail Anikin <mikhail.anikin@solid-run.com>, Yazan Shhady <yazan.shhady@solid-run.com>, 
+	Jon Nettleton <jon@solid-run.com>, "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>, 
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, 
+	"linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>, 
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Dec 29, 2025 at 03:28:20PM +0100, Jacek Anaszewski wrote:
-> On 12/29/25 13:30, Andriy Shevencho wrote:
-> > On Mon, Dec 29, 2025 at 12:16:17PM +0100, Jacek Anaszewski wrote:
-> > > On 12/28/25 19:22, Jonathan Brophy wrote:
-> > 
-> > > > This patch series introduces an optional "led-instance" device tree property
-> > > > to address non-deterministic LED naming when multiple LEDs share the same
-> > > > function and color.
-> > > > 
-> > > > Currently, the LED core appends numerical suffixes (_1, _2, etc.) based on
-> > > > registration order when duplicate function:color combinations exist. This
-> > > > creates several problems:
-> > > > 
-> > > > 1. **Non-deterministic naming**: Registration order determines suffix values,
-> > > >      which can change across boots due to probe ordering, async initialization,
-> > > >      or module load order.
-> > > > 
-> > > > 2. **Non-semantic identifiers**: Names like "lan:green_23" provide no
-> > > >      indication of which physical LED or subsystem they represent.
-> > > > 
-> > > > 3. **Breaks userspace automation**: Network management tools, LED control
-> > > >      daemons, and hardware monitoring cannot reliably identify LEDs.
-> > > > 
-> > > > 4. **Ambiguous numbering**: "lan:green_23" could be mistaken for LAN port 23
-> > > >      when it may actually be the 23rd registered LED of any port.
-> > > > 
-> > > > 5. **Namespace pollution**: The alternative of adding vendor-specific function
-> > > >      names (LED_FUNCTION_LAN_PORT0, LED_FUNCTION_LAN_PORT1...) pollutes the
-> > > >      function namespace. The instance identifier keeps standard functions clean
-> > > >      while allowing contextual differentiation.
-> > > > 
-> > > > 6. **Breaks naming convention**: The _1, _2 suffix was intended only as a
-> > > >      collision avoidance workaround, but has become the de facto standard for
-> > > >      hardware with multiple identical LEDs.
-> > > > 
-> > > > **Example: 48-port network switch**
-> > > > 
-> > > > Current behavior (non-deterministic):
-> > > >     /sys/class/leds/lan:green      ← Port 0? Unknown
-> > > >     /sys/class/leds/lan:green_1    ← Could be any port
-> > > >     /sys/class/leds/lan:green_2    ← Could be any port
-> > > >     ...
-> > > >     /sys/class/leds/lan:green_47   ← Could be port 1 due to probe order
-> > > > 
-> > > > Proposed behavior (deterministic):
-> > > >     /sys/class/leds/lan:green:port0   ← Always port 0
-> > > >     /sys/class/leds/lan:green:port1   ← Always port 1
-> > > >     /sys/class/leds/lan:green:port2   ← Always port 2
-> > > >     ...
-> > > >     /sys/class/leds/lan:green:port47  ← Always port 47
-> > > > 
-> > > > **Example: Multi-domain power indicators**
-> > > > 
-> > > > Current behavior (non-deterministic):
-> > > >     /sys/class/leds/power:red      ← Which power source?
-> > > >     /sys/class/leds/power:red_1    ← Which power source?
-> > > >     /sys/class/leds/power:red_2    ← Which power source?
-> > > > 
-> > > > Proposed behavior (deterministic):
-> > > >     /sys/class/leds/power:red:mains    ← Mains power indicator
-> > > >     /sys/class/leds/power:red:battery  ← Battery power indicator
-> > > >     /sys/class/leds/power:red:usb      ← USB power indicator
-> > > > 
-> > > > **Design principles:**
-> > > > 
-> > > > - Backward compatible: Instance identifier is optional
-> > > > - Extends existing convention: function:color becomes function:color:instance
-> > > > - Follows kernel precedent: Similar to eth0/eth1, gpio0/gpio1 naming patterns
-> > > > - Ignored with deprecated "label" property: Avoids conflicts with legacy code
-> > > > 
-> > > > **Alternative solutions considered:**
-> > > > 
-> > > > 1. function-enumerator: Only supports numbers (0, 1, 2), producing names like
-> > > >      "lan:green-0" which are still non-semantic. The 48-port switch needs "port0"
-> > > >      to match physical port labels.
-> > > 
-> > > I think that we have currently everything in place to address the issue
-> > > you're trying to solve with this patch. Just introduce dedicated
-> > > function like LAN_PORT, and exploit function-enumerator.
-> > 
-> > The problem as I understood not exactly in this. The reporter wants
-> > deterministic way of the mapping between HW numbered LEDs and their respective
-> > names. It seems it was already mentioned that current code depends on the
-> > arbitrary probe ordering. Saying this, I now think that perhaps GPIO led driver
-> > should somehow allocate a range of the LEDs and then enumerate them in
-> > accordance with the DT description?
-> 
-> function-enumerator DT property enables deterministic enumeration.
+On Mon, 29 Dec 2025 at 12:30, Josua Mayer <josua@solid-run.com> wrote:
+>
+> Am 22.12.25 um 15:47 schrieb Ulf Hansson:
+> > On Sun, 21 Dec 2025 at 11:38, Josua Mayer <josua@solid-run.com> wrote:
+> >> Hi Ulf,
+> >>
+> >> Am 17.12.25 um 14:38 schrieb Ulf Hansson:
+> >>> On Wed, 10 Dec 2025 at 18:39, Josua Mayer <josua@solid-run.com> wrote:
+> >> cut
+> >>
+> >>>>  /*
+> >>>>   * Using subsys_initcall instead of module_init here to try to ensure - for
+> >>>>   * the non-modular case - that the subsystem is initialized when mux consumers
+> >>>> diff --git a/include/linux/mux/consumer.h b/include/linux/mux/consumer.h
+> >>>> index 2e25c838f8312..a5da2e33a45c0 100644
+> >>>> --- a/include/linux/mux/consumer.h
+> >>>> +++ b/include/linux/mux/consumer.h
+> >>>> @@ -60,5 +60,9 @@ struct mux_control *devm_mux_control_get(struct device *dev,
+> >>>>                                          const char *mux_name);
+> >>>>  struct mux_state *devm_mux_state_get(struct device *dev,
+> >>>>                                      const char *mux_name);
+> >>>> +struct mux_state *devm_mux_state_get_optional(struct device *dev,
+> >>>> +                                             const char *mux_name);
+> >>>> +struct mux_state *devm_mux_state_get_optional_selected(struct device *dev,
+> >>>> +                                                      const char *mux_name);
+> >>> Seems like we need stub-functions of these too. Otherwise
+> >>> subsystems/drivers need to have a "depends on MULTIPLEXER" in their
+> >>> Kconfigs.
+> >> Currently the drivers that can use a mux select MULTIPLEXER in Kconfig.
+> > Yes, but that's not generally how we do this. The driver may not need
+> > MULTIPLEXER for all platforms that driver is being used on.
+> >
+> >> There already exist a few mux helpers both for mux-state and for mux-control,
+> >> and they might all need stubs.
+> > Correct. I think we should add subs for all of them.
+> >
+> >> I'd prefer the restructuring of kconfig dependencies being independent from
+> >> adding mux-state functionality to renesas sdhi driver.
+> > I understand your point, but adding the stubs isn't really a big thing
+> > - unless someone has some good arguments not to!?
+> >
+> > Moreover, since the series changes the mux-core anyways - and
+> > subsequent changes depend on it, I don't see an issue to fold in yet
+> > another patch to add the stubs.
+> Would this also cause changing all the Kconfig "select MULTIPLEXER"?
+> If it is only the stubs - sure.
+>
+> And then in the renesas sdhi patch I can drop my change to kconfig.
 
-Ah, that's nice!
+Correct!
 
--- 
-With Best Regards,
-Andy Shevchenko
+Typically, it's better to do a "select MULTIPLEXER" in the platform's
+Kconfig for those platforms that really need it.
 
-
+Kind regards
+Uffe
 
