@@ -1,80 +1,104 @@
-Return-Path: <devicetree+bounces-250021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69476CE5C21
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 03:50:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA566CE5C58
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 04:04:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 30C3A3006A58
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 02:50:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 141B93005FD2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 03:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E442621323C;
-	Mon, 29 Dec 2025 02:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9366F204C36;
+	Mon, 29 Dec 2025 03:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oI3rPcoa"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="SUtLtPrg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF4AEEB3;
-	Mon, 29 Dec 2025 02:50:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2F3F18E02A
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 03:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766976653; cv=none; b=M199NqjGtYainOi+Ba3k87jnZwG6QwU/2fHHXaHQSFl1IQ85pDF9GFZPKLHdMWUNk33t9PsmcjkwsuMhusC10iX0AbWQdRahrrLBVtYHLs0PnrrtW1FEuvm0QZd/EJdWvsHFPKPgGHXYTFQJElOy1tMedDhj53Q7zsmZVeHF2r0=
+	t=1766977442; cv=none; b=IZ8qVo42QaGxdTUYqZ/KHhGiCW0oY5iXPoNY2xAj/l9etCU3LBEWWAwHTpmjlixgaJFR7F1i86McKRfv7X3YbMRBO8hJWo2Cq2o7WLIehaAfgbd23re8CnbkEi6eI6BDHc+CusGMragH3ynkT3VCmlmTVRbzAVcXz/Qof6N+meY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766976653; c=relaxed/simple;
-	bh=yX7/3mFH08YrJExkfGIoYVyNQTGTYRax+BrGZPlAAYU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oQVE6WGTQXxUY2R4lcxpOwJ8xM6iI24L9NmN1DbovkZVl+Q9A0TnaW4hT5BZEar1N15dwwDbe3eS2uNtPica7rOAoK8W9Ek62FyPVYJGB66R4YFRVFws0ERMpnfKCWTaxXXsa+EOQMgQi5otIhqwH285ukEoFyhX0hpveFbri7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oI3rPcoa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBE1FC4CEFB;
-	Mon, 29 Dec 2025 02:50:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766976653;
-	bh=yX7/3mFH08YrJExkfGIoYVyNQTGTYRax+BrGZPlAAYU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oI3rPcoa1xH+lQ7hVZS9RVy5efBS0cVQnD4wC5Z0niim8Z8Thk9wRyKkL0mD0znYL
-	 b5k9FbUogkRcRSHDbMjrfO6fw1S0d+/D2L+DEXGDmyOBDNfshFWGU7Hi+JG/6lagh3
-	 jSWQ96C7QOErmpR4f9DEi6ijh5CIC3CSio/k+ZNak98D2gDYPDA8VdWKpehJwW/iyD
-	 rSqs0l+25O1+UzVdFNDP4b5JHAvZFiO1MK6sb1Oka+S/xv5fIPvg6+vU9nmrJbQaGH
-	 frBnT4An5I3w3/M+2hhRTyJU2y9UficmTCidBNmIMwKnoSWm3fG+uM5MqVsKCBpAQG
-	 zmM1WIAxawSzA==
-Date: Mon, 29 Dec 2025 10:50:41 +0800
-From: Shawn Guo <shawnguo@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Xu Yang <xu.yang_2@nxp.com>, Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Jacky Bai <ping.bai@nxp.com>
-Subject: Re: [PATCH v3 6/6] arm64: dts: imx8dxl-ss-ddr: Add DB (system
- interconnects) pmu support for i.MX8DXL
-Message-ID: <aVHsgSN5-gzJ4jt0@dragon>
-References: <20251103-qm_dts-v3-0-2bfda8ee14c2@nxp.com>
- <20251103-qm_dts-v3-6-2bfda8ee14c2@nxp.com>
+	s=arc-20240116; t=1766977442; c=relaxed/simple;
+	bh=Vzx2ORHoRFpajEaWoSeHVtN7haybZ0dBfjlE54nzC3c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JqFTj8vaP8ql3LH1COzxju5H+fejGaV8JnIwPeiKYhFciDSL2GO7PJTv50MIAbsoQOUc11Vs52Ui8xFVXkNsVXtwJRw/pw1QfHJKAE7AbBBdaaUx5zplOqSwni4wNWXA70IiV+GZKlb4O3/KJ8HDC6I/w2e8jn9ywkZE/50UxGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=SUtLtPrg; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dfglm07GFz9t5G;
+	Mon, 29 Dec 2025 03:53:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1766976836;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=75B4gxMdiRXoDbJNgqXGfnhtWbwMTHh+zPhA5Svb3G8=;
+	b=SUtLtPrgzr3EoF0uqM0r229UqRIsxVebpxhK2jxnCDcO94zq9P6Bnn1yqqgfZZWJa18OQ1
+	1CQH0ZyRvzwDI71o3r+jtyfUOAOeGqsrETlxZYnmOFEsso+opmjoJ+1mbOx0h6OUR5RQsZ
+	TKa1EYVDB+V41hhOWvebwE/87GbIATErVvNRsM6Mzn9oFFGppNJI4X4HYflQq19JFkBL3V
+	QR3ZI/DA+UH0V1ACLhr8+C7uY20YTQ4jB6uRX/w1bMmPLl4AGT6zpO83aqMsUqlLdzopNn
+	0nwjEHkWhaJ9T456AjOKApcgGlkn0p7wvc6Sk1AVzQzstBiyYO4fCsPKZLSWCQ==
+Message-ID: <b61fc304-26e0-422f-bb31-303e7bcbb824@mailbox.org>
+Date: Mon, 29 Dec 2025 03:53:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251103-qm_dts-v3-6-2bfda8ee14c2@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: Update Data Modul i.MX8M Plus eDM SBC
+ DT to rev.903
+To: Shawn Guo <shawnguo@kernel.org>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20241226171404.84095-1-marex@denx.de>
+ <173531253398.3886481.9345779510218290682.robh@kernel.org>
+ <14c48d93-8ee6-4769-8dc3-5c527134bc77@mailbox.org> <aVHqlnNGNGmaF14m@dragon>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aVHqlnNGNGmaF14m@dragon>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 29f1afb84c51a004196
+X-MBO-RS-META: kspase6p397kpcxioyds6askqkgd9zd9
 
-On Mon, Nov 03, 2025 at 04:48:33PM -0500, Frank Li wrote:
-> From: Jacky Bai <ping.bai@nxp.com>
+On 12/29/25 3:42 AM, Shawn Guo wrote:
+> On Fri, Dec 26, 2025 at 11:24:29AM +0100, Marek Vasut wrote:
+>> On 12/27/24 4:18 PM, Rob Herring (Arm) wrote:
+>>
+>> Hello Shawn,
+>>
+>>> On Thu, 26 Dec 2024 18:13:27 +0100, Marek Vasut wrote:
+>>>> Update the DT to match newest Data Modul i.MX8M Plus eDM SBC rev.903
+>>>> board which implements significant changes. Keep some of the rev.900
+>>>> and rev.902 nodes in the DT so that a DTO can be used to support old
+>>>> rev.900 and rev.902 boards easily.
+>>
+>> [...]
+>>
+>>> arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dtb: tpm@2e: compatible: 'oneOf' conditional failed, one must be fixed:
+>>> 	['st,st33tphf2ei2c', 'tcg,tpm-tis-i2c'] is too long
+>>> 	'st,st33tphf2ei2c' is not one of ['infineon,slb9673', 'nuvoton,npct75x', 'st,st33ktpm2xi2c']
+>>
+>> This is addressed in bindings patch [1] . Can this patch and the bindings
+>> patch be applied ?
+>>
+>> https://lore.kernel.org/all/20241226171124.83735-1-marex@denx.de/
 > 
-> Add DB pmu related nodes. This pmu is in DB (system interconnects).
-> 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-
-Applied, thanks!
+> Could you resend them?
+Why ? The emails are in lore/patchwork and the patches still apply just 
+fine, don't they ?
 
