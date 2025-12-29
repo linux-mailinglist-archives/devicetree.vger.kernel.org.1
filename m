@@ -1,105 +1,169 @@
-Return-Path: <devicetree+bounces-250127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1365ECE661C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:36:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E2F1CE6649
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:42:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 14A3230069A1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 10:36:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A124330062DA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 10:42:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79F1E2E5B05;
-	Mon, 29 Dec 2025 10:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2BB2F28E5;
+	Mon, 29 Dec 2025 10:42:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GbpCokER"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gWi5GXzy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7D719D065;
-	Mon, 29 Dec 2025 10:36:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2732B19D065
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 10:42:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767004566; cv=none; b=lcjmL24faMWviBPc4LYN1kSJJ7UxnBKq1mLzbpKjYuG+vFc1ImbKnPXgq5tbFPQH7M+k386WcveTJT9JFMAx9QdhsBuJxcX3MSoxQyiSmrBjbtZd1wLfYBQEyMvxZAYBKrymVWlcPzFaT6avXLyTepSMIr/A4e6EPxyOqzNs2xk=
+	t=1767004923; cv=none; b=Fyn6wpGyxuOWgRaG2Sbwil0hYk8gv9JvlWYgOA4Woqc6Ym9p/I6mWrxDDqdO//kGVHQ067pr6ix6RBEIktJnf6NkSCulKl/3HAhPo1MEZT4vxdRHVeAwoVCxW45lZgo51wZO7hSzQAgJfUrg9V/pxFLXnC6VZiHDdzfU9g5CT4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767004566; c=relaxed/simple;
-	bh=yZNxUCUJShV6REW3N8Idxm9481H2ppYxU+/xwJm0adw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Y2tg1gE1wPgRM7Y7KKjIepV7WQWSQndaFTWt6x5baJYN9psbZhudlNXuec/4wmgXZED/B4WOr+a6k9qnyx5ysuA017wQvyMmpyiwBUD6aBenihYARK/Wt3WnftA7W11uO8VKIcnTd+6B4p500fKoEyVsrIQUD3ym6zxo+59/wFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GbpCokER; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6135C4CEF7;
-	Mon, 29 Dec 2025 10:36:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767004565;
-	bh=yZNxUCUJShV6REW3N8Idxm9481H2ppYxU+/xwJm0adw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=GbpCokERt90OP+pTJF8ktJi6oaRKGNbTSNvA1gO1U761B2iEc+TRVrbBFypQMNKlA
-	 d2O4NmGhBBKON8Bh84R+9JRn6kpU0s3XEpcfMtSmkIqZHCSnTJDDIfYRFPZI2XWAkS
-	 2kG1OLxYGrJMIlhDYi9m0JCRsmFIBuh54T/hCfgC7guLIvuBFrBkjX+SkEnJdtaQCR
-	 DI+tq3AqTOWC+1IeDWjoT6I3ddC1iqk/2jTlh2Z5yxw9j9FQot+/76fFYtsPQfwZH4
-	 yoq4aSgoSHw0CaE3xUQn2b66nUuTLTkQf9pvpTsnCCUCeW+WvM0fZ6Jjh2++cP8yaK
-	 jOmfQZ9hPcWJw==
-Date: Mon, 29 Dec 2025 04:36:04 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1767004923; c=relaxed/simple;
+	bh=gnCTBpHkjT2u/uhwo6SGtQ4dAyAcGDGCNmOyRLBxZTU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CXJKQXcCpPTxt1OQ0S5HHzTvsXvsKZe49+a2G5tKyXTM7wsE03UwOQmsg0SfwtYTUzJsJEIflV3adcgrX+dyv6WDdhpFOTcGH8kjcFlFB/T7DLKqX6IugnmQkV2zTcIAA0DZRXJcAChzCktkaw/OD7u878gUyJBkA6n8rkhuNtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gWi5GXzy; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-29f30233d8aso104209675ad.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 02:42:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767004921; x=1767609721; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/bak/Gm1yEoPiOz5r5uj+2GA4H6W72hfEprmZVj/Gz8=;
+        b=gWi5GXzytWRFwJe8i9aLdSasXGqXDjvo1Qya0DvVSiDiDNHrWijLY75WVQQvd0pCVC
+         /gjyTOrlhBO2rEO2MbOIM7Q8tScgKDADH7fEjAcye3XQtVBfXaoMk17gs1qDkwuXBa4z
+         1/x8m/F2vA2OjSJkwXBwsHBKL50fx9uRRT4PY4NflOjsoqvXZv3zLwWzWxrc1qzTfzr6
+         jJ4nbPFBYrIUOcwVhHr7crkTdgQGJzBaHFVPxAIQQKrb08hkOQev2I+3cpfJ08HYm/AN
+         0gi0NgnnenFQb91H4jafB4wBDFp/zpA46t58i/hRtqlXf8PE2KnMTHxaqhtor4UgfUeM
+         lqLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767004921; x=1767609721;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/bak/Gm1yEoPiOz5r5uj+2GA4H6W72hfEprmZVj/Gz8=;
+        b=N1+FS1bP66E5Eq6g42qH3RzPScG9Q4VRctH5gt3KAoJ1/0iLGC4JFnbje8H9z521pd
+         xo9PRABP+pg6UU1Ougq98Na0qBJpjdfRpDWXJc89ONlZtL2ofvxTbWwWhbnbkuQE3L4n
+         zUAwb15Bqe87IlRiaev0Z6+pexGdxP9FstK28qxQX1rA0tsS9QHskEImP28zW0oPkvZb
+         oOsQ168q8ZDscD7zeePbv0BNP+AwEIKJROmbvtGaLk1UnSRa/EDG10/aluRwQ5BkZn4a
+         2u0GBHE1Z4A0zCJXnODIPpLbruw50sIV5mheIQATdu95s49LA+/caUH47Ik8WPnzKxaY
+         MUJA==
+X-Forwarded-Encrypted: i=1; AJvYcCXIZeSSnVXgVl0tqADlF/LGX04aFWAxVIlx5QDI2DvMzeQvryFVgg7iApbceFx5uXLLUDp6DXMXalfx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8lvNY30yZeNF6IibcH28XB3mzLDrL5g/k0r9EzqfBIT99MFCS
+	RKPQxNWkOys1VVHq5G20z03lc+PzT85L1mEXKfU26w76aO6q9ipsUVDB
+X-Gm-Gg: AY/fxX7e4Sv/ab8ERS7oIctIpRsMU9GOHEQ5nFMXDaKY0dOfrZIEzWZUObCQ6Tyrvf3
+	byVoJG4fgxm7c8vgTZfDfhMvfImGxmyDPRgcx0heOaKFTfJMZG4ONDMa1XiJOSRnnmMcSt1kmTf
+	LzhDntZegyhwBiS1+lOumpdCGuwgAqKIzPBc9BPguyKUnHXLCxYw41eX2vhAXvYc5Udu9+RugOj
+	HTudMKLytMegzzA+yeMwIJeAW2Fhe3M9XCoVGQSO77pmzapUwW9ceGukV23+VuMMoU2Tb2qqyjn
+	48AKA4UoaxQcgQs3W3sd2mu0zwyXSSCHDRLFbMRcQIqJYUW0A5UHPu1U3hLBj9XLlGmWDA5xG2+
+	ikBJsZQ2o7JLeyjUyyge5HHH8dSP1wIdu/uHZPfa7XHbxmdg2aWU5rkKYpWE2+jS0ngaVxiDxP3
+	XmaOPDxnGIRjG3mOSLfncfBq4KM5X/99C4x+VuRrhR/q6HuhLrmDxaVbYzQPDl1nRFg9gHzLx70
+	ZJ8BqsmGpzTROANHRaASonVsZ8K2SI=
+X-Google-Smtp-Source: AGHT+IF9pF2OXfgj/4WKbrh74sWmW7eemfsJywFjVT833L1d7x1HTwDCFFHCW+3wFxyDrRtlCg5/zA==
+X-Received: by 2002:a17:903:1a28:b0:29b:e54f:936d with SMTP id d9443c01a7336-2a2f21fc328mr297628145ad.1.1767004921362;
+        Mon, 29 Dec 2025 02:42:01 -0800 (PST)
+Received: from charles-System-Product-Name.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d77566sm272803575ad.97.2025.12.29.02.41.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Dec 2025 02:42:00 -0800 (PST)
+From: Charles Hsu <hsu.yungteng@gmail.com>
+To: linux@roeck-us.net
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	Charles Hsu <hsu.yungteng@gmail.com>
+Subject: [PATCH v5 1/2] dt-bindings: hwmon: add STEF48H28
+Date: Mon, 29 Dec 2025 18:39:55 +0800
+Message-Id: <20251229103956.120184-1-hsu.yungteng@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, sre@kernel.org, 
- bsp-development.geo@leica-geosystems.com, linux-pm@vger.kernel.org, 
- krzk+dt@kernel.org, linux-kernel@vger.kernel.org
-To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-In-Reply-To: <20251229085636.4082852-2-Qing-wu.Li@leica-geosystems.com.cn>
-References: <20251229085636.4082852-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20251229085636.4082852-2-Qing-wu.Li@leica-geosystems.com.cn>
-Message-Id: <176700456483.502292.1935553390982118898.robh@kernel.org>
-Subject: Re: [PATCH V1 2/3] dt-bindings: power: sbs-battery: add polling
- interval property
+Content-Transfer-Encoding: 8bit
 
+Add device tree bindings for the hot-swap controller STEF48H28.
 
-On Mon, 29 Dec 2025 08:56:35 +0000, LI Qingwu wrote:
-> Add the optional sbs,monitoring-interval-ms property for SBS-compliant
-> batteries to configure a periodic polling interval on systems without
-> interrupt support. The driver periodically checks the battery status and
-> notifies userspace of changes when this property is set, and ignores it
-> when a GPIO interrupt is available.
-> 
-> The property defaults to 0 to preserve existing behaviour.
-> 
-> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> ---
->  .../bindings/power/supply/sbs,sbs-battery.yaml           | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
+Changes in v5:
+- Move the change list into the commit message.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Changes in v4:
+- Fix an incorrect datasheet URL and update it to the correct reference.
 
-yamllint warnings/errors:
+Changes in v3:
+- Move the STEF48H28 Device Tree binding from
+  trivial-devices.yaml to pmbus/stef48h28.yaml.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/sbs,sbs-battery.yaml: properties:sbs,monitoring-interval-ms: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml
+Changes in v2:
+- Fix the entry in trivial-devices.yaml by correcting the comment
+  and compatible string ordering.
 
-doc reference errors (make refcheckdocs):
+Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
+---
+ .../bindings/hwmon/pmbus/st,stef48h28.yaml    | 43 +++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
 
-See https://patchwork.kernel.org/project/devicetree/patch/20251229085636.4082852-2-Qing-wu.Li@leica-geosystems.com.cn
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
+new file mode 100644
+index 000000000000..c6a4b02bcd84
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/st,stef48h28.yaml
+@@ -0,0 +1,43 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/pmbus/st,stef48h28.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STMicroelectronics hot-swap controller with PMBus interface
++
++maintainers:
++  - Charles Hsu <hsu.yungteng@gmail.com>
++
++description: |
++  The STEF48H28 is an advanced 30A integrated electronic fuse for
++  the 9-80V DC power lines.
++
++  Datasheet:
++    https://www.st.com/resource/en/data_brief/stef48h28.pdf
++
++properties:
++  compatible:
++    enum:
++      - st,stef48h28
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pmic@11 {
++            compatible = "st,stef48h28";
++            reg = <0x11>;
++        };
++    };
+-- 
+2.34.1
 
 
