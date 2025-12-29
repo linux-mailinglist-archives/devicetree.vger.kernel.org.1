@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-250070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81212CE6268
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 08:37:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42AB7CE61DC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 08:24:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E9CDC3038007
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:31:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CC116300453A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:24:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E823161B0;
-	Mon, 29 Dec 2025 07:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281A831812C;
+	Mon, 29 Dec 2025 07:24:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="obgoeUrq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BiM82rFJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10192494FE;
-	Mon, 29 Dec 2025 07:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB8FD31770B;
+	Mon, 29 Dec 2025 07:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766992926; cv=none; b=fsqNMQ/Gl2J0gGWmFhCKBhKaWRW2UWykxMXSkj7youuevCqA39yi/YJ1bk3ZqXSmbaYY4uXd5LnbMgP96NPShzL5kY/LQNCgdTfdgfi7Xnwl/X8xjw0z9D4nMbn5aKR2CAz6cOrz8kvZndBKMl3eGm/365RGhBTpwuUSD2zV6/A=
+	t=1766993049; cv=none; b=C+hTVGH0KtSOqj0bTSgproeS2InBEC9US8KoRdCumWTCgN8Ji/UzQzc9SSHVGYCmNPda+HhZ+V/vXFvd0KqWq+qfK1PhDu/oGD6JD4RgM2yv9ZXXx6hZ5T6vlrxH1DuHdx3B0hivieBFYZ49yC3cOc7ZLn3cEuN0d5chtll+7X4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766992926; c=relaxed/simple;
-	bh=SxdXLPAWz3KHwvb0HKuudiCfH3vDRUQB1x0W+Jkuy0s=;
+	s=arc-20240116; t=1766993049; c=relaxed/simple;
+	bh=+tdCpRj8osX1FlMe16CEO5gvakw+XTaV+BWAlaWaJCw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BWE+k/jaEa3P+wweVJVJDGBzd9ZGBHVlwr4eYTlNxA9vEAftKD0/NM8vDUtF8P6NKGm6Qo0s+zHLhieMAeHPlmdByXV3KGFdVIm2N9kYsLUKcAQXctHp8ZydisYK+VndrOEGgPRs6E2j6DWEcn6kIbBR6C6J38HRRahEKw9p4vU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=obgoeUrq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1FC4C4CEF7;
-	Mon, 29 Dec 2025 07:22:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SgChshLx7bkctfXMgxaGtR1oaZdHmFG7w2UTqLxNa5qW3noA6wzJY8O7ZUmvQoVC+I6zbHiCChB1ecw2xU0k+4aOgJpcQIg61kxIKf6mvkqjJV5xGUyWfOeDuLbZIwD+gf5iepHpOgGpGGrgHGIOX1/x/YlusG5axs0gPxZJSbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BiM82rFJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2503C4CEF7;
+	Mon, 29 Dec 2025 07:23:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766992924;
-	bh=SxdXLPAWz3KHwvb0HKuudiCfH3vDRUQB1x0W+Jkuy0s=;
+	s=k20201202; t=1766993045;
+	bh=+tdCpRj8osX1FlMe16CEO5gvakw+XTaV+BWAlaWaJCw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=obgoeUrqMXVrucgONq4BEX7wy1ZvGZKmz6idLcSfmcFu1vUoq/g1X7j+UkRTsfmDH
-	 6KSGwUAFndLB4/vRnJN9XkuSKbkrynM2qlUXYbFxPNg4zhPHwAbDbwJEKsQkb+Qow5
-	 FkGQ4iRZQHWia2GeCmNobV4dpktuigC5P8bq0ZbpEyLr9qo8ygjITALW7jRqG+ejyI
-	 ffcTMpDFHmH8wbm3dGSDxauJdKz7rTIsAjxKvaji8QhEBEk37zDkQcCzO9Q+zbYQFk
-	 +V9ZX93hodhPNBqxY1BU58k70WWEO+iaFZqWiT1QRulO1fyYxb/cqXsRW9js0MSuMf
-	 +Q+Zkqlx8fNNg==
-Message-ID: <8690ccf7-2033-4dc3-8a4f-404a93301d6a@kernel.org>
-Date: Mon, 29 Dec 2025 08:21:58 +0100
+	b=BiM82rFJWh+d5G+g7fCxEzjTRz0rAd7so+8bFVS2luT51DEjM7qVwyV16Uzrr/VlD
+	 0JJKDu4uLzoqytQ78qPkNfTWHAG77Ba3lC0KL/kWFWGQvUB3ppDnK0KXaMSxQuSSAY
+	 f7+2QM3AxsTRlTNLE+nQ0gm1njzp9I0CjQp0TNkpqEE6aNy2+YneU0kZK5gTlKch8O
+	 fKQQoXzKaI9nLAz2qrLSG3kiiBxV2nzsC7CyddvrgXP+SvY3K9B1kz7XlqIMTk0fTh
+	 VhuMMOinkbFUW9JlkW7DSZj5AWmk7LrY6eOKSOIbRdIadzgAe/M5KbxTHszlesJnuz
+	 +l3OR0+MQbbQw==
+Message-ID: <8288af85-13da-46e3-8d89-71995fbd17f8@kernel.org>
+Date: Mon, 29 Dec 2025 08:23:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,18 +48,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: add STEF48H28
-To: Yungteng Hsu <hsu.yungteng@gmail.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org,
+Subject: Re: [PATCH 1/2] dt-bindings: display/msm/gpu: Narrow reg and
+ reg-names for Adreno 610.0 and alike
+To: rob.clark@oss.qualcomm.com
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+ Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+ Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar
+ <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251224084821.2092169-1-hsu.yungteng@gmail.com>
- <490569f8-a434-4297-b11e-ad34ddc4ae1e@kernel.org>
- <CAFT9tykPEt+zTREF9C4AXtGp0qDh_65LjHZCK9F=NFhE-K4dGQ@mail.gmail.com>
- <06f97147-5752-4a82-9958-89b138a7d4fe@kernel.org>
- <CAFT9tynYM0u_cAqA9YPpoUp7EcVpvcwr_sxrk5K=VNMXDwBE=w@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251227110504.36732-3-krzysztof.kozlowski@oss.qualcomm.com>
+ <CACSVV03H_oii=fuhaeBhUZSJk-2mr08jGqAs30Z_h9tzeDgdtw@mail.gmail.com>
+ <2a35d31a-1a3e-4cd4-ac3a-27104ff12801@kernel.org>
+ <CACSVV03FfvZVzuKGfaJrsXmE7VVxEF5zN4-R7h1PXA11jOO3gw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,43 +113,48 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAFT9tynYM0u_cAqA9YPpoUp7EcVpvcwr_sxrk5K=VNMXDwBE=w@mail.gmail.com>
+In-Reply-To: <CACSVV03FfvZVzuKGfaJrsXmE7VVxEF5zN4-R7h1PXA11jOO3gw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 29/12/2025 02:02, Yungteng Hsu wrote:
-> Krzysztof Kozlowski <krzk@kernel.org> 於 2025年12月26日週五 下午7:10寫道：
+On 28/12/2025 15:59, Rob Clark wrote:
+> On Sat, Dec 27, 2025 at 11:56 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 27/12/2025 23:01, Rob Clark wrote:
+>>> On Sat, Dec 27, 2025 at 3:05 AM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@oss.qualcomm.com> wrote:
+>>>>
+>>>> DTS files for qcom,adreno-610.0 and qcom,adreno-07000200 contain only one
+>>>> "reg" entry, not two, and the binding defines the second entry in
+>>>> "reg-names" differently than top-level part, so just simplify it and
+>>>> narrow to only one entry.
+>>>
+>>> I'll defer to Akhil about whether this is actually needed (vs just
+>>> incomplete gpu devcoredump support for certain GPUs).  In general
+>>> cx_dbgc is needed to capture state for gpu devcoredump state
+>>> snapshots, but not directly used in normal operations.  It seems
+>>> similar to the situation with mapping gpucc as part of gmu, ie. not
+>>> something the CPU normally deals with directly, but necessary to
+>>> capture crash state.
+>>
+>> I don't get why binding was added with cx_dbgc, but DTS not. Neither
+>> binding nor DTS depends on actual usage, so I assume someone
+>> intentionally did not want DTS to contain cx_dbgc and binding should
+>> follow. Otherwise we should make the DTS complete and make the binding
+>> strict (leading to warnings if DTS is not updated).
 > 
+> I'm not sure about the history.. but I can say that cx_dbgc is only
+> used for gpu state snapshot / devcoredump.  So it would be easy to not
+> notice if it were missing.
 > 
->>
->> On 26/12/2025 03:46, Yungteng Hsu wrote:
->>> Krzysztof Kozlowski <krzk@kernel.org> 於 2025年12月24日週三 下午6:03寫道：
->>>>
->>>> On 24/12/2025 09:48, Charles Hsu wrote:
->>>>> Add device tree bindings for the hot-swap controller STEF48H28.
->>>>>
->>>>> Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
->>>>> ---
->>>>
->>>>
->>>> Where is any changelog? You keep sending versions but you never
->>>> responded, never said what happened with this.
->>>>
->>> Thank you for your feedback.
->>> I realize now that I misunderstood the process.
->>> I previously thought that the changes needed to be included in the cover letter.
->>> I will follow the proper procedure for discussing updates in the thread.
->>
->> There is no cover letter here at all. You sent only 1/2.
->>
-> Thank you for the clarification.
-> I would like to confirm the correct approach.
-> Should the changes be documented in the cover letter, or should they
-> be written directly in the commit message?
-> I will resend the complete submission accordingly.
+> We have a similar slightly ugly thing where gpucc is included in the
+> gmu map.. only for devcoredump.  Maybe we need a different way to
+> handle these things that are only mapped for state capture?
 
-Does not matter, because the problem is  - there is no cover letter. You
-wrote that changelog is in the cover letter. There is no such!
+No. Either hardware has it or not. If hardware has it, then both DTS and
+binding should have it. If people decided that DTS should not have it
+(for whatever reason), then apparently that's the desired hardware
+description and let's remove it from the binding to match the ABI.
 
 Best regards,
 Krzysztof
