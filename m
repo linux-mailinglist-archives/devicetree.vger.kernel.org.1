@@ -1,147 +1,136 @@
-Return-Path: <devicetree+bounces-250106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FBFCCE647C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 10:16:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA6B0CE64BC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 10:32:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 84FF93006ABD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 09:16:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 64E14301069B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 09:32:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B52D1F9ECB;
-	Mon, 29 Dec 2025 09:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D926224A076;
+	Mon, 29 Dec 2025 09:32:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F3T0NGG5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AN5pxHJD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D30F3A1E8A;
-	Mon, 29 Dec 2025 09:16:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01BA01C862E
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 09:32:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766999785; cv=none; b=kxQrgaqzgYJ8r472KM+kpqqCmJTBO7ZQTF7PT+SYTTL3rweQIecWBZbFac+bcMPPOdNzxDHqG+67TJApZQAJEw2pw7/IfFeca9l/58xuQuqeY+ZMrgAiOEIz/aridAsVFSbO+6w33A7+xCbt1YQoHhaUqkh2+Qrqo1QOvQF8q/c=
+	t=1767000742; cv=none; b=uO5i+Zi7Pyhntgqm6S7n4UUo/41WTbo4Ei9lQQ04Ix001l0PqpWZWBIwNgH3mqGTCRpMvzvd4ynEcCOaFWe+JYlzBam9SsBkab/90kLVnaNbcSs044p6eqrLhfIoWx/6ZmoDPa3927U0fgBqfpHn3/A1noOOeWj4A2dX8NNRef0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766999785; c=relaxed/simple;
-	bh=+aj/p/8mrr9Z0mbjQuD/yY8P2R5MxN4iZnClKgFjtQA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kuuKkUVBZ/CQ70zzt3x1kbDBMxJORcyLJBABSypIFgF8SgYsX4tctxjLvXHvLFX3a+AFlB4psIvqZVFxu2kuJBakQcUaev2GEWlh65K5t1JYbyc0M2Ej6JB0XoGr7veHtlqEJmTpGrZRDwrF686b1HIMg+kRPvUNLZLvOTR7Jtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F3T0NGG5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 689C1C4CEF7;
-	Mon, 29 Dec 2025 09:16:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766999784;
-	bh=+aj/p/8mrr9Z0mbjQuD/yY8P2R5MxN4iZnClKgFjtQA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=F3T0NGG569ApZUX1FafPgqKpP1+4NWvzNPCEMjJoDo+bl1EfUfvpyfczqAOF7Aceu
-	 HTjbYowgOjS5ROIvD1bdN9hNFhTKItqVd0ZT+Oci/PV1Y2s3JeQy61vzxeTURiH1BF
-	 xDK9CO7Au/POJOgVYGmedktAkcWtXR7rkeNB8ewofLp1DZ17XdZpllqpe890XlzvDF
-	 Nh3H547xd/94NF9D/rGqgMpGMAC7f3waXdg+kecnqmmLa0gTVyHC1qjetxVKSU0mbf
-	 9qN5hJXI0yHJ+zgil8o7e6s1Y8qEfrkdrsBuBo5sUuDu1xtxAA/jwrIbN+yzTMqqJJ
-	 VAe1rkAWZj1ow==
-Message-ID: <63f1fd11-6628-4a83-b376-1e4efad6fd63@kernel.org>
-Date: Mon, 29 Dec 2025 10:16:19 +0100
+	s=arc-20240116; t=1767000742; c=relaxed/simple;
+	bh=dImMfejdK5RjQ6LN3eitqmAz7Fk97Jy9iWoRpeyXGw0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PxUiCqqPPiw97jatjF7e39sWrSuo0KEvp3tA61kx4JgMiVS+MeiDj9ny0hdz973579Et9GnKXPAofoYJiNM4x1+uXP6hhZ/x4wLIK5JHswmcnBc58QASb48fWWOX/M1AV6J+vE45sSbi15WnQuy+RubAbEGs0aPstlIuZDQ33AU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AN5pxHJD; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b725ead5800so1246143266b.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 01:32:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767000739; x=1767605539; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dcWwbJlNpQHu5DLugJEAUoJP+cZi8f/CAzmkuu67ywM=;
+        b=AN5pxHJDmhm7NKvQfEZeRMJN9euNWHDwmH+snA9RfUgn1HTeK+PUhOsnxAIoX1aeYn
+         LQ8aogt0sx2AyE1xHhtqc8umi5IUEUd9BQFguU3sjgdO1D66WmKneebi4n/yjX22it7k
+         KvWtbaq6BC+v5wi5nv8oRspI++N7r8ErBIUeboWLEtHq+d3M1CVsAqKtydcA8ywjX9lz
+         gbtkv1x4cCrXKbOZFA5mlnDDBGfBtckWXIBWZH3rqY4d4l5+C6ZbiVwMM22XwxJL1igQ
+         ozwqc3BKr85UyOhxxZo0mCuB0rRqrUDpmyDfspxZHMukizzS/oa46XFZh8Y93RuSXw9D
+         PYTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767000739; x=1767605539;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=dcWwbJlNpQHu5DLugJEAUoJP+cZi8f/CAzmkuu67ywM=;
+        b=ut30WcGIHOZVUBdNc/G8r+aAVjLf2dtoUQhP/3NlG5CirjoTSOZwi8JVAut9CKnlXh
+         VxHKSFSC68RXTUGvbTVgFTMq5iDYSu+jEiL4NdwWnbtUImMg3plyhkMtKHYybVezt3w9
+         KLtmC0oR7H9fot3u6euFl8zLkJWUVjtv2HrhdpQVgdz228gg0EeFjAHDMZrDyBr75Pj+
+         gwEo1r/bX4SuZWup6kb7OFytHEQEaagjl8gfsFlnpfhOgICIZnl+4zZHFvix+3DQ8bgY
+         WdUo/Kak4Rr98CAS7p15Edj82SBtZ16qEc16EXUZo8uusGcar0gEhrT2dqDb0Sql2MQc
+         Pt/A==
+X-Forwarded-Encrypted: i=1; AJvYcCW3jXwhvclDNVNsrmzRMcl6j53AUool2bJFhHrwCf8AtYkwiRuyFDOPI1PAJwn/wti7YY/UiI7dEOxT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqkuVo1XVcFDIXXk5BoneFRcm4/qSZFaKvaHRfg5v/VsOOmdaP
+	kTr0/E6OFHxO+bPsaiHk0hHvRyN0LHdI/gWYvgvNJBhl28Rjc12OykIUo/t0DmtCEU1cznPnQrY
+	xpeIzUvc68dF5MJZsPEf3BGzo47V6168=
+X-Gm-Gg: AY/fxX562tRe+iKjBq7IZPLMJQway7Z0jILx/oHnvm5pe4UX1J/xaC4/J6WfUHfmSd0
+	aAM1wGjBgfaQz4o/qh1OkZCEyaeLafGNusWRrxLyoV3gtqqr6y40WCLTjoGcuwd5l07zSvau6CD
+	ogCzn+/L3IDOSygQnZM4I8B1SanxhWllXdz7QlPn9eQmwg3IB3eNZ2KuG7527DAV7jFhZyJyosy
+	w2za6ZyChq3NzfKG9sNShfTOnCIYeoHr7uy2D6L+5wvzunGFUmAuIGjoRxgZFDyyBlhueUbkJz/
+	0U/SF9Q2nNIIEHNgCnhNtQDr8S43OCLvRlSRxMiNJ0sEaMUatFweWadLt7jtLwu9m53gGpw=
+X-Google-Smtp-Source: AGHT+IEbV+W6Jn2quXAfX5b7EVevNK7Ufa2WLFsXVdJEWhvON8IEc58ood5ScPQO7+9BK42Q6kTnVrP/URMGzLow+ZU=
+X-Received: by 2002:a17:906:7312:b0:b73:58a0:e064 with SMTP id
+ a640c23a62f3a-b80372590b2mr3198965166b.50.1767000738975; Mon, 29 Dec 2025
+ 01:32:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 2/3] dt-bindings: power: sbs-battery: add polling
- interval property
-To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>, sre@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: bsp-development.geo@leica-geosystems.com
-References: <20251229085636.4082852-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20251229085636.4082852-2-Qing-wu.Li@leica-geosystems.com.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251229085636.4082852-2-Qing-wu.Li@leica-geosystems.com.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
+ <20251223155534.220504-2-maxime.chevallier@bootlin.com> <56c03c7f-1e5b-4586-beb0-47a1fa3bc86c@baylibre.com>
+ <c386a4bd-9c7d-4b4d-b614-fdec424d57a0@gmail.com>
+In-Reply-To: <c386a4bd-9c7d-4b4d-b614-fdec424d57a0@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 29 Dec 2025 11:31:42 +0200
+X-Gm-Features: AQt7F2r5SnuAV69oChSaEdwhTinGV7Uzknanls5W5PYAWordHlK1nPRWO9434VY
+Message-ID: <CAHp75VfDnuyqRyHpVK40qRR59XB3RHV-aDO72UDNhjLDbJHDPg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add Texas Instruments TLA 2528
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, 
+	Maxime Chevallier <maxime.chevallier@bootlin.com>, Jonathan Cameron <jic23@kernel.org>, nuno.sa@analog.com, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcelo Schmitt <marcelo.schmitt@analog.com>, Antoniu Miclaus <antoniu.miclaus@analog.com>, 
+	Angelo Dureghello <adureghello@baylibre.com>, Tobias Sperling <tobias.sperling@softing.com>, 
+	Eason Yang <j2anfernee@gmail.com>, Marilene Andrade Garcia <marilene.agarcia@gmail.com>, 
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>, duje@dujemihanovic.xyz, 
+	herve.codina@bootlin.com, Rodolfo Giometti <giometti@enneenne.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	thomas.petazzoni@bootlin.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 29/12/2025 09:56, LI Qingwu wrote:
-> Add the optional sbs,monitoring-interval-ms property for SBS-compliant
-> batteries to configure a periodic polling interval on systems without
-> interrupt support. The driver periodically checks the battery status and
-> notifies userspace of changes when this property is set, and ignores it
-> when a GPIO interrupt is available.
-> 
-> The property defaults to 0 to preserve existing behaviour.
-> 
-> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> ---
->  .../bindings/power/supply/sbs,sbs-battery.yaml           | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/supply/sbs,sbs-battery.yaml b/Documentation/devicetree/bindings/power/supply/sbs,sbs-battery.yaml
-> index 90b9d3d882a4..fbdd5dd5dda8 100644
-> --- a/Documentation/devicetree/bindings/power/supply/sbs,sbs-battery.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/sbs,sbs-battery.yaml
-> @@ -59,6 +59,15 @@ properties:
->        master implementation.
->      type: boolean
->  
-> +  sbs,monitoring-interval-ms:
-> +    description:
-> +      Polling interval in milliseconds for battery status monitoring on
-> +      systems without interrupt support. The driver periodically checks
-> +      the battery status and notifies userspace of changes. Ignored when
-> +      GPIO interrupt is available.
+On Mon, Dec 29, 2025 at 10:04=E2=80=AFAM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
+> On 23/12/2025 20:26, David Lechner wrote:
+> > On 12/23/25 9:55 AM, Maxime Chevallier wrote:
 
+...
 
-You described the desired Linux feature or behavior, not the actual
-hardware. The bindings are about the latter, so instead you need to
-rephrase the property and its description to match actual hardware
-capabilities/features/configuration etc.
+> > It looks like inputs can also be used as GPIOs, so
+> >
+> > gpio-controller: true
+> > #gpio-cells:
+> >    const: 2
+> >
+> > would be appropriate (it doesn't matter if the driver doesn't
+> > implement it, we know what the correct bindings are).
+> >
+> >> +
+> >> +  "#io-channel-cells":
+> >> +    const: 1
+>
+> I didn't check the data-sheet, but if the pins can be set to be GPIOs or
+> ADC inputs, then I would require channels to be specified. It's only 8
+> channels, so always listing channels that are present shouldn't be that
+> big of a problem - and it should avoid one to add extra properties to
+> denote channels used for GPIO if GPIOs need to be supported.
+>
+> Well, I am not insisting this, there are folks that know this stuff
+> better than I :)
 
+Why would we need an extra property for that? GPIO controller has a
+property for valid_mask, should be enough to handle this case, no?
 
-Best regards,
-Krzysztof
+--=20
+With Best Regards,
+Andy Shevchenko
 
