@@ -1,100 +1,54 @@
-Return-Path: <devicetree+bounces-250175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5123CE6AD2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 13:26:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56D28CE6B05
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 13:30:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B25D63007C70
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:26:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 86CC6300E154
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:30:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7E230FC0D;
-	Mon, 29 Dec 2025 12:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1173D30FC34;
+	Mon, 29 Dec 2025 12:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="chMeYr0c";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kUKlXEu/"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="EEAyNpqP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-25.smtpout.orange.fr [80.12.242.25])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84682DAFBB
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 12:26:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D11361946C8;
+	Mon, 29 Dec 2025 12:30:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767011171; cv=none; b=u0QTbL3SHnNoNPjhcgz8QOYnPTEFPUbcP2bVGn04QGlAM6kN4UrPJsor1eO+ZduaUKsInuUj1YnXGblhGGSgzcDkE+U+FA3D+IHzx8VIyMeW78Ad0LVw4GShMFik2t1VnCPLnUr2IixOteMHtHp7JiLQF7NXoX57PpghMuPQpEc=
+	t=1767011423; cv=none; b=ZAVxC5jdOyMP7//jNpkYoVOu8shVnk96AFXmo/vdfuHweEVxUQRbpygC8pFV4sau7Rem8Lb0AMPea5T8a6La7+6FKdZeuK1ctFjkR5ZLLD2ZfNWb0mKt6jwtotjcprxSg+dPTUXfBWzu/Vr1WVM9/jac8hKqVYTrLAH7QTolrEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767011171; c=relaxed/simple;
-	bh=ikcn4WZRbWCLPPagC9V2gjb/C/j86IUWIm1xRYhg8zk=;
+	s=arc-20240116; t=1767011423; c=relaxed/simple;
+	bh=8SqAamIhKPcweeDRupgsAJpevZj1OrLnixFWIuYKX4Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PZeTTDAiNT8EDPmzb0b5FLbqBsvPs8H65M5PPl1Qx9I42jygIHO57Fl5QizPNYhLA+7uHhCjw4JC57jx4EHmpnQrB8020ssEu0wsSnS64tvEz4sgLzhKUw/RbUgAxvPfEJabnI9GfIWtrmcV0piR/oAWlRANHjgwyI+bLrDyKu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=chMeYr0c; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kUKlXEu/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BTAsC2H3964629
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 12:26:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mN6LYrOGWt+c+fADT3LUTFhdUHN5Zo/kGP75Efm41s8=; b=chMeYr0co3R7t63a
-	BiwmMzlSUGP3AfGKxHn3Jla0+pYUFpxTUXEyzG4fPErhIVZV8NxVHRx9gyD3Q863
-	FU38wg0uFWJ41jswzR8Z8vZA+fCwzL87vCMbk9M3pIzxTePfBcU+RTJKDVYawvwn
-	Jbm5PxOvsLZf0pzhrPGG8Xuoi1KuOoiLkePalrmzcXWJ3gy+K53rSkOM/u1+QSsY
-	3Ro2buUfu78uPupYPViDmBDYBkqAfWR8ZjHtKtmnhZCD1kJneWCM9KZGiLL2LvND
-	ALvjD3bqzi1h1ErXyEmIDZX3kgV+yETdriSzn6A3ztauaK7zb1ms78U5RvFMgxWR
-	reVvWg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ba6dr4dmm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 12:26:08 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8b2ea2b51cfso272066685a.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 04:26:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767011168; x=1767615968; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mN6LYrOGWt+c+fADT3LUTFhdUHN5Zo/kGP75Efm41s8=;
-        b=kUKlXEu/nBioSvQtKcFUeaea3y53F53DJXlPpuOqkyO8YcdFbKP87BJDFooKlHRIDa
-         m2BYoWToT+Ekfwx9GyACKN7W9n8fKFNczPomPgkQuzsDwEpowZnHjY6kOfWGOooNzNMn
-         S9tWjn0O5ufKL/98Bu2/dk1vBxjQ0oQRj4VMagJxiOxDaXs/Q8tNxsJ4rqFfp6w2V98+
-         9tTzct4XFyJ4eKjlxQvMx7zLH2Ft5+9NdSPzUEXshwDjeBaRFnBGzFPiTwyQE5G8hw/w
-         PCQvAoSb+MqLzMQdqYoq/q64NaZaUeEjGk7asWAXXoq6hiiGngsU+8LECk5N9Paod9un
-         HDow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767011168; x=1767615968;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mN6LYrOGWt+c+fADT3LUTFhdUHN5Zo/kGP75Efm41s8=;
-        b=fQhoXVjLcRdZj9fcJPZHbuvM2ZAhdoyyGuCqmE6WRtF/lOeKVMMJEZXnQFsM9PSxvm
-         FjC6e+5Oi1IylX7z1XVhofEzKGM72zDDC84dR9zEHgRWWkgeeaOYz7USOguUZAB00HG3
-         79UpJ3cYqRNsy2o0hUZXafq3fFtQcV3Je6AdhaErNydgaHFjVW5tG+sRBSzY2YfMMWfo
-         C1NA3qyCB23+y8G6CEAOoTZ0c6KLXjy9i6SqDNXfjj44JraQIE8/58mDE9jYodvxG66U
-         Z2NeLxUB1PAzztIKnSukvRpiRJTv2qQH39lK8AiLiVjVthFuiON7PYj36lRddfzvLRP9
-         LEXA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+/ySpi5Bb4h8U1twA2eXb4zun54kkVmndz+Exu7p3eFCoXDOfivGVPXvRFnipfYJbbYUKHlPAQmJD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwL48mNH9dKniXH5sojV1yobEJhL3Txlhq2WXYyHaOQqSklsNpt
-	3XvG6WVpY8SDYeUT4gd0fDnv+LmEk459b1d+aO8QChUcRRVve/z1/oLApzBtvlIzRLejP0SDotc
-	rVgHjeKaZVgEZryo80k8txfoEMAZhByJX4Wy8UbG5EACvfvEad0Ywfay1QzjsnKrs
-X-Gm-Gg: AY/fxX4NTsZsZT1+UnI+lJATxoEpnbu6COOIPvYyP2uYxw0Q3PKJ5lUyDsa7SXzTKMC
-	+84Eamf3HEnVWw/6IICV5Noiihtt7Jkoe4lGjusDuxcT8KbsEAHyxB7jwJMigQOwl0/u6YxBuq/
-	80ONB30EgtEsMfOMpJ+2iVbB8ERk3sxuZTR3ymgQ8iKpMyDcLK/bfRH/SRiMcmBFYKRxlU7yp6Z
-	BhqYyE+QUwoq2o+bKZ8OrJkkudvLVRkEmAZ7wjL4Y2+DA7D7q9us6JpXxIeTxTgBEbFV7lO7CYb
-	kaBLgkdJOL2XEsYnJArWn3HNk8aikn8UstabMktPcLeJjSP5jAOrEZqwlA7pZw24jH3CWFKtmgO
-	ssqW6HN5IX/KsFgG/1Jo08TMxiw7Ncs1tbXFmjtUdAzvRT0LZMbMfjN6LOJ7W10SW9A==
-X-Received: by 2002:a05:622a:4d:b0:4f1:b3c1:20f8 with SMTP id d75a77b69052e-4f4abd30b01mr356524111cf.4.1767011167842;
-        Mon, 29 Dec 2025 04:26:07 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHTNhJGS6wpzmfsSBspDO1neXn7hzzMwDf7y6CRLVLjolv5e+1eTU6agqRUfN/9vpmI89qn7w==
-X-Received: by 2002:a05:622a:4d:b0:4f1:b3c1:20f8 with SMTP id d75a77b69052e-4f4abd30b01mr356523821cf.4.1767011167324;
-        Mon, 29 Dec 2025 04:26:07 -0800 (PST)
-Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b80377f2f18sm3295432366b.0.2025.12.29.04.26.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Dec 2025 04:26:06 -0800 (PST)
-Message-ID: <5c97bac1-d796-4046-9450-65cc99ef7469@oss.qualcomm.com>
-Date: Mon, 29 Dec 2025 13:26:04 +0100
+	 In-Reply-To:Content-Type; b=pWnM0zx59galVMvPbZn43qVwcT0FiNMZUhH/efM8BqQa4sRSGS6nktHXzRp05Gt87f0avu4MT2rvvHCixXnNf83rERD5JICjbQvjHvPMmJ1DQ3JkSS3Ak8+AND9eqg74U7eYlCeh5nQ0h1lLsop5ILzn9FUwD5vhr2LOuac4PWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=EEAyNpqP; arc=none smtp.client-ip=80.12.242.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+ ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+	by smtp.orange.fr with ESMTPA
+	id aCMvvMVMYjSZXaCMvvsf9B; Mon, 29 Dec 2025 13:29:05 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1767011346;
+	bh=fSTbBzZnMi5ZmX6dfCrTLQPupOlRFVbrKDWxqD9sUZk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=EEAyNpqPCs8gLEK/CoU8lCVTUnmZne/tUclR1S++jDjlJQTL6L6Qe/gPlfDt/vJA6
+	 F7fel6HYCEFjXD1cU/Pm0sARlzAwaCTBgp0l5u1X9ORvNNac/zjgNSr80nDUG95Lk4
+	 u3dxHVWWIuubiwYW7GVmeYKYA3BEfDD5ODeSEwfpYmPL0WDNVydwSUf50ZEuIJmffi
+	 +lcWbn1vITXNu/oYwRHiT9XzPlkWFXtyfzer2Uj3mZAW8kevgb+yRJsxcGdyO+nwHy
+	 hR8X1vQvM3LNAcI5QH8U+MvDA5AnZJDbF5i7ueBeNE8BObUseu8IO0wP9/kmCue0yH
+	 hM1It1jzYKiwQ==
+X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Mon, 29 Dec 2025 13:29:06 +0100
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+Message-ID: <37ef98c2-b13f-4292-8db7-df90237c7ce1@wanadoo.fr>
+Date: Mon, 29 Dec 2025 13:28:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,74 +56,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 1/4] scsi: ufs: phy: dt-bindings: Add QMP UFS PHY
- compatible for Hamoa
-To: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>, vkoul@kernel.org,
-        neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, martin.petersen@oracle.com, andersson@kernel.org,
-        konradybcio@kernel.org, taniya.das@oss.qualcomm.com,
-        dmitry.baryshkov@oss.qualcomm.com
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org, nitin.rawat@oss.qualcomm.com
-References: <20251229060642.2807165-1-pradeep.pragallapati@oss.qualcomm.com>
- <20251229060642.2807165-2-pradeep.pragallapati@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251229060642.2807165-2-pradeep.pragallapati@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI5MDExNSBTYWx0ZWRfXzWYmcCgqCNV3
- Fm/BV/uFTm9Wib2Fi1aZ7a0/f5lMyDkBonHYQIiTiv5W4Zw02/qu+L8GpRuwMUp/6SL6zhZcSId
- RVukKt2PeArOI23rL5qblRSoSPsO9s8UijcRyuYViwlpovnWt95l5zjM88cmBG5CcYPn2m57Hn/
- KQSSO+DLuiX3fkZH8YrT9B0HNvbsAyLt0Dzix1TBjC+QRZQXJY4HuQHJC5XAM7D4JaJv1yZt+x8
- M0kyfFaAo2KByO1czlQbYltiHBJyyLEbyt3mhcqv1S4FizGE+hi17otRefoCoEYc2ppqjcPFBww
- 42wdf/VFJcDOJH9tqUAuzrVT3Z7He9aj4wkLncCVtKi5feLW2GKfZWMieaLu8xR1Nd21aTND+vS
- xT+qvxsFvxOou6CmxnG+X21XHOyic6PPnWDeFYdpBiqy8qB9mtY7dcYV2FLeuIZYvz98zZ3RXMW
- ezQRX4iTawR4laL9x4Q==
-X-Authority-Analysis: v=2.4 cv=VdP6/Vp9 c=1 sm=1 tr=0 ts=69527360 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=x0PFmZ93Zfwba3del2YA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-GUID: cjFO9sujK6b8pKzwFbljfKjZraOmJF9i
-X-Proofpoint-ORIG-GUID: cjFO9sujK6b8pKzwFbljfKjZraOmJF9i
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-29_04,2025-12-29_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0
- adultscore=0 clxscore=1015 malwarescore=0 suspectscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512290115
+Subject: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller
+ driver
+To: zhangsenchuan@eswincomputing.com, bhelgaas@google.com, mani@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org,
+ kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de,
+ jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, christian.bruel@foss.st.com,
+ mayank.rana@oss.qualcomm.com, shradha.t@samsung.com,
+ krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com,
+ inochiama@gmail.com, Frank.li@nxp.com
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
+References: <20251229113021.1859-1-zhangsenchuan@eswincomputing.com>
+ <20251229113208.1893-1-zhangsenchuan@eswincomputing.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20251229113208.1893-1-zhangsenchuan@eswincomputing.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 12/29/25 7:06 AM, Pradeep P V K wrote:
-> Document the QMP UFS PHY compatible for Qualcomm Hamoa to support
-> physical layer functionality for UFS found on the SoC. Use fallback to
-> indicate the compatibility of the QMP UFS PHY on the Hamoa with that
-> on the SM8550.
+Le 29/12/2025 à 12:32, zhangsenchuan@eswincomputing.com a écrit :
+> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 > 
-> Signed-off-by: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
+> Add driver for the Eswin EIC7700 PCIe host controller, which is based on
+> the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
+> supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
+> interrupts.
+> 
+> Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
+> Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>
+> Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 > ---
->  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml    | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-> index fba7b2549dde..b501f76d8c53 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-> @@ -28,6 +28,10 @@ properties:
->            - enum:
->                - qcom,kaanapali-qmp-ufs-phy
->            - const: qcom,sm8750-qmp-ufs-phy
-> +      - items:
-> +          - enum:
-> +              - qcom,hamoa-qmp-ufs-phy
-> +          - const: qcom,sm8550-qmp-ufs-phy
 
-For platforms introduced before we were cleared to use chip codenames,
-let's stay with the numerical identifiers for consistency (i.e. all other
-compatibles in hamoa.dtsi say qcom,x1e80100-xyz)
+Hi,
 
-Konrad
+> +static int eic7700_pcie_host_init(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct eic7700_pcie *pcie = to_eic7700_pcie(pci);
+> +	struct eic7700_pcie_port *port;
+> +	u32 val;
+> +	int ret;
+> +
+> +	pcie->num_clks = devm_clk_bulk_get_all_enabled(pci->dev, &pcie->clks);
+
+Is this the correct place to call this function?
+
+eic7700_pcie_host_init() is called from eic7700_pcie_resume_noirq() and 
+calling a devm function from a resume function is really unusual and is 
+likely to leak memory.
+
+> +	if (pcie->num_clks < 0)
+> +		return dev_err_probe(pci->dev, pcie->num_clks,
+> +				     "Failed to get pcie clocks\n");
+> +
+> +	/*
+> +	 * The PWR and DBI reset signals are respectively used to reset the
+> +	 * PCIe controller and the DBI register.
+> +	 *
+> +	 * The PERST# signal is a reset signal that simultaneously controls the
+> +	 * PCIe controller, PHY, and Endpoint. Before configuring the PHY, the
+> +	 * PERST# signal must first be deasserted.
+> +	 *
+> +	 * The external reference clock is supplied simultaneously to the PHY
+> +	 * and EP. When the PHY is configurable, the entire chip already has
+> +	 * stable power and reference clock. The PHY will be ready within 20ms
+> +	 * after writing app_hold_phy_rst register bit of ELBI register space.
+> +	 */
+> +	ret = reset_control_bulk_deassert(EIC7700_NUM_RSTS, pcie->resets);
+> +	if (ret) {
+> +		dev_err(pcie->pci.dev, "Failed to deassert resets\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Configure Root Port type */
+> +	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
+> +	val &= ~PCIEELBI_CTRL0_DEV_TYPE;
+> +	val |= FIELD_PREP(PCIEELBI_CTRL0_DEV_TYPE, PCI_EXP_TYPE_ROOT_PORT);
+> +	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
+> +
+> +	list_for_each_entry(port, &pcie->ports, list) {
+> +		ret = eic7700_pcie_perst_reset(port, pcie);
+> +		if (ret)
+> +			goto err_perst;
+> +	}
+> +
+> +	/* Configure app_hold_phy_rst */
+> +	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
+> +	val &= ~PCIEELBI_APP_HOLD_PHY_RST;
+> +	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
+> +
+> +	/* The maximum waiting time for the clock switch lock is 20ms */
+> +	ret = readl_poll_timeout(pci->elbi_base + PCIEELBI_STATUS0_OFFSET, val,
+> +				 !(val & PCIEELBI_PM_SEL_AUX_CLK), 1000,
+> +				 20000);
+> +	if (ret) {
+> +		dev_err(pci->dev, "Timeout waiting for PM_SEL_AUX_CLK ready\n");
+> +		goto err_phy_init;
+> +	}
+> +
+> +	/*
+> +	 * Configure ESWIN VID:DID for Root Port as the default values are
+> +	 * invalid.
+> +	 */
+> +	dw_pcie_dbi_ro_wr_en(pci);
+> +	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, PCI_VENDOR_ID_ESWIN);
+> +	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, PCI_DEVICE_ID_ESWIN);
+> +	dw_pcie_dbi_ro_wr_dis(pci);
+> +
+> +	return 0;
+> +
+> +err_phy_init:
+> +	list_for_each_entry(port, &pcie->ports, list)
+> +		reset_control_assert(port->perst);
+> +err_perst:
+> +	reset_control_bulk_assert(EIC7700_NUM_RSTS, pcie->resets);
+> +
+> +	return ret;
+> +}
+
+...
+
+> +DEFINE_NOIRQ_DEV_PM_OPS(eic7700_pcie_pm, eic7700_pcie_suspend_noirq,
+> +			eic7700_pcie_resume_noirq);
+> +
+> +static const struct of_device_id eic7700_pcie_of_match[] = {
+> +	{ .compatible = "eswin,eic7700-pcie" },
+> +	{},
+
+Nitpick: No need for trailing comma after a terminator.
+
+> +};
+
+CJ
+
 
