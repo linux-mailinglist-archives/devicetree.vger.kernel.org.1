@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-250118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5EA8CE657C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:12:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 684E8CE6591
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:12:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5B25330057F9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 10:12:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5256230062C4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 10:12:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C13272E6D;
-	Mon, 29 Dec 2025 10:12:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 796F2285C89;
+	Mon, 29 Dec 2025 10:12:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z5M2HxN9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="be4IrT+Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B3B4212F98
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 10:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DCC222590
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 10:12:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767003144; cv=none; b=GMNTXyJ2N3uFe5OZ0+oNv2h20iAZMbB94yiiQUa9Js5wOQFeIe+DYyy2pK6xN5KWZupicBjH+WttQWPDs8trbyyTOJVpYJrjeHWRr2Rrca2poX323lZuUerRH9OSqXw80fbsbKlMTqxcwc5Apva4T6CLL3i4nXF1P6qB4YH0ORc=
+	t=1767003146; cv=none; b=ukUM/MjTRzzqgYTyTk7aAQRJRfNs3wKvNikvbFkLRj2X5De0hd20N7w0GxM3pmGfx2bRwzX5Ov0QGVbX7ZGOPK0WTI+Qfdi2vAyUYO9CnF0u6UckTXvobFQu8sBRnJbqu9kgkwIU0bbw7Nyh85BlrRKOe9ZmqTV28Gz1iP3LYgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767003144; c=relaxed/simple;
-	bh=LCiGByx44aPo6I9zaG1ReBsxglHofWHA8KNEqBtCywk=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KHHnRXxqpciKRhxfVPL8Lekbx/wFWdEsUz+12Hvx8tg0nvdFFPGI3RQ6P3ppR4CImEFLG4lIkJGiRoRaAlScfGTeFahv3LvJESyMT6IrGDeHnQGDmZyCmnAcVZssDdXunleIRNG2BzMwq4Llhq+4HSduU9ceAB4tp35F11zoteY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z5M2HxN9; arc=none smtp.client-ip=209.85.128.47
+	s=arc-20240116; t=1767003146; c=relaxed/simple;
+	bh=iE2CbCdrK0vI0FrVCavjC9uDM/vsBwXeGKRyKumfVTA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=bsb+5Z6xkFGnjvjWjMEmj3iAol+HFrXEjEgrI5R5XTAynkixM/5FLTUkeJYxpUSP4opCIefyzIS8amxmRCfBcD3H/vN4bQQithgASAaFQAnJZqpuv/8Q07iR0lehMiq/aVokrwOL0iU3TRWjRzse08s/XfzOZZuowAdHQWAvb+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=be4IrT+Z; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-47a80d4a065so44329615e9.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 02:12:22 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47aa03d3326so56512185e9.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 02:12:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767003141; x=1767607941; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=J1vSgRP+Bs5qbIakzCpHlzr7o7ydag8RKKrO3j8O608=;
-        b=Z5M2HxN9yV2atm05wilpkDGHYQ55FvGyBBbpFGyeQ0XscOKTfKPdZovM0quqtiumDo
-         wkLJY9NQ+8/2Ny/h6mfPogEI4+P0o099kTWnKS/aJ0cSJy58GFvC5wKClFTFqZuVjZ23
-         o/jPX2WhZOkzQK5+rTFyZ9kak/oHi8+XO5p87EQnWmMldaF70m1tZEx+/awGSc//el8U
-         cdpPSqAdoFrEmU2oa0g/X/C+XJsB26ioXaBTieXHZK08gTLWrsPPRh48pOw3RgmBVhov
-         QO2ywaNFWSwOxxWYuLbbmBBh2in9sK/sZT4yf3krDgbh+XPpilQ/8vHWYOrZMZogXHKE
-         9aFw==
+        d=gmail.com; s=20230601; t=1767003143; x=1767607943; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ri0p4U6CFfsvzwsMRp5y6y8qxmA/cHDioM6peECfnxE=;
+        b=be4IrT+Z6dr6Ci0CD7zBII7NNSUp5BtJl0Yfi/Exi6Gud5sisBUPX6Lg1byCHIjmlt
+         R4AJ8K9GkIwQC9ZGXYoVyZV6GVN2pEvkGdjm7dNG36W773zFF5uJun1zfeJM3kIU/2VL
+         MleOf5Ka7j3ZiwcG2TYTfzsccHYqDYECBFZp7aGu4yJjnnBF4bqE+SwgUYVp7a7sypTk
+         fgOEFszyibxUKO1NQpj6BuDwkU2fG9GrKt+4CjVXNCyK8A4eKtWxZyhDFOjV5buSAhwn
+         3lDkfNNf6J2hc5+xhSYv5ovosOYKca+tcqeL1u5d3h24wP/tMqCsWifqNe2463Q0XSPU
+         8P1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767003141; x=1767607941;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J1vSgRP+Bs5qbIakzCpHlzr7o7ydag8RKKrO3j8O608=;
-        b=pjjtQZid16/t7MtS2aQ1CADfx0YpQrT/iUmFx9P3sietdrqMVoUGRkTImvEH2QBuft
-         bWI15LA7cwpuICI6Y7FRXtvxmhQG8S4McJrd2zYOVoPd53kD+zIleXLTheXZkdOxqbdh
-         uq/QmYBhx3K/OP0TpF63a+yBCp99C8o2VyW2O/zUdcsZJk3ZuF2SbTlQsvmiAL0RjzTM
-         YCLKG+cD1rYHsg6OUiSsl1cK/jGPo3sSHQLflemW2QOZnzuVFF5lYpRRSkVr1AVn2cIH
-         5Jmb8xDdqFFi5OO7TlUJQFbT/gl2a/D9PS9DHSZ431yTXbF6OZHL4rdKSlTSwShnYz27
-         VtZA==
-X-Gm-Message-State: AOJu0YxNiXEOSwMgugwpwdk3FGrpyyEDKwI/hv24b343c+AUC4eZI1TI
-	Q2aZ+Cfem01VWfoW0o29Il7X7rXDG/0Qew7kTNdYBuOk5YI2DlLvUWSD7HxYzz3A
-X-Gm-Gg: AY/fxX6je2uHrsC8soKCESJD0s+tLjO8f+9Y1KgOCxef9pjt5nB+XSJo3gaYB48OfL1
-	gPoMSmHHHOI8oDxOPpSpf8HntMOTw0dRlkPzHGlwfA/QW2oxq9mqZ57ZPLJ8T/U29ST3quRR992
-	1fylHCDAb4DDGHC7VmG0wxZuelGENyY6nfS5zTCr0/oswIISaeoFD8kTrmF3BE2xJJkhfFYRp6w
-	2DqwwsH7UQe726HrGNJfDWEKtUVFi51LAJ2lKW5YVuHDHfTw7juWwI2Z5YqH3xup0wo2h6oON1Q
-	3/Qt3QsCdrtP2sZTMTputRbXyOcGLWHY1gopycHo2fWJUEqbw22SLOHaguL+b5NuL+ZV/985EV4
-	rH0cgPHJ6RrS+IsvUQr9PM20vxN307kVX20N6EPtkmi8R0N+43wikbRbYYj2P3eXjT+yKYXB7X/
-	t9fOfC4iCIM+nWm5fGWptPrdsY73jtBcOlK2l/2+sp9rnK0XEeQ8bePPi+K8LY
-X-Google-Smtp-Source: AGHT+IHlR0aXhu72J2TtWwVekmyRrRkDyvgOTcwGHqcoRX7TNY17EGN/wNGjrSuW2cqNhsN3lSNTHw==
-X-Received: by 2002:a05:600c:444b:b0:47a:8cce:2940 with SMTP id 5b1f17b1804b1-47d195468a6mr302386315e9.14.1767003140541;
-        Mon, 29 Dec 2025 02:12:20 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767003143; x=1767607943;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Ri0p4U6CFfsvzwsMRp5y6y8qxmA/cHDioM6peECfnxE=;
+        b=Aw2XPd5PWdFXrcR6dPP4HBfVvpI7UiZy7c4EJf7ef//bADZ6kVTM5u3uuwpFofjQ0j
+         3JT6Deuk3VX57g/MXC30YoaYeFBEBHhtScdYI6DbGPRh9z1IVFCcPqatEVj+As9cfIzX
+         SGi1Oh5X5gmjjm5Neyh4Q8tyUTTz4p0k2YtHaLE7ADaUnZFpqTYKXYTPbTWbdQ1TJHSJ
+         Mg3cF5Vw3kMt3NMZlzBp1vx7kg/NWhqG1cbO4KgpN8jFxhwb8ewMb6IWVtUZ+1p9BxPC
+         mnOdjLGmkG180Wxx/C3lqIVjrRXo/iddf5k29ZTVJLg3b4f3LUQuzDq9awiq5NhZgEtv
+         d8pQ==
+X-Gm-Message-State: AOJu0YwRG1rV8Yzkty36YAhOooGPf4ibLhRfntMlH0ypWrIlJDMZzNx4
+	AyAgo6JqCMQ7db2KGg3bgr9hjxTE3a0Jf/yERl8g1Uc604CbFoB8XSB599iw3Iw0
+X-Gm-Gg: AY/fxX5JYrJWajH7HD1Agu7xn/DwhG0wrthB7/q9DkpKYGXft23Ehn7/4WArV7bsjlU
+	Df/THplwwiDs4VXU5cVmd5xtQm3tGJAM7I0LxC1hpD0akXubFSYFrKpmWyOS++nQQMkYEiyHlsy
+	ddVxZCsYPyTB7COIf0KvE4la4TJcb0Xee7/Fe55LDTxkipsUmdb5ik9n2gQVwGLlOJuNpPB+MEi
+	nfLKAOiUeltshLqLa0+z9CKc18/phLBnkj6V2CBaonXndCO9U61YCdbKS7AuQCy/IWTMV86YFsV
+	YBYPLOLEQR00ZiYsKR1bI1UF7lVGs7DbcjWfGdX9+pGcYkCQg14FXQLBf1weHGC3VkIJ/Lo6ll5
+	GxEySgCr9PaU2nXf3+Z21vFBSh2nw8AGUCa5YdpHeeSu0+ShsfYTkEvxwybF4QwraOxKhhMraxK
+	IA+Bg/fUZWZ0LWc1970W1erWX2Wty3zEiICIQi8R4rAa7/doUGMF0vzlatHGNc
+X-Google-Smtp-Source: AGHT+IHJS63lS/dPKoA9lGVZ+ST8crjqL/wpGYOYPkSn4ew0eH8IPo2DWmLK76jUaU+P9S/JFHAnzg==
+X-Received: by 2002:a05:600c:468f:b0:45c:4470:271c with SMTP id 5b1f17b1804b1-47d269c7019mr304884895e9.18.1767003143012;
+        Mon, 29 Dec 2025 02:12:23 -0800 (PST)
 Received: from alchark-surface.localdomain (bba-94-59-45-246.alshamil.net.ae. [94.59.45.246])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d583f42dasm19840735e9.6.2025.12.29.02.12.18
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d583f42dasm19840735e9.6.2025.12.29.02.12.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Dec 2025 02:12:19 -0800 (PST)
+        Mon, 29 Dec 2025 02:12:22 -0800 (PST)
 From: Alexey Charkov <alchark@gmail.com>
-Subject: [PATCH 0/7] arm64: dts: rockchip: Sound fixes and additions on
- RK3576 boards
-Date: Mon, 29 Dec 2025 14:11:57 +0400
-Message-Id: <20251229-rk3576-sound-v1-0-2f59ef0d19b1@gmail.com>
+Date: Mon, 29 Dec 2025 14:11:58 +0400
+Subject: [PATCH 1/7] arm64: dts: rockchip: Fix headphones widget name on
+ NanoPi M5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,10 +83,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAO1TUmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1NDIyMj3aJsY1NzM93i/NK8FF2DZCOzVOMkQzNLIxMloJaCotS0zAqwcdG
- xtbUAxT+MhV4AAAA=
-X-Change-ID: 20251222-rk3576-sound-0c26e3b16924
+Message-Id: <20251229-rk3576-sound-v1-1-2f59ef0d19b1@gmail.com>
+References: <20251229-rk3576-sound-v1-0-2f59ef0d19b1@gmail.com>
+In-Reply-To: <20251229-rk3576-sound-v1-0-2f59ef0d19b1@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
  John Clark <inindev@gmail.com>
@@ -93,48 +93,45 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Alexey Charkov <alchark@gmail.com>, stable@vger.kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1436; i=alchark@gmail.com;
- h=from:subject:message-id; bh=LCiGByx44aPo6I9zaG1ReBsxglHofWHA8KNEqBtCywk=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWQGhTCec14dG1Mwy2Gm4d01F2qTdhQ7tHWq/Y+L73eZK
- Rwj/YCxYyILgxgXg6WYIsvcb0tspxrxzdrl4fEVZg4rE8gQaZEGBiBgYeDLTcwrNdIx0jPVNtQz
- NNQx1jFi4OIUgKn2rWf4p5r7KSIt89RE3i/cnJ6Kggsvrjovefym0jzN6p+BblfftzD8Yi76xBR
- nNfHq4VjPX09OdLDs4fW4Oq3/zsbqY7575T/PYAAA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1245; i=alchark@gmail.com;
+ h=from:subject:message-id; bh=iE2CbCdrK0vI0FrVCavjC9uDM/vsBwXeGKRyKumfVTA=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWQGhTAyn21XXvnWgbvV1bfrVXb3d+4/09j3Wy6MDfv3f
+ HW/jgRLx0QWBjEuBksxRZa535bYTjXim7XLw+MrzBxWJpAh0iINDEDAwsCXm5hXaqRjpGeqbahn
+ aKhjrGPEwMUpAFNt0czwv/xx55SdHdc3+vGw/vAK+MT34Y5LeVXqjptBHM8t3W4majMyLO/fV9j
+ 3R2jz/Z8/lb8YLTwVmbUz5dCkm12qVpMynSIqGQA=
 X-Developer-Key: i=alchark@gmail.com; a=openpgp;
  fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 
-Here are some device tree updates to improve sound output on RK3576
-boards.
+Fix the mismatch between the simple-audio-card routing table vs. widget
+names, which caused the following error at boot preventing the sound
+card from getting added:
 
-The first two patches fix analog audio output on FriendlyElec NanoPi M5,
-as it doesn't work with the current device tree.
+[    6.625634] asoc-simple-card sound: ASoC: DAPM unknown pin Headphones
+[    6.627247] asoc-simple-card sound: ASoC: Failed to add route HPOL -> Headphones(*)
+[    6.627988] asoc-simple-card sound: ASoC: Failed to add route HPOR -> Headphones(*)
 
-The third one is purely cosmetic, to present a more user-friendly sound
-card name to the userspace on NanoPi M5.
-
-The rest add new functionality: HDMI sound output on three boards that
-didn't enable it, and analog sound on RK3576 EVB1.
-
+Fixes: 96cbdfdd3ac2 ("arm64: dts: rockchip: Add FriendlyElec NanoPi M5 support")
+Cc: <stable@vger.kernel.org>
 Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
-Alexey Charkov (7):
-      arm64: dts: rockchip: Fix headphones widget name on NanoPi M5
-      arm64: dts: rockchip: Configure MCLK for analog sound on NanoPi M5
-      arm64: dts: rockchip: Use a readable audio card name on NanoPi M5
-      arm64: dts: rockchip: Enable HDMI sound on FriendlyElec NanoPi M5
-      arm64: dts: rockchip: Enable HDMI sound on Luckfox Core3576
-      arm64: dts: rockchip: Enable HDMI sound on RK3576 EVB1
-      arm64: dts: rockchip: Enable analog sound on RK3576 EVB1
+ arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts   | 107 +++++++++++++++++++++
- .../boot/dts/rockchip/rk3576-luckfox-core3576.dtsi |   8 ++
- arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts  |  22 ++++-
- 3 files changed, 132 insertions(+), 5 deletions(-)
----
-base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
-change-id: 20251222-rk3576-sound-0c26e3b16924
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
+index cce34c541f7c..37184913f918 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
+@@ -211,7 +211,7 @@ sound {
+ 			"Headphones", "HPOR",
+ 			"IN1P", "Microphone Jack";
+ 		simple-audio-card,widgets =
+-			"Headphone", "Headphone Jack",
++			"Headphone", "Headphones",
+ 			"Microphone", "Microphone Jack";
+ 
+ 		simple-audio-card,codec {
 
-Best regards,
 -- 
-Alexey Charkov <alchark@gmail.com>
+2.51.2
 
 
