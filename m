@@ -1,150 +1,212 @@
-Return-Path: <devicetree+bounces-250238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ECC0CE725B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:59:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59056CE727E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 16:02:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CC50330012E0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 14:59:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 235A430038C3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:02:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEF43191A7;
-	Mon, 29 Dec 2025 14:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OPht0P23"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2191E258CCC;
+	Mon, 29 Dec 2025 15:02:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58360632;
-	Mon, 29 Dec 2025 14:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE91327BFB;
+	Mon, 29 Dec 2025 15:02:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767020391; cv=none; b=KQ1eFJTeK+bn48ubwrCxixu/lQBlhLxz35as3hlhYwXcF87XQUVbHQSqxkpSimZQPhhIaq6AS8HduZYZIH+C6/JINxob3puuZHXu8Kkxn4gm6bWROPVL5a/LJtIDvRcFGhPmYs9N/fPH0INthushfsqDJf0jiZ/0D1X6e6dhW9s=
+	t=1767020567; cv=none; b=gBqUPvD8/KPgiMS0uCZtuPyuYJDOUYVr5NeK24JkhkZZ8n5IeCX5mDWVnz1qzNK5EZ6gBhZeUVzd755lzYfrR0iTTdv6Pa/3mvHKnIxDVIC4RHstez8w8D0tRTHSpYyMsugtl991BCODT5ST3pmFwKIBWy5MCKzCqqgHaxj0rEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767020391; c=relaxed/simple;
-	bh=iLWtLWlrziMWhr0IW/KQbQEleNQpuX30kaYC1A+MDF8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KN0fXFBPOf11q0rJDZBzXmz9ASUWEJ7ViWsb8sqLRJeTKdVKW/4i1c0tpuKW8O+Lbtv/4t3f5LB/8urCpc31VT7RbafoZrkAblwy7ofkyIq6Fc91UWmx6iOIw1jMqk+2gJzuk0G5RS0LrOjs6V04thFuikPrhV8Ad49rX9dNgEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OPht0P23; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABDFCC4CEF7;
-	Mon, 29 Dec 2025 14:59:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767020391;
-	bh=iLWtLWlrziMWhr0IW/KQbQEleNQpuX30kaYC1A+MDF8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OPht0P23BDIDv70l8dTTvs8s2qsl6pn1LBGSpYGGN+rDIslTNDAlSiSLS2YoiLg2C
-	 jqHF+Oay0dyV4P+4mUNPg/AaypW1CF8LYpbzB23u6TghwNP6VJ7997QLU2Tv0548fB
-	 2WZZvxn0aL4x/YWputIErX47VDOobD7v4BjU15eISuZvCcZucLShTRXDvgqsHpDAIM
-	 BFso29hWovyQ75njK/0M2U9a64xFQtrGbZkw8pQoXW6pJ9G8/ckYxjgtmTeMpreYvr
-	 h884K+PYV6HL1lDONwSfLiIOrbSAt0fWDliQi3McBhhvsXptzr7WhXpADKzqdgUZfb
-	 OoDL1p8MLU5lg==
-Message-ID: <c539aa2a-e9be-40e7-9b75-1723bdaf0a39@kernel.org>
-Date: Mon, 29 Dec 2025 15:59:44 +0100
+	s=arc-20240116; t=1767020567; c=relaxed/simple;
+	bh=nM3UYtJC/zDqePQctNctlN8Q1wBW9JkjKzUnNZ/KfXU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RFyweUK/hfKycO2Zkt31Gyd9V1G4p4VPaGYVbbKPimjZ/CQ2btMncpvKUH+uO271V21bFg4oBkkifClqTKq30H3jFfwktjL7T6N7ybOiTkkzqLhVoWMMuLuolG/MYnktegidbfV+19ZJO5rbg9nBdJcJis6Rizp4UrP500NyQWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EB8E4339;
+	Mon, 29 Dec 2025 07:02:34 -0800 (PST)
+Received: from e134710.manchester.arm.com (e134710.arm.com [10.33.10.82])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D3A823F5A1;
+	Mon, 29 Dec 2025 07:02:39 -0800 (PST)
+From: Ahmed Tiba <ahmed.tiba@arm.com>
+To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc: linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	tony.luck@intel.com,
+	bp@alien8.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	rafael@kernel.org,
+	linux-doc@vger.kernel.org,
+	Dmitry.Lamerov@arm.com,
+	Michael.Zhao2@arm.com,
+	linux-efi@vger.kernel.org,
+	Ahmed.Tiba@arm.com
+Subject: Re: [PATCH 03/12] ras: add estatus vendor handling and processing
+Date: Mon, 29 Dec 2025 15:01:21 +0000
+Message-ID: <20251229150234.2789600-1-ahmed.tiba@arm.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251222091334.5cb8465f@foz.lan>
+References: 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: google,cros-ec-keyb: add
- use-fn-overlay prop
-To: Fabio Baltieri <fabiobaltieri@chromium.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
- Guenter Roeck <groeck@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>,
- Simon Glass <sjg@chromium.org>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20251224152238.485415-1-fabiobaltieri@chromium.org>
- <20251224152238.485415-3-fabiobaltieri@chromium.org>
- <20251227-laughing-white-dalmatian-f9d98a@quoll>
- <aU__uxDmeUq20Mg3@google.com>
- <0c01fa63-670f-4c82-aa74-dc855cb12a78@kernel.org>
- <aVKDJhVuOz-V9tb2@google.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aVKDJhVuOz-V9tb2@google.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 29/12/2025 14:33, Fabio Baltieri wrote:
-> On Mon, Dec 29, 2025 at 01:49:05PM +0100, Krzysztof Kozlowski wrote:
->> On 27/12/2025 16:48, Fabio Baltieri wrote:
->>> On Sat, Dec 27, 2025 at 01:44:26PM +0100, Krzysztof Kozlowski wrote:
->>>>> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
->>>>> index fefaaf46a240..437575cdf352 100644
->>>>> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
->>>>> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
->>>>> @@ -44,6 +44,14 @@ properties:
->>>>>        where the lower 16 bits are reserved. This property is specified only
->>>>>        when the keyboard has a custom design for the top row keys.
->>>>>  
->>>>> +  google,use-fn-overlay:
->>>>> +    description: |
->>>>> +      Use a function key overlay. This allows defining an extra set of codes
->>>>
->>>> What is a function key overlay? Overlays are DT term and therefore are
->>>> not suitable for bindings.
->>>
->>> Ok, guess I can rename it to `use-fn-key` or `use-fn-layer`, open to
->>> suggestions really.
+On Mon, Dec 22, 2025 at 09:13:34 +0100, Mauro Carvalho Chehab wrote:
+>Em Fri, 19 Dec 2025 18:11:54 +0000
+>Ahmed Tiba <ahmed.tiba@arm.com> escreveu:
+>
+>> On Fri, Dec 19, 2025 at 04:30:40PM +0100, Mauro Carvalho Chehab wrote:
+>> >On Fri, Dec 19, 2025 at 02:49:02PM +0000, Ahmed Tiba wrote: 
+>> >>
+>> >> On Wed, Dec 18, 2025 at 05:04:53PM +0100, Mauro Carvalho Chehab wrote:
+>> >> 
+>> >> >> Teach the estatus core how to walk CPER records and expose the vendor
+>> >> >> record notification path. This adds the section iteration helpers,
+>> >> >> the logging helpers that mirror the GHES behaviour, and the deferred
+>> >> >> work used to hand vendor GUIDs to interested drivers. No users switch
+>> >> >> over yet; this simply moves the common logic out of GHES so the next
+>> >> >> patches can wire it up.
+>> >> >>
+>> >> >> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com> 
+>> >> >
+>> >> >...
+>> >> > 
+>> >> >> +static bool estatus_handle_arm_hw_error(estatus_generic_data *gdata, int sev, bool sync) 
+>> >> >
+>> >> > Huh?
+>> >> >
+>> >> > This is a CPER record from GHES. Why are you moving CPER code out
+>> >> > of ghes.c, placing in a file named estatus.c? Doesn't make much
+>> >> > sense on my eyes...
+>> >> >
+>> >> > Same applies to to other GHES CPER record types. 
+>> >>
+>> >> GHES still fills in the CPER record, but the parsing and logging logic is
+>> >> shared with the new DeviceTree provider so I pulled those helpers into the
+>> >> estatus core. 
+>> >
+>> > I see, but this is not really estatus core. Instead, it is part of GHES CPER
+>> > handling logic, which is defined at ACPI and UEFI specs. moving it to estatus
+>> > sounds odd, at least on my eyes.
+>> >
+>> > Perhaps I'm failing to see where at ACPI/UEFI specs how CPER would be
+>> > integrated with an OpenFirmware approach to handle CPER without GHES.
+>> > Care to point to the relevant specs, if any? 
 >>
->> Use as Linux should use? Then it's software, so not suitable for DT.
-> 
-> Sorry I'm not sure how I understand the comment, this describes how the
-> driver handles a keyboard with Fn keys, the codes are defined in the DT
+>> ACPI/APEI (via GHES) defines how CPER records are discovered and notified on ACPI systems,
+>> but there is no ACPI or UEFI-defined equivalent for OpenFirmware/DeviceTree platforms.
+>> UEFI standardises the CPER record format itself, not the transport or discovery mechanism.
+>>
+>> On non-ACPI systems we still receive the same UEFI-defined CPER payload
+>> from firmware, but Linux needs a different, platform-specific contract
+>> to locate and acknowledge it. The DT binding is a Linux-side description
+>> of that contract rather than something defined by ACPI/UEFI.
+>
+> That's where I'm failing to understand: CPER is part of UEFI spec, and
+> the only deliverable mechanism I'm aware of for CPER is via GHES or
+> GHESv2 - e.g. via ACPI.
+>
+> Within the scope of https://uefi.org/specifications, I'm failing
+> to see any other deliverable mechanism.
 
-Exactly. The purpose of DT is not to describe how driver should handle
-anything.
+Right, the UEFI specs only describe the GHES/ACPI path. There isn’t
+a spec-defined transport for firmware-first CPER delivery outside ACPI/GHES,
+which is why patch 9/12 describes a Linux-side DT contract
+for exposing the CPER status buffer and notification path.
+If there’s a better place to document or name that DT transport, I’d appreciate pointers.
 
-See also DTS101 from this year's ELCE.
+>> >> Both providers already call into the same notifier chain and
+>> >> memory-pool helpers; this patch just moves the generic CPER walking routines
+>> >> next to the rest of the common code so the DT path doesn’t have to grow its
+>> >> own copy. If you’d prefer a different file layout or naming to make that
+>> >> intent clearer, I’m happy to adjust. 
+>>
+>> > Moving the code from ghes.c to estatus.c or to elsewhere shouldn't make any
+>> > difference, as the DT handling logic could simply be calling the functions
+>> > from ghes.c (or estatus.c). I fail to see why they need to be moved. 
+>>
+>> The motivation is to provide a shared implementation for non-ACPI providers,
+>> so that the DT path does not depend on ACPI/APEI.
+>>
+>> While the helpers currently live in ghes.c, they are CPER-specific and do not rely on ACPI tables,
+>> APEI infrastructure, or GHES notification semantics. Keeping them there effectively makes GHES
+>> the only place those helpers can live, even though the logic itself is provider-agnostic.
+>
+> The logic is related to GHES, as this seems to be the only standardized
+> mechanism to report CPER records. As it is part of APEI, get_maintainers
+> points to the people that have been maintaining it as:
+>
+>        $ ./scripts/get_maintainer.pl -f ./drivers/acpi/apei/ghes.c
+>        "Rafael J. Wysocki" <rafael@kernel.org> (maintainer:ACPI APEI,commit_signer:6/13=46%)
+>        Tony Luck <tony.luck@intel.com> (reviewer:ACPI APEI,commit_signer:3/13=23%)
+>        Borislav Petkov <bp@alien8.de> (reviewer:ACPI APEI,removed_lines:5/62=8%)
+>        Hanjun Guo <guohanjun@huawei.com> (reviewer:ACPI APEI,commit_signer:4/13=31%)
+>        Mauro Carvalho Chehab <mchehab@kernel.org> (reviewer:ACPI APEI,authored:1/13=8%,removed_lines:6/62=10%)
+>        Shuai Xue <xueshuai@linux.alibaba.com> (reviewer:ACPI APEI,commit_signer:5/13=38%,authored:2/13=15%,added_lines:56/218=26%,removed_lines:34/62=55%)
+>        Len Brown <lenb@kernel.org> (reviewer:ACPI)
+>        Jonathan Cameron <Jonathan.Cameron@huawei.com> (commit_signer:5/13=38%)
+>        Breno Leitao <leitao@debian.org> (authored:2/13=15%,added_lines:38/218=17%)
+>        Smita Koralahalli <Smita.KoralahalliChannabasappa@amd.com> (authored:2/13=15%,added_lines:103/218=47%)
+>        Ankit Agrawal <ankita@nvidia.com> (authored:1/13=8%,removed_lines:6/62=10%)
+>        Jason Tian <jason@os.amperecomputing.com> (removed_lines:7/62=11%)
+>        linux-acpi@vger.kernel.org (open list:ACPI APEI)
+>        linux-kernel@vger.kernel.org (open list)
+>
+> Moving it elsewhere would make it confusing, as the expected deliverable
+> mechanism for CPER is via GHES - as this is the only one defined at the
+> uefi.org specs.
+>
+> While it might be moved to EFI and placed under cper.c,
+> get_maintainers.pl would point to:
+>
+>        $ ./scripts/get_maintainer.pl -f ./drivers/firmware/efi/cper.c
+>        Ard Biesheuvel <ardb@kernel.org> (maintainer:EXTENSIBLE FIRMWARE INTERFACE (EFI))
+>        linux-efi@vger.kernel.org (open list:EXTENSIBLE FIRMWARE INTERFACE (EFI))
+>        linux-kernel@vger.kernel.org (open list)
+>
+> which is not the people that have been maintaining RAS.
+>
+> Placing it under a "estatus.c" file would make it completely
+> dissociated with UEFI/ACPI specs, as this name means nothing at
+> the specs.
+>
+> Also, adding a new maintainer's entry won't make any sense, as the
+> people that currently reviews and maintains GHES/CPER records
+> should be kept.
 
-Best regards,
-Krzysztof
+You’re right that per UEFI/ACPI, GHES is the only standardised delivery path.
+My goal isn’t to redefine that; it’s to avoid duplicating the CPER parsing/logging
+code for non-ACPI platforms. I’m happy to restructure the helpers however you
+think best so we keep the existing ACPI/APEI maintainer model intact.
+
+>> By moving the CPER parsing and logging pieces into a common location,
+>> both GHES and the DT provider can reuse the same implementation,
+>> while the ACPI-specific discovery and notification code remains under drivers/acpi/apei/.
+>> This avoids having the DT provider reach into GHES internals or duplicate CPER handling code.
+>
+> As Boris mentioned on patch 00/12, we need to better understand
+> the high level scenario, as it is still not clear to me how a
+> firmware-first notification would happen without ACPI.
+
+That scenario is a firmware-first platform where firmware still produces a UEFI
+CPER Generic Error Status block but signals Linux via the DT-described transport.
+Once the buffer is available, the provider feeds it into the same estatus decoding path as GHES.
+
+>> If the current naming or file layout makes that separation unclear, I’m happy to adjust it.
+
+Thanks,
+Ahmed
 
