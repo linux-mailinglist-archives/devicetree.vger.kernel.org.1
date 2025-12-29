@@ -1,163 +1,170 @@
-Return-Path: <devicetree+bounces-250233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459CECE71E3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:48:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C85B8CE71E9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:50:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8AD6B301A1DA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 14:47:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 964253001164
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 14:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1E68329E42;
-	Mon, 29 Dec 2025 14:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90DA6329C74;
+	Mon, 29 Dec 2025 14:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gZK/XVsC"
+	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="fkcsQtzX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f45.google.com (mail-yx1-f45.google.com [74.125.224.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11012041.outbound.protection.outlook.com [52.101.43.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A124F329C5E
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 14:47:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767019633; cv=none; b=pRQ+gC3ZCXdXBkySnLcVG68R3F3HYGYPxCNeySu03XgGZhEVH9eI9S2Knjnu6biRGFBehUFd/FH5gdxLRFqw85JRV4eLDrC/l3xAnKvWBvcwoQW91BzfXDz2oYz4nzIQNAcEcGGbmdE1g6ylN4ZB5Oj4BKTPGFyjg5JQM74qv+g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767019633; c=relaxed/simple;
-	bh=0fdYin/a1kGKTO0aBJq/0xsRm45K7iupOY7iUNqRRJ8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FeT2YWYc6RvvJyGVlHUl5Iahk+7WdqXRsyFYJnHIiot7EzYaF0nGrzTbJhL80D8NPCW1PvTNaMY1Ux0aIrKKk/CJjtspoMP3o+wcJuchAG1eXe49obWCczto9siAZVj5Dk+T30Oc2sIVZSA7Iv5Q37IBneaBUVeZQUC3Kqsxip8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gZK/XVsC; arc=none smtp.client-ip=74.125.224.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yx1-f45.google.com with SMTP id 956f58d0204a3-6420c08f886so11087920d50.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 06:47:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767019629; x=1767624429; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hiFIGGOCel6e4RtTn/5DW6H0+gmbweG5rl/mIaIEv30=;
-        b=gZK/XVsCELIw+kf+fegZRFaWFH8spENIhMsxFJA+BlEMdUeN7lmgs9xjk+xjOMu8r9
-         LuMgJ12OEOjhLQCbXsljPAEAL95CE9jsH0C59xbNv5GR4wyoZrx+saA1yhMQgr+mA5SM
-         ECNv+N6QlgdCRCP52QCHyZIi3QpkwWubtYi2JnIreHqCTEWYa3Mz8fHipWe+jojkeeqO
-         t98ky7n+6/H/F17HzZsX5AwyKI63KX2fiCenajVFCiVpQIHnt5Kyq06SXY+gr+vH0OAK
-         srIthZ7RGMnHpSLjAWxQALybXyadnZ63Iej55QQm3efWV8MyC1877OC2VyC6YRi6oEB/
-         7K6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767019629; x=1767624429;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hiFIGGOCel6e4RtTn/5DW6H0+gmbweG5rl/mIaIEv30=;
-        b=W80DIiStYGcV0AI4rvA6/znvHOzpdrja1QL0P60lDB6cRa/InSIXeCUHG46EWpQP1n
-         U4W09PbbvXLoOXQ09X64V6OPfKj4OrCfd0Qrg8+1RPKRrkdPit+TllRiMIZjgUSPhFfs
-         0HntzbHwxfy0xxDTEMHGaOA3za7jxa4+DldQcBTuonrZzy5xzkqRIlswvzn4QxpsfcLS
-         ZeErmlGcFBk/JrAKT+OquRM418hmJfUxP8bdUcgsuhHJsggtDMFyTc6kOmiWx1qFkM27
-         uQyc/3bsWGisTaoiFBDGMauBZQBImoAcjoxUngYlt755UQhJboJ2mGY0/FrkbHtZ0P5T
-         dJKA==
-X-Forwarded-Encrypted: i=1; AJvYcCX+JS14KPPInShDvju+q8LIOFkajquyDZrwDLGHQdQELm1FvariALKCQ3XgujRR7JB3YAoaeonC7jJg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjWLklx++OQ9d0XvP5h/+JE+scXWKcEG8UT1Y6eZrjveoAXFoe
-	EtecSp/BgsyXJOxY+3GB/X/ce1HXKTy2/YgL94LASqPqlOYLix62XB+WlflYxqbdXvzmLjyyTcj
-	W39iqcJo4WcymmoOdwTRwM9j869yvWtJhX9NmduYqTA==
-X-Gm-Gg: AY/fxX4nJDxMyELAWnk6w0EKeOn8wQSVhjsWQkGP4bAGb1Hh1F3EmdbTy8l9ZHRCwav
-	a8gB2r/wQrPvdQ+u6rQhpmmFrbZ7huBAAX3VohDfNLjryY8qncHKeFhFTrYNuqsH9GWDyiiT7ZX
-	h8GyOauHcr6t7RzUp745/aHRURqY/yp9lC2Dp0vF72HOFrwEmR4pReAg6mFKUi9afY5hnGAcchQ
-	AbgRrrve6xaurRNupDHD69fIDOxyoWt+nEuSWNnyIezulLxF8QVqWoJDxI8wnjhKEV+P80B
-X-Google-Smtp-Source: AGHT+IGO4whynDnDczZe5aUSFNc6rZ7ClmyTEypWHVE9Jxyg/qzrfMWaETUGVpcInjLrsVhW/aWOBEshOk4ENImI9iE=
-X-Received: by 2002:a05:690e:1881:b0:646:7a21:f05c with SMTP id
- 956f58d0204a3-6467a21f232mr21185393d50.50.1767019629379; Mon, 29 Dec 2025
- 06:47:09 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CEE32939C;
+	Mon, 29 Dec 2025 14:50:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767019812; cv=fail; b=IG1GjCo4i2ol8gQ7ldcUlUmHTdiphGUq/sa10HY8wyXIHdFrG0d2dsngVAYPLH6behG2saGQJ5FkiD3m+6omwRRJpKdEhyxPtYqF+o7uQcbJqp+FNBmnJ2lRx2/jSrhQw3wNxl1W9WHuhNoNoOGgibZsx7gaPF1pe3pYvR5v2Bw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767019812; c=relaxed/simple;
+	bh=rS/dSO2ti+YYBFE33QP5JwZ2hZ7NUIaEzdnDcblrEkE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=j+2JBA2q+Fh0n7Ehpx6S1eVFoQyQPa2KzT4pkV7C0atKFTlW7zu79rjNuwNe9u8SA8Ji+wtXEM3Jsol6H/m+PG9Wh219RIDOgRjH0diIcq/7p4FiZii/1ORCiz99Li0IagYdLv7o1o5yDErSuMRTWmLyAwCpRqKoUfW890UBUFI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=fkcsQtzX; arc=fail smtp.client-ip=52.101.43.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Vf2LWcmq+2FuB6mNSSc8wEfkEEhFBh/jTOMeuFHEu1YfhnYgYIjVXSbtQpex7IgssfClcCtr68UE79n9aSWTNvbH/PBDbZRN4vwNbDUtbDF0PjWA6/BToO7F5v14A1AvS8PEuDYBKR0fBqWYl/8SDVHE5Sne+Y/8EKrY8AO8+FfksxiQEWfRsFItO3WnOngfRJCX339PycCqDCfdaGps0g0zuNDvUabJHBZ+jXrEkSLT4z06I3gm+aqL9AkK/cMRdr4nx6QiRLjAs8CUpyx4B4cqVpARWfhNYg6wNFCU+GCUGQLTF3GLD5oBiivwDodXQ6zazYlDcQhys8vsdz3toA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lYlHtv4rAWJbRZg/DGKugM9OAyUI3ck+rExSwiSoGwQ=;
+ b=EuH/H96JGsRHAavCJ6J9/lBNjGkoSPxHch8SW4GMxMaHL3cL+EuIfdox5XdKGUaZCxXFcSvh0JpS0IGO+mlpi25qw3GJHD203LsbMOHwa2p2yMQBKvo1OmIlwW1IDsLRQfRcpPYY7UKKwG6j43Ga4S/B+KcmeCx2vldvNcU6M9PbdArquXFwEHo2zY4ZG7b46oxY9GYM35ncccNbG4uo6z++ewja7EPXFKjngTH1vEE5yqn3z0aCwv2ck81USGMaoxYDlW7BFqcW4X6KBxSU7rY1k+tZXk8xoT/0CWFYBo9rhXSoyj5ER2UToE9kVHYK4XIOmK9yE7Z2er7vgFFAMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
+ pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lYlHtv4rAWJbRZg/DGKugM9OAyUI3ck+rExSwiSoGwQ=;
+ b=fkcsQtzXN+22aNQv+s/YdY+k4ZJ0jGbsDgqXyYezQ5K07+euTqHBSBIZJERyTx4q+dA8c5ntbCcRGQAPRJyIFMfDKPk8DXMxpoNjtlqxT0CVqXE2ZDJJkcD5EIYb34UZFAtJr80vZAovk4CQ+bkrOoRnOnPiygQ/c4g9BSwtueU81cU9PonEZfFs2QH8Dxg+qNFskQCSti6Fa6YmaGEN9qP7glM0NS+4S77+hfd91mMeWaMdheclRz0N1pkg5mxuVwFYcokQWRTewTWyQqLVYxSo1/MjshpQuvlVIasJcOesrH7i/XYhvp6alXOykAella6f6dD2jTlm4fH+r4KNMw==
+Received: from CH2PR20CA0025.namprd20.prod.outlook.com (2603:10b6:610:58::35)
+ by PH7PR22MB3662.namprd22.prod.outlook.com (2603:10b6:510:1d5::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Mon, 29 Dec
+ 2025 14:50:06 +0000
+Received: from CH2PEPF0000013F.namprd02.prod.outlook.com
+ (2603:10b6:610:58:cafe::c1) by CH2PR20CA0025.outlook.office365.com
+ (2603:10b6:610:58::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9456.14 via Frontend Transport; Mon,
+ 29 Dec 2025 14:50:02 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
+ smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
+Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
+ not designate 165.85.157.49 as permitted sender)
+ receiver=protection.outlook.com; client-ip=165.85.157.49;
+ helo=atlrelay1.compute.ge-healthcare.net;
+Received: from atlrelay1.compute.ge-healthcare.net (165.85.157.49) by
+ CH2PEPF0000013F.mail.protection.outlook.com (10.167.244.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9478.4 via Frontend Transport; Mon, 29 Dec 2025 14:50:05 +0000
+Received: from podman-dev.fihel.lab.ge-healthcare.net (zoo10.fihel.lab.ge-healthcare.net [10.168.174.92])
+	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id DE835DBCE0;
+	Mon, 29 Dec 2025 16:50:02 +0200 (EET)
+From: Nandor Han <nandor.han@gehealthcare.com>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	nandor.han@gehealthcare.com,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] watchdog: imx2_wdt: Allow to run in low power mode
+Date: Mon, 29 Dec 2025 16:49:58 +0200
+Message-Id: <20251229145000.421426-1-nandor.han@gehealthcare.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251210-rz-sdio-mux-v3-0-ca628db56d60@solid-run.com>
- <20251210-rz-sdio-mux-v3-2-ca628db56d60@solid-run.com> <CAPDyKFoYd3WKGrjD3DEzZH8EfgZPmRkrqL=rdoKNuAADrvz3Eg@mail.gmail.com>
- <20f2128c-c6cb-4b13-aa08-b93e540f5bd9@solid-run.com> <CAPDyKFo2jsV02qSDBSZTewJjV09AMO8iETU5Uxqz+GBnd0JY6g@mail.gmail.com>
- <e8b0579d-21b9-4072-857b-5afab92c42e6@solid-run.com>
-In-Reply-To: <e8b0579d-21b9-4072-857b-5afab92c42e6@solid-run.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 29 Dec 2025 15:46:32 +0100
-X-Gm-Features: AQt7F2qjavw22v0M0v4JRnBk0tlNXPSxJSyNw5ogCiPk3Bm42fj5er9DVY64ELg
-Message-ID: <CAPDyKFqN1Yq0atE6YaeigzR75n1Q1BSU8JjLno=ioUBwN8=FSQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/6] mux: Add helper functions for getting optional and
- selected mux-state
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Peter Rosin <peda@axentia.se>, 
-	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
-	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
-	Tony Lindgren <tony@atomide.com>, Vignesh R <vigneshr@ti.com>, 
-	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Mikhail Anikin <mikhail.anikin@solid-run.com>, Yazan Shhady <yazan.shhady@solid-run.com>, 
-	Jon Nettleton <jon@solid-run.com>, "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>, 
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, 
-	"linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>, 
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000013F:EE_|PH7PR22MB3662:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 26fca080-1ede-46d0-d927-08de46e98e2f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?GloPHJbaVhTjLUanlVirZ0d+1rAJd/AwiUeyO+i5GH7vru4/EPt+NYj7bjNO?=
+ =?us-ascii?Q?42vKulUf8gdS1igR/A0RNPNZReHHqKGB0qKEvmPEAAgKJbEDkDQ1pluPg/+9?=
+ =?us-ascii?Q?r0gqD8X6KKNeeIoZpgO+uVNQCUB/k7rVFRJs80KdBIkfLGlKEX0HbMpC8/ac?=
+ =?us-ascii?Q?kPQnJG6nmFBxAW8QTr5qP3Ecypfz1+CHPUP734dsURcw0RgoyU89UdVJvqF4?=
+ =?us-ascii?Q?6KhpMSwIwkN6idywUXQTovf5nyxJ1AjeqbysJZ76Pc5CCEdmBAldx9SG20uJ?=
+ =?us-ascii?Q?4aPbbg614uFewiHHx7PyJDuKkboxd0W/1q6/iuvvv+UBsShY94U4Dk/Y4pdE?=
+ =?us-ascii?Q?DYAxuqmNbNaAZFyOc9DwEjC8y5HSbwnVfY4iWtgdx92x+gnprcbEc7xYPdtR?=
+ =?us-ascii?Q?xEMOJA31JMjLpRqdvPy1EMJ5RppXH09XPiqVdGXycQ6jYi1/hi05PXyHeAGU?=
+ =?us-ascii?Q?Msb+4t1nZ5bAs1n8ID1Men+BdDhqoGkZb8uP2LusLUPgCYdLQzVig1DeCS6m?=
+ =?us-ascii?Q?DROW4br2k7ldg31KzeKzMShtQXpe9w65KfNDElamZKxATVyRaRUW9RJS6+ft?=
+ =?us-ascii?Q?2vhKi7HN5hpm5Wyh7AmRUzOr7kwwt2HgTA/zx8Qlluo0f+3CC5Xc2tIautZ9?=
+ =?us-ascii?Q?NIqYZ4wkY71ExPbtZtXTB4FrzErmgIe5Gt1l0UlvNIZbBWBELxm4BzsYXwv2?=
+ =?us-ascii?Q?c3hUha//wePEhUkKrIrObi/fuLpMe7lz9KYKBQROaKpo4h5Zgv27E0frEeXE?=
+ =?us-ascii?Q?aD6TKCg9wpO6Wqy/WdMnPhIKDuO1S9LsSwslGSvh12lvmL8T///+obiSaMSf?=
+ =?us-ascii?Q?DOabdCSYIzgFJTX4J0gxYuOu6gi+KAYeVJH0c5896oWuCoqdAJDR67HjQISx?=
+ =?us-ascii?Q?BKlcN4SzZW+DF4VAtzzQYdDVktwIdyWUgcStV+FerO6RA7xDqgu5eTnI4+i6?=
+ =?us-ascii?Q?7VagYuKouikXbkOKfMUiv+3M/laIYrR1bygQ2/XXweHSYj3OU2Wy9dDl9BnW?=
+ =?us-ascii?Q?3PNDhL1kVkXJQWduNiLuylAFsW0HWmuWEpCIiwWdKxJXO36Vswtf0j1F45kf?=
+ =?us-ascii?Q?jYybFAi1xg8Un7AWhTyi75IblAG/K9dRFEsKpyh3gJi06XQv4DvQrq2FGw42?=
+ =?us-ascii?Q?/rwTwqPtj7Pqgeatr9hAzNsV+GYzixI2ZxLhQvwG332RvxKxy4vb9IP6rQtz?=
+ =?us-ascii?Q?hQBvfh/QoGPTtQ5wBujmW6bpGmDn8Gwpy/YFh0HTC0qsK9xg5IEH2eBAY1hb?=
+ =?us-ascii?Q?QLjAjZPSP/5fzIURfpoS9D+4IfJwXRZiNuQZPBniegnt/xs9eWviMlhmDkrU?=
+ =?us-ascii?Q?ATVxEOwnB07eToL0ACRyoqk4kWVSShTNEoUjY2CvamvAsx0n4Zoo8jrIZnX1?=
+ =?us-ascii?Q?W4r0fGvQm6vRVWSMKIDUOUIyNXPbbUOtWOEBe0nWiA6wCVcpOjLwlc2Xj2YQ?=
+ =?us-ascii?Q?MVutqfIlEWhmn1UN/1nX8I1zYCibgOnJ4ZSqxFGhFAYitUIAuJvE1cCUIMe7?=
+ =?us-ascii?Q?MqMfepnB7BEzc7l9Nn9vx70tN6IADJnsawfP0APvSVPJusoG+b9Sg3GCHNwB?=
+ =?us-ascii?Q?rKSBJ4sEvt3g1M1krhY=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:atlrelay1.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: gehealthcare.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2025 14:50:05.8068
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26fca080-1ede-46d0-d927-08de46e98e2f
+X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[atlrelay1.compute.ge-healthcare.net]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-CH2PEPF0000013F.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR22MB3662
 
-On Mon, 29 Dec 2025 at 12:30, Josua Mayer <josua@solid-run.com> wrote:
->
-> Am 22.12.25 um 15:47 schrieb Ulf Hansson:
-> > On Sun, 21 Dec 2025 at 11:38, Josua Mayer <josua@solid-run.com> wrote:
-> >> Hi Ulf,
-> >>
-> >> Am 17.12.25 um 14:38 schrieb Ulf Hansson:
-> >>> On Wed, 10 Dec 2025 at 18:39, Josua Mayer <josua@solid-run.com> wrote:
-> >> cut
-> >>
-> >>>>  /*
-> >>>>   * Using subsys_initcall instead of module_init here to try to ensure - for
-> >>>>   * the non-modular case - that the subsystem is initialized when mux consumers
-> >>>> diff --git a/include/linux/mux/consumer.h b/include/linux/mux/consumer.h
-> >>>> index 2e25c838f8312..a5da2e33a45c0 100644
-> >>>> --- a/include/linux/mux/consumer.h
-> >>>> +++ b/include/linux/mux/consumer.h
-> >>>> @@ -60,5 +60,9 @@ struct mux_control *devm_mux_control_get(struct device *dev,
-> >>>>                                          const char *mux_name);
-> >>>>  struct mux_state *devm_mux_state_get(struct device *dev,
-> >>>>                                      const char *mux_name);
-> >>>> +struct mux_state *devm_mux_state_get_optional(struct device *dev,
-> >>>> +                                             const char *mux_name);
-> >>>> +struct mux_state *devm_mux_state_get_optional_selected(struct device *dev,
-> >>>> +                                                      const char *mux_name);
-> >>> Seems like we need stub-functions of these too. Otherwise
-> >>> subsystems/drivers need to have a "depends on MULTIPLEXER" in their
-> >>> Kconfigs.
-> >> Currently the drivers that can use a mux select MULTIPLEXER in Kconfig.
-> > Yes, but that's not generally how we do this. The driver may not need
-> > MULTIPLEXER for all platforms that driver is being used on.
-> >
-> >> There already exist a few mux helpers both for mux-state and for mux-control,
-> >> and they might all need stubs.
-> > Correct. I think we should add subs for all of them.
-> >
-> >> I'd prefer the restructuring of kconfig dependencies being independent from
-> >> adding mux-state functionality to renesas sdhi driver.
-> > I understand your point, but adding the stubs isn't really a big thing
-> > - unless someone has some good arguments not to!?
-> >
-> > Moreover, since the series changes the mux-core anyways - and
-> > subsequent changes depend on it, I don't see an issue to fold in yet
-> > another patch to add the stubs.
-> Would this also cause changing all the Kconfig "select MULTIPLEXER"?
-> If it is only the stubs - sure.
->
-> And then in the renesas sdhi patch I can drop my change to kconfig.
+Description
+-----------
+Add the possibility for the user to allow the configuration of watchdog
+in low power mode.
 
-Correct!
+Testing
+-------
+It was verified on a i.MX7D based system that once enabled the watchdog
+will reset the device when the system enter in low power mode.
 
-Typically, it's better to do a "select MULTIPLEXER" in the platform's
-Kconfig for those platforms that really need it.
+Nandor Han (2):
+  watchdog: imx2_wdt: Allow to continue in low power mode
+  dt-bindings: watchdog: fsl-imx: document continue in low power mode
 
-Kind regards
-Uffe
+ .../devicetree/bindings/watchdog/fsl-imx-wdt.yaml          | 6 ++++++
+ drivers/watchdog/imx2_wdt.c                                | 7 ++++++-
+ 2 files changed, 12 insertions(+), 1 deletion(-)
+
+-- 
+2.39.5
+
 
