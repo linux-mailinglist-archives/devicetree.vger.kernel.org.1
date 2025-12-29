@@ -1,250 +1,205 @@
-Return-Path: <devicetree+bounces-250125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14EBBCE65B2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:14:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 522CBCE65CB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:19:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5585830329DC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 10:12:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 65B66300725F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 10:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEFD02D193C;
-	Mon, 29 Dec 2025 10:12:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CED5B275B1A;
+	Mon, 29 Dec 2025 10:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lE78Bnxt"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dfG0DGs3";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AzPMtbkF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 040AE28641F
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 10:12:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30032227BB9
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 10:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767003160; cv=none; b=HGbShzlU9n4F80mF7LLXlRlfMmSOYNYI2Y7gTmVztY0JYDTJlt+a1R/QGMpmwwXeqRisqzvmdCqhUQo99d31+OBlTldsb3ulAqPqU2Aj0RMOqc/C8V6kPrFJvruAxeF3hX5cKUN7yseWqvKx5mdMpg5N6xWM9fplZzSbD9+60Y4=
+	t=1767003573; cv=none; b=l0jRzM+PHHybfLyURbD4qmDBemxML2eeHNsn7jjj9eXUckvHOMbX0O28MG79S29KGQPJI4q9tzSrPmIq1RPFQd4YtxiHYKGfmv+GB4uopU3nQRf1fc6X86Tn4W1fVGtbkW9Gbl5dAGNvpsiw0kehFUhtholvPOJnrMQMYKrGIqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767003160; c=relaxed/simple;
-	bh=/DNd3nTBgpx5bzsW5XipYiAjiZLaQMrfypQ8s3aY+cQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZXl0HhgAnZoqwUPs+rk4Prm+GyZuWBYCohWSFFsH1WdqBoWJs1sdT4LhkLCLhxwE3+JJYMUmYjc+h7gFehno/nAuUiXzqBo/T06+96adbYfsXDh8cmDBoVOEYKknbtVTLrqZabosWOIWIQrd7aFNfpujBsjjyQv7aXwxirUHOfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lE78Bnxt; arc=none smtp.client-ip=209.85.128.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-477ba2c1ca2so94152955e9.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 02:12:38 -0800 (PST)
+	s=arc-20240116; t=1767003573; c=relaxed/simple;
+	bh=bAlbsLq2CbFPJyLvOnaYwzljMRSxyhtx+g0Q0M0KB4w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NvbwI0g7sAZFN4eEeIxrLyzrmpwUzKd/Vaqam2vZGzJ7SYphmm4jhfLZtcnO9l6Nd7WdgFEx65dhuzjgfYW00J/RVBKr1M5EkJ1HZvz07qEkmwWriGaxZMPaOeVvMSSRZNKoMcnY2pOGFVekRKsY/5jfPMDKXiv0h6O0KL8HbdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dfG0DGs3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AzPMtbkF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BTABIYX4160832
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 10:19:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yBrqNsep9SvRFRsP0TEHPmoDqVkS06GgAJCQ8yqPKEs=; b=dfG0DGs30+P4p9VZ
+	i0KCZpvNpD0VKNYEkw/1DkD7kFdAF1Xg+E8kkMCCuqG5gvRRLT+A0g1BclbJ/aPn
+	yth2ZbNj40U601V0xe/Fd1+DaOHYdL0dCZOE5M3g+VU2b/XiBiVwp2/pjygo07yR
+	bAfdW3/dyg45gzvlONsU2fcmafWVPOrfgG4x6Iqv6MmujFlAb/WMtvM4qNoHUlua
+	nHxwk87SLdJh35b2XShN7a6CuglSDJ5cRG6S5DLb+4q1c7/5MlbYz8GyY/EHnU6T
+	SAhRoRB5aApxDiodJbciBGW2tSS3pyyv65uFVw0K3gIZ1SGgLu7lGrOXJaotBk4c
+	0fNoqg==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ba71wv32a-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 10:19:30 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-34cc8bf226cso20477354a91.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 02:19:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767003157; x=1767607957; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aGhaOvmlmS+7WMRTI0qoktvD9ygsBMZt9H0idUxXEQs=;
-        b=lE78BnxtKn0SwHo0CVc67uKraXb6/Gn64z5PscQVNahw4QE4s/jt4hWRbQJrSveOg0
-         OOW4xQvVcoXadxI04bFQPFlsOuzhtizoOsjTE4xX5YbPyXfc5WQNXZfMAWZz5pfFnWKJ
-         RttyqYXetclz4+Kq6NZWy7yj7A+1ibyxsD0fPf1lkah5vmQKaaIyIuT3jKrBJZRMXhPq
-         xi9RDxDZgh2HNNRa6KRwH9a7FfyLE1mOAfNm/HKu8tJsGg+s36Jl0GlaWdXOhbkMpudy
-         gXqta4sgfazlXq+nMiY92x4TBAIprk3/F8geMkQA0zPjQxdPqONjXH4N5t+Uq8cFje8b
-         HzCw==
+        d=oss.qualcomm.com; s=google; t=1767003570; x=1767608370; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yBrqNsep9SvRFRsP0TEHPmoDqVkS06GgAJCQ8yqPKEs=;
+        b=AzPMtbkF7Dj0pldLpqnbvs2ov/8ZL+rgBRFc69cK6FHawoH5yO+8R0ZBcevt5cBXD0
+         u1/o1yY5Xr7KnZO/POqfeIUnw4X2rR9EnYrVwlde9eWlJzlJu6baDEEz+fOCUQ02PaRV
+         zqzn17lT1GzTkDk7TZfHpHOFQFc2ouSw3KzaS6iNwBBoVfuuRYx0V7ASsEExEG4Q8oFH
+         XWPMbizOZhnGxFRp2H4npte1SgSNWlHuJqHOHwRkW9L7jAAKfbGe/z3y2mlIuUgvxyfX
+         7S1nTMCFeOvsYdPmpeIR0qfMOKRk+9kpsw5w1S++TOgG0pIxUPO+skLCTKuaEMgvgx67
+         aKqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767003157; x=1767607957;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aGhaOvmlmS+7WMRTI0qoktvD9ygsBMZt9H0idUxXEQs=;
-        b=lAqakt+8N4s0MpS9+yIWAqATEDY5+0smH/+4gqEewgIVsQ0YkNu2yYQgSQ8EtUpFpc
-         6xJ+xFNiAGxHqIzIa3jXWhuLhb16Cp7A5W51Q9EZq4pFEihXqOODNBlFQgqOIo6Zgg7o
-         LqZ68rHQJqOVKsLfveQPoPCFYiAh88055Uz4Z5W5kq5CxGvkrjCSIsDK1gQ8dj7sIVgv
-         njN7k0hz+rAq/SSbH1hhtZi+8dlFTrN+DxTgg8gfyaofDy7sBuQ0T4/hclhw87Xlz/yt
-         uv1630DlsPs/phnMSjvdVetBpsPs/3S0rwX5zXuZ1KyaMZavZg3FgPM2xVluGpPB2jGn
-         bL/A==
-X-Gm-Message-State: AOJu0YxW6GCBE1v3j1mlvM5QL9/sm4NnmXmngFtx5MeIf27ajD3bMr8y
-	2ILeHrMlwNlZCYQk5cv9Q2q8mz6F0lnXfRFZ8sYf818DXYemGPq1Bb70
-X-Gm-Gg: AY/fxX7MWnIlZkJvtvvRgRudfgrs1bs3qiNOqdQ0O6yDAwDnCzRR0O1b+xhznuFjDzi
-	ze22pKCUxGkaU403pmXE/o8AC2AnuulQatQwnRU4VH4cVid6Qth9lYzQ3STV0VJ/aAdRzV9Viv0
-	L301fRaa8/1oba1vFMDDmA5Dx/TZN1NGaOE5ZMWWutq2uWf2izhlNwans+VJh/cDKNXa4gBgaos
-	Oqn0gxIs03jfRnAsZjd3rUK2c10/fmB1Mvc0R1FKpwj9lkttl+BoQF5uzTUUGQKIYkgpoHv422X
-	5kqUoNbQ6ScKiAhPVGHEea3gvvGN4hi4NhcUIG3oj4J6TGJVfNn1j+ohPlXVW0Q7uXhtn8LX0Tm
-	tg/XNyOOvR9/4lE7ftlGvdFRhsDe/jQEX9zvjVEW69AL8ibboljT6z056+CLJPpRKYlV4qpi8M6
-	PqqTqa8rn8FHJD8yKFbergOEsyoIg5eA5UplIhLJCY8eXELXRdBxQP6Kg7cipM
-X-Google-Smtp-Source: AGHT+IEEqpluRCt6k8YgVElk53IPARdNcOg+sX454L4Ga2LZMawpnbxrDXzY9rlApr1YZZYjgLKOaw==
-X-Received: by 2002:a05:600c:5246:b0:477:54cd:2030 with SMTP id 5b1f17b1804b1-47d1957f707mr375649945e9.21.1767003157158;
-        Mon, 29 Dec 2025 02:12:37 -0800 (PST)
-Received: from alchark-surface.localdomain (bba-94-59-45-246.alshamil.net.ae. [94.59.45.246])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d583f42dasm19840735e9.6.2025.12.29.02.12.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Dec 2025 02:12:36 -0800 (PST)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Mon, 29 Dec 2025 14:12:04 +0400
-Subject: [PATCH 7/7] arm64: dts: rockchip: Enable analog sound on RK3576
- EVB1
+        d=1e100.net; s=20230601; t=1767003570; x=1767608370;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yBrqNsep9SvRFRsP0TEHPmoDqVkS06GgAJCQ8yqPKEs=;
+        b=Ly5IimGF/iLfWJDtlSCtfnF2UG/tvRg6x0L3QXQb+4k4TD+UZ61GvpYJiQbxCRRFfz
+         Sbsc2R3Q06YxFMNwRCxssWrf+E6W5+GZrSXLJZYg82ErsfPP72HyMi10jl6qHxsfMbGk
+         7E20NImfTCIWN/JJIFq4u1Fkg3vzY11IFqoQdIEhVExsCHIjlBRN/znZlyGjK/xMie4K
+         w21yaOV/JRcRJUBndj8cZs2W1QCgBzokRXoFx1QzVH3guBpcndLwE2vw0KZice98rBcC
+         NMw1r9wemoOTnlpVxJorIu2tO47qbSOB95UIDgWeoi5fFlChO9aVw9jaLnAG0KGcz770
+         b3IA==
+X-Forwarded-Encrypted: i=1; AJvYcCVlOST2TNsJG9mJ05Np1NE+orqlcs8uDSCr2jHyMstI/MtCiLX5u7k+MWn6Vw9QTOw53v5wFuqmXxBR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwKr1BeBe+hAiBQGXbc+PuSshgegg781hWZkssDPaE8XVV+k7A
+	mBJuI/d4uYE1/sGAxeBa/sn5dJBi2lP49G0gAka5jOL7cP972Je5Nzc7mWQ/qaI76zNZZzvTbDH
+	Hd4LU1KzVBV2SIvnJUdNJiEpFLmPecDskBdX9uOsT85zAc4mvT7d6bLuUNC7BlOdj
+X-Gm-Gg: AY/fxX7QkXeFylknCVQZV4nSr9ag9f8YGdRf6jF+rjyEmXMFDAVIP0GM5QwuFZfXLgs
+	LuG/VLfMo9px/+fBKVZh/4bk0qrZn3jTY5Xk56ddvtETE615l190cEXn9888pzim3OrtMjnbntC
+	QSnnejpSyXZjbMxzWX6VIGPyllRGHfqT3G7HWeGaC+CMIqj2DW6UqFg1nUAIKdFr6WgmX2APbro
+	vwu8jGErpEdDnue7z72LaWe5n3dv6FMZOfs/0KSfypI4UL4+Yv1QObSrcfnbpTw8KQ15Y2KKDOM
+	/ZXFZEtFeyY7yA1Qy4RJ8O4X7Mnn2qfKsTOjlgCI7lymlTVj3L9raChpvnf5DaoYE/g9yNC45fc
+	SDcjzA1suA05G7HTXxSwSIWghdsAxUan7G/tFktJJWtkSwfz4aK8uNqInG0yA/9BQWbcY
+X-Received: by 2002:a17:90b:2585:b0:340:bb51:17eb with SMTP id 98e67ed59e1d1-34e92131db5mr27227364a91.15.1767003569823;
+        Mon, 29 Dec 2025 02:19:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGpI1tIheAK3Jc5YakDDEgyL6hZjQFrDx1wSiLJUOLGWDC/LzO6W44QB/3UCmbiVxqphTxoVA==
+X-Received: by 2002:a17:90b:2585:b0:340:bb51:17eb with SMTP id 98e67ed59e1d1-34e92131db5mr27227348a91.15.1767003569321;
+        Mon, 29 Dec 2025 02:19:29 -0800 (PST)
+Received: from [10.133.33.5] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34e70dcc7bcsm29853573a91.13.2025.12.29.02.19.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Dec 2025 02:19:29 -0800 (PST)
+Message-ID: <19f46c69-fbfc-4129-98ae-fc5aef3f75eb@oss.qualcomm.com>
+Date: Mon, 29 Dec 2025 18:19:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251229-rk3576-sound-v1-7-2f59ef0d19b1@gmail.com>
-References: <20251229-rk3576-sound-v1-0-2f59ef0d19b1@gmail.com>
-In-Reply-To: <20251229-rk3576-sound-v1-0-2f59ef0d19b1@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- John Clark <inindev@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3935; i=alchark@gmail.com;
- h=from:subject:message-id; bh=/DNd3nTBgpx5bzsW5XipYiAjiZLaQMrfypQ8s3aY+cQ=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWQGhTDZu/EGt5/fcaLyRtWMkHvJgSmTV+Q53v/1f93JR
- Yf/mVhkdkxkYRDjYrAUU2SZ+22J7VQjvlm7PDy+wsxhZQIZIi3SwAAELAx8uYl5pUY6Rnqm2oZ6
- hoY6xjpGDFycAjDV9u6MDNseFxl6BW9gXHBv/p8du43+i12o+P+UZV7Krhe3Q3T4bRcw/I9ZufD
- O/NgFm/hUti93nDKzMu+OUpnOHpvWdYU19i72FzgB
-X-Developer-Key: i=alchark@gmail.com; a=openpgp;
- fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: Commonize IQ-X-IOT DTSI
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        YijieYang <yijie.yang@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com>
+ <20251222060335.3485729-3-yijie.yang@oss.qualcomm.com>
+ <20251222-fluorescent-turkey-of-gallantry-df0906@quoll>
+ <b8f0e8d9-449e-4f32-832e-f1d5597ff496@oss.qualcomm.com>
+ <6421f044-2b07-4518-9edc-b9b2ef49f4fb@kernel.org>
+ <8bcf058f-5bf9-46ce-a188-e94954101f2f@oss.qualcomm.com>
+ <4f79d090-7d1c-4fb3-a835-a7e4ff96f79c@oss.qualcomm.com>
+ <448f2efa-5b1e-4855-a62d-2e375938b36f@kernel.org>
+Content-Language: en-US
+From: Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>
+In-Reply-To: <448f2efa-5b1e-4855-a62d-2e375938b36f@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjI5MDA5NSBTYWx0ZWRfXxwOZ7SfPYytY
+ zxvmqcCsXfj4PEAFx4J0N8ou2lIxXVG1l+RI3eK0oZG5z0cJgOe00ZB7CuIx5rp9p8+iJBamm/o
+ VsPVkiZL8+9BWEcvhjNskv86kpLrOZEdLZTNTK+ISoYycxvPqplUFnC6VlZ6OvL1rl9SJpJRm2t
+ l8H0eGpgju9t6sbdS/3oaACnLVHMQxB/p+vAS7u0wYqS0WeXXJ+DY9UawYfkHc43HTDXTJOauB7
+ V3RMiluf1a5eVJ3YbFZmZUX7gY47peM5Yyc9xF4gVHrERK6eaxXgsqHg+PyI1x07x4GFnaaINmM
+ jp88nFSA2IBGbZUgeW/OdGxKmpq1DSKZy0hUpFEx/PWRwQrD7nBTRSUpFV5zqVHcHiT8hj4orNI
+ C+0ipzaxThFJX34Jk+GCtjXtNnlqZWfmFOSiQnYPfGXc8U87vtq8uEceEnWoiD+S50B+OdPzZUu
+ 0egMV2r/7XdRpiI0rGA==
+X-Proofpoint-ORIG-GUID: R3kpwtS1Du4QsO7ZsFlRGYqb3Ne7ZY0W
+X-Proofpoint-GUID: R3kpwtS1Du4QsO7ZsFlRGYqb3Ne7ZY0W
+X-Authority-Analysis: v=2.4 cv=CK4nnBrD c=1 sm=1 tr=0 ts=695255b2 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=-EYVSfHI5QxSVCcxwr0A:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-29_03,2025-12-29_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0
+ adultscore=0 suspectscore=0 priorityscore=1501 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512290095
 
-Rockchip RK3576 EVB1 board uses the typical configuration with an ES8388
-analog codec driven from built-in SAI I2S.
 
-Add device tree nodes for it.
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 99 ++++++++++++++++++++++++
- 1 file changed, 99 insertions(+)
+On 12/29/2025 3:21 PM, Krzysztof Kozlowski wrote:
+> On 29/12/2025 02:23, Tingwei Zhang wrote:
+>>
+>> On 12/24/2025 8:12 AM, Tingwei Zhang wrote:
+>>> On 12/23/2025 9:41 PM, Krzysztof Kozlowski wrote:
+>>>> On 23/12/2025 04:38, Tingwei Zhang wrote:
+>>>>> On 12/22/2025 5:11 PM, Krzysztof Kozlowski wrote:
+>>>>>> On Mon, Dec 22, 2025 at 02:03:28PM +0800, YijieYang wrote:
+>>>>>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>>>>>
+>>>>>>> HAMOA-IOT-EVK and PURWA-IOT-EVK share a similar board design. Extract
+>>>>>>> the common components into separate files for better maintainability.
+>>>>>> SoMs do not share actual hardware. DTSI does not represent what looks
+>>>>>> similar to you, but actually common parts.
+>>>>> Purwa SOM board and Hamoa SOM board share same design. They share same PCB.
+>>>>> The difference is only on chip. Purwa SOM board has Purwa and Hamoa SOM board
+>>>>> has Hamoa on it. 
+>>>> I do not speak about boards. Read carefully feedback and respond to the
+>>>> actual feedback, not some other arguments.
+>>>>
+>>>> NAK
+>>> In this change, the SoM hardware except SoC is described by iq-x-iot-som.dtsi since it's common between Hamoa and Purwa. Hamoa and Purwa SoC hardware is described in hamoa.dtsi and purwa.dtsi. Hamoa-iot-som.dtsi includes iq-x-iot-som.dtsi and hamoa.dtsi. This change could reduce the duplicate code and review effort on a totally new purwa-iot-som.dtsi. If we found any bug, it can be fixed in one common file instead of two separate files. Same idea is used in x1-crd.dtsi. X1e80100-crd.dts include x1-crd.dtsi and hamoa.dtsi.
+>> Krzysztof,
+>> Please let me know your opinion on this. This could be a common case for
+>> Hamoa/Purwa boards share same PCB. Share same dtsi file like x1-crd.dtsi
+> It's not the same PCB.  You did not really respond to my first message,
+> so I responded to you - I do not speak about boards. Then again you did
+> not respond to it and brought some irrelevant arguments.
+>
+>> would reduce maintenance effort.
+> Does not matter, I do not question this. Why are you responding to some
+> questions which were never asked?
+>
+> DTSI represents actual shared physical aspect and you cannot share SoM
+> physically. It's not the same PCB, because you do not have a socket on
+> the SoM.
+I didn't make myself clear enough. The SOM PCB I referred here is just the circuit
+board excluding the components on it.  Let me rephrase.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-index deab20ff4d97..0789733c2073 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-@@ -246,6 +246,63 @@ vcc_wifi_reg_on: regulator-wifi-reg-on {
- 		regulator-max-microvolt = <1800000>;
- 		vin-supply = <&vcc_1v8_s3>;
- 	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_det>;
-+		simple-audio-card,name = "On-board Analog ES8388";
-+		simple-audio-card,aux-devs = <&hp_power>, <&spk_power>;
-+		simple-audio-card,bitclock-master = <&masterdai>;
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,frame-master = <&masterdai>;
-+		simple-audio-card,hp-det-gpios = <&gpio0 RK_PD3 GPIO_ACTIVE_LOW>;
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,routing =
-+			"Headphone Power INL", "LOUT1",
-+			"Headphone Power INR", "ROUT1",
-+			"Speaker Power INL", "LOUT2",
-+			"Speaker Power INR", "ROUT2",
-+			"Headphones", "Headphone Power OUTL",
-+			"Headphones", "Headphone Power OUTR",
-+			"Speaker", "Speaker Power OUTL",
-+			"Speaker", "Speaker Power OUTR",
-+			"LINPUT1", "Main Mic",
-+			"LINPUT2", "Main Mic",
-+			"RINPUT1", "Headset Mic",
-+			"RINPUT2", "Headset Mic";
-+		simple-audio-card,widgets =
-+			"Microphone", "Main Mic",
-+			"Microphone", "Headset Mic",
-+			"Headphone", "Headphones",
-+			"Speaker", "Speaker";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&sai1>;
-+		};
-+
-+		masterdai: simple-audio-card,codec {
-+			sound-dai = <&es8388>;
-+			system-clock-frequency = <12288000>;
-+		};
-+	};
-+
-+	hp_power: headphone-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		enable-gpios = <&gpio3 RK_PD6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_ctl>;
-+		sound-name-prefix = "Headphone Power";
-+	};
-+
-+	spk_power: speaker-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		enable-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&spk_ctl>;
-+		sound-name-prefix = "Speaker Power";
-+		VCC-supply = <&vcc5v0_device>;
-+	};
- };
- 
- &cpu_l0 {
-@@ -712,6 +769,25 @@ hym8563: rtc@51 {
- 	};
- };
- 
-+&i2c3 {
-+	status = "okay";
-+
-+	es8388: audio-codec@10 {
-+		compatible = "everest,es8388", "everest,es8328";
-+		reg = <0x10>;
-+		AVDD-supply = <&vcca_3v3_s0>;
-+		DVDD-supply = <&vcc_1v8_s0>;
-+		HPVDD-supply = <&vcca_3v3_s0>;
-+		PVDD-supply = <&vcc_1v8_s0>;
-+		assigned-clocks = <&cru CLK_SAI1_MCLKOUT_TO_IO>;
-+		assigned-clock-rates = <12288000>;
-+		clocks = <&cru CLK_SAI1_MCLKOUT_TO_IO>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sai1m0_mclk>;
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
- &mdio0 {
- 	rgmii_phy0: ethernet-phy@1 {
- 		compatible = "ethernet-phy-id001c.c916";
-@@ -778,6 +854,20 @@ &pcie1 {
- };
- 
- &pinctrl {
-+	audio {
-+		hp_det: hp-det {
-+			rockchip,pins = <0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		hp_ctl: hp-ctl {
-+			rockchip,pins = <3 RK_PD6 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		spk_ctl: spk-ctl {
-+			rockchip,pins = <2 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	bluetooth {
- 		bt_reg_on: bt-reg-on {
- 			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>;
-@@ -839,6 +929,15 @@ wifi_wake_host: wifi-wake-host {
- 	};
- };
- 
-+&sai1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sai1m0_lrck
-+		     &sai1m0_sclk
-+		     &sai1m0_sdi0
-+		     &sai1m0_sdo0>;
-+	status = "okay";
-+};
-+
- &sai6 {
- 	status = "okay";
- };
+Hamoa and Purwa SOM boards have very similar hardware design. They share
+same circuit board and most the components on it. The only difference is Hamoa
+SOM board has Hamoa SoC while Purwa SOM board has Purwa SoC.
 
--- 
-2.51.2
+I agree they are not same PCB since the SoCs are different. 
+
+However, I still think it's better to use common dtsi iq-x-iot-som.dtsi since their
+hardware design is very similar. 
+
+I'll invite Konrad to chime in here as author of x1-crd.dtsi and Qualcomm SoC
+maintainer. I think we are facing similar case on purwa evk and purwa crd.
+Align to same strategy for device tree topology would be good.
+
+> Best regards,
+> Krzysztof
 
 
