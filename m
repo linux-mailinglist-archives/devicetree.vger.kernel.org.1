@@ -1,196 +1,314 @@
-Return-Path: <devicetree+bounces-250231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C060ECE70ED
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:32:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D76ECE723A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 15:56:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C1C90307B998
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 14:30:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6924A3009824
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 14:55:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 982703203A0;
-	Mon, 29 Dec 2025 14:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C21332A3F1;
+	Mon, 29 Dec 2025 14:55:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mV+aDasU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="izqPmlmE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29B9D322523
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 14:28:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2A25329E72
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 14:55:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767018510; cv=none; b=JR+XFEr7sIlq/pSAQSAeCqzOL+l0YQBP9ymWWl+wCgdUqE/Gs7Mhpza+uyl8JFkUrC3gZIfO2wiEsmSxckTWbWNDHWUyGn/R33oWFEZ4m8T3uAEhll5zSPfwAtRM9kEMxrV8kIrNyGpMGiYGlDYPkXjz/8pA8MDXlsSttcl/B+4=
+	t=1767020136; cv=none; b=XBZ76EsprShRwY+mo+TObG/NDiYyFGGcFT5HKOe1xXMIefq1ct3TmfLYB0qp+ImUIfZd6xPB6PSpHWPIsjp/VPCUPMX5Wo3QbWvoxFMRPK+mB070UDPZfnxH8z8eMRgkwHGN+7o+Kj7LyLQxSjMXmRDBnnIkekVQVxnfq9dYLGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767018510; c=relaxed/simple;
-	bh=p19C5fUiaHYuyT8B3f5YKcSGz2HF8sHhEPGkk3Lr+ZA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PIyIkBDx2o5jMkHWTTxfnwTksyUy/y5UqBKMSEm93MtsWyKMWRRRJwolYuOHWGQ2JUvDfTXlKlm0OO7kQesJiaLNgj3jmo3LYjU2eWcKLl9iIejhD+FTae4ydkpQI0r4gx+BRHgJNmVURF37hho4SZcG0r8FaTusX81BiKoH3BQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mV+aDasU; arc=none smtp.client-ip=209.85.208.171
+	s=arc-20240116; t=1767020136; c=relaxed/simple;
+	bh=OGLBdBSIOl/MhJ8GSEViWbYQdr4diYSrviffLN6Oxk0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=WOJoFrCpnd2qfnzeuhAfqIbyaAKs4W2lKCOMpXwqCXmcdoDqpLADaOB5BYwrRavl5CfsL+DG+/sdQPafQcxMBfbRJ0xSvLNDo11BHzKNoeu3/XyqkX+bnfomtli0GvdIP1i2g7IkMU5DEN84PpXAyzQi8dCytZWrBqW2BccDeCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=izqPmlmE; arc=none smtp.client-ip=209.85.214.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-37a415a22ecso47257691fa.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 06:28:25 -0800 (PST)
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2a1388cdac3so85129625ad.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 06:55:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767018503; x=1767623303; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JlPQpMhsU9ZTNBtgWJtMFJBp0vgrJMleMmiswLOaeG8=;
-        b=mV+aDasUePlqGzyAjJH2QGfpE7xQZxwKq63Ajd8/P3ZGtNuInrsvqx8kVcQE5PcKks
-         woRXJTqhfLofmXIEK+cGXChI2pdpvtU8QUmCR7sq2A+MktntkX1rvxI1GuvUtcdNC1zc
-         +4ILBAMkZcVD+dBUQWBFAuZs0Qo3OYrR7LhwUHziMZcfEvwkGuqa1rJumjsDueh4rOZA
-         fTVfTEc7WimA35mkBq8AzuxNS/zKzcPukJun15oNp3SLGpfJNmo/YeMnz+S2iqa37DxM
-         5i2k5R8ITPqH2T4Veo6rrEP+PXI2JXJgaQZcbp3wcJo9FSswOLizUG0CATPlktxxcrWu
-         47Og==
+        d=gmail.com; s=20230601; t=1767020134; x=1767624934; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c3Rvbx0SUF5LIMmW++u/8q0FjAyi1zNAmH9287WODhQ=;
+        b=izqPmlmEHvyn9HWRMDH8n77K9Ukov1uXGlItCxTG8sNg5l688Jmr5CjVwK3VoiHnuX
+         M14RTEVl3wYbruzxYME1OnIMdaItSr6gggI8df5DGsLH/5KoyghKIW7inOedm39W83pf
+         OkwIZt0sZRnAOkfKfpkkWNAm4BAn1a1S88ZKR1/kNvFEq3r1GHhRAVxxdWhf8joRHBwK
+         rePuL+24J4rqPpcOg2XUO7SeUUEFXaC1WwVS1D3Uj3xQZgQWtmWiqlb4WXHd2gu6413r
+         SIsN4Xz9Poaf5b+vgJy45KJ0icF4jzHEbOmKa6oJKDI1eg5nHBt2Zu119Nvd0XubV+Ci
+         bM8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767018503; x=1767623303;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JlPQpMhsU9ZTNBtgWJtMFJBp0vgrJMleMmiswLOaeG8=;
-        b=ig8Jk4twD92pG0ZgdEaD2Qx6tjZ5BZoZ69Vonh9/mLDAhnwPrqQwCO8Gtyq9syQalc
-         sLsmxqtsUIfGE1R9hKScNIFjn2HgQ3sp1LyZHDW2pGxGDugiM+iLk8Ys63wiDcyWRk8z
-         JPkikkWo3SxlLIHGFY78qzhEvfpjZGPqrFW9XLB9I39i52qrN8ko2XEaEij505M+CNNQ
-         LypQGKtdWKcOBw+/TAqbDtQAmrvk3yxQnsr2L/lLBKRBndKRNG74thNXDHNO4mxRz6HV
-         G3yEGS83QetXqXb2Ry9IaNyBHR9ZURmPlrlb4zlKjhzg/02FnOQdvsmuPLShW5mCQaj2
-         tuFw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/hdLw0oVDy/e3QR7UbIkYtAxT1KMs2mjAnh7F5DRx0NdTdjNHDf208yKwjqsJs7FeR0uj2v7sPYyL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOjGrf9dXVWBmrUXQ/7OohkpQZEwWKV3i3C+z+j/hV1kWdt/M+
-	OxVS/YGccg1oqoax9Tq9AIVHGKWVX9nwQKpeTqH0My7KMoMwUdmFI/WB
-X-Gm-Gg: AY/fxX5hjf/2x+J0dvrotRCNv4Qhh8+IZ9tqXbgtW/Joe0Jw4oivIutVkg0WS9lVc97
-	sbRAnGroUwpQbbIia89MOsUqMKha3wi1QTziXKKv4cuSe0Njy1o0NDY8wRmht+w1TxaJ1ertrlI
-	gMJBwmHgdTPlVGsUnc2CH3FeQ1NTaUBIBdO+HAaq+iZZKfzGh+TwqOijxV1hY2lSA8LCYEfr7rr
-	S3jX8LS+TPXK66gF4+tjXou6U3YBgYo7cmODqoB4IM0+MznTB6HBmwJnRHsQ52FfuFMbbY/E2Ij
-	6BJrGO2LXQ5PAWANCM2KsMCfk6Ssu0N7rPbrVsoXmO2vrSTIfT37oc7+IYQxo38Biq0vRCdVGQQ
-	l4XlF85HGxy0vW0BRrg3fyd1NqQ7Nv+2XC48V1No6aFYLc5uALk9NlX2MN/oehj1+6KHbbcPjMB
-	BCGpMTOvplMaHomXbmcQ3J0zUT+Ja+aNppNg==
-X-Google-Smtp-Source: AGHT+IHzJs2Slc9So9wW48MzyPul6GDqnIF6AT7GrqTVvPa+W/JUEnh3sVxZGeJbDeSkSP8ozT6dNA==
-X-Received: by 2002:a05:651c:30ca:b0:382:624d:a770 with SMTP id 38308e7fff4ca-382624daa40mr38719581fa.15.1767018503034;
-        Mon, 29 Dec 2025 06:28:23 -0800 (PST)
-Received: from [192.168.0.131] ([194.183.54.57])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3812264cc13sm83859981fa.37.2025.12.29.06.28.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Dec 2025 06:28:22 -0800 (PST)
-Message-ID: <44ffa209-48b8-439e-a1ce-f9eb2aeb2f26@gmail.com>
-Date: Mon, 29 Dec 2025 15:28:20 +0100
+        d=1e100.net; s=20230601; t=1767020134; x=1767624934;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c3Rvbx0SUF5LIMmW++u/8q0FjAyi1zNAmH9287WODhQ=;
+        b=gY/HhzaFxI/r0l4ISM23COIuehpJ9/E3Di4aVPyxR/W9D3h5OtKMlLPGzoWHSGa8o3
+         EkQhqENua6TePuOdJHcn2K+8m83VzXX/892716IRhjm+vtqIHpf/SSX13IOT9I1iL6Fq
+         FYAlMvhe3+y5migSyFbZNxesAmt2D8E+SDQxugQ8uLGhyPgY+29LfDueMq0sJ0lJF2QS
+         6dzaUnXjKKzS9VW8qQG/iLzmVtPVh8azvzzY+JJTcNdiG8dZNFRMB8tRdXWdgEfEZLTJ
+         AwtzecE00PCgeQnWQxijJ+9jXs/WlpYuF+N/8wqe/D06rPMu9yNYLfutaTQotV9GVW7N
+         DxXg==
+X-Forwarded-Encrypted: i=1; AJvYcCVTzGlo4wfON5SQMFzhuCvfCRI0V+UIDrNlx6zHB8WbtFjqIqSq8teplmNwXS2O7roO7X7DV3Lb7iUy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6JXzAxTrxKPMPDYx47ROycrz9CsVKu3yw/JlnKJuFGV0SJh1G
+	6gsZgCJi+PXvyKn+yB2u/h9Ct7dHzp5mQHRoKmmpsPORMcQ1ZkTkkUCS
+X-Gm-Gg: AY/fxX61AI+YFIMh2eQq/FPeLBYQFnUAKFYUlxWSoeK5qYsu/qtrUH37I+2TOgAQ/hA
+	vyE0wZw5eViL0VlQ0khySNdXeVjn3jv/OkWHgmOvUWyiXIDag+s62t9WEUr7gPfAoBsRlWl99dg
+	Hfy7Vkq1BIQyA/rrwVnimh0TPselnwRsnPmoX4ZxunFMKYQ+A0XZtQBL4hN3dzHjyuuXeIKhZqA
+	C12wBgMsHH8nDVDStK5ppoW4Iern/tHvUWUn6mwNrpZorPNcP9jUvT9TVrMYpQjdVi+oN+trfrB
+	7YuAJUIWu2AkV0vpGG1s+6pvQh8DJpc0qBXEGhNqPy68DRXMltvBqPRF6zMszYTPqVEwb+WeSrx
+	CsBVM20WE34GrxsNeXGctQURmVba4PauHWkjjWw8yJFph/IOQQPCHilOJRaH54/e5cYQJBHl/UK
+	hynWaXQZrCuX/CtQ8aSXMeddC0rUF0D2ey
+X-Google-Smtp-Source: AGHT+IHCF/iIi9x1kfokHvV7XRjScNJIW1j4ikCcQAyZ1AHZ+5mJnfca+Vk/PMrdq42tlxFbIXPYAg==
+X-Received: by 2002:a17:903:ac4:b0:2a0:d5bf:b27c with SMTP id d9443c01a7336-2a2f2a4f768mr268011635ad.45.1767020133688;
+        Mon, 29 Dec 2025 06:55:33 -0800 (PST)
+Received: from Black-Pearl.localdomain ([122.164.226.1])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a2f3d76ceesm279217045ad.91.2025.12.29.06.55.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Dec 2025 06:55:33 -0800 (PST)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Date: Mon, 29 Dec 2025 14:31:12 +0000
+Subject: [PATCH v2] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/2] leds: Add optional instance identifier for
- deterministic naming
-To: Andriy Shevencho <andriy.shevchenko@linux.intel.com>
-Cc: Jonathan Brophy <professorjonny98@gmail.com>, lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>,
- Jonathan Brophy <professor_jonny@hotmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Radoslav Tsvetkov <rtsvetkov@gradotech.eu>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
-References: <20251228182252.1550173-1-professorjonny98@gmail.com>
- <761d6573-3751-47fb-9b0e-8063f3cecf76@gmail.com>
- <aVJ0c3injbP7yRIJ@smile.fi.intel.com>
-Content-Language: en-US
-From: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-In-Reply-To: <aVJ0c3injbP7yRIJ@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251229-nvidia-nand-v2-1-b697d9724b0b@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAK+QUmkC/1XMQQrCMBCF4auUWRvJjNFWV95DuojJ2A7YVBIJS
+ sndjcWNy//B+xZIHIUTnJoFImdJMocatGnAjTYMrMTXBtK0R42oQhYvVgUbvNJknGstd1dtoT4
+ ekW/yWrVLX3uU9Jzje8Uzftefs9N/TkaFqj2gYTTU0ZHOw2TlvnXzBH0p5QNygrCHpgAAAA==
+X-Change-ID: 20251011-nvidia-nand-024cc7ae8b0a
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Stefan Agner <stefan@agner.ch>, 
+ Lucas Stach <dev@lynxeye.de>
+Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.14.3
 
-On 12/29/25 13:30, Andriy Shevencho wrote:
-> On Mon, Dec 29, 2025 at 12:16:17PM +0100, Jacek Anaszewski wrote:
->> On 12/28/25 19:22, Jonathan Brophy wrote:
-> 
->>> This patch series introduces an optional "led-instance" device tree property
->>> to address non-deterministic LED naming when multiple LEDs share the same
->>> function and color.
->>>
->>> Currently, the LED core appends numerical suffixes (_1, _2, etc.) based on
->>> registration order when duplicate function:color combinations exist. This
->>> creates several problems:
->>>
->>> 1. **Non-deterministic naming**: Registration order determines suffix values,
->>>      which can change across boots due to probe ordering, async initialization,
->>>      or module load order.
->>>
->>> 2. **Non-semantic identifiers**: Names like "lan:green_23" provide no
->>>      indication of which physical LED or subsystem they represent.
->>>
->>> 3. **Breaks userspace automation**: Network management tools, LED control
->>>      daemons, and hardware monitoring cannot reliably identify LEDs.
->>>
->>> 4. **Ambiguous numbering**: "lan:green_23" could be mistaken for LAN port 23
->>>      when it may actually be the 23rd registered LED of any port.
->>>
->>> 5. **Namespace pollution**: The alternative of adding vendor-specific function
->>>      names (LED_FUNCTION_LAN_PORT0, LED_FUNCTION_LAN_PORT1...) pollutes the
->>>      function namespace. The instance identifier keeps standard functions clean
->>>      while allowing contextual differentiation.
->>>
->>> 6. **Breaks naming convention**: The _1, _2 suffix was intended only as a
->>>      collision avoidance workaround, but has become the de facto standard for
->>>      hardware with multiple identical LEDs.
->>>
->>> **Example: 48-port network switch**
->>>
->>> Current behavior (non-deterministic):
->>>     /sys/class/leds/lan:green      ← Port 0? Unknown
->>>     /sys/class/leds/lan:green_1    ← Could be any port
->>>     /sys/class/leds/lan:green_2    ← Could be any port
->>>     ...
->>>     /sys/class/leds/lan:green_47   ← Could be port 1 due to probe order
->>>
->>> Proposed behavior (deterministic):
->>>     /sys/class/leds/lan:green:port0   ← Always port 0
->>>     /sys/class/leds/lan:green:port1   ← Always port 1
->>>     /sys/class/leds/lan:green:port2   ← Always port 2
->>>     ...
->>>     /sys/class/leds/lan:green:port47  ← Always port 47
->>>
->>> **Example: Multi-domain power indicators**
->>>
->>> Current behavior (non-deterministic):
->>>     /sys/class/leds/power:red      ← Which power source?
->>>     /sys/class/leds/power:red_1    ← Which power source?
->>>     /sys/class/leds/power:red_2    ← Which power source?
->>>
->>> Proposed behavior (deterministic):
->>>     /sys/class/leds/power:red:mains    ← Mains power indicator
->>>     /sys/class/leds/power:red:battery  ← Battery power indicator
->>>     /sys/class/leds/power:red:usb      ← USB power indicator
->>>
->>> **Design principles:**
->>>
->>> - Backward compatible: Instance identifier is optional
->>> - Extends existing convention: function:color becomes function:color:instance
->>> - Follows kernel precedent: Similar to eth0/eth1, gpio0/gpio1 naming patterns
->>> - Ignored with deprecated "label" property: Avoids conflicts with legacy code
->>>
->>> **Alternative solutions considered:**
->>>
->>> 1. function-enumerator: Only supports numbers (0, 1, 2), producing names like
->>>      "lan:green-0" which are still non-semantic. The 48-port switch needs "port0"
->>>      to match physical port labels.
->>
->> I think that we have currently everything in place to address the issue
->> you're trying to solve with this patch. Just introduce dedicated
->> function like LAN_PORT, and exploit function-enumerator.
-> 
-> The problem as I understood not exactly in this. The reporter wants
-> deterministic way of the mapping between HW numbered LEDs and their respective
-> names. It seems it was already mentioned that current code depends on the
-> arbitrary probe ordering. Saying this, I now think that perhaps GPIO led driver
-> should somehow allocate a range of the LEDs and then enumerate them in
-> accordance with the DT description?
+Convert NVIDIA Tegra NAND Flash Controller binding to YAML format.
+Changes during Conversion:
+- Define new properties `power-domains` and `operating-points-v2`
+  because the existing in tree DTS uses them.
 
-function-enumerator DT property enables deterministic enumeration.
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v2:
+- Edited the commit description to match the updated changes.
+- Modified the description for the YAML.
+- Removed all the duplicated properties, defined a proper ref for both parent
+  and child nodes.
+- Removed unnecessary properties from the required following the old
+  text binding.
+- Link to v1: https://lore.kernel.org/r/20251030-nvidia-nand-v1-1-7614e1428292@gmail.com
+---
+ .../bindings/mtd/nvidia,tegra20-nand.yaml          | 107 +++++++++++++++++++++
+ .../bindings/mtd/nvidia-tegra20-nand.txt           |  64 ------------
+ 2 files changed, 107 insertions(+), 64 deletions(-)
 
--- 
+diff --git a/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+new file mode 100644
+index 000000000000..f34eaad67e11
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+@@ -0,0 +1,107 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/nvidia,tegra20-nand.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVIDIA Tegra NAND Flash Controller
++
++maintainers:
++  - Jonathan Hunter <jonathanh@nvidia.com>
++
++allOf:
++  - $ref: nand-controller.yaml
++
++description:
++  The NVIDIA NAND controller provides an interface between NVIDIA SoCs
++  and raw NAND flash devices. It supports standard NAND operations,
++  hardware-assisted ECC, OOB data access, and DMA transfers, and
++  integrates with the Linux MTD NAND subsystem for reliable flash management.
++
++properties:
++  compatible:
++    const: nvidia,tegra20-nand
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: nand
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: nand
++
++  power-domains:
++    maxItems: 1
++
++  operating-points-v2:
++    maxItems: 1
++
++patternProperties:
++  "^nand@[0-5]$":
++    type: object
++    description: Individual NAND chip connected to the NAND controller
++    $ref: raw-nand-chip.yaml#
++
++    patternProperties:
++      "^partition@[0-9a-f]+$":
++        description:
++          Optional MTD partitions for the NAND chip, as defined in mtd.yaml
++        $ref: mtd.yaml#
++
++    required:
++      - reg
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/tegra20-car.h>
++    #include <dt-bindings/gpio/tegra-gpio.h>
++
++    nand-controller@70008000 {
++        compatible = "nvidia,tegra20-nand";
++        reg = <0x70008000 0x100>;
++        interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&tegra_car TEGRA20_CLK_NDFLASH>;
++        clock-names = "nand";
++        resets = <&tegra_car 13>;
++        reset-names = "nand";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        nand@0 {
++            reg = <0>;
++            #address-cells = <1>;
++            #size-cells = <1>;
++            nand-bus-width = <8>;
++            nand-on-flash-bbt;
++            nand-ecc-algo = "bch";
++            nand-ecc-strength = <8>;
++            wp-gpios = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_LOW>;
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt b/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
+deleted file mode 100644
+index 4a00ec2b2540..000000000000
+--- a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
++++ /dev/null
+@@ -1,64 +0,0 @@
+-NVIDIA Tegra NAND Flash controller
+-
+-Required properties:
+-- compatible: Must be one of:
+-  - "nvidia,tegra20-nand"
+-- reg: MMIO address range
+-- interrupts: interrupt output of the NFC controller
+-- clocks: Must contain an entry for each entry in clock-names.
+-  See ../clocks/clock-bindings.txt for details.
+-- clock-names: Must include the following entries:
+-  - nand
+-- resets: Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+-- reset-names: Must include the following entries:
+-  - nand
+-
+-Optional children nodes:
+-Individual NAND chips are children of the NAND controller node. Currently
+-only one NAND chip supported.
+-
+-Required children node properties:
+-- reg: An integer ranging from 1 to 6 representing the CS line to use.
+-
+-Optional children node properties:
+-- nand-ecc-mode: String, operation mode of the NAND ecc mode. Currently only
+-		 "hw" is supported.
+-- nand-ecc-algo: string, algorithm of NAND ECC.
+-		 Supported values with "hw" ECC mode are: "rs", "bch".
+-- nand-bus-width : See nand-controller.yaml
+-- nand-on-flash-bbt: See nand-controller.yaml
+-- nand-ecc-strength: integer representing the number of bits to correct
+-		     per ECC step (always 512). Supported strength using HW ECC
+-		     modes are:
+-		     - RS: 4, 6, 8
+-		     - BCH: 4, 8, 14, 16
+-- nand-ecc-maximize: See nand-controller.yaml
+-- nand-is-boot-medium: Makes sure only ECC strengths supported by the boot ROM
+-		       are chosen.
+-- wp-gpios: GPIO specifier for the write protect pin.
+-
+-Optional child node of NAND chip nodes:
+-Partitions: see mtd.yaml
+-
+-  Example:
+-	nand-controller@70008000 {
+-		compatible = "nvidia,tegra20-nand";
+-		reg = <0x70008000 0x100>;
+-		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&tegra_car TEGRA20_CLK_NDFLASH>;
+-		clock-names = "nand";
+-		resets = <&tegra_car 13>;
+-		reset-names = "nand";
+-
+-		nand@0 {
+-			reg = <0>;
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-			nand-bus-width = <8>;
+-			nand-on-flash-bbt;
+-			nand-ecc-algo = "bch";
+-			nand-ecc-strength = <8>;
+-			wp-gpios = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_LOW>;
+-		};
+-	};
+
+---
+base-commit: 43edce71d70c603d3f3f1b1c886f65cd02d80c24
+change-id: 20251011-nvidia-nand-024cc7ae8b0a
+
 Best regards,
-Jacek Anaszewski
+-- 
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
 
