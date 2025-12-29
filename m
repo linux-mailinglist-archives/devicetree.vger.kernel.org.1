@@ -1,107 +1,116 @@
-Return-Path: <devicetree+bounces-250163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF471CE69C6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:53:17 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D808CE69D2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:54:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 24FEF3007262
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:53:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 06D4130006FE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 11:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE7312D6401;
-	Mon, 29 Dec 2025 11:53:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FA9B2D8DC3;
+	Mon, 29 Dec 2025 11:54:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 323D223B604
-	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 11:53:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.166
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F352C11CB;
+	Mon, 29 Dec 2025 11:54:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767009182; cv=none; b=KZe6DDyWqGXFSs8Nk2fAPZVpqCCfq6r2/iDgrYTOOhUyrSsH1Lk72xd2oKQv5pph1j1BWTDIKYib0MhBu/H2CuqSc5PISXyV7b4GYzpB/uUUd8qO3qVzW3J3M6OBFd/NQwPOgrsVR+nJJQcoHU7hoghfSqQ4oJ47AiyRfgqDkjs=
+	t=1767009290; cv=none; b=BuClhbgF0luEV5Ck7nxl9IcRVt7J6gzcpJj7fQfO2H3kDq3BKmG4harshPST8PsBpjSlELHt484R03cyD3/ZDSIyuirGpW7WqQ/NP9mAUsU/MpBvdXGXpxrytOyPzxSvT4dI8zUS77eU7OfkpeKucZVDnBcC1UVyshJ3fO5qqHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767009182; c=relaxed/simple;
-	bh=uboTYwJ421NXpiSVGfrHsrE26DsNNAgP/uiRqAChfXo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YUdYtBnXp3bCwgJ284sK50SYSrwqDVKlmlEtwl3AdyFEZO8IjXB4oTNaHdfoJZS8EPjvJv632ntcJLVZ/zt1Yrl97ECNOexqsxj/ndBP7yqHZMc0E+TKBvdD5rMMEMSoPpOQteOE5BAR8+Qa7te7FTtV7AXJms7dylL2hphQJs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 3DD973F65A;
-	Mon, 29 Dec 2025 12:52:57 +0100 (CET)
-Date: Mon, 29 Dec 2025 12:52:55 +0100
-From: Marijn Suijten <marijn.suijten@somainline.org>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
-	Casey Connolly <casey.connolly@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Simona Vetter <simona.vetter@ffwll.ch>, 
-	~postmarketos/upstreaming@lists.sr.ht, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, Martin Botka <martin.botka@somainline.org>, 
-	Jami Kettunen <jami.kettunen@somainline.org>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: [PATCH v2 04/11] dt-bindings: display: panel: Describe Samsung
- SOFEF01-M DDIC
-Message-ID: <aVJpbJEymWWQLK6O@SoMainline.org>
-References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
- <20251222-drm-panels-sony-v2-4-82a87465d163@somainline.org>
- <CAD++jLmSev3=HJF1j_kTU5j-u2NhxH6TsdE0uUjnD7Vqkt_h-w@mail.gmail.com>
- <aU6QxjOphoq9E1pL@SoMainline.org>
- <CAD++jL=HDRAcwDVUeYUKFbamqVnOADqz5qpbSr1XVsr3M1iNoQ@mail.gmail.com>
+	s=arc-20240116; t=1767009290; c=relaxed/simple;
+	bh=rg8882HN0q5dZbaB2j0JJtAmaocpdTyq8yU2ZyxrdTM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GX+5mUXjwCtkrArfWW5iiEas+XYzmqxoNSN7zadJiMg0EvPUzVwqM/rglXDPZFQmHpCYwkgDP+HCJuOIUnnl6Hal9lVv99OeiHT5o7vlB6kyDBJCEn+ZY9iEZ8WX2CieDUSqUmB5EBMcrNNnY3du6WBSHYQOxZhtrmRQfiWfjXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9C9B3339;
+	Mon, 29 Dec 2025 03:54:38 -0800 (PST)
+Received: from e134710.manchester.arm.com (e134710.arm.com [10.33.10.82])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B2A1B3F63F;
+	Mon, 29 Dec 2025 03:54:43 -0800 (PST)
+From: Ahmed Tiba <ahmed.tiba@arm.com>
+To: Borislav Petkov <bp@alien8.de>
+Cc: linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	tony.luck@intel.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	rafael@kernel.org,
+	linux-doc@vger.kernel.org,
+	Dmitry.Lamerov@arm.com,
+	Michael.Zhao2@arm.com,
+	Ahmed.Tiba@arm.com
+Subject: Re: [PATCH 00/12] ras: share firmware-first estatus handling
+Date: Mon, 29 Dec 2025 11:54:36 +0000
+Message-ID: <20251229115440.2734800-1-ahmed.tiba@arm.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251221013534.GAaUdO5vWqMWAdbWbd@renoirsky.local>
+References: 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD++jL=HDRAcwDVUeYUKFbamqVnOADqz5qpbSr1XVsr3M1iNoQ@mail.gmail.com>
 
-On 2025-12-26 18:38:56, Linus Walleij wrote:
-> On Fri, Dec 26, 2025 at 2:48 PM Marijn Suijten
-> <marijn.suijten@somainline.org> wrote:
-> > On 2025-12-26 14:25:04, Linus Walleij wrote:
-> 
-> > > They are clearly using the S0FEF01-M display controller.
-> >
-> > So you're implying or certain that these panel names here are always bundled
-> > with exactly the same controller (making the SOFEF01 part "redundant" in the
-> > compatible)?
-> 
-> Yes that's what I suspect.
 
-Do you still want me to drop it from the compatible, but definitely keep it in
-the driver filename unless we unify all of the drivers (hopefully in a later
-patch)?
+On Sun, Dec 21, 2025 at 02:35:34 +0100, Borislav Petkov wrote:
+> On Wed, Dec 17, 2025 at 11:28:33AM +0000, Ahmed Tiba wrote:
+>> Platforms that rely on firmware-first RAS today only get the full Linux
+>> handling pipeline when the records arrive through ACPI/APEI GHES. This
+>> series lifts the generic parts of GHES into a reusable estatus core, wires
+>
+> Why is this thing called "error status"?
 
-> > Also, divergence of the driver commands got significant with the last two panels
-> > / three phones, though that might be down to vendor configuration/calibration.
-> 
-> That's kind of normal. The defaults suffice for a while, then engineers
-> want to start poking at different voltages to the display to improve
-> and tweak things.
+By “error status” I’m referring to the UEFI CPER Generic Error Status block,
+which is the standard firmware-produced error payload that Linux already
+consumes via GHES on ACPI systems. I’m not introducing a new error model
+here; the intent is to reuse the existing CPER decoding and handling once
+that payload exists.
 
-Makes one wonder if the changes are down to the panel used, or vendor tuning
-when they started using these panels in their phones.  To note, I think I booted
-all these phones on the "original" SOFEF01 driver without problems, before
-ultimately implementing all diverging commands because I don't know if they're
-defaults, related to color tuning, timings, thermals, manufacturer tolerances or
-anything else.
+> Why is error status so significant so that you need to call it a thing,
+> much less a "core"?
 
-- Marijn
+The reason this shows up as a separate “core” is that CPER parsing,
+logging, and vendor dispatch are provider-agnostic once a Generic Error
+Status block exists, independent of how it was discovered or notified.
+
+> It looks like you basically want to dump error records from a system
+> which doesn't support GHES into the common path so they get decoded?
+>
+> I mean, I'm only guessing because I don't get any wiser from this text.
+>
+> So how about you give the high-level, practical use spiel first? What's
+> the use case?
+
+The practical use case is firmware-first RAS platforms that emit CPER
+records but do not use ACPI/APEI GHES for discovery or notification. Today,
+those platforms either have to duplicate CPER parsing logic or miss out on
+the common Linux RAS handling (standard logging, memory failure flow,
+vendor notification paths). As a result, the full firmware-first RAS
+pipeline effectively only works when CPER arrives through GHES.
+
+GHES remains one transport for delivering CPER records, but this
+series separates the transport from the decoding so that other firmware-
+first providers can reuse the same handling without duplicating code or
+depending on ACPI/APEI internals.
+
+As far as I can tell from the scope of https://uefi.org/specifications,
+the UEFI specifications don’t define a notification mechanism for
+DeviceTree systems—only the ACPI/APEI path is spelled out. Right now the DT
+transport is described solely by the binding in patch 9/12. If there’s a
+better place to document or name this, I’d appreciate guidance
+so it’s clear how firmware-first notification happens on DT outside ACPI.
+
+Thanks,
+Ahmed
 
