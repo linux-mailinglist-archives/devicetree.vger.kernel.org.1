@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-250293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7C74CE8243
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 21:39:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F9DCE8252
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 21:39:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EDE393019185
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 20:39:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B08E73014AC7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 20:39:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E6B02D063E;
-	Mon, 29 Dec 2025 20:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817632D480E;
+	Mon, 29 Dec 2025 20:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PA5VvINc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BtO3HXVU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730ED2C326B;
-	Mon, 29 Dec 2025 20:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56CB62D47E3;
+	Mon, 29 Dec 2025 20:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767040766; cv=none; b=iYWUYAO4oDVGCzYpz6wDvW3n8x/RO1WhDSzUIiGMrZ3ATr2WTFNdTprRZXi518RWPpaxw1L/rWM+HxGLjhZwDPHGGZnPE882AZRJvA5QWH/Afg0RDf8ulwhyJN0m8rVkEY4/03E7AvAHu5o5L1DyKu1Kx2AjlwRXPBJiOEcWW0Y=
+	t=1767040767; cv=none; b=pc6xYPORYS1zRG9Midk6SsvuHBcGtaK+5NZUJKe3+KVzkjk5Ah8//KaGSoMQt0oVWS1haePUFojIXkKK0ckcHlUlHzfmpRiOEzYkU3DspT0fsSOfs3zqZfl9sZwAF2f/wVWkpLRk101kQm5szC+e6kjCpO/OUBzQNhXIhiBpuAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767040766; c=relaxed/simple;
-	bh=8HiZDGiFI1Ej64HDHXl6T0blCYp6fT2OhJ3cyCelRKU=;
+	s=arc-20240116; t=1767040767; c=relaxed/simple;
+	bh=IP5BJlRcf6Fjn0YRi0MtozjpXCwGjV18rYbK7Bqv0QY=;
 	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=nnoD7c8OyNm8HT3k8+ct5TQRMJz3ZkGR4wZ1hUWgT3dQyzjtnuKcOwwIJQCQKoRbyr9DM3/xpjUV+pLOheKqRWeytC9/DMtJW7CRHL0LiY3AHr3c+/9QwtL7YmrudkNBuLkvfjCaGKvVwKb3ppI/+AK+dEYyoUQyaWwEK5rKbbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PA5VvINc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E217CC4CEF7;
-	Mon, 29 Dec 2025 20:39:25 +0000 (UTC)
+	 Message-Id:Subject; b=UKNPFSUv2K1rn/v8nWCHXrGeO10BvLRqL5bWfWwChKfu53/1DbvoCp8d0h55XNA4v18DluhRgH0T5d9SRIn4BRe26j/Z+9oa8422tLZKR11vY0FcD1ra9G2izmvhreWdDsw2AVtXzI6/HRXAvSqI12j2hsSAi74pODwp88Z3PSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BtO3HXVU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1493EC4CEF7;
+	Mon, 29 Dec 2025 20:39:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767040766;
-	bh=8HiZDGiFI1Ej64HDHXl6T0blCYp6fT2OhJ3cyCelRKU=;
+	s=k20201202; t=1767040767;
+	bh=IP5BJlRcf6Fjn0YRi0MtozjpXCwGjV18rYbK7Bqv0QY=;
 	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=PA5VvINckjhy4V91bcU3EZ2+mTR8tSVR3Oy4ve5TUmnE2AMeiRMtdvDAN3oKV/6ch
-	 SuS/pYBISnOn7ZPurKX/hWny5LPJas8W3FvgZEGUpilFYsnutsmShIsmX2BkHAe5ES
-	 1F5Fyz6pxmMMjQF4xLk6QnutvUf7oEDIIDQn5XncAUWL/e3abzDMx2XX2xuh4rfnka
-	 WmiFghSe8RSjd3JRT+okRsJGWZp0PmCNskgXDFaTJ83UJNg00RTsZCiaxQ6ZEvHt9K
-	 uvW/u8A1vJO7P63IhpHuGuwRRa0ZBsec+ObGO8pOhg5egOisAnHY2vExM7zrvckxDi
-	 FvH9guXxu1dGA==
+	b=BtO3HXVUhuaiX6tc/YAyp1OuKeoiPqB3guWrt9ZdDcTkj0XRcO1hZV6X08t8ZPn+C
+	 wrCJWd9NhCP3QYub91R+5xvlLybtIbHYvjs6rAS0g6rCOU7ETu5YC4OZEMNlRw2XvA
+	 /E6YhZns6TgBn3QnzsqX8DL0kbkf1VFk4DGFt6BS/uVPNDnw/kfpEHATvYjx2RZB1L
+	 H0WBvdTpuT3LlIQWG/9+liaV/x4ciGNdKuEsqyvykPLnNT2GywAnqj/DYJGrKiXLQe
+	 Uswm61HVbvwzw49UkVqmRmkMJNLTZFbALrCN1ZBZmk22OncQFj5J1CQDBc0vOHVYHs
+	 Iwg9bX75SQdWg==
 From: Rob Herring <robh@kernel.org>
-Date: Mon, 29 Dec 2025 14:39:25 -0600
+Date: Mon, 29 Dec 2025 14:39:26 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -49,46 +49,31 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
- jserv@ccns.ncku.edu.tw, conor+dt@kernel.org, eleanor15x@gmail.com, 
- linux-arm-kernel@lists.infradead.org, linusw@kernel.org, krzk+dt@kernel.org, 
- arnd@arndb.de, devicetree@vger.kernel.org
-To: Kuan-Wei Chiu <visitorckw@gmail.com>
-In-Reply-To: <20251225173118.580110-1-visitorckw@gmail.com>
-References: <20251225173118.580110-1-visitorckw@gmail.com>
-Message-Id: <176703895443.2172504.7231951665641312391.robh@kernel.org>
-Subject: Re: [PATCH v2] ARM: dts: integrator: Fix DMA ranges mismatch
- warning on IM-PD1
+Cc: linux-arm-msm@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Gustave Monce <gustave.monce@outlook.com>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20251226003923.3341904-1-vladimir.zapolskiy@linaro.org>
+References: <20251226003923.3341904-1-vladimir.zapolskiy@linaro.org>
+Message-Id: <176703895505.2172593.15829542385340941457.robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: msm8994-octagon: Fix Analog Devices
+ vendor prefix of AD7147
 
 
-On Thu, 25 Dec 2025 17:31:18 +0000, Kuan-Wei Chiu wrote:
-> When compiling the device tree for the Integrator/AP with IM-PD1, the
-> following warning is observed regarding the display controller node:
+On Fri, 26 Dec 2025 02:39:23 +0200, Vladimir Zapolskiy wrote:
+> Trivial change, Analog Devices vendor prefix is "adi", but there is
+> a valid "ad" vendor prefix of another company, this may explain why
+> the issue hasn't been discovered by the automatic tests.
 > 
-> arch/arm/boot/dts/arm/integratorap-im-pd1.dts:251.3-14: Warning
-> (dma_ranges_format):
-> /bus@c0000000/bus@c0000000/display@1000000:dma-ranges: empty
-> "dma-ranges" property but its #address-cells (2) differs from
-> /bus@c0000000/bus@c0000000 (1)
+> A problem of not described compatible value is out of this change scope.
 > 
-> The "dma-ranges" property is intended to describe DMA address
-> translations for child nodes. However, the only child of the display
-> controller is a "port" node, which does not perform DMA memory
-> accesses.
-> 
-> Since the property is not required for the child node and triggers a
-> warning due to default address cell mismatch, remove it.
-> 
-> Fixes: 7bea67a99430 ("ARM: dts: integrator: Fix DMA ranges")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Kuan-Wei Chiu <visitorckw@gmail.com>
+> Fixes: c636eeb751f6 ("arm64: dts: qcom: msm8994-octagon: Add AD7147 and APDS9930 sensors")
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 > ---
-> Changes in v2:
-> - Switch approach to remove the unused "dma-ranges" property instead of
->   adding "#address-cells" and "#size-cells".
-> 
->  arch/arm/boot/dts/arm/integratorap-im-pd1.dts | 1 -
->  1 file changed, 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 
@@ -114,10 +99,10 @@ This patch series was applied (using b4) to base:
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/arm/' for 20251225173118.580110-1-visitorckw@gmail.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251226003923.3341904-1-vladimir.zapolskiy@linaro.org:
 
-arch/arm/boot/dts/arm/integratorap-im-pd1.dtb: display@1000000 (arm,pl110): 'port@0' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/arm,pl11x.yaml
+arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dtb: /soc@0/i2c@f9963000/touch@2c: failed to match any schema with compatible: ['adi,ad7147_captouch']
+arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dtb: /soc@0/i2c@f9963000/touch@2c: failed to match any schema with compatible: ['adi,ad7147_captouch']
 
 
 
