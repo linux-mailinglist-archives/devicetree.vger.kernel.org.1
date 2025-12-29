@@ -1,235 +1,121 @@
-Return-Path: <devicetree+bounces-250056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E171CE602F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33CF4CE60C1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 07:48:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 218AA30051B9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 06:14:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C2BEB30041BB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 06:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35EA727F00A;
-	Mon, 29 Dec 2025 06:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0BE3238C29;
+	Mon, 29 Dec 2025 06:48:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xFduY41G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA73A27145F;
-	Mon, 29 Dec 2025 06:14:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E03732253B0
+	for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 06:48:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766988854; cv=none; b=Yce1N3othHzEL0KeLmwKHebDVxFYMQO1bHZGA7a3+QjcxXzzhOkfunTC/SruvohHpij2gXrGAYcVnGmjVbqioK76Wqrw7HYqSkhXquz8ydIz4xigK2ANoePmjY0lqemXpcQtjS5DGdSv0KGBDaLm/qoNyN/nP33UP4lgvVXlO9Y=
+	t=1766990885; cv=none; b=L4IV3Uq7Wl/ptH4xTKyRDlU7hsUPkZThOkb+YmMlYactfEHnKg5zvnUPBmuy/NNK5Dhh80rA05jar+uvPjXCVjHkmxp20EHNVZf0QFLy0E5fPg0TTfngpaHqfGWIeQbHuENqgiBWJFNUlW7Bn320a92gNtrBY8LMF/b/0jVPfdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766988854; c=relaxed/simple;
-	bh=4gHGStv/3qCC7K0BUJ2zZ0x0nNoVnlnbx6BwDFJtq9Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FzmEBPnII1i2hgtI9Nwn2+zein5Yl8aAH/9rJmcyVxUtOmUyOWft68wVq3qV5D5LAipQXKWxVMcvZdlGdncVMku1vse9tBkCGnQfGgWSg14A1Rq4rgez7Moqsxkmd2sLNhgBRjbfekc2hHuDyGLJiHu46iSKdMlTlYM5qD3u0mU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [223.160.206.4])
-	by APP-03 (Coremail) with SMTP id rQCowABnaL8UHFJpuWxrAg--.22171S4;
-	Mon, 29 Dec 2025 14:13:54 +0800 (CST)
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: conor@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	alex@ghiti.fr,
-	jiayu.riscv@isrc.iscas.ac.cn,
-	cyy@cyyself.name,
-	kingxukai@zohomail.com,
-	TroyMitchell988@gmail.com,
-	gaohan@iscas.ac.cn,
-	me@ziyao.cc
-Subject: [PATCH 2/2] riscv: dts: canaan: Add initial dshanpi board DT files
-Date: Mon, 29 Dec 2025 14:13:18 +0800
-Message-ID: <20251229061318.16756-3-jiayu.riscv@isrc.iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251229061318.16756-1-jiayu.riscv@isrc.iscas.ac.cn>
-References: <20251229061318.16756-1-jiayu.riscv@isrc.iscas.ac.cn>
+	s=arc-20240116; t=1766990885; c=relaxed/simple;
+	bh=OZvhZ7NpA5Ybm+ZyBhQlb2l5FV9Gu92NCEHcOuIiZT4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=CITI2UOWfWxmcX32VJWxYEYbixBN/2hozU5CgvUR2j67XCcWuhnsfm3AbNBEZz5c25yqhOxCpWmoHunUYqZukzHlXwic+RiB0lU++5+meSsPyv3/xSxB+FIQVP9oabqei4nUOKtsYgBBfP1I4fshkgdWTfy5zOEcBckNF64wmlg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xFduY41G; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b713c7096f9so1371133666b.3
+        for <devicetree@vger.kernel.org>; Sun, 28 Dec 2025 22:48:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1766990882; x=1767595682; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=OZvhZ7NpA5Ybm+ZyBhQlb2l5FV9Gu92NCEHcOuIiZT4=;
+        b=xFduY41Gix57+U7ifvJyavEcSA7re5yz3g5JhhXQqY8cwv6VBP5iGvNlET6qVDohdS
+         9fGbV7771Id/xLUIfDRCb3jSDY6nwnn7+IOZGg/QpolIG+WcVLTpoHJvB5soE8Q3lQY0
+         /+pB+/l9rCvwgrRQFJwZr/hh+xDgbK9SJTHU6Kq2NrltRaQaQdavQ7Ju5ttAWhUwXOj1
+         GGxrZsVyKaaj+CLzhzUMwgIIEFuTAmab5s/wMpngnRccojoaiDVUhnJ3Yhj8J66Cs1vF
+         WUYcCrDaIH/hGPmKTVHVEFyE0Fx72YXKEB1LiOYY07MeXrBAAeCsZgU8kiokujj+7bNL
+         mS7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766990882; x=1767595682;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OZvhZ7NpA5Ybm+ZyBhQlb2l5FV9Gu92NCEHcOuIiZT4=;
+        b=U/tHVtNzwMTXQr2+Drfww7oxNlXse0hmTrp3R/T+n3ICoVJB8F0haCnBtL/fr5igVn
+         IrkGavUhrBK/3iCTRgIf6MsNqM0tPaTmCCSN1f7+lt6N74N+7nCZVEcX89A9NJ2HQXX7
+         AdzD5u3UZSVwX+BfNinifmsylRt4oDfzv4l/FGC1mx49bAMm8eSdazR1MNUFsxQ5oCmy
+         VRHZwJcx6p8ofgrYKnjWJdjhPSXk7rJUnGHVxyc+hgQatt5sSXExgJeDy++teQJ1qcPo
+         rYspiTapIlShpaGtlbmQYD488BGSt/EqXdFawMUtmACFT3zSHocT/fg9qTb06Rm/vyWq
+         5AXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWl5cC0E2Q0UFbUw8SQH9CPmklRTKRfMTVdgOwA4URAQDfpuGOqzizqpOAxQmQVdWIcgP4cFZPRE74h@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9J4b28krUu+Yvrj2n7XenbqefVJPOwiW7Ax6cNXWAdvXoRvW4
+	sGuOrOfndqo5lSVdxI/H3tZRfqC1bKEArHJQ6A2u7LrMMHQd/NodPOT4K/R2Sy1ZraY=
+X-Gm-Gg: AY/fxX7doQYAdvEFa26dI6sKi3CYF4lIhRWvk8sgiLER1uJZ96KiP7DZPeAeCLIwIE1
+	knSFb8G8Vk1zYhWsAclWD3KYU6sAGcvTWYYQ3HmNpqKGC5UD26r1kqOPsMg2g/b50qpL6HLTR+U
+	gydu2C7gvaQ+S7lYPvAr/SDL6dmdp3ze0wJYjgbBSBXQDtn49qpala5EscnTfiL1CdjK6o0p0Pq
+	lDdlNicZWaj4kv6lhJ/Gpp9cNg6bvz8XVhghrIlD5yTRnzgBN3cTfh5SBZE6dZEPstJKpbGM9Ey
+	dzuCuPjnPdXDsUz4vNWnjPdGu+Xguy6Y+xEK5xvYlcGfvPwapQp0PgJ96mj1s2Ewj3XxhRWgZdc
+	gbArnIiNpCQ91uDRzl0n59iOGATmG6s2PNyUlwpsn5lTG5KtoToWuwyV7uJIxyqjDAaAgezAKDY
+	DZLTJARqPwGZ32qrJo3A==
+X-Google-Smtp-Source: AGHT+IFKJOEnoMT9pd7t4bMOfdAuLJ3dwRnOBx+hhm/y0iCl4h0HCimfd94oOij5S8bCa43IL/8WUQ==
+X-Received: by 2002:a17:907:7f15:b0:b76:b632:1123 with SMTP id a640c23a62f3a-b8037159828mr3025066266b.42.1766990882195;
+        Sun, 28 Dec 2025 22:48:02 -0800 (PST)
+Received: from draszik.lan ([212.129.79.255])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037ad83dasm3338654666b.25.2025.12.28.22.48.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Dec 2025 22:48:01 -0800 (PST)
+Message-ID: <fe1428dd0d6b744ad3c57bf5797550b54f85ff96.camel@linaro.org>
+Subject: Re: [PATCH v5 00/21] Samsung S2MPG10 regulator and S2MPG11 PMIC
+ drivers
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>, Lee
+ Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,  Bartosz
+ Golaszewski	 <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Linus Walleij	 <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Will McVicker
+	 <willmcvicker@google.com>, Juan Yescas <jyescas@google.com>, 
+	kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
+Date: Mon, 29 Dec 2025 06:48:21 +0000
+In-Reply-To: <20251227-s2mpg1x-regulators-v5-0-0c04b360b4c9@linaro.org>
+References: <20251227-s2mpg1x-regulators-v5-0-0c04b360b4c9@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowABnaL8UHFJpuWxrAg--.22171S4
-X-Coremail-Antispam: 1UD129KBjvJXoWxZry8KFy3Aw4fCFWfCryDWrg_yoWrAFyDpr
-	s8urZxGFWI9F9a9FW2g3yIgF43CF4qk34rCr1ayFyUtrWjqFWvkwn3t34rXF18Xr1UX390
-	yan5ZryxtF1xZ3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmj14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_Jryl82xGYIkIc2
-	x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
-	Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84
-	ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AI
-	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-	vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-	r2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04
-	v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
-	6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
-	AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
-	2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcV
-	C2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kfnx
-	nUUI43ZEXa7VUbH5lUUUUUU==
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 
-Add board devicetree for 100ask K230 dashanpi, and also the SoM
-device utilized by the board. UART0 is enabled as the default
-console.
+On Sat, 2025-12-27 at 12:24 +0000, Andr=C3=A9 Draszik wrote:
+> This series extends the existing S2MPG10 PMIC driver to add support for
+> the regulators, and adds new S2MPG11 core and regulator drivers.
+>=20
+> As part of this it was necessary to update the regulator core to allow
+> regulator registration to succeed when supplies aren't ready yet,
+> because on the current user of those PMICs (Google Pixel 6) multiple
+> PMICs supply each other and otherwise regulator registration would fail
+> altogether. This is implemented via an additional 'regulator-bus' which
+> allows us to keep track of regulators with missing supply and retry
+> supply resolution whenever new regulators are registered.
 
-Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
----
- arch/riscv/boot/dts/canaan/Makefile           |  1 +
- .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 82 +++++++++++++++++++
- .../dts/canaan/k230-canmv-module-dshanpi.dtsi | 30 +++++++
- 3 files changed, 113 insertions(+)
- create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
- create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv-module-dshanpi.dtsi
+Forgot to drop this paragraph from the message, as I sent a separate
+series series for that in
+https://lore.kernel.org/r/20251227-regulators-defer-v1-0-3104b22d84cb@linar=
+o.org
 
-diff --git a/arch/riscv/boot/dts/canaan/Makefile b/arch/riscv/boot/dts/canaan/Makefile
-index 7d54ea5c6f3d..89cb64bde440 100644
---- a/arch/riscv/boot/dts/canaan/Makefile
-+++ b/arch/riscv/boot/dts/canaan/Makefile
-@@ -2,6 +2,7 @@
- dtb-$(CONFIG_ARCH_CANAAN) += canaan_kd233.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += k210_generic.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += k230-canmv.dtb
-+dtb-$(CONFIG_ARCH_CANAAN) += k230-canmv-dshanpi.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += k230-evb.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_bit.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_dock.dtb
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-new file mode 100644
-index 000000000000..4f95b534ee87
---- /dev/null
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-@@ -0,0 +1,82 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2025 Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-+ */
-+
-+/dts-v1/;
-+
-+#include "k230-canmv-module-dshanpi.dtsi"
-+
-+/ {
-+	model = "100ask CanMV-K230-dshanpi";
-+	compatible = "100ask,canmv-k230-dshanpi",
-+		     "100ask,canmv-k230-module-dshanpi",
-+		     "canaan,kendryte-k230";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	vdd_5v: regulator-vdd-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_3v3: regulator-vdd-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vdd_5v>;
-+	};
-+
-+	vdd_1v8: regulator-vdd-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vdd_5v>;
-+	};
-+};
-+
-+&pinctrl {
-+	uart0_pins: uart0-pins {
-+		uart0-txd-cfg {
-+			pinmux = <K230_PINMUX(38, 1)>;
-+			slew-rate = <0>;
-+			drive-strength = <7>;
-+			power-source = <K230_MSC_1V8>;
-+			output-enable;
-+			bias-disable;
-+			input-schmitt-enable;
-+		};
-+
-+		uart0-rxd-cfg {
-+			pinmux = <K230_PINMUX(39, 1)>;
-+			slew-rate = <0>;
-+			drive-strength = <7>;
-+			power-source = <K230_MSC_1V8>;
-+			input-enable;
-+			bias-disable;
-+			input-schmitt-enable;
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pins>;
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv-module-dshanpi.dtsi b/arch/riscv/boot/dts/canaan/k230-canmv-module-dshanpi.dtsi
-new file mode 100644
-index 000000000000..ed0abc68f321
---- /dev/null
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv-module-dshanpi.dtsi
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2025 Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-+ */
-+
-+/dts-v1/;
-+
-+#include "k230.dtsi"
-+
-+/ {
-+	model = "100ask CanMV-K230-Module-dshanpi";
-+	compatible = "100ask,canmv-k230-module-dshanpi",
-+		     "canaan,kendryte-k230";
-+
-+	ddr: memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	timerx_pulse_in: clock-50m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
-+};
-+
-+&sysclk {
-+	clocks = <&osc24m>, <&timerx_pulse_in>;
-+	clock-names = "osc24m", "timer-pulse-in";
-+};
--- 
-2.52.0
-
+A.
 
