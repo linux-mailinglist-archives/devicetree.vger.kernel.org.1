@@ -1,191 +1,76 @@
-Return-Path: <devicetree+bounces-250202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 412A9CE6CA5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 13:59:18 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 916B3CE6CA8
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 13:59:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1EEAC3001973
-	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:59:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A23F730010FA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Dec 2025 12:59:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B769E3148C6;
-	Mon, 29 Dec 2025 12:59:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E066D314A86;
+	Mon, 29 Dec 2025 12:59:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="SG/z5icF";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="CX8H9vhM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ABcy121y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0105314A6B;
-	Mon, 29 Dec 2025 12:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B39AD3148DA;
+	Mon, 29 Dec 2025 12:59:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767013156; cv=none; b=r5L471aOKtmvQ/BFTixjH15JyMy7zbGr0BbzLI+duIYhw1VJdqI0z3JHupKq4EGk8jqFOWfHSH12RrFy8liv1F2Mx9uNAp6xWbFakPcFZHnxLLrt0RGEJW3WyUTwPlTBEUqOTVbs3CUZUedTTdtzvRdVPYgZIzyL0zlLJlgdvq4=
+	t=1767013171; cv=none; b=JS4Rq9onsvpVlzgZdJxtC3iloZZIpogeGsulQNUp8BW62wkLtZfbcUAumF6U/AOwWmL/t4Ei3b8iZcwI7rdzj7a9uMGXOqVb6eDDBnmio8m1spadV/IHYBx+PnRg8qsTTGmjd1oLxNEzap01PGddTNqBB89UBco+pO7Q4POjD3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767013156; c=relaxed/simple;
-	bh=ffT3EOrYIRXcj/joRJSDO8HnLiu15Cz/MegJQbnFjps=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=WjcNle2HfkEnF/TneVYXb6EgRyOYmgLlm3XccwyHFdRWqesZZY/ZCdwO/d+PGxsry53wXVi1mKOa62r6WPrSj8Z6KUqmunHH7WCHzOQavHDIVpfew820r3AhfUAAdSlVgjifnCJmR/npLKU4ue8xJ0NztsDQSLqC33s5BbXSQI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=SG/z5icF; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=CX8H9vhM; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1767013144; bh=F80F8gTi+w+QQp8ThX8uzsK
-	l//dTuYrPZoP2HYcIs2k=; b=SG/z5icFY2TqeXM4mRq0CoEsOXUvreZMBZ8pCSQPGqspLo5hbW
-	/p/faXue3zk+ebBShIr/tLHvgK+0zxqp+emQjRvIHUjrhX6CM8tCCDqZtppGiWsqRfMzk3XmMld
-	9UnaglSkmKWQyeI8JhmMgBQE22KCBCzZafD3GNI2oSVsSJl47zBlXUitoa1IMkJIC7GRHH89VX/
-	U7GDGVT3SL10hx7qtbrzyYwk/Aw80cBbcqkTPeIaXnXROPSe38BI7xc3EGnGPD1H2xOM/SxlxJA
-	+DHL7B2bLGZX/6Hxm5bLthIMZy03gnV6f54mdQXUltGH2feKvk47Mrma68qWSN3zxWA==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1767013144; bh=F80F8gTi+w+QQp8ThX8uzsK
-	l//dTuYrPZoP2HYcIs2k=; b=CX8H9vhMDTjD001vDIrTDFRsXtwTNlabRmYXvKclAnm3HTMEp2
-	HmS0OzRPKOiB+GT8YthaS00U9EUwvJRYGbBw==;
+	s=arc-20240116; t=1767013171; c=relaxed/simple;
+	bh=UE1qaCpa8Xzfpci0DbcJIkq9Z3U1GQTGZeeLueNA130=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZjQmIbeUgQjNzmPPeBJIpwjTma9NtV90vmOcCOA4ts93oEvPg33T3cZkgPtrsNeodzmiNxB318nIdTVcMMm3y7K8hWsgSHRMSlHt+CG5/y7glo19pzGLDgQKYLBJZ/IWLlUcLgt3q/AEb7jsYtGHjxONs6dX4DXv4ahk/XPJdeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ABcy121y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66275C4CEF7;
+	Mon, 29 Dec 2025 12:59:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767013171;
+	bh=UE1qaCpa8Xzfpci0DbcJIkq9Z3U1GQTGZeeLueNA130=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ABcy121yrODltMJwHB3214c8IPI0KZCrt34YETZuwPWx4zjMTkV6kW41vtvqvmfMC
+	 cQbDU/n6XSKaj7CBDKQMU+2ci/fgh2C0wZ4nAwnID1znUG2NbsV8WzKSVox1ONCuRB
+	 erE0nNtJKjqXQqjawBb+AtY/8MrymEiEUAtc/MPEs34xndD088eqFutYpstCl870Ay
+	 nTHzttsYAvVXKEpja9m3IVowdJkEtsdBJlADt48+MtUshiAaOpdkvuO+8+YEA2hdWz
+	 DARwyKlTvvluZ/jMW8mEG4LIHnLfzvxVFLk6WlrZZ+gW2Q3WYfPFqwyaoPLcQoZsNP
+	 JosKaLPxrKQYQ==
+Date: Mon, 29 Dec 2025 20:59:19 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Rogerio Pimentel <rpimentel.silva@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	s.hauer@pengutronix.de, krzk@kernel.org, kernel@pengutronix.de,
+	festevam@gmail.com, alexander.stein@ew.tq-group.com,
+	dario.binacchi@amarulasolutions.com, marex@denx.de,
+	Markus.Niebel@tq-group.com, y.moog@phytec.de,
+	joao.goncalves@toradex.com, frieder.schrempf@kontron.de,
+	josua@solid-run.com, francesco.dolcini@toradex.com,
+	primoz.fiser@norik.com, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: fsl: Add i.MX8MP FRDM board
+Message-ID: <aVJ7JxBxsnEmrbSq@dragon>
+References: <20251123181444.266030-1-rpimentel.silva@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 29 Dec 2025 13:59:04 +0100
-From: barnabas.czeman@mainlining.org
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, Bjorn Andersson
- <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/8] remoteproc: qcom_q6v5_mss: Add MSM8917
-In-Reply-To: <eeda5a8b6f5a9dc5cf5440afc07c40fd@mainlining.org>
-References: <20251228-mss-v1-0-aeb36b1f7a3f@mainlining.org>
- <20251228-mss-v1-4-aeb36b1f7a3f@mainlining.org>
- <aVJhH17XH1srlroL@linaro.org>
- <d531f1346b59af06c323f393883b1d13@mainlining.org>
- <2898fde7-2b3b-471b-8f8f-a02cb6953aaf@oss.qualcomm.com>
- <eeda5a8b6f5a9dc5cf5440afc07c40fd@mainlining.org>
-Message-ID: <d3ee6ba3e66706c304ecfe6afc4b75f2@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251123181444.266030-1-rpimentel.silva@gmail.com>
 
-On 2025-12-29 13:51, barnabas.czeman@mainlining.org wrote:
-> On 2025-12-29 13:40, Konrad Dybcio wrote:
->> On 12/29/25 1:33 PM, barnabas.czeman@mainlining.org wrote:
->>> On 2025-12-29 12:08, Stephan Gerhold wrote:
->>>> On Sun, Dec 28, 2025 at 03:21:54PM +0100, Barnabás Czémán wrote:
->>>>> Add support for MSM8917 MSS it is similar for MDM9607 MSS
->>>>> only difference is the mss power domain.
->>>>> 
->>>>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->>>>> ---
->>>>>  drivers/remoteproc/qcom_q6v5_mss.c | 46 
->>>>> ++++++++++++++++++++++++++++++++++++--
->>>>>  1 file changed, 44 insertions(+), 2 deletions(-)
->>>>> 
->>>>> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c 
->>>>> b/drivers/remoteproc/qcom_q6v5_mss.c
->>>>> index ffafbe501a05..2579558fb567 100644
->>>>> --- a/drivers/remoteproc/qcom_q6v5_mss.c
->>>>> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
->>>>> @@ -259,6 +259,7 @@ enum {
->>>>>      MSS_MSM8226,
->>>>>      MSS_MSM8909,
->>>>>      MSS_MSM8916,
->>>>> +    MSS_MSM8917,
->>>>>      MSS_MSM8926,
->>>>>      MSS_MSM8953,
->>>>>      MSS_MSM8974,
->>>>> @@ -749,13 +750,15 @@ static int q6v5proc_reset(struct q6v5 *qproc)
->>>>>          goto pbl_wait;
->>>>>      } else if (qproc->version == MSS_MDM9607 ||
->>>>>             qproc->version == MSS_MSM8909 ||
->>>>> +           qproc->version == MSS_MSM8917 ||
->>>>>             qproc->version == MSS_MSM8953 ||
->>>>>             qproc->version == MSS_MSM8996 ||
->>>>>             qproc->version == MSS_MSM8998 ||
->>>>>             qproc->version == MSS_SDM660) {
->>>>> 
->>>>>          /* Override the ACC value if required */
->>>>> -        if (qproc->version == MSS_MDM9607)
->>>>> +        if (qproc->version == MSS_MDM9607 ||
->>>>> +            qproc->version == MSS_MSM8917)
->>>>>              writel(QDSP6SS_ACC_OVERRIDE_VAL_9607,
->>>>>                     qproc->reg_base + QDSP6SS_STRAP_ACC);
->>>>>          else if (qproc->version != MSS_MSM8909 &&
->>>>> @@ -817,6 +820,7 @@ static int q6v5proc_reset(struct q6v5 *qproc)
->>>>> 
->>>>>              /* Turn on L1, L2, ETB and JU memories 1 at a time */
->>>>>              if (qproc->version == MSS_MDM9607 ||
->>>>> +                qproc->version == MSS_MSM8917 ||
->>>>>                  qproc->version == MSS_MSM8953 ||
->>>>>                  qproc->version == MSS_MSM8996) {
->>>>>                  mem_pwr_ctl = QDSP6SS_MEM_PWR_CTL;
->>>>> @@ -826,7 +830,8 @@ static int q6v5proc_reset(struct q6v5 *qproc)
->>>>>                   * Set first 5 bits in reverse to avoid
->>>>>                   * "inrush current" issues.
->>>>>                   */
->>>>> -                if (qproc->version == MSS_MDM9607)
->>>>> +                if (qproc->version == MSS_MDM9607 ||
->>>>> +                    qproc->version == MSS_MSM8917)
->>>>>                      reverse = 6;
->>>>>              } else {
->>>>>                  /* MSS_MSM8998, MSS_SDM660 */
->>>>> @@ -2538,6 +2543,42 @@ static const struct rproc_hexagon_res 
->>>>> msm8916_mss = {
->>>>>      .version = MSS_MSM8916,
->>>>>  };
->>>>> 
->>>>> +static const struct rproc_hexagon_res msm8917_mss = {
->>>>> +    .hexagon_mba_image = "mba.mbn",
->>>>> +    .proxy_supply = (struct qcom_mss_reg_res[]) {
->>>>> +        {
->>>>> +            .supply = "pll",
->>>>> +            .uA = 100000,
->>>>> +        },
->>>>> +        {}
->>>>> +    },
->>>>> +    .proxy_clk_names = (char*[]){
->>>>> +        "xo",
->>>>> +        NULL
->>>>> +    },
->>>>> +    .active_clk_names = (char*[]){
->>>>> +        "iface",
->>>>> +        "bus",
->>>>> +        "mem",
->>>>> +        NULL
->>>>> +    },
->>>>> +    .proxy_pd_names = (char*[]) {
->>>>> +        "cx",
->>>>> +        "mx",
->>>>> +        "mss",
->>>> 
->>>> Are you sure mss/pm8937_s1 also works as a power domain? It seems to 
->>>> be
->>>> a plain regulator downstream (similar to msm8226/msm8974).
->>>> 
->>>> Same thing applies to MSM8953 as well though and there we seem to 
->>>> have
->>>> decided to model it as a power domain ...
->>> They have this at downstream, i guess this is why handled as a power 
->>> domain.
->>> vdd_mss-uV = <RPM_SMD_REGULATOR_LEVEL_TURBO>;
->> 
->> It seems to be just a normal regulator on both 8917 and 8953
->> 
->> https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/msm8953-regulator.dtsi
->> https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/msm8953.dtsi
->> 
->> https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/msm8917-regulator.dtsi
->> https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/msm8917.dtsi
->> 
->> Konrad
-> It is different between 3.18 and 4.9, 3.18 seems simpler and easier to 
-> use it as regulator i will change it
-> https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/arch/arm64/boot/dts/qcom/msm8917.dtsi#L1375
-> https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.6.6.c32-05500-89xx.0/arch/arm/boot/dts/qcom/msm8917.dtsi#L1655
-Only question is left what about SDM439 and SDM632? They were introduced 
-at 4.9 maybe that is why it was modified both are inheriting
-MSS bindings from 8953 and 8937.
+On Sun, Nov 23, 2025 at 01:14:43PM -0500, Rogerio Pimentel wrote:
+> Add device tree compatible string for the i.MX8MP FRDM board.
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
+
+Applied both, thanks!
 
