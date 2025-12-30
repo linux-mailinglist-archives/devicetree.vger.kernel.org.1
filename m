@@ -1,130 +1,95 @@
-Return-Path: <devicetree+bounces-250536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3846FCE9CAD
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:34:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D85CE9F7D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:46:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A0D0730039DF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 13:34:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2E20B30141CC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:46:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 537871DF987;
-	Tue, 30 Dec 2025 13:34:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5312FFDF7;
+	Tue, 30 Dec 2025 14:46:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="XOoH+vs5"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="X59Qmf8S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1FE1A5B84;
-	Tue, 30 Dec 2025 13:34:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F173002A6;
+	Tue, 30 Dec 2025 14:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767101663; cv=none; b=TW7h84MLlW94J4kNxtjMWz2B3ZOcoIMWO6FXzUzgZXBH8VFGFZ/u2nq04gNHSrsjfMai5Lcss47Eu8EVTxEhQQf0OIBKfraLAn7mBG0EdsviA1Rq5QdwLGQwc4JxW72gWiPhqichYZojKZ5midrLzr0mfMADRvEUBgtiNlQ3iec=
+	t=1767106012; cv=none; b=KZEpGaaonTEDFX3xn4+6QV9ctv0c/PpQO3PoJDAT1stIAbWWQENBvTuR6BQbSsjEgu1IyagB/+0MVc6iHYx5lqpX8213TqOY1R+WiDWltYp/7yqrgG/hnOQZBTCTCUJ1ZmmHrWlDfAOVuCXC4sTZrsWLkOQQQQDoK3olM1LXRt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767101663; c=relaxed/simple;
-	bh=lMq+1h7QC1VVEVe0XAMeUptGZhwTBmsEtr6h+tH9y3c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rSz8qU/71369uZLGb4CIzqehVn+mAAGhQkHZXj135oo72WNTSOdJejqq93Oj/R1rW/3qzXuUOv6o7RnOK5R1KAaE6TYMHtTMZv8ykgGoCoNZMP1VTrAc+u5MpdLEsENnZBLfzm9DTgjqmN7wV/3ol6x5u4RvKkymujMOMW+aOGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=XOoH+vs5; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-152.bb.dnainternet.fi [81.175.209.152])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 02C4855C;
-	Tue, 30 Dec 2025 14:33:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1767101637;
-	bh=lMq+1h7QC1VVEVe0XAMeUptGZhwTBmsEtr6h+tH9y3c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XOoH+vs52zNezGp8KdFJ7wCNHmgQCZ6w0867mIupmqYVhBGcL1B2t18WajnSVKGZn
-	 Ozk6vFtLg5ieSKRW3hjjbRUheRGDzosVQ8OO/ub5Yni9xLpSajmfAc+fI3w1mrAnXN
-	 2aH0D7wLP32XiL155pPgZtK7UdzbQkjodkBPVsZw=
-Date: Tue, 30 Dec 2025 15:33:54 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, krzk+dt@kernel.org,
-	andersson@kernel.org, konradybcio@kernel.org,
-	dave.stevenson@raspberrypi.com, robh@kernel.org,
-	conor+dt@kernel.org, mchehab@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] media: i2c: ov9282: Fix reset-gpio logical state
-Message-ID: <20251230133354.GA24182@pendragon.ideasonboard.com>
-References: <20251114133822.434171-1-loic.poulain@oss.qualcomm.com>
- <20251114133822.434171-2-loic.poulain@oss.qualcomm.com>
- <aRtbwK0Afo50Lh0B@kekkonen.localdomain>
- <CAFEp6-1Tdmr5v0r+q0qeOG6qqA-hiBaF1iTEcmhBA0oTjLgbgg@mail.gmail.com>
- <aT_Xc6LR161QBRFp@kekkonen.localdomain>
- <CAFEp6-2PP0ufge0RXTrE2Nrn_sLCN5erokxpJsuGeHq7ZEZ83g@mail.gmail.com>
+	s=arc-20240116; t=1767106012; c=relaxed/simple;
+	bh=FOSwBkA6D8wNVzJWuqyTsxlNIrmgXBQDN53+fsjZB5c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mDRkxwOFWjxZmq/QGtRyAZ+TF1pP6lr2az4wBcDW4En63mhQ5gQfOx0GbfI8BFFVfvqoK/U3+VX9Butk3O/boYKyZo1QAWVGR66uo3PcNQPF48BXfxjyJVPKu5dxBkVQ5Kx3Wh3UjDdzFrTKYzxP9XM8Z97d4/jYM7l3ij62gvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=X59Qmf8S; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 56FD0103014;
+	Tue, 30 Dec 2025 15:46:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1767106005;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=0W5Lbamk+njEHK9A6i62wmfawW6k35N4fB2QmSx3b9s=;
+	b=X59Qmf8SsAl0xPTK2kQt1HSX6OZQugbq1DDTsOtn/Gd3gXsUB34V3WwVrGvOt1hgC7iqjD
+	lUt7zMY9AFGX9XsOQWn+6FNe0L7cJKoYGWZWvjOIVKXlmzoF3lb8eMfEbtfMfOgB01l0eG
+	3nwO1xW9NjDE0yfjX/tGQYIEwCYkSNcr8lfxrbmMcorLsd3WrRAVSH5HSqj8BWD+wODM8F
+	Mwt3n9wQAC8ragXjQWsJPCobnQ8rYOO/qQZceq1y/t4kKzELsQUdeQkb35OAYFhnhxiRbK
+	Qv2u6GQka+vMgeA/Eu5IirEC9dKAG5Dej2n3NtB0gOi3OjG5DAij5uDQM5ZdIw==
+Message-ID: <dc29e774-07fb-4d0e-a88a-27d4ec49d060@nabladev.com>
+Date: Tue, 30 Dec 2025 14:34:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFEp6-2PP0ufge0RXTrE2Nrn_sLCN5erokxpJsuGeHq7ZEZ83g@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] arm64: dts: imx8mn: Add ifm VHIP4 EvalBoard v1 and
+ v2
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: linux-arm-kernel@lists.infradead.org, Fedor Ross <fedor.ross@ifm.com>,
+ Christian Eggers <ceggers@arri.de>, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Markus Heidelberg <m.heidelberg@cab.de>, Rob Herring <robh@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20251229193706.73564-1-marex@nabladev.com>
+ <20251229193706.73564-4-marex@nabladev.com>
+ <e3d305ce-cdfa-4a11-bd54-9648b12a013f@lunn.ch>
+Content-Language: en-US
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <e3d305ce-cdfa-4a11-bd54-9648b12a013f@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Dec 15, 2025 at 11:19:51AM +0100, Loic Poulain wrote:
-> On Mon, Dec 15, 2025 at 10:40 AM Sakari Ailus wrote:
-> > On Mon, Dec 15, 2025 at 10:35:15AM +0100, Loic Poulain wrote:
-> > > On Mon, Nov 17, 2025 at 6:30 PM Sakari Ailus wrote:
-> > > > On Fri, Nov 14, 2025 at 02:38:19PM +0100, Loic Poulain wrote:
-> > > > > Ensure reset state is low in the power-on state and high in the
-> > > > > power-off state (assert reset). Note that the polarity is abstracted
-> > > > > by the GPIO subsystem, so the logic level reflects the intended reset
-> > > > > behavior.
-> > > >
-> > > > That's an interesting approach to fix DTS gone systematically wrong.
-> > > >
-> > > > I was thinking of the drivers that have this issue, too, but I would have
-> > > > introduced a new GPIO under a different name (many sensors use "enable",
-> > > > too). Any thoughts?
-> > >
-> > > Apologies for missing your point earlier. We can’t really name it
-> > > enable, as it performs the opposite function and that would be
-> > > confusing in the device tree description. A property like reset2 would
-> > > be more accurate, but I suspect such a binding wouldn’t be acceptable
-> > > from a device tree/bindings perspective.
-> >
-> > Many sensor datasheets document a pin called "xshutdown" or alike. That's
-> > not exactly "reset" or "enable" but it can be mapped to either and this can
-> > be seen in the existing bindings. The polarity is effectively the opposite,
-> > yes, but does that matter?
+On 12/30/25 11:46 AM, Andrew Lunn wrote:
+>> +&fec1 {
+>> +	fsl,magic-packet;
 > 
-> I assume naming a pin 'xshutdown' or 'xreset' indicates that its
-> polarity is inverted at the driver level, the driver interprets the
-> shutdown or reset function as being active when the logical level is 0
-> (low), as they actually incorrectly do for the 'reset' gpio.
+> Upps, i probably cut out too much context. This FEC is connected to the Ethernet switch.
 > 
-> From the driver’s perspective, this naming convention is acceptable;
-> however, it causes the devicetree description to slightly diverge from
-> the datasheet and leaves the reset property effectively inverted (and
-> therefore incorrect).
+> WoL for a port connected to a switch? Have you tested this? Normally
+> you would have WoL on each port of the switch, and not on the conduit
+> interface.
 > 
-> Honestly, in this specific case, the simplest solution would be to fix
-> the driver, since there is currently no upstream devicetree using this
-> sensor. That would technically break backward compatibility for any
-> out-of-tree DTS (if they exist), but those would have been incorrect
-> in the first place.
-
-I would either fix the driver, or update the DT bindings to indicate the
-polarity should be inverted due to a historical mistake.
-
-I don't think this patch is right. The polarity in DT is meant to
-describe board-level inversion of the GPIO, so you can't consider that
-ACTIVE_HIGH is a DT bug and print a warning.
-
-> But yes, this seems like a good opportunity to discuss and define a
-> more general approach that can be applied to other drivers with
-> similar polarity or naming issues.
+>> +&fec1 {
+>> +	fsl,magic-packet;
 > 
-> Krzysztof, any thoughts?
-
--- 
-Regards,
-
-Laurent Pinchart
+> Have you tested WoL?
+> 
+>> +&fec1 {
+>> +	fsl,magic-packet;
+> 
+> WoL again?
+I don't think WOL is used on this device at all. Would you suggest 
+removing the fsl,magic-packet properties ?
 
