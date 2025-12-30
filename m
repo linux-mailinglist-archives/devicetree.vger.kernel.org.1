@@ -1,103 +1,129 @@
-Return-Path: <devicetree+bounces-250340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D256CE8826
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:53:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42DAFCE8829
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:54:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 37716300F883
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:53:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6746300941F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:54:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F512DAFA5;
-	Tue, 30 Dec 2025 01:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3617C2DCBFC;
+	Tue, 30 Dec 2025 01:54:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="rRJ7mr/J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IVfzR89D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D194E2D481F
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 01:53:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09EE928505E;
+	Tue, 30 Dec 2025 01:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767059627; cv=none; b=qXetvhtCDfsmbzJ/zLQbV0aEYnydMN9p9R7Nq7wawIGqG9okYu7pyO/vVGUl4KoBAf4UgTXsr9aQqsYxDB1KoMsnPnWEeHZ22L3LEqGhGP8fioKHil7ZpYC/RT+LJiLFI3DX7rd28zi/t+UONbmtRjy7LV2p2MzVi6mQnL2GQ4A=
+	t=1767059641; cv=none; b=ZxbOf/4GVSqQiIgutJP2NKP0uoTL1G4CRNI1GJvoDB/ieETMbQ2lPVxucRTnnckUeh0M+j+NnGaTKe8L5nnGyjZxMfZG3ryQV0/DqU6RUUOb7RLK3H7n7llm7SP3wz1uek4I7F1ZqOVOyfuVsRH46oD0jkio8C8CPB7Bk2fnWkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767059627; c=relaxed/simple;
-	bh=9LwppNYSzH8+UAgZL7BbjTF/X6jtIOh2exhRpeQkq20=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k2qvfOTx8cQuGqb7+JYdnrZhZpkUswosiv3Lv9ud1wEbWe3EBfmsz5zH/ZdCdotzgbwQcROlV2aPdFAbvks9uc3TZmLYKWfV6BWTkFlzvrw90LUbjVJ6PwHHrcVv+/2QF0tHB/M9jfntfB1Vqft9Pl4hiBOAE9Tlk7eqvqxub0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=rRJ7mr/J; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dgGMp3Cbxz9tdM;
-	Tue, 30 Dec 2025 02:53:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1767059622;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qpoUGD/nQvuwJGs8fSJGimVrIe44lQKhSJUrrOso058=;
-	b=rRJ7mr/JsYyKdWNKh7HM16eTWtEuXu3tGnUJvaLOG+/MmkoEP2Ld02L3Pd+X9FMr4VCDjC
-	r9ZyLZc1pkNFyA6vi4mHIZ2gt+QCZu0jKpNiRErAfE4us89kDbNFrTLRaBNjkbCQN+QNZ5
-	I9GR1TtcsrLkuugM0KLHyh9XDpLRWK72IGVTGBO4LcayOQEQ9SVfPFBiBJIX/37C06L3LT
-	uJe6KgnpkbncENJQMzxeRRDWMXN+wDVViQUCSyG7OrWhKh5JT/F4Lvm2pIMW9AgDu2He3z
-	YGkgcySP7IiYm6ufYpWUZKWBroUnP2m2Q3iZKkt2qC20pomA5LK/aHJJXIALKg==
-Message-ID: <53ea529f-3538-4ab5-aa99-0caa6729b4cd@mailbox.org>
-Date: Tue, 30 Dec 2025 02:53:38 +0100
+	s=arc-20240116; t=1767059641; c=relaxed/simple;
+	bh=CKjr67pNdP9FP3s3q4y0uZntOZ/ZSmOWBaQJXLaNoPs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cau4bbVzdBH+PsbTrJXe3C824pPryZiv0xNXgTSJLtSFWtLqjXXDuisErf/+2Aj62oD27nJ9W9gO9sSTuPPA1T1YGLl7NfkC0kc5zV1RfP+a62k6YsLzPiRHlgIiRwLJ8nNBSjQ5n0IsZj/IaTk8dJ+Lk2XSe8T5ZQemCLtSCfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IVfzR89D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 999E4C4CEF7;
+	Tue, 30 Dec 2025 01:54:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767059640;
+	bh=CKjr67pNdP9FP3s3q4y0uZntOZ/ZSmOWBaQJXLaNoPs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IVfzR89D1zKINnkmG/fYk2anvWdfmN2BA8pncIm/7gVXoeGfHuQo5qCS/MSkW0GaR
+	 5eA+bAgfrW2lab/PLgH7O5ceCwBB3+5bqlz4F5tM5zjWxU3yjNpebjAcvhP0ZNkLU9
+	 /9sR6vwPJp7frxPmQVLI6b2i1Z91y3kfGTEcPFW+HoVhyKcgzZwttFNdh4Ilvl5ocQ
+	 U4T4e+2JO5VBdL111rBhVbxFbc83kGqcWbYVnQ/gGEFyvxdm6Xw4tK8Ib60vUtX43g
+	 ObBwHQhC+/44/5Gta63AJTjuck6ZM//GzU0KtBN5EBgRjLf9h0T4yylOwNzN+dYM4R
+	 ZKsT2cO2S6A3w==
+Date: Mon, 29 Dec 2025 19:53:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Simona Vetter <simona@ffwll.ch>,
+	Casey Connolly <casey.connolly@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Simona Vetter <simona.vetter@ffwll.ch>,
+	~postmarketos/upstreaming@lists.sr.ht,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+	Martin Botka <martin.botka@somainline.org>,
+	Jami Kettunen <jami.kettunen@somainline.org>,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Dmitry Baryshkov <lumag@kernel.org>
+Subject: Re: [PATCH v2 06/11] dt-bindings: display: panel: Describe Samsung
+ SOFEF03-M DDIC
+Message-ID: <20251230015359.GB3066456-robh@kernel.org>
+References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
+ <20251222-drm-panels-sony-v2-6-82a87465d163@somainline.org>
+ <20251222-godlike-mongoose-of-valor-3eeee0@quoll>
+ <f72fed1c-968e-4570-8cde-841bf109bf5d@kernel.org>
+ <aVGvtJ0NekR1ch-k@SoMainline.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: imx95: Use GPU_CGC as core clock for GPU
-To: peng.fan@nxp.com, shawnguo@kernel.org, Frank.li@nxp.com
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
- imx@lists.linux.dev, kernel@pengutronix.de, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, robh@kernel.org,
- s.hauer@pengutronix.de, Rain Yang <jiyu.yang@oss.nxp.com>
-References: <20251129143220.14834-1-marek.vasut@mailbox.org>
- <aS-lEibp3zTsaR6T@oss.nxp.com>
- <c6e0e55a-06da-4665-972e-e9b5b8c08bf7@mailbox.org>
- <aTACuRjC_Zpf8IOU@oss.nxp.com>
- <de36091e-c890-4897-b3e3-2a7575029a5d@mailbox.org>
- <aTD5np-HGaJqhzkD@oss.nxp.com>
- <5944d872-01a3-47e9-977b-029f3be4fd83@mailbox.org>
- <aTKVMAMQ6v_BwD6R@oss.nxp.com>
- <9b593731-898f-46a7-8ee5-68f8c170351c@mailbox.org>
- <aTYxm_dfMwF4H0_b@oss.nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aTYxm_dfMwF4H0_b@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 21bcf49a433a8f6c4b4
-X-MBO-RS-META: 4dfs449y7anjdqiphj1bofd5kx8drorp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aVGvtJ0NekR1ch-k@SoMainline.org>
 
-On 12/8/25 3:02 AM, Rain Yang wrote:
+On Sun, Dec 28, 2025 at 11:49:13PM +0100, Marijn Suijten wrote:
+> On 2025-12-22 09:36:23, Krzysztof Kozlowski wrote:
+> > On 22/12/2025 09:33, Krzysztof Kozlowski wrote:
+> > >> +  - |
+> > >> +    #include <dt-bindings/gpio/gpio.h>
+> > >> +
+> > >> +    dsi {
+> > >> +        #address-cells = <1>;
+> > >> +        #size-cells = <0>;
+> > >> +        panel@0 {
+> > >> +            compatible = "samsung,sofef03-m-amb609vp01";
+> > >> +            reg = <0>;
+> > >> +
+> > >> +            reset-gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
+> > >> +
+> > >> +            vci-supply = <&vreg_l11c_3p0>;
+> > >> +            vddio-supply = <&vreg_l14a_1p8>;
+> > >> +
+> > >> +            port {
+> > > 
+> > > Not tested :/
+> > 
+> > Ah no, this one is correct. It's the other patch with similar compatible
+> > which was not tested.
+> 
+> I think you mean:
+> 
+> 	.output/Documentation/devicetree/bindings/display/panel/samsung,ana6707.example.dtb: panel@0 (samsung,ana6707-amb650yl01): 'ports' does not match any of the regexes: '^pinctrl-[0-9]+$'
+> 		from schema $id: http://devicetree.org/schemas/display/panel/samsung,ana6707.yaml
+> 	.output/Documentation/devicetree/bindings/display/panel/samsung,ana6707.example.dtb: panel@0 (samsung,ana6707-amb650yl01): 'port' is a required property
+> 		from schema $id: http://devicetree.org/schemas/display/panel/samsung,ana6707.yaml
+> 
+> Which looks to be fixed by including panel-common-dual.yaml and changing `port`
+> to `ports` in the properties and required table?  At least the errors are gone,
+> just asking if that is acceptable.
 
->>> Okay, I’ll submit a patch later.
->>> The commit message should reflect that only CLK_GPU_CGC is enabled.
->>
->> The commit message , and this change , is unrelated to GPUAPB clock.
-> The commit message is ambiguous. Could you clarify which parent clock
-> you are referring to, and whether it can be enabled by CLK_GPU_CGC?
-> If it was CLK_GPU, CLK_GPU_CGC can't be able to control it.
+Considering it's a dual interface panel, yes, that's the right change.
 
-The commit message clearly states "These new GPU_CGC clock
-gate the existing GPU clock." and "GPU_CGC as well as its parent GPU 
-clock." , I don't perceive any ambiguity, sorry.
-
-Frankly, the whole GPUAPB discussion is entirely unrelated and it only 
-stalls application of this bugfix and keeps upstream broken. This is not 
-helping.
-
-So unless there is anything in particular that is on-topic and prevents 
-this patch from being applied, it would be good to apply it, otherwise 
-the GPU on MX95 in mainline Linux is not working.
+Rob
 
