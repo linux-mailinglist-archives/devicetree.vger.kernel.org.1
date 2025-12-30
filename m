@@ -1,205 +1,142 @@
-Return-Path: <devicetree+bounces-250566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F776CEA0D4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 16:22:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA97CEA0EC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 16:25:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 48600300E155
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:22:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8D2793030D91
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC36A31BC95;
-	Tue, 30 Dec 2025 15:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9023191C2;
+	Tue, 30 Dec 2025 15:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PYzfLelP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lWbCDAsn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8E4331A06C
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 15:22:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A1A31A805;
+	Tue, 30 Dec 2025 15:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767108129; cv=none; b=Zb8rJpAUgUw/IX+siOXO+M/Hns0yNGMyN72msFiJAYtjimcOMmdHBwgBH4OzGYs5bWWk8F/CYuozF7PR+KYMaolOihcJYoNIiI9jMtHFUTelADA0OI1OUZg4jgd+3cgkK4DrewJq+MIpLkJybI/0H2tSxzJ20PHikNEwSepR6Jk=
+	t=1767108321; cv=none; b=dfPBn7uIx53tNlQKv7+DeswLBd0bscoBon9leyj3E8UQK4wWxwPvX5Ptz5ZSNBcTe1C0pHw2Dc3E1oXe+YwktpBA5Derq52+PF3vJJeXMiOT6pA+8QfKstSO/7iM6tNO+jG+B6HsLqNcbd7OP0B0yFdlfktBcvhHw2co8DPU57k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767108129; c=relaxed/simple;
-	bh=H2790WoLvikyZR/aEdE8RPL6zHqL0rU8f9B5hIkiMx8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ij4yHXbwHcDHnzdoqWRSnzezWes85VOUpvnUZ7n3yQn0NhVSjUhf1BBN6xl8wCNcr13BCbHyR+VWhBPMazLwMOIL0zKFP96c73QdLB4243nQxTRV251wTHhRj/hBVWj2tpAXEYl7A2/DUrvu4X0knwT2zULixe/btlJ5OhjUrFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PYzfLelP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AA3DC19422
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 15:22:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767108129;
-	bh=H2790WoLvikyZR/aEdE8RPL6zHqL0rU8f9B5hIkiMx8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=PYzfLelP17xxI4uMH4vxKp0zxSh8TGNCiBeNRJ7pg4YouoI5wMq3RBqbXNGZ2GMKc
-	 CcPrDfc/RNd9mAtiO+jggoTffAbefjJjP34jdFCddRJ5YKWcxJgseeYnn9Y8nzMGzt
-	 Ur4WxhycZ797lAkWj/iPiJuEP7mEsWwcfBxO+Zv2NMpJfrn9FS+9dZ1SA3FNad5T+j
-	 Vqi+QbG9RQJeu199Z/LLISyz7H1oFCuvxg+8DgVg7XF4LUmFr7S6bad3aj2Hz/oJNf
-	 fC4N+xRwmobCmVeIg1FfkcCtVozyLeZyS9kmh++53UGQXIzaR9UFcU82rJqpdZVok8
-	 DCjGDoSsV5hnw==
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b79f8f7ea43so2204468566b.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 07:22:09 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWckEXG0JGekFO5ducz8uo5CFQJKHNM2v0me/qyhxT5UP1Gzr9ryIzxKSN5yFQzmAJiljcWootdUxgh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxl4WJSIAGz5Q02pVG9w6WAhoyz2glRcCFIJuawSnXWAFBkWfIM
-	ZKfROmo6ylHkfylunRAzq7oSZwaOzCjrd0VFPV9gA2bwKiKd+cOpI1dziGpXOBrMUCXvod8TLPE
-	JIUSLh8xSV5s43xYtvzCiIEW3DqBnHg==
-X-Google-Smtp-Source: AGHT+IGgMUh2wDMtCLD4FQ/4n5kInvO9Hj2g8b7NZ7InxlarGA9KxRQ6Bk4MJxJTlQFvjcTH2u3r21ia8rmut5A5+kI=
-X-Received: by 2002:a17:907:829a:b0:b83:246c:d125 with SMTP id
- a640c23a62f3a-b83246cd206mr1113571366b.41.1767108127778; Tue, 30 Dec 2025
- 07:22:07 -0800 (PST)
+	s=arc-20240116; t=1767108321; c=relaxed/simple;
+	bh=ZqbA6nUDnUdFyV4LkDbBdEmO08Welgfq/XwaU5W57iU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JmSU7JfnPnx3vjH4HrU4/N0XfhgroNA0DSTNYTsLmHkzsHyvZrkLRfC3RdGKtDoCfXQIeTupz4Rd/8Rae+b1G7T0lH3dbUj1oFYaeh8n0mtPDhJ0/qU8FI9vcLPYXLcufewEo2RLFPj3SvmnEdATPN8jhR16oI5+R1V6ffmFm8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lWbCDAsn; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1767108319; x=1798644319;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZqbA6nUDnUdFyV4LkDbBdEmO08Welgfq/XwaU5W57iU=;
+  b=lWbCDAsnMdCHx10caKDoYUVKL4hQ5gBMNnyyTxoYdjAgHAxbTBMf+8vT
+   o+/if7jOq1cKiiDdlZbQemho/ou6SIxgFzKdwM+hUJ3FKEYg2cQ0sZaON
+   QFjsqaXynmfkdJNp1pd2wlW2C6hCEbPmzcD2zk8dZW00Q+WzkAsaf7T6v
+   kH8CHimOWbaJcDm94Nkxr+EYNd2/PFrWgztom1mTl6XH3CR2UmXIslgaq
+   dTtgCY3MH1y0Ph3KOe+vOXtfMYQ5MYt0ViXIV40sFxKLT2b9UQ0kftRg1
+   MvtP4kblFfBC4TroQTpEGIzyTMrWvyDKXcuJ9g39YRJDADOyTTaouuPyH
+   g==;
+X-CSE-ConnectionGUID: RV78GvlfT3qeEb2kvacI9w==
+X-CSE-MsgGUID: G0A+rswvQ+2IKq5mnmlZGQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="79329352"
+X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; 
+   d="scan'208";a="79329352"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Dec 2025 07:25:18 -0800
+X-CSE-ConnectionGUID: FOHDo+n2Scak+p1mvWsoRw==
+X-CSE-MsgGUID: Xe81eXFPTgeuETYn6SPEGw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; 
+   d="scan'208";a="200450116"
+Received: from igk-lkp-server01.igk.intel.com (HELO 8a0c053bdd2a) ([10.211.93.152])
+  by orviesa010.jf.intel.com with ESMTP; 30 Dec 2025 07:25:14 -0800
+Received: from kbuild by 8a0c053bdd2a with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vabay-000000007yG-1nDQ;
+	Tue, 30 Dec 2025 15:25:12 +0000
+Date: Tue, 30 Dec 2025 16:24:42 +0100
+From: kernel test robot <lkp@intel.com>
+To: Jonathan Brophy <professorjonny98@gmail.com>,
+	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Andriy Shevencho <andriy.shevchenko@linux.intel.com>,
+	Jonathan Brophy <professor_jonny@hotmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v4 5/7] leds: Add driver documentation for
+ leds-group-virtualcolor
+Message-ID: <202512301647.ZJAvxMiU-lkp@intel.com>
+References: <20251230003250.1197744-6-professorjonny98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
- <20251222-k3-basic-dt-v2-11-3af3f3cd0f8a@riscstar.com> <fc719e92-10bc-455f-b402-c93bdbf878cf@riscstar.com>
- <20251230021306.GA3094273-robh@kernel.org> <80e18a32-543a-48f5-81f2-4fa64cb8bf8c@riscstar.com>
-In-Reply-To: <80e18a32-543a-48f5-81f2-4fa64cb8bf8c@riscstar.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 30 Dec 2025 09:21:56 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK8hRsVWV6WfbZ6hF1PwFfOJhyOrpWwoOhviAgv5ZxKUw@mail.gmail.com>
-X-Gm-Features: AQt7F2oUAcuZgOKGmytF5zWoPN9kK4MNOhIzhcBZ1Fbq2d5Goxy_iVvpoy95C7s
-Message-ID: <CAL_JsqK8hRsVWV6WfbZ6hF1PwFfOJhyOrpWwoOhviAgv5ZxKUw@mail.gmail.com>
-Subject: Re: [PATCH v2 11/13] dt-bindings: riscv: Add Supm extension description
-To: Alex Elder <elder@riscstar.com>
-Cc: Guodong Xu <guodong@riscstar.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Lubomir Rintel <lkundrak@v3.sk>, Yangyu Chen <cyy@cyyself.name>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, 
-	Heinrich Schuchardt <xypron.glpk@gmx.de>, Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
-	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	spacemit@lists.linux.dev, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251230003250.1197744-6-professorjonny98@gmail.com>
 
-On Mon, Dec 29, 2025 at 9:14=E2=80=AFPM Alex Elder <elder@riscstar.com> wro=
-te:
->
-> On 12/29/25 8:13 PM, Rob Herring wrote:
-> > On Fri, Dec 26, 2025 at 03:28:47PM -0600, Alex Elder wrote:
-> >> On 12/22/25 7:04 AM, Guodong Xu wrote:
-> >>> Add description for the Supm extension. Supm indicates support for po=
-inter
-> >>> masking in user mode. Supm is mandatory for RVA23S64.
-> >>>
-> >>> The Supm extension is ratified in commit d70011dde6c2 ("Update to rat=
-ified
-> >>> state") of riscv-j-extension.
-> >>>
-> >>> Supm depends on either Smnpm or Ssnpm, so add a schema check to enfor=
-ce
-> >>> this dependency.
-> >>
-> >> I have the same general question on this, about whether it's really
-> >> necessary for the DT binding to enforce these requirements.  The
-> >> RISC-V specifications are what truly defines their meaning, so I
-> >> don't really see why the DT framework should need to enforce them.
-> >> (That said, I'm sure there are other cases where DT enforces things
-> >> it shouldn't have to.)
-> >
-> > Does the specification have some way to check it? What happens if a DT
-> > is wrong? Are you going to require a DT update to make things right? Or
-> > the kernel has to work-around the error? Neither is great. So having
-> > this as a schema makes sense to prevent either scenario.
->
-> I'm really glad you weighed in.  I actually have several questions
-> related to RISC-V extensions and DT.  But for now I'll focus on
-> just this...
->
-> To answer your first question, I'm not sure how the specification
-> is "checked", or what "it" is that you're asking about for that
-> matter.  Also I think we have to be clear about what "wrong" means.
->
-> RISC-V is defined by a (large and growing) set of specifications
-> that are developed through a well-defined process.  When a spec
-> is *ratified* it is committed, and it won't be changed.  These
-> specifications are ultimately *the* definition of RISC-V
-> compliance.
->
-> I assumed the "wrong" you're talking about is a DTS/DTB that has
-> been committed but somehow does not match what a RISC-V spec
-> says, but I might be mistaken.
+Hi Jonathan,
 
-That's correct.
+kernel test robot noticed the following build warnings:
 
-> Anyway, we can flip that around and have a similar problem:  What
-> if we define the DT binding in such a way that it doesn't match
-> the RISC-V spec?  The (ratified) RISC-V spec is right.
+[auto build test WARNING on lee-leds/for-leds-next]
+[also build test WARNING on robh/for-next linus/master v6.19-rc3 next-20251219]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Sure. Any time there is more than 1 source of truth, they could be
-mismatched. But it is 1 spec and 1 schema to compare, not N DTS files.
-Checking the schema matches the spec is much easier than reviewing
-every new DTS file.
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Brophy/dt-bindings-leds-add-function-virtual_status-to-led-common-properties/20251230-083649
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20251230003250.1197744-6-professorjonny98%40gmail.com
+patch subject: [PATCH v4 5/7] leds: Add driver documentation for leds-group-virtualcolor
+reproduce: (https://download.01.org/0day-ci/archive/20251230/202512301647.ZJAvxMiU-lkp@intel.com/reproduce)
 
-The only true fix is to make the spec machine readable.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512301647.ZJAvxMiU-lkp@intel.com/
 
-> My thought was that we should have software do the verification,
-> and recommend the software (e.g. arch/riscv/kernel/cpufeature.c
-> in Linux) be updated to verify things before committing to a
-> DT binding.
+All warnings (new ones prefixed by >>):
 
-That moves validation from build time to run time. How is that better?
-And what about other OSs?
+   ERROR: Cannot find file ./include/linux/i2c-atr.h
+   WARNING: No kernel-doc for file ./include/linux/i2c-atr.h
+   ERROR: Cannot find file ./include/linux/mutex.h
+   ERROR: Cannot find file ./include/linux/mutex.h
+   WARNING: No kernel-doc for file ./include/linux/mutex.h
+>> Documentation/leds/leds-group-virtualcolor.rst:319: WARNING: Inline emphasis start-string without end-string. [docutils]
+   ERROR: Cannot find file ./include/linux/livepatch.h
+   WARNING: No kernel-doc for file ./include/linux/livepatch.h
+   ERROR: Cannot find file ./include/linux/seqlock.h
+   WARNING: No kernel-doc for file ./include/linux/seqlock.h
+   ERROR: Cannot find file ./include/linux/damon.h
+--
+   ERROR: Cannot find file ./include/linux/mutex.h
+   ERROR: Cannot find file ./include/linux/mutex.h
+   WARNING: No kernel-doc for file ./include/linux/mutex.h
+   ERROR: Cannot find file ./include/linux/fwctl.h
+   WARNING: No kernel-doc for file ./include/linux/fwctl.h
+>> Documentation/leds/leds-group-virtualcolor.rst: WARNING: document isn't included in any toctree [toc.not_included]
 
-I'm very much of the opinion that it is not the kernel's job to
-validate the DT. It obviously has not done a very good job given
-issues we find with schemas. It's fine to have some checks in this
-case if the kernel can't function (or use/enable the extension)
-without the dependent extensions, but there are lots of classes of
-errors the kernel doesn't need to care about.
 
-> To me, C code is more general and more universally understandable
-> than YAML rules, but I'm biased by how well I work with C versus
-> YAML schemas.
+vim +319 Documentation/leds/leds-group-virtualcolor.rst
 
-Personally, if I was going to do validation with code, I would pick
-python or any language that can handle lists and dicts natively. I too
-would prefer C for everything, but it's not the best tool for the job
-here. Even if we decided to do validation in C (I'm pretty sure we had
-a proposal to do just that at some point), we'd just end up defining
-our own data structures of validation data. Because at the end of the
-day, most of the validation information is all the same structure of
-data (i.e. a list of properties with lists of allowed values). I'd
-much rather follow some standard (json-schema) that's already
-documented than try to come up with my own poorly documented
-invention.
+   317	
+   318	``enable_debugfs`` (bool, default: y if CONFIG_DEBUG_FS)
+ > 319	    Enable debugfs diagnostics interface at /sys/kernel/debug/leds-group-virtualcolor-*/
+   320	
 
-I do think there is some need for code based validation as there are
-some things which can't be expressed with schemas. We have some of
-that in dtc, but that only works for core bindings. Some sort of
-python snippets of code in schemas is kind of what I'm thinking.
-
-> In any case, a "wrong" binding is a problem no matter what the
-> reason.  One way or another there are things expressed via DT
-> that must match the RISC-V specifications.  And yes, we do have
-> tools and bindings that can verify things related to DT.
->
-> >> And now, having looked at these added binding definitions (in patches
-> >> 07 through 11 in this series), I wonder what exactly is required for
-> >> them to be accepted.  For the most part these seem to just be defining
-> >> how the extensions specified for RISC-V are to be expressed in
-> >> DT files.  It seems to be a fairly straightforward copy from the
-> >> ratified specification(s) to the YAML format.
-> >>
-> >> Who need to sign off on it?  Conor?  Paul?  DT maintainers?
-> >
-> > I generally leave this extension mess to Conor.
->
-> Sounds wise.  Should I address my other few questions on this
-> topic to Conor?  I don't want this particular series to get
-> held up on unrelated discussions.
-
-Probably so.
-
-Rob
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
