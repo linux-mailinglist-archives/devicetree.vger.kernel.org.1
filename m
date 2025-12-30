@@ -1,98 +1,109 @@
-Return-Path: <devicetree+bounces-250475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6235CE982E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 12:11:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4C12CE983A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 12:12:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DC1BD30049D5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 11:11:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A297B3018F6F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 11:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B031286400;
-	Tue, 30 Dec 2025 11:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AC2B2C08B1;
+	Tue, 30 Dec 2025 11:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="BPSqJZYs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bUaUtlfK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE97324729A;
-	Tue, 30 Dec 2025 11:11:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70E7D3A1E8C
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 11:12:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767093107; cv=none; b=sV2qrOkZtjhsvTX2Ou1UCDDv1P7MBCr5kUqWxVRpbdk5KX8bFMQTrxNjNZKXmpSQiWNizE6r5ly8aEDQN+rlHttQ8PSGwqG2VzCgpkahRnc/6j9+xzAixDyL0k142YNCTnH7UUrj8ZNTyY/rLqX3poAW9LjkExLa3gl9KBWMb5s=
+	t=1767093172; cv=none; b=CHALMi/eDL95B4HAVgD5tZIErDnjk0HIfmwo3F0ExC/2VvX2/TDgYIHWc+OcGvucabNY/ewRIhdyEc80KkgsrG0WBuWJhOltDDEMzN08cVl98Pb6Tu7BJU+rMSf+OmdezXH8YZM44dPy029TL4Ph2gKWANa03PekH18hw5FMsF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767093107; c=relaxed/simple;
-	bh=9nNpEvlyk4wBnCZes+CfZOPBzdToHDZkf8fgqdWsK8U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pMpkxbW3ZvfIv3LOK1tYp2rPdfdjmp8U5AYmGI6kR3or0Ob9qqTPX6ddJC8i/IdfEHbfO7R5uaL2l0Jd7WQ5BvAxGwBYJIkd9K12iAfVMDoivRV9AegGy+pRcgR3pP0JSyzOHuOXaoMVtJcSV5zOUQKKeTx/skIsY1RSeGav13s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=BPSqJZYs; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=q8mJjZZ+g0Ane4YM5RznnhE0rIh8fOKol1HCX6F0D/o=; b=BPSqJZYsaDZ7VTxZxtC4xtF6us
-	nnjomjcgInese737gA0SIxpFBCz7H0JDBXU54soQ8qOVSs5CkVNUP9O+4a+uuggu5w1dTXvExFTl3
-	PRjqdtUvdlsZscGftFRaZDTwJ+quhkt62MOip2ShMGaaaVfA1cM/CWjeCEkgxtQBiAic=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vaXdU-000rjY-5P; Tue, 30 Dec 2025 12:11:32 +0100
-Date: Tue, 30 Dec 2025 12:11:32 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Dinh Nguyen <dinguyen@kernel.org>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mamta Shukla <mamta.shukla@leica-geosystems.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	bsp-development.geo@leica-geosystems.com,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] Revert "arm: dts: socfpga: use reset-name
- "stmmaceth-ocp" instead of "ahb""
-Message-ID: <8997facb-068b-4088-b996-1c0898dea19a@lunn.ch>
-References: <20251229-remove_ocp-v1-0-594294e04bd4@kernel.org>
- <20251229-remove_ocp-v1-2-594294e04bd4@kernel.org>
+	s=arc-20240116; t=1767093172; c=relaxed/simple;
+	bh=JcU9GrRpSQvM7DMb6kcX9IdaSrJg/ryVTN6TW/UWbCY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LGdXKHPgOO4oL8sDN6DdjM4TeLI5MrO2Dejp9wbQmZHsRUCqi7eknfUBi/NLCelcKFKWsCOIaSMu7Zybat3o71BkHHCVtcoo+JuLoJU255p9cVA4m0PmLQ5IfPKOfbTJ45fjZ2Wmpl4JrO1xCirhWBFCV5s/7duD21k3SnoFup8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bUaUtlfK; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-37b99da107cso91499361fa.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 03:12:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767093168; x=1767697968; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/yNA1AV5iM1LS0NSmDZcE4cFhhXCoef1YyBUYDjkr1Y=;
+        b=bUaUtlfKWG6e3KQGRlaqsdasytoK1AZe4WKWcct88QNsNxyXcWVdFVQLIPZfLEnpSb
+         51wR3xBUByb5kICYctS17zCUFLg5VDPGbS+/OuvLpV/n3x8pwXPDFPSbcZFFsOQsZeWZ
+         gcU04XVAdp/08JldO5v6ofWy7Rg+RaExdi4XOKUho4fcCRBO/GI6V9ElB4W+li9deoxW
+         K2EhCuZjVcBbLbLGzCVEmxfd0gGRrBERfzytl8aPIQbB5P/3m5Z03a62pYM7T+mC63rQ
+         8WdZAps62tu8Ao6wbiFbUyMS8N29+nlrzpkUUf8w/YThlDRpLHdptBsm+QrExdUcBUTP
+         sOWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767093168; x=1767697968;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=/yNA1AV5iM1LS0NSmDZcE4cFhhXCoef1YyBUYDjkr1Y=;
+        b=iwPqgsDFH/KsTp5GDhV42LQalCsbvqFqb8vbNy2wmP2G8+ydEcPBsYK0d3iBA02ilK
+         PPYqtMXJtdE2+fj/KvtcwLKN2EnqDwxrP+f6AFI+9QdF67Cz3PtZJk4nomLt9ixMJ7ym
+         tmYS2sUdibKBncSQumX/ObLN7aZWmKsbemuz/rLxZssBbv9cyzY6ON4pdUX2ntR6C0LF
+         hMx3GTJ8pIJ7O+eh60ZwdQpL53AIcoEYrc22rZMBYS8sk0zSqF6pnhTe4pot4pq1i3Z9
+         Ac/ce6q7b1lbTZpLcASJ1ocn+m2xYD2gYfkxHkOz/qZaiRFmn/pWeO5+JRUfrTSv5UeH
+         BJdw==
+X-Gm-Message-State: AOJu0YxOv5PEergFXtPjpCzt3RoRDkK6h5nOIW2KRhjCSnxwPB2YkI4y
+	Kb2WdMu5pODK4QyCI+8+qc+HHGwGCAAgmaYHiHIRPE4XlkuJVDmkoy5/YZLfAWOjC50tmAsdgOB
+	8i+xhH6AK5u104JtWr/jDn2wNsDMfPIc=
+X-Gm-Gg: AY/fxX6V2xwKXi5SvftiL5Bwxgos13su8JCVFy+ZNdu+j49NneyNbxNW0gWX0kTwFDg
+	k8HBF6Zk/B3BpM70GeJWLjXt/Fuly8te2AwmTD8W7MSnJUWQdwORJA74H3avRaGhRz4o/jdxhhW
+	+d9NW5s+gQNIGjN83Z/tW8nQEm11yqYzwDmBSbIW7aUUK00CErnPx8P+QMMkw9G785BeLxOPRG3
+	J6qQ8XGAzi8x9jYjUXQzrnCDMFA8NHoLq5utWcmpXdnMvlBtaqjXcOWURpeELr0nWrMMQ2U5Y7n
+	i8NzYILrYgMrUSgEo6tCxV6ty7E=
+X-Google-Smtp-Source: AGHT+IE2M4WxFZqnEfPrEAcC8SMB2vOImghddR//qgcMdMKJ1JqjQfXz0rueUs8Uu20fw0GhWjMPl3LuKHp94JXv2fI=
+X-Received: by 2002:a05:651c:1508:b0:382:4ed0:2b90 with SMTP id
+ 38308e7fff4ca-3824ed037e2mr69073551fa.11.1767093168319; Tue, 30 Dec 2025
+ 03:12:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251229-remove_ocp-v1-2-594294e04bd4@kernel.org>
+References: <20251229213726.79374-1-stefano.r@variscite.com> <20251229213726.79374-4-stefano.r@variscite.com>
+In-Reply-To: <20251229213726.79374-4-stefano.r@variscite.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 30 Dec 2025 08:12:37 -0300
+X-Gm-Features: AQt7F2pM6UnQwKRWIIbHFDh2-hbVrXhUaR1MhekQgxaBPsnwjGmNGu1vdJLxk04
+Message-ID: <CAOMZO5CjdQiy2nJTEL-HK+xzZ9EyAE1PMhoUroP2nTZ07pJbzg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: imx95-var-dart: Add support for
+ Variscite Sonata board
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Stefano Radaelli <stefano.r@variscite.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Alexander Stein <alexander.stein@ew.tq-group.com>, 
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>, Yannic Moog <y.moog@phytec.de>, 
+	Primoz Fiser <primoz.fiser@norik.com>, Markus Niebel <Markus.Niebel@tq-group.com>, 
+	Josua Mayer <josua@solid-run.com>, Francesco Dolcini <francesco.dolcini@toradex.com>, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 29, 2025 at 01:17:19PM -0600, Dinh Nguyen wrote:
-> This reverts commit 62a40a0d5634834790f7166ab592be247390d857.
-> 
-> With the patch "add call to assert/deassert ahb reset line" in place, we can
-> safely remove the "stmmaceth-ocp" reset name and just use the standard
-> "ahb" reset name.
+On Mon, Dec 29, 2025 at 6:37=E2=80=AFPM Stefano Radaelli
+<stefano.radaelli21@gmail.com> wrote:
 
-altr,socfpga-stmmac.yamle says:
+> +       /* Capacitive touch controller */
+> +       ft5x06_ts: ft5x06_ts@38 {
 
-  # TODO: Determine how to handle the Arria10 reset-name, stmmaceth-ocp, that
-  # does not validate against net/snps,dwmac.yaml.
+Node names should be generic: touchscreen@38
 
-Please add a patch to the series adding stmmaceth-ocp, but mark it as
-deprecated, and comment that ahb should be used instead.
+> +       /* Resistive touch controller */
+> +       ads7846@0 {
 
-    Andrew
-
----
-pw-bot: cr
+touchscreen@0
 
