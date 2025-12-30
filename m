@@ -1,76 +1,81 @@
-Return-Path: <devicetree+bounces-250413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0B27CE8FBA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:09:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCADECE8FE2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:17:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A7134301397C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:09:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 899F430115FD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:17:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9382F616B;
-	Tue, 30 Dec 2025 08:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 544C926C3AE;
+	Tue, 30 Dec 2025 08:17:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hse3nS7H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KX593vh1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC8B24EF8C;
-	Tue, 30 Dec 2025 08:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267CF1DED4C;
+	Tue, 30 Dec 2025 08:17:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767082154; cv=none; b=faDJCYn939biHsiBd+EjnsY0TIdanl1gizUl/6NZnrd+he3eTpq9lkBq2GoUv/xPfEKefucB9o33wXCwUqTIfhHwDsZr2bVfDhIwNrgNO9PxXfcD+4hozcFiKzfZMFdw9xepYu9pTYq8hS6nLfrLQzniplPv8UG9KkJvknPgu58=
+	t=1767082631; cv=none; b=QRLK/dB1jVoDnRZEibigaQ6N/BPpf+QFnB/lmWb+c45bvW8n0Nti2fN9laBgDykIRibqygOutCOiqxlFWLJtvOWmZJN3EzoFx9BfrZhTpMU5Ves1cr37BHVvyGYmuvSoTyVtJfGK9kPffa9/vHxApEYYmmh7nb19RuDY6XuXdUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767082154; c=relaxed/simple;
-	bh=STvICv03DYY1Jku37i0sIRJQGUTF4yyyZ5Dx965x5Wg=;
+	s=arc-20240116; t=1767082631; c=relaxed/simple;
+	bh=whnHAzmkET8yHodXYIqin7+OK2uZ1QTk9KyJWxaZ+LI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EAsXCxpLdaylcMkCdV+qgpGlwZDyUgKPyGU3roBKNgA1PyThiG2HB3A9xYny1r045HNN4mDyUM7pfnO4ouO0W7xBR2vZGQfCpAwKMNCPMPwUHbx5y0A0lSZIO0OmNm1EYjaxoEAoZs8wOX4MSMwrPyCK5CgsJyROldShOpdgEG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hse3nS7H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DA07C4CEFB;
-	Tue, 30 Dec 2025 08:09:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xus6scWxYkxjkqQ3Sjh2xef3K5+ArxmqnzbyhA5LsVzhtukIBS9skFHbmsqJdKdBGwpHz9Yc9dYEAFLN/L/O8MMVRmuih9ITQ0GNx3Gqy078Zl+EMxF/nHDP3uQ8haAFJFbj/pGJsCfXfB/bFQaAiIXjbbZWW/eh365+v66/2I0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KX593vh1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55183C4CEFB;
+	Tue, 30 Dec 2025 08:17:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767082154;
-	bh=STvICv03DYY1Jku37i0sIRJQGUTF4yyyZ5Dx965x5Wg=;
+	s=k20201202; t=1767082630;
+	bh=whnHAzmkET8yHodXYIqin7+OK2uZ1QTk9KyJWxaZ+LI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hse3nS7Hgxdn2r1IYMDI5XR4Lf77RBYLfMX9EAqbLW3mmmOTcdgPOUGpvdjKwdP32
-	 bTkzD9cCMZIfRJ4dGmyKN86CRBAagpwBC/BJfNaGcE+TRrwDhCSDNmcelUjMMQIdsN
-	 rnj7jmNfxHIkvSv2OdpgnplQvmlpGQfTMTsdyxJQf/XFBmtJHLBjMgh8pVjztmVX9e
-	 Dc868hwov5rvW7Sj6Gbv0wBIZ5zKFfAj8FrGYOmDO5Z83jRZYIhTpsGXBkkIggv539
-	 0JEx/BDlWMJSY3gBbIg7lm6w7f3HSdWp/b3tiaQHvc78E/j1akEN9ukG8KgmTue4XE
-	 +QStvYFH6rOGw==
-Date: Tue, 30 Dec 2025 16:09:09 +0800
-From: Shawn Guo <shawnguo@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux@ew.tq-group.com,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] arm64: dts: mba8mx: Fix Ethernet PHY IRQ support
-Message-ID: <aVOIpTeEmhFrs5rO@dragon>
-References: <20251216131529.886546-1-alexander.stein@ew.tq-group.com>
+	b=KX593vh1elcM2vRfepZ0KP25odd7C8F0mxs++zxuo+tj/iosvspRPUEag0dCiohyR
+	 QALrDSe3BJg31D+CoWrNxXkxkkQHSg46KzzYng1QF0DfJ0eikeGrXG8GEcD5UJckDm
+	 11sBKi3xekqYU3JaI87FtBhgTPsURR2Up9p6xr1VdGWEeEmLH3Nvl9uqv8iNR3whDp
+	 nNQfCvbHH5PownuzDg68VY6v/V1V2TShNRDjIM6S62gF4NgHpsH+pPeRQBxzvfV9OP
+	 sk/AHzGfQLD0fh77T+Q0m4dPpeC8g3dqpg3EpLM9/6GhiR9rPMFZMiR2lvUMBrQuCT
+	 p++Lvz50Aw6vQ==
+Date: Tue, 30 Dec 2025 09:17:08 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alex Tran <alex.t.tran@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Pavel Machek <pavel@ucw.cz>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] media: dt-bindings: i2c: toshiba,et8ek8: Convert
+ to DT schema
+Message-ID: <20251230-terrier-of-scientific-acceptance-fcbe1f@quoll>
+References: <20251225-dt-bindings-et8ek8-omap3isp-v3-0-b027e0db69a5@gmail.com>
+ <20251225-dt-bindings-et8ek8-omap3isp-v3-1-b027e0db69a5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251216131529.886546-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20251225-dt-bindings-et8ek8-omap3isp-v3-1-b027e0db69a5@gmail.com>
 
-On Tue, Dec 16, 2025 at 02:15:28PM +0100, Alexander Stein wrote:
-> Ethernet PHY interrupt mode is level triggered. Adjust the mode
-> accordingly.
+On Thu, Dec 25, 2025 at 01:03:07PM -0800, Alex Tran wrote:
+> Convert binding for toshiba,et8ek8 from TXT to YAML format.
+> Update MAINTAINERS file accordingly. The binding references
+> video-interface-devices.yaml at top level to inherit flash-leds
+> property.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Applied with tag:
+You sent this version a bit too fast, before discussion finished.
+Nevertheless,
 
-  Fixes: 70cf622bb16e ("arm64: dts: mba8mx: Add Ethernet PHY IRQ support")
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Shawn
+Best regards,
+Krzysztof
+
 
