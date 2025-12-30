@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-250351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E2DCE88A0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:22:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 620F7CE88B0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:23:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9D82E30115CA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:22:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0814D300AFC1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:23:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CCC2DA759;
-	Tue, 30 Dec 2025 02:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF372DFA2F;
+	Tue, 30 Dec 2025 02:23:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EAkkOMjt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rqYbwLcC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6BCA26B0A9;
-	Tue, 30 Dec 2025 02:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A5F2DEA74;
+	Tue, 30 Dec 2025 02:23:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767061362; cv=none; b=Zylo3R5nm37gI8bZ6MA2tXL42e1/ol6PR4Fi8RqhBMInoFumFYk2Ge3KfcRTf7dyt9f2s/YYqYygcOr1tpomJe55I0zxZawd4+rnnEigPpW0snQnpk9OuQYLNdyd9ohz6By5gnntp3Wu6NvRl72UYY3D+ZJ6EGdMjnymVa8D04w=
+	t=1767061389; cv=none; b=lzZxtiZYlZKIajHMspdjDIoWNRafPURKYgVkBvtD0ly7+G6nHMHYmI3pj/O8yOcb2CaDSNpSv+luwHUXrgJwhXle2Ijzm26/wuezPub16QOUdnmTkZIXvir3FBQnmQiXsKrCDe9+Wko3hW0CEt7OUcQnhFm6/FMWfcW8gGXmf9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767061362; c=relaxed/simple;
-	bh=/psuR/3hwPcJXh/QxQDIWHYcRBOf2JQDF0tA2oZ5EE4=;
+	s=arc-20240116; t=1767061389; c=relaxed/simple;
+	bh=JJBLWrKZJscwjA3cx9oGiJGVinABxL8hJC6q1izjjk8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZJZK8+J/ky1Dw8iJR5aSjS5kO1xW1Sy4PvKV1r6riOlK966LNUVhB88Adzbgtai6c6tJI3X+7SqGxr/zO37OnUUsJffBoHQTbQ8Le+yf16cCbJI68Iy1mBR3FaUCIZzPUmoprO4AKh9fpEiBaSlJKEP5kAgvt3qa3W8j2WJenjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EAkkOMjt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00C03C4CEF7;
-	Tue, 30 Dec 2025 02:22:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VG4FjlVx+SwlDdcidSZzGUvtuu3eedcLg35uDd5XpFFF9b7FDRi/3R7C/M97N7pU/rgylNmlncAWMjdZxdXzXMUg7agOz79Rru/HZkSJRnBCceypwAEWc/4PE4meGKR5tvghWaHt1M76l4UGh0c2XRT8fJUN4EiT9Xeiuz92lMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rqYbwLcC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF22EC4CEF7;
+	Tue, 30 Dec 2025 02:23:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767061362;
-	bh=/psuR/3hwPcJXh/QxQDIWHYcRBOf2JQDF0tA2oZ5EE4=;
+	s=k20201202; t=1767061389;
+	bh=JJBLWrKZJscwjA3cx9oGiJGVinABxL8hJC6q1izjjk8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EAkkOMjtE/NFwqwLKKAWdE4xg1Nr453fHrv9QVVH43Hg5+P3MubD75i3BHxBcSSZX
-	 foTwDCvNTSAAB9tLotyetesFJWYUIhfxy44jZxEV3EFR7cbCr9GBluN7WzUpWTSuKa
-	 CIrAiqGq6c4JPcTFQOssiyfDelYfsv/O7b8EsSxJwZP5csbmWGb05DDkOFBW118XlQ
-	 gPvfZfHAG7DhoGBBuoD4+XsWrZJt3F0iEP4Tmf4I3pVDMo6M6RXAW+Mo+CNKidWHh+
-	 iAwD9Qfsqp8L6OcJsTbop8CxB3j4XTgrBjP9N96E4JsZRuR2LakMa4SjYdJtc8tzWO
-	 sP13ghCLyxpmQ==
-Date: Mon, 29 Dec 2025 20:22:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Akiyoshi Kurita <weibu@redadmin.org>
-Cc: Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] docs: dt-bindings: hwmon: aspeed-pwm-tacho: fix typos
-Message-ID: <20251230022241.GA3214066-robh@kernel.org>
-References: <20251224083845.2727976-1-weibu@redadmin.org>
+	b=rqYbwLcCSdqZrAaL/5UsPcAo8T2EDLTfE1oTIkzwEfPaJdrUnSmDDV55LSKJ47gcj
+	 YBFLWcMkGwLr3aFXJVHwprtarb3yS9dlbYMKYiM4OqhCIxxs4Q97Ek/XhiqlRPx1Sv
+	 nDb2mTjXDgfzKwjRgVeMZFPprSPZqqIcIPaqNquB/3MJ1DqmTeQ2TmY0MftLWCNTl6
+	 cqGmi0dIvmVXdrDj6YK8R56n4hKb8eIBpFwSV1Kk7z+4rqNQmthXbHcx8mzUAFA6Jc
+	 DSD9co6p2wVqWwFbmKdRhUNdRodck8eHI5Nhd7DM4s2KfuXFVKjEH+7ipHXly8CiUr
+	 bBu6+rzZ9g9NA==
+Date: Tue, 30 Dec 2025 10:23:04 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: maudspierings@gocontroll.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/3] arm64: dts: freescale: moduline-display: several
+ fixes
+Message-ID: <aVM3iCWrKkpcqe2N@dragon>
+References: <20251201-disp_fix-v2-0-9b03026311b6@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,17 +61,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251224083845.2727976-1-weibu@redadmin.org>
+In-Reply-To: <20251201-disp_fix-v2-0-9b03026311b6@gocontroll.com>
 
-On Wed, Dec 24, 2025 at 05:38:45PM +0900, Akiyoshi Kurita wrote:
-> Fix "upto" -> "up to" occurrences and add missing "be" in one sentence.
+On Mon, Dec 01, 2025 at 12:56:49PM +0100, Maud Spierings via B4 Relay wrote:
+> A couple of issues where discovered:
+> - compatibles should integrate the SoM
+> - the eqos mac address is stored in eth_mac1
+> 
+> The first one is breaking, but it is early enough that it can be
+> corrected without causing any issues.
+> 
+> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+> ---
+> Changes in v2:
+> - re-add the old compatible to fsl.yaml
+> - expand the reasoning for these changes in the commit messages
+> - Link to v1: https://lore.kernel.org/r/20251114-disp_fix-v1-0-49cbe826afc2@gocontroll.com
+> 
+> ---
+> Maud Spierings (3):
+>       dt-bindings: arm: fsl: moduline-display: fix compatible
+>       arm64: dts: freescale: moduline-display: fix compatible
+>       arm64: dts: freescale: tx8p-ml81: fix eqos nvmem-cells
 
-This is in the process of being converted to schema. Please review that 
-patch and check these issues are not copied over.
-
-In general, don't fix .txt bindings. Convert to schema if you want to 
-improve them.
-
-Rob
-
+Applied all, thanks!
 
