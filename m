@@ -1,224 +1,333 @@
-Return-Path: <devicetree+bounces-250568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C03A8CEA0F5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 16:28:51 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0111ACEA101
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 16:29:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7FEBA300F9ED
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:28:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 71ECC30049FB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:29:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B76042EA154;
-	Tue, 30 Dec 2025 15:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F24331814F;
+	Tue, 30 Dec 2025 15:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="EuEvNxH7";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="1d4Ter8W"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="k8+E7cgT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012005.outbound.protection.outlook.com [52.101.66.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894C021D3C5;
-	Tue, 30 Dec 2025 15:28:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767108528; cv=none; b=BqfI2WHEAPpgISGUt0NCjBIW0u8FAsN3mR7SiuDWfxVA+gUrudpnmxyEydflTFbiCCZzI+aTILKlxXdepysR4tzD8PB+ZhMrbgQ/yZleL3u6iJxOuFJfPs70cSru44lTZu2syu6O+7kSb8NCAsyRwUzAh5MAq38HEER/SmZB4kI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767108528; c=relaxed/simple;
-	bh=O1TARx0l0DxJfzmbm0Y61hmj7+eA2DrNVx2RH7v88k0=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=R/Y2VVdKhE1pqEYcmQTr9oS9QFqHaqS0Yz1zHtlix/zqYxUN28W7J90YF7vjDMqnTAdX6K+Eaog/wEcPt3V2l9EpD9TpIDERj+ueXWLp77U2Qj7A+l9G3nCFxIjSQR/ofYTXncYG82MC/RK/f6Mf+iQthZRmMc1EgXqtqUYavoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=EuEvNxH7; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=1d4Ter8W; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1767108523; bh=m57AjeGKkNROZRTWgAP5d3C
-	ycYvnjiI8Vg/zbkC6oMc=; b=EuEvNxH7+ZvYozHZ3yoyqJo/SzRQTI/9aB8COsuKt5EnCqJtcR
-	DzBVWXKjOplE1RkC/EEiWkleVQxykiMFhNAYVZHBKoqcSQFzPIkLXyMx1FHrajLA2X/XxK2xsx7
-	62xlp5jn/h+PLSv4b0tciv7Mb8VC0IttdEUc4FkkhbPHPw86w6ol0rdW/rhOW+ZvvySrYFdwiYV
-	+nmbwLXsS2rAlWMr06rQ7BdCXYh1SW+9+DcCIUm4HGEQqRfpdD1twvitg0vPbByp2UuXkUPUZ+3
-	4lgWtarNEnFZJHbPzQX6BP7nhtmCwm0DKCEXFDUzTRqfhNM1jPcG1uSkVmNZeyu2FAw==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1767108523; bh=m57AjeGKkNROZRTWgAP5d3C
-	ycYvnjiI8Vg/zbkC6oMc=; b=1d4Ter8WwsNyLlXfgToEBTILFeXciKbUKjSORjkmIS2DrIQrGp
-	mGPdofmTt1pR1aWVuuTFfmrr1C0fRTLMJABg==;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D57E23ABAA;
+	Tue, 30 Dec 2025 15:29:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.5
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767108566; cv=fail; b=jDFcElk/rr4/L4Mq2dUN+PBrGcv6+UkfP0qWYQxJNflo7rYy+YDQzEcYicQdxRK2a3Cg27UhJLwdVc0rizXahP8tagZTKBrYjOGqTY6UCAXZh65YaiY11KCVijN8KQRR7ytFGWiAbr1LmIWXB04kZ+IpnBXyUD5bOaTMOOWjBAA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767108566; c=relaxed/simple;
+	bh=yBiO57SP4Bbe289r40ra58wrbC7SoHRy1TAWwsT8Z0g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=GgfqqyOorndMa0rtVFf291PmsLNq5U3eCL12IYW+bxlBOXRYjqbUuPY/Vj1B9pg/+BexP9jwOqitiYEix/7p7S/6hoy1vgBkSE2i5E9QJExm5J9iMVWV1XrayA7oi9ILs9EY4Azv6h7yN74GiAcaSTxt4YCH5O9O8+Nm+AJnxb4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=k8+E7cgT; arc=fail smtp.client-ip=52.101.66.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Uq3MQNS2i5BJ57Kl5S91o2t2uN4JKaoFEOEPXVE7E0DyLZVaLAeVOX2isXFTsotpv3LAswHhN0pHwO7rRQVbDPvCV1QOYo55ShGEefL6yaFFnrh/KIatGZhHClzU0wi9ZjjeZblnQjK0ql1684WUTvCRfGXgpf07RyR/ukYLabRNcsJZ9wpgmGxRVu2ToZ7hH03Eew5FOBvsBgmPqXQIX4I+Ko5jeInKrFiz/A0OlHurO4VZKGrzcWqUSP0DkjFNe1Y9umGobedwqJT2relc5YOy8T9Bn1OyF8srfOE5bO/XRj969qrDBM50EzFcy840/q9DtghgJsfnaqLy2MlGcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fNR6/xKxxBd6y278YtvORoVpJIelxXZTFs5Xusb0G5o=;
+ b=DZifPO4X7QqKGGVlwVyfsT+bvkfnadX5GOgPL9l0iqq0KCFdYQUcjoCJCoBvgDWBzq/4K4IU4T2qpzE645neZOJHXUaS3qFa/Bo94oDxN+BpVQbyOAvypm4ruy9x7XVwdgTgz2dGkg/LD9dPAreqkBgoNHDsfJStWzpRq78hTP2inFOt903qi6GInpNiFg4qbaloE1nDm4gUiKY5GgNrwmayorex3PhWbEZZt3lWsQJYljOYxoVGLVJjdadVfQT5qHvSUblpokQ/cVfsTHSFp6h1b5udLim4jbXN1EboFqWCKPB0NbZ3kpostDHr8D6BtG5kjTf+FbRS7PH0g5Xk3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fNR6/xKxxBd6y278YtvORoVpJIelxXZTFs5Xusb0G5o=;
+ b=k8+E7cgT4krOa9EaC9N95Yy2SjKztBIxOCC25MK94Jq2MJxvs1jK2AMVFVFjwR3VYEsCD0IIhmq2lFyTVno22fIhoyovLlN8TdEAWF6818SCCfW/6Bm/HlIGYyXsRu7q/S8YeAKlmSz/eb6jV5LrJNXZlK181YhPg6Hp59bjCIBORZyherNrHwYvvVZoUui287QTagzJKmn8yhsGLllz4wvwbhYsfvgg0XPoYJPAFaHjnwOXdrdUWAZn5GgZGQxN+7wZVz/xtjEUluBDLW+oYAVWudJJUrRsV3JpfH/RijcF8PJo11Tw69qlHAAg3Ri5mKVV1UYNfO+b136pVPV2ng==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
+ by GVXPR04MB10112.eurprd04.prod.outlook.com (2603:10a6:150:1c0::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Tue, 30 Dec
+ 2025 15:29:19 +0000
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9456.013; Tue, 30 Dec 2025
+ 15:29:19 +0000
+Date: Tue, 30 Dec 2025 10:29:10 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+Cc: robin.murphy@arm.com, will@kernel.org, joro@8bytes.org, robh@kernel.org,
+	dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
+	bjorn.andersson@oss.qualcomm.com, bod@kernel.org,
+	conor+dt@kernel.org, krzk+dt@kernel.org, saravanak@google.com,
+	prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com,
+	iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] of: Add convenience wrappers for of_map_id()
+Message-ID: <aVPvxtrzo0WcHsRy@lizhi-Precision-Tower-5810>
+References: <20251221213602.2413124-1-vijayanand.jitta@oss.qualcomm.com>
+ <20251221213602.2413124-2-vijayanand.jitta@oss.qualcomm.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251221213602.2413124-2-vijayanand.jitta@oss.qualcomm.com>
+X-ClientProxiedBy: SJ0P220CA0025.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::16) To DU2PR04MB8951.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e2::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 30 Dec 2025 16:28:42 +0100
-From: barnabas.czeman@mainlining.org
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, Bjorn Andersson
- <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/8] remoteproc: qcom_q6v5_mss: Add MSM8917
-In-Reply-To: <563ce29d-0a96-42a6-9c05-51cf16244cc9@oss.qualcomm.com>
-References: <20251228-mss-v1-0-aeb36b1f7a3f@mainlining.org>
- <20251228-mss-v1-4-aeb36b1f7a3f@mainlining.org>
- <aVJhH17XH1srlroL@linaro.org>
- <d531f1346b59af06c323f393883b1d13@mainlining.org>
- <2898fde7-2b3b-471b-8f8f-a02cb6953aaf@oss.qualcomm.com>
- <eeda5a8b6f5a9dc5cf5440afc07c40fd@mainlining.org>
- <d3ee6ba3e66706c304ecfe6afc4b75f2@mainlining.org>
- <10bc67e8-e9e9-491d-9e38-4b55735d42fe@oss.qualcomm.com>
- <a142c6c16ff298fe782b3fc80efc4a30@mainlining.org>
- <563ce29d-0a96-42a6-9c05-51cf16244cc9@oss.qualcomm.com>
-Message-ID: <397fc3d6419d1047b5f99dc4b2d02593@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|GVXPR04MB10112:EE_
+X-MS-Office365-Filtering-Correlation-Id: fcee7da1-0490-4102-c242-08de47b8333f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|19092799006|52116014|366016|7416014|1800799024|7053199007|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?SWOZM6wql/rOkt7woK5OO6i0Y/iwOTeGlNuq+KgULJGWjBXvuvUBeKP+b/+j?=
+ =?us-ascii?Q?0PbC1bjavtdtK1hf9cKlssxN993tJvsHdLBvGWwYKSM6YOgUTC2AniX/j5YM?=
+ =?us-ascii?Q?AH6hkb9YDWgDO2oSnfSkiVHzd9TlpuCuwhKYNZdB4EY4Yk91y/htyTfFiYHJ?=
+ =?us-ascii?Q?ape7w3KCzo3PRFCFbHsLr9TQv44lBIot5TjZri10B/pW53zz4BwrnfbpFKAB?=
+ =?us-ascii?Q?iu3IpfHiShzFAq3Xp/SpqTAR6eiQfiRM9kgtGSsW4Na0EH5FfojVAzmjNtZP?=
+ =?us-ascii?Q?C89CjmXfoATrLPC7DNFcOq42LYNhIpFmS+FHCE0SrVJSs4I4f5RHxeVjYkC6?=
+ =?us-ascii?Q?nDvDM2K+rlQrgjFN9dJb5t4FBRkZRTwuYa6+0TDuCtNVQRBC6iOh/hxBVJw9?=
+ =?us-ascii?Q?8A5Pvrtq2ugfcAUBzSt2sxUFN4AhFngByS93aGtGFUmAiHW6+D3KXuFymCy8?=
+ =?us-ascii?Q?G/giTIWUxedkmZTgwithWxtPoxOQQytlFljxksjOkzCUbbvbZqQzDjXNmhsF?=
+ =?us-ascii?Q?cf/WvxcgI0Ndz8uZCl9bz0eX9E4J1qhJQRWOwnP5yPYz24mpNuML24IaXt/5?=
+ =?us-ascii?Q?lKWAdj+dY7uZLZUG9xTgCaMZ6dPt81VGFfAtr05CEqWy4jJlFjAAdzUsIUZy?=
+ =?us-ascii?Q?V+omGBtt4m7zD80QrEYaLKjjWMCxp4kSDBseR8wyfGLjfGK893jj7wlifAl/?=
+ =?us-ascii?Q?jxyxlqksSAweNzP0Gnc4KsvMkRz4o2urx1/fOiL5hTaKgCnLWEQinGMbnRDx?=
+ =?us-ascii?Q?AlBG0JPmQ9IweWJyzf4Qrthwjjal+n9FmHLN1wbcuVmEXymaARVqndKZmzTO?=
+ =?us-ascii?Q?izPiSQxEZ81fxZGTG/k3ehH8ASZmv+hZIgDagJFmusGH+Y45dZJLy/EJKGHU?=
+ =?us-ascii?Q?m2we52EYirC2jT6Gkx2QS0zxo0MUgtAPOTxLbEkhg6T0nNf3+m5nz2l6TvXi?=
+ =?us-ascii?Q?cdV7WLTzsEOANyVIX6yYIEW8+gZNPAEL2uQB44GAXkD4ljpT7Uj8r0Rtsq6W?=
+ =?us-ascii?Q?QWAiwcCDULfAwfU8sRM+BsIRfCx5RSg8188JyQxKbJ1PS0vb+xBhtX/2ry8G?=
+ =?us-ascii?Q?dBz1ahs670pchhWe31IQFywKGjRqu5pEl9xEm5DD5VdL9AfVQGhqnovgq4le?=
+ =?us-ascii?Q?hr0JnsHoiwiD46Tk5c6dfnRE7VB04B7M2NduxA++dUWzPJ+KvluJoyhy81x6?=
+ =?us-ascii?Q?hOl9im2QOupOm4p8uMw2MUeJ9SZ/45jbrq5hE9ftLBODo7eY/YyDBFgxhQ/j?=
+ =?us-ascii?Q?2JVOYiXkAx7B/1DCXfhbIlDIb4OOEG3gWC4nOYcjN+I3ktU/E9DGgSGnsZ+u?=
+ =?us-ascii?Q?58QK5GYRXURgKreYPeg8izAI7BRml6kR3qr50wUwGbqPlV8UMzDqT9OC8NL5?=
+ =?us-ascii?Q?K7pRmHPGJVHI6jp9g3/XNVBIm82IPL5JZtgymOF8uGWpncyDlPkvf7v3antL?=
+ =?us-ascii?Q?Yp58/T0ecFvmraAxZiW1GoYcJzuudirrYovOsr4hg5KV/udD0rT/6MwJhzbQ?=
+ =?us-ascii?Q?ofvhsjCYBcVumOvWAtkRnB1zOCDZQsDwBVlE?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(52116014)(366016)(7416014)(1800799024)(7053199007)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?TJ27PD9iOU4rbwqF5lhm3UnvfPzTfNtkLQRoK1sGLHD0XJmVZwbNdUKptDsQ?=
+ =?us-ascii?Q?Yuvk1GWC1N7ArW7Iyjk+Vm4OkaYuQjBjCn8kseUznBsF0JPfaOMxrWP0xU2v?=
+ =?us-ascii?Q?H5ryq0DKpmwT2h/Lz4NPQp5y5Ejs99gBu1ghk6HQOJDQVnhetZE6pEMpeG9j?=
+ =?us-ascii?Q?iy4vG+F3O4M1tMsv54KD+cZQ3uYEorqa8zKhAyjJ+wZdW64Ml4d+50KQO1Jm?=
+ =?us-ascii?Q?RAF32D88ujHdMGV97go7I3FxPvlEG4nTbjgwtnfN7FISXiGMpLq33KDnN6Lj?=
+ =?us-ascii?Q?mDsKZyq7iOF5Bq9t0XjU/35YkpmPzs1cRfnnpfY6G77EFbj1zEp2NE5pb5a7?=
+ =?us-ascii?Q?ygnwK1ogg/MQDJmR7iikw0sud6+iH5OY74bcYSkZaf5BThoN3SVXOs7z3KIi?=
+ =?us-ascii?Q?zH2eU3RbfOyJat3OQeiHFgtG9nfGwvWsnjcimWu8k+i1En86ffFUViAi/OH4?=
+ =?us-ascii?Q?up9FPUSoZagubCXG8occ+PW4rjyL5ldEKEv75EOpSRplE0cRWAZ7NvWEmUoC?=
+ =?us-ascii?Q?dYaG2l7zaWQVTr31CzddpWHOvAA87s3C0qzRJvBibLoq5g1ORQkfWpiFgNu1?=
+ =?us-ascii?Q?DLVx3DK/h3eE8Xw0rTN8AwRit072xtn8ip1U7434X680xXBgS2k4ZQFzbR5O?=
+ =?us-ascii?Q?4i420Fz3PVcHE6zPXoyR0/oKeCxfuUlQXBFMZbM+we+BD6aSEy9LbI95ki3+?=
+ =?us-ascii?Q?Ww8SZQIrUD7Th8d1Bd+5cPPfhNCekijcad2CLl/9fiSw254ye01lO0IFm/IF?=
+ =?us-ascii?Q?8NWeU2rP+Iw8M0ljDHITUYiJs52fzO7gde0QHZTKCnMpGXwlOFR5si5gufWc?=
+ =?us-ascii?Q?O1oj2fQUwDeFgR5r/DZmRUoYEes3UBU3FOeXWa1iJiKXWmfXGwAhLaitO7BF?=
+ =?us-ascii?Q?DIkB50gqDNpQ2H3Y7Voe9xKfIQmLRWx0O6TeOwoZF3sUT7RniusRURTrM/vL?=
+ =?us-ascii?Q?yn4BDEWWBAmW1Uf4XvxsP1e0fWU4fkzOnmEHVplAGcAxu9U0ZfWT2u0wRpi2?=
+ =?us-ascii?Q?EJYEctITK8TEBEaJZOASITTzjbMFde1hwhG/7o8/XLkWhIFQfRcQlm45PUBb?=
+ =?us-ascii?Q?K90BecyXj0NlAgoj7L/Uep6gmLPlDfiae/oTACESz9TM77YQYYBQUOmBRLc4?=
+ =?us-ascii?Q?s+RQrTw1Wl8qr/KKGiOCagEvzYiF2qCtNce7efZpgKreasaaVKJZpK60g7kO?=
+ =?us-ascii?Q?gHinQoZubSLpyvfqd7BPukLEkjVhw7Jktc04iSvNa/nho8vdTR2L7mQLcxwm?=
+ =?us-ascii?Q?nSDgYeI4dELROV35+WMLCRDRZnGUK0HeuoMo6BKfaAy4t6hsuI8LVaqBsKSG?=
+ =?us-ascii?Q?HbYz8gqGgmmeP+d6j9xACCykLR175zvbnpiWMeZBRRV9zreqWBWRi1XtN4px?=
+ =?us-ascii?Q?nUy81Y2D9AoPxV4T9bFIkKcyubbOyQ3+f9MKaRyDiDTdjiQLIIuwOl82NnE9?=
+ =?us-ascii?Q?sgI/nybU2QrMwJVkfScvmetJAHKrT2ch2WRdw6sFcVHYSA9DazmG+nk8YaCi?=
+ =?us-ascii?Q?Ay10pRMF/1Ia2vzpkPNJq49nQoVabRjClb0VJidctGMofniN4gEdO+8HcTqj?=
+ =?us-ascii?Q?4OGmd62oboL+2Dgcd25/34C3wmgwWrAgJEq727XSComqk1FhgUVdWn8Ewmkn?=
+ =?us-ascii?Q?JjN+kohgO55AoTZq/Fiw6btz4/S2RASrdnV2qt3ZoGheFLr0BEFL44nO6Jpq?=
+ =?us-ascii?Q?uGIH62WXPKnNOyETUNIcueLRQFYRc2C/CwXA3ne2mtOfkBcNzfyQ9zWhhSjg?=
+ =?us-ascii?Q?7WNKVOWjuQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fcee7da1-0490-4102-c242-08de47b8333f
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2025 15:29:19.3860
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MYvoVdki0H+xPUqnCqTHjkDGl/oHX0Iw6B829OOpnhuZ+bxG1v1Gh6fnSsiwWktFwrsN4VxK07vuwzc+ZfX5lQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10112
 
-On 2025-12-30 14:11, Konrad Dybcio wrote:
-> On 12/30/25 4:25 AM, barnabas.czeman@mainlining.org wrote:
->> On 2025-12-29 14:07, Konrad Dybcio wrote:
->>> On 12/29/25 1:59 PM, barnabas.czeman@mainlining.org wrote:
->>>> On 2025-12-29 13:51, barnabas.czeman@mainlining.org wrote:
->>>>> On 2025-12-29 13:40, Konrad Dybcio wrote:
->>>>>> On 12/29/25 1:33 PM, barnabas.czeman@mainlining.org wrote:
->>>>>>> On 2025-12-29 12:08, Stephan Gerhold wrote:
->>>>>>>> On Sun, Dec 28, 2025 at 03:21:54PM +0100, Barnabás Czémán wrote:
->>>>>>>>> Add support for MSM8917 MSS it is similar for MDM9607 MSS
->>>>>>>>> only difference is the mss power domain.
->>>>>>>>> 
->>>>>>>>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->>>>>>>>> ---
->>>>>>>>>  drivers/remoteproc/qcom_q6v5_mss.c | 46 
->>>>>>>>> ++++++++++++++++++++++++++++++++++++--
->>>>>>>>>  1 file changed, 44 insertions(+), 2 deletions(-)
->>>>>>>>> 
->>>>>>>>> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c 
->>>>>>>>> b/drivers/remoteproc/qcom_q6v5_mss.c
->>>>>>>>> index ffafbe501a05..2579558fb567 100644
->>>>>>>>> --- a/drivers/remoteproc/qcom_q6v5_mss.c
->>>>>>>>> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
->>>>>>>>> @@ -259,6 +259,7 @@ enum {
->>>>>>>>>      MSS_MSM8226,
->>>>>>>>>      MSS_MSM8909,
->>>>>>>>>      MSS_MSM8916,
->>>>>>>>> +    MSS_MSM8917,
->>>>>>>>>      MSS_MSM8926,
->>>>>>>>>      MSS_MSM8953,
->>>>>>>>>      MSS_MSM8974,
->>>>>>>>> @@ -749,13 +750,15 @@ static int q6v5proc_reset(struct q6v5 
->>>>>>>>> *qproc)
->>>>>>>>>          goto pbl_wait;
->>>>>>>>>      } else if (qproc->version == MSS_MDM9607 ||
->>>>>>>>>             qproc->version == MSS_MSM8909 ||
->>>>>>>>> +           qproc->version == MSS_MSM8917 ||
->>>>>>>>>             qproc->version == MSS_MSM8953 ||
->>>>>>>>>             qproc->version == MSS_MSM8996 ||
->>>>>>>>>             qproc->version == MSS_MSM8998 ||
->>>>>>>>>             qproc->version == MSS_SDM660) {
->>>>>>>>> 
->>>>>>>>>          /* Override the ACC value if required */
->>>>>>>>> -        if (qproc->version == MSS_MDM9607)
->>>>>>>>> +        if (qproc->version == MSS_MDM9607 ||
->>>>>>>>> +            qproc->version == MSS_MSM8917)
->>>>>>>>>              writel(QDSP6SS_ACC_OVERRIDE_VAL_9607,
->>>>>>>>>                     qproc->reg_base + QDSP6SS_STRAP_ACC);
->>>>>>>>>          else if (qproc->version != MSS_MSM8909 &&
->>>>>>>>> @@ -817,6 +820,7 @@ static int q6v5proc_reset(struct q6v5 
->>>>>>>>> *qproc)
->>>>>>>>> 
->>>>>>>>>              /* Turn on L1, L2, ETB and JU memories 1 at a time 
->>>>>>>>> */
->>>>>>>>>              if (qproc->version == MSS_MDM9607 ||
->>>>>>>>> +                qproc->version == MSS_MSM8917 ||
->>>>>>>>>                  qproc->version == MSS_MSM8953 ||
->>>>>>>>>                  qproc->version == MSS_MSM8996) {
->>>>>>>>>                  mem_pwr_ctl = QDSP6SS_MEM_PWR_CTL;
->>>>>>>>> @@ -826,7 +830,8 @@ static int q6v5proc_reset(struct q6v5 
->>>>>>>>> *qproc)
->>>>>>>>>                   * Set first 5 bits in reverse to avoid
->>>>>>>>>                   * "inrush current" issues.
->>>>>>>>>                   */
->>>>>>>>> -                if (qproc->version == MSS_MDM9607)
->>>>>>>>> +                if (qproc->version == MSS_MDM9607 ||
->>>>>>>>> +                    qproc->version == MSS_MSM8917)
->>>>>>>>>                      reverse = 6;
->>>>>>>>>              } else {
->>>>>>>>>                  /* MSS_MSM8998, MSS_SDM660 */
->>>>>>>>> @@ -2538,6 +2543,42 @@ static const struct rproc_hexagon_res 
->>>>>>>>> msm8916_mss = {
->>>>>>>>>      .version = MSS_MSM8916,
->>>>>>>>>  };
->>>>>>>>> 
->>>>>>>>> +static const struct rproc_hexagon_res msm8917_mss = {
->>>>>>>>> +    .hexagon_mba_image = "mba.mbn",
->>>>>>>>> +    .proxy_supply = (struct qcom_mss_reg_res[]) {
->>>>>>>>> +        {
->>>>>>>>> +            .supply = "pll",
->>>>>>>>> +            .uA = 100000,
->>>>>>>>> +        },
->>>>>>>>> +        {}
->>>>>>>>> +    },
->>>>>>>>> +    .proxy_clk_names = (char*[]){
->>>>>>>>> +        "xo",
->>>>>>>>> +        NULL
->>>>>>>>> +    },
->>>>>>>>> +    .active_clk_names = (char*[]){
->>>>>>>>> +        "iface",
->>>>>>>>> +        "bus",
->>>>>>>>> +        "mem",
->>>>>>>>> +        NULL
->>>>>>>>> +    },
->>>>>>>>> +    .proxy_pd_names = (char*[]) {
->>>>>>>>> +        "cx",
->>>>>>>>> +        "mx",
->>>>>>>>> +        "mss",
->>>>>>>> 
->>>>>>>> Are you sure mss/pm8937_s1 also works as a power domain? It 
->>>>>>>> seems to be
->>>>>>>> a plain regulator downstream (similar to msm8226/msm8974).
->>>>>>>> 
->>>>>>>> Same thing applies to MSM8953 as well though and there we seem 
->>>>>>>> to have
->>>>>>>> decided to model it as a power domain ...
->>>>>>> They have this at downstream, i guess this is why handled as a 
->>>>>>> power domain.
->>>>>>> vdd_mss-uV = <RPM_SMD_REGULATOR_LEVEL_TURBO>;
->>>>>> 
->>>>>> It seems to be just a normal regulator on both 8917 and 8953
->>>>>> 
->>>>>> https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/msm8953-regulator.dtsi
->>>>>> https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/msm8953.dtsi
->>>>>> 
->>>>>> https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/msm8917-regulator.dtsi
->>>>>> https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/msm8917.dtsi
->>>>>> 
->>>>>> Konrad
->>>>> It is different between 3.18 and 4.9, 3.18 seems simpler and easier 
->>>>> to use it as regulator i will change it
->>>>> https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/arch/arm64/boot/dts/qcom/msm8917.dtsi#L1375
->>>>> https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.6.6.c32-05500-89xx.0/arch/arm/boot/dts/qcom/msm8917.dtsi#L1655
->>>> Only question is left what about SDM439 and SDM632? They were 
->>>> introduced at 4.9 maybe that is why it was modified both are 
->>>> inheriting
->>>> MSS bindings from 8953 and 8937.
->>> 
->>> Seems both are the same too
->> https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/arch/arm64/boot/dts/qcom/sdm439-regulator.dtsi#L18
->> https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/arch/arm64/boot/dts/qcom/msm8953-regulator.dtsi#L17
->> SDM439 and SDM632 do not use simple regulator, s1 seems power domain 
->> to me. I have checked it in use at Fairphone 3, Redmi 7 and 7A
->> all have S1 as a power domain.
-> 
-> Hm, it seems you're right. It does indeed use level-based voting which
-> would qualify it as a power domain in our upstream understanding
-What would be the better solution?
-1. Keep mss as power domain?
-2. Set mss to a regulator for MSM8917 and keep as power domain for 
-MSM8937 and SDM439.
-3. Split SDM632 and SDM439 MSS from MSM8937 and MSM8953 MSS and use 
-mss-supply
-as regulator for MSM8917, MSM8937, MSM8940 and MSM8953 and use mss as 
-power domain for SDM439 and SDM632.
-> 
-> Konrad
+On Mon, Dec 22, 2025 at 03:06:00AM +0530, Vijayanand Jitta wrote:
+> From: Robin Murphy <robin.murphy@arm.com>
+>
+> Since we now have quite a few users parsing "iommu-map" and "msi-map"
+> properties, give them some wrappers to conveniently encapsulate the
+> appropriate sets of property names. This will also make it easier to
+> then change of_map_id() to correctly account for specifier cells.
+>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+> ---
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+
+>  drivers/cdx/cdx_msi.c                    |  3 +--
+>  drivers/iommu/of_iommu.c                 |  4 +---
+>  drivers/irqchip/irq-gic-its-msi-parent.c |  4 ++--
+>  drivers/of/irq.c                         |  3 +--
+>  drivers/pci/controller/dwc/pci-imx6.c    |  6 ++----
+>  drivers/pci/controller/pcie-apple.c      |  3 +--
+>  drivers/xen/grant-dma-ops.c              |  3 +--
+>  include/linux/of.h                       | 14 ++++++++++++++
+>  8 files changed, 23 insertions(+), 17 deletions(-)
+>
+> diff --git a/drivers/cdx/cdx_msi.c b/drivers/cdx/cdx_msi.c
+> index 91b95422b263..63b3544ec997 100644
+> --- a/drivers/cdx/cdx_msi.c
+> +++ b/drivers/cdx/cdx_msi.c
+> @@ -128,8 +128,7 @@ static int cdx_msi_prepare(struct irq_domain *msi_domain,
+>  	int ret;
+>
+>  	/* Retrieve device ID from requestor ID using parent device */
+> -	ret = of_map_id(parent->of_node, cdx_dev->msi_dev_id, "msi-map", "msi-map-mask",
+> -			NULL, &dev_id);
+> +	ret = of_map_msi_id(parent->of_node, cdx_dev->msi_dev_id, NULL, &dev_id);
+>  	if (ret) {
+>  		dev_err(dev, "of_map_id failed for MSI: %d\n", ret);
+>  		return ret;
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index 6b989a62def2..a511ecf21fcd 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -48,9 +48,7 @@ static int of_iommu_configure_dev_id(struct device_node *master_np,
+>  	struct of_phandle_args iommu_spec = { .args_count = 1 };
+>  	int err;
+>
+> -	err = of_map_id(master_np, *id, "iommu-map",
+> -			 "iommu-map-mask", &iommu_spec.np,
+> -			 iommu_spec.args);
+> +	err = of_map_iommu_id(master_np, *id, &iommu_spec.np, iommu_spec.args);
+>  	if (err)
+>  		return err;
+>
+> diff --git a/drivers/irqchip/irq-gic-its-msi-parent.c b/drivers/irqchip/irq-gic-its-msi-parent.c
+> index eb1473f1448a..0884c4cbd245 100644
+> --- a/drivers/irqchip/irq-gic-its-msi-parent.c
+> +++ b/drivers/irqchip/irq-gic-its-msi-parent.c
+> @@ -166,7 +166,7 @@ static int of_pmsi_get_dev_id(struct irq_domain *domain, struct device *dev,
+>  	if (ret) {
+>  		struct device_node *np = NULL;
+>
+> -		ret = of_map_id(dev->of_node, dev->id, "msi-map", "msi-map-mask", &np, dev_id);
+> +		ret = of_map_msi_id(dev->of_node, dev->id, &np, dev_id);
+>  		if (np)
+>  			of_node_put(np);
+>  	}
+> @@ -211,7 +211,7 @@ static int of_v5_pmsi_get_msi_info(struct irq_domain *domain, struct device *dev
+>  	if (ret) {
+>  		struct device_node *np = NULL;
+>
+> -		ret = of_map_id(dev->of_node, dev->id, "msi-map", "msi-map-mask", &np, dev_id);
+> +		ret = of_map_msi_id(dev->of_node, dev->id, &np, dev_id);
+>  		if (np) {
+>  			ret = its_translate_frame_address(np, pa);
+>  			of_node_put(np);
+> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> index 1cd93549d093..9549dda8f9d6 100644
+> --- a/drivers/of/irq.c
+> +++ b/drivers/of/irq.c
+> @@ -725,8 +725,7 @@ u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in)
+>  	 * "msi-map" or an "msi-parent" property.
+>  	 */
+>  	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent) {
+> -		if (!of_map_id(parent_dev->of_node, id_in, "msi-map",
+> -				"msi-map-mask", msi_np, &id_out))
+> +		if (!of_map_msi_id(parent_dev->of_node, id_in, msi_np, &id_out))
+>  			break;
+>  		if (!of_check_msi_parent(parent_dev->of_node, msi_np))
+>  			break;
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 4668fc9648bf..c8da2e88e9c6 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -1106,8 +1106,7 @@ static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
+>  	u32 sid = 0;
+>
+>  	target = NULL;
+> -	err_i = of_map_id(dev->of_node, rid, "iommu-map", "iommu-map-mask",
+> -			  &target, &sid_i);
+> +	err_i = of_map_iommu_id(dev->of_node, rid, &target, &sid_i);
+>  	if (target) {
+>  		of_node_put(target);
+>  	} else {
+> @@ -1120,8 +1119,7 @@ static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
+>  	}
+>
+>  	target = NULL;
+> -	err_m = of_map_id(dev->of_node, rid, "msi-map", "msi-map-mask",
+> -			  &target, &sid_m);
+> +	err_m = of_map_msi_id(dev->of_node, rid, &target, &sid_m);
+>
+>  	/*
+>  	 *   err_m      target
+> diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/controller/pcie-apple.c
+> index 0380d300adca..ce21728d6e51 100644
+> --- a/drivers/pci/controller/pcie-apple.c
+> +++ b/drivers/pci/controller/pcie-apple.c
+> @@ -791,8 +791,7 @@ static int apple_pcie_enable_device(struct pci_host_bridge *bridge, struct pci_d
+>  	dev_dbg(&pdev->dev, "added to bus %s, index %d\n",
+>  		pci_name(pdev->bus->self), port->idx);
+>
+> -	err = of_map_id(port->pcie->dev->of_node, rid, "iommu-map",
+> -			"iommu-map-mask", NULL, &sid);
+> +	err = of_map_iommu_id(port->pcie->dev->of_node, rid, NULL, &sid);
+>  	if (err)
+>  		return err;
+>
+> diff --git a/drivers/xen/grant-dma-ops.c b/drivers/xen/grant-dma-ops.c
+> index 29257d2639db..b661f9c1f4fe 100644
+> --- a/drivers/xen/grant-dma-ops.c
+> +++ b/drivers/xen/grant-dma-ops.c
+> @@ -321,8 +321,7 @@ static int xen_dt_grant_init_backend_domid(struct device *dev,
+>  		struct pci_dev *pdev = to_pci_dev(dev);
+>  		u32 rid = PCI_DEVID(pdev->bus->number, pdev->devfn);
+>
+> -		if (of_map_id(np, rid, "iommu-map", "iommu-map-mask", &iommu_spec.np,
+> -				iommu_spec.args)) {
+> +		if (of_map_iommu_id(np, rid, &iommu_spec.np, iommu_spec.args)) {
+>  			dev_dbg(dev, "Cannot translate ID\n");
+>  			return -ESRCH;
+>  		}
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 121a288ca92d..8cd486d89da2 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -1435,6 +1435,20 @@ static inline int of_property_read_s32(const struct device_node *np,
+>  	return of_property_read_u32(np, propname, (u32*) out_value);
+>  }
+>
+> +static inline int of_map_iommu_id(const struct device_node *np, u32 id,
+> +				  struct device_node **target, u32 *id_out)
+> +{
+> +	return of_map_id(np, id, "iommu-map", "iommu-map-mask",
+> +			 target, id_out);
+> +}
+> +
+> +static inline int of_map_msi_id(const struct device_node *np, u32 id,
+> +				struct device_node **target, u32 *id_out)
+> +{
+> +	return of_map_id(np, id, "msi-map", "msi-map-mask",
+> +			 target, id_out);
+> +}
+> +
+>  #define of_for_each_phandle(it, err, np, ln, cn, cc)			\
+>  	for (of_phandle_iterator_init((it), (np), (ln), (cn), (cc)),	\
+>  	     err = of_phandle_iterator_next(it);			\
+> --
+> 2.34.1
+>
 
