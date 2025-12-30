@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-250350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7676FCE889A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:20:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8E2DCE88A0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:22:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EF39E3021770
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:19:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D82E30115CA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C302DEA95;
-	Tue, 30 Dec 2025 02:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CCC2DA759;
+	Tue, 30 Dec 2025 02:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O2wtkVma"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EAkkOMjt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 298391DFE22;
-	Tue, 30 Dec 2025 02:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6BCA26B0A9;
+	Tue, 30 Dec 2025 02:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767061191; cv=none; b=qQqNPXh0U/jJS7JoUtFb20Qxw8mlSoLaYOG+H/YxlR/+lbfdy4I6Bfmv7CXKosP1vBo2CMltCkJ4CO3hD0rDbkVevTa10YYwpjEkzEHrLS0xRv4emmFRjDTAm2bT2QPTMDn9CKgiwQBSFl+sNxA31N7xmqLyDN71vOGjPrjLriQ=
+	t=1767061362; cv=none; b=Zylo3R5nm37gI8bZ6MA2tXL42e1/ol6PR4Fi8RqhBMInoFumFYk2Ge3KfcRTf7dyt9f2s/YYqYygcOr1tpomJe55I0zxZawd4+rnnEigPpW0snQnpk9OuQYLNdyd9ohz6By5gnntp3Wu6NvRl72UYY3D+ZJ6EGdMjnymVa8D04w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767061191; c=relaxed/simple;
-	bh=AcEJsGXNVt3jmOn2Wqt08Ks6kV82blO/9BLT/+ASyxY=;
+	s=arc-20240116; t=1767061362; c=relaxed/simple;
+	bh=/psuR/3hwPcJXh/QxQDIWHYcRBOf2JQDF0tA2oZ5EE4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HKljWHhNFslbAaqgPb7zRcD69h2odn63ZiWLuUt+ol62SMLl7K1xjaRiqyJacKEU0tJSWcGx208cV7SMutO0IzdZpwX0firXcYh16s4YA6pXjMIB1L5lUgJ4OwZ8Ewqqc34+h80TXKJrte1hd9Dqdz/mpCLv3kiUxkx9+hqf9hc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2wtkVma; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C21F4C4CEF7;
-	Tue, 30 Dec 2025 02:19:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZJZK8+J/ky1Dw8iJR5aSjS5kO1xW1Sy4PvKV1r6riOlK966LNUVhB88Adzbgtai6c6tJI3X+7SqGxr/zO37OnUUsJffBoHQTbQ8Le+yf16cCbJI68Iy1mBR3FaUCIZzPUmoprO4AKh9fpEiBaSlJKEP5kAgvt3qa3W8j2WJenjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EAkkOMjt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00C03C4CEF7;
+	Tue, 30 Dec 2025 02:22:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767061191;
-	bh=AcEJsGXNVt3jmOn2Wqt08Ks6kV82blO/9BLT/+ASyxY=;
+	s=k20201202; t=1767061362;
+	bh=/psuR/3hwPcJXh/QxQDIWHYcRBOf2JQDF0tA2oZ5EE4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O2wtkVmanB+R5JP6REg0A3j986QdZtMIY4PlYNZYkPcq8m3+UrQ2YAxLdBoygV88S
-	 pZ44D4dflJAajbVH/KDIfLi+MNQZzf57/zsDSMvusS6Kh/ufrKnTAQ8YenVJ90WhWO
-	 zldN/6s9u9sHUkrUBG5Dpveh7CXdeOfay4o6bFkhnTb2WP86/MJ8M2OrE+tv0hLMEV
-	 KYvM2a2KCU2H809IMbDiXVYWOOMq968lp/WDJuo3V44OWrhXVuXQZ1wys2WT53VfYf
-	 u85RWbCunqYx20bC9hGn+eNoUudLqkLNoWVLU+Pxjm7GOURzp7qKrIfIFQaYBH6pM1
-	 uSWV6YgylqS8w==
-Date: Mon, 29 Dec 2025 20:19:49 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
+	b=EAkkOMjtE/NFwqwLKKAWdE4xg1Nr453fHrv9QVVH43Hg5+P3MubD75i3BHxBcSSZX
+	 foTwDCvNTSAAB9tLotyetesFJWYUIhfxy44jZxEV3EFR7cbCr9GBluN7WzUpWTSuKa
+	 CIrAiqGq6c4JPcTFQOssiyfDelYfsv/O7b8EsSxJwZP5csbmWGb05DDkOFBW118XlQ
+	 gPvfZfHAG7DhoGBBuoD4+XsWrZJt3F0iEP4Tmf4I3pVDMo6M6RXAW+Mo+CNKidWHh+
+	 iAwD9Qfsqp8L6OcJsTbop8CxB3j4XTgrBjP9N96E4JsZRuR2LakMa4SjYdJtc8tzWO
+	 sP13ghCLyxpmQ==
+Date: Mon, 29 Dec 2025 20:22:41 -0600
+From: Rob Herring <robh@kernel.org>
+To: Akiyoshi Kurita <weibu@redadmin.org>
+Cc: Guenter Roeck <linux@roeck-us.net>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-remoteproc@vger.kernel.org,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: remoteproc: qcom,sm8550-pas: Drop SM8750
- ADSP from if-branch
-Message-ID: <176706118935.3209824.5361129598208771094.robh@kernel.org>
-References: <20251223130533.58468-2-krzysztof.kozlowski@oss.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] docs: dt-bindings: hwmon: aspeed-pwm-tacho: fix typos
+Message-ID: <20251230022241.GA3214066-robh@kernel.org>
+References: <20251224083845.2727976-1-weibu@redadmin.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +60,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251223130533.58468-2-krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20251224083845.2727976-1-weibu@redadmin.org>
 
+On Wed, Dec 24, 2025 at 05:38:45PM +0900, Akiyoshi Kurita wrote:
+> Fix "upto" -> "up to" occurrences and add missing "be" in one sentence.
 
-On Tue, 23 Dec 2025 14:05:34 +0100, Krzysztof Kozlowski wrote:
-> The binding for SM8750 ADSP PAS uses SM8550 ADSP as fallback, thus
-> "if:then:" block with "contains:" and the fallback does not need to
-> mention qcom,sm8750-adsp-pas.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml          | 1 -
->  1 file changed, 1 deletion(-)
-> 
+This is in the process of being converted to schema. Please review that 
+patch and check these issues are not copied over.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+In general, don't fix .txt bindings. Convert to schema if you want to 
+improve them.
+
+Rob
 
 
