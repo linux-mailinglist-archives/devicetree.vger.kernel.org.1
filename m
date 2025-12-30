@@ -1,160 +1,148 @@
-Return-Path: <devicetree+bounces-250548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C54BCE9E62
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:16:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D109DCE9E7E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:18:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C65193019B87
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:15:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B1438301F26A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:17:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A646271469;
-	Tue, 30 Dec 2025 14:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E84B1DE3B7;
+	Tue, 30 Dec 2025 14:17:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="cbOUUfDX"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="RK1sHCtX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36751A2545;
-	Tue, 30 Dec 2025 14:15:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860E338F9C
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 14:17:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767104153; cv=none; b=dLrOLBQAcl/cgZQqt6wzySbg/jXHUzt4q+JAcu/DJPReuX/0vzj5Xav21tWAhag526byNdU1xGvsLV7rwHPPdM9EuNWCDaGzNnmRawvvD9CA6iIyvfh0PGCftoM6NvSWwM+t5n1ctHyxG/HJi1GrB4B8klWpCl9iwKwYhX5WMgQ=
+	t=1767104274; cv=none; b=qbq0lhzFJS74DrpuqZr2BvICPwE2ZthbE07XUZKL2i2jH7jkvYNPMGWcfwO8ZYO6uBZWxaCuAZ75UMQ/FYTRDJpuig331eVSd9FqXeSjt8GOUn3Ec1yBmigXRe40A0yhmfULWSg2Q01k5S/Wftf7aBcXk8xx2RZGBxSklSM7dGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767104153; c=relaxed/simple;
-	bh=CDzYuIbNAIJpAc6AJOA6ruM0uocG/RQE2Z3gqRb4bpM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J/lvau+Ifo2wMpDVKmEoggA73hhpqV56ydGn35aolncDPsl0VznLSZDrQHSMjQt8nwlzXewjd61Hnaik9SztE0uI20HFC5VtVrH11kXteKzaTUBDnZpjJ+ycrp7NVX6RK1idj6EiItcJh80f3gxQqs5D0qeiy4Yp81G6oWGTFag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=cbOUUfDX; arc=none smtp.client-ip=54.92.39.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1767104065;
-	bh=1pQBCqn047ZruREzSayv9H++iam7PU96IzaK6pwXNeA=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=cbOUUfDXrpiGqcH1IX4PkqJZeiqZAePxqvgGhDoy9Lsj7mv09Nm+jcwKBVNi4IWPN
-	 v1YbGDkDc6TyJ340eyApLTxeyM4tNoe1xIcw/T1Zx/FpjNQ129MHl1l4DARytvCtIi
-	 86pIiZY6hieD5H6D1EVPHoE5GRzfv/W95+Bkb2iA=
-X-QQ-mid: zesmtpip4t1767104063t07d72edb
-X-QQ-Originating-IP: TH1lW9wnYGtTWgVF3zf4Kc6QxAMURlVUrjY62XcUYSE=
-Received: from = ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 30 Dec 2025 22:14:21 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 18075355756355605530
-EX-QQ-RecipientCnt: 19
-Date: Tue, 30 Dec 2025 22:14:21 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Guodong Xu <guodong@riscstar.com>, Andi Shyti <andi.shyti@kernel.org>
-Cc: Encrow Thorne <jyc0019@gmail.com>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Troy Mitchell <troymitchell988@gmail.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] i2c: k1: add reset support
-Message-ID: <97163966BA7F4D3A+aVPePaJvByddfCe3@troy-wujie14pro-arch>
-References: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
- <20251219-i2c-reset-v2-2-ad201a602e74@gmail.com>
- <2dmrli7yzznpurg74wet4oidhljjf3csdjly2dwpyvyndhrec3@uc6ke7mep6fv>
- <CAH1PCMbGbe6MQtAucf-4W+H_G0LrvPNGyaB_OUyxqf5TF=jixg@mail.gmail.com>
- <zjrd3dgvcg3pxmn4455iljtugbufr4igyokdycusyhpykbzyl5@nrwgz366wm67>
- <CAH1PCMY9A3CO1PXo-b5_BGY13xdx3nvAqb-R28hUz1VMLzTHWQ@mail.gmail.com>
- <541066FE3973E490+aVPdhNKK70qltaVV@troy-wujie14pro-arch>
+	s=arc-20240116; t=1767104274; c=relaxed/simple;
+	bh=/39bb+KiH+c15Ip+8eoEcdt+8mnt/RoXH810nksYhiw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qbkon6DbNhBywy0uGjkQZ6NZulCEdJW7NmbyII5nPKoq7SlxBN0Ua4/75fr9hAyrs4PqAZwPlzBj9RHzXhvxxfnwesle3/pKPIDFH4q7Wyzq+wAMjQQRP9y8s3IkQddw/h+G/i0Eo5fkz2MgM5+2n8USji28xDnMZdvXgiFcRws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=RK1sHCtX; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dgZtM6lvVz9t18;
+	Tue, 30 Dec 2025 15:17:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767104268;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vxKIdIuImYJyruxAJajYUHr/pCHXGqxg7yZ2rj75Zl8=;
+	b=RK1sHCtXeTJMg0Fc6+vn5MLRV/qqkMW2e3gKfcYYqgZTEy9X+YQIpCozTyMHokhUeGNfxl
+	Vft2jvyU8jVcxqtPUxffHupgGFpMLlJTOGGEK4GDzuHVp+ELs9eRQ7dUfmZa26pM+P2jCm
+	qoDLzFZ/JIk3p8DD+XcLZIzwHfZph+wOo6taTUWfys6ckQTlcmBrMUGe0+hu50/fsd6ZkB
+	+q2bXt5NmnAg65MEy7X3nGZrbd3DeBIBGMrBkVoRxsjnGRnnLiwEuKPs9CXyjcUCjeRjTQ
+	FdV2JkuEI3xXULwkX8OuLR/h+IWnzyUZF6/54HWvkY0EDoA2cz3937MP7LBN6Q==
+Message-ID: <6055d6f3-2b31-4225-a42e-0f5ad79f7256@mailbox.org>
+Date: Tue, 30 Dec 2025 15:17:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Subject: Re: [PATCH] arm64: dts: imx95: Use GPU_CGC as core clock for GPU
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: Frank.li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, peng.fan@nxp.com,
+ robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+References: <aS-lEibp3zTsaR6T@oss.nxp.com>
+ <c6e0e55a-06da-4665-972e-e9b5b8c08bf7@mailbox.org>
+ <aTACuRjC_Zpf8IOU@oss.nxp.com>
+ <de36091e-c890-4897-b3e3-2a7575029a5d@mailbox.org>
+ <aTD5np-HGaJqhzkD@oss.nxp.com>
+ <5944d872-01a3-47e9-977b-029f3be4fd83@mailbox.org>
+ <aTKVMAMQ6v_BwD6R@oss.nxp.com>
+ <9b593731-898f-46a7-8ee5-68f8c170351c@mailbox.org>
+ <aTYxm_dfMwF4H0_b@oss.nxp.com>
+ <53ea529f-3538-4ab5-aa99-0caa6729b4cd@mailbox.org>
+ <aVM-mSkSubMPd7Du@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aVM-mSkSubMPd7Du@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <541066FE3973E490+aVPdhNKK70qltaVV@troy-wujie14pro-arch>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: MEuRTizDJZiQfRQxIN226YVfFJd9jYsNJnrgvfyvCzoKtNKaiSdOxWP2
-	Dmw6gbWM1ekdFHWihQv62NKKSLgpFGo3vU8JsXpsel/tFk4FAmvJU8rR0Iq+ONr9NTIrbNY
-	PExVQM9eY2NW8QRtlQJVB/lLlrsQu6iHQ4Av4m8zg4QbUv3SU7EUy3BB/dUOT0LyBziI2VV
-	0GkeqYhR5JLIJhTjTsCpxW5HZeVdOIcnDseHz5165s8upUMT/xOIuBfAC2+94F+CCbKqJIZ
-	4CjaOHAJZzAI6f+Q0Mms3rWL4hQ3ino+BVPEpk3TL6Tq0VOlNfFzVpHXw8vh40eUD9bHlZc
-	cbSaVALCOF2jEteVSodadQBHoGBqZZ8nui0iw+EeWewRLjbImA+dMUmSMJt+nXvnwyWFSCo
-	82sq7B/WEDMHwHQ7TptrzZfl8V5YAtwHfJJD+s9+AxrdV9/6XMDUkFZqHJFmUZSc3cdV38v
-	XWpi2YlK3gRyBDr2z6Q1ov81peeDo7dfc6j1dzwViDW05XzQyYAZbfTE7tXQDT3803FoDsk
-	AMB6FHdxcUlGhj2+aQU2IE/b5fPzm+q0LEnr+psFWw0bkmdOFHrV+Cf7i3kezglS9gIm/on
-	M6YDZz5m9vR4SLVOo5xEctJWpjkdGrHq7DwN6wYSm0UwjAyS7lSPaSRTxHCE/+tMK9crNaQ
-	Y+QkconvuZAP6O/8hQfG7UPJ0yYbb6PoGUEwzTq8GBkZBKXb3hxnsJBlLN+wm8pLZdsZ7gP
-	YE6itWiC8aS1DUvm9Fr9lHNagHbjWLs9EZkV74zOKVfbc/V+Hh+QB1hPdmz6mkJHNaI0pzj
-	oouUNRJOgeXqlKVwGN/H7wooePKSAfBPZ3QbhJL3p5zOz0DHS0nCuyQWrVOx/1qvjPv/v+N
-	2mF3PPSuhcXg7/lPfrrHTdHViv9wRZAUKMONc5TJTg0jUQEJAqqvNtaso9h/gjevZqJrG97
-	JUvsOmBSM5gcJzbcdWR4s3lL2nXYSxi0xxyY+GdzX8mD4uk6SstuNDM13ynYare3dya4t0F
-	al6GcgWz3pqJMpkwjkPg/74PU9aHJ5Rk7uUjIon9pD1Jaeq7ANJSvwrmnNBzgD6PI2NvH16
-	tGe85MKHekK4BPIl7rri8B34N5cg8bCo2Ol69QWLihz2j2XK5PHBjI=
-X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
-X-QQ-RECHKSPAM: 0
+X-MBO-RS-META: 4mz587hke6yw9u8coj5yj7tpaucfotsn
+X-MBO-RS-ID: 813c5cfb66f07759a26
 
-On Tue, Dec 30, 2025 at 10:11:16PM +0800, Troy Mitchell wrote:
-> On Sun, Dec 28, 2025 at 08:42:47AM +0800, Guodong Xu wrote:
-> > Hi, Andi
-> > 
-> > On Sun, Dec 28, 2025 at 3:26 AM Andi Shyti <andi.shyti@kernel.org> wrote:
-> > >
-> > > Hi Guodong,
-> > >
-> > > On Fri, Dec 26, 2025 at 07:38:22AM +0800, Guodong Xu wrote:
-> > > > On Fri, Dec 26, 2025 at 5:01 AM Andi Shyti <andi.shyti@kernel.org> wrote:
-> > > > > > +     rst = devm_reset_control_get_optional_exclusive_deasserted(dev, NULL);
-> > > > > > +     if (IS_ERR(rst))
-> > > > > > +             return dev_err_probe(dev, PTR_ERR(rst),
-> > > > > > +                                  "failed to acquire deasserted reset\n");
-> > > > >
-> > > > > If this is optional, why are we returning with error?
-> > > > >
-> > > >
-> > > > According to include/linux/reset.h, if the requested reset is not
-> > > > specified in the device tree, this function returns NULL instead of
-> > > > an error. Therefore, IS_ERR(rst) will only be true for actual
-> > > > errors (e.g probe deferral).
-> > >
-> > > And this is quite obvious, but you haven't answered my qestion.
-> > >
-> > > Why do we care of internal failures in reset? If reset fails on
-> > > an optional reset control function why should we kill our driver?
-> > 
-> > Thanks for the clarification. I see your point now.
-> > 
-> > My reasoning is that if the resets property is explicitly listed in the
-> > Device Tree, the driver must respect it.
-Sorry, I misread your comment. I thought you were referring to the
-bindings. In that case, we are on the same page.
+On 12/30/25 3:53 AM, Rain Yang wrote:
+> On Tue, Dec 30, 2025 at 02:53:38AM +0100, Marek Vasut wrote:
+>> On 12/8/25 3:02 AM, Rain Yang wrote:
+>>
+>>>>> Okay, I’ll submit a patch later.
+>>>>> The commit message should reflect that only CLK_GPU_CGC is enabled.
+>>>>
+>>>> The commit message , and this change , is unrelated to GPUAPB clock.
+>>> The commit message is ambiguous. Could you clarify which parent clock
+>>> you are referring to, and whether it can be enabled by CLK_GPU_CGC?
+>>> If it was CLK_GPU, CLK_GPU_CGC can't be able to control it.
+>>
+>> The commit message clearly states "These new GPU_CGC clock
+>> gate the existing GPU clock." and "GPU_CGC as well as its parent GPU clock."
+>> , I don't perceive any ambiguity, sorry.
+>>
+>> Frankly, the whole GPUAPB discussion is entirely unrelated and it only stalls
+>> application of this bugfix and keeps upstream broken. This is not helping.
+>>
+>> So unless there is anything in particular that is on-topic and prevents this
+>> patch from being applied, it would be good to apply it, otherwise the GPU on
+>> MX95 in mainline Linux is not working.
+> Hi Marek,
+> 
+> I’m not opposed to this patch being merged into mainline, but the commit
+> message needs to be accurate. the parent CLK_GPU cannot be enabled or
+> disabled externally. The last sentence should clearly state:
 
-                                    - Troy
-> It's not required.
-> 
-> >
-> > If the property is present but
-> > we encounter an error (like -EPROBE_DEFER), ignoring that failure could
-> > put the hardware in an undefined or dirty state.
-> Then why it's optional?
-> 
-> The real reason:
-> "Optional" here means the reset line is allowed to be absent from the
-> Device Tree. It does not mean we can ignore the failure when it is
-> defined in the DT but fails to be acquired.
-> 
-> If devm_reset_control_get_optional_* returns an error (e.g.,
-> -EPROBE_DEFER), it indicates the hardware description expects a reset
-> control, but the system is not yet ready to provide it. Ignoring this
-> error would break the probe deferral mechanism and potentially cause the
-> driver to access hardware in an invalid state.
-> 
->                           - Troy
+Look here, this is what you can do with the MX95 SM:
+
+"
+ >$ clock.r
+...
+083: gpuapb               =  on,  133333333Hz
+084: gpu                  =  on,  800000000Hz
+...
+174: gpu_cgc              =  on,  800000000Hz
+
+ >$ clock.w gpu_cgc off
+ >$ clock.w gpu off
+ >$ clock.w gpuapb off
+
+ >$ clock.r
+...
+083: gpuapb               = off,  133333333Hz
+084: gpu                  = off,  800000000Hz
+...
+174: gpu_cgc              = off,  800000000Hz
+"
+
+Notice how all clock are disabled, including GPU clock.
+
+That does not agree with your statement.
+
+> When the panthor driver enables the GPU core clock, it enables the GPU_CGC.
+
+It also enables all disabled parent clock in the process, which includes 
+the GPU clock.
+
+> This ensures the description reflects the actual hardware behavior and
+> avoids confusion for future maintainers.
+> Thanks for addressing this issue — once the commit message is corrected,
+> I’m fine with this going in.
+
+See above.
 
