@@ -1,197 +1,175 @@
-Return-Path: <devicetree+bounces-250586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC2FCEA53A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 18:37:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B437CEA549
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 18:38:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D37FF301B828
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 17:37:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 20755301E586
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 17:38:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17BF3322B8A;
-	Tue, 30 Dec 2025 17:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9DF32B989;
+	Tue, 30 Dec 2025 17:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="trHJTh89"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fQkmSJv6";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Q/KqQE/q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9DD02777FE;
-	Tue, 30 Dec 2025 17:37:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C321D322B9D
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 17:38:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767116253; cv=none; b=efr5EW3m12dvZ/4wTw+lZEPPqgM4e2htreZWyMejkAJZnS4OaZzqI6eRfd48pCEwomxJuHjRiblJcZTTbB2/DKmKVlS1nCSSQuR9cAV0FXuowJSMvlpwiURniXlLZjiQLDgQoIYZYn44+8W3oAKgaeQjh2K3j4TwULCdxPLQhjY=
+	t=1767116326; cv=none; b=eLhqbrMTbQQCfSgn++kT/98iEl8oj1ut5Z/l9MLb0FzpSAazQ2aMK7D2jCUOmvKJdtKFmDatHMikijuKUqHY7g09ARZohJ4zJjhQ8YtLWarb0nIV2WH+NQ726SA4Pl38+Srkm8GBlBusSpauFr/s784QR1K5Ax1LPMYUDAU72w4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767116253; c=relaxed/simple;
-	bh=ER043jVCO9ksspnoXQ3DT8YenpRNj1BgFtkwPByCQfE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i6ItHXyX2IyzYUjjebhFsQXGBRKtkHblEE/Cl1NkYSbgFuapL9HF2KcvU3KdQy6u5G/x/vHetk2ZkzbQ0TOu3mXnH4XV4LCZslZc9fXR/tW3AEs5TRv5C9YyWNvuThS4HXWPcY7auY6YeMeOL4S6BMo3XSBtzbMojmEiNnHCmxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=trHJTh89; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD252C4CEFB;
-	Tue, 30 Dec 2025 17:37:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767116252;
-	bh=ER043jVCO9ksspnoXQ3DT8YenpRNj1BgFtkwPByCQfE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=trHJTh89ZZ0TlEasQyjQuvfGf3jU5D1a4C0y5jjMoIywc9mrU3sfLzjoQqpW8NgAI
-	 e5csb5YBL+JkJHJHw3JWwglX/STcIoAS+Wb1L5i2LyqYz13QgnQLrozBM/uWo8Rc8r
-	 U6ItN4iNXdSpNwdTMxFLD4M442kNyTNAQBLs/vQwyuhb80KCCa9ShIWm1wAsqSKaNh
-	 NiPbwN/XNzGGvo8pUv6GXFm7u0SUgj2qUKzLt6s8oQvQ9cpB3T1cNWxyU/uGBrS0TG
-	 Tpw+JJK5/xMBZpFcBIlLC9qYJrmla87YrKaszP8iNrAn7fRV6Oj3mE8Q3QvOgle4ai
-	 dUVR/Y0g0PLpQ==
-Date: Tue, 30 Dec 2025 17:37:25 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Alex Elder <elder@riscstar.com>, Guodong Xu <guodong@riscstar.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@gentoo.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Heinrich Schuchardt <xypron.glpk@gmx.de>,
-	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v2 11/13] dt-bindings: riscv: Add Supm extension
- description
-Message-ID: <20251230-budding-dimple-c34636b0ca4d@spud>
-References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
- <20251222-k3-basic-dt-v2-11-3af3f3cd0f8a@riscstar.com>
- <fc719e92-10bc-455f-b402-c93bdbf878cf@riscstar.com>
- <20251230021306.GA3094273-robh@kernel.org>
- <80e18a32-543a-48f5-81f2-4fa64cb8bf8c@riscstar.com>
- <CAL_JsqK8hRsVWV6WfbZ6hF1PwFfOJhyOrpWwoOhviAgv5ZxKUw@mail.gmail.com>
+	s=arc-20240116; t=1767116326; c=relaxed/simple;
+	bh=YIpy00nv/0bA/OFkDTOVl+G0khchfIb6WcV7JC1LJn8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ogtpxwVjBN6mQtKHUsXG47WLQ9MOVSx8DwRjBRvLZb8O4hjFQVVt2C+ClmuhQW/xmNhdAJO0gJ4wXW34VR9pF/jEjlyPrroprTXLPbXmXRBjqlf1B5gXzXW7U7CDQ6R7g/hTYK5mLwGVWC8oo0hkxzK/xMhl3Ri2j0DkAozCHpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fQkmSJv6; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Q/KqQE/q; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BU9MK5V2553078
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 17:38:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=275llJmfDJIjYnTG1eJ6co
+	O/AOZWo8EL2vjIDEhI4Ok=; b=fQkmSJv62ww1gZ55iKTjzXaj82bMXxMILRmorH
+	EccuE6MwjjJMbaURrKRzjbN+vBYxUyiSb5bAIYHTFbjDlvorQOu2eJonj9gjOD6K
+	OkRGWXaqv3XwNfquNAHfVobi3stAdhdk+lVOXcoGkyHG8ESn5Hu26axeFCr7ojVa
+	gELjabUbnn2GktOGNAG4xzEEYRnIeVwMGwCm7AdAsJedzy0miPX2Logq/t8rI92a
+	ls27jvu36gsd8RQed472hY2Af5/aLkkgPlfPDTHRfrctfq2d43yAkFj3+WgO7Vql
+	y2T73Kc+0Rl6NigLjjtN8D06lur0isMkrxalNk4QFtKnOVpg==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bc0skjhph-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 17:38:43 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7b4933bc4aeso9868094b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 09:38:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767116322; x=1767721122; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=275llJmfDJIjYnTG1eJ6coO/AOZWo8EL2vjIDEhI4Ok=;
+        b=Q/KqQE/qOLm/RNmbQ62+6r9ihmZk8gSk/XxHojcWxTTGpm9lJZRcmQzduM0z6Fpo2p
+         r8kQnDWIu0i79sMU6Xb4Wrf3mFR163wcGt0ZWgqt/mWmWdk8kZbrv79NV63412YrRBGG
+         jYM29yedYn13sKVHzKgKYFQo1cDVCWgjsy3tImXiZvHoOW3nbIrgKWn7Q70Zt77xVCJQ
+         Xic7JL9kgjMNIiTqeXGJAD2krZ7X2g/57WG1HM3azgygK33KGLP4Twfquup/GjfAyIEr
+         EE2XNmXQ9039WbO7JoHfcV+ws/7fRUFJATURKZjGm/glMtWTEMGAJhEbFM2PlA+Zi5Sf
+         Egtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767116322; x=1767721122;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=275llJmfDJIjYnTG1eJ6coO/AOZWo8EL2vjIDEhI4Ok=;
+        b=athL6ev/hKiJpj/q5V4njrxuiPQdckjX8CNxNMZnrqQb/noyz+BSjutOLgsVTJDRYb
+         IGl61aeJEqshcS+ba5i2F0tYxTfRtkFh4AvHZivb86B8VxUgAgQ4L4LRFnQL1SLxBOt5
+         TZi2t3f/HD6xmXpX2y9pLNbRu9IM2/rD/XFZBZrZKSokjxWx9K+HVADA7S5mZoZM1Rs2
+         7sz/7vV/4GAQU8urhBpvIzkcU9Q8it+PT8yFYpaf11BVPWBTro+SbVmdToHfyrUMRNum
+         dgHBAlvKZHyTWdMQFNSHgaXK8P+5qaYPxs5QcS1pWHCj/ptV5V5M65VhGXzFLGQavB6w
+         gk0A==
+X-Forwarded-Encrypted: i=1; AJvYcCUGQAP/1uIh4uv6AgnJODHd8FjGM/U/ODquQk5dYfc4PgpxygeLOyGzuZjkeP2fduDXu9mdjd+OMV+u@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsXzt5y5Qnq9ujkqPTsvQ1RrUIYN2rsAxAr+y2Te/HHLyYITI9
+	cBHfOLwnFtyncGXZIu9Hgyi82sf/d3C5YeAArgoCzEPyClg91vK9UInDldosafemvVUF06yJpC/
+	Hpcx3rIotLD/yP3d7kdO9V838WliWKn4p3B8cbkm+rFhLA6WNElClse+iFHotaAhsTK4Z87Al
+X-Gm-Gg: AY/fxX5SwHz63TCEPWea81UrxHl+gd4isjzT9lyChLEIv59F9fZm0AtRvA0gTQVpWl6
+	25lfIcSzwDI6LKKcgC8dXYlhR5VmdSi7Dsd0XsVVZzEkkFceqUY78nt2bhSsKBngWuCk8FW3cGe
+	3yV5g3qAuKPDGXMDGt4rE/o9Fc48K2RobCjnmkFr/4RlRHxMcBYGMClykJTelrQF/quRIQvZAPF
+	xhndli7wP2x9CPV2To+bhnmjERYnCjYZ0tJzuB5OokQbLE7jI1h/obrDAn6ON2IsiyhTaEfIJvS
+	JYw7ruLbuCuS1WwQCCO/GC/JI/pnWRKsgOwbGj26vRQcqeri7q5eCXVQv5Ey5Lw6XRSFFVThdTG
+	r1fauUsYu4iJZNyBSv2ZBmzc7W7Uebmdg+Q==
+X-Received: by 2002:a05:6a00:e11:b0:7f0:d758:3145 with SMTP id d2e1a72fcca58-7ff64ed1072mr32539817b3a.6.1767116322461;
+        Tue, 30 Dec 2025 09:38:42 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHwouQcTZ2Z5Xf9LdDYjHPmfo4aMNq3gnfUtRKHiazJcwkLcbZCTsxy1rWLuSUqo3En3fE2YA==
+X-Received: by 2002:a05:6a00:e11:b0:7f0:d758:3145 with SMTP id d2e1a72fcca58-7ff64ed1072mr32539789b3a.6.1767116321997;
+        Tue, 30 Dec 2025 09:38:41 -0800 (PST)
+Received: from hu-tdas-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7af35f37sm32865208b3a.18.2025.12.30.09.38.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Dec 2025 09:38:41 -0800 (PST)
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+Subject: [PATCH 0/3] Add missing UFS symbol 0/1 RX/TX clocks
+Date: Tue, 30 Dec 2025 23:08:33 +0530
+Message-Id: <20251230-ufs_symbol_clk-v1-0-47d46b24c087@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ymaqOL8nauUqvgFe"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqK8hRsVWV6WfbZ6hF1PwFfOJhyOrpWwoOhviAgv5ZxKUw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABkOVGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDI2MD3dK04vjiytyk/Jz45Jxs3WQzM0sDE6MUM9OkVCWgpoKi1LTMCrC
+ B0bG1tQCEHYHVYAAAAA==
+X-Change-ID: 20251230-ufs_symbol_clk-c669042d65be
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+        Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMwMDE1OCBTYWx0ZWRfXwRONH+Bkcc0q
+ kNMBsZFU+UdyyUXymz0uHNATcFLpqBgzJK2p0+4a5ac89R4IkAWtAyzDdyvmbFvnNc+vVT0WhWy
+ 9xiHL44/qirbn+7Wsx6YfMwU+hKkI4n1wwvMRNolqnhnewxiEclXZ8zC6pnNKJ+bwk9V1K/Tx4Q
+ nou6lnT1movc9TfDm+5OwRVzalfLn8I1azeG45O8fqGFEV0mnVBrf6HQWQJPO7rCoxE+HTRJ8mu
+ sE/m+oICVDwaVXH28ckTghIXbEZqGkTtyt4RVnKHosIjovERqrOf6Q3iJX1eBWrE5c7ngBulyqG
+ SmEoHPtrC/sWD64jlQH02kacACodMIfa+2kjenvoxVEjdFH9QkcCxa6Q++e7p3etWNbxMpgBkgW
+ cFlrW9vXb5fLRjOPCo46s+vtoGJKeQnI3Er17Ny4bjxXv+HCKEBHlOqkSJ0RGuG27UAIeSakALO
+ Eee+XWZjjaRw2O00B0g==
+X-Proofpoint-ORIG-GUID: y3MPZuarxVif69YXsDVDoAUbEpnMr4f9
+X-Proofpoint-GUID: y3MPZuarxVif69YXsDVDoAUbEpnMr4f9
+X-Authority-Analysis: v=2.4 cv=FJ0WBuos c=1 sm=1 tr=0 ts=69540e23 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=U0TCL1Xn5xtV1L3338gA:9
+ a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-30_02,2025-12-30_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 impostorscore=0
+ spamscore=0 phishscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512300158
 
+Some of the UFS symbol clock infrastructure has been left undescribed.
+Add the required muxes in the global clock controller driver.
 
---ymaqOL8nauUqvgFe
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The UFS testcases have been verified with these clocks.
 
-On Tue, Dec 30, 2025 at 09:21:56AM -0600, Rob Herring wrote:
-> On Mon, Dec 29, 2025 at 9:14=E2=80=AFPM Alex Elder <elder@riscstar.com> w=
-rote:
-> >
-> > On 12/29/25 8:13 PM, Rob Herring wrote:
-> > > On Fri, Dec 26, 2025 at 03:28:47PM -0600, Alex Elder wrote:
-> > >> On 12/22/25 7:04 AM, Guodong Xu wrote:
-> > >>> Add description for the Supm extension. Supm indicates support for =
-pointer
-> > >>> masking in user mode. Supm is mandatory for RVA23S64.
-> > >>>
-> > >>> The Supm extension is ratified in commit d70011dde6c2 ("Update to r=
-atified
-> > >>> state") of riscv-j-extension.
-> > >>>
-> > >>> Supm depends on either Smnpm or Ssnpm, so add a schema check to enf=
-orce
-> > >>> this dependency.
-> > >>
-> > >> I have the same general question on this, about whether it's really
-> > >> necessary for the DT binding to enforce these requirements.  The
-> > >> RISC-V specifications are what truly defines their meaning, so I
-> > >> don't really see why the DT framework should need to enforce them.
-> > >> (That said, I'm sure there are other cases where DT enforces things
-> > >> it shouldn't have to.)
-> > >
-> > > Does the specification have some way to check it? What happens if a DT
-> > > is wrong? Are you going to require a DT update to make things right? =
-Or
-> > > the kernel has to work-around the error? Neither is great. So having
-> > > this as a schema makes sense to prevent either scenario.
-> >
-> > I'm really glad you weighed in.  I actually have several questions
-> > related to RISC-V extensions and DT.  But for now I'll focus on
-> > just this...
-> >
-> > To answer your first question, I'm not sure how the specification
-> > is "checked", or what "it" is that you're asking about for that
-> > matter.  Also I think we have to be clear about what "wrong" means.
-> >
-> > RISC-V is defined by a (large and growing) set of specifications
-> > that are developed through a well-defined process.  When a spec
-> > is *ratified* it is committed, and it won't be changed.  These
-> > specifications are ultimately *the* definition of RISC-V
-> > compliance.
-> >
-> > I assumed the "wrong" you're talking about is a DTS/DTB that has
-> > been committed but somehow does not match what a RISC-V spec
-> > says, but I might be mistaken.
->=20
-> That's correct.
->=20
-> > Anyway, we can flip that around and have a similar problem:  What
-> > if we define the DT binding in such a way that it doesn't match
-> > the RISC-V spec?  The (ratified) RISC-V spec is right.
->=20
-> Sure. Any time there is more than 1 source of truth, they could be
-> mismatched. But it is 1 spec and 1 schema to compare, not N DTS files.
-> Checking the schema matches the spec is much easier than reviewing
-> every new DTS file.
+Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+---
+Taniya Das (3):
+      dt-bindings: clock: qcom,x1e80100-gcc: Add missing UFS mux clocks
+      clk: qcom: gcc-x1e80100: Add missing UFS symbol mux clocks
+      arm64: dts: qcom: hamoa: Extend the gcc input clock list
 
-The objective is not to define things with divergent meanings anyway,
-only to say "this string is exactly this version of this extension",
-so that if some other version of an extension comes along we have a way
-to differentiate. We didn't before and that became problematic for both
-standard extensions and vendor specific stuff. You'll note we don't look
-to define anything ourselves, just cite the spec that provides the
-definitions.
+ .../bindings/clock/qcom,x1e80100-gcc.yaml          |   8 +-
+ arch/arm64/boot/dts/qcom/hamoa.dtsi                |   3 +
+ drivers/clk/qcom/gcc-x1e80100.c                    | 102 ++++++++++++++++++++-
+ include/dt-bindings/clock/qcom,x1e80100-gcc.h      |   3 +
+ 4 files changed, 112 insertions(+), 4 deletions(-)
+---
+base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+change-id: 20251230-ufs_symbol_clk-c669042d65be
 
-> The only true fix is to make the spec machine readable.
->=20
-> > My thought was that we should have software do the verification,
-> > and recommend the software (e.g. arch/riscv/kernel/cpufeature.c
-> > in Linux) be updated to verify things before committing to a
-> > DT binding.
->=20
-> That moves validation from build time to run time. How is that better?
-> And what about other OSs?
->=20
-> I'm very much of the opinion that it is not the kernel's job to
-> validate the DT. It obviously has not done a very good job given
-> issues we find with schemas. It's fine to have some checks in this
-> case if the kernel can't function (or use/enable the extension)
-> without the dependent extensions, but there are lots of classes of
-> errors the kernel doesn't need to care about.
+Best regards,
+-- 
+Taniya Das <taniya.das@oss.qualcomm.com>
 
-By and large what's in cpufeature.c is there to turn extensions off
-based on kconfig choices (vector support enabled etc) or kernel design
-decisions (kernel requiring both d and f extensions for fpu support). I
-don't think there's anything there that doesn't assume that the
-devicetree is correct. For my money, it's much simpler to describe
-dependencies in a binding than add more code to the kernel that tries to
-figure out dependencies at runtime.
-
-
---ymaqOL8nauUqvgFe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaVQN1QAKCRB4tDGHoIJi
-0pPPAP4x6bW65umXa6RU00YxbiyATI4Z5w1FZqeGJ2pVpPy15wEAn/l7pCbOzmgf
-4bOyYpW9PLJJt0w+gKHxg8U0+X6LcAg=
-=Cne9
------END PGP SIGNATURE-----
-
---ymaqOL8nauUqvgFe--
 
