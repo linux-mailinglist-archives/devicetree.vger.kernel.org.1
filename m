@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-250425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08EF6CE904E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:27:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F1ECE9072
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:30:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 477EB302A954
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:25:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2D682300A9C7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036083054D8;
-	Tue, 30 Dec 2025 08:24:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD216242D7F;
+	Tue, 30 Dec 2025 08:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AmPGOcl/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XgHEBH/x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7AAF304968;
-	Tue, 30 Dec 2025 08:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A18F8632;
+	Tue, 30 Dec 2025 08:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767083094; cv=none; b=Obv+yvkS31Txdz4cpVLVTrq8O0suENGwAq0XgMqMYMO6wLW2WNxoZ7X3fvCJOnYS3aYcsdp0LE5rLVaSzIXFJ7NIIaFJYT+a++wmYwTw11MRlVJ9dLvlLaVHhLdk8Y1DS8sWX800zawMy3EsOTha4x3DNALxtCh8Q0XQPqPBOE4=
+	t=1767083440; cv=none; b=KfAw0L89Dk4cIhMv6RodD0WYu5TAAuOmhwcAGusWazZriHzv4UTJ7+Q98Rk9wHoymGEtV6oaQ+4hecHxIkNDezkIphgI8boWzA9LAixn1suZ+AQkc/eA4tzG6LqjPpr0jAspUlumR0UcjN6qAYn0wLrz6fmsT4LpW6zXpeJvidE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767083094; c=relaxed/simple;
-	bh=IA1k12UgLIS1u8d+vnsFBGqml4AHHe5zW320c+g6a8U=;
+	s=arc-20240116; t=1767083440; c=relaxed/simple;
+	bh=6+4hcyKs8Ymf4oWdbMF9mQ98nLVcjC0b5v4lZAALdj0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eRL797tTQTrHTdz1LESUFyWKmL/s7QfvBN5Y4gdw5UTL1OSKQVm3hfRDaCjCcO1hXk8mXnqOg02EDjpPoW5QkThfdo2jXm6FikP/X6lzPRfg67yGTvoMCsxK3sl/A7KYi3Y2Gq6RNsXql4f4TRkndICwYat6j8xAsu8Y+nQuraY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AmPGOcl/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D35FC4CEFB;
-	Tue, 30 Dec 2025 08:24:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ufNjjQtizXy3zjAHfrmSWUEEaPmr0aML2KvTPN+Nn5o0asiE3G73uHJOZ1xkyi69xMKpZ+1H32Dtfi+jfTWs9CpEIkyzWI3F/TbGbJ9peWN7L7a4assd6tLQB+HjiSNwHc13DizpbF8C+trsZPA7bQZyNS6/rS1LQxj4Zna7src=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XgHEBH/x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EC6BC4CEFB;
+	Tue, 30 Dec 2025 08:30:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767083094;
-	bh=IA1k12UgLIS1u8d+vnsFBGqml4AHHe5zW320c+g6a8U=;
+	s=k20201202; t=1767083440;
+	bh=6+4hcyKs8Ymf4oWdbMF9mQ98nLVcjC0b5v4lZAALdj0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AmPGOcl/vnaajXN1b0gJNxCgG4/zODZVA8DDOcq2tMRy0Mr537nthtPQAjL5m6TFF
-	 /SzcgDenr84FowcZTv0iK66w5elm2+1sIUOl/f4C2q3jkk9WMufpRhmctMKNLhs7JE
-	 /isQF/RfbwlLFf+S25sV00h6WgG2sts42mkd034D1O8JSB4WYAkbRfYI+9OoatSWTy
-	 aiNEIcXgCowiZAYa9fKdIqaZmZDmgg40dK5GKA1xQPTvyjk91Fuz/6pEHt5lzXydpM
-	 +hTerLCDV1JvGMAIDf5YSHVhxUZhoL2Gb1fqIEgGOJhe7bu9jyh8pdhUx8yGxb/unJ
-	 8/Y4fCkep65rQ==
-Date: Tue, 30 Dec 2025 16:24:49 +0800
+	b=XgHEBH/x4S3RSpFxF3Z8rG8oMKJW/nApb4fKeYuTS1d5efEyuEfg8MgXTR3ltwn6R
+	 Z2BsB+d9PseMFU2c1a2kZPDoAit6uAfiaL+1P50MV14Rzp5Sn+oizVioGZzj0ZTp0/
+	 o1hbqwll+K0wQzQJFMeREEj7eweKyEX2oSQCSwpqFZFJBH6PIx6hW6YwjQDkPqCUYG
+	 CKhFKnzR5ujIeB/zbCvJOrT7y5wcGraLrArsJYWFpwzyJI8Acmdvw+ILwgeCozFcSR
+	 W8bWo+WA/1tQkMtLrwNCtJ8JI379rZedFuweSTlt2o087U/xoWC1ObgWDsA9wCLk9k
+	 YAuEymA11pcIQ==
+Date: Tue, 30 Dec 2025 16:30:35 +0800
 From: Shawn Guo <shawnguo@kernel.org>
 To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	linux@ew.tq-group.com, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux@ew.tq-group.com,
 	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: imx8mn-tqma8mqnl: remove virtual 3.3V
- regulator
-Message-ID: <aVOMUUfMIgBfn9NR@dragon>
-References: <20251216133927.913039-1-alexander.stein@ew.tq-group.com>
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] arm64: dts: mb-smarc-2: Add PCIe support
+Message-ID: <aVONq0pHbzhQABZ0@dragon>
+References: <20251217084806.41853-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,16 +60,12 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251216133927.913039-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20251217084806.41853-1-alexander.stein@ew.tq-group.com>
 
-On Tue, Dec 16, 2025 at 02:39:23PM +0100, Alexander Stein wrote:
-> From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+On Wed, Dec 17, 2025 at 09:48:04AM +0100, Alexander Stein wrote:
+> TQMa8XxS on MB-SMARC-2 supports mPCIe on X44.
 > 
-> BUCK4 rail supplies the 3.3V rail. Use the actual regulator
-> instead of a virtual fixed regulator.
-> 
-> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
 > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Applied all, thanks!
+Applied, thanks!
 
