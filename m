@@ -1,148 +1,272 @@
-Return-Path: <devicetree+bounces-250552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90229CE9EF0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:29:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43ABDCE9F02
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:31:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF8113020C5A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:29:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2DE5D301DBBE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314FF2737EE;
-	Tue, 30 Dec 2025 14:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B809825E469;
+	Tue, 30 Dec 2025 14:30:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WSOZa8y+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DS1QKy7P";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JySDxYUr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96BD25D209
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 14:29:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40B241F4611
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 14:30:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767104983; cv=none; b=In5OQmo+ouw2d/mWMRYSWHLkQXyLgy4AhgpdxKQHwoZ4YluB8LSC/DGZcem1Qy7VIxiW2MycSMXQlkmC24Hwva2ZdoD6QjCtlkabEIbXpTBXWBJUTX/4ATGsfZUIFbNEBrY6Bp1sDUAllnco7BDSeSm7Pv78stlTCUylB4RbkyY=
+	t=1767105045; cv=none; b=boGbhITRDJDG2/qys8bru+S3aMo/JStz3p3MJzP0LNVp+78ZEhp3ZGAU+c1D4JZPsxkpl4Hm0OPaNIpTeZsGFR3NhmII8MnDdzWvXtvcjDAB1yzakm+JknrlGrvsvaLHsuSjWQCQmn+87wD6XNthTT4jMY5aujADUjz0T5uAC2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767104983; c=relaxed/simple;
-	bh=a1J69aM75aks5NKEgsk6GGcoN5bgwi6MKrm7NlrTPLc=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hHf80Um4JMGUYfa6XH7OYlK0qXfoja+Vfkpa6Kg5061TkVI2dzTXVwG8jUSNXSkk1m1Gr+7Qe27y2c5BNSw39rj0zkdi6VuubSCLcxrfJ2BEZTKeD26Z+xNTNbEFf1u544YKS7GX8SN5BBvb9mVbjrFnnp2h6Vfi2V2Eu8rHIAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WSOZa8y+; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a09757004cso128356285ad.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 06:29:41 -0800 (PST)
+	s=arc-20240116; t=1767105045; c=relaxed/simple;
+	bh=QP26hpgxF+lAD8Z9cGWJFhCymcgjif5Fg8NHCOBcVLM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VMNxMWL8m4Mt72ZrfT3CrEBKHnBEbETVMMyZInJe6n1aoFGQle033mZ+8O4SSTrFVl3HbAZ0qW/0MDRBDOvGrGiMhiovRQcxc+cQ7CTSj13R28DeJXgtbi8C6EDH1FqBsxDganDhK8o/qYEdzOe/QAGBtVsjSZK95zcnVL9ayxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DS1QKy7P; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JySDxYUr; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BUD5l782548684
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 14:30:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/PZp3x2OV0c+hwCgSx1p/1wkfRgjK/4GzIE/SLBWfSM=; b=DS1QKy7PcO3ICAte
+	S6ADdJn6kKwhvtdKzki8P2g1Z4/FsAZ8IljuSjOda6a1u1huvAnEl+b51jtcmy4S
+	1ipfEJA3xSJlRSrsAfZrn6MgJuzX+nf1GYVYb/eB2l2jhWcJz7quZkDCEFyHzQfd
+	Qom7Ug/yg+sUS2/KjC1Ppv8Ue/wCiT68qm7RQ+t0CJMraXEWtginjUSuk7AXCYRY
+	ZqtdjyCuPxTlkgtk5cSgc7vIwZw8rQ4shuG5bwNYUUJHI519lsQOcMPd25Plo82Y
+	MmNCqOq4Sjw3zcIjF1tgV/SvqkfOd+hJyOuk+UybTDQf6mWyJluExI4Wegbf+eQl
+	YBVqbQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bc7399d4q-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 14:30:43 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee409f1880so27305141cf.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 06:30:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767104981; x=1767709781; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RxCXRDx0w1yWm9FY0vwmJNFDCxUNTSO4kUQ4eb5iubM=;
-        b=WSOZa8y+F91K+5UPoDZTU4L497GHK5BOsFbUb8eEiCOXexUIPLva4JdIAE+SsK9xT/
-         S2NiV8ivFM8vH2km7NqAAwlaJDDPJulF+NBJlrMdKTSmGXkieydv4Makv3lv+Uorq1v2
-         Oh3qD0Ic2Ohp716PJ0/xna2akt9PaxPCFskB5w+TsKwrktjP6D2zgItUTbL7Yz//OOaB
-         aHO2GPObIzWfWWVCt8PRugUUiOKjESlIK1ddxRLI4XmYocjFF2d8BVTbaf5nhwso//dV
-         EJJ6bjfmTGmzQLO4VtmuO5IsuJsuyXnrQd8wv9QJFAWt4NtqMoomYPtcT1FRM3wGrtaS
-         aSoQ==
+        d=oss.qualcomm.com; s=google; t=1767105042; x=1767709842; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/PZp3x2OV0c+hwCgSx1p/1wkfRgjK/4GzIE/SLBWfSM=;
+        b=JySDxYUr2afnVwcDVf1SRJnPnrkq0+LXb0GENVOgZraO4PqKLNfwCrs0dGCv9Xh8uF
+         N4R3xtE8L+1C6VVzHIr7NmyOgUApYlqS/Jx/MOb0UN60YuKaWmykOiumB2re/OkAh1H8
+         aScUgr1e95qwyFGUY7lBOi48RPeus6OnGSdMkX0Ad8DPNlQIM2+HI94LdMnETElJ8kvM
+         kqyhAU/PvzopQdkr376QClqEltnU4+B2B+lH7m2VDn8BWv8D1FdWHGHdpuhgs2+Tzwsb
+         tvfE/rkLffNGKR3CZx+UqCSMjrqIeE16TRC6w7BnBtYkey0oV3/BPVGEft7kC53Xcuh5
+         KAwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767104981; x=1767709781;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RxCXRDx0w1yWm9FY0vwmJNFDCxUNTSO4kUQ4eb5iubM=;
-        b=aXJY/2yQPtQfC07a9YJNZrVlus35fwtQ2jmweS2T+mUxUkKs71g2Nu2T7sa8QSRz5S
-         7SXjlnUxtpvsztPmQMgzkuSByeI6mSBUx0o8bJhye7DhumIjHvqhT7su/mJeJ/LHSTax
-         DVGQTmwXCBt9j2Aj4bf08DCi23JIn4lF2IpQl/v0/xi3grOoPzxWhbhEYFzUPCclxeQC
-         ETsdl5fL6krnIuboqfdFDaMh6wzH6aNsfgh7H5X6FWMzbWg75LLfTjMqsn+Siyj5v0xt
-         1ux7XasOECW0q4kqGbmcRx8IeiX9LZ4muyw+8lf5zFZWPS+kOgD7bhaN4DZMXDvL9F43
-         lpTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU87HcxRUEIdtseRIdwfj7lrEpvVRW0jEF67WFgCrxwo1w8zEcDg0Vv4ZNdCidDfgzsY5ziU4Qq1SLL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1qmp/OM//kNEQh+MrtN45v5kcXNZ4bc8LJy2TERRarrJdYs9k
-	E3ESQk5bLhE9KaueYfLXfo/8KU/TwqeeOf8XKG4EM67qOvHa+kMBHHb/
-X-Gm-Gg: AY/fxX5SWE4OH6Xz2tE7SR3iMJ42u3RhVTCL2KOXs1fDU+aHdyWUUqjCtL+MBQQCLLT
-	GmmRIT1oG4cXTxTrXIvDh+ao5OCO3FqJhA5f/2xD0Ttka++x8FOHoJMTGF7iOcTcUhnI5OnqCrv
-	fKMjDCS3w8o5PPMbrPsxDxeiJet4FmUmNwJdkPnk+iMUDKPSKe9+Ix5iWWtr05MymaU/sc2eXdp
-	22PdkMO3k4LoZFygBWqQbOarxRom5wGTQM5KdAWxO4q1BUaMdmKNI4ve7y3M5dz1sPBXOgESqS6
-	Zxn0SHndJBNOtUITbUUjETm26F0XPX2H1z7j2K/HGaz4Gw+82iVbLNzqOo1B95+cZ+jQHJhX3vZ
-	iBS5Z4ZYW5nc4KAC0O42AmAIiI98NPRqw3zxbE8sCHMJRBNXLdBbQ8GV6YlJVYK+nDyyrETh5Lo
-	LKXckwru6LWFj0LNM=
-X-Google-Smtp-Source: AGHT+IEuziUm5FuVFOLapyO93nCQfCb40IgI2Or9ENPDmWDsqW88deWU184+w+hKs3Tyi+48xUtmng==
-X-Received: by 2002:a17:902:f607:b0:2a1:4c31:335 with SMTP id d9443c01a7336-2a2f2717b88mr314299295ad.26.1767104980514;
-        Tue, 30 Dec 2025 06:29:40 -0800 (PST)
-Received: from localhost ([211.94.234.112])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3c6a80esm298183155ad.8.2025.12.30.06.29.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Dec 2025 06:29:40 -0800 (PST)
-From: Encrow Thorne <jyc0019@gmail.com>
-Subject: [PATCH v3 0/3] i2c: spacemit: add reset support
-Date: Tue, 30 Dec 2025 22:29:01 +0800
-Message-Id: <20251230-i2c-reset-v3-0-7500eb93b06e@gmail.com>
+        d=1e100.net; s=20230601; t=1767105042; x=1767709842;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/PZp3x2OV0c+hwCgSx1p/1wkfRgjK/4GzIE/SLBWfSM=;
+        b=ufZORVZ9CqeMn0eFUAMyOBResl06x0/a1ZBgXPXfkwGWS/gZcjBSH85jd9y/1l4RWV
+         iM6OqQs4ubxMieXEhgasDUNZN+rEdAr6r4QRUnHNu4xK2vDhi05MTTEOpzG6NuaUfJfQ
+         jcVI7oNWjB37o12mR6l5le6DGODGmVn7zVUYeeIjbmHto48mKAc8nTLnJKezVfWW2PZL
+         3RT2Tkw5YXfDren23QJHj5KUR10EmOmWotV6Wc1gidQfMn31dFGW7BSLCwwuRIWVuM0B
+         iCRbHZ6sqAbWIsp0gIsSGCPcaOaVFdrOjq/yBxxrHtTtZ9RSQV2uQM7XL9yJc/XMSMvt
+         /DkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXzZlJiv4dwjZS4MxQMktCEWfbd36N8Lca2HvoxIqZ4T/U0c6Vjq0Z2O/vdGZ0jCR+TokcNLuuCUtAG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yywlko82hm/8daxHqDX/ypKgAeUKnpqCsoxj8od8c4/6fK/MLir
+	YZh1urMwH0aSstY26vsubDIZEEEKYAILmA5VGy98l9GQbyCwsIqWuEgzCxN+44zYuq0rikKi56i
+	Q1U1cB+SW30HUQNb3UNw3lTcwj4BAMcuGCIiXlRaktUXCo4cb6oO1GRBBCnqK4EqmDPN+fmf0
+X-Gm-Gg: AY/fxX5I1egK5ZRCWTUZSmc9PSBBXp9BxzIsmFi4I4JDkXs7R8c67XpIhAml+nCShGj
+	P1rXf8JqZABAWpFh3xSp8s3JBgivhPF6xAaeed6Uv45icNc7vRKqrSMP5StQ7lfn6you1Y5Z4Aa
+	ckAIfDru+PSfOeZWJz0kreLnblTs8JDM7KKt9L+V0XNOP78MKCTqUA7/oGsATJmlhQAqh2k/1GY
+	FmRcYT8K3OlG1mB6OnOH8qEIc3TRuzPLDU2M6aWFHGgZC0WSiBSVCrmXOeT9nqewGtOI8qn06xl
+	RhkfBURjlA+vQrhP5O3zHeP/L0MhinboKm9gi80O9OdTv2g/XbzIoj3u59EaT8wDZF2eThRTfmW
+	VvMUj9lJI1rjYG3Qd/c85AadR1SLCL3N+ECdH0k00z2W2bVYSw8CwonUzEJBztR9NWg==
+X-Received: by 2002:a05:622a:1983:b0:4ee:1924:c6fc with SMTP id d75a77b69052e-4f4abcb50acmr385349351cf.1.1767105042142;
+        Tue, 30 Dec 2025 06:30:42 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE5pOt+wPqz8LsodsxGbIxAzrDfZ+9egM1Xc+qC7esh4eB5dGKkht5V5r7Vd5boEDylrxpaSQ==
+X-Received: by 2002:a05:622a:1983:b0:4ee:1924:c6fc with SMTP id d75a77b69052e-4f4abcb50acmr385348931cf.1.1767105041564;
+        Tue, 30 Dec 2025 06:30:41 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8044f4acdbsm3534554166b.22.2025.12.30.06.30.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Dec 2025 06:30:40 -0800 (PST)
+Message-ID: <f5cd5639-00d6-4d6b-866e-7b3503a59d9e@oss.qualcomm.com>
+Date: Tue, 30 Dec 2025 15:30:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAK3hU2kC/03MywrCMBCF4Vcps3Ykmai1rnwP6SImYztgLyQlK
- CXvbiwILv/D4VshchCOcKlWCJwkyjSWMLsKXG/HjlF8aSBFR036jEIOA0de0NZ31qYhbTxD+c+
- BH/LarFtbupe4TOG90Ym+609p/pREqNB6UtqeFHF9uHaDlefeTQO0OecPQOy0fKIAAAA=
-X-Change-ID: 20251218-i2c-reset-a7be139213de
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Troy Mitchell <troymitchell988@gmail.com>, 
- Guodong Xu <guodong@riscstar.com>, linux-i2c@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Encrow Thorne <jyc0019@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767104943; l=1371;
- i=jyc0019@gmail.com; s=20251009; h=from:subject:message-id;
- bh=a1J69aM75aks5NKEgsk6GGcoN5bgwi6MKrm7NlrTPLc=;
- b=18EDF1Yo3gil3UtsnPjnP04wMrhNkhNbTfRqJtMQTnJdkoA05tCeC3CideDM+jpKg5I8J2niZ
- Bu9piLwlLabC0cfTZuCfH/4VcODZZNdWNjER3S6w/QX91MM1paamAdS
-X-Developer-Key: i=jyc0019@gmail.com; a=ed25519;
- pk=nnjLv04DUE0FXih6IcJUOjWFTEoo4xYQOu7m5RRHvZ4=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: Introduce Glymur base dtsi
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rajendra.nayak@oss.qualcomm.com,
+        sibi.sankar@oss.qualcomm.com,
+        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
+        Maulik Shah <maulik.shah@oss.qualcomm.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>,
+        Qiang Yu <qiang.yu@oss.qualcomm.com>,
+        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
+        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+        Abel Vesa <abelvesa@kernel.org>
+References: <20251219-upstream_v3_glymur_introduction-v3-0-32271f1f685d@oss.qualcomm.com>
+ <20251219-upstream_v3_glymur_introduction-v3-3-32271f1f685d@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251219-upstream_v3_glymur_introduction-v3-3-32271f1f685d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: RiWxg1LirIRKPjkTaHdL5WUEuyeF_nzj
+X-Authority-Analysis: v=2.4 cv=HrV72kTS c=1 sm=1 tr=0 ts=6953e213 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=w7Tv4zNA8aCE7STyPtkA:9 a=G0Cx74KbSqDmYbrs:21
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMwMDEzMSBTYWx0ZWRfX39NE27NB5Pgc
+ bm8Oz7o7qLOYP3mqNwLnAepNzxwhrxfCVR3VBW+w0joAIzkFffEKQKUrSjr0LtEwnXeVlWTLHnY
+ qmtgZLUc6f0gCPVhV0xFDgP84/2Ih30TJCmXm7p7vM8nfY4a+FMCdl/JX6F872sOUmYq3UGqzTJ
+ o+YP814xFkSs0s8syuw5RWYKkz5DgYisAvKGmuWii3nCxmD34MWOWc6s4oYQW3dlbBPV+e/DBpg
+ 7CxeasxuAFwe34JPkPqzNzgqy0IYzQe3hmzTbz74CJH2G97ibCUvj0R+/1BbDhTV/ojOK6gbGJh
+ tPldPhQ3BZD/8daTya9/u54ro1vG5UkMecQ94J0SO2L6DR4+W0p/mn/EEBzdf+0eVMhSmlhATe1
+ hJiMxPLCkX6bNaef6+OlqmpkALky4JDq5U2AksmAqKaEJ826kMz+rX6wmp5ZJvtvS/atb9DREDN
+ IniDzYUtdL/PvaR8+xw==
+X-Proofpoint-ORIG-GUID: RiWxg1LirIRKPjkTaHdL5WUEuyeF_nzj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-30_01,2025-12-30_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 adultscore=0 suspectscore=0 clxscore=1015
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 bulkscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512300131
 
-Add reset support for the K1 I2C driver. A reset ensures that the
-controller starts in a clean and known state.
+On 12/19/25 3:46 PM, Pankaj Patil wrote:
+> Introduce the base device tree support for Glymur – Qualcomm's
+> next-generation compute SoC. The new glymur.dtsi describes the core SoC
+> components, including:
 
-Reset ensures that the I2C hardware is in a clean state. We cannot assume
-that no program used I2C before the kernel booted.
+[...]
 
-Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
----
-Changes in v3:
-- Move reset property in dt-bindings.
-- Use devm_reset_control_get_optional_exclusive_deasserted() instead.
-- Rebase to v6.19-rc1.
-- Link to v2: https://lore.kernel.org/r/20251219-i2c-reset-v2-0-ad201a602e74@gmail.com
+> +		gpi_dma2: dma-controller@800000 {
+> +			compatible = "qcom,glymur-gpi-dma", "qcom,sm6350-gpi-dma";
+> +			reg = <0x0 0x00800000 0x0 0x60000>;
+> +			interrupts = <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 589 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 590 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 591 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 593 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 595 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 596 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 597 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 598 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 599 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_ESPI 129 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_ESPI 130 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_ESPI 131 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_ESPI 132 IRQ_TYPE_LEVEL_HIGH>;
+> +			dma-channels = <16>;
+> +			dma-channel-mask = <0x3f>;
+> +			#dma-cells = <3>;
+> +			iommus = <&apps_smmu 0xd76 0x0>;
+> +			status = "disabled";
 
-Changes in v2:
-- Replace reset property in dt-bindings.
-- Use devm_reset_control_get_optional_exclusive_deasserted() instead.
-- Rebase to v6.19-rc1.
-- Link to v1: https://lore.kernel.org/r/20251119-i2c-k1_reset-support-v1-0-0e9e82bf9b65@gmail.com
+Any reason for it to be disabled?
 
----
-Encrow Thorne (3):
-      dt-bindings: i2c: spacemit: add optional resets
-      i2c: k1: add reset support
-      riscv: dts: spacemit: add reset property
+On some platforms the (common and default) TZ config is overzealous,
+but that shouldn't generally be the case on compute.
 
- Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml | 3 +++
- arch/riscv/boot/dts/spacemit/k1.dtsi                       | 8 ++++++++
- drivers/i2c/busses/i2c-k1.c                                | 7 +++++++
- 3 files changed, 18 insertions(+)
----
-base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-change-id: 20251218-i2c-reset-a7be139213de
 
-Best regards,
--- 
-Encrow Thorne <jyc0019@gmail.com>
+> +		};
+> +
+> +		qupv3_2: geniqup@8c0000 {
+> +			compatible = "qcom,geni-se-qup";
+> +			reg = <0x0 0x008c0000 0x0 0x3000>;
+> +			clocks = <&gcc GCC_QUPV3_WRAP_2_M_AHB_CLK>,
+> +				 <&gcc GCC_QUPV3_WRAP_2_S_AHB_CLK>;
+> +			clock-names = "m-ahb",
+> +				      "s-ahb";
+> +			iommus = <&apps_smmu 0xd63 0x0>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			status = "disabled";
 
+Similarly here (individual QUPs should stay disabled because leaving
+them all enabled would lead to multiple attempts at claiming the same
+pins)
+
+[...]
+
+> +			reg-names = "parf",
+> +				    "dbi",
+> +				    "elbi",
+> +				    "atu",
+> +				    "config",
+> +				    "mhi";
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x78105000 0x0 0x100000>,
+> +				<0x02000000 0x0 0x78205000 0x0 0x78205000 0x0 0x1dfb000>,
+> +				<0x03000000 0x7 0x80000000 0x7 0x80000000 0x0 0x20000000>;
+
+Please align the '<'s (in all pcie nodes)
+
+> +		pcie4_phy: phy@1bf6000 {
+> +			compatible = "qcom,glymur-qmp-gen4x2-pcie-phy";
+> +			reg = <0x0 0x01bf6000 0x0 0x2000>;
+> +
+> +			clocks = <&gcc GCC_PCIE_PHY_4_AUX_CLK>,
+> +				 <&gcc GCC_PCIE_4_CFG_AHB_CLK>,
+> +				 <&tcsr TCSR_PCIE_2_CLKREF_EN>,
+> +				 <&gcc GCC_PCIE_4_PHY_RCHNG_CLK>,
+> +				 <&gcc GCC_PCIE_4_PIPE_CLK>,
+> +				 <&gcc GCC_PCIE_4_PIPE_DIV2_CLK>;
+> +			clock-names = "aux",
+> +					"cfg_ahb",
+> +					"ref",
+> +					"rchng",
+> +					"pipe",
+> +					"pipediv2";
+
+Please align the '""'s (in all pcie phy nodes)
+
+[...]
+
+
+> +			interconnects = <&pcie_east_anoc MASTER_PCIE_5 QCOM_ICC_TAG_ALWAYS
+> +					&mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&hsc_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> +					&pcie_east_slv_noc SLAVE_PCIE_5 QCOM_ICC_TAG_ALWAYS>;
+
+And the '&s'
+
+[...]
+
+> +		pcie6: pci@1c00000 {
+> +			device_type = "pci";
+> +			compatible = "qcom,glymur-pcie", "qcom,pcie-x1e80100";
+> +			reg = <0x0 0x01c00000 0x0 0x3000>,
+> +			      <0x0 0x7e000000 0x0 0xf20>,
+> +			      <0x0 0x7e000f40 0x0 0xa8>,
+> +			      <0x0 0x7e001000 0x0 0x4000>,
+> +			      <0x0 0x7e100000 0x0 0x100000>,
+> +			      <0x0 0x01c03000 0x0 0x1000>;
+
+I'm a little confused about the lack of ECAM enablement (through
+a large config space), but I suppose we'll see that soon..
+
+Konrad
 
