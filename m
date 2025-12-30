@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-250356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BBEBCE88E5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:28:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F17CCE88F1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:28:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A664F301B2CD
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:27:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 94A9F3020482
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:28:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C6712DFF19;
-	Tue, 30 Dec 2025 02:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9162F2E0407;
+	Tue, 30 Dec 2025 02:28:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cY2u0zxS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CtmdeF5g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 028A42E06ED
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 02:27:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572522BE657
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 02:28:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767061679; cv=none; b=MUSeKBEMr/RPXSS9zs+TKfCY1k0L/AUjY6JMu5xOCqXmQpTZ36CrfB0wmG6GmWXsQFQ6zHs5F1GfpaV6oYfXNxrzXKprqlf0e4kp7ssOMSP+C2XYQ0s5rQPC/Cslahg8ovmMrEXwUY0nlgMjgY8amzlh1dLZ7a8SWlZCGF+htak=
+	t=1767061690; cv=none; b=Rpq+Qb1dQjnDVVyAFZsDxuTdI2SxpO6ehnwxnEHq7Inxq8JecFmHX89vJ6qe/4fJ/l7FWR1zTjdDeUp+KfZI24wl+qr+CWm56zMSuH2kHHSZiP/aDm9czlk3w9h5FxaooK0GuatbbQ3GG7A/6tFrZgCHa17UYi94AUp/awmBLNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767061679; c=relaxed/simple;
-	bh=E9hCkg13sMLGfBn5Ay0BI1/P8wO/vHWD7Xt7AEV1nQo=;
+	s=arc-20240116; t=1767061690; c=relaxed/simple;
+	bh=hZMAxnWL5r+KiexN1e6GrVKsiCsKBA3Ey90h4qQueSU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=F8IuY9XRpkDVabpWftP3AIUlYNU9zm3CWJzxJW9D+ufEZPlv54t4S91CCUNKS2tvMFV8C9gneglYpgT+tcEm+ZhfhHBzszdgEPdXnYZe2r7j5ulHHLYhOwFmNVjyEJFN7IZubGaImfp0vo98Wr3qGIFIFlvF5NIXBKMGUotFh1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cY2u0zxS; arc=none smtp.client-ip=209.85.222.181
+	 MIME-Version; b=M9i3g79t8I728T12RBKR485AmYvU/CpWP3Y4ug5CRdQpOqhx1s22Iud6H7+hiLdK/NP+g0L6KIRgj0zP3EB5xWvefhxN8bfNlj3ZSJy0Q6K69zWgIwlbI7+vTvo5YgcMzH7iQQ5QQShUk8f6DGhlPJUbYRCoJqy8I8qZO9SzZpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CtmdeF5g; arc=none smtp.client-ip=209.85.160.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-8ba3ffd54dbso1361859285a.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 18:27:56 -0800 (PST)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4f4a88e75a5so85778981cf.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 18:28:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767061675; x=1767666475; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1767061687; x=1767666487; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gdQi+fone+BESYBoxIz7XE56ZJgQDpFhVO0ekIamygA=;
-        b=cY2u0zxSMpv1g7BKV9kb5fXDgEI+D3aOiSpEQIqQnNwFrN9HXaCL8Dm6JfWcLCYVlx
-         FW1b58oE5+Pph0hhBgsoBPIqvSIVXLyr6pZl4Qoeb3eDAFNeAOnhtP+SBlVXHxOO5C4p
-         CxWc1Ji+cWdEsQbDxP7tLTnW7FfAAUn4dt6xd5Wg9c22ou1ITqR8ruaCVlvhB/nV1s0+
-         4PqHli6QWvc0lasR4n5ETJRcbDqlEgKd2NkQAoT6Xd5jPsKKcWhTkIETv4BJsgXBSAnV
-         9gfBrAnkL1UxH/+Eceguf8vmamepo7nr+poJaMZNvgHUhsnUHw2WB5ADekvJ36E3fYKl
-         kLsw==
+        bh=0Boc0hyaruKu7zfPgeDx+KGd5hDYj3D0Tb7d06swQ2k=;
+        b=CtmdeF5gazjNOm2BZfnELhBuhN3h0NAGZqhtArcVccRTTup5immNbsMid4fn6ULxeG
+         NO0N1p3+17Z1hzu6HmZP0enxImt/27HZ7tJHwI4i02si9UY77c1tsvjgIMmXlmJqYThP
+         dCMDPGbqnXCgFRx1iSxqDsZ/sel3enT4dzSbbmbq98BgoS0yPBmda537jH0s/z7wPCK1
+         M7zVBRpN2mz3202syT/xKbskz5Q1P+NpxJKEZRx9Kn/fd0kF8x2NCb9c5cl7VOVMo4qm
+         I0YWOXm6NVz9ixHuc7GrJaCxD7Of6/k9GC6tai46V0R9AOMq8k6lm3xSwdouBiYklGLt
+         vFFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767061675; x=1767666475;
+        d=1e100.net; s=20230601; t=1767061687; x=1767666487;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=gdQi+fone+BESYBoxIz7XE56ZJgQDpFhVO0ekIamygA=;
-        b=EFVrgJ4Xc6HHu2dxAZPz5iUUFzWX2MnWrfWV2YGSUxBR+4G0QHeBUhLrHerr5ehfio
-         GVcXFTk50L8ot3k5QQX344F4zN58TfDqQgvYQcFeK6mNhD6CSQ0PLdmMQNbL82GFhijy
-         uE0AIiN0Y3PoEPUgMxGnoM37Wquy130xiKG7fZJ64VmiOa+7F3QAqdLY6rbQKXtg1Zyh
-         7gL92jj9SrcBb7ZokAByBfidPGByGbW+J8EjdBs0I9gvY/ZziJLvhHWisqbelNLE2FWQ
-         QL8lbdZoCMeSVH6z8hbnWtQeVzI6Xr3P8EVRJUtbUHumOkrw1YUYpW28kH5iaVztb0dx
-         32eg==
-X-Forwarded-Encrypted: i=1; AJvYcCUzBreA3NmosS+0mILnD2geBPjqTz00uHLfzJqsl6IV1UXtbfC5HiNLo+R/BwVP1vSZyI5a4qR9aLLb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlLoHm60AX2YgpQWG8W9+Mi3KvxrM8EJ3KCQ+j2PDmewl9F7Ye
-	6U2cp6HiNI76Jubh+7G2hqRhFH8fK8P9RC9lOboawCTLc2KAl/g2vLJB
-X-Gm-Gg: AY/fxX52rbmER+IglmZpfTDBY2Pcp25XK736eZ7dZdAmIbfnJUMjw3wEeNKovEWHjJ6
-	mz+HYbaJ7XKrphWX5iebJdMa/3p9jAEmV2tA5JJ1pRHCqEAFP1CChQjBV19C29B1T0WukbP/36s
-	D4WoSepKNOjesu6/fgm7QgahaofKnnuusiGnPa/nDGH9Alakxy+7Ipqlcvo5PIQJ04VYKRuBV2K
-	K4ITWY+FOaHmKIJS901FuZXlkHtQkAsOkrWzzjLvE0Ph1AfNZpMvdHoTNFWM+26K9/hDYiUR6WT
-	zlWq2F/oeSczDF/j7GpTipkwaAeIyIGlj9j2fmuByQY78ZT4FZ9iF/7HSlP9ukUbuFSjCdeGGVv
-	LAMDptMSy1kgBseatX6KdojtBCmEQaL9NAJmfhYQ6ZYK5+SLNE44tQ+NBk4A3W1lz/lCMijPqwo
-	Snafv1tCxrK7ERNkjxw3vY7/UgiVb8BgHoZfi99GVaYe364PW0ImLhULBVeVOV4vhI/MJOMDKSe
-	Ms=
-X-Google-Smtp-Source: AGHT+IESgq4DW1/APtEVb+UkOUyGElCFnWbvcmi8z4IBQ8xiY1CWJijDJv1f3yoretJFcVlC3IlW3A==
-X-Received: by 2002:a05:620a:4403:b0:8b2:e8b5:1ea3 with SMTP id af79cd13be357-8c08f66bfbamr4929958685a.28.1767061675239;
-        Mon, 29 Dec 2025 18:27:55 -0800 (PST)
-Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c0970f8572sm2447446985a.25.2025.12.29.18.27.54
+        bh=0Boc0hyaruKu7zfPgeDx+KGd5hDYj3D0Tb7d06swQ2k=;
+        b=nLhEjbvuoBGGW0J2nNPllD9d2nqZotpaNlgZBhUb0siktp5rAdNqKpGY2UEvNGg6Va
+         tfvgTgUCnrhEZKMX3Z0eYezNRpIfp/geKqy1u2RtzVu3YJhTnd2GZx3kqTSD/g4rqnaQ
+         5ko9tmBaYw8BiTdi+vpRsvboRCEqA5A85098FLsczFHGgyrrt+m84ERr8XLIg5l/7iij
+         8tnuJmx9SGAOrcknUTiDV0whBAStAkxS5JcsRYks6mbCAPxqcf01cTFUVJAqO2EDTlr8
+         dZNkdZcKSmquTlaifKQ7gdQffS3MFzyuo68vIJcIhliCaULxxugVgHZ+nWCRTUL5fuwq
+         pnBw==
+X-Forwarded-Encrypted: i=1; AJvYcCVIepxFnM0u2MfNpNqtqp2uL+RKB7+qpb6xOX6k2HvcmzbQduLooL8OPWMIC4kaF3OPgNeAosxOcK27@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpJHEj+vrraTQJ+W+1Rqyh9PBIqn2S1TR98oBMNQZ5vi+W7PLd
+	70KYti1bKQvBkn8PGfoF9kEKEQS5tHIHcS0yltByjiZLSY3BYJxyJjRG
+X-Gm-Gg: AY/fxX4l5HxR39hcyMnNS334Zrn7cXqCqm4GkeYqt1D82hpXm8PC0YRoRHyR7KL+Yj4
+	uqgIitQ8KyujYpric1GMey6NOHolIJVwD/d6U6TOwsuEKAvcGUbNTeTE9/VXYS5yk/lY8j5j+XC
+	gqjuoSR59zfNhWZhG/OeVTgWXKrTEqyTvaR+u2ELwWgidHCf/oQwjxrPdnlgKZObY/j//nmo1fD
+	PWYHBuZbu2G1mbPXSFmZI7LE+0igtXSz4okIpKo0/7BbyRUle+j/4V5zOseIHn2VkkqZBvDP0XX
+	Z5nQN7Gyo0N5jBWka1YY36vG1PR5IEkUuQgxqf3zk0AUJLwTWKSVD3JER4247zaImx37Rxkp8d6
+	PsJr44yHvRIPiH2rJLNeFrTTjhe0jNsWW0IEIspYHBKKH0lpYAAsnRR8wvnW6uEm7eckzSiu1ZN
+	nG0lgLP6anwsVXvQ==
+X-Google-Smtp-Source: AGHT+IFEAMQrwwwqZI6BcR86cj8VNjvEbJgT3zi/3zKCZBfFKORHXJEZ4ohqq/vIUFDgz0WWZXwE2A==
+X-Received: by 2002:a05:622a:130e:b0:4ee:26bd:13fa with SMTP id d75a77b69052e-4f4abdd147bmr480786931cf.80.1767061687220;
+        Mon, 29 Dec 2025 18:28:07 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4f4ac532d08sm229328881cf.6.2025.12.29.18.28.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Dec 2025 18:27:54 -0800 (PST)
+        Mon, 29 Dec 2025 18:28:06 -0800 (PST)
 From: Richard Acayan <mailingradian@gmail.com>
 To: Robert Foss <rfoss@kernel.org>,
 	Todor Tomov <todor.too@gmail.com>,
@@ -88,9 +87,9 @@ To: Robert Foss <rfoss@kernel.org>,
 	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org
 Cc: Richard Acayan <mailingradian@gmail.com>
-Subject: [RFC PATCH 2/3] media: qcom: camss: allow endpoints with no remote
-Date: Mon, 29 Dec 2025 21:27:58 -0500
-Message-ID: <20251230022759.9449-3-mailingradian@gmail.com>
+Subject: [RFC PATCH 3/3] arm64: dts: qcom: sdm670: remove status properties of camss endpoints
+Date: Mon, 29 Dec 2025 21:27:59 -0500
+Message-ID: <20251230022759.9449-4-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251230022759.9449-1-mailingradian@gmail.com>
 References: <20251230022759.9449-1-mailingradian@gmail.com>
@@ -102,67 +101,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The camera subsystem is part of the Qualcomm platform, and common to
-devices of the same platform (minus the devices that may omit it for
-some reason). Different devices of the same SoC connect the camss to a
-camera sensor with OF port and endpoint nodes. In the devicetree, the
-SoC dtsi is responsible for defining the camera subsystem and ports,
-while the device dts may connect some ports to a camera sensor and leave
-others disconnected.
+These properties are unnecessary and can be removed. The endpoints are
+disconnected, but this is implied by a missing remote-parent.
 
-Currently, the camera subsystem separates SoC dtsi and device dts by
-defining the ports in SoC, then using the top-level &camss label in the
-device DTS to connect the ports. This is the standard, although still
-disliked because a typo can cause the device DTS to define the
-connection to the sensor in a newly created, unused node, with no
-compile errors.
-
-Another option that functions (the camera is exposed to userspace, even
-though the approach is disliked), is defining and labelling the ports in
-SoC so the device DTS can use the &camss_portX label to add an endpoint
-and connect. This is disliked because an endpoint node is also labelled
-in device DTS, so it adds clutter to the labelling.
-
-The option used in SDM670 is to label an endpoint node, but also to
-disable it. The device DTS can enable it to connect. This does not work
-anymore.
-
-When Vladimir clarified that the SDM670 camera subsystem isn't like DSI
-because of the disabling, that gave a possible path forward. The option
-used in DSI is to label an endpoint node in SoC and not to disable it,
-but to leave it completely blank. Any endpoints that have no remote
-endpoint (i.e. endpoints that are disconnected) are skipped. Skip the
-endpoints with no remote node to allow an empty endpoint to be
-pre-defined.
-
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Link: https://lore.kernel.org/r/e9dc1a6f-156b-40aa-9209-2010464d54ed@linaro.org
-Link: https://lore.kernel.org/r/488281f6-5e5d-4864-8220-63e2a0b2d7f2@linaro.org
-Link: https://lore.kernel.org/r/95704b74-52e7-4831-bc93-d4d7aa32736f@oss.qualcomm.com
-Link: https://lore.kernel.org/r/79e2bb5b-9bca-4712-87bb-e0371b36bf50@linaro.org
 Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 ---
- drivers/media/platform/qcom/camss/camss.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm670.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-index fcc2b2c3cba0..e9f0926ae92a 100644
---- a/drivers/media/platform/qcom/camss/camss.c
-+++ b/drivers/media/platform/qcom/camss/camss.c
-@@ -4092,9 +4092,8 @@ static int camss_of_parse_ports(struct camss *camss)
+diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+index b8a8dcbdfbe3..e841309221e2 100644
+--- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+@@ -1780,7 +1780,6 @@ port@0 {
+ 					reg = <0>;
  
- 		remote = of_graph_get_remote_port_parent(node);
- 		if (!remote) {
--			dev_err(dev, "Cannot get remote parent\n");
--			ret = -EINVAL;
--			goto err_cleanup;
-+			dev_dbg(dev, "Skipping endpoint due to missing remote port\n");
-+			continue;
- 		}
+ 					camss_endpoint0: endpoint {
+-						status = "disabled";
+ 					};
+ 				};
  
- 		csd = v4l2_async_nf_add_fwnode(&camss->notifier,
+@@ -1788,7 +1787,6 @@ port@1 {
+ 					reg = <1>;
+ 
+ 					camss_endpoint1: endpoint {
+-						status = "disabled";
+ 					};
+ 				};
+ 
+@@ -1796,7 +1794,6 @@ port@2 {
+ 					reg = <2>;
+ 
+ 					camss_endpoint2: endpoint {
+-						status = "disabled";
+ 					};
+ 				};
+ 			};
 -- 
 2.52.0
 
