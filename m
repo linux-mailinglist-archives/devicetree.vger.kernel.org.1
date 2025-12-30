@@ -1,234 +1,103 @@
-Return-Path: <devicetree+bounces-250339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2E21CE8817
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:51:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D256CE8826
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:53:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9EC96300FE3D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:51:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 37716300F883
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:53:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97CED23B63F;
-	Tue, 30 Dec 2025 01:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F512DAFA5;
+	Tue, 30 Dec 2025 01:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VJz+Ym6g"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="rRJ7mr/J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64D3B139D0A;
-	Tue, 30 Dec 2025 01:51:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D194E2D481F
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 01:53:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767059497; cv=none; b=A9tOZxBsXjIhfrIhizsU04at2FHlmjQzA25Q50PMraeHZ7xKRfVwtPD29DrtuLFe8oyjMvxancfUl0mPh10ERX8T1zsDvwMgu/qGL4qN5m7F+BYXFYyq9kllyyDNqsPh56PMemnZjLzzPzvPk2whqC53IViuSxsPVWZ7JtQ5pLQ=
+	t=1767059627; cv=none; b=qXetvhtCDfsmbzJ/zLQbV0aEYnydMN9p9R7Nq7wawIGqG9okYu7pyO/vVGUl4KoBAf4UgTXsr9aQqsYxDB1KoMsnPnWEeHZ22L3LEqGhGP8fioKHil7ZpYC/RT+LJiLFI3DX7rd28zi/t+UONbmtRjy7LV2p2MzVi6mQnL2GQ4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767059497; c=relaxed/simple;
-	bh=OBturc9gnq7p1Z8WM2OtT8pLKo5/2hWGC55/0eg7aSc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZkC1KBtKMzbw3Fu9kG9jaXRgtsBjc1rOJgl7SxYMSQGtFowkE72BS05ACatylsRMS64FAcX3MlDTld448IdiKlYuJ+3jvSEoY+bz6J4IZxhkNSBSUx2sPY1mQphEOAkPMqmnqKMJUcUrdMTfwC7cTyVw0hZKgyNh8Svy0VTOtgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VJz+Ym6g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F8D6C4CEF7;
-	Tue, 30 Dec 2025 01:51:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767059496;
-	bh=OBturc9gnq7p1Z8WM2OtT8pLKo5/2hWGC55/0eg7aSc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VJz+Ym6glTYLUQoy5ymhQ18MC/d/L5HltQ+boUi2Jtx1jwuGkU25XLFwpu8AtabSM
-	 4zBEs3l/rvABl1BVY+9DeTXfRj6TaYTGjYliH27VBcfS7N4xY9egB0Vnm2wuXQbYH8
-	 kMdkGa9C52YyZ87g6XzUI64KGIChqPjbGV1I1zZ1N5wiYXxO9rZIYVURNKaay0nu4X
-	 PmclJwuLxUAJv9NVPIW+q+8AuX6ScQgCKpVvxOrkW7YF1fAGBr1AYJnjwkvhgG1l4m
-	 XHvXCI7KQQi3/M/5CT8dxZETzE08F6BzgLa3mOIuIGvmvBOV+sxQKdGQLvtMszXMEc
-	 gbiNA/ZNK5AVQ==
-Date: Mon, 29 Dec 2025 19:51:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: Marijn Suijten <marijn.suijten@somainline.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Simona Vetter <simona@ffwll.ch>,
-	Casey Connolly <casey.connolly@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Simona Vetter <simona.vetter@ffwll.ch>,
-	~postmarketos/upstreaming@lists.sr.ht,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-	Martin Botka <martin.botka@somainline.org>,
-	Jami Kettunen <jami.kettunen@somainline.org>,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: [PATCH v2 04/11] dt-bindings: display: panel: Describe Samsung
- SOFEF01-M DDIC
-Message-ID: <20251230015135.GA3066456-robh@kernel.org>
-References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
- <20251222-drm-panels-sony-v2-4-82a87465d163@somainline.org>
+	s=arc-20240116; t=1767059627; c=relaxed/simple;
+	bh=9LwppNYSzH8+UAgZL7BbjTF/X6jtIOh2exhRpeQkq20=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k2qvfOTx8cQuGqb7+JYdnrZhZpkUswosiv3Lv9ud1wEbWe3EBfmsz5zH/ZdCdotzgbwQcROlV2aPdFAbvks9uc3TZmLYKWfV6BWTkFlzvrw90LUbjVJ6PwHHrcVv+/2QF0tHB/M9jfntfB1Vqft9Pl4hiBOAE9Tlk7eqvqxub0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=rRJ7mr/J; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dgGMp3Cbxz9tdM;
+	Tue, 30 Dec 2025 02:53:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767059622;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qpoUGD/nQvuwJGs8fSJGimVrIe44lQKhSJUrrOso058=;
+	b=rRJ7mr/JsYyKdWNKh7HM16eTWtEuXu3tGnUJvaLOG+/MmkoEP2Ld02L3Pd+X9FMr4VCDjC
+	r9ZyLZc1pkNFyA6vi4mHIZ2gt+QCZu0jKpNiRErAfE4us89kDbNFrTLRaBNjkbCQN+QNZ5
+	I9GR1TtcsrLkuugM0KLHyh9XDpLRWK72IGVTGBO4LcayOQEQ9SVfPFBiBJIX/37C06L3LT
+	uJe6KgnpkbncENJQMzxeRRDWMXN+wDVViQUCSyG7OrWhKh5JT/F4Lvm2pIMW9AgDu2He3z
+	YGkgcySP7IiYm6ufYpWUZKWBroUnP2m2Q3iZKkt2qC20pomA5LK/aHJJXIALKg==
+Message-ID: <53ea529f-3538-4ab5-aa99-0caa6729b4cd@mailbox.org>
+Date: Tue, 30 Dec 2025 02:53:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251222-drm-panels-sony-v2-4-82a87465d163@somainline.org>
+Subject: Re: [PATCH] arm64: dts: imx95: Use GPU_CGC as core clock for GPU
+To: peng.fan@nxp.com, shawnguo@kernel.org, Frank.li@nxp.com
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+ imx@lists.linux.dev, kernel@pengutronix.de, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, robh@kernel.org,
+ s.hauer@pengutronix.de, Rain Yang <jiyu.yang@oss.nxp.com>
+References: <20251129143220.14834-1-marek.vasut@mailbox.org>
+ <aS-lEibp3zTsaR6T@oss.nxp.com>
+ <c6e0e55a-06da-4665-972e-e9b5b8c08bf7@mailbox.org>
+ <aTACuRjC_Zpf8IOU@oss.nxp.com>
+ <de36091e-c890-4897-b3e3-2a7575029a5d@mailbox.org>
+ <aTD5np-HGaJqhzkD@oss.nxp.com>
+ <5944d872-01a3-47e9-977b-029f3be4fd83@mailbox.org>
+ <aTKVMAMQ6v_BwD6R@oss.nxp.com>
+ <9b593731-898f-46a7-8ee5-68f8c170351c@mailbox.org>
+ <aTYxm_dfMwF4H0_b@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aTYxm_dfMwF4H0_b@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 21bcf49a433a8f6c4b4
+X-MBO-RS-META: 4dfs449y7anjdqiphj1bofd5kx8drorp
 
-On Mon, Dec 22, 2025 at 12:32:10AM +0100, Marijn Suijten wrote:
-> Document the Samsung SOFEF01-M Display-Driver-IC and 1080x2520@60Hz
-> command-mode DSI panels found in many Sony phones:
-> - Sony Xperia 5 (kumano bahamut): amb609tc01
-> - Sony Xperia 10 II (seine pdx201): ams597ut01
-> - Sony Xperia 10 III (lena pdx213): ams597ut04
-> - Sony Xperia 10 IV (murray pdx225): ams597ut05
-> - Sony Xperia 10 V (zambezi pdx235): ams605dk01
-> - Sony Xperia 10 VI (columbia pdx246): ams605dk01
-> 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->  .../bindings/display/panel/samsung,sofef01-m.yaml  | 120 +++++++++++++++++++++
->  MAINTAINERS                                        |   5 +
->  2 files changed, 125 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,sofef01-m.yaml b/Documentation/devicetree/bindings/display/panel/samsung,sofef01-m.yaml
-> new file mode 100644
-> index 000000000000..a8ff5223677c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/samsung,sofef01-m.yaml
-> @@ -0,0 +1,120 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/samsung,sofef01-m.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung SOFEF01-M DDI for 1080x2520@60Hz 6.0"/6.1" OLED DSI panels
-> +
-> +maintainers:
-> +  - Marijn Suijten <marijn.suijten@somainline.org>
-> +
-> +description: |
-> +  Samsung SOFEF01-M Display-Driver-IC found in multiple Sony smartphones, paired with
-> +  the following panel:
-> +   - Sony Xperia 5 (kumano bahamut): amb609tc01
-> +   - Sony Xperia 10 II (seine pdx201): ams597ut01
-> +   - Sony Xperia 10 III (lena pdx213): ams597ut04
-> +   - Sony Xperia 10 IV (murray pdx225): ams597ut05
-> +   - Sony Xperia 10 V (zambezi pdx235): ams605dk01
-> +   - Sony Xperia 10 VI (columbia pdx246): ams605dk01
-> +
-> +  The assembly features a Samsung touchscreen compatible with
-> +  samsung,s6sy761.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: samsung,sofef01-m-amb609tc01
-> +    then:
-> +      properties:
-> +        vci-supply:
-> +          description: DisplayIC Operation supply (3.0V)
+On 12/8/25 3:02 AM, Rain Yang wrote:
 
-The error reported is on the wrong patch. Not sure why, but the problem 
-is here. With 'additionalProperties: false', this property is not 
-factored in and is considered unknown. That can be fixed using 
-'unevaluatedProperties', but instead, move this to the top level 
-'properties'.
+>>> Okay, I’ll submit a patch later.
+>>> The commit message should reflect that only CLK_GPU_CGC is enabled.
+>>
+>> The commit message , and this change , is unrelated to GPUAPB clock.
+> The commit message is ambiguous. Could you clarify which parent clock
+> you are referring to, and whether it can be enabled by CLK_GPU_CGC?
+> If it was CLK_GPU, CLK_GPU_CGC can't be able to control it.
 
-> +
-> +      required:
-> +        - vci-supply
-> +
-> +    else:
-> +      properties:
-> +        vci-supply: false
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - samsung,sofef01-m-amb609tc01 # 6.1"
-> +      - samsung,sofef01-m-ams597ut01 # 6.0"
-> +      - samsung,sofef01-m-ams597ut04 # 6.0"
-> +      - samsung,sofef01-m-ams597ut05 # 6.0"
-> +      - samsung,sofef01-m-ams605dk01 # 6.1"
-> +
-> +  port: true
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: DSI virtual channel
-> +
-> +  reset-gpios: true
-> +
-> +  vddio-supply:
-> +    description: I/O voltage supply (1.8V)
-> +
-> +required:
-> +  - compatible
-> +  - port
-> +  - reg
-> +  - reset-gpios
-> +  - vddio-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        panel@0 {
-> +            compatible = "samsung,sofef01-m-amb609tc01";
-> +            reg = <0>;
-> +
-> +            reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> +
-> +            vci-supply = <&vreg_l17a_3p0>;
-> +            vddio-supply = <&vreg_l14a_1p8>;
-> +
-> +            port {
-> +                endpoint {
-> +                    remote-endpoint = <&dsi0_out>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        panel@0 {
-> +            compatible = "samsung,sofef01-m-ams597ut01";
-> +            reg = <0>;
-> +
-> +            reset-gpios = <&tlmm 90 GPIO_ACTIVE_LOW>;
-> +
-> +            vddio-supply = <&pm6125_l12>;
-> +
-> +            port {
-> +                endpoint {
-> +                    remote-endpoint = <&dsi0_out>;
-> +                };
-> +            };
-> +        };
-> +    };
+The commit message clearly states "These new GPU_CGC clock
+gate the existing GPU clock." and "GPU_CGC as well as its parent GPU 
+clock." , I don't perceive any ambiguity, sorry.
 
-The first example is enough.
+Frankly, the whole GPUAPB discussion is entirely unrelated and it only 
+stalls application of this bugfix and keeps upstream broken. This is not 
+helping.
+
+So unless there is anything in particular that is on-topic and prevents 
+this patch from being applied, it would be good to apply it, otherwise 
+the GPU on MX95 in mainline Linux is not working.
 
