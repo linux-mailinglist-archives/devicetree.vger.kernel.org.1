@@ -1,194 +1,181 @@
-Return-Path: <devicetree+bounces-250398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E63FCE8E1D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:20:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77024CE8E27
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:21:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 05AAB3002066
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 07:20:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 91E21300F30D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 07:21:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F252F656E;
-	Tue, 30 Dec 2025 07:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 922F52F8BD3;
+	Tue, 30 Dec 2025 07:21:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dcp/g1Pe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="icBLvLJF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0962EFD95
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 07:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 638FC286422;
+	Tue, 30 Dec 2025 07:21:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767079231; cv=none; b=qJ4GCu++HCaTnQTAyJXybPdkA2l0abgghA4/+NTmy+hqsMSXVhxPy/LRb+u6Tt7jU1F/iryZaoda/40D7eFDJyuvqdTW24yiQhTvqDTqmIboZfydd0QbYgeBwH59mK+ddRvIAc52uFAHBSRN0WNTJa+0JJ3ysWaT/eK/0H+Sqs8=
+	t=1767079292; cv=none; b=hOj6naOw6BxSwqyK6we6A2V+gnso36sTLuUwIIrq++793rdn5DSx0i5TkKarFDOcNjiBO74J+9SB+j4pdMkwvxAM4PAlVLP63IcL+DY5BESJ44FjxXBxuS/7x2cM8d1ual/Ep5MmA4GSoE3r/2Clv9HJDk3PDD9roQriv1Q+mEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767079231; c=relaxed/simple;
-	bh=gSpc/h3BVma0qXdmLNNgxQ4ELY7zorbWlWIQmeDVgtg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kGWtbrFP2eR7FADzmuKoKeIZ8mz253AKoio3CDgt9Al5qBvvs3HnxIJffGhwgD/AO007VJ03CzGPJVMaDnvDd7VO7R++CAWrbBJk865R/2z7Suu6uOAd6J2jRzabIDnXAruzxccDLo6dK/qVIUdEbXrDiilTgslXfAcAmbWBENM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dcp/g1Pe; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2a09757004cso124960405ad.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 23:20:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767079229; x=1767684029; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=78T8V8yZoQxIZHXRATvOJSkSFUGy++WxZ8EC1YewaNc=;
-        b=Dcp/g1PeaXZrxdAbCNhaYWOdeCmUboSQFmCYoV+I9B3WKUq6VsZH2IJqXdNvoKkVvI
-         wHi8naYduDz9lA0OMAy60Xu3TNT1S7ama4HTPSceri8E0SnkexdtsvYvA+I+mBNF+pSY
-         cugsdELCtKpw1mradWB3p/1ml/4MU3Xfr7WakAdj3Zy0VzXNIcfmgD6oLXJGJTOVQ+2c
-         p2WoZWVVGtPUpZQzBfXrWdWqicX6cYHPeslewOUVbEaXUtnROxq51TOqz4DxTIgK7vQk
-         R9McEv0n5/HnJss1ACaZS0NhytvIW/q93+IKADlSb0yLeGbSe+0XNR3endIErR77FsY/
-         ILfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767079229; x=1767684029;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=78T8V8yZoQxIZHXRATvOJSkSFUGy++WxZ8EC1YewaNc=;
-        b=RrAsngwSLU5dlhOY9KVtSq5Hx81HuKbZirbiBwYjQmNGwsnMobcb9fVG0XoA/d6ygg
-         ew/dbsRJkymGfCamOY4YHA4fQow1115z59i/nlGtlBk5N4RcMGj1hEa/JSfj43hWMz0g
-         sZIcB/1gYu8yankHmCuTZvtbZnn24+gp4oIju+VlL7sZ0ki1jjsQ3ljXnbJLOLdnURqT
-         yEqroDTt8QMpLNW1xoe4OhAbki1hKiku4iTlL7VjRxoNODh4ddUlWB0+e4sgyW8VujUx
-         Ng5CHlNd4nw26FmVB4oQp21oMk8aYmD1jwWqIDw+h7lJXP1Q0AzV6EnkogLp4/EJxNg+
-         Ljsg==
-X-Forwarded-Encrypted: i=1; AJvYcCVDGWEw23yuAao5JWf8KnZNfuMzLuU0da9fLvTRQu0QsVSmNoWbVG9IpG+84PFTQGW/KVkmYLCdprRi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGOiw2/qZtCjMiwYNBMeDC+e8XAviF90Cz/yL9o0XbBo4xG3j6
-	Jrky5FcgKlQV/VDL+opE2j780HaW0o2VaImU6QHGCwafCYJaj8yyu2/K
-X-Gm-Gg: AY/fxX6GwoYuG0cRY12XFvPzPntcBjHYNH1ScpIgVYv5cFh7ZJDjqdjhQpqU3jC8f96
-	Dd83MzfJtUnsmMs5nPh5I17vKEs0ZE6c458/bt7d3rQ+ZyNlHEVbVzz7rNv+Zxa6BayaoXy4PXP
-	uNcY/6RVlvB0mvhMcW41nU1b0a7xiwzK7n+ehVbd9Jx/kOwYip42+dZbkhAp4FWiTrpstRT5OPu
-	qXt4Z2Uxnb0wP3dXblCGSVU05tBlPzFJ1exTgNxGWXRzUgsuavEPEiiSTY4ig5QMd3RZoZPC673
-	vrzbuC48pRbsNNUJlBuWpen/qVVFIfN43ks8ZufhidyyJkFQn1ZjhWk4u5cUST1R9rxbpZPdVSW
-	SHVupy+CNt+KofoXteZUiYxzBVX0fK9K4ZGQ36xjG1ZHVofLlrr2QHyWjYBNzYx7FBgSXRTBYEb
-	XuFPQ4OcIRImQm+SkC0dwyKiVxNhtokEJKA8a186fdGA+M4fMT
-X-Google-Smtp-Source: AGHT+IFTApw/6+M7axi8xYhv03Mos5hLL2HTDOB45Tj3e7a7Pu9784iRBt6MXPy1SUWFshRW2OcM0Q==
-X-Received: by 2002:a17:902:e846:b0:2a0:9656:a218 with SMTP id d9443c01a7336-2a2f2a3587emr269192385ad.28.1767079228812;
-        Mon, 29 Dec 2025 23:20:28 -0800 (PST)
-Received: from LAPTOP-872M7T80.localdomain ([223.181.105.188])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a2f3d74ba5sm286929325ad.89.2025.12.29.23.20.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Dec 2025 23:20:28 -0800 (PST)
-From: Akhila YS <akhilayalmati@gmail.com>
-Date: Tue, 30 Dec 2025 07:20:21 +0000
-Subject: [PATCH] dt-bindings: mtd: nand-micronix: convert to DT schema
+	s=arc-20240116; t=1767079292; c=relaxed/simple;
+	bh=2LTEYvtTELkxv0/kEksDC9OB5qrW4PP8F+OSoAYlcKs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=boH0CTSzQ8UnqgO6wHRVfroq0r6+GkP6jyHsAsbhkhvQ/LDgb3VeP0jdlnowEAH96g8oWijo/t7tCXWgHdlni2UCXis/hRumSIIrqfgEGm9wYCO1VSfOHv9LEfqzT2tFm4JCW6q68e694+XHjcTahOKo5gLxo0nAQK+/vh1AbdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=icBLvLJF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 841A5C4CEFB;
+	Tue, 30 Dec 2025 07:21:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767079292;
+	bh=2LTEYvtTELkxv0/kEksDC9OB5qrW4PP8F+OSoAYlcKs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=icBLvLJF/sZLyLd7HvZDZq9/cTWDxeTrpGStk11gDFDXcA3tnMKXgm99uLeAI8QVF
+	 158GWgy9SsJX/07VVrH1ALelPWguSOU7hPRx2Yjh/qaiVE3iW6C8uZ3G0gL+AZaH3m
+	 wY8qVTMosse/F+wxtvvrj/nU9X77lPkWoo07odMb0nfb4XrGpGZx4R3hts2xSGbRpm
+	 nw5uwgLXbt9NeOeZqs1vNK3n2dT3m0w0fS4FqhB5lwDYlTsslKbjgv1NxvxDIM/eCj
+	 Oy5nGVgcJtb3uHHMg1mSQK0G/VVW2VwjprnCZxgO9mvxDdxdWku7jhtJV5qq/S7kiG
+	 y5PVfbbMqD49A==
+Message-ID: <36cb7d6e-ece4-42c7-bc11-b66837df5fc4@kernel.org>
+Date: Tue, 30 Dec 2025 08:21:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251230-macronix-v1-1-ff2aaab43644@gmail.com>
-X-B4-Tracking: v=1; b=H4sIADR9U2kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1NDIyNL3dzE5KL8vMwK3WTLFIskY6NkA4PkNCWg8oKi1LTMCrBR0bG1tQB
- pt4HrWgAAAA==
-X-Change-ID: 20251229-macronix-c9d8b32c00cf
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Akhila YS <akhilayalmati@gmail.com>
-X-Mailer: b4 0.14.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: Commonize IQ-X-IOT DTSI
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Yijie Yang <yijie.yang@oss.qualcomm.com>,
+ Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com>
+ <20251222060335.3485729-3-yijie.yang@oss.qualcomm.com>
+ <20251222-fluorescent-turkey-of-gallantry-df0906@quoll>
+ <b8f0e8d9-449e-4f32-832e-f1d5597ff496@oss.qualcomm.com>
+ <6421f044-2b07-4518-9edc-b9b2ef49f4fb@kernel.org>
+ <8bcf058f-5bf9-46ce-a188-e94954101f2f@oss.qualcomm.com>
+ <4f79d090-7d1c-4fb3-a835-a7e4ff96f79c@oss.qualcomm.com>
+ <448f2efa-5b1e-4855-a62d-2e375938b36f@kernel.org>
+ <c7983b8c-5085-43a0-bd5e-1194df2f0ee5@oss.qualcomm.com>
+ <a2b62af6-fe17-4c4b-9dea-4ba9cf312765@kernel.org>
+ <j7i2oryel7d5u6gsbb54iaer7amqre2vzwkb6fieybascvonwi@bmt7zmcvg7yi>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <j7i2oryel7d5u6gsbb54iaer7amqre2vzwkb6fieybascvonwi@bmt7zmcvg7yi>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Convert Macronix NAND Randomizer OTP Enable Property binding to YAML format.
+On 29/12/2025 21:08, Dmitry Baryshkov wrote:
+> On Mon, Dec 29, 2025 at 09:47:05AM +0100, Krzysztof Kozlowski wrote:
+>> On 29/12/2025 08:38, Yijie Yang wrote:
+>>>
+>>>
+>>> On 12/29/2025 3:21 PM, Krzysztof Kozlowski wrote:
+>>>> On 29/12/2025 02:23, Tingwei Zhang wrote:
+>>>>>
+>>>>>
+>>>>> On 12/24/2025 8:12 AM, Tingwei Zhang wrote:
+>>>>>>
+>>>>>> On 12/23/2025 9:41 PM, Krzysztof Kozlowski wrote:
+>>>>>>> On 23/12/2025 04:38, Tingwei Zhang wrote:
+>>>>>>>> On 12/22/2025 5:11 PM, Krzysztof Kozlowski wrote:
+>>>>>>>>> On Mon, Dec 22, 2025 at 02:03:28PM +0800, YijieYang wrote:
+>>>>>>>>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>>>>>>>>
+>>>>>>>>>> HAMOA-IOT-EVK and PURWA-IOT-EVK share a similar board design. Extract
+>>>>>>>>>> the common components into separate files for better maintainability.
+>>>>>>>>> SoMs do not share actual hardware. DTSI does not represent what looks
+>>>>>>>>> similar to you, but actually common parts.
+>>>>>>>> Purwa SOM board and Hamoa SOM board share same design. They share same PCB.
+>>>>>>>> The difference is only on chip. Purwa SOM board has Purwa and Hamoa SOM board
+>>>>>>>> has Hamoa on it.
+>>>>>>> I do not speak about boards. Read carefully feedback and respond to the
+>>>>>>> actual feedback, not some other arguments.
+>>>>>>>
+>>>>>>> NAK
+>>>>>> In this change, the SoM hardware except SoC is described by iq-x-iot-som.dtsi since it's common between Hamoa and Purwa. Hamoa and Purwa SoC hardware is described in hamoa.dtsi and purwa.dtsi. Hamoa-iot-som.dtsi includes iq-x-iot-som.dtsi and hamoa.dtsi. This change could reduce the duplicate code and review effort on a totally new purwa-iot-som.dtsi. If we found any bug, it can be fixed in one common file instead of two separate files. Same idea is used in x1-crd.dtsi. X1e80100-crd.dts include x1-crd.dtsi and hamoa.dtsi.
+>>>>> Krzysztof,
+>>>>> Please let me know your opinion on this. This could be a common case for
+>>>>> Hamoa/Purwa boards share same PCB. Share same dtsi file like x1-crd.dtsi
+>>>>
+>>>> It's not the same PCB.  You did not really respond to my first message,
+>>>> so I responded to you - I do not speak about boards. Then again you did
+>>>> not respond to it and brought some irrelevant arguments.
+>>>>
+>>>>> would reduce maintenance effort.
+>>>>
+>>>> Does not matter, I do not question this. Why are you responding to some
+>>>> questions which were never asked?
+>>>>
+>>>> DTSI represents actual shared physical aspect and you cannot share SoM
+>>>> physically. It's not the same PCB, because you do not have a socket on
+>>>> the SoM.
+>>>
+>>> x1e80100-crd and x1p42100-crd are different boards, yet they share the 
+>>> same x1-crd.dtsi. Why can’t we apply the same approach here?
+>>
+>>
+>> You should ask the authors there, not me. I presume that the baseboard
+>> is the same or very similar. Or pieces of the baseboard are re-used
+>> which could be visible in the schematics (same MCN numbers etc).
+> 
+> For me this sounds like a new rule, which didn't exist beforehand. We
+> have enough foo-common.dtsi fragments, covering similar phones, but we
+> never required the knowledge of those phones having the same PCB.
 
-Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
----
- .../devicetree/bindings/mtd/nand-macronix.txt      | 27 --------------
- .../devicetree/bindings/mtd/nand-macronix.yaml     | 41 ++++++++++++++++++++++
- 2 files changed, 41 insertions(+), 27 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mtd/nand-macronix.txt b/Documentation/devicetree/bindings/mtd/nand-macronix.txt
-deleted file mode 100644
-index ffab28a2c4d1..000000000000
---- a/Documentation/devicetree/bindings/mtd/nand-macronix.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--Macronix NANDs Device Tree Bindings
-------------------------------------
--
--Macronix NANDs support randomizer operation for scrambling user data,
--which can be enabled with a SET_FEATURE. The penalty when using the
--randomizer are subpage accesses prohibited and more time period needed
--for program operation, i.e., tPROG 300us to 340us (randomizer enabled).
--Enabling the randomizer is a one time persistent and non reversible
--operation.
--
--For more high-reliability concern, if subpage write is not available
--with hardware ECC and not enabled at UBI level, then enabling the
--randomizer is recommended by default by adding a new specific property
--in children nodes.
--
--Required NAND chip properties in children mode:
--- randomizer enable: should be "mxic,enable-randomizer-otp"
--
--Example:
--
--	nand: nand-controller@unit-address {
--
--		nand@0 {
--			reg = <0>;
--			mxic,enable-randomizer-otp;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/mtd/nand-macronix.yaml b/Documentation/devicetree/bindings/mtd/nand-macronix.yaml
-new file mode 100644
-index 000000000000..10f1d58adcef
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/nand-macronix.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/nand-macronix.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Macronix NAND Randomizer OTP Enable Property
-+
-+maintainers:
-+  - Miquel Raynal <miquel.raynal@bootlin.com>
-+  - Richard Weinberger <richard@nod.at>
-+
-+description:
-+  Macronix NAND chips support an optional one-time programmable (OTP)
-+  data randomizer that scrambles user data to improve reliability.
-+  Enabling it is irreversible, prohibits subpage accesses, and slightly
-+  increases program time. This property requests the driver to enable
-+  the randomizer if not already set.
-+
-+properties:
-+  mxic,enable-randomizer-otp:
-+    type: boolean
-+    description:
-+      Presence of this property indicates that the data randomizer should
-+      be enabled in OTP mode on the NAND chip.
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    nand-controller {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        nand@0 {
-+            reg = <0>;
-+            mxic,enable-randomizer-otp;
-+        };
-+    };
-+
-+...
-
----
-base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
-change-id: 20251229-macronix-c9d8b32c00cf
+I am speaking about it since 2020? 2021? So how new? Other people in
+other SoCs were sometimes speaking about it in 2016 or something
 
 Best regards,
--- 
-Akhila YS <akhilayalmati@gmail.com>
-
+Krzysztof
 
