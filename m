@@ -1,212 +1,76 @@
-Return-Path: <devicetree+bounces-250412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AC9ECE8FA5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:08:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0B27CE8FBA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:09:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2B3FC300E784
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:08:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A7134301397C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1532E2FBE1D;
-	Tue, 30 Dec 2025 08:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9382F616B;
+	Tue, 30 Dec 2025 08:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kOHCLkeX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hse3nS7H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D302F7AD0;
-	Tue, 30 Dec 2025 08:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC8B24EF8C;
+	Tue, 30 Dec 2025 08:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767082089; cv=none; b=h52I++pA0so+1Ke63M5mUlWzjvz3IHEiPJHzpiX20rUiIKHHd4IOITWxN2ilQ/N1n8zxYvUbNDsQkD33eHMbiBxbSSuLPEFoSCqflD1VGVQVWqbJpdf2yBLNrUtN/T836gZWpFPKpmZPCKt8UTVIcIaYDIV1MluLVDzICTXxvZQ=
+	t=1767082154; cv=none; b=faDJCYn939biHsiBd+EjnsY0TIdanl1gizUl/6NZnrd+he3eTpq9lkBq2GoUv/xPfEKefucB9o33wXCwUqTIfhHwDsZr2bVfDhIwNrgNO9PxXfcD+4hozcFiKzfZMFdw9xepYu9pTYq8hS6nLfrLQzniplPv8UG9KkJvknPgu58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767082089; c=relaxed/simple;
-	bh=MAuT6kX2skfD9THyyWJ8LQ+yulvGn9NW41sVqxts1yU=;
+	s=arc-20240116; t=1767082154; c=relaxed/simple;
+	bh=STvICv03DYY1Jku37i0sIRJQGUTF4yyyZ5Dx965x5Wg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S8XMcJmtcYKmHuZnSsFciQgXE1C/tzoNPdsbyQ7dPQx83iDUFDUbQoa7uv5z0cpA8G5pcaYUHdZjl1F0e7YxiVoarc+n7MVo4yIo0MTCezcnu/4F+5exd9Ykk4QACmIKmNKu9Pvfgu3j7Q5LnoRfBaVdy8dxmUEb/k7sQZCUFWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kOHCLkeX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B8A6C4CEFB;
-	Tue, 30 Dec 2025 08:07:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EAsXCxpLdaylcMkCdV+qgpGlwZDyUgKPyGU3roBKNgA1PyThiG2HB3A9xYny1r045HNN4mDyUM7pfnO4ouO0W7xBR2vZGQfCpAwKMNCPMPwUHbx5y0A0lSZIO0OmNm1EYjaxoEAoZs8wOX4MSMwrPyCK5CgsJyROldShOpdgEG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hse3nS7H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DA07C4CEFB;
+	Tue, 30 Dec 2025 08:09:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767082087;
-	bh=MAuT6kX2skfD9THyyWJ8LQ+yulvGn9NW41sVqxts1yU=;
+	s=k20201202; t=1767082154;
+	bh=STvICv03DYY1Jku37i0sIRJQGUTF4yyyZ5Dx965x5Wg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kOHCLkeXIr4bMGx1yxcUVL5o1PBdStGGwyn2LajtcvnSSeXgcRcHOR7Zdava2vEtv
-	 J25tvmXiD8azlKs/HBLeJVvEyUmOSYVejGKK/RxBCmiR87kHQ9rHo4xFVjsBjvakHY
-	 j5gFGpc+bQnN3A9ZlyfVH38tejNsIYtM4kpKTX/ccoZK0fgfpltEJPzsWxVKBRkJZh
-	 YDT6LUGXTzRQ1Vj1lJtcvoBgY/NpxwfkaUHXvqabhW7o/S4/S3WHFz97ex/XlhTCMB
-	 gR2a+BkIDRFsx213PKYRZ43IZyM1MVx8TgDyEBqCqBljxDTlj74sfHE8SzgBMxJHM4
-	 uxsPVfOvCxfUg==
-Date: Tue, 30 Dec 2025 13:37:56 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
-	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v2 08/10] dt-bindings: connector: Add PCIe M.2 Mechanical
- Key E connector
-Message-ID: <2fyzwqr5cvkzkkgu5dk6qbc6o2dhnrtt22lf37rv6jzwtmbrek@yhedhlvzpzw7>
-References: <20251125-pci-m2-e-v2-0-32826de07cc5@oss.qualcomm.com>
- <20251125-pci-m2-e-v2-8-32826de07cc5@oss.qualcomm.com>
- <20251208202803.GA2541017-robh@kernel.org>
+	b=hse3nS7Hgxdn2r1IYMDI5XR4Lf77RBYLfMX9EAqbLW3mmmOTcdgPOUGpvdjKwdP32
+	 bTkzD9cCMZIfRJ4dGmyKN86CRBAagpwBC/BJfNaGcE+TRrwDhCSDNmcelUjMMQIdsN
+	 rnj7jmNfxHIkvSv2OdpgnplQvmlpGQfTMTsdyxJQf/XFBmtJHLBjMgh8pVjztmVX9e
+	 Dc868hwov5rvW7Sj6Gbv0wBIZ5zKFfAj8FrGYOmDO5Z83jRZYIhTpsGXBkkIggv539
+	 0JEx/BDlWMJSY3gBbIg7lm6w7f3HSdWp/b3tiaQHvc78E/j1akEN9ukG8KgmTue4XE
+	 +QStvYFH6rOGw==
+Date: Tue, 30 Dec 2025 16:09:09 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux@ew.tq-group.com,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] arm64: dts: mba8mx: Fix Ethernet PHY IRQ support
+Message-ID: <aVOIpTeEmhFrs5rO@dragon>
+References: <20251216131529.886546-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251208202803.GA2541017-robh@kernel.org>
+In-Reply-To: <20251216131529.886546-1-alexander.stein@ew.tq-group.com>
 
-On Mon, Dec 08, 2025 at 02:28:03PM -0600, Rob Herring wrote:
-> On Tue, Nov 25, 2025 at 08:15:12PM +0530, Manivannan Sadhasivam wrote:
-> > Add the devicetree binding for PCIe M.2 Mechanical Key E connector defined
-> > in the PCI Express M.2 Specification, r4.0, sec 5.1.2. This connector
-> > provides interfaces like PCIe or SDIO to attach the WiFi devices to the
-> > host machine, USB or UART+PCM interfaces to attach the Bluetooth (BT)
-> > devices along with additional interfaces like I2C for NFC solution. At any
-> > point of time, the connector can only support either PCIe or SDIO as the
-> > WiFi interface and USB or UART as the BT interface.
+On Tue, Dec 16, 2025 at 02:15:28PM +0100, Alexander Stein wrote:
+> Ethernet PHY interrupt mode is level triggered. Adjust the mode
+> accordingly.
 > 
-> AFAICT, there's no muxing of interfaces. Maybe that's a defacto 
-> limitation on x86 systems? There's no reason to encode that into the 
-> binding if the pins aren't mux'ed on the connector.
-> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Ok. If you prefer not to describe the MUX (if one exists outside of the
-connector) in the binding, then having one endpoint sounds reasonable.
+Applied with tag:
 
-You did raise this point in the other series, but the conversation was not
-concluded: https://lore.kernel.org/linux-pci/20251119235614.GA3566558-robh@kernel.org/
+  Fixes: 70cf622bb16e ("arm64: dts: mba8mx: Add Ethernet PHY IRQ support")
 
-> > 
-> > The connector provides a primary power supply of 3.3v, along with an
-> > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
-> > 1.8v sideband signaling.
-> > 
-> > The connector also supplies optional signals in the form of GPIOs for fine
-> > grained power management.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > ---
-> >  .../bindings/connector/pcie-m2-e-connector.yaml    | 178 +++++++++++++++++++++
-> >  MAINTAINERS                                        |   1 +
-> >  2 files changed, 179 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> > new file mode 100644
-> > index 000000000000..fe2c9a943a21
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> > @@ -0,0 +1,178 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/connector/pcie-m2-e-connector.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: PCIe M.2 Mechanical Key E Connector
-> > +
-> > +maintainers:
-> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > +
-> > +description:
-> > +  A PCIe M.2 E connector node represents a physical PCIe M.2 Mechanical Key E
-> > +  connector. Mechanical Key E connectors are used to connect Wireless
-> > +  Connectivity devices including combinations of Wi-Fi, BT, NFC to the host
-> > +  machine over interfaces like PCIe/SDIO, USB/UART+PCM, and I2C.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: pcie-m2-e-connector
-> > +
-> > +  vpcie3v3-supply:
-> > +    description: A phandle to the regulator for 3.3v supply.
-> > +
-> > +  vpcie1v8-supply:
-> > +    description: A phandle to the regulator for VIO 1.8v supply.
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +    description: OF graph bindings modeling the interfaces exposed on the
-> > +      connector. Since a single connector can have multiple interfaces, every
-> > +      interface has an assigned OF graph port number as described below.
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Connector interfaces for Wi-Fi
-> > +
-> > +        properties:
-> > +          endpoint@0:
-> > +            $ref: /schemas/graph.yaml#/properties/endpoint
-> > +            description: PCIe interface
-> > +
-> > +          endpoint@1:
-> > +            $ref: /schemas/graph.yaml#/properties/endpoint
-> > +            description: SDIO interface
-> > +
-> > +        anyOf:
-> > +          - required:
-> > +              - endpoint@0
-> > +          - required:
-> > +              - endpoint@1
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Connector interfaces for BT
-> > +
-> > +        properties:
-> > +          endpoint@0:
-> > +            $ref: /schemas/graph.yaml#/properties/endpoint
-> > +            description: USB 2.0 interface
-> > +
-> > +          endpoint@1:
-> > +            $ref: /schemas/graph.yaml#/properties/endpoint
-> > +            description: UART interface
-> > +
-> > +        anyOf:
-> > +          - required:
-> > +              - endpoint@0
-> > +          - required:
-> > +              - endpoint@1
-> > +
-> > +      port@2:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: PCM/I2S interface
-> 
-> Does this work with any existing DAI bindings? Or conflict with the 
-> audio graph card binding?
-> 
-
-I haven't verified with any sound card, but it looks to be compatible with the
-existing audio graph card binding.
-
-> > +
-> > +      port@3:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: I2C interface
-> 
-> Like the other one, use i2c-parent.
-> 
-
-Ack.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Shawn
 
