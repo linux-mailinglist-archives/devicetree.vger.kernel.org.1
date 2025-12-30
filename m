@@ -1,184 +1,96 @@
-Return-Path: <devicetree+bounces-250367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C832CE894D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:39:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9212CE896E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:42:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8D35F3031987
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:38:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 096AA301919D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:42:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 758D92F7455;
-	Tue, 30 Dec 2025 02:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 198FB2DC774;
+	Tue, 30 Dec 2025 02:42:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bFqlen2Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 218BC2E0418;
-	Tue, 30 Dec 2025 02:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E280B222599;
+	Tue, 30 Dec 2025 02:42:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767062281; cv=none; b=RjApJAUWH6WHZuywkSoR9d9c0RNyH903R9413vxkJ7l4L+yMjTes9N0XjE9E53JhVTfm8y6E0x4o+Eqse4OLZKJwkDZpoFiNEUiy4ue+JFdi48Jmo+xB391/erS0UNpNoZT34vXK+AnVEiWDhLGYIYTNrb45+4X9wODxKM4fzrQ=
+	t=1767062541; cv=none; b=ZeoS3B+UocYzfrJRP/OOXSmyTXQ896kYYWX6j+1FniqWjA2nF31L/bUkfQ648lG6SoHYQlFMWAnPY8fqTtpG9G1ec8bjcLKhla8muq/CDOPlc8JUdG5TWK6DwyukTpImgwC4U6iZgIKf3d2TCPr+TYokPJ3XeYdGDjOacXl9pnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767062281; c=relaxed/simple;
-	bh=S9yMTdl+moTTVgrFezuHN7qN2o2AqmVlH8Z7ugR8IYA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RC2UoKkCjWLc33sWr34yokLSBFQtFfGPrUuuxp7kGrN2NcBT0j1VoRGPyvMzLN4fzpr2zWXpO8RRlGs2V8dMxNrzrsSRbwnv18xpmU4O9q+iYydA/mnFMMKLzrviYR6WzXy1/4+q/UaZq4JgbfTrHDChOJ4s7j6uGjpwNyaOONE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [223.160.207.108])
-	by APP-01 (Coremail) with SMTP id qwCowACXQW3oOlNpIqZOAg--.5334S7;
-	Tue, 30 Dec 2025 10:37:45 +0800 (CST)
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: conor@kernel.org
-Cc: vkoul@kernel.org,
-	gregkh@linuxfoundation.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	neil.armstrong@linaro.org,
-	krzk+dt@kernel.org,
-	jiayu.riscv@isrc.iscas.ac.cn,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-usb@vger.kernel.org
-Subject: [PATCH 5/5] riscv: dts: canaan: Add syscon and USB nodes for K230
-Date: Tue, 30 Dec 2025 10:37:24 +0800
-Message-ID: <20251230023725.15966-6-jiayu.riscv@isrc.iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251230023725.15966-1-jiayu.riscv@isrc.iscas.ac.cn>
-References: <20251230023725.15966-1-jiayu.riscv@isrc.iscas.ac.cn>
+	s=arc-20240116; t=1767062541; c=relaxed/simple;
+	bh=ex91xnF6MkNj7hiFlM7l/hy/nOh8ImjY8BhkJIjbKtk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K3IIeYrs5RDVE7LMULlnv4XIu0NUIbSqtMTodzormQ/m80I2KAzA62flMzlaeW81+wsAANOMNHfIkBXg56cF0sbSLCcwaP8dfT8pChfKRIPdsHL3q2fNHbwUR2gQiJmEVTHRqPNICndN2PuD2FzQLojekALiQVY3FeoWegcKoew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bFqlen2Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDE8BC4CEF7;
+	Tue, 30 Dec 2025 02:42:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767062540;
+	bh=ex91xnF6MkNj7hiFlM7l/hy/nOh8ImjY8BhkJIjbKtk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bFqlen2QR6aChTne53MHAx91TnowKZLIlOlNnsjTxmoHllG26h/2ZCr8aafvipojx
+	 q5I5cUBDSmHm9wtRx4kQwQCGTysMxIPbBJjAk5a2sHRn1E7LMKHumemKcmylnJkMtS
+	 mfuldetu8tElRCdQqEndNX/eQwj0m16QqH8BJf6/E6uaGaWCUCIzc6VS9RX+rDMRqB
+	 VtmwDDCKGYe4a1VY7tIA0+bgM6oOuNmZs0EucEpgQXW3FnhzuzSXDWRKiokVLtjURh
+	 a2A6jcZP21dofp/0uzef+YJLdcy6lymNAls30E9f7djJUsO996HPVYjNTfRfVrmem2
+	 Ds9Og6lLevZ3Q==
+Date: Tue, 30 Dec 2025 10:42:14 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Chancel Liu <chancel.liu@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] arm64: dts: imx91-11x11-evk: Refine label and node
+ name of WM8962
+Message-ID: <aVM8Btd9CYEfg9zz@dragon>
+References: <20251203070605.1868821-1-chancel.liu@nxp.com>
+ <20251203070605.1868821-2-chancel.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qwCowACXQW3oOlNpIqZOAg--.5334S7
-X-Coremail-Antispam: 1UD129KBjvJXoWxCFy8KF4xZw1fXr1UXw17GFg_yoW5XFy3p3
-	srCFZ8Kr93Wr4S93W29340gF93GFWkGFyfGrn8AFyUGr4UZa4q9w1rJryfZF1UXF47G3y2
-	yFZYqryxKr4jyw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmI14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr
-	1UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r4U
-	JwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7
-	IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4U
-	M4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2
-	kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-	bVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67
-	AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI
-	42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCw
-	CI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnI
-	WIevJa73UjIFyTuYvjfUOyIUUUUUU
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251203070605.1868821-2-chancel.liu@nxp.com>
 
-Add top syscon and USB PHY subdevice nodes, USB0/USB1 dwc2 controller
-to K230 DTSI, and enable UART0 and USB0/USB1 in DshanPI DT.
+On Wed, Dec 03, 2025 at 04:06:01PM +0900, Chancel Liu wrote:
+> Refine label with "wm8962" and node name with "codec" to follow
+> devicetree specification.
+> 
+> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts
+> index aca78768dbd4..313ebc7e8a9c 100644
+> --- a/arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts
+> @@ -132,7 +132,7 @@ &lpi2c1 {
+>  	pinctrl-names = "default";
+>  	status = "okay";
+>  
+> -	audio_codec: wm8962@1a {
+> +	wm8962: codec@1a {
 
-Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
----
- .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 21 ++++++++
- arch/riscv/boot/dts/canaan/k230.dtsi          | 51 +++++++++++++++++++
- 2 files changed, 72 insertions(+)
+The node name could be better named as audio-codec.
 
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-index 4f95b534ee87..622d273d723a 100644
---- a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-@@ -80,3 +80,24 @@ &uart0 {
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
-+
-+&usb0 {
-+	vusb_d-supply = <&vdd_3v3>;
-+	vusb_a-supply = <&vdd_1v8>;
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	vusb_d-supply = <&vdd_3v3>;
-+	vusb_a-supply = <&vdd_1v8>;
-+	status = "okay";
-+};
-+
-+&usbphy0 {
-+	status = "okay";
-+};
-+
-+&usbphy1 {
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index b815a65e02b9..825728727425 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -148,5 +148,56 @@ uart4: serial@91404000 {
- 			reg-shift = <2>;
- 			status = "disabled";
- 		};
-+
-+		usb0: usb@91500000 {
-+			compatible = "canaan,k230-usb", "snps,dwc2";
-+			reg = <0x0 0x91500000 0x0 0x40000>;
-+			interrupts = <173 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sysclk K230_USB_480M_RATE>;
-+			clock-names = "otg";
-+			g-rx-fifo-size = <512>;
-+			g-np-tx-fifo-size = <64>;
-+			g-tx-fifo-size = <512 1024 64 64 64 64>;
-+			phys = <&usbphy0>;
-+			phy-names = "usb2-phy";
-+			status = "disabled";
-+		};
-+
-+		usb1: usb@91540000 {
-+			compatible = "canaan,k230-usb", "snps,dwc2";
-+			reg = <0x0 0x91540000 0x0 0x40000>;
-+			interrupts = <174 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sysclk K230_USB_480M_RATE>;
-+			clock-names = "otg";
-+			g-rx-fifo-size = <512>;
-+			g-np-tx-fifo-size = <64>;
-+			g-tx-fifo-size = <512 1024 64 64 64 64>;
-+			phys = <&usbphy1>;
-+			phy-names = "usb2-phy";
-+			status = "disabled";
-+		};
-+
-+		hi_sys_config: syscon@91585000 {
-+			compatible = "canaan,k230-hisys-cfg", "syscon", "simple-mfd";
-+			reg = <0x0 0x91585000 0x0 0x400>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			usbphy0: usb-phy@70 {
-+				compatible = "canaan,k230-usb-phy";
-+				reg = <0x70 0x1C>, <0xb0 0x8>;
-+				clocks = <&sysclk K230_HS_USB0_AHB_GATE>;
-+				#phy-cells = <0>;
-+				status = "disabled";
-+			};
-+
-+			usbphy1: usb-phy@90 {
-+				compatible = "canaan,k230-usb-phy";
-+				reg = <0x90 0x1C>, <0xb8 0x8>;
-+				clocks = <&sysclk K230_HS_USB1_AHB_GATE>;
-+				#phy-cells = <0>;
-+				status = "disabled";
-+			};
-+		};
- 	};
- };
--- 
-2.52.0
+I fixed it up and applied the series.
 
+Shawn
+
+>  		compatible = "wlf,wm8962";
+>  		reg = <0x1a>;
+>  		clocks = <&clk IMX93_CLK_SAI3_GATE>;
+> -- 
+> 2.50.1
+> 
 
