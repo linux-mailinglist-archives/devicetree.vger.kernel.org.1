@@ -1,164 +1,144 @@
-Return-Path: <devicetree+bounces-250539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A84CE9D4B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:56:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F7B7CE9D54
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:57:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 89DA93016CCA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 13:56:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8E8763009FE3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 13:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D515822538F;
-	Tue, 30 Dec 2025 13:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A033E23F424;
+	Tue, 30 Dec 2025 13:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h5hJIonm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U3Qr6QY/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A73DB86331;
-	Tue, 30 Dec 2025 13:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3432C23C4F3
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 13:57:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767102984; cv=none; b=oK9/PnzTQ8xMnEjWIbmNvFJiQrIiRZWDK4Qr9QZeRYCkFHeUAhMsajbT0qkkOw3WXPUv1a77vIrQ6y9b5z9D1OQoZ20Zeaclxy2BJ6spb+iaUbgknD2oWSGnCrIYPxJUryjI9k9CqkjNIc2tspfI8UHp2+4JbBr95gbcKnDIc2U=
+	t=1767103028; cv=none; b=lb5WnJSzVHYhOP0Fzy8F6BlHeYYaSjZMhKLmq+btAdkORk0FRFxxiCXbZ6cfj00lhg80q6Dr+G15gax7Y3Bc11MA3tqXZavu+2so/CgH+L6gcT3bF1xE6NQPO0kl+9/V9LCMd0Sssg9YcD5d8EANRLEDrcnuqiX8iIuxI/oBIPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767102984; c=relaxed/simple;
-	bh=xFldLpic3xtmpqNCQf3ZKKmpQw/J0VkqHyqv6pzJSIY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S5zIjxw237aVYciw74T32lodibUQSNCUZ0O48h8aB0Bl7oZI0BwuCxVhHlrOZqBNcmacPjxTPv5GuIGpGjicpw6AVmA7ZVPOs5/HQexT3eQZyqeIQi2yFlA5S3dluXq9mNL9GjtNFt8ejMyTWoYSO3KBhkko51DNySd6hyZf1oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h5hJIonm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 805CDC4CEFB;
-	Tue, 30 Dec 2025 13:56:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767102983;
-	bh=xFldLpic3xtmpqNCQf3ZKKmpQw/J0VkqHyqv6pzJSIY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h5hJIonmpNmEX04j/5wjuUIxZ7sbNhEDFDmUY7tdibNnDXRrLOXO08eYho8Eopesi
-	 GY3yZ1hKGHyxRL3azXgAmc7572rNJOrFzsKIMddYsXA5XGFCbfnpGoUhHah7Z2H343
-	 VNXuGsR21A/PXRCcPfM5mbOWVVOHyoPVNPIzjhTZDtNGLc/eSKgZQMDhNR5kTHTdYn
-	 TgWyKkTumcumrBqxqKZau2PtLMTEIFtl0TZxbuvhFu4MWg1PvM3TLpG3Bp2YkvnBUc
-	 iaxI3J/MFE6GGNmqYy/LO3PjlsUXAcoaqlKEYf0o5yh+FFs/7EePtF3ODq2srdVejn
-	 EHOiIGNTFMIow==
-Message-ID: <2bba9546-225f-4a77-b9d9-483cb5a41611@kernel.org>
-Date: Tue, 30 Dec 2025 14:56:18 +0100
+	s=arc-20240116; t=1767103028; c=relaxed/simple;
+	bh=0xRAbK+n5H+csItC6n3OEL70ZNfh2mdODm1iNTdA9b0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O5DIK0U8O4CuUwEevXCjPiOwk5Fr3R4+wGTEelyehLVUQxzNl7rOM2BJQxBCHgz8gUCUerZSKeCA5CvdsPK98GaWDAC4bnik/WstT/fTV7BqkvZDM/j/2Svi5qT36SX7yUFx/096xFQlb70sDaWObfK/ePLHCyhk0rEDLynJqaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U3Qr6QY/; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2a099233e8dso83003495ad.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 05:57:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767103024; x=1767707824; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=APWv0N7VAVEafE/tRaAfzsntSA7mb1asugldnCJpAhE=;
+        b=U3Qr6QY/kL7kwloGX2keEEEfL38TrFHen48W6x1Rwh0qf35Q2XtZpZ7jWMPpTTfPA8
+         4+MKXkdlKf0VgFKZI/CDgsjz70YqcDDQgobvCQQpt5CcR2saLqoa++cefhdAFRllwFGs
+         Pxw9bS+fzbN8hiuaVAQ6dV8tawIHKAHzFFnoysErRFoNXXu55B/mqx6LhskoIEfu1F/0
+         v/9PPSfLCcbRIBsNby63waQbLJ99NqQR0yPbWIQ3/xg0pDfGwHbMTq+9Xbmm3QQx/zu5
+         Zt2TxTeRmqurTalmU3FPgfynqoYJFlTlnQLgdwslfQTXrX2rVikrJy6cZWY3IM5HAI59
+         gTaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767103024; x=1767707824;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=APWv0N7VAVEafE/tRaAfzsntSA7mb1asugldnCJpAhE=;
+        b=NS2atJCY1EAC+RfAPyxegNgPUSvy+fKpvfaVsEVAcP2xPKByC+P5L8J9UxnBuqr/+6
+         W4aOmEfk6TJNeN2CAIv/1T5E2fQqsBMxL6FXyT439QZPcflBucRzUki0WFiYyhgj35pr
+         vslmVSBrq5fdoLNhg5TbPCFYBTObavxUtRsgwC6YtVKFI+ys0kAuSOS96VMGQGxde6ak
+         XsYhzUAbQIl+JZOK7G1VgT2VV49y0+Wrmfy4MVXoOt+yB/qKjFU7i4WmLVRCdUN8gGHX
+         HE0SZR09fKLOSH7WMPMcgvjZjhx9ehCWMvHwNK1AltSHtB6fD7De0eZnIv6HFFjWsKYz
+         iMdg==
+X-Forwarded-Encrypted: i=1; AJvYcCWZXLXgAgjHcRLE65Tm2Qnylzc1ActcTs+l9E0FU9D81iLtptygvLmtxWfYEaMcnFcqgXq0DgmEwzFi@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIVKIa2SCcYCMuqcMj/oQhFq+E4/AEFOnUMwhqppo5K7z9bZA4
+	8t5gQXZI9dMz4UVnhoJgdb051uB+tGjXaNXmn/jTHoLkij0xlI6nCg8i
+X-Gm-Gg: AY/fxX6Q79ONBpuNoV3E36brKIb/oFgwdksjJwOAD3HSyOMzra00MDDruaEsmwEZFKM
+	1+3KVJII9rRRppvjmCYcxIU7NA2/UecIY1HMY0tG+wKZ5MtBo27IZUEwQjfViXlL3insanOOZM5
+	GgZSa1Mc63vsBNavdBRJNiCqBWW2PnsqAHkeDDea8hyj4Bx0w+ezcmt2RBKrYa41wiO/ix6r+Bx
+	RC0/hGU9XKPJ54BTYvoDXxDsE+fICREGAnTdRsmTa1qUG+xzILG5sIXHOyVdPbXhfkG7zacMuk6
+	UOGyh+jPZMSVMzToJlCwSw4O2Hm7SbeX6H4hrkvp/qZjKSHshMSSBti1vdwlZQOLByKSgEwjMWQ
+	isq2fi05VE5O85yVW8cnh+jhp3Ccnz8hjM6seKlPZuNcRhRpUXm9/XUvxTbf4gfRhvTm45Rc1Nq
+	yoMGOB
+X-Google-Smtp-Source: AGHT+IHGfTQHu2drfAKQu53WiG/Gy4iDJrxBQ4VfdVs/FW7w4jXnrnuNi5IJgVAmYtjoOeiIgiSPkg==
+X-Received: by 2002:a17:902:e808:b0:29e:facd:7bf4 with SMTP id d9443c01a7336-2a2f2940511mr319051025ad.50.1767103023863;
+        Tue, 30 Dec 2025 05:57:03 -0800 (PST)
+Received: from localhost ([211.94.234.112])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d5d407sm299696265ad.72.2025.12.30.05.57.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Dec 2025 05:57:03 -0800 (PST)
+Date: Tue, 30 Dec 2025 21:56:58 +0800
+From: Encrow Thorne <jyc0019@gmail.com>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Troy Mitchell <troymitchell988@gmail.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] i2c: spacemit: add reset support
+Message-ID: <20251230135658.GA9515@hailin-HP-Pavilion-Laptop-14-dv0xxx>
+References: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
+ <604e5781-5c59-422f-9c5a-ee4be6f8b329@kernel.org>
+ <CAH1PCMag00z2Fp8zjMUPS7AdU6Lgk0UsS+mku93NtNejqjyBMg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] media: i2c: ov9282: Fix reset-gpio logical state
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org,
- dave.stevenson@raspberrypi.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mchehab@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org,
- laurent.pinchart@ideasonboard.com
-References: <20251114133822.434171-1-loic.poulain@oss.qualcomm.com>
- <20251114133822.434171-2-loic.poulain@oss.qualcomm.com>
- <aRtbwK0Afo50Lh0B@kekkonen.localdomain>
- <CAFEp6-1zoU2cfVU06MoeOtAwMYN+XAxCwc0ebwaQyo78VNBf2Q@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAFEp6-1zoU2cfVU06MoeOtAwMYN+XAxCwc0ebwaQyo78VNBf2Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH1PCMag00z2Fp8zjMUPS7AdU6Lgk0UsS+mku93NtNejqjyBMg@mail.gmail.com>
 
-On 03/12/2025 11:00, Loic Poulain wrote:
-> Hi Laurent,
+On Sun, Dec 28, 2025 at 07:53:52AM +0800, Guodong Xu wrote:
+> On Fri, Dec 19, 2025 at 4:03 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > On 19/12/2025 08:42, Encrow Thorne wrote:
+> > > Add reset support for the K1 I2C driver. A reset ensures that the
+> > > controller starts in a clean and known state.
+> > >
+> > > Reset ensures that the I2C hardware is in a clean state. We cannot assume
+> > > that no program used I2C before the kernel booted.
+> > >
+> > > Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
+> > > ---
+> > > Changes in v2:
+> > > - Replace reset property in dt-bindings.
+> >
+> > Replace with what? I don't see anything else there - you still have
+> > reset property.
 > 
-> On Mon, Nov 17, 2025 at 6:30 PM Sakari Ailus
-> <sakari.ailus@linux.intel.com> wrote:
->>
->> Hi Loic,
->>
->> On Fri, Nov 14, 2025 at 02:38:19PM +0100, Loic Poulain wrote:
->>> Ensure reset state is low in the power-on state and high in the
->>> power-off state (assert reset). Note that the polarity is abstracted
->>> by the GPIO subsystem, so the logic level reflects the intended reset
->>> behavior.
->>
->> That's an interesting approach to fix DTS gone systematically wrong.
->>
->> I was thinking of the drivers that have this issue, too, but I would have
->> introduced a new GPIO under a different name (many sensors use "enable",
->> too). Any thoughts?
->>
->> Cc Laurent.
+> It looks like a phrasing issue. By 'replace,' I guess, Encrow meant that
+> the resets property was moved (reordered, put into a different 'place')
+> within the file, not that it was swapped for a different property.
 > 
-> Do you have any feedback on this change?
+> Encow,
 > 
->>
->>>
->>> To maintain backward compatibility with DTS files that use an incorrect
->>> flag, we implement a mechanism similar to:
->>>   commit 738455858a2d ("ASoC: codecs: wsa881x: Use proper shutdown GPIO polarity")
+> Would you please correct your changelog description
+> in the next version with something like
+> 'Reorder the placement of the resets property in the dt-binding file.'
+> 
+> BR,
+> Guodong
+> 
+ Thank you for your suggestion, Guodong. I will modify it in the next version.
 
-Heh, so you even found my commit which exactly points which cases are
-broken, but you:
-
-...
-
-
->>> +     /*
->>> +      * Backwards compatibility work-around.
->>> +      *
->>> +      * The reset GPIO is active-low, but the driver has always used the
->>> +      * gpiod API with inverted logic. As a result, the DTS had to
->>> +      * incorrectly mark the GPIO as active-high to compensate for this
->>> +      * behavior. Changing the flag in the driver now would break backward
->>> +      * compatibility with existing DTS configurations. To address this,
->>> +      * we add a simple value inversion so the driver works with both old
->>> +      * and new DTS.
-
-claim everything is working fine. Please read my commit.
-
-
-Best regards,
-Krzysztof
+ 			- Encrow
+> >
+> >
+> > Best regards,
+> > Krzysztof
 
