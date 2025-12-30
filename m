@@ -1,55 +1,59 @@
-Return-Path: <devicetree+bounces-250348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F09ACE8888
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:19:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BD13CE8894
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:19:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 59BB8301142F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:19:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 64B08301177D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 000962DC342;
-	Tue, 30 Dec 2025 02:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 982E62DE6E6;
+	Tue, 30 Dec 2025 02:19:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mphcoT+i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lGnKrIZJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B901DFE22;
-	Tue, 30 Dec 2025 02:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B30E2DAFD7;
+	Tue, 30 Dec 2025 02:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767061165; cv=none; b=crEquiJe6PqtBBjyPQrpBYkagzVhbU5odg81KO2NB0Q+R7GB+MUqalrXGJb/TsoMw+aRGyVrrg2EUcsZRA2E3iGacTdpnA4joLOXEvLqhIaO37Zgmfai+ci8rrIVDht19iatJdmlMYYlRJ/WR9zcaSnLq1cpUNiwhdRU9b2uh+c=
+	t=1767061187; cv=none; b=iwhFf4b6it0bFkNAz29Vuc/d4uuCN7Lb+UFLwctSrmx6I0X4QS1P8o/sZ94hfKGNoLLQF8IMCPYhaxJZc1lQVnhZU1+gTLSapnmfhBDl2bjQzZcT6ewLHvpRLdwArUBCWXU72HnGJQfR33aFSi98zQAxH9kvYkceD7MegD7bTGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767061165; c=relaxed/simple;
-	bh=Ilr7GSu4zrUAhZexgta0DsArbPNkDY1dkZNMGP2k9tk=;
+	s=arc-20240116; t=1767061187; c=relaxed/simple;
+	bh=WsPnlXAeGWWyvfoz7fE2YJBhrIMmZkk6VEdC/cu1WMs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=khnhRLEVIfmov6n7329VV6O7fNaRwD5FXLGl3vDu2f13VknKSo19GBqmR5214yXseZwIQayL+C6l7aGwW8fKcPOi044AbyG1VhYVtoiUPfoHSe9OA27mVjGNgcYTmvWi8reusWzz3azwcEZS/cJBfoKnwGQ/p+DkACvmfQXUl+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mphcoT+i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C410C4CEF7;
-	Tue, 30 Dec 2025 02:19:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=is1eFuDL/Xwjf9W1EPG0j94/WP5JE8CpI6z066uvR8FiJxW/F9MNIRFJuWHioGger3s8xl+9Po5mp8VP8Xq77aSDp2gm0RYXa3bbYmAlJe20rAcKm43C4B2xaecM3VsbNhIeD/VXWRxdpi3GxJj25laBw9IxG438hii+f+NvVYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lGnKrIZJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C6C2C4CEF7;
+	Tue, 30 Dec 2025 02:19:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767061165;
-	bh=Ilr7GSu4zrUAhZexgta0DsArbPNkDY1dkZNMGP2k9tk=;
+	s=k20201202; t=1767061186;
+	bh=WsPnlXAeGWWyvfoz7fE2YJBhrIMmZkk6VEdC/cu1WMs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mphcoT+iQPF9dN9hTa+WZ7kDnSjo+m0zRjBxBowRuXTgtjFoIWY7oFkDn+NL35mMj
-	 myVQFeJBPcj4mQhoNGm4v1uW0bQz+KJ1hH9X+fIXR56j3iKweIxvoeaF+cTu5G8irh
-	 AComredWrZ6isfYNviHOvhsOJFZGztFI7JoMpyYoVL8J0ncwdxrh0sSHkimHP9Owv8
-	 dlhcEgDxsAVHMxKkRLJDgdp5/FY5aJ4k/G/bBmoh98lTdljGTTvcvWlNM5aU3olzhb
-	 eXCQHYS1wuOpaxVxgk4oi9DM4/K/fUclwQ39jmP+S9xS4VJh2KQNJaR+uLYxqLDVOC
-	 GRSjWz5Q33iBA==
-Date: Mon, 29 Dec 2025 20:19:24 -0600
-From: Rob Herring <robh@kernel.org>
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, mkl@pengutronix.de,
-	mailhol@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-can@vger.kernel.org
-Subject: Re: [PATCH v2 02/10] dt-bindings: net: can: grcan: Convert GRCAN CAN
- controllers binding from txt to YAML
-Message-ID: <20251230021924.GA3176103-robh@kernel.org>
-References: <20251223105604.12675-1-arun.muthusamy@gaisler.com>
- <20251223105604.12675-3-arun.muthusamy@gaisler.com>
+	b=lGnKrIZJQzFQCw241+iLQOodHcNvwIGaG9yN0ld0s/xBn79ZHrh8XHm6tLEOewFjq
+	 MQSrgrrYGCnrZOO+zv3TchwuKQP7aSZa2kxHAAQDReFWs2AmP/w8aVJFeTlAhu57TM
+	 DgrqZNJ6OEDoiso0OEF6ldRMOQfVC0zGHxQowc+4N788x6KqpX186efW6r+5wI2IE1
+	 LzyLQcLDfF2OoiohoGYov3dDXy7oLgWOC7Sc5llJwnDLCT/tCYRfZM2AxcHQ6nIGri
+	 OtSZ7QHwPcdybRAVPuIrXb9UNF6mJ9FvbwqKcPFz5tx0aiZVteWoJxQuArwSbtt/Rp
+	 LYakBXwE4tEBQ==
+Date: Tue, 30 Dec 2025 10:19:40 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Ian Ray <ian.ray@gehealthcare.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Justin Waters <justin.waters@timesys.com>,
+	Akshay Bhat <akshay.bhat@timesys.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: imx6q-ba16: fix RTC interrupt level
+Message-ID: <aVM2vJIPggFjHn2t@dragon>
+References: <20251201095606.990-1-ian.ray@gehealthcare.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,35 +62,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251223105604.12675-3-arun.muthusamy@gaisler.com>
+In-Reply-To: <20251201095606.990-1-ian.ray@gehealthcare.com>
 
-On Tue, Dec 23, 2025 at 11:55:56AM +0100, Arun Muthusamy wrote:
-> Migrate device tree bindings for Gaisler GRCAN, GRHCAN
-> and GRCANFD CAN controllers from a text format to YAML format.
-
-A more concise subject would be:
-
-net: can: Convert gaisler,grcan to DT schema
-
-Otherwise,
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+On Mon, Dec 01, 2025 at 11:56:05AM +0200, Ian Ray wrote:
+> RTC interrupt level should be set to "LOW". This was revealed by the
+> introduction of commit:
 > 
-> Additional changes:
->   - Remove stale systemid property
->     removed in commit 1e93ed26acf0 ("can: grcan: grcan_probe():
->     fix broken system id check for errata workaround needs")
->   - Make freq optional
->   - Add clocks
->   - Add compatible
->   - Add example
+>   f181987ef477 ("rtc: m41t80: use IRQ flags obtained from fwnode")
 > 
-> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
-> ---
->  .../bindings/net/can/gaisler,grcan.yaml       | 62 +++++++++++++++++++
->  .../devicetree/bindings/net/can/grcan.txt     | 28 ---------
->  2 files changed, 62 insertions(+), 28 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/can/gaisler,grcan.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/can/grcan.txt
+> which changed the way IRQ type is obtained.
+> 
+> Fixes: 56c27310c1b4 ("ARM: dts: imx: Add Advantech BA-16 Qseven module")
+> Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
+
+Applied, thanks!
 
