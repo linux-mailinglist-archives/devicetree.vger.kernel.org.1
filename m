@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-250400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12B12CE8E3E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D34BCE8E5F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:30:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C9D4B300E01E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 07:27:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EAA09300E3C8
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 07:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 552D52DAFBE;
-	Tue, 30 Dec 2025 07:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3775527A107;
+	Tue, 30 Dec 2025 07:30:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XlaiQjMW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gumgA1K6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E50C23A994;
-	Tue, 30 Dec 2025 07:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFE41F30BB;
+	Tue, 30 Dec 2025 07:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767079621; cv=none; b=Ec/50LKKcp+2sA15I01btGKO+oo2yD61XeRoW/oGXiovQEcrRq/d80Db2YZx4RksvUacEuHloz7/AsKS99Dxs0X5aan6A2MKe4/P2aDzGHidPkOZznjDmhvHkUpuF7RFjzC5Ve+Y7+EgBshUikMNPvZeQRwk2ebc3O1sn3EMbLE=
+	t=1767079830; cv=none; b=Q9YcFrT4WMLMaGjFr7pomIA3SAMvskzy75fF0NcKlMZhDhFt6DZlaeFduGFdD70msLZwQ8QC1zJV+Mmdqz19LdSnl3D3GW4tt8cfUJW59T+J/cQywmbBryulR9YkghcWMD3w/BeKEWqVdPFwbkO8nBag5nWbsVPKLQKnzgkCRUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767079621; c=relaxed/simple;
-	bh=4KVbpgDJs88kdwJPzcfZ0LWDwJa1QxkmzRR9OuYExQM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ryBDMiGAt5GTC2QPwp+3hpwJirLqze3H0GXSt7FAIog0HPP3z/qjUBhNZeksMPgNOPGGwdD8/pykgM9SVtv1ziD0jS7m3V9Xcn21t8HDMYxoQRjSU4QO53eDh5ig9lKyulCy+hvmFOMQYGjOXz5UEjJqD1kPORc77vxacw87p3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XlaiQjMW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB031C4CEFB;
-	Tue, 30 Dec 2025 07:26:57 +0000 (UTC)
+	s=arc-20240116; t=1767079830; c=relaxed/simple;
+	bh=u+KiGjbaMUADxO91JFDAHb1YUzan7CqVyugf5tOBEZ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=tmRF0VfwLjM7rzlz/Enab8kwKdMhlLBfGwh0ig/QZ2ouyl8ZOzGT8yKU7FEe9SUmTApIn+9qECtDd9KOA4LiICLRyGrnijWhuZOz1YyNPRFdvo1yZY7xx0b6ZJ5hfDTMjc3ELKghQ9t9wf0gUtzBledM3g0suJurjA9BjQv0jDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gumgA1K6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B070EC4CEFB;
+	Tue, 30 Dec 2025 07:30:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767079620;
-	bh=4KVbpgDJs88kdwJPzcfZ0LWDwJa1QxkmzRR9OuYExQM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XlaiQjMWJfQJOwyCazpRozsuRA4ODlCf+I9W8j4Sa/ZJd6qh8+Yvly4Vw8RA6lJa8
-	 N0+Oj2kZASmUYkBPJwa2KHIB5jM4b3xd+OAzpVjQDJ0Rd2dSW1mD45a7lRbgS1hl6h
-	 tKThP76QMAmmGex3Oviorr6luWZT/X8b1DPGk04yYa2K4GlKv4K5Zgy54Cj4S1JZNq
-	 Wp076P16V5GrDAFj9UukwicCr+wCpDwu4W/xZ4YjippOXAsdx08vQwhjLmPFqAv8Md
-	 21DX1c6sshfhphcS2iTtKytYuGE2pdadJtpM/z7cNjXMfuFsjkPUQAdiPJViOfeQBx
-	 LVxrXBnvkH8Tw==
-Message-ID: <e0f7c2f1-c876-4e19-a836-2b1629cdabf7@kernel.org>
-Date: Tue, 30 Dec 2025 08:26:56 +0100
+	s=k20201202; t=1767079829;
+	bh=u+KiGjbaMUADxO91JFDAHb1YUzan7CqVyugf5tOBEZ0=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=gumgA1K6KrDeQu4QeLN2li/s7lNU/7iPlzwFu+5fMw0HiK+4/H5q506lOdzt/lvIC
+	 XLBYuPx6ybM8UB/z9HNthRP/Qdb7QoOOObqGtsh8IKphyk2xqq335YXEMyt9FoGOAF
+	 MRcoKfFRTAfqOwki49M/YRsIuxf+jb4PFypxP6djzjjdrW/rdf0Sgb32eGu8F0ddgv
+	 e4UdsEQO5Psg7/3YPCYXzGelSfmcC3NXTmrgrYfkOrboxOOY8xU27lMGsgsAuWRl2g
+	 h38qrOGaGjY0pGAqgIKG+IypWUQ64jbUwuNyVh+NnUjtZCD15TXh0TeNYQmaQwXmKG
+	 ROZ+z1ECDO/+w==
+Message-ID: <605365db-1f08-4c12-aa46-0fe6638bc4cf@kernel.org>
+Date: Tue, 30 Dec 2025 08:30:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,24 +48,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: google,cros-ec-keyb: add
- use-fn-overlay prop
-To: Fabio Baltieri <fabiobaltieri@chromium.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
- Guenter Roeck <groeck@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>,
- Simon Glass <sjg@chromium.org>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20251224152238.485415-1-fabiobaltieri@chromium.org>
- <20251224152238.485415-3-fabiobaltieri@chromium.org>
- <20251227-laughing-white-dalmatian-f9d98a@quoll>
- <aU__uxDmeUq20Mg3@google.com>
- <0c01fa63-670f-4c82-aa74-dc855cb12a78@kernel.org>
- <aVKDJhVuOz-V9tb2@google.com>
- <c539aa2a-e9be-40e7-9b75-1723bdaf0a39@kernel.org>
- <aVKgsGwb9Rqteekj@google.com>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: media: camss: sdm670: Make endpoint
+ properties optional
+To: Richard Acayan <mailingradian@gmail.com>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251230022759.9449-1-mailingradian@gmail.com>
+ <20251230022759.9449-2-mailingradian@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,53 +106,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aVKgsGwb9Rqteekj@google.com>
+In-Reply-To: <20251230022759.9449-2-mailingradian@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/12/2025 16:39, Fabio Baltieri wrote:
-> On Mon, Dec 29, 2025 at 03:59:44PM +0100, Krzysztof Kozlowski wrote:
->> On 29/12/2025 14:33, Fabio Baltieri wrote:
->>> On Mon, Dec 29, 2025 at 01:49:05PM +0100, Krzysztof Kozlowski wrote:
->>>> On 27/12/2025 16:48, Fabio Baltieri wrote:
->>>>> On Sat, Dec 27, 2025 at 01:44:26PM +0100, Krzysztof Kozlowski wrote:
->>>>>>> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
->>>>>>> index fefaaf46a240..437575cdf352 100644
->>>>>>> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
->>>>>>> @@ -44,6 +44,14 @@ properties:
->>>>>>>        where the lower 16 bits are reserved. This property is specified only
->>>>>>>        when the keyboard has a custom design for the top row keys.
->>>>>>>  
->>>>>>> +  google,use-fn-overlay:
->>>>>>> +    description: |
->>>>>>> +      Use a function key overlay. This allows defining an extra set of codes
->>>>>>
->>>>>> What is a function key overlay? Overlays are DT term and therefore are
->>>>>> not suitable for bindings.
->>>>>
->>>>> Ok, guess I can rename it to `use-fn-key` or `use-fn-layer`, open to
->>>>> suggestions really.
->>>>
->>>> Use as Linux should use? Then it's software, so not suitable for DT.
->>>
->>> Sorry I'm not sure how I understand the comment, this describes how the
->>> driver handles a keyboard with Fn keys, the codes are defined in the DT
->>
->> Exactly. The purpose of DT is not to describe how driver should handle
->> anything.
->>
->> See also DTS101 from this year's ELCE.
-> 
-> Sure so I guess this falls into the "describe the hardware feature"
-> category, so is the suggestion to rename it to something like
-> "has-fn-key"? That would be the hardware feature.
+On 30/12/2025 03:27, Richard Acayan wrote:
+> Endpoints may be pre-defined with no connection to another endpoint. The
+
+Not really. You do not define incomplete nodes without any reason,
+
+> other properties can be omitted in this case, so make them optional to
+> support this.
 
 
-Maybe, but then I would follow up with - what about "alt", "ctrl",
-"shift" and "fn" keys? And what about combinations alt+ctrl, alt+shift?
-And also caps-lock? And why exactly this has to be even specified if
-matrix map already has the FN key?
 
 Best regards,
 Krzysztof
