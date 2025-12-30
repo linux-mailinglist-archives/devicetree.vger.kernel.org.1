@@ -1,144 +1,189 @@
-Return-Path: <devicetree+bounces-250415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4E55CE8FEE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:18:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFD58CE9007
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 90060301277B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:18:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 82F5B3011FBB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57DA52FD660;
-	Tue, 30 Dec 2025 08:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E59302742;
+	Tue, 30 Dec 2025 08:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SOEVy1vL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bnJnLgB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8A52FE048
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 08:18:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A823009E4
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 08:23:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767082735; cv=none; b=gCcXz+TP7K99at+4YbKHNNZRZFrPbzHy4VMM4U6YLlRmt5y9922ORf2pB5KdvWPtPWK+2OPpul+7MjPvWHvxfp1sOZss9Ai5Zzi4oMM6QA7KGacMgEFzlMzQV6vZLrxo2woNDZAwlIpUv1kbi6DT5hzZ/JZZjQ67fjrAIPhzJjI=
+	t=1767083035; cv=none; b=KjwM1+oUktUixy7sNvTM/wswPGjdhXITnAqoUBRTG0GTfi4A7b0PEj/pgDELnzy1Bkn2yDIZQR6QEFJiclsP65etNRnVvOumPUFrqTHxhsEuTgSOvPzoiHOajzCsy8S0aQKUTvxD/3Wg0gfZMh+MtihaKWb7ruMWGO0OuvnN3ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767082735; c=relaxed/simple;
-	bh=v8mrrc7yE3c9qhRU8zkJsHzZgCi7JoLcbMtMMJl130k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=d4WA6irXTvzkLAWIjZYVEvqdTq2aGrXV+0HGL/+v2xyCmujLoy49r9niDXoI0KPmt4XqA/tkLVR4qe8YqRFoZ1PwJaWaCDCpG6bqwnpTqyhkoLQM+LGTw75hDp4M/DzVs2Dx9ELUTMjz3nHlOnPOjwzHmM1zTCAzvPtzmnjX6mI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SOEVy1vL; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-59425885f65so279542e87.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 00:18:53 -0800 (PST)
+	s=arc-20240116; t=1767083035; c=relaxed/simple;
+	bh=FSU4s2p+E9acSluPQUHPxlvASLI2qpVJaKFbFRN19Rw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Srz1iGo6P1fF9aUaxJ0CkloQ6YJVAs0BR2tQKIpL5iIfFdvthfw7i3/n/h/66qDyp1tFqNjepyUofxx9BbyyGZsyZVD+bZyPplu7raQ2BZktNgHnj6u6uuYp2cMqXgOBXIMIs05sjUKehE+0tJVa/NeyzkOIBLainrJYpeb0mOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bnJnLgB7; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2a102494058so52795165ad.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 00:23:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767082731; x=1767687531; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7oWwnUl9perZUOAgUEtwYqm9KF/RzvwLKJJUUYt/2Ds=;
-        b=SOEVy1vLLBxm6ZYZgPypequOc7n5SwXe6MWg1Q3K0M86YBoqMAatFMItHhbBKOkZ+0
-         roq81tazImBeB1TeuPOoEQeCo4yP+CGtwLVwnwyi1alpTXGypDQfCE8hjeSYMFc/+6lC
-         7aTs6c0UdlgtgZTY4c0AFIpKBOLpsVDWrC83vPBXQn0l3aM2Ghdoe4jFsc7U36xEKT9Y
-         H5zYtcdyp0628cPjyJFAIZs6iAuoinPX3eDVfBvDIluUzoFpp8f6yFhzc3cOZ+5iz1bb
-         SfxXAL06OsFDdzbwXQy/LjVvng141vhKPKcCtH9nMXhP/sBsJoshHZsqdEjhWSHUXSMy
-         4+wQ==
+        d=gmail.com; s=20230601; t=1767083033; x=1767687833; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WofBUBbyzrdxS0DCtEQEyAFQaUrBpAVCVPxtgqIfim4=;
+        b=bnJnLgB7hMfq5v4J8Tr2Q7d2MWK2+o2bk9+cLTcWwI950UD+3XXfsAcNhzXtqTWTCQ
+         sXUjGwObL9txSws3snpuJSKcK6y3yR3lTnZb/aMqTHdL87M8FwJU+HwcXo4hNlij/CDp
+         AoqMDc8kKdJ5/VEVhCkGq+W9p/P2xY1MHAPuWVy/L0Sf2JQCEJOrtMFZvmatsxVYmeW2
+         YBHoTT8+iRGBOkN1xdcXCtjcYaM8Pwut0I0OwMRYgHQFu9Lm2jwtfrbxS+I0YSbyWeyh
+         NSotv+rjU6We+PN66FWmSolOj6Ybv/BZtxO8T4BDFgMtrD9FNd8zo2s5k6k+iisaNqst
+         Cfxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767082731; x=1767687531;
-        h=content-transfer-encoding:in-reply-to:from:references:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7oWwnUl9perZUOAgUEtwYqm9KF/RzvwLKJJUUYt/2Ds=;
-        b=RJPMpTfcJERFyluyJ3hC0oJW7ZrGBdTETrQTMkNqVb5gQqHx7ontDNajz3Mq1JyqBh
-         caAAW3N5AHvPO9J8Ww9DWYIOi655EzK2yghNkw9Mq/I/mRv8pusSeJonl89t8hcaomwT
-         cvPet3AQMWAgxqchZ/DaC3vwQ3U8xNOmoR2ifiZQ5lr0dtfEsRfeXyz87j44xjI9Dxvb
-         d4ILgKYsKA+WIFFuTkDQ8WNQGzLDr7r0n9RELHUm5yLpBa7UUcOQMHo7SHwCvhvO5Iis
-         AbBDtTm75SObmDmwPo1URczfFO461facvsEmmSFJZAtF0eU2JCMZI/AYBQngafu5anu9
-         EEQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAn7cR1vnB5PxpF+PlHoScVAc0AS6t0JbJH8FhxEseNUWzoeOi4gyYFCyX5XM6fczrDMS41+9fW6ov@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfgLPpvGt70RYDiX118N9XChOn5u4XMsfEXiJEceGVJNoBr7RE
-	8i9+7bOBezfaVjeF95f4nuGdMZtanMFs+BYge41r7jEpy+u4+w5GnC00ble1l3RmadI=
-X-Gm-Gg: AY/fxX7mlQrgFnDb8NrzYz6T+Qke9gzvAiEdbW2l81iY213XIXn0RRYdPVe2BDqJXpt
-	n9Jy8KaugcnHIp1YXmAerilb7RGETpLz9mX1lBd6rr8TeqWK0ipx70Xtnqi6kVdCaS2IiRdppmO
-	RfZ8gYXk7NT6Dk7RrKozd30BRe8mx4Y3YaIsxiqp2U5VTxlNrpFm8wRwYm6+hJzdXoJovX+u9Sr
-	NSA4dFULt6/+hhoXpfBcB6X/Go9G7K/JQ17o8Yb2B3xmGVqWs9+7cdHTbw5tJni2itHbkzH//Or
-	gbMUjR6mHtWis+P7ryb4UsBNO/FQaqXs0FewniX3hs9v98oK7ZLevP3G1WDkoUo5TcPaQEU9zk6
-	t6oYRtH4AzayN20dIK40PanRcDtFbrN/9Iciq8M2RQXc0ZFY5Vjn74o+SfAeCNHhKTLyMDM+oGr
-	e7xgDZhUQibD8wWgs3ydHfUvNidF0lJQgdpu2Zp6R0yHlLGdmatoWGl0wmooRr1ndSjA==
-X-Google-Smtp-Source: AGHT+IGBKgEgA0DSoo96ohfu3tX0jdZSs0KRDNzH/uH1fTPEKyh004Q1HykeBKi833RCmFUzF1oqIg==
-X-Received: by 2002:a05:6512:1321:b0:581:8db3:d5fe with SMTP id 2adb3069b0e04-59a17d70667mr6479215e87.2.1767082729178;
-        Tue, 30 Dec 2025 00:18:49 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a18618a35sm10421379e87.66.2025.12.30.00.18.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Dec 2025 00:18:48 -0800 (PST)
-Message-ID: <1fa74da9-bd3e-43c6-afbc-8cfcbb93af93@linaro.org>
-Date: Tue, 30 Dec 2025 10:18:39 +0200
+        d=1e100.net; s=20230601; t=1767083033; x=1767687833;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WofBUBbyzrdxS0DCtEQEyAFQaUrBpAVCVPxtgqIfim4=;
+        b=nLaYVrvKl112fsWi3xytBqgCmQ8w+lxB5PeF/0xW3Wah6DdoZ7Snl9LKz33C/vEXyX
+         8wP7aGNQeFHBnahC0adNuF6CMCleL3C11HbJee0v4hBkYwewlZ4OI/2sdDShfeelF/Wq
+         fq7pObk4hzWygwoD/4lnOVY5z32TRA7WrczEKELS+RJWM/LzhfVdEdjEkPo6Xij2+mu6
+         Ob01ZxKys8VLFzb6shWmakB6GdgxPFdatexbdWAiiicNKoPPsKJyk+mZn6I2qOdlIZ76
+         OGSRWKSCFaMSr2CZ3BcAcEDyx6Jtv7DtGzyDH1WeHzD8skrYBEEvbwERziP+ZkH3guIw
+         L5dA==
+X-Gm-Message-State: AOJu0YygaUcQgBaUOo9aGxWo0yN1S6CeaxW6PCkp4l6M5AUc5OwRtWzo
+	27C5aAui/Q3iLrbFcCnGwW5oH3F7GU/AYtHZkTaXXOFtzG4uhHgH0gDEw8ppTg==
+X-Gm-Gg: AY/fxX4Wt2LLq+Q20AB9zujJExXLtB9KkcsnmxFXCMB4fVp2ZkTZcyJyRGQTzsrdMaO
+	Vv5wA4ifdW20CmUYDXTnTFnvC6GH9RRLllrk62uL399IYza3MDzGi2AlCiJfnRir3S74gV9Z2vX
+	yM01FMBqxEUV9hg0s9HQ4ZKz7kkSGPLd4D+AT7Qo3r1xQmOBT77U9XHlMcXy0FjOPUiygPPIygI
+	GRPJ+XhYUO/j2kfMXP5i5wtOgaN0xfWnxm89mCTHYl6UeM2gGAKMMVVSLYqgINbxrn9SFXI8eQr
+	/wqc7SluI9wQf25oqZh8gv2WM4Rxo9V0WMz98Sjx/hOnuYQpXmzNTRsAtPgWM+kz2Lnpf4t7syW
+	aVviGmrELQJLn7tEEuoOsn6eBI9AIm4NyhMBGv7luPXXzcpRm7K3MatYJBFEnMa6ZWYih05goBr
+	1lUvf1fZdnMD2ZTHsP4DFHgVFQqWnX4cKt
+X-Google-Smtp-Source: AGHT+IE+zFO76dekcR+vPG/TRpO7dSesJFGRMkQGSrbquww8wHKBuINEJzUJYxLpnZou6H2+vqm+/w==
+X-Received: by 2002:a17:903:19c8:b0:295:50f5:c0e3 with SMTP id d9443c01a7336-2a2f0d2dbc5mr335250525ad.14.1767083033354;
+        Tue, 30 Dec 2025 00:23:53 -0800 (PST)
+Received: from MRSPARKLE.localdomain ([150.228.155.85])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d76ceesm296667165ad.91.2025.12.30.00.23.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Dec 2025 00:23:53 -0800 (PST)
+From: Jonathan Brophy <professorjonny98@gmail.com>
+To: lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Andriy Shevencho <andriy.shevchenko@linux.intel.com>,
+	Jonathan Brophy <professor_jonny@hotmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: [PATCH v5 0/7] leds: Add virtual LED group driver with priority arbitration
+Date: Tue, 30 Dec 2025 21:23:13 +1300
+Message-ID: <20251230082336.3308403-1-professorjonny98@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/3] media: qcom: camss: support for empty endpoint
- nodes
-To: Richard Acayan <mailingradian@gmail.com>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251230022759.9449-1-mailingradian@gmail.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251230022759.9449-1-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 12/30/25 04:27, Richard Acayan wrote:
-> This series adds support for empty endpoint nodes. It is currently RFC
-> because it continues an ongoing discussion on how to selectively connect
-> some CAMSS ports to cameras and leave others disconnected.
-> 
-> The SDM670 patches are for a full example. If agreed on, this should
-> expand to SoCs that have CAMSS.
-> 
-> Example SoC dtsi:
-> 
-> 	camss: isp@00000000 {
-> 		...
-> 
-> 		status = "disabled";
-> 
-> 		ports {
-> 			#address-cells = <1>;
-> 			#size-cells = <0>;
-> 
-> 			port@0 {
-> 				reg = <0>;
-> 
-> 				camss_endpoint0: endpoint {
-> 				};
-> 			};
+From: Jonathan Brophy <professor_jonny@hotmail.com>
 
-I do not see this device tree node layout as a valid one. A 'port' provides
-an interface description (an option), and an 'endpoint' declares a connection
-over a port (the accepted option).
+This patch series introduces a new LED driver that implements virtual LED
+groups with priority-based arbitration for shared physical LEDs. The driver
+provides a multicolor LED interface while solving the problem of multiple
+subsystems needing to control the same physical LEDs.
 
- From dtschema/schemas/graph.yaml:
+Key features:
+- Winner-takes-all priority-based arbitration
+- Full multicolor LED ABI compliance
+- Two operating modes (multicolor and standard/fixed-color)
+- Deterministic channel ordering by LED_COLOR_ID
+- Comprehensive debugfs telemetry (when CONFIG_DEBUG_FS enabled)
+- Optimized memory footprint (~200 bytes per LED in production builds)
 
-     Each port node contains an 'endpoint' subnode for each remote device port
-     connected to this port.
+Use cases:
+- System status indicators with boot/error/update priority levels
+- RGB lighting with coordinated control
+- Multi-element LED arrays unified into single logical controls
 
-This is violated in the example given by you above, when a remote device along
-with its ports is just missing, thus there is no connection. A forced alternative
-reading may (or will) break the legacy, so in this particular case you shall
-start from making a change to the shared graph.yaml documentation, since it's
-all not about CAMSS or even linux-media specifics.
+The series includes:
+1. New LED function identifier for virtual LEDs
+2. Device tree bindings for virtual LED class
+3. Device tree bindings for virtual LED group controller
+4. ABI documentation for sysfs interface
+5. Comprehensive driver documentation
+6. fwnode_led_get() helper for firmware-agnostic LED resolution
+7. Complete driver implementation
 
--- 
-Best wishes,
-Vladimir
+Changes since v3 commit
+- convert driver to pure fwnode
+- +Multicolor LED ABI compliance - standard multi_intensity/multi_index attributes
+- Winner-takes-all arbitration - deterministic control with sequence-based tie-breaking
+- Proper LED reference management - fwnode_led_get() + led_put() prevents leaks
+- 30% memory reduction - conditional debug compilation
+- Global ownership tracking - prevents conflicts between multiple controllers
+- Hierarchical locking - documented 3-tier lock order prevents deadlocks
+- Lock-free hardware I/O - concurrent vLED updates during physical LED access
+- Dual operating modes - multicolor (dynamic) and standard (fixed-color) modes
+- Pre-allocated arbitration buffers - zero allocations in hot path
+- Comprehensive power management - suspend/resume with runtime PM support
+
+Changes since v4 commit
+- fix yaml validation errors after feedback from maintainers from LKML
+
+Additional highlights:
+- Update batching for software PWM workloads
+- Gamma correction for perceptual brightness
+- Rate limiting for runaway updates
+- Extensive debugfs telemetry with stress testing
+- Deferred probe handling for late-probing LEDs
+- Removal race prevention with atomic flags
+
+Future enhancements planned:
+- dynamic led creation Chardev Interface like uleds
+- ubus/ dbus wrapper for linux and openwrt (out of tree)
+- addressable rgb support WS2812B/SK6812
+- readonly leds for important kernel/ functions
+
+Testing:
+- Tested on ARM64 platform with GPIO and PWM LEDs
+- Stress tested with 10,000 iterations
+- Validated suspend/resume cycles
+- Memory leak detection passes
+
+Jonathan Brophy (7):
+  dt-bindings: leds: Add LED_FUNCTION_VIRTUAL_STATUS identifier
+  dt-bindings: leds: Add virtual LED class bindings
+  dt-bindings: leds: Add virtual LED group controller bindings
+  ABI: Add sysfs documentation for leds-group-virtualcolor
+  leds: Add driver documentation for leds-group-virtualcolor
+  leds: Add fwnode_led_get() for firmware-agnostic LED resolution
+  leds: Add virtual LED group driver with priority arbitration
+
+ .../sysfs-class-led-driver-virtualcolor       |  168 +
+ .../leds/leds-class-virtualcolor.yaml         |  197 +
+ .../leds/leds-group-virtualcolor.yaml         |  170 +
+ .../leds/leds-group-virtualcolor.rst          |  641 ++++
+ drivers/leds/led-class.c                      |  136 +-
+ drivers/leds/leds.h                           |  758 +++-
+ drivers/leds/rgb/Kconfig                      |   17 +
+ drivers/leds/rgb/Makefile                     |    1 +
+ drivers/leds/rgb/leds-group-virtualcolor.c    | 3360 +++++++++++++++++
+ include/dt-bindings/leds/common.h             |    3 +
+ 10 files changed, 5399 insertions(+), 52 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-led-driver-virtualcolor
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-class-virtualcolor.yaml
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+ create mode 100644 Documentation/leds/leds-group-virtualcolor.rst
+ create mode 100644 drivers/leds/rgb/leds-group-virtualcolor.c
+
+--
+2.43.0
 
