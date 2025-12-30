@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-250523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACA29CE9B9D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:03:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 491E7CE9BB5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:04:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EC9183016B8B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 13:03:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 498CA303802C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 13:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A63D221019C;
-	Tue, 30 Dec 2025 13:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5BB320A5F3;
+	Tue, 30 Dec 2025 13:03:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IYvLmr6W"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mMVAfwjW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD671212FB9
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 13:02:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD54A212FB3
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 13:03:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767099780; cv=none; b=aJIUxdHgS4ShFrpdndZVKWvCJQeKZ0CPenv4fiBNc7znARU5kVmwU4bRt4NRFaDb81b9KVpOLFHFYueiTwgoB8GAQ0oFvwy12wsuFkHs+byR53CP67nu82B6tGHt04Eo0Z4micFBZ4zZznKIzjJ3/JARm0u2zw7ozrOFMtHOJDw=
+	t=1767099783; cv=none; b=j8naKQM4KmMt+a3kgY6tUAyKEokdeld0tNzQll+SBZ5e2F7jVxOsKa1BsU2+zbamhOyEyH8ZZeFKIgJBIIQBlkaDEeVBtqYFAazZdbZu2LRfgsmy16kWDNkIo/OIAF8m76Uh9WuBsQIzFYy7hw8obA2mtblXjOGxJ+DgHkpDBk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767099780; c=relaxed/simple;
-	bh=SVJlcDayOcdOuFmlxFZIJno8JEUkvS2rwI28zFq/GdM=;
+	s=arc-20240116; t=1767099783; c=relaxed/simple;
+	bh=ZQ6Y7IFZTaEd6ktsVoxdPOs72CPIs+7PsUG1QLPNjHU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=AVdtNC5GstGE+XfrbnojERcpMESeE95fklchU+/IJoT4BsvH5h2C91BNeYmTzXXV36iRyJH2uwsLHsK4GlvnXLk3f5jaCPwvtV7tRWGjN8Xzt+GtXf4DPaHEm8d5cnllcyOYbwP0XkDJAblxYbI/dY7IkqH526bqZGK4miUpSuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IYvLmr6W; arc=none smtp.client-ip=209.85.214.178
+	 MIME-Version; b=a8klY4mrWSiH2irt9qyrPczGoKDmTiFgRZV+yDhnHHzLPTnbZ9JPbmIrMP3StpN75u6+Ap9+/kBEIzuscX/r7kSPlpEhL67Lo82GSli8YQoDApI/j7cx7X4n0u/cisvoa4FkktHpttvJgOc34/Z5jqpTatnn3+kpV5dR+uEm8AA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mMVAfwjW; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2a0b4320665so152050515ad.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 05:02:58 -0800 (PST)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-29efd139227so131284125ad.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 05:03:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767099778; x=1767704578; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1767099781; x=1767704581; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jSJakbOsK6HuPfvndjr4pklixI6V6EaaZEWI2YnlWqA=;
-        b=IYvLmr6WkDXnZXu+1PZPZwoX74HMI+IjjSlk6sYwxa9MNFuQ4egJOr/UUoCoabdAaL
-         w7dDoHPk1HXwVzCDhF1KJWR8K59EZCmUZj4LmuItJKiEOX7zyFsFeaAOZzPspLQaKlOO
-         /tU0msYVgZnPr+XBGJv0G4jrrL0uC0Cep1oJfI6cn0da8ReV+4d4ixPgNO4q94RX0673
-         cFNvC8xwZb1VRkYV1jx3diq6+RvwpNdLjsQTHAhimvAyV9YpB+f6ENTsgXQnAuYZz9Hl
-         uY62Z5KyDNfVokZK88bmO5AgngmFGNBqGAT1GlbIsbzSsG970/xAeR5fxRObwUk+5oiV
-         W+pA==
+        bh=bFt+oA/6TnGUcf1mQLhvyTPCz7K2SXMiNJhoCpH+0PQ=;
+        b=mMVAfwjW+b8cuJ2dwjTdp8T8VEVWy3RZSJRsAaKzXDEE/s7MfXGStu4SM7JO5vj24E
+         apwhy77uafCtmqzIVLjYIEv6KJOJAElq+giAK13P0V4usoDkJMBQu+hTNzqHyGAi+D/B
+         gKUKc0u4llVgnb8G6domyUHQ0jXTBLgns8sQvQDvOgncKF3fSAxJi51YZhXhJn3VM8yR
+         8jHth8edA5vB/VRpYOiLhtqh2Ncgf/g5sLWsWxzV8NAAEjG+E9WDTV853qn1D/Eg3279
+         uWRCPvKssC4lBOFSjE+UNqk5XeY+8IOVOJgtRqspUZo778Q4NrHpvBE5QNriwzoUZGTk
+         QgCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767099778; x=1767704578;
+        d=1e100.net; s=20230601; t=1767099781; x=1767704581;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=jSJakbOsK6HuPfvndjr4pklixI6V6EaaZEWI2YnlWqA=;
-        b=BGgflJVu0kwR5AprHrhVSmKEQI8bKDRZFraPYhkqM4qos7T9mzuQlAD9zmMhjeAwl1
-         uRBsKr0dgD/m00awgbpBXv/7HBbS4FvMUQN0E+VZ9znhpbuIukZvsXTYv7e+10Ou4vfc
-         45UVL1mGYm4QALOwHC6Rg1BHCRYnSIWmPy5OCDD0XU4DXH+KnN1NqDhiJ9Gfim6Zhq+o
-         Ox7BgNgJ5lbY0KZZVi2aSKv8756AZ3UvhNs0KKMgJfUd/CCs9PedtyGQmii0FN97BpYZ
-         ybBeA0FtLPss4jqOGFPmg8lVRsMa4TmsvsiEIbixb4/BNn+Xsc7KXvD6u9X1gyA2DhiX
-         craw==
-X-Forwarded-Encrypted: i=1; AJvYcCVgi8jZ8u/Njx1nHhr6zGJLxu6S2oQ2BICqcnMiGik3OnA1uNlNramXaGJQZvMTJlP41NjjTs0zkwhW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxe74gPFJRknAYFDdG1h3+KJOyEmeMsxvdLyDS5K0DGF4o5/hNG
-	akPRZQmw0ppuyZhEr2jCDrpq7WDdBXiDgIbAOsy/A9UNfYMw9yQ8QSNo
-X-Gm-Gg: AY/fxX4tldfHCAnufjAPC4I31Cngwz0GGoeTXxRjTu1KqNTlxeIjyWIivg8cdykKQoI
-	ZNrUSNDcGQM/tkr8lqhXS1uyr2+KeJrJfUunEigSt/6ktQZ68LbAgZFOG6NW+JT01ehnuDuShHU
-	aV6Ad8+3vS5wa/4n0KGlDenpVU78YJEciWdOWD+u8rsX2BqP+p5pwC1kiTSKZ5b3Y0SMyGk+v//
-	FAmczMIml7xX95jmQdwCKq34fXBC2r71Ct4LnprYMZ4MzuEEwpnE6TWkmE5oYoKJcC7godYIar2
-	ATUGBIJ1uc/vxtOhhMIwBoaSrXmBq8QssgoVZCTJQQFTM+nKZNGwhRu8H21nB+iXrQItxGSbV0p
-	BDBb5qpvJ59ShNaulWvoiBSHv1KS5oWVyM68zFM1YOZB0bdPkYw6yBZa2bFPdUEuuWZGBetp9vW
-	oOxi04ZINLfQSqCk3p6s4oVh2mS9vh2SQw+vLb
-X-Google-Smtp-Source: AGHT+IHZerZ0LNO2PuMFv7iW0Mjil2vz3+YsCHT76XvPfMWbN4zdO9z4ljPoono1/dOsj9Os3Y/Gyg==
-X-Received: by 2002:a17:903:249:b0:2a0:de4f:c9b with SMTP id d9443c01a7336-2a2f222b700mr347394015ad.4.1767099777888;
-        Tue, 30 Dec 2025 05:02:57 -0800 (PST)
+        bh=bFt+oA/6TnGUcf1mQLhvyTPCz7K2SXMiNJhoCpH+0PQ=;
+        b=br8RtAGMF5ZD2kSY8xOLLr4SxHtIDFl9s1z85UHH1whZAam+i+k85zNQdumfKduCap
+         lE4iNwe6Dokz7lEdHgmme0YYDeSdpql8VIODAjV/xzMR+eAPWAJ33eNqZ7A79bVcCNTs
+         pB1kNqhY5j6hT75LC3ROxT0C3XnGKG8010HOFP69LZcVuDa1TAjwioSLRhZmB/ppib17
+         ye9CbL4Pl6vOXWPIAlgLl/k/gu1h6F4beuheqTk5o5WX+jMZrNeZUyeCNyUT2fBx/x/s
+         bF25f8k0q7PKXEVHiWyNF/UKf6Tc8kr2CJExJQqLe4nWNGacxZI4MqjnedGpXPpQco/U
+         Octw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJVMt2PADQ4ojSITY6wg7BNjg0k561frQcBrLwJPtZohw/t2NxMQ1hlSol7TJXrgq2TlYcmpbuheTY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGoNneP+TGXu319PkdzLli0dIKakxqhLdxa4C2mTouP5x6qCdh
+	OZgI0x15NG0uMvlex4dAzqe4sIC53KjdPYdz07WWO+WwY8mavbdhcsaq
+X-Gm-Gg: AY/fxX5u6/2QHOkax6vTXVXcksmM0e+9mC5V+iJOjQoxcW1CSGrRd1BXuRt83pVLzZW
+	JJa3oOLyjvYmyG7FulnLXStli+hSfsShxJFdrejGZBeW3zraH3NicpOyFbhTSnRxa77e/xJ4cdh
+	HWrJ+31IcXX9XMbo/B770QFapUBwFWI+blIGgp0+OI9sdVjVfjNGUnhHv8Vp6E0FIiDK4ATl0UX
+	E0938bG4rX6K4asEuOF7SBhvuehWqcoNhlnHuySgJC7kGO5Z5N1Is18Szi15+EC4Hhyy+C59Pyd
+	W68T8cnz4zz+NSZIZ2fX+7L8PhCDUVBDRlOiUaadtKzk75xdKBcYOVZb7CBZDfBuBqvDGxKuSt9
+	pgDxVIz9hkhCPvDZRXyjFAmclTIZBgzhDC8pJfeOyfedWgFoyEw6N3ttRLmUMHttB6qhTitDX31
+	9C9Oe9ZpXyraZXLSdWBE85wRboZJyGZVuY18Kh
+X-Google-Smtp-Source: AGHT+IFOsQ07Jl6rs2Cw6NmpVbi6zdWPsCauR5WaD4vFkdSAOc437iw7lgABjk+ZfmAgdXjbg4je8w==
+X-Received: by 2002:a17:903:fad:b0:295:54cb:16ac with SMTP id d9443c01a7336-2a2f2218accmr324255055ad.18.1767099781202;
+        Tue, 30 Dec 2025 05:03:01 -0800 (PST)
 Received: from test-HP-Desktop-Pro-G3.. ([103.218.174.23])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d6ec6bsm296003075ad.87.2025.12.30.05.02.54
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d6ec6bsm296003075ad.87.2025.12.30.05.02.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Dec 2025 05:02:57 -0800 (PST)
+        Tue, 30 Dec 2025 05:03:00 -0800 (PST)
 From: Sudarshan Shetty <tessolveupstream@gmail.com>
 To: andersson@kernel.org,
 	konradybcio@kernel.org
@@ -82,9 +82,9 @@ Cc: robh@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Sudarshan Shetty <tessolveupstream@gmail.com>
-Subject: [PATCH v10 2/5] dt-bindings: backlight: gpio-backlight: allow multiple GPIOs
-Date: Tue, 30 Dec 2025 18:32:24 +0530
-Message-Id: <20251230130227.3503590-3-tessolveupstream@gmail.com>
+Subject: [PATCH v10 3/5] backlight: gpio: add support for multiple GPIOs for backlight control
+Date: Tue, 30 Dec 2025 18:32:25 +0530
+Message-Id: <20251230130227.3503590-4-tessolveupstream@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251230130227.3503590-1-tessolveupstream@gmail.com>
 References: <20251230130227.3503590-1-tessolveupstream@gmail.com>
@@ -96,42 +96,120 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Update the gpio-backlight binding to support configurations that require
-more than one GPIO for enabling/disabling the backlight.
+Extend the gpio-backlight driver to handle multiple GPIOs instead of a
+single one. This allows panels that require driving several enable pins
+to be controlled by the backlight framework.
 
 Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
 ---
- .../bindings/leds/backlight/gpio-backlight.yaml      | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+ drivers/video/backlight/gpio_backlight.c | 61 +++++++++++++++++-------
+ 1 file changed, 45 insertions(+), 16 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-index 584030b6b0b9..1483ce4a3480 100644
---- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-+++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-@@ -17,7 +17,8 @@ properties:
+diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
+index 728a546904b0..037e1c111e48 100644
+--- a/drivers/video/backlight/gpio_backlight.c
++++ b/drivers/video/backlight/gpio_backlight.c
+@@ -17,14 +17,18 @@
  
-   gpios:
-     description: The gpio that is used for enabling/disabling the backlight.
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 2
+ struct gpio_backlight {
+ 	struct device *dev;
+-	struct gpio_desc *gpiod;
++	struct gpio_desc **gpiods;
++	unsigned int num_gpios;
+ };
  
-   default-on:
-     description: enable the backlight at boot.
-@@ -38,4 +39,13 @@ examples:
-         default-on;
-     };
+ static int gpio_backlight_update_status(struct backlight_device *bl)
+ {
+ 	struct gpio_backlight *gbl = bl_get_data(bl);
++	unsigned int i;
++	int br = backlight_get_brightness(bl);
  
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    backlight {
-+      compatible = "gpio-backlight";
-+      gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>,
-+              <&gpio3 5 GPIO_ACTIVE_HIGH>;
-+      default-on;
-+    };
+-	gpiod_set_value_cansleep(gbl->gpiod, backlight_get_brightness(bl));
++	for (i = 0; i < gbl->num_gpios; i++)
++		gpiod_set_value_cansleep(gbl->gpiods[i], br);
+ 
+ 	return 0;
+ }
+@@ -52,6 +56,7 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+ 	struct backlight_device *bl;
+ 	struct gpio_backlight *gbl;
+ 	int ret, init_brightness, def_value;
++	unsigned int i;
+ 
+ 	gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
+ 	if (gbl == NULL)
+@@ -62,10 +67,22 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+ 
+ 	def_value = device_property_read_bool(dev, "default-on");
+ 
+-	gbl->gpiod = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
+-	if (IS_ERR(gbl->gpiod))
+-		return dev_err_probe(dev, PTR_ERR(gbl->gpiod),
+-				     "The gpios parameter is missing or invalid\n");
++	gbl->num_gpios = gpiod_count(dev, NULL);
++	if (gbl->num_gpios == 0)
++		return dev_err_probe(dev, -EINVAL,
++			"The gpios parameter is missing or invalid\n");
++	gbl->gpiods = devm_kcalloc(dev, gbl->num_gpios, sizeof(*gbl->gpiods),
++				   GFP_KERNEL);
++	if (!gbl->gpiods)
++		return -ENOMEM;
 +
- ...
++	for (i = 0; i < gbl->num_gpios; i++) {
++		gbl->gpiods[i] =
++			devm_gpiod_get_index(dev, NULL, i, GPIOD_ASIS);
++		if (IS_ERR(gbl->gpiods[i]))
++			return dev_err_probe(dev, PTR_ERR(gbl->gpiods[i]),
++					"Failed to get GPIO at index %u\n", i);
++	}
+ 
+ 	memset(&props, 0, sizeof(props));
+ 	props.type = BACKLIGHT_RAW;
+@@ -78,22 +95,34 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	/* Set the initial power state */
+-	if (!of_node || !of_node->phandle)
++	if (!of_node || !of_node->phandle) {
+ 		/* Not booted with device tree or no phandle link to the node */
+ 		bl->props.power = def_value ? BACKLIGHT_POWER_ON
+-					    : BACKLIGHT_POWER_OFF;
+-	else if (gpiod_get_value_cansleep(gbl->gpiod) == 0)
+-		bl->props.power = BACKLIGHT_POWER_OFF;
+-	else
+-		bl->props.power = BACKLIGHT_POWER_ON;
++						    : BACKLIGHT_POWER_OFF;
++	} else {
++		bool all_high = true;
++
++		for (i = 0; i < gbl->num_gpios; i++) {
++			if (gpiod_get_value_cansleep(gbl->gpiods[i]) != 0) {
++				all_high = false;
++				break;
++			}
++		}
++
++		bl->props.power =
++			all_high ? BACKLIGHT_POWER_ON :  BACKLIGHT_POWER_OFF;
++	}
+ 
+ 	bl->props.brightness = 1;
+ 
+ 	init_brightness = backlight_get_brightness(bl);
+-	ret = gpiod_direction_output(gbl->gpiod, init_brightness);
+-	if (ret) {
+-		dev_err(dev, "failed to set initial brightness\n");
+-		return ret;
++
++	for (i = 0; i < gbl->num_gpios; i++) {
++		ret = gpiod_direction_output(gbl->gpiods[i], init_brightness);
++		if (ret)
++			return dev_err_probe(dev, ret,
++					"failed to set gpio %u direction\n",
++					i);
+ 	}
+ 
+ 	platform_set_drvdata(pdev, bl);
 -- 
 2.34.1
 
