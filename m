@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-250320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10347CE868C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:33:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF62CE868F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:33:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C49D4300E447
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 00:33:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E8B71300DB8C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 00:33:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 873D52D9EF3;
-	Tue, 30 Dec 2025 00:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E391E2D9EC8;
+	Tue, 30 Dec 2025 00:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GeXINmzL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XfHH3c2I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com [209.85.210.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 107CB2D97A2
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 00:33:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC6C2D97B9
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 00:33:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767054796; cv=none; b=elX67mr7oZODkAIGn7S7P8YKpU7aL7w8G3gXW3lGH3N6hxWOsW9BXbkxF+atfSIhdFSKvANd/PFOrIKbUn4XtYAYUhCMr86MVn5Onfgg/k/jvRT78mxRYv7RlKUYcVhsOqNVzVUV2rJ7nVEkbzvY+uC8ienC56Wr7i9Z+x4rbEg=
+	t=1767054801; cv=none; b=UEz/1vZXlXEYbPZ1ByCW3kCRWWKHlwcbSYnu2eeWaKfOJ0gzR+ZPtebTZ6Z+PnpsK1KC2SPHUKPk1evH/cgpeAm/ir0QcPB9nTP+xgeKdPn2rWNYuH6Yuy5e1TXrKIleS2GvljlTNP7lZQJA0gUVJALWG/ZGNyVo6HYfQotMWJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767054796; c=relaxed/simple;
-	bh=fGf2+7rah7o8VIl3XrKMGN/1rQuHOlVs273H9WmWF5A=;
+	s=arc-20240116; t=1767054801; c=relaxed/simple;
+	bh=OH5YDLvT7eFInoiNwMPu3oyYKH1FopxqgxlbMJ+9IBM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OgscmGRhpvGNEiAetd2GI30ZLNgNcmrueolg3l3NuAKFBYpVK9pWCzKRAaSbEs2j5A/9oNiFDWjVLxMLHKH/gAMYwodHwEi5FhmpyCm9JiQCC/0xOCqWR6lXIuYvxYROr5NZdrjTwApuUqtB/wPC569mBYsHEZ94cQpkS1cSLY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GeXINmzL; arc=none smtp.client-ip=209.85.210.172
+	 MIME-Version; b=q32ole6iWxQ2aZEqOA1bDPGARb2zeKEl0IytfVI0Ut750dTgizNaSuYN/nasc3q9zXyutxdU8frnKTJTDSwDqotTz11cHwLwWVXzAbisOgVu6d7YR6qATwYu4Q5UX2zjpgLnEOBNJ6hqo/NQ1SJVWxtHMynCJSKgph3h52xG5uU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XfHH3c2I; arc=none smtp.client-ip=209.85.210.193
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7b7828bf7bcso11170153b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 16:33:14 -0800 (PST)
+Received: by mail-pf1-f193.google.com with SMTP id d2e1a72fcca58-7aae5f2633dso9687042b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 16:33:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767054794; x=1767659594; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1767054799; x=1767659599; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=w+aoWuGKUE3COGr8tLv4S8keRb3mm8yhErb3FfXmO/0=;
-        b=GeXINmzLp9TxEbGCIVCbWtKichssigVNQJ//3qKTs+G+WNim29vWQyKkL2sddgLVeV
-         PFfyDGXM+SKiNLSiQ+uZk/Wk+wle+TmvS+FudlsSERhBOVPShCTbpvsKw6ysHtZTmHu3
-         4xerCfznqPPwQz0h9Y4XjTs2UHE84c1YrP39ALt5WZe1iGHtRed0l1gQ9FAcV3m+X6xi
-         DVlp0wF3dOGAAbvoon6C4JH/z5m/MrDYTgDRK5ldTwwnGqhVh3awaITtcXUF/Jdev3iF
-         Q4DghJnK8woQtLtCduaRobTgCi3CzogbK89DTFOIIa8y5abtksSTV1kcdtyGNi4knyFl
-         6j4Q==
+        bh=VkbI+3IsRhcx6hKZzGBXpGmnt+yRxhw1HJp+AgA3hxo=;
+        b=XfHH3c2IuUkYGIaJnRBUFzbu8XgYiFDz35G2NLjGNXPpKX89MydFvuTJJME+ckj3lu
+         3acd2861fb35OC1HtIuhZfKW9kQ9AyXpGPYsG981O75mpIEFp80O5E0ExaE7p5kax3dr
+         pMlP4SGNgxvvfHoigdOT6cryJbcpP2ZZf5sSdWF0bPACYqqK6bVip8bFyx1EDOAw2b1X
+         O3zGXwIzVt2kAyQaDxrBu8/JtiWPQ5y4B5y4lEoWK2ZkmEAoQdmcCE0EHb3/Byf7ZmMF
+         0baS6A5Hv2hYaLCOzerXjFfsLmNS7Gvu10Q8rWSVjwdN55RcVVSmFloJhAIsnIwDl2rK
+         0F4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767054794; x=1767659594;
+        d=1e100.net; s=20230601; t=1767054799; x=1767659599;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=w+aoWuGKUE3COGr8tLv4S8keRb3mm8yhErb3FfXmO/0=;
-        b=evDD4nt+/KCyieTn9/xee9XrB1Ojs7LCw5Ozu5V6wyrK7zh0PGoUMlYI7RfowKO+M8
-         Xd5HXfZdULcYpvmxsOFkaJ83riZOasr1IyHS06ZgjViAkSYv8tSen0x2C4R9AZT0Q526
-         OvY1yWM9S1hMyR18um0DhEcNCDc0PlNE2+e6yUnhoASm7CB7S0rQkZke7e2eXSUwj1/w
-         9yKl76pfAVKGaQVwyOw0uze+Nr/TpvH3iLbEq7fggNQzbw31Sg4Gbyay0KRGj9ZN72Nl
-         DB6jEvA1NBZSKkPjcSvVTbyFfoZmUKUDtM8I6DZr/Oktypr0Sr1wZ0qa2MB5R0k5aH4O
-         J5Gg==
-X-Gm-Message-State: AOJu0YwXHFm7uIPeTfpZ1GPow5aDNZVTBSK+ApwazxbtND6XKR+UnKKS
-	MmdiQp6XAnQz2prUDVbTZHpnY7D9+sC0YLqHbncp0Ro6dsVrS9pH31gA
-X-Gm-Gg: AY/fxX7egDp+jVUJQBC4z1mGDOudL5OqlNL9gFzVHy2QcAMGitEC7uExpptK9J1ghpz
-	R9AZgvFz4hpdzTL8m9xgYk6blIAIqiXzvdyhbje4z9cSeqJVmM/EOjPZ7VaqlchMsBOz5lAui1A
-	dwnyHvmF36Eq8Aaz1sL1KJR84WcJ/Pcz/iBpBoNhl8nzGOMHjjsif4IcLVejv8ViJLybGUnbyAx
-	fDVlWGBernXCifgFK1a8Ig7dJTNEbCRQ39GjbA1HQDUSUNPu1FrsGOc1FjEW3Dine17lSh5QQqn
-	K8lZfAnUk3j8nkweev0XoDRa2oRJLyQyiJZ959DYjmecoEuaUDgD2DuSTWinwKPoyow7Vc8UYvl
-	vkduAaOQK9guvNcykBlmUWZb/iiW2NsIr5+JO+fCBh3s60zoco5dku2sdvE8VAkQpbuRWH3I/Az
-	nZsiPkMiwhBcsAd/FEHpuUCPHgRi6+U6xh
-X-Google-Smtp-Source: AGHT+IFbH+4hMlX8jR68jhxeA2GuQCXZA/rHynA6Og3i4DEdsBCk1t6PdYvdmO1Pt+LUzGmugFGZwQ==
-X-Received: by 2002:a05:6a00:e11:b0:7b8:8d43:fcd1 with SMTP id d2e1a72fcca58-7ff64215183mr25337015b3a.9.1767054794267;
-        Mon, 29 Dec 2025 16:33:14 -0800 (PST)
+        bh=VkbI+3IsRhcx6hKZzGBXpGmnt+yRxhw1HJp+AgA3hxo=;
+        b=TbW9jURizfHNlo5vc2cATvghQ5jTSqaKogo/E7/mAjVY7XfuFJrqazdJB4Ir4+Xa3V
+         6/DVFUusK7kVFR4l4YsGwZFRZRNvjHsrkJhsMZ8g3KVqYZtCiEBqQMs1BEdp2gpFdZvy
+         nUu3TxOgsWKDyXOAfCi5937u77t7UCuE6FJs25gTGFc5lePxACk4CXdtDZWYuffQAuhB
+         Y91U3WnqnGqoVEMMaWc68Dd3yZBhWiwDkXs5sapQoHeODjrH1UGIAit0XqTmJ1NJivXk
+         KbcvzPivWZvFRg6Rk1H3vF5mmIE91ybbw+1VxpbVs32xQ8uwPzziTBlIhlfyVn+rquWJ
+         y78w==
+X-Gm-Message-State: AOJu0YzqZbECIzDMgcuYjnXT2GV+hocd6HceQsVlVoss2QHvlNFoR3it
+	zP3XT0a3prUNyN0bnfoT9SxQHRWkCjZU62TGOJFvyiqkPEPwEUIh5KVO
+X-Gm-Gg: AY/fxX5RfbpfPM4+w+c7tJBGBd0sGjfpBkbyCovjhv6i09zI6A2k4cCAMelEKfESSta
+	2LOVG7NzvlBMygessxphSSy0mxNgcqqHBe4MuzcAGXD1SdJ/GC5xQxJa9qTW9Ajcjn/kERxfb+3
+	0wgSV7MIa56X/Sb37H8b+uk0o6uN70VEgD+7a04QUU9Ev6H8WHesA4lGyOhyxPAlisOdfqGSr3p
+	DxSfSNL2iK+/GLE50nfhh9Ps2HsQlY2bSPenWB97WwGFSV1R6hOYFvOGeac5ybbKqBGwlrro4tj
+	orw5BPY/0gxCdrMOFSwEwmTpuVct/C8eBUIjGUgKnXdYZMlbD7+WaKxaFWtOXufVgKQIkWRwnT+
+	OBbiWYt3dwWjho9zkdVZSDTq/cglhwqbNtWqkZFDd0mJ5nbL0kAA4U5O9CUyuwxBr+MIV8BSbol
+	6zFDT8SYZsPgZ/PwHqD6G1NvZadgJj2bGI
+X-Google-Smtp-Source: AGHT+IECW0eo3Oi62nw/+nZehLW7fne4GAiwW05RNQvGenyCKL5tdoQdZfmoiNvdPl9P4jxCFkb57g==
+X-Received: by 2002:a05:6a00:3002:b0:7ab:8d8a:1006 with SMTP id d2e1a72fcca58-7ff644011fbmr23360668b3a.2.1767054799508;
+        Mon, 29 Dec 2025 16:33:19 -0800 (PST)
 Received: from MRSPARKLE.localdomain ([150.228.155.85])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e8947a1sm30241562b3a.67.2025.12.29.16.33.09
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e8947a1sm30241562b3a.67.2025.12.29.16.33.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Dec 2025 16:33:14 -0800 (PST)
+        Mon, 29 Dec 2025 16:33:19 -0800 (PST)
 From: Jonathan Brophy <professorjonny98@gmail.com>
 To: lee Jones <lee@kernel.org>,
 	Pavel Machek <pavel@kernel.org>,
@@ -83,9 +83,9 @@ To: lee Jones <lee@kernel.org>,
 Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-leds@vger.kernel.org
-Subject: [PATCH 1/7] dt-bindings: leds: add function virtual_status to led common properties
-Date: Tue, 30 Dec 2025 13:32:38 +1300
-Message-ID: <20251230003250.1197744-2-professorjonny98@gmail.com>
+Subject: [PATCH v4 2/7] dt-bindings: leds: Add virtual LED class bindings
+Date: Tue, 30 Dec 2025 13:32:39 +1300
+Message-ID: <20251230003250.1197744-3-professorjonny98@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251230003250.1197744-1-professorjonny98@gmail.com>
 References: <20251230003250.1197744-1-professorjonny98@gmail.com>
@@ -99,28 +99,232 @@ Content-Transfer-Encoding: 8bit
 
 From: Jonathan Brophy <professor_jonny@hotmail.com>
 
-LED-FUNCTION-VIRTUAL-STATUS ID to the FUNCTION ID list for device tree
-bindings to suit virtual led drivers.
+Add device tree bindings for the virtual LED class of led devices.
+for representation of virtual LEDs that combine multiple physical monochromatic
+LEDs into a group.
 
+Usefull for representing complex system states without complex userspace scripting
+
+Key binding properties:
+- priority: Arbitration priority (0-2147483647, higher wins)
+- led-mode: Operating mode (multicolor or standard/fixed-color)
+- leds: Phandle array to physical LED devices
+- mc-channel-multipliers: Per-channel brightness multipliers
+
+Channel ordering is deterministic, sorted by ascending LED_COLOR_ID
+value. The multi_index sysfs attribute allows runtime verification.
+
+Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
 Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
 ---
- include/dt-bindings/leds/common.h | 3 +++
- 1 file changed, 3 insertions(+)
+ .../leds/leds-class-virtualcolor.yaml         | 197 ++++++++++++++++++
+ 1 file changed, 197 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-class-virtualcolor.yaml
 
-diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
-index 4f017bea0123..f03214ba28d5 100644
---- a/include/dt-bindings/leds/common.h
-+++ b/include/dt-bindings/leds/common.h
-@@ -63,6 +63,9 @@
-      "lp5523:{r,g,b}" (Nokia N900) */
- #define LED_FUNCTION_STATUS "status"
-
-+/* Used for virtual LED groups, multifunction RGB indicators or status LEDs */
-+#define LED_FUNCTION_VIRTUAL_STATUS "virtual-status"
+diff --git a/Documentation/devicetree/bindings/leds/leds-class-virtualcolor.yaml b/Documentation/devicetree/bindings/leds/leds-class-virtualcolor.yaml
+new file mode 100644
+index 000000000000..4a3721455648
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-class-virtualcolor.yaml
+@@ -0,0 +1,197 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/leds-class-virtualcolor.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- #define LED_FUNCTION_MICMUTE "micmute"
- #define LED_FUNCTION_MUTE "mute"
-
++title: Virtual LED class device with priority-based arbitration
++
++maintainers:
++  - Jonathan Brophy <professor_jonny@hotmail.com>
++
++description: |
++  Represents a single virtual LED that combines one or more physical monochromatic
++  LEDs. Multiple virtual LEDs can share the same physical LEDs, with priority-based
++  arbitration determining which virtual LED's state is displayed.
++
++  The driver implements winner-takes-all arbitration:
++  - Only virtual LEDs with brightness > 0 participate in arbitration
++  - Highest priority wins (ties broken by sequence number - most recent wins)
++  - Winner controls ALL physical LEDs
++  - Physical LEDs not used by winner are turned off
++
++  Two operating modes are supported:
++
++  1. Multicolor mode (default):
++     - Full multicolor LED ABI support
++     - Exposes multi_intensity, multi_index, multi_multipliers in sysfs
++     - Per-channel intensity control (0-255)
++     - Channel multipliers for color temperature adjustment
++     - Master brightness scales all channels proportionally
++
++  2. Standard mode:
++     - Fixed color ratios via mc-channel-multipliers
++     - Only brightness control available (no intensity changes)
++     - Useful for fixed-color LEDs (e.g., warm white, amber)
++
++  Sysfs interface (multicolor mode):
++  - /sys/class/leds/<led>/brightness - Master brightness (0-max_brightness)
++  - /sys/class/leds/<led>/mc/multi_intensity - Per-channel intensities (space-separated)
++  - /sys/class/leds/<led>/mc/multi_index - Color IDs per channel (read-only)
++  - /sys/class/leds/<led>/mc/multi_multipliers - Channel multipliers (read-only)
++
++properties:
++  $nodename:
++    pattern: "^virtual-led(@[0-9a-f])?$"
++
++  reg:
++    maxItems: 1
++    description: |
++      Unique index of this virtual LED within the controller. Used for node addressing.
++
++  function:
++    description: |
++      LED function identifier. recommended to use: LED_FUNCTION_VIRTUAL_STATUS,
++      See include/dt-bindings/leds/common.h
++
++  priority:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0
++    minimum: 0
++    maximum: 2147483647
++    description: |
++      Arbitration priority for this virtual LED (signed 32-bit integer).
++      When multiple virtual LEDs sharing physical LEDs are active (brightness > 0),
++      only the highest-priority LED's state is displayed.
++
++      Tie-breaking: If priorities are equal, the most recently updated virtual LED wins.
++
++      Suggested priority ranges:
++        0-99:   Normal operation indicators
++        100-499: System state indicators (boot, shutdown)
++        500-999: Warning/error indicators
++        1000+:   Critical alerts and emergency overrides
++
++  led-mode:
++    $ref: /schemas/types.yaml#/definitions/string
++    enum: [multicolor, standard]
++    default: multicolor
++    description: |
++      Operating mode for this virtual LED:
++
++      - "multicolor": (default) Full multicolor ABI with dynamic intensity control
++        * Exposes multi_intensity sysfs attribute for per-channel control
++        * Channels can be adjusted independently at runtime
++        * Suitable for RGB LEDs, color-changing indicators
++
++      - "standard": Fixed color ratios, brightness-only control
++        * Channel intensities fixed by mc-channel-multipliers
++        * Only brightness sysfs attribute available (no multi_intensity)
++        * Suitable for warm white, amber, or other fixed-color LEDs
++
++  leds:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    minItems: 1
++    maxItems: 255
++    description: |
++      Array of phandles to physical LED devices that compose this virtual LED.
++      LEDs are automatically grouped by their 'color' property into channels.
++
++      Channel ordering: Channels are ordered by ascending LED_COLOR_ID value.
++      Only colors present in the LED list are included (no sparse indices).
++
++      Color ID values (from include/dt-bindings/leds/common.h):
++        LED_COLOR_ID_WHITE = 0
++        LED_COLOR_ID_RED = 1
++        LED_COLOR_ID_GREEN = 2
++        LED_COLOR_ID_BLUE = 3
++        LED_COLOR_ID_AMBER = 4
++        LED_COLOR_ID_VIOLET = 5
++        LED_COLOR_ID_YELLOW = 6
++        LED_COLOR_ID_IR = 7
++        ... (see header for complete list)
++
++      The /sys/class/leds/<led>/mc/multi_index file reports the color ID for
++      each channel, allowing userspace to verify the ordering.
++
++      Supported LED types:
++      - GPIO LEDs (gpio-leds compatible)
++      - PWM LEDs (pwm-leds compatible)
++      - I2C/SPI LED controllers (any with brightness_set or brightness_set_blocking)
++
++      Example 1 - RGB LED:
++        leds = <&led_red>, <&led_green>, <&led_blue>;
++        Results in 3 channels: [0]=red (ID 1), [1]=green (ID 2), [2]=blue (ID 3)
++
++      Example 2 - RGBW LED:
++        leds = <&led_red>, <&led_green>, <&led_blue>, <&led_white>;
++        Results in 4 channels: [0]=white (ID 0), [1]=red (ID 1), [2]=green (ID 2), [3]=blue (ID 3)
++        Note: White comes first because LED_COLOR_ID_WHITE = 0
++
++      Example 3 - Non-contiguous IDs:
++        leds = <&led_amber>, <&led_red>;
++        Results in 2 channels: [0]=red (ID 1), [1]=amber (ID 4)
++
++      Userspace verification:
++        $ cat /sys/class/leds/status:multi/mc/multi_index
++        1 2 3
++        # Confirms: [0]=red, [1]=green, [2]=blue
++
++  mc-channel-multipliers:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 255
++    description: |
++      Per-channel brightness multipliers (0-255) for color temperature adjustment
++      and normalization. Array must have one entry per channel.
++
++      Channel ordering: Array indices must match the channel order, which is
++      determined by ascending LED_COLOR_ID value. Only colors present in the
++      'leds' property are included.
++
++      For predictable DT configuration, list multipliers in ascending color ID order.
++      The /sys/class/leds/<led>/mc/multi_index file can verify the ordering at runtime.
++
++      In multicolor mode:
++        - Scales the intensity value before applying brightness
++        - Formula: final = (intensity * multiplier / 255) * brightness / max_brightness
++        - Useful for: Color temperature control, vendor normalization, power limiting
++        - Default: 255 (no scaling) for all channels if omitted
++
++      In standard mode:
++        - Defines the FIXED color ratios (intensity changes not allowed)
++        - Formula: final = multiplier * brightness / max_brightness
++        - Useful for: Fixed-color LEDs (warm white, amber)
++        - REQUIRED in standard mode
++
++      Example 1 - RGB with equal scaling:
++        leds = <&red>, <&green>, <&blue>;
++        mc-channel-multipliers = <255 255 255>;
++        # Channels: [0]=red, [1]=green, [2]=blue - all at full scale
++
++      Example 2 - RGBW warm white (standard mode):
++        leds = <&red>, <&green>, <&blue>, <&white>;
++        mc-channel-multipliers = <180 255 200 100>;
++        # Channels: [0]=white:180, [1]=red:255, [2]=green:200, [3]=blue:100
++        # Note: White (ID=0) comes first, then red (ID=1), green (ID=2), blue (ID=3)
++
++      Example 3 - Color temperature adjustment:
++        leds = <&red>, <&green>, <&blue>;
++        mc-channel-multipliers = <255 180 100>;
++        # Creates warm white by reducing green/blue relative to red
++
++required:
++  - reg
++  - leds
++
++allOf:
++  - $ref: common.yaml#
++  - if:
++      properties:
++        led-mode:
++          const: standard
++    then:
++      required:
++        - mc-channel-multipliers
++
++unevaluatedProperties: false
 --
 2.43.0
 
