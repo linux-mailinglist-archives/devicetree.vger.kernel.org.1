@@ -1,367 +1,159 @@
-Return-Path: <devicetree+bounces-250329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31CCECE873D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:57:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D11CE875C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:02:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 73FAC30133BF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 00:57:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0E5AA300EA19
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 337C42DCC03;
-	Tue, 30 Dec 2025 00:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97AA31C8616;
+	Tue, 30 Dec 2025 01:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="bvuT3QiX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PPnR8FXZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FDE022301
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 00:57:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002BD83A14
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 01:02:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767056229; cv=none; b=MOSSdGtVDHokQ6dRqB4ufvwAAkJIGT7DfRUDJIG7QuCA49yM0EY2EW7Ugpt5DAh3e6CIxGXiJa+zAPbI594d+QOF6POhQcO1N+s43MAo01QJbRrRKfjrYol6cjU0g6n04/EnACj10rUmiWsXwb53hT2Vz0Z4Q41G2rAZ671sK8Q=
+	t=1767056535; cv=none; b=ihDsx5icElTGnmsZer6VtWYdd7Aemgw/DGJ4hLRtm6F+syCvR0WgyYpXi8X0bciXtcOxYAbN9qgm5XKiNzcxLuHRHPd65p5y2MW509mWhiwkN6MepT4qsPLqRGv1A2iR13pEM593mCPzFz047x6B/akYDIdZThr+D/6JNMZk25U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767056229; c=relaxed/simple;
-	bh=sE8b3IumfaKFKJQLuFVtn5oJy+2Nb8sWyrgWfQ95I8w=;
+	s=arc-20240116; t=1767056535; c=relaxed/simple;
+	bh=3xAksIfPX2T5WNXoLxZym8rwMz4q+s1MZgwkJv11lqc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z26TH5TUc/y5/gX/HZd0FzBJy9uSB/ny6Of9745CNUKC/Qv32PjETo9wnVQP8sgSd5d5VvHZ37eeLEQ+lDJpfwAibZkrKRdVZUAAOMwyLngtRO79gNCxDrZPZ6ih2DYQLsHRFkA/2LG798tgH3/3VLorCdlP521NlCphMU+ux2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=bvuT3QiX; arc=none smtp.client-ip=74.125.224.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-64661975669so9156309d50.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 16:57:06 -0800 (PST)
+	 To:Cc:Content-Type; b=hIY3WSslDp1T3jWuXic0SoA5qZ6kkPUWPx3Tsoa4lhFM5vfujm5J7TmbmDaPgKS7cf4s/vo3Alvr9+T4L8Ost9cXHdvC2HqqXxc+dm6yXj6TcaJp7SccEObe3HBVc37aSBO2VlwGX8PH+SKp8ojko8auozMT7r30WrdrZ3TJJLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PPnR8FXZ; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-55b0af02ddeso1075549e0c.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 17:02:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767056225; x=1767661025; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1767056533; x=1767661333; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2QaQUqBrCThJUkV4NZc52M6yJ8UuzgbQbqNLvgQLbZA=;
-        b=bvuT3QiXPCjf2InNu2DEXRFatHJmdGfwNE6fdr3vMgZVE0kqWgS/rAlZjeubB53b9q
-         UT5AXS2HUlHA/SgTTT4ufM8OcOPUELCt3jHghKltvMupQnV4AoLOrbRNFmwoLOCFRTTU
-         tggKH8fF7BBHhm5pfb4IjstNhR7skphWZ6M2QXR5fWudlgRmhXzXpbM6HBZuSYNiJryH
-         BwtMLNweAIK9zq58abxjfkrOZ96LxCRMUz5JkOlU4nQZ25ArXwe+MeDj1gbtJhzEPiM0
-         eAj+KPw0HG5BwbqB4+2uJNzsWMB+yWXsKtcro15N0X6/gjnM1OjUPS0QURFjXlps4YuK
-         JQpQ==
+        bh=K3uupG6wwKA+D3WjE6NNFWCJoJkQpCysPioJbVD9zeI=;
+        b=PPnR8FXZdubB4gamXaKW0u9MQTeR6WzklvfD3sOY1DoYFObBBrkH9mH7dvUvwnyMUQ
+         uQSrxVBR0hMt6z3vc3OROBUWl2U+E2L89i57GZqbrNK5oHgvMK+W87PhIYSf5x/XGO8J
+         K+CFl5Ivzw1nNRUmlgsRh6nJaav/WxKbdmGU5SXgDSfd6yH6p0SFDZgOZmYdnVNe6Eoj
+         vVECQ3FFp9vkEL19GbwLLUzQWa47zGMlu/WBhPSq8ckUjbj3nmvKNJUC930fOZHrVRdK
+         tI2lh3bNJRYJWieTDF+XwJeDo8W0fxAcEXem9XOckq/JeYTJXZhTnr5abP+tIrxGl2ot
+         tRYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767056225; x=1767661025;
+        d=1e100.net; s=20230601; t=1767056533; x=1767661333;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=2QaQUqBrCThJUkV4NZc52M6yJ8UuzgbQbqNLvgQLbZA=;
-        b=XUF8hcXSLtG24haPyaCbP7NgxcKrsk+3lHHGHEag7QVsKn57ZVG6+1MU8DcJ51xcYq
-         F2DoZ9kyKVLmyTs7+i44MZdh3b55iDARvFb1q5SEGOr0XDu6T8izYwcuufoakMDW//9G
-         TElqHzTSrWdiNbwP/jKjqnbX76e0M6U2Nc51zLECICbhdUoEV40upuSa4rtRNo53wUFQ
-         IFXAJX+Ki3maijhcxLFtVuArJ/rv/131yO+BUPUz5jr+5n58Bo9/NYRpTHuOunWm9KW4
-         t47CaNiUU5CafsQ+xXe3FxgxN+xiD6tqfFxIdmlTEMrkk+ISISxkC03tw8KqNCEsBxdc
-         obBg==
-X-Forwarded-Encrypted: i=1; AJvYcCWHA7pzGApgfLFHavHGHZ6s0jQ0pd/0r4Mrwc6X2OxprEKWT9BuPwJa97ZGaNFjGD7Pjhr0NOo2fz9q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcWAVRP7mkbh8At7noX2bs3SH0G20/zNG6rgMgnbKKic9CLJ9v
-	NqcvfYrVeyXxPGhbPAQTsXUyuzZ/+CuPbB3KT025YwHF7s/ptplDAg+caVF9AshX+nrfcZAOhBX
-	h/JzFTwbwQWBmPQ8hO0T0zL2sffV6NcixIupE9anFvQ==
-X-Gm-Gg: AY/fxX4Sr8dNawnnF5dqIQDvKwn19evAHVyENw+MvJ46NcYvNs/znESYMSpGB1dyXKA
-	2XDH30I+Z1zo+d4kcObIZD8q9/iXXfjZlAzGs4UZgUI0lo6LlVYphtM46BmncCeiI662NvSMM2j
-	ZNPPGpNHbzfrL725lUnPZNzJGPojqbm1vcFXkRwrXUWsi3rQkIZP/w/cOIOAkYtYxuLHS/DEtwG
-	IIkN7n5OCwkFE4KluE1SoCO/oOELgUcK5KMuBkjFUMyvljscI9Vz/MfIeMej9ov1iDagogOEBzT
-	vpEIh7Eb4kF8rYWVI0aQ5pkK5LozeG52W4Nkzo63PzFH
-X-Google-Smtp-Source: AGHT+IGtgvmkjxjySHzrMKMzf7ydD2MyhqhUqgAeNk1vTThMPHHyGCMfOECW0tMt6TrETjysrldkzMADoeZ+r5ghL4Q=
-X-Received: by 2002:a05:690e:1509:b0:63f:b9b3:9c3 with SMTP id
- 956f58d0204a3-6466a899e88mr23263087d50.31.1767056225455; Mon, 29 Dec 2025
- 16:57:05 -0800 (PST)
+        bh=K3uupG6wwKA+D3WjE6NNFWCJoJkQpCysPioJbVD9zeI=;
+        b=LOFzQo1qo5nmHFYpVFx27ySKqbPZcjss02pxxCpmJ7hY+sijblkWeJAC0EO/2JV0l+
+         s+ZUxMYk9+iEWJ7uxoemQUnfTJR605kXPaHBCb6t0a6JBEiSxJH1iG8m8mCB49ffNlLA
+         v5rRv82aeTSqH1h2Y9iVszke7mPTymJ0D2+uvXj0jJS5HuIGfvScgjvyV83giN0Q4Cf6
+         VfoNqJ8LPTv5tMLRkJdYj7Cay85aGeCi6vFHCxp8xcF2GWE/VfcBmEBKUweiu1QBnJ6S
+         OsqPApRImuEgMStvDaTw9mCDjDVuFoC7iFDgGtYWsz6nfOCs0+BwzGaFLiR6fKdfCpB5
+         f9zw==
+X-Forwarded-Encrypted: i=1; AJvYcCWzNxPkfw2MOdLEs/sRxv03wXwWnarsnzkitPm41SMBbmEA5KFmbahX0mnjsKSvRnRmhv4HN3PqslBM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyliWZ9Xl/h1HRxfNeTqppiHeCVbaQSmQzrFxGprZfO9XUgbuAp
+	2OZhdUEhaUuXbJwVycV08ZUOk1TQPN30brl2Lokn9h0MVJpikGtXfWMbfd/Fj4btJDHEZcrktK4
+	j5pippCRPqjkEBhBsk0Vw7lu3R+/hZTA=
+X-Gm-Gg: AY/fxX4YoGK0TztlV2p0cO+Oh0NjcSKUnnBXL1Jj7xaFvxfVBxdbQoRCWryWcZNKJBo
+	Qx3r3/GiId53dUn8WiQTo4GBmuum4szHPTIIxaoshveQdcACPO/KfDBUXB3V3RNMFWH26+3VZss
+	7uUHKuFo86vjNiMx/pKdLW5BHLTnoLMW6Yc+/fI+ZmDr3DMnYso1RMvUXKwtWku8jPNvEb7fJ6F
+	uP/ZQFiCHDc8NybVllMKkLWm6ymHIyYpc14b7P/WRAPI95l74lJFs3ee+K7Uxd6d7ODLxAE
+X-Google-Smtp-Source: AGHT+IHWHcxnnE6ua2lnO59+DWRC+LlEqTyrTydKj3DfcxQoiFj1yeTa9TC+D4wZtLiBbwSaYWQkTAPRRUX0Kb/EYlU=
+X-Received: by 2002:a05:6122:a1a:b0:559:65d6:1674 with SMTP id
+ 71dfb90a1353d-5615becae79mr7910503e0c.14.1767056532775; Mon, 29 Dec 2025
+ 17:02:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
- <20251222-k3-basic-dt-v2-8-3af3f3cd0f8a@riscstar.com> <8851c155-300a-4241-a5be-5163ba54e47c@riscstar.com>
- <CAH1PCMatKR4rHuBdw0fih5P8naE=KU4Vp5-KNjeDeO-LsEe81g@mail.gmail.com> <50559ab9-c537-4796-9538-495bf3d14069@riscstar.com>
-In-Reply-To: <50559ab9-c537-4796-9538-495bf3d14069@riscstar.com>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Tue, 30 Dec 2025 08:56:54 +0800
-X-Gm-Features: AQt7F2r30p17rJXlEGFv4xhSDXFsf2rOy_LSxq4J2RPG4AjiELxrr4KTvSbpnj0
-Message-ID: <CAH1PCMYX8RSy6pdUwANycxzjX_sfrnvjOFVysAFMFsv2Q8P3jw@mail.gmail.com>
-Subject: Re: [PATCH v2 08/13] dt-bindings: riscv: Add descriptions for Za64rs,
- Ziccamoa, Ziccif, and Zicclsm
-To: Alex Elder <elder@riscstar.com>
+References: <20251222-ventura2_initial_dts-v1-0-1f06166c78a3@gmail.com>
+ <20251222-ventura2_initial_dts-v1-2-1f06166c78a3@gmail.com>
+ <c069b452-df22-4afa-bf6a-c48949f40ebc@lunn.ch> <CAF7HswN_jEXOU_9K4LpLnbhvd+RD0qqELAHxMBbp=hGtMjS4kQ@mail.gmail.com>
+ <35f3eba9-5ec4-4cba-8a64-fb521dc65b79@lunn.ch> <CAF7HswN0hhJQ-gmE59cKTuPyzrs1A3rM8Xw+Z8i3_AsHRiNcug@mail.gmail.com>
+ <1e21f828-1b06-492d-bfcd-ab5721621e8a@lunn.ch> <CAF7HswP7Oejs42K=jG8bkNiBoDhXR2LbeHoppk0nnNon6_afwA@mail.gmail.com>
+ <32ff7ca8-9cb0-4889-adb0-a6dae735630b@lunn.ch>
+In-Reply-To: <32ff7ca8-9cb0-4889-adb0-a6dae735630b@lunn.ch>
+From: Kyle Hsieh <kylehsieh1995@gmail.com>
+Date: Tue, 30 Dec 2025 09:02:02 +0800
+X-Gm-Features: AQt7F2pPUn1JLWmR3VqaFLx0jmfpldK-iH0ck9hcP5otIfqONHlFX9khVNFmN88
+Message-ID: <CAF7HswMRrs9hwKo_uHCLMtx7+h46-DPEJRcEqu0-zEG4CVvvjg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
+To: Andrew Lunn <andrew@lunn.ch>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Lubomir Rintel <lkundrak@v3.sk>, Yangyu Chen <cyy@cyyself.name>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, 
-	Heinrich Schuchardt <xypron.glpk@gmx.de>, Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
-	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	spacemit@lists.linux.dev, linux-serial@vger.kernel.org
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 29, 2025 at 7:50=E2=80=AFAM Alex Elder <elder@riscstar.com> wro=
-te:
+On Wed, Dec 24, 2025 at 5:20=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
 >
-> On 12/27/25 10:10 PM, Guodong Xu wrote:
-> > Hi, Alex, Conor
-> >
-> > On Sat, Dec 27, 2025 at 5:28=E2=80=AFAM Alex Elder <elder@riscstar.com>=
- wrote:
-> >>
-> >> On 12/22/25 7:04 AM, Guodong Xu wrote:
-> >>> Add descriptions for four extensions: Za64rs, Ziccamoa, Ziccif, and
-> >>> Zicclsm. These extensions are ratified in RISC-V Profiles Version 1.0
-> >>> (commit b1d806605f87 "Updated to ratified state.").
-> >>
-> >> I think stating the RISC-V profiles commit ID here (in the commit
-> >> header) is good.
-> >>
-> >> I do *not* think it's necessary to include it in the descriptions
-> >> for the extensions, below, but I seem to be late to the party in
-> >> expressing this opinion...
-> >>
-> >> That commit ID is related to this repository:
-> >>     https://github.com/riscv/riscv-profiles.git
-> >>
-> >> I have a few other comments below but generally I think what you
-> >> did looks good.  I have one overall question though.
-> >>
-> >>> They are introduced as new extension names for existing features and
-> >>> regulate implementation details for RISC-V Profile compliance. Accord=
-ing
-> >>> to RISC-V Profiles Version 1.0 and RVA23 Profiles Version 1.0, they a=
-re
-> >
-> > Thank you for the review.
-> >
-> > Together with the filenames, I also listed the Version numbers.
-> >
-> > These are officially released versions of profile documents. I mean the=
-y
-> > won't be changed without modifying the version number.
-> >
-> >>> mandatory for the following profiles:
-> >>>
-> >>>    - za64rs: Mandatory in RVA22U64, RVA23U64
-> >>>    - ziccamoa: Mandatory in RVA20U64, RVA22U64, RVA23U64
-> >>>    - ziccif: Mandatory in RVA20U64, RVA22U64, RVA23U64
-> >>>    - zicclsm: Mandatory in RVA20U64, RVA22U64, RVA23U64
-> >>
-> >> I did not verify your statements about where these are
-> >> optional and mandatory, but I assume they're correct.
-> >
-> > Yes they are correct. As far as what stated in the two profile document=
-s.
-> >
-> >>
-> >>> Since Ziccamoa depends on the 'A' extension, add a schema check to
-> >>> enforce this dependency.
-> >>
-> >> All of these extensions are related to atomic operations, right?
-> >> Don't *all* of them (not just Ziccamoa) depend on the A extension?
-> >
-> >
-> > Za64rs and Zicclsm: no, they are not 'A'. They are cache related.
+> On Wed, Dec 24, 2025 at 02:40:39PM +0800, Kyle Hsieh wrote:
+> > On Tue, Dec 23, 2025 at 6:35=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wr=
+ote:
+> > >
+> > > > > What make/model of switch is it? Is it unmanaged, or does it use =
+SPI
+> > > > > or I2C for management?
+> > >
+> > > > The switch is connected via RMII to the MAC and is managed over MDI=
+O.
+> > >
+> > > O.K. What make/model?
+> > >
+> > The device is a Marvell 88E6393X switch. In our design, the BMC connect=
+s
 >
-> Isn't a Za64rs reservation set related to atomic operations,
-> though?  They are related to load-reserved/store conditional
-> instructions, which are introduced in the atomic instructions
-> section.
-
-Yes, you are right. Let me update the relationship:
-Za64rs defines a hard's reservation set implementation detail.
-
-It is consumed by two extensions: Zalrsc and Zawrs.
-
-Za64rs -> Zalrsc -> A
-Za64rs -> Zawrs -> Zalrsc -> A
-
-I would say maybe all these relationships deserve to be validated in
-cpufeature.c (so far, they are not.)
-
-BR,
-Guodong Xu
-
+> Which Linux does have a driver for.
 >
-> I was mistaken about Zicclsm, that's related to unaligned
-> accesses, but does not apply to atomic operations.
+> > to the device via RMII with fixed link parameters to retrieve ethernet.
+> > > > On our board, MDIO is not wired directly to the processor; instead,=
+ we
+> > > > use a USB-to-MPSSE bridge (FT2232) to toggle the MDIO signals for
+> > > > switch management.
+> > >
+> > > I have to push back on you using a closed source user space driver,
+> > > given that i help maintain the Ethernet switch drivers...
+> > >
+> > > I know there have been attempts to get GPIO support added for FT2232,
+> > > but i don't think any got as far as mainline. That is probably the
+> > > only part you are missing. You can describe USB devices in DT. So you
+> > > should be able to describe such a GPIO controller. You can then
+> > > instantiate an virtual,mdio-gpio driver to give you an MDIO bus. And
+> > > then add nodes for the switch using DSA.
 >
-> > Ziccrse and Ziccamoa: yes, they are 'A' related.
-> >
-> > Ziccrse specifies the main memory must support "RsrvEventual", which is=
- one
-> > (totally there are four) of the support level for Load-Reserved/
-> > Store-Conditional (LR/SC) atomic instructions.
-> >
-> > And in RVA profiles, two named features (exts) are added:
-> > Ziccrse: which further define the level of LR/SC operations being suppo=
-rted.
-> > Ziccamoa: which further define the level of AMOs instructions being sup=
-ported.
-> >
-> >
-> > We already know that "A" =3D Zaamo + Zalrsc;
-> >
-> > In summary, the dependencies among these extensions are:
-> > Ziccrse -> Zalrsc -> A;
-> > Ziccamoa -> Zaamo -> A;
-> >
-> >> Furthermore, the A extension is already mandated by RVA23U64, so
-> >> is it really necessary to add this logic?
-> >
-> > Hi, Conor
-> >
-> > What do you think? I am kind of agree with Alex to remove the schema
-> > checking logic.
-> >
-> > Leaving the dependency check to riscv/cpufeature.c, let the .validate c=
-all
-> > do the job. If you agree, I can remove the schema checking logic on Zic=
-camoa
-> > and A in my next version.
+> > Apologies for the confusion in my previous reply.
+> > The BMC connects to the peer via an RMII fixed-link.
+> > The link parameters are fixed at design time and there is no runtime
+> > MDIO-managed PHY or switch control from the BMC.
 >
-> Yes I think this is a better way to handle it.  Conor?
+> So you use the USB-MDIO to program the EEPROM? The switch boots using
+> the settings in the EEPROM? It is then an unmanaged hub? You are not
+> using UMSD in userspace? That code looks terrible.
 >
-> > Btw, cpufeature.c validate() deserves another patch/patchset.
-> > I'll be happy to add that if we reach a consensus here.
+> So if you connect multiple of these unmanaged hubs together in a loop,
+> your network disappears in a broadcast storm? Yes, you can use these
+> switches in a dumb mode, but it has consequences. If you let Linux
+> manage it, you gain a lot of functionality, such as STP, to break
+> loops.
 >
-> Yes I think you should do this once there is concensus.
+> But you seem to be opposed to this. At least add in a comment
+> explaining the purpose of the fixed link. DT describes hardware, so
+> there is no harm in describing the hardware, even if it is a comment
+> and not real properties.
+Thanks for the comments.
+I understand the concern about the DTS. I will add a clear comment in the
+device tree explaining why a fixed-link is used and that the switch is
+initialized via hardware straps and EEPROM, with no runtime management
+from Linux.
 >
->
->
-> >
-> >>
-> >>
-> >>> Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> >>> ---
-> >>> v2: New patch.
-> >>> ---
-> >>>    .../devicetree/bindings/riscv/extensions.yaml      | 34 ++++++++++=
-++++++++++++
-> >>>    1 file changed, 34 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml =
-b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >>> index 385e1deb23996d294e7662693f1257f910a6e129..a6b9d7e3edf86ecfb117b=
-a72e295ef097bdc9831 100644
-> >>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >>> @@ -237,6 +237,12 @@ properties:
-> >>>                as ratified at commit 4a69197e5617 ("Update to ratifie=
-d state") of
-> >>>                riscv-svvptc.
-> >>>
-> >>> +        - const: za64rs
-> >>> +          description:
-> >>> +            The standard Za64rs extension for reservation set size o=
-f at most
-> >>> +            64 bytes, as ratified in RISC-V Profiles Version 1.0, wi=
-th commit
-> >>> +            b1d806605f87 ("Updated to ratified state.")
-> >>
-> >> The more complete description says:
-> >>
-> >>       Reservation sets are contiguous, naturally aligned, and a maximu=
-m
-> >>       of 64 bytes.
-> >>
-> >> But as I read on (below) I suppose using the more succinct description
-> >> from the glossary might be best, forcing people who care to go look
-> >
-> > That is exactly what I am doing.
-> >
-> >> at the reference documents.
-> >>
-> >>> +
-> >>>            - const: zaamo
-> >>>              description: |
-> >>>                The standard Zaamo extension for atomic memory operati=
-ons as
-> >>> @@ -378,6 +384,27 @@ properties:
-> >>>                in commit 64074bc ("Update version numbers for Zfh/Zfi=
-nx") of
-> >>>                riscv-isa-manual.
-> >>>
-> >>> +        - const: ziccamoa
-> >>> +          description:
-> >>> +            The standard Ziccamoa extension for main memory (cacheab=
-ility and
-> >>> +            coherence) must support all atomics in A, as ratified in=
- RISC-V
-> >>> +            Profiles Version 1.0, with commit b1d806605f87 ("Updated=
- to
-> >>> +            ratified state.")
-> >>
-> >> Similar comment here (but also with a similar caveat):
-> >>
-> >
-> > I am using what the RVA23 Profile defines:
-> > "Ziccamoa: Main memory supports all atomics in A"
-> >
-> > I prefer to keep it as is.
->
-> That's fine.  I don't think I felt strongly about any of the things
-> I said about the exact wording used here.
->
-> Thanks.
->
->                                         -Alex
->
-> > BR,
-> > Guodong
-> >
-> >>     Main memory regions with both the cacheability and coherence PMAs
-> >>     must support all atomics in A.
-> >>
-> >> And I might say "the A extension", but maybe that's a bad idea.
-> >>
-> >>> +
-> >>> +        - const: ziccif
-> >>> +          description:
-> >>> +            The standard Ziccif extension for main memory (cacheabil=
-ity and
-> >>> +            coherence) instruction fetch atomicity, as ratified in R=
-ISC-V
-> >>> +            Profiles Version 1.0, with commit b1d806605f87 ("Updated=
- to
-> >>> +            ratified state.")
-> >>> +
-> >>> +        - const: zicclsm
-> >>> +          description:
-> >>> +            The standard Zicclsm extension for main memory (cacheabi=
-lity and
-> >>> +            coherence) must support misaligned loads and stores, as =
-ratified
-> >>> +            in RISC-V Profiles Version 1.0, with commit b1d806605f87=
- ("Updated
-> >>> +            to ratified state.")
-> >>> +
-> >>>            - const: ziccrse
-> >>>              description:
-> >>>                The standard Ziccrse extension which provides forward =
-progress
-> >>> @@ -795,6 +822,13 @@ properties:
-> >>>            then:
-> >>>              contains:
-> >>>                const: f
-> >>> +      # Ziccamoa depends on A
-> >>
-> >> Maybe more than just depends on the A extension.
-> >>
-> >>                                          -Alex
-> >>
-> >>> +      - if:
-> >>> +          contains:
-> >>> +            const: ziccamoa
-> >>> +        then:
-> >>> +          contains:
-> >>> +            const: a
-> >>>          # Zvfbfmin depends on V or Zve32f
-> >>>          - if:
-> >>>              contains:
-> >>>
-> >>
->
+>         Andrew
 
