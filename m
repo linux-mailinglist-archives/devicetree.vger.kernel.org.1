@@ -1,333 +1,148 @@
-Return-Path: <devicetree+bounces-250551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F15CE9ECF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:23:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90229CE9EF0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:29:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2BDA7301671D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:23:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF8113020C5A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:29:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E857B23F417;
-	Tue, 30 Dec 2025 14:23:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314FF2737EE;
+	Tue, 30 Dec 2025 14:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eVa8PVce"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WSOZa8y+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012017.outbound.protection.outlook.com [40.107.209.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D69717A2F6;
-	Tue, 30 Dec 2025 14:23:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767104587; cv=fail; b=YuKfPkVw1KdFQdteV0tLDEv5UaMkaVwecjWNW90PMAzfwxiIM24Zej67cUDL8OO4wZXSLJD/+rKb+U1m7mrGFTszl5ZXQ8aNrTYDEDB7BnAdAR5/qfhUCGmssbIXNJ/Oaw5Er/4Vi/mosvPbeuUnfBlvpMiZsGPDy5ZOCs47Fbc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767104587; c=relaxed/simple;
-	bh=Pf644Mu3ucysjbQX3hXpNxut/A1KDHS3O75rZ7HWxkE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kZvhBlp+gwHCh4pXVSAID/kiZOufH1G9vM8yYF+6CLOSYHTOCRPygLI0OJA9XKkzW5Y0xTuQFbV3QAFhuJjF0Z1aefRFw7E2n9pdYeQakW+GRGQBi1jmsEp8BUey+tfBbcY+hPdbSvPtFo46e3xtg3FbGDmqIWH+yQ6yzYT17xs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eVa8PVce; arc=fail smtp.client-ip=40.107.209.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UztlOLjDIspvLGP1/yc68E0IVA55vylIZ14cHv+nf5y9nlGK1auHMrtF/9O5/aUreM8EeRQgjt4GBMi+OiMuDms7HvxtdH9fG49Lsh5YQ+v+F248nt2wYHrMgLSlyxOWFAHzZqXVDWTtc8qZOQM1nD1neR4YbUw2nQrvrEfJGLQ4Di9QizR5NtdeHDcO93U6grV8twpTSZJoGiMF02jr7eBSBpj34d1+jr/PcciMDZ5msLVwkyk4vWgXi7itLbbOZ6xIUjuXgTelAOxZVoQ9iOOu9VMZYvAXEBLNGP9znecs+cWOIGrtw7yu097FYgNkDASG5IYxHybWWf8puZINng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k2oHgywOqaa5C/6OVV1dlT4QoKjU+u2vFqc3XKY2drA=;
- b=Zi/R8+pLG2rQ6KV01cwyS7+KO8N0/Kf7VcYzoZjY4qrwgg9aKcK79Pydz2MOmyJ2X3lQQxwpLnF2aoPVewM7auUc3iwri2qB6pMS3zpcPXdFqik2aDnwzCgaNAaYk85JDxIIzVnY6nylCMcNxhFWI40MNSWTAr7CgxtbWgseIWBICNJ77yEu2dxjUe3iRLshPHQxYNOm8184wiZODHAY4cZcV2poCtpz1YcP+Bc7YOzVRO//QsF0bGrh/8zJrD7EHV8GUeiZS9Q3Wp2VKPIQQd/GQa2sYWKvduj3jSwcDPWyi7k+0CLC6Ol/WSWzfdalOdlvyRwdtCjiIJkA0MQvGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k2oHgywOqaa5C/6OVV1dlT4QoKjU+u2vFqc3XKY2drA=;
- b=eVa8PVceqFmT9fiQ8+nLvtEkB6MhKE4mb7P7l0Gn44eFk6JjmoEhfxXN+lOdpqBjnuID7XRNYrnbW8VMQDNIZ6ix0zMPmHPdLoBAiLZhDEL0etCS8L4q1YM4lUkipjr8UTxGWjgpV0xlRlRhChXSn2L75p1cJKWtUJdkCR4NcP8=
-Received: from PH7PR13CA0009.namprd13.prod.outlook.com (2603:10b6:510:174::12)
- by SJ5PPF77807A52D.namprd10.prod.outlook.com (2603:10b6:a0f:fc02::7a9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Tue, 30 Dec
- 2025 14:23:01 +0000
-Received: from CY4PEPF0000E9DC.namprd05.prod.outlook.com
- (2603:10b6:510:174:cafe::83) by PH7PR13CA0009.outlook.office365.com
- (2603:10b6:510:174::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9478.4 via Frontend Transport; Tue,
- 30 Dec 2025 14:23:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- CY4PEPF0000E9DC.mail.protection.outlook.com (10.167.241.75) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9478.4 via Frontend Transport; Tue, 30 Dec 2025 14:22:59 +0000
-Received: from DFLE211.ent.ti.com (10.64.6.69) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 30 Dec
- 2025 08:22:57 -0600
-Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE211.ent.ti.com
- (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 30 Dec
- 2025 08:22:56 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 30 Dec 2025 08:22:56 -0600
-Received: from [172.24.233.20] (a0512632.dhcp.ti.com [172.24.233.20])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BUEMqJV836517;
-	Tue, 30 Dec 2025 08:22:52 -0600
-Message-ID: <fd9f0b37-001e-4721-82b7-ee29379eb9a9@ti.com>
-Date: Tue, 30 Dec 2025 19:52:51 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96BD25D209
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 14:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767104983; cv=none; b=In5OQmo+ouw2d/mWMRYSWHLkQXyLgy4AhgpdxKQHwoZ4YluB8LSC/DGZcem1Qy7VIxiW2MycSMXQlkmC24Hwva2ZdoD6QjCtlkabEIbXpTBXWBJUTX/4ATGsfZUIFbNEBrY6Bp1sDUAllnco7BDSeSm7Pv78stlTCUylB4RbkyY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767104983; c=relaxed/simple;
+	bh=a1J69aM75aks5NKEgsk6GGcoN5bgwi6MKrm7NlrTPLc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hHf80Um4JMGUYfa6XH7OYlK0qXfoja+Vfkpa6Kg5061TkVI2dzTXVwG8jUSNXSkk1m1Gr+7Qe27y2c5BNSw39rj0zkdi6VuubSCLcxrfJ2BEZTKeD26Z+xNTNbEFf1u544YKS7GX8SN5BBvb9mVbjrFnnp2h6Vfi2V2Eu8rHIAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WSOZa8y+; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a09757004cso128356285ad.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 06:29:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767104981; x=1767709781; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RxCXRDx0w1yWm9FY0vwmJNFDCxUNTSO4kUQ4eb5iubM=;
+        b=WSOZa8y+F91K+5UPoDZTU4L497GHK5BOsFbUb8eEiCOXexUIPLva4JdIAE+SsK9xT/
+         S2NiV8ivFM8vH2km7NqAAwlaJDDPJulF+NBJlrMdKTSmGXkieydv4Makv3lv+Uorq1v2
+         Oh3qD0Ic2Ohp716PJ0/xna2akt9PaxPCFskB5w+TsKwrktjP6D2zgItUTbL7Yz//OOaB
+         aHO2GPObIzWfWWVCt8PRugUUiOKjESlIK1ddxRLI4XmYocjFF2d8BVTbaf5nhwso//dV
+         EJJ6bjfmTGmzQLO4VtmuO5IsuJsuyXnrQd8wv9QJFAWt4NtqMoomYPtcT1FRM3wGrtaS
+         aSoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767104981; x=1767709781;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RxCXRDx0w1yWm9FY0vwmJNFDCxUNTSO4kUQ4eb5iubM=;
+        b=aXJY/2yQPtQfC07a9YJNZrVlus35fwtQ2jmweS2T+mUxUkKs71g2Nu2T7sa8QSRz5S
+         7SXjlnUxtpvsztPmQMgzkuSByeI6mSBUx0o8bJhye7DhumIjHvqhT7su/mJeJ/LHSTax
+         DVGQTmwXCBt9j2Aj4bf08DCi23JIn4lF2IpQl/v0/xi3grOoPzxWhbhEYFzUPCclxeQC
+         ETsdl5fL6krnIuboqfdFDaMh6wzH6aNsfgh7H5X6FWMzbWg75LLfTjMqsn+Siyj5v0xt
+         1ux7XasOECW0q4kqGbmcRx8IeiX9LZ4muyw+8lf5zFZWPS+kOgD7bhaN4DZMXDvL9F43
+         lpTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU87HcxRUEIdtseRIdwfj7lrEpvVRW0jEF67WFgCrxwo1w8zEcDg0Vv4ZNdCidDfgzsY5ziU4Qq1SLL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1qmp/OM//kNEQh+MrtN45v5kcXNZ4bc8LJy2TERRarrJdYs9k
+	E3ESQk5bLhE9KaueYfLXfo/8KU/TwqeeOf8XKG4EM67qOvHa+kMBHHb/
+X-Gm-Gg: AY/fxX5SWE4OH6Xz2tE7SR3iMJ42u3RhVTCL2KOXs1fDU+aHdyWUUqjCtL+MBQQCLLT
+	GmmRIT1oG4cXTxTrXIvDh+ao5OCO3FqJhA5f/2xD0Ttka++x8FOHoJMTGF7iOcTcUhnI5OnqCrv
+	fKMjDCS3w8o5PPMbrPsxDxeiJet4FmUmNwJdkPnk+iMUDKPSKe9+Ix5iWWtr05MymaU/sc2eXdp
+	22PdkMO3k4LoZFygBWqQbOarxRom5wGTQM5KdAWxO4q1BUaMdmKNI4ve7y3M5dz1sPBXOgESqS6
+	Zxn0SHndJBNOtUITbUUjETm26F0XPX2H1z7j2K/HGaz4Gw+82iVbLNzqOo1B95+cZ+jQHJhX3vZ
+	iBS5Z4ZYW5nc4KAC0O42AmAIiI98NPRqw3zxbE8sCHMJRBNXLdBbQ8GV6YlJVYK+nDyyrETh5Lo
+	LKXckwru6LWFj0LNM=
+X-Google-Smtp-Source: AGHT+IEuziUm5FuVFOLapyO93nCQfCb40IgI2Or9ENPDmWDsqW88deWU184+w+hKs3Tyi+48xUtmng==
+X-Received: by 2002:a17:902:f607:b0:2a1:4c31:335 with SMTP id d9443c01a7336-2a2f2717b88mr314299295ad.26.1767104980514;
+        Tue, 30 Dec 2025 06:29:40 -0800 (PST)
+Received: from localhost ([211.94.234.112])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3c6a80esm298183155ad.8.2025.12.30.06.29.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Dec 2025 06:29:40 -0800 (PST)
+From: Encrow Thorne <jyc0019@gmail.com>
+Subject: [PATCH v3 0/3] i2c: spacemit: add reset support
+Date: Tue, 30 Dec 2025 22:29:01 +0800
+Message-Id: <20251230-i2c-reset-v3-0-7500eb93b06e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: display: ti,am65x-dss: Add AM62L DSS support
-To: Rob Herring <robh@kernel.org>
-CC: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
-	<airlied@gmail.com>, <simona@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
-	<mripard@kernel.org>, <tzimmermann@suse.de>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <devarsht@ti.com>, <praneeth@ti.com>, <bb@ti.com>,
-	<vigneshr@ti.com>, <dri-devel@lists.freedesktop.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20251224133150.2266524-1-s-jain1@ti.com>
- <20251230022741.GA3217586-robh@kernel.org>
-Content-Language: en-US
-From: Swamil Jain <s-jain1@ti.com>
-In-Reply-To: <20251230022741.GA3217586-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9DC:EE_|SJ5PPF77807A52D:EE_
-X-MS-Office365-Filtering-Correlation-Id: e8f72106-cbae-4480-0457-08de47aeeef1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|7416014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ejRGeDNXbVR3cUN0SVh3WVU4ajQxV2UwbTNFbjlRUGpRMjRoRTBQQTEwSkhq?=
- =?utf-8?B?V0JQbXpjQlVyTjR1bkluQ3hvNHdKd2lEWFNtbnp5VzA4ZVBVN01IQ2ZwVjcy?=
- =?utf-8?B?L0E4ZjZ4RlNrUzRoOExwdk9QSW82anpYTEpYRTJXbWR1UVovME9EeGY1L2gz?=
- =?utf-8?B?NGFEdXJFNCtiQ0paTVZ5bUluWUUzVnRSTkZtYVp5VDgwUjJQSlA3Sm9ZN3hF?=
- =?utf-8?B?MEsydlNiQXBqNjNaZ21Zc1dNaHdKOVRGM0tDNUpITmVsNHkvTGxqVnhPR0d1?=
- =?utf-8?B?ZlJyZVFwNjl6SHRZTXZCc0R0QllneUkxRjZXYTdZRGFWMUg0L3pZTmMzNWZK?=
- =?utf-8?B?MVUyc01kWVpXYVljOFgvbFN6MFhwYVJpUjY1TTBVc0pjK1JiV0xtcUF0RmJ6?=
- =?utf-8?B?eVZLT3RsSzFWeDFTN0kxZ1F2TWNSSnpqaWtvU0dzVHVsT3g2SXowM2NXSERX?=
- =?utf-8?B?S1Zud1dmR25DRUdzYm9pbUl0b0JWU0JXTkQvWnNPejRablpFei9jZTNMY25a?=
- =?utf-8?B?TGFDc1YrVU1PZEFzRDltMlZwc0lQZW1iNHZkb2gvWUxVQzRtamJyQlVYV3dE?=
- =?utf-8?B?VklFRUFLb09DWVBuVWlLQWFNRUt3Mm5SMUE0RjgzNGY0ZnRGNGEwNUZGbzAv?=
- =?utf-8?B?ajR6M1dqRUd6U09yMTJ5NFlUZHcvY0FqRDBLWlh5di9pSFJ1WjFDTkpwQi9Q?=
- =?utf-8?B?RzlHbWxYNEFWYU5YRnhVa0djMlljbXQ2T0w5MFgwTzl6K2dRdXhWUEZRSFJw?=
- =?utf-8?B?bjZBWEQ0Rld5T0wwM2poTnJKYVI3ZmhKNTZPUnpTNUNGSkRNbkczZElFbVhq?=
- =?utf-8?B?cExzQnliaHRhWHZKK29sS1JHRjdHNnRDckc0dytuK2FXRWhhckJscGN0NWJL?=
- =?utf-8?B?cVRBUWF2UlJNeGdmNXNvelFZRFh4YXhzVEFYK3lvL2NjS3M2VXVoVHRJaCtr?=
- =?utf-8?B?WEJiUlRLZHVHcyt1cWttZnpmd1hIdWUxVEFKSytXMW1RR2FsV0lBWFdxWGdj?=
- =?utf-8?B?NzcwNFlFa1ZiczdFV1pqK09yaEU5cmNEOERFR2tOVWZQUmtkb1VjT016NVM1?=
- =?utf-8?B?ZVJNYmo4SjhieEpkZkhTSlRMMFRlZ1ZZa2xpRnZ0UFlCRmpqQ3Z2aHBxb2dU?=
- =?utf-8?B?N3JSVmdiVzQyRHZvbjYvODlWSFIvQWovZHArNFBMUUJOQllSZ0I3aVp3WHky?=
- =?utf-8?B?ejQrKzIrdGtQRDlXZ2Z3Q2p1cG8rTDd0enJtZXo1WmJ2ZEYrbExzTVNJTVFE?=
- =?utf-8?B?Q2w0VGxqZnBLSElHMGxTSW42eENQU2Evck9HK2xnNTdCSXRheFZaV3RCTDhs?=
- =?utf-8?B?VGk5N3QrSG1BOXdTcWYwSnFldHdPOE52bTNvbDI0Vk9rblptZzY2T01TeDkr?=
- =?utf-8?B?WHphZXlIWkV2VjJnUElaU2ZFbktXNHEzRmozRUpVUi9PTUpyUzZuUlVZTFR0?=
- =?utf-8?B?MEpucGxwQlFDK2ZnK2VheWRDY3Y3RmF1VkRKOWJyZ3NuOWM5dkdjNTU1OWdq?=
- =?utf-8?B?SHhKMWlBTTE2WVM0YTJoQTBjMkJzeEg4UXUzYUdiK1dHK1hCbkdmcXI1bkJL?=
- =?utf-8?B?QUY2UGkwcllVNy9OU3UrVlVhZkloY3VEU0Q5MzE1UXpLb1dYaDZqNFBJNytH?=
- =?utf-8?B?ZGlSVFQzWHo5TStWUWtVVHdBNXBKZWc1SnMycmx0Ukw2OVR0VXMxaGZsRFRz?=
- =?utf-8?B?K2lDRlhSUm53YkZKSTdCSVp3R08raHp3VEJmT0Q5MXlSa2xhZjBSUVo3R01n?=
- =?utf-8?B?bmJYNEkrYm9aUW5KaXJ4M2k3aG5hTzN1bGJiVXJuakMzSGNxN3VpL2pJdEdM?=
- =?utf-8?B?bkFHWURyNzk1RGIwclVuUUNFQlp0ZXZPUUZiQWJaY3BZOVN4b2JkOEh1WjJ4?=
- =?utf-8?B?aTRhVnBzdENSSTI0VUdPUmdLS2VISldMVDJJVkk1VXYwcnhZWkFlQVFkdWYz?=
- =?utf-8?B?WjVXMkYyZWFJNjRUQW1vVmhXQk9pUndFOEZVWW9ObUtQdWF0SEphOTJqc1FJ?=
- =?utf-8?B?eUkzVk03U2xLNXVNalEyc2RkN0kvakhRVjY2NzF3N01UMGlqNzFYZWpnelZZ?=
- =?utf-8?B?NXc3ZGthR3lDMVg3WExaWllWcWNYcXFXRDQwL1FKaHhseTdvaWRuNFJKY2s4?=
- =?utf-8?Q?5zqA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(376014)(7416014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2025 14:22:59.1534
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8f72106-cbae-4480-0457-08de47aeeef1
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9DC.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF77807A52D
+X-B4-Tracking: v=1; b=H4sIAK3hU2kC/03MywrCMBCF4Vcps3Ykmai1rnwP6SImYztgLyQlK
+ CXvbiwILv/D4VshchCOcKlWCJwkyjSWMLsKXG/HjlF8aSBFR036jEIOA0de0NZ31qYhbTxD+c+
+ BH/LarFtbupe4TOG90Ym+609p/pREqNB6UtqeFHF9uHaDlefeTQO0OecPQOy0fKIAAAA=
+X-Change-ID: 20251218-i2c-reset-a7be139213de
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Troy Mitchell <troymitchell988@gmail.com>, 
+ Guodong Xu <guodong@riscstar.com>, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Encrow Thorne <jyc0019@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767104943; l=1371;
+ i=jyc0019@gmail.com; s=20251009; h=from:subject:message-id;
+ bh=a1J69aM75aks5NKEgsk6GGcoN5bgwi6MKrm7NlrTPLc=;
+ b=18EDF1Yo3gil3UtsnPjnP04wMrhNkhNbTfRqJtMQTnJdkoA05tCeC3CideDM+jpKg5I8J2niZ
+ Bu9piLwlLabC0cfTZuCfH/4VcODZZNdWNjER3S6w/QX91MM1paamAdS
+X-Developer-Key: i=jyc0019@gmail.com; a=ed25519;
+ pk=nnjLv04DUE0FXih6IcJUOjWFTEoo4xYQOu7m5RRHvZ4=
 
-Hi Rob,
+Add reset support for the K1 I2C driver. A reset ensures that the
+controller starts in a clean and known state.
 
-On 12/30/25 07:57, Rob Herring wrote:
-> On Wed, Dec 24, 2025 at 07:01:50PM +0530, Swamil Jain wrote:
->> Update the AM65x DSS bindings to support AM62L which has a single video
->> port. Add conditional constraints for AM62L.
->>
->> Signed-off-by: Swamil Jain <s-jain1@ti.com>
->> ---
->>   .../bindings/display/ti/ti,am65x-dss.yaml     | 95 +++++++++++++++----
->>   1 file changed, 76 insertions(+), 19 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> index 38fcee91211e..ce39690df4e5 100644
->> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> @@ -36,34 +36,50 @@ properties:
->>     reg:
->>       description:
->>         Addresses to each DSS memory region described in the SoC's TRM.
->> -    items:
->> -      - description: common DSS register area
->> -      - description: VIDL1 light video plane
->> -      - description: VID video plane
->> -      - description: OVR1 overlay manager for vp1
->> -      - description: OVR2 overlay manager for vp2
->> -      - description: VP1 video port 1
->> -      - description: VP2 video port 2
->> -      - description: common1 DSS register area
->> +    oneOf:
->> +      - items:
->> +          - description: common DSS register area
->> +          - description: VIDL1 light video plane
->> +          - description: VID video plane
->> +          - description: OVR1 overlay manager for vp1
->> +          - description: OVR2 overlay manager for vp2
->> +          - description: VP1 video port 1
->> +          - description: VP2 video port 2
->> +          - description: common1 DSS register area
->> +      - items:
->> +          - description: common DSS register area
->> +          - description: VIDL1 light video plane
->> +          - description: OVR1 overlay manager for vp1
->> +          - description: VP1 video port 1
->> +          - description: common1 DSS register area
->>   
->>     reg-names:
->> -    items:
->> -      - const: common
->> -      - const: vidl1
->> -      - const: vid
->> -      - const: ovr1
->> -      - const: ovr2
->> -      - const: vp1
->> -      - const: vp2
->> -      - const: common1
->> +    oneOf:
->> +      - items:
->> +          - const: common
->> +          - const: vidl1
->> +          - const: vid
->> +          - const: ovr1
->> +          - const: ovr2
->> +          - const: vp1
->> +          - const: vp2
->> +          - const: common1
->> +      - items:
->> +          - const: common
->> +          - const: vidl1
->> +          - const: ovr1
->> +          - const: vp1
->> +          - const: common1
->>   
->>     clocks:
->> +    minItems: 2
->>       items:
->>         - description: fck DSS functional clock
->>         - description: vp1 Video Port 1 pixel clock
->>         - description: vp2 Video Port 2 pixel clock
->>   
->>     clock-names:
->> +    minItems: 2
->>       items:
->>         - const: fck
->>         - const: vp1
->> @@ -84,7 +100,8 @@ properties:
->>       maxItems: 1
->>       description: phandle to the associated power domain
->>   
->> -  dma-coherent: true
->> +  dma-coherent:
->> +    type: boolean
->>   
->>     ports:
->>       $ref: /schemas/graph.yaml#/properties/ports
->> @@ -195,6 +212,46 @@ allOf:
->>               port@0:
->>                 properties:
->>                   endpoint@1: false
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: ti,am62l-dss
->> +    then:
->> +      properties:
->> +        clock-names:
->> +          maxItems: 2
->> +        clocks:
->> +          maxItems: 2
->> +        reg:
->> +          maxItems: 5
-> 
->             reg-names:
->               minItems: 8
->         else:
->           properties:
->             reg:
->               minItems: 8
->             reg-names:
->               minItems: 8
-> 
-> clocks needs similar constraints...
+Reset ensures that the I2C hardware is in a clean state. We cannot assume
+that no program used I2C before the kernel booted.
 
-Sure, will add in v2.
+Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
+---
+Changes in v3:
+- Move reset property in dt-bindings.
+- Use devm_reset_control_get_optional_exclusive_deasserted() instead.
+- Rebase to v6.19-rc1.
+- Link to v2: https://lore.kernel.org/r/20251219-i2c-reset-v2-0-ad201a602e74@gmail.com
 
-> 
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: ti,am62l-dss
->> +    then:
->> +      properties:
->> +        reg-names:
->> +          items:
->> +            - const: common
->> +            - const: vidl1
->> +            - const: ovr1
->> +            - const: vp1
->> +            - const: common1
->> +    else:
->> +      properties:
->> +        reg-names:
->> +          items:
->> +            - const: common
->> +            - const: vidl1
->> +            - const: vid
->> +            - const: ovr1
->> +            - const: ovr2
->> +            - const: vp1
->> +            - const: vp2
->> +            - const: common1
-> 
-> Why are you defining the names twice?
->
+Changes in v2:
+- Replace reset property in dt-bindings.
+- Use devm_reset_control_get_optional_exclusive_deasserted() instead.
+- Rebase to v6.19-rc1.
+- Link to v1: https://lore.kernel.org/r/20251119-i2c-k1_reset-support-v1-0-0e9e82bf9b65@gmail.com
 
-For AM62L we don't have "vid", "ovr2" and "vp2", the dtbs_check will fail.
-Could you please suggest a better way?
+---
+Encrow Thorne (3):
+      dt-bindings: i2c: spacemit: add optional resets
+      i2c: k1: add reset support
+      riscv: dts: spacemit: add reset property
 
-Regards,
-Swamil.
+ Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml | 3 +++
+ arch/riscv/boot/dts/spacemit/k1.dtsi                       | 8 ++++++++
+ drivers/i2c/busses/i2c-k1.c                                | 7 +++++++
+ 3 files changed, 18 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251218-i2c-reset-a7be139213de
 
-> Rob
-> 
+Best regards,
+-- 
+Encrow Thorne <jyc0019@gmail.com>
 
 
