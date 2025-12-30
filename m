@@ -1,259 +1,136 @@
-Return-Path: <devicetree+bounces-250562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38136CEA058
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 16:08:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FF5ECEA040
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 16:07:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7C4D30C9008
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:04:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EE04C3002B99
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:07:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84CF93191B7;
-	Tue, 30 Dec 2025 15:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907D621B9FD;
+	Tue, 30 Dec 2025 15:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="E12JvLqR";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="I+hAujjj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="abQNjyij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D009931814F
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 15:04:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2202D14A8E
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 15:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767107053; cv=none; b=qbHRjL3wIXG1beONWAzBuCGOpCEVjzrfNSPhpFY34yD1hu/T/v6fTNIXb/Qs9YVK+Of9QhWX6hzMbMntA6XlwBwUaqfRYZlLyARvg7+7UIB9bt4mGSmbEghfr7RnO70nNMHUYebmxYYL1Cc71o+f7AUgyGOQ3kd+hPSgSlL6ZJk=
+	t=1767107224; cv=none; b=kiurQhqnTNEf2qHqHDsl7VUGNIpnhNsxqDYON2f6vUwKIfB21ro28dPFLe5njtDun9blvPLWuylJOis0yfdayyRIrfmoBEUTyf2Mh9bXGLljAz3gJp8JC+T1SpN1UxVSDeytWHW7Mj5cpNZ6H/jgxNjtaPiount77QjTfFn1gMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767107053; c=relaxed/simple;
-	bh=vTnT7xNUFKQenxdsBo6MsLgQlML4AvrzV4VY3W63P58=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kHydz75KaJGFfjRT+0MsYjpLxzZruvh8VZYSL1NY4QG+94G/4TPDluNRd6BA9vMhECBZ7aKEKCU5nkkUQwCNcubs/fX1ZPK8GWWRjMcYYIVggy7rcfyIVY/2t8K8sThCcidm33cnqrnA++2HaG+qAdKPRgjMKFhgDGZyqONU+lI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=E12JvLqR; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=I+hAujjj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BU9Qiol2723263
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 15:04:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vTnT7xNUFKQenxdsBo6MsLgQlML4AvrzV4VY3W63P58=; b=E12JvLqR3Zl5EBPP
-	5rSMN9pY2SbThHJAwCv3vE/bP15w38KuXsKNgRP2fW7l3PNy2H2TDw7Rcvt6mrCu
-	igNwYC9n1tN1oTV2GZVCV2S8JXrPWEU7Yx/j7Gqd/dxa6R+gQBH+X+3Q8A5RMNN/
-	V59sG9toNdcGROV8SQO5bhedQHVRTCfRhJtCmPdpxDwNXK1rZ7XhPwqr6fwYX+XO
-	vDVNoSBQc8HvKJ5F/15r63Y29BuwWhUV2XURZw3gHlKyrYlFN5ycDkLt7xKNywOH
-	/kTyiWKGp25WFUeiCTCF6VgRpYghdK0V+TEPMA39Fy9ZOn676uvjG36z9I12pCZV
-	0Rr08Q==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bc0vdj5v2-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 15:04:10 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88a3822c06bso291319796d6.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 07:04:10 -0800 (PST)
+	s=arc-20240116; t=1767107224; c=relaxed/simple;
+	bh=CCIkxtH/rocO+zZRCAtuXg5JuC2j3kYenNoG5NxM7vI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=gESlyYLlzMBM4C5uQx8/S62uHXtvNx4hct+2zgOVl/kp/ubASHxU9311FHugX3OTGlBEv1WcR+ahcR3m+ogbBpqWdrTjG5SIJI7BbMkhQfBrxQUL3MoT0TvT0H9qeRBVQnTqs/zfgpuExI0SMaJjHKjXk0o84nIjLUtTfMc/yNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=abQNjyij; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-29f102b013fso124902575ad.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 07:07:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767107050; x=1767711850; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1767107222; x=1767712022; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vTnT7xNUFKQenxdsBo6MsLgQlML4AvrzV4VY3W63P58=;
-        b=I+hAujjjsb9/Dor4yHnncYLNymu80dkr5gjuiuPIKCgUJPK9ICgeOLQeDJdZitbDTJ
-         C7TTUMZR2c1NHOtFKCDv66Rc9xjsLZjla6KsS3Bf/6McDoh4j6PtnLEnLd/PVwaYcHFY
-         nLTEz5Uv+7Nz8fHdTBsn0YWNcxna0jkIUQgz04gN6yr6cRGpf2D6gH5hLqx47WomW3+5
-         GJUTHcXYpso6BEIlJ0ycHKntGxAmJAbHAS0UDtJGsJ0yqVfCChI4zmNhha1OlRR7YPF4
-         ugiE9JD9YL4Wp/qnZvkq2e+GJP/asltcRLHPsngfYHLlVvnClMUEjJHLGl532+vAY13Z
-         CDFg==
+        bh=tIBqKSox5UwnVaoV8Kjau6whEf+LnmnAR93Js9qWwVY=;
+        b=abQNjyijQAxO2jXgqxHOoz2ro+PY0ANdTBunwi93pkgXds0IJj1H0Rf5fdkS1T7HMQ
+         4FlNXsx3eMOO4ZluPxGX4yWQIzbxmADzWZbqEFz1xaku0QAPiRr7ve5UFvwyxkdM6txQ
+         DmwgXlyOCCjTHp0dgeGgfLGzEO9tXgwuy2SwZwHtyYyr0iy8clBbUPe+LSgwfjMseWRf
+         TmmjBn4OcI/dwY9vLtkKqPwhZI6yv69kViMW+HGNRPN/yEfHzzozcMYAb93Z86aWY0x/
+         v/PB68EzMSWyZcW6PiQqhVOdFJVGLFDvP3eRzjCPB17Zs9VEsL8SHnNSK4lG7IPOyTfM
+         DbYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767107050; x=1767711850;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20230601; t=1767107222; x=1767712022;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=vTnT7xNUFKQenxdsBo6MsLgQlML4AvrzV4VY3W63P58=;
-        b=pUA+CR6IxCswj7pmfo8YeXcLDkAOAZ1D7bbPuEgpMnmgWNXh3OyHlhhrFzSYvfvfr1
-         Te+TOkZhnfdfWLLwtxYSNxxFqQ+2zxwIcxIQAYw0bOkKAtifHCf1BqAOSNGvdQ/nNwYO
-         uCPoLH3dJyFbPN4lqsH3YVN7/Ppxcq3K67XCjLcilxYtFPFMTdhAkm7RmP637RIuM5wA
-         CJ772pGvivukMKhrIEasRZVUeW12QNt7DwoYH6weKzSvWVspl+2Peqr87UUXBTkqunX9
-         AZZodNAcDR/pZY6KWf+sQwoCIG12HQfzvG1PGWllWDxuHAorucKuUCk7O4zjBBZ5bK4B
-         snug==
-X-Forwarded-Encrypted: i=1; AJvYcCWg/PwfCO/m6z4lPR9CbomZ/u2ZXdTzojsEnkm587YBc6nn+Z1VSjW3PAGLBxmV4dJUJr077c35yBa+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfygtqmLY3Pt0gOOshnnaeBohvoMPpUwCZpVeREjznTHc1omvX
-	g0gmnv6gSeyhZmSJy974pJtOyL40vzI94BysLdizhN3ewV5dl54+okJY3GxoK4ExP4Al1GX9llZ
-	ekhJENeOnSfkFoARiEMPJibH+9JlLZzpJyxeBNGqEDdrQ1gNi5dpGz3gbhfbWIQ6fSjFTRRNjP6
-	K3sD2qROrpvH/RGcCPvYSUQa6R8QnbyvYEoD2L+/o=
-X-Gm-Gg: AY/fxX43H2eAkFExNdBBaM4Wwfr+sv8A9w6Ok7t3vMzDrWaZlROra8lDhprjm8vzM/R
-	gGCL7WGwHlk9L3g69HaXagQicG2aYqnLuGvNJH6znY6IDcC3ckYKGJ1BrlqqDqgct6nKEmAyVxO
-	7TXrMEoPpJo8PTcfRQVtYKlXE9FPjwxhuuDoJkj1oBLKSjxeLAWl5xdAzhNMrcEfJ05egZJJVqA
-	ypI6qpuQGaxtJor1M6tezz7qQE=
-X-Received: by 2002:a05:6214:8208:20b0:7e3:cc6e:3c89 with SMTP id 6a1803df08f44-88d84fff436mr404477986d6.56.1767107049740;
-        Tue, 30 Dec 2025 07:04:09 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE40sWM6QfGLw1nJ8RdwS5EkB3Nc934n6/QR0zGhoNmIyrukY4vuxWWrxWa9XqC9PVpCKID32SVxpQ7QoqPiDA=
-X-Received: by 2002:a05:6214:8208:20b0:7e3:cc6e:3c89 with SMTP id
- 6a1803df08f44-88d84fff436mr404477126d6.56.1767107049061; Tue, 30 Dec 2025
- 07:04:09 -0800 (PST)
+        bh=tIBqKSox5UwnVaoV8Kjau6whEf+LnmnAR93Js9qWwVY=;
+        b=ZE33J8P1i2/09Kmk5c6tYMWVH8SP7fq2UQJ5VNJ9h++JzznOjCev4f3tw4FbcEWdvo
+         hksKe2vdrJqbahgrrj18QopVFiFpOqS3d7H9mp/ZRCDWx/QEqSSfT9KrOW+MzpumDVEN
+         /uCXe6/os0fz6/8CLfcGh2GBTPWMPWbPuthxPxvDB244+RybjtnDwx8Z5xPFqa8N2KPo
+         8S1EZQHyTwY/OmHaD9zcVu6xGJHwwFCg1TRUYUZH1dveJkzeL3ohb0m7fgyzF9vaJkSQ
+         TZJuYgbsAeNxudSkiO0cSf+40bZQk6bej6ksllj7BMP9kt0Vu22l3tJ5Y/+yrae7cc/E
+         ylbA==
+X-Forwarded-Encrypted: i=1; AJvYcCXJbOmti2l2v7vWg61RM/sOJHomXzzfbEx3IKHM7NWasGMdDfpQHbWh/CT99XwI5KqbubaiqO7RrcKU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6OrIlTEHItyWhjAFsp8ZaPGWUdmsLj0AvlhIHxrVwqCAbg4ui
+	TKAyJoxW0K3xxiuwJaCeq/P84JGKwITc9IRb1tv71U3PDOloHVZC/MpF
+X-Gm-Gg: AY/fxX7UnOxRkuNMJtyIeiFcbRVeUQS+epa+5lPUa+o0Ucnxxs4DiSEjMrEdvEijIwd
+	JVu4t2QiYQIxPW0WRZDsjjhnkaL2NF6vLqNgym7T0Ti452H7jC5UR2Mw2+mC2kBywovbLBt3HIJ
+	dgFW9WGfG9OWdqMU64Hb/tS1vQZM/yfYsa5dbFQk5pbYKvUKZKThbUbFrqiFXradV2A2gN2BSvQ
+	4w3eYO8RojhpiXn4VUp/yT6xIWSO+fBdjjV/QNvS4OVQ1xqSbjC7b2UfqM83sT+Skk0K7YbbF1d
+	uQHp/eMSvqbOpHXMH8LtEulZ+mosNxLwjy7vkt5PAPTqtHAsiOu2ju/aHA6KjKswZqG5kiqKVP5
+	MZRVoqWLEiBo+ODHxNT1frZgLLtlfjOcv0aMETE5OohDuE5+AnOU78ilo6m9mUHRTI0GeYUhoAp
+	YvA6ls
+X-Google-Smtp-Source: AGHT+IF4mlQHloICVoZ4fRZRB5k6TueSAxDDvE3GQmVRBYhsflqEoWLyLFOrsYFcTTyvrCL2lLxibw==
+X-Received: by 2002:a17:902:e945:b0:2a0:9081:8a6 with SMTP id d9443c01a7336-2a2f232c8a5mr357039835ad.20.1767107222036;
+        Tue, 30 Dec 2025 07:07:02 -0800 (PST)
+Received: from localhost ([211.94.234.112])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3c88d0asm298919885ad.40.2025.12.30.07.07.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Dec 2025 07:07:01 -0800 (PST)
+From: Encrow Thorne <jyc0019@gmail.com>
+To: jyc0019@gmail.com
+Cc: alex@ghiti.fr,
+	andi.shyti@kernel.org,
+	aou@eecs.berkeley.edu,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dlan@gentoo.org,
+	guodong@riscstar.com,
+	krzk+dt@kernel.org,
+	linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	p.zabel@pengutronix.de,
+	palmer@dabbelt.com,
+	pjw@kernel.org,
+	robh@kernel.org,
+	spacemit@lists.linux.dev,
+	troy.mitchell@linux.spacemit.com,
+	troymitchell988@gmail.com
+Subject: [PATCH 1/3] dt-bindings: i2c: spacemit: add optional resets
+Date: Tue, 30 Dec 2025 23:06:51 +0800
+Message-Id: <20251230150653.42097-1-jyc0019@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20251230-i2c-reset-v3-0-7500eb93b06e@gmail.com>
+References: <20251230-i2c-reset-v3-0-7500eb93b06e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251114133822.434171-1-loic.poulain@oss.qualcomm.com>
- <20251114133822.434171-2-loic.poulain@oss.qualcomm.com> <aRtbwK0Afo50Lh0B@kekkonen.localdomain>
- <CAFEp6-1Tdmr5v0r+q0qeOG6qqA-hiBaF1iTEcmhBA0oTjLgbgg@mail.gmail.com>
- <aT_Xc6LR161QBRFp@kekkonen.localdomain> <CAFEp6-2PP0ufge0RXTrE2Nrn_sLCN5erokxpJsuGeHq7ZEZ83g@mail.gmail.com>
- <41447e2e-52af-4fe0-8204-7ee7f43841c6@kernel.org>
-In-Reply-To: <41447e2e-52af-4fe0-8204-7ee7f43841c6@kernel.org>
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Date: Tue, 30 Dec 2025 16:03:58 +0100
-X-Gm-Features: AQt7F2ouy88udX4bk0QdNc2fKBSy3lUpdLxir7I6JQJFNolaGaTJSf3gpi_Xm1U
-Message-ID: <CAFEp6-26NiAcoP-nTaFZrG6AT3QimZsNLfPU07Fj2TwqimBbRg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] media: i2c: ov9282: Fix reset-gpio logical state
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, krzk+dt@kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org,
-        dave.stevenson@raspberrypi.com, robh@kernel.org, conor+dt@kernel.org,
-        mchehab@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        laurent.pinchart@ideasonboard.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Authority-Analysis: v=2.4 cv=dfONHHXe c=1 sm=1 tr=0 ts=6953e9ea cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8
- a=cgXU6vlCXcim1KvwOvcA:9 a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMwMDEzNiBTYWx0ZWRfX6Z8/SJouPkOH
- BOvtU0ElZhUDtN0Ob0yuX+n6djb0zmzGxv4HxzI1PDhKpPx642fas6xzI5z1k47V/AGb+srgUhn
- eyZgdp7kr64YifmCLFUr44YRTRSv+u3spYTjjzGGQbPRMRknHe3OkQkl43B50T/sY8PpWAceSFi
- Do5Ju+jWLUWdovcLhgYQmgo/Tk4Ox0zNEIj2ZLKDb10UBtLr7hmHN5OU9Q+Oup9jEsZLJvV2msS
- IHp716Lwf/AB2VJO74dck9Q0hgc4QNmVUHDiTaePcoMoLU22GgP6I9vHk6ldzHfomTi91+h3RIj
- NVCqS8mbmuGn7Ch2uX3INUzOImMNTBf/wctdPj85uQwpGvtCvvkI0nXALWsJHWpOihDXKRlQxCr
- MAJAtIjo0ksXM3sCr9OElYCdtpn1M4j8GI0RpUQnxT/2v+FHnYrxi5T9/UDfEeeCZQYhcgilI6N
- djwYh8+Ydi09YlIi8kg==
-X-Proofpoint-GUID: ppf4Gz6cBCa_ivYpC1Z_iDZNEdqNi3Oi
-X-Proofpoint-ORIG-GUID: ppf4Gz6cBCa_ivYpC1Z_iDZNEdqNi3Oi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-30_01,2025-12-30_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 clxscore=1015 phishscore=0 malwarescore=0
- suspectscore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512300136
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+The I2C controller requires a reset to ensure it starts from a clean state.
 
-On Tue, Dec 30, 2025 at 2:54=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 15/12/2025 11:19, Loic Poulain wrote:
-> > On Mon, Dec 15, 2025 at 10:40=E2=80=AFAM Sakari Ailus
-> > <sakari.ailus@linux.intel.com> wrote:
-> >>
-> >> Hi Loic,
-> >>
-> >> On Mon, Dec 15, 2025 at 10:35:15AM +0100, Loic Poulain wrote:
-> >>> Hi Sakari,
-> >>>
-> >>> On Mon, Nov 17, 2025 at 6:30=E2=80=AFPM Sakari Ailus
-> >>> <sakari.ailus@linux.intel.com> wrote:
-> >>>>
-> >>>> Hi Loic,
-> >>>>
-> >>>> On Fri, Nov 14, 2025 at 02:38:19PM +0100, Loic Poulain wrote:
-> >>>>> Ensure reset state is low in the power-on state and high in the
-> >>>>> power-off state (assert reset). Note that the polarity is abstracte=
-d
-> >>>>> by the GPIO subsystem, so the logic level reflects the intended res=
-et
-> >>>>> behavior.
-> >>>>
-> >>>> That's an interesting approach to fix DTS gone systematically wrong.
-> >>>>
-> >>>> I was thinking of the drivers that have this issue, too, but I would=
- have
-> >>>> introduced a new GPIO under a different name (many sensors use "enab=
-le",
-> >>>> too). Any thoughts?
-> >>>
-> >>> Apologies for missing your point earlier. We can=E2=80=99t really nam=
-e it
-> >>> enable, as it performs the opposite function and that would be
-> >>> confusing in the device tree description. A property like reset2 woul=
-d
-> >>> be more accurate, but I suspect such a binding wouldn=E2=80=99t be ac=
-ceptable
-> >>> from a device tree/bindings perspective.
-> >>
-> >> Many sensor datasheets document a pin called "xshutdown" or alike. Tha=
-t's
-> >> not exactly "reset" or "enable" but it can be mapped to either and thi=
-s can
-> >> be seen in the existing bindings. The polarity is effectively the oppo=
-site,
-> >> yes, but does that matter?
-> >
-> > I assume naming a pin 'xshutdown' or 'xreset' indicates that its
-> > polarity is inverted at the driver level, the driver interprets the
-> > shutdown or reset function as being active when the logical level is 0
-> > (low), as they actually incorrectly do for the 'reset' gpio.
-> >
-> > From the driver=E2=80=99s perspective, this naming convention is accept=
-able;
-> > however, it causes the devicetree description to slightly diverge from
-> > the datasheet and leaves the reset property effectively inverted (and
-> > therefore incorrect).
-> >
-> > Honestly, in this specific case, the simplest solution would be to fix
-> > the driver, since there is currently no upstream devicetree using this
-> > sensor. That would technically break backward compatibility for any
-> > out-of-tree DTS (if they exist), but those would have been incorrect
-> > in the first place.
-> >
-> > But yes, this seems like a good opportunity to discuss and define a
-> > more general approach that can be applied to other drivers with
-> > similar polarity or naming issues.
-> >
-> > Krzysztof, any thoughts?
->
-> You need to first CC me. You sent it to the special bulk email
-> address... Anyway, please be specific about the question.
+Add the 'resets' property to support this hardware requirement.
 
-Ultimately, I=E2=80=99d like to reach a consensus before moving forward wit=
-h
-V4, as several approaches have been discussed so far:
+Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
+---
+ Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-1. Keep the current (incorrect) driver logic: This was the approach I
-used in V1 of this series, explicitly noting in the DTS that the
-polarity was incorrect. However, this workaround was fairly rejected
-as not being an acceptable solution.
+diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+index b7220fff2235..5896fb120501 100644
+--- a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+@@ -41,6 +41,9 @@ properties:
+     default: 400000
+     maximum: 3300000
+ 
++  resets:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+-- 
+2.25.1
 
-2. Fix the driver logic: This was the approach in V2. It ensures
-correct behavior going forward, especially since there is currently no
-upstream DTB using this binding yet. The downside is that it would
-consistently break any out-of-tree DTBs that *incorrectly* describe
-the GPIO polarity.
-
-3. Follow the wsa881x approach: this is V3, aiming for best-effort
-backward compatibility. That said, it=E2=80=99s true that this approach doe=
-s
-not handle all cases.
-
-There have also been discussions about introducing an additional
-property for the same pin, with polarity described correctly... From a
-DTS perspective, I believe this would likely be rejected.
-
-Based on Laurent=E2=80=99s reply, he seems more inclined toward solutions 1
-and 2. Would either of these approaches be acceptable from a DTS
-standpoint?
-
-> I responded to earlier message that your claims in your comment in this
-> patch are clearly wrong, but what it is surprising me, it's second
-> approach this month people completely ignore existing and new DTS. Other
-> was MT7530 where author also claim all is fine, but actually both old
-> and new DTS were broken. Same here.
-
-Yes, the comment is oversimplified, which makes it incorrect in
-certain cases. I=E2=80=99ll ensure the comment is accurate in the next vers=
-ion
-if we decide to stick with this solution.
-
-Regards,
-Loic
 
