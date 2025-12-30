@@ -1,98 +1,100 @@
-Return-Path: <devicetree+bounces-250509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD332CE9AC4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 13:34:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD1ECE9ADC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 13:34:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 228963009556
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 12:34:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3107F302EA05
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 12:34:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0384B27B357;
-	Tue, 30 Dec 2025 12:34:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB242E6CDF;
+	Tue, 30 Dec 2025 12:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="J43SkAqB";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aw3jt28H"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dl4P3y3I";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eGJQT0yM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C4F424677D
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 12:34:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348FA24677D
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 12:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767098046; cv=none; b=fA3cBw18/qhAecirbINfXkLNIDqAQaR57vnCSDunGR/KAR5M76+lbdEKHVBdXs8OyugQwfvRWXWhtH+GlZdjYjH15iuyLh8dBqohrxhDLfTv6MQuYJdjwaOaCIKt3HQUYLehyNTN5NXfYideveEV1v6+XgGfmuSe2PQlg+tjZ6U=
+	t=1767098053; cv=none; b=eA3F2prj/1+v2lkxVRchV0uo6B2Nv7PgaEgdpNShFgHg87fTEnhfThaQ7q72PMuGgcDjHjuoIdS3PAyHo7tXFBe43+zMXgvrZGyvYhWr7uBIM1Ef5Pu8anhibe5DBNELMU8IwG37eg4frtDfM1dJWC1xtwPq/Vbte69lkzWPazY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767098046; c=relaxed/simple;
-	bh=FdqG9zrZ6rbteItBZ4Klh3Dym5joJY1hFv9zmxGAJeo=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FUb1xD2EUgCcJjz3IjkrYYriytzFadEq0M221WJuIJtfba8LYk+OxzXXDT5Lazf00hlVgy5KoECSSM99ZcedUsUoJY7SNHOP57AMHKwWxIddwOBGbOUF9oqkDiLZBnrt75+y7fuQTaBEwyfZuVqycCNkunn4eaGHlbe14ugXnJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=J43SkAqB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aw3jt28H; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1767098053; c=relaxed/simple;
+	bh=PYg6EoipE7rAzwP53stsNsrC40CIOOdaSBG+fYe21P8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=D0ykxhrF/ia08B6I0aX4ezYxKZiv6VwaN6fzLXEYjKmsOEU47UI+3CDvEr2/Lb000N/baX+nZ30Wdxxk17cFCRsb7HXz0XCAjialwZRRI5b7nPIDmQc7iJ8h2ldJLWlBb9k283Y0wfZnOF8pgKt1sNtXgyfkbGE2V7imFR+xfWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dl4P3y3I; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=eGJQT0yM; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BUB0Wtc956323
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 12:34:04 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BU3hiTw2546976
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 12:34:11 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=e1EJpHuhHtgin191Z1rYYK
-	gqk35MDf2jz1zjH1Q2Oqo=; b=J43SkAqBxQeiaPEKOBpDHwee5U953tHh555fky
-	/aevh/9Iq3GzUKnwtMGj7QFlmsQj8MwTZ3Gq+vDplE2fjXhLuYHv1+nPUWQamcqP
-	jN2jUVcWjbSBh7RJ1xHdLZqPsZouXbxAPjlJJMYAZTc5pRCKnvrV22h5LDDHIotI
-	dv8AhZaRwiPcT5e2swN3YQI5mqr/qMNfP2gvlKiCQYtuqw/86Q3h0I9UA2MX3TbU
-	d1cuplNJjw7r5k2vrF+Ncn1ioP0Pfrvmv7dBc+/oAdi2PNsA7EXfo7iRBkB1i59L
-	fSijAU0I3Sh58Xwy9swp7hLlxP/Yp/TdguUFlvzqKIpYKugw==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bbqk1b4rw-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LTjCczxQCkLPK+WbOPH5ASioIp3bZ0Vd00BaHxdQa/M=; b=dl4P3y3IpZiPrazE
+	b1D31Q2RUYl4c/3P84/+48wx1jcO5u8fDRX+v7xIkZgu/uDwfyIrrTjCH7HdhtgB
+	KZHrAoBIYyvX4/A5zTcmEJyli+cpEVVditFuXSjkIUHNZXtZS3sWxqUCu1n9HR9G
+	1aA1o8xm6C20+3Vu0/lC1JLzQvCj5V6/A6iM1D3P5sTPMFyJ5uPXg/8+bUOnzSea
+	YxBzO7mLGy6YI5FvLdpgux6YQaG010EXGbnS0oXKc6Fc6FIJ9Ep+3iaQTaEWhJJ0
+	QecX4oZ5XTcofZlj5buLNBwVeyjSKwHk16wbm1C0W3Fx6XhQDF0TaG+r/uwhu6+e
+	k4Hxzg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bc73994r7-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 12:34:04 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2a0e952f153so329473015ad.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 04:34:04 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 12:34:11 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a090819ed1so81387195ad.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 04:34:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767098044; x=1767702844; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=e1EJpHuhHtgin191Z1rYYKgqk35MDf2jz1zjH1Q2Oqo=;
-        b=aw3jt28HJ+tR0OWsvx/XdMyE0k/ksSwFnQTBeK4BcF135xLxxu+WWAi5u76t0xa5d4
-         rTRd5ldSpwi1hofG3CvWxdxP18yNAMjZAy/u+BIVJQucCB05RxEBbMeCeeRlbfLtIeD3
-         0EVM9B6AxnLWDtRHSyImYE7BciJzs9tLF1l9djDSX0eNLY2gD09DlXyJ2P/Yblu0eo4L
-         asJOASqMU/Ko9+tASt9apRJLHrPOlm+9OXrauWOHUqGu7sDfscT0hZYDAufFKNv5zEIs
-         ++GzzMkNnRRe66KgAJoPfTqfKE/ywJ9W+0QYD1vtHHOuXf5yhJs7pf8Y22pmGblTqQCt
-         Y7rQ==
+        d=oss.qualcomm.com; s=google; t=1767098050; x=1767702850; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LTjCczxQCkLPK+WbOPH5ASioIp3bZ0Vd00BaHxdQa/M=;
+        b=eGJQT0yM3v1GhnQqqH5WFAclmCVVHqnBV8DfZZBum4JJ+PyuFnimMBe24Gt6verUNp
+         5PV08g8XGQllIhPvPC21twQPamzdwyYlMrSWZ4QpLpLQ5mbUUKMantvmQhwDMRQC+RAe
+         lX91ssxLjx6fegBnF/SxU06makmUTYnNkxyizruRyUix6VlogUACjE565tzT9b/agB7d
+         AMGISi8ExKR1viZ3B4jQfO4YLbm6qMAEcJ3dq1j36FyGtAaGHHshZQBTztrUtFyJLNUZ
+         w+J0Q8arU/l9i8+/4hgB4eEwxxc97/6NKJqeRWLR5v52aWFsxI1JPJmUSw1ipQSch12U
+         TDqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767098044; x=1767702844;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e1EJpHuhHtgin191Z1rYYKgqk35MDf2jz1zjH1Q2Oqo=;
-        b=phHB3MBzQxxqHX63ReB5yiIk7L3OxRV5MlkCUaSkarxjG1QaVIALkwu4Sv3y2xVtIX
-         FRQVmURj4XlswiWzSTOc1Cvw70Vu/AckSW9cbuTL3h12ybLOMIb+2XdL0iq81N/HR1yS
-         CgzFc01WyFpbfXNI0ptdPUIIgkiFO3zioEO3z/7dLQB7C9xWSWjgf0WlmWtQYQXFb1lm
-         t2me8x2Ob3PD5uP8/sBR12qM//uU8XIrZtzEdSTD56NUp7qKa/VANjQEvFXhi37Gh+Iq
-         qiInCoUMPymyCR2tDP9NF9zJBp94BGI2LiIktZeJE7haXPZ1pPuC+p3ran3Uq07B5IH5
-         pQSw==
-X-Forwarded-Encrypted: i=1; AJvYcCUEXfY0if94I2zxPmr/QZ+WkoPI2R+dYkz/1/HD3lkNtRpx9nx2e7F4sExDEsLP1SjBB6ETNhzsLCsJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoHxYS7T8GAwuIRYHFkzKaCUwWoeQDhA+ea2VRAnJcyEI+pVXB
-	h16AsQc8Hg27vugxh5QUwllTgL22UJOAuudSPjH7l5E+xGGsz+bTyyJ0tZpoGTy5CeZM19dOxUj
-	nl81rIItHxpmTgAOjayQtZvB8btvh7X/SBIExiHNJCkTE4EaTMbVf2Xh+szAArmvk
-X-Gm-Gg: AY/fxX6Hm4UcU5FBZbjopjqSExgInqbZnNj+Bps+atk55iOJcyGbUbkCgo2EISSgLcK
-	rncaZkFzzuj2Fxu4TF99racKG6NzdmZUpkcpv81NQzUlgrMXC60QhnJ3cSlGeS0m469+CjGBkWx
-	bDxOGP3OU4yjWwSJ74woX5HEeoH5j1hYtsrtd/uGll1yLznH6QbGjepyO2VvmposoxemdoKsPrz
-	Xz3FOwsyIoCtup5heexrG2BQy1xohAHYRtdfYeYvLefLNED+wOgilEC88rgm/Zf7+Ggnxs/RTpr
-	vDxjaD+7TmAr3eg5hDzdrUOELmeLPyRXX8xXlbTzH4tR+xteUVgESivhIrDoWGM9d7NLqGbZSe/
-	8BEpWl/pcwRBRNjFUEqGocvTtdxNcnz+gFA==
-X-Received: by 2002:a17:903:19c8:b0:29e:e925:1abb with SMTP id d9443c01a7336-2a2f2428bffmr302949765ad.27.1767098043868;
-        Tue, 30 Dec 2025 04:34:03 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IENyF+WPIkSCef75cAbbFwXBGFHVz0cB9iQySZ5v8vKBfyeFO1nsdl5NeVeEPctYc/krqYECw==
-X-Received: by 2002:a17:903:19c8:b0:29e:e925:1abb with SMTP id d9443c01a7336-2a2f2428bffmr302949455ad.27.1767098043327;
-        Tue, 30 Dec 2025 04:34:03 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767098050; x=1767702850;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LTjCczxQCkLPK+WbOPH5ASioIp3bZ0Vd00BaHxdQa/M=;
+        b=Q2fGQ7XQfuZpUTlflnGhtw/Nh8QeaaJnlT1rFQ8qZ2oDAicaZ4J1X+FtLqDsv7aUf7
+         fLINaaAZ5s/U0Grf8IkW6KfIU636Ua+OCRVA7XWP3BJ8GGQoHak+oe28h3J1Zy9ZI/Tw
+         QlOYzZvN5bnHaTyvBkpPinHc5COXh9UwM/yVjaVKIsK1YYjWaKkAmMKR8WgzWGE6AMas
+         WOKN2Mt/N+k5bJB1NOabkRWGeVLHYlcrhw61TBdgENy26mUCwBq2gdTboddQht6NYBts
+         1zgVIJyqV6G5/mhz6IZWMKM9BcOhB+i1FzTq+ZpSbk7GnKhSz2QPTaYb76Q4xvTxsky+
+         OAHg==
+X-Forwarded-Encrypted: i=1; AJvYcCU/NHQFwQXGz53z8yM+bnIPHmpJK/xu6vk5jttXZ1VdizOWbZlcrGLpk3tgRMgTHxqb4yrfseXVkYls@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6QxDHezWhQGySr/z2zFcXHUZQgZUeC6XsKXWdMRaUStN9ZsPr
+	xSOGDqym3PjpvhVrT//jP3fP792pO8hYXxvXjNn+HpjYs9Hq8w194uk89DrzF/W72wu0rpsmjz8
+	tecHIMgTGL13OnXRoRcDErfDajzEkUxOZKAJw0O1KpXOe2R0/vNqoyGQU8ZXdpjrN
+X-Gm-Gg: AY/fxX7g4tqY/tR7BgH5LGcZmrS2EN6TvCwmNeBvxRG9349/XtxXQgbj7lNdRxw0J2G
+	8VkMowSaHyWjrBK50jEvQsYx73kVU4YSSD7nyF7bgzuqsAA4IC1OQXAxGjdtWPFXmPjX8DC/Gbp
+	PHA0ALj3zw7av+xGN8pEXaXpuJKcEqQ3SMSI8waqDNHZp+/f6v6hXQYutcenBHKjtsAE7lfPaVe
+	V9izlC2Qi2uAuBZZFSI8SsAYkgOWbzpWnzE9+V2nkVRGaJAfu/dPvNpkb4o7ju/0OasOCLn6U+B
+	VxbB8GI7Ydu2/Rlxw16vinhjGhTs6QfSLzuEF+UyLtiADx8jCnYqqvxKvNWiJi767hZlkb8X0aD
+	rozVDIAkmQFzei3h/hxwD/fZj9ftEOVAnJg==
+X-Received: by 2002:a17:902:e5c7:b0:2a0:be5d:d53d with SMTP id d9443c01a7336-2a2f2a361c2mr339112245ad.53.1767098050434;
+        Tue, 30 Dec 2025 04:34:10 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGqfJN2cDWF92584+Re8lu9EnvElmXUCIzeEsW46GW7kzA49cBbpur4men3WRQAZBhkjEfkVA==
+X-Received: by 2002:a17:902:e5c7:b0:2a0:be5d:d53d with SMTP id d9443c01a7336-2a2f2a361c2mr339112065ad.53.1767098049898;
+        Tue, 30 Dec 2025 04:34:09 -0800 (PST)
 Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3c6a803sm295748695ad.6.2025.12.30.04.33.56
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3c6a803sm295748695ad.6.2025.12.30.04.34.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Dec 2025 04:34:02 -0800 (PST)
+        Tue, 30 Dec 2025 04:34:09 -0800 (PST)
 From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Subject: [PATCH v9 0/4] DRM/MSM: Support for Adreno 663 GPU
-Date: Tue, 30 Dec 2025 18:03:24 +0530
-Message-Id: <20251230-a663-gpu-support-v9-0-186722e25387@oss.qualcomm.com>
+Date: Tue, 30 Dec 2025 18:03:25 +0530
+Subject: [PATCH v9 1/4] arm64: dts: qcom: lemans: Add gpu and gmu nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,11 +103,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJTGU2kC/2WOQQ6DIBBFr2JYdwygIHXVezQuRotKUkVBTBvj3
- Yu67GaSP5n/3mzEa2e0J2WyEadX440dY7jfEtL0OHYazCtmwinP6Z0VgFJm0E0BfJgm6xaoWV6
- IRnElqSSxNjndms+JfFYx98Yv1n1Pw6qO7QETjFHxD1sVUJAcC0QUgunsYb1P54Dvxg5DGgep9
- kvi9Bziu8tlIjV6DceRWcoE3SBzaK0DmXIaK/sPgvJdxOkAAAA=
-X-Change-ID: 20240917-a663-gpu-support-b1475c828606
+Message-Id: <20251230-a663-gpu-support-v9-1-186722e25387@oss.qualcomm.com>
+References: <20251230-a663-gpu-support-v9-0-186722e25387@oss.qualcomm.com>
+In-Reply-To: <20251230-a663-gpu-support-v9-0-186722e25387@oss.qualcomm.com>
 To: Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
         Marijn Suijten <marijn.suijten@somainline.org>,
         David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
@@ -124,124 +124,192 @@ Cc: Gaurav Kohli <quic_gkohli@quicinc.com>, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Akhil P Oommen <akhilpo@oss.qualcomm.com>,
         Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767098036; l=3289;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767098036; l=4549;
  i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
- bh=FdqG9zrZ6rbteItBZ4Klh3Dym5joJY1hFv9zmxGAJeo=;
- b=ijannswjECqxNrfPcXOhcEvxUr3Qf/PjtIcNRbeD7PQbwVOFwoEbGGc730H3mXsXqOqrtLt3q
- mTxS/TWG605AUYn7iYLDZ4XxexXiYan9oIJXRiD2DyJmWTfvZtinyM5
+ bh=eEQqZKz8fM0bUMyLjCoySTD/m7pD/4v7DydcvS7v3q8=;
+ b=WiGGQTgFluvR4nj9kEstt4ZKHjjLbE6J8pu112pVqDNsz05hGsahiVDcCNU7McHwUCLpiWZqR
+ knS9NiEK8UcA5Ewm/ABSM3e8JYXk73MyF/U58CRNXU5gZ4T52qaDdSD
 X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
  pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-Proofpoint-ORIG-GUID: ncF7xW0Pe3XbhCWuhrCFUjqzAg1VBzoG
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMwMDExMyBTYWx0ZWRfX+D4biFEJynbG
- KgwAkd0sRa88f+fZAbXtRRkQ2bECJN2Mzt+X2sktC/dYz3k5El9LFdYFLA5LSd+R93AIBHLKRUf
- cAjrCSjxv0mOHHCFwW/5vYdSe5ppdwpL4BssHxQDb+KOQVfMFv01lNnfw9MCc64mkDqpGvid1uB
- ajD3mg/b832BtNzBT6U3poWYfF8nOwdYc0r3Xrkc1Ri1/7QAj/JcBYXcoC0HsPa8vUtSkGd51tp
- tkMNnpXp4ERI9ASQikDI2RyITSAJkSQ7bheP/FJo/o3kdi5Nsq/D1hklZ4V9fOO+DPkd2DZchUQ
- dFI5f1kUCHGk6R31HonmKOkUj3OL74d9xIxtEgTQFJT+/vJK4/owJFVUSA+9b6hY87KgK+vapzV
- Nypz5Hv+6hey787SUlEAZVvx6rmm5Wq2QHKLkd1hjyn+jJ0cMyWhltF8opzCG4wrunrWkvyq0L5
- VVNwgE6s7x8NpQoxH+g==
-X-Authority-Analysis: v=2.4 cv=Tf6bdBQh c=1 sm=1 tr=0 ts=6953c6bc cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+X-Proofpoint-GUID: 6wCyo8watseDY93FWQjGjhdj9-i2pg5H
+X-Authority-Analysis: v=2.4 cv=HrV72kTS c=1 sm=1 tr=0 ts=6953c6c3 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
- a=XWgRTdVboDXnaEeUzZ0A:9 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: ncF7xW0Pe3XbhCWuhrCFUjqzAg1VBzoG
+ a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=D_IGQ_qLm8RrHFHUsBgA:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+ a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMwMDExMyBTYWx0ZWRfXxCCICZiV8vfy
+ gczK/knStgWcj1NZljHP23Qj/zuKLXPyY6SM0FmePVmpwyuzNBpNm9mocekBuPAT4VX/Bb4mfhj
+ yAHvRVQxXGHhLm76PT3LLYp96Wss62O9Rlmz3xut4ca1qI1FLttFnWe1oEHqrA/33EC0gJYxE2s
+ egtdL0Z82DlCPzX1hw1sx9Rpgkh70ByYOgt3IZPCtystgmwjfQMuIXLaQA9AFfwe4lDMnlbY4eC
+ 2p4zpUBsZjbulvim+x7/HjbiUTHFymx8yMnoNrJoEfaWV8W8I5OXqiG1g0AJAxhRTVcwW5ntMa8
+ tnA2oC6rtwzXYo+BQbJTB9BAxumCGhEqfV8RwGOmG+xAEoxW7y0n+pyy5WbEMmFmlV4M2yNAm1a
+ O0elWhc0EzFp2OmkGm6eakHBo+qJhXwNr0dXr+yLyNY2WPlFqb/vEiAIvSAn5OfqXmSrNucbDRT
+ 5xvZ/l11q05F+9+l9tw==
+X-Proofpoint-ORIG-GUID: 6wCyo8watseDY93FWQjGjhdj9-i2pg5H
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-30_01,2025-12-30_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 impostorscore=0 suspectscore=0 malwarescore=0
- spamscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501 adultscore=0
+ impostorscore=0 phishscore=0 adultscore=0 suspectscore=0 clxscore=1015
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 bulkscore=0 spamscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512300113
 
-This series adds support for Adreno 663 gpu found in SA8775P (Lemans)
-chipsets. The closest gpu which is currently supported in drm-msm is A660.
-Following are the major differences with that:
-        1. gmu/zap firmwares
-        2. Recommended to disable Level2 swizzling
+From: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
 
-Verified kmscube/weston/glmark2-es2.
+Add gpu and gmu nodes for Lemans chipset. Also, add the speedbin
+qfprom node and wire it up with GPU node.
 
-Bjorn, only DT patches are pending in this series. And all of them are ready
-to pick up right away.
-
+Signed-off-by: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
 ---
-Changes in v9:
-- Rebased on top of Bjorn's arm64-for-6.20 tree (Dec/30 tip)
-- Link to v8: https://lore.kernel.org/r/20251105-a663-gpu-support-v8-0-62a7aaa551e3@oss.qualcomm.com
+ arch/arm64/boot/dts/qcom/lemans.dtsi | 119 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 119 insertions(+)
 
-Changes in v8:
-- Corrected patch#1 subject (Dmitry)
-- Dropped the patch for qfrom binding doc as it is already picked up.
-- Link to v7: https://lore.kernel.org/r/20251105-a663-gpu-support-v7-0-1bcf7f151125@oss.qualcomm.com
+diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+index 0b154d57ba24..883f9e0ab45c 100644
+--- a/arch/arm64/boot/dts/qcom/lemans.dtsi
++++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+@@ -1098,6 +1098,18 @@ ipcc: mailbox@408000 {
+ 			#mbox-cells = <2>;
+ 		};
+ 
++		qfprom: efuse@784000 {
++			compatible = "qcom,sa8775p-qfprom", "qcom,qfprom";
++			reg = <0x0 0x00784000 0x0 0x3000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			gpu_speed_bin: gpu_speed_bin@240c {
++				reg = <0x240c 0x1>;
++				bits = <0 8>;
++			};
++		};
++
+ 		gpi_dma2: dma-controller@800000  {
+ 			compatible = "qcom,sa8775p-gpi-dma", "qcom,sm6350-gpi-dma";
+ 			reg = <0x0 0x00800000 0x0 0x60000>;
+@@ -4135,6 +4147,113 @@ tcsr: syscon@1fc0000 {
+ 			reg = <0x0 0x1fc0000 0x0 0x30000>;
+ 		};
+ 
++		gpu: gpu@3d00000 {
++			compatible = "qcom,adreno-663.0", "qcom,adreno";
++			reg = <0x0 0x03d00000 0x0 0x40000>,
++			      <0x0 0x03d9e000 0x0 0x1000>,
++			      <0x0 0x03d61000 0x0 0x800>;
++			reg-names = "kgsl_3d0_reg_memory",
++				    "cx_mem",
++				    "cx_dbgc";
++			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
++			iommus = <&adreno_smmu 0 0xc00>,
++				 <&adreno_smmu 1 0xc00>;
++			operating-points-v2 = <&gpu_opp_table>;
++			qcom,gmu = <&gmu>;
++			interconnects = <&gem_noc MASTER_GFX3D QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++			interconnect-names = "gfx-mem";
++			#cooling-cells = <2>;
++
++			nvmem-cells = <&gpu_speed_bin>;
++			nvmem-cell-names = "speed_bin";
++
++			status = "disabled";
++
++			gpu_zap_shader: zap-shader {
++				memory-region = <&pil_gpu_mem>;
++			};
++
++			gpu_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-405000000 {
++					opp-hz = /bits/ 64 <405000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
++					opp-peak-kBps = <5285156>;
++					opp-supported-hw = <0x3>;
++				};
++
++				opp-530000000 {
++					opp-hz = /bits/ 64 <530000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
++					opp-peak-kBps = <12484375>;
++					opp-supported-hw = <0x2>;
++				};
++
++				opp-676000000 {
++					opp-hz = /bits/ 64 <676000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
++					opp-peak-kBps = <8171875>;
++					opp-supported-hw = <0x1>;
++				};
++
++				opp-778000000 {
++					opp-hz = /bits/ 64 <778000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
++					opp-peak-kBps = <10687500>;
++					opp-supported-hw = <0x1>;
++				};
++
++				opp-800000000 {
++					opp-hz = /bits/ 64 <800000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
++					opp-peak-kBps = <12484375>;
++					opp-supported-hw = <0x1>;
++				};
++			};
++		};
++
++		gmu: gmu@3d6a000 {
++			compatible = "qcom,adreno-gmu-663.0", "qcom,adreno-gmu";
++			reg = <0x0 0x03d6a000 0x0 0x34000>,
++			      <0x0 0x03de0000 0x0 0x10000>,
++			      <0x0 0x0b290000 0x0 0x10000>;
++			reg-names = "gmu", "rscc", "gmu_pdc";
++			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "hfi", "gmu";
++			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
++				 <&gpucc GPU_CC_CXO_CLK>,
++				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
++				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
++				 <&gpucc GPU_CC_AHB_CLK>,
++				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
++				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
++			clock-names = "gmu",
++				      "cxo",
++				      "axi",
++				      "memnoc",
++				      "ahb",
++				      "hub",
++				      "smmu_vote";
++			power-domains = <&gpucc GPU_CC_CX_GDSC>,
++					<&gpucc GPU_CC_GX_GDSC>;
++			power-domain-names = "cx",
++					     "gx";
++			iommus = <&adreno_smmu 5 0xc00>;
++			operating-points-v2 = <&gmu_opp_table>;
++
++			gmu_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-500000000 {
++					opp-hz = /bits/ 64 <500000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
++				};
++			};
++		};
++
+ 		gpucc: clock-controller@3d90000 {
+ 			compatible = "qcom,sa8775p-gpucc";
+ 			reg = <0x0 0x03d90000 0x0 0xa000>;
 
-Changes in v7:
-- Rebased on next-20251105
-- Dropped drm-msm speedbin patch which is already picked up
-- Picked up trailers
-- Link to v6: https://lore.kernel.org/r/20250910-a663-gpu-support-v6-0-5da15827b249@oss.qualcomm.com
-
-Changes in v6:
-- Keep the efuse's reg range 4K aligned (Konrad)
-- Update GMU's opp table to bump frequency to 500Mhz (Konrad)
-- Link to v5: https://lore.kernel.org/r/20250909-a663-gpu-support-v5-0-761fa0a876bf@oss.qualcomm.com
-
-Changes in v5:
-- Remove unnecessary labels in the gpu cooling patch (Konrad)
-- Update the RPMH corner for 530 Mhz
-- Wire up the gpu speedbin node to the gpu
-- Link to v4: https://lore.kernel.org/r/20250822-a663-gpu-support-v4-0-97d26bb2144e@oss.qualcomm.com
-
-Changes in v4:
-- Rebased on top of another series which renames DT files
-- Enabled GPU on IoT boards as per the latest definition
-- Picked up SKU detection support
-- Added GPU passive cooling support
-- Link to v3: https://lore.kernel.org/r/20241030-a663-gpu-support-v3-0-bdf1d9ce6021@quicinc.com
-
-Changes in v3:
-- Rebased on the latest msm-next tip
-- Added R-b tags from Dmitry
-- Dropped patch #1 and #2 from v2 revision since they are already
-picked up in msm-next
-- Link to v2: https://lore.kernel.org/r/20241022-a663-gpu-support-v2-0-38da38234697@quicinc.com
-
-Changes in v2:
-- Fixed ubwc configuration (dimtry)
-- Split out platform dt patch (dimtry)
-- Fix formatting in the dt patch (dimtry)
-- Updated Opp table to include all levels
-- Updated bw IB votes to match downstream
-- Rebased on top of msm-next tip
-- Link to v1: https://lore.kernel.org/r/20240918-a663-gpu-support-v1-0-25fea3f3d64d@quicinc.com
-
----
-Akhil P Oommen (2):
-      arm64: dts: qcom: lemans-evk: Enable Adreno 663 GPU
-      arm64: dts: qcom: qcs9100-ride: Enable Adreno 663 GPU
-
-Gaurav Kohli (1):
-      arm64: dts: qcom: lemans: Add GPU cooling
-
-Puranam V G Tejaswi (1):
-      arm64: dts: qcom: lemans: Add gpu and gmu nodes
-
- arch/arm64/boot/dts/qcom/lemans-evk.dts          |   8 ++
- arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi |   8 ++
- arch/arm64/boot/dts/qcom/lemans.dtsi             | 174 ++++++++++++++++++++++-
- 3 files changed, 184 insertions(+), 6 deletions(-)
----
-base-commit: 0e31dcfefd21ed76ff1b2d05647cd34336ab9772
-change-id: 20240917-a663-gpu-support-b1475c828606
-
-Best regards,
 -- 
-Akhil P Oommen <akhilpo@oss.qualcomm.com>
+2.51.0
 
 
