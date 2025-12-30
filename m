@@ -1,115 +1,117 @@
-Return-Path: <devicetree+bounces-250381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01E3BCE8A45
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 04:28:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73F40CE8A69
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 04:41:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97272300FFA1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:28:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 320B73010AAB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:41:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2552D8376;
-	Tue, 30 Dec 2025 03:28:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 869E726ED31;
+	Tue, 30 Dec 2025 03:41:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S3/K7jpk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qvQBAtQs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 244C52641FC;
-	Tue, 30 Dec 2025 03:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D5AEEA8;
+	Tue, 30 Dec 2025 03:41:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767065303; cv=none; b=p6GP/36OZdOQy7znwoo2O3/ONUYtiTCQZULE67PTb0wHMZygZPhfupz4ki5UsC17Oy5Dn+uopIIOzPGHZIEMeIZagJDDXYXYK7OjYjooPugbhuRajCjYvHIKNUERFB74WXr9oXCBN1ffqmAISS6ZTP0A7gS/tsL5NEN7k8DbH0Y=
+	t=1767066101; cv=none; b=SPwfeJ4T6AGhsnZAG/fjzb+0gdv7zKMLoDbSif6efZkoesOJRkvt5gWbsMIrHuEodvgpXQVE1wBcPlC6xdZiWc/iY1ZFNLq3ZzeyUqjY02dnuWuH4cOV/ZP4nnKkefBuxzGDUnCWaTj5c4QMIURtxW+TxXPuq5A1D0XFf2JViRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767065303; c=relaxed/simple;
-	bh=Dccpw7NPvtBDj/FiKmoCP1aZ1Hu8cpN1GGFZQAOlyAE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oUsLbBNTcvtli16R8c/gE7EqWueBANdYzREczdjblYp1K0tZr8RoM/sHPuGro0JSd1B1AjfESCBnHRBkHm7CcnMmOnQOguiv05VhQ/Vu956hzTFfI9oFXKgdRVdbK55M3l18UoRTHk+qoyaC6mw2QBUyz0T1T1XIbdqVF99dRoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S3/K7jpk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87405C16AAE;
-	Tue, 30 Dec 2025 03:28:18 +0000 (UTC)
+	s=arc-20240116; t=1767066101; c=relaxed/simple;
+	bh=FBYZJLqTJj6T2CX6kHrfFxJOGHTG7o2x6HGNVT60X5M=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=T84sfgqAe0btzJ0rUCCXnqx/YeJFwkuwD2DcXNmYHwmzSVbd89JcBMmJ9F36LDTsVVxn/xSDfxCXGu4h3zV1KPvefhBPjPRBcp9INfHp0qK9nXf7kfg/Vne6F4vmsqvC0hmCvOqmVtaXdXbeFEbZKEXENSFhz6P0ar5o0PVpAr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qvQBAtQs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACAE5C4CEFB;
+	Tue, 30 Dec 2025 03:41:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767065302;
-	bh=Dccpw7NPvtBDj/FiKmoCP1aZ1Hu8cpN1GGFZQAOlyAE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S3/K7jpk/8nZPjwYl44wpek4Pb6k5lsqGww8UKUxKm0vtED6l/Qe6gmgMFRl22BR0
-	 Rb0Hbp6YVKnByxVtcyD5CLRDuUzvtx+SITxnWHn1oUemGtsV8vsguciQI55RRm85AL
-	 Lg3BiEh5kRHpVeKfjHWDCDx0GutRyXKaFIEFVZ5znJvGR5BfBZDBunoaTKq6aZKH+H
-	 33DQo2cxFKA+uvpnZl5y27MTkzfP77a2YQN+oCeFtrTngRqMdQ0y50E8i0adNTfeeb
-	 8/YqrJNGlXXHdYo52LQo+xVR9nkHxFRUO0HMwmoVprvOdMmmOC/9a5jNIeB4dABhoV
-	 eDpJOeW7fuGDg==
-Date: Tue, 30 Dec 2025 11:28:16 +0800
-From: Shawn Guo <shawnguo@kernel.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	bhelgaas@google.com, frank.li@nxp.com, l.stach@pengutronix.de,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 4/4] arm64: dt: imx95: Add the missed ref clock for
- PCIe[0,1]
-Message-ID: <aVNG0BjbEVHhgNCa@dragon>
-References: <20251211064821.2707001-1-hongxing.zhu@nxp.com>
- <20251211064821.2707001-5-hongxing.zhu@nxp.com>
+	s=k20201202; t=1767066100;
+	bh=FBYZJLqTJj6T2CX6kHrfFxJOGHTG7o2x6HGNVT60X5M=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=qvQBAtQs6VCjF05fQp//RYcW5/clAwkEWZcIAVdrEFtaVrhmCPWCZQ37T6UAi+WW1
+	 +gefcz+yXppeFw9K6fvcUIM+iLHnaBOKDeAD2REOuya6o/gQ9LMI+VcSYf4hx7JXJ5
+	 o6/3rjwKYP++mn3V+huuwTmy2AtvPLbgLD6tgPqvvREh2GYC4Tb166+9rwwJRCSRjX
+	 UaKzZUgsOhXJwDDsrA8PUl5gQ3ae1Qvozeo5SuQ9vQELJYV39Egq2hZj2A/wFfwF1t
+	 SfEclDYykILBvlp/QmgpRo8mwuGvLBLuce+efMxkFh6AFCXgIzWBFzSrViv+u0nSA1
+	 yENqwPDAhv58Q==
+Date: Mon, 29 Dec 2025 21:41:39 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251211064821.2707001-5-hongxing.zhu@nxp.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-phy@lists.infradead.org, aou@eecs.berkeley.edu, 
+ devicetree@vger.kernel.org, pjw@kernel.org, alex@ghiti.fr, conor@kernel.org, 
+ gregkh@linuxfoundation.org, neil.armstrong@linaro.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, vkoul@kernel.org, 
+ krzk+dt@kernel.org, linux-riscv@lists.infradead.org, palmer@dabbelt.com
+To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+In-Reply-To: <20251230023725.15966-4-jiayu.riscv@isrc.iscas.ac.cn>
+References: <20251230023725.15966-1-jiayu.riscv@isrc.iscas.ac.cn>
+ <20251230023725.15966-4-jiayu.riscv@isrc.iscas.ac.cn>
+Message-Id: <176706609879.3313806.3074189602443802489.robh@kernel.org>
+Subject: Re: [PATCH 3/5] dt-bindings: usb: dwc2: Add support for Canaan
+ K230 SoC
 
-On Thu, Dec 11, 2025 at 02:48:21PM +0800, Richard Zhu wrote:
-> i.MX95 PCIes have two reference clock inputs, one of them is from
-> internal PLL. It's wired inside chip and present as "ref" clock. It's
-> not an optional clock.
+
+On Tue, 30 Dec 2025 10:37:22 +0800, Jiayu Du wrote:
+> Add 'canaan,k230-usb' compatible string with 'snps,dwc2' as fallback
+> for the DWC2 IP which is used by Canaan K230.
 > 
-> Add the missed ref clock for PCIe[0,1].
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-
-It doesn't seem to apply to my tree.
-
-Shawn
-
+> Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
 > ---
->  .../boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dts | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/usb/dwc2.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dts b/arch/arm64/boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dts
-> index 5b6b2bb80b288..1258fcb54681e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dts
-> @@ -237,8 +237,9 @@ &pcie0 {
->  	clocks = <&scmi_clk IMX95_CLK_HSIO>,
->  		 <&pcieclk 1>,
->  		 <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
-> -		 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
-> -	clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
-> +		 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>,
-> +		 <&hsio_blk_ctl 0>;
-> +	clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ref";
->  	reset-gpio = <&expander2 9 GPIO_ACTIVE_LOW>;
->  	status = "okay";
->  };
-> @@ -250,8 +251,9 @@ &pcie1 {
->  	clocks = <&scmi_clk IMX95_CLK_HSIO>,
->  		 <&pcieclk 0>,
->  		 <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
-> -		 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
-> -	clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
-> +		 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>,
-> +		 <&hsio_blk_ctl 0>;
-> +	clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ref";
->  	reset-gpio = <&expander2 10 GPIO_ACTIVE_LOW>;
->  	status = "okay";
->  };
-> -- 
-> 2.37.1
-> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/canaan/canaan,k230-hisys-cfg.yaml: Unresolvable reference: schemas/phy/canaan,k230-usb-phy.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/canaan,k230-usb-phy.yaml: properties:reg: {'description': 'Two register regions for USB PHY in HiSysConfig syscon block.', 'items': [{'description': 'USB PHY test control reg (pullup/pulldown config)'}, {'description': 'USB PHY core control reg (PLL/transceiver tuning)'}], 'minItems': 2, 'maxItems': 2} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/canaan,k230-usb-phy.yaml: properties:reg: 'oneOf' conditional failed, one must be fixed:
+	False schema does not allow 2
+	[{'description': 'USB PHY test control reg (pullup/pulldown config)'}, {'description': 'USB PHY core control reg (PLL/transceiver tuning)'}] is too long
+	[{'description': 'USB PHY test control reg (pullup/pulldown config)'}, {'description': 'USB PHY core control reg (PLL/transceiver tuning)'}] is too short
+	1 was expected
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml
+Lexical error: Documentation/devicetree/bindings/soc/canaan/canaan,k230-hisys-cfg.example.dts:27.35-56 Unexpected 'K230_HS_USB0_AHB_GATE'
+Lexical error: Documentation/devicetree/bindings/soc/canaan/canaan,k230-hisys-cfg.example.dts:34.35-56 Unexpected 'K230_HS_USB1_AHB_GATE'
+FATAL ERROR: Syntax error parsing input tree
+make[2]: *** [scripts/Makefile.dtbs:145: Documentation/devicetree/bindings/soc/canaan/canaan,k230-hisys-cfg.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1565: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20251230023725.15966-4-jiayu.riscv@isrc.iscas.ac.cn
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
