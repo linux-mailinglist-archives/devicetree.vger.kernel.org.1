@@ -1,56 +1,55 @@
-Return-Path: <devicetree+bounces-250501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB80CCE9A28
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 13:20:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AAB1CE9A3A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 13:22:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A2F533015D07
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 12:20:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5D0DE3024100
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 12:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C7172EAD16;
-	Tue, 30 Dec 2025 12:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1C7E29B20D;
+	Tue, 30 Dec 2025 12:21:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="htKKXLUX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eodlMm/E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A6D2EAB61;
-	Tue, 30 Dec 2025 12:20:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C065428C84A;
+	Tue, 30 Dec 2025 12:21:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767097211; cv=none; b=YNpFYnDDGIi0BnaenvI88IQM/WEz1kyY1gTASLK/B8gK0psczt42D/r+TKrfTJLO0VUrxwYE5HAhEDmjt84k2MEFSYm0XullalcJvqsKVwHdjuQZdjsHTu8/KSzNWpNCXNO7URxocR4OgmMRQ/YU2pQ6gOdqSSZnpkEz8Y0DYI4=
+	t=1767097301; cv=none; b=iEuy/+sVctOy+RIhno6JzDj3UmplSrZztTOw4vdEbCyZoPJFMoHgccDzOSK/G4JRdcgYsRmhe2W7ShI93pDsfQBXAx2eXY0thG8QCOiPVcjqT/yibL3VfnNaj1V59SahwnSpyK3Ru/CbYkBH+j5iBXay5xmnsWCWrQneOKVIfKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767097211; c=relaxed/simple;
-	bh=GzM9LAv+4l4o0RsOQvLN+xzNsfCmn6d4XXQejr7byp4=;
+	s=arc-20240116; t=1767097301; c=relaxed/simple;
+	bh=QKQ5eoIAn/js5eOEFKHYKJSMufjyeI6KZAIRALCLBgA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HY4bknCjA1HwLmZttIJVAADyKRtNmda+1NHAk3xMKIQx8keve6LUmI777BAI1Y1g6FPaLng88nzdEl53l9LJdi6EN4mSZuB5fNToLT49xGrWaN1b31QMIuyX3E8Ck23rfRy8vUPGdFWl3CfwrNioB9zOLADzbkbW3sc91l54lqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=htKKXLUX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A99AC4CEFB;
-	Tue, 30 Dec 2025 12:20:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GhT1INxnjNTOmNp3b3iJsNrJW/MFfnATVcdCrIbnIuOqNM38UNVlbgdm7T7LPl21e0cIEwQmMCTXi23PvWl+i/q1t/E8QzKacyI2hbdmHKgF+3DsAHEheWpYzt5UsjMspYSEJAejWEcy9CllspfgqaXpg+1tlCUi9mqFespLDnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eodlMm/E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CD36C113D0;
+	Tue, 30 Dec 2025 12:21:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767097208;
-	bh=GzM9LAv+4l4o0RsOQvLN+xzNsfCmn6d4XXQejr7byp4=;
+	s=k20201202; t=1767097301;
+	bh=QKQ5eoIAn/js5eOEFKHYKJSMufjyeI6KZAIRALCLBgA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=htKKXLUXk1Ejwc1zUZTE4jedwlDR+AJ+gUFeTnDeyP0lWhHaoLCm8+2Gnp7lW0SiY
-	 GbDJijLq4I5aqJywpMAaJGAnbZ812TwN7jx2EIdL2q2d6krBe9QBKOLReUzLD9yEP4
-	 4znxpdx+aeT3+dBzF2VxEZUhQgWPsoyFJiFjfz4MUP7os3rDB8sOoD7R4wfjViWZLh
-	 I8ax3+RDkpgtrsrR9hpIfPFvl+vWM3nWfIop+NOqpghktJXwFTQe7EzK8PHcoPueWo
-	 YLJRWLiuQJN8C5wXjXo8/vGvsOrtOzIXOrdjjXZI+oT/s59xiQIEc/nBqPZOT4EKb7
-	 OPe7qYz2xV4sQ==
-Date: Tue, 30 Dec 2025 13:20:06 +0100
+	b=eodlMm/Eq7PwChFtTphOGsaKVCSGp2WMv/2Jf6WjbML0qTHtggSiiPllMvgKJCrXQ
+	 WbIqU21S3Ts2x31nnAyc6EsQ/+dK9KERTl6/DuLOuSRPfw3AmNT0wW6UsT5bEcZ++Q
+	 O8m6bihbIz+8znAnTvO2kMoHmQv7KsQaMmMKLvHfij7SrAr9MmmvspBSg7eL8NyH+d
+	 A96/fROTFltCPnOvX20/R0GHFCsF+iNYQiltZkSid2WTBXBGV1W71AmE6u98dcg4xI
+	 1IFCpzoVrpa8t8427wrHJr2Nvl5F2Bhn/M3z/D2wuv9Xdgp6Vv869WHE5xgkssDJG7
+	 3gNw8bedVf1rQ==
+Date: Tue, 30 Dec 2025 13:21:39 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yu-Chun Lin <eleanor.lin@realtek.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, cylee12@realtek.com, 
-	jyanchou@realtek.com, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, james.tai@realtek.com, cy.huang@realtek.com, 
-	stanley_chang@realtek.com
-Subject: Re: [PATCH 2/9] clk: realtek: Add basic reset support
-Message-ID: <20251230-impetuous-quizzical-locust-daffda@quoll>
-References: <20251229075313.27254-1-eleanor.lin@realtek.com>
- <20251229075313.27254-3-eleanor.lin@realtek.com>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+	Alex Elder <elder@riscstar.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Subject: Re: [PATCH 1/4] dt-bindings: reset: spacemit: Add K3 reset IDs
+Message-ID: <20251230-charming-nonchalant-goat-98bbde@quoll>
+References: <20251229-k3-reset-v1-0-eda0747bded3@riscstar.com>
+ <20251229-k3-reset-v1-1-eda0747bded3@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,57 +58,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251229075313.27254-3-eleanor.lin@realtek.com>
+In-Reply-To: <20251229-k3-reset-v1-1-eda0747bded3@riscstar.com>
 
-On Mon, Dec 29, 2025 at 03:53:06PM +0800, Yu-Chun Lin wrote:
-> +
-> +int rtk_reset_controller_add(struct device *dev,
-> +			     struct rtk_reset_initdata *initdata)
-> +{
-> +	struct rtk_reset_data *data;
-> +
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +
+On Mon, Dec 29, 2025 at 07:04:04PM +0800, Guodong Xu wrote:
+> Add reset IDs for SpacemiT K3 SoC.
 
-What sort of coding style do you use? There is absolutely never a blank
-line between kzalloc and the if().
+Why? Where is the actual binding? You have entire commit msg to explain
+that, instead of duplicating subject.
 
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->dev = dev;
-> +	data->num_banks = initdata->num_banks;
-> +	data->banks = initdata->banks;
-> +	data->regmap = initdata->regmap;
-> +	data->rcdev.owner = THIS_MODULE;
+I am pretty sure I already asked this for a different patchset from
+you...
 
-THIS_MODULE? so which module is exactly the owner - clk-rtk.ko or actual
-driver?
 
-This feels buggy, but I did not check your Makefile.
-
-> +	data->rcdev.ops = &rtk_reset_ops;
-> +	data->rcdev.dev = dev;
-> +	data->rcdev.of_node = dev->of_node;
-> +	data->rcdev.nr_resets = initdata->num_banks * 0x100;
-> +	data->rcdev.of_xlate = rtk_of_reset_xlate;
-> +	data->rcdev.of_reset_n_cells = 1;
-> +
-> +	return devm_reset_controller_register(dev, &data->rcdev);
-> +}
-> +EXPORT_SYMBOL_GPL(rtk_reset_controller_add);
-> +
-> diff --git a/drivers/clk/realtek/reset.h b/drivers/clk/realtek/reset.h
-> new file mode 100644
-> index 000000000000..cd446b098429
-> --- /dev/null
-> +++ b/drivers/clk/realtek/reset.h
-> @@ -0,0 +1,36 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (C) 2019 Realtek Semiconductor Corporation
-
-Ah, so that's why you sent probe() from ~10 years ago...
+> 
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> ---
+>  include/dt-bindings/reset/spacemit,k3-resets.h | 171 +++++++++++++++++++++++++
+>  1 file changed, 171 insertions(+)
 
 Best regards,
 Krzysztof
