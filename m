@@ -1,217 +1,180 @@
-Return-Path: <devicetree+bounces-250353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B42BCE88C7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:27:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2401CE88D0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:27:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1AA103008D5F
+	by sea.lore.kernel.org (Postfix) with ESMTP id C46B03014A35
 	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55CA82DFA5B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5D42E0407;
 	Tue, 30 Dec 2025 02:27:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="orP6bLqM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fR/LmQic"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C2102DFA3A;
-	Tue, 30 Dec 2025 02:27:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E08292D8382
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 02:27:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767061663; cv=none; b=ZBqN69FX1LCvqHpX8jZ9v166b8TJwr+hvqwpP+lLlsdB/SS5hEQohcXlrecSPkeyWyj6grvwiXF9eLqNoWbFS0yVaMi/EsFfC03WNfwhl47NTFNrKwvrZDle/0BrRwuukjIWUX/kJd5I6ZNxCE9kMrwT7rBC1QU9QBVaXB3qXsw=
+	t=1767061663; cv=none; b=YGFa13ITfydVt1D8yhHvBg9hKFC6FqLsLtDlFt0993mEL3B29ke2Mktnal6XdHN4JkCxJKVWxfRngFdSgwGCguPFt3kJvBvodN+NZPETz3zG3C4oF7BUpASAI+eEHnaPtGJBEo/q04bsKpapQGtQCV4REUnXgHOk7DxL5+1yo34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1767061663; c=relaxed/simple;
-	bh=YZhKdnIWvyphz/ZPlkVHSeDMS3reT0HQs3XijtNSUbI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jv0Zzuz+A+VjJeXDFZjb86fOniE+/mofS4eh/hzcTcCQszZkpfRcYEkTzFcVD+O0nPeHJa3sk8k2HjOFUeJeeF+pOYqs66tDiooIqRwzI+Byiujh2XM5RlfrMy+nBTLB/enYdExhIQ7uP5/b36jctZt8jzyMCWjw3XQnPgtp4+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=orP6bLqM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D511C19424;
-	Tue, 30 Dec 2025 02:27:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767061662;
-	bh=YZhKdnIWvyphz/ZPlkVHSeDMS3reT0HQs3XijtNSUbI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=orP6bLqMPVxgtgILLbmuDvRxHNqtBuhm/cUil4j745FS4ziqIrNSHH3lLOVJYGjyD
-	 T8lIybONj5MbF8QXpXvBSUrsK2Wc0dXvpH2vifhyv4c+9x/IMmF7q9YQd7tVLOqJxy
-	 GDw9iBV49nPyfSW6BHPYNiho89X6QA0JynU59ZQyit5RrpwJ+6snjpIL2I0RT9QXH0
-	 AKp1zXP+9w3KsRXgAu/6Bs7wYm7zdmfBdZSomulClvRBG9Rgw8/NeijECrYRV6YPUh
-	 oWyyJSNFlm5qEYVa4L2zZ9LqNAtQ5yV4AYVPIQfHOVMbsVxvKwuSN/Y9Pz9aQIe13L
-	 YWC96vCZo902w==
-Date: Mon, 29 Dec 2025 20:27:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Swamil Jain <s-jain1@ti.com>
-Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com,
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devarsht@ti.com, praneeth@ti.com, bb@ti.com,
-	vigneshr@ti.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: ti,am65x-dss: Add AM62L DSS support
-Message-ID: <20251230022741.GA3217586-robh@kernel.org>
-References: <20251224133150.2266524-1-s-jain1@ti.com>
+	bh=JvXBFBmoewzypaOA7gaaUWUOvKih92w8JV88pUevGHo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OJK8ofwbO/vqcv4H4TFEbgDdo67mvLOI8d1fdW5wFbWg1Tuu0qquxLwzDefjUF3y5KtAzrNPYXyrugDjJDjVGKM5rp2okeaoDylXH6JFPiSDcoBp53nc65swNe/yugWALdx3WCnO1lYvPTvWA4SSYnIjwzcQiQo7nl/DHzREC7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fR/LmQic; arc=none smtp.client-ip=209.85.222.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-8b2d32b9777so1409905285a.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 18:27:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767061661; x=1767666461; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=js/ehHU4D0Kf9VZJJ3nWUpx1Ps8Ec/Y5UmWDwv2QY1Y=;
+        b=fR/LmQicooLGUyAwxdi1Bq3X1r6yAQm8/+treyrUtxVUc1V57N61secogi0+enC5Uk
+         c36kKQQrX5TflyUddaydySsISlOjbdqMd71QS5wiXR87Eft7BhvHvJWeKuuBbQbozrnR
+         DmOCBq18XSz5cDnDw6dhNyURObJesWgwoebKa7Tzc52vtbuYwzaHaLZwi2ifKLOCu92L
+         X11fNdAoOVgc82hjSuwezW/j1keev/FaS3xcOiUKTIcfyvXl3pBdpFf+mJBHoKJ5Dg5Y
+         GVyuNuZOH5d+BPtNBslWc/OnV0d31w5D4PZ8zc8hEtsMQSTmEE6S9cuyKlHhnrX5zfw6
+         aXCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767061661; x=1767666461;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=js/ehHU4D0Kf9VZJJ3nWUpx1Ps8Ec/Y5UmWDwv2QY1Y=;
+        b=T51LZPoxbPGDxgAjMv5evk326HrmbpQvIr4yrI2qrXr1BaEty5OMFLLLK3+IEd8CU6
+         GMMtn5EavKE8bQpCmr8yessXHsxaZVaLWv9dcbCSPGkkWXrF2jOGB3ZjAOxbUBbr5n1B
+         BwT0WgcZWseLp8HQR79u7Uqb8PabO7rt7UUdh0KkHnt1ju9o1+32mKPlyAhFTPko1Wat
+         Fs92XEp2XlUau+rBVc1KD8iLHMhmsNzPseW7bSlAZSiTHFOQC5qFJxEU4eXAEkUqoiDp
+         6esL8XusNlFHjYW8riVzt3soY36CNeaU2KLckadZRzYjnPMJICVBvBivIErmrn2/ih7X
+         AHLg==
+X-Forwarded-Encrypted: i=1; AJvYcCVdmqxhKwRXRpTWwC+Kie4q4nMYDBHXZpB0ZEbXqfhAlQCJGCpzLdwwp/nz+X8SO7yzaMIXR7Ks5aKH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5cGQmFtZJHr1J8E+B7rQMcHoGOIlCILE80l3afGbRz+0WH0Hi
+	VS6OX/V4lyed9NXl4X93ce5O+GudAWYXWSB3FwgVJi3tLK/BU/fnMg5Q
+X-Gm-Gg: AY/fxX5B+jGQOVFIQr3B8XHHw9NBuNvoi1FK0iVumdUUde4u2UuZdjMzU14bN26JX1a
+	HY/nwgT04ZG40MklDTaDYV4DaDcpI9aQsHb3rlTCyIAlxAiFdCZRivfeN3hQrs7V8JnnLGq0vQZ
+	eBlcp/g3VFnhmSlNE683CPXqi5QcllQDCEPzn1u/hk473VtUa+JRZp1gaTjFJDadV1MaivomQZ4
+	tKFbaw3xptEueBTe0R/BiDp/d+At76aKJzFFca2cihYLw/JZNEMF7D2LcU/Qw0jnw8QYc6hBa+K
+	0VlSZ5/l5koL5mMnGO2zXW55Gz7WBrilTGospG2MlZaZHadFqS/oMOlEo9Nj1WLZ+B9wHmzf2tR
+	IAuGTU6D6Zu4dh0MtnYpSgA+yqBJkXBblICZkUB9nM+4o43WqyGthOzqgYUj5Vr+OKdjhbPz7Cq
+	1ztxFdncqGRAjzLg==
+X-Google-Smtp-Source: AGHT+IE0AZ0PEltmcT/SoQGprCdCdVVYI3Af9vEYwBo5pDPoyjkZuyTvni/G9CwJBfy7DmisDJGu4g==
+X-Received: by 2002:a05:620a:4113:b0:8be:8e5a:7a6c with SMTP id af79cd13be357-8c08fbbbf99mr4387462585a.73.1767061660744;
+        Mon, 29 Dec 2025 18:27:40 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c09689246asm2500281685a.20.2025.12.29.18.27.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Dec 2025 18:27:40 -0800 (PST)
+From: Richard Acayan <mailingradian@gmail.com>
+To: Robert Foss <rfoss@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Richard Acayan <mailingradian@gmail.com>
+Subject: [RFC PATCH 0/3] media: qcom: camss: support for empty endpoint nodes
+Date: Mon, 29 Dec 2025 21:27:56 -0500
+Message-ID: <20251230022759.9449-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251224133150.2266524-1-s-jain1@ti.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Dec 24, 2025 at 07:01:50PM +0530, Swamil Jain wrote:
-> Update the AM65x DSS bindings to support AM62L which has a single video
-> port. Add conditional constraints for AM62L.
-> 
-> Signed-off-by: Swamil Jain <s-jain1@ti.com>
-> ---
->  .../bindings/display/ti/ti,am65x-dss.yaml     | 95 +++++++++++++++----
->  1 file changed, 76 insertions(+), 19 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> index 38fcee91211e..ce39690df4e5 100644
-> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> @@ -36,34 +36,50 @@ properties:
->    reg:
->      description:
->        Addresses to each DSS memory region described in the SoC's TRM.
-> -    items:
-> -      - description: common DSS register area
-> -      - description: VIDL1 light video plane
-> -      - description: VID video plane
-> -      - description: OVR1 overlay manager for vp1
-> -      - description: OVR2 overlay manager for vp2
-> -      - description: VP1 video port 1
-> -      - description: VP2 video port 2
-> -      - description: common1 DSS register area
-> +    oneOf:
-> +      - items:
-> +          - description: common DSS register area
-> +          - description: VIDL1 light video plane
-> +          - description: VID video plane
-> +          - description: OVR1 overlay manager for vp1
-> +          - description: OVR2 overlay manager for vp2
-> +          - description: VP1 video port 1
-> +          - description: VP2 video port 2
-> +          - description: common1 DSS register area
-> +      - items:
-> +          - description: common DSS register area
-> +          - description: VIDL1 light video plane
-> +          - description: OVR1 overlay manager for vp1
-> +          - description: VP1 video port 1
-> +          - description: common1 DSS register area
->  
->    reg-names:
-> -    items:
-> -      - const: common
-> -      - const: vidl1
-> -      - const: vid
-> -      - const: ovr1
-> -      - const: ovr2
-> -      - const: vp1
-> -      - const: vp2
-> -      - const: common1
-> +    oneOf:
-> +      - items:
-> +          - const: common
-> +          - const: vidl1
-> +          - const: vid
-> +          - const: ovr1
-> +          - const: ovr2
-> +          - const: vp1
-> +          - const: vp2
-> +          - const: common1
-> +      - items:
-> +          - const: common
-> +          - const: vidl1
-> +          - const: ovr1
-> +          - const: vp1
-> +          - const: common1
->  
->    clocks:
-> +    minItems: 2
->      items:
->        - description: fck DSS functional clock
->        - description: vp1 Video Port 1 pixel clock
->        - description: vp2 Video Port 2 pixel clock
->  
->    clock-names:
-> +    minItems: 2
->      items:
->        - const: fck
->        - const: vp1
-> @@ -84,7 +100,8 @@ properties:
->      maxItems: 1
->      description: phandle to the associated power domain
->  
-> -  dma-coherent: true
-> +  dma-coherent:
-> +    type: boolean
->  
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
-> @@ -195,6 +212,46 @@ allOf:
->              port@0:
->                properties:
->                  endpoint@1: false
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: ti,am62l-dss
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          maxItems: 2
-> +        clocks:
-> +          maxItems: 2
-> +        reg:
-> +          maxItems: 5
+This series adds support for empty endpoint nodes. It is currently RFC
+because it continues an ongoing discussion on how to selectively connect
+some CAMSS ports to cameras and leave others disconnected.
 
-           reg-names:
-             minItems: 8
-       else:
-         properties:
-           reg:
-             minItems: 8
-           reg-names:
-             minItems: 8
+The SDM670 patches are for a full example. If agreed on, this should
+expand to SoCs that have CAMSS.
 
-clocks needs similar constraints...
+Example SoC dtsi:
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: ti,am62l-dss
-> +    then:
-> +      properties:
-> +        reg-names:
-> +          items:
-> +            - const: common
-> +            - const: vidl1
-> +            - const: ovr1
-> +            - const: vp1
-> +            - const: common1
-> +    else:
-> +      properties:
-> +        reg-names:
-> +          items:
-> +            - const: common
-> +            - const: vidl1
-> +            - const: vid
-> +            - const: ovr1
-> +            - const: ovr2
-> +            - const: vp1
-> +            - const: vp2
-> +            - const: common1
+	camss: isp@00000000 {
+		...
 
-Why are you defining the names twice?
+		status = "disabled";
 
-Rob
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				camss_endpoint0: endpoint {
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				camss_endpoint1: endpoint {
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+
+				camss_endpoint2: endpoint {
+				};
+			};
+		};
+	};
+
+Example device dts:
+
+	&camss {
+		status = "okay";
+	};
+
+	&camss_endpoint1 {
+		clock-lanes = <7>;
+		data-lanes = <0 1 2 3>;
+		remote-endpoint = <&cam_front_endpoint>;
+	};
+
+	&cci_i2c1 {
+		camera@1a {
+			...
+
+			port {
+				cam_front_endpoint: endpoint {
+					data-lanes = <1 2 3 4>;
+					link-frequencies = /bits/ 64 <360000000>;
+					remote-endpoint = <&camss_endpoint1>;
+				};
+			};
+		};
+	};
+
+Richard Acayan (3):
+  dt-bindings: media: camss: sdm670: Make endpoint properties optional
+  media: qcom: camss: allow endpoints with no remote
+  arm64: dts: qcom: sdm670: remove status properties of camss endpoints
+
+ .../devicetree/bindings/media/qcom,sdm670-camss.yaml | 12 ------------
+ arch/arm64/boot/dts/qcom/sdm670.dtsi                 |  3 ---
+ drivers/media/platform/qcom/camss/camss.c            |  5 ++---
+ 3 files changed, 2 insertions(+), 18 deletions(-)
+
+-- 
+2.52.0
 
 
