@@ -1,162 +1,194 @@
-Return-Path: <devicetree+bounces-250397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06DECE8E17
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:19:59 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E63FCE8E1D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:20:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DAC28300288D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 07:19:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 05AAB3002066
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 07:20:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6A8C286422;
-	Tue, 30 Dec 2025 07:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F252F656E;
+	Tue, 30 Dec 2025 07:20:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sjNiTXiB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dcp/g1Pe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CAC739FD9;
-	Tue, 30 Dec 2025 07:19:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0962EFD95
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 07:20:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767079196; cv=none; b=n3e9dptzBxTmZVAduOkCWypxwixP2ZnWm63naXrqX8degdY+JJ4QZJAKxVGLcKHFDjbUKlsLE1gxRIquVtbV0QFGPx0NvEZ1uitNFPSS6O+fV2hog8Lp6qTHXqjl+gjcKD126LVN8QY5sPiFhX98TPBHY1LXiOHPeMY9VD2xTC0=
+	t=1767079231; cv=none; b=qJ4GCu++HCaTnQTAyJXybPdkA2l0abgghA4/+NTmy+hqsMSXVhxPy/LRb+u6Tt7jU1F/iryZaoda/40D7eFDJyuvqdTW24yiQhTvqDTqmIboZfydd0QbYgeBwH59mK+ddRvIAc52uFAHBSRN0WNTJa+0JJ3ysWaT/eK/0H+Sqs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767079196; c=relaxed/simple;
-	bh=/2UGBa3DyyErmarHe4sUFhN0qbPfDc2IdCES4ouUMns=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cX+4AlVuuS7LzhO/RJluTXt/IodO7ZinEE8Xd8s7+ZC+Cu3QaQSthDcawF80NRe+LZqiJPX5K/3OaZU/A03+mh7EqUU4ZU7GAkNH2axYREUta8OSbLftcdXOqNOD3wdMZKKpSAR/qFkjcp0qkUKwBmMbAXvDH5tvirrLwbzR1G4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sjNiTXiB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA523C4CEFB;
-	Tue, 30 Dec 2025 07:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767079196;
-	bh=/2UGBa3DyyErmarHe4sUFhN0qbPfDc2IdCES4ouUMns=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sjNiTXiBujjRetdzcxmQfNrKq4YClTzaS8DN9sTJNTZgaB7A08/bAgIWhzD2YtlUZ
-	 PiZYfH2tqiVK5zg6UMNhN97O/RxrjJwZEqcYCDtb7kzyoNAsxWccb103soYNqvdmH2
-	 L8kEoI0I+fUSY5bgTdyLdBSygvqdOpu9F6nGCyU0/SLtX1hL+vcdvPLRG/SorExx6D
-	 +CGnUtPcAILl0Dcnalvb7ffjUXlWEKO5/4csE3NfSFW9QuSDLUCWBCXOT7ZwGsIkX4
-	 DSN8bUhX4iujZ5FRMA6fHX5cn++DlBGhT0ypkAky5WHAI/LtZLt1SsRr3v2BVRJbiQ
-	 d7KKsdmcHHm8A==
-Message-ID: <97f2d191-c8c7-4c47-bde2-9167991c4aba@kernel.org>
-Date: Tue, 30 Dec 2025 08:19:51 +0100
+	s=arc-20240116; t=1767079231; c=relaxed/simple;
+	bh=gSpc/h3BVma0qXdmLNNgxQ4ELY7zorbWlWIQmeDVgtg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kGWtbrFP2eR7FADzmuKoKeIZ8mz253AKoio3CDgt9Al5qBvvs3HnxIJffGhwgD/AO007VJ03CzGPJVMaDnvDd7VO7R++CAWrbBJk865R/2z7Suu6uOAd6J2jRzabIDnXAruzxccDLo6dK/qVIUdEbXrDiilTgslXfAcAmbWBENM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dcp/g1Pe; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2a09757004cso124960405ad.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 23:20:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767079229; x=1767684029; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=78T8V8yZoQxIZHXRATvOJSkSFUGy++WxZ8EC1YewaNc=;
+        b=Dcp/g1PeaXZrxdAbCNhaYWOdeCmUboSQFmCYoV+I9B3WKUq6VsZH2IJqXdNvoKkVvI
+         wHi8naYduDz9lA0OMAy60Xu3TNT1S7ama4HTPSceri8E0SnkexdtsvYvA+I+mBNF+pSY
+         cugsdELCtKpw1mradWB3p/1ml/4MU3Xfr7WakAdj3Zy0VzXNIcfmgD6oLXJGJTOVQ+2c
+         p2WoZWVVGtPUpZQzBfXrWdWqicX6cYHPeslewOUVbEaXUtnROxq51TOqz4DxTIgK7vQk
+         R9McEv0n5/HnJss1ACaZS0NhytvIW/q93+IKADlSb0yLeGbSe+0XNR3endIErR77FsY/
+         ILfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767079229; x=1767684029;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=78T8V8yZoQxIZHXRATvOJSkSFUGy++WxZ8EC1YewaNc=;
+        b=RrAsngwSLU5dlhOY9KVtSq5Hx81HuKbZirbiBwYjQmNGwsnMobcb9fVG0XoA/d6ygg
+         ew/dbsRJkymGfCamOY4YHA4fQow1115z59i/nlGtlBk5N4RcMGj1hEa/JSfj43hWMz0g
+         sZIcB/1gYu8yankHmCuTZvtbZnn24+gp4oIju+VlL7sZ0ki1jjsQ3ljXnbJLOLdnURqT
+         yEqroDTt8QMpLNW1xoe4OhAbki1hKiku4iTlL7VjRxoNODh4ddUlWB0+e4sgyW8VujUx
+         Ng5CHlNd4nw26FmVB4oQp21oMk8aYmD1jwWqIDw+h7lJXP1Q0AzV6EnkogLp4/EJxNg+
+         Ljsg==
+X-Forwarded-Encrypted: i=1; AJvYcCVDGWEw23yuAao5JWf8KnZNfuMzLuU0da9fLvTRQu0QsVSmNoWbVG9IpG+84PFTQGW/KVkmYLCdprRi@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGOiw2/qZtCjMiwYNBMeDC+e8XAviF90Cz/yL9o0XbBo4xG3j6
+	Jrky5FcgKlQV/VDL+opE2j780HaW0o2VaImU6QHGCwafCYJaj8yyu2/K
+X-Gm-Gg: AY/fxX6GwoYuG0cRY12XFvPzPntcBjHYNH1ScpIgVYv5cFh7ZJDjqdjhQpqU3jC8f96
+	Dd83MzfJtUnsmMs5nPh5I17vKEs0ZE6c458/bt7d3rQ+ZyNlHEVbVzz7rNv+Zxa6BayaoXy4PXP
+	uNcY/6RVlvB0mvhMcW41nU1b0a7xiwzK7n+ehVbd9Jx/kOwYip42+dZbkhAp4FWiTrpstRT5OPu
+	qXt4Z2Uxnb0wP3dXblCGSVU05tBlPzFJ1exTgNxGWXRzUgsuavEPEiiSTY4ig5QMd3RZoZPC673
+	vrzbuC48pRbsNNUJlBuWpen/qVVFIfN43ks8ZufhidyyJkFQn1ZjhWk4u5cUST1R9rxbpZPdVSW
+	SHVupy+CNt+KofoXteZUiYxzBVX0fK9K4ZGQ36xjG1ZHVofLlrr2QHyWjYBNzYx7FBgSXRTBYEb
+	XuFPQ4OcIRImQm+SkC0dwyKiVxNhtokEJKA8a186fdGA+M4fMT
+X-Google-Smtp-Source: AGHT+IFTApw/6+M7axi8xYhv03Mos5hLL2HTDOB45Tj3e7a7Pu9784iRBt6MXPy1SUWFshRW2OcM0Q==
+X-Received: by 2002:a17:902:e846:b0:2a0:9656:a218 with SMTP id d9443c01a7336-2a2f2a3587emr269192385ad.28.1767079228812;
+        Mon, 29 Dec 2025 23:20:28 -0800 (PST)
+Received: from LAPTOP-872M7T80.localdomain ([223.181.105.188])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a2f3d74ba5sm286929325ad.89.2025.12.29.23.20.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Dec 2025 23:20:28 -0800 (PST)
+From: Akhila YS <akhilayalmati@gmail.com>
+Date: Tue, 30 Dec 2025 07:20:21 +0000
+Subject: [PATCH] dt-bindings: mtd: nand-micronix: convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: cix: Use lowercase hex
-To: Peter Chen <peter.chen@cixtech.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Fugang Duan <fugang.duan@cixtech.com>,
- CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251223152424.155253-2-krzysztof.kozlowski@oss.qualcomm.com>
- <aVHb-kbi2QbChxj9@nchen-desktop>
- <88e9e4c4-13c9-4b96-88cc-abb581011e87@kernel.org>
- <aVMzY2VTFn-mNCEA@nchen-desktop>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aVMzY2VTFn-mNCEA@nchen-desktop>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20251230-macronix-v1-1-ff2aaab43644@gmail.com>
+X-B4-Tracking: v=1; b=H4sIADR9U2kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDIyNL3dzE5KL8vMwK3WTLFIskY6NkA4PkNCWg8oKi1LTMCrBR0bG1tQB
+ pt4HrWgAAAA==
+X-Change-ID: 20251229-macronix-c9d8b32c00cf
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Akhila YS <akhilayalmati@gmail.com>
+X-Mailer: b4 0.14.3
 
-On 30/12/2025 03:05, Peter Chen wrote:
-> On 25-12-29 08:17:15, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL
->>
->> On 29/12/2025 02:40, Peter Chen wrote:
->>> On 25-12-23 16:24:25, Krzysztof Kozlowski wrote:
->>>> EXTERNAL EMAIL
->>>>
->>>> The DTS code coding style expects lowercase hex for values and unit
->>>> addresses.
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->>>>
->>>> ---
->>>>
->>>> Patches done with sed, verified with comparing unflattened DTB and
->>>> dtx_diff.
->>>> ---
->>>>  arch/arm64/boot/dts/cix/sky1.dtsi | 2 +-
->>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
->>>> index 64b76905cbff..fb8c826bbc97 100644
->>>> --- a/arch/arm64/boot/dts/cix/sky1.dtsi
->>>> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
->>>> @@ -523,7 +523,7 @@ pcie_x1_1_rc: pcie@a0e0000 {
->>>>                         reg-names = "reg", "cfg", "rcsu_strap", "rcsu_status", "msg";
->>>>                         ranges = <0x01000000 0x0 0x38100000 0x0 0x38100000 0x0 0x00100000>,
->>>>                                  <0x02000000 0x0 0x38200000 0x0 0x38200000 0x0 0x07e00000>,
->>>> -                                <0x43000000 0x0C 0x00000000 0x0C 0x00000000 0x04 0x00000000>;
->>>> +                                <0x43000000 0x0c 0x00000000 0x0c 0x00000000 0x04 0x00000000>;
->>>
->>> Sorry, I could not apply for v6.19-rc1, could you?
->>
->> What do you mean? It applies cleanly on v6.19-rc1 and on next. Your
->> branches are not really updated, so maybe you need to fix this.
->>
-> 
-> Sorry for confusing. The patch was inserted by some special characters,
-> See below: "=", and "3D". But no these kinds of characters when I save
-> internal patch for upstream. Our IT is checking this issue.
+Convert Macronix NAND Randomizer OTP Enable Property binding to YAML format.
 
-The patch does not have them. It must have been your email system, which
-broke it or you did not save it correctly. I suggest to apply patches
-with b4, see my talk from LPC 2023 - Beginner Linux kernel maintainer's
-toolbox.
+Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+---
+ .../devicetree/bindings/mtd/nand-macronix.txt      | 27 --------------
+ .../devicetree/bindings/mtd/nand-macronix.yaml     | 41 ++++++++++++++++++++++
+ 2 files changed, 41 insertions(+), 27 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/mtd/nand-macronix.txt b/Documentation/devicetree/bindings/mtd/nand-macronix.txt
+deleted file mode 100644
+index ffab28a2c4d1..000000000000
+--- a/Documentation/devicetree/bindings/mtd/nand-macronix.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-Macronix NANDs Device Tree Bindings
+------------------------------------
+-
+-Macronix NANDs support randomizer operation for scrambling user data,
+-which can be enabled with a SET_FEATURE. The penalty when using the
+-randomizer are subpage accesses prohibited and more time period needed
+-for program operation, i.e., tPROG 300us to 340us (randomizer enabled).
+-Enabling the randomizer is a one time persistent and non reversible
+-operation.
+-
+-For more high-reliability concern, if subpage write is not available
+-with hardware ECC and not enabled at UBI level, then enabling the
+-randomizer is recommended by default by adding a new specific property
+-in children nodes.
+-
+-Required NAND chip properties in children mode:
+-- randomizer enable: should be "mxic,enable-randomizer-otp"
+-
+-Example:
+-
+-	nand: nand-controller@unit-address {
+-
+-		nand@0 {
+-			reg = <0>;
+-			mxic,enable-randomizer-otp;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/mtd/nand-macronix.yaml b/Documentation/devicetree/bindings/mtd/nand-macronix.yaml
+new file mode 100644
+index 000000000000..10f1d58adcef
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/nand-macronix.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/nand-macronix.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Macronix NAND Randomizer OTP Enable Property
++
++maintainers:
++  - Miquel Raynal <miquel.raynal@bootlin.com>
++  - Richard Weinberger <richard@nod.at>
++
++description:
++  Macronix NAND chips support an optional one-time programmable (OTP)
++  data randomizer that scrambles user data to improve reliability.
++  Enabling it is irreversible, prohibits subpage accesses, and slightly
++  increases program time. This property requests the driver to enable
++  the randomizer if not already set.
++
++properties:
++  mxic,enable-randomizer-otp:
++    type: boolean
++    description:
++      Presence of this property indicates that the data randomizer should
++      be enabled in OTP mode on the NAND chip.
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    nand-controller {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        nand@0 {
++            reg = <0>;
++            mxic,enable-randomizer-otp;
++        };
++    };
++
++...
+
+---
+base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+change-id: 20251229-macronix-c9d8b32c00cf
 
 Best regards,
-Krzysztof
+-- 
+Akhila YS <akhilayalmati@gmail.com>
+
 
