@@ -1,142 +1,113 @@
-Return-Path: <devicetree+bounces-250459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F96ACE927D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 10:10:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD3E0CE92D7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 10:14:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 82097300C6CC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:09:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A5BB23093DEA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:11:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A838277029;
-	Tue, 30 Dec 2025 09:09:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rfnBZRG8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9920296BAB;
+	Tue, 30 Dec 2025 09:11:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F0BF1494DB;
-	Tue, 30 Dec 2025 09:08:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C2EE2848A8;
+	Tue, 30 Dec 2025 09:11:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767085741; cv=none; b=UDJoTV3q2tqMyoS+UE6+BPoZVOSTdAbdJzxzk2s30TXosybBtNF+T8+11ZzWzj/8mYJfm91gMMf1cSwzbpZXnuZ/l3z2bC/mB9iPeVjmKJf2xV+GjXYEgxKaUxqjl0h01Ja7FSbbTSA/6m3EHv7yfwct2esCNzfQpRhfd/aCQRU=
+	t=1767085891; cv=none; b=QKg2dc8iwS5eHYXO6hWwYZHnwQsDl+3a8XP5D1Q3LWzR9zEXjpInu2cT9CvJRGYCURS6HVXiItZN1Spi56H0yckZ8dMGxd1oNgw8oBobf1/RKFvHLC2ef0skmoRWsYKYzK3LbcdtYw9vP5mL+vtJOcb1zuau0EbIpjAsm8fWWRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767085741; c=relaxed/simple;
-	bh=bE9MILNnLsFz7tI42DPRzad+074GdFfylLv52n33+3M=;
+	s=arc-20240116; t=1767085891; c=relaxed/simple;
+	bh=zEsUJ+n58VCAEb4gLGwntCqm1KuKCU2KvtsHteWaYko=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYzcEapq/XpPqyLiP5RMpVvuRhyPbpwETRZSMwUEVDAxaos8Ym357r82RXIplZyMvYd2W+7Rg4rb5GLb5uY/sji+HqA6ASw8ZBrhteLWJhKgenE7iAanDwWrWNcPhDkn+gtXLQjtPDqrx7e47TCtkQRce2ZqB/c3tSxs1vigc9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rfnBZRG8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F4E0C4CEFB;
-	Tue, 30 Dec 2025 09:08:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767085739;
-	bh=bE9MILNnLsFz7tI42DPRzad+074GdFfylLv52n33+3M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rfnBZRG8+6QkTVGfggoo+K6TKkE7QBYhmKPEwcLHDQQ11prJOkImTeIUtEo4uCtCS
-	 lnzR/6Qtew0cK1GaSEVqRfj5UGhfnxMVw5mdHVytpCMmPXSNtomRYOqD1RPZZiXvF6
-	 sTaTVXU1V7EMYfa71HByjXVOou+jDY2i/inHsxrNdHKJ1UdtAJbY5poEBWix1rVXlU
-	 y+Mr4SkR3j1fujblDaqjTgAOvdutRTSCK6ux1X6HDoWTJcA2VHHqQzEmO5nt1yd7NR
-	 ihUOeaRqe5RqzwMJWI/A0AXctgDmH4XqNIV8dMFAiryO3H/hGZQ8DYF7GLh/nlkkjo
-	 z2r+o7hYyJ3dg==
-Date: Tue, 30 Dec 2025 10:08:57 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: Document TI TPS65185
-Message-ID: <20251230-rustling-mandrill-of-domination-ddc04b@quoll>
-References: <20251227-tps65185-submit-v2-0-1882024b8f33@kemnade.info>
- <20251227-tps65185-submit-v2-1-1882024b8f33@kemnade.info>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WDwhxZBRFlsNHpVSMeaxI02Sjk2zELHfUOuP+ABKdRSdRfJfnM/KfvjXosqijQTVmsfqzzZcq/gNylpZJq68cmZ5U7p6xFtReWWDwpMWKh9WmlubkXs3VhZm/E/luy681hKwHeoiHrjjK632+Ue+IiUD6P12KXdmuXG/6kJiNws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [223.160.207.108])
+	by APP-01 (Coremail) with SMTP id qwCowAA33Wgtl1NpHDdYAg--.1201S2;
+	Tue, 30 Dec 2025 17:11:12 +0800 (CST)
+Date: Tue, 30 Dec 2025 17:11:08 +0800
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: conor@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, pjw@kernel.org, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	alex@ghiti.fr, cyy@cyyself.name, kingxukai@zohomail.com,
+	TroyMitchell988@gmail.com, gaohan@iscas.ac.cn, me@ziyao.cc
+Subject: Re: [PATCH 1/2] dt-bindings: riscv: canaan: add 100ask K230 boards
+ compatible strings
+Message-ID: <aVOXLPijq8iByiOy@duge-virtual-machine>
+References: <20251229061318.16756-1-jiayu.riscv@isrc.iscas.ac.cn>
+ <20251229061318.16756-2-jiayu.riscv@isrc.iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251227-tps65185-submit-v2-1-1882024b8f33@kemnade.info>
+In-Reply-To: <20251229061318.16756-2-jiayu.riscv@isrc.iscas.ac.cn>
+X-CM-TRANSID:qwCowAA33Wgtl1NpHDdYAg--.1201S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7ZF4xJF4rAw4xJr43tr18Xwb_yoW8JFykpF
+	Z7CFWUKFW5Ar1ag392qF4xKa17Zr1kCr13GryYyryDKws8AF95t34fKws5W3W8ZF48JFWj
+	9F409r45CFW2yFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvlb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6r1S6rWUM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Jr0_Gr
+	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
+	MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
+	4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
+	67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
+	x0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2
+	z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvj
+	DU0xZFpf9x07U_HUDUUUUU=
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 
-On Sat, Dec 27, 2025 at 11:20:36AM +0100, Andreas Kemnade wrote:
-> Document the TPS65185. GPIO names are same as in the datasheet except for
-> the PWRUP pad which is described as "enable". That pin is optional because
-> the rising edge corresponds to setting one register bit and falling edge
-> to another register bit.
-
-Nothing improved in the subject. Mark asked for proper prefix and you
-used exactly the same prefix, so the same problem stays.
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-
+On Mon, Dec 29, 2025 at 02:13:17PM +0800, Jiayu Du wrote:
+> K230 CANMV DSHANPI is a development board produced by 100ASK.
 > 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Add compatible string for the board and its SoM.
+> 
+> Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
 > ---
->  .../devicetree/bindings/regulator/ti,tps65185.yaml | 99 ++++++++++++++++++++++
->  1 file changed, 99 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65185.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65185.yaml
-> new file mode 100644
-> index 000000000000..7cc5a895c2fc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/ti,tps65185.yaml
-> @@ -0,0 +1,99 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/ti,tps65185.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI TPS65185 Power Management Integrated Circuit
-> +
-> +maintainers:
-> +  - Andreas Kemnade <andreas@kemnade.info>
-> +
-> +description:
-> +  TPS65185 is a Power Management IC to provide Power for EPDs with one 3.3V
-> +  switch, 2 symmetric LDOs behind 2 DC/DC converters, and one unsymmetric
-> +  regulator for a compensation voltage.
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,tps65185
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  enable-gpios:
-> +    description:
-> +      PWRUP pin
-> +    maxItems: 1
-> +
-> +  pwr-good-gpios:
-> +    maxItems: 1
-> +
-> +  vcom-ctrl-gpios:
-> +    maxItems: 1
-> +
-> +  wakeup-gpios:
-> +    maxItems: 1
-> +
-> +  vin-supply:
-> +    description:
-> +      Supply for the whole chip. Some vendor kernels and devicetrees
-> +      declare this as a non-existing GPIO named "pwrall".
+> The hardware details are available here[1].
+> 
+> [1]: https://github.com/100askTeam/eLinuxAI-TrainingDocs/blob/master/docs/CanaanK230/part1/01-Introductionhardwareresources.md
+> 
+>  Documentation/devicetree/bindings/riscv/canaan.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/canaan.yaml b/Documentation/devicetree/bindings/riscv/canaan.yaml
+> index f9854ff43ac6..b9f095bc6021 100644
+> --- a/Documentation/devicetree/bindings/riscv/canaan.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/canaan.yaml
+> @@ -48,6 +48,11 @@ properties:
+>                - canaan,k230-usip-lp3-evb
+>            - const: canaan,kendryte-k230
+>  
+> +        items:
 
-GPIO cannot be non-existing. Anyway, use name matching the datasheet.
+Sorry, I didn't test the bindings before sending it. Now I realize this.
+It's my fault. There is a minus sign missing before items.
 
-With these two things fixed:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-Best regards,
-Krzysztof
+> +          - const: 100ask,canmv-k230-dshanpi
+> +          - const: 100ask,canmv-k230-module-dshanpi
+> +          - const: canaan,kendryte-k230
+> +
+>  additionalProperties: true
+>  
+>  ...
+> -- 
+> 2.52.0
+> 
 
 
