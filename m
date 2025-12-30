@@ -1,58 +1,69 @@
-Return-Path: <devicetree+bounces-250605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F0F6CEA64A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 19:05:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1D2CEA650
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 19:06:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 17B2B302049A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 18:04:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E099D301D66A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 18:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F184E32B9A9;
-	Tue, 30 Dec 2025 18:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0808C322B80;
+	Tue, 30 Dec 2025 18:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="INGXdWZb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LdP5RAlZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A59D7322B80;
-	Tue, 30 Dec 2025 18:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B820C2253A0;
+	Tue, 30 Dec 2025 18:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767117895; cv=none; b=Q4K0HWbl33M1dpP5fr9JAx8yh26w3R+UapnzhsaJQYXo8tT/VISjHF7KZnOOqVipqzn8Cgc7f0C1ElG33qoJMWTublHVsTjWPd1LtG8+E9cqP5C321UGJBjJ6dYkHI6TctPQxqJHib/Pw9SpzJwAgAJAlTlD1biCWWnpnqRQ9a0=
+	t=1767117970; cv=none; b=jB7OEtz+A8sqZ4MdsmDZpYbGyx54s1BcMS6mJ0SGrGk2b7zwp9EUr77bQfNi9FobqcV/TFNYZqthSj2q1hsyZu4rqEfLkLmCHp3pHInrxzZUxVRqOG3iVOeu76xowWORMs4n5+EJGNO31/PgfzlvSv02uDKGTeDmczG07kCP1Iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767117895; c=relaxed/simple;
-	bh=VcKayWb5mg1L/mnJNMElunLhTh/iwhg8mNBNtczbUUQ=;
+	s=arc-20240116; t=1767117970; c=relaxed/simple;
+	bh=d56dgI6Y5PdhNqTXDppdPpaYunnHYAw+cp/8Lv9TnIw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sYBSJhBiJX0NISVgjXq8f+JZLqndhXcnY61nvDmhgavl128PvsGzxl5owTGddehsCItqBVoQ4LKhUoqBGw4f4Ok3W/fQa40yvUutXBhAkJRHOrJTNBcqGCe+1BrcSgeNyUTdWvGdWHQ8zcH6OYA/oY9zZND8V6W+0YHz7GRogL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=INGXdWZb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CCA3C4CEFB;
-	Tue, 30 Dec 2025 18:04:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UzS50p/CJTHjHLbrIoYTQqU07WMWcqvtaOHN5xZep2sAs1JYCdJp2VEDMiJiQCCYkNcTP703UWBYhnw3fyrkK0d0vsvO+6lbkyAVwkzK+K+bBgr1wf+OCE3A9Q1618YYHAuKW3Rv22tbHd9Z5ikUwTa+9ohf9SDSK+C/nYiQlgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LdP5RAlZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17DA0C4CEFB;
+	Tue, 30 Dec 2025 18:06:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767117895;
-	bh=VcKayWb5mg1L/mnJNMElunLhTh/iwhg8mNBNtczbUUQ=;
+	s=k20201202; t=1767117970;
+	bh=d56dgI6Y5PdhNqTXDppdPpaYunnHYAw+cp/8Lv9TnIw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=INGXdWZbbjTw2YB7NVF3s2WJeYoe73mcnuCvQ3DlxaPXElE5pTw324mF/J/1l9poY
-	 0qSKavlYe0/IiHHz3tU03EEcdVs3hcXlfW0sHl1PYviyXcPyYXfQ6G48W1u42GL65T
-	 NuFzSIdlQoEYPIOgVva1jj61LcYwe/BYcd6Lt1B6KHKmXd1vbTPgDlFdYWZoyqMu/W
-	 WtcEqxX0hiu+1jqSAyd3fauPIQMMeScwJpbjtZjVeCqhS15dFDE7bM0+M7mRTUCT8v
-	 Y9M3fNIGBvUs7WcfxyImPjWOVQ9LOUieam0BOWL1K3nE0JktRAhcEanrWRHpKonJjy
-	 n9oIelHAVtswQ==
-Date: Tue, 30 Dec 2025 12:04:54 -0600
+	b=LdP5RAlZVwfui6ATS7o6Q1TU6zwgdzyBneXEku3UUjhcew8CcIMDuW91se2EYAB2w
+	 KoTu1wvAY6xPblQ7lL70pVSG+HZcqZTkmVO7BTONVuss2b7R15Dtv/REXIQmOSKvwi
+	 HzIPNGELsRJ3r1NmPshi4izd7YUCNWKWuUHDd6Om6HnyXyO01tyS0b2SlMfxy6oCHW
+	 TK8/VCAagei4yvhmcJAsMlkZa/yJqmHcAw9vhbq939v4GFmOd3wASmZmD6ArSDzIAh
+	 WVHQyMQUdKYzLY12Z13eIvwfw76BEb7sx9hcRQuAbn/CJI49FTMJT32dVc6o3uLw9P
+	 Ws5JJMFAPTSGA==
+Date: Tue, 30 Dec 2025 12:06:09 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH] dt-bindings: remoteproc: qcom,adsp: Allow cx-supply on
- qcom,sdm845-slpi-pas
-Message-ID: <176711789341.880563.12050439267648455160.robh@kernel.org>
-References: <20251229152658.284199-2-krzysztof.kozlowski@oss.qualcomm.com>
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: herbert@gondor.apana.org.au, Steen.Hegelund@microchip.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+	claudiu.beznea@tuxon.dev, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, kuba@kernel.org,
+	linux-i2c@vger.kernel.org, lee@kernel.org,
+	linux-crypto@vger.kernel.org, jirislaby@kernel.org,
+	andrew+netdev@lunn.ch, dmaengine@vger.kernel.org,
+	andi.shyti@kernel.org, linux-gpio@vger.kernel.org,
+	pabeni@redhat.com, gregkh@linuxfoundation.org, davem@davemloft.net,
+	luka.perkov@sartura.hr, vkoul@kernel.org,
+	UNGLinuxDriver@microchip.com, radu_nicolae.pirea@upb.ro,
+	daniel.machon@microchip.com, richard.genoud@bootlin.com,
+	alexandre.belloni@bootlin.com, krzk+dt@kernel.org,
+	lars.povlsen@microchip.com, linux-kernel@vger.kernel.org,
+	broonie@kernel.org, linusw@kernel.org, edumazet@google.com,
+	olivia@selenic.com
+Subject: Re: [PATCH v4 01/15] dt-bindings: usb: Add Microchip LAN969x support
+Message-ID: <176711796888.884073.12938472533739359591.robh@kernel.org>
+References: <20251229184004.571837-1-robert.marko@sartura.hr>
+ <20251229184004.571837-2-robert.marko@sartura.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,26 +72,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251229152658.284199-2-krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20251229184004.571837-2-robert.marko@sartura.hr>
 
 
-On Mon, 29 Dec 2025 16:26:59 +0100, Krzysztof Kozlowski wrote:
-> One SDM845 board uses cx-supply, which is not allowed by the bindings,
-> as reported by dtbs_check:
+On Mon, 29 Dec 2025 19:37:42 +0100, Robert Marko wrote:
+> Microchip LAN969x has DWC3 compatible controller, though limited to 2.0(HS)
+> speed, so document it.
 > 
->   sdm845-samsung-starqltechn.dtb: remoteproc@5c00000 (qcom,sdm845-slpi-pas): Unevaluated properties are not allowed ('cx-supply' was unexpected)
-> 
-> The SDM845 SLPI binding already allows lcx and lmx domains, thus the
-> cx-supply seems like a fake name for something else, e.g. some
-> enable pin.  The qcom_q6v5_pas.c driver parses cx-supply, so it is an
-> established ABI, therefore document it for this device only.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 > ---
->  Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> Changes in v2:
+> * Fix example indentation
+> 
+>  .../bindings/usb/microchip,lan9691-dwc3.yaml  | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/microchip,lan9691-dwc3.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
