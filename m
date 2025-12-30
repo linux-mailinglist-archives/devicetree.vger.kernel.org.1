@@ -1,168 +1,137 @@
-Return-Path: <devicetree+bounces-250332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8907FCE8780
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:13:49 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7F4FCE87A6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:26:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 38A14301637A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:13:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 56C223001E1C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:26:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A42E42DEA87;
-	Tue, 30 Dec 2025 01:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE76E1EEA31;
+	Tue, 30 Dec 2025 01:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zl1hjz9j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uh/T6IlS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5D02DAFA5
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 01:13:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4F417B50A;
+	Tue, 30 Dec 2025 01:26:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767057216; cv=none; b=gNa6hxtnkse/ZM+aqqr9jgu6yEbpVaCkDfpnUGE62lGXMgyOgyrWvU5m5nj2OUBh0kBsDN14UjROLeN+Xl6AjXXj83Ht7jySUH8ntoR9xR0WdRGDGW7wdn/kc2yalcnWfFG9HfajBo5KOineuYNvJugJN3XKy1ZsyX2yjXs5/fw=
+	t=1767057971; cv=none; b=BXZRWlxsri/PplgpcYrUWjLyJ4mVWRaoK3HnW81EQQqVZyYJprqe2W5yyYH3X3YQAhLi+bP7rvvGg8uexcjfEWRqsp+sqabgM+2ylQZA0/FCbWifOYkrxIi6yFMUvioyWBHAWOR0lfnSnOXuPHpuJSgHLrMU+ZpZ48dw706tloc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767057216; c=relaxed/simple;
-	bh=wt7UDoKY81UPq/wlsT699pMW1pwS4sLyKYlX2Q+XjXY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AQQF69tvhKtGaVmRKVGKhQWECTPutIp+FvwoxLbryI9re8QIwt9BdOAy0sS3OuQ5K+isxTxKM7Jm2uTbdgu7Qy04++69wn6ETeIwQ9EVFmbzlzTw+SCX0SGXCjaI0W6ZvO7/i7guyxOoJEioI2828ijCMgeWwNxuVGGc1FSNt8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zl1hjz9j; arc=none smtp.client-ip=209.85.221.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-559a4d6b511so987234e0c.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Dec 2025 17:13:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767057212; x=1767662012; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=74jYKa9+OupKCj+T37gNUTTsdOJyf+ySCP+SjAOd7eQ=;
-        b=Zl1hjz9jKalmhh3xFs5HDzNovsI6txoBxiH3vDc6w0gDyX1Ca2x3gJZl4PknJUUI/J
-         VwoaPWBOgxDCiT0j2DlDu7dbsD3RD7bxjI/qKj0GgdoAHtdDRHi1WUTh4PNJZb9jkzAu
-         uNmRQYBZ6hMtjbLt385flSY0ts2IoNf7SqLElHt1sZi4Zkf+uwFqj5Cv4tIzy3NRxUBo
-         wmRf4VxRcx9xmZbKuuiM09ew0pIv6n2E7ITRavHHBf5fxzkSG4unz//fNXAyTw0Th2wT
-         BLkEnact34UEW6TFwe+IyvRf3r7iSsrk9mPx5PL+fUrsqkTGaeNtWblJaho87Yu3BJZe
-         YAIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767057212; x=1767662012;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=74jYKa9+OupKCj+T37gNUTTsdOJyf+ySCP+SjAOd7eQ=;
-        b=lRu0V1US1VmFSza173HrARMfAMsBma+rD+9Or+eMH4VyIy99aC3VsQ8IS3BKmZaXl3
-         cMZBJOxgaYxr9J/sZhdKeywwKLWgytMQyejMzNWeYsz78mwWEWQ8bi51IfYdF65nJILk
-         8ntAQXdti5gGEf7UXavPy5TCDTNFaIJ+FOwpdkL80bszkMfL+TG/fJFsOmmibvhbggX6
-         1yYen5srB86/K/lYLR+rO3O1x8RUVMb8yOUtS1Da/Sjuy6LHEc2SzITMoQlbvlTecOh3
-         06ruHR7WGlGQTQvMr9lv8Z5N83A+lEHP5w7KFW5buj+s6vwXaiuaPyxOsFrjj2n9/MzV
-         55GQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVT13+KDodcjirDleCiTAHAIstoXumUVznetJgVBbHwYq684778nJ+YDpUMQNTRGQU6MSJUabs5KogZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxU4T+u95KaQtIvfQUUMwwfnnw7gDuDQul+UK3/Xv0EEYQc690w
-	If+RcY7iFqSkdlvPCp/4Grtkdcz+GiTHrWcjwWGVzEsUWvfvfyACQEd0QMoLdHd6IVBiWWScJrd
-	DsaIZOPTh84J+qVqpkscOPJID48ITgZk=
-X-Gm-Gg: AY/fxX5vB2CPWZrTN3D6aCOROvHe/hmEXtnx1fVBPm3SEzzGdk1dWeb/YCNWDIbP6PZ
-	t9NAZA9yohaG1NxyCWXJJM3IXNr/0/YvMBsD1eOIxX6BBWykRacoALe5OVNCznwvLo4dT8VCvVS
-	DyJ0IFwE9oA03Z6d04QJvOv/00qMWEWMLePu1TfCBZDAIlpoRYqSu9hk8cYXUFpoNY0GSFges1U
-	GZ/scflIk0WibC99QcIotQ7WEFRzNwwvH/XIlB96wFyMmPLcA6TvrhsRRPKk+gsAExM7p0d
-X-Google-Smtp-Source: AGHT+IEo9vxlydYJ4UDGmaiDCnzBqdGUATcD2xzIk1Jy+AqG8YjBq51DC2k8WPzmeI+vqaYGF6acNP+EaD+sr557lIY=
-X-Received: by 2002:a05:6122:32c7:b0:559:6d45:9a1c with SMTP id
- 71dfb90a1353d-5615bcdadbcmr10197743e0c.3.1767057212557; Mon, 29 Dec 2025
- 17:13:32 -0800 (PST)
+	s=arc-20240116; t=1767057971; c=relaxed/simple;
+	bh=CE7nLYnKD16EvX7bU+H74c13F/QssNUvdCvSj8cuGeY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=j77gsh0o0r/1pPAWB8exu4ye8I8JAvpH6PtDQ41JOs1B0uklo/kRSFSG+Jt/zHkXasNUDr7sZAU981VqlWs0l+dhVCz08AN2sbW8vrOyAwpQB0zf4oOZpCP0U60+IVM9mqg2vbMEkOSM7363Dhxl7QEtrKAmy/aWx+YQKDEv9jQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uh/T6IlS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09451C4CEF7;
+	Tue, 30 Dec 2025 01:26:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767057971;
+	bh=CE7nLYnKD16EvX7bU+H74c13F/QssNUvdCvSj8cuGeY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=uh/T6IlSutUcU5fDHTctPDsCdbv4rTJ7Wcw3bwSkRczFQssF4pL6HVNzOL5o3/rRK
+	 mLy+XGk3YmAsfA2P8dRZz9htFvCmYk0qLWWO8rV9q9QiwUGNkZdZEg6jUcq3Azy82N
+	 VEctyAjinNiuo0F9un27f+vBNCTiwapnvgMOsp3Wblm2a4FTRM4DNi3ltf4lxYrvrV
+	 EO4fts1KeCqJd9fMeqgSgHxoJFAYaktaKHljp3xnm27U/CFcUQNPPupTmoSlQWZhI3
+	 YdrP8mDANOs8PD7OSv6YbLrxM0Aaz4vACMv48bk3kESIIOTiPu1vXK5sMnWUwr7+xW
+	 MQDhyerhf2Low==
+Date: Mon, 29 Dec 2025 19:26:10 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251224-add_ltc2305_driver-v2-0-061f78cf45a3@gmail.com>
- <20251224-add_ltc2305_driver-v2-2-061f78cf45a3@gmail.com> <20251227181808.3dbe5b0a@jic23-huawei>
-In-Reply-To: <20251227181808.3dbe5b0a@jic23-huawei>
-From: Kyle Hsieh <kylehsieh1995@gmail.com>
-Date: Tue, 30 Dec 2025 09:13:20 +0800
-X-Gm-Features: AQt7F2ob2iwt40n30LG6yvsqVQ7RHejvs_MQprdo67ifEsy8DuDGnIoEi8qIWXk
-Message-ID: <CAF7HswMKGCt_HWMQWxm2G0hxqk6-2GHRDCfYF+vow5srmFQvPw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: adc: ltc2309: add support for ltc2305
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Beguin <liambeguin@gmail.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Andriy Shevencho <andriy.shevchenko@linux.intel.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, lee Jones <lee@kernel.org>, 
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Jonathan Brophy <professor_jonny@hotmail.com>, 
+ Radoslav Tsvetkov <rtsvetkov@gradotech.eu>, devicetree@vger.kernel.org
+To: Jonathan Brophy <professorjonny98@gmail.com>
+In-Reply-To: <20251230003250.1197744-4-professorjonny98@gmail.com>
+References: <20251230003250.1197744-1-professorjonny98@gmail.com>
+ <20251230003250.1197744-4-professorjonny98@gmail.com>
+Message-Id: <176705797007.3053564.852280537388416393.robh@kernel.org>
+Subject: Re: [PATCH v4 3/7] dt-bindings: leds: Add virtual LED group
+ controller bindings
 
-On Sun, Dec 28, 2025 at 2:18=E2=80=AFAM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Wed, 24 Dec 2025 13:37:15 +0800
-> Kyle Hsieh <kylehsieh1995@gmail.com> wrote:
->
-> > Add support for the 2-channel LTC2305 ADC in the existing LTC2309 drive=
-r.
-> > The LTC2305 and LTC2309 share similar features: both are 12-bit,
-> > low-noise, low-power SAR ADCs with an I2C interface.
-> > The main difference is the number of channels: LTC2305 has 2 channels,
-> > while LTC2309 has 8 channels.
-> >
-> > Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
-> Hi Kyle
->
-> This is a fairly small patch, so don't bother doing it this time, but
-> for future reference, if you are doing a refactor to enable something new
-> split it into a refactor patch (which makes no operational changes) and
-> a new stuff patch. Here first of those patches would introduce the chip_i=
-nfo
-> structure but only for existing supported devices.  That can be reviewed
-> easily to make sure there are not functional changes.  The second patch t=
-hen
-> adds the entries for the new device (which can be checked against the dat=
-asheet).
->
-> When it is very small, in the interests of expediency we sometimes don't
-> worry too much about the ideal formation of patches.
->
-> In line I mention that the ltc2301 would be very easy to add as well if y=
-ou
-> want to do so.  Otherwise looks good to me. I'll leave it on list a littl=
-e
-> while though before applying.
-Hi Jonathan,
 
-Thanks for the review and feedback.
-I appreciate the suggestions regarding patch splitting for future submissio=
-ns,
-and the tip about LTC2301 support.
-I will  keep that in mind for future work.
+On Tue, 30 Dec 2025 13:32:40 +1300, Jonathan Brophy wrote:
+> From: Jonathan Brophy <professor_jonny@hotmail.com>
+> 
+> Add device tree bindings for the virtual LED group controller that
+> provides priority-based arbitration for shared physical LEDs across
+> multiple virtual LED instances.
+> 
+> Bindings for the virtual driver are not describing hardware LEDs they
+> describe virtual devices made from groups of hardware LEDs created from an array
+> of LED phandles.
+> 
+> Normally the device tree is used to describe hardware not virtual hardware
+> but it is particularly useful in situations where you require an LED to be a
+> specific color by mixing primary colors, such as multi element multi color LEDs
+> to be operated from a device tree binding or a single trigger.
+> 
+> It also becomes useful with multiple LEDs operating the same indicator such as
+> ring of light indicators, led rope where the LEDs are driven From different GPIO
+> outputs unifying the control that can give basic indication during system startup,
+> shutdown upgrade etc...
+> The controller implements winner-takes-all arbitration where only the
+> highest-priority active virtual LED controls the hardware at any given
+> time. This enables multiple subsystems (boot, error, status indicators)
+> to request LED control without explicit coordination.
+> 
+> Binding supports:
+> - Multiple virtual LED children with independent priorities
+> - GPIO, PWM, I2C, and SPI physical LED devices
+> - Multicolor and standard (fixed-color) operating modes
+> - Global ownership tracking to prevent conflicts
+> 
+> Example configurations include:
+> - High-priority emergency/error RGB indicator
+> - Medium-priority system state RGBW indicator
+> - Low-priority warm white fixed-color indicator
+> 
+> Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
+> ---
+>  .../leds/leds-group-virtualcolor.yaml         | 170 ++++++++++++++++++
+>  1 file changed, 170 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+> 
 
-Best regards,
-Kyle
->
-> > ---
-> >  drivers/iio/adc/ltc2309.c | 51 +++++++++++++++++++++++++++++++++++++++=
-+++-----
-> >  1 file changed, 46 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/iio/adc/ltc2309.c b/drivers/iio/adc/ltc2309.c
-> > index 5f0d947d0615..0cf9bcae36c8 100644
-> > --- a/drivers/iio/adc/ltc2309.c
-> > +++ b/drivers/iio/adc/ltc2309.c
-> > @@ -1,8 +1,10 @@
-> >  // SPDX-License-Identifier: GPL-2.0
-> >  /*
-> > + * The LTC2305 is a  2-Channel, 12-Bit SAR ADC with an I2C Interface.
-> >   * The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
-> >   *
-> >   * Datasheet:
-> > + * https://www.analog.com/media/en/technical-documentation/data-sheets=
-/23015fb.pdf
->
-> If you wanted to, it should be trivial to also support the 2301 (I looked=
- given the
-> odd datasheet file name!)  For families of parts it is common to add supp=
-ort based
-> on only have access to a small subset.
->
->
-> >   * https://www.analog.com/media/en/technical-documentation/data-sheets=
-/2309fd.pdf
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.example.dtb: pwm-led-controller (pwm-leds): 'led-pwm-blue', 'led-pwm-green', 'led-pwm-red' do not match any of the regexes: '^led(-[0-9a-f]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/leds/leds-pwm.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20251230003250.1197744-4-professorjonny98@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
