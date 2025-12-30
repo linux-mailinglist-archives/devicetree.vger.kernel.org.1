@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-250411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C193ACE8F96
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:07:56 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 607B1CE8F8A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:06:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AFB11302920C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:07:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 60DD130022C2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 08:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9E62FD7D3;
-	Tue, 30 Dec 2025 08:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 271D62F99AE;
+	Tue, 30 Dec 2025 08:06:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A83E2FD660;
-	Tue, 30 Dec 2025 08:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676C82F25E2;
+	Tue, 30 Dec 2025 08:06:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767082023; cv=none; b=AtlU0jBxHvUM3cgAv0alaCNFM/CMwjkMkwYvK081z0qThrlWWGAEUx/r/QEUQlmf6nbokSjcFH2+K0ftsGqo1vLD2h6z6COIwj2sfo/7QB1ro9u/y/pQrrHzZZg2I8+BduwYhnd6F6k4iYGiKPgbrwZnhUXgpdpEvuRXdrVsSL8=
+	t=1767082017; cv=none; b=VkMaMsjLCJ2J5/942Js2aOU8UtEj/l1TmnxwQg/7irv8zJH5wfT+4cScEW0xVMyYAxjiywafB2revF5C/+6nflxviUXkD8p8wRuuja+ETscE95QvA/dBdfnHajOQGkzZgdxAQZlt+aB9HJbTerdEg7j8+IelqetHfhBry2HkDBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767082023; c=relaxed/simple;
-	bh=WF+3YUeStBER7WDlSH8W0Q73euxvDdCx6NdqjDTRwO4=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=t9+UFAooZx4eZ6raAgg+myLMFdAs815TOoifo6w65+A1fYAkQ81zbopgRzn9oRsWyT6/uiWkvFhj2jqwVvDXLJ3UHHb8yBLZi8vdhkLRbGDfIxqAV2T1vKC2gnUGiYEdUrcB+K0WBWjcRxo5cVdBXVJ2a+rrXZkiH0gWVcEZ/Vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+	s=arc-20240116; t=1767082017; c=relaxed/simple;
+	bh=YSyTVSaQdn2NwJL6GxptFOuj3Q635X7g7eHgWWcCa3E=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=BjVcWmxOkaHGUUQnhEUZULXwf2GqxliNbCYWG8swJlQAH2+WwCvdJtKc6uzx7VSc8DKT3j2fP1SqB/hCXdhmynd2M6/jpQYNOqNlMKhRNCjc227zry8k6vtnxklfMJZRQ0AaI3AL7svajAai/Wk/QMessU/RTw9Krft45NW8c30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 617DF201C5C;
-	Tue, 30 Dec 2025 08:59:05 +0100 (CET)
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E745A1A1872;
+	Tue, 30 Dec 2025 08:59:06 +0100 (CET)
 Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id EF0EE201603;
-	Tue, 30 Dec 2025 08:59:04 +0100 (CET)
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B0E271A1112;
+	Tue, 30 Dec 2025 08:59:06 +0100 (CET)
 Received: from lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com (lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com [10.52.9.99])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 8D1B018000A0;
-	Tue, 30 Dec 2025 15:59:02 +0800 (+08)
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 8B2DE18000AB;
+	Tue, 30 Dec 2025 15:59:04 +0800 (+08)
 From: Joseph Guo <qijian.guo@nxp.com>
-Subject: [PATCH v3 0/2] Add FRDM i.MX 91 Development board support
-Date: Tue, 30 Dec 2025 16:58:52 +0900
-Message-Id: <20251230-imx91_frdm-v3-0-60cac61c96ec@nxp.com>
+Date: Tue, 30 Dec 2025 16:58:53 +0900
+Subject: [PATCH v3 1/2] dt-bindings: arm: imx Add FRDM-IMX91 board
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,11 +47,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIADyGU2kC/23MywqDMBCF4VeRrJviTLyv+h6lFHXGOgsvJCVYx
- HdvdCOFLs+B71+VYyvsVBWtyrIXJ9MYhrlEqu3r8cVaKGyFMaYAkGgZlhKenaVB10TYYBvnnBc
- qgNlyJ8sRuz/C7sW9J/s52h7292/Gg441p3lmGupKY7LbuMzXdhrUHvF4QgT8gRhgQpQRFiUXQ
- Cfctu0LnVlnv9sAAAA=
-X-Change-ID: 20251114-imx91_frdm-add2b2c07e78
+Message-Id: <20251230-imx91_frdm-v3-1-60cac61c96ec@nxp.com>
+References: <20251230-imx91_frdm-v3-0-60cac61c96ec@nxp.com>
+In-Reply-To: <20251230-imx91_frdm-v3-0-60cac61c96ec@nxp.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
  Sascha Hauer <s.hauer@pengutronix.de>, 
@@ -62,62 +60,48 @@ Cc: Justin Jiang <justin.jiang@nxp.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, qijian.guo@oss.nxp.com, 
  Joseph Guo <qijian.guo@nxp.com>, Daniel Baluta <daniel.baluta@nxp.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Francesco Valla <francesco@valla.it>, Tom Zheng <haidong.zheng@nxp.com>, 
- Steven Yang <steven.yang@nxp.com>, Andrew Lunn <andrew@lunn.ch>
+ Francesco Valla <francesco@valla.it>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767081542; l=1631;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767081542; l=1154;
  i=qijian.guo@nxp.com; s=20250519; h=from:subject:message-id;
- bh=WF+3YUeStBER7WDlSH8W0Q73euxvDdCx6NdqjDTRwO4=;
- b=AWTITKcGcf/bNI+QNQVYK/k7HUzGm36o148BWGsptXbDzoCSZGjOefGMpBjZnUV202l10RkGY
- BNyYbZ7LhW+DsE8owgJuw0LJ9Oo4iadfMbQjg68Pq/P0Xc37t9SQCue
+ bh=YSyTVSaQdn2NwJL6GxptFOuj3Q635X7g7eHgWWcCa3E=;
+ b=6Af7zRJwmY1Yp9Cm0J5hRp6L/KoKoIYMEKQfQF1ZNi5QUbdil1mhgQLribAb0Gi+tIStgC9IZ
+ /b9Xwohc9C6DY99Nxk+zWW8/XZBHK48g6EilO6uI4qkbU+xDCH1V4r2
 X-Developer-Key: i=qijian.guo@nxp.com; a=ed25519;
  pk=VRjOOFhVecTRwBzK4mt/k3JBnHoYfuXKCm9FM+hHQhs=
 X-Virus-Scanned: ClamAV using ClamSMTP
 
-FRDM-IMX91 board is a low cost development platform based on i.MX91 SoC:
-https://www.nxp.com/design/design-center/development-boards-and-designs/FRDM-IMX91
+Add the board FRDM-IMX91 in the binding document.
 
-Add device tree and dt-binding for FRDM-IMX91.
-
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Francesco Valla <francesco@valla.it>
+Tested-by: Francesco Valla <francesco@valla.it>
 Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
 ---
-Changes in v3:
-- end property list with 'status'
-- add newline between property list and child node
-- add code-review trailers 
-- Link to v2: https://lore.kernel.org/r/20251212-imx91_frdm-v2-0-4dd6d289e81d@nxp.com
-
 Changes in v2:
-- rename compatible 'frdm-imx91' to 'imx91-11x11-frdm'
-- rename 'sw-keys' to 'gpio-keys'
-- rename 'user_btn' to 'button-k'
-- drop lpspi3 node
-- rename iomuxc 'grpsleep' to 'sleepgrp'
-- move dt-binding patch before the dts patch
-- add board page link in cover letter
-- use CAN PHY to manage the stby gpio of flexcan2
-- drop realtek property
-- add pcf2131 aliase
-- add bootph- property for nodes should be kept in bootloader phase
-- add reset-gpio and assert for eqos and fec
-- delete unused alias
-- Link to v1: https://lore.kernel.org/r/20251114-imx91_frdm-v1-0-e5763bdf9336@nxp.com
+- rename 'frdm-imx91' to 'imx91-11x11-frdm'
 
+Changes in v3:
+- add code-review trailers
 ---
-Joseph Guo (2):
-      dt-bindings: arm: imx Add FRDM-IMX91 board
-      arm64: dts: freescale: Add FRDM-IMX91 basic support
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- Documentation/devicetree/bindings/arm/fsl.yaml     |   1 +
- arch/arm64/boot/dts/freescale/Makefile             |   1 +
- arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts | 906 +++++++++++++++++++++
- 3 files changed, 908 insertions(+)
----
-base-commit: 73f1e611b076de705c2f1c26cfdfc5b8e96f4733
-change-id: 20251114-imx91_frdm-add2b2c07e78
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 68a2d5fecc43b06711e2efce61ac1fc2794b79bc..12d72057b1b817283754a2857d8106a409b594e7 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1412,6 +1412,7 @@ properties:
+         items:
+           - enum:
+               - fsl,imx91-11x11-evk       # i.MX91 11x11 EVK Board
++              - fsl,imx91-11x11-frdm      # FRDM i.MX91 Development Board
+           - const: fsl,imx91
+ 
+       - description: i.MX93 based Boards
 
-Best regards,
 -- 
-Joseph Guo <qijian.guo@nxp.com>
+2.34.1
 
 
