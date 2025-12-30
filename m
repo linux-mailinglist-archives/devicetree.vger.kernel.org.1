@@ -1,383 +1,108 @@
-Return-Path: <devicetree+bounces-250663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EE23CEAEE8
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 00:47:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 031DECEAEFD
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 00:47:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 779B4301D5C9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 23:46:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 38B5F303C11D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 23:47:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C5D032F76D;
-	Tue, 30 Dec 2025 23:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A21325715;
+	Tue, 30 Dec 2025 23:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZyHOKL3h";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EE07bxKM"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="qtrps6kP";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="qtrps6kP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E9FD2F12B7
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 23:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266522E62CE;
+	Tue, 30 Dec 2025 23:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767137794; cv=none; b=Tvxn91bSoFrnbwwwPi06CuixaYENo/IP6DgPdkYjLPzRFwU8TkKf4TfPSuE027YXwZ+4f5sdv6c9U+GRRF1KolsBRd7VhEMHNVWNWtywgliuF1/j607y5aPiUzgdtoE6V5e0irxga1MfF5AJngIsSHhLCPRG7TKYCaEmJ3A/GLE=
+	t=1767138050; cv=none; b=BuoVvMBx0Dk2l2Fu51i/HdGE+AXssgL+CDYU8VccDtZTdG2iQxE/8E8JhFHWjxwnoJP1y/BR4pAKR8KQytbTmun1kshLOSvtyG9tNM/UOLY/xk+/jR2yPnKZASNlG7mBSEE0yD6XYez/HDurTvXdQemSAk4Ov2de29ZuN06UohM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767137794; c=relaxed/simple;
-	bh=8vfZDA0+eLe1oxx8QbS4fcx/NwTCXaa5C6ek/BD4aCo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Uq0Gf0xQGRdgI8HXY9NeQONTBVGX1PmeLnlktqkUT71JVdUW/f1wP7F1pb3TJrJzlX+tb6Cj95XefhqAUXyPGZVpvvP5if/NgNqAcUPIgcUaBt2k8jFjGOQM1iNDYNWfD3qQkhpNvSUeIRtzzCtjzkAntDEmYzjTh9OcF9IToLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZyHOKL3h; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EE07bxKM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BUFml7e871247
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 23:36:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ux95GdgAy7hFfesGPlF9hWlnbmmD5+m3uisShSQL5Is=; b=ZyHOKL3hcpp7i4qp
-	0GIrq1tf5hu5F/14rTt4lUV1lZd0g/8nefz26aBytS+Bm3VE12Jtjnh6syzFyadx
-	Bco4rsrmgTZHVZGfIYpYM+HNFdznF6j8Xs0eMNQXsoq154cdqvALhkqxo+FV9+8Z
-	M65IziGfNfQlMzR6MldybzIwCh5CzeSPSMAg/hMVIBmhWbVzMoUEHC5DThIVpadC
-	fPoYi9HvvEkzFZsHuktLdol239sG5SmoBuygBI439pVIpIdpcKMLK/ZD8Y9UXmDg
-	LS8zEID76r4fhShzaibzWnFPVW8LYRx+YpyEVWtFDVCp8Z5LuGoxwnA3+w908wRu
-	4q/76w==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bc7462cqr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 23:36:25 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4f1f42515ffso262566291cf.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 15:36:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767137785; x=1767742585; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ux95GdgAy7hFfesGPlF9hWlnbmmD5+m3uisShSQL5Is=;
-        b=EE07bxKM0Xa0PwrTaF/5k+J+jnvTJmAWXF2DVELKMyhl3yNz1d7jTL4Q2gprbDUzaw
-         AzoYP+Tjd7z6NEky4ZhQn7k+ldJUVBsKZhfcP/9wNnwY3T03fqL3Nt3vrCi3ivogt8Pr
-         kn5QqFQR3IZ61QDCNsYXnnOre0vzRPqCq/EWEKiSG3BNQHV3fSxZ9552wLQd6bbAXSuO
-         hBD9B/TwZO+siaLJ2oV5SdE0Iq9fyD28/ZBa+q0bSOZyC08XNbkCau4fHjymajM1367e
-         vedezsrzRICuE/TS1/ZOoXuG71wVcm6aitvwtyVBdKPuO6vT0sX8pjNB0s3GfRGoKt3w
-         1ZzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767137785; x=1767742585;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ux95GdgAy7hFfesGPlF9hWlnbmmD5+m3uisShSQL5Is=;
-        b=F4xjJWwVqBF9K+wwSXBDiTUwAoHvI81kS/xg+wRdZBnbijQIJ8iBXptr2/pGl6OsN9
-         vZuL9u27Af1mzpwab2vo3zAh9wccgWvihZL7z776xPlQrJCOxoLaFN9iX5bGc7nph51E
-         DyEHSc3v/RAttb8/bJ3TcghfKT9vZBsGwjev+ecLZtJjdXYput+BDtgZV+o/tanP/UZf
-         s0RLc8lvQskQ/gtNsqDcZyCUYNqUhHGnazACRoL8jOVH52UdBwE1zfjyLKTSsBkLJEmQ
-         Clnr2Y+VDPqMZmTFdO65ojUfhNo3Mx33+OrPCYh0Uxy+pcqECP9XonYwIqHRcwGgScpV
-         3ftw==
-X-Forwarded-Encrypted: i=1; AJvYcCU/FNFtSlrOoWA9n3a8WWGpuPASz6O52k/wmS7uX9iKTf7mENOYsLF5rFUocHZhf4a+ZXzLR+V7HTLa@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCPrOR6qV/hgCzhj0yHPqP1JaIG68fx2R1yYz69JI9JDypp6K5
-	nQhS9bm47/j8yM5v/4Giw+DxHKacNN2vUogc6AtPkkB3W4LB4YnFodQA1xyNEfivqRCpazliyrF
-	23QRz6CeOvRuR5ZC7xuzx3c7CiVaWTPpJSmjAqrJjFXx847+MQfGtCnn4Erc23JSH
-X-Gm-Gg: AY/fxX4jMFr3lf7Na5EOx1MBHMjfgnAFyUKe7FcCBQJeUZY6rXH+KVDQA9GRLvM+Qac
-	yPkugFqeXnVU6cbyjCSICVubTZTivx3Wq4qNDObKNqwCt4nSmTdfBZ0DUleAEy8NE1zTt68ybym
-	qjTNfOTBrorKs1ECVMJwv/vuBqkAug+VzL2jhlaJRV/u+T2O3A+otllcX7PuNhB7qhjyrDFWChI
-	M++rCplnwxLW1Exe78NFP4k+J29ts6KgFQlCLXsB2XfYetAZjKUjpYgDoixf/CPvh2JkNFeAPTP
-	2y/PeAPBBNzHyCbdyPKKHaceT9F59ylz42K1nbcBhCoBzkrPBJyu3lo4vs4wY/GvWB0ja79zbzB
-	LfY5gvo55ZUNbozf22EoSXwuIe82CXbCVCkoKMPpKsUU0vbagreGn+1r000ZVE2f+8YQo6W49U4
-	59ZtmDYn4XChqVEoAdeHTFHv4=
-X-Received: by 2002:a05:622a:cf:b0:4ee:1e95:af68 with SMTP id d75a77b69052e-4f4abd1da6cmr579228031cf.36.1767137784783;
-        Tue, 30 Dec 2025 15:36:24 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHgR39HskKDK0VPENv4JCEhQfvh2ZibF0b4cYURAUkvz8grVJGOP6SkuWxVIrZPWDN84BJ6pw==
-X-Received: by 2002:a05:622a:cf:b0:4ee:1e95:af68 with SMTP id d75a77b69052e-4f4abd1da6cmr579227521cf.36.1767137784225;
-        Tue, 30 Dec 2025 15:36:24 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a18620337sm10349574e87.86.2025.12.30.15.36.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Dec 2025 15:36:23 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Wed, 31 Dec 2025 01:36:04 +0200
-Subject: [PATCH 14/14] arm64: dts: qcom: sm8150-hdk: describe WiFi/BT
- properly
+	s=arc-20240116; t=1767138050; c=relaxed/simple;
+	bh=tkuYZyGRqDR/2JFGVRRuSC5DZkOI66zp0uTErH+kfQk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YHps53EzIBcrpkLC9+AoBHTtUNd1DE3oDTiRJqmcj8cUtm/GsivqsmQ/GLN8PZE6nfrnWcO2stb2qYHqvY5eWXzFWpT595m2jhyS4rbAzg+yT3+Tb1BBjfarQwWPcb7TLWm5B5fiEMslCBy1y160DHfsiSAP7cz2C2IP18a3M/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=qtrps6kP; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=qtrps6kP; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1767138045; bh=tkuYZyGRqDR/2JFGVRRuSC5DZkOI66zp0uTErH+kfQk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=qtrps6kPI/70ifxGPeBLFHCs4kE7zz/9BHpDYtNCez6cMn849/sUwXAnE4KpUcEow
+	 H19ZMA7uNYL4wMcqSzQpDmpurWDTlnv7JuiNVdAfyzPJ/ThJUXtq1ZSsK59oCVtZJP
+	 DbYAfgsnxUgHbNNXjyf8ueESNNT1uOJhKEaqGgLpKN1BmC/g510ghk4DgupVbcRXLi
+	 C0pmg/nG+d+9OMvdUDinin8jYQfj4s3wO3bYdoSXTQnSZZpCd7rCXSmdzKMlZX1FN2
+	 Yvp2gNcAxvbMXqf96URte5NB5rzrOCCJdpHMdyTf4SkJl2/uB9GS8Lm3gqfaNolZqG
+	 gbh1lXlo5iALw==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id 75C123E956D;
+	Tue, 30 Dec 2025 23:40:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1767138045; bh=tkuYZyGRqDR/2JFGVRRuSC5DZkOI66zp0uTErH+kfQk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=qtrps6kPI/70ifxGPeBLFHCs4kE7zz/9BHpDYtNCez6cMn849/sUwXAnE4KpUcEow
+	 H19ZMA7uNYL4wMcqSzQpDmpurWDTlnv7JuiNVdAfyzPJ/ThJUXtq1ZSsK59oCVtZJP
+	 DbYAfgsnxUgHbNNXjyf8ueESNNT1uOJhKEaqGgLpKN1BmC/g510ghk4DgupVbcRXLi
+	 C0pmg/nG+d+9OMvdUDinin8jYQfj4s3wO3bYdoSXTQnSZZpCd7rCXSmdzKMlZX1FN2
+	 Yvp2gNcAxvbMXqf96URte5NB5rzrOCCJdpHMdyTf4SkJl2/uB9GS8Lm3gqfaNolZqG
+	 gbh1lXlo5iALw==
+Received: from mail.mleia.com (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mleia.com (Postfix) with ESMTPSA id BE6803E9491;
+	Tue, 30 Dec 2025 23:40:44 +0000 (UTC)
+From: Vladimir Zapolskiy <vz@mleia.com>
+To: Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Tony Lindgren <tony@atomide.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: omap: dra7: Remove bogus #syscon-cells property
+Date: Wed, 31 Dec 2025 01:40:40 +0200
+Message-ID: <20251230234040.2083889-1-vz@mleia.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251231-wcn3990-pwrctl-v1-14-1ff4d6028ad5@oss.qualcomm.com>
-References: <20251231-wcn3990-pwrctl-v1-0-1ff4d6028ad5@oss.qualcomm.com>
-In-Reply-To: <20251231-wcn3990-pwrctl-v1-0-1ff4d6028ad5@oss.qualcomm.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-        Matthias Kaehlcke <mka@chromium.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
-        linux-pm@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5614;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=8vfZDA0+eLe1oxx8QbS4fcx/NwTCXaa5C6ek/BD4aCo=;
- b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ2ZI4lN9j3hTM6s03asXMy9bNyhf/3Jm0nFG5vitli6Sa
- uVTpuh1MhqzMDByMciKKbL4FLRMjdmUHPZhx9R6mEGsTCBTGLg4BWAi7j/Y/9nxJ+x5+6+5R6ff
- MV49rT0kL2PdIhaH2VZlUUnLHK69OHCxX9Yy84FzdMWOxBeZF5iPByeJHfEVNX883/XVzW7m3pz
- D4lmdy0vjpi9N2xrGObuh3qfDMVnv41qJ/LfRt1UjpQ88DTQS4uuatfr+3SM7H6/dEyhWyfHQmz
- fU2bR5+STlbaUGN+24P3D7Pe0svnVeVFQ75mx2Ss/WdY6H/i0I0Q5uObJ0xrLFrrsaparUtOYxR
- r1l97zlEVC3ILCVtZtLIY7hom720pM2a0y8Hp5bbXa+Y4Ze5tz9ReuFLNfWORx2zJl1sHzZXNbw
- Lmv+mTbeH1g/3TzCkBna0x3w3Jn5XsHuIpOW+G2l+hkA
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Authority-Analysis: v=2.4 cv=Do9bOW/+ c=1 sm=1 tr=0 ts=695461f9 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=daeKR1c1ZtUuBhPExssA:9 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-GUID: 4OQUypwhix8NJzY3C3IIFBW5KHm2Qpo-
-X-Proofpoint-ORIG-GUID: 4OQUypwhix8NJzY3C3IIFBW5KHm2Qpo-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMwMDIxMSBTYWx0ZWRfX8nIh6bJv3iAE
- CVCiozsI9oicsFrnde/C6g1KtEBkPSblJzM7F3+rGtDJEvrpYYdb/bwMV3U1blDRougpmL2JE6B
- WPzNKUzfbefG9EsPQQkAFxVNf1ofMpDHZTNztYnrWIWN9fssp7/5E2bpvFX0ontsytmf0wI677h
- rPfRfIwIzyEmj4mPg1wY0yLAHBFjjjQsf3TiaAvzWVg0ov5X/naso2TrXTwb5BePlVrV7ehdtrn
- lz9kGr9itqqwBodYv+prM8fOLNGiLj+xqOmMY+vnIlVucLUae6L6LZdoshm4Ro6jSS5OKxKY7tS
- mHTGlJfX4SkYabhxH8V5z5L51SXD4IB3rN69+CQNLkxXY9p0cnSVuHGY5VlhPiiF3kTi53fxznA
- QqZ8Cf+WUdlmK1pmseDE1lWrz8GOyGQPO2Jk5vardQJPGzTVZExYD4weR2QT57pBjdkh43zld1O
- 0M0lP6RXSNNvDGW1fqA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-30_04,2025-12-30_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 clxscore=1015 bulkscore=0 adultscore=0 impostorscore=0
- lowpriorityscore=0 spamscore=0 malwarescore=0 phishscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512300211
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20251230_234045_498170_A9ED521F 
+X-CRM114-Status: UNSURE (   8.55  )
+X-CRM114-Notice: Please train this message. 
 
-Properly describe the PMU present as a part of the onboard WCN3998
-WiFi/BT chip. Enable Bluetooth part of the chip too.
+There is no such dt binding property as '#syscon-cells', remove it.
 
-[    5.479978] Bluetooth: hci0: setting up wcn399x
-[    5.633763] Bluetooth: hci0: QCA Product ID   :0x0000000a
-[    5.645350] Bluetooth: hci0: QCA SOC Version  :0x40010224
-[    5.650906] Bluetooth: hci0: QCA ROM Version  :0x00001001
-[    5.665173] Bluetooth: hci0: QCA Patch Version:0x00006699
-[    5.679356] Bluetooth: hci0: QCA controller version 0x02241001
-[    5.691109] Bluetooth: hci0: QCA Downloading qca/crbtfw21.tlv
-[    6.680102] Bluetooth: hci0: QCA Downloading qca/crnv21.bin
-[    6.842948] Bluetooth: hci0: QCA setup on UART is completed
-
-[   81.510709] ath10k_snoc 18800000.wifi: qmi chip_id 0x30224 chip_family 0x4001 board_id 0x55 soc_id 0x40060000
-[   81.521713] ath10k_snoc 18800000.wifi: qmi fw_version 0x32040163 fw_build_timestamp 2019-10-08 05:42 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.3.2.0-00355-QCAHLSWMTPLZ-1
-[   81.554143] ath10k_snoc 18800000.wifi: failed to fetch board data for bus=snoc,qmi-board-id=55,qmi-chip-id=30224,variant=Qualcomm_sm8150hdk from ath10k/WCN3990/hw1.0/board-2.bin
-[   85.467464] ath10k_snoc 18800000.wifi: wcn3990 hw1.0 target 0x00000008 chip_id 0x00000000 sub 0000:0000
-[   85.478132] ath10k_snoc 18800000.wifi: kconfig debug 0 debugfs 0 tracing 0 dfs 0 testmode 0
-[   85.487223] ath10k_snoc 18800000.wifi: firmware ver  api 5 features wowlan,mgmt-tx-by-reference,non-bmi crc32 b3d4b790
-[   85.758168] ath10k_snoc 18800000.wifi: htt-ver 3.73 wmi-op 4 htt-op 3 cal file max-sta 32 raw 0 hwcrypto 1
-[   85.901630] ath10k_snoc 18800000.wifi: invalid MAC address; choosing random
-
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
 ---
- arch/arm64/boot/dts/qcom/sm8150-hdk.dts | 141 ++++++++++++++++++++++++++++++--
- 1 file changed, 136 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/ti/omap/dra7-l4.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-index 0339a572f34d..18b51a1236de 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-@@ -20,6 +20,7 @@ / {
+diff --git a/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi b/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi
+index c9282f57ffa5..db6c53bbaf51 100644
+--- a/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi
++++ b/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi
+@@ -109,7 +109,6 @@ dra7_pmx_core: pinmux@1400 {
+ 				scm_conf1: scm_conf@1c04 {
+ 					compatible = "syscon";
+ 					reg = <0x1c04 0x0020>;
+-					#syscon-cells = <2>;
+ 				};
  
- 	aliases {
- 		serial0 = &uart2;
-+		serial1 = &uart13;
- 	};
- 
- 	chosen {
-@@ -66,6 +67,43 @@ hdmi_con: endpoint {
- 			};
- 		};
- 	};
-+
-+	wcn3998-pmu {
-+		compatible = "qcom,wcn3998-pmu";
-+
-+		pinctrl-0 = <&sw_ctrl_default>;
-+		pinctrl-names = "default";
-+
-+		vddio-supply = <&vreg_s4a_1p8>;
-+		vddxo-supply = <&vreg_l7a_1p8>;
-+		vddrfa1p3-supply = <&vreg_l2c_1p3>;
-+		vddch0-supply = <&vreg_l11c_3p3>;
-+		vddch1-supply = <&vreg_l10c_3p3>;
-+
-+		swctrl-gpios = <&tlmm 50 GPIO_ACTIVE_HIGH>;
-+
-+		regulators {
-+			vreg_pmu_io: ldo0 {
-+				regulator-name = "vreg_pmu_io";
-+			};
-+
-+			vreg_pmu_xo: ldo1 {
-+				regulator-name = "vreg_pmu_xo";
-+			};
-+
-+			vreg_pmu_rf: ldo2 {
-+				regulator-name = "vreg_pmu_rf";
-+			};
-+
-+			vreg_pmu_ch0: ldo3 {
-+				regulator-name = "vreg_pmu_ch0";
-+			};
-+
-+			vreg_pmu_ch1: ldo4 {
-+				regulator-name = "vreg_pmu_ch1";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -594,6 +632,10 @@ &qupv3_id_1 {
- 	status = "okay";
- };
- 
-+&qupv3_id_2 {
-+	status = "okay";
-+};
-+
- &remoteproc_adsp {
- 	status = "okay";
- 
-@@ -626,12 +668,97 @@ lt9611_irq_pin: lt9611-irq-state {
- 		bias-disable;
- 	};
- 
-+	qup_uart13_default: qup-uart13-default-state {
-+		cts-pins {
-+			pins = "gpio43";
-+			function = "qup13";
-+			drive-strength = <2>;
-+			bias-bus-hold;
-+		};
-+
-+		rts-pins {
-+			pins = "gpio44";
-+			function = "qup13";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		tx-pins {
-+			pins = "gpio45";
-+			function = "qup13";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		rx-pins {
-+			pins = "gpio46";
-+			function = "qup13";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	qup_uart13_sleep: qup-uart13-sleep-state {
-+		cts-pins {
-+			pins = "gpio43";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-bus-hold;
-+		};
-+
-+		rts-pins {
-+			pins = "gpio44";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		tx-pins {
-+			pins = "gpio45";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		rx-pins {
-+			pins = "gpio46";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	sw_ctrl_default: sw-ctrl-default-state {
-+		pins = "gpio50";
-+		function = "gpio";
-+		bias-pull-down;
-+	};
- };
- 
- &uart2 {
- 	status = "okay";
- };
- 
-+&uart13 {
-+	/delete-property/ interrupts;
-+	interrupts-extended = <&intc GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>,
-+			      <&tlmm 46 IRQ_TYPE_EDGE_FALLING>;
-+	pinctrl-0 = <&qup_uart13_default>;
-+	pinctrl-1 = <&qup_uart13_sleep>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3998-bt";
-+
-+		vddio-supply = <&vreg_pmu_io>;
-+		vddxo-supply = <&vreg_pmu_xo>;
-+		vddrf-supply = <&vreg_pmu_rf>;
-+		vddch0-supply = <&vreg_pmu_ch0>;
-+	};
-+};
-+
- &ufs_mem_hc {
- 	status = "okay";
- 
-@@ -705,12 +832,16 @@ &usb_2_dwc3 {
- };
- 
- &wifi {
--	status = "okay";
--
-+	/* SoC */
- 	vdd-0.8-cx-mx-supply = <&vreg_l1a_0p75>;
--	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
--	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
--	vdd-3.3-ch0-supply = <&vreg_l11c_3p3>;
-+
-+	/* WiFi / BT PMU */
-+	vdd-1.8-xo-supply = <&vreg_pmu_xo>;
-+	vdd-1.3-rfa-supply = <&vreg_pmu_rf>;
-+	vdd-3.3-ch0-supply = <&vreg_pmu_ch0>;
-+	vdd-3.3-ch1-supply = <&vreg_pmu_ch1>;
- 
- 	qcom,calibration-variant = "Qualcomm_sm8150hdk";
-+
-+	status = "okay";
- };
-
+ 				scm_conf_pcie: scm_conf@1c24 {
 -- 
-2.47.3
+2.43.0
 
 
