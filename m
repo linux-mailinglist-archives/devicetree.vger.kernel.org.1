@@ -1,97 +1,97 @@
-Return-Path: <devicetree+bounces-250611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B5BCEA6CC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 19:09:56 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 728F2CEA6C2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 19:09:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 829573025F9F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 18:09:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DDBA43006FC9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 18:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7797B32C933;
-	Tue, 30 Dec 2025 18:09:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2184F32D44F;
+	Tue, 30 Dec 2025 18:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Q8/XcPqu";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DNADp7EC"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BPXLLEXB";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QBsuRG5v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC0B723F417
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 18:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA4631D72D
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 18:09:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767118173; cv=none; b=UYGiWfRpys6YauSc6+nRxbqB/83toMzZK4MBiSFGY8JogcKe32dbJwanO1h1BHdOAFlS4V1D1kHFNkMj6CIGsqp8uqOWv03EZmlsGvc+7ET7uCAuTsnm4CERdcwsM+FBnfHlQmH0ibaAXSyi9SknDRwxlJ++akCRi9VCeyTv934=
+	t=1767118190; cv=none; b=G0h8L0EX8PrSJv3KiyKrxTytzr69Se0GYAIi6RuXSIfd7BrYOqTyffZx5n4uk9kk9wX9JjizlPzt89IugMcmu4tNvclHVbidOfLYxKsMqQSL6R47nKPEJO5ZWcxtpPUFaVoZLozZ4M8TZRVCowNsVHIUmZdzfnOmYRcE/rHRcrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767118173; c=relaxed/simple;
-	bh=JEoF9yoRtjhUDYAArjfrNddZjCS5jSY0EF4keJnAqko=;
+	s=arc-20240116; t=1767118190; c=relaxed/simple;
+	bh=JrSdVQs8umFznETgBJlE+gXeHhfL90x8ie9YdD53G1Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uIMNL5CnDLeY/QNnnAnDWxVsCe6zxyglb7PjrqOR/3TSTaJS/08hoYsun7QHk1boYDKd++Mk7e5vdkOrSBxl+zpcBDA+XFtHnaRJJLNZKlh2dZWJ7TIVWojhrdh85hfYcxTlAVtCOOXxui0ss0CzTkOCjwDT6cWzRsuFqDMq8dk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Q8/XcPqu; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DNADp7EC; arc=none smtp.client-ip=205.220.180.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xy2bh2nIDpJCIQjYjGkImVW1m6okLT4zXYAp3rfZHI4Ak4IFMIiwvYzbBayVXgxpjx/N3QKKrEejtA2JsyJXDUi49scVpX96NEfTDIWhisXBaKiaRFIMa3O/H9sxTjqzAx43MpI+wpZ6j067S8af3prjOP9YAGy2M9JHREsuQcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BPXLLEXB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QBsuRG5v; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BU9EOmG1751746
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 18:09:30 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BUCtdRF715181
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 18:09:45 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=9OBPcJEGcyXj0u48Ng5ChP14
-	fU5Jw6ppMgNLNgQ0MHo=; b=Q8/XcPquRGxft8B0WSkS8rm132V4Vnuq7Mo2t1rh
-	UGUQTGZFL6IuFp0o9SpHPG7Y0xsI7MKSYPU/PxQOMkE55OUwv+7SA6oN5zVvA3re
-	t1qTmWPqmlCZrMt+6yCxaK1NhV2Y5mmJSsHmVraOKTQWKm6PRcgWnurQEYQU94pO
-	/qN7WiTu0T79RVA+jfOaB3AKOUsG5LvsWW9v1XrLa/dEx1TUny/mRHV9WRPW/DzY
-	z7vvekoV7YoqX6Q+M9oeDM2M/t3Jwk6CenOLMtL9TykrzC37NFN87yn+1bFjG1Hf
-	lvxBZdLYoy4Vm1vsqP1kktWZ5Hmk5e4pYjmit8tNiwICTA==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bc0sgtkke-1
+	:references:subject:to; s=qcppdkim1; bh=zxrwpCmrklVLd3dQvhy5lVUw
+	gtJd/h93CSb4e5jlCrA=; b=BPXLLEXBsPw34p4n2MYC608hjPf56FSEz2azi6q5
+	stJS8yullh+R9JVp3o8ivlYABdl4kJKEFkPsw36PXRMMLLtbukTDmqNdjrCP/HSK
+	79iC1zaFf89Hx3PSnBRLWJ3aCze9rYrJafQgcKCwCTJiURAyYO5d3rdcKK6SddIX
+	RbiuW03Ggjpkm0ActZ6Sw9I+3ewap8TarhlDvEE8BXhFSShM+GXaz41DLdrSPnN1
+	mOSyNNcVpd4ptxyJmbss8mHs/qdv5RrCyAH6hgc/AoCcsoXDg0MY6HBpy2OAM68S
+	MLzI7IedeNxuTBD8wFIhxEhm6/qYQ9mwn3t0fgpCnvHzmQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bcf5yrqcn-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 18:09:29 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-88a2e9e09e6so382418406d6.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 10:09:29 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 18:09:45 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee3dfe072dso266570111cf.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 10:09:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767118169; x=1767722969; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1767118185; x=1767722985; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9OBPcJEGcyXj0u48Ng5ChP14fU5Jw6ppMgNLNgQ0MHo=;
-        b=DNADp7ECaUcdw7P1K/wGKZAFMrJbox0ptQtDOj1F5tzHx4zxp5S7ttdGNQzR+wXzsU
-         KtcWpneFAjBGmNmlwJLoKRVbWj7HYg9LlbcUSiNJ42pTwF21zA0UcMDMaN+2CSGNCXbh
-         +qZnFHUxsuq/0UJ01RBj8aSwM9Vm0Jt+6pZp/i6V7xexsJsRKiYPYwiWIDzEcxiRLutm
-         3p9W/3pmVM+z5rPk4CTNVfauqJuihUMy/asOpapVedTolUJAopFwqsFXukzj2UBzpTap
-         mbzS1B6IW6nEN01yBMFCXe4etTfSL0AYWsBJfVSEaU9grNZ0Nid2HsKrMS8UXkAKrJRN
-         85Sg==
+        bh=zxrwpCmrklVLd3dQvhy5lVUwgtJd/h93CSb4e5jlCrA=;
+        b=QBsuRG5vWv/pwnTdex1h3SaM8/3DrXlgsvxQ5hkueo0bqYFYTYJKCPniaS8XTPlwn4
+         pwvUt7NA46eHZwVMqUGm99jNlhHrN7lrFW9W79bViv0lzHGeKQiSC24hq7PU62s/AzLx
+         Gw2oLTGNHtSdI5s4lPDuo43UpDb/ltregxeIfXL6rWgFGTPbOdFDghgjDpWMlj/ksrvv
+         n9DJlAHWBYLjXJMQq2c87K9q+vewzm2ia7lwdx9XbVD5EeE+VXe0Za8Pc6SX+AhrLGl2
+         ffu2YTG5VUGu7sZc7tBuLgwn93MWSmINUaqbz3hafeGDMsYqXy+X7NGE/96faPR6DM0a
+         EJeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767118169; x=1767722969;
+        d=1e100.net; s=20230601; t=1767118185; x=1767722985;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9OBPcJEGcyXj0u48Ng5ChP14fU5Jw6ppMgNLNgQ0MHo=;
-        b=jiBdI5RyacmQ9J6TPZqr5HJb/X/3XCnBHKfA1oaz8P8IeJhwkiO05oLjNJ02farLxe
-         BeKWg1wWQs2pyBkatrLr3FDS4kgCegZ+cvWdEf86GrR3wKarYIRseDzpHQr274RwsQpP
-         xbzmw0IS4mEv1B/fgKleb1XSBNvmcSBm6/2ZF+zpXq3UA2MXRlCioxsmfnYNJlpzytjD
-         Sy0k2hq/iLsRfxQt7guKOhn43ekgbRSjQFfnj4GpW6djPQQUN7MaOX/qfoEigEnoBOyf
-         tN/c6Ruhl57K1T1l3ba8U9eCEb96mnrdLEHTNgYgLkYDZWFY384D/wYwNUTIkLzgWws2
-         Cofw==
-X-Forwarded-Encrypted: i=1; AJvYcCU/QyE2BhI/IvuX8VGpT1l4i7/FEgFTZ8Jv3g6emeDYPGx7W2/3hGQCGN3YVIHzd9X2XF6yKH/v5OQg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGddYObh8KHGbfukNIaAU0Equj5TUzV4FIIXBff8DHbftjFaWQ
-	RoX+t915A7Odnvs9Y850Rs1jyNctUgXeDxyyVLM7E6NC1TBo+GS9tIqJ8zcWO1s4m23eNpXq5Zj
-	b0Iq09o3tR3yq6SkLnCF+AVUCTH+MkTNkQWBk0SkPrhjKWI+xizPeaYZFwK8S3P2PSlsIPAmO
-X-Gm-Gg: AY/fxX4MWCRx3UXQdinTzejHZ0LkHI1aNzklFO9OVH4odITuQNwlE4qVS6AdbVVmVkS
-	jVVU2j7neC7AmvnZx0Bs1c9SIHdlZ4AXCT3YTqVPv+hm++pYaJF5EoBmlCnMbWEDfDXBC8xsGXe
-	vWHu9MkTYI423+c+CPzmBeqPJoDaNsz9hAH5Z86UCjeLLRu45AIihpG1u9CogalWyX5KqnP0Fkh
-	c5K5kJnGHyoX3NROI3eHiSMqPqayocIu7p6vyhLWELVXbTdjEdDj1PVIf+Wv31M6UKUNoGd9PTH
-	7Bbobv9Ndn1zNbArN9tbO7awkOqZzx6kQvcuZVivAv9LYFz91HM6N+YYPebLciyk1apAEUxGY7G
-	SpZlUL3dnR9NUaBdIwBT6Gb/QM5Uv8gUZF+rGemGTzEQUpYIAd8gMckqRvoV7eu9FlbVIDXmsjv
-	Cc19zCHKTRAaV+LbHwrCgwrYk=
-X-Received: by 2002:ad4:57b3:0:b0:884:6f86:e07d with SMTP id 6a1803df08f44-88d81c499e4mr386668346d6.15.1767118168671;
-        Tue, 30 Dec 2025 10:09:28 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFo0Wgnmpxf6UQfzM4eLquswAjbuVIhi9lzyI9nd6FOYgyIWbZwPfkiYqKRs1Mb2mGyT8iQ0g==
-X-Received: by 2002:ad4:57b3:0:b0:884:6f86:e07d with SMTP id 6a1803df08f44-88d81c499e4mr386667846d6.15.1767118168200;
-        Tue, 30 Dec 2025 10:09:28 -0800 (PST)
+        bh=zxrwpCmrklVLd3dQvhy5lVUwgtJd/h93CSb4e5jlCrA=;
+        b=rG56YYfV0TOCVLtq01nHMnUw2JfcQhLBsbjGwlWx8gdS2R6+TVLFox7yV1LXIsoevM
+         jpg29bzqwlAztqiD+DWff6hj5oylRev+NGGRroijMa+ydKryO5E0Ti9oBNSskxe15XSR
+         rdeizig4FdDEbcSQ/Ffo0S5nRBLY6ruwMP/iMMCJPsRz/RCyr0+YZsUDhul5zZa6v0tr
+         Kw8KkP8H4QJon/hahDc7sB2f1euII53hF8QHuYzFDavAYFPhXT106eIiuhXQP+YUZwt0
+         W7JfX17g9HUbTMq8dj7oPVGsyOme7TvLRYbjuGwQj3pO04kKogZD3GOYXAFsB5FVY6tY
+         OzOg==
+X-Forwarded-Encrypted: i=1; AJvYcCVrrUx2o4338MGOhqRQauY0LYyVXFM8oyr7tjPEs8xwvp7Uc4a5GQkahhUzLgMs6ERNtxOjGLCpa4At@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpalBq7UdVYG/esM9dHj4ZukUtL3Uv7M233MiqTW6nUJseLysU
+	yGGl9CWnfjhAHD0uUUOCbC+aSYIsqNse7rG62vxthV+pc4HBbu5ga8uRAYqHhQ3bDI8q0k0m4OD
+	jAUvDf5gwPF2koZGp3MLAdut9CHLE4rtS+hq/iDq7D0xcQh1qQ7o74AUlE+SKydAn
+X-Gm-Gg: AY/fxX71xBFz1S/2gpTvMGIMSIQOd0R3DJeE6YGYsONLbKxofg4ZKGPNZUZFtFvBZEI
+	TAB0cSvqpf2iPGVfzajWu/p7iiq9suf6nvLGlmcLh4aZtTBfz8vla1W9nuHKMygVRbCqsdFAFwj
+	MAvVQAQnIppmhW8AuaXl0ebDBIGjS5/gQAS2wLyyEt2aI+vD3E3ExU0N5GJr43zvTa+0ZfnL+Ov
+	aO7VWLbNiave+utzdhu7LVlbbk8QZe/YBYLQ3MW2esZGovHSvq6eVNQ/ruov36UEKz26RtdZQGw
+	Uvl10susayvP97Uko4RU4hfBXBECX97qv6JCXdKbFA5PaMaouJF2E3nTNgj1ZiVPhXqfq6TAjcA
+	QMSEWDcZk+R0Tk8cvOqe6adotuk/P3Pa/g4D3SEQAMgWYahfkmRZWtJSny+PKVhSBoSsN1NbwNU
+	p/3zwxkkA4T9aP22/RoVt0ikM=
+X-Received: by 2002:a05:622a:5916:b0:4ee:43e1:e591 with SMTP id d75a77b69052e-4f4abd939e4mr466238811cf.58.1767118185030;
+        Tue, 30 Dec 2025 10:09:45 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHeXCP+TMD7l4jEeTo5UrB+NryoWkj/z31BYNSG5ir92U/bAlxqI4Nt4wzjzofiPgyNK0hgag==
+X-Received: by 2002:a05:622a:5916:b0:4ee:43e1:e591 with SMTP id d75a77b69052e-4f4abd939e4mr466238471cf.58.1767118184633;
+        Tue, 30 Dec 2025 10:09:44 -0800 (PST)
 Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38122680689sm89404881fa.44.2025.12.30.10.09.27
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a1862840asm10427036e87.96.2025.12.30.10.09.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Dec 2025 10:09:27 -0800 (PST)
-Date: Tue, 30 Dec 2025 20:09:25 +0200
+        Tue, 30 Dec 2025 10:09:44 -0800 (PST)
+Date: Tue, 30 Dec 2025 20:09:42 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Taniya Das <taniya.das@oss.qualcomm.com>
 Cc: Bjorn Andersson <andersson@kernel.org>,
@@ -110,11 +110,11 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
         Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
-Subject: Re: [PATCH 2/3] clk: qcom: gcc-x1e80100: Add missing UFS symbol mux
- clocks
-Message-ID: <o3jixtcjqbk3i756vy7umb45euu5ofpg4yv2za452xcje5shfa@qgzqnqslxctj>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: hamoa: Extend the gcc input clock
+ list
+Message-ID: <73dxvqekezl5oo3wnlhsr6ok4usnoabfp7p3uodkkusiql45b4@tmwx22gcfugd>
 References: <20251230-ufs_symbol_clk-v1-0-47d46b24c087@oss.qualcomm.com>
- <20251230-ufs_symbol_clk-v1-2-47d46b24c087@oss.qualcomm.com>
+ <20251230-ufs_symbol_clk-v1-3-47d46b24c087@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -123,219 +123,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251230-ufs_symbol_clk-v1-2-47d46b24c087@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMwMDE2MyBTYWx0ZWRfX7LpIvKf+bFvP
- UXU3tFMAQD/M0E5MzgxayUxFw6lLekUw2qs5Gf4/saCoAXW4kINq9MtUwpWYuVr8CpFdDTJJ3w8
- RetbV7MitsHCwjMnZ3BeJsnFm+90mRfZ9YNDJ+Q1RqkxIUY0wibdUs4N0utQcJqBOX6i8qK8vsh
- rKqv41UzTBWYSs5+aD52+90cbahhw+OP8YOEIlLsU+IWkeIDNkjad7sPc2qX91GoEezizwm3SKw
- uN4b07ToN2bNq9vFstH/crJqAFizNfz9F1txcjKxgN/3GFe5j1Fw+g1LlKK6wdzIAno35a41foy
- 7JnIsTFjqj39qTJs8JyDp/CqFPlC3Koquq26YfLJmUzhDH42Yw6lfuvfseIYSP2BhjMgI8IF6ME
- Rw0lD/KzAq1YrfGy7CRvB3+wJ1wI7EQ7sZnZoqXl4gDQKsp3xprFFDK7mdnNjqUFxiKmtKYi64o
- BzSp9wwrZWyGfI6prGA==
-X-Proofpoint-GUID: M7iQzngUVrjp4bvVI37PAzNHzaYZIuI3
-X-Proofpoint-ORIG-GUID: M7iQzngUVrjp4bvVI37PAzNHzaYZIuI3
-X-Authority-Analysis: v=2.4 cv=foHRpV4f c=1 sm=1 tr=0 ts=69541559 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <20251230-ufs_symbol_clk-v1-3-47d46b24c087@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMwMDE2MyBTYWx0ZWRfX54I8NYVbbqpu
+ 6+tH7wK1VqgwRdN2CLOA6E0wFj1OfyuOIIXoWgOeF/kbyJ7SI1B5HuPqFZDbIJ+HE2F5o8b1f7l
+ w4pPLAcC28darVzoSQ579ferPp7a3vr3EjzEEZ30dJDTvNnFeFZVWmI9UJrRM76RuTKC8xVWuFC
+ 9fPxjCQTV0mckHKfGWdadwi9ocVkS7Xrq3TzhPRNvcFua3n7At0U/4nrC7JZrrcExXMGanuRJLg
+ WwlfJL5ZBWBTcRAkfVLuo39r9RnjLY4hLGYoh5uTKVGSFU1JWF2y0aX6vCyOLTiPV6BdFS4tQ5Q
+ X/RvU3gXESiXcvlcyNUuOqCHMKwzk+qaJqcd8G/WqKWP1cm4BjaJ/TFG/DXxvtsP8+o7XssIkPX
+ RBfMFh0HFcS+Se98mBnj/ZBmsTvd/FGY/AmkLZ/95xXqqUuk+B/WMt4jzd6ZBe2Hyd4jlGs5tPG
+ /kevkprV63iJzqRJw5g==
+X-Proofpoint-ORIG-GUID: vx_FJ5LvvkD-FWAZyDW0gUwQG6TNH9Gr
+X-Authority-Analysis: v=2.4 cv=KvNAGGWN c=1 sm=1 tr=0 ts=69541569 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=lVaBrOMFWp81B8hMq7MA:9 a=CjuIK1q_8ugA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
+ a=EUspDBNiAAAA:8 a=q0JkR4NhiA7wQx93E64A:9 a=CjuIK1q_8ugA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: vx_FJ5LvvkD-FWAZyDW0gUwQG6TNH9Gr
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-30_02,2025-12-30_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 malwarescore=0 suspectscore=0 phishscore=0
- impostorscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0
+ phishscore=0 malwarescore=0 adultscore=0 priorityscore=1501 suspectscore=0
+ bulkscore=0 clxscore=1015 lowpriorityscore=0 spamscore=0 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512300163
 
-On Tue, Dec 30, 2025 at 11:08:35PM +0530, Taniya Das wrote:
-> The UFS symbol RX/TX mux clocks were not defined previously.
-> Add these mux clocks so that clock rate propagation reaches
-> the muxes correctly.
+On Tue, Dec 30, 2025 at 11:08:36PM +0530, Taniya Das wrote:
+> The recent dt-bindings were updated for the missing RX/TX symbol clocks
+> for UFS.
 > 
-> Fixes: 161b7c401f4b ("clk: qcom: Add Global Clock controller (GCC) driver for X1E80100")
+> Extend the existing list to make sure the DT contains the expected
+> amount of 'clocks' entries.
+> 
 > Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 > ---
->  drivers/clk/qcom/gcc-x1e80100.c | 102 ++++++++++++++++++++++++++++++++++++++--
->  1 file changed, 99 insertions(+), 3 deletions(-)
+>  arch/arm64/boot/dts/qcom/hamoa.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/drivers/clk/qcom/gcc-x1e80100.c b/drivers/clk/qcom/gcc-x1e80100.c
-> index e46e65e631513e315de2f663f3dab73e1eb70604..c8fc9e6b1ac97b13f84753ac7f76e23df071c2e0 100644
-> --- a/drivers/clk/qcom/gcc-x1e80100.c
-> +++ b/drivers/clk/qcom/gcc-x1e80100.c
-> @@ -59,6 +59,9 @@ enum {
->  	DT_USB4_1_PHY_GCC_USB4RTR_MAX_PIPE_CLK,
->  	DT_USB4_2_PHY_GCC_USB4_PCIE_PIPE_CLK,
->  	DT_USB4_2_PHY_GCC_USB4RTR_MAX_PIPE_CLK,
-> +	DT_UFS_PHY_RX_SYMBOL_0_CLK,
-> +	DT_UFS_PHY_RX_SYMBOL_1_CLK,
-> +	DT_UFS_PHY_TX_SYMBOL_0_CLK,
->  };
->  
->  enum {
-> @@ -103,6 +106,9 @@ enum {
->  	P_USB4_1_PHY_GCC_USB4RTR_MAX_PIPE_CLK,
->  	P_USB4_2_PHY_GCC_USB4_PCIE_PIPE_CLK,
->  	P_USB4_2_PHY_GCC_USB4RTR_MAX_PIPE_CLK,
-> +	P_UFS_PHY_RX_SYMBOL_0_CLK,
-> +	P_UFS_PHY_RX_SYMBOL_1_CLK,
-> +	P_UFS_PHY_TX_SYMBOL_0_CLK,
->  };
->  
->  static struct clk_alpha_pll gcc_gpll0 = {
-> @@ -482,6 +488,78 @@ static const struct clk_parent_data gcc_parent_data_33[] = {
->  	{ .index = DT_USB4_2_PHY_GCC_USB4_PCIE_PIPE_CLK },
->  };
->  
-> +static const struct parent_map gcc_parent_map_37[] = {
-> +	{ P_UFS_PHY_RX_SYMBOL_0_CLK, 0 },
-> +	{ P_BI_TCXO, 2 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_37[] = {
-> +	{ .index = DT_UFS_PHY_RX_SYMBOL_0_CLK },
-> +	{ .index = DT_BI_TCXO },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_38[] = {
-> +	{ P_UFS_PHY_RX_SYMBOL_1_CLK, 0 },
-> +	{ P_BI_TCXO, 2 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_38[] = {
-> +	{ .index = DT_UFS_PHY_RX_SYMBOL_1_CLK },
-> +	{ .index = DT_BI_TCXO },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_39[] = {
-> +	{ P_UFS_PHY_TX_SYMBOL_0_CLK, 0 },
-> +	{ P_BI_TCXO, 2 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_39[] = {
-> +	{ .index = DT_UFS_PHY_TX_SYMBOL_0_CLK },
-> +	{ .index = DT_BI_TCXO },
-> +};
 
-And all of these parent maps and parent data are unused.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-> +
-> +static struct clk_regmap_phy_mux gcc_ufs_phy_rx_symbol_0_clk_src = {
-> +	.reg = 0x77064,
-> +	.clkr = {
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gcc_ufs_phy_rx_symbol_0_clk_src",
-> +			.parent_data = &(const struct clk_parent_data) {
-> +				.index = DT_UFS_PHY_RX_SYMBOL_0_CLK,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_regmap_phy_mux_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_regmap_phy_mux gcc_ufs_phy_rx_symbol_1_clk_src = {
-> +	.reg = 0x770e0,
-> +	.clkr = {
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gcc_ufs_phy_rx_symbol_1_clk_src",
-> +			.parent_data = &(const struct clk_parent_data) {
-> +				.index = DT_UFS_PHY_RX_SYMBOL_1_CLK,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_regmap_phy_mux_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_regmap_phy_mux gcc_ufs_phy_tx_symbol_0_clk_src = {
-> +	.reg = 0x77054,
-> +	.clkr = {
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gcc_ufs_phy_tx_symbol_0_clk_src",
-> +			.parent_data = &(const struct clk_parent_data) {
-> +				.index = DT_UFS_PHY_TX_SYMBOL_0_CLK,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_regmap_phy_mux_ops,
-> +		},
-> +	},
-> +};
-> +
->  static struct clk_regmap_phy_mux gcc_usb4_0_phy_dp0_clk_src = {
->  	.reg = 0x9f06c,
->  	.clkr = {
-> @@ -5148,12 +5226,17 @@ static struct clk_branch gcc_ufs_phy_phy_aux_clk = {
->  
->  static struct clk_branch gcc_ufs_phy_rx_symbol_0_clk = {
->  	.halt_reg = 0x7702c,
-> -	.halt_check = BRANCH_HALT,
-> +	.halt_check = BRANCH_HALT_DELAY,
->  	.clkr = {
->  		.enable_reg = 0x7702c,
->  		.enable_mask = BIT(0),
->  		.hw.init = &(const struct clk_init_data) {
->  			.name = "gcc_ufs_phy_rx_symbol_0_clk",
-> +			.parent_hws = (const struct clk_hw*[]) {
-> +				&gcc_ufs_phy_rx_symbol_0_clk_src.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
->  			.ops = &clk_branch2_ops,
->  		},
->  	},
-> @@ -5161,12 +5244,17 @@ static struct clk_branch gcc_ufs_phy_rx_symbol_0_clk = {
->  
->  static struct clk_branch gcc_ufs_phy_rx_symbol_1_clk = {
->  	.halt_reg = 0x770cc,
-> -	.halt_check = BRANCH_HALT,
-> +	.halt_check = BRANCH_HALT_DELAY,
->  	.clkr = {
->  		.enable_reg = 0x770cc,
->  		.enable_mask = BIT(0),
->  		.hw.init = &(const struct clk_init_data) {
->  			.name = "gcc_ufs_phy_rx_symbol_1_clk",
-> +			.parent_hws = (const struct clk_hw*[]) {
-> +				&gcc_ufs_phy_rx_symbol_1_clk_src.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
->  			.ops = &clk_branch2_ops,
->  		},
->  	},
-> @@ -5174,12 +5262,17 @@ static struct clk_branch gcc_ufs_phy_rx_symbol_1_clk = {
->  
->  static struct clk_branch gcc_ufs_phy_tx_symbol_0_clk = {
->  	.halt_reg = 0x77028,
-> -	.halt_check = BRANCH_HALT,
-> +	.halt_check = BRANCH_HALT_DELAY,
->  	.clkr = {
->  		.enable_reg = 0x77028,
->  		.enable_mask = BIT(0),
->  		.hw.init = &(const struct clk_init_data) {
->  			.name = "gcc_ufs_phy_tx_symbol_0_clk",
-> +			.parent_hws = (const struct clk_hw*[]) {
-> +				&gcc_ufs_phy_tx_symbol_0_clk_src.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
->  			.ops = &clk_branch2_ops,
->  		},
->  	},
-> @@ -7180,6 +7273,9 @@ static struct clk_regmap *gcc_x1e80100_clocks[] = {
->  	[GCC_USB4_2_TMU_CLK_SRC] = &gcc_usb4_2_tmu_clk_src.clkr,
->  	[GCC_VIDEO_AXI0_CLK] = &gcc_video_axi0_clk.clkr,
->  	[GCC_VIDEO_AXI1_CLK] = &gcc_video_axi1_clk.clkr,
-> +	[GCC_UFS_PHY_RX_SYMBOL_0_CLK_SRC] = &gcc_ufs_phy_rx_symbol_0_clk_src.clkr,
-> +	[GCC_UFS_PHY_RX_SYMBOL_1_CLK_SRC] = &gcc_ufs_phy_rx_symbol_1_clk_src.clkr,
-> +	[GCC_UFS_PHY_TX_SYMBOL_0_CLK_SRC] = &gcc_ufs_phy_tx_symbol_0_clk_src.clkr,
->  };
->  
->  static struct gdsc *gcc_x1e80100_gdscs[] = {
-> 
-> -- 
-> 2.34.1
-> 
 
 -- 
 With best wishes
