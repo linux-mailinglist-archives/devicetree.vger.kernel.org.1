@@ -1,115 +1,107 @@
-Return-Path: <devicetree+bounces-250637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071C3CEA984
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 21:19:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E91ECCEA98D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 21:19:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 506CB301764B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 20:18:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC9F8301225C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 20:19:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1AC279DAB;
-	Tue, 30 Dec 2025 20:18:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66DAF2E6CA5;
+	Tue, 30 Dec 2025 20:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="h0zrAwUb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FuPDT1nx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A44D1E8329;
-	Tue, 30 Dec 2025 20:18:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D80823D290;
+	Tue, 30 Dec 2025 20:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767125937; cv=none; b=shMdjiAujyDfX2jEJi5Kjn3orrQOVXUJ00nj8nUI6EPbHbkAYvCEUcjnIxU04TgHEQVAUtFnkYdXrzgo1UrzOM9DFUfk77PlS/dLeZXt9wOx3Sjp4MYKAzLgGJt+0N8Eaa+fMNNaV6XWkPritQhz/YLpAJBrQItFOX2VwzxP4XQ=
+	t=1767125978; cv=none; b=b4MGfjRyKkQVAlvsC/53ahc4cNAlXHig0R72zdB2FqiC/oI25VfaV6x+smfxs3FS6+hzF0jgwBbqcwHd/Yd4jefp4Oe+0usswRITMr7oNdefJpMnQLEQzPgIEeB5IKmcNHSmnghxmt7AU+zayGQ0xpkdLgNKoCFe2VUuZFsYn9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767125937; c=relaxed/simple;
-	bh=0IH2d6n06/PtQC0NQfXK5mHr1ajMLfWNqsF4W74Sorg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tpNJFbjHBlwcW6BfhEITGkx4g+5wIHhjNawF7ZLMpCKMv8eTPn8Vt6BflqjcTwXPPSGqoJKKZmMA8QXAsn2bv7W4wMA2ATB8GTUkcG6x6ZE0g5VEZXBM9q2CyNYMZ1n9zRTkFOpfp8ZwZtfB6ZWo455BIGeuz4l2IhZbhsdHnnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=h0zrAwUb; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767125935; x=1798661935;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0IH2d6n06/PtQC0NQfXK5mHr1ajMLfWNqsF4W74Sorg=;
-  b=h0zrAwUbKvUh5rLFv7xOuaGmYxhwjRzrq8SB1WvmcMVN55Rx4KasL0Oo
-   WoGGS6lWHqwEQPVNrJ9nH0iLq3RG9knL7+jLymEjmdeRS7QOyP7x0ooOE
-   qWsnGxqSkhGkOdvHTbpPfM2zTFiuuNWzlftKNdI6bmkYMD7xtUjqNmKr5
-   gljzNPn9TphJB+SgXZLff9b7UGo5X9t5868J0s9TMcUbkDGEH9on/QlwS
-   OexO7yjlRNKf5MgXdFBvwzQvM5WUph15/vfgssBV7JWe9BQGGMsP6W4ed
-   pU8iIvtuHjAOwtOQV4g+gEIMnizpggtI3+l/BWUT1qQttKkl1Rh29aIzS
-   w==;
-X-CSE-ConnectionGUID: Kt7hlXmgSAmmjhqG96qptQ==
-X-CSE-MsgGUID: iDNbu93zTlyEPYh2sFI5mg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="86293631"
-X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; 
-   d="scan'208";a="86293631"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Dec 2025 12:18:54 -0800
-X-CSE-ConnectionGUID: 5R+pX459R/yXjV8yqd/QVA==
-X-CSE-MsgGUID: I79DhSofSV26XM3mhe1CBw==
-X-ExtLoop1: 1
-Received: from lkp-server01.sh.intel.com (HELO c9aa31daaa89) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 30 Dec 2025 12:18:51 -0800
-Received: from kbuild by c9aa31daaa89 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vagB7-000000000gH-238c;
-	Tue, 30 Dec 2025 20:18:49 +0000
-Date: Wed, 31 Dec 2025 04:18:07 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yu-Chun Lin <eleanor.lin@realtek.com>, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, p.zabel@pengutronix.de, cylee12@realtek.com,
-	jyanchou@realtek.com
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	james.tai@realtek.com, cy.huang@realtek.com,
-	stanley_chang@realtek.com, eleanor.lin@realtek.com
-Subject: Re: [PATCH 4/9] clk: realtek: Add support for phase locked loops
- (PLLs)
-Message-ID: <202512310333.lXVsAtZ9-lkp@intel.com>
-References: <20251229075313.27254-5-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1767125978; c=relaxed/simple;
+	bh=Z4EYAHZGekQfOTPPZ/bCzt9bocu5SLTKB2VfqWaqPQI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=duw0Gpgbr9l92ZNc0VaZne9Cp45lTIoAUKy16nwfRzAF9OaFimRrfYC+RnMSriuPXSPI//z2Xt7/ATTrXVmSBgiWCUReT7nZ2Hy1SdwD3/lYqoT1ZCsKb9egOjpSyQgdDxqjSVeo+tzfOKMznKCXBo1a+Yop8bOgH6CQU+rGPCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FuPDT1nx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D7BEBC4CEFB;
+	Tue, 30 Dec 2025 20:19:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767125977;
+	bh=Z4EYAHZGekQfOTPPZ/bCzt9bocu5SLTKB2VfqWaqPQI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=FuPDT1nx3mnhbx5G6nVRwGP+rZKcupMg1opSbM+WhfQGKspsTsikkcH1pfAoFAYm5
+	 WstWU7fCgbElEXy0uiEPvNqZaf7hLC12Y9fM7Xi3irNv+FoXakDPDpFynLNJT8C8dT
+	 eNe3EwjqmcyrPc0UlRzMPibHFSVCBXxpbgSw1b/9V99n4y4mwyRQNKZ3rWmex8j5go
+	 SzUfF4cc7gCN9bcszXfkhJJiN6KM8OgifqAmb/fwBZXBvBN595CLPe64YnMC9aBfgi
+	 d7WCrFRIjJfpznNY5//NgK2BoRXpzqgJoUBjD6cl6D+5hMy0IXbvFIevPDfDH2lX+E
+	 SCg21RkqXajtQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C38A0EE0203;
+	Tue, 30 Dec 2025 20:19:37 +0000 (UTC)
+From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
+Subject: [PATCH 0/3] arm64: dts: rockchip: Enable the NPU on some rk3588
+ boards
+Date: Tue, 30 Dec 2025 21:19:29 +0100
+Message-Id: <20251230-arm64-dts-rockchip-rk3588-npu-enablements-v1-0-d38b182a59e3@pardini.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251229075313.27254-5-eleanor.lin@realtek.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANIzVGkC/x2NywrCMBAAf6Xs2YU8Wg3+inhIk9UutduwUSmU/
+ rvB4zAws0MlZapw7XZQ+nLlVRrYUwdpivIk5NwYnHGDdd5g1OXcY35X1DXNaeKCOvshBJTyQZI
+ 4vmghad6SC95kR5fRQOsVpQdv/9ftfhw/usSzmnsAAAA=
+X-Change-ID: 20251230-arm64-dts-rockchip-rk3588-npu-enablements-1e2830d2e7b0
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Ricardo Pardini <ricardo@pardini.net>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=878; i=ricardo@pardini.net;
+ h=from:subject:message-id;
+ bh=Z4EYAHZGekQfOTPPZ/bCzt9bocu5SLTKB2VfqWaqPQI=;
+ b=owEBbQGS/pANAwAIATteP+Oex+3pAcsmYgBpVDPYd76x2JB906NyNHFhO6NnaxWsW+lO80Uql
+ Ji2PwKD1t+JATMEAAEIAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCaVQz2AAKCRA7Xj/jnsft
+ 6UMPB/0aiS04N/PRQ7spsEThwruzr2esSQwAH9xDCV4eZcHZQTkVVHaH5RnanJ28d3fabRgZmSy
+ 1BmvrsltvRrqNQ3rI1Kay3RfkvZU2vn0IMEMA985DFXBjCEV43ZGCNMd2qX0JLBUZ73Q1lA4a3R
+ gtXRZZqOyY368C6QyJWVjFWfQjPzWtt4X8DKKQzcWLpC6O2FJWCA1NHr/0gr6MOgpwSViPL9P+C
+ fwKllrnSZeMRvupYc0FHxO5Z0JiGVY6fjB9mSAjzWSMszf6ZlvEB3ZLmfF2PdRTQKlH5FDx5KDl
+ j0E+pA6o3ysj2lr2BwqUO0AVil5ptuiZRO96Ot1J6lQWk7Bz
+X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
+ fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
+X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
+ auth_id=588
+X-Original-From: Ricardo Pardini <ricardo@pardini.net>
+Reply-To: ricardo@pardini.net
 
-Hi Yu-Chun,
+This series enables the NPU on a few Rockchip rk3588 boards.
+In every case here, the required regulator was already described.
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
+---
+Ricardo Pardini (3):
+      arm64: dts: rockchip: Enable the NPU on NanoPC T6/T6-LTS
+      arm64: dts: rockchip: Enable the NPU on FriendlyElec CM3588
+      arm64: dts: rockchip: Enable the NPU on Turing RK1
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on linus/master v6.19-rc3 next-20251219]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+ .../dts/rockchip/rk3588-friendlyelec-cm3588.dtsi   | 34 +++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 35 ++++++++++++++++++++++
+ .../arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi | 34 +++++++++++++++++++++
+ 3 files changed, 103 insertions(+)
+---
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20251230-arm64-dts-rockchip-rk3588-npu-enablements-1e2830d2e7b0
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yu-Chun-Lin/dt-bindings-clock-Add-Realtek-RTD1625-Clock-Reset-Controller/20251229-155549
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20251229075313.27254-5-eleanor.lin%40realtek.com
-patch subject: [PATCH 4/9] clk: realtek: Add support for phase locked loops (PLLs)
-config: i386-buildonly-randconfig-001-20251230 (https://download.01.org/0day-ci/archive/20251231/202512310333.lXVsAtZ9-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251231/202512310333.lXVsAtZ9-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512310333.lXVsAtZ9-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> ld: drivers/clk/realtek/clk-pll.o:(.rodata+0x80): multiple definition of `clk_pll_ops'; drivers/clk/qcom/clk-pll.o:(.rodata+0x100): first defined here
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Ricardo Pardini <ricardo@pardini.net>
+
+
 
