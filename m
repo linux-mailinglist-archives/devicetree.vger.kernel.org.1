@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-250638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 212B8CEA98E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 21:19:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9B5ECEA993
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 21:19:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BFFE8300F705
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 20:19:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1AFE9301E590
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 20:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C0F2E62A4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 689AB2F1FE1;
 	Tue, 30 Dec 2025 20:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sAzYxTEh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oqjkSSoq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D79C1C6FEC;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D88E2773DE;
 	Tue, 30 Dec 2025 20:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767125978; cv=none; b=IHW3oER52kCEiXJKjqZqC4Dahqjivcgh7YKYlAQmzhLQRDg+Cec/+rFSM49d67wB7zG8MiHgWFhKnGwFJ2zgC63Cos4vqQtXZwgRW/4E7KgBdz0VNYcspavxb805K9lM7dA1SlV9GLWvk9ZtMaeBC57+U5sYi5byKQzmcF/IV3Y=
+	t=1767125978; cv=none; b=R0K0BHSGWwCxuX5a1Z8i30h5zfcDB/w1wq5L8q22295Yp1f0TUTi+H6BNE5f7xx/6LGE31b3YONe0aqcgfxO+e8Y07qTO64IUxv7zdT1lwjHngC74rOzQHnPQ0AkA7y8sElotwCm317gNnqAadfxfoyk36AsZdt3L2pRAbQwoaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1767125978; c=relaxed/simple;
-	bh=/+9+iLOtFvLLN5b53KbFCJPBG7n0Tv9fjrgIxHLR3G0=;
+	bh=R4J2Kd1UHZkJVcCVNxCIB6NX00uFzTXdyR0Tdjo8mN4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aT265jG7tHwW4oaQ+RMAoFmoy2+mtle2Ahw44PT1RbolZm+o/mvphg6AX26VZyNY7MppSRVM+lIxi20JQsGcR07SycQ+dB4zsv1QTfB57szbnGPk8N1mAnlZqUC5FIRSbFgfcW3izHogPso4txIrpMyxgMWj0EbjhaIT0ho9FY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sAzYxTEh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E453EC116D0;
+	 In-Reply-To:To:Cc; b=gU3R1AuT2AQw1FTQYkzuCxL8qYuNV2nfMwr87+3Ye2qXMWXdhtuImoeVE7DEC+7exntJsw6cM+0HHVLFnL7h2AQbMVWBu6rWg2MisfFbhb7IOx+nyscEhgpvYQin70qLUn7ETwkPRTFTyPBJNPHo1ajA2Uj3qTHWGefS4/A4rCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oqjkSSoq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EAD1BC16AAE;
 	Tue, 30 Dec 2025 20:19:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767125977;
-	bh=/+9+iLOtFvLLN5b53KbFCJPBG7n0Tv9fjrgIxHLR3G0=;
+	s=k20201202; t=1767125978;
+	bh=R4J2Kd1UHZkJVcCVNxCIB6NX00uFzTXdyR0Tdjo8mN4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=sAzYxTEhgys0QWIhqy5nFnpXnieAFdNWgWsVCP2E4fpVVzead7ij37e4djarS3w/j
-	 Jw/M2EIdt5NyiF8d4NBew7I/5Jnmv1UbaYiRPjUNDUAKqpD6wIciXmraTBLvlIOCWN
-	 gdjvYswhuPihxsEKtnM7/okHNr+OlX0tf1ksQV2bbxN92gbP22E701KxqpPHYBhudJ
-	 z9FF8ODLN/nAsr3DzfF6rP5b2+DnYyVtTIcoky6DlPr40dpydPaBVrwOCU/tp+eOML
-	 G2I22sfONYy7AyiQhaKM+f78uN6FiW8FHAhVGLL92p0fL2uY8DhlUrMjbBcBoDc3Lq
-	 6VQjgqPqe+17A==
+	b=oqjkSSoq1Kso1xXL9jLsH3I/a2G0FkriyF1C/edLkLUigkyK8nJYPLQNNb5Zd1Bio
+	 ASlYTGw1/aGLjU6k0aaCYEUvRMrR58exUZgebwzjV5PKhhOTc8JQjzrAyDugQzJKu/
+	 /xjF2eSacS9fBA4k/nuWECcHAbR8F5gQ8M7McoXgu77BtyXqRCo0QfaujV2guJOaVH
+	 lO2HsayYYawWy3pBq/P/AfBD/j/7QnEb1mOhzRlvvFghlLYeu2E4skw/0FabPpuASX
+	 7qgui3Aoo7T5Fp5EqoreUIpcu4/DxKwviYMB6MB5T53ypg5BmBPFjUfxFVtEK+AVk+
+	 zfY8TphCuAO5Q==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D1F2AEE49BC;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DF47DEE49BD;
 	Tue, 30 Dec 2025 20:19:37 +0000 (UTC)
 From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
-Date: Tue, 30 Dec 2025 21:19:30 +0100
-Subject: [PATCH 1/3] arm64: dts: rockchip: Enable the NPU on NanoPC
- T6/T6-LTS
+Date: Tue, 30 Dec 2025 21:19:31 +0100
+Subject: [PATCH 2/3] arm64: dts: rockchip: Enable the NPU on FriendlyElec
+ CM3588
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,7 +54,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251230-arm64-dts-rockchip-rk3588-npu-enablements-v1-1-d38b182a59e3@pardini.net>
+Message-Id: <20251230-arm64-dts-rockchip-rk3588-npu-enablements-v1-2-d38b182a59e3@pardini.net>
 References: <20251230-arm64-dts-rockchip-rk3588-npu-enablements-v1-0-d38b182a59e3@pardini.net>
 In-Reply-To: <20251230-arm64-dts-rockchip-rk3588-npu-enablements-v1-0-d38b182a59e3@pardini.net>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -63,16 +63,16 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Ricardo Pardini <ricardo@pardini.net>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1346;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1367;
  i=ricardo@pardini.net; h=from:subject:message-id;
- bh=+QiHWgqrqCvAOEg9ZYrtyyD9Tb3C3HqtujZ2zGhDDrA=;
- b=owEBbQGS/pANAwAIATteP+Oex+3pAcsmYgBpVDPYgaaZKkBzk5d1Kj1a5IICn5fE5aQRqf38z
- EgnUptOBG2JATMEAAEIAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCaVQz2AAKCRA7Xj/jnsft
- 6SqoB/9N+rz+MEY6VoUs2Bu5JmiCmkTLSYSQ1vx7/Z7MNRq5hPaQFpYyJS21PQaubUXdeiqK8wy
- rmCwpXRMgyRZqOzJCMtzi1ujM8LgE1dJpYA2qriq+joLRWMYjVSNJeuA2XM6YJbwohD9eyge3X2
- waBMxjEBtXGOfwqco+U/KHT25sj2m+oTmXzZy6XR70XRsKyVZ55u2KnXYxaw97d598fkRAb3VaM
- tsqvrrYm8+ntXs+UxH3i9Q4NWrjbkTy1b9FJZttfwr8Q3sVikDw0Gl+EMBO3S/Ut1dVfmCzwFZk
- IfUp7KGg3dK6B+B8BspLcwNgYF29fKccdRuvhpdyAh6tnQRR
+ bh=LYtJ7Pl+FdA/I8ghxhk7iPyl3TvBTU0gE+wWAtE6hso=;
+ b=owEBbQGS/pANAwAIATteP+Oex+3pAcsmYgBpVDPYbWywt+jyTrZT7MoyS345KuCIUX9AjgsQm
+ a71EhpBcliJATMEAAEIAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCaVQz2AAKCRA7Xj/jnsft
+ 6eLVB/9KYU1PSKxm4IV0JHX+267cedhnc0K/IoGKsPhWJlVt8g7WQG4/+brNEcFClJGlDA0M6ab
+ UGabUfRnRQMaUYPn1WniBFk/zO/D5zONLg9+dehlcT8MsDTwzLWa3fD6ja8t1m/oZzuQOCD7KAg
+ UDQg3y+bD/9AlElPqmAxNGEBJr9vhe0W/JmI+lBaKYiNQnOZqbbLADyzH+inpZ9BaSSYTpDq2RH
+ H2b9+IxE62JJisBI6zDCGkI4hMigQkt5go7HBj4aWRKFIUY4RI4TOwo5VpoH7lBCz0SZkAMpI9i
+ YQ2oALRuEMaKhtCOU8jpsHwddcNo+A6kTKgMK1YE1oUOhKKW
 X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
  fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
 X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
@@ -82,19 +82,19 @@ Reply-To: ricardo@pardini.net
 
 From: Ricardo Pardini <ricardo@pardini.net>
 
-Enable the NPU on FriendlyElec NanoPC T6/T6-LTS boards.
+Enable the NPU on FriendlyElec CM3588.
 The regulator vdd_npu_s0 was already described.
 
 Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 35 ++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ .../dts/rockchip/rk3588-friendlyelec-cm3588.dtsi   | 34 ++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-index fafeabe9adf9e..93bd479118e92 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-@@ -629,6 +629,10 @@ &pd_gpu {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588.dtsi
+index af431fdcbea7a..46e33e666bb3d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588.dtsi
+@@ -264,6 +264,10 @@ &pd_gpu {
  	domain-supply = <&vdd_gpu_s0>;
  };
  
@@ -104,9 +104,9 @@ index fafeabe9adf9e..93bd479118e92 100644
 +
  &pinctrl {
  	gpio-leds {
- 		sys_led_pin: sys-led-pin {
-@@ -706,6 +710,37 @@ &pwm1 {
- 	status = "okay";
+ 		led_sys_pin: led-sys-pin {
+@@ -294,6 +298,36 @@ sd_s0_pwr: sd-s0-pwr {
+ 	};
  };
  
 +&rknn_core_0 {
@@ -138,7 +138,6 @@ index fafeabe9adf9e..93bd479118e92 100644
 +&rknn_mmu_2 {
 +	status = "okay";
 +};
-+
 +
  &saradc {
  	vref-supply = <&avcc_1v8_s0>;
