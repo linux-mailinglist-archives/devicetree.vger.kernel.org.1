@@ -1,80 +1,113 @@
-Return-Path: <devicetree+bounces-250362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B91CE891B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:34:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ED8ACE8939
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 03:38:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 77E4B3001BDF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:34:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E962E3020C6D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:38:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2F0C293B5F;
-	Tue, 30 Dec 2025 02:34:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ktNMvPaO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C122E2E7F14;
+	Tue, 30 Dec 2025 02:37:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F14322F16E;
-	Tue, 30 Dec 2025 02:34:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F9922F16E;
+	Tue, 30 Dec 2025 02:37:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767062083; cv=none; b=syZWIABUI/w29HosshDq9kyw5DUwJb3BqGjMsLGk7Qr9NTVGrepFpcw6Ln0wilLgUWcupxWIvDawAwm9CEAzLKH3cPv+B/wPRL+HZOBO9Zj/RZYRo/OI4E+QqXooM7jZ2GvUbKaBgF1GD5Id0Q9ryTGQ+GoaM94ma/FN/QIutXM=
+	t=1767062279; cv=none; b=hzg1N52jkzS6ULNqmMYqvSHqNadeG6zXd6R5FnIf+7fspw6Dj2nDU8PyjnRsSTYETrqmUVOmsebUMC99cMwntdIQIXCLrJPO4Z4Q4ZR2owxR3jKgvD9kwj3tELO7iIo+7WX/VuXpv1hbcMH2MM5IC6Bew5tD3VFCtrPw/Sm42lM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767062083; c=relaxed/simple;
-	bh=wJVGkSrJGS6nKQTsVQJ8xPBvCeoZSgJcaM+oaFSM/jg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=btDzXUy+YhhfWyzDC69ZVDqMS/uWoTa63LXzAOGx0pa8LfbRK1bvnsL/ZJqmW+AXrZ4g04hKrATgYdkGgEamaWLO7G7UYTy1Y/ys43FzMJJfBuvU4N5GFJOS+cMgwXnP+eeDyWyqKF5ZvwsYn1ASRpeB65W9oc0AzXokTAZeG2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ktNMvPaO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2685C4CEF7;
-	Tue, 30 Dec 2025 02:34:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767062083;
-	bh=wJVGkSrJGS6nKQTsVQJ8xPBvCeoZSgJcaM+oaFSM/jg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ktNMvPaOCjzqObrT8Wed4EYqEdN6p88QowFBNCc+ZyS9kc6fYv6uXAI3w4KHWd5gS
-	 eTVSHihz2u+0N64QWEbFxl8EPUnA20jYo5ibiWosN9S0oZP6ODtFJK5GSpeTTSSeR5
-	 elfzsA80ANBeKfYFTaamPDALAyR3aojZkaItz9QXU+r4oFGrOCOHlk8LIXKUZq6Pew
-	 4yPxKYhuETrB2pERb5JZnIWPdNfflO8rw+PQwR2tGV7TDi5xw7qwpZjLUhypfj3sbk
-	 rXc3Z2XagWu6CsOLAulAgE7ynmoTL6s+Fox1rgh1UpoIaX77B1ty3N+5L+ERL3hPGl
-	 XFVGix9gBN8tA==
-Date: Tue, 30 Dec 2025 10:34:35 +0800
-From: Shawn Guo <shawnguo@kernel.org>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	s.hauer@pengutronix.de, festevam@gmail.com,
-	alexander.stein@ew.tq-group.com, frank.li@nxp.com,
-	devicetree@vger.kernel.org, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V2] arm64: dts: imx8qm-ss-dma: correct the dma channels
- of lpuart
-Message-ID: <aVM6O4OMk0I9F0Cc@dragon>
-References: <20251203015956.116364-1-sherry.sun@nxp.com>
+	s=arc-20240116; t=1767062279; c=relaxed/simple;
+	bh=VSXKm31hQatW1zCEEqtxSmNpwWjE7Ln+95Q6lbKSUXM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ytc1rSS/FfxaRB8cGFb+Tga5z+tA2RZgNhPM4GZj2H8IHNRoP4o1K4I/PDiTbCI4XxF6ItdWq9TnjMBkMKy1Wo+Imqremd0MmmjMU1it+2CF0mAMNL6/ttkBILDEYzM6kdwS0HZKcawhf9sMAXM+UfumDzZL/Q3cSGrNTIxpyYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [223.160.207.108])
+	by APP-01 (Coremail) with SMTP id qwCowACXQW3oOlNpIqZOAg--.5334S2;
+	Tue, 30 Dec 2025 10:37:31 +0800 (CST)
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: conor@kernel.org
+Cc: vkoul@kernel.org,
+	gregkh@linuxfoundation.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	neil.armstrong@linaro.org,
+	krzk+dt@kernel.org,
+	jiayu.riscv@isrc.iscas.ac.cn,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-usb@vger.kernel.org
+Subject: [PATCH 0/5] Add USB support for Canaan K230
+Date: Tue, 30 Dec 2025 10:37:19 +0800
+Message-ID: <20251230023725.15966-1-jiayu.riscv@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251203015956.116364-1-sherry.sun@nxp.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qwCowACXQW3oOlNpIqZOAg--.5334S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7uF1UZryxGw18Jr1xJFyrZwb_yoW8XF4xpa
+	y2kFZxGrnrtF4aqF4fJF48ury3Z3Z7Jry3Gryaq3srXF1UAFy5Ja93JFy3Zw17GF47Cry2
+	vFsYkFy7GFyjyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 
-On Wed, Dec 03, 2025 at 09:59:56AM +0800, Sherry Sun wrote:
-> The commit 616effc0272b5 ("arm64: dts: imx8: Fix lpuart DMA channel
-> order") swap uart rx and tx channel at common imx8-ss-dma.dtsi. But miss
-> update imx8qm-ss-dma.dtsi.
-> 
-> The commit 5a8e9b022e569 ("arm64: dts: imx8qm-ss-dma: Pass lpuart
-> dma-names") just simple add dma-names as binding doc requirement.
-> 
-> Correct lpuart0 - lpuart3 dma rx and tx channels, and use defines for
-> the FSL_EDMA_RX flag.
-> 
-> Fixes: 5a8e9b022e56 ("arm64: dts: imx8qm-ss-dma: Pass lpuart dma-names")
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+Add support for the USB PHY and DWC2 IP which is used by Canaan K230,
+and made relevant changes to the DTS.
 
-Applied, thanks!
+This series is based on the initial 100ask K230 DshanPi series [1] which
+is based on the clock and pinctrl series. Check the details in the link.
+
+Link: https://lore.kernel.org/all/20251229061318.16756-1-jiayu.riscv@isrc.iscas.ac.cn/ [1]
+
+Jiayu Du (5):
+  dt-bindings: phy: Add Canaan K230 USB2.0 PHY DT schema
+  dt-bindings: soc: canaan: Add top syscon for Canaan K230 SoC
+  dt-bindings: usb: dwc2: Add support for Canaan K230 SoC
+  phy: usb: Add driver for Canaan K230 USB 2.0 PHY
+  riscv: dts: canaan: Add syscon and USB nodes for K230
+
+ .../bindings/phy/canaan,k230-usb-phy.yaml     |  36 +++
+ .../soc/canaan/canaan,k230-hisys-cfg.yaml     |  68 +++++
+ .../devicetree/bindings/usb/dwc2.yaml         |   3 +
+ .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  21 ++
+ arch/riscv/boot/dts/canaan/k230.dtsi          |  51 ++++
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/canaan/Kconfig                    |  14 +
+ drivers/phy/canaan/Makefile                   |   2 +
+ drivers/phy/canaan/phy-k230-usb.c             | 272 ++++++++++++++++++
+ 10 files changed, 469 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/canaan,k230-usb-phy.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/canaan/canaan,k230-hisys-cfg.yaml
+ create mode 100644 drivers/phy/canaan/Kconfig
+ create mode 100644 drivers/phy/canaan/Makefile
+ create mode 100644 drivers/phy/canaan/phy-k230-usb.c
+
+-- 
+2.52.0
+
 
