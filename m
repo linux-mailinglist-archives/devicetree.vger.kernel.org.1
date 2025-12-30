@@ -1,100 +1,78 @@
-Return-Path: <devicetree+bounces-250595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EA58CEA5D2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 18:51:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F607CEA5E1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 18:53:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2E4EE301C3CB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 17:51:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F0EEA3000B17
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 17:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB6852DC76E;
-	Tue, 30 Dec 2025 17:51:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB7B3191B7;
+	Tue, 30 Dec 2025 17:53:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="psHGBGa5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OrVh/PY7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E63F25A2BB;
-	Tue, 30 Dec 2025 17:51:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6120D296BB5;
+	Tue, 30 Dec 2025 17:53:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767117075; cv=none; b=dip9j1UfFuQMtmiNQdphrUOVhQZGaw2kgBeju7SQMRCMCMR+nyWP8k828fSbteaXeU88MotcVa4YCbmG4ooSiR7kd2AUJAsgin9r3wOggOi5547rQQRGvL66XfuMSHNejM1s3BpKVqQu/jneKhczATBOC/cWMV7Pbm8GFeFtknw=
+	t=1767117215; cv=none; b=cIXMf2IZ3RB9/fMN/L549CXVzG/nh0Z5TKbJNyRLJ8/wNyAKUs7iN6mSqmybvF9Kbjfcc4etSk4ZtlOGFlgXYgZHkrpZ+FY6QIRegJtAnPX9SSrGBGAuG/WAGh1vv04A8eCQSDiDZCpJXKfTObrpI29B8fZHZB2x6vRTYSalKMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767117075; c=relaxed/simple;
-	bh=+Jm5gOiNRo3DlkTtBRRBzyfiYFIqCwnDf+QqaHtlzjU=;
+	s=arc-20240116; t=1767117215; c=relaxed/simple;
+	bh=+N/IjSIDB5ejHj2ePTrKIdz05Jvs6mJBEoU2jFHEjFg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lmN/g+SKDCk6D+wgEIkP1NPXEzH0bwsZqZpPHoL662bAcYdLTDAMXqwLJUn8mK7546Bzi9wrAO6G8RSOhq6URtEkcxSjHXq8Fi6tos3I4vFFXlQj+IxdZH+9IUryeSV8kiWkJsmfWWXfYvP+KSRhQUW50kWdM3nXdYwsvDAhcsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=psHGBGa5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2796CC4CEFB;
-	Tue, 30 Dec 2025 17:51:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=i6UIQ4BMlhUwaPygt2uOWn96tD2j9QxOIC6hIuOcatOopqxfxWR2QN8e3Bz63ElDnHuf2arh2tFwMyW8vKdzW888AjK2uaxPRFR0KyCP9d2BNgXYqwDWlmp4taB4yWbTR57Eukm7aWV1e65zt7c9b5ISW2yct+wuwj0hO6tmaqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OrVh/PY7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0471C4CEFB;
+	Tue, 30 Dec 2025 17:53:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767117075;
-	bh=+Jm5gOiNRo3DlkTtBRRBzyfiYFIqCwnDf+QqaHtlzjU=;
+	s=k20201202; t=1767117214;
+	bh=+N/IjSIDB5ejHj2ePTrKIdz05Jvs6mJBEoU2jFHEjFg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=psHGBGa5aBiCXjFvO7o2uMCWg2NzyFa4lgJxvt86I26/VLlQBB3t78dxY7xVMNe6J
-	 TRAUBuKUpPsoM77UV2/tijok0lkoPKZvz9NORGbr/W22gOhGpaVL1C2e4OconegBvL
-	 DAPspdRYl5Uz2nTYMkDiceJhjluRcPKoDhwlrTM90IJ6hhaZ6X3BnrodUs6yj2pcVH
-	 +Ru8dy/Saem1iYvbx5nmiQmI3R7m7XOLVZ3jmGMO+jnl/LHYe2250ZutlN2v5EG9Br
-	 D/ICxZBlKIrrI5aBunjW7Xt9Y+osGv0xQgjvYMs4V5LHJsXNxkodmQ6FJXb+z0V4O7
-	 qGdZsKUgPovrQ==
-Date: Tue, 30 Dec 2025 17:51:11 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-Cc: cyy@cyyself.name, kingxukai@zohomail.com,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] riscv: dts: Correct the formatting issues about k230
- dts
-Message-ID: <20251230-married-spew-28b59d6b6dbc@spud>
-References: <20251227092355.42825-1-jiayu.riscv@isrc.iscas.ac.cn>
+	b=OrVh/PY7ejRXIMFdmu2fzHvatsSUKUI6jkfdZmwmXvRjXZMQlAG24v/vT+mwuSTZj
+	 JvmMJJYhnl992wkNpqBzMjPezPbMsO9FISnGe0hAlbI9hI0C4A7oviodt7GO6c8Cl8
+	 +F5JSqAv13sE4R+P3XXvCLFhqTYsCksIBycUsoRxVBRVckwgurscva4Or644cEqPMn
+	 aYTaOc8htK7Udk0AfJm2k9yhVQZWYW6X0tZbjEOWIatXuw7VBxtYZknApSVSQh9azG
+	 /lka5watD/jPIJkh8/om06MS25djB+LdyJFmr5SrUaDm0blE2yc7TJCYTkzv7jiMIu
+	 2Z7Z4pxNN9jzA==
+Date: Tue, 30 Dec 2025 11:53:33 -0600
+From: Rob Herring <robh@kernel.org>
+To: Oder Chiou <oder_chiou@realtek.com>
+Cc: cezary.rojewski@intel.com, broonie@kernel.org, lgirdwood@gmail.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	alsa-devel@alsa-project.org, flove@realtek.com,
+	shumingf@realtek.com, jack.yu@realtek.com, derek.fang@realtek.com
+Subject: Re: [PATCH v11 3/4] ASoC: dt-bindings: realtek,rt5575: add support
+ for ALC5575
+Message-ID: <20251230175333.GA854335-robh@kernel.org>
+References: <20251226083914.1052653-1-oder_chiou@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Fzs99Tn71rtjzI/i"
-Content-Disposition: inline
-In-Reply-To: <20251227092355.42825-1-jiayu.riscv@isrc.iscas.ac.cn>
-
-
---Fzs99Tn71rtjzI/i
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251226083914.1052653-1-oder_chiou@realtek.com>
 
-On Sat, Dec 27, 2025 at 05:23:54PM +0800, Jiayu Du wrote:
-> Correct the errors in the spacing format, and move the aliases from
-> the SoC's dtsi to the board's dts, since it's more standard.
->=20
-> Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+On Fri, Dec 26, 2025 at 04:39:14PM +0800, Oder Chiou wrote:
+> Audio codec with I2S, I2C and SPI.
+> 
+> Signed-off-by: Oder Chiou <oder_chiou@realtek.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->=20
-> This patch is based on this initial support for Canaan Kendryte K230
-> series v6[1], and it is used to fix the [PATCH v6 10/11] of that series.
-> Although the latest version is v8, this problem still persists.
-> And this patch hasn't been merged into Conor's branch yet.
->=20
-> [1]: https://lore.kernel.org/all/tencent_DF5D7CD182AFDA188E0FB80E314A2103=
-8D08@qq.com/
->=20
-> Thanks for your time and review.
+>  .../bindings/sound/realtek,rt5575.yaml        | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
 
-I put this on my k230-basic branch, thank you!
+Where's the rest of the series? You are missing an In-Reply-To header 
+and that breaks the tools (b4).
 
---Fzs99Tn71rtjzI/i
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaVQRDwAKCRB4tDGHoIJi
-0k/SAQC9z3rg63r/0gCH1jWIGTOh0S3bKuchIBV85OX9y9h65QEAv8dpF++quR7I
-oodym/lgbKw60+ut+6adieLXeIlPmwM=
-=u1+t
------END PGP SIGNATURE-----
-
---Fzs99Tn71rtjzI/i--
+Rob
 
