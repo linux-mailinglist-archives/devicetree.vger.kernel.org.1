@@ -1,137 +1,167 @@
-Return-Path: <devicetree+bounces-250333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7F4FCE87A6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:26:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71291CE87C3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 02:32:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 56C223001E1C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:26:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 008FF3010CD1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 01:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE76E1EEA31;
-	Tue, 30 Dec 2025 01:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE6A1D5CC9;
+	Tue, 30 Dec 2025 01:32:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uh/T6IlS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t0gWSqfe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4F417B50A;
-	Tue, 30 Dec 2025 01:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46D517C77;
+	Tue, 30 Dec 2025 01:32:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767057971; cv=none; b=BXZRWlxsri/PplgpcYrUWjLyJ4mVWRaoK3HnW81EQQqVZyYJprqe2W5yyYH3X3YQAhLi+bP7rvvGg8uexcjfEWRqsp+sqabgM+2ylQZA0/FCbWifOYkrxIi6yFMUvioyWBHAWOR0lfnSnOXuPHpuJSgHLrMU+ZpZ48dw706tloc=
+	t=1767058346; cv=none; b=WMMzHEJYel6odpsDexb6yPmTP1mJbXIzQqA656U3Oyv19ymPpdsKFqtlQKBxT5GK84VtyGKqp6C8+5KuzTwkGK9stU71UDfWaFHsqy48ib3wdrCbsTWAlvWeinCvHSy8CNEDW8fGNgcKkWImxQK8BeaF3gfy+OrKcZshamQqnfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767057971; c=relaxed/simple;
-	bh=CE7nLYnKD16EvX7bU+H74c13F/QssNUvdCvSj8cuGeY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=j77gsh0o0r/1pPAWB8exu4ye8I8JAvpH6PtDQ41JOs1B0uklo/kRSFSG+Jt/zHkXasNUDr7sZAU981VqlWs0l+dhVCz08AN2sbW8vrOyAwpQB0zf4oOZpCP0U60+IVM9mqg2vbMEkOSM7363Dhxl7QEtrKAmy/aWx+YQKDEv9jQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uh/T6IlS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09451C4CEF7;
-	Tue, 30 Dec 2025 01:26:10 +0000 (UTC)
+	s=arc-20240116; t=1767058346; c=relaxed/simple;
+	bh=8GC9+1cPgKA6OlXPNo/vqRfC2edlTNPVVVG293aNUF8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mjYt9hPCEfb8n0jTQI9M27qz92GuCAPujLgiwqqjVQui1MxhueGctJ0YfJDAKI1UN5Wbp3/Dld5ZVJ2Z0i2xOeXXwIkXyMbdZtbi55ZtY0uQDoDv7o+C/VtXKIUjtBmrSuaEfL4YrGlLffy23kkcFExtwP2VI6o5eg+QL/Ps7pY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t0gWSqfe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16129C4CEF7;
+	Tue, 30 Dec 2025 01:32:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767057971;
-	bh=CE7nLYnKD16EvX7bU+H74c13F/QssNUvdCvSj8cuGeY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=uh/T6IlSutUcU5fDHTctPDsCdbv4rTJ7Wcw3bwSkRczFQssF4pL6HVNzOL5o3/rRK
-	 mLy+XGk3YmAsfA2P8dRZz9htFvCmYk0qLWWO8rV9q9QiwUGNkZdZEg6jUcq3Azy82N
-	 VEctyAjinNiuo0F9un27f+vBNCTiwapnvgMOsp3Wblm2a4FTRM4DNi3ltf4lxYrvrV
-	 EO4fts1KeCqJd9fMeqgSgHxoJFAYaktaKHljp3xnm27U/CFcUQNPPupTmoSlQWZhI3
-	 YdrP8mDANOs8PD7OSv6YbLrxM0Aaz4vACMv48bk3kESIIOTiPu1vXK5sMnWUwr7+xW
-	 MQDhyerhf2Low==
-Date: Mon, 29 Dec 2025 19:26:10 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1767058346;
+	bh=8GC9+1cPgKA6OlXPNo/vqRfC2edlTNPVVVG293aNUF8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t0gWSqfeZ5wpv1aoDOkKa0nd/G1HAxtAdbI+iNPqRs1+zmOyCOZNucc+Ftxn/Igxt
+	 JQVD1uqZEeMDo4iT2QSP/ia54kdSSTiH5HUwQrhoux6B512R1fzshk69Rj9/0bOsI9
+	 FbbrLt6fOBtnryWnsTmTR1w+AhWCznx/h9CnSqGRG3oAG6WBP35dzKkXVSsYiEGRC4
+	 rqwbdGEvnMUYzT6zE+27R6hZEvBG1LAUeUssqFOLGxZTT+WMeJZitkPMER4ftd50eG
+	 DM1JSAfSzrAxFDioeWU1wlretsnK4IMmq3JzptubpbQU0rszNFn0BwckanbfMOBRlT
+	 BWX/vMDN8QyAg==
+Date: Mon, 29 Dec 2025 19:32:25 -0600
+From: Rob Herring <robh@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
+	Baojun Xu <baojun.xu@ti.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev
+Subject: Re: [PATCH v2 2/7] ASoC: dt-bindings: update tdm-slot.txt references
+ to tdm-slot.yaml
+Message-ID: <20251230013225.GA3037280-robh@kernel.org>
+References: <20251221-tdm-idle-slots-v2-0-ed4d96413aec@gmail.com>
+ <20251221-tdm-idle-slots-v2-2-ed4d96413aec@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Andriy Shevencho <andriy.shevchenko@linux.intel.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, lee Jones <lee@kernel.org>, 
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Jonathan Brophy <professor_jonny@hotmail.com>, 
- Radoslav Tsvetkov <rtsvetkov@gradotech.eu>, devicetree@vger.kernel.org
-To: Jonathan Brophy <professorjonny98@gmail.com>
-In-Reply-To: <20251230003250.1197744-4-professorjonny98@gmail.com>
-References: <20251230003250.1197744-1-professorjonny98@gmail.com>
- <20251230003250.1197744-4-professorjonny98@gmail.com>
-Message-Id: <176705797007.3053564.852280537388416393.robh@kernel.org>
-Subject: Re: [PATCH v4 3/7] dt-bindings: leds: Add virtual LED group
- controller bindings
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251221-tdm-idle-slots-v2-2-ed4d96413aec@gmail.com>
 
-
-On Tue, 30 Dec 2025 13:32:40 +1300, Jonathan Brophy wrote:
-> From: Jonathan Brophy <professor_jonny@hotmail.com>
+On Sun, Dec 21, 2025 at 07:35:58PM +1000, James Calligeros wrote:
+> Ensure that all references to tdm-slot.txt have been updated to
+> tdm-slot.yaml, and are schema-compliant.
 > 
-> Add device tree bindings for the virtual LED group controller that
-> provides priority-based arbitration for shared physical LEDs across
-> multiple virtual LED instances.
-> 
-> Bindings for the virtual driver are not describing hardware LEDs they
-> describe virtual devices made from groups of hardware LEDs created from an array
-> of LED phandles.
-> 
-> Normally the device tree is used to describe hardware not virtual hardware
-> but it is particularly useful in situations where you require an LED to be a
-> specific color by mixing primary colors, such as multi element multi color LEDs
-> to be operated from a device tree binding or a single trigger.
-> 
-> It also becomes useful with multiple LEDs operating the same indicator such as
-> ring of light indicators, led rope where the LEDs are driven From different GPIO
-> outputs unifying the control that can give basic indication during system startup,
-> shutdown upgrade etc...
-> The controller implements winner-takes-all arbitration where only the
-> highest-priority active virtual LED controls the hardware at any given
-> time. This enables multiple subsystems (boot, error, status indicators)
-> to request LED control without explicit coordination.
-> 
-> Binding supports:
-> - Multiple virtual LED children with independent priorities
-> - GPIO, PWM, I2C, and SPI physical LED devices
-> - Multicolor and standard (fixed-color) operating modes
-> - Global ownership tracking to prevent conflicts
-> 
-> Example configurations include:
-> - High-priority emergency/error RGB indicator
-> - Medium-priority system state RGBW indicator
-> - Low-priority warm white fixed-color indicator
-> 
-> Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-> Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
+> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
 > ---
->  .../leds/leds-group-virtualcolor.yaml         | 170 ++++++++++++++++++
->  1 file changed, 170 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+>  .../bindings/sound/imx-audio-card.yaml   | 14 ++++++--------
+>  .../bindings/sound/simple-card.yaml      | 14 ++------------
+>  2 files changed, 8 insertions(+), 20 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+> index 3c75c8c78987..eb702f48d694 100644
+> --- a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+> +++ b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+> @@ -31,6 +31,12 @@ patternProperties:
+>          $ref: /schemas/types.yaml#/definitions/string
+>          maxItems: 1
+>  
+> +      dai-tdm-slot-num:
+> +        $ref: tdm-slot.yaml#/$defs/dai-tdm-slot-num
+> +
+> +      dai-tdm-slot-width:
+> +        $ref: tdm-slot.yaml#/$defs/dai-tdm-slot-width
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Drop these and add just '$ref: tdm-slot.yaml#' up a level (with 
+'properties').
 
-yamllint warnings/errors:
+You may need 'unevaluatedProperties' or you can put 
+'dai-tdm-slot-num: true' here if you want to define which properties are 
+used.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.example.dtb: pwm-led-controller (pwm-leds): 'led-pwm-blue', 'led-pwm-green', 'led-pwm-red' do not match any of the regexes: '^led(-[0-9a-f]+)?$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/leds/leds-pwm.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20251230003250.1197744-4-professorjonny98@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> +
+>        format:
+>          description: audio format.
+>          items:
+> @@ -38,14 +44,6 @@ patternProperties:
+>              - i2s
+>              - dsp_b
+>  
+> -      dai-tdm-slot-num:
+> -        description: see tdm-slot.txt.
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> -
+> -      dai-tdm-slot-width:
+> -        description: see tdm-slot.txt.
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> -
+>        playback-only:
+>          description: link is used only for playback
+>          $ref: /schemas/types.yaml#/definitions/flag
+> diff --git a/Documentation/devicetree/bindings/sound/simple-card.yaml b/Documentation/devicetree/bindings/sound/simple-card.yaml
+> index 533d0a1da56e..a14716b2732f 100644
+> --- a/Documentation/devicetree/bindings/sound/simple-card.yaml
+> +++ b/Documentation/devicetree/bindings/sound/simple-card.yaml
+> @@ -27,14 +27,6 @@ definitions:
+>      description: dai-link uses bit clock inversion
+>      $ref: /schemas/types.yaml#/definitions/flag
+>  
+> -  dai-tdm-slot-num:
+> -    description: see tdm-slot.txt.
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+> -
+> -  dai-tdm-slot-width:
+> -    description: see tdm-slot.txt.
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+> -
+>    system-clock-frequency:
+>      description: |
+>        If a clock is specified and a multiplication factor is given with
+> @@ -115,6 +107,8 @@ definitions:
+>  
+>    dai:
+>      type: object
+> +    $ref: tdm-slot.yaml#
+> +
+>      properties:
+>        sound-dai:
+>          maxItems: 1
+> @@ -133,10 +127,6 @@ definitions:
+>        bitclock-master:
+>          $ref: /schemas/types.yaml#/definitions/flag
+>  
+> -      dai-tdm-slot-num:
+> -        $ref: "#/definitions/dai-tdm-slot-num"
+> -      dai-tdm-slot-width:
+> -        $ref: "#/definitions/dai-tdm-slot-width"
+>        clocks:
+>          maxItems: 1
+>        system-clock-frequency:
+> 
+> -- 
+> 2.52.0
+> 
 
