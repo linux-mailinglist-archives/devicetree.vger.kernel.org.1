@@ -1,97 +1,92 @@
-Return-Path: <devicetree+bounces-250468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 070BCCE946F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 10:59:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A57ACCE95E1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 11:26:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F7D630142FC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 09:59:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D72DB301C90C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 10:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C0E2FD698;
-	Tue, 30 Dec 2025 09:59:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12C030C63A;
+	Tue, 30 Dec 2025 10:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oqwrhjIp"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="WenOvTcH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D8A12FD1B5;
-	Tue, 30 Dec 2025 09:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C14F267714;
+	Tue, 30 Dec 2025 10:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767088781; cv=none; b=Sp2Y9k3LDPl+4ylzo/aMnyP/rCgx3EjjdKj+7sbWHNAFmt2EOaT4ZemfRwHn8cQXYa7yyatWtvt7eL968WiWOM6m49JZqvonc3vpyW7C3poacVmWhsCSuNOT2BMCN7hYCnLEWKL4BZi4chPOh3lJu84+sHdq6rquHupOaYiIDH0=
+	t=1767090337; cv=none; b=ErBN7hIt0IarIm78s1xGW729YBLHNXGiBZsJlLibrEKS5HvXXg2nlaEYQBLQYEsZMQ3arxo1IuzrdAuG+M4gkQ0gbwrCEGbGhg/wVDWbwQSYCndtllyn18hUQAYRkK4wuxC1H8Cnyt/0Tls5AH/9S75Sij525CtewZAP+5R7z7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767088781; c=relaxed/simple;
-	bh=WQMM7B12M9tIAmaZVZs3gPdILEXJR91D0xsOKWnW8Xk=;
+	s=arc-20240116; t=1767090337; c=relaxed/simple;
+	bh=UaMW4Isg1Ih7YV7hIfUjjn3+wCoccITuuZCbWsJ6/mc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uOBIoTI4VU4yi8Xbd1nVlYnaY7y/LFOo6yh0y2lWP3DqeHLKYbPYfJGDQAIThxjz81WR1jSJ9MeMQKPO1xo8B18PNnIayxn/HEJHwhYJln9B/QsLP7T5heGnkQ3gtEBIupSJfPEDBC9C8fcWdi3dt/1HlblTkCATAvP1W1LLJTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oqwrhjIp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 805D4C4CEFB;
-	Tue, 30 Dec 2025 09:59:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767088780;
-	bh=WQMM7B12M9tIAmaZVZs3gPdILEXJR91D0xsOKWnW8Xk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oqwrhjIpRrmUHbOHO5zyLEza02aPUJI3mccQhmKPtxIZJ9a/63KUmdx1YAbxcCL7u
-	 KTnKKlvrtH6j5FiVziTV3W29DE5n+FhJXL9b08FKGcm2M2LaBVIE1sp1k543D6KE09
-	 m3ys6JQk//QzYdKUsn2kDO9mgP2ubbHdsrROvC8IHIik/q0SRFbCwm3aNm1PHCrMqV
-	 b++Jl1KwixUXFPjevpwrPqzaAO5G+fMBMQNemV31K9hVERlEbGKfrF6rIT+bSDxns3
-	 qaPreNpkBNr+8agQGhRF8nS4SZWwIfG0sqJRaYlrNUyo5td/4cVhzzYGfPOL7HbLHC
-	 g+0h79GzwpqoA==
-Date: Tue, 30 Dec 2025 15:29:32 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Damien Le Moal <dlemoal@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	linux-pm@vger.kernel.org, linux-ide@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v4 0/5] PCI: Add initial support for handling PCIe M.2
- connectors in devicetree
-Message-ID: <jhykqitumvq6jr63euamjdli4zntxbxasepx3g5nn4m45fu4ou@m2v44lk7lbby>
-References: <20251228-pci-m2-v4-0-5684868b0d5f@oss.qualcomm.com>
- <aVOcgDeOejO9m1zE@ryzen>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ce0vwzzB49dbjHXtks3xChwh+EP6NxdWy9nvRMLV8DfFhM9xjVjxZ/mKHybsytdfFytFSZDMH5sKKqfxeZu3b3InrsuX/Tikn1ohQ53T6mCT4ajTw9+0Ftl4NBs6ugWIC9NmwdDSmEy6sSuT6hOsOouz8R8MH9xekjf+mkfIYro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=WenOvTcH; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id EBFEF22D01;
+	Tue, 30 Dec 2025 11:25:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1767090326;
+	bh=UaMW4Isg1Ih7YV7hIfUjjn3+wCoccITuuZCbWsJ6/mc=;
+	h=Received:Received:From:To:Subject;
+	b=WenOvTcH9vJw+rKtYP66MBnWLyrRhFtNlv64tAQWNg1q4Xeaopj37HiNM6B1OlsFk
+	 AC8/FqBJs2O+zjGP7z6BAv+MdOr4tF1JwLGp8RaCNhF7omeBa9wb/r99uPOZt0rT2f
+	 Fq0uhfCswEluexqkia76aOpiGPgEJ3g4kiSRzB7c+Bnh91FOJp1nplKSIm4WSjvv8m
+	 EScwc2/7cnNK5ethxADtvCu2pTO0Itn4JCKwdkfxkuwsyR5oIlch3i6HabkQWQzA5b
+	 ay22oD3Q3oOx1JIKMJyUSj8477v7e7HhgyhDrnjmRfTR18GLYYeq0gf81BM/BAqrds
+	 6aftgHTauCEIg==
+Received: from livingston (unknown [192.168.42.11])
+	by gaggiata.pivistrello.it (Postfix) with ESMTP id 8A6227F9E6;
+	Tue, 30 Dec 2025 11:25:25 +0100 (CET)
+Received: from pivi by livingston with local (Exim 4.98.2)
+	(envelope-from <francesco@dolcini.it>)
+	id 1vaWur-000000001Ej-1eKT;
+	Tue, 30 Dec 2025 11:25:25 +0100
+Date: Tue, 30 Dec 2025 11:25:25 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Shawn Guo <shawnguo@kernel.org>
+Cc: Max Krummenacher <max.krummenacher@toradex.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, max.oss.09@gmail.com
+Subject: Re: [PATCH v1 0/3] arm64: dts: imx8x-colibri: add additional
+ functionality
+Message-ID: <aVOolTfi5s9jqG2v@livingston.pivistrello.it>
+References: <20251031125003.275033-1-max.oss.09@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aVOcgDeOejO9m1zE@ryzen>
+In-Reply-To: <20251031125003.275033-1-max.oss.09@gmail.com>
 
-On Tue, Dec 30, 2025 at 10:33:52AM +0100, Niklas Cassel wrote:
-> Hello Mani,
-> 
-> On Sun, Dec 28, 2025 at 10:31:00PM +0530, Manivannan Sadhasivam wrote:
-> > The Mechanical Key M connector is used to connect SSDs to the host machine over
-> > PCIe/SATA interfaces. Due to the hardware constraints, this series only adds
-> > support for driving the PCIe interface of the connector in the kernel.
-> 
-> Since this series does not add any support for SATA, do we really want to
-> modify the SATA device tree binding?
-> 
-> I know that device tree describes the hardware, but if there is no software
-> that makes use of this, the SATA DT binding change feels a bit unnecessary.
-> 
-> Do we perhaps want to defer modifying the SATA DT binding change until the
-> corresponding change in software is added?
-> 
+Hello Shawn,
 
-I'll defer the question to Rob since he was the one who asked for the SATA
-binding change:
+On Fri, Oct 31, 2025 at 01:49:40PM +0100, max.oss.09@gmail.com wrote:
+> Provide a pwm-backlight.
+> Provide the 32kHz Wi-Fi clock used during low-power operation.
+> Configure CMA from the device tree.
 
-https://lore.kernel.org/all/20251208191110.GA2473021-robh@kernel.org
+This series was not applied, any concern? Anything to change?
 
-- Mani
+Thanks,
+Francesco
 
--- 
-மணிவண்ணன் சதாசிவம்
+
 
