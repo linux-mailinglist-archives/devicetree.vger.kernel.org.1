@@ -1,167 +1,160 @@
-Return-Path: <devicetree+bounces-250546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 740FECE9E38
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:12:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C54BCE9E62
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:16:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 67A42302D924
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:12:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C65193019B87
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 14:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE90248F73;
-	Tue, 30 Dec 2025 14:12:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A646271469;
+	Tue, 30 Dec 2025 14:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="c5CqhybS";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="J907+xMy"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="cbOUUfDX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712FB1DDC2B
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 14:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36751A2545;
+	Tue, 30 Dec 2025 14:15:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767103929; cv=none; b=Lo5sCyLlITalEF1oHfIiQsHQAVeCqsH2L/CfohYpFr7b9xWClBMreng+5/KtC7iqEbkWiWtK7rJQWqGhWpfkjVL3K0weuUT2A2hctgr04CuNPlZeWSdM7Mi95imje7ncW/y6Uek8h/Sd9BqHQWDimSvxroR0U1SPBvmBs4epEo8=
+	t=1767104153; cv=none; b=dLrOLBQAcl/cgZQqt6wzySbg/jXHUzt4q+JAcu/DJPReuX/0vzj5Xav21tWAhag526byNdU1xGvsLV7rwHPPdM9EuNWCDaGzNnmRawvvD9CA6iIyvfh0PGCftoM6NvSWwM+t5n1ctHyxG/HJi1GrB4B8klWpCl9iwKwYhX5WMgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767103929; c=relaxed/simple;
-	bh=HalORjCi33QNYWGs58aPCOmGJRqijxJwJRs2c65YiPk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IwZQwpvtzLhUUBqAs8UHdxLQ1tBVL+blNAGf9+w+dUT2yvAK/Ts/k13hhmhYzAEfZ06bERon9VsZ+Rb3wE3HfB4I5TeuWET05KPboLY8MNQs2k9pwW1xq81WdgUyxOHYGrfkpqPnX2RtDxvzTrEp4QUz5BjigZSdHIcOHFKc2VQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=c5CqhybS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=J907+xMy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BU9ijeO2874108
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 14:12:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gOS/6+DACahWk4IG+foy9m4YTOOq38wbloAXw4QG9DQ=; b=c5CqhybSYs4lu27D
-	BL0ATI7xRfF5THO9eETo0uIn9M9+EHPhSRv+15qAisAZ7XVA/CiHc83nJO7+Lx//
-	iB0qS8uMeOh+ffFPrZg60+13q4/1eoLvol17wW6n/k8XVWxxqdJNgFQJKyMisOy2
-	xezZsjQY6Ycu4d4fF+yzEBWBeilpf+9RE3NrNXKzY1tAV5Qlt9LhMPILXqveGujR
-	ngzLKPJOn37ks6UWPg3NfH0e29mQqOR/CO36cH9bXDHL+/nvdNgbj2NRjm7Fv6gS
-	XnP79OQfo0wQBOOzFOaT6m6t4Xy5HsFx1WWXhAhyO4Xu1b7HBIrg1fKTv1Bh1vq0
-	XQC89g==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bc0vdj21r-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 14:12:07 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ee07f794fcso39763601cf.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 06:12:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767103926; x=1767708726; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gOS/6+DACahWk4IG+foy9m4YTOOq38wbloAXw4QG9DQ=;
-        b=J907+xMyYJqu0YvFAgF2LFOO+CdwnuIkcOR8bfQ+7QpHwavyViU2S8kwPvH4yaFEk+
-         NbSpcmoImtkyMUw/PnzGp8y/fa9BtTvsw00Ap+WkCUjUjGpxOYkPs/ks8OAf9vIPSiuI
-         mhqsSFUhbuS73CpTUHkNcJMDlufmibBXkl4n7cwaw0Q6DvzSu4top74k8cH3Wd6FzWbX
-         qpBptsf0O3AMzLQgnyb1XlaTUCRb4lCAcFRkexOzseARPp9m9iFB42ktooxGn8xqGlyZ
-         g2hGOu6TQ5vKeoBjvwIL0oFrTNwj5rtzVqX5PO9tbqzyF0tfiVXeP5XYNWNJYz754g7k
-         UFHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767103926; x=1767708726;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gOS/6+DACahWk4IG+foy9m4YTOOq38wbloAXw4QG9DQ=;
-        b=TJ3Q28I42Jbl5r2DgjX/Y7Uh+fDeng+p1fd/8+W1TrXiECWRtXRAtY1cGQ+lxKLcyl
-         cfgX1YMyfPIqYuBc1fFt4nf4VLQvIDtJK0V0WZ0k3jjnNu2w1ilAiOz+5kwWiHpA2Y/f
-         SaxvmYUJV1+DwcEuNtABvw5U6QbOkC1UU2ORn3CUd+NFJA8vqg6cqksi978bJccszvAi
-         YLmQ/2N++x4rN7BcnscdF0+KoLJgOMw8VADtWpLDKE2FICr2N5yHpvlqu6vClDuEz9Aq
-         YF/43KWjdtWT5wyiX1yJZZ5EhB0MDmC5uhcB35fzDnH5rBPanzeQC+zI7Qvs81RglAdX
-         3BOw==
-X-Forwarded-Encrypted: i=1; AJvYcCX8GT/2xYP0D6clgTbEIgns9/L324Lj3SllwnMCixAewvOM4E05FYhDwSV4YUWtmb+B0ryh5cpWEghS@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLznCaTbJlrB94uK6dDGgf/KxhFmuSeMI2S07dLM850Mx1uKkI
-	3F5AgSO5OjEiraXIHeolj3fNNc3EWhqCnDLvtvHn4OrFtoqoSRRg6ugqGs/N7HD9Rx1D8igCwlY
-	O0mgqkmtmHDXbywyH2DAzVbdy01U82INHxQ/L+Rng0OZ569tzxxisz6JhBnKzqC1N
-X-Gm-Gg: AY/fxX5QQo+qQt80EL61fDDBme8KM9IZSYkg/0l3Op8hzunPRYpZ4SGwzaXmXZ1mWBr
-	chcDUGCXXbMoke/+PcItCmWeQrxkJaM95C2pNJfAxB3Qd5Ofxe0ciGmk7fUSsDmw27b7RJWOFu0
-	kyzAn1qEiaVaSPEq8RlmLpKkb1FvqCBt2JtCIF66QdnqoM+Qk/BPFeQ4XNXcaNjQhp2GtNybglF
-	JSGx1D5dkgr0VK5nDCDKS6rdcrVnO5J5LmlwzwRneou5IHmhOeDZjQ7rgtjeytOZJsuN0+zlCsg
-	rWop+o7RANX5nNPkijhj4mDbmeGbZhP4sNlkXo7BPneDqPbV31jUBFnnmawK66NXmdSelM/L7pP
-	eM3vrK30mxnWamK67jTiKqxwGZrl0G1Tf2ZAyMDxmBodMXH8vr7eiuUsht815Ty7+Xw==
-X-Received: by 2002:ac8:5a81:0:b0:4f0:299b:c785 with SMTP id d75a77b69052e-4f4abe04451mr344777911cf.11.1767103926421;
-        Tue, 30 Dec 2025 06:12:06 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHjqp9PxLRQ/4vjh1lhSfvZgUJ/bKmJeLnU3Q+HtKB9o/HKRUhKyUByzv3/wHYsWz7jfIc6Dg==
-X-Received: by 2002:ac8:5a81:0:b0:4f0:299b:c785 with SMTP id d75a77b69052e-4f4abe04451mr344777461cf.11.1767103925985;
-        Tue, 30 Dec 2025 06:12:05 -0800 (PST)
-Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b830b5fe8cfsm2133862566b.59.2025.12.30.06.12.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Dec 2025 06:12:05 -0800 (PST)
-Message-ID: <0d3e5f9e-b9ba-4c2d-940b-de25ca8fb208@oss.qualcomm.com>
-Date: Tue, 30 Dec 2025 15:12:02 +0100
+	s=arc-20240116; t=1767104153; c=relaxed/simple;
+	bh=CDzYuIbNAIJpAc6AJOA6ruM0uocG/RQE2Z3gqRb4bpM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J/lvau+Ifo2wMpDVKmEoggA73hhpqV56ydGn35aolncDPsl0VznLSZDrQHSMjQt8nwlzXewjd61Hnaik9SztE0uI20HFC5VtVrH11kXteKzaTUBDnZpjJ+ycrp7NVX6RK1idj6EiItcJh80f3gxQqs5D0qeiy4Yp81G6oWGTFag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=cbOUUfDX; arc=none smtp.client-ip=54.92.39.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1767104065;
+	bh=1pQBCqn047ZruREzSayv9H++iam7PU96IzaK6pwXNeA=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=cbOUUfDXrpiGqcH1IX4PkqJZeiqZAePxqvgGhDoy9Lsj7mv09Nm+jcwKBVNi4IWPN
+	 v1YbGDkDc6TyJ340eyApLTxeyM4tNoe1xIcw/T1Zx/FpjNQ129MHl1l4DARytvCtIi
+	 86pIiZY6hieD5H6D1EVPHoE5GRzfv/W95+Bkb2iA=
+X-QQ-mid: zesmtpip4t1767104063t07d72edb
+X-QQ-Originating-IP: TH1lW9wnYGtTWgVF3zf4Kc6QxAMURlVUrjY62XcUYSE=
+Received: from = ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 30 Dec 2025 22:14:21 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 18075355756355605530
+EX-QQ-RecipientCnt: 19
+Date: Tue, 30 Dec 2025 22:14:21 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Guodong Xu <guodong@riscstar.com>, Andi Shyti <andi.shyti@kernel.org>
+Cc: Encrow Thorne <jyc0019@gmail.com>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Troy Mitchell <troymitchell988@gmail.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] i2c: k1: add reset support
+Message-ID: <97163966BA7F4D3A+aVPePaJvByddfCe3@troy-wujie14pro-arch>
+References: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
+ <20251219-i2c-reset-v2-2-ad201a602e74@gmail.com>
+ <2dmrli7yzznpurg74wet4oidhljjf3csdjly2dwpyvyndhrec3@uc6ke7mep6fv>
+ <CAH1PCMbGbe6MQtAucf-4W+H_G0LrvPNGyaB_OUyxqf5TF=jixg@mail.gmail.com>
+ <zjrd3dgvcg3pxmn4455iljtugbufr4igyokdycusyhpykbzyl5@nrwgz366wm67>
+ <CAH1PCMY9A3CO1PXo-b5_BGY13xdx3nvAqb-R28hUz1VMLzTHWQ@mail.gmail.com>
+ <541066FE3973E490+aVPdhNKK70qltaVV@troy-wujie14pro-arch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/4] arm64: dts: qcom: qcs9100-ride: Enable Adreno 663
- GPU
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Connor Abbott <cwabbott0@gmail.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>
-Cc: Gaurav Kohli <quic_gkohli@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20251230-a663-gpu-support-v9-0-186722e25387@oss.qualcomm.com>
- <20251230-a663-gpu-support-v9-4-186722e25387@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251230-a663-gpu-support-v9-4-186722e25387@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=dfONHHXe c=1 sm=1 tr=0 ts=6953ddb7 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=be7_MNJoD_q9xFtD3CEA:9
- a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMwMDEyOCBTYWx0ZWRfX9PHYBuw6WtbA
- QcOHcJwBhzCbXYrlUxRkrJKk3K1Eh2PtWWkCuE8TD3g9u89MbB4ticlEiZoVo4NQRzwnlBZvL4o
- dcAXWJCWXe7dRaPs7AvFInC/DL+qtO/K8oxhFcO0aicBDoQEGc/wSf7w1xe3LUyPxxYEtUmxA7a
- 0aS4DiWxlYjg6L/PBy0o5PwrgVA3+Ahqqk5EOfc+7afH8zRP4HP+sscO65lj8xzB1wwwiuRFard
- bppzxi0068OZ4vtkRedDopy2EEBbmhwolihrthq7IzgWZZlemy13kM5Hfc/0wvFGVclRk599be2
- 5HJSOHVXYk2aEdMZ9C1hTos1qjdFvrOHfqw9/luTBJEgLifW6quscfbaAGqMCM28gZ7lJYWIv8C
- SS+G9aQREPfhmlMuPi0mAgSuBLG3JMJrYSu7ZSnsFHoe7cHYdyk1BEIbVQXZM1EZ4cD91ep42eo
- feTXACZRze+s0t1+gIA==
-X-Proofpoint-GUID: 1NrJoSl4I4_6C7_ENc6NWXJNv8vh3zFT
-X-Proofpoint-ORIG-GUID: 1NrJoSl4I4_6C7_ENc6NWXJNv8vh3zFT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-30_01,2025-12-30_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 clxscore=1015 phishscore=0 malwarescore=0
- suspectscore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512300128
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <541066FE3973E490+aVPdhNKK70qltaVV@troy-wujie14pro-arch>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: MEuRTizDJZiQfRQxIN226YVfFJd9jYsNJnrgvfyvCzoKtNKaiSdOxWP2
+	Dmw6gbWM1ekdFHWihQv62NKKSLgpFGo3vU8JsXpsel/tFk4FAmvJU8rR0Iq+ONr9NTIrbNY
+	PExVQM9eY2NW8QRtlQJVB/lLlrsQu6iHQ4Av4m8zg4QbUv3SU7EUy3BB/dUOT0LyBziI2VV
+	0GkeqYhR5JLIJhTjTsCpxW5HZeVdOIcnDseHz5165s8upUMT/xOIuBfAC2+94F+CCbKqJIZ
+	4CjaOHAJZzAI6f+Q0Mms3rWL4hQ3ino+BVPEpk3TL6Tq0VOlNfFzVpHXw8vh40eUD9bHlZc
+	cbSaVALCOF2jEteVSodadQBHoGBqZZ8nui0iw+EeWewRLjbImA+dMUmSMJt+nXvnwyWFSCo
+	82sq7B/WEDMHwHQ7TptrzZfl8V5YAtwHfJJD+s9+AxrdV9/6XMDUkFZqHJFmUZSc3cdV38v
+	XWpi2YlK3gRyBDr2z6Q1ov81peeDo7dfc6j1dzwViDW05XzQyYAZbfTE7tXQDT3803FoDsk
+	AMB6FHdxcUlGhj2+aQU2IE/b5fPzm+q0LEnr+psFWw0bkmdOFHrV+Cf7i3kezglS9gIm/on
+	M6YDZz5m9vR4SLVOo5xEctJWpjkdGrHq7DwN6wYSm0UwjAyS7lSPaSRTxHCE/+tMK9crNaQ
+	Y+QkconvuZAP6O/8hQfG7UPJ0yYbb6PoGUEwzTq8GBkZBKXb3hxnsJBlLN+wm8pLZdsZ7gP
+	YE6itWiC8aS1DUvm9Fr9lHNagHbjWLs9EZkV74zOKVfbc/V+Hh+QB1hPdmz6mkJHNaI0pzj
+	oouUNRJOgeXqlKVwGN/H7wooePKSAfBPZ3QbhJL3p5zOz0DHS0nCuyQWrVOx/1qvjPv/v+N
+	2mF3PPSuhcXg7/lPfrrHTdHViv9wRZAUKMONc5TJTg0jUQEJAqqvNtaso9h/gjevZqJrG97
+	JUvsOmBSM5gcJzbcdWR4s3lL2nXYSxi0xxyY+GdzX8mD4uk6SstuNDM13ynYare3dya4t0F
+	al6GcgWz3pqJMpkwjkPg/74PU9aHJ5Rk7uUjIon9pD1Jaeq7ANJSvwrmnNBzgD6PI2NvH16
+	tGe85MKHekK4BPIl7rri8B34N5cg8bCo2Ol69QWLihz2j2XK5PHBjI=
+X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
+X-QQ-RECHKSPAM: 0
 
-On 12/30/25 1:33 PM, Akhil P Oommen wrote:
-> Enable GPU on both qcs9100-ride platforms and provide the path
-> for zap shader.
+On Tue, Dec 30, 2025 at 10:11:16PM +0800, Troy Mitchell wrote:
+> On Sun, Dec 28, 2025 at 08:42:47AM +0800, Guodong Xu wrote:
+> > Hi, Andi
+> > 
+> > On Sun, Dec 28, 2025 at 3:26 AM Andi Shyti <andi.shyti@kernel.org> wrote:
+> > >
+> > > Hi Guodong,
+> > >
+> > > On Fri, Dec 26, 2025 at 07:38:22AM +0800, Guodong Xu wrote:
+> > > > On Fri, Dec 26, 2025 at 5:01 AM Andi Shyti <andi.shyti@kernel.org> wrote:
+> > > > > > +     rst = devm_reset_control_get_optional_exclusive_deasserted(dev, NULL);
+> > > > > > +     if (IS_ERR(rst))
+> > > > > > +             return dev_err_probe(dev, PTR_ERR(rst),
+> > > > > > +                                  "failed to acquire deasserted reset\n");
+> > > > >
+> > > > > If this is optional, why are we returning with error?
+> > > > >
+> > > >
+> > > > According to include/linux/reset.h, if the requested reset is not
+> > > > specified in the device tree, this function returns NULL instead of
+> > > > an error. Therefore, IS_ERR(rst) will only be true for actual
+> > > > errors (e.g probe deferral).
+> > >
+> > > And this is quite obvious, but you haven't answered my qestion.
+> > >
+> > > Why do we care of internal failures in reset? If reset fails on
+> > > an optional reset control function why should we kill our driver?
+> > 
+> > Thanks for the clarification. I see your point now.
+> > 
+> > My reasoning is that if the resets property is explicitly listed in the
+> > Device Tree, the driver must respect it.
+Sorry, I misread your comment. I thought you were referring to the
+bindings. In that case, we are on the same page.
+
+                                    - Troy
+> It's not required.
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> ---
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
+> >
+> > If the property is present but
+> > we encounter an error (like -EPROBE_DEFER), ignoring that failure could
+> > put the hardware in an undefined or dirty state.
+> Then why it's optional?
+> 
+> The real reason:
+> "Optional" here means the reset line is allowed to be absent from the
+> Device Tree. It does not mean we can ignore the failure when it is
+> defined in the DT but fails to be acquired.
+> 
+> If devm_reset_control_get_optional_* returns an error (e.g.,
+> -EPROBE_DEFER), it indicates the hardware description expects a reset
+> control, but the system is not yet ready to provide it. Ignoring this
+> error would break the probe deferral mechanism and potentially cause the
+> driver to access hardware in an invalid state.
+> 
+>                           - Troy
 
