@@ -1,69 +1,63 @@
-Return-Path: <devicetree+bounces-250473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB59CE97B5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 11:54:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19564CE981C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 12:10:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9E35F302F83F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 10:53:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D6F12301D666
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 11:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EEFE2C21DC;
-	Tue, 30 Dec 2025 10:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBC6327FD43;
+	Tue, 30 Dec 2025 11:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="VF9GFn1+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jj2yeHVN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE7F413957E;
-	Tue, 30 Dec 2025 10:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FB0C469D;
+	Tue, 30 Dec 2025 11:10:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767092002; cv=none; b=asrNftZNxgFylBwLplzbAHN9uyNPiNneC+rQlnh+eqJToqXXvLuL7WyrWOMlyaw8aSiG0RjBHKe0pmdtpeJPvTqpiKAur7ibM7m32fFU2Q1r0vZlYMLWUTprtwVVKUHeQm4D7kRtHY2pzjAuwM7XqNdCVSoeKu/GCpvDuJnzS0Y=
+	t=1767093030; cv=none; b=Agg5fsASZE0haXhRpO3peyy11yKgNgncGC3Qx52d3uT9LUnI+GPO++zzNhpdxS3OKASIqNvLggnnGhJa3jeOpEZI7AzbssjLcn11kYtWek0j8BlfOyKOnWjVD2bGqZIoKOla8DvCRNMcp8Gtd9IEoVSnIXjSuyf7ecQo51G8f/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767092002; c=relaxed/simple;
-	bh=YH5K4RwvK0mSgWXXBkf+H6wGSy4p/o+F8pMT1PLCKno=;
+	s=arc-20240116; t=1767093030; c=relaxed/simple;
+	bh=cbvXc3P0gkf4daKd1w9/tAFqdLjRVYHyMeg6AMHP2II=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ugx+rG7EW61skqjPzTEFts9uCiTCLJVWpWodFHE2nerrxPupwsdSEUNEzG5p6Oq2khrwTNabGKHttrftrfUDzeLSVr0/4w132QMOsNs+kRYt02KedcQhnDv3QuTpqKwsF85f7stJ8ODuj/V8yhf1A3/rVgOeM05bXDtQETT8K8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=VF9GFn1+; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=RvrIXXtJkwQLpKLNYX+FQY6pO76+th3R8O23dDJCL7Y=; b=VF9GFn1+aPe5Sxe33P/Kxgmtza
-	6sKw4xc5OUnR5WrTwjMLpMwF+Su7o9Yg1chE/E0HgIL9PXbmPwAC5RRjfJUVJjoGh/Q9VgfWTqevN
-	MdRvAQ3AgTN/6x8xJZoQj+21QpMm1DS4lbrNtgIXleh17Kf/GndrGNAOFwRSBcPQeCuo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vaXLp-000rca-IT; Tue, 30 Dec 2025 11:53:17 +0100
-Date: Tue, 30 Dec 2025 11:53:17 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=U3NqQRWBUGXmTuk2OOZNFAsd9Adcgh6x+IzNiNZ6NRVdTu6PVyxvHtVUMnrl7l5DUDY+qc26jep9OKQpRWC2UH35iyW1/GK7aY0UwPQwdkGrM7yrPB1xJz+yjb0XdCWmrcVOAwviV6NsDxgPilxRPq6PGJ2IAc22VwIr7LbkuEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jj2yeHVN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9382C4CEFB;
+	Tue, 30 Dec 2025 11:10:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767093030;
+	bh=cbvXc3P0gkf4daKd1w9/tAFqdLjRVYHyMeg6AMHP2II=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jj2yeHVNMmcWbZyQ36+LsSqqhNrtnHbfbuBptIp2dJC9tpdZ2dUqoxzH8uM6U4nOO
+	 c8YKQI3+3VLUa1uMz3vu/GaVWH8AE/gXfc6AW9OqQ7mcPmLDpS3P4a79iExn7QA/TC
+	 3KUwP+ScfDmyPf3afJ0CCy8iKO5grkAEX8Aq7RBKBUHyiPalEeTxN88D2p2JEKKnNg
+	 LRdyueOslm5SLJU2uOCyT7aVMqaAAfpuyChpy+iYoN+f+aW3ek03ZgqAPr82ASPYWK
+	 TWsVQzmjCu9iGYtsxlKEPAxes3k5fKUBZDmse9Q8s1I1E6v9WPLEqWTZFpe5Ykk5tz
+	 r26EZ2pH+d5/A==
+Date: Tue, 30 Dec 2025 16:40:21 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Yannic Moog <y.moog@phytec.de>,
-	Primoz Fiser <primoz.fiser@norik.com>,
-	Markus Niebel <Markus.Niebel@tq-group.com>,
-	Josua Mayer <josua@solid-run.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: imx95-var-dart: Add support for
- Variscite Sonata board
-Message-ID: <138b59d1-e001-4c9b-bf8b-a5af703d747a@lunn.ch>
-References: <20251229213726.79374-1-stefano.r@variscite.com>
- <20251229213726.79374-4-stefano.r@variscite.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v20 1/6] dt-bindings: firmware: Add TEE remoteproc
+ service binding
+Message-ID: <aVOzHWmlJ-eneS-2@sumit-xelite>
+References: <20251217153917.3998544-1-arnaud.pouliquen@foss.st.com>
+ <20251217153917.3998544-2-arnaud.pouliquen@foss.st.com>
+ <20251229232530.GA2753472-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,46 +66,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251229213726.79374-4-stefano.r@variscite.com>
+In-Reply-To: <20251229232530.GA2753472-robh@kernel.org>
 
-> +	sfp0: sfp {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&lpi2c3>;
-> +		los-gpios = <&pca9534 1 GPIO_ACTIVE_HIGH>;
+On Mon, Dec 29, 2025 at 05:25:30PM -0600, Rob Herring wrote:
+> On Wed, Dec 17, 2025 at 04:39:12PM +0100, Arnaud Pouliquen wrote:
+> > Add a device tree binding for the TEE-based remote processor control
+> > service implemented as an OP-TEE Trusted Application identified by
+> > UUID 80a4c275-0a47-4905-8285-1486a9771a08.
+> > 
+> > The TEE service node is a child of the "linaro,optee-tz" firmware node and
+> > acts as a container for remoteproc devices that are controlled via TEE.
+> 
+> Is this generic for any remoteproc device or just ST's remoteproc. Looks 
+> like the latter to me.
 
-Minimalist for GPIOs, but O.K.
+That's true, the DT description of the remoteproc subnode is very
+specific to the vendor which in this case is ST.
 
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +};
-> +
-> +&enetc_port1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_enetc1>;
-> +	phy-handle = <&ethphy1>;
-> +	/*
-> +	 * The required RGMII TX and RX 2ns delays are implemented directly
-> +	 * in hardware via passive delay elements on the SOM PCB.
-> +	 * No delay configuration is needed in software via PHY driver.
-> +	 */
-> +	phy-mode = "rgmii";
-> +	status = "okay";
-> +};
-> +
-> +&enetc_port2 {
-> +	phy-mode = "10gbase-r";
-> +	sfp = <&sfp0>;
-> +	status = "okay";
-> +
-> +	fixed-link {
-> +		speed = <10000>;
-> +		full-duplex;
-> +	};
-> +};
+> 
+> > In addition, the "linaro,optee-tz" binding is updated to specify the
+> > '#address-cells' and '#size-cells' values used for child TEE service
+> > nodes.
+> 
+> I'm pretty sure I already rejected per service/app child nodes for 
+> OP-TEE when its binding was submitted.
 
-The fixed link is not needed. phylink will ask the SFP plugged into
-the cage what it is, and then configure the MAC as needed, 10GBase-R,
-5GBase-X, 2.5BaseX, 1000BaseX, SGMII etc.
+That was the reason to have discoverable TEE bus in first place and I
+have been motivating people to dynamically discover firmware properties
+rather than hardcoding in the DT.
 
-	Andrew
+> If we do need something in DT 
+> to define some resources, then can't we have some sort of 
+> standard/common communications channel? I don't care to see some sort of 
+> free-for-all where we have every vendor doing their own thing. OP-TEE 
+> needs to standarize this.
+
+I suppose this requires a wider scope work as you can see the DT resource
+dependence from here [1]. By standardize communication channel, do you
+mean to say if adding an alternative backend to fwnode for TEE in
+parallel to DT, ACPI or swnode is the way to go for discovering fw
+properties? Or do you have any other suggestion here?
+
+Along with that the corresponding subsystems has to adopt fwnode APIs
+instead of OF APIs.
+
+[1] https://lore.kernel.org/all/0e5a44df-f60a-4523-a791-6318b3c81425@foss.st.com/
+
+-Sumit
 
