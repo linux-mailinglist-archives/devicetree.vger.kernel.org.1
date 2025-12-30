@@ -1,99 +1,180 @@
-Return-Path: <devicetree+bounces-250572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D801CEA14F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 16:35:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A11CEA15C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 16:41:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D9FDE30161AC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:35:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CA947301F242
+	for <lists+devicetree@lfdr.de>; Tue, 30 Dec 2025 15:41:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BAC1293B5F;
-	Tue, 30 Dec 2025 15:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18232D321D;
+	Tue, 30 Dec 2025 15:41:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="5Pl0fCbu"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ofGdgb83"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158491D9A5F;
-	Tue, 30 Dec 2025 15:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289A11D5147;
+	Tue, 30 Dec 2025 15:41:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767108942; cv=none; b=JEPXQKk+b9xB6WmfvyptCjRUyWNunThPODPY2x8HIMEkN9kshi7O4K+4VwaMlKkYhISbCBtpTzs9cSps/tkYLFx2x9KWdwA9LV8EPY5T4Ilk7JK0BR73N7SU8mWehF+MqilNKniFrw6C64VLToXs95dVOT1dWJDzSo63BCNpnE8=
+	t=1767109272; cv=none; b=EoNBQ0MsyQ1tZHv2hnNtf403L83eXbl9DjXQA3OLT51998t72ORf8UKrqVnURB+h97M/6KtVLXNT+VHbyjw47z3LKbbJ3uxkqOw/J3SwT+mhY//kx/9Tvg6TZ1IfevILY53XkdS1zSvO+5ppULEIxZoi7V8RaMgoHGMlepiTIsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767108942; c=relaxed/simple;
-	bh=MuSzVtgUOGpaVN7HM9sl6lw/4bhujFasIJUp7R3MYDI=;
+	s=arc-20240116; t=1767109272; c=relaxed/simple;
+	bh=apkkKHbQEvOx+K1aMNFO/FPgeZ2qyncd7/Rds2OHpNc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r7hmAHa2bsaJ8jlSWCU+MEdAFyDhmHR599c88JAMXEQvxMKBLSei7rTC65spfS76bWx6grt5mObYGOcwLEMISH3AVLqjMbBIKW32NdEIihszKMU0uvKH5tKTYU2VzjxQK6d3iN1xJRRmMwlBo/DMjw0OhRoixjW+RGAYvDaIYg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=5Pl0fCbu; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=nabQCJqKlBQXC+lm+okeZoBzrh5jPLLfEQ7mZ6JPtvo=; b=5Pl0fCbuJqu7Et0weELcwVXtpV
-	1ARiSNGuY/8OKPPgkRUAwRclA+bSHkBnCeI1qEpc67aptY3qZjqdLut3Zo20Pf+DkX1rMtMpcVQkf
-	rlAbNb72W/fMhsTLjqxnQfZcc77vzkqDjYCRnhGfG5yN+pct4Gt7xRI/ur+uxRenATDw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vabkt-000sjC-11; Tue, 30 Dec 2025 16:35:27 +0100
-Date: Tue, 30 Dec 2025 16:35:27 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Marek Vasut <marex@nabladev.com>
-Cc: linux-arm-kernel@lists.infradead.org, Fedor Ross <fedor.ross@ifm.com>,
-	Christian Eggers <ceggers@arri.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Markus Heidelberg <m.heidelberg@cab.de>,
-	Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] arm64: dts: imx8mn: Add ifm VHIP4 EvalBoard v1
- and v2
-Message-ID: <51825dee-c2c9-4d94-b741-ffdc2fbfa773@lunn.ch>
-References: <20251229193706.73564-1-marex@nabladev.com>
- <20251229193706.73564-4-marex@nabladev.com>
- <e3d305ce-cdfa-4a11-bd54-9648b12a013f@lunn.ch>
- <dc29e774-07fb-4d0e-a88a-27d4ec49d060@nabladev.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=aNl5pGKbfdrivKp69PXvMqU/el8ujKopok7JZX8JuB/UOVZGX/vewUigOoPSTicIV6mUe3fxe4qLJJg8Cp7ROL/qnIZWzpb7TVNysvvSKVjU1qGbppTwfxOfMlb7w/zJ3BTvjROKv72ppQ9OE4B4OgpySoKrU2X1vLnf5orI8k8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ofGdgb83; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-152.bb.dnainternet.fi [81.175.209.152])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 1719A55C;
+	Tue, 30 Dec 2025 16:40:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1767109251;
+	bh=apkkKHbQEvOx+K1aMNFO/FPgeZ2qyncd7/Rds2OHpNc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ofGdgb8344WTydio7RC8vlaglBbb46l2fQE9fH9zaCzg9Ubgb3DjsRuBgk4YJNcGA
+	 ZMDhIuvLs/unde+2zC/9Akfy7VUK+xmDFAAlPx9QxYBped5lSBAgRKBmTLTWVIZz/o
+	 IFsD2ew/e092T23ZAdXF2OVdc+opjMMyvEopYsUw=
+Date: Tue, 30 Dec 2025 17:40:48 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>, krzk+dt@kernel.org,
+	andersson@kernel.org, konradybcio@kernel.org,
+	dave.stevenson@raspberrypi.com, robh@kernel.org,
+	conor+dt@kernel.org, mchehab@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] media: i2c: ov9282: Fix reset-gpio logical state
+Message-ID: <20251230154048.GA15048@pendragon.ideasonboard.com>
+References: <20251114133822.434171-1-loic.poulain@oss.qualcomm.com>
+ <20251114133822.434171-2-loic.poulain@oss.qualcomm.com>
+ <aRtbwK0Afo50Lh0B@kekkonen.localdomain>
+ <CAFEp6-1Tdmr5v0r+q0qeOG6qqA-hiBaF1iTEcmhBA0oTjLgbgg@mail.gmail.com>
+ <aT_Xc6LR161QBRFp@kekkonen.localdomain>
+ <CAFEp6-2PP0ufge0RXTrE2Nrn_sLCN5erokxpJsuGeHq7ZEZ83g@mail.gmail.com>
+ <41447e2e-52af-4fe0-8204-7ee7f43841c6@kernel.org>
+ <CAFEp6-26NiAcoP-nTaFZrG6AT3QimZsNLfPU07Fj2TwqimBbRg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <dc29e774-07fb-4d0e-a88a-27d4ec49d060@nabladev.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAFEp6-26NiAcoP-nTaFZrG6AT3QimZsNLfPU07Fj2TwqimBbRg@mail.gmail.com>
 
-On Tue, Dec 30, 2025 at 02:34:14PM +0100, Marek Vasut wrote:
-> On 12/30/25 11:46 AM, Andrew Lunn wrote:
-> > > +&fec1 {
-> > > +	fsl,magic-packet;
-> > 
-> > Upps, i probably cut out too much context. This FEC is connected to the Ethernet switch.
-> > 
-> > WoL for a port connected to a switch? Have you tested this? Normally
-> > you would have WoL on each port of the switch, and not on the conduit
-> > interface.
-> > 
-> > > +&fec1 {
-> > > +	fsl,magic-packet;
-> > 
-> > Have you tested WoL?
-> > 
-> > > +&fec1 {
-> > > +	fsl,magic-packet;
-> > 
-> > WoL again?
-> I don't think WOL is used on this device at all. Would you suggest removing
-> the fsl,magic-packet properties ?
+On Tue, Dec 30, 2025 at 04:03:58PM +0100, Loic Poulain wrote:
+> On Tue, Dec 30, 2025 at 2:54 PM Krzysztof Kozlowski wrote:
+> > On 15/12/2025 11:19, Loic Poulain wrote:
+> > > On Mon, Dec 15, 2025 at 10:40 AM Sakari Ailus wrote:
+> > >> On Mon, Dec 15, 2025 at 10:35:15AM +0100, Loic Poulain wrote:
+> > >>> On Mon, Nov 17, 2025 at 6:30 PM Sakari Ailus wrote:
+> > >>>> On Fri, Nov 14, 2025 at 02:38:19PM +0100, Loic Poulain wrote:
+> > >>>>> Ensure reset state is low in the power-on state and high in the
+> > >>>>> power-off state (assert reset). Note that the polarity is abstracted
+> > >>>>> by the GPIO subsystem, so the logic level reflects the intended reset
+> > >>>>> behavior.
+> > >>>>
+> > >>>> That's an interesting approach to fix DTS gone systematically wrong.
+> > >>>>
+> > >>>> I was thinking of the drivers that have this issue, too, but I would have
+> > >>>> introduced a new GPIO under a different name (many sensors use "enable",
+> > >>>> too). Any thoughts?
+> > >>>
+> > >>> Apologies for missing your point earlier. We can’t really name it
+> > >>> enable, as it performs the opposite function and that would be
+> > >>> confusing in the device tree description. A property like reset2 would
+> > >>> be more accurate, but I suspect such a binding wouldn’t be acceptable
+> > >>> from a device tree/bindings perspective.
+> > >>
+> > >> Many sensor datasheets document a pin called "xshutdown" or alike. That's
+> > >> not exactly "reset" or "enable" but it can be mapped to either and this can
+> > >> be seen in the existing bindings. The polarity is effectively the opposite,
+> > >> yes, but does that matter?
+> > >
+> > > I assume naming a pin 'xshutdown' or 'xreset' indicates that its
+> > > polarity is inverted at the driver level, the driver interprets the
+> > > shutdown or reset function as being active when the logical level is 0
+> > > (low), as they actually incorrectly do for the 'reset' gpio.
+> > >
+> > > From the driver’s perspective, this naming convention is acceptable;
+> > > however, it causes the devicetree description to slightly diverge from
+> > > the datasheet and leaves the reset property effectively inverted (and
+> > > therefore incorrect).
+> > >
+> > > Honestly, in this specific case, the simplest solution would be to fix
+> > > the driver, since there is currently no upstream devicetree using this
+> > > sensor. That would technically break backward compatibility for any
+> > > out-of-tree DTS (if they exist), but those would have been incorrect
+> > > in the first place.
+> > >
+> > > But yes, this seems like a good opportunity to discuss and define a
+> > > more general approach that can be applied to other drivers with
+> > > similar polarity or naming issues.
+> > >
+> > > Krzysztof, any thoughts?
+> >
+> > You need to first CC me. You sent it to the special bulk email
+> > address... Anyway, please be specific about the question.
+> 
+> Ultimately, I’d like to reach a consensus before moving forward with
+> V4, as several approaches have been discussed so far:
+> 
+> 1. Keep the current (incorrect) driver logic: This was the approach I
+> used in V1 of this series, explicitly noting in the DTS that the
+> polarity was incorrect. However, this workaround was fairly rejected
+> as not being an acceptable solution.
+> 
+> 2. Fix the driver logic: This was the approach in V2. It ensures
+> correct behavior going forward, especially since there is currently no
+> upstream DTB using this binding yet. The downside is that it would
+> consistently break any out-of-tree DTBs that *incorrectly* describe
+> the GPIO polarity.
+> 
+> 3. Follow the wsa881x approach: this is V3, aiming for best-effort
+> backward compatibility. That said, it’s true that this approach does
+> not handle all cases.
+> 
+> There have also been discussions about introducing an additional
+> property for the same pin, with polarity described correctly... From a
+> DTS perspective, I believe this would likely be rejected.
+> 
+> Based on Laurent’s reply, he seems more inclined toward solutions 1
+> and 2. Would either of these approaches be acceptable from a DTS
+> standpoint?
 
-Yes.
+Do you know of DTs in the wild that use the ov9282 reset-gpios ? Based
+on the git history, I see the driver was initially upstreamed by Intel,
+and there's been lots of activity on the driver from Dave Stevenson from
+Raspberry Pi.
 
-	Andrew
+Raspberry Pi modules don't wire the reset pin to a GPIO (the GPIO on the
+connector controls the on-module regulators), so there should be no
+regression if we changed the driver behaviour.
+
+As the driver was upstreamed by Intel, I assume it may be used on
+ACPI-based systems. Sakari, do you know what those machines are, and if
+they expose the reset GPIO through ACPI ?
+
+> > I responded to earlier message that your claims in your comment in this
+> > patch are clearly wrong, but what it is surprising me, it's second
+> > approach this month people completely ignore existing and new DTS. Other
+> > was MT7530 where author also claim all is fine, but actually both old
+> > and new DTS were broken. Same here.
+> 
+> Yes, the comment is oversimplified, which makes it incorrect in
+> certain cases. I’ll ensure the comment is accurate in the next version
+> if we decide to stick with this solution.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
