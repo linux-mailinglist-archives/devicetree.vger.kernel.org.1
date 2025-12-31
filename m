@@ -1,258 +1,152 @@
-Return-Path: <devicetree+bounces-250704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 924C0CEB287
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 04:04:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A91DCEB2AB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 04:06:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 926EA3037CC4
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 03:00:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 230573010A95
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 03:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37137258EE9;
-	Wed, 31 Dec 2025 03:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E39248886;
+	Wed, 31 Dec 2025 03:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="E6MUjvDa";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CCIytzxn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OuD2F18q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87290233D9C
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 03:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 435542BAF4
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 03:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767150056; cv=none; b=Fi+JYVAn04HUmcYsUbRHEwM4ChKwhl2PgW9JMkFut6d7bTRjSwrSBHnJPLkJ9HNyBjjmN6VDG/vcKd5rTix4n7HiSR97Yk+pite1pGz8vVa/VjYGcUJ/focv6paFJVpMu4d/5qKr9cU9dv99dO//xAZFv/ASiuaHv8XPlvyzEHs=
+	t=1767150116; cv=none; b=GaqnwY8c62U4knmFLKS6zQ8NhX2VTXPl2fpWtEvNlbo650nlPb9IWzdrbJ2azCtookTHV812ls8Qk7ngSjLJ7FQbkCP1h8JPfuXcb4pDk2KfJqJd36Dm0QW+X7uv/UFL/AiXLDowlj7Ntl/m47N93TFQa1thlK5a2F1DLQ1Q3Lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767150056; c=relaxed/simple;
-	bh=P88Oup2V/206TFuPEITBqHQAyorA4xlOSLV2pTxE+8w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KPQsAFD5hlLo/QtNZQI8YRbtZF+T4XzJp9wqPorqoNPGQ6h8YuHnIArKn5RbvDpWdr/b9A/ImjhzUx1x+wpbA2zkgHFftq0hINtYjEwVldERc6KRFz+gqrB/YK0hm+4Rx0pWHXC/O/GPhis7dJXemxUopoOwYMqi7zVogF4B1Vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=E6MUjvDa; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CCIytzxn; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BUNkbEl1752031
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 03:00:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	RZq1vO+s0UewT/Y/b46qDgPVeoGieEsYyE4WUrw2lTY=; b=E6MUjvDaFEjGA2LI
-	rZ3vTYomb8fMV5R2wD9LlXGPCFNv8BC+r9ntzsYL1R5sY3j0NV+Lm2GKKJFy+9HR
-	/0uwPmkurM3NdEY/PQF5RC3yh8bWWKZ8qv5PlBm6XpYEIfOvuERmI2kKqvKqTD2o
-	jDmMHULBYobDbH22tfn5AW7K7xLNK2O6yZOtZAdnpUKic9x8tuRKU+uQaSFhy2SD
-	4FETDBjhuS0kHSP9Uh3YqJvuaCUmEX4jtD/cNBpD/H30164gTbP/ShUN4e8yhByx
-	Nll1kHXhbZ14rfD/EPftveCgikAOLiAO5ooQLKIyxVlCZRMxqHrYN9tg0DaJhwMm
-	cjAnrQ==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bc0sguc2x-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 03:00:53 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88a3822c06bso303436536d6.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 19:00:53 -0800 (PST)
+	s=arc-20240116; t=1767150116; c=relaxed/simple;
+	bh=VfUAn7fuzAJ1b65MvaymWQC022eu06jMkmEUoeIuEzI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sRBszDfOS1QBFGmIH0gwWZIQec/SWkJ3HkyzoYTcuQmZe3Kci3O2cnjfD8eosQXUe0IzEjF+Q6OtwgGaAidp0G3j6MeVuaTbpm7eiRrtVP7Ww2seGHsrolTt1nekFUFUIjXkgcsVKyYEDrOuAko4clzuIhKd3APhjrYP/REP5aY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OuD2F18q; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-8b29ff9d18cso1245212485a.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 19:01:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767150052; x=1767754852; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RZq1vO+s0UewT/Y/b46qDgPVeoGieEsYyE4WUrw2lTY=;
-        b=CCIytzxnR5s+mCn/W9O2b0kX5Eh37xg1NwChoX2hBWQ4u09APygOk1MjRzZSGogfGZ
-         +tagRXFILWfubRi/UaD2hjSjfSFOk4Y26saluowedxwrPuywrUjXFG+5+J2JojkrWJJw
-         aovTpg5VNqfQbbxsCxBF/PFrFhhN0jGTjCGEcaNx6/ItKHVp9+9WWBOMdSvJdkwiasIE
-         Vxyoj35GSPROVX5wM+Y74MAMHdS1mbf0oa2S8RMbDbgoxgmx8hwVe5x+72MvHDtteqbc
-         03QA7PTLjs4vGxG66XUQ9E+hRRQscJQnQVZMVC9fkzpICwYHjY4SW92PnOjjFLDB/t6Z
-         i8Dw==
+        d=gmail.com; s=20230601; t=1767150114; x=1767754914; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zusqzk/Z0ArToECS6/v9lmrCcwZi8OdNi5W/vdy0GjU=;
+        b=OuD2F18qhDghQ5PprngP0OPDTym7da1Jj9tkFIhCNJIXVnT7B6dRacIv7qYen1O02k
+         Dcv49vbjBF9MY4gB912rC0xC9RVjjQ8C24Ik4rK3xkHmnQfnYrFxcEeINSATqkeWXBrC
+         SyqpLlRhZksvBLxCzsxS06oHRuISNNW2O9Cur9ukvIwoZ67R5Qc2IdarTz5fyihMrCwa
+         qp+TCvv4qvSwpID4U2EByYVd60aGxWLjgUPmb3Z9zntfO3Zm4MyPi6vtOpLKLyzu4XdJ
+         lCcG5mxk752tWNWy7DGwiCbL4AefCHZkr0NpFWcroQ6z47qUWMEIxAGJgZPEkT1xbe7W
+         YT+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767150052; x=1767754852;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RZq1vO+s0UewT/Y/b46qDgPVeoGieEsYyE4WUrw2lTY=;
-        b=qC3m7oBUwa4SdicR1Ddq3mJrqfTRhxadWHRsiARCGm1OZTjk7AN18MEziQ+6EiOg0I
-         +aU94yLB8Vy235PijISBFUeonhluc7IjBVVHw37Y3OJzmLUgfZ3RttElOFxtSdhMsEdi
-         ug4bfkvvOF8yd1/mw8EExuJZl+shYROHu9IN7ZT2ZW6776p1W+S0VAY/HikcCn1McQSv
-         YCYq2EOaOrCN70/KjOSIy3Zd8jZv6lX0m6Um8UUe9bRb2d6ZX8GbMQSVysTOlpeQX2w9
-         0Ktpp76FBMevwOuuN0pH097H8uW9azrxuCbFVWVyKf8MgEHUuY5DNkK6NoDLv37so4ud
-         whqg==
-X-Forwarded-Encrypted: i=1; AJvYcCWeAGFAJ8CAZ3TDZIg3Qf84zqeYJ+ptPSXyPxqrguM7UDh4q4SCLOz37VHqWe9fKiz7Jc4mImazwd5z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3ZN39YFSkwcmOzletO2ogZidoALY35Y7+g6zkWZ10uYugHCdk
-	k7WPqbxxi0ZlETDF1yML9XsjYnTxVgZJwKDxR36Ch8OwRKYWKzCP2aWjWehqefinZ7acPt0nD8c
-	li4DLvMwfAilxdg6OR0rKcPKrTTG8RM/cqVz+igky3BKDA5R9TW2rGDu9/TMrsuxOKCwBdvJ1
-X-Gm-Gg: AY/fxX4boAzmO7qsIQ+3p6Kp9qordyxZPoiNaWAbwWFzgJSrYZ9HWCE9L8wBygwaUFS
-	1kLoALI4IW4awx7GLzxOA2vo+5OQqQUTA2IEB3jyRmjPStFI8X5vhOddvmMAhCNTLypA6fgfjZf
-	p1vihBEF4WMlzztjp/24F8BagBWRvzAOLuU+kr3vXu9XK4fKvbQ4scMw/KNbaSJ+UWy/XAPntMj
-	faUjLoaKvf6cfHT6vUMI8zkJPBh4q7eB5SQjlK7rxcSc+3lTOPhCXsnHQdF680d1hgZKOI6SKSF
-	1RSDBpr3allP/vlA4XW5BquRo6gDbFfV1lL72WInxd3a7EESfoOJTQOjFjVw9SWWU796QpfcHVM
-	kPocUEBkCMo4qWaWtwylGAb/i60eWEV6CNnow+hNxjyN59hRuGyTbZiHeatBjA9UUH7iCOyE8Pa
-	LysSFJbxMEbDlR
-X-Received: by 2002:a05:6214:2f0e:b0:888:8140:d74b with SMTP id 6a1803df08f44-88d82de98ecmr550983786d6.31.1767150052006;
-        Tue, 30 Dec 2025 19:00:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEZEnXlnFdFmANR+rVpyhtPVBcgcOgSm85V9POoHbOawN9U11ydPaBgby0L/QU9qnFY/+XXyQ==
-X-Received: by 2002:a05:6214:2f0e:b0:888:8140:d74b with SMTP id 6a1803df08f44-88d82de98ecmr550983376d6.31.1767150051542;
-        Tue, 30 Dec 2025 19:00:51 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a073:af00::4c9? (2001-14ba-a073-af00--4c9.rev.dnainternet.fi. [2001:14ba:a073:af00::4c9])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a186170b4sm10936687e87.51.2025.12.30.19.00.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Dec 2025 19:00:49 -0800 (PST)
-Message-ID: <25f3e3c0-7796-4318-b479-a680b878528a@oss.qualcomm.com>
-Date: Wed, 31 Dec 2025 05:00:48 +0200
+        d=1e100.net; s=20230601; t=1767150114; x=1767754914;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zusqzk/Z0ArToECS6/v9lmrCcwZi8OdNi5W/vdy0GjU=;
+        b=LU9r+zgnMO4SxzoRUC3WOxmtOeDkCIy7sILotRpWWF9kt8ukS1hhuZVOX9KsOaUu8S
+         FoRgVJtN2SEd8yJObUJCKhn2CMqfOoz0jg1ljqwCfsq72X0XneRuj5qOYaTF+oQdP4ox
+         ilw9DDVqm6pcuA3ot7mEQ1GmCICvsFxGt/IkW4fpfolaRns0hkCrlesf23rRSYUoaJoB
+         RKaE09oiXiVhrk9eAy6KjHD1tEAo9B/BRSI0N/L1yAc9mCO3vJr+VXLUNBpGUo/ssWyX
+         zvqRedGCrfkPqM0sK3kAERIoytgKCyUUCtBMtTq6eifuXfBFY56m9q/N0gSWjTheD/O+
+         q2sQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW0q2DMp2B5dgt+htIvD7yuNgamjkg9xIvpX0QnFOPvDh3dkP9DPpxbz4l48crVSOG1Iir1Jnw9F0BN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpBfUX1Vg7eKSrd2VgRDb6estpe2UYqcPs5UpRUsTYT9iByVJt
+	GuGYJSn565eJg9pDdCYj3REbsW4DIoDL3VV4ZD75wGWtCU39VkfvY8oD
+X-Gm-Gg: AY/fxX55fB+YZFPa7sapW3nWJ9Hji13KQP3hs5L/KKVYeWvn6pz24UBc8NgILozVP0I
+	g/Kd80SPfwWP/f+XNqDjaUlCdtUbTBi/pWCKq7eQkc0D9ACV0AOAhQvK+mY7PeiMbIfYBrayDJT
+	5+iwHnfnIsEQmybs5Z9pNH0OLBT/7YtpnvI7bAfOrtXFlB8Mr6IxWjGzUhavzPjE+nroOdbpezD
+	z9aL6zUhaFvuZzZHsQlCyOB0ybEsjUkiEWp6Yj9QjW+RjmRm8ipG599x+9q1c2dz+Zq2hOiftmQ
+	9haeaaJQgrGo2bU5RG19rlZOwB/nRmHQzch7yHx48lN+1peRaaN5g6f40knFmpNxsovHYS7VOTY
+	C5fkieZypKGubr6pmvf9zIF+vGNosYnGtsU/ENM1D+WmHYrl2HutDD/TEHcdbEbja4DNLE8cc5K
+	ZNg1+XC+/h3lsP5A==
+X-Google-Smtp-Source: AGHT+IEzxBN4kluErCkFUOvPOVgIkBgVvoyMRSDm/yqIVEJ0Qm/7aQQEO7z0S0+HYnyDvukVT0yxIg==
+X-Received: by 2002:a05:620a:c4b:b0:8b2:5d6e:48c1 with SMTP id af79cd13be357-8c08fd037bfmr5364545585a.27.1767150114089;
+        Tue, 30 Dec 2025 19:01:54 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88d9a44e26bsm255936816d6.47.2025.12.30.19.01.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Dec 2025 19:01:53 -0800 (PST)
+Date: Tue, 30 Dec 2025 22:02:12 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 0/3] media: qcom: camss: support for empty endpoint
+ nodes
+Message-ID: <aVSSNGCtvcYCTylu@rdacayan>
+References: <20251230022759.9449-1-mailingradian@gmail.com>
+ <1fa74da9-bd3e-43c6-afbc-8cfcbb93af93@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/4] serial: qcom-geni: Enable PM runtime for serial
- driver
-To: Praveen Talari <praveen.talari@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org, alexey.klimov@linaro.org,
-        krzk@kernel.org, bryan.odonoghue@linaro.org,
-        jorge.ramirez@oss.qualcomm.com,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, psodagud@quicinc.com,
-        djaggi@quicinc.com, quic_msavaliy@quicinc.com,
-        quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
-        quic_shazhuss@quicinc.com, quic_cchiluve@quicinc.com
-References: <20251110101043.2108414-1-praveen.talari@oss.qualcomm.com>
- <20251110101043.2108414-4-praveen.talari@oss.qualcomm.com>
- <2zeqt3tu36qcxs6xrzqqmn3ssmyzetl6tq6lxrjdvt5dhxrtv4@g5q4zhk4sebs>
- <8c734f2d-59db-4815-bfc6-3823cf3ef37a@oss.qualcomm.com>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <8c734f2d-59db-4815-bfc6-3823cf3ef37a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMxMDAyNCBTYWx0ZWRfXxbvvbHwn1lpU
- dhe2hzapjChkrgeJKF/41D5fIAvQX+MOcq+7KKvjGVwQ4Us2MVf9P//9nsUx2+DyNxGYfkWpwPp
- kZK8OqR9Xo6tThJ4Q8R3bLmPKe8c3jVzJNwPxOkvOc6A46Q237CXYxeLw4F2tEoUgR1YBtviqQw
- RxEBcP2BUeUWFyh2sOqOOvxF8EpuZOmuW6G/8Bu1A4Aa5/cVhbTopXtpQOIaRVAjLcdcZOddtFT
- NnoMdjJVUH/0qxYglqHcIcokjuNhiOghLD+ofl1a5gAE/hI5dWDZgXcrGD+0zE1zGpcue/nsDT0
- 6X0G2i/B57jjhFORQ4zWaux1YdSH4PTj6S78kqbEfzg6zAObXUXpTlIozYhZPJlERzgqhgEma8l
- v9htm7+asHDqEHySsT9kgVf6pHGS+MOxKzRdMVsvECLGXzOejL9Q2IEQdw0ABAPGngXfuVRLWeY
- P/loo1FoFVckl5R3RbQ==
-X-Proofpoint-GUID: iEr8t-oIcM35moTKNdoeGlRhOvnM_0ky
-X-Proofpoint-ORIG-GUID: iEr8t-oIcM35moTKNdoeGlRhOvnM_0ky
-X-Authority-Analysis: v=2.4 cv=foHRpV4f c=1 sm=1 tr=0 ts=695491e5 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=TnZdVe0PMZAKthhqzTQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-31_01,2025-12-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 malwarescore=0 suspectscore=0 phishscore=0
- impostorscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512310024
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1fa74da9-bd3e-43c6-afbc-8cfcbb93af93@linaro.org>
 
-On 31/12/2025 05:00, Praveen Talari wrote:
-> Hi Dmitry,
+On Tue, Dec 30, 2025 at 10:18:39AM +0200, Vladimir Zapolskiy wrote:
+> On 12/30/25 04:27, Richard Acayan wrote:
+> > This series adds support for empty endpoint nodes. It is currently RFC
+> > because it continues an ongoing discussion on how to selectively connect
+> > some CAMSS ports to cameras and leave others disconnected.
+> > 
+> > The SDM670 patches are for a full example. If agreed on, this should
+> > expand to SoCs that have CAMSS.
+> > 
+> > Example SoC dtsi:
+> > 
+> > 	camss: isp@00000000 {
+> > 		...
+> > 
+> > 		status = "disabled";
+> > 
+> > 		ports {
+> > 			#address-cells = <1>;
+> > 			#size-cells = <0>;
+> > 
+> > 			port@0 {
+> > 				reg = <0>;
+> > 
+> > 				camss_endpoint0: endpoint {
+> > 				};
+> > 			};
 > 
-> On 12/30/2025 11:53 PM, Dmitry Baryshkov wrote:
->> On Mon, Nov 10, 2025 at 03:40:42PM +0530, Praveen Talari wrote:
->>> The GENI serial driver currently handles power resource management
->>> through calls to the statically defined geni_serial_resources_on() and
->>> geni_serial_resources_off() functions. This approach reduces modularity
->>> and limits support for platforms with diverse power management
->>> mechanisms, including resource managed by firmware.
->>>
->>> Improve modularity and enable better integration with platform-specific
->>> power management, introduce support for runtime PM. Use
->>> pm_runtime_resume_and_get() and pm_runtime_put_sync() within the
->>> qcom_geni_serial_pm() callback to control resource power state
->>> transitions based on UART power state changes.
->>>
->>> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
->>> ---
->>>   drivers/tty/serial/qcom_geni_serial.c | 24 ++++++++++++++++++++++--
->>>   1 file changed, 22 insertions(+), 2 deletions(-)
->>>
->>
->> This breaks BT support on the Qualcomm RB2 platform. With this patch
->> applied, I'm getting the following:
->>
->> root@qcom-armv8a:~# dmesg | grep tty\\\|hci0
->> [    0.000000] Kernel command line:  ignore_loglevel 
->> console=ttyMSM0,115200n8 earlycon root=PARTLABEL=rootfs rootwait 
->> systemd.mask=pd-mapper.service --   
->> androidboot.bootdevice=4744000.sdhci androidboot.serialno=2b89b520 
->> androidboot.baseband=apq 
->> msm_drm.dsi_display0=qcom,mdss_dsi_ext_bridge_1080p:
->> [    4.074354] 4a8c000.serial: ttyHS1 at MMIO 0x4a8c000 (irq = 140, 
->> base_baud = 0) is a MSM
->> [    4.099410] serial serial0: tty port ttyHS1 registered
->> [    4.131200] Bluetooth: hci0: setting up wcn399x
->> [    4.149847] 4a90000.serial: ttyMSM0 at MMIO 0x4a90000 (irq = 142, 
->> base_baud = 0) is a MSM
->> [    4.229099] printk: legacy console [ttyMSM0] enabled
->> [    6.499519] Bluetooth: hci0: command 0xfc00 tx timeout
->> [    6.514347] Bluetooth: hci0: Reading QCA version information failed 
->> (-110)
->> [    6.559933] Bluetooth: hci0: Retry BT power ON:0
->> [    8.016330] systemd[1]: Created slice Slice /system/getty.
->> [    8.066194] systemd[1]: Created slice Slice /system/serial-getty.
->> [    8.148389] systemd[1]: Expecting device /dev/ttyMSM0...
->> [    8.956804] Bluetooth: hci0: command 0xfc00 tx timeout
->> [    8.962447] Bluetooth: hci0: Reading QCA version information failed 
->> (-110)
->> [    8.976917] Bluetooth: hci0: Retry BT power ON:1
->> [   11.296715] Bluetooth: hci0: command 0xfc00 tx timeout
->> [   11.302340] Bluetooth: hci0: Reading QCA version information failed 
->> (-110)
->> [   11.309534] Bluetooth: hci0: Retry BT power ON:2
->> [   13.660078] Bluetooth: hci0: command 0xfc00 tx timeout
->> [   13.665814] Bluetooth: hci0: Reading QCA version information failed 
->> (-110)
+> I do not see this device tree node layout as a valid one. A 'port' provides
+> an interface description (an option), and an 'endpoint' declares a connection
+> over a port (the accepted option).
 > 
-> Sure, will check and update.
+> From dtschema/schemas/graph.yaml:
 > 
-> If possible, can you share what is DT filename for RB2.
+>     Each port node contains an 'endpoint' subnode for each remote device port
+>     connected to this port.
+> 
+> This is violated in the example given by you above, when a remote device along
+> with its ports is just missing, thus there is no connection. A forced alternative
+> reading may (or will) break the legacy, so in this particular case you shall
+> start from making a change to the shared graph.yaml documentation, since it's
+> all not about CAMSS or even linux-media specifics.
 
-qrb4210-rb2.dts
+So, if endpoints MUST/SHALL (in IETF RFC 2119 terms) have a remote, then
+would it be acceptable to label the ports instead, so a board DTS can
+specify its own fully connected endpoint(s) under the port labels?
 
-> 
-> Earlier I had validated on RB1 and Kodiak.
-> 
-> Thanks,
-> Praveen
-> 
->>
->> After reverting the next and this patches, BT is back to normal:
->>
->> [    4.067201] 4a8c000.serial: ttyHS1 at MMIO 0x4a8c000 (irq = 140, 
->> base_baud = 0) is a MSM
->> [    4.082426] serial serial0: tty port ttyHS1 registered
->> [    4.106122] 4a90000.serial: ttyMSM0 at MMIO 0x4a90000 (irq = 142, 
->> base_baud = 0) is a MSM
->> [    4.108647] Bluetooth: hci0: setting up wcn399x
->> [    4.125371] printk: legacy console [ttyMSM0] enabled
->> [    4.445205] Bluetooth: hci0: QCA Product ID   :0x0000000a
->> [    4.450927] Bluetooth: hci0: QCA SOC Version  :0x40020150
->> [    4.456470] Bluetooth: hci0: QCA ROM Version  :0x00000201
->> [    4.462006] Bluetooth: hci0: QCA Patch Version:0x00000001
->> [    4.509408] Bluetooth: hci0: QCA controller version 0x01500201
->> [    4.515656] Bluetooth: hci0: QCA Downloading qca/apbtfw11.tlv
->> [    5.488739] Bluetooth: hci0: QCA Downloading qca/apnv11.bin
->> [    5.671740] Bluetooth: hci0: QCA setup on UART is completed
->> [    7.993368] systemd[1]: Created slice Slice /system/getty.
->> [    8.045612] systemd[1]: Created slice Slice /system/serial-getty.
->> [    8.125418] systemd[1]: Expecting device /dev/ttyMSM0...
->>
->>
+The labels to ports aren't looking as "excessive"[1] as they used to be.
+Is the original review comment on port labels still relevant?
 
-
--- 
-With best wishes
-Dmitry
+[1] https://lore.kernel.org/r/565d14e1-1478-4a60-8f70-a76a732cde97@linaro.org
 
