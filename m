@@ -1,115 +1,147 @@
-Return-Path: <devicetree+bounces-250857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36280CEC908
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 22:14:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 185C4CEC94C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 22:30:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DC6AB3013147
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 21:14:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B4400300EE78
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 21:30:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5022230DEB8;
-	Wed, 31 Dec 2025 21:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1650D1EFF9B;
+	Wed, 31 Dec 2025 21:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OE1s0UBq"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="QKuZX1a8";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="sPdAeBZh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE0952F1FD5;
-	Wed, 31 Dec 2025 21:14:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CD1C1B0F19;
+	Wed, 31 Dec 2025 21:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767215675; cv=none; b=BsK64v4B3mENjFd7bR4dqfIyFqV9Ps/uk4b78gA7nQvu1RnTuL8j/xX8V+tK4I704b+LsvNy9xpivpiN3xGL27T+vi6dP5r1Q3X3d41B6DOBqsYfiYjf+n71SQAjCuZ6FdPAT4M066GqURa03IveMT311Zu9QlhCQG6VZ1qyGQ8=
+	t=1767216634; cv=none; b=cfIzkLmaBxMCy1glA0oegBXqqMxA22E5FmFhfbxxgkl75QlgPBar+z/AUfA1tWNjSKWTA9B6fHNO5+94KxIc8/2CVUGecnNXj4CgdHjtjmewOf9Ejb6ZIYl6we0KBQAmxISsnLhEpSPtcn8x+UmVlAm5/hiYFcxKa2pH0b9zk0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767215675; c=relaxed/simple;
-	bh=whyQymEuKoQPya6K6m/OkXij0pAB0J+H6jrBiCCUzB0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UM2j3yjVpsjkusZcaKtIzfFEHecw5JEs3TKHPrv8c1NPUHqjBaIdNSOWhPyIbBvFfravyRA42wtvZIkXyFxIfsRIv3CjutfN1pYjfcXJuSN2IIeE0XhyrBXZcr8GKQz25nxKk+1en041JzIqtkwUY0B+KoBHOd46np5MzbsCxDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OE1s0UBq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99B53C16AAE;
-	Wed, 31 Dec 2025 21:14:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767215674;
-	bh=whyQymEuKoQPya6K6m/OkXij0pAB0J+H6jrBiCCUzB0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=OE1s0UBqkbN26uFy3VYYZD1mXU1YaulOdCTNWR7lPxHyOl96twJ20ZlX+bB/7QC+b
-	 TsYXvm95nlsa+FTxwdDG0qYtB8tifBwWB97untRgmb2kAFlNVAn1WqbZHNkeT8Vdw/
-	 tDbaAti6YAbRQGVknBNFyDaoWguswu/SJfsdT99ISKDp/ejTNGcCQLv4b72SNk5vDq
-	 8t0U3ok5hJ2AW4S6acx8NstFCP8q+SAjveQEkNl1cMV1pX+YUUNwVAdYvB8rZR81eL
-	 rjzuuTaHs1AVnQ3gjMgik7Y/oLdt2ARYwtUFYHXBnpRYrmO2NRxFTkyEjgDypAZIGM
-	 +hmJTJ4n2sp1w==
-From: akemnade@kernel.org
-Date: Wed, 31 Dec 2025 22:14:17 +0100
-Subject: [PATCH 2/2] ARM: dts: ti/omap: omap4-epson-embt2ws: fix typo in
- iio device property
+	s=arc-20240116; t=1767216634; c=relaxed/simple;
+	bh=Fuq9AQgf/uMaTOeBeM4OF+Jj3GJDno9EpTQLqgBsQPo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pK4Ptu/zZ8Lo9OJ6nr8U+ISkaC/h4GcU0xnR+7pA+pLixvLRAnCxFcOYK6DhTCR7LmKZ+F3JL1CEruv5Wvk/aPHQkjrtWRgQhbY/Ia5flU3+2g0h1ZhmBYFpAOEJBpc0N4uAvkBIAZ0nTzZNECGUnZJ7pH1nAY66TBcLgsRsmMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=QKuZX1a8; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=sPdAeBZh; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dhNRB3pFQz9t46;
+	Wed, 31 Dec 2025 22:30:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767216630;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=j99Q47GdEpRT9D/ae619Fkn+XOqqqjjTPDUmDgTYPwc=;
+	b=QKuZX1a8bzocV5ijaLkKXrmXX0hI/s/Bq2+aP/SCcLnZOschHg3du5eONYmIsYnShEdyzu
+	G05bnEjxQWnnKvA33L0n0azeLUOd57XGk/PeIrPKjyEQWquuk0xVyrYY6Oyf0IlOGIE+z7
+	BavW8R8x1HJHQeUwlw0Xnw9Jrzm+Hr5+FjVbzGKWzIhkTydcrtDLmYeko7seBMgUKqDNG/
+	4yB5o2gKlSQWbRoaYUDFY3KyAHLWHMwCeEj9z5wAwWITvpjkhdg+sG9eHPqaygAtoExxm3
+	SZ1X/KhdHI8HuYI6VsAaEAw0ZeOvYOoPzW0kryzzfwHBiuvdPIoSIew8hSoERQ==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767216628;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=j99Q47GdEpRT9D/ae619Fkn+XOqqqjjTPDUmDgTYPwc=;
+	b=sPdAeBZh8ViwiKqaFiXRlH7hjkWHKEK9OLcNI2kjZFKEnUbDiG53/wZqN4uIG/SHmnfs4F
+	ke2P8ZCs0uA+rh+3szq9VmGvwOeS5qbwLZp5kLiR+NgJCobNriLRWcZ0dwSf/SFSQH+kLp
+	jTCcnWu/shhoIflUhhMBz1US6gHKD7YbN806vFXDuZCayLPFHBufqn7hUyfGZsBtHUq4uu
+	Gd5k9aKCrD4dn7wE4FqEPZBZP9mTzT0xUHEe3Z2Ny54408p3NrLozmYsFpOw03zp0hJyLf
+	hwOF+L2z4EEGNEbO+OuyutRY6k4A8iUxUkUH8DW+nKphDCnHskR8RHNE1ABDmw==
+To: arm-scmi@vger.kernel.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: firmware: arm,scmi: Document arm,poll-transport property
+Date: Wed, 31 Dec 2025 22:29:18 +0100
+Message-ID: <20251231213016.185575-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251231-mpu9150-v1-2-08ecf085c4ae@kernel.org>
-References: <20251231-mpu9150-v1-0-08ecf085c4ae@kernel.org>
-In-Reply-To: <20251231-mpu9150-v1-0-08ecf085c4ae@kernel.org>
-To: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- Andreas Kemnade <akemnade@kernel.org>
-X-Mailer: b4 0.15-dev-a6db3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1141; i=akemnade@kernel.org;
- h=from:subject:message-id; bh=z+7X+G6XUh0LFLv4u0xBI8oqiZVKwYqo5TbWTH8Z7tQ=;
- b=owGbwMvMwCUm/rzkS6lq2x3G02pJDJmhk/QeffEXCdvNdL3rtq7Whx/dVdtuvPqo32wx4d7q/
- 9cUtlz17ChlYRDjYpAVU2T5Za3g9knlWW7w1Ah7mDmsTCBDGLg4BWAizm4M/30skpzfafnOruyR
- CNfc0Ke7gCH+h9rB/c15FzqkBHJOyTL84Tn0iPNCyNzUyX0aRuzRN/flSOsl18ion/q9O1e0zW0
- lCwA=
-X-Developer-Key: i=akemnade@kernel.org; a=openpgp;
- fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: ksanyuhgeaad8muaa7msk9yjryisdh4e
+X-MBO-RS-ID: fe2f78a35cf7f8eb2bf
 
-From: Andreas Kemnade <andreas@kemnade.info>
+Document new property arm,poll-transport, which sets all SCMI operation into
+poll mode. This is meant to work around uncooperative SCP implementations,
+which do not generate completion interrupts. This applies primarily on mbox
+shmem based implementations.
 
-Define interrupts properly. Unfortunately, this hides a bug in the linux
-driver, so it needs to be used with the driver fixed only.
+With this property set, such implementations which do not generate interrupts
+can be interacted with, until they are fixed to generate interrupts properly.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Note that, because the original base protocol exchange also requires some
+sort of completion mechanism, it is not possible to query SCMI itself for
+this property and it must be described in DT. While this does look a bit
+like policy, the SCMI provider is part of the hardware, hence DT.
+
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 ---
- arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Cristian Marussi <cristian.marussi@arm.com>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: arm-scmi@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+V2: s@mean@&t and limit poll transport to mailbox/shmem only
+---
+ .../devicetree/bindings/firmware/arm,scmi.yaml         | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-index c90f43cc2fae9..a9f0cfd7c999d 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-@@ -346,7 +346,7 @@ mpu9150h: imu@68 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&mpu9150h_pins>;
- 		interrupt-parent = <&gpio2>;
--		interrupt = <19 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index be817fd9cc34b..f4bf4173c5c7e 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -146,6 +146,13 @@ properties:
+       this platform. If set, the value should be non-zero.
+     minimum: 1
  
-@@ -408,7 +408,7 @@ mpu9150: imu@68 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&mpu9150_pins>;
- 		interrupt-parent = <&gpio2>;
--		interrupt = <7 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupts = <7 IRQ_TYPE_LEVEL_HIGH>;
- 		vddio-supply = <&cb_v18>;
- 		vdd-supply = <&cb_v33>;
- 		invensense,level-shifter;
-
++  arm,poll-transport:
++    type: boolean
++    description:
++      An optional property which unconditionally forces polling in all transports.
++      This is mainly meant to work around uncooperative SCP, which does not generate
++      completion interrupts.
++
+   arm,smc-id:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+@@ -379,6 +386,9 @@ then:
+     - shmem
+ 
+ else:
++  properties:
++    arm,poll-transport: false
++
+   if:
+     properties:
+       compatible:
 -- 
-2.47.3
+2.51.0
 
 
