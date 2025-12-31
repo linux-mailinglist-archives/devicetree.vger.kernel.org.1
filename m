@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-250867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77936CEC9E4
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 22:58:29 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E09CEC9DE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 22:58:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E028030115D3
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 21:58:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3471930065B8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 21:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE9330EF95;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5BB630EF9D;
 	Wed, 31 Dec 2025 21:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="GX1knaki";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="GX1knaki"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="QkGKBTjA";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="QkGKBTjA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.mleia.com (mleia.com [178.79.152.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4FCE30EF81
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 21:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4816E12CDBE
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 21:58:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767218302; cv=none; b=DI5FMF7TAFsLUF2pvW0fGlBCE0C1KHcF6XnPPBDwICcUL1r8b6+mqx333LrLTgPmB1Aw57KZg8n0NFLD/j+rqrHhc1hvaBtIli4POpntVk9VkAHlToH77fQmLtZDC0zdU6/ACMcNOz62zd03CKlswliN+rdeb+nTjMmhzofziDA=
+	t=1767218302; cv=none; b=NW+Y3k8UDhcYFGRZpO0M4CKoc4Y6u+j68oIlGply7GH5XSqFMuHflXNg6x0DFAmP3TlbLhvBAxWnRUspp/3v5mdxHOQansZKUtOfFzeCplOJwzsUQaDX9hygiLozObVJWo4Z6fEJjYxRngc93Wtdw+T53oYJA7MiIhKR8m2KdY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1767218302; c=relaxed/simple;
-	bh=nAQpSiX9cztVCMP9D4cWPsbvQDddnDAyGcd4tMO7LU0=;
+	bh=4OIZET21OivzenCd9QpQ2W7kxSGI4TD8QG9/7IayZc8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kHJ+B4PyYOO4sref/rDZ58pvSXw2mFW2o2OussDXK5JnQCXyEzczCAf+mXwmmV8go5faXUkV6bFs+a5hh8E/4g/RXnOaTEbHuwXFRTrnvFmqo6fPHQzZL5AeWWNzJKidczOZUc9kuaP8HPV3Sw9qXquUx2ACH+Fq086PPDb85JM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=GX1knaki; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=GX1knaki; arc=none smtp.client-ip=178.79.152.223
+	 MIME-Version; b=VTqRgOFlHcixzy4NBOl30kPvNYWEUitMTD6ukf+NKZUUX84SsQiy8L7JysMrcIQj0GvYJOTZ78g8CqDmpnp0xluCWawWjG5tbU41tJqftTaTgmfLG5KQ4dQEzGQ7mBoMwSDPViSjTDUG5cArNaUg6NUsQghJs2nPARmVL/RMJA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=QkGKBTjA; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=QkGKBTjA; arc=none smtp.client-ip=178.79.152.223
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1767218299; bh=nAQpSiX9cztVCMP9D4cWPsbvQDddnDAyGcd4tMO7LU0=;
+	t=1767218299; bh=4OIZET21OivzenCd9QpQ2W7kxSGI4TD8QG9/7IayZc8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GX1knakicIsZKhFLS/NvQZmy0dbme0AnVVfBG0Nc1TiVGxxQGFQ02UYgGbBYObrfp
-	 HBHUB+b58WOIm47btAnd9XIT76i7tT7EgyPWosFiJaZ8urdT7BnbRAcAfk3myVDdF1
-	 RadSb9rELjRcoSoXUjS50yAb+86SqSn0GuN6baelYEjgPpfgyOxZKBOzQrl2pj7ANo
-	 x5KNF1rg9UB+FN+Ke+bP5AnpiIRnqx7jucri71fkqjRDbC+wHnU1LgbRzzwWLdc9qt
-	 12XX6mCyDISsBwZDNesvLRez7DPJ2yTxJLARh4rPpK75IMA3jfLqFwj8SZiGanmRZR
-	 DLoCvjR1hHUGQ==
+	b=QkGKBTjANS2lcBjVxnTm70dgfT1Gg7Bdzc87sDcKzIx0th31MQxVgUxzh74fVknMg
+	 P/fZoOpWYmWMqz6ofks8ISFxYXXITHzqhoFxVWHk02q2wAXU+0+ddzF5C3H3lDsgvV
+	 uksovzW7Eb4VYZqG275Dv6yAKmjHWKY5Bt2ac7il3JSn1R3VNzLHJZldlHJLha0Yol
+	 TYpHLDc5Dt+JE5pLezaC4uLpkCJ3mUQf3Io6s72W8BETqo10Fug5lWaNZ9ulNkoGvX
+	 TCs4iPqob9AqL6yrGBamJmR4hWtYkFEIXzvJhFo6FHU4+/qd/fKPv9ouGlo4jIs/QU
+	 74en5DHZVgPFg==
 Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 267543E99A5;
+	by mail.mleia.com (Postfix) with ESMTP id C013E3E99A7;
 	Wed, 31 Dec 2025 21:58:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1767218299; bh=nAQpSiX9cztVCMP9D4cWPsbvQDddnDAyGcd4tMO7LU0=;
+	t=1767218299; bh=4OIZET21OivzenCd9QpQ2W7kxSGI4TD8QG9/7IayZc8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GX1knakicIsZKhFLS/NvQZmy0dbme0AnVVfBG0Nc1TiVGxxQGFQ02UYgGbBYObrfp
-	 HBHUB+b58WOIm47btAnd9XIT76i7tT7EgyPWosFiJaZ8urdT7BnbRAcAfk3myVDdF1
-	 RadSb9rELjRcoSoXUjS50yAb+86SqSn0GuN6baelYEjgPpfgyOxZKBOzQrl2pj7ANo
-	 x5KNF1rg9UB+FN+Ke+bP5AnpiIRnqx7jucri71fkqjRDbC+wHnU1LgbRzzwWLdc9qt
-	 12XX6mCyDISsBwZDNesvLRez7DPJ2yTxJLARh4rPpK75IMA3jfLqFwj8SZiGanmRZR
-	 DLoCvjR1hHUGQ==
+	b=QkGKBTjANS2lcBjVxnTm70dgfT1Gg7Bdzc87sDcKzIx0th31MQxVgUxzh74fVknMg
+	 P/fZoOpWYmWMqz6ofks8ISFxYXXITHzqhoFxVWHk02q2wAXU+0+ddzF5C3H3lDsgvV
+	 uksovzW7Eb4VYZqG275Dv6yAKmjHWKY5Bt2ac7il3JSn1R3VNzLHJZldlHJLha0Yol
+	 TYpHLDc5Dt+JE5pLezaC4uLpkCJ3mUQf3Io6s72W8BETqo10Fug5lWaNZ9ulNkoGvX
+	 TCs4iPqob9AqL6yrGBamJmR4hWtYkFEIXzvJhFo6FHU4+/qd/fKPv9ouGlo4jIs/QU
+	 74en5DHZVgPFg==
 Received: from mail.mleia.com (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mail.mleia.com (Postfix) with ESMTPSA id 955273E99A7;
-	Wed, 31 Dec 2025 21:58:18 +0000 (UTC)
+	by mail.mleia.com (Postfix) with ESMTPSA id 30A823E99A9;
+	Wed, 31 Dec 2025 21:58:19 +0000 (UTC)
 From: Vladimir Zapolskiy <vz@mleia.com>
 To: Lee Jones <lee@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -65,9 +65,9 @@ To: Lee Jones <lee@kernel.org>,
 	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
 Cc: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 3/5] ARM: dts: lpc32xx: Add missing DMA properties
-Date: Wed, 31 Dec 2025 23:57:52 +0200
-Message-ID: <20251231215754.2222308-4-vz@mleia.com>
+Subject: [PATCH 4/5] ARM: dts: lpc32xx: Declare the second AHB master support on PL080 DMA controller
+Date: Wed, 31 Dec 2025 23:57:53 +0200
+Message-ID: <20251231215754.2222308-5-vz@mleia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251231215754.2222308-1-vz@mleia.com>
 References: <20251231215754.2222308-1-vz@mleia.com>
@@ -79,115 +79,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20251231_215819_175314_410A11F8 
-X-CRM114-Status: GOOD (  13.39  )
+X-CRM114-CacheID: sfid-20251231_215819_806192_77669642 
+X-CRM114-Status: UNSURE (   9.68  )
+X-CRM114-Notice: Please train this message. 
 
-From: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+Add 'lli-bus-interface-ahb2' and 'mem-bus-interface-ahb2' properties to
+the PL080 DMA controller device tree node, tested with dmatest utility.
 
-Add properties declared in the new DT binding nxp,lpc3220-dmamux.yaml
-and corresponding phandles.
-
-[vzapolskiy]:
-1. rebased the change,
-2. dmamux unit address shall be 0x78 instead of 0x7c,
-3. removed unsupported 'dmas' properties from sd, ssp0, ssp1 and HS UARTs,
-4. more non-functional updates by reordering properies,
-5. minor updates to the commit message.
-
-Link to the original change:
-* https://lore.kernel.org/linux-arm-kernel/20240627150046.258795-6-piotr.wojtaszczyk@timesys.com/
-
-Signed-off-by: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
 Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
 ---
- arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-index 89e621dfb950..4f3944d6d765 100644
+index 4f3944d6d765..389777ee6850 100644
 --- a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
 +++ b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-@@ -66,6 +66,8 @@ slc: flash@20020000 {
- 			compatible = "nxp,lpc3220-slc";
- 			reg = <0x20020000 0x1000>;
- 			clocks = <&clk LPC32XX_CLK_SLC>;
-+			dmas = <&dma 1 1>;
-+			dma-names = "rx-tx";
- 			status = "disabled";
- 		};
- 
-@@ -74,6 +76,8 @@ mlc: flash@200a8000 {
- 			reg = <0x200a8000 0x11000>;
- 			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clk LPC32XX_CLK_MLC>;
-+			dmas = <&dma 12 1>;
-+			dma-names = "rx-tx";
- 			status = "disabled";
- 		};
- 
-@@ -83,6 +87,12 @@ dma: dma-controller@31000000 {
- 			interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clk LPC32XX_CLK_DMA>;
- 			clock-names = "apb_pclk";
-+			dma-channels = <8>;
-+			dma-requests = <16>;
-+			lli-bus-interface-ahb1;
-+			mem-bus-interface-ahb1;
-+			memcpy-burst-size = <256>;
-+			memcpy-bus-width = <32>;
+@@ -90,7 +90,9 @@ dma: dma-controller@31000000 {
+ 			dma-channels = <8>;
+ 			dma-requests = <16>;
+ 			lli-bus-interface-ahb1;
++			lli-bus-interface-ahb2;
+ 			mem-bus-interface-ahb1;
++			mem-bus-interface-ahb2;
+ 			memcpy-burst-size = <256>;
+ 			memcpy-bus-width = <32>;
  			#dma-cells = <2>;
- 		};
- 
-@@ -190,6 +200,8 @@ spi1: spi@20088000 {
- 				compatible = "nxp,lpc3220-spi";
- 				reg = <0x20088000 0x1000>;
- 				clocks = <&clk LPC32XX_CLK_SPI1>;
-+				dmas = <&dmamux 11 1 0>;
-+				dma-names = "rx-tx";
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -214,6 +226,8 @@ spi2: spi@20090000 {
- 				compatible = "nxp,lpc3220-spi";
- 				reg = <0x20090000 0x1000>;
- 				clocks = <&clk LPC32XX_CLK_SPI2>;
-+				dmas = <&dmamux 3 1 0>;
-+				dma-names = "rx-tx";
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -222,6 +236,8 @@ spi2: spi@20090000 {
- 			i2s0: i2s@20094000 {
- 				compatible = "nxp,lpc3220-i2s";
- 				reg = <0x20094000 0x1000>;
-+				dmas = <&dma 0 1>, <&dma 13 1>;
-+				dma-names = "rx", "tx";
- 				status = "disabled";
- 			};
- 
-@@ -238,6 +254,8 @@ sd: mmc@20098000 {
- 			i2s1: i2s@2009c000 {
- 				compatible = "nxp,lpc3220-i2s";
- 				reg = <0x2009c000 0x1000>;
-+				dmas = <&dma 2 1>, <&dmamux 10 1 1>;
-+				dma-names = "rx", "tx";
- 				status = "disabled";
- 			};
- 
-@@ -328,6 +346,13 @@ clk: clock-controller@0 {
- 					clocks = <&xtal_32k>, <&xtal>;
- 					clock-names = "xtal_32k", "xtal";
- 				};
-+
-+				dmamux: dma-router@78 {
-+					compatible = "nxp,lpc3220-dmamux";
-+					reg = <0x78 0x8>;
-+					dma-masters = <&dma>;
-+					#dma-cells = <3>;
-+				};
- 			};
- 
- 			mic: interrupt-controller@40008000 {
 -- 
 2.43.0
 
