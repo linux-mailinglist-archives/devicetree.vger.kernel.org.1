@@ -1,69 +1,66 @@
-Return-Path: <devicetree+bounces-250684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491C2CEB17C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 03:35:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4930CEB18A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 03:36:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5FB1830094FB
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 02:35:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 761F6300B37B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 02:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D4B205E02;
-	Wed, 31 Dec 2025 02:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F722D9EE3;
+	Wed, 31 Dec 2025 02:36:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="Ja63jy+w"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="Bl9/EFli"
 X-Original-To: devicetree@vger.kernel.org
 Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6078EEA8;
-	Wed, 31 Dec 2025 02:35:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C20D248F68;
+	Wed, 31 Dec 2025 02:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767148540; cv=none; b=EPslS5f4FvEN5NFs/vkpgNhCyXoyzSXOZKZKFTdbLsoTSOIuQV0KtrGzuJgtlCFnj19klbDfygJDAo7QNjDhLPl67hnnxoi8jCdE6qp8ImCHRPHLXQDyMAFvNUfQQyohAKGsgydhn8jCMTkvRC3+RZ5eWjYMsXPPgh1x8D39CH8=
+	t=1767148565; cv=none; b=nSgnBHIj1lfD1yXA8b6zUuARdDxomP6EaZnJRnKPcknGuvz4I9Euxm3Z7dH0wrJjfjCwBmybaqtTekjwg5J+yd8zNYaWYZBvBPRO/QvPPciq2aHE56FvS9oGASowo/8HliufjySaG8hDAwVjhVNHB3JqVN8/1KLMJesycp2hr60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767148540; c=relaxed/simple;
-	bh=5mk1AqDXqYxiWM7jWOHmEJdxyWWdlPMbxkXnY5N9BDo=;
+	s=arc-20240116; t=1767148565; c=relaxed/simple;
+	bh=LqxyURtloegT4m/zAMO9KjepBqGZM6jzaRvo+Psy7E0=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rBFzPYjYNp++YOMdGHSBKFbJ4/nk4ZjFV4Rn9+GkB7ltIgED8K1QImb/3d0QCwumUDaC1zcoFvV/B9yaOw+7KRXItSc3kY8EWUxrctYqCcNQBawkF+mNN5CF8aNW03zoJnaHNI0Fr20Y9yvIUFl1mC+IL2gjxe73pHhwsQhOVdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=Ja63jy+w; arc=none smtp.client-ip=211.75.126.72
+	 MIME-Version:Content-Type; b=pEYKcB+zEZnn+rzqj/T4qn/eAm7ayG2S4JwsPCeI8DgnEv2+X/NfvIQlkq4E9GTKjyGAogL+MFSFMBK5gPyQo7maCrLIAiWD7rJroG0q2WvZXvAwpvlHnWWM3+h/5WdHfMzqVN7PRp7CLlUVqehVlEul0xr9Y92hKrx8rD1CXpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=Bl9/EFli; arc=none smtp.client-ip=211.75.126.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5BV2ZRLO0264402, This message is accepted by code: ctloc85258
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5BV2ZegkE264407, This message is accepted by code: ctloc85258
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1767148527; bh=ng2H3zL6NRfFerI1NxFjntwBYw3MU10vHUxtEwMlvWQ=;
+	t=1767148540; bh=z7Wwgy0d8I6voARKvl0a7KvTVnYk//mpi1lBYRvjR84=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
 	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=Ja63jy+wm33NakFrbuuf9rzWiLAD2Eq5JDhlb9jvuz2VAKOLIdaXji17xWO7X08Kc
-	 E/2Ov6xYg8C6czPZyH6tj2lKctJep5dfnobIDZaBsUmZciqCEdGuDBMwpUc+a0nJ0J
-	 Z/E/Z3Ee81HbISB+HstpBZTzF90bMnSYYXK4C6Jo5iW7VXJIG4RJfI06zcgwviKssX
-	 0rtqauhryAld/IBuS+qpEmUpc2j4mQWbgBl3mA8Afkd8GbIIXh6Ssvg5NURYp/ZgqZ
-	 BX4Z1AVLfPrbhHYUv/TWH9pGF5iyIhMP7knerf8A6pfm03a5bpAQKZpfoVI5TwRGp5
-	 OjqwZR7wI95IA==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5BV2ZRLO0264402
+	b=Bl9/EFli+7enao9Py7jKFI0Nr8NE50u+tMTXk2Gn1o+ECtzeeZavwBaxtR36L9a+V
+	 X8Im9/o2MkN/PGxd4FhTGV5g/mwmOI32gZ4K3+j60nyOCJIf0z7gaTiBcnmDdiILcy
+	 s9uE0gRULWNOhbIb/D5raopJ+Efl3NM7a/5klrFN8aS5EA9K7CJydvqcaIo0VS4awx
+	 7emMaURPPM364g8W/VTB+6XWX9xIl9VYPzZnjP+7vaA8TJKzr33zXr+9XK0Nu4gVrI
+	 vQmyUDcB1hM3gykd9f4EgVssMpm2+E0TKjipewG9RqhsfW2UeyrOSJygDekd2lLnSv
+	 JSQ31JEuZXLkg==
+Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5BV2ZegkE264407
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 31 Dec 2025 10:35:27 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+	Wed, 31 Dec 2025 10:35:40 +0800
+Received: from RTKEXHMBS03.realtek.com.tw (10.21.1.53) by
+ RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 31 Dec 2025 10:35:28 +0800
-Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
- RTKEXHMBS06.realtek.com.tw (10.21.1.56) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 31 Dec 2025 10:35:27 +0800
+ 15.2.1748.10; Wed, 31 Dec 2025 10:35:40 +0800
 Received: from sw-server.localdomain (172.24.54.4) by
- RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server id
- 15.2.1748.10 via Frontend Transport; Wed, 31 Dec 2025 10:35:27 +0800
+ RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server id
+ 15.2.1748.10 via Frontend Transport; Wed, 31 Dec 2025 10:35:39 +0800
 From: Oder Chiou <oder_chiou@realtek.com>
 To: <cezary.rojewski@intel.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
         <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+CC: <perex@perex.cz>, <linux-sound@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
         <flove@realtek.com>, <shumingf@realtek.com>, <jack.yu@realtek.com>,
         <derek.fang@realtek.com>, Oder Chiou <oder_chiou@realtek.com>
-Subject: [PATCH v11 2/4] spi: change of_find_spi_controller_by_node() gating to CONFIG_OF
-Date: Wed, 31 Dec 2025 10:36:49 +0800
-Message-ID: <6d8ae977d9f4726ea23ad5382638750593f9a2e4.1767148150.git.oder_chiou@realtek.com>
+Subject: [PATCH v11 3/4] ASoC: dt-bindings: realtek,rt5575: add support for ALC5575
+Date: Wed, 31 Dec 2025 10:37:01 +0800
+Message-ID: <cad38383a8f4c7235158779c270fee7f61bf6cfe.1767148150.git.oder_chiou@realtek.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <cover.1767148150.git.oder_chiou@realtek.com>
 References: <cover.1767148150.git.oder_chiou@realtek.com>
@@ -76,70 +73,82 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Currently, the helper of_find_spi_controller_by_node() is gated under
-CONFIG_OF_DYNAMIC. This prevents drivers from using it in all CONFIG_OF
-configurations.
-
-This patch moves the gating to CONFIG_OF, keeping the inline fallback
-returning NULL when Device Tree support is disabled.
+Audio codec with I2S, I2C and SPI.
 
 Signed-off-by: Oder Chiou <oder_chiou@realtek.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- drivers/spi/spi.c       | 20 +++++++++++---------
- include/linux/spi/spi.h |  2 +-
- 2 files changed, 12 insertions(+), 10 deletions(-)
+ .../bindings/sound/realtek,rt5575.yaml        | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
 
-diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index ecb5281b04a2..2badacc7a91c 100644
---- a/drivers/spi/spi.c
-+++ b/drivers/spi/spi.c
-@@ -4761,15 +4761,7 @@ EXPORT_SYMBOL_GPL(spi_write_then_read);
- 
- /*-------------------------------------------------------------------------*/
- 
--#if IS_ENABLED(CONFIG_OF_DYNAMIC)
--/* Must call put_device() when done with returned spi_device device */
--static struct spi_device *of_find_spi_device_by_node(struct device_node *node)
--{
--	struct device *dev = bus_find_device_by_of_node(&spi_bus_type, node);
--
--	return dev ? to_spi_device(dev) : NULL;
--}
--
-+#if IS_ENABLED(CONFIG_OF)
- /* The spi controllers are not using spi_bus, so we find it with another way */
- struct spi_controller *of_find_spi_controller_by_node(struct device_node *node)
- {
-@@ -4785,6 +4777,16 @@ struct spi_controller *of_find_spi_controller_by_node(struct device_node *node)
- 	return container_of(dev, struct spi_controller, dev);
- }
- EXPORT_SYMBOL_GPL(of_find_spi_controller_by_node);
-+#endif
+diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5575.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
+new file mode 100644
+index 000000000000..981ebc39b195
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/realtek,rt5575.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#if IS_ENABLED(CONFIG_OF_DYNAMIC)
-+/* Must call put_device() when done with returned spi_device device */
-+static struct spi_device *of_find_spi_device_by_node(struct device_node *node)
-+{
-+	struct device *dev = bus_find_device_by_of_node(&spi_bus_type, node);
++title: ALC5575 audio CODEC
 +
-+	return dev ? to_spi_device(dev) : NULL;
-+}
- 
- static int of_spi_notify(struct notifier_block *nb, unsigned long action,
- 			 void *arg)
-diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-index e6fdaf02386c..8bc616b00343 100644
---- a/include/linux/spi/spi.h
-+++ b/include/linux/spi/spi.h
-@@ -882,7 +882,7 @@ extern int devm_spi_register_controller(struct device *dev,
- 					struct spi_controller *ctlr);
- extern void spi_unregister_controller(struct spi_controller *ctlr);
- 
--#if IS_ENABLED(CONFIG_OF_DYNAMIC)
-+#if IS_ENABLED(CONFIG_OF)
- extern struct spi_controller *of_find_spi_controller_by_node(struct device_node *node);
- #else
- static inline struct spi_controller *of_find_spi_controller_by_node(struct device_node *node)
++maintainers:
++  - Oder Chiou <oder_chiou@realtek.com>
++
++description:
++  The device supports both I2C and SPI. I2C is mandatory, while SPI is
++  optional depending on the hardware configuration. SPI is used for
++  firmware loading if present.
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: realtek,rt5575
++
++  reg:
++    maxItems: 1
++
++  spi-parent:
++    description:
++      Optional phandle reference to the SPI controller used for firmware
++      loading. The argument specifies the chip select.
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  # I2C-only node
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@57 {
++            compatible = "realtek,rt5575";
++            reg = <0x57>;
++        };
++    };
++
++  # I2C + optional SPI node
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@57 {
++            compatible = "realtek,rt5575";
++            reg = <0x57>;
++            spi-parent = <&spi0 0>; /* chip-select 0 */
++        };
++    };
 -- 
 2.52.0
 
