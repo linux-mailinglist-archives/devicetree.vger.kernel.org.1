@@ -1,137 +1,123 @@
-Return-Path: <devicetree+bounces-250821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2ACBCEC12B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 15:20:38 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 464E0CEC170
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 15:35:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 84CA730133A3
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 14:20:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3F911300A3E6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 14:35:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BACC625A334;
-	Wed, 31 Dec 2025 14:20:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A228F26F47D;
+	Wed, 31 Dec 2025 14:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="13wHxzin"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="V4u3+2af"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8603E19F12A;
-	Wed, 31 Dec 2025 14:20:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28B4266576
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 14:35:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767190836; cv=none; b=fWg44tpqkl6TLfPkz3MNMUY9X2g2og3K0JMFDUGlzcPf0DCAJni+uW/nnkv3XcXypD/55acZcbLFDdVjjDj34E+cr/0MMpFGIiB4xyWR9gJ4vbkFcFbkYDVtv/N7DkkZTkoiOvVeAt3x7rb6jDLdCEyoKOB2BsmSjwdMGcGK9IY=
+	t=1767191745; cv=none; b=shs6GXLpRuZl11BsMB55KLJHWjSoS7FsnvWO0ohH18zqH1ijYFoU1HSXG69w2l90i9YiejPUY3RkhxpJZzZ/oHE3HCi1eTgK0Acu+MNMJYUZQABb5RQC+PlOtd2bF+9iOwursgmH5U8w1q0sATYzkdAZ+G9/R9tCo+rgn7He+28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767190836; c=relaxed/simple;
-	bh=Vqw+FMGdsBIhnM6kRP5WMkUgnWBcpk7lg1iTCLyVUYM=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=FJQKBHzNS5KGSJo64y1b1imPGBpvcPuM9m1rPsIM1b4x3A5lrQaIOy6ZboL79MJKjzl58+EHifMdImswmtHaEqQZ9M3pnMbakZj/pgoorvDQ9HJe2xbqNOIrwY08EMV082JvoACj7JTghLfk2IM/tRkvJrnVhZdWp5JB5ZOKWQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=13wHxzin; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id A8741C1AE2B;
-	Wed, 31 Dec 2025 14:20:06 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 24E1D60744;
-	Wed, 31 Dec 2025 14:20:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D1397113B0770;
-	Wed, 31 Dec 2025 15:20:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767190830; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=s/LBclbjVdapialdhCPRdRaESKqlpOnpyxq4+NMgleQ=;
-	b=13wHxziny/E58+NBQrqX+3oqwXTJN93YZxWKmfk5Vk+lqAW1vaeCJkJLSB+5n0yxC5C0i6
-	peGkD9i2Lg28sPjmOWunBbHe1zqqgF4XTN44q8Uzl7NhT7l6RKxtK9qDxicfDKP/68Zdon
-	ju0bXrBWNhg3k9kYcMUK0beztObZRm4JPE3U9sEkhvXyTcuK333O6r8kXtLaEWhYvMQD2u
-	6wlC3QxgUhFpBujq2T3zNWeMC8TdZ9bsKGNgxiC4jF48r6qANgMY/1mv3ZyhcuMP8j0bcp
-	8785748qfhPRghOe6yvJgSmnhDkzlaOHBtvUyKUu5H4/KFh4FcxTeIH6mHrawQ==
+	s=arc-20240116; t=1767191745; c=relaxed/simple;
+	bh=AhVg3Ya4t8+09xhLV2MFKHi58VKUWxRFzPDeqNG4M/g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iw5rsaM6+68h2KOCGQ0BBchDIHvJ7dX5MA6rgNgj5TEmor4mwDH1cHAY2J1MHsYTT0BcV8aW6QllfPWdqcPHYnjcv5jNEdLqoNyMJ+G0BcbV8aRGslwBb2N9hPIJnJssvOAHyMOQVvV/41YJVKB7QK9UD+EF7lT/uRVYCusA6Oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=V4u3+2af; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4779cc419b2so85726765e9.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 06:35:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1767191741; x=1767796541; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zJt+Vk5CZtSda+Qv6TxKnOwmdavVEtubrUrFCi+hJhQ=;
+        b=V4u3+2af6X/1nRiVIEId6GMTTjDLPf9tthl+IdfsuuDMJNBRKFoVwne7yLRf2x9/n5
+         EOriUGXADj/AObdPJNybqK1XtXiH/CvwDix92EKWuop77pWTb1CufReE2KPcl7fCPQvY
+         7XpMlGdv4rn1qMuaxPxxJYhWKC2ubJcMZLXnM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767191741; x=1767796541;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zJt+Vk5CZtSda+Qv6TxKnOwmdavVEtubrUrFCi+hJhQ=;
+        b=Bf8NkThyZf5jWYBwzns4QnAIqq+EQnWWMEswwrjp57G9TwcHdgkC4i0csMOoGZr3EQ
+         ytPCQglRYgOitpjZxl6RhadFNQaKjpcgQhLak1x6gS/wnbQ58RJqef861bVT7c+PyaKh
+         o+Xelwd++et4JiRFZTN4SWqjiIZXLnJ5MVxg9798M8pPqF2IiYsGdyQDG7lGhdlLWU1y
+         tGv+pcqjpbf1Znl69JunUMg8Sh2oJohsZrz4GDXHCMlR0movhcmNAxhCJeq2AsBgctYQ
+         wvZrSAS6tMXgnVf8QMNlinKpsT+ltJzszoaVKmgM+hGCkjSxnrexDCY6H1GKjsyOA0Jd
+         goew==
+X-Forwarded-Encrypted: i=1; AJvYcCVghK5pBSXMNlquJUPfk4WA6lkpUl9Xxq0/mG1xcoSpVJFQ3iJQy3dBTO81XRwgTFkFtGsR2FgRnry/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwJ4bGCtxPZF7Vbbp/BrCNDfvyNjTw8UIlL+dasuVM2+HxtQ8G
+	BySVN426njjBf7kz+cSVAXY8/PBBlA64v3Jb38ljqyAr1eOpJy2se17gt/YeXvt1pQ==
+X-Gm-Gg: AY/fxX4YS+yc+3CxiD+GG5I6CoQBhr3IddHpn0Lv0Do61oRuoEz8XcQ3AIsvfSH3Ikl
+	c/1I/XI3DH3mpiEv7pINWWo5/odfSEj8eFQ6FFRW2zG8GGH8f2dTtfL8HrPfqvZRXRs5Qp741Kt
+	V/6pHAvK0khsksSBVhb4vhNuqO7UxFBCYgQfhKjz65I65SvGITb6LAy3EqSfTD7UUiahhuVrcEq
+	vDw7ztZ5/UxpxwE+DJ19vE0bLG0+RPbIFOJCwG+6ASU04wKmcRSh+WE5WgSVGdvUqcA69YcoHz9
+	3LwcIcO5WyVBsbY88Sb5TvitpZDhz9boYtWyTUMElXO4K2swLGoTK0Is8qRQN2RNx0MopEcwFFT
+	Q2yxvSN4u8peWo1G7upAcAyQE/mY5zEH6tUgt1lvw4Yh9penISHhYPRryBpzr39RVv4HkcygwnA
+	NRA0PpU685VrOrQlpteGDLtw1F5A==
+X-Google-Smtp-Source: AGHT+IEAuByjLQ/pUsJ9uqNDD9bJhs+aoCV8W8RpPLTDvlnGTrKTtFFsW+clPesgyA5XNjr0o/YF6A==
+X-Received: by 2002:a05:600c:444b:b0:477:561f:6fc8 with SMTP id 5b1f17b1804b1-47d19549625mr389224705e9.5.1767191741123;
+        Wed, 31 Dec 2025 06:35:41 -0800 (PST)
+Received: from balto-ws ([37.228.206.31])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d193d4e91sm630300935e9.13.2025.12.31.06.35.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Dec 2025 06:35:40 -0800 (PST)
+From: Fabio Baltieri <fabiobaltieri@chromium.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>
+Cc: Fabio Baltieri <fabiobaltieri@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Simon Glass <sjg@chromium.org>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] Input: cros_ec_keyb: add function key support
+Date: Wed, 31 Dec 2025 14:35:36 +0000
+Message-ID: <20251231143538.37483-1-fabiobaltieri@chromium.org>
+X-Mailer: git-send-email 2.52.0.351.gbe84eed79e-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 31 Dec 2025 15:20:19 +0100
-Message-Id: <DFCGV315JITK.1TXTXWUOMLMB9@bootlin.com>
-Subject: Re: [PATCH v4 3/9] drm: verisilicon: add a driver for Verisilicon
- display controllers
-Cc: "Han Gao" <rabenda.cn@gmail.com>, "Yao Zi" <ziyao@disroot.org>,
- <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>, "Icenowy
- Zheng" <uwu@icenowy.me>
-To: "Icenowy Zheng" <zhengxingda@iscas.ac.cn>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Drew Fustini" <fustini@kernel.org>, "Guo
- Ren" <guoren@kernel.org>, "Fu Wei" <wefu@redhat.com>, "Philipp Zabel"
- <p.zabel@pengutronix.de>, "Heiko Stuebner" <heiko@sntech.de>, "Andrzej
- Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
- Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
- <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Michal
- Wilczynski" <m.wilczynski@samsung.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
- <20251224161205.1132149-4-zhengxingda@iscas.ac.cn>
-In-Reply-To: <20251224161205.1132149-4-zhengxingda@iscas.ac.cn>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Wed Dec 24, 2025 at 5:11 PM CET, Icenowy Zheng wrote:
-> From: Icenowy Zheng <uwu@icenowy.me>
->
-> This is a from-scratch driver targeting Verisilicon DC-series display
-> controllers, which feature self-identification functionality like their
-> GC-series GPUs.
->
-> Only DC8200 is being supported now, and only the main framebuffer is set
-> up (as the DRM primary plane). Support for more DC models and more
-> features is my further targets.
->
-> As the display controller is delivered to SoC vendors as a whole part,
-> this driver does not use component framework and extra bridges inside a
-> SoC is expected to be implemented as dedicated bridges (this driver
-> properly supports bridge chaining).
->
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Hi, v3 of the cros-ec-keyb fn key support, just few tweaks from the
+reviews.
 
-[...]
+Changes from v2:
+  - renamed the dt property to use-fn-map, dropped the example
+  - added few function comments
+  - added a helper for obtaining the fn code
+  - reordered, dt patch first
 
-> +++ b/drivers/gpu/drm/verisilicon/vs_bridge.h
+Changes from v1:
+  - change struct to short types
+  - refactored the fn key handling in its own function
+  - changed props to use the google, prefix
+  - reworked the properties to use an overlay map rather than a
+    dedicated one
 
-> +struct vs_bridge {
-> +	struct drm_bridge base;
-> +	struct drm_encoder *enc;
-> +	struct drm_connector *conn;
-> +
-> +	struct vs_crtc *crtc;
-> +	struct drm_bridge *next;
+Fabio Baltieri (2):
+  dt-bindings: google,cros-ec-keyb: add has-fn-map prop
+  Input: cros_ec_keyb - add function key support
 
-It is a common convention to call this 'next_bridge'. This makes it easier
-to understand but also to grep and find similar patterns.
+ .../bindings/input/google,cros-ec-keyb.yaml   |   8 ++
+ drivers/input/keyboard/cros_ec_keyb.c         | 136 +++++++++++++++---
+ 2 files changed, 128 insertions(+), 16 deletions(-)
 
-For info, we are working to move to 'struct drm_bridge::next_bridge' [0] as
-you can see from example patches like [1]. However this currently applies
-only to drivers using of_drm_find_bridge(), so it does not affect your
-driver.
+-- 
+2.52.0.351.gbe84eed79e-goog
 
-I'm sorry I have seen your patch only at v4.
-
-[0] https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3fdeae134ba956a=
-acbd87d5532c025913c98fc49
-[1] https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/8f92a5fcbfe33f8=
-6b08f5f74dcc58a41425ea8c0
-
-Luca
-
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
