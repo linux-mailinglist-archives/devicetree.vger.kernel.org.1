@@ -1,269 +1,331 @@
-Return-Path: <devicetree+bounces-250726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D9A8CEB60D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 07:42:18 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C222CEB6AF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 08:07:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 070DA300C747
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 06:42:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 29552300BAD6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 07:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B54823112AD;
-	Wed, 31 Dec 2025 06:42:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 264F0236437;
+	Wed, 31 Dec 2025 07:07:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jHT8QzIP";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UJLo3eCl"
+	dkim=pass (2048-bit key) header.d=siliconsignals.io header.i=@siliconsignals.io header.b="PXN0DNCh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from PNZPR01CU001.outbound.protection.outlook.com (mail-centralindiaazon11021110.outbound.protection.outlook.com [40.107.51.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 126A2310647
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 06:42:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767163335; cv=none; b=uUGlyBnS8bQBXYlprEwczZbekV+2gFCJzZMqirIR8sH5I6wVG2kYSCzor7o/Dwc903clk0uDk8OBxwi6mraKnqdFqjffWNbRyUGmP8dXw8PEq1pM4Y/aMjZ0980O9wPQM73vmgig/WzJij5VowwbAHKrmaYTBxlv+wvCOHEGXKU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767163335; c=relaxed/simple;
-	bh=Fciu5cToeAhIXk/TQN4sMQaWhR+7ySM4v/oru1l+XDo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dZWo0Xtg9e7kZuIeAngnEs8VFSqblhaOSb9EugRvxV1hMvZ09ZPKRy+V+z+jYpPyRMLKXnYQpl2+fqY3DsKRlV5F8cog1NvvzTD6FA8P6PXv+8Q6ZZLQDuyq4/1cTHE/NvIolswPOQHP9ApBATDr+D+gy5vMXOX+8JpxKj2ng3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jHT8QzIP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UJLo3eCl; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BV61x3x2049477
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 06:42:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jUOWXlGfx496nUZUwjiT8mnWUlnUNQfXG/CIZWbqY1k=; b=jHT8QzIPp0bP4DvH
-	jRNWx03A9gCmX0xUp2bfewDjzJsoQPKcHnzZvhtbFd6nFjlwtNGCOyFR0/3wechE
-	+3FLbLFVWxZNC/Gf4//DZLUDRAyCOlCwd8rH0HFNpB/0XJyyK+nOXxJhzKVMArDI
-	BYxPJklJFFNjf3xP6sidYofqtfvdOaFG77Vdsv8CY6qKC8Z86z+WlmkfqLLcm3uk
-	XiPqn3WueRiCBWUrEaWww7o+ldAKnmbj8jutcjmE869Bl3SVGYo4cCXXuH+j7EEV
-	ctU28R/dV1/PflWE+dTJCRCfqx06VB5U/UWuzpTg7X4IBk7+w/ZSfdZjcz5A0+F0
-	mNHcXw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bcx74826s-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 06:42:12 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-29f2381ea85so224627125ad.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 22:42:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767163332; x=1767768132; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jUOWXlGfx496nUZUwjiT8mnWUlnUNQfXG/CIZWbqY1k=;
-        b=UJLo3eClX0tYp2dAsgMvMUA5FJ3Xi3Yo6lKEfZHfpVT2UijEe/OJ4sWVMJyd+8Tv6H
-         s1nfaAPrZvqX2VIyTZUCzS9nz2qRdX5TOn+AoRx4gT8qZWh5XugZ7DzCOIkH21cLG0dj
-         n819IAuncm3vxOlycp5ZMTVF5wIGyb867AaVK4bvTiQk8zokRe9kskhv9oD/zDWu/O02
-         M2vzoqNmw2RGAqSs441YhcklxV7GEwoWxOE3wEpFIu7zxRxjm3llnVOOJ6efDz3AmZCB
-         dasinC+6BFZMpeb6XzEwROXJVGc07WRtmN/jLfxDqsXxpZGegOiGDDotQIuTqBViSsjr
-         E/Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767163332; x=1767768132;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jUOWXlGfx496nUZUwjiT8mnWUlnUNQfXG/CIZWbqY1k=;
-        b=leR9TprVrmPqZ1ojni2u9ifAc3DgzLIIfPuYSyew0MIl0dgGw9Z0ecmdWtsoTK5JMO
-         903SVZ4gEKztxi0J8ThkylwtwrkI2qo0PdewDT2mjCPdPDHCEjQhVNEWT4LiNF6TFe3P
-         DwYWGRT/ebTQBo7cbezD8Zr68Mu2PuI5qhMn84aBY7qG/bAhagcQk1hltU6AbDtksVF2
-         3BbJQwJIBElGt96tOQA62VaUhYdxCF8Jo/IXLXHhp+lj6BsMTmGNJvtRpu7aYPtf/uBz
-         SCJXRJtHYC8gKvGkCPOuaGkhYKYXk6TF2cIPemRIC5GDxDUi0pU7vZAGFmdHIrO/BNU1
-         uGVg==
-X-Forwarded-Encrypted: i=1; AJvYcCV+PsFDRczNCKNJuDkEQrk2T84tPsnTBewKlnlxvn33g4hmB07wfQqd+H5BC6fh1k3kJMiu1gE2y09b@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7/ce0KPjgyV0mWdVB4Ygnijw42F7Bwl0lmdQpFj+DmkfsqIyN
-	4n7cfvWRxzr8n7HME55PTGyXNglClVWapNV8ZBJ19jAu81HOiofvr7KBb306gLoop7on0psYoqW
-	Q7DJKIqP6He3AACNJbYDFpExRCmcI7lzaC2TPmUJKhcY802XMdxGvY80MMeXZGJdd
-X-Gm-Gg: AY/fxX4aKnnhDMeiVh2C6QN89l7qbeA7ONe1rhItAgXw5SIKZU9k7L5wfOOgJ3LTfaG
-	NKtGZPEjttxZbuH/5TqfKXNC5UAMlDI+bvBKzMFcNNhiB0vM8PM3q/lev1vA7oZnQVbe/FBE9az
-	pRftCJ+01AudKvo+CuRwJEsfJHKa0qSrmc6cGW54xqQr044lVccAjPBM6pxN5+IhCmCxwC0hU5m
-	f9VhknanZso1DZWb0lSYhFYDlSBdRI246gY8NMdS++37soh3l8ClRZYC3WiUlDMHu2loUQnSlm6
-	mWbOiEJhGolhoWlsVqFLlBO78u1rML5PE9rJcyWjPz+acZdi/NO8p8FMbKqr4eXFUDSEhchDtt3
-	kCRpGH/afHu5WO4YW21aZws/qDScb8fgCbVgXwBLc7A==
-X-Received: by 2002:a17:903:2c04:b0:29f:1bf:642a with SMTP id d9443c01a7336-2a2f220cb99mr368054975ad.12.1767163331761;
-        Tue, 30 Dec 2025 22:42:11 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGT7HRR37iJWhDT6viw+JV6tiAVVUvKFTX6dzMDFLsFQX5QdlYMk0VqdFo6QuKenYEGoujh5Q==
-X-Received: by 2002:a17:903:2c04:b0:29f:1bf:642a with SMTP id d9443c01a7336-2a2f220cb99mr368054755ad.12.1767163331291;
-        Tue, 30 Dec 2025 22:42:11 -0800 (PST)
-Received: from [192.168.1.11] ([106.222.232.236])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c1e7c627f3fsm30428681a12.31.2025.12.30.22.42.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Dec 2025 22:42:10 -0800 (PST)
-Message-ID: <74b33eb5-a75b-479e-92b3-cb6e094e5610@oss.qualcomm.com>
-Date: Wed, 31 Dec 2025 12:12:04 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C22474C14;
+	Wed, 31 Dec 2025 07:07:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.51.110
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767164846; cv=fail; b=eFTxuDMVEWulLI8oRxbNHTacMFfHbtGJiIrrNoi50/aeavAGEZS7Ym3deahajvX7fJSdz0DqYKxlIeVWsqqLFKY5gVclNKdMkHpNmnBjIQSGAzPGr8TUHbUhxO5xEMt2P/0SyzSyCTbmrzp+XB1sDIMg2UMQJ3T5egyxupskcCg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767164846; c=relaxed/simple;
+	bh=4uquAgiusq3hyeXx59e2J+J/JShq9iFBt3tUhy8GobE=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=QJwQhxerMNu7FpXm2G/6Wzb9B8gbhKWDN5sVh5t5s/cJo3+ev/faJgSuk/fk15Yg8TnnK6K8ISKv6r3AyWws7pVHmfsNYchodr+/oZp7yAEZJJUvO75p7RqG83sajAaYwDIALl24/6/tp3gBmO7er1o/K3+hl+Oh1IbBanxYE/E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; dkim=pass (2048-bit key) header.d=siliconsignals.io header.i=@siliconsignals.io header.b=PXN0DNCh; arc=fail smtp.client-ip=40.107.51.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=u5o5lYBBooEEJq3br6TZ6cN5hy1RGIA54YNuH6nLxBXgqyuWTHM+33boZa5evJ4EIUvcsclzNcFFFPyXod6CIg6O12jTTRlpnRKLVTC1dFq0HjoFzW7rroRK2lUU6rd5vsqilNejkSNGIsLDvrB0feQbdmfowU5QgPjPx7IxHbvM8LjeOnRGqQD9M5WT568qzo0ARNj7XkolkN0X3/fxhu4MFDqGOLsBxUXAmThZYpwgwDQKCVzkLxW6FnISAWppOcfy3xMdcFZmoRX8U1rgBn1HVR9fFGtdpjSqaM2WX1Nx3+bN0i7g8ksBqQNPFBuS/T3Gw2ZkxCPl/P7S5xmdMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KiApiGOjr4E2RHjq9JKml/UvJRwi4rYFCUeZRp4QtC4=;
+ b=hUwH/tFZItMkLKHVjvh7MJOo2y4VEE1kEuATol7b8TSGgoY5v/i1fqYJDVvgFmJsJZNEqWyhrHtdoe3FAkvXQTRgct4i5XDquOVqUNnZ5vDSVgD35W918RBKZfEon8yxYQQNzjCEmg0JNyOPiMyWUmQXa2gcFcyPdXSOskipWrJg36Q5yXFYNeaQDbznPxSjinEN3+0WfXo3xo2YM7u8nhV10a/mmZQDTaoM3jaCPPV6ZcOiBhPdzKnTYn8LWpjZYDlpZ/JGfWvMB1Xb5Lwmv/51YZ9Xcy7B0oi+e7F8gkU0c2Y/C8KjENcJ4yX8X9OdFhiCQGyh2ZvQbjG+GhHseQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siliconsignals.io;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KiApiGOjr4E2RHjq9JKml/UvJRwi4rYFCUeZRp4QtC4=;
+ b=PXN0DNChP+7rxh9hjkpsdCcS9L/t21WLmYVfys+gHlE6/Mwtvfmyl802je4lo0A3pKJeq15soz3hQhv3fwopAF+y7zBV0k7Kp2cTNDOj+61I28U0vzddYz2xtvSxGNdRnDKlrys/fBkRJBOV/RgrJ/A6XJ1HKybgvOqm4PduEfwc84QhwvIYT17hVqgONP2cU7ywWKEe/TvHEqBoZ2RyGGlso0bkfaWy3qljNs4qJ7JWwYjim9wDTSI/2PQ2s6n2Q1QHM35dT4chDawZHssRQVpn8NxnXN3BHj9a+3sv0ShKNNSOHNlXKeOt3cNDlpYzqLQCwAHCW8JO2WX+DWz2NQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from PN2P287MB2030.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1c9::8)
+ by PN3PPF4232800D2.INDP287.PROD.OUTLOOK.COM (2603:1096:c04:1::9e) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Wed, 31 Dec
+ 2025 07:07:19 +0000
+Received: from PN2P287MB2030.INDP287.PROD.OUTLOOK.COM
+ ([fe80::85bb:6572:ae6c:5a15]) by PN2P287MB2030.INDP287.PROD.OUTLOOK.COM
+ ([fe80::85bb:6572:ae6c:5a15%3]) with mapi id 15.20.9456.008; Wed, 31 Dec 2025
+ 07:07:19 +0000
+From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	sakari.ailus@linux.intel.com
+Cc: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	=?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/2] media: i2c: Add os05b10 camera sensor driver
+Date: Wed, 31 Dec 2025 12:36:36 +0530
+Message-Id: <20251231070645.16434-1-himanshu.bhavani@siliconsignals.io>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PN3PR01CA0125.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:96::11) To PN2P287MB2030.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:1c9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/8] dt-bindings: thermal: Add qcom,qmi-cooling yaml
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>, andersson@kernel.org,
-        mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, rafael@kernel.org, daniel.lezcano@linaro.org,
-        rui.zhang@intel.com, lukasz.luba@arm.com, konradybcio@kernel.org,
-        amitk@kernel.org, mani@kernel.org, casey.connolly@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20251223123227.1317244-1-gaurav.kohli@oss.qualcomm.com>
- <20251223123227.1317244-4-gaurav.kohli@oss.qualcomm.com>
- <f6bd1bda-6aab-4d4e-9981-f55cce03f70d@kernel.org>
- <3fc177ca-0260-471d-b7a4-bd479f5e5855@oss.qualcomm.com>
- <60653b06-38c4-4276-a6e5-4a5900ba19d4@kernel.org>
-Content-Language: en-US
-From: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-In-Reply-To: <60653b06-38c4-4276-a6e5-4a5900ba19d4@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: MYSJQmGlFodB9Pwc_3se7HwXw5CRnN_J
-X-Proofpoint-GUID: MYSJQmGlFodB9Pwc_3se7HwXw5CRnN_J
-X-Authority-Analysis: v=2.4 cv=HNvO14tv c=1 sm=1 tr=0 ts=6954c5c4 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=pk+8NuH2X28N4C0eta/h1Q==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
- a=EUspDBNiAAAA:8 a=2qAtJ3vxrRqM__EgsU4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMxMDA1NiBTYWx0ZWRfX0+ruEXU0xFEq
- qx87Girv/i/s13ROzUQiUdQQ0tHl5SFo6BV5FX2UI3QOsAlGcFXQ/mfKRCKPSbN4s8fQPy+dG97
- g6p0cTfiN+mhHq+CDj9DeMCw1jXJD+wgM4/dWc4R9v77vulyvikgtKbDmfGdVB24LSyxHLxdYzZ
- yyUOJrvr4+vqaQUprsHsYPnb6s6TK6dq1Ef26O5Qpk7AJ3vWk30NVC8LBTvvih4cwJeVG5QUf8m
- TcP2QW/0OU0O284S1SH8hll1tuqxSLb0SZ02llMRs4PRmxPYGOdqH+XZUW1ictROn9MbH06bXzy
- fQXdts8le5AIxNUhLBfKhMHujfZVw0iHddMx1JKYljereC391hRq/zouWdmfXT+Z4sA9zlZvTDD
- QcTr0eOMGYpKyYxEYE8cRYTcLOAbQ7mROXRTnIHsgHQUnez5FohKB+hZ4VQulqWsMqEXJnO4/Yi
- VPnQujNpoDOBWKA6llA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-31_02,2025-12-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 impostorscore=0 bulkscore=0 adultscore=0 suspectscore=0
- priorityscore=1501 lowpriorityscore=0 clxscore=1015 spamscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512310056
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN2P287MB2030:EE_|PN3PPF4232800D2:EE_
+X-MS-Office365-Filtering-Correlation-Id: c297f54a-b516-4f7f-252f-08de483b3d01
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?91fNknkpnFoQz1waTRYBdIeasoK1jn9r3nYxduoO7lpAdRWgY8pIjl4w5dYA?=
+ =?us-ascii?Q?VYRrOoN2Cchlluj3jEBxEchOW8T2avFerbVmlj2XgY6w97fMXymLhMo5+mfO?=
+ =?us-ascii?Q?lvJE/QSRxFrIzX0VosCfOVGWdtzfxO262sdev13NaIykjG44e9tR76q0aEhs?=
+ =?us-ascii?Q?5KEwYbp484hyqMtABsk0fFxpNUfXm61OM5KqOubnO2L5TbbRumLklNJ+fZwm?=
+ =?us-ascii?Q?Ga9a0/4pHJXJhOm8IufX2/HUr/W6ZFffai2aZoTGvcYmbdQa2SWS6Sv7yykn?=
+ =?us-ascii?Q?Dy0mLdNlWV8zfsZBWcnfIMhS3kwlG4UfNeC8uIsHQkN0ynNdyd996jUDiwq3?=
+ =?us-ascii?Q?62n//LpkLBhZp/WFus7HChKo3v0bemH3CobvvX74eIERy4xWSvCUo7wN4Rdg?=
+ =?us-ascii?Q?PY2s9yeKJrnMJ6PHrX2nfvvCV+v9RWwiSZkH+xDCuOKG2rdt5zmaGTby+50v?=
+ =?us-ascii?Q?+H0XJYMGWsmvJ24tgsMa1sxka/9WOL3USjRArvnDPi2QDZ3i0IHcJbnnGXCU?=
+ =?us-ascii?Q?ANHKxGGrTRFJFXqSixXQlJm2p5NFkm3Zl20ik//ufNfRxzvqa/yREuHwgGpv?=
+ =?us-ascii?Q?lh629KBwc3YGzQgD803ZKdLsXTBjXvFQwr7u5VRBCrrcH8Z3K+O90DAJ3h4B?=
+ =?us-ascii?Q?eJ9AZjs8vo0EJPqZJKaNrwbLC2VYT7BE9dFALX+yU7Fm4dJ2q5gO6LRfOjRh?=
+ =?us-ascii?Q?86q/II+RccUSwEJbpWmc8FT1Net5L16bTrZQcW8lhnzykEaxxz6GgUofXkv3?=
+ =?us-ascii?Q?Dg9Jf8ZJG/mEdrkga1UTX3cUdqnM8zyp7OlEyOBe8+EA4EA11RQVEn3c1woF?=
+ =?us-ascii?Q?HF2d0hdU1+jyojs6Mzj+A9KuVBQufHt29im7d6mMgQx7Xr5ibgnMS5CUOx/e?=
+ =?us-ascii?Q?+kDjpKtgFJBJTcGNdXqOHzkyU/TS/5hOE9S4BolLAptT3yDSUQHUhWrnrj6/?=
+ =?us-ascii?Q?CfQwH0n8AdIaUxB/mGUxHePUYdbvBMA+3Zn3b1JiSYlwSZ0FZEv2wS+Lpj5F?=
+ =?us-ascii?Q?TYGlEPDfE5IZilVIzARs5O6VDYprEffvYfWJin71FkbfvwQFsw2Kj5Oc2b8U?=
+ =?us-ascii?Q?zIV2C3vJkdVoX29au3oBZhZcd+uUdIiOc9URdN7WkZ418YILJGGaSJJ9tvsf?=
+ =?us-ascii?Q?uQCRTgU4W1GqMYm3yPTLXFm0l0BdnGY51ISQ/jqnxO6rHoMzennXwis0yt0O?=
+ =?us-ascii?Q?Meuqlg6DA77eKLeliL+SP/LbYlQeTVPrSougRTOzndqDTlCVcgH8freuFEeD?=
+ =?us-ascii?Q?7DKVuUwWz0B2Zb0XhoQXZNbcBugmQhzbdRIdVBX23p13LY+KsSLmz8R4wROO?=
+ =?us-ascii?Q?HAi9vRisbQGQWUFiu/Y89IRyBEq+8S8kcPzT2+3/rNt4Y70xagOj3SztmYXM?=
+ =?us-ascii?Q?h8tWL5LzesOawXR/v4v31efVosUKvxYBZQrpj7tm4o8N25IZC14JmHsg5bBE?=
+ =?us-ascii?Q?ZAt4Okt7n6GFJFv54pIQ3WGhE9epypNcIIIIwt2ceIuzgfzEiDqp+m3kr0mR?=
+ =?us-ascii?Q?YDASYCr8KrG1bYgtOIjlrY4mL0ArqLenvCae?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN2P287MB2030.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?H9bdyGdDyoFSdv5Rk6J19COes1uImL2yxEEResqPcBxdU9B5XkePovCIr7Lf?=
+ =?us-ascii?Q?5IKHAbAwIxMfPgGHC/d1lRxDWlOA/OMD1K23lwEg4ZkBtzSPFd6DsJ759Bwq?=
+ =?us-ascii?Q?65qD2geGsHgR99bS6rsXAnQDOVHDEb5gUnbHB4Pzh89nTjf63VgnIFBGH8EO?=
+ =?us-ascii?Q?oV/FzTu346nRTvJ47qmioI6V+/ouRgAqwXN2BQy2b0UlQ2foGq89k6LNHarr?=
+ =?us-ascii?Q?gKZHPMHUThCFUu+w9RgWSCIYSBIvXae9o6SSph8USEECWlN+6Ug5QgYN8GTs?=
+ =?us-ascii?Q?j9YSjU8HtiDl0QmzvZP2pstyHhE6hrZYW8HkCqRF7Mm74vOsXtw/M9fehQoy?=
+ =?us-ascii?Q?LnGycB0X+Q2rHWbUsaAezmezlANZMNiF1DQ18gQOraqKTmtmS1aUQ9nPWhTH?=
+ =?us-ascii?Q?OzwwWstEzInZwiYQxuqd/34ax7Jpx1B7f0lJvDhX1IGUKXoOY/n9IAW9qmrB?=
+ =?us-ascii?Q?gteVe1Pito7bHFeTzC93dXvnsgcB8e4u7OkschSRpsL5eJOm0iGWSX2vRt7H?=
+ =?us-ascii?Q?1l993FdQ9paGTY5qY7XkkZXP2A08CVoNuU2NWzOeC8weMnGIZaEZAEkisZQK?=
+ =?us-ascii?Q?0sRIVtOLnc3DsRmyYaieomjr/TpPcMwFBjiGwqWb5Sob2cSzitalgzZRsspC?=
+ =?us-ascii?Q?XfCxi/QUw8Wi9QVDnX8Zj0/qU9CLTOvaMtCSpy0oadq9PbwtEx7XyAv+aGbW?=
+ =?us-ascii?Q?ldxvos4AlN34HNV+RnYJ576oZE37ZDMOyXfllo4HqhAndS3uG5JlvfGsxbNr?=
+ =?us-ascii?Q?85sJfUdzu95PpvomNhYsMRYC+8beJLpxvqriECdzgvl8MJdunNtClGwafH7X?=
+ =?us-ascii?Q?IYRouMKjvLFA4hrsOJxNSgKVOW8EsX8+FtQHpTB98SlqOfTGBCZbMbjzBIco?=
+ =?us-ascii?Q?eo+P8sLqJ5e+FpfI9WbyB9EJ/7OQLVJkYw1GYTkU4tUFNzpqO3Wo40RRrdkT?=
+ =?us-ascii?Q?6oIxvK0Iu0nF9YMW3cC6Y7+Ml9/7vCmFHUfV2J70bzMKEYPFwRWMg7SjF3s6?=
+ =?us-ascii?Q?gG9sm70S5qiPaZJ8YU93plXt2DyMkmthuFgIzT35oAYnSwH8cdP6NApGvKpY?=
+ =?us-ascii?Q?fxQO1vk9aPME8Wp0cC7w91LEoq9YsIc3IKFWsuEPiMuv55LQtrpy8Qht92d+?=
+ =?us-ascii?Q?4XvO5q/4kDto+i3ukkImhMmQzJ+pbkNZ/mPYrVnOp5EBbGSI31tTqOvhUXbH?=
+ =?us-ascii?Q?dxnF+SJJ+ZYw4jwEAn8GeJ2eMNYjOjoMMGXQeinPooincz0t7eeEr5h8WQTc?=
+ =?us-ascii?Q?6aBNC+m6YhBXHPqQieOdSRyBSfmekgqRTGsMW5jaWPrKSVXVPghzR+GO8Vkb?=
+ =?us-ascii?Q?4rNEePTs0wYHotT33BKcSB4F8+v41gFSgpdjjbxeUaPBcD3tjivqWKvy97Fg?=
+ =?us-ascii?Q?eX2KFZ3tYCLyBN55PqS5/8AgqfOnwzfWmc1NY8TgxLx2YdeJfZwuh6DZgDKi?=
+ =?us-ascii?Q?+ST2kNfOAVEzyIhzN6is2TukupDpxKuOOFKQjO0SjyolrPAcbfhe9Fev2VYI?=
+ =?us-ascii?Q?D2kpxRaAxZc7wCu0e7uLwp2oGQmyg0F7XGSZOS9q5/z+xJcbqbmslxK4wLa4?=
+ =?us-ascii?Q?BltgOxd8BxkmAf0cvyls/C+Ko0SxQ9HOc9CXQnoWrFfpkQVLzK59yR2s1pOg?=
+ =?us-ascii?Q?JH6L+I2PVM/fJz1+Ffl2/In5EnQl3nWe0i38Zrxv5CezKhGclHepY49uUDv4?=
+ =?us-ascii?Q?o9M036+Pz29Jpp9tFZo0qV4uLJ3N6507p/7HmQfs2AR73o7N8FuYKi8hfJUX?=
+ =?us-ascii?Q?ZdV4QHpjugLJebvJ9rmC/vmd9mNQhQ7DrTCGSd93bdk3WSdKk7F4?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: c297f54a-b516-4f7f-252f-08de483b3d01
+X-MS-Exchange-CrossTenant-AuthSource: PN2P287MB2030.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Dec 2025 07:07:19.7927
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c1Pe7ybZc4UXGAfmMp/4um/D1XjS9FzX12XzW5uSF7xp8tiyLXpZ9rKUxWluE7tvt2wpUJGVd5v8d+ELdwCje0d7zxjim9s9+dqPGnFCm4Hldnlywl115eMk2HB0Emkn
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3PPF4232800D2
 
+The Omnivision OS05B10 is a 1/2.78-Inch CMOS image sensor with an
+active array size of 2592 x 1944.
 
-On 12/24/2025 3:54 PM, Krzysztof Kozlowski wrote:
-> On 24/12/2025 11:08, Gaurav Kohli wrote:
->> On 12/24/2025 2:27 PM, Krzysztof Kozlowski wrote:
->>> On 23/12/2025 13:32, Gaurav Kohli wrote:
->>>> The cooling subnode of a remoteproc represents a client of the Thermal
->>>> Mitigation Device QMI service running on it. Each subnode of the cooling
->>>> node represents a single control exposed by the service.
->>>>
->>>> Add maintainer name also and update this binding for cdsp substem.
->>>>
->>>> Co-developed-by: Casey Connolly <casey.connolly@linaro.org>
->>>> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
->>>> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
->>>> ---
->>>>    .../bindings/remoteproc/qcom,pas-common.yaml  |  6 ++
->>>>    .../bindings/thermal/qcom,qmi-cooling.yaml    | 99 +++++++++++++++++++
->>>>    2 files changed, 105 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>> index 63a82e7a8bf8..bbc82253f76b 100644
->>>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>> @@ -77,6 +77,12 @@ properties:
->>>>          and devices related to the ADSP.
->>>>        unevaluatedProperties: false
->>>>    
->>>> +  cooling:
->>>> +    $ref: /schemas/thermal/qcom,qmi-cooling.yaml#
->>>> +    description:
->>>> +      Cooling subnode which represents the cooling devices exposed by the Modem.
->>>> +    unevaluatedProperties: false
->>>> +
->>>>    required:
->>>>      - clocks
->>>>      - clock-names
->>>> diff --git a/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml b/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
->>>> new file mode 100644
->>>> index 000000000000..90b46712d241
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
->>>> @@ -0,0 +1,99 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>> +# Copyright 2023 (c), Linaro Limited
->>>> +
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/thermal/qcom,qmi-cooling.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Qualcomm QMI based thermal mitigation (TMD) cooling devices.
->>>> +
->>>> +maintainers:
->>>> +  - Caleb Connolly <caleb.connolly@linaro.org>
->>>> +  - Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
->>>> +
->>>> +description:
->>>> +  Qualcomm QMI-based TMD cooling devices are used to mitigate thermal conditions
->>>> +  across multiple remote subsystems. These devices operate based on junction temperature
->>>> +  sensors (TSENS) associated with thermal zones for each subsystem.
->>>> +
->>>> +  Each subnode corresponds to a control interface for a single instance of the TMD
->>>> +  service running on a remote subsystem.
->>>> +
->>>> +definitions:
->>> defs, look at other code
->>>
->>>
->>>> +  tmd:
->>>> +    type: object
->>>> +    description: |
->>>> +      A single Thermal Mitigation Device exposed by a remote subsystem.
->>> Missing proper formatting. Please do not send us code written by LLM.
->>
->> This patch is based on older series
->>
->> https://lore.kernel.org/linux-devicetree/20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org/, did some manual changes to remove unusable code.
-> How? This is v1, not v2. How did you address other comments? Where did
-> you provide proper changelog? Why this is not correctly versioned/
->
->> let me fix the formatting. This is not generated code.
-> I do not believe, because this:
->
->
->>>> +      phandle: true
+The following features are supported:
+- Manual exposure an gain control support.
+- vblank/hblank control support.
+- Supported resolution: 2592 x 1944 @ 60fps (SBGGR10).
 
+The driver is tested on mainline branch v6.17 on IMX8MP Verdin Toradex.
 
-As i have mentioned in earlier reply, we are including below series:
+v4l2-compliance 1.26.1-5142, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 4aee01a02792 2023-12-12 21:40:38
 
-https://lore.kernel.org/linux-devicetree/20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org/,) 
-as this is client for remote proc cooling.
-I was seeing this error while using older yam files.
+Compliance test for device /dev/v4l-subdev3:
 
-('cdsp_sw' was unexpected)
+Driver Info:
+        Driver version   : 6.17.0
+        Capabilities     : 0x00000000
 
-from schema qcom,qmi-cooling.yaml
+Required ioctls:
+        test VIDIOC_SUDBEV_QUERYCAP: OK
+        test invalid ioctls: OK
 
-So to avoid that, i have added phandle to avoid this error. will fix 
-this in proper way
-by including another yaml file which will define the cdsp_sw,
+Allow for multiple opens:
+        test second /dev/v4l-subdev3 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
 
-Below is the dt node:
-cooling {
-+                compatible = "qcom,qmi-cooling-cdsp";
-+                    cdsp_sw: cdsp_sw {
-+                        label = "cdsp_sw";
-+                        #cooling-cells = <2>;
-+                    };
-+            };
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
 
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
 
-> Does not exist. You cannot come with something like that, there is no
-> such code.
->
-> Only LLM when parsing DTB could invent something like this. Otherwise
-> explain me please the process leading to coming to such change.
->
-> Best regards,
-> Krzysztof
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 9 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev3: 44, Succeeded: 44, Failed: 0, Warnings: 0
+
+v6 -> v7
+
+In Patch 2/2:
+- dropped __func__ from print statements
+- Switch to fwnode_graph_get_endpoint_by_id().
+
+v5 -> v6
+
+In Patch 2/2:
+- removed the unnecessary header includes
+- Misc cleanups as per review feedback
+- fixed reset gpios to devm_gpiod_get_optional()
+
+v4 -> v5
+
+In Patch 2/2:
+- removed the unused link_freq_index
+
+v3 -> v4
+
+In Patch 1/2:
+- Move supply voltage information from driver comments to DT binding descriptions.
+
+In Patch 2/2:
+- removed pixel_rate pointer as control is fixed.
+- fixed default statement in os05b10_set_ctrl() to "ret = -EINVAL"
+- sort the list in "reverse Chrismas tree"
+- remove redundant check from os05b10_enum_frame_size()
+- add a check for number of data-lanes
+
+v2 -> v3
+
+In Patch 1/2:
+- Fixed space symbol is missing before 'optical'
+- Changed the reset pin control to "active low"
+
+In Patch 2/2:
+- Correct the module name in Kconfig
+- Fixed use of dev_err_probe() on endpoint parse failure
+- used devm_v4l2_sensor_clk_get() instead of devm_clk_get()
+
+v1 -> v2
+
+In Patch 1/2:
+- Fixed indentation.
+
+In Patch 2/2:
+- Fixed bug in probe() removed unused variable "ret"
+
+Elgin Perumbilly (1):
+  dt-bindings: media: i2c: Add os05b10 sensor
+
+Himanshu Bhavani (1):
+  media: i2c: add os05b10 image sensor driver
+
+ .../bindings/media/i2c/ovti,os05b10.yaml      |  103 ++
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/os05b10.c                   | 1115 +++++++++++++++++
+ 5 files changed, 1237 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
+ create mode 100644 drivers/media/i2c/os05b10.c
+
+--
+2.34.1
+
 
