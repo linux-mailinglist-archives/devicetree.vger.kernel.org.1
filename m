@@ -1,178 +1,122 @@
-Return-Path: <devicetree+bounces-250818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB1CFCEC0A0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 14:48:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9681CEC0F7
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 15:05:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A59083012258
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 13:48:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A25B30115FB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 14:03:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D8A323411;
-	Wed, 31 Dec 2025 13:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C783223324;
+	Wed, 31 Dec 2025 14:03:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="ZSHiMJ99"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O+EmtpG4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-25.smtpout.orange.fr [80.12.242.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E43F0219A79;
-	Wed, 31 Dec 2025 13:48:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E39A21F30A9;
+	Wed, 31 Dec 2025 14:03:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767188906; cv=none; b=jQM+SWRb3GtwnSAhz+LjEnxg3hAIoY+fOYJjp3aIHhTbRkD2mIMx0kMgyE9VROPtYSQ3qI8rjQys9a9V1dP0j9Gg6ymAvlNY86nDN3YyVqf5ZbDJcF1j3MBTe4JK5buQ05jdo2atNTygGxaQONjVJn0Cfy8W9OpoFJiZ12COXD0=
+	t=1767189831; cv=none; b=gCCSon1NVv1Hwu31N25ss/ON2ZfH8Vnkvhl9KQK93DdaPreLPvNd8rsWwPWwQ/0Apgb4HUr2/HClIBL2S1be+gDLYtb5MTz/n/mzZXeVEBsYkWWYcd79FDdGYYM2Iz91m7ej+aTcKBzGbwjMZWvZ/GgMjkwMmE36CvBdTbH/5gY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767188906; c=relaxed/simple;
-	bh=34Pv+DAbA1+ucMOfOi91nq+Jvbj/1CllKZJ7LoOnuVc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MFqIEVyVuV5pjTuiwiaJuh0+bbdExRG+84S2XYj4x8tBddQrFQN4e67dAZbUwd80BTUm1dEXtWF+yQmRK1iy2JR0uLpgpkvkAkmVUyHs9lsBEN2qKnUR+q4sLGIyn4B2QlHjgiiILDSFgzOTcsJ/NGAELNRgeuNI/8thFVpig6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=ZSHiMJ99; arc=none smtp.client-ip=80.12.242.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
- ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
-	by smtp.orange.fr with ESMTPA
-	id awYcveomr3PvLawYcvqbU7; Wed, 31 Dec 2025 14:48:13 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1767188893;
-	bh=uHKZXKm6A2sTaQft9NinGZUBPoQYOBV/hEfgcz91BOo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=ZSHiMJ99bSwEG1MZP59/oGYw6oLS49vIRym1AuQZscltKh6Q5FWCveP/db8MJXlC6
-	 HWx54o12vSyMW7A0Rx9QMMEVwoKbap7Zv03jQ2O7w1mEmq0qNwK8lnaU9qbGT1kzyJ
-	 gvRR47JMQwSSy6m6EnrFaYZ0chJxMCmLquQLdn94rzxwBO+7ZeXMOgH0msz8yrdMZh
-	 cTMJ+b3S+8RckrDkUCTH/JHG2kEkZ0yPWQsJvY4gs/7vs7Rpg9RoU2+3pIdQ5otqcV
-	 taDlXKM8ILk6pIggP3+PrZQ2DgF3DCjAy0yq4DvEfnZ3M0Jt2kz5R533mUHsde5Jph
-	 +7d1IX5t5mxuQ==
-X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Wed, 31 Dec 2025 14:48:13 +0100
-X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
-Message-ID: <c905f11a-671f-428c-83a9-00485f507c0a@wanadoo.fr>
-Date: Wed, 31 Dec 2025 14:48:08 +0100
+	s=arc-20240116; t=1767189831; c=relaxed/simple;
+	bh=jnQkKIwZDjNBxeL34AvoYX5R4WnuoCfY/GJg3yFjgSU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eq/tW0MuQ7ZzijCPD4n9SP4OtQwHGM1VSGzi9jWDk2d+kxzw+CoeHtdFWJwGDJWOGDPPZ+WKliD1psIC50iIH5RzFiem8kPWEnqQPMKCRKVoUctHPNAgjr34J/dA536IFxYF7HqczbbqqXRxE/Ki9zZtm+vjgioitr5C3yx0FSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O+EmtpG4; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1767189830; x=1798725830;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jnQkKIwZDjNBxeL34AvoYX5R4WnuoCfY/GJg3yFjgSU=;
+  b=O+EmtpG4FLstPlAZAFSzefPdf/qYA+PY4hMoFR2In5TLze1ypMJd/nme
+   UBxTvREKfaZovcXyiV/6ak0Q9evupphY4XWfjhaAovQlTFaaNYFQ3xtJr
+   dbkiOfdeXq2/zneJsyN9d/wcpmVjn5A5Uhp7OWYIjkyXIcAqpWitMhDa7
+   xygKTKlbqJAOBaNCPIlWMwiWZuYQ6CXZ97406WbWKH1azvvgAP6B48+Tn
+   Ars24cHbgwF9/rzIwCkShUzk9nk2vk4AQbAcWYK3UwEso+XiU8JhnhDJU
+   N4LZBxIJWp0Ly/Gn7/1TqGwSHkp0hnWvclEA6/tv59R2gAC9QUmbqrc5O
+   Q==;
+X-CSE-ConnectionGUID: UL/L04u2TZCh3OsRasyGQA==
+X-CSE-MsgGUID: F81pJKseRimLcyLnTo9r6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11658"; a="67953861"
+X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; 
+   d="scan'208";a="67953861"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Dec 2025 06:03:49 -0800
+X-CSE-ConnectionGUID: GuICIzfFQ+yDY2FNoo17mA==
+X-CSE-MsgGUID: UyFiTYE1SQuD+s9ZfbKLrg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; 
+   d="scan'208";a="232524686"
+Received: from lkp-server01.sh.intel.com (HELO c9aa31daaa89) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 31 Dec 2025 06:03:43 -0800
+Received: from kbuild by c9aa31daaa89 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vawnc-000000001Fl-1Dt3;
+	Wed, 31 Dec 2025 14:03:40 +0000
+Date: Wed, 31 Dec 2025 22:02:42 +0800
+From: kernel test robot <lkp@intel.com>
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+	Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	alexey.klimov@linaro.org, bryan.odonoghue@linaro.org,
+	jorge.ramirez@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+	quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+	quic_shazhuss@quicinc.com, quic_cchiluve@quicinc.com
+Subject: Re: [PATCH v2 10/12] i2c: qcom-geni: Use resources helper APIs in
+ runtime PM functions
+Message-ID: <202512311900.mG1XHHI2-lkp@intel.com>
+References: <20251229045446.3227667-11-praveen.talari@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] media: i2c: add os05b10 image sensor driver
-To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, robh@kernel.org,
- krzk+dt@kernel.org, sakari.ailus@linux.intel.com
-Cc: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mehdi Djait <mehdi.djait@linux.intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
- Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?=
- <git@apitzsch.eu>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Dongcheng Yan <dongcheng.yan@intel.com>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
- Jingjing Xiong <jingjing.xiong@intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251231070645.16434-1-himanshu.bhavani@siliconsignals.io>
- <20251231070645.16434-3-himanshu.bhavani@siliconsignals.io>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20251231070645.16434-3-himanshu.bhavani@siliconsignals.io>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251229045446.3227667-11-praveen.talari@oss.qualcomm.com>
 
-Le 31/12/2025 à 08:06, Himanshu Bhavani a écrit :
-> Add a v4l2 subdevice driver for the Omnivision OS05B10 sensor.
-> 
-> The Omnivision OS05B10 image sensor with an active
-> array size of 2592 x 1944.
-> 
-> The following features are supported:
-> - Manual exposure an gain control support
-> - vblank/hblank control support
-> - Supported resolution: 2592 x 1944 @ 60fps (SBGGR10)
+Hi Praveen,
 
-Hi,
+kernel test robot noticed the following build errors:
 
-2 nitpicks, should there be a v8.
+[auto build test ERROR on cc3aa43b44bdb43dfbac0fcb51c56594a11338a8]
 
-> +static int os05b10_parse_endpoint(struct os05b10 *os05b10)
-> +{
-> +	struct v4l2_fwnode_endpoint bus_cfg = {
-> +		.bus_type = V4L2_MBUS_CSI2_DPHY
-> +	};
-> +	unsigned long link_freq_bitmap;
-> +	struct fwnode_handle *ep;
-> +	int ret;
-> +
-> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(os05b10->dev), 0, 0, 0);
-> +	if (!ep) {
-> +		dev_err(os05b10->dev, "Failed to get next endpoint\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
-> +	fwnode_handle_put(ep);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (bus_cfg.bus.mipi_csi2.num_data_lanes != 4) {
-> +		ret = dev_err_probe(os05b10->dev, -EINVAL,
-> +				    "only 4 data lanes are supported\n");
-> +		goto error_out;
-> +	}
-> +
-> +	ret = v4l2_link_freq_to_bitmap(os05b10->dev, bus_cfg.link_frequencies,
-> +				       bus_cfg.nr_of_link_frequencies,
-> +				       link_frequencies,
-> +				       ARRAY_SIZE(link_frequencies),
-> +				       &link_freq_bitmap);
-> +
+url:    https://github.com/intel-lab-lkp/linux/commits/Praveen-Talari/soc-qcom-geni-se-Refactor-geni_icc_get-and-make-qup-memory-ICC-path-optional/20251229-130932
+base:   cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+patch link:    https://lore.kernel.org/r/20251229045446.3227667-11-praveen.talari%40oss.qualcomm.com
+patch subject: [PATCH v2 10/12] i2c: qcom-geni: Use resources helper APIs in runtime PM functions
+config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20251231/202512311900.mG1XHHI2-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251231/202512311900.mG1XHHI2-lkp@intel.com/reproduce)
 
-Nitpick: blanck line can be removed.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512311900.mG1XHHI2-lkp@intel.com/
 
-> +	if (ret)
-> +		dev_err(os05b10->dev, "only 600MHz frequency is available\n");
-> +
-> +error_out:
-> +	v4l2_fwnode_endpoint_free(&bus_cfg);
-> +
-> +	return ret;
-> +}
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-...
+>> ERROR: modpost: "geni_se_resources_deactivate" [drivers/i2c/busses/i2c-qcom-geni.ko] undefined!
+>> ERROR: modpost: "geni_se_resources_activate" [drivers/i2c/busses/i2c-qcom-geni.ko] undefined!
 
-> +static const struct of_device_id os05b10_id[] = {
-> +	{ .compatible = "ovti,os05b10" },
-> +	{ /* sentinel */ },
-
-Nitpick: No need for trailing , after a terminator.
-
-CJ
-
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, os05b10_id);
-> +
-> +static struct i2c_driver os05b10_driver = {
-> +	.driver = {
-> +		.name = "os05b10",
-> +		.pm = pm_ptr(&os05b10_pm_ops),
-> +		.of_match_table = os05b10_id,
-> +	},
-> +	.probe = os05b10_probe,
-> +	.remove = os05b10_remove,
-> +};
-> +
-> +module_i2c_driver(os05b10_driver);
-> +
-> +MODULE_DESCRIPTION("OS05B10 Camera Sensor Driver");
-> +MODULE_AUTHOR("Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>");
-> +MODULE_AUTHOR("Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.34.1
-> 
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
