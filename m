@@ -1,158 +1,137 @@
-Return-Path: <devicetree+bounces-250820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D185CEC128
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 15:18:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2ACBCEC12B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 15:20:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A596B3002D2F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 14:18:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 84CA730133A3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 14:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F7C2561AB;
-	Wed, 31 Dec 2025 14:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BACC625A334;
+	Wed, 31 Dec 2025 14:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Wmnkntqr"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="13wHxzin"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6658259C92
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 14:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8603E19F12A;
+	Wed, 31 Dec 2025 14:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767190725; cv=none; b=Zz4+rT6/qu7iRIaJaRUq6AwyOYxRh5VjllT57tDHFvRy49Un6qZmxBfnjxv19g9HyD4/2PD8CBheOHTM5TREDd5HZuzHWd2aFMLg3pXH16pBHIIVr9QoxP7kXO2fu2mvf8GPnyz0csaxJPyJVk3d57Qa2fN4qV3Lk6nunfIGqzM=
+	t=1767190836; cv=none; b=fWg44tpqkl6TLfPkz3MNMUY9X2g2og3K0JMFDUGlzcPf0DCAJni+uW/nnkv3XcXypD/55acZcbLFDdVjjDj34E+cr/0MMpFGIiB4xyWR9gJ4vbkFcFbkYDVtv/N7DkkZTkoiOvVeAt3x7rb6jDLdCEyoKOB2BsmSjwdMGcGK9IY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767190725; c=relaxed/simple;
-	bh=AS7nhlMTcPiu2PhgOP1yMKKRYiNT0qVT8Me6nXBTwmU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f7FC1MtA2O0OQTEkOkapLyJuWHIH5Eo23/FDl3Sp88GOXbVGknVEd9Jg6KkWKJkgEaxQDBCGUv0SiJcvMEWY9TtQG6wcH7k6AycmfiU9uPgbGXzwd/kphWfvpCTo9X1CMV2C9qw3noD04E86DIrRswPX7+djxUOrj88yX2/prFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Wmnkntqr; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dhBfL5C1Tz9t0t;
-	Wed, 31 Dec 2025 15:09:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1767190170;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wBGL6dDCOuh3bhIrx5PRK90WNsQm4b6NujEGQuwgXlc=;
-	b=WmnkntqrVjtbVL9rhRPZkD8dJqB0ZtjKLxb8yCVnDjSzHkOR0/sfatTe633pfK/iiHAf0d
-	fOYAa0urixQTv2kVaPk3ZnoCr9KpAgPMFfGoC4rCGKAjEnLQGtuDLHPhtX9GF9jisbDuQ8
-	5nQiCGZYdPeBDhpWUnW3UfIbXNInyONLzE8AoHPJZXjXLfaQP8nb4gqUWJPmQjzKOMgq9q
-	27yL0cNFqdYGEeVD63e/WPUsLa58nsO3rl1mNHaqKMOBYZ9h3t/IyHz5O/MvfjfoNwJMM/
-	TBbxSS/eSjcVK3uYR7+4Qcy0WR9JlnJ0/tOfy6EoC6bWnMPQN9pn2IBqblZZ6A==
-Message-ID: <4f890538-f2f9-408b-9644-73708e7e7b24@mailbox.org>
-Date: Wed, 31 Dec 2025 15:09:27 +0100
+	s=arc-20240116; t=1767190836; c=relaxed/simple;
+	bh=Vqw+FMGdsBIhnM6kRP5WMkUgnWBcpk7lg1iTCLyVUYM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=FJQKBHzNS5KGSJo64y1b1imPGBpvcPuM9m1rPsIM1b4x3A5lrQaIOy6ZboL79MJKjzl58+EHifMdImswmtHaEqQZ9M3pnMbakZj/pgoorvDQ9HJe2xbqNOIrwY08EMV082JvoACj7JTghLfk2IM/tRkvJrnVhZdWp5JB5ZOKWQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=13wHxzin; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id A8741C1AE2B;
+	Wed, 31 Dec 2025 14:20:06 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 24E1D60744;
+	Wed, 31 Dec 2025 14:20:32 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D1397113B0770;
+	Wed, 31 Dec 2025 15:20:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767190830; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=s/LBclbjVdapialdhCPRdRaESKqlpOnpyxq4+NMgleQ=;
+	b=13wHxziny/E58+NBQrqX+3oqwXTJN93YZxWKmfk5Vk+lqAW1vaeCJkJLSB+5n0yxC5C0i6
+	peGkD9i2Lg28sPjmOWunBbHe1zqqgF4XTN44q8Uzl7NhT7l6RKxtK9qDxicfDKP/68Zdon
+	ju0bXrBWNhg3k9kYcMUK0beztObZRm4JPE3U9sEkhvXyTcuK333O6r8kXtLaEWhYvMQD2u
+	6wlC3QxgUhFpBujq2T3zNWeMC8TdZ9bsKGNgxiC4jF48r6qANgMY/1mv3ZyhcuMP8j0bcp
+	8785748qfhPRghOe6yvJgSmnhDkzlaOHBtvUyKUu5H4/KFh4FcxTeIH6mHrawQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: imx95: Use GPU_CGC as core clock for GPU
-To: Rain Yang <jiyu.yang@oss.nxp.com>
-Cc: Frank.li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, peng.fan@nxp.com,
- robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-References: <aTACuRjC_Zpf8IOU@oss.nxp.com>
- <de36091e-c890-4897-b3e3-2a7575029a5d@mailbox.org>
- <aTD5np-HGaJqhzkD@oss.nxp.com>
- <5944d872-01a3-47e9-977b-029f3be4fd83@mailbox.org>
- <aTKVMAMQ6v_BwD6R@oss.nxp.com>
- <9b593731-898f-46a7-8ee5-68f8c170351c@mailbox.org>
- <aTYxm_dfMwF4H0_b@oss.nxp.com>
- <53ea529f-3538-4ab5-aa99-0caa6729b4cd@mailbox.org>
- <aVM-mSkSubMPd7Du@oss.nxp.com>
- <6055d6f3-2b31-4225-a42e-0f5ad79f7256@mailbox.org>
- <aVSTJdnWm2KfpXa1@oss.nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aVSTJdnWm2KfpXa1@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: bc2861c1611d36a4a05
-X-MBO-RS-META: xs4hkq5sdw3gihc6abz8t11whgpf6x4w
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 31 Dec 2025 15:20:19 +0100
+Message-Id: <DFCGV315JITK.1TXTXWUOMLMB9@bootlin.com>
+Subject: Re: [PATCH v4 3/9] drm: verisilicon: add a driver for Verisilicon
+ display controllers
+Cc: "Han Gao" <rabenda.cn@gmail.com>, "Yao Zi" <ziyao@disroot.org>,
+ <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>, "Icenowy
+ Zheng" <uwu@icenowy.me>
+To: "Icenowy Zheng" <zhengxingda@iscas.ac.cn>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Drew Fustini" <fustini@kernel.org>, "Guo
+ Ren" <guoren@kernel.org>, "Fu Wei" <wefu@redhat.com>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, "Heiko Stuebner" <heiko@sntech.de>, "Andrzej
+ Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
+ <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Michal
+ Wilczynski" <m.wilczynski@samsung.com>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.20.1
+References: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
+ <20251224161205.1132149-4-zhengxingda@iscas.ac.cn>
+In-Reply-To: <20251224161205.1132149-4-zhengxingda@iscas.ac.cn>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 12/31/25 4:06 AM, Rain Yang wrote:
-> On Tue, Dec 30, 2025 at 03:17:44PM +0100, Marek Vasut wrote:
->> On 12/30/25 3:53 AM, Rain Yang wrote:
->>> On Tue, Dec 30, 2025 at 02:53:38AM +0100, Marek Vasut wrote:
->>>> On 12/8/25 3:02 AM, Rain Yang wrote:
->>>>
->>>>>>> Okay, I’ll submit a patch later.
->>>>>>> The commit message should reflect that only CLK_GPU_CGC is enabled.
->>>>>>
->>>>>> The commit message , and this change , is unrelated to GPUAPB clock.
->>>>> The commit message is ambiguous. Could you clarify which parent clock
->>>>> you are referring to, and whether it can be enabled by CLK_GPU_CGC?
->>>>> If it was CLK_GPU, CLK_GPU_CGC can't be able to control it.
->>>>
->>>> The commit message clearly states "These new GPU_CGC clock
->>>> gate the existing GPU clock." and "GPU_CGC as well as its parent GPU clock."
->>>> , I don't perceive any ambiguity, sorry.
->>>>
->>>> Frankly, the whole GPUAPB discussion is entirely unrelated and it only stalls
->>>> application of this bugfix and keeps upstream broken. This is not helping.
->>>>
->>>> So unless there is anything in particular that is on-topic and prevents this
->>>> patch from being applied, it would be good to apply it, otherwise the GPU on
->>>> MX95 in mainline Linux is not working.
->>> Hi Marek,
->>>
->>> I’m not opposed to this patch being merged into mainline, but the commit
->>> message needs to be accurate. the parent CLK_GPU cannot be enabled or
->>> disabled externally. The last sentence should clearly state:
->>
->> Look here, this is what you can do with the MX95 SM:
->>
->> "
->>> $ clock.r
->> ...
->> 083: gpuapb               =  on,  133333333Hz
->> 084: gpu                  =  on,  800000000Hz
->> ...
->> 174: gpu_cgc              =  on,  800000000Hz
->>
->>> $ clock.w gpu_cgc off
->>> $ clock.w gpu off
->>> $ clock.w gpuapb off
->>
->>> $ clock.r
->> ...
->> 083: gpuapb               = off,  133333333Hz
->> 084: gpu                  = off,  800000000Hz
->> ...
->> 174: gpu_cgc              = off,  800000000Hz
->> "
->>
->> Notice how all clock are disabled, including GPU clock.
->>
->> That does not agree with your statement.
->>
->>> When the panthor driver enables the GPU core clock, it enables the GPU_CGC.
->>
->> It also enables all disabled parent clock in the process, which includes the
->> GPU clock.
->>
->>> This ensures the description reflects the actual hardware behavior and
->>> avoids confusion for future maintainers.
->>> Thanks for addressing this issue — once the commit message is corrected,
->>> I’m fine with this going in.
->>
->> See above.
-> 
-> Hi Marek,
-> Based on the instructions you gave, I’d put it this way, even though the
-> CLK_GPU clock can only be controlled internally.
-> 
-> I’m fine with your patch now.
+On Wed Dec 24, 2025 at 5:11 PM CET, Icenowy Zheng wrote:
+> From: Icenowy Zheng <uwu@icenowy.me>
+>
+> This is a from-scratch driver targeting Verisilicon DC-series display
+> controllers, which feature self-identification functionality like their
+> GC-series GPUs.
+>
+> Only DC8200 is being supported now, and only the main framebuffer is set
+> up (as the DRM primary plane). Support for more DC models and more
+> features is my further targets.
+>
+> As the display controller is delivered to SoC vendors as a whole part,
+> this driver does not use component framework and extra bridges inside a
+> SoC is expected to be implemented as dedicated bridges (this driver
+> properly supports bridge chaining).
+>
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 
-Thank you
+[...]
+
+> +++ b/drivers/gpu/drm/verisilicon/vs_bridge.h
+
+> +struct vs_bridge {
+> +	struct drm_bridge base;
+> +	struct drm_encoder *enc;
+> +	struct drm_connector *conn;
+> +
+> +	struct vs_crtc *crtc;
+> +	struct drm_bridge *next;
+
+It is a common convention to call this 'next_bridge'. This makes it easier
+to understand but also to grep and find similar patterns.
+
+For info, we are working to move to 'struct drm_bridge::next_bridge' [0] as
+you can see from example patches like [1]. However this currently applies
+only to drivers using of_drm_find_bridge(), so it does not affect your
+driver.
+
+I'm sorry I have seen your patch only at v4.
+
+[0] https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3fdeae134ba956a=
+acbd87d5532c025913c98fc49
+[1] https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/8f92a5fcbfe33f8=
+6b08f5f74dcc58a41425ea8c0
+
+Luca
+
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
