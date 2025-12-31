@@ -1,131 +1,91 @@
-Return-Path: <devicetree+bounces-250869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA6ECEC9E7
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 22:58:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6AB2CECA03
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 23:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F2438300A35C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 21:58:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0243130145A0
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 22:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBC4F30EF88;
-	Wed, 31 Dec 2025 21:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9922430F7E0;
+	Wed, 31 Dec 2025 22:28:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="sfVxD4Vl";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="sfVxD4Vl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F34k3LsS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A04330EF7B
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 21:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7346130F548
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 22:28:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767218303; cv=none; b=A8sAVXWft05XeU2NURBjFu62vrdva+HWycgTRYWiZhZWPGj/ncn8ARz70mWlKuyIRKvHWK86pqtoGLAJ9Ym6uXhmnffEtCw/pyBJxbwcVJyN1n6dPANJ3hvWbg91OFOMz6kFFt8ptz/IN9GxzQDBTRS7Ls/J+/vfRsz1EmTynLI=
+	t=1767220137; cv=none; b=SgrJgYDDxumufmGg5IFHQbKvp120tPLKUWOcJg5qqv7NxZhgh1THLf5AXAYZIpYBVdjzEo2Hz7Nn6hyQXoRTs92OtNxBPinhjMG3UpUuH6rscB6X8xzduTHtGiUVXHtPNNx1lOat/pRj+1I5t8StvfDcQE9Pkx5Nt4avwlvjZ0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767218303; c=relaxed/simple;
-	bh=m+mdNbHBwSu7JNOSxE57TwouE4jZO/PptGoxHs28w1A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Pk7IfRT9pgMIovhJyenCnEtGD8d8DdR8vZTHoknYwskWlyD3lk96hwGDfqBqXiHZqSnrQ39jAtbfJzcEZhbGzG23gVUU5DtEFHiqYX+2wNawzh9b30Z2rurdS+a9zCFhNbC/9yn/2q5mgOt3jP1nF09ztRV5CZf0mG0jOqzVIYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=sfVxD4Vl; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=sfVxD4Vl; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1767218300; bh=m+mdNbHBwSu7JNOSxE57TwouE4jZO/PptGoxHs28w1A=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sfVxD4Vl40LWt1+x3YeEcNvL8mp9yvmqrVrVyA5yG4lRBeFLyt+yE+ME4zStY85lc
-	 91si9N7iJY7R4ShWdRp1Eul0svyEFjce+cUqyAVf53hemKUlFX64MNuPtmnWPqUqDS
-	 hXE0jH001SMCk2bm+9HqJWc80UgeKxohwxu0X45ZZFSj8/ke2CxAouAAgDOvnEU+V7
-	 eUNLBXorvaqE7UXiovMQ32ZH2Q2OdNOG+f41d5yQ+478+54uZ9uRvwEaJqSFFraG5X
-	 FO2Gi9Y2Cd/CAFVkK12DT21RE7C5h1jn8SaU4y3B+ezlI4V9LV9ScI/EuPS4hLM1Vb
-	 zShuEYBLg19RQ==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 5A6F73E99A9;
-	Wed, 31 Dec 2025 21:58:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1767218300; bh=m+mdNbHBwSu7JNOSxE57TwouE4jZO/PptGoxHs28w1A=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sfVxD4Vl40LWt1+x3YeEcNvL8mp9yvmqrVrVyA5yG4lRBeFLyt+yE+ME4zStY85lc
-	 91si9N7iJY7R4ShWdRp1Eul0svyEFjce+cUqyAVf53hemKUlFX64MNuPtmnWPqUqDS
-	 hXE0jH001SMCk2bm+9HqJWc80UgeKxohwxu0X45ZZFSj8/ke2CxAouAAgDOvnEU+V7
-	 eUNLBXorvaqE7UXiovMQ32ZH2Q2OdNOG+f41d5yQ+478+54uZ9uRvwEaJqSFFraG5X
-	 FO2Gi9Y2Cd/CAFVkK12DT21RE7C5h1jn8SaU4y3B+ezlI4V9LV9ScI/EuPS4hLM1Vb
-	 zShuEYBLg19RQ==
-Received: from mail.mleia.com (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mleia.com (Postfix) with ESMTPSA id CB2A83E99AB;
-	Wed, 31 Dec 2025 21:58:19 +0000 (UTC)
-From: Vladimir Zapolskiy <vz@mleia.com>
-To: Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 5/5] ARM: dts: lpc32xx: Add missing properties to I2S device tree nodes
-Date: Wed, 31 Dec 2025 23:57:54 +0200
-Message-ID: <20251231215754.2222308-6-vz@mleia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251231215754.2222308-1-vz@mleia.com>
-References: <20251231215754.2222308-1-vz@mleia.com>
+	s=arc-20240116; t=1767220137; c=relaxed/simple;
+	bh=26iiet+cdpcowdyYtX30PosXDJtjhJu4Gi4yzc1GQzs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=D+KUMJ7sZEoZ5wQRKC+asn7msVmLIuh1sxdAA/5lK1LlFEsXQGClu8/vfHDTZ9kmeuJbuQXry9mWhJ7QXs+F6Cs+77GnQ6h+IMQeaL7K2HgnBsyvrDtoIGQISbmhqxFcuEDN1EF5IH5wkjuRV/wvjOY/oZ87/QTpMMOU5NV2xw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F34k3LsS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EDDDC4AF09
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 22:28:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767220137;
+	bh=26iiet+cdpcowdyYtX30PosXDJtjhJu4Gi4yzc1GQzs=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=F34k3LsSrr6e2s2xq4FKnie18feKwQtStYamKmbJf2HSm5CH1rERz8MXc7goFw1NM
+	 g7gcBPKpKJVbaz0+8w6WpcKizldlOzuXGHbS2bM0a7JmdcjHSZgOqQrfKuwmDqO2Rp
+	 oa0V7DmzNTtDAyPjpzuqZTeXGIzIUCAiR0vAYPvwbJrrXWybwC8DIrCYCS+zBbe0X5
+	 5OJuXmaLZOpDQcZsbXuoby2PyYnKGjr/h7Zv262slYOsbuUuzem6cFbLmOHivrhv8K
+	 P2JEMx2yGvVRRodw/BX85PHvGbNO+VSAGcSdhs+cgCQQDXWQW3JrtyMGStiAB2h6D0
+	 r02FxzV8qe1xg==
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-78fcb465733so83198237b3.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 14:28:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUIRdEyqXguzGxNAOfOLneM7Folif+Ki9Qw3T2rqc2UkkA6YJK+p4g9TtfP26Th3DXf2rskpmwRfozm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbatPc8EwQp4JRQgvRGL+PevYipz78+xWG7A3jQEOyCkiRdI2h
+	FKZsoS7tgWOXCxoSy+NWDddhKXfjCeovDjOH9lHAXwjeQCBLXDKWDxi8yA51+OWExB0c3+nSTSC
+	2iL/ygvgd0NyaDmHHCvIHxSMbrjHgkE8=
+X-Google-Smtp-Source: AGHT+IF4tBxaJDYxmgz18I5l1LhAGbdnGy/RKG7PeThu4226NLShduLSXw1Rv+CkXJ+drwnVCo1gNClzGqn8/Pzhvyc=
+X-Received: by 2002:a05:690c:600e:b0:78c:5dfe:1b57 with SMTP id
+ 00721157ae682-78fb4144855mr337082097b3.38.1767220135578; Wed, 31 Dec 2025
+ 14:28:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20251231_215820_410486_3C6531FE 
-X-CRM114-Status: GOOD (  11.54  )
+References: <20251212-wip-jremmet-tcal6416rtw-v1-0-e5db1b66d4cc@phytec.de> <20251212-wip-jremmet-tcal6416rtw-v1-1-e5db1b66d4cc@phytec.de>
+In-Reply-To: <20251212-wip-jremmet-tcal6416rtw-v1-1-e5db1b66d4cc@phytec.de>
+From: Linus Walleij <linusw@kernel.org>
+Date: Wed, 31 Dec 2025 23:28:44 +0100
+X-Gmail-Original-Message-ID: <CAD++jLn9KvFsZA_rNCc9ZMCkG6-baeaMzczz2Gsu=36Gv7YOxg@mail.gmail.com>
+X-Gm-Features: AQt7F2rWVuROE9AOE_ZxlrbhoruVLnwjnaIrhDTmWKo0_w4RrwVr7H5Vae7IKIQ
+Message-ID: <CAD++jLn9KvFsZA_rNCc9ZMCkG6-baeaMzczz2Gsu=36Gv7YOxg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] gpio: pca953x: Add support for TCAL6408 TCAL6416
+To: Jan Remmet <j.remmet@phytec.de>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?B?TGV2ZW50ZSBSw6l2w6lzeg==?= <levente.revesz@eilabs.com>, 
+	linux-gpio@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
+	upstream@lists.phytec.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+On Fri, Dec 12, 2025 at 2:03=E2=80=AFPM Jan Remmet <j.remmet@phytec.de> wro=
+te:
 
-Add NXP LPC32xx I2S controller device tree properties in accordance to
-nxp,lpc3220-i2s.yaml.
+> TCAL6408 and TCAL6416 supports latchable inputs and maskable interrupt.
+> Tested on a TCAL6416, checked datasheets for the TCAL6408.
+>
+> Datasheet: https://www.ti.com/lit/ds/symlink/tcal6408.pdf
+> Datasheet: https://www.ti.com/lit/ds/symlink/tcal6416.pdf
+>
+> Signed-off-by: Jan Remmet <j.remmet@phytec.de>
 
-Link to the original change:
-* https://lore.kernel.org/linux-arm-kernel/20240627150046.258795-7-piotr.wojtaszczyk@timesys.com/
+Reviewed-by: Linus Walleij <linusw@kernel.org>
 
-Signed-off-by: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-[vzapolskiy: changes to the commit message]
-Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
----
- arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-index 389777ee6850..53e12679ba5b 100644
---- a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-+++ b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-@@ -238,8 +238,11 @@ spi2: spi@20090000 {
- 			i2s0: i2s@20094000 {
- 				compatible = "nxp,lpc3220-i2s";
- 				reg = <0x20094000 0x1000>;
-+				interrupts = <22 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk LPC32XX_CLK_I2S0>;
- 				dmas = <&dma 0 1>, <&dma 13 1>;
- 				dma-names = "rx", "tx";
-+				#sound-dai-cells = <0>;
- 				status = "disabled";
- 			};
- 
-@@ -256,8 +259,11 @@ sd: mmc@20098000 {
- 			i2s1: i2s@2009c000 {
- 				compatible = "nxp,lpc3220-i2s";
- 				reg = <0x2009c000 0x1000>;
-+				interrupts = <23 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk LPC32XX_CLK_I2S1>;
- 				dmas = <&dma 2 1>, <&dmamux 10 1 1>;
- 				dma-names = "rx", "tx";
-+				#sound-dai-cells = <0>;
- 				status = "disabled";
- 			};
- 
--- 
-2.43.0
-
+Yours,
+Linus Walleij
 
