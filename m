@@ -1,317 +1,151 @@
-Return-Path: <devicetree+bounces-250742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DCC4CEB7D0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 08:55:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A6F4CEB7DC
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 08:58:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D0CF9302D2AB
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 07:55:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C29E1300C2A2
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 07:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B7D3126A8;
-	Wed, 31 Dec 2025 07:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304223115B0;
+	Wed, 31 Dec 2025 07:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SBvZ1JYQ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FIeGZ7Tp"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="zdJhNNVs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com [74.125.224.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24676199E94
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 07:55:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4868730FC22
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 07:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767167736; cv=none; b=DIKu0rdBaMymIqLCWkJF/R1z73YsAjB+/0TQqP4myiA0cNKuhsiBw9lSOz1Bn1u4j5fo0LfEOdR13Tty6cZyBn5Pk/all/L9TPorPt8N/GTkQBt8bDKoqZ/VyCM2uthv70C/paRavVUQsNVPQKnGLOBjidFj+mnfpvGyaqAsNMA=
+	t=1767167897; cv=none; b=mZ0TSwn1Rjo7HjW6eLER/V6Y30EkSZovmBWQbrzBS0q2GufgRkBQmCtndGOpMcrkFy/xObGrA3w/7s9OeSGTOn+qHxgBFRYfhFCK36ErRBT66UhL+p2Yf7gZNr40FojGDA3HJh5sYYGqeLKBE5FiXsGIRbx30JStIYoCesTgefw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767167736; c=relaxed/simple;
-	bh=Ci2lgViwE6iaeo2XUl4/asrVQ2GlNtpDKDBflxf9Y50=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d8q/+2xVXWcdKmRtS6HPiO2vUUVMSfE75EQRDHioM5x7G3W67/wb9qAXSXxAPsDLdtuHuMFe1UJWPwSGQc6iDBOAAxFp+wqrFnCPycpvs+dY0bCqmPXDAcF6ULZkn8a0bg+kyCotvMNi7lv8LY5BPJuqXPOo0eGBVita8nLEEJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SBvZ1JYQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FIeGZ7Tp; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BUK9vEg2284812
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 07:55:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AYhrJHAScIxSw7RMMat/8wMUY18Hw+IB5SuvLlAJjFc=; b=SBvZ1JYQ/+TJ/gd1
-	dNb7pfJkznVcJwfLnfnk2EwkFMKoZk9zzJxbfxtVoTSob2OVhB8wFtt6Xs0izghT
-	0M29wSViqPKGYdQ59RiUyiVQo+laxD7ouxcjaIypc58R1vtdIFnXPEkHO0P6tY8r
-	/VO3oCax0XjgUFSsdCmVPLtISDF98bj3ffFVRk7BYxy/4DOjGJj+N8tfsFdpY2dX
-	pbs9xR4GLugKiPG24yIxI9vk2fA1XUc4VSpYDC4kH36f9FKrU+nX6zT97FYzKh8Z
-	QlD4BlsFxK9z2Z+47PyWYkHZWHrdsjAS6k1je4CYO5XA9IIgNMdqeN89uAceauEO
-	I1Gu0Q==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bc06guyvj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 07:55:33 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4f1d7ac8339so390213981cf.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 23:55:33 -0800 (PST)
+	s=arc-20240116; t=1767167897; c=relaxed/simple;
+	bh=KTe+uww2iCrHymaii5h3grRGLClKo9EOT5Ashcba0hE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jeWN6tdmU3ctv2SFOweTkMjJnVNwDayYVLDsZ4F+0VQt2X1iTx2irtetebJbXhuCRgArQhJakD/LkHVK1kvkwC51Q4wAAUS8aZu4lxRBSHlfgeUe16a8K87HHwEfs0i2Z/0PjkFRouEGZKEVVj77JGYVE6FlZ+U84qOiaWJdauo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=zdJhNNVs; arc=none smtp.client-ip=74.125.224.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-64467071f9fso8092104d50.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 23:58:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767167732; x=1767772532; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AYhrJHAScIxSw7RMMat/8wMUY18Hw+IB5SuvLlAJjFc=;
-        b=FIeGZ7TpKtrVOI5Np7b8hx0RKM4clopkv5olhlSw3ikID/SswGP88AAF8kImHpKamb
-         vqjPOJzg5HO4XRSR/e4nbca8qSX5cHOWQFUgtBFY1l6h+bmLFQBkoh42EhjZBZhKS2c3
-         7u5GJQPBaoQwPEZIdJBKkMp2KkQBnlMEZjJ1/8JlSNEJYgMJ0LDZz6vIPgQexsPjO5hy
-         TTdDt3Pvyye7agYQV5uyu7BfbGJErlkDwk/RAPPWmm3q7QCS4SfWrOoBPvfD8fwXb0Ey
-         Z7+QP0NwGxXXimBn13mb8MYhSl2etTtWcrZGbLGYxQUKxmo5zxtHI3eY4d8kYjtl2pKF
-         EAsg==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767167894; x=1767772694; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KTe+uww2iCrHymaii5h3grRGLClKo9EOT5Ashcba0hE=;
+        b=zdJhNNVsanZUzoIAb1lqHuZUgQ9NqQ/QVa9JpkQyn1C53u1+Qx5cet2GDwdX5k6rzx
+         11ZO0OZQz2S7QwbNP1sHpuC6N2yya+4gChhdomM4TYuqNhtKtrCkevb4Ds0Wkub9WTrl
+         2Z+nJIEeGOnYZEPf3T5T+oMKDLAW1p52OQjjC8t6a3L+bIGr69wm366ryK4Xg3SwCzs+
+         Nq4NP62GJE/XBX6FijspbIRIFhBtLQOH9kQgjjpQsh9Soj1qiIrxsZpemli7f/GTwtWo
+         HDldwrnrvneKlyKZFkvugL/CBxx1I96d3toawRi4ZuAsYM0yYTvSNPf5YtoyqY2+uYt1
+         mqHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767167732; x=1767772532;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AYhrJHAScIxSw7RMMat/8wMUY18Hw+IB5SuvLlAJjFc=;
-        b=jljxGXGIN8tCDFrNXu6p2kgJOyd0HDEBq1HeiO41ULv8JlYetQ2tAJD7H4CHh+Yefi
-         JtcpXg/WVg+lFQDVJuy4v/AFwYQyaqAzQfoexpsnyL1mHazSK29OlzwYfYR6tikZPCv+
-         wdxEVgiBW3fh1sdfBM2V14nHIldxqDJ0dcF/0dOS3f19IuvNWAB0PP+0/o+Ulqbwfdr7
-         +oaXzhIbVDdXkyf5ttx7fos1hFBO37DA4iyzoy5wIZmyAC5eHET7+dX4FHfn0mSgKzue
-         pllUkbrVhS5rUWPvVsWFUP9HSrheKPIy1dMga2O7/DeeJmH/5uh+5UyZHlTEuCaAOeGx
-         J7zQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVnajgGx+0ZfMz05cMDlqB8kuMeoG8s9jiVJv96oiQX1yx9rmuc79hwtjs4KLpWjiiIrtoFlKSBh2OZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YziwQ/EYCB5TBMnLLAa/IidJNujftajqmFmD5SSy+QDDWH3wi+j
-	WQoxa8LPPvQMmuHsbsOVnn/HHXV2nCWPneJTn7VepjdUuPyAQ/OGFyWYfgk9zkN4htcXiMMIl9o
-	g7TnW12iKZouWbMvkDFU2FabrdsUyZF2gNbG2m8yYMiuW7Y765XNXqOlTlHv7uAYl
-X-Gm-Gg: AY/fxX4sBi+UhlUvcO69upEHuOtcd4IPDV4HpUugrRfTsypPXbnyMEDJXlK0L7qfySw
-	V+93HkKgZoBSPd2r1FOOpYGNJ9FhS8hHphYrYawGbvzRuFV+hgUiEGC8NwE6SILy9jbGgPgm4ZD
-	0VKzfGb3VmBGp/kVj/ytkNub1nUA16i2w8dj9ensAO6RiMaEICjAfVTJ3T528kE39aJINavpHiy
-	idt4UB8VUdgLxnlDAzx+x4NLgZKHuWdIXDRl3AS4e/BkwJNcqxhaIZluyZ07oMAm4IveVn0/3qk
-	jX2f1PAea6Jk2xOIWLq1GriUDh9cT8JPNY/p5O+SbivRdDKmg6pfF5jJ0PgVzUyfAI7SVliM0fg
-	ZNPC46Cw4ekgdrKTzsZPYLaC2BkVgax2pN/zvxkkVi2WrndF0I7lun6GoDWtU4zySCu+3NdjrXN
-	gb4JE7rQRp9s1r
-X-Received: by 2002:a05:622a:5792:b0:4f1:e9da:e876 with SMTP id d75a77b69052e-4f4abda20cdmr546160531cf.62.1767167732209;
-        Tue, 30 Dec 2025 23:55:32 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG0z6bL/Y1Q3cI0/9z8D+o6JuInTfb+26sqDPP2cu22WLKInz2eDNWMCCud7yvrAQyf1G40og==
-X-Received: by 2002:a05:622a:5792:b0:4f1:e9da:e876 with SMTP id d75a77b69052e-4f4abda20cdmr546160291cf.62.1767167731661;
-        Tue, 30 Dec 2025 23:55:31 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a073:af00::4c9? (2001-14ba-a073-af00--4c9.rev.dnainternet.fi. [2001:14ba:a073:af00::4c9])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3812267a438sm100328661fa.41.2025.12.30.23.55.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Dec 2025 23:55:30 -0800 (PST)
-Message-ID: <4999105f-e105-4412-b6f8-bb1e2990eab7@oss.qualcomm.com>
-Date: Wed, 31 Dec 2025 09:55:29 +0200
+        d=1e100.net; s=20230601; t=1767167894; x=1767772694;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=KTe+uww2iCrHymaii5h3grRGLClKo9EOT5Ashcba0hE=;
+        b=FmHnkmgz5FPHfxyaYQ2Wl2WLo9DXikFTjPqB+XM5OGMO7vswYN6qDyslGXiHRFzqNr
+         mQoWy/MlJt2yg/D40va2RO4T5o4Y8Z0mjGWR1NV+05FX2ywwpHQIkeKbe+62FZtavrhA
+         qPxfe43KSmnxwKSfj7hbZ48Ua+UUhzN40EaKvAv4QxHVYU5QDvEcAv7Moeu5o68AstHM
+         2Nx6StVW3AwPFLiwvoU06mpO6M5/70o219Eha7z0BO463S5UnFWsPzzAIEzLLG9BkFkr
+         quDJbqyiMox02Ndqzp+KEzEVR/EjV73UooQcSPcdCKx2cSc/oT3XLMy1phHMdTp79YKb
+         bjmg==
+X-Forwarded-Encrypted: i=1; AJvYcCUt/OH4fn38vZOpLw/aY1CVgn0vVv+FBAsjP6v/B+rupRCnLIA3+1UpPvhIbwpFjYd6mtWicwl0Rppd@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrPzvuzAIaaQNqLFDg6AYJAjg22mLDvwSuq161rjmL/3T/oZLZ
+	DxtLnmIA3nKAz20/t+wobqfltwMhPYdlr+SnX29r7WYWT2vxbnDKr1UK8jRgQ2FI0+/guusjABc
+	SeBEwhpCLsUNKe7KdvwF8zw3z9tyQzNKhCt8f36FlFw==
+X-Gm-Gg: AY/fxX4Btw7s6rIOjVtzlcyLYYGDp0dc6P+4lNb6IN/v/XZC3i7DD47r3c1kae7Ipfw
+	uAJ/9oDTd/ultndZhJQ5AWeOBp56z2arAVspLW8/RxSAY7cLfgzwl5PAsWbsaCLEm+KXAZxes2K
+	NWa4DxyPSRQ64CpLyS6IiVI5GRq/369BWlHV8wATDRa0+TDTDfOoDdsWECNa0+PuVeBk6auC+dQ
+	xC+MLwyxDkll/aFkSzxAQdzrCdAYK5Sv+2Mj+7AiUWQpD/pQVNwkbfByjHgcqLpqwyw3VifGiDJ
+	OyBhEj+ECMz5COLBGII8ZG6cRDyEUqi5yMVhCIrHcake
+X-Google-Smtp-Source: AGHT+IH53FvUpz0dR04OFmctNYeppfU38AmPI7x8yHnkIoO7J4A8mQkJ+AGynPvCIOVfnVQmo938afWT4z4sYjqeQLk=
+X-Received: by 2002:a53:b98b:0:b0:63f:ce86:8b81 with SMTP id
+ 956f58d0204a3-6466a8445c0mr23299917d50.18.1767167894213; Tue, 30 Dec 2025
+ 23:58:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/8] dt-bindings: thermal: Add qcom,qmi-cooling yaml
- bindings
-To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, andersson@kernel.org,
-        mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, rafael@kernel.org, daniel.lezcano@linaro.org,
-        rui.zhang@intel.com, lukasz.luba@arm.com, konradybcio@kernel.org,
-        amitk@kernel.org, mani@kernel.org, casey.connolly@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20251223123227.1317244-1-gaurav.kohli@oss.qualcomm.com>
- <20251223123227.1317244-4-gaurav.kohli@oss.qualcomm.com>
- <f6bd1bda-6aab-4d4e-9981-f55cce03f70d@kernel.org>
- <3fc177ca-0260-471d-b7a4-bd479f5e5855@oss.qualcomm.com>
- <60653b06-38c4-4276-a6e5-4a5900ba19d4@kernel.org>
- <74b33eb5-a75b-479e-92b3-cb6e094e5610@oss.qualcomm.com>
- <qbbn4dpp52nojvi3fge5kotnxcetuhsqhtvm6rl7rjbo46e2ly@cp24xlhdk54h>
- <9ab77a8e-a5e6-45bc-bc73-12c0d0700fc0@oss.qualcomm.com>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <9ab77a8e-a5e6-45bc-bc73-12c0d0700fc0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 19w5PyJI9E2dcFWnHhcNrzD44qElzJEE
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMxMDA2NyBTYWx0ZWRfX1W2MTidXSnZu
- mpBci5l3Y52jejhnPglOEqu5F923U2LYZ9MshpMD1C5p527zOgsWNhLP58t3smsEBVk1BM74uvt
- 32e+QIRp8LBKXA//Tk0OQC5MdSEAvtR8sJwKAqLxsXYZ7Yoc/5HZtKD1mfKfFSFW/cAg4WYD1qu
- D9eU9k3jkVu1pLYK05zIGLe5WP717lf21whOS/pZfbZyvgYVz/yt7lbTrpz8VrXjrVaN5kRil+t
- dc3hRTn4urp9dyawH7zT02LtKuMg6eDpsFDeJevnkcu4gpkKUZUfhS/csUmT/fj50Xn1IGMtuso
- COeDJS37y/6RMQcGKt3kviPDjaBVpjM0Rh47P7vORBl9JodEUPwmQC8OD/bsZfl6LBskcPcTBtd
- WaBs/hArjwuo7GICLxzCemtbh1wiA0Ec+NaKbMBfzJrzv/LVuptAgaaodm5zevzXnDfrwTYURFD
- Wpx9sf4rd45Wq3vKESw==
-X-Authority-Analysis: v=2.4 cv=A45h/qWG c=1 sm=1 tr=0 ts=6954d6f5 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=9DOCaZkiX73qrqxUqwoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=dawVfQjAaf238kedN5IG:22 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: 19w5PyJI9E2dcFWnHhcNrzD44qElzJEE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-31_02,2025-12-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 clxscore=1015 suspectscore=0
- bulkscore=0 phishscore=0 impostorscore=0 spamscore=0 malwarescore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2512310067
+References: <20251229-k3-reset-v1-0-eda0747bded3@riscstar.com>
+ <20251229-k3-reset-v1-1-eda0747bded3@riscstar.com> <20251230-charming-nonchalant-goat-98bbde@quoll>
+ <6ed0436e-e03b-4b17-a70b-6f848f14e1d8@kernel.org>
+In-Reply-To: <6ed0436e-e03b-4b17-a70b-6f848f14e1d8@kernel.org>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Wed, 31 Dec 2025 15:58:03 +0800
+X-Gm-Features: AQt7F2qzhgUj-QKv44VxiXKT9CGYXUenv1CyhrZqOLWPCsSao1lPbDdY4t_Ch_U
+Message-ID: <CAH1PCMbKwBUJoVfL-wqsd_5RWNVFVVC_UPxk2B3VFeRkDertng@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: reset: spacemit: Add K3 reset IDs
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+	Alex Elder <elder@riscstar.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 31/12/2025 09:52, Gaurav Kohli wrote:
-> 
-> On 12/31/2025 1:17 PM, Dmitry Baryshkov wrote:
->> On Wed, Dec 31, 2025 at 12:12:04PM +0530, Gaurav Kohli wrote:
->>> On 12/24/2025 3:54 PM, Krzysztof Kozlowski wrote:
->>>> On 24/12/2025 11:08, Gaurav Kohli wrote:
->>>>> On 12/24/2025 2:27 PM, Krzysztof Kozlowski wrote:
->>>>>> On 23/12/2025 13:32, Gaurav Kohli wrote:
->>>>>>> The cooling subnode of a remoteproc represents a client of the 
->>>>>>> Thermal
->>>>>>> Mitigation Device QMI service running on it. Each subnode of the 
->>>>>>> cooling
->>>>>>> node represents a single control exposed by the service.
->>>>>>>
->>>>>>> Add maintainer name also and update this binding for cdsp substem.
->>>>>>>
->>>>>>> Co-developed-by: Casey Connolly <casey.connolly@linaro.org>
->>>>>>> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
->>>>>>> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
->>>>>>> ---
->>>>>>>     .../bindings/remoteproc/qcom,pas-common.yaml  |  6 ++
->>>>>>>     .../bindings/thermal/qcom,qmi-cooling.yaml    | 99 ++++++++++ 
->>>>>>> +++++++++
->>>>>>>     2 files changed, 105 insertions(+)
->>>>>>>     create mode 100644 Documentation/devicetree/bindings/thermal/ 
->>>>>>> qcom,qmi-cooling.yaml
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/ 
->>>>>>> qcom,pas-common.yaml b/Documentation/devicetree/bindings/ 
->>>>>>> remoteproc/qcom,pas-common.yaml
->>>>>>> index 63a82e7a8bf8..bbc82253f76b 100644
->>>>>>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas- 
->>>>>>> common.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas- 
->>>>>>> common.yaml
->>>>>>> @@ -77,6 +77,12 @@ properties:
->>>>>>>           and devices related to the ADSP.
->>>>>>>         unevaluatedProperties: false
->>>>>>> +  cooling:
->>>>>>> +    $ref: /schemas/thermal/qcom,qmi-cooling.yaml#
->>>>>>> +    description:
->>>>>>> +      Cooling subnode which represents the cooling devices 
->>>>>>> exposed by the Modem.
->>>>>>> +    unevaluatedProperties: false
->>>>>>> +
->>>>>>>     required:
->>>>>>>       - clocks
->>>>>>>       - clock-names
->>>>>>> diff --git a/Documentation/devicetree/bindings/thermal/qcom,qmi- 
->>>>>>> cooling.yaml b/Documentation/devicetree/bindings/thermal/ 
->>>>>>> qcom,qmi-cooling.yaml
->>>>>>> new file mode 100644
->>>>>>> index 000000000000..90b46712d241
->>>>>>> --- /dev/null
->>>>>>> +++ b/Documentation/devicetree/bindings/thermal/qcom,qmi- 
->>>>>>> cooling.yaml
->>>>>>> @@ -0,0 +1,99 @@
->>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>>> +# Copyright 2023 (c), Linaro Limited
->>>>>>> +
->>>>>>> +%YAML 1.2
->>>>>>> +---
->>>>>>> +$id: http://devicetree.org/schemas/thermal/qcom,qmi-cooling.yaml#
->>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>> +
->>>>>>> +title: Qualcomm QMI based thermal mitigation (TMD) cooling devices.
->>>>>>> +
->>>>>>> +maintainers:
->>>>>>> +  - Caleb Connolly <caleb.connolly@linaro.org>
->>>>>>> +  - Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
->>>>>>> +
->>>>>>> +description:
->>>>>>> +  Qualcomm QMI-based TMD cooling devices are used to mitigate 
->>>>>>> thermal conditions
->>>>>>> +  across multiple remote subsystems. These devices operate based 
->>>>>>> on junction temperature
->>>>>>> +  sensors (TSENS) associated with thermal zones for each subsystem.
->>>>>>> +
->>>>>>> +  Each subnode corresponds to a control interface for a single 
->>>>>>> instance of the TMD
->>>>>>> +  service running on a remote subsystem.
->>>>>>> +
->>>>>>> +definitions:
->>>>>> defs, look at other code
->>>>>>
->>>>>>
->>>>>>> +  tmd:
->>>>>>> +    type: object
->>>>>>> +    description: |
->>>>>>> +      A single Thermal Mitigation Device exposed by a remote 
->>>>>>> subsystem.
->>>>>> Missing proper formatting. Please do not send us code written by LLM.
->>>>> This patch is based on older series
->>>>>
->>>>> https://lore.kernel.org/linux-devicetree/20230905-caleb- 
->>>>> qmi_cooling-v1-0-5aa39d4164a7@linaro.org/, did some manual changes 
->>>>> to remove unusable code.
->>>> How? This is v1, not v2. How did you address other comments? Where did
->>>> you provide proper changelog? Why this is not correctly versioned/
->>>>
->>>>> let me fix the formatting. This is not generated code.
->>>> I do not believe, because this:
->>>>
->>>>
->>>>>>> +      phandle: true
->>>
->>> As i have mentioned in earlier reply, we are including below series:
->>>
->>> https://lore.kernel.org/linux-devicetree/20230905-caleb-qmi_cooling- 
->>> v1-0-5aa39d4164a7@linaro.org/,)
->>> as this is client for remote proc cooling.
->>> I was seeing this error while using older yam files.
->>>
->>> ('cdsp_sw' was unexpected)
->>>
->>> from schema qcom,qmi-cooling.yaml
->>>
->>> So to avoid that, i have added phandle to avoid this error. will fix 
->>> this in
->>> proper way
->>> by including another yaml file which will define the cdsp_sw,
->>>
->>> Below is the dt node:
->>> cooling {
->>> +                compatible = "qcom,qmi-cooling-cdsp";
->>> +                    cdsp_sw: cdsp_sw {
->> You can't have a node called cdsp_sw. Underscores are not allowed in
->> node names.
-> 
-> 
-> Will change to cdsp-sw.
+Hi, Krzysztof
 
-Why do you need a subnode at all? Can there be multiple cooling 
-"devices" for a DSP? Also, if you insist on having a subnode, could you 
-please come up with a _generic_ enough name that would describe the 
-node? cdsp-sw definitely isn't generic.
+On Tue, Dec 30, 2025 at 8:24=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 30/12/2025 13:21, Krzysztof Kozlowski wrote:
+> > On Mon, Dec 29, 2025 at 07:04:04PM +0800, Guodong Xu wrote:
+> >> Add reset IDs for SpacemiT K3 SoC.
+> >
+> > Why? Where is the actual binding? You have entire commit msg to explain
+> > that, instead of duplicating subject.
+>
+> ... also because then I would ask what is the compatible and why the
+> filename does not match the compatible.
+>
 
-> 
-> thanks
-> 
-> Gaurav
-> 
-> 
->>> +                        label = "cdsp_sw";
->>> +                        #cooling-cells = <2>;
->>> +                    };
->>> +            };
->>>
->>>
->>>> Does not exist. You cannot come with something like that, there is no
->>>> such code.
->>>>
->>>> Only LLM when parsing DTB could invent something like this. Otherwise
->>>> explain me please the process leading to coming to such change.
->>>>
->>>> Best regards,
->>>> Krzysztof
+Thank you for the review.
+
+I see your point now. It's my mistake not explaining the relationship
+between K3 reset and clock controller. I will update the commit message
+in v2.
+
+K3 reset devices are registered at run time as auxiliary devices by the
+k3 ccu driver. This way, they don't have their own yaml binding file, but
+reuse the K3 ccu binding, which is built on top of k1 syscon:
+Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+
+>
+> ... also because then I would ask what is the compatible and why the
+> filename does not match the compatible.
+
+For the filename, since it lists the index values for reset data, I
+chose to put it into include/dt-bindings/reset/spacemit,k3-resets.h,
+which mirrors the clock part at include/dt-bindings/clock/spacemit,k3-clock=
+s.h.
+
+I will update the yaml file (spacemit,k1-syscon.yaml) in the v2 version
+to document K3 reset support and include the reset header in the
+description, so people can clearly link 'spacemit,k3-resets.h' with the
+binding compatible.
+
+> >
+> > I am pretty sure I already asked this for a different patchset from
+> > you...
+
+I apologize for that. I will be more careful in future submissions.
+
+Best regards,
+Guodong
 
 
--- 
-With best wishes
-Dmitry
+> >
+> >
+> >>
+> Best regards,
+> Krzysztof
 
