@@ -1,155 +1,239 @@
-Return-Path: <devicetree+bounces-250685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4930CEB18A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 03:36:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C32B2CEB1AE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 03:39:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 761F6300B37B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 02:36:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BBD8D3009FF9
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 02:39:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F722D9EE3;
-	Wed, 31 Dec 2025 02:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FE4246BBA;
+	Wed, 31 Dec 2025 02:39:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="Bl9/EFli"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HsOVh+L0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012070.outbound.protection.outlook.com [52.101.48.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C20D248F68;
-	Wed, 31 Dec 2025 02:36:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767148565; cv=none; b=nSgnBHIj1lfD1yXA8b6zUuARdDxomP6EaZnJRnKPcknGuvz4I9Euxm3Z7dH0wrJjfjCwBmybaqtTekjwg5J+yd8zNYaWYZBvBPRO/QvPPciq2aHE56FvS9oGASowo/8HliufjySaG8hDAwVjhVNHB3JqVN8/1KLMJesycp2hr60=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767148565; c=relaxed/simple;
-	bh=LqxyURtloegT4m/zAMO9KjepBqGZM6jzaRvo+Psy7E0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pEYKcB+zEZnn+rzqj/T4qn/eAm7ayG2S4JwsPCeI8DgnEv2+X/NfvIQlkq4E9GTKjyGAogL+MFSFMBK5gPyQo7maCrLIAiWD7rJroG0q2WvZXvAwpvlHnWWM3+h/5WdHfMzqVN7PRp7CLlUVqehVlEul0xr9Y92hKrx8rD1CXpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=Bl9/EFli; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5BV2ZegkE264407, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1767148540; bh=z7Wwgy0d8I6voARKvl0a7KvTVnYk//mpi1lBYRvjR84=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=Bl9/EFli+7enao9Py7jKFI0Nr8NE50u+tMTXk2Gn1o+ECtzeeZavwBaxtR36L9a+V
-	 X8Im9/o2MkN/PGxd4FhTGV5g/mwmOI32gZ4K3+j60nyOCJIf0z7gaTiBcnmDdiILcy
-	 s9uE0gRULWNOhbIb/D5raopJ+Efl3NM7a/5klrFN8aS5EA9K7CJydvqcaIo0VS4awx
-	 7emMaURPPM364g8W/VTB+6XWX9xIl9VYPzZnjP+7vaA8TJKzr33zXr+9XK0Nu4gVrI
-	 vQmyUDcB1hM3gykd9f4EgVssMpm2+E0TKjipewG9RqhsfW2UeyrOSJygDekd2lLnSv
-	 JSQ31JEuZXLkg==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5BV2ZegkE264407
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 31 Dec 2025 10:35:40 +0800
-Received: from RTKEXHMBS03.realtek.com.tw (10.21.1.53) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 31 Dec 2025 10:35:40 +0800
-Received: from sw-server.localdomain (172.24.54.4) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server id
- 15.2.1748.10 via Frontend Transport; Wed, 31 Dec 2025 10:35:39 +0800
-From: Oder Chiou <oder_chiou@realtek.com>
-To: <cezary.rojewski@intel.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <perex@perex.cz>, <linux-sound@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <flove@realtek.com>, <shumingf@realtek.com>, <jack.yu@realtek.com>,
-        <derek.fang@realtek.com>, Oder Chiou <oder_chiou@realtek.com>
-Subject: [PATCH v11 3/4] ASoC: dt-bindings: realtek,rt5575: add support for ALC5575
-Date: Wed, 31 Dec 2025 10:37:01 +0800
-Message-ID: <cad38383a8f4c7235158779c270fee7f61bf6cfe.1767148150.git.oder_chiou@realtek.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <cover.1767148150.git.oder_chiou@realtek.com>
-References: <cover.1767148150.git.oder_chiou@realtek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCDB43B1B3;
+	Wed, 31 Dec 2025 02:39:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767148796; cv=fail; b=ocrVIqmqeRdb4/xeTqRFmbfEM8ODmFrUaB6vcih/n6zDBVtkhvapHH1MJ7v0bt00J7joDqQe5PIq1NCMT/X+3+pITSXMTSGbZSVX4RVpqfVGnGzl3cFqWBO7wSCDlMGnsM8bzofeOteHo8D8NaamNOz4vBupsPdq+1yArj4zJzE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767148796; c=relaxed/simple;
+	bh=8FuQUt6OrIQ52dSwjO9Qe5duWZ/mKMz70sdjRL1Vm1g=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=saFqfcd8+PcnTxepO8PrjhwKo64JtO0CcdBp6qmmGwIa+PMX7EugMr+SObDgQviZg3N7NFtwkmjQFvUUkDw3i9gcbKZJw3wTBEuONMDok4fUWndLXh+ngSMAov+kR0iwq7yzP1I7fnNZL0G77qhdVo1QgjjlBJD8xPUX45Lcsw8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HsOVh+L0; arc=fail smtp.client-ip=52.101.48.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VTWQ4fivrp25dGV/SqdyqHSU5IN70bSxEgdII0puZtFGISE1yFU2MMiWp37ILePy94vSVssKHVqLnU1WKD23F9Yt/34dbNi/5gN1IUE1FLvsOompgJWvgIYpXL43JbZWesuvQHwVVKPPSI3fcgBcMOLr7LpjBn/Hgez+Qwda8O3JG3lSsvuY5tWm6s5CzSJB59Tm3ofI7vkTBVb5cDAqq+oFiFdkZXogTAl+snbzAVqSgRVvi6R4h2Z/bg279SkhPvVvSmyj5mJ6gGIhRI+JwAe4k+FNVSzWd6hrCANKlpmr3BybR9SiSSrZ1D7C+maQMgDq9boRfuEd0u+q4byU4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yf6xYXO+cqCHuNPn9EzJI2MMIj4iqgWSPjT38rgx9/k=;
+ b=DwX5x+IHRYVfDO82Z2qY5P4XCJ5MysoaTkRIrhI97cQDmegX2XsiHp/eFS5O/WfN2h/Xn77IpPaFXJA5Nck5Be2Zbre0+WZLtv6kafLp0SMIFb/aP0Qu3ciiMLGB6+/59O/QNbfIEjX97pMCMl+f/y77qEElfhoMwjlQSWDMnIi2ZNsOjUv9wgRmEb3CbbjSF6xepmb++OSqxGbly5v2Od6Pi0aahLqM4681UKp6BnvD2TLJFOHWJY+Qn2IqAwRNExBI45MIKBcKI4C7KTpKOcb+gSzXjNh7hXXtwIol429FNE0bgk8afk0+GICtDETytEXnrC99T4Y7+Zxr2A/saQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=baylibre.com smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yf6xYXO+cqCHuNPn9EzJI2MMIj4iqgWSPjT38rgx9/k=;
+ b=HsOVh+L0t0BhOFICeH82HnQxcF/0U1l6ph4HCJE0dtLjpwxMExzMxG4mnlJexw1PcRORS+r86mxtJP0CBQLTcfv05TF3zjm3c5cNNldnzEinygHMAPrQqHxlmsB6aMIg3Tgw3FPeOip5IYItG3of6gKO1db11yTZVGJIgCnHGuA=
+Received: from BN9PR03CA0493.namprd03.prod.outlook.com (2603:10b6:408:130::18)
+ by IA1PR10MB7165.namprd10.prod.outlook.com (2603:10b6:208:3fd::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Wed, 31 Dec
+ 2025 02:38:38 +0000
+Received: from BN2PEPF000044A1.namprd02.prod.outlook.com
+ (2603:10b6:408:130:cafe::dd) by BN9PR03CA0493.outlook.office365.com
+ (2603:10b6:408:130::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9478.4 via Frontend Transport; Wed,
+ 31 Dec 2025 02:38:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ BN2PEPF000044A1.mail.protection.outlook.com (10.167.243.152) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9478.4 via Frontend Transport; Wed, 31 Dec 2025 02:38:38 +0000
+Received: from DLEE205.ent.ti.com (157.170.170.85) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 30 Dec
+ 2025 20:38:34 -0600
+Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 30 Dec
+ 2025 20:38:33 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 30 Dec 2025 20:38:33 -0600
+Received: from [127.0.1.1] (uda0506412.dhcp.ti.com [128.247.81.19])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BV2cXV71704518;
+	Tue, 30 Dec 2025 20:38:33 -0600
+From: Kendall Willis <k-willis@ti.com>
+Subject: [PATCH v2 0/5] arm64: dts: ti: k3-am62: Support Main UART wakeup
+Date: Tue, 30 Dec 2025 20:38:19 -0600
+Message-ID: <20251230-b4-uart-daisy-chain-dts-v2-0-fa5257ec54bb@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJuMVGkC/z3Myw6CMBCF4Vchs3bIdFpEWfkexkWhRSZyMW29h
+ fDuNi5cfsk5/wrRB/ERmmKF4J8SZZkzeFdAN9j56lFcNjBxpVgTtgYfNiR0VuIH80ZmdCmiI2W
+ toWpPLUN+34Pv5f0rny/ZfVgmTEPw9t+jIxlWfOC61LUmrQwqvOFLxlHiKUnZLRNs2xct9Pdcp
+ AAAAA==
+X-Change-ID: 20251230-b4-uart-daisy-chain-dts-d01aa40560b2
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
+	<msp@baylibre.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
+	<s-kochidanadu@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Kendall Willis
+	<k-willis@ti.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767148713; l=2682;
+ i=k-willis@ti.com; s=20251230; h=from:subject:message-id;
+ bh=8FuQUt6OrIQ52dSwjO9Qe5duWZ/mKMz70sdjRL1Vm1g=;
+ b=x8BkZ5vcCoORCW3BdXIwzKnbfFIebasnE54C8h1CRSJk8ud9b7kubPEYQyD/Y9c/5vgU2mIxw
+ fuw2A5T2meeAfjoNPD9Pluydxa7qGgsbYi/6emFXytrEqPxnmBk9T6o
+X-Developer-Key: i=k-willis@ti.com; a=ed25519;
+ pk=fQiPVFwmogfDAKdaAKq163RWSfgHZVE/MrsDzp0Xo1k=
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044A1:EE_|IA1PR10MB7165:EE_
+X-MS-Office365-Filtering-Correlation-Id: fbb8a3f0-3422-494e-30b1-08de4815b3d2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?TStaK1RjNDRoR29XQ1piZjFrZERIYzl3a1A2eVE3Y292SjdiVldIclI3WThk?=
+ =?utf-8?B?SHFwVzJ3RUs3bHU0NytiSVp5eDAvVGhZdHVmd3creFpNS1BRbXlKbXRYV2tS?=
+ =?utf-8?B?M3lNdm04a2JJSDRqZEtnZ2EyTWFrakNueTVYeU11ZzE3WmJkbE8wQ00wZGlk?=
+ =?utf-8?B?THNNdHpWWkFTMVRaVzljL1VaQU11bHlqZkRSeU0rZmpWazV6blYyMG1aY3cx?=
+ =?utf-8?B?YUcwOUVTclNVQmJINEZkN1o2SjB3WldFNFNKT0hqb2N2MGlyd3BMMkRMNmov?=
+ =?utf-8?B?ZTJLb1NLME0xSW1XQjczYThxZTBGd0dWZmFaWkJ6Skl4SVgzRWhHdFVzQ3Q0?=
+ =?utf-8?B?dkI0SW9qZllHcTN0ZFE5VHREUzdLSjhmUjdraC9oMDBaVVpaRWtqVENMU3lO?=
+ =?utf-8?B?SytCNFZ2OW52clJOaktVVGFabmNzK21sbWZwSDVlYlRZdmlzeWNpYlRKajRX?=
+ =?utf-8?B?eWJ1VlNHMHFpd3NPYm5GWXk0WTU2S2xWMS96clRLV2dSTHk5NnRNZWxrdEZV?=
+ =?utf-8?B?ek1obEFEbE1TbHdnamUrZWk3SEpEYm40c2ZxWXdnaVhFSXkxTlVaOVZoSUw5?=
+ =?utf-8?B?cUtTZWdtSFArTDhPNjFQQk1CWGFoNHVwMU5ScGw4R3ZVc0dBTjFQVU52Ukt4?=
+ =?utf-8?B?QjZtbXdzK0FRSDNGemRGV1lrNUNrNHdab0xpT1dIdXh0VFNrcURSZjZHSVV2?=
+ =?utf-8?B?WGlvYitYNmxzbkF5N0svM3R0QWhLL1A0NEh6eXhDT29La0ovTHcyWFdObG1q?=
+ =?utf-8?B?WEFyUUk3K1huSTYyTnI4bjNZY21IN1NkTFMzK2NZTTRYbHhadmlkWG5NRnJx?=
+ =?utf-8?B?WjBxWHJxS3NORW5XaXdaNGtDUTVYaSswWlZxSDdMVUJ6TU5NOWhtTko3VGVE?=
+ =?utf-8?B?ZFYreHlqU3A4K3l4UkRhK2Z1L09xTk96ZnhvU3Q4ZWg3TTJkZGd3MXk4VWVn?=
+ =?utf-8?B?NzNFWERucVdnZDlSS1IwRHAvUzZreFRBektxdDJvU2FSMlZlQXpGNHBuNEpW?=
+ =?utf-8?B?YUhQampyMHZsMW5HU0h2QXUvM0xRZEFlamI1eEtuN0FpT0dEZ28wK0xsbjZ5?=
+ =?utf-8?B?QmVieWZuY291UUoraktFdzEyVHVuWSt5NjdHZFJGVlAvNnRyV1FRVyt4WTh0?=
+ =?utf-8?B?RXJ6NWNndS8wZk85YWlPV09VSGFHcUFJT2pVNExLcHkxTStUMU5zK0lRbXJY?=
+ =?utf-8?B?Y0s1K3lTb2k0NjFSSGEvSkxwemk4RTB0dFB0U05nRVZRUGlTbitDd0o4NHB1?=
+ =?utf-8?B?TzRQOHhNcmVRQVNjeVBmR2JUU0ZTRDI2aUhtSXh6cXg0MmxQSmRETWxJdWpN?=
+ =?utf-8?B?VWZ3bzRDSHhRU1RnNkIwMjliUlBxNWQ2YlhVVHhRR0RGUGlmWGRObUpDdndl?=
+ =?utf-8?B?dVQ4ZTNBR2FydzFJU1c1ZnhQZHo1QTFWQUp1VVRObGlrVTNPSnNyOUNIamlp?=
+ =?utf-8?B?ZUp3ZE1HMTZ2dHRIVndXRGIxbDl1R3JYa3JDaTlvQ2pxb0lUb0JJM2F2eWw3?=
+ =?utf-8?B?VmlURGsrSmgyeHIwRTQxRTBwblp6N2xIU0gzamVXV3FQWG1IZVBhbjIrMkFi?=
+ =?utf-8?B?eEZ3ZXB5aTBYblRlY3RZNFNaNHZvZGV0c2dNNWl4Z0IxZWpnZUJ3RFBZUmZO?=
+ =?utf-8?B?TGEwd21FVWIvMTVSc21zcWRzUkl1RG4wd295M2huUWppZkkxVG5xSFBhQXhX?=
+ =?utf-8?B?NDV0V2JzeDdySUNWcnQxQjVWekdsRUFzL0NpWmcyNm8yZnFkb3cwUXozWWpi?=
+ =?utf-8?B?T3Jqd05NejZXVDJ6dzJscVhNczZtck92ckZOM1lKUk9Gc1NSemV4bUFMZTFu?=
+ =?utf-8?B?NDJRYnFBc0l5bnlYdFdrakFjMktMcC9KUjFzVkNFMDZZTm1Td1FwbkpsNDdG?=
+ =?utf-8?B?MDJCSEROaDkzcVlFU3hLZWxNNnNmZi9JYkhwVUcwT05wa1F2OE8wZVE1aC96?=
+ =?utf-8?B?RTBWVStKcSthVVozTVI1eHpvby8xWlp4dGMweVYwb0NxUzZ1U3dFR0VEM3RN?=
+ =?utf-8?B?RFZmUzRYUjI4TVdmWlRQWDEyTmNmM0FwVXM1YzIzQmlSN05WRU4wV1JTR2U4?=
+ =?utf-8?B?eGFpYTR2dkNPY3pHV3dhOWFHRmRISHh3QjJ3K2llM2taQzhmWWhKU2RFN0t4?=
+ =?utf-8?Q?6wcM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Dec 2025 02:38:38.0370
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbb8a3f0-3422-494e-30b1-08de4815b3d2
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN2PEPF000044A1.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB7165
 
-Audio codec with I2S, I2C and SPI.
+This series adds wakeup support for the Main UART in the device tree of
+the TI AM62 family of devices. It defines the specific pins and pinctrl
+states needed to wakeup the system from the Main UART via I/O
+daisy-chaining. The wakeup-source property is configured to describe the
+low power modes the system can wakeup from using the Main UART.
 
-Signed-off-by: Oder Chiou <oder_chiou@realtek.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Implementation
+--------------
+This series is intended to be implemented along with the following
+series:
+
+1. "pmdomain: ti_sci: handle wakeup constraint for out-of-band wakeup":
+   Skips setting constraints for wakeup sources that have
+   out-of-band wakeup capability.
+   https://github.com/kwillis01/linux/tree/v6.19/uart-daisy-chain/pmdomain
+
+2. "serial: 8250: omap: set out-of-band wakeup if wakeup pinctrl exists":
+   Implements out-of-band wakeup from the UARTs for TI K3 SoCs.
+   https://github.com/kwillis01/linux/tree/v6.19/uart-daisy-chain/uart-wakeup
+
+3. "arm64: dts: ti: k3-am62: Support Main UART wakeup": (this series)
+   implements the functionality to wakeup the system from the Main UART.
+   https://github.com/kwillis01/linux/tree/b4/uart-daisy-chain-dts
+
+Testing
+-------
+Tested on a AM62P SK EVM board and a AM62L EVM board with all the above
+mentioned series implemented. Suspend/resume verified with the Main UART
+wakeup source by entering a keypress on the console.
+
+This github branch has all the necessary patches to test the series
+using v6.19-rc1:
+https://github.com/kwillis01/linux/tree/v6.19/uart-daisy-chain/all
+
+Revisions
+---------
+v1->v2:
+ - Define AM62L system idle states
+ - Enable Main UART wakeup for AM62L SoC
+ - Rebase to v6.19-rc3
+
+v1: https://lore.kernel.org/all/20250904212827.3730314-1-k-willis@ti.com/
+
 ---
- .../bindings/sound/realtek,rt5575.yaml        | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
+Kendall Willis (5):
+      arm64: dts: ti: k3-am62l: Define possible system states
+      arm64: dts: ti: k3-am62x-sk-common: Enable Main UART wakeup
+      arm64: dts: ti: k3-am62a7-sk: Enable Main UART wakeup
+      arm64: dts: ti: k3-am62p5-sk: Enable Main UART wakeup
+      arm64: dts: ti: k3-am62l3-evm: Enable Main UART wakeup
 
-diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5575.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
-new file mode 100644
-index 000000000000..981ebc39b195
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/realtek,rt5575.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ALC5575 audio CODEC
-+
-+maintainers:
-+  - Oder Chiou <oder_chiou@realtek.com>
-+
-+description:
-+  The device supports both I2C and SPI. I2C is mandatory, while SPI is
-+  optional depending on the hardware configuration. SPI is used for
-+  firmware loading if present.
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: realtek,rt5575
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-parent:
-+    description:
-+      Optional phandle reference to the SPI controller used for firmware
-+      loading. The argument specifies the chip select.
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  # I2C-only node
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@57 {
-+            compatible = "realtek,rt5575";
-+            reg = <0x57>;
-+        };
-+    };
-+
-+  # I2C + optional SPI node
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@57 {
-+            compatible = "realtek,rt5575";
-+            reg = <0x57>;
-+            spi-parent = <&spi0 0>; /* chip-select 0 */
-+        };
-+    };
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts        | 24 ++++++++++++++++++++----
+ arch/arm64/boot/dts/ti/k3-am62l.dtsi           | 12 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62l3-evm.dts       | 22 ++++++++++++++++++----
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts        | 24 ++++++++++++++++++++----
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 24 ++++++++++++++++++++----
+ 5 files changed, 90 insertions(+), 16 deletions(-)
+---
+base-commit: f323ed34dc9831effb1ee95403bc364869d29d4c
+change-id: 20251230-b4-uart-daisy-chain-dts-d01aa40560b2
+
+Best regards,
 -- 
-2.52.0
+Kendall Willis <k-willis@ti.com>
 
 
