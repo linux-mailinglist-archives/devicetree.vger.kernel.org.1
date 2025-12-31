@@ -1,106 +1,118 @@
-Return-Path: <devicetree+bounces-250863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E34CEC9BD
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 22:51:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11719CEC9D8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 22:58:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8577D300FF9D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 21:51:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8A7F03008FAD
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 21:58:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3636230EF68;
-	Wed, 31 Dec 2025 21:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D7330EF88;
+	Wed, 31 Dec 2025 21:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sUhkrStJ"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="sbcNWmBY";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="sbcNWmBY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10BC830E851
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 21:51:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AAFD12CDBE
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 21:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767217867; cv=none; b=S2haaKdukX6mE6a2uiSlPcj3V/mFYK3E9/WAJ9snRc9ewGjXOUKvBaJKQ+l+imxvGigHGbwF77HiqH5HVBgrmHxX67+1eTvqLgCvaqya619kYiyljMYT2te0H3YKEwtJ+dWp/AeC09dYJfD1+qj/ZEuvd1Vim6ivdzgRSy2Wzps=
+	t=1767218300; cv=none; b=FvzQL1zxOLIdtkNn3kiyJq837gTu3pwNTU7GxULphyih1kNaKfvI1u+G47t5Xw07vetcmt1Mj7a1J1g3RgCMie8fn8juw6bKXDKQHrU+Z9jR7BvSY+GcTMytR21SHRv5Vv8Whl9b1SWphLPvCtQn6EnsyQDZD6Ck6lHY+ZNqRhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767217867; c=relaxed/simple;
-	bh=1dgOiCMHW+Z7a4Iq31trxTmP5l0kzHmrGC9ib/clXB4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mn04MLfQVGDCg5o0dKbBOZW2y6BiQe6haEwca2eArPw7zbpE1xzQbNC2DV776TgPoW5dY2Il+dIUOC58pDRaY0lRcEqPLqMEYAzAPfH5FEv7fwto6cPtGGzgh8M0X+ar9nnf3Af4SBH7eleu1ubwlnQ0aPewhM1F2EjQPPCGdiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sUhkrStJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CB2AC19422
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 21:51:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767217866;
-	bh=1dgOiCMHW+Z7a4Iq31trxTmP5l0kzHmrGC9ib/clXB4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=sUhkrStJSwjGZ2XRy9OJb6HUvUKwET0l9AiU6cNZosCauIHjFKzQ1b7TOKHLwxRdc
-	 b5nPDpnnlCBqd2zATN+TSwKN09UnT06oJMorI7qRZ7tPu617nyFv3V/JLc41jgAqRO
-	 XU6yU5g2bc8G5DLtO5Ozd0fkI+hOKqEXLWbIojJAu9ZZq+xWNlLQtzqq3P3Qsr3p0t
-	 gYJsWSrl/Xsmn9vIJo+Et94QdgZtWVQIlhq/FSVhksJkp97iiSl60ZHTNxClwhfB4M
-	 GKWL2T1hvzLJoPdTS5xcn/Tl7IuVvFRWwIxokPYKkN8VdOAA4Gf3DDXugPLUC0V6Df
-	 uho202+Fyh+LA==
-Received: by mail-yx1-f51.google.com with SMTP id 956f58d0204a3-6446fcddf2fso9716101d50.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 13:51:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX7/zKnSM67o5jHq/5yS+jFSRbKW4rx4jj1zYdkr6dOr1EIqCxoHBVE9B4z8HYwtitTB8Zt3KaQzLOj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxijoQsPn/0na39QmlayRaXb+7FmWYB/dT+bSqKxmdLtvLQQr79
-	0T3zFSwrcKwwmk7WYT0pGK01bM1Sl4HrmPQZOVc9CBOlUwCQOz0zI7HKI9fD0pC4w7FWdmdpuUn
-	1hgHVtLVy8YB5hgPKjB6HqEab6K7nElw=
-X-Google-Smtp-Source: AGHT+IH29S99+HYf8SuC4lZx27OfrHABr4tetzXdccaN2xUVWn/wgVS/NlKdgLQVr0jKfoYAGzsi8EIIhZ5XvfkifzI=
-X-Received: by 2002:a05:690e:1486:b0:63e:b41:cebc with SMTP id
- 956f58d0204a3-6466a8395admr30714655d50.17.1767217865999; Wed, 31 Dec 2025
- 13:51:05 -0800 (PST)
+	s=arc-20240116; t=1767218300; c=relaxed/simple;
+	bh=2fn1G9/kTdcOLJ2E5DlSdCC8IejFxaTXVYVDAn7wO2M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VsCQtV8JcIGogSvGglc2pzDRTuxovAFu2lLeWQ0UHdclPImfG/8OUdD19ra+SmfHNesreLPFdTFfENUPcSYwb8utFyHWL/2bf2j5apjlj7x2lM9BO0T/PPcU/chlqHX6Z115JBWKwGuABYUq9srA/e5OOwtP7C8Y9hpToJyirg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=sbcNWmBY; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=sbcNWmBY; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1767218297; bh=2fn1G9/kTdcOLJ2E5DlSdCC8IejFxaTXVYVDAn7wO2M=;
+	h=From:To:Cc:Subject:Date:From;
+	b=sbcNWmBYxRwB+xVOuxtbktmXTtlSZrM1yhchXq0qbkk1GOqzbV7sRhmFhVkSV0MMF
+	 KU3l3O1iRBLAoBQMRHcnTmZmIG/ZlnMR4ollC1HaYphLKt1Znfmrw9Q/h9OCSWBq2F
+	 pJ3bHzZinBqXRZxfz2Q2jHT8UJY5Y4z+twZo1u7ov0Ko+WLmPO4M0oWmcoIc126T0a
+	 HVLWRpst48OdEI/XHk/eZsgLTyyDt6PIljSRYyJKk1pTIG/zhdZSZKh4b9UxRhwCOx
+	 usrSHceX30f2YeJ08CAHdHu8d8yn5hre8dEXHoQH/QqmdBd7bfolOgJ2XQNLRzTtjs
+	 UnJUzx6YoHGyw==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id 533313E98AF;
+	Wed, 31 Dec 2025 21:58:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1767218297; bh=2fn1G9/kTdcOLJ2E5DlSdCC8IejFxaTXVYVDAn7wO2M=;
+	h=From:To:Cc:Subject:Date:From;
+	b=sbcNWmBYxRwB+xVOuxtbktmXTtlSZrM1yhchXq0qbkk1GOqzbV7sRhmFhVkSV0MMF
+	 KU3l3O1iRBLAoBQMRHcnTmZmIG/ZlnMR4ollC1HaYphLKt1Znfmrw9Q/h9OCSWBq2F
+	 pJ3bHzZinBqXRZxfz2Q2jHT8UJY5Y4z+twZo1u7ov0Ko+WLmPO4M0oWmcoIc126T0a
+	 HVLWRpst48OdEI/XHk/eZsgLTyyDt6PIljSRYyJKk1pTIG/zhdZSZKh4b9UxRhwCOx
+	 usrSHceX30f2YeJ08CAHdHu8d8yn5hre8dEXHoQH/QqmdBd7bfolOgJ2XQNLRzTtjs
+	 UnJUzx6YoHGyw==
+Received: from mail.mleia.com (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mleia.com (Postfix) with ESMTPSA id C275D3E97E3;
+	Wed, 31 Dec 2025 21:58:16 +0000 (UTC)
+From: Vladimir Zapolskiy <vz@mleia.com>
+To: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/5] ARM: dts: lpc32xx: Add DMA support to platform device tree
+Date: Wed, 31 Dec 2025 23:57:49 +0200
+Message-ID: <20251231215754.2222308-1-vz@mleia.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251212-dev-b4-aaeon-mcu-driver-v1-0-6bd65bc8ef12@bootlin.com>
- <20251212-dev-b4-aaeon-mcu-driver-v1-3-6bd65bc8ef12@bootlin.com> <019aa49f-fe59-488d-aff8-f07cf07ee68d@kernel.org>
-In-Reply-To: <019aa49f-fe59-488d-aff8-f07cf07ee68d@kernel.org>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 31 Dec 2025 22:50:55 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmKL4afaOn_eka6v=j_Wu0orZMb-2NbPZgP4SM2q4V7qw@mail.gmail.com>
-X-Gm-Features: AQt7F2pjZLgNxaiWJYqspkMb-XGMxgFbeL4lckn8FGNkckGZmMd1GQVA1LvpjDo
-Message-ID: <CAD++jLmKL4afaOn_eka6v=j_Wu0orZMb-2NbPZgP4SM2q4V7qw@mail.gmail.com>
-Subject: Re: [PATCH 3/8] dt-bindings: watchdog: Add AAEON embedded controller
- watchdog binding
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, 
-	=?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?= <jeremie.dautheribes@bootlin.com>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20251231_215817_356454_52732E9C 
+X-CRM114-Status: GOOD (  13.43  )
 
-On Fri, Dec 12, 2025 at 9:20=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
-> On 12/12/2025 08:41, Thomas Perrot (Schneider Electric) wrote:
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    watchdog {
-> > +      compatible =3D "aaeon,srg-imx8pl-wdt";
->
-> No, that was discussed many times on the mailing list already. Fold the
-> child into the parent. Your driver model really do not matter for DT.
+At the moment NXP LPC32xx has basic DMA support in the platform code, it works
+well with NAND flash controllers, but it makes sense to extend it to other
+controllers.
 
-True. For an example in Linux check how I spawn a watchdog
-platform device from a timer node in:
-drivers/clocksource/timer-ixp4xx.c
+The SoC specific dts changes were extracted and updated from an old
+unapplied series, which added better DMA and I2S support to the platform:
+- https://lore.kernel.org/linux-arm-kernel/20240627150046.258795-1-piotr.wojtaszczyk@timesys.com/
 
-It's just one node in the device tree, in Linux it is in two different
-subsystems but we just deal with that in code.
+DMA support from the original change was dropped for a number of controllers
+due to driver related issues, which cause runtime regressions. While the .dtsi
+code seems to be correct, it cannot be tested and verified before making driver
+changes, this concerns:
+* ARM PL180 SDHC driver does not support a single 'rx-tx' type of DMA channel,
+* ARM PL022 SSP driver defers its probe instead of bailing out on DMA issues,
+* HS UART driver misses a feature to support DMA operations.
 
-Yours,
-Linus Walleij
+This patch series obsoletes another and smipler one:
+- https://lore.kernel.org/linux-arm-kernel/379f38ac-ab4a-4615-894b-e404bea4a6a1@mleia.com
+
+Piotr Wojtaszczyk (3):
+  ARM: dts: lpc32xx: Use syscon for system control block
+  ARM: dts: lpc32xx: Add missing DMA properties
+  ARM: dts: lpc32xx: Add missing properties to I2S device tree nodes
+
+Vladimir Zapolskiy (2):
+  dt-bindings: mfd: nxp: Add NXP LPC32xx System Control Block
+  ARM: dts: lpc32xx: Declare the second AHB master support on PL080 DMA controller
+
+ .../bindings/mfd/nxp,lpc3220-scb.yaml         | 74 +++++++++++++++++++
+ arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi        | 41 +++++++++-
+ 2 files changed, 111 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/nxp,lpc3220-scb.yaml
+
+-- 
+2.43.0
+
 
