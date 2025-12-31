@@ -1,122 +1,158 @@
-Return-Path: <devicetree+bounces-250819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9681CEC0F7
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 15:05:17 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D185CEC128
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 15:18:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2A25B30115FB
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 14:03:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A596B3002D2F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 14:18:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C783223324;
-	Wed, 31 Dec 2025 14:03:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F7C2561AB;
+	Wed, 31 Dec 2025 14:18:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O+EmtpG4"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Wmnkntqr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E39A21F30A9;
-	Wed, 31 Dec 2025 14:03:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6658259C92
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 14:18:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767189831; cv=none; b=gCCSon1NVv1Hwu31N25ss/ON2ZfH8Vnkvhl9KQK93DdaPreLPvNd8rsWwPWwQ/0Apgb4HUr2/HClIBL2S1be+gDLYtb5MTz/n/mzZXeVEBsYkWWYcd79FDdGYYM2Iz91m7ej+aTcKBzGbwjMZWvZ/GgMjkwMmE36CvBdTbH/5gY=
+	t=1767190725; cv=none; b=Zz4+rT6/qu7iRIaJaRUq6AwyOYxRh5VjllT57tDHFvRy49Un6qZmxBfnjxv19g9HyD4/2PD8CBheOHTM5TREDd5HZuzHWd2aFMLg3pXH16pBHIIVr9QoxP7kXO2fu2mvf8GPnyz0csaxJPyJVk3d57Qa2fN4qV3Lk6nunfIGqzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767189831; c=relaxed/simple;
-	bh=jnQkKIwZDjNBxeL34AvoYX5R4WnuoCfY/GJg3yFjgSU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eq/tW0MuQ7ZzijCPD4n9SP4OtQwHGM1VSGzi9jWDk2d+kxzw+CoeHtdFWJwGDJWOGDPPZ+WKliD1psIC50iIH5RzFiem8kPWEnqQPMKCRKVoUctHPNAgjr34J/dA536IFxYF7HqczbbqqXRxE/Ki9zZtm+vjgioitr5C3yx0FSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O+EmtpG4; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767189830; x=1798725830;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jnQkKIwZDjNBxeL34AvoYX5R4WnuoCfY/GJg3yFjgSU=;
-  b=O+EmtpG4FLstPlAZAFSzefPdf/qYA+PY4hMoFR2In5TLze1ypMJd/nme
-   UBxTvREKfaZovcXyiV/6ak0Q9evupphY4XWfjhaAovQlTFaaNYFQ3xtJr
-   dbkiOfdeXq2/zneJsyN9d/wcpmVjn5A5Uhp7OWYIjkyXIcAqpWitMhDa7
-   xygKTKlbqJAOBaNCPIlWMwiWZuYQ6CXZ97406WbWKH1azvvgAP6B48+Tn
-   Ars24cHbgwF9/rzIwCkShUzk9nk2vk4AQbAcWYK3UwEso+XiU8JhnhDJU
-   N4LZBxIJWp0Ly/Gn7/1TqGwSHkp0hnWvclEA6/tv59R2gAC9QUmbqrc5O
-   Q==;
-X-CSE-ConnectionGUID: UL/L04u2TZCh3OsRasyGQA==
-X-CSE-MsgGUID: F81pJKseRimLcyLnTo9r6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11658"; a="67953861"
-X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; 
-   d="scan'208";a="67953861"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Dec 2025 06:03:49 -0800
-X-CSE-ConnectionGUID: GuICIzfFQ+yDY2FNoo17mA==
-X-CSE-MsgGUID: UyFiTYE1SQuD+s9ZfbKLrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,191,1763452800"; 
-   d="scan'208";a="232524686"
-Received: from lkp-server01.sh.intel.com (HELO c9aa31daaa89) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 31 Dec 2025 06:03:43 -0800
-Received: from kbuild by c9aa31daaa89 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vawnc-000000001Fl-1Dt3;
-	Wed, 31 Dec 2025 14:03:40 +0000
-Date: Wed, 31 Dec 2025 22:02:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Praveen Talari <praveen.talari@oss.qualcomm.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
-	Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	alexey.klimov@linaro.org, bryan.odonoghue@linaro.org,
-	jorge.ramirez@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
-	quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
-	quic_shazhuss@quicinc.com, quic_cchiluve@quicinc.com
-Subject: Re: [PATCH v2 10/12] i2c: qcom-geni: Use resources helper APIs in
- runtime PM functions
-Message-ID: <202512311900.mG1XHHI2-lkp@intel.com>
-References: <20251229045446.3227667-11-praveen.talari@oss.qualcomm.com>
+	s=arc-20240116; t=1767190725; c=relaxed/simple;
+	bh=AS7nhlMTcPiu2PhgOP1yMKKRYiNT0qVT8Me6nXBTwmU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f7FC1MtA2O0OQTEkOkapLyJuWHIH5Eo23/FDl3Sp88GOXbVGknVEd9Jg6KkWKJkgEaxQDBCGUv0SiJcvMEWY9TtQG6wcH7k6AycmfiU9uPgbGXzwd/kphWfvpCTo9X1CMV2C9qw3noD04E86DIrRswPX7+djxUOrj88yX2/prFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Wmnkntqr; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dhBfL5C1Tz9t0t;
+	Wed, 31 Dec 2025 15:09:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767190170;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wBGL6dDCOuh3bhIrx5PRK90WNsQm4b6NujEGQuwgXlc=;
+	b=WmnkntqrVjtbVL9rhRPZkD8dJqB0ZtjKLxb8yCVnDjSzHkOR0/sfatTe633pfK/iiHAf0d
+	fOYAa0urixQTv2kVaPk3ZnoCr9KpAgPMFfGoC4rCGKAjEnLQGtuDLHPhtX9GF9jisbDuQ8
+	5nQiCGZYdPeBDhpWUnW3UfIbXNInyONLzE8AoHPJZXjXLfaQP8nb4gqUWJPmQjzKOMgq9q
+	27yL0cNFqdYGEeVD63e/WPUsLa58nsO3rl1mNHaqKMOBYZ9h3t/IyHz5O/MvfjfoNwJMM/
+	TBbxSS/eSjcVK3uYR7+4Qcy0WR9JlnJ0/tOfy6EoC6bWnMPQN9pn2IBqblZZ6A==
+Message-ID: <4f890538-f2f9-408b-9644-73708e7e7b24@mailbox.org>
+Date: Wed, 31 Dec 2025 15:09:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251229045446.3227667-11-praveen.talari@oss.qualcomm.com>
+Subject: Re: [PATCH] arm64: dts: imx95: Use GPU_CGC as core clock for GPU
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: Frank.li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, peng.fan@nxp.com,
+ robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+References: <aTACuRjC_Zpf8IOU@oss.nxp.com>
+ <de36091e-c890-4897-b3e3-2a7575029a5d@mailbox.org>
+ <aTD5np-HGaJqhzkD@oss.nxp.com>
+ <5944d872-01a3-47e9-977b-029f3be4fd83@mailbox.org>
+ <aTKVMAMQ6v_BwD6R@oss.nxp.com>
+ <9b593731-898f-46a7-8ee5-68f8c170351c@mailbox.org>
+ <aTYxm_dfMwF4H0_b@oss.nxp.com>
+ <53ea529f-3538-4ab5-aa99-0caa6729b4cd@mailbox.org>
+ <aVM-mSkSubMPd7Du@oss.nxp.com>
+ <6055d6f3-2b31-4225-a42e-0f5ad79f7256@mailbox.org>
+ <aVSTJdnWm2KfpXa1@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aVSTJdnWm2KfpXa1@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: bc2861c1611d36a4a05
+X-MBO-RS-META: xs4hkq5sdw3gihc6abz8t11whgpf6x4w
 
-Hi Praveen,
+On 12/31/25 4:06 AM, Rain Yang wrote:
+> On Tue, Dec 30, 2025 at 03:17:44PM +0100, Marek Vasut wrote:
+>> On 12/30/25 3:53 AM, Rain Yang wrote:
+>>> On Tue, Dec 30, 2025 at 02:53:38AM +0100, Marek Vasut wrote:
+>>>> On 12/8/25 3:02 AM, Rain Yang wrote:
+>>>>
+>>>>>>> Okay, I’ll submit a patch later.
+>>>>>>> The commit message should reflect that only CLK_GPU_CGC is enabled.
+>>>>>>
+>>>>>> The commit message , and this change , is unrelated to GPUAPB clock.
+>>>>> The commit message is ambiguous. Could you clarify which parent clock
+>>>>> you are referring to, and whether it can be enabled by CLK_GPU_CGC?
+>>>>> If it was CLK_GPU, CLK_GPU_CGC can't be able to control it.
+>>>>
+>>>> The commit message clearly states "These new GPU_CGC clock
+>>>> gate the existing GPU clock." and "GPU_CGC as well as its parent GPU clock."
+>>>> , I don't perceive any ambiguity, sorry.
+>>>>
+>>>> Frankly, the whole GPUAPB discussion is entirely unrelated and it only stalls
+>>>> application of this bugfix and keeps upstream broken. This is not helping.
+>>>>
+>>>> So unless there is anything in particular that is on-topic and prevents this
+>>>> patch from being applied, it would be good to apply it, otherwise the GPU on
+>>>> MX95 in mainline Linux is not working.
+>>> Hi Marek,
+>>>
+>>> I’m not opposed to this patch being merged into mainline, but the commit
+>>> message needs to be accurate. the parent CLK_GPU cannot be enabled or
+>>> disabled externally. The last sentence should clearly state:
+>>
+>> Look here, this is what you can do with the MX95 SM:
+>>
+>> "
+>>> $ clock.r
+>> ...
+>> 083: gpuapb               =  on,  133333333Hz
+>> 084: gpu                  =  on,  800000000Hz
+>> ...
+>> 174: gpu_cgc              =  on,  800000000Hz
+>>
+>>> $ clock.w gpu_cgc off
+>>> $ clock.w gpu off
+>>> $ clock.w gpuapb off
+>>
+>>> $ clock.r
+>> ...
+>> 083: gpuapb               = off,  133333333Hz
+>> 084: gpu                  = off,  800000000Hz
+>> ...
+>> 174: gpu_cgc              = off,  800000000Hz
+>> "
+>>
+>> Notice how all clock are disabled, including GPU clock.
+>>
+>> That does not agree with your statement.
+>>
+>>> When the panthor driver enables the GPU core clock, it enables the GPU_CGC.
+>>
+>> It also enables all disabled parent clock in the process, which includes the
+>> GPU clock.
+>>
+>>> This ensures the description reflects the actual hardware behavior and
+>>> avoids confusion for future maintainers.
+>>> Thanks for addressing this issue — once the commit message is corrected,
+>>> I’m fine with this going in.
+>>
+>> See above.
+> 
+> Hi Marek,
+> Based on the instructions you gave, I’d put it this way, even though the
+> CLK_GPU clock can only be controlled internally.
+> 
+> I’m fine with your patch now.
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on cc3aa43b44bdb43dfbac0fcb51c56594a11338a8]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Praveen-Talari/soc-qcom-geni-se-Refactor-geni_icc_get-and-make-qup-memory-ICC-path-optional/20251229-130932
-base:   cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
-patch link:    https://lore.kernel.org/r/20251229045446.3227667-11-praveen.talari%40oss.qualcomm.com
-patch subject: [PATCH v2 10/12] i2c: qcom-geni: Use resources helper APIs in runtime PM functions
-config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20251231/202512311900.mG1XHHI2-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251231/202512311900.mG1XHHI2-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512311900.mG1XHHI2-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "geni_se_resources_deactivate" [drivers/i2c/busses/i2c-qcom-geni.ko] undefined!
->> ERROR: modpost: "geni_se_resources_activate" [drivers/i2c/busses/i2c-qcom-geni.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thank you
 
