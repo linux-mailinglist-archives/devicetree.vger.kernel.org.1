@@ -1,131 +1,151 @@
-Return-Path: <devicetree+bounces-250787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A73CEBCF4
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 11:49:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5AFBCEBD36
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 11:56:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 712A4301C95B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 10:49:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6498630080DF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 10:56:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6BC127C84B;
-	Wed, 31 Dec 2025 10:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA07313E10;
+	Wed, 31 Dec 2025 10:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q+8Kz6dj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GmWnudX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 768331A5B8B;
-	Wed, 31 Dec 2025 10:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CD7B310630
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 10:56:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767178149; cv=none; b=SRMNa02/PPnYRDDOsaoTkRuD1um5plxZXKEDoQUSIzsTOr7l6UvXVRQ8O09fOtqbvwuj9/PXGIzeP3hl4lB9DcM0xQdK0mPUhnJS5eHkXTf0ZHY8KEXVwyL+kveGgsSWsySBIn8KcruT37X6W1oNj3nAc6eEmWi4iJjGP5lQYGI=
+	t=1767178617; cv=none; b=EJBddmqs35V+8FgEA+o+gyYihhexxGUX8ufOeNk/h64WRQoTRhEFC+KBLp8AIjbo7VpikTUQ+D5ofIKd/YC0vP5yc+FPa6alBRLtcckbNqJcTXXKmUb+qfAwis77wDwT+XxztWuX297pyanqrO2HSx2RCpfNGn2SDSRmC3TFi2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767178149; c=relaxed/simple;
-	bh=xKxG8Q3tu9eNzZEPJ6KQFeTMoXJ4ZV3jfIZG0vmVC2o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BEkRq9EHfrbQMMvoy7F9bIl5E/pqEkE8FUVfPgqA32dzsW1DFqUoc0KFVlS+ub8GI2IPSarTxakXJjSJFqOraIoiG61hVeUG6ZhN7okOyd7+/MkECa4RByNEGLlPePJhArZ2UCrc8oDTzfeKqcU2kwWkEMZkmjHzU8ITgTrXKW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q+8Kz6dj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85D0FC113D0;
-	Wed, 31 Dec 2025 10:49:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767178144;
-	bh=xKxG8Q3tu9eNzZEPJ6KQFeTMoXJ4ZV3jfIZG0vmVC2o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q+8Kz6djTasakuT2qTcQ82WZIS9LOoPyZ4N/VvEH+sBBteOsyGV41cnXS6EdlSuVu
-	 GjbhRuE34FjA7qvxSYL2rlk9thCYpzknmtcxsbzMP/QVQIL5YGG4kcMFuKEfw7Q165
-	 acWJOIKI+6F5YOpXF6F1g9OQZAi7NB1JyyzCQI05FC0plZbFttkXWIwseQL+cPDfZZ
-	 bXJxMCrptxY5UG4Qw/7UYiF37rsVorlPASgwkHnks5gQkR1tD+/1OLGMcvMUbR3ulR
-	 V8m8KS1jBl1RswsmWJNdfOHvVge/mA5NTtZ46FJK+KoRIu5PuTFWgr35bop1uBjaYI
-	 mc7JN2SHyK/Tw==
-Message-ID: <209c49fb-04a6-43dc-a3f1-8451e3946d06@kernel.org>
-Date: Wed, 31 Dec 2025 11:49:00 +0100
+	s=arc-20240116; t=1767178617; c=relaxed/simple;
+	bh=gsvl1XJ48HrY4nODG0MTCbODAOb6WMQKqG7cDrnLhF4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HjulHLocL7TlQ900FMgIuz4CEYYG6q+cii9f+MpPdzc8U31Lmyb4ha3gRf66PqFHSTMGT9A721wmxZGRKrPjabfMzna4OEoCxZec8iWnJ6rmVp/rnWZeXwjqKjbSo0WMDXpUefIZ4+M7iAp5RGG941COlG8cyMdn8Jr56seQQNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GmWnudX5; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-477ba2c1ca2so113631705e9.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 02:56:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767178614; x=1767783414; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i7R9+4upUD30LvVBHKBIsvpaPmqe/LxN03we2YAJ0+o=;
+        b=GmWnudX5lpAJstB9doSzEkJbRvhiixjhMM7nbsJU0WG7OK4GGyvOjNF0+ZBUjg/kAj
+         LuhCfkLT7WB/OX+5viuW7BSo856S1R168RJHk59L0/v+8Cd0tudlK6lVZnSj4RhGl35f
+         PqMjZ76qaQBGEbfDcW4IPqe+dIHkox4NxmxuW9r9o9wJdk9yanoIHI0nn3NqjAHabbWt
+         MgYUFfaAr1s962rNxm9ILE13IZeHUoDD8fi9u7rentq7NL/sjZiYJNIMvaGnSVcxdEyr
+         3JVuq0FBjo/SYkgGCmQb2IDiJQFkqqAiZd8scXzXufly4B/T6grQQV9tjKxnuhqP4yBp
+         FaTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767178614; x=1767783414;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=i7R9+4upUD30LvVBHKBIsvpaPmqe/LxN03we2YAJ0+o=;
+        b=qjNr6zIgUzXSx5OYSlG5hvTt+MsyvDAoeySDGCrC5VwPMiRcC3MgimxXJNaM3BP3pB
+         H8M2swl2MvcE4U4CSKWTCKOq76xQGloVRYXPQVCRjavZH4YExeX5DShwmN/9i3Y5x0mG
+         fRZ7E2e434PpVWEDItjff+vxv87CdlNPUUEAo+NGvJOEEwxaPIoJKV4QyAX4Cu34mcWJ
+         aaYxrwB02sdqcxHlRLZWhVyL0Ef0b0RaIKfkPYscKzRAT9Vz7//NlA/c+vLLWCenPZE8
+         TLGI+e7dEPgu8ULb57lfXKJj5qyypciFOguXsQsJv1qTLmV2qKjjv08HYxM+9OAX158U
+         npJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUvA7rQxM5WkjrUBZGL7LY7m40P8qPRuNVRNtDURXQyJQfXdEc5UB3E/nzR9WTBBoCA6wwttkt3Nq+k@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/dJYz54qXyvYP04u0aO8/5ehrR8RqxNf9Q4RfvpC1X4vqM1gV
+	QHA0+OyUyBbMupdgdFihzMP5/0eIgWTfNbPGkkaZZZ2OwX3SyHwIz6Uy
+X-Gm-Gg: AY/fxX6p6jLoZ9cCY3+W0ahWIzCTUu1V+AdqOypRXzBdY64F2OtCRc6dcwcGK3Hec/7
+	jyAVpGykEwebUHElGgkZL7V3IO+qP2R6DmMZyQPN+h1p+7OAarkUXqHyY0os8ie7HyA8AX5fwP1
+	mvUov+XhjxxwjvgyR2Kd1JLTs9xZSyq1//AysVXf29qIobm9RVsaZ6Bc8Bhnsuh1aORUfik0UCj
+	zNSBJs1eOreqk+z2TM1GgnhCxKxoC8GFY6ngBf/VK/OIhjmCjOpZIZeLQX4+4CZPHz5OMBarZh+
+	DLahNfOmvq4Mq17jtTaJxNQRUPA0al3JrzMmkHr8xVKmg9hHYAGLoa7Xwb6tFG+dNbrR4yHhjwy
+	wchf/2n0mrXeBr9u5Au4yym1zNKAcXuwvtWLXVs9EGHrxy3HPxpWnGFU+wsAdZLfoZJ/RBhqo7w
+	4zNzm1trwOmm9G+spf4u2pxmu6Gp/J9GC4MXURtSyB9YScOoYqWJfXJWnhxgs4GO0=
+X-Google-Smtp-Source: AGHT+IHDZb5mskiCuLOc+8SBDEk/OvIO6Pug2fQj87O+qUGMgHUJl5YBr1B9MzEZuOqkC4xwyZSO8A==
+X-Received: by 2002:a05:600c:8595:b0:47d:5d27:2a7f with SMTP id 5b1f17b1804b1-47d5d272cd4mr54788585e9.26.1767178613627;
+        Wed, 31 Dec 2025 02:56:53 -0800 (PST)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47be273e4d5sm696441795e9.6.2025.12.31.02.56.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Dec 2025 02:56:53 -0800 (PST)
+Date: Wed, 31 Dec 2025 10:56:51 +0000
+From: David Laight <david.laight.linux@gmail.com>
+To: Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti
+ <alex@ghiti.fr>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, Troy Mitchell
+ <troy.mitchell@linux.spacemit.com>, Brian Masney <bmasney@redhat.com>
+Subject: Re: [PATCH v4 1/6] clk: correct clk_div_mask() return value for
+ width == 32
+Message-ID: <20251231105651.430f75f8@pumpkin>
+In-Reply-To: <20251231-dr1v90-cru-v4-1-1db8c877eb91@pigmoral.tech>
+References: <20251231-dr1v90-cru-v4-0-1db8c877eb91@pigmoral.tech>
+	<20251231-dr1v90-cru-v4-1-1db8c877eb91@pigmoral.tech>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: qcom,pdc: Document
- x1p42100 PDC
-To: Maulik Shah <maulik.shah@oss.qualcomm.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20251231-purwa_pdc-v1-0-2b4979dd88ad@oss.qualcomm.com>
- <20251231-purwa_pdc-v1-1-2b4979dd88ad@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251231-purwa_pdc-v1-1-2b4979dd88ad@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 31/12/2025 11:18, Maulik Shah wrote:
-> Purwa shares the Hamoa (X1E80100) PDC device, but the hardware register
+On Wed, 31 Dec 2025 14:40:05 +0800
+Junhui Liu <junhui.liu@pigmoral.tech> wrote:
 
-We don't use Hamoa name in upstream.
-
-> bug addressed in commit e9a48ea4d90b ("irqchip/qcom-pdc: Workaround
-> hardware register bug on X1E80100") is already fixed in Purwa silicon.
+> The macro clk_div_mask() currently wraps to zero when width is 32 due to
+> 1 << 32 being undefined behavior. This leads to incorrect mask generation
+> and prevents correct retrieval of register field values for 32-bit-wide
+> dividers.
 > 
-> Hamoa compatible forces the software workaround. Add PDC compatible
-> for purwa as "qcom,x1p42100-pdc" to remove the workaround from Purwa.
+> Although it is unlikely to exhaust all U32_MAX div, some clock IPs may rely
+> on a 32-bit val entry in their div_table to match a div, so providing a
+> full 32-bit mask is necessary.
 > 
-> Fixes: f08edb529916 ("arm64: dts: qcom: Add X1P42100 SoC and CRD")
+> Fix this by casting 1 to long, ensuring proper behavior for valid widths up
+> to 32.
+> 
+> Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> Reviewed-by: Brian Masney <bmasney@redhat.com>
+> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+> ---
+>  include/linux/clk-provider.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> index 630705a47129..a651ccaf1b44 100644
+> --- a/include/linux/clk-provider.h
+> +++ b/include/linux/clk-provider.h
+> @@ -720,7 +720,7 @@ struct clk_divider {
+>  	spinlock_t	*lock;
+>  };
+>  
+> -#define clk_div_mask(width)	((1 << (width)) - 1)
+> +#define clk_div_mask(width)	((1L << (width)) - 1)
 
-Your are describing wrong bug being fixed... or actually not a bug.
-Every SoC should have dedicated compatible (see writing bindings) and
-missing compatible is not a bug.
+That makes no difference on 32bit architectures.
+I also suspect you need to ensure the value is 'unsigned int'.
+If you can guarantee that width isn't zero (probably true), then:
+#define clk_div_mask(width) ((2u << (width) - 1) - 1)
+should have the desired value for widths 1..32.
+It probably adds an extra instruction.
+(OTOH so does passing width as 'u8'.)
 
-Best regards,
-Krzysztof
+	David
+
+
+>  #define to_clk_divider(_hw) container_of(_hw, struct clk_divider, hw)
+>  
+>  #define CLK_DIVIDER_ONE_BASED		BIT(0)
+> 
+
 
