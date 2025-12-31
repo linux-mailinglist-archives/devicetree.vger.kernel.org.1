@@ -1,46 +1,39 @@
-Return-Path: <devicetree+bounces-250746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AC49CEB81B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 09:04:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92C41CEB83A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 09:18:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 05161302E07C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 08:03:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 288C930078B7
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 08:18:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D786B311C2F;
-	Wed, 31 Dec 2025 08:03:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 292EE311952;
+	Wed, 31 Dec 2025 08:18:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LyyhMsS2"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="LlMTtoud"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m15588.qiye.163.com (mail-m15588.qiye.163.com [101.71.155.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87203A1E82;
-	Wed, 31 Dec 2025 08:03:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0981EEA5F;
+	Wed, 31 Dec 2025 08:17:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767168206; cv=none; b=kOeOHpMF2fu4R7LOhV4msGoevyRTXHbskzzRIQaKxCS8IdLz8Pj22IfFA+hO8A1H8MUUkVmeip0cqKXkDV0X6BIRAucRvU4NbFBEyPLRxVBzLu8mJG/69Wbg74m3ONR3NPp/5H/jTlwvjr6WN3ijanU1tDI/fUTpaeDq28+PkbU=
+	t=1767169081; cv=none; b=bB6HTpyqBFpIhCoB2XIjqJwkHSr9WrHsUeXG+QrQPJQAdp6ZpmTobIQWjgh2MhRlFYTPtxynefSibOtj2QTXVEx+uohEa/K1XTgPvbzvCwZHKXLVSBep++lh/Vxl5lGDRQ0cLGqs+1eHhcQqdH+2zwNQWe/53mWv/IF8OgrGtE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767168206; c=relaxed/simple;
-	bh=8Xx8KhhfekkIy4200axEh65RpoZkqNIV37FMiA2l73o=;
+	s=arc-20240116; t=1767169081; c=relaxed/simple;
+	bh=I0n3A7mzL3U4w+3Swr+xXS4INVRThIKDmoFu3BJDm6Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=taPcQFJbR+GbYarNuA/hcUYlF4D7HzQBZMd4dHFhs/XbVRpKqLK1remktRjbG9oYvTvc3+usfAmv6lmkh2SNm9BMJ6uIYDLQppkXNsFW6jVGH5BPYQ1u6B3E1e5mn6mwOJgscUlpa5jZNwQiCPOxRxeuR+RydtmyLsCx8xmuPwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LyyhMsS2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DF86C113D0;
-	Wed, 31 Dec 2025 08:03:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767168206;
-	bh=8Xx8KhhfekkIy4200axEh65RpoZkqNIV37FMiA2l73o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LyyhMsS2cZcVnpQdAuoYb793JT6bVRE1yKs8FQTL4dhVke0LEOhvRkWH3FBg05QuO
-	 988iaynnFId1Bv/igjMJ9EcLBBHQ/2VtB9eQsSnUwtzbuk1/FrqJIEtQ/AnJNYbm+z
-	 3C17nMy0cI4Xapa9hu5aN45t5sUYem2KtjtftQSQxRAoZC81/74asn4S4McxvCAW0d
-	 gh/+OEanpvCkQ/1Zapks+rn6+hI35ggqFQsxojdhASAOkwGhWFPUpCndw4QUeSTUOq
-	 2r8cGXAbZ2yXXbQN8fiK5BoPDSpkLFiD8f3QtTxc1DG7GTSnDvaoff7GpD3i8Eba0M
-	 iZeckbLS/7i6Q==
-Message-ID: <cfe39a0e-e475-4d0d-bad6-461b25f430ef@kernel.org>
-Date: Wed, 31 Dec 2025 09:03:21 +0100
+	 In-Reply-To:Content-Type; b=Rvk6UiMXLARnVEzV7p4gYgCTvX6BCRvIe5C7PJq3XPGW4EUtvNMfM0BVi1m9Pb3fImkd9P3i0HrA/G6IE9+OZNrhSE3rbaAGehGiLuzgD/ZtNZyEvTn48yRbSDhXLjC75bApdjaaKvCq/r2DSPg4bPJz+Cbe+/fDoBE+7A1n+sU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=LlMTtoud; arc=none smtp.client-ip=101.71.155.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.16] (gy-adaptive-ssl-proxy-1-entmail-virt204.gy.ntes [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2f223fb0b;
+	Wed, 31 Dec 2025 16:12:33 +0800 (GMT+08:00)
+Message-ID: <0de0f505-5858-4ea6-85a7-4c386ac205e9@rock-chips.com>
+Date: Wed, 31 Dec 2025 16:12:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,89 +41,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/7] dt-bindings: leds: Add virtual LED group
- controller bindings
-To: Jonathan Brophy <Professor_jonny@hotmail.com>,
- "Rob Herring (Arm)" <robh@kernel.org>,
- Jonathan Brophy <professorjonny98@gmail.com>
-Cc: Andriy Shevencho <andriy.shevchenko@linux.intel.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, lee Jones <lee@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>,
- Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20251230003250.1197744-1-professorjonny98@gmail.com>
- <20251230003250.1197744-4-professorjonny98@gmail.com>
- <176705797007.3053564.852280537388416393.robh@kernel.org>
- <DS0PR84MB3746BAB4FEB95BA7AB47BECB9FBCA@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <DS0PR84MB3746BAB4FEB95BA7AB47BECB9FBCA@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 30/12/2025 09:32, Jonathan Brophy wrote:
->> My bot found errors running 'make dt_binding_check' on your patch:
-> 
->> yamllint warnings/errors:
-> 
->> dtschema/dtc warnings/errors:
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.example.dtb: pwm-led-controller (pwm->leds): 'led-pwm-blue', 'led-pwm-green', 'led-pwm-red' do not match any of the regexes: '^led(-[0-9a-f]+)?$', '^pinctrl-[0-9]+$'
-> 
-> 
-> Thanks I have fixed this and re submitted a v5 patch series.
-> 
-> I have been testing on OpenWrt where the yaml and dts files are not validated and this slipped in.
-> 
+Subject: Re: [PATCH v4 7/7] ARM: dts: rockchip: rk3506: Add pinctrl and rmio
+ dtsi for rk3506
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ tao.huang@rock-chips.com
+References: <20251227114957.3287944-1-ye.zhang@rock-chips.com>
+ <20251227114957.3287944-8-ye.zhang@rock-chips.com>
+ <ebb720f6-4756-437f-a71a-d94f45d732e8@kernel.org>
+From: Ye Zhang <ye.zhang@rock-chips.com>
+In-Reply-To: <ebb720f6-4756-437f-a71a-d94f45d732e8@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9b73773f5d09d8kunm7d1b63c029b1073
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxhNQlZCH09PTEMYT0IeHkxWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=LlMTtoudwY0r8GtTq3kRlvFU7O9LrvHrzRYkwTvLuJkRNjj1JKUg8aTA2zm1GVSnbB29fNF/sO5ZNrbHF630uTJfymHO6MMom80zaV5fR4MvcHbT3Q7Z2oGbuWhzpyiLPBMMVoNSi4y6+caIs3cWB/JBkJ9NjVt0dG5DjCS22M8=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=PJXRdk/Jm/8W9JuE53zA910TazhkvqSxi7iqm+rHlCQ=;
+	h=date:mime-version:subject:message-id:from;
 
 
-You must base and test on mainline, not OpenWRT. I understand above that
-v5 wasn't tested either, so I won't be reviewing it.
+在 2025/12/28 18:37, Krzysztof Kozlowski 写道:
+> On 27/12/2025 12:49, Ye Zhang wrote:
+>> +		/omit-if-no-ref/
+>> +		rm_io28_touch_key_in6: rm-io28-touch-key-in6 {
+>> +			rockchip,pins =
+>> +				<1 RK_PC3 7 &pcfg_pull_none>;
+>> +			rockchip,rmio-pins =
+>> +				<0 28 49>;
+>> +		};
+>> +
+>> +		/omit-if-no-ref/
+>> +		rm_io28_touch_key_in7: rm-io28-touch-key-in7 {
+>> +			rockchip,pins =
+>> +				<1 RK_PC3 7 &pcfg_pull_none>;
+>> +			rockchip,rmio-pins =
+>> +				<0 28 50>;
+>> +		};
+>> +
+>> +		/omit-if-no-ref/
+>> +		rm_io28_sai0_mclk: rm-io28-sai0-mclk {
+>> +			rockchip,pins =
+>> +				<1 RK_PC3 7 &pcfg_pull_none>;
+>> +			rockchip,rmio-pins =
+>> +				<0 28 51>;
+>> +		};
+>> +
+>> +		/omit-if-no-ref/
+>> +		rm_io28_sai0_sclk: rm-io28-sai0-sclk {
+>> +			rockchip,pins =
+>> +				<1 RK_PC3 7 &pcfg_pull_none>;
+>> +			rockchip,rmio-pins =
+>> +				<0 28 52>;
+>> +		};
+>> +
+>> +		/omit-if-no-ref/
+>> +		rm_io28_sai0_lrck: rm-io28-sai0-lrck {
+>> +			rockchip,pins =
+>> +				<1 RK_PC3 7 &pcfg_pull_none>;
+>> +			rockchip,rmio-pins =
+>> +				<0 28 53>;
+>> +		};
+>> +
+>> +		/omit-if-no-ref/
+>> +		rm_io28_sai0_sdi0: rm-io28-sai0-sdi0 {
+>> +			rockchip,pins =
+>> +				<1 RK_PC3 7 &pcfg_pull_none>;
+>> +			rockchip,rmio-pins =
+>> +				<0 28 54>;
+>> +		};
+> Why are you defining all pins? This is wrong, your driver has to do it,
+> not DTS. All these definitions when not used are just pointless.
+>
+This file is auto-generated to provide a complete set of RMIO 
+configurations.   Our intention is to offer a generic library for all 
+future board developers, so they can simply pick the needed nodes by 
+phandle without manually looking up register values in the datasheet 
+every time.   This improves usability and standardization.
+
+We also used the /omit-if-no-ref/ tag, so this will strictly not 
+increase the size of the compiled DTB binary at all.
+
+Could you please reconsider if this  approach is acceptable given the 
+usability benefits?
+
+If you still consider the ~25k lines of source code bloat unacceptable 
+for upstream, we will have to drop this generic dtsi file and let users 
+manually define only the required nodes when adding board support.
 
 Best regards,
-Krzysztof
+Ye Zhang
 
