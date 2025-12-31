@@ -1,100 +1,100 @@
-Return-Path: <devicetree+bounces-250754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 428FECEB937
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 09:46:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE3DBCEB98E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 09:48:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B2307300D432
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 08:46:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 57955304064D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 08:46:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BEDC292B44;
-	Wed, 31 Dec 2025 08:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CE6731158A;
+	Wed, 31 Dec 2025 08:46:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fBFIIBQZ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HKR8Sk5l"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="enOU9L9v";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="E1CdK4rX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E38E30F948
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 08:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 527C82DEA97
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 08:46:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767170771; cv=none; b=CwT0RmAoQzluvk89RR4dRTzBcWUNb63mEBttUsQVBvVrl1ym2Ls4wQ7HShjnP7C1TEbXUsdaIE6XveNFHywbqDKcqvCJW7IdTmOEeNkquc6CJX4Vx7GQ52phhctMW559S7H0vU4JCQB2LtgxuAFP1W8u3RPVkLA6StgzpDlg4Xk=
+	t=1767170777; cv=none; b=NDS4qQS8X+06DmhlaoFnjH2I/vdmuXID6lvZ4TrCSWhirmbMNkrS44ARk7MbaLcOIGQKG+VQQxPbXgaMY1XVLjf2Z87B+FE7SlB3AxuD6+56amSwb0Kc7FxdP1Q3rTyD9zBHuPqOMFmqABFJCU8Wtq0SifGXf4Pa7ouJldGc8lM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767170771; c=relaxed/simple;
-	bh=T0aJD33DIX3eTHbNDuhSmkpxxHoTSUhKHFqgSnJxirY=;
+	s=arc-20240116; t=1767170777; c=relaxed/simple;
+	bh=SxseFOKc1WYjsO5ic0UJ5UoQcIwXeRsx+h5Ca5Pfoi4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=a7vcOF2ZCW9XgV+pzQE+v06uUhGlaI/f8Wo/sTo9Vdfr87f6nw4l7b1EVvDYTOCsHhrmMTaVoHOLszrXwMcEssR7Ujqri5C+ViDrtf09ggIohGNC0H1AZ6vbfiK3zbfkgE5Qld3/1w/QkqsD5iusj1ptN8cAwN3+zm27M674T34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fBFIIBQZ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HKR8Sk5l; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=E+d7tA3sVPxh7q2ATPFYAh6wDVJzHUfjkySLWwu+e3fKPNNZ/E+A0FA8GlGjDUFcqzhmdgy0DbkQDULlc21Wh6X0CpnAtw9ynsNti18NUO0UHvW5+pOlia5/XLMI4ACbBNrDoRFMYF4Jj7WBgcuUpezLrYl5FdlEJsM8qVz1Dec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=enOU9L9v; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=E1CdK4rX; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BV78Z112733397
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 08:46:08 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BV03aat1750839
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 08:46:14 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LHdgIK7rIVdHeDRXxeUpAdW6FlQ9DymFt0TcCA0atqE=; b=fBFIIBQZm4j3IfW3
-	unEXOe0yc8SHr95y8bLxvyWdpxPQPk96ExGq8OEv38mNd/1L0fEJxsF/21vWUSKf
-	BcC6J562dLv0MlXo7pG7AbEHYpHrvH9+3buDcRoT74GI56gCQvhWnr2mrauKaGIn
-	r6hCjCdtG6dXFrdMqh7te/CnFRqwg/cOVLk15E/OAYp5DeIqpf9iDdtHdUvtReKb
-	kiEjmldCAP+spTYwnzjRgsxhwObjwpeykPftxboUwRozbttFD9Jqh8LE1Tn3VUU3
-	dUqSXgmrMKS8pwhIsZ9be+oD8STpV5Ju8Qp2ETEFCEkiR1uQL2mDYQ9AePmRM7FG
-	5l5d9Q==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bcy6ag5v3-1
+	l5cNqp8Qm+t8u06T9EpMpBkWlIdG9mhCzVCQBuziAp4=; b=enOU9L9vGENbD5fC
+	2ROlRFuMQwBc5MZdEo8pFtA6inEy/wGtAm2cPKbsvJyaeSDKm+JXClB1ByweaW6e
+	WFiS9tPYfdX03Nifj/KuZ2iEep2ZjUYVUZn1eH5mof+TyvTBWjLdkoRuDPvFKR2o
+	0Inw6Ef4fi1dkFqdsYOwwLtw0aNpb0xalqChyue8tVTffQ+Pto/Ysn9dIiHRDGrv
+	Pg1uA3PJuqK7C0wrV5KGrijePdSUEo8Z3mM79ayS17pAx+H2s/CPf0x+2HDCLYqd
+	prsK835c7sfiv0BwGYyba5MLafZO8eKUaZeLAYGA9EOwKGyiobE+eokI60BHcEa9
+	tSFFkQ==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bc0sguya0-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 08:46:07 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7b9090d9f2eso19650825b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 00:46:07 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 08:46:14 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-34c6cda4a92so22776139a91.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 00:46:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767170767; x=1767775567; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1767170773; x=1767775573; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=LHdgIK7rIVdHeDRXxeUpAdW6FlQ9DymFt0TcCA0atqE=;
-        b=HKR8Sk5lWfjvHZA58ISoijuOJth8Le/MLXnv+PuKIToaMPUUPaO2VxGSkELR8Yghsw
-         dR4lsNXqdLsLQeuwQPrvVWiVNJBC5+dVoFYELc20o+6TpK6pbqkARKAyaOLqY3yJ1POm
-         MVib84HVeWOG07W/lbncOiRPm/vE5ZJX0OylIG6Kqsg80yrF1+k8BcyAumDpxzQ40Lfu
-         lOyasMFyRF0EaNmQCwFgd4s0mNyzY4P7METVw504KzOJyd+yWGJjcLBOrA6SQYExyZSr
-         QX9kDvsyifWx9eV88zd56enJ1QzcjAqz2EDIX9ORPsZs7eGOK/Lh3utkInryscYOnxIK
-         cT1A==
+        bh=l5cNqp8Qm+t8u06T9EpMpBkWlIdG9mhCzVCQBuziAp4=;
+        b=E1CdK4rXd6XK2v6pfjmOobo4nUtbfFa1LqXhwsrQPJIfnwaklIZSMuign2LkL6Y8uz
+         m5Rwedr2G3eX7l4ZbnjVq5qzhxRiPDTQWdcztg29vBM6bgmzDpLOCbPorm000XpBhNoF
+         Pt8lcvl5VAUJs+iUhLvNlXakXFG1j8vjjj9MU2nv7vv40sR7ufJo31/HPuKYKHKsy0h9
+         MQzk6B4Xl6Y2g0aWIdhu/j3HSW0aQcWgrCYwKu63YHtahvowP4T4lNpNyVW9r4rdqiqu
+         3g+WnQOPRfAVzxFw9AIx79Qh//gPuvndeooKyTc1E0T0X39gsGE0ApdxsHtbU6aKJ0zI
+         jhNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767170767; x=1767775567;
+        d=1e100.net; s=20230601; t=1767170773; x=1767775573;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=LHdgIK7rIVdHeDRXxeUpAdW6FlQ9DymFt0TcCA0atqE=;
-        b=dmhAofi7y+fsz/igw+SPY0rf9H8ZHkxTEGNF5KPh3wagJoHnH7xmQTcqtw3Y51D/jK
-         y/FgIeyeaJ+RKHOxl711zWBB8b0HHcBBu7F0/pyJGFH1ODzc03JBJmKcOEuL6sf57q6s
-         xFFT4EaK4FEeNPRe6w9SXOJ3+9VxdadIU9nUL16TVPMWd8491tT8F2kc+qz8R6po24tC
-         e+DJuE+QSIXF3R5179LhXGORDSbOVYywMyuHHur7mBG0ThOdWJPpUk41ZYbtsxrx6gB1
-         RLxeqVKRK1pNdKXJb2ixSUMQdCSvgQKv/ZQMlTrUBBqM8wjk1YmN3ZfHn+9TuflGEUPK
-         24Nw==
-X-Forwarded-Encrypted: i=1; AJvYcCUI3IerdS0uSFbnNe7Nqb0xEbCB7wzKF5FM93a6wDbciILl+TlD/pejKM/XmG17Dqh1pV4oBY6C/c/n@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrcHjwMIenFNbPWinf8tzZHJhdNCiCrBq5fTBoVoidZo4S1h0B
-	UPN+dCqiVVzDbucxdUXG8F1iheHcCPkIVxpCDvUIRe+db7abq8kJw8r0BC6GibMhr8yDn6Pqu32
-	qDuRCegsT1/8FiiGGj3yHoMhkDayHl3B6yHbo6+6iuq07/mmdi+xvEpueVWstvwL2
-X-Gm-Gg: AY/fxX4NGnk1SCkhIdV6Gswt+MhUf0ZdEZ5jkiVhwc+fs6Hi1RUeU2NdxhcVygdhCxf
-	v5GSBNso64nw1MGZHF/9su+uYwbH8hX5Ww7K8JYQEtE8YcAx9jGvA0oL5WnHFE4DW8kgS40AuQd
-	T41HYljO27NZHQ9ewIpE87007hKrdHbRe0H5XD2ETT5Q522Gl8r2/QY7iJHUp5Z2NAbtyTSn24q
-	CgzO2oVV7KYFfrg5fCezEf5ysRooK/o6iqgvcnZq6fVOvwj38OISi/Oln9BiX0tNfQvOXkwdj50
-	BQLeVbIqENJMHcudUyGK0jFBhIOl0Jj0jZPY77qBM7d9qlUsUepz7n7yeA1mtXLxspYxQX3syT+
-	ktWmWWbEVuzpIMluV4ht8C3gPiKLL0uswfQ==
-X-Received: by 2002:a05:6a20:3ca2:b0:344:a607:5548 with SMTP id adf61e73a8af0-376aa8f3946mr36073238637.58.1767170766829;
-        Wed, 31 Dec 2025 00:46:06 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEaGppZIEcNFj7h+K5+adlAthXR0ANkOoGwkAkNm/WxOfY7fMuAjR6d2+dVPJ5qc03dhZ4wOA==
-X-Received: by 2002:a05:6a20:3ca2:b0:344:a607:5548 with SMTP id adf61e73a8af0-376aa8f3946mr36073221637.58.1767170766327;
-        Wed, 31 Dec 2025 00:46:06 -0800 (PST)
+        bh=l5cNqp8Qm+t8u06T9EpMpBkWlIdG9mhCzVCQBuziAp4=;
+        b=n9gwMvobBU/ZHZGj5rTyK8hAxBcz24PxjluTA/63nRmR3Dva1Fo2ZEhj9JsX1yXA3T
+         ZLKBife8LY67jtfGYLPzbK+UUrQdQMBwAXB66wiTS9a9fbalriY+ac8S9TjU69rynFh6
+         V0GZJ+dAQbl1zkDRvwE29yX0v9rVNm2FmtOBIsoZ13AveDbJ5hkL/Ab1JtpMIK2Zng/s
+         chn+x5ewN+5bLJyftSdj/7dCoR4WHeR+f/+WFMOQaKGrXASNkLv6ff0AMWhI4UqGo4YW
+         iMtAq0OkQ0skHaJbGwJpj2joR3pjFGSSIejTG2aILgaBxV+xbEz7PgX/OBlzaSew8qPk
+         DTUA==
+X-Forwarded-Encrypted: i=1; AJvYcCW8bx7rqbGUDFoY5sxUUoJZ3wOxRAFwcobRp6hRBrExJ/pkoN6O4aYTozP3VvtddzQmmoE3x/6hMlfl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxn4wXCsHKrsPRZ9fGT4TsNhRWHnETJ/hghTra9Mx4QflYvjore
+	X11/Wl/ULDZ/HMsye64mBnZF0ZPzBvilL/ngMtrtHkqCJxfnvRt8Y7Hbfwx25ZgExozViHBqdQt
+	ArvssyTRC2tnWacETvjslYfekVW477PA7l/7a6BCM0f3Sj5HjZaaUdhvabfFqT0NU
+X-Gm-Gg: AY/fxX44SBTKMOmnM2ZUP/ltKHK98FfceGpSinHAoxDutonROo4o2u4UxUWY7YSCSgk
+	XyKTfESvJLu8fsM1vihT7LDLS4KJVa4hOlOpQ9BC/rC+9VXRr0XtJJBJh4mxawwJ+QsdMst1t7u
+	I9nuFiUR41+eF0L3UaeIQOW89/5oGbq7vilxdgJZTZGOS7cZLV+H4KeThe9YIFmrwOjnJQ760bu
+	Mfjqx6XeFyzloeb3YTdSLvzCia9GtwFiJP2RR5pYB6QmjYfWs6uBbuluTNBE8WqsW611Nk9MZWm
+	YV+XIRG5xvcfKSXMcLp81SXc9pnWJNE5ZVwk0fQSvxKjpg7lNiaiUYOEQjSbIU4hzadHB0+bd4G
+	hh+/JHSyTV8DLIMynjvpcoRH6cjAdctLs0w==
+X-Received: by 2002:a17:90b:5608:b0:34a:9d9a:3f67 with SMTP id 98e67ed59e1d1-34e921f010bmr27965287a91.33.1767170773193;
+        Wed, 31 Dec 2025 00:46:13 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGWOcECsKpcRLks7dTeqSCj0+OwVQ0OhTkXgRdE0DhiH4j04pWxlR5FMxv41W6Bk54tKaKa0Q==
+X-Received: by 2002:a17:90b:5608:b0:34a:9d9a:3f67 with SMTP id 98e67ed59e1d1-34e921f010bmr27965255a91.33.1767170772690;
+        Wed, 31 Dec 2025 00:46:12 -0800 (PST)
 Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c1e7a018eb5sm31356070a12.16.2025.12.31.00.46.00
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c1e7a018eb5sm31356070a12.16.2025.12.31.00.46.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Dec 2025 00:46:06 -0800 (PST)
+        Wed, 31 Dec 2025 00:46:12 -0800 (PST)
 From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Date: Wed, 31 Dec 2025 14:15:24 +0530
-Subject: [PATCH v6 3/8] dt-bindings: display/msm: gpu: Document A612 GPU
+Date: Wed, 31 Dec 2025 14:15:25 +0530
+Subject: [PATCH v6 4/8] dt-bindings: display/msm/rgmu: Document A612 RGMU
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,7 +103,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251231-qcs615-spin-2-v6-3-da87debf6883@oss.qualcomm.com>
+Message-Id: <20251231-qcs615-spin-2-v6-4-da87debf6883@oss.qualcomm.com>
 References: <20251231-qcs615-spin-2-v6-0-da87debf6883@oss.qualcomm.com>
 In-Reply-To: <20251231-qcs615-spin-2-v6-0-da87debf6883@oss.qualcomm.com>
 To: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
@@ -125,105 +125,204 @@ Cc: Dan Carpenter <dan.carpenter@linaro.org>, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Jie Zhang <jie.zhang@oss.qualcomm.com>,
         Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+        Krzysztof Kozlowski <krzk@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767170740; l=1808;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767170740; l=5026;
  i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
- bh=T0aJD33DIX3eTHbNDuhSmkpxxHoTSUhKHFqgSnJxirY=;
- b=RchQq5wGsT96YNkpPSE1H7vENdCVRpxN4zehwiDWyIAOB1DybAjhppVLFYlLjna0sCObQVg0j
- 291CczjEsrlB8J1o/dgJ/NLiq0pVuTFAyvrbJ6Ubhq08VTPPmegw02G
+ bh=lCkErxOFNNBDx36AE9ptfo0yTuYneYy4ZQHJcSJyUY0=;
+ b=8+HJTL/p0K5LbiQrOgs79dxL0EPGF8264zO3XhO07ZabRQotm1NWN35Pb1j0WFGcN44+17YkV
+ yaM32Cu9BoUBIhK+bqs7cu8NVfEzKF5TWCJEd+HzCjizWO0VVSkKslr
 X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
  pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-Proofpoint-ORIG-GUID: 9gpt5oca3zvzFMum-pDt2Iv5lJTbY0GQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMxMDA3NCBTYWx0ZWRfX9/COTKfmwZV/
- ZjuPMu+DdAUCuz+U+puB/ysVRqDwlsx1ikjSIImqF0WValXxnyoGkj5qDUUWezg83fpkhZ9cpFm
- oGBor6iJZIJEWjh48xcvE41ROnCALOhBBKIKr8Qw6hsBSCsOzhdqh1KqSr9+gDRfyyQ2I1HXm6T
- L3ksxY3Q87UIuti8yl2ePcpTYxBxLUKxPPzSI/QAr9iu6y0zq40euy2SaSdTCZBbBLxC3qWI1hn
- xtxLp+U4EN/cNWotbajkRfTkcHMEi5Pta8BEp2eQBCGN+q+KZTlqz649KqTu03CI6caOmPNmO5W
- 4gvVekvCDFnGAJNqX/mbNngdOamgsIiul6pt2chJ0swW5rTiFI26LBgUaSaiakPZ8c/VNEDgkNR
- g/AUGl3Zxvr2nAfnvIatkketSs3yzfHETpp247ijhMFm8+sLkyR16VvMJ99HJBG2iILk5LoAUBv
- qNcfl+sWmJ+zhbgthmw==
-X-Proofpoint-GUID: 9gpt5oca3zvzFMum-pDt2Iv5lJTbY0GQ
-X-Authority-Analysis: v=2.4 cv=J9GnLQnS c=1 sm=1 tr=0 ts=6954e2cf cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjMxMDA3NCBTYWx0ZWRfXwdch8oN5zBKU
+ 5HM3DTAiSUOTgNqzT2hwKEUSEwHsxgtYpL8b5s/DGLEX5qIrJEgke/xswHiiMQ2VWfXhrwQq6yR
+ hgaoGTM9aO16ut6bjK0PaVK3v0qBQhsVJUEu2p6q7MyyIOEW7bgdVZy2jHZsBH5WOeNDlAzLpJE
+ 9N8QpTsvCiaNfODaE9VBcaAZ3eISVFhEtlxZL/mW7j+8exqtTQ/OTQLNb9rIqJr8qz9WCy0QLxF
+ sFmtGzhK+8PJsM6Kim3iCWZ8roR5OskMYCT+MzHtG4tx5g6Qc+bX7F3ivaf3SYMmfYtDSMCFvnG
+ iNUdbNr2GGIY8xgZFHeEJCawAG4cKm84fv4ipzRw5I0ePUX/0OfsCbQPgAHjZoq/FI8ASN/Jq7b
+ slX9ID7tl9hex8g9fYvjl8Gcm6BtzrnHtbySMp3lPmKcD+avGteY4XRN5RGW6VoAqr7QodqLwgB
+ mMuFK+ij9KLe/nMR2yg==
+X-Proofpoint-GUID: to_62TRnaeHKUmf5A86L7ecXhCOIHD5c
+X-Proofpoint-ORIG-GUID: to_62TRnaeHKUmf5A86L7ecXhCOIHD5c
+X-Authority-Analysis: v=2.4 cv=foHRpV4f c=1 sm=1 tr=0 ts=6954e2d6 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=SkoZtctDx9gcCqASqUMA:9
- a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=e5mUnYsNAAAA:8 a=EUspDBNiAAAA:8
+ a=VwQbUJbxAAAA:8 a=OspxmFM2CjPT0bdoapIA:9 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22 a=sptkURWiP4Gy88Gu7hUp:22 a=Vxmtnl_E_bksehYqCbjh:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-31_02,2025-12-31_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 phishscore=0 adultscore=0 impostorscore=0 spamscore=0
- suspectscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
+ adultscore=0 clxscore=1015 malwarescore=0 suspectscore=0 phishscore=0
+ impostorscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512310074
 
-A612 GPU has a new IP called RGMU (Reduced Graphics Management Unit)
-which replaces GMU. But it doesn't do clock or voltage scaling. So we
-need the gpu core clock in the GPU node along with the power domain to
-do clock and voltage scaling from the kernel. Update the bindings to
-describe this GPU.
+From: Jie Zhang <jie.zhang@oss.qualcomm.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+RGMU a.k.a Reduced Graphics Management Unit is a small state machine
+with the sole purpose of providing IFPC (Inter Frame Power Collapse)
+support. Compared to GMU, it doesn't manage GPU clock, voltage
+scaling, bw voting or any other functionalities. All it does is detect
+an idle GPU and toggle the GDSC switch. As it doesn't access DDR space,
+it doesn't require iommu.
+
+So far, only Adreno 612 GPU has an RGMU core. Document it in
+qcom,adreno-rgmu.yaml.
+
+Signed-off-by: Jie Zhang <jie.zhang@oss.qualcomm.com>
 Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- .../devicetree/bindings/display/msm/gpu.yaml       | 33 ++++++++++++++++++++--
- 1 file changed, 31 insertions(+), 2 deletions(-)
+ .../bindings/display/msm/qcom,adreno-rgmu.yaml     | 126 +++++++++++++++++++++
+ MAINTAINERS                                        |   1 +
+ 2 files changed, 127 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-index 5c12b5aacf8f..27ce88766dc5 100644
---- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-@@ -45,11 +45,11 @@ properties:
-           - const: amd,imageon
- 
-   clocks:
--    minItems: 2
-+    minItems: 1
-     maxItems: 7
- 
-   clock-names:
--    minItems: 2
-+    minItems: 1
-     maxItems: 7
- 
-   reg:
-@@ -388,6 +388,35 @@ allOf:
-         - clocks
-         - clock-names
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,adreno-612.0
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: GPU Core clock
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,adreno-rgmu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,adreno-rgmu.yaml
+new file mode 100644
+index 000000000000..bacc5b32e6d7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/msm/qcom,adreno-rgmu.yaml
+@@ -0,0 +1,126 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++%YAML 1.2
++---
 +
-+        clock-names:
-+          items:
-+            - const: core
++$id: http://devicetree.org/schemas/display/msm/qcom,adreno-rgmu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+        reg:
-+          minItems: 3
-+          maxItems: 3
++title: RGMU attached to certain Adreno GPUs
 +
-+        reg-names:
-+          items:
-+            - const: kgsl_3d0_reg_memory
-+            - const: cx_mem
-+            - const: cx_dbgc
++maintainers:
++  - Rob Clark <robin.clark@oss.qualcomm.com>
 +
-+      required:
-+        - clocks
-+        - clock-names
++description:
++  RGMU (Reduced Graphics Management Unit) IP is present in some GPUs that
++  belong to Adreno A6xx family. It is a small state machine that helps to
++  toggle the GX GDSC (connected to CX rail) to implement IFPC feature and save
++  power.
 +
-   - if:
-       properties:
-         compatible:
++properties:
++  compatible:
++    items:
++      - const: qcom,adreno-rgmu-612.0
++      - const: qcom,adreno-rgmu
++
++  reg:
++    items:
++      - description: Core RGMU registers
++
++  clocks:
++    items:
++      - description: GMU clock
++      - description: GPU CX clock
++      - description: GPU AXI clock
++      - description: GPU MEMNOC clock
++      - description: GPU SMMU vote clock
++
++  clock-names:
++    items:
++      - const: gmu
++      - const: cxo
++      - const: axi
++      - const: memnoc
++      - const: smmu_vote
++
++  power-domains:
++    items:
++      - description: CX GDSC power domain
++      - description: GX GDSC power domain
++
++  power-domain-names:
++    items:
++      - const: cx
++      - const: gx
++
++  interrupts:
++    items:
++      - description: GMU OOB interrupt
++      - description: GMU interrupt
++
++  interrupt-names:
++    items:
++      - const: oob
++      - const: gmu
++
++  operating-points-v2: true
++  opp-table:
++    type: object
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - power-domains
++  - power-domain-names
++  - interrupts
++  - interrupt-names
++  - operating-points-v2
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,qcs615-gpucc.h>
++    #include <dt-bindings/clock/qcom,qcs615-gcc.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/qcom,rpmhpd.h>
++
++    gmu@506a000 {
++        compatible = "qcom,adreno-rgmu-612.0", "qcom,adreno-rgmu";
++
++        reg = <0x05000000 0x90000>;
++
++        clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
++                 <&gpucc GPU_CC_CXO_CLK>,
++                 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
++                 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
++                 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
++        clock-names = "gmu",
++                      "cxo",
++                      "axi",
++                      "memnoc",
++                      "smmu_vote";
++
++        power-domains = <&gpucc CX_GDSC>,
++                        <&gpucc GX_GDSC>;
++        power-domain-names = "cx",
++                             "gx";
++
++        interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "oob",
++                          "gmu";
++
++        operating-points-v2 = <&gmu_opp_table>;
++
++        gmu_opp_table: opp-table {
++            compatible = "operating-points-v2";
++
++            opp-200000000 {
++                opp-hz = /bits/ 64 <200000000>;
++                required-opps = <&rpmhpd_opp_low_svs>;
++            };
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index dc731d37c8fe..ee09fc2a6e59 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -7982,6 +7982,7 @@ S:	Maintained
+ B:	https://gitlab.freedesktop.org/drm/msm/-/issues
+ T:	git https://gitlab.freedesktop.org/drm/msm.git
+ F:	Documentation/devicetree/bindings/display/msm/gpu.yaml
++F:	Documentation/devicetree/bindings/display/msm/qcom,adreno-rgmu.yaml
+ F:	Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+ F:	drivers/gpu/drm/msm/adreno/
+ F:	drivers/gpu/drm/msm/msm_gpu.*
 
 -- 
 2.51.0
