@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-250763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B33FCEBB76
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 10:48:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87BB5CEBB7C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 10:49:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 89CFF300E075
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 09:48:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0BD5F300E07B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 09:49:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7699311C31;
-	Wed, 31 Dec 2025 09:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B6D311C31;
+	Wed, 31 Dec 2025 09:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JcB9UFy8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OAW8S9lM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF622BD5BF;
-	Wed, 31 Dec 2025 09:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 495222DF151;
+	Wed, 31 Dec 2025 09:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767174530; cv=none; b=eeua2ahQ3MSfHA5gaLfLu2mJ2qrqWl3Uf7cpuANOmzC12aI7O3uwWEwTcSPP2O6lauF44F8aavmppE126nTg9Bo7hC6BQOHOKNg+dv+KD8moN6wqu7Nu2PH+M7T1qLt2ah9pzVAF81dONjsqN/My9cqreegNKmIL8ycXfn/Xwpw=
+	t=1767174583; cv=none; b=EUgicBmohzSSXG+FMMQJTDmtlropwgGpFafDm2tZnZa1Az5/1pLB7lfHxlPcaLo57vfKzGdn3qRkaTBPrJMCNuPIw7SEuDDj1USiu2GGedxTrX/if3pYz6dPKP/1io73ilPy9NXWOFfxaxej3KEI1snUTQHpFNhoNEbx47DnJ8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767174530; c=relaxed/simple;
-	bh=ImNInNwZR54+9UqA/UYM+30mhewaOzMKRmet2CMmOUQ=;
+	s=arc-20240116; t=1767174583; c=relaxed/simple;
+	bh=16K9feCX5fKSYWAUxe75l9k5gpu0aIcgV76kUZ5o5wI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kQnWGhoTle/jUQjQMgqJd8UWXJU0Y17SdkVVkR6Qa6LBv0GU1a2qtZZMFDOC/sKwKDqJ2UOYPZKy/Rdww9RDuTTko+/WXf+v0cER9urfsNIGs6bZj/5XhRW024PhLHakWF8QKKpPOQhge+pEe6uqg9L328B9EPSG8iFr6d2kV8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JcB9UFy8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DF5EC113D0;
-	Wed, 31 Dec 2025 09:48:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=QlOcfSvmG1EYQ1X8mys6C7CZZxmpoaRaXx7C8MsP7XzjBM3u+lOYUMf17LzR5x6fskwPVcuAo0AmM1fs/pdqtzChGKIBS4X4hR8/lgfx6nqfi6NghvzHbFQJG0Sz+jqpOAD9q20MtDjuN1sz0D0HV+Ao8wBa/tITa9IAHOy0aSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OAW8S9lM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF832C113D0;
+	Wed, 31 Dec 2025 09:49:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767174528;
-	bh=ImNInNwZR54+9UqA/UYM+30mhewaOzMKRmet2CMmOUQ=;
+	s=k20201202; t=1767174582;
+	bh=16K9feCX5fKSYWAUxe75l9k5gpu0aIcgV76kUZ5o5wI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JcB9UFy8N0XMPkyl8EVl/AiwVf+7iZefYZWhxBbfrtHHKLcp/3sEePk3v+dXIQsev
-	 4ub/CvgkURGqNknrK4Z/dJhW8YnBTS7ldC3bzqic+UMziZ6f2KSh91WdtDn9WoelX/
-	 14QJiUrk/s/UOnhh5XkmCTy7YMAyQBplmO8CVHZ1fE9NcxCXi3f1NVh7WC2hWZWepk
-	 31iJeu4ZFmi6ky7PiA235WIlv1TZwMht0OANLwx7Z3bIhUZX9/0eEpHD8uF/8qv9kU
-	 yW19jOXoQcDU3ph0VgTwZGKC0rtRAG4k/wZQJAxSGmj614gLl20qiVXNHcmB/YY6lT
-	 oMUNDNVHRtxsA==
-Message-ID: <499ce4ea-c6bf-45f1-ab68-c37397196084@kernel.org>
-Date: Wed, 31 Dec 2025 10:48:44 +0100
+	b=OAW8S9lMgrMyNwEWuV2OlJF6RPAoGhroOcOWUaFV4UMukspYnjU1Fuzy1vPA5Z9wN
+	 dAd8ueL8YYDUd+AsVp+nTR2lyvTeChcOXxVUkIAcWoL1/bKsQHGxnpwZe/lND9QK+S
+	 AVEM0LBaO8zWorcOF1H0TXAY/iklHvV2gd3LsVFOXNvcSbTc+4WsjmpZyAqwmnmTlL
+	 V5agTDIRz9DOGfT9A8onEUPx1egOu1wfFVc8Cx3KqqSAht0SD3i83E7Yd0kYkWNYA5
+	 wJiRqjwy7/nYglNydxmVVQXyz32bJiaos9wGTYX5yS1iQyI7yt7uUwAZ8Io8/Mr0nh
+	 Ve2MR+EktwWfA==
+Message-ID: <50439d25-55a3-4d76-8864-81132db7598c@kernel.org>
+Date: Wed, 31 Dec 2025 10:49:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,15 +48,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] arm: dts: mstar: infinity: Correct opp table name
-To: Daniel Palmer <daniel@0x0f.com>
-Cc: krzk+dt@kernel.org, romain.perier@gmail.com, robh@kernel.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] arm: dts: mstar: breadbee: Correct regulator names
+To: Daniel Palmer <daniel@0x0f.com>, krzk+dt@kernel.org,
+ romain.perier@gmail.com, robh@kernel.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20251231025502.1139168-1-daniel@0x0f.com>
- <20251231025502.1139168-4-daniel@0x0f.com>
- <ac0f8b8d-f6e4-4d60-9931-e820417c1abc@kernel.org>
- <CAFr9PXn_-Ep9HzwTEErZ4Wmm9X8Q2ZkRP1LfmaAMhbYNfJVFuQ@mail.gmail.com>
+ <20251231025502.1139168-2-daniel@0x0f.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,21 +100,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAFr9PXn_-Ep9HzwTEErZ4Wmm9X8Q2ZkRP1LfmaAMhbYNfJVFuQ@mail.gmail.com>
+In-Reply-To: <20251231025502.1139168-2-daniel@0x0f.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/12/2025 09:35, Daniel Palmer wrote:
-> Hi Krzysztof,
+On 31/12/2025 03:54, Daniel Palmer wrote:
+> The regulator names had a "@<n>" in them so the dt validation
+> stuff wanted a reg property. Fix the names to match what the regulator
+> is for and remove the "@<n>" bit.
 > 
-> On Wed, 31 Dec 2025 at 16:48, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> These two should be squashed. Don't align node names with bindings per node.
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> ---
+>  .../boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi  | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> Sorry, I cannot parse what that means.
+> diff --git a/arch/arm/boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi b/arch/arm/boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi
+> index 507ff2fba837..aedea0fbbce6 100644
+> --- a/arch/arm/boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi
+> +++ b/arch/arm/boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi
+> @@ -7,7 +7,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  
+>  / {
+> -	vcc_core: fixedregulator@0 {
+> +	vcc_core: reg-core {
 
-I meant, two commits should be rather squashed. If you intend to rename
-the nodes, fix all names to be generic, not only some.
+
+If renaming this then rather use one of the approved names, so either
+"regulator-foo" or "regulator-XvY" (which matches current format
+recommendation: 'regulator-[0-9]v[0-9]')
+
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
 
 Best regards,
 Krzysztof
