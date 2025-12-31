@@ -1,39 +1,80 @@
-Return-Path: <devicetree+bounces-250747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92C41CEB83A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 09:18:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80256CEB844
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 09:21:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 288C930078B7
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 08:18:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 30EB9300E00A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 08:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 292EE311952;
-	Wed, 31 Dec 2025 08:18:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6735931197A;
+	Wed, 31 Dec 2025 08:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="LlMTtoud"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A5/E3r5P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15588.qiye.163.com (mail-m15588.qiye.163.com [101.71.155.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0981EEA5F;
-	Wed, 31 Dec 2025 08:17:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCF5D30F927
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 08:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767169081; cv=none; b=bB6HTpyqBFpIhCoB2XIjqJwkHSr9WrHsUeXG+QrQPJQAdp6ZpmTobIQWjgh2MhRlFYTPtxynefSibOtj2QTXVEx+uohEa/K1XTgPvbzvCwZHKXLVSBep++lh/Vxl5lGDRQ0cLGqs+1eHhcQqdH+2zwNQWe/53mWv/IF8OgrGtE8=
+	t=1767169315; cv=none; b=Szr/lUzl3n6i5Qc1gfz+TnSEljHFfMFHLrE6VUnx7NHBAXmD+uSOry/TmRR7aWT/ObaOfd61SiG4oy8MfDfkzEVB7SPfKP5kQGqKHpP4mmPGihaBhDnOi8pUeEiR2O/LJMRWOJIF0UDX5zE6HL8+Z+4XEmS94gnpWLlGZboa/SY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767169081; c=relaxed/simple;
-	bh=I0n3A7mzL3U4w+3Swr+xXS4INVRThIKDmoFu3BJDm6Q=;
+	s=arc-20240116; t=1767169315; c=relaxed/simple;
+	bh=0K11P5p0ZEWKw+Z7Tb6gGI48ZExl1y9WmaLk/8OFpN4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rvk6UiMXLARnVEzV7p4gYgCTvX6BCRvIe5C7PJq3XPGW4EUtvNMfM0BVi1m9Pb3fImkd9P3i0HrA/G6IE9+OZNrhSE3rbaAGehGiLuzgD/ZtNZyEvTn48yRbSDhXLjC75bApdjaaKvCq/r2DSPg4bPJz+Cbe+/fDoBE+7A1n+sU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=LlMTtoud; arc=none smtp.client-ip=101.71.155.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.16] (gy-adaptive-ssl-proxy-1-entmail-virt204.gy.ntes [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2f223fb0b;
-	Wed, 31 Dec 2025 16:12:33 +0800 (GMT+08:00)
-Message-ID: <0de0f505-5858-4ea6-85a7-4c386ac205e9@rock-chips.com>
-Date: Wed, 31 Dec 2025 16:12:33 +0800
+	 In-Reply-To:Content-Type; b=gTn/uJlUVtZNRLv5ujM7qZS9CvncNMnwmw9OsBD1OSMr6TZ7DOGh0kz5IFIJeGe6KkBN8QrnReegPv1pYo83mQmKIvIEjQJWx/rmwnETE7+sxcNIgwJoKPy6lYKT/aT3rKfjOYbHGp5VOfIoqEiqILuIShWXNeh62ICwPwZhf4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A5/E3r5P; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2a0d5c365ceso140801805ad.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 00:21:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767169313; x=1767774113; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pM8EtERWnfRSuu67YWhPe5WAPfUUQdQHLM2qZyic10w=;
+        b=A5/E3r5PMGSNCQNJ9lay+sGQNgvPd2mDX0puTxXZpAffF8WYQZuBOpCpr183PK9f91
+         0F0oI4svmiAyfJTEy/aVAUH8gHWYhimaD7uBoqLnkCO6muuxhxq0/K8qK6iH7ncS2J39
+         DA6w6X75SQRfzvTwD3UHg7twz76pF0JpobqA8q+9Clemk4Z3XdzdYjnFx+4PCJTHm9rQ
+         3UlWtzRavwT1uivZPUWcojVTE9fo0qJYBmH9lk6xDC6evWMlRIVpGClYgyyBWBsagDBU
+         VijjXzQsInpmi3b/wjVSd3Dy/OPta2lPHGYj0Fnr3bi4k+/wmNbpwejWp3dfY1HRyZkD
+         zgfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767169313; x=1767774113;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pM8EtERWnfRSuu67YWhPe5WAPfUUQdQHLM2qZyic10w=;
+        b=s5IcwFqUemDP6IRPenKc3rsfIi+0ng0OoR++Pedlm22H1+r7VbjpVLaO2hyOLbRaio
+         e83/mRe4olpr6gpCw97yfX5UN4bE3w37hR233g9biC/gtTI2zzslwo7JKx1nEn2yTEZu
+         9KR2RljdsUIY07T84FOONyLXYnXFXp4wjZFHdFwPhmSGQLjIa/Jmz9lU15OFQmkCG+PM
+         5o5Mdq1NDdYjaxFUIcJCLEN91MPXuuitbTTdBurEPTXGeYAowo2hdNclhVjw05YaFAM2
+         qBEVSMIKmw6zP3uAba8uTS9ScjWpcx4sitolXRLfhTE1RGZ9dOs+kfgkiCnBa7VC1Vyj
+         v8dg==
+X-Forwarded-Encrypted: i=1; AJvYcCV607G4zIT1ld/1MoqOHgDzqhPizyGoy6FaNvLOjLXj4RXHJho9Kr10Re0iS74vKLI8MEq/6gK6y9yJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6eXxL8aijuO2Dr7MwKD8MgLQZcUV5CiDAzCGNj3km0i8qC4k5
+	WUhFZFAX5L4i/ymlNNniLC9mmqCoBXrdSyHK4n9JD5uq4qjhwiKdHCb1
+X-Gm-Gg: AY/fxX4fAxmlqHMHH6VK4+vdLGL0mVngSTSUPDGpAOroMwytTHk6rgG1WvzPleJvq0N
+	VCqfCs8Lfub/SUhm0lTojmynqZNtyLZ2H18nx/iQ26/ElfhF9+6nzV3Use3/XUmaDiM2ZwkeTiT
+	GcxTuNpXPF276ZQq2GMbJvdH+d4TsUCUMIbslL/PqU+sFFo55A9gL/6GeAvnzAvkDeHBa1TcUeI
+	jwR0d3Uy2by2LXT3AssZkqzVmLFVDyEXGqxqKrPoghdASnnuORBA2yWg1kCxK0H3Fuxsy/CxuaW
+	SqgIa5UHGq2jBMRn7HkMtAFz0EB0ScEZ1t7krBY+83CbRkCke63t9rltuXIWc+5fkTPeAgtVBbg
+	10ZBQ1ph/XE5Ni1sZePcAESRpIHaoCn94b5JroySjy9hoChd9RKjhO09KrTUcIbqEPB6czIuNLN
+	Gr/6mNbyCf/tTRzy5tJvWteeF+OCgypc8FEdKBeA==
+X-Google-Smtp-Source: AGHT+IGwWF/osE+HYmoH/fZSSrPCaaGpDZsI4LlTPJyRcz8V/TsbQniUgWS0cU9t4dihgXmLeP2mQQ==
+X-Received: by 2002:a17:902:ce82:b0:2a0:f469:1f56 with SMTP id d9443c01a7336-2a2f272b393mr394966645ad.31.1767169312819;
+        Wed, 31 Dec 2025 00:21:52 -0800 (PST)
+Received: from [192.168.1.10] ([122.162.204.179])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c1e7a018586sm30029763a12.15.2025.12.31.00.21.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Dec 2025 00:21:52 -0800 (PST)
+Message-ID: <c711c06b-ff32-4606-8d98-9195f20de38a@gmail.com>
+Date: Wed, 31 Dec 2025 13:51:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,103 +82,272 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 7/7] ARM: dts: rockchip: rk3506: Add pinctrl and rmio
- dtsi for rk3506
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT
+ schema
+To: Rob Herring <robh@kernel.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- tao.huang@rock-chips.com
-References: <20251227114957.3287944-1-ye.zhang@rock-chips.com>
- <20251227114957.3287944-8-ye.zhang@rock-chips.com>
- <ebb720f6-4756-437f-a71a-d94f45d732e8@kernel.org>
-From: Ye Zhang <ye.zhang@rock-chips.com>
-In-Reply-To: <ebb720f6-4756-437f-a71a-d94f45d732e8@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9b73773f5d09d8kunm7d1b63c029b1073
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxhNQlZCH09PTEMYT0IeHkxWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=LlMTtoudwY0r8GtTq3kRlvFU7O9LrvHrzRYkwTvLuJkRNjj1JKUg8aTA2zm1GVSnbB29fNF/sO5ZNrbHF630uTJfymHO6MMom80zaV5fR4MvcHbT3Q7Z2oGbuWhzpyiLPBMMVoNSi4y6+caIs3cWB/JBkJ9NjVt0dG5DjCS22M8=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=PJXRdk/Jm/8W9JuE53zA910TazhkvqSxi7iqm+rHlCQ=;
-	h=date:mime-version:subject:message-id:from;
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Stefan Agner <stefan@agner.ch>,
+ Lucas Stach <dev@lynxeye.de>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251229-nvidia-nand-v2-1-b697d9724b0b@gmail.com>
+ <20251230172313.GA505571-robh@kernel.org>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <20251230172313.GA505571-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-在 2025/12/28 18:37, Krzysztof Kozlowski 写道:
-> On 27/12/2025 12:49, Ye Zhang wrote:
->> +		/omit-if-no-ref/
->> +		rm_io28_touch_key_in6: rm-io28-touch-key-in6 {
->> +			rockchip,pins =
->> +				<1 RK_PC3 7 &pcfg_pull_none>;
->> +			rockchip,rmio-pins =
->> +				<0 28 49>;
->> +		};
+
+On 30-12-2025 22:53, Rob Herring wrote:
+> On Mon, Dec 29, 2025 at 02:31:12PM +0000, Charan Pedumuru wrote:
+>> Convert NVIDIA Tegra NAND Flash Controller binding to YAML format.
+>> Changes during Conversion:
+>> - Define new properties `power-domains` and `operating-points-v2`
+>>   because the existing in tree DTS uses them.
+>>
+>> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+>> ---
+>> Changes in v2:
+>> - Edited the commit description to match the updated changes.
+>> - Modified the description for the YAML.
+>> - Removed all the duplicated properties, defined a proper ref for both parent
+>>   and child nodes.
+>> - Removed unnecessary properties from the required following the old
+>>   text binding.
+>> - Link to v1: https://lore.kernel.org/r/20251030-nvidia-nand-v1-1-7614e1428292@gmail.com
+>> ---
+>>  .../bindings/mtd/nvidia,tegra20-nand.yaml          | 107 +++++++++++++++++++++
+>>  .../bindings/mtd/nvidia-tegra20-nand.txt           |  64 ------------
+>>  2 files changed, 107 insertions(+), 64 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+>> new file mode 100644
+>> index 000000000000..f34eaad67e11
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+>> @@ -0,0 +1,107 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mtd/nvidia,tegra20-nand.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +		/omit-if-no-ref/
->> +		rm_io28_touch_key_in7: rm-io28-touch-key-in7 {
->> +			rockchip,pins =
->> +				<1 RK_PC3 7 &pcfg_pull_none>;
->> +			rockchip,rmio-pins =
->> +				<0 28 50>;
->> +		};
+>> +title: NVIDIA Tegra NAND Flash Controller
 >> +
->> +		/omit-if-no-ref/
->> +		rm_io28_sai0_mclk: rm-io28-sai0-mclk {
->> +			rockchip,pins =
->> +				<1 RK_PC3 7 &pcfg_pull_none>;
->> +			rockchip,rmio-pins =
->> +				<0 28 51>;
->> +		};
+>> +maintainers:
+>> +  - Jonathan Hunter <jonathanh@nvidia.com>
 >> +
->> +		/omit-if-no-ref/
->> +		rm_io28_sai0_sclk: rm-io28-sai0-sclk {
->> +			rockchip,pins =
->> +				<1 RK_PC3 7 &pcfg_pull_none>;
->> +			rockchip,rmio-pins =
->> +				<0 28 52>;
->> +		};
+>> +allOf:
+>> +  - $ref: nand-controller.yaml
 >> +
->> +		/omit-if-no-ref/
->> +		rm_io28_sai0_lrck: rm-io28-sai0-lrck {
->> +			rockchip,pins =
->> +				<1 RK_PC3 7 &pcfg_pull_none>;
->> +			rockchip,rmio-pins =
->> +				<0 28 53>;
->> +		};
+>> +description:
+>> +  The NVIDIA NAND controller provides an interface between NVIDIA SoCs
+>> +  and raw NAND flash devices. It supports standard NAND operations,
+>> +  hardware-assisted ECC, OOB data access, and DMA transfers, and
+>> +  integrates with the Linux MTD NAND subsystem for reliable flash management.
 >> +
->> +		/omit-if-no-ref/
->> +		rm_io28_sai0_sdi0: rm-io28-sai0-sdi0 {
->> +			rockchip,pins =
->> +				<1 RK_PC3 7 &pcfg_pull_none>;
->> +			rockchip,rmio-pins =
->> +				<0 28 54>;
->> +		};
-> Why are you defining all pins? This is wrong, your driver has to do it,
-> not DTS. All these definitions when not used are just pointless.
->
-This file is auto-generated to provide a complete set of RMIO 
-configurations.   Our intention is to offer a generic library for all 
-future board developers, so they can simply pick the needed nodes by 
-phandle without manually looking up register values in the datasheet 
-every time.   This improves usability and standardization.
+>> +properties:
+>> +  compatible:
+>> +    const: nvidia,tegra20-nand
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: nand
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: nand
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  operating-points-v2:
+>> +    maxItems: 1
+>> +
+> 
+>> +patternProperties:
+>> +  "^nand@[0-5]$":
+> 
+> '^nand@':
+> 
+> The unit-address restriction here doesn't restrict anything.
+> 
+> Single quotes are preferred over double quotes.
 
-We also used the /omit-if-no-ref/ tag, so this will strictly not 
-increase the size of the compiled DTB binary at all.
+Sure, I will use single quotes.
 
-Could you please reconsider if this  approach is acceptable given the 
-usability benefits?
+> 
+>> +    type: object
+>> +    description: Individual NAND chip connected to the NAND controller
+>> +    $ref: raw-nand-chip.yaml#
+>> +
+> 
+> properties:
+>   reg:
+>     maximum: 5
 
-If you still consider the ~25k lines of source code bloat unacceptable 
-for upstream, we will have to drop this generic dtsi file and let users 
-manually define only the required nodes when adding board support.
+Okay.
 
-Best regards,
-Ye Zhang
+> 
+>> +    patternProperties:
+>> +      "^partition@[0-9a-f]+$":
+>> +        description:
+>> +          Optional MTD partitions for the NAND chip, as defined in mtd.yaml
+>> +        $ref: mtd.yaml#
+> 
+> Drop. All of this is handled by raw-nand-chip.yaml.
+> 
+>> +
+>> +    required:
+>> +      - reg
+> 
+> Drop. Already required by nand-chip.yaml.
+
+Okay, I will remove the partition child node and required for nand node.
+
+> 
+>> +
+>> +    unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - reset-names
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/clock/tegra20-car.h>
+>> +    #include <dt-bindings/gpio/tegra-gpio.h>
+>> +
+>> +    nand-controller@70008000 {
+>> +        compatible = "nvidia,tegra20-nand";
+>> +        reg = <0x70008000 0x100>;
+>> +        interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+>> +        clocks = <&tegra_car TEGRA20_CLK_NDFLASH>;
+>> +        clock-names = "nand";
+>> +        resets = <&tegra_car 13>;
+>> +        reset-names = "nand";
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        nand@0 {
+>> +            reg = <0>;
+>> +            #address-cells = <1>;
+>> +            #size-cells = <1>;
+>> +            nand-bus-width = <8>;
+>> +            nand-on-flash-bbt;
+>> +            nand-ecc-algo = "bch";
+>> +            nand-ecc-strength = <8>;
+>> +            wp-gpios = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_LOW>;
+>> +        };
+>> +    };
+>> +...
+>> diff --git a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt b/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
+>> deleted file mode 100644
+>> index 4a00ec2b2540..000000000000
+>> --- a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
+>> +++ /dev/null
+>> @@ -1,64 +0,0 @@
+>> -NVIDIA Tegra NAND Flash controller
+>> -
+>> -Required properties:
+>> -- compatible: Must be one of:
+>> -  - "nvidia,tegra20-nand"
+>> -- reg: MMIO address range
+>> -- interrupts: interrupt output of the NFC controller
+>> -- clocks: Must contain an entry for each entry in clock-names.
+>> -  See ../clocks/clock-bindings.txt for details.
+>> -- clock-names: Must include the following entries:
+>> -  - nand
+>> -- resets: Must contain an entry for each entry in reset-names.
+>> -  See ../reset/reset.txt for details.
+>> -- reset-names: Must include the following entries:
+>> -  - nand
+>> -
+>> -Optional children nodes:
+>> -Individual NAND chips are children of the NAND controller node. Currently
+>> -only one NAND chip supported.
+>> -
+>> -Required children node properties:
+>> -- reg: An integer ranging from 1 to 6 representing the CS line to use.
+>> -
+>> -Optional children node properties:
+>> -- nand-ecc-mode: String, operation mode of the NAND ecc mode. Currently only
+>> -		 "hw" is supported.
+>> -- nand-ecc-algo: string, algorithm of NAND ECC.
+>> -		 Supported values with "hw" ECC mode are: "rs", "bch".
+>> -- nand-bus-width : See nand-controller.yaml
+>> -- nand-on-flash-bbt: See nand-controller.yaml
+>> -- nand-ecc-strength: integer representing the number of bits to correct
+>> -		     per ECC step (always 512). Supported strength using HW ECC
+>> -		     modes are:
+>> -		     - RS: 4, 6, 8
+>> -		     - BCH: 4, 8, 14, 16
+>> -- nand-ecc-maximize: See nand-controller.yaml
+>> -- nand-is-boot-medium: Makes sure only ECC strengths supported by the boot ROM
+>> -		       are chosen.
+>> -- wp-gpios: GPIO specifier for the write protect pin.
+>> -
+>> -Optional child node of NAND chip nodes:
+>> -Partitions: see mtd.yaml
+>> -
+>> -  Example:
+>> -	nand-controller@70008000 {
+>> -		compatible = "nvidia,tegra20-nand";
+>> -		reg = <0x70008000 0x100>;
+>> -		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+>> -		clocks = <&tegra_car TEGRA20_CLK_NDFLASH>;
+>> -		clock-names = "nand";
+>> -		resets = <&tegra_car 13>;
+>> -		reset-names = "nand";
+>> -
+>> -		nand@0 {
+>> -			reg = <0>;
+>> -			#address-cells = <1>;
+>> -			#size-cells = <1>;
+>> -			nand-bus-width = <8>;
+>> -			nand-on-flash-bbt;
+>> -			nand-ecc-algo = "bch";
+>> -			nand-ecc-strength = <8>;
+>> -			wp-gpios = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_LOW>;
+>> -		};
+>> -	};
+>>
+>> ---
+>> base-commit: 43edce71d70c603d3f3f1b1c886f65cd02d80c24
+>> change-id: 20251011-nvidia-nand-024cc7ae8b0a
+>>
+>> Best regards,
+>> -- 
+>> Charan Pedumuru <charan.pedumuru@gmail.com>
+>>
+
+-- 
+Best Regards,
+Charan.
+
 
