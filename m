@@ -1,55 +1,95 @@
-Return-Path: <devicetree+bounces-250667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037EACEB085
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 03:18:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0A9CEB08F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 03:19:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A99003009FEA
-	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 02:18:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1A267301918E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Dec 2025 02:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23571DB551;
-	Wed, 31 Dec 2025 02:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A65B1E9B37;
+	Wed, 31 Dec 2025 02:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TApW9ab9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BnsauaT3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AE34D8CE;
-	Wed, 31 Dec 2025 02:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD2A54D8CE
+	for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 02:19:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767147505; cv=none; b=FkQ9GBFW8DlxSbS+VZZnQyCGghVWXXdXdGZn0Wa5U7B/7RzQ62ibViB0H/pfJ8Kj3QH5YvNFLPA3hSzqYH8pv2WJWhC+s4oScWv0mUVY2jpqYWAcNmf1scZ40YfAB5IFglUEAOvc9AxrUvFWxhaExfQTl/M+YwhX0yf45eHW4Bc=
+	t=1767147590; cv=none; b=chmiZ2hajPjLy3ulboOBCjiwkQWL18k4zWoyM4YkSPQyTyctUA48sRqmcQGYuW3fGMWLqRQRcltYN7wKYj1pie0hb+wquwpAoRkdDSns3UGemeNjyuCr27SffwWeolK45b49m0VornPOIoYfUkveSJadLQRFfwX/C1er7Yplc0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767147505; c=relaxed/simple;
-	bh=pRWn7rpvOpmSzAKdEiA8vbbyCFJU68TB0Ux+WK0H2BQ=;
+	s=arc-20240116; t=1767147590; c=relaxed/simple;
+	bh=IHEnzGZQFu2XY1gud4jw/rHZMO4chA7VKbL2h44E930=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qv+jO98kBOKy7SroHrOviKyNsp5yO+tTbZAzIfVORSlpom2pImyLD9QNT6k76Y/iigraoHcEb4un9etR+oP3+8hxuiVhFkGsjhLstbhkVvRtezdhAUDArdLxdR9U5zvSLYv4giELQoVlghwkCz5qj9SBfeWz+j6ZY8yF5l6SNwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TApW9ab9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CEE2C116C6;
-	Wed, 31 Dec 2025 02:18:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767147504;
-	bh=pRWn7rpvOpmSzAKdEiA8vbbyCFJU68TB0Ux+WK0H2BQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TApW9ab9gCZrjhqfr+HCK3YzhyrgTmM+8Ow8r/d9S9I5fWmHLIhWMY7VejEvfgNhm
-	 ciYsdC9wOzZmW23lqoMZNUorAS1n0XW7raC36zW6lXhPptVPqB8e20C8hmkqNO63z3
-	 zD280rUCKy7wOnQgIMH9i8Z0l9G9Km+3Jtn2aGrkVcJxTJQGJosDhhHshCUBsDg4C2
-	 GvMPZCG/b9DNQXIjivNAQUpu5QJLLS3LWUxmoq4A+AtVe+rMaU8MsWNndwOAD/M6K6
-	 rXX3n+kRYoZ8WKdeKnsBpgG2Y4hNk/x9MRtU5NUZPxcSdrq6/EElnHduWI5Se9Tppw
-	 oh/4vkG8fH4LA==
-Date: Wed, 31 Dec 2025 10:18:19 +0800
-From: Shawn Guo <shawnguo@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
-	imx@lists.linux.dev, kernel@pengutronix.de, krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	robh@kernel.org, s.hauer@pengutronix.de
-Subject: Re: [PATCH v2 1/1] arm64: dts: imx8mp-evk: add camera ov5640 and
- related nodes
-Message-ID: <aVSH6zOaXqmVfwzq@dragon>
-References: <20251229163101.4004478-1-Frank.Li@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uUcGE3vSikFbkq+Foa4HBbsZ2e9zGgf8AkF4kHAkPYxwngKud85rjfIArsBBbFT0JwD31GijN2GqBUJZo1l0PcUyTmJuXIPj/pjPLocFM1wVuHGb6xmr1YlYKXcZW/ZxS+hyfCzugftrUdOeF/brR2sxg1JIPt12+dnPWbIYX9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BnsauaT3; arc=none smtp.client-ip=209.85.160.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4ee158187aaso114957391cf.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Dec 2025 18:19:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767147588; x=1767752388; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=D0kfkuwpnrgAV1ePd0vpthp8gNZsEbHuzyj1n/s8Aq8=;
+        b=BnsauaT3LcB6qSDbqVFDLxBkyxmSp/tlL/iHVaCiQiB2Hzx3UOKViFGX/3aQz2bRvj
+         6E3UsUhB6dqklXjUTWahkmqh7I2cO/ZOAug249Db+Mvjw9EmVaUjdmLLwFefVyey62P3
+         n5qqu1bLHSd074R3Aq664ovJaKVrWnj135XIbwLyz0fi/b86bhQ0LfwGaktgnA3H7jv8
+         GrVTbWfEVsdLz5exxmh5/kreph5aoxa5/WCVyUo/uXxJ5rrQpWGPynfMRrXkO0pr2Pn1
+         b0zklJL+OJYvsFta+u3XTbjnkcwchITee6pUwZcO/u0ksCDGTlAs6Mtbi3PqqrAuiEmH
+         82VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767147588; x=1767752388;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=D0kfkuwpnrgAV1ePd0vpthp8gNZsEbHuzyj1n/s8Aq8=;
+        b=gi6pvhRfJY+P1q7XQYxNgQcmoxfoQmVCnvuYGN2bw+7i7I2GTQ3fI4Pmv1dR2Rhs+t
+         jBbXT9y3MahH8iYGQrfe8dpT6mqCd+rjoQyr0sr0u1PzAJzy4R5UGsI6n4NjmL3n/Cjq
+         gIipyqJfBBwi1AK0SiwhoE6hRJGryqSzmFmeg/TiOi6/xTORvbQLeZoYKHk/ck6WVSea
+         KnRPYJuixetOVdFD64eo3WU8dCU9CrdWreQfSu6F75hEou9Y87Ng915jkjgFIDIHBZxh
+         z29t+CG0t1qnnmpgvKHdfe3lJQlWBtGQYN+iSnVFoR1cJlejCTDCDw7L3oIvek8AueiO
+         e25A==
+X-Forwarded-Encrypted: i=1; AJvYcCX+UaqiDOVdiWHVNUZEo7/d0dOnTo9hkaR8gxHPn7hOLLc31r/lBFjXzkJVeOQox9qLnKCbaJWS10jO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3fWQp5qetXaJTL2uJWO23M0aaIUEOtc39nxF1W5nZ6ubx8Mb+
+	gOROwRAD+jyDoGxzNWMNfcrt+jxd5bDnA+pBUWsR+zPGlKKsSkck/T77
+X-Gm-Gg: AY/fxX7wKbJTUNXCfF8cjbYoNqRyd/1vMAh0uag9kdUQzdO0x4cDFui1xVl88keg7kT
+	9LWmmrTBHtaSyVTvu1mHN1Zj1+s3ALBDK3YfZZcIjmMyT4nix6koxVUiqH0QLfXA1SqurfS3TTc
+	y7UxLzF58U+tcOVf3n8a9uwOj/cgvqtyFSUsUKZEAv25i1gpsHVl3FTY3n8adpCA9tp0n/iuKcE
+	ZrzpkDbULhSSp9XvXjBlQCqzIv9bu+fwrzKXHTlbQ6npMWf2vCyGVdpDMiRtOoDZBVgikr8OkG9
+	7F0nT1av/rlUNOAoCQIsFFNpUadHJolIoV3e6Cks8FsYHKwwi2sreVLshS2BmftjWiuYl+XcGH8
+	kGOEXc4uEjaDcY6iNzFCEUlcBwYF8S6bd+xaH6v2a3mJ/am2Xh070CLx5JuGK8ZGJBnE2OAQIjz
+	Nsu5uqTRWz8gTMleJU1XeXUEMBR+ZzOQ3hPiaobMWKxSdAKXjGuHZvAiBRKSS34hviZRi9NycB2
+	5mbUlM2HOq7Cw==
+X-Google-Smtp-Source: AGHT+IFXTMpDXyFdEmEGQVX2R+AnY9cpX7S8SyoKdnFEwTMNIZQs9zv+GdpjMX2DjoIlXn0g3yozlg==
+X-Received: by 2002:a05:622a:1c11:b0:4f1:e0fc:343e with SMTP id d75a77b69052e-4f4abd4c1b5mr608331051cf.37.1767147587668;
+        Tue, 30 Dec 2025 18:19:47 -0800 (PST)
+Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4f4ac65344bsm252694831cf.28.2025.12.30.18.19.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Dec 2025 18:19:47 -0800 (PST)
+Date: Tue, 30 Dec 2025 21:20:16 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 0/3] media: qcom: camss: support for empty endpoint
+ nodes
+Message-ID: <aVSIYAC3DTD3dneW@rdacayan>
+References: <20251230022759.9449-1-mailingradian@gmail.com>
+ <7b1b0259-90d4-4e7c-8bc5-01e22c371e24@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,12 +98,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251229163101.4004478-1-Frank.Li@nxp.com>
+In-Reply-To: <7b1b0259-90d4-4e7c-8bc5-01e22c371e24@linaro.org>
 
-On Mon, Dec 29, 2025 at 11:31:01AM -0500, Frank Li wrote:
-> Add camera ov5640 and related nodes.
+On Tue, Dec 30, 2025 at 09:40:14AM +0000, Bryan O'Donoghue wrote:
+> On 30/12/2025 02:27, Richard Acayan wrote:
+> > This series adds support for empty endpoint nodes. It is currently RFC
+> > because it continues an ongoing discussion on how to selectively connect
+> > some CAMSS ports to cameras and leave others disconnected.
+> > 
+> > The SDM670 patches are for a full example. If agreed on, this should
+> > expand to SoCs that have CAMSS.
+(snip)
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> I don't think I am 100% understanding what the intent of this series is,
+> i.e. at a high level the problem you're aiming to solve.
+> 
+> Can you elaborate a bit ?
 
-Applied, thanks!
+The point is to move the graph nodes entirely to the SoC devicetree so
+the board doesn't have to redefine it. There is an explanation in patch 2,
+but the next revision can try to cut some of the rambling and also
+briefly explain in this cover.
 
