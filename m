@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-250881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B150CECC8D
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 04:44:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2C5CCECC93
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 04:44:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CE579301AD2B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 03:43:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B447302C23C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 03:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D04A252292;
-	Thu,  1 Jan 2026 03:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F4F252292;
+	Thu,  1 Jan 2026 03:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=0x0f.com header.i=@0x0f.com header.b="c8q+WXtx"
+	dkim=pass (1024-bit key) header.d=0x0f.com header.i=@0x0f.com header.b="fgWqE3/k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF76B254B1F
-	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 03:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C0B926D4F9
+	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 03:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767239014; cv=none; b=BQV4HZInJ2C16nu0+IdT+u1yePfnNatjhYTM3mYia4vdxiLYRvuQoNM/V5TxHRSm5t7gHQuysd+Kd8w4NBlbFdSJRkXeayAuHoSN+trisUXY4XUa9iF6F0U05dsJj4s+/FetQWnBou5l5v62Fzpwha3C+ffF3HTpJWMt9+aVvI8=
+	t=1767239016; cv=none; b=ez3xcXoRm79IbnZNKsc14d/hkKO8IetvZFgpNtl+FFew2lzBbD9qWZ/OW/p24f0576aRw4EDRXmTbJZ+nwlWNGiwGJNusbNqY3AzhaqqBm2jf+dW3sjahUiNq8xasIxpJtrZYyD8D65IEwiNRHcTrJwcvdNOnY8LD0VKKJq04ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767239014; c=relaxed/simple;
-	bh=SdSfcP2h8fckoZsVUDqp2I3DDQBDfFcEeio7w6w7FPM=;
+	s=arc-20240116; t=1767239016; c=relaxed/simple;
+	bh=G6Z9aGZxulzhXBt9sNrBV7y8egKdBs2K2ln9xh4+yUQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EmUUOJT8jKwMnbqhAqI052qWz3DY6HiLxnb0jpoi4q4aDnWlkHpbo7a+MxJpwljNhe5tiHgaVV5QGd9cb+gasgHL7/mifq29OHxQYZnppml7Vu1GBH929pd5xI0alX//R4kUpyc9EI0vRV17j5r/ynKnRXqMXSGp548XSJPW8SQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0x0f.com; spf=pass smtp.mailfrom=0x0f.com; dkim=pass (1024-bit key) header.d=0x0f.com header.i=@0x0f.com header.b=c8q+WXtx; arc=none smtp.client-ip=209.85.214.171
+	 MIME-Version; b=RhEzOWDszYMt6qvqt4SyRLDzo81+yLJLWdQCNg6KugAnNVoKwZqYO/1CpIgLv3gbUhKJSlaph2efudjOS/W3oNS0wipPbWDwpzYhdifKaqr+XhlbtKTFED3Z2dC10qFe/DgU/jkmMJcNK00Tg/f+7LlHyVrb5VnbFpAxwsbaHjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0x0f.com; spf=pass smtp.mailfrom=0x0f.com; dkim=pass (1024-bit key) header.d=0x0f.com header.i=@0x0f.com header.b=fgWqE3/k; arc=none smtp.client-ip=209.85.214.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0x0f.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0x0f.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2a0c20ee83dso143599435ad.2
-        for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 19:43:32 -0800 (PST)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-29f1bc40b35so196703685ad.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Dec 2025 19:43:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google; t=1767239012; x=1767843812; darn=vger.kernel.org;
+        d=0x0f.com; s=google; t=1767239014; x=1767843814; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3R7Le6o7LyefQQtq81DgJOKcydK8/GDjnFJ/VQXismo=;
-        b=c8q+WXtx+0/qz812xIDCzNHzu9fkn+GUjEK+I2f9JySgzocKsdGsF3fCJkIHas6kXT
-         q47SftLv321R7Z1pKmLq2SvUNZQHPRk/p59AscGtWZ/VMENatVkfjN4VOls+GJmQbkBy
-         B3eIyI85FZQ+hSa7l4kfFTqhmFsB5duxBYOFw=
+        bh=/KI+UGanmxYGqAKse2EbXibaUExpozwdVeK25/oicMI=;
+        b=fgWqE3/kVObvwtDtRwE3tNfvQ7VtZQURdsQjeNvJU5xuOKFTkKOg+566sAigXLDFmi
+         P2NqNjPIGK7lO4xzMMKsR28WoWXeBOoO3mIwOlevhJWxfkrm1vQL95uOCRTEmBTgdcL/
+         uWUU8GF0/fFmcuDuinhw7X93fjMZgjeD1ANEI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767239012; x=1767843812;
+        d=1e100.net; s=20230601; t=1767239014; x=1767843814;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=3R7Le6o7LyefQQtq81DgJOKcydK8/GDjnFJ/VQXismo=;
-        b=MPnl2ib3y04KGGpyFJ9X8rRVI0dsvqle/JISME1tZErduTavKKC4IUxtcmPn7AUAQJ
-         +/FryvbiOkoM99CFvlHqnpEpLv287Hf0j9QNj7GgN+QuZt/Sjo814WXF32615BSU+A7M
-         eiBqXbOUJpoklnGiWTWnUxHP3eg0cK8+1cZ30OnymVvp855RLNpyenEnUKIm+qgsTuUw
-         vizVa1KAfI2ttVYgYU6FXDPJKVKM5kPrXoF8Iop8POzoiHzuIkqKryjDsB4RxLGwK3fj
-         2/ZeqFHOnqA4E1X6Z5HkaRl+4bxMPQ5kUsC79kQKSSofO9vOBawNzIy6WgxYR9stlhY/
-         lwbQ==
-X-Gm-Message-State: AOJu0YwnEj2Q2Rdi77UjB3pTbXQrns3X9X9Kd4JH6WzhrevMUUbqcU6Q
-	eia02ZE5X1t/J5ZIZdswS137cDj/kwEIv/DzYr6a8mbsM23Bfoiih8kaHN3aUqSzuYQ=
-X-Gm-Gg: AY/fxX7wYbn5azSM63byfj4xOhc0wr2ub2fbQaeFeGAggr1be3TRzMPC8qT2XHI1Z3t
-	/Q/XwYeIqteD3NPk+wvuN8ORIhTARTSbYPqL3MPaa0l5lDoMLj36468k4FywtWWYnQ9Vd4xwrk6
-	zniCbfaNOCCaxaYkJqXCjdzf1MygTQXDpF93aqVgpbH+U864EzdcI0c+JbI2IW7TAzbefGyjUkT
-	QBxSldULf7ss2Bk9kTn4F98ADhorqgSzOUyz8qjOEw4qx633CI17nA0NmLj4bffzTaXnZcJTk6Q
-	umKDPv2bkw+S4pbkvVeT7xzPNONS0k1FlYyrb6291lD6sRSyKkFO7LiubMBTKD5lJqAtOJ1n9iO
-	5yuAwokY509aXVfZvpbhGUMIiVh2LBwk03KNtkG66z7TVftdbozB8eZ7VZbxqXt2ZyAsXLAnggh
-	PCnbyhyb2ifna5ufVYEMVYaocXMlTBP+TLzh8S+qOFIBw60yZhKG5D
-X-Google-Smtp-Source: AGHT+IFTcMjqbQo6r79oHp3sjUI0kyb5M5mVknZJSBm6b6l4a5CPZBWI/hK37CSIEBUg2VwCq7BKNQ==
-X-Received: by 2002:a17:903:4b27:b0:2a0:c1be:f436 with SMTP id d9443c01a7336-2a2f2c5eacdmr379675025ad.59.1767239012235;
-        Wed, 31 Dec 2025 19:43:32 -0800 (PST)
+        bh=/KI+UGanmxYGqAKse2EbXibaUExpozwdVeK25/oicMI=;
+        b=Rk+77TsUhqrWQiw/j6FaqfeclfVC2GLp0SlMpn0u5EbQDyGQLJU8uP6jIkYdZ7C7FU
+         Bz2ratitgd0u0tJgbv0cs/xzwrlSqkMPVDcMoFWeHJc5mlziyyuf32Au+G/jFlFukxvR
+         HQpzk82za2tQo4Su6akXO+jjHxRvWPOX79aSGNIOwQ+X/BsUjxmcSeQVRE71qRBRkrz4
+         f/8hkEjBnCrk8/weVTauSsrv7D90uQnePPZGTzAirrEsHMDpFROBspWM5KsaCGDDEzCn
+         zayQgVZGokOa5jtOLWBKpz+ZP3+XueQ3OWLKHyN63MRoS+rxCH0gtBkPmPC3pPylopIO
+         r9HQ==
+X-Gm-Message-State: AOJu0Yw3kog81jWGwtWf2sgn5jQ1ONKnl+Ydjjh8uNcYCFkbK7Qnzqx+
+	sKftQO7uftEtTsRcZ4M8VXWcw+nWRA0c5oLRMTwRPl2fQ2TSYvKFcxwDIgMiQFlPUTI=
+X-Gm-Gg: AY/fxX4urZg1ObojwBsRHECN67yzi7FjXeJTWlTjetVvI5zXA+ts5rCmAqwsgYWLcPn
+	QRu+f2PrJiwvkpeeeOMmoMM90YdpHE0WbzfPloiEc+F5z+AA9q0rLvQ8vZ0N0xZoFY0xM1+tb3N
+	Au2TP5OY3I3w6Yjciokl9UqNBQQL3iKBblok4nZbFxs+mcV3XxWqlTP+VeGcGkZl/zb5iSPvRt9
+	SZAW7Lo++F7SJjLVdvwVchSdKabkUf/W+hiASWITGQjLTMtkRUPAUoheN6C8R+pGn3q3xYF/rWM
+	zp8lHKYNkJiCLwitZXn0Cq8t8QXHQaZL12+qDtk7mM5f57IxlbwJX5OPoJKzFPg7kYqJbZQ8Rr5
+	P4gNzqnINMD1kAmZ66OvZh7lJIoy2BSoN1d6ckS7n7d0nw+etEZQmH3nrnCi0ee2gCAJl83oMaV
+	1DER9uDrIXpNk8raQx2G2hsWecwxkYXHHn6t8mrRQDNIKn5o7addhD
+X-Google-Smtp-Source: AGHT+IFP/Po4KbsYeJgW+vqwUnVd6wIylfBCZgy7LIUD5OSHe88aJPgScWN7w+I9m/BZkSpnQJSIYg==
+X-Received: by 2002:a17:902:e747:b0:2a0:b02b:2114 with SMTP id d9443c01a7336-2a2f220697cmr371104935ad.11.1767239014441;
+        Wed, 31 Dec 2025 19:43:34 -0800 (PST)
 Received: from shiro (p1536247-ipxg00c01sizuokaden.shizuoka.ocn.ne.jp. [122.26.212.247])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a2f3c8286esm340437965ad.33.2025.12.31.19.43.30
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a2f3c8286esm340437965ad.33.2025.12.31.19.43.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Dec 2025 19:43:31 -0800 (PST)
+        Wed, 31 Dec 2025 19:43:34 -0800 (PST)
 From: Daniel Palmer <daniel@0x0f.com>
 To: krzk+dt@kernel.org,
 	romain.perier@gmail.com,
@@ -77,9 +77,9 @@ To: krzk+dt@kernel.org,
 Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH v2 2/8] arm: dts: mstar: breadbee: Correct regulator names
-Date: Thu,  1 Jan 2026 12:43:00 +0900
-Message-ID: <20260101034306.1233091-3-daniel@0x0f.com>
+Subject: [PATCH v2 3/8] arm: dts: mstar: breadbee: Correct LED names
+Date: Thu,  1 Jan 2026 12:43:01 +0900
+Message-ID: <20260101034306.1233091-4-daniel@0x0f.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260101034306.1233091-1-daniel@0x0f.com>
 References: <20260101034306.1233091-1-daniel@0x0f.com>
@@ -91,46 +91,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The regulator names had a "@<n>" in them so the dt validation
-stuff wanted a reg property. Fix the names to match what the regulator
-is for and remove the "@<n>" bit.
+The dt validation stuff whats the names of the leds to match
+a regexp.
+
+Prefix the names with "led-" to make the validation happy.
 
 Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 ---
- .../boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi  | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi    | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm/boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi b/arch/arm/boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi
-index 507ff2fba837..99f5a5603dc7 100644
+index 99f5a5603dc7..71da10d9228f 100644
 --- a/arch/arm/boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi
 +++ b/arch/arm/boot/dts/sigmastar/mstar-infinity-breadbee-common.dtsi
-@@ -7,7 +7,7 @@
- #include <dt-bindings/gpio/gpio.h>
+@@ -33,11 +33,11 @@ vcc_io: regulator-io {
  
- / {
--	vcc_core: fixedregulator@0 {
-+	vcc_core: regulator-core {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_core";
- 		regulator-min-microvolt = <1000000>;
-@@ -15,7 +15,7 @@ vcc_core: fixedregulator@0 {
- 		regulator-boot-on;
- 	};
- 
--	vcc_dram: fixedregulator@1 {
-+	vcc_dram: regulator-dram {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_dram";
- 		regulator-min-microvolt = <1800000>;
-@@ -23,7 +23,7 @@ vcc_dram: fixedregulator@1 {
- 		regulator-boot-on;
- 	};
- 
--	vcc_io: fixedregulator@2 {
-+	vcc_io: regulator-io {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_io";
- 		regulator-min-microvolt = <3300000>;
+ 	leds {
+ 		compatible = "gpio-leds";
+-		red {
++		led-red {
+ 			gpios = <&gpio MSC313_GPIO_SR_IO16 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "activity";
+ 		};
+-		yellow {
++		led-yellow {
+ 			gpios = <&gpio MSC313_GPIO_SR_IO17 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+ 		};
 -- 
 2.51.0
 
