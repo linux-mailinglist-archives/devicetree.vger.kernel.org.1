@@ -1,154 +1,130 @@
-Return-Path: <devicetree+bounces-250970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FDBBCED4A1
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 20:05:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1751CED51D
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 21:05:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CDDA8300095F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 19:05:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9E47E30062D4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 20:05:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94E5E2BDC26;
-	Thu,  1 Jan 2026 19:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E30852F3612;
+	Thu,  1 Jan 2026 20:05:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b0uHkHFz"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IK9c8aa4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A75A231A3B;
-	Thu,  1 Jan 2026 19:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB526187346;
+	Thu,  1 Jan 2026 20:05:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767294338; cv=none; b=IylNquV4CdWe7iAf4QLbpsLqxNmDrHlQyeFPfpPBShPTckgYg3BGWk5xSuYi+bkafcYKr5/aIt3bNXZwO/L42tNr8hgaLudUbPhEG3J717gchkKlePHpa5wM1HZWk6fLxIU1O4XMzwQjLiYQwuHClo8y3fP0hAOZISv58uR1bJs=
+	t=1767297925; cv=none; b=p5I3EUGTK7GvTPVXqoRGB4REsxnMlMgFRFp6CkxOXOh1pSmrhjNhMvYzQiLQ8VJQ2LGDG/FxkTN4p1/LRFIapv5qNa5LjLVj3ItnJhIck6S5Yrd2v6i9XqKZwv+/X9rZFFZ4wU3wTGymhhNPI471ztdVQ8J7eiPpvz0h8SgoouQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767294338; c=relaxed/simple;
-	bh=mseGt6+VHgHN7F4TpAc+qL+VGig9rDMl7YN6BM1+ev8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=rKEanogcPnQ6Kw/jIb4PMNouNgPPihRZPeNcyu5+sGXrijh3MyujShux55+LyG3hz2veulsvJLyCZ6WGl4+IWTs3ADV37C+OQImzseGxnuqEHNt6XpH8LC0siik4ddk6AaE78e4rcDGWiF/QR1IVfthI4pAyC+GW0bDaFVaHNd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b0uHkHFz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7332C4CEF7;
-	Thu,  1 Jan 2026 19:05:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767294338;
-	bh=mseGt6+VHgHN7F4TpAc+qL+VGig9rDMl7YN6BM1+ev8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=b0uHkHFzr4KV7ajqa51J9yc08IaeWzmeQ80SP1tI5zE4dUUiwy4+hN6Da/ZNEoi43
-	 bB/jsXsQEv3lQ8aUP6I3CCjT/pJkPedmr/g+/d+rYdjFqutNmvzCXvZKgMTsyokL5/
-	 nu9fmXCLhIw/zSJ5gqDDMHN5HxrWljhATnNM9KCosZTgN6zpCBoMv78zqFbe3ho9Ld
-	 fFMOAnq1tr4Bdiv6XG4UGl0XvpdMoyNHhgrg+uIfiKavKZTlaHIe2Al7Ig6wU8gOlI
-	 CZUt30xPP0c9Ij0CVwGYupUOBvILl8ZX5mnbjFh/0SN7X06cBNkXCE8PQB14loNa4J
-	 uK/hzwCPfgNrQ==
-Date: Thu, 01 Jan 2026 13:05:36 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1767297925; c=relaxed/simple;
+	bh=vdDv9HA8R9igJbDmUe3gTGabgP9f8/50BOxgIAY2eCM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bMewlvrcUmj440G6GPa8vXPs4c+OiCtisSnWSRi3Ud46qdoDqRUALupgDFipHnZse21J36yU6BHjliTvnYnwto7J3iJdaAGiqWikfYhv2hNq7I9VA/I9E5t6Nw0n2U+5oTwUIcGKm+gSiizY8Or/JO/LhOca2Oet1eIZq8YvkBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IK9c8aa4; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1767297924; x=1798833924;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=vdDv9HA8R9igJbDmUe3gTGabgP9f8/50BOxgIAY2eCM=;
+  b=IK9c8aa40oSSnnHc4d4UiIqnvbAmELRLkFjWZ0I5/rKV7ruIBV16c1Ok
+   TPTUpfBdKp6OSpyMgKnA3l2gt1Kv+2TCqzAWQ17ZkH0cMqGOi5+3zoH4m
+   OaXeTa0RfKbisMH6Ky+aMhs9NWH2nHEJSRdlEjAJfND/+bCwzgIHYbCRu
+   iDHniBCBZkBU9KQFJ70uyyVClfsry90qDypuj+zW7OazvIuXYkz0xEEL1
+   k0OBjgLfFUGWC4a5CiM06n1waE+LSYAKGsTSjRSTykCNl3iqs7y+sH6J5
+   VI0ysyHwFCHjwnAj+u+14jSIzXCZ2Z5o3i4zMSOy0BCDuCh4ms/S9yDOx
+   Q==;
+X-CSE-ConnectionGUID: Z2qNllsiSEmjmrpPj+PtUw==
+X-CSE-MsgGUID: clCP8G2aQEuRB+HJNc5KnQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11658"; a="80192783"
+X-IronPort-AV: E=Sophos;i="6.21,195,1763452800"; 
+   d="scan'208";a="80192783"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jan 2026 12:05:23 -0800
+X-CSE-ConnectionGUID: uRDRV/EzSgqsP/9eyhU8Qg==
+X-CSE-MsgGUID: eUtytS4wQhaouEHawNgetg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,195,1763452800"; 
+   d="scan'208";a="206736945"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.249])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jan 2026 12:05:18 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 87A3411F87B;
+	Thu, 01 Jan 2026 22:05:28 +0200 (EET)
+Date: Thu, 1 Jan 2026 22:05:28 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
+To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 2/2] media: i2c: add os05b10 image sensor driver
+Message-ID: <aVbTiM35Z_64mwFA@kekkonen.localdomain>
+References: <20251231070645.16434-1-himanshu.bhavani@siliconsignals.io>
+ <20251231070645.16434-3-himanshu.bhavani@siliconsignals.io>
+ <8838a2f3-4eec-42ee-88ee-55a71f789037@linaro.org>
+ <PN0P287MB2019969BACCD6EF1325BE3069ABAA@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Michael Ellerman <mpe@ellerman.id.au>, 
- Krzysztof Kozlowski <krzk@kernel.org>, linux-mtd@lists.infradead.org, 
- Naveen N Rao <naveen@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, 
- Nicholas Piggin <npiggin@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linuxppc-dev@lists.ozlabs.org, 
- Christophe Leroy <chleroy@kernel.org>, David Airlie <airlied@gmail.com>, 
- Crystal Wood <oss@buserror.net>, linux-kernel@vger.kernel.org, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- Simona Vetter <simona@ffwll.ch>, Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Conor Dooley <conor+dt@kernel.org>, 
- Frank Li <Frank.Li@nxp.com>
-To: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-In-Reply-To: <20260101-ppcyaml-elbc-v5-4-251c7f14a06c@posteo.net>
-References: <20260101-ppcyaml-elbc-v5-0-251c7f14a06c@posteo.net>
- <20260101-ppcyaml-elbc-v5-4-251c7f14a06c@posteo.net>
-Message-Id: <176729433680.1704817.8344719442516572763.robh@kernel.org>
-Subject: Re: [PATCH RESEND v5 4/4] dt-bindings: memory-controllers: Convert
- fsl,elbc to YAML
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PN0P287MB2019969BACCD6EF1325BE3069ABAA@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
 
+Hi Himanshu,
 
-On Thu, 01 Jan 2026 17:58:17 +0100, J. Neusch√§fer wrote:
-> Convert the Freescale localbus controller bindings from text form to
-> YAML. Compared to the .txt version, the YAML binding contains a new
-> usage example with FCM NAND flash, and a full list of compatible strings
-> based on current usage in arch/powerpc/boot/dts/.
+On Thu, Jan 01, 2026 at 06:19:02AM +0000, Himanshu Bhavani wrote:
+> >> +#define OS05B10_PIXEL_RATE†††††††††† (480 * HZ_PER_MHZ)
+> >
+> >Here pixel rate should not be hardcoded, it'd be computed in runtime
+> >as 600MHz * 2 * 4 lanes / 10 bpp = 480MHz.
+> >
+> >The sensor may be wired over 2 lanes or (presumably) it can stream 8 bpp data.
 > 
-> Note that the both the compatible strings and the unit address format
-> are kept as-is, for compatibility with existing kernels and device
-> trees, as well as unit address readability. This results in dts
-> validation warnings:
-> 
->   Warning (simple_bus_reg): /example-0/localbus@f0010100/board-control@1,0:
->   simple-bus unit address format error, expected "100000000"
-> 
-> Signed-off-by: J. Neusch√§fer <j.ne@posteo.net>
-> ---
-> 
-> V5:
-> - fix reference to fsl/lbc.txt in
->   Documentation/devicetree/bindings/display/ssd1289fb.txt
-> 
-> V4:
-> - no changes
-> 
-> V3:
-> - move this patch after the GPCM/FCM patches to dtschema/dtc warnings
->   due to missing bindings for fsl,elbc-gpcm-uio and fsl,elbc-fcm-nand
-> - add "simple-bus" again, for compatibility with existing DTs/drivers
->   based on discussion with Crystal Wood and Rob Herring
-> - fix fsl,pq2-localbus compatible properties based on mgcoge.dts / ep8248e.dts
->   (was missing "simple-bus")
-> - add board-control (bcsr) example again, now using the compatible
->   string listed in Documentation/devicetree/bindings/board/fsl,bcsr.yaml
-> - remove interrupt-parent property from example
-> - rework the commit message
-> 
-> V2:
-> - fix order of properties in examples, according to dts coding style
-> - move to Documentation/devicetree/bindings/memory-controllers
-> - clarify the commit message a tiny bit
-> - remove unnecessary multiline markers (|)
-> - define address format in patternProperties
-> - trim subject line (remove "binding")
-> - remove use of "simple-bus", because it's technically incorrect
-> ---
->  .../devicetree/bindings/display/ssd1289fb.txt      |   2 +-
->  .../bindings/memory-controllers/fsl,elbc.yaml      | 158 +++++++++++++++++++++
->  .../devicetree/bindings/powerpc/fsl/lbc.txt        |  43 ------
->  3 files changed, 159 insertions(+), 44 deletions(-)
-> 
+> We are not supporting 2 lanes right now, driver supports only for 4 lanes and 
+> 10 bpp data. So technically OS05B10_PIXEL_RATE will never change.
+> For reference I will add OS05B10_PIXEL_RATE calculation in comments.
+> I would prefer the hardcoded at the moment. Other than this comment 
+> I will resolve and send new version.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+The pixel rate on the pixel array may be disconnected from the link
+frequency (and throughput) -- it may be more (with e.g. binning) or less,
+depending on the sensor of course. Calculating it, if possible, is always
+better than using a fixed value; experience has shown these are often
+simply incorrect and sometimes not updated when other changes are made (and
+same goes for the link frequency).
 
-yamllint warnings/errors:
+-- 
+Kind regards,
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:29.23-34.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/flash@0,0: simple-bus unit address format error, expected "0"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:36.31-39.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/board-control@1,0: simple-bus unit address format error, expected "100000000"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:41.31-46.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/simple-periph@2,0: simple-bus unit address format error, expected "200000000"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:82.23-89.15: Warning (simple_bus_reg): /example-1/localbus@e0005000/flash@0,0: simple-bus unit address format error, expected "0"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:91.22-97.15: Warning (simple_bus_reg): /example-1/localbus@e0005000/nand@1,0: simple-bus unit address format error, expected "100000000"
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260101-ppcyaml-elbc-v5-4-251c7f14a06c@posteo.net
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Sakari Ailus
 
