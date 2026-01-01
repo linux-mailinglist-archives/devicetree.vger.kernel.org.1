@@ -1,103 +1,125 @@
-Return-Path: <devicetree+bounces-250944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 987A2CED290
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 17:25:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7FA3CED2F9
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 17:57:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 59B4A30056E0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 16:25:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5E6973002D0E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 16:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D6072EC54C;
-	Thu,  1 Jan 2026 16:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CFEC2EDD70;
+	Thu,  1 Jan 2026 16:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gS36cKCF"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="rXGQB1LY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF69E2C0F72
-	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 16:25:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A83E22F01;
+	Thu,  1 Jan 2026 16:57:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767284754; cv=none; b=IaHa1Xw0wvNhp3Q4LNHKmz1J+tdGu0hZujJicdYBwhn3FfCVopuND3IprwPKpdBAve7FmDXGB/waEFpPtVDfkzDfxBFTb2WrKz5RTRtp/Fp3AHRQsj2LodI5dx9/d9dFGLc7OqiJr/TsjUGFJHSrm1QJ06rL2AjvZ/EWBuzPGdg=
+	t=1767286668; cv=none; b=frbUz60YpCMpmAnUjY2v/HrZEDmPuhf10cNlibwXWDe+DmHz0d61+/0VkwQEwYTtYKXS3Yi5gHfeda7KoQlTZwNHdyKxp7/x8AwZ733o4hfYp4o6KqfoSYajtvqSTixUQoRmpExIoXU+wZkhf9bJ+WdAC3smm07w2c4yzePgrHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767284754; c=relaxed/simple;
-	bh=2r4VTLT9xan+mgLSR2xWbBRlHL+FGtUT3aWVAlc1cS4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gesHA7jMtEFb7FLSA6jixdmUX1XAUB4ERuZlWi5np2lFD0kUkLS2JbppNSgUzNpEp5cqPaiaC5QCYjIZyX+9g6YmdoHORXpzCSjwMBPtbKvr+sfPmQEHG7YS1e0WJLeaKmgtds/JVDUeqSp7Gck5pgeJqdTQvr69NuN3aRni4kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gS36cKCF; arc=none smtp.client-ip=209.85.218.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f67.google.com with SMTP id a640c23a62f3a-b728a43e410so2195024266b.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jan 2026 08:25:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767284751; x=1767889551; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2r4VTLT9xan+mgLSR2xWbBRlHL+FGtUT3aWVAlc1cS4=;
-        b=gS36cKCFinc87Dfh4Imjym0wPJokOyI6zr6kex3LATuW3/y/dJbziCVrB77zfzTz4A
-         4V7UOcyh5Tvntn6qOHZoF8zZFjZTz/KJ9R/8RGw1L5YXHnsi+FzLWpMuRBBs7DjR0dI2
-         D0zSjEJhsYhNcSJQxu0rqGH9gWvru/zxXD3QopuBonHN/pa1aJavOXbNYfXRAqyarbal
-         VXpndEIwWX0S69rGxMlqGUtck+dUIDn1Zm1xz3dqa1SaCMS7TtM+f3rjxDEzRowsqCoI
-         U4EWtPM6NYa+efhTtkON/ZHkKbras0XvHpGAGTBtryEjyQRMe9h9wu19kp1blY8PhUqN
-         Arow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767284751; x=1767889551;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2r4VTLT9xan+mgLSR2xWbBRlHL+FGtUT3aWVAlc1cS4=;
-        b=aE2XXbwZ+K3FzuAVVYqLO62fYHWzwIktDVT+4HSW4GEk9doScrhPEcd93TjXXZ1lNQ
-         izcFl0UjFFYASkqktDyVXsifcK6rMy35jrvFV+7comHNW5AESA7RScUgtkx368/PvDz3
-         +YYZhcAkKoPJ2SDYEX1n30SnXwr6OjXxrS3780SF3H7rQTduN8BirdEfjr1dVOhVc+Sk
-         bTRLf0yv2lUde16Ifwu9Rql4SzWNa9o/OL8wTIZ2Vmj9X9Ui1arvbrg8hjd+gu68VACp
-         hlTdjqaQrdIKws6g4JdZkLiD9nF9C0T2drgH0Gw6gbPOooXqk1jNRWwuRMtgkxvEdy+U
-         VxDA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjbBOciLjeDQhsAMCFrNquBlxhazhT3l0GHSW4/Izngy+iir5FeSpmm96bs3DlV+bJA5zgXlS4yb1J@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWy1kFnRrqhjv9O7xZTSQTNX/pVNQxR/O7RDJKdG5wVpebBjF3
-	6hcLAQyETQkmksqqobYRMCZ/iPbNpCNf5NlVCFbQ7ExGgBC/nlytjhqCfTcW3sv3mpr2jkwpr/D
-	D1bDE6azW0q523+vNlLyFz6D+Lsr2EII=
-X-Gm-Gg: AY/fxX4fCUY2gSwS1Ew3ovhv/grgvg7HitTDNeWUzgsa8nXCR3m1mqbYq59ZVIPUMTZ
-	kIPzhj87mCj5JAagzIQlQl6mZpYEh3Njr17Tac2XjgvkZ5h1jk+CptFNT7GqHHq5TxaNLd3nMAF
-	4vSqX/WUak2Hd2T++AKfmd4O5uJMl1K8d2fBUoEVftm6fhT9plNpB031gu69VrCE+SPAX14ptjD
-	Aya8lzYfO6iECcqBNwZcEFsIt5PKi0J0LvC7xVaXS/xa+bKCoO4+2h/FC4aOgjJ6JvKHcw=
-X-Google-Smtp-Source: AGHT+IEjVDdR44NrCRbTMZck7fShtWvQJES837s/kqS3/7QCo/r7wj5KNn22/vOnGrhf6Fau3jxa7OrP0/qvVBOFOJA=
-X-Received: by 2002:a17:906:730f:b0:b73:9937:e96b with SMTP id
- a640c23a62f3a-b8037183903mr4408428666b.52.1767284750947; Thu, 01 Jan 2026
- 08:25:50 -0800 (PST)
+	s=arc-20240116; t=1767286668; c=relaxed/simple;
+	bh=t34bAUbZkTE3XnJnjfdrbLVgvucIxRaGkiaDw//WMLk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fVUEExoOo74YK5pklJtGjMWIsjQp9BZ99y1vSXeOaq+57C5+gt/p6C8lm0Hg38RKOvDeFBywUWQMoPT8hpuk7xH/7uD0TiFLyZMVBHculTIuw/MV8s4at0LSuUOqKzYz7TrWnNFPfxcDH6GbUKysayQJkxXEl//3aJFm1FVrZVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=rXGQB1LY; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dhtKy5gdlz9sJG;
+	Thu,  1 Jan 2026 17:57:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767286662;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UwhbiH2i/ANAo8+Wch6/HUZJO5n6DwRlRD01nwzx8Ks=;
+	b=rXGQB1LYkbEvVkSNsX47TyNne9IPu2vluqViPLO0Fty919Nx3pbgT/jEtVHbbYdNhWDQ6x
+	I2bZulzHV3RA1ofyCei2a2VwEDM1cyFyWKp4yY6baAbSWd6cjbG21PxYtTW5ONie3c91Ar
+	Q3x0Am/w+eU6tPlCjGaHGc6xO1enuwvMiJ1IEJVkA3E0OOG2dxdT+gB5e7f5/7+pHO0kkW
+	JOW9Tha6mjXB9HE7DC6gL4uCJTVLmrrb+jr0+A77VgS5B/VdcSOIJ6g+fQsb19Zhw87T60
+	FDi/EDk+eX8NGx31EVhi4be97Zl7uBToY7PRC4/5ppcCuUTiRijCMr3l5JrVZg==
+Message-ID: <b2dd2109-c2d9-412e-9b11-5851485acf04@mailbox.org>
+Date: Thu, 1 Jan 2026 17:51:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251221083902.134098-1-raskar.shree97@gmail.com>
- <20251227174559.33539640@jic23-huawei> <CAHc1_P6m11M=1bP-0k_ndgtkLtfnkSCMScznCC+HnWWQ1XtGHw@mail.gmail.com>
- <20251231170819.0365d731@jic23-huawei>
-In-Reply-To: <20251231170819.0365d731@jic23-huawei>
-From: Shrikant <raskar.shree97@gmail.com>
-Date: Thu, 1 Jan 2026 21:55:39 +0530
-X-Gm-Features: AQt7F2r-A_88P4yhFxjZCiTWn8IBbIceztKgquaZJfVxkPOxlc5xnP_KYHRZcm4
-Message-ID: <CAHc1_P4TPzWVMrcrn-Jt23a2GF6+a2BDrFyt99b6m7ao98PKuw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] iio: proximity: Add interrupt support for RFD77402
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, heiko@sntech.de, 
-	neil.armstrong@linaro.org, skhan@linuxfoundation.org, 
-	david.hunter.linux@gmail.com, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH] arm64: dts: imx95: remove CLK_GPUAPB
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: Frank.Li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ festevam@gmail.com, imx@lists.linux.dev, jiyu.yang@nxp.com,
+ kernel@pengutronix.de, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ liviu.dudau@arm.com, robh@kernel.org, s.hauer@pengutronix.de,
+ shawnguo@kernel.org
+References: <20251231031915.752262-1-jiyu.yang@oss.nxp.com>
+ <37489cb7-820d-46cd-a7ea-0f9097604895@mailbox.org>
+ <aVXByNiEfC66RDG0@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aVXByNiEfC66RDG0@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 8f8f6702e7912ba6456
+X-MBO-RS-META: ustjw9ys9hf7hrrizs4wzjh54u9p1ppq
 
-> If you continue having problems, take a look at the b4 tool
-> and it's options for using a web gateway.
->
-> https://b4.docs.kernel.org/en/latest/
-> sending your work.
-Hello Jonathan,
-Thank you so much for sharing the b4 documentation. I have successfully
-submitted the v4 patch-series using the b4 tool.
+On 1/1/26 1:37 AM, Rain Yang wrote:
+> On Wed, Dec 31, 2025 at 03:11:21PM +0100, Marek Vasut wrote:
+>> On 12/31/25 4:19 AM, Rain Yang wrote:
+>>> From: Rain Yang <jiyu.yang@nxp.com>
+>>>
+>>> Dropping CLK_GPUAPB simplifies OPP handling and avoids unnecessary
+>>> complexity.
+>>>
+>>> Fixes: 67934f248e64 ("arm64: dts: imx95: Describe Mali G310 GPU")
+>>> Signed-off-by: Rain Yang <jiyu.yang@nxp.com>
+>>> ---
+>>>    arch/arm64/boot/dts/freescale/imx95.dtsi | 4 ++--
+>>>    1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+>>> index 88bde59e61b2..ab446aa6f73c 100644
+>>> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+>>> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+>>> @@ -2164,8 +2164,8 @@ netc_emdio: mdio@0,0 {
+>>>    		gpu: gpu@4d900000 {
+>>>    			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
+>>>    			reg = <0 0x4d900000 0 0x480000>;
+>>> -			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>, <&scmi_clk IMX95_CLK_GPUAPB>;
+>>> -			clock-names = "core", "coregroup";
+>>> +			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>;
+>>> +			clock-names = "core";
+>>
+>> I don't think this is correct, SM can disable the GPUAPB clock from the SM
+>> monitor:
+>>
+>>> $ clock.w gpuapb off
+>>
+>> Linux has to make sure the GPUAPB clock are enabled to access the GPU
+>> register, hence the clock have to be described in DT.
+> Hi Marek,
 
-Regards,
-Shrikant
+Hello Jiyu,
+
+> CLK_GPU and CLK_GPUAPB can only be controlled internally by the SM, not by Linux.
+> CLK_GPUAPB always runs at a fixed frequency, does not require dynamic adjustment,
+> and is practically always on.
+> Additionally, CLK_GPUAPB's frequency is absent from all OPP entries. Removing it
+> could simplify OPP handling logic and reduce unnecessary complexity.
+
+But the SM can turn the GPUAPB clock off, correct ?
+
+Linux has to be able to turn GPUAPB clock on, therefore the GPUAPB clock 
+have to be described in DT, correct ?
 
