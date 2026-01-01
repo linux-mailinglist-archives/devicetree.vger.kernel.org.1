@@ -1,134 +1,105 @@
-Return-Path: <devicetree+bounces-250953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19366CED354
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 18:09:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E2BCED35D
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 18:12:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 10142300763F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 17:09:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E806D3006F4B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 17:12:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21832EFDAF;
-	Thu,  1 Jan 2026 17:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 157902EFDBF;
+	Thu,  1 Jan 2026 17:12:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N5VXkK2C"
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="kFW7bhvN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B782EF660;
-	Thu,  1 Jan 2026 17:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38AF2EFD9E
+	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 17:12:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767287395; cv=none; b=jIBthVjlNyNntXgY7ea5V6Gnh/AMTV66QhvI91nobbH6qt9+jhOSsvDLsaNzQrDREyWTtWUnf77+4VWhuRyTAqaiqzG3UbatdUmL38McDb3SiICTRCGVHV3iIDM345VDxRdgZZ4ZD+yKfSa1v6ttqel635jQsKOoOiUGapemdFs=
+	t=1767287542; cv=none; b=o1EEDOwBxGt2/gwZIeIDoKZQSh1K1zo1m7DgtW/7xrZK5+R+eWxlNkkFHBtafpHjEEGDhjdHN1AuXM+9KI5F/pOOy8XyGZYkwxSlfhpMqbh2/zOurynXRdRzaBePilIQZ68gxSpLXrZlUMDe1Ob0Le9ifJTfWyV8Nq0dfxmnnDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767287395; c=relaxed/simple;
-	bh=I3C57r6azO48yZzyNuNe6/kxRiFpeGaZXr+2V6WEkW0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=rOI1oGBn87Wbk3tkUTEROZvZBgVchXcqUifT4aPURnSmCMI5SYZ2L1pyjB1fW6CTZHyhMKy1QNUd95BCfe12/fNNO/sNn+METGDbQ6f9OKTRUtc5Ic9PdzzWlqisOp6FQAIGywEXWywBGGEUmPK7ipPwFxDhkC4K4TPicWfeA2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N5VXkK2C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3D553C4CEF7;
-	Thu,  1 Jan 2026 17:09:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767287395;
-	bh=I3C57r6azO48yZzyNuNe6/kxRiFpeGaZXr+2V6WEkW0=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=N5VXkK2CHJbn9UhLJ40jV1k4kpHWbQWlBvTKWq7AjitLOHY9Vm70wEtlELsndB4Ze
-	 Ek6XxkNtt4FoJL/lTcHOTM4GB9TAMzXVvq/+Xs1tMTLgNd2MrdpH+uxPPjgeIXpahU
-	 XCYVMchocehn1VzImJgy73nn0umw6OLZ9wm1M1ZJXEx+rUk0yQLpFasPQDw+gx3z1K
-	 l9C15515E+ciitIbvgR6pOEC5y3kuQSuWZNUQKCcfXt4EAFbS62SClI3RyjY2t+Bf7
-	 DdjXrl7cYj6/u7U5C0aRF8SYRP5iv9lvELLQlwbDLW4EGIQeeBi/Ubbut9Ip3PxHRe
-	 +fj876zZGyeZQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BAFDEED626;
-	Thu,  1 Jan 2026 17:09:55 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Thu, 01 Jan 2026 18:09:46 +0100
-Subject: [PATCH] powerpc: DTS: mpc8313erdb: Add timer@*/clock-frequency
- properties
+	s=arc-20240116; t=1767287542; c=relaxed/simple;
+	bh=rnjOeI1AkNjJXoYzEwu8ftdMfRCYM9kz3NFT+/aiEgc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QPLBVouC/x7f+XmKpDWBgzwyJRfeVX1rja3QwWt9p43mfnpA/TrtpurxDg/+tHmzPjom2tsZNXu7Hui9AK1MSrIxQAeZVpz58ozo1ZKdnO2arPilEqpB5mDH5sM35Wat6EjYJv5mmh5qANPxtCQniLhxjUCX5aYHHOlwc5r8XJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=kFW7bhvN; arc=none smtp.client-ip=212.77.101.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 25178 invoked from network); 1 Jan 2026 18:12:14 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1767287534; bh=NZ9wR2ReHBYF/AExO/WGqvTNzHA5m3q65auZ2OTpjQM=;
+          h=From:To:Cc:Subject;
+          b=kFW7bhvN9BxEmu+7B2mW3oWjdvnYnU+N1cWxWqg/of50k2cFP9LHWo+8rrMalhkMe
+           4g+fRhE+ypAZiJh65gQrpR09G37HoitAQDuqYu7TDW337tk6VMC2F+op4uXyxlgR9r
+           6sG7dpKJ/JeV13i03W4T8W+8OAjuqAopPYcS5aEo7+GTxFtGbtS3E7PeuheeFDqKWX
+           eYp70Ifz6bPi/JxpQ2vtWGRVu8jFP1FABtT3eJeAxT9T9RNR1SJsFQ+Jutn1Mh72gY
+           hxREG8Ry3SU0qE/tKrrKlP6S76JWbCd+tSDdLTLnKSt0+6o342U7l2SvyOPRTphh6q
+           ATf6tDaTuctOg==
+Received: from 83.5.157.18.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.5.157.18])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <ansuelsmth@gmail.com>; 1 Jan 2026 18:12:14 +0100
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+To: ansuelsmth@gmail.com,
+	herbert@gondor.apana.org.au,
+	davem@davemloft.net,
+	chester.a.unal@arinc9.com,
+	sergio.paracuellos@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	tsbogend@alpha.franken.de,
+	angelogioacchino.delregno@collabora.com,
+	linux-crypto@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
+Subject: [PATCH 1/2] dt-bindings: crypto: Add support for Mediatek MT7621 SoC
+Date: Thu,  1 Jan 2026 18:12:04 +0100
+Message-ID: <20260101171212.1861241-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260101-timer-clock-v1-1-8e467b48648e@posteo.net>
-X-B4-Tracking: v=1; b=H4sIAFmqVmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDMyNT3ZLM3NQi3eSc/ORs3VQD47REy1QLY9NkCyWgjoKi1LTMCrBp0bG
- 1tQDr05SDXQAAAA==
-X-Change-ID: 20250625-timer-clock-e03fa9e835c8
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767287394; l=1719;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=wToNi3p+7oH/fZkL7rybDw1OVJ8Mht3DHd2zANSoxwc=;
- b=EuOs6G8MKKfgu4iOPLtXislVo3FJEGSi9IB1l8K9O7U84ug/zPMUzxDSWQFrh3p3EQFb2QC5U
- 3yLS4hvMjyfBzNYMATEHlpwrNtHC4IUl+05foxoqqCqynh1udKzEJnW
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+X-WP-DKIM-Status: good (id: wp.pl)                                                      
+X-WP-MailID: 105dc3b8181124504b8ee5fad02c645f
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 0000007 [wYQR]                               
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+Add compatible for Airoha AN7583 SoC. The implementation is exactly the
+same os in the Airoha SoC.
 
-The recent formalization of the fsl,gtm schema has shown that
-mpc8313erdb.dts doesn't provide the clock-frequency property on timer
-nodes. A few different expectations collide here:
-
- - Both the binding and the driver for the Freescale global timer module
-   (GTM) have always required clock-frequency, since their addition in
-   2008 (v2.6.26-rc5-236-g83ff9dcf375c41).
- - mpc8313erdb.dts never had the timer@*/clock-frequency property, since
-   the timer nodes were added in 2008 (v2.6.26-3343-g574366128db29e)
-
-I suspect the way this worked was that the bootloader filled these
-values when booting on an MPC8313 board.
-
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202505300136.HOpO5P6y-lkp@intel.com/
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
 ---
- arch/powerpc/boot/dts/mpc8313erdb.dts | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/crypto/inside-secure,safexcel-eip93.yaml          | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/powerpc/boot/dts/mpc8313erdb.dts b/arch/powerpc/boot/dts/mpc8313erdb.dts
-index 09508b4c8c7309..0bddc3be9e62f8 100644
---- a/arch/powerpc/boot/dts/mpc8313erdb.dts
-+++ b/arch/powerpc/boot/dts/mpc8313erdb.dts
-@@ -308,6 +308,7 @@ gtm1: timer@500 {
- 			reg = <0x500 0x100>;
- 			interrupts = <90 8 78 8 84 8 72 8>;
- 			interrupt-parent = <&ipic>;
-+			clock-frequency = <0>; /* filled by bootloader */
- 		};
- 
- 		timer@600 {
-@@ -315,6 +316,7 @@ timer@600 {
- 			reg = <0x600 0x100>;
- 			interrupts = <91 8 79 8 85 8 73 8>;
- 			interrupt-parent = <&ipic>;
-+			clock-frequency = <0>; /* filled by bootloader */
- 		};
- 	};
- 
-
----
-base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
-change-id: 20250625-timer-clock-e03fa9e835c8
-
-Best regards,
+diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+index 997bf9717f9e..8ccff64f5c1c 100644
+--- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
++++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+@@ -33,6 +33,9 @@ properties:
+       - items:
+           - const: airoha,en7581-eip93
+           - const: inside-secure,safexcel-eip93ies
++      - items:
++          - const: mediatek,mt7621-eip93
++          - const: inside-secure,safexcel-eip93ies
+       - items:
+           - not: {}
+             description: Need a SoC specific compatible
 -- 
-J. Neuschäfer <j.ne@posteo.net>
-
+2.47.3
 
 
