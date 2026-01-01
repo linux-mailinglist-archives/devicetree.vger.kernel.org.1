@@ -1,147 +1,126 @@
-Return-Path: <devicetree+bounces-250985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F254CED5D6
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 22:46:24 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EB22CED5DF
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 22:58:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8CC88300B822
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 21:46:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5328F3000B02
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 21:58:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D21254B18;
-	Thu,  1 Jan 2026 21:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 516B424E4C3;
+	Thu,  1 Jan 2026 21:57:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dMkF2jd9"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="aDLDdG/9";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="J7H7YUmA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8091C481DD
-	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 21:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F68632;
+	Thu,  1 Jan 2026 21:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767303970; cv=none; b=oXI0lologeIJzfxKoAUAdbXRwrWAZ535VjVOjPYL3BlUGSx7btBBeK7NC5em6DSm4oBV1li/quUFxgxKIENkiglhPhFvSIJLuE/UkbESt+kHMhKYI81q/f1G4xFDBBptbfHpp9QHgsuOhxZyFlpOwM8sRKEbwg59VVgyRqmgjUk=
+	t=1767304678; cv=none; b=FhWu1YE3dVVqKlT8NspSosczDFElNbNHyo1URxLv+DNyLfqOLwTAtJmvFaFf4Q4iDT/5HvY/BrFVqts6NgQqBB5Ry6HpfNxZoWIbkEgeG0gv0ZdwMUPxLHAT9SNVX/vtymDMttWGfi3w0QUBpg+79dM82+RpoTE+uMfKzOxfCYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767303970; c=relaxed/simple;
-	bh=OLy6N738FY0bYNvkj+ec/gJdT2s9N3ef1h20yJTb8Mo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AEYfibUXr+ZL98cvu/TVWugh6KyMpEGub5tvo75eul/F0bxi5+7wb2oYL2oVhxyFxdqelkpfzV5DaQbXvvkdzhj3CxvF5bWK+q8Ss+Q22sQRinhw50U+B0kGrFSxlxZ4xWSikCjptVy1CH3IwFPpIMXVjxDhkXJyBHJnvTHA7KM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dMkF2jd9; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7e1651ae0d5so8977581b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jan 2026 13:46:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767303967; x=1767908767; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/qGeOIEXCnLq99CGQeQ1eWuZeDA3OumK0NUXsyjIwoc=;
-        b=dMkF2jd9VlWi9dpq4qU4dvTClKDooOO0hcGZpHiG99bS9KeFE+oWmmz/4QqgK39DeU
-         67q/1/enNoBhSCb9zxFyPZSq3vAl6mGP1ZLNa5LYoG1PpS9hkPk61UMtcR9gW5eCb2zJ
-         GQguF99XdgqgpN3cyi1W1k9FSzL+WIY/c8z5V9sz0zTMQk8Yv9DgpYX92ie0nfAyc42N
-         1HuqDtrT9757S11aZ4VPsgOGpcC55CaCqzBeU04d6TZXPkiH/JVlchvFdNgQ4n0OdFgR
-         mvej+o+E+3B/phzpPamL4zu3Ss9Mo4yUJ9XqkHjIja5GPpDownTnAJ64B6VSXp+2lQEp
-         PvTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767303967; x=1767908767;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=/qGeOIEXCnLq99CGQeQ1eWuZeDA3OumK0NUXsyjIwoc=;
-        b=t8cKHpVghnmNu/W9rNsjca2lvpkL+7D6bo+CamTTWvv7ucGBgxLo643IjEljQl3a9G
-         cqHwKc7/MhFj93vi6MnuLXbIzgUmToNuI2XL1UPVZA6XsJyPomfqisKDsojucLQ3X8Yx
-         bsC7VhX+NiQke7dFj2gfqBGsUG3aUAC/FMydKp6+RZ7jxrEMjleiLX1yyergvWbAq+x3
-         zJGVELmeKHGKEKQMvOuDA2Lq8rEbdH8znHQ81bLN7C3JhqvnzGPLcYykuoAW8QPgGqNI
-         tH1LEFlWYvRCpHH0R3d8pxvQOJhRsn+JTJHHWyoeUNPAk+MjEMaMkUfZaTENT+MKYWFc
-         Lx5A==
-X-Forwarded-Encrypted: i=1; AJvYcCXGkQLvRpnaBysjDoYBK5iJby0i80Vq71FpwkX9x6CidTd1x8NVMjaq1EyH5ek1/KNY0apEHLUAabB6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz99VhVBEx3ge+GB/SmOGJozl71BFg75DXboC7dquVq+wBtwyZE
-	ea4Lfgb1UPGyUEVvS5c2QT6j3ebY6sr5htcq8GIwSesV2DR57qpOQWWTPv9e8vbIxbDJFczHMD0
-	CSxq9PphJdRz+eTe42Fw18sauyQg8KGg=
-X-Gm-Gg: AY/fxX4o2q7Dx65XddeW8veMvsgQMZIQlZjKU3V4reoZQJufqs4UXN7zawV3s4OtmmA
-	Ot5pPVatOKjNGym+jU5aCKD5g8deZhJKMtH4UEQzHoEH2my8xTfiZ9wgjVI8WsG1/gzUqU481tT
-	EyDraLOeM3gyefC4g1ik/7SakRDxiA8xkcvj++clD/NViWGH/JrPi8LdiWaOW9kfisd64QHmMEv
-	SbT7I/ibDapU6WDTB1pVyray2agmJknmnBH/SztQ315bQmfmpspOXuoiICs3suOvAmLnF+QGgOo
-	jFLF
-X-Google-Smtp-Source: AGHT+IHSUyciBMOilIcbt7HWqVU9MizsV+4Y+vMa4rwxqp1kK6Xy4T8CKC8ooJ7UwHC5GL0rYFqcLpHFUdgExBBrRuo=
-X-Received: by 2002:a05:7022:e11:b0:11b:7dcd:ca9a with SMTP id
- a92af1059eb24-12172302438mr46279194c88.34.1767303966643; Thu, 01 Jan 2026
- 13:46:06 -0800 (PST)
+	s=arc-20240116; t=1767304678; c=relaxed/simple;
+	bh=wFGzshqpRxQlJiZVcKZdreo/deiapqPJPqnOG070a4k=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=qc0LVW3TEBq1s+/UxYHqfzYfZw8VP3Vo1XV9FkOG7fXYRETXZMa+jEOqAkOq8Fj2a5Zz1tdZbPEvfGoEelPZkdf38jqFghvY0NaM/Ji6pFpljX66i/UEIkfS6JI77FAaFBzATskmj868xrC6Red0sCJ8siU3iRwdmv4n1+4vsBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=aDLDdG/9; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=J7H7YUmA; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1767304665; bh=5wwVpGucWLa74HLyeUMxbQ7
+	S1Mk8uI3EGGdugrrYuiY=; b=aDLDdG/9EIY2pZWYegzcirK+nbhGPyRRO6+Tr+JLUesJbPGk6B
+	Jg1cWcMbgqxdd+o+7r7Sy73s7yyg9V0ZdMkGZB1PySqjcjoQ7rM2+aGqOQsFOLsFIMmKyfHnixR
+	tvaZFRf13zGneHZsyUSVC4VhN9fUZY6BhNuEfU5SKxqRAvaHWG4gaEfgJzVMLK4pTbEetCyzFIP
+	fpS+9pJAyTB2mbt9Na278kNXwr1MtAIsGWu6KdQ6yFPu7pfwIIRPd6osjE5Pt5gwa7PvA6jmVMF
+	2Pd7Ki2G0R79TWSeGJkWEOMAT6tHHiH6858jsklsMUXOUiZ0d+dAdbqDvr9A9DPlMjA==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1767304666; bh=5wwVpGucWLa74HLyeUMxbQ7
+	S1Mk8uI3EGGdugrrYuiY=; b=J7H7YUmAKg0qirxWAZ1Lhiqb8H9GG/IDjR7ISwhDy8afK9Dqa7
+	Ao5wNSKJEEuqwCtZYElvl+lmuyZZacbJ5QAA==;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260101172052.1862252-1-olek2@wp.pl> <20260101172052.1862252-2-olek2@wp.pl>
-In-Reply-To: <20260101172052.1862252-2-olek2@wp.pl>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Thu, 1 Jan 2026 22:46:19 +0100
-X-Gm-Features: AQt7F2oqocFNQmJB-3KQEF2TnEZfZsw4aObS_R4iYm5tqbcpTsbrKBpnm8uH8pk
-Message-ID: <CAMhs-H_iN7pWsis2HbeJ-xr+9JoMa+EF-+7z9e21DJ1dyNNtuw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] mips: dts: ralink: mt7621: add crypto offload support
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: ansuelsmth@gmail.com, herbert@gondor.apana.org.au, davem@davemloft.net, 
-	chester.a.unal@arinc9.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, matthias.bgg@gmail.com, tsbogend@alpha.franken.de, 
-	angelogioacchino.delregno@collabora.com, linux-crypto@vger.kernel.org, 
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Thu, 01 Jan 2026 22:57:45 +0100
+From: barnabas.czeman@mainlining.org
+To: Bryan O'Donoghue <bod@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+ <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stephan
+ Gerhold <stephan@gerhold.net>, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/9] remoteproc: qcom_q6v5_mss: Add MDM9607
+In-Reply-To: <d3bcaf7d-06ae-4410-8d7c-970fdb196c47@kernel.org>
+References: <20251231-mss-v3-0-f80e8fade9ec@mainlining.org>
+ <NLGulU4z-1Wrf5120YfX8CYJ_8DSP-9-DhaJ3KAIQCvqF9Qf184udOzFoEQH1qgJDZUl9cxEpsdyztfhcz8G-w==@protonmail.internalid>
+ <20251231-mss-v3-3-f80e8fade9ec@mainlining.org>
+ <6bfc790d-b0da-4c5b-bd2d-ceed9a75bb24@kernel.org>
+ <DEGDp05xNKls7EO30mtT70wJFIkDT0-248vPaBikWJGkFf--YvzpyJ_h5sc7RSH1y9hkCKdFRBIJwQUNE9Rlzw==@protonmail.internalid>
+ <a627abcaa38c0ba11c76c1f0c42b0c6b@mainlining.org>
+ <d3bcaf7d-06ae-4410-8d7c-970fdb196c47@kernel.org>
+Message-ID: <73d028cfdd514d6c3f073bb66fdd07cf@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Aleksander,
+On 2026-01-01 21:58, Bryan O'Donoghue wrote:
+> On 01/01/2026 13:50, barnabas.czeman@mainlining.org wrote:
+>>>> +				for (; i >= 0; i--) {
+>>>> +					val |= BIT(i);
+>>>> +					writel(val, qproc->reg_base + mem_pwr_ctl);
+>>>> +					/*
+>>>> +					 * Read back value to ensure the write is done then
+>>>> +					 * wait for 1us for both memory peripheral and data
+>>>> +					 * array to turn on.
+>>>> +					 */
+>>>> +					val |= readl(qproc->reg_base + mem_pwr_ctl);
+>>>> +					udelay(1);
+>>> Isn't the logic here inverted ?
+>>> 
+>>> i.e. you've written a thing and ostensibly require a delay for that
+>>> thing to take effect, the power to switch on in this case.
+>>> 
+>>> It makes more sense to write, delay and read back rather than write,
+>>> readback and delay surely...
+>> This is the original reset sequence without modification, i have just
+>> moved it in a else case when it is not an MDM9607, MSM8917 or MSM8937.
+> 
+> Doesn't make it correct, we fix upstream logic bugs all the time...
+Here is the original upstream logic
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/remoteproc/qcom_q6v5_mss.c?h=next-20251219#n823
+and here is the same at downstream 3.18
+https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.6.6.c32-05500-89xx.0/drivers/soc/qcom/pil-q6v5.c#L451
+and same from downstream 4.9
+https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/drivers/soc/qcom/pil-q6v5.c#L518
 
-On Thu, Jan 1, 2026 at 6:21=E2=80=AFPM Aleksander Jan Bajkowski <olek2@wp.p=
-l> wrote:
->
-> Add support for the built-in cryptographic accelerator. This accelerator
-> supports 3DES, AES (128/192/256 bit), ARC4, MD5, SHA1, SHA224, and SHA256=
-.
-> It also supports full IPSEC and TLS offload, but this feature isn't
-> implemented in the driver.
->
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> 
+> For example a read-back to ensure write completion is only required for 
+> posted memory transactions.
+> 
+> Is this a posted write ?
+> 
+> Is there an io-fabric in the world which exceeds 1 microsecond to 
+> perform a write transaction ?
+> 
+> Anyway leaving that aside the bit that's really objectionable and IMO 
+> obvious a bug is val |= readl();
+> 
+> Why or the bit back in ? and then why not check the bit was set on the 
+> read ?
+> 
+> val = readl() is a lot less janky and shouldn't it matter that the bit 
+> we tried to set is actually reflected in the read-back ?
+> 
+> Failure to set the bit would certainly be a problem...
+> 
 > ---
->  arch/mips/boot/dts/ralink/mt7621.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/r=
-alink/mt7621.dtsi
-> index 0704eab4a80b..9ba28fa016fb 100644
-> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
-> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
-> @@ -361,6 +361,14 @@ cdmm: cdmm@1fbf8000 {
->                 reg =3D <0x1fbf8000 0x8000>;
->         };
->
-> +       crypto@1e004000 {
-> +               compatible =3D "mediatek,mt7621-eip93", "inside-secure,sa=
-fexcel-eip93ies";
-> +               reg =3D <0x1e004000 0x1000>;
-> +
-> +               interrupt-parent =3D <&gic>;
-> +               interrupts =3D <GIC_SHARED 19 IRQ_TYPE_LEVEL_HIGH>;
-> +       };
-> +
-
-AFAICS, the crypto engine for mt7621 has also a clock gate[0] and a
-reset line[1]. These two are not present in this binding.
-
-[0]: https://elixir.bootlin.com/linux/v6.18.2/source/include/dt-bindings/cl=
-ock/mt7621-clk.h#L36
-[1]: https://elixir.bootlin.com/linux/v6.18.2/source/include/dt-bindings/re=
-set/mt7621-reset.h#L33
-
-Best regards,
-    Sergio Paracuellos
-
->         ethernet: ethernet@1e100000 {
->                 compatible =3D "mediatek,mt7621-eth";
->                 reg =3D <0x1e100000 0x10000>;
-> --
-> 2.47.3
->
+> bod
 
