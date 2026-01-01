@@ -1,115 +1,78 @@
-Return-Path: <devicetree+bounces-250955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5496CED366
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 18:12:27 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82141CED375
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 18:15:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 13C833007609
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 17:12:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 859123004C94
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 17:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A64242EFDBF;
-	Thu,  1 Jan 2026 17:12:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="q+c+ZCfM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FE01A9FA7;
+	Thu,  1 Jan 2026 17:15:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE4E2EFD9C
-	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 17:12:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E1CF212554;
+	Thu,  1 Jan 2026 17:15:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767287544; cv=none; b=ADQl4SjSkzeeZ3WMIR42y0FEITkQm+V1QXFnJGAAcJCS5o7/taSIvoJqnW/gC9RLaT+kLaccTDqFsJq1dAeIN+ezOiIy4wocMNfty+Eej8uDUE8Zm5rRjj1xu26dKXaHOI3a0LlQYymSLMW7UJ/kdGZxd2U+UdYuha8bEiWBnkE=
+	t=1767287720; cv=none; b=Oa1kku1LKXtkPX4Z4Xfbf0XjV/7KJGo2RRWUi9oy4RSuHyrjVZkPUxuSNP/urV9lBLP58/qicYn6eaeKLaw/krEz/eahlyea7QqKu7CFqUxnwTMfWgwnqCmBrRBuBz1ZeGESixIscYpwCWCi5kuSPBYgb3+eUFnxZBEf/I8oEgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767287544; c=relaxed/simple;
-	bh=oR0HUQkJ0g46vbysFl5WWvNBEbq3cfaE+xUpADAqJWk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UNiSx/p7U8UzSXKG6KtDnckmDLXNYxhic70CTKpYIoOnj4uxGFnCamv/kH02P/01rPjZhUunjFh7ZVoKyNJQrfDL3u3JRooRWJeg8iv/fQZIeAHmomAkTHj9X3RcgI9uzHyzIP7a9/IDslLTQKDq99cdEusVudkiBMQ0aI/hwio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=q+c+ZCfM; arc=none smtp.client-ip=212.77.101.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 27779 invoked from network); 1 Jan 2026 18:12:17 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1767287537; bh=gELqvaeQlWG+ETN/6/E6ceX26B6xTdepXFs8chq3lOw=;
-          h=From:To:Cc:Subject;
-          b=q+c+ZCfMwmoMr40O6OZZL4mlaFRc3m1X7Lpsk7bclHMpZAZemj5bK3aJhxlwWiFyF
-           fEZt4KhGEQdVyFpZjkIOVO/2sXTQmFhIgd7B2PcM+fFzVNdS91wJrvV8cm8v9zFTHy
-           zT3CpBjHjx9+PzaG2LuqzCgyQt+1ltWC69/V6Y0PXyR2ykLEkn0XvnUj3Mu4zWeQNP
-           xENaaAbQlIsjHD/4VAGcnQPIDdoCOszlrWonYi6RpEZDF7rj4n3VISq8BZKu9Z/Tkk
-           9h0Tk4VUbF6MLn+xdpx1kzMpUYgY341v6cdr8JrE7+wPRQLGBJUuH9EYBYR3XLtW/3
-           VZP76n17O0vdg==
-Received: from 83.5.157.18.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.5.157.18])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <ansuelsmth@gmail.com>; 1 Jan 2026 18:12:17 +0100
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: ansuelsmth@gmail.com,
-	herbert@gondor.apana.org.au,
-	davem@davemloft.net,
-	chester.a.unal@arinc9.com,
-	sergio.paracuellos@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	tsbogend@alpha.franken.de,
-	angelogioacchino.delregno@collabora.com,
-	linux-crypto@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH 2/2] mips: dts: ralink: mt7621: add crypto offload support
-Date: Thu,  1 Jan 2026 18:12:05 +0100
-Message-ID: <20260101171212.1861241-2-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260101171212.1861241-1-olek2@wp.pl>
-References: <20260101171212.1861241-1-olek2@wp.pl>
+	s=arc-20240116; t=1767287720; c=relaxed/simple;
+	bh=gY4j4bL/36z4p012EhfyNfYK38XMSrm/PWyy/QA5w3I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=miSBjwHoSyP8MfEdpnYZPvKfBfFal5v64BH9eK+ovuK7RQVe23VwPiQhW20SF3iXyss7vpVblyemuBFZ3nsd7fIUDViXoX3MVx5bg+G23l1EoLTybfCQQaBQfspbkIJuXDNJmVAIJqOi4QJth49iecPri4OEG4nMTPbMRRQaCt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EC9D8497;
+	Thu,  1 Jan 2026 09:15:03 -0800 (PST)
+Received: from bogus (unknown [10.57.45.151])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5E8063F694;
+	Thu,  1 Jan 2026 09:15:08 -0800 (PST)
+Date: Thu, 1 Jan 2026 17:15:05 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vincenzo Frascino <vincenzo.frascino@arm.com>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: arm: Use lowercase hex
+Message-ID: <aVarmf5rlHWzNZ0Q@bogus>
+References: <20251223152457.155392-3-krzysztof.kozlowski@oss.qualcomm.com>
+ <20251223152457.155392-4-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                                      
-X-WP-MailID: 7243962c3d223ce7c88e29ac0c0c40f2
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000009 [wSpU]                               
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251223152457.155392-4-krzysztof.kozlowski@oss.qualcomm.com>
 
-Add support for the built-in cryptographic accelerator. This accelerator
-supports 3DES, AES (128/192/256 bit), ARC4, MD5, SHA1, SHA224, and SHA256.
-It also supports full IPSEC and TLS offload, but this feature isn't
-implemented in the driver.
+On Tue, Dec 23, 2025 at 04:24:59PM +0100, Krzysztof Kozlowski wrote:
+> The DTS code coding style expects lowercase hex for values and unit
+> addresses.
+> 
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- arch/mips/boot/dts/ralink/mt7621.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+s/arm64/ARM in $subject would be ideal.
 
-diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
-index 0704eab4a80b..9ba28fa016fb 100644
---- a/arch/mips/boot/dts/ralink/mt7621.dtsi
-+++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
-@@ -361,6 +361,14 @@ cdmm: cdmm@1fbf8000 {
- 		reg = <0x1fbf8000 0x8000>;
- 	};
- 
-+	crypto@1e004000 {
-+		compatible = "mediatek,mt7621-eip93", "inside-secure,safexcel-eip93ies";
-+		reg = <0x1e004000 0x1000>;
-+
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_SHARED 19 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
- 	ethernet: ethernet@1e100000 {
- 		compatible = "mediatek,mt7621-eth";
- 		reg = <0x1e100000 0x10000>;
+Anyways,
+
+Acked-by: Sudeep Holla <sudeep.holla@arm.com>
+
+Linus,
+
+I assume you will send it to arm-soc. Please shout if you want be to act
+on this.
+
 -- 
-2.47.3
-
+Regards,
+Sudeep
 
