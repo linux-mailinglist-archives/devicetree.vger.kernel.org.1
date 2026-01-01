@@ -1,108 +1,95 @@
-Return-Path: <devicetree+bounces-250990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E623CED87C
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 23:58:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D254DCED88D
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 00:06:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AC03B3005BB7
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 22:58:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4E7493004CDF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 23:06:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2134025785D;
-	Thu,  1 Jan 2026 22:58:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9091227E95;
+	Thu,  1 Jan 2026 23:06:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JMPQ5OEa"
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="cG6qI1vN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A442248B4
-	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 22:58:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33E741A9F86
+	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 23:06:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767308323; cv=none; b=biKJx209Q2RCUwbeu46zbDctJKOd8QEBaEpCCzyVVWfZ8jREsJznWb7p62JZyOXTtG7k/FS43sqGcMGiDUatxB+WoAw1cuSubzZKICzkl9w9n+P1r7sMS4e/qcCkxfd/RnVD2sF4SKuYNc9LMU4eF4ytgJCyXRowV6/DU0KeU9o=
+	t=1767308803; cv=none; b=p0fkLVKcx/MZ6diGLFPLSHSHPx/fqfFY/3yEL87hZzwAfofL512aHAHL+mcmP+zKftszbzv8ATAdbk7Oodyi9mUCPX94uUpfzPCPBA7SPIrhDdqEwWS97kjooGbKBhdeM5/YeGmp7e4/RwauhwLStZwQ8o/FSSbzyiDbtbsJDFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767308323; c=relaxed/simple;
-	bh=RbIi5TJDTEC3UxivySA2nm8bc3JBw7+A82+IHl76Oas=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YEfV08/LvnNADkwN1ZZ1eFtUDtP9Wnrd7O9YBartMB9WGKeeRqZPNQBW9uTPHaCCX8EbxXlcKpNe0FCBvUpngkYbPBFz37rwO1mPJZv5kDpdMpip4/UYyUhWMt3L3rTqTdVSLAOls01Qm4ynWzyu0iD6JlWZrCl4IjgLPAeKVQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JMPQ5OEa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CB23C19424
-	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 22:58:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767308322;
-	bh=RbIi5TJDTEC3UxivySA2nm8bc3JBw7+A82+IHl76Oas=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=JMPQ5OEavke4eor11qSqdluzacM9pgxLT/75uNftYomx/dZ/c7GN8vIUISllgSs59
-	 Gbw91fqZfVY/D33IIE25lrzp5gUIIZ0XDZSyAVEA6sy7XJ01kj97436zbY+2plwWMF
-	 15anUid3WifUXERa4MmqCUhQu41bT2I9oq8/GctFEAkE0424KwPjMW58x6nLBEoZs2
-	 8vTsXThfyqnOYPmdAz3c7Pa3yt9zz10p1rFwBn0xDPW/lPZIOjAyc3igQn0MoFEXKp
-	 A7O44/U8nJxkIOu5LxhQEhchIzRK6XyAEDLsrHNHp/kTmwDMlmep8oVAQ3jO+mw/Oo
-	 1Px1A480U4JuQ==
-Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-64467071f9fso8824602d50.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Jan 2026 14:58:42 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWScaRJzQTLdlSmzGxPHLMwCeajnJBloK7pK3+scOowsmxMEALHxfhje3fG19ynGfb+qVoRe+PTKQyt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7AkbdViPtoPkp0yz5WgoBotzcCV7MqI6qLuy0+8RcPlWHpm46
-	tgkaQSMBsWNIXJnopXdzfw7tthqv2TtqaSc/BeSjNYBY1PwQYO3w68o6R3/sO8+Bevoq3j52/Od
-	zo98OdAZaC9RJLTJG6PDzgQKNaFw8PkY=
-X-Google-Smtp-Source: AGHT+IGS2wpABqiEH3qZJel2X4/tAnT/x9k7y/82/oTjRgpeFKRhQhUMOFnfELr3u2G5kJutP+OFyH7GjaSju3gf+4M=
-X-Received: by 2002:a05:690e:2453:b0:641:f5bc:68de with SMTP id
- 956f58d0204a3-6466a8d7899mr25549975d50.75.1767308321878; Thu, 01 Jan 2026
- 14:58:41 -0800 (PST)
+	s=arc-20240116; t=1767308803; c=relaxed/simple;
+	bh=US7g0fT2WrFWVNstxMf1pZ+HNijOdD3MvUsgtVB6Eww=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=vDcEm5VzSlMQ4zpSTcq/koWn7PtzNoxYGKKnhqhLAi0UkriW+nDkZv1QkwNlJShUcKqFwtlcYYvyW/fcMeufe/Ycqn1JxTMNYHuQGAEE1c4AHPwDUdhf5/CgissT5Kq02qQ6VUqIBMzynpP7RYqlhGOyqbWEjvSBGWWXGoJcltQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=cG6qI1vN; arc=none smtp.client-ip=212.77.101.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 27093 invoked from network); 2 Jan 2026 00:06:37 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1767308797; bh=US7g0fT2WrFWVNstxMf1pZ+HNijOdD3MvUsgtVB6Eww=;
+          h=Subject:To:Cc:From;
+          b=cG6qI1vN+bCCYwiSGOjPS9N+FTsDwrZ5n5qwudU3dXzot8rEQPURSiI52gS1EJSXy
+           4F/9AqI6COotC7x+CXH/hWRJzLcIHEtdS2a8n9Uyv4vd82yfB45K5cUcuXWxBQnPvQ
+           ldcXtbNgSTrpJp/by3YjkOk4gPTmREIZ6IvRlReZfrrdqfKvg8XKQ7XikEfJ4byx53
+           7oTFoz+WfFBBw5Clip9hJn+GRSZSMsCA3ykBgyT92sx+fkwoocytIGuWP78wfMxqqB
+           72oBRnvkxJm0VjMeWbk0U2PSYUqJqpzsJFXitfYQ8/gdzgFGE7+mw4xTR2vK7sjj5K
+           pWLKjC7SvUoEA==
+Received: from 83.5.157.18.ipv4.supernova.orange.pl (HELO [192.168.3.246]) (olek2@wp.pl@[83.5.157.18])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <sergio.paracuellos@gmail.com>; 2 Jan 2026 00:06:37 +0100
+Message-ID: <53dc4786-a6c3-471a-acc4-67486b8cdea9@wp.pl>
+Date: Fri, 2 Jan 2026 00:06:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-0-5f1090a487c7@linux.spacemit.com>
- <20251223-kx-pinctrl-aib-io-pwr-domain-v1-2-5f1090a487c7@linux.spacemit.com>
- <20251223093228-GYA1986709@gentoo.org> <4D38DBB2D5EA96CC+aUpkCTp00KxEuU_Z@kernel.org>
-In-Reply-To: <4D38DBB2D5EA96CC+aUpkCTp00KxEuU_Z@kernel.org>
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 1 Jan 2026 23:58:31 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmQ6Qk=fDt1do6XcpF0bkpD-=JmmEy+iL6pFy54wSfC6A@mail.gmail.com>
-X-Gm-Features: AQt7F2qqol7CqtttbEg-5xwoZiRTRjr4aiAeaJta_tiuinN5LIdgHV3kBp5fC5w
-Message-ID: <CAD++jLmQ6Qk=fDt1do6XcpF0bkpD-=JmmEy+iL6pFy54wSfC6A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] pinctrl: spacemit: support I/O power domain configuration
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] mips: dts: ralink: mt7621: add crypto offload
+ support
+To: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc: ansuelsmth@gmail.com, herbert@gondor.apana.org.au, davem@davemloft.net,
+ chester.a.unal@arinc9.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com, tsbogend@alpha.franken.de,
+ angelogioacchino.delregno@collabora.com, linux-crypto@vger.kernel.org,
+ linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, benjamin.larsson@genexis.eu
+References: <20260101172052.1862252-1-olek2@wp.pl>
+ <20260101172052.1862252-2-olek2@wp.pl>
+ <CAMhs-H_iN7pWsis2HbeJ-xr+9JoMa+EF-+7z9e21DJ1dyNNtuw@mail.gmail.com>
+Content-Language: en-US
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+In-Reply-To: <CAMhs-H_iN7pWsis2HbeJ-xr+9JoMa+EF-+7z9e21DJ1dyNNtuw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-WP-MailID: 2fbea3525d83cf2a46a1adb43f9685ce
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 0000009 [oVr0]                               
 
-Hi Troy,
+Hi Sergio,
 
-thanks for your patch!
+On 1/1/26 22:46, Sergio Paracuellos wrote:
+> AFAICS, the crypto engine for mt7621 has also a clock gate[0] and a
+> reset line[1]. These two are not present in this binding.
+>
+> [0]: https://elixir.bootlin.com/linux/v6.18.2/source/include/dt-bindings/clock/mt7621-clk.h#L36
+> [1]: https://elixir.bootlin.com/linux/v6.18.2/source/include/dt-bindings/reset/mt7621-reset.h#L33
 
-On Tue, Dec 23, 2025 at 10:43=E2=80=AFAM Troy Mitchell
-<troy.mitchell@linux.spacemit.com> wrote:
+Will add reset and clock gate in the next iteration. It looks like
+the crypto engine in AN7581 also has a clock gate[0] and reset line[1].
+Just not sure if these definitions are correct.
 
-> > > +   pctrl->io_pd_reg =3D devm_platform_ioremap_resource(pdev, 1);
-> > > +   if (IS_ERR(pctrl->io_pd_reg))
-> > > +           return PTR_ERR(pctrl->io_pd_reg);
-> > > +
-> > > +   pctrl->regmap_apbc =3D
-> > > +           syscon_regmap_lookup_by_phandle_args(np, "spacemit,apbc",=
- 1,
-> > > +                                                &pctrl->regmap_apbc_=
-offset);
-> > Can you simply use syscon_regmap_lookup_by_phandle(), then define
-> > #define APBC_ASFAR            0x50
-> > #define APBC_ASSAR            0x54
+CC: Benjamin Larsson
 
-> I think it just a minor issue. I will keep it.
-> But if anyone else thinks the same way as Yixun, please let me know.
+[0] https://elixir.bootlin.com/linux/v6.19-rc3/source/include/dt-bindings/clock/en7523-clk.h#L12
+[1] https://elixir.bootlin.com/linux/v6.19-rc3/source/include/dt-bindings/reset/airoha,en7581-reset.h#L45
 
-It's not minor because it adds stuff to the DT binding we don't need
-and this avoids it.
-
-Please go with Yixun's suggestion.
-
-Yours,
-Linus Walleij
 
