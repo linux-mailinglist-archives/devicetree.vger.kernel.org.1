@@ -1,126 +1,103 @@
-Return-Path: <devicetree+bounces-250986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB22CED5DF
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 22:58:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FA2ACED7A7
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 23:42:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5328F3000B02
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 21:58:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8511930062E7
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 22:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 516B424E4C3;
-	Thu,  1 Jan 2026 21:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF3D3285CAA;
+	Thu,  1 Jan 2026 22:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="aDLDdG/9";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="J7H7YUmA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ryZxsXkX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F68632;
-	Thu,  1 Jan 2026 21:57:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AA4A259C84
+	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 22:42:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767304678; cv=none; b=FhWu1YE3dVVqKlT8NspSosczDFElNbNHyo1URxLv+DNyLfqOLwTAtJmvFaFf4Q4iDT/5HvY/BrFVqts6NgQqBB5Ry6HpfNxZoWIbkEgeG0gv0ZdwMUPxLHAT9SNVX/vtymDMttWGfi3w0QUBpg+79dM82+RpoTE+uMfKzOxfCYs=
+	t=1767307368; cv=none; b=C1nmZqh89GKoXjWqKpjKFmXIwni/6g83wFTsGR1T6Xuq7GCCqg9EDIWaguuwkBwEhnQPNYy4ZPOrX9z7iWMBmdZJYpQvw/6yoMwOu/sgmFWercGcbAuugvoMQLSllrdaUgsZGPJCcmZJ7brzJKngtPXE6P/uC1xicfzKLMDdo4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767304678; c=relaxed/simple;
-	bh=wFGzshqpRxQlJiZVcKZdreo/deiapqPJPqnOG070a4k=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=qc0LVW3TEBq1s+/UxYHqfzYfZw8VP3Vo1XV9FkOG7fXYRETXZMa+jEOqAkOq8Fj2a5Zz1tdZbPEvfGoEelPZkdf38jqFghvY0NaM/Ji6pFpljX66i/UEIkfS6JI77FAaFBzATskmj868xrC6Red0sCJ8siU3iRwdmv4n1+4vsBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=aDLDdG/9; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=J7H7YUmA; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1767304665; bh=5wwVpGucWLa74HLyeUMxbQ7
-	S1Mk8uI3EGGdugrrYuiY=; b=aDLDdG/9EIY2pZWYegzcirK+nbhGPyRRO6+Tr+JLUesJbPGk6B
-	Jg1cWcMbgqxdd+o+7r7Sy73s7yyg9V0ZdMkGZB1PySqjcjoQ7rM2+aGqOQsFOLsFIMmKyfHnixR
-	tvaZFRf13zGneHZsyUSVC4VhN9fUZY6BhNuEfU5SKxqRAvaHWG4gaEfgJzVMLK4pTbEetCyzFIP
-	fpS+9pJAyTB2mbt9Na278kNXwr1MtAIsGWu6KdQ6yFPu7pfwIIRPd6osjE5Pt5gwa7PvA6jmVMF
-	2Pd7Ki2G0R79TWSeGJkWEOMAT6tHHiH6858jsklsMUXOUiZ0d+dAdbqDvr9A9DPlMjA==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1767304666; bh=5wwVpGucWLa74HLyeUMxbQ7
-	S1Mk8uI3EGGdugrrYuiY=; b=J7H7YUmAKg0qirxWAZ1Lhiqb8H9GG/IDjR7ISwhDy8afK9Dqa7
-	Ao5wNSKJEEuqwCtZYElvl+lmuyZZacbJ5QAA==;
+	s=arc-20240116; t=1767307368; c=relaxed/simple;
+	bh=c03Ouoop/OW3SvavreidSQNFjtJjTLM/VhWkUCy+XCA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TETU+3vkE4Spja/r9dZCpDIKeZJo9MJsU49YZxud+VBfpQ0nJudlN55dLjkEr8XgqYubggVlLJ0Rl/U6lkQ+hGn8hMUj2+AWlk2iDXjqFXuFqeiUGFhop2d1e+uBh67ZTlNTOxe2c0q0aK7QpR78aB1BS0h492f3rWJOUrA2jVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ryZxsXkX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4208AC2BCB1
+	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 22:42:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767307368;
+	bh=c03Ouoop/OW3SvavreidSQNFjtJjTLM/VhWkUCy+XCA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ryZxsXkX2A5BlERIpG9p4sMf7Xbu47Iqut65LWm5eoubtMgGNIUccUg6ms6KoagMJ
+	 0GlUPPWrdl15h/CIYeyzFV8GziyNOl6LhZHjywiGqqkNugSfhsWCUQiHk3D3QpwkWd
+	 a2v2agOk0F94oWc2GlRnZSG5PHXvq8owxhrDRrP0XdOxD26mmW6dLhoKS5Tzlsul6J
+	 ArOMjy5fN/ZKU9/y3RCSRFju5Enz0uJzCX2q7qnzhrdrEXvRZ5IS4KuR3ykWzw9ig3
+	 cq+ygrD/7y/MqBrQWz55srKZq1GpZm3nSqze6Fd3woh6J1lPUMLodL1+w8oJ1A7N5R
+	 +B5Aki8T2hbzg==
+Received: by mail-yx1-f49.google.com with SMTP id 956f58d0204a3-6446c2bbfe3so9208721d50.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Jan 2026 14:42:48 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUpUn/7fB8t0eoVON1oPF8k0+wowFUiM7e6eTFu+BTMAeuNBjWHhplofkkmCNLEO3YX8m4z2AiSArku@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWeDdIDqPI/xF5VYC2x9+NQYRTYlDnnUd/rhKCy9I9yMlTwMq8
+	DcuxcWwqplzzqveufePGGljpwkcYFmOxgmtZAlvRhkrKAQIjM4aC21NQtaPsd0jDpiJCpIJ4rlz
+	jJCwGOuIePto+fb1LbWDj3wZLq0cxGUI=
+X-Google-Smtp-Source: AGHT+IGuCSdWh+iJDmbFEBp3W61sWvSWqQfdLVlCzvdLNew329ciqVsgcnUXKXJoXSwcIcnZqwOTDxMTLToTAL+paPw=
+X-Received: by 2002:a53:b701:0:b0:641:f5bc:68d6 with SMTP id
+ 956f58d0204a3-6466a8c5275mr26057369d50.83.1767307367560; Thu, 01 Jan 2026
+ 14:42:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Thu, 01 Jan 2026 22:57:45 +0100
-From: barnabas.czeman@mainlining.org
-To: Bryan O'Donoghue <bod@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
- <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stephan
- Gerhold <stephan@gerhold.net>, linux-arm-msm@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/9] remoteproc: qcom_q6v5_mss: Add MDM9607
-In-Reply-To: <d3bcaf7d-06ae-4410-8d7c-970fdb196c47@kernel.org>
-References: <20251231-mss-v3-0-f80e8fade9ec@mainlining.org>
- <NLGulU4z-1Wrf5120YfX8CYJ_8DSP-9-DhaJ3KAIQCvqF9Qf184udOzFoEQH1qgJDZUl9cxEpsdyztfhcz8G-w==@protonmail.internalid>
- <20251231-mss-v3-3-f80e8fade9ec@mainlining.org>
- <6bfc790d-b0da-4c5b-bd2d-ceed9a75bb24@kernel.org>
- <DEGDp05xNKls7EO30mtT70wJFIkDT0-248vPaBikWJGkFf--YvzpyJ_h5sc7RSH1y9hkCKdFRBIJwQUNE9Rlzw==@protonmail.internalid>
- <a627abcaa38c0ba11c76c1f0c42b0c6b@mainlining.org>
- <d3bcaf7d-06ae-4410-8d7c-970fdb196c47@kernel.org>
-Message-ID: <73d028cfdd514d6c3f073bb66fdd07cf@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251217-eyeq6lplus-v1-0-e9cdbd3af4c2@bootlin.com>
+ <20251217-eyeq6lplus-v1-11-e9cdbd3af4c2@bootlin.com> <38f097cb-5329-4b91-b1a8-3eb5fed05ad4@kernel.org>
+ <fe9e594f-9718-48b5-8208-fb567a54cae9@bootlin.com>
+In-Reply-To: <fe9e594f-9718-48b5-8208-fb567a54cae9@bootlin.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 1 Jan 2026 23:42:36 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=7eU+jSHn0t2KKzHjipXYKoQreOdaHH8OcyriPmwHJQw@mail.gmail.com>
+X-Gm-Features: AQt7F2pQQoDMhu8lNy4TdUpYluCLS90ViEjybo-mgp7DpUhoLaNeRiZuGoShcsE
+Message-ID: <CAD++jL=7eU+jSHn0t2KKzHjipXYKoQreOdaHH8OcyriPmwHJQw@mail.gmail.com>
+Subject: Re: [PATCH 11/13] MIPS: Add Mobileye EyeQ6Lplus evaluation board dts
+To: =?UTF-8?Q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
+	Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	Gregory CLEMENT <gregory.clement@bootlin.com>, =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2026-01-01 21:58, Bryan O'Donoghue wrote:
-> On 01/01/2026 13:50, barnabas.czeman@mainlining.org wrote:
->>>> +				for (; i >= 0; i--) {
->>>> +					val |= BIT(i);
->>>> +					writel(val, qproc->reg_base + mem_pwr_ctl);
->>>> +					/*
->>>> +					 * Read back value to ensure the write is done then
->>>> +					 * wait for 1us for both memory peripheral and data
->>>> +					 * array to turn on.
->>>> +					 */
->>>> +					val |= readl(qproc->reg_base + mem_pwr_ctl);
->>>> +					udelay(1);
->>> Isn't the logic here inverted ?
->>> 
->>> i.e. you've written a thing and ostensibly require a delay for that
->>> thing to take effect, the power to switch on in this case.
->>> 
->>> It makes more sense to write, delay and read back rather than write,
->>> readback and delay surely...
->> This is the original reset sequence without modification, i have just
->> moved it in a else case when it is not an MDM9607, MSM8917 or MSM8937.
-> 
-> Doesn't make it correct, we fix upstream logic bugs all the time...
-Here is the original upstream logic
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/remoteproc/qcom_q6v5_mss.c?h=next-20251219#n823
-and here is the same at downstream 3.18
-https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.6.6.c32-05500-89xx.0/drivers/soc/qcom/pil-q6v5.c#L451
-and same from downstream 4.9
-https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/drivers/soc/qcom/pil-q6v5.c#L518
+On Fri, Dec 19, 2025 at 4:57=E2=80=AFPM Beno=C3=AEt Monin <benoit.monin@boo=
+tlin.com> wrote:
 
-> 
-> For example a read-back to ensure write completion is only required for 
-> posted memory transactions.
-> 
-> Is this a posted write ?
-> 
-> Is there an io-fabric in the world which exceeds 1 microsecond to 
-> perform a write transaction ?
-> 
-> Anyway leaving that aside the bit that's really objectionable and IMO 
-> obvious a bug is val |= readl();
-> 
-> Why or the bit back in ? and then why not check the bit was set on the 
-> read ?
-> 
-> val = readl() is a lot less janky and shouldn't it matter that the bit 
-> we tried to set is actually reflected in the read-back ?
-> 
-> Failure to set the bit would certainly be a problem...
-> 
-> ---
-> bod
+> In my particular case of a microcontroller acting as an SPI "relay" on th=
+e
+> evaluation board, what would be the best way to describe it? It connects
+> the two SPI controllers of the SoC, one is a host and one is a target, so
+> it behave as an SPI target on one side and as an SPI host on the other.
+>
+> The trivial devices bindings seems to be dedicated to devices, thus not f=
+or
+> SPI hosts. Do I need a dedicated binding or did I miss something I could
+> use for a trivial spidev slave?
+
+That needs to be detailed and discussed with the SPI maintainer on the SPI
+devel list. (Added.)
+
+Can you illustrate with a picture or so what is going on here?
+
+Yours,
+Linus Walleij
 
