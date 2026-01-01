@@ -1,148 +1,154 @@
-Return-Path: <devicetree+bounces-250969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5263ECED498
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 20:03:11 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FDBBCED4A1
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 20:05:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 860643007620
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 19:03:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CDDA8300095F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 19:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A10AE231845;
-	Thu,  1 Jan 2026 19:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94E5E2BDC26;
+	Thu,  1 Jan 2026 19:05:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DVk5OCmg";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="grW9bqdk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b0uHkHFz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 218E01DE4DC
-	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 19:03:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A75A231A3B;
+	Thu,  1 Jan 2026 19:05:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767294187; cv=none; b=p7MQJdPvvvxcUDCUPP/yE9QLgzGCiKluhMggWPUmrFpzYkUxUhC9dmad5wFDPVXuXbfqhkX96nIwTtGec4BPH7aBvjorsNQzTLK5BUeOdxwlBlHK24rTD74JjFltC+oaTGZ7OqXyS39lgkVU+Ekmm8vI78JYbIihI/u/EWNzWng=
+	t=1767294338; cv=none; b=IylNquV4CdWe7iAf4QLbpsLqxNmDrHlQyeFPfpPBShPTckgYg3BGWk5xSuYi+bkafcYKr5/aIt3bNXZwO/L42tNr8hgaLudUbPhEG3J717gchkKlePHpa5wM1HZWk6fLxIU1O4XMzwQjLiYQwuHClo8y3fP0hAOZISv58uR1bJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767294187; c=relaxed/simple;
-	bh=OUWnoWTNPdGbUGux2s2BxAMRUnlVB6mcFngLAWpA/PU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AiixTPkOND/hQ19VqZDchLofjb7g/nm45aOz8VittCNE4Wz9ypRFbJ9MF9CPf8K9MEFbkq3l2Gu2+D6+TqaqKrvSs0DeOaBlvQnMzCJywSOC6CaSs8V/E3kExjg7M88SMMTITBb6slFXhmFWsJsFTKW0KdP56ubvuPSFAuPBmhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DVk5OCmg; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=grW9bqdk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 601Go4uW2553780
-	for <devicetree@vger.kernel.org>; Thu, 1 Jan 2026 19:03:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=+QMKwEVC7Suor+bYorU6lSsj
-	bvDGk1qiJYr7KsqFwEQ=; b=DVk5OCmgh6we/gApUU0oj6gT4khXU52t75L5AuaW
-	zGZIQptxgfMCq6VDx/pC4ailine5HN19W3s7r0i+Ou+C7rIw4/thOoTJ4uKFEJ9N
-	gyRxHVG+WtkXI8gcBy9FqyYLrw2kbCl3ESUIiKhhp8PvYuU6pCXUE9Mab39TU2zd
-	N7dAtKeLfLaLvQ9cHNQEo3N+zXb+/tYSbrFciu2nwm3k7V4iggRR9xSxLxymbhwI
-	jOynhDD3Zy1p0qVdw/IP4dWX81sKWEdcrwbCZrj6M49Wh14nlcti43tDLGSxAjm8
-	Xbum5Seu7LOxu/hJZMlAfx3J3WyeGljVOrz5CP0e43HJbA==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bcy6aju90-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 01 Jan 2026 19:03:04 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4f1b39d7ed2so253719441cf.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Jan 2026 11:03:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767294184; x=1767898984; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+QMKwEVC7Suor+bYorU6lSsjbvDGk1qiJYr7KsqFwEQ=;
-        b=grW9bqdkNeMxDEAUaB+5uZf8vUpgfybNZYDnES+dU2ZBUwxr+hEXrCbmO8e2Yt3WLx
-         xHz2yqqstwKYuGx0u/dNgpD5aAQtb0QimYUskqJ568sox7je3aqJugZHSYgp8dyohByy
-         m1P8Jg9WkEBLzJlp4GOqANbAa48Dp2SCmQoP3+qVEinzrcnut3rQv3N10sz+ezff9JHj
-         XM2Oh7Gw4bFlpVzww/wPVaptjaj3DCS88EE3yJE9X/1hGpFrTd8NJVjcKtqWRJ1RHCd8
-         2PKfJKnW6D+EjWyMs4vk4DSZvI9gl2KHSPKRLSoagnvWMfuw1GH+u8AKQAbHVMJ56ZiP
-         yBuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767294184; x=1767898984;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+QMKwEVC7Suor+bYorU6lSsjbvDGk1qiJYr7KsqFwEQ=;
-        b=j5KxhAd8N9zrFDeYGw3JXQGcqdwPIYd/bcWZR+ciSyblY3tq3U4rA2mhD3+kGvoHAY
-         yCZHcW+Zs7VcTSdCVAx2GvkuF99q/NCAwJSZffAodo4eGGqs6c0DLJa7EzdMIRqkWygJ
-         bLPHXXgnxGAe24tCXXfUrOnewuJjoBLvSv7EHc28Dg87FSrS12q9STqEnkJcxEaumhpq
-         LqyM8eCmVzgnYHBhNKnH4ix3VRMwEmH7FFn63HG7N4m4Vcnbhq3abfXvnm50zGL6NVC9
-         2Uv/JsdQMEoajjjcMWOzhI6hVMbUVVLvYg8wu/oeAasI/RKNFQfDtOnf1aDRqm99qV2V
-         ZRlw==
-X-Forwarded-Encrypted: i=1; AJvYcCVl1r98ENlRaCq46IWYl5M+6l+mQAVTa8lFSBB/b0WlK7BpV/AuaMXmsRsyalEbugyw6d16tKx41iQN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxODTqbHeHiHirVAhS8fhVecbfz5v6fywcU2ZVExwN7X0XLnzN6
-	//3P+AXhDXEZT3CbgvxNEP+6eUTJvYmO+G9Fvq4MuMGGgIsa1tnqP/ED900Mc7SXX5Ztod1asmu
-	C/g18vUKJ7z113RboUALkUTZ7Y7mWOcZkfo5OuhEXbaLi/ia5JeymcfFL0oyJU/+3
-X-Gm-Gg: AY/fxX7pYfi3bnOEebR0SmJS44HOSxAPWheYfsAusetmICE4cD4u9FBC+sBMrf9v4X0
-	HIy/IfzenUNNwWKoxl28VcZtlZkqUNrFRBvovNx/urAIa1k+EwqfTjGvKkqfj2y218lfgyh75JD
-	RMuqn7z0dUhErGPNUgrgSlsKA2qOc1IHsppKg5oGi6UXSNVd40TJyCv4I3aiTqzj8ucAzqa6z9t
-	zS85i63GHnIi+UFNhybCD7biRcJ5ywSN2i7ZsIn0DPZF25hpPWQlOHG3XonbS9wM8D68wncp3WD
-	h4Fuy+ld3hyLYgEHNuJxyqC1SLuicpw8cXmWKF/kaTDmcerbB3Z5LENdfFphQtDGoEATtiErwXY
-	TrxIlMah+JojXczx0GtzW
-X-Received: by 2002:a05:622a:1b29:b0:4ee:18dd:1a1a with SMTP id d75a77b69052e-4f4abccee92mr592914621cf.13.1767294184269;
-        Thu, 01 Jan 2026 11:03:04 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEbz8D62YVcxQdedAk3k/DyH+ejsCG9KzvNP6zqm8qsDsaBqLCPblpAAvfwL/lYPOD5YCY0jA==
-X-Received: by 2002:a05:622a:1b29:b0:4ee:18dd:1a1a with SMTP id d75a77b69052e-4f4abccee92mr592914251cf.13.1767294183805;
-        Thu, 01 Jan 2026 11:03:03 -0800 (PST)
-Received: from oss.qualcomm.com ([86.121.7.10])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f18575sm4226918866b.54.2026.01.01.11.03.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jan 2026 11:03:03 -0800 (PST)
-Date: Thu, 1 Jan 2026 21:03:01 +0200
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-To: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, martin.petersen@oracle.com,
-        andersson@kernel.org, konradybcio@kernel.org,
-        taniya.das@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com,
-        manivannan.sadhasivam@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
-        nitin.rawat@oss.qualcomm.com
-Subject: Re: [PATCH V2 3/4] arm64: dts: qcom: hamoa: Add UFS nodes for
- x1e80100 SoC
-Message-ID: <gq6twkddeshvonzuyl4jcp2bsy6wzsveed3figx4sxeatrr7qb@ulv3d7dust4j>
-References: <20251231101951.1026163-1-pradeep.pragallapati@oss.qualcomm.com>
- <20251231101951.1026163-4-pradeep.pragallapati@oss.qualcomm.com>
+	s=arc-20240116; t=1767294338; c=relaxed/simple;
+	bh=mseGt6+VHgHN7F4TpAc+qL+VGig9rDMl7YN6BM1+ev8=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=rKEanogcPnQ6Kw/jIb4PMNouNgPPihRZPeNcyu5+sGXrijh3MyujShux55+LyG3hz2veulsvJLyCZ6WGl4+IWTs3ADV37C+OQImzseGxnuqEHNt6XpH8LC0siik4ddk6AaE78e4rcDGWiF/QR1IVfthI4pAyC+GW0bDaFVaHNd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b0uHkHFz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7332C4CEF7;
+	Thu,  1 Jan 2026 19:05:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767294338;
+	bh=mseGt6+VHgHN7F4TpAc+qL+VGig9rDMl7YN6BM1+ev8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=b0uHkHFzr4KV7ajqa51J9yc08IaeWzmeQ80SP1tI5zE4dUUiwy4+hN6Da/ZNEoi43
+	 bB/jsXsQEv3lQ8aUP6I3CCjT/pJkPedmr/g+/d+rYdjFqutNmvzCXvZKgMTsyokL5/
+	 nu9fmXCLhIw/zSJ5gqDDMHN5HxrWljhATnNM9KCosZTgN6zpCBoMv78zqFbe3ho9Ld
+	 fFMOAnq1tr4Bdiv6XG4UGl0XvpdMoyNHhgrg+uIfiKavKZTlaHIe2Al7Ig6wU8gOlI
+	 CZUt30xPP0c9Ij0CVwGYupUOBvILl8ZX5mnbjFh/0SN7X06cBNkXCE8PQB14loNa4J
+	 uK/hzwCPfgNrQ==
+Date: Thu, 01 Jan 2026 13:05:36 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251231101951.1026163-4-pradeep.pragallapati@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: isj4Ka7fqan9Jl4wh1mGFanblDG2J-WQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTAxMDE3MiBTYWx0ZWRfXxNrd2ZNDW0Yv
- DTzw2HSEVMgGvMT+2CVbs51jzb7l4WqeuluSN2HDCJtwvFobPn6R2ECqAQes1Ik7HUe3cGmcs/b
- 21cyWlrG8D7BNxkJN5yKVfaWlCkGacbR1lZA/furZRfx2Hy82eWWMCi6kLUYxy0tkkpXXVF1emG
- ozvZixaEi6q1iFsneEIVaHqyfDC9jLte4taBgIoxJ9RqSx2bHf6LdUzR1gNpfw5aAtGl+sOZUpa
- 0dAOogMpGWSX7OjrBgqHp1ZYu6KQvxH8zA69IdsigKcbJmB6Pwm3xeZzzTUdR00GufxD8qIKoXx
- yQoBJu0HOfGmmBl7WF8L9HMOcxsruAcIol52Zoi0/VIvZOg6DY5cXLnOkMDyEWvplK0Jieux/ST
- iQUgsmLCGgNjavEhVyDYnFTo1/PodM/JuBNX7Q62to36Qg3YJdcTBaMm6l4GY+0R1bZxqHmGEoJ
- q4jwHb9WcAYrs1HLCyw==
-X-Proofpoint-GUID: isj4Ka7fqan9Jl4wh1mGFanblDG2J-WQ
-X-Authority-Analysis: v=2.4 cv=J9GnLQnS c=1 sm=1 tr=0 ts=6956c4e8 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=hZ5Vz02otkLiOpJ15TJmsQ==:17
- a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=P1SvqDdPwG-YsO9EcX4A:9
- a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-01_07,2025-12-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 phishscore=0 adultscore=0 impostorscore=0 spamscore=0
- suspectscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601010172
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Michael Ellerman <mpe@ellerman.id.au>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, linux-mtd@lists.infradead.org, 
+ Naveen N Rao <naveen@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Nicholas Piggin <npiggin@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linuxppc-dev@lists.ozlabs.org, 
+ Christophe Leroy <chleroy@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Crystal Wood <oss@buserror.net>, linux-kernel@vger.kernel.org, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ Simona Vetter <simona@ffwll.ch>, Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Conor Dooley <conor+dt@kernel.org>, 
+ Frank Li <Frank.Li@nxp.com>
+To: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+In-Reply-To: <20260101-ppcyaml-elbc-v5-4-251c7f14a06c@posteo.net>
+References: <20260101-ppcyaml-elbc-v5-0-251c7f14a06c@posteo.net>
+ <20260101-ppcyaml-elbc-v5-4-251c7f14a06c@posteo.net>
+Message-Id: <176729433680.1704817.8344719442516572763.robh@kernel.org>
+Subject: Re: [PATCH RESEND v5 4/4] dt-bindings: memory-controllers: Convert
+ fsl,elbc to YAML
 
-On 25-12-31 15:49:50, Pradeep P V K wrote:
-> Add UFS host controller and PHY nodes for x1e80100 SoC.
+
+On Thu, 01 Jan 2026 17:58:17 +0100, J. Neuschäfer wrote:
+> Convert the Freescale localbus controller bindings from text form to
+> YAML. Compared to the .txt version, the YAML binding contains a new
+> usage example with FCM NAND flash, and a full list of compatible strings
+> based on current usage in arch/powerpc/boot/dts/.
 > 
-> Signed-off-by: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
+> Note that the both the compatible strings and the unit address format
+> are kept as-is, for compatibility with existing kernels and device
+> trees, as well as unit address readability. This results in dts
+> validation warnings:
+> 
+>   Warning (simple_bus_reg): /example-0/localbus@f0010100/board-control@1,0:
+>   simple-bus unit address format error, expected "100000000"
+> 
+> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> ---
+> 
+> V5:
+> - fix reference to fsl/lbc.txt in
+>   Documentation/devicetree/bindings/display/ssd1289fb.txt
+> 
+> V4:
+> - no changes
+> 
+> V3:
+> - move this patch after the GPCM/FCM patches to dtschema/dtc warnings
+>   due to missing bindings for fsl,elbc-gpcm-uio and fsl,elbc-fcm-nand
+> - add "simple-bus" again, for compatibility with existing DTs/drivers
+>   based on discussion with Crystal Wood and Rob Herring
+> - fix fsl,pq2-localbus compatible properties based on mgcoge.dts / ep8248e.dts
+>   (was missing "simple-bus")
+> - add board-control (bcsr) example again, now using the compatible
+>   string listed in Documentation/devicetree/bindings/board/fsl,bcsr.yaml
+> - remove interrupt-parent property from example
+> - rework the commit message
+> 
+> V2:
+> - fix order of properties in examples, according to dts coding style
+> - move to Documentation/devicetree/bindings/memory-controllers
+> - clarify the commit message a tiny bit
+> - remove unnecessary multiline markers (|)
+> - define address format in patternProperties
+> - trim subject line (remove "binding")
+> - remove use of "simple-bus", because it's technically incorrect
+> ---
+>  .../devicetree/bindings/display/ssd1289fb.txt      |   2 +-
+>  .../bindings/memory-controllers/fsl,elbc.yaml      | 158 +++++++++++++++++++++
+>  .../devicetree/bindings/powerpc/fsl/lbc.txt        |  43 ------
+>  3 files changed, 159 insertions(+), 44 deletions(-)
+> 
 
-Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:29.23-34.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/flash@0,0: simple-bus unit address format error, expected "0"
+Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:36.31-39.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/board-control@1,0: simple-bus unit address format error, expected "100000000"
+Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:41.31-46.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/simple-periph@2,0: simple-bus unit address format error, expected "200000000"
+Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:82.23-89.15: Warning (simple_bus_reg): /example-1/localbus@e0005000/flash@0,0: simple-bus unit address format error, expected "0"
+Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:91.22-97.15: Warning (simple_bus_reg): /example-1/localbus@e0005000/nand@1,0: simple-bus unit address format error, expected "100000000"
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260101-ppcyaml-elbc-v5-4-251c7f14a06c@posteo.net
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
