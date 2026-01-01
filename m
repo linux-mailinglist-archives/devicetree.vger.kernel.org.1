@@ -1,130 +1,156 @@
-Return-Path: <devicetree+bounces-250971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1751CED51D
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 21:05:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DDCACED54D
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 21:40:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9E47E30062D4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 20:05:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C8E113006A65
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 20:40:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E30852F3612;
-	Thu,  1 Jan 2026 20:05:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD801FE44A;
+	Thu,  1 Jan 2026 20:40:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IK9c8aa4"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="HVVtud7B";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="mbAzoHmD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB526187346;
-	Thu,  1 Jan 2026 20:05:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2D61427A;
+	Thu,  1 Jan 2026 20:40:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767297925; cv=none; b=p5I3EUGTK7GvTPVXqoRGB4REsxnMlMgFRFp6CkxOXOh1pSmrhjNhMvYzQiLQ8VJQ2LGDG/FxkTN4p1/LRFIapv5qNa5LjLVj3ItnJhIck6S5Yrd2v6i9XqKZwv+/X9rZFFZ4wU3wTGymhhNPI471ztdVQ8J7eiPpvz0h8SgoouQ=
+	t=1767300002; cv=none; b=mm7nNqLHCTr7IQDcqQc0s/CDdJzeuzUgjNabg6S5MydOjolZE12LAd27GDo/AlSBMit3YSiQp9AmgB3IVeCxWe0/EII/NzLwDgPxgwXMjBWlRW0f7IlFvOEksTXoM9uyJHP3ECYkJroU/vG29pls5WKHNu7gEwpPn+GoaH2FEoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767297925; c=relaxed/simple;
-	bh=vdDv9HA8R9igJbDmUe3gTGabgP9f8/50BOxgIAY2eCM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bMewlvrcUmj440G6GPa8vXPs4c+OiCtisSnWSRi3Ud46qdoDqRUALupgDFipHnZse21J36yU6BHjliTvnYnwto7J3iJdaAGiqWikfYhv2hNq7I9VA/I9E5t6Nw0n2U+5oTwUIcGKm+gSiizY8Or/JO/LhOca2Oet1eIZq8YvkBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IK9c8aa4; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767297924; x=1798833924;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=vdDv9HA8R9igJbDmUe3gTGabgP9f8/50BOxgIAY2eCM=;
-  b=IK9c8aa40oSSnnHc4d4UiIqnvbAmELRLkFjWZ0I5/rKV7ruIBV16c1Ok
-   TPTUpfBdKp6OSpyMgKnA3l2gt1Kv+2TCqzAWQ17ZkH0cMqGOi5+3zoH4m
-   OaXeTa0RfKbisMH6Ky+aMhs9NWH2nHEJSRdlEjAJfND/+bCwzgIHYbCRu
-   iDHniBCBZkBU9KQFJ70uyyVClfsry90qDypuj+zW7OazvIuXYkz0xEEL1
-   k0OBjgLfFUGWC4a5CiM06n1waE+LSYAKGsTSjRSTykCNl3iqs7y+sH6J5
-   VI0ysyHwFCHjwnAj+u+14jSIzXCZ2Z5o3i4zMSOy0BCDuCh4ms/S9yDOx
-   Q==;
-X-CSE-ConnectionGUID: Z2qNllsiSEmjmrpPj+PtUw==
-X-CSE-MsgGUID: clCP8G2aQEuRB+HJNc5KnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11658"; a="80192783"
-X-IronPort-AV: E=Sophos;i="6.21,195,1763452800"; 
-   d="scan'208";a="80192783"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jan 2026 12:05:23 -0800
-X-CSE-ConnectionGUID: uRDRV/EzSgqsP/9eyhU8Qg==
-X-CSE-MsgGUID: eUtytS4wQhaouEHawNgetg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,195,1763452800"; 
-   d="scan'208";a="206736945"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.249])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jan 2026 12:05:18 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id 87A3411F87B;
-	Thu, 01 Jan 2026 22:05:28 +0200 (EET)
-Date: Thu, 1 Jan 2026 22:05:28 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
-To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	s=arc-20240116; t=1767300002; c=relaxed/simple;
+	bh=kpTBa4IZTTxTd0NzD8g8GDtFgAB1/3kcPDIWboWwDNI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kt6Z6lIFFyExsIHhMIcNA9lMF/iWThV8sfyvnML6gpcOAPh9nuM7Q0Fd5u7eQ4Kqq9ySTTuj+q4bsYhPPJ4TaGsyaoGbVv5NgBDBG/ifDjVf9W0tBNWyGOcqnxy72aTSk3jPStykmm0CGtp9sCBXUaQA36pTNDlXv/RXumKoe4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=HVVtud7B; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=mbAzoHmD; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dhzGJ6vKyz9slB;
+	Thu,  1 Jan 2026 21:39:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767299993;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SVW0D3VHQ/9UYMf1H6TYmbhWryKWzOQzD+QDECFAVCI=;
+	b=HVVtud7Bpy/sLXqYXGgCGO8pIj7w55qFOc5IsQUvjS+S7IWOvJoIyc6D5e5o7yqJLjQmln
+	7pxQIFxai6Q/O4mTYDSzMPemCLkD/RXHJWBFXnxZUQ6oMnR2D/YRtPr1fWXbjeh6C1izSa
+	Fd3Ef/mAWS6hSbA+GkpAq3BGHrkWC/R3lHKqm+hv27JvgkSotzFTqRw4klOLPOgKcwdJj0
+	uK5rAgBD7jyj8smpMsNuM5i9hvfmQiixlBdb8LliYhMflgX5IDRuPuxYW2UdfHUxZ0YC2o
+	WICzAgzLHPX3C/nZoFh6h97I3d6tsrWwfPMLXf9k3UsS4kYfice2SHRj9otyLw==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=mbAzoHmD;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::202 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767299991;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SVW0D3VHQ/9UYMf1H6TYmbhWryKWzOQzD+QDECFAVCI=;
+	b=mbAzoHmDtSsvpOE0MXMScrn3TdZqdmt415JFUuUhiEfw5+KQ29vF9BlLiifFODiDwRe3SB
+	J0rArQI373uKSSF/lrstCN7FXlRtQEPIqGafvak/JJ9JzsLV6YYXiTJIZ2g0+sHRp1HYm0
+	g8yu8U2oSwp94AMRw7SBaetIZPkQDC57uylRQBToeFlNk2uUzkL3d9+1j4ies+S1cxq6es
+	LajTyee8Le2e4CbKrRTgK0nNrApfLRJilmqoTdL2K3nqKNClS1JrwDt9Pvjk5TdUlrgrYa
+	cadY3jNf/O2nGBni910yOeUJd7lBCynpy7qlyUFGfH/2GysjgT56xQmOLuAZ+g==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Hans de Goede <hansg@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 2/2] media: i2c: add os05b10 image sensor driver
-Message-ID: <aVbTiM35Z_64mwFA@kekkonen.localdomain>
-References: <20251231070645.16434-1-himanshu.bhavani@siliconsignals.io>
- <20251231070645.16434-3-himanshu.bhavani@siliconsignals.io>
- <8838a2f3-4eec-42ee-88ee-55a71f789037@linaro.org>
- <PN0P287MB2019969BACCD6EF1325BE3069ABAA@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 00/11] Describe PCIe/USB3.0 clock generator on R-Car Gen3
+Date: Thu,  1 Jan 2026 21:35:47 +0100
+Message-ID: <20260101203938.159161-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <PN0P287MB2019969BACCD6EF1325BE3069ABAA@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
+X-MBO-RS-META: 7pm6idxcp1gs3rc5wka53woapptag165
+X-MBO-RS-ID: ed28d9c32f1f63fc69d
+X-Rspamd-Queue-Id: 4dhzGJ6vKyz9slB
 
-Hi Himanshu,
+Describe the 9FGV0841 PCIe and USB3.0 clock generator present on various
+R-Car Gen3 boards. The clock generator supplies 100 MHz differential clock
+for PCIe ports, USB 3.0 PHY and SATA.
 
-On Thu, Jan 01, 2026 at 06:19:02AM +0000, Himanshu Bhavani wrote:
-> >> +#define OS05B10_PIXEL_RATE           (480 * HZ_PER_MHZ)
-> >
-> >Here pixel rate should not be hardcoded, it'd be computed in runtime
-> >as 600MHz * 2 * 4 lanes / 10 bpp = 480MHz.
-> >
-> >The sensor may be wired over 2 lanes or (presumably) it can stream 8 bpp data.
-> 
-> We are not supporting 2 lanes right now, driver supports only for 4 lanes and 
-> 10 bpp data. So technically OS05B10_PIXEL_RATE will never change.
-> For reference I will add OS05B10_PIXEL_RATE calculation in comments.
-> I would prefer the hardcoded at the moment. Other than this comment 
-> I will resolve and send new version.
+The series effectively has three parts, the first three patches are part 1,
+which fills in the missing USB 3.0 PHY on R-Car E3 Ebisu and enables it,
+thus aligning the Ebisu USB 3.0 support with the rest of the Gen3 boards.
 
-The pixel rate on the pixel array may be disconnected from the link
-frequency (and throughput) -- it may be more (with e.g. binning) or less,
-depending on the sensor of course. Calculating it, if possible, is always
-better than using a fixed value; experience has shown these are often
-simply incorrect and sometimes not updated when other changes are made (and
-same goes for the link frequency).
+The second part is description of PCIe root ports on R-Car Gen3 SoCs where
+applicable, in this case that is H3/M3W/M3N/E3. The root port is used with
+PCIe port power control to also control the PCIe port clock. This is needed
+on Gen3 boards, because they often use separate clock output from the PCIe
+clock generator 9FGV0841 to supply clock to the controller and to the PCIe
+port.
+
+The third part is enablement of the 9FGV0841 PCIe clock controller on the
+R-Car Salvator-X/XS, ULCB and Ebisu boards. The boards use the PCIe clock
+controller outputs in a slightly different manner, all use the outputs to
+supply PCIe controllers and slots, as well as USB 3.0 SuperSpeed PHY. The
+ULCB board also uses the 9FGV0841 to supply SATA IP, but this is not yet
+described in DT, therefore it is also not part of this series.
+
+Marek Vasut (11):
+  dt-bindings: phy: renesas: usb3-phy: add r8a77990 support
+  arm64: dts: renesas: r8a77990: Add USB 3.0 PHY and USB3S0 clock nodes
+  arm64: dts: renesas: ebisu: Enable USB 3.0 PHY
+  arm64: dts: renesas: r8a77951: Describe PCIe root ports
+  arm64: dts: renesas: r8a77960: Describe PCIe root ports
+  arm64: dts: renesas: r8a77961: Describe PCIe root ports
+  arm64: dts: renesas: r8a77965: Describe PCIe root ports
+  arm64: dts: renesas: r8a77990: Describe PCIe root port
+  arm64: dts: renesas: salvator-common: Describe PCIe/USB3.0 clock
+    generator
+  arm64: dts: renesas: ulcb: ulcb-kf: Describe PCIe/USB3.0 clock
+    generator
+  arm64: dts: renesas: ebisu: Describe PCIe/USB3.0 clock generator
+
+ .../bindings/phy/renesas,usb3-phy.yaml        |  1 +
+ arch/arm64/boot/dts/renesas/ebisu.dtsi        | 43 +++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77951.dtsi     | 20 +++++++++
+ arch/arm64/boot/dts/renesas/r8a77960.dtsi     | 20 +++++++++
+ arch/arm64/boot/dts/renesas/r8a77961.dtsi     | 20 +++++++++
+ arch/arm64/boot/dts/renesas/r8a77965.dtsi     | 20 +++++++++
+ arch/arm64/boot/dts/renesas/r8a77990.dtsi     | 29 +++++++++++++
+ .../boot/dts/renesas/salvator-common.dtsi     | 26 +++++++++++
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi      | 21 +++++++++
+ arch/arm64/boot/dts/renesas/ulcb.dtsi         | 13 ++++++
+ 10 files changed, 213 insertions(+)
+
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-phy@lists.infradead.org
+Cc: linux-renesas-soc@vger.kernel.org
 
 -- 
-Kind regards,
+2.51.0
 
-Sakari Ailus
 
