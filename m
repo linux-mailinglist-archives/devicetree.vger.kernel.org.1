@@ -1,207 +1,115 @@
-Return-Path: <devicetree+bounces-250983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11FF4CED584
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 21:40:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81D7DCED58C
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 21:58:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 617963006F63
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 20:40:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B99F43005FE7
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 20:58:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119FC239E8D;
-	Thu,  1 Jan 2026 20:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A3D422154B;
+	Thu,  1 Jan 2026 20:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="jD2eIHEf";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="QInb7ctl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DSTV7UUT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61B992DCF52;
-	Thu,  1 Jan 2026 20:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3545C224FA;
+	Thu,  1 Jan 2026 20:58:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767300038; cv=none; b=d1eHN/J52ho12FthtdenVHlxv20JlgLQWhgwQfn9SEgikptS3iQjhG3UHamxmOt0P0QHL4/iRwNqW9SwFsJCBazLEIhB5oq33N4SkEYFB91j4hL3nwivgwEoOIkI2Tu51DO9zzNLcIlfxXhrwsRn/zb4XTKkfi7vQ88sHMt1M/s=
+	t=1767301118; cv=none; b=Tv5mlam1eEJj1M1OM7hJ+zc4A161vlrBxfQa+4GpDrLDnnGlnKHHGB2Ss33R/vkDfuJ9wwnizLnoPD9ArrQqYVoCECMO2l4cHZfZ7jpMrpKYB2C4L3x65kQAtbl1N5RtM0PMCMvBRAYIqKwWX6dSfBWrthOBbUyn/oNXfYfeUFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767300038; c=relaxed/simple;
-	bh=MgAnAeX2xgWCFluCq2Y0f0fyTGdcydH3bh4qYCbpuc8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kfFlbNDFrOKp4ijkwRGL6usWek6VkAsdJBVvWK+AtckiB9MdwFPGMzpd2sVxcHXdkDwcIztd1Z3/zPLiZnyJ8ev3dhNDRwT8XfuGL1xWPbabUPI2fsIbAGRzwGtXcUM7+n233+RgdEwzvkwaNnnpy0DDHT65Z/wM9ZwsM2rSqH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=jD2eIHEf; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=QInb7ctl; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dhzH648V9z9sR1;
-	Thu,  1 Jan 2026 21:40:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1767300034;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ry34khQxIU8hAmiXdlhwHv7F2qJFSNh761bs0K2+cus=;
-	b=jD2eIHEfnL+6+zR1pG4wexeI/2hSQlNW7+zdI831vTBrgdtgxJ6+EuyizAS9liY/24mdiE
-	/i1Fft9ZWQkZ3IJ+DNDxA6BsLoLg2GGzfh4flvU61bdUOyEDoThMroizDyeF8g/j5hcxXm
-	0KVbaojhcynPvgqaIgR47JcO3OnlRmlPiIIFPCX3yVUwcqje8ctV5v0zqfWUN11uTPmuSC
-	bAaiTjwj5ohzNbaJr0TSGDSTMbNQvlNdM/tNAM1Yi2hNkM5+yjZvMpATwhkJ1Q6Tvgt6MS
-	inaNs/8x3BCLflVOAs1/0IOcW5MdgbXmDJWiIXfeerPk+E2zn6dtegr+7aVApg==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=QInb7ctl;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::202 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1767300032;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ry34khQxIU8hAmiXdlhwHv7F2qJFSNh761bs0K2+cus=;
-	b=QInb7ctl5rQ64uE8KWgN6WFFPdNEj2JJVdK7MluS9+LEEa+fZcdDpmkqb1RarwSRJzc+cC
-	8FZCkXyN46zhjROTgmyMoJfk85mnP5FPwzehwDSh773OR/GXDvpldbQOTEVPwNdH2CP6fi
-	VUIBwvGKc8klNoLDCyFkk4beopZiaIo1XoSSDInYsgvHpwEoZ+PEwyQWnYd80ySpKQzoaX
-	XiFo1p5fz4Wm20PTKKUOBhudqbeOf9uSpBVGCxhJHj+WgqOO/grcqi+G7a+BISMzzg6ZkV
-	Z4xLoewIshOAgfP5+fKOK7a/ZNmrSi8tXMRbozwqUMROlqpnRNzVx8KVp9wqGA==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	devicetree@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 11/11] arm64: dts: renesas: ebisu: Describe PCIe/USB3.0 clock generator
-Date: Thu,  1 Jan 2026 21:35:58 +0100
-Message-ID: <20260101203938.159161-12-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260101203938.159161-1-marek.vasut+renesas@mailbox.org>
-References: <20260101203938.159161-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1767301118; c=relaxed/simple;
+	bh=X8KXkCocbNuRb+X67/20nY1ut1Fml6Z0TAliwbhkBq0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O2RrzwbiBob+8p8PvcRFTiGxR1sJPyR5U2gTD9IlMrm4ToHR4tFeyTTqPaxySBpNf6sXn58FZkyyuTo3jdHxWjF5QVWyF7/OVH0rWTpAPvCmm3HOURcz203P7YQl7W8MpDQOmCtU5o1Ra4DggU8FMGhPxa05ywys7ewTHOHAUcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DSTV7UUT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62B00C4CEF7;
+	Thu,  1 Jan 2026 20:58:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767301117;
+	bh=X8KXkCocbNuRb+X67/20nY1ut1Fml6Z0TAliwbhkBq0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DSTV7UUTKp/uwadTj7wswRt/Q+dVaDv8iLWLCDsGhAmDacEe/+KHyzU49mXaG31K2
+	 L/ETKaucFic3PGf5i0YOhKdMY9055/q3eD1MfSDb8udHuGDjve1fSUj+Y6yEus2RUn
+	 WwW97FJxs0t3H6ptCjauy8NY2zHciyVjub/ObmWTd4iRVAIhwntc/z1lQMLIe+v7Zu
+	 TPYiZjc1x58Ol3L7MsZGGMfqHrx9wMx/mwOXGNgO/5fZz18AxjyThtmjyNrz3DEv9m
+	 7W0T/igP2jxt5jWxe5wpYvlLZCaUoPxddQ3k7CUovXdfwwa63CmcMaI5AO2Se0DHot
+	 cNKYvgqYis3nA==
+Message-ID: <d3bcaf7d-06ae-4410-8d7c-970fdb196c47@kernel.org>
+Date: Thu, 1 Jan 2026 20:58:25 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: sq6ed7j5ueauinwqfnokrgiusr13u7pn
-X-MBO-RS-ID: ac310e9e446cad3ba5d
-X-Rspamd-Queue-Id: 4dhzH648V9z9sR1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/9] remoteproc: qcom_q6v5_mss: Add MDM9607
+To: barnabas.czeman@mainlining.org
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
+ linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251231-mss-v3-0-f80e8fade9ec@mainlining.org>
+ <NLGulU4z-1Wrf5120YfX8CYJ_8DSP-9-DhaJ3KAIQCvqF9Qf184udOzFoEQH1qgJDZUl9cxEpsdyztfhcz8G-w==@protonmail.internalid>
+ <20251231-mss-v3-3-f80e8fade9ec@mainlining.org>
+ <6bfc790d-b0da-4c5b-bd2d-ceed9a75bb24@kernel.org>
+ <DEGDp05xNKls7EO30mtT70wJFIkDT0-248vPaBikWJGkFf--YvzpyJ_h5sc7RSH1y9hkCKdFRBIJwQUNE9Rlzw==@protonmail.internalid>
+ <a627abcaa38c0ba11c76c1f0c42b0c6b@mainlining.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bod@kernel.org>
+In-Reply-To: <a627abcaa38c0ba11c76c1f0c42b0c6b@mainlining.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Describe the 9FGV0841 PCIe and USB3.0 clock generator present on Ebisu
-board. The clock generator supplies 100 MHz differential clock for both
-PCIe slot and BT/WLAN expansion port, as well as for the USB 3.0 PHY.
+On 01/01/2026 13:50, barnabas.czeman@mainlining.org wrote:
+>>> +				for (; i >= 0; i--) {
+>>> +					val |= BIT(i);
+>>> +					writel(val, qproc->reg_base + mem_pwr_ctl);
+>>> +					/*
+>>> +					 * Read back value to ensure the write is done then
+>>> +					 * wait for 1us for both memory peripheral and data
+>>> +					 * array to turn on.
+>>> +					 */
+>>> +					val |= readl(qproc->reg_base + mem_pwr_ctl);
+>>> +					udelay(1);
+>> Isn't the logic here inverted ?
+>>
+>> i.e. you've written a thing and ostensibly require a delay for that
+>> thing to take effect, the power to switch on in this case.
+>>
+>> It makes more sense to write, delay and read back rather than write,
+>> readback and delay surely...
+> This is the original reset sequence without modification, i have just
+> moved it in a else case when it is not an MDM9607, MSM8917 or MSM8937.
 
-This configuration is valid for SW49 in OFF position, which means the
-PCIe signals are routed to the PCIe slot and U11 9FGV0841 PCIe clock
-generator output 3 supplies clock to the PCIe slot.
+Doesn't make it correct, we fix upstream logic bugs all the time...
 
-In case the SW49 is set to ON position, which means the PCIe signals
-are routed to the EX BT/WLAN expansion port, and U11 9FGV0841 PCIe
-clock generator output 4 supplies clock to the port and &pciec0_rp
-clocks should be changed to "clocks = <&pcie_usb_clk 4>;". Once the
-BT/WLAN port is tested, this can be implemented using a DTO. Until
-then, assume SW49 is set to OFF position.
+For example a read-back to ensure write completion is only required for 
+posted memory transactions.
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Is this a posted write ?
+
+Is there an io-fabric in the world which exceeds 1 microsecond to 
+perform a write transaction ?
+
+Anyway leaving that aside the bit that's really objectionable and IMO 
+obvious a bug is val |= readl();
+
+Why or the bit back in ? and then why not check the bit was set on the 
+read ?
+
+val = readl() is a lot less janky and shouldn't it matter that the bit 
+we tried to set is actually reflected in the read-back ?
+
+Failure to set the bit would certainly be a problem...
+
 ---
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>
-Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-phy@lists.infradead.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- arch/arm64/boot/dts/renesas/ebisu.dtsi | 33 ++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/ebisu.dtsi b/arch/arm64/boot/dts/renesas/ebisu.dtsi
-index 0b1ada18a4f74..16168cf5e3122 100644
---- a/arch/arm64/boot/dts/renesas/ebisu.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ebisu.dtsi
-@@ -53,6 +53,12 @@ backlight: backlight {
- 		power-supply = <&reg_12p0v>;
- 	};
- 
-+	pcie_usb_refclk: clk-x7 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <25000000>;
-+	};
-+
- 	cvbs-in {
- 		compatible = "composite-video-connector";
- 		label = "CVBS IN";
-@@ -439,6 +445,13 @@ adv7511_out: endpoint {
- 		};
- 	};
- 
-+	pcie_usb_clk: clk@68 {
-+		compatible = "renesas,9fgv0841";
-+		reg = <0x68>;
-+		clocks = <&pcie_usb_refclk>;
-+		#clock-cells = <1>;
-+	};
-+
- 	video-receiver@70 {
- 		compatible = "adi,adv7482";
- 		reg = <0x70>;
-@@ -578,12 +591,30 @@ &ohci0 {
- 
- &pcie_bus_clk {
- 	clock-frequency = <100000000>;
-+	status = "disabled";
- };
- 
- &pciec0 {
-+	clocks = <&cpg CPG_MOD 319>, <&pcie_usb_clk 1>;
- 	status = "okay";
- };
- 
-+&pciec0_rp {
-+	/*
-+	 * This configuration is valid for SW49 in OFF position,
-+	 * which means the PCIe signals are routed to the PCIe slot
-+	 * and U11 9FGV0841 PCIe clock generator output 3 supplies
-+	 * clock to the PCIe slot.
-+	 *
-+	 * In case the SW49 is set to ON position, which means the
-+	 * PCIe signals are routed to the EX BT/WLAN expansion port,
-+	 * and U11 9FGV0841 PCIe clock generator output 4 supplies
-+	 * clock to the port, change clocks below to:
-+	 * clocks = <&pcie_usb_clk 4>;
-+	 */
-+	clocks = <&pcie_usb_clk 3>;
-+};
-+
- &pfc {
- 	avb_pins: avb {
- 		groups = "avb_link", "avb_mii";
-@@ -872,11 +903,13 @@ &usb2_phy0 {
- };
- 
- &usb3_phy0 {
-+	clocks = <&cpg CPG_MOD 328>, <&pcie_usb_clk 6>;
- 	status = "okay";
- };
- 
- &usb3s0_clk {
- 	clock-frequency = <100000000>;
-+	status = "disabled";
- };
- 
- &usb3_peri0 {
--- 
-2.51.0
-
+bod
 
