@@ -1,125 +1,209 @@
-Return-Path: <devicetree+bounces-250946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7FA3CED2F9
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 17:57:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A26A5CED2EE
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 17:54:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5E6973002D0E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 16:57:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6E5493006F4A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 16:54:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CFEC2EDD70;
-	Thu,  1 Jan 2026 16:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58302EDD6D;
+	Thu,  1 Jan 2026 16:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="rXGQB1LY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aKEkR+fL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A83E22F01;
-	Thu,  1 Jan 2026 16:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F30405F7;
+	Thu,  1 Jan 2026 16:54:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767286668; cv=none; b=frbUz60YpCMpmAnUjY2v/HrZEDmPuhf10cNlibwXWDe+DmHz0d61+/0VkwQEwYTtYKXS3Yi5gHfeda7KoQlTZwNHdyKxp7/x8AwZ733o4hfYp4o6KqfoSYajtvqSTixUQoRmpExIoXU+wZkhf9bJ+WdAC3smm07w2c4yzePgrHo=
+	t=1767286469; cv=none; b=j6rw4AuUW8QX4q906egFX/TZ0Cfdu3XqBYQr84OPeGD69IHDVfyVc7yd1+lZj5CrYAmyKBJ27DHicDsPUSnSvZWTIR7QusKnZtfthcZDVp8os7JAOnkmQlxD2z5DXcUxtfQjTeO9c9A9hVESHgLuXNyrARFI/cgwJJMQbKXq6P8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767286668; c=relaxed/simple;
-	bh=t34bAUbZkTE3XnJnjfdrbLVgvucIxRaGkiaDw//WMLk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fVUEExoOo74YK5pklJtGjMWIsjQp9BZ99y1vSXeOaq+57C5+gt/p6C8lm0Hg38RKOvDeFBywUWQMoPT8hpuk7xH/7uD0TiFLyZMVBHculTIuw/MV8s4at0LSuUOqKzYz7TrWnNFPfxcDH6GbUKysayQJkxXEl//3aJFm1FVrZVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=rXGQB1LY; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dhtKy5gdlz9sJG;
-	Thu,  1 Jan 2026 17:57:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1767286662;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UwhbiH2i/ANAo8+Wch6/HUZJO5n6DwRlRD01nwzx8Ks=;
-	b=rXGQB1LYkbEvVkSNsX47TyNne9IPu2vluqViPLO0Fty919Nx3pbgT/jEtVHbbYdNhWDQ6x
-	I2bZulzHV3RA1ofyCei2a2VwEDM1cyFyWKp4yY6baAbSWd6cjbG21PxYtTW5ONie3c91Ar
-	Q3x0Am/w+eU6tPlCjGaHGc6xO1enuwvMiJ1IEJVkA3E0OOG2dxdT+gB5e7f5/7+pHO0kkW
-	JOW9Tha6mjXB9HE7DC6gL4uCJTVLmrrb+jr0+A77VgS5B/VdcSOIJ6g+fQsb19Zhw87T60
-	FDi/EDk+eX8NGx31EVhi4be97Zl7uBToY7PRC4/5ppcCuUTiRijCMr3l5JrVZg==
-Message-ID: <b2dd2109-c2d9-412e-9b11-5851485acf04@mailbox.org>
-Date: Thu, 1 Jan 2026 17:51:12 +0100
+	s=arc-20240116; t=1767286469; c=relaxed/simple;
+	bh=nq6v8jCixnAalf9SHq9b05ejaN7vaO9MlQ1lo+AMhQg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gj+kVGg+mkxIO886M2UhGNaB63ONmflf5SVfYa1vJlT++XR7p0QqDFrK437KK1DujhWu7ZulM6snmv9RkjSwyOzSL31WB4Bm7ACgyUcZvc+KL9m+sxGO7jlWJ+F4PZPnGoK/ePvOVjYxY3hpdLTnxharBAyv2F0V/b4yZAGS2sQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aKEkR+fL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 38DA2C4CEF7;
+	Thu,  1 Jan 2026 16:54:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767286469;
+	bh=nq6v8jCixnAalf9SHq9b05ejaN7vaO9MlQ1lo+AMhQg=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=aKEkR+fL8cxdJrEBKvL3CcqKy8V2bq+QJ92460JJNXgAmJomg65HVzmSAfxJ4D2cr
+	 bAEctdvy9JpHnE7hdvRrejOU8iFBlVKLwGBL4Mqa44X4DlqGLwcrUmndYSU5Y6OdYx
+	 MbpIN+ho0ESlS4dm4Cm2eOFiUMkoLBCAcRTswg1l7ozE88g6aV+IDUl7a91tjD2mgO
+	 /CQoFUcan++mJYa+z9ve+NjCJqFpbZK1+VzxU25l0KZCia3vqmVbu0UOLqmoAift4C
+	 1gbaTxlFi92J9Er9nrQMQ7EExLsQiUPvSKC8fhyqf9CLtPeDmm6nG8LeSWev8wQSOU
+	 7W80he3HPiZ7Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 288A5EED615;
+	Thu,  1 Jan 2026 16:54:29 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Date: Thu, 01 Jan 2026 17:54:22 +0100
+Subject: [PATCH RESEND v3] dt-bindings: watchdog: Convert mpc8xxx-wdt to
+ YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: imx95: remove CLK_GPUAPB
-To: Rain Yang <jiyu.yang@oss.nxp.com>
-Cc: Frank.Li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- festevam@gmail.com, imx@lists.linux.dev, jiyu.yang@nxp.com,
- kernel@pengutronix.de, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- liviu.dudau@arm.com, robh@kernel.org, s.hauer@pengutronix.de,
- shawnguo@kernel.org
-References: <20251231031915.752262-1-jiyu.yang@oss.nxp.com>
- <37489cb7-820d-46cd-a7ea-0f9097604895@mailbox.org>
- <aVXByNiEfC66RDG0@oss.nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aVXByNiEfC66RDG0@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 8f8f6702e7912ba6456
-X-MBO-RS-META: ustjw9ys9hf7hrrizs4wzjh54u9p1ppq
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260101-ppcyaml-wdt-v3-1-9d59c5aee03f@posteo.net>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767286468; l=4148;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=bB23UQDjneYN1/x32YaH9AR28whcCCI45Acz4U/Ao1Q=;
+ b=ohP7I0XkNKWYzdv0Q6D5+1rjodHTcz83v5nwSxuoDkFw2DqMMtwOg1vv6gTstu/tIE4HTvdmE
+ JOC/tkYDAY3AcJNgA7DFG1M8nnumer9Tbln+A0ZV7tP47ndeb5iosJL
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-On 1/1/26 1:37 AM, Rain Yang wrote:
-> On Wed, Dec 31, 2025 at 03:11:21PM +0100, Marek Vasut wrote:
->> On 12/31/25 4:19 AM, Rain Yang wrote:
->>> From: Rain Yang <jiyu.yang@nxp.com>
->>>
->>> Dropping CLK_GPUAPB simplifies OPP handling and avoids unnecessary
->>> complexity.
->>>
->>> Fixes: 67934f248e64 ("arm64: dts: imx95: Describe Mali G310 GPU")
->>> Signed-off-by: Rain Yang <jiyu.yang@nxp.com>
->>> ---
->>>    arch/arm64/boot/dts/freescale/imx95.dtsi | 4 ++--
->>>    1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
->>> index 88bde59e61b2..ab446aa6f73c 100644
->>> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
->>> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
->>> @@ -2164,8 +2164,8 @@ netc_emdio: mdio@0,0 {
->>>    		gpu: gpu@4d900000 {
->>>    			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
->>>    			reg = <0 0x4d900000 0 0x480000>;
->>> -			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>, <&scmi_clk IMX95_CLK_GPUAPB>;
->>> -			clock-names = "core", "coregroup";
->>> +			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>;
->>> +			clock-names = "core";
->>
->> I don't think this is correct, SM can disable the GPUAPB clock from the SM
->> monitor:
->>
->>> $ clock.w gpuapb off
->>
->> Linux has to make sure the GPUAPB clock are enabled to access the GPU
->> register, hence the clock have to be described in DT.
-> Hi Marek,
+From: "J. Neuschäfer" <j.ne@posteo.net>
 
-Hello Jiyu,
+Convert mpc83xx-wdt.txt to YAML to enable automatic schema validation.
 
-> CLK_GPU and CLK_GPUAPB can only be controlled internally by the SM, not by Linux.
-> CLK_GPUAPB always runs at a fixed frequency, does not require dynamic adjustment,
-> and is practically always on.
-> Additionally, CLK_GPUAPB's frequency is absent from all OPP entries. Removing it
-> could simplify OPP handling logic and reduce unnecessary complexity.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+V3:
+- split out as a single patch
+- remove unnecessary node labels in examples
 
-But the SM can turn the GPUAPB clock off, correct ?
+V2:
+- part of series [PATCH v2 00/12] YAML conversion of several Freescale/PowerPC DT bindings
+  Link: https://lore.kernel.org/lkml/20250207-ppcyaml-v2-7-8137b0c42526@posteo.net/
+- trim subject line (remove "binding")
+- fix property order to comply with dts coding style
+---
+ .../devicetree/bindings/watchdog/mpc8xxx-wdt.txt   | 25 ---------
+ .../devicetree/bindings/watchdog/mpc8xxx-wdt.yaml  | 64 ++++++++++++++++++++++
+ 2 files changed, 64 insertions(+), 25 deletions(-)
 
-Linux has to be able to turn GPUAPB clock on, therefore the GPUAPB clock 
-have to be described in DT, correct ?
+diff --git a/Documentation/devicetree/bindings/watchdog/mpc8xxx-wdt.txt b/Documentation/devicetree/bindings/watchdog/mpc8xxx-wdt.txt
+deleted file mode 100644
+index a384ff5b3ce8c6..00000000000000
+--- a/Documentation/devicetree/bindings/watchdog/mpc8xxx-wdt.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-* Freescale mpc8xxx watchdog driver (For 83xx, 86xx and 8xx)
+-
+-Required properties:
+-- compatible: Shall contain one of the following:
+-	"mpc83xx_wdt" for an mpc83xx
+-	"fsl,mpc8610-wdt" for an mpc86xx
+-	"fsl,mpc823-wdt" for an mpc8xx
+-- reg: base physical address and length of the area hosting the
+-       watchdog registers.
+-		On the 83xx, "Watchdog Timer Registers" area:	<0x200 0x100>
+-		On the 86xx, "Watchdog Timer Registers" area:	<0xe4000 0x100>
+-		On the 8xx, "General System Interface Unit" area: <0x0 0x10>
+-
+-Optional properties:
+-- reg: additional physical address and length (4) of location of the
+-       Reset Status Register (called RSTRSCR on the mpc86xx)
+-		On the 83xx, it is located at offset 0x910
+-		On the 86xx, it is located at offset 0xe0094
+-		On the 8xx, it is located at offset 0x288
+-
+-Example:
+-		WDT: watchdog@0 {
+-		    compatible = "fsl,mpc823-wdt";
+-		    reg = <0x0 0x10 0x288 0x4>;
+-		};
+diff --git a/Documentation/devicetree/bindings/watchdog/mpc8xxx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mpc8xxx-wdt.yaml
+new file mode 100644
+index 00000000000000..67ad4f1eda8de0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/mpc8xxx-wdt.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/mpc8xxx-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale MPC8xxx watchdog timer (For 83xx, 86xx and 8xx)
++
++maintainers:
++  - J. Neuschäfer <j.ne@posteo.net>
++
++properties:
++  compatible:
++    enum:
++      - mpc83xx_wdt       # for an mpc83xx
++      - fsl,mpc8610-wdt   # for an mpc86xx
++      - fsl,mpc823-wdt    # for an mpc8xx
++
++  device_type:
++    const: watchdog
++
++  reg:
++    minItems: 1
++    items:
++      - description: |
++          Base physical address and length of the area hosting the watchdog
++          registers.
++
++          On the 83xx, "Watchdog Timer Registers" area:     <0x200 0x100>
++          On the 86xx, "Watchdog Timer Registers" area:     <0xe4000 0x100>
++          On the 8xx, "General System Interface Unit" area: <0x0 0x10>
++
++      - description: |
++          Additional optional physical address and length (4) of location of
++          the Reset Status Register (called RSTRSCR on the mpc86xx)
++
++          On the 83xx, it is located at offset 0x910
++          On the 86xx, it is located at offset 0xe0094
++          On the 8xx, it is located at offset 0x288
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: watchdog.yaml#
++
++additionalProperties: false
++
++examples:
++  - |
++    watchdog@0 {
++        compatible = "fsl,mpc823-wdt";
++        reg = <0x0 0x10 0x288 0x4>;
++    };
++
++  - |
++    watchdog@200 {
++        compatible = "mpc83xx_wdt";
++        reg = <0x200 0x100>;
++        device_type = "watchdog";
++    };
++
++...
+
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250220-ppcyaml-wdt-130a3ae38a9f
+
+Best regards,
+-- 
+J. Neuschäfer <j.ne@posteo.net>
+
+
 
