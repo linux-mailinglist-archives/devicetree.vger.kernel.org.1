@@ -1,115 +1,79 @@
-Return-Path: <devicetree+bounces-250959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8721ACED39A
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 18:21:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E027CED3B8
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 18:41:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5899130198F4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 17:21:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 32726300479E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 17:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA14F2F12C9;
-	Thu,  1 Jan 2026 17:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD5D2512C8;
+	Thu,  1 Jan 2026 17:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="RDUdV3Bc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ViNOvwCC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888BD2F12CF
-	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 17:21:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CF61C84BC;
+	Thu,  1 Jan 2026 17:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767288064; cv=none; b=tbpR+0YrFpWZFxFx3UpwlqAjOuUZCbO8TMXZ7z2XQmY2Ww7kbLXnFB8MzycWBKR2PKfGQeP3y4kGIQ6EaFdOSiGH1pxbVCUoPd9y1zfYeZxjcagjVIbVEMV5LrNqt2U4ZKQNh5QeyFKoyqaah/rfPzhTDzRvOuIT2Lss8BHrBg0=
+	t=1767289303; cv=none; b=VTWhG1GEkZQxHmjOhjQzlIU8vlRbdee7Fq0QqqZm5omYG56yMJZO3usq0YuDffme0k/hXbT0s1jWtMHGr/OPv7EsTob4UT0CpsrZJrcn+I0JR+QuF8nPIglFoBvYhy6IbvTGjiuZO3Ys1Zo3sASJWPKwB74S/Ul3zkHxQKVcxBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767288064; c=relaxed/simple;
-	bh=oR0HUQkJ0g46vbysFl5WWvNBEbq3cfaE+xUpADAqJWk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kd4nd/det8wWCksVG7vE6ponU47wAPU0w7KEOEduc4bCy6ytMOi1Vs70eC7yeH5/3PWUZqwZCh3emyseWshRiZXL93qINsf+z8p/rivGUt6AGX3uWa688UGMyH0+4lMJiqb8/mXzm7CuoWbLu4Gw5OVL+QsBs4WW7/1g1aTNi3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=RDUdV3Bc; arc=none smtp.client-ip=212.77.101.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 31568 invoked from network); 1 Jan 2026 18:20:58 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1767288058; bh=gELqvaeQlWG+ETN/6/E6ceX26B6xTdepXFs8chq3lOw=;
-          h=From:To:Cc:Subject;
-          b=RDUdV3Bck8bcVEouGkoDWU6UVKD9R3EEAaHauJUzC/sa/xMaWmskqALIuT1Ym49Pu
-           v/uvSRR56RW9vprf8dnYidw6TRkz7D/aOcqZYm7OR16Avk8/5B0YbGr8jv+sHLuYRL
-           MegrcI0Gn1WUbEBCA3nWoykmxJKXOGrIF8wOZOGaY3tVhL7dwDZpfD1wSuxi1IqAHN
-           UBeYv07JUFSc1SuPxI8sy0GGueRm5ONV23UN2pYR4KUZqCpsxSf1N9AyFjGL0W6f8D
-           DjD3EbmpNUEC7EMAWuN1kjFAP9/PrNCy4Ny45uLzYk+iIXyJu8OJK9uCg42M2BcmXf
-           LnRPABF0uYxPA==
-Received: from 83.5.157.18.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.5.157.18])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <ansuelsmth@gmail.com>; 1 Jan 2026 18:20:58 +0100
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: ansuelsmth@gmail.com,
-	herbert@gondor.apana.org.au,
-	davem@davemloft.net,
-	chester.a.unal@arinc9.com,
-	sergio.paracuellos@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	tsbogend@alpha.franken.de,
-	angelogioacchino.delregno@collabora.com,
-	linux-crypto@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH v2 2/2] mips: dts: ralink: mt7621: add crypto offload support
-Date: Thu,  1 Jan 2026 18:20:05 +0100
-Message-ID: <20260101172052.1862252-2-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260101172052.1862252-1-olek2@wp.pl>
-References: <20260101172052.1862252-1-olek2@wp.pl>
+	s=arc-20240116; t=1767289303; c=relaxed/simple;
+	bh=nNgdKUG3FO3mHvi+GWQKOXSqipyIutSGayFpY5MUZXs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Zb8I7lXaHltOfOx3Qm/d4wN1nAyJTajPBrh45pPG8oumpJ60SaN5BIYyCQvfPP88j8KwBygdmWml9SeaiHIxUriHny1kRwVUldOdBq3m+3Q3VePCLKiN3u2iOpy8k9ULRdZd2PTMzAedBCWe4pVHD6CuNFGWFNax0PrPUdgZfc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ViNOvwCC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05BAFC4CEF7;
+	Thu,  1 Jan 2026 17:41:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767289302;
+	bh=nNgdKUG3FO3mHvi+GWQKOXSqipyIutSGayFpY5MUZXs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=ViNOvwCCRJgl+JmPhouId9uegOvAQU2tq1ifx6TgrVeclKyaKv0+BTjkn7Ab4r1dX
+	 62mk6HAP8C7N0u5Ae+hj4rrRKeUKjhXPeFE3C3Si/JD6hfa8GdVvOPFtiYp87/NVES
+	 RXE8blbLSp5x7IGa3xuqAddgqCAqsBfGKwUP62Rp/fg8/6JXAgeoXvnc71qjcdAVx9
+	 JVEQM2iY1vOsAxFZCk5eqExr2H94m03lvBFr1HY/OSwSE3/ggO5Ua8neuTJbcBVjcy
+	 Ls9FVuwwDvD9vKv1J+AA0qYYlpjIZeZJDD99rSL+KPWde2Nk28RJyFyBEYrRcx6Ciu
+	 OYkvzrzZyIaOA==
+From: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20251225181519.1401953-1-vz@mleia.com>
+References: <20251225181519.1401953-1-vz@mleia.com>
+Subject: Re: [PATCH] dt-bindings: dma: pl08x: Do not use plural form of a
+ proper noun PrimeCell
+Message-Id: <176728930063.239406.8039189937029694324.b4-ty@kernel.org>
+Date: Thu, 01 Jan 2026 23:11:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                                      
-X-WP-MailID: 82bf59844e7e130908c415a5a52693c5
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000009 [gerU]                               
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-Add support for the built-in cryptographic accelerator. This accelerator
-supports 3DES, AES (128/192/256 bit), ARC4, MD5, SHA1, SHA224, and SHA256.
-It also supports full IPSEC and TLS offload, but this feature isn't
-implemented in the driver.
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- arch/mips/boot/dts/ralink/mt7621.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Thu, 25 Dec 2025 20:15:19 +0200, Vladimir Zapolskiy wrote:
+> As a proper noun PrimeCell is a single entity and it can not have a plural
+> form, fix the typo.
+> 
+> 
 
-diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
-index 0704eab4a80b..9ba28fa016fb 100644
---- a/arch/mips/boot/dts/ralink/mt7621.dtsi
-+++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
-@@ -361,6 +361,14 @@ cdmm: cdmm@1fbf8000 {
- 		reg = <0x1fbf8000 0x8000>;
- 	};
- 
-+	crypto@1e004000 {
-+		compatible = "mediatek,mt7621-eip93", "inside-secure,safexcel-eip93ies";
-+		reg = <0x1e004000 0x1000>;
-+
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_SHARED 19 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
- 	ethernet: ethernet@1e100000 {
- 		compatible = "mediatek,mt7621-eth";
- 		reg = <0x1e100000 0x10000>;
+Applied, thanks!
+
+[1/1] dt-bindings: dma: pl08x: Do not use plural form of a proper noun PrimeCell
+      commit: 99e0728b38da1ee343bd3b57bda72c404c693c45
+
+Best regards,
 -- 
-2.47.3
+~Vinod
+
 
 
