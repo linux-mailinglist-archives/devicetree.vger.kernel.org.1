@@ -1,169 +1,432 @@
-Return-Path: <devicetree+bounces-250919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78D16CECED0
-	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 10:14:06 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05B1FCECF52
+	for <lists+devicetree@lfdr.de>; Thu, 01 Jan 2026 11:48:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A208E303D895
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 09:11:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BBDE5300441D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jan 2026 10:48:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D8EC2BDC3F;
-	Thu,  1 Jan 2026 09:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94C02C0F6D;
+	Thu,  1 Jan 2026 10:48:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BCw9p/Bl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f65EGWF2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA82C2BD5BC
-	for <devicetree@vger.kernel.org>; Thu,  1 Jan 2026 09:03:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C09A27FD54;
+	Thu,  1 Jan 2026 10:48:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767258229; cv=none; b=sPodKWidQtYKzT78acr0DghS6H0sW5nGAYRkCGlsKGCK1EldtwRScpeFC5+dmSZj78cxGHumd/AH/wajlRmkODxpmAhb6piSTaTl+U7R1apI1zzVIKcB79QkTAta3gavgF+xmX8z3Im6MaIdk3LxvA1ynTZCostRjopduSDf6jY=
+	t=1767264487; cv=none; b=tQejqeJ0nPTtRJUQU3NSdISJ17banDIWttdWdfuL91CLwejJUbuKg7hmenWXmhpzBurlWcVBRkBiZYqxOg4Utpjh8vY2R86c7vaEo0qJzjaV8nlRmmZ/tAP4kP9qdmqWqslW5k/Ti0mONuF8OzKlvujRg+j2FjAYPNLCPVbx6EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767258229; c=relaxed/simple;
-	bh=trWVfDATm/MwjZ2+dtjuGYhC7m5DG/4DEiwR1Jy0uIU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CnemhFafqeOB//HjTM2NxWxolEGTqSXg6SSKyIxvbDFHtwkydtK2mzU/MSENh7yrMME8tvhu2GpRnXlxM/U3XoUE4mp8Aipy7mBYCGys0YZuUBAnofs35B/LLqIw0g0cZ8vjXviQ9pR6/+KESc76F/T7fp+mzMLMQ37lNf4OXes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BCw9p/Bl; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7b6dd81e2d4so11671018b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Jan 2026 01:03:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767258227; x=1767863027; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3tdOFnD1zwwXEjmETrN68s5mUpHoY1S7934/U4qRcoA=;
-        b=BCw9p/Bl03ryIMzjgJtxF3kXGb7L4t3I7Jy/tj8SMtIVhXevn4gFwU65ADp/OhRu69
-         S3vxky+VZMO8MCSBmXRHrap1dCAsrUvQXoor5TB2aBAHdc3UpFx8n0DapAaY4jZHkkwS
-         Zf072HJR/PGnmz2zHVjiQEeTJuG1V+A+8uRSccF1E1Y0den7XHvYCZPwmR73M1H87hdJ
-         Ova4H3DuCE6gAHKKqQ58l3bzx+ryw0vXr9/sQtyP5eOpN8hjELAHlkL7lFBpoS+Eup0y
-         GamgGMfh9oDMrk4WasBe1jbgm+iZtlUB3wsKnZXhacpV6P0ZZBvw40SlfcdlCJaTm4Lx
-         QlMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767258227; x=1767863027;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3tdOFnD1zwwXEjmETrN68s5mUpHoY1S7934/U4qRcoA=;
-        b=YE+kc5aSwvntoAOMFLruRgPYaZvVP8FseArNj5ZZqjgXnibEXkABw1y6dXra3rekZ0
-         9Nwrq/BXsV6+me+tqjj8LGAR1BaXSST0I3SiD8sctK5+KB0w938OsUrPnUACIjOmD0Hv
-         tgH3ioifF0GIS6HEhiTVrKGPdw0ArwAw1s0reV6UqF/o14hmikxcDJoyoOod368kn9D6
-         aDvjkZr2DxZbXgk1PltGnc2843C3jFs91AfINEIwWK54HYwqOIkYdTMPbOHty8Ogavqg
-         uDj0SQMR8AfGxy5xhkMTXr8KEG8ER0daJZKiq05kSbmrCAr7HSs5tVkHZrfQ91foQGqh
-         qX6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXQh+8yR1JqeWiwwlx1EO5cdrmJ1qrblzs4SsTwRhQDAS/ScnfW6MtQ6OqhlTqTHRthX6Hi5e9cx015@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGJ3pY87arGD0Frcg3E1HWFA6I/veCTsSr3nChok/NdtlTlNEk
-	gsc74SQ+d3gYQzBUtcaERx3Er4waJHsvhEynTRCUUswV4fem5fs/4v6q
-X-Gm-Gg: AY/fxX5mIrIswu3/hjWKRz+6kq/n0nAq4BJaElDjlvdIvcfQbMCtXifr+HsjFS63Zlh
-	XAYwcSmTKUouHYcwDAkHe9ZaYCredZP+DNWLfndUHi9HYTGi6DfTaeYWn9f4FJabypvaWg3BFIS
-	swWlXVVcM31n0EHO5APzPLiZmX2yS++M8c4MuY+By4WeCpa8UdMkqF/8fs2I00Cg5VU+NRorYul
-	af+wBGSyGqhMEMLvfm8cr9FHY+Xck2jUJFgLMT+Oby5ar8Q0K7D+M2AMNff/0Agux+LChBB5Inp
-	EgJyFCFS5j2sHvF+fr8IwSR9VhbePJaYt4IR0LoJDT5q73I+BiVFgyaHvypyyGrp8QRIF8Zsu8E
-	b0+Ic653i0O7z+rbBCjqGcSz7AGK3w3MVOeVDUBIKVNXNd5Xxok+oZMScEIrQtGOzmdPc/Yb3gm
-	UxeRBobNuBHIuZ
-X-Google-Smtp-Source: AGHT+IHO9HLDqLnxGqMh+mxYDWViv1/O3WqdN3+qFILp62mk/kOweAuJA1AZ8e4wVoEHoRWOZ+prQQ==
-X-Received: by 2002:a05:6a00:90a2:b0:7e8:4433:8fa2 with SMTP id d2e1a72fcca58-7ff6607bcddmr39960635b3a.42.1767258227104;
-        Thu, 01 Jan 2026 01:03:47 -0800 (PST)
-Received: from [127.0.1.1] ([59.188.211.98])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-7ff7dfac29bsm37182957b3a.39.2026.01.01.01.03.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jan 2026 01:03:46 -0800 (PST)
-From: Nick Chan <towinchenmi@gmail.com>
-Date: Thu, 01 Jan 2026 17:01:57 +0800
-Subject: [PATCH v10 21/21] arm64: dts: apple: t8015: Add CPU PMU nodes
+	s=arc-20240116; t=1767264487; c=relaxed/simple;
+	bh=R0DOglverepptSmEjV6vsOv1lb25BtPMXmjL3NRM0Sc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LVY6QU4YHF+TbzlrbfdJUfAnRG6NkJxPJKTZRp5+chdJgoBPZFpUsbL/Vv2veP/9TwQbVC1lSB+GaFdxVYda22ihX9LfwVKOdEaVheDsI1mlfLnOIakvK20/95ZKHnTaku28O6g9pEbQ91VkejwubabAaqBk8hQsVKWSCqtqqBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f65EGWF2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33A5CC4CEF7;
+	Thu,  1 Jan 2026 10:48:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767264484;
+	bh=R0DOglverepptSmEjV6vsOv1lb25BtPMXmjL3NRM0Sc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f65EGWF21o5v2DTtbG1ujgxxdDrGwkgzF0Vcg3wmXGaHeIEGquQV5L2zMHHoLVxxH
+	 DS8cdr5Km3j7i6cQC5YxKnOcsyBOUKiX3DMmNN0n7+WsCGw9uNRgKWB7WnYgMepifn
+	 2albIziaBgRchlR/NTxAm0plcNO7PNyPNCr10fnR9ZOOexAi/jLpFo3vlneNB+aQgi
+	 Cy/tGvZHndLd2DRKrcsfzjBarNMqDVHBWxel+5042uFqCPlH9hfREnx+L6E4naaZW2
+	 t34v30AME7TVWeEUmpF9BzIdj0h21xZemWK+b5ZHnHJEq9il0L2KhVRo8heOWmCZGp
+	 P4RM95qVoK8cw==
+Date: Thu, 1 Jan 2026 16:18:01 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Cc: conor@kernel.org, gregkh@linuxfoundation.org, pjw@kernel.org,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	neil.armstrong@linaro.org, krzk+dt@kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH 4/5] phy: usb: Add driver for Canaan K230 USB 2.0 PHY
+Message-ID: <aVZQ4YVXGryHz0ds@vaman>
+References: <20251230023725.15966-1-jiayu.riscv@isrc.iscas.ac.cn>
+ <20251230023725.15966-5-jiayu.riscv@isrc.iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260101-apple-cpmu-v10-21-48812c529ffc@gmail.com>
-References: <20260101-apple-cpmu-v10-0-48812c529ffc@gmail.com>
-In-Reply-To: <20260101-apple-cpmu-v10-0-48812c529ffc@gmail.com>
-To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>, Janne Grunau <j@jannau.net>, 
- Neal Gompa <neal@gompa.dev>, Sven Peter <sven@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
- asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Nick Chan <towinchenmi@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1462; i=towinchenmi@gmail.com;
- h=from:subject:message-id; bh=trWVfDATm/MwjZ2+dtjuGYhC7m5DG/4DEiwR1Jy0uIU=;
- b=owEBbQKS/ZANAwAKAQHKCLemxQgkAcsmYgBpVjgpSfeNnDDFSIT2Vc+1Lesv6jNsQYcFQYur4
- OGMFS8dLn+JAjMEAAEKAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCaVY4KQAKCRABygi3psUI
- JKgdD/48Oa+AjeAoAVsrpKQTk4o35ek0CzqaxUwDuPnoOwbkEgFd9Gv9cAbMM2eks5VybrHunJz
- e5NYXyt9bxOKT51Lq+Xkyro8ixG0EQrPItJKj8ckf/yA6Jitm7fikoHiQXc3PkUC/MuJkNcEV+6
- blmxnWxOsdxt2pbkxVBVk1ywud8xwITHXftKf/OZ+gUCWOaHgWXUEdZ++zxDCGn6G7BB2FNPBSj
- 3RMWYElEv3m00UtjLwOVegeF+9LQYasHUjckXbFLoDBXqSmwvyBSHP1MurONsa28XQry5VlBHku
- LSF50dJsLChEaxClORGyiVsFvBMlI/WRnnym0EyqYwAHLZ2KLfqLvqsJndKpbF7RXdfbTuC/r5G
- 1v8Xz9KfWik/7JJ4vmnSMoAVJ8EwE5XkckvZYUPt3k2hC0FUS+YOro/8fPOs6kev4KJv2XpZXJI
- cE0NhDyB0MfSclFPKZBzb5frmfVGA0+PIUwXEZjHsirGsdOhbLBDQq+ZIxuUiqfUsP1X5bs1Ohh
- evZE9VP8zemVg8jruE9jT8nqu3Ve2kw5+w3T4X+spL84wVi5lGnMmxefqyfyXFSNJxhvwM1nBf9
- bXvbE7sVJts4ECdTCJlZg3epyUkjmC8R7apIijQZJb7EQj9R3wCtCysNsWW3UgUOqmeE3BDJ6i9
- YG47wDhWWBmbfUQ==
-X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
- fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251230023725.15966-5-jiayu.riscv@isrc.iscas.ac.cn>
 
-Add CPU PMU nodes for Apple A11 SoC.
+On 30-12-25, 10:37, Jiayu Du wrote:
+> Add driver for the USB 2.0 PHY in Canaan K230 SoC, which supports PHY
+> initialization, power management and USB mode switching.
+> 
+> Add Kconfig/Makefile under drivers/phy/canaan/.
+> 
+> Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+> ---
+>  drivers/phy/Kconfig               |   1 +
+>  drivers/phy/Makefile              |   1 +
+>  drivers/phy/canaan/Kconfig        |  14 ++
+>  drivers/phy/canaan/Makefile       |   2 +
+>  drivers/phy/canaan/phy-k230-usb.c | 272 ++++++++++++++++++++++++++++++
+>  5 files changed, 290 insertions(+)
+>  create mode 100644 drivers/phy/canaan/Kconfig
+>  create mode 100644 drivers/phy/canaan/Makefile
+>  create mode 100644 drivers/phy/canaan/phy-k230-usb.c
+> 
+> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+> index 678dd0452f0a..95e630749350 100644
+> --- a/drivers/phy/Kconfig
+> +++ b/drivers/phy/Kconfig
+> @@ -105,6 +105,7 @@ source "drivers/phy/allwinner/Kconfig"
+>  source "drivers/phy/amlogic/Kconfig"
+>  source "drivers/phy/broadcom/Kconfig"
+>  source "drivers/phy/cadence/Kconfig"
+> +source "drivers/phy/canaan/Kconfig"
+>  source "drivers/phy/freescale/Kconfig"
+>  source "drivers/phy/hisilicon/Kconfig"
+>  source "drivers/phy/ingenic/Kconfig"
+> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
+> index bfb27fb5a494..f07c68f2e283 100644
+> --- a/drivers/phy/Makefile
+> +++ b/drivers/phy/Makefile
+> @@ -17,6 +17,7 @@ obj-y					+= allwinner/	\
+>  					   amlogic/	\
+>  					   broadcom/	\
+>  					   cadence/	\
+> +					   canaan/	\
+>  					   freescale/	\
+>  					   hisilicon/	\
+>  					   ingenic/	\
+> diff --git a/drivers/phy/canaan/Kconfig b/drivers/phy/canaan/Kconfig
+> new file mode 100644
+> index 000000000000..1ff8831846d5
+> --- /dev/null
+> +++ b/drivers/phy/canaan/Kconfig
+> @@ -0,0 +1,14 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# Phy drivers for Canaan platforms
+> +#
+> +config PHY_CANAAN_USB
+> +	tristate "Canaan USB2 PHY Driver"
+> +	depends on (ARCH_CANAAN || COMPILE_TEST) && OF
+> +	select GENERIC_PHY
+> +	help
+> +	Enable this driver to support the USB 2.0 PHY controller
+> +	on Canaan K230 RISC-V SoCs. This PHY controller
+> +	provides physical layer functionality for USB 2.0 devices.
+> +	If you have a Canaan K230 board and need USB 2.0 support,
+> +	say Y or M here.
+> diff --git a/drivers/phy/canaan/Makefile b/drivers/phy/canaan/Makefile
+> new file mode 100644
+> index 000000000000..d73857ba284e
+> --- /dev/null
+> +++ b/drivers/phy/canaan/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +obj-$(CONFIG_PHY_CANAAN_USB)		+= phy-k230-usb.o
+> diff --git a/drivers/phy/canaan/phy-k230-usb.c b/drivers/phy/canaan/phy-k230-usb.c
+> new file mode 100644
+> index 000000000000..668618fb2188
+> --- /dev/null
+> +++ b/drivers/phy/canaan/phy-k230-usb.c
+> @@ -0,0 +1,272 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Canaan usb PHY driver
+> + *
+> + * Copyright (C) 2025 Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/of.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#define TEST_CTL3_OFFSET	0x0C
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
- arch/arm64/boot/dts/apple/t8015.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Lowercase hex values please.. do you need a test register :-)
 
-diff --git a/arch/arm64/boot/dts/apple/t8015.dtsi b/arch/arm64/boot/dts/apple/t8015.dtsi
-index 586d3cf1f3751d9ee23262e55fd692bfee86c13f..0c1ebab56d6b36ed5362a042ecb6cecef7c97f64 100644
---- a/arch/arm64/boot/dts/apple/t8015.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8015.dtsi
-@@ -341,6 +341,18 @@ aic: interrupt-controller@232100000 {
- 			#interrupt-cells = <3>;
- 			interrupt-controller;
- 			power-domains = <&ps_aic>;
-+
-+			affinities {
-+				e-core-pmu-affinity {
-+					apple,fiq-index = <AIC_CPU_PMU_E>;
-+					cpus = <&cpu_e0 &cpu_e1 &cpu_e2 &cpu_e3>;
-+				};
-+
-+				p-core-pmu-affinity {
-+					apple,fiq-index = <AIC_CPU_PMU_P>;
-+					cpus = <&cpu_p0 &cpu_p1>;
-+				};
-+			};
- 		};
- 
- 		pmgr: power-management@232000000 {
-@@ -530,6 +542,18 @@ timer {
- 		interrupts = <AIC_FIQ AIC_TMR_GUEST_PHYS IRQ_TYPE_LEVEL_HIGH>,
- 			     <AIC_FIQ AIC_TMR_GUEST_VIRT IRQ_TYPE_LEVEL_HIGH>;
- 	};
-+
-+	pmu-e {
-+		compatible = "apple,mistral-pmu";
-+		interrupt-parent = <&aic>;
-+		interrupts = <AIC_FIQ AIC_CPU_PMU_E IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	pmu-p {
-+		compatible = "apple,monsoon-pmu";
-+		interrupt-parent = <&aic>;
-+		interrupts = <AIC_FIQ AIC_CPU_PMU_P IRQ_TYPE_LEVEL_HIGH>;
-+	};
- };
- 
- #include "t8015-pmgr.dtsi"
+> +#define CTL0_OFFSET		0x00
+> +#define CTL1_OFFSET		0x04
+> +#define USB_IDPULLUP0		BIT(4)
+> +#define USB_DMPULLDOWN0		BIT(8)
+> +#define USB_DPPULLDOWN0		BIT(9)
+> +
+> +/* USB control register 0 in HiSysConfig system controller */
+> +/* PLL Integral Path Tune */
+> +#define USB_CTL0_PLLITUNE_MASK		GENMASK(23, 22)
+> +
+> +/* PLL Proportional Path Tune */
+> +#define USB_CTL0_PLLPTUNE_MASK		GENMASK(21, 18)
+> +
+> +/* PLL Bandwidth Adjustment */
+> +#define USB_CTL0_PLLBTUNE_MASK		GENMASK(17, 17)
+> +
+> +/* VReg18 Bypass Control */
+> +#define USB_CTL0_VREGBYPASS_MASK	GENMASK(16, 16)
+> +
+> +/* Retention Mode Enable */
+> +#define USB_CTL0_RETENABLEN_MASK	GENMASK(15, 15)
+> +
+> +/* Reserved Request Input */
+> +#define USB_CTL0_RESREQIN_MASK		GENMASK(14, 14)
+> +
+> +/* External VBUS Valid Select */
+> +#define USB_CTL0_VBUSVLDEXTSEL0_MASK	GENMASK(13, 13)
+> +
+> +/* OTG Block Disable Control */
+> +#define USB_CTL0_OTGDISABLE0_MASK	GENMASK(12, 12)
+> +
+> +/* Drive VBUS Enable */
+> +#define USB_CTL0_DRVVBUS0_MASK		GENMASK(11, 11)
+> +
+> +/* Autoresume Mode Enable */
+> +#define USB_CTL0_AUTORSMENB0_MASK	GENMASK(10, 10)
+> +
+> +/* HS Transceiver Asynchronous Control */
+> +#define USB_CTL0_HSXCVREXTCTL0_MASK	GENMASK(9, 9)
+> +
+> +/* USB 1.1 Transmit Data */
+> +#define USB_CTL0_FSDATAEXT0_MASK	GENMASK(8, 8)
+> +
+> +/* USB 1.1 SE0 Generation */
+> +#define USB_CTL0_FSSE0EXT0_MASK		GENMASK(7, 7)
+> +
+> +/* USB 1.1 Data Enable */
+> +#define USB_CTL0_TXENABLEN0_MASK	GENMASK(6, 6)
+> +
+> +/* Disconnect Threshold */
+> +#define USB_CTL0_COMPDISTUNE0_MASK	GENMASK(5, 3)
+> +
+> +/* Squelch Threshold */
+> +#define USB_CTL0_SQRXTUNE0_MASK		GENMASK(2, 0)
+> +
+> +/* USB control register 1 in HiSysConfig system controller */
+> +/* Data Detect Voltage */
+> +#define USB_CTL1_VDATREFTUNE0_MASK	GENMASK(23, 22)
+> +
+> +/* VBUS Valid Threshold */
+> +#define USB_CTL1_OTGTUNE0_MASK		GENMASK(21, 19)
+> +
+> +/* Transmitter High-Speed Crossover */
+> +#define USB_CTL1_TXHSXVTUNE0_MASK	GENMASK(18, 17)
+> +
+> +/* FS/LS Source Impedance */
+> +#define USB_CTL1_TXFSLSTUNE0_MASK	GENMASK(16, 13)
+> +
+> +/* HS DC Voltage Level */
+> +#define USB_CTL1_TXVREFTUNE0_MASK	GENMASK(12, 9)
+> +
+> +/* HS Transmitter Rise/Fall Time */
+> +#define USB_CTL1_TXRISETUNE0_MASK	GENMASK(8, 7)
+> +
+> +/* USB Source Impedance */
+> +#define USB_CTL1_TXRESTUNE0_MASK	GENMASK(6, 5)
+> +
+> +/* HS Transmitter Pre-Emphasis Current Control */
+> +#define USB_CTL1_TXPREEMPAMPTUNE0_MASK	GENMASK(4, 3)
+> +
+> +/* HS Transmitter Pre-Emphasis Duration Control */
+> +#define USB_CTL1_TXPREEMPPULSETUNE0_MASK	GENMASK(2, 2)
+> +
+> +/* charging detection */
+> +#define USB_CTL1_CHRGSRCPUENB0_MASK	GENMASK(1, 0)
+> +
+> +#define K230_PHY_CTL0_VAL \
+> +( \
+> +	FIELD_PREP(USB_CTL0_PLLITUNE_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL0_PLLPTUNE_MASK, 0xC) | \
+
+lower hex here and rest
+
+> +	FIELD_PREP(USB_CTL0_PLLBTUNE_MASK, 0x1) | \
+> +	FIELD_PREP(USB_CTL0_VREGBYPASS_MASK, 0x1) | \
+> +	FIELD_PREP(USB_CTL0_RETENABLEN_MASK, 0x1) | \
+> +	FIELD_PREP(USB_CTL0_RESREQIN_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL0_VBUSVLDEXTSEL0_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL0_OTGDISABLE0_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL0_DRVVBUS0_MASK, 0x1) | \
+> +	FIELD_PREP(USB_CTL0_AUTORSMENB0_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL0_HSXCVREXTCTL0_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL0_FSDATAEXT0_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL0_FSSE0EXT0_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL0_TXENABLEN0_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL0_COMPDISTUNE0_MASK, 0x3) | \
+> +	FIELD_PREP(USB_CTL0_SQRXTUNE0_MASK, 0x3) \
+> +)
+> +
+> +#define K230_PHY_CTL1_VAL \
+> +( \
+> +	FIELD_PREP(USB_CTL1_VDATREFTUNE0_MASK, 0x1) | \
+> +	FIELD_PREP(USB_CTL1_OTGTUNE0_MASK, 0x3) | \
+> +	FIELD_PREP(USB_CTL1_TXHSXVTUNE0_MASK, 0x3) | \
+> +	FIELD_PREP(USB_CTL1_TXFSLSTUNE0_MASK, 0x3) | \
+> +	FIELD_PREP(USB_CTL1_TXVREFTUNE0_MASK, 0x3) | \
+> +	FIELD_PREP(USB_CTL1_TXRISETUNE0_MASK, 0x1) | \
+> +	FIELD_PREP(USB_CTL1_TXRESTUNE0_MASK, 0x1) | \
+> +	FIELD_PREP(USB_CTL1_TXPREEMPAMPTUNE0_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL1_TXPREEMPPULSETUNE0_MASK, 0x0) | \
+> +	FIELD_PREP(USB_CTL1_CHRGSRCPUENB0_MASK, 0x0) \
+> +)
+> +
+> +struct k230_usb_phy {
+> +	struct regmap *regmap;
+> +	u32 reg_ctl_offset;
+> +	u32 reg_test_offset;
+> +	struct clk *clk;
+> +};
+> +
+> +static int k230_usb_phy_power_on(struct phy *_phy)
+> +{
+> +	struct k230_usb_phy *phy = phy_get_drvdata(_phy);
+> +	int ret;
+> +	u32 val;
+> +
+> +	ret = clk_prepare_enable(phy->clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(phy->regmap, phy->reg_ctl_offset + CTL0_OFFSET,
+> +			   K230_PHY_CTL0_VAL);
+> +	if (ret)
+> +		goto err_disable_clk;
+> +
+> +	ret = regmap_write(phy->regmap, phy->reg_ctl_offset + CTL1_OFFSET,
+> +			   K230_PHY_CTL1_VAL);
+> +	if (ret)
+> +		goto err_disable_clk;
+> +
+> +	val |= USB_IDPULLUP0 | USB_DMPULLDOWN0 | USB_DPPULLDOWN0;
+> +
+> +	ret = regmap_update_bits(phy->regmap, phy->reg_test_offset +
+> +				 TEST_CTL3_OFFSET, val, val);
+
+so we are writing to a test register..?
+
+> +	if (ret)
+> +		goto err_disable_clk;
+> +
+> +	return 0;
+> +
+> +err_disable_clk:
+> +	clk_disable_unprepare(phy->clk);
+> +	return ret;
+> +}
+> +
+> +static int k230_usb_phy_power_off(struct phy *_phy)
+> +{
+> +	struct k230_usb_phy *phy = phy_get_drvdata(_phy);
+> +	int ret;
+> +	u32 val;
+> +
+> +	val = USB_DMPULLDOWN0 | USB_DPPULLDOWN0;
+> +
+> +	ret = regmap_update_bits(phy->regmap, phy->reg_test_offset +
+> +				 TEST_CTL3_OFFSET, val, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	clk_disable_unprepare(phy->clk);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct phy_ops k230_usb_phy_ops = {
+> +	.power_on = k230_usb_phy_power_on,
+> +	.power_off = k230_usb_phy_power_off,
+> +	.owner = THIS_MODULE,
+> +};
+> +
+> +static int k230_usb_phy_probe(struct platform_device *pdev)
+> +{
+> +	int ret;
+> +	u32 offset;
+> +	struct regmap *regmap;
+> +	struct phy *generic_phy;
+> +	struct k230_usb_phy *phy;
+> +	struct phy_provider *provider;
+> +	struct device *dev = &pdev->dev;
+
+reverse christmas  tree order would look better...
+
+> +	regmap = syscon_node_to_regmap(dev->parent->of_node);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap),
+> +				     "failed to get syscon regmap\n");
+> +
+> +	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+> +	if (!phy)
+> +		return -ENOMEM;
+> +
+> +	phy->regmap = regmap;
+> +
+> +
+
+why two lines...?
+
+> +	ret = of_property_read_u32_index(dev->of_node, "reg", 0, &offset);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "missing first reg offset\n");
+> +	phy->reg_test_offset = offset;
+> +
+> +	ret = of_property_read_u32_index(dev->of_node, "reg", 2, &offset);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "missing second reg offset\n");
+> +	phy->reg_ctl_offset = offset;
+> +
+> +	phy->clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(phy->clk))
+> +		return dev_err_probe(dev, PTR_ERR(phy->clk),
+> +				     "failed to get clock\n");
+> +
+> +	generic_phy = devm_phy_create(dev, dev->of_node, &k230_usb_phy_ops);
+> +
+> +	if (IS_ERR(generic_phy))
+> +		return dev_err_probe(dev, PTR_ERR(generic_phy),
+> +				     "failed to create PHY\n");
+> +
+> +	phy_set_drvdata(generic_phy, phy);
+> +
+> +	provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> +	if (IS_ERR(provider))
+> +		return dev_err_probe(dev, PTR_ERR(provider),
+> +				     "failed to register phy provider\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id k230_usb_phy_of_match[] = {
+> +	{ .compatible = "canaan,k230-usb-phy" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, k230_usb_phy_of_match);
+> +
+> +static struct platform_driver k230_usb_phy_driver = {
+> +	.probe = k230_usb_phy_probe,
+> +	.driver = {
+> +		.name = "k230-usb-phy",
+> +		.of_match_table = k230_usb_phy_of_match,
+> +	},
+> +};
+> +module_platform_driver(k230_usb_phy_driver);
+> +
+> +MODULE_DESCRIPTION("Canaan Kendryte K230 USB 2.0 PHY driver");
+> +MODULE_AUTHOR("Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.52.0
 
 -- 
-2.52.0
-
+~Vinod
 
