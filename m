@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-251012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B484FCEE1BD
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 10:55:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C6A0CEE1DE
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:02:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E61DF30011A4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 09:55:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1C1023003BDB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C342D73B9;
-	Fri,  2 Jan 2026 09:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC4A2C3278;
+	Fri,  2 Jan 2026 10:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aqr3h3ut"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vJQK5NR4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F0CD149C6F;
-	Fri,  2 Jan 2026 09:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13101E89C;
+	Fri,  2 Jan 2026 10:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767347708; cv=none; b=mqpKB4NAw8kTEEk7Un2u0Dk7Rqc4quLT4YgnTvI07PyLCS104oLOeKf8D/gJywJiyTXqmsfNEF2d7n99/mhXwZ6guI70l0hGVGfemDyd9UgtuxUq5gK96EXCLdsD73OThpFf6fTVEZx2tLwnF9LAAeQ4VVlM/Ux5JuQRCuM/m7k=
+	t=1767348138; cv=none; b=HtTwbwrhGsxas34NMJ4CjaC35Zt68vI2gg3jgg9cZP1FAj/cBEx5cCGzovVfOZMenjD3m1mZJMjH3fxzwB7Sth1pCUGvAFK6fRCPD586TB7e3DkLctqX4s9IzAy6sI2mJL5O0lekZdU7o2qhhboBpt6gtQGyt3Fy/Ctj9M74ltQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767347708; c=relaxed/simple;
-	bh=9Nv4Qa2PE9uSVW8OnUTuV1TBsV2uWxhkQ80yf+tBGpc=;
+	s=arc-20240116; t=1767348138; c=relaxed/simple;
+	bh=EY4Gf1NP2ZmGROzYwflOncoU95tf9DDjgpLojIvDyP4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lFipgyI5fzXmMQhwGSQI/DHAvbvVf/ePc1lGhTZpAJD3K61v7K4/jHRUrzgedXHQ87TSaak3ZQX1Ta7xyhWy9th8JNBg2FS0hTajJ006OAzXPyzpFwW9MjsJ+6nShQbJE6rLqlyqXvZcClU1KqhOBck1FMPnAiU/7m2l2IJVebY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aqr3h3ut; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FDCFC116B1;
-	Fri,  2 Jan 2026 09:55:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Xie2bR7+MnFLrak/G8jCtzqZSlYaq0t/T2MSPqQM0BrokcTNKMXN5p7G1LL7AKGoJdwZRnI6GN+OkDhnZ4PPTxvqSpr3bYvvha9WjVKcUNplCabMm5KPqoVYbTa6m6TFG7KBHJfP2Sp11QNGe0IkPrHKkv28AD3nxjUF/uMuIuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vJQK5NR4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3369C116B1;
+	Fri,  2 Jan 2026 10:02:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767347707;
-	bh=9Nv4Qa2PE9uSVW8OnUTuV1TBsV2uWxhkQ80yf+tBGpc=;
+	s=k20201202; t=1767348138;
+	bh=EY4Gf1NP2ZmGROzYwflOncoU95tf9DDjgpLojIvDyP4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aqr3h3utE/v48xE/ma2SNVN/jjBSherCuVuWapoIiyk6jbGl9wejzy+vnTbTzDyMZ
-	 E6hXDLcG3tk/XeGeV0XgLGLh0bfK1TbZLS8JIN1Mov7JHTT9mdgV6odjOtz/CoECsA
-	 71Hrv7pHkmcpAOfkjPzFwlQfON2jwJh1URmi8khPa+y26VHq9i3f+HuRCmuLrXatV9
-	 8TroyP9fwF/LAEYK7xNe7dE+Aa7kh2sr7Fx5fMmJ3jP+3JEzdB89lqPzXfnOvf3UBa
-	 n9k8K5e3KRUcM2BN4AWoAnwdEYNDpNYp9EQTflum47ryKGlvjCML95RO+RW4ugnXNn
-	 /CpNReYsRMBJQ==
-Message-ID: <c104d173-6316-4bcf-b89b-62417d0b30c8@kernel.org>
-Date: Fri, 2 Jan 2026 09:55:00 +0000
+	b=vJQK5NR4CSEvsWmRCaL1mmA2VOeXtD+V/wKCa6xZ0tiV6mp4D3c1zQZMCN8KZimds
+	 MQdV4BJt9vFpH+LlS7k7FyPtCE4QNAaNJ0Dp65YjZJ8mV6Fa1YAc+fzpKP+qYzQJz4
+	 0D37iufpZplEASOhYgLGme8hKqKqaL0DhI/tItKLylkIb1m1tsmEoMwl1dnStdCeou
+	 0GYyjEGLtYua58oMtojtJaXvd+lGl3JDrFkWdGQQy77KytZk/VnUvrJVIo8jZkP2Ot
+	 xMZwXcKPZe1Gs1Iw9FkgqHgCumAM6ZqE+Qt3noErmEf0d7LvpHWlo6c0LeWRWPdb3e
+	 NNceh6CSYxA1Q==
+Message-ID: <fb98e395-d590-47f7-8dba-d9a691a2c174@kernel.org>
+Date: Fri, 2 Jan 2026 11:02:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,95 +48,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/9] remoteproc: qcom_q6v5_mss: Add MDM9607
-To: barnabas.czeman@mainlining.org
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: samsung: Add
+ exynos9610-wakeup-eint node
+To: Alexandru Chimac <alex@chimac.ro>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linusw@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Tomasz Figa <tomasz.figa@gmail.com>, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251231-mss-v3-0-f80e8fade9ec@mainlining.org>
- <NLGulU4z-1Wrf5120YfX8CYJ_8DSP-9-DhaJ3KAIQCvqF9Qf184udOzFoEQH1qgJDZUl9cxEpsdyztfhcz8G-w==@protonmail.internalid>
- <20251231-mss-v3-3-f80e8fade9ec@mainlining.org>
- <6bfc790d-b0da-4c5b-bd2d-ceed9a75bb24@kernel.org>
- <DEGDp05xNKls7EO30mtT70wJFIkDT0-248vPaBikWJGkFf--YvzpyJ_h5sc7RSH1y9hkCKdFRBIJwQUNE9Rlzw==@protonmail.internalid>
- <a627abcaa38c0ba11c76c1f0c42b0c6b@mainlining.org>
- <d3bcaf7d-06ae-4410-8d7c-970fdb196c47@kernel.org>
- <MdF8n8gAaT_bieezcdxrSQouvHzG8TbGRiVRjHHXdc_Wjpr_GbDod8rUNrthtLEfOkycxxO5SVOfSPmyHe2C5g==@protonmail.internalid>
- <73d028cfdd514d6c3f073bb66fdd07cf@mainlining.org>
+References: <20251228-exynos9610-pinctrl-v2-0-c9bbeee4c54b@chimac.ro>
+ <20251228-exynos9610-pinctrl-v2-2-c9bbeee4c54b@chimac.ro>
+ <20251230-dramatic-gregarious-stallion-15bc07@quoll>
+ <yB5WFgsxeeqHQgi87UeNPD8K2OlQbWWC6-BovxADBtgusN3n8UOrm7Gi6jz6Th0dsMA9J-LEpx69sWjNmWTH_-jx9r7AgvXNTwR2hQW7-SM=@chimac.ro>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Bryan O'Donoghue <bod@kernel.org>
-In-Reply-To: <73d028cfdd514d6c3f073bb66fdd07cf@mainlining.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <yB5WFgsxeeqHQgi87UeNPD8K2OlQbWWC6-BovxADBtgusN3n8UOrm7Gi6jz6Th0dsMA9J-LEpx69sWjNmWTH_-jx9r7AgvXNTwR2hQW7-SM=@chimac.ro>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/01/2026 21:57, barnabas.czeman@mainlining.org wrote:
-> On 2026-01-01 21:58, Bryan O'Donoghue wrote:
->> On 01/01/2026 13:50, barnabas.czeman@mainlining.org wrote:
->>>>> +				for (; i >= 0; i--) {
->>>>> +					val |= BIT(i);
->>>>> +					writel(val, qproc->reg_base + mem_pwr_ctl);
->>>>> +					/*
->>>>> +					 * Read back value to ensure the write is done then
->>>>> +					 * wait for 1us for both memory peripheral and data
->>>>> +					 * array to turn on.
->>>>> +					 */
->>>>> +					val |= readl(qproc->reg_base + mem_pwr_ctl);
->>>>> +					udelay(1);
->>>> Isn't the logic here inverted ?
->>>>
->>>> i.e. you've written a thing and ostensibly require a delay for that
->>>> thing to take effect, the power to switch on in this case.
->>>>
->>>> It makes more sense to write, delay and read back rather than write,
->>>> readback and delay surely...
->>> This is the original reset sequence without modification, i have just
->>> moved it in a else case when it is not an MDM9607, MSM8917 or MSM8937.
+On 31/12/2025 13:28, Alexandru Chimac wrote:
+> On Tuesday, December 30th, 2025 at 11:51, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
->> Doesn't make it correct, we fix upstream logic bugs all the time...
-> Here is the original upstream logic
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/remoteproc/qcom_q6v5_mss.c?h=next-20251219#n823
-> and here is the same at downstream 3.18
-> https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.6.6.c32-05500-89xx.0/drivers/soc/qcom/pil-q6v5.c#L451
-> and same from downstream 4.9
-> https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/drivers/soc/qcom/pil-q6v5.c#L518
+>>
+>> On Sun, Dec 28, 2025 at 06:05:52PM +0000, Alexandru Chimac wrote:
+>>
+>>> Add a dedicated compatible for the exynos9610-wakeup-eint node,
+>>> which is compatbile with Exynos850's implementation (and the
+>>> Exynos7 fallback).
+>>>
+>>> Signed-off-by: Alexandru Chimac alex@chimac.ro
+>>> ---
+>>> .../devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml | 2 ++
+>>> 1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+>>> index f3c433015b12..deb2730855bd 100644
+>>> --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+>>> @@ -48,6 +48,7 @@ properties:
+>>> - enum:
+>>> - google,gs101-wakeup-eint
+>>> - samsung,exynos2200-wakeup-eint
+>>> + - samsung,exynos9610-wakeup-eint
+>>> - samsung,exynos9810-wakeup-eint
+>>> - samsung,exynos990-wakeup-eint
+>>> - samsung,exynosautov9-wakeup-eint
+>>> @@ -107,6 +108,7 @@ allOf:
+>>> contains:
+>>> enum:
+>>> - samsung,exynos850-wakeup-eint
+>>> + - samsung,exynos9610-wakeup-eint
+>>
+>>
+>> This is not needed. Device has 850 fallback, no?
+> It's not required, but I guess it would make the device tree look better. If this patch isn't to be merged, it doesn't functionally affect anything so it can just be dropped instead of requiring another patchset revision.
 
-Plenty of downstream bugs...
+Please wrap your replies.
 
-Let's assume those are posted writes i.e. the IO fabric equivalent of 
-UDP - I'm not sure I'd say the downstream code is consistent in its 
-treatement of write transactions..
+I did not comment on the patch. Comments are in specific places
+discussing specific lines. I asked why do you need this enum to grow?
 
-But aside from just pointing at downstream - how is val |= readl() a 
-correct thing versus val = readl();
 
-...
-
-I mean its just not
-
-> 
->>
->> For example a read-back to ensure write completion is only required for
->> posted memory transactions.
->>
->> Is this a posted write ?
->>
->> Is there an io-fabric in the world which exceeds 1 microsecond to
->> perform a write transaction ?
->>
->> Anyway leaving that aside the bit that's really objectionable and IMO
->> obvious a bug is val |= readl();
->>
->> Why or the bit back in ? and then why not check the bit was set on the
->> read ?
->>
->> val = readl() is a lot less janky and shouldn't it matter that the bit
->> we tried to set is actually reflected in the read-back ?
->>
->> Failure to set the bit would certainly be a problem...
->>
->> ---
->> bod
-
+Best regards,
+Krzysztof
 
