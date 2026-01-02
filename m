@@ -1,80 +1,132 @@
-Return-Path: <devicetree+bounces-251149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07F23CEF6AC
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 23:23:40 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57803CEF6C7
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 23:28:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB30630111A6
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 22:23:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C44643001BF1
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 22:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0A62D2384;
-	Fri,  2 Jan 2026 22:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DD7D2F0C74;
+	Fri,  2 Jan 2026 22:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oNyIdUD4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JxhXE3ZE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6EA02749ED
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289F02DF3FD
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767392617; cv=none; b=uEoqnzeCeX+psAe0UCGZ0oE0vfwB9VQDfBh47CW3OIN+AXr690hOzJCAPhoOFncu77SWgB06cOoVvCrO9AJUQngiTsLlSwBOwx8eg4HnOxyUeOz5Z1IIFrPFZOGD5u9dtDY49ZxYF4eEBfKkOo+pKA7qtFupUMj40+/YVvFR13E=
+	t=1767392913; cv=none; b=ZtDbsx6NR9dBip2188nDOgXaXiqNZN+KybeUOCUYHEm8AB17Lnxl8zKPsR4GXXb6jQZ9T46oA4UkB57KN/e5bIAgVR7J5WS3uUP6TDN5+2+dpQkDZFzJDQodriRlQBAqiqmtfQk6Cv/+QQUX5njT6ZjCwJYnX+3/HAFhufh3zpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767392617; c=relaxed/simple;
-	bh=uzQyOyokFsE6aLeCdVWXJuUpnoo7D0b+1LEL1vfIjXg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h8LRjlxn+ExuQeJzCArELS/7L2Yz5WAFmv6A+sLcROumXm32HOJke3d7Y2L70726pLXkRwmwyzdVLMinOp8ZcbPKZNg/+4pbroNHLSE0hMTMyA5YRaQfJCluxRZ/hF2WHtR4YeUceaaehV+iGLrPIKxo2a+/YDb+BTFzeWgkoNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oNyIdUD4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DBA7C116C6;
-	Fri,  2 Jan 2026 22:23:37 +0000 (UTC)
+	s=arc-20240116; t=1767392913; c=relaxed/simple;
+	bh=v12toz5kmCaN+PrUoB6C3hx+gdTT7Rngk1AHIAKCD+8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qQ+wE/GjRX0gJ4nttX2EKQZj1plFD9HVBuiGW30chRJaftjCk1C/8lcrMXVjMSYHn39Xgw0XDv7MkdMEcD4qqpPQx58TqJ5L/9tABelga8uor29+Y76RIf6P78wUfWIiqwh1DNvxK1H/+3H216a1nsJ7Bj8oPw2h9MUFUO4XFpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JxhXE3ZE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C997DC2BC86
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:28:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767392617;
-	bh=uzQyOyokFsE6aLeCdVWXJuUpnoo7D0b+1LEL1vfIjXg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oNyIdUD4CJS9cYLvocEgJxn+Xw8qnh+4+dOb62w3XxLXxfevtHNgkrTAULkSvU2EU
-	 E25zaOTcVxIWXafJEfMmR42O5rc0rQ+6b6Nvi4o3PzpNbbv9+6V/3rCMHC5rl52rDH
-	 smiwXFilSlIu/eAGht6RF/cXP44pDiaeJ3mGWsmUKhYrcauFBANFUGM9udIzHJR7j4
-	 0K7P4x84NdfKtugFzeGNVEtpvzIt+tl0N0HrkLIaoWBbtvZYc7HKptDkJshYJJqpb4
-	 tbWlNvIIKY1irizfcfVqd8x79fLiMq50kkOtse6SiqFG3ftHkbaP1qBNUf725lutuG
-	 DhFx3aXsQI88Q==
-Date: Fri, 2 Jan 2026 16:23:36 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Vladimir Zapolskiy <vz@mleia.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
-	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-Subject: Re: [PATCH 1/5] dt-bindings: mfd: nxp: Add NXP LPC32xx System
- Control Block
-Message-ID: <176739261569.281828.199653070024602694.robh@kernel.org>
-References: <20251231215754.2222308-1-vz@mleia.com>
- <20251231215754.2222308-2-vz@mleia.com>
+	s=k20201202; t=1767392912;
+	bh=v12toz5kmCaN+PrUoB6C3hx+gdTT7Rngk1AHIAKCD+8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=JxhXE3ZEETgXRtUG1L4UlGHkecs0gAhjnHV7ZbtKbi9vqcRy8XhuT90eNbaTQkg+E
+	 kHqNI+PAcTF3hLjEKvRA9PGzxMxTutPV2vLvqYU9rEpETvJ8wFhuVGj7AmO7Wd8hTk
+	 r2cwCYvolmUI013b9AJPIC4YrFhqb68MA7mpkl9rxuXMwaHA9rC6hOA+90rWeC8gLl
+	 bvbrh6jlw3AHJQbhTSZX50UZuRZn9ghtek+BC7Re+kL8f3w86rZP/YDShU2xpQqTVr
+	 TY5CGwMf5I6so/8kv+8lUMetKm+j0GetTBjQzUVKPY0OroyklMBBSHN2ec4Zc/xW1G
+	 LPcdSHFeErg8A==
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-64b92abe63aso21421224a12.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 14:28:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVFBPyJZh87j3p2BWa8TTG2yqdKf7BTy+rn9Gzs4jAYoWgaWC2PraDm6NyghBTQ1TmcodimbU8JgK3N@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnqflH+bMs+EvchSYWdUQZPneaPhrdvaTtQg89CJ4GbT59VXU4
+	QGpT9mbTfABWrHrWeLtB4m/D+NR2h8i+q+vZ7HB9Nikws+09+pw03Q3hT4XZYcao4SThXFemAqC
+	ivsrIF/maWBP/ETHB4n9Y5dUnZ81fjg==
+X-Google-Smtp-Source: AGHT+IE2JLIwT7IzxFl60D2dsx0IDVP1SIlSI+s2AD7FdZOQSMfJy6hvEhKAAA21Q/AGI3Vf39dZQogTm5dSOtl2jfc=
+X-Received: by 2002:a17:907:6d22:b0:b79:f965:1ce1 with SMTP id
+ a640c23a62f3a-b803705df6bmr4538227066b.42.1767392911283; Fri, 02 Jan 2026
+ 14:28:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251231215754.2222308-2-vz@mleia.com>
+References: <20251226083914.1052653-1-oder_chiou@realtek.com>
+ <20251230175333.GA854335-robh@kernel.org> <2f37dcd86a9c41808b918371a23dfebb@realtek.com>
+In-Reply-To: <2f37dcd86a9c41808b918371a23dfebb@realtek.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 2 Jan 2026 16:28:19 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+dwkZqOi3F9Fi7O8e_NoMsATa6HX=9Ns_7aQ+WRatRkw@mail.gmail.com>
+X-Gm-Features: AQt7F2pS2jCEN-893t6kWLP9CXJ7CiHTBU9bOR4YQlzq-UnRBBtTQMljDjmrh3I
+Message-ID: <CAL_Jsq+dwkZqOi3F9Fi7O8e_NoMsATa6HX=9Ns_7aQ+WRatRkw@mail.gmail.com>
+Subject: Re: [PATCH v11 3/4] ASoC: dt-bindings: realtek,rt5575: add support
+ for ALC5575
+To: Oder Chiou <oder_chiou@realtek.com>
+Cc: "cezary.rojewski@intel.com" <cezary.rojewski@intel.com>, "broonie@kernel.org" <broonie@kernel.org>, 
+	"lgirdwood@gmail.com" <lgirdwood@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "perex@perex.cz" <perex@perex.cz>, 
+	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>, "Flove(HsinFu)" <flove@realtek.com>, 
+	=?UTF-8?B?U2h1bWluZyBb6IyD5pu46YqYXQ==?= <shumingf@realtek.com>, 
+	Jack Yu <jack.yu@realtek.com>, =?UTF-8?B?RGVyZWsgW+aWueW+t+e+qV0=?= <derek.fang@realtek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Dec 30, 2025 at 8:27=E2=80=AFPM Oder Chiou <oder_chiou@realtek.com>=
+ wrote:
+>
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Wednesday, December 31, 2025 1:54 AM
+> > To: Oder Chiou <oder_chiou@realtek.com>
+> > Cc: cezary.rojewski@intel.com; broonie@kernel.org; lgirdwood@gmail.com;
+> > krzk+dt@kernel.org; conor+dt@kernel.org; perex@perex.cz;
+> > linux-sound@vger.kernel.org; devicetree@vger.kernel.org;
+> > alsa-devel@alsa-project.org; Flove(HsinFu) <flove@realtek.com>; Shuming=
+ [=E8=8C=83
+> > =E6=9B=B8=E9=8A=98] <shumingf@realtek.com>; Jack Yu <jack.yu@realtek.co=
+m>; Derek [=E6=96=B9=E5=BE=B7
+> > =E7=BE=A9] <derek.fang@realtek.com>
+> > Subject: Re: [PATCH v11 3/4] ASoC: dt-bindings: realtek,rt5575: add sup=
+port for
+> > ALC5575
+> >
+> >
+> > External mail : This email originated from outside the organization. Do=
+ not
+> > reply, click links, or open attachments unless you recognize the sender=
+ and
+> > know the content is safe.
+> >
+> >
+> >
+> > On Fri, Dec 26, 2025 at 04:39:14PM +0800, Oder Chiou wrote:
+> > > Audio codec with I2S, I2C and SPI.
+> > >
+> > > Signed-off-by: Oder Chiou <oder_chiou@realtek.com>
+> > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > > ---
+> > >  .../bindings/sound/realtek,rt5575.yaml        | 61
+> > +++++++++++++++++++
+> > >  1 file changed, 61 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
+> >
+> > Where's the rest of the series? You are missing an In-Reply-To header a=
+nd that
+> > breaks the tools (b4).
+> >
+> Hi Rob,
+>
+> Sorry about that =E2=80=94 this was a send-email threading issue.
+> I'll resend the full v11 series with proper In-Reply-To headers.
 
-On Wed, 31 Dec 2025 23:57:50 +0200, Vladimir Zapolskiy wrote:
-> NXP LPC32xx SoC series contains a System Control Block, which serves for
-> a multitude of purposes including clock and power management, DMA muxing,
-> storing SoC unique ID etc.
-> 
-> Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
-> ---
->  .../bindings/mfd/nxp,lpc3220-scb.yaml         | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,lpc3220-scb.yaml
-> 
+v12 please so the tools aren't confused by the 3 versions of v11.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+Rob
 
