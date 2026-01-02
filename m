@@ -1,234 +1,215 @@
-Return-Path: <devicetree+bounces-251016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BE4ECEE1FF
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:06:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 988F7CEE208
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:09:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 768B23006A66
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:06:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B980530054B7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246552D8DB1;
-	Fri,  2 Jan 2026 10:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4422D8DB1;
+	Fri,  2 Jan 2026 10:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GZSAsRtG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mP4yLnmS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F044E2D3225
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:06:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610391F7580
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:08:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767348365; cv=none; b=bKji7jq4y4c1I2giWAzFqEs9wHdFNV2NOZMjsqNBpzFjlJL0z3qQ6f3GXb9IyxEGpHz6IanKaUDrp7FARBqP+Ntr3/CpU2oTGOV2mLHcRHt4lovOERGj81/uViDJ1Db5fkllMexLIdp5i5xDXEk9AiSf5nuk/+RNMlhsyL0stHM=
+	t=1767348538; cv=none; b=oBL7CXRV62LYJS86TqRqX3cbAFjz4eAaEQAwhMvBJ7rn6hYOVEiIth6UIDEnEiMJ0K8LjPob6e9B2PcZuohw5bJd4BgXm921HQtBMR54o1ihwaTMIIxUAjMrfdg/2yNTxsfIJwU4EiEZgV0QR4px8nfVxJthCSHS+eK3iEtLsU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767348365; c=relaxed/simple;
-	bh=gchyAxkFCm31zIKqZC5yld6T9YtZLl36hqgAgO5bNfA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L4Tm/3eKegUw87Fqfv3KBqhEK94MYz/enDr2llD09rrmRwd1gweU4niKXv1OSCfOC8hVlNOt+HNHQc8tHoBusN0+HOC2ldglE2WbsnfMdTJzpx+FTZljRygSb6X0aUWFU9SoRc25aF3BFV58ps/p6g5TACuS6pjCW/kVRS1d4o0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GZSAsRtG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89052C4AF0F
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:06:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767348364;
-	bh=gchyAxkFCm31zIKqZC5yld6T9YtZLl36hqgAgO5bNfA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=GZSAsRtGHFfgeoTVK33CkuT63zYzQxc0+NFc5Iy5UrH7TxPBQBt+9sQrDIDkP90Sf
-	 JUv7c33zMLlROsCZXUAdhPRJLj/CUcb4F4seEJScZHGWhHdOxx+zjFI+TlwRzAMSl4
-	 pkYtn8UCGs0DXwwGfc7z6u/twcFCK+HiZCH6ijKhQ1HTjX3903/lZVJzUxihxmuwMX
-	 YrZQoGndxqELJBKEimE4VmEsEheiW/URzXqP8QxWp3V6oIYlpbs4UXW37ez6Uo+WAZ
-	 0CIiWOEkCTiwly2W1zkmuNPhCw3Tv9PU8TxfOe8aqsf71nfLgt6BU14qburCTS+lqU
-	 QUTBzfAadJNEg==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-598efcf3a89so11753047e87.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 02:06:04 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWUPdoihaGKzbaYS0/c7/0hDihe9nWPO3zT26MmyG1uUBqV9SDUCC4qj2hirpZT0rbhFUfakA/KBWvh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxbcgFG8SmRgdDDwB7Xvx2jH4WhTBe4rLzcWHAUU5jMkt403MG
-	14sxhsR5PLcCZpNi6gRiRQEd9LQo5ke6leDVjNJ07hrTfHVL3+sSthJi+xWqXFrE6J7DJQwgcgX
-	6BtVeZOyvK0qp8IEKu4wxoB8aa60GcIKdDHSLjYZeZQ==
-X-Google-Smtp-Source: AGHT+IFGdco3IkndyZVqVIrcNxSfB0QYH1orte4zZsqd4dtQJlhjdGqzpakv3I4zCBg3a81gJfH5GvwcXtaxtjuHS/o=
-X-Received: by 2002:a05:6512:131c:b0:593:ffa:6988 with SMTP id
- 2adb3069b0e04-59a17d9707fmr14535500e87.21.1767348362869; Fri, 02 Jan 2026
- 02:06:02 -0800 (PST)
+	s=arc-20240116; t=1767348538; c=relaxed/simple;
+	bh=L4tcvySOgU3eAEJIA3ih73atfdDG2PceOZkHL6fp/1E=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=F5bAKVnKSIODQA275Z1Tuis41EqGTjWGIdBwisU4+AYfOx8IOOpJVFoXqN5NjjmYKgy+UD+I04C7lrq2PE4q3SGrQMXuKSclZTnD12L+VteZKBaxFK6We3B2n42Q5ujeuFy1XI6WZ/lKoGvFMy9jmBzIuRJT19J3cRFOLS3uZGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mP4yLnmS; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7aae5f2633dso12383007b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 02:08:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767348537; x=1767953337; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Fe815HykdJZXA/fdLXFlCD8aMFUo2cB4//CLLF3EANo=;
+        b=mP4yLnmS+ZlMo1IhR3s3yyZbzK8L4d5Y6EdNh5QjUcrkUUMELpaVcCq2SnkXVRKwHc
+         V1vxMbDkL9xEnV96ag8NOwKKzn6yQj5v9DlobRJL6f5cDkTS0Cyus5HL6+rovB1PJMEl
+         sedi2NNWZSBJvrJxAjoteRD2sBeklffjMOiGUYWFlmEMlerWchdTY4T7emzuqL3ebWxY
+         JddFtkiVmNVnEaZSa6FOWDjz8Zj0G96zbv4EKyozytOyiFCv40l5cu61xjyc8ckfRLXr
+         73Hg115FmFzvmny1nkMLtTYujLPxa6mQUGa0f5YuLz00vgdH6LgYTBpC7YEck57D5L/s
+         D5PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767348537; x=1767953337;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fe815HykdJZXA/fdLXFlCD8aMFUo2cB4//CLLF3EANo=;
+        b=wuMkbtXLoBonx4jdt3glUA3EEjbhyjQiOdZGhixBOxrkfSr6p6O1X9IxOeqMknV8fu
+         z8yBT8OOvu8b7nxLVtJ2e10qqLjiHEYuJbceYiov6pEdGMCsLXtyVjA/gypHuNvu0mC8
+         ZdeXRfiHVSuRfo0fV2YqiIv4Ip7zyE7wUqY7I3UEnruvdjIYpAENRBZrWSwGKMVVL0rh
+         ZK+KntiL5ZABzA63xk5G2/rbQKjhYkIbUyWOLGroTcmoy0EGy79c0H8o3redW7D1Dki/
+         Lt0JXFwZn8F8GRZMf5jZyvRvPH6Lok+GsA9j7uXWyGOacjGpYJBH5vrr8wiPBv87Ewdv
+         oEUw==
+X-Forwarded-Encrypted: i=1; AJvYcCUwmdrckZ32zOqrHcUb6QaBGgDBEsNdGMSM7a8zj0TavpcFk1SxHxgAEw2JxT42vbZjyRrvTmgJoOCM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2SKvxYPRAi79Y3d8AIv5pbOhdSQwXzWRIxtMtQHyks+iKIyWy
+	hpT+rFG7cYvGcXCKAV9X6W0ijkQw+HdCU0qdFjWS91aKFPjpBdhhEpWU
+X-Gm-Gg: AY/fxX52FGqpmtuaAGQPr8eP/2vsNfPbLhXGNpu6Oso05TNsOYUnNLJzhFCxHgd+xf0
+	BmjAG5EzbSOH8ns2jqMyn1WGU+mtSbv66WcdvrIdgJeEz5O1Kb3YcZJ/KAnhWu635aspXBqX127
+	eGyplHEIBtxhpHPhYT9AKrzt35AzLI2zG25qzlw7+LbCs4Yzkplh8Q34eF+vq52WyGlDmbE6CR5
+	zOtn9CXGRzee9yvMiLzMjZXqwaQEbWSI/amX5ZNds2EH3ww0YnD3GXd8kWnGsHgHNMni0H5QtOv
+	TE0+HzSXf5Jg6gOr31lm/bbW93Y7onhM2vQb7twkXlKvWV3YKd+dBBVZD/pOm5BnfEyB6U9Gag1
+	wHeO9LjQTGfprHjs3A8jWIItj3gKYLBuGabz7Ik3L43QKTjcfQHWyVj/uDebxTCC88GcS8hUomN
+	8w2pWIiE3gi0DXCGP1uRz/XdGqjVS4XbQheDs7138MoxehFL8nMejlLEUixw5E7XZ+fD5kJd8=
+X-Google-Smtp-Source: AGHT+IEC3e8kZw0Xj2yo5CTUSmbZNoTyCva9yA0VvjTLMoX4LlaMc1sV53Z/kNwFsdK4byE3LWwxlw==
+X-Received: by 2002:a05:6a00:418a:b0:7e8:450c:61b7 with SMTP id d2e1a72fcca58-7ff6607b8dbmr36213357b3a.39.1767348536655;
+        Fri, 02 Jan 2026 02:08:56 -0800 (PST)
+Received: from ?IPV6:2401:4900:883b:60a8:c545:bc1e:eac1:a2b4? ([2401:4900:883b:60a8:c545:bc1e:eac1:a2b4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e48cd07sm40045029b3a.46.2026.01.02.02.08.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jan 2026 02:08:56 -0800 (PST)
+Message-ID: <cfe2550d-52d4-400e-903e-f32031ebd5ee@gmail.com>
+Date: Fri, 2 Jan 2026 15:38:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251228-arm-psci-system_reset2-vendor-reboots-v19-0-ebb956053098@oss.qualcomm.com>
- <20251228-arm-psci-system_reset2-vendor-reboots-v19-1-ebb956053098@oss.qualcomm.com>
-In-Reply-To: <20251228-arm-psci-system_reset2-vendor-reboots-v19-1-ebb956053098@oss.qualcomm.com>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Fri, 2 Jan 2026 11:05:50 +0100
-X-Gmail-Original-Message-ID: <CAMRc=McEB+yVYxropzsqLExZCU5Pd_iy_=5N3pTxu28-ZX=7_w@mail.gmail.com>
-X-Gm-Features: AQt7F2p5KpT_VMscgdeBfPWopnrQ29TsIsrUWNt-I0niquK6j9g2Sp51yPziFyA
-Message-ID: <CAMRc=McEB+yVYxropzsqLExZCU5Pd_iy_=5N3pTxu28-ZX=7_w@mail.gmail.com>
-Subject: Re: [PATCH v19 01/10] power: reset: reboot-mode: Remove devres based allocations
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>, 
-	John Stultz <john.stultz@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Moritz Fischer <moritz.fischer@ettus.com>, Mark Rutland <mark.rutland@arm.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Andre Draszik <andre.draszik@linaro.org>, 
-	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Srinivas Kandagatla <srini@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mtd: microchip,mchp23k256: convert to DT
+ schema
+From: Akhila YS <akhilayalmati@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251229-nxp-v1-1-a415fe0080a8@gmail.com>
+ <20251230-kagu-of-scientific-enrichment-6fcd4c@quoll>
+ <0363ac61-0872-42da-91b8-78966a2537ce@gmail.com>
+Content-Language: en-US
+In-Reply-To: <0363ac61-0872-42da-91b8-78966a2537ce@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sun, Dec 28, 2025 at 6:20=E2=80=AFPM Shivendra Pratap
-<shivendra.pratap@oss.qualcomm.com> wrote:
->
-> Devres APIs are intended for use in drivers, where the managed lifetime
-> of resources is tied directly to the driver attach/detach cycle. In
-> shared subsystem code, there is no guarantee that the subsystem
-> functions will only be called after a driver has been attached, nor that
-> they will not be referenced after the managed resources have been
-> released during driver detach.
->
-> To ensure correct lifetime handling, avoid using devres-based
-> allocations in the reboot-mode and explicitly handle allocation and
-> cleanup of resources.
->
-> Fixes: 4fcd504edbf7 ("power: reset: add reboot mode driver")
-> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-> ---
->  drivers/power/reset/reboot-mode.c | 34 ++++++++++++++++++++++-----------=
--
->  1 file changed, 22 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/rebo=
-ot-mode.c
-> index fba53f638da04655e756b5f8b7d2d666d1379535..3af6bc16a76daee686e8110b7=
-4e71b0e62b13ef8 100644
-> --- a/drivers/power/reset/reboot-mode.c
-> +++ b/drivers/power/reset/reboot-mode.c
-> @@ -3,6 +3,8 @@
->   * Copyright (c) 2016, Fuzhou Rockchip Electronics Co., Ltd
->   */
->
-> +#define pr_fmt(fmt)    "reboot-mode: " fmt
-> +
->  #include <linux/device.h>
->  #include <linux/init.h>
->  #include <linux/kernel.h>
-> @@ -10,6 +12,7 @@
->  #include <linux/of.h>
->  #include <linux/reboot.h>
->  #include <linux/reboot-mode.h>
-> +#include <linux/slab.h>
->
->  #define PREFIX "mode-"
->
-> @@ -71,9 +74,11 @@ static int reboot_mode_notify(struct notifier_block *t=
-his,
->  int reboot_mode_register(struct reboot_mode_driver *reboot)
->  {
->         struct mode_info *info;
-> +       struct mode_info *next;
->         struct property *prop;
->         struct device_node *np =3D reboot->dev->of_node;
->         size_t len =3D strlen(PREFIX);
-> +       u32 magic;
->         int ret;
->
->         INIT_LIST_HEAD(&reboot->head);
-> @@ -82,19 +87,17 @@ int reboot_mode_register(struct reboot_mode_driver *r=
-eboot)
->                 if (strncmp(prop->name, PREFIX, len))
->                         continue;
->
-> -               info =3D devm_kzalloc(reboot->dev, sizeof(*info), GFP_KER=
-NEL);
-> +               if (of_property_read_u32(np, prop->name, &magic)) {
 
-Please use device_property_read_u32() if you have access to a device struct=
-.
+On 02-01-2026 13:47, Akhila YS wrote:
+>
+>
+> On 30-12-2025 18:02, Krzysztof Kozlowski wrote:
+>> On Mon, Dec 29, 2025 at 12:49:00PM +0000, Akhila YS wrote:
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mtd/microchip,mchp23k256.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Microchip 23K256 (and similar) SPI SRAM MTD driver
+>> driver? Bindings are for hardware.
+>
+>
+> Sure, I will fix it.
+>
+>>> +
+>>> +maintainers:
+>>> +  - Richard Weinberger <richard@nod.at>
+>>> +
+>>> +description: |
+>> Do not need '|' unless you need to preserve formatting.
+> Ok.
+>>> +  Driver for Microchip 23K256 and compatible (e.g. 23LCV1024) serial SRAM devices
+>> Don't describe drivers...
+>>
+>>> +  accessed via SPI. The device exposes the SRAM as an MTD device and supports
+>>> +  optional partitioning via child nodes.
+>> nor DTS, but the hardware.
+>
+>
+> OK, I will change it.
+>
+>>> +
+>>> +allOf:
+>>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+>>> +
+>> If this is SRAM, then it should go to sram directory. But maybe it is
+>> MTD, so NOR or NAND? If so you would be missing here refs to NAND
+>> chips.
+>>
+>> Although docs are saying it is SRAM, so just place it there.
+>
+> This SRAM is not generic MMIO SRAM, it's an SPI peripheral exposing
+> memory via the MTD subsystem. Also i tried Yaml from sram directory it
+> doesn't work with it.
+>
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - microchip,mchp23k256
+>>> +      - microchip,mchp23lcv1024
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 1
+>> Pretty incomplete. Old binding and above cells claim there can be child
+>> nodes, so please add them and test. Works? No. Shall work? Yes... so
+>> either old binding was incorrect or new binding is incomplete. I did not
+>> check the driver, though.
+>
+>
+> Size cells and Address cells are not required as there is no child
+> node and I tried to define child node , Included SRAM.Yaml as a
+> reference file and tested it. It doesn't work.
+>
+>>> +
+>>> +required:
+>>> +  - reg
+>>> +  - compatible
+>>> +  - "#address-cells"
+>>> +  - "#size-cells"
+>>> +  - spi-max-frequency
+>>> +
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    spi {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        sram@0 {
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <1>;
+>> They are redundant. Where are children?
+>
+>
+> They are redundant, There is no child node  and i will remove it.
+>
+>>> +            compatible = "microchip,mchp23k256";
+>>> +            reg = <0>;
+>>> +            spi-max-frequency = <20000000>;
+>>> +        };
+>>> +    };
+>>> +...
+>>>
+>>> ---
+>>> base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+>>> change-id: 20251229-nxp-526e29da9f29
+>>>
+>>> Best regards,
+>>> -- 
+>>> Akhila YS <akhilayalmati@gmail.com>
+>>>
+-- 
+Best Regards,
+Akhila.
 
-> +                       pr_err("reboot mode %s without magic number\n", p=
-rop->name);
-
-If this is an error, shouldn't we bail out?
-
-> +                       continue;
-> +               }
-> +
-> +               info =3D kzalloc(sizeof(*info), GFP_KERNEL);
->                 if (!info) {
->                         ret =3D -ENOMEM;
->                         goto error;
->                 }
->
-> -               if (of_property_read_u32(np, prop->name, &info->magic)) {
-> -                       dev_err(reboot->dev, "reboot mode %s without magi=
-c number\n",
-> -                               info->mode);
-> -                       devm_kfree(reboot->dev, info);
-> -                       continue;
-> -               }
-> -
->                 info->mode =3D kstrdup_const(prop->name + len, GFP_KERNEL=
-);
->                 if (!info->mode) {
->                         ret =3D  -ENOMEM;
-> @@ -102,8 +105,7 @@ int reboot_mode_register(struct reboot_mode_driver *r=
-eboot)
->                 } else if (info->mode[0] =3D=3D '\0') {
->                         kfree_const(info->mode);
->                         ret =3D -EINVAL;
-> -                       dev_err(reboot->dev, "invalid mode name(%s): too =
-short!\n",
-> -                               prop->name);
-> +                       pr_err("invalid mode name(%s): too short!\n", pro=
-p->name);
->                         goto error;
->                 }
->
-> @@ -116,8 +118,12 @@ int reboot_mode_register(struct reboot_mode_driver *=
-reboot)
->         return 0;
->
->  error:
-> -       list_for_each_entry(info, &reboot->head, list)
-> +       kfree(info);
-> +       list_for_each_entry_safe(info, next, &reboot->head, list) {
-> +               list_del(&info->list);
->                 kfree_const(info->mode);
-> +               kfree(info);
-> +       }
->
->         return ret;
->  }
-> @@ -130,11 +136,15 @@ EXPORT_SYMBOL_GPL(reboot_mode_register);
->  int reboot_mode_unregister(struct reboot_mode_driver *reboot)
->  {
->         struct mode_info *info;
-> +       struct mode_info *next;
->
->         unregister_reboot_notifier(&reboot->reboot_notifier);
->
-> -       list_for_each_entry(info, &reboot->head, list)
-> +       list_for_each_entry_safe(info, next, &reboot->head, list) {
-> +               list_del(&info->list);
->                 kfree_const(info->mode);
-> +               kfree(info);
-> +       }
-
-The code is repeated here, maybe factor it out into a separate function?
-
->
->         return 0;
->  }
->
-> --
-> 2.34.1
->
-
-Bart
 
