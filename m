@@ -1,223 +1,156 @@
-Return-Path: <devicetree+bounces-251114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A728CEED45
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 16:11:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EEE3CEEDE5
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 16:28:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D89453015847
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 15:10:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6A6193009A83
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 15:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9EC525A33A;
-	Fri,  2 Jan 2026 15:10:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD49126A08A;
+	Fri,  2 Jan 2026 15:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QSuVqOI2";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FXZvJXOo"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VlFGiiQg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188BD23D291
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 15:10:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9813D264619;
+	Fri,  2 Jan 2026 15:27:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767366605; cv=none; b=tZV0DrnfSeKCZGtJRN/4SG/AV5iRe0WAMwuuIqicNmGOCq1pQgqd2OAlzXoF+aonbme+510dUvPDJj6Y/0L7P6EtHj2+INRRMNWbILc/F0NfP4qde7Jq7mLV57tkpCNcptLmlpLm5SmA/eqR2KGmr2a+YnS3szArtl4utF5lpzc=
+	t=1767367665; cv=none; b=YfFIB/W7Tr+esPqSL+DauUGX/HFIYm4RucAXBJUOggJV6hbNG67JgAhTvmnYqwDzy4wlq1lhx0SxzX/z9ZaUglUTmSDgIYHY0goJshykL3k5Zs3T5eYtfkygHgRP4MZuDXEhb+4zVzJo/QHwqgEjN8pxZwf02DuHA44KJQCq6TM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767366605; c=relaxed/simple;
-	bh=YLwHLy1IcBzzjaKusaPLSAROyh/EgP17TAh1ILt/VX4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Rs4lBx+Ef8bvAuiCtSQETzQmXnVxzpxkLZICCs8Una5fMV/RUar7flQlVkAN82FPEEVs98wFGnkjxqRAXHgx0s3gm6S8zlxVK02sN+I5CRggjq8uHxiPUYHx9PAbqBA1Dq8WXTRr729StQzRMUdhZoXHkH7GZfrUu+c05h1C2uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QSuVqOI2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FXZvJXOo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6029W1Hx504639
-	for <devicetree@vger.kernel.org>; Fri, 2 Jan 2026 15:10:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UI4UX8qD/+Ay11IN6HqXBJhwTeU0IQ4j0jQA2/n/Yys=; b=QSuVqOI2SkLa2AkB
-	OlWYdrD/b8IlQ+fyqPyI/ClV9ZL3yNS1TH0hEl90pqKDBJfQtnZsOAqXkfc1smT4
-	4GZv/w5RxExXdlUDgSVG4AGR08MrwZzpdeZ1b37a6k/huTfwmj+Xl302zFatSEOi
-	16J+LtKXwT2ikUjEroiPENkDADRH07FCQv2U9HuBkPA0ncXz6sujIWyu412PCvAR
-	8efkCiTfpluUtqZLliB8HZRKujUke6nsCraVhnZ0LdUxpBycM4qFiab3mAV4fKlH
-	yxcHUfKbIboJL1lCdwCU621PKve3YYRchiE0RzcwHfhLXlALBmGYRLLP6oFPmT5S
-	eFrISw==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4be8bk8ynw-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 15:10:02 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7a99a5f77e0so20592412b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 07:10:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767366602; x=1767971402; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UI4UX8qD/+Ay11IN6HqXBJhwTeU0IQ4j0jQA2/n/Yys=;
-        b=FXZvJXOofHmA5BP++qXOcPFAXzeN3QDvC+YCe7600+Bf4hHtY+mRx0DYsB49aWxq9R
-         08+LrUhzj9pPv/76VzbwVjDFG3W/PxVxM+HyXBinICtEFdB498io6z5A6msnwwWv2OJh
-         YuTlvdvDVgj/LfpfeuREBfRuPrDiCmvkuie2M59n5sY6vXkyfW0PsNMTzud3GfnIRB9+
-         6mKX3B5OgoAbhpTedg1D5xPvvqwFZEENmy4wkQ1ROwjCVCdnFVXLF33CvVDYFZKziARE
-         UA1g3e/r0+g0ECntsE/YG1Ykz4uXBBljupCav8le92zDBubVFhAcb1LH0RJjz3lRjTar
-         s7CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767366602; x=1767971402;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=UI4UX8qD/+Ay11IN6HqXBJhwTeU0IQ4j0jQA2/n/Yys=;
-        b=Vpak7iOfeHxYjlaPVzUw4gS5NEzKYV8YlpPMF6xjzC73Z2HTDecjn378/YmMcYW8FD
-         FFsN33/GuLKUpRemFMoVJXvOAHbdXRJF87lwVF5/rAF9URC5SVj/0AVB/brBO+BH3SNX
-         9qzgR+Hd6rC9Yp+LkYiejjj8CkkkI69Tg1CPb3xCbScj5FNmjR8T9Yh/PY92KB5RA/vW
-         NMKadFn0qciF1OJWkwhWS3G0+Tz1gkDdR3ufRjp0P+RtWFkidHqQNdrv5GKRlpn21yGA
-         mUgULZ6RqARE5Kvl0SJxdE5JqK3wCv6rYg1GuJKWrLV0V7tR8xGwcgMvXdo3RyJ1O3ex
-         +yWw==
-X-Forwarded-Encrypted: i=1; AJvYcCUJ2hiGwl71InXMUBh2wu4o1Y3r4wJZ20c70kZzJdXgU1chE1I8tf1yM+bkkJX8anIM1FkaefDtZpD8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkgUjwNHCfxpLS9B7dZgeYBSEyShBie0u+JcvMK+mmCd2oyG2M
-	RwvIYG5XlZCILy1kPVM1ftJaYygn1gZ3gELYllbC2UjhbVdXUFTgEDfUxl7KylyI+S/MHE7rEWR
-	M0Y912snGQWt5Ehm/h3KoWwrbkExLx5WBYSqUTJo6vRAjrhTISHVUmwJCOxkirayQAFLOeajiS/
-	4laPZM9Mlv0r66W9DGy+LFdEevTN5Qic/6kp3S00k=
-X-Gm-Gg: AY/fxX6BCNkU1opPBv8waqIYRtM4ex41r7mil1r9A0XitmJKi1EpIjzubWzIvZwTLrj
-	AXyJfbp77MnxovqyevINO7b+p+V5NpNX/uHc6WF7NCvgUjtE/VJvclMcAnmNbWhGB+4NPvU+nuZ
-	eKSowROpbL7r/C0gFAMfG+prVYxAKRcQ4s2yLqVCP7A8O0MsvqrinoLwiuRJ8PlHebmRh8MpxL9
-	PqBvAFt
-X-Received: by 2002:a05:6a20:2446:b0:361:3bda:43aa with SMTP id adf61e73a8af0-376a81dc0d7mr38447960637.1.1767366601583;
-        Fri, 02 Jan 2026 07:10:01 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHXBHsj5HPlkrOf/QA7SEvXnhYeXLKX9eNIQ/Tk1248XeSURHeZEJfSWWPyXrvZvYck5Snp5pKIaVAPYzKALcI=
-X-Received: by 2002:a05:6a20:2446:b0:361:3bda:43aa with SMTP id
- adf61e73a8af0-376a81dc0d7mr38447931637.1.1767366601013; Fri, 02 Jan 2026
- 07:10:01 -0800 (PST)
+	s=arc-20240116; t=1767367665; c=relaxed/simple;
+	bh=SS2yV2DafXZ82Hx7kPgx/KxsyZ2YqKWv5FrorUnyBug=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rVtqPkzcZeAogaZs3JxduWeZL26NVLZsHKIP3oSoGVXQPGs5VRnb1WESQpOTn77asmUv4zkDvMIQChUumrCGfXCfsPP4140lFpFPqHfKBTg4V1YSb29Yxo5om68+uy3kRJbiJF8mRhlC0K7oHOjsucd1gE2V7nAltqHuYaNlvr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VlFGiiQg; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id F308C1A25D4;
+	Fri,  2 Jan 2026 15:27:40 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C6D1E606C7;
+	Fri,  2 Jan 2026 15:27:40 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F036B113B0726;
+	Fri,  2 Jan 2026 16:27:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767367659; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=XPS1mjvtZ+X94jm0JM9hHsjy2dgTByBQDp6LZfgUsSQ=;
+	b=VlFGiiQgyp4A1jr1xVk3EEGB85uX0RicBd+tpt6aBlXBJJU5VZFGs6HfjTaleC9IT9dWb7
+	jX6NkeMB0LJLHzQIrrQS4yM/1qqtyr/87Df1aMhUdLNwOZQkkcF2jM5DpztcXTVufyhI+5
+	2Tej944Nisw1cu2YXgteKsF2Q2UVlw5UHguPe8eFMuK5sPihb0Wm956X0UgjYfX3Pb33iP
+	sjtJ793m1Ixv9v8AeNS0VbMTUo9LGpXn2u67apY/pOeHcOD8CYKNTXq5sApIopOPQOBmuH
+	0C/zIB3QNzw2rWSJJWf4923tCBNJf6D0IXuXmSuTTGxCMo1Kdf/co5qh64vJHQ==
+From: =?UTF-8?B?QmVub8OudA==?= Monin <benoit.monin@bootlin.com>
+To: Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+ Linus Walleij <linusw@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 11/13] MIPS: Add Mobileye EyeQ6Lplus evaluation board dts
+Date: Fri, 02 Jan 2026 16:27:34 +0100
+Message-ID: <2775216.vuYhMxLoTh@benoit.monin>
+In-Reply-To:
+ <CAD++jL=7eU+jSHn0t2KKzHjipXYKoQreOdaHH8OcyriPmwHJQw@mail.gmail.com>
+References:
+ <20251217-eyeq6lplus-v1-0-e9cdbd3af4c2@bootlin.com>
+ <fe9e594f-9718-48b5-8208-fb567a54cae9@bootlin.com>
+ <CAD++jL=7eU+jSHn0t2KKzHjipXYKoQreOdaHH8OcyriPmwHJQw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251231-wcn3990-pwrctl-v1-0-1ff4d6028ad5@oss.qualcomm.com>
- <20251231-wcn3990-pwrctl-v1-4-1ff4d6028ad5@oss.qualcomm.com> <CAMRc=Mey1ScNmosipLFg6mmABjeG2SO2L-pyjwTuOpOYOHZjqg@mail.gmail.com>
-In-Reply-To: <CAMRc=Mey1ScNmosipLFg6mmABjeG2SO2L-pyjwTuOpOYOHZjqg@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Fri, 2 Jan 2026 17:09:52 +0200
-X-Gm-Features: AQt7F2omVQ1MDvfoA-OCuHjJiLqz1Jf2o41fOPl5iwM5NSCJMu-v_c4lPrNQJlw
-Message-ID: <CAO9ioeU2JjzDwkGQzxc963kakNyZCtaSRAmLu=1kOAMGQeuZRQ@mail.gmail.com>
-Subject: Re: [PATCH 04/14] wifi: ath10k: snoc: support powering on the device
- via pwrseq
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-        Matthias Kaehlcke <mka@chromium.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath10k@lists.infradead.org, linux-pm@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTAyMDEzNSBTYWx0ZWRfX09mb2+eRhDLk
- 6OeFfatJI10u7esYL/z7PAvQSKd1SaVQOCgMnP1ok0aByg92QhGN3AmmkR8dRUN9bfpkTLQnJ7h
- /bISHUeqUYRSs6HgDkmG1Hpky68OFXah9YKEs38Kz3bXdv5b5cKFIdzduivas15pfFUZyU7roN/
- McoFwaHR5KMyVxC0yjsLIUmBn/+mobMDORcWSLYvohew9r2oJt7cIhi8ay4+6JKUwMMAQTgXdCL
- uTdCVRK7Z9JurLDI4N+6caFTNPmN6zumdSCUdYHAIsuj+O/UaCUS5gTzVwfjPfJLKwbzCP5yIjf
- 7KFLrQX6+bL5zoc5bD8wTSsix7EPk1nk78auPB0gT/tJzblF6YkqkXjSfwbrbeSX99V3e2ptKzF
- WYFsLT65of+7ieKF4HCUPP8tW+/s7gbWAo7f1CyDBFfrdhyjTBb7BFKI/g/7EA6rALoDI51MEsL
- uQ5o2hqV8v+T5HeEwtQ==
-X-Proofpoint-ORIG-GUID: 24T--kPL0ldzb0hp_KsXjD2mw0F_hbdP
-X-Authority-Analysis: v=2.4 cv=d5/4CBjE c=1 sm=1 tr=0 ts=6957dfca cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=6Bc-fsn6kEsOX9bBnJcA:9 a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-GUID: 24T--kPL0ldzb0hp_KsXjD2mw0F_hbdP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-02_02,2025-12-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601020135
+Content-Type: text/plain; charset="utf-8"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, 2 Jan 2026 at 13:07, Bartosz Golaszewski <brgl@kernel.org> wrote:
->
-> On Wed, Dec 31, 2025 at 12:36=E2=80=AFAM Dmitry Baryshkov
-> <dmitry.baryshkov@oss.qualcomm.com> wrote:
+Hi Linus,
+
+On Thursday, 1 January 2026 at 23:42:36 CET, Linus Walleij wrote:
+> On Fri, Dec 19, 2025 at 4:57=E2=80=AFPM Beno=C3=AEt Monin <benoit.monin@b=
+ootlin.com> wrote:
+>=20
+> > In my particular case of a microcontroller acting as an SPI "relay" on =
+the
+> > evaluation board, what would be the best way to describe it? It connects
+> > the two SPI controllers of the SoC, one is a host and one is a target, =
+so
+> > it behave as an SPI target on one side and as an SPI host on the other.
 > >
-> > The WCN39xx family of WiFi/BT chips incorporates a simple PMU, spreadin=
-g
-> > voltages over internal rails. Implement support for using powersequence=
-r
-> > for this family of ATH10k devices in addition to using regulators.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > ---
->
-> [snip]
->
-> >
-> >  static void ath10k_snoc_wlan_disable(struct ath10k *ar)
-> > @@ -1762,7 +1779,27 @@ static int ath10k_snoc_probe(struct platform_dev=
-ice *pdev)
-> >                 goto err_release_resource;
-> >         }
-> >
-> > -       ar_snoc->num_vregs =3D ARRAY_SIZE(ath10k_regulators);
-> > +       /*
-> > +        * Backwards compatibility, ignore the defer error from pwrseq,=
- if it
-> > +        * should be used, we will get an error from regulator get.
-> > +        */
->
-> Can you elaborate on this? I'm not exactly following. I suppose you
-> mean the regulator_get() will return -EPROBE_DEFER? One of the
-> supplies exposed by the PMU?
+> > The trivial devices bindings seems to be dedicated to devices, thus not=
+ for
+> > SPI hosts. Do I need a dedicated binding or did I miss something I could
+> > use for a trivial spidev slave?
+>=20
+> That needs to be detailed and discussed with the SPI maintainer on the SPI
+> devel list. (Added.)
+>=20
+> Can you illustrate with a picture or so what is going on here?
+>=20
+> Yours,
+> Linus Walleij
+>=20
+Here is what it looks like on the evaluation board of the EyeQ6Lplus:
 
-Yes. devm_pwrseq_get() can return -EPROBE_DEFER in two cases:
-- it is not supposed to be used
-- it is supposed to be used, but the driver hasn't probed yet.
+    +------------------------+          +------------------------+
+    | EyeQ6Lplus SoC         |          | Evaluation board MCU   |
+    |                        |          |                        |
+    |           +------------+          +------------+           |
+    |           | SPI host   |          | SPI target |           |
+    |           |            |          |            |           |
+    |           |        CLK >----------> CLK        |           |
+    |           |        SDO >----------> SDI        |           |
+    |           |        SDI <----------< SDO        |=C2=B7=C2=B7=C2=B7=C2=
+=B7=C2=B7      |
+    |           |        CS0 >----------> CS         |    =C2=B7      |
+    |           +------------+          +------------+    =C2=B7      |
+    |                        |          |                 =C2=B7 (1)  |
+    |           +------------+          +------------+    =C2=B7      |
+    |           | SPI target |          | SPI host   |    =C2=B7      |
+    |           |            |          |            |<=C2=B7=C2=B7=C2=B7=
+=C2=B7      |
+    |           |        CLK <----------< CLK        |           |
+    |           |        SDI <----------< SDO        |           |
+    |           |        SDO >----------> SDI        |           |
+    |           |        CS  <----------< CS0        |           |
+    |           +------------+          +------------+           |
+    |                        |          |                        |
+    +------------------------+          +------------------------+
 
-There is no simple way to distinguish between these two cases, but:
-- if it is not supposed to be used, then regulator_bulk_get() will
-return all regulators as expected, continuing the probe
-- if it is supposed to be used, but wasn't probed yet, we will get
--EPROBE_DEFER from regulator_bulk_get() too.
+(1): The MCU, when the chip select is asserted on its SPI target, starts
+     a transaction on its SPI host side. It then copies data received by
+     the target side to the host side.
 
-I can write that in a comment, if you think that it makes the code more obv=
-ious.
+With the spidev entries in the device tree, it is used to test that SPI
+of the SoC is working with `spidev_test`. So the MCU is part of the test
+harness found on the evaluation board.
 
->
-> Bart
->
-> > +       ar_snoc->pwrseq =3D devm_pwrseq_get(&pdev->dev, "wlan");
-> > +       if (IS_ERR(ar_snoc->pwrseq)) {
-> > +               ret =3D PTR_ERR(ar_snoc->pwrseq);
-> > +               ar_snoc->pwrseq =3D NULL;
-> > +               if (ret !=3D -EPROBE_DEFER)
-> > +                       goto err_free_irq;
-> > +
-> > +               ar_snoc->num_vregs =3D ARRAY_SIZE(ath10k_regulators);
-> > +       } else {
-> > +               /*
-> > +                * The first regulator (vdd-0.8-cx-mx) is used to power=
- on part
-> > +                * of the SoC rather than the PMU on WCN399x, the rest =
-are
-> > +                * handled via pwrseq.
-> > +                */
-> > +               ar_snoc->num_vregs =3D 1;
-> > +       }
-> > +
+If the SPI signals of the SoC had been routed to a header, we could do the
+same test with jumper wires, directly connecting the host and the target.
+
+Best regards,
+=2D-=20
+Beno=C3=AEt Monin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
 
---=20
-With best wishes
-Dmitry
 
