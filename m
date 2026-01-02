@@ -1,132 +1,249 @@
-Return-Path: <devicetree+bounces-251150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57803CEF6C7
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 23:28:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2238BCEF6EE
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 23:34:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C44643001BF1
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 22:28:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 18E553002BB7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 22:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DD7D2F0C74;
-	Fri,  2 Jan 2026 22:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98CF12586C2;
+	Fri,  2 Jan 2026 22:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JxhXE3ZE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VJiwXSIS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289F02DF3FD
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:28:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73AE622F772
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767392913; cv=none; b=ZtDbsx6NR9dBip2188nDOgXaXiqNZN+KybeUOCUYHEm8AB17Lnxl8zKPsR4GXXb6jQZ9T46oA4UkB57KN/e5bIAgVR7J5WS3uUP6TDN5+2+dpQkDZFzJDQodriRlQBAqiqmtfQk6Cv/+QQUX5njT6ZjCwJYnX+3/HAFhufh3zpU=
+	t=1767393268; cv=none; b=U+/4qEmMbWJlJWmkPavwQ1c4eVnD8SoiMd72eVBCFUhKYWRL8xcHbQZ19kxxkYfOXvbn6M1q5hAY4j0FR54bOBB2lYSDtiSUZWc4JJRd3FwhS4dW//ZU3FOZNL1aJAVgpsJuic3N0wu3CZb/H6ZFTM50PVbrOoW26G2VgZmo8RY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767392913; c=relaxed/simple;
-	bh=v12toz5kmCaN+PrUoB6C3hx+gdTT7Rngk1AHIAKCD+8=;
+	s=arc-20240116; t=1767393268; c=relaxed/simple;
+	bh=p/Jv5nG+sVHiYm8AcMZfdW5K3hhflvZ/ovEwgXHmpeM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qQ+wE/GjRX0gJ4nttX2EKQZj1plFD9HVBuiGW30chRJaftjCk1C/8lcrMXVjMSYHn39Xgw0XDv7MkdMEcD4qqpPQx58TqJ5L/9tABelga8uor29+Y76RIf6P78wUfWIiqwh1DNvxK1H/+3H216a1nsJ7Bj8oPw2h9MUFUO4XFpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JxhXE3ZE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C997DC2BC86
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:28:32 +0000 (UTC)
+	 To:Cc:Content-Type; b=SWuQFCR61CfadnMcfMu0oP8XYgiQ661KUZhj9NV8MXcOHZkGugeyqptIeVlfX1csxbebLoSSQrD6KaMYoxWMu20UkerNQjHMwq8flGXVOMhQdcV4CiHQv2LwKkQDo5hh/vuBwz7lal3WcmiqdsOe0xzaWs+S3Xyc6g7wqCZzpFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VJiwXSIS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E668BC2BCB0
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:34:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767392912;
-	bh=v12toz5kmCaN+PrUoB6C3hx+gdTT7Rngk1AHIAKCD+8=;
+	s=k20201202; t=1767393267;
+	bh=p/Jv5nG+sVHiYm8AcMZfdW5K3hhflvZ/ovEwgXHmpeM=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=JxhXE3ZEETgXRtUG1L4UlGHkecs0gAhjnHV7ZbtKbi9vqcRy8XhuT90eNbaTQkg+E
-	 kHqNI+PAcTF3hLjEKvRA9PGzxMxTutPV2vLvqYU9rEpETvJ8wFhuVGj7AmO7Wd8hTk
-	 r2cwCYvolmUI013b9AJPIC4YrFhqb68MA7mpkl9rxuXMwaHA9rC6hOA+90rWeC8gLl
-	 bvbrh6jlw3AHJQbhTSZX50UZuRZn9ghtek+BC7Re+kL8f3w86rZP/YDShU2xpQqTVr
-	 TY5CGwMf5I6so/8kv+8lUMetKm+j0GetTBjQzUVKPY0OroyklMBBSHN2ec4Zc/xW1G
-	 LPcdSHFeErg8A==
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-64b92abe63aso21421224a12.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 14:28:32 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVFBPyJZh87j3p2BWa8TTG2yqdKf7BTy+rn9Gzs4jAYoWgaWC2PraDm6NyghBTQ1TmcodimbU8JgK3N@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnqflH+bMs+EvchSYWdUQZPneaPhrdvaTtQg89CJ4GbT59VXU4
-	QGpT9mbTfABWrHrWeLtB4m/D+NR2h8i+q+vZ7HB9Nikws+09+pw03Q3hT4XZYcao4SThXFemAqC
-	ivsrIF/maWBP/ETHB4n9Y5dUnZ81fjg==
-X-Google-Smtp-Source: AGHT+IE2JLIwT7IzxFl60D2dsx0IDVP1SIlSI+s2AD7FdZOQSMfJy6hvEhKAAA21Q/AGI3Vf39dZQogTm5dSOtl2jfc=
-X-Received: by 2002:a17:907:6d22:b0:b79:f965:1ce1 with SMTP id
- a640c23a62f3a-b803705df6bmr4538227066b.42.1767392911283; Fri, 02 Jan 2026
- 14:28:31 -0800 (PST)
+	b=VJiwXSISAcJV0qXTmSeIT57CiDm5gborRfTiSHBdph5DpkV7v/EK8GHzaDGJ4SPux
+	 eWCuRips0fyPhqbecE6Kfz3YDF7b0tgZrpfKsl/BN0xQHw7q4r75P1hr/iIFC0jNax
+	 YqbJtwiOpvbPb6AzrU05N0XR6AenFJrGF0+g5QDrNOnld0tjF0WJ4dXzJOUhZowcEV
+	 fjDH+IM5eCfX/q+hmJcr3yW0s0jEtL11Zmk4lEkApw56pC+UpH2cSviJASBPhNyUuO
+	 6tpKehaayrkEM0GDXrN9EY34gowhDuH7lRDXKpWlIx+yCzuysWIDQTHCGJopG1/lWp
+	 fyNttkPYts7eQ==
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b7277324054so2032585366b.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 14:34:27 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUQfFZY+3PsJkLv4dP6UfoJ02LCa5k7CcCFoEkGfDIrDU52T/KPk48gzR88zdjSTxWTXn8bzQeKWwij@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBxOKW3SuTCenXsZ9kxz+hHkwkkg/6r1o+Mfjnx3xkJIlWzEqD
+	tTbNhZJ5S9K3/sZiweRMOVG2jTBGVyL/PUwwWrgtwWJU2TPsDsl7k29c10YEA5YWGr30keweh6h
+	8OrgcDqgeRJb2nFUi98MgcEhsNrEVHw==
+X-Google-Smtp-Source: AGHT+IG1rWxoS+GvYztMHqB/gJdkFcIK4DZOIUpaJyFmssooGzC677KHzCJrbnQK7v/KK+0EeeO1ZfO4yp8ZU6NtQY4=
+X-Received: by 2002:a17:907:86a8:b0:b73:544d:ba2e with SMTP id
+ a640c23a62f3a-b8036f62606mr4676439166b.25.1767393266391; Fri, 02 Jan 2026
+ 14:34:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251226083914.1052653-1-oder_chiou@realtek.com>
- <20251230175333.GA854335-robh@kernel.org> <2f37dcd86a9c41808b918371a23dfebb@realtek.com>
-In-Reply-To: <2f37dcd86a9c41808b918371a23dfebb@realtek.com>
+References: <20251224133150.2266524-1-s-jain1@ti.com> <20251230022741.GA3217586-robh@kernel.org>
+ <fd9f0b37-001e-4721-82b7-ee29379eb9a9@ti.com>
+In-Reply-To: <fd9f0b37-001e-4721-82b7-ee29379eb9a9@ti.com>
 From: Rob Herring <robh@kernel.org>
-Date: Fri, 2 Jan 2026 16:28:19 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+dwkZqOi3F9Fi7O8e_NoMsATa6HX=9Ns_7aQ+WRatRkw@mail.gmail.com>
-X-Gm-Features: AQt7F2pS2jCEN-893t6kWLP9CXJ7CiHTBU9bOR4YQlzq-UnRBBtTQMljDjmrh3I
-Message-ID: <CAL_Jsq+dwkZqOi3F9Fi7O8e_NoMsATa6HX=9Ns_7aQ+WRatRkw@mail.gmail.com>
-Subject: Re: [PATCH v11 3/4] ASoC: dt-bindings: realtek,rt5575: add support
- for ALC5575
-To: Oder Chiou <oder_chiou@realtek.com>
-Cc: "cezary.rojewski@intel.com" <cezary.rojewski@intel.com>, "broonie@kernel.org" <broonie@kernel.org>, 
-	"lgirdwood@gmail.com" <lgirdwood@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "perex@perex.cz" <perex@perex.cz>, 
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>, "Flove(HsinFu)" <flove@realtek.com>, 
-	=?UTF-8?B?U2h1bWluZyBb6IyD5pu46YqYXQ==?= <shumingf@realtek.com>, 
-	Jack Yu <jack.yu@realtek.com>, =?UTF-8?B?RGVyZWsgW+aWueW+t+e+qV0=?= <derek.fang@realtek.com>
+Date: Fri, 2 Jan 2026 16:34:15 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKYsf9dmY3qKx6MVT0-0emTzO=0z32rOzt3070LykhrPA@mail.gmail.com>
+X-Gm-Features: AQt7F2qO3whwDzMYSf3EK2yMZxV1VXazUkw4mQ8nbmABr7OmUyHYA4qzRlYK5VI
+Message-ID: <CAL_JsqKYsf9dmY3qKx6MVT0-0emTzO=0z32rOzt3070LykhrPA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: ti,am65x-dss: Add AM62L DSS support
+To: Swamil Jain <s-jain1@ti.com>
+Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, krzk+dt@kernel.org, conor+dt@kernel.org, devarsht@ti.com, 
+	praneeth@ti.com, bb@ti.com, vigneshr@ti.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 30, 2025 at 8:27=E2=80=AFPM Oder Chiou <oder_chiou@realtek.com>=
- wrote:
+On Tue, Dec 30, 2025 at 8:23=E2=80=AFAM Swamil Jain <s-jain1@ti.com> wrote:
 >
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: Wednesday, December 31, 2025 1:54 AM
-> > To: Oder Chiou <oder_chiou@realtek.com>
-> > Cc: cezary.rojewski@intel.com; broonie@kernel.org; lgirdwood@gmail.com;
-> > krzk+dt@kernel.org; conor+dt@kernel.org; perex@perex.cz;
-> > linux-sound@vger.kernel.org; devicetree@vger.kernel.org;
-> > alsa-devel@alsa-project.org; Flove(HsinFu) <flove@realtek.com>; Shuming=
- [=E8=8C=83
-> > =E6=9B=B8=E9=8A=98] <shumingf@realtek.com>; Jack Yu <jack.yu@realtek.co=
-m>; Derek [=E6=96=B9=E5=BE=B7
-> > =E7=BE=A9] <derek.fang@realtek.com>
-> > Subject: Re: [PATCH v11 3/4] ASoC: dt-bindings: realtek,rt5575: add sup=
-port for
-> > ALC5575
-> >
-> >
-> > External mail : This email originated from outside the organization. Do=
- not
-> > reply, click links, or open attachments unless you recognize the sender=
- and
-> > know the content is safe.
-> >
-> >
-> >
-> > On Fri, Dec 26, 2025 at 04:39:14PM +0800, Oder Chiou wrote:
-> > > Audio codec with I2S, I2C and SPI.
-> > >
-> > > Signed-off-by: Oder Chiou <oder_chiou@realtek.com>
-> > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > > ---
-> > >  .../bindings/sound/realtek,rt5575.yaml        | 61
-> > +++++++++++++++++++
-> > >  1 file changed, 61 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/sound/realtek,rt5575.yaml
-> >
-> > Where's the rest of the series? You are missing an In-Reply-To header a=
-nd that
-> > breaks the tools (b4).
-> >
 > Hi Rob,
 >
-> Sorry about that =E2=80=94 this was a send-email threading issue.
-> I'll resend the full v11 series with proper In-Reply-To headers.
+> On 12/30/25 07:57, Rob Herring wrote:
+> > On Wed, Dec 24, 2025 at 07:01:50PM +0530, Swamil Jain wrote:
+> >> Update the AM65x DSS bindings to support AM62L which has a single vide=
+o
+> >> port. Add conditional constraints for AM62L.
+> >>
+> >> Signed-off-by: Swamil Jain <s-jain1@ti.com>
+> >> ---
+> >>   .../bindings/display/ti/ti,am65x-dss.yaml     | 95 +++++++++++++++--=
+--
+> >>   1 file changed, 76 insertions(+), 19 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss=
+.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> >> index 38fcee91211e..ce39690df4e5 100644
+> >> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> >> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> >> @@ -36,34 +36,50 @@ properties:
+> >>     reg:
+> >>       description:
+> >>         Addresses to each DSS memory region described in the SoC's TRM=
+.
+> >> -    items:
+> >> -      - description: common DSS register area
+> >> -      - description: VIDL1 light video plane
+> >> -      - description: VID video plane
+> >> -      - description: OVR1 overlay manager for vp1
+> >> -      - description: OVR2 overlay manager for vp2
+> >> -      - description: VP1 video port 1
+> >> -      - description: VP2 video port 2
+> >> -      - description: common1 DSS register area
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - description: common DSS register area
+> >> +          - description: VIDL1 light video plane
+> >> +          - description: VID video plane
+> >> +          - description: OVR1 overlay manager for vp1
+> >> +          - description: OVR2 overlay manager for vp2
+> >> +          - description: VP1 video port 1
+> >> +          - description: VP2 video port 2
+> >> +          - description: common1 DSS register area
+> >> +      - items:
+> >> +          - description: common DSS register area
+> >> +          - description: VIDL1 light video plane
+> >> +          - description: OVR1 overlay manager for vp1
+> >> +          - description: VP1 video port 1
+> >> +          - description: common1 DSS register area
+> >>
+> >>     reg-names:
+> >> -    items:
+> >> -      - const: common
+> >> -      - const: vidl1
+> >> -      - const: vid
+> >> -      - const: ovr1
+> >> -      - const: ovr2
+> >> -      - const: vp1
+> >> -      - const: vp2
+> >> -      - const: common1
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - const: common
+> >> +          - const: vidl1
+> >> +          - const: vid
+> >> +          - const: ovr1
+> >> +          - const: ovr2
+> >> +          - const: vp1
+> >> +          - const: vp2
+> >> +          - const: common1
+> >> +      - items:
+> >> +          - const: common
+> >> +          - const: vidl1
+> >> +          - const: ovr1
+> >> +          - const: vp1
+> >> +          - const: common1
+> >>
+> >>     clocks:
+> >> +    minItems: 2
+> >>       items:
+> >>         - description: fck DSS functional clock
+> >>         - description: vp1 Video Port 1 pixel clock
+> >>         - description: vp2 Video Port 2 pixel clock
+> >>
+> >>     clock-names:
+> >> +    minItems: 2
+> >>       items:
+> >>         - const: fck
+> >>         - const: vp1
+> >> @@ -84,7 +100,8 @@ properties:
+> >>       maxItems: 1
+> >>       description: phandle to the associated power domain
+> >>
+> >> -  dma-coherent: true
+> >> +  dma-coherent:
+> >> +    type: boolean
+> >>
+> >>     ports:
+> >>       $ref: /schemas/graph.yaml#/properties/ports
+> >> @@ -195,6 +212,46 @@ allOf:
+> >>               port@0:
+> >>                 properties:
+> >>                   endpoint@1: false
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            const: ti,am62l-dss
+> >> +    then:
+> >> +      properties:
+> >> +        clock-names:
+> >> +          maxItems: 2
+> >> +        clocks:
+> >> +          maxItems: 2
+> >> +        reg:
+> >> +          maxItems: 5
+> >
+> >             reg-names:
+> >               minItems: 8
+> >         else:
+> >           properties:
+> >             reg:
+> >               minItems: 8
+> >             reg-names:
+> >               minItems: 8
+> >
+> > clocks needs similar constraints...
+>
+> Sure, will add in v2.
+>
+> >
+> >> +
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            const: ti,am62l-dss
+> >> +    then:
+> >> +      properties:
+> >> +        reg-names:
+> >> +          items:
+> >> +            - const: common
+> >> +            - const: vidl1
+> >> +            - const: ovr1
+> >> +            - const: vp1
+> >> +            - const: common1
+> >> +    else:
+> >> +      properties:
+> >> +        reg-names:
+> >> +          items:
+> >> +            - const: common
+> >> +            - const: vidl1
+> >> +            - const: vid
+> >> +            - const: ovr1
+> >> +            - const: ovr2
+> >> +            - const: vp1
+> >> +            - const: vp2
+> >> +            - const: common1
+> >
+> > Why are you defining the names twice?
+> >
+>
+> For AM62L we don't have "vid", "ovr2" and "vp2", the dtbs_check will fail=
+.
+> Could you please suggest a better way?
 
-v12 please so the tools aren't confused by the 3 versions of v11.
+You already defined them at the top level. Here in the if/then schema,
+all you need is 'maxItems: 5' and 'minItems: 8'. But then you already
+have that as well.
 
 Rob
 
