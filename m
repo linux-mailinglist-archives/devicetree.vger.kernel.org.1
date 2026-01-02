@@ -1,52 +1,54 @@
-Return-Path: <devicetree+bounces-251142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C71CEF5A3
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 22:36:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E313ECEF5D9
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 22:47:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9C3C23014A36
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 21:36:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B28203011EC2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 21:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8BEE28488F;
-	Fri,  2 Jan 2026 21:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3890484039;
+	Fri,  2 Jan 2026 21:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UUYeNbfs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NI8p/Tlm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3091EEA49;
-	Fri,  2 Jan 2026 21:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1090714A8E;
+	Fri,  2 Jan 2026 21:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767389800; cv=none; b=NAlhKYMK6pRj7UeUf6ISVbx8CC9fDhFm6rJNRHlgjQ3sKR1pG1FyUWosqKVCEl3sSNt+wItWLxumPKhOp/4gJLLuCDx8qx6F+TdhUwYCBUZUITD9eo8vuMOchQ7GQqEl+SmhWtS/34ImDRb5Ixl/9GuMqqLlmradZShn6HwUVE8=
+	t=1767390432; cv=none; b=tDuuObVjkQHts3gbjfs92E42Ax7BUioaFmF33wzjSVXdVs5aN5Qy+SB1XKkBAFqerOUC1idlphIFHOzuLsSWZQExmGXRuZzupJio6rrudmkkQGktRr9UoxmCsWkqXRsqjexLvq5yGMRC3IEyiKr9UYfk5QMxgobM9QsxVVZWm1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767389800; c=relaxed/simple;
-	bh=yW6oXayh0o+HbSbuvsFt+MRv00gewhHUHogbhkNbV08=;
+	s=arc-20240116; t=1767390432; c=relaxed/simple;
+	bh=GMZG8PLH16vIlvLPUgb3vns8YcO90S5QJdAxIhN5s58=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J7MdDjkA9xFHBv3GJMxu84J8ti4PR37lPyxn2TrlETLTCO7ygSXAKLS7HXa2TAb1Mes3CiqlnZsjqxLAb0uoDZb25x1904eaqQEFBkafeA7KFbs01kRjV1rt4DqVW9tjQIm1bKhR496X/O2xFZLH6YbctwTvw5OD3gjdlbr44rI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UUYeNbfs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4A6EC116B1;
-	Fri,  2 Jan 2026 21:36:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ph8IhtsNjYe8ZAWZwA6t/aE+xgF4Zk0cVW9xHZFFGmh0IHCr9lilZSAI35Tv/D8WQb3S2hHVJVLaqFBZ/zadNzMtP1XJr7OVQ5//5eRveiOPwDEUOro8RYsUSMbLDq69+gt/P2p+riGMOnmvR68ddZryK3Ob6Z+VvPONpm42cag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NI8p/Tlm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73076C116B1;
+	Fri,  2 Jan 2026 21:47:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767389799;
-	bh=yW6oXayh0o+HbSbuvsFt+MRv00gewhHUHogbhkNbV08=;
+	s=k20201202; t=1767390431;
+	bh=GMZG8PLH16vIlvLPUgb3vns8YcO90S5QJdAxIhN5s58=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UUYeNbfsPwlNtvTHrnooNyD/eiwS/m+wkML3aedXBnlVaCK1OlkB845W0qSlPmcLu
-	 P1s1bAXYHkj2eYX1cbgJhqBFJAjDLkGxBYdYWOiuNjlTzm+lpF2CDE9CjU1TMApdUf
-	 lO8L0PfXldoNvftLIeQ2d/4HV/n0L8E54qLWjpEF0bYisrRgQ+e0+1K1+H8LsLJkt0
-	 blWiEI9cEUVsaMmMyAuzAKlpHDT9OnpPfc4w2WoKHV0hNBBX5nVi7Rd97l+t7hqjWt
-	 lHg3exXmKCt20R3nj/B1urwZ4ZvKYypL3asDNokeoupVXXxPUU5slzyGi3ezb00B6u
-	 SQu+7BCycK9mQ==
-Date: Fri, 2 Jan 2026 15:36:38 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Zilin Guan <zilin@seu.edu.cn>
-Cc: Jianhao Xu <jianhao.xu@seu.edu.cn>, saravanak@google.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] of: unittest: Fix memory leak in unittest_data_add()
-Message-ID: <176738979758.226449.11539290980243555444.robh@kernel.org>
-References: <20251231114915.234638-1-zilin@seu.edu.cn>
+	b=NI8p/Tlm1QPYtaoRb+UtM4QqU30WGoiozGGbMODjmhChAMntrZgdFEhHGUq/gP5/K
+	 Dm86SvR92EuS7A5WlKlptf1FlyZkqOCF3GP2Z618MuZ+Zhulwg1S/Eat+ub6YwSDHW
+	 k0sAX/bcG4e10MXHSUIkkKvxc407jHLzkSpTW1rbQ7VpWTVI8z5vn11k5sLuSUBVZh
+	 sWf3QqidKkho36OBqoLhlBhHkSb06h4smHoYk/C3TCE435oJa1/0uwdIRJdsueefJy
+	 AEzFq1KL5dfM35seOI/LONS5eughR4LQdj8IKkSyHfboBmZfLpEHZN7fJK0WKoEBjj
+	 SE6KwgwaLEwjQ==
+Date: Fri, 2 Jan 2026 15:47:10 -0600
+From: Rob Herring <robh@kernel.org>
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: maz@kernel.org, tglx@linutronix.de, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: arm: Drop redundant
+ node name restrictions
+Message-ID: <20260102214710.GA226653-robh@kernel.org>
+References: <20251231113026.2480092-1-pankaj.patil@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,33 +57,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251231114915.234638-1-zilin@seu.edu.cn>
+In-Reply-To: <20251231113026.2480092-1-pankaj.patil@oss.qualcomm.com>
 
+On Wed, Dec 31, 2025 at 05:00:26PM +0530, Pankaj Patil wrote:
+> Drop the redundant 'false' patterns so that allowed names
+> ('msi-controller', 'gic-its', and 'interrupt-controller') work as intended
+> 
+> GICv3 binding currently disallows child nodes named 'gic-its@' and
+> 'interrupt-controller@' via patternProperties set to 'false'. However,
+> these names are already permitted (though not preferred) by a subsequent
+> pattern that applies the correct schema.
+> 
+> Since the 'false' patterns take precedence, valid nodes such as
+> 'gic-its@<addr>' and 'interrupt-controller@<addr>' fail dtbs_check with
+> "False schema does not allow" errors
 
-On Wed, 31 Dec 2025 11:49:15 +0000, Zilin Guan wrote:
-> In unittest_data_add(), if of_resolve_phandles() fails, the allocated
-> unittest_data is not freed, leading to a memory leak.
-> 
-> Fix this by using scope-based cleanup helper __free(kfree) for automatic
-> resource cleanup. This ensures unittest_data is automatically freed when
-> it goes out of scope in error paths.
-> 
-> For the success path, use retain_and_null_ptr() to transfer ownership
-> of the memory to the device tree and prevent double freeing.
-> 
-> Fixes: 2eb46da2a760 ("of/selftest: Use the resolver to fixup phandles")
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Co-developed-by: Jianhao Xu <jianhao.xu@seu.edu.cn>
-> Signed-off-by: Jianhao Xu <jianhao.xu@seu.edu.cn>
-> Signed-off-by: Zilin Guan <zilin@seu.edu.cn>
-> ---
-> Changes in v2:
-> - using scope-based cleanup helper __free(kfree) for automatic resource cleanup.
-> 
->  drivers/of/unittest.c | 8 +++-----
->  1 file changed, 3 insertions(+), 5 deletions(-)
-> 
+The reason it is done this way is so that we both check the child nodes 
+and warn on deprecated names. 
 
-Applied, thanks!
+Fix your .dts files ITS node name to be "msi-controller".
 
+If the node names are fixed everywhere now, then we could just change 
+this to "^msi-controller@[0-9a-f]+$".
+
+Rob
 
