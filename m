@@ -1,109 +1,137 @@
-Return-Path: <devicetree+bounces-251146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53F16CEF675
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 23:05:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 136A4CEF68B
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 23:17:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3A5353021E4D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 22:03:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CD6153013550
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 22:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE0312D780C;
-	Fri,  2 Jan 2026 22:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B9E12D0C66;
+	Fri,  2 Jan 2026 22:17:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Oiqxx2qF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ge2fF73i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F182D73A2;
-	Fri,  2 Jan 2026 22:03:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F2E298CDE
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:17:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767391412; cv=none; b=ZSJ27ddsodhWEpQkH+rZbOXSDNEmRWMSjtlua7tzDd/bZLhCII9ubAyx3WorpZSsRcthJVEkTsGn3DAivyLPJS8b+aptO4dqDaajzifgioV7DYt+6ov1lhKAFxCN5CIndQ2/54RqbeF9+tG7iyMOVS6e8R6rvlkVvH6l2bsjc1k=
+	t=1767392260; cv=none; b=kAYt7r6RTfCEwnKlONEbKsUM1RKaVu6VZe3y58w46o1AmrG2jKKEoHegIiZWqNQyRS+zqgJ850U6Cph/eQq8gk/fyimeF3gG6gRIAZ1E6IqCqPQJYKIrhGYKkw6UJL3hi2CgNGxRx43VbvKbAYok02OI3JqI8dw8NUkoleOsZBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767391412; c=relaxed/simple;
-	bh=3IttiT3Nu4XseUo8hCXiX7c/hNKsQtyXN94ILpvt1Jg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BUZgJrIn1bYa+XtTbpnCgbUT2cVJ1lRrR+QhBpjHRLxU4UYIg6wK9HIrmlhZJjEKbcFtEsdV/kx58ONhuvhCc4zMnUIkpr+FmeSzrURRARW1ev/FTXslxHqYs/6aDHvCHTskH2JSP/LHUgs9il68MSNQ1oMw9toHkraMpvIWjrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Oiqxx2qF; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 3693A4E41F05;
-	Fri,  2 Jan 2026 22:03:28 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D6A27606C7;
-	Fri,  2 Jan 2026 22:03:27 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 46A97113B023E;
-	Fri,  2 Jan 2026 23:03:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767391406; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=DzBEEZRd/TfGbBRgPI1LV+yJYKfoYamGrcNf95MHCek=;
-	b=Oiqxx2qFMOdFkK4UejUswt++zRt7vL1iotMTqjcQp816p/MwR1lgtC/4Kq1U/3h5x/ca0s
-	ce3mSKWFmIxgOWdBejoJCqKhCUbBmo6MDmk45qLpfeY6xY1FTbUYG90finTAnRNDPfN8Ji
-	Lx7b+BEyQeaXjP7/ahuciacxyO1ZfryINNKu+zWay1n3ez6WBAbkXIp9lchABcHYJPyVAv
-	gxSq9P2h/+9W96fDOMUnPQv94GvsCxSHQ5wKTwxTKNwKC+W1uJfiF08tP//V0CS78gqeo8
-	ckhQPYFjmF0xNftTyJW2sF1r3sf3gVjgHSvh8SgIX33w/MNawfPE9zbizLlMnQ==
-Date: Fri, 2 Jan 2026 23:03:22 +0100
-From: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: =?UTF-8?B?QmVub8OudA==?= Monin <benoit.monin@bootlin.com>, Vladimir
- Kondratiev <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT
- <gregory.clement@bootlin.com>, =?UTF-8?B?VGjDqW8=?= Lebrun
- <theo.lebrun@bootlin.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 06/13] pinctrl: eyeq5: Add Mobileye EyeQ6Lplus OLB
-Message-ID: <20260102230322.29d2ea65@windsurf>
-In-Reply-To: <CAD++jLnBMXQAv75a8k=mbEt8pAxS0UXhayQPz1YWCiLic9_+ig@mail.gmail.com>
-References: <20251223-eyeq6lplus-v2-0-cd1fd21d182c@bootlin.com>
-	<20251223-eyeq6lplus-v2-6-cd1fd21d182c@bootlin.com>
-	<CAD++jLnBMXQAv75a8k=mbEt8pAxS0UXhayQPz1YWCiLic9_+ig@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1767392260; c=relaxed/simple;
+	bh=/64Co2q0kgEgA6DPpVmvrLqtt4+bKlfMdoKNXVNCcsQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=scW7NigYNO6K4cdDc2BRNvRhe7WCPfb4xR0fE8cSIkOzgXXOicB07RH4XAYRBmitqY5j2uDX+dM/6nFbZa4WCWegETe0PVfrXbNkAzCa1ZpeHq16FnlTLSGlnINVaQ4LvIh4l9VVZ5TVtdVtI4n3WclplgqJ9TvFtyLis4VAhsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ge2fF73i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEA4AC19424
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:17:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767392259;
+	bh=/64Co2q0kgEgA6DPpVmvrLqtt4+bKlfMdoKNXVNCcsQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ge2fF73iJ8fd9je/5EvWRvXS4+eNAXKRDPzkWl71vlZSnTL/QfKna/aIUVBrNzqh5
+	 mDsdGxhIVjOAF5DgyQXjyPdkWInWTLYyR9nBQBjvEYKXdK4AlCDsxA4DRs7FKwJd55
+	 qbNGH1+8COzIcaBwqUZtXwBOXEyk4P7MwVgy80b4xpW7IdeVJUU16yVWcdTMFVs1VE
+	 a/shbiUuWL8wYX6p4iaLWpnQh2+AczJFAcfhA1YoN3SzJA9UdLIX7SN1jvxiC3iOfj
+	 7D4GSVWzrtB2v8A78o2IxK2poTFA4PCSHN/pB4Gh1eYAhTxFCE8mUEEVm572e5YK5f
+	 d5bdHvqxa8TAA==
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b83b72508f3so292933766b.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 14:17:39 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVp6x3K7eSiqr5Y+jdeYoUDXC7W5ryqaM09snzL6xNxtEIEtQZzR+O/uukbXo6669XiPhdPQr0a+wTI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhSwOx+Xjt6I2Y/6P/FDuMqQKHN5CIO1L5egKgdBjQ/ZicxaRt
+	hF49LPRWYt772YKhV6B9i7brcGmNhDNMo1B3+xMoixxOFjmdVBScIEQyVmMLXuuDGLQxr54XNal
+	hjXwjMxCE94oNpMsnm1byX7XEtOGysA==
+X-Google-Smtp-Source: AGHT+IGcdjYMdq8WHlapJ12+Pohp79IeQ6Qp00t62ofYPur0Xu5Cyh0Zdwx3rcPrWR7fro3HFhzV7izpL+ysUdN6FT8=
+X-Received: by 2002:a17:907:da17:b0:b83:3770:a0e4 with SMTP id
+ a640c23a62f3a-b833770a15emr2280910966b.34.1767392258434; Fri, 02 Jan 2026
+ 14:17:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20251217153917.3998544-1-arnaud.pouliquen@foss.st.com>
+ <20251217153917.3998544-2-arnaud.pouliquen@foss.st.com> <20251229232530.GA2753472-robh@kernel.org>
+ <aVOzHWmlJ-eneS-2@sumit-xelite>
+In-Reply-To: <aVOzHWmlJ-eneS-2@sumit-xelite>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 2 Jan 2026 16:17:27 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+_S8UY7s7WQg9jXuBXCYMBWVCy=kVDMdkKTx6RctqQJA@mail.gmail.com>
+X-Gm-Features: AQt7F2qSpJIFr1cZ7Ak2PMJj_kJpZOMaYqr6WPt7b6SXNB2GqwyfYzNGk02nLo4
+Message-ID: <CAL_Jsq+_S8UY7s7WQg9jXuBXCYMBWVCy=kVDMdkKTx6RctqQJA@mail.gmail.com>
+Subject: Re: [PATCH v20 1/6] dt-bindings: firmware: Add TEE remoteproc service binding
+To: Sumit Garg <sumit.garg@kernel.org>
+Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Jens Wiklander <jens.wiklander@linaro.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-remoteproc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, op-tee@lists.trustedfirmware.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hello Linus,
+On Tue, Dec 30, 2025 at 5:10=E2=80=AFAM Sumit Garg <sumit.garg@kernel.org> =
+wrote:
+>
+> On Mon, Dec 29, 2025 at 05:25:30PM -0600, Rob Herring wrote:
+> > On Wed, Dec 17, 2025 at 04:39:12PM +0100, Arnaud Pouliquen wrote:
+> > > Add a device tree binding for the TEE-based remote processor control
+> > > service implemented as an OP-TEE Trusted Application identified by
+> > > UUID 80a4c275-0a47-4905-8285-1486a9771a08.
+> > >
+> > > The TEE service node is a child of the "linaro,optee-tz" firmware nod=
+e and
+> > > acts as a container for remoteproc devices that are controlled via TE=
+E.
+> >
+> > Is this generic for any remoteproc device or just ST's remoteproc. Look=
+s
+> > like the latter to me.
+>
+> That's true, the DT description of the remoteproc subnode is very
+> specific to the vendor which in this case is ST.
+>
+> >
+> > > In addition, the "linaro,optee-tz" binding is updated to specify the
+> > > '#address-cells' and '#size-cells' values used for child TEE service
+> > > nodes.
+> >
+> > I'm pretty sure I already rejected per service/app child nodes for
+> > OP-TEE when its binding was submitted.
+>
+> That was the reason to have discoverable TEE bus in first place and I
+> have been motivating people to dynamically discover firmware properties
+> rather than hardcoding in the DT.
+>
+> > If we do need something in DT
+> > to define some resources, then can't we have some sort of
+> > standard/common communications channel? I don't care to see some sort o=
+f
+> > free-for-all where we have every vendor doing their own thing. OP-TEE
+> > needs to standarize this.
+>
+> I suppose this requires a wider scope work as you can see the DT resource
+> dependence from here [1]. By standardize communication channel, do you
+> mean to say if adding an alternative backend to fwnode for TEE in
+> parallel to DT, ACPI or swnode is the way to go for discovering fw
+> properties?
 
-On Fri, 2 Jan 2026 22:57:44 +0100
-Linus Walleij <linusw@kernel.org> wrote:
+No, not at all.
 
-> On Tue, Dec 23, 2025 at 11:02=E2=80=AFAM Beno=C3=AEt Monin <benoit.monin@=
-bootlin.com> wrote:
->=20
-> >  static const struct of_device_id eq5p_match_table[] =3D {
-> >         { .compatible =3D "mobileye,eyeq5-olb", .data =3D &eq5p_eyeq5_d=
-ata },
-> > +       { .compatible =3D "mobileye,eyeq6lplus-olb", .data =3D &eq5p_ey=
-eq6lplus_data }, =20
->=20
-> Which patch can I find this new binding in? Or is it already upstream?
+> Or do you have any other suggestion here?
 
-In the same series, PATCH 02/13:
+What I mean is why doesn't the TEE define the communication channel
+(mailbox+shmem and notification interrupt) rather than each TEE app?
 
-  https://lore.kernel.org/all/20251223-eyeq6lplus-v2-2-cd1fd21d182c@bootlin=
-.com/
+More generally, is having TEE apps depending on random DT resources
+really a box we want to open? Is the next thing going to be a TEE
+clock/reset/gpio/power provider? Where do we draw the line?
 
-Best regards,
-
-Thomas
---=20
-Thomas Petazzoni, co-owner and CEO, Bootlin
-Embedded Linux and Kernel engineering and training
-https://bootlin.com
+Rob
 
