@@ -1,97 +1,154 @@
-Return-Path: <devicetree+bounces-251134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7DD2CEF30E
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 19:35:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 294F7CEF36C
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 20:00:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7EA55300C293
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 18:35:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E547F3017F3B
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 19:00:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F69273D9F;
-	Fri,  2 Jan 2026 18:35:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A82C2BF002;
+	Fri,  2 Jan 2026 19:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DEmTuZ+x"
+	dkim=pass (2048-bit key) header.d=jm0.eu header.i=@jm0.eu header.b="HS4uPEl9";
+	dkim=permerror (0-bit key) header.d=jm0.eu header.i=@jm0.eu header.b="VfPQEo6t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mo4-p03-ob.smtp.rzone.de (mo4-p03-ob.smtp.rzone.de [85.215.255.104])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D970EEBB;
-	Fri,  2 Jan 2026 18:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767378934; cv=none; b=UUdf+8KDIiahn8hpZeKa1HkJXLGngZvc4rmtgdFty/6HSyMTCjwZBFZuXhO8wlY3L0tx0DWI3YvAVT8H5sBTHsGXRpTgSlvTXbKMJH9phOXd9FzO9Q5j3kV+xO4Lkk9vujWzblFul4dbYaNRStBBMG5/CnD9WblTV9PWsP+rhgo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767378934; c=relaxed/simple;
-	bh=2ISzF1BJvmh+Y5rh4fMaIcd4DCj19WEUStnlhxpepVk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F1bcSYGxsSWVMVbGiaBlRRxb+xfoUoLJ8/CkBzYggTmm0jEdwOpxZGYbGUYxcMXUH97TS/ichZ27Kkg81HJDzbU8sdJm4QLqFQNeqiv7u7oIBKuUjpBwli7ihFjHg1DpyFM7YKmqwZYk870Ean8XEYG4PzgVh2dE9a65n5PUKRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DEmTuZ+x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3354C116B1;
-	Fri,  2 Jan 2026 18:35:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767378933;
-	bh=2ISzF1BJvmh+Y5rh4fMaIcd4DCj19WEUStnlhxpepVk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DEmTuZ+xjrvBHSqB5jWIHsv4iuRrTOlnOWA8GR8uqSpNicY+zAg4F2fc5d5tNv5sZ
-	 yYutuTZlwBb14s3rz9TXIlhExWSorzTM88TGO+mClWqvfIZ4OcvbBjo3xoYZmx9etU
-	 PgpykHrjc1vglzpR8DiMakIrWtnSrKLwYXBE9GBbpCgBbdGo3QmLFtDz4ftm4g5oty
-	 3hV4Okc0EEk3vQkUDYdyfB2bykM4ok/hDGtoxHmT159+NORPm+IxLE6Gy+mwHoJeG/
-	 p2jupChGwihXfPvqa2BRFzWl17SyY/dLCTLYgKLSyQJxVm4jjSlMNqcTRc+j3FWcJx
-	 oha5ijVIDc3mw==
-Date: Fri, 2 Jan 2026 12:35:30 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Maulik Shah <maulik.shah@oss.qualcomm.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: qcom,pdc:
- Document x1p42100 PDC
-Message-ID: <yulnacbkob2bxmqzkivbawshofi2byxjbqzel2edkvqko2rtfg@zzxzdsvgbzjb>
-References: <20251231-purwa_pdc-v1-0-2b4979dd88ad@oss.qualcomm.com>
- <20251231-purwa_pdc-v1-1-2b4979dd88ad@oss.qualcomm.com>
- <209c49fb-04a6-43dc-a3f1-8451e3946d06@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE1131961F;
+	Fri,  2 Jan 2026 19:00:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.104
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767380410; cv=pass; b=RXc5y681KvBxOL/jUTxx5x0579UTFM8lkF2g8Ew2kDsNw06AFF00uG4erjyzhrYY34jnz72aTEmqQMaT3V+ShlGPtaGgvVjHfWED+KYmRlguvCyR908rQuj101S7NasDt1gHpEjAIMfJY4lZHVenYw3OupbX02HtCMu+VDbC7Ak=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767380410; c=relaxed/simple;
+	bh=U5OAmAIUBkZjYBrSIJbc7l6a1zymYumUW8OA0QVQTM4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qeq8EgGmVG6+QH6/AXw365f0Er+vmYpNRN3to12potZSEBXmSrGou/6ZiIOn4g3Le6Q8eESw2cFEa6doqgIW7QqQzytXfudvOkXDJgE2nRxDrmS4bZQzuJW9IHa78NAjiaC+zZdKsdkfXEukdM+q0SkGUD13eVh0UMoEt5BZN8c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=jm0.eu; spf=none smtp.mailfrom=jm0.eu; dkim=pass (2048-bit key) header.d=jm0.eu header.i=@jm0.eu header.b=HS4uPEl9; dkim=permerror (0-bit key) header.d=jm0.eu header.i=@jm0.eu header.b=VfPQEo6t; arc=pass smtp.client-ip=85.215.255.104
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=jm0.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=jm0.eu
+ARC-Seal: i=1; a=rsa-sha256; t=1767379679; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=FF1mhaLwEXV6c2uA2Ka4DoOiIr8oXvscuH3PfGytWJwfYWhp5f41eY+MnE6Y12GX9T
+    PMMAg+mTiRx2nSs3Ikfh9KBgnkEXawyG0GXf7wubFdwWFAdCILH+92EnFW59rKVXSqtp
+    keSN3tgOi6b9tprwzH7/BzlerMBW+zMF7tNHTJDyjL8qymmahA94dm6eKZ2v6y1jNq0S
+    afDYoqgjJDLodMsQ/FVlrPyUA1lmbRNRKjJgFcRyL6zBSjY9+OJksAhEbQPaenvc+3iS
+    /bd9qb2HucSzwO07HiYdvrO4EuWpjCf1qzX+4wmm0U4Mx+e5en4iiTqS74ARQDD8rGQU
+    faYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1767379679;
+    s=strato-dkim-0002; d=strato.com;
+    h=References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=j9EJ2X8RMS9IecySDKNE83h12NY8fqhR6DwLAlrRmCs=;
+    b=A60BygkXpIdu95J6POmNu2s0BesoelcXa1Z6PiyS7tzYKBkjMVjy0iaKtT8escNRpw
+    fWe+ItvVZ9vG1kZwUX8ysNoy8vdYWM0b02s2lRJKBQAVMYyOI64q3urieO6uL83tDfPF
+    0vT5hbWJ4yFC1XqvrWwa1HqWsCjDsLeMZYknmO19YkR5bEQumaZrGHV3UakTanaYZxe9
+    nVzrzK63SPl2AZ6dEvydVlu3bxSsAMF8cQK316Xm7DNTc+Z9IbjR+tCP4Gne2iOKPdnv
+    FgczyH4U/VeQIendBIJaJj/7RCDacdFoD1xOPrGZqIKkdENDIPVkPtJVjIr6a/VIzD02
+    9EBA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo03
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1767379679;
+    s=strato-dkim-0002; d=jm0.eu;
+    h=References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=j9EJ2X8RMS9IecySDKNE83h12NY8fqhR6DwLAlrRmCs=;
+    b=HS4uPEl9TxCPlteJkHKB/3YESWvOJv1dWxiWcyyM1K39td6B1Ngbw9OIg4ze9xNxWo
+    nQIVW88oL34eYPPAOjz4RzuMDmColNl75feDtECrAikh2tcdsKXFUGDCX+60/p7WgRvB
+    shOhF+09uJq8JspCieR4EXNetzjDNzcaBVYyAinYies48QvrBKbty93PtR9ZkL1ynWXA
+    zwQchSx+NgoMsGg/MV5azFJpoVWkiBLKRK/0uxdMcqSh/asa2q4pdhxFdGKakE7ew5td
+    ru3tBwsNZw/JKBtqeCkgNcMZaILU+qZlrYxptx4T2eSCp7LyfgZO575CHHrc9B+bXE7j
+    +qag==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1767379679;
+    s=strato-dkim-0003; d=jm0.eu;
+    h=References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=j9EJ2X8RMS9IecySDKNE83h12NY8fqhR6DwLAlrRmCs=;
+    b=VfPQEo6tUFQLxnxhUf1a/yYdohd8sf8DrrfbgUx2qRd2EAG6tfGnNhfMvDcD8IBBJy
+    I3v1M4BpGQD/sIZuIdAw==
+X-RZG-AUTH: ":JmMXYEHmdv4HaV2cbPh7iS0wbr/uKIfGM0EPUekEaRuJYlK1sYXypxVL0CQ9+6hiGfCNGIsC/uv4p9fxkB90Xm84033ewK4crZA="
+Received: from localhost
+    by smtp.strato.de (RZmta 54.1.0 AUTH)
+    with ESMTPSA id z0d4ec202IlwEbp
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Fri, 2 Jan 2026 19:47:58 +0100 (CET)
+Date: Fri, 2 Jan 2026 19:47:55 +0100
+From: "Ing. Josua Mayer" <josua.mayer@jm0.eu>
+To: Jonathan =?ISO-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>, Lee
+ Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/4] power: supply: add battery driver for netronix ec
+Message-ID: <20260102194755.000030a4@jm0.eu>
+In-Reply-To: <20260102-kobo-aura-battery-v1-0-501f2a8fa575@jm0.eu>
+References: <20260102-kobo-aura-battery-v1-0-501f2a8fa575@jm0.eu>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; i686-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <209c49fb-04a6-43dc-a3f1-8451e3946d06@kernel.org>
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 31, 2025 at 11:49:00AM +0100, Krzysztof Kozlowski wrote:
-> On 31/12/2025 11:18, Maulik Shah wrote:
-> > Purwa shares the Hamoa (X1E80100) PDC device, but the hardware register
-> 
-> We don't use Hamoa name in upstream.
-> 
+Greetings everyone,
 
-Using "Hamoa" and "Purwa" is approved and IMO preferable. I do like how
-Maulik included the X1E80100 name here, to ensure continuity with times
-before we did.
+I made some mistake using "b4" on a different device,
+and the v2 was not added as subject prefix.
 
-In fact, I'd prefer $subject to use "Purwa" instead of "x1p42100" -
-quite likely that's not even the Purwa SKU that Maulik tested this on.
+I will try to fix it after hopefully some comments.
 
-Regards,
-Bjorn
+Am Fri, 02 Jan 2026 19:00:29 +0100
+schrieb Josua Mayer <josua.mayer@jm0.eu>:
 
-> > bug addressed in commit e9a48ea4d90b ("irqchip/qcom-pdc: Workaround
-> > hardware register bug on X1E80100") is already fixed in Purwa silicon.
-> > 
-> > Hamoa compatible forces the software workaround. Add PDC compatible
-> > for purwa as "qcom,x1p42100-pdc" to remove the workaround from Purwa.
-> > 
-> > Fixes: f08edb529916 ("arm64: dts: qcom: Add X1P42100 SoC and CRD")
-> 
-> Your are describing wrong bug being fixed... or actually not a bug.
-> Every SoC should have dedicated compatible (see writing bindings) and
-> missing compatible is not a bug.
-> 
+> This series adds a new battery driver for the netronix embedded
+> controller multi-function device.
+>=20
+> Bindings are updated supporting a monitored battery, and battery
+> description is added to kobo aura device-tree.
+>=20
+> Signed-off-by: Josua Mayer <josua.mayer@jm0.eu>
+> ---
+> Changes in v2:
+> - Fixed identity mixup between from address and SoB.
+>   (Reported-by: Krzysztof Kozlowski <krzk@kernel.org>)
+> - Changed patch ordering, device-tree first.
+> - Separated new driver and mfd subdevice changes into separate
+> patches. (Reported-by: Jonathan Neusch=E4fer <j.neuschaefer@gmx.net>)
+> - reworded Kconfig to explicitly mention device-tree
+>   instead of vague firmware tables expression.
+>   (Reported-by: Jonathan Neusch=E4fer <j.neuschaefer@gmx.net>)
+>=20
+> ---
+> Josua Mayer (4):
+>       dt-bindings: mfd: netronix,ntxec: add reference to power-supply
+>       ARM: dts: imx: imx50-kobo-aura: add description for battery
+>       power: supply: add battery driver for netronix ec
+>       mfd: ntxec: register battery subdevice.
+>=20
+>  .../devicetree/bindings/mfd/netronix,ntxec.yaml    |   9 +-
+>  arch/arm/boot/dts/nxp/imx/imx50-kobo-aura.dts      |   9 ++
+>  drivers/mfd/ntxec.c                                |   1 +
+>  drivers/power/supply/Kconfig                       |   9 ++
+>  drivers/power/supply/Makefile                      |   1 +
+>  drivers/power/supply/ntxec-battery.c               | 101
+> +++++++++++++++++++++ 6 files changed, 127 insertions(+), 3
+> deletions(-) ---
+> base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+> change-id: 20251227-kobo-aura-battery-3e60bc159d16
+>=20
 > Best regards,
-> Krzysztof
+
 
