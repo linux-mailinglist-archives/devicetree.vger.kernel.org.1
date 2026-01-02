@@ -1,54 +1,61 @@
-Return-Path: <devicetree+bounces-251078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 527F0CEE777
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 13:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C34FFCEE795
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 13:15:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5421530022B3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 12:13:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C2C8C300645F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 12:15:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E1F42E7BCC;
-	Fri,  2 Jan 2026 12:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B44A2F25F3;
+	Fri,  2 Jan 2026 12:15:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GeaexvRW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CIVIT/m5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79FA11F875A
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 12:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA9027A123;
+	Fri,  2 Jan 2026 12:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767355995; cv=none; b=fMPffasMfBw6e3YYT6fUgzgPv55LzBcv+Tz8vNzDYhJGh6QHauCelSa/OQNZJ6AICDBqsye6AY55s5yIiMyFfxG4YsvCvY0DRkVRS8HR+kJjWLO4wMSuD580TkSyE+D52QtZgaDEgmwrasXOLM611Q/uG8TE5XetbolvIPvWmXc=
+	t=1767356099; cv=none; b=u9eOSRwHDLdd4i0Ndiigijqa58ncSDfRr7nUolFZjdeA6T1QKJdjE6c1JtkVj06AGMwgt6UYWn8iQ/fSkISKfOW3onaqrQYRfbsxpaf/+t9s8oT2nRZAzq+nFtQDXXI8r1Ezjc7R7WnSpLiUtiDhuy9Le6zsTQfNCj1tLfiiIzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767355995; c=relaxed/simple;
-	bh=NcRPChKxYj82FiPy4b7x8IpELwc/9I1LcPx0q63Fxig=;
+	s=arc-20240116; t=1767356099; c=relaxed/simple;
+	bh=hthjXP5kAq1S1kh08u5nZT76L5KxInmjvwsExPy7sL0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IBwp6kjv/d5D9q1ag+7rQGJk9y4ZfhDLJQyR50Sd2+Id2R+pvT5NE25LOgr7xj0It7fh5g8+QS7AHgf+k2u0+QGMJ7JgvqCFqgR7b03d19mMXPxp4B8mApFdehHrGheOBHAgNbv4C7rgIK9clXpp9Z8fXwG0B520QWNeq7JHU6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GeaexvRW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76953C116B1;
-	Fri,  2 Jan 2026 12:13:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nreKSiCizn/Qi/NZCprFJGAXOuvRBM8V3mTURbx6u/Ax5qCU4UJI7+auP0ww1TZ97PEfNdQFPmVzd/DpQVOq39k/Mar0uBjo70dMkF/YC1+ukthu4pt6lyuup4UK6sf8v3M8g4GEVzyTCnEGi+8/qOVbRQXOK1BAQW5sUZ/mxaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CIVIT/m5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E35FBC116B1;
+	Fri,  2 Jan 2026 12:14:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767355995;
-	bh=NcRPChKxYj82FiPy4b7x8IpELwc/9I1LcPx0q63Fxig=;
+	s=k20201202; t=1767356099;
+	bh=hthjXP5kAq1S1kh08u5nZT76L5KxInmjvwsExPy7sL0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GeaexvRWNhiKsqd2gZm7KDJXfhJutk9i6mAW9+BPYp+Xs7mcN8yaGmygZoUJwQogJ
-	 67KhqCKivg9pWFOI5GY0Y0cIlqZmGffKAKaE8NBo7MWVjkqkFHsSzcVawj5dQ8oszp
-	 QEvVyPn8REexi1XzzLR3L3bazPzmQaNDF2ujqAPb/nXdWPT/x2WCZq6ynwerZkz/90
-	 HObOMiisnJblzEWx/Frh74n/6HgAB1ANMXA9Bga67eBk40ghKno0Qf4/Vkq3nNcbVu
-	 2Ba69gQEQZ1+nrr8YhYmp/hi0T5Y/dITENHP8vN9sEUBT98gfG+F7pOZFrpww9ouOJ
-	 aRKW2sqFNYOmg==
-Date: Fri, 2 Jan 2026 13:13:12 +0100
+	b=CIVIT/m5ognjKPRQUzCikJ0XLTobkC17NqJj2wpcpGmfsJi+QYevCLCRNa67Eml2+
+	 /tkHCdFR7mjDnRgmENBPzsgnFWJpunFflbSCJLeCSXkSdlWKOzX3HjH94wnmpCwt2D
+	 26QbwLe/K6UmiiKRDmgmRZpFp7IxwhcE4byqRxJBXomFlQPUUgrZOcAJ7JkBmGXLyB
+	 /2vqxsRELpY/SM26QJrtHCzEeaCNVKkpHO+w08vQatNkvSlJlr+bDwyv0UmwVw4s6a
+	 yyM1JEbW4ovdTqFE2nThyOmAEFYTKH2Qx3s8Q9O0/oh3SmT/F0YuOQGJmhXP+HS7WS
+	 jTuTa8AN1XHdQ==
+Date: Fri, 2 Jan 2026 13:14:57 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: neil.armstrong@linaro.org, dri-devel@lists.freedesktop.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, Fabio Estevam <festevam@nabladev.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add Innolux
- G150XGE-L05 panel
-Message-ID: <20260102-garrulous-mink-of-engineering-f2eaef@quoll>
-References: <20251230125913.3670617-1-festevam@gmail.com>
+To: Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rajendra Nayak <quic_rjendra@quicinc.com>, Abel Vesa <abelvesa@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+	Ajit Pandey <ajit.pandey@oss.qualcomm.com>, Imran Shaik <imran.shaik@oss.qualcomm.com>, 
+	Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: qcom,x1e80100-gcc: Add missing
+ UFS mux clocks
+Message-ID: <20260102-helpful-natural-donkey-9b5005@quoll>
+References: <20251230-ufs_symbol_clk-v1-0-47d46b24c087@oss.qualcomm.com>
+ <20251230-ufs_symbol_clk-v1-1-47d46b24c087@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,33 +64,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251230125913.3670617-1-festevam@gmail.com>
+In-Reply-To: <20251230-ufs_symbol_clk-v1-1-47d46b24c087@oss.qualcomm.com>
 
-On Tue, Dec 30, 2025 at 09:59:12AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@nabladev.com>
+On Tue, Dec 30, 2025 at 11:08:34PM +0530, Taniya Das wrote:
+> Some of the UFS symbol rx/tx muxes were not initially described.
 > 
-> Add Innolux G150XGE-L05 15.0" TFT 1024x768 LVDS panel compatible string.
-> 
-> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
-> ---
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index fc244fbb5a54..3b7550f09936 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -182,6 +182,8 @@ properties:
->        - innolux,g156hce-l01
->          # InnoLux 13.3" FHD (1920x1080) TFT LCD panel
->        - innolux,n133hse-ea1
-> +        # InnoLux 15.0" G150XGE-l05 XGA (1024x768) TFT LCD panel
-> +      - innolux,g150xge-l0
+> Add indices for them to allow extending the driver.
 
-g < n
+Please drop this. We do not add bindings to allow extending driver, so
+above is not the correct reason to do anything here.
 
-g150 < g156, at least that is what is visible in the diff. Please keep
-things sorted.
+> 
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
