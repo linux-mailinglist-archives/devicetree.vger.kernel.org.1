@@ -1,194 +1,230 @@
-Return-Path: <devicetree+bounces-251093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0901CEE8B5
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 13:32:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5270CCEE8BB
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 13:34:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0E6483016CD6
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 12:30:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4E0503007C9C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 12:34:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E0D930FF25;
-	Fri,  2 Jan 2026 12:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69D722D7DD7;
+	Fri,  2 Jan 2026 12:34:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JXcDe7uk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SRPOQG/X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3042119258E;
-	Fri,  2 Jan 2026 12:30:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B880F7262A;
+	Fri,  2 Jan 2026 12:34:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767357048; cv=none; b=OMXKR5a6/JWwKd5U4li8k0TcjsJ8t7pFWffeXZk+IrH0kF3NP5oWxXF0G2eolCZtR8IV9zXXLOlL3qZbrFqFvM+/dja/vvrFU023pGyUSVNqG13LxT2IPxSr98T0WQjg/G3jBpiU6LUiWXMdierVtKcEp1WuyX9NWxZSRQP9KNQ=
+	t=1767357263; cv=none; b=UYnCLsObtqT55RxahmkMs83ymCBmgUjDrLTpfY5EnJ6jp+0qftqr6UBsoyrOtRvhPkCnS87Fw/tbQ7CGmSkulUWADquqqUjQx8XvJBg0jg3pnGN1lMWh9nKP1YMbZx3n+vqFqopiEiFG01FNcxRuNC9ADQmF9QZ3foEDE+Fyw6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767357048; c=relaxed/simple;
-	bh=rJC7m9lCc0+e15A46s9W1trAfNGWVYAMEpv2sDUKGls=;
+	s=arc-20240116; t=1767357263; c=relaxed/simple;
+	bh=Q4DM2XFHhXSfD4G/rmWG1+RJvma9k4Igb/0cDI84WQg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aCXR21EB1hbcUfUpRm4ZEcLtzjD7DUGdGAEhP8c3xbrUZPmDXH+Uui4oUcrfaPsjo6Sx+yf618Tc6tJCCqTZdmWIvyMZuY0zJ9LWKX8kFfpXOpbVV3u5p1VXZVuZXPLT/QqQKStwQz9ttAkTR78OWDtsTbP1dTuiTEzxvZ9GutU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JXcDe7uk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63499C116B1;
-	Fri,  2 Jan 2026 12:30:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767357046;
-	bh=rJC7m9lCc0+e15A46s9W1trAfNGWVYAMEpv2sDUKGls=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JXcDe7ukpMXFefbqc0Z3d62d5YYkzVeN0TzkD5ZIZGDgs5pFD/IrzYh7y9vQDoh1L
-	 WSRyJ/4cVMr5FlxAZICg/8R94pCpZyi4leFXH4POj33333fZUgVL/BWbLiXylyjkGr
-	 /DeBbxyMXc4/AexY9pLRlYhcxsK02oyjtdxgEmmbZTpFsDdUkmlVVaVPw49vBNFLlz
-	 fm5Sznj6ZgEB4KeDOkDW7jnmEP/1uMDOpkjRMaPl4bj3tlQHnyApfrSIN06Qy+y6v4
-	 JlXqkZJZtlCnawt9OtCiNVhh9wgz7WbB2IRmiybYJLwU3ofsWnafembysWmL3dEg56
-	 NeEaTfXn+U63w==
-Date: Fri, 2 Jan 2026 13:30:44 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Beleswar Padhi <b-padhi@ti.com>
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com, vigneshr@ti.com, 
-	kristo@kernel.org, afd@ti.com, u-kumar1@ti.com, hnagalla@ti.com, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: Add bindings for HSM core
- on TI K3 SoCs
-Message-ID: <20260102-shrewd-unnatural-lynx-b7d214@quoll>
-References: <20251231165102.950644-1-b-padhi@ti.com>
- <20251231165102.950644-2-b-padhi@ti.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IRLn4wdUN64nswYsJ313rqqflbp6po2WfZq1vsEoYYhjG3Y1nfWZGAfhKyQpPUnA0cBQkuUdqd7s5wl9Pa6zHl7eVaz+hfv0lfV4n6dY1rTK0A1McKUwzmAFQaHCGApsPIh2LgkD6zBU6RQ3WrpWG/ot6MLzpjefd5UmBeaQUc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SRPOQG/X; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1767357262; x=1798893262;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Q4DM2XFHhXSfD4G/rmWG1+RJvma9k4Igb/0cDI84WQg=;
+  b=SRPOQG/XZz207CXvNPBAUPokplSsUEXkcZbBFaMZY011YUL+mSnQk+Nn
+   MmU5wVKIgcg7sClU7WSc2VI+EYon3vrKo3KdvNs+6zcb9XpXof6vPMLza
+   Sd7aD/2H2RLETEMBVQBt/LCVc+ankwaARCV4rRaC/BTBp2Jl+37qRtrOT
+   fgxKHVmTK9abQ8C+e8Vn/mlIAaxGgibIIQNPZkByzhQRRehM0137bSYxg
+   vcOB9Lib7xRVuu1bgkvkNCt3ZDzAYdBgVrqcviitdbf2nmreob4TUXaHJ
+   zIVjmNVuaTJ2dN267N3AVJz67ucViMorj3ztGejINspHvCszRvArr2fWe
+   A==;
+X-CSE-ConnectionGUID: 9M6wkN6JQsqa4uj86sRvlg==
+X-CSE-MsgGUID: vxt3Mc6aTuifKEqT2Uxpow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11658"; a="71432061"
+X-IronPort-AV: E=Sophos;i="6.21,197,1763452800"; 
+   d="scan'208";a="71432061"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jan 2026 04:34:21 -0800
+X-CSE-ConnectionGUID: 6UD8Z8RcTbmQooNHNOxIJQ==
+X-CSE-MsgGUID: M2rzRvqeTPKqCyiVKx7e7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,197,1763452800"; 
+   d="scan'208";a="206299625"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.46])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jan 2026 04:34:18 -0800
+Date: Fri, 2 Jan 2026 14:34:16 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: raskar.shree97@gmail.com
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, skhan@linuxfoundation.org,
+	david.hunter.linux@gmail.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] iio: proximity: rfd77402: Add interrupt handling
+ support
+Message-ID: <aVe7SP914oI-jAam@smile.fi.intel.com>
+References: <20260101-b4-rfd77402_irq-v4-0-42cd54359e9f@gmail.com>
+ <20260101-b4-rfd77402_irq-v4-4-42cd54359e9f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251231165102.950644-2-b-padhi@ti.com>
+In-Reply-To: <20260101-b4-rfd77402_irq-v4-4-42cd54359e9f@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Wed, Dec 31, 2025 at 10:21:00PM +0530, Beleswar Padhi wrote:
-> Some of the TI K3 family of SoCs have a HSM (High Security Module) M4F
-> core in the Wakeup Voltage Domain which could be used to run secure
-> services like Authentication. Add the device tree bindings document for
-> this HSM M4F core.
-> 
-> The added example illustrates the DT node for the HSM core present on K3
-> J722S SoC.
+On Thu, Jan 01, 2026 at 09:47:41PM +0530, Shrikant Raskar via B4 Relay wrote:
 
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> Add interrupt handling support to enable event-driven data acquisition
+> instead of continuous polling. This improves responsiveness, reduces
+> CPU overhead, and supports low-power operation by allowing the system
+> to remain idle until an interrupt occurs.
 
-> 
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> ---
->  .../bindings/remoteproc/ti,k3-hsm-rproc.yaml  | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-hsm-rproc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-hsm-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-hsm-rproc.yaml
-> new file mode 100644
-> index 0000000000000..f61e4046843af
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-hsm-rproc.yaml
+...
 
-Filename must match the compatible. Are you sure you are following
-internal TI guidelines? Did you read them?
+>  #include <linux/module.h>
+>  #include <linux/i2c.h>
+>  #include <linux/delay.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/completion.h>
+>  #include <linux/iopoll.h>
 
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/ti,k3-hsm-rproc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI K3 HSM M4F processor subsystems
-> +
-> +maintainers:
-> +  - Beleswar Padhi <b-padhi@ti.com>
-> +
-> +description: |
-> +  Some K3 family SoCs have a HSM (High Security Module) M4F core in the
-> +  Wakeup Voltage Domain which could be used to run secure services like
-> +  Authentication. Some of those are J721S2, J784S4, J722S, AM62X.
-> +
-> +$ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,hsm-m4fss
-> +
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 2
+Same comment as per previous patch. Do not add even more misordering, please.
 
-Why do you need these two properties?
+...
 
+> +/**
+> + * struct rfd77402_data - device-specific data for the RFD77402 sensor
+> + * @client: I2C client handle
+> + * @lock: mutex to serialize sensor reads
+> + * @completion: completion used for interrupt-driven measurements
+> + * @irq_en: indicates whether interrupt mode is enabled
+> + */
+>  struct rfd77402_data {
+>  	struct i2c_client *client;
+> -	/* Serialize reads from the sensor */
+>  	struct mutex lock;
+> +	struct completion completion;
+> +	bool irq_en;
+>  };
+
+The kernel-doc conversion can be a separate patch, but I'm not insisting.
+
+...
+
+> +static irqreturn_t rfd77402_interrupt_handler(int irq, void *pdata)
+> +{
+> +	struct rfd77402_data *data = pdata;
+> +	int ret;
+
+> +	if (!data || !data->client)
+> +		return IRQ_NONE;
+
+How is this possible to be non-dead code?
+
+> +	ret = i2c_smbus_read_byte_data(data->client, RFD77402_ICSR);
+> +	if (ret < 0)
+> +		return IRQ_NONE;
 > +
-> +  reg:
-
-reg is always the second property. Please read DTS coding style.
-
-> +    items:
-> +      - description: SRAM0_0 internal memory region
-> +      - description: SRAM0_1 internal memory region
-> +      - description: SRAM1 internal memory region
+> +	/* Check if the interrupt is from our device */
+> +	if (!(ret & RFD77402_ICSR_RESULT))
+> +		return IRQ_NONE;
 > +
-> +  reg-names:
-> +    items:
-> +      - const: sram0_0
-> +      - const: sram0_1
-> +      - const: sram1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  firmware-name:
-> +    maxItems: 1
-> +    description: Name of firmware to load for the HSM core
+> +	/* Signal completion of measurement */
+> +	complete(&data->completion);
+> +	return IRQ_HANDLED;
+> +}
 
-Drop description. Can it be anything else than name of the firmware to
-load?
+...
 
+> +static int rfd77402_wait_for_irq(struct rfd77402_data *data)
+> +{
+> +	int ret;
+
+Missed blank line. Doesn't checkpatch complain?
+
+> +	/* As per datasheet, single measurement flow takes 100ms */
+
+Please, be more specific about datasheet, i.e. which Chapter/Section (with its
+number and possible name) or Table specifies this.
+
+> +	ret = wait_for_completion_timeout(&data->completion,
+> +					  msecs_to_jiffies(100));
+> +	if (ret == 0)
+> +		return -ETIMEDOUT;
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - resets
-> +  - firmware-name
-> +  - ti,sci
-> +  - ti,sci-dev-id
-> +  - ti,sci-proc-ids
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        remoteproc@43c00000 {
-> +            compatible = "ti,hsm-m4fss";
-> +            reg = <0x00 0x43c00000 0x00 0x20000>,
-> +                  <0x00 0x43c20000 0x00 0x10000>,
-> +                  <0x00 0x43c30000 0x00 0x10000>;
-> +            reg-names = "sram0_0", "sram0_1", "sram1";
-> +            resets = <&k3_reset 225 1>;
-> +            firmware-name = "hsm.bin";
+> +	return 0;
+> +}
 
-Make the binding complete. All properties must be listed.
+...
 
-> +            ti,sci = <&sms>;
-> +            ti,sci-dev-id = <225>;
-> +            ti,sci-proc-ids = <0x80 0xff>;
-> +         };
+> +static int rfd77402_measure(struct rfd77402_data *data)
+>  {
+> +	struct i2c_client *client = data->client;
 
-Messed indentation.
+This (conversion to data instead of client) can be split into a separate
+precursor change.a but it seems not a big deal. Up to maintainers.
 
-> +    };
-> -- 
-> 2.34.1
-> 
+...
+
+> -	/* Poll ICSR until RESULT bit is set */
+> -	ret = read_poll_timeout(i2c_smbus_read_byte_data, ret,
+> -				ret & RFD77402_ICSR_RESULT,
+> -				10000,    /* sleep: 10ms */
+> -				100000,   /* timeout: 100ms */
+> -				false,
+> -				client, RFD77402_ICSR);
+> +	if (data->irq_en) {
+> +		/* Re-initialize completion and wait for interrupt */
+> +		reinit_completion(&data->completion);
+> +		ret = rfd77402_wait_for_irq(data);
+> +	} else {
+> +		/* Poll ICSR until RESULT bit is set */
+> +		ret = read_poll_timeout(i2c_smbus_read_byte_data, ret,
+> +					ret & RFD77402_ICSR_RESULT,
+> +					10000,      /* sleep 10ms */
+> +					100000,     /* timeout 100ms */
+> +					false,
+> +					client, RFD77402_ICSR);
+> +	}
+
+This is ping-pong type of change. You just introduced it a patch ago. Make sure
+you don't remove/modify (too much at least) the lines that were just added.
+
+One of the possible technique to achieve this is to use a helper function.
+
+...
+
+>  static int rfd77402_init(struct i2c_client *client)
+>  {
+> +	struct iio_dev *indio_dev = i2c_get_clientdata(client);
+> +	struct rfd77402_data *data = iio_priv(indio_dev);
+
+Can't this now take the data as above modified functon?
+
+...
+
+> -	mutex_init(&data->lock);
+> +	ret = devm_mutex_init(&client->dev, &data->lock);
+> +	if (ret)
+> +		return ret;
+
+In my opinion this deserves a separate change.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
