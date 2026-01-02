@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-251058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7704CCEE520
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 12:21:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D246ACEE535
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 12:23:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6394830204A4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 11:20:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 10542300C0ED
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 11:23:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B712ECE92;
-	Fri,  2 Jan 2026 11:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F82A2E0926;
+	Fri,  2 Jan 2026 11:23:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uXXfL7Kr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YzpZn9Hj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4832B2E975E;
-	Fri,  2 Jan 2026 11:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E07FE2C0F76;
+	Fri,  2 Jan 2026 11:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767352854; cv=none; b=Q8T4Ywp46iQWlgm1UdE5/747GoUiKVN4ia5hoVfZKLnlmMx9zWu8tPYpJJc0SZZrXuIAj2VAMqu2UxoEkPgYN4QhBOsykjEM5oXjMhAVxqx6r/C/y9M3+xdHbTMfUGOyP0iJ+C9i5xlGO1SICp6hbJ6VP7WGG/pS/WMG1JP0Iic=
+	t=1767353001; cv=none; b=JQEYCmoLEn6lRqP4EjjQdqZ7N3QmH4w48UTZGgwlpDMVF+NkGTSaJC1nP9NSLC7p2cn11sgv9kYg0tNene8SCWvnoKaCmmcuG8cJACvMv5eU6nTEOlsgk3GkpnTTay1N/YM1KPn1ZHBUmYXAIb6TtErZ9FQBwj/okhB5o6c5sn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767352854; c=relaxed/simple;
-	bh=u6hETDAuISK+fNO4VLe+M3TNxNATCr+wZAZBO4GtxbQ=;
+	s=arc-20240116; t=1767353001; c=relaxed/simple;
+	bh=A0hT4+hoK/1Wjwpp9+mpnmzYk20Pow4qRCSe9OUBA9w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jWWHW3UQASa8YIrWIVYrVH4FhdM5Ik3QxbuWXTxbPOAsPQkGTR7/7nqsMMZq5oYYcvq9aSHdvL6k3DvV2Nhh2pAwe0QHMmdt9v2G/bMjYc6dkC0kUtRK1XCV+2clh4Q3coAP3fZHzUK/rE8NMxecQQXXK4arITbeEsMGy/hAO98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uXXfL7Kr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CD21C16AAE;
-	Fri,  2 Jan 2026 11:20:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gVGxTv9jDPA9ZXFC/GNSSqbaNkep4ZD/NnowiGosC22OYTwL5R5AjWKAZWv7udqmonMpj8oIh3a4AaAxJjaUdzSOnLh3CEEmpliTLPHpgM/Cn7lFP/jsFRnEIUcPLsZ86K0npXhMxV5Ot8OYVu1YLk5rLv8N3KEo0UaIeWzW/4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YzpZn9Hj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E21B0C116B1;
+	Fri,  2 Jan 2026 11:23:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767352853;
-	bh=u6hETDAuISK+fNO4VLe+M3TNxNATCr+wZAZBO4GtxbQ=;
+	s=k20201202; t=1767353000;
+	bh=A0hT4+hoK/1Wjwpp9+mpnmzYk20Pow4qRCSe9OUBA9w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uXXfL7Krh9mN+DG0dl2vxhlgBbrqraSEF10sOgCa7NYgm4I5XrLnEcZX7n6/ibuvI
-	 sp+ABcdG6PaUl9lIGqei5ZS/Pqe58/WVMC1n3I6heQeTSOrzrtc1MZDxCWiszflm1G
-	 6LcT9KzNMbHp1in2MWPq062e4vw0Qt4c2DCOlG213x3h8SX4UO3sotXyhqne3T3F12
-	 W6pdYevZ22IiagOylgopM64vzyi8P25eF3SIrNZAsWsv0dl2b7jOjz4Kpliox4RGdW
-	 5uK0AfLtW8AZW+2dooJ03Mozxlsph3so4wP3h1myR0ZWDzidK/fsQsyVHWzni8r+6/
-	 jjHDvRW8/XszA==
-Date: Fri, 2 Jan 2026 12:20:51 +0100
+	b=YzpZn9HjXfd4u+T5s8YZNUM7DkF4sf9eS3CJDzH6pkLxgi3sTuO+dNsNwIg7UcUDi
+	 zW5zu1t2gmxVJ7XqgY8WG2UfdngAKSJ2yQzo591opVdEskyGZ/qz6mV03S9oFDNjPs
+	 eO1cxcB7xqTTZsRZynnvXqaNnfASKoQNFxeg/OlgZHXI6YNa3QkGD/h0oOngYpZCqN
+	 spb3H8FFcogV46m8QkjedbcWqKPM33wTWhf3r5uGFcspddgtRdJwCgFMBMFzLR07Dz
+	 iM0E3dTunxTVpQy0uj8Jc1YXfIeH8wgIOIsdrHAdhg/5Tfgepn8wwzuXFPfog8yQUK
+	 evSyTR4WzBRtA==
+Date: Fri, 2 Jan 2026 12:23:17 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: can: renesas,rcar-canfd: Document
- RZ/T2H and RZ/N2H SoCs
-Message-ID: <20260102-petite-gentle-wasp-81bbb8@quoll>
-References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251230115814.53536-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, martin.petersen@oracle.com, 
+	andersson@kernel.org, konradybcio@kernel.org, taniya.das@oss.qualcomm.com, 
+	dmitry.baryshkov@oss.qualcomm.com, manivannan.sadhasivam@oss.qualcomm.com, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, nitin.rawat@oss.qualcomm.com
+Subject: Re: [PATCH V2 1/4] dt-bindings: phy: Add QMP UFS PHY compatible for
+ x1e80100
+Message-ID: <20260102-heretic-angelic-narwhal-5d9d8c@quoll>
+References: <20251231101951.1026163-1-pradeep.pragallapati@oss.qualcomm.com>
+ <20251231101951.1026163-2-pradeep.pragallapati@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,78 +61,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251230115814.53536-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251231101951.1026163-2-pradeep.pragallapati@oss.qualcomm.com>
 
-On Tue, Dec 30, 2025 at 11:58:13AM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Wed, Dec 31, 2025 at 03:49:48PM +0530, Pradeep P V K wrote:
+> Add the QMP UFS PHY compatible string for Qualcomm x1e80100 SoC to
+> support its physical layer functionality for UFS. Use SM8550 as a
+> fallback since x1e80100 UFS PHY shares the same tech node, allowing
+
+What is a "tech node"?
+
+> reuse of existing UFS PHY support.
 > 
-> Document the CAN-FD controller used on the RZ/T2H and RZ/N2H SoCs. The
-> CAN-FD IP is largely compatible with the R-Car Gen4 block, but differs
-> in that AFLPN and CFTML are different, there is no reset line for the IP,
-> and it only supports two channels.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
 > ---
-> v1->v2:
-> - No changes made.
-> ---
->  .../bindings/net/can/renesas,rcar-canfd.yaml  | 26 ++++++++++++++++++-
->  1 file changed, 25 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml    | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> index fb709cfd26d7..4a83e9e34d67 100644
-> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> @@ -50,6 +50,12 @@ properties:
->                - renesas,r9a09g057-canfd     # RZ/V2H(P)
->            - const: renesas,r9a09g047-canfd
->  
-> +      - const: renesas,r9a09g077-canfd      # RZ/T2H
-
-
-That's part of other enum with single compatibles.
-
-> +
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> index fba7b2549dde..552dd663b7c9 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> @@ -28,6 +28,10 @@ properties:
+>            - enum:
+>                - qcom,kaanapali-qmp-ufs-phy
+>            - const: qcom,sm8750-qmp-ufs-phy
 > +      - items:
-> +          - const: renesas,r9a09g087-canfd  # RZ/N2H
-> +          - const: renesas,r9a09g077-canfd
-> +
->    reg:
->      maxItems: 1
->  
-> @@ -179,7 +185,6 @@ required:
->    - clocks
->    - clock-names
->    - power-domains
-> -  - resets
->    - assigned-clocks
->    - assigned-clock-rates
->    - channel0
-> @@ -243,11 +248,30 @@ allOf:
->            minItems: 2
->            maxItems: 2
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g077-canfd
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 8
-> +
-> +        interrupt-names:
-> +          maxItems: 8
-> +
-> +        resets: false
-> +    else:
-> +      required:
-> +        - resets
+> +          - enum:
+> +              - qcom,x1e80100-qmp-ufs-phy
+> +          - const: qcom,sm8550-qmp-ufs-phy
 
-Why is this de-synced with reset-names? Properties are supposed to
-behave the same way, not once requiring resets other time requiring
-reset-names.
+85 < 87, keep the order by last compatible. It was already screwed by
+Xin Liu in previous commit but you do not have to grow discouraged
+patterns.
 
 Best regards,
 Krzysztof
