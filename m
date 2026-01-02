@@ -1,153 +1,177 @@
-Return-Path: <devicetree+bounces-251096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2AA2CEEA15
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 14:05:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 482B1CEEAF1
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 14:38:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 73B5A305F835
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 13:01:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A91233012BD3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 13:38:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFA6831A551;
-	Fri,  2 Jan 2026 12:50:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDB0311968;
+	Fri,  2 Jan 2026 13:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="eAsmHAAE";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Hy1HVCli"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CZJoR2dh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20DDD318151;
-	Fri,  2 Jan 2026 12:50:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A62C02DAFAF
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 13:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767358224; cv=none; b=VwGBoBl7Pyl93Ji2uzQ8zHkEZ2zLL9KUQnW6L3df/pYgqEwwK2/8dnTGNzR/vKUpWzEp5sAn91IwOiS/ZYDTC8m64tz2bX0l3gCIVReU3LrEkZ3N3bxUr9SgwSfK5vvOaSLjVsno3E6H4kpclh3J+bY/KzLVl2ZGVRam8MZgd/A=
+	t=1767361095; cv=none; b=sOFn9GXO/HWsgAUCz5G3tPkCQrPkhHxSHcFIjeaKFZ6AJBwSBqkMZ63L8LSIng0ClbIDd32kZusTPeO/0NLHuQ0Twd2XQajMmOBA4CO/UWd+uPsdVjP5LKBp1CIj3gKbcKe89GPIN0+ZmDAU2pBq72174y1Z/6+ubfAy360cdTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767358224; c=relaxed/simple;
-	bh=l0nvEewHd32nUePNbBRoImksGQg/5aJkOOe8cGl5YKg=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=K3J9REdaXWIiGx7WGCWNMJ+DiPUh/CiUP5rWPE+KmmGSghZjCftvFe+sf1gtEiZELwkf5r6AZkfFhU4yvZQTtZv4G5ClKCLzZXtcyfJ6CmIn67JI3+OGT9vfdh12YpQDSdbGn0znSofxsIbO6XXimx/sFUa3C/STiVLooTa+TzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=eAsmHAAE; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Hy1HVCli; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1767358213; bh=4IO5b7fdkTdbphmH2D2abcH
-	DRoH/AxtF8i7O7SFUu50=; b=eAsmHAAEedscxokpuWI6HTku3UkKKAhCbg+fLhWh/n1+BXQYg3
-	LsGW9vyXjXBlyQcufuGO43b8/4Ws1ZKYx2SL6WYq0o7l1iop5gLqZMAYD24i4WpPv9nuAJOGyEO
-	R+oGDDd+cmBpkeNLac4Hvp5mBErx8MO48pdlnuPR14hULMsHyGAIZXU/K4cElGMCZfmBoTrkrD8
-	RZM66JvGHnmedCXKNPudH90Zs8AWz5yanQC9FjnwGVT17EPxGaKTVCXn0Xeqlim6JpNAKTGl4ny
-	9wInsPiDeFUPgbIjSCKO6QLMRcHN0M+rv2mn9hwQidqjxQ3b6GsubvJmBkbtyo5Q4Gg==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1767358213; bh=4IO5b7fdkTdbphmH2D2abcH
-	DRoH/AxtF8i7O7SFUu50=; b=Hy1HVCli94uHRJ7/i1z9KQW43cm5QlLPl8oPqdRLhVCIkEW6zg
-	WC9sCOYDkcx72RpARUPk8kBCQhMhYV5bBwDw==;
+	s=arc-20240116; t=1767361095; c=relaxed/simple;
+	bh=gq+78Fh/gPAKqoWALmYCs3Wq8SZnDyUWpmAJ14Lfa9M=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tBgNSJZjbT9n2Q0egrIfA5l8nhUj3hYpcrgJQyLX6JxTSg8YvAuBSYOeqce0w6wtRQn5RZWQ0rspESdOxf5nFede0g+mNvIEsY2lyhMWl6tOqOGHVfXFb86quPqHqxqzMGKhzUCJds7HEmedE0eITXHF4Rfda6Qzs07g6OuIVZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CZJoR2dh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AFB5C4AF0B
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 13:38:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767361095;
+	bh=gq+78Fh/gPAKqoWALmYCs3Wq8SZnDyUWpmAJ14Lfa9M=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=CZJoR2dhd3AvgA42ulIUoDPndc0HhGe2/B0lTkgiorXqXwGPvO1J46zmiD1zATfEF
+	 JnmANo/5dpSiK3Ipj//Et47GbCRIWLhKHUXdVMoczQjHSD/IdwILNB0xe4tkulTAW2
+	 FCpsVjHYIAfjAx98lQDVVuW8NwT6GtA5nWfR2n4HAeyp9bExaiEfmip/JdYPyZdhnO
+	 sYJ0Ig/x5ENnJhEkBxB84BnjAhC3etu+UG926KsZFhBwBEuNxAUrb3aylZTZ4MjypU
+	 eU2UB2dOYatljrVaJY7Asy1Wj4avkc8/532VIn0yaz4gQ4Q2oGLTz6+0GTQ9OJCf1Q
+	 HYRrk9xTRpZVA==
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-37b99da107cso113897441fa.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 05:38:15 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWBwvnPKZFds9sBvJwA0yTVXsEZvK1ySCpDBF42E9Y41+EMAx35q/D6JRX4SqcXIGVvMfv0rxZAK+vC@vger.kernel.org
+X-Gm-Message-State: AOJu0YztBQO2F6F4+fNnBEDam9JbepuTvoRDs0PqbZD/fqBJnnXAQfCR
+	Nx+2F5vvF2Gn8VWD2FK7HcQb/FKbRSI1ncqxp/LTYV5jf+LFdU9nX4Q33jTAf4JThcrbwAfjm3G
+	hNRkzfK49POSdSB3mlQIgUnyodnw7K4x9x4YXcFYfgw==
+X-Google-Smtp-Source: AGHT+IGuDMXwA23bDwSJce/Vd9d45irhKXefXohA/Hh2xht/kdpdJ9akMojcELSe93u+/GpGxclkCRihGnFWklcOYY8=
+X-Received: by 2002:a2e:bc18:0:b0:37b:a32b:ed41 with SMTP id
+ 38308e7fff4ca-381215c5edemr119052751fa.18.1767361093846; Fri, 02 Jan 2026
+ 05:38:13 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 2 Jan 2026 08:38:12 -0500
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 2 Jan 2026 08:38:12 -0500
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260102122045-GYA2060493@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 02 Jan 2026 13:50:13 +0100
-From: barnabas.czeman@mainlining.org
-To: Bryan O'Donoghue <bod@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
- <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stephan
- Gerhold <stephan@gerhold.net>, linux-arm-msm@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/9] remoteproc: qcom_q6v5_mss: Add MDM9607
-In-Reply-To: <c104d173-6316-4bcf-b89b-62417d0b30c8@kernel.org>
-References: <20251231-mss-v3-0-f80e8fade9ec@mainlining.org>
- <NLGulU4z-1Wrf5120YfX8CYJ_8DSP-9-DhaJ3KAIQCvqF9Qf184udOzFoEQH1qgJDZUl9cxEpsdyztfhcz8G-w==@protonmail.internalid>
- <20251231-mss-v3-3-f80e8fade9ec@mainlining.org>
- <6bfc790d-b0da-4c5b-bd2d-ceed9a75bb24@kernel.org>
- <DEGDp05xNKls7EO30mtT70wJFIkDT0-248vPaBikWJGkFf--YvzpyJ_h5sc7RSH1y9hkCKdFRBIJwQUNE9Rlzw==@protonmail.internalid>
- <a627abcaa38c0ba11c76c1f0c42b0c6b@mainlining.org>
- <d3bcaf7d-06ae-4410-8d7c-970fdb196c47@kernel.org>
- <MdF8n8gAaT_bieezcdxrSQouvHzG8TbGRiVRjHHXdc_Wjpr_GbDod8rUNrthtLEfOkycxxO5SVOfSPmyHe2C5g==@protonmail.internalid>
- <73d028cfdd514d6c3f073bb66fdd07cf@mainlining.org>
- <c104d173-6316-4bcf-b89b-62417d0b30c8@kernel.org>
-Message-ID: <253bef3d40b48913c151ed4832f2d3c5@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251229-02-k3-gpio-v1-0-269e76785abb@gentoo.org>
+ <20251229-02-k3-gpio-v1-2-269e76785abb@gentoo.org> <CAMRc=MfHzP+xm-uX+jad5gPOGDpR23O6mB+xcSvF6ZiZfnxQjg@mail.gmail.com>
+ <20260102113643-GYA2060252@gentoo.org> <20260102122045-GYA2060493@gentoo.org>
+Date: Fri, 2 Jan 2026 08:38:12 -0500
+X-Gmail-Original-Message-ID: <CAMRc=Meq8T_HJwDvf3wm5W2+ZFuHezGjqQx6sj-6HNJhThKjhg@mail.gmail.com>
+X-Gm-Features: AQt7F2qd6dFpn0yYdBOT3j_jTKwwJxkbKKmPhd6nOCJ-bhAWcdN7_KfX3YW0ch8
+Message-ID: <CAMRc=Meq8T_HJwDvf3wm5W2+ZFuHezGjqQx6sj-6HNJhThKjhg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] gpio: spacemit: Add GPIO support for K3 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2026-01-02 10:55, Bryan O'Donoghue wrote:
-> On 01/01/2026 21:57, barnabas.czeman@mainlining.org wrote:
->> On 2026-01-01 21:58, Bryan O'Donoghue wrote:
->>> On 01/01/2026 13:50, barnabas.czeman@mainlining.org wrote:
->>>>>> +				for (; i >= 0; i--) {
->>>>>> +					val |= BIT(i);
->>>>>> +					writel(val, qproc->reg_base + mem_pwr_ctl);
->>>>>> +					/*
->>>>>> +					 * Read back value to ensure the write is done then
->>>>>> +					 * wait for 1us for both memory peripheral and data
->>>>>> +					 * array to turn on.
->>>>>> +					 */
->>>>>> +					val |= readl(qproc->reg_base + mem_pwr_ctl);
->>>>>> +					udelay(1);
->>>>> Isn't the logic here inverted ?
->>>>> 
->>>>> i.e. you've written a thing and ostensibly require a delay for that
->>>>> thing to take effect, the power to switch on in this case.
->>>>> 
->>>>> It makes more sense to write, delay and read back rather than 
->>>>> write,
->>>>> readback and delay surely...
->>>> This is the original reset sequence without modification, i have 
->>>> just
->>>> moved it in a else case when it is not an MDM9607, MSM8917 or 
->>>> MSM8937.
->>> 
->>> Doesn't make it correct, we fix upstream logic bugs all the time...
->> Here is the original upstream logic
->> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/remoteproc/qcom_q6v5_mss.c?h=next-20251219#n823
->> and here is the same at downstream 3.18
->> https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.6.6.c32-05500-89xx.0/drivers/soc/qcom/pil-q6v5.c#L451
->> and same from downstream 4.9
->> https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/drivers/soc/qcom/pil-q6v5.c#L518
-> 
-> Plenty of downstream bugs...
-Here is the commit where that line was introduced 
-https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/commit/ffc6ee0242ec4caa69687848ad3ac5f376b3d005
-> 
-> Let's assume those are posted writes i.e. the IO fabric equivalent of 
-> UDP - I'm not sure I'd say the downstream code is consistent in its 
-> treatement of write transactions..
-> 
-> But aside from just pointing at downstream - how is val |= readl() a 
-> correct thing versus val = readl();
-> 
-> ...
-> 
-> I mean its just not
-> 
->> 
->>> 
->>> For example a read-back to ensure write completion is only required 
->>> for
->>> posted memory transactions.
->>> 
->>> Is this a posted write ?
->>> 
->>> Is there an io-fabric in the world which exceeds 1 microsecond to
->>> perform a write transaction ?
->>> 
->>> Anyway leaving that aside the bit that's really objectionable and IMO
->>> obvious a bug is val |= readl();
->>> 
->>> Why or the bit back in ? and then why not check the bit was set on 
->>> the
->>> read ?
->>> 
->>> val = readl() is a lot less janky and shouldn't it matter that the 
->>> bit
->>> we tried to set is actually reflected in the read-back ?
->>> 
->>> Failure to set the bit would certainly be a problem...
->>> 
->>> ---
->>> bod
+On Fri, 2 Jan 2026 13:20:45 +0100, Yixun Lan <dlan@gentoo.org> said:
+> Hi bart,
+>
+> On 19:36 Fri 02 Jan     , Yixun Lan wrote:
+>> Hi Bart,
+>>
+>> On 12:10 Fri 02 Jan     , Bartosz Golaszewski wrote:
+>> > On Mon, Dec 29, 2025 at 1:47=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wr=
+ote:
+>> > >
+>> > > SpacemiT K3 SoC has changed gpio register layout while comparing
+>> > > with previous generation, the register offset and bank offset
+>> > > need to be adjusted, introduce a compatible data to extend the
+>> > > driver to support this.
+>> > >
+>> > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+>> > > ---
+>> > >  drivers/gpio/gpio-spacemit-k1.c | 150 ++++++++++++++++++++++++++++-=
+-----------
+>> > >  1 file changed, 106 insertions(+), 44 deletions(-)
+>> > >
+>> > > diff --git a/drivers/gpio/gpio-spacemit-k1.c b/drivers/gpio/gpio-spa=
+cemit-k1.c
+>> > > index eb66a15c002f..02cc5c11b617 100644
+>> > > --- a/drivers/gpio/gpio-spacemit-k1.c
+>> > > +++ b/drivers/gpio/gpio-spacemit-k1.c
+>> > > @@ -15,28 +15,19 @@
+>> > >  #include <linux/platform_device.h>
+>> > >  #include <linux/seq_file.h>
+>> > >
+> [snip]...
+>> > >  static u32 spacemit_gpio_bank_index(struct spacemit_gpio_bank *gb)
+>> > >  {
+>> > >         return (u32)(gb - gb->sg->sgb);
+>> > > @@ -60,13 +70,14 @@ static u32 spacemit_gpio_bank_index(struct space=
+mit_gpio_bank *gb)
+>> > >  static irqreturn_t spacemit_gpio_irq_handler(int irq, void *dev_id)
+>> > >  {
+>> > >         struct spacemit_gpio_bank *gb =3D dev_id;
+>> > > +       struct spacemit_gpio *sg =3D gb->sg;
+>> > >         unsigned long pending;
+>> > >         u32 n, gedr;
+>> > >
+>> > > -       gedr =3D readl(gb->base + SPACEMIT_GEDR);
+>> > > +       gedr =3D readl(gb->base + to_spacemit_gpio_regs(sg)->gedr);
+>> >
+>> > Since you're already touching all these register accesses - can you
+>> > maybe provide dedicated wrapper functions around readl()/writel() and
+>> > avoid any file-wide changes in the future if anything requires further
+>> > modification?
+>> >
+>> can you elaborate a bit further on this?
+>> I don't get how a wrapper helper could help to avoid file-wide changes..
+>>
+> here is my attempt to solve this, define a macro to register address:
+>
+> #define to_spacemit_gpio_regs(gb) ((gb)->sg->data->reg_offsets)
+>
+> #define SPACEMIT_GEDR(gb)      ((gb)->base + to_spacemit_gpio_regs(gb)->g=
+edr)
+>
+> 	gedr =3D readl(SPACEMIT_GEDR(gb));
+>
+> please let me know if this follow your suggestion or not
+>
+> --
+> Yixun Lan (dlan)
+>
+
+I was thinking more of something like this:
+
+enum spacemit_gpio_registers {
+	SPACEMIT_GPLR,
+	SPACEMIT_GPDR,
+	...
+};
+
+static const unsigned int spacemit_gpio_k1_offsets =3D {
+	[SPACEMIT_GPLR] =3D 0x00,
+	[SPACEMIT_GPDR] =3D 0x0c,
+	...
+};
+
+static const unsigned int spacemit_gpio_k3_offsets =3D ...
+
+struct spacemit_gpio_data {
+	const unsigned int *offsets;
+	u32 bank_offsets[4];
+};
+
+static void spacemit_gpio_write(struct spacemit_gpio_bank *gb,
+				enum spacemit_gpio_registers reg, u32 val)
+{
+	writel(val, gb->base + gb->data->offsets[reg]);
+}
+
+Bart
 
