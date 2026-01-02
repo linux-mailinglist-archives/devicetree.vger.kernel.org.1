@@ -1,131 +1,90 @@
-Return-Path: <devicetree+bounces-251034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63AB1CEE338
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:52:06 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45309CEE326
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:51:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11D44301D59B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:51:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B5FA93001808
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:51:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FF682DF12F;
-	Fri,  2 Jan 2026 10:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB6F2DEA6B;
+	Fri,  2 Jan 2026 10:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b="l1HqgXMm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EahzZliQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-07.mail-europe.com (mail-0701.mail-europe.com [51.83.17.38])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801192DCBF7
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:51:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.83.17.38
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462872DCF69
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767351080; cv=none; b=GaPKmSyvEXnI1zyUtkvavXVi7dV0u/9tdXx5iiWatrqsEzufdYykYXxgevR1Ky4IPvzS7iRNxB2KBkLQTTHV2/VRsGrBXKY7j2bewhB2hOyPFo79iV67fRKsinP8Bi2GTUmmsC0B+mWICdazg2KX55uYMMcZOJ83UdYAV/f/R/0=
+	t=1767351079; cv=none; b=bPh+jYY3vOjWFtkYqUDOKI55cC1UV8Lj7zJsv5W7RZCFfm3WS0Cs5x5kXLSjP7nnBmyhnt4pbzD0R/13F5gSapn0HLe6K0h+Dq4/k/SktG6SX9dzegsIN02SysKZRuB30rlC71L4T+ciGm7abtC50luYkn4zrm2BTkbkIfdX91k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767351080; c=relaxed/simple;
-	bh=a1x9bOOyonA/zI9tuhPm5HjCUKdxuCnIwcYuEH4ju3A=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hxCwPugNhAwoeBhhWW/g45yAJysJqnts4b5PV9GSuQ1BjPfI7NLmzX2uscoCuMVTbCfMhk/f3yqGsqd2DkLx0o7ZGN+7qJoUJ7w5xjgZPEk5m+t2dvWR31fCM2+vqGma8wgOofRGeult3rHlzTViW2G7kpFqy5mUxmZZTHzjrCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro; spf=fail smtp.mailfrom=chimac.ro; dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b=l1HqgXMm; arc=none smtp.client-ip=51.83.17.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=chimac.ro
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chimac.ro;
-	s=protonmail2; t=1767351062; x=1767610262;
-	bh=Wm8iFenI7rV4BHDLWQQC9m1LuaI6pjS4oGcE2me2wdo=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=l1HqgXMmMKg/G/y/hrjp5w5NLDbzu6bAnCleWW0aF0bBOclzustHcaR8DAp2pRLxi
-	 bFkR/CTrovwjKtwjlQS2uNQEML/hkYWvjG4n+znncN2B9xPsWhswjOyRngS9I7p/YL
-	 Ilx4iQe5+K1ZsjbPSkDiWpjUlMyvTzM5iQGxTBhbYk6idOQQIvqvi5bpBHj6d1UnhD
-	 6OhcPl0U8E7CcYGYGZWNFR3E2prkYpExHyisQtL4w62zFpbnMoI31abqpR31g1F+zH
-	 TH4tSdG4f6MYI0emEcHpl5+AAs71O/Cc4mQlFpa1lHt/vJQe8z+vzdJFxLSllt1gys
-	 XX0KHRKPqY9FQ==
-Date: Fri, 02 Jan 2026 10:50:55 +0000
-To: Krzysztof Kozlowski <krzk@kernel.org>
-From: Alexandru Chimac <alex@chimac.ro>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: samsung: Add exynos9610-wakeup-eint node
-Message-ID: <SIUwFRvVetTkOo41ZvVr5kiSwjfVoFRJ9HPWVYoNFQgd06BUJSDLEdl95hV1W3INlc50uZNQppCZaA41mTA22kQfpDOjseC-PiHgyIfTCSA=@chimac.ro>
-In-Reply-To: <fb98e395-d590-47f7-8dba-d9a691a2c174@kernel.org>
-References: <20251228-exynos9610-pinctrl-v2-0-c9bbeee4c54b@chimac.ro> <20251228-exynos9610-pinctrl-v2-2-c9bbeee4c54b@chimac.ro> <20251230-dramatic-gregarious-stallion-15bc07@quoll> <yB5WFgsxeeqHQgi87UeNPD8K2OlQbWWC6-BovxADBtgusN3n8UOrm7Gi6jz6Th0dsMA9J-LEpx69sWjNmWTH_-jx9r7AgvXNTwR2hQW7-SM=@chimac.ro> <fb98e395-d590-47f7-8dba-d9a691a2c174@kernel.org>
-Feedback-ID: 139133584:user:proton
-X-Pm-Message-ID: fcae599c395b499a3659dfd5541d73bbf461087c
+	s=arc-20240116; t=1767351079; c=relaxed/simple;
+	bh=xCx5AAentnk4QBvWh8rauxDanszvphvmntZcvGZ11JI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=W1GyKxj4tCT9/SbiGpC2mpTf2vgNU7ImLwPiM30nOHcgpNHDUA52Jo+I+oP0slVOmdNSgym8GAWHKDh0EE2vJfV2C+XCMvaKHV54HZX1rYefzbyYiK0YahSnZtC79D1U45+y5US9bdoXmlzfV8OIPI9J2/LzeRGWrTtdw/FrId0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EahzZliQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2432C2BC9E
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:51:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767351078;
+	bh=xCx5AAentnk4QBvWh8rauxDanszvphvmntZcvGZ11JI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=EahzZliQRaogJeP3S8smgk7ZnNjc19jRWY07kDnp2jgj8UCpfkERAwKP+iTZb0D3g
+	 IElGpf8kaCIbKcTkJlQkWiA5BOxpZKiZ4NbOEXP86+72k6cGAsG+EH+8f+u74QkRWn
+	 cuamc5xtvzV1THHlwQpKC5pRn18p4wQ1ANLV0wLV9IOCcQTTNrZTVmz9XdQkZfca8o
+	 YQHGW71Qa4f+OMbS8iEv0hKpYXluglGOPgL8R5EpensfttsaDQVyth89FZOt8AkcVe
+	 LNry1dBl9ioRG80RQuVURXLyX6h8pFOJOsp4aID4DBH0H/kPI/phUSBHyp6j5BEJkR
+	 b9ahc1wEQ7Jcw==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-37bbb36c990so110769961fa.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 02:51:18 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXSk7db1kJD5Eh25nH7hpZix8Um3h92gKbauC63Hqmu6KVglfut+cvDV1+Ft2YfJpvtnYRvmApUFKuz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxO8yjgeqRIkVDnjQy79Kj+GmE5XAGUFTtWbSbTUGzVAl3YfDUc
+	RwNNVxauOoyNiEUO9pAsSEEO7y5+HwWaM9J5mH3NUtbBYJKC517fzHQ+l9le/8fp48A5K8MvUgb
+	1wccjOGTFEJ1pBYOK8jeRgPZXinp1y3Zwl3WyHOzKtg==
+X-Google-Smtp-Source: AGHT+IHsTD9adaJDmyGmY1It23ntuHwPKruzTO4CUZ5lqrhgY5dCs2ctjbHSYlm1/KVO3NQ94ib9c9b+lWmDxYLnems=
+X-Received: by 2002:a05:651c:50f:b0:37e:6884:6756 with SMTP id
+ 38308e7fff4ca-3812081e6dbmr136602621fa.14.1767351077385; Fri, 02 Jan 2026
+ 02:51:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20251231-wcn3990-pwrctl-v1-0-1ff4d6028ad5@oss.qualcomm.com> <20251231-wcn3990-pwrctl-v1-10-1ff4d6028ad5@oss.qualcomm.com>
+In-Reply-To: <20251231-wcn3990-pwrctl-v1-10-1ff4d6028ad5@oss.qualcomm.com>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Fri, 2 Jan 2026 11:51:03 +0100
+X-Gmail-Original-Message-ID: <CAMRc=Mf+FFEQPb1vvaY09_P=jCuzzFw_ZyaV7xB3BEdbWveU1w@mail.gmail.com>
+X-Gm-Features: AQt7F2pqkjKwFIx8hZpIu-TfXbr4Nzd5pfqyrhbXe7nGgy4iKw45mcVh-sFbf3Y
+Message-ID: <CAMRc=Mf+FFEQPb1vvaY09_P=jCuzzFw_ZyaV7xB3BEdbWveU1w@mail.gmail.com>
+Subject: Re: [PATCH 10/14] arm64: dts: qcom: qrb2210-rb1: describe WiFi/BT properly
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Jeff Johnson <jjohnson@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Matthias Kaehlcke <mka@chromium.org>, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, 
+	linux-pm@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+On Wed, Dec 31, 2025 at 12:36=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
+>
+> The onboard WiFi / BT device, WCN3950, has a simple on-chip PMU, which
+> further spreads generated voltage. Describe the PMU in the device tree.
+>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
 
-
-
-
-
-On Friday, January 2nd, 2026 at 12:02, Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
-
->=20
->=20
-> On 31/12/2025 13:28, Alexandru Chimac wrote:
->=20
-> > On Tuesday, December 30th, 2025 at 11:51, Krzysztof Kozlowski krzk@kern=
-el.org wrote:
-> >=20
-> > > On Sun, Dec 28, 2025 at 06:05:52PM +0000, Alexandru Chimac wrote:
-> > >=20
-> > > > Add a dedicated compatible for the exynos9610-wakeup-eint node,
-> > > > which is compatbile with Exynos850's implementation (and the
-> > > > Exynos7 fallback).
-> > > >=20
-> > > > Signed-off-by: Alexandru Chimac alex@chimac.ro
-> > > > ---
-> > > > .../devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.ya=
-ml | 2 ++
-> > > > 1 file changed, 2 insertions(+)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinc=
-trl-wakeup-interrupt.yaml b/Documentation/devicetree/bindings/pinctrl/samsu=
-ng,pinctrl-wakeup-interrupt.yaml
-> > > > index f3c433015b12..deb2730855bd 100644
-> > > > --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wak=
-eup-interrupt.yaml
-> > > > +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wak=
-eup-interrupt.yaml
-> > > > @@ -48,6 +48,7 @@ properties:
-> > > > - enum:
-> > > > - google,gs101-wakeup-eint
-> > > > - samsung,exynos2200-wakeup-eint
-> > > > + - samsung,exynos9610-wakeup-eint
-> > > > - samsung,exynos9810-wakeup-eint
-> > > > - samsung,exynos990-wakeup-eint
-> > > > - samsung,exynosautov9-wakeup-eint
-> > > > @@ -107,6 +108,7 @@ allOf:
-> > > > contains:
-> > > > enum:
-> > > > - samsung,exynos850-wakeup-eint
-> > > > + - samsung,exynos9610-wakeup-eint
-> > >=20
-> > > This is not needed. Device has 850 fallback, no?
-> > > It's not required, but I guess it would make the device tree look bet=
-ter. If this patch isn't to be merged, it doesn't functionally affect anyth=
-ing so it can just be dropped instead of requiring another patchset revisio=
-n.
->=20
->=20
-> Please wrap your replies.
->=20
-> I did not comment on the patch. Comments are in specific places
-> discussing specific lines. I asked why do you need this enum to grow?
-Oh, sorry, I thought you meant the whole commit. Yeah, it looks wrong.
-Thanks for noticing, I will fix it in v3.
->=20
->=20
-> Best regards,
-> Krzysztof
-Best regards,
-Alexandru Chimac 
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
