@@ -1,53 +1,59 @@
-Return-Path: <devicetree+bounces-251085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C79CEE825
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 13:23:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D69ECCEE80A
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 13:22:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DFE46303E03D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 12:20:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9C0263031981
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 12:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39BB30F819;
-	Fri,  2 Jan 2026 12:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF50130F807;
+	Fri,  2 Jan 2026 12:20:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZrgGLczZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B2BD30F93F;
-	Fri,  2 Jan 2026 12:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D30E30F7E0;
+	Fri,  2 Jan 2026 12:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767356454; cv=none; b=M1YCXLu8yNzslR8n5uHpNNag8z4G77oCYq/KkQCyWT/konYa3KpWRXpCSHLf225PpbLsqFwNNTIZnEGU6JH4XxQKVvrSRrnj5Ik9RNQUiZsyXr8K0xGvt8QXnZt0T/S3c2IOIH6p/pXNEZb8D2f3AteP+mzwavjSQVAxwkV7K7Q=
+	t=1767356450; cv=none; b=ngBFxOT3jA6dqxxzDvcxm2NluOnoTNrQQS8n+shxyblSyWCAkrF3RJJR+PvEPrt7rdAcLSIxZHV7SVqiNwLidOWaJ/tDMouvwhJH/XopK5f5wQ1CPHyjZnuvLp+FXVNbfXJbH/eMXfAo1HQ2bwHhWxSQp825LKm/wHBbySiVKaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767356454; c=relaxed/simple;
-	bh=4Mdq6hZB0+/x5dVwQ7uZ67F5C7DJej573g6EGXHCG1o=;
+	s=arc-20240116; t=1767356450; c=relaxed/simple;
+	bh=HQWXtB+03VQk2ywudJcwjwSzTG7z0J6J3J4QyYk9IY8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QWiFhQ80S4wckItSZ2HMusuCFFb+apSX1ijxvF8EerAkQaMwc4fQmp9qmzTwMEVBHoXn9ln5BZ1Nw/XYUfeeRMMsRKcMEPLnOH65Nk7vwj8wbJWD8AAFX0dHBafR3U+uuCol3I/I2jKTdBOAA5DPH7Nq4jNzwZIq9kkwAl4D2NU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.18.222])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id D5F8D341291;
-	Fri, 02 Jan 2026 12:20:50 +0000 (UTC)
-Date: Fri, 2 Jan 2026 20:20:45 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] gpio: spacemit: Add GPIO support for K3 SoC
-Message-ID: <20260102122045-GYA2060493@gentoo.org>
-References: <20251229-02-k3-gpio-v1-0-269e76785abb@gentoo.org>
- <20251229-02-k3-gpio-v1-2-269e76785abb@gentoo.org>
- <CAMRc=MfHzP+xm-uX+jad5gPOGDpR23O6mB+xcSvF6ZiZfnxQjg@mail.gmail.com>
- <20260102113643-GYA2060252@gentoo.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YAx1hvh3GI7K6UdvdJcGPea5whu7Xm1m1zi1RGm+b2w5Ned231J/JY/oRT3g7TNejZCZRLW5XiD0mN23/NFhR07nMhOxEudu7vjUHWqK/gxjCf/GS/upf4nSb1/L4oFy8tuPachXZSutBAT8itp4tVGz28wSAPLynaYkUpp17pM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZrgGLczZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7E2C116C6;
+	Fri,  2 Jan 2026 12:20:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767356449;
+	bh=HQWXtB+03VQk2ywudJcwjwSzTG7z0J6J3J4QyYk9IY8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZrgGLczZ6e2KrfwXk4SINkzjLifPJwuOx2JjRbpqn3CdJhkTjAK2mlCY/uPFObKRE
+	 tc3vhNlKO8tC4sKuxYyrvgKc54xIWfyZBcTdOvHEcBhJjqqC/qSbsiwhRIdkDZCey2
+	 dBum15VQJCRkVks5qVtUsrLyb15iSlA2xD4mHTmWU/VoqH22vmwxmOxli0oW73YGe3
+	 UqsgmzMBBH6HhIhthDSA5uEo2R50OyCnIe3z/TFS+ZaORL8ziBE4FplqWy62S7s3G/
+	 F4QRLle/mefuHRQywUVnp7aR2IVsQ1Hev4lSgjEAOT5JaY13JAo916KG3gHHv7+uw7
+	 DKInHBRSZGQlg==
+Date: Fri, 2 Jan 2026 13:20:46 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kuan-Wei Chiu <visitorckw@gmail.com>
+Cc: airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, dmitry.torokhov@gmail.com, sre@kernel.org, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, lgirdwood@gmail.com, broonie@kernel.org, 
+	jserv@ccns.ncku.edu.tw, eleanor15x@gmail.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-serial@vger.kernel.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH 3/6] dt-bindings: input: google,goldfish-events-keypad:
+ Convert to DT schema
+Message-ID: <20260102-sociable-happy-echidna-ca01ec@quoll>
+References: <20251230181031.3191565-1-visitorckw@gmail.com>
+ <20251230181031.3191565-4-visitorckw@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,68 +62,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260102113643-GYA2060252@gentoo.org>
+In-Reply-To: <20251230181031.3191565-4-visitorckw@gmail.com>
 
-Hi bart,
+On Tue, Dec 30, 2025 at 06:10:28PM +0000, Kuan-Wei Chiu wrote:
+> +title: Android Goldfish Events Keypad
+> +
+> +maintainers:
+> +  - Kuan-Wei Chiu <visitorckw@gmail.com>
+> +
+> +description:
+> +  Android goldfish events keypad device generated by android emulator.
+> +
 
-On 19:36 Fri 02 Jan     , Yixun Lan wrote:
-> Hi Bart,
-> 
-> On 12:10 Fri 02 Jan     , Bartosz Golaszewski wrote:
-> > On Mon, Dec 29, 2025 at 1:47 PM Yixun Lan <dlan@gentoo.org> wrote:
-> > >
-> > > SpacemiT K3 SoC has changed gpio register layout while comparing
-> > > with previous generation, the register offset and bank offset
-> > > need to be adjusted, introduce a compatible data to extend the
-> > > driver to support this.
-> > >
-> > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > > ---
-> > >  drivers/gpio/gpio-spacemit-k1.c | 150 ++++++++++++++++++++++++++++------------
-> > >  1 file changed, 106 insertions(+), 44 deletions(-)
-> > >
-> > > diff --git a/drivers/gpio/gpio-spacemit-k1.c b/drivers/gpio/gpio-spacemit-k1.c
-> > > index eb66a15c002f..02cc5c11b617 100644
-> > > --- a/drivers/gpio/gpio-spacemit-k1.c
-> > > +++ b/drivers/gpio/gpio-spacemit-k1.c
-> > > @@ -15,28 +15,19 @@
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/seq_file.h>
-> > >
-[snip]...
-> > >  static u32 spacemit_gpio_bank_index(struct spacemit_gpio_bank *gb)
-> > >  {
-> > >         return (u32)(gb - gb->sg->sgb);
-> > > @@ -60,13 +70,14 @@ static u32 spacemit_gpio_bank_index(struct spacemit_gpio_bank *gb)
-> > >  static irqreturn_t spacemit_gpio_irq_handler(int irq, void *dev_id)
-> > >  {
-> > >         struct spacemit_gpio_bank *gb = dev_id;
-> > > +       struct spacemit_gpio *sg = gb->sg;
-> > >         unsigned long pending;
-> > >         u32 n, gedr;
-> > >
-> > > -       gedr = readl(gb->base + SPACEMIT_GEDR);
-> > > +       gedr = readl(gb->base + to_spacemit_gpio_regs(sg)->gedr);
-> > 
-> > Since you're already touching all these register accesses - can you
-> > maybe provide dedicated wrapper functions around readl()/writel() and
-> > avoid any file-wide changes in the future if anything requires further
-> > modification?
-> > 
-> can you elaborate a bit further on this?
-> I don't get how a wrapper helper could help to avoid file-wide changes..
-> 
-here is my attempt to solve this, define a macro to register address:
+Not an input device? No input.yaml reference?
 
-#define to_spacemit_gpio_regs(gb) ((gb)->sg->data->reg_offsets)
+> +properties:
+> +  compatible:
+> +    const: google,goldfish-events-keypad
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    keypad@9040000 {
+> +        compatible = "google,goldfish-events-keypad";
+> +        reg = <0x9040000 0x1000>;
+> +        interrupts = <0x5>;
 
-#define SPACEMIT_GEDR(gb)      ((gb)->base + to_spacemit_gpio_regs(gb)->gedr)
+This should be decimal, not hex.
 
-	gedr = readl(SPACEMIT_GEDR(gb));
 
-please let me know if this follow your suggestion or not
+Best regards,
+Krzysztof
 
--- 
-Yixun Lan (dlan)
 
