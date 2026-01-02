@@ -1,249 +1,182 @@
-Return-Path: <devicetree+bounces-251151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2238BCEF6EE
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 23:34:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6CEDCEF6F7
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 23:37:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 18E553002BB7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 22:34:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7CA3530051BA
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 22:37:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98CF12586C2;
-	Fri,  2 Jan 2026 22:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6842D46A1;
+	Fri,  2 Jan 2026 22:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VJiwXSIS"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="hfYSmihR";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="oRwf2bX6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a5-smtp.messagingengine.com (fout-a5-smtp.messagingengine.com [103.168.172.148])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73AE622F772
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E26922405ED;
+	Fri,  2 Jan 2026 22:37:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767393268; cv=none; b=U+/4qEmMbWJlJWmkPavwQ1c4eVnD8SoiMd72eVBCFUhKYWRL8xcHbQZ19kxxkYfOXvbn6M1q5hAY4j0FR54bOBB2lYSDtiSUZWc4JJRd3FwhS4dW//ZU3FOZNL1aJAVgpsJuic3N0wu3CZb/H6ZFTM50PVbrOoW26G2VgZmo8RY=
+	t=1767393441; cv=none; b=L7dKkbpLeSxVNNfGHg3FtLVcpAzskZAVTuEnYj0WlknY5V72BpJ74Ya1cgG2tp49fwE3Q/B6W/wCd8el8dBpJZeg6G2VnlL+9vEtaclKNKkdn4LxMrRapbJRb9Hl/D2mvWZOGPnpBG1fZHG5CjnVuSqg6JMX1Zyr8myhtkbMKsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767393268; c=relaxed/simple;
-	bh=p/Jv5nG+sVHiYm8AcMZfdW5K3hhflvZ/ovEwgXHmpeM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SWuQFCR61CfadnMcfMu0oP8XYgiQ661KUZhj9NV8MXcOHZkGugeyqptIeVlfX1csxbebLoSSQrD6KaMYoxWMu20UkerNQjHMwq8flGXVOMhQdcV4CiHQv2LwKkQDo5hh/vuBwz7lal3WcmiqdsOe0xzaWs+S3Xyc6g7wqCZzpFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VJiwXSIS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E668BC2BCB0
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 22:34:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767393267;
-	bh=p/Jv5nG+sVHiYm8AcMZfdW5K3hhflvZ/ovEwgXHmpeM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=VJiwXSISAcJV0qXTmSeIT57CiDm5gborRfTiSHBdph5DpkV7v/EK8GHzaDGJ4SPux
-	 eWCuRips0fyPhqbecE6Kfz3YDF7b0tgZrpfKsl/BN0xQHw7q4r75P1hr/iIFC0jNax
-	 YqbJtwiOpvbPb6AzrU05N0XR6AenFJrGF0+g5QDrNOnld0tjF0WJ4dXzJOUhZowcEV
-	 fjDH+IM5eCfX/q+hmJcr3yW0s0jEtL11Zmk4lEkApw56pC+UpH2cSviJASBPhNyUuO
-	 6tpKehaayrkEM0GDXrN9EY34gowhDuH7lRDXKpWlIx+yCzuysWIDQTHCGJopG1/lWp
-	 fyNttkPYts7eQ==
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b7277324054so2032585366b.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 14:34:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUQfFZY+3PsJkLv4dP6UfoJ02LCa5k7CcCFoEkGfDIrDU52T/KPk48gzR88zdjSTxWTXn8bzQeKWwij@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBxOKW3SuTCenXsZ9kxz+hHkwkkg/6r1o+Mfjnx3xkJIlWzEqD
-	tTbNhZJ5S9K3/sZiweRMOVG2jTBGVyL/PUwwWrgtwWJU2TPsDsl7k29c10YEA5YWGr30keweh6h
-	8OrgcDqgeRJb2nFUi98MgcEhsNrEVHw==
-X-Google-Smtp-Source: AGHT+IG1rWxoS+GvYztMHqB/gJdkFcIK4DZOIUpaJyFmssooGzC677KHzCJrbnQK7v/KK+0EeeO1ZfO4yp8ZU6NtQY4=
-X-Received: by 2002:a17:907:86a8:b0:b73:544d:ba2e with SMTP id
- a640c23a62f3a-b8036f62606mr4676439166b.25.1767393266391; Fri, 02 Jan 2026
- 14:34:26 -0800 (PST)
+	s=arc-20240116; t=1767393441; c=relaxed/simple;
+	bh=tsTJJQJoqy93O9/uvm41/seu3eu3Du6oDAogevtOBnA=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=IwLfCQI2tZyYpORnZIZQ8YQm8ES6NyQE3yg8UAHE9cy1CKde/Cda6I9lHSrz2ZyMTJkuveufKsz3bi1ML0geO/gKrXnCApmNLVILYXMottK4Oewh3BJr3J9snyjXq9X4qz986HfYCK5ffZPV05XJUFaz1M/VPzwRaizg9gYUWLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=hfYSmihR; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=oRwf2bX6; arc=none smtp.client-ip=103.168.172.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
+	by mailfout.phl.internal (Postfix) with ESMTP id 027D7EC011D;
+	Fri,  2 Jan 2026 17:37:18 -0500 (EST)
+Received: from phl-imap-08 ([10.202.2.84])
+  by phl-compute-03.internal (MEProxy); Fri, 02 Jan 2026 17:37:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1767393437;
+	 x=1767479837; bh=+8ctVAnu0yjFr1RzDJ3byhbEvs4eon+8GJcR3h7Onqs=; b=
+	hfYSmihRuX0g2f2Ksuu7kL6FYN5+qX1QH8M1wdw4ERZLGyDFimU+ZBCrWYDW0Ow2
+	NDOFnex57VTszrcEpqRmiBDQSJbBYJZvLj97g4SUxFaQ/OSUKMdswMn34Ep8hg32
+	eO5s0yfLMtuCdlytBwHsdxR1HExMANHIcMeUsdAey9RRcBDtKfqAmTbpTjYADFHY
+	WaIYJ9DaaU3xpNEOZ0OruJshirFcsXuerj35Akt/7gdRt5Ie547g4X0CC76cvfPD
+	tFlaX+mLjTuR1a8q8AwFE0VSQgXZmBckGgOIDSNvhvbjsOYZcEKHIzE54LkiPTYs
+	i7OaXm+PNX1DELo258ThQg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1767393437; x=
+	1767479837; bh=+8ctVAnu0yjFr1RzDJ3byhbEvs4eon+8GJcR3h7Onqs=; b=o
+	Rwf2bX6c/BBdCGz4DpEpHAvFBglqYnVGMqkaHYEU4E/43uYplZikRd4ec6Ybdar4
+	/dNA+2vXiod1GElE8mPTdbKTlKM+EtI8gXjYC6tZrwTc4rvyEmixKLzZLugYcEsz
+	ifS5vkFgISFCm6B0YaJcFvJ6PgyKRI5bPErwxXbGWlrCXj6lhNyoGMAkrLK7NBXf
+	OFe2nNgvZOqx3pwXmHkp/bDqljN6+A/oZWUeF2Gn8bRCMxnmzsACHcc7AU1SSK+v
+	HRGqU+ZYNbBb53+YEqUj73FY2Ut1m8j0wOL4L2KuLsBVZFyeZQb5+Do23Ui8JVsi
+	ozrZ5SFas1nrJ4jKuy1Lw==
+X-ME-Sender: <xms:nUhYaa3iFzL-9x_A2xEad9zBDAg7C19LuNN4TWy8BCqM6RmsY8fhVA>
+    <xme:nUhYaX7F3aLFQ4VkO-4-VctcHdcRKfShlo3RRp-sAhn34K87pbG4gG7NNJBWed8bJ
+    JWoskob9Scz8R33iA5NGSfh0a8xiBPBqklQtUcTws8pJ63nyIigkkk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdekleekkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdflihgrgihu
+    nhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmqeenuc
+    ggtffrrghtthgvrhhnpefhtefhuddtieegleeuiedttdehheduveffjeettdekvdeuiedt
+    udejfeeijeeifeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmpdhnsggprhgtphht
+    thhopedutddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepthhssghoghgvnhguse
+    grlhhphhgrrdhfrhgrnhhkvghnrdguvgdprhgtphhtthhopeiihhgvnhhggihinhhguggr
+    sehishgtrghsrdgrtgdrtghnpdhrtghpthhtoheptghhvghnhhhurggtrghisehkvghrnh
+    gvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhr
+    tghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosg
+    hhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghr
+    rdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvg
+    hrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhmihhpshesvhhgvghr
+    rdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:nUhYaZjHDWhTNhvJkxfqIFPwQJEa9RXsYUl3o_qKX0NnwB93vtJ48w>
+    <xmx:nUhYaSbFoUdxwY1LYThiFVPmINNA2tbPhkj1cK0Te35ArjhCbp0Ufw>
+    <xmx:nUhYaW9St7wir5AiIHOYEUl7mG8Z5Wptkb81rTr2Q8W23BiBOBzhQg>
+    <xmx:nUhYacNp_JT4dqBTkbO_fV388zuJGQj9NKLI3g6jZMa-Q64X9C9MnQ>
+    <xmx:nUhYaVEvm4Tp6VO-bMC0iy7YKOSIIYpREfLegaOzNuIRssJLIYt7JpBW>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 041D52CE0072; Fri,  2 Jan 2026 17:37:17 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251224133150.2266524-1-s-jain1@ti.com> <20251230022741.GA3217586-robh@kernel.org>
- <fd9f0b37-001e-4721-82b7-ee29379eb9a9@ti.com>
-In-Reply-To: <fd9f0b37-001e-4721-82b7-ee29379eb9a9@ti.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 2 Jan 2026 16:34:15 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKYsf9dmY3qKx6MVT0-0emTzO=0z32rOzt3070LykhrPA@mail.gmail.com>
-X-Gm-Features: AQt7F2qO3whwDzMYSf3EK2yMZxV1VXazUkw4mQ8nbmABr7OmUyHYA4qzRlYK5VI
-Message-ID: <CAL_JsqKYsf9dmY3qKx6MVT0-0emTzO=0z32rOzt3070LykhrPA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: ti,am65x-dss: Add AM62L DSS support
-To: Swamil Jain <s-jain1@ti.com>
-Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, krzk+dt@kernel.org, conor+dt@kernel.org, devarsht@ti.com, 
-	praneeth@ti.com, bb@ti.com, vigneshr@ti.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-ThreadId: A-FbFKnD6fMB
+Date: Fri, 02 Jan 2026 22:36:56 +0000
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Icenowy Zheng" <zhengxingda@iscas.ac.cn>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Huacai Chen" <chenhuacai@kernel.org>
+Cc: devicetree@vger.kernel.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ linux-kernel@vger.kernel.org,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+Message-Id: <d1a0e0ca-22d3-4d58-beb1-88eae19c9a2e@app.fastmail.com>
+In-Reply-To: <20260102155243.3639731-1-zhengxingda@iscas.ac.cn>
+References: <20260102155243.3639731-1-zhengxingda@iscas.ac.cn>
+Subject: Re: [PATCH] MIPS: Loongson64: dts: fix phy-related definition of LS7A GMAC
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 30, 2025 at 8:23=E2=80=AFAM Swamil Jain <s-jain1@ti.com> wrote:
->
-> Hi Rob,
->
-> On 12/30/25 07:57, Rob Herring wrote:
-> > On Wed, Dec 24, 2025 at 07:01:50PM +0530, Swamil Jain wrote:
-> >> Update the AM65x DSS bindings to support AM62L which has a single vide=
-o
-> >> port. Add conditional constraints for AM62L.
-> >>
-> >> Signed-off-by: Swamil Jain <s-jain1@ti.com>
-> >> ---
-> >>   .../bindings/display/ti/ti,am65x-dss.yaml     | 95 +++++++++++++++--=
---
-> >>   1 file changed, 76 insertions(+), 19 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss=
-.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> >> index 38fcee91211e..ce39690df4e5 100644
-> >> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> >> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> >> @@ -36,34 +36,50 @@ properties:
-> >>     reg:
-> >>       description:
-> >>         Addresses to each DSS memory region described in the SoC's TRM=
-.
-> >> -    items:
-> >> -      - description: common DSS register area
-> >> -      - description: VIDL1 light video plane
-> >> -      - description: VID video plane
-> >> -      - description: OVR1 overlay manager for vp1
-> >> -      - description: OVR2 overlay manager for vp2
-> >> -      - description: VP1 video port 1
-> >> -      - description: VP2 video port 2
-> >> -      - description: common1 DSS register area
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - description: common DSS register area
-> >> +          - description: VIDL1 light video plane
-> >> +          - description: VID video plane
-> >> +          - description: OVR1 overlay manager for vp1
-> >> +          - description: OVR2 overlay manager for vp2
-> >> +          - description: VP1 video port 1
-> >> +          - description: VP2 video port 2
-> >> +          - description: common1 DSS register area
-> >> +      - items:
-> >> +          - description: common DSS register area
-> >> +          - description: VIDL1 light video plane
-> >> +          - description: OVR1 overlay manager for vp1
-> >> +          - description: VP1 video port 1
-> >> +          - description: common1 DSS register area
-> >>
-> >>     reg-names:
-> >> -    items:
-> >> -      - const: common
-> >> -      - const: vidl1
-> >> -      - const: vid
-> >> -      - const: ovr1
-> >> -      - const: ovr2
-> >> -      - const: vp1
-> >> -      - const: vp2
-> >> -      - const: common1
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - const: common
-> >> +          - const: vidl1
-> >> +          - const: vid
-> >> +          - const: ovr1
-> >> +          - const: ovr2
-> >> +          - const: vp1
-> >> +          - const: vp2
-> >> +          - const: common1
-> >> +      - items:
-> >> +          - const: common
-> >> +          - const: vidl1
-> >> +          - const: ovr1
-> >> +          - const: vp1
-> >> +          - const: common1
-> >>
-> >>     clocks:
-> >> +    minItems: 2
-> >>       items:
-> >>         - description: fck DSS functional clock
-> >>         - description: vp1 Video Port 1 pixel clock
-> >>         - description: vp2 Video Port 2 pixel clock
-> >>
-> >>     clock-names:
-> >> +    minItems: 2
-> >>       items:
-> >>         - const: fck
-> >>         - const: vp1
-> >> @@ -84,7 +100,8 @@ properties:
-> >>       maxItems: 1
-> >>       description: phandle to the associated power domain
-> >>
-> >> -  dma-coherent: true
-> >> +  dma-coherent:
-> >> +    type: boolean
-> >>
-> >>     ports:
-> >>       $ref: /schemas/graph.yaml#/properties/ports
-> >> @@ -195,6 +212,46 @@ allOf:
-> >>               port@0:
-> >>                 properties:
-> >>                   endpoint@1: false
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            const: ti,am62l-dss
-> >> +    then:
-> >> +      properties:
-> >> +        clock-names:
-> >> +          maxItems: 2
-> >> +        clocks:
-> >> +          maxItems: 2
-> >> +        reg:
-> >> +          maxItems: 5
-> >
-> >             reg-names:
-> >               minItems: 8
-> >         else:
-> >           properties:
-> >             reg:
-> >               minItems: 8
-> >             reg-names:
-> >               minItems: 8
-> >
-> > clocks needs similar constraints...
->
-> Sure, will add in v2.
->
-> >
-> >> +
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            const: ti,am62l-dss
-> >> +    then:
-> >> +      properties:
-> >> +        reg-names:
-> >> +          items:
-> >> +            - const: common
-> >> +            - const: vidl1
-> >> +            - const: ovr1
-> >> +            - const: vp1
-> >> +            - const: common1
-> >> +    else:
-> >> +      properties:
-> >> +        reg-names:
-> >> +          items:
-> >> +            - const: common
-> >> +            - const: vidl1
-> >> +            - const: vid
-> >> +            - const: ovr1
-> >> +            - const: ovr2
-> >> +            - const: vp1
-> >> +            - const: vp2
-> >> +            - const: common1
-> >
-> > Why are you defining the names twice?
-> >
->
-> For AM62L we don't have "vid", "ovr2" and "vp2", the dtbs_check will fail=
-.
-> Could you please suggest a better way?
 
-You already defined them at the top level. Here in the if/then schema,
-all you need is 'maxItems: 5' and 'minItems: 8'. But then you already
-have that as well.
 
-Rob
+On Fri, 2 Jan 2026, at 3:52 PM, Icenowy Zheng wrote:
+> Currently the LS7A GMAC device tree node lacks a proper phy-handle
+> property pointing to the PHY node.
+>
+> In addition, the phy-mode property specifies "rgmii" without any
+> internal delay information, which means the board trace needs to add 2ns
+> delay to the RGMII data lines; but that isn't known to happen on any
+> Loongson board. The ACPI-based initialization codepath, which is used on
+> LoongArch-based 3A5000 + 7A1000 hardwares, specifies "rgmii-id" phy
+> mode, which should be the one we are using.
+>
+> Add the lacking phy-handle property and set proper phy-mode.
+>
+> Tested on a LS3A4000_7A1000_NUC_BOARD_V2.1 board with YT8521S PHY.
+>
+> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+
+Good catch! This with fine with realtek phy chips but YT8521S seems
+to be picky.
+
+Reviewed-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+
+Also maybe:
+
+Cc: stable@vger.kernel.org
+
+Given those boards rely on built-in DT.
+
+Thanks
+
+> ---
+>  arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi 
+> b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> index ee71045883e7e..6dee85909f5a6 100644
+> --- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> +++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> @@ -199,7 +199,8 @@ gmac@3,0 {
+>  					     <13 IRQ_TYPE_LEVEL_HIGH>;
+>  				interrupt-names = "macirq", "eth_lpi";
+>  				interrupt-parent = <&pic>;
+> -				phy-mode = "rgmii";
+> +				phy-mode = "rgmii-id";
+> +				phy-handle = <&phy0>;
+>  				mdio {
+>  					#address-cells = <1>;
+>  					#size-cells = <0>;
+> @@ -222,7 +223,8 @@ gmac@3,1 {
+>  					     <15 IRQ_TYPE_LEVEL_HIGH>;
+>  				interrupt-names = "macirq", "eth_lpi";
+>  				interrupt-parent = <&pic>;
+> -				phy-mode = "rgmii";
+> +				phy-mode = "rgmii-id";
+> +				phy-handle = <&phy1>;
+>  				mdio {
+>  					#address-cells = <1>;
+>  					#size-cells = <0>;
+> -- 
+> 2.52.0
+
+-- 
+- Jiaxun
 
