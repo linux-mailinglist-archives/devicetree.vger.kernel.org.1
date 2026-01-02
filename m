@@ -1,119 +1,170 @@
-Return-Path: <devicetree+bounces-251116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9A30CEEE96
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 16:53:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 119B0CEEEF5
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 16:59:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7063330115FE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 15:53:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 85FA130141F9
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 15:58:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A05528E579;
-	Fri,  2 Jan 2026 15:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08327296BDB;
+	Fri,  2 Jan 2026 15:58:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lg5xcQkF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E1628DB46;
-	Fri,  2 Jan 2026 15:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C54493C465;
+	Fri,  2 Jan 2026 15:58:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767369187; cv=none; b=Y10QmO2pcTxK9x0oz2B4EGdCRfikAQPoCtXlgusq1YimkWTqCoq0R9wdKOrUKs0ntN0qlYXLES+3qAR2d/6fjyOwM3qGnTbmGeGYwmd8KWO4JgB5fmYIiCKycirNI2Z+wqneEwUBUscpvfBBepBHytfZLNNm4tCr0mEgXQrQzOE=
+	t=1767369518; cv=none; b=E4Pe2g9RmgqhxLJ9H7VK8AE+OaqwmSCdTLM2tKkEjvds/kcXTKlTlvtyZ8YR0b6TcoKsP7ss0MlwiNt7vXLmp2r5g/cr7/O8+wXYz7WGj/O+RIV/9jtglKD/EV9AmXJqhheE2czK0hScjbadCL/lTf8jBnulVkZSBFgWVzIHp8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767369187; c=relaxed/simple;
-	bh=6xwXaESbQDcoH6UquNWlaguH/ghPy1QEXupzkKp1O0w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Gu25X7jS/rl/96Y3KYIclVeJTUVZbrQOPP6jDxS98IPGuLx5kGqZqsi3DMWF3Zq89ZewvgDqJrgoJoPmfk9jY7R8SkMei7vD8Dr2IAKlv9fKwZO+Fgq0wNiBxwX0BOFC3v/R7LhnlG9jDOvv91V5k/H3UIdbY60hHWrYPloLnec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.158])
-	by APP-03 (Coremail) with SMTP id rQCowABnaL_N6VdpJWUQAw--.54339S2;
-	Fri, 02 Jan 2026 23:52:47 +0800 (CST)
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1767369518; c=relaxed/simple;
+	bh=PPpDFLKy+MzvxXHjluPSv/KXPSJTNW+J04zNHdxiXE8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jRxJtk42GI9DF80md+/CSiImgwsD36VWZZNs07fGhQ3XUUmsgb1HulqIAUTRzqfF5w5fkawBRWDaluSjCYXsq8SmZIMZhHuhsux8NocOdu2wXYhj1TmiwXW8IZZ7JYiPqrWBQRCs+bSvTn0cbYvqdzC1ZEeaWsfCI39GxA9If8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lg5xcQkF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89F92C116B1;
+	Fri,  2 Jan 2026 15:58:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767369518;
+	bh=PPpDFLKy+MzvxXHjluPSv/KXPSJTNW+J04zNHdxiXE8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Lg5xcQkFX76bBotONUpLGc6Wei1S7UNg/nZ3yvWe/MQ234Q4YalthRijWTFUdP2rH
+	 NJYHaJdgMQdgItxpEqYC6EKNytLGJYMmRJ2M6ncFlAJG5CnXp245f6pGeE+XsfxWqP
+	 70FgYgV2fRp1Wm5Br6JLHcUj5jj9Je0eAVyOR7/d7HS+5iDQMrZkKZSFCIBFFCmeiw
+	 qQIh1R2KqoVZY9l7kM1p4MaGcNLRMRAVgbZgzZ8WmhXD69kIAhKMhoYs05RNdotU2m
+	 cNcGycccxNIUtznysD2a6JAkKZbRm5O3GUxfH76gjSqd3o2bEaN+r4vSzExoxltg1Y
+	 ypsasO1Z0gKNw==
+Date: Fri, 2 Jan 2026 09:58:37 -0600
+From: Rob Herring <robh@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH] MIPS: Loongson64: dts: fix phy-related definition of LS7A GMAC
-Date: Fri,  2 Jan 2026 23:52:43 +0800
-Message-ID: <20260102155243.3639731-1-zhengxingda@iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Stefan Agner <stefan@agner.ch>, Lucas Stach <dev@lynxeye.de>,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT
+ schema
+Message-ID: <20260102155837.GA3840725-robh@kernel.org>
+References: <20251231-nvidia-nand-v3-1-2e67664d3674@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowABnaL_N6VdpJWUQAw--.54339S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7WF4DCr4DJw1fKF1ftr18Zrb_yoW8Wr4Dpa
-	y3Cws7Xrn8ur1avay8CFyUXr4fAa98KFs5uF47C3y5Jw10vF10vr17JFyrtr1UGrWFqa40
-	qw109ayxX3Z7Cw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvE14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
-	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
-	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
-	n2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
-	AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
-	17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
-	IF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
-	IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWI
-	evJa73UjIFyTuYvjfUonmRUUUUU
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251231-nvidia-nand-v3-1-2e67664d3674@gmail.com>
 
-Currently the LS7A GMAC device tree node lacks a proper phy-handle
-property pointing to the PHY node.
+On Wed, Dec 31, 2025 at 09:29:32AM +0000, Charan Pedumuru wrote:
+> Convert NVIDIA Tegra NAND Flash Controller binding to YAML format.
+> Changes during Conversion:
+> - Define new properties `power-domains` and `operating-points-v2`
+>   because the existing in tree DTS uses them.
+> 
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> ---
+> Changes in v3:
+> - Removed pattern properties for partition.
+> - Used single quotes for nand string in pattern properties.
+> - Modified maxItems value and added minItems to reg property under nand child node.
+> - Link to v2: https://lore.kernel.org/r/20251229-nvidia-nand-v2-1-b697d9724b0b@gmail.com
+> 
+> Changes in v2:
+> - Edited the commit description to match the updated changes.
+> - Modified the description for the YAML.
+> - Removed all the duplicated properties, defined a proper ref for both parent
+>   and child nodes.
+> - Removed unnecessary properties from the required following the old
+>   text binding.
+> - Link to v1: https://lore.kernel.org/r/20251030-nvidia-nand-v1-1-7614e1428292@gmail.com
+> ---
+>  .../bindings/mtd/nvidia,tegra20-nand.yaml          | 103 +++++++++++++++++++++
+>  .../bindings/mtd/nvidia-tegra20-nand.txt           |  64 -------------
+>  2 files changed, 103 insertions(+), 64 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+> new file mode 100644
+> index 000000000000..632cfd7dc5e2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/nvidia,tegra20-nand.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVIDIA Tegra NAND Flash Controller
+> +
+> +maintainers:
+> +  - Jonathan Hunter <jonathanh@nvidia.com>
+> +
+> +allOf:
+> +  - $ref: nand-controller.yaml
+> +
+> +description:
+> +  The NVIDIA NAND controller provides an interface between NVIDIA SoCs
+> +  and raw NAND flash devices. It supports standard NAND operations,
+> +  hardware-assisted ECC, OOB data access, and DMA transfers, and
+> +  integrates with the Linux MTD NAND subsystem for reliable flash management.
+> +
+> +properties:
+> +  compatible:
+> +    const: nvidia,tegra20-nand
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: nand
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: nand
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  operating-points-v2:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  '^nand@':
+> +    type: object
+> +    description: Individual NAND chip connected to the NAND controller
+> +    $ref: raw-nand-chip.yaml#
+> +
+> +    properties:
+> +      reg:
+> +        minItems: 1
+> +        maxItems: 5
 
-In addition, the phy-mode property specifies "rgmii" without any
-internal delay information, which means the board trace needs to add 2ns
-delay to the RGMII data lines; but that isn't known to happen on any
-Loongson board. The ACPI-based initialization codepath, which is used on
-LoongArch-based 3A5000 + 7A1000 hardwares, specifies "rgmii-id" phy
-mode, which should be the one we are using.
+Sigh. I gave you the exact schema to use. How is 5 address ENTRIES 
+valid? Again:
 
-Add the lacking phy-handle property and set proper phy-mode.
+reg:
+  maximum: 5
 
-Tested on a LS3A4000_7A1000_NUC_BOARD_V2.1 board with YT8521S PHY.
-
-Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
----
- arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-index ee71045883e7e..6dee85909f5a6 100644
---- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-+++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-@@ -199,7 +199,8 @@ gmac@3,0 {
- 					     <13 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-names = "macirq", "eth_lpi";
- 				interrupt-parent = <&pic>;
--				phy-mode = "rgmii";
-+				phy-mode = "rgmii-id";
-+				phy-handle = <&phy0>;
- 				mdio {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
-@@ -222,7 +223,8 @@ gmac@3,1 {
- 					     <15 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-names = "macirq", "eth_lpi";
- 				interrupt-parent = <&pic>;
--				phy-mode = "rgmii";
-+				phy-mode = "rgmii-id";
-+				phy-handle = <&phy1>;
- 				mdio {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
--- 
-2.52.0
-
+Rob
 
