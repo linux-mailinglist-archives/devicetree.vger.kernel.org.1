@@ -1,147 +1,521 @@
-Return-Path: <devicetree+bounces-251101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDFC3CEEB33
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 14:53:42 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35A59CEEB7E
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 15:01:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 89F71300D407
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 13:53:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 17A503002166
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 14:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CE3C3126B5;
-	Fri,  2 Jan 2026 13:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B0C2D8383;
+	Fri,  2 Jan 2026 14:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="mihNgPx/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UFveQy7y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A80F30DD14;
-	Fri,  2 Jan 2026 13:53:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4484527A123
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 14:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767362020; cv=none; b=epGR38PvzuwEZGx+QuX7a0Qf6/3bwL4ZH5tV0lwT3DryGY6tttkTUVNuHteEnN8V/Y1fltctDnn/t8miZtTrNy0IEQEJVotmuK06rrpKyQwe+s1yUwLsoWj2pkoKlWN+8C+yg1W8nwbd5vWMESqRwSgFq5dYb3W2iijA0r4hW6Y=
+	t=1767362465; cv=none; b=ILMYyp35vFDtuLDYTPV18ngR9JBKSnV0aeNZNFbuza2UB0LDZF+5jctly0TOGtSHtzb8vZJpWSH2kqNZUB218wE5y95SnGlzO52+hqmDkwe0Qy6PtC1nmtqdYfKixg3OGFFhVvflHdV0P/oxsdsPpKIDvJD3DCIzwiLze19Zgek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767362020; c=relaxed/simple;
-	bh=gHuBgv2PqEZ4lJJD4FceQkqq+SPiJSqYIRLDA6kWIyg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DDZsOcgVxLq6vg3FOfYg4/i1l1v91mdpKf/z56pjOdwbUZ+czd/hbQtZCPHXtIDFk/yVzCeXLBvJ4JtWHS+dKxduxMHd4oQsH+G+XkTx1m0nS7SNuuTLgpZxWJMzR9x2tXrx41CpowWj8B/AAHTa+CFHZnW2s7L6tZy5VpZWmMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=mihNgPx/; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4djQC270Gsz9stX;
-	Fri,  2 Jan 2026 14:53:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1767362015;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ujVKOuzo5WqYG+lz+h/KUlxw8OmDWuGVBGYVvXW42P0=;
-	b=mihNgPx/gLD9uHoofpTBP+ijkKRfW9R0iSjTMv2iJ87GXsbO6ZXnbANN4HYn+OeuE3Iz4x
-	YmmXoeJdARn7pITD1kHG6QtBjvD3u0l5juuQUKJxnUjaW4F1sHdDClXfk19gpbdNaqilpD
-	re9v7+ZgkVY8RK2JMHogg1PECqRzA6lp/kCPId/C0tR/RoVnEmPL5niryFmko5oJKb4mUn
-	gufNrKNpSICS1BMKOzTfC/ZiDp8ScZRrQ8W03McScz4NQiUOzd34SG+wLp4bfO5w8eOfzY
-	obyRXY2ol/5SefQn98MgCRDHKpzlSwVhukROUYHoE0sbGrM9SQGv+IsBLgc2mw==
-Message-ID: <0de33175-1dc3-417b-8dab-9b57940f0789@mailbox.org>
-Date: Fri, 2 Jan 2026 14:53:31 +0100
+	s=arc-20240116; t=1767362465; c=relaxed/simple;
+	bh=YL9bTHFOk4RmI54RTXLZ8T/JVnOHkeYuZmLXcfm9qXw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=j50zlg9MiJWoAOC5RrZC66iOC/HCjk1wmk3L7aq5tntSOT4rMfO5TzoMx8W5c2lRqTTKS9dvqA4kVJyiOgoTmLyooqeAit1/ItnOiOd8D7i/E/FGI7kgRwUQiTrnYa7mIAaW8lc83jYh4vyNK4Egvj93stXdvkcA6ho5y2nXPu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UFveQy7y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19139C116B1;
+	Fri,  2 Jan 2026 14:01:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767362464;
+	bh=YL9bTHFOk4RmI54RTXLZ8T/JVnOHkeYuZmLXcfm9qXw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=UFveQy7yIvym78rWKtvjaKiU8wj9t5rxRsHUqDbAEV6QM0oERREkFNRP5ocCYTIBh
+	 5cV2378HyNbXV/Xyn0SM+/kY6eWlfD2VyzCqrSPmydWjBz8EW2eIxE7BY1G7MMbQoZ
+	 53RgCtj0p2tuHBIf7haxydpFYAT/bTwQbOs+M4dlpRylNvCPYs2TGhqGamFukCS+u0
+	 IdinIUebEtMxkY3LQL3HmW88hUXLt0sAe8nHndpU7CY5atQYFcumLFkjQJ8RWs/8AX
+	 GFYlqZN5/Kqg/FLqWRz+9SEcIb42yuS2WvGwH0RPhreWRiMbb8XgyzwFNkJzT4a7xh
+	 8vapfpq4a4eTg==
+From: Dinh Nguyen <dinguyen@kernel.org>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: dinguyen@kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/2] ARM: dts: socfpga: remove underscore node names for base socfpga dtsi
+Date: Fri,  2 Jan 2026 08:00:53 -0600
+Message-ID: <20260102140054.1088756-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.42.0.411.g813d9a9188
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: imx95: remove CLK_GPUAPB
-To: Rain Yang <jiyu.yang@oss.nxp.com>
-Cc: Frank.Li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- festevam@gmail.com, imx@lists.linux.dev, jiyu.yang@nxp.com,
- kernel@pengutronix.de, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- liviu.dudau@arm.com, robh@kernel.org, s.hauer@pengutronix.de,
- shawnguo@kernel.org
-References: <20251231031915.752262-1-jiyu.yang@oss.nxp.com>
- <37489cb7-820d-46cd-a7ea-0f9097604895@mailbox.org>
- <aVXByNiEfC66RDG0@oss.nxp.com>
- <b2dd2109-c2d9-412e-9b11-5851485acf04@mailbox.org>
- <aVegAt002L20oBGf@oss.nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aVegAt002L20oBGf@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: e019832cff23643e43e
-X-MBO-RS-META: y1eoui7nrfmfe6kre5jnazb59cqu4f7q
+Content-Transfer-Encoding: 8bit
 
-On 1/2/26 11:37 AM, Rain Yang wrote:
-> On Thu, Jan 01, 2026 at 05:51:12PM +0100, Marek Vasut wrote:
->> On 1/1/26 1:37 AM, Rain Yang wrote:
->>> On Wed, Dec 31, 2025 at 03:11:21PM +0100, Marek Vasut wrote:
->>>> On 12/31/25 4:19 AM, Rain Yang wrote:
->>>>> From: Rain Yang <jiyu.yang@nxp.com>
->>>>>
->>>>> Dropping CLK_GPUAPB simplifies OPP handling and avoids unnecessary
->>>>> complexity.
->>>>>
->>>>> Fixes: 67934f248e64 ("arm64: dts: imx95: Describe Mali G310 GPU")
->>>>> Signed-off-by: Rain Yang <jiyu.yang@nxp.com>
->>>>> ---
->>>>>     arch/arm64/boot/dts/freescale/imx95.dtsi | 4 ++--
->>>>>     1 file changed, 2 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
->>>>> index 88bde59e61b2..ab446aa6f73c 100644
->>>>> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
->>>>> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
->>>>> @@ -2164,8 +2164,8 @@ netc_emdio: mdio@0,0 {
->>>>>     		gpu: gpu@4d900000 {
->>>>>     			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
->>>>>     			reg = <0 0x4d900000 0 0x480000>;
->>>>> -			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>, <&scmi_clk IMX95_CLK_GPUAPB>;
->>>>> -			clock-names = "core", "coregroup";
->>>>> +			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>;
->>>>> +			clock-names = "core";
->>>>
->>>> I don't think this is correct, SM can disable the GPUAPB clock from the SM
->>>> monitor:
->>>>
->>>>> $ clock.w gpuapb off
->>>>
->>>> Linux has to make sure the GPUAPB clock are enabled to access the GPU
->>>> register, hence the clock have to be described in DT.
->>> Hi Marek,
->>
->> Hello Jiyu,
->>
->>> CLK_GPU and CLK_GPUAPB can only be controlled internally by the SM, not by Linux.
->>> CLK_GPUAPB always runs at a fixed frequency, does not require dynamic adjustment,
->>> and is practically always on.
->>> Additionally, CLK_GPUAPB's frequency is absent from all OPP entries. Removing it
->>> could simplify OPP handling logic and reduce unnecessary complexity.
->>
->> But the SM can turn the GPUAPB clock off, correct ?
->>
->> Linux has to be able to turn GPUAPB clock on, therefore the GPUAPB clock have
->> to be described in DT, correct ?
-> 
-> Yes, CLK_GPUAPB can be turned off by the SM, but by default it remains on, just like
-> CLK_GPU. AFAIK, there is no scenario where either of these clocks could or would be
-> disabled in both SM and Linux.
-> 
-> If enabling or disabling CLK_GPUAPB in Linux was wanted, the same shall apply to CLK_GPU
-> to make this approach reasonable.
-> Also, OPP framework shall be adjusted to meet these changes too.
+The node names in the these file should be using a hyphen, not an
+underscore as warned by 'dtc W=2'.
 
-You can not depend on the state in which bootloader or any other prior 
-stage left the platform. If the clock can be turned off, you must make 
-sure they are turned on for correct hardware operation.
+sed command used : sed -E ':a; s/(:.*)_/\1-/; ta'
 
-CLK_GPU is enabled as parent clock of CLK_GPUCGC already.
+Used dtx_diff to check before/after dtbs.
 
-I don't understand your concerns about the OPP framework, this keeps 
-coming up in the discussion one way or the other, but it is not clear to 
-me what this is about. Can you elaborate on the OPP framework concern ?
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+ arch/arm/boot/dts/intel/socfpga/socfpga.dtsi | 106 +++++++++----------
+ 1 file changed, 53 insertions(+), 53 deletions(-)
+
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
+index 5dc8d33e8ad7..d439fc3e17a7 100644
+--- a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
+@@ -132,17 +132,17 @@ osc2: osc2 {
+ 						compatible = "fixed-clock";
+ 					};
+ 
+-					f2s_periph_ref_clk: f2s_periph_ref_clk {
++					f2s_periph_ref_clk: f2s-periph-ref-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "fixed-clock";
+ 					};
+ 
+-					f2s_sdram_ref_clk: f2s_sdram_ref_clk {
++					f2s_sdram_ref_clk: f2s-sdram-ref-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "fixed-clock";
+ 					};
+ 
+-					main_pll: main_pll@40 {
++					main_pll: main-pll@40 {
+ 						#address-cells = <1>;
+ 						#size-cells = <0>;
+ 						#clock-cells = <0>;
+@@ -166,7 +166,7 @@ mainclk: mainclk@4c {
+ 							reg = <0x4C>;
+ 						};
+ 
+-						dbg_base_clk: dbg_base_clk@50 {
++						dbg_base_clk: dbg-base-clk@50 {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&main_pll>, <&osc1>;
+@@ -174,21 +174,21 @@ dbg_base_clk: dbg_base_clk@50 {
+ 							reg = <0x50>;
+ 						};
+ 
+-						main_qspi_clk: main_qspi_clk@54 {
++						main_qspi_clk: main-qspi-clk@54 {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&main_pll>;
+ 							reg = <0x54>;
+ 						};
+ 
+-						main_nand_sdmmc_clk: main_nand_sdmmc_clk@58 {
++						main_nand_sdmmc_clk: main-nand-sdmmc-clk@58 {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&main_pll>;
+ 							reg = <0x58>;
+ 						};
+ 
+-						cfg_h2f_usr0_clk: cfg_h2f_usr0_clk@5c {
++						cfg_h2f_usr0_clk: cfg-h2f-usr0-clk@5c {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&main_pll>;
+@@ -196,7 +196,7 @@ cfg_h2f_usr0_clk: cfg_h2f_usr0_clk@5c {
+ 						};
+ 					};
+ 
+-					periph_pll: periph_pll@80 {
++					periph_pll: periph-pll@80 {
+ 						#address-cells = <1>;
+ 						#size-cells = <0>;
+ 						#clock-cells = <0>;
+@@ -204,42 +204,42 @@ periph_pll: periph_pll@80 {
+ 						clocks = <&osc1>, <&osc2>, <&f2s_periph_ref_clk>;
+ 						reg = <0x80>;
+ 
+-						emac0_clk: emac0_clk@88 {
++						emac0_clk: emac0-clk@88 {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&periph_pll>;
+ 							reg = <0x88>;
+ 						};
+ 
+-						emac1_clk: emac1_clk@8c {
++						emac1_clk: emac1-clk@8c {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&periph_pll>;
+ 							reg = <0x8C>;
+ 						};
+ 
+-						per_qspi_clk: per_qsi_clk@90 {
++						per_qspi_clk: per-qsi-clk@90 {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&periph_pll>;
+ 							reg = <0x90>;
+ 						};
+ 
+-						per_nand_mmc_clk: per_nand_mmc_clk@94 {
++						per_nand_mmc_clk: per-nand-mmc-clk@94 {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&periph_pll>;
+ 							reg = <0x94>;
+ 						};
+ 
+-						per_base_clk: per_base_clk@98 {
++						per_base_clk: per-base-clk@98 {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&periph_pll>;
+ 							reg = <0x98>;
+ 						};
+ 
+-						h2f_usr1_clk: h2f_usr1_clk@9c {
++						h2f_usr1_clk: h2f-usr1-clk@9c {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&periph_pll>;
+@@ -247,7 +247,7 @@ h2f_usr1_clk: h2f_usr1_clk@9c {
+ 						};
+ 					};
+ 
+-					sdram_pll: sdram_pll@c0 {
++					sdram_pll: sdram-pll@c0 {
+ 						#address-cells = <1>;
+ 						#size-cells = <0>;
+ 						#clock-cells = <0>;
+@@ -255,28 +255,28 @@ sdram_pll: sdram_pll@c0 {
+ 						clocks = <&osc1>, <&osc2>, <&f2s_sdram_ref_clk>;
+ 						reg = <0xC0>;
+ 
+-						ddr_dqs_clk: ddr_dqs_clk@c8 {
++						ddr_dqs_clk: ddr-dqs-clk@c8 {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&sdram_pll>;
+ 							reg = <0xC8>;
+ 						};
+ 
+-						ddr_2x_dqs_clk: ddr_2x_dqs_clk@cc {
++						ddr_2x_dqs_clk: ddr-2x-dqs-clk@cc {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&sdram_pll>;
+ 							reg = <0xCC>;
+ 						};
+ 
+-						ddr_dq_clk: ddr_dq_clk@d0 {
++						ddr_dq_clk: ddr-dq-clk@d0 {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&sdram_pll>;
+ 							reg = <0xD0>;
+ 						};
+ 
+-						h2f_usr2_clk: h2f_usr2_clk@d4 {
++						h2f_usr2_clk: h2f-usr2-clk@d4 {
+ 							#clock-cells = <0>;
+ 							compatible = "altr,socfpga-perip-clk";
+ 							clocks = <&sdram_pll>;
+@@ -284,35 +284,35 @@ h2f_usr2_clk: h2f_usr2_clk@d4 {
+ 						};
+ 					};
+ 
+-					mpu_periph_clk: mpu_periph_clk {
++					mpu_periph_clk: mpu-periph-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-perip-clk";
+ 						clocks = <&mpuclk>;
+ 						fixed-divider = <4>;
+ 					};
+ 
+-					mpu_l2_ram_clk: mpu_l2_ram_clk {
++					mpu_l2_ram_clk: mpu-l2-ram-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-perip-clk";
+ 						clocks = <&mpuclk>;
+ 						fixed-divider = <2>;
+ 					};
+ 
+-					l4_main_clk: l4_main_clk {
++					l4_main_clk: l4-main-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&mainclk>;
+ 						clk-gate = <0x60 0>;
+ 					};
+ 
+-					l3_main_clk: l3_main_clk {
++					l3_main_clk: l3-main-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-perip-clk";
+ 						clocks = <&mainclk>;
+ 						fixed-divider = <1>;
+ 					};
+ 
+-					l3_mp_clk: l3_mp_clk {
++					l3_mp_clk: l3-mp-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&mainclk>;
+@@ -320,14 +320,14 @@ l3_mp_clk: l3_mp_clk {
+ 						clk-gate = <0x60 1>;
+ 					};
+ 
+-					l3_sp_clk: l3_sp_clk {
++					l3_sp_clk: l3-sp-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&l3_mp_clk>;
+ 						div-reg = <0x64 2 2>;
+ 					};
+ 
+-					l4_mp_clk: l4_mp_clk {
++					l4_mp_clk: l4-mp-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&mainclk>, <&per_base_clk>;
+@@ -335,7 +335,7 @@ l4_mp_clk: l4_mp_clk {
+ 						clk-gate = <0x60 2>;
+ 					};
+ 
+-					l4_sp_clk: l4_sp_clk {
++					l4_sp_clk: l4-sp-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&mainclk>, <&per_base_clk>;
+@@ -343,7 +343,7 @@ l4_sp_clk: l4_sp_clk {
+ 						clk-gate = <0x60 3>;
+ 					};
+ 
+-					dbg_at_clk: dbg_at_clk {
++					dbg_at_clk: dbg-at-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&dbg_base_clk>;
+@@ -351,7 +351,7 @@ dbg_at_clk: dbg_at_clk {
+ 						clk-gate = <0x60 4>;
+ 					};
+ 
+-					dbg_clk: dbg_clk {
++					dbg_clk: dbg-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&dbg_at_clk>;
+@@ -359,7 +359,7 @@ dbg_clk: dbg_clk {
+ 						clk-gate = <0x60 5>;
+ 					};
+ 
+-					dbg_trace_clk: dbg_trace_clk {
++					dbg_trace_clk: dbg-trace-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&dbg_base_clk>;
+@@ -367,42 +367,42 @@ dbg_trace_clk: dbg_trace_clk {
+ 						clk-gate = <0x60 6>;
+ 					};
+ 
+-					dbg_timer_clk: dbg_timer_clk {
++					dbg_timer_clk: dbg-timer-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&dbg_base_clk>;
+ 						clk-gate = <0x60 7>;
+ 					};
+ 
+-					cfg_clk: cfg_clk {
++					cfg_clk: cfg-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&cfg_h2f_usr0_clk>;
+ 						clk-gate = <0x60 8>;
+ 					};
+ 
+-					h2f_user0_clk: h2f_user0_clk {
++					h2f_user0_clk: h2f-user0-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&cfg_h2f_usr0_clk>;
+ 						clk-gate = <0x60 9>;
+ 					};
+ 
+-					emac_0_clk: emac_0_clk {
++					emac_0_clk: emac-0-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&emac0_clk>;
+ 						clk-gate = <0xa0 0>;
+ 					};
+ 
+-					emac_1_clk: emac_1_clk {
++					emac_1_clk: emac-1-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&emac1_clk>;
+ 						clk-gate = <0xa0 1>;
+ 					};
+ 
+-					usb_mp_clk: usb_mp_clk {
++					usb_mp_clk: usb-mp-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&per_base_clk>;
+@@ -410,7 +410,7 @@ usb_mp_clk: usb_mp_clk {
+ 						div-reg = <0xa4 0 3>;
+ 					};
+ 
+-					spi_m_clk: spi_m_clk {
++					spi_m_clk: spi-m-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&per_base_clk>;
+@@ -418,7 +418,7 @@ spi_m_clk: spi_m_clk {
+ 						div-reg = <0xa4 3 3>;
+ 					};
+ 
+-					can0_clk: can0_clk {
++					can0_clk: can0-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&per_base_clk>;
+@@ -426,7 +426,7 @@ can0_clk: can0_clk {
+ 						div-reg = <0xa4 6 3>;
+ 					};
+ 
+-					can1_clk: can1_clk {
++					can1_clk: can1-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&per_base_clk>;
+@@ -434,7 +434,7 @@ can1_clk: can1_clk {
+ 						div-reg = <0xa4 9 3>;
+ 					};
+ 
+-					gpio_db_clk: gpio_db_clk {
++					gpio_db_clk: gpio-db-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&per_base_clk>;
+@@ -442,21 +442,21 @@ gpio_db_clk: gpio_db_clk {
+ 						div-reg = <0xa8 0 24>;
+ 					};
+ 
+-					h2f_user1_clk: h2f_user1_clk {
++					h2f_user1_clk: h2f-user1-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&h2f_usr1_clk>;
+ 						clk-gate = <0xa0 7>;
+ 					};
+ 
+-					sdmmc_clk: sdmmc_clk {
++					sdmmc_clk: sdmmc-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&f2s_periph_ref_clk>, <&main_nand_sdmmc_clk>, <&per_nand_mmc_clk>;
+ 						clk-gate = <0xa0 8>;
+ 					};
+ 
+-					sdmmc_clk_divided: sdmmc_clk_divided {
++					sdmmc_clk_divided: sdmmc-clk-divided {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&sdmmc_clk>;
+@@ -464,21 +464,21 @@ sdmmc_clk_divided: sdmmc_clk_divided {
+ 						fixed-divider = <4>;
+ 					};
+ 
+-					nand_x_clk: nand_x_clk {
++					nand_x_clk: nand-x-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&f2s_periph_ref_clk>, <&main_nand_sdmmc_clk>, <&per_nand_mmc_clk>;
+ 						clk-gate = <0xa0 9>;
+ 					};
+ 
+-					nand_ecc_clk: nand_ecc_clk {
++					nand_ecc_clk: nand-ecc-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&nand_x_clk>;
+ 						clk-gate = <0xa0 9>;
+ 					};
+ 
+-					nand_clk: nand_clk {
++					nand_clk: nand-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&nand_x_clk>;
+@@ -486,35 +486,35 @@ nand_clk: nand_clk {
+ 						fixed-divider = <4>;
+ 					};
+ 
+-					qspi_clk: qspi_clk {
++					qspi_clk: qspi-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&f2s_periph_ref_clk>, <&main_qspi_clk>, <&per_qspi_clk>;
+ 						clk-gate = <0xa0 11>;
+ 					};
+ 
+-					ddr_dqs_clk_gate: ddr_dqs_clk_gate {
++					ddr_dqs_clk_gate: ddr-dqs-clk-gate {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&ddr_dqs_clk>;
+ 						clk-gate = <0xd8 0>;
+ 					};
+ 
+-					ddr_2x_dqs_clk_gate: ddr_2x_dqs_clk_gate {
++					ddr_2x_dqs_clk_gate: ddr-2x-dqs-clk-gate {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&ddr_2x_dqs_clk>;
+ 						clk-gate = <0xd8 1>;
+ 					};
+ 
+-					ddr_dq_clk_gate: ddr_dq_clk_gate {
++					ddr_dq_clk_gate: ddr-dq-clk-gate {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&ddr_dq_clk>;
+ 						clk-gate = <0xd8 2>;
+ 					};
+ 
+-					h2f_user2_clk: h2f_user2_clk {
++					h2f_user2_clk: h2f-user2-clk {
+ 						#clock-cells = <0>;
+ 						compatible = "altr,socfpga-gate-clk";
+ 						clocks = <&h2f_usr2_clk>;
+@@ -524,7 +524,7 @@ h2f_user2_clk: h2f_user2_clk {
+ 				};
+ 		};
+ 
+-		fpga_bridge0: fpga_bridge@ff400000 {
++		fpga_bridge0: fpga-bridge@ff400000 {
+ 			compatible = "altr,socfpga-lwhps2fpga-bridge";
+ 			reg = <0xff400000 0x100000>;
+ 			resets = <&rst LWHPS2FPGA_RESET>;
+@@ -532,7 +532,7 @@ fpga_bridge0: fpga_bridge@ff400000 {
+ 			status = "disabled";
+ 		};
+ 
+-		fpga_bridge1: fpga_bridge@ff500000 {
++		fpga_bridge1: fpga-bridge@ff500000 {
+ 			compatible = "altr,socfpga-hps2fpga-bridge";
+ 			reg = <0xff500000 0x10000>;
+ 			resets = <&rst HPS2FPGA_RESET>;
+-- 
+2.42.0.411.g813d9a9188
+
 
