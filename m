@@ -1,108 +1,144 @@
-Return-Path: <devicetree+bounces-251125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A12D6CEF145
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 18:38:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E6DDCEF1D8
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 19:01:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1192230109B1
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 17:38:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F2216300E7D0
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 18:00:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC00E2EA171;
-	Fri,  2 Jan 2026 17:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18392FD1B1;
+	Fri,  2 Jan 2026 18:00:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DB+6042d"
+	dkim=pass (2048-bit key) header.d=jm0.eu header.i=@jm0.eu header.b="q41phBFq";
+	dkim=permerror (0-bit key) header.d=jm0.eu header.i=@jm0.eu header.b="TrOOrQJ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A92D72222C4;
-	Fri,  2 Jan 2026 17:38:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767375510; cv=none; b=XNJ2usr09R6LdrN4Knb+JsBtcW6gDfPSR+8zVylxA9rvQ/QrjmO2IcEyR353+ELdOKXZkziek1Bb2KrM18r7v5/CANxK1tdy+Hyr8lld5WnAFmeNi/xlAUEV2iQ5i/Rs+fllI2C9U+oZMLUeEMXg1kGLO6fJegekos730anCPVc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767375510; c=relaxed/simple;
-	bh=QcknUrYBl8gCUaV1a78vCxQD5n24yW7uv7ymg3UZsKQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=gkBLI6Q0MmIjEKTpVx6bP8h7LOFQ2u4lj5bacvlnvn/xN0xO+Qb1ULykAy7LCttJiz/HapMZbxrspZdVS/qkRzNhCc3sWoPs4++dQjrGVtG0eVqp8i0pApxS/HQmZBygYok215tM636LV55s06wQohg5+FiiTIXaPHnWpQL0oWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DB+6042d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FC47C116B1;
-	Fri,  2 Jan 2026 17:38:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767375510;
-	bh=QcknUrYBl8gCUaV1a78vCxQD5n24yW7uv7ymg3UZsKQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=DB+6042dL0G5ELqyiLR7WjVeG/WEjV3ACWHki7Qc7OmIbo01rSw8/bZk/kVcuej3P
-	 B7JwNU4kORP5Lpn9QaFz/M3RoeTLQi+QiVD5xH7A9rN8JotoDRRM9GM9b1RAbhZveB
-	 HAfDqvy8V2Zl54xRbkgrrGNV/cadxQwFO6ZDiztHOZfStVkyH0RM/woaGXVc4ocQyv
-	 pbLEVDp1x+X/iJiP85H+pFu3sfmPMrd1N6x36g7LKcLO0rhP7nxlXw8nkW855sxCif
-	 AzkKT/5CQUc3QmP4CLyppeNJqJOq22f3cPYEBqDZlGisqCA9DGSd2RE+XE3xv7fC0Y
-	 NCip/kEY1GsLw==
-Date: Fri, 02 Jan 2026 11:38:29 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF73F272E63;
+	Fri,  2 Jan 2026 18:00:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.165
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767376854; cv=pass; b=h0iHNB1n+X57W6/woyPcqmt+8unRewvSoDwJsjW08Mw63W0VAAn9o0PQS0GySVxEIsCoHvmecJOKSlavDf4urZth6ShxX8w0TWl5KgeGmsGIVrXXrsOUj0Sd5D5AsGIsHj25dEDUu8HbzAMVGcz9ywR6TLA7d9XpSB1S7w5LE9Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767376854; c=relaxed/simple;
+	bh=Uch4U0qgEM7cTuIEyy2Jv0JMCMmFm3wQDWCEjA/mhuI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cMvb+1tAkag8PsT4p2Ez1T64OTEYbZ11Nifb2za0BtTBnfBLNW21Z8Y0Ilul7AZv4GJ+QFUATD92oX64HWgTIA0bAQJcwslItkO/vghv2HnXSGxqL5IRioHR/+W8t69CyFWi8KuD5/paucMbGoiA0M/ilLhfflklm94yhDBe4Hs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=jm0.eu; spf=none smtp.mailfrom=jm0.eu; dkim=pass (2048-bit key) header.d=jm0.eu header.i=@jm0.eu header.b=q41phBFq; dkim=permerror (0-bit key) header.d=jm0.eu header.i=@jm0.eu header.b=TrOOrQJ1; arc=pass smtp.client-ip=81.169.146.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=jm0.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=jm0.eu
+ARC-Seal: i=1; a=rsa-sha256; t=1767376836; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=R81mB6Z9VJ4Ii4xrsDL2irsPcgBOsbJz07vtZawbGzA6YZni6Qly1GlhkCk0Oe6aEf
+    K1ospmM6VS8uxlNFBabVxNBIN9M2NeSi4kSjE354HTFm/JkM3Dc6UBKD1Z/TGYj8o5ht
+    QK8zahcX8yPQglF95glDV/E/8RPWAKlxvxekPmReZI6/OvjLwW9bWITfOZCY3evDMPKL
+    8X+wVXKa+NkNhh/9STowuGUx6k/XpwlcFxgieLoguqoM0qlOxGrg+aKNsi8gfsKb4Qjl
+    wCFGCgf3gDyFvTQ0TKlCFieqRT8g/Oeh3C4WEqgK5T1qT5ALNO83PV5BdUnbZoP13t5H
+    nOXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1767376836;
+    s=strato-dkim-0002; d=strato.com;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=X87cwCCWZjshqk0f71Zpbr2Hwf6QMx80ZDoysBFiT2k=;
+    b=hZIQEIWX74OYWYtETkjqHTm3U14u8wCE/lczXeGMQvgT1AhaYxjCCDt68O/PoI59lh
+    w5jO2pMrSXkV1VebcxdLy981JHPfKRs1hhxiXUT+sYh1B3VyKnRXBffy1yT2y8JG8Dvp
+    MF164vYjzRohkcxymCD/g0lMt13k6lmwusiVz/lWcEcxYbmU+bginDBuJ2mFzYN2Gztu
+    3fY+DuOsdv2rlwy6YO2pdP3G8AlSLUmMNMslLIY6J4TVRrQuQoZuS11oLqtCKBJcoThh
+    EbFjeGmj8SvlsczuGvSZq5cs4PhkHzmyTzKOyocTTF3IElEjn6jzssgpQLI0EsDXc8t8
+    m9vg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1767376836;
+    s=strato-dkim-0002; d=jm0.eu;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=X87cwCCWZjshqk0f71Zpbr2Hwf6QMx80ZDoysBFiT2k=;
+    b=q41phBFqlZBicChEMpeuuin+iegmOKujno6JpI3HfQGexfGx5E4xxOjFQEq8E4U079
+    0tM/5dgjosm6SJVXwWrmu98u73PyD5gLYMIyl/y2mvB7pW57wEfoyRm1VlrB0xsL/hvN
+    j7vWbC1T8+Cs0esjTEG2LCuP8ScXVB4wzYF2ny3bkHuvrzHOxcsQVGTiKMxwjjE3XQvN
+    B8rgq02L+w/qTxFSDv76AWL7IzX/gvd144CbojCGTvBDJ6neSM5ArEsbMkf2jvY3xD7Y
+    O91TgGznMvWKhOrkZRAFyy7gTJkIbAdpnuEa1DdbOsnCiV2wvTP/BuP36GPOo1aXuOZj
+    rVlg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1767376836;
+    s=strato-dkim-0003; d=jm0.eu;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=X87cwCCWZjshqk0f71Zpbr2Hwf6QMx80ZDoysBFiT2k=;
+    b=TrOOrQJ11RmMe3y0TVhn3tkCGDCKMAdN0wS/iRGFHIZ8O1aEuVgLhTY5XgyJJxsZqP
+    AzFtV9Q+9bQKZ+42tzDA==
+X-RZG-AUTH: ":JmMXYEHmdv4HaV2cbPh7iS0wbr/uKIfGM0EPTeoCaRth8YQivJ4sfKeu9QyRDNI="
+Received: from Wablet.localdomain
+    by smtp.strato.de (RZmta 54.1.0 DYNA|AUTH)
+    with ESMTPSA id z0d4ec202I0YEU8
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Fri, 2 Jan 2026 19:00:34 +0100 (CET)
+From: Josua Mayer <josua.mayer@jm0.eu>
+Subject: [PATCH 0/4] power: supply: add battery driver for netronix ec
+Date: Fri, 02 Jan 2026 19:00:29 +0100
+Message-Id: <20260102-kobo-aura-battery-v1-0-501f2a8fa575@jm0.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: matthias.bgg@gmail.com, sergio.paracuellos@gmail.com, 
- tsbogend@alpha.franken.de, linux-crypto@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, ansuelsmth@gmail.com, 
- devicetree@vger.kernel.org, benjamin.larsson@genexis.eu, 
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
- conor+dt@kernel.org, herbert@gondor.apana.org.au, krzk+dt@kernel.org, 
- chester.a.unal@arinc9.com, angelogioacchino.delregno@collabora.com, 
- davem@davemloft.net, linux-arm-kernel@lists.infradead.org
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-In-Reply-To: <20260102155341.3682013-2-olek2@wp.pl>
-References: <20260102155341.3682013-1-olek2@wp.pl>
- <20260102155341.3682013-2-olek2@wp.pl>
-Message-Id: <176737550920.3990125.15817156622138815627.robh@kernel.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: crypto: eip93: add support for
- Mediatek MT7621 SoC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAL0HWGkC/x3MQQ5AMBBA0avIrE3SVhCuIhYtg4lEZYqQxt01l
+ m/xf4RAwhSgzSIIXRzYbwk6z2BY7DYT8pgMRplSG1Pj6p1He4pFZ4+D5MGCKuUGXTajriB1u9D
+ E9//s+vf9AFGv+c1jAAAA
+To: =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+ Lee Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, Josua Mayer <josua.mayer@jm0.eu>
+X-Mailer: b4 0.13.0
 
+This series adds a new battery driver for the netronix embedded
+controller multi-function device.
 
-On Fri, 02 Jan 2026 16:47:34 +0100, Aleksander Jan Bajkowski wrote:
-> Add compatible for Mediatek MT7621 SoC. The implementation is exactly the
-> same os in the Airoha SoC.
-> 
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
-> ---
-> v3:
-> - Use enum
-> v2:
-> - Corrected commit description
-> ---
->  .../bindings/crypto/inside-secure,safexcel-eip93.yaml         | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+Bindings are updated supporting a monitored battery, and battery
+description is added to kobo aura device-tree.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Josua Mayer <josua.mayer@jm0.eu>
+---
+Changes in v2:
+- Fixed identity mixup between from address and SoB.
+  (Reported-by: Krzysztof Kozlowski <krzk@kernel.org>)
+- Changed patch ordering, device-tree first.
+- Separated new driver and mfd subdevice changes into separate patches.
+  (Reported-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>)
+- reworded Kconfig to explicitly mention device-tree
+  instead of vague firmware tables expression.
+  (Reported-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>)
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml:35:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+---
+Josua Mayer (4):
+      dt-bindings: mfd: netronix,ntxec: add reference to power-supply
+      ARM: dts: imx: imx50-kobo-aura: add description for battery
+      power: supply: add battery driver for netronix ec
+      mfd: ntxec: register battery subdevice.
 
-dtschema/dtc warnings/errors:
+ .../devicetree/bindings/mfd/netronix,ntxec.yaml    |   9 +-
+ arch/arm/boot/dts/nxp/imx/imx50-kobo-aura.dts      |   9 ++
+ drivers/mfd/ntxec.c                                |   1 +
+ drivers/power/supply/Kconfig                       |   9 ++
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/ntxec-battery.c               | 101 +++++++++++++++++++++
+ 6 files changed, 127 insertions(+), 3 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251227-kobo-aura-battery-3e60bc159d16
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260102155341.3682013-2-olek2@wp.pl
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Josua Mayer <josua.mayer@jm0.eu>
 
 
