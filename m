@@ -1,109 +1,147 @@
-Return-Path: <devicetree+bounces-251100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B467FCEEB2D
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 14:52:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDFC3CEEB33
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 14:53:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0B462300E02C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 13:52:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 89F71300D407
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 13:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FC9C3126A3;
-	Fri,  2 Jan 2026 13:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CE3C3126B5;
+	Fri,  2 Jan 2026 13:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AMq5sKk4"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="mihNgPx/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F74310763;
-	Fri,  2 Jan 2026 13:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A80F30DD14;
+	Fri,  2 Jan 2026 13:53:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767361941; cv=none; b=K2y3fQla7p0Fx7+wNI4zi54M2UzGm+S74JWdpEByDwPYJ37liz39WZ84ZYF0SJe8yXBhSsCWFNOn6SNmInM6UU1jmPHh85gusvvSxHZ+7qKxw1rsnqs3//WIlG+dqOgy9AOhjGD2AYSUk/uEnkX8WX7F1y8l9TYpjf+2sfJ6yUw=
+	t=1767362020; cv=none; b=epGR38PvzuwEZGx+QuX7a0Qf6/3bwL4ZH5tV0lwT3DryGY6tttkTUVNuHteEnN8V/Y1fltctDnn/t8miZtTrNy0IEQEJVotmuK06rrpKyQwe+s1yUwLsoWj2pkoKlWN+8C+yg1W8nwbd5vWMESqRwSgFq5dYb3W2iijA0r4hW6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767361941; c=relaxed/simple;
-	bh=BqNSZT2cOzI2ag9wybPe7EepahdlA7tYbjaMGwVTos4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=OXefBHEW7IBfhL3eaBDd4fk9rwpHGH7W+zUM5KRc8DZDQ28qoQhs093lY2i7QRo6iGsXJvAHlg2t4HnbMU4M6BbsGWRb/YLo2KfJ6PUTYukKfS6JA6zcNVi+INUfs9LruPH+cusWRIbspZS6/+a01ckv9y2t09OVJUzZThialLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AMq5sKk4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A634C116B1;
-	Fri,  2 Jan 2026 13:52:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767361940;
-	bh=BqNSZT2cOzI2ag9wybPe7EepahdlA7tYbjaMGwVTos4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=AMq5sKk4Y5TY8W5lO9XhJcdZY68sJj3Sv7XTA5DdpnxQEVFP2sRwuA5tq0spUFpQ2
-	 Dnu+GACBmemUfaTq8cgVJsRX8gVCGHNIhosyVm9W8Yu1ELfRmGnLRVaFmqx1NaUhvv
-	 6m2Li4+2UAHV7VnfVEYmKI6A3j1efikVPNN655hUiZE1RisyESxWtqZQTJyVvlSJaY
-	 xXirzBBxyl3i9WiaF6qT9N6tLvsh0kUcJWFU1bSzhb6naipJ4nVWdsR6S6fnUlrTNS
-	 s1vYH467k6EWE0r+WXIPXSE0dNbAUvWzNMi0jliIM30AOypKi8Z6yk6xD93yK0cPpV
-	 bhbuQ8jqY9WaQ==
-Message-ID: <e10dd345-01e6-4be7-bd9d-d0a464aa679e@kernel.org>
-Date: Fri, 2 Jan 2026 07:52:20 -0600
+	s=arc-20240116; t=1767362020; c=relaxed/simple;
+	bh=gHuBgv2PqEZ4lJJD4FceQkqq+SPiJSqYIRLDA6kWIyg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DDZsOcgVxLq6vg3FOfYg4/i1l1v91mdpKf/z56pjOdwbUZ+czd/hbQtZCPHXtIDFk/yVzCeXLBvJ4JtWHS+dKxduxMHd4oQsH+G+XkTx1m0nS7SNuuTLgpZxWJMzR9x2tXrx41CpowWj8B/AAHTa+CFHZnW2s7L6tZy5VpZWmMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=mihNgPx/; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4djQC270Gsz9stX;
+	Fri,  2 Jan 2026 14:53:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767362015;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ujVKOuzo5WqYG+lz+h/KUlxw8OmDWuGVBGYVvXW42P0=;
+	b=mihNgPx/gLD9uHoofpTBP+ijkKRfW9R0iSjTMv2iJ87GXsbO6ZXnbANN4HYn+OeuE3Iz4x
+	YmmXoeJdARn7pITD1kHG6QtBjvD3u0l5juuQUKJxnUjaW4F1sHdDClXfk19gpbdNaqilpD
+	re9v7+ZgkVY8RK2JMHogg1PECqRzA6lp/kCPId/C0tR/RoVnEmPL5niryFmko5oJKb4mUn
+	gufNrKNpSICS1BMKOzTfC/ZiDp8ScZRrQ8W03McScz4NQiUOzd34SG+wLp4bfO5w8eOfzY
+	obyRXY2ol/5SefQn98MgCRDHKpzlSwVhukROUYHoE0sbGrM9SQGv+IsBLgc2mw==
+Message-ID: <0de33175-1dc3-417b-8dab-9b57940f0789@mailbox.org>
+Date: Fri, 2 Jan 2026 14:53:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] arm64: dts: intel: agilex5: Add simple-bus node on
- top of dma controller node
-To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, Vinod Koul
- <vkoul@kernel.org>, dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1766966955.git.khairul.anuar.romli@altera.com>
- <ef6ed8338e54c02ed9508e91bdf120580e834e17.1766966955.git.khairul.anuar.romli@altera.com>
+Subject: Re: [PATCH] arm64: dts: imx95: remove CLK_GPUAPB
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: Frank.Li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ festevam@gmail.com, imx@lists.linux.dev, jiyu.yang@nxp.com,
+ kernel@pengutronix.de, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ liviu.dudau@arm.com, robh@kernel.org, s.hauer@pengutronix.de,
+ shawnguo@kernel.org
+References: <20251231031915.752262-1-jiyu.yang@oss.nxp.com>
+ <37489cb7-820d-46cd-a7ea-0f9097604895@mailbox.org>
+ <aVXByNiEfC66RDG0@oss.nxp.com>
+ <b2dd2109-c2d9-412e-9b11-5851485acf04@mailbox.org>
+ <aVegAt002L20oBGf@oss.nxp.com>
 Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <ef6ed8338e54c02ed9508e91bdf120580e834e17.1766966955.git.khairul.anuar.romli@altera.com>
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aVegAt002L20oBGf@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: e019832cff23643e43e
+X-MBO-RS-META: y1eoui7nrfmfe6kre5jnazb59cqu4f7q
 
-
-
-On 12/28/25 21:49, Khairul Anuar Romli wrote:
-> Move dma-controller node under simple-bus node to allow bus node specific
-> property able to be properly defined. This is require to fulfill Agilex5
-> bus limitation that is limited to 40-addressable-bit.
+On 1/2/26 11:37 AM, Rain Yang wrote:
+> On Thu, Jan 01, 2026 at 05:51:12PM +0100, Marek Vasut wrote:
+>> On 1/1/26 1:37 AM, Rain Yang wrote:
+>>> On Wed, Dec 31, 2025 at 03:11:21PM +0100, Marek Vasut wrote:
+>>>> On 12/31/25 4:19 AM, Rain Yang wrote:
+>>>>> From: Rain Yang <jiyu.yang@nxp.com>
+>>>>>
+>>>>> Dropping CLK_GPUAPB simplifies OPP handling and avoids unnecessary
+>>>>> complexity.
+>>>>>
+>>>>> Fixes: 67934f248e64 ("arm64: dts: imx95: Describe Mali G310 GPU")
+>>>>> Signed-off-by: Rain Yang <jiyu.yang@nxp.com>
+>>>>> ---
+>>>>>     arch/arm64/boot/dts/freescale/imx95.dtsi | 4 ++--
+>>>>>     1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+>>>>> index 88bde59e61b2..ab446aa6f73c 100644
+>>>>> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+>>>>> @@ -2164,8 +2164,8 @@ netc_emdio: mdio@0,0 {
+>>>>>     		gpu: gpu@4d900000 {
+>>>>>     			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
+>>>>>     			reg = <0 0x4d900000 0 0x480000>;
+>>>>> -			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>, <&scmi_clk IMX95_CLK_GPUAPB>;
+>>>>> -			clock-names = "core", "coregroup";
+>>>>> +			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>;
+>>>>> +			clock-names = "core";
+>>>>
+>>>> I don't think this is correct, SM can disable the GPUAPB clock from the SM
+>>>> monitor:
+>>>>
+>>>>> $ clock.w gpuapb off
+>>>>
+>>>> Linux has to make sure the GPUAPB clock are enabled to access the GPU
+>>>> register, hence the clock have to be described in DT.
+>>> Hi Marek,
+>>
+>> Hello Jiyu,
+>>
+>>> CLK_GPU and CLK_GPUAPB can only be controlled internally by the SM, not by Linux.
+>>> CLK_GPUAPB always runs at a fixed frequency, does not require dynamic adjustment,
+>>> and is practically always on.
+>>> Additionally, CLK_GPUAPB's frequency is absent from all OPP entries. Removing it
+>>> could simplify OPP handling logic and reduce unnecessary complexity.
+>>
+>> But the SM can turn the GPUAPB clock off, correct ?
+>>
+>> Linux has to be able to turn GPUAPB clock on, therefore the GPUAPB clock have
+>> to be described in DT, correct ?
 > 
-> Update the compatible string for the DMA controller nodes in the Agilex5
-> device tree from the generic "snps,axi-dma-1.01a" to the platform-specific
-> "altr,agilex5-axi-dma". Add fallback capability to ensure driver is able
-> to initialize properly.
+> Yes, CLK_GPUAPB can be turned off by the SM, but by default it remains on, just like
+> CLK_GPU. AFAIK, there is no scenario where either of these clocks could or would be
+> disabled in both SM and Linux.
 > 
-> This change enables the use of platform-specific features and constraints
-> in the driver, such as setting a 40-bit DMA addressable mask through
-> dma-ranges, which is required for Agilex5. It also aligns with the updated
-> device tree bindings and driver support for this compatible string.
-> 
-> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-> ---
-> Changes in v5:
-> 	- No changes.
-> Changes in v4:
-> 	- No changes.
-> Changes in v3:
-> 	- Rename the patch  "arm64: dts: intel: agilex5: Add dma-ranges, address
-> 	  and size cells to dma node"
-> 	- Add simple-bus and move dmac0 and dmac1 1 level down.
-> Changes in v2:
-> 	- Rename the from add platform specific to add dma-ranges, address
-> 	  and size cells.
-> 	- Define address-cells and size-cells for dmac0 and dmac1
-> 	- Add dma-ranges for agilex5 for 40-bit
-> ---
->   .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 78 ++++++++++---------
->   .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 78 ++++++++++---------
->   1 file changed, 43 insertions(+), 35 deletions(-)
-> 
+> If enabling or disabling CLK_GPUAPB in Linux was wanted, the same shall apply to CLK_GPU
+> to make this approach reasonable.
+> Also, OPP framework shall be adjusted to meet these changes too.
 
-Applied!
+You can not depend on the state in which bootloader or any other prior 
+stage left the platform. If the clock can be turned off, you must make 
+sure they are turned on for correct hardware operation.
 
-Thanks,
-Dinh
+CLK_GPU is enabled as parent clock of CLK_GPUCGC already.
+
+I don't understand your concerns about the OPP framework, this keeps 
+coming up in the discussion one way or the other, but it is not clear to 
+me what this is about. Can you elaborate on the OPP framework concern ?
 
