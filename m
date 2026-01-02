@@ -1,210 +1,106 @@
-Return-Path: <devicetree+bounces-251055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D4FFCEE495
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 12:13:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1344FCEE4BC
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 12:16:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1D2DF300B2BD
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 11:13:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A7313003F73
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 11:16:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E662E7BC2;
-	Fri,  2 Jan 2026 11:13:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480B1287269;
+	Fri,  2 Jan 2026 11:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="E+DJ2rP6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KxBRLCP9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B71B92DF153
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 11:13:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14B1B2264AA;
+	Fri,  2 Jan 2026 11:16:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767352423; cv=none; b=K1LpMMllcs98sx2zJLEyqA7HuakWszzH/ybe5s+vaP+91qg3b/xGMEEyiYiS2CiAkuPwxwI9RXb8cItd5pTG7JbVFVmc4SFJJ1Xh5dU+vl4NcXuOsgVkuef2DSNLw2+eFVqJgCbeEZfirKRO0yz4r6UxzLJsG5e+X0/c79JW09Q=
+	t=1767352576; cv=none; b=KdRRLq1zmWXj4vo1/QaUIQtd4CRIYIuih6oFoi0/fImmptoy9VTdekf/lDr1wYjjurOreRVdTLR5TSWKsKPlbK2UM51eQF86tXUv27cyfhIFX3ErvnFihXztw3vpvZSSraOO6FpHOTu6HXcj+w7c2bh3OHlfnzuKVK6viPqhL/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767352423; c=relaxed/simple;
-	bh=nXFZwZZBKquh8LmMNfYlo2E6H3yvO66kM3Z2AGIucRg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VO6bRbneTubwJY8lU//b1vfT92OuzfZt+naa/T8SQtD1GawgV/2nyTtVDEQA09ppNLDVpamXqbfohXfcQfV7cgne56CaxCnD/IwYUdMycvDSGnp+jjTQeq05gRkhMJV7gIwaDgaRiLemdXPjX+1PZJJQ4BtHtCDyV71N+CzCmzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=E+DJ2rP6; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5957db5bdedso13815729e87.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 03:13:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1767352420; x=1767957220; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FsSijJtpaI/oDSTtzaUkeXToSyfCr4FMo1aTrP8qZaU=;
-        b=E+DJ2rP6MxVUCdmBqZoI8P0tCI2IXXRTYgVdh+t0wtuN5qhCvwC8gsXod6vw7KkFDh
-         FX0G8uZKwAKwhcZpD9fB0YcUqH7AYcatZ0IVw7+OSkhch+6ID6Y0kLwrn/R+CRqgVOyD
-         tpN3Dc2+4KHitrxseeIxY9cratYQyTnVB13uoPBYdWVGsqBSkVZ3vCa6OkigVNmpp3fv
-         5m7yPUiqflkZGIPCNgqdLBbFxbNi5+APmnzvs+69Ca5UOHYui3zP27LzMpqQDjSXaz0l
-         +le3YqGnrtn5GgRi2URtYCVep5lwkpa3u3/8tI+TAFBALnLY32FvPFm/rDNuKieBMvCj
-         Ee4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767352420; x=1767957220;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=FsSijJtpaI/oDSTtzaUkeXToSyfCr4FMo1aTrP8qZaU=;
-        b=SNWAluXIc3F0FabBTNrMXJyCcoUvAmGdKTm4j1cr0EhKsH6Mt0muSkTl29HYT7XPMK
-         UxcsroWD3e3qJhK520AQAyIuXjmGHnm1jUkWE/PobEGg9NQJhaI6D5G3yiOmQmJMuRbv
-         HOIK1YZtnlVFOXX/QrkgIADDEusdDsXuOiT1CZpAsqTR3Zm/7/fHrjys1kASogp6byfT
-         CLDBfi4hif+yuBeNIUP8vhKiselKSCqoE0n74lnbX5Tf6F3G+RdRieT796oiq/b3d8p1
-         2nsv19G6n/sL7h89nSwvGOeZZcCVSxbB8fEZ1IHC+FgrI9Vo/zsdXM3uNchtkut3/CAA
-         Hb1g==
-X-Forwarded-Encrypted: i=1; AJvYcCU8Y6Mo1H0CBWhPKQq/x77YyDgOEaNL/RHAELe4ZizMExPFufCz05ZtvcFn38UEArEQGKxWwKxYYLGU@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywgpx2FPfVAR+hLYZvc4Xfa97bzVfj2Va7MSZb7ex5gyVWmHwzM
-	dfDTaDB3leaG4o5GShrQ87zXpqOAAFokPIrBi1Eb5QRFJ0DjctEej89nH/pJRO1vl/LoIgep/Uy
-	s9zJ5Lkc+8gLAm0Xxs4BzS6b+/NeemuofjR2IFRvJ3A==
-X-Gm-Gg: AY/fxX52XoSEUtXAhWIOr0ro7y7O6V9vCY+xIVgJ8e3D+Y75fIsk3Hm8qQ5zl6w884k
-	UoFnoomSMymBNfmW0vlOtK66iJtyD2/xzXEobPs0XqkFN9+/pyJq2a/MU6xTrQj/toekfmi+irM
-	v5mnYtfRU/AvmAdpYSZ25EUC/Uq7RTDnw4w+/sjlngFJ17rhIqJzCwoF15KI3IOn4sAS5baPqau
-	O1c2tlr9Wpf+7yku6wPhtgu6/EcKV2F6T6camnkYpVTlmQBFSPpc87fdKXdjOltCPwvmv0gE9Xe
-	JFmPCFC7YmNXtGZ5yWpQ+tXE2n4=
-X-Google-Smtp-Source: AGHT+IFAdaCcjUwdY3Ew9NHcwLT11KRJipC8z25Ztoxl2WB+caL1mXRBHlm39ALYwigrxotmoGpHP+uwj2P6/o6YWRA=
-X-Received: by 2002:a05:6512:b8b:b0:598:8f92:c33f with SMTP id
- 2adb3069b0e04-59a17d77435mr14680425e87.51.1767352419706; Fri, 02 Jan 2026
- 03:13:39 -0800 (PST)
+	s=arc-20240116; t=1767352576; c=relaxed/simple;
+	bh=dpxT0WKNHRik/eHSklywmLtNYi1yzDw7ihV/V23fxjU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pVWXrN92glweTnAgjlPwaEya42z9AejXTO4Ht377/cesQ+DxYgrWRUU54KMSMm3r+mXb5P1aFUcIkQT6nmdtIhBX0jCqO+pRbqquSfoXEtKKil/k5h6pMaZ145f437PELCq+7yaR2Tsszgk4Qa3YOo1tlHNoFYi7/K8r3caOgeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KxBRLCP9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F34BBC116B1;
+	Fri,  2 Jan 2026 11:16:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767352575;
+	bh=dpxT0WKNHRik/eHSklywmLtNYi1yzDw7ihV/V23fxjU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KxBRLCP9sfZzxN2+/HXmxyiyxxP1uEEUc5kZg2U2DmLIqDF7B9h/1iNnXihjOEKy+
+	 aA5JmkqfiM0qYMTURPGCN3HXci9X8Q60pEsxAjY6bzI12kzRHdcT3NbeAKYWfHrVtx
+	 35Au068apfsr3hRC49pr9Rg2kEYi6doDR2Y7k2cZlKFDeFwwzZz4MuGF+04fYtJsEm
+	 3jp5d4NAUoEsVGMiUp5dBGgJpZo4iFupndqbdwiCuzsZqzDUc/vusfK2S7q/5yVeoo
+	 Qjsg9gSh0FVrRZX0cP/O3HGdJKoiFY89vtbwrSqLJQxdsajaEk8ZveRGhXoJOcwqEc
+	 gMogGDUKJe8nA==
+Date: Fri, 2 Jan 2026 12:16:13 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: can: renesas,rcar-canfd: Specify
+ reset-names
+Message-ID: <20260102-quirky-hornet-of-downpour-ddda69@quoll>
+References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251230115814.53536-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251125-pci-m2-e-v2-0-32826de07cc5@oss.qualcomm.com>
- <20251125-pci-m2-e-v2-2-32826de07cc5@oss.qualcomm.com> <CAMRc=Mc-WebsQZ3jt2xirioNMticiWj9PJ3fsPTXGCeJ1iTLRg@mail.gmail.com>
- <fwzmob6ez7c6xbakcd4rq2icp7mdwgdvimss3zybb4ivdds3uo@mwguaz7rekjc>
-In-Reply-To: <fwzmob6ez7c6xbakcd4rq2icp7mdwgdvimss3zybb4ivdds3uo@mwguaz7rekjc>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 2 Jan 2026 12:13:27 +0100
-X-Gm-Features: AQt7F2rD4Vva2u72gj0duDgyvxJiVfI_tVGQktahu3E6VwiSEZFuXnq9LhXUXbk
-Message-ID: <CAMRc=MdNTHtzTJ3f3qVHH=qFbK86MzUP0vvx3ogZsXG+iqMUnw@mail.gmail.com>
-Subject: Re: [PATCH v2 02/10] serdev: Add serdev device based driver match support
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, 
-	Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>, 
-	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
-	Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251230115814.53536-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Tue, Dec 30, 2025 at 8:56=E2=80=AFAM Manivannan Sadhasivam <mani@kernel.=
-org> wrote:
->
-> On Thu, Nov 27, 2025 at 06:32:04AM -0800, Bartosz Golaszewski wrote:
-> > On Tue, 25 Nov 2025 15:45:06 +0100, Manivannan Sadhasivam via B4 Relay
-> > <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> said:
-> > > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > >
-> > > Add support to match serdev devices with serdev drivers based on the =
-serdev
-> > > ID table defined in serdev_device_driver::id_table.
-> > >
-> > > The matching function, serdev_driver_match_device() uses the serdev d=
-evice
-> > > name to match against the entries in serdev_device_driver::id_table.
-> > >
-> > > If there is no serdev id_table for the driver, then serdev_device_mat=
-ch()
-> > > will fallback to ACPI and DT based matching.
-> > >
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualc=
-omm.com>
-> > > ---
-> > >  drivers/tty/serdev/core.c         | 23 ++++++++++++++++++++++-
-> > >  include/linux/mod_devicetable.h   |  7 +++++++
-> > >  include/linux/serdev.h            |  4 ++++
-> > >  scripts/mod/devicetable-offsets.c |  3 +++
-> > >  4 files changed, 36 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
-> > > index b33e708cb245..2b5582cd5063 100644
-> > > --- a/drivers/tty/serdev/core.c
-> > > +++ b/drivers/tty/serdev/core.c
-> > > @@ -85,12 +85,33 @@ static const struct device_type serdev_ctrl_type =
-=3D {
-> > >     .release        =3D serdev_ctrl_release,
-> > >  };
-> > >
-> > > +static int serdev_driver_match_device(struct device *dev, const stru=
-ct device_driver *drv)
-> > > +{
-> > > +   const struct serdev_device_driver *serdev_drv =3D to_serdev_devic=
-e_driver(drv);
-> > > +   struct serdev_device *serdev =3D to_serdev_device(dev);
-> > > +   const struct serdev_device_id *id;
-> > > +
-> > > +   if (!serdev_drv->id_table)
-> > > +           return 0;
-> > > +
-> > > +   for (id =3D serdev_drv->id_table; id->name[0]; id++) {
-> > > +           if (!strcmp(dev_name(dev), id->name)) {
-> > > +                   serdev->id =3D id;
-> > > +                   return 1;
-> > > +           }
-> > > +   }
-> > > +
-> > > +   return 0;
-> > > +}
-> > > +
-> >
-> > I don't know if Rob agrees with me but I would very much prefer to see
-> > software-node-based approach instead of an ID table matching.
-> >
-> > Could you in the pwrseq driver, create a software node for the serdev d=
-evice
-> > you allocate, set its "compatible" to "qcom,wcn7850-bt" and match again=
-st it
-> > here?
-> >
-> > This has several benefits: if you ever need to pass more properties to =
-the
-> > serdev devices, you already have a medium for that and you can also lea=
-ve
-> > serdev_device_add() alone. You're comparing the entire name here - what=
- if
-> > someone sets device's ID to some value and the name will be "WCN7850.2"=
-?
-> >
-> > You could also drop the serdev_id field from struct serdev_device. For =
-matching
-> > you could even reuse the of_device_id from the device driver.
-> >
->
-> I tried this approach and I really liked it since it gets rid of the yet-=
-another
-> id_table for serdev (which I didn't like it btw). But there is one concer=
-n
-> though. We need a generic 'device_get_match_data' implementation for swno=
-de.
-> While trying to implement it, I stumbled upon this patch [1] which does t=
-he same
-> for other usecase, but there was a disagreement on whether swnode should =
-be used
-> for driver matching or not. For my usecase, I find it very useful and
-> reasonable, but Dmitry Torokhov believes otherwise.
->
-> Maybe I'll include this patch in the next version, CC Dmitry and see wher=
-e it
-> goes.
+On Tue, Dec 30, 2025 at 11:58:11AM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Specify the expected reset-names for the Renesas CAN-FD controller on
+> RZ/G2L and RZ/G3E SoCs.
 
-Thanks for bringing this to my attention. I think that historically
-software nodes were meant to always be "secondary" but now we have all
-kinds of auxiliary devices that use software nodes as their "primary"
-nodes so maybe we can re-discuss this.
+You should explain here from where you got the actual names.
 
-Bart
+Otherwise you got following review:
+
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2:
+> - Moved reset-names to top-level properties.
+> ---
+>  .../bindings/net/can/renesas,rcar-canfd.yaml  | 33 +++++++++++--------
+>  1 file changed, 19 insertions(+), 14 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> index e129bdceef84..9bfd4f44e4d4 100644
+> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> @@ -122,6 +122,11 @@ properties:
+>  
+>    resets: true
+>  
+> +  reset-names:
+> +    items:
+> +      - const: rstp_n
+> +      - const: rstc_n
+
+rst seems redundant. _n as well. Are these names from datasheet? How are
+they called in this device (not the soc) datasheet exactly? Because it
+feels you use pin or SoC names which is not useful.
+
+Best regards,
+Krzysztof
+
 
