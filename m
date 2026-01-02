@@ -1,202 +1,184 @@
-Return-Path: <devicetree+bounces-251051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62CA1CEE460
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 12:09:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9016CEE46B
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 12:10:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 662853026BCA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 11:08:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B382E30080E6
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 11:10:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 989042E228D;
-	Fri,  2 Jan 2026 11:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578362E0B58;
+	Fri,  2 Jan 2026 11:10:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WTTrgXXO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="atudahxl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C2E2DF12E;
-	Fri,  2 Jan 2026 11:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32C182DF153
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 11:10:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767352088; cv=none; b=mz5OfR1yPQ0y+PfjnJlzZzzxI+ZAZNtDG5X8vcwCppBwqrtxL/VnYJDQyiMQxlFr7sTi9zkQWjhPBeYy8SaV9VWOX8yVrj5YPUpMztvkx1ICVQpRWOylxHPqezPPDdvH+UeQiAUvuKMPv/sQOhB4+m2h06lN55ZAQnwSBt4nMhA=
+	t=1767352220; cv=none; b=N+9vUdxeo7X/I8SX1hJnmg62M/b19d/TAi+CeJUUCHD32GVnHQBeh64tjz3izovFrr0U/UAEnnC9wMavXYfh85SygjnS6t/8d0m1JFH4MdX4FBuVCyizOvl9esXT0Wnxi02JjCs12ObQsbeh7wK9Y0cjZRJgC/u3hcV5BqH9CoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767352088; c=relaxed/simple;
-	bh=ysRNhpAwson+Oshwgl2G6gmQBVLIdPZnAlKqIkwEhe8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E0Vh1aMsLzIFwlCQTv0gjbc589sKX+1xdG26U2gQ9/fygeL3+LWeJ1nsTHJLrWS0TA9VltdVs9RZVSFOqkCpEkpcQyOCgSq/IhPKcWwSjETCXokiZ76vuVXAak85AsNHD3CfnX2pm4yHW9sfIc3Pw3AQNlmr7usNz825Uhx3nKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WTTrgXXO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C61A3C116B1;
-	Fri,  2 Jan 2026 11:08:05 +0000 (UTC)
+	s=arc-20240116; t=1767352220; c=relaxed/simple;
+	bh=re/lVUHs4kpt0uqKvmFx8BrYvmHm2mzCMHLFeQDYLAA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZNPMvojRbTPLeIe4C7XjW1LoBwgqvSqtL/J4Psm+wGd+H4j8rYrDSVOm+59tSaw4FoIYgrjGcwYRvVXpDoZktWOqkw9H2IaPZFsIbuJQeH/reXg3qHYU1j5v8aefdPtRxat+1XHt8Pt7BX/kuJ7LNxIY4Kyjkll6/ulH7GnvLf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=atudahxl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCD55C19423
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 11:10:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767352088;
-	bh=ysRNhpAwson+Oshwgl2G6gmQBVLIdPZnAlKqIkwEhe8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WTTrgXXOqL8HmmhrJDgkaI208qmnSCb7yweAhrZHeP2xL9I2OgEt30b8NnsMxTv2K
-	 jZDcN9zm9TrURrwHZkvuUyPasTTIet5dLBxiXY8v1hKHFf3TO3qLXfRpKtbcXOT2PI
-	 Iv2P+e4GWnV0mPhLV5hQIogZRVuy0RsTwMast2pBpbMkVtHgiOuNAZyUHUB5RXjAUO
-	 hFWBwoiPBGb1EEyhTgXKCayEizk+MqhnKngZKe6t9V9+QR9qLU1ogwiOMDuu5ZNsij
-	 tO5wndC8DiAlU6e0f+OYr44YUt6GHqHQhVT662Mp6ljSN69azADqk7Te+KVNCwxhko
-	 ty1tmF1JioyfQ==
-Message-ID: <e00630b9-56f0-4a30-84ef-8b691ea7af3e@kernel.org>
-Date: Fri, 2 Jan 2026 12:08:03 +0100
+	s=k20201202; t=1767352219;
+	bh=re/lVUHs4kpt0uqKvmFx8BrYvmHm2mzCMHLFeQDYLAA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=atudahxlVrUZuCPVDkJ4LwCvR4MFh+fD2126mwB0FEeczqh7nTznDYvwcgPXT2Pi/
+	 JWM9Fw4y9/K50w93zEv9j/FEiGk0pmLeN0ovag2Pf9EH30NAINWwrlOn8EDNwl+oC7
+	 dMr7nsEMjBJ/T3Dq/KB6JqQp2DeOocRH6cvk5Evnho/W+vsTOMzAv636KTlWaxcwmh
+	 mpYcic+vuB6qb8pMPOdqMJOXdmHBJsGeJe2Ca6fL7SpU4uxqos9ueVBixj2xVtJu6Y
+	 40PKMvzfRpcWMAz1NyAIvH4Y3Gj2ftrb/+GAvdObafKgfj7TiATaGPqRC4FAhDZct6
+	 D5LgdFbg6QbVQ==
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-594285c6509so13162643e87.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 03:10:19 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVcvm+qH7EwGiWFarYomcgmEpqIZdvaXhPsSRPpF5x32rqVvCPAB0Zecw3N/RHWUFpg/68Rc8ez4vHM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwalzwBh3gNzNR7ZDlPI/ZgAGnkvJAm19dPUh1KeUI1x9wYSt5G
+	u5Qjms0zlLNIoKjyPGrLnUKNm10DQNvXb72/cpdeUa1+SJ+7v1MhwMA+RsuWz5gY2kCmnswukM+
+	Pavw1NwxR5FrcjrHk5bLZ2Ry1o+WDPKzN1o5aJKq0aQ==
+X-Google-Smtp-Source: AGHT+IEQ7ednqbBJO2VgC95rOeiLl6BCkoGEMSAJg7b+XLLGpVniCILMJvrIy2hN08yx90/CKzL8XK3HVso0oifztYA=
+X-Received: by 2002:a05:6512:4016:b0:594:3270:3b14 with SMTP id
+ 2adb3069b0e04-59a17d3dd2amr13470822e87.32.1767352218463; Fri, 02 Jan 2026
+ 03:10:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: Enable eMMC variant
-To: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>,
- andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: sumit.garg@kernel.org
-References: <20260102104638.3802715-1-varadarajan.narayanan@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260102104638.3802715-1-varadarajan.narayanan@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251229-02-k3-gpio-v1-0-269e76785abb@gentoo.org> <20251229-02-k3-gpio-v1-2-269e76785abb@gentoo.org>
+In-Reply-To: <20251229-02-k3-gpio-v1-2-269e76785abb@gentoo.org>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Fri, 2 Jan 2026 12:10:05 +0100
+X-Gmail-Original-Message-ID: <CAMRc=MfHzP+xm-uX+jad5gPOGDpR23O6mB+xcSvF6ZiZfnxQjg@mail.gmail.com>
+X-Gm-Features: AQt7F2pPs6mTb0NBOMkrzh1IIi9oh6OnGyb-pPW3iEvvQf6OlFBF1OVtqlQ2SF0
+Message-ID: <CAMRc=MfHzP+xm-uX+jad5gPOGDpR23O6mB+xcSvF6ZiZfnxQjg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] gpio: spacemit: Add GPIO support for K3 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 02/01/2026 11:46, Varadarajan Narayanan wrote:
-> RDP433 can have NAND or eMMC based on a board level rework. Since the
-> same GPIOS are used for both the interfaces, only one of them can be
-> used. Add a new DTS file to disable NAND and enable eMMC.
-> 
-> Signed-off-by: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+On Mon, Dec 29, 2025 at 1:47=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
+>
+> SpacemiT K3 SoC has changed gpio register layout while comparing
+> with previous generation, the register offset and bank offset
+> need to be adjusted, introduce a compatible data to extend the
+> driver to support this.
+>
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile             |  2 +-
->  .../boot/dts/qcom/ipq9574-rdp-common.dtsi     | 32 +++++++++++++++++++
->  .../boot/dts/qcom/ipq9574-rdp433-emmc.dts     | 26 +++++++++++++++
->  3 files changed, 59 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 6f34d5ed331c..d5fe12ef4300 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -26,7 +26,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp418.dtb
-> -dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp433.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp433.dtb ipq9574-rdp433-emmc.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp449.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp453.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp454.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> index bdb396afb992..e4ae79b2fcd9 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> @@ -169,6 +169,38 @@ data-pins {
->  			bias-disable;
->  		};
->  	};
+>  drivers/gpio/gpio-spacemit-k1.c | 150 ++++++++++++++++++++++++++++------=
+------
+>  1 file changed, 106 insertions(+), 44 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-spacemit-k1.c b/drivers/gpio/gpio-spacemit=
+-k1.c
+> index eb66a15c002f..02cc5c11b617 100644
+> --- a/drivers/gpio/gpio-spacemit-k1.c
+> +++ b/drivers/gpio/gpio-spacemit-k1.c
+> @@ -15,28 +15,19 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/seq_file.h>
+>
+> -/* register offset */
+> -#define SPACEMIT_GPLR          0x00 /* port level - R */
+> -#define SPACEMIT_GPDR          0x0c /* port direction - R/W */
+> -#define SPACEMIT_GPSR          0x18 /* port set - W */
+> -#define SPACEMIT_GPCR          0x24 /* port clear - W */
+> -#define SPACEMIT_GRER          0x30 /* port rising edge R/W */
+> -#define SPACEMIT_GFER          0x3c /* port falling edge R/W */
+> -#define SPACEMIT_GEDR          0x48 /* edge detect status - R/W1C */
+> -#define SPACEMIT_GSDR          0x54 /* (set) direction - W */
+> -#define SPACEMIT_GCDR          0x60 /* (clear) direction - W */
+> -#define SPACEMIT_GSRER         0x6c /* (set) rising edge detect enable -=
+ W */
+> -#define SPACEMIT_GCRER         0x78 /* (clear) rising edge detect enable=
+ - W */
+> -#define SPACEMIT_GSFER         0x84 /* (set) falling edge detect enable =
+- W */
+> -#define SPACEMIT_GCFER         0x90 /* (clear) falling edge detect enabl=
+e - W */
+> -#define SPACEMIT_GAPMASK       0x9c /* interrupt mask , 0 disable, 1 ena=
+ble - R/W */
+> -
+>  #define SPACEMIT_NR_BANKS              4
+>  #define SPACEMIT_NR_GPIOS_PER_BANK     32
+>
+>  #define to_spacemit_gpio_bank(x) container_of((x), struct spacemit_gpio_=
+bank, gc)
+> +#define to_spacemit_gpio_regs(sg) ((sg)->data->reg_offsets)
+>
+>  struct spacemit_gpio;
+> +struct spacemit_gpio_reg_offsets;
+
+Why not move this structure here instead and avoid the forward declaration?
+
 > +
-> +	sdc_default_state: sdc-default-state {
-> +		clk-pins {
-> +			pins = "gpio5";
-> +			function = "sdc_clk";
-> +			drive-strength = <8>;
-> +			bias-disable;
-> +		};
-> +
-> +		cmd-pins {
-> +			pins = "gpio4";
-> +			function = "sdc_cmd";
-> +			drive-strength = <8>;
-> +			bias-pull-up;
-> +		};
-> +
-> +		data-pins {
-> +			pins = "gpio0", "gpio1", "gpio2",
-> +			       "gpio3", "gpio6", "gpio7",
-> +			       "gpio8", "gpio9";
-> +			function = "sdc_data";
-> +			drive-strength = <8>;
-> +			bias-pull-up;
-> +		};
-> +
-> +		rclk-pins {
-> +			pins = "gpio10";
-> +			function = "sdc_rclk";
-> +			drive-strength = <8>;
-> +			bias-pull-down;
-> +		};
-> +	};
+> +struct spacemit_gpio_data {
+> +       struct spacemit_gpio_reg_offsets *reg_offsets;
+> +       u32 bank_offsets[4];
+> +};
+>
+>  struct spacemit_gpio_bank {
+>         struct gpio_generic_chip chip;
+> @@ -49,9 +40,28 @@ struct spacemit_gpio_bank {
+>
+>  struct spacemit_gpio {
+>         struct device *dev;
+> +       const struct spacemit_gpio_data *data;
+>         struct spacemit_gpio_bank sgb[SPACEMIT_NR_BANKS];
 >  };
->  
->  &qpic_bam {
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts
-> new file mode 100644
-> index 000000000000..ffd96b1b1c65
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433-emmc.dts
-> @@ -0,0 +1,26 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-
-Odd license. We don't take GPL v3.
-
-> +/*
-> + * IPQ9574 RDP433 eMMC board variant device tree source
-> + *
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
+>
+> +struct spacemit_gpio_reg_offsets {
+> +       u32 gplr;      /* port level - R */
+> +       u32 gpdr;      /* port direction - R/W */
+> +       u32 gpsr;      /* port set - W */
+> +       u32 gpcr;      /* port clear - W */
+> +       u32 grer;      /* port rising edge R/W */
+> +       u32 gfer;      /* port falling edge R/W */
+> +       u32 gedr;      /* edge detect status - R/W1C */
+> +       u32 gsdr;      /* (set) direction - W */
+> +       u32 gcdr;      /* (clear) direction - W */
+> +       u32 gsrer;     /* (set) rising edge detect enable - W */
+> +       u32 gcrer;     /* (clear) rising edge detect enable - W */
+> +       u32 gsfer;     /* (set) falling edge detect enable - W */
+> +       u32 gcfer;     /* (clear) falling edge detect enable - W */
+> +       u32 gapmask;   /* interrupt mask , 0 disable, 1 enable - R/W */
+> +       u32 gcpmask;   /* interrupt mask for K3 */
+> +};
 > +
-> +/dts-v1/;
-> +
-> +#include "ipq9574-rdp433.dts"
+>  static u32 spacemit_gpio_bank_index(struct spacemit_gpio_bank *gb)
+>  {
+>         return (u32)(gb - gb->sg->sgb);
+> @@ -60,13 +70,14 @@ static u32 spacemit_gpio_bank_index(struct spacemit_g=
+pio_bank *gb)
+>  static irqreturn_t spacemit_gpio_irq_handler(int irq, void *dev_id)
+>  {
+>         struct spacemit_gpio_bank *gb =3D dev_id;
+> +       struct spacemit_gpio *sg =3D gb->sg;
+>         unsigned long pending;
+>         u32 n, gedr;
+>
+> -       gedr =3D readl(gb->base + SPACEMIT_GEDR);
+> +       gedr =3D readl(gb->base + to_spacemit_gpio_regs(sg)->gedr);
 
-I find it discouraged practice. Although if Bjorn is fine with it, you
-still need proper compatibles.
+Since you're already touching all these register accesses - can you
+maybe provide dedicated wrapper functions around readl()/writel() and
+avoid any file-wide changes in the future if anything requires further
+modification?
 
-
-Best regards,
-Krzysztof
+Bart
 
