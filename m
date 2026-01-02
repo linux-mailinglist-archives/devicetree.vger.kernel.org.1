@@ -1,96 +1,76 @@
-Return-Path: <devicetree+bounces-251144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CECC5CEF630
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 22:57:58 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAD2FCEF64E
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 23:02:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9888930102B3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 21:57:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 75C23300215A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 22:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AABC326CE3B;
-	Fri,  2 Jan 2026 21:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4894326E179;
+	Fri,  2 Jan 2026 22:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t8sbqvwe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rkQdtMoK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85FCC3A1E99
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 21:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F11F3C465;
+	Fri,  2 Jan 2026 22:02:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767391076; cv=none; b=b6eNFjH5hBLRD748kZILKBMMapOFTOzMhpP4LpCZkzAbD0S++q0BU8BtGQcMvmzehKXsqTBudOQ/MK/pZB7f70W4whNZnv+zxIG/txhQoy7C+CMdNbHBRDHpobGipNg0IQqzliyJ4a/TWCDVdEQXCKdJMACVsU2o1bRkZtEHrOU=
+	t=1767391353; cv=none; b=pO4czc3o4Hj6aLUI4ZhxtEYVkibM25MeFfoYcgbfjLY/JA3API5Bgp0QSxvdgv6rd7wPmzWz0ChnCy5UOUtgQDkA4WxZUXNPdSMvXlabLQzASkWiID/b8IcMuVD4SscNrvAZBfFhk7fbMum61OI6E0MTIbBKX4nO/ALpni6ryEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767391076; c=relaxed/simple;
-	bh=fTs6oGgbwPQlKyYfk29PS4txtHAFR2mw78lr28VH2FI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CMcrpHj7lpI5jygvmeY5/+pQQaK1/B/hZDcyICJu7upkUKLQbIubMM5Su+Z5rWNuWhCFbdoJgYkzCkjML4y89UIPIiSNoMbusIJV0ULKe4UZaGEMSGHtkwyPYuy2RIZXX2Ku8zAjWzCOfNFU/LiO4PcrQjzZqL3YCyO0bKI5M+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t8sbqvwe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35786C116C6
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 21:57:56 +0000 (UTC)
+	s=arc-20240116; t=1767391353; c=relaxed/simple;
+	bh=PaFfr5xbBo6idP1H145bJKQ7hsu4kIqvyGzc26+G8f4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vs2Fm/Gbp4Wr6CU7BczlW9wQoGoevnPXWfsut/2K2uCOj/6ExOUuc9ZIdGwo76XhHMhwJNUyVKj5wAQfg/3IzJVrE+w0TXC39QCT5tF3a5k3AMKkskvbgvgBA64qozB2m6kevar2hvrXhI1a77O6xvEHABrSDGWgRNUJ5yTdf5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rkQdtMoK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58DD5C116B1;
+	Fri,  2 Jan 2026 22:02:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767391076;
-	bh=fTs6oGgbwPQlKyYfk29PS4txtHAFR2mw78lr28VH2FI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=t8sbqvwepuOROzW0vidBuOJL+fU1E5vAZxW8DnB7gIOQnWkIv0SlypFBTYM4SO+/D
-	 eP9hOTFX2tty3e3rXcN/LvXmzhlNXmwJcS+3r36YIz0mv6s6lCqkZbn2TG988ocsBd
-	 PEY/Ya185+Xusa8hjxkRkzwMy8milwl3cs/QJY9r5Rh7nJJasiy/+K9TRfER9JT/TF
-	 /162CKIGLuDTwXTI1MoqqyyO4l/+rtvytt732mn/Jjz5WIGu7juXFzQ5Z6KaCmtydx
-	 +t/ARZl86hb9fc2XH3LTeWyQd+WYmxmiILFOBvnap/ijVoz/WIMM22bqtfzUcnOkPW
-	 qKV/s5BecpDpA==
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-78f99901ed5so108413707b3.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 13:57:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWMogc1tnyY1pakpaHk0qXzQZ2dhPYFETMYG+ZQCj7/091J2+73NYVL2SX/O+TE/KFeftgN+PQyV6kE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFYp2NVw6jWhHbKQS+o9wsbSZE6y0xocgReIJl1l1Hr8wg5RMj
-	O0C7ZBe/AvVdPlGozi9V2JBIzogm4H7SG3zGaF27+NjMLdMXxZKvNBdyS3chFCvObhB1v49tSLx
-	siwnju55mhNekLsa1FV8+jRNeiDMK5Fg=
-X-Google-Smtp-Source: AGHT+IFvit43PZt9CuDzKVz8Z4nOImtIM3mmQbkBxLTqEsYzLUfYqHgxNY5RM/1/uMvN5EeCL22OJeziENQQsOw38sI=
-X-Received: by 2002:a05:690c:6012:b0:78c:6854:2771 with SMTP id
- 00721157ae682-78fb40291d2mr364053437b3.36.1767391075577; Fri, 02 Jan 2026
- 13:57:55 -0800 (PST)
+	s=k20201202; t=1767391352;
+	bh=PaFfr5xbBo6idP1H145bJKQ7hsu4kIqvyGzc26+G8f4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rkQdtMoKVOCWPZk8JtuzRroy20R9dakdifkYLjWsSBnjxsGvX2Jy2s6u1dosFPNs/
+	 wNlniWmvZWtBGbbeLlLoVw0rs2WuYSmMDf8WpRKrHmyW8RE/2IrocaAwHEwI8EggCn
+	 X2edUlT05woh+frYOVZO+fH+U5f1LaSiLE/AV30zF13e10VFvg0IyW7+PDVx8MaMRE
+	 2LCsLuk9Szv8VKQGKoRj6N+SJIrszODbGlK+sCDRanC8Sdn9/PN3Xz5Ro9PPaasjeZ
+	 ju45VQACyG5OkgLDRAP39GANcsBJtBy65Vb5XD6sTCTN4Gwpq91fI2Z2fFz/QNPrij
+	 HqRi34dWrgA+Q==
+Date: Fri, 2 Jan 2026 16:02:31 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: omap: ti,prm-inst: Convert to DT schema
+Message-ID: <20260102220231.GA247492-robh@kernel.org>
+References: <20260102-prm-inst-v1-1-e85402b86885@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251223-eyeq6lplus-v2-0-cd1fd21d182c@bootlin.com> <20251223-eyeq6lplus-v2-6-cd1fd21d182c@bootlin.com>
-In-Reply-To: <20251223-eyeq6lplus-v2-6-cd1fd21d182c@bootlin.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 2 Jan 2026 22:57:44 +0100
-X-Gmail-Original-Message-ID: <CAD++jLnBMXQAv75a8k=mbEt8pAxS0UXhayQPz1YWCiLic9_+ig@mail.gmail.com>
-X-Gm-Features: AQt7F2pVCJ5RIFpGUV8kYR4yF4m1vRENrYeYecI6n6ttv8lwmY7u2GpoB-2JCic
-Message-ID: <CAD++jLnBMXQAv75a8k=mbEt8pAxS0UXhayQPz1YWCiLic9_+ig@mail.gmail.com>
-Subject: Re: [PATCH v2 06/13] pinctrl: eyeq5: Add Mobileye EyeQ6Lplus OLB
-To: =?UTF-8?Q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Gregory CLEMENT <gregory.clement@bootlin.com>, =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260102-prm-inst-v1-1-e85402b86885@kemnade.info>
 
-Hi Benoit,
+On Fri, Jan 02, 2026 at 08:32:15PM +0100, Andreas Kemnade wrote:
+> Convert prm-inst binding to DT schema. Use the closest matching standard
+> node name in the example.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  .../devicetree/bindings/arm/omap/prm-inst.txt      | 31 ------------
+>  .../devicetree/bindings/arm/omap/ti,prm-inst.yaml  | 55 ++++++++++++++++++++++
 
-thanks for your patch!
+ti,omap-prm-inst.yaml to match the compatible. Otherwise, looks good.
 
-On Tue, Dec 23, 2025 at 11:02=E2=80=AFAM Beno=C3=AEt Monin <benoit.monin@bo=
-otlin.com> wrote:
-
->  static const struct of_device_id eq5p_match_table[] =3D {
->         { .compatible =3D "mobileye,eyeq5-olb", .data =3D &eq5p_eyeq5_dat=
-a },
-> +       { .compatible =3D "mobileye,eyeq6lplus-olb", .data =3D &eq5p_eyeq=
-6lplus_data },
-
-Which patch can I find this new binding in? Or is it already upstream?
-
-Yours,
-Linus Walleij
+Rob
 
