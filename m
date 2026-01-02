@@ -1,178 +1,336 @@
-Return-Path: <devicetree+bounces-250995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-250996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E27BCEDA09
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 04:52:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56374CEDA18
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 04:53:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 53E413003043
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 03:52:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0318D30056FB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 03:52:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E503E23AE62;
-	Fri,  2 Jan 2026 03:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D097123C50A;
+	Fri,  2 Jan 2026 03:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EsdGxvty";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OqUnEmnZ"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="NbGErDeP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58AC217BB21
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 03:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C76D417BB21
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 03:52:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767325946; cv=none; b=DKguPMKAVyhc0LvuiawEFyAQJroAeFnmke5Rw13yClWd2y0dQGU93Cy0C+/HePYMKkTmozdnlvBSQC4KsxGoKYzaldSDKqhWcG9UI9OxQY65No7BSk9QIPS4AKwVvN6C0fdxes2nGdvWu1X7MaH43Ro9EjZT8q2berGlEinfvB0=
+	t=1767325962; cv=none; b=hXJ0T4myvUV/JVBejOLk5Irp/sb9PaTgXzZnrjTUdxvhT8SU8W5FXh4r1u7ngqWtzE2Ngd2+X6zZ6nh8WXSQik0phJl/UR3qnpjsWL10BHr6CO832Zponj/wA+A19Gm2lXIpgpFlevtveW2LJK3QtPFXDee+us1/B5vtufrqMS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767325946; c=relaxed/simple;
-	bh=Rp+uBO5VCABx56c9L2JztalDnHvrp+oYJVAo/4zxB6M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sRmhI63H3eEK5AEDbixErZj61nAlLpB7L9K2Hnqb90xkcvmFbor6L8OtH+fgg1hm3jf4rUZI1gxwvFUS7cXGFUylaHO5qf6BFXirEZHKBc/Tmepkq+EnRx/c4BVUy6IzkdVzaNwyByZleodMAgRbiQMx/GnqVXq52Z8zeWcYE+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EsdGxvty; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OqUnEmnZ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 601Nvp7x3179479
-	for <devicetree@vger.kernel.org>; Fri, 2 Jan 2026 03:52:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	S61SjyiHBkIhWo/HAA8SDc3EP7YavRLTn5aWkirrCNM=; b=EsdGxvtyhsO3XTzz
-	lMtW7AFOjv/2/3n9+XcrlezBBNytqIsqOgzo2q89u1tNvUw3yRBl7cBRTmYw6RU4
-	cKtwBkbfzhdGMjeJaa7aRW5jd3TEcKghzFhK3SD0pAylfXlq9btoSCzF/UbxJbBY
-	Jx9v4Vcs3eOqZ7j3Pf5DC0nCjVO9q+CIKFSb68X43+dk8mV1M127MwH71fNqPJcu
-	7/posnD7wgh8MrvcHPf7Clo4b4JiNjgOJ4Ylnr/6qOvnWAfBOg3m/lMyKqpVPE28
-	gY67g3GCK5QQ74RRTB+/cKm/7dunh9MvbK29Cz1GLBNulc72CtjsYmCS9/3uMhVa
-	lup9Rg==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bd3v8tvmb-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 03:52:24 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7b9321b9312so24879858b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jan 2026 19:52:23 -0800 (PST)
+	s=arc-20240116; t=1767325962; c=relaxed/simple;
+	bh=nVlbpVDClDtvuiFbG1gxYsoIznzYvkHGJmQmWYxaAaY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iQdtBC3hw6WQe5cnl6+hqpZsOUbccPzEM6BKYcJJwYz6SnVGlzCjvHjjnUC3YyBnIiGu7hZrV9zh459PIMzIoH1tIvmOrPWllES8gK6sCNTtoY7EReQ7dj2dnQTUUMtM/vj6TQmJBG7y5Vd7U2AwjBNgTIA0a7ttaCZLnb6/WXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=NbGErDeP; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5957c929a5eso16951569e87.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Jan 2026 19:52:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767325943; x=1767930743; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S61SjyiHBkIhWo/HAA8SDc3EP7YavRLTn5aWkirrCNM=;
-        b=OqUnEmnZBXcL/TtDWP3pcHyeNVDgsfZlE2unDc66zlJxYimlN5JJ8Y9eKQJwMjqr+M
-         JBQnsgOkA6usQVPfHmxtpnO6cr66VilQE+berZO+yR9yN6vak0Rqif3cDWOUt3DfDB4j
-         kSbkhg4d/ptvL6I/sgrnhDB0fT7mQWfUyc2JsvuRvrzw1PiD/bdZSBSAP2Z3avCaC5aG
-         4KFuEjg250cv1FhL8s2fZZRzF0D6lWAv4WJmzE4VA/kj/iUHoskKtT5/TNdmxcycRbob
-         HOsCvjH8pjj0PlOpXHNH31gTFvrDTaS/p25YabbPNN3CeP7HdFM4NYa65pVSQXX+zI+Z
-         vijQ==
+        d=ventanamicro.com; s=google; t=1767325959; x=1767930759; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zTswhGtmIxFRkyQOPWggZ+dHbCVihZ8PEVf0UQnd15A=;
+        b=NbGErDePyPoEANzdIQtzXuYTR/1YQxaPildDEQrhZPBfl4qcWv6N2sk7WGWuS3NoEg
+         M05U3m1Hy6K96eF3DRFG3pWlDd6YZBubo3X5Qe7GxWr/tJ79k/pz4JEw9k3X29VyB/OH
+         TQEhdk12t71FPO10b6LYQdOW3q616HYzlVxGVbBSCmSLXe/hJlQszp3mb0UAz/D+Sd/5
+         jvpUy2PogwnqIqcqhmjnfY/zSjAyYrpXineL7jky7fsxETUQ1M5RbOck4Ek1kuqf+4+D
+         RnsqOSuwUmId2Qu/P7+BkpnRKLLeCRvek2sM3fG5R19XHe/q2OKDCuRb0HLlA3uR6CKT
+         LWiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767325943; x=1767930743;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=S61SjyiHBkIhWo/HAA8SDc3EP7YavRLTn5aWkirrCNM=;
-        b=TEDC3uAdRlq1LHb6/Wvxz09pG2sQ++4MHfAF0lz0oGHDNlRaqO/n295/qf2WTh06Q7
-         C3VjCz5r/zurMtNRLO7UIlTU0od8XrUNLN4z+k94I1zD5xBBCr5fQYJT/bOmhY6X9w47
-         tsEFuv6/0C5LPjZdEUMf0pSXJUP6CfKT/lIlLA27k694qvC7W9jyJqWfXeQsoNgckNjy
-         Xa4Un05pcagxcXvUa0hN/07B2ItMjNuawCE2yhildXHgVtpWPe61AzolefJRBWS2vzaB
-         12xJ12q1cQu7NccPB1SdX0FMmPOPUdurwKjUl9nJX6Pa3I/gYqSS6kFYLnU1Vwvted2D
-         UwHw==
-X-Forwarded-Encrypted: i=1; AJvYcCUJC5yG7L/OpIUuHZlpnx0HPfOSFpfCqzb13QwtgafNVs+MFY8h00JcnZG1qNvUfoyXii2gnpbicAjK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCyvZj4x7PKWbFh3D4SYBpr1FIyElBuuJplJhRz+NcVwmZejZg
-	YsrJyOHTs322/5W4dADWx5di1LiZZAi+KTb9TghU9yv8CWAsRlIkeJX7jgzql/52okHZr2jdz+i
-	I66xCkD51s7Kfo2a+O/3kQGmHe6JcEFsivSedA9v2HrstZlhTralFP1OsmjEawmTC
-X-Gm-Gg: AY/fxX6omAgBb/exEafMidCQ4saXPaPCF9ln6d3cXtKkcG8U1KCYsD/evu4w9Q42bly
-	AsXe24dSyzdiFwFnQwIRd8i6q76ij+7W2LkjOyzv2/AoJKxPcw7GRvKYfp1FlzRpUBqxXALsSGE
-	3cA6452+/S2PlsL90P4gD44NEwdyxrgXDuEU++NDq3BbCS+tyujClje4MuXCsTze2ekKFujzT4T
-	K0ci0V4bmptBQyTTcVx2gQFiAJvfhvW+76PDnDXXBHIv8Zs7wvEwEDxyXggu/wiDXcwbae4EqmN
-	Tb6b4Egiw/WlQ6zIDsEG5SM3ICeKlvcnaDiN4xoZb6JeHRKfMfogF45KvCWnqjQRcYUgWaH0krk
-	vZMqETpKkrjsNa7RvaCtos+LlfgrP5tj9QKqbxg==
-X-Received: by 2002:aa7:8e0f:0:b0:7ff:c6fd:d687 with SMTP id d2e1a72fcca58-7ffc6fdd6c0mr25749798b3a.8.1767325943065;
-        Thu, 01 Jan 2026 19:52:23 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGCUiCeAS919Ljjowcde1IpwT1czKdpjSEIheCNC48NWCcuQPiQiqia/YF9M2MMiRl0VY40wg==
-X-Received: by 2002:aa7:8e0f:0:b0:7ff:c6fd:d687 with SMTP id d2e1a72fcca58-7ffc6fdd6c0mr25749782b3a.8.1767325942574;
-        Thu, 01 Jan 2026 19:52:22 -0800 (PST)
-Received: from [10.217.217.147] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff77abe95dsm39061316b3a.0.2026.01.01.19.52.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jan 2026 19:52:22 -0800 (PST)
-Message-ID: <93a90b3a-f083-4621-8a25-f3d1171c812a@oss.qualcomm.com>
-Date: Fri, 2 Jan 2026 09:22:15 +0530
+        d=1e100.net; s=20230601; t=1767325959; x=1767930759;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=zTswhGtmIxFRkyQOPWggZ+dHbCVihZ8PEVf0UQnd15A=;
+        b=FT5Ag4xse3AyfPL54k0+WEERytmfsllyaPBf9Dd6LW+BImYuGYxbL0N/GlHKa3n6U6
+         1lpQixx1DjRqzWaiILVuUoNm+FqvXabS/kvIbzBRMzO+/Nek7ftnvFVGX5DueyANmyWt
+         7uIkp/wQV2ZJyWVATgWcY/YStbT1XLEJDurE+v+hlsMH4vdfvGePYc9Z119rah4TuHt3
+         nTAFbRqAIU4R9GjDMAD4EXEssOt9F9hFQ4f/aKMphtY746CeyE8tt02AGmkCEsl/0Xh5
+         VNJh/OONzI4dl6TRxpj43XvCS55tRWE9DfI3rTdmuVeHVV4MRl+g+nwGW3JuCIgtqN77
+         lqmw==
+X-Forwarded-Encrypted: i=1; AJvYcCVyr4V2a0LDQCmdFxcTVKuMZiwWWTzk2zlG3/4SYGxHV3X1NnSsBDH+jHTWK3kD7GJZexiiPF4/+aLs@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywg8uIRAuW+3DsP7Gmmwn8jIacuT2ym9YKZ+7HWBhD8hkV/tX6n
+	G6F0WLgMbkcdEcCex51bPJRBy3lqxw7mvkpwjA6PogW1gL8dPZhdQfuF4FvvKQgoFy4uRLcerr4
+	SUU0Yl82Jv5NfzA9B87cr5sR994rOVRNa7dn7YBTWlw==
+X-Gm-Gg: AY/fxX6bHS/7LbyeUZ0ncjid17Y+mnnHZ2GGKoY+oXQzFlPG/K+Tq5reO4sN2jLPddw
+	SffUldTR0TbnUtR1kZzgSJweuBxLaA7U51h5DcUy5LfK1xPDqVT7NEXvPH6bUW+UxEuTE2lFXy2
+	ZUUbffVu4pfxZlIxbJ3yixHgi5O4WDWV+k7jecAc78H3bPT2i6+a2Nr9J0dMdZzI6Fu9oi/e8/F
+	RKQlJZWyzreK01CsCOnCqBptguSKUt1I19Ib4rUEEq6oR+w146ohoM/pliiyf1rEJ1GAOqyh+Lj
+	C43OXrc0TznB91d98y1dyHTHfFsY
+X-Google-Smtp-Source: AGHT+IGulvHbDKKBdi1/x0K6yrO6vDmrz82tyqPBgyVD4mIRWrbJWahBLj1qYkOIU334kMun6v5CIWNvfZPMCp9Nhgg=
+X-Received: by 2002:a05:6512:4022:b0:594:54ec:92e7 with SMTP id
+ 2adb3069b0e04-59a17d43c29mr15918848e87.28.1767325958581; Thu, 01 Jan 2026
+ 19:52:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 3/4] arm64: dts: qcom: hamoa: Add UFS nodes for
- x1e80100 SoC
-To: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>, vkoul@kernel.org,
-        neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, martin.petersen@oracle.com, andersson@kernel.org,
-        konradybcio@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-        manivannan.sadhasivam@oss.qualcomm.com
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org, nitin.rawat@oss.qualcomm.com
-References: <20251231101951.1026163-1-pradeep.pragallapati@oss.qualcomm.com>
- <20251231101951.1026163-4-pradeep.pragallapati@oss.qualcomm.com>
-Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <20251231101951.1026163-4-pradeep.pragallapati@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTAyMDAzMiBTYWx0ZWRfX50YJ9zYMgH7O
- 3ORP0on1jCsM1kf8YmmR5CTuv+i40Kb/jnaSQOozjYiOnzYqjYC2vf5TlozNxGmfVaU4iOSdgQb
- IxJgO/6X8htJx+JrhijXEasZG3AFmgeEHU1qSYiJ8PR61b1Fjzvzf0kytJKd64ZUBimLhK21FwN
- SIQdPq1II4gz5oTfF1lC6sWUjn6kL6N2khIF9QizzSvxwE6TmQg/3aftS18237iXutf3omZTe+V
- /4ZzR232d7MbsyF9H20aEUukRMGJsNWpF7ukbEVNOzFu0OWd/yVsDxuSzF4HezEMhDGOYmT97Yq
- L2Dmmf2fXjmcHMdApiN/Sdw+5edLjpuIZHvNzn58GIS0XPfaSAncpXGVsSl6FKbGu2nck4GrtRy
- IfBwlJQVTeo/ApYR6zhNESDBdDiRo/NSQjJq1oom3trMBQ6h2X5XheuSEsJ9n0EnLkCFqazuzbt
- WSVMfDWrnmHyf4VlOOw==
-X-Authority-Analysis: v=2.4 cv=JdOxbEKV c=1 sm=1 tr=0 ts=695740f8 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=gjJwvVq1TDH_Shb35fsA:9
- a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-GUID: B_7HH02zLY976_cdOQffplKvf9XppCgB
-X-Proofpoint-ORIG-GUID: B_7HH02zLY976_cdOQffplKvf9XppCgB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-01_07,2025-12-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- priorityscore=1501 bulkscore=0 adultscore=0 phishscore=0 clxscore=1015
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601020032
+References: <20251101154245.162492-1-apatel@ventanamicro.com>
+ <20251101154245.162492-11-apatel@ventanamicro.com> <KUZPR04MB9265EE0AF2054E4A8AB6852EF3D5A@KUZPR04MB9265.apcprd04.prod.outlook.com>
+In-Reply-To: <KUZPR04MB9265EE0AF2054E4A8AB6852EF3D5A@KUZPR04MB9265.apcprd04.prod.outlook.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Fri, 2 Jan 2026 09:22:26 +0530
+X-Gm-Features: AQt7F2rv_IngsrCg9s7IJA2iJpptQXIBVGrs-hz5FesICn9umzFb7q7ot21qnV0
+Message-ID: <CAK9=C2UVDEJPb8duKy4BKPGhLBnAqoMigdnNvVRJSLraae4m0Q@mail.gmail.com>
+Subject: Re: [PATCH v2 10/12] perf tools: Add RISC-V trace PMU record capabilities
+To: "Nutty.Liu" <nutty.liu@hotmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Greg KH <gregkh@linuxfoundation.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Ian Rogers <irogers@google.com>, 
+	Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org, 
+	Alexandre Ghiti <alex@ghiti.fr>, Atish Patra <atish.patra@linux.dev>, 
+	Peter Zijlstra <peterz@infradead.org>, Anup Patel <anup@brainfault.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, linux-kernel@vger.kernel.org, 
+	Mayuresh Chitale <mchitale@ventanamicro.com>, Ingo Molnar <mingo@redhat.com>, 
+	Jiri Olsa <jolsa@kernel.org>, Mayuresh Chitale <mchitale@gmail.com>, 
+	Namhyung Kim <namhyung@kernel.org>, linux-riscv@lists.infradead.org, 
+	Andrew Jones <ajones@ventanamicro.com>, Liang Kan <kan.liang@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Nov 21, 2025 at 1:39=E2=80=AFPM Nutty.Liu <nutty.liu@hotmail.com> w=
+rote:
+>
+> On 11/1/2025 11:42 PM, Anup Patel wrote:
+> > From: Mayuresh Chitale <mchitale@ventanamicro.com>
+> >
+> > Introduce the required auxiliary API functions allowing the perf core
+> > to interact with RISC-V trace perf driver.
+> >
+> > Co-developed-by: Anup Patel <apatel@ventanamicro.com>
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
+> > ---
+> >   tools/perf/arch/riscv/util/Build      |   1 +
+> >   tools/perf/arch/riscv/util/auxtrace.c | 218 +++++++++++++++++++++++++=
++
+> >   tools/perf/util/auxtrace.c            |   1 +
+> >   tools/perf/util/auxtrace.h            |   1 +
+> >   tools/perf/util/rvtrace.h             |  18 +++
+> >   5 files changed, 239 insertions(+)
+> >   create mode 100644 tools/perf/arch/riscv/util/auxtrace.c
+> >   create mode 100644 tools/perf/util/rvtrace.h
+> >
+> > diff --git a/tools/perf/arch/riscv/util/Build b/tools/perf/arch/riscv/u=
+til/Build
+> > index 58a672246024..2ba1fb98a0ad 100644
+> > --- a/tools/perf/arch/riscv/util/Build
+> > +++ b/tools/perf/arch/riscv/util/Build
+> > @@ -3,3 +3,4 @@ perf-util-y +=3D header.o
+> >
+> >   perf-util-$(CONFIG_LIBTRACEEVENT) +=3D kvm-stat.o
+> >   perf-util-$(CONFIG_LIBDW_DWARF_UNWIND) +=3D unwind-libdw.o
+> > +perf-util-$(CONFIG_AUXTRACE) +=3D auxtrace.o
+> > diff --git a/tools/perf/arch/riscv/util/auxtrace.c b/tools/perf/arch/ri=
+scv/util/auxtrace.c
+> > new file mode 100644
+> > index 000000000000..adc86bd38998
+> > --- /dev/null
+> > +++ b/tools/perf/arch/riscv/util/auxtrace.c
+> > @@ -0,0 +1,218 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Risc-V E-Trace support
+> > + */
+> > +
+> > +#include <linux/kernel.h>
+> > +#include <linux/types.h>
+> > +#include <linux/bitops.h>
+> > +#include <linux/log2.h>
+> > +#include <linux/zalloc.h>
+> > +#include <time.h>
+> > +
+> > +#include <internal/lib.h> // page_size
+> Seems the above comment 'page_size' is redundant.
 
+Okay, I will update.
 
-On 12/31/2025 3:49 PM, Pradeep P V K wrote:
-> Add UFS host controller and PHY nodes for x1e80100 SoC.
-> 
-> Signed-off-by: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/hamoa.dtsi | 123 +++++++++++++++++++++++++++-
->  1 file changed, 120 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> index 21ab6ef61520..cd7e2f130fe2 100644
-> --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> @@ -835,9 +835,9 @@ gcc: clock-controller@100000 {
->  				 <0>,
->  				 <0>,
->  				 <0>,
-> -				 <0>,
-> -				 <0>,
-> -				 <0>;
-> +				 <&ufs_mem_phy 0>,
-> +				 <&ufs_mem_phy 1>,
-> +				 <&ufs_mem_phy 2>;
+>
+> > +#include "../../../util/auxtrace.h"
+> > +#include "../../../util/cpumap.h"
+> > +#include "../../../util/debug.h"
+> > +#include "../../../util/event.h"
+> > +#include "../../../util/evlist.h"
+> > +#include "../../../util/evsel.h"
+> > +#include "../../../util/rvtrace.h"
+> > +#include "../../../util/pmu.h"
+> > +#include "../../../util/record.h"
+> > +#include "../../../util/session.h"
+> > +#include "../../../util/tsc.h"
+> > +
+> > +#define RVTRACE_PMU_NAME "rvtrace"
+> > +#define KiB(x) ((x) * 1024)
+> > +#define MiB(x) ((x) * 1024 * 1024)
+> > +
+> > +struct rvtrace_recording {
+> > +     struct auxtrace_record  itr;
+> > +     struct perf_pmu *rvtrace_pmu;
+> > +     struct evlist *evlist;
+> > +};
+> > +
+> > +static size_t rvtrace_info_priv_size(struct auxtrace_record *itr __may=
+be_unused,
+> > +                                  struct evlist *evlist __maybe_unused=
+)
+> > +{
+> > +     return RVTRACE_AUXTRACE_PRIV_SIZE;
+> > +}
+> > +
+> > +static int rvtrace_info_fill(struct auxtrace_record *itr, struct perf_=
+session *session,
+> > +                          struct perf_record_auxtrace_info *auxtrace_i=
+nfo, size_t priv_size)
+> > +{
+> > +     struct rvtrace_recording *ptr =3D container_of(itr, struct rvtrac=
+e_recording, itr);
+> > +     struct perf_pmu *rvtrace_pmu =3D ptr->rvtrace_pmu;
+> > +
+> > +     if (priv_size !=3D RVTRACE_AUXTRACE_PRIV_SIZE)
+> > +             return -EINVAL;
+> > +
+> > +     if (!session->evlist->core.nr_mmaps)
+> > +             return -EINVAL;
+> > +
+> > +     auxtrace_info->type =3D PERF_AUXTRACE_RISCV_TRACE;
+> > +     auxtrace_info->priv[0] =3D rvtrace_pmu->type;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int rvtrace_set_auxtrace_mmap_page(struct record_opts *opts)
+> > +{
+> > +     bool privileged =3D perf_event_paranoid_check(-1);
+> > +
+> > +     if (!opts->full_auxtrace)
+> > +             return 0;
+> > +
+> > +     if (opts->full_auxtrace && !opts->auxtrace_mmap_pages) {
+> > +             if (privileged) {
+> > +                     opts->auxtrace_mmap_pages =3D MiB(16) / page_size=
+;
+> > +             } else {
+> > +                     opts->auxtrace_mmap_pages =3D KiB(128) / page_siz=
+e;
+> > +                     if (opts->mmap_pages =3D=3D UINT_MAX)
+> > +                             opts->mmap_pages =3D KiB(256) / page_size=
+;
+> > +             }
+> > +     }
+> > +
+> > +     /* Validate auxtrace_mmap_pages */
+> > +     if (opts->auxtrace_mmap_pages) {
+> > +             size_t sz =3D opts->auxtrace_mmap_pages * (size_t)page_si=
+ze;
+> > +             size_t min_sz =3D KiB(8);
+> > +
+> > +             if (sz < min_sz || !is_power_of_2(sz)) {
+> > +                     pr_err("Invalid mmap size : must be at least %zuK=
+iB and a power of 2\n",
+> > +                            min_sz / 1024);
+> > +                     return -EINVAL;
+> > +             }
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int rvtrace_recording_options(struct auxtrace_record *itr, stru=
+ct evlist *evlist,
+> > +                                  struct record_opts *opts)
+> > +{
+> > +     struct rvtrace_recording *ptr =3D container_of(itr, struct rvtrac=
+e_recording, itr);
+> > +     struct perf_pmu *rvtrace_pmu =3D ptr->rvtrace_pmu;
+> > +     struct evsel *evsel, *rvtrace_evsel =3D NULL;
+> > +     struct evsel *tracking_evsel;
+> > +     int err;
+> > +
+> > +     ptr->evlist =3D evlist;
+> > +     evlist__for_each_entry(evlist, evsel) {
+> > +             if (evsel->core.attr.type =3D=3D rvtrace_pmu->type) {
+> > +                     if (rvtrace_evsel) {
+> > +                             pr_err("There may be only one " RVTRACE_P=
+MU_NAME "x event\n");
+> > +                             return -EINVAL;
+> > +                     }
+> > +                     evsel->core.attr.freq =3D 0;
+> > +                     evsel->core.attr.sample_period =3D 1;
+> > +                     evsel->needs_auxtrace_mmap =3D true;
+> > +                     rvtrace_evsel =3D evsel;
+> > +                     opts->full_auxtrace =3D true;
+> > +             }
+> > +     }
+> > +
+> > +     err =3D rvtrace_set_auxtrace_mmap_page(opts);
+> > +     if (err)
+> > +             return err;
+> > +     /*
+> > +      * To obtain the auxtrace buffer file descriptor, the auxtrace ev=
+ent
+> > +      * must come first.
+> > +      */
+> > +     evlist__to_front(evlist, rvtrace_evsel);
+> > +     evsel__set_sample_bit(rvtrace_evsel, TIME);
+> > +
+> > +     /* Add dummy event to keep tracking */
+> > +     err =3D parse_event(evlist, "dummy:u");
+> > +     if (err)
+> > +             return err;
+> > +
+> > +     tracking_evsel =3D evlist__last(evlist);
+> > +     evlist__set_tracking_event(evlist, tracking_evsel);
+> > +
+> > +     tracking_evsel->core.attr.freq =3D 0;
+> > +     tracking_evsel->core.attr.sample_period =3D 1;
+> > +     evsel__set_sample_bit(tracking_evsel, TIME);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static u64 rvtrace_reference(struct auxtrace_record *itr __maybe_unuse=
+d)
+> > +{
+> > +     return rdtsc();
+> > +}
+> > +
+> > +static void rvtrace_recording_free(struct auxtrace_record *itr)
+> > +{
+> > +     struct rvtrace_recording *ptr =3D
+> > +                     container_of(itr, struct rvtrace_recording, itr);
+> > +
+> > +     free(ptr);
+> > +}
+> > +
+> > +static struct auxtrace_record *rvtrace_recording_init(int *err, struct=
+ perf_pmu *rvtrace_pmu)
+> > +{
+> > +     struct rvtrace_recording *ptr;
+> > +
+> > +     if (!rvtrace_pmu) {
+> > +             *err =3D -ENODEV;
+> Nit: How about checking if 'err' is NULL since it's passed from other
+> module ?
 
-Reviewed-by: Taniya Das <taniya.das@oss.qualcomm.com>
+Other archs (ARM and x86) also don't check "err" anywhere so
+to be consistent we don't check "err" here.
 
--- 
-Thanks,
-Taniya Das
+>
+> Otherwise,
+> Reviewed-by: Nutty Liu <nutty.liu@hotmail.com>
+>
+> Thanks,
+> Nutty
 
+Regards,
+Anup
 
