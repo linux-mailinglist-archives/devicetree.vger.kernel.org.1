@@ -1,200 +1,131 @@
-Return-Path: <devicetree+bounces-251032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C328CEE314
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:49:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63AB1CEE338
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 449F630133A1
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:49:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 11D44301D59B
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:51:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F28B62DEA87;
-	Fri,  2 Jan 2026 10:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FF682DF12F;
+	Fri,  2 Jan 2026 10:51:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RkGDvtvs"
+	dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b="l1HqgXMm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-07.mail-europe.com (mail-0701.mail-europe.com [51.83.17.38])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 552652DCF69
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:48:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801192DCBF7
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:51:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.83.17.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767350942; cv=none; b=gWMPW8Q+hWlZ9D0jaTGm+HT6k3QRFm3xexzOokjoizSv/3u4S56xr62eK7in8hYvizuHQkeZekRpogt28hWv4fCRWn48/JetHiXTHD2/PG+rVvtGJjHoBVTps0zmxaKjMO/zegis70wscqdz1z+JZGpCe1hgkNzgFNXHx190wyY=
+	t=1767351080; cv=none; b=GaPKmSyvEXnI1zyUtkvavXVi7dV0u/9tdXx5iiWatrqsEzufdYykYXxgevR1Ky4IPvzS7iRNxB2KBkLQTTHV2/VRsGrBXKY7j2bewhB2hOyPFo79iV67fRKsinP8Bi2GTUmmsC0B+mWICdazg2KX55uYMMcZOJ83UdYAV/f/R/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767350942; c=relaxed/simple;
-	bh=63DHwNyH5TC4sXDqiEu6WX2z7ID4RZUZ+Vw6mpGsqYk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Y/hW+/ltXVRBIEHxDWUI000Avi4rsdaaWUBsobqXjzO5Vug/8NJFS6sk3yQXRIkFTLctSGotv5SpBHRJrBwe/UFKIBaVGnEvnTlnrBfL9wqZC8SEWTE4DL6hEr9nPzAXsUaUjF9dp0QAG0jb+/v4ymFvqBKGWlIImsxzJae3EHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RkGDvtvs; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7e1651ae0d5so9255694b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 02:48:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767350938; x=1767955738; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q6KeTsNq+9OMXZEJM9YqRqOnONqTztwaAzzjanzT7XI=;
-        b=RkGDvtvs/vQfs0L+8F29EW84cqcUmOEOuWoRHKak5zRUfiPA5QZMjCyc03QQB69CpS
-         Sbbn9FG10x0zrFRaLxrGGlpxWbVkavLPMH7s2pi1mTSeF7DZpF98MK3e2oy5qXjDkMi5
-         h/z7XES7Al7e8F7AnBDk0YvLLp58iVgcQvhaHnwuwC8RXc96Nr9xMIhRN1QmsKoeYLd8
-         o7qFN9g9Mt3tAiYjsPxm263AF/VW6QO75gDfMiw1zDU8cluY2xklmGgdOB24EunWNmk4
-         gMlf535uwqUIAHbmVESlVjR9A72UGzQkyglv2oeZsGS4xS6gSUHsSrglyRxL6lUR8Y0d
-         YCjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767350938; x=1767955738;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q6KeTsNq+9OMXZEJM9YqRqOnONqTztwaAzzjanzT7XI=;
-        b=Jgf+IzM09QwXnnzQVdU1mvq7QL3pXtae1pM9NacDwYqpT1owbWqO1yin6mFpprcoeV
-         ZhCmf5rTzSC+ezbRfOV8SMjIKVfFkt97FvOJAHVAKDiG9xifFgTAPH1WftQnSSly29bG
-         RR4pFkOrG47G7QSOjsJDmyeNJeiCKfud2OHrNMIiOcMVxaRXqpCjRt+EPgXOx/ruqPY7
-         GpaslykpkuikooB2mW/1DgLuSSe7y9e98HL1qhPgUqLHe54H2gqj2FxE/CjzDkHEmSMU
-         D8208tBc/2YLhB6HmbFKEp7YaINwFpI/U1dMXRkl8wvLJRKn7+/uLQy4li3i+5Im50ef
-         pgpw==
-X-Forwarded-Encrypted: i=1; AJvYcCXnzirAbFzvpCffxLPV68oqEJUcp14DTmFI8b+c0kUk71sPcebpWlZrBG3of2I0PJfa4Yg68gAmOtlk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXa2AEhDwglrCpGRKF25F8kP0iA+OwIvX1XLgIAiVn09XYQXfP
-	VIhXG98Wxkxj4tlpJEEuz3vIeqWbneQPXSQm2hQrD1YQbMbC9Q2Sdc+EaWd5O9mZ
-X-Gm-Gg: AY/fxX6fkgMz2F4n5vxeUGkAXhidXKyCv32z7SQh1GXvpK30yXPgfPmX29OAgoqdZvH
-	fWaY+1rD4tN+Uv8U3oZBSTF1ELlrPEu8ap6Uf/GOpnkVB1SmrNztORQ8uqauDDuSL4HX//dL/SI
-	WcDDXUq5L2QVXT7mR4p1d3sO5bodq7rk4Dsfr8qEtC+515kpo1UJyvnJ8I4m75Yiw6m7fDvjEuo
-	yRjp+q5zVc5Sl+JpsbMpW4wC9KYU2nAKhho2Qvv7BH9m94N6jIRcoNbRpNvFgZLYHSMCwZt3ffK
-	K7ix3HPb1Boqm+UhLUvQ/gOWT3ivaR+LITBN3iGkwugCl2LInonk+ZlPgXXm+tBZG+tWaqSah9g
-	b0av9mBWx2ocE3ABIqIv1HO/pWpIBVh2n85s4kEnHZ7gIW1ra0PI3XEgi+LYN8rqzfkBqW+hGUc
-	/wM46LnLRkmD1l8zQlgFxh5V9mNmzGTD84bVs12w==
-X-Google-Smtp-Source: AGHT+IEDuRRb6f4Nl0WZXl0w8Ingiia4+kt7/z0dRKCuI/YyTkJWMbA69KavlxrqN82xGYL1rWD1FA==
-X-Received: by 2002:a05:6a00:3497:b0:7f7:2f82:9904 with SMTP id d2e1a72fcca58-7ff642122ddmr33467525b3a.5.1767350938446;
-        Fri, 02 Jan 2026 02:48:58 -0800 (PST)
-Received: from LAPTOP-872M7T80.localdomain ([223.185.129.114])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-7ff7e48f30bsm40163878b3a.48.2026.01.02.02.48.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jan 2026 02:48:58 -0800 (PST)
-From: Akhila YS <akhilayalmati@gmail.com>
-Date: Fri, 02 Jan 2026 10:48:50 +0000
-Subject: [PATCH v2] dt-bindings: mtd: microchip,mchp23k256: convert to DT
- schema
+	s=arc-20240116; t=1767351080; c=relaxed/simple;
+	bh=a1x9bOOyonA/zI9tuhPm5HjCUKdxuCnIwcYuEH4ju3A=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hxCwPugNhAwoeBhhWW/g45yAJysJqnts4b5PV9GSuQ1BjPfI7NLmzX2uscoCuMVTbCfMhk/f3yqGsqd2DkLx0o7ZGN+7qJoUJ7w5xjgZPEk5m+t2dvWR31fCM2+vqGma8wgOofRGeult3rHlzTViW2G7kpFqy5mUxmZZTHzjrCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro; spf=fail smtp.mailfrom=chimac.ro; dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b=l1HqgXMm; arc=none smtp.client-ip=51.83.17.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=chimac.ro
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chimac.ro;
+	s=protonmail2; t=1767351062; x=1767610262;
+	bh=Wm8iFenI7rV4BHDLWQQC9m1LuaI6pjS4oGcE2me2wdo=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=l1HqgXMmMKg/G/y/hrjp5w5NLDbzu6bAnCleWW0aF0bBOclzustHcaR8DAp2pRLxi
+	 bFkR/CTrovwjKtwjlQS2uNQEML/hkYWvjG4n+znncN2B9xPsWhswjOyRngS9I7p/YL
+	 Ilx4iQe5+K1ZsjbPSkDiWpjUlMyvTzM5iQGxTBhbYk6idOQQIvqvi5bpBHj6d1UnhD
+	 6OhcPl0U8E7CcYGYGZWNFR3E2prkYpExHyisQtL4w62zFpbnMoI31abqpR31g1F+zH
+	 TH4tSdG4f6MYI0emEcHpl5+AAs71O/Cc4mQlFpa1lHt/vJQe8z+vzdJFxLSllt1gys
+	 XX0KHRKPqY9FQ==
+Date: Fri, 02 Jan 2026 10:50:55 +0000
+To: Krzysztof Kozlowski <krzk@kernel.org>
+From: Alexandru Chimac <alex@chimac.ro>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: samsung: Add exynos9610-wakeup-eint node
+Message-ID: <SIUwFRvVetTkOo41ZvVr5kiSwjfVoFRJ9HPWVYoNFQgd06BUJSDLEdl95hV1W3INlc50uZNQppCZaA41mTA22kQfpDOjseC-PiHgyIfTCSA=@chimac.ro>
+In-Reply-To: <fb98e395-d590-47f7-8dba-d9a691a2c174@kernel.org>
+References: <20251228-exynos9610-pinctrl-v2-0-c9bbeee4c54b@chimac.ro> <20251228-exynos9610-pinctrl-v2-2-c9bbeee4c54b@chimac.ro> <20251230-dramatic-gregarious-stallion-15bc07@quoll> <yB5WFgsxeeqHQgi87UeNPD8K2OlQbWWC6-BovxADBtgusN3n8UOrm7Gi6jz6Th0dsMA9J-LEpx69sWjNmWTH_-jx9r7AgvXNTwR2hQW7-SM=@chimac.ro> <fb98e395-d590-47f7-8dba-d9a691a2c174@kernel.org>
+Feedback-ID: 139133584:user:proton
+X-Pm-Message-ID: fcae599c395b499a3659dfd5541d73bbf461087c
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260102-nxp-v2-1-05f5dd947459@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAJGiV2kC/1WMQQqDMBBFryKzbkoyNMV01XsUF0EnOlATSSRYJ
- HdvdOfyff57OySKTAlezQ6RMicOvgLeGugn60cSPFQGlKgVohF+W4TGJ6EZrHFooD6XSI63s/L
- pKk+c1hB/ZzSrY736WQkl7ENpR1K20rbvcbb8vfdhhq6U8geM7xDhlgAAAA==
-X-Change-ID: 20251229-nxp-526e29da9f29
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Akhila YS <akhilayalmati@gmail.com>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Convert Microchip 23K256 SPI SRAM MTD binding to YAML format.
 
-Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
----
-Changes in v2:
-- Removed "#address-cells" and "#size-cells" from the required, properties
-  and example. 
-- Changed description and title for yaml.
-- Link to v1: https://lore.kernel.org/r/20251229-nxp-v1-1-a415fe0080a8@gmail.com
----
- .../bindings/mtd/microchip,mchp23k256.txt          | 18 --------
- .../bindings/mtd/microchip,mchp23k256.yaml         | 49 ++++++++++++++++++++++
- 2 files changed, 49 insertions(+), 18 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.txt b/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.txt
-deleted file mode 100644
-index 7328eb92a03c..000000000000
---- a/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--* MTD SPI driver for Microchip 23K256 (and similar) serial SRAM
--
--Required properties:
--- #address-cells, #size-cells : Must be present if the device has sub-nodes
--  representing partitions.
--- compatible : Must be one of "microchip,mchp23k256" or "microchip,mchp23lcv1024"
--- reg : Chip-Select number
--- spi-max-frequency : Maximum frequency of the SPI bus the chip can operate at
--
--Example:
--
--	spi-sram@0 {
--		#address-cells = <1>;
--		#size-cells = <1>;
--		compatible = "microchip,mchp23k256";
--		reg = <0>;
--		spi-max-frequency = <20000000>;
--	};
-diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.yaml b/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.yaml
-new file mode 100644
-index 000000000000..e928d375ae81
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/microchip,mchp23k256.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip 23K256 SPI SRAM
-+
-+maintainers:
-+  - Richard Weinberger <richard@nod.at>
-+
-+description:
-+  The Microchip 23K256 is a 256 Kbit (32 Kbyte) serial SRAM with an
-+  SPI interface,supporting clock frequencies up to 20 MHz. It features
-+  a 32-byte page size for writes and supports byte, page, and
-+  sequential access modes.
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,mchp23k256
-+      - microchip,mchp23lcv1024
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - reg
-+  - compatible
-+  - spi-max-frequency
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        sram@0 {
-+            compatible = "microchip,mchp23k256";
-+            reg = <0>;
-+            spi-max-frequency = <20000000>;
-+       };
-+    };
-+...
 
----
-base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
-change-id: 20251229-nxp-526e29da9f29
 
+
+On Friday, January 2nd, 2026 at 12:02, Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+
+>=20
+>=20
+> On 31/12/2025 13:28, Alexandru Chimac wrote:
+>=20
+> > On Tuesday, December 30th, 2025 at 11:51, Krzysztof Kozlowski krzk@kern=
+el.org wrote:
+> >=20
+> > > On Sun, Dec 28, 2025 at 06:05:52PM +0000, Alexandru Chimac wrote:
+> > >=20
+> > > > Add a dedicated compatible for the exynos9610-wakeup-eint node,
+> > > > which is compatbile with Exynos850's implementation (and the
+> > > > Exynos7 fallback).
+> > > >=20
+> > > > Signed-off-by: Alexandru Chimac alex@chimac.ro
+> > > > ---
+> > > > .../devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.ya=
+ml | 2 ++
+> > > > 1 file changed, 2 insertions(+)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinc=
+trl-wakeup-interrupt.yaml b/Documentation/devicetree/bindings/pinctrl/samsu=
+ng,pinctrl-wakeup-interrupt.yaml
+> > > > index f3c433015b12..deb2730855bd 100644
+> > > > --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wak=
+eup-interrupt.yaml
+> > > > +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wak=
+eup-interrupt.yaml
+> > > > @@ -48,6 +48,7 @@ properties:
+> > > > - enum:
+> > > > - google,gs101-wakeup-eint
+> > > > - samsung,exynos2200-wakeup-eint
+> > > > + - samsung,exynos9610-wakeup-eint
+> > > > - samsung,exynos9810-wakeup-eint
+> > > > - samsung,exynos990-wakeup-eint
+> > > > - samsung,exynosautov9-wakeup-eint
+> > > > @@ -107,6 +108,7 @@ allOf:
+> > > > contains:
+> > > > enum:
+> > > > - samsung,exynos850-wakeup-eint
+> > > > + - samsung,exynos9610-wakeup-eint
+> > >=20
+> > > This is not needed. Device has 850 fallback, no?
+> > > It's not required, but I guess it would make the device tree look bet=
+ter. If this patch isn't to be merged, it doesn't functionally affect anyth=
+ing so it can just be dropped instead of requiring another patchset revisio=
+n.
+>=20
+>=20
+> Please wrap your replies.
+>=20
+> I did not comment on the patch. Comments are in specific places
+> discussing specific lines. I asked why do you need this enum to grow?
+Oh, sorry, I thought you meant the whole commit. Yeah, it looks wrong.
+Thanks for noticing, I will fix it in v3.
+>=20
+>=20
+> Best regards,
+> Krzysztof
 Best regards,
--- 
-Akhila YS <akhilayalmati@gmail.com>
-
+Alexandru Chimac 
 
