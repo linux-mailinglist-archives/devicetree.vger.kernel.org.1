@@ -1,68 +1,68 @@
-Return-Path: <devicetree+bounces-251033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45309CEE326
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:51:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C02CCEE33E
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:52:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B5FA93001808
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:51:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A976330054AD
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB6F2DEA6B;
-	Fri,  2 Jan 2026 10:51:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A1DA2DE715;
+	Fri,  2 Jan 2026 10:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EahzZliQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cMcF12wg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462872DCF69
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:51:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 255042DA779
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767351079; cv=none; b=bPh+jYY3vOjWFtkYqUDOKI55cC1UV8Lj7zJsv5W7RZCFfm3WS0Cs5x5kXLSjP7nnBmyhnt4pbzD0R/13F5gSapn0HLe6K0h+Dq4/k/SktG6SX9dzegsIN02SysKZRuB30rlC71L4T+ciGm7abtC50luYkn4zrm2BTkbkIfdX91k=
+	t=1767351125; cv=none; b=GDk6RUaHNIPkTJkMp3R48cwgHMAyjrKFH8N8Tu2qnbEsJizn5OylK1DSntN2/K6XfYE6q2o5sD/tQ4QNpva+VG6UOnqpEB56lrLnoyMY+b5O7S+5Od7X5aW+zIV2NPok2s4wLlshEcgSQmPy4t+zIp/8btEEbcr/NPtC5QcQcPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767351079; c=relaxed/simple;
-	bh=xCx5AAentnk4QBvWh8rauxDanszvphvmntZcvGZ11JI=;
+	s=arc-20240116; t=1767351125; c=relaxed/simple;
+	bh=xXAn347RsD6hgQZouoWZ55FlGcQUQLUmECm4fuYlljE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W1GyKxj4tCT9/SbiGpC2mpTf2vgNU7ImLwPiM30nOHcgpNHDUA52Jo+I+oP0slVOmdNSgym8GAWHKDh0EE2vJfV2C+XCMvaKHV54HZX1rYefzbyYiK0YahSnZtC79D1U45+y5US9bdoXmlzfV8OIPI9J2/LzeRGWrTtdw/FrId0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EahzZliQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2432C2BC9E
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:51:18 +0000 (UTC)
+	 To:Cc:Content-Type; b=fvGbxMAT7hOWIkzHT6/8fKVY7p/DS6Y6J2IJT0FWn9Vh3pBZ6MY/HZM9boguXUVJufQhy0plcXFFW72H6NudV+QT2Xu/utRjXPQnLG///rKUnAsfAw7qGQ6f587+zaqKW8lIgJO5vjc090pOEMYo2krK1r6vzMhTUW+9Sz+wIiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cMcF12wg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0A4AC19422
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:52:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767351078;
-	bh=xCx5AAentnk4QBvWh8rauxDanszvphvmntZcvGZ11JI=;
+	s=k20201202; t=1767351124;
+	bh=xXAn347RsD6hgQZouoWZ55FlGcQUQLUmECm4fuYlljE=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=EahzZliQRaogJeP3S8smgk7ZnNjc19jRWY07kDnp2jgj8UCpfkERAwKP+iTZb0D3g
-	 IElGpf8kaCIbKcTkJlQkWiA5BOxpZKiZ4NbOEXP86+72k6cGAsG+EH+8f+u74QkRWn
-	 cuamc5xtvzV1THHlwQpKC5pRn18p4wQ1ANLV0wLV9IOCcQTTNrZTVmz9XdQkZfca8o
-	 YQHGW71Qa4f+OMbS8iEv0hKpYXluglGOPgL8R5EpensfttsaDQVyth89FZOt8AkcVe
-	 LNry1dBl9ioRG80RQuVURXLyX6h8pFOJOsp4aID4DBH0H/kPI/phUSBHyp6j5BEJkR
-	 b9ahc1wEQ7Jcw==
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-37bbb36c990so110769961fa.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 02:51:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXSk7db1kJD5Eh25nH7hpZix8Um3h92gKbauC63Hqmu6KVglfut+cvDV1+Ft2YfJpvtnYRvmApUFKuz@vger.kernel.org
-X-Gm-Message-State: AOJu0YxO8yjgeqRIkVDnjQy79Kj+GmE5XAGUFTtWbSbTUGzVAl3YfDUc
-	RwNNVxauOoyNiEUO9pAsSEEO7y5+HwWaM9J5mH3NUtbBYJKC517fzHQ+l9le/8fp48A5K8MvUgb
-	1wccjOGTFEJ1pBYOK8jeRgPZXinp1y3Zwl3WyHOzKtg==
-X-Google-Smtp-Source: AGHT+IHsTD9adaJDmyGmY1It23ntuHwPKruzTO4CUZ5lqrhgY5dCs2ctjbHSYlm1/KVO3NQ94ib9c9b+lWmDxYLnems=
-X-Received: by 2002:a05:651c:50f:b0:37e:6884:6756 with SMTP id
- 38308e7fff4ca-3812081e6dbmr136602621fa.14.1767351077385; Fri, 02 Jan 2026
- 02:51:17 -0800 (PST)
+	b=cMcF12wgtYhlzl3OOC513tR9kI9YefWSLw6YLI3AnXUMeelHrOOT4o+H0j0sNKARv
+	 Zs1/81nmx3Wl6bc+FmsVPDXOLJSNr6OfB8t2kkxf5FkgzepQ2iBV1MizSmnuaO7ePC
+	 RQthPeORjpyl49BIEsKNXPi+P7NAqjbOgQz5ugkqFLk/6l4wyphx1FmGJmTQRYH5Lk
+	 +Fk973WN8BwfCra57/+VnE5j+0UHmcYO7HWfIy2hOUjaLtMxQTOOQE+ETLo7ZT7ICW
+	 yxvxwhGJknjpsm3uNDgUAnOP7ywqgZOI+5/ZZhHP4E/Z/2iiSd+nWp/jBNm2pUE79S
+	 SIZRiw6uk26ww==
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-37a3d86b773so94405051fa.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 02:52:04 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUM4RIJrCV4LJa40cteM+1v+ajTGH/V54CGi7i6WioWV4KXOVdtP9HKydfyokWyLE7coL6l4ZvnVb7U@vger.kernel.org
+X-Gm-Message-State: AOJu0YzC+kfimf/YNaCy7ds8VeyrpagkHZwye4RMNQhkSw/eY2Xhmunz
+	Vbt9jJNsZ/8tEdk0BFpykgby93gnOxZHBD8609LGv90sal90qOkJ/7B52OEw5UuVSJ+zNPQGwLL
+	hKS3g5zaWdF/I95bXFa56f3kTSTbjGb5J9/ZWbnGBsA==
+X-Google-Smtp-Source: AGHT+IGEB230wg4WPQ884wIw4d+xKW3xm3mX9tpow6yKELEID6v10VfXcSi9Pm/TOi4IGufi44ofR27WYzi/tTVG1Cg=
+X-Received: by 2002:a05:651c:3244:b0:37f:cc5b:de41 with SMTP id
+ 38308e7fff4ca-3812158ffddmr117742161fa.9.1767351123504; Fri, 02 Jan 2026
+ 02:52:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251231-wcn3990-pwrctl-v1-0-1ff4d6028ad5@oss.qualcomm.com> <20251231-wcn3990-pwrctl-v1-10-1ff4d6028ad5@oss.qualcomm.com>
-In-Reply-To: <20251231-wcn3990-pwrctl-v1-10-1ff4d6028ad5@oss.qualcomm.com>
+References: <20251231-wcn3990-pwrctl-v1-0-1ff4d6028ad5@oss.qualcomm.com> <20251231-wcn3990-pwrctl-v1-14-1ff4d6028ad5@oss.qualcomm.com>
+In-Reply-To: <20251231-wcn3990-pwrctl-v1-14-1ff4d6028ad5@oss.qualcomm.com>
 From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Fri, 2 Jan 2026 11:51:03 +0100
-X-Gmail-Original-Message-ID: <CAMRc=Mf+FFEQPb1vvaY09_P=jCuzzFw_ZyaV7xB3BEdbWveU1w@mail.gmail.com>
-X-Gm-Features: AQt7F2pqkjKwFIx8hZpIu-TfXbr4Nzd5pfqyrhbXe7nGgy4iKw45mcVh-sFbf3Y
-Message-ID: <CAMRc=Mf+FFEQPb1vvaY09_P=jCuzzFw_ZyaV7xB3BEdbWveU1w@mail.gmail.com>
-Subject: Re: [PATCH 10/14] arm64: dts: qcom: qrb2210-rb1: describe WiFi/BT properly
+Date: Fri, 2 Jan 2026 11:51:51 +0100
+X-Gmail-Original-Message-ID: <CAMRc=MeT8PH+TXX9pYgqb3eo61zt0JqorRDSJV-LPNDmuwyYFQ@mail.gmail.com>
+X-Gm-Features: AQt7F2pouAlQJ-sMEsiHWRttM9wH4yG7LpdTIHvF2QWzScSglHBPWDDULB8nrvY
+Message-ID: <CAMRc=MeT8PH+TXX9pYgqb3eo61zt0JqorRDSJV-LPNDmuwyYFQ@mail.gmail.com>
+Subject: Re: [PATCH 14/14] arm64: dts: qcom: sm8150-hdk: describe WiFi/BT properly
 To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -80,8 +80,37 @@ Content-Transfer-Encoding: quoted-printable
 On Wed, Dec 31, 2025 at 12:36=E2=80=AFAM Dmitry Baryshkov
 <dmitry.baryshkov@oss.qualcomm.com> wrote:
 >
-> The onboard WiFi / BT device, WCN3950, has a simple on-chip PMU, which
-> further spreads generated voltage. Describe the PMU in the device tree.
+> Properly describe the PMU present as a part of the onboard WCN3998
+> WiFi/BT chip. Enable Bluetooth part of the chip too.
+>
+> [    5.479978] Bluetooth: hci0: setting up wcn399x
+> [    5.633763] Bluetooth: hci0: QCA Product ID   :0x0000000a
+> [    5.645350] Bluetooth: hci0: QCA SOC Version  :0x40010224
+> [    5.650906] Bluetooth: hci0: QCA ROM Version  :0x00001001
+> [    5.665173] Bluetooth: hci0: QCA Patch Version:0x00006699
+> [    5.679356] Bluetooth: hci0: QCA controller version 0x02241001
+> [    5.691109] Bluetooth: hci0: QCA Downloading qca/crbtfw21.tlv
+> [    6.680102] Bluetooth: hci0: QCA Downloading qca/crnv21.bin
+> [    6.842948] Bluetooth: hci0: QCA setup on UART is completed
+>
+> [   81.510709] ath10k_snoc 18800000.wifi: qmi chip_id 0x30224 chip_family=
+ 0x4001 board_id 0x55 soc_id 0x40060000
+> [   81.521713] ath10k_snoc 18800000.wifi: qmi fw_version 0x32040163 fw_bu=
+ild_timestamp 2019-10-08 05:42 fw_build_id QC_IMAGE_VERSION_STRING=3DWLAN.H=
+L.3.2.0-00355-QCAHLSWMTPLZ-1
+> [   81.554143] ath10k_snoc 18800000.wifi: failed to fetch board data for =
+bus=3Dsnoc,qmi-board-id=3D55,qmi-chip-id=3D30224,variant=3DQualcomm_sm8150h=
+dk from ath10k/WCN3990/hw1.0/board-2.bin
+> [   85.467464] ath10k_snoc 18800000.wifi: wcn3990 hw1.0 target 0x00000008=
+ chip_id 0x00000000 sub 0000:0000
+> [   85.478132] ath10k_snoc 18800000.wifi: kconfig debug 0 debugfs 0 traci=
+ng 0 dfs 0 testmode 0
+> [   85.487223] ath10k_snoc 18800000.wifi: firmware ver  api 5 features wo=
+wlan,mgmt-tx-by-reference,non-bmi crc32 b3d4b790
+> [   85.758168] ath10k_snoc 18800000.wifi: htt-ver 3.73 wmi-op 4 htt-op 3 =
+cal file max-sta 32 raw 0 hwcrypto 1
+> [   85.901630] ath10k_snoc 18800000.wifi: invalid MAC address; choosing r=
+andom
 >
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
