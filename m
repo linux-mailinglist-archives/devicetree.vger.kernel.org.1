@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-251025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD862CEE26C
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:19:07 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ADAECEE275
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:19:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7E5B830046D3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:18:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 01474300091A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:19:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F7C72D9780;
-	Fri,  2 Jan 2026 10:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FDCB2D7DD5;
+	Fri,  2 Jan 2026 10:19:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YSprAcSf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="si9aLGqN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741CA2C21D0;
-	Fri,  2 Jan 2026 10:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67351215F7D;
+	Fri,  2 Jan 2026 10:19:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767349134; cv=none; b=PJcAXZai3HVk0cJOBQyi5y9U9KdHB7GS2zjRLUfv+M2XqBQRtXaQiXkmL+aatC/hdH+Uh3uHkjJbkk0qMZLfmnwNxgEvy3jeRW1LOK/U7DzHYdevUu2OH0XG7GYlbkMn6/l8IXAHHVN0KF0nL+niQbQ9lnVGI2kqWva24Il1dIE=
+	t=1767349161; cv=none; b=ikop1RK8UhtQ9IJyoH8IMUv1J3xPUNTRZpjh8oUFBCsDMoAKo1VvmxvpZQGW1Mn3pdLgmaWQ0r06OVDRjZqLEpYoayoH+HxU+3Dr9BZk3ID7EaSkGSzCunAKLSa2rAVRXJ0pEoi71MpqZTKGt4gyTErhSvnviSTTkkCJ9+3Gqac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767349134; c=relaxed/simple;
-	bh=9odtNBrC0S9pC/xt5KpmOy/Y1mH2OudFUDaxB9qu1qU=;
+	s=arc-20240116; t=1767349161; c=relaxed/simple;
+	bh=iX0Ubl2uw91MOdrVadOhHPbnGjWQaLyrpD5NP7rz4Ic=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mBwi5zhQ2sNqKtj3SIGswTcazCnCzHgwarCuqrbCtmlSH5+m7W3XvVFf9kghFUPTassiaQykVcR8n9MxGBFUslyR/5oPmBaY1IVw6paQr3LUGZOBjdBqxB7u/Hujo6kYRQkwkOcK8+a/CFtjufGrfulOG/6tnYn1Mmj5LSPvh0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YSprAcSf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8377EC16AAE;
-	Fri,  2 Jan 2026 10:18:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hbGLP0pZUqxH6jplL9i+u+rwJ38wXYpWyTrBpIbWOIfWxat/jb0UI+fkfYpadX1LsQtyYbKNJxkfxPLG7EmzZuZTx60T0pFBA9f7+RUgLWNiAj5MunGtS4oAvTuRS8+w4T21nRQkir92M8cIdMoiQdlWfm19+fIPO79clUsKGkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=si9aLGqN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D30AEC116B1;
+	Fri,  2 Jan 2026 10:19:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767349133;
-	bh=9odtNBrC0S9pC/xt5KpmOy/Y1mH2OudFUDaxB9qu1qU=;
+	s=k20201202; t=1767349161;
+	bh=iX0Ubl2uw91MOdrVadOhHPbnGjWQaLyrpD5NP7rz4Ic=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YSprAcSfKOotnAEnUIdVRyn31wIghyefEgxOZDi+YUB/KIDRDI7VinRK8isBx489G
-	 +mFAe9bUyQJ+NRQ9cO9lVnXofXqKCXuSBLUk2ncFs2g/9dfiCn5U1OZhxx81ifVpOM
-	 H49lXxunHm+o00wJRns3dg6/olwjyOOVwYVrBDHcJr9FwkZX4f6yx8a4CB8Yiu6gtQ
-	 K6Fkns8EZJPIc4eYqNX8ElB064EZGuynx3SQ7yfpx5dwY34grXvTNaXiNNs5nd5swn
-	 uSERTb4Y2xruOY/tpz13BwbstOOGzwMTPBby5uMB+n7VzZuKPpzELj6NnRN4PKJJKd
-	 yBGIDeyUJG0gg==
-Message-ID: <baa3ff2a-6569-4b36-aed1-651f83fa175b@kernel.org>
-Date: Fri, 2 Jan 2026 11:18:49 +0100
+	b=si9aLGqNQiRhooP53CbhxsQsnFvLM7zrboE7fQSnNADRhQwuq8d09Od/puQ4UypRL
+	 8HiXx/v/XeQuEJmEkKfaA0lIGwjvX4kJqoBEH0NiA7RTUxnj5dQs2f3VxU8KrLe3+x
+	 sPcRRDV0xphSovI2idKsfooOr+FYjfWysV20ikmLNSNWNV4EKw2TZXUz0nb4+kWokq
+	 GwldKo/IdAKYtyuDnKi287py9Mfwc4qa6vKdSyfFoYxNy68GCIyc+j71VSFGolvlU6
+	 5ythhJtZtRFCXY28ayp/9S1L51peAwuRQxhiw3vglc6g30sjiS7zEcfXZKYqnaHXb1
+	 aJb6yc+9XXZ/Q==
+Message-ID: <6100a708-097c-4a97-925a-44dfe115ffc9@kernel.org>
+Date: Fri, 2 Jan 2026 11:19:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,6 +59,7 @@ Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
 References: <20251229-nxp-v1-1-a415fe0080a8@gmail.com>
  <20251230-kagu-of-scientific-enrichment-6fcd4c@quoll>
  <0363ac61-0872-42da-91b8-78966a2537ce@gmail.com>
+ <cfe2550d-52d4-400e-903e-f32031ebd5ee@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,36 +105,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <0363ac61-0872-42da-91b8-78966a2537ce@gmail.com>
+In-Reply-To: <cfe2550d-52d4-400e-903e-f32031ebd5ee@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/01/2026 09:17, Akhila YS wrote:
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - microchip,mchp23k256
->>> +      - microchip,mchp23lcv1024
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  "#address-cells":
->>> +    const: 1
->>> +
->>> +  "#size-cells":
->>> +    const: 1
->> Pretty incomplete. Old binding and above cells claim there can be child
->> nodes, so please add them and test. Works? No. Shall work? Yes... so
->> either old binding was incorrect or new binding is incomplete. I did not
->> check the driver, though.
+On 02/01/2026 11:08, Akhila YS wrote:
 > 
-> 
-> Size cells and Address cells are not required as there is no child node
+> On 02-01-2026 13:47, Akhila YS wrote:
+>>
+>>
+>> On 30-12-2025 18:02, Krzysztof Kozlowski wrote:
+>>> On Mon, Dec 29, 2025 at 12:49:00PM +0000, Akhila YS wrote:
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/mtd/microchip,mchp23k256.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Microchip 23K256 (and similar) SPI SRAM MTD driver
+>>> driver? Bindings are for hardware.
+>>
+>>
+>> Sure, I will fix it.
 
-Then what is the point of address/size cells if you do not have children?
 
-Anyway, read carefully old binding and the driver code.
+I don't know what's this - empty email.
+
+Please kindly trim the replies from unnecessary context. It makes it
+much easier to find new content.
 
 Best regards,
 Krzysztof
