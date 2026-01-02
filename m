@@ -1,84 +1,96 @@
-Return-Path: <devicetree+bounces-251143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E313ECEF5D9
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 22:47:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CECC5CEF630
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 22:57:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B28203011EC2
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 21:47:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9888930102B3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 21:57:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3890484039;
-	Fri,  2 Jan 2026 21:47:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AABC326CE3B;
+	Fri,  2 Jan 2026 21:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NI8p/Tlm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t8sbqvwe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1090714A8E;
-	Fri,  2 Jan 2026 21:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85FCC3A1E99
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 21:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767390432; cv=none; b=tDuuObVjkQHts3gbjfs92E42Ax7BUioaFmF33wzjSVXdVs5aN5Qy+SB1XKkBAFqerOUC1idlphIFHOzuLsSWZQExmGXRuZzupJio6rrudmkkQGktRr9UoxmCsWkqXRsqjexLvq5yGMRC3IEyiKr9UYfk5QMxgobM9QsxVVZWm1g=
+	t=1767391076; cv=none; b=b6eNFjH5hBLRD748kZILKBMMapOFTOzMhpP4LpCZkzAbD0S++q0BU8BtGQcMvmzehKXsqTBudOQ/MK/pZB7f70W4whNZnv+zxIG/txhQoy7C+CMdNbHBRDHpobGipNg0IQqzliyJ4a/TWCDVdEQXCKdJMACVsU2o1bRkZtEHrOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767390432; c=relaxed/simple;
-	bh=GMZG8PLH16vIlvLPUgb3vns8YcO90S5QJdAxIhN5s58=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ph8IhtsNjYe8ZAWZwA6t/aE+xgF4Zk0cVW9xHZFFGmh0IHCr9lilZSAI35Tv/D8WQb3S2hHVJVLaqFBZ/zadNzMtP1XJr7OVQ5//5eRveiOPwDEUOro8RYsUSMbLDq69+gt/P2p+riGMOnmvR68ddZryK3Ob6Z+VvPONpm42cag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NI8p/Tlm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73076C116B1;
-	Fri,  2 Jan 2026 21:47:11 +0000 (UTC)
+	s=arc-20240116; t=1767391076; c=relaxed/simple;
+	bh=fTs6oGgbwPQlKyYfk29PS4txtHAFR2mw78lr28VH2FI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CMcrpHj7lpI5jygvmeY5/+pQQaK1/B/hZDcyICJu7upkUKLQbIubMM5Su+Z5rWNuWhCFbdoJgYkzCkjML4y89UIPIiSNoMbusIJV0ULKe4UZaGEMSGHtkwyPYuy2RIZXX2Ku8zAjWzCOfNFU/LiO4PcrQjzZqL3YCyO0bKI5M+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t8sbqvwe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35786C116C6
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 21:57:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767390431;
-	bh=GMZG8PLH16vIlvLPUgb3vns8YcO90S5QJdAxIhN5s58=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NI8p/Tlm1QPYtaoRb+UtM4QqU30WGoiozGGbMODjmhChAMntrZgdFEhHGUq/gP5/K
-	 Dm86SvR92EuS7A5WlKlptf1FlyZkqOCF3GP2Z618MuZ+Zhulwg1S/Eat+ub6YwSDHW
-	 k0sAX/bcG4e10MXHSUIkkKvxc407jHLzkSpTW1rbQ7VpWTVI8z5vn11k5sLuSUBVZh
-	 sWf3QqidKkho36OBqoLhlBhHkSb06h4smHoYk/C3TCE435oJa1/0uwdIRJdsueefJy
-	 AEzFq1KL5dfM35seOI/LONS5eughR4LQdj8IKkSyHfboBmZfLpEHZN7fJK0WKoEBjj
-	 SE6KwgwaLEwjQ==
-Date: Fri, 2 Jan 2026 15:47:10 -0600
-From: Rob Herring <robh@kernel.org>
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: maz@kernel.org, tglx@linutronix.de, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: arm: Drop redundant
- node name restrictions
-Message-ID: <20260102214710.GA226653-robh@kernel.org>
-References: <20251231113026.2480092-1-pankaj.patil@oss.qualcomm.com>
+	s=k20201202; t=1767391076;
+	bh=fTs6oGgbwPQlKyYfk29PS4txtHAFR2mw78lr28VH2FI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=t8sbqvwepuOROzW0vidBuOJL+fU1E5vAZxW8DnB7gIOQnWkIv0SlypFBTYM4SO+/D
+	 eP9hOTFX2tty3e3rXcN/LvXmzhlNXmwJcS+3r36YIz0mv6s6lCqkZbn2TG988ocsBd
+	 PEY/Ya185+Xusa8hjxkRkzwMy8milwl3cs/QJY9r5Rh7nJJasiy/+K9TRfER9JT/TF
+	 /162CKIGLuDTwXTI1MoqqyyO4l/+rtvytt732mn/Jjz5WIGu7juXFzQ5Z6KaCmtydx
+	 +t/ARZl86hb9fc2XH3LTeWyQd+WYmxmiILFOBvnap/ijVoz/WIMM22bqtfzUcnOkPW
+	 qKV/s5BecpDpA==
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-78f99901ed5so108413707b3.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 13:57:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWMogc1tnyY1pakpaHk0qXzQZ2dhPYFETMYG+ZQCj7/091J2+73NYVL2SX/O+TE/KFeftgN+PQyV6kE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFYp2NVw6jWhHbKQS+o9wsbSZE6y0xocgReIJl1l1Hr8wg5RMj
+	O0C7ZBe/AvVdPlGozi9V2JBIzogm4H7SG3zGaF27+NjMLdMXxZKvNBdyS3chFCvObhB1v49tSLx
+	siwnju55mhNekLsa1FV8+jRNeiDMK5Fg=
+X-Google-Smtp-Source: AGHT+IFvit43PZt9CuDzKVz8Z4nOImtIM3mmQbkBxLTqEsYzLUfYqHgxNY5RM/1/uMvN5EeCL22OJeziENQQsOw38sI=
+X-Received: by 2002:a05:690c:6012:b0:78c:6854:2771 with SMTP id
+ 00721157ae682-78fb40291d2mr364053437b3.36.1767391075577; Fri, 02 Jan 2026
+ 13:57:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251231113026.2480092-1-pankaj.patil@oss.qualcomm.com>
+References: <20251223-eyeq6lplus-v2-0-cd1fd21d182c@bootlin.com> <20251223-eyeq6lplus-v2-6-cd1fd21d182c@bootlin.com>
+In-Reply-To: <20251223-eyeq6lplus-v2-6-cd1fd21d182c@bootlin.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Fri, 2 Jan 2026 22:57:44 +0100
+X-Gmail-Original-Message-ID: <CAD++jLnBMXQAv75a8k=mbEt8pAxS0UXhayQPz1YWCiLic9_+ig@mail.gmail.com>
+X-Gm-Features: AQt7F2pVCJ5RIFpGUV8kYR4yF4m1vRENrYeYecI6n6ttv8lwmY7u2GpoB-2JCic
+Message-ID: <CAD++jLnBMXQAv75a8k=mbEt8pAxS0UXhayQPz1YWCiLic9_+ig@mail.gmail.com>
+Subject: Re: [PATCH v2 06/13] pinctrl: eyeq5: Add Mobileye EyeQ6Lplus OLB
+To: =?UTF-8?Q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	Gregory CLEMENT <gregory.clement@bootlin.com>, =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 31, 2025 at 05:00:26PM +0530, Pankaj Patil wrote:
-> Drop the redundant 'false' patterns so that allowed names
-> ('msi-controller', 'gic-its', and 'interrupt-controller') work as intended
-> 
-> GICv3 binding currently disallows child nodes named 'gic-its@' and
-> 'interrupt-controller@' via patternProperties set to 'false'. However,
-> these names are already permitted (though not preferred) by a subsequent
-> pattern that applies the correct schema.
-> 
-> Since the 'false' patterns take precedence, valid nodes such as
-> 'gic-its@<addr>' and 'interrupt-controller@<addr>' fail dtbs_check with
-> "False schema does not allow" errors
+Hi Benoit,
 
-The reason it is done this way is so that we both check the child nodes 
-and warn on deprecated names. 
+thanks for your patch!
 
-Fix your .dts files ITS node name to be "msi-controller".
+On Tue, Dec 23, 2025 at 11:02=E2=80=AFAM Beno=C3=AEt Monin <benoit.monin@bo=
+otlin.com> wrote:
 
-If the node names are fixed everywhere now, then we could just change 
-this to "^msi-controller@[0-9a-f]+$".
+>  static const struct of_device_id eq5p_match_table[] =3D {
+>         { .compatible =3D "mobileye,eyeq5-olb", .data =3D &eq5p_eyeq5_dat=
+a },
+> +       { .compatible =3D "mobileye,eyeq6lplus-olb", .data =3D &eq5p_eyeq=
+6lplus_data },
 
-Rob
+Which patch can I find this new binding in? Or is it already upstream?
+
+Yours,
+Linus Walleij
 
