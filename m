@@ -1,166 +1,145 @@
-Return-Path: <devicetree+bounces-251010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53313CEDFEF
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 08:55:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2FEACEE0F7
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 10:29:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2D3B7300EA25
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 07:55:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3D6D930062EB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 09:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93FDC2D3EC7;
-	Fri,  2 Jan 2026 07:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4097B2D7D2A;
+	Fri,  2 Jan 2026 09:29:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NdgqqMWX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RZVRLh7X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68B4F2D3226;
-	Fri,  2 Jan 2026 07:55:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E621F7580;
+	Fri,  2 Jan 2026 09:29:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767340518; cv=none; b=nblQ8cYTLkXhiLIXE6PNZNl7uHXmSAHbhIeqpWc+LuIX+C+zpH/HsUsxU2dJC/8qdzSgtBTlVEu5zJdRkw3FWDGCjWq3nKcNrf6bm9Ms0TmLdSRm5pAasWx9nIcrgsp3D+Vu1eyj4cUajPc6QxfG7ZUNQHmKULhtdwk+ok7YL/o=
+	t=1767346178; cv=none; b=n6jg6e+jPhw3IJ++iXsIu9IaW1KKoaakgcZRj3BPx3NTo+88LDS7Y18DXEVvyZWNfKs/5cx8zmP5vSViAebd1E/9yw6Q7gsIsrQnBWwcPxpJQqvoeM0SWxbKBGe7COjc5UCDFoJmpJemtopp4bmmpLqYE56qq3aoZvVVT7cRfm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767340518; c=relaxed/simple;
-	bh=pOnKyluOFkW2N+u900uU1w6ot1ZQJr+Jq/KOEnjgfZU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=JvhYpiMdl/lo0POO69W3SiW2iq2x0nBJv13USsCUkGMJJyieQe0F9DRpFEmyDaIBZn0WEVZ6gDr5cMckl2ax4hcrIFKuQSp08+gqkAKRYP/lm+Z+XvHDBbxteg8gG+o/iCi/p7kutrn75cx1w9kuDPUgtQVK4uv6o6WX3NRPeEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NdgqqMWX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F83AC116B1;
-	Fri,  2 Jan 2026 07:55:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767340518;
-	bh=pOnKyluOFkW2N+u900uU1w6ot1ZQJr+Jq/KOEnjgfZU=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=NdgqqMWXvqkjNpDjD8aQSm+E5nZXDdEbJTJ1qQ5erI4m+6RsR4CQ32EKznn+4kSXV
-	 aY56PD7oxNvBUOr6ZUwhqe3nfj93uX+zsZrPsM2pR34X9GHZf31J5/Akb7ZHgR4UBK
-	 XTx8D2836y/iG0zXPKBArfeBjG0oBjuX9UkkLhOpxqRT2pJf7atCZA8xD2EWtRAXBx
-	 I/0VbIgMmSkNOoBe5H6StvBs6oZIEd9vqIK5US1EyifRP3D/WkpQYCa/Q57BDTWPzy
-	 MgYf8L4uXhj2N5DPwTPBpzmKxXoGdWPCF9+KMFCQ5oyya29ZLm/HcI/0nCu+BYm6j0
-	 QfueNXF+FND+A==
+	s=arc-20240116; t=1767346178; c=relaxed/simple;
+	bh=bfvc0nsDaqL3faZDfWl4JZOSetSF4XhQ++l5FyC/mY0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TBVgZR2AYpDO6GA76byQKmG8w8Z800fz8PKgd3xqhwu6j6IZr6l+f61blwKMvn7j4+VJBUCxSVRHwHVvod2lm5wDEPAPfrFcaqmINQa6lyGBAD4HtXlGDqMTPRLOUo03Pyl44q1gvt4Dr+FWZtB9hklrvM04P5tAv7VHa/MpKug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RZVRLh7X; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 602894JE035910;
+	Fri, 2 Jan 2026 09:29:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oaW0Z6j0ZPnwG0r3uuBK5kv3RVSJzkfV4NzktJbSi/E=; b=RZVRLh7X4ntl8dfB
+	tRQ0x4n5v3aI1mKFBP4ymFSYVg/Kgz+lPoPYML3uJ0k3SKf1I2GT3lzsuMwnEUIW
+	RI5vvgJBfWsaGv3bKlaZx/RctV1RzlXnFsqJ3M9gO0AjtfgE2cARuIckXqZa07zZ
+	uu6iW7eypk14uyq+iGn/t5kEICxXWX8+5TltRfJ6ZhowAMpIO0JL4SCnB2/9Ll82
+	1vYohLTQ7vV9JDdF//iifyvE/HrNKhizH5oL6YnDkdg5noaNpvKSH1hmR+8XzLz1
+	30XOYDob4FkFMGjbU5XBykF+0DYkJP+7rpl4Ok2gluoblTR2zAEKK9+8Lyq/7e1U
+	QTO3fA==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bcx74c48q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 02 Jan 2026 09:29:19 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 6029TIAB006914
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 2 Jan 2026 09:29:18 GMT
+Received: from [10.216.5.234] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 2 Jan
+ 2026 01:29:10 -0800
+Message-ID: <58b496b5-2847-4af7-8a34-e227e4324deb@quicinc.com>
+Date: Fri, 2 Jan 2026 14:59:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=1b07cf6eaa5d19226fd67d51c3e66b8bf06a0a75186b45da8bdf50e1e5cb;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Fri, 02 Jan 2026 08:55:13 +0100
-Message-Id: <DFDXXBFG13CK.385K2HM9FOWS6@kernel.org>
-Subject: Re: [PATCH v2 2/4] clk: keystone: don't cache clock rate
-Cc: "Frank Binns" <frank.binns@imgtec.com>, "Matt Coster"
- <matt.coster@imgtec.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Vignesh Raghavendra" <vigneshr@ti.com>,
- "Tero Kristo" <kristo@kernel.org>, "Andrew Davis" <afd@ti.com>, "Santosh
- Shilimkar" <ssantosh@kernel.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Kevin
- Hilman" <khilman@baylibre.com>, "Randolph Sapp" <rs@ti.com>,
- <linux-clk@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Nishanth Menon" <nm@ti.com>
-X-Mailer: aerc 0.20.0
-References: <20251223124729.2482877-1-mwalle@kernel.org>
- <20251223124729.2482877-3-mwalle@kernel.org>
- <20251230201233.n36d5fiensqyb6fc@splice>
-In-Reply-To: <20251230201233.n36d5fiensqyb6fc@splice>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] dt-bindings: display: msm-dsi-phy-7nm: document
+ the QCS8300 DSI PHY
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
+        <dmitry.baryshkov@oss.qualcomm.com>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <konradybcio@kernel.org>, <conor+dt@kernel.org>,
+        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonathan@marek.ca>, <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <quic_rajeevny@quicinc.com>, <quic_vproddut@quicinc.com>
+References: <20251225152134.2577701-1-quic_amakhija@quicinc.com>
+ <20251225152134.2577701-2-quic_amakhija@quicinc.com>
+ <20251227-doberman-of-radical-variation-d30aaf@quoll>
+Content-Language: en-US
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <20251227-doberman-of-radical-variation-d30aaf@quoll>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zYsvGjGcXceGOpTB8rFMlvFOrGNmFuGV
+X-Proofpoint-GUID: zYsvGjGcXceGOpTB8rFMlvFOrGNmFuGV
+X-Authority-Analysis: v=2.4 cv=HNvO14tv c=1 sm=1 tr=0 ts=69578fef cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=fWUcj0S4klb-w0UgOPsA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTAyMDA4NSBTYWx0ZWRfX5dJyz1g8G/Ja
+ 2vXNwTFU1hMK6ZsyFw0HozPYioy/cwffwIZRjGX5+rdMsSjFgGH5vq9tHbzBVGrJG5pJYjZCbA5
+ kj6vAih44inI5tN0KPlYRHSG6xFDDzovdJMy6zYYSnMdeiKoi/GZvBbo1TtLogKn1bjtEAlJL2x
+ pkafdL6lEskRwffpmi1u2msJxkDDD/vV4HQjBi6vURfLFaG6YdZ6nMZtpZK4xXD7ijVnfUjzkoU
+ g+4W6k0JQBzr410vBvBvt6ek9xQCHoG7U+OHtgNDdjBhzqYREdaFQVEt6GZG6RXxrVpUPhdB8sN
+ 0bQ+VN2JLFopRoyVC39lJQtIFDGzRBjDHDTgIlF6U0gkZPAO1YdyH23DGrtdwIbo/pJngKyXbxF
+ 4M0Y2T27982MvE85ECWMuAHFpG/G+L0EnLIk5ZnSNPCaza+QlL6IxvcZXb8MOXc4NTpncRFoe0o
+ q5D8BKIPNak2Aa+voyg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-01_07,2025-12-31_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 bulkscore=0 adultscore=0 suspectscore=0
+ priorityscore=1501 lowpriorityscore=0 clxscore=1015 spamscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601020085
 
---1b07cf6eaa5d19226fd67d51c3e66b8bf06a0a75186b45da8bdf50e1e5cb
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On 12/27/2025 4:43 PM, Krzysztof Kozlowski wrote:
+> On Thu, Dec 25, 2025 at 08:51:30PM +0530, Ayushi Makhija wrote:
+>> The QCS8300 MDSS DSI PHY is the same 5nm PHY IP as on SA8775P, with
+>> identical register layout and programming model. Model this by using
+>> a QCS8300 specific compatible with a qcom,sa8775p-dsi-phy-5nm fallback,
+>> and update the schema to require this two entry form for QCS8300 while
+>> keeping existing single compatible users valid.
+> 
+> Last sentence is redundant. I asked to explain the hardware, not to tell
+> us how Devicetree works. Write concise and informative commit msgs which
+> tell non-obvious things. Not what you did. I alreaded asked this - do
+> not state the obvious, do not copy the subject.
+> 
+> The only useful part of your commit msg is first sentence - two lines,
+> so 33%. Remaining four lines, so 66%, is obvious.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-On Tue Dec 30, 2025 at 9:12 PM CET, Nishanth Menon wrote:
-> On 13:47-20251223, Michael Walle wrote:
->> The TISCI firmware will return 0 if the clock or consumer is not
->> enabled although there is a stored value in the firmware. IOW a call to
->> set rate will work but at get rate will always return 0 if the clock is
->> disabled.
->> The clk framework will try to cache the clock rate when it's requested
->> by a consumer. If the clock or consumer is not enabled at that point,
->> the cached value is 0, which is wrong. Thus, disable the cache
->> altogether.
->>=20
->> Signed-off-by: Michael Walle <mwalle@kernel.org>
->> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
->> Reviewed-by: Randolph Sapp <rs@ti.com>
->> ---
->>  drivers/clk/keystone/sci-clk.c | 8 ++++++++
->>  1 file changed, 8 insertions(+)
->>=20
->> diff --git a/drivers/clk/keystone/sci-clk.c b/drivers/clk/keystone/sci-c=
-lk.c
->> index 9d5071223f4c..0a1565fdbb3b 100644
->> --- a/drivers/clk/keystone/sci-clk.c
->> +++ b/drivers/clk/keystone/sci-clk.c
->> @@ -333,6 +333,14 @@ static int _sci_clk_build(struct sci_clk_provider *=
-provider,
->> =20
->>  	init.ops =3D &sci_clk_ops;
->>  	init.num_parents =3D sci_clk->num_parents;
->> +
->> +	/*
->> +	 * A clock rate query to the SCI firmware will return 0 if either the
->> +	 * clock itself is disabled or the attached device/consumer is disable=
-d.
->> +	 * This makes it inherently unsuitable for the caching of the clk
->> +	 * framework.
->> +	 */
->> +	init.flags =3D CLK_GET_RATE_NOCACHE;
->>  	sci_clk->hw.init =3D &init;
->> =20
->>  	ret =3D devm_clk_hw_register(provider->dev, &sci_clk->hw);
->> --=20
->> 2.47.3
->>=20
->
-> Reviewed-by: Nishanth Menon <nm@ti.com>
->
-> I wish there was a better scheme, but inherently, just like SCMI and
-> other systems where power management co-processor controls clocks, there
-> is no real feasible caching scheme I can think of. I wonder if Stephen
-> or others have a thought on this?
->
-> That said, I wonder if we need fixes tag to this? I am sure there are
-> other clocks susceptible to this as well. I wonder if
-> commit 3c13933c6033 ("clk: keystone: sci-clk: add support for
-> dynamically probing clocks") is the appropriate tag?
+Hi Krzysztof,
 
-From my previous versions of this patch:
+Can you please check below commit description is it appropriate  ?
 
-> Regarding a Fixes: tag. I didn't include one because it might have a
-> slight performance impact because the firmware has to be queried
-> every time now and it doesn't have been a problem for now. OTOH I've
-> enabled tracing during boot and there were just a handful
-> clock_{get/set}_rate() calls.
+QCS8300 uses the same 5nm MDSS DSI PHY IP as SA8775P, sharing an identical
+register layout and programming model. Introduce a QCS8300-specific compatible
+with a fallback to `qcom,sa8775p-dsi-phy-5nm` to reflect this hardware reuse.
 
-I'm still undecided if this needs a Fixes tag or not. Strictly
-speaking it would need one. Although, I'm not sure it's the one
-you mentioned, because the culprit is the "we return 0 if the clock
-or it's consumer is disabled", which then caches the wrong value.
-So it is probably the very first commit b745c0794e2f ("clk:
-keystone: Add sci-clk driver support").
-
--michael
-
---1b07cf6eaa5d19226fd67d51c3e66b8bf06a0a75186b45da8bdf50e1e5cb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaVd54hIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/gcUQGAg2jdevhmzIo3MpxW/fmQhTzma7f+Pz6n
-47sV9LU70CQ37MlbGTA2td+AP2lBAewMAYCpZT5T5yRgVP3N00Tn5GVG4Ag10GUP
-WDnpYZrhnC6qDHRhIUdH2Nn1H0y4a99g1XY=
-=VIxe
------END PGP SIGNATURE-----
-
---1b07cf6eaa5d19226fd67d51c3e66b8bf06a0a75186b45da8bdf50e1e5cb--
+Thanks,
+Ayushi
 
