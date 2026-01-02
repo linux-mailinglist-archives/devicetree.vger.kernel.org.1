@@ -1,182 +1,166 @@
-Return-Path: <devicetree+bounces-251009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B648CEDF56
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 08:17:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53313CEDFEF
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 08:55:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 52C923009F9B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 07:13:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2D3B7300EA25
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 07:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 806872D2488;
-	Fri,  2 Jan 2026 07:13:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93FDC2D3EC7;
+	Fri,  2 Jan 2026 07:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FqEkGRag"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NdgqqMWX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49AC82D1F69
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 07:13:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68B4F2D3226;
+	Fri,  2 Jan 2026 07:55:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767338037; cv=none; b=vDy48utLyyvG4C4yUHnuFnJMCemAm0QwnGVlHoYGjsY6pry9mei1+kMollukKJqImuz6UVDReooZYE9qskDn7rPLYJXv7c7YCDefPtMax1QbjnZWGNf7iShXFXjX0zRTiuTGS+bTFpwwdvATDUc8kHry1wLeWMx8wBx3w8SdqxI=
+	t=1767340518; cv=none; b=nblQ8cYTLkXhiLIXE6PNZNl7uHXmSAHbhIeqpWc+LuIX+C+zpH/HsUsxU2dJC/8qdzSgtBTlVEu5zJdRkw3FWDGCjWq3nKcNrf6bm9Ms0TmLdSRm5pAasWx9nIcrgsp3D+Vu1eyj4cUajPc6QxfG7ZUNQHmKULhtdwk+ok7YL/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767338037; c=relaxed/simple;
-	bh=qKiyom99dAPdhTsRHOQbDoHAlx2my9yh+xilqEmgxj0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b5ZAbMGQL0pP/KvRrzJO+7Bz0CYMIjDQnx1sp6XulUCQcU7qExulw0HpTlKTOx35kByV6rAwS9Or4Cw/TQPj4Kx+lIIjnepwwy2evyntOcgBvOHg9WdNFYlAj1vMXe4Bzcd9+mg665KJAhoLORZMW6WPzUFbS76dHJ/P+eFBAa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FqEkGRag; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5957ac0efc2so12653139e87.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jan 2026 23:13:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767338033; x=1767942833; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tg52KgPh/NvG5/ca0UMnjXjSLLXRaw8PfZe/uXtCJoM=;
-        b=FqEkGRag1hR7wDZXO8P1cTExbsCozjqpRS8cGrvc2SL+7O7ZANt4juPrrJ6W2307CD
-         ZcpcMqw/Fs2w4nONIkXFfa1t0EsWT8m5POsQMQXb1owviIep5RDx7RgI2nErcGBsqk1A
-         u3RfDzVSoNPUcJSpvsKjAZIEO9WQL7J5SPNYcYpZckG7s/TOHbK73M0D0d4yO6sVnlRH
-         DwJ4XBApvi8FcZWdmNFddYuTpvrp+HUI69R4Wm7uP8oZqCdWSjmUMghxP7RyzrDXSO/o
-         Msxn/KRw9zL9inzpWxbOiK1hUSwebiRY3GxBOv2I4UF4yD4amJRyANe1i+Q0+5rDQGfI
-         cJ+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767338033; x=1767942833;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tg52KgPh/NvG5/ca0UMnjXjSLLXRaw8PfZe/uXtCJoM=;
-        b=w6LN+AI1xmnCsbXfJ1DeR4a6Qx1RkHApT7b8izrvMfjZ8kCyKMyTGWiiOFzxGojlkk
-         AUvabivZNSEuga9pnQf2XcaWlidFdXOo2BT8O/4oFtx2jUPd5P2X9hM7h1BGWiRQBNcL
-         hB7o6OG+3jcsh2BdSLD6rGusZXHE1Avr4eBejXdaT/8nNHRE1FhQa6cF5qXKbZg+u8zT
-         XycsYHp0oOwszWqt2DBR/SSq3y3QEM09WgvUN6ePWpyYxpKa6AvQDDF8WC08PKXGFlDc
-         VvWHsNp8UmvND5TYNBs0NM+FMrHJQDKVpABpBrPxS856W1vLgBavuCG9w/AHERm2pIeS
-         zMtA==
-X-Forwarded-Encrypted: i=1; AJvYcCX/ZEKC/TUZmZmWEHPYvPKSJSTGWd132IWfKIfaYNb3Qj5/4b0GDHZQCDKKcIRYnzgld7Pc9nQs9Tcb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzU2gX1TX9rRoOibaVBS9b1n13lcow8gTCVN5Bye0T7Ark+0wZv
-	OWpV/TdjIT5LT8OfdhBUlqQWqoCGrIMvpaFJvmCualUMlpSEUX933Lqs
-X-Gm-Gg: AY/fxX5thWklkoa9Hiir/wb0pLsajhOzFdqH5X3zMBq/XHS3TGHXJDD31wHBrSfGTlD
-	hsAlUNRp7EVlnyviLBwUzUGSuRGrziyAfsqy0Icq9G5dyls70jSrfib98wMWw6KjaylcQWiagj+
-	NuJWn1qtUUoo+ExaxVWBOKY4IcsR55wlDIwnFd5jwaInsZJ6Eu9tginhkPs7pNJzdAeySSv0QmF
-	fFWxEXg87v1FWz4BqxGLtcb8T8riaVb/YnMXsx2LjWgyycECDy1zq6TqG+lnSpRCoc0KdxJRTuq
-	o9CYYC3euQbMKb26TuhNELODaG1qBvoFTXPt4RVK1gbjVVbIsB5xTYx2YLeejLehHUcNGVJTK6k
-	dYng9Y8rkH49hOQ+M/hktp0JTYB9x9G64FGHNoJrEtMTrLpQ1skffC6qemogRupCAOOl4Ck80Pg
-	IbgUP4J1tMWKW/H8mEcHyRqy8DWIbWYoLG5nG6l92fNXhJ2NQjAsFHU0ahWqeBg8B2+cfHRfycY
-	O/zzq8=
-X-Google-Smtp-Source: AGHT+IG75hLZGe23C83lYw1IAkO8e8F0HYc9BVU+2CL/EGVHlCP9ievAZqLOw92DkpoMu4U19kPL3Q==
-X-Received: by 2002:ac2:4c47:0:b0:598:a597:62f8 with SMTP id 2adb3069b0e04-59a17d24978mr15276452e87.17.1767338033039;
-        Thu, 01 Jan 2026 23:13:53 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a185d5ea6sm12019590e87.5.2026.01.01.23.13.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jan 2026 23:13:52 -0800 (PST)
-Message-ID: <286a032d-7a14-409d-9bb3-6033c35f8e99@gmail.com>
-Date: Fri, 2 Jan 2026 09:13:51 +0200
+	s=arc-20240116; t=1767340518; c=relaxed/simple;
+	bh=pOnKyluOFkW2N+u900uU1w6ot1ZQJr+Jq/KOEnjgfZU=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=JvhYpiMdl/lo0POO69W3SiW2iq2x0nBJv13USsCUkGMJJyieQe0F9DRpFEmyDaIBZn0WEVZ6gDr5cMckl2ax4hcrIFKuQSp08+gqkAKRYP/lm+Z+XvHDBbxteg8gG+o/iCi/p7kutrn75cx1w9kuDPUgtQVK4uv6o6WX3NRPeEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NdgqqMWX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F83AC116B1;
+	Fri,  2 Jan 2026 07:55:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767340518;
+	bh=pOnKyluOFkW2N+u900uU1w6ot1ZQJr+Jq/KOEnjgfZU=;
+	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
+	b=NdgqqMWXvqkjNpDjD8aQSm+E5nZXDdEbJTJ1qQ5erI4m+6RsR4CQ32EKznn+4kSXV
+	 aY56PD7oxNvBUOr6ZUwhqe3nfj93uX+zsZrPsM2pR34X9GHZf31J5/Akb7ZHgR4UBK
+	 XTx8D2836y/iG0zXPKBArfeBjG0oBjuX9UkkLhOpxqRT2pJf7atCZA8xD2EWtRAXBx
+	 I/0VbIgMmSkNOoBe5H6StvBs6oZIEd9vqIK5US1EyifRP3D/WkpQYCa/Q57BDTWPzy
+	 MgYf8L4uXhj2N5DPwTPBpzmKxXoGdWPCF9+KMFCQ5oyya29ZLm/HcI/0nCu+BYm6j0
+	 QfueNXF+FND+A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: adc: add driver for Texas Instruments TLA2528
- adc
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
- David Lechner <dlechner@baylibre.com>, nuno.sa@analog.com,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Angelo Dureghello <adureghello@baylibre.com>,
- Tobias Sperling <tobias.sperling@softing.com>,
- Eason Yang <j2anfernee@gmail.com>,
- Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
- Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
- duje@dujemihanovic.xyz, herve.codina@bootlin.com,
- Rodolfo Giometti <giometti@enneenne.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- thomas.petazzoni@bootlin.com
-References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
- <20251223155534.220504-3-maxime.chevallier@bootlin.com>
- <efbe9720-0974-4d5e-9a03-fefd3c86e275@gmail.com>
- <20251231171220.1f99e36d@jic23-huawei>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20251231171220.1f99e36d@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=1b07cf6eaa5d19226fd67d51c3e66b8bf06a0a75186b45da8bdf50e1e5cb;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Fri, 02 Jan 2026 08:55:13 +0100
+Message-Id: <DFDXXBFG13CK.385K2HM9FOWS6@kernel.org>
+Subject: Re: [PATCH v2 2/4] clk: keystone: don't cache clock rate
+Cc: "Frank Binns" <frank.binns@imgtec.com>, "Matt Coster"
+ <matt.coster@imgtec.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Vignesh Raghavendra" <vigneshr@ti.com>,
+ "Tero Kristo" <kristo@kernel.org>, "Andrew Davis" <afd@ti.com>, "Santosh
+ Shilimkar" <ssantosh@kernel.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Kevin
+ Hilman" <khilman@baylibre.com>, "Randolph Sapp" <rs@ti.com>,
+ <linux-clk@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Nishanth Menon" <nm@ti.com>
+X-Mailer: aerc 0.20.0
+References: <20251223124729.2482877-1-mwalle@kernel.org>
+ <20251223124729.2482877-3-mwalle@kernel.org>
+ <20251230201233.n36d5fiensqyb6fc@splice>
+In-Reply-To: <20251230201233.n36d5fiensqyb6fc@splice>
 
-On 31/12/2025 19:12, Jonathan Cameron wrote:
-> On Mon, 29 Dec 2025 10:20:23 +0200
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> 
->> On 23/12/2025 17:55, Maxime Chevallier wrote:
->>> This adds a new driver for the TI TLA2528 ADC chip. It ha 8 12-bit
->>> channels, that can also be configured as 16-bit averaging channels.
->>>
->>> Add a very simple driver for it, allowing reading raw values for each
->>> channel.
->>>
->>> Signed-off-by: Rodolfo Giometti <giometti@enneenne.com>
->>> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
->>> ---
->>>    MAINTAINERS                  |   7 ++
->>>    drivers/iio/adc/Kconfig      |  10 ++
->>>    drivers/iio/adc/Makefile     |   1 +
->>>    drivers/iio/adc/ti-tla2528.c | 209 +++++++++++++++++++++++++++++++++++
->>>    4 files changed, 227 insertions(+)
->>>    create mode 100644 drivers/iio/adc/ti-tla2528.c
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index dc731d37c8fe..5c382ae216c7 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -25866,6 +25866,13 @@ F:	include/dt-bindings/soc/ti,sci_pm_domain.h
->>>    F:	include/linux/soc/ti/ti_sci_inta_msi.h
->>>    F:	include/linux/soc/ti/ti_sci_protocol.h
->>>    
->>> +TEXAS INSTRUMENTS' TLA2528 ADC DRIVER
->>> +M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
->>> +L:	linux-iio@vger.kernel.org
->>> +S:	Supported
->>> +F:	Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
->>> +F:	drivers/iio/adc/ti-tla2528.c
->>> +
->>>    TEXAS INSTRUMENTS' TMP117 TEMPERATURE SENSOR DRIVER
->>>    M:	Puranjay Mohan <puranjay@kernel.org>
->>>    L:	linux-iio@vger.kernel.org
->>> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
->>> index 58da8255525e..67376de410bf 100644
->>
->> Hmm. Would it ease merging if MAINTAINERS changes were in their own patch?
-> 
-> Not particularly.  Though I personally slightly prefer the logic
-> of bringing the entry in with the first file, then adding additional files
-> in later patches.
-> 
-> Given it is huge and in alphabetical order, conflicts in MAINTAINERS are
-> fairly rare and trivial to resolve.
-> 
+--1b07cf6eaa5d19226fd67d51c3e66b8bf06a0a75186b45da8bdf50e1e5cb
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Thanks for this clarification :)
+On Tue Dec 30, 2025 at 9:12 PM CET, Nishanth Menon wrote:
+> On 13:47-20251223, Michael Walle wrote:
+>> The TISCI firmware will return 0 if the clock or consumer is not
+>> enabled although there is a stored value in the firmware. IOW a call to
+>> set rate will work but at get rate will always return 0 if the clock is
+>> disabled.
+>> The clk framework will try to cache the clock rate when it's requested
+>> by a consumer. If the clock or consumer is not enabled at that point,
+>> the cached value is 0, which is wrong. Thus, disable the cache
+>> altogether.
+>>=20
+>> Signed-off-by: Michael Walle <mwalle@kernel.org>
+>> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+>> Reviewed-by: Randolph Sapp <rs@ti.com>
+>> ---
+>>  drivers/clk/keystone/sci-clk.c | 8 ++++++++
+>>  1 file changed, 8 insertions(+)
+>>=20
+>> diff --git a/drivers/clk/keystone/sci-clk.c b/drivers/clk/keystone/sci-c=
+lk.c
+>> index 9d5071223f4c..0a1565fdbb3b 100644
+>> --- a/drivers/clk/keystone/sci-clk.c
+>> +++ b/drivers/clk/keystone/sci-clk.c
+>> @@ -333,6 +333,14 @@ static int _sci_clk_build(struct sci_clk_provider *=
+provider,
+>> =20
+>>  	init.ops =3D &sci_clk_ops;
+>>  	init.num_parents =3D sci_clk->num_parents;
+>> +
+>> +	/*
+>> +	 * A clock rate query to the SCI firmware will return 0 if either the
+>> +	 * clock itself is disabled or the attached device/consumer is disable=
+d.
+>> +	 * This makes it inherently unsuitable for the caching of the clk
+>> +	 * framework.
+>> +	 */
+>> +	init.flags =3D CLK_GET_RATE_NOCACHE;
+>>  	sci_clk->hw.init =3D &init;
+>> =20
+>>  	ret =3D devm_clk_hw_register(provider->dev, &sci_clk->hw);
+>> --=20
+>> 2.47.3
+>>=20
+>
+> Reviewed-by: Nishanth Menon <nm@ti.com>
+>
+> I wish there was a better scheme, but inherently, just like SCMI and
+> other systems where power management co-processor controls clocks, there
+> is no real feasible caching scheme I can think of. I wonder if Stephen
+> or others have a thought on this?
+>
+> That said, I wonder if we need fixes tag to this? I am sure there are
+> other clocks susceptible to this as well. I wonder if
+> commit 3c13933c6033 ("clk: keystone: sci-clk: add support for
+> dynamically probing clocks") is the appropriate tag?
 
-I don't know where I had picked up this idea, but I thought that the 
-volume of changes in MAINTAINERs was somewhat annoying source of 
-conflicts. I sit and type corrected :)
+From my previous versions of this patch:
 
+> Regarding a Fixes: tag. I didn't include one because it might have a
+> slight performance impact because the firmware has to be queried
+> every time now and it doesn't have been a problem for now. OTOH I've
+> enabled tracing during boot and there were just a handful
+> clock_{get/set}_rate() calls.
 
-Yours,
-	-- Matti
+I'm still undecided if this needs a Fixes tag or not. Strictly
+speaking it would need one. Although, I'm not sure it's the one
+you mentioned, because the culprit is the "we return 0 if the clock
+or it's consumer is disabled", which then caches the wrong value.
+So it is probably the very first commit b745c0794e2f ("clk:
+keystone: Add sci-clk driver support").
 
----
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+-michael
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+--1b07cf6eaa5d19226fd67d51c3e66b8bf06a0a75186b45da8bdf50e1e5cb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaVd54hIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/gcUQGAg2jdevhmzIo3MpxW/fmQhTzma7f+Pz6n
+47sV9LU70CQ37MlbGTA2td+AP2lBAewMAYCpZT5T5yRgVP3N00Tn5GVG4Ag10GUP
+WDnpYZrhnC6qDHRhIUdH2Nn1H0y4a99g1XY=
+=VIxe
+-----END PGP SIGNATURE-----
+
+--1b07cf6eaa5d19226fd67d51c3e66b8bf06a0a75186b45da8bdf50e1e5cb--
 
