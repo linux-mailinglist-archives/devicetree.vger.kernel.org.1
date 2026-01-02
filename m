@@ -1,110 +1,141 @@
-Return-Path: <devicetree+bounces-251027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A95CEE281
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:20:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1029ACEE2B1
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 11:31:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C0DD9300699C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:20:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C2282300A1E6
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 10:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 852712D63EF;
-	Fri,  2 Jan 2026 10:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5965F23D7CD;
+	Fri,  2 Jan 2026 10:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="H3KKYNCl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JB0Gaxm/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC7D2C3768
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:20:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E02B915E97
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 10:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767349210; cv=none; b=QtO0Ddr94GVgEOd+BNG9UPB7p5yep4wId7ViNCpBaeh4SXrkHKuZt0IkCxy2389nenZysg2z6QlhQR6y1EwLKwb3a3MlLbnkZcCPsKVwQqPgDt31BvuhmlFRExiuImL+SuV5VZyIHp/gSII7X54tGH00Wk/RkZCBwCWFdx0ocTc=
+	t=1767349870; cv=none; b=ZBqGXfmOO6BYY4nSdyz6dawNRLwpvfEB4CXKeXX1ammq77sUfbbw34F63/1B4WM1gmarOnRqZP8GXgYFrmZbZvaV/X6IgXsVojNmP/VHCniTYSSJZYLKn2tdzsTSwAA9Dz6DDBU8oTCrFZgmKrO8u97QLkskuy99XtICyyjVzD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767349210; c=relaxed/simple;
-	bh=WFRLXXrWG5laFAL8o5x1rIAE1Mvd39kt6b0GYzsOmMY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CICN/8W+W/Z/Vnh3lTJkffqwO5KSXZAnSm720bQQc9C2tyDQ6aMya7VEet8WHCowcR5iHIaBgCbz/fsC5nha8C0nTko3rplj3quIShEirB4IPWU9jSQlUhiuqD1m5QYw3vgd5gSq+Jntf0PE2HbRKr+H/BylXOp3/WtYjFeKnKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=H3KKYNCl; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-37b9d8122fdso97794261fa.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 02:20:07 -0800 (PST)
+	s=arc-20240116; t=1767349870; c=relaxed/simple;
+	bh=pBq39yYl7mFp98GMk9qFpx276aeWd6DGVPyDYBnN7RU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UAXeiFY67MLE4p5okQfr0tAth0ukRmQZuITswDhdhgeAoF/pJBccelkH47IJocm3EpWHL/oZ25AuWsYDJd/4GR8/4S3Er3UdAkWByesFgDHWfKPQmNkFAsyYN5YzHGmXkXuaU7M3XpLZm7EFgMJbJ8uezIeY8e/8w79Jr7kc5mU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JB0Gaxm/; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-29f30233d8aso138830765ad.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 02:31:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1767349206; x=1767954006; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WFRLXXrWG5laFAL8o5x1rIAE1Mvd39kt6b0GYzsOmMY=;
-        b=H3KKYNCldhDnZvb9Qw/IYM7cuwKJrlsHZGb00vImbQ10vOEEfz84ROHwhICX8y5Gn3
-         m+empeRMs/DCpGXaY/SXhMzDUstI9sbhm0CBCkKxcCnlt/51/qWGp0qoGor5Ui8KbHVU
-         ykkU6r+KWPqh10sshiJNJ1ZYkeVJrsDdKjBLptDM1x6fwfpSZ/O0FAne28XN+399GPkb
-         WIMbBrCf/FJwKwIEjONLCVT1YZCg2KvdWF/YyV2w8ied6aBa9zBZr83imFFB4Pi+bR33
-         7ky9SVyKxfRVg9RBLYBV0QMjvb8ox5bgQUGu9GkKF2TAfbn2mutoGwHwghGH2RXjMhJy
-         paEg==
+        d=gmail.com; s=20230601; t=1767349868; x=1767954668; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TKEBOHU1OTn7j5uqcfYXSCBQDYOd+pIPDRtQ6wvDEbY=;
+        b=JB0Gaxm/opK+dR4s0DPrfYqR0/74aPtluAELwCESJGpEJ6VCNYRdp7mEHVeuZF/FHW
+         KXW+Lv3n1VcnZI7cnhhHQpFVklnm+MLwr6xJpWg4xZxUADmkdGEVsZQdmrfbOR+Ci+ym
+         UBn44gveJZV3P3eM5O5ycqQ+isTdjAlcrCk7hQhUMiUS4kWEptx2ZeWeHnoGEoJX8Qef
+         CURUeJ8M07acdbHi6c9zIHSSjixuCKh6/dcTS4QIz0zZhb7Sz/LVSXPlt5crDarjwv7Y
+         ARfJGng0ECBwwvrbQnitiYrxDuMag04h6Fee3ynbFX3HTtcRY1uw0z92FgjvphRvkO77
+         tuHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767349206; x=1767954006;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=WFRLXXrWG5laFAL8o5x1rIAE1Mvd39kt6b0GYzsOmMY=;
-        b=G9YPTY3mM1mfNa8A1Q2aFE70Xe5FleAQSHoFQws2naPKWhxU5qjifpGYSzmKg4qXYJ
-         Dnfjaz6wktTNNWVTLUEY3zgWj8HahdYpui6m8iQYr5hjroWGYMH2q6EI1fSy0/Ab5zJZ
-         70Zra76rjNOmn8wubtKUGG4CZzRyolnhbOrDXzcohUFjm3mX1aGsRqMi5HG6kvI43Oh7
-         8jgA7FOfFsw5+A9CG7Ozr0fJcDyST3DDtwAglvPEfOaRMIaverMvQIWtA6oUw/s/j7QP
-         mnkGFXhxd5+tXEWpde21nImYJjGJbxWuyn+D+6cY+UWb7lfGs2DWlQHORkjMnQE4TGJb
-         bdgA==
-X-Forwarded-Encrypted: i=1; AJvYcCWfFygJyEoHxQCPz6Pk6OYY2FljA6VsM4aGtItozhKGL56HvAkYMkXewvzaeaONNrT1/40VNpx7QGZG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZwaFoYHUha8zC8I62sZ810s6JNNjacE9ibodbRp5/ZAuUZ2o4
-	LOXw18YSiGJ4eJ1o8XaUZh/5fLJNzh4RSwKzbEglyW9YztIryArKcUKPPbLWrt1BWm5rKB0na2Y
-	AF+J0tpT7TH0OlR/KkXRQqMcND27jpAXBQohB0iX2mg==
-X-Gm-Gg: AY/fxX4mTv8Ocx+c04P4Y/XAZM3Z48iseX67jUMTmToIHjQc36kU+ZfWxMZpKiMRF+m
-	/Rb1kIr7l+ROAuqk0PlOIBvr/NZQVWyxOfg6aMrk/gBIosTuerHTMwxx2TEsFryLkxUTg9GvuYp
-	jcGF/UucSxFh7Vu5QTtc1VBxNiJ7DKq2D3u7mWdSkrjA1+9pp+Wri7bjNQUocJwiJcVZQOXXrBo
-	rufP3otO5LEFhJaMA2YsIw6TuS7yjD2VvryC+bKYJw2dTaoWf/Bsh4QC+R+8dd5opI9j9iHvOtL
-	xWegVTKmS9BIkeRK/v6AdrLHE97MuOQZQSOgdw==
-X-Google-Smtp-Source: AGHT+IFTrNnAEzvneaNdkZRQ0grp032lEIuBA9cgcvyb1zEx7XlupkDM8pVGx6rm9ItHKSNq5q1wSSdpG4U4SEDh1SM=
-X-Received: by 2002:a05:651c:1b96:b0:37b:90fb:9caf with SMTP id
- 38308e7fff4ca-3812169eee6mr123154701fa.41.1767349205784; Fri, 02 Jan 2026
- 02:20:05 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767349868; x=1767954668;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TKEBOHU1OTn7j5uqcfYXSCBQDYOd+pIPDRtQ6wvDEbY=;
+        b=Whw1DiAbb+/IOLcpyP5ctT9tiiib5VQqCcVO8m1J0Lff1W0oQBA3/Amz479H8OBHUa
+         smwi0tGgi2FLnYM51PgbuQPxZV96majhMLxUTKfHwAdm05Eyd5u09KVmU9RwZHhulotJ
+         xa3WMbxXiml4YZyMJELvUgfqbyiL6kQiXUf/RKOpsgTQwRqXwpqy2RZzmlnPoDtIBecs
+         T1TpeYDUa0pFXZNoDNy5P8AlTI1M/XzlawX7zH+ySdrkhnyjrNQ4mu6f7ebi6Ra2TlOs
+         rvKIlDxxQGFEAKzZlApikKOiGcSFWDRggYyOTfe9UEHMEFNuzGmRm7n4sR7hy00dAhY2
+         MFlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW1aYkAiraVgCKR01i0zZZMN3BJs7DxWgWB3dVzusHHhhbxdItcF8kdBX/No11gsqXxyYZK6Mwb9bfx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6aDX0yejYHi6XSp3SgFiAZ805G7UZLGeI+fh9UvRBVM7sSqEQ
+	OWHpNLfp7cIV5GRGqZJ/axTEPax5kPJ8S88izSmdBV3muaxm+xQGLVaU
+X-Gm-Gg: AY/fxX7Kbk1Ggpdr/nckXQIqeSvtv0MRdSlXS7jiqZQupQNe12eqShAySHw2w0p7OsS
+	b6nwzoVZBeegO3qg7N468kNi1rX2MGjqusSfIFfbgxhpsA1vfx8QB7Tw5JtkMzELs05s8OF7Y+9
+	4l0x3QU34e/dDiZmM3zKIzEolNE/KsK+jw09pMV6SpXvTeetSAiDzH8dbt3C98cYNTMNYLKdzhv
+	Jgs5bhSARkyhLnY0r2aydAcYSRs9fHVKzSf7be71Rls+wcqe3PE0y88DeAgVvu3VPbsulPKeS/C
+	zMBRn4bPkS+GEg2HifjLZIHlUtS0r8HSJn7wdxC5cFUv0Lu/bl0h3ZI/UxJ93CpvrDElp5FF6pn
+	HacOY8WlpQEHegjePDcxhnBFja56dSZ4Vszu5yku4/bGbMRQU8BNIcSxYj0peAgeoQW2WJuXAnI
+	lZXK7kR56flNeDrlaLAiicJiB7mvpnu4gh6Jj5IeoydoqhTZnkqfJON193LKRcEcK8oCiz4Yo=
+X-Google-Smtp-Source: AGHT+IEpEdWke4q2sIAs7xY6ekNENqiKkIEdw7so/gFmVP+bZpB5dWdqj/1/vSx5XDAA/98HJmjRZA==
+X-Received: by 2002:a17:902:e785:b0:2a1:47e:1a34 with SMTP id d9443c01a7336-2a2f1f6a1c4mr412841345ad.0.1767349868080;
+        Fri, 02 Jan 2026 02:31:08 -0800 (PST)
+Received: from ?IPV6:2401:4900:883b:60a8:c545:bc1e:eac1:a2b4? ([2401:4900:883b:60a8:c545:bc1e:eac1:a2b4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3d4cb25sm379067495ad.56.2026.01.02.02.31.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jan 2026 02:31:07 -0800 (PST)
+Message-ID: <dd7fcfb8-a47e-4e3c-9769-714659e002a7@gmail.com>
+Date: Fri, 2 Jan 2026 16:01:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251227-s2mpg1x-regulators-v5-0-0c04b360b4c9@linaro.org> <20251227-s2mpg1x-regulators-v5-21-0c04b360b4c9@linaro.org>
-In-Reply-To: <20251227-s2mpg1x-regulators-v5-21-0c04b360b4c9@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 2 Jan 2026 11:19:54 +0100
-X-Gm-Features: AQt7F2oHMGc2bHvrlqFMv9ZOlJeQnJLO04A4hnwhyHf0_SEQbbpjY_L-KGXAL_o
-Message-ID: <CAMRc=Meu6-5569rMcV0zf2V+Sz_QZgShoEhmhw41k6fczULcoA@mail.gmail.com>
-Subject: Re: [PATCH v5 21/21] regulator: s2mps11: enable-gpios is optional on s2mpg1x
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Will McVicker <willmcvicker@google.com>, Juan Yescas <jyescas@google.com>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mtd: microchip,mchp23k256: convert to DT
+ schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251229-nxp-v1-1-a415fe0080a8@gmail.com>
+ <20251230-kagu-of-scientific-enrichment-6fcd4c@quoll>
+ <0363ac61-0872-42da-91b8-78966a2537ce@gmail.com>
+ <baa3ff2a-6569-4b36-aed1-651f83fa175b@kernel.org>
+Content-Language: en-US
+From: Akhila YS <akhilayalmati@gmail.com>
+In-Reply-To: <baa3ff2a-6569-4b36-aed1-651f83fa175b@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Dec 27, 2025 at 1:24=E2=80=AFPM Andr=C3=A9 Draszik <andre.draszik@l=
-inaro.org> wrote:
->
-> For s2mpg1x, enable-gpios is optional, but when not given, the driver
-> is complaining quite verbosely about the missing property.
->
-> Refactor the code slightly to avoid printing those messages to the
-> kernel log in that case.
->
 
-I don't get the point of this - you added this function in the same
-series, why can't it be done right the first time it's implemented?
+On 02-01-2026 15:48, Krzysztof Kozlowski wrote:
+> On 02/01/2026 09:17, Akhila YS wrote:
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - microchip,mchp23k256
+>>>> +      - microchip,mchp23lcv1024
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  "#address-cells":
+>>>> +    const: 1
+>>>> +
+>>>> +  "#size-cells":
+>>>> +    const: 1
+>>> Pretty incomplete. Old binding and above cells claim there can be child
+>>> nodes, so please add them and test. Works? No. Shall work? Yes... so
+>>> either old binding was incorrect or new binding is incomplete. I did not
+>>> check the driver, though.
+>>
+>> Size cells and Address cells are not required as there is no child node
+> Then what is the point of address/size cells if you do not have children?
+>
+> Anyway, read carefully old binding and the driver code.
 
-Bart
+
+Yes, I will remove the above cells in the next revision.
+
+>
+> Best regards,
+> Krzysztof
+
+-- 
+Best Regards,
+Akhila.
+
 
