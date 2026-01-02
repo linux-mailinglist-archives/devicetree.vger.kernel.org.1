@@ -1,437 +1,171 @@
-Return-Path: <devicetree+bounces-251103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D372CEEB81
-	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 15:01:12 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5632CEEB87
+	for <lists+devicetree@lfdr.de>; Fri, 02 Jan 2026 15:03:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1CE92301098F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 14:01:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 34CB63002144
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 14:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8208B2DCF67;
-	Fri,  2 Jan 2026 14:01:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1173530BF4F;
+	Fri,  2 Jan 2026 14:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DuIGNu3u"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qgfgcx8c";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="H/dhoDQN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DF0C2116F6
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 14:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 844872D7D42
+	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 14:03:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767362466; cv=none; b=CjCfn9F1a2LvgrYBlVgLt3hrbiZTeGcBshrwIr/4n5e/eGOp5n12M6Ui7jewyE8QJFzxx0Z02aHBqozM1vykoln0SdXqmsOXIv3PkViQvdFyI974PMOLxytLvNSQClxAYNLdI1NrTlX4kOw6lVGy+7LkPwxju7w889H0ALklDRQ=
+	t=1767362585; cv=none; b=F46VFtd8fjWj40lhbdmRSiTYYXX47unOsNDzn2o7p5aQtDYIGGxeFsv8QNLer73lSDCazuqVNvb1abJUw/e5wVTvdEkKBm9yTnrMFg1oNa7mbG3MdPIJBlQaaBBtMktSdYw6sM2EdgYWvr411Tp3MROWHBXk/vvLOGCCVrPp0Lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767362466; c=relaxed/simple;
-	bh=i1EPFpuXYoV+2OJNQPqlEeqOXpVhB3CII/dIgcsxrVE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=svkPlz6J8V6ZQmDBkVgsEkTBjjjVwJlYqSDl/QmH2gRzHESfc+g+NcyH/OCI+ZViFfJeuVkgfocJc5wTCqZMHoW2efHJ+4n1tGJ19Rl0MB3opvZ89Gt0f3RIRtg2NQznYCRCzdjy09Q72GMpwzUUIrAG+uugwiGF61gYk7CvdUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DuIGNu3u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 249A2C19423;
-	Fri,  2 Jan 2026 14:01:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767362465;
-	bh=i1EPFpuXYoV+2OJNQPqlEeqOXpVhB3CII/dIgcsxrVE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=DuIGNu3ur90A33HfUlsYXup/NOL11tX9tmAucrpteOmpyJPRksAVmSDPaE/58+RNh
-	 q7DRgPbRJJbWt81hHErcM/0GeMfgc12D3Wzd2jOpQrg0BtJ8ypDeopCa87eCkyQ2o5
-	 GIihJoxbSM6R4Z5Rjg77uPABiIGKSximiizOh47yi90RnGVSK7jwpu3WoeZD2lVlqV
-	 Sjp4yOrCsNMGTC6pKZ8trq+XvBRlyLb/pqNcDYWWnBVcdE8AoJvIHEcIy1UkJ7JsHf
-	 v02U0JQg9hcMuZKMAj2TG5ceNeIZc6lhlaPFwWa1/4C8aYBXnhj1dQXcxl5IgBIEDv
-	 oMHHupGr5zP3g==
-From: Dinh Nguyen <dinguyen@kernel.org>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: dinguyen@kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: socfpga: arria10: remove underscore in node names
-Date: Fri,  2 Jan 2026 08:00:54 -0600
-Message-ID: <20260102140054.1088756-2-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.42.0.411.g813d9a9188
-In-Reply-To: <20260102140054.1088756-1-dinguyen@kernel.org>
-References: <20260102140054.1088756-1-dinguyen@kernel.org>
+	s=arc-20240116; t=1767362585; c=relaxed/simple;
+	bh=Zwg9PgIyv2CqnsfGgSl2n4zQIYgz6ToBX4DtUXEBbes=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xxx3CpGBN8vXolclKgO6GllrmATv2qltEsYmwD2XYluJxqz1oWYaKiSvfRQuuemiVCfIolriu2lLJUWCPqykSUfL5f08XlPYqFVQjDt5EYyw13jqIUOIEO4bxwyTu7nqQ38DcE/RFux6k+7eXD6W0+oVjkNi0yixudupRK4SNeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qgfgcx8c; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=H/dhoDQN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 602Bnuw61095758
+	for <devicetree@vger.kernel.org>; Fri, 2 Jan 2026 14:03:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KP3CUn/aT5Yp7p8MFdqaPmc7EEkRpfQdQGCG9jCpRdQ=; b=Qgfgcx8c2NYfJNIs
+	8weIai2TkCkB/p39wM1rG5hZUciUiOSr08aBt/DqoD4UdC1TNe13h3ApYkRum8hR
+	0gp9gKMeXjlkIuZbm/EWWcC+Yxid8RpdelHEOt64YRiSUuL16X4XTrfvUzmuFYV8
+	vvhKciKNAJHi3hXAVlgmPDOkerElZze8FKN6G2Yt8kzBuFoldg58cDXbeKwFCVAN
+	2tR3gPImQUMif9iyfxqOAOYN9ipd4jGrGiUz0cW37NZLUZcK6PqSR6G4w7ruIOA5
+	VPOte4XHBKAwGKUwIfSmXb2uDxHYv9Yf04uFDmROkW28x4WJ4dEtvkHL2fmal9v+
+	nQAvuw==
+Received: from mail-yx1-f70.google.com (mail-yx1-f70.google.com [74.125.224.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bedg4077k-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 14:03:02 +0000 (GMT)
+Received: by mail-yx1-f70.google.com with SMTP id 956f58d0204a3-64565434d7fso2969933d50.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 06:03:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767362582; x=1767967382; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KP3CUn/aT5Yp7p8MFdqaPmc7EEkRpfQdQGCG9jCpRdQ=;
+        b=H/dhoDQNuyyTP4Ugba8dlUBov/K2Wweh5A+L0SN02UtUIZh8DF+FXuSBnj+PPXVA2V
+         UNMuml9HyXSPqDfsI4OJzNwG1bKD3KyAPp7jwfCyXtnh//87hGZvsdxQ0UzZV9ruYkoc
+         ghqzA9V8FwBl2BGKezJpmJaDEN9QQvyyyn6GcDPvjuFr/xTmmcDLyxI61CLZZj+H5xre
+         tuAyxaMajgl5RuW/68IxCUTurUNhA+edHETn1RphkXO31YRk93aTSCWTKUHxHoCaZW6f
+         wC0z2fsO44BWWwGZFaZSQRcZ2olVsdVfGy2BKjpsjfWGp6+vLMQD4m79Dq2UIZI725RL
+         /O0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767362582; x=1767967382;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KP3CUn/aT5Yp7p8MFdqaPmc7EEkRpfQdQGCG9jCpRdQ=;
+        b=fN/AaZYdi9XY5f9lUeoNwQ3oVydJcqLbMoLWTNe3DVJC0i5jcjFAYIIeuMva0k1pDT
+         G8oGnmkCdbQCeX1gIHHl9RZG4SKswld64pJIvb/x7dow1pcUdYki/lKYK7G/2jB2OQz6
+         QsLHpBXxK0PczZU/7xiVkIUGMooon/r3LhK+J7GnnZdGb+JrtYarTrg+C4HU8hMqqRcC
+         k3Sjw4VNA2r7Bc8IFhgf+nas9Sl6Z2OFl52fl7gVLVLtE2mchBrDSrWiocClVrWGp1r2
+         m3/foQ4H2KHb9VDltmFS6U+B72nQYaVtxmsR2NCfNt4/FsiQWkIJFnPdhZN26vpkwMLz
+         xMTw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2xv1bI3C3knm0oEeLtLXarHdf7/ZvBvgOIPNRuWBWhBgvEnXfChJp4zlQAV5dIyY2yFT2BViJizsF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwD+J1NJGYjtA6yYPDHkzhvB2kRyBwaN2z/w8yCpm01WgcTXRmY
+	q0cYGRxtxteBFLVdTSObdXZuAna9isM6TlU6RTPE/V0OJziduiZir5hc8KaMAmWWNsNV/hz9hp5
+	kmJEERSeGZ5DvJ0H2cJbD/UrpFGiWdeTly8eeToBsUsfAC6sm+/B28l1kXQ5HRHRc
+X-Gm-Gg: AY/fxX51zpZBWN+wEKi2I93zb7eXgsRc7kZJtBZY9vOJF7HRPrgAY5s3SxrKeZCBm18
+	bgBF1QEuSrcPltBPNZoj/aLE9w+8sJQFaOrm3B02pj6dyK1R+SkLXKQQ1b9NusRBSpqM70YZeeO
+	D9qZq4zfAKXIoLehpln7GeQuvXlrrxycZYL97WtQ9kM7d9JgpJYEJ2Jf2lImaOTYN37bazi2O7B
+	fnGP8jAtkXDj/Yhvg8N2R3SdUJXwUV1g1hKCjxTX7BWrhFlprJ3bEVulsh6KOiSnojHbYJ/4by7
+	HI9vunKQyV1WvVDT/zRjZsW5LIKb37WZVqtjTqa7Zw++3kJ4aGcf9Q8HL59ewD2+hZtObyI3Rel
+	S7R/kb6nzCtNw18d2ELm9HWngtqdI/LbxQx+2pMQ5TdX4EOZMsmtC0AC3nMMIHReWtg==
+X-Received: by 2002:a05:690c:f13:b0:790:63c0:d68c with SMTP id 00721157ae682-79063c0d6dfmr26440767b3.5.1767362582009;
+        Fri, 02 Jan 2026 06:03:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGbusYs3ozNOs8NWxa9BnHuqBKFosDDQsr6CiB9XZg9kzKh+2JBJBTSUldqxaVLAis7neZMMw==
+X-Received: by 2002:a05:690c:f13:b0:790:63c0:d68c with SMTP id 00721157ae682-79063c0d6dfmr26440477b3.5.1767362581631;
+        Fri, 02 Jan 2026 06:03:01 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f511fesm4642072066b.65.2026.01.02.06.02.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jan 2026 06:03:00 -0800 (PST)
+Message-ID: <15e41ffe-66f1-43ec-b0af-241041c25f9d@oss.qualcomm.com>
+Date: Fri, 2 Jan 2026 15:02:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/9] remoteproc: qcom_q6v5_mss: Add MDM9607
+To: Bryan O'Donoghue <bod@kernel.org>, barnabas.czeman@mainlining.org
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Stephan Gerhold <stephan@gerhold.net>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251231-mss-v3-0-f80e8fade9ec@mainlining.org>
+ <NLGulU4z-1Wrf5120YfX8CYJ_8DSP-9-DhaJ3KAIQCvqF9Qf184udOzFoEQH1qgJDZUl9cxEpsdyztfhcz8G-w==@protonmail.internalid>
+ <20251231-mss-v3-3-f80e8fade9ec@mainlining.org>
+ <6bfc790d-b0da-4c5b-bd2d-ceed9a75bb24@kernel.org>
+ <DEGDp05xNKls7EO30mtT70wJFIkDT0-248vPaBikWJGkFf--YvzpyJ_h5sc7RSH1y9hkCKdFRBIJwQUNE9Rlzw==@protonmail.internalid>
+ <a627abcaa38c0ba11c76c1f0c42b0c6b@mainlining.org>
+ <d3bcaf7d-06ae-4410-8d7c-970fdb196c47@kernel.org>
+ <3i9J-ztSj5n83TPS7yQ3ngZYVpv2MnqVgpnkfywumw-hk2fPN3mty8T-vI2c-1Oh8V_ArprPioyoPxso6k2W0Q==@protonmail.internalid>
+ <1440e47e-2d7b-4d49-97c4-a717fadd3fb6@oss.qualcomm.com>
+ <1dcc9380-c2c2-4263-93ad-71edce86b0da@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <1dcc9380-c2c2-4263-93ad-71edce86b0da@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: axU1WeFB23mV_H9kjGlvloEzfNig1o5W
+X-Authority-Analysis: v=2.4 cv=IssTsb/g c=1 sm=1 tr=0 ts=6957d016 cx=c_pps
+ a=S/uc88zpIJVNbziUnJ6G4Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=7CQSdrXTAAAA:8 a=zBxm4P68afzicwOvg-8A:9
+ a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10 a=nd2WpGr1bMy9NW-iytEl:22
+ a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-GUID: axU1WeFB23mV_H9kjGlvloEzfNig1o5W
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTAyMDEyNSBTYWx0ZWRfX2c/cvh4+diRc
+ rWK0UfODQv3XOHiiA0jFc4Sk1uN6i3N/IBdoj+lTBc7h6VaZl3lL3p5BXLc0UX70qvq7VEz7i5L
+ AgqCe6u0jLXKkuxm9Chp7yekxshMX+SwS3ukeTcgPivgwDaxPX5SCSeTfNrjOeMrTzfe7BfrtZZ
+ /XWpaUBVICoig8LaInmt443Osqp0DStF0ohlNYKg9YWFopOT/PlEBXU78yTG/a1CY/vjQlTqHLO
+ LsR2/4GppOf5ZFPxw3v2MFKt/u2nbwPggOMI0QppGX0bATt6OqQyFcE1mqH2eZ59wRWzRLsZvfD
+ f/4K1L1eGIWJLcz1JKvGKHDiFof7l97JtJDCitGT3o87JKbezSTjzb8VO1VziUTpfPzyOgm66ry
+ nABpt3eBc7mG99uRtoHtAWwSUa+XByVt3PFTQ3WLjCyArw+LHlf19Ke8qtH2M/9iMQ/Civ7Ba9R
+ lnImxk18zBftVd9V+iA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-02_02,2025-12-31_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 suspectscore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 impostorscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601020125
 
-The node names should be using a hyphen not an underscore(dtc with W=2
-warns about them).
+On 1/2/26 1:59 PM, Bryan O'Donoghue wrote:
+> On 02/01/2026 12:00, Konrad Dybcio wrote:
+>>> Is there an io-fabric in the world which exceeds 1 microsecond to perform a write transaction ?
+>> Writes on arm64 aren't usually observable from the remote endpoint when
+>> you would expect them to, they can be buffered unless there's an explicit
+>> readback right afterwards (which creates a dependency that the processor
+>> will fulfill)
+> 
+> I don't mean write-combining cache, I mean posted versus non-posted writes which is a feature of the front-side-bus :)
 
-sec command used : sed -E ':a; s/(:.*)_/\1-/; ta'
+Writes are posted (Device-nGnRE, note the E attribute is set)
 
-Also used dtx_diff to check before/after dtbs.
+https://documentation-service.arm.com/static/63a43e333f28e5456434e18b
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- .../dts/intel/socfpga/socfpga_arria10.dtsi    | 86 +++++++++----------
- 1 file changed, 43 insertions(+), 43 deletions(-)
-
-diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-index a53a94678df2..1b9d17673bd5 100644
---- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-+++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-@@ -97,17 +97,17 @@ clocks {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
--					cb_intosc_hs_div2_clk: cb_intosc_hs_div2_clk {
-+					cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
- 						#clock-cells = <0>;
- 						compatible = "fixed-clock";
- 					};
- 
--					cb_intosc_ls_clk: cb_intosc_ls_clk {
-+					cb_intosc_ls_clk: cb-intosc-ls-clk {
- 						#clock-cells = <0>;
- 						compatible = "fixed-clock";
- 					};
- 
--					f2s_free_clk: f2s_free_clk {
-+					f2s_free_clk: f2s-free-clk {
- 						#clock-cells = <0>;
- 						compatible = "fixed-clock";
- 					};
-@@ -117,7 +117,7 @@ osc1: osc1 {
- 						compatible = "fixed-clock";
- 					};
- 
--					main_pll: main_pll@40 {
-+					main_pll: main-pll@40 {
- 						#address-cells = <1>;
- 						#size-cells = <0>;
- 						#clock-cells = <0>;
-@@ -126,49 +126,49 @@ main_pll: main_pll@40 {
- 							 <&f2s_free_clk>;
- 						reg = <0x40>;
- 
--						main_mpu_base_clk: main_mpu_base_clk {
-+						main_mpu_base_clk: main-mpu-base-clk {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&main_pll>;
- 							div-reg = <0x140 0 11>;
- 						};
- 
--						main_noc_base_clk: main_noc_base_clk {
-+						main_noc_base_clk: main-noc-base-clk {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&main_pll>;
- 							div-reg = <0x144 0 11>;
- 						};
- 
--						main_emaca_clk: main_emaca_clk@68 {
-+						main_emaca_clk: main-emaca-clk@68 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&main_pll>;
- 							reg = <0x68>;
- 						};
- 
--						main_emacb_clk: main_emacb_clk@6c {
-+						main_emacb_clk: main-emacb-clk@6c {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&main_pll>;
- 							reg = <0x6C>;
- 						};
- 
--						main_emac_ptp_clk: main_emac_ptp_clk@70 {
-+						main_emac_ptp_clk: main-emac-ptp-clk@70 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&main_pll>;
- 							reg = <0x70>;
- 						};
- 
--						main_gpio_db_clk: main_gpio_db_clk@74 {
-+						main_gpio_db_clk: main-gpio-db-clk@74 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&main_pll>;
- 							reg = <0x74>;
- 						};
- 
--						main_sdmmc_clk: main_sdmmc_clk@78 {
-+						main_sdmmc_clk: main-sdmmc-clk@78 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk"
- ;
-@@ -176,28 +176,28 @@ main_sdmmc_clk: main_sdmmc_clk@78 {
- 							reg = <0x78>;
- 						};
- 
--						main_s2f_usr0_clk: main_s2f_usr0_clk@7c {
-+						main_s2f_usr0_clk: main-s2f-usr0-clk@7c {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&main_pll>;
- 							reg = <0x7C>;
- 						};
- 
--						main_s2f_usr1_clk: main_s2f_usr1_clk@80 {
-+						main_s2f_usr1_clk: main-s2f-usr1-clk@80 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&main_pll>;
- 							reg = <0x80>;
- 						};
- 
--						main_hmc_pll_ref_clk: main_hmc_pll_ref_clk@84 {
-+						main_hmc_pll_ref_clk: main-hmc-pll-ref-clk@84 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&main_pll>;
- 							reg = <0x84>;
- 						};
- 
--						main_periph_ref_clk: main_periph_ref_clk@9c {
-+						main_periph_ref_clk: main-periph-ref-clk@9c {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&main_pll>;
-@@ -205,7 +205,7 @@ main_periph_ref_clk: main_periph_ref_clk@9c {
- 						};
- 					};
- 
--					periph_pll: periph_pll@c0 {
-+					periph_pll: periph-pll@c0 {
- 						#address-cells = <1>;
- 						#size-cells = <0>;
- 						#clock-cells = <0>;
-@@ -214,70 +214,70 @@ periph_pll: periph_pll@c0 {
- 							 <&f2s_free_clk>, <&main_periph_ref_clk>;
- 						reg = <0xC0>;
- 
--						peri_mpu_base_clk: peri_mpu_base_clk {
-+						peri_mpu_base_clk: peri-mpu-base-clk {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&periph_pll>;
- 							div-reg = <0x140 16 11>;
- 						};
- 
--						peri_noc_base_clk: peri_noc_base_clk {
-+						peri_noc_base_clk: peri-noc-base-clk {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&periph_pll>;
- 							div-reg = <0x144 16 11>;
- 						};
- 
--						peri_emaca_clk: peri_emaca_clk@e8 {
-+						peri_emaca_clk: peri-emaca-clk@e8 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0xE8>;
- 						};
- 
--						peri_emacb_clk: peri_emacb_clk@ec {
-+						peri_emacb_clk: peri-emacb-clk@ec {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0xEC>;
- 						};
- 
--						peri_emac_ptp_clk: peri_emac_ptp_clk@f0 {
-+						peri_emac_ptp_clk: peri-emac-ptp-clk@f0 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0xF0>;
- 						};
- 
--						peri_gpio_db_clk: peri_gpio_db_clk@f4 {
-+						peri_gpio_db_clk: peri-gpio-db-clk@f4 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0xF4>;
- 						};
- 
--						peri_sdmmc_clk: peri_sdmmc_clk@f8 {
-+						peri_sdmmc_clk: peri-sdmmc-clk@f8 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0xF8>;
- 						};
- 
--						peri_s2f_usr0_clk: peri_s2f_usr0_clk@fc {
-+						peri_s2f_usr0_clk: peri-s2f-usr0-clk@fc {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0xFC>;
- 						};
- 
--						peri_s2f_usr1_clk: peri_s2f_usr1_clk@100 {
-+						peri_s2f_usr1_clk: peri-s2f-usr1-clk@100 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0x100>;
- 						};
- 
--						peri_hmc_pll_ref_clk: peri_hmc_pll_ref_clk@104 {
-+						peri_hmc_pll_ref_clk: peri-hmc-pll-ref-clk@104 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-a10-perip-clk";
- 							clocks = <&periph_pll>;
-@@ -285,7 +285,7 @@ peri_hmc_pll_ref_clk: peri_hmc_pll_ref_clk@104 {
- 						};
- 					};
- 
--					mpu_free_clk: mpu_free_clk@60 {
-+					mpu_free_clk: mpu-free-clk@60 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-perip-clk";
- 						clocks = <&main_mpu_base_clk>, <&peri_mpu_base_clk>,
-@@ -294,7 +294,7 @@ mpu_free_clk: mpu_free_clk@60 {
- 						reg = <0x60>;
- 					};
- 
--					noc_free_clk: noc_free_clk@64 {
-+					noc_free_clk: noc-free-clk@64 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-perip-clk";
- 						clocks = <&main_noc_base_clk>, <&peri_noc_base_clk>,
-@@ -303,7 +303,7 @@ noc_free_clk: noc_free_clk@64 {
- 						reg = <0x64>;
- 					};
- 
--					s2f_user1_free_clk: s2f_user1_free_clk@104 {
-+					s2f_user1_free_clk: s2f-user1-free-clk@104 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-perip-clk";
- 						clocks = <&main_s2f_usr1_clk>, <&peri_s2f_usr1_clk>,
-@@ -312,7 +312,7 @@ s2f_user1_free_clk: s2f_user1_free_clk@104 {
- 						reg = <0x104>;
- 					};
- 
--					sdmmc_free_clk: sdmmc_free_clk@f8 {
-+					sdmmc_free_clk: sdmmc-free-clk@f8 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-perip-clk";
- 						clocks = <&main_sdmmc_clk>, <&peri_sdmmc_clk>,
-@@ -322,14 +322,14 @@ sdmmc_free_clk: sdmmc_free_clk@f8 {
- 						reg = <0xF8>;
- 					};
- 
--					l4_sys_free_clk: l4_sys_free_clk {
-+					l4_sys_free_clk: l4-sys-free-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-perip-clk";
- 						clocks = <&noc_free_clk>;
- 						fixed-divider = <4>;
- 					};
- 
--					l4_main_clk: l4_main_clk {
-+					l4_main_clk: l4-main-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&noc_free_clk>;
-@@ -337,7 +337,7 @@ l4_main_clk: l4_main_clk {
- 						clk-gate = <0x48 1>;
- 					};
- 
--					l4_mp_clk: l4_mp_clk {
-+					l4_mp_clk: l4-mp-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&noc_free_clk>;
-@@ -345,7 +345,7 @@ l4_mp_clk: l4_mp_clk {
- 						clk-gate = <0x48 2>;
- 					};
- 
--					l4_sp_clk: l4_sp_clk {
-+					l4_sp_clk: l4-sp-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&noc_free_clk>;
-@@ -353,7 +353,7 @@ l4_sp_clk: l4_sp_clk {
- 						clk-gate = <0x48 3>;
- 					};
- 
--					mpu_periph_clk: mpu_periph_clk {
-+					mpu_periph_clk: mpu-periph-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&mpu_free_clk>;
-@@ -361,35 +361,35 @@ mpu_periph_clk: mpu_periph_clk {
- 						clk-gate = <0x48 0>;
- 					};
- 
--					sdmmc_clk: sdmmc_clk {
-+					sdmmc_clk: sdmmc-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&sdmmc_free_clk>;
- 						clk-gate = <0xC8 5>;
- 					};
- 
--					qspi_clk: qspi_clk {
-+					qspi_clk: qspi-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&l4_main_clk>;
- 						clk-gate = <0xC8 11>;
- 					};
- 
--					nand_x_clk: nand_x_clk {
-+					nand_x_clk: nand-x-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&l4_mp_clk>;
- 						clk-gate = <0xC8 10>;
- 					};
- 
--					nand_ecc_clk: nand_ecc_clk {
-+					nand_ecc_clk: nand-ecc-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&nand_x_clk>;
- 						clk-gate = <0xC8 10>;
- 					};
- 
--					nand_clk: nand_clk {
-+					nand_clk: nand-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&nand_x_clk>;
-@@ -397,21 +397,21 @@ nand_clk: nand_clk {
- 						clk-gate = <0xC8 10>;
- 					};
- 
--					spi_m_clk: spi_m_clk {
-+					spi_m_clk: spi-m-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&l4_main_clk>;
- 						clk-gate = <0xC8 9>;
- 					};
- 
--					usb_clk: usb_clk {
-+					usb_clk: usb-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&l4_mp_clk>;
- 						clk-gate = <0xC8 8>;
- 					};
- 
--					s2f_usr1_clk: s2f_usr1_clk {
-+					s2f_usr1_clk: s2f-usr1-clk {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&peri_s2f_usr1_clk>;
--- 
-2.42.0.411.g813d9a9188
-
+Konrad
 
