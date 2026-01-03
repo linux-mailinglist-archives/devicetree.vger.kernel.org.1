@@ -1,127 +1,84 @@
-Return-Path: <devicetree+bounces-251210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1DE3CF0269
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 16:49:40 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC33DCF0279
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 17:01:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A25623004620
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 15:49:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3E6F13001033
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 16:01:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7918F30EF95;
-	Sat,  3 Jan 2026 15:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B1C7261D;
+	Sat,  3 Jan 2026 16:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f6ihpLsc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IF/ARlkW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57B1017BB35;
-	Sat,  3 Jan 2026 15:49:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E7833C1F;
+	Sat,  3 Jan 2026 16:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767455374; cv=none; b=ZWSeIGShIWsy94oHT4Pheu/uN0xmJ7pIrTLDUAO4PhmQ9WpKLhUNfADounW8Gszkwr2xxFZttSWoIkTrJxsh9qgkSWsEtxH1mZ2so1E0VgI2rLdshErInNy6ylHB4Z7+opOPVtB8TrbCyUmtl7jCKfyRjitsN70X+BJrQBhXL/w=
+	t=1767456109; cv=none; b=cH5W+cODMtpxg2hzYoigKZHilCYgvbmmpC84XkonauHcevNkNDtB4HMheWySFnJ/unseZpkh/DYrPn2J/NRWEeQ1OhlZyFFXF8EiYyBdBl927NztllzeGAeQ9z0yET0t1flyUywGJwkJg+ScMaDQiIFEsS39uCkDLtOYsp7zg/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767455374; c=relaxed/simple;
-	bh=UdpQuAVYg3go+KFGqbG7KFffUg4tuMyA9VNoUN7RR3Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cuDReYzv/CNQKNIv6XmoqhxMRIVEkZ2Kgs3fnPhEyxMwaGclCuducR3zIOOXpC/Jm0WYD5GuCRqxT61bQJXVUIm2xaSHBgP9OeL69pT2CzAcH8GEpFgfg6U0KvL8FFaGOkH83nuc2/u0Uj/CF/EnfAAqB+vScRdTeodPwXSamY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f6ihpLsc; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767455371; x=1798991371;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UdpQuAVYg3go+KFGqbG7KFffUg4tuMyA9VNoUN7RR3Y=;
-  b=f6ihpLscY01upNrb52P9lPATNZ9WrhMCfIhMHJcZjhieXq0JWUjBX/Zh
-   U0fUUXGPkLAyAZGmaqATvS5fhSehViO6Zw7MgYgYkAs1u34b0K44eTQpe
-   cN8PJp57klEQtrsPufYVLBJmFV2rqzuh4LpQL+bLVhLnhcs5XbMH54je3
-   L4C26FPdqsGOxuyGHWQKj536ut+Jb5o2DBj7vuOq7+BjzpYf5PXfOqmDu
-   iQpfrQJuBfRDxyjMchK11HALE68/d6uwzAnIBNtRZlKYBz6NFU5fGfCWQ
-   zU+SGQbtAplXjIr7CVRCI2B/4+TUsUXIXTh4Jg1GcHRkmMtNitxaFMIq/
-   A==;
-X-CSE-ConnectionGUID: uGFSwupTSrWRCu4kxblAbQ==
-X-CSE-MsgGUID: mtuJfRZpTK++ZiWF3ZI8wQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11659"; a="91553962"
-X-IronPort-AV: E=Sophos;i="6.21,198,1763452800"; 
-   d="scan'208";a="91553962"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2026 07:49:23 -0800
-X-CSE-ConnectionGUID: VXe0M/DUTV+IwoUHCnqyLA==
-X-CSE-MsgGUID: J3J+DASXReGVxFLZ02U9iw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,198,1763452800"; 
-   d="scan'208";a="202033309"
-Received: from igk-lkp-server01.igk.intel.com (HELO 92b2e8bd97aa) ([10.211.93.152])
-  by orviesa008.jf.intel.com with ESMTP; 03 Jan 2026 07:49:20 -0800
-Received: from kbuild by 92b2e8bd97aa with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vc3sT-000000000j3-1173;
-	Sat, 03 Jan 2026 15:49:17 +0000
-Date: Sat, 3 Jan 2026 16:49:04 +0100
-From: kernel test robot <lkp@intel.com>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
+	s=arc-20240116; t=1767456109; c=relaxed/simple;
+	bh=TTzyM30cr/hEsnmjoGkCUz/GaOUvJy+291pNbgjoMVg=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qaUlzwOOoq0cR6Ps0X7vSi937D4PyjY4ljEj1Sv15ipfqyftIyArSKDH7c+yfNIwD104jXRRrTIw8uieaEBte8ZgA0KECmK6GuaU+mVwMnw4pfZXs2c0XzLIPxaW/gnYDVILLP8F1RsM6Q3sRLdZxFG9V9Py1z4ppJUrXsinsec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IF/ARlkW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2B59C113D0;
+	Sat,  3 Jan 2026 16:01:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767456108;
+	bh=TTzyM30cr/hEsnmjoGkCUz/GaOUvJy+291pNbgjoMVg=;
+	h=From:To:Subject:Date:In-Reply-To:References:From;
+	b=IF/ARlkWr7KTQ5Fm4QCUcDi5Q1NWV1g1LqbywqzSOwty/ZCpajyrwHUat5cjK1Dnp
+	 9NZdKGLJqWClejnR0b3sMYaeNGiYXjgygsekvwFV4chxcdTRN5W7WAaYgpJWikc//s
+	 xDAdURVx10Bk4Gz0JrdeVIX04iNMcOsrurh7Rm7l2T2+Wbj7GCYAOdusOWH/xBoYSk
+	 tZ7hvT5oX88HP4T4Kd2bcGhi4BXjN4+FopHu5+ZZ/BjsE3QW3xx2O9HsTBdvee45cT
+	 5KCUGtgznkZCL6i81rsOg5FleAfTxlmsuZiQE536nlSYYgpHy62+5CnCAU+yWsKpdX
+	 wm9CEmgUYB7+A==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Stefan Agner <stefan@agner.ch>, Lucas Stach <dev@lynxeye.de>
-Cc: oe-kbuild-all@lists.linux.dev, linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Charan Pedumuru <charan.pedumuru@gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT
- schema
-Message-ID: <202601031603.9yKl8K9G-lkp@intel.com>
-References: <20260103-nvidia-nand-v4-1-3156f46f3a5e@gmail.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH] dt-bindings: remoteproc: qcom,sm8550-pas: Drop SM8750 ADSP from if-branch
+Date: Sat,  3 Jan 2026 10:01:46 -0600
+Message-ID: <176745610338.2631079.885451348924031995.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251223130533.58468-2-krzysztof.kozlowski@oss.qualcomm.com>
+References: <20251223130533.58468-2-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260103-nvidia-nand-v4-1-3156f46f3a5e@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Charan,
 
-kernel test robot noticed the following build warnings:
+On Tue, 23 Dec 2025 14:05:34 +0100, Krzysztof Kozlowski wrote:
+> The binding for SM8750 ADSP PAS uses SM8550 ADSP as fallback, thus
+> "if:then:" block with "contains:" and the fallback does not need to
+> mention qcom,sm8750-adsp-pas.
+> 
+> 
 
-[auto build test WARNING on 43edce71d70c603d3f3f1b1c886f65cd02d80c24]
+Applied, thanks!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Charan-Pedumuru/dt-bindings-mtd-nvidia-tegra20-nand-convert-to-DT-schema/20260103-131107
-base:   43edce71d70c603d3f3f1b1c886f65cd02d80c24
-patch link:    https://lore.kernel.org/r/20260103-nvidia-nand-v4-1-3156f46f3a5e%40gmail.com
-patch subject: [PATCH v4] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT schema
-reproduce: (https://download.01.org/0day-ci/archive/20260103/202601031603.9yKl8K9G-lkp@intel.com/reproduce)
+[1/1] dt-bindings: remoteproc: qcom,sm8550-pas: Drop SM8750 ADSP from if-branch
+      commit: 332c03279bc81a1a88d8dc5dd23f3c956d99d882
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601031603.9yKl8K9G-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   Warning: Documentation/translations/zh_CN/how-to.rst references a file that doesn't exist: Documentation/xxx/xxx.rst
-   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
-   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
-   Warning: Documentation/userspace-api/netlink/index.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
-   Warning: Documentation/userspace-api/netlink/specs.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
-   Warning: arch/riscv/kernel/kexec_image.c references a file that doesn't exist: Documentation/riscv/boot-image-header.rst
-   Warning: drivers/clocksource/timer-armada-370-xp.c references a file that doesn't exist: Documentation/devicetree/bindings/timer/marvell,armada-370-xp-timer.txt
-   Warning: include/rv/da_monitor.h references a file that doesn't exist: Documentation/trace/rv/da_monitor_synthesis.rst
-   Using alabaster theme
-   ERROR: Cannot find file ./include/linux/pci.h
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Bjorn Andersson <andersson@kernel.org>
 
