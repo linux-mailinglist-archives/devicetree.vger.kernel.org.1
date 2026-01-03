@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-251189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F918CEFE99
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 13:02:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6AD6CEFED7
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 13:40:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2C10C300AC41
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 12:02:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 744FA3022F2F
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 12:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43A5420D4FC;
-	Sat,  3 Jan 2026 12:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F1631E1DEC;
+	Sat,  3 Jan 2026 12:40:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vtskogp2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mp+sVgHb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110ED219E8;
-	Sat,  3 Jan 2026 12:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCE41386C9;
+	Sat,  3 Jan 2026 12:40:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767441729; cv=none; b=O6c1+etdZWFFYRPhTWXZPEelhU2HkbbMpgQm3aaiAqnAO3y/Z+oNeTdsrTcPmxyQaMcc52/CN020zsKy2O2QvOrt8DMfm0dHZboLH9bJdjtTinf+MZCaRWD7kMZGjEiz1b1orqM8GaRPXrWJnNI8w5K//DOX4gdmh14fRvJ2CGo=
+	t=1767444045; cv=none; b=BVh1eJ4WFs/dYZPphazmApfQYjRvoj7x0QkoZC0Kjg6gOHIeps+kUkasxpbt44wbEu2IThE858aFQZvszB2r3x9ToU3IfizQ3C9e4E62aztOxsNdwGgGT+S9O2FAbZlnTB5nD6uTepbKjlmylZ5Vn7qhUpyvZhIDOpxNyZQ9SWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767441729; c=relaxed/simple;
-	bh=1x1FZr6RcPuO0JFTJZCAvrYneabcp2bRuH04E9/5pX4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=A6IkZh+/2gVTlIHYYhwr5A0rY1wTDUt2E6KKGbVzvKpeaKM/0wGGBAZuuqTP6t+t9CAMWdBySuDm6f8jJMZkyyzh/SDzlNxFPgDrtcauDzAvpyRBp3TZOjl8Ft8uwWZpS0trI7K42uRLHVPvjyrapO8pHSZuft+IDIj3vjHdqHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vtskogp2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA7CCC113D0;
-	Sat,  3 Jan 2026 12:02:01 +0000 (UTC)
+	s=arc-20240116; t=1767444045; c=relaxed/simple;
+	bh=9Gz+HpnY8+CDmeEMm4aDD8fjq+jJhuZSlo4dAPgoYlI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EMPxZM+i3F0Kj4rkSa9prbMUfZNTFbDX34A4RIiCseb0gmuxpOzsCdXKQFWRCkYUADN9nhUhDIuE8q06YBPuA1C4OYDFyP77YndDXWQug6CNovovMAyA8T6TV7g7OstISwfU29jygCUGyVYeo7ooWsj3CPqZOmOnuGhui/V4fnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mp+sVgHb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5D97C113D0;
+	Sat,  3 Jan 2026 12:40:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767441725;
-	bh=1x1FZr6RcPuO0JFTJZCAvrYneabcp2bRuH04E9/5pX4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Vtskogp2qUAVd/DM4TkDqX7xhp75/RE4O/3djH0Ggd1RNArNybeRlzM9h+4xWnEXY
-	 XHN81oSHhzHnJVvX/LYYI+eORArVWUOZUrf70THyHL6THPbDXlv/2B4F/adETfbJsJ
-	 Bp2HlCanAv3xncnNRucIJI2Hz9n0JHN5pyGnfYOWLrhkiM9L46ZgUE7Q18kaz0uHhC
-	 3jxgcirES+Q0OYgP5Nft2bzET7CDZqJ1fERAAEJEVJx/MTyePCUxDX7TCYKv6D6aPb
-	 cCken4S8d5opzrahawWNIi6hVZYvZsLvHTe6BvRh4sDzw2xxFpIHDbhi4T3bme/S51
-	 r53uT1Zxm/bXA==
-Message-ID: <6f30a01c-8fc4-4368-88ef-7c513c505515@kernel.org>
-Date: Sat, 3 Jan 2026 13:01:58 +0100
+	s=k20201202; t=1767444044;
+	bh=9Gz+HpnY8+CDmeEMm4aDD8fjq+jJhuZSlo4dAPgoYlI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Mp+sVgHb8ZrbX/zeHNssIjH0LNTwQjxIzQxe1mVR6KkqyKIpDrHlWqKWDme0VRNTW
+	 yivTpJsu3O2ahjU0U/LYFzK06rhA0hk/oL/ZG0aL6wFF/6zg3RUwe7/+C6VpNbuzDP
+	 3jYgpR6qeVAFwIE5KuF03GupjUqtuRtmYWYYkI9dQV7/lx0H2PsnxU8Kl16LYNphan
+	 t1TFI3ZW9Ici60SYcrEyteh/vJoEyUvqjp8tgbJlJOUHaqNuhdkws8bbZykAVnetka
+	 foCPiQ+YNxLHkl0GhkvMjxLgh/xgFqxvEP5SzzmtUrkV66Be8applNR/VXOoDFfJ+N
+	 YnReMAfmi/L6g==
+Message-ID: <5682eae1-c55b-462a-97d1-9a10eb694062@kernel.org>
+Date: Sat, 3 Jan 2026 13:40:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,176 +48,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] usb: typec: fusb302: Switch to threaded interrupt
- handler
-To: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- FUKAUMI Naoki <naoki@radxa.com>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Yongbo Zhang <giraffesnn123@gmail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/Rockchip SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:USB TYPEC CLASS" <linux-usb@vger.kernel.org>
-References: <20260103083232.9510-1-linux.amoon@gmail.com>
- <20260103083232.9510-4-linux.amoon@gmail.com>
-From: Hans de Goede <hansg@kernel.org>
-Content-Language: en-US, nl
-In-Reply-To: <20260103083232.9510-4-linux.amoon@gmail.com>
+Subject: Re: [PATCH v4 1/5] dt-bindings: display: msm-dsi-phy-7nm: document
+ the QCS8300 DSI PHY
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robdclark@gmail.com,
+ dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run,
+ marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+ robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonathan@marek.ca,
+ jonas@kwiboo.se, jernej.skrabec@gmail.com, quic_rajeevny@quicinc.com,
+ quic_vproddut@quicinc.com
+References: <20251225152134.2577701-1-quic_amakhija@quicinc.com>
+ <20251225152134.2577701-2-quic_amakhija@quicinc.com>
+ <20251227-doberman-of-radical-variation-d30aaf@quoll>
+ <58b496b5-2847-4af7-8a34-e227e4324deb@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <58b496b5-2847-4af7-8a34-e227e4324deb@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 3-Jan-26 09:31, Anand Moon wrote:
-> The fusb302 driver triggers a "BUG: Invalid wait context" lockdep warning
-> under certain configurations (such as when CONFIG_PROVE_RAW_LOCK_NESTING
-> is enabled). This occurs because the interrupt handler, fusb302_irq_intn,
-> attempts to acquire a regular spinlock (&chip->irq_lock) while running
-> in hardirq context can lead to invalid wait context reports if the lock is
-> considered "sleepable" or has incompatible nesting levels with the
-> underlying interrupt controller's locks.
+On 02/01/2026 10:29, Ayushi Makhija wrote:
+> On 12/27/2025 4:43 PM, Krzysztof Kozlowski wrote:
+>> On Thu, Dec 25, 2025 at 08:51:30PM +0530, Ayushi Makhija wrote:
+>>> The QCS8300 MDSS DSI PHY is the same 5nm PHY IP as on SA8775P, with
+>>> identical register layout and programming model. Model this by using
+>>> a QCS8300 specific compatible with a qcom,sa8775p-dsi-phy-5nm fallback,
+>>> and update the schema to require this two entry form for QCS8300 while
+>>> keeping existing single compatible users valid.
+>>
+>> Last sentence is redundant. I asked to explain the hardware, not to tell
+>> us how Devicetree works. Write concise and informative commit msgs which
+>> tell non-obvious things. Not what you did. I alreaded asked this - do
+>> not state the obvious, do not copy the subject.
+>>
+>> The only useful part of your commit msg is first sentence - two lines,
+>> so 33%. Remaining four lines, so 66%, is obvious.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> lockdep warnings:
+> Hi Krzysztof,
 > 
-> [   38.935276] [      C0] =============================
-> [   38.935690] [      C0] [ BUG: Invalid wait context ]
-> [   38.936106] [      C0] 6.19.0-rc2-2-ARM64-GCC #2 Tainted: GT
-> [   38.936716] [      C0] -----------------------------
-> [   38.937129] [      C0] kworker/0:0/8 is trying to lock:
-> [   38.937566] [      C0] ffff000112c04190 (&chip->irq_lock){....}-{3:3}, at: fusb302_irq_intn+0x38/0x98 [fusb302]
-> [   38.938450] [      C0] other info that might help us debug this:
-> [   38.938953] [      C0] context-{2:2}
-> [   38.939247] [      C0] 2 locks held by kworker/0:0/8:
-> [   38.939670] [      C0]  #0: ffff000100025148 ((wq_completion)events_freezable){+.+.}-{0:0}, at: process_one_work+0x224/0x4b8
-> [   38.940645] [      C0]  #1: ffff8000800fbd90 ((work_completion)(&(&host->detect)->work)){+.+.}-{0:0}, at: process_one_work+0x24c/0x4b8
-> [   38.941691] [      C0] stack backtrace:
-> [   38.942010] [      C0] CPU: 0 UID: 0 PID: 8 Comm: kworker/0:0 Tainted: GT   6.19.0-rc2-2-ARM64-GCC #2 PREEMPT(full)  bd73c5afc1bd41f04ef9699c14f0381f835f4deb
-> [   38.942017] [      C0] Tainted: [T]=RANDSTRUCT
-> [   38.942019] [      C0] Hardware name: Radxa ROCK 5B (DT)
-> [   38.942022] [      C0] Workqueue: events_freezable mmc_rescan
-> [   38.942031] [      C0] Call trace:
-> [   38.942033] [      C0]  show_stack+0x24/0x40 (C)
-> [   38.942041] [      C0]  dump_stack_lvl+0x90/0xd8
-> [   38.942047] [      C0]  dump_stack+0x1c/0x3c
-> [   38.942051] [      C0]  __lock_acquire+0x5e8/0x9c8
-> [   38.942059] [      C0]  lock_acquire+0x134/0x280
-> [   38.942065] [      C0]  _raw_spin_lock_irqsave+0x80/0xb0
-> [   38.942072] [      C0]  fusb302_irq_intn+0x38/0x98 [fusb302 634bac905a09c450b54f88b96019accd2820228f]
-> [   38.942082] [      C0]  __handle_irq_event_percpu+0x138/0x3f0
-> [   38.942088] [      C0]  handle_irq_event+0x58/0xd8
-> [   38.942093] [      C0]  handle_level_irq+0x108/0x190
-> [   38.942099] [      C0]  handle_irq_desc+0x4c/0x78
-> [   38.942106] [      C0]  generic_handle_domain_irq+0x24/0x40
-> [   38.942113] [      C0]  rockchip_irq_demux+0x128/0x240
-> [   38.942120] [      C0]  handle_irq_desc+0x4c/0x78
-> [   38.942127] [      C0]  generic_handle_domain_irq+0x24/0x40
-> [   38.942133] [      C0]  __gic_handle_irq_from_irqson.isra.0+0x260/0x370
-> [   38.942141] [      C0]  gic_handle_irq+0x68/0xa0
-> [   38.942146] [      C0]  call_on_irq_stack+0x48/0x68
-> [   38.942152] [      C0]  do_interrupt_handler+0x74/0x98
-> [   38.942158] [      C0]  el1_interrupt+0x88/0xb0
-> [   38.942165] [      C0]  el1h_64_irq_handler+0x1c/0x30
-> [   38.942170] [      C0]  el1h_64_irq+0x84/0x88
-> [   38.942175] [      C0]  arch_counter_get_cntpct+0x4/0x20 (P)
-> [   38.942181] [      C0]  __const_udelay+0x30/0x48
-> [   38.942187] [      C0]  mci_send_cmd.constprop.0+0x84/0xc8
-> [   38.942194] [      C0]  dw_mci_setup_bus+0x60/0x210
-> [   38.942200] [      C0]  dw_mci_set_ios+0x1c8/0x260
-> [   38.942206] [      C0]  mmc_set_initial_state+0x110/0x140
-> [   38.942211] [      C0]  mmc_rescan_try_freq+0x154/0x198
-> [   38.942216] [      C0]  mmc_rescan+0x1cc/0x278
-> [   38.942221] [      C0]  process_one_work+0x284/0x4b8
-> [   38.942225] [      C0]  worker_thread+0x264/0x3a0
-> [   38.942230] [      C0]  kthread+0x11c/0x138
-> [   38.942236] [      C0]  ret_from_fork+0x10/0x20
-> [   38.969307] [     T11] rockchip-dw-pcie a41000000.pcie: PCI host bridge to bus 0004:40
-> [   38.969995] [     T11] pci_bus 0004:40: root bus resource [bus 40-4f]
+> Can you please check below commit description is it appropriate  ?
 > 
-> Following changes resolves the lockdep warnings and aligns the driver with best
-> practices for I2C-based interrupt handling.
+> QCS8300 uses the same 5nm MDSS DSI PHY IP as SA8775P, sharing an identical
+> register layout and programming model. Introduce a QCS8300-specific compatible
+> with a fallback to `qcom,sa8775p-dsi-phy-5nm` to reflect this hardware reuse.
 > 
-> Cc: Hans de Goede <hansg@kernel.org>
-> Cc: Yongbo Zhang <giraffesnn123@gmail.com>
-> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Fixes: 309b6341d557 ("usb: typec: fusb302: Revert incorrect threaded irq fix")
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 
-If you look closer at the code then you will see that
-fusb302_irq_intn() is effectively doing its own threaded
-interrupt handling this is done to be able to delay
-the threaded part till after the i2c-controller is
-resumed when a fusb302 irq wakes up the system.
+Yes, that's very good.
 
-See commit 207338ec5a27 ("usb: typec: fusb302: Improve
-suspend/resume handling") for details.
-
-And if you look at the fusb302 git history then you'll
-seen an earlier change the switch the interrupt handler
-to a threaded IRQ which was reverted (mostly due to it
-also making other undesirable changes).
-
-This change is different though. This is actually quite
-similar to commit cee3dba7b741 ("mei: vsc: Fix "BUG: Invalid
-wait context" lockdep error"). Where I fixed more or less
-the same issue in the same way. So I guess this change also
-is ok.
-
-Still ideally we would solve this in another way then
-switching to a threaded IRQ handler.
-
-As the commit message of the mei-vsc fix mentions
-the root cause of these errors is typically an interrupt
-chip driver which uses IRQF_NO_THREAD disabling the auto
-threading of all interrupt handlers in RT mode.
-
-So the first question here would be to see if that flag is
-used in the interrupt chip and if yes, is that flag really
-necessary ?
-
-Regards,
-
-Hans
-
-
-
-
-
-
-
-
-
-
-
-> ---
->  drivers/usb/typec/tcpm/fusb302.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/tcpm/fusb302.c b/drivers/usb/typec/tcpm/fusb302.c
-> index 870a71f953f6..089722b52fbb 100644
-> --- a/drivers/usb/typec/tcpm/fusb302.c
-> +++ b/drivers/usb/typec/tcpm/fusb302.c
-> @@ -1755,9 +1755,10 @@ static int fusb302_probe(struct i2c_client *client)
->  		goto destroy_workqueue;
->  	}
->  
-> -	ret = request_irq(chip->gpio_int_n_irq, fusb302_irq_intn,
-> -			  IRQF_ONESHOT | IRQF_TRIGGER_LOW,
-> -			  "fsc_interrupt_int_n", chip);
-> +	ret = request_threaded_irq(chip->gpio_int_n_irq,
-> +				   NULL, fusb302_irq_intn,
-> +				   IRQF_ONESHOT | IRQF_TRIGGER_LOW,
-> +				   "fsc_interrupt_int_n", chip);
->  	if (ret < 0) {
->  		dev_err(dev, "cannot request IRQ for GPIO Int_N, ret=%d", ret);
->  		goto tcpm_unregister_port;
-
+Best regards,
+Krzysztof
 
