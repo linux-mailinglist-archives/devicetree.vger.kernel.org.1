@@ -1,111 +1,91 @@
-Return-Path: <devicetree+bounces-251218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20BC8CF0361
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 18:33:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C33CF03A0
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 18:51:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D13113011F9D
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 17:33:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D9BA03011ECC
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 17:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4202215F7D;
-	Sat,  3 Jan 2026 17:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5841A9F87;
+	Sat,  3 Jan 2026 17:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xp+WCPqd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mo02qr2L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4EC112FF69;
-	Sat,  3 Jan 2026 17:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A7A3C0C;
+	Sat,  3 Jan 2026 17:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767461584; cv=none; b=QQfY4irdCDm7TyWVe29Fp2F4T8N+91fH9KTpBw3sOCIDPm4O26qicP6VV2uV+0/p2BNV0FlhCCzoNxGL2wvu1oTGEVFoskWjWy0dJrNVp4uXvutXr+wrwYi/+PDu+CXfArnqqwaQ9+H9qQhamWcw2gHK0xo6bU7OD2NMerlfs8Y=
+	t=1767462710; cv=none; b=je+86fu41bbd5jG6o/fOHkKmAkXMZ49975c8ul7vSx8IZvVM8wljAffKZw143opbyaDxIdkjUXhlBVb3g57X3ONKaISD5hHRD7/tmYneDGGb+7Ch2YMtdtaC8Z7LjXsuwJ4KDicguXhucFURcwAMGrUNtyAoMbSBu5BcRfoKX1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767461584; c=relaxed/simple;
-	bh=iFuAMR8Cy8xCV1l5qP2ufkm0oszRW7MT41boaDMKRQc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e9WkVkTM9lLONsyP2ZArnnZqiZseIK2TNEzgdF51IqAc5/Z4t6tuCIuQ+S3kUl/UaX13xWBU9XHMSLHVLZVjVPFUzHajX+xvcOXGfrUBkWLiDFBwsICKCjIP39hxv2BewHCYmfx2Zwkpdi0Mu/hkKeEL+RiIlNbZcwyfK39l0oU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xp+WCPqd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADDF0C113D0;
-	Sat,  3 Jan 2026 17:33:02 +0000 (UTC)
+	s=arc-20240116; t=1767462710; c=relaxed/simple;
+	bh=xXJKn5ZjwF7cucJKs57KLIIFIjOY8BG7KX2LwIV5UHE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hoMf06pXYzokj8jR3879pbyX93IqvssEMesVrDTW72C2zUliL4MNDuz6FuK1YLcj8aDUCWGgMEcHQd4Xpn8EBSYy+jxq9tbNXunX5rpGcC3IYniICqd6bMUR9ALtd8z6Giu+J1x6FNuMASTqbwPbhwatqTzI58gWYgjNpife+bU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mo02qr2L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66A73C113D0;
+	Sat,  3 Jan 2026 17:51:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767461584;
-	bh=iFuAMR8Cy8xCV1l5qP2ufkm0oszRW7MT41boaDMKRQc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xp+WCPqdDf4gJb/T4X7Cm3RF8ubPLMU3T+A+zLJk2E8kNlkgeUiZQwv3EenU4joZX
-	 7Tc3EdRTYNATlLAqQB8u2tZ7HSgqdWlNRRKq+Zo2WGMGyGkQHEVN7vPuUv2iWO3jjr
-	 f/E12JjI683V7LIDmzMDPMlTYES4gO4AJrR7RMFkO/O+ApzHAiO45bduqNJkPCVG58
-	 DCT6sSvmUyPJuPNL0t20AsoUCgQ/mOi1VxeVpOY44bT4E5uQfzUMYB2KkMaKGPVpRY
-	 0Qnavw+iTW10fRjbGlAosK4u74JSJpqNNSDNKZvTo1UB/OkMzu6fGGegiuW6KpumeM
-	 2AGlma1+Xj+UA==
-Date: Sat, 3 Jan 2026 11:33:00 -0600
+	s=k20201202; t=1767462710;
+	bh=xXJKn5ZjwF7cucJKs57KLIIFIjOY8BG7KX2LwIV5UHE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=mo02qr2LnmjN/shdvtHi0oj7SHQ/h+fDQSV811zWsLAV74WtqR8PasHuMQ5TfFNGj
+	 /57g4C43HzaXR/5lK0tJJQkTP9txeH8wO5lCEQtUrH35hoOSdpEx+L6DXKHRbnX8w9
+	 QFp/OXTBY6j0sgOkYpU0gn5K1JFRXNRY4wS4J6W193Wakmge9kcH5EYqrkk5xd8TwI
+	 mj0lJE/TXrG0tIOnYkt2UiSytgHdLe1uwzkC/9v59LmOYQQLY7Y99+7uiyR538flpA
+	 qCusaIIuHKzPXlF3pIPzgzzqDRGOWXkPnZtNcU240qEYDRStD/2mONs4foD9wnkXa/
+	 qrGyOH5PxYWMg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Jie Gan <jie.gan@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>, 
-	Mao Jinlong <jinlong.mao@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-binding: arm: add CTCU device for hamoa
-Message-ID: <kvvagn7badh2q2y5pmcp3m2pvazmax7xwuumr36twekagvdvs6@odqinwynfvjm>
-References: <20251106-enable-etr-and-ctcu-for-hamoa-v2-0-cdb3a18753aa@oss.qualcomm.com>
- <20251106-enable-etr-and-ctcu-for-hamoa-v2-1-cdb3a18753aa@oss.qualcomm.com>
- <076f6aff-4f9a-4630-8e5d-c11f0272de70@oss.qualcomm.com>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Heidelberg <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/4] sdm845: Update firmware paths
+Date: Sat,  3 Jan 2026 11:51:42 -0600
+Message-ID: <176746270357.2648843.16986204903349256474.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251222-oneplus6-new-fw-path-v1-0-a2d366f9eb89@ixit.cz>
+References: <20251222-oneplus6-new-fw-path-v1-0-a2d366f9eb89@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <076f6aff-4f9a-4630-8e5d-c11f0272de70@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 23, 2025 at 05:14:11PM +0800, Jie Gan wrote:
-> 
-> 
-> On 11/6/2025 9:57 AM, Jie Gan wrote:
-> > Document the CTCU compatible for Hamoa, enabling support for the
-> > CTCU device on the Hamoa platform.
-> > 
-> 
-> Gentle reminder.
-> 
-> The dependency[1] has applied and I have tested this series on
-> next-20251219, no conflict and work well.
-> 
 
-In your previous reply, you're stating that you will update the patch?
-Are you saying that whatever concern Krzysztof had is now resolved?
+On Mon, 22 Dec 2025 20:05:36 +0100, David Heidelberg wrote:
+> Update the paths for phones, where there are no patches pending which
+> includes the firmware path update.
+> 
+> I haven't touched the sdm845-mtp and db845c intentionally.
+> 
+> After merging, I'll notify distros and send MR against droid-juicer.
+> 
+> [...]
 
-Regards,
-Bjorn
+Applied, thanks!
 
-> [1]https://lore.kernel.org/all/176615287813.688536.723538049922655005.b4-ty@arm.com/
-> 
-> Thanks,
-> Jie
-> 
-> > Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> > ---
-> >   Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml | 1 +
-> >   1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
-> > index 460f38ddbd73..57dede7a90e9 100644
-> > --- a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
-> > @@ -29,6 +29,7 @@ properties:
-> >       oneOf:
-> >         - items:
-> >             - enum:
-> > +              - qcom,hamoa-ctcu
-> >                 - qcom,qcs8300-ctcu
-> >             - const: qcom,sa8775p-ctcu
-> >         - enum:
-> > 
-> 
+[1/4] arm64: dts: qcom: sdm845-oneplus: Update firmware paths
+      commit: 29e87dc07d705bd92d57fff77703ca272779e6a0
+[2/4] arm64: dts: qcom: sdm845-axolotl: Update firmware paths
+      commit: 5eac5422c0c0a8a14800405b658e99beaacf90de
+[3/4] arm64: dts: qcom: sdm845-samsung-starqltechn: Update firmware paths
+      commit: 7e46a9c78880f4a7589bb31f8887ea3edb0596b4
+[4/4] arm64: dts: qcom: sdm845-xiaomi-polaris: Update firmware paths
+      commit: 86057e01967b8eeb8604904322003de044528e7a
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
