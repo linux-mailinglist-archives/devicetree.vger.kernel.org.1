@@ -1,207 +1,121 @@
-Return-Path: <devicetree+bounces-251199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D56CF010E
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 15:24:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A20CF011A
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 15:27:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 304F43017F05
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 14:24:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 980F83016DE4
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 14:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C1D830CDBF;
-	Sat,  3 Jan 2026 14:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2EB623505E;
+	Sat,  3 Jan 2026 14:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="MpCacc/z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eEqxXVER"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AB441386C9;
-	Sat,  3 Jan 2026 14:24:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767450277; cv=pass; b=QLX1cetdQzv5GMi7BmGc6BqJEgHP+5lH2lXw2mEOUiGaLh7FWniNn6CDzCynKrS+b1LKwR3AkMSsjp2Ho16fS6mY//gk1WCCerh61Ya7t3OSLB2K6Yy+xRdzs2Qdrm6OAxv1nInxhLE0tlVY94pweqEG0O/XVquyvbPPETLlx4A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767450277; c=relaxed/simple;
-	bh=tZy4h3oHoPhnVf9ToE1qLkOG/JtI1YhQzlvvEOL91+4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f93uBjUJsu5Kmq3fkgJlHQIgeqdwKGCBmz072JDJYnZ1TGz6m2Ja8OCwvnL8EoMIqBjQLEG1JCrzH3hFfQgt8Yq4SgIujMUo10G32Mq5uHGXHrCLBc4Nf02wvp3TpI/Nkxck5gUcIOtAYgzH3hUAxe1wkdJ4FbRHWY6Bv+JheiE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=MpCacc/z; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1767450251; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=GrDAJsOcMRqa4lmRjcJ8byk9lPym882PrTIq79tcqvVWrr6QsydRXjaVBVtI3T/zgVCHVY8IroVf0Q2YwKgOwThXT5gz1ac63sKPV7Jzvre9ewDed+efyyggAJvj+cdV1yFPbtnjMCfFKDCnXrY/2l0ycWiP2TmOx+DCLMN6m5k=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1767450251; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Ih+WSwVVDojt8+S5KlRj+VrWY8LbNzRPse4rqBZZ5G0=; 
-	b=mVJ63CjVN7jPXgOHuxu07CPxAqC0rV4eEoSFgaCCmR/wXImHSGLWcubp1BgJ0u8nW9nnadcqTSpbWxY6chxBrmn9bRC6/mMSpbh0+2g9joNJ6Sl8U8Obb19n2/v0PXWEBSBU1NC3hS7Lfq5wWm4MyFqgqI258flC/r6KfC956JU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767450251;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=Ih+WSwVVDojt8+S5KlRj+VrWY8LbNzRPse4rqBZZ5G0=;
-	b=MpCacc/zU7n4iYLpFcx3C1+y7S1j8UVNz1NHwBplAokSKOgMRlDU5WYfUC+SdFgi
-	cCbEQz3/3E+UcaTmCbm9pimWXbU3Ll990H2KRkCmyTi0QYMSOrElO8ZwlSnAVndCs+l
-	zKXqFK8XoJyYI2w6vIxu1BNyeUWimIAvV+2mDCdc=
-Received: by mx.zohomail.com with SMTPS id 1767450248307364.7110964115078;
-	Sat, 3 Jan 2026 06:24:08 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 8D11E18054C; Sat, 03 Jan 2026 15:24:03 +0100 (CET)
-Date: Sat, 3 Jan 2026 15:24:03 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Diederik de Haas <didi.debian@cknow.org>, 
-	Yongbo Zhang <giraffesnn123@gmail.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>, 
-	"open list:USB TYPEC CLASS" <linux-usb@vger.kernel.org>
-Subject: Re: [PATCH v1 0/3] Typc fusb302 powerloss issue on Radxa Rock 5b
-Message-ID: <aVkinPvh_jxdh9wm@venus>
-References: <20260103083232.9510-1-linux.amoon@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC7C6136349
+	for <devicetree@vger.kernel.org>; Sat,  3 Jan 2026 14:27:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767450427; cv=none; b=U2RaqNOYfsKyhmBMSsZ010ccpMM88G5N+ubtaqNy165wx7TRl5ITkEtCaELcdisH/wjWLtRkoV2IkloUXjtacBS6UOKzsczQBmFhtSB7X7/9VxG4AGnomfZi7DHAe4B7/asWFUIaC2ZKwDAuRcTR0RtPLJMcQXBhWYmutD8AKWM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767450427; c=relaxed/simple;
+	bh=J2b3ntQBIY2fNOzsswgXygdX7ucgM984bK/mKexRJD0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W2v7rhG0EUWx2j2Q8dQOorP4jQbzVUaBO0/DXyFRQeJhm3vuAX9hS+55XlqoZXfQsgoNe8IV2IIHAZGgC/eJTatFs42tORBcphsYMLJ8+NgPnYsmYvw0HF6y8wHBC64NOAQnCC41Vd0pgzCOeUcte/ZIz1CtC+4Ksx2WIOFF6/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eEqxXVER; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5792DC113D0;
+	Sat,  3 Jan 2026 14:27:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767450427;
+	bh=J2b3ntQBIY2fNOzsswgXygdX7ucgM984bK/mKexRJD0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eEqxXVERdmb0IxQ/6XuifpUpXt054nOItjBmRTV1RWZZsLLQmXWVSB3jCqc1KR+aA
+	 XUz6PQykPujs2bcyO9SKykKa9OdLuZ9sCV1O3fzExhalm2D2ZT6akiw5zFugF28Asy
+	 zpVAj4n5kzMfI6hJ+xTqEfB+2kTTM8lo88zLfMkTRqnnDHp2lwR8jHwantMpAzehaV
+	 JefFgkvs+hl6ACMBSVz0WnvELMUyOfzdTYqHvTkTof7AU6Ov7CsOS0tT0h+EsPDFjB
+	 GQAMtoORLGqamo2+uMYN6X5NbFajuIAc5QkMcXlwFfqnKYbcUpfXb+mMY/yg5+r0dg
+	 bbUyCC5RWHcOQ==
+Message-ID: <b73deb5c-9f1f-4e1f-b905-773abd092b30@kernel.org>
+Date: Sat, 3 Jan 2026 15:27:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fhxt6xjqdij5sxjm"
-Content-Disposition: inline
-In-Reply-To: <20260103083232.9510-1-linux.amoon@gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.3/267.430.24
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: simple: Add Innolux
+ G150XGE-L05 panel
+To: Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org
+Cc: dri-devel@lists.freedesktop.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@nabladev.com>
+References: <20260102141706.36842-1-festevam@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260102141706.36842-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 02/01/2026 15:17, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@nabladev.com>
+> 
+> Add Innolux G150XGE-L05 15.0" TFT 1024x768 LVDS panel compatible string.
+> 
+> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
+> ---
+> Changes since v1:
 
 
---fhxt6xjqdij5sxjm
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 0/3] Typc fusb302 powerloss issue on Radxa Rock 5b
-MIME-Version: 1.0
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Hello Anand,
-
-On Sat, Jan 03, 2026 at 02:01:16PM +0530, Anand Moon wrote:
-> On the Radxa Rock 5B, the system occasionally experiences intermittent
-> hard resets during the boot process. Initially, I suspected a power supply
-> issue, but further investigation points to the Type-C fusb302 module as
-> the cause.
->=20
-> Specifically, probing or reloading the fusb302 module triggers a hard res=
-et,
-> which can result in immediate power loss and a reboot.
->=20
-> [root@rockpi-5b ~]# rmmod fusb302
-> [root@rockpi-5b ~]# lsmod | grep  fusb302
-> [root@rockpi-5b ~]# modprobe fusb302
-> [root@rockpi-5b ~]# [ 3389.031608][ T7143] typec_fusb302 4-0022: Initiati=
-ng hard-reset, which might result in machine power-loss.
-> [ 3390.030444][ T7143] typec_fusb302 4-0022: Initiating hard-reset, which=
- might result in machine power-loss.
-
-If you see this message the TypeC port manager (TCPM) state machine
-reached the hard reset error state. A USB-PD hard reset involves
-removing VBUS for a short time, which effectively removes the board
-power on ROCK 5B. Unfortunately the situation is quite complex :)
-
-> I attempted to trace the issue using ftrace but was unable to
-> pinpoint the root cause. The problem appears to originate either
-> from the I2C controller or the PMIC reset.
-
-I2C and PMIC are not at fault. This is all about USB-PD
-communication itself.
-
-> I have identified a potential workaround involving the I2C SCL debounce s=
-ettings
-> for the RK3588 and submitted a patch here:
->=20
-> [1] https://lore.kernel.org/all/20260103052506.6743-1-linux.amoon@gmail.c=
-om/
-
-This is most likely a red herring and just slightly changing timings
-in the USB PD communication.
-
-> Please note that the submitted changes address a minor aspect but do not =
-fully
-> resolve the underlying issue.
-
-I don't expect any fix from this series regarding your problem. Also
-I suggest having a look at my talk at the Linux Plumbers Conference
-=66rom last month where I discussed this issue :)
-
-slides: https://lpc.events/event/19/contributions/2156/attachments/1784/386=
-1/improving-stability-for-TCPM-using-boards-that-are-not-self-powered.pdf
-video: https://www.youtube.com/watch?v=3DDmLsePJoH8I
-
-Something that might be sensible to do on your end is figure out
-*how* the state machine ended up in the error state and check if
-we can avoid it. The related code for that lives in
-drivers/usb/typec/tcpm/tcpm.c and quite complex. I use the
-following two patches to ease debugging:
-
- * https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/c=
-ommit/6edc68e3c0ec4c209b5e96b848e17201059ce9ee
- * https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/c=
-ommit/8ca8b1d6ee36e80f794bcf351a8b78d5a96daf06
-
-Combined with CONFIG_DYNAMIC_DEBUG=3Dy and booting with the following
-kernel arguments: loglevel=3D8 tcpm.dyndbg=3D"+p" fusb302.dyndbg=3D"+p"
-
-Greetings,
-
--- Sebastian
-
->=20
-> Thanks
-> -Anand
->=20
-> Anand Moon (3):
->   arm64: dts: rockchip: rk3588-rock-5b-5bp-5t: Correct Type-C pin bias
->     settings
->   arm64: dts: rockchip: rk3588-rock-5b-5bp-5t: Fix USB host phy-supply
->     on Rock 5b-5bp-5t SbC
->   usb: typec: fusb302: Switch to threaded interrupt handler
->=20
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi | 7 +++----
->  drivers/usb/typec/tcpm/fusb302.c                        | 7 ++++---
->  2 files changed, 7 insertions(+), 7 deletions(-)
->=20
->=20
-> base-commit: 805f9a061372164d43ddef771d7cd63e3ba6d845
-> --=20
-> 2.50.1
->=20
-
---fhxt6xjqdij5sxjm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlZJoAACgkQ2O7X88g7
-+prmAQ//Szd3e+4Q3obakorrCA/Rkjd/Falf3rVKj3JWkmeucNnOTL2jHofdgZPQ
-Up3hSKfSWMN/zCotdRopg8tBkTAC6IfHfouCbq5n/ksodO4+yXH8VZ/XqisJW6wi
-b+Nd4pWrThDpeQ4a8Tq+qEpvFbmRUxbCktoKVb8hQY6YF0GMvjGUOWiJ3NhwrKEC
-M+PIICA6+pDqwvkY3ULR65kYBE9o7fIlaRwvz9MT+R+XzdJ4v6q7L+p6w4fNgppJ
-Yf4I0PgROlpHTWhaeYKS/EdlMqszFKrW+3ykVrO2BxusCFEtzI5jm065tNomBWoC
-Yy/LWQcyCE4yb5/fupabsBgmbSN/AZqpGMS1OMivIP1DLlF4s5Qzcn4Tpoeqzjo+
-JU6BVpXv5v3ms4DUZN1cCwOf8lg2KugFccqut6uH640IndAlwrfElsC/ac6NNAWK
-uhXfnJ7VDJtVFjF3t0qQ/960JdA+MpMnEHI3px+9IP46Mq43OTL4YITn5mSetckz
-Jie3G1ctO4nroo0ZBWlDh7zNn97bDbhpshBYKK9fR8lhEmchoVBhRJ1nRPtX9cW3
-ulvUri6WY1/QEi/erCXrsVxYMhYSm1H/is7tXDChwdbb0eZfmJBRzSK2CMxbsbyr
-O1zEi87Ei8ax4giABrrIVB2XsNmQNvpL/OCqHmog9v0Al0ysdm0=
-=tlFx
------END PGP SIGNATURE-----
-
---fhxt6xjqdij5sxjm--
+Best regards,
+Krzysztof
 
