@@ -1,131 +1,171 @@
-Return-Path: <devicetree+bounces-251196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1661BCF0097
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 15:04:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23967CF009E
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 15:05:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 460C6300B031
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 14:04:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D90CE3013390
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 14:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 352D5279DAF;
-	Sat,  3 Jan 2026 14:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28461248F5A;
+	Sat,  3 Jan 2026 14:05:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZyCPuDYE"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="ERkT8Xdu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B862236E8;
-	Sat,  3 Jan 2026 14:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767449067; cv=none; b=m2KKSw16X2lAwQJk5lJf6Ch/VUS7wA5qI+2xk1n6LDagvdoSuOcq1q2hmR/9TMflr5K8HZDw4he+qXnfUViO/rJmsVo1SYpVNXNkKOjSousnqtVC7E5YLWSbsUkxxHlalZ8b4CB7ASIAr+9QTxuQv7zYxbBBqwCBKRkCXD2wZ9E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767449067; c=relaxed/simple;
-	bh=syKu65UAaIGDJS4fMnnR8hxOJACzJd2yCnXi+ctXt0Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pQBBJnfgvog2MMbeMXcZjog6l7A4K3rIgununzahjOnibzTVgDdQcaE91G0jU7ogoQvw6jBBSWnsZ5DBKwa1HywqFZ7wbLLSpPa/otYInPUZ0/H/qGPFRdEwlgSE4saDHO5zQS4nTb7wtHL1Qyko+2Aiqpot6vaqNyOGgI6F6H8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZyCPuDYE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45F90C113D0;
-	Sat,  3 Jan 2026 14:04:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767449066;
-	bh=syKu65UAaIGDJS4fMnnR8hxOJACzJd2yCnXi+ctXt0Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZyCPuDYEHl2uogK0wSMUra/m/NoBsltB3jyk0V6mWfQQKv731Q8VE8nZl9dqTxBIq
-	 FIPlnDm734Es3EMeoKn8+rQgTTqYOIDq+PJhzeKcm0ECXUqepkpsNfdb8fkNnSIZnN
-	 flMwk6dAs5lz2PG0OKG9bXBntEdI7qaB16FZJ5/MKa7QybW+5RbhxHCM7u/WewzvO0
-	 +5kAX9vb9wFzsFFqhJubPtu8cTC7/uDhj8DFTpG7eK3+FsAhgBa9oUF8NlluZ6/RF/
-	 7tR1QtV/qnUCkm0WdkGhnQ1ZCPLappsF2lzpj0KYBdtRuwoalEL3D6p1LvJ9CftPnx
-	 ld7ghLGQ9yFFg==
-Message-ID: <2cef182c-b96c-4403-8a13-4eef6293d812@kernel.org>
-Date: Sat, 3 Jan 2026 15:04:20 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D7318C933;
+	Sat,  3 Jan 2026 14:05:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767449130; cv=pass; b=JTHMgk8805CG0wVcfwAAGFWsyan8xemtrVWibJFoNAI9SCj00/hP6Y96RK4bId39c+l2p9WKh2kDzQ2VwLVsBTv/jJE272mef9qAHFa/qWx3Stk+CAS9Miva3Q5nffCtAGkgi+gJkp5hzlw1t/JVzq1NKLwlAEAAu9rmCHb7vkQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767449130; c=relaxed/simple;
+	bh=vhVK4hg+42hPm8Kuf9vzVYKmK27olOpoQTdcfL2nVG8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UET/qr0IfSZAUJweiA5qpwG6AxHavKKldcO4xIPG2J7UZR3RFVB1GJzx7/ur+s5BIICsggQ3TfIx2BapCZoUdcRjNFrxLDzcl7yKbxCLuHV+Rg9hjuAQG7i6bhCfoUGGYQ5cahJVWgm42EKg+s7mq71urw8Ci2+VfArOI+hFfag=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=ERkT8Xdu; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1767449095; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=YRa4h1EQKHxjfU+6npG5r/xqTnNpN/jB8rwYJCF4nuXy/jqrnz48j+gkSIT3TXr62gF2IzoI8DRp9RzVZt5Ic5Qv5MHQ3xjd8nrM6JoF/V4CuGzntnfX9fPpbP2dqIpAtPBw5Dgq3yWkEVvCkG6XCc1UkEulfnZ7KBh8+NqtkYc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1767449095; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=sclPIbTuFBUw6SwfyH8YCc5Ug5qVUgcMP6TFoeELZHA=; 
+	b=KaEoR/UEk1mtY1aH711qYegTdXg4jVe51X8YBcwTHbogmd0M+GnHPwBOJKhRLIILQZJSTRA3SidEA4RwI0XbtDTAPbLSPx912pVBLGL4Fs1bB8upJSI0mpR/KyrcqoNuBcIX72eRuDxR0y9S6YKDURMc+VWGsuxz9c+ZSbSygXI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767449095;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=sclPIbTuFBUw6SwfyH8YCc5Ug5qVUgcMP6TFoeELZHA=;
+	b=ERkT8XduG5w+z9adyLzBkItLI3DKSMCSysdnGKEWlinvM453YMBXZamMDpjrKbOX
+	aIksk9GW6cID8EQ2YURl6NI2nRtWrLZx5QBaiXu2AwDRGuVk6mcujM0n5L4/QIn3QAS
+	c+XXiWDvJAEjmwWnj46ixxSmHAHVfzWM7towiuoE=
+Received: by mx.zohomail.com with SMTPS id 1767449092519959.3621110978988;
+	Sat, 3 Jan 2026 06:04:52 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id 4BEF418054C; Sat, 03 Jan 2026 15:04:47 +0100 (CET)
+Date: Sat, 3 Jan 2026 15:04:47 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+	FUKAUMI Naoki <naoki@radxa.com>, Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+	Yongbo Zhang <giraffesnn123@gmail.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>, 
+	"open list:USB TYPEC CLASS" <linux-usb@vger.kernel.org>
+Subject: Re: [PATCH v1 2/3] arm64: dts: rockchip: rk3588-rock-5b-5bp-5t: Fix
+ USB host phy-supply on Rock 5b-5bp-5t SbC
+Message-ID: <aVkfNBUDUumzV0-X@venus>
+References: <20260103083232.9510-1-linux.amoon@gmail.com>
+ <20260103083232.9510-3-linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: qcom,x1e80100-gcc: Add missing
- UFS mux clocks
-To: Taniya Das <taniya.das@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Rajendra Nayak <quic_rjendra@quicinc.com>,
- Abel Vesa <abelvesa@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
- Imran Shaik <imran.shaik@oss.qualcomm.com>,
- Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
- Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
-References: <20260103-ufs_symbol_clk-v2-0-51828cc76236@oss.qualcomm.com>
- <20260103-ufs_symbol_clk-v2-1-51828cc76236@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260103-ufs_symbol_clk-v2-1-51828cc76236@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kv5ni5kly6ecqwne"
+Content-Disposition: inline
+In-Reply-To: <20260103083232.9510-3-linux.amoon@gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.3/267.430.24
+X-ZohoMailClient: External
 
-On 03/01/2026 06:57, Taniya Das wrote:
-> Add some of the UFS symbol rx/tx muxes were not initially described.
-> 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+
+--kv5ni5kly6ecqwne
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v1 2/3] arm64: dts: rockchip: rk3588-rock-5b-5bp-5t: Fix
+ USB host phy-supply on Rock 5b-5bp-5t SbC
+MIME-Version: 1.0
+
+Hi,
+
+On Sat, Jan 03, 2026 at 02:01:18PM +0530, Anand Moon wrote:
+> The USB host USB2 and USB3 on the Rock 5B, 5BP, and 5T is powered by the
+> USB_HOST_PWREN_H gpio pin which is used to enable vcc5v0_host host
+> regulator which ensures proper power sequencing and management for onboard
+> Double-USB-HOST.
+>=20
+> Update the u2phy2_host node to reference the correct phy-supply.
+>=20
+> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
 
+u2phy2_host is connected to an onboard USB hub chip, which is
+powered by &vcc5v0_sys as the comment says.
 
+You can see this on page 9 of the v1.45 ROCK 5B schematics (page
+name USB2HUB). The usb hub chip uses VCC5V0_SYS + VCC_3V3_S0 and is
+connected to USB20_HOST0_DP, USB20_HOST0_DM. The related USB
+controller for that in the upstream DT is &usb_host0_ehci, which
+in turn is using &u2phy2_host. Thus at least for the ROCK 5B the
+existing DT is correct. Properly describing the downstream port
+VBUS regulator would require something like the following series:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+https://lore.kernel.org/all/20250911-v6-16-topic-usb-onboard-dev-v4-0-1af28=
+8125d74@pengutronix.de/
 
-Best regards,
-Krzysztof
+Greetings,
+
+-- Sebastian
+
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi b/ar=
+ch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
+> index 0cd8ac7bf538..886d788572fc 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
+> @@ -981,8 +981,7 @@ &u2phy2 {
+>  };
+> =20
+>  &u2phy2_host {
+> -	/* connected to USB hub, which is powered by vcc5v0_sys */
+> -	phy-supply =3D <&vcc5v0_sys>;
+> +	phy-supply =3D <&vcc5v0_host>;
+>  	status =3D "okay";
+>  };
+> =20
+> --=20
+> 2.50.1
+>=20
+
+--kv5ni5kly6ecqwne
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlZIfsACgkQ2O7X88g7
++ppfnBAAlkhFx+COcza3lA5ddFOvmfszMCpFeKSBHkXDGlL5a12sMSXTlQqO0S0A
+LR2IHlvQWQy+k0gRuh12FByzc+UmFcfw9BF27Hyk6sSZLfiivT1bD6P7/99+4qwJ
+NO7O8GrJDH4FRacbTQy1qi4Yv/S1R4juSsdHUHL5Zi/Y+Yc6YjW5c+d0shZ661kd
+kEfw1KuNGdeG4DDrgGqKgUTd+Cy82VicsBw8gqoG/Ur1I65HLFZtJSVLjN4oK3HM
+pE9fixoWUR0GPsmDEEFjy5jnWs9hc+bW8Zb80QbUFPBLRe+0P8rcm9M/zOVzibX4
+A2MRLqOmq8JEwPIaxjL3KI1xerbMGjeK+V6qBKJxRv6TTDMGNh+IbbDoq1N5APJv
+1xaTUPXZxYnu3HasyGpjytPzYeP3W5T0T1OWgQ28TruwPqHtvMM61xxLMjM3Wpa9
+3EibGeXO2VzPJBPq6z2SxguIY3uPG7hTznTMMAq9yantUdhCBkevDncyXJjja/Wd
+gYzkXhCokKk2JzlvExvkjzkhQSrFuFaiDF1vHkxykGnWjdxuBUkMDcCNYieMuUHx
+cFwHljZUeM7wImpi/4kYaSAiEN+IArTtWDusptTaCOC0nMYd6tjn7YV12jFDaRZM
+h2o1H0TPQ9cXOMv5of6qEpichDrcuU9fN8D+0cR7PW17yfDzvr0=
+=j8HA
+-----END PGP SIGNATURE-----
+
+--kv5ni5kly6ecqwne--
 
