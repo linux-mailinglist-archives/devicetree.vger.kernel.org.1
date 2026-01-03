@@ -1,57 +1,85 @@
-Return-Path: <devicetree+bounces-251209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1235CCF025D
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 16:49:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1DE3CF0269
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 16:49:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 06A9030139B2
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 15:49:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A25623004620
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 15:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80B1130F530;
-	Sat,  3 Jan 2026 15:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7918F30EF95;
+	Sat,  3 Jan 2026 15:49:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EQD04qg9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f6ihpLsc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C43130E82C;
-	Sat,  3 Jan 2026 15:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57B1017BB35;
+	Sat,  3 Jan 2026 15:49:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767455349; cv=none; b=feXq4L1lFGfRhemNtN7X6/Uq+/0hGXCvvejcaUO2lQEKuAnkY+lf0K9SCaAeHuvKvSA/f6sx6VpcusXkke2g1/OCdXZ+tYq9q3+9SzRSkHofogFcoqTOesInM575ONVSEkgJywwORHAhTB58E15OoXOcKh5Xhcc3ZP9uS39dhpk=
+	t=1767455374; cv=none; b=ZWSeIGShIWsy94oHT4Pheu/uN0xmJ7pIrTLDUAO4PhmQ9WpKLhUNfADounW8Gszkwr2xxFZttSWoIkTrJxsh9qgkSWsEtxH1mZ2so1E0VgI2rLdshErInNy6ylHB4Z7+opOPVtB8TrbCyUmtl7jCKfyRjitsN70X+BJrQBhXL/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767455349; c=relaxed/simple;
-	bh=VcgDlCqm7BzgAeykeG6jjqYd3SV6U+8fr3yJWmWlBNE=;
+	s=arc-20240116; t=1767455374; c=relaxed/simple;
+	bh=UdpQuAVYg3go+KFGqbG7KFffUg4tuMyA9VNoUN7RR3Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LT6TuCq5GUeOkUAZLXbpdut6Xoc7wcK8Mcoex3T0Zp5n6xphk9s1aKqHDar7kZfFUWUCrQ8SSqBFvHXDUiqfY+mw47OfyaksMorLJXpkWpktBjWsGBrvBmc4zJsNOy6YgAj3OT1t0bohXcjD8hcKqNl8BVj0ADQPu7Wnj8rt2Ao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EQD04qg9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3DCDC113D0;
-	Sat,  3 Jan 2026 15:49:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767455348;
-	bh=VcgDlCqm7BzgAeykeG6jjqYd3SV6U+8fr3yJWmWlBNE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EQD04qg9fC5XRpXzk2UNUuqMQiiS/rPH0dbPJVqmDrnSbOj9YtmPXK6pSuqsgmUUY
-	 eCwynVm6HQ0CrnPT/iiv5vBCgTZ6ORbbzojzNDjTg0ZkZCuHRGQLqhKS52BC9F4Rd3
-	 Fb8hMS7PmLLFouCUKkgl1w4/p9rkgWl2vydokFkpO3MsbIWnI8mol6CCa6ZvD1obnH
-	 mEKroxoKXTEBKHCK7Q894INrVzRmiPMGqpCKdwyGo6VBiraaAPaxX6jpvvWEkEJ79y
-	 SU6M1A0Q+6+y+u/eDk8wbAHDjJSVTzW3jjV9m56S2Q6zAyprydgG5p40kB80Dsf9Oz
-	 8stR9zG85XlRw==
-Date: Sat, 3 Jan 2026 09:49:04 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Sumit Garg <sumit.garg@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	akhilpo@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com, 
-	dikshita.agarwal@oss.qualcomm.com, robin.clark@oss.qualcomm.com, lumag@kernel.org, 
-	linux-kernel@vger.kernel.org, Sumit Garg <sumit.garg@oss.qualcomm.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: agatti: Address Gunyah memory
- alignment needs
-Message-ID: <ahbbg3pffedrjzvksgz2jv7lwajwlcxc6nsmmtunwc4346eawa@xayff4ozvdbn>
-References: <20251229071258.456254-1-sumit.garg@kernel.org>
- <20251229071258.456254-2-sumit.garg@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cuDReYzv/CNQKNIv6XmoqhxMRIVEkZ2Kgs3fnPhEyxMwaGclCuducR3zIOOXpC/Jm0WYD5GuCRqxT61bQJXVUIm2xaSHBgP9OeL69pT2CzAcH8GEpFgfg6U0KvL8FFaGOkH83nuc2/u0Uj/CF/EnfAAqB+vScRdTeodPwXSamY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f6ihpLsc; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1767455371; x=1798991371;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UdpQuAVYg3go+KFGqbG7KFffUg4tuMyA9VNoUN7RR3Y=;
+  b=f6ihpLscY01upNrb52P9lPATNZ9WrhMCfIhMHJcZjhieXq0JWUjBX/Zh
+   U0fUUXGPkLAyAZGmaqATvS5fhSehViO6Zw7MgYgYkAs1u34b0K44eTQpe
+   cN8PJp57klEQtrsPufYVLBJmFV2rqzuh4LpQL+bLVhLnhcs5XbMH54je3
+   L4C26FPdqsGOxuyGHWQKj536ut+Jb5o2DBj7vuOq7+BjzpYf5PXfOqmDu
+   iQpfrQJuBfRDxyjMchK11HALE68/d6uwzAnIBNtRZlKYBz6NFU5fGfCWQ
+   zU+SGQbtAplXjIr7CVRCI2B/4+TUsUXIXTh4Jg1GcHRkmMtNitxaFMIq/
+   A==;
+X-CSE-ConnectionGUID: uGFSwupTSrWRCu4kxblAbQ==
+X-CSE-MsgGUID: mtuJfRZpTK++ZiWF3ZI8wQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11659"; a="91553962"
+X-IronPort-AV: E=Sophos;i="6.21,198,1763452800"; 
+   d="scan'208";a="91553962"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2026 07:49:23 -0800
+X-CSE-ConnectionGUID: VXe0M/DUTV+IwoUHCnqyLA==
+X-CSE-MsgGUID: J3J+DASXReGVxFLZ02U9iw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,198,1763452800"; 
+   d="scan'208";a="202033309"
+Received: from igk-lkp-server01.igk.intel.com (HELO 92b2e8bd97aa) ([10.211.93.152])
+  by orviesa008.jf.intel.com with ESMTP; 03 Jan 2026 07:49:20 -0800
+Received: from kbuild by 92b2e8bd97aa with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vc3sT-000000000j3-1173;
+	Sat, 03 Jan 2026 15:49:17 +0000
+Date: Sat, 3 Jan 2026 16:49:04 +0100
+From: kernel test robot <lkp@intel.com>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Stefan Agner <stefan@agner.ch>, Lucas Stach <dev@lynxeye.de>
+Cc: oe-kbuild-all@lists.linux.dev, linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Charan Pedumuru <charan.pedumuru@gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT
+ schema
+Message-ID: <202601031603.9yKl8K9G-lkp@intel.com>
+References: <20260103-nvidia-nand-v4-1-3156f46f3a5e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,44 +88,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251229071258.456254-2-sumit.garg@kernel.org>
+In-Reply-To: <20260103-nvidia-nand-v4-1-3156f46f3a5e@gmail.com>
 
-On Mon, Dec 29, 2025 at 12:42:58PM +0530, Sumit Garg wrote:
-> From: Sumit Garg <sumit.garg@oss.qualcomm.com>
-> 
-> Gunyah hypervisor requires it's memory start address to be 2MB aligned.
-> So the address map for Agatti is updated to incorporate that requirement.
-> This should be a backwards compatible DT change which should work with
-> legacy QHEE based firmware stack too.
-> 
+Hi Charan,
 
-How come this isn't conveyed to the operating system using the UEFI
-memory map?
+kernel test robot noticed the following build warnings:
 
-Regards,
-Bjorn
+[auto build test WARNING on 43edce71d70c603d3f3f1b1c886f65cd02d80c24]
 
-> Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/agatti.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/agatti.dtsi b/arch/arm64/boot/dts/qcom/agatti.dtsi
-> index e705eb24160a..153916980ac0 100644
-> --- a/arch/arm64/boot/dts/qcom/agatti.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/agatti.dtsi
-> @@ -298,8 +298,8 @@ reserved_memory: reserved-memory {
->  		#size-cells = <2>;
->  		ranges;
->  
-> -		hyp_mem: hyp@45700000 {
-> -			reg = <0x0 0x45700000 0x0 0x600000>;
-> +		hyp_mem: hyp@45600000 {
-> +			reg = <0x0 0x45600000 0x0 0x700000>;
->  			no-map;
->  		};
->  
-> -- 
-> 2.51.0
-> 
+url:    https://github.com/intel-lab-lkp/linux/commits/Charan-Pedumuru/dt-bindings-mtd-nvidia-tegra20-nand-convert-to-DT-schema/20260103-131107
+base:   43edce71d70c603d3f3f1b1c886f65cd02d80c24
+patch link:    https://lore.kernel.org/r/20260103-nvidia-nand-v4-1-3156f46f3a5e%40gmail.com
+patch subject: [PATCH v4] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT schema
+reproduce: (https://download.01.org/0day-ci/archive/20260103/202601031603.9yKl8K9G-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601031603.9yKl8K9G-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   Warning: Documentation/translations/zh_CN/how-to.rst references a file that doesn't exist: Documentation/xxx/xxx.rst
+   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
+   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
+   Warning: Documentation/userspace-api/netlink/index.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
+   Warning: Documentation/userspace-api/netlink/specs.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
+   Warning: arch/riscv/kernel/kexec_image.c references a file that doesn't exist: Documentation/riscv/boot-image-header.rst
+   Warning: drivers/clocksource/timer-armada-370-xp.c references a file that doesn't exist: Documentation/devicetree/bindings/timer/marvell,armada-370-xp-timer.txt
+   Warning: include/rv/da_monitor.h references a file that doesn't exist: Documentation/trace/rv/da_monitor_synthesis.rst
+   Using alabaster theme
+   ERROR: Cannot find file ./include/linux/pci.h
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
