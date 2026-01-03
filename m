@@ -1,151 +1,132 @@
-Return-Path: <devicetree+bounces-251190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6AD6CEFED7
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 13:40:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17158CEFF0B
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 13:56:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 744FA3022F2F
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 12:40:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 03ACD3019377
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 12:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F1631E1DEC;
-	Sat,  3 Jan 2026 12:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94ADF212564;
+	Sat,  3 Jan 2026 12:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mp+sVgHb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g3IiaEXv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCE41386C9;
-	Sat,  3 Jan 2026 12:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED151CD1E4;
+	Sat,  3 Jan 2026 12:56:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767444045; cv=none; b=BVh1eJ4WFs/dYZPphazmApfQYjRvoj7x0QkoZC0Kjg6gOHIeps+kUkasxpbt44wbEu2IThE858aFQZvszB2r3x9ToU3IfizQ3C9e4E62aztOxsNdwGgGT+S9O2FAbZlnTB5nD6uTepbKjlmylZ5Vn7qhUpyvZhIDOpxNyZQ9SWw=
+	t=1767444995; cv=none; b=eDJjKtCeTbin0Q4qcWJHhIjKa9MK5KV6SpfPbG7QOzJhk4TS4rz0nrG6X7K8xe/eKNPNMTpQJ1fqASZYgZ0Ms7lBGhruVyHu61SHu+MS11ogVFM3lZJ23HNC61FnuKcQ4XXMbBsSFZluC6POC+RimhUzx1jftqt442YzUuM9prI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767444045; c=relaxed/simple;
-	bh=9Gz+HpnY8+CDmeEMm4aDD8fjq+jJhuZSlo4dAPgoYlI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EMPxZM+i3F0Kj4rkSa9prbMUfZNTFbDX34A4RIiCseb0gmuxpOzsCdXKQFWRCkYUADN9nhUhDIuE8q06YBPuA1C4OYDFyP77YndDXWQug6CNovovMAyA8T6TV7g7OstISwfU29jygCUGyVYeo7ooWsj3CPqZOmOnuGhui/V4fnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mp+sVgHb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5D97C113D0;
-	Sat,  3 Jan 2026 12:40:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767444044;
-	bh=9Gz+HpnY8+CDmeEMm4aDD8fjq+jJhuZSlo4dAPgoYlI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Mp+sVgHb8ZrbX/zeHNssIjH0LNTwQjxIzQxe1mVR6KkqyKIpDrHlWqKWDme0VRNTW
-	 yivTpJsu3O2ahjU0U/LYFzK06rhA0hk/oL/ZG0aL6wFF/6zg3RUwe7/+C6VpNbuzDP
-	 3jYgpR6qeVAFwIE5KuF03GupjUqtuRtmYWYYkI9dQV7/lx0H2PsnxU8Kl16LYNphan
-	 t1TFI3ZW9Ici60SYcrEyteh/vJoEyUvqjp8tgbJlJOUHaqNuhdkws8bbZykAVnetka
-	 foCPiQ+YNxLHkl0GhkvMjxLgh/xgFqxvEP5SzzmtUrkV66Be8applNR/VXOoDFfJ+N
-	 YnReMAfmi/L6g==
-Message-ID: <5682eae1-c55b-462a-97d1-9a10eb694062@kernel.org>
-Date: Sat, 3 Jan 2026 13:40:37 +0100
+	s=arc-20240116; t=1767444995; c=relaxed/simple;
+	bh=t6wLIwOo5Ia2UkV1+cEAZKfN3TrKmKMZKIlYAHfju00=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gwlW8+xyQ552pD+sqdGI6k2O4+KgW3rT/uY4ud34BRDm5rxTXYDxp2Qmgh4aAywtqdIZpp3E9O1CfYrrvDJrvfF/JXRwCgyQzZd5Wm0a9xKv29RG+PoXjet4+7VtOAOvuYv9EhNw9/kpt/w8FKvbGSxLhR/zK+26anErEwcuFCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g3IiaEXv; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1767444994; x=1798980994;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=t6wLIwOo5Ia2UkV1+cEAZKfN3TrKmKMZKIlYAHfju00=;
+  b=g3IiaEXviHYfNxFuWYHDw0at34iFvIlc/ZJ9SW8iO0kJGlvfKIxm5mYn
+   qKhxVvkR7RkvcF1ScRUE0PD+iQy+iI5OCdwTd+wmsSrZuTcASkCrleGiV
+   LlYzQtGB5RtyF8u8feQ9LgY6cbR6DftlnZ1DyuOo7c5uLlCb/w6oylATi
+   DdhhCEQtjtr4DGkr5VsHTxdOz8DG8VHMj/2IlQsqI6mgPq3TzsIOizBwN
+   dp89RikGeLdFGcucEPsugyVclL1nICiN/5BlFDH1I6i5JmF0h1vwabgwF
+   NFVwwN5RWzlShh5XnYWaJm1tdK4wE4NTo8JWsRh80rEBUwhJsfplz1BtE
+   Q==;
+X-CSE-ConnectionGUID: v1H2NIycTriKDUV1w3lcQg==
+X-CSE-MsgGUID: fLh13WRKST2wUIP0R1O9hw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11659"; a="68944231"
+X-IronPort-AV: E=Sophos;i="6.21,198,1763452800"; 
+   d="scan'208";a="68944231"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2026 04:56:33 -0800
+X-CSE-ConnectionGUID: KqZwTZDGTBuLyFi8W8bS4w==
+X-CSE-MsgGUID: nCptq1DCT6CVtdt1xKuTOQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,198,1763452800"; 
+   d="scan'208";a="202250572"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.244.75])
+  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2026 04:56:30 -0800
+Date: Sat, 3 Jan 2026 14:56:28 +0200
+From: Andriy Shevencho <andriy.shevchenko@linux.intel.com>
+To: Jonathan Brophy <Professor_jonny@hotmail.com>
+Cc: Jonathan Brophy <professorjonny98@gmail.com>,
+	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
+Subject: Re: [PATCH v5 7/7] leds: Add virtual LED group driver
+Message-ID: <aVkR_AG1fbZn4A7p@smile.fi.intel.com>
+References: <20251230082336.3308403-1-professorjonny98@gmail.com>
+ <20251230082336.3308403-8-professorjonny98@gmail.com>
+ <aVPDUVNX95Hv13VU@smile.fi.intel.com>
+ <DS0PR84MB3746506E7740C032585F124F9FB8A@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: display: msm-dsi-phy-7nm: document
- the QCS8300 DSI PHY
-To: Ayushi Makhija <quic_amakhija@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, robdclark@gmail.com,
- dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run,
- marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
- robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonathan@marek.ca,
- jonas@kwiboo.se, jernej.skrabec@gmail.com, quic_rajeevny@quicinc.com,
- quic_vproddut@quicinc.com
-References: <20251225152134.2577701-1-quic_amakhija@quicinc.com>
- <20251225152134.2577701-2-quic_amakhija@quicinc.com>
- <20251227-doberman-of-radical-variation-d30aaf@quoll>
- <58b496b5-2847-4af7-8a34-e227e4324deb@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <58b496b5-2847-4af7-8a34-e227e4324deb@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DS0PR84MB3746506E7740C032585F124F9FB8A@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 02/01/2026 10:29, Ayushi Makhija wrote:
-> On 12/27/2025 4:43 PM, Krzysztof Kozlowski wrote:
->> On Thu, Dec 25, 2025 at 08:51:30PM +0530, Ayushi Makhija wrote:
->>> The QCS8300 MDSS DSI PHY is the same 5nm PHY IP as on SA8775P, with
->>> identical register layout and programming model. Model this by using
->>> a QCS8300 specific compatible with a qcom,sa8775p-dsi-phy-5nm fallback,
->>> and update the schema to require this two entry form for QCS8300 while
->>> keeping existing single compatible users valid.
->>
->> Last sentence is redundant. I asked to explain the hardware, not to tell
->> us how Devicetree works. Write concise and informative commit msgs which
->> tell non-obvious things. Not what you did. I alreaded asked this - do
->> not state the obvious, do not copy the subject.
->>
->> The only useful part of your commit msg is first sentence - two lines,
->> so 33%. Remaining four lines, so 66%, is obvious.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Hi Krzysztof,
-> 
-> Can you please check below commit description is it appropriate  ?
-> 
-> QCS8300 uses the same 5nm MDSS DSI PHY IP as SA8775P, sharing an identical
-> register layout and programming model. Introduce a QCS8300-specific compatible
-> with a fallback to `qcom,sa8775p-dsi-phy-5nm` to reflect this hardware reuse.
-> 
+On Sat, Jan 03, 2026 at 08:22:06AM +0000, Jonathan Brophy wrote:
 
-Yes, that's very good.
+> >I stopped with this, this patch is half-baked and unreviewable. Please, split
+> >it to a few features and add one-by-one, for example:
+> 
+> >- very basic sypport
+> >- feature A
+> >- ...
+> >- debugfs
+> 
+> >So I expect 3+ patches out of this one. And try to keep size of a change less
+> >than 1000 LoCs.
+> 
+> Thanks Andy
+> 
+> You have given me some things to fix and some great advice I'm a very junior dev and
+> I know nothing of the led subsystem before this project.
 
-Best regards,
-Krzysztof
+You're welcome!
+
+> I think it may be best to use a function to generate a gamma table I was thinking a
+> hard coded table may be a better idea for performance reasons with addressable rgb
+> strips that I plan to implement in the future.
+> 
+> I planned to split the driver into several files is this what you mean?
+> it would logically break into  files as part of the driver as follows:
+> 
+> core.c
+> arbitration.c
+> phys.c
+> vled.c
+> debugfs.c
+> virtualcolor.h
+
+Fine by me, but I'm not a maintainer nor the authoritative person, you need to
+wait for Jacek, and/or Lee, and/or Pavel to express their opinions.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
