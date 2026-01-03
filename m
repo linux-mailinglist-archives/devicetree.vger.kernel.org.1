@@ -1,434 +1,223 @@
-Return-Path: <devicetree+bounces-251188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 240F5CEFE59
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 12:07:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F918CEFE99
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 13:02:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 713523014DE0
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 11:07:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2C10C300AC41
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 12:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A36030B533;
-	Sat,  3 Jan 2026 11:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43A5420D4FC;
+	Sat,  3 Jan 2026 12:02:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mQYSOmti"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vtskogp2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C702D838C
-	for <devicetree@vger.kernel.org>; Sat,  3 Jan 2026 11:06:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110ED219E8;
+	Sat,  3 Jan 2026 12:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767438422; cv=none; b=X3GQ3Vj+umjJrSkcX6iD76o8owMrGuWX1aWgHfSSV+xu/8Nwxn6969TERcbrv+BQZe5Eids5naxyeIrMP/Tn/hILi+CSdTYzylrx7axZ9Vff7I805C3QejoDfc9FZeAhHsqyL5VzbrZCho7LLVDRUI+cgeDsq2zffklGP2PN2sk=
+	t=1767441729; cv=none; b=O6c1+etdZWFFYRPhTWXZPEelhU2HkbbMpgQm3aaiAqnAO3y/Z+oNeTdsrTcPmxyQaMcc52/CN020zsKy2O2QvOrt8DMfm0dHZboLH9bJdjtTinf+MZCaRWD7kMZGjEiz1b1orqM8GaRPXrWJnNI8w5K//DOX4gdmh14fRvJ2CGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767438422; c=relaxed/simple;
-	bh=xhuVP0IAM1Flv7hpNjiFjSzL9aw39gSt6RojuIs9r9k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=cMT8EhlmGX52VkAUYRjF8GjS/3LlnFF7IFaWeuIjuXsgaHzvRf3vDv8CNxz/dlIi3PMenkjaWU1OOSz9k4lQjTjsYQDqu1Dl0pZFVmx8cbBQmN8zA4oH6FqsorUoL/jDwH4zEbXP1pGxR34q0bE0FMNYPobBY3cMkRlmISYXKbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mQYSOmti; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7f651586be1so253626b3a.1
-        for <devicetree@vger.kernel.org>; Sat, 03 Jan 2026 03:06:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767438418; x=1768043218; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/qXjdEM0PiM5e6vNdQXr41n+NvZL846nY2Dsa0NWVco=;
-        b=mQYSOmtiJtjNgES9V87dMdHdAc9bzLG2hXIjuJicRIsKhcwPI9N4d4LqXkhe7k3gey
-         Ix0VoaPr+KOdLfXgIAX30vupRBEHBy+Qnj8CsLpbYYCbtb74zNzX+8uUYTSElKBtX0vj
-         iWvOOk+ed0LuJhXiSZbJRVKUoO3IUsTk7EK/e5cv33lB9RlIYkQsOTBNZdqOD3uIzWh8
-         4IaqCyOFx5s5AirubzlLZIVbdaulD8ajJlHBFLq0iJidzPetj2TWkkrV1FxfOFK2+aTR
-         S9oTOpHDcz04vrvG7VbRbawCx85CjxkwTipCtOvJGXmPbwbvRFKuCvst93Ksz82ba4Xq
-         AOEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767438418; x=1768043218;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/qXjdEM0PiM5e6vNdQXr41n+NvZL846nY2Dsa0NWVco=;
-        b=FEjVCiajGO+gKTRjuQ8ROZrUHB/9ZQmPo/13+G1cwH1ZYWTsm3hcTvzxRcHdbaoKZ6
-         zadCr0OGKZAGOM+A5al3EVBjMoQi6IZ3N89MAV9WFl5ABsNzSOKehe3NKomQIWqaKnP+
-         wySk9PhkDKCaOXbjRbXs99x2FlT6Fwqp9WOuJwI5OyHW7pdAEg/C6cgKttYNmkGtq5fx
-         F8FgmR/cXiGNkfS5KK8bOpQ315tXD2c4ricdS+yeoaKmRz0t5s4ybzbo6rdbf7yu7uw9
-         wk4qCLQLrxY2j80WTpj5xYOhbnzCMsgJnSNuX0StO6zjw4lQ6M0AxGghsR0hWl7lEL6U
-         Ri0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWFBQlFBIrz8KwmS83NQnpPZxBCKJ0bGXTZUoI4W30Y42P/P92SAD27ydpM+draJbOrZhypfgYppKt6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7daKsH3QYSUO8u+QaiQQQHoWjxYilB9lWeCmEJ69c7XCnrVAJ
-	4Idh7fZIN8h8EdoiciEq+yLNWsRrvLP1T9hCqP0pW/MLTFEZNbfntoHI
-X-Gm-Gg: AY/fxX4TXMk3alBLmYlfqNdmrCXprb0oULK8jDNOwl4BsvI6r9bGPG4XcSb2fx3CqBv
-	ffQth3FCswGAYLgt5COQYAdzdnMLq/Ziuo+BVsnEDfJL/mDt/HdeMu5zQB8LUL7gRYhDNoLP/Nc
-	WkuPQvP8XvOt2WNyYVzGGbEE0pxaExcFKEfeWxWJLsCmK5q43jwM5fc75p2UxxK1m6c795cjdAP
-	T4bvArskG8PGnK49S/wWO3uUAAc8GgzxB45TTR3TA1EaxqHokkTH7iPRsfuHDXgRblra2+vDLMN
-	xCnJtM/L2Wr+VGWL2au6lYuL4QtiUF7fvb/HB30z+m1rnzyweN8cvko3BlYHmp9ZkE1HYiWGlWz
-	pVZ5DWbeK34BwUGNk0jfUz4oOGvZEvKUtmITkloFsVHan4Zm3ldL1+TRuE/haSUf9XprKak8zBD
-	rzBsHsHPHjHqzquRqPdvknukoh/XsVrg+3cg==
-X-Google-Smtp-Source: AGHT+IHBTpuqCkcGdKPEZcXGW5io0CXIBbVL2fvT6qgAxrAZ7lPVD9hE8XhbGTqOQ9gl7T++4U1kUQ==
-X-Received: by 2002:aa7:9f4c:0:b0:7e8:3fcb:9b03 with SMTP id d2e1a72fcca58-8148c00b373mr1481328b3a.25.1767438417926;
-        Sat, 03 Jan 2026 03:06:57 -0800 (PST)
-Received: from Black-Pearl.localdomain ([122.181.60.165])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-7ff7e48f300sm42961246b3a.54.2026.01.03.03.06.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Jan 2026 03:06:57 -0800 (PST)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Sat, 03 Jan 2026 11:06:10 +0000
-Subject: [PATCH] dt-bindings: phy: ti,control-phy-otghs: convert to DT
- schema
+	s=arc-20240116; t=1767441729; c=relaxed/simple;
+	bh=1x1FZr6RcPuO0JFTJZCAvrYneabcp2bRuH04E9/5pX4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=A6IkZh+/2gVTlIHYYhwr5A0rY1wTDUt2E6KKGbVzvKpeaKM/0wGGBAZuuqTP6t+t9CAMWdBySuDm6f8jJMZkyyzh/SDzlNxFPgDrtcauDzAvpyRBp3TZOjl8Ft8uwWZpS0trI7K42uRLHVPvjyrapO8pHSZuft+IDIj3vjHdqHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vtskogp2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA7CCC113D0;
+	Sat,  3 Jan 2026 12:02:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767441725;
+	bh=1x1FZr6RcPuO0JFTJZCAvrYneabcp2bRuH04E9/5pX4=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Vtskogp2qUAVd/DM4TkDqX7xhp75/RE4O/3djH0Ggd1RNArNybeRlzM9h+4xWnEXY
+	 XHN81oSHhzHnJVvX/LYYI+eORArVWUOZUrf70THyHL6THPbDXlv/2B4F/adETfbJsJ
+	 Bp2HlCanAv3xncnNRucIJI2Hz9n0JHN5pyGnfYOWLrhkiM9L46ZgUE7Q18kaz0uHhC
+	 3jxgcirES+Q0OYgP5Nft2bzET7CDZqJ1fERAAEJEVJx/MTyePCUxDX7TCYKv6D6aPb
+	 cCken4S8d5opzrahawWNIi6hVZYvZsLvHTe6BvRh4sDzw2xxFpIHDbhi4T3bme/S51
+	 r53uT1Zxm/bXA==
+Message-ID: <6f30a01c-8fc4-4368-88ef-7c513c505515@kernel.org>
+Date: Sat, 3 Jan 2026 13:01:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/3] usb: typec: fusb302: Switch to threaded interrupt
+ handler
+To: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ FUKAUMI Naoki <naoki@radxa.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Yongbo Zhang <giraffesnn123@gmail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/Rockchip SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:USB TYPEC CLASS" <linux-usb@vger.kernel.org>
+References: <20260103083232.9510-1-linux.amoon@gmail.com>
+ <20260103083232.9510-4-linux.amoon@gmail.com>
+From: Hans de Goede <hansg@kernel.org>
+Content-Language: en-US, nl
+In-Reply-To: <20260103083232.9510-4-linux.amoon@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260103-ti-phy-v1-1-8c3f5e2cbd63@gmail.com>
-X-B4-Tracking: v=1; b=H4sIACL4WGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1NDI2ND3ZJM3YKMSl1Ti6Qky1Rji+S0ZEsloOKCotS0zAqwQdGxtbUAkD4
- ckFgAAAA=
-X-Change-ID: 20251231-ti-phy-58bb9e38cfc9
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.14.3
 
-Convert TI OMAP Control PHY and PIPE3 PHY binding to YAML format.
-Changes during conversion:
-- Define a new pattern 'pciephy'and 'control-phy' to match nodes
-  defined in DT.
+Hi,
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
- .../bindings/phy/ti,control-phy-otghs.yaml         | 206 +++++++++++++++++++++
- Documentation/devicetree/bindings/phy/ti-phy.txt   |  98 ----------
- 2 files changed, 206 insertions(+), 98 deletions(-)
+On 3-Jan-26 09:31, Anand Moon wrote:
+> The fusb302 driver triggers a "BUG: Invalid wait context" lockdep warning
+> under certain configurations (such as when CONFIG_PROVE_RAW_LOCK_NESTING
+> is enabled). This occurs because the interrupt handler, fusb302_irq_intn,
+> attempts to acquire a regular spinlock (&chip->irq_lock) while running
+> in hardirq context can lead to invalid wait context reports if the lock is
+> considered "sleepable" or has incompatible nesting levels with the
+> underlying interrupt controller's locks.
+> 
+> lockdep warnings:
+> 
+> [   38.935276] [      C0] =============================
+> [   38.935690] [      C0] [ BUG: Invalid wait context ]
+> [   38.936106] [      C0] 6.19.0-rc2-2-ARM64-GCC #2 Tainted: GT
+> [   38.936716] [      C0] -----------------------------
+> [   38.937129] [      C0] kworker/0:0/8 is trying to lock:
+> [   38.937566] [      C0] ffff000112c04190 (&chip->irq_lock){....}-{3:3}, at: fusb302_irq_intn+0x38/0x98 [fusb302]
+> [   38.938450] [      C0] other info that might help us debug this:
+> [   38.938953] [      C0] context-{2:2}
+> [   38.939247] [      C0] 2 locks held by kworker/0:0/8:
+> [   38.939670] [      C0]  #0: ffff000100025148 ((wq_completion)events_freezable){+.+.}-{0:0}, at: process_one_work+0x224/0x4b8
+> [   38.940645] [      C0]  #1: ffff8000800fbd90 ((work_completion)(&(&host->detect)->work)){+.+.}-{0:0}, at: process_one_work+0x24c/0x4b8
+> [   38.941691] [      C0] stack backtrace:
+> [   38.942010] [      C0] CPU: 0 UID: 0 PID: 8 Comm: kworker/0:0 Tainted: GT   6.19.0-rc2-2-ARM64-GCC #2 PREEMPT(full)  bd73c5afc1bd41f04ef9699c14f0381f835f4deb
+> [   38.942017] [      C0] Tainted: [T]=RANDSTRUCT
+> [   38.942019] [      C0] Hardware name: Radxa ROCK 5B (DT)
+> [   38.942022] [      C0] Workqueue: events_freezable mmc_rescan
+> [   38.942031] [      C0] Call trace:
+> [   38.942033] [      C0]  show_stack+0x24/0x40 (C)
+> [   38.942041] [      C0]  dump_stack_lvl+0x90/0xd8
+> [   38.942047] [      C0]  dump_stack+0x1c/0x3c
+> [   38.942051] [      C0]  __lock_acquire+0x5e8/0x9c8
+> [   38.942059] [      C0]  lock_acquire+0x134/0x280
+> [   38.942065] [      C0]  _raw_spin_lock_irqsave+0x80/0xb0
+> [   38.942072] [      C0]  fusb302_irq_intn+0x38/0x98 [fusb302 634bac905a09c450b54f88b96019accd2820228f]
+> [   38.942082] [      C0]  __handle_irq_event_percpu+0x138/0x3f0
+> [   38.942088] [      C0]  handle_irq_event+0x58/0xd8
+> [   38.942093] [      C0]  handle_level_irq+0x108/0x190
+> [   38.942099] [      C0]  handle_irq_desc+0x4c/0x78
+> [   38.942106] [      C0]  generic_handle_domain_irq+0x24/0x40
+> [   38.942113] [      C0]  rockchip_irq_demux+0x128/0x240
+> [   38.942120] [      C0]  handle_irq_desc+0x4c/0x78
+> [   38.942127] [      C0]  generic_handle_domain_irq+0x24/0x40
+> [   38.942133] [      C0]  __gic_handle_irq_from_irqson.isra.0+0x260/0x370
+> [   38.942141] [      C0]  gic_handle_irq+0x68/0xa0
+> [   38.942146] [      C0]  call_on_irq_stack+0x48/0x68
+> [   38.942152] [      C0]  do_interrupt_handler+0x74/0x98
+> [   38.942158] [      C0]  el1_interrupt+0x88/0xb0
+> [   38.942165] [      C0]  el1h_64_irq_handler+0x1c/0x30
+> [   38.942170] [      C0]  el1h_64_irq+0x84/0x88
+> [   38.942175] [      C0]  arch_counter_get_cntpct+0x4/0x20 (P)
+> [   38.942181] [      C0]  __const_udelay+0x30/0x48
+> [   38.942187] [      C0]  mci_send_cmd.constprop.0+0x84/0xc8
+> [   38.942194] [      C0]  dw_mci_setup_bus+0x60/0x210
+> [   38.942200] [      C0]  dw_mci_set_ios+0x1c8/0x260
+> [   38.942206] [      C0]  mmc_set_initial_state+0x110/0x140
+> [   38.942211] [      C0]  mmc_rescan_try_freq+0x154/0x198
+> [   38.942216] [      C0]  mmc_rescan+0x1cc/0x278
+> [   38.942221] [      C0]  process_one_work+0x284/0x4b8
+> [   38.942225] [      C0]  worker_thread+0x264/0x3a0
+> [   38.942230] [      C0]  kthread+0x11c/0x138
+> [   38.942236] [      C0]  ret_from_fork+0x10/0x20
+> [   38.969307] [     T11] rockchip-dw-pcie a41000000.pcie: PCI host bridge to bus 0004:40
+> [   38.969995] [     T11] pci_bus 0004:40: root bus resource [bus 40-4f]
+> 
+> Following changes resolves the lockdep warnings and aligns the driver with best
+> practices for I2C-based interrupt handling.
+> 
+> Cc: Hans de Goede <hansg@kernel.org>
+> Cc: Yongbo Zhang <giraffesnn123@gmail.com>
+> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Fixes: 309b6341d557 ("usb: typec: fusb302: Revert incorrect threaded irq fix")
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 
-diff --git a/Documentation/devicetree/bindings/phy/ti,control-phy-otghs.yaml b/Documentation/devicetree/bindings/phy/ti,control-phy-otghs.yaml
-new file mode 100644
-index 000000000000..830be2af5fb6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/ti,control-phy-otghs.yaml
-@@ -0,0 +1,206 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/ti,control-phy-otghs.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI PHYs for TI Platforms (OMAP Control PHY and PIPE3 PHY)
-+
-+maintainers:
-+  - Vinod Koul <vkoul@kernel.org>
-+
-+description:
-+  This device tree binding describes the TI PHYs used in TI platforms.
-+  Two types of PHYs are supported.
-+  1. OMAP Control PHY - Simple control PHYs for power control
-+  2. PIPE3 PHY - High-speed PIPE3 PHYs for USB3, SATA, PCIe
-+
-+properties:
-+  $nodename:
-+    pattern: "^(pciephy|control-phy|usb3phy|phy)(@[0-9a-fA-F]+)?$"
-+
-+  compatible:
-+    oneOf:
-+      - description: OMAP Control PHY compatibles
-+        items:
-+          enum:
-+            - ti,control-phy-otghs
-+            - ti,control-phy-usb2
-+            - ti,control-phy-pipe3
-+            - ti,control-phy-pcie
-+            - ti,control-phy-usb2-dra7
-+            - ti,control-phy-usb2-am437
-+      - description: PIPE3 high-speed PHY compatibles
-+        items:
-+          enum:
-+            - ti,phy-usb3
-+            - ti,phy-pipe3-sata
-+            - ti,phy-pipe3-pcie
-+            - ti,omap-usb3
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 4
-+
-+  reg-names:
-+    oneOf:
-+      - description: OMAP Control PHY
-+        items:
-+          enum: [otghs_control, power, pcie_pcs, control_sma]
-+      - description: PIPE3 high-speed PHY
-+        items:
-+          enum: [phy_rx, phy_tx, pll_ctrl]
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  clocks:
-+    minItems: 2
-+    maxItems: 7
-+
-+  clock-names:
-+    minItems: 2
-+    maxItems: 7
-+    items:
-+      enum: [wkupclk, sysclk, refclk, dpll_ref,
-+             dpll_ref_m2, phy-div, div-clk]
-+
-+# Optional Properties
-+  id:
-+    description:
-+      Instance ID for multiple instances of same PHY type.
-+      Used for multi-lane PCIe PHYs.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 1
-+
-+  syscon-phy-power:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      Phandle/offset pair to system control module register for PHY
-+      power on/off.
-+
-+  syscon-pllreset:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      Phandle/offset pair to CTRL_CORE_SMA_SW_0 register containing
-+      SATA_PLL_SOFT_RESET bit (SATA PHY only).
-+
-+  syscon-pcs:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      Phandle/offset pair to system control module for writing PCS delay value.
-+
-+  ctrl-module:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle of control module for PHY power on.
-+    deprecated: true
-+
-+dependencies:
-+  syscon-pllreset:
-+    properties:
-+      compatible:
-+        contains:
-+          const: ti,phy-pipe3-sata
-+
-+allOf:
-+  # OMAP Control PHY validation
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,control-phy-otghs
-+    then:
-+      properties:
-+        reg-names:
-+          const: otghs_control
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,control-phy-pcie
-+    then:
-+      properties:
-+        reg-names:
-+          items:
-+            - enum: [power, pcie_pcs, control_sma]
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,control-phy-usb2
-+              - ti,control-phy-usb2-dra7
-+              - ti,control-phy-usb2-am437
-+              - ti,control-phy-pipe3
-+    then:
-+      properties:
-+        reg-names:
-+          const: power
-+
-+  # PIPE3 PHY validation
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,phy-usb3
-+              - ti,phy-pipe3-sata
-+              - ti,phy-pipe3-pcie
-+              - ti,omap-usb3
-+    then:
-+      required:
-+        - "#phy-cells"
-+        - clocks
-+        - clock-names
-+
-+required:
-+  - reg
-+  - compatible
-+  - reg-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    /* OMAP Control PHY (USB OTG HS) */
-+    control-phy@4a00233c {
-+        compatible = "ti,control-phy-otghs";
-+        reg = <0x4a00233c 0x4>;
-+        reg-names = "otghs_control";
-+    };
-+
-+  - |
-+    /* TI PIPE3 USB3 PHY */
-+    usb3phy@4a084400 {
-+        compatible = "ti,phy-usb3";
-+        reg = <0x4a084400 0x80>,
-+              <0x4a084800 0x64>,
-+              <0x4a084c00 0x40>;
-+        reg-names = "phy_rx", "phy_tx", "pll_ctrl";
-+        #phy-cells = <0>;
-+        clocks = <&usb_phy_cm_clk32k>,
-+                 <&sys_clkin>,
-+                 <&usb_otg_ss_refclk960m>;
-+        clock-names = "wkupclk", "sysclk", "refclk";
-+        ctrl-module = <&omap_control_usb>;
-+    };
-+
-+  - |
-+    /* TI PIPE3 SATA PHY */
-+    phy@4a096000 {
-+        compatible = "ti,phy-pipe3-sata";
-+        reg = <0x4A096000 0x80>,  /* phy_rx */
-+              <0x4A096400 0x64>,  /* phy_tx */
-+              <0x4A096800 0x40>;  /* pll_ctrl */
-+        reg-names = "phy_rx", "phy_tx", "pll_ctrl";
-+        clocks = <&sys_clkin1>, <&sata_ref_clk>;
-+        clock-names = "sysclk", "refclk";
-+        syscon-pllreset = <&scm_conf 0x3fc>;
-+        #phy-cells = <0>;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/phy/ti-phy.txt b/Documentation/devicetree/bindings/phy/ti-phy.txt
-deleted file mode 100644
-index 7c7936b89f2c..000000000000
---- a/Documentation/devicetree/bindings/phy/ti-phy.txt
-+++ /dev/null
-@@ -1,98 +0,0 @@
--TI PHY: DT DOCUMENTATION FOR PHYs in TI PLATFORMs
--
--OMAP CONTROL PHY
--
--Required properties:
-- - compatible: Should be one of
-- "ti,control-phy-otghs" - if it has otghs_control mailbox register as on OMAP4.
-- "ti,control-phy-usb2" - if it has Power down bit in control_dev_conf register
--                        e.g. USB2_PHY on OMAP5.
-- "ti,control-phy-pipe3" - if it has DPLL and individual Rx & Tx power control
--                        e.g. USB3 PHY and SATA PHY on OMAP5.
-- "ti,control-phy-pcie" - for pcie to support external clock for pcie and to
--			set PCS delay value.
--			e.g. PCIE PHY in DRA7x
-- "ti,control-phy-usb2-dra7" - if it has power down register like USB2 PHY on
--                        DRA7 platform.
-- "ti,control-phy-usb2-am437" - if it has power down register like USB2 PHY on
--                        AM437 platform.
-- - reg : register ranges as listed in the reg-names property
-- - reg-names: "otghs_control" for control-phy-otghs
--	      "power", "pcie_pcs" and "control_sma" for control-phy-pcie
--	      "power" for all other types
--
--omap_control_usb: omap-control-usb@4a002300 {
--        compatible = "ti,control-phy-otghs";
--        reg = <0x4a00233c 0x4>;
--        reg-names = "otghs_control";
--};
--
--TI PIPE3 PHY
--
--Required properties:
-- - compatible: Should be "ti,phy-usb3", "ti,phy-pipe3-sata" or
--   "ti,phy-pipe3-pcie. "ti,omap-usb3" is deprecated.
-- - reg : Address and length of the register set for the device.
-- - reg-names: The names of the register addresses corresponding to the registers
--   filled in "reg".
-- - #phy-cells: determine the number of cells that should be given in the
--   phandle while referencing this phy.
-- - clocks: a list of phandles and clock-specifier pairs, one for each entry in
--   clock-names.
-- - clock-names: should include:
--   * "wkupclk" - wakeup clock.
--   * "sysclk" - system clock.
--   * "refclk" - reference clock.
--   * "dpll_ref" - external dpll ref clk
--   * "dpll_ref_m2" - external dpll ref clk
--   * "phy-div" - divider for apll
--   * "div-clk" - apll clock
--
--Optional properties:
-- - id: If there are multiple instance of the same type, in order to
--   differentiate between each instance "id" can be used (e.g., multi-lane PCIe
--   PHY). If "id" is not provided, it is set to default value of '1'.
-- - syscon-pllreset: Handle to system control region that contains the
--   CTRL_CORE_SMA_SW_0 register and register offset to the CTRL_CORE_SMA_SW_0
--   register that contains the SATA_PLL_SOFT_RESET bit. Only valid for sata_phy.
-- - syscon-pcs : phandle/offset pair. Phandle to the system control module and the
--   register offset to write the PCS delay value.
--
--Deprecated properties:
-- - ctrl-module : phandle of the control module used by PHY driver to power on
--   the PHY.
--
--Recommended properties:
-- - syscon-phy-power : phandle/offset pair. Phandle to the system control
--   module and the register offset to power on/off the PHY.
--
--This is usually a subnode of ocp2scp to which it is connected.
--
--usb3phy@4a084400 {
--	compatible = "ti,phy-usb3";
--	reg = <0x4a084400 0x80>,
--	      <0x4a084800 0x64>,
--	      <0x4a084c00 0x40>;
--	reg-names = "phy_rx", "phy_tx", "pll_ctrl";
--	ctrl-module = <&omap_control_usb>;
--	#phy-cells = <0>;
--	clocks = <&usb_phy_cm_clk32k>,
--		 <&sys_clkin>,
--		 <&usb_otg_ss_refclk960m>;
--	clock-names =	"wkupclk",
--			"sysclk",
--			"refclk";
--};
--
--sata_phy: phy@4a096000 {
--	compatible = "ti,phy-pipe3-sata";
--	reg = <0x4A096000 0x80>, /* phy_rx */
--	      <0x4A096400 0x64>, /* phy_tx */
--	      <0x4A096800 0x40>; /* pll_ctrl */
--	reg-names = "phy_rx", "phy_tx", "pll_ctrl";
--	ctrl-module = <&omap_control_sata>;
--	clocks = <&sys_clkin1>, <&sata_ref_clk>;
--	clock-names = "sysclk", "refclk";
--	syscon-pllreset = <&scm_conf 0x3fc>;
--	#phy-cells = <0>;
--};
+If you look closer at the code then you will see that
+fusb302_irq_intn() is effectively doing its own threaded
+interrupt handling this is done to be able to delay
+the threaded part till after the i2c-controller is
+resumed when a fusb302 irq wakes up the system.
 
----
-base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
-change-id: 20251231-ti-phy-58bb9e38cfc9
+See commit 207338ec5a27 ("usb: typec: fusb302: Improve
+suspend/resume handling") for details.
 
-Best regards,
--- 
-Charan Pedumuru <charan.pedumuru@gmail.com>
+And if you look at the fusb302 git history then you'll
+seen an earlier change the switch the interrupt handler
+to a threaded IRQ which was reverted (mostly due to it
+also making other undesirable changes).
+
+This change is different though. This is actually quite
+similar to commit cee3dba7b741 ("mei: vsc: Fix "BUG: Invalid
+wait context" lockdep error"). Where I fixed more or less
+the same issue in the same way. So I guess this change also
+is ok.
+
+Still ideally we would solve this in another way then
+switching to a threaded IRQ handler.
+
+As the commit message of the mei-vsc fix mentions
+the root cause of these errors is typically an interrupt
+chip driver which uses IRQF_NO_THREAD disabling the auto
+threading of all interrupt handlers in RT mode.
+
+So the first question here would be to see if that flag is
+used in the interrupt chip and if yes, is that flag really
+necessary ?
+
+Regards,
+
+Hans
+
+
+
+
+
+
+
+
+
+
+
+> ---
+>  drivers/usb/typec/tcpm/fusb302.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tcpm/fusb302.c b/drivers/usb/typec/tcpm/fusb302.c
+> index 870a71f953f6..089722b52fbb 100644
+> --- a/drivers/usb/typec/tcpm/fusb302.c
+> +++ b/drivers/usb/typec/tcpm/fusb302.c
+> @@ -1755,9 +1755,10 @@ static int fusb302_probe(struct i2c_client *client)
+>  		goto destroy_workqueue;
+>  	}
+>  
+> -	ret = request_irq(chip->gpio_int_n_irq, fusb302_irq_intn,
+> -			  IRQF_ONESHOT | IRQF_TRIGGER_LOW,
+> -			  "fsc_interrupt_int_n", chip);
+> +	ret = request_threaded_irq(chip->gpio_int_n_irq,
+> +				   NULL, fusb302_irq_intn,
+> +				   IRQF_ONESHOT | IRQF_TRIGGER_LOW,
+> +				   "fsc_interrupt_int_n", chip);
+>  	if (ret < 0) {
+>  		dev_err(dev, "cannot request IRQ for GPIO Int_N, ret=%d", ret);
+>  		goto tcpm_unregister_port;
 
 
