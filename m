@@ -1,128 +1,118 @@
-Return-Path: <devicetree+bounces-251191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17158CEFF0B
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 13:56:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AE0BCF0018
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 14:21:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 03ACD3019377
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 12:56:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B938030056CC
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 13:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94ADF212564;
-	Sat,  3 Jan 2026 12:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C3A1FFC59;
+	Sat,  3 Jan 2026 13:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g3IiaEXv"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fAdUsgVU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED151CD1E4;
-	Sat,  3 Jan 2026 12:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5CAB22424C;
+	Sat,  3 Jan 2026 13:21:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767444995; cv=none; b=eDJjKtCeTbin0Q4qcWJHhIjKa9MK5KV6SpfPbG7QOzJhk4TS4rz0nrG6X7K8xe/eKNPNMTpQJ1fqASZYgZ0Ms7lBGhruVyHu61SHu+MS11ogVFM3lZJ23HNC61FnuKcQ4XXMbBsSFZluC6POC+RimhUzx1jftqt442YzUuM9prI=
+	t=1767446512; cv=none; b=dwdL9Xh24YzCbwjPKsWCBYewwMl9AdoaTCm3quffocKw05VYPytFgTf1RbS52sMule4OR8+fn7Gkbe/vU9UG78bo8IQDbqOzSEleSpeuI7X9M49TwD9gFtG1LUK2mMDR+tqqUZIVOiXQitzwFYspfPrwlH7HX31B5hGK9kgNQ/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767444995; c=relaxed/simple;
-	bh=t6wLIwOo5Ia2UkV1+cEAZKfN3TrKmKMZKIlYAHfju00=;
+	s=arc-20240116; t=1767446512; c=relaxed/simple;
+	bh=LVG7gOaNjtZhVTGcvJRYj/Jf17AG7P64LCM6nPMv7yI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gwlW8+xyQ552pD+sqdGI6k2O4+KgW3rT/uY4ud34BRDm5rxTXYDxp2Qmgh4aAywtqdIZpp3E9O1CfYrrvDJrvfF/JXRwCgyQzZd5Wm0a9xKv29RG+PoXjet4+7VtOAOvuYv9EhNw9/kpt/w8FKvbGSxLhR/zK+26anErEwcuFCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g3IiaEXv; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=sfT3wNhIpovchFZzI6hmCWPG8fSLra2PmzcyrTVKp8R1o8PfkkZkSsWXWqRe12vJincwm/iovWnepTOEiIllW3YGx0sv4L97vZEfLwWjoltcIGjDTERp0OFUSLduQi0HMcRgxzAADHPWF2s+RZDLYuopdeAa5MYXemBcdjUVJWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fAdUsgVU; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767444994; x=1798980994;
+  t=1767446511; x=1798982511;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=t6wLIwOo5Ia2UkV1+cEAZKfN3TrKmKMZKIlYAHfju00=;
-  b=g3IiaEXviHYfNxFuWYHDw0at34iFvIlc/ZJ9SW8iO0kJGlvfKIxm5mYn
-   qKhxVvkR7RkvcF1ScRUE0PD+iQy+iI5OCdwTd+wmsSrZuTcASkCrleGiV
-   LlYzQtGB5RtyF8u8feQ9LgY6cbR6DftlnZ1DyuOo7c5uLlCb/w6oylATi
-   DdhhCEQtjtr4DGkr5VsHTxdOz8DG8VHMj/2IlQsqI6mgPq3TzsIOizBwN
-   dp89RikGeLdFGcucEPsugyVclL1nICiN/5BlFDH1I6i5JmF0h1vwabgwF
-   NFVwwN5RWzlShh5XnYWaJm1tdK4wE4NTo8JWsRh80rEBUwhJsfplz1BtE
-   Q==;
-X-CSE-ConnectionGUID: v1H2NIycTriKDUV1w3lcQg==
-X-CSE-MsgGUID: fLh13WRKST2wUIP0R1O9hw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11659"; a="68944231"
+   mime-version:in-reply-to;
+  bh=LVG7gOaNjtZhVTGcvJRYj/Jf17AG7P64LCM6nPMv7yI=;
+  b=fAdUsgVUqtrL77fKndHZwWFXS/pNViVr1H4oPzzKdgENiq26MWz5eilE
+   PqpKkZ/AjxohViur2//PzgNAi0r+Enx7rSr0jnGEeOINFBDD69B9lQVvl
+   AmLCnsE3EFza9lU98FYyMPc/+KWwxqGWjf1d55Jmf73JMBBlsmp2VDL4+
+   QlZoSc93tP1O6DulDDwBP5IgFS1bsUe9Q1cZ0Jls7WyEvJKFx+BY4Ea3B
+   gWKrH51tfEJxSChzsY1kypYEGkA6dlmljFMDcJtyIGmoXO7sMxtGa4/yI
+   k30Q8Gvl4IHDWzR2iUwZpx9yD2csEPPzqOS/tc+er373AtiM3ocKx+6Q7
+   g==;
+X-CSE-ConnectionGUID: y4kWOxaWQ5iAjZ/x1CfKkg==
+X-CSE-MsgGUID: PWrJlMT5QZKxa+jjDOrSSg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11659"; a="80017700"
 X-IronPort-AV: E=Sophos;i="6.21,198,1763452800"; 
-   d="scan'208";a="68944231"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2026 04:56:33 -0800
-X-CSE-ConnectionGUID: KqZwTZDGTBuLyFi8W8bS4w==
-X-CSE-MsgGUID: nCptq1DCT6CVtdt1xKuTOQ==
+   d="scan'208";a="80017700"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2026 05:21:50 -0800
+X-CSE-ConnectionGUID: mrBD+vEJTdegk7BbygcoNA==
+X-CSE-MsgGUID: 3XU5gBEGT+mN4DcYvXbbsA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.21,198,1763452800"; 
-   d="scan'208";a="202250572"
+   d="scan'208";a="201886402"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.244.75])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2026 04:56:30 -0800
-Date: Sat, 3 Jan 2026 14:56:28 +0200
-From: Andriy Shevencho <andriy.shevchenko@linux.intel.com>
-To: Jonathan Brophy <Professor_jonny@hotmail.com>
-Cc: Jonathan Brophy <professorjonny98@gmail.com>,
-	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2026 05:21:47 -0800
+Date: Sat, 3 Jan 2026 15:21:45 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Petre Rodan <petre.rodan@subdimension.ro>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
-Subject: Re: [PATCH v5 7/7] leds: Add virtual LED group driver
-Message-ID: <aVkR_AG1fbZn4A7p@smile.fi.intel.com>
-References: <20251230082336.3308403-1-professorjonny98@gmail.com>
- <20251230082336.3308403-8-professorjonny98@gmail.com>
- <aVPDUVNX95Hv13VU@smile.fi.intel.com>
- <DS0PR84MB3746506E7740C032585F124F9FB8A@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] iio: pressure: add Honeywell ABP2 driver
+Message-ID: <aVkX6bCR8nkoUwQI@smile.fi.intel.com>
+References: <20260103-honeywell_abp2_driver-v5-0-0435afcf306d@subdimension.ro>
+ <20260103-honeywell_abp2_driver-v5-2-0435afcf306d@subdimension.ro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DS0PR84MB3746506E7740C032585F124F9FB8A@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <20260103-honeywell_abp2_driver-v5-2-0435afcf306d@subdimension.ro>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Sat, Jan 03, 2026 at 08:22:06AM +0000, Jonathan Brophy wrote:
+On Sat, Jan 03, 2026 at 06:35:17AM +0200, Petre Rodan wrote:
+> Adds driver for digital Honeywell ABP2 series of board mount
+> pressure and temperature sensors.
+> 
+> This driver covers 113 different pressure ranges and units on
+> both i2c and SPI buses.
+> 
+> The communication protocol involves sending two simple commands
+> to the sensor and there is no register access or a memory map.
+> For this reason the regmap API was not used.
+> 
+> The i2c address is hardcoded and depends on the part number.
+> 
+> Optional end of conversion interrupt control is present on the
+> i2c variants of the chips.
+> The EOC can also be defined for the SPI variants if a non-ABP2
+> but compatible chip is to be driven.
+> 
+> Tested on two sensors (ABP2MRRT001PDSA3 and ABP2DANT001BA2A3).
 
-> >I stopped with this, this patch is half-baked and unreviewable. Please, split
-> >it to a few features and add one-by-one, for example:
-> 
-> >- very basic sypport
-> >- feature A
-> >- ...
-> >- debugfs
-> 
-> >So I expect 3+ patches out of this one. And try to keep size of a change less
-> >than 1000 LoCs.
-> 
-> Thanks Andy
-> 
-> You have given me some things to fix and some great advice I'm a very junior dev and
-> I know nothing of the led subsystem before this project.
+> ocuments/sps-siot-abp2-series-datasheet-32350268-en.pdf
 
-You're welcome!
+Broken link now.
 
-> I think it may be best to use a function to generate a gamma table I was thinking a
-> hard coded table may be a better idea for performance reasons with addressable rgb
-> strips that I plan to implement in the future.
-> 
-> I planned to split the driver into several files is this what you mean?
-> it would logically break into  files as part of the driver as follows:
-> 
-> core.c
-> arbitration.c
-> phys.c
-> vled.c
-> debugfs.c
-> virtualcolor.h
+> Datasheet: https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/basic-abp2-series/d
 
-Fine by me, but I'm not a maintainer nor the authoritative person, you need to
-wait for Jacek, and/or Lee, and/or Pavel to express their opinions.
+Should be in this line, but do *not* resend just for this, I hope if everything
+else is okay, Jonathan will fix the above issue.
+
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
 
 -- 
 With Best Regards,
