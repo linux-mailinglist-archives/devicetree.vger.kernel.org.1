@@ -1,224 +1,163 @@
-Return-Path: <devicetree+bounces-251155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78927CEF76C
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 00:24:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A14CEFAB5
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 05:44:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 43D4F3007FE9
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jan 2026 23:24:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B59A0300F5AC
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 04:44:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FE42D321B;
-	Fri,  2 Jan 2026 23:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729632222C5;
+	Sat,  3 Jan 2026 04:44:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pA+VyAur";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FWFEjQc7"
+	dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="o6sBy1zc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.subdimension.ro (nalicastle.subdimension.ro [172.105.74.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F8442C08C0
-	for <devicetree@vger.kernel.org>; Fri,  2 Jan 2026 23:24:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9063D217F33;
+	Sat,  3 Jan 2026 04:44:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.105.74.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767396268; cv=none; b=jUQnGZpvdjK7bskZigmCXVS11k5GDkt7p4bhUgccAk1A6JgpWJ1tOt+OqH11URxpPDNWClqDt0aXMHJNig73fo01v4jVFgVItWFTJlS4zO71+x2/LoIBIwJFoSmy5RRzZA/hnHof1fEGvyX5yCPmAct6XP2iO2VaB/hHsUx/3Rs=
+	t=1767415447; cv=none; b=uuLwxYsuF9/84Xkh+4KETNq1QpOTySSyDRI2yRMD+tD+EkyuJM7Zm14H17uq3YDlo/XmpWNr1fXvtze+0Pxv2KGcxoa3dyhIFM2jrTZN+I0JU7jkT2+QrD/HkTKTD2+x54upcAIvNFNCeztGvTmobm7MScEeTQSUPx7EatXMQEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767396268; c=relaxed/simple;
-	bh=ISZjvX6y5MMyPtGKT+WtnBq+hiWnMNABmNpydnT9t1M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FlcMks71/ViT1Q9ay6dJYsBv6J7ueeNGNwsYacgXYiItKU7QTeY/DeOCciF0zyf/Y4bnWGQb5nt0ZcXBZZxqj9vsMkyKMfe9dEg/FlTteoU//nCAivteQ5PSaU6Rg7ml0phARM/VX2+tCWJ5iQH55bTxP2lcpP+m1fhtpsB9tlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pA+VyAur; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FWFEjQc7; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 602C0Ca1315144
-	for <devicetree@vger.kernel.org>; Fri, 2 Jan 2026 23:24:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	T1GYY8vrtnmd/Fz+orMbcn6ybyOpEE1SHFFFCXiCQQs=; b=pA+VyAurGpIRBT0T
-	9ZvKhauE2ySokqZuRMqwYad7L7h/R0YE3D8Yd/5R2+JB4ovWl1gxeHSJiorTO3/7
-	wkAMF25Tp8eyo6lCOTqs31CAJ6cwDRhiNbstVHvLNzIPv7+N4It/dVLht02cXh6d
-	bIKoSMHZ2M656N03wNiawMths25ASABLwexazKVSh9h+BZ/MJiFpSaDsITDcwWiJ
-	dBUIbxF8wi7rUDo1vk8SIR36lUY5qTpMZ1ybCTAoR2pnKbXbY2ADM0LWPUNzzgIn
-	kQ93SuYdJlP1GxuSmcgcp3ncvWnqYqVsYkkMGgciBQct3VY5dKnEnv1Q60vwKo9e
-	h3dxpg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bedmxs655-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 23:24:26 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88a3929171bso260835886d6.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 15:24:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767396265; x=1768001065; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=T1GYY8vrtnmd/Fz+orMbcn6ybyOpEE1SHFFFCXiCQQs=;
-        b=FWFEjQc74bHWTi6D4kOsu5x46+dUckxIBf1yn4oNT9KpnLuT4VYv84vNcNPOoeqqSC
-         WjDILsh5OQNcI92goceLhk4gWj9p3LS8GChdhkhj3kx25A+Qe6gP5Y1YRMOOlOH/v+kA
-         DpziuevprvNrUbSLkoy3iYzyk5bJSgJt5Cj8AWThXnV/MwwXW0Bbl9+1Djrd4KbhVhAB
-         8vYlV7oItM8DE8nLbcb1MeWrBe5i73We2zJtQdl9OY5KS26J9nTOQKLRHPyoq4/XjZ39
-         7YxAmnb3YL1s8hdkA+E7KxOowtL3LikWcTR5zv3rdqfLM8bp8YTtFn+iiIPC7Wmuxo8T
-         8qmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767396265; x=1768001065;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T1GYY8vrtnmd/Fz+orMbcn6ybyOpEE1SHFFFCXiCQQs=;
-        b=UxDxtza2dmGfYgtxqUU0/04FmaDe43YK+UqIwspqTTbk3Ce9plG1JWEJBItXk3OgQl
-         XJEE6tQ8mXea7x27Fzm1afMJjvYHcKKo8gPeNIfENw0P7fnb0z6muveJ/9WwlUN9muHW
-         ZkWTFjmvWOGpc+Mkqu+xTQstxufWvYLcZYJIoszR38IG2hAEEIB/DJsA+7VQ9I8gYm8f
-         WoA0UepuEIa9g4DlG1E7KKVhIWykSqx7hsKU7Kz78gTQsyuYSefpT3O/nz+GZANAom+6
-         1IypIWYXMZaSQ/iWAixRGoEVL/jSFG0Ma/1GM6cHLjIpeWWFLzDNhpTVs+94Au4A5Zb1
-         h9CQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXkTLcqtwANDnAmVokeMuSeOwrokW012Qaev4TF+XVTaeTLuWCFMhKrpzDNLCXkSmj+rRFA7qMkT9zx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSLHGxmVbOXhUoOkDhLioB+EPhIKLwTYRZSVnzee4/q95xBxsJ
-	qd2tNAW+uly6R312DQU0Mo1ucLLdj5v4oxXcZeTLn1JzM84HHv1BzBKuXETJGugp8SwbZJSh864
-	UPdg7DKCxuEnXUvhCYTdwth9zbQk5XwS2ZRZ1vKZG7dTVY0PWO2g07byLcAKN+ZE9
-X-Gm-Gg: AY/fxX65V9kQ5tN8BuZNudxOHgwxfVqlA090aR3d6/QPuKfgko599PY6KrCBqcVRyzw
-	ucAW2mxieOeFhZ/ocQAoXEbnYYTM40PBVyXyYK0F5ZjV8gvjZjFh+7n7P0lYTR2UvGP3c5n1gud
-	Mm+tzwXoJI973Am97DX8EuyzTjSM5Fmus7H7nflN/TXiBi2uvNPRbaj1m7dciG4sabFf2WCf+aK
-	DmOEbQiB63yRGwoPV+Eu/Lq1aZeDOTwWTQxAhv5Y1/pxXxrGZenmnUIoR36VRbcHGfI7ISdd/EX
-	Fj15vwA8A7Qkx2soaGLNirxO0fShY6hh1JO0J58kPkugC64WXTCFMKNm1sXH0bqfi/c28QlFHSP
-	8MfMMpGb9O3t4rHxECaqicKs1t480b1ty5yNw1Y695LPGmM1XypeJ32nLOfMTsRVfYkL/2Or9ZM
-	Az/RwbEzeZWJiqRIcPdNR7YPU=
-X-Received: by 2002:a05:6214:1ccf:b0:786:8f81:42f with SMTP id 6a1803df08f44-88d8369eac6mr675360176d6.39.1767396265432;
-        Fri, 02 Jan 2026 15:24:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEVK/WKrTkslH7Y0vfCHTFCAvovEzvlC0OyEeJ2yOG+2XWavrDxprlpJsUYJLZtTg1a4LzJzg==
-X-Received: by 2002:a05:6214:1ccf:b0:786:8f81:42f with SMTP id 6a1803df08f44-88d8369eac6mr675359666d6.39.1767396264962;
-        Fri, 02 Jan 2026 15:24:24 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59a186287e3sm12691524e87.97.2026.01.02.15.24.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jan 2026 15:24:22 -0800 (PST)
-Date: Sat, 3 Jan 2026 01:24:19 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-        Matthias Kaehlcke <mka@chromium.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath10k@lists.infradead.org, linux-pm@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 04/14] wifi: ath10k: snoc: support powering on the device
- via pwrseq
-Message-ID: <trdxottcptxd5uvgn63oaphemnsk6s2ujc3533abh6pm65iqpi@5ahtn56pff67>
-References: <20251231-wcn3990-pwrctl-v1-0-1ff4d6028ad5@oss.qualcomm.com>
- <20251231-wcn3990-pwrctl-v1-4-1ff4d6028ad5@oss.qualcomm.com>
- <CAMRc=Mey1ScNmosipLFg6mmABjeG2SO2L-pyjwTuOpOYOHZjqg@mail.gmail.com>
- <CAO9ioeU2JjzDwkGQzxc963kakNyZCtaSRAmLu=1kOAMGQeuZRQ@mail.gmail.com>
- <CAMRc=MdCxXg6Hbn_qPVsux2aAfN8cqpG946rS2Sb9J_Cjy0ZQg@mail.gmail.com>
+	s=arc-20240116; t=1767415447; c=relaxed/simple;
+	bh=GxBgvbFsRkKqxg98JPs4OjclZW2utWoNsOnfjwIfE9Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=c4j5AdoT6qfB4xVAG2L7J6nS9ijVq/TxYYVsrUnPSXF/FHdiPdFWuX3iXSx6eXPoaBqXd2vSZJIpY9o5LBFShz+nuFhRHBBRAKuoJzhDV03deJS+vDlF7y703LUjD5A1aMWM4ObXR5QJqp8/IAxs13wsOsDpJY8DP2o/M0IYkyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=o6sBy1zc; arc=none smtp.client-ip=172.105.74.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
+Received: from sunspire.home.arpa (unknown [IPv6:2a02:2f0e:710:a300:e2d5:5eff:fed9:f1c4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 853DC160209;
+	Sat, 03 Jan 2026 06:35:54 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=subdimension.ro;
+	s=mail; t=1767414955;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=vZLcTGZfgu8hLJ9SlFctAcPf0u5aXwb88E1Exr5aokY=;
+	b=o6sBy1zc8GSVwDOM15lZOWD3nTJyblOJyA0cjE8S+XmXULdAWJkmZaHTI4qjtaddM2O5Xc
+	yqmIDaOiBdkzBDj+fYCaiJEsehqE9dkUyIcdD3u9RL4zUWed3A1jI8W35m0tW/cXIITIY8
+	1s4p9dIaZHeIMiuLyj3+HTCYGJ7yzF7pGlm4WhH1J12ebVyh3DP9ci3TV0tjQ3EwP7D63R
+	aV3uR3LOHx95EXizgm3PEfNtAje3aBTb2KSgJz4NXurQ/IlCvqmr3PCQYnDix+GGllyrCK
+	jnJejgr3kAUXuTIQXeYoRpYxLN45Iq7JGzzcFxig/j67bU7bmrLxpzGTsCLLBA==
+From: Petre Rodan <petre.rodan@subdimension.ro>
+Subject: [PATCH v5 0/2] iio: pressure: add Honeywell ABP2 driver
+Date: Sat, 03 Jan 2026 06:35:15 +0200
+Message-Id: <20260103-honeywell_abp2_driver-v5-0-0435afcf306d@subdimension.ro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=MdCxXg6Hbn_qPVsux2aAfN8cqpG946rS2Sb9J_Cjy0ZQg@mail.gmail.com>
-X-Authority-Analysis: v=2.4 cv=GupPO01C c=1 sm=1 tr=0 ts=695853aa cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=S1boB9Fu75youA7A4nsA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTAyMDIxMSBTYWx0ZWRfX/DUFPCSFk/mC
- ZoXrOfTe1Tj+MDB6bfJF8TjuL07de7sHg1xb0r4ZT4DvpaFRyEsXlWQFELBUbgGTTK+hIpzChVV
- oz45bFPn8gR9ZT0wWqfMagGHiOewHOma4vZ471l5yz8EK3/A89MJNncxCkIPZUlJIWIkRMUZEwg
- MhyjtMPRsaeBnNSwCmOosC8xXm4kxC3UYKaT0LUsh41jW6IIkZ1wv5egs9dR8r4iCGt8EJXleGe
- +gYI+JSKoMjanRUvRaquagimW25bt44Vi+uuUDgJ/GUHJ9kFchRLh2sGHMUiyQMFHGzZST7XAUE
- 67sfZG8dGDrTPCkQlGaBJ7NoL41JEPqcg26MhfDNh9GfoZtXMZdU9rotLFYJ3FI3w36/GR9/aPl
- 5pCbrd0KEzR6UJi+vfm0zzMxe7Clsjbpurj1GPqu82yc5aNGuFcPhXkctFqwQErWBp6oLeUzati
- V7uiagqh/BkP1zsJhdA==
-X-Proofpoint-GUID: i5510l04aNJMRczJZEkoMVn_BVFVkAEI
-X-Proofpoint-ORIG-GUID: i5510l04aNJMRczJZEkoMVn_BVFVkAEI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-02_04,2025-12-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 impostorscore=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 phishscore=0 malwarescore=0 spamscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601020211
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIOcWGkC/4XOQQ6CMBAF0KuYrq0pQ0vBlfcwhrQwSBME0mqVE
+ O5uYSMLiKvJn2Te/JE4tAYdOR9GYtEbZ7o2BHE8kKJW7R2pKUMmwEBEEQCtuxaHNzZNrnQPeWm
+ NR0uzQmYJVqzgGki47S1W5rO411vItXHPzg7LGx/N23+ijyijUqUIiaiyBOTFvXRpHtjOFU+2I
+ 7PrYW2lexbMFhOx5KnCotqx4p8FjO9ZcbBUGYMUOgyB2xZfW3LP4sHSAhTXWaL1Vq9pmr6Cml3
+ 9pAEAAA==
+X-Change-ID: 20251122-honeywell_abp2_driver-9c796ef0c4b2
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Andy Shevchenko <andriy.shevchenko@intel.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2882;
+ i=petre.rodan@subdimension.ro; h=from:subject:message-id;
+ bh=GxBgvbFsRkKqxg98JPs4OjclZW2utWoNsOnfjwIfE9Q=;
+ b=LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tCgpvd0o0bkFGdEFwTDlrQTBEQUFvQmRDc25wM
+ k02U1dNQnl5WmlBR2xZbkovaUNVT3BrQjVtNzlKVlhxbGhLRGlpClFBbDZBVy96d3ZpVFBSa2w5
+ T0Q5RTRrQ013UUFBUW9BSFJZaEJCb2ltQncrRGJ4UXBFNmlkM1FySjZkak9rbGoKQlFKcFdKeWZ
+ BQW9KRUhRcko2ZGpPa2xqNDNRUC9SeElDNFFNY29TU0MvTDBKRVoxQWRwWGlGZjJBNkF3eWlKOQ
+ pxOFpGZ2E4ZVZqaEtJQTg1dXp4RUhMRTdQYWU0RCtyMEtUWkVLOXdQNnpvbVdhUmE4NDBoR0VXa
+ m5nSjBUb0paClV4RzFPQ3VJR3JaZDdtOUYybUtIZUxQcG9adFNEOU8xNUlDeDd4NkZRa0o1cEZS
+ TDZETlBrTXFZSytCeldqMGsKUEYwMVRRMDRsVlZ1VWZpV1JsVEQwSG5sRFBTQ3Z2NzRXbGM2R1h
+ HRS9vQURBaFVIZlc3MkNzckhvUFgwaVdJdApUWDl6WDMyZEdDRGZ1N1VIYnZuMGZNTU5Fek43aX
+ JFcXVTc2VMM3Q0bGgzTnliclF6RUpCR2ViR3k3enpIcFZmCjlQRU0vOGdFRXkwbit5Qk5vWHFBV
+ GVlK3hKeGFySVphVWI5aEdUSjU2Wk9jcEVXOVR2R3hpMVJWaEtObnBSRnkKWUFPcGFnL0UxUzYz
+ bFBMNzI2WHlMRFU2MXBvOVJHZHcxNy90TGRMcDM2Wnc1T1dxZFNjbTU2V29YWXYxWEZIcQowRDB
+ IV1I4YkNhS1l5c2VDYXIzanh4MmVxb3hDOTA5am5MRS9rdTA0cy9kMm1LR0RHMnlmSUtQbmhIZF
+ ZQKzIxCjZObjhuT29DQ0syNzlMZ0xHWUp3blY1Z1ZRaGxKSlUyUlZnbEE2ZE9GaFF5WUFvbEtNR
+ U4xUGwyamtEN0NtRFoKbXVkWWd6MUF2SFdVbGp5bFFjc1ZjajBSbGx3K2NTSzVMUU9YQlFMUzgx
+ M3lwODJTbzdvSnkxTFE3ODNtZWFMdwpHN0Z4ZHhEUGozTmdKTTQ4eEVCZkVlTS8zTWRwVjBlWWF
+ Qd0NjbXlzS1d6aEFhczIvTXRqYzZ5MHJwTGJkRVcvClZNaGh3ekFpdEFVZEJnPT0KPVlXSmwKLS
+ 0tLS1FTkQgUEdQIE1FU1NBR0UtLS0tLQo=
+X-Developer-Key: i=petre.rodan@subdimension.ro; a=openpgp;
+ fpr=D80A7FC176151935EC3E5FA9CF269999844E7F30
 
-On Fri, Jan 02, 2026 at 06:06:51PM +0100, Bartosz Golaszewski wrote:
-> On Fri, Jan 2, 2026 at 4:10 PM Dmitry Baryshkov
-> <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> >
-> > On Fri, 2 Jan 2026 at 13:07, Bartosz Golaszewski <brgl@kernel.org> wrote:
-> > >
-> > > On Wed, Dec 31, 2025 at 12:36 AM Dmitry Baryshkov
-> > > <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> > > >
-> > > > The WCN39xx family of WiFi/BT chips incorporates a simple PMU, spreading
-> > > > voltages over internal rails. Implement support for using powersequencer
-> > > > for this family of ATH10k devices in addition to using regulators.
-> > > >
-> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > > > ---
-> > >
-> > > [snip]
-> > >
-> > > >
-> > > >  static void ath10k_snoc_wlan_disable(struct ath10k *ar)
-> > > > @@ -1762,7 +1779,27 @@ static int ath10k_snoc_probe(struct platform_device *pdev)
-> > > >                 goto err_release_resource;
-> > > >         }
-> > > >
-> > > > -       ar_snoc->num_vregs = ARRAY_SIZE(ath10k_regulators);
-> > > > +       /*
-> > > > +        * Backwards compatibility, ignore the defer error from pwrseq, if it
-> > > > +        * should be used, we will get an error from regulator get.
-> > > > +        */
-> > >
-> > > Can you elaborate on this? I'm not exactly following. I suppose you
-> > > mean the regulator_get() will return -EPROBE_DEFER? One of the
-> > > supplies exposed by the PMU?
-> >
-> > Yes. devm_pwrseq_get() can return -EPROBE_DEFER in two cases:
-> > - it is not supposed to be used
-> > - it is supposed to be used, but the driver hasn't probed yet.
-> >
-> 
-> Yes but normally driver core would still create a devlink between the
-> device binding to the PMU node and the consumer of its regulators -
+Adds driver for digital Honeywell ABP2 series of board mount
+pressure and temperature sensors.
 
-fw_devlink, which are not mandatory, time out, etc. So, no, it is not
-granted that the PMU is always available during the probe.
+This driver differs quite a bit from the Honeywell ABP series that
+is already present in the kernel:
 
-> this device - so we can expect that it will always be the first one,
-> no? Unless we need this driver to be firmware-agnostic.
-> 
-> > There is no simple way to distinguish between these two cases, but:
-> > - if it is not supposed to be used, then regulator_bulk_get() will
-> > return all regulators as expected, continuing the probe
-> > - if it is supposed to be used, but wasn't probed yet, we will get
-> > -EPROBE_DEFER from regulator_bulk_get() too.
-> >
-> > I can write that in a comment, if you think that it makes the code more obvious.
-> >
-> 
-> Yes, please make it more descriptive. Ideally I'd like to improve the
-> API to avoid such confusion in the future.
+- many more pressure-triplet variations of pressure ranges and
+units
+- extra end of conversion interrupt feature
+- implements both i2c and SPI interfaces
+- uses a bidirectional data retrieving protocol (4 wire SPI instead of 3 wire)
+- 24+24bit resolution vs 14+11bit on the ABP
 
-The prolem is that we can't (or I don't see a way to). Power sequencing
-core has no way to distinguish these two cases.
+Specific low level i2c and spi data transfer API is used instead
+of regmap because the protocol is based on simple commands instead
+of on a memory map.
 
+Given the fact that the sensor can perform gage and differential
+pressure measurements with a full-scale range of down to 500 pascals
+the offset and scale are calculated in such a way to provide a result
+in pascals, not kilopascals. Just like the Honeywell MPR driver.
+For a kilopascal output the scale representation would lose too much
+precision.
+
+Tested on two sensors (ABP2MRRT001PDSA3 and ABP2DANT001BA2A3)
+
+Datasheet: https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/basic-abp2-series/documents/sps-siot-abp2-series-datasheet-32350268-en.pdf
+Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+---
+v1 -> v2:
+ - bindings are unchanged, added tag from Krzysztof
+ - driver code changes based on Andy's feedback - detailed list in the respective patch
+v2 -> v3:
+ - driver code changes based on Andy's feedback - detailed list in the respective patch
+v3 -> v4
+ - driver code changes based on Jonathan's feedback - detailed list in the respective patch
+v4 -> v5
+ - driver code changes based on Andy's feedback - detailed list in the respective patch
+ - re-add Krzysztof's review tag (sorry for dropping it)
+ - fix typo in Kconfig SPI block
+ - Link to v4: https://lore.kernel.org/r/20251207-honeywell_abp2_driver-v4-0-b52a4b96bbf7@subdimension.ro
+
+---
+Petre Rodan (2):
+      dt-bindings: iio: pressure: add honeywell,abp2030pa
+      iio: pressure: add Honeywell ABP2 driver
+
+ .../bindings/iio/pressure/honeywell,abp2030pa.yaml | 132 +++++
+ MAINTAINERS                                        |   7 +
+ drivers/iio/pressure/Kconfig                       |  29 ++
+ drivers/iio/pressure/Makefile                      |   3 +
+ drivers/iio/pressure/abp2030pa.c                   | 544 +++++++++++++++++++++
+ drivers/iio/pressure/abp2030pa.h                   |  73 +++
+ drivers/iio/pressure/abp2030pa_i2c.c               |  90 ++++
+ drivers/iio/pressure/abp2030pa_spi.c               |  67 +++
+ 8 files changed, 945 insertions(+)
+---
+base-commit: f9e05791642810a0cf6237d39fafd6fec5e0b4bb
+change-id: 20251122-honeywell_abp2_driver-9c796ef0c4b2
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Petre Rodan <petre.rodan@subdimension.ro>
+
 
