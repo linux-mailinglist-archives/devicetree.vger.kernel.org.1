@@ -1,320 +1,108 @@
-Return-Path: <devicetree+bounces-251161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EFFFCEFB19
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 06:09:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EC48CEFB75
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 06:55:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E1AEA300486C
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 05:09:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A2BF630161A5
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 05:55:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1280725F994;
-	Sat,  3 Jan 2026 05:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95CFB27057D;
+	Sat,  3 Jan 2026 05:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EX+dHBk3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J+kqM7Vu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63CF7202997
-	for <devicetree@vger.kernel.org>; Sat,  3 Jan 2026 05:09:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5454729408
+	for <devicetree@vger.kernel.org>; Sat,  3 Jan 2026 05:55:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767416955; cv=none; b=oSviiMCHowFsq7YkpLWKt+Zn7E404QGqDAW/D6hhG7ckJE4JsiY/IPg6cbPShn8H/P+b6pFkwDQJzJkIOfNgSRLnXcrHMw2DSRirSVyilKzghBMbucRh+PpanzfSN3VyUWYJUMg0tOtRQTT1fGkGf+0+YUFHrsPsEQ81xDkNPAQ=
+	t=1767419734; cv=none; b=j4eLykNyqi0O11nM0c2+i/SeyGKZad19YAmVCbMItVZ8pRmQbG3Ju1iskWXvVNIVHXeJbWis84/0gqcLvpJ39thisYdYDsiN6FldmlNVSvy56AwphqB0ZZBezk4tp4uBiG9OCIPMeM7hiZaEt2iZgrrVHdFO5joUP+XK6Nt821Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767416955; c=relaxed/simple;
-	bh=PugwIf1PTeDTsgwTth9O71CLUk6w7Dby4OTpfRIHbIQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=CwoM5tzgNhLDGmZQX2n2HNCNSAWEqQHLX7cSse+GiKMe7iBobCIvJKpo44T89kjnFFvY6yRhK+vX7iEKT2FyMWbh2zGv3PP+S9TX2nDwqgwL5XYBEWfrRVkj7wqwX5lt8WuwVcjRqEugd4ubnJMu5SLzfxdEdsgU/9CLyRfRRPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EX+dHBk3; arc=none smtp.client-ip=209.85.214.169
+	s=arc-20240116; t=1767419734; c=relaxed/simple;
+	bh=3073OMvs0/LjEg4wr9mG+ncYvQgejlGvftaRsNqKdQs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GCkFai0CH5QXQpGALjq5aNQf/99H2jCgLiRHpd7chE86bBfaAbxz2haBysmFjzfBIouoOPUUsRrbx96WqQuiUtMldGGZMWUeGmtl3MJ97eMuITWY9wi4S/bP7axgjRE42eJgvcM91wDPZr4CAko4wycXWpMeRb1Zr91QcLt8HSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J+kqM7Vu; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2a0fe77d141so142128655ad.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 21:09:12 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-47d493a9b96so27910405e9.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 21:55:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767416952; x=1768021752; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=T8+CQv8mpkcn2J1lV6g4DbhVMQ5AvRmITHsSXIikepw=;
-        b=EX+dHBk3jYXu69oPEwKUwZVCV+OJHgh2qnnKZbb1UwC9JDtSUYR1F7OKqc553L8lyg
-         zjzIeujo3AfQXBtbBvUJ4nIA338RSvRIfANg153ofnHxogh80WoOZBEvxdsAJUIsm2tK
-         7pTpyRJ6+ToKVrQh1PLLty7s2mVy3j7vxi5jYq6R4PyczKygyO/lqhP71C1EO/9kYdOY
-         dY9XHh04W6xLeNCQyjiBesGpxB3pf50+z1iQKJgpvOa/oudBDleZrtZmUe36xkV789Qo
-         BpeyKbnFJkcdfNq5MZ2EVsRYRnNQJls5bCAMORU8zsAZ/pWiYeC6dY6PTsYHhJOmDCaU
-         ZibA==
+        d=gmail.com; s=20230601; t=1767419730; x=1768024530; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3073OMvs0/LjEg4wr9mG+ncYvQgejlGvftaRsNqKdQs=;
+        b=J+kqM7VuDohgXrxd7lR0e+wM8kyPNyNEaGS5Lz4WeHSirtVEiESBLdKpTjlSRn+YnW
+         m9DjtzH/UrfWqt7je+tew61V71iFTpoy8wveUlhAOgQb7uP6dHkt+khvseylqwhHICrp
+         mmp6at4TYAATsexL0XC23eTaZyEIJIUZFKWeTLNC6jeR6FDAjTBAMla111MfvCzz8dUD
+         k73S2RHTBRluZ5YzqhduAdrX8BjksTWS64oxr5zMkJpVq+kGroF7I76Xl5zekIwG/93o
+         O17lUOqaw5i1kNbMBye78zxE4VHUHFQtPG2NGHTFbOhnC6kiQoOvkZ7g80RAog6pgYpz
+         In5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767416952; x=1768021752;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T8+CQv8mpkcn2J1lV6g4DbhVMQ5AvRmITHsSXIikepw=;
-        b=oVV05r0z9S3kNNFur/DyXCzSuszn55SX8cLkqKQZhWtMk5iHkovMgKnoxYfSE7jNh5
-         Skns+DciPHUKlPb4ku8Ihdt4xXeQ2+GkRbV4DOJuSUxCBRVAmMLsx9YIQMcRv07ZhdCp
-         n2/Jx0zY+pdQt4CHGc8ZSIkYDWjCblynrcoIusbiCIEfJmyH8Cp5MojKdiBkIOhEGQS0
-         Se+YiEQt8CtIzz/gUOnSSl1nTBP2TQpGBBg5QXHHge88GY2Y+duE/GLNhWctenifzzKm
-         rWZ25Pf+EWbttib/mn+DrQkc07a9yIfJU8/5RMWfiyg80GezowN3ktyGFmHCDdWTheBT
-         L6zg==
-X-Forwarded-Encrypted: i=1; AJvYcCWf71LWNDGovzCiAPZ8hZRTX6/euonP1Iwr/yTBdzPldFW832BirktnmNNUJgRRiRNJ970a6Xm6mkH0@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTuiGmoOkyiNbkVlqSBH2saImyXBOwHzl7flt5q/ZVB3+hQSLa
-	uUHmbSCsy+RJo+Zh+pdyQ97QO8zk2nQNC4+Tzdt43jLjwWHX88tqXcUu
-X-Gm-Gg: AY/fxX6oiBEJRt5cZweIk44oTlZRhCSW2u6ZggWtN9p7DGCNkgb9lySIVgGQUYp5QO6
-	EOLbtzpYktAqwyFAHMpl9znbzq4Kt018FNiedfXFT/8ff8nvNa9+49A6HtYccSW9D5EPOFPx1gY
-	Vrhi5lF9flFEuXgQbqR+iurxk7EL9NKyj9N1yfEaw5FY1+Lbwj9Y2GwiRWq/TKsnZR60zndXijt
-	CHn28JoBYifevwNOSHfjsc+LVD8PRJij1tDm9V3gMFm2tLd0m4a6NaQFHL2mT0aBwJwKI4vlA2r
-	cJcj8MSecl2w2Jj37+IgBO8dv31HzV1yABCOpIVphe/KDCQT70N1wLVzA8NktgVhla91F0VWS0P
-	73EXuPjZWHPcQVmcdVTpKNS7bot++3/ouDbwslUkP8cE5PswRzKF0SM/Ck5aqu9oEvYSTFyKs0n
-	16ZgYs5wRHeA3QMeZZywGQ5LkoaIQEsbM8bA==
-X-Google-Smtp-Source: AGHT+IHTfufJ/COdXwRuMAWT7oXqPfmJjDOSy+SnVq08RYmkgw57v883SQY7Br9m7vBEu9FM9Q73bg==
-X-Received: by 2002:a17:902:e94f:b0:267:a5df:9b07 with SMTP id d9443c01a7336-2a2f2212844mr375644785ad.12.1767416951595;
-        Fri, 02 Jan 2026 21:09:11 -0800 (PST)
-Received: from Black-Pearl.localdomain ([122.181.60.165])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a2f3c8a8e3sm386171725ad.41.2026.01.02.21.09.07
+        d=1e100.net; s=20230601; t=1767419730; x=1768024530;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3073OMvs0/LjEg4wr9mG+ncYvQgejlGvftaRsNqKdQs=;
+        b=IPif8bzPcqPxZyUFpeyCjMGmSeCXup8kkVCRp1+PBnmZqmFD5c71BcwbqOvaE/RPls
+         LNxStmdOTDhG2TrpnJ3Fo5opYZvAnPHlASftKR3yW4vMyhY0+HBsZofp5txTtiJ4m7b6
+         bqKp6UGRie/b83+dpCD3oEEuVxs9YIP0l8P91SAnOb+xyfdgAc06yNJRzQSfQ4hQRwfH
+         r4KG+srUvwJbGFpwSRQtFZ0caM13JhsP0IO5BZCQnlfB9fkGX9hqekb6NS6MlACHNL/H
+         Sa6qGABIu8VXO+yuxdmRyvZ+QmV6K9qeTFvJI+qZ47RowqLj2lggMT30Uc1AoxbhBYn4
+         fhDg==
+X-Forwarded-Encrypted: i=1; AJvYcCXL4z/WXd2bpe68uX3dno1cWXj0QGbzMYsyAnUBh+RuPnllArOTpYwDRHxOUKSg220Lu0FLjE31kHwe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIpllZIKccmnA+8LdJfW9+lUVUj4JWsi2sQn/EPl6oWKxs5/Nj
+	qDQpBmWYnpiObAlO9+MAeyLjxf2LzH4HocBDCVD66nw5YtLmLSVGa96L
+X-Gm-Gg: AY/fxX4kSddftBsm1LEHSzulVHFYhRdQShZtJLWBDtlwM/JfQldPcoWpi9sf5ASzC5d
+	h9WeDRfZVXXI4clSAsZ0Iw/khdgw8yQYRbIGL2/qK2GzvyrgfX9ynkdyCtYmDO7Rtx1PKESPjBA
+	qaYOk6SnDSG7NeRSqjbxrHiEDWb/LqZxJC3zj+IvrlBdTIcBQ4x/7ikZrEdDrxBD9oEeO5nIxt9
+	V6Dxsi599Pd/DRPFFtptBC+WlaN5DHMBBJQzNRwVMyAuulOzNfOVHit8KisBibf5SrlaIrSiwsj
+	+/3HPRZVmooe6rol8+miWbmrxGUJndDm1iygqiAI+PGljRy2vDv6GePaEwKDCm08LSOzO1qov45
+	dzajH+JPQZavp9nFr1WKP4zOl0W7BvRxQ5K6ewCGsuKpwRLxuGUiWk8gPcu67Lh9DeBBnltyh6q
+	qm+ccaDWK9xGFcFgB5lKK4KH6SDF4q/uWD7Et7+kGAoKgI9ljGQDZb4ryeTSUSeHTo
+X-Google-Smtp-Source: AGHT+IFDlUycpHh35Bxl9zkKufMif2HIaPtEr71It/NuTPMJMkB/txx1IFoOyyH3seAcSTAkGZqUKg==
+X-Received: by 2002:a05:600c:3b07:b0:47a:814c:eea1 with SMTP id 5b1f17b1804b1-47d195917d2mr509496085e9.35.1767419729438;
+        Fri, 02 Jan 2026 21:55:29 -0800 (PST)
+Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d6be5a555sm10532405e9.4.2026.01.02.21.55.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jan 2026 21:09:11 -0800 (PST)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Sat, 03 Jan 2026 05:09:05 +0000
-Subject: [PATCH v4] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT
- schema
+        Fri, 02 Jan 2026 21:55:28 -0800 (PST)
+Date: Sat, 3 Jan 2026 05:55:27 +0000
+From: Stafford Horne <shorne@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: Add compatible string opencores,gpio
+ to gpio-mmio
+Message-ID: <aVivT0ruGpwdBO7L@antec>
+References: <20251217080843.70621-1-shorne@gmail.com>
+ <20251217080843.70621-2-shorne@gmail.com>
+ <20251218-muzzle-diploma-25832f4af271@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260103-nvidia-nand-v4-1-3156f46f3a5e@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAHCkWGkC/13O0QrCIBTG8VcJrzP0aDq76j2iC6e2HWguXEgx9
- u65EbR1+R34/TkjGULCMJDTbiQpZBywj2XI/Y641sYmUPRlE2Bw5IxzGjN6tDTa6CkD6Zy2oaq
- ZJUU8Urjha6ldrmW3ODz79F7imc/Xb0ewTSdzyqlWXAYuoQID56azeD+4viNzJ8PPApithWJrZ
- bQ3GmTN6n8rVlZs/8+iWAhKKyW9UFqu7TRNHzhsaHoeAQAA
-X-Change-ID: 20251011-nvidia-nand-024cc7ae8b0a
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Stefan Agner <stefan@agner.ch>, 
- Lucas Stach <dev@lynxeye.de>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251218-muzzle-diploma-25832f4af271@spud>
 
-Convert NVIDIA Tegra NAND Flash Controller binding to YAML format.
-Changes during Conversion:
-- Define new properties `power-domains` and `operating-points-v2`
-  because the existing in tree DTS uses them.
+On Thu, Dec 18, 2025 at 12:55:07AM +0000, Conor Dooley wrote:
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> pw-bot: not-applicable
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
-Changes in v4:
-- Changed the the reg property for nand child node.
-- Link to v3: https://lore.kernel.org/r/20251231-nvidia-nand-v3-1-2e67664d3674@gmail.com
+Thanks,
 
-Changes in v3:
-- Removed pattern properties for partition.
-- Used single quotes for nand string in pattern properties.
-- Modified maxItems value and added minItems to reg property under nand child node.
-- Link to v2: https://lore.kernel.org/r/20251229-nvidia-nand-v2-1-b697d9724b0b@gmail.com
-
-Changes in v2:
-- Edited the commit description to match the updated changes.
-- Modified the description for the YAML.
-- Removed all the duplicated properties, defined a proper ref for both parent
-  and child nodes.
-- Removed unnecessary properties from the required following the old
-  text binding.
-- Link to v1: https://lore.kernel.org/r/20251030-nvidia-nand-v1-1-7614e1428292@gmail.com
----
- .../bindings/mtd/nvidia,tegra20-nand.yaml          | 102 +++++++++++++++++++++
- .../bindings/mtd/nvidia-tegra20-nand.txt           |  64 -------------
- 2 files changed, 102 insertions(+), 64 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
-new file mode 100644
-index 000000000000..b417d72fa0de
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/nvidia,tegra20-nand.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVIDIA Tegra NAND Flash Controller
-+
-+maintainers:
-+  - Jonathan Hunter <jonathanh@nvidia.com>
-+
-+allOf:
-+  - $ref: nand-controller.yaml
-+
-+description:
-+  The NVIDIA NAND controller provides an interface between NVIDIA SoCs
-+  and raw NAND flash devices. It supports standard NAND operations,
-+  hardware-assisted ECC, OOB data access, and DMA transfers, and
-+  integrates with the Linux MTD NAND subsystem for reliable flash management.
-+
-+properties:
-+  compatible:
-+    const: nvidia,tegra20-nand
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: nand
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: nand
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  operating-points-v2:
-+    maxItems: 1
-+
-+patternProperties:
-+  '^nand@':
-+    type: object
-+    description: Individual NAND chip connected to the NAND controller
-+    $ref: raw-nand-chip.yaml#
-+
-+    properties:
-+      reg:
-+        maximum: 5
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/tegra20-car.h>
-+    #include <dt-bindings/gpio/tegra-gpio.h>
-+
-+    nand-controller@70008000 {
-+        compatible = "nvidia,tegra20-nand";
-+        reg = <0x70008000 0x100>;
-+        interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&tegra_car TEGRA20_CLK_NDFLASH>;
-+        clock-names = "nand";
-+        resets = <&tegra_car 13>;
-+        reset-names = "nand";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        nand@0 {
-+            reg = <0>;
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+            nand-bus-width = <8>;
-+            nand-on-flash-bbt;
-+            nand-ecc-algo = "bch";
-+            nand-ecc-strength = <8>;
-+            wp-gpios = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_LOW>;
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt b/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
-deleted file mode 100644
-index 4a00ec2b2540..000000000000
---- a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
-+++ /dev/null
-@@ -1,64 +0,0 @@
--NVIDIA Tegra NAND Flash controller
--
--Required properties:
--- compatible: Must be one of:
--  - "nvidia,tegra20-nand"
--- reg: MMIO address range
--- interrupts: interrupt output of the NFC controller
--- clocks: Must contain an entry for each entry in clock-names.
--  See ../clocks/clock-bindings.txt for details.
--- clock-names: Must include the following entries:
--  - nand
--- resets: Must contain an entry for each entry in reset-names.
--  See ../reset/reset.txt for details.
--- reset-names: Must include the following entries:
--  - nand
--
--Optional children nodes:
--Individual NAND chips are children of the NAND controller node. Currently
--only one NAND chip supported.
--
--Required children node properties:
--- reg: An integer ranging from 1 to 6 representing the CS line to use.
--
--Optional children node properties:
--- nand-ecc-mode: String, operation mode of the NAND ecc mode. Currently only
--		 "hw" is supported.
--- nand-ecc-algo: string, algorithm of NAND ECC.
--		 Supported values with "hw" ECC mode are: "rs", "bch".
--- nand-bus-width : See nand-controller.yaml
--- nand-on-flash-bbt: See nand-controller.yaml
--- nand-ecc-strength: integer representing the number of bits to correct
--		     per ECC step (always 512). Supported strength using HW ECC
--		     modes are:
--		     - RS: 4, 6, 8
--		     - BCH: 4, 8, 14, 16
--- nand-ecc-maximize: See nand-controller.yaml
--- nand-is-boot-medium: Makes sure only ECC strengths supported by the boot ROM
--		       are chosen.
--- wp-gpios: GPIO specifier for the write protect pin.
--
--Optional child node of NAND chip nodes:
--Partitions: see mtd.yaml
--
--  Example:
--	nand-controller@70008000 {
--		compatible = "nvidia,tegra20-nand";
--		reg = <0x70008000 0x100>;
--		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&tegra_car TEGRA20_CLK_NDFLASH>;
--		clock-names = "nand";
--		resets = <&tegra_car 13>;
--		reset-names = "nand";
--
--		nand@0 {
--			reg = <0>;
--			#address-cells = <1>;
--			#size-cells = <1>;
--			nand-bus-width = <8>;
--			nand-on-flash-bbt;
--			nand-ecc-algo = "bch";
--			nand-ecc-strength = <8>;
--			wp-gpios = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_LOW>;
--		};
--	};
-
----
-base-commit: 43edce71d70c603d3f3f1b1c886f65cd02d80c24
-change-id: 20251011-nvidia-nand-024cc7ae8b0a
-
-Best regards,
--- 
-Charan Pedumuru <charan.pedumuru@gmail.com>
-
+ -Stafford
 
