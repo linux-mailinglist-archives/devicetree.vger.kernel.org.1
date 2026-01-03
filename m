@@ -1,246 +1,241 @@
-Return-Path: <devicetree+bounces-251168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CD86CEFBB5
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 07:17:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B6DCEFBD9
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 07:37:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B081300EA17
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 06:17:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BD1473011407
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 06:36:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 519E926F2AF;
-	Sat,  3 Jan 2026 06:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E77E2222B2;
+	Sat,  3 Jan 2026 06:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CLMzOR/R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JrbvOruB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C479156F45
-	for <devicetree@vger.kernel.org>; Sat,  3 Jan 2026 06:17:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BA6155389
+	for <devicetree@vger.kernel.org>; Sat,  3 Jan 2026 06:36:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767421027; cv=none; b=s0PVMceKyljV8zQSZ7n3sgaLVH9EXDyxnlSJ+3Mq8m8BdAvKo0nJ3F7Ksm7F892Fmmr85/ZhgzwOnzEEBBD8xrMQHpdB7Lh9K/Y8AMg8D5cxWY4+9ELHwjkidbhjuGkuOtHnHcoCDt/xRVcY3GexSG5K7+dgA6E9JE8xLnT1qYw=
+	t=1767422217; cv=none; b=MN1eeJr9fcKiZCdU5nnhqAG1XIMVX4HF+IIRpVRYMnGn0U5OmN92a+s4CMroKR/sHhSx6ORk6ISQweXc4d7cNlmjR/cwkzAn9RUSvtAILsRNytVbvZNjt6mhEUonGtmMxEEqMmEcgZDufJWnW6BhRXFTmF0zM/5jjY+kR/o/Ohg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767421027; c=relaxed/simple;
-	bh=OvhHsmnhwBytDwLUIZZt3NNO22amAFYoNYaJEB8XD9I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U1wvgP/WyYWrkqX+70dMhQ1qNdJ+GxP4tyJe3vA0/qeKQyapbsIHch1lHR/VbHFAWPVESUqmKxRCJ/gcPTOQTJmqFoz5isXTEP1MLiZcS7qd/hLFM9hUOByHyZmIpBfrszrjnM5TVzFdbVGH6Jzvq4zFALr1vYAnC7b172bCjvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CLMzOR/R; arc=none smtp.client-ip=209.85.221.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f67.google.com with SMTP id ffacd0b85a97d-42fb0fc5aa9so5136550f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 22:17:05 -0800 (PST)
+	s=arc-20240116; t=1767422217; c=relaxed/simple;
+	bh=GcSJTsIdgVF1gHPqEGPZ9hEjZebFvNeOtsDBF78oZCo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cIF1MiMAg/DmTHAxKqRR6m+uOlrgWBW1/xEjwpUQnW4pXxUdBR6D4fwGdtjCNqlzeJ+V74MkEbNMRNGKoN0f5N8tX/KJlXBJ6F7uTJTTV7pSzW5t+173guWyONkGhWSaYnUtwlj0iAg6ynkJbWodR+1GoFV8j14DYQTmyTFwPzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JrbvOruB; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7fc0c1d45a4so11176797b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Jan 2026 22:36:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767421024; x=1768025824; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0fBTw2m0sw3DdZqYCahoE5TIOLBwDoJuhOGkXgvJXBI=;
-        b=CLMzOR/RwI2YMXXLnWzTNCq3EuQGAR22JxggEVtWWzr1wQMLzQjOkIR85wRFSmnnjQ
-         knWZnqb1RMq9+0vFeaW9oWDA5gfvfUnV9+NuTOWyoiNrKZ2GeFR3a9OPInEdql6CETdx
-         GKPj2dt34tWAes36tNyETN9n+qbuVoBcTTa8GYY328my4WZkekcbYIwkMf0XqBBSD8+j
-         eY83w1CTYj8KrnMBheItjCUuT0Zih+E31ngcHAid4InNDU5yGS3a5Fegn7EXzKHitXMA
-         Jpzap6jRsQokSlQ9lhRq/UYDYOsy8gf9nNrF0Y1zJadD0o4E9t6FpLH4U9twiUpq7L30
-         jt6Q==
+        d=linaro.org; s=google; t=1767422213; x=1768027013; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n009qAjQa1f/gx1JlFPWaK6vp1HVpsaalQe/6LgsF9o=;
+        b=JrbvOruBrh8lmpIc7RX7dnszwqV0ZJvn2pS9G1dhEGqecM0sSS3ZzGk6+hKHsts9eB
+         C+xP39BkTmzg9evARoi3qoeyq8kZMHZqd11kFj5vYzUOT0YJlcQikJy2h7RKXFZNKe3T
+         YA4iYlXRVO/irzy+dZLvgkPjRdXcBD3JIEuQylFoThLU8A12V6+ye6KnIIi1SNK9/Byp
+         J7VpDq0SiCBMqmX/Lf2+mbyUNhsDSVuZ6CZxv6A9v1EHFBfLjQ/ucuQHQAJP520mcf/3
+         PT2WniBjQ4BN4bXjevPkvTcKpkcc0kRPT/749qf5ZqeYp4MwFJGf0D6Uqv1P6oFi6lTM
+         41CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767421024; x=1768025824;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0fBTw2m0sw3DdZqYCahoE5TIOLBwDoJuhOGkXgvJXBI=;
-        b=eDI86p3gV3C1SxPBqM3CL/gb3XFwPRST2mX107xOM/qa77J2eNwAwj5PPpDWZC5gJA
-         6YDZa4HpGo/Y1Wf5prnJqLwLvG+TQUfPfNphyb9Evsqq/Fm9dpU+17reHnsWzx+4VQU0
-         FU+8/ZzeYCwVNcHENMK73lyZygzTuBIGlfHBVBRDCvVhT2QI2XX3+NKorXD6dPTRZrLn
-         RuKZmku4cCAqx+6EGnwI5MwvD5qeAXbeCQbTm796OXmAR7ZAzhh4Q5OUr1cYVlKiA1W/
-         qsNxnSugqH1JwnLS8UFnhtubhUQ6jlq+zCRx48/KKCoZnFbGatiIpk7tcC5PX9D6AdGz
-         1HHA==
-X-Forwarded-Encrypted: i=1; AJvYcCWP+g9W2igK+ULVQeHVY6DGtNzWPOUsX51mqETOVyUqGUsi2wL8KaR6HIbOeOo9E1VxVhGOjcRtSa6+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/IvgdHBkjPXHwnZdacw5cZQYypMZrcsoZYmma0p3790OFGhJV
-	xLTsSXq1X1gpvk1fECZDl5ehRDN6h5PXarBJXLHSZVTJyQvSqeRn8DhP
-X-Gm-Gg: AY/fxX5R9gVF4BZ5npyw2sj5ouPw7DyhsEkVgfUrweot6mWnXxwY85rsspjWjSYqv/2
-	ZVd6pSAapbkliNwB5TGJZDyBpRThV3foSHshNDrfFscMjhIFVW2JokS17hTiDijKh7i6VUmIV4W
-	KZOjDJ74EAIc3YkqfllwcuLg91VSVYl1hLEQYK5w5z8QOrO0i+m38QcoJLL/SQ27YeITlm38RYu
-	bzKSNe+cK7Mp1sqtyEZyxh9VILkTwcEl0XPpyHIJrj5Km7ytAmYTFSDmTIx+iv902m9aOTiJWSR
-	UuItJiDAKH43ywXzfof2Ip1xii39YWdynBVrrEBoj3XfWfGupotR7BCyiEC6E4qUbnS0+SW68TC
-	jOjRfwKZRLItLYT29mmK7jUm7SPVC2nNtKyfnBPwipk9+2Qu5NctDqVJ679RwxTo6rAUKOfZqhG
-	ThICy4jVwWVqnaPVbxcvlv2+7BPidyrBrpPAeHE46Zx/DaomyDMNuNJlJd2X4Cyn2a
-X-Google-Smtp-Source: AGHT+IHdlE+Cj3VwwM7OZ4YHjWykCfF7XHJggX+PliZI3MM3Nwc7QElP+yBNZ3QQxm4vymnI/vBKVA==
-X-Received: by 2002:a05:6000:2504:b0:431:5ca:c1b7 with SMTP id ffacd0b85a97d-4324e4cbcc1mr61300652f8f.23.1767421023534;
-        Fri, 02 Jan 2026 22:17:03 -0800 (PST)
-Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324eab257asm88770406f8f.38.2026.01.02.22.17.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jan 2026 22:17:00 -0800 (PST)
-Date: Sat, 3 Jan 2026 06:16:59 +0000
-From: Stafford Horne <shorne@gmail.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
-	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jonas Bonn <jonas@southpole.se>,
-	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] openrisc: dts: Add de0 nano config and devicetree
-Message-ID: <aVi0W6syzK6buL_v@antec>
-References: <20251217080843.70621-1-shorne@gmail.com>
- <20251217080843.70621-3-shorne@gmail.com>
- <CAMuHMdVCY=5UypK65Ver6UZM_m6DZuw9mhfANMx4+Y6PgNAdmA@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1767422213; x=1768027013;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n009qAjQa1f/gx1JlFPWaK6vp1HVpsaalQe/6LgsF9o=;
+        b=BeEW8RKFc2nHkond2EE4PTfC/Du5f4y/yKH9PPfmDVaVoT79HgTWzdWPgob6V0zUxZ
+         c5r8DM8+9Z6dlK9SHuuVTdxzctZASOVY58pjNDe9YYVfFjX12cXWGDoC5v3Kztg86qWD
+         S1VvIy8tvjS8HqJGGayPHSMqNWuVwQVS3bH2UmvTwCFhtzt9BYZcSsxnQp3yTH+s7PZC
+         v6stwiGCubLnCSQkpWFPoetrQVKKpDULp6LQpiFb8FpSPtRNBaEwMRRQvYubiye62yQC
+         TM+CcqWoBsQ+0IZdpvM7ACEsGuIXud4q2qTrpJcz9G2o8hMBBTUfDZQS8RRRemyoeEKG
+         m+Cw==
+X-Forwarded-Encrypted: i=1; AJvYcCWFQiul+Qu14rCCWWJhvOypONVY5uuts+/XUG5yRgAH1YObvo++OyT/9snV+eiWA2zXSB7hoaTZLcsn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlIKxaWbD7VEPTUp9Q5Wa+ukzam+kYzAXlgzFj4TlCpj0H4JhZ
+	w5YxC5CzdJx0fepRJnzxPcdVH4uoQ6VTBoFHlb8AentfD1c2g/4xNLkMNROgK9y961I=
+X-Gm-Gg: AY/fxX7erURnhd9/RrRU1ZPUfMtEhLdcuTXf94CdwbCHFsJ7L6yXTurvm1R4c3klNmd
+	xgJs2kowiqmY3wPofVsOFuHUCZC7IWQZ5UBuHR1AZgXKUyikwTdYtj/i51Ss3otCBhrjZoeP9tv
+	SNJ3kF8bYE5GH1oEfXCiFo106AWqiLJArH07wPI0dxJSsnudpyz2Qh7IqMxgGYQRqGeHcGfkFO5
+	qjFlusJtoqWnSkVqp3pUslHgdw0MEoDekDQppIdyMkknZ+D7lUqaE6wIi2UgQxJMJKqe1Gss+E1
+	lFLVpvbpycyuKXaYC7ZDTwn/sbpEE4Ajg7j1tm4WTvM/QMQ8kYK3GNyA5lA5kZJtdVK3o/mmrKr
+	dzAbbDAba/IV0AUag5oIAx/pxtLYmdRTPUb3+/7v+4hgZE13Fv85g6MLrDe4EPy5WPUlKaBKWOp
+	8GPYzYnOYyvbu+s7zsZA4oMv0JyHbWGcbdPVNMW3BbFd9dQqo9evuDPrQ+jB8sEKrL
+X-Google-Smtp-Source: AGHT+IFjVDKmB/xNuLtQKRYfU/ITUXwxCDRtTDnOfIZDb5jRoUr7iNoQ0th445p4ZZcSbNCPgjHtMA==
+X-Received: by 2002:a05:6a00:140f:b0:807:c2b9:38ec with SMTP id d2e1a72fcca58-807c2b93f63mr22110230b3a.15.1767422213430;
+        Fri, 02 Jan 2026 22:36:53 -0800 (PST)
+Received: from ?IPV6:2405:6e00:642:d187:9f0f:f4ff:8fd1:e7bf? ([2405:6e00:642:d187:9f0f:f4ff:8fd1:e7bf])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e0a2e3esm41753812b3a.37.2026.01.02.22.36.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jan 2026 22:36:52 -0800 (PST)
+Message-ID: <4b8953ac-567b-4d68-9c25-72a69afdf1b3@linaro.org>
+Date: Sat, 3 Jan 2026 08:36:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdVCY=5UypK65Ver6UZM_m6DZuw9mhfANMx4+Y6PgNAdmA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 18/26] mm/memblock: Add MEMBLOCK_INSPECT flag
+To: Mike Rapoport <rppt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org, tglx@linutronix.de, andersson@kernel.org,
+ pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, david@redhat.com,
+ mhocko@suse.com, tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ linux-arch@vger.kernel.org, tony.luck@intel.com, kees@kernel.org
+References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
+ <20251119154427.1033475-19-eugen.hristev@linaro.org>
+ <aVImIneFgOngYdSn@kernel.org>
+From: Eugen Hristev <eugen.hristev@linaro.org>
+Content-Language: en-US
+In-Reply-To: <aVImIneFgOngYdSn@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 18, 2025 at 07:36:08PM +0100, Geert Uytterhoeven wrote:
-> Hi Stafford,
+
+
+On 12/29/25 08:56, Mike Rapoport wrote:
+> Hi Eugen,
 > 
-> On Wed, 17 Dec 2025 at 09:23, Stafford Horne <shorne@gmail.com> wrote:
-> > The de0 nano from Terasic is an FPGA board that we use in the OpenRISC
-> > community to test OpenRISC configurations.  Add a base configuration for
-> > the board that runs an OpenRISC CPU at 50Mhz with 32MB ram, UART for
-> > console and some GPIOs for LEDs and switches.
-> >
-> > There is an older version of this floating around that defines all of
-> > the hardware on the board including SPI's, flash devices, sram, ADCs
-> > etc.  Eventually it would be good to get the full version upstream
-> > but for now I think a minimal board is good to start with.
-> >
-> > Link: https://openrisc.io/tutorials/de0_nano/
-> > Link: https://github.com/olofk/de0_nano
-> >
-> > Signed-off-by: Stafford Horne <shorne@gmail.com>
+> On Wed, Nov 19, 2025 at 05:44:19PM +0200, Eugen Hristev wrote:
+>> This memblock flag indicates that a specific block is registered
+>> into an inspection table.
+>> The block can be marked for inspection using memblock_mark_inspect()
+>> and cleared with memblock_clear_inspect()
 > 
-> Thanks for your patch!
+> Can you explain why memblock should treat memory registered for inspection
+> differently?
+
+It should not, at a first glance.
+
+The purpose of the flag is to let memblock be aware of it.
+The flag is there to have a "memblock way" of registering the memory,
+which inside memblock , it can translate to a meminspect way of
+registering the memory. It's just an extra layer on top of meminspect.
+With this, it would be avoided to call meminspect all over the places it
+would be required, but rather use the memblock API.
+And further, inside memblock, it would be a single point where
+meminspect can be disabled (while preserving a no-op memblock flag), or
+easily changed to another API if needed.
+Ofcourse, one can call here directly the meminspect API if this is desired.
+Do you think it would be better to have it this way ?
+
+Thanks for looking into it,
+Eugen
+
+
 > 
-> > --- /dev/null
-> > +++ b/arch/openrisc/boot/dts/de0-nano-common.dtsi
-> > @@ -0,0 +1,41 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +
-> > +/ {
-> > +       memory@0 {
-> > +               device_type = "memory";
-> > +               reg = <0x00000000 0x02000000>;
-> > +       };
-> > +
-> > +       leds: leds {
+>> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
+>> ---
+>>  include/linux/memblock.h |  7 +++++++
+>>  mm/memblock.c            | 36 ++++++++++++++++++++++++++++++++++++
+>>  2 files changed, 43 insertions(+)
+>>
+>> diff --git a/include/linux/memblock.h b/include/linux/memblock.h
+>> index 221118b5a16e..c3e55a4475cf 100644
+>> --- a/include/linux/memblock.h
+>> +++ b/include/linux/memblock.h
+>> @@ -51,6 +51,10 @@ extern unsigned long long max_possible_pfn;
+>>   * memory reservations yet, so we get scratch memory from the previous
+>>   * kernel that we know is good to use. It is the only memory that
+>>   * allocations may happen from in this phase.
+>> + * @MEMBLOCK_INSPECT: memory region is annotated in kernel memory inspection
+>> + * table. This means a dedicated entry will be created for this region which
+>> + * will contain the memory's address and size. This allows kernel inspectors
+>> + * to retrieve the memory.
+>>   */
+>>  enum memblock_flags {
+>>  	MEMBLOCK_NONE		= 0x0,	/* No special request */
+>> @@ -61,6 +65,7 @@ enum memblock_flags {
+>>  	MEMBLOCK_RSRV_NOINIT	= 0x10,	/* don't initialize struct pages */
+>>  	MEMBLOCK_RSRV_KERN	= 0x20,	/* memory reserved for kernel use */
+>>  	MEMBLOCK_KHO_SCRATCH	= 0x40,	/* scratch memory for kexec handover */
+>> +	MEMBLOCK_INSPECT	= 0x80,	/* memory selected for kernel inspection */
+>>  };
+>>  
+>>  /**
+>> @@ -149,6 +154,8 @@ unsigned long memblock_addrs_overlap(phys_addr_t base1, phys_addr_t size1,
+>>  bool memblock_overlaps_region(struct memblock_type *type,
+>>  			      phys_addr_t base, phys_addr_t size);
+>>  bool memblock_validate_numa_coverage(unsigned long threshold_bytes);
+>> +int memblock_mark_inspect(phys_addr_t base, phys_addr_t size);
+>> +int memblock_clear_inspect(phys_addr_t base, phys_addr_t size);
+>>  int memblock_mark_hotplug(phys_addr_t base, phys_addr_t size);
+>>  int memblock_clear_hotplug(phys_addr_t base, phys_addr_t size);
+>>  int memblock_mark_mirror(phys_addr_t base, phys_addr_t size);
+>> diff --git a/mm/memblock.c b/mm/memblock.c
+>> index e23e16618e9b..a5df5ab286e5 100644
+>> --- a/mm/memblock.c
+>> +++ b/mm/memblock.c
+>> @@ -17,6 +17,7 @@
+>>  #include <linux/seq_file.h>
+>>  #include <linux/memblock.h>
+>>  #include <linux/mutex.h>
+>> +#include <linux/meminspect.h>
+>>  
+>>  #ifdef CONFIG_KEXEC_HANDOVER
+>>  #include <linux/libfdt.h>
+>> @@ -1016,6 +1017,40 @@ static int __init_memblock memblock_setclr_flag(struct memblock_type *type,
+>>  	return 0;
+>>  }
+>>  
+>> +/**
+>> + * memblock_mark_inspect - Mark inspectable memory with flag MEMBLOCK_INSPECT.
+>> + * @base: the base phys addr of the region
+>> + * @size: the size of the region
+>> + *
+>> + * Return: 0 on success, -errno on failure.
+>> + */
+>> +int __init_memblock memblock_mark_inspect(phys_addr_t base, phys_addr_t size)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = memblock_setclr_flag(&memblock.memory, base, size, 1, MEMBLOCK_INSPECT);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	meminspect_lock_register_pa(base, size);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/**
+>> + * memblock_clear_inspect - Clear flag MEMBLOCK_INSPECT for a specified region.
+>> + * @base: the base phys addr of the region
+>> + * @size: the size of the region
+>> + *
+>> + * Return: 0 on success, -errno on failure.
+>> + */
+>> +int __init_memblock memblock_clear_inspect(phys_addr_t base, phys_addr_t size)
+>> +{
+>> +	meminspect_lock_unregister_pa(base, size);
+>> +
+>> +	return memblock_setclr_flag(&memblock.memory, base, size, 0, MEMBLOCK_INSPECT);
+>> +}
+>> +
+>>  /**
+>>   * memblock_mark_hotplug - Mark hotpluggable memory with flag MEMBLOCK_HOTPLUG.
+>>   * @base: the base phys addr of the region
+>> @@ -2704,6 +2739,7 @@ static const char * const flagname[] = {
+>>  	[ilog2(MEMBLOCK_RSRV_NOINIT)] = "RSV_NIT",
+>>  	[ilog2(MEMBLOCK_RSRV_KERN)] = "RSV_KERN",
+>>  	[ilog2(MEMBLOCK_KHO_SCRATCH)] = "KHO_SCRATCH",
+>> +	[ilog2(MEMBLOCK_INSPECT)] = "INSPECT",
+>>  };
+>>  
+>>  static int memblock_debug_show(struct seq_file *m, void *private)
+>> -- 
+>> 2.43.0
+>>
 > 
-> Move this up (or down), before (or after) all nodes with unit addresses?
 
-OK.
-
-> > +               compatible = "gpio-leds";
-> > +               status = "okay";
-> 
-> Missing blank line.
-
-OK, also I can remove the "okay" line as well.
-
-> > +               led-heartbeat {
-> > +                       gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
-> > +                       color = <LED_COLOR_ID_GREEN>;
-> > +                       function = LED_FUNCTION_HEARTBEAT;
-> > +                       linux,default-trigger = "heartbeat";
-> > +                       label = "heartbeat";
-> > +               };
-> > +       };
-> > +
-> > +       gpio0: gpio@91000000 {
-> > +               compatible = "opencores,gpio", "brcm,bcm6345-gpio";
-> > +               reg = <0x91000000 0x1>, <0x91000001 0x1>;
-> > +               reg-names = "dat", "dirout";
-> > +               gpio-controller;
-> > +               #gpio-cells = <2>;
-> > +               status = "okay";
-> 
-> "okay" is the default, so you could drop this line.
-
-OK.
-
-> > +       };
-> > +
-> > +       gpio1: gpio@92000000 {
-> > +               compatible = "opencores,gpio", "brcm,bcm6345-gpio";
-> > +               reg = <0x92000000 0x1>, <0x92000001 0x1>;
-> > +               reg-names = "dat", "dirout";
-> > +               gpio-controller;
-> > +               #gpio-cells = <2>;
-> > +               status = "disabled";
-> > +       };
-> > +};
-> 
-> > --- /dev/null
-> > +++ b/arch/openrisc/boot/dts/de0-nano.dts
-> > @@ -0,0 +1,54 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "de0-nano-common.dtsi"
-> > +
-> > +/ {
-> > +       model = "Terasic DE0 Nano";
-> > +       compatible = "opencores,or1ksim";
-> > +       #address-cells = <1>;
-> > +       #size-cells = <1>;
-> > +       interrupt-parent = <&pic>;
-> > +
-> > +       aliases {
-> > +               uart0 = &serial0;
-> > +       };
-> > +
-> > +       chosen {
-> > +               bootargs = "earlycon";
-> 
-> Do you need this?
-
-What do you mean here? I want to keep "earlycon", and it is not supplied in
-de0-nano-common.dtsi.
-
-> > +               stdout-path = "uart0:115200";
-> > +       };
-> > +
-> > +       cpus {
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> 
-> Missing blank line.
-
-OK.
-
-> > +               cpu@0 {
-> > +                       compatible = "opencores,or1200-rtlsvn481";
-> > +                       reg = <0>;
-> > +                       clock-frequency = <50000000>;
-> > +               };
-> > +       };
-> > +
-> > +       /*
-> > +        * OR1K PIC is built into CPU and accessed via special purpose
-> > +        * registers.  It is not addressable and, hence, has no 'reg'
-> > +        * property.
-> > +        */
-> > +       pic: pic {
-> > +               compatible = "opencores,or1k-pic";
-> > +               #interrupt-cells = <1>;
-> > +               interrupt-controller;
-> > +       };
-> > +
-> > +       serial0: serial@90000000 {
-> > +               compatible = "opencores,uart16550-rtlsvn105", "ns16550a";
-> > +               reg = <0x90000000 0x100>;
-> > +               interrupts = <2>;
-> > +               clock-frequency = <50000000>;
-> > +       };
-> > +};
-
--Stafford
 
