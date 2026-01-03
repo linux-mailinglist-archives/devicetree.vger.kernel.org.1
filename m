@@ -1,183 +1,131 @@
-Return-Path: <devicetree+bounces-251195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4CFCF0085
-	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 14:53:40 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1661BCF0097
+	for <lists+devicetree@lfdr.de>; Sat, 03 Jan 2026 15:04:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5DF79301C0AD
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 13:53:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 460C6300B031
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jan 2026 14:04:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E96A283C9D;
-	Sat,  3 Jan 2026 13:53:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 352D5279DAF;
+	Sat,  3 Jan 2026 14:04:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="Sxq5Vpnt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZyCPuDYE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C6FE1C3BF7;
-	Sat,  3 Jan 2026 13:53:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767448417; cv=pass; b=nta7DxwAmp/jSUrKub13O+iS3thteYysB6dkxN9rRkEJAA3iToPmYpt8KJ7OCzpulOyRKMGqc38ivHfhRPR0I41fmKHftjmKeghDjwO08b+3p+n8FyM18k56n7SRB1IM9bZ35Gl/SpGX0rRnn18cMWEJ0otMLzk69/PyD4BIKLE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767448417; c=relaxed/simple;
-	bh=Y5Ip+rY8zrCI3sEu3f8EYm4Ck++Bkr6j3eOP3rTS3dg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nj4vvziMGu0o/pr0QL2qFNgtWsfKsqLXA2Tz3Qc8xCquqg0LfJbZOTguz2TPz2UjWWG54TVdo6hz4Lx8nu94Vg8dsMbBQMOS19p5D3X+/3WJ20/JlL5Ah4GiT+kgtOGAy+Wc+y/jLnZzJwEE8qXmwlIC1zIfzv+j9c2PFkE7jpo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=Sxq5Vpnt; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1767448380; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=IDcuSeXH2CICFAdm65XISS6csPuDye1jA/nhxRiRK6YMQM12LYDxTaCVVQ4rbbIdp27i5JRf16TAhfu1JYS+zTQt/CIh03k2luJ3uVWsNuBM08iTOHxAvrDFSIrqDylrgxWGNJ1sjDAqJeOuojaWudVLknBaQmJ7yYY7DmXgdL8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1767448380; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=d9H7y6YgOMKmHV3+yZbIO63YJ0wpHijUok8tAbtehVI=; 
-	b=DqtH6+e3u69ksoK5kcrZTy0bIIZw3+54+VHz34hV59f4WSuVCxPJ/W6DbiG6qqKlqpajswX3i5hv63fh92v+dJcO6x2yuDx+gNp4rNbEMBtqUFZcDJ5iNqq1dpxGKABGg80YOnHChy6mMuNU0LWy/yEjM4gX+FOlUCh4p0WW2DE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767448380;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=d9H7y6YgOMKmHV3+yZbIO63YJ0wpHijUok8tAbtehVI=;
-	b=Sxq5VpntLYcVgyUsXFWqi2JLqQB6A3kAks8oO07M3eVS0R2IpY+LCS02nVEbZRL/
-	U0NDdJSSazUI68G0BqabQ3XugbHJQ5J7Pk5tdUENmcXgSC4mh0tJD5/4s2bvyV4Ehv2
-	3VLeUumbLQptuQKi8LgI/DpZ6K7XpKFqbaZjMe+Y=
-Received: by mx.zohomail.com with SMTPS id 1767448375895378.81651063590607;
-	Sat, 3 Jan 2026 05:52:55 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 7AB8F18054C; Sat, 03 Jan 2026 14:52:50 +0100 (CET)
-Date: Sat, 3 Jan 2026 14:52:50 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
-	FUKAUMI Naoki <naoki@radxa.com>, Diederik de Haas <didi.debian@cknow.org>, 
-	Yongbo Zhang <giraffesnn123@gmail.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>, 
-	"open list:USB TYPEC CLASS" <linux-usb@vger.kernel.org>
-Subject: Re: [PATCH v1 1/3] arm64: dts: rockchip: rk3588-rock-5b-5bp-5t:
- Correct Type-C pin bias settings
-Message-ID: <aVke1kQnHJLqWGHi@venus>
-References: <20260103083232.9510-1-linux.amoon@gmail.com>
- <20260103083232.9510-2-linux.amoon@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B862236E8;
+	Sat,  3 Jan 2026 14:04:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767449067; cv=none; b=m2KKSw16X2lAwQJk5lJf6Ch/VUS7wA5qI+2xk1n6LDagvdoSuOcq1q2hmR/9TMflr5K8HZDw4he+qXnfUViO/rJmsVo1SYpVNXNkKOjSousnqtVC7E5YLWSbsUkxxHlalZ8b4CB7ASIAr+9QTxuQv7zYxbBBqwCBKRkCXD2wZ9E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767449067; c=relaxed/simple;
+	bh=syKu65UAaIGDJS4fMnnR8hxOJACzJd2yCnXi+ctXt0Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pQBBJnfgvog2MMbeMXcZjog6l7A4K3rIgununzahjOnibzTVgDdQcaE91G0jU7ogoQvw6jBBSWnsZ5DBKwa1HywqFZ7wbLLSpPa/otYInPUZ0/H/qGPFRdEwlgSE4saDHO5zQS4nTb7wtHL1Qyko+2Aiqpot6vaqNyOGgI6F6H8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZyCPuDYE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45F90C113D0;
+	Sat,  3 Jan 2026 14:04:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767449066;
+	bh=syKu65UAaIGDJS4fMnnR8hxOJACzJd2yCnXi+ctXt0Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZyCPuDYEHl2uogK0wSMUra/m/NoBsltB3jyk0V6mWfQQKv731Q8VE8nZl9dqTxBIq
+	 FIPlnDm734Es3EMeoKn8+rQgTTqYOIDq+PJhzeKcm0ECXUqepkpsNfdb8fkNnSIZnN
+	 flMwk6dAs5lz2PG0OKG9bXBntEdI7qaB16FZJ5/MKa7QybW+5RbhxHCM7u/WewzvO0
+	 +5kAX9vb9wFzsFFqhJubPtu8cTC7/uDhj8DFTpG7eK3+FsAhgBa9oUF8NlluZ6/RF/
+	 7tR1QtV/qnUCkm0WdkGhnQ1ZCPLappsF2lzpj0KYBdtRuwoalEL3D6p1LvJ9CftPnx
+	 ld7ghLGQ9yFFg==
+Message-ID: <2cef182c-b96c-4403-8a13-4eef6293d812@kernel.org>
+Date: Sat, 3 Jan 2026 15:04:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="j3clvygndka2x6e6"
-Content-Disposition: inline
-In-Reply-To: <20260103083232.9510-2-linux.amoon@gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.3/267.430.24
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: qcom,x1e80100-gcc: Add missing
+ UFS mux clocks
+To: Taniya Das <taniya.das@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rajendra Nayak <quic_rjendra@quicinc.com>,
+ Abel Vesa <abelvesa@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+ Imran Shaik <imran.shaik@oss.qualcomm.com>,
+ Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+ Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
+References: <20260103-ufs_symbol_clk-v2-0-51828cc76236@oss.qualcomm.com>
+ <20260103-ufs_symbol_clk-v2-1-51828cc76236@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260103-ufs_symbol_clk-v2-1-51828cc76236@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
---j3clvygndka2x6e6
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 1/3] arm64: dts: rockchip: rk3588-rock-5b-5bp-5t:
- Correct Type-C pin bias settings
-MIME-Version: 1.0
-
-Hi,
-
-On Sat, Jan 03, 2026 at 02:01:17PM +0530, Anand Moon wrote:
-> As pre FUSB302 datasheet interrupt line (INT_N) is an open-drain,
-> active-low signal. It requires a pull-up resistor to maintain a stable
-> high state when deasserted. Similarly, the TYPEC5V_PWREN_H enable signal
-> requires a pull-down resistor to ensure it defaults to a low state,
-> preventing unintended power delivery during the boot sequence.
->=20
-> Update the pinctrl entries to use pcfg_pull_up for usbc0_int and
-> pcfg_pull_down for vbus5v0_typec_en to align with the hardware's
-> electrical requirements.
->=20
-> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Fixes: 67b2c15d8fb3 ("arm64: dts: rockchip: add USB-C support for ROCK 5B=
-/5B+/5T")
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+On 03/01/2026 06:57, Taniya Das wrote:
+> Add some of the UFS symbol rx/tx muxes were not initially described.
+> 
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 > ---
-> v1: As per the shematics CC_INT_L interrupt pin is GPIO3_B4_u
->     As per the shematics TYPEC5V_PWREN_H pin is GPIO2_B6_d
-> ---
 
-Checking the schematics:
 
-5B v1.45 - CC_INT_L - R2613 10K pull-up resistor
-5B v1.45 - TYPEC5V_PWREN_H - GPIO is effectively unused because R95035 is NC
 
-5B+ v1.2 - CC_INT_L - R2613 10K pull-up resistor
-5B+ v1.2 - TYPEC5V_PWREN_H - R163 100K pull-down resistor
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-5T v1.2 - CC_INT_L - R2613 10K pull-up resistor
-5T v1.2 - TYPEC5V_PWREN_H - R163 100K pull-down resistor
-
-TLDR: All GPIOs have pull resistors in discrete hardware and do not
-need them muxed in the SoC.
-
-Greetings,
-
--- Sebastian
-
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi b/ar=
-ch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-> index b3e76ad2d869..0cd8ac7bf538 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-> @@ -537,11 +537,11 @@ pcie3_vcc3v3_en: pcie3-vcc3v3-en {
-> =20
->  	usb {
->  		usbc0_int: usbc0-int {
-> -			rockchip,pins =3D <3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-> +			rockchip,pins =3D <3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
->  		};
-> =20
->  		vbus5v0_typec_en: vbus5v0-typec-en {
-> -			rockchip,pins =3D <2 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-> +			rockchip,pins =3D <2 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>;
->  		};
->  	};
->  };
-> --=20
-> 2.50.1
->=20
-
---j3clvygndka2x6e6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlZHy8ACgkQ2O7X88g7
-+po4Og/9H83sPXhEoMq5arPCN6/ta/CDQCipwx6OZLyN6znuNtnhXP5yq7ymZ/wf
-06Nuv4Abjr7/hl3DyyprGK8nSQiZ6BpFNzbqP/9VcVxdZHHbOrqRLLb8DllfhZeR
-OgeIx5Lg1NkyyEIPLEUn72KuI7FD+jwfKzk1ptdYc8VW3woDefWwKVOCD1pFlyb0
-jYbSI+4oVtq7sPLlH+Eu0H2ef7btVvmOFNFbuM0xgQQnL5jxHLux4fOd66hVJQb6
-5PGzVQkppms6Srq34fF11/+pdCEAZFs3D1nIXsF46HkxILxHhObUkz21FIZ2MKOX
-VaYyb0aFGxgqKnFMGFUXlvDWHZreHKZZHwTpaMABiQGp+4E/k0ORW3FmX3Djgu69
-UPdPf16M1mZNYzj7N0iR36Jb6lGkeW0BAc4+qdEhuJc78t73kHObkM1KoNXXzFEx
-fuANSDk/OAw6o8eCv0Jw3H/bPrwj2J67YLN1ZITxrWxWjuX3bPq2aorWWW5aBMPo
-d3PXQwHz0r3bcvgsSY/DWa2xaQilt8w2iT/1OY49zkFty+1EDznqZExprL3TM8zG
-4uOw9kMuk7+RvbZjZzgxlowzroN08ICWYhCgPld36DCb25YMQNeARU4/y+lBpnoA
-XPy+YtUpDtM1I/JRXDsMdEIeyTK6GwgvoaS7xsnephRytgPosuQ=
-=NzfA
------END PGP SIGNATURE-----
-
---j3clvygndka2x6e6--
+Best regards,
+Krzysztof
 
