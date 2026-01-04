@@ -1,152 +1,120 @@
-Return-Path: <devicetree+bounces-251319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86B94CF15A8
-	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 22:40:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06BFACF15D1
+	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 22:44:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id ED695300096C
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 21:40:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 75ACD300EA24
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 21:43:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A2872F12C6;
-	Sun,  4 Jan 2026 21:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C78F5314D02;
+	Sun,  4 Jan 2026 21:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="WZMBlF/p"
+	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="DpmvsBmV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC59231A23;
-	Sun,  4 Jan 2026 21:40:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01E5314B83;
+	Sun,  4 Jan 2026 21:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.177.32
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767562827; cv=none; b=Wz8QnipHJoIU3MZzn3JlqlYhCdL1HO2gb4OgaSbpie7HKGn4SnI7YsRa4YyOIQxx7//HlA7AYKvmCW0ZFrjjhoyK/p/yYoyeHCfRSGe9uUnU8lUWa5F5LBOGnhO74cv3sdFoG8h83EMysGPph0fSE3n1+QrvZPecmpheRQlgdBE=
+	t=1767563000; cv=none; b=EQ2XPBE0fyF3kp79vqPD8tu5wRK8vVWx65yIvA2+vik8eVrz6OzcBF5coSiDpD5O4WVHTUQDakCVmeBlNAD5JjHRqnfBJgFjseqfmSzwi5cLjNZ9nJushk+p+fdCaX/8oCAIDuMk4WCpmYbSBiox8YLME3nbeG82ekxwDY4D9tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767562827; c=relaxed/simple;
-	bh=mP1ULe+Mxr0y+dHfipheVHsGaVeVka21qNvUbJpQzk4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=azCrS+C/i9Mbzj7Hrhy9S0hy1UoNuCKJi3syxucZl5tvrO8bJvj5tTYfnjqZLAVyaSJuZV1x2HEhk8MwRIoQvajKfaPDPGE70RyHp1+ODQV3U/PqedryEEEbX1I3Hn3OEfpZ/yb+SAN5+47mhGMuYmFnNeQnMJiJAhKLmbOlrrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=WZMBlF/p; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dkrSk3cqZz9tS0;
-	Sun,  4 Jan 2026 22:40:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1767562822;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=S+gEUJyRQxX9zRoXvtfQn/geVRqVRcr9TfoOgFU3GM4=;
-	b=WZMBlF/p+hA2xPvmB8qCL4fj16BobTkngZIXAz74BDUxJPhu+Dr2q+GHsc+5yp7c1y1I9V
-	FU9CvQQnUIdLWKR0OfX0WvfksmDmKJW7Z+fYkNk+hv+inmwgkGl827+Gniufj3rab0SUPk
-	fgg0mv/bpPEJphNwkwnt3L3jE/cyVbPqXinBhz1gikP71aP2spQdd0v4ez9954Harfptre
-	dV8qSvS0L/r5LnENlIcBRtsaAhKdmjr9Ioci3Fy6eXw5d4javSHc1Be53pzlNsSrCHspqk
-	nIy8TmlelypxzbBgFT+OD5W/1YuoU7F4YfZ+3/QAJKMJRlRPdCbq0tiRMUYuMQ==
-Message-ID: <11e63b0a-57fe-40ce-b211-e502e8e20329@mailbox.org>
-Date: Sun, 4 Jan 2026 22:39:00 +0100
+	s=arc-20240116; t=1767563000; c=relaxed/simple;
+	bh=boA5OMAEjhl8pFf00i2VhzAPb6mM8UZcbloPgwtq4gI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=R2yiqRi/XHNTM5WBbfFNCn4RTRa1cbwST+2Fd4aCo/YqxhWiix2sPC4BV2zPdkPqDlqfVmBN+7r9Eo+Xkw/ZNo2Q82SdjmJClSO6aesiY5AUqUCsWf/hIhmqOAFNIvCJuylmp/cgymap7fczxHUkY9RUrczBZVTqwHu/UXJ0Cfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=DpmvsBmV; arc=none smtp.client-ip=205.220.177.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
+Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 604LW4Lk4188559;
+	Sun, 4 Jan 2026 21:42:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	corp-2025-04-25; bh=yKBRbmL2uoAxLnFtcn1Z31cpk9jSwiqmeefgGAzxEWs=; b=
+	DpmvsBmVGSYhFzeFUFubGJkwDNWSu53YZalLS7TvkyCalMWdyO4ZWuj37I7Ly/Wp
+	AL+GNZsEa+hbKOorBTBgrW+za+pn7c11Q++lHtL/ThqwZKw4V4eBoBXd7Di83jhC
+	ptM8XflipZuM1g06UzHyMCaf25IySI27USNtNNf+q23iP552fUS3lOXMyWiT4QbD
+	JTtjPkochlkSMsjNJM3A6Ipaja1vm6zO5FQXRXDNaU9RB0LPDARdPREnEAsGm6nW
+	EZ5VUNNkkk7lgo3YUpOiW8r/br4+Gd9aufNIF0VbnHiBm6DoQX5iFCku6cnfThVJ
+	/QffD3WBOB0UQxJdrha0TQ==
+Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4bev6ngxwm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sun, 04 Jan 2026 21:42:54 +0000 (GMT)
+Received: from pps.filterd (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 604GVRhw030640;
+	Sun, 4 Jan 2026 21:42:54 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 4besjarf3e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sun, 04 Jan 2026 21:42:54 +0000
+Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 604LgpJ0034017;
+	Sun, 4 Jan 2026 21:42:53 GMT
+Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
+	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 4besjarf2n-7;
+	Sun, 04 Jan 2026 21:42:53 +0000
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+To: Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Zhaoming Luo <zhml@posteo.com>
+Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: ufs: Fix several grammar errors
+Date: Sun,  4 Jan 2026 16:42:47 -0500
+Message-ID: <176756271681.1812936.13149182307929477826.b4-ty@oracle.com>
+X-Mailer: git-send-email 2.51.2
+In-Reply-To: <20251217-fix-minor-grammar-err-v3-1-9be220cdd56a@posteo.com>
+References: <20251217-fix-minor-grammar-err-v3-1-9be220cdd56a@posteo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] drm/bridge: fsl-ldb: Parse register offsets from DT
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>,
- dri-devel@lists.freedesktop.org,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Liu Ying <victor.liu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
- Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-References: <20251102170257.65491-1-marek.vasut@mailbox.org>
- <DDZ6KCUVYB55.330X4X5ETRXR3@bootlin.com>
- <25cd3b11-8417-44d3-af28-fa73419c713b@mailbox.org>
- <DE0YJPERKME9.2CYGFAPULFMZV@bootlin.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <DE0YJPERKME9.2CYGFAPULFMZV@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: xe6tfc41bu8yafn454ox53nyfw7mrfmg
-X-MBO-RS-ID: 474479228642215823a
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-04_06,2025-12-31_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 phishscore=0 adultscore=0
+ malwarescore=0 suspectscore=0 mlxscore=0 spamscore=0 mlxlogscore=741
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2512120000
+ definitions=main-2601040199
+X-Proofpoint-ORIG-GUID: kff58srjdYGhsGpB-jQ9YJMzsLOxcP61
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA0MDIwMCBTYWx0ZWRfX7PysqfdtLKOc
+ vG5/raAnS3d/nCp+JDFqbxuLVScIVDoTeUXqs6p28wbPIVBtPSxj5hNCaql6lVShEitSL8jJf58
+ XrPUb+O0WHak9511LoMwF337lb0s8DdcRC7Xv4NMxzD+e/Fx0LvREiHiYjns2nBBfFONJGdIsHI
+ b1GPDDs7rwISuR6Y3KaeQSYZ1ENN5h+UkbzkGCmZFJJ4/hG+NWrx33bG0FPnr7eQI6LGb3K5z1w
+ k97aqe2ZvIjqRkQa/77oxjsTOkZM/FQxoqIjmdkFI1ieLWTnhG+cNhwAeBvVyp997xOunVVLgXa
+ xOl7/2l7sc6ePBhc6UI2DXm3hy4E1+jSy9FltnACfi0S5AcmPX9ptM1ixt5hRPkLRCJ3kfhvSxb
+ QjwF9VR6GBIvZXZBJRkR7cWj9OghTqN8h2ZrcsgHgQ0EHC0+kbbXpfGukpQp4V7ZbDZIjQlHG67
+ k4vctrkjiUsyj/PIHhaI67rehh21lgU4Ei6yp0kA=
+X-Proofpoint-GUID: kff58srjdYGhsGpB-jQ9YJMzsLOxcP61
+X-Authority-Analysis: v=2.4 cv=QtFTHFyd c=1 sm=1 tr=0 ts=695adedf b=1 cx=c_pps
+ a=e1sVV491RgrpLwSTMOnk8w==:117 a=e1sVV491RgrpLwSTMOnk8w==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=igFk8M4bcQljQk-mh6cA:9 a=QEXdDO2ut3YA:10 cc=ntf
+ awl=host:13654
 
-On 11/5/25 7:03 PM, Luca Ceresoli wrote:
+On Wed, 17 Dec 2025 22:03:38 +0800, Zhaoming Luo wrote:
 
-Hello Luca,
-
-sorry for the late reply.
-
->>> On Sun Nov 2, 2025 at 6:02 PM CET, Marek Vasut wrote:
->>>> The DT binding for this bridge describe register offsets for the LDB,
->>>> parse the register offsets from DT instead of hard-coding them in the
->>>> driver. No functional change.
->>>>
->>>> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
->>>
->>> I was initially a bit skeptical because normally register offsets are
->>> derived from the compatible string, not from device tree. But then I
->>> realized this is about the LDB which has its two registers in the
->>> MEDIA_BLK. This means all in all this looks somewhat like an integration
->>> aspect (the LDB component uses two resources of the MEDIA_CLK component)
->>> and your patch mekse sense.
->>>
->>> So my only remark is that the above may be in the commit message, to make
->>> the "why" clear from the beginning. It took a bit of research for me to
->>> find out.
->>
->> Actually, the LDB was always meant to parse the 'reg' offsets out of the
->> DT, it then went somewhat ... wrong ... and we ended up with hard-coded
->> reg<->compatible mapping. It was never intended to be that way. That is
->> all there is to it, there isn't any deeper reason behind it.
->>
->> What would you add into the commit message ?
+> Fix several grammar errors.
 > 
-> The above paragraph is a good draft of what I woudl add.
 > 
->>> [0] https://lore.kernel.org/dri-devel/20251103-dcif-upstreaming-v6-3-76fcecfda919@oss.nxp.com/
->>>
->>>> @@ -309,6 +302,27 @@ static int fsl_ldb_probe(struct platform_device *pdev)
->>>>    	fsl_ldb->dev = &pdev->dev;
->>>>    	fsl_ldb->bridge.of_node = dev->of_node;
->>>>
->>>> +	/* No "reg-names" property likely means single-register LDB */
->>>
->>> Uh? If it is "likely" it means we are not sure this code is not introducing
->>> regressions, and that would be bad.
->>
->> I can drop the 'likely' part.
-> 
-> If you are sure it's not "likely" but "sure", then OK. However it all
-> depends on the bindings, which leads to the below question.
 
-Fixed in V3
+Applied to 6.19/scsi-fixes, thanks!
 
->>>> +	idx = of_property_match_string(dev->of_node, "reg-names", "ldb");
->>>> +	if (idx < 0) {
->>>> +		fsl_ldb->single_ctrl_reg = true;
->>>> +		idx = 0;
->>>> +	}
->>>
->>>   From the bindings I understand that having two 'reg' values and no
->>> 'reg-names' at all is legal. Your patch implies differently. Who's right
->>> here?
->> I think if you have two two reg values, you should have reg-names , so
->> the binding should be updated ?
-> 
-> If the bindings are unclear or ambiguous (or wrong) then they should be
-> fixed in the first place. With bad bindings we can either have a bad but
-> compliant implementation or a good but non-compliant implementation.
-Binding update sent:
+[1/1] dt-bindings: ufs: Fix several grammar errors
+      https://git.kernel.org/mkp/scsi/c/be4b7e584a0c
 
-https://lore.kernel.org/dri-devel/20260104213457.128734-1-marek.vasut@mailbox.org/
+-- 
+Martin K. Petersen
 
