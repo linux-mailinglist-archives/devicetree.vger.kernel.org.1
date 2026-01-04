@@ -1,120 +1,120 @@
-Return-Path: <devicetree+bounces-251320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06BFACF15D1
-	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 22:44:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8141ACF163A
+	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 22:57:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 75ACD300EA24
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 21:43:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C957300663B
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 21:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C78F5314D02;
-	Sun,  4 Jan 2026 21:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBB72EC0AD;
+	Sun,  4 Jan 2026 21:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="DpmvsBmV"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="PYFToY2s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01E5314B83;
-	Sun,  4 Jan 2026 21:43:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.177.32
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098DB23D7C7;
+	Sun,  4 Jan 2026 21:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767563000; cv=none; b=EQ2XPBE0fyF3kp79vqPD8tu5wRK8vVWx65yIvA2+vik8eVrz6OzcBF5coSiDpD5O4WVHTUQDakCVmeBlNAD5JjHRqnfBJgFjseqfmSzwi5cLjNZ9nJushk+p+fdCaX/8oCAIDuMk4WCpmYbSBiox8YLME3nbeG82ekxwDY4D9tc=
+	t=1767563867; cv=none; b=JtWP0nOuY88DQZLHbRrGN0m98Sj8HXvbr+AmbZutHEWMFLmN4ABnXWTbkQexfLSHHhlVV+yu4GD5cAjO81f2dv82lxJHpW5NlWd+dlwSfME9AW3GRPDiXbQcOK5iqPUVSvSv6QHcnW/8Ohkh3xE+zoe/ffhtjcV2vutXpCkI+5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767563000; c=relaxed/simple;
-	bh=boA5OMAEjhl8pFf00i2VhzAPb6mM8UZcbloPgwtq4gI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=R2yiqRi/XHNTM5WBbfFNCn4RTRa1cbwST+2Fd4aCo/YqxhWiix2sPC4BV2zPdkPqDlqfVmBN+7r9Eo+Xkw/ZNo2Q82SdjmJClSO6aesiY5AUqUCsWf/hIhmqOAFNIvCJuylmp/cgymap7fczxHUkY9RUrczBZVTqwHu/UXJ0Cfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=DpmvsBmV; arc=none smtp.client-ip=205.220.177.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
-Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 604LW4Lk4188559;
-	Sun, 4 Jan 2026 21:42:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	corp-2025-04-25; bh=yKBRbmL2uoAxLnFtcn1Z31cpk9jSwiqmeefgGAzxEWs=; b=
-	DpmvsBmVGSYhFzeFUFubGJkwDNWSu53YZalLS7TvkyCalMWdyO4ZWuj37I7Ly/Wp
-	AL+GNZsEa+hbKOorBTBgrW+za+pn7c11Q++lHtL/ThqwZKw4V4eBoBXd7Di83jhC
-	ptM8XflipZuM1g06UzHyMCaf25IySI27USNtNNf+q23iP552fUS3lOXMyWiT4QbD
-	JTtjPkochlkSMsjNJM3A6Ipaja1vm6zO5FQXRXDNaU9RB0LPDARdPREnEAsGm6nW
-	EZ5VUNNkkk7lgo3YUpOiW8r/br4+Gd9aufNIF0VbnHiBm6DoQX5iFCku6cnfThVJ
-	/QffD3WBOB0UQxJdrha0TQ==
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4bev6ngxwm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sun, 04 Jan 2026 21:42:54 +0000 (GMT)
-Received: from pps.filterd (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 604GVRhw030640;
-	Sun, 4 Jan 2026 21:42:54 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 4besjarf3e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sun, 04 Jan 2026 21:42:54 +0000
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 604LgpJ0034017;
-	Sun, 4 Jan 2026 21:42:53 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 4besjarf2n-7;
-	Sun, 04 Jan 2026 21:42:53 +0000
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-To: Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Zhaoming Luo <zhml@posteo.com>
-Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: ufs: Fix several grammar errors
-Date: Sun,  4 Jan 2026 16:42:47 -0500
-Message-ID: <176756271681.1812936.13149182307929477826.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251217-fix-minor-grammar-err-v3-1-9be220cdd56a@posteo.com>
-References: <20251217-fix-minor-grammar-err-v3-1-9be220cdd56a@posteo.com>
+	s=arc-20240116; t=1767563867; c=relaxed/simple;
+	bh=VhGT3PPljMN3yCwtbhP+LXWPn6Izl0Y3rGjxnGALfTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j6x8ubog93kJZKdxnDwYzqIiOiBn7Kd8VBTfOy3XLbWlM3eLzKttdFQE0IhqeY4TtFk7qAOTPG4jlpmtxZvUi3ZQY1a0p7xdiutu66wR1wtJTY+9awzftTVI2HDc6aB80EJ2FZQWZzz3PuT2VV5saaO/ZOz3u3JevvLiUln9TtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=PYFToY2s; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=a8yx7++jg95Fb4tBgX4wIqK/rRdM6i4vlQ2QFhbgYXo=; b=PYFToY2sN7Jzq2mmZS7ocAZZ2x
+	MPXpdCkvqJLnofT6bbjDC1rRJyPgqhwUp1413ssxq05SNQCjnbwpQ8kDLJhHN5ceyGP4GOW2e9ByM
+	zd3TjPKCMToAOTBXSSNqob1YbAi83GveFi++P5HUXz8OeLFp5lLxBbrFgYUxhHr4Q86g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vcW6S-001PDp-9m; Sun, 04 Jan 2026 22:57:36 +0100
+Date: Sun, 4 Jan 2026 22:57:36 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, sjakhade@cadence.com,
+	rogerq@kernel.org, krzk@kernel.org, linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, srk@ti.com
+Subject: Re: [PATCH v2 2/2] phy: cadence-torrent: Add PCIe + XAUI multilink
+ configuration for 100MHz refclk
+Message-ID: <7fd42221-d602-4ce4-9f7f-6754ed91e7aa@lunn.ch>
+References: <20260104114422.2868321-1-s-vadapalli@ti.com>
+ <20260104114422.2868321-3-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-04_06,2025-12-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 phishscore=0 adultscore=0
- malwarescore=0 suspectscore=0 mlxscore=0 spamscore=0 mlxlogscore=741
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2512120000
- definitions=main-2601040199
-X-Proofpoint-ORIG-GUID: kff58srjdYGhsGpB-jQ9YJMzsLOxcP61
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA0MDIwMCBTYWx0ZWRfX7PysqfdtLKOc
- vG5/raAnS3d/nCp+JDFqbxuLVScIVDoTeUXqs6p28wbPIVBtPSxj5hNCaql6lVShEitSL8jJf58
- XrPUb+O0WHak9511LoMwF337lb0s8DdcRC7Xv4NMxzD+e/Fx0LvREiHiYjns2nBBfFONJGdIsHI
- b1GPDDs7rwISuR6Y3KaeQSYZ1ENN5h+UkbzkGCmZFJJ4/hG+NWrx33bG0FPnr7eQI6LGb3K5z1w
- k97aqe2ZvIjqRkQa/77oxjsTOkZM/FQxoqIjmdkFI1ieLWTnhG+cNhwAeBvVyp997xOunVVLgXa
- xOl7/2l7sc6ePBhc6UI2DXm3hy4E1+jSy9FltnACfi0S5AcmPX9ptM1ixt5hRPkLRCJ3kfhvSxb
- QjwF9VR6GBIvZXZBJRkR7cWj9OghTqN8h2ZrcsgHgQ0EHC0+kbbXpfGukpQp4V7ZbDZIjQlHG67
- k4vctrkjiUsyj/PIHhaI67rehh21lgU4Ei6yp0kA=
-X-Proofpoint-GUID: kff58srjdYGhsGpB-jQ9YJMzsLOxcP61
-X-Authority-Analysis: v=2.4 cv=QtFTHFyd c=1 sm=1 tr=0 ts=695adedf b=1 cx=c_pps
- a=e1sVV491RgrpLwSTMOnk8w==:117 a=e1sVV491RgrpLwSTMOnk8w==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=igFk8M4bcQljQk-mh6cA:9 a=QEXdDO2ut3YA:10 cc=ntf
- awl=host:13654
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260104114422.2868321-3-s-vadapalli@ti.com>
 
-On Wed, 17 Dec 2025 22:03:38 +0800, Zhaoming Luo wrote:
-
-> Fix several grammar errors.
+On Sun, Jan 04, 2026 at 05:14:18PM +0530, Siddharth Vadapalli wrote:
+> From: Swapnil Jakhade <sjakhade@cadence.com>
 > 
+> Add register sequences for PCIe + XAUI multilink configuration for
+> 100MHz reference clock.
 > 
+> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+> 
+> v1 of this patch is at:
+> https://lore.kernel.org/r/20251224054905.763399-3-s-vadapalli@ti.com/
+> No changes since v1.
+> 
+> Regards,
+> Siddharth.
+> 
+>  drivers/phy/cadence/phy-cadence-torrent.c | 143 ++++++++++++++++++++--
+>  1 file changed, 136 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/phy/cadence/phy-cadence-torrent.c b/drivers/phy/cadence/phy-cadence-torrent.c
+> index 37fa4bad6bd7..f0d870886cca 100644
+> --- a/drivers/phy/cadence/phy-cadence-torrent.c
+> +++ b/drivers/phy/cadence/phy-cadence-torrent.c
+> @@ -300,6 +300,7 @@ enum cdns_torrent_phy_type {
+>  	TYPE_USB,
+>  	TYPE_USXGMII,
+>  	TYPE_PCIE_ML,
+> +	TYPE_XAUI,
+>  };
+>  
+>  enum cdns_torrent_ref_clk {
+> @@ -320,14 +321,14 @@ enum cdns_torrent_ssc_mode {
+>  /* Unique key id for vals table entry
+>   * REFCLK0_RATE | REFCLK1_RATE | LINK0_TYPE | LINK1_TYPE | SSC_TYPE
+>   */
+> -#define REFCLK0_SHIFT	12
+> -#define REFCLK0_MASK	GENMASK(14, 12)
+> -#define REFCLK1_SHIFT	9
+> -#define REFCLK1_MASK	GENMASK(11, 9)
+> -#define LINK0_SHIFT	6
+> -#define LINK0_MASK	GENMASK(8, 6)
+> +#define REFCLK0_SHIFT	15
+> +#define REFCLK0_MASK	GENMASK(18, 15)
+> +#define REFCLK1_SHIFT	11
+> +#define REFCLK1_MASK	GENMASK(14, 11)
+> +#define LINK0_SHIFT	7
+> +#define LINK0_MASK	GENMASK(10, 7)
 
-Applied to 6.19/scsi-fixes, thanks!
+Why do these change? It would be good to add an explanation to the
+commit message about this, because it is not obvious why these need to
+change.
 
-[1/1] dt-bindings: ufs: Fix several grammar errors
-      https://git.kernel.org/mkp/scsi/c/be4b7e584a0c
-
--- 
-Martin K. Petersen
+       Andrew
 
