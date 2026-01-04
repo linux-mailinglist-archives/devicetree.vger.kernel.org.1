@@ -1,98 +1,180 @@
-Return-Path: <devicetree+bounces-251257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E2B3CF0941
-	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 04:23:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F165ECF0AC8
+	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 07:41:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E0729300A6E8
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 03:23:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0DD78300B9A1
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 06:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FC9B2BE641;
-	Sun,  4 Jan 2026 03:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9142E2F0E;
+	Sun,  4 Jan 2026 06:41:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.78.106])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E4D2C0299;
-	Sun,  4 Jan 2026 03:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.78.106
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC6A2E11B0
+	for <devicetree@vger.kernel.org>; Sun,  4 Jan 2026 06:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767497029; cv=none; b=RzG1NP1cGybki1300UQsq9fDVSgjnbEMKU9rQUr4xOAMVuSlvls8/f7VTJoMEG5MmkCjOPZC4CuMc59g6NZgaOOsTvskO6dmNMKBEyzUgYhV29fNDG8yNPt/aIwsLOt4VlwfL7U/zBhHS/1jpLQy89vol4L6Q332vusATDbO12U=
+	t=1767508906; cv=none; b=p9VuAlGVEfNHRjtbjGsaD6pa6GSRrHC6OypeKsH1lvUg5/eSCgLmoCH3gf9kmQxk0WUoTSwNSCrjxiF2yAymJkDQj6i+ffJSxMVaGJfaQdpAW+BU46fCUmnFNAy46eFjzQwDxpZ31JNmM4T29U5z3Jx780JsR4vhIT9wIXEzyJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767497029; c=relaxed/simple;
-	bh=Ri0yn1kHs7I1qeTNJLplp3x7lLC7KDEsmIJ1wVIweH8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=j0B2TdEeXnqO6tUF7nLZ3TK5apOs3RabCHg1bcsDFHgL6tOKE+u1IOWZ4aMJyk5vc+ynkqxbeHHECPLD9DFnRXI9csLEBR2f8rCQOKvIdEAyKjKrY6ugUQ2N5zn+nPwolKTIBABhSAUmub/BsDO5gYCjOkljuLfMIHlHM7NYmHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.78.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
- ajax-webmail-app2 (Coremail) ; Sun, 4 Jan 2026 11:23:21 +0800 (GMT+08:00)
-Date: Sun, 4 Jan 2026 11:23:21 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
-To: "Marcel Ziswiler" <marcel@ziswiler.com>, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	troy.mitchell@linux.dev, bmasney@redhat.com
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	ganboing@gmail.com
-Subject: Re: Re: [PATCH v9 2/3] clock: eswin: Add eic7700 clock driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <a7f4cf00b396096512d6947612031207c4d4459b.camel@ziswiler.com>
-References: <20251229105844.1089-1-dongxuyang@eswincomputing.com>
- <20251229105949.1202-1-dongxuyang@eswincomputing.com>
- <a7f4cf00b396096512d6947612031207c4d4459b.camel@ziswiler.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1767508906; c=relaxed/simple;
+	bh=LR3v+IUKl68liOTE/RU+8GZqLTOdGNu1mCmr8ME77xc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aQjdJnDv0FXMlFlVGhzDxC8TcIVCUV3IkXmGZeuQTp9TUyQoSxBIqdBvtk2J7wfQ3Dzhw3V44TCQ+1VbBwZA+CN+TBiDAWuz39qPuBQ6lMwff2ME+vmZLLgvrM8lgYgej/CUeP096XIqRsL6cAD9ylZ448xo7DqNzfM/Lln2Vxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.69.1])
+	by gateway (Coremail) with SMTP id _____8DxfcObC1ppp1IFAA--.16956S3;
+	Sun, 04 Jan 2026 14:41:31 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.69.1])
+	by front1 (Coremail) with SMTP id qMiowJCx2+CWC1ppbzUMAA--.28347S2;
+	Sun, 04 Jan 2026 14:41:28 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Yao Zi <me@ziyao.cc>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v3 0/9] LoongArch: DTS: Fix dtbs_check warnings
+Date: Sun,  4 Jan 2026 14:41:10 +0800
+Message-ID: <cover.1767505859.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <480d671d.1db1.19b8707eb98.Coremail.dongxuyang@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgDnK68p3Vlp4x+PAA--.5798W
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAgERAmlZRP4dS
-	QABsP
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowJCx2+CWC1ppbzUMAA--.28347S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAQEOCGlUuzUNPwADsE
+X-Coremail-Antispam: 1Uk129KBj93XoWxCw18Ar4Duw45Zry8uF4DAwc_yoW5AF4fpr
+	ZxuwsrGrs5JrWxArsxK34UCr15ZF98JwnrWanxAryrCanrZ34UZr4Sv3Z3XFWDArZYq342
+	qr4rKa1YgF45AabCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUkYb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+	6r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27w
+	Aqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE
+	14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCF04k20xvY0x
+	0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E
+	7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcV
+	C0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF
+	04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7
+	CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8xuctUUUUU==
 
-PiA+ICsKPiA+ICsvKiBkaXZpZGVyIGNsb2NrcyAqLwo+ID4gK3N0YXRpYyBzdHJ1Y3QgZXN3aW5f
-ZGl2aWRlcl9jbG9jayBlaWM3NzAwX2Rpdl9jbGtzW10gPSB7Cj4gPiArCUVJQzc3MDBfRElWKEVJ
-Qzc3MDBfQ0xLX0RJVl9TWVNfQ0ZHX0RZTk0sICJkaXZpZGVyX3N5c19jZmdfZGl2X2R5bm0iLAo+
-ID4gKwkJwqDCoMKgICJmaXhlZF9yYXRlX2Nsa19zcGxsMF9mb3V0MyIsIDAsCj4gPiArCQnCoMKg
-wqAgRUlDNzcwMF9SRUdfT0ZGU0VUX1NZU0NGR19DVFJMLCA0LCAzLAo+ID4gKwkJwqDCoMKgIENM
-S19ESVZJREVSX09ORV9CQVNFRCksCj4gPiArCUVJQzc3MDBfRElWKEVJQzc3MDBfQ0xLX0RJVl9O
-T0NfTlNQX0RZTk0sICJkaXZpZGVyX25vY19uc3BfZGl2X2R5bm0iLAo+ID4gKwkJwqDCoMKgICJm
-aXhlZF9yYXRlX2Nsa19zcGxsMl9mb3V0MSIsIDAsCj4gPiArCQnCoMKgwqAgRUlDNzcwMF9SRUdf
-T0ZGU0VUX05PQ19DVFJMLCAwLCAzLCBDTEtfRElWSURFUl9PTkVfQkFTRUQpLAo+ID4gKwlFSUM3
-NzAwX0RJVihFSUM3NzAwX0NMS19ESVZfQk9PVFNQSV9EWU5NLCAiZGl2aWRlcl9ib290c3BpX2Rp
-dl9keW5tIiwKPiA+ICsJCcKgwqDCoCAiZ2F0ZV9jbGtfc3BsbDBfZm91dDIiLCAwLCBFSUM3NzAw
-X1JFR19PRkZTRVRfQk9PVFNQSV9DVFJMLAo+ID4gKwkJwqDCoMKgIDQsIDYsIENMS19ESVZJREVS
-X09ORV9CQVNFRCksCj4gPiArCUVJQzc3MDBfRElWKEVJQzc3MDBfQ0xLX0RJVl9TQ1BVX0NPUkVf
-RFlOTSwKPiA+ICsJCcKgwqDCoCAiZGl2aWRlcl9zY3B1X2NvcmVfZGl2X2R5bm0iLCAiZml4ZWRf
-cmF0ZV9jbGtfc3BsbDBfZm91dDEiLAo+ID4gKwkJwqDCoMKgIDAsIEVJQzc3MDBfUkVHX09GRlNF
-VF9TQ1BVX0NPUkVfQ1RSTCwgNCwgNCwKPiA+ICsJCcKgwqDCoCBDTEtfRElWSURFUl9PTkVfQkFT
-RUQpLAo+ID4gKwlFSUM3NzAwX0RJVihFSUM3NzAwX0NMS19ESVZfTFBDUFVfQ09SRV9EWU5NLAo+
-ID4gKwkJwqDCoMKgICJkaXZpZGVyX2xwY3B1X2NvcmVfZGl2X2R5bm0iLCAiZml4ZWRfcmF0ZV9j
-bGtfc3BsbDBfZm91dDEiLAo+ID4gKwkJwqDCoMKgIDAsIEVJQzc3MDBfUkVHX09GRlNFVF9MUENQ
-VV9DT1JFX0NUUkwsIDQsIDQsCj4gPiArCQnCoMKgwqAgQ0xLX0RJVklERVJfT05FX0JBU0VEKSwK
-PiAKPiBEdXJpbmcgdGVzdGluZyBvbiB0b3Agb2YgbmV4dC0yMDI1MTIxOSBJIGdvdCB0aGUgZm9s
-bG93aW5nOgo+IAo+IFsgICAgMC4xMjYxMDJdIGRpdmlkZXJfbHBjcHVfY29yZV9kaXZfZHlubTog
-WmVybyBkaXZpc29yIGFuZCBDTEtfRElWSURFUl9BTExPV19aRVJPIG5vdCBzZXQKPiBbICAgIDAu
-MTI2MTk0XSBXQVJOSU5HOiBkcml2ZXJzL2Nsay9jbGstZGl2aWRlci5jOjE0NSBhdCBkaXZpZGVy
-X3JlY2FsY19yYXRlKzB4OGEvMHg5YywgQ1BVIzA6IHN3YXBwZXIvMC8xCj4gCj4gVGhlcmVmb3Jl
-IEkgc3VnZ2VzdCBmb3IgYWJvdmUgbGluZSBuZWVkaW5nIHRvIGJlOgo+IAo+ICsgICAgICAgICAg
-ICAgICAgICAgQ0xLX0RJVklERVJfT05FX0JBU0VEIHwgQ0xLX0RJVklERVJfQUxMT1dfWkVSTyks
-CgpIaSBNYXJjZWwsCgpUaGFuayB5b3UhIFRoaXMgaXMgaW5kZWVkIGEgYnVnIGFuZCB3aWxsIGJl
-IGZpeGVkIGluIHRoZSBuZXh0IHZlcnNpb24uwqAKQ291bGQgeW91IHBsZWFzZSBzaGFyZSB0aGUg
-ZGV0YWlsZWQgdGVzdGluZyBtZXRob2RzIHdpdGggbWUgc28gdGhhdCBJwqAKY2FuIHJlcHJvZHVj
-ZSB0aGlzIGlzc3VlIG9uIG15IHNpZGU/CgpCZXN0IHJlZ2FyZHMsClh1eWFuZyBEb25nCg==
+Hi all:
+
+As Krzysztof pointed out in the OSS talk, LoongArch only has three DTS,
+but has a bunch of warnings. The patchset attempts to fix them.
+
+Patch-1 and patch-5 are taken from Yao[1],thanks a lot!
+
+[1]: https://lore.kernel.org/all/20251209140006.54821-1-me@ziyao.cc/
+
+Test environment and results: 
+
+Package                   Version
+------------------------- -----------
+attrs                     25.4.0
+dtschema                  2025.12
+jsonschema                4.25.1
+jsonschema-specifications 2025.9.1
+pip                       25.3
+pylibfdt                  1.7.2.post1
+referencing               0.37.0
+rfc3987                   1.3.8
+rpds-py                   0.30.0
+ruamel.yaml               0.18.16
+ruamel.yaml.clib          0.2.15
+typing_extensions         4.15.0
+
+---------
+make dtbs_check W=1
+
+  SYNC    include/config/auto.conf
+  UPD     include/config/kernel.release
+  DTC [C] arch/loongarch/boot/dts/loongson-2k0500-ref.dtb
+  DTC [C] arch/loongarch/boot/dts/loongson-2k1000-ref.dtb
+  DTC [C] arch/loongarch/boot/dts/loongson-2k2000-ref.dtb
+
+========
+V3:
+patch (2/9)(3/9):
+ - New patches, document `#address-cells` property;
+
+patch (4/9):
+ - Rewrite commit title and message;
+ - Remove unneeded changes, leaving only the `#address-cells`
+   value set.
+
+patch (6/9):
+ - Set `#address-cells = <0>` to liointc node;
+
+patch (8/9):
+ - Set `#address-cells = <0>` to liointc and eiointc node;
+
+Link to V2:
+https://lore.kernel.org/all/cover.1766037997.git.zhoubinbin@loongson.cn/
+
+
+V2:
+patch(1/7)(3/7):
+ - Add myself s-o-b;
+
+patch(2/7):
+ - Define the value of #address-cells to 0;
+
+patch(5/7):
+ - Set `#address-cells = <0>` to liointc0 node;
+
+patch(7/7):
+ - Fix commit msg about `i2c@address`;
+ - Add Reviewed-by tag form Krzysztof, thanks.
+
+Link to V1:
+https://lore.kernel.org/all/cover.1765778124.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (7):
+  dt-bindings: interrupt-controller: loongson,eiointc: Document
+    address-cells
+  dt-bindings: interrupt-controller: loongson,liointc: Document
+    address-cells
+  dt-bindings: interrupt-controller: loongson,pch-pic: Document
+    address-cells
+  LoongArch: dts: loongson-2k0500: Add default interrupt controller
+    address cells
+  LoongArch: dts: loongson-2k1000: Add default Local I/O interrupt
+    controller address cells
+  LoongArch: dts: loongson-2k2000: Add default interrupt controller
+    address cells
+  LoongArch: dts: loongson-2k1000: Fix i2c-gpio node names
+
+Yao Zi (2):
+  dt-bindings: PCI: loongson: Document msi-parent property
+  LoongArch: dts: Describe PCI sideband IRQ through interrupt-extended
+
+ .../loongson,eiointc.yaml                     |  3 ++
+ .../loongson,liointc.yaml                     |  3 ++
+ .../loongson,pch-pic.yaml                     |  3 ++
+ .../devicetree/bindings/pci/loongson.yaml     |  2 ++
+ arch/loongarch/boot/dts/loongson-2k0500.dtsi  |  3 ++
+ arch/loongarch/boot/dts/loongson-2k1000.dtsi  | 31 +++++++---------
+ arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 35 ++++++++-----------
+ 7 files changed, 42 insertions(+), 38 deletions(-)
+
+
+base-commit: e8a259e82c7c3ee53e933bb238366ec2ba0bc892
+-- 
+2.47.3
+
 
