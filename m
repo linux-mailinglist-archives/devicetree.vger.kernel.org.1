@@ -1,120 +1,226 @@
-Return-Path: <devicetree+bounces-251321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8141ACF163A
-	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 22:57:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF0CDCF16A1
+	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 23:28:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4C957300663B
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 21:57:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 30E95300888C
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 22:28:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBB72EC0AD;
-	Sun,  4 Jan 2026 21:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F17A2EBB98;
+	Sun,  4 Jan 2026 22:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="PYFToY2s"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="QjHera+H";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="csyfBFOm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from fhigh-b3-smtp.messagingengine.com (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098DB23D7C7;
-	Sun,  4 Jan 2026 21:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF82421773F;
+	Sun,  4 Jan 2026 22:28:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767563867; cv=none; b=JtWP0nOuY88DQZLHbRrGN0m98Sj8HXvbr+AmbZutHEWMFLmN4ABnXWTbkQexfLSHHhlVV+yu4GD5cAjO81f2dv82lxJHpW5NlWd+dlwSfME9AW3GRPDiXbQcOK5iqPUVSvSv6QHcnW/8Ohkh3xE+zoe/ffhtjcV2vutXpCkI+5M=
+	t=1767565726; cv=none; b=bwEejrQRVZw8ap4WFqHQEXaOdzVO6HSXzGZQJn92Oi0n/Au2hleDVLnd6PqOq9HMqdNxNFSnhJjuq5gRXM/imL/rjppP7d7ENjFLwW5vukkgJU8VJGjLVzdbp8/hVVaDjZ6muRgKtIhfrCDo3Ke4Gl+WyxTMzaC3iRBqJVOrsX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767563867; c=relaxed/simple;
-	bh=VhGT3PPljMN3yCwtbhP+LXWPn6Izl0Y3rGjxnGALfTI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j6x8ubog93kJZKdxnDwYzqIiOiBn7Kd8VBTfOy3XLbWlM3eLzKttdFQE0IhqeY4TtFk7qAOTPG4jlpmtxZvUi3ZQY1a0p7xdiutu66wR1wtJTY+9awzftTVI2HDc6aB80EJ2FZQWZzz3PuT2VV5saaO/ZOz3u3JevvLiUln9TtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=PYFToY2s; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=a8yx7++jg95Fb4tBgX4wIqK/rRdM6i4vlQ2QFhbgYXo=; b=PYFToY2sN7Jzq2mmZS7ocAZZ2x
-	MPXpdCkvqJLnofT6bbjDC1rRJyPgqhwUp1413ssxq05SNQCjnbwpQ8kDLJhHN5ceyGP4GOW2e9ByM
-	zd3TjPKCMToAOTBXSSNqob1YbAi83GveFi++P5HUXz8OeLFp5lLxBbrFgYUxhHr4Q86g=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vcW6S-001PDp-9m; Sun, 04 Jan 2026 22:57:36 +0100
-Date: Sun, 4 Jan 2026 22:57:36 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, sjakhade@cadence.com,
-	rogerq@kernel.org, krzk@kernel.org, linux-phy@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, srk@ti.com
-Subject: Re: [PATCH v2 2/2] phy: cadence-torrent: Add PCIe + XAUI multilink
- configuration for 100MHz refclk
-Message-ID: <7fd42221-d602-4ce4-9f7f-6754ed91e7aa@lunn.ch>
-References: <20260104114422.2868321-1-s-vadapalli@ti.com>
- <20260104114422.2868321-3-s-vadapalli@ti.com>
+	s=arc-20240116; t=1767565726; c=relaxed/simple;
+	bh=O+IpDchxlvJhgCyVsqAUO2/nChF58kEZwbsZgYW86Xs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sTVKm0YBG4fRKEK5FlL+XFCmErmk7POq8nxhZr2j5H7ZKctIY4cdK8AvLLEbbhHmUDGbd7GYMuLxLyV6y75/QlwZ2NsMu/JbVm1HDIBgRES02jmvZ/5eXHzaqXxCZR7VdO+UperPlsIQa8vI0KGJlfhBnUA1fsM+fjmiWMf8s6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=QjHera+H; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=csyfBFOm; arc=none smtp.client-ip=202.12.124.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 3E5457A00C4;
+	Sun,  4 Jan 2026 17:28:42 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-04.internal (MEProxy); Sun, 04 Jan 2026 17:28:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1767565722; x=1767652122; bh=DN
+	I9SlYSsxQZ5zIwbhqK2NavWhLhE+JXTMeM6sCSlvk=; b=QjHera+H3ZFBTBoVhl
+	wOjuUhhdBgc0+TNdqgf49yFol5qAlP8rNKpKdcW7epjwPes+CFv51pOoJ92abhAJ
+	WW1sWy7tuOYfhWr9Zo8gUCIXe0QsN2XROias3uqnAsesyfmKp5KDl1sUR9EPAdJv
+	PV2ZJJmY7PelYaSQMxeGhfzaZf50exU9OS6V5GOAOGA/2eaIfCGkYIG2+VYipGoC
+	rBTltf03Cr2/JkWk3A9ygyD5OM21/prwhV31HAmL9pihGyat40PZrQxDns74btXT
+	xkVWu+XqcJbQNiP586UhPCHCPF/Rl8EDjOoe3VvBwMxuUZk6bU/PPsA3x11RsBrZ
+	pKEA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1767565722; x=1767652122; bh=DNI9SlYSsxQZ5zIwbhqK2NavWhLh
+	E+JXTMeM6sCSlvk=; b=csyfBFOmO6Qc/TDeDIHS2rC56KPkroxY4iXK3x9LZkhA
+	Vp0CMcuDvAwdVAxY5zTnF1u7voFYnOuW0rMNdmjPRS5Gy+5zrNOii7GQ07azPcB1
+	ZlwOXFK8LGxF353xWX6jf3NE8o8xPeiqu7CNd7Ai0Vq0pM27jvlzT5FBNV0nZ5Mm
+	fdzPVJr6ocxPyT1X/hQqRTxQV4fNPl7BurNSpQlbExFhHWBzvpWQ6QkEYMxz4zXC
+	aAF9tyW0q0BhckVumQlGqxNujDEy1Sjq1VKYIrivHHy/9EdXI1n2GuAiRFc1I9K1
+	APNDbXmypilQlJtYNUXsm9U33BM2ZiGEWKkVBz0nhw==
+X-ME-Sender: <xms:mOlaaZzSXJl1J0GWxuVdaK8HUOCc7m-CRQKIi8jRxjytUlIHdXMw7A>
+    <xme:mOlaaVmeD8_iyrvbR3y-C8RLMJCiW_04jpQLIf5yQV44lFNlef70wsjWM2P24SSin
+    Gg6xcyWZFlNggZX_hAXgCsKJ-jJQuDhS9tCsFDhc_y7IMc1FLWbaw>
+X-ME-Received: <xmr:mOlaaU8E7BP4v39aK1LoF0JSAOtCyHA2BNONwIa1GySNQDmgPLSxvR-qSkaiaRhBF0Va5NDWi94-XayaYlEjkTo1>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdelheeivdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomheppfhikhhlrghsucfu
+    npguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghsse
+    hrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnheptdehveefiedtvdekheff
+    vddtgfffiefgudffieevuddvfeelieefteekgeevgeetnecuffhomhgrihhnpehkvghrnh
+    gvlhdrohhrghdpfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghrufhiiigv
+    pedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhluhhnug
+    esrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtthhopedujedpmhhouggvpehsmhht
+    phhouhhtpdhrtghpthhtohepmhgrrhgvkhdrvhgrshhuthdorhgvnhgvshgrshesmhgrih
+    hlsghogidrohhrghdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghssehglhhiuggv
+    rhdrsggvpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtph
+    htthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepfhhrrghnkhdr
+    sghinhhnshesihhmghhtvggtrdgtohhmpdhrtghpthhtohepkhhriihkodgutheskhgvrh
+    hnvghlrdhorhhgpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhi
+    nhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehmrghgnhhushdruggrmhhmsehgmh
+    grihhlrdgtohhmpdhrtghpthhtohepmhgrthhtrdgtohhsthgvrhesihhmghhtvggtrdgt
+    ohhm
+X-ME-Proxy: <xmx:mOlaaYqOdUvbHlpGrpotCjy4EMZ_aN5wXpXI-4MwutXgKpDbOcmjxA>
+    <xmx:mOlaaQJJN5UqohPJVCB9jX1SyJ8Cx4WnSx57Jn3lUxqiOojzKvD0GA>
+    <xmx:mOlaaa26n2D4HH40CkCZ_p7_smxtO28AHlQDxQOhT2wO0MaBOlJP0Q>
+    <xmx:mOlaaXWc9c-HPdrYNSKUMjr-lji_m57lgAzQnpomNhGOFhogEDsozg>
+    <xmx:mulaaWld1ZzdhECyl84oHkRwOaAGy6O0JH7Lw_p8uOpLfD4VXt_wOH5k>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 4 Jan 2026 17:28:40 -0500 (EST)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Frank Binns <frank.binns@imgtec.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Matt Coster <matt.coster@imgtec.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-renesas-soc@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 0/2] arm64: dts: renesas: Describe GPU on D3
+Date: Sun,  4 Jan 2026 23:26:51 +0100
+Message-ID: <20260104222653.1659382-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260104114422.2868321-3-s-vadapalli@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jan 04, 2026 at 05:14:18PM +0530, Siddharth Vadapalli wrote:
-> From: Swapnil Jakhade <sjakhade@cadence.com>
-> 
-> Add register sequences for PCIe + XAUI multilink configuration for
-> 100MHz reference clock.
-> 
-> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> 
-> v1 of this patch is at:
-> https://lore.kernel.org/r/20251224054905.763399-3-s-vadapalli@ti.com/
-> No changes since v1.
-> 
-> Regards,
-> Siddharth.
-> 
->  drivers/phy/cadence/phy-cadence-torrent.c | 143 ++++++++++++++++++++--
->  1 file changed, 136 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/phy/cadence/phy-cadence-torrent.c b/drivers/phy/cadence/phy-cadence-torrent.c
-> index 37fa4bad6bd7..f0d870886cca 100644
-> --- a/drivers/phy/cadence/phy-cadence-torrent.c
-> +++ b/drivers/phy/cadence/phy-cadence-torrent.c
-> @@ -300,6 +300,7 @@ enum cdns_torrent_phy_type {
->  	TYPE_USB,
->  	TYPE_USXGMII,
->  	TYPE_PCIE_ML,
-> +	TYPE_XAUI,
->  };
->  
->  enum cdns_torrent_ref_clk {
-> @@ -320,14 +321,14 @@ enum cdns_torrent_ssc_mode {
->  /* Unique key id for vals table entry
->   * REFCLK0_RATE | REFCLK1_RATE | LINK0_TYPE | LINK1_TYPE | SSC_TYPE
->   */
-> -#define REFCLK0_SHIFT	12
-> -#define REFCLK0_MASK	GENMASK(14, 12)
-> -#define REFCLK1_SHIFT	9
-> -#define REFCLK1_MASK	GENMASK(11, 9)
-> -#define LINK0_SHIFT	6
-> -#define LINK0_MASK	GENMASK(8, 6)
-> +#define REFCLK0_SHIFT	15
-> +#define REFCLK0_MASK	GENMASK(18, 15)
-> +#define REFCLK1_SHIFT	11
-> +#define REFCLK1_MASK	GENMASK(14, 11)
-> +#define LINK0_SHIFT	7
-> +#define LINK0_MASK	GENMASK(10, 7)
+Hello,
 
-Why do these change? It would be good to add an explanation to the
-commit message about this, because it is not obvious why these need to
-change.
+This series adds the needed bindings to operate the PowerVR GPU on R-Car
+D3 SoC.
 
-       Andrew
+Together with the D3 clock changes [1] and a still OOT patch for the PVR 
+driver [2], I'm able to load firmware.
+
+    powervr fd000000.gpu: [drm] loaded firmware powervr/rogue_22.67.54.30_v1.fw
+    powervr fd000000.gpu: [drm] FW version v1.0 (build 6889268 OS)
+    powervr fd000000.gpu: [drm] Unsupported quirks in firmware image
+    powervr fd000000.gpu: [drm] Unsupported enhancements in firmware image
+    powervr fd000000.gpu: [drm] Unsupported features in firmware image
+    [drm] Initialized powervr 1.0.0 for fd000000.gpu on minor 1
+
+I can run vulkaninfo from mesa (need to add the driver to 
+pvr_drm_configs):
+
+    $ PVR_I_WANT_A_BROKEN_VULKAN_DRIVER=1 meson devenv -C builddir vulkaninfo --summary
+    WARNING: powervr is not a conformant Vulkan implementation, testing use only.
+    MESA: warning: Warning: The available RAM is below the minimum required by the Vulkan specification!
+    MESA: warning: ../src/imagination/vulkan/pvr_border.c:117: FINISHME: Devices without tpu_border_colour_enhanced require entries for compressed formats to be stored in the table pre-compressed.
+    ==========
+    VULKANINFO
+    ==========
+
+    Vulkan Instance Version: 1.4.328
+
+
+    Instance Extensions: count = 20
+    -------------------------------
+    VK_EXT_debug_report                    : extension revision 10
+    VK_EXT_debug_utils                     : extension revision 2
+    VK_EXT_headless_surface                : extension revision 1
+    VK_EXT_surface_maintenance1            : extension revision 1
+    VK_EXT_swapchain_colorspace            : extension revision 5
+    VK_KHR_device_group_creation           : extension revision 1
+    VK_KHR_display                         : extension revision 23
+    VK_KHR_external_fence_capabilities     : extension revision 1
+    VK_KHR_external_memory_capabilities    : extension revision 1
+    VK_KHR_external_semaphore_capabilities : extension revision 1
+    VK_KHR_get_display_properties2         : extension revision 1
+    VK_KHR_get_physical_device_properties2 : extension revision 2
+    VK_KHR_get_surface_capabilities2       : extension revision 1
+    VK_KHR_portability_enumeration         : extension revision 1
+    VK_KHR_surface                         : extension revision 25
+    VK_KHR_surface_protected_capabilities  : extension revision 1
+    VK_KHR_wayland_surface                 : extension revision 6
+    VK_KHR_xcb_surface                     : extension revision 6
+    VK_KHR_xlib_surface                    : extension revision 6
+    VK_LUNARG_direct_driver_loading        : extension revision 1
+
+    Instance Layers:
+    ----------------
+
+    Devices:
+    ========
+    GPU0:
+    	apiVersion         = 1.2.330
+    	driverVersion      = 25.99.99
+    	vendorID           = 0x1010
+    	deviceID           = 0x22054030
+    	deviceType         = PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU
+    	deviceName         = PowerVR Rogue GE8300
+    	driverID           = DRIVER_ID_IMAGINATION_OPEN_SOURCE_MESA
+    	driverName         = Imagination open-source Mesa driver
+    	driverInfo         = Mesa 26.0.0-devel (git-8fb0621f2d)
+    	conformanceVersion = 1.3.8.4
+    	deviceUUID         = 19031a08-e22f-9565-d78b-ddda8240380a
+    	driverUUID         = 48685174-7bd0-6840-5716-9d00003566aa
+    GPU1:
+    	apiVersion         = 1.4.330
+    	driverVersion      = 25.99.99
+    	vendorID           = 0x10005
+    	deviceID           = 0x0000
+    	deviceType         = PHYSICAL_DEVICE_TYPE_CPU
+    	deviceName         = llvmpipe (LLVM 21.1.4, 128 bits)
+    	driverID           = DRIVER_ID_MESA_LLVMPIPE
+    	driverName         = llvmpipe
+    	driverInfo         = Mesa 26.0.0-devel (git-8fb0621f2d) (LLVM 21.1.4)
+    	conformanceVersion = 1.3.1.1
+    	deviceUUID         = 6d657361-3236-2e30-2e30-2d6465766500
+    	driverUUID         = 6c6c766d-7069-7065-5555-49440000000
+
+I can't run test Vulkan applications such as gears as the PVR driver do 
+not support all features need for GE8300, for example 
+simple_internal_parameter_format_v1, see [3].
+
+1. https://lore.kernel.org/linux-renesas-soc/20260104205601.1587576-1-niklas.soderlund+renesas@ragnatech.se/T/#u
+2. https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38211#note_3177232
+3. https://gitlab.freedesktop.org/imagination/mesa/-/issues/13
+
+Niklas Söderlund (2):
+  dt-bindings: gpu: img,powervr-rogue: Document GE8300 GPU in Renesas
+    R-Car D3
+  arm64: dts: renesas: r8a77995: Add GE8300 GPU node
+
+ .../bindings/gpu/img,powervr-rogue.yaml       | 20 +++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77995.dtsi     | 15 ++++++++++++++
+ 2 files changed, 35 insertions(+)
+
+-- 
+2.52.0
+
 
