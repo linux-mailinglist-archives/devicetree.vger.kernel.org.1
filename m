@@ -1,252 +1,148 @@
-Return-Path: <devicetree+bounces-251274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E8ACF0BAF
-	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 08:54:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87C2BCF0C76
+	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 10:12:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5AD8D300C0F8
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 07:54:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6A710300909D
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 09:12:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE132E92B7;
-	Sun,  4 Jan 2026 07:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816E0279DA6;
+	Sun,  4 Jan 2026 09:12:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="m6Jy/Y7V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023137.outbound.protection.outlook.com [40.107.44.137])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E523418A6A7;
-	Sun,  4 Jan 2026 07:54:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.137
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32656207A32;
+	Sun,  4 Jan 2026 09:12:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767513249; cv=fail; b=mSuqKT1j8EVhSB7pIn72L5o2D5hPKEjWtEw9vKzLlJn5TWMyjNwaortNBTayJurjio5OJ30HU4NHPk3Kzh3Qyz/bUgV5TSK/LUfQH1UCbL93qVdUkX/mnXbBt97CYW2ObQ3QyDdF/h3+ihQnMtNd5h3jqpiRt1WVGqnChcZBMyk=
+	t=1767517936; cv=pass; b=VFvZs+2tOlUnSPDv2Z45oeO+OTuQsmmduPwdZw1dgv1R/+yWYEvTag17b+qfx6LqkmGsFsLjHCOgIR21o3KKTk2GqhZLfxz4DBwkfyB7TQeNs+T5e9Js1lVGpec3fkAc8AoUlKOUkxGZjmC4fhfEIQ1ESmesJda/n8p9P9/hU6A=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767513249; c=relaxed/simple;
-	bh=PcMShY/mWC4Zwc6uwyzgAXxQcLmKHzlbF1YAk1vRNGg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oX8RUzPCkNe9riMcc0H7NZgcV9nPGJSQoO2L6q/xjrkCZKT/L1hkJgO71uKfLMWXcnVn+UdpoVFahCedxdMGFYL9ZIGcYwnCjmkcSKFacZXJqEL8o+PMb3qzu4FRDLJ+oDNCI8sIsUbfql0LUiLabw7sJc5/GryXYp+Iho/1OC4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.137
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Od7jaY9DrXTm7/kuqx/wiyL7vgr7xHefZ93FM/aZJVn7/gCGtskj05rePZ1tAUrZKPnArloc+yo9drBgGSLLF62nX2pbSfm7LBbzv/U6da4hbhjbZ/sj9lBoMHrjJ2rwEYdJCJM7AH/kk7ML4gWoKb3z+oZr7cnK7G23HacwOaFtX1fIlFklYKSvDQszgvpcEKd0xmOMaSPM82YZTDG92RZ0oJ2jdGPiikJ2kxbzwu5XzvdUm9gYKTN54lha/MHa2uZwIolp5f87nlBNnamGD55rVn/fvhntuqkNkdhVfNEO0ZObwGd/zMO3g/Id8lcU5nXm9B3i4jrZ4nG4ti++VA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mJlTUhb/5UepKBoao7XHkzdJ0DZEnFzCirMi4DD3x9E=;
- b=mMhDT3Pbaeo7nuFf84D1qchGNpmphxrSi/Jk/6VGQU1Ph/YkiBTmeSMivNGTuurucTH2uyUdbbAL6qIqY8fZ6+f4s4AiTLmWoP6TLkJ5jRw1OdH+y1VEyo6LOzr2I/da/qR1eR3U25iMea/LUlxKGsRhacnN+y5nBu/CzosHEABM1D6y5FT+bi/FGc9NLOF0hYrcbiRdAz8wjqPiXXwOjV9XaiEBoNXWMdmcCxj4frnfZigLQeU3YkVzh+tUUCahE9K49dCFdnSKWDeohZYH216B4THQN4go51rcsdqY9ckUIL9sZYEC+jqaDYAd/S7DmvwtjbNtGcFsM6S/jHok1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PS2PR02CA0089.apcprd02.prod.outlook.com (2603:1096:300:5c::29)
- by TYZPR06MB5950.apcprd06.prod.outlook.com (2603:1096:400:333::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Sun, 4 Jan
- 2026 07:54:03 +0000
-Received: from OSA0EPF000000C8.apcprd02.prod.outlook.com
- (2603:1096:300:5c:cafe::4c) by PS2PR02CA0089.outlook.office365.com
- (2603:1096:300:5c::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9478.4 via Frontend Transport; Sun, 4
- Jan 2026 07:54:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000C8.mail.protection.outlook.com (10.167.240.54) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9499.1 via Frontend Transport; Sun, 4 Jan 2026 07:54:02 +0000
-Received: from localhost.localdomain (unknown [172.16.64.196])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 15DAC40A5BFE;
-	Sun,  4 Jan 2026 15:54:01 +0800 (CST)
-From: Gary Yang <gary.yang@cixtech.com>
-To: peter.chen@cixtech.com,
-	fugang.duan@cixtech.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-cix-kernel-upstream@cixtech.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Gary Yang <gary.yang@cixtech.com>
-Subject: [PATCH v3 2/2] arm64: dts: cix: Add OrangePi 6 Plus board support
-Date: Sun,  4 Jan 2026 15:54:00 +0800
-Message-ID: <20260104075400.1673101-3-gary.yang@cixtech.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260104075400.1673101-1-gary.yang@cixtech.com>
-References: <20260104075400.1673101-1-gary.yang@cixtech.com>
+	s=arc-20240116; t=1767517936; c=relaxed/simple;
+	bh=sh7H2vgM6G1QrWWIEKBdA+eLsPCBz2nELZw9EHcufXo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=s33WSvnkJd/u/MbJngoU2dip4QSgJs+uXfbkSZ0ali6WktisuQffvZkS11wYoS4CH1jbQVTi6GYx28DVCRV0FE2faE8VYaF5Foi6bQc/a5USIbDNrCt7VPoCQ1DLOUDhSEIw6kFSJzhGguBRHTPaVRpsHFsYm8uL7Nt+xZH8bAE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=m6Jy/Y7V; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1767517889; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=KsrWPos6ny4u9+U5SqBfYsen6Vw6r1JjFnk/oEA3GtIfIQ6EL/2v8a8rQJa+jmcWwKks0uCB8BTOCVuw965VrAlYftU2+uIEcG//aAZz2jvw/vc9YOzZ9G8zUrKuJ2dghierrpqyO9HfX1q517FBefLMilBmEM6UwVg6FqOY/jo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1767517889; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=L05UvUaL84OUDJeTop5CqpzB9OlZRXWekgv+Sku6Q4k=; 
+	b=QcjO4VttNLb19KI2tbkCYeoLnzJLiFgf8/r+WHeKyidcOGOuJ9YMpDq14C/izBz6ZKg4Ikz/pQZ87D+ZIIAwbkAd8uTaW4TXG2PEaAxZqxIfsyHyhy1Qq8q3BfwatV+kD0DRcMpe2yfn1t0CTLyFFjY+OxcZzWedaUGKb85iajY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767517889;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Cc:Cc:Subject:Subject:From:From:To:To:References:In-Reply-To:Reply-To;
+	bh=L05UvUaL84OUDJeTop5CqpzB9OlZRXWekgv+Sku6Q4k=;
+	b=m6Jy/Y7VzUBo5saIRAcl52rOCEeZIi0Teta+PF8qWS8gf0YSjykYzC0qJgJc4DI2
+	D8a+3o4BW5OeLI5ZjwjurMSxXGrk6wcM/JrZ5QFVWFv2wevxepcYrkgDAqDOVhtr4Ae
+	RsINBggvd8FNiUgDQPbRyccx7+m6f9ZHLTFERVrg=
+Received: by mx.zohomail.com with SMTPS id 1767517885291893.0220610416135;
+	Sun, 4 Jan 2026 01:11:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000C8:EE_|TYZPR06MB5950:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 098deefa-93cd-42ae-1ecd-08de4b666d79
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Zs0qgkrM3fnd9TObsJYrjFnJ/YdZo+BddUdac0L0eBMjhbkZ6oHJ9MhT8v2D?=
- =?us-ascii?Q?TUyhJzyXaqFHTmowZGB6rHa6HpuUAgsbrBlw5tBVsJaWKQGlBmJhrSJs2HvK?=
- =?us-ascii?Q?35Rf+aC3fJaX7zsOgeppDB2rABv2JYaGDc5+iGFbRa7CfAd/7OmY1KT5LqSo?=
- =?us-ascii?Q?TbouHoqfXDhGGDUVVi6k7i7jaCLu92HEBiuKsFwMNBWPJTtqg/K0DumFAUFd?=
- =?us-ascii?Q?FqHO9VrsJiPwoyVrpGPAnh8c+2dV4PtXz8lpanxTfr8UcIvQOl70xJi18Ypv?=
- =?us-ascii?Q?gRKlDi5X7iyzJBKlz5N+hARefSxGR5Z5f+tlvAx5lgpA7xQoDv6aO4MlLNpK?=
- =?us-ascii?Q?nixfaTFADwyPT+y4wSEw87DNAm95Al9z7qqVIuJc8jaNPg8ev/+fCLK5OrUW?=
- =?us-ascii?Q?OP726TDYDyHIGA7vulUaRQo+BSc9f17BK2uGPEuET9LvylUXrD8eza03O+Qp?=
- =?us-ascii?Q?q6OISecdaMHQTXvfisE13dPYepL6bLt7sVlmcJCwdjv6wV/y85WhRe2YgEzu?=
- =?us-ascii?Q?OXWYqCNHnJ3Pa1UE/nvKxRkay/a2jeCzeq/6xQG/rBeFeeSwOzt+bq+KWmak?=
- =?us-ascii?Q?uDTibRlNMUtj8qiqL+jUFG0t23ORIgC7etElh6y3lY1dyreD5R7k85JmfXAa?=
- =?us-ascii?Q?2WqJB0T8RnjQKC3T1OIsgh8XQ/aQsyMcAozkVc87vrR/FLhT53k8kUZZ38EK?=
- =?us-ascii?Q?3feE/nQ4pvNwy6Lqj633HbYuza7+Gd+dttiJ5ahuq8csR2vyqM/PM8QwBTN2?=
- =?us-ascii?Q?K7ob3HO932pwZNSPS5apy8S2xb3ZcqUa2Q38V4SST6GY4EXJOB7vYGrlYlYG?=
- =?us-ascii?Q?sBXifouJzGM88d+0v3yxb9bbQlcCv1kkwK/KYQ0wtco1Lcydf01sFuurecvR?=
- =?us-ascii?Q?RFPmBPJSh0ZoVISXXz3ITnJqgAaEXnT+Vy86FovIHBO0kPPwV+v1J0L2MORn?=
- =?us-ascii?Q?gpGtPDFFlDhFBY6AN78aEVKC9FVq2mcX/laU2iilin9E4XOGd2ZltPKij8VQ?=
- =?us-ascii?Q?y++6TRI3cGzTmebdxRlI3ojzniV8iWthIOkTxFfv2Zn3cI55kAJ9uO8vl48y?=
- =?us-ascii?Q?/J7z+X/Lv4UHUWI428+KhpXZRI8kb/CHA99kucWlgTsMlbdMiENgLIphAuA2?=
- =?us-ascii?Q?P7dE9qkFlDiET/eV9E7qQ57knXrLxoFTccs10SNcYayDLkuRcrTgu5jtWY7R?=
- =?us-ascii?Q?+JgJcp5LNFzdxK0tlviGeF7vHdCkjDmYrwH/mMj2qFCM9cQCINb2s9GneS8V?=
- =?us-ascii?Q?3SLFY0MLiH9F5aJizKk8i5CR3OT9p5lnIrMvjz2Z6HG2/CoXr3/OFSLKUzEn?=
- =?us-ascii?Q?TOSNILUXpJhwlfZ7zXP+hNlGKBMoKK4AK1yXouEHw1NUQcUlO5yN7t6jxIUv?=
- =?us-ascii?Q?WxmGX1beGUJjuRFCtg6jsqpKMqbXSJzW9Eb+rdfxRefLvE3yGdRN5Ba7I5zF?=
- =?us-ascii?Q?eCqRabNUh9Jp5Qld4ebG1q/LoPEan2ulQJ0C3x2VP4UlfTgPzNlX0IlFECaB?=
- =?us-ascii?Q?NvllXOL7gJlLSxrINt2+IiOuVpTSX0ZZMnERzferkk0qN88cF35dnUzCJQnl?=
- =?us-ascii?Q?KLCdpp8+QseraEbAY0g=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2026 07:54:02.5884
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 098deefa-93cd-42ae-1ecd-08de4b666d79
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	OSA0EPF000000C8.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB5950
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 04 Jan 2026 17:11:09 +0800
+Message-Id: <DFFOSJU7PN4A.KER1R2GT8EYZ@pigmoral.tech>
+Cc: "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
+ <sboyd@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, "Paul Walmsley" <pjw@kernel.org>, "Palmer
+ Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
+ "Alexandre Ghiti" <alex@ghiti.fr>, <linux-clk@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, "Troy Mitchell"
+ <troy.mitchell@linux.spacemit.com>, "Brian Masney" <bmasney@redhat.com>
+Subject: Re: [PATCH v4 1/6] clk: correct clk_div_mask() return value for
+ width == 32
+From: "Junhui Liu" <junhui.liu@pigmoral.tech>
+To: "David Laight" <david.laight.linux@gmail.com>, "Junhui Liu"
+ <junhui.liu@pigmoral.tech>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251231-dr1v90-cru-v4-0-1db8c877eb91@pigmoral.tech>
+ <20251231-dr1v90-cru-v4-1-1db8c877eb91@pigmoral.tech>
+ <20251231105651.430f75f8@pumpkin>
+In-Reply-To: <20251231105651.430f75f8@pumpkin>
+X-ZohoMailClient: External
 
-OrangePi 6 Plus adopts CIX CD8180/CD8160 SoC, built-in 12-core 64-bit
-processor + NPU processor,integrated graphics processor, equipped with
-16GB/32GB/64GB LPDDR5, and provides two M.2 KEY-M interfaces 2280 for NVMe
-SSD,as well as SPI FLASH and TF slots to meet the needs of fast read/write
-and high-capacity storage
+Hi David,
 
-Signed-off-by: Gary Yang <gary.yang@cixtech.com>
----
- arch/arm64/boot/dts/cix/Makefile     |  1 +
- arch/arm64/boot/dts/cix/sky1-xcp.dts | 83 ++++++++++++++++++++++++++++
- 2 files changed, 84 insertions(+)
- create mode 100644 arch/arm64/boot/dts/cix/sky1-xcp.dts
+On Wed Dec 31, 2025 at 6:56 PM CST, David Laight wrote:
+> On Wed, 31 Dec 2025 14:40:05 +0800
+> Junhui Liu <junhui.liu@pigmoral.tech> wrote:
+>
+>> The macro clk_div_mask() currently wraps to zero when width is 32 due to
+>> 1 << 32 being undefined behavior. This leads to incorrect mask generatio=
+n
+>> and prevents correct retrieval of register field values for 32-bit-wide
+>> dividers.
+>>=20
+>> Although it is unlikely to exhaust all U32_MAX div, some clock IPs may r=
+ely
+>> on a 32-bit val entry in their div_table to match a div, so providing a
+>> full 32-bit mask is necessary.
+>>=20
+>> Fix this by casting 1 to long, ensuring proper behavior for valid widths=
+ up
+>> to 32.
+>>=20
+>> Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+>> Reviewed-by: Brian Masney <bmasney@redhat.com>
+>> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+>> ---
+>>  include/linux/clk-provider.h | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>=20
+>> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+>> index 630705a47129..a651ccaf1b44 100644
+>> --- a/include/linux/clk-provider.h
+>> +++ b/include/linux/clk-provider.h
+>> @@ -720,7 +720,7 @@ struct clk_divider {
+>>  	spinlock_t	*lock;
+>>  };
+>> =20
+>> -#define clk_div_mask(width)	((1 << (width)) - 1)
+>> +#define clk_div_mask(width)	((1L << (width)) - 1)
+>
+> That makes no difference on 32bit architectures.
 
-diff --git a/arch/arm64/boot/dts/cix/Makefile b/arch/arm64/boot/dts/cix/Makefile
-index ed3713982012..8a6c6fdc4ec0 100644
---- a/arch/arm64/boot/dts/cix/Makefile
-+++ b/arch/arm64/boot/dts/cix/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_CIX) += sky1-orion-o6.dtb
-+dtb-$(CONFIG_ARCH_CIX) += sky1-xcp.dtb
-diff --git a/arch/arm64/boot/dts/cix/sky1-xcp.dts b/arch/arm64/boot/dts/cix/sky1-xcp.dts
-new file mode 100644
-index 000000000000..1fae52dc9bb0
---- /dev/null
-+++ b/arch/arm64/boot/dts/cix/sky1-xcp.dts
-@@ -0,0 +1,83 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright 2025 Cix Technology Group Co., Ltd.
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include "sky1.dtsi"
-+#include "sky1-pinfunc.h"
-+
-+/ {
-+	model = "Xunlong,OrangePi 6 Plus";
-+	compatible = "xunlong,orangepi-6-plus", "cix,sky1";
-+
-+	aliases {
-+		serial2 = &uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x0 0x28000000>;
-+			linux,cma-default;
-+		};
-+	};
-+
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_hog: hog-cfg {
-+		pins {
-+			pinmux = <CIX_PAD_GPIO144_FUNC_GPIO144>,
-+				<CIX_PAD_GPIO145_FUNC_GPIO145>,
-+				<CIX_PAD_GPIO146_FUNC_GPIO146>,
-+				<CIX_PAD_GPIO147_FUNC_GPIO147>;
-+			bias-pull-down;
-+			drive-strength = <8>;
-+		};
-+	};
-+};
-+
-+&iomuxc_s5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog_s5>;
-+
-+	pinctrl_hog_s5: hog-s5-cfg {
-+		pins {
-+			pinmux = <CIX_PAD_GPIO014_FUNC_GPIO014>;
-+			bias-pull-up;
-+			drive-strength = <8>;
-+
-+		};
-+	};
-+};
-+
-+&pcie_x8_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x2_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x1_1_rc {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
--- 
-2.49.0
+You're right. Thanks for pointing it out.
+
+> I also suspect you need to ensure the value is 'unsigned int'.
+> If you can guarantee that width isn't zero (probably true), then:
+> #define clk_div_mask(width) ((2u << (width) - 1) - 1)
+> should have the desired value for widths 1..32.
+> It probably adds an extra instruction.
+> (OTOH so does passing width as 'u8'.)
+>
+
+Thanks for your suggestion. After further consideration, I prefer using
+the standard GENMASK macro instead:
+
+#define clk_div_mask(width) GENMASK((width) - 1, 0)
+
+Using a unified kernel macro is better for maintenance and it also
+benefits from the compile time checks in GENMASK for constant inputs.
+This approach also supports a width range of 1..32, and even up to 64 on
+64-bit architectures.
+
+--=20
+Best regards,
+Junhui Liu
 
 
