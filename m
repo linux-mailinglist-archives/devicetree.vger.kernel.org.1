@@ -1,36 +1,36 @@
-Return-Path: <devicetree+bounces-251259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E336CF0AC2
-	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 07:41:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C1E0CF0ACB
+	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 07:42:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B7A9D300CB5F
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 06:41:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E249300DA47
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 06:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BF572E2DFB;
-	Sun,  4 Jan 2026 06:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71AC62E2F0E;
+	Sun,  4 Jan 2026 06:41:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 067452E11C7
-	for <devicetree@vger.kernel.org>; Sun,  4 Jan 2026 06:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80DF32E1758
+	for <devicetree@vger.kernel.org>; Sun,  4 Jan 2026 06:41:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767508906; cv=none; b=bzxOJvNWEOOEalqEsEmO/DGPniA+pFM1zVBkqOIBdqqKtuBBTxIQOlnt4zI9yaLGMtdzxg4f7vP85GTbCQdM9TLnn6SXgZOXLkp5nMbBMa3GfTtJ0xkzomJJVzvRtYmKWSqOR+T/rdzqsdLIH+BOHQupj4be4qcDMv+N3A0/FSI=
+	t=1767508909; cv=none; b=u7vI+agTT+xyJ/cKcM1CWRRuJ+6+NR7n18PXPG468SB+XKPwCFJOwfnaiLM7qvDb8B8Dp1nL6b/AhRAtZk0BGKMb1uePSZOhD9YKcW8OzRfVe1T3F5jLJbZSj3mjPWMWrGTsRQ/Z21Ty2Q9SxitjQiPd9Zd4M8gazOL+SUfcj6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767508906; c=relaxed/simple;
-	bh=RnVxskyqAy13UFjKv1o7YUk01teDpgQs89ugfKwizY4=;
+	s=arc-20240116; t=1767508909; c=relaxed/simple;
+	bh=XRvweoQRXnQW7zdjkM56yWJ4eX5Wh5UBNvvoqDlnL20=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pB53gqx3+/g16Ktyi4x/YDTXsRBI22UhS+umI0mrQ2Zdd3IWhZMoHwhVDGRUJc9NwLbkeBU/XBi+L3QO0aBZ+FRYicjR3FN5Wu6LCo3T8yaOJMpm3P443y3xqqOGqV877bEq+l9zl0QkXL+yrd8XxWsNAItAUlJhRLDa+nZFG+4=
+	 MIME-Version; b=oVh5h48BPFXt0Jdvs031IiJYZMCP0zp3W/PogGbY5fFAy67/RycKMkhKQ/6MaBRKcbcaua+Rpbsbo1YEzaeaS96k1RFQmmU5+jEzYtDKGZmrU2/W6qOluCrqgTgbgA2E2/kv2kp9aZVTv/xUZW6xcjqaOa1gXyb+KzxJtPeBIFk=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
 Received: from loongson.cn (unknown [223.64.69.1])
-	by gateway (Coremail) with SMTP id _____8Dx_8OdC1ppqlIFAA--.17069S3;
-	Sun, 04 Jan 2026 14:41:33 +0800 (CST)
+	by gateway (Coremail) with SMTP id _____8BxXcOfC1ppr1IFAA--.16781S3;
+	Sun, 04 Jan 2026 14:41:35 +0800 (CST)
 Received: from localhost.localdomain (unknown [223.64.69.1])
-	by front1 (Coremail) with SMTP id qMiowJCx2+CWC1ppbzUMAA--.28347S3;
-	Sun, 04 Jan 2026 14:41:32 +0800 (CST)
+	by front1 (Coremail) with SMTP id qMiowJCx2+CWC1ppbzUMAA--.28347S4;
+	Sun, 04 Jan 2026 14:41:34 +0800 (CST)
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 To: Yao Zi <me@ziyao.cc>,
 	Binbin Zhou <zhoubb.aaron@gmail.com>,
@@ -43,9 +43,9 @@ Cc: Huacai Chen <chenhuacai@kernel.org>,
 	loongarch@lists.linux.dev,
 	devicetree@vger.kernel.org,
 	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v3 1/9] dt-bindings: PCI: loongson: Document msi-parent property
-Date: Sun,  4 Jan 2026 14:41:11 +0800
-Message-ID: <15d61a50f0fcca34f6a5da5fbfdb181646d60fee.1767505859.git.zhoubinbin@loongson.cn>
+Subject: [PATCH v3 2/9] dt-bindings: interrupt-controller: loongson,eiointc: Document address-cells
+Date: Sun,  4 Jan 2026 14:41:12 +0800
+Message-ID: <3e903541d37432c88c27272094420b03418a607d.1767505859.git.zhoubinbin@loongson.cn>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1767505859.git.zhoubinbin@loongson.cn>
 References: <cover.1767505859.git.zhoubinbin@loongson.cn>
@@ -56,57 +56,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJCx2+CWC1ppbzUMAA--.28347S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAQERCGlaATYAeAAAsl
-X-Coremail-Antispam: 1Uk129KBj9xXoW7GFWkGr48Wry3XF45XF4DWrX_yoWktFXEvF
-	yxCFs5Crs8JF1Igwn0vr4xAFy3Za4Ik3Z8ua1kJanYy3WSv39xtF97J3s8ZF13Gr45ur15
-	uws7GrWkZr1xGosvyTuYvTs0mTUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUj1kv1TuYvT
+X-CM-TRANSID:qMiowJCx2+CWC1ppbzUMAA--.28347S4
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAgERCGlaARoAaQAAsb
+X-Coremail-Antispam: 1Uk129KBj9xXoWrKryDGF1fKryxKFWrAF48Xwc_yoWDGrg_uF
+	1xC3WrCr1DJFyIg3Z0vrs7tr13J347t3WIk3W2gF18A3WDtrn8GF97Z3yjkrWxXan8uF1r
+	XrZakrZ8ZFy7CosvyTuYvTs0mTUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUj1kv1TuYvT
 	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
-	cSsGvfJTRUUUb7kYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
-	vaj40_Wr0E3s1l1IIY67AEw4v_JF0_JFyl8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
-	w2x7M28EF7xvwVC0I7IYx2IY67AKxVWUJVWUCwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+	cSsGvfJTRUUUb7AYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+	vaj40_Wr0E3s1l1IIY67AEw4v_Jw0_Gr1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+	w2x7M28EF7xvwVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
 	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
 	Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc
-	02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAF
-	wI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxAIw28IcxkI7V
+	02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAF
+	wI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxAIw28IcxkI7V
 	AKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCj
 	r7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6x
-	IIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAI
+	IIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAI
 	w20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x
-	0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxU7TKZDUUUU
+	0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IUbCzuJUUUUU==
 
-From: Yao Zi <me@ziyao.cc>
+The Loongson Extend I/O interrupt controller can be referenced in
+interrupt-map properties (e.g. in
+arch/loongarch/boot/dts/loongson-2k0500.dtsi), thus the nodes should
+have address-cells property.
 
-Loongson PCI controllers found in LS2K1000/2000 SoCs
-(loongson,ls2k-pci), 7A1000/2000 bridge chips (loongson,ls7a-pci), and
-RS780E bridge chips (loongson,rs780e-pci) all have their paired MSI
-controllers.
-
-Though only the one in LS2K2000 SoC is described in devicetree, we
-should document the property for all variants. For the same reason, it
-isn't marked as required for now.
-
-Fixes: 83e757ecfd5d ("dt-bindings: Document Loongson PCI Host Controller")
-Signed-off-by: Yao Zi <me@ziyao.cc>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 ---
- Documentation/devicetree/bindings/pci/loongson.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/interrupt-controller/loongson,eiointc.yaml        | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pci/loongson.yaml b/Documentation/devicetree/bindings/pci/loongson.yaml
-index e5bba63aa947..26e77218b901 100644
---- a/Documentation/devicetree/bindings/pci/loongson.yaml
-+++ b/Documentation/devicetree/bindings/pci/loongson.yaml
-@@ -32,6 +32,8 @@ properties:
-     minItems: 1
-     maxItems: 3
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
+index 393c128a41d8..3c03d90058ed 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
+@@ -29,6 +29,9 @@ properties:
+   interrupts:
+     maxItems: 1
  
-+  msi-parent: true
++  '#address-cells':
++    const: 0
 +
- required:
-   - compatible
-   - reg
+   interrupt-controller: true
+ 
+   '#interrupt-cells':
 -- 
 2.47.3
 
