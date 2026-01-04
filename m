@@ -1,143 +1,111 @@
-Return-Path: <devicetree+bounces-251268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74B1CF0AF6
-	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 08:06:16 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EBB3CF0B20
+	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 08:09:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 60220301397E
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 07:06:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E2660300100A
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 07:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7D62E7165;
-	Sun,  4 Jan 2026 07:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F86E2EA178;
+	Sun,  4 Jan 2026 07:09:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292081E3DED;
-	Sun,  4 Jan 2026 07:06:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867D12DC339;
+	Sun,  4 Jan 2026 07:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767510374; cv=none; b=Hp++zUIbB9Rh+77CqOINMFyGYpbPiZxo5VwQpmkV48OhlmFBYfZlitysRm/KTDqCDDTcsW5WOXgn7WWM/qavb/y/c6BHmVYjyXuFdj/oo/K+0A6epU3WT1Ab/VphbIx348fibDgRgYlW6MfQjUVq56paYvMZK6WjwmlgZdbaito=
+	t=1767510592; cv=none; b=hS3q5ZuUaQryg8h+Y5mMz0+mc+TI2BYNNGf1y8yOk8/rUTTi/Tt2+iLAXhbQjRqjo+ysuOiW4+KTg8O26ufGfXY9ZKr6sqpU4k4stJQ8nN2QbShUgl1Zqd+uXQN5EeRBr8IcRW6aNwxVs8o6UA89+MurzsOX8EMlAUiuUKi2sxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767510374; c=relaxed/simple;
-	bh=U/drjaec94vByEJRrQZRJ0ugpd1FPnND4TRh+yCdSL8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qW17ivurE02h+iftac03SkCov5Wg77XoKzZpEroBQO/aW0MZPwEtCHsAk6ZPMS1u82qljbm8DIY1Gagb7kpvSlOZPqA+lLeLkGyLTp0j6wCDaDdMheTHHznBvMfvX0FtJTp+WlkQbjuuo0+FkLt0rbZK/NGZ/eH+v0WklAtuBN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.158])
-	by APP-03 (Coremail) with SMTP id rQCowADX4chVEVppyh5TAw--.52S2;
-	Sun, 04 Jan 2026 15:05:58 +0800 (CST)
-Message-ID: <1ad2f826e1537884dfac40287cfee286b2ef63fb.camel@iscas.ac.cn>
-Subject: Re: [PATCH] MIPS: Loongson64: dts: fix phy-related definition of
- LS7A GMAC
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Huacai Chen <chenhuacai@kernel.org>
-Cc: devicetree@vger.kernel.org, "linux-mips@vger.kernel.org"
-	 <linux-mips@vger.kernel.org>, linux-kernel@vger.kernel.org, 
-	"stable@vger.kernel.org"
-	 <stable@vger.kernel.org>
-Date: Sun, 04 Jan 2026 15:05:57 +0800
-In-Reply-To: <d1a0e0ca-22d3-4d58-beb1-88eae19c9a2e@app.fastmail.com>
-References: <20260102155243.3639731-1-zhengxingda@iscas.ac.cn>
-	 <d1a0e0ca-22d3-4d58-beb1-88eae19c9a2e@app.fastmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.44.4 
+	s=arc-20240116; t=1767510592; c=relaxed/simple;
+	bh=jxD9I1/mtI0PdIy74zATlnrLeDGBNw0gj9Pkvf2LzpE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=azOco9WONsYWgnZV8Al4YgLobCCKeogNX1bjiysubGpUxXva2JbYKzJq9Eb4HQbbAxXPEoUQdKiEw9UbRfMk27ZUSMlf8TLlKuHT2Vq4YZ+fcuSGpTwgmA4XEvk5JLXKVfs2sE2YzWw9UMB+YjVsADE5xpyRfrG/LRx4zERnLc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [223.160.207.26])
+	by APP-05 (Coremail) with SMTP id zQCowAAHnA8aElppQBI+Aw--.34953S2;
+	Sun, 04 Jan 2026 15:09:16 +0800 (CST)
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: conor@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	alex@ghiti.fr,
+	jiayu.riscv@isrc.iscas.ac.cn,
+	cyy@cyyself.name,
+	kingxukai@zohomail.com,
+	TroyMitchell988@gmail.com,
+	gaohan@iscas.ac.cn,
+	me@ziyao.cc
+Subject: [PATCH v2 0/2] Initial support for 100ask CanMV-K230 DshanPi
+Date: Sun,  4 Jan 2026 15:09:09 +0800
+Message-ID: <20260104070911.219588-1-jiayu.riscv@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-CM-TRANSID:rQCowADX4chVEVppyh5TAw--.52S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxCryfCr4xZryUJF1fKr1UGFg_yoWrGw4xpr
-	18Jr1UJryUJr18Jr1UJr1UJryUJr1UJw1UJr1UJF1UJr1UXr1jqr1UXr1jgr1UJr48Jr1U
-	Xr1Utr1UZr1UJrUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUPlb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
-	w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMc
-	vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACY4xI67k04243AVAKzVAKj4xxM4xv
-	F2IEb7IF0Fy26I8I3I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GF
-	yl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWU
-	JVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7V
-	AKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42
-	IY6I8E87Iv6xkF7I0E14v26r4j6r4UJwCE64xvF2IEb7IF0Fy7YxBIdaVFxhVjvjDU0xZF
-	pf9x07bnVb9UUUUU=
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:zQCowAAHnA8aElppQBI+Aw--.34953S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Zw4ftFy8JF45uw1UuFW7Arb_yoW8JFW8p3
+	y7uFs8GFy7Kr4I9F4a9w18Wr13Zwn5Xr1rWw13J3srJr45Zry8CFn3Xw45Xa4UJr17Ga4I
+	9a1rKw18WrW0v3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 
-5ZyoIDIwMjYtMDEtMDLmmJ/mnJ/kupTnmoQgMjI6MzYgKzAwMDDvvIxKaWF4dW4gWWFuZ+WGmemB
-k++8mgo+IAo+IAo+IE9uIEZyaSwgMiBKYW4gMjAyNiwgYXQgMzo1MiBQTSwgSWNlbm93eSBaaGVu
-ZyB3cm90ZToKPiA+IEN1cnJlbnRseSB0aGUgTFM3QSBHTUFDIGRldmljZSB0cmVlIG5vZGUgbGFj
-a3MgYSBwcm9wZXIgcGh5LWhhbmRsZQo+ID4gcHJvcGVydHkgcG9pbnRpbmcgdG8gdGhlIFBIWSBu
-b2RlLgo+ID4gCj4gPiBJbiBhZGRpdGlvbiwgdGhlIHBoeS1tb2RlIHByb3BlcnR5IHNwZWNpZmll
-cyAicmdtaWkiIHdpdGhvdXQgYW55Cj4gPiBpbnRlcm5hbCBkZWxheSBpbmZvcm1hdGlvbiwgd2hp
-Y2ggbWVhbnMgdGhlIGJvYXJkIHRyYWNlIG5lZWRzIHRvCj4gPiBhZGQgMm5zCj4gPiBkZWxheSB0
-byB0aGUgUkdNSUkgZGF0YSBsaW5lczsgYnV0IHRoYXQgaXNuJ3Qga25vd24gdG8gaGFwcGVuIG9u
-Cj4gPiBhbnkKPiA+IExvb25nc29uIGJvYXJkLiBUaGUgQUNQSS1iYXNlZCBpbml0aWFsaXphdGlv
-biBjb2RlcGF0aCwgd2hpY2ggaXMKPiA+IHVzZWQgb24KPiA+IExvb25nQXJjaC1iYXNlZCAzQTUw
-MDAgKyA3QTEwMDAgaGFyZHdhcmVzLCBzcGVjaWZpZXMgInJnbWlpLWlkIiBwaHkKPiA+IG1vZGUs
-IHdoaWNoIHNob3VsZCBiZSB0aGUgb25lIHdlIGFyZSB1c2luZy4KPiA+IAo+ID4gQWRkIHRoZSBs
-YWNraW5nIHBoeS1oYW5kbGUgcHJvcGVydHkgYW5kIHNldCBwcm9wZXIgcGh5LW1vZGUuCj4gPiAK
-PiA+IFRlc3RlZCBvbiBhIExTM0E0MDAwXzdBMTAwMF9OVUNfQk9BUkRfVjIuMSBib2FyZCB3aXRo
-IFlUODUyMVMgUEhZLgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBJY2Vub3d5IFpoZW5nIDx6aGVu
-Z3hpbmdkYUBpc2Nhcy5hYy5jbj4KPiAKPiBHb29kIGNhdGNoISBUaGlzIHdpdGggZmluZSB3aXRo
-IHJlYWx0ZWsgcGh5IGNoaXBzIGJ1dCBZVDg1MjFTIHNlZW1zCj4gdG8gYmUgcGlja3kuCgpJIHRo
-aW5rIHRoZXkgbWlnaHQgbm90IHdvcmsgd2l0aCBSZWFsdGVrIFBIWXMgbm93IGVpdGhlciwgY29u
-c2lkZXJpbmcKZGVsYXkgb3ZlcnJpZGUgY29kZSBmb3IgUlRMODIxMUUvRiBlbnRlcmVkIG1haW5s
-aW5lIFJlYWx0ZWsgUEhZIGRyaXZlci4KKFByZXZpb3VzbHkgaXQganVzdCBpZ25vcmVzIHRoZSBw
-aHktbW9kZSBpbnRlcm5hbCBkZWxheSBpbmZvcm1hdGlvbiBhbmQKcmVseSBvbiB3aGF0IGl0cyBz
-dHJhcCBwaW4gZGVmaW5lcykKCj4gCj4gUmV2aWV3ZWQtYnk6IEppYXh1biBZYW5nIDxqaWF4dW4u
-eWFuZ0BmbHlnb2F0LmNvbT4KPiAKPiBBbHNvIG1heWJlOgo+IAo+IENjOiBzdGFibGVAdmdlci5r
-ZXJuZWwub3JnCj4gCj4gR2l2ZW4gdGhvc2UgYm9hcmRzIHJlbHkgb24gYnVpbHQtaW4gRFQuCj4g
-Cj4gVGhhbmtzCj4gCj4gPiAtLS0KPiA+IMKgYXJjaC9taXBzL2Jvb3QvZHRzL2xvb25nc29uL2xz
-N2EtcGNoLmR0c2kgfCA2ICsrKystLQo+ID4gwqAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25z
-KCspLCAyIGRlbGV0aW9ucygtKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9taXBzL2Jvb3Qv
-ZHRzL2xvb25nc29uL2xzN2EtcGNoLmR0c2kgCj4gPiBiL2FyY2gvbWlwcy9ib290L2R0cy9sb29u
-Z3Nvbi9sczdhLXBjaC5kdHNpCj4gPiBpbmRleCBlZTcxMDQ1ODgzZTdlLi42ZGVlODU5MDlmNWE2
-IDEwMDY0NAo+ID4gLS0tIGEvYXJjaC9taXBzL2Jvb3QvZHRzL2xvb25nc29uL2xzN2EtcGNoLmR0
-c2kKPiA+ICsrKyBiL2FyY2gvbWlwcy9ib290L2R0cy9sb29uZ3Nvbi9sczdhLXBjaC5kdHNpCj4g
-PiBAQCAtMTk5LDcgKzE5OSw4IEBAIGdtYWNAMywwIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgPDEzCj4gPiBJUlFfVFlQRV9MRVZFTF9ISUdIPjsKPiA+IMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpbnRl
-cnJ1cHQtbmFtZXMgPSAibWFjaXJxIiwKPiA+ICJldGhfbHBpIjsKPiA+IMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpbnRlcnJ1
-cHQtcGFyZW50ID0gPCZwaWM+Owo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcGh5LW1vZGUgPSAicmdtaWkiOwo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgcGh5LW1vZGUgPSAicmdtaWktaWQiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcGh5LWhhbmRsZSA9IDwmcGh5MD47
-Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgbWRpbyB7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCNhZGRyZXNzLWNl
-bGxzID0gPDE+Owo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAjc2l6ZS1jZWxscyA9IDwwPjsK
-PiA+IEBAIC0yMjIsNyArMjIzLDggQEAgZ21hY0AzLDEgewo+ID4gwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCA8MTUKPiA+IElSUV9UWVBFX0xFVkVMX0hJR0g+Owo+ID4gwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlu
-dGVycnVwdC1uYW1lcyA9ICJtYWNpcnEiLAo+ID4gImV0aF9scGkiOwo+ID4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVy
-cnVwdC1wYXJlbnQgPSA8JnBpYz47Cj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaHktbW9kZSA9ICJyZ21paSI7Cj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqBwaHktbW9kZSA9ICJyZ21paS1pZCI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaHktaGFuZGxlID0gPCZwaHkx
-PjsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBtZGlvIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2FkZHJlc3Mt
-Y2VsbHMgPSA8MT47Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCNzaXplLWNlbGxzID0gPDA+
-Owo+ID4gLS0gCj4gPiAyLjUyLjAKPiAKCg==
+This series adds initial support for the 100ask CanMV-K230 DshanPi
+board based on Canaan K230 RISC-V SoC. There is a module on this
+development board.
+
+The board and module are documented, the basic board/module devicetrees
+are added.
+
+This series is based on the K230 clock series[1] and the patch 3 of the
+k230 pinctrl series[2].
+
+Link:  https://lore.kernel.org/all/20251127-b4-k230-clk-v9-0-3aa09e17faf5@zohomail.com/ [1]
+Link:  https://lore.kernel.org/all/20240926-k230-pinctrl-v2-3-a9a36fba4b34@163.com/ [2]
+
+Changes in v2:
+- Add a minus sign before items.
+- Link to v1: https://lore.kernel.org/all/20251229061318.16756-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Jiayu Du (2):
+  dt-bindings: riscv: canaan: add 100ask K230 boards compatible strings
+  riscv: dts: canaan: Add initial dshanpi board DT files
+
+ .../devicetree/bindings/riscv/canaan.yaml     |  5 ++
+ arch/riscv/boot/dts/canaan/Makefile           |  1 +
+ .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 82 +++++++++++++++++++
+ .../dts/canaan/k230-canmv-module-dshanpi.dtsi | 30 +++++++
+ 4 files changed, 118 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv-module-dshanpi.dtsi
+
+-- 
+2.52.0
 
 
