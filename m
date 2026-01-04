@@ -1,148 +1,340 @@
-Return-Path: <devicetree+bounces-251276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C2BCF0C76
-	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 10:12:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89989CF0D3D
+	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 12:23:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6A710300909D
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 09:12:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3EEA5300B903
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 11:23:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816E0279DA6;
-	Sun,  4 Jan 2026 09:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C205D256C6D;
+	Sun,  4 Jan 2026 11:23:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="m6Jy/Y7V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f8UsvlGB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32656207A32;
-	Sun,  4 Jan 2026 09:12:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767517936; cv=pass; b=VFvZs+2tOlUnSPDv2Z45oeO+OTuQsmmduPwdZw1dgv1R/+yWYEvTag17b+qfx6LqkmGsFsLjHCOgIR21o3KKTk2GqhZLfxz4DBwkfyB7TQeNs+T5e9Js1lVGpec3fkAc8AoUlKOUkxGZjmC4fhfEIQ1ESmesJda/n8p9P9/hU6A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767517936; c=relaxed/simple;
-	bh=sh7H2vgM6G1QrWWIEKBdA+eLsPCBz2nELZw9EHcufXo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=s33WSvnkJd/u/MbJngoU2dip4QSgJs+uXfbkSZ0ali6WktisuQffvZkS11wYoS4CH1jbQVTi6GYx28DVCRV0FE2faE8VYaF5Foi6bQc/a5USIbDNrCt7VPoCQ1DLOUDhSEIw6kFSJzhGguBRHTPaVRpsHFsYm8uL7Nt+xZH8bAE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=m6Jy/Y7V; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1767517889; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=KsrWPos6ny4u9+U5SqBfYsen6Vw6r1JjFnk/oEA3GtIfIQ6EL/2v8a8rQJa+jmcWwKks0uCB8BTOCVuw965VrAlYftU2+uIEcG//aAZz2jvw/vc9YOzZ9G8zUrKuJ2dghierrpqyO9HfX1q517FBefLMilBmEM6UwVg6FqOY/jo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1767517889; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=L05UvUaL84OUDJeTop5CqpzB9OlZRXWekgv+Sku6Q4k=; 
-	b=QcjO4VttNLb19KI2tbkCYeoLnzJLiFgf8/r+WHeKyidcOGOuJ9YMpDq14C/izBz6ZKg4Ikz/pQZ87D+ZIIAwbkAd8uTaW4TXG2PEaAxZqxIfsyHyhy1Qq8q3BfwatV+kD0DRcMpe2yfn1t0CTLyFFjY+OxcZzWedaUGKb85iajY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767517889;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Cc:Cc:Subject:Subject:From:From:To:To:References:In-Reply-To:Reply-To;
-	bh=L05UvUaL84OUDJeTop5CqpzB9OlZRXWekgv+Sku6Q4k=;
-	b=m6Jy/Y7VzUBo5saIRAcl52rOCEeZIi0Teta+PF8qWS8gf0YSjykYzC0qJgJc4DI2
-	D8a+3o4BW5OeLI5ZjwjurMSxXGrk6wcM/JrZ5QFVWFv2wevxepcYrkgDAqDOVhtr4Ae
-	RsINBggvd8FNiUgDQPbRyccx7+m6f9ZHLTFERVrg=
-Received: by mx.zohomail.com with SMTPS id 1767517885291893.0220610416135;
-	Sun, 4 Jan 2026 01:11:25 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CD38462
+	for <devicetree@vger.kernel.org>; Sun,  4 Jan 2026 11:23:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767525793; cv=none; b=Ka8SpsWXzlLQSkhfH2wvwEvO/DFHxNJDk63PeTivlM4iFCq7ixUwTLIBBdWXXJHJwocGU54PYPhp7YHG+zlkKqWLeDl+rouns6TfXxM67bc3Q660+sgP3fbH8QOzJD4c4C03rxRmOq/71pns4lewdbgvPCwuYbPuDeRZhYDgO88=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767525793; c=relaxed/simple;
+	bh=npSTI0tSsTDDUZL6ZjT89SNLiAlyAlKWqP8kIF7GmEE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=j6iiOmZKeEP4gXg8LVr7AVnHqJYjl0rDjMyPtfqgxf1H4cR/aOoLKZCz28fT+viu8ogoGGWSzxrK4bs+sOOBA40H07I+TF5do5FEu3nugHWOAdKMCZ8QvgwDHX1eoLQlrafCjClGEEtzLV/vyzchyjjz1HZQ8Cx2/rxk/WaBrE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f8UsvlGB; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-34c363eb612so13550894a91.0
+        for <devicetree@vger.kernel.org>; Sun, 04 Jan 2026 03:23:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767525791; x=1768130591; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G96jDgA1E2l3Yn0qNuopB/AyEGtTf6lIYwJ3Mkdboew=;
+        b=f8UsvlGBnsAuhMc6ydNozooG1Euko85CLay2bwOui/G3CQbxH6kUSujwzsm8wmtaw0
+         Ze/PzAHFLtiaIvPGgvKAjiKpgEnj8Erth1MH/bqyGE9da+JusMCA7+zi6eC5jKJkvBc+
+         q8mS6K6yAK81hWnS4XqD0txZLGu+vcxorp2pcHsN8cQAsu2/zE+d5xF949jGrCnMWmpy
+         fqoVMLQ9T/+/voC47j/KJNmkTID4GyZQ8W2bu8Z06yU80NLR1kyPTgxIRA8GtCRwb5q2
+         on/W5Q6C9nWz+4IM1ng2R91whM1Dr2PCBMP+LlOIx0totaw7gosdg5aMLU5F105hlaH6
+         e2/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767525791; x=1768130591;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G96jDgA1E2l3Yn0qNuopB/AyEGtTf6lIYwJ3Mkdboew=;
+        b=vjcMzUJgcxpw4kUtORDTKuyQHP3K5ZAfAAyUOBc+9UIsQ8nX+SrVMN/3Ia9AvSUuBb
+         KQiOhBcvtN/BDGsBVQd7JmavrD+Y6o8kuGh4a5kR0Kwq8IkOlZ3H9/2D5B/SwxJXtiMk
+         FJbod6Jd5nYiQHiVTNcsuVTe2gmOlflVTNdBCq5u0hWz/9cewYPVmNQoakY6j3dPXIhG
+         mewoUaNlqmiGyC2Ln7UePMVcT/xFUKsDRVpFYucbqkF2jkFGGi7H5Tcmb1l08d2w7Zy5
+         eTh2M/cJe6hmz4iSCbao71LA/FIBmN+b/930WZ7j/WRfsepRE2ZpaTqv92I9pCOfyK21
+         yO7w==
+X-Forwarded-Encrypted: i=1; AJvYcCXEcdfhXAJddO4uwxwbWWpTc5Q3ZjRjdVWGBS5kDVpIbHSyXwCotynSnFhXwY+WpnKiXQPLuCWjRR+x@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaVSKZjy6tT3sct1HsZspPCMSTGKCZ9Yv3B10haUM0rhwJQwSF
+	bxuEM1plGMdjpnpEWqakfsf7c3gonyzaWPuIyUWzjnnqIUx0rC5QiPlj
+X-Gm-Gg: AY/fxX7JPFf+FFpN1xUv1solr0s2lkCjJrne/YKXAgpcvOvLnZwLUXYLvyAWJyMPvlx
+	MJtAqB/auTFYu+I2p9El8AbB4uh0BEVYTobWFEhNdx0DqisKnx7laUdJbpiQpFm4WMXU4ISAWqj
+	r8Z11Weqtxz2cyKf94ige5QfPgRh0Kz3tzboYgW+tWTs+Y/G+Qah3eabjmGs6ZllxSWvpjgVAKq
+	yUUONuzlbEU1gR7v0qgDKdSshlHStF8sVtz3CVeaNuRWYzCtXEYpflG10VrJNGjthVfyVEKYWqV
+	0JCldvReT5U2jjZL+Baz91MA5WTLSfo8NVMbxc3LV8C3raJzuM5OzWdGDvkPQ0JoVPcxrmmmYA3
+	WsTwi9f9kA7wZd4Lu4gYeLc9N87y+B0aKwOydD3kw0HulRutzt4haR9gfBRjVIAOFEzEnYuoIu5
+	p4pMcU1gyV/OyUd2jyUFy/AQba5MBWaaYkZQ==
+X-Google-Smtp-Source: AGHT+IEPGCXrVIijArtHz2L+XXcTUNqsrO8wR5x/CMAdqzled4QYnZbK0goA5DKpZXsrONGlwN9SJA==
+X-Received: by 2002:a17:90b:4d87:b0:340:e521:bc73 with SMTP id 98e67ed59e1d1-34e921371c5mr38458142a91.5.1767525791257;
+        Sun, 04 Jan 2026 03:23:11 -0800 (PST)
+Received: from Black-Pearl.localdomain ([115.99.253.182])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-34f45cf5ff9sm2072867a91.6.2026.01.04.03.23.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Jan 2026 03:23:10 -0800 (PST)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Date: Sun, 04 Jan 2026 11:23:04 +0000
+Subject: [PATCH v5] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 04 Jan 2026 17:11:09 +0800
-Message-Id: <DFFOSJU7PN4A.KER1R2GT8EYZ@pigmoral.tech>
-Cc: "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
- <sboyd@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Philipp Zabel"
- <p.zabel@pengutronix.de>, "Paul Walmsley" <pjw@kernel.org>, "Palmer
- Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
- "Alexandre Ghiti" <alex@ghiti.fr>, <linux-clk@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
- <devicetree@vger.kernel.org>, "Troy Mitchell"
- <troy.mitchell@linux.spacemit.com>, "Brian Masney" <bmasney@redhat.com>
-Subject: Re: [PATCH v4 1/6] clk: correct clk_div_mask() return value for
- width == 32
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "David Laight" <david.laight.linux@gmail.com>, "Junhui Liu"
- <junhui.liu@pigmoral.tech>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251231-dr1v90-cru-v4-0-1db8c877eb91@pigmoral.tech>
- <20251231-dr1v90-cru-v4-1-1db8c877eb91@pigmoral.tech>
- <20251231105651.430f75f8@pumpkin>
-In-Reply-To: <20251231105651.430f75f8@pumpkin>
-X-ZohoMailClient: External
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260104-nvidia-nand-v5-1-0e147e416b4b@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAJdNWmkC/13OwW7CMAzG8VdBOS8odlyHcuI9ph3SxgVLI0XtF
+ G1CffcFtAnK8bP0+8tXM8ukMpv95momKTrrmOto3jamP8V8FKupboMOG3AANhdNGm2OOVmH1Pc
+ hyq5z0VRxmWTQ73vt/aPuk85f4/Rzjxe4Xf863q06BSzYwEAChDts8XA8R/3c9uPZ3DoFHxaxX
+ VustuM2pDYgda57tf7J+vX/xVeLwoGZkudAr5b+Lbv69NpStR4aHogHHxt5tsuy/AKR9TQOWgE
+ AAA==
+X-Change-ID: 20251011-nvidia-nand-024cc7ae8b0a
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Stefan Agner <stefan@agner.ch>, 
+ Lucas Stach <dev@lynxeye.de>
+Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.14.3
 
-Hi David,
+Convert NVIDIA Tegra NAND Flash Controller binding to YAML format.
+Changes during Conversion:
+- Define new properties `power-domains` and `operating-points-v2`
+  because the existing in tree DTS uses them.
+- Modify MAINTAINERS references to point the created YAML file.
 
-On Wed Dec 31, 2025 at 6:56 PM CST, David Laight wrote:
-> On Wed, 31 Dec 2025 14:40:05 +0800
-> Junhui Liu <junhui.liu@pigmoral.tech> wrote:
->
->> The macro clk_div_mask() currently wraps to zero when width is 32 due to
->> 1 << 32 being undefined behavior. This leads to incorrect mask generatio=
-n
->> and prevents correct retrieval of register field values for 32-bit-wide
->> dividers.
->>=20
->> Although it is unlikely to exhaust all U32_MAX div, some clock IPs may r=
-ely
->> on a 32-bit val entry in their div_table to match a div, so providing a
->> full 32-bit mask is necessary.
->>=20
->> Fix this by casting 1 to long, ensuring proper behavior for valid widths=
- up
->> to 32.
->>=20
->> Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
->> Reviewed-by: Brian Masney <bmasney@redhat.com>
->> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> ---
->>  include/linux/clk-provider.h | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>=20
->> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
->> index 630705a47129..a651ccaf1b44 100644
->> --- a/include/linux/clk-provider.h
->> +++ b/include/linux/clk-provider.h
->> @@ -720,7 +720,7 @@ struct clk_divider {
->>  	spinlock_t	*lock;
->>  };
->> =20
->> -#define clk_div_mask(width)	((1 << (width)) - 1)
->> +#define clk_div_mask(width)	((1L << (width)) - 1)
->
-> That makes no difference on 32bit architectures.
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v5:
+- Modify MAINTAINERS references to point YAML instead of TEXT file.
+- Link to v4: https://lore.kernel.org/r/20260103-nvidia-nand-v4-1-3156f46f3a5e@gmail.com
 
-You're right. Thanks for pointing it out.
+Changes in v4:
+- Changed the the reg property for nand child node.
+- Link to v3: https://lore.kernel.org/r/20251231-nvidia-nand-v3-1-2e67664d3674@gmail.com
 
-> I also suspect you need to ensure the value is 'unsigned int'.
-> If you can guarantee that width isn't zero (probably true), then:
-> #define clk_div_mask(width) ((2u << (width) - 1) - 1)
-> should have the desired value for widths 1..32.
-> It probably adds an extra instruction.
-> (OTOH so does passing width as 'u8'.)
->
+Changes in v3:
+- Removed pattern properties for partition.
+- Used single quotes for nand string in pattern properties.
+- Modified maxItems value and added minItems to reg property under nand child node.
+- Link to v2: https://lore.kernel.org/r/20251229-nvidia-nand-v2-1-b697d9724b0b@gmail.com
 
-Thanks for your suggestion. After further consideration, I prefer using
-the standard GENMASK macro instead:
+Changes in v2:
+- Edited the commit description to match the updated changes.
+- Modified the description for the YAML.
+- Removed all the duplicated properties, defined a proper ref for both parent
+  and child nodes.
+- Removed unnecessary properties from the required following the old
+  text binding.
+- Link to v1: https://lore.kernel.org/r/20251030-nvidia-nand-v1-1-7614e1428292@gmail.com
+---
+ .../bindings/mtd/nvidia,tegra20-nand.yaml          | 102 +++++++++++++++++++++
+ .../bindings/mtd/nvidia-tegra20-nand.txt           |  64 -------------
+ MAINTAINERS                                        |   2 +-
+ 3 files changed, 103 insertions(+), 65 deletions(-)
 
-#define clk_div_mask(width) GENMASK((width) - 1, 0)
+diff --git a/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+new file mode 100644
+index 000000000000..b417d72fa0de
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+@@ -0,0 +1,102 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/nvidia,tegra20-nand.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVIDIA Tegra NAND Flash Controller
++
++maintainers:
++  - Jonathan Hunter <jonathanh@nvidia.com>
++
++allOf:
++  - $ref: nand-controller.yaml
++
++description:
++  The NVIDIA NAND controller provides an interface between NVIDIA SoCs
++  and raw NAND flash devices. It supports standard NAND operations,
++  hardware-assisted ECC, OOB data access, and DMA transfers, and
++  integrates with the Linux MTD NAND subsystem for reliable flash management.
++
++properties:
++  compatible:
++    const: nvidia,tegra20-nand
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: nand
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: nand
++
++  power-domains:
++    maxItems: 1
++
++  operating-points-v2:
++    maxItems: 1
++
++patternProperties:
++  '^nand@':
++    type: object
++    description: Individual NAND chip connected to the NAND controller
++    $ref: raw-nand-chip.yaml#
++
++    properties:
++      reg:
++        maximum: 5
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/tegra20-car.h>
++    #include <dt-bindings/gpio/tegra-gpio.h>
++
++    nand-controller@70008000 {
++        compatible = "nvidia,tegra20-nand";
++        reg = <0x70008000 0x100>;
++        interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&tegra_car TEGRA20_CLK_NDFLASH>;
++        clock-names = "nand";
++        resets = <&tegra_car 13>;
++        reset-names = "nand";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        nand@0 {
++            reg = <0>;
++            #address-cells = <1>;
++            #size-cells = <1>;
++            nand-bus-width = <8>;
++            nand-on-flash-bbt;
++            nand-ecc-algo = "bch";
++            nand-ecc-strength = <8>;
++            wp-gpios = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_LOW>;
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt b/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
+deleted file mode 100644
+index 4a00ec2b2540..000000000000
+--- a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
++++ /dev/null
+@@ -1,64 +0,0 @@
+-NVIDIA Tegra NAND Flash controller
+-
+-Required properties:
+-- compatible: Must be one of:
+-  - "nvidia,tegra20-nand"
+-- reg: MMIO address range
+-- interrupts: interrupt output of the NFC controller
+-- clocks: Must contain an entry for each entry in clock-names.
+-  See ../clocks/clock-bindings.txt for details.
+-- clock-names: Must include the following entries:
+-  - nand
+-- resets: Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+-- reset-names: Must include the following entries:
+-  - nand
+-
+-Optional children nodes:
+-Individual NAND chips are children of the NAND controller node. Currently
+-only one NAND chip supported.
+-
+-Required children node properties:
+-- reg: An integer ranging from 1 to 6 representing the CS line to use.
+-
+-Optional children node properties:
+-- nand-ecc-mode: String, operation mode of the NAND ecc mode. Currently only
+-		 "hw" is supported.
+-- nand-ecc-algo: string, algorithm of NAND ECC.
+-		 Supported values with "hw" ECC mode are: "rs", "bch".
+-- nand-bus-width : See nand-controller.yaml
+-- nand-on-flash-bbt: See nand-controller.yaml
+-- nand-ecc-strength: integer representing the number of bits to correct
+-		     per ECC step (always 512). Supported strength using HW ECC
+-		     modes are:
+-		     - RS: 4, 6, 8
+-		     - BCH: 4, 8, 14, 16
+-- nand-ecc-maximize: See nand-controller.yaml
+-- nand-is-boot-medium: Makes sure only ECC strengths supported by the boot ROM
+-		       are chosen.
+-- wp-gpios: GPIO specifier for the write protect pin.
+-
+-Optional child node of NAND chip nodes:
+-Partitions: see mtd.yaml
+-
+-  Example:
+-	nand-controller@70008000 {
+-		compatible = "nvidia,tegra20-nand";
+-		reg = <0x70008000 0x100>;
+-		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&tegra_car TEGRA20_CLK_NDFLASH>;
+-		clock-names = "nand";
+-		resets = <&tegra_car 13>;
+-		reset-names = "nand";
+-
+-		nand@0 {
+-			reg = <0>;
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-			nand-bus-width = <8>;
+-			nand-on-flash-bbt;
+-			nand-ecc-algo = "bch";
+-			nand-ecc-strength = <8>;
+-			wp-gpios = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_LOW>;
+-		};
+-	};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e791f18b61d8..519dac4cc9c9 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -24829,7 +24829,7 @@ TEGRA NAND DRIVER
+ M:	Stefan Agner <stefan@agner.ch>
+ M:	Lucas Stach <dev@lynxeye.de>
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
++F:	Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+ F:	drivers/mtd/nand/raw/tegra_nand.c
+ 
+ TEGRA PWM DRIVER
 
-Using a unified kernel macro is better for maintenance and it also
-benefits from the compile time checks in GENMASK for constant inputs.
-This approach also supports a width range of 1..32, and even up to 64 on
-64-bit architectures.
+---
+base-commit: 43edce71d70c603d3f3f1b1c886f65cd02d80c24
+change-id: 20251011-nvidia-nand-024cc7ae8b0a
 
---=20
 Best regards,
-Junhui Liu
+-- 
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
 
