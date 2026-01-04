@@ -1,340 +1,187 @@
-Return-Path: <devicetree+bounces-251277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89989CF0D3D
-	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 12:23:16 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 627A8CF0D46
+	for <lists+devicetree@lfdr.de>; Sun, 04 Jan 2026 12:35:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3EEA5300B903
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 11:23:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 85C653000E82
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 11:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C205D256C6D;
-	Sun,  4 Jan 2026 11:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D861927F18B;
+	Sun,  4 Jan 2026 11:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f8UsvlGB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ni173/3A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CD38462
-	for <devicetree@vger.kernel.org>; Sun,  4 Jan 2026 11:23:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3307D2116F6
+	for <devicetree@vger.kernel.org>; Sun,  4 Jan 2026 11:35:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767525793; cv=none; b=Ka8SpsWXzlLQSkhfH2wvwEvO/DFHxNJDk63PeTivlM4iFCq7ixUwTLIBBdWXXJHJwocGU54PYPhp7YHG+zlkKqWLeDl+rouns6TfXxM67bc3Q660+sgP3fbH8QOzJD4c4C03rxRmOq/71pns4lewdbgvPCwuYbPuDeRZhYDgO88=
+	t=1767526507; cv=none; b=a3ND9m4kWd/MDPFGTHNvF1ZkV61UXekIKzEgTi3nWz/MTSJZTsA0N+VIHjQjpZEGjqNMiNOkaI/KJ1PG2p0AgJ24Gnck0kISutnZ7VGc0pISCkkVtVhdIfGHdKg+5gZDP9c4UEk7QOLdYPNhbxZQE7dImrGoki66zgs1Fdk4fWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767525793; c=relaxed/simple;
-	bh=npSTI0tSsTDDUZL6ZjT89SNLiAlyAlKWqP8kIF7GmEE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=j6iiOmZKeEP4gXg8LVr7AVnHqJYjl0rDjMyPtfqgxf1H4cR/aOoLKZCz28fT+viu8ogoGGWSzxrK4bs+sOOBA40H07I+TF5do5FEu3nugHWOAdKMCZ8QvgwDHX1eoLQlrafCjClGEEtzLV/vyzchyjjz1HZQ8Cx2/rxk/WaBrE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f8UsvlGB; arc=none smtp.client-ip=209.85.216.48
+	s=arc-20240116; t=1767526507; c=relaxed/simple;
+	bh=2CH21Mjz+J5xlWvBvZkrmqJPne/CINe1RNjfFq8eZ80=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EttaKs9Ott7qBvKw/sZx3WKWVEs/8+XxCE1zCYAzczyHDScFyMTjtvOaKW+RBvj+7o/0nJUETuShQZ10AwH7y3oVyNce8xNwIVAviFZOX+TRln4+zsZh+ew3SV8yES0ZZZUoa7KghAuH2xj149AHelhAL0t8ZmLCRqgMnE/SdD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ni173/3A; arc=none smtp.client-ip=209.85.221.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-34c363eb612so13550894a91.0
-        for <devicetree@vger.kernel.org>; Sun, 04 Jan 2026 03:23:11 -0800 (PST)
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-55b24eedd37so9694729e0c.0
+        for <devicetree@vger.kernel.org>; Sun, 04 Jan 2026 03:35:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767525791; x=1768130591; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=G96jDgA1E2l3Yn0qNuopB/AyEGtTf6lIYwJ3Mkdboew=;
-        b=f8UsvlGBnsAuhMc6ydNozooG1Euko85CLay2bwOui/G3CQbxH6kUSujwzsm8wmtaw0
-         Ze/PzAHFLtiaIvPGgvKAjiKpgEnj8Erth1MH/bqyGE9da+JusMCA7+zi6eC5jKJkvBc+
-         q8mS6K6yAK81hWnS4XqD0txZLGu+vcxorp2pcHsN8cQAsu2/zE+d5xF949jGrCnMWmpy
-         fqoVMLQ9T/+/voC47j/KJNmkTID4GyZQ8W2bu8Z06yU80NLR1kyPTgxIRA8GtCRwb5q2
-         on/W5Q6C9nWz+4IM1ng2R91whM1Dr2PCBMP+LlOIx0totaw7gosdg5aMLU5F105hlaH6
-         e2/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767525791; x=1768130591;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1767526505; x=1768131305; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=G96jDgA1E2l3Yn0qNuopB/AyEGtTf6lIYwJ3Mkdboew=;
-        b=vjcMzUJgcxpw4kUtORDTKuyQHP3K5ZAfAAyUOBc+9UIsQ8nX+SrVMN/3Ia9AvSUuBb
-         KQiOhBcvtN/BDGsBVQd7JmavrD+Y6o8kuGh4a5kR0Kwq8IkOlZ3H9/2D5B/SwxJXtiMk
-         FJbod6Jd5nYiQHiVTNcsuVTe2gmOlflVTNdBCq5u0hWz/9cewYPVmNQoakY6j3dPXIhG
-         mewoUaNlqmiGyC2Ln7UePMVcT/xFUKsDRVpFYucbqkF2jkFGGi7H5Tcmb1l08d2w7Zy5
-         eTh2M/cJe6hmz4iSCbao71LA/FIBmN+b/930WZ7j/WRfsepRE2ZpaTqv92I9pCOfyK21
-         yO7w==
-X-Forwarded-Encrypted: i=1; AJvYcCXEcdfhXAJddO4uwxwbWWpTc5Q3ZjRjdVWGBS5kDVpIbHSyXwCotynSnFhXwY+WpnKiXQPLuCWjRR+x@vger.kernel.org
-X-Gm-Message-State: AOJu0YyaVSKZjy6tT3sct1HsZspPCMSTGKCZ9Yv3B10haUM0rhwJQwSF
-	bxuEM1plGMdjpnpEWqakfsf7c3gonyzaWPuIyUWzjnnqIUx0rC5QiPlj
-X-Gm-Gg: AY/fxX7JPFf+FFpN1xUv1solr0s2lkCjJrne/YKXAgpcvOvLnZwLUXYLvyAWJyMPvlx
-	MJtAqB/auTFYu+I2p9El8AbB4uh0BEVYTobWFEhNdx0DqisKnx7laUdJbpiQpFm4WMXU4ISAWqj
-	r8Z11Weqtxz2cyKf94ige5QfPgRh0Kz3tzboYgW+tWTs+Y/G+Qah3eabjmGs6ZllxSWvpjgVAKq
-	yUUONuzlbEU1gR7v0qgDKdSshlHStF8sVtz3CVeaNuRWYzCtXEYpflG10VrJNGjthVfyVEKYWqV
-	0JCldvReT5U2jjZL+Baz91MA5WTLSfo8NVMbxc3LV8C3raJzuM5OzWdGDvkPQ0JoVPcxrmmmYA3
-	WsTwi9f9kA7wZd4Lu4gYeLc9N87y+B0aKwOydD3kw0HulRutzt4haR9gfBRjVIAOFEzEnYuoIu5
-	p4pMcU1gyV/OyUd2jyUFy/AQba5MBWaaYkZQ==
-X-Google-Smtp-Source: AGHT+IEPGCXrVIijArtHz2L+XXcTUNqsrO8wR5x/CMAdqzled4QYnZbK0goA5DKpZXsrONGlwN9SJA==
-X-Received: by 2002:a17:90b:4d87:b0:340:e521:bc73 with SMTP id 98e67ed59e1d1-34e921371c5mr38458142a91.5.1767525791257;
-        Sun, 04 Jan 2026 03:23:11 -0800 (PST)
-Received: from Black-Pearl.localdomain ([115.99.253.182])
-        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-34f45cf5ff9sm2072867a91.6.2026.01.04.03.23.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Jan 2026 03:23:10 -0800 (PST)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Sun, 04 Jan 2026 11:23:04 +0000
-Subject: [PATCH v5] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT
- schema
+        bh=0Uxk5fma9Zz72XWcwUam201+Y88drL6r+xukHn0NhFc=;
+        b=Ni173/3AutzgwcAwdBZbRKpNMTjEJaeb7Hgx+Jw/Ko1D8fKtLAsGWNJGA2j18DJq+T
+         O3CCd+GI897KP/kSZPRYRTT3VnExzPD3wvMsjdQQvNk1r4uWFJLAwL3sFHdW2CShIeY1
+         b8XJRMvrLllJaAbTwnDdPdSle58NlG8Vhi6HdQ6g88DLVyMkzK8JtUqtWuEzlk3aRt+7
+         MDErM9szzeZRUG1eGXG0PoGIGlyTcqmyafb9jKcIk9gCrzisZZKTBmoiC7aAJaYfDF7O
+         aO6V4owfrnU2h00aE2igvgq/bslA+X4DdaFcXIpxXUp2AZTvHxHJOKeIIKeFjDRgzvBd
+         NCFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767526505; x=1768131305;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=0Uxk5fma9Zz72XWcwUam201+Y88drL6r+xukHn0NhFc=;
+        b=CsimMIHa2y7UKR1dVf6McedoW1ZxaxfuPSOynQ2WdeRWWmBhW0UrO7zTIslo/WBefG
+         4Bz9MGly2tzyFUudripGLBDoehLqJyWYzwTGd/yoxA/N6yXIToulkLnhlA6Y1qgzf68H
+         PcC9t7MsZCoimKQhA610MeWOgLHx5CsdDyz7GP1MD9P8i084LJMHZooep0HRq8BIjHHK
+         LeBFK6xEfa71jS/wBzjCe2kacUoxLypq22LnZUcFAyYpUlzR1I8jigD+8U8LlK0Ye9g+
+         JpuRKp1RPpmaaMHig3lQMcocXRLDlLpyF3rPmRb2nSME/CJvwN++pDolhmv+2NQ3Wku+
+         a0iw==
+X-Forwarded-Encrypted: i=1; AJvYcCV7dVzvVSZ78SRputr5uvOx7Yiz278pmhuN/wNBPERJqbEYyR8tyFimJIs5nvHAdCxn+kjaCQRMVQOA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXKbr4pdT3a4omQZFBfW/ZblcMi/zMXKDffMouLCfZ1vOp0J0m
+	XcTBe8SNWvokf6fkYmGxnjsnzKJy0eunhxVfMb4a2wbEEjNd6vVJ33rj1/YTU6mjBUu+S8MYdq9
+	Ie9kFCHYXgp34MYBSyPBKqQcU+I0rSOU=
+X-Gm-Gg: AY/fxX6KWMH0cUoDm6KRoT6TwRkvsYkxRgq/9E2B3JxwvrYkzG7+JM2mwwwOI4pHjeK
+	jjje71wPOl+KrPuqzL3ZGxca1A7bWM60As1HfFiulAiFiPoCs1Q6dESPU/6wbMXDltrocF7UNye
+	7TJcYmAJzo45A1QN1otNqTD6ldIVry0VcIBtB/SJFaa8m1YjmwJrUlZv55v2b7yeE4Amm8zSQcV
+	MrCg++J8nG2pGiPbxCRs/6gJ2EiB39OR2+l3rLiyx5Z1kLRVGNgYq+tdcX9iY9Adwc5fJogfWwK
+	Vhfw
+X-Google-Smtp-Source: AGHT+IHwLuSqVVKWRso4bp5bYDarpI9ooBPmOe4Byorg/dHejQoAr6ynmhHM4/TjAwV7ytAUkLi/fneXnZHsnPECwmg=
+X-Received: by 2002:a05:6122:8c26:b0:559:ebd7:56e4 with SMTP id
+ 71dfb90a1353d-5615bceb93amr14979780e0c.5.1767526505003; Sun, 04 Jan 2026
+ 03:35:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260104-nvidia-nand-v5-1-0e147e416b4b@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAJdNWmkC/13OwW7CMAzG8VdBOS8odlyHcuI9ph3SxgVLI0XtF
- G1CffcFtAnK8bP0+8tXM8ukMpv95momKTrrmOto3jamP8V8FKupboMOG3AANhdNGm2OOVmH1Pc
- hyq5z0VRxmWTQ73vt/aPuk85f4/Rzjxe4Xf863q06BSzYwEAChDts8XA8R/3c9uPZ3DoFHxaxX
- VustuM2pDYgda57tf7J+vX/xVeLwoGZkudAr5b+Lbv69NpStR4aHogHHxt5tsuy/AKR9TQOWgE
- AAA==
-X-Change-ID: 20251011-nvidia-nand-024cc7ae8b0a
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Stefan Agner <stefan@agner.ch>, 
- Lucas Stach <dev@lynxeye.de>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.14.3
+References: <20251224-checkscript_dt_bindings_fp-v1-1-0e18877ced62@gmail.com> <aVjgRs4ODrKiItvd@archie.me>
+In-Reply-To: <aVjgRs4ODrKiItvd@archie.me>
+From: Alex Tran <alex.t.tran@gmail.com>
+Date: Sun, 4 Jan 2026 03:34:56 -0800
+X-Gm-Features: AQt7F2pZGLtLwN7RAF8tT8mukxBm5U4sw0imIVnnlDEB-qFPecCvAbXVea4HmiA
+Message-ID: <CA+hkOd4kH-6omKU2TTKZdxSeTK9Z7dqq6zVO8_NUxkWTfMG5Hw@mail.gmail.com>
+Subject: Re: [PATCH] checkpatch: Fix false positive check for dt-binding docs
+ and include
+To: Bagas Sanjaya <bagasdotme@gmail.com>
+Cc: Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>, 
+	Dwaipayan Ray <dwaipayanray1@gmail.com>, Lukas Bulwahn <lukas.bulwahn@gmail.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Convert NVIDIA Tegra NAND Flash Controller binding to YAML format.
-Changes during Conversion:
-- Define new properties `power-domains` and `operating-points-v2`
-  because the existing in tree DTS uses them.
-- Modify MAINTAINERS references to point the created YAML file.
+On Sat, Jan 3, 2026 at 1:24=E2=80=AFAM Bagas Sanjaya <bagasdotme@gmail.com>=
+ wrote:
+>
+> [CC'ing devicetree people]
+>
+> On Wed, Dec 24, 2025 at 05:41:17PM -0800, Alex Tran wrote:
+> > The check for when to display a DT_SPLIT_BINDING_PATCH warning
+> > is performed on all files that are not MAINTAINERS files.
+> > This causes issues, specifically when checking against a
+> > patch that only touches docs/dt-bindings or a patch that
+> > only touches include/dt-bindings. The warning is still
+> > displayed when it should not be, giving false positives.
+> >
+> > The check for when to issue a DT_SPLIT_BINDING_PATCH warning
+> > is currently too pervasive and should only be performed when
+> > a change under docs/dt-bindings is detected or include/dt-bindings.
+> > If the current changed file is under include/dt-bindings or
+> > docs/dt-bindings then it is compared to the last file detected
+> > under include/dt-bindings or docs/dt-bindings. If there is a
+> > difference then a warning is issued.
+>
+> Can you elaborate on example of where this issue occurs?
+> I'm still confused...
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
-Changes in v5:
-- Modify MAINTAINERS references to point YAML instead of TEXT file.
-- Link to v4: https://lore.kernel.org/r/20260103-nvidia-nand-v4-1-3156f46f3a5e@gmail.com
+I recently submitted a patch that converted a dt-binding from txt to
+yaml format. The patch included the deletion of a txt file and the
+addition of a yaml file under Documentation/devicetree. No files were
+edited under the include/dt-bindings directory and yet the warning:
+"DT binding docs and includes should be a separate patch.", was still
+issued when running the checkpatch script.
 
-Changes in v4:
-- Changed the the reg property for nand child node.
-- Link to v3: https://lore.kernel.org/r/20251231-nvidia-nand-v3-1-2e67664d3674@gmail.com
+> >
+> > Signed-off-by: Alex Tran <alex.t.tran@gmail.com>
+> > ---
+> >  scripts/checkpatch.pl | 12 ++++++------
+> >  1 file changed, 6 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+> > index c0250244cf7a3cb5e289b04fa4a9f644692dc278..fe3499bc9adda158c88231b=
+48b3b0100f3af0ee1 100755
+> > --- a/scripts/checkpatch.pl
+> > +++ b/scripts/checkpatch.pl
+> > @@ -2668,7 +2668,7 @@ sub process {
+> >       my $authorsignoff =3D 0;
+> >       my $author_sob =3D '';
+> >       my $is_patch =3D 0;
+> > -     my $is_binding_patch =3D -1;
+> > +     my $is_doc_binding_patch =3D -1;
+> >       my $in_header_lines =3D $file ? 0 : 1;
+> >       my $in_commit_log =3D 0;          #Scanning lines before patch
+> >       my $has_patch_separator =3D 0;    #Found a --- line
+> > @@ -2924,13 +2924,13 @@ sub process {
+> >                       }
+> >                     > > +                             my $last_binding_=
+patch_is_doc =3D $is_doc_binding_patch;  $checklicenseline =3D 1;
+> >
+> > -                     if ($realfile !~ /^MAINTAINERS/) {
+> > -                             my $last_binding_patch =3D $is_binding_pa=
+tch;
+> > +                     if ($realfile =3D~ m@^(?:Documentation/devicetree=
+/|include/dt-bindings/)@) {
+> > +                             my $last_binding_patch_is_doc =3D $is_doc=
+_binding_patch;
+> >
+> > -                             $is_binding_patch =3D () =3D $realfile =
+=3D~ m@^(?:Documentation/devicetree/|include/dt-bindings/)@;
+> > +                             $is_doc_binding_patch =3D () =3D $realfil=
+e =3D~ m@^(?:Documentation/devicetree/)@;
+> >
+> > -                             if (($last_binding_patch !=3D -1) &&
+> > -                                 ($last_binding_patch ^ $is_binding_pa=
+tch)) {
+> > +                             if (($last_binding_patch_is_doc !=3D -1) =
+&&
+> > +                                 ($last_binding_patch_is_doc ^ $is_doc=
+_binding_patch)) {
+> >                                       WARN("DT_SPLIT_BINDING_PATCH",
+> >                                            "DT binding docs and include=
+s should be a separate patch. See: Documentation/devicetree/bindings/submit=
+ting-patches.rst\n");
+> >                               }
+> >
+>
+> I can't say for the actuall diff, though.
+The diff is changing when the warning should be issued; If the current
+file is under docs/dt-bindings or include/dt-bindings then it checks
+if the last bindings file was a docs dt-binding file. And compares it
+with the current file. If there is a mismatch then the current file
+must be under include/dt-bindings and the warning should be issued,
+otherwise not.
 
-Changes in v3:
-- Removed pattern properties for partition.
-- Used single quotes for nand string in pattern properties.
-- Modified maxItems value and added minItems to reg property under nand child node.
-- Link to v2: https://lore.kernel.org/r/20251229-nvidia-nand-v2-1-b697d9724b0b@gmail.com
-
-Changes in v2:
-- Edited the commit description to match the updated changes.
-- Modified the description for the YAML.
-- Removed all the duplicated properties, defined a proper ref for both parent
-  and child nodes.
-- Removed unnecessary properties from the required following the old
-  text binding.
-- Link to v1: https://lore.kernel.org/r/20251030-nvidia-nand-v1-1-7614e1428292@gmail.com
----
- .../bindings/mtd/nvidia,tegra20-nand.yaml          | 102 +++++++++++++++++++++
- .../bindings/mtd/nvidia-tegra20-nand.txt           |  64 -------------
- MAINTAINERS                                        |   2 +-
- 3 files changed, 103 insertions(+), 65 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
-new file mode 100644
-index 000000000000..b417d72fa0de
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/nvidia,tegra20-nand.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVIDIA Tegra NAND Flash Controller
-+
-+maintainers:
-+  - Jonathan Hunter <jonathanh@nvidia.com>
-+
-+allOf:
-+  - $ref: nand-controller.yaml
-+
-+description:
-+  The NVIDIA NAND controller provides an interface between NVIDIA SoCs
-+  and raw NAND flash devices. It supports standard NAND operations,
-+  hardware-assisted ECC, OOB data access, and DMA transfers, and
-+  integrates with the Linux MTD NAND subsystem for reliable flash management.
-+
-+properties:
-+  compatible:
-+    const: nvidia,tegra20-nand
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: nand
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: nand
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  operating-points-v2:
-+    maxItems: 1
-+
-+patternProperties:
-+  '^nand@':
-+    type: object
-+    description: Individual NAND chip connected to the NAND controller
-+    $ref: raw-nand-chip.yaml#
-+
-+    properties:
-+      reg:
-+        maximum: 5
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/tegra20-car.h>
-+    #include <dt-bindings/gpio/tegra-gpio.h>
-+
-+    nand-controller@70008000 {
-+        compatible = "nvidia,tegra20-nand";
-+        reg = <0x70008000 0x100>;
-+        interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&tegra_car TEGRA20_CLK_NDFLASH>;
-+        clock-names = "nand";
-+        resets = <&tegra_car 13>;
-+        reset-names = "nand";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        nand@0 {
-+            reg = <0>;
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+            nand-bus-width = <8>;
-+            nand-on-flash-bbt;
-+            nand-ecc-algo = "bch";
-+            nand-ecc-strength = <8>;
-+            wp-gpios = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_LOW>;
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt b/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
-deleted file mode 100644
-index 4a00ec2b2540..000000000000
---- a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
-+++ /dev/null
-@@ -1,64 +0,0 @@
--NVIDIA Tegra NAND Flash controller
--
--Required properties:
--- compatible: Must be one of:
--  - "nvidia,tegra20-nand"
--- reg: MMIO address range
--- interrupts: interrupt output of the NFC controller
--- clocks: Must contain an entry for each entry in clock-names.
--  See ../clocks/clock-bindings.txt for details.
--- clock-names: Must include the following entries:
--  - nand
--- resets: Must contain an entry for each entry in reset-names.
--  See ../reset/reset.txt for details.
--- reset-names: Must include the following entries:
--  - nand
--
--Optional children nodes:
--Individual NAND chips are children of the NAND controller node. Currently
--only one NAND chip supported.
--
--Required children node properties:
--- reg: An integer ranging from 1 to 6 representing the CS line to use.
--
--Optional children node properties:
--- nand-ecc-mode: String, operation mode of the NAND ecc mode. Currently only
--		 "hw" is supported.
--- nand-ecc-algo: string, algorithm of NAND ECC.
--		 Supported values with "hw" ECC mode are: "rs", "bch".
--- nand-bus-width : See nand-controller.yaml
--- nand-on-flash-bbt: See nand-controller.yaml
--- nand-ecc-strength: integer representing the number of bits to correct
--		     per ECC step (always 512). Supported strength using HW ECC
--		     modes are:
--		     - RS: 4, 6, 8
--		     - BCH: 4, 8, 14, 16
--- nand-ecc-maximize: See nand-controller.yaml
--- nand-is-boot-medium: Makes sure only ECC strengths supported by the boot ROM
--		       are chosen.
--- wp-gpios: GPIO specifier for the write protect pin.
--
--Optional child node of NAND chip nodes:
--Partitions: see mtd.yaml
--
--  Example:
--	nand-controller@70008000 {
--		compatible = "nvidia,tegra20-nand";
--		reg = <0x70008000 0x100>;
--		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&tegra_car TEGRA20_CLK_NDFLASH>;
--		clock-names = "nand";
--		resets = <&tegra_car 13>;
--		reset-names = "nand";
--
--		nand@0 {
--			reg = <0>;
--			#address-cells = <1>;
--			#size-cells = <1>;
--			nand-bus-width = <8>;
--			nand-on-flash-bbt;
--			nand-ecc-algo = "bch";
--			nand-ecc-strength = <8>;
--			wp-gpios = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_LOW>;
--		};
--	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e791f18b61d8..519dac4cc9c9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24829,7 +24829,7 @@ TEGRA NAND DRIVER
- M:	Stefan Agner <stefan@agner.ch>
- M:	Lucas Stach <dev@lynxeye.de>
- S:	Maintained
--F:	Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
-+F:	Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
- F:	drivers/mtd/nand/raw/tegra_nand.c
- 
- TEGRA PWM DRIVER
-
----
-base-commit: 43edce71d70c603d3f3f1b1c886f65cd02d80c24
-change-id: 20251011-nvidia-nand-024cc7ae8b0a
-
-Best regards,
--- 
-Charan Pedumuru <charan.pedumuru@gmail.com>
-
+--
+Yours,
+Alex Tran
 
