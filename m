@@ -1,129 +1,139 @@
-Return-Path: <devicetree+bounces-251450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D05A7CF3004
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:35:12 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D61E2CF3158
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:56:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E2EE330088AD
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:33:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D8C5A3008CA7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D60AB314B96;
-	Mon,  5 Jan 2026 10:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72A45330671;
+	Mon,  5 Jan 2026 10:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ad3XCPw+"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kPaJmSLr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D463128D9
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 10:33:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 456DC32ED42
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 10:55:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767609215; cv=none; b=f5drl31Ivvuor+RrCCJghxf91QoOvTIyQYiyr6Jr/ePorGrKg7f56wqairKr7FQ4sUfjXuA6Cfi0TWwmaG3s56AHpZ2JbTUsIKdqf8/YrsrZEWsrqIyYoC+K3VA8VY9LYuQpH4faWpkoxO8I1c70C693epB97vnq+gLTQpZOOEk=
+	t=1767610557; cv=none; b=uL1qZ/vMuhWogSDDfeqvG5wXIPCuDVK4q+PW+HfnNDL7jassxx125mkn6I2MjyQQ2szxxIi4uKs5i2RyfbUwg6lorQH52VUrga8dzUBbBhGzWVA3JpgJjBDeEs96dbWsNpogwEgO8b5GWdu34uKZOzUxx+fZwMTTXt7lUmggxjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767609215; c=relaxed/simple;
-	bh=87+FuFMoLYug0z7gqUq5Z8pX0X/7AkUpO+9WJeqmtao=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=akZ/SRkimV1SxyTepeOz5QT/A//dZmcRHKNzGTQbclci5KmdNlQZLJjuf6HtPjVPI4ooMFlO46xgJvbwyMstpGzAx7z9nqUulwpYl1t4SzPxd+5Ucuw9+N+OTIRUs4kqd9DEjpNRnc65mDQ1kY2jAH99H21LwhxoDYAunLVlhuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ad3XCPw+; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-42fbc544b09so10833235f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 02:33:33 -0800 (PST)
+	s=arc-20240116; t=1767610557; c=relaxed/simple;
+	bh=gwAM3gYozmj68G3BkMYx4yPS500ChdCcsRj5wEpBaOM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EKEHLm86buUZJEMrsLrCw0CXF3dAhEyWROGv/X0KhGsSjvfoycQ3Oor9R0KFIBma88gv/yQ6eqYg9VrVJNGOtLciQqMaadBg6ylW8MPOhDCjm464R2/cQ3inOUePyRSdRIa1ON+RTF2caKTE+o3ig2pGlm1s6Xcdn0IyKZ7Cmvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=kPaJmSLr; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47bdbc90dcaso88994265e9.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 02:55:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1767609212; x=1768214012; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=87+FuFMoLYug0z7gqUq5Z8pX0X/7AkUpO+9WJeqmtao=;
-        b=ad3XCPw+ne5qD9cY8HI5wCXEc698X8SbjrpbI+AjMWfP1ruSKUqzWml/Ez4tSaNdD8
-         V70LEpJqcGFh7IsMsCIV/vlaiDb8I9EdIRO019caE7+jOSbdhLgIH0pyyGRmkfNJMzb7
-         UVgr3Ow/PssJ/kdGr5dNeUV+CfvKJhz0XS00YSzZyte07iCFFPsuHafe3yh1r4cPCf8j
-         iampb/VdV009tiUbJ0oXtxj2wMWYOUbrvEO4/7hpK9gRsGKM/Yn8AGmdvfIKp64RTu6G
-         huU0iuEN/x8tIz7WZazZVAhgdUumJ3q/vb8DR8AJJlAZzIxpwjaER2DqtdMgrkfJAtFn
-         BELQ==
+        d=chromium.org; s=google; t=1767610554; x=1768215354; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JnIbT9EGamTtHAub2XVlZI7RjkEaaQIsimhhYGKZi4M=;
+        b=kPaJmSLrheOj5Iku9kftAyjUtf9BIpLLuLEeijhDt9TIujariUoxdZ15vsa82Zbg/+
+         YfLlQQOwZtAU5P4eJnddD9OYqDR0e5ovONUFpvlFsqBuA+C+ABwwkQMoFLxYdmx/gbGv
+         htFtIz4WBDEgntI/0/9G/H3S6/EazJi0H/GKs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767609212; x=1768214012;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=87+FuFMoLYug0z7gqUq5Z8pX0X/7AkUpO+9WJeqmtao=;
-        b=JL5S+6J8ISyBco+9I229MNpEHPcTqVMH6kl2nZcCiI5yCTjN+VBOE732caiXfq/epG
-         SvSmf+aQWzfCvfA0kP9j1FNdYyJRybJ3mvf8R4pxbZlijnP2FxgPbdYflhBM52/fZQWi
-         UAPhTEZMuusl58HTeMialfkji25d0u1Cyaijajr+CEloF2BATGqIgnap4TVCjtjpAxjC
-         XANpes0wC+2BOkqQNWixh4ryhIvYrUem5qmaGq4aZTTw3Ly2DHHTgvi5uld0Eapr5Bwz
-         uO5JBtqBVrDOWBnZ2oWzZWLP31IZdQ0RrXp/3i2kcWxeczXduxKZbh8W3gAt3VWKfO96
-         TiKA==
-X-Forwarded-Encrypted: i=1; AJvYcCWdtA3olY4tCUfEffpat8a7TML8gOTco92UKSBk4r67xK6fhrYPn3glvDzJvhXm8W0aHBycz8eMARwx@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQT9kPjFL45eVx7oDhFKoOFcxgrW7CpKAodEuRmhzAQjTHYRjO
-	h4u6aOv3CXIoIMy4UPTh3/gcmFZ8QJYj1Ohu9pjVYod0fUwofRvdYgcOn1dzD3+DDwI=
-X-Gm-Gg: AY/fxX7o3NsTydHIxPxjpjpmWf8vyV2a+cCc6BA5YyKSFd3WtwT/5pIzdQoE7+yuyll
-	nQk5/1HL2ge+z3PBR/mZ1mOvTV75P1Vq1kZlfhBRp+l80DzHuAxbVHklD60N4LaebnK85Qa8qTs
-	tD3nieIiJEtOmStGwZgmil7fouWsJmIBpjRpDsSwKKz53oYQBiCff0pGMvzIj3xnYG97zVhvFTS
-	EXoTup4PPNoVxJbSNrXqI4fmkJfCDHEt0C22BJmwg/tS84bYaBPnmwRUpXEQKMIdUrxM8/W37MF
-	h2aOXNquGMeyg8d2pwFeCn2SQMqCiKb+DaX/cJi61K/MySOFLEOGcC9tEn1B6n+VRqOLVbEifJw
-	xVGY4VOddww2lhLU0rVhjCR/o9b3d/JQIpSrV144FbiKKhQds39jjSgg9y4BPpFhQxGSUez7VZN
-	OOSeH0
-X-Google-Smtp-Source: AGHT+IF5w2X/mECN9ZuV3JAcY3/jRJaPTYNcLs1xlZ4DkVwaHx1/DlQVheIQWCeAyX3a9MMJxgLOAg==
-X-Received: by 2002:a05:6000:4202:b0:430:f5ab:dc8e with SMTP id ffacd0b85a97d-4324e4c6338mr65493674f8f.13.1767609211878;
-        Mon, 05 Jan 2026 02:33:31 -0800 (PST)
-Received: from localhost ([195.52.160.197])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43277b0efefsm67215868f8f.25.2026.01.05.02.33.30
+        d=1e100.net; s=20230601; t=1767610554; x=1768215354;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JnIbT9EGamTtHAub2XVlZI7RjkEaaQIsimhhYGKZi4M=;
+        b=bZuVKsyVtlszDx7TKrnd5L6JekaPbCYx+NBU9KLvChfqSyBHza9NJmaPrifehvT73Z
+         eM9eAH4ziFpnLyL5gDwuXq/5/wB1RJEc+alExpWrMYsS2k1t108AN+ZTaANU87wf74IM
+         7OlkVzyDVamQhkqqmQteJc3Q4XHRq8NjbkKBSoPVdrpFJaluDWRsK4Wxo4qZw9QpMpzo
+         VtkBSa8DC8iUt7iHjFAxo4OdBTTw3PNoL6DD8y6DFDvbZv2O2h5wE9eyQXKRtk/nj4KA
+         RwQ4BGsGtyZIULKcMD/LSHLDoDXs6Zk9aeAQmBcoiTGuN4HLNZdCjN4rzOu4BvVF+fmU
+         NGNg==
+X-Forwarded-Encrypted: i=1; AJvYcCW69pSwpQTsiBdJfDOJ3d3bEy8RgWSmkakYD8B+ZHWgGLXRSzWLDwc+ziwUiCb8nUtE5pMq0zkkyqap@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYSz+ai3wr4BdYCO+rz3zoaJMyBD7hH59rFkxW4GZshSMePCVm
+	6BX0QLyNS22J/1LZoJhLwk3fRyyzTkvl9A1PS5FexTcsupLEhvkFse5rFmTHuHP//w==
+X-Gm-Gg: AY/fxX5d6JRbeJySH03H7SebhZpU/+h/xpUC/iNApH/3dU5ry6e/ZS7VOc/AGgusRU/
+	rPTMM2S4QkOFRrWiuBfyH4l2I2axUKB0wVZ3jqDom6QF+2OGvq4C7MDaJ0dn3oGAUTagklU+XQi
+	qQxwg0uFP6rIfwFJL8/dKT76OjI4pn12jM299wDKLZ8nO8JtziWQmv7mZHg5hywmS/3IQhLrAbr
+	udR9BhBWFEofP1f1QqjdqszgF0a4Z6x/NhbIGcCDqksh+VI9NqB8bqeZanonhWFy7v0eGtZB0jW
+	Vijd8mIWQ4xvWFWPr823/vbzydF45snkUEh0ytlLC8CwPrPKsRskVuUojQJ7wqYnttSQ3SycXOv
+	468MnXw3FuKM3SV9LdgYq/V7bdNlR8dWNkYBNfe7HMzZlOfLaIeHpvnYZ3GW9luh49PoUZDLBU/
+	LCd/7iaRjK3SRQaSiqBA==
+X-Google-Smtp-Source: AGHT+IFA865YiL/SGKYZvDw31gF6v3vjD/bgpQhTY+81CJ5vFnSIbiTZ9Gkdx9EH+BTrotYpNM83Zw==
+X-Received: by 2002:a05:600c:c1c8:10b0:47d:403c:e5a0 with SMTP id 5b1f17b1804b1-47d403ce6e0mr358741175e9.12.1767610553632;
+        Mon, 05 Jan 2026 02:55:53 -0800 (PST)
+Received: from google.com ([37.228.206.31])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d6da2425esm146867955e9.12.2026.01.05.02.55.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 02:33:30 -0800 (PST)
+        Mon, 05 Jan 2026 02:55:53 -0800 (PST)
+Date: Mon, 5 Jan 2026 10:55:51 +0000
+From: Fabio Baltieri <fabiobaltieri@chromium.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, Simon Glass <sjg@chromium.org>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: google,cros-ec-keyb: add has-fn-map
+ prop
+Message-ID: <aVuYt24q6nihC4t0@google.com>
+References: <20251231143538.37483-1-fabiobaltieri@chromium.org>
+ <20251231143538.37483-2-fabiobaltieri@chromium.org>
+ <20260105-helpful-ocelot-of-eternity-6bb1ee@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=4e65c143e89b164e7daa8cca0ebf34813a0d86c08fe8a1a41299070c2a1e;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Mon, 05 Jan 2026 11:33:21 +0100
-Message-Id: <DFGL60RQ7MV5.Z6I2EWG19UZQ@baylibre.com>
-Cc: <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
- <msp@baylibre.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
- <s-kochidanadu@ti.com>, <linux-arm-kernel@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/5] arm64: dts: ti: k3-am62: Support Main UART
- wakeup
-From: "Markus Schneider-Pargmann" <msp@baylibre.com>
-To: "Kendall Willis" <k-willis@ti.com>, "Nishanth Menon" <nm@ti.com>,
- "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
-X-Mailer: aerc 0.21.0
-References: <20251230-b4-uart-daisy-chain-dts-v2-0-fa5257ec54bb@ti.com>
-In-Reply-To: <20251230-b4-uart-daisy-chain-dts-v2-0-fa5257ec54bb@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260105-helpful-ocelot-of-eternity-6bb1ee@quoll>
 
---4e65c143e89b164e7daa8cca0ebf34813a0d86c08fe8a1a41299070c2a1e
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Mon, Jan 05, 2026 at 08:52:56AM +0100, Krzysztof Kozlowski wrote:
+> On Wed, Dec 31, 2025 at 02:35:37PM +0000, Fabio Baltieri wrote:
+> > Add binding documentation for the has-fn-map property.
+> > 
+> > Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
+> > ---
+> >  .../devicetree/bindings/input/google,cros-ec-keyb.yaml    | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> > index fefaaf46a240..fa24b1cbc788 100644
+> > --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> > +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> > @@ -44,6 +44,14 @@ properties:
+> >        where the lower 16 bits are reserved. This property is specified only
+> >        when the keyboard has a custom design for the top row keys.
+> >  
+> > +  google,has-fn-map:
+> > +    description: |
+> > +      The keymap has function key layer. This allows defining an extra set of
+> > +      codes that are sent if a key is pressed while the KEY_FN is held pressed
+> > +      as well. The function codes have to be defined in the linux,keymap
+> > +      property with an offset of keypad,num-rows from the normal ones.
+> > +    type: boolean
+> 
+> You still did not answer to my previous question, why this is not
+> deducible from the key map (presence of KEY_FN in the map).
 
-On Wed Dec 31, 2025 at 3:38 AM CET, Kendall Willis wrote:
-> This series adds wakeup support for the Main UART in the device tree of
-> the TI AM62 family of devices. It defines the specific pins and pinctrl
-> states needed to wakeup the system from the Main UART via I/O
-> daisy-chaining. The wakeup-source property is configured to describe the
-> low power modes the system can wakeup from using the Main UART.
+The driver behaves differently with the fn layer is present, has to make
+extra space for the extra codes and enable the logic to use it. I can
+certainly detect it in runtime, would have to always allocate the extra
+space even if not needed and check not only that there is an FN key but
+if there's anything in the second half of the map.
 
-Reviewed-by: Markus Schneider-Pargmann <msp@baylibre.com>
-
-Best
-Markus
-
---4e65c143e89b164e7daa8cca0ebf34813a0d86c08fe8a1a41299070c2a1e
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaVuTcRsUgAAAAAAEAA5t
-YW51MiwyLjUrMS4xMSwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlN0
-cAEAsymWEGyn3zumRS4qBP2frRfRk/M0ptrcMeU2m2GEl3EA/jw/uSKEntBvWLh7
-+3vrcNWot2uGtEQlf/nbvxYohiAP
-=CCHc
------END PGP SIGNATURE-----
-
---4e65c143e89b164e7daa8cca0ebf34813a0d86c08fe8a1a41299070c2a1e--
+I'm not overly enthusiastic about it, it's a bit wasteful on memory
+(probably no big deal, half a kb of RAM I guess) and somewhat less
+defensive to misconfigurations and in general I don't like the new logic
+to be enabled magically, as a side effect. It'd be extra complexity for
+the sake of saving one boolean property, but sure if you think that's
+the way to go then I guess I can implement it that way.
 
