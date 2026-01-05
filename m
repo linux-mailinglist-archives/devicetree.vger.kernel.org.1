@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-251592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110BFCF46FE
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:36:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF0F0CF4752
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:41:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7F2B7305BD64
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:32:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1082530E4687
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B6E334370;
-	Mon,  5 Jan 2026 15:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8DE131354C;
+	Mon,  5 Jan 2026 15:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lgya+Il4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hZGWxDf9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9208333752;
-	Mon,  5 Jan 2026 15:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 947853128CB;
+	Mon,  5 Jan 2026 15:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767626578; cv=none; b=IsW5rtmm1B5iA3822GbdlIwRB/VXwpswnAhkQC3BB0R0Pdz4ZEXsb4wXCAoFzEW6gqW5aquZMEKrX4kV9uSL16SRRFViy+SwQEdVxqHVw1oRsINQbZcBPG8a0yE4EmnefqRjxU2XcQgZcClq6nlZc45j7cjFwAvfUiYVNevdWA8=
+	t=1767627067; cv=none; b=K5T14K/yIVjdDZe899AXqZkhVtvCKg1V9MKubVdqmMwTJmOzqqQLUMHfL4z8otYUp8kOG8AIl5+OwXxxKkjpdbhF64V3pwUqwXZLPpgXNBAd9OEsAVPTEMgLuceLdfqVoH5Yi8Xzh+JwNfincOBO/eBjj20rAUCbAzj3iOS1v98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767626578; c=relaxed/simple;
-	bh=bxUzo+1ReaHyQigoZhL9fTu17hm8HObwUVIiB/M4Bo4=;
+	s=arc-20240116; t=1767627067; c=relaxed/simple;
+	bh=Ri91T1FsKiCDKeDkCHarNbW1d42jyKjIpK5NyTV3898=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fKCkMaTdZHvhzuFAThdmcbcjO0dm7mpGbI1rlzZr67a4Ve3Z/SFMmb4RndRj9fC9HG3IuYkCExhalxsvOpKCVMUl7yhEfBuaqWVuGKVFN/2aj8e+G3iiHzyfQksA3lUOmYQu66xhF7xZlpsZsLrn5pfU7bYqLVL++yIeQimbCO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lgya+Il4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A655C116D0;
-	Mon,  5 Jan 2026 15:22:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=p0KY/N+WhOnb7ZaOylPunE0X+wUHXOfuKAWC279H38BsqmApMEhIc/1gaRkgP1MrEGrwUmGULtosJ8bVNxkE3QDPyqtyH2iEN+5b7nOlGC7Eh+N1lYMW0bK7WoPEyHZJnzc3cAXlDDd5fFHs3D8z97wX81sT+X8tMKc41KeChp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hZGWxDf9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63B5FC116D0;
+	Mon,  5 Jan 2026 15:31:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767626578;
-	bh=bxUzo+1ReaHyQigoZhL9fTu17hm8HObwUVIiB/M4Bo4=;
+	s=k20201202; t=1767627067;
+	bh=Ri91T1FsKiCDKeDkCHarNbW1d42jyKjIpK5NyTV3898=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lgya+Il4Y+c4ThdtVuzO8nNpowcCLeI4Sscv7ITyI6jQE/OFq6i5ZJgWZDUphG+Wk
-	 CcO64MVpqv26qRSrOikNCvxBR67vQIy3MG/99aVCyu3ofVqLZZ/QCUBXWK56bdnN7x
-	 S3pCT7IK/52x9fdFeEcnquA1+FmPP8ijdF1IK6G0s4hnCQ3lT0Mntt3AHdTBUfCJ6b
-	 XF6NClEp84XRNLQc9zui0RV4QZm/Idjx2dYvsGT8C8v45+hiRAfa1uK3IOOC61Ccz0
-	 aT6OXixLrwZxWYyxWbKVkDFae1fnbytAi2CodaIueDM+GTql95G3YtBX10UWMkNPJj
-	 AroCUX7VURsxA==
-Date: Mon, 5 Jan 2026 09:22:54 -0600
+	b=hZGWxDf9gGU0YIybbcYqObHas0/0r0MmfiBVIb2emp71tufiRigk1ZrCPwv4M9Y/z
+	 OZdYCxucg+sXCmpQKojtosKgcGCcKrzWu6nA8SQil03ewHI91gSPEKSjYjYE97yVhq
+	 F/uZhZ09x51VqEr0SBvvAk/H5P/Qz2OoFyQv68is3pvK53lPT5N5sBAUuXTAdHOfwZ
+	 +j4NoVmS/GKVEjfB+mpkDfN3P2u/UGfAhTXFdQXcHAnXiC9tO/Toy4nT61HCszWq/v
+	 eWfMCn+sCvP1YhhitBU/AK00CRokFJldVld069wZ/PGWY4fde4L+w+AtndceUWUODd
+	 sPUjwuT3/RKAw==
+Date: Mon, 5 Jan 2026 09:31:03 -0600
 From: Bjorn Andersson <andersson@kernel.org>
-To: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
-	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>, Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: kaanapali: Add TSENS and QUPv3
- serial engines
-Message-ID: <hezcpngxf5lyopkvzh5b7f66jr5f6bjowphigviqimadpcgpbs@ki7qfxs52ynv>
-References: <20251225-knp-dts-misc-v2-0-a8a8a31fd528@oss.qualcomm.com>
- <20251225-knp-dts-misc-v2-2-a8a8a31fd528@oss.qualcomm.com>
- <fc67634b-d47e-452b-bbad-35884b75d0b7@oss.qualcomm.com>
- <175e9c72-bde2-4351-a429-7d88d255100c@oss.qualcomm.com>
+	Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>, Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rajendra Nayak <rajendra.nayak@oss.qualcomm.com>, Pankaj Patil <pankaj.patil@oss.qualcomm.com>, 
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] pinctrl: qcom: glymur: Add Mahua TLMM support
+Message-ID: <adlhkus5gvum6fkd7bxjohwlsiumw7w6w4c36vzphjz7my2644@pmobztmgpdvx>
+References: <20260102-pinctrl-qcom-mahua-tlmm-v1-0-0edd71af08b2@oss.qualcomm.com>
+ <20260102-pinctrl-qcom-mahua-tlmm-v1-2-0edd71af08b2@oss.qualcomm.com>
+ <91d2e5f7-7d93-4909-9ed2-6b19abf0b448@oss.qualcomm.com>
+ <dayj662qu7tb3l2fuq4sfdxunvkk2rt777vm7dfvdazbwiwpzn@mysrwdbdptqt>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,85 +64,86 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <175e9c72-bde2-4351-a429-7d88d255100c@oss.qualcomm.com>
+In-Reply-To: <dayj662qu7tb3l2fuq4sfdxunvkk2rt777vm7dfvdazbwiwpzn@mysrwdbdptqt>
 
-On Mon, Jan 05, 2026 at 04:24:19PM +0800, Aiqun(Maria) Yu wrote:
-> On 12/29/2025 9:12 PM, Konrad Dybcio wrote:
-> > On 12/26/25 4:06 AM, Jingyi Wang wrote:
-> >> Add new features on the Kaanapali Platform including:
-> >>
-> >> - Temperature Sensor (TSENS) and thermal zones
-> >> - QUPv3 serial engine protocols with 5 I2C hubs and 24 QUP serial engines
-> >>   across 4 QUP wrappers, each with support of GPI DMA engines.
-> >>
-> >> Co-developed-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-> >> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-> >> Co-developed-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-> >> Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-> >> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> >> ---
+On Mon, Jan 05, 2026 at 11:04:44AM +0530, Manivannan Sadhasivam wrote:
+> On Fri, Jan 02, 2026 at 01:40:22PM +0100, Konrad Dybcio wrote:
+> > On 1/2/26 12:07 PM, Gopikrishna Garmidi wrote:
+> > > Introduce support for the Mahua TLMM (Top Level Mode Multiplexer)
+> > > in the pinctrl-glymur driver. Mahua shares the same pin configuration
+> > > as Glymur but requires a different PDC wake IRQ mapping.
+> > > 
+> > > Changes include:
+> > > - Add mahua_pdc_map[] with Mahua-specific GPIO to PDC IRQ mappings
+> > > - Define mahua_tlmm msm_pinctrl_soc_data structure
+> > > - Update device match table to include "qcom,mahua-tlmm" compatible
+> > > - Modify probe function to use of_device_get_match_data() for dynamic
+> > >   SoC-specific data selection
+> > > 
+> > > Signed-off-by: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
+> > > ---
+> > >  drivers/pinctrl/qcom/pinctrl-glymur.c | 43 ++++++++++++++++++++++++++++++++---
+> > >  1 file changed, 40 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/drivers/pinctrl/qcom/pinctrl-glymur.c b/drivers/pinctrl/qcom/pinctrl-glymur.c
+> > > index 335005084b6b..bf56a064d09c 100644
+> > > --- a/drivers/pinctrl/qcom/pinctrl-glymur.c
+> > > +++ b/drivers/pinctrl/qcom/pinctrl-glymur.c
+> > > @@ -1729,6 +1729,25 @@ static const struct msm_gpio_wakeirq_map glymur_pdc_map[] = {
+> > >  	{ 232, 206 }, { 234, 172 }, { 235, 173 }, { 242, 158 }, { 244, 156 },
+> > >  };
+> > >  
+> > > +static const struct msm_gpio_wakeirq_map mahua_pdc_map[] = {
+> > > +	{ 0, 116 },   { 2, 114 },   { 3, 115 },	  { 4, 175 },	{ 5, 176 },
+> > > +	{ 7, 111 },   { 11, 129 },  { 13, 130 },  { 15, 112 },	{ 19, 113 },
+> > > +	{ 23, 187 },  { 27, 188 },  { 28, 121 },  { 29, 122 },	{ 30, 136 },
+> > > +	{ 31, 203 },  { 32, 189 },  { 34, 174 },  { 35, 190 },	{ 36, 191 },
+> > > +	{ 39, 124 },  { 43, 192 },  { 47, 193 },  { 51, 123 },	{ 53, 133 },
+> > > +	{ 55, 125 },  { 59, 131 },  { 64, 134 },  { 65, 150 },	{ 66, 186 },
+> > > +	{ 67, 132 },  { 68, 195 },  { 71, 135 },  { 75, 196 },	{ 79, 197 },
+> > > +	{ 83, 198 },  { 84, 181 },  { 85, 199 },  { 87, 200 },	{ 91, 201 },
+> > > +	{ 92, 182 },  { 93, 183 },  { 94, 184 },  { 95, 185 },	{ 98, 202 },
+> > > +	{ 105, 157 }, { 113, 128 }, { 121, 117 }, { 123, 118 }, { 125, 119 },
+> > > +	{ 129, 120 }, { 131, 126 }, { 132, 160 }, { 133, 194 }, { 134, 127 },
+> > > +	{ 141, 137 }, { 144, 138 }, { 145, 139 }, { 147, 140 }, { 148, 141 },
+> > > +	{ 150, 146 }, { 151, 147 }, { 153, 148 }, { 154, 144 }, { 155, 159 },
+> > > +	{ 156, 149 }, { 157, 151 }, { 163, 142 }, { 172, 143 }, { 181, 145 },
+> > > +	{ 193, 161 }, { 196, 152 }, { 203, 177 }, { 208, 178 }, { 215, 162 },
+> > > +	{ 217, 153 }, { 220, 154 }, { 221, 155 }, { 228, 179 }, { 230, 180 },
+> > > +	{ 232, 206 }, { 234, 172 }, { 235, 173 }, { 242, 158 }, { 244, 156 },
 > > 
-> > Since the base DT is now merged, all subsequent patches are
-> > supposed to be patch-sized, i.e. usually scoped for one feature that
-> > makes sense. This one happens to be an arbitrary concatenation of two
-> > separate ones. Were they separate, the original authors would benefit
-> > from the full attribution and they would be easier for us to review
+> > Over the "common" base, Glymur has GPIO143 (PCIE3a_RST) and Mahua has GPIO155
+> > (PCIE3b_RST). Both SoCs GPIO maps seem to contain both, but Mahua has a _unused
+> > suffix for the missing 143, which makes sense given the bus isn't bifurcated
+> > there.
+> > 
+> > The _RST (PERST#) pin is driven by the SoC so I don't think it's useful to
+> > have it as a wakeup source, unless someone decides to connect something that's
+> > not PCIe to it (+Mani)
+> > 
 > 
-> Hi Konrad,
+> PERST# by definition is an optional reset line, but on most of the *recent*
+> designs, OEMs always connect it to PERST# line. So practically, I don't think it
+> make sense to mark this GPIO as a wakeup source.
 > 
-> Are you suggesting to split this patch into 3 function independent
-> patches here?
-> 
 
-As far as I can see, you already have 3 independent patches here
-(stuffed in 2 patches) - they don't overlap, they don't depend on each
-other. So, yes this would be easier to handle as separate patches.
+This assumes that all the OEMs uses the particular PCI instance. If they
+choose to route this GPIO to some other use case, they would have to
+figure out that we omitted one entry in this table and patch it with
+the appropriate data in order to have their GPIO wakeup capable.
 
-I would still like to see dependent patches be gathered and sent
-together in a patch series.
+Wouldn't it be better to put the correct information in this table at
+this time? If we have a concrete reason not to, I think we should
+include something useful in the commit message to help the poor engineer
+faced with this task...
 
-For example smp2p + remoteproc + glink are owned by different teams, but
-there's no benefit to merging only smp2p, or only smp2p + remoteproc. So
-seeing all three (or more) parts in one series would be preferred (one
-patch would also be accepted).
+But perhaps I'm misunderstanding what the two of you are saying.
 
-
-
-Regardless of who sends these patches or how this is done going forward,
-this patch 2/2 is two separate, independent patches. Or you need to
-describe why they belong together - what is the connection between tsens
-and QUP? (I presume none)
-
-Thanks,
+Regards,
 Bjorn
 
-> The current dt series is to ease the maintainers' effort to have an
-> organized patch in one series in below manner:
-> 1. And the series of the dt change will only have all dependency cleared
-> functionality in this series.
-> 2. dt maintainer won't have any conflict when apply.
-> 3. we will suggest developers can do it's own upload when basic
-> dependencies like mm-clock and pmic dependencies are all applied.
-> 
-> Are you suggesting splitting this patch into three independent
-> functional patches here?
-> The current DT series is designed to simplify maintainers’ efforts by
-> keeping the patches organized within a single series, structured as follows:
-> 
-> 1. This DT series will include only functionality where all dependencies
-> have been reviewed-by at least.
-> 2. DT maintainers will not encounter conflicts when applying these patches.
-> 3. We will recommend that developers upload their own patches once the
-> basic dependencies—such as MM-clock and PMIC—have been applied.
-> 
-> This reflects our discussion with Bjorn and serves as a lesson learned:
-> even with a Reviewed-by tag, patch application can be significantly
-> delayed when the DT series involves a highly complex dependency chain.
-> 
-> > 
-> > Konrad
+> - Mani
 > 
 > -- 
-> Thx and BRs,
-> Aiqun(Maria) Yu
+> மணிவண்ணன் சதாசிவம்
 
