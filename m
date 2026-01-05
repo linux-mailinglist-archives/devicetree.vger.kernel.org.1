@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-251573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA5A9CF4450
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:02:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D66CF43A1
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 15:49:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2C588300A93A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:01:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E5F02317FA9C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 14:38:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F00333CEB9;
-	Mon,  5 Jan 2026 14:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D38133D6FE;
+	Mon,  5 Jan 2026 14:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jR//tH8S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P9NNUutz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11D8333C53D;
-	Mon,  5 Jan 2026 14:08:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A8B281503;
+	Mon,  5 Jan 2026 14:08:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767622129; cv=none; b=OHLwmYPhp8mNaFk5XFKTH+J43vLFl7q3s2wsdbMhIFifWyvf4LCwiVLNqf5Q+SLRbH4tebInUu0fVkQLUjo6Rli8TqgX5eBWJBDjiCEhNbwbPrVZO9EHriE7cz113e2774WmAJMOkn2qOg/inzps41L6ORC5nO96ZOevvd/AH4I=
+	t=1767622130; cv=none; b=OXHaOVLqHqIYY5ngqXgOyJpOsiGLjrZFsAXcd8i+KGI3DLwXumj8mJq30h80WF0mz65IkcGrr0pPPpOgD3GJk15a66757d/p/6R9XUsIBfqwEjUMtbMnLA4nNHGA5zKzs5hatG14KpJn3f1EXs+M50BLUnN0RRXa5MvSLWMZvfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767622129; c=relaxed/simple;
-	bh=yi7vxw7jVid5bTWBQkeZ48N8e/ROXCNyhJZCdao3DXo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Lre5bZUteluoasi/EuqKe60dB1ouhuvy7rjn7oVCyEHwicA5tir+RTUbn8afNt/Ap5Vuy8PPWssbsuLPDPC6EwzrOvWshbX4Nq1EgyRoYdxXFfU0sST8SKdAnj+R0DAkAdr5Y2F3woGHNsjNMh1a+n+w68xhSv0FX5npe2fAyN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jR//tH8S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25EF6C2BD00;
-	Mon,  5 Jan 2026 14:08:44 +0000 (UTC)
+	s=arc-20240116; t=1767622130; c=relaxed/simple;
+	bh=AKrk6rMSdr6iFWSLk9qG9ncr8TOIE8ZHOgoyywWr3JU=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BaSIMFR/DBRocSJK1Aaz58LF3FRf3VpsRGdHVkKW5sDGI2tR1Yl3g+pH4uEjCMnkO2609UNTexCMSZUDoMT7JEdfAL3NTHJxs0TPDj77pf0BMJmgy5vPcPzQIgeveSyRyUhbFs/FgU7ogP0XfF9Q1cF1u/3lxCBjg4IuoDejkkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P9NNUutz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94E8CC2BCB5;
+	Mon,  5 Jan 2026 14:08:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767622125;
-	bh=yi7vxw7jVid5bTWBQkeZ48N8e/ROXCNyhJZCdao3DXo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=jR//tH8StmQZpQtesRTkJaySR9iUluwNJcs/6aiRFpBSipU6eekXEtOtzjg2Mpdr0
-	 cZhEAPrABscbUhd5Sy0BrXuGV2niMiORnFPL+bhC6FFLXsyQfxHqJ5wkWsuK+Kxw/i
-	 pTNbewoLaCbLIciosmsjsA+8RfYvhtiScJBXPfiPHbLnOtxaAxlma8fSUxLXDi+6PZ
-	 eoCegKj03r7+gxTbFR6BVkxr//+vPdXimCULfj/iqyh+srrcGpajoIqZybfS480wsx
-	 Klaj8wLwRcBiowP9QXxUa93fMOvH+xdRo+wEOh+/dfltRzbpFlklyePA82d5ZXsRBR
-	 M8XijqbEeDhGQ==
+	s=k20201202; t=1767622129;
+	bh=AKrk6rMSdr6iFWSLk9qG9ncr8TOIE8ZHOgoyywWr3JU=;
+	h=From:To:Subject:Date:In-Reply-To:References:From;
+	b=P9NNUutzAiWVL9PnIIkkZ7qlowcP8+T2H5VacPP0l3NhqnAzdBx1j7az/V7SaLm+x
+	 mZ7oTCqAy8ovzqxVPNdKjEsRHzHSfI8P631J3DzceaDuTKVJnOqixztRynM8Zn9CHM
+	 0+UW3kZLisCtxNkQSL05R/nSfZ7XoYoJx8Z5tbkBp4ZmnL+0h8VwdMJzAnB7vSSvNJ
+	 CL6NXe0qoAXLj23kReVo5FGjebdZoLSsQOyLaTDux134BnL8qMyfyOvG2R7vh7SGJY
+	 ToGiorDyB1OylM0j/HieryenTzrXxTFzm/0FtcznPHfVMuQEHUh8fP0TB8NTFnVhrP
+	 1EFkWKF8Q/p0g==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
+To: konradybcio@kernel.org,
 	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] arm64: dts: qcom: sm8550-qrd/hdk: correct S5K3M5 properties
-Date: Mon,  5 Jan 2026 08:07:43 -0600
-Message-ID: <176762206357.2923194.14421499687306297389.b4-ty@kernel.org>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	tingweiz@qti.qualcomm.com,
+	yijiyang@qti.qualcomm.com,
+	yintang@qti.qualcomm.com,
+	Yingying Tang <yingying.tang@oss.qualcomm.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: hamoa-iot-evk: Add WLAN node for Hamoa IoT EVK board
+Date: Mon,  5 Jan 2026 08:07:46 -0600
+Message-ID: <176762206388.2923194.1326520031257393467.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251222023834.3284370-1-vladimir.zapolskiy@linaro.org>
-References: <20251222023834.3284370-1-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20251210032817.1264850-1-yingying.tang@oss.qualcomm.com>
+References: <20251210032817.1264850-1-yingying.tang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,26 +64,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 22 Dec 2025 04:38:30 +0200, Vladimir Zapolskiy wrote:
-> The changeset updates voltage regulator property names and removes
-> an optional data-lanes property of Samsung S5K3M5 image sensor found
-> on SM8550-QRD and SM8550-HDK with Rear Camera Card boards.
+On Wed, 10 Dec 2025 11:28:17 +0800, Yingying Tang wrote:
+> WLAN card is connected to PCIe4 on Hamoa IoT EVK board. Add WLAN node
+> to support power sequence for this WLAN card.
 > 
-> This reflects the changes in the dt binding documentation of the sensor:
-> - https://lore.kernel.org/linux-media/20251203040241.71018-1-vladimir.zapolskiy@linaro.org
 > 
-> [...]
 
 Applied, thanks!
 
-[1/4] arm64: dts: qcom: sm8550-qrd: rename image sensor supply properties
-      commit: ff7cb4613b490cce4e213961b91f28b744d82ee1
-[2/4] arm64: dts: qcom: sm8550-qrd: remove data-lanes property of image sensor
-      commit: 8cadf9f0bbfcccc639b412b21d347108eddbb58d
-[3/4] arm64: dts: qcom: sm8550-hdk-rear-camera-card: rename supply properties
-      commit: 4438d377f6d8bcaefe645dd436ab8f8617d815ec
-[4/4] arm64: dts: qcom: sm8550-hdk-rear-camera-card: remove optional property
-      commit: 9494917da576038d754fbecd15b1f1bcd7b2e0ea
+[1/1] arm64: dts: qcom: hamoa-iot-evk: Add WLAN node for Hamoa IoT EVK board
+      commit: 1a5d6d70c3b0b9b2007cd57001266dc018b6098e
 
 Best regards,
 -- 
