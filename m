@@ -1,63 +1,73 @@
-Return-Path: <devicetree+bounces-251565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20F0ACF42DB
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 15:39:36 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B00CF41DF
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 15:31:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7A1E03087417
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 14:34:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EBC37300874F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 14:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04211314B77;
-	Mon,  5 Jan 2026 14:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403C133A714;
+	Mon,  5 Jan 2026 14:08:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D3KqJ2cG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U9Tp6Kii"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9166F339879;
-	Mon,  5 Jan 2026 14:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3A4A33A6F0;
+	Mon,  5 Jan 2026 14:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767622106; cv=none; b=hIJlDmBTdpxcA21oQN/QYdf65yIRhg+nF3dDnCZWgotDmQIr7OleferxYa9czg4WEcAc9tS/rS/9V7nIu1wmHMgCWhPkeuvqeAymY1quSaM0lrU/CW1Cn29lyYNUj38W/IEk1Xng8LhYnjzOVTwUnjB7f/EJtNLMSB6pPTqGjTc=
+	t=1767622110; cv=none; b=lMOnRlg/ps8KoTZCCZXTMp+J1KSzaIU7rSSF/zxdF/uZO+RjNHD8kCiXElTyHR0ZKjgpFDplIr1bu1d+DdnAHrYBNPdxkUg/DpS6+IaIySONhpsGpEqli+1MuYnxaWnIy+p8Mr8ebMsj31+gEMUViipvqayepiPAzbv44DkfLDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767622106; c=relaxed/simple;
-	bh=KJ3/OSaFFQcTSMOCTZ+h8tfTkIoUsMzdCb9AU8yW8yg=;
+	s=arc-20240116; t=1767622110; c=relaxed/simple;
+	bh=aJh9t1bM6vf+VmVosxIK7IbHvrg9FWsW2VSp0svG2Zo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VCpZyqExFMsFl7GNs0M3/752FI+UFQA51BLqGMQiC+pICEXEjJpO7zyIP2dgif2XIQy43Vg1Ffx5A547wMEho+Qthd9Warvri+9YyeL/VoQxJ8Sh5ziKz+c3xsVcBWE18FIxDrHoQp5VGsPKcOhh4VX3xe5BhkHK+u0zBbv8Xm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D3KqJ2cG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E447C19425;
-	Mon,  5 Jan 2026 14:08:24 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Q0hsqRJl8BbTd9sq3g3rZ4vHAqKxZD4mDiPjUCpVzBBDi5vgzxhqh/h/HKlo+VZmlTMwmB/KXhIgYO6gMXYJ9aYJnOylBPKQs7OaUaq4Iv0wiL8qmxI/e6wKYf8dFO2taWLg3rk0NTHcYNhPWOKMli+eVn9YJqjw3VKWAz+T8yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U9Tp6Kii; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C1B0C2BCB3;
+	Mon,  5 Jan 2026 14:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767622105;
-	bh=KJ3/OSaFFQcTSMOCTZ+h8tfTkIoUsMzdCb9AU8yW8yg=;
+	s=k20201202; t=1767622109;
+	bh=aJh9t1bM6vf+VmVosxIK7IbHvrg9FWsW2VSp0svG2Zo=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=D3KqJ2cGV4APyaS59rUJtpGSHVSFDxglqls7hKl9QqRFTzwJyo2Tooo6uPwh3crGO
-	 befSaAfNSNeCJt8Pgmdf31THCm8OFGOYqMNgnaF27i6pw9TbWXuVnyS2//qzsRVRqv
-	 pyA4zzdSCbKViaaBWawxpGTUkXMeKfHiSL4C96RhWNQAiIRcBHDj0rT3ZQ1EUAkDNX
-	 15dpdXCaPVHL8/9fQw3eHT4XmrGpBMCOpClQTKqvp2crJz3vLJHndhpA4TRGZGoAM0
-	 9Ed8c5ZGLqZyBRe6rtTaosnB9/WipBGZxV+Hs1lJ35HlXqT58iuXgwXj60JnclqpDr
-	 tWKCqJvh4SRJA==
+	b=U9Tp6KiixL4SZK+/Ueu0twwIlMKdhEjIMUbYiGdl045pCtHJYEUjgqWpxBbipuWwL
+	 f7bNEV6wPVV9BSVXv6DtSxDgdn7Ne7rChs33QhcUcjgCiKAUb17/r5BVTuPEEBGpBg
+	 dO+mw9fE55d/Y0OwY7ARRN2PuwjWnZ83ycAcGwVU5zYVfjybmWoazgJYEuD+i38hRf
+	 B8g6pkqKYjNI4RNVSUHvIibQrTRcV5I/+fqLfNpBV6/hppH5zVURH+fpWk1luH+orV
+	 2hNUEXfRuBvd+MZG+iDpHajFEE8oKoZvdF0QLTUt0mci3IafaHUIgeQGOPr25bWxA2
+	 DQa7MY3WD7PMQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Bartosz Golaszewski <brgl@kernel.org>,
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
-	Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
+	Maud Spierings <maud_spierings@hotmail.com>
+Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/4] Preparations for camera support on Fairphone 4
-Date: Mon,  5 Jan 2026 08:07:32 -0600
-Message-ID: <176762206374.2923194.14364085953938262000.b4-ty@kernel.org>
+	linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v3 0/3] arm64: dts: qcom: x1e80100-vivobook-s15: add more missing features
+Date: Mon,  5 Jan 2026 08:07:34 -0600
+Message-ID: <176762206363.2923194.7383607598616456313.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251210-fp4-cam-prep-v1-0-0eacbff271ec@fairphone.com>
-References: <20251210-fp4-cam-prep-v1-0-0eacbff271ec@fairphone.com>
+In-Reply-To: <20251220-asus_usbc_dp-v3-0-5e244d420d0f@hotmail.com>
+References: <20251220-asus_usbc_dp-v3-0-5e244d420d0f@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,22 +78,28 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 10 Dec 2025 10:05:26 +0900, Luca Weiss wrote:
-> Start adding some camera-related parts which can easily be upstreamed.
+On Sat, 20 Dec 2025 12:38:56 +0100, Maud Spierings wrote:
+> There are still many missing features on this machine, add the ps8830
+> retimers for display over usb-c, the simple bridge/HDMI port and set up
+> to use IRIS.
 > 
-> This contains the EEPROMs, fixed-regulators and enabling the CCI pull-up
-> voltage source.
+> Currently IRIS gives a ETIMEDOUT, not sure what that is coming from.
 > 
+> lots of these patches are very strongly based on the work of other
+> maintainers of these snapdragon machines, like the HDMI part on that of
+> Neil Armstrong, many thanks to those who laid the baseline for me to
+> follow.
 > 
+> [...]
 
 Applied, thanks!
 
-[2/4] arm64: dts: qcom: sm7225-fairphone-fp4: Add camera EEPROMs
-      commit: 89bce44320b4c39f3ea48591f7c04c961e404eae
-[3/4] arm64: dts: qcom: sm7225-fairphone-fp4: Add camera fixed regulators
-      commit: e1d3aeff520638d9d286f66e734c2cc8b489d5ee
-[4/4] arm64: dts: qcom: sm7225-fairphone-fp4: Enable CCI pull-up
-      commit: 7a53133ac4b5b26924146bc1b044594894ccc400
+[1/3] arm64: dts: qcom: x1e80100-vivobook-s15: enable ps8830 retimers
+      commit: c0d377798d6f6d3efddee5ef7d96b608a071f833
+[2/3] arm64: dts: qcom: x1e80100-vivobook-s15: add HDMI port
+      commit: 34d76723c41018ef52480ca3849b3ed3afbd8b22
+[3/3] arm64: dts: qcom: x1e80100-vivobook-s15: enable IRIS
+      commit: b7415c490d8d75b8dc7500b9c02cf8e5852110e6
 
 Best regards,
 -- 
