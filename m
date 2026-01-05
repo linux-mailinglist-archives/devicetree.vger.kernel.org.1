@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-251629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 467D5CF5226
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 19:01:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1643BCF521A
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 19:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EB82B31604A5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 17:54:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 08B3E3094FA0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 17:55:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C761633FE2A;
-	Mon,  5 Jan 2026 17:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4574733B6F4;
+	Mon,  5 Jan 2026 17:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b="GlrNtB6Q"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b="Lt5pjqMb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-64-227.siemens.flowmailer.net (mta-64-227.siemens.flowmailer.net [185.136.64.227])
+Received: from mta-64-228.siemens.flowmailer.net (mta-64-228.siemens.flowmailer.net [185.136.64.228])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F983064AA
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF4930DED7
 	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 17:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.227
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.228
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767635660; cv=none; b=Wk0T0dXg4gxYK+CKLWF7hI/+Ogklox/xkSmas2r9ttz6ppyI+ragLvCMk2gHNF0gQ1WB/r9NYZAeAAotj62cKnbLEIBHTzQyUkCgTmpZYLzJbMhHsPmKCKWsGgdRrdt9EhuUENbpfZBrtrV+584ArWeye2prMTq6EHMFs6EFQfA=
+	t=1767635662; cv=none; b=O/ILzILafsDIjbbyMWF6vbC9TQNHFrrt8RRbiJmOVl4KAXm+TiWNTJfEELn9hUcb0nFEaHiQ1zuoOS+RTnSoVs4wO8vnV/1AWHizM4dmzfUhuvVBKacQTtlJmrlSpbZoAGYYT2Q9pAsRaW0+cnzn2Vn1GjkitAPObbXPwZgYQbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767635660; c=relaxed/simple;
-	bh=id0P+PlRLOCJXARQw+fVfjaF5tscQKCQjiVv5D/ZYJI=;
+	s=arc-20240116; t=1767635662; c=relaxed/simple;
+	bh=EBm/YQI9I0Cx3kFnWopwMJkeOGt2puAwe2xLZXInpPU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sAfbPTMPa/fvuTeQRetY6ad1o18UEHX7cmKsnuKxiu2iExmAFW0QHvbsE+gjBDIsaE7QyV/TAsEEQ/vhfo8WFHRZ05hiwP/Y15BFy1yp48BJXq6qrMsRGHLUp5JPrdjgSUas82ohWwB+N8RmRwiTtXUd980isw+pNnNx+WJK2M0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=GlrNtB6Q; arc=none smtp.client-ip=185.136.64.227
+	 MIME-Version; b=RRR2kVmpvD3qGPmC306mgRLf9qnONHRhCt8bPD1v6FSStAlFwOsM+L4p7646csZyO3Vuh0LyYSi79TfXjzLPauwwDhprz7caB+hMUalnbXByPv5aJmbm5PtciNbjmjPsLRTC3yBEIfiEU8x2kjJ5tGi4Erz/RKkReTUxvYVZrMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=Lt5pjqMb; arc=none smtp.client-ip=185.136.64.228
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-64-227.siemens.flowmailer.net with ESMTPSA id 20260105175414fe91c4b766000207a8
+Received: by mta-64-228.siemens.flowmailer.net with ESMTPSA id 20260105175415531761cabc00020706
         for <devicetree@vger.kernel.org>;
         Mon, 05 Jan 2026 18:54:15 +0100
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
  d=siemens.com; i=alexander.sverdlin@siemens.com;
  h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=+VF9qf0lyx5JO6iRDcWE+HGKRWPB1+Q6ipi8K3G/DCc=;
- b=GlrNtB6QMDKgmshwJ+ARV1sTpJNk3940gWCoN2klrwq3sAFlTNtqsOEPmMCM1RtTcXlHQg
- GDQu6AUke4INrIRsnSKNwdjArqsZrPDxX+bbB0ISd1Ri3LueNn19C9DF9PlPETLuOY/MscSi
- ADnx8sNQvUnPKTyBxGaa1Ll27fxA0QjwJl5M0WJ+npzgUE6k83jL3nDSe+ZQM3hi/GAta5In
- DLoxFkdVfFz0BwY325LuwHMkvoy+vjIfUWc6GMZ6CXMe70qxuTGAzM6VXAY8lcOYYie8s4xF
- El4SqJudmcaRVpd1SisVMzDitLqAasmnx3ZFB8kWwTvMyKYHBVT1rWNA==;
+ bh=+cNctosICkbQmisl8GDG+alFgnVkKRXfvi6QE6hmyKU=;
+ b=Lt5pjqMbuTWBDA3l7Ins0mXnGK8lpRKao3PxSZbt8kU6hjr4B3/7O1/MzkR/HNp2vOkP/t
+ RZxtHYINA6+ABCy/1icqC58Sg5sOuRcZf8j/7Uo0zkUV5w2kopZoooW2KEzYjRKa6qc/bD4o
+ u0wM7CpG12bQnM/KIo6pUFFqyDRyawyiTpYauyiN4nDF+XvWlTzKqL6v9aoOv0vseDjt3f2h
+ lzg3qi8j6IYstyuoCexly/UhgRGZ3vL7pGDobQG5jzFKzlyw1wqM9yWNMchcf0VXy/BPwDOO
+ 1CHDabSKLkolCl18wDKcTHN2FRHPky490oI7WMUnI0lOYRyKHEDtf1kQ==;
 From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
 To: netdev@vger.kernel.org
 Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
@@ -57,9 +57,9 @@ Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Daniel Golle <daniel@makrotopia.org>
-Subject: [PATCH v3 1/2] dt-bindings: net: dsa: lantiq,gswip: add MaxLinear R(G)MII slew rate
-Date: Mon,  5 Jan 2026 18:53:10 +0100
-Message-ID: <20260105175320.2141753-2-alexander.sverdlin@siemens.com>
+Subject: [PATCH v3 2/2] net: dsa: mxl-gsw1xx: Support R(G)MII slew rate configuration
+Date: Mon,  5 Jan 2026 18:53:11 +0100
+Message-ID: <20260105175320.2141753-3-alexander.sverdlin@siemens.com>
 In-Reply-To: <20260105175320.2141753-1-alexander.sverdlin@siemens.com>
 References: <20260105175320.2141753-1-alexander.sverdlin@siemens.com>
 Precedence: bulk
@@ -74,9 +74,8 @@ Feedback-ID: 519:519-456497:519-21489:flowmailer
 
 From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 
-Add new slew-rate uint32 property. This property is only applicable for
-ports in R(G)MII mode and allows for slew rate reduction in comparison to
-"normal" default configuration with the purpose to reduce radiated
+Support newly introduced slew-rate device tree property to configure
+R(G)MII interface pins slew rate. It might be used to reduce the radiated
 emissions.
 
 Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
@@ -85,30 +84,124 @@ Changelog:
 v3:
 - use [pinctrl] standard "slew-rate" property as suggested by Rob
   https://lore.kernel.org/all/20251219204324.GA3881969-robh@kernel.org/
+- better sorted struct gswip_hw_info initialisers as suggested by Daniel
 v2:
-- unchanged
+- do not hijack gsw1xx_phylink_mac_select_pcs() for configuring the port,
+  introduce struct gswip_hw_info::port_setup callback
+- actively configure "normal" slew rate (if the new DT property is missing)
+- properly use regmap_set_bits() (v1 had reg and value mixed up)
 
- .../devicetree/bindings/net/dsa/lantiq,gswip.yaml          | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/net/dsa/lantiq/lantiq_gswip.h        |  1 +
+ drivers/net/dsa/lantiq/lantiq_gswip_common.c |  6 ++++
+ drivers/net/dsa/lantiq/mxl-gsw1xx.c          | 31 ++++++++++++++++++++
+ drivers/net/dsa/lantiq/mxl-gsw1xx.h          |  2 ++
+ 4 files changed, 40 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-index 205b683849a53..277b121b159d5 100644
---- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-@@ -111,6 +111,13 @@ patternProperties:
-             description:
-               Configure the RMII reference clock to be a clock output
-               rather than an input. Only applicable for RMII mode.
-+          slew-rate:
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            enum: [0, 1]
-+            description: |
-+              Configure R(G)MII TXD/TXC pads' slew rate:
-+              0: "normal"
-+              1: "slow"
-           tx-internal-delay-ps:
-             enum: [0, 500, 1000, 1500, 2000, 2500, 3000, 3500]
-             description:
+diff --git a/drivers/net/dsa/lantiq/lantiq_gswip.h b/drivers/net/dsa/lantiq/lantiq_gswip.h
+index 2e0f2afbadbbc..8fc4c7cc5283a 100644
+--- a/drivers/net/dsa/lantiq/lantiq_gswip.h
++++ b/drivers/net/dsa/lantiq/lantiq_gswip.h
+@@ -263,6 +263,7 @@ struct gswip_hw_info {
+ 				 struct phylink_config *config);
+ 	struct phylink_pcs *(*mac_select_pcs)(struct phylink_config *config,
+ 					      phy_interface_t interface);
++	int (*port_setup)(struct dsa_switch *ds, int port);
+ };
+ 
+ struct gswip_gphy_fw {
+diff --git a/drivers/net/dsa/lantiq/lantiq_gswip_common.c b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+index e790f2ef75884..17a61e445f00f 100644
+--- a/drivers/net/dsa/lantiq/lantiq_gswip_common.c
++++ b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+@@ -425,6 +425,12 @@ static int gswip_port_setup(struct dsa_switch *ds, int port)
+ 	struct gswip_priv *priv = ds->priv;
+ 	int err;
+ 
++	if (priv->hw_info->port_setup) {
++		err = priv->hw_info->port_setup(ds, port);
++		if (err)
++			return err;
++	}
++
+ 	if (!dsa_is_cpu_port(ds, port)) {
+ 		err = gswip_add_single_port_br(priv, port, true);
+ 		if (err)
+diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.c b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
+index f8ff8a604bf53..6c290bac537ad 100644
+--- a/drivers/net/dsa/lantiq/mxl-gsw1xx.c
++++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
+@@ -559,6 +559,34 @@ static struct phylink_pcs *gsw1xx_phylink_mac_select_pcs(struct phylink_config *
+ 	}
+ }
+ 
++static int gsw1xx_port_setup(struct dsa_switch *ds, int port)
++{
++	struct dsa_port *dp = dsa_to_port(ds, port);
++	struct gsw1xx_priv *gsw1xx_priv;
++	struct gswip_priv *gswip_priv;
++	u32 rate;
++	int ret;
++
++	if (dp->index != GSW1XX_MII_PORT)
++		return 0;
++
++	gswip_priv = ds->priv;
++	gsw1xx_priv = container_of(gswip_priv, struct gsw1xx_priv, gswip);
++
++	ret = of_property_read_u32(dp->dn, "slew-rate", &rate);
++	/* Optional property */
++	if (ret == -EINVAL)
++		return 0;
++	if (ret < 0 || rate > 1) {
++		dev_err(&gsw1xx_priv->mdio_dev->dev, "Invalid slew-rate\n");
++		return (ret < 0) ? ret : -EINVAL;
++	}
++
++	return regmap_update_bits(gsw1xx_priv->shell, GSW1XX_SHELL_RGMII_SLEW_CFG,
++				  RGMII_SLEW_CFG_DRV_TXD | RGMII_SLEW_CFG_DRV_TXC,
++				  (RGMII_SLEW_CFG_DRV_TXD | RGMII_SLEW_CFG_DRV_TXC) * rate);
++}
++
+ static struct regmap *gsw1xx_regmap_init(struct gsw1xx_priv *priv,
+ 					 const char *name,
+ 					 unsigned int reg_base,
+@@ -707,6 +735,7 @@ static const struct gswip_hw_info gsw12x_data = {
+ 	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
+ 	.phylink_get_caps	= &gsw1xx_phylink_get_caps,
+ 	.supports_2500m		= true,
++	.port_setup		= gsw1xx_port_setup,
+ 	.pce_microcode		= &gsw1xx_pce_microcode,
+ 	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
+ 	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
+@@ -720,6 +749,7 @@ static const struct gswip_hw_info gsw140_data = {
+ 	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
+ 	.phylink_get_caps	= &gsw1xx_phylink_get_caps,
+ 	.supports_2500m		= true,
++	.port_setup		= gsw1xx_port_setup,
+ 	.pce_microcode		= &gsw1xx_pce_microcode,
+ 	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
+ 	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
+@@ -732,6 +762,7 @@ static const struct gswip_hw_info gsw141_data = {
+ 	.mii_port_reg_offset	= -GSW1XX_MII_PORT,
+ 	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
+ 	.phylink_get_caps	= gsw1xx_phylink_get_caps,
++	.port_setup		= gsw1xx_port_setup,
+ 	.pce_microcode		= &gsw1xx_pce_microcode,
+ 	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
+ 	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
+diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.h b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
+index 38e03c048a26c..8c0298b2b7663 100644
+--- a/drivers/net/dsa/lantiq/mxl-gsw1xx.h
++++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
+@@ -110,6 +110,8 @@
+ #define   GSW1XX_RST_REQ_SGMII_SHELL		BIT(5)
+ /* RGMII PAD Slew Control Register */
+ #define  GSW1XX_SHELL_RGMII_SLEW_CFG		0x78
++#define   RGMII_SLEW_CFG_DRV_TXC		BIT(2)
++#define   RGMII_SLEW_CFG_DRV_TXD		BIT(3)
+ #define   RGMII_SLEW_CFG_RX_2_5_V		BIT(4)
+ #define   RGMII_SLEW_CFG_TX_2_5_V		BIT(5)
+ 
 -- 
 2.52.0
 
