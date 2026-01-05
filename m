@@ -1,206 +1,154 @@
-Return-Path: <devicetree+bounces-251617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70500CF4D7B
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 17:57:06 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64BF6CF5389
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 19:21:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0AD1B32645CE
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:45:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5A2C1301F022
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 18:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E56E331C567;
-	Mon,  5 Jan 2026 16:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E86B30E0D9;
+	Mon,  5 Jan 2026 18:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s67cTzxq"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="D+zS7y9c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5EB30C360
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 16:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B10303CB0;
+	Mon,  5 Jan 2026 18:21:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767631487; cv=none; b=XmNWNGiqqVx670nTAumAqrVaVCBTT8+Pe/iIMg3cDgXXTECFDMHo0dfN2zeKkv3PCqjsItQpMWZMSystdgB+xavuhlCXmUasTLodJTohIyMFJpSFqq8vlcvBAaoqXbS6dSuT+KPZ1KclzD9zB5abIEtye/h3mo6k4gvmpkQiEDk=
+	t=1767637312; cv=none; b=soVsgvtYvo1WQ029zrAhgQxIMn/8PUzBerwkovJeAbn9co/oBWL+Zog8K8JI0oPZj6kuOCgyLSyN9LH8/IFzLaDkoH2eHVTO18bF2ziSgSJZ2uqpyokjeTwwNiBsBnrlbVPjzDRdaTj0Nnx2YpM2cCDDKuMUOOBKFlRgHSa/brc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767631487; c=relaxed/simple;
-	bh=ysL1IfLuQqLs930QYIuvsI/XaCNHlG4InlrdhPVFass=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=j5lMNzgGAoV6fTmfsXeH6uFaRbXLKR5Zct09ucnHK8Rmp1b9/z5Z+VofQjUP253w0Ne9ROH+bP9KDkpI3JHo92t5phB+2Ct6RK5AAp2FCaa3tVEWi64ftokxdW6Vkx9vOWiiIZfQSLnD1mLqvl3GXT6x2PQrXk/Dn9+SZ4YvEOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s67cTzxq; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6505cbe47d8so166049a12.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 08:44:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767631484; x=1768236284; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ysL1IfLuQqLs930QYIuvsI/XaCNHlG4InlrdhPVFass=;
-        b=s67cTzxqQT3++zeW3nmgazOyFU6yUgMdUPuXIyiEMETVRvc5Sb5QY4YM2dM2N7AjVX
-         P3xQEOnoHTwdEmomhxpQQ4TiIokqAvF8TrY0Lw39XNw7AjtSCaFtTFHJdiZVQ4cB9RtX
-         RF18yqvTdCd89G9j4ZRQzO/RngMJ5hjKh7hKdzo61XRsFNcvb2+UxlIZWDqgjmw0FNLf
-         XucNj7VdQCLMMEchTj1jTxwfxZAV8PZgq2K0YWuzBTVY89feyI98/ZFB4dpOIusudiLS
-         EarrzvOCOghrlOskF6L7PSpW8uKEemtJ8t5nWDjZ1SoV4EnJyti6z+piG1l+YKGnrxTf
-         VRBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767631484; x=1768236284;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ysL1IfLuQqLs930QYIuvsI/XaCNHlG4InlrdhPVFass=;
-        b=afrGnzHsmXjGPFZNjawIN5rBT2dq7ozaO6qWdnk3PS/QPHOxJ7O9FL9WYshfn+dydG
-         J81uf7jU/XX/NpZYqNwMD4ZtF2l9iUIopEJbtMlir7a+bgu/zsnAL3847W8k2sAgDFZL
-         YCfvVFBv9fVHdpTHbAQl/tzQuqaglJVmu2/j3boWHDP96BeVukDKwCe5CXCUxFqFwX+2
-         YZexUCIrfxpoZ9jRMEwd/5Bzl72f+xrrgY3gTeTi+EVMcK7fZbuLN6Jl3hYSnAzx9Jyh
-         8oe8hQHnj/Z8/3xNHyVCh+lhqzWbYaWt3jvc4dCuA5amEmdm+9YkwxYuLRvEWwdZmpYI
-         EREg==
-X-Forwarded-Encrypted: i=1; AJvYcCUd/sysWlWBUVlLPYvqdgO4rK/9pq2B4YHWw82qjg2CRY8zeTVlqReBLV2dXEDZJ1GZPRB/cYz0xbJv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMUDxsVEl9iBsBVnVFBLipVo+sW0ImoNVoEkEdWVE9VkTGbXIZ
-	j+pR7lXSqrFxi/SNDGVBNgMUP4Sz23Ptnv9yvZCA6ABgZcI2a+NdMd7/GEPvblJD66w=
-X-Gm-Gg: AY/fxX6fkUahjcJRf2QDuJyz3B4z7ZlaC3JBRdpZ+Zu5ir/BRBlzW1ng6/elCWgAqYg
-	4ttF7J707c0R/528O+tO27XpAG9VnV9Cwa8dtoubPY/uawCy1DX7Ezqe3UXJkM05rNY96zGDR7U
-	DuiqlzF4XeRI0PfShuTSwatZmXEdnHooBuVedOvlDrm/54ljTCibQsCYM4Kt8AwjvzCJ4y+uvy3
-	f4sgPEwxK9J8ArevS2tfdXBEoFCkq/NCVzEnkzCNQDUb2slRNF41ApoJKbC9lOv0oqLGy51CrB3
-	MhjZWe9tA1ZycPYWGb9yXXqBKezPZonaOpb2DvSSyUtOJcRELojSidwVPhwqAJFC4JM+nXZ20p1
-	SYiO4BQQzkK8vG5eyGnakOwhuk4T7sOcRBRTPvQxBQYDe3v2vX0b/vNtue8qCIcomQgu9RMppv+
-	FxCVlfE59sP7NX+DlnbfN9WkGstCX0
-X-Google-Smtp-Source: AGHT+IHMPq7hes2husjubrT6pbdK3YBWuHV6Kv168VWiyeDREVlAzmwHmgmU7dDwuzvHpVfXm/CQRw==
-X-Received: by 2002:a05:6402:268a:b0:64b:3093:3560 with SMTP id 4fb4d7f45d1cf-6507921efe9mr59078a12.6.1767631483506;
-        Mon, 05 Jan 2026 08:44:43 -0800 (PST)
-Received: from draszik.lan ([212.129.74.225])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-650762a2238sm208296a12.34.2026.01.05.08.44.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 08:44:43 -0800 (PST)
-Message-ID: <d2c50afe586956ef3a60f17eb77b20fc73fe8dc8.camel@linaro.org>
-Subject: Re: [PATCH v3 3/5] mfd: max77759: add register bitmasks and modify
- irq configs for charger
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
- <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
- Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
- Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Date: Mon, 05 Jan 2026 16:45:17 +0000
-In-Reply-To: <20251227-max77759-charger-v3-3-54e664f5ca92@google.com>
-References: <20251227-max77759-charger-v3-0-54e664f5ca92@google.com>
-	 <20251227-max77759-charger-v3-3-54e664f5ca92@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1767637312; c=relaxed/simple;
+	bh=z6/Wphu0OAMssonNpeRuI/trkuqvtCdVfy8qVsTvcIw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QjcVTMb1YYW8CnHOb+tMUmirv37p5vBUBEbiVwT62/fqIXAL1OMmOsN2rPXLyhl5Bf3mZwu0+NQf9GniKzUABuLz3G04q4dhWwoyd7PR11KExYSWcdZIEKdUfapxzGRF9gSDbVOoBUpnLxUCEM0B2MvId5JyLc8MHCaqrvfOYPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=D+zS7y9c; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dlN170fMhz9tQq;
+	Mon,  5 Jan 2026 19:21:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767637307;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MMJqVJMgue288REwsy/Kw6YGKx1SN8vSeF+6ZE5Moss=;
+	b=D+zS7y9cPJmp7H19AB12Uc+mBc/ke2p2UuL4YS/0DSDQ4r9a1VtgyxCG3UMOVgOgehUf28
+	SC4w4+OQxJagppCvCwXk+2ay5KJdqaSkokOqIBSHotCxFb+laTaFAOTXUu+SUOb0qdzUpx
+	90yJkRxTdCmw/FuXWXIvMjkpNt9hStakeolIv+f+MkFrZ5totTC/Hz5wE7C2KnS/muevNw
+	JGDj1ZmrNZ624ofZCrxpHgjcEFfrYWxZ95rKILE13KfaVyvWGpLFhdZUIyC5ETUGfs0gNE
+	cnatCGqwGVkFCuTb+0jXZKCoKWSRE9CpChJ9ILyUnJlATxGRAS7CFiN2y34LYw==
+Message-ID: <0355f521-e506-447f-bc6a-cf4405903cfd@mailbox.org>
+Date: Mon, 5 Jan 2026 17:31:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Subject: Re: [PATCH] arm64: dts: imx95: remove CLK_GPUAPB
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: Frank.Li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ festevam@gmail.com, imx@lists.linux.dev, jiyu.yang@nxp.com,
+ kernel@pengutronix.de, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ liviu.dudau@arm.com, robh@kernel.org, s.hauer@pengutronix.de,
+ shawnguo@kernel.org
+References: <20251231031915.752262-1-jiyu.yang@oss.nxp.com>
+ <37489cb7-820d-46cd-a7ea-0f9097604895@mailbox.org>
+ <aVXByNiEfC66RDG0@oss.nxp.com>
+ <b2dd2109-c2d9-412e-9b11-5851485acf04@mailbox.org>
+ <aVegAt002L20oBGf@oss.nxp.com>
+ <0de33175-1dc3-417b-8dab-9b57940f0789@mailbox.org>
+ <aVsfpHtID4SdPP1n@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aVsfpHtID4SdPP1n@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: xdypdcre8setbt9xhn7hd96tdehyypri
+X-MBO-RS-ID: f32776500066e9b0833
 
-T24gU2F0LCAyMDI1LTEyLTI3IGF0IDAwOjA0ICswMDAwLCBBbWl0IFN1bmlsIERoYW1uZSB2aWEg
-QjQgUmVsYXkgd3JvdGU6Cj4gRnJvbTogQW1pdCBTdW5pbCBEaGFtbmUgPGFtaXRzZEBnb29nbGUu
-Y29tPgo+IAo+IEFkZCByZWdpc3RlciBiaXRtYXNrcyBmb3IgY2hhcmdlciBmdW5jdGlvbi4KPiBJ
-biBhZGRpdGlvbiBzcGxpdCB0aGUgY2hhcmdlciBJUlFzIGZ1cnRoZXIgc3VjaCB0aGF0IGVhY2gg
-Yml0IHJlcHJlc2VudHMKPiBhbiBJUlEgZG93bnN0cmVhbSBvZiBjaGFyZ2VyIHJlZ21hcCBpcnEg
-Y2hpcC4gSW4gYWRkaXRpb24gcG9wdWxhdGUgdGhlCj4gYWNrX2Jhc2UgdG8gb2ZmbG9hZCBpcnEg
-YWNrIHRvIHRoZSByZWdtYXAgaXJxIGNoaXAgZnJhbWV3b3JrLgo+IAo+IFNpZ25lZC1vZmYtYnk6
-IEFtaXQgU3VuaWwgRGhhbW5lIDxhbWl0c2RAZ29vZ2xlLmNvbT4KPiAtLS0KPiDCoGRyaXZlcnMv
-bWZkL21heDc3NzU5LmPCoMKgwqDCoMKgwqAgfMKgIDkxICsrKysrKysrKysrKysrKysrLS0KPiDC
-oGluY2x1ZGUvbGludXgvbWZkL21heDc3NzU5LmggfCAyMDIgKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrLS0tLS0tLQo+IMKgMiBmaWxlcyBjaGFuZ2VkLCAyNTYgaW5zZXJ0aW9u
-cygrKSwgMzcgZGVsZXRpb25zKC0pCj4gCj4gWy4uLl0KPiDCoAo+IGRpZmYgLS1naXQgYS9pbmNs
-dWRlL2xpbnV4L21mZC9tYXg3Nzc1OS5oIGIvaW5jbHVkZS9saW51eC9tZmQvbWF4Nzc3NTkuaAo+
-IGluZGV4IGM2ZmFjZTM0ZTM4NS4uZTY3NGE1MTllNzgyIDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUv
-bGludXgvbWZkL21heDc3NzU5LmgKPiArKysgYi9pbmNsdWRlL2xpbnV4L21mZC9tYXg3Nzc1OS5o
-Cj4gQEAgLTU5LDM1ICs1OSw2NSBAQAo+IMKgI2RlZmluZSBNQVg3Nzc1OV9NQVhRX1JFR19BUF9E
-QVRBSU4wwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweGIxCj4gwqAjZGVmaW5lIE1BWDc3NzU5X01B
-WFFfUkVHX1VJQ19TV1JTVMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweGUwCj4gwqAKPiAtI2Rl
-ZmluZSBNQVg3Nzc1OV9DSEdSX1JFR19DSEdfSU5UwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCAweGIwCj4gLSNkZWZpbmUgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hHX0lOVDLCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCAweGIxCj4gLSNkZWZpbmUgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hHX0lOVF9N
-QVNLwqDCoMKgwqDCoMKgwqDCoMKgIDB4YjIKPiAtI2RlZmluZSBNQVg3Nzc1OV9DSEdSX1JFR19D
-SEdfSU5UMl9NQVNLwqDCoMKgwqDCoMKgwqDCoCAweGIzCj4gLSNkZWZpbmUgTUFYNzc3NTlfQ0hH
-Ul9SRUdfQ0hHX0lOVF9PS8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiNAo+IC0jZGVmaW5lIE1B
-WDc3NzU5X0NIR1JfUkVHX0NIR19ERVRBSUxTXzAwwqDCoMKgwqDCoMKgwqAgMHhiNQo+IC0jZGVm
-aW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19ERVRBSUxTXzAxwqDCoMKgwqDCoMKgwqAgMHhiNgo+
-IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19ERVRBSUxTXzAywqDCoMKgwqDCoMKgwqAg
-MHhiNwo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19ERVRBSUxTXzAzwqDCoMKgwqDC
-oMKgwqAgMHhiOAo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzAwwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgMHhiOQo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZH
-XzAxwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiYQo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVH
-X0NIR19DTkZHXzAywqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiYgo+IC0jZGVmaW5lIE1BWDc3NzU5
-X0NIR1JfUkVHX0NIR19DTkZHXzAzwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiYwo+IC0jZGVmaW5l
-IE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzA0wqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiZAo+
-IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzA1wqDCoMKgwqDCoMKgwqDCoMKg
-wqAgMHhiZQo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzA2wqDCoMKgwqDC
-oMKgwqDCoMKgwqAgMHhiZgo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzA3
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhjMAo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NI
-R19DTkZHXzA4wqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhjMQo+IC0jZGVmaW5lIE1BWDc3NzU5X0NI
-R1JfUkVHX0NIR19DTkZHXzA5wqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhjMgo+IC0jZGVmaW5lIE1B
-WDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzEwwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhjMwo+IC0j
-ZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzExwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-MHhjNAo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzEywqDCoMKgwqDCoMKg
-wqDCoMKgwqAgMHhjNQo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzEzwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgMHhjNgo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19D
-TkZHXzE0wqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhjNwo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1Jf
-UkVHX0NIR19DTkZHXzE1wqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhjOAo+IC0jZGVmaW5lIE1BWDc3
-NzU5X0NIR1JfUkVHX0NIR19DTkZHXzE2wqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhjOQo+IC0jZGVm
-aW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzE3wqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhj
-YQo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzE4wqDCoMKgwqDCoMKgwqDC
-oMKgwqAgMHhjYgo+IC0jZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzE5wqDCoMKg
-wqDCoMKgwqDCoMKgwqAgMHhjYwo+ICsjZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19JTlTC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiMAo+ICsjZGVmaW5l
-wqDCoCBNQVg3Nzc1OV9DSEdSX1JFR19DSEdfSU5UX0FJQ0zCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIEJJVCg3KQo+ICsjZGVmaW5lwqDCoCBNQVg3Nzc1OV9DSEdSX1JFR19DSEdfSU5UX0NI
-R0lOwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgQklUKDYpCj4gKyNkZWZpbmXCoMKgIE1BWDc3
-NzU5X0NIR1JfUkVHX0NIR19JTlRfV0NJTsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgQklU
-KDUpCj4gKyNkZWZpbmXCoMKgIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19JTlRfQ0hHwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIEJJVCg0KQo+ICsjZGVmaW5lwqDCoCBNQVg3Nzc1OV9DSEdS
-X1JFR19DSEdfSU5UX0JBVMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBCSVQoMykKPiAr
-I2RlZmluZcKgwqAgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hHX0lOVF9JTkxJTcKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIEJJVCgyKQo+ICsjZGVmaW5lwqDCoCBNQVg3Nzc1OV9DSEdSX1JFR19DSEdf
-SU5UX1RITTLCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEJJVCgxKQo+ICsjZGVmaW5lwqDC
-oCBNQVg3Nzc1OV9DSEdSX1JFR19DSEdfSU5UX0JZUMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBCSVQoMCkKPiArI2RlZmluZSBNQVg3Nzc1OV9DSEdSX1JFR19DSEdfSU5UMsKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiMQo+ICsjZGVmaW5lwqDCoCBNQVg3
-Nzc1OV9DSEdSX1JFR19DSEdfSU5UMl9JTlNFTMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBCSVQo
-NykKPiArI2RlZmluZcKgwqAgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hHX0lOVDJfU1lTX1VWTE8xwqDC
-oMKgwqDCoMKgwqDCoCBCSVQoNikKPiArI2RlZmluZcKgwqAgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hH
-X0lOVDJfU1lTX1VWTE8ywqDCoMKgwqDCoMKgwqDCoCBCSVQoNSkKPiArI2RlZmluZcKgwqAgTUFY
-Nzc3NTlfQ0hHUl9SRUdfQ0hHX0lOVDJfQkFUX09JTE/CoMKgwqDCoMKgwqDCoMKgwqAgQklUKDQp
-Cj4gKyNkZWZpbmXCoMKgIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19JTlQyX0NIR19TVEFfQ0PCoMKg
-wqDCoMKgwqDCoCBCSVQoMykKPiArI2RlZmluZcKgwqAgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hHX0lO
-VDJfQ0hHX1NUQV9DVsKgwqDCoMKgwqDCoMKgIEJJVCgyKQo+ICsjZGVmaW5lwqDCoCBNQVg3Nzc1
-OV9DSEdSX1JFR19DSEdfSU5UMl9DSEdfU1RBX1RPwqDCoMKgwqDCoMKgwqAgQklUKDEpCj4gKyNk
-ZWZpbmXCoMKgIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19JTlQyX0NIR19TVEFfRE9ORcKgwqDCoMKg
-wqAgQklUKDApCj4gKyNkZWZpbmUgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hHX0lOVF9NQVNLwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiMgo+ICsjZGVmaW5lIE1BWDc3NzU5X0NIR1Jf
-UkVHX0NIR19JTlQyX01BU0vCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiMwo+ICsj
-ZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19JTlRfT0vCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgMHhiNAo+ICsjZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19ERVRB
-SUxTXzAwwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweGI1Cj4gKyNkZWZpbmXCoMKgIE1B
-WDc3NzU5X0NIR1JfUkVHX0NIR19ERVRBSUxTX09PX0NIR0lOX0RUTFPCoCBHRU5NQVNLKDYsIDUp
-Cj4gKyNkZWZpbmUgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hHX0RFVEFJTFNfMDHCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIDB4YjYKPiArI2RlZmluZcKgwqAgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hH
-X0RFVEFJTFNfMDFfQkFUX0RUTFPCoMKgwqAgR0VOTUFTSyg2LCA0KQo+ICsjZGVmaW5lwqDCoCBN
-QVg3Nzc1OV9DSEdSX1JFR19DSEdfREVUQUlMU18wMV9DSEdfRFRMU8KgwqDCoCBHRU5NQVNLKDMs
-IDApCj4gKyNkZWZpbmUgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hHX0RFVEFJTFNfMDLCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIDB4YjcKPiArI2RlZmluZcKgwqAgTUFYNzc3NTlfQ0hHUl9SRUdf
-Q0hHX0RFVEFJTFNfMDJfQ0hHSU5fU1RTwqDCoCBCSVQoNSkKPiArI2RlZmluZSBNQVg3Nzc1OV9D
-SEdSX1JFR19DSEdfREVUQUlMU18wM8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiOAo+
-ICsjZGVmaW5lIE1BWDc3NzU5X0NIR1JfUkVHX0NIR19DTkZHXzAwwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCAweGI5Cj4gKyNkZWZpbmXCoMKgIE1BWDc3NzU5X0NIR1JfUkVHX0NI
-R19DTkZHXzAwX01PREXCoMKgwqDCoMKgwqDCoMKgwqDCoCBHRU5NQVNLKDMsIDApCj4gKyNkZWZp
-bmUgTUFYNzc3NTlfQ0hHUl9SRUdfQ0hHX0NORkdfMDHCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIDB4YmEKPiArI2RlZmluZSBNQVg3Nzc1OV9DSEdSX1JFR19DSEdfQ05GR18wMsKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiYgo+ICsjZGVmaW5lwqDCoCBNQVg3
-Nzc1OV9DSEdSX1JFR19DSEdfQ05GR18wMl9DSEdDQwnCoMKgwqDCoMKgwqAgR0VOTUFTSyg1LCAw
-KQoKU21hbGwgbml0IC0gdGhlcmUgc2VlbXMgdG8gYmUgYSBzdHJheSBUQUIgaW4gdGhpcyBsaW5l
-LgoKT3RoZXIgdGhhbiB0aGF0OgpSZXZpZXdlZC1ieTogQW5kcsOpIERyYXN6aWsgPGFuZHJlLmRy
-YXN6aWtAbGluYXJvLm9yZz4K
+On 1/5/26 3:19 AM, Rain Yang wrote:
+> On Fri, Jan 02, 2026 at 02:53:31PM +0100, Marek Vasut wrote:
+>> On 1/2/26 11:37 AM, Rain Yang wrote:
+>>> On Thu, Jan 01, 2026 at 05:51:12PM +0100, Marek Vasut wrote:
+>>>> On 1/1/26 1:37 AM, Rain Yang wrote:
+>>>>> On Wed, Dec 31, 2025 at 03:11:21PM +0100, Marek Vasut wrote:
+>>>>>> On 12/31/25 4:19 AM, Rain Yang wrote:
+>>>>>>> From: Rain Yang <jiyu.yang@nxp.com>
+>>>>>>>
+>>>>>>> Dropping CLK_GPUAPB simplifies OPP handling and avoids unnecessary
+>>>>>>> complexity.
+>>>>>>>
+>>>>>>> Fixes: 67934f248e64 ("arm64: dts: imx95: Describe Mali G310 GPU")
+>>>>>>> Signed-off-by: Rain Yang <jiyu.yang@nxp.com>
+>>>>>>> ---
+>>>>>>>      arch/arm64/boot/dts/freescale/imx95.dtsi | 4 ++--
+>>>>>>>      1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+>>>>>>> index 88bde59e61b2..ab446aa6f73c 100644
+>>>>>>> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+>>>>>>> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+>>>>>>> @@ -2164,8 +2164,8 @@ netc_emdio: mdio@0,0 {
+>>>>>>>      		gpu: gpu@4d900000 {
+>>>>>>>      			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
+>>>>>>>      			reg = <0 0x4d900000 0 0x480000>;
+>>>>>>> -			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>, <&scmi_clk IMX95_CLK_GPUAPB>;
+>>>>>>> -			clock-names = "core", "coregroup";
+>>>>>>> +			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>;
+>>>>>>> +			clock-names = "core";
+>>>>>>
+>>>>>> I don't think this is correct, SM can disable the GPUAPB clock from the SM
+>>>>>> monitor:
+>>>>>>
+>>>>>>> $ clock.w gpuapb off
+>>>>>>
+>>>>>> Linux has to make sure the GPUAPB clock are enabled to access the GPU
+>>>>>> register, hence the clock have to be described in DT.
+>>>>> Hi Marek,
+>>>>
+>>>> Hello Jiyu,
+>>>>
+>>>>> CLK_GPU and CLK_GPUAPB can only be controlled internally by the SM, not by Linux.
+>>>>> CLK_GPUAPB always runs at a fixed frequency, does not require dynamic adjustment,
+>>>>> and is practically always on.
+>>>>> Additionally, CLK_GPUAPB's frequency is absent from all OPP entries. Removing it
+>>>>> could simplify OPP handling logic and reduce unnecessary complexity.
+>>>>
+>>>> But the SM can turn the GPUAPB clock off, correct ?
+>>>>
+>>>> Linux has to be able to turn GPUAPB clock on, therefore the GPUAPB clock have
+>>>> to be described in DT, correct ?
+>>>
+>>> Yes, CLK_GPUAPB can be turned off by the SM, but by default it remains on, just like
+>>> CLK_GPU. AFAIK, there is no scenario where either of these clocks could or would be
+>>> disabled in both SM and Linux.
+>>>
+>>> If enabling or disabling CLK_GPUAPB in Linux was wanted, the same shall apply to CLK_GPU
+>>> to make this approach reasonable.
+>>> Also, OPP framework shall be adjusted to meet these changes too.
+>>
+>> You can not depend on the state in which bootloader or any other prior stage
+>> left the platform. If the clock can be turned off, you must make sure they
+>> are turned on for correct hardware operation.
+>>
+>> CLK_GPU is enabled as parent clock of CLK_GPUCGC already.
+> Hi Marek,
+> I'm afraid it's not what you expected, the CLK_GPUCGC patch already based on the CLK_GPU is
+> always-on, you can disable the CLK_GPU in SM, then run any gles application, the board will reboot.
+Which kernel version are you testing ?
 
+Also, can you share your /sys/kernel/debug/clk/clk_summary ? The clock 
+relationship should be visible there.
 
