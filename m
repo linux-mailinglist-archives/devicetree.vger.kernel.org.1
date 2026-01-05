@@ -1,221 +1,284 @@
-Return-Path: <devicetree+bounces-251604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 079CBCF49CE
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 17:16:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 978D8CF4B23
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 17:32:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9EE12302CDF5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:15:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 91E0E30AFDC3
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F04331DDA4;
-	Mon,  5 Jan 2026 16:10:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45E7733EAF8;
+	Mon,  5 Jan 2026 16:13:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dgQc0b4b"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="Zl0RjHbG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417882F25E4;
-	Mon,  5 Jan 2026 16:10:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767629429; cv=none; b=uUTGfjnVMSg09h/Itz5egqgdu+enqI1fRI1zqIncxvaOLmHTKghn5Lp0kfYRlqguiIO18L/uR4NGW18eVdM/UuP0VrbMkHtdqet1C/R50sMSBSh6hY/XZrjOrIWbncLtNSPWvRtzZB/zQOKSAbed/ixX1p15z9Hsi9F4LwCInJg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767629429; c=relaxed/simple;
-	bh=kzCRFUztXQTIWieGzaPRB5F9NacR2ZhvKHo9n5T7lCs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZXZ/tSdSRvCf7vP27mCSoNjpiKKBy7FB2Mh2Im6fAaXgLI95bLJU/Aw8kyncSAsA27czDyjBUAVckAu+LRAjc2D0SY9semw9SIrF7z/wnvbinMzK8q6FwbDmi7tTPuVByNOlLjx4NClWt1iyHvAx1haJE8hJILpQjVt9Hl4dg10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dgQc0b4b; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767629427; x=1799165427;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kzCRFUztXQTIWieGzaPRB5F9NacR2ZhvKHo9n5T7lCs=;
-  b=dgQc0b4bkVdYXVUk7Sfz79trgYSNc4RnsHIBQuSZyhsnxODh+tDI0pbL
-   Pm6Qqc+F84QfruQ4xUz8iS3xKAk4HWWDV1nL/Tj3kFbvLAV65HYE56cJL
-   TCq6RyalR9CyZTkKfDPlCvdsqagGIptLdukZbnzGifjHaMJhP3F7Xi5l5
-   IaPSoMURAQ7gLqR8nhsq4Q3kW+9O/YRSJaNAr3orkgZC4uMCCgbqYjaR5
-   slCNaSMMM9YHhRsrt+QnyCC3hFPRoeduJIcGDAZjbSjnlEFqK+30V+JKc
-   iLAt575Hj/0/ffEEG5vJfmUcngKZn+L/KN9XyibD5VQgFko6ZuKB8Yf5t
-   Q==;
-X-CSE-ConnectionGUID: WltLiaPeTc+VR7OvQGbH2A==
-X-CSE-MsgGUID: ZnO4oCPJRd6JAVOFyN8jLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="79300044"
-X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; 
-   d="scan'208";a="79300044"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2026 08:10:26 -0800
-X-CSE-ConnectionGUID: zs90m1P/T/6PV/+GxPKxMQ==
-X-CSE-MsgGUID: 6BWfqYvcS/SbRp4lnJP65w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; 
-   d="scan'208";a="202469155"
-Received: from rfrazer-mobl3.amr.corp.intel.com (HELO kuha) ([10.124.222.12])
-  by orviesa008.jf.intel.com with SMTP; 05 Jan 2026 08:10:20 -0800
-Received: by kuha (sSMTP sendmail emulation); Mon, 05 Jan 2026 18:10:01 +0200
-Date: Mon, 5 Jan 2026 18:10:01 +0200
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: amitsd@google.com
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Lee Jones <lee@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Badhri Jagan Sridharan <badhri@google.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Subject: Re: [PATCH v3 5/5] usb: typec: tcpm/tcpci_maxim: deprecate WAR for
- setting charger mode
-Message-ID: <aVvhvuq6Ls1v3B_E@kuha>
-References: <20251227-max77759-charger-v3-0-54e664f5ca92@google.com>
- <20251227-max77759-charger-v3-5-54e664f5ca92@google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F61733EAEC;
+	Mon,  5 Jan 2026 16:13:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767629631; cv=pass; b=kHzwPJxPdQ0v7TXAecM1kenjR2tHAiqWrOr+zwi+1XX4ZQVZAiBbWpYr9gTZE8gF9nVkpStdYsCakDdYhF9kWZR9dUe1n04SHYJO7MUh80fqHVBQ7V+Aslv8jIqdNAi8f8mDfwCvFa1OMJGa2AmLZaGqI4fUjtkRoXe5QcBhC6E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767629631; c=relaxed/simple;
+	bh=TsUBNyZy9Y8U68MehXtbryg/+pqq1ZDESAgD5LeM2oE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=aQv5DLV9JqrSFvKZVHVqZqHqN6ZwsYlapTpVIHybyVL165PqE3V0jR8nPVzaqBiqVdWT28bLYMKtMenl0oKjaZVGLPLC2Ls9Nhu9rtOdRUHLrYSjyxH9m8Cyg4RK2R9J/FSIZ4tgm0SFDFEgezYb0N3O7FRnK71JhOVgQC8psgs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=Zl0RjHbG; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1767629495; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=HFPkpi3yUt2retBX3XruNmVKRhLugIWUtSku85zjLKmrEPbhagqb6VEPHqvjft5uymwswCMrdMbPUh8kAC+XU8Qt5CK2TPKjkKalykSR0xnplEcfK4AgWNjAVx3uLYlWnwJHvkJBR2gg2URbV9sUh2XU2wI3+XuF3YwJrx6SUQU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1767629495; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=TsUBNyZy9Y8U68MehXtbryg/+pqq1ZDESAgD5LeM2oE=; 
+	b=dvrqO+J+vBouU/c1lunfd4L19pTxn9BJKF9jYYImddGCntzHcCSkJRJoNFvl22N3vsXM1z0C92VHlUMzAZuXyIkDDPah93d+/Wq/QkWU8uPDYvtFeAzHtV3x1KO59NRC9SfUmrxDWNOygYPx0Rr/qr4i0HpY3Y4cIQ30smZdH+M=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767629495;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=TsUBNyZy9Y8U68MehXtbryg/+pqq1ZDESAgD5LeM2oE=;
+	b=Zl0RjHbGG4ePiC5rg+Ouv9+o67810a4y9QZkBvPiRX+OJJ7J10dijLKO0ss9sXta
+	RKBINZ99rLgumWFz+daBMc/Ti1hLS0CBvX+gICkWe14wGqgvEO61AFfKj62tQ0q37Fy
+	DTGVuaPVEHF4UB/yVeBbFc3XZuzYsaPudrkYUYaYRfeanntjEqFUTGnj97v7cXR28JY
+	Umc3iToZbX0GyPfiAbm9fzWPcQWjNtYz6+6i2P8Rp89UPCn57I+2nUq5G0ZrKuu1Jci
+	weAiS5Or1saJBtv/fN9vWcEb3FHe7A3awgfYLakNokcUsPYHZAi6JRpxDOk4jiTvWAf
+	N7ZtTd4Lfg==
+Received: by mx.zohomail.com with SMTPS id 1767629491804668.4612361380402;
+	Mon, 5 Jan 2026 08:11:31 -0800 (PST)
+Message-ID: <a838dc0f8bd39c6d9da95f5fd137eba8c131c58a.camel@icenowy.me>
+Subject: Re: [PATCH v4 2/9] dt-bindings: display: add verisilicon,dc
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Rob Herring <robh@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Drew Fustini
+ <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
+ <wefu@redhat.com>,  Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner
+ <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Michal
+ Wilczynski <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, Yao
+ Zi <ziyao@disroot.org>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org
+Date: Tue, 06 Jan 2026 00:11:16 +0800
+In-Reply-To: <20260105154656.GA2585570-robh@kernel.org>
+References: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
+	 <20251224161205.1132149-3-zhengxingda@iscas.ac.cn>
+	 <20260105154656.GA2585570-robh@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251227-max77759-charger-v3-5-54e664f5ca92@google.com>
+X-ZohoMailClient: External
 
-Sat, Dec 27, 2025 at 12:04:25AM +0000, Amit Sunil Dhamne via B4 Relay kirjoitti:
-> From: Amit Sunil Dhamne <amitsd@google.com>
-> 
-> TCPCI maxim driver directly writes to the charger's register space to
-> set charger mode depending on the power role. As MAX77759 chg driver
-> exists, this WAR is not required.
-> 
-> Instead, use a regulator interface to source vbus when typec is in
-> source power mode. In other power modes, this regulator will be turned
-> off if active.
-> 
-> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+=E5=9C=A8 2026-01-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 09:46 -0600=EF=BC=
+=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
+> On Thu, Dec 25, 2025 at 12:11:58AM +0800, Icenowy Zheng wrote:
+> > From: Icenowy Zheng <uwu@icenowy.me>
+> >=20
+> > Verisilicon has a series of display controllers prefixed with DC
+> > and
+> > with self-identification facility like their GC series GPUs.
+> >=20
+> > Add a device tree binding for it.
+> >=20
+> > Depends on the specific DC model, it can have either one or two
+> > display
+> > outputs, and each display output could be set to DPI signal or "DP"
+> > signal (which seems to be some plain parallel bus to HDMI
+> > controllers).
+> >=20
+> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > ---
+> > Changes in v4:
+> > - Added a comment for "verisilicon,dc" that says the ID/revision is
+> > =C2=A0 discoverable via registers.
+> > - Removed clock minItems constraint w/o specific compatible
+> > strings.
+> >=20
+> > Changes in v3:
+> > - Added SoC-specific compatible string, and arm the binding with
+> > clock /
+> > =C2=A0 port checking for the specific SoC (with a 2-output DC).
+> >=20
+> > Changes in v2:
+> > - Fixed misspelt "versilicon" in title.
+> > - Moved minItems in clock properties to be earlier than items.
+> > - Re-aligned multi-line clocks and resets in example.
+> >=20
+> > =C2=A0.../bindings/display/verisilicon,dc.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 144
+> > ++++++++++++++++++
+> > =C2=A01 file changed, 144 insertions(+)
+> > =C2=A0create mode 100644
+> > Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> > b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> > new file mode 100644
+> > index 0000000000000..fe64cc1466690
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> > @@ -0,0 +1,144 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/verisilicon,dc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Verisilicon DC-series display controllers
+> > +
+> > +maintainers:
+> > +=C2=A0 - Icenowy Zheng <uwu@icenowy.me>
+> > +
+> > +properties:
+> > +=C2=A0 $nodename:
+> > +=C2=A0=C2=A0=C2=A0 pattern: "^display@[0-9a-f]+$"
+> > +
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 items:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - thead,th1520-=
+dc8200
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: verisilicon,dc # DC IPs have d=
+iscoverable
+> > ID/revision registers
+> > +
+> > +=C2=A0 reg:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 interrupts:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 clocks:
+> > +=C2=A0=C2=A0=C2=A0 items:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: DC Core clock
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: DMA AXI bus clock
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Configuration AHB bus cl=
+ock
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Pixel clock of output 0
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Pixel clock of output 1
+> > +
+> > +=C2=A0 clock-names:
+> > +=C2=A0=C2=A0=C2=A0 items:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: core
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: axi
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: ahb
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: pix0
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: pix1
+> > +
+> > +=C2=A0 resets:
+> > +=C2=A0=C2=A0=C2=A0 items:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: DC Core reset
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: DMA AXI bus reset
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Configuration AHB bus re=
+set
+> > +
+> > +=C2=A0 reset-names:
+> > +=C2=A0=C2=A0=C2=A0 items:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: core
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: axi
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: ahb
+> > +
+> > +=C2=A0 ports:
+> > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +=C2=A0=C2=A0=C2=A0 properties:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port@0:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/graph.yaml#/=
+properties/port
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: The first outp=
+ut channel , endpoint 0 should
+> > be
+>=20
+> No space before comma. Or perhaps should be a period instead.
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Well I don't know why I inserted such a space, will remove it.
 
-> ---
->  drivers/usb/typec/tcpm/tcpci_maxim.h      |  1 +
->  drivers/usb/typec/tcpm/tcpci_maxim_core.c | 54 +++++++++++++++++++------------
->  2 files changed, 34 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/tcpm/tcpci_maxim.h b/drivers/usb/typec/tcpm/tcpci_maxim.h
-> index b33540a42a95..b314606eb0f6 100644
-> --- a/drivers/usb/typec/tcpm/tcpci_maxim.h
-> +++ b/drivers/usb/typec/tcpm/tcpci_maxim.h
-> @@ -60,6 +60,7 @@ struct max_tcpci_chip {
->  	struct tcpm_port *port;
->  	enum contamiant_state contaminant_state;
->  	bool veto_vconn_swap;
-> +	struct regulator *vbus_reg;
->  };
->  
->  static inline int max_tcpci_read16(struct max_tcpci_chip *chip, unsigned int reg, u16 *val)
-> diff --git a/drivers/usb/typec/tcpm/tcpci_maxim_core.c b/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-> index 19f638650796..e9e2405c5ca0 100644
-> --- a/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-> +++ b/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-> @@ -10,6 +10,7 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/usb/pd.h>
->  #include <linux/usb/tcpci.h>
->  #include <linux/usb/tcpm.h>
-> @@ -35,12 +36,6 @@
->   */
->  #define TCPC_RECEIVE_BUFFER_LEN				32
->  
-> -#define MAX_BUCK_BOOST_SID				0x69
-> -#define MAX_BUCK_BOOST_OP				0xb9
-> -#define MAX_BUCK_BOOST_OFF				0
-> -#define MAX_BUCK_BOOST_SOURCE				0xa
-> -#define MAX_BUCK_BOOST_SINK				0x5
-> -
->  static const struct regmap_range max_tcpci_tcpci_range[] = {
->  	regmap_reg_range(0x00, 0x95)
->  };
-> @@ -202,32 +197,49 @@ static void process_rx(struct max_tcpci_chip *chip, u16 status)
->  	tcpm_pd_receive(chip->port, &msg, rx_type);
->  }
->  
-> +static int get_vbus_regulator_handle(struct max_tcpci_chip *chip)
-> +{
-> +	if (IS_ERR_OR_NULL(chip->vbus_reg)) {
-> +		chip->vbus_reg = devm_regulator_get_exclusive(chip->dev,
-> +							      "vbus");
-> +		if (IS_ERR_OR_NULL(chip->vbus_reg)) {
-> +			dev_err(chip->dev,
-> +				"Failed to get vbus regulator handle");
-> +			return -ENODEV;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int max_tcpci_set_vbus(struct tcpci *tcpci, struct tcpci_data *tdata, bool source, bool sink)
->  {
->  	struct max_tcpci_chip *chip = tdata_to_max_tcpci(tdata);
-> -	u8 buffer_source[2] = {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_SOURCE};
-> -	u8 buffer_sink[2] = {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_SINK};
-> -	u8 buffer_none[2] = {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_OFF};
-> -	struct i2c_client *i2c = chip->client;
->  	int ret;
->  
-> -	struct i2c_msg msgs[] = {
-> -		{
-> -			.addr = MAX_BUCK_BOOST_SID,
-> -			.flags = i2c->flags & I2C_M_TEN,
-> -			.len = 2,
-> -			.buf = source ? buffer_source : sink ? buffer_sink : buffer_none,
-> -		},
-> -	};
-> -
->  	if (source && sink) {
->  		dev_err(chip->dev, "Both source and sink set\n");
->  		return -EINVAL;
->  	}
->  
-> -	ret = i2c_transfer(i2c->adapter, msgs, 1);
-> +	ret = get_vbus_regulator_handle(chip);
-> +	if (ret) {
-> +		/*
-> +		 * Regulator is not necessary for sink only applications. Return
-> +		 * success in cases where sink mode is being modified.
-> +		 */
-> +		return source ? ret : 1;
-> +	}
-> +
-> +	if (source) {
-> +		if (!regulator_is_enabled(chip->vbus_reg))
-> +			ret = regulator_enable(chip->vbus_reg);
-> +	} else {
-> +		if (regulator_is_enabled(chip->vbus_reg))
-> +			ret = regulator_disable(chip->vbus_reg);
-> +	}
->  
-> -	return  ret < 0 ? ret : 1;
-> +	return ret < 0 ? ret : 1;
->  }
->  
->  static void process_power_status(struct max_tcpci_chip *chip)
-> 
-> -- 
-> 2.52.0.351.gbe84eed79e-goog
-> 
+>=20
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 used for DPI fo=
+rmat output and endpoint 1 should be used
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for DP format o=
+utput.
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port@1:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/graph.yaml#/=
+properties/port
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: The second out=
+put channel if the DC variant
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 supports. Follo=
+w the same endpoint addressing rule with
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the first port.
+> > +
+> > +=C2=A0=C2=A0=C2=A0 required:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - port@0
+> > +
+> > +required:
+> > +=C2=A0 - compatible
+> > +=C2=A0 - reg
+> > +=C2=A0 - interrupts
+> > +=C2=A0 - clocks
+> > +=C2=A0 - clock-names
+> > +=C2=A0 - ports
+> > +
+> > +allOf:
+> > +=C2=A0 - if:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 con=
+st: thead,th1520-dc8200
+> > +=C2=A0=C2=A0=C2=A0 then:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 5
+>=20
+> That's already implicitly the min. Perhaps you wanted 'minItems: 4'
+> on=20
+> the clocks and clock-names definitions for versions with only 1
+> output?
 
--- 
-heikki
+Previously I specified minItems: 4 in the general part, however this
+does not play well when some of core/axi/ahb clocks are not present.
+
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ports:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - p=
+ort@0
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - p=
+ort@1
+>=20
+> It is valid to omit these if the output is present, but unused.
+
+Well this sounds reasonable, although my driver does not play well if
+only a port@1 is defined w/o port@0 .
+
+Considering the previous two snippets, should I just remove this if
+part?
+
+>=20
+> > +
+> > +additionalProperties: false
+> > +
+=3D=3D=3D=3D=3D=3D 8< =3D=3D=3D=3D=3D=3D=3D=3D
 
