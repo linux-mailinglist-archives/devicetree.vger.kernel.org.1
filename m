@@ -1,61 +1,85 @@
-Return-Path: <devicetree+bounces-251715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01971CF5D5A
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 23:30:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89592CF5DB4
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 23:37:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2131730082DF
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 22:30:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3D59A308DBF2
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 22:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C357426F476;
-	Mon,  5 Jan 2026 22:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36BE82EC086;
+	Mon,  5 Jan 2026 22:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UtQ84Tiu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dmbHwuIs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D574C97;
-	Mon,  5 Jan 2026 22:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D033D2D7802;
+	Mon,  5 Jan 2026 22:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767652239; cv=none; b=JBCvSotMhK50lFoyt3AqWGcgy8acxFaJ3quq4FsBcvzNaip3iHoiMK5EX8mS0uoGklUUghDe6+yWGFLVgAMHGrBT+I+q3rqDZpX3v2G9ePDOsnul7yjJa1qd9LZbN+Bb0118pOErTgGPJmGAHh8gWIi5yqAbiNI8KJT19fswMaw=
+	t=1767652606; cv=none; b=CKMFXpmwbo6gsGoffpgz2NJVp+vDgXbUOhIPC1zwd+sSTYLiujRDWoRI2aYdFj9Lq98Z2s0op51f8bL5LznF3K1fq4z/2mZVJLU/PtOsKkRcfw01SthnsepXRwQZeYcBECxlIoNCxcOzvU4T3T+L2f7HZuO/EKR08QAU/h7fvok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767652239; c=relaxed/simple;
-	bh=UiWW5sKnV3TdKVabajZ8wVODXvkW80JQ/vWj0AzrVtU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=h1uyocSITAZ48z4gow2QPAegtbiIXzpoCOXTc2K+haliDUAuiYj0IOtJOiWt6A8WkXhJcC6ahUVDSe9/j50puDF9NIrHS0N1u7NOhvXM7xoKi/wQ8ZueWLH5LZUfG0ttnfU0yLpbA4038H9BVj7WI0z72oZE9XC4q/7e5Kdc654=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UtQ84Tiu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03EAFC116D0;
-	Mon,  5 Jan 2026 22:30:39 +0000 (UTC)
+	s=arc-20240116; t=1767652606; c=relaxed/simple;
+	bh=kzkUocZGzbldAqL7H+ZbDJj1W7al0AimC+VuLG+yvHQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cJLFygb0USqQfTS6wZQRAehzfJJPwW8wU0lX1PTY0XandKY8GS15TquxWZOSvQoG4XSp5e018JntgMsah1QtqfRtrwCmNyhg/XvEjfXIJEeC8OtMSJmYYcrZlfuNl8rVuux2uJnT9nI5xpDO2kDeV+w+i+lhwPvq4EJxMm/5Ovk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dmbHwuIs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47434C116D0;
+	Mon,  5 Jan 2026 22:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767652239;
-	bh=UiWW5sKnV3TdKVabajZ8wVODXvkW80JQ/vWj0AzrVtU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=UtQ84TiuL3m7YnmRSmex2w2DbpG3mjB/aBs6Ej7Zp0vIA/qDPaG4+OUZ3G7aV67SS
-	 0gYVe08uI7/cjdqi9Vg1d3TwPZ9mOtjUPnx2BMjnd4xpUKGy4vY0Pc2Kk3qW4ouj6/
-	 feQreUNMuolrw6yTrdnu96j0iR0Z1IzB8GiOQFGMc4SakBR8zDF+OfYiIgX4T/Whd4
-	 e9/UTYIT6LWXHrXHh3ru4ipKfudlH49yKN2ahl7OLbu3abZo/u/7AE7CP/PAAFx8pN
-	 Hxz/2GfN4fSKB6FMojrgL4Y1QGgKOTllAsaUZNQE/E4K5oIbq34Cyv9vk9lnJhu4Gc
-	 VSb0MSpNxNC4w==
-Date: Mon, 5 Jan 2026 16:30:37 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: zhangsenchuan@eswincomputing.com
-Cc: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com,
-	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
-	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
-	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com,
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller
- driver
-Message-ID: <20260105223037.GA332950@bhelgaas>
+	s=k20201202; t=1767652605;
+	bh=kzkUocZGzbldAqL7H+ZbDJj1W7al0AimC+VuLG+yvHQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dmbHwuIs+Jus28fsK5wm0xq/ylwPIKhkr5dyCyT/XQL2ulRMOn63qz9aCdKiEaCov
+	 Jd9a57EMPcFXqJhga7Fp0ZIjS73JKd5dOkHRg2dEcMidwoO77HKO1vriP/dsVzHPfA
+	 dzPOnbxH4z4WVGzGyN2Nr4qg2ODsudK2C4wa2JDGQ0ENC81eHPfEfU/stMY7zXBjiK
+	 hvO+GP6m++TN9SO+Pnmaf14Kg/z0dcI+Z+ggkx97EtvnNELUIPfS8uHdbyyFT1OCs6
+	 RzPiRnzPyb2M/xb2uU6ERe6nlnPwbEx5h/c8oyr8ufiJP2RVk6dBGg0wT0ctIQs++l
+	 kUKgFhWdsrlYw==
+Date: Mon, 5 Jan 2026 16:36:44 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Nipun Gupta <nipun.gupta@amd.com>,
+	Nikhil Agarwal <nikhil.agarwal@amd.com>,
+	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	llvm@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	linux-clk@vger.kernel.org, imx@lists.linux.dev,
+	dmaengine@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Jonathan Cameron <jonathan.cameron@huawei.com>
+Subject: Re: [PATCH 01/11] of: Add for_each_compatible_node_scoped() helper
+Message-ID: <20260105223644.GA3633916-robh@kernel.org>
+References: <20260105-of-for-each-compatible-scoped-v1-0-24e99c177164@oss.qualcomm.com>
+ <20260105-of-for-each-compatible-scoped-v1-1-24e99c177164@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,104 +88,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251229113208.1893-1-zhangsenchuan@eswincomputing.com>
+In-Reply-To: <20260105-of-for-each-compatible-scoped-v1-1-24e99c177164@oss.qualcomm.com>
 
-[+cc Niklas, list vs array of ports]
-
-On Mon, Dec 29, 2025 at 07:32:07PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+On Mon, Jan 05, 2026 at 02:33:39PM +0100, Krzysztof Kozlowski wrote:
+> Just like looping through children and available children, add a scoped
+> helper for for_each_compatible_node() so error paths can drop
+> of_node_put() leading to simpler code.
 > 
-> Add driver for the Eswin EIC7700 PCIe host controller, which is based on
-> the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
-> supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
-> interrupts.
+> Suggested-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
+> ---
+> 
+> Prerequisite for all further patches.
+> ---
+>  .clang-format      | 1 +
+>  include/linux/of.h | 7 +++++++
+>  2 files changed, 8 insertions(+)
 
-> +config PCIE_EIC7700
-> +	tristate "Eswin EIC7700 PCIe controller"
+You need to update scripts/dtc/dt-extract-compatibles
 
-> +/* Vendor and device ID value */
-> +#define PCI_VENDOR_ID_ESWIN		0x1fe1
-> +#define PCI_DEVICE_ID_ESWIN		0x2030
-
-Usually the device name is a little more than just the vendor.  What
-if Eswin ever makes a second device?
-
-> +static int eic7700_pcie_parse_port(struct eic7700_pcie *pcie,
-> +				   struct device_node *node)
-> +{
-> +	struct device *dev = pcie->pci.dev;
-> +	struct eic7700_pcie_port *port;
+> 
+> diff --git a/.clang-format b/.clang-format
+> index c7060124a47a..1cc151e2adcc 100644
+> --- a/.clang-format
+> +++ b/.clang-format
+> @@ -259,6 +259,7 @@ ForEachMacros:
+>    - 'for_each_collection'
+>    - 'for_each_comp_order'
+>    - 'for_each_compatible_node'
+> +  - 'for_each_compatible_node_scoped'
+>    - 'for_each_component_dais'
+>    - 'for_each_component_dais_safe'
+>    - 'for_each_conduit'
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 9bbdcf25a2b4..be6ec4916adf 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -1485,6 +1485,13 @@ static inline int of_property_read_s32(const struct device_node *np,
+>  #define for_each_compatible_node(dn, type, compatible) \
+>  	for (dn = of_find_compatible_node(NULL, type, compatible); dn; \
+>  	     dn = of_find_compatible_node(dn, type, compatible))
 > +
-> +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
-> +	if (!port)
-> +		return -ENOMEM;
+> +#define for_each_compatible_node_scoped(dn, type, compatible) \
+> +	for (struct device_node *dn __free(device_node) =		\
+> +	     of_find_compatible_node(NULL, type, compatible);		\
+> +	     dn;							\
+> +	     dn = of_find_compatible_node(dn, type, compatible))
 > +
-> +	port->perst = of_reset_control_get_exclusive(node, "perst");
-> +	if (IS_ERR(port->perst)) {
-> +		dev_err(dev, "Failed to get PERST# reset\n");
-> +		return PTR_ERR(port->perst);
-> +	}
-> +
-> +	/*
-> +	 * TODO: Since the Root Port node is separated out by pcie devicetree,
-> +	 * the DWC core initialization code can't parse the num-lanes attribute
-> +	 * in the Root Port. Before entering the DWC core initialization code,
-> +	 * the platform driver code parses the Root Port node. The EIC7700 only
-> +	 * supports one Root Port node, and the num-lanes attribute is suitable
-> +	 * for the case of one Root Port.
-> +	 */
-> +	if (!of_property_read_u32(node, "num-lanes", &port->num_lanes))
-> +		pcie->pci.num_lanes = port->num_lanes;
-> +
-> +	INIT_LIST_HEAD(&port->list);
-> +	list_add_tail(&port->list, &pcie->ports);
-
-Niklas raised an interesting question about whether a list or an array
-is the best data structure for the set of Root Ports:
-
-  https://lore.kernel.org/r/aVvkmkd5mWPmxeiS@ryzen
-
-Might have to iterate over the child nodes twice (once to count, again
-for eic7700_pcie_parse_port()), but otherwise the array is probably
-simpler code.
-
-> +	return 0;
-> +}
-> +
-> +static int eic7700_pcie_parse_ports(struct eic7700_pcie *pcie)
-> +{
-> +	struct eic7700_pcie_port *port, *tmp;
-> +	struct device *dev = pcie->pci.dev;
-> +	int ret;
-> +
-> +	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
-> +		ret = eic7700_pcie_parse_port(pcie, of_port);
-> +		if (ret)
-> +			goto err_port;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_port:
-> +	list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-> +		list_del(&port->list);
-
-Is some kind of reset_control_put() needed to match the
-of_reset_control_get_exclusive() above?
-
-> +static struct platform_driver eic7700_pcie_driver = {
-> +	.probe = eic7700_pcie_probe,
-
-This driver is tristate but has no .remove() callback.  Seems like it
-should have one?
-
-> +	.driver = {
-> +		.name = "eic7700-pcie",
-> +		.of_match_table = eic7700_pcie_of_match,
-> +		.suppress_bind_attrs = true,
-> +		.pm = &eic7700_pcie_pm,
-> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> +	},
-> +};
-> +builtin_platform_driver(eic7700_pcie_driver);
+>  #define for_each_matching_node(dn, matches) \
+>  	for (dn = of_find_matching_node(NULL, matches); dn; \
+>  	     dn = of_find_matching_node(dn, matches))
+> 
+> -- 
+> 2.51.0
+> 
 
