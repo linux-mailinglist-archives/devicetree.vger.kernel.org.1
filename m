@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-251373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE6C0CF26D5
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 09:31:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A723CF27AD
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 09:40:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A3655300285E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 08:31:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8C71D30053E0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 08:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B32A1334385;
-	Mon,  5 Jan 2026 08:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A702A313535;
+	Mon,  5 Jan 2026 08:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m0zpWZGk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dt7inGru"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859F533372B;
-	Mon,  5 Jan 2026 08:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77AD627F754;
+	Mon,  5 Jan 2026 08:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767601888; cv=none; b=o+UBsfqa03mVUVPjiq8NCafLyk3zq2TjSpQrGYrRi8MT4m9yrKnR+MK/xF8vq920UN1VDjVmrJNZen/Yo5JrwQnFUyZwweFqw5eqOvBwZf1mM5nxG05/j8PjAH3IUHC6TqPb0jo0dKlHdHYJq7iruxRiO67j3V32Gz7wXku1ejs=
+	t=1767602125; cv=none; b=eWyyYrRV0Pr8+JaIFQI684hNUpMgqUzTkRCPk79kZPA19FUXwxDo43ND31IiMOgdSSycrw6W6HgQi75p/7pkdHBzyrTrJgvBmMEBWp35Ya9MUYmBD60vSEdlI0ckP29+uhfEuQn5Nz+x4gd+55iQq/yk9zuTzlJ6v21t+GXezvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767601888; c=relaxed/simple;
-	bh=6xuz8o/gb6QERQ6+/8fZLHtPXBEmYMHI7qqP90dZeLA=;
+	s=arc-20240116; t=1767602125; c=relaxed/simple;
+	bh=5BG9GD5tzxlgpo0fpFvXnFFO5JdVa3ur9v+uv3OzPOA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m9WF0ySLsCS7hYyM9AyvPO84e0tft2A9rvPAQl7ou04dqNxgiT/X7kut6fyDOD9Pjj4KKFi5ok738dlWO9qVtyro+CZbBzaz/KVY6eycjKv/J1/qhZDm161Hsg7REFT49zzehcD/lQ0R70OoO+DEgSUSJWsh3FbLWocdA7UDO0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m0zpWZGk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8A45C116D0;
-	Mon,  5 Jan 2026 08:31:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NsUHRuLyLn8n+m+SFDUo7o5mbPYEJ7bZILanIlirxLFBimc7o5iNJl1/othsrYGYou5qARzPPW7Im5rOTP7s2hk4N9Jt25Osy4aZpPf2X0h/GlrvPqdQRlI2CqA3YsOy9i7BmzcdAWAoMwg9xQ8yPuPa1Nliz80rLL0Op4iKRhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dt7inGru; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 736E2C116D0;
+	Mon,  5 Jan 2026 08:35:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767601888;
-	bh=6xuz8o/gb6QERQ6+/8fZLHtPXBEmYMHI7qqP90dZeLA=;
+	s=k20201202; t=1767602125;
+	bh=5BG9GD5tzxlgpo0fpFvXnFFO5JdVa3ur9v+uv3OzPOA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m0zpWZGkSxVKTdN7HrCPz92ypNhbN1w1zDeqrAcx+9MbI1vYYo5498R4h8MI/W6g2
-	 PyvVQOdHvv0o5j7nlvbKS8pHWejn3KRycnkXCFdqiMZrN/JvOSMDGb1VJw1rZlsT+U
-	 qhzGWN4Uu6QytU/wTFo/uAXDtvsgAUUWsgLuOX/J1cQtxOFz0RaiQtRYLV3O8YBhag
-	 RGI1i4u+JJSD8zwn1eJ6wrXdJmStDe4zPsW2C8AZOE01DiTfpVxXDhkZntQyXSrhoj
-	 aXP0Cpv+MuLtsqirs5652iBBvRBYGeV9odoBrMw4pKwCm+27QIkCYu1kJWWVHWygtu
-	 In4RvTE8Gf4yA==
-Date: Mon, 5 Jan 2026 09:31:25 +0100
+	b=dt7inGrujEUEquTjd6QkbLSE4dU3RYh+293qKlFjAt1qPVFoV9oIWSQ9+JLRQZM2T
+	 /Y3PQ/ha0SknxemeMtJ+jZyMC4NJgGee5a4AqlFJKJ12zx3leoTQZjWMZra4gfpzXG
+	 RJb3F38WsZ6YSQwePz0NzfiBwraz7UQehVUbzqUUlHyQR/tX0xSZ+IXiVqPMwvbcFQ
+	 9tYLLbdhUXx4Sre7MtsOi3SmqTDOKykyedyTjuXBfNs0TOBjHoONfJrUdjrmrhfQZL
+	 LVUnyXxM3w7Xwa1xRoo4vXr4nG5YiwY9he7OCXGMq7uPX1L+Mk/ig1w2Y7lC+cr3VY
+	 tvgzPM6r4H75Q==
+Date: Mon, 5 Jan 2026 09:35:22 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, devicetree@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 01/11] dt-bindings: phy: renesas: usb3-phy: add r8a77990
- support
-Message-ID: <20260105-beneficial-seal-of-swiftness-1c5eeb@quoll>
-References: <20260101203938.159161-1-marek.vasut+renesas@mailbox.org>
- <20260101203938.159161-2-marek.vasut+renesas@mailbox.org>
+To: Josua Mayer <josua.mayer@jm0.eu>
+Cc: Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+	Lee Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: netronix,ntxec: add reference to
+ power-supply
+Message-ID: <20260105-auspicious-swallow-of-prestige-3c13cb@quoll>
+References: <20260102-kobo-aura-battery-v1-0-501f2a8fa575@jm0.eu>
+ <20260102-kobo-aura-battery-v1-1-501f2a8fa575@jm0.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,19 +62,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260101203938.159161-2-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260102-kobo-aura-battery-v1-1-501f2a8fa575@jm0.eu>
 
-On Thu, Jan 01, 2026 at 09:35:48PM +0100, Marek Vasut wrote:
-> This patch adds support for r8a77990 (R-Car E3).
+On Fri, Jan 02, 2026 at 07:00:30PM +0100, Josua Mayer wrote:
+> The Netronix Embedded Controller supports monitoring of battery voltage.
+> 
+> Voltage monitoring functionality is self-contained and requires no
+> supply- or battery-specific runtime configuration.
+> 
+> Battery design characteristics (e.g. voltage-min-design-microvolt) are
+> useful for users to understand the charge level and are commonly
+> provided by a separate battery node linked with monitored-battery
+> property.
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
+b4 diff '20260102-kobo-aura-battery-v1-1-501f2a8fa575@jm0.eu'
+Breaking thread to remove parents of 20260102-kobo-aura-battery-v1-0-501f2a8fa575@jm0.eu
+---
+Analyzing 6 messages in the thread
+Could not find lower series to compare against.
 
-Also, you cannot add support in bindings. You either document hardware
-or you add bindings for or simply you add hardware.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Make it easier for us to review, not more difficult.
+
+> 
+> Add reference to power-supply.yaml so that power-supplies and
+> monitored-battery properties become available.
+> 
+> Further drop reg property description and replace it with maxItems 1 as
+> is common for i2c devices with single bus address.
+> 
+> Finally replace additionalProperties with unevaluatedProperties to
+> allow properties from referenced schemas.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
