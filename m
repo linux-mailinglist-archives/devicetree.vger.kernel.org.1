@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-251664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10526CF56B4
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:46:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5130FCF56B7
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:46:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C43893092824
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:46:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 36223302A479
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:46:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02566231845;
-	Mon,  5 Jan 2026 19:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F4D258EE0;
+	Mon,  5 Jan 2026 19:46:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kUDUFGZD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H3UYn4jG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA8B110FD;
-	Mon,  5 Jan 2026 19:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F79710FD;
+	Mon,  5 Jan 2026 19:46:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767642399; cv=none; b=Vbja7IYkAGRwCgoQL3HMcivXzocspQ/iFHzpM8I9UbW6qREJE9ggI2K19rDZmgfDHTPkrH49maFkmrpETpN9+xxiTeA42P5tSoasxOlOJTbrXvkzj2Lt953bZnUBNDhc4PETmccp5hHd2e3y3WMbeH+ABqZ+Su7aZ6kY1oJCoYg=
+	t=1767642405; cv=none; b=dioaRNut5Dj/hklzhrf6qDyjBdNlwVKPgOTeAT5CwMp/gP3isVFXPwSQ6L8qpzOYVjWWiTY6OtxylQ83vrK47Areh4393PBeKYBRBIXmjs1DGMpCw1sUi1OZg7ImJKBwVfTAekOZ2Wacf+bwpvLXbrYcqCngoj84pJ/ezrtcric=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767642399; c=relaxed/simple;
-	bh=uXHOetpzVfMY5FeZnGkLH3rPKDi0N+YTnGd6QXJf5v4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m8qdLZDdJYY7kh9f+phRRK9v+emZZVMhV6ow31TOilekTk8gVvT0JnT9hBgDQSemWIVjtG26ieVuYMZPQ6Q39mxwwVxIWJIXQM/+ErVITmYb9/tNpIEmJQ8p872myhFQ1jEsciLtlAkx0mpYgCtYbpQxrOL9XrUAa4Y+T7EDefk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kUDUFGZD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B29FC116D0;
-	Mon,  5 Jan 2026 19:46:39 +0000 (UTC)
+	s=arc-20240116; t=1767642405; c=relaxed/simple;
+	bh=jXT/B7qerXIpcbaLv0iK/+Rwz/W3jTzZ5aQTdvgrZgI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FvjoZF2VWID4m+7UtOgXYY8hZhvAPsDoM8DBXb/xdBvth6ur29aaA2ux7TpCueVYSlo4ZhARt1HB4G83GnM4VX85Fb4f/cICNOac49DFkPN1SRLNM570EXoQP9P1EirGZgFUBwFkbXV0EAs9xzmO6VgOvJAihgDC7KJ2qlkaCKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H3UYn4jG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4A90C116D0;
+	Mon,  5 Jan 2026 19:46:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767642399;
-	bh=uXHOetpzVfMY5FeZnGkLH3rPKDi0N+YTnGd6QXJf5v4=;
+	s=k20201202; t=1767642404;
+	bh=jXT/B7qerXIpcbaLv0iK/+Rwz/W3jTzZ5aQTdvgrZgI=;
 	h=From:To:Cc:Subject:Date:From;
-	b=kUDUFGZDo1OvCCnRLo4G/PnCJSebI1OqSHrhRdxZkWrWgtTiCoftVBhgaqYWpR/HN
-	 FiumkftU67LUov1SU/Ri+dcoap71J8Z3NLcchyZgtu8YE17Z2nxf3mfleUp291fTku
-	 vQm+TzRQ7dkVi11CraT85Gmmccao+DJCmX0IAxfr58PfCiUdMog0uAXhAEtvbTUYyU
-	 nB7otustWu2Y6zmz7T1EErVeoI0d5DhFGjfv3IHeQnaGJuKEuVliKXpZkNgY/diD5v
-	 FmqUVEGRfG2Ja9ydPnmX1J00upeEUTkLtQwCwNMA0DuCrWvq3GojeS9brWK6Bq/FnL
-	 1gHUhBmIoGbUw==
+	b=H3UYn4jGB3zIZ/hSnUBT6WLmSoTbGjmDcCLCV1LHlH2IuQO2qxPQTyEW0Zc+W0IPe
+	 1Wy2LcLW13W8eLdLeM8kh25YKTVn42uZbgmRwpI5VthSTraGpe0iE4yXLFeJRwqIp3
+	 MfCSMHCVCJjYSxhmmhMVapBj3MeFStl4nAdjMK0YCJY/G/zfqumy4MNhfBG3pnHlcz
+	 7wHZsujnidHnvPEM3BwQdbQe4qtOckMUYl85NzNRC7Q0I/b+/ILaYxLoW4PWTKDvEp
+	 F5EoEeqYDIP8Br5Pyv0UnwztvboAt41AxVAYZXn4DOLN6k/8rHzjqbuqIZ6xojBNEK
+	 VjgUCMXkqwr3A==
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Andrew Lunn <andrew@lunn.ch>,
 	Gregory Clement <gregory.clement@bootlin.com>,
@@ -47,9 +47,9 @@ To: Andrew Lunn <andrew@lunn.ch>,
 Cc: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: marvell: Add missing "#phy-cells" to "usb-nop-xceiv"
-Date: Mon,  5 Jan 2026 13:46:34 -0600
-Message-ID: <20260105194636.3188884-1-robh@kernel.org>
+Subject: [PATCH] arm64: dts: marvell: Fix stray and typo "pinctrl-names" properties
+Date: Mon,  5 Jan 2026 13:46:41 -0600
+Message-ID: <20260105194642.3189113-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -59,134 +59,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The "usb-nop-xceiv" binding requires "#phy-cells" property with a value
-of 0 though it is not really used. Add it where missing from Marvell
-platforms.
+There's several cases of "pinctrl-names" used without any "pinctrl-0"
+properties. Drop them.
+
+Fix the typo "pintrl-names" as well.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/marvell/armada-3720-db.dts                | 1 +
- arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts | 1 +
- arch/arm64/boot/dts/marvell/armada-8040-db.dts                | 2 ++
- arch/arm64/boot/dts/marvell/cn9130-crb.dtsi                   | 2 ++
- arch/arm64/boot/dts/marvell/cn9130-db.dtsi                    | 2 ++
- arch/arm64/boot/dts/marvell/cn9131-db.dtsi                    | 1 +
- arch/arm64/boot/dts/marvell/cn9132-db.dtsi                    | 2 ++
- 7 files changed, 11 insertions(+)
+ arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts | 1 -
+ arch/arm64/boot/dts/marvell/cn9130-cf-base.dts                | 2 +-
+ arch/arm64/boot/dts/marvell/cn9130-crb.dtsi                   | 1 -
+ arch/arm64/boot/dts/marvell/cn9130-db.dtsi                    | 2 --
+ arch/arm64/boot/dts/marvell/cn9132-db.dtsi                    | 1 -
+ 5 files changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-db.dts b/arch/arm64/boot/dts/marvell/armada-3720-db.dts
-index bd4e61d5448e..06d4a3a93f84 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-db.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-db.dts
-@@ -41,6 +41,7 @@ exp_usb3_vbus: usb3-vbus {
- 
- 	usb3_phy: usb3-phy {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 		vcc-supply = <&exp_usb3_vbus>;
- 	};
- 
 diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-index 97a180c8dcd9..e82284888b9a 100644
+index e82284888b9a..0ab33aa928e7 100644
 --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
 +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-@@ -37,6 +37,7 @@ reg_usb3_vbus: usb3-vbus {
- 
- 	usb3_phy: usb3-phy {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 		vcc-supply = <&reg_usb3_vbus>;
+@@ -42,7 +42,6 @@ usb3_phy: usb3-phy {
  	};
  
-diff --git a/arch/arm64/boot/dts/marvell/armada-8040-db.dts b/arch/arm64/boot/dts/marvell/armada-8040-db.dts
-index 21ecb9c12505..c7102f74d4d5 100644
---- a/arch/arm64/boot/dts/marvell/armada-8040-db.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-8040-db.dts
-@@ -51,6 +51,7 @@ cp0_reg_usb3_1_vbus: cp0-usb3-1-vbus {
+ 	gpio-leds {
+-		pinctrl-names = "default";
+ 		compatible = "gpio-leds";
+ 		/* No assigned functions to the LEDs by default */
+ 		led1 {
+diff --git a/arch/arm64/boot/dts/marvell/cn9130-cf-base.dts b/arch/arm64/boot/dts/marvell/cn9130-cf-base.dts
+index 788a5c302b17..212865f6cf6a 100644
+--- a/arch/arm64/boot/dts/marvell/cn9130-cf-base.dts
++++ b/arch/arm64/boot/dts/marvell/cn9130-cf-base.dts
+@@ -137,7 +137,7 @@ led@1 {
  
- 	cp0_usb3_0_phy: cp0-usb3-0-phy {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 		vcc-supply = <&cp0_reg_usb3_0_vbus>;
- 	};
+ &cp0_pinctrl {
+ 	pinctrl-0 = <&sim_select_pins>;
+-	pintrl-names = "default";
++	pinctrl-names = "default";
  
-@@ -65,6 +66,7 @@ cp1_reg_usb3_0_vbus: cp1-usb3-0-vbus {
- 
- 	cp1_usb3_0_phy: cp1-usb3-0-phy {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 		vcc-supply = <&cp1_reg_usb3_0_vbus>;
- 	};
- };
+ 	rear_button_pins: cp0-rear-button-pins {
+ 		marvell,pins = "mpp31";
 diff --git a/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi b/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
-index 5e7d6de3cdde..5689a8bdfd03 100644
+index 5689a8bdfd03..c9050e707a60 100644
 --- a/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
 +++ b/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
-@@ -47,10 +47,12 @@ cp0_reg_usb3_vbus1: regulator-2 {
+@@ -93,7 +93,6 @@ &uart0 {
  
- 	cp0_usb3_0_phy0: usb-phy-1 {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 	};
- 
- 	cp0_usb3_0_phy1: usb-phy-2 {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 		vcc-supply = <&cp0_reg_usb3_vbus1>;
- 	};
- 
+ /* on-board eMMC U6 */
+ &ap_sdhci0 {
+-	pinctrl-names = "default";
+ 	bus-width = <8>;
+ 	status = "okay";
+ 	mmc-ddr-1_8v;
 diff --git a/arch/arm64/boot/dts/marvell/cn9130-db.dtsi b/arch/arm64/boot/dts/marvell/cn9130-db.dtsi
-index 3cc320f569ad..7156739aa31a 100644
+index 7156739aa31a..8e413286e019 100644
 --- a/arch/arm64/boot/dts/marvell/cn9130-db.dtsi
 +++ b/arch/arm64/boot/dts/marvell/cn9130-db.dtsi
-@@ -50,6 +50,7 @@ cp0_reg_usb3_vbus0: regulator-2 {
+@@ -111,7 +111,6 @@ &uart0 {
  
- 	cp0_usb3_0_phy0: usb-phy-1 {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 		vcc-supply = <&cp0_reg_usb3_vbus0>;
- 	};
- 
-@@ -64,6 +65,7 @@ cp0_reg_usb3_vbus1: regulator-3 {
- 
- 	cp0_usb3_0_phy1: usb-phy-2 {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 		vcc-supply = <&cp0_reg_usb3_vbus1>;
- 	};
- 
-diff --git a/arch/arm64/boot/dts/marvell/cn9131-db.dtsi b/arch/arm64/boot/dts/marvell/cn9131-db.dtsi
-index 626042fce7e2..26dc91c88677 100644
---- a/arch/arm64/boot/dts/marvell/cn9131-db.dtsi
-+++ b/arch/arm64/boot/dts/marvell/cn9131-db.dtsi
-@@ -31,6 +31,7 @@ cp1_reg_usb3_vbus0: regulator-6 {
- 
- 	cp1_usb3_0_phy0: usb-phy-3 {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 		vcc-supply = <&cp1_reg_usb3_vbus0>;
- 	};
- 
+ /* on-board eMMC - U9 */
+ &ap_sdhci0 {
+-	pinctrl-names = "default";
+ 	bus-width = <8>;
+ 	vqmmc-supply = <&ap0_reg_sd_vccq>;
+ 	status = "okay";
+@@ -166,7 +165,6 @@ &cp0_i2c0 {
+ 	/* U36 */
+ 	expander0: pca953x@21 {
+ 		compatible = "nxp,pca9555";
+-		pinctrl-names = "default";
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 		reg = <0x21>;
 diff --git a/arch/arm64/boot/dts/marvell/cn9132-db.dtsi b/arch/arm64/boot/dts/marvell/cn9132-db.dtsi
-index f91fc69905b8..f82d45e62753 100644
+index f82d45e62753..98eee9e4e10b 100644
 --- a/arch/arm64/boot/dts/marvell/cn9132-db.dtsi
 +++ b/arch/arm64/boot/dts/marvell/cn9132-db.dtsi
-@@ -28,6 +28,7 @@ cp2_reg_usb3_vbus0: regulator-7 {
- 
- 	cp2_usb3_0_phy0: usb-phy-4 {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 		vcc-supply = <&cp2_reg_usb3_vbus0>;
- 	};
- 
-@@ -42,6 +43,7 @@ cp2_reg_usb3_vbus1: regulator-8 {
- 
- 	cp2_usb3_0_phy1: usb-phy-5 {
- 		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
- 		vcc-supply = <&cp2_reg_usb3_vbus1>;
- 	};
- 
+@@ -142,7 +142,6 @@ i2c@1 {
+ 			/* U12 */
+ 			cp2_module_expander1: pca9555@21 {
+ 				compatible = "nxp,pca9555";
+-				pinctrl-names = "default";
+ 				gpio-controller;
+ 				#gpio-cells = <2>;
+ 				reg = <0x21>;
 -- 
 2.51.0
 
