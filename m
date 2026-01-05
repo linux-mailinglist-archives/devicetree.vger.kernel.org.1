@@ -1,46 +1,81 @@
-Return-Path: <devicetree+bounces-251589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70866CF4546
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:14:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E9FDCF458C
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:17:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DB7BE303A086
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:09:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 33F00308D7A0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:11:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D283093BC;
-	Mon,  5 Jan 2026 15:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 939A73093B8;
+	Mon,  5 Jan 2026 15:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iS2ZqRMe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DUhKWy8F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17B603090E0;
-	Mon,  5 Jan 2026 15:09:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C16A3093C3
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 15:11:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767625752; cv=none; b=XWy0K328F+zuOIcgVHs4U7e6E/tNc9TyFMY6+UqQOofJ6ojY6lt9zez0ktqAvAU6HoAwVwUHa18u8wajh7ThiWTwP+0l4AzPNHvbDbzvRj4lE1CcLE3MozNTa89pYpEUsu6dUD5cUdE224PgZWaZyd0xDyOL862wB3bBnlCnkT0=
+	t=1767625879; cv=none; b=L18L6mLlvSBlzZCNfL7MsKAdac/N36yB4ml+YtpR7c9IouvoYqW2o2fWXgg6enfDFbv+3IURU9UxwJ85VF4dk7nOl1rCKrx/Chdz8mLqwaffV04aq49agr3ixjqJ5LNeeyxK6neajT9aty+NO9qMev1iG6CPVU1biefdwBe7c+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767625752; c=relaxed/simple;
-	bh=I1d5FxAgc09CV6iIiWDT/isaABPEFpxSuyY5Qrewv68=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KKUuIltUZquwbaWy+hDune+FOF8DgqrDeHPbPgamFjItPAiAQN81SOJ0pUzXOdtF/JFbgaeaz8PoL9w0SDLLAvYfgpDg0Uk0TPhd3GN1llQwHkwOrQMIdTy+8n27+GdnFTpmO98Q4sUc/n3o8a4Sv7zFwoYpKY7ZSDGQrwP48/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iS2ZqRMe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A3A9C116D0;
-	Mon,  5 Jan 2026 15:09:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767625751;
-	bh=I1d5FxAgc09CV6iIiWDT/isaABPEFpxSuyY5Qrewv68=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iS2ZqRMea5KagLUR55CU1bqkMjCePFWmxTVYGizGXLOH//MWvGjVbOLyAH9/fE/wk
-	 mdsv0lOh1XdCevSUfmBnBeILfhd/IOfvJhXZpqloeVjaGuPkVlpai+9yHYywHuAxKn
-	 ThCFx0m6P1A7W1wr8/TEVQeMz81JLzSGM2YzRBDzxWQXBI7ouuV/5TKmacx3nZLsaT
-	 UJKQznLn3wDQnZqIyZ9YSsmaLK+QerHhSWKJowznAhJlyc69jLTu4SQKNqajlvaVPu
-	 CIszaQ7QtNy+YX8TeDLKZrFPpat2l4DITEMpGQCiVQALXYUAqNSQmjfGDSo3DuRuuu
-	 +e1El6ABiCBkA==
-Message-ID: <f54dc011-1796-4088-8bfe-be19e8bd9157@kernel.org>
-Date: Mon, 5 Jan 2026 16:09:07 +0100
+	s=arc-20240116; t=1767625879; c=relaxed/simple;
+	bh=SX+n3PiAeQ4rWXFR3267OtHnuD2CdbecQeFv5sBTA4w=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Qt7JPFvNgzIqpAilk06Fv3OULFF/XjyCIsyhZv6Jh3DgcXMU+JV7nJiNSFFU52lE8lIrpVV4fAXdCT0CObVyr6Rv3xt6izIr0R2/QwvExFlgxPh0IiERJNelu47u/b8UgCtVi84oSH2k+vZz+1UUG/QhtPiNZuJ6RAn9wCzPa6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DUhKWy8F; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47775fb6c56so159635e9.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 07:11:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1767625875; x=1768230675; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fIpW6cQc9IrIDvqtHuiJ6nwu+gkAkXOSeW3JkpE2jgw=;
+        b=DUhKWy8FjlcqEfnx6iBo6Yt7/hm6HPt6AtJkbcOFad1Ewe2TnamSV34UZ8Ojs5ZsP+
+         56irLGqIKq+rtkgBrj7Y4c0KAco04fPcMAGGFA8HxjTHJfcbZePpMIGtp0M6BxoQhdb9
+         9R9VzDbgWDHnp5rKaYR38/lXhSz6oXakty6lQcHVHVZpoBLduRgpEfyNwtNekbL7w9rn
+         YsL3ut6XOSfTUAGJJuLVaDYEWv9o6823WMHZTRpsFy02oJW9KKtLwSisU0ZtuSaAW4QS
+         YCpH7y0vRh43aeHVRMTLeZBF+Lq3oRyugzCB82phVCba0Uh2F8Ut2YRMYGycnp/YwYNR
+         ea0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767625875; x=1768230675;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fIpW6cQc9IrIDvqtHuiJ6nwu+gkAkXOSeW3JkpE2jgw=;
+        b=GmCEtAMJrDZxgNq62OyQ5DhymN12jzI+9zA1zqKrqahlQgQNmueMt2UvZZl5fF4J95
+         /yvwRdQFy6vVQXApbV2IsRnximfzWSpOK22aAedopQk6Hk1rypogEFnUwKLwNOG0jdSf
+         2bB+Wjf+RiNmnO1teGtCxLNXzMzFirPJk9WzDY6deuf82WSUFQUYGq2oOYuiJuWUqK7t
+         WzokPBZKpOhWHF+fotiJUC8a/Ot5ymSThdQx9EXjTscaFy7u/YQsl4lE43btYUmJFf+P
+         u/+sTeBtbBt/aT1Yjhc1ElQTqRcU3d4iUQORKHeGqDrwHBYJZ1apdsiC6V2g6cGAfNNJ
+         NxnA==
+X-Forwarded-Encrypted: i=1; AJvYcCXJUqjapBzH2bwvyqMV4rzUxNzgQTMmkAOv1E9nQyM62L/eoRHcuv1dNr7r+DLTatrXeSn1gGveHWbM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAA5TLrw0St+MNg26vIivTmv2zRyz4iJB7q8Pc/aQ3bbnwC/7r
+	VnPpz6s+mzD2U14nGKxSkHs0XZYC1aJu2AbxyYbONVvKIf2yNdahTAToZHL7K6+artM=
+X-Gm-Gg: AY/fxX4+y3p1qs3tsbrn5W6fnKc4qFYpFnyU+yocuFdpMlmQ8MUmFjUHzn3YZnxu2q7
+	XDk7EvPCy7NDU0jRW9ly72Wau0h/XfKjpu4mE71x16IvGgDSYGEFrLMdPYoPYjpxqqbqnM0ewVR
+	TCMdycRrrAPM7DViVDUtRpLwgLzmnGEAw5eGnIOv0vceos5H0+HyE7NPUhbbNwveBbnhzAb2ps6
+	3wCtOZV2RvewwQqNUh2SNqng0ABkn5grXSEMWltuOOxTExriVG5nKFWCFIMcd8YaNQtDNHdU4sW
+	sNVP39XTVMutUVOh6wTWkwTEs59GDx2HR40H3q6PRIdhn/doc0xrYxLSZO/CwAcOWP1UbhBaUT9
+	4jLJOfF1RoBsDnEFODpq94/TJJ/Ur2LwbAJHIN/eareHEIclDQpHnnuKWHBqNL9uekV/jcoi2Nx
+	bFh8zpCERpk+7j/EjLwWEkVDAN9FVssQgohYDOYncDTJxmLLkQh2X9bBUMfV6IAgU=
+X-Google-Smtp-Source: AGHT+IGUHUHeBKegaOYx59FFoOUtzcp8vHYfP0LVvdnYaJI+3e/IojOUAlwYde9llSXTl/krlM8cpw==
+X-Received: by 2002:a05:600c:4ed2:b0:475:e067:f23d with SMTP id 5b1f17b1804b1-47d1959eaaemr657588355e9.25.1767625875140;
+        Mon, 05 Jan 2026 07:11:15 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:3d9:2080:d4c1:5589:eadb:1033? ([2a01:e0a:3d9:2080:d4c1:5589:eadb:1033])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d73066fdbsm107246285e9.15.2026.01.05.07.11.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jan 2026 07:11:14 -0800 (PST)
+Message-ID: <91d3e10d-1f8e-4c1a-9919-fafb949e935d@linaro.org>
+Date: Mon, 5 Jan 2026 16:11:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,163 +83,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: Commonize IQ-X-IOT DTSI
-To: Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Yijie Yang <yijie.yang@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com>
- <20251222060335.3485729-3-yijie.yang@oss.qualcomm.com>
- <20251222-fluorescent-turkey-of-gallantry-df0906@quoll>
- <b8f0e8d9-449e-4f32-832e-f1d5597ff496@oss.qualcomm.com>
- <6421f044-2b07-4518-9edc-b9b2ef49f4fb@kernel.org>
- <8bcf058f-5bf9-46ce-a188-e94954101f2f@oss.qualcomm.com>
- <4f79d090-7d1c-4fb3-a835-a7e4ff96f79c@oss.qualcomm.com>
- <448f2efa-5b1e-4855-a62d-2e375938b36f@kernel.org>
- <c7983b8c-5085-43a0-bd5e-1194df2f0ee5@oss.qualcomm.com>
- <a2b62af6-fe17-4c4b-9dea-4ba9cf312765@kernel.org>
- <j7i2oryel7d5u6gsbb54iaer7amqre2vzwkb6fieybascvonwi@bmt7zmcvg7yi>
- <36cb7d6e-ece4-42c7-bc11-b66837df5fc4@kernel.org>
- <469d89c9-8f6c-4abe-9d9f-b6a47f8cefd8@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <469d89c9-8f6c-4abe-9d9f-b6a47f8cefd8@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: neil.armstrong@linaro.org
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 2/2] drm/panel: simple: Add Innolux G150XGE-L05 panel
+ entry
+To: Fabio Estevam <festevam@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@nabladev.com>
+References: <20260102141706.36842-1-festevam@gmail.com>
+ <20260102141706.36842-2-festevam@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260102141706.36842-2-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 05/01/2026 06:36, Tingwei Zhang wrote:
+On 1/2/26 15:17, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@nabladev.com>
 > 
+> Add support for the Innolux G150XGE-L05 15.0" TFT 1024x768 LVDS panel.
 > 
-> On 12/30/2025 3:21 PM, Krzysztof Kozlowski wrote:
->> On 29/12/2025 21:08, Dmitry Baryshkov wrote:
->>> On Mon, Dec 29, 2025 at 09:47:05AM +0100, Krzysztof Kozlowski wrote:
->>>> On 29/12/2025 08:38, Yijie Yang wrote:
->>>>>
->>>>> On 12/29/2025 3:21 PM, Krzysztof Kozlowski wrote:
->>>>>> On 29/12/2025 02:23, Tingwei Zhang wrote:
->>>>>>>
->>>>>>> On 12/24/2025 8:12 AM, Tingwei Zhang wrote:
->>>>>>>> On 12/23/2025 9:41 PM, Krzysztof Kozlowski wrote:
->>>>>>>>> On 23/12/2025 04:38, Tingwei Zhang wrote:
->>>>>>>>>> On 12/22/2025 5:11 PM, Krzysztof Kozlowski wrote:
->>>>>>>>>>> On Mon, Dec 22, 2025 at 02:03:28PM +0800, YijieYang wrote:
->>>>>>>>>>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
->>>>>>>>>>>>
->>>>>>>>>>>> HAMOA-IOT-EVK and PURWA-IOT-EVK share a similar board design. Extract
->>>>>>>>>>>> the common components into separate files for better maintainability.
->>>>>>>>>>> SoMs do not share actual hardware. DTSI does not represent what looks
->>>>>>>>>>> similar to you, but actually common parts.
->>>>>>>>>> Purwa SOM board and Hamoa SOM board share same design. They share same PCB.
->>>>>>>>>> The difference is only on chip. Purwa SOM board has Purwa and Hamoa SOM board
->>>>>>>>>> has Hamoa on it.
->>>>>>>>> I do not speak about boards. Read carefully feedback and respond to the
->>>>>>>>> actual feedback, not some other arguments.
->>>>>>>>>
->>>>>>>>> NAK
->>>>>>>> In this change, the SoM hardware except SoC is described by iq-x-iot-som.dtsi since it's common between Hamoa and Purwa. Hamoa and Purwa SoC hardware is described in hamoa.dtsi and purwa.dtsi. Hamoa-iot-som.dtsi includes iq-x-iot-som.dtsi and hamoa.dtsi. This change could reduce the duplicate code and review effort on a totally new purwa-iot-som.dtsi. If we found any bug, it can be fixed in one common file instead of two separate files. Same idea is used in x1-crd.dtsi. X1e80100-crd.dts include x1-crd.dtsi and hamoa.dtsi.
->>>>>>> Krzysztof,
->>>>>>> Please let me know your opinion on this. This could be a common case for
->>>>>>> Hamoa/Purwa boards share same PCB. Share same dtsi file like x1-crd.dtsi
->>>>>> It's not the same PCB.  You did not really respond to my first message,
->>>>>> so I responded to you - I do not speak about boards. Then again you did
->>>>>> not respond to it and brought some irrelevant arguments.
->>>>>>
->>>>>>> would reduce maintenance effort.
->>>>>> Does not matter, I do not question this. Why are you responding to some
->>>>>> questions which were never asked?
->>>>>>
->>>>>> DTSI represents actual shared physical aspect and you cannot share SoM
->>>>>> physically. It's not the same PCB, because you do not have a socket on
->>>>>> the SoM.
+> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
+> ---
+> Changes since v1:
+> - None.
+> 
+>   drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
+>   1 file changed, 29 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 3acc9f3dac16..c606e5932ca7 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -2836,6 +2836,32 @@ static const struct panel_desc innolux_g121xce_l01 = {
+>   	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+>   };
+>   
+> +static const struct display_timing innolux_g150xge_l05_timing = {
+> +	.pixelclock   = { 53350000, 65000000, 80000000 },
+> +	.hactive      = { 1024, 1024, 1024 },
+> +	.hfront_porch = { 58, 160, 288 },
+> +	.hback_porch  = { 58, 160, 288 },
+> +	.hsync_len    = { 1, 1, 1 },
+> +	.vactive      = { 768, 768, 768 },
+> +	.vfront_porch = { 6, 19, 216 },
+> +	.vback_porch  = { 6, 19, 216 },
+> +	.vsync_len    = { 1, 1, 1 },
+> +	.flags        = DISPLAY_FLAGS_DE_HIGH,
+> +};
+> +
+> +static const struct panel_desc innolux_g150xge_l05 = {
+> +	.timings = &innolux_g150xge_l05_timing,
+> +	.num_timings = 1,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width  = 304,
+> +		.height = 228,
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
+> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+> +};
+> +
+>   static const struct display_timing innolux_g156hce_l01_timings = {
+>   	.pixelclock = { 120000000, 141860000, 150000000 },
+>   	.hactive = { 1920, 1920, 1920 },
+> @@ -5314,6 +5340,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "innolux,g121xce-l01",
+>   		.data = &innolux_g121xce_l01,
+> +	}, {
+> +		.compatible = "innolux,g150xge-l05",
+> +		.data = &innolux_g150xge_l05,
+>   	}, {
+>   		.compatible = "innolux,g156hce-l01",
+>   		.data = &innolux_g156hce_l01,
 
-HERE - socket.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
->>>>> x1e80100-crd and x1p42100-crd are different boards, yet they share the 
->>>>> same x1-crd.dtsi. Why can’t we apply the same approach here?
->>>>
->>>> You should ask the authors there, not me. I presume that the baseboard
->>>> is the same or very similar. Or pieces of the baseboard are re-used
->>>> which could be visible in the schematics (same MCN numbers etc).
->>> For me this sounds like a new rule, which didn't exist beforehand. We
->>> have enough foo-common.dtsi fragments, covering similar phones, but we
->>> never required the knowledge of those phones having the same PCB.
->> I am speaking about it since 2020? 2021? So how new? Other people in
->> other SoCs were sometimes speaking about it in 2016 or something
-> There’s no doubt that using a common DTSI makes sense when the boards
-> share the same baseboard.
-> I think the real question is whether the baseboards are defined so
-> similarly that they can be treated as the same.
-> For example, would swapping to a different SoC—similar to the
-> Hamoa/Purwa CRD scenario—still be acceptable?
-> Would exchanging components such as the display panel, a single camera
-> lens (not the sensor, as far as I can tell), or removing the 3D iToF
-> module[1] still qualify as the “same” board?
-> In other words, can we consider two boards identical if the underlying
-> circuit board is the same but a few parts are swapped out?
-
-I received IDs of the schematics for these boards, but they are called
-"IPC BGA module" and what I saw usually is that BGA modules are not
-mountable but solderable. This does not matter that much but should have
-been said, because it might mean this is not even a SoM. There are many
-SoMs which are BGA, not pluggable or pin-based, but I have just doubts
-that authors share everything...
-
-Anyway the BGA modules for Hamoa and Purwa have almost the same
-schematics, indeed, except differences in PCI, APC supply and lack of
-one PMIC.
-
-If this was the same SoM, just with different SoC soldered, it would
-have the same PMICs. Different PMICs means different SoM...
-
-Anyway, I shared my opinion and I am not going to spend more time on
-this. It should not be my task to go through schematics and prove that
-PMICs differ. Authors should.
-
-Best regards,
-Krzysztof
+Thanks,
+Neil
 
