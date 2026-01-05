@@ -1,194 +1,141 @@
-Return-Path: <devicetree+bounces-251597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A533CF4758
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:42:23 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5032CCF47D6
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:47:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EC30C301D5ED
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:41:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BC067300926F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:47:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C378B33DEED;
-	Mon,  5 Jan 2026 15:41:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F7633F8DD;
+	Mon,  5 Jan 2026 15:46:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ANTOsH7t"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="siYqSzl4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1236633E367
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 15:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1315133F38D
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 15:46:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767627680; cv=none; b=uJ/jU5VFjZdR/WXZO9AJgoKw1zyt/idVdmxbdO4f3oPaHXgkFHQCJjk6W77Y5Jz28Rjh+4KTFmuaTvjF3NYxIuU7LsdGeDBXAoxtBOSEgABZP1Pja/XilxiFVmxNsilEI/Uyh76TuvLKT+GddyVKjthkoPva/uHWltNi3RScy8A=
+	t=1767627964; cv=none; b=rZyZNdcvOYRUdKSFh4PRvzqavBCRsi7TNOX6gAfED7aM3TYLbHk+7SSoCK/TCER6t4d2hW7x30QmfSZByZ1F13uEGEAhIseojGTRnD9u5ytrRRhf7kWJo1U/KV50H8TrMtXp7Q9q6vJL45RYuX+oEOom2DKnxhc+xJ7b7h9jvuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767627680; c=relaxed/simple;
-	bh=7XOckaOqG/PMRqT76fU8qmeyL4hEz8+C+ksukJDZjK4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=on51xBw8Qs94EtA+muMWc4S1YVA9JfTiIM84E39re0I4U7HNrtD7LiJ4exvczKYx63xr59IyFLO42Dt6Tepws2eBBkqq5dQ+zvivqkoSdFzd9H8EHnasD+N/bkufh7U1AJjwBaYWeJw6wIIeV1N230DgysHSEv1FcepGvgW+Klg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ANTOsH7t; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-88a2f2e5445so183058116d6.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 07:41:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767627678; x=1768232478; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r6BA1g1a3pdykyjLkvUREMTVpM7/WCPoUOv36P4M2nY=;
-        b=ANTOsH7tPDcPS8CmZzOHNm0S+V/mWI0bFCqEFpOAekO1YJgBqpiHZRaKgcbvfWofGS
-         hkM8D+8SEd6n4+gGjSAsdsohNibziUL5avRF2LPZbvycxOZzY88dlebGTDgG5NJH4pvF
-         KbbVPq3zkMqpLzgtJikFPIuttRZCac4SxO5QeTWzOo0UM8z3jhcgvaa3X/pNVaz1vfVe
-         xJI28IlTfCVcObZZTJYscPtRojUpRuUhe2X5x6XpEUBNpLc+jSX9QB3fA7pMWfkRDOBL
-         B9eaErOp+Z+JCIwR3VJVMkTYEWmNvKxg0m93Kv5ej+Wff+QC2UEJC81jHLGQ0NHq2xSQ
-         hycQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767627678; x=1768232478;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:feedback-id:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=r6BA1g1a3pdykyjLkvUREMTVpM7/WCPoUOv36P4M2nY=;
-        b=kmu7No7xZcvP24aMCfOcN9oNhkLqOhUj+OPHdI4+xM7XsLpP4MXYNk+8nSXAo7YZIS
-         qzrM4yfrqLQMYlKz338fVhEDwx0NeNFnAnw6zhq4T5jY7mkmEuygO/CBLPUkzw/HxTSY
-         ENFuMalloAkBIykg/DkX5jXnyEG+bYvhRX+jVFRQwGkHbNzeUizE6YhIiKHbsj6W7fVL
-         jjnOjQ12kNHihBOhJ7Kmz5cNe83KfJXHszzGENHqVLqQBGcNT/uD9jjJeWSsQzIBjSU7
-         Oq0tsFs7z/ER1Hg2oQOBh1eJE41GXpXGbFFn5nWVD2ICvVBwqzVCT73GGOAbr0SzX+xd
-         dXDg==
-X-Forwarded-Encrypted: i=1; AJvYcCXDH5uAfpXxm8mQrfMto9tEpjHmO5caslalIg851KUZib2YW71RezLchiNHXrZMjDMBDsMmcnwtO0Ld@vger.kernel.org
-X-Gm-Message-State: AOJu0YypUPsRQwoivhobSouYMLMZq+tZC6Cf1dE8Kt7HGH4pt8Bh00Kk
-	hSqH2hsGlBnnWt3LzvjK5NOPkA+WxHW8uW2mEKbovt8GBpUzVuAqK6lT
-X-Gm-Gg: AY/fxX5H7PTSqrr8NxAxT7gj+UB8k8CNzV6X73juf+DBDPywsS3RlJdYLVy5y0lS4kW
-	wpY1uaxpvNolVx31T620BNrFm6z9oQNLGU6PyI6/qUK1LSZyzdLy1a+6bDXCIs+9BwG65fVyJ2o
-	Wz7onMU9VCzudTUjNRT5T1+eoy/8P9FInMDJHAy833T4E/FWHOYl8WN2hGBGHvbbQD4gIbvCbVn
-	iQ61L5kIO7JZSkJIRqHhlSOWgfxAHbsCV2JW1gUpw+Fc0CGpLpVff6WFhkdtFcFDbeaiqiB4yhW
-	C0/9yUiteaIP/sfTAm7tQ+8pTKOh9V3HW3RkWfJjC46KmwJ5cW5w15/0laWdAt+Zxjgg6FVz9t3
-	8hDgCrYkDmdq/HXUDmGMPgRajeeOvRngWerGRAAWzhDY8BPRqATP+JfsbVFRo364Y+vqzMpkFAb
-	dOYENvdJUGOlnIgsQJNFQI2KuMI9QusuzVWLd3nttRx9p/C2wfcoC8TCULbwognbrs/Wbn/GYwP
-	utP3RzPw1Ah2yU=
-X-Google-Smtp-Source: AGHT+IFcWhopwSaKjTCty9xmTi8J6nU5610w9dE8RcpeTOSxGCXk1EYPkRdikqmONExTL9dAEe+Esw==
-X-Received: by 2002:a05:6214:1249:b0:890:4f86:495e with SMTP id 6a1803df08f44-8904f8649bamr161313626d6.39.1767627677769;
-        Mon, 05 Jan 2026 07:41:17 -0800 (PST)
-Received: from fauth-a1-smtp.messagingengine.com (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-890753ef0f8sm1464776d6.14.2026.01.05.07.41.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 07:41:17 -0800 (PST)
-Received: from phl-compute-11.internal (phl-compute-11.internal [10.202.2.51])
-	by mailfauth.phl.internal (Postfix) with ESMTP id 8F0F5F40068;
-	Mon,  5 Jan 2026 10:41:11 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-11.internal (MEProxy); Mon, 05 Jan 2026 10:41:11 -0500
-X-ME-Sender: <xms:l9tbaQl8adq_q8oemVdp9py9aCB5rEYMUXGPUHOfxSENDh0M6SOSiw>
-    <xme:l9tbaVrCyG7LEDf5sozj9kkhyLQ0sPqK87jUAC_qJfbekq6ICe_xe5QMuMoTjEKUA
-    tB0zjAhiqSBWufmhb_KP365bDbxKmKQ-BUeRDG7AXs90zPIyqpX-w>
-X-ME-Received: <xmr:l9tbaTuvJMNXCwyVLLEQxwAkDuZHya194bV4WrOdHwOVBYRN60UCxK-j>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdeljeeilecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeeuohhquhhnucfh
-    vghnghcuoegsohhquhhnrdhfvghnghesghhmrghilhdrtghomheqnecuggftrfgrthhtvg
-    hrnhephedugfduffffteeutddvheeuveelvdfhleelieevtdeguefhgeeuveeiudffiedv
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsghoqh
-    hunhdomhgvshhmthhprghuthhhphgvrhhsohhnrghlihhthidqieelvdeghedtieegqddu
-    jeejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepghhmrghilhdrtghomhesfhhigihmvg
-    drnhgrmhgvpdhnsggprhgtphhtthhopeehkedpmhhouggvpehsmhhtphhouhhtpdhrtghp
-    thhtoheprghlihgtvghrhihhlhesghhoohhglhgvrdgtohhmpdhrtghpthhtoheprhhush
-    htqdhfohhrqdhlihhnuhigsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
-    lhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
-    epghgrrhihsehgrghrhihguhhordhnvghtpdhrtghpthhtohepphgvthgvrhiisehinhhf
-    rhgruggvrggurdhorhhgpdhrtghpthhtohepvghllhgvseifvggrthhhvghrvgguqdhsth
-    gvvghlrdguvghvpdhrtghpthhtoheprgdrhhhinhgusghorhhgsehkvghrnhgvlhdrohhr
-    ghdprhgtphhtthhopehlihhnuhigqdgslhhotghksehvghgvrhdrkhgvrhhnvghlrdhorh
-    hgpdhrtghpthhtohepfhhujhhithgrrdhtohhmohhnohhrihesghhmrghilhdrtghomh
-X-ME-Proxy: <xmx:l9tbabmkDu5goAML_Vw6wQks5sr1-oqWVGEVyl7SpncPG41qLq8PqQ>
-    <xmx:l9tbaZEvXpCwph3gfl5iq-kHa4fsrJ-e6g21CjltgBbR441YOY405w>
-    <xmx:l9tbaa8pxEfCJ2_idKerH3733Rocx35rGJlDBn4X7HlKs2MkaFUX5A>
-    <xmx:l9tbaW7nR-qjUaIEByc4-kPNbC8tpKXp-OM_EvS1h_evQ7bx_68mJA>
-    <xmx:l9tbaS4UkZJm3L0Tu3phQb3ItLU_OD6WXZGJ8xIIxpleNVBlr6HjnmTP>
-Feedback-ID: iad51458e:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 5 Jan 2026 10:41:10 -0500 (EST)
-Date: Mon, 5 Jan 2026 23:41:08 +0800
-From: Boqun Feng <boqun.feng@gmail.com>
-To: Alice Ryhl <aliceryhl@google.com>
-Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Gary Guo <gary@garyguo.net>, Peter Zijlstra <peterz@infradead.org>,
-	Elle Rhumsaa <elle@weathered-steel.dev>,
-	Andreas Hindborg <a.hindborg@kernel.org>,	linux-block@vger.kernel.org,
-	FUJITA Tomonori <fujita.tomonori@gmail.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-	Benno Lossin <lossin@kernel.org>,	Danilo Krummrich <dakr@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,	Paul Moore <paul@paul-moore.com>,
- Serge Hallyn <sergeh@kernel.org>,	linux-security-module@vger.kernel.org,
-	Josh Poimboeuf <jpoimboe@kernel.org>,	Jason Baron <jbaron@akamai.com>,
-	Steven Rostedt <rostedt@goodmis.org>,	Ard Biesheuvel <ardb@kernel.org>,
-	Andrew Ballance <andrewjballance@gmail.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	maple-tree@lists.infradead.org, linux-mm@kvack.org,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Uladzislau Rezki <urezki@gmail.com>,
-	Vitaly Wool <vitaly.wool@konsulko.se>,	Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,	linux-pwm@vger.kernel.org,
- "Paul E. McKenney" <paulmck@kernel.org>,	rcu@vger.kernel.org,
- Will Deacon <will@kernel.org>,	Fiona Behrens <me@kloenk.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Vlastimil Babka <vbabka@suse.cz>, Christoph Lameter <cl@gentwo.org>,
-	David Rientjes <rientjes@google.com>,	Ingo Molnar <mingo@redhat.com>,
- Waiman Long <longman@redhat.com>,
-	Mitchell Levy <levymitchell0@gmail.com>,
-	Frederic Weisbecker <frederic@kernel.org>,	Lyude Paul <lyude@redhat.com>,
-	Anna-Maria Behnsen <anna-maria@linutronix.de>,
-	John Stultz <jstultz@google.com>, linux-usb@vger.kernel.org,
-	Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
-	Matthew Wilcox <willy@infradead.org>,
-	Tamir Duberstein <tamird@gmail.com>, linux-fsdevel@vger.kernel.org
-Subject: Re: [PATCH v2 00/27] Allow inlining C helpers into Rust when using
- LTO
-Message-ID: <aVvblLp8sjFB7JvB@tardis-2.local>
-References: <20260105-define-rust-helper-v2-0-51da5f454a67@google.com>
+	s=arc-20240116; t=1767627964; c=relaxed/simple;
+	bh=SqOtJ170J+RFFwhvH9wZQqBg0xbrxwhxi7WUufuAgOE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pb/SWHn4XhN+fseRWvKcOFJhGo6U5du6k8EpEHv+8EFqPaOHLUsF3R7fg+6ex7SNSRSQ4lvA+D+Ub4AsVMzgXIKfyR2D88iA+i9TxA6JavLc03xcpEKNOrAXN5XR/OEWGAvC+oUziTKyaikHNwvLx0J49CGjB13i3CAmppg5PQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=siYqSzl4; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id DFEDFC1E489;
+	Mon,  5 Jan 2026 15:45:33 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D0C1C60726;
+	Mon,  5 Jan 2026 15:45:59 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5BF16103C8589;
+	Mon,  5 Jan 2026 16:45:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767627958; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=urFj5GEfGN8FUr9AOM2C6eqiJQ8QOnGyn9HuswUxntE=;
+	b=siYqSzl40Vyi3gRkzXNtwSMwEya76+IHz+53auu6Pjt5ozNbdfPZkTRqqklql44NeDop1b
+	g6skmldwyiDb3s414SWmAGzorvgwWlL7tjuFf8dfYjqUbJziGpnCtn4JmMyrLAZvkY65+/
+	Wad8Z/Xsgu7aVPaJ9jLbde9LuDKwZvkxi2PWu1RplG+8Pgaoc3a1Fc5YBiAhgmVD0t3DNU
+	o/f3kJQQEUpi5xDULWXoaFWYJv0ohNpe+07F6lCVXE+658vVHMueSf+9yr5DZYPzejXDNd
+	VJ+0XZjsUSqZ02HoL4dTROlwgBBOHtXuQx1EH4M3EWIEEA1EO2Q3FCeqzoHJaQ==
+Date: Mon, 5 Jan 2026 16:45:48 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Cc: "Jyri Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Russell King" <linux@armlinux.org.uk>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony Lindgren" <tony@atomide.com>,
+ "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
+ <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Markus
+ Schneider-Pargmann" <msp@baylibre.com>, "Bajjuri Praneeth"
+ <praneeth@ti.com>, "Louis Chauvet" <louis.chauvet@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
+ <miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
+Subject: Re: [PATCH v2 13/20] drm/tilcdc: Remove the useless module list
+ support
+Message-ID: <20260105164548.0f760c66@kmaincent-XPS-13-7390>
+In-Reply-To: <DF0K7JPSOKLU.3V1FT4LAZSPGB@bootlin.com>
+References: <20251211-feature_tilcdc-v2-0-f48bac3cd33e@bootlin.com>
+	<20251211-feature_tilcdc-v2-13-f48bac3cd33e@bootlin.com>
+	<DF0K7JPSOKLU.3V1FT4LAZSPGB@bootlin.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260105-define-rust-helper-v2-0-51da5f454a67@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Jan 05, 2026 at 12:42:13PM +0000, Alice Ryhl wrote:
-> This patch series adds __rust_helper to every single rust helper. The
-> patches do not depend on each other, so maintainers please go ahead and
-> pick up any patches relevant to your subsystem! Or provide your Acked-by
-> so that Miguel can pick them up.
-> 
+On Wed, 17 Dec 2025 15:25:40 +0100
+"Luca Ceresoli" <luca.ceresoli@bootlin.com> wrote:
 
-I queued the following into rust-sync:
+> On Thu Dec 11, 2025 at 5:38 PM CET, Kory Maincent (TI.com) wrote:
+> > The tilcdc driver previously supported a sub-module system where
+> > external display drivers (panels, encoders) could register themselves
+> > through tilcdc_module_init() and be automatically initialized through
+> > a module list. This infrastructure became unused after the component
+> > framework support and panel driver was removed.
+> >
+> > Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com> =20
+>=20
+> [...]
+>=20
+> > @@ -562,24 +533,7 @@ static struct platform_driver tilcdc_platform_driv=
+er =3D
+> > { .of_match_table =3D tilcdc_of_match,
+> >  	},
+> >  };
+> > -
+> > -static int __init tilcdc_drm_init(void)
+> > -{
+> > -	if (drm_firmware_drivers_only())
+> > -		return -ENODEV;
+> > -
+> > -	DBG("init");
+> > -	return platform_driver_register(&tilcdc_platform_driver);
+> > -}
+> > -
+> > -static void __exit tilcdc_drm_fini(void)
+> > -{
+> > -	DBG("fini");
+> > -	platform_driver_unregister(&tilcdc_platform_driver);
+> > -}
+> > -
+> > -module_init(tilcdc_drm_init);
+> > -module_exit(tilcdc_drm_fini);
+> > +module_platform_driver(tilcdc_platform_driver); =20
+>=20
+> Is this hunk related to the removal of the module list? Looks like it
+> should be a separate patch.
 
-       rust: barrier: add __rust_helper to helpers
-       rust: blk: add __rust_helper to helpers
-       rust: completion: add __rust_helper to helpers
-       rust: cpu: add __rust_helper to helpers
-       rust: processor: add __rust_helper to helpers
-       rust: rcu: add __rust_helper to helpers
-       rust: refcount: add __rust_helper to helpers
-       rust: sync: add __rust_helper to helpers
-       rust: task: add __rust_helper to helpers
-       rust: time: add __rust_helper to helpers
-       rust: wait: add __rust_helper to helpers
+Indeed it is not directly related, but a following cleanup. I will put it in
+another patch.
 
-Thanks!
-
-Regards,
-Boqun
-
-> These changes were generated by adding __rust_helper and running
-> ClangFormat. Unrelated formatting changes were removed manually.
-> 
-[...]
+>=20
+> With that hunk removed (or kept if I'm wrong and it should stay):
+> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
