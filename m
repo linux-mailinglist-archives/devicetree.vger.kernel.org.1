@@ -1,58 +1,61 @@
-Return-Path: <devicetree+bounces-251660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3C2DCF5627
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:32:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 158D8CF563C
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:33:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8BD7A30092A4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:32:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5B7DD301226D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A490B299A8A;
-	Mon,  5 Jan 2026 19:32:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A603330B524;
+	Mon,  5 Jan 2026 19:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oWGXp6aL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mxwcosU2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7639D23184F;
-	Mon,  5 Jan 2026 19:32:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC7430F95B;
+	Mon,  5 Jan 2026 19:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767641533; cv=none; b=ttmTA6y0zRSA5PbyHW+uofGqBWwmVaPOIaocHy7zM6C3Ds0WQoaNkZmXqSeoQ90quc/UTbhuNbgcnxiuHbUJtaSq34Qgq1YA6AIwWVgCv2o3pWGnr1bU+YQhmD43SMbiaoOqwMBYhygkmY9v09J62RLCv7C4yi5viz0xrN14MqE=
+	t=1767641547; cv=none; b=BaY+gTU6tLo5haguQxUqbwz4ZKiLduHbWYlD8R+0DOjjFIHGH0kSbO/vZQZ/46tT5q3T/zNIIDOXuB39EBrn95OSo+SrDnyVqCIXrSovOTR0OUEbpOA4PxYIZILAR1GmG+bDJKcWep2aD7fuC72W1/hniz1a/8CVOsgSzzORf+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767641533; c=relaxed/simple;
-	bh=KBG4rviyS0j6Xo5va6SbAcnrxZBfIhv+e+OgRAYM6TM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DhncB2Iamw8j/j7jUcotJTb7O4mD9+JC/mhr/ouZiTX2iYyxL+pZVWaZDSvDWINBBfLQg7JAK5wSUwF07MLfUgvv+bk9/cXmpQw3943KPhMp9FYhq2QwIhvUV4SFJAbu2HCEJ+YarohXgf44wP9c73wbqqCa7pavF9dwzBIZsRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oWGXp6aL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA9B2C116D0;
-	Mon,  5 Jan 2026 19:32:12 +0000 (UTC)
+	s=arc-20240116; t=1767641547; c=relaxed/simple;
+	bh=q9cQlTH+WIpOMJjB31tyEhi+IJtQyrYG+P/zBl1mJl8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=c5rZhSipL4EysAtf+PaN20QNyyVZTEePhGh711faDAGw6FAk/e4cxEqB1ZYwCN3iN18WbU0qOiYcIsO7BOuNb7TGpx5ZhDKf7AwZObQFiW/yeCK+aC5uEL/2d5ElxsR/lDH0ulSD37FNNqLIByWdQt1CgYwiBfmwjugw5gqlBbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mxwcosU2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0A67C116D0;
+	Mon,  5 Jan 2026 19:32:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767641532;
-	bh=KBG4rviyS0j6Xo5va6SbAcnrxZBfIhv+e+OgRAYM6TM=;
+	s=k20201202; t=1767641546;
+	bh=q9cQlTH+WIpOMJjB31tyEhi+IJtQyrYG+P/zBl1mJl8=;
 	h=From:To:Cc:Subject:Date:From;
-	b=oWGXp6aLh47mBISayyU2wHoYxDZ/UzjaKt5m9A7587BJC2tchvadf+BHwutJ9N88S
-	 dGpFgGd+KETpeHR0G1xdajsjbvxdWt0oX2CIkuJ+k+9t0MUUAFuhCE6tXJOqd/CRKm
-	 NmVqwEL18z7T2Z2NsNHqFwIeJxpxhar5iHh9JnXImgWVa6ybr1cQuQWv4Lsuqj8T28
-	 9bp3mgIK4lcu7QetNGdovj2FVWzJjmGEwPy5bG9Q7ACVNwJsRhFBB/Q5EfpoK/fYD7
-	 0FDzCL8SY9fZPq0haIHPzx6fX14uV42UPkHv0UB+N498lb66iUzTOnGCo3exlQEzgG
-	 cE+5E4kebsy5g==
+	b=mxwcosU2dLL7phAhR4W/sEyNm2d0UPRRC4aGxQFRzcQWcIW7MKa1TLiMgAJvDZZZ+
+	 LQ7OXyjqGCLomeNm8KX1ydHbWZVSeK7ciDpiHLprLFGWWxg7XVrppEL69zJlFJ4BYf
+	 omaXBzMfryLjoqrNDDX22W7yWR+/cqgY+yELffI/l5W2fNUz5MPTMGOW02AnFZjl8/
+	 Y2aInNYmoSSEBr8CvTmYgm71awvVypa212lVEakAbe80HoPcmsya8Bb34qQ2cEJ4ko
+	 PQWW2AfYx+BkUqdEDqL8B3tbAdA1Bcb9ve+UUTMeGM+E8sUG9H2Ayjup4EzriduCri
+	 1KliW+fOcZ8tQ==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Drake <drake@endlessm.com>,
-	Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: linux-sound@vger.kernel.org,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Sam Ravnborg <sam@ravnborg.org>
+Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: everest,es8316: Add interrupt support
-Date: Mon,  5 Jan 2026 13:32:03 -0600
-Message-ID: <20260105193203.3166320-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: display: panel-simple: Allow "data-mapping" for "yes-optoelectronics,ytc700tlag-05-201c"
+Date: Mon,  5 Jan 2026 13:32:19 -0600
+Message-ID: <20260105193220.3166778-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -62,30 +65,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The Everest ES8316 has interrupt capability on its GPIO3 pin for
-headphone detection. Several of the RockPi 4 variants are using it
-already.
+The "data-mapping" property is in use already with the
+"yes-optoelectronics,ytc700tlag-05-201c" panel, so allow it in the
+schema.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/sound/everest,es8316.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../devicetree/bindings/display/panel/panel-simple.yaml       | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/everest,es8316.yaml b/Documentation/devicetree/bindings/sound/everest,es8316.yaml
-index 81a0215050e0..fe5d938ca310 100644
---- a/Documentation/devicetree/bindings/sound/everest,es8316.yaml
-+++ b/Documentation/devicetree/bindings/sound/everest,es8316.yaml
-@@ -49,6 +49,10 @@ properties:
-     items:
-       - const: mclk
- 
-+  interrupts:
-+    maxItems: 1
-+    description: Headphone detect interrupt
-+
-   port:
-     $ref: audio-graph-port.yaml#
-     unevaluatedProperties: false
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index fc244fbb5a54..e4a5b30ccfc9 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -349,7 +349,9 @@ if:
+     properties:
+       compatible:
+         contains:
+-          const: innolux,g101ice-l01
++          enum:
++            - innolux,g101ice-l01
++            - yes-optoelectronics,ytc700tlag-05-201c
+ then:
+   properties:
+     data-mapping: false
 -- 
 2.51.0
 
