@@ -1,232 +1,230 @@
-Return-Path: <devicetree+bounces-251621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A976CF4FD5
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 18:26:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C1B0CF4F7E
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 18:22:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0380A30028B0
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 17:26:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 91B1330139A7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 17:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7825833B97E;
-	Mon,  5 Jan 2026 17:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E980B322C66;
+	Mon,  5 Jan 2026 17:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="acnHXp8l";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JihDbq+a"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Izd26wBg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013060.outbound.protection.outlook.com [40.107.162.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EFAC219A8E
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 17:20:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767633636; cv=none; b=jQdtlniqEKbmaJpgq3ug2tTeqYUvqt0nkltf60TmCGekx1Y8L8Ag9hPzJbidRAq0xlKfH4o2ZPpYQu9EEV6PMqj6nNxlo6Fik3yo6jF/NIWat8l15ZAGkThsTfV0KNRxId0GIxjV3tnKpZL1BuzaHflnBz+ljFkf9JacvOPDzic=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767633636; c=relaxed/simple;
-	bh=HkvBiaLkZQB/XCm2RcDqyMZQP4FwmPg7nmbZ8Yw17sA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hjogz30LCK8q7ZtNyKD0XiygbRQsUGaE0H49U4hs4QgAFRnSznFXHX7yvZpxHCiBoLj+L7R4DVFBA+R8vf54zmN4/djScFW0gcydGJa4tAKLcHiFXVQ1XO10q3xfn5kV30JFX6Gvrwh3pYkqmJ6hRYzdRq7Dqfuqja4Wa2kZOuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=acnHXp8l; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JihDbq+a; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 605AYqpL937043
-	for <devicetree@vger.kernel.org>; Mon, 5 Jan 2026 17:20:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DHiFrg5t/UNh1oQC2wzIPwwhl3MV3upU6x3ntNRIRB0=; b=acnHXp8la7C7Qwb6
-	NclaxRUMrTjWhEI/h+smfGyqHrAokffUI299zfOdbBbXNDvrsDUkLS7quiTsA8Me
-	tf8JEKHW3C70/f/KNWnwsq7/tvvR2zuTdARFcQ0Yrr7i8zAvpySTJCTHrDdUe8S6
-	66Lb9s2a9Wfp/Sd2J+91eZiyLI0AFJAnpRvWtdImsEoV8S0sDATdBYP/GApXynD8
-	eXRi1Vj3lDsyDA7eUDGkx0R9xbR/znwbZPQSiKwXeqIiiyiq72zttKrSqQZEa53n
-	w+9aLJAnzLJAc9rdyUX74Lt/JVkIBfH0uMUKWtE848k5fjLIE6ZV/kjPJV6pgstc
-	57ZoOw==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgbnv937d-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 17:20:30 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7c240728e2aso644514b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 09:20:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767633630; x=1768238430; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=DHiFrg5t/UNh1oQC2wzIPwwhl3MV3upU6x3ntNRIRB0=;
-        b=JihDbq+adagLmOXxAfGtg4+KQfq84v59ytcncBEO9zJtEr+r+sYhhPh0CFDObXM885
-         wGpsE7Ih1+q5wRfIypIbNW9m44iVux+F2lkvJOvf7KqwfTTOGqD0Zc7HLFF11OwkNGis
-         P+ZzuVdhql/F3M4Cs5cVKyG8B08KXa2T86WLjUwrHrhoTXQxyieqaphQPlUnwHvbjP8O
-         cknTYxilHx046dn4wyQRAJxR4uI7aeJSCX9eNfmCHEQ1qVBL53Eb0GswPC+FJMXC6d/D
-         10tcpuUl3+1t+g9cv3cGtJWU5lrr4xc63W5Vxzt/WD0FXXmKHEdDDt3dSu9AFRzvufB/
-         W96Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767633630; x=1768238430;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DHiFrg5t/UNh1oQC2wzIPwwhl3MV3upU6x3ntNRIRB0=;
-        b=jvFime0omI98wjN7EEhoeFEf26uvTe0D6LOdDRlvay9yI1PfK10QDK4cmzgEDgsT0n
-         9YDNNhz4AqFwfrnifOx0cGUbN1xtoeEv6hta2ow0thUtdjsCtF4kE5EiCarVqruv6HFz
-         1/u2ndir8B9lNeK573Sn1OppT2ZagMAgrNsjWH58kEoeB69mdjAtp/7MHdzXKCM8Uioy
-         N1+JakAIchbU72XHircTVfQh4r7lbCVdetxkf5Gd+GgvPn+Huz9xZzBDRhHpxUKFXknb
-         AxaZzF16KYix3ldUyEZFil4NvlfqpRocn3RwsuX0vDIXPmoqYV7SyQo5fe5ZcxHfRL4R
-         2QgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUwCfotpGuwe8tWgLWgU8loNcnIYLJNclHK8jfiCf2bQ2cPAdcmdrBZIUlB121IM0KPtPCS8RSHqlmm@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUZoT4RYor6dSCqxOyGzUk1zAFksXkQ2fYNRDEBiqifF82eItL
-	RMEHbvP8ECk8eR3l6LVdELw3kxHGFebkMJCpfEgoYmzeNgLuNei95HDStsm0k6cyfzg5j/c9/Jb
-	jregMR5zpNA0qILoarIReil+7vEUPsz6rbOvo1CwPfDqQCTRZQioSLv73J6ay01lY
-X-Gm-Gg: AY/fxX4Cn5nb9QhbT5F42pnL6Sz2vx66mf6zoTXPoylsAbMsKz7Gt7+cOwb+gF495/c
-	pfr3GgP9G8gspP1crjdAFF9x5atc5LOnTkxHV2njSn3BrI88hcLLqcGqWdzJo8UoK6G51sfF9gm
-	EL2kXZ3dRx74HWy5eswtj+pZ1GN77V3KEg9KtLC0fL6VKCMXR9m8Woepe/8iCMoER08QnhFXayg
-	BlULx8dvfqJLrhGiyM6RR31W+ujRkWo3AaaShuHLqmcXbBJ00Gcj1Ps0hrwyBhx4DfcoDJfXGxz
-	xHedu/IzhywHMVZogoMaSIRPUgZ6SQUIxvsAVWf6LvolLS8zOHE7dnzirR6F6ejoRUWutnsRAA9
-	WcX4OsZuxcLx7XMHukMcC1Q15qQ==
-X-Received: by 2002:a05:6a20:a126:b0:35b:b97f:7bd2 with SMTP id adf61e73a8af0-389822aa534mr55368637.10.1767633629742;
-        Mon, 05 Jan 2026 09:20:29 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IElAgZKmBLzSEgsjbdp00nEWJPVoGLSNwfo1YQ/FYe6i4rtPXr90JULXq/r66u1BxMJh1qbkQ==
-X-Received: by 2002:a05:6a20:a126:b0:35b:b97f:7bd2 with SMTP id adf61e73a8af0-389822aa534mr55337637.10.1767633629141;
-        Mon, 05 Jan 2026 09:20:29 -0800 (PST)
-Received: from work ([120.56.194.222])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c4bfc9789e4sm203107a12.7.2026.01.05.09.20.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 09:20:28 -0800 (PST)
-Date: Mon, 5 Jan 2026 22:50:22 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>,
-        Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rajendra Nayak <rajendra.nayak@oss.qualcomm.com>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] pinctrl: qcom: glymur: Add Mahua TLMM support
-Message-ID: <zaf4uoms75wc7yvmrmqs53couefqsv5oie2hbiwvhitqonbs4u@aq6bcvf4nq3o>
-References: <20260102-pinctrl-qcom-mahua-tlmm-v1-0-0edd71af08b2@oss.qualcomm.com>
- <20260102-pinctrl-qcom-mahua-tlmm-v1-2-0edd71af08b2@oss.qualcomm.com>
- <91d2e5f7-7d93-4909-9ed2-6b19abf0b448@oss.qualcomm.com>
- <dayj662qu7tb3l2fuq4sfdxunvkk2rt777vm7dfvdazbwiwpzn@mysrwdbdptqt>
- <adlhkus5gvum6fkd7bxjohwlsiumw7w6w4c36vzphjz7my2644@pmobztmgpdvx>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7963C21CC58;
+	Mon,  5 Jan 2026 17:21:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767633717; cv=fail; b=pkGlCUHRtUwSD64q71gbMIhvIDOPahlKKlqLpF8gvAD+9AJ0o1vg9i/IfZ4W/aX2PYCKu2V6J6inZlT2tCOsk6vblBjNZ/8Hwmt7CxavkJUZj1HAa7Wn3anfsLQ17TmFNc/NW6qfmtkn9BqpRH5dnJ+TDaUw6YYxLwq1iw5k4DY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767633717; c=relaxed/simple;
+	bh=tlaSN1b2HEu+mov2zbQxs7nHjzwRLXMm/IenF0HyuLc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=t2y2kzFgnw/nk7sIYwZsoOhGL/TLJDs4hhZEohnVZwc4fI0cEejLdySOK/dlLmt9UIU5orNCKHaYDt17zOqXhdJyXO4BD1iI4P7G+BpCmr3N2NfGmYiakhev3sqWupo5kMifASSAoqxkyxf375Cnq06HxXK/9OosgGPuxYf+7q0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Izd26wBg; arc=fail smtp.client-ip=40.107.162.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oXrELvKRbpFNr2lmKxCSUMXaMTHO9UozLJs4kYJ8CVl5GJTHWJgCp6eKU0LEA3vy0hgC7fv9qG4xQFou2hv49JYS/T/qMCitUAIEzaVP7MHOkz31oKc0SxhNpmrhvmOIoOXJN8FLMW4swvgWwEdPUKlz/p6/7eCTBoTYJ8hEbQLRGueQX1CYPocmLc0YuqOF+5ztaTLqcHaniJ8OkZVx7I36h0Uh/ec0Qsx413Ui+bbls71G0TKQKWlA1J0xXf6c/sHfNiMW5Pu+lL25iXq/J+FnjxENOWj5O7lmNUV4W3subNXKEvx1BDe7x8ERRCxNdE8so6y2QyTfqcj62cctQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y2FHi0dzgE+dqqPgYZfajdBDD3UVgJc3g1jEBVrDUxo=;
+ b=in0f8EymyDG6ePMIZ/x02Ey4YeErqWUMBbVuqKcebnqAoAP483Of5ePmoULluz0bYw+++Te6WmiVtGsEVzIjP0zG77cNYXOrqn94SHUb7VlT5EHXJ2nZONRU7NvKJYfTti6v202PXl41bPFpQP208HEJwA/3fTbSPk3Pc8MLVVdV+P98dFTdExLjcNJmg42I4eaaNLs7qGKkd7iUDT3bKUzc4dGAaWpJ+KhphWxULPY1VA3aSNKTX03XBT1zwC+0qR5d1cZ16ICkEdQ2+V8raxrFaJZISjRKW5sP8tPa/d7s9h3dlBbH+1jbbKcL74hgFFeEE46DL2VRTJdM+vIALQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y2FHi0dzgE+dqqPgYZfajdBDD3UVgJc3g1jEBVrDUxo=;
+ b=Izd26wBgV5zAG8GAcbXDY9mK4ADyHcj/ub/IC3Hmp669NVtfN3+KFhUG9HlRhk7nD4AU/vuu/htpfVYvFnwYBtTvR/9NgRI6EYHHIqRY2rHME82VFdNCoAVeWEk2ZKwB9qcptvkC1tdg3ggzV8ePu9SHwEZxpafNFJrOardLvMLXB6biiDVASHoVf0M0i0usBn2oIuCKJ3nM7w5d37bj6acrMZgOqEgWeMuNePx5Qhb2scpaq1YoXm34QmdnYJKJLrdEIApv3tl6hEwEqt5oNahoqPZ9wA7nqm58XUHBYPacki/40CbmFpT3UVmhMIayaBGZ2c69LxTq/+e84ehnjQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
+ by DU0PR04MB9252.eurprd04.prod.outlook.com (2603:10a6:10:353::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Mon, 5 Jan
+ 2026 17:21:52 +0000
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9478.004; Mon, 5 Jan 2026
+ 17:21:52 +0000
+Date: Mon, 5 Jan 2026 12:21:45 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mp-skov: add pinctrl-name 'reset' to
+ fix CHECK_DTB warning
+Message-ID: <aVvzKQKjaZUVs5oi@lizhi-Precision-Tower-5810>
+References: <20251229165127.4006134-1-Frank.Li@nxp.com>
+ <20260105111448.slm2yqiwivx2t3vh@pengutronix.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260105111448.slm2yqiwivx2t3vh@pengutronix.de>
+X-ClientProxiedBy: PH8P220CA0052.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:2d9::6) To DU2PR04MB8951.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e2::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <adlhkus5gvum6fkd7bxjohwlsiumw7w6w4c36vzphjz7my2644@pmobztmgpdvx>
-X-Authority-Analysis: v=2.4 cv=I5Vohdgg c=1 sm=1 tr=0 ts=695bf2de cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=3dEILRYKsVIWdVk4w2Qziw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=qW_9IeAHNZvJjEDOEU8A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-GUID: rHQ03xZU1UurxoaZNMOFFpr6fCWMFobH
-X-Proofpoint-ORIG-GUID: rHQ03xZU1UurxoaZNMOFFpr6fCWMFobH
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA1MDE1MSBTYWx0ZWRfX8OKmWPflgx3t
- mrpW1KdggOL/VyQIgcv24ovRkOR+rdeYopGO4FKJ7hAGpbywgAq658h+XIYmcE6i1Vrq/ECJ0p5
- XQfvFtubbvR4g5G+c8qTJ97CBfROlQQ3Vh7Ew21ZfYc26z+iH8dtSSHe1YGH5m2VY2Jk+Fga0lT
- Vh+hDzHTAYrh14TvStZ6Rug+vAM1bEpKgDf3IBM0pVWDw8xS0KC30jxggnXf7A90+MCtwkH3CLn
- pnYdFzAD7VonhFADCMBol5sZh9oee/56Rn2IJ7mw9FJHiLQ9mFzz5QKfHMNMFJ6FlGuQvv3uMAx
- D9SehAK0bIugv5cncZ2xwdBl1zHM6BjbeXjxw9XjABPpoVHLYLBxYG4ZUt84yc5NlDvpjGASQi5
- brU66wfMzkhZMrydvlc/esjUVjAgPxjuWnCCJOiZx26pW7Y+YjryjOtaFWNv040SpnXEM+4DwZk
- epxuc2fTR35aIvtfiUw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-05_01,2026-01-05_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0
- suspectscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601050151
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|DU0PR04MB9252:EE_
+X-MS-Office365-Filtering-Correlation-Id: 387d5ca1-6ee8-467b-7b92-08de4c7eeabf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|7416014|52116014|376014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ANqCe6dEZRO1j10Qs9Tt0pthoGFwyJo3ovyW79JOt4UJu908/47hyEu+/e6D?=
+ =?us-ascii?Q?kXUQ1hO2xk0qn4nIa5QpxjI9eAxyFtRhz05jcUOIclZc+1qAQezavlBm4iSA?=
+ =?us-ascii?Q?T/4ZuprOFHEJpAlzhn7Q1oNvNNASAR9zxOxRcHZ8RiYi9rmreuaK1I0iOYmr?=
+ =?us-ascii?Q?iizN6sAf4Oy28VkBJ9PIfPDbkgq9bl63EfyoDduA7ePBnaP+80CgnKSWw1AB?=
+ =?us-ascii?Q?fvPVirUBulbc0Vw6+AQqSSc5S2zgcDWIMDuL2iV6tPvhItta+6hg2v3v0Up+?=
+ =?us-ascii?Q?4w3lDT/QUYRqrhS/t5cZ4tnZPFSEEVYXGnCLT3TO/b7okr1BF1FHVmZcEP3J?=
+ =?us-ascii?Q?tann6z+R/RYULgI+420Q9BxokzmQoWjXvTAWGrtpw8PjUuh2BCFHgyTKIgi8?=
+ =?us-ascii?Q?RxcrUFScsY2lUUfckB4O34Z14XjNcf15zx4/W33jnEquII+Z8zvQKrgsuaZ9?=
+ =?us-ascii?Q?dupZ6rIQmR6KTbjDi9O/1lXqRifRV3oBEbBSJBcti0nuog+UEc/4WbBQrRIS?=
+ =?us-ascii?Q?SWNBE1prKlcyd3rIYxJrBXJ2ElRIm8ZGPgYl1Cup5dM9Legb9XoFictcuZAl?=
+ =?us-ascii?Q?xF4twbXGK6o0DSVzbO7qiaUGPfbnJwypSBGUe8U+y4bpLk2k7wLI3BncAnrd?=
+ =?us-ascii?Q?CkZY28bJm7ykZmX6qbuUC5jDd+ObA9lr/uuSxgCPW0Gi/zhL45R8unM+TgqU?=
+ =?us-ascii?Q?HS8ipq+HswSi5vHkmyiGM4Ku5XK6tuvT4/xsQ/5fNmJBfIfhEjGCxMlBZSmd?=
+ =?us-ascii?Q?zMFav8nHmEmU9w+64+OKJwaj56K5xvWXb3WdwyVWXo6BO6Q3vY5OKGO8FuWS?=
+ =?us-ascii?Q?xVfIwXMghx10H5i34qkaUrCSRb5dpFwFmitSs7kbrPBQ0dorrHmjvJcHLEMz?=
+ =?us-ascii?Q?E3QzoDgdQaB2NRGjFb7MlXPI64khck2h8/js9B2/PEbo9jXEA0fX0PioQ5dE?=
+ =?us-ascii?Q?1yHuO0FBQ+YIUYTBULRESQD2v4WzfUyCU0+wiqCLez/HAB2TSN21Uzf+BNTY?=
+ =?us-ascii?Q?leDVW8o01f5Se1PgeZUInuM/FFUARIXNTBxt0qMQ+9exYMOe9YU9gvihUDlB?=
+ =?us-ascii?Q?eHt+EsdyZI3MYkOiZyLX6/xi8BGTQ+om30YeRrk0v3dhisDJCXNY7Vo909G5?=
+ =?us-ascii?Q?IVNi7TrAGCvUOCcKcvDra0GfPjHmiAr72uwa+9cLLiDe4vioYSjmqDk5AZ2/?=
+ =?us-ascii?Q?Z+1lvIjTWoa/aI4PKqGErwNBNSHCjRr/odJ2Auv/NaJlmnPmIulzroS4bVbe?=
+ =?us-ascii?Q?LPXrEY6VUPu5XWjsx4xBo4u9oUkHTS1ZFrTuQ31eopKM880C+xCclLwyzEMT?=
+ =?us-ascii?Q?d9dpoXFsUE26GM+7ncel2qt8syYSkiSibV4+SUS2EFt/zK+oYWoezlXFYKHB?=
+ =?us-ascii?Q?ES4HIPJ6i3RI2PYadLgDw8W01CwtF8h91YmKOCPhED7RvPVbTSVKmAeSQPjO?=
+ =?us-ascii?Q?XP66oWDpaLLoe9T8neaJMFvpfpK8k6EeA26saqez4azKL6E4eC/hNA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Zc7J6yezD9LK6SMtlg5QygeY6G2PAPiRM+C8qUgXNNelC0yf+klxeJ2foL6W?=
+ =?us-ascii?Q?E7W++utiRJgmgsV2ZgCP6/VS+E3HumZvVdCdS6OwKG3Ybaj9lSwwNLqFHDep?=
+ =?us-ascii?Q?V/f8gXgsWD0fGBca+f20E/3bgWHoIzur8xqyne4crie417/r+tRrDzjMeNGA?=
+ =?us-ascii?Q?7JlSgDqyi7oFMMS82bD7lOf/SceHrVXX4/Ct262k/5apkPfofMX/3RwT81DZ?=
+ =?us-ascii?Q?fcYsIzDVwJf44QpqKCK28KS3/SbawZNGEYOyPulvPT2f4HwpEW5dao3bXTQ9?=
+ =?us-ascii?Q?rDGbLEcF80clThLDfnig5D8nnwIl71uscUzi75qTJvwjlPF1/HNlP3WpgzF2?=
+ =?us-ascii?Q?2IpfaWJ3eigccfEC6dXad5GkPh9ze/AGvkm0KYAkz8lmjlYC2qSGShcFSDiZ?=
+ =?us-ascii?Q?OSQt7uzR+Yv0YbureFCQ3ti8xkcsK2ZARrQC5eEkvs/feddzIHKEgJ0fEQwc?=
+ =?us-ascii?Q?fqpEZFxIVeQ3n1dNKqGGNp54bWOdc7JzpafaprvRvX1tR+HllyJ/xqcHCHNd?=
+ =?us-ascii?Q?+VHDcfQCJDQRjgcsq2BO9NBPjh01wRYjWc+4Mao9larIW96jcYaTbDsBMkev?=
+ =?us-ascii?Q?kskcgJh8tLSUkgtouSaXI3V3QLV7XsdomgCxjNprZKyFH5Z5L80Z2gkcuzKW?=
+ =?us-ascii?Q?T+o1+gBo7UkuS6PVghU28BeRe2Y1R2Gi/FqxIZpWhudCR3WeI6njLnclfTxW?=
+ =?us-ascii?Q?YQNILeitdsEFvnVSJ2FPtQBDBqGhY6v2l+xaHRdp5Tg6yAwbIs5jcM5PG/Xv?=
+ =?us-ascii?Q?BI2xq2IcyWVcmH1Fh7Th/H7i/1FAonyPhiw987Q9d5Ys40XyN6r3sjnJJX9U?=
+ =?us-ascii?Q?ERaNv75z6Qkqy30v45EtQPcLXYJrHuwS7/05Jev0vVN+XoWp+aXijEcd5N0g?=
+ =?us-ascii?Q?SRkS7h2F9RuQYUrTtwDx3/M84xK3yX8MjN9Y3YH1YIXfoUKkUzgAXks6WtCb?=
+ =?us-ascii?Q?khlLrg3H7V+G6tXdpAgA3iOUL2Eo4/LA5/h2M+0mhWEI+Gzc44fe+MRl10PS?=
+ =?us-ascii?Q?6w5WcxoZ7BxtXoBO/a6BK7mA15jhLYoC7cBb/IylItxPw4W1zXKu47xj2wHB?=
+ =?us-ascii?Q?gfmJYo+A+BK80F6CXtz3o2k9KyR3uTkfgQZp+uPJmKBIE4P0psjCZmrGQE2n?=
+ =?us-ascii?Q?38B14mkJm0Wq8EbSp1xt44OaWrQh/L9lBPVvYBeP9s9183iN+q3Wbk5VTx+v?=
+ =?us-ascii?Q?IyflaZ0N/GFRVv8OWB1i8p2hay3WxCxV486sagu10LUmEpIGfllLzoOAZ9fI?=
+ =?us-ascii?Q?zuKN7lCYmqGCqSQvl7s3JlHLfC0tP+IGtbIhHVP9MoHL/UoEC18/Bp7Fp8ix?=
+ =?us-ascii?Q?1AQQLoC9d/WxrBvALkE8/MJnhLYwhiBkL9/tDUkdvUqzBp66VFWXKpiRFwv3?=
+ =?us-ascii?Q?ZmlrdVW5ThWpIy+z32kg8tQV8ocNIBMkWd4rRC8kJIcRO5tWwQGa/E76XA2B?=
+ =?us-ascii?Q?t8JG9cULFDkx/TO1AANiFgUHwL5w41o8sE0g7SXo/apar32UlJPigfFnIL3d?=
+ =?us-ascii?Q?2DhNr3cve7TzMkmfLON8sBvgqyt0OhF4/7/Rpv1AwJvguPGpltFVx57rYe3s?=
+ =?us-ascii?Q?HmLtJjRTari9LT61vfB1ejJcK60T9iSbuKp4dcYK651B76Yj4RI7KTf79mYT?=
+ =?us-ascii?Q?7O+LVvn2Q6NCsN3hLLoLIdWkqD0OcYHkadAXn5C36KBtG2AHmGvehv5RVcPF?=
+ =?us-ascii?Q?xD9RAkxG11TJF8Yhhu47HCHCN57pE/9RbTtffb1yiCfRiIe0vod6p4Fnrmsu?=
+ =?us-ascii?Q?p3IfV9px0Q=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 387d5ca1-6ee8-467b-7b92-08de4c7eeabf
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2026 17:21:52.2894
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pZA2C3BvCHXoOza+1+73zQHeT5fnQHYmqT+kCPOva3P9LCNKN9f80tFpexKspS7BwT8xqbxPEPxZwND0MDaqyw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9252
 
-On Mon, Jan 05, 2026 at 09:31:03AM -0600, Bjorn Andersson wrote:
-> On Mon, Jan 05, 2026 at 11:04:44AM +0530, Manivannan Sadhasivam wrote:
-> > On Fri, Jan 02, 2026 at 01:40:22PM +0100, Konrad Dybcio wrote:
-> > > On 1/2/26 12:07 PM, Gopikrishna Garmidi wrote:
-> > > > Introduce support for the Mahua TLMM (Top Level Mode Multiplexer)
-> > > > in the pinctrl-glymur driver. Mahua shares the same pin configuration
-> > > > as Glymur but requires a different PDC wake IRQ mapping.
-> > > > 
-> > > > Changes include:
-> > > > - Add mahua_pdc_map[] with Mahua-specific GPIO to PDC IRQ mappings
-> > > > - Define mahua_tlmm msm_pinctrl_soc_data structure
-> > > > - Update device match table to include "qcom,mahua-tlmm" compatible
-> > > > - Modify probe function to use of_device_get_match_data() for dynamic
-> > > >   SoC-specific data selection
-> > > > 
-> > > > Signed-off-by: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
-> > > > ---
-> > > >  drivers/pinctrl/qcom/pinctrl-glymur.c | 43 ++++++++++++++++++++++++++++++++---
-> > > >  1 file changed, 40 insertions(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/pinctrl/qcom/pinctrl-glymur.c b/drivers/pinctrl/qcom/pinctrl-glymur.c
-> > > > index 335005084b6b..bf56a064d09c 100644
-> > > > --- a/drivers/pinctrl/qcom/pinctrl-glymur.c
-> > > > +++ b/drivers/pinctrl/qcom/pinctrl-glymur.c
-> > > > @@ -1729,6 +1729,25 @@ static const struct msm_gpio_wakeirq_map glymur_pdc_map[] = {
-> > > >  	{ 232, 206 }, { 234, 172 }, { 235, 173 }, { 242, 158 }, { 244, 156 },
-> > > >  };
-> > > >  
-> > > > +static const struct msm_gpio_wakeirq_map mahua_pdc_map[] = {
-> > > > +	{ 0, 116 },   { 2, 114 },   { 3, 115 },	  { 4, 175 },	{ 5, 176 },
-> > > > +	{ 7, 111 },   { 11, 129 },  { 13, 130 },  { 15, 112 },	{ 19, 113 },
-> > > > +	{ 23, 187 },  { 27, 188 },  { 28, 121 },  { 29, 122 },	{ 30, 136 },
-> > > > +	{ 31, 203 },  { 32, 189 },  { 34, 174 },  { 35, 190 },	{ 36, 191 },
-> > > > +	{ 39, 124 },  { 43, 192 },  { 47, 193 },  { 51, 123 },	{ 53, 133 },
-> > > > +	{ 55, 125 },  { 59, 131 },  { 64, 134 },  { 65, 150 },	{ 66, 186 },
-> > > > +	{ 67, 132 },  { 68, 195 },  { 71, 135 },  { 75, 196 },	{ 79, 197 },
-> > > > +	{ 83, 198 },  { 84, 181 },  { 85, 199 },  { 87, 200 },	{ 91, 201 },
-> > > > +	{ 92, 182 },  { 93, 183 },  { 94, 184 },  { 95, 185 },	{ 98, 202 },
-> > > > +	{ 105, 157 }, { 113, 128 }, { 121, 117 }, { 123, 118 }, { 125, 119 },
-> > > > +	{ 129, 120 }, { 131, 126 }, { 132, 160 }, { 133, 194 }, { 134, 127 },
-> > > > +	{ 141, 137 }, { 144, 138 }, { 145, 139 }, { 147, 140 }, { 148, 141 },
-> > > > +	{ 150, 146 }, { 151, 147 }, { 153, 148 }, { 154, 144 }, { 155, 159 },
-> > > > +	{ 156, 149 }, { 157, 151 }, { 163, 142 }, { 172, 143 }, { 181, 145 },
-> > > > +	{ 193, 161 }, { 196, 152 }, { 203, 177 }, { 208, 178 }, { 215, 162 },
-> > > > +	{ 217, 153 }, { 220, 154 }, { 221, 155 }, { 228, 179 }, { 230, 180 },
-> > > > +	{ 232, 206 }, { 234, 172 }, { 235, 173 }, { 242, 158 }, { 244, 156 },
-> > > 
-> > > Over the "common" base, Glymur has GPIO143 (PCIE3a_RST) and Mahua has GPIO155
-> > > (PCIE3b_RST). Both SoCs GPIO maps seem to contain both, but Mahua has a _unused
-> > > suffix for the missing 143, which makes sense given the bus isn't bifurcated
-> > > there.
-> > > 
-> > > The _RST (PERST#) pin is driven by the SoC so I don't think it's useful to
-> > > have it as a wakeup source, unless someone decides to connect something that's
-> > > not PCIe to it (+Mani)
-> > > 
-> > 
-> > PERST# by definition is an optional reset line, but on most of the *recent*
-> > designs, OEMs always connect it to PERST# line. So practically, I don't think it
-> > make sense to mark this GPIO as a wakeup source.
-> > 
-> 
-> This assumes that all the OEMs uses the particular PCI instance. If they
-> choose to route this GPIO to some other use case, they would have to
-> figure out that we omitted one entry in this table and patch it with
-> the appropriate data in order to have their GPIO wakeup capable.
-> 
-> Wouldn't it be better to put the correct information in this table at
-> this time? If we have a concrete reason not to, I think we should
-> include something useful in the commit message to help the poor engineer
-> faced with this task...
-> 
+On Mon, Jan 05, 2026 at 12:14:48PM +0100, Marco Felsch wrote:
+> Hi Frank,
+>
+> On 25-12-29, Frank Li wrote:
+> > Add pinctrl-name 'reset' to fix below CHECK_DTB warnings:
+> >   arch/arm64/boot/dts/freescale/imx8mp-skov-basic.dtb: switch@5f (microchip,ksz9893): pinctrl-names: ['default'] is too short
+> > 	from schema $id: http://devicetree.org/schemas/net/dsa/microchip,ksz.yaml#
+> >
+> > The commit (e469b87e0fb0d dt-bindings: net: dsa: microchip: Add strap
+> > description to set SPI mode" force use two pinctrl-name 'default' and
+> > 'reset'. switch@5f doesn't use SPI, so it is safe to use the same pinctrl
+> > setting for both.
+>
+> please see:
+> - https://lore.kernel.org/all/20251112084717.ea7fchu7jcz6dzsi@pengutronix.de/
+>
+> I stumbled over the same warning, but came to the conclusion, that the
+> dt-bindings should be fixed instead of workaround broken bindings within
+> the dtb.
 
-There is no concrete reason actually. I just mentioned that in practical
-usecase, I never saw an OEM routing the PERST# signal to other wakeup capable
-functionality. But the possibility still exists, so I'm not completely against
-it.
+I have not seen "the conclusion" at above thread. I think patch 'reset' may
+be reasonable for SPI pin, which used for stub at reset. And there are not
+good method to distinguish under SPI or I2C.
 
-- Mani
+Frank
 
--- 
-மணிவண்ணன் சதாசிவம்
+>
+> Regards,
+>   Marco
+>
+> >
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
+> > index 020f20c8ce667..7d2fc5fdd3bd1 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
+> > @@ -373,8 +373,8 @@ &i2c4 {
+> >
+> >  	switch: switch@5f {
+> >  		compatible = "microchip,ksz9893";
+> > -		pinctrl-names = "default";
+> > -		pinctrl-0 = <&pinctrl_switch>;
+> > +		pinctrl-names = "default", "reset";
+> > +		pinctrl-0 = <&pinctrl_switch>, <&pinctrl_switch>;
+> >  		reset-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
+> >  		reg = <0x5f>;
+> >
+> > --
+> > 2.34.1
+> >
+> >
+> >
+>
+> --
+> #gernperDu
+> #CallMeByMyFirstName
+>
+> Pengutronix e.K.                           |                             |
+> Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
