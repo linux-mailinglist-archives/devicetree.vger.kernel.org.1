@@ -1,165 +1,124 @@
-Return-Path: <devicetree+bounces-251415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE363CF2B0C
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 10:19:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88F04CF2B15
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 10:20:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5C7A5301B839
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 09:14:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 85345315BDD8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 09:14:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2FC313E24;
-	Mon,  5 Jan 2026 09:14:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E6CF32B995;
+	Mon,  5 Jan 2026 09:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tdlH/CZJ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VZYLsQzK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C4F27F754;
-	Mon,  5 Jan 2026 09:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF6982EFDBF
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 09:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767604462; cv=none; b=ZlOVsJkfmkM2w+kplXNL3LipBEKd/oWQ5gGUM+O/PGZgmdE/XnawsrzWyfGs+tFPl81PbOz7fvmyJn2K2pcEgPb1aPEXxkpqX9yWO5Gaf2932rWyHy8hHCwxY4KQ5RO+gHSTea1O7vu7Wu3q3HwFzuumlp4j2GC+A4rt7hkd72o=
+	t=1767604478; cv=none; b=a/WHEZeLhJ0NK3jNRLkKPLq6B+Uf/xS0U8ktl1M7VfcrvoAvNYRnomjiUiDN4Frslj7ASaIdJBKLuPidPpQurYeiwZhUaq07xs7v9ycTxYMaCI+XsaaMHUpGdXyDEUQkl6Bb7FCryBwCt2nYz4XEuGlkmAoh4tURUvh8sE8mp9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767604462; c=relaxed/simple;
-	bh=agkPuuHbAzZNBlw1lOOFzsbzPHMlfF7fPXuvgZvIaj0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KJZwSoR89ndsgZ7+/oTQkNU0UKMucO567LeaI5Er3dw386yc5uB0+c5eIzYyPAGY5H+eSQ8GAzFvWy68uCIcRfY042iXyNnEYsyPvSNNmAQB+vvxvVWwLyGkfB2YlOUOIMAhYM7DgBhDxOwy8dve5oEdz1GQWOyPomYRQEb2rUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tdlH/CZJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D104C19421;
-	Mon,  5 Jan 2026 09:14:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767604462;
-	bh=agkPuuHbAzZNBlw1lOOFzsbzPHMlfF7fPXuvgZvIaj0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tdlH/CZJmVzQ17RVLIvXZAhcOyghx5ondOrK76opd7wiLRqX+o2JfzAcDXwYWXWPb
-	 f0MiN25CF4FzBsimQVARel997xSzkKVno2g9Io9hc31pxA4djZUcycUr06FLtnY+B2
-	 U6hJLkI4yS2SlU4FFQvArrgghRsd2cPP98x1DJuBca+3vu7ZWDS+/I24eqLKkniFrh
-	 MpDJsAL1dc2e5CDhiknylpy1QVquTVYeipLNF9bm1p2lxt6+azOZjl4Vg+hfjQXxpW
-	 y2Cftz70xjm8KrLNGC6HapwQeFdLwH0mKeQ4UOCdsyTwsMXFMMN50swUWt9+wmkZ4M
-	 +PoNlxmApRH9w==
-Message-ID: <ab9f56e4-217a-431d-b7b1-2f5352927969@kernel.org>
-Date: Mon, 5 Jan 2026 10:14:18 +0100
+	s=arc-20240116; t=1767604478; c=relaxed/simple;
+	bh=QW8t2JNOdvI2uXm6GTQqMR2BYg3t2UgJyOvON6wsQF4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=bfa1lA92qgI5HiPPsJBjAHcXjB1Db1Kvt7pcM0EsmHAcokvPIT+aiou8lvtOiWTp9krsbVebgpoSQRxXawaOWXWbJf8Yvnz/nC7Pvu0t2pvfso2VuNpetKxJpnBl+wLWR9uE7LOsHJIPspcgMfulX/I9JPytqTkSxXt8Kk20uHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VZYLsQzK; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-477563e28a3so11126035e9.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 01:14:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1767604474; x=1768209274; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=miCvpSGVqVVCNMF4tIx1RWrVqnyi6qhzDTvcjYnjzjQ=;
+        b=VZYLsQzKlwtV8sZxzeBGSWcaPHwI32eqSX5m3z0HRr2q9Zesf3fC0AfIn0armQTm0/
+         OUExTGNwloIss5vTKfN5z/xO5apTuUQDjrXnUY/yzq4NmLNxUkKhFBE2FQ97BTwZx9nn
+         Sp4Rs/Vn8lPgBXcUX8yIUaXBbvWsicdyOo4W46ONheLgny//8TBaVd3TaIqqZQV3uoPD
+         U6zgcbUk0lGISLFFOYBpntOT/ms694jK5Xy8A4MVQAllatRjwck7dQEHZe8hTM/LIaDo
+         W/530rlzZUV6U/R9spb0JXNmN8HGoydQR+5u4aM6HvHeHSrriRRMN13R9kKpS+8tMpa6
+         FdcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767604474; x=1768209274;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=miCvpSGVqVVCNMF4tIx1RWrVqnyi6qhzDTvcjYnjzjQ=;
+        b=rOSZCQX4kLR+YgkoZrNX+eDJOfI8pM/KS3b7TYZXx/Jyx0TeeOkHAXYQ2MQz3C5zPD
+         KwbLRiRpsCjqGZZvFakHemiDddd7AzREkIHeJSVrmsMG2MniazTd97bJWjZvlfChwYe1
+         M1IgnOtXvKtb2bsu3i6ffM0WGg9jLUPczWzFkDIF78/FsZojY5Z8/ESQ11HiwTVBIdC5
+         tFXOT52kFQ1OtLwAu4ahOiWjrq/FFEJekfvyN7/jXOsmW0QI4H9df2+xgRVIyCs95H+D
+         bYJCNjLu9z8rf1ejsNaXqm/Awk2Q58k9yOHYnlmFcsC8gnGnzoxEDYXCoHCMrGnGAdK/
+         vzqg==
+X-Forwarded-Encrypted: i=1; AJvYcCWhwEAWXGL3cVeT3SZMxQMXiWSktdqDXQXP9kjzTcSwAjPsTizWdJYU49O8wF31++lP9bowNAp18MCB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQ5cj1lzas7bN73fqMHoGM3fFlYgjjAqX92UROFaV6Q39KJazy
+	k+UpuWaYNfx+MaBfmoobtQukIB5KSSbisinTV6Bf+eYOpdKh16hMr6PGPFYwkxX9Uts=
+X-Gm-Gg: AY/fxX7k2DH59DGMhZ0kzPfAApI/N4mcgJHSHW33iGBe87feaOsPd1Uh52dSOf3MKNf
+	dbAYQeQbnJMM71r4cBxs94PK98/33WLiJJAMuOIPKTq+DYnMrNf1qfCaTEzc3snkjXYls1TB9e9
+	O8R1M5XYO2ucagRgr0W+e5GWhOGOdxheBtFopFrc2itKPD/ZJHEsxjwqZTPO12yZjyQTLn9ggII
+	UX6NUGFYIaeA7snnhiVzSdifHiy6hGJ7mjaf7vSDYBu2j97VxBE8FXgFsKSQhMR5MYstmVhbR+V
+	PkcDxlAk84IU8nO+1Z7eCDsgVipNGwwjRqKKXjWSNC7+KraakhThsuzPguO2FDFVCbKCsv4MCu/
+	qLCa0vIHWREDj2Vf8tAyKXHqPlzXbPZx/hVyRS2SLvkhx4sA5YyF8/hNwowwnFpZPybHFabbh7o
+	EzJ4e0iB+R
+X-Google-Smtp-Source: AGHT+IHg/Mv8ok8g3lfkv+f6Gs1iCHZthZ9+dvCaKIuCn41ycCh3KmnkNqkRkT2jAbCijygn0KRwvA==
+X-Received: by 2002:a05:600c:4704:b0:46f:a2ba:581f with SMTP id 5b1f17b1804b1-47d6ba8900dmr100501615e9.16.1767604474097;
+        Mon, 05 Jan 2026 01:14:34 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:b336:bcf:8603:f6e1])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-47d6d143f6asm147207955e9.6.2026.01.05.01.14.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jan 2026 01:14:33 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Chuan Liu <chuan.liu@amlogic.com>
+Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
+  Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
+  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  linux-kernel@vger.kernel.org,
+  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 5/8] clk: amlogic: Add A5 clock peripherals
+ controller driver
+In-Reply-To: <425ebeb4-8001-4493-882b-dfee87ed82c8@amlogic.com> (Chuan Liu's
+	message of "Tue, 23 Dec 2025 20:27:39 +0800")
+References: <20251028-a5-clk-v4-0-e62ca0aae243@amlogic.com>
+	<20251028-a5-clk-v4-5-e62ca0aae243@amlogic.com>
+	<1jpl857e2w.fsf@starbuckisacylon.baylibre.com>
+	<425ebeb4-8001-4493-882b-dfee87ed82c8@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Mon, 05 Jan 2026 10:14:31 +0100
+Message-ID: <1jldice808.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] [PATCH v1 2/2] arm64: dts: qcom: add Acer Swift
- SFA14-11 device tree
-To: weifu wu <boss@oi-io.cc>, andersson@kernel.org, konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <tencent_9C28E18B378E0835E704B3173AC4045BA606@qq.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <tencent_9C28E18B378E0835E704B3173AC4045BA606@qq.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 04/01/2026 15:37, weifu wu wrote:
-> Add initial device tree for Acer Swift SFA14-11 laptop based on
-> Qualcomm X1E78100 SoC. This enables basic peripherals including
-> eDP panel, backlight, USB and PCIe.
-> 
-> Tested by building dtbs and booting on the target hardware.
-> 
-> Signed-off-by: weifu wu <boss@oi-io.cc>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |    2 +
->  .../dts/qcom/x1e78100-acer-swift-sfa14-11.dts | 1650 +++++++++++++++++
->  2 files changed, 1652 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/x1e78100-acer-swift-sfa14-11.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 76cf0115a00a..d8b4d91dec82 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -326,6 +326,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-mtp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-qrd.dtb
->  x1e001de-devkit-el2-dtbs	:= x1e001de-devkit.dtb x1-el2.dtbo
->  dtb-$(CONFIG_ARCH_QCOM)	+= x1e001de-devkit.dtb x1e001de-devkit-el2.dtb
-> +x1e78100-acer-swift-sfa14-11-el2-dtbs  := x1e78100-acer-swift-sfa14-11.dtb x1-el2.dtbo
-> +dtb-$(CONFIG_ARCH_QCOM) += x1e78100-acer-swift-sfa14-11.dtb x1e78100-acer-swift-sfa14-11-el2.dtb
->  x1e78100-lenovo-thinkpad-t14s-el2-dtbs	:= x1e78100-lenovo-thinkpad-t14s.dtb x1-el2.dtbo
->  dtb-$(CONFIG_ARCH_QCOM)	+= x1e78100-lenovo-thinkpad-t14s.dtb x1e78100-lenovo-thinkpad-t14s-el2.dtb
->  x1e78100-lenovo-thinkpad-t14s-oled-el2-dtbs	:= x1e78100-lenovo-thinkpad-t14s-oled.dtb x1-el2.dtbo
-> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-acer-swift-sfa14-11.dts b/arch/arm64/boot/dts/qcom/x1e78100-acer-swift-sfa14-11.dts
-> new file mode 100644
-> index 000000000000..b962d00f756d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/x1e78100-acer-swift-sfa14-11.dts
-> @@ -0,0 +1,1650 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2024, Linaro Limited
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/gpio-keys.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +
-> +#include "hamoa.dtsi"
-> +#include "hamoa-pmics.dtsi"
-> +
-> +/ {
-> +	model = "Acer Swift 14 Go Pro AI (SFA14-11)";
-> +	compatible = "acer,swift-sfa14-11", "lenovo,thinkpad-t14s", "qcom,x1e78100", "qcom,x1e80100";
+On mar. 23 d=C3=A9c. 2025 at 20:27, Chuan Liu <chuan.liu@amlogic.com> wrote:
 
-Regardless what you say in cover letter, you never bothered to test it.
+>>> +
+>>> +#define A5_COMP_SEL_WITH_TAB(_name, _reg, _shift, _mask, _pdata, _tabl=
+e) \
+>> No, adjust your main macro.
+>>=20
+>
+> Do you mean to unify this into a single macro here? Like this:
+>
+> #define A5_COMP_SEL(_name, _reg, _shift, _mask, _pdata, _table) \
+>    MESON_COMP_SEL(a5_, _name, _reg, _shift, _mask, _pdata, _table, 0, 0)
+>
 
-Best regards,
-Krzysztof
+Yes, possibly
+
+--=20
+Jerome
 
