@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-251561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C44A4CF4BD7
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 17:38:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78DB6CF4C6A
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 17:43:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4E84B3073061
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:30:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D7DDD3084D14
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:30:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726313376AC;
-	Mon,  5 Jan 2026 14:08:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D7C431A045;
+	Mon,  5 Jan 2026 14:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UYIsr1MR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AXMSFs+q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48DCF33769A;
-	Mon,  5 Jan 2026 14:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F91E277C9A;
+	Mon,  5 Jan 2026 14:08:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767622098; cv=none; b=DhiXpRMdIRg7Dcg3I3BIoe8Bz/J6YISMn5tnf5gvO8IdEidd3pM9rYvOlSvjQy4jaOqP8YTGCRuU1C5cnaDHW5LW4qplDZ4xOKh7UvFjT0o3Zt5egmCSYHJPu8yCRICo3fWHURUTY4DUsGvqxR11dlEtmN27rxUhbB7ZpLRY178=
+	t=1767622123; cv=none; b=r/sG7b+R/f2ttwZZsGGTyhoVta+wvntvdCu/I5xaFzFmi2fAHegI5cxwotJLzzit/NTPu3INvCMCdEG/7OtB7+qVp4Y/tgOmT/a2hn0OgdRR5AYHr5Kq/0sTHdMaff38sNfsZuftASM2Vbo0BUEotmAcikf1L0YefAbE+0RtPyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767622098; c=relaxed/simple;
-	bh=nwN0pQFhi+ijUzj8bmiwYI/Ad969wX2RiAkWTI6e2LE=;
+	s=arc-20240116; t=1767622123; c=relaxed/simple;
+	bh=inRMPpvRg9GgLohYKESF7uoo/L1yGUB2AXPVoDf4dvg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RW4CWlcJVkukwXCxLnsmIhFq0g9RxqkfcP92eS2GMAGVYNK7FKdExg1BSFV6mXf7VWucRWdJYf+w80/ffGzkIdWvRpQCbmy+7fhhrjuvz/c3BZgsUrk5pZncNFcOOG76ObNmxtV/Kfz3YMPJxnVRS8No9h+hdrF5Ynor4A5nuDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UYIsr1MR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC0D2C16AAE;
-	Mon,  5 Jan 2026 14:08:16 +0000 (UTC)
+	 MIME-Version:Content-Type; b=SVCRXFswusAqvZhDYdFn6vyZ2tPsM6a6iJ1gWqYYWrxdfx62FmIGL2aIU/5U057I5yKRqeRYLK1Br0ZWWYzPEE8hzquoiIc7grN6yU0ghp/IO/6enIAOcRSGArL+7gBqvs2x4wrqgYtBwppwZmQc8aujWHsLZsSWJWX0L17hIrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AXMSFs+q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B408C4AF0D;
+	Mon,  5 Jan 2026 14:08:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767622097;
-	bh=nwN0pQFhi+ijUzj8bmiwYI/Ad969wX2RiAkWTI6e2LE=;
+	s=k20201202; t=1767622122;
+	bh=inRMPpvRg9GgLohYKESF7uoo/L1yGUB2AXPVoDf4dvg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=UYIsr1MRTcrgmQEUb0i3nd43Se9IZpuAr0VMWrP/5nVIdhIJRG7DeaAFpgBlhonoF
-	 /VxGaL+47Q7iJN8+4ETRh0Lkw8VCCdExEudACWpMQTv3cHViP944WV6ve7OubkvZQ7
-	 7cOPiQd0r/d1cS5Il482FEUHDTjaUMHSDZkU4B8JS2eyJ5bsmbDeDJCNsIjBnkQkwW
-	 KlmSflF0793w3ZhSupkAWvw0pU3Fc3zrLZ9lY5t8KVMd7RRLAr97qoaEtQ7CcGO352
-	 DaeDZpPweNwb6p8Cx40fdo+BuYhuPeOJ7++FxVPZFzW9kLc+x1fgrgFa/im1oY4pLd
-	 oNldLET5QyQ8Q==
+	b=AXMSFs+qTDUfoYXPFnoBdz2bapqlfHgrJZXbwAQpxst4hH3ewL2EnxJgweMZCigNF
+	 r026KmcubaMm1zSBtW86XwB0DTFiWN2rdWa8xTVdFkrISnVFMFyMWoGx0M3PlVZyZB
+	 f2t6ETS2v7ioxNSIFLjFgwr2iCyn9AZJIOJwlB2NS8OIHSzkd89CCdv+uSkHR9aRDW
+	 6PwaiUbWnOms6Yt6j8Spus+itoricPsoXQy0YkQICdCeB7wsglsvlRZUbtR5tyzg2M
+	 rAh3dnyb+KAPMVHvA6Ad0xo+VIJBdFQ50Qru8smUffhmDh2OYDqDWOlMcD+c8Dw92E
+	 R5VQSV+twBLSA==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
+	Tingguo Cheng <tingguoc@hu-tingguoc-lv.qualcomm.com>
+Cc: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>,
+	kernel@oss.qualcomm.com,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7] arm64: dts: qcom: lemans-evk: Add OTG support for primary USB controller
-Date: Mon,  5 Jan 2026 08:07:26 -0600
-Message-ID: <176762206397.2923194.2060104930644124439.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+	Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
+	Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: hamoa-iot-evk: enable pwm rg leds
+Date: Mon,  5 Jan 2026 08:07:41 -0600
+Message-ID: <176762206414.2923194.3519328517461927165.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251128102507.3206169-1-krishna.kurapati@oss.qualcomm.com>
-References: <20251128102507.3206169-1-krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <20251114-add-rgb-led-for-hamoa-iot-evk-v3-1-5df1fcd68374@oss.qualcomm.com>
+References: <20251114-add-rgb-led-for-hamoa-iot-evk-v3-1-5df1fcd68374@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,17 +69,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 28 Nov 2025 15:55:07 +0530, Krishna Kurapati wrote:
-> Enable OTG support for primary USB controller on EVK Platform. Add
-> HD3SS3220 Type-C port controller present between Type-C port and SoC
-> that provides role switch notifications to controller.
+On Fri, 14 Nov 2025 00:13:03 -0800, Tingguo Cheng wrote:
+> Add RED and GREEN LED channels for the RGB device connected to PMC8380C
+> PWM-LED pins. Omit BLUE channel to match default hardware setup where
+> it's tied to EDL indicator.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: lemans-evk: Add OTG support for primary USB controller
-      commit: 3b226dc2a0c39de609ecb383a92d9ed99d7aebc8
+[1/1] arm64: dts: qcom: hamoa-iot-evk: enable pwm rg leds
+      commit: e50c63e89236beb249507f986c3458b2b670cfd6
 
 Best regards,
 -- 
