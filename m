@@ -1,752 +1,406 @@
-Return-Path: <devicetree+bounces-251443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D19CCF2FA4
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:29:10 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38814CF2F89
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:25:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7472E30F8902
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:24:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 75A62300385F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7D41316182;
-	Mon,  5 Jan 2026 10:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55233148A6;
+	Mon,  5 Jan 2026 10:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NeYVWszJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="svpZWgU8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF5D2D8382
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 10:24:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4747B313E2D;
+	Mon,  5 Jan 2026 10:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767608692; cv=none; b=pbglrzQmmkmrZg+k9jmCb/zCv/QfP9AWULzJRWg+URj5V+DETDK3bjnpSPFIZ0Cpe3EDHah8yp6tnOnttkU5ozSnnlEqi+fc+YsXMFF9M4WW14RaBlncqsTD/vZdkfOtdqgWk7WejRB23YJpTnr0n5dKqIdvpXU5Jhz/mvYHrUI=
+	t=1767608718; cv=none; b=jvPefxuoSpBqZTa/WUZkYlQivdLNd9hahn7z9AeJOl3+COVp9rhVxY2A1bRt8yULALZVCd97op1P7roBxjvWfDOy5c6JGxyCcnwrAgVPZaHkyJuan0YSh8A6LOMQklYmz8+2lk4hR48PRm54erz1ZhcGB0pWm7GSrHWmSA9LbKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767608692; c=relaxed/simple;
-	bh=3gjqxYBgz2wZP1PnZBJuOPANOb0gBdNxkYLTkQ/RWVs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WwY+SmdM1rwJ6/p2Bqsz6Jo77hCZ1/l+6uxuEyN837LLuLiicfYptfOAcP0xTNwbfr6Jy5e7OIFhXeczFDPjdh5UYSTDiH1cOOVwovtgtB7/fM3W6qcDXHbEhUJB1Vx+HVXhNgZXW7H5rIl0Mb6X2woCl44a4zAkTMFDRaIKj18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NeYVWszJ; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-477ba2c1ca2so150609885e9.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 02:24:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767608688; x=1768213488; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=opLVzOxqtrs/rc8UR155tAKxQt6np6lm9k7WJDrK+Tg=;
-        b=NeYVWszJt8qw1sP5yVmv66kpuY2uabnoZZiDtMVO/fkwvsFq6TJ/QVZVldDDOm1f2N
-         RJPEhc7cnrr/wLrBhepwPwMEb5QHek3Dh7D1rhQP/Ja6JfTIujP9sjl392U1fwUKZRUB
-         +XPJAWyrIkhwt+3PXQcZTZjRUUIpJo/SIXg6c82XjjzZWKd2AxFCj+50V1tcAlIUD0Cw
-         GrPTC7IQRvV0dMJQIPBn3O4NLUZCVypyA3JRTSioWqkUUmV6ukAe1r5/cErHGLwTVY97
-         eEfEMn4bgEcuvx6mbkNV/KMaI84Jdy2oA7cvTjWRkpw5cSL+LmGkhEX1OIzVusGJrfOs
-         /ttw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767608688; x=1768213488;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=opLVzOxqtrs/rc8UR155tAKxQt6np6lm9k7WJDrK+Tg=;
-        b=WJbfK6DXfIYvzsdUI/0lH12IZORa1RP2qR1OwTf+qMhfW0aqQLeXuVd56UX4fIYUWh
-         5UhT6qux6H3H3+BvoZRoSyhnanpPw+SOWV0HJ2BKobjdRclMQBRECo+4+NAh0gDj3G0n
-         7ViK7fHqBwrkaWQWWYRQDfRgONcfIAca3nqIKQ4+X3oqh4xaAF6Z4gB1rkYbipWP+z1i
-         BqUbnmNvUGcfsIKSVY7Oa0O+9r5xW2soz0xvmqZg+bmP8062n9iLCFE12DwvUs29Gaji
-         V9Bo7NdoqivPootmIZsjcIzIJFarg0M11XPi/9Gs4Oc9xZMrdhy9DX2wCFmrtmhF0fqx
-         8rMw==
-X-Gm-Message-State: AOJu0Yx3x1zNu6dwgOj26IWqFwWjZPQgRMGGGw1zY65wnXzYYQT1Wxgx
-	dAkmfvqPzi9UIDuq+HvvTre3RAmwJ16/VUUjN3y3DRBN3Qj7jhb12V8J/KY7NNA8
-X-Gm-Gg: AY/fxX4jAj4G8SDdz8cQYc9PiP9UrS1Z/OGvPFBcIa6MysUv920nppUnG2vSOnhMuF5
-	nsgQl1Gyd5GwOPrJIBzCYUw+r/koi6wAR21es9AeLClFCf5g80bvOcBe1y3sdqiI1lk0v3JdkZy
-	2y5+ibXqBWp/iwWppBEfiVt/rMLQF8/4LLqnoHNN33Mp8LBWaB7zzXUZsg2mNELD2ZKkGc1huDK
-	tGyT8SxBKbTdlCkWk5K49fcgXn4q5bfiDrPF582EPWglxXyY7QYISGhkxXKXPgDXIjEwSFRfpVT
-	c+QIdXCjK9JLcXyBR9bW88U93cXMj6gQoP2tddMzNWcz+cIvS76wGbFOs1MykBV1mZb3UZPTeBF
-	3Bsci76TZA+O8cEY3jlZFBVxqN4BernDsaYt6VqaCfH/4BUbsgY+m2g+7TxUEQMJTU48lw0ZSEh
-	F+pe5k6eJM+cvvxQpGCuqPW9QyS/tdBSwT+ApBn/YwjKqo2dtwiWL6P+V4M9+80GSHH62XOYZsY
-	jyvaqURh5DZ8BWvXUCOw8zfxhbPer6fP9Vm
-X-Google-Smtp-Source: AGHT+IH+Yd8Hi3nrdK/3zKLRMGavVuxl0YUYMeA6sQTgAgUjlFuKucf6QN1YLTntw+iJZduxCBeg3Q==
-X-Received: by 2002:a05:600c:8107:b0:477:7f4a:44b0 with SMTP id 5b1f17b1804b1-47d1959441fmr619132885e9.33.1767608688137;
-        Mon, 05 Jan 2026 02:24:48 -0800 (PST)
-Received: from Lord-Beerus.station (net-93-151-204-73.cust.vodafonedsl.it. [93.151.204.73])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d6d452be4sm145607205e9.10.2026.01.05.02.24.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 02:24:47 -0800 (PST)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Primoz Fiser <primoz.fiser@norik.com>,
-	Markus Niebel <Markus.Niebel@tq-group.com>,
-	Yannic Moog <y.moog@phytec.de>,
-	Josua Mayer <josua@solid-run.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 3/3] arm64: dts: imx95-var-dart: Add support for Variscite Sonata board
-Date: Mon,  5 Jan 2026 11:24:03 +0100
-Message-ID: <20260105102412.6674-4-stefano.r@variscite.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260105102412.6674-1-stefano.r@variscite.com>
-References: <20260105102412.6674-1-stefano.r@variscite.com>
+	s=arc-20240116; t=1767608718; c=relaxed/simple;
+	bh=UIKDc/yLkbobnND2xCzh+L6dZE83Ceg++Mg8KflAezg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TWk03y0v1YQIzIQsG8lG4wsic/8PirKLxu+VLPD8Cgf4c6KqZmKOfI4iJasGQRkc18ROHaj7Z6+BwHLzhSSM7u16mEvuKa9MgnM1xyLk7ijJ1fJImZKla7BV57v2+rU/APKjztesiQxUhGL2Lu/pMcH1JFjhuTjwvgXytxyPwY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=svpZWgU8; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 7DFB24E41F63;
+	Mon,  5 Jan 2026 10:25:14 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 4D48860726;
+	Mon,  5 Jan 2026 10:25:14 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AF788103C84DE;
+	Mon,  5 Jan 2026 11:25:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767608713; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=PdIm4LXD2ksLOWhEqvw2Yy/VcaOaDAoaooqIpExhZU8=;
+	b=svpZWgU8wMI0AF83JC4xbBnT6GDzzpQ0+bBewnFFBaVyu6eXUmxnzIx4XDiWblQQdxWybH
+	TVf4z3/A3w9/PiPZpH8pPmVUyBbWroMD1ZEyRFsbjwtrk+AYYvNcqsr7BLQ50OcI6WnYi6
+	nLIjgXJIOzXaZ58lvhz1FSGryJ1jCEIBdO4SJ2Px542ssK3i2ajUV2Iuv/aNRxfY7RIGm0
+	deGW2Yd5N4rvhkc1H6KdHurZi2LPfXayHBzkzyFgjDbsIJHT1AOyEZgLTt/4pAoFi7N4tz
+	yva5jDjlNcjBSoxTLIkZyclsy2qG2yGVag7sxrNs+XttCOfyxoyPVeLX9qwXFg==
+Message-ID: <c8b60a72-5577-4ccb-91a0-0524e2801ab9@bootlin.com>
+Date: Mon, 5 Jan 2026 11:25:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] iio: adc: add driver for Texas Instruments TLA2528
+ adc
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ nuno.sa@analog.com, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Angelo Dureghello <adureghello@baylibre.com>,
+ Tobias Sperling <tobias.sperling@softing.com>,
+ Eason Yang <j2anfernee@gmail.com>,
+ Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+ Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
+ duje@dujemihanovic.xyz, herve.codina@bootlin.com,
+ Rodolfo Giometti <giometti@enneenne.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com
+References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
+ <20251223155534.220504-3-maxime.chevallier@bootlin.com>
+ <efbe9720-0974-4d5e-9a03-fefd3c86e275@gmail.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <efbe9720-0974-4d5e-9a03-fefd3c86e275@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Stefano Radaelli <stefano.r@variscite.com>
+Hi Matti,
 
-Add device tree support for the Variscite Sonata carrier board with
-the DART-MX95 system on module.
+On 29/12/2025 09:20, Matti Vaittinen wrote:
+> On 23/12/2025 17:55, Maxime Chevallier wrote:
+>> This adds a new driver for the TI TLA2528 ADC chip. It ha 8 12-bit
+>> channels, that can also be configured as 16-bit averaging channels.
+>>
+>> Add a very simple driver for it, allowing reading raw values for each
+>> channel.
+>>
+>> Signed-off-by: Rodolfo Giometti <giometti@enneenne.com>
+>> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> ---
+>>   MAINTAINERS                  |   7 ++
+>>   drivers/iio/adc/Kconfig      |  10 ++
+>>   drivers/iio/adc/Makefile     |   1 +
+>>   drivers/iio/adc/ti-tla2528.c | 209 +++++++++++++++++++++++++++++++++++
+>>   4 files changed, 227 insertions(+)
+>>   create mode 100644 drivers/iio/adc/ti-tla2528.c
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index dc731d37c8fe..5c382ae216c7 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -25866,6 +25866,13 @@ F:	include/dt-bindings/soc/ti,sci_pm_domain.h
+>>   F:	include/linux/soc/ti/ti_sci_inta_msi.h
+>>   F:	include/linux/soc/ti/ti_sci_protocol.h
+>>   
+>> +TEXAS INSTRUMENTS' TLA2528 ADC DRIVER
+>> +M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> +L:	linux-iio@vger.kernel.org
+>> +S:	Supported
+>> +F:	Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
+>> +F:	drivers/iio/adc/ti-tla2528.c
+>> +
+>>   TEXAS INSTRUMENTS' TMP117 TEMPERATURE SENSOR DRIVER
+>>   M:	Puranjay Mohan <puranjay@kernel.org>
+>>   L:	linux-iio@vger.kernel.org
+>> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+>> index 58da8255525e..67376de410bf 100644
+> 
+> Hmm. Would it ease merging if MAINTAINERS changes were in their own patch?
+> 
+>> --- a/drivers/iio/adc/Kconfig
+>> +++ b/drivers/iio/adc/Kconfig
+>> @@ -1803,6 +1803,16 @@ config TI_LMP92064
+>>   	  This driver can also be built as a module. If so, the module will be called
+>>   	  ti-lmp92064.
+>>   
+>> +config TI_TLA2528
+>> +	tristate "Texas Instruments TLA2528 ADC driver"
+>> +	depends on I2C
+>> +	help
+>> +	  Say yes here to build support for Texas Instruments TLA2528
+>> +	  12-Bit 8-Channel ADC.
+>> +
+>> +	  To compile this driver as a module, choose M here: the module will be
+>> +	  called ti-tla2528.
+>> +
+>>   config TI_TLC4541
+>>   	tristate "Texas Instruments TLC4541 ADC driver"
+>>   	depends on SPI
+>> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+>> index 7cc8f9a12f76..941606defbf7 100644
+>> --- a/drivers/iio/adc/Makefile
+>> +++ b/drivers/iio/adc/Makefile
+>> @@ -157,6 +157,7 @@ obj-$(CONFIG_TI_ADS8344) += ti-ads8344.o
+>>   obj-$(CONFIG_TI_ADS8688) += ti-ads8688.o
+>>   obj-$(CONFIG_TI_AM335X_ADC) += ti_am335x_adc.o
+>>   obj-$(CONFIG_TI_LMP92064) += ti-lmp92064.o
+>> +obj-$(CONFIG_TI_TLA2528) += ti-tla2528.o
+>>   obj-$(CONFIG_TI_TLC4541) += ti-tlc4541.o
+>>   obj-$(CONFIG_TI_TSC2046) += ti-tsc2046.o
+>>   obj-$(CONFIG_TWL4030_MADC) += twl4030-madc.o
+>> diff --git a/drivers/iio/adc/ti-tla2528.c b/drivers/iio/adc/ti-tla2528.c
+>> new file mode 100644
+>> index 000000000000..9c572e730ffb
+>> --- /dev/null
+>> +++ b/drivers/iio/adc/ti-tla2528.c
+>> @@ -0,0 +1,209 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Driver for Texas Instruments TLA2528 ADC
+>> + *
+>> + * Copyright (C) 2020-2021 Rodolfo Giometti <giometti@enneenne.com>
+>> + * Copyright (C) 2025 Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> + */
+>> +
+>> +#include <linux/delay.h>
+>> +#include <linux/i2c.h>
+>> +#include <linux/module.h>
+>> +#include <linux/mod_devicetable.h>
+>> +#include <linux/regulator/consumer.h>
+>> +
+>> +#include <linux/iio/iio.h>
+>> +
+>> +#define TLA2528_OP_WRITE_REG		0x08
+>> +
+>> +#define TLA2528_DATA_CFG_ADR		0x02
+>> +
+>> +/* Datasheet says [5:4] sets the append status, but only bit 4 is used */
+>> +#define TLA2528_DATA_CFG_APPEND_STATUS	BIT(4)
+>> +#define TLA2528_PIN_CFG_ADR		0x05
+>> +#define TLA2528_SEQUENCE_CFG_ADR	0x10
+>> +#define TLA2528_CHANNEL_SEL_ADR		0x11
+>> +
+>> +struct tla2528 {
+>> +	struct i2c_client *client;
+>> +	int vref_uv;
+>> +
+>> +	/* Protects manual channel selection, i.e. last_read_channel */
+>> +	struct mutex lock;
+>> +	u8 last_read_channel;
+>> +};
+>> +
+>> +static s32 tla2528_write_reg(const struct i2c_client *client, u8 reg, u8 val)
+>> +{
+>> +	u8 data[3] = {TLA2528_OP_WRITE_REG, reg, val};
+>> +	int ret;
+>> +
+>> +	ret = i2c_master_send(client, data, 3);
+>> +
+>> +	return ret < 0 ? ret : 0;
+>> +}
+>> +
+>> +static int tla2528_read_sample(const struct i2c_client *client)
+>> +{
+>> +	__be16 data;
+>> +	int ret;
+>> +
+>> +	ret = i2c_master_recv(client, (char *)&data, 2);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	return be16_to_cpu(data) >> 4;
+>> +}
+> 
+> Can regmap be used for all the usual benefits?
 
-The Sonata board includes
-- uSD Card support
-- USB ports and OTG
-- Additional Gigabit Ethernet interface
-- 10Gb Ethernet SFP+ connector
-- Uart interfaces
-- OV5640 Camera support
-- GPIO Expanders
-- RTC module
-- TPM module
-- PCIE support
+I will use that indeed :)
 
-Link: https://variscite.com/carrier-boards/sonata-board/
-Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
----
-v3:
-- Fix specific node names with generic ones
-- Remove fixed-link property for SFP
-v2:
-- Add SFP cage node for enetc_port2 following sff,sfp.yaml binding
+> 
+>> +
+>> +static int tla2528_read(struct tla2528 *tla2528, u8 channel, int *val)
+>> +{
+>> +	struct i2c_client *client = tla2528->client;
+>> +	int ret;
+>> +
+>> +	if (channel != tla2528->last_read_channel) {
+>> +		ret = tla2528_write_reg(client, TLA2528_CHANNEL_SEL_ADR, channel);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +
+>> +		tla2528->last_read_channel = channel;
+>> +	}
+>> +
+>> +	ret = tla2528_read_sample(client);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	*val = ret;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int tla2528_read_raw(struct iio_dev *indio_dev,
+>> +			    struct iio_chan_spec const *chan,
+>> +			    int *val, int *val2, long mask)
+>> +{
+>> +	struct tla2528 *tla2528 = iio_priv(indio_dev);
+>> +	int ret;
+>> +
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_RAW:
+>> +		mutex_lock(&tla2528->lock);
+>> +		ret = tla2528_read(tla2528, chan->channel, val);
+>> +		mutex_unlock(&tla2528->lock);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +
+>> +		return IIO_VAL_INT;
+>> +
+>> +	case IIO_CHAN_INFO_SCALE:
+>> +		*val = tla2528->vref_uv / 1000;
+>> +		*val2 = 12;
+>> +
+>> +		return IIO_VAL_FRACTIONAL_LOG2;
+>> +
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>> +#define TLA2528_CHAN(_chan, _name) { \
+>> +	.type = IIO_VOLTAGE,					\
+>> +	.channel = (_chan),					\
+>> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
+>> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
+>> +	.datasheet_name = _name,				\
+>> +	.indexed = 1,						\
+>> +}
+>> +
+>> +static const struct iio_chan_spec tla2528_channel[] = {
+>> +	TLA2528_CHAN(0, "AIN0"),
+>> +	TLA2528_CHAN(1, "AIN1"),
+>> +	TLA2528_CHAN(2, "AIN2"),
+>> +	TLA2528_CHAN(3, "AIN3"),
+>> +	TLA2528_CHAN(4, "AIN4"),
+>> +	TLA2528_CHAN(5, "AIN5"),
+>> +	TLA2528_CHAN(6, "AIN6"),
+>> +	TLA2528_CHAN(7, "AIN7"),
+>> +};
+> 
+> Not really insisting a change here, merely giving a nudge :)
+> 
+> I wonder if the channels should be obtained from fwnode? I think the 
+> dt-review mentioned channel inputs may be used for GPIOs? One might be 
+> able to use the devm_iio_adc_device_alloc_chaninfo_se() to build the 
+> chan_spec based on the dt - depending on the non dt use-cases.
+> 
+> All in all, I think this is clean and nice driver.
+> 
+>> +static const struct iio_info tla2528_info = {
+>> +	.read_raw = tla2528_read_raw,
+>> +};
+>> +
+>> +static int tla2528_probe(struct i2c_client *client)
+>> +{
+>> +	struct iio_dev *indio_dev;
+>> +	struct tla2528 *tla2528;
+>> +	int ret;
+>> +
+>> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
+>> +				     I2C_FUNC_SMBUS_WRITE_WORD_DATA))
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*tla2528));
+>> +	if (!indio_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	tla2528 = iio_priv(indio_dev);
+>> +	i2c_set_clientdata(client, indio_dev);
+>> +	tla2528->client = client;
+>> +
+>> +	indio_dev->name = client->name;
+>> +	indio_dev->info = &tla2528_info;
+>> +	indio_dev->modes = INDIO_DIRECT_MODE;
+>> +	indio_dev->channels = tla2528_channel;
+>> +	indio_dev->num_channels = ARRAY_SIZE(tla2528_channel);
+>> +
+>> +	mutex_init(&tla2528->lock);
+>> +
+>> +	tla2528->vref_uv = devm_regulator_get_enable_read_voltage(&client->dev,
+>> +								  "vref");
+>> +	if (tla2528->vref_uv < 0)
+>> +		return tla2528->vref_uv;
+>> +
+>> +	/* Set all inputs as analog */
+>> +	ret = tla2528_write_reg(tla2528->client, TLA2528_PIN_CFG_ADR, 0x00);
+>> +	if (ret < 0)
+>> +		return ret;
+> 
+> As mentioned above, perhaps get the channels from the DT, and only mux 
+> the given channels?
 
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx95-var-dart-sonata.dts   | 590 ++++++++++++++++++
- 2 files changed, 591 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx95-var-dart-sonata.dts
+I will give this a try, I didn't know about these helpers you mention
+above :)
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index f30d3fd724d0..411f86013ec6 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -404,6 +404,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-toradex-smarc-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-tqma9596sa-mb-smarc-2.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx95-var-dart-sonata.dtb
- 
- imx95-15x15-evk-pcie0-ep-dtbs = imx95-15x15-evk.dtb imx-pcie0-ep.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-pcie0-ep.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx95-var-dart-sonata.dts b/arch/arm64/boot/dts/freescale/imx95-var-dart-sonata.dts
-new file mode 100644
-index 000000000000..9be574ca0a25
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-var-dart-sonata.dts
-@@ -0,0 +1,590 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Variscite Sonata carrier board for DART-MX95
-+ *
-+ * Link: https://variscite.com/carrier-boards/sonata-board/
-+ *
-+ * Copyright (C) 2025 Variscite Ltd. - https://www.variscite.com/
-+ *
-+ */
-+
-+#include "imx95-var-dart.dtsi"
-+
-+/ {
-+	model = "Variscite DART-MX95 on Sonata-Board";
-+	compatible = "variscite,var-dart-mx95-sonata",
-+		     "variscite,var-dart-mx95",
-+		     "fsl,imx95";
-+
-+	aliases {
-+		mmc0 = &usdhc1;
-+		mmc1 = &usdhc2;
-+		serial0 = &lpuart1;
-+		ethernet0 = &enetc_port0;
-+		ethernet1 = &enetc_port1;
-+		ethernet2 = &enetc_port2;
-+	};
-+
-+	chosen {
-+		stdout-path = &lpuart1;
-+	};
-+
-+	typec_con: connector {
-+		compatible = "usb-c-connector";
-+		data-role = "dual";
-+		label = "USB-C";
-+		op-sink-microwatt = <0>;
-+		power-role = "dual";
-+		self-powered;
-+		sink-pdos = <PDO_FIXED(5000, 0, PDO_FIXED_USB_COMM)>;
-+		source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+		try-power-role = "sink";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				typec_con_hs: endpoint {
-+					remote-endpoint = <&usb3_data_hs>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				typec_con_ss: endpoint {
-+					remote-endpoint = <&usb3_data_ss>;
-+				};
-+			};
-+		};
-+	};
-+
-+	clk_osc_can0: clock-osc-40m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <40000000>;
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_leds>;
-+
-+		led-heartbeat {
-+			label = "Heartbeat";
-+			gpios = <&gpio3 27 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-back {
-+			label = "Back";
-+			linux,code = <KEY_BACK>;
-+			gpios = <&pca6408_1 7 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-up {
-+			label = "Up";
-+			linux,code = <KEY_UP>;
-+			gpios = <&pca6408_1 5 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-home {
-+			label = "Home";
-+			linux,code = <KEY_HOME>;
-+			gpios = <&pca6408_1 4 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-down {
-+			label = "Down";
-+			linux,code = <KEY_DOWN>;
-+			gpios = <&pca6408_1 6 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-vmmc-usdhc2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VDD_SD2_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		off-on-delay-us = <12000>;
-+		enable-active-high;
-+	};
-+
-+	reg_phy1_supply: regulator-phy1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "SUPPLY_PHY1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&pca6408_2 0 GPIO_ACTIVE_LOW>;
-+		startup-delay-us = <10000>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	sfp0: sfp {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&lpi2c3>;
-+		los-gpios = <&pca9534 1 GPIO_ACTIVE_HIGH>;
-+		maximum-power-milliwatt = <2000>;
-+	};
-+};
-+
-+&enetc_port1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enetc1>;
-+	phy-handle = <&ethphy1>;
-+	/*
-+	 * The required RGMII TX and RX 2ns delays are implemented directly
-+	 * in hardware via passive delay elements on the SOM PCB.
-+	 * No delay configuration is needed in software via PHY driver.
-+	 */
-+	phy-mode = "rgmii";
-+	status = "okay";
-+};
-+
-+&enetc_port2 {
-+	phy-mode = "10gbase-r";
-+	sfp = <&sfp0>;
-+	status = "okay";
-+};
-+
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	status = "okay";
-+};
-+
-+&lpi2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "gpio", "sleep";
-+	pinctrl-0 = <&pinctrl_lpi2c3>;
-+	pinctrl-1 = <&pinctrl_lpi2c3_gpio>;
-+	pinctrl-2 = <&pinctrl_lpi2c3_gpio>;
-+	scl-gpios = <&gpio2 28 GPIO_ACTIVE_HIGH>;
-+	sda-gpios = <&gpio2 29 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	/* DS1337 RTC module */
-+	rtc@68 {
-+		compatible = "dallas,ds1337";
-+		reg = <0x68>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rtc>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-+		wakeup-source;
-+	};
-+
-+	/* Capacitive touch controller */
-+	ft5x06_ts: touchscreen@38 {
-+		compatible = "edt,edt-ft5206";
-+		reg = <0x38>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_captouch>;
-+		reset-gpios = <&pca6408_2 4 GPIO_ACTIVE_LOW>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+		wakeup-source;
-+	};
-+
-+	pca9534: gpio@22 {
-+		compatible = "nxp,pca9534";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pcie2-sel-hog {
-+			gpio-hog;
-+			gpios = <6 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+			line-name = "pcie-clk-sw";
-+		};
-+
-+		sfp-sel-hog {
-+			gpio-hog;
-+			gpios = <5 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "sfp-sw";
-+		};
-+	};
-+
-+	typec@3d {
-+		compatible = "nxp,ptn5150";
-+		reg = <0x3d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ptn5150>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		port {
-+			typec_dr_sw: endpoint {
-+				remote-endpoint = <&usb3_drd_sw>;
-+			};
-+		};
-+	};
-+};
-+
-+&lpi2c4 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_lpi2c4>;
-+	pinctrl-1 = <&pinctrl_lpi2c4>;
-+	status = "okay";
-+};
-+
-+&lpi2c8 {
-+	pca6408_1: gpio@20 {
-+		compatible = "nxp,pcal6408";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	pca6408_2: gpio@21 {
-+		compatible = "nxp,pcal6408";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	st33ktpm2xi2c: tpm@2e {
-+		compatible = "st,st33ktpm2xi2c", "tcg,tpm-tis-i2c";
-+		reg = <0x2e>;
-+	};
-+};
-+
-+&lpspi7 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpspi7>;
-+	cs-gpios = <&gpio2 4 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	/* Resistive touch controller */
-+	ads7846: touchscreen@0 {
-+		compatible = "ti,ads7846";
-+		reg = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_restouch>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
-+		pendown-gpio = <&gpio2 24 GPIO_ACTIVE_LOW>;
-+		spi-max-frequency = <1500000>;
-+		ti,x-min = /bits/ 16 <125>;
-+		ti,x-max = /bits/ 16 <4008>;
-+		ti,y-min = /bits/ 16 <282>;
-+		ti,y-max = /bits/ 16 <3864>;
-+		ti,x-plate-ohms = /bits/ 16 <180>;
-+		ti,pressure-max = /bits/ 16 <255>;
-+		ti,debounce-max = /bits/ 16 <10>;
-+		ti,debounce-tol = /bits/ 16 <3>;
-+		ti,debounce-rep = /bits/ 16 <1>;
-+		ti,settle-delay-usec = /bits/ 16 <150>;
-+		ti,keep-vref-on;
-+		wakeup-source;
-+	};
-+};
-+
-+/* Console */
-+&lpuart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* Header (J12.4, J12.6) */
-+&lpuart8 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart8>;
-+	status = "okay";
-+};
-+
-+&netc_emdio {
-+
-+	ethphy1: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+		reset-gpios = <&pca6408_2 0 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <100000>;
-+
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_YELLOW>;
-+				function = LED_FUNCTION_LAN;
-+				linux,default-trigger = "netdev";
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+				function = LED_FUNCTION_LAN;
-+				linux,default-trigger = "netdev";
-+			};
-+		};
-+	};
-+};
-+
-+&pcie0 {
-+	reset-gpio = <&pca6408_2 3 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	reset-gpio = <&pca6408_2 2 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&scmi_iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			/* GPIO Expanders shared IRQ */
-+			IMX95_PAD_GPIO_IO37__GPIO5_IO_BIT17				0x31e
-+		>;
-+	};
-+
-+	pinctrl_captouch: captouchgrp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO33__GPIO5_IO_BIT13				0x31e
-+		>;
-+	};
-+
-+	pinctrl_enetc1: enetc1grp {
-+		fsl,pins = <
-+			IMX95_PAD_ENET2_TXC__NETCMIX_TOP_ETH1_RGMII_TX_CLK		0x57e
-+			IMX95_PAD_ENET2_TX_CTL__NETCMIX_TOP_ETH1_RGMII_TX_CTL		0x57e
-+			IMX95_PAD_ENET2_TD3__NETCMIX_TOP_ETH1_RGMII_TD3			0x57e
-+			IMX95_PAD_ENET2_TD2__NETCMIX_TOP_ETH1_RGMII_TD2			0x57e
-+			IMX95_PAD_ENET2_TD1__NETCMIX_TOP_ETH1_RGMII_TD1			0x57e
-+			IMX95_PAD_ENET2_TD0__NETCMIX_TOP_ETH1_RGMII_TD0			0x57e
-+			IMX95_PAD_ENET2_RXC__NETCMIX_TOP_ETH1_RGMII_RX_CLK		0x57e
-+			IMX95_PAD_ENET2_RX_CTL__NETCMIX_TOP_ETH1_RGMII_RX_CTL		0x57e
-+			IMX95_PAD_ENET2_RD0__NETCMIX_TOP_ETH1_RGMII_RD0			0x57e
-+			IMX95_PAD_ENET2_RD1__NETCMIX_TOP_ETH1_RGMII_RD1			0x57e
-+			IMX95_PAD_ENET2_RD2__NETCMIX_TOP_ETH1_RGMII_RD2			0x57e
-+			IMX95_PAD_ENET2_RD3__NETCMIX_TOP_ETH1_RGMII_RD3			0x37e /* Enable pull-up to strap MXL86110 MDIO address */
-+		>;
-+	};
-+
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			IMX95_PAD_PDM_CLK__AONMIX_TOP_CAN1_TX				0x39e
-+			IMX95_PAD_PDM_BIT_STREAM0__AONMIX_TOP_CAN1_RX			0x39e
-+		>;
-+	};
-+
-+	pinctrl_gpio_leds: ledgrp {
-+		fsl,pins = <
-+			IMX95_PAD_CCM_CLKO2__GPIO3_IO_BIT27				0x31e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c3: lpi2c3grp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO28__LPI2C3_SDA					0x40000b9e
-+			IMX95_PAD_GPIO_IO29__LPI2C3_SCL					0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c3_gpio: lpi2c3gpiogrp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO28__GPIO2_IO_BIT28				0x31e
-+			IMX95_PAD_GPIO_IO29__GPIO2_IO_BIT29				0x31e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c4: lpi2c4grp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO30__LPI2C4_SDA					0x40000b9e
-+			IMX95_PAD_GPIO_IO31__LPI2C4_SCL					0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_lpspi7: lpspi7grp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO04__GPIO2_IO_BIT4				0x3fe		/* j16.4 ADS7846 */
-+			IMX95_PAD_UART2_TXD__AONMIX_TOP_GPIO1_IO_BIT7			0x3fe		/* j14.4 MCP2518FDT */
-+			IMX95_PAD_XSPI1_DATA4__GPIO5_IO_BIT4				0x3fe		/* j25.2 spidev */
-+			IMX95_PAD_GPIO_IO05__LPSPI7_SIN					0x3fe
-+			IMX95_PAD_GPIO_IO06__LPSPI7_SOUT				0x3fe
-+			IMX95_PAD_GPIO_IO07__LPSPI7_SCK					0x3fe
-+		>;
-+	};
-+
-+	pinctrl_ptn5150: ptn5150grp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO34__GPIO5_IO_BIT14				0x31e
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			IMX95_PAD_SD2_RESET_B__GPIO3_IO_BIT7				0x31e
-+		>;
-+	};
-+
-+	pinctrl_restouch: restouchgrp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO24__GPIO2_IO_BIT24				0x31e
-+		>;
-+	};
-+
-+	pinctrl_rtc: rtcgrp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO32__GPIO5_IO_BIT12				0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			IMX95_PAD_UART1_RXD__AONMIX_TOP_LPUART1_RX			0x31e
-+			IMX95_PAD_UART1_TXD__AONMIX_TOP_LPUART1_TX			0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart8: uart8grp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO13__LPUART8_RX					0x31e
-+			IMX95_PAD_GPIO_IO12__LPUART8_TX					0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-+		fsl,pins = <
-+			IMX95_PAD_SD2_CD_B__GPIO3_IO_BIT0				0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			IMX95_PAD_SD2_CLK__USDHC2_CLK					0x158e
-+			IMX95_PAD_SD2_CMD__USDHC2_CMD					0x138e
-+			IMX95_PAD_SD2_DATA0__USDHC2_DATA0				0x138e
-+			IMX95_PAD_SD2_DATA1__USDHC2_DATA1				0x138e
-+			IMX95_PAD_SD2_DATA2__USDHC2_DATA2				0x138e
-+			IMX95_PAD_SD2_DATA3__USDHC2_DATA3				0x138e
-+			IMX95_PAD_SD2_VSELECT__USDHC2_VSELECT				0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			IMX95_PAD_SD2_CLK__USDHC2_CLK					0x158e
-+			IMX95_PAD_SD2_CMD__USDHC2_CMD					0x138e
-+			IMX95_PAD_SD2_DATA0__USDHC2_DATA0				0x138e
-+			IMX95_PAD_SD2_DATA1__USDHC2_DATA1				0x138e
-+			IMX95_PAD_SD2_DATA2__USDHC2_DATA2				0x138e
-+			IMX95_PAD_SD2_DATA3__USDHC2_DATA3				0x138e
-+			IMX95_PAD_SD2_VSELECT__USDHC2_VSELECT				0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			IMX95_PAD_SD2_CLK__USDHC2_CLK					0x15fe
-+			IMX95_PAD_SD2_CMD__USDHC2_CMD					0x13fe
-+			IMX95_PAD_SD2_DATA0__USDHC2_DATA0				0x13fe
-+			IMX95_PAD_SD2_DATA1__USDHC2_DATA1				0x13fe
-+			IMX95_PAD_SD2_DATA2__USDHC2_DATA2				0x13fe
-+			IMX95_PAD_SD2_DATA3__USDHC2_DATA3				0x13fe
-+			IMX95_PAD_SD2_VSELECT__USDHC2_VSELECT				0x51e
-+		>;
-+	};
-+};
-+
-+&usb2 {
-+	dr_mode = "host";
-+	adp-disable;
-+	hnp-disable;
-+	srp-disable;
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+&usb3 {
-+	status = "okay";
-+};
-+
-+&usb3_dwc3 {
-+	dr_mode = "otg";
-+	hnp-disable;
-+	srp-disable;
-+	adp-disable;
-+	usb-role-switch;
-+	snps,dis-u1-entry-quirk;
-+	snps,dis-u2-entry-quirk;
-+	status = "okay";
-+
-+	port {
-+		usb3_drd_sw: endpoint {
-+			remote-endpoint = <&typec_dr_sw>;
-+		};
-+	};
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			usb3_data_hs: endpoint {
-+				remote-endpoint = <&typec_con_hs>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			usb3_data_ss: endpoint {
-+				remote-endpoint = <&typec_con_ss>;
-+			};
-+		};
-+	};
-+};
-+
-+&usb3_phy {
-+	fsl,phy-pcs-tx-deemph-3p5db-attenuation-db = <17>;
-+	fsl,phy-pcs-tx-swing-full-percent = <100>;
-+	fsl,phy-tx-preemp-amp-tune-microamp = <600>;
-+	fsl,phy-tx-vboost-level-microvolt = <1156>;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default","state_100mhz","state_200mhz","sleep";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-3 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	cd-gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
--- 
-2.47.3
+> 
+>> +
+>> +	ret = tla2528_write_reg(tla2528->client, TLA2528_DATA_CFG_ADR,
+>> +				TLA2528_DATA_CFG_APPEND_STATUS);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	/* Set manual mode */
+>> +	ret = tla2528_write_reg(tla2528->client, TLA2528_SEQUENCE_CFG_ADR, 0x00);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	/* Init private data */
+>> +	tla2528->last_read_channel = ~0;
+>> +
+>> +	return devm_iio_device_register(&client->dev, indio_dev);
+>> +}
+>> +
+>> +static const struct i2c_device_id tla2528_id[] = {
+>> +	{ "tla2528", 0 },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(i2c, tla2528_id);
+>> +
+>> +static const struct of_device_id tla2528_of_match[] = {
+>> +	{ .compatible = "ti,tla2528", },
+>> +	{  },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, tla2528_of_match);
+>> +
+>> +static struct i2c_driver tla2528_driver = {
+>> +	.driver = {
+>> +		.name = "tla2528",
+>> +		.of_match_table = tla2528_of_match,
+>> +	},
+>> +	.probe = tla2528_probe,
+>> +	.id_table = tla2528_id,
+>> +};
+>> +module_i2c_driver(tla2528_driver);
+>> +
+>> +MODULE_AUTHOR("Maxime Chevallier <maxime.chevallier@bootlin.com>");
+>> +MODULE_AUTHOR("Rodolfo Giometti <giometti@enneenne.com>");
+>> +MODULE_DESCRIPTION("Texas Instruments TLA2528 ADC driver");
+>> +MODULE_LICENSE("GPL");
+> 
+> Yours,
+> 	-- Matti
+
+Thank you for reviewing,
+
+Maxime
 
 
