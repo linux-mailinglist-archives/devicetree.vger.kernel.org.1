@@ -1,194 +1,212 @@
-Return-Path: <devicetree+bounces-251670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40DB8CF570B
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:57:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1887CF5720
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:59:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D2DD5304DB7C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:56:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04076309EE27
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:58:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD9D2BD597;
-	Mon,  5 Jan 2026 19:56:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FA6F2D7DF2;
+	Mon,  5 Jan 2026 19:58:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="fHZDeoBS"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="hNKsoOtV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010032.outbound.protection.outlook.com [52.101.84.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3408728750B;
-	Mon,  5 Jan 2026 19:56:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767643010; cv=fail; b=CCNQfomwSHq869TIdr6zyjOg40x8oIQWLWGLIfRzB01feeTDVsiJWvQ+YN3Zw9eJQsx5tQosYNN7neAIIhrnD8Y1nBM/k5LTD6WbrB0R9un2LYLojIO6QNgACNQQTlcpT1N7sAi3XmyuAxO8/jQw92sr197vE2Hq8IPxmvhKEoQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767643010; c=relaxed/simple;
-	bh=aqjFLucvQDlar/gS0snLe2iCszdPt29QCxbJtYSRAJM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=VryqiB/ToW+qiQHoX/YxJpn3os82OF9wsjWa5quSo3baQEw4gq4IFOGRWlepCGMrcnefkMHvG0/5nC/CnWNd4MyzDNZjINRqsS37vfYkswQ6G9rJpBwqwTfTn4N8UHnXfkNQUfr91307u7Fui2bQhvkEJQdMbiejFjsT3z0M17A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=fHZDeoBS; arc=fail smtp.client-ip=52.101.84.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ghc0i9ZbnXthXGv5ehhbMARplyIXWKaEAm9zCIyi17hNribHD/o8/3n7xc0ElYYULbWblgVF0Ahgao4hTEse4xu+nWs2TvFdFhP5q6PpKoKNIM4c2sJiHluDUAsbEyM4L4rHC2DphQG1A33M4RxtmrEZLA9Ei3AZA3vrr3+2LN343NNS7UCm4G+pIlvUvoM6wCCulnrXDJQzG2FKkbwtu6ePVVveLmIcwlHChysiyS5uIx7lLsZaDfDRrPyYWhYTYveBBRt/R1nLasKaSt7kMdy5ykZF8tdjM7ZY4PI0ElUg1lkxp0cfKXvYaGhGZtrgvZldMAW21l5VqZP029kAvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SsMWRGysGmlJeqqidXmOpRIwPjT5+nAivgMIxnsw5FA=;
- b=TG+RLMGHGLMzH2OO8Tc8l4sXwnT5dw7S1GO17Wbi5MIktILHtuUjZ1xFoDzZ5V1HR3vIrRc3HTuikiB4i2cCPzOozY7uXzsBenkbsTI5cb/Bg+0+1nvF9lLgVv2USCDcuvMNTkqLNJdPg4wsXaYlhfxl41dBvnhFEaYmWe8C+FyaAxrv30749QnNjQJdU6vfJgw9gjXo5mQsEuEDpaTiYURG+txExgFrmvr4zkPCYdGPM1U146X7OIOwW14/6eMTyAaKrPYV5Huh0FQpUMXVoPS8PH6z362HKho+rxKPXKcb9SY1UHQ79Kjb8gGPq0Q9ri44z3XxoozsKKotwvyraA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SsMWRGysGmlJeqqidXmOpRIwPjT5+nAivgMIxnsw5FA=;
- b=fHZDeoBSZmUH/pSOux3nKzwvlkPHgXowzSHuSxmKart5rtNwBhmH7rWxTg0mdFBZ+7vcoxhCd7aXS9PX/KybgeNLvRYXtRXICr3y2wUD1fhYkVZl5gaBzWjm/n+xy6bk7Rjtwg6ea9q7N8SYOPlDnwM+CyX3u+5O4wKmJkj9+kgNbOANiCu79CDvZ3HrK90DMTJ7HjKOfKcLBdE1MP6v+EMYOQvBmbOWoqu1xawy6L6HalYXDZeDgUEyOfLXfY9Sc5bipkzvrjn8oSdo6PH0WAOCg8EoHhYEhkXdWSbG9nREcpUAWRaCvOVEcfxzIFzcFugcAcWGfItC4VWIcTsMYw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
- by PAXPR04MB8607.eurprd04.prod.outlook.com (2603:10a6:102:21a::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Mon, 5 Jan
- 2026 19:56:45 +0000
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9478.004; Mon, 5 Jan 2026
- 19:56:45 +0000
-Date: Mon, 5 Jan 2026 14:56:37 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] ARM: dts: imx: cleanup most gpmi related CHECK_DTB
- warning
-Message-ID: <aVwXdU3yEqkFBIHh@lizhi-Precision-Tower-5810>
-References: <20251104-gpmi_dts-v1-0-886865393d0f@nxp.com>
- <aQqxXuOei/wtOBar@shlinux89>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aQqxXuOei/wtOBar@shlinux89>
-X-ClientProxiedBy: SJ0PR05CA0143.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::28) To DU2PR04MB8951.eurprd04.prod.outlook.com
- (2603:10a6:10:2e2::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B92F629D29C
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 19:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767643114; cv=none; b=E1YPbbQrSjz7N96r9CxeSnUVepfpKrgy+ucr3PxmUSmJ8sqG5akPICaDqU89TaX5IMXhsDwQc1YdVdvuOuy+/pZgHu0HLvVs+sq/9lZ1lLgjG/sINt4wMSQFnlL2b+1bAQN98BseID1XOh/HeCLN8BGi79JBTzdV2RVCoStOFn4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767643114; c=relaxed/simple;
+	bh=M+mgHPLZQJfA6q4BXgM2dcEStPY5JylfnRcjT3LMCio=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WA7WgOPq1I7TDJdMZgWeLuT3eVHuGnhjCFm5bOLJWOmX/HJpwMWy7JVa+NyIeSBTEm9OntAkFJQYpydeIJVm25tN/nuiCpNhN8D6DgTKYOebVcslTo9eV7gK2qDEOCT/o41qRT2fwq1ZIb9ISiT218aiFtqfWxkt0a4nQiAooOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=hNKsoOtV; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7e1651ae0d5so286526b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 11:58:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1767643112; x=1768247912; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F8DuddcYEOiefRlBzZKrtL15qZCqx9WVAFvprpXIUBQ=;
+        b=hNKsoOtV2WQth0XJ1aFVqKGepQRtZY++pRh5LuGYdtlUCsaHASl0WsIS8y2Iassvfp
+         VC7lKG8sMMwa5Cuis4KRaQEIZOiE/Dr6jLIitaa7NFp3hZR23g8wBPK3N8wjCNDpb77c
+         r/muJ5PpcdAJr4NEqkl52eIUHJ29Qx4T5jzbIq1ZmBQrZLQLDTCB5FMHpq5oAETrWWgY
+         fRSUwTVtTDl0mUeMw/92w6kR/1HQ6alLAA6KaIC6cC6LgQc1DJMQ/b/pZ3A6r0x6cz+C
+         2xfeHy99HQxIYFfE4M9Uh5aA42jJeqAnXczEwHgGEer2afgktysxLP1kySOe7umad/o1
+         ZekQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767643112; x=1768247912;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F8DuddcYEOiefRlBzZKrtL15qZCqx9WVAFvprpXIUBQ=;
+        b=lLHRA0Tfkw3wfhnfu5V4vVsALdON2V8WqjAeRgdpL5kldf1F7Bh4cgLgIe9s/s381U
+         Qy5JeQZuaNQJJApTXNp+POreyNlMsqPOO709Or6keFhL3CPby1qw6ZCICadsUhcFIth8
+         IFGYYmtHpS1dP4ZdX9M5KaQlEeHFh5m3DmTKUEKrygiz3ZvJEwsxgOsCCqg5Rs3lbPxB
+         nMvi9aUVNN7XBMKd7MVI4S0V8cowOxgfmxbmwX6lGyYmC2AfKS1+1HUKwo0PvrBHcO3J
+         iWIfM8kNC943cP5AYFM5qVEx1rrY+U0cziSS9DJknRZCRxO3LGRTgPVC1yxgGSXzx+Xr
+         aQ2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVkX9pPFrWA3rgh0FAdT2guF8yX167sN+0uxr62zVHsLagI0aEj/wvIHzER94Z1AKGysjGLBYlaK70Z@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEtBXc6pTGfH6XM7gfXMKAMUwpbljKEqV2k6aMPOq1Kr1nKa82
+	Nwa4h0TwRIoFbE8YEwm7+wih21IDMSKOPefYdibrPO+hfNL5/qiPSd+HBIfcVgI8VA==
+X-Gm-Gg: AY/fxX5Ht+BzFatSbp/DX5cupLfUGIuJjGmSkVPJemGDW1m9ql4n8YLNxBNkVrzWJ5z
+	mNVjOZxzQFOmdrRkW+3fxF1dANtz4iC0SCgRlFjNin/6Qd5QZdaOFMh2x3Z0OTo5ShtfeWb7+rO
+	vhjHYTMip5KcD+pzZ8eEQM1FrxxW6Z6W+Ofbu+ZBzB/jZTbOs4KatCJajzfyr9Vsq/SJ1BQ50wT
+	xJSI3Ulvq1dEwEtqvrQZxbPPnfkjx0TKSb5e39iJwmcy9MltUdQ452KJd7fRpdXWTMsdPQtvXD5
+	rczRQo6nvX0DPzyUw+kB+QAcLEpLIcQ+ckfLgeXXnD3KhUe8hGaZCUcUPfnySzaxCboyPip34uC
+	FIuRQzFnsO9lvKte49Hfj8xUVpdpCdPmfyH9ifEeC8BwZrSfKhhV4MhJVsq3KCKnovAD/W0Ljcn
+	I6KvimIpBBxXW3fpUUpJZ3XSJ+pJlUTLAnLLVTpjR/H3T2ihuQSVycmGE2CDsRZUGZV86CswCM6
+	5waPdOAsK/AabV2GQTLGWI4
+X-Google-Smtp-Source: AGHT+IFYi37OgBvlreLAlI6opJMukcl64WhdUNqoIdTxzRCBTYpyF7jQRnopByzdWT0cS1RWXEtYww==
+X-Received: by 2002:a05:7022:2215:b0:11b:c86b:386a with SMTP id a92af1059eb24-121f18a3909mr496909c88.5.1767643111325;
+        Mon, 05 Jan 2026 11:58:31 -0800 (PST)
+Received: from ?IPV6:2a00:79e0:2e7c:8:7c3d:6070:7e67:29c5? ([2a00:79e0:2e7c:8:7c3d:6070:7e67:29c5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-121f12209efsm1739565c88.3.2026.01.05.11.58.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jan 2026 11:58:30 -0800 (PST)
+Message-ID: <f1f2a382-64d9-43dd-bed1-8b1ac9e53470@google.com>
+Date: Mon, 5 Jan 2026 11:58:29 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|PAXPR04MB8607:EE_
-X-MS-Office365-Filtering-Correlation-Id: 11a58bc1-3f7b-4ac4-108c-08de4c948dfa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|366016|376014|19092799006|7416014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?908LfdF8jcSIkwbVmvcE9ReeTJBZFh3dfWSssSKJdsZwtD79OEYkxdQc9XRo?=
- =?us-ascii?Q?M3Hx270vbOciNwgy/6MhPe6HtHVXwjA53ifM0hz3BF8fABPb0b1Cubc1xxu7?=
- =?us-ascii?Q?KlLUxL0Y42lURC2IVaW5kKw15vXK4GJ4ZFPh6qB71CgodQ0G8oemLO5k8Ni6?=
- =?us-ascii?Q?75um12CS1TC9F8qRJYvRAUywxTMlPQ+fhHwoUQ99UBchTG6/aTVr0nb0qW2a?=
- =?us-ascii?Q?jGQL0ntMzIvD4v5huMdpT51GsmlNr+a70ulfD2lQ3q2mVbA/6LpBUILFu58g?=
- =?us-ascii?Q?FfsCuhuPuxXcb/zJAkNNhCfiBESuDJZ1XYAKDzNFDeSYTBc8NC6O4j/wQnyg?=
- =?us-ascii?Q?vaP7IBYYIOGrYMjLKSR0x7HinZQLFp3ycE2bR6v7iUn82pfUFOGGnZimCRV8?=
- =?us-ascii?Q?8qp8bSiT/ssYZ10+jyg3Ea3LizLYkvr6qv7sbdSeiBNjy6TpRtO19ifSe1LS?=
- =?us-ascii?Q?P2MVYYrNXmU+kIqbBx0EFlswzf3b4fs2Af9PQ+08RD9fLye+eXoQTlJU6xQc?=
- =?us-ascii?Q?I1j73MFicFGfIyHOUAXL9+p+etCdp+8UUlHonMQILs+Y9p21NklcoPa/774w?=
- =?us-ascii?Q?FYv2SgK3fsDfx/GDOs1N+HjOk8sv5S0J2CpTuMV+PqA7nYq4/71+v/GzEpAV?=
- =?us-ascii?Q?7ideDGYfwa1jwoulRdlrwhkzNSTeTLTXOTzTL59aWTXsxcjh8fpnI+K/bJ5+?=
- =?us-ascii?Q?WwpyTtL8u20p4z+0ZN+AmyqrJO62DO6cBpAhAm8rXCcRpYKSeTw2uPxfeeNG?=
- =?us-ascii?Q?4zfwL9PCmR5r+4/e/Cqzo+fLq+e44nHRQAHBwh/AugEHsS3Xb+rhV/7cN0wg?=
- =?us-ascii?Q?RFcKD4Veo175WOpeZuBo1WNsGCRQdsw37969Bosv9jkT10gLgUtb1iZJ/qlX?=
- =?us-ascii?Q?PoF5UK7Jwiu8ykAgADjy+mjPEcQ7VTVXzrX6efVAFlZx8wtib57vt1EbhZaf?=
- =?us-ascii?Q?ypDAXvlHUee/VsMcLABYewBO/yp0D5k0D6nMVtgXSigJILXR3C3eKTcxZGqt?=
- =?us-ascii?Q?yetGp2kGvgXArmSbOLaWru0JilUj6/pRVLuCpwVthACB1mhqQm0Q/qPYcVWQ?=
- =?us-ascii?Q?EIWhjWuK0eJJks2PVZvgU/FrzLCqB2hgYVcTWgbUvYbQmwC+hjoXBEHoCpK0?=
- =?us-ascii?Q?bWdTuPZxpGRBPGNIua5OCS1AfFVvqOzpiG79BejvUnoU1bocBQxJIxhGHvii?=
- =?us-ascii?Q?teTp6UnxgNvROr12IPrGIktAqzuVrzPiJJiCSrgH0C47L3P4eaNNskis/FOy?=
- =?us-ascii?Q?sgGSvJzCxAtQET7RhQV1qjSEmKKiA1rofgV4aoKq8vBaC2k5LInz50v4STIi?=
- =?us-ascii?Q?oE6awNJleRaRDrvZX7j/T4l3hGS1I8DJh+pje/yQYocQBfkOTtzmfauDz8Gc?=
- =?us-ascii?Q?XU4qaTtYrS6jaWx6Sn6P8emKHNqI5TmtALe3qi8eSxVx81F5B2Q1myweNOA9?=
- =?us-ascii?Q?VwOkb6ZQPMkHXbIIuIe3jH5zMJIqwe1oM8WZwO1cnc2QxKex659N4uLTU8pY?=
- =?us-ascii?Q?BhsfMC3uX6dBoYFHw01Usxn27ZasnTXY++FO?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(376014)(19092799006)(7416014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?fZbBzPiVmZjcNwEaGt1DnYLR5YqeT8u2iQNtOvuVIrjpcpUBX33c9F7o/VoB?=
- =?us-ascii?Q?uGCUqgQJZZL9c3bTFyWWqEXkVN4TsBuO1OftjpWHXy3C+ElLHN7PfQ3kvV4h?=
- =?us-ascii?Q?ymOQ2ANPPiGNgQK69OGDZALklloZ5B2QqCiWnWt/jzEOM1BR2gXyHVjoYe3P?=
- =?us-ascii?Q?Xr3dsJtSL7iM4qPOFqb66Rms3pcAUQ5TPmkinX7CNP9A9rFxjj2VnXtoPeth?=
- =?us-ascii?Q?ePe/NVkgsfU/6CFFnzjSJHi4PPI5qp1yXPidWvoY7H6IM18aaK/1R6qlujMs?=
- =?us-ascii?Q?gOO6e+00xIIkEi3tDz0Rw9IYtvMWTnquMQbLL6MaJuk0sqL06D33kHxrs8cG?=
- =?us-ascii?Q?DZKirMAT/2Sp/B0o/pqoEJDnek5ph7+HsN5ZUtXj2mitVLsZvDKKNM1dzQEd?=
- =?us-ascii?Q?XexHcmxpet4JiClOC/J3B5PbgRG/LubnAFC3VQGCGIVEXazELBSaZIgiTR9s?=
- =?us-ascii?Q?4nwaV2K/1uK1Rb5HgyG7583/9xjO5E92NpjKTKkL9Z/Q0HEaUomdBCGGTVu3?=
- =?us-ascii?Q?0UW7HrnZa+1gIOgg+W4MXumXHc/rBHCVd0UD3ZsdFe3mbIAu+EHBslgfx/LW?=
- =?us-ascii?Q?iJodOv0RSqyRzLxVvorTDwyInrr6eyvhFOSBoqlrZALzU67CYHxXERJBUpH8?=
- =?us-ascii?Q?RFAvhrsL6JqYf1ZM/e0n1jBOwO0nnWp7SlqCcQ5Qgi9sjmz217dEknzycNxT?=
- =?us-ascii?Q?bwCkjeshquwCZkUsinGfjczfKwUz0DQfB9ej4d/FhgvDB2W7jsrG1DM7Pefw?=
- =?us-ascii?Q?oFUAQj5+8oa+UKYzaghi9NypY95zj0j6JvA1vpTYvxLLqwKQeKlr4pRSqTcd?=
- =?us-ascii?Q?DjOeU82t2ajgAalDTpHxEDN4rOazQ9fXrBFfhmzJeqtVk6l1H5y8UqUnvCST?=
- =?us-ascii?Q?aJZLxkDGZxXRXO1PgwvWGL9k8womWJzgoUvPuqshTFkYjciH9HGIPAJ1AZLW?=
- =?us-ascii?Q?cq8wVsZosz91vmjEvLKm7JIUxWm/voyQlb0mgRm3fAwyWUSRfRdiTPcal/tt?=
- =?us-ascii?Q?Cq27aMaXSm/5y4etdKgONXKBs0NHdf0pErhPuyMPA7x1ea6MBdSJC3Mwt/KM?=
- =?us-ascii?Q?9l2/VNmaBJxd2cgLmcgkdqGezOkY/cKtL+fuBHFgxl/iOE2Ab4oRMNsvHkJw?=
- =?us-ascii?Q?+y5BHD21Avw8NcDyAGhSLdznS3fCwW4OOKAu5MzYwT/RhdHvhBaqAys0JVFi?=
- =?us-ascii?Q?sNu8DM/n9C8+bEc7GyT1FwnEJSBPvt3UXwMJRqB1kyDHTOnr2FfkHXeo+BI7?=
- =?us-ascii?Q?SkWOGa5MVPiSDZ3qUsunosxBbPWBAhXbtkr2f2tECg8Yu3/VSnq/eEl696yG?=
- =?us-ascii?Q?MU/ZhZs6NAQ8QzpTKsh28tk7dawNJxiXTOnEwSZxv1E4NsXp/rDZBZrKSGAT?=
- =?us-ascii?Q?jDh3kuq7sLzoYsLG631pcRAsKxl4fnyz+TQOQpG4edXGloMOPiU1X0FCyvjY?=
- =?us-ascii?Q?EeTyyomfW+0j31mWGwz/QU+BRKxJCMmjkkWuhw0+XtOPr3WKuvIJ9OV8xtTa?=
- =?us-ascii?Q?EqMiUeIPiFmzZuNS7uxax/iOb8CtHyQrQTkVl8eF1ccgsqzqz7oHL34DFVwg?=
- =?us-ascii?Q?t2JpWAuE1jF8uVigBA5taLBpKVqEv218VJCAmAj+++gPK4+uJcpELpR0ZnaP?=
- =?us-ascii?Q?T163xDCza/69heOT5xlqXvyeY7s1ObPWw/0sLQwPvY7NN3OpzfYIQA5doLLT?=
- =?us-ascii?Q?eDiy1kxjwqeikDboJ3AjAqSIjpUvLczthdJ/cQWpbo2beC62?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11a58bc1-3f7b-4ac4-108c-08de4c948dfa
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2026 19:56:45.5013
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cfLDJXjolu9d1A5gCxw5CdGex6ce6obtx+GzST8CcaX3Rfa0vHMLD9St8nq3jZj8ymp5N4sGZTrcr53Dtds4Yw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8607
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/5] mfd: max77759: add register bitmasks and modify
+ irq configs for charger
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+References: <20251227-max77759-charger-v3-0-54e664f5ca92@google.com>
+ <20251227-max77759-charger-v3-3-54e664f5ca92@google.com>
+ <d2c50afe586956ef3a60f17eb77b20fc73fe8dc8.camel@linaro.org>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <d2c50afe586956ef3a60f17eb77b20fc73fe8dc8.camel@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 05, 2025 at 10:07:26AM +0800, Peng Fan wrote:
-> On Tue, Nov 04, 2025 at 05:27:11PM -0500, Frank Li wrote:
-> >Only few warning left because original data is wrong
-> >arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dtb: nand-controller@1806000 (fsl,imx6q-gpmi-nand): nand@0:nand-ecc-step-size: 0 is less than the minimum of 1
-> >
-> >driver will leave default value when these value is 0, but binding require
-> >start from 1.
-> >
-> >Since 2019 year, commit
-> >        (212e496935929 dt-bindings: mtd: Add YAML schemas for the generic NAND options)
-> >        NAND related property is preferred located under nand@<n> even though only
-> >        one NAND chip supported.
-> >
-> >NAND related property should be located under nand@0. This format already
-> >support quite long time, so it should be safe to switch to modern format.
-> >
-> >Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> >---
-> >Frank Li (3):
-> >      ARM: dts: imx6qdl: add '#address-cells' and '#size-cells' for gpmi-nand
-> >      ARM: dts: imx6sx: update gpmi #size-cells to 0
-> >      ARM: dts: imx: move nand related property under nand@0
-> >
+
+On 1/5/26 8:45 AM, André Draszik wrote:
+> On Sat, 2025-12-27 at 00:04 +0000, Amit Sunil Dhamne via B4 Relay wrote:
+>> From: Amit Sunil Dhamne <amitsd@google.com>
+>>
+>> Add register bitmasks for charger function.
+>> In addition split the charger IRQs further such that each bit represents
+>> an IRQ downstream of charger regmap irq chip. In addition populate the
+>> ack_base to offload irq ack to the regmap irq chip framework.
+>>
+>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>> ---
+>>   drivers/mfd/max77759.c       |  91 +++++++++++++++++--
+>>   include/linux/mfd/max77759.h | 202 ++++++++++++++++++++++++++++++++++++-------
+>>   2 files changed, 256 insertions(+), 37 deletions(-)
+>>
+>> [...]
+>>   
+>> diff --git a/include/linux/mfd/max77759.h b/include/linux/mfd/max77759.h
+>> index c6face34e385..e674a519e782 100644
+>> --- a/include/linux/mfd/max77759.h
+>> +++ b/include/linux/mfd/max77759.h
+>> @@ -59,35 +59,65 @@
+>>   #define MAX77759_MAXQ_REG_AP_DATAIN0            0xb1
+>>   #define MAX77759_MAXQ_REG_UIC_SWRST             0xe0
+>>   
+>> -#define MAX77759_CHGR_REG_CHG_INT               0xb0
+>> -#define MAX77759_CHGR_REG_CHG_INT2              0xb1
+>> -#define MAX77759_CHGR_REG_CHG_INT_MASK          0xb2
+>> -#define MAX77759_CHGR_REG_CHG_INT2_MASK         0xb3
+>> -#define MAX77759_CHGR_REG_CHG_INT_OK            0xb4
+>> -#define MAX77759_CHGR_REG_CHG_DETAILS_00        0xb5
+>> -#define MAX77759_CHGR_REG_CHG_DETAILS_01        0xb6
+>> -#define MAX77759_CHGR_REG_CHG_DETAILS_02        0xb7
+>> -#define MAX77759_CHGR_REG_CHG_DETAILS_03        0xb8
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_00           0xb9
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_01           0xba
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_02           0xbb
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_03           0xbc
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_04           0xbd
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_05           0xbe
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_06           0xbf
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_07           0xc0
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_08           0xc1
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_09           0xc2
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_10           0xc3
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_11           0xc4
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_12           0xc5
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_13           0xc6
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_14           0xc7
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_15           0xc8
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_16           0xc9
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_17           0xca
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_18           0xcb
+>> -#define MAX77759_CHGR_REG_CHG_CNFG_19           0xcc
+>> +#define MAX77759_CHGR_REG_CHG_INT                      0xb0
+>> +#define   MAX77759_CHGR_REG_CHG_INT_AICL               BIT(7)
+>> +#define   MAX77759_CHGR_REG_CHG_INT_CHGIN              BIT(6)
+>> +#define   MAX77759_CHGR_REG_CHG_INT_WCIN               BIT(5)
+>> +#define   MAX77759_CHGR_REG_CHG_INT_CHG                BIT(4)
+>> +#define   MAX77759_CHGR_REG_CHG_INT_BAT                BIT(3)
+>> +#define   MAX77759_CHGR_REG_CHG_INT_INLIM              BIT(2)
+>> +#define   MAX77759_CHGR_REG_CHG_INT_THM2               BIT(1)
+>> +#define   MAX77759_CHGR_REG_CHG_INT_BYP                BIT(0)
+>> +#define MAX77759_CHGR_REG_CHG_INT2                     0xb1
+>> +#define   MAX77759_CHGR_REG_CHG_INT2_INSEL             BIT(7)
+>> +#define   MAX77759_CHGR_REG_CHG_INT2_SYS_UVLO1         BIT(6)
+>> +#define   MAX77759_CHGR_REG_CHG_INT2_SYS_UVLO2         BIT(5)
+>> +#define   MAX77759_CHGR_REG_CHG_INT2_BAT_OILO          BIT(4)
+>> +#define   MAX77759_CHGR_REG_CHG_INT2_CHG_STA_CC        BIT(3)
+>> +#define   MAX77759_CHGR_REG_CHG_INT2_CHG_STA_CV        BIT(2)
+>> +#define   MAX77759_CHGR_REG_CHG_INT2_CHG_STA_TO        BIT(1)
+>> +#define   MAX77759_CHGR_REG_CHG_INT2_CHG_STA_DONE      BIT(0)
+>> +#define MAX77759_CHGR_REG_CHG_INT_MASK                 0xb2
+>> +#define MAX77759_CHGR_REG_CHG_INT2_MASK                0xb3
+>> +#define MAX77759_CHGR_REG_CHG_INT_OK                   0xb4
+>> +#define MAX77759_CHGR_REG_CHG_DETAILS_00               0xb5
+>> +#define   MAX77759_CHGR_REG_CHG_DETAILS_OO_CHGIN_DTLS  GENMASK(6, 5)
+>> +#define MAX77759_CHGR_REG_CHG_DETAILS_01               0xb6
+>> +#define   MAX77759_CHGR_REG_CHG_DETAILS_01_BAT_DTLS    GENMASK(6, 4)
+>> +#define   MAX77759_CHGR_REG_CHG_DETAILS_01_CHG_DTLS    GENMASK(3, 0)
+>> +#define MAX77759_CHGR_REG_CHG_DETAILS_02               0xb7
+>> +#define   MAX77759_CHGR_REG_CHG_DETAILS_02_CHGIN_STS   BIT(5)
+>> +#define MAX77759_CHGR_REG_CHG_DETAILS_03               0xb8
+>> +#define MAX77759_CHGR_REG_CHG_CNFG_00                  0xb9
+>> +#define   MAX77759_CHGR_REG_CHG_CNFG_00_MODE           GENMASK(3, 0)
+>> +#define MAX77759_CHGR_REG_CHG_CNFG_01                  0xba
+>> +#define MAX77759_CHGR_REG_CHG_CNFG_02                  0xbb
+>> +#define   MAX77759_CHGR_REG_CHG_CNFG_02_CHGCC	       GENMASK(5, 0)
+> Small nit - there seems to be a stray TAB in this line.
+
+Will fix it in the next revision.
+
+
+BR,
+
+Amit
+
 >
-
-Shawn:
-	Do you have chance to check this?
-
-Frank
-
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> Other than that:
+> Reviewed-by: André Draszik <andre.draszik@linaro.org>
 
