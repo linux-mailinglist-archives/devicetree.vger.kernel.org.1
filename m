@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-251554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A48CF45F4
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:23:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C44A4CF4BD7
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 17:38:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5373F3110211
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:17:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4E84B3073061
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B09B331A64;
-	Mon,  5 Jan 2026 14:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726313376AC;
+	Mon,  5 Jan 2026 14:08:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y/N5ynyS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UYIsr1MR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50ADB3314D2;
-	Mon,  5 Jan 2026 14:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48DCF33769A;
+	Mon,  5 Jan 2026 14:08:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767622088; cv=none; b=GWe0mjdILVCOFcBXIvjWECDikz/PAEKLKCKXdL5NrsXeb80aFf5HnS8eWWH54H4RhSKaUmHUbgqNdg3gl4ZGpMQ0KYU16+ftdvNFriXckOp9Tknpk8Xj9AGdovY559VyxF5tgQ964slxoczcHmte34kbYpOjQmGwGnoDyNoaUzY=
+	t=1767622098; cv=none; b=DhiXpRMdIRg7Dcg3I3BIoe8Bz/J6YISMn5tnf5gvO8IdEidd3pM9rYvOlSvjQy4jaOqP8YTGCRuU1C5cnaDHW5LW4qplDZ4xOKh7UvFjT0o3Zt5egmCSYHJPu8yCRICo3fWHURUTY4DUsGvqxR11dlEtmN27rxUhbB7ZpLRY178=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767622088; c=relaxed/simple;
-	bh=3xxJp/7OG4sa+sXyZRDBn6KCilsJC44qUUJVLCQWBrw=;
+	s=arc-20240116; t=1767622098; c=relaxed/simple;
+	bh=nwN0pQFhi+ijUzj8bmiwYI/Ad969wX2RiAkWTI6e2LE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UBlSc4ldvp/YgkPEWnGqsk9V9fH4ah9BtAKkhudUlRRG+88ho/wmqcocWmFwqieKOJfjmqvzmloJ4RE5EGmTRaCN5dRXOhG/nfJkI+vpus/7CcinrZz6fjoACFiebWYAeMfgTbMgp3H/1djh3UH54wuxj1Bco4asTAh5NYLuko0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y/N5ynyS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBD10C116D0;
-	Mon,  5 Jan 2026 14:08:05 +0000 (UTC)
+	 MIME-Version:Content-Type; b=RW4CWlcJVkukwXCxLnsmIhFq0g9RxqkfcP92eS2GMAGVYNK7FKdExg1BSFV6mXf7VWucRWdJYf+w80/ffGzkIdWvRpQCbmy+7fhhrjuvz/c3BZgsUrk5pZncNFcOOG76ObNmxtV/Kfz3YMPJxnVRS8No9h+hdrF5Ynor4A5nuDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UYIsr1MR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC0D2C16AAE;
+	Mon,  5 Jan 2026 14:08:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767622086;
-	bh=3xxJp/7OG4sa+sXyZRDBn6KCilsJC44qUUJVLCQWBrw=;
+	s=k20201202; t=1767622097;
+	bh=nwN0pQFhi+ijUzj8bmiwYI/Ad969wX2RiAkWTI6e2LE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Y/N5ynySYXd0zN7ellUDan8+4naf0tzJNMOCiF7tepWGp33hwbxPY+jAUhWUoDbYK
-	 FMzzfZIS7SIWpO2gN5v/x5WV3cq82By5d0VXSkX1dC0wCEDiiZzJFXZzbxk+CO8fVD
-	 tzrfcFjhAJ1W5MVdmkn2Pq3PgOX7Eksf7xRtsxfhYYdqQt8711BVoQVB4HPjt4Swmv
-	 7H93G3jM6ZnEOodKXP6iliOFPmeipTsoEIiIUH1NJP85Xod3wxNV0Ay0GRsOonJRj8
-	 H3DLbgeFvzihVFtPNWTBsuEzaBkjxHKuiHXc6yM1a0ae2w3vRJrACCdadeTLogljpu
-	 w89YesD8eewiA==
+	b=UYIsr1MRTcrgmQEUb0i3nd43Se9IZpuAr0VMWrP/5nVIdhIJRG7DeaAFpgBlhonoF
+	 /VxGaL+47Q7iJN8+4ETRh0Lkw8VCCdExEudACWpMQTv3cHViP944WV6ve7OubkvZQ7
+	 7cOPiQd0r/d1cS5Il482FEUHDTjaUMHSDZkU4B8JS2eyJ5bsmbDeDJCNsIjBnkQkwW
+	 KlmSflF0793w3ZhSupkAWvw0pU3Fc3zrLZ9lY5t8KVMd7RRLAr97qoaEtQ7CcGO352
+	 DaeDZpPweNwb6p8Cx40fdo+BuYhuPeOJ7++FxVPZFzW9kLc+x1fgrgFa/im1oY4pLd
+	 oNldLET5QyQ8Q==
 From: Bjorn Andersson <andersson@kernel.org>
-To: konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: lemans: Enable cpufreq cooling devices
-Date: Mon,  5 Jan 2026 08:07:18 -0600
-Message-ID: <176762206384.2923194.6538644737972410455.b4-ty@kernel.org>
+Subject: Re: [PATCH v7] arm64: dts: qcom: lemans-evk: Add OTG support for primary USB controller
+Date: Mon,  5 Jan 2026 08:07:26 -0600
+Message-ID: <176762206397.2923194.2060104930644124439.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251215045451.3150894-1-gaurav.kohli@oss.qualcomm.com>
-References: <20251215045451.3150894-1-gaurav.kohli@oss.qualcomm.com>
+In-Reply-To: <20251128102507.3206169-1-krishna.kurapati@oss.qualcomm.com>
+References: <20251128102507.3206169-1-krishna.kurapati@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,16 +65,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 15 Dec 2025 10:24:51 +0530, Gaurav Kohli wrote:
-> Add cooling-cells property to the CPU nodes to support cpufreq
-> cooling devices.
+On Fri, 28 Nov 2025 15:55:07 +0530, Krishna Kurapati wrote:
+> Enable OTG support for primary USB controller on EVK Platform. Add
+> HD3SS3220 Type-C port controller present between Type-C port and SoC
+> that provides role switch notifications to controller.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: lemans: Enable cpufreq cooling devices
-      commit: e95ddac66a77077a021c9f2e6b3cf6dc236b655c
+[1/1] arm64: dts: qcom: lemans-evk: Add OTG support for primary USB controller
+      commit: 3b226dc2a0c39de609ecb383a92d9ed99d7aebc8
 
 Best regards,
 -- 
