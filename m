@@ -1,62 +1,59 @@
-Return-Path: <devicetree+bounces-251653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E9ECF55A9
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B74FBCF55B8
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:22:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 89F373136E53
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:17:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7073F3159E59
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:17:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AACA346A0B;
-	Mon,  5 Jan 2026 19:16:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD766346ADE;
+	Mon,  5 Jan 2026 19:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MszCB6hK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CWvtzw7r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DDBF343D8A;
-	Mon,  5 Jan 2026 19:16:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84FB1346ADB;
+	Mon,  5 Jan 2026 19:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767640607; cv=none; b=WmUZAPOJNJ6PiTkuQtWMZDs4338+/ai+CVGGtK50OyGFm8xs5E5nWzyAYbyq1O3chW9PicZigSUC0hw26UaEVFgbkpz39Wj/V49p75mzfSw1W7kZuCI/gzq99UEYnUjPiEwE6Dqjr4vkQR0+daNChJwRmbUe890lLL7gS5Iwd30=
+	t=1767640609; cv=none; b=qw/yO5sRIIH71BEIY5KHW0OqbKgIC35ocmZ/SNwZ8yGlcm0InIKRf6YUx2s7wM09EbV9ZHmGYDttzqgLN2Ui0zSdfgxmt17cqTdrkDA+6TTBN0x7IxxpJ+f1ihxdPlTX+kU5WTGSpNlEmwHoBA+JyGhIqXpeHZiPNnrI8sltl3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767640607; c=relaxed/simple;
-	bh=gEzetTtPRkdjs0AbkDrFzFvvbTViM7nsfuigiPGZqDU=;
+	s=arc-20240116; t=1767640609; c=relaxed/simple;
+	bh=j3JQsr+IzTapTq9nSXM9TJ05udhSvq4tJWm40ID1q3M=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=W9Z8qzywSNASBjzU70CqJA51FFlX8836ASe1JhH7PVPN+HdqQQFSSLeB6QFCT3IHkEvOJREV15J25WqxavCsNaBj5iVZeXUrhH1Y6D/yilzpw+eE+7OAbOE1XM6q9FOhh6KJ3kWYD8Iyf8PFtpOwUQ4w0j/nR0wJg7gndatSUOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MszCB6hK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9674AC116D0;
-	Mon,  5 Jan 2026 19:16:45 +0000 (UTC)
+	 MIME-Version:Content-Type; b=FdAezpOuRV3+MQg+qLfjCBPM3dImde0ThZVRlomXoInOt4heWAbJIkRbTWlupM49Uwi34PyZChQar02Ffy65PFos1iEAJb176YR+ZETSZuQMkusVmFX03kCc2+YdVGxj6WL9WA6dBGcwGGXOT+djALA2VIvlj4cHTvKNdbzmxXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CWvtzw7r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7E63C19425;
+	Mon,  5 Jan 2026 19:16:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767640606;
-	bh=gEzetTtPRkdjs0AbkDrFzFvvbTViM7nsfuigiPGZqDU=;
+	s=k20201202; t=1767640609;
+	bh=j3JQsr+IzTapTq9nSXM9TJ05udhSvq4tJWm40ID1q3M=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MszCB6hKcGd7mDozZqVmh4HtUCMvZPINY+VOcARv2Zd4jp5JHIgQ003aCYJUUDInd
-	 xmrZPFmTlNXzxF+/AdqOf6EtcpN9dQGsH6VgzbDVSCBVPtQAwIubr8SH77TXlRlU3v
-	 VrgdQvqPH1vRcRf+KukhnQ5KRnO5eSgaPEZ+/xbcXvtTqABWGXoogFsP1KTfVvhEzH
-	 QTjoeFvoGpbOdYHd3MA/dRZ3R7L5ioU8y8vARvQTaP1OIxewBDUKzRWFN14N1TqMgp
-	 d/+A2hx+d32c8qAV44k0i2ZhCww9OSK8oUGfex3gtj3t29Jt4xKNAoMzFuF3eEVGaK
-	 NF5Q36a7/1MRw==
+	b=CWvtzw7rI1vPdD7R3kKZAgGN+Y9RnOt97zRSXiP48gQ4NSTxkvuTIitwnMY79I5He
+	 vlql6RJNJ/3WVKQ6cQGApglxmwV2w5SSemOEU9encvBvKKbLGneyEVewEz67IqrbzG
+	 DFpqPLSbz3xH7OCvOFf2Mzi7NqQeKk0kpDCDNN5m8TDqmfWlOY3m/ibvbEPVJUs5fM
+	 bI4YA1MWX2TTwcP+/QiDEaNeFKWOBfuyw+D1PdN6wzGEeboQ7ebn93y1hKUI5os+Vx
+	 KBXGhUVA8i/2+WZudE0tkTORU2QsEVwB51hGsJZuEk98/OjAcAN9QHfSDp+OrWCDMr
+	 wFTmcjFZnQJrQ==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Robert Eckelmann <longnoserob@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	phone-devel@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	david@ixit.cz,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v4 0/3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable SLPI
-Date: Mon,  5 Jan 2026 13:16:25 -0600
-Message-ID: <176764058395.2961867.64794842436985626.b4-ty@kernel.org>
+	Gustave Monce <gustave.monce@outlook.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: msm8994-octagon: Fix Analog Devices vendor prefix of AD7147
+Date: Mon,  5 Jan 2026 13:16:28 -0600
+Message-ID: <176764058414.2961867.10358157414204203861.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260105-slpi-v4-0-e6e0abfad3a4@gmail.com>
-References: <20260105-slpi-v4-0-e6e0abfad3a4@gmail.com>
+In-Reply-To: <20251226003923.3341904-1-vladimir.zapolskiy@linaro.org>
+References: <20251226003923.3341904-1-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +64,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 05 Jan 2026 22:31:50 +0900, Robert Eckelmann wrote:
-> Enable the SLPI dsp on the Xiaomi Pocophone F1 with Qualcom SDM845 SoC.
+On Fri, 26 Dec 2025 02:39:23 +0200, Vladimir Zapolskiy wrote:
+> Trivial change, Analog Devices vendor prefix is "adi", but there is
+> a valid "ad" vendor prefix of another company, this may explain why
+> the issue hasn't been discovered by the automatic tests.
+> 
+> A problem of not described compatible value is out of this change scope.
 > 
 > 
+> [...]
 
 Applied, thanks!
 
-[1/3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable SLPI
-      commit: 2a7dac907be27bd0b86a6f2df3f5feedcb538263
-[2/3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Adjust firmware paths
-      commit: f4e6e3f827a0c53f38b3186335069d855ea9e9ff
-[3/3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add placeholders and sort
-      commit: 5bde31dc7b17b668a02857c30359ac86c23c9e55
+[1/1] arm64: dts: qcom: msm8994-octagon: Fix Analog Devices vendor prefix of AD7147
+      commit: 7db5fbe508deedec6c183d5056cf3c504c027f40
 
 Best regards,
 -- 
