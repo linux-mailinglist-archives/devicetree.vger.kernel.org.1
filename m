@@ -1,138 +1,126 @@
-Return-Path: <devicetree+bounces-251424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F1ACF2BAE
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 10:26:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB38CF2B70
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 10:24:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9C0153010771
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 09:26:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6FE9F303533A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 09:18:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E693E32ED3F;
-	Mon,  5 Jan 2026 09:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C9B328B4E;
+	Mon,  5 Jan 2026 09:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EFMrWkWv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jVkeO9Oz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B6D32E6BC;
-	Mon,  5 Jan 2026 09:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F4B0327C1C;
+	Mon,  5 Jan 2026 09:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767604679; cv=none; b=Q9/NW/nBI5sXo7ch7JMHX16auUHknY781ZVhljge1XUABTxgJTLhqsoS3v3u/GwOMaYcKFMZXvf3XRDmhuZRf421vXwdZUfgNraQkLhYoQWsnvGjNg2fM82U5aiXSUSz+55dVtccuMhd6uYvoVdwWEKzp1tlOabMWCgpC/xiUMQ=
+	t=1767604692; cv=none; b=KNTnyHUcWUphJg+JMyzv+fyWtarQQ8Jg16LULODAUDqPRvGd6Zxd6b4G9LFwT/Pe5lf2ZBFZTZF2PwV0Q80J40Ev2LLXSt0aAH7qbVHsYnTt8r3uyoj0CK45afb4sWoco4EunPLRuWkqL6hHqUFsysn94ez7emqJwfIUHINLoEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767604679; c=relaxed/simple;
-	bh=6ykOa+xb1GhM+5QHERy/hBs2W8wwASApjH1/PuJz65g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dmxw5u6WC5EBtEGMDFyESHb+cYsvjhLAZimWv2A3aaYY5EKbpXG4li0neG2o1jCpSSnWob6czFKWYHfiXqa7sKlIJ6iS+c/Eyobd8Obee6NMA6OU7hjrlaw+m1psi/OqjHYHEO3xN8yqU+944ez71wJyLzKsUm58rdLSM8Fhk/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EFMrWkWv; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 4F28B1A264A;
-	Mon,  5 Jan 2026 09:17:47 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 1BC4460726;
-	Mon,  5 Jan 2026 09:17:47 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 590D8103C8475;
-	Mon,  5 Jan 2026 10:17:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767604666; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=W9ayyFGLkXRbUavp+Vx6JiRizon1AphnblBQ3d58HHI=;
-	b=EFMrWkWvfB0VUEyJjabFP5YIvm8XPGiaTZWKGo2ev+FQyEu9J+E4C9LhRqvKhR1EmVAqG6
-	tvVTCrq4hJWg4Ow0geuRhPtJ/fURuwBlPA+3sR4jJnRKK1JwYLGKFT2s+rQdOURVXMjlXl
-	3G0TWJaq5lNGWd3XQL6i6VKOkOmzNH7OYyXO/LPL2hWApPVgIzIOf+AAdV8j/gakblwXVv
-	6NE/65eoleVL5gCSNQb9tBc160HgDIP13CXhG19MOgfUQFq5RZzA+y0UWHcUdR6tqoT5G3
-	NfuepJvq2EN655vhdM6ZTCJLv4PGS0/1tz5GjIhG3nDzP/hSOuokuY+kgI0/pg==
-Message-ID: <8c4999f6-48bf-45d5-9c5b-8103758bac05@bootlin.com>
-Date: Mon, 5 Jan 2026 10:17:39 +0100
+	s=arc-20240116; t=1767604692; c=relaxed/simple;
+	bh=77nfSUhXyWDgNFLBFg0h1ki61o/WwLGrd8s8RoTQ0ts=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jtmD8NGfmZMX6gxB3YvcP9a61IMk0VEfeSS1k85qUlNXpy7VM8WDSAQsshKa+X2uA6/+3ENvp/FmsRw4eKMftVgC0Uob5j0JLmaA3lSdNTGGj7CPd80Nnd1Guo3Ev3Phnd07skMYysf15I+jtPylphUa93KgFhJyzve5VrbU66I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jVkeO9Oz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C569C116D0;
+	Mon,  5 Jan 2026 09:18:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767604691;
+	bh=77nfSUhXyWDgNFLBFg0h1ki61o/WwLGrd8s8RoTQ0ts=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jVkeO9Oz4OIsv+pu0dLHRmRVm6Z2EHvj/mrSj1JFpWLWoresO/OrfJNo5qlWj9lNf
+	 ciHt5uJix8ayfzq5bUM1EXTohl5ycqx0zq6XKIvh5udRCdippGVlFTrjO03TsRGjzr
+	 5sCpCZ6ByAqD6VkvdyWzFxgD8MconpCD72hlf1wzdTHxO/q07aj8CruAfvIGQzfwyB
+	 0P1aYnTeo2cD8sl+JyDmaL0JEUU477DcUwYNPgltC2fBTVGXGq7s4z6fiAyN0m9e6T
+	 ExQpoCODirBRBm0uSI0VtNRTSJadfwSm4xbOfet0tzChT74jK6PutLEp1CPL6URqz5
+	 mOeCq+qXJBLrw==
+Date: Mon, 5 Jan 2026 10:18:09 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Conor Dooley <conor+dt@kernel.org>, 
+	David Airlie <airlied@gmail.com>, Frank Binns <frank.binns@imgtec.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Matt Coster <matt.coster@imgtec.com>, 
+	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: gpu: img,powervr-rogue: Document GE8300
+ GPU in Renesas R-Car D3
+Message-ID: <20260105-attentive-vague-scorpion-a6a46b@quoll>
+References: <20260104222653.1659382-1-niklas.soderlund+renesas@ragnatech.se>
+ <20260104222653.1659382-2-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add Texas Instruments TLA 2528
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
- Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
- <jic23@kernel.org>, nuno.sa@analog.com, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Angelo Dureghello <adureghello@baylibre.com>,
- Tobias Sperling <tobias.sperling@softing.com>,
- Eason Yang <j2anfernee@gmail.com>,
- Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
- Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
- duje@dujemihanovic.xyz, herve.codina@bootlin.com,
- Rodolfo Giometti <giometti@enneenne.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- thomas.petazzoni@bootlin.com
-References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
- <20251223155534.220504-2-maxime.chevallier@bootlin.com>
- <56c03c7f-1e5b-4586-beb0-47a1fa3bc86c@baylibre.com>
- <c386a4bd-9c7d-4b4d-b614-fdec424d57a0@gmail.com>
- <CAHp75VfDnuyqRyHpVK40qRR59XB3RHV-aDO72UDNhjLDbJHDPg@mail.gmail.com>
- <323d7c6d-3082-4775-b5eb-4bcb3ee9b1ea@gmail.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <323d7c6d-3082-4775-b5eb-4bcb3ee9b1ea@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260104222653.1659382-2-niklas.soderlund+renesas@ragnatech.se>
 
-Hi David, Matti, Andy,
+On Sun, Jan 04, 2026 at 11:26:52PM +0100, Niklas S=C3=B6derlund wrote:
+> Document Imagination Technologies PowerVR Rogue GE8300 BNVC 22.67.54.30
+> present in Renesas R-Car R8A77995 D3 SoCs.
+>=20
+> Compared to other R-Car Gen3 SoCs the D3 only have one power domain and
+> it is always on. Extend the list of special cases for R8A77995 to
+> capture this.
+>=20
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+> ---
+>  .../bindings/gpu/img,powervr-rogue.yaml       | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml=
+ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> index 86ef68985317..2122380561e4 100644
+> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> @@ -25,6 +25,11 @@ properties:
+>                - renesas,r8a779a0-gpu
+>            - const: img,img-ge7800
+>            - const: img,img-rogue
+> +      - items:
+> +          - enum:
+> +              - renesas,r8a77995-gpu
+> +          - const: img,img-ge8300
+> +          - const: img,img-rogue
+>        - items:
+>            - enum:
+>                - ti,am62-gpu
+> @@ -111,6 +116,7 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - img,img-ge8300
+>                - img,img-ge7800
 
-On 29/12/2025 14:23, Matti Vaittinen wrote:
-> On 29/12/2025 11:31, Andy Shevchenko wrote:
->> On Mon, Dec 29, 2025 at 10:04 AM Matti Vaittinen
->> <mazziesaccount@gmail.com> wrote:
->>> On 23/12/2025 20:26, David Lechner wrote:
->>>> On 12/23/25 9:55 AM, Maxime Chevallier wrote:
->>
->> ...
->>
->>>> It looks like inputs can also be used as GPIOs, so
->>>>
->>>> gpio-controller: true
->>>> #gpio-cells:
->>>>     const: 2
->>>>
->>>> would be appropriate (it doesn't matter if the driver doesn't
->>>> implement it, we know what the correct bindings are).
->>>>
->>>>> +
->>>>> +  "#io-channel-cells":
->>>>> +    const: 1
->>>
->>> I didn't check the data-sheet, but if the pins can be set to be GPIOs or
->>> ADC inputs, then I would require channels to be specified. It's only 8
->>> channels, so always listing channels that are present shouldn't be that
->>> big of a problem - and it should avoid one to add extra properties to
->>> denote channels used for GPIO if GPIOs need to be supported.
->>>
->>> Well, I am not insisting this, there are folks that know this stuff
->>> better than I :)
->>
->> Why would we need an extra property for that? GPIO controller has a
->> property for valid_mask, should be enough to handle this case, no?
->>
-> Ah. You're right. The "valid_mask" should be perfectly usable.
-> 
-> I might still require the channel information to make it explicit - but 
-> as I said, I leave this for others to decide :)
+Fixi sorting here
+>                - img,img-gx6250
+>                - thead,th1520-gpu
+> @@ -169,6 +175,20 @@ allOf:
+>        required:
+>          - power-domains
+> =20
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r8a77995-gpu
 
-Thanks a lot for these suggestions, I'll add all of that in the next
-iteration :)
+This goes to the other EXACTLY SAME if:then: entry as enum (with
+adjustments to description).
 
-Thanks everyone,
-
-Maxime
-
+Best regards,
+Krzysztof
 
 
