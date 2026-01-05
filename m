@@ -1,62 +1,59 @@
-Return-Path: <devicetree+bounces-251571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1E5CF433B
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 15:44:56 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA5A9CF4450
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:02:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8011B303B7D7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 14:37:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2C588300A93A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C3733C183;
-	Mon,  5 Jan 2026 14:08:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F00333CEB9;
+	Mon,  5 Jan 2026 14:08:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KAhfCBie"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jR//tH8S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B694533B967;
-	Mon,  5 Jan 2026 14:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11D8333C53D;
+	Mon,  5 Jan 2026 14:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767622121; cv=none; b=ieh95KShrFJQlQmHAMSix/PGuzTmWqRNBOWrtr7iUHBW2W4/wNJCbVVuOQq68D4+mIhyEdzYGFWKOI1uQLv1vXJ8o/hELY1CmDhxfSTDBAYBTIlEyDkq62b38I5SFQglA9jsZGyQjl2o6xq5FzzvHsV5bd0IPsW+Afg1AveUl6w=
+	t=1767622129; cv=none; b=OHLwmYPhp8mNaFk5XFKTH+J43vLFl7q3s2wsdbMhIFifWyvf4LCwiVLNqf5Q+SLRbH4tebInUu0fVkQLUjo6Rli8TqgX5eBWJBDjiCEhNbwbPrVZO9EHriE7cz113e2774WmAJMOkn2qOg/inzps41L6ORC5nO96ZOevvd/AH4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767622121; c=relaxed/simple;
-	bh=6O3+y+HG0ndxtLBKPQttb3kVoj31kwuojSEzjwVFkgQ=;
+	s=arc-20240116; t=1767622129; c=relaxed/simple;
+	bh=yi7vxw7jVid5bTWBQkeZ48N8e/ROXCNyhJZCdao3DXo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pRYZ7bhwPMhkoGm4difMlhGe6Mr4joDuM5PPkkJIrrVk0kGPwEpCjbmVBdp0xbfoZMO6UfCP7+3fTa2yIO8dpyoyKSIpM4MoRgu0RujifnJAISFJ6keulx7a2xa5LoGGi8B2jTiMBVstrEOJMbE6aichms81Q9DWdmeGx2fsCE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KAhfCBie; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30C26C32781;
-	Mon,  5 Jan 2026 14:08:38 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Lre5bZUteluoasi/EuqKe60dB1ouhuvy7rjn7oVCyEHwicA5tir+RTUbn8afNt/Ap5Vuy8PPWssbsuLPDPC6EwzrOvWshbX4Nq1EgyRoYdxXFfU0sST8SKdAnj+R0DAkAdr5Y2F3woGHNsjNMh1a+n+w68xhSv0FX5npe2fAyN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jR//tH8S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25EF6C2BD00;
+	Mon,  5 Jan 2026 14:08:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767622119;
-	bh=6O3+y+HG0ndxtLBKPQttb3kVoj31kwuojSEzjwVFkgQ=;
+	s=k20201202; t=1767622125;
+	bh=yi7vxw7jVid5bTWBQkeZ48N8e/ROXCNyhJZCdao3DXo=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KAhfCBie1Xg0Sd5NeIvaj0DHnZTUYf0yfdrLTbA6av+K5Elz4HX0QuKY6/HkFhoCI
-	 iwH8TLiHYaoXfZQTFyn/Lpw1LYF3oyjJPclB0RspaJGXmki6gwzRlI+zMR7Jbe/ZPV
-	 rnYUKbh7TCTPfa8h1KSrnJFVLtpcHH3wAvFLInIdSTZ5jTMGV/Y7eq8BobUHynFY97
-	 ZXj0WBwJVkOmgZWaUgH4RSWvfiWNT47VFK1pX9JqV2/owU9ZNzoUcLZCJIUETqvSKF
-	 SReBmjpY368T9kFJ+OL/EhVDqkOgLl8Ag9X0qOPoN6H4L8ycfA2WmCQvv3snbpZXgM
-	 Rl6GvaWYEAt0A==
+	b=jR//tH8StmQZpQtesRTkJaySR9iUluwNJcs/6aiRFpBSipU6eekXEtOtzjg2Mpdr0
+	 cZhEAPrABscbUhd5Sy0BrXuGV2niMiORnFPL+bhC6FFLXsyQfxHqJ5wkWsuK+Kxw/i
+	 pTNbewoLaCbLIciosmsjsA+8RfYvhtiScJBXPfiPHbLnOtxaAxlma8fSUxLXDi+6PZ
+	 eoCegKj03r7+gxTbFR6BVkxr//+vPdXimCULfj/iqyh+srrcGpajoIqZybfS480wsx
+	 Klaj8wLwRcBiowP9QXxUa93fMOvH+xdRo+wEOh+/dfltRzbpFlklyePA82d5ZXsRBR
+	 M8XijqbEeDhGQ==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Nickolay Goppen <setotau@mainlining.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	linux@mainlining.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v3 0/3] arm64: dts: qcom: Add support for SDM660 CDSP and ADSP FastRPC
-Date: Mon,  5 Jan 2026 08:07:39 -0600
-Message-ID: <176762206417.2923194.10858113169390489876.b4-ty@kernel.org>
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] arm64: dts: qcom: sm8550-qrd/hdk: correct S5K3M5 properties
+Date: Mon,  5 Jan 2026 08:07:43 -0600
+Message-ID: <176762206357.2923194.14421499687306297389.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251110-qcom-sdm660-cdsp-adsp-dts-v3-0-d1f1c86e2e6d@mainlining.org>
-References: <20251110-qcom-sdm660-cdsp-adsp-dts-v3-0-d1f1c86e2e6d@mainlining.org>
+In-Reply-To: <20251222023834.3284370-1-vladimir.zapolskiy@linaro.org>
+References: <20251222023834.3284370-1-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +64,26 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 10 Nov 2025 21:55:05 +0300, Nickolay Goppen wrote:
-> This series adds support for SDM660 CDSP remoteproc and also adds
-> FastRPC support for ADSP.
+On Mon, 22 Dec 2025 04:38:30 +0200, Vladimir Zapolskiy wrote:
+> The changeset updates voltage regulator property names and removes
+> an optional data-lanes property of Samsung S5K3M5 image sensor found
+> on SM8550-QRD and SM8550-HDK with Rear Camera Card boards.
 > 
+> This reflects the changes in the dt binding documentation of the sensor:
+> - https://lore.kernel.org/linux-media/20251203040241.71018-1-vladimir.zapolskiy@linaro.org
 > 
+> [...]
 
 Applied, thanks!
 
-[1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related nodes
-      commit: c0c32a9e3493f9987fd6635bbaf7260dfc09ee29
-[2/3] arm64: dts: qcom: sdm630: Add missing vote clock and GDSC to lpass_smmu
-      commit: a044cc859dc93c7a32f0c24745242bd3f0a04db5
-[3/3] arm64: dts: qcom: sdm630: Add FastRPC nodes to ADSP
-      commit: af2ce7296643767a81c96d12a8d367afc5091df2
+[1/4] arm64: dts: qcom: sm8550-qrd: rename image sensor supply properties
+      commit: ff7cb4613b490cce4e213961b91f28b744d82ee1
+[2/4] arm64: dts: qcom: sm8550-qrd: remove data-lanes property of image sensor
+      commit: 8cadf9f0bbfcccc639b412b21d347108eddbb58d
+[3/4] arm64: dts: qcom: sm8550-hdk-rear-camera-card: rename supply properties
+      commit: 4438d377f6d8bcaefe645dd436ab8f8617d815ec
+[4/4] arm64: dts: qcom: sm8550-hdk-rear-camera-card: remove optional property
+      commit: 9494917da576038d754fbecd15b1f1bcd7b2e0ea
 
 Best regards,
 -- 
