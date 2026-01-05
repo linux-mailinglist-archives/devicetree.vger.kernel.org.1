@@ -1,96 +1,138 @@
-Return-Path: <devicetree+bounces-251325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E7D8CF174C
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 00:43:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55662CF19CC
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 03:13:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A07DF3004CFE
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jan 2026 23:43:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A0E933006A66
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 02:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2617280308;
-	Sun,  4 Jan 2026 23:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC8D82C0284;
+	Mon,  5 Jan 2026 02:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cYYZCvqe"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="uUIE7nEw";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="uuk28qZD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7602A26D4F9;
-	Sun,  4 Jan 2026 23:43:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC63F1CEADB;
+	Mon,  5 Jan 2026 02:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767570217; cv=none; b=bo8ObCDdiilRa7y9vf+DKcuOfUy6CoTj6A+fAMaz89BXKMFiOfWCW6riC4Y2j+kBaGJPf1kBF3Y3oXjrKPHYkQaTrnnILOQ/ni8NdxEjR4MluICcIE+p7cT6bWJzmY93XtItHtP8yuNElgHN5J7N1kFkhYnTiSOf0UcUlTbEMrg=
+	t=1767579234; cv=none; b=Q1kmu0zEXkBAbF71+2aWP35eZr3c8IS1aBOZk+S/VDzZOsWtpVB+0XY0k2HVwOtYy20dkPugPyOt6zMKK3GC0EgDnLBPRV61gMpnHVKMmP9k9d8ig6HJ/TscnsmdR/pBLracnY2WUsohHywsxVfFonTp/KNojozxHx+MP885c0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767570217; c=relaxed/simple;
-	bh=0YTraAfveHRHd1Lp/1jZw/bRjaSN9ykzOK4V0xVUUtI=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=d+mn7aFPr5Dhfcx4I8kYejcJjWchbJ4n3SaftSB+9hZqf3uA+EPnnWMlcZdgdn7gX6OHnnLmYQj0jNoHtqhT6QVTRJvyA5aNcln/92jUTCE/DnsVcv1yuUl0CkP/XK4fonwUbT8e716up+x2hG5h5giho8gmWS9qy206p0/CX2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cYYZCvqe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D77C6C4CEF7;
-	Sun,  4 Jan 2026 23:43:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767570217;
-	bh=0YTraAfveHRHd1Lp/1jZw/bRjaSN9ykzOK4V0xVUUtI=;
-	h=Date:From:To:Cc:Subject:From;
-	b=cYYZCvqeTS7uszaJVpKQkcc0SHTpZ21PvU7lPk2MER9jDtLDYiu2lNa76NJg2MEb9
-	 EPsPSWHvwCBO5ylEvxqL9RwSV4/QmieBoGKT/YV8pPUwIKbFB/btbtm+yQx0TczUu/
-	 fkOC8IJSLbHsvPKH/DATRkQHkZsEekDkqzXJ5QCe3Sj85VFVTsVVSDykHldRjYhc6N
-	 2KE2z01dYVXnykPEBD4O0b4yDOMEriRYyABnAu1C81HLcAlRI5r6v8Ft0PkkkqtjW9
-	 1IAnLtdgKe+4rLtneDPtCA6JKekJ/FTzr63LGETYY36loCMf/oAV6RKWVQTrbU3T5W
-	 1XSKsYG/JUU7Q==
-Date: Sun, 4 Jan 2026 17:43:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Saravana Kannan <saravanak@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.19, part 2
-Message-ID: <20260104234335.GA827897-robh@kernel.org>
+	s=arc-20240116; t=1767579234; c=relaxed/simple;
+	bh=Ta9OaqK2IBAvC5m51kuEDDHu9mdE7I9N51r0MpJG9wg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=RSRZU5zOmeo7ZmSNB9SiA5PwRt1sIRVp6OcK9B8j0ouSsNe8ehJ+ESc11OctR8tUTFXAa9V8zTDwi+t/k6JpKITc+aPXmDAToZDKypE9zIwxv0lZyxvEBPF2o440Y8GtVdF4RJygVs2BYwxKOAoNKFn5La7u+OTSXYIQs2iJqfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=uUIE7nEw; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=uuk28qZD; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dkyXG4DChz9t0l;
+	Mon,  5 Jan 2026 03:13:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767579230;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JUECMuqTPTti9Ot6WKiCSLREkvP/PSjUrsLYS0gj92w=;
+	b=uUIE7nEw3HzG/JFECxTLY3A8M8W3sWxH/2pqxddIfrenRGrQsVFRVRKPmKMdRGecfhKXFu
+	lkrvomg/r15r/XTin1lRDwBLjA9+Mi5KHN+89FAlTPxGCCjUnqR757VAS2/Ts5hnk82ebm
+	jvjH5E6KM+mTL9dXVgCDeAQTCn1s/Cs2KWm5Z24MX6KIDa1aRrxwqCB44OJh7VtfDa+B1j
+	WFD/f+4yfytSGLwmWDFE4nzldkragMBmULc+2xbQ7heM45NrDPjGNhhyQnGWKiK8ELNv7d
+	3W9If+rJzBNwkFR2GTICLmbRWk1F+nCj/UCaR9IOxSWM5PtQl9CeZsntPDsx1A==
+Message-ID: <dec21ad6-c87f-451b-bdab-9227d457a166@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767579228;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JUECMuqTPTti9Ot6WKiCSLREkvP/PSjUrsLYS0gj92w=;
+	b=uuk28qZDKMnJhI3Owfbv0IzmBf2xE4iGmD+q/qhu+7V8Uo30XiDayu/65ciYu9xtldWdTU
+	4SgbmQ3FwnqMIV5LYfDwdFAI6TYAGVz8BoxUrxe06BKoGWQ5Di6qM/PpGpSn92h2VPh9KG
+	FFA4UowtTOwm70LIOk/u7oPbGwO2dpwgI6gEIgwEJYyW3RaOQLNQA/Rqx6s6wraIA1rOf5
+	nEXRl10uhMsZboMfLQUCYmSmls4IiuG7aATqIUY0KJ5wh2LQJ9Dy4ZlnEfgq16ZIF8BzzB
+	+UZ1rCTazbslmCkx4uRh3BZ+BQNVqOx+TRNdPlY5KRRVwxOQL5wkzYEZnKMY6A==
+Date: Mon, 5 Jan 2026 02:30:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: Re: [PATCH 1/2] dt-bindings: gpu: img,powervr-rogue: Document GE8300
+ GPU in Renesas R-Car D3
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Frank Binns <frank.binns@imgtec.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Matt Coster <matt.coster@imgtec.com>,
+ Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20260104222653.1659382-1-niklas.soderlund+renesas@ragnatech.se>
+ <20260104222653.1659382-2-niklas.soderlund+renesas@ragnatech.se>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20260104222653.1659382-2-niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: 9c3t8gm3gacrsr9u4o75s1myppzmoz1n
+X-MBO-RS-ID: c84e245cb2454d947dd
 
-Linus,
+On 1/4/26 11:26 PM, Niklas Söderlund wrote:
+> Document Imagination Technologies PowerVR Rogue GE8300 BNVC 22.67.54.30
+> present in Renesas R-Car R8A77995 D3 SoCs.
+> 
+> Compared to other R-Car Gen3 SoCs the D3 only have one power domain and
+> it is always on. Extend the list of special cases for R8A77995 to
+> capture this.
+> 
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+>   .../bindings/gpu/img,powervr-rogue.yaml       | 20 +++++++++++++++++++
+>   1 file changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> index 86ef68985317..2122380561e4 100644
+> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> @@ -25,6 +25,11 @@ properties:
+>                 - renesas,r8a779a0-gpu
 
-Please pull 2 more DT fixes for 6.19.
+> +              - renesas,r8a77995-gpu
+                                   ^
 
-Rob
+Keep the list sorted (995 goes before a0)
 
-The following changes since commit ce7b1d58609abc2941a1f38094147f439fb74233:
+> +          - const: img,img-ge8300
+> +          - const: img,img-rogue
+>         - items:
+>             - enum:
+>                 - ti,am62-gpu
+> @@ -111,6 +116,7 @@ allOf:
+>           compatible:
+>             contains:
+>               enum:
+> +              - img,img-ge8300
+>                 - img,img-ge7800
+                             ^^^
 
-  arm64: dts: mediatek: Apply mt8395-radxa DT overlay at build time (2025-12-19 09:18:27 -0600)
+Keep the list sorted, 8 > 7 .
 
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.19-2
-
-for you to fetch changes up to 235a1eb8d2dcc49a6cf0a5ee1aa85544a5d0054b:
-
-  of: unittest: Fix memory leak in unittest_data_add() (2026-01-02 15:36:37 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for 6.19, part 2:
-
-- Fix an error path memory leak in DT unittest
-
-- Update Saravana's bouncing email
-
-----------------------------------------------------------------
-Saravana Kannan (1):
-      MAINTAINERS: Update Saravana Kannan's email address
-
-Zilin Guan (1):
-      of: unittest: Fix memory leak in unittest_data_add()
-
- .mailmap              | 2 ++
- MAINTAINERS           | 6 +++---
- drivers/of/unittest.c | 8 +++-----
- 3 files changed, 8 insertions(+), 8 deletions(-)
+>                 - img,img-gx6250
+>                 - thead,th1520-gpu
 
