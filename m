@@ -1,413 +1,217 @@
-Return-Path: <devicetree+bounces-251634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1629DCF526E
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 19:05:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4103FCF5289
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 19:06:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9217F30DB493
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 17:59:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E08463075C84
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 18:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9288221F39;
-	Mon,  5 Jan 2026 17:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B7B434404E;
+	Mon,  5 Jan 2026 18:00:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iPPvo3uN"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="hNnO81fC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011047.outbound.protection.outlook.com [52.101.70.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701C0338598;
-	Mon,  5 Jan 2026 17:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767635963; cv=none; b=kbwJr0uxlIQSTVCFPWt/+V56tIcI8OaOtVMe63JfRoFVQdruHpOcrCN1Crz1OI6QfBUL4nCD0tj8nLH2Iq7bfs/F6IIICduAbW6/LLSJvH2y1kd523B++LBaFy5XMi1laMHnH27nLyUpgqobDWvuFx5mDCywks1YbDv3eNs9X2g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767635963; c=relaxed/simple;
-	bh=38lfFq1vG3Ei2s2fHA+ybdTaOcqKJy6oNtVPeQ/HGOE=;
-	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=M8gvllhdj41b4skGv2tXFyQs0QLZqvvx04MnyioaOeeNk5j2nD8oQpcJRx3VW67kVcpLGsxMWnjyTjOOBLsQIql6PornmtRRudzcRd17sY6M3shX2dY3NHrkaQodKrQpTPj8uWrfBGWcHREtBnJZ3Rw3CVIPCPT05MqDDpwd6xk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iPPvo3uN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAF10C116D0;
-	Mon,  5 Jan 2026 17:59:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767635963;
-	bh=38lfFq1vG3Ei2s2fHA+ybdTaOcqKJy6oNtVPeQ/HGOE=;
-	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=iPPvo3uNxklgiQNoVAOPnGdixavH/RJn7uefogsdZJ8EIbNu2vI5XvKnMr+CvUOTH
-	 ToB4IeUG53IbB/Prqd8OjJKAIirnbqJKHDX8nZ7ONL+AMT7p7IF/JEyxo+D65TgLXL
-	 Kqvpok2PQiiytLa64rJ13MTCGU/JcrM4XJqGrpoBATdjqJgr1TwGlbX7Um9rbMqjyl
-	 KENTZwO20N1+jZniv2QWQ11gyIO25jQ5/9+M9+SvaePsOfI1jNrlrIQ/5wUgOJO/Lu
-	 euYuxOQOOIB2sx0eclcAs3+oPKiY25rQqJc6N9fTBSN7RP87whgDRRGEgKR5xDv6LI
-	 0b50b2K6La+tQ==
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 05 Jan 2026 11:59:21 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161C633BBD0;
+	Mon,  5 Jan 2026 18:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767636058; cv=fail; b=WGoJJJUtzO9ZryGpO7dYqWQLfS4Nc/mYSah3++f5gVDm4M0uI9BQ4ctipNB4whFNiN6mGOP/JbdB7rtwDbTPk/nKUtWEFsWbcmJuI6oxFUn0B6/u0H0qbBXaAbVfWdz5BrIonXGuyOFR89IjSHKzC/KdhI7Tjb6aarOrVNqgRFI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767636058; c=relaxed/simple;
+	bh=DjXg8eULHtA6bBbwyHpUOUMvNLdvTamGzE02an4zVPA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=urWCqPUGU0W1M2YiI1yzhebAvrGMbOrAE7ho+RuPViZJJZ6TkxR7+nY1AE5Om8Tnpm+br5JCf1H7dwuVpGI3216KyEO53n21epoMpp2NkxilEqKH+gkZTEGBUf/945rqZcqE92erb3K7815rhDk3bqgu3SdN/Qp74HGoNxfSw3E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=hNnO81fC; arc=fail smtp.client-ip=52.101.70.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IGTH+mqfd7lQ8Y1x9y29U1PEI7075DESh5iXX3RApBDTvZqTz3undcH08mgz4o9cMAB+wgKVJB5dkCl+0ugusipFrIpSg2Qy3bwdNdB+1jbA1QLU+BOLxs5L0jJZPm2wNgip/AwxRgxPUCLOd2NJQkaaTYOsXhdeWKUufL9KGp7ciEYfscTUj71/ZecpJlJ5M1i1fiaXMrzwlbcnN/AorehzWNsYMsFFJYDscvMcgZ4mVuRJmUp32j5pQZXwv5Dj2MW6Kakne5NL2qkDAjBkK+87a7zdMOO03ik9vC0E4TYG+cqbidsSXht0tQ9+ZbABkE/ECSZ6ZmrZY/bbx76Ubg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DjXg8eULHtA6bBbwyHpUOUMvNLdvTamGzE02an4zVPA=;
+ b=rIfpdC8gUn5Zj9XPVEvTio0/RG1ill4XBiZxdQhMeO3IKUSqE7D1CaNgfun4cZaRRFOeVsbxhf+Ko21YKu4AplPFfgwOVrHyeINeiMSxAP1+sYrtYQDZGKWsP5tUZQaagzvTMLpSGvcAUjTuV/n1alxwuXBsxoslm3wiAGNsB1PDmTYBv5A64l7X4GRzMCjjSviUq87sw5n+t2UvFgly8xYfbhsUBdFlZVtmwEARb8qMdcPXOXguWz1LVA+VuhZAfwe7Pr4Ib8h4RSL/b1aIf7uS24hRpBDX5ZcrYIX5Z55UxYm5O793l2lreh/2SBUryf0aMTX16xISTM21LjVwJA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DjXg8eULHtA6bBbwyHpUOUMvNLdvTamGzE02an4zVPA=;
+ b=hNnO81fCeXvbioc4jHPULabscXByRyt1iPCPP1LUyJApIT4piDaJ3kucVMmvwc/LX61z4GnGUuihj439owukCoT/PAXdnRBUPmB5Epiive2CcEMqftE+J9ECufEv9y9PtbUyJ8ulBpTMM8wy5B/ELt/Reqqs+Y8kjOkDx75yl9Sl+CziXHwRT+wVI7yJpFOj7/TNkLPGmA8rRysXv/oocyhts4j8uyZy2zhhj6H4rvL+TFz3JoifXFXT5HIPHjtw47fI4fxUT0UyL8W14LkFCidvN4CWjWOhHOoqJJNftkuu18iqV+GRNtuICd8ZMMv7IFioYXffzQG6lTuHg8kzrg==
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
+ by DU0PR10MB6319.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:3b0::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Mon, 5 Jan
+ 2026 18:00:53 +0000
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9126:d21d:31c4:1b9f]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9126:d21d:31c4:1b9f%3]) with mapi id 15.20.9478.004; Mon, 5 Jan 2026
+ 18:00:53 +0000
+From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
+To: "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: dsa: lantiq,gswip: add MaxLinear
+ R(G)MII slew rate
+Thread-Topic: [PATCH v3 1/2] dt-bindings: net: dsa: lantiq,gswip: add
+ MaxLinear R(G)MII slew rate
+Thread-Index: AQHcfmxQpjVa06BIVUOu1hyCqMD/u7VD3ZyA
+Date: Mon, 5 Jan 2026 18:00:52 +0000
+Message-ID: <3cba9f17436bb3329ff4a54b6d2f8948b2aa7d5d.camel@siemens.com>
+References: <20260105175320.2141753-1-alexander.sverdlin@siemens.com>
+	 <20260105175320.2141753-2-alexander.sverdlin@siemens.com>
+In-Reply-To: <20260105175320.2141753-2-alexander.sverdlin@siemens.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|DU0PR10MB6319:EE_
+x-ms-office365-filtering-correlation-id: 92c3254d-fe00-4e48-95ea-08de4c845e1f
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?R2RjSGZ3aE1ibEZVNUY2ellvMzAwK3BqdjlxM1BSQ1g5R1dxZEI1Qm9vNnBU?=
+ =?utf-8?B?VDNsR2Z1ZFhIRzRYTDJjMVk0UGhjY3ZGbVUyWnJmS1JzK09XcjRETUtkRk1W?=
+ =?utf-8?B?NG5aUm41cGZGWHlMekttR3JVMWVCWHJxVjZGTFRVYjA4R2VOS1JGMkxBMWVp?=
+ =?utf-8?B?dVRFRFhqVk40S2VHTHBwaE9oUWE5ZXBUUDE0YUJmbXprdUlXZ29GOWU1cnh2?=
+ =?utf-8?B?MW4zdFh4bFUzMWxyY1RnWU5JaFArRVFQbHVKeTJ6UWV0VnlReTB5OU8wdXlS?=
+ =?utf-8?B?MzhiZlhLaG50b1ZPM1VMWE5DVEhrQSsxckJVU2pBYU1yL2lSZG9WM05rWFdk?=
+ =?utf-8?B?K0RQd2RVazlZZXV4UWhsODAydlJlRlRHK09ESy9wVithQ3lOSG5lZ0QrYnd1?=
+ =?utf-8?B?azIrWndCWDNpWFhkeURrbTRRLzdRQkpBYmw0bUNaeTNlMkdjWTJtTGVHdkJx?=
+ =?utf-8?B?d3ZtZk9rTTdJQkNWWkhUcCtwekRydHZvK3R1SCtZMENaUmNrdE9DVGRIOGg3?=
+ =?utf-8?B?STZyYmJ4V2pNQnBGVzBwSHVuc3ZheEw1K3Z3MmNWcWtWQ0NXUFlZQWhCVEg5?=
+ =?utf-8?B?OUZlMks4bWJ6U0ZRVDA2SVBpclplME5nb0g3ZjhYYTlqU3haaVkyTlN6aUZD?=
+ =?utf-8?B?aUc1ankwR3d4NzFQbVFUOGVRTk5RTGF3QVdiSFp4K1JmL2wxVFgxRHZGSkZW?=
+ =?utf-8?B?QmFEQ2ZYL1pwYW90aWg2TkMrQi9sSzhTU3Q2WnhGdU55SWVwSURWM0Q4cFcz?=
+ =?utf-8?B?dWo1d3JlVXI1eXBvRzB3UlREQmUraWZXWHhWbVFnNjdwdEZwSGExbkYrb1Jj?=
+ =?utf-8?B?eUcvbkVHNnAxaUZGejNQY1A1bEl3YUdkZ3MrdlAyN1VTNHJxQ25GWUU2d0NK?=
+ =?utf-8?B?QWxoNURtbVBEU3ByN01GT1V4Q1duOU1WSENFeGxoWVVGekphMXJWR2tLU0N0?=
+ =?utf-8?B?bnc4ZDc4NUlOZDluSTdrMW1PYmhWOURDUytwRkpMQ2M4ais5YmlVTkw0anpu?=
+ =?utf-8?B?UEhlTktsSUhqMzNGZ0FlcEpSaDNVN3lYdmZ1b2pxQVp3SWhLMDAvR28rbC9x?=
+ =?utf-8?B?K1dkT2ttRXhMVXBqa1l0NFJQTGdYSW02cnV6cFc2d3N3eEp3aGl3eUhyT3ZB?=
+ =?utf-8?B?bnErakUzdFNCdWVhK3pQOWNIbDh6V3NZMzRENTc5RHdsZmFNbDhnSUt0bTU3?=
+ =?utf-8?B?Zk9Ma296UHVYN09jOG1OK1JWczJJajlIUjZrRVNDOWdnRnJHbXJRR3VyV2pi?=
+ =?utf-8?B?Q2dqeGRUTWsvT2NHMXNGYzgzWmxIb09xdzlURjdxQmdzYi96aWdJZHEzeHZw?=
+ =?utf-8?B?aVE4WTNiUE83WkVwSzlaeW1IcnV6dGlMZ3FjZDMzTjZsRFdsZGIwN3VKeFQ5?=
+ =?utf-8?B?UXVjM09rKzUrRXJrVVRJc3prQVVPQ0EvTFNQNzRaYXJnQ3ZDSmpyelErVmFa?=
+ =?utf-8?B?SkFQbmRsWmIwK0RqUklNc0l5cFYxak1TSDVWdmtpM1dpNVNRWjd2QnF0Wm94?=
+ =?utf-8?B?VUZKcDdoak5sd2pGT2I4MUFEU1JpS28vTmhTUTlreDIxK2VqMkV1TTUyeTNx?=
+ =?utf-8?B?RFZtb0pneXQ1dU9wSnQvbDQ0REcxTTRJeUY1ZGVCVkczY3dJdkg0UTBJMVUx?=
+ =?utf-8?B?bDFvMjk5Y0xIbUdkdHpNdzRWWUUyZkV5RWpOaFJFS01nc2x2RzNESys4Nm9X?=
+ =?utf-8?B?Yi91TXVzRG1LWjd3SXhBL0sydUcwcEgrekRrU0NpeldkTHRyeWlLSlpncXU5?=
+ =?utf-8?B?U0IzQWVERSsxb3JZMm1UL1lpZjRQV3JwaXdrV3BuMzdNVjNpYVMrVXNJTmVn?=
+ =?utf-8?B?NjFRZVBuTFpkY0haano5T0YzeFhuNmNGYlFWVVlGd2lZZldLU280eDgrUmJx?=
+ =?utf-8?B?K1c2U0FMUjAybjdwd3p2SkN5TzlGUEN4N3FPS2dvVUF0cGVlU1lKTTdVc2dl?=
+ =?utf-8?B?R0ZjbWp6SC9PdnpiRTFXaElxZVdTQlBVTC9qUzM4RmErcVZiWmtPSW5zeWIv?=
+ =?utf-8?B?eFJIZlZBUXp3PT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?bzhreXc2bjFRSDhkYksySmVMQ2plTWFhSFAwNmxjTURNbTJ2S1VsczFsVFdh?=
+ =?utf-8?B?OE8xV0lXTFFwMERHMGhVQ3pZZUY5QTF0QlA1c2NaY0hCNzdjNG0xQUthVDhP?=
+ =?utf-8?B?T0xmSlp1UkNBNnp2MWFVdElNTlBKeThwSHU3QnRXUSt4bDArcFZELzM4V2dP?=
+ =?utf-8?B?bzk0N0JRUnNWdzFyL0JEQTc3czc1SllQblR4czRnZGRSMWxrZ0lEODMvTXpK?=
+ =?utf-8?B?OXAzWUdMNHZ4Rm9COHltZHg3S3c4ZXQxbHBPNVgzb2szVktFTlloUE1MOXRT?=
+ =?utf-8?B?VldQRjBLWS9nWTJ5Tm9UbGVGYUhyeDY4L1BtcGZ0bDIzRitnMER0UGtVRTRw?=
+ =?utf-8?B?RmNKMlhhZ1RZMXlUY2R2eTZxUXZNQkFQczBEQzZiVVE4SEpZRG9JSEs5ci90?=
+ =?utf-8?B?N3lLcUw0NHhBbWZiUEIyV0NvUXpaTEtrRjVNMUNyV25rd29YY3Jhb3ZuSXda?=
+ =?utf-8?B?TXlhaWdQdk5RTENzYkZaWlJQZjJ2ZUVsVDlNL2pTeXYvSFYvM3V1ajlPTnJU?=
+ =?utf-8?B?MGlFWmtqMi9WRUJ2a2sxck9aUmZ4clBRSmVRMHFrTzhFNk9qcGdSdFZMQWwr?=
+ =?utf-8?B?K2tYaTNndGdtQmMrNEtQeWVMSnVIbDAyL0UzaEtrWGZLZHo5VmFFQXdVWStX?=
+ =?utf-8?B?RzUwdVBxc0lxZ2xtUHAxTFYwdG9rN1NtMGs3L3FYL2dxRERUMG5LYVR4QUFX?=
+ =?utf-8?B?cmpOV1JMbGhrc1VyNTRaWHkwVjRON2x3aVE1ZmQwZG5ZOEM5ODJhakp2OVpi?=
+ =?utf-8?B?dEJSUkZaUWlpZVh4clBDb2V2T1FROWdyRllXRjc1ekxqYTIxMWZzQjN3T2k5?=
+ =?utf-8?B?UVR3YTA3eDN4eXRHQUJMby9DU2ZYZEpnMFpPa1dib0twTzRQRmpvUnpXVHd5?=
+ =?utf-8?B?UkR4MHFJUVBlMm96QUY2SHJJenppbXJoTHhXcVRtcnY5TDQ2eXo3d29mUTh4?=
+ =?utf-8?B?bzg0Vm82MDBiUHUzcytmeTdQeVBRNmVsbzBzU1ZiZm9OaGF6bDZwVnp6SFdu?=
+ =?utf-8?B?bUVOSjV3WXhIdWd3aXZPYlBCQ1lieHV5NDQ5enhNdDhOS0ZMZ1JRcHo4ZCtG?=
+ =?utf-8?B?d1dWK00rZmloU1lOVkpQYWc0UDZzZGpITlhCYkQ5QjZ3VmNzVEhFY0M4bUpv?=
+ =?utf-8?B?UWNHZmZ3TDRPcnVQbStEajlQVndLNU9iaFNRc3BIU1MwejlnVVZqMHgreERQ?=
+ =?utf-8?B?aWxJc1Z6aUZFRFFhd3o2ZTc0STJJMkd6N0JEbmp0Z1RROFRBZDVMQmd4bHUv?=
+ =?utf-8?B?NFRWZnkwb2N2R21sUytuTlhHUWN3clRoMFZQM3FyOWVMU1dIelNTWFpFRHBQ?=
+ =?utf-8?B?N1JBWmNRaXRMR3Jpb0t3ZlBsODFxMVlUZXJ4SUY3ZjBsL2dTMWJ5TVJ3OE91?=
+ =?utf-8?B?ay9NYnY1eFNDQUd2UThCMmhtejRSWmt6Vnc1bUxLbHFXSUU5QytsQUJ1VjNJ?=
+ =?utf-8?B?dDgyRDZibnlKaUQ3M0hlZEFkMlRyRit6NGRRUi83RDlTKy9FNU5WbDk1cFlk?=
+ =?utf-8?B?WXF3R3VUQlVOSllUOTQxbTRLeXBncHlReUZuTDZDcVFnVlhSaDRxNVFZUHRy?=
+ =?utf-8?B?WTBsY2xwdkpDR2ZHazlldThJU3JVK1BiTWMrMUY0dk02bHBNdGZxdndlK2dt?=
+ =?utf-8?B?WHdUQlcyM1EyTy9Ebi9CNURVOVhrTG5IekVTRWx5ZFQySTJScDlXVldTWlRr?=
+ =?utf-8?B?MzBWWkhkRDJ1TmVuZVhBTzhlSWVDV0ltM1JtbjZzenFUVC9xaFJsVzlHak1y?=
+ =?utf-8?B?RDNvMkoycFJ2d2ZJV09wa1RQaTA4NFR6cS9XT2RYZG1lWGxmK3FrMzFsY3Ft?=
+ =?utf-8?B?VnNQZ0NSNnpqWnJ4c0hweHI5K3Z0YVpsWkM1Y3VWVCt1emVoa1EvQ1ZRYko1?=
+ =?utf-8?B?U2tUWEhXTnhFdTZsVWh3S2hSc1RLVGgzeFBiTks1Si9lckdrZFhTQ3VSOVlx?=
+ =?utf-8?B?cTFmRUE2RnUrTmhtYTVGYk5GeHFaZWtWU25hU09vV0Iydm5jQk8zbEErVlJw?=
+ =?utf-8?B?NHoycnFmVGUwbDhpY2VFdUFkZXdKMkcvWE56UTN4OUh2NG8vNW9IanZ2UXRt?=
+ =?utf-8?B?bTkrQTRmS0RnaVRybVhISXVJSHptQ2xWaHlhTmlLd0Q0TlhjTHk5Q0xxb00w?=
+ =?utf-8?B?NXFNOVA1SHJMNnhzSTdOcUJYWXFWK2RqNmxPV2ljczZwZDk3YWFxY1puaGIx?=
+ =?utf-8?B?cjlqMW42V3V6d3RSVDF6MHh4RDVuZjFCc0VuTFpIbFpKUldhL2hZUTNadDdu?=
+ =?utf-8?B?ZFhBTnFMTnpKaU1HOHZ1R1kyejA1bDErb0crRCtkQXBUUzdXUStLeXhhL1dx?=
+ =?utf-8?B?UmtRNS9mdkk2d1hlU2R4VjhkeWtWc0FvaG0rdWRpcEE5RDIzUU54WVdmMG5s?=
+ =?utf-8?Q?EjkR7cSff8xD3NLg=3D?=
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-ID: <8AA7BDC365FF854590CA543B8C1C7260@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: linux-arm-msm@vger.kernel.org, andersson@kernel.org, krzk+dt@kernel.org, 
- devicetree@vger.kernel.org, konradybcio@kernel.org, conor+dt@kernel.org, 
- linux-kernel@vger.kernel.org
-To: weifu wu <boss@oi-io.cc>
-In-Reply-To: <tencent_9C28E18B378E0835E704B3173AC4045BA606@qq.com>
-References: <tencent_9C28E18B378E0835E704B3173AC4045BA606@qq.com>
-Message-Id: <176763568528.3016971.2841916910009383489.robh@kernel.org>
-Subject: Re: [PATCH 2/2] [PATCH v1 2/2] arm64: dts: qcom: add Acer Swift
- SFA14-11 device tree
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 92c3254d-fe00-4e48-95ea-08de4c845e1f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jan 2026 18:00:53.1570
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: au0RkKDzWRR+MsMEHpSZDDBKoFDohFfkglA2fEnC0GxfK0ri1RTw9V9epT4qihElMQP47PEuNoWn2opKNMCQBYYAM8jWl3sgKR+V/MnisaY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB6319
 
-
-On Sun, 04 Jan 2026 22:37:08 +0800, weifu wu wrote:
-> Add initial device tree for Acer Swift SFA14-11 laptop based on
-> Qualcomm X1E78100 SoC. This enables basic peripherals including
-> eDP panel, backlight, USB and PCIe.
-> 
-> Tested by building dtbs and booting on the target hardware.
-> 
-> Signed-off-by: weifu wu <boss@oi-io.cc>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |    2 +
->  .../dts/qcom/x1e78100-acer-swift-sfa14-11.dts | 1650 +++++++++++++++++
->  2 files changed, 1652 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/x1e78100-acer-swift-sfa14-11.dts
-> 
-
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/v6.19-rc1-22-g328407ba89ae (exact match)
- Base: tags/v6.19-rc1-22-g328407ba89ae (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for tencent_9C28E18B378E0835E704B3173AC4045BA606@qq.com:
-
-arch/arm64/boot/dts/qcom/x1e78100-acer-swift-sfa14-11.dtb: / (acer,swift-sfa14-11): compatible: 'oneOf' conditional failed, one must be fixed:
-	['acer,swift-sfa14-11', 'lenovo,thinkpad-t14s', 'qcom,x1e78100', 'qcom,x1e80100'] is too long
-	['acer,swift-sfa14-11', 'lenovo,thinkpad-t14s', 'qcom,x1e78100', 'qcom,x1e80100'] is too short
-	'acer,swift-sfa14-11' is not one of ['qcom,apq8016-sbc', 'schneider,apq8016-hmibsc']
-	'acer,swift-sfa14-11' is not one of ['asus,sparrow', 'huawei,sturgeon', 'lg,lenok', 'samsung,matisse-wifi', 'samsung,milletwifi']
-	'acer,swift-sfa14-11' is not one of ['asus,nexus7-flo', 'lg,nexus4-mako', 'sony,xperia-yuga', 'qcom,apq8064-cm-qs600', 'qcom,apq8064-ifc6410']
-	'acer,swift-sfa14-11' is not one of ['qcom,apq8074-dragonboard']
-	'acer,swift-sfa14-11' is not one of ['qcom,apq8060-dragonboard', 'qcom,msm8660-surf']
-	'acer,swift-sfa14-11' is not one of ['qcom,apq8084-mtp', 'qcom,apq8084-sbc']
-	'acer,swift-sfa14-11' is not one of ['microsoft,dempsey', 'microsoft,makepeace', 'microsoft,moneypenny', 'motorola,falcon', 'samsung,ms013g', 'samsung,s3ve3g']
-	'acer,swift-sfa14-11' is not one of ['htc,memul', 'microsoft,superman-lte', 'microsoft,tesla', 'motorola,peregrine', 'samsung,matisselte']
-	'acer,swift-sfa14-11' is not one of ['wingtech,wt82918hd']
-	'acer,swift-sfa14-11' is not one of ['asus,z00t', 'huawei,kiwi', 'longcheer,l9100', 'samsung,a7', 'sony,kanuti-tulip', 'square,apq8039-t2', 'wingtech,wt82918', 'wingtech,wt82918hdhw39']
-	'acer,swift-sfa14-11' is not one of ['sony,kugo-row', 'sony,suzu-row']
-	'acer,swift-sfa14-11' is not one of ['qcom,msm8960-cdp', 'samsung,expressatt']
-	'acer,swift-sfa14-11' is not one of ['sony,huashan']
-	'acer,swift-sfa14-11' is not one of ['lge,hammerhead', 'samsung,hlte', 'sony,xperia-amami', 'sony,xperia-honami', 'sony,xperia-togari']
-	'acer,swift-sfa14-11' is not one of ['fairphone,fp2', 'htc,m8', 'oneplus,bacon', 'samsung,klte', 'sony,xperia-aries', 'sony,xperia-castor', 'sony,xperia-leo']
-	'acer,swift-sfa14-11' is not one of ['samsung,kltechn']
-	'acer,swift-sfa14-11' is not one of ['longcheer,l9360']
-	'acer,swift-sfa14-11' is not one of ['acer,a1-724', 'alcatel,idol347', 'asus,z00l', 'gplus,fl8005a', 'huawei,g7', 'lg,c50', 'lg,m216', 'longcheer,l8910', 'longcheer,l8150', 'motorola,harpia', 'motorola,osprey', 'motorola,surnia', 'qcom,msm8916-mtp', 'samsung,a3u-eur', 'samsung,a5u-eur', 'samsung,e5', 'samsung,e7', 'samsung,fortuna3g', 'samsung,gprimeltecan', 'samsung,grandmax', 'samsung,grandprimelte', 'samsung,gt510', 'samsung,gt58', 'samsung,j3ltetw', 'samsung,j5', 'samsung,j5x', 'samsung,rossa', 'samsung,serranove', 'thwc,uf896', 'thwc,ufi001c', 'wingtech,wt86518', 'wingtech,wt86528', 'wingtech,wt88047', 'yiming,uz801-v3']
-	'acer,swift-sfa14-11' is not one of ['xiaomi,riva']
-	'acer,swift-sfa14-11' is not one of ['xiaomi,land']
-	'acer,swift-sfa14-11' is not one of ['flipkart,rimob', 'motorola,potter', 'xiaomi,daisy', 'xiaomi,mido', 'xiaomi,tissot', 'xiaomi,vince']
-	'acer,swift-sfa14-11' is not one of ['lg,bullhead', 'lg,h815', 'microsoft,talkman', 'xiaomi,libra']
-	'acer,swift-sfa14-11' is not one of ['sony,karin_windy']
-	'acer,swift-sfa14-11' is not one of ['huawei,angler', 'microsoft,cityman', 'sony,ivy-row', 'sony,karin-row', 'sony,satsuki-row', 'sony,sumire-row', 'sony,suzuran-row']
-	'acer,swift-sfa14-11' is not one of ['arrow,apq8096-db820c', 'inforce,ifc6640']
-	'acer,swift-sfa14-11' is not one of ['oneplus,oneplus3', 'oneplus,oneplus3t', 'qcom,msm8996-mtp', 'sony,dora-row', 'sony,kagura-row', 'sony,keyaki-row', 'xiaomi,gemini']
-	'acer,swift-sfa14-11' is not one of ['xiaomi,natrium', 'xiaomi,scorpio']
-	'acer,swift-sfa14-11' is not one of ['asus,novago-tp370ql', 'fxtec,pro1', 'hp,envy-x2', 'lenovo,miix-630', 'oneplus,cheeseburger', 'oneplus,dumpling', 'qcom,msm8998-mtp', 'sony,xperia-lilac', 'sony,xperia-maple', 'sony,xperia-poplar', 'xiaomi,sagit']
-	'acer,swift-sfa14-11' is not one of ['8dev,jalapeno', 'alfa-network,ap120c-ac']
-	'acer,swift-sfa14-11' is not one of ['qcom,ipq4019-ap-dk01.1-c1', 'qcom,ipq4019-ap-dk04.1-c3', 'qcom,ipq4019-ap-dk07.1-c1', 'qcom,ipq4019-ap-dk07.1-c2', 'qcom,ipq4019-dk04.1-c1']
-	'acer,swift-sfa14-11' is not one of ['qcom,ipq5018-rdp432-c2', 'tplink,archer-ax55-v1']
-	'acer,swift-sfa14-11' is not one of ['qcom,ipq5332-ap-mi01.2', 'qcom,ipq5332-ap-mi01.3', 'qcom,ipq5332-ap-mi01.6', 'qcom,ipq5332-ap-mi01.9']
-	'acer,swift-sfa14-11' is not one of ['qcom,ipq5424-rdp466']
-	'acer,swift-sfa14-11' is not one of ['mikrotik,rb3011', 'qcom,ipq8064-ap148']
-	'acer,swift-sfa14-11' is not one of ['qcom,ipq8074-hk01', 'qcom,ipq8074-hk10-c1', 'qcom,ipq8074-hk10-c2']
-	'acer,swift-sfa14-11' is not one of ['qcom,ipq9574-ap-al02-c2', 'qcom,ipq9574-ap-al02-c6', 'qcom,ipq9574-ap-al02-c7', 'qcom,ipq9574-ap-al02-c8', 'qcom,ipq9574-ap-al02-c9']
-	'acer,swift-sfa14-11' is not one of ['qcom,kaanapali-mtp', 'qcom,kaanapali-qrd']
-	'swir,mangoh-green-wp8548' was expected
-	'acer,swift-sfa14-11' is not one of ['qcom,qrb2210-rb1']
-	'acer,swift-sfa14-11' is not one of ['fairphone,fp5', 'particle,tachyon', 'qcom,qcm6490-idp', 'qcom,qcs6490-rb3gen2', 'radxa,dragon-q6a', 'shift,otter']
-	'acer,swift-sfa14-11' is not one of ['qcom,qdu1000-idp', 'qcom,qdu1000-x100']
-	'acer,swift-sfa14-11' is not one of ['qcom,qru1000-idp']
-	'acer,swift-sfa14-11' is not one of ['qcom,qar2130p']
-	'acer,swift-sfa14-11' is not one of ['acer,aspire1', 'qcom,sc7180-idp']
-	'google,coachz-rev1' was expected
-	'google,coachz' was expected
-	'google,coachz-rev1-sku0' was expected
-	'google,coachz-sku0' was expected
-	'google,homestar-rev2' was expected
-	'google,homestar-rev3' was expected
-	'google,homestar' was expected
-	'google,kingoftown-rev0' was expected
-	'google,kingoftown' was expected
-	'google,lazor-rev0' was expected
-	'google,lazor-rev1' was expected
-	'google,lazor-rev3' was expected
-	'google,lazor-rev9' was expected
-	'google,lazor' was expected
-	'google,lazor-rev1-sku2' was expected
-	'google,lazor-rev3-sku2' was expected
-	'google,lazor-rev9-sku2' was expected
-	'google,lazor-sku2' was expected
-	'google,lazor-rev1-sku0' was expected
-	'google,lazor-rev3-sku0' was expected
-	'google,lazor-rev9-sku0' was expected
-	'google,lazor-sku0' was expected
-	'google,lazor-rev4-sku4' was expected
-	'google,lazor-rev9-sku4' was expected
-	'google,lazor-sku4' was expected
-	'google,lazor-rev4-sku5' was expected
-	'google,lazor-rev5-sku5' was expected
-	'google,lazor-rev9-sku6' was expected
-	'google,lazor-sku6' was expected
-	'google,mrbland-rev0-sku0' was expected
-	'google,mrbland-sku1536' was expected
-	'google,mrbland-rev0-sku16' was expected
-	'google,mrbland-sku1024' was expected
-	'google,pazquel-sku5' was expected
-	'google,pazquel-sku1' was expected
-	'google,pazquel-sku6' was expected
-	'google,pazquel-sku0' was expected
-	'google,pazquel-sku22' was expected
-	'google,pazquel-sku21' was expected
-	'google,pompom-rev1' was expected
-	'google,pompom-rev2' was expected
-	'google,pompom' was expected
-	'google,pompom-rev1-sku0' was expected
-	'google,pompom-rev2-sku0' was expected
-	'google,pompom-sku0' was expected
-	'google,quackingstick-sku1537' was expected
-	'google,quackingstick-sku1536' was expected
-	'google,trogdor' was expected
-	'google,trogdor-sku0' was expected
-	'google,wormdingler-rev0-sku16' was expected
-	'google,wormdingler-sku1024' was expected
-	'google,wormdingler-sku1025' was expected
-	'google,wormdingler-rev0-sku0' was expected
-	'google,wormdingler-sku0' was expected
-	'google,wormdingler-sku1' was expected
-	'qcom,sc7280-crd' was expected
-	'google,zoglin' was expected
-	'google,zoglin-sku1536' was expected
-	'qcom,sc7280-idp' was expected
-	'qcom,sc7280-idp2' was expected
-	'google,evoker' was expected
-	'google,evoker-sku512' was expected
-	'google,herobrine' was expected
-	'google,villager-rev0' was expected
-	'google,villager' was expected
-	'google,villager-sku512' was expected
-	'google,zombie' was expected
-	'google,zombie-sku512' was expected
-	'google,zombie-sku2' was expected
-	'google,zombie-sku514' was expected
-	'acer,swift-sfa14-11' is not one of ['lenovo,flex-5g', 'microsoft,surface-prox', 'qcom,sc8180x-primus']
-	'acer,swift-sfa14-11' is not one of ['huawei,gaokun3', 'lenovo,thinkpad-x13s', 'microsoft,arcata', 'microsoft,blackrock', 'qcom,sc8280xp-crd', 'qcom,sc8280xp-qrd']
-	'acer,swift-sfa14-11' is not one of ['lenovo,tbx605f', 'motorola,ali']
-	'acer,swift-sfa14-11' is not one of ['sony,discovery-row', 'sony,kirin-row', 'sony,pioneer-row', 'sony,voyager-row']
-	'acer,swift-sfa14-11' is not one of ['inforce,ifc6560']
-	'acer,swift-sfa14-11' is not one of ['fairphone,fp3', 'motorola,ocean']
-	'acer,swift-sfa14-11' is not one of ['sony,mermaid-row']
-	'acer,swift-sfa14-11' is not one of ['xiaomi,lavender']
-	'acer,swift-sfa14-11' is not one of ['google,sargo']
-	'acer,swift-sfa14-11' is not one of ['qcom,sdx55-mtp', 'qcom,sdx55-telit-fn980-tlb', 'qcom,sdx55-t55']
-	'acer,swift-sfa14-11' is not one of ['qcom,sdx65-mtp']
-	'acer,swift-sfa14-11' is not one of ['qcom,sdx75-idp']
-	'acer,swift-sfa14-11' is not one of ['qcom,ipq6018-cp01', 'qcom,ipq6018-cp01-c1']
-	'acer,swift-sfa14-11' is not one of ['qcom,qcs404-evb-1000', 'qcom,qcs404-evb-4000']
-	'acer,swift-sfa14-11' is not one of ['qcom,monaco-evk', 'qcom,qcs8300-ride']
-	'acer,swift-sfa14-11' is not one of ['qcom,qcs615-ride']
-	'acer,swift-sfa14-11' is not one of ['qcom,sa8155p-adp']
-	'acer,swift-sfa14-11' is not one of ['qcom,sa8295p-adp', 'qcom,sa8540p-ride']
-	'acer,swift-sfa14-11' is not one of ['qcom,sa8775p-ride', 'qcom,sa8775p-ride-r3']
-	'acer,swift-sfa14-11' is not one of ['qcom,lemans-evk', 'qcom,qcs9100-ride', 'qcom,qcs9100-ride-r3']
-	'acer,swift-sfa14-11' is not one of ['huawei,planck', 'lenovo,yoga-c630', 'lg,judyln', 'lg,judyp', 'oneplus,enchilada', 'oneplus,fajita', 'qcom,sdm845-mtp', 'shift,axolotl', 'samsung,starqltechn', 'samsung,w737', 'sony,akari-row', 'sony,akatsuki-row', 'sony,apollo-row', 'thundercomm,db845c', 'xiaomi,beryllium', 'xiaomi,beryllium-ebbg', 'xiaomi,polaris']
-	'acer,swift-sfa14-11' is not one of ['oneplus,billie2']
-	'acer,swift-sfa14-11' is not one of ['qcom,qrb4210-rb2']
-	'acer,swift-sfa14-11' is not one of ['qcom,sm4450-qrd']
-	'acer,swift-sfa14-11' is not one of ['fxtec,pro1x']
-	'acer,swift-sfa14-11' is not one of ['lenovo,j606f']
-	'acer,swift-sfa14-11' is not one of ['sony,pdx201', 'xiaomi,ginkgo', 'xiaomi,laurel-sprout']
-	'acer,swift-sfa14-11' is not one of ['sony,pdx213']
-	'acer,swift-sfa14-11' is not one of ['sony,pdx225']
-	'acer,swift-sfa14-11' is not one of ['xiaomi,curtana', 'xiaomi,joyeuse']
-	'acer,swift-sfa14-11' is not one of ['google,sunfish']
-	'acer,swift-sfa14-11' is not one of ['fairphone,fp4']
-	'acer,swift-sfa14-11' is not one of ['nothing,spacewar']
-	'acer,swift-sfa14-11' is not one of ['microsoft,surface-duo', 'qcom,sm8150-hdk', 'qcom,sm8150-mtp', 'sony,bahamut-generic', 'sony,griffin-generic']
-	'acer,swift-sfa14-11' is not one of ['qcom,qrb5165-rb5', 'qcom,sm8250-hdk', 'qcom,sm8250-mtp', 'samsung,r8q', 'samsung,x1q', 'sony,pdx203-generic', 'sony,pdx206-generic', 'xiaomi,elish', 'xiaomi,pipa']
-	'acer,swift-sfa14-11' is not one of ['microsoft,surface-duo2', 'qcom,sm8350-hdk', 'qcom,sm8350-mtp', 'sony,pdx214-generic', 'sony,pdx215-generic']
-	'acer,swift-sfa14-11' is not one of ['qcom,sm8450-hdk', 'qcom,sm8450-qrd', 'samsung,r0q', 'sony,pdx223', 'sony,pdx224']
-	'acer,swift-sfa14-11' is not one of ['qcom,sm8550-hdk', 'qcom,sm8550-mtp', 'qcom,sm8550-qrd', 'samsung,q5q', 'sony,pdx234']
-	'acer,swift-sfa14-11' is not one of ['qcom,qcs8550-aim300-aiot']
-	'acer,swift-sfa14-11' is not one of ['qcom,sm8650-hdk', 'qcom,sm8650-mtp', 'qcom,sm8650-qrd']
-	'acer,swift-sfa14-11' is not one of ['qcom,sm8750-mtp', 'qcom,sm8750-qrd']
-	'acer,swift-sfa14-11' is not one of ['qcom,x1e001de-devkit']
-	'acer,swift-sfa14-11' is not one of ['lenovo,thinkpad-t14s-lcd', 'lenovo,thinkpad-t14s-oled']
-	'acer,swift-sfa14-11' is not one of ['medion,sprchrgd14s1', 'tuxedo,elite14gen1']
-	'acer,swift-sfa14-11' is not one of ['asus,vivobook-s15', 'asus,zenbook-a14-ux3407ra', 'dell,inspiron-14-plus-7441', 'dell,latitude-7455', 'dell,xps13-9345', 'hp,elitebook-ultra-g1q', 'hp,omnibook-x14', 'lenovo,yoga-slim7x', 'microsoft,romulus13', 'microsoft,romulus15', 'qcom,x1e80100-crd', 'qcom,x1e80100-qcp']
-	'acer,swift-sfa14-11' is not one of ['qcom,hamoa-iot-evk']
-	'acer,swift-sfa14-11' is not one of ['asus,zenbook-a14-ux3407qa-lcd', 'asus,zenbook-a14-ux3407qa-oled']
-	'acer,swift-sfa14-11' is not one of ['hp,omnibook-x14-fe1', 'lenovo,thinkbook-16', 'qcom,x1p42100-crd']
-	'qcom,apq8016' was expected
-	'qcom,apq8026' was expected
-	'qcom,apq8064' was expected
-	'qcom,apq8074' was expected
-	'qcom,msm8660' was expected
-	'qcom,apq8084' was expected
-	'qcom,msm8226' was expected
-	'qcom,msm8926' was expected
-	'qcom,msm8929' was expected
-	'qcom,msm8939' was expected
-	'qcom,msm8956' was expected
-	'qcom,msm8960' was expected
-	'qcom,msm8960t' was expected
-	'qcom,msm8974' was expected
-	'qcom,msm8974pro' was expected
-	'samsung,klte' was expected
-	'qcom,msm8976' was expected
-	'qcom,msm8916' was expected
-	'qcom,msm8917' was expected
-	'qcom,msm8937' was expected
-	'qcom,msm8953' was expected
-	'qcom,msm8992' was expected
-	'qcom,apq8094' was expected
-	'qcom,msm8994' was expected
-	'qcom,apq8096-sbc' was expected
-	'qcom,msm8996' was expected
-	'qcom,msm8996pro' was expected
-	'qcom,msm8998' was expected
-	'qcom,ipq4018' was expected
-	'qcom,ipq4019' was expected
-	'qcom,ipq5018' was expected
-	'qcom,ipq5332' was expected
-	'qcom,ipq5424' was expected
-	'qcom,ipq8064' was expected
-	'qcom,ipq8074' was expected
-	'qcom,ipq9574' was expected
-	'qcom,kaanapali' was expected
-	'swir,wp8548' was expected
-	'qcom,qrb2210' was expected
-	'qcom,qcm6490' was expected
-	'qcom,qdu1000' was expected
-	'qcom,qru1000' was expected
-	'qcom,sar2130p' was expected
-	'qcom,sc7180' was expected
-	'google,coachz-rev2' was expected
-	'google,coachz-rev2-sku0' was expected
-	'google,homestar-rev23' was expected
-	'google,lazor-rev2' was expected
-	'google,lazor-rev4' was expected
-	'google,lazor-rev2-sku2' was expected
-	'google,lazor-rev4-sku2' was expected
-	'google,lazor-rev2-sku0' was expected
-	'google,lazor-rev4-sku0' was expected
-	'google,lazor-rev9-sku10' was expected
-	'google,lazor-sku10' was expected
-	'google,lazor-rev5-sku4' was expected
-	'google,lazor-rev9-sku15' was expected
-	'google,lazor-sku15' was expected
-	'google,lazor-rev5-sku6' was expected
-	'google,lazor-rev9-sku18' was expected
-	'google,lazor-sku18' was expected
-	'google,mrbland-sku768' was expected
-	'google,pazquel-sku4' was expected
-	'google,pazquel-sku2' was expected
-	'google,pazquel-sku20' was expected
-	'google,hoglin-rev3' was expected
-	'google,hoglin' was expected
-	'google,hoglin-sku1536' was expected
-	'google,senor' was expected
-	'google,piglin' was expected
-	'qcom,sc7280' was expected
-	'google,zombie-sku3' was expected
-	'qcom,sc8180x' was expected
-	'qcom,sc8280xp' was expected
-	'qcom,sdm450' was expected
-	'qcom,sdm630' was expected
-	'qcom,sda660' was expected
-	'qcom,sdm632' was expected
-	'qcom,sdm636' was expected
-	'qcom,sdm660' was expected
-	'qcom,sdm670' was expected
-	'qcom,sdx55' was expected
-	'qcom,sdx65' was expected
-	'qcom,sdx75' was expected
-	'qcom,ipq6018' was expected
-	'qcom,qcs404-evb' was expected
-	'qcom,qcs8300' was expected
-	'qcom,qcs615' was expected
-	'qcom,sa8155p' was expected
-	'qcom,sa8540p' was expected
-	'qcom,sa8775p' was expected
-	'qcom,qcs9100' was expected
-	'qcom,sdm845' was expected
-	'qcom,sm4250' was expected
-	'qcom,qrb4210' was expected
-	'qcom,sm4450' was expected
-	'qcom,sm6115' was expected
-	'qcom,sm6115p' was expected
-	'qcom,sm6125' was expected
-	'qcom,sm6350' was expected
-	'qcom,sm6375' was expected
-	'qcom,sm7125' was expected
-	'qcom,sm7150' was expected
-	'qcom,sm7225' was expected
-	'qcom,sm7325' was expected
-	'qcom,sm8150' was expected
-	'qcom,sm8250' was expected
-	'qcom,sm8350' was expected
-	'qcom,sm8450' was expected
-	'qcom,sm8550' was expected
-	'qcom,qcs8550-aim300' was expected
-	'qcom,sm8650' was expected
-	'qcom,sm8750' was expected
-	'qcom,x1e001de' was expected
-	'qcom,x1e78100' was expected
-	'qcom,x1e80100' was expected
-	'qcom,hamoa-iot-som' was expected
-	'asus,zenbook-a14-ux3407qa' was expected
-	'qcom,x1p42100' was expected
-	'qcom,apq8096' was expected
-	'qcom,mdm9615' was expected
-	'qcom,qcm2290' was expected
-	'google,lazor-rev5' was expected
-	'google,lazor-rev5-sku2' was expected
-	'google,lazor-rev5-sku0' was expected
-	'google,lazor-rev6-sku4' was expected
-	'google,lazor-rev6-sku6' was expected
-	'google,hoglin-rev4' was expected
-	'google,zombie-sku515' was expected
-	'qcom,qcs404' was expected
-	'qcom,sm6150' was expected
-	'qcom,qcs8550' was expected
-	'google,lazor-rev6' was expected
-	'google,lazor-rev6-sku2' was expected
-	'google,lazor-rev6-sku0' was expected
-	'google,lazor-rev7-sku4' was expected
-	'google,lazor-rev7-sku6' was expected
-	'google,piglin-rev3' was expected
-	from schema $id: http://devicetree.org/schemas/arm/qcom.yaml
-arch/arm64/boot/dts/qcom/x1e78100-acer-swift-sfa14-11.dtb: /: failed to match any schema with compatible: ['acer,swift-sfa14-11', 'lenovo,thinkpad-t14s', 'qcom,x1e78100', 'qcom,x1e80100']
-
-
-
-
-
+UGxlYXNlIGRpc3JlZ2FyZCB0aGUgdHdvIHBhdGNoZXMgd2l0aG91dCBuZXQtbmV4dCB0YWcsIHRo
+ZXkgd2VyZSBtZWFudA0KZm9yIG5ldC1uZXh0LCBJJ3ZlIGp1c3QgcmUtc2VudCB0aGVtIHByb3Bl
+cmx5Lg0KDQpPbiBNb24sIDIwMjYtMDEtMDUgYXQgMTg6NTMgKzAxMDAsIEEuIFN2ZXJkbGluIHdy
+b3RlOg0KPiBGcm9tOiBBbGV4YW5kZXIgU3ZlcmRsaW4gPGFsZXhhbmRlci5zdmVyZGxpbkBzaWVt
+ZW5zLmNvbT4NCj4gDQo+IEFkZCBuZXcgc2xldy1yYXRlIHVpbnQzMiBwcm9wZXJ0eS4gVGhpcyBw
+cm9wZXJ0eSBpcyBvbmx5IGFwcGxpY2FibGUgZm9yDQo+IHBvcnRzIGluIFIoRylNSUkgbW9kZSBh
+bmQgYWxsb3dzIGZvciBzbGV3IHJhdGUgcmVkdWN0aW9uIGluIGNvbXBhcmlzb24gdG8NCj4gIm5v
+cm1hbCIgZGVmYXVsdCBjb25maWd1cmF0aW9uIHdpdGggdGhlIHB1cnBvc2UgdG8gcmVkdWNlIHJh
+ZGlhdGVkDQo+IGVtaXNzaW9ucy4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEFsZXhhbmRlciBTdmVy
+ZGxpbiA8YWxleGFuZGVyLnN2ZXJkbGluQHNpZW1lbnMuY29tPg0KPiAtLS0NCj4gQ2hhbmdlbG9n
+Og0KPiB2MzoNCj4gLSB1c2UgW3BpbmN0cmxdIHN0YW5kYXJkICJzbGV3LXJhdGUiIHByb3BlcnR5
+IGFzIHN1Z2dlc3RlZCBieSBSb2INCj4gICBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAy
+NTEyMTkyMDQzMjQuR0EzODgxOTY5LXJvYmhAa2VybmVsLm9yZy8NCj4gdjI6DQo+IC0gdW5jaGFu
+Z2VkDQo+IA0KPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2RzYS9sYW50aXEsZ3N3aXAu
+eWFtbCAgICAgICAgICB8IDcgKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9u
+cygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy9uZXQvZHNhL2xhbnRpcSxnc3dpcC55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL25ldC9kc2EvbGFudGlxLGdzd2lwLnlhbWwNCj4gaW5kZXggMjA1YjY4Mzg0OWE1My4u
+Mjc3YjEyMWIxNTlkNSAxMDA2NDQNCj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL25ldC9kc2EvbGFudGlxLGdzd2lwLnlhbWwNCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9kc2EvbGFudGlxLGdzd2lwLnlhbWwNCj4gQEAgLTExMSw2
+ICsxMTEsMTMgQEAgcGF0dGVyblByb3BlcnRpZXM6DQo+ICAgICAgICAgICAgICBkZXNjcmlwdGlv
+bjoNCj4gICAgICAgICAgICAgICAgQ29uZmlndXJlIHRoZSBSTUlJIHJlZmVyZW5jZSBjbG9jayB0
+byBiZSBhIGNsb2NrIG91dHB1dA0KPiAgICAgICAgICAgICAgICByYXRoZXIgdGhhbiBhbiBpbnB1
+dC4gT25seSBhcHBsaWNhYmxlIGZvciBSTUlJIG1vZGUuDQo+ICsgICAgICAgICAgc2xldy1yYXRl
+Og0KPiArICAgICAgICAgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMv
+dWludDMyDQo+ICsgICAgICAgICAgICBlbnVtOiBbMCwgMV0NCj4gKyAgICAgICAgICAgIGRlc2Ny
+aXB0aW9uOiB8DQo+ICsgICAgICAgICAgICAgIENvbmZpZ3VyZSBSKEcpTUlJIFRYRC9UWEMgcGFk
+cycgc2xldyByYXRlOg0KPiArICAgICAgICAgICAgICAwOiAibm9ybWFsIg0KPiArICAgICAgICAg
+ICAgICAxOiAic2xvdyINCj4gICAgICAgICAgICB0eC1pbnRlcm5hbC1kZWxheS1wczoNCj4gICAg
+ICAgICAgICAgIGVudW06IFswLCA1MDAsIDEwMDAsIDE1MDAsIDIwMDAsIDI1MDAsIDMwMDAsIDM1
+MDBdDQo+ICAgICAgICAgICAgICBkZXNjcmlwdGlvbjoNCg0KLS0gDQpBbGV4YW5kZXIgU3ZlcmRs
+aW4NClNpZW1lbnMgQUcNCnd3dy5zaWVtZW5zLmNvbQ0K
 
