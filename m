@@ -1,53 +1,46 @@
-Return-Path: <devicetree+bounces-251446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA92CF2FCB
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:30:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95916CF2FD4
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:31:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 76F4F3020693
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:27:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7E3B9303E023
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:27:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6842F5A08;
-	Mon,  5 Jan 2026 10:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA43F2F4A19;
+	Mon,  5 Jan 2026 10:27:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PmE8dF+u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FJcaFNeg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8AD2F3C3D
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 10:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7F0283FF5;
+	Mon,  5 Jan 2026 10:27:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767608834; cv=none; b=o5f+pZ+QY/G01h6NaZ90yXK8ut3vWM9l9gT9gxjWShyVtEyp8E77NsGijV0R+9LHmNi1x0ijiS0qwtl4SZHkPXHRv4X3IEGNR41r94eel7gqzMCvDc1XhS6RrvOltpe6SYnIEwcwmDm7e4v8gmrYWZ9Y0RYQv+qa6YedIHDIVoA=
+	t=1767608850; cv=none; b=U2rZViATid28Mw654ucQ/aD/YlgOHsaPqv/68eepDicO8oh2n0FeDXxT1Sz3XB75e+ASZdfrSiEsSx/bPs2UGyA8pwMN3MljWeeMLUSt3PjM7W3isR0ICgS5N2hlG1/9oq1pBXKUw0xv7OCLnHsi1PdQ3WE9S0DFgz7kOI59xEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767608834; c=relaxed/simple;
-	bh=vVtbdZer29Nu2XoUfAZUVed8YXwgEuk/RZ7iUyEo8n4=;
+	s=arc-20240116; t=1767608850; c=relaxed/simple;
+	bh=tHZP27js8nNBjqfbpBB0iyyjY4FiRMnDTtqC76yuBuA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H6LDV7YX41rG0PpoC0ciEoe5Bphf8PI1SB+ky3MVLaWVVWQ1O+722rwtgMciTQWxCO//ykQTJfGjFv5RbDYZcbjmBpyEwGFsHLXKcghflTr8XhZzUYalItI0RBZMiImklJ6x3psUl0gHENq0ttObsrPjq9CGFZLE9SQwO+zK/5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PmE8dF+u; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id C9FFFC1E482;
-	Mon,  5 Jan 2026 10:26:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BACCF60726;
-	Mon,  5 Jan 2026 10:27:08 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 42A04103C84DB;
-	Mon,  5 Jan 2026 11:27:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767608827; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=oaZntv32SwPguMrDKxe4G++jbeSYrFXSzYxw3xzMSkE=;
-	b=PmE8dF+uM8V+nQ0ixVi2iteYeCW2AnLwRvRcVADyejLKSP2Os2fGtB4HFjStZvACgB4kcS
-	rCv5ngSDPrgDvYSDhghE/4lnV+elpFDjnPw5LbrJacvy0gRHx5LB8JjLK8Yf9uuxDRrAQ9
-	0xJ5XKbKQEQGuVw4rdwlYZoX33YMe9O2+XdABBTUZ1Waj2/LY4BmYohXnefle4B7VUQqWY
-	IR0eup73q52mmfiCWm3zd7vS8oZuR8qlVVO/TClY1DW1ORlTHEGDWvtW5wP17uMi8MG54B
-	VTdnUhIQ9a7ZIx/uJXkEzWdll1bwUFOKbgEWnkbWulZjiWgn8RLRRxbwkQfFtA==
-Message-ID: <51ab7e73-c973-4348-84c1-f5122808ce94@bootlin.com>
-Date: Mon, 5 Jan 2026 11:27:02 +0100
+	 In-Reply-To:Content-Type; b=sJZXegvzEIcYcXHnEuQm9CtYCyc7kk1LofpajT3yTs56YVZeE3Di+nz2YaIYYFUPoddfYJrq8xw/zL/2TQnZAKA+bqv6mwz8kFFS/jgD4YeWBYMbXIkViwayhGu/O7pofPY6nGuy8rThBraTvegTh2fW3NtRhjohgbn3C4f62h4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FJcaFNeg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14FBCC116D0;
+	Mon,  5 Jan 2026 10:27:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767608850;
+	bh=tHZP27js8nNBjqfbpBB0iyyjY4FiRMnDTtqC76yuBuA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FJcaFNegojs9po/V70SsceZyfjr2ETN7eR2erpaZRIlxhNxiafztqHNBSmxvR06bR
+	 +zhoV8MCJk3Qy7H0DlXfVO2QR1FhPBXDb53thv67jDgk+U7OoH86tt7yqmxGOkWre1
+	 uiSh3s48Ue0GZoc00Ftmahbo1PDHeYO+WEHLZER6KcPAnHliydY38S8Hcsuh1mxTY8
+	 nE6CmpVML4wAYxqYU2FEs0xsVFm5YJOsNiBfLnonbyLDJTfRP1SaK2ubxZP/teha0y
+	 EsXs4brD+HEMnI2ulUXHR4wT7xfA40K/Qm26O3vDiVkD9e/4pQv39qtsOgUUOrxHXp
+	 ND5SgUnosuoZA==
+Message-ID: <94c029d9-8036-4bc1-b76f-52d0618fcdf8@kernel.org>
+Date: Mon, 5 Jan 2026 11:27:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,141 +48,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: adc: add driver for Texas Instruments TLA2528
- adc
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, nuno.sa@analog.com,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Angelo Dureghello <adureghello@baylibre.com>,
- Tobias Sperling <tobias.sperling@softing.com>,
- Eason Yang <j2anfernee@gmail.com>,
- Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
- Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
- duje@dujemihanovic.xyz, herve.codina@bootlin.com,
- Rodolfo Giometti <giometti@enneenne.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- thomas.petazzoni@bootlin.com
-References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
- <20251223155534.220504-3-maxime.chevallier@bootlin.com>
- <CAHp75VdtPnDABykge4z2=74zPhGQbfZkiQR30QPvyam4eYE83Q@mail.gmail.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: add Acer Swift SFA14-11
+To: weifu wu <wwfu06@163.com>, andersson@kernel.org, konradybcio@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260105101239.2591419-1-wwfu06@163.com>
+ <20260105101239.2591419-2-wwfu06@163.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <CAHp75VdtPnDABykge4z2=74zPhGQbfZkiQR30QPvyam4eYE83Q@mail.gmail.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260105101239.2591419-2-wwfu06@163.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
 
-Hi Andy,
+On 05/01/2026 11:12, weifu wu wrote:
+> Add DT binding documentation for Acer Swift SFA14-11 laptop based on Qualcomm X1E78100 SoC.
+> 
+> This introduces a new compatible string for the Acer Swift SFA14-11 board.
+> 
+> Signed-off-by: weifu wu <wwfu06@163.com>
+> ---
 
-On 29/12/2025 10:39, Andy Shevchenko wrote:
-> On Tue, Dec 23, 2025 at 5:55 PM Maxime Chevallier
-> <maxime.chevallier@bootlin.com> wrote:
->>
->> This adds a new driver for the TI TLA2528 ADC chip. It ha 8 12-bit
->> channels, that can also be configured as 16-bit averaging channels.
->>
->> Add a very simple driver for it, allowing reading raw values for each
->> channel.
-> 
-> ...
-> 
->> +#include <linux/delay.h>
->> +#include <linux/i2c.h>
->> +#include <linux/module.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/regulator/consumer.h>
-> 
-> Follow IWYU. Here are missing headers, such as bits.h, mutex.h, types.h.
-> 
-> ...
-> 
->> +       case IIO_CHAN_INFO_SCALE:
->> +               *val = tla2528->vref_uv / 1000;
-> 
-> (MICRO/MILLI) ?
+You received review already. Don't ever send the same patches AGAIN.
+This basically hides previous review deep in the mailboxes.
 
-Absolutely
-
-> 
->> +               *val2 = 12;
->> +
->> +               return IIO_VAL_FRACTIONAL_LOG2;
-> 
-> 
-> 
->> +       tla2528->vref_uv = devm_regulator_get_enable_read_voltage(&client->dev,
->> +                                                                 "vref");
-> 
-> With
-> 
->   struct device *dev = &client->dev;
-> 
-> at the top of the function this will be one line and others also can
-> be shortened.
-
-Ah yes indeed !
-
-> 
->> +       if (tla2528->vref_uv < 0)
->> +               return tla2528->vref_uv;
-> 
-> ...
-> 
->> +       /* Set all inputs as analog */
->> +       ret = tla2528_write_reg(tla2528->client, TLA2528_PIN_CFG_ADR, 0x00);
-> 
-> Why not simply use the "client"?
-
-Good point
-
-> 
->> +       if (ret < 0)
->> +               return ret;
->> +
->> +       ret = tla2528_write_reg(tla2528->client, TLA2528_DATA_CFG_ADR,
->> +                               TLA2528_DATA_CFG_APPEND_STATUS);
->> +       if (ret < 0)
->> +               return ret;
->> +
->> +       /* Set manual mode */
->> +       ret = tla2528_write_reg(tla2528->client, TLA2528_SEQUENCE_CFG_ADR, 0x00);
->> +       if (ret < 0)
->> +               return ret;
-> 
-> Ditto.
-> 
-> ...
-> 
->> +static const struct i2c_device_id tla2528_id[] = {
->> +       { "tla2528", 0 },
-> 
-> No ', 0' part.
-> 
->> +       { }
->> +};
-> 
-> ...
-> 
->> +static const struct of_device_id tla2528_of_match[] = {
->> +       { .compatible = "ti,tla2528", },
-> 
-> No inner comma.
-> 
->> +       {  },
-> 
-> No trailing comma.
-> 
->> +};
-> 
-
-I'll address these formatting comments as well, thank you for taking a
-look :)
-
-Maxime
-
+Best regards,
+Krzysztof
 
