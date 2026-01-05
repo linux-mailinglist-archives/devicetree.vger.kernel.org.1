@@ -1,196 +1,402 @@
-Return-Path: <devicetree+bounces-251426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFFFCCF2B78
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 10:24:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E048BCF2BB8
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 10:27:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97FEB3026B34
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 09:18:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A4D9F30206A0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 09:23:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E479E33032D;
-	Mon,  5 Jan 2026 09:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E5131353D;
+	Mon,  5 Jan 2026 09:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ig2D00nS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qicafwu9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B4F32FA2D;
-	Mon,  5 Jan 2026 09:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84C342E173D
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 09:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767604727; cv=none; b=DYRW/nLv9ScTDwJKw5LP9FrXpuG284aRYXc32LDFT86Y4Vfu3y0cjlYqijVJtmfHmKKks2YE9PI4U+0fOlVGapi+PDhy8gsUq7Opj/h3gcnR+WjWmCwfqkqGzllDbUqIcA0wElUE9Wir+q0J3xBtnOVDoFXWtTwLT6WJseehFow=
+	t=1767605024; cv=none; b=g5K9EUm3+HhvNA5wdZD6ZEB2kne8dj55KQ2XyyJGoS68MDomwsg6d6020y8ELipVF479iZgogoXZ/6iKQRmV7HdZT+x4pncbJEwDHJwQkrJOfkg9y6/l/QQV1OI5qqlbuq5o1H42uQRJIFUkXT5cKtXhhUQso2oMSscpqFjj8NE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767604727; c=relaxed/simple;
-	bh=vNkwR1Ju/CZyGHDrg1qDw3LgoH8NLYBIB7LXXhcsPPE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tTW8AmnRMAmP6PT9Zj+CYLwc2urSW23P/UjW2eGbjCNYoLGushFSvDQsMMK5HvP3+p8mu+gGigXzsRNxD9gVfwF3+3tMZ6kHUEeGXHVNwo4iY3r87vGBArmyc7k6Whi6tuC0xQxya+R/rETqna/CL70Nb25H3oXSKovbvZcvhkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ig2D00nS; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 53E6C1A264A;
-	Mon,  5 Jan 2026 09:18:44 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2961060726;
-	Mon,  5 Jan 2026 09:18:44 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 66EE3103C84B1;
-	Mon,  5 Jan 2026 10:18:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767604723; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=r127s6dl25GpRpIM7mZ/xamTGfKd8WdDgfo8ge//VIc=;
-	b=ig2D00nSs+yf3M5Oqeox7dRpTCLX3YJydya//pUM9jWE6heJhPdVmEQ3MsCij1Mn7yDlWw
-	UYkj4bp+k6iOUeFsJ0IDZZzHP9i9ADPOSD33IMN462BWpEZnlGfBsrXAVWa58Y4CvFucSB
-	sGX3qFEBQpMBCwuKtXfIARTe2gyJcrKYZ8eXeKNTBeItOqk2IEFDM2NIhq2SEcV1yB0jCT
-	Ld2Yy6kFoN7BCUFejF7MMkq+/WwCtitKXe0/cX1k+5SA3rdUCXYItmIXRotxFwgDgEVBV7
-	I6yfQCJ2SQ5UZOQL1Nvwo3IEvaXHfpnCzNmw0RQurQXVBVPRzAilbe1ivCFQNQ==
-Message-ID: <a8cd864e-76af-4d81-b5a3-6ad6d88e0b26@bootlin.com>
-Date: Mon, 5 Jan 2026 10:18:40 +0100
+	s=arc-20240116; t=1767605024; c=relaxed/simple;
+	bh=Eqrv+Xj2NyleWcewu+19KnPhFkn7AkPT9dcxYQG9tDQ=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dA0DRw/DiVS06KqKAkaAgxDzw5ai3JiXFc0f7c1Jo6/gIDLdwa055f6MW9RZp3X/J047ZaDkEG8WrbHraJL3rS3HKBnTi82n5l76Yv64azs6n8x6QnVqYXE3e340c2//40FQMeLiMvORTx+oAwFBELZBYFwDJLZwf63NjX4EzQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qicafwu9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FF91C19424
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 09:23:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767605024;
+	bh=Eqrv+Xj2NyleWcewu+19KnPhFkn7AkPT9dcxYQG9tDQ=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=Qicafwu9mAK3fPaRqJO1BzB/G9f2fkojM0xqBB5HMSUdl5o0YXiDROL7kdxokde8A
+	 PttmU0NSJ2x/5dO7vfLMPwlUhRmdXHFmoJRtjR4xzFrrxNfUlyYwR9DL/pziT/Au4k
+	 Y3PqxjqE2PRfra3/f9iT70gi05jqBRq4g7tco6V7SRgJ3MPEy2ZfKZr6iUz8HdAiCE
+	 SV8hw3T7KxC+CnGrFM/VdySnkgvXxFZCrBs0+ahoUM9fZLYit3aqfrJ1AsbA/PsEYN
+	 W8UjTTujJLYWm7xcfjClKOD4pYI2L/MWlAShryJQ1KC3txmIfQX7hSxVWqwjHwAbTj
+	 /Yamm/JPLzImw==
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5942b58ac81so11212607e87.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 01:23:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUXgMxsT2zstyAGJRqovo4g3rh/7pgI8YaIZT/kOiktsWvF4XkS03iE8xWwNGWYRgLPxeiv938Cb/Rx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxi1pStpwEm7w2dfwcv5fLvMSMEiC36VAgYomkmXN27vLQEwl/6
+	dYQxuDDmeoGiHCwNGughvHP5Fe9fWwFBH3I5V+cFBVVh6MowpG+zmtRzziZeRabmutFrKubWEMW
+	eomWi99++Dj/sQmuHfO9f6H7KCwQw93DwAQuIgPbEzA==
+X-Google-Smtp-Source: AGHT+IFGYSai2nZvUP8n2GQ4zJ4ZHV+oe3ze6WQHzze+aMJ+pngnFUNSkH6e+d0MuW5d/47vycCJf5qrwt41Cb+t4LA=
+X-Received: by 2002:a05:6512:224b:b0:594:27c6:a08 with SMTP id
+ 2adb3069b0e04-59a17ddb4dbmr17350284e87.32.1767605022660; Mon, 05 Jan 2026
+ 01:23:42 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 5 Jan 2026 01:23:41 -0800
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 5 Jan 2026 01:23:41 -0800
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260104-02-k3-gpio-v2-2-07377739581a@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add Texas Instruments TLA 2528
-To: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
- <jic23@kernel.org>, nuno.sa@analog.com, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Angelo Dureghello <adureghello@baylibre.com>,
- Tobias Sperling <tobias.sperling@softing.com>,
- Eason Yang <j2anfernee@gmail.com>,
- Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
- Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
- duje@dujemihanovic.xyz, herve.codina@bootlin.com,
- Rodolfo Giometti <giometti@enneenne.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com
-References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
- <20251223155534.220504-2-maxime.chevallier@bootlin.com>
- <56c03c7f-1e5b-4586-beb0-47a1fa3bc86c@baylibre.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <56c03c7f-1e5b-4586-beb0-47a1fa3bc86c@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20260104-02-k3-gpio-v2-0-07377739581a@gentoo.org> <20260104-02-k3-gpio-v2-2-07377739581a@gentoo.org>
+Date: Mon, 5 Jan 2026 01:23:41 -0800
+X-Gmail-Original-Message-ID: <CAMRc=McqmX5T-zOraWHz1Cfap+hcV_X=7dtKQOZehN9O8Fynhw@mail.gmail.com>
+X-Gm-Features: AQt7F2rMiyImlu2F3iBTrebEhOiAXtREj8zFQ8q62Gp72jQPU8L3aYjjTNf4ie0
+Message-ID: <CAMRc=McqmX5T-zOraWHz1Cfap+hcV_X=7dtKQOZehN9O8Fynhw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] gpio: spacemit: Add GPIO support for K3 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, Bartosz Golaszewski <brgl@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
+On Sat, 3 Jan 2026 22:33:39 +0100, Yixun Lan <dlan@gentoo.org> said:
+> SpacemiT K3 SoC has changed gpio register layout while comparing
+> with previous generation, the register offset and bank offset
+> need to be adjusted, introduce a compatible data to extend the
+> driver to support this.
+>
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> ---
+>  drivers/gpio/gpio-spacemit-k1.c | 163 ++++++++++++++++++++++++++++------------
+>  1 file changed, 117 insertions(+), 46 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-spacemit-k1.c b/drivers/gpio/gpio-spacemit-k1.c
+> index eb66a15c002f..bca5c3dc13ca 100644
+> --- a/drivers/gpio/gpio-spacemit-k1.c
+> +++ b/drivers/gpio/gpio-spacemit-k1.c
+> @@ -15,29 +15,37 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/seq_file.h>
+>
+> -/* register offset */
+> -#define SPACEMIT_GPLR		0x00 /* port level - R */
+> -#define SPACEMIT_GPDR		0x0c /* port direction - R/W */
+> -#define SPACEMIT_GPSR		0x18 /* port set - W */
+> -#define SPACEMIT_GPCR		0x24 /* port clear - W */
+> -#define SPACEMIT_GRER		0x30 /* port rising edge R/W */
+> -#define SPACEMIT_GFER		0x3c /* port falling edge R/W */
+> -#define SPACEMIT_GEDR		0x48 /* edge detect status - R/W1C */
+> -#define SPACEMIT_GSDR		0x54 /* (set) direction - W */
+> -#define SPACEMIT_GCDR		0x60 /* (clear) direction - W */
+> -#define SPACEMIT_GSRER		0x6c /* (set) rising edge detect enable - W */
+> -#define SPACEMIT_GCRER		0x78 /* (clear) rising edge detect enable - W */
+> -#define SPACEMIT_GSFER		0x84 /* (set) falling edge detect enable - W */
+> -#define SPACEMIT_GCFER		0x90 /* (clear) falling edge detect enable - W */
+> -#define SPACEMIT_GAPMASK	0x9c /* interrupt mask , 0 disable, 1 enable - R/W */
+> -
+>  #define SPACEMIT_NR_BANKS		4
+>  #define SPACEMIT_NR_GPIOS_PER_BANK	32
+>
+>  #define to_spacemit_gpio_bank(x) container_of((x), struct spacemit_gpio_bank, gc)
+> +#define to_spacemit_gpio_regs(gb) ((gb)->sg->data->offsets)
+> +
+> +enum spacemit_gpio_registers {
+> +	SPACEMIT_GPLR = 0,	/* port level - R */
 
+No need for the = 0 here.
 
-On 23/12/2025 19:26, David Lechner wrote:
-> On 12/23/25 9:55 AM, Maxime Chevallier wrote:
->> The TI TLA 2528 is a simple 8 channel, 12-bit ADC? Add a binding
-> 
-> TLA2528 (no space). Also, why the "?"?
+> +	SPACEMIT_GPDR,		/* port direction - R/W */
+> +	SPACEMIT_GPSR,		/* port set - W */
+> +	SPACEMIT_GPCR,		/* port clear - W */
+> +	SPACEMIT_GRER,		/* port rising edge R/W */
+> +	SPACEMIT_GFER,		/* port falling edge R/W */
+> +	SPACEMIT_GEDR,		/* edge detect status - R/W1C */
+> +	SPACEMIT_GSDR,		/* (set) direction - W */
+> +	SPACEMIT_GCDR,		/* (clear) direction - W */
+> +	SPACEMIT_GSRER,		/* (set) rising edge detect enable - W */
+> +	SPACEMIT_GCRER,		/* (clear) rising edge detect enable - W */
+> +	SPACEMIT_GSFER,		/* (set) falling edge detect enable - W */
+> +	SPACEMIT_GCFER,		/* (clear) falling edge detect enable - W */
+> +	SPACEMIT_GAPMASK,	/* interrupt mask , 0 disable, 1 enable - R/W */
+> +	SPACEMIT_GCPMASK,	/* interrupt mask for K3 */
+> +};
+>
+>  struct spacemit_gpio;
+>
+> +struct spacemit_gpio_data {
+> +	const unsigned int *offsets;
+> +	u32 bank_offsets[SPACEMIT_NR_BANKS];
+> +};
+> +
+>  struct spacemit_gpio_bank {
+>  	struct gpio_generic_chip chip;
+>  	struct spacemit_gpio *sg;
+> @@ -49,9 +57,22 @@ struct spacemit_gpio_bank {
+>
+>  struct spacemit_gpio {
+>  	struct device *dev;
+> +	const struct spacemit_gpio_data *data;
+>  	struct spacemit_gpio_bank sgb[SPACEMIT_NR_BANKS];
+>  };
+>
+> +static u32 spacemit_gpio_read(struct spacemit_gpio_bank *gb,
+> +			      enum spacemit_gpio_registers reg)
+> +{
+> +	return readl(gb->base + to_spacemit_gpio_regs(gb)[reg]);
+> +}
+> +
+> +static void spacemit_gpio_write(struct spacemit_gpio_bank *gb,
+> +				enum spacemit_gpio_registers reg, u32 val)
+> +{
+> +	writel(val, gb->base + to_spacemit_gpio_regs(gb)[reg]);
+> +}
+> +
+>  static u32 spacemit_gpio_bank_index(struct spacemit_gpio_bank *gb)
+>  {
+>  	return (u32)(gb - gb->sg->sgb);
+> @@ -63,10 +84,10 @@ static irqreturn_t spacemit_gpio_irq_handler(int irq, void *dev_id)
+>  	unsigned long pending;
+>  	u32 n, gedr;
+>
+> -	gedr = readl(gb->base + SPACEMIT_GEDR);
+> +	gedr = spacemit_gpio_read(gb, SPACEMIT_GEDR);
+>  	if (!gedr)
+>  		return IRQ_NONE;
+> -	writel(gedr, gb->base + SPACEMIT_GEDR);
+> +	spacemit_gpio_write(gb, SPACEMIT_GEDR, gedr);
+>
+>  	pending = gedr & gb->irq_mask;
+>  	if (!pending)
+> @@ -82,7 +103,7 @@ static void spacemit_gpio_irq_ack(struct irq_data *d)
+>  {
+>  	struct spacemit_gpio_bank *gb = irq_data_get_irq_chip_data(d);
+>
+> -	writel(BIT(irqd_to_hwirq(d)), gb->base + SPACEMIT_GEDR);
+> +	spacemit_gpio_write(gb, SPACEMIT_GEDR, BIT(irqd_to_hwirq(d)));
+>  }
+>
+>  static void spacemit_gpio_irq_mask(struct irq_data *d)
+> @@ -91,13 +112,13 @@ static void spacemit_gpio_irq_mask(struct irq_data *d)
+>  	u32 bit = BIT(irqd_to_hwirq(d));
+>
+>  	gb->irq_mask &= ~bit;
+> -	writel(gb->irq_mask, gb->base + SPACEMIT_GAPMASK);
+> +	spacemit_gpio_write(gb, SPACEMIT_GAPMASK, gb->irq_mask);
+>
+>  	if (bit & gb->irq_rising_edge)
+> -		writel(bit, gb->base + SPACEMIT_GCRER);
+> +		spacemit_gpio_write(gb, SPACEMIT_GCRER, bit);
+>
+>  	if (bit & gb->irq_falling_edge)
+> -		writel(bit, gb->base + SPACEMIT_GCFER);
+> +		spacemit_gpio_write(gb, SPACEMIT_GCFER, bit);
+>  }
+>
+>  static void spacemit_gpio_irq_unmask(struct irq_data *d)
+> @@ -108,12 +129,12 @@ static void spacemit_gpio_irq_unmask(struct irq_data *d)
+>  	gb->irq_mask |= bit;
+>
+>  	if (bit & gb->irq_rising_edge)
+> -		writel(bit, gb->base + SPACEMIT_GSRER);
+> +		spacemit_gpio_write(gb, SPACEMIT_GSRER, bit);
+>
+>  	if (bit & gb->irq_falling_edge)
+> -		writel(bit, gb->base + SPACEMIT_GSFER);
+> +		spacemit_gpio_write(gb, SPACEMIT_GSFER, bit);
+>
+> -	writel(gb->irq_mask, gb->base + SPACEMIT_GAPMASK);
+> +	spacemit_gpio_write(gb, SPACEMIT_GAPMASK, gb->irq_mask);
+>  }
+>
+>  static int spacemit_gpio_irq_set_type(struct irq_data *d, unsigned int type)
+> @@ -123,18 +144,18 @@ static int spacemit_gpio_irq_set_type(struct irq_data *d, unsigned int type)
+>
+>  	if (type & IRQ_TYPE_EDGE_RISING) {
+>  		gb->irq_rising_edge |= bit;
+> -		writel(bit, gb->base + SPACEMIT_GSRER);
+> +		spacemit_gpio_write(gb, SPACEMIT_GSRER, bit);
+>  	} else {
+>  		gb->irq_rising_edge &= ~bit;
+> -		writel(bit, gb->base + SPACEMIT_GCRER);
+> +		spacemit_gpio_write(gb, SPACEMIT_GCRER, bit);
+>  	}
+>
+>  	if (type & IRQ_TYPE_EDGE_FALLING) {
+>  		gb->irq_falling_edge |= bit;
+> -		writel(bit, gb->base + SPACEMIT_GSFER);
+> +		spacemit_gpio_write(gb, SPACEMIT_GSFER, bit);
+>  	} else {
+>  		gb->irq_falling_edge &= ~bit;
+> -		writel(bit, gb->base + SPACEMIT_GCFER);
+> +		spacemit_gpio_write(gb, SPACEMIT_GCFER, bit);
+>  	}
+>
+>  	return 0;
+> @@ -179,15 +200,16 @@ static int spacemit_gpio_add_bank(struct spacemit_gpio *sg,
+>  	struct device *dev = sg->dev;
+>  	struct gpio_irq_chip *girq;
+>  	void __iomem *dat, *set, *clr, *dirin, *dirout;
+> -	int ret, bank_base[] = { 0x0, 0x4, 0x8, 0x100 };
+> +	int ret;
+>
+> -	gb->base = regs + bank_base[index];
+> +	gb->base = regs + sg->data->bank_offsets[index];
+> +	gb->sg = sg;
+>
+> -	dat	= gb->base + SPACEMIT_GPLR;
+> -	set	= gb->base + SPACEMIT_GPSR;
+> -	clr	= gb->base + SPACEMIT_GPCR;
+> -	dirin	= gb->base + SPACEMIT_GCDR;
+> -	dirout	= gb->base + SPACEMIT_GSDR;
+> +	dat	= gb->base + to_spacemit_gpio_regs(gb)[SPACEMIT_GPLR];
+> +	set	= gb->base + to_spacemit_gpio_regs(gb)[SPACEMIT_GPSR];
+> +	clr	= gb->base + to_spacemit_gpio_regs(gb)[SPACEMIT_GPCR];
+> +	dirin	= gb->base + to_spacemit_gpio_regs(gb)[SPACEMIT_GCDR];
+> +	dirout	= gb->base + to_spacemit_gpio_regs(gb)[SPACEMIT_GSDR];
+>
+>  	config = (struct gpio_generic_chip_config) {
+>  		.dev = dev,
+> @@ -206,8 +228,6 @@ static int spacemit_gpio_add_bank(struct spacemit_gpio *sg,
+>  	if (ret)
+>  		return dev_err_probe(dev, ret, "failed to init gpio chip\n");
+>
+> -	gb->sg = sg;
+> -
+>  	gc->label		= dev_name(dev);
+>  	gc->request		= gpiochip_generic_request;
+>  	gc->free		= gpiochip_generic_free;
+> @@ -223,13 +243,13 @@ static int spacemit_gpio_add_bank(struct spacemit_gpio *sg,
+>  	gpio_irq_chip_set_chip(girq, &spacemit_gpio_chip);
+>
+>  	/* Disable Interrupt */
+> -	writel(0, gb->base + SPACEMIT_GAPMASK);
+> +	spacemit_gpio_write(gb, SPACEMIT_GAPMASK, 0);
+>  	/* Disable Edge Detection Settings */
+> -	writel(0x0, gb->base + SPACEMIT_GRER);
+> -	writel(0x0, gb->base + SPACEMIT_GFER);
+> +	spacemit_gpio_write(gb, SPACEMIT_GRER, 0x0);
+> +	spacemit_gpio_write(gb, SPACEMIT_GFER, 0x0);
+>  	/* Clear Interrupt */
+> -	writel(0xffffffff, gb->base + SPACEMIT_GCRER);
+> -	writel(0xffffffff, gb->base + SPACEMIT_GCFER);
+> +	spacemit_gpio_write(gb, SPACEMIT_GCRER, 0xffffffff);
+> +	spacemit_gpio_write(gb, SPACEMIT_GCFER, 0xffffffff);
+>
+>  	ret = devm_request_threaded_irq(dev, irq, NULL,
+>  					spacemit_gpio_irq_handler,
+> @@ -260,6 +280,10 @@ static int spacemit_gpio_probe(struct platform_device *pdev)
+>  	if (!sg)
+>  		return -ENOMEM;
+>
+> +	sg->data = of_device_get_match_data(dev);
+> +	if (!sg->data)
+> +		return dev_err_probe(dev, -EINVAL, "No available compatible data.");
+> +
+>  	regs = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(regs))
+>  		return PTR_ERR(regs);
+> @@ -287,8 +311,55 @@ static int spacemit_gpio_probe(struct platform_device *pdev)
+>  	return 0;
+>  }
+>
+> +static const unsigned int spacemit_gpio_k1_offsets[] = {
+> +	0x00,
+> +	0x0c,
+> +	0x18,
+> +	0x24,
+> +	0x30,
+> +	0x3c,
+> +	0x48,
+> +	0x54,
+> +	0x60,
+> +	0x6c,
+> +	0x78,
+> +	0x84,
+> +	0x90,
+> +	0x9c,
+> +	0xA8,
+> +};
+> +
+> +static const unsigned int spacemit_gpio_k3_offsets[] = {
+> +	0x0,
+> +	0x4,
+> +	0x8,
+> +	0xc,
+> +	0x10,
+> +	0x14,
+> +	0x18,
+> +	0x1c,
+> +	0x20,
+> +	0x24,
+> +	0x28,
+> +	0x2c,
+> +	0x30,
+> +	0x34,
+> +	0x38,
+> +};
 
-that's a typo :) thanks for spotting
+I would very much prefer for you to use the
 
-> 
->> documentation for it.
->>
->> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
->> ---
->>  .../bindings/iio/adc/ti,tla2528.yaml          | 48 +++++++++++++++++++
->>  1 file changed, 48 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml b/Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
->> new file mode 100644
->> index 000000000000..0ee326d77014
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
->> @@ -0,0 +1,48 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/adc/ti,tla2528.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Texas Instruments TLA2528 8-channel 12bit I2C ADC
-> 
-> 12-bit
-> 
->> +
->> +maintainers:
->> +  - Maxime Chevallier <maxime.chevallier@bootlin.com>
->> +
->> +description: |
->> +  12bit 8-channel I2C ADC.
-> 
-> The title already says this. Either drop it or add new info.
-> 
-> Also, don't need the |.
-> 
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,tla2528
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  vref-supply:
->> +    description: Supply for 2.35V to 5.5V reference voltage
-> 
-> According the the datasheet, there are AVDD and DVDD supplies.
-> Nothing named VREF or REF.
-> 
-> So instead:
-> 
-> avdd-supply: true
-> dvdd-supply: true
+    [ENUM] = 0xVALUE
 
-Sure thing, I'll add both instead
+style of initialization here for better readability.
 
-> 
-> 
-> It looks like inputs can also be used as GPIOs, so
-> 
-> gpio-controller: true
-> #gpio-cells:
->   const: 2
-> 
-> would be appropriate (it doesn't matter if the driver doesn't
-> implement it, we know what the correct bindings are).
+Otherwise looks good so LGTM on the next iteration.
 
-Ack, makes a lot of sense
+Bart
 
-> 
->> +
->> +  "#io-channel-cells":
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - vref-supply
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        adc@17 {
->> +            compatible = "ti,tla2528";
->> +            reg = <0x17>;
->> +            vref-supply = <&reg_adc_supply>;
->> +            #io-channel-cells = <1>;
->> +        };
->> +    };
->> +...
-> 
-
-Thank you for reviewing,
-
-Maxime
+> +
+> +static const struct spacemit_gpio_data k1_gpio_data = {
+> +	.offsets = spacemit_gpio_k1_offsets,
+> +	.bank_offsets = { 0x0, 0x4, 0x8, 0x100 },
+> +};
+> +
+> +static const struct spacemit_gpio_data k3_gpio_data = {
+> +	.offsets = spacemit_gpio_k3_offsets,
+> +	.bank_offsets = { 0x0, 0x40, 0x80, 0x100 },
+> +};
+> +
+>  static const struct of_device_id spacemit_gpio_dt_ids[] = {
+> -	{ .compatible = "spacemit,k1-gpio" },
+> +	{ .compatible = "spacemit,k1-gpio", .data = &k1_gpio_data },
+> +	{ .compatible = "spacemit,k3-gpio", .data = &k3_gpio_data },
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, spacemit_gpio_dt_ids);
+> @@ -296,12 +367,12 @@ MODULE_DEVICE_TABLE(of, spacemit_gpio_dt_ids);
+>  static struct platform_driver spacemit_gpio_driver = {
+>  	.probe		= spacemit_gpio_probe,
+>  	.driver		= {
+> -		.name	= "k1-gpio",
+> +		.name	= "spacemit-gpio",
+>  		.of_match_table = spacemit_gpio_dt_ids,
+>  	},
+>  };
+>  module_platform_driver(spacemit_gpio_driver);
+>
+>  MODULE_AUTHOR("Yixun Lan <dlan@gentoo.org>");
+> -MODULE_DESCRIPTION("GPIO driver for SpacemiT K1 SoC");
+> +MODULE_DESCRIPTION("GPIO driver for SpacemiT K1/K3 SoC");
+>  MODULE_LICENSE("GPL");
+>
+> --
+> 2.52.0
+>
+>
 
