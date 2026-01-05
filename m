@@ -1,132 +1,121 @@
-Return-Path: <devicetree+bounces-251489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51C77CF372D
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 13:13:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDDB1CF3739
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 13:14:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EA4F13094A46
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 12:09:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0FC8F30BF30B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 12:09:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD51338F55;
-	Mon,  5 Jan 2026 12:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F8EA338930;
+	Mon,  5 Jan 2026 12:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SxbHD1eT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mkjZPWof"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3756E332915;
-	Mon,  5 Jan 2026 12:08:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B203338920;
+	Mon,  5 Jan 2026 12:08:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767614930; cv=none; b=thklm6zuNvze7PpwZPeWP2DEbcmRZn8wdg2CITKd0/VAi4lOvPuHpE424j9U64u2NSAI32h0v/5at91QZRM50LEAoAY2JimnuDT/LzP6+Ovm2TTaE6yuY3PF1KjBXLThooat3BYhJT3b3mJSz3h8rtDypl4WGIp/WcIhmSHTYGQ=
+	t=1767614935; cv=none; b=dkfENmECa+6MaVubgSR33zHe57I2bzLkt6xGoy7+QUuf7HIFTUGNnjwgiFmZIS6GA1A5gB1xhMXJUvZv2kldd8PsJc3nLD2iX1JXYhniFOFReKHEESQK0+AQAYnqfW9bx7sjAHGOmV6LtY/Wy2Z5x9KPbwDsk0NZ+SLs6fSVPbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767614930; c=relaxed/simple;
-	bh=eYjmO4/KcUuQSAgS/pqGfLZtRf+t9bOtnePit3tibMs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Nor25jdZTKZmkHlSDzxR8NHxnsNyrKpKBbFDTFcJr33Qpc9zwK6xuMvipyRJs4yJUYHgJr696BCCQCdFwyyKr6uIoyyJE3/9jUHydBWrXr0OC21ettt3t5XRny6zHNloqsTSfuh/u2AUnbeDZZ86RtGZBX+OAuyxI1ABZhx1meI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SxbHD1eT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E411C19423;
-	Mon,  5 Jan 2026 12:08:45 +0000 (UTC)
+	s=arc-20240116; t=1767614935; c=relaxed/simple;
+	bh=QNnXaJOxXsXAGc3ryuPQG3XQExP03dfABL7ik9UIHhs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jET2b879sWKNA8KNBEvuZSGUBoI6HvQgRZfHS6pHAsetWTwbT6wG3UQwZw9+LTh6iDaWanEwTCc5qU2rxc+TBCvChFrNMG+bMT6jcaIRt5Q+NuTvyutOjmVyU6zJpFM51L/J5oNiZWeDoEX+SLFUPo4vBuKIkk0GhxXJV9ucGbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mkjZPWof; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA1DEC19421;
+	Mon,  5 Jan 2026 12:08:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767614927;
-	bh=eYjmO4/KcUuQSAgS/pqGfLZtRf+t9bOtnePit3tibMs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=SxbHD1eTJ4owNlGjsW70TBjverDtGr56WE31xriIvnnry3XEZ3jcSh1E7VHVrSbkA
-	 +/DfAHvV95XS+zfBGK3Bvcq4ns/5fTKJXBZPK0Z1go+3wmJsAA8ZiLlvC4YizCF0A3
-	 pVnEDTxl1wiyzm0xrzSNVWgbL9DCM0hCov0VPr1cVA6c7VJ3p3XDl3Y0sDF/omnMqB
-	 mpX73gC6HT5rVbudQywidJHdaGIdV7JXL5TByhnKc3B1XXj/T5mZEKcYuJE/3z9ys2
-	 ebBnDiwijtOmjFUZX/xdME8E1MLJSJSzOp8XC+4wG7Id6DpEu/xeHwoZW0P0ySXe38
-	 BFFYmySrx34mg==
-From: Dinh Nguyen <dinguyen@kernel.org>
-Date: Mon, 05 Jan 2026 06:08:22 -0600
-Subject: [PATCH v2 3/3] dt-bindings: net: altr,socfpga-stmmac: deprecate
- 'stmmaceth-ocp'
+	s=k20201202; t=1767614934;
+	bh=QNnXaJOxXsXAGc3ryuPQG3XQExP03dfABL7ik9UIHhs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mkjZPWof+8KfiVC13oGlw6q0vyUJ5HgJYPmS1WrSJ/HepKIkFOxGQJm2GsFOGbXbx
+	 RnELYocHvCl4dLZUsECIsJrj65bhH/GXkB3M55nkAX0jOgpDVxG5bDO5sAqwTXJBLi
+	 gDfem05P6BRnei3Q62SPWXztH3Cq8gmuPnXHAli/ymR0Q6aaZkhVg/mcfX2FjR78jU
+	 mY6jly6PfJY6jHKcfLn9zsqwyWqe5oXRk3VcFh27UllxvkF5FT9SxWpGSeHScoMrl9
+	 O5LESx1wYQB7O7D/VCpl02MhwqWkrmQTvme019focZrnjD+egzR/uKJ7+tAqh7td2Q
+	 75U3SZgQppvEA==
+Message-ID: <0dd784b8-8308-44f6-a012-7e5c2bfdd91c@kernel.org>
+Date: Mon, 5 Jan 2026 13:08:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] Add Acer Swift SFA14-11 DT and bindings
+To: weifu wu <wwfu06@163.com>, andersson@kernel.org, konradybcio@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260105110431.2596253-1-wwfu06@163.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260105110431.2596253-1-wwfu06@163.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260105-remove_ocp-v2-3-4fa2bda09521@kernel.org>
-References: <20260105-remove_ocp-v2-0-4fa2bda09521@kernel.org>
-In-Reply-To: <20260105-remove_ocp-v2-0-4fa2bda09521@kernel.org>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Mamta Shukla <mamta.shukla@leica-geosystems.com>, 
- Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc: bsp-development.geo@leica-geosystems.com, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, netdev@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Dinh Nguyen <dinguyen@kernel.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1335; i=dinguyen@kernel.org;
- h=from:subject:message-id; bh=eYjmO4/KcUuQSAgS/pqGfLZtRf+t9bOtnePit3tibMs=;
- b=owEBbQKS/ZANAwAKARmUBAuBoyj0AcsmYgBpW6nFGDEllWKa5yDVYKLtEHySPlbck9AIb35oX
- E72YoMUWMGJAjMEAAEKAB0WIQSgeEx6LKTlWbBUzA0ZlAQLgaMo9AUCaVupxQAKCRAZlAQLgaMo
- 9MKRD/9Yk152YGHFJ8AKQitkuaNlY1VXWKWvxwWHopFkr8fWGmHO4yFMObHdCmZXPBn4TRaf7kR
- yO4LdO1avjGMUPAIrQClArlZYlTM2htGT1OWhBRNFtMJzrLgbycBXZRgG8hSEol9sLKUqnIza5H
- 9YAokKctmMLwhKKTNua0unbOJkKHlzOTbxzn/AksmJIuO+q53wg8dQ/l7rwvkkSPNgDvE7AqSyv
- 5/jnJHWPpu4iHqJr38V5EPPSsZTolcZB0bDhR1FzivhwyOUDVsqKT1Cl8tehrsmAsgUNWg4ge+p
- OmB5TIquALO7ykX967taXm4psv808EROVI6WpI0VnoQt2KpowZHRxVmlUXuR0etN+VK5B+p9FRl
- s3QDVue004RHuNUNWvwc7VO859aQN1a9MzK50OhvRLWi58/4//qP+INhEwU8VNT9NVYe6q+LGUQ
- ha00k0Ah1372Rkre6IUwDdurhNWM98ugq9QXYhLI5uQXwPib1wrF7Q2PLMT4+mEiJ2ZYiudKlyP
- OApm/7M8mMUAl6AUZbOGM89xFr+f5kwachzy6oIeXxR1ybOMGkMtssUCwHgnM3OaoED74d7sNTG
- EfDHwEMyUu/dz1Wj1oLi0ed5h+Fse58bn6vqbsSgYVXF4aGCRksoENoVXRT7HXIpWgGae70ET9H
- ulRcXdkmUjDj2bA==
-X-Developer-Key: i=dinguyen@kernel.org; a=openpgp;
- fpr=A0784C7A2CA4E559B054CC0D1994040B81A328F4
 
-Make the reset name 'stmmaceth-ocp' as deprecated and to use 'ahb' going
-forward.
+On 05/01/2026 12:04, weifu wu wrote:
+> dt-bindings: arm: qcom: Remove duplicate const and add Acer Swift SFA14-11
+> 
+> Patch 1 adds the device tree source file and updates the Makefile to include it. [Unmodified]
+> Patch 2 introduces the DT binding documentation for the new board compatible string. [Modified]
+> 
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- .../devicetree/bindings/net/altr,socfpga-stmmac.yaml          | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+Still no changelog and no improvements. That's actually v3?
 
-diff --git a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-index fc445ad5a1f1..4ba06a955fe2 100644
---- a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-+++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-@@ -13,8 +13,6 @@ description:
-   This binding describes the Altera SOCFPGA SoC implementation of the
-   Synopsys DWMAC for the Cyclone5, Arria5, Stratix10, Agilex5 and Agilex7
-   families of chips.
--  # TODO: Determine how to handle the Arria10 reset-name, stmmaceth-ocp, that
--  # does not validate against net/snps,dwmac.yaml.
- 
- select:
-   properties:
-@@ -84,6 +82,15 @@ properties:
-       - sgmii
-       - 1000base-x
- 
-+  resets:
-+    minItems: 1
-+
-+  reset-names:
-+    deprecated: true
-+    items:
-+      - const: stmmaceth-ocp
-+    description: Do not use 'stmmaceth-ocp' going forward, please use 'ahb' instead.
-+
-   rxc-skew-ps:
-     description: Skew control of RXC pad
- 
+Also, one posting per 24h. You keep sending the same, ignoring feedback
+so waiting time is apparently necessary for you to read what people
+wrote in response.
 
--- 
-2.42.0.411.g813d9a9188
-
+Best regards,
+Krzysztof
 
