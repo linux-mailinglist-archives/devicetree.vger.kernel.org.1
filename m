@@ -1,111 +1,245 @@
-Return-Path: <devicetree+bounces-251655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3DE2CF55C4
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:22:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA19ECF558E
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:20:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BC68830DB38E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:17:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AB378302E857
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3EB5346AE9;
-	Mon,  5 Jan 2026 19:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5BA3093AC;
+	Mon,  5 Jan 2026 19:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lGRFtQj7"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="TJ3sIlDR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9885C340DB1;
-	Mon,  5 Jan 2026 19:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15BC22068F
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 19:20:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767640611; cv=none; b=RIgxg7Y7pjD4xeoYl+zsRtT56OI0U+Qf5Wf+wG4PXmA8tWmSbqitWZI6/jJefroUiPLmApPIi4urd8u0u+MfpzQQbLP1lBVT70xv021ZfbE1zbrRUWYDJbdZLjGmb0sbTly8/9lJWxfsXSEoNXgT+6FNBVV+rzXiZ0vER5pXOFg=
+	t=1767640810; cv=none; b=OT69PJGJwhnHFpysZ0YIG6eMb/K3LIGtEdDqvsIaSotL8gsbW2QKFtg8p0JXj1oTvTGT958BTvd2mvFVXg+jZgjqMmoUJeedzPn8+y4iOTE1qsPQmj0+hrTNIQbKElQ8H6p+bWYdlz4SkMOO1wzm1x4MtNrDreuVonYdgzd42nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767640611; c=relaxed/simple;
-	bh=lJsAlyKWGPK9NeKozns1vIwE/xw06yTTTCaW1jO7B+g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HCoBAOz3FWmMZiUDiD7FCO5LNTxC0VW5V372zJrvKSNoNNTUeLd9oZpYBLBpchXOg+qSRk0dw/MvxrKL6IyTS8QRocKN0Lv6JbtzN9uv7GwKqlrfAskvhvJ/THjeIFPjYezDCN5dEexx29wchGcSCTBPdGtpEJZvjGf+1lmlVAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lGRFtQj7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B088C116D0;
-	Mon,  5 Jan 2026 19:16:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767640611;
-	bh=lJsAlyKWGPK9NeKozns1vIwE/xw06yTTTCaW1jO7B+g=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=lGRFtQj70gQmDnVa+VY6r6e4KSgjOBNGNp0yF4W5v0Btif8RXOkXu368UK7II6aaM
-	 lMNjihxYqji82EEDrE9PioYlLoCL/33TIe9X2POs2gCt+FwqW31+/0MMjZya2d3IGT
-	 v9C9ZupLKWi+KClRN47Rb3V/Vm2sWjl8qLpbShvrQwKSlNL6ZexGnCqRdIvP9we6ez
-	 a/E2hb+OgVBOeP8ufDPg45xhu8SRey8ZP611t3AGkgNbJ8tWrOSRL5ekbRnbsbUFmd
-	 O5UirIyaRL3G7/T6653BpnzLl+wxLp7J3gkkaxj7gMs23CCSLIaiS8iCBtu6/QhE/r
-	 9AjZPoT6B0prw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jingoohan1@gmail.com,
-	mani@kernel.org,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	bhelgaas@google.com,
-	johan+linaro@kernel.org,
-	vkoul@kernel.org,
-	kishon@kernel.org,
-	neil.armstrong@linaro.org,
-	Abel Vesa <abelvesa@kernel.org>,
-	Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	qiang.yu@oss.qualcomm.com,
-	quic_krichai@quicinc.com,
-	quic_vbadigan@quicinc.com,
-	Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Subject: Re: (subset) [PATCH v15 0/6] pci: qcom: Add QCS8300 PCIe support
-Date: Mon,  5 Jan 2026 13:16:29 -0600
-Message-ID: <176764058427.2961867.4488819001760832428.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251128104928.4070050-1-ziyue.zhang@oss.qualcomm.com>
-References: <20251128104928.4070050-1-ziyue.zhang@oss.qualcomm.com>
+	s=arc-20240116; t=1767640810; c=relaxed/simple;
+	bh=u5pleekLtqG+MdhYkCY33LZhw5klizNOoYJrUXAVaBo=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ihfBbzKEvIIDHEomWsWpM11mr+7QawAKFR3O/QEnUMcPtHjTjmCDmGVg+MG0DbhR/t7mU7XPy2i+UXjwFV4Zw5HaVgyZGCqLmbayQE6LleO6dtVxIOxtO/rSte6AzQhXlFUvuezJlqSoL7BjM8ozJRhCU8DEKKQ6zOOqWGf4PwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=TJ3sIlDR; arc=none smtp.client-ip=209.85.160.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-4f4a88e75a5so2275231cf.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 11:20:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1767640808; x=1768245608; darn=vger.kernel.org;
+        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:to
+         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=tDDvkHfL5SsDyjmtGrwtC4U8Vp9VsmLY6KqyAaQnAtw=;
+        b=TJ3sIlDR2Zr1fxGTPnL2kmP1+uCUcNJDOPTnHThXRh2U6mXJKQ4i6KOwa5x9Rt2Lqi
+         sFcG+4itmQYt9f0Do/BkPk0+GFSLV/HIdTKFwDaGp1yNdIdlmcRzPqfTx4GXgDL/NNyk
+         hKuJd2gLpSM47PWG73xxoZJDUi7qtQ5y0ZAngy5PhUT5drUQGHkhweFkG1xCeXzZbqFE
+         beLXHnGl4hw/EmUxhaU2zzw4pMO8RJHRynFBkj6yJCkUhh3v0EkW7+DZO1umucuSlW0Z
+         WrjljTxEBzxVT34Lxt7v2q2bUtewxd4du6g45ocgZFTLxjBR5N8Ai9grZ/lsNHLABFFW
+         sIfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767640808; x=1768245608;
+        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:to
+         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tDDvkHfL5SsDyjmtGrwtC4U8Vp9VsmLY6KqyAaQnAtw=;
+        b=CG6RRJDnfka5gtFpOOwvwYWpaSIEPumsn2fnRQqBz0CFfq083NEBZ1B/jhgH86YUQD
+         0Fd7G9PzwMVPAklEMxuu7hV1ys3yd8uTZ1NcBHTEgm9IMdojDK6y6QZV3QimIDX7URQz
+         b/8fpuB146Y4a3M92kVg1mRO7VUL7Tejb7tuRGW50CM+3lICHzqp1uAbUj50pN6CO6zv
+         CnlT+n7oiYwBKLGVfleQdXSY5VI68k8F1F4Fet5iAObiynU+qcLWkQVGY0t7TO2EjH+y
+         044rBQApDpYAjY8sdaZ0i3avpM/FANwZUxP7ptEfWCR1es6HTJ80wvBe41ap9HS/TxCN
+         NmRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVQEYkxQ0GT0mMxG8MxUgyCqDTasYI6JkzCPnm2Jb9bb9rKIF4OC6RFmLg8FYg67eoknwOkJZwmRWE4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDz/dsTUzBBumDUm/AvOO/4EXjZ7WZ6FSEiRinpugq/ebsk9u3
+	wYeLQU7AoRxLnBkIowWlHzbCx5JaRTsm+6A/M/xi5F/AeOoc24CoEd3dXvirOkogIj0=
+X-Gm-Gg: AY/fxX5hfDbPdDN4BG11gGC7tt3JNap+L6xzAcwIeGcggYMNAPsCRQTtrWfzbm/3Bpt
+	T4kVzEQzhuuOlYK60YSuFg1yYL4B6d0I8gs8LfU1y2DiLKCy53seEHdor6syyqJcDVTjElI1SeE
+	IoZ0qKrnm88NPUOMC4MPQk5Z5DcLhGct6Kx9/2gaGPfstFN+6VKiqnDU7R2JtI02LicqqB9Jhx6
+	fAv5uAjuKz0ZRbzRLR5bMFsUbh0gN9VPO8Gyh2bmrLtbAUjCoBsMyzD/qh60YvmUlsrnDEHGT5x
+	0qANj3paF/u/pmGoI18oL3PoRpylNKu/h2WO1DK9p21iYFJHi/o40wVo1Au4XW1hE0gmOWqNzeg
+	N8VvyCepoFcMJciNmUXcaky4oMQzYF0uDNHcBu0xXMzIDprcw6/jiqA13QdmBCqfvcjZIy0cifR
+	P03MInp4xC/K2TmOjT
+X-Google-Smtp-Source: AGHT+IE5ziBUA1L6ZAL+rkRAZxmOcXQvbxBtmVTb5t38TGd5tiHW8FkBWpqUQMf/N8PhTT3xc9qk1w==
+X-Received: by 2002:a05:622a:250b:b0:4eb:a6c5:f6c7 with SMTP id d75a77b69052e-4ffa769a084mr8345811cf.2.1767640807852;
+        Mon, 05 Jan 2026 11:20:07 -0800 (PST)
+Received: from ?IPv6:2606:6d00:17:7b4b::5ac? ([2606:6d00:17:7b4b::5ac])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4ffa708853fsm4201461cf.9.2026.01.05.11.20.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jan 2026 11:20:07 -0800 (PST)
+Message-ID: <415509d2c4639d086614e9a473b09be16442648a.camel@ndufresne.ca>
+Subject: Re: [PATCH v11 03/12] media: mediatek: jpeg: fix jpeg buffer layout
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Kyrie Wu =?UTF-8?Q?=28=E5=90=B4=E6=99=97=29?= <Kyrie.Wu@mediatek.com>, 
+ "linux-kernel@vger.kernel.org"
+	 <linux-kernel@vger.kernel.org>, "linux-mediatek@lists.infradead.org"
+	 <linux-mediatek@lists.infradead.org>, "linux-media@vger.kernel.org"
+	 <linux-media@vger.kernel.org>, "devicetree@vger.kernel.org"
+	 <devicetree@vger.kernel.org>, "mchehab@kernel.org" <mchehab@kernel.org>, 
+ "conor+dt@kernel.org"
+	 <conor+dt@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
+ "hverkuil-cisco@xs4all.nl"
+	 <hverkuil-cisco@xs4all.nl>, "linux-arm-kernel@lists.infradead.org"
+	 <linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
+	 <matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Date: Mon, 05 Jan 2026 14:20:05 -0500
+In-Reply-To: <714f2e57521e990d77b80d23a9eb773ca878b07a.camel@mediatek.com>
+References: <20251202094800.6140-1-kyrie.wu@mediatek.com>
+		 <20251202094800.6140-4-kyrie.wu@mediatek.com>
+		 <89f845b45405bbf985a5e92c195078074bcce0e2.camel@ndufresne.ca>
+	 <714f2e57521e990d77b80d23a9eb773ca878b07a.camel@mediatek.com>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-4+oXkLqgBdCrGoVfdxJj"
+User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
 
 
-On Fri, 28 Nov 2025 18:49:22 +0800, Ziyue Zhang wrote:
-> This series adds document, phy, configs support for PCIe in QCS8300.
-> It also adds 'link_down' reset for sa8775p.
-> 
-> Have follwing changes:
-> 	- Add dedicated schema for the PCIe controllers found on QCS8300.
-> 	- Add compatible for qcs8300 platform.
-> 	- Add configurations in devicetree for PCIe0, including registers, clocks, interrupts and phy setting sequence.
-> 	- Add configurations in devicetree for PCIe1, including registers, clocks, interrupts and phy setting sequence.
-> 
-> [...]
+--=-4+oXkLqgBdCrGoVfdxJj
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+Le jeudi 25 d=C3=A9cembre 2025 =C3=A0 06:05 +0000, Kyrie Wu (=E5=90=B4=E6=
+=99=97) a =C3=A9crit=C2=A0:
+> On Tue, 2025-12-16 at 16:22 -0500, Nicolas Dufresne wrote:
+> > Hi,
+> >=20
+> > Le mardi 02 d=C3=A9cembre 2025 =C3=A0 17:47 +0800, Kyrie Wu a =C3=A9cri=
+t :
+> > > For memory alloc operation of jpeg dst buffer: the mallocing
+> > > memory function interface use vb2_buffer as the base addr.
+> > > If structure mtk_jpeg_src_buf wants to be allocated to memory,
+> > > it needs to be placed vb2_v4l2_buffer at the starting position,
+> > > because structure vb2_buffer is at the starting position of
+> > > vb2_v4l2_buffer, and the allocated size is set to the size of
+> > > structure mtk_jpeg_src_buf, so as to ensure that structures
+> > > mtk_jpeg_src_buf, vb2_v4l2_buffer and vb2_buffer can all be
+> > > allocated memory.
+> >=20
+> > Please correct the wording, "mallocing" is not a word, addr ->
+> > address. I tend
+> > to do the same, but refrain from giving the code a personality, the
+> > vb2_buffer
+> > have no will. This is overall complicated way to simply say:
+> >=20
+> > 	Fix the size of the allocated mtk_jpeg_src_buf structure.
+> >=20
+> > >=20
+> > > Fixes: 5fb1c2361e56 ("mtk-jpegenc: add jpeg encode worker
+> > > interface")
+> > >=20
+> >=20
+> > Drop the blank line.
+> >=20
+> > > Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> > > ---
+> > > =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c | 2 +-
+> > > =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h | 2 +-
+> > > =C2=A02 files changed, 2 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> > > b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> > > index 0cf3dc5407e4..bd0afc93d491 100644
+> > > --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> > > +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> > > @@ -1099,7 +1099,7 @@ static int mtk_jpeg_queue_init(void *priv,
+> > > struct vb2_queue *src_vq,
+> > > =C2=A0	dst_vq->type =3D V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+> > > =C2=A0	dst_vq->io_modes =3D VB2_DMABUF | VB2_MMAP;
+> > > =C2=A0	dst_vq->drv_priv =3D ctx;
+> > > -	dst_vq->buf_struct_size =3D sizeof(struct v4l2_m2m_buffer);
+> > > +	dst_vq->buf_struct_size =3D sizeof(struct mtk_jpeg_src_buf);
+> > > =C2=A0	dst_vq->ops =3D jpeg->variant->qops;
+> > > =C2=A0	dst_vq->mem_ops =3D &vb2_dma_contig_memops;
+> > > =C2=A0	dst_vq->timestamp_flags =3D V4L2_BUF_FLAG_TIMESTAMP_COPY;
+> > > diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
+> > > b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
+> > > index 6be5cf30dea1..148fd41759b7 100644
+> > > --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
+> > > +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
+> > > @@ -85,10 +85,10 @@ struct mtk_jpeg_variant {
+> > > =C2=A0};
+> > > =C2=A0
+> > > =C2=A0struct mtk_jpeg_src_buf {
+> > > -	u32 frame_num;
+> > > =C2=A0	struct vb2_v4l2_buffer b;
+> > > =C2=A0	struct list_head list;
+> > > =C2=A0	u32 bs_size;
+> > > +	u32 frame_num;
+> >=20
+> > I like the change, but this shouldn't be an issue if you use
+> > container_of, which
+> > is safer then a plain cast. Please review the code and make sure to
+> > use it. It
+> > may be confusing to include a cosmetic change in a fixes.
+> >=20
+> > Nicolas
+>=20
+> Dear Nicolas,
+>=20
+> The driver requests memory space for mtk_jpeg_src_buf in the
+> function of mtk_jpeg_queue_init,
+> and it used struct vb2_v4l2_buffer b as the starting base address,
+> the parameter,frame_num, will not get a memory if we keep the old
+> structure. And a unknown memory would be get if we used container_of
+> to get the starting address of mtk_jpeg_src_buf.
 
-[2/6] arm64: dts: qcom: qcs8300: enable pcie0
-      commit: 46a7c01e7e9d296ba09bad579ae0277cfb558b24
-[3/6] arm64: dts: qcom: qcs8300-ride: enable pcie0 interface
-      commit: 33967eadb2153d92ea1de6e9c9ac8ade21c74d86
-[4/6] arm64: dts: qcom: qcs8300: enable pcie1
-      commit: 7565ec0170201aca07c9e1c3b5b6f213c5024599
-[5/6] arm64: dts: qcom: qcs8300-ride: enable pcie1 interface
-      commit: cdb613a84527197f88f8bff3c5ee015e611a8373
-[6/6] arm64: dts: qcom: monaco-evk: Enable PCIe0 and PCIe1.
-      commit: 41e2424651f7c679382bb9e32225d3b541d4aa8d
+You are right, and the documentation says so:
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+ *              The first field of the
+ *		driver-specific buffer structure must be the subsystem-specific
+ *		struct (vb2_v4l2_buffer in the case of V4L2).
+
+This is inconsistent with how other objects are overloaded, notably the req=
+uest
+object, which does not have this limitation. We should probably fix that
+someday, meanwhile.
+
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+
+>=20
+> Thanks.
+>=20
+> Regards,
+> Kyrie.
+> >=20
+> > > =C2=A0	struct mtk_jpeg_dec_param dec_param;
+> > > =C2=A0
+> > > =C2=A0	struct mtk_jpeg_ctx *curr_ctx;
+
+--=-4+oXkLqgBdCrGoVfdxJj
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaVwO5QAKCRDZQZRRKWBy
+9JQpAP0dnUFHHjrwSdklIXv0iM9Mn2ffy7uO4iLtFZ1F13veZwEAxFlPuKq8bjib
+yxKl4rlCUkzH3EGoWvZd1nccuFKJ5Qw=
+=uGnL
+-----END PGP SIGNATURE-----
+
+--=-4+oXkLqgBdCrGoVfdxJj--
 
