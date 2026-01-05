@@ -1,154 +1,124 @@
-Return-Path: <devicetree+bounces-251640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64BF6CF5389
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 19:21:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43865CF4E49
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 18:05:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5A2C1301F022
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 18:21:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9C2E432D3C9B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E86B30E0D9;
-	Mon,  5 Jan 2026 18:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C36630FF3C;
+	Mon,  5 Jan 2026 16:47:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="D+zS7y9c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hXQSiz1I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B10303CB0;
-	Mon,  5 Jan 2026 18:21:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C5C309DDB
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 16:47:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767637312; cv=none; b=soVsgvtYvo1WQ029zrAhgQxIMn/8PUzBerwkovJeAbn9co/oBWL+Zog8K8JI0oPZj6kuOCgyLSyN9LH8/IFzLaDkoH2eHVTO18bF2ziSgSJZ2uqpyokjeTwwNiBsBnrlbVPjzDRdaTj0Nnx2YpM2cCDDKuMUOOBKFlRgHSa/brc=
+	t=1767631647; cv=none; b=eb+L8OfhWaRM7VZUfRf7o1dq3BvkEzyW+gmDKfnLbvI82OtQCJ0vsNMxe/Dr7YIASG82bNuWTdpTXnLyrJi0ytyhs7DDpxBRQtIjB+EPE3bXzolEJHFvdWDcBTBPge6g8+aVW8duuv/0w1KcuBYZsNbtcPWGjdsSON6JTArlfLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767637312; c=relaxed/simple;
-	bh=z6/Wphu0OAMssonNpeRuI/trkuqvtCdVfy8qVsTvcIw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QjcVTMb1YYW8CnHOb+tMUmirv37p5vBUBEbiVwT62/fqIXAL1OMmOsN2rPXLyhl5Bf3mZwu0+NQf9GniKzUABuLz3G04q4dhWwoyd7PR11KExYSWcdZIEKdUfapxzGRF9gSDbVOoBUpnLxUCEM0B2MvId5JyLc8MHCaqrvfOYPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=D+zS7y9c; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dlN170fMhz9tQq;
-	Mon,  5 Jan 2026 19:21:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1767637307;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MMJqVJMgue288REwsy/Kw6YGKx1SN8vSeF+6ZE5Moss=;
-	b=D+zS7y9cPJmp7H19AB12Uc+mBc/ke2p2UuL4YS/0DSDQ4r9a1VtgyxCG3UMOVgOgehUf28
-	SC4w4+OQxJagppCvCwXk+2ay5KJdqaSkokOqIBSHotCxFb+laTaFAOTXUu+SUOb0qdzUpx
-	90yJkRxTdCmw/FuXWXIvMjkpNt9hStakeolIv+f+MkFrZ5totTC/Hz5wE7C2KnS/muevNw
-	JGDj1ZmrNZ624ofZCrxpHgjcEFfrYWxZ95rKILE13KfaVyvWGpLFhdZUIyC5ETUGfs0gNE
-	cnatCGqwGVkFCuTb+0jXZKCoKWSRE9CpChJ9ILyUnJlATxGRAS7CFiN2y34LYw==
-Message-ID: <0355f521-e506-447f-bc6a-cf4405903cfd@mailbox.org>
-Date: Mon, 5 Jan 2026 17:31:55 +0100
+	s=arc-20240116; t=1767631647; c=relaxed/simple;
+	bh=ERyjgMpetsSV7HmNF4hsqF0bdrmrio7r57PRd234Lqw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=U5cmfN10JTNT32KB1zyKmy3d8PSMfx7m9c/Kjlf6w15vI83M4jCourR5rTSlOhJz1MUx+0yyAU9wNMmIthIkTUdz4Sx7dXn42d5XW6QDHAmEpxn8INuvEMbHO0TSb5xGDrA+COhnXU8fig1OeLvDxRj62iGGi8wnvfjPHatDtJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hXQSiz1I; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b736ffc531fso32025366b.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 08:47:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1767631644; x=1768236444; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ERyjgMpetsSV7HmNF4hsqF0bdrmrio7r57PRd234Lqw=;
+        b=hXQSiz1IbgYsEUmS8z5i1yZH/6aox1AulKzNjsOIcwLeXzKFL8WYcNRDbje1eKtLu7
+         d0M795RfyUcvz1hZnCS0HR1MK9lXhNgtrh08XBh8SEGeJtN6+zuhFu8FTKyV1Wn80YdI
+         sbSjd7QtQIArli8keY6GmS+GgpUkT9EpqCuDU9jVVogmarmZk3YK4mM+rF6KDTuors55
+         buWUKbbtnovQTnZ5lIVgSMW6ngZHVU/IMV9leuTQtU1y+MyWkh9KNFXKhG6PgTwTIlej
+         uYg+FbrbY6v36jSRnQmouRcitZZB4wJjYA/oI1h6YgR2NPPHcJ30HIYx3h75eSJpQ4z+
+         oVwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767631644; x=1768236444;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ERyjgMpetsSV7HmNF4hsqF0bdrmrio7r57PRd234Lqw=;
+        b=SNqfG58YHsriHHpA23HBKvRCnGnaFKUGTmUEyVG0mqbiVg1QQ5duQFW/AnN6+OF2/d
+         AYuQWLdwU+e9WIZ7hzLMjVjDMihv4r10ZrzzP7omxophxSc6Tnk9WxT/7/i4eIY8+OTt
+         ExKwI5EJtGw9CNadzcap2azYFyIsfwsbR9jt17JymxG0RcCk6jE0c/CerPuVLNgIkIgb
+         ZBK6rjGmmqy1jMDrZZGKKo83ljV2qfygU9g7NPTkuHt1pJYE2DAI0AQqomiNBE0CNEnE
+         0JlE5x3Z76zyhMetgjoQPRX+Vr97YZPVwFT+VafmzTzKYUUUBqXpHGAWPEePL2mrEoLE
+         RsOw==
+X-Forwarded-Encrypted: i=1; AJvYcCWhHjJQQ1rWLaiOei10AIjZCjuo1exD6A/2/HKd9ymppMo82WGrCLDD/06zeQPasT4hAgY94bnGju7T@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyn/J+yePINKpFnAKjMMER/l1nrvY5Nad3Cu9woSfIwndrWEjOj
+	EN9x+YU0uh7/8AlPFGmWvT2/hFw2nUmtzZeq+Z7pLCleY+3xkJ1kCKkOt7tKyFajxoU=
+X-Gm-Gg: AY/fxX6WJOqrH8QIGg4vZ5LXq1ZfUBXzusNR5ax2hsKbbMMoP6CyqmWCbb9AMszjySc
+	eb5u8wyaVdh3mf9sE/m7DGm0aTuYls90UBM549I4ub5ZfRO1kMqUJ4n0XbIoxqbIuj4AdINPoJA
+	CMyf21RkWDj9th2eWFWBgiebWKjXdLo3W8gP9078feOf0Yc05RSVlVExB2gLwFBPisvbQZrPTl7
+	u/l+bEXHv223DD6k5+NTe4vvOgsKEEcivFQIby/IyvB8WaJXev0RzlRB6hLoO4wOUCWxgLKtr4p
+	Z2AmxaOP3v3TCFbng4QPff8uU+eA4cQHUiQ31frb4EVUJvg1FuU3qkx27whrc/59ok6cXL57CzD
+	B2H1eNOijx2AncsEMjDwP71l7s1yYMCSrtTu4w7xLNRtL6ls1HOhaNlBdhGB4BblABijdAxNFq3
+	vlCVCNYru/CNybcHM8PQ==
+X-Google-Smtp-Source: AGHT+IH8PrChGbBe3ifcPMF0XNauYBYKXVAb42mE0WG2Oe4GF884wrbNFmqGeNp3hqqHYpAdiAIsJg==
+X-Received: by 2002:a17:907:706:b0:b77:f4a:ca1b with SMTP id a640c23a62f3a-b8426a6c79amr36443666b.16.1767631643937;
+        Mon, 05 Jan 2026 08:47:23 -0800 (PST)
+Received: from draszik.lan ([212.129.74.225])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507618cc59sm255498a12.28.2026.01.05.08.47.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jan 2026 08:47:23 -0800 (PST)
+Message-ID: <da028427208fc4d515060375fc95f1cc0f64e2ca.camel@linaro.org>
+Subject: Re: [PATCH v3 5/5] usb: typec: tcpm/tcpci_maxim: deprecate WAR for
+ setting charger mode
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
+ <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
+ Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Date: Mon, 05 Jan 2026 16:47:58 +0000
+In-Reply-To: <20251227-max77759-charger-v3-5-54e664f5ca92@google.com>
+References: <20251227-max77759-charger-v3-0-54e664f5ca92@google.com>
+	 <20251227-max77759-charger-v3-5-54e664f5ca92@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: imx95: remove CLK_GPUAPB
-To: Rain Yang <jiyu.yang@oss.nxp.com>
-Cc: Frank.Li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- festevam@gmail.com, imx@lists.linux.dev, jiyu.yang@nxp.com,
- kernel@pengutronix.de, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- liviu.dudau@arm.com, robh@kernel.org, s.hauer@pengutronix.de,
- shawnguo@kernel.org
-References: <20251231031915.752262-1-jiyu.yang@oss.nxp.com>
- <37489cb7-820d-46cd-a7ea-0f9097604895@mailbox.org>
- <aVXByNiEfC66RDG0@oss.nxp.com>
- <b2dd2109-c2d9-412e-9b11-5851485acf04@mailbox.org>
- <aVegAt002L20oBGf@oss.nxp.com>
- <0de33175-1dc3-417b-8dab-9b57940f0789@mailbox.org>
- <aVsfpHtID4SdPP1n@oss.nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aVsfpHtID4SdPP1n@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: xdypdcre8setbt9xhn7hd96tdehyypri
-X-MBO-RS-ID: f32776500066e9b0833
 
-On 1/5/26 3:19 AM, Rain Yang wrote:
-> On Fri, Jan 02, 2026 at 02:53:31PM +0100, Marek Vasut wrote:
->> On 1/2/26 11:37 AM, Rain Yang wrote:
->>> On Thu, Jan 01, 2026 at 05:51:12PM +0100, Marek Vasut wrote:
->>>> On 1/1/26 1:37 AM, Rain Yang wrote:
->>>>> On Wed, Dec 31, 2025 at 03:11:21PM +0100, Marek Vasut wrote:
->>>>>> On 12/31/25 4:19 AM, Rain Yang wrote:
->>>>>>> From: Rain Yang <jiyu.yang@nxp.com>
->>>>>>>
->>>>>>> Dropping CLK_GPUAPB simplifies OPP handling and avoids unnecessary
->>>>>>> complexity.
->>>>>>>
->>>>>>> Fixes: 67934f248e64 ("arm64: dts: imx95: Describe Mali G310 GPU")
->>>>>>> Signed-off-by: Rain Yang <jiyu.yang@nxp.com>
->>>>>>> ---
->>>>>>>      arch/arm64/boot/dts/freescale/imx95.dtsi | 4 ++--
->>>>>>>      1 file changed, 2 insertions(+), 2 deletions(-)
->>>>>>>
->>>>>>> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
->>>>>>> index 88bde59e61b2..ab446aa6f73c 100644
->>>>>>> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
->>>>>>> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
->>>>>>> @@ -2164,8 +2164,8 @@ netc_emdio: mdio@0,0 {
->>>>>>>      		gpu: gpu@4d900000 {
->>>>>>>      			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
->>>>>>>      			reg = <0 0x4d900000 0 0x480000>;
->>>>>>> -			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>, <&scmi_clk IMX95_CLK_GPUAPB>;
->>>>>>> -			clock-names = "core", "coregroup";
->>>>>>> +			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>;
->>>>>>> +			clock-names = "core";
->>>>>>
->>>>>> I don't think this is correct, SM can disable the GPUAPB clock from the SM
->>>>>> monitor:
->>>>>>
->>>>>>> $ clock.w gpuapb off
->>>>>>
->>>>>> Linux has to make sure the GPUAPB clock are enabled to access the GPU
->>>>>> register, hence the clock have to be described in DT.
->>>>> Hi Marek,
->>>>
->>>> Hello Jiyu,
->>>>
->>>>> CLK_GPU and CLK_GPUAPB can only be controlled internally by the SM, not by Linux.
->>>>> CLK_GPUAPB always runs at a fixed frequency, does not require dynamic adjustment,
->>>>> and is practically always on.
->>>>> Additionally, CLK_GPUAPB's frequency is absent from all OPP entries. Removing it
->>>>> could simplify OPP handling logic and reduce unnecessary complexity.
->>>>
->>>> But the SM can turn the GPUAPB clock off, correct ?
->>>>
->>>> Linux has to be able to turn GPUAPB clock on, therefore the GPUAPB clock have
->>>> to be described in DT, correct ?
->>>
->>> Yes, CLK_GPUAPB can be turned off by the SM, but by default it remains on, just like
->>> CLK_GPU. AFAIK, there is no scenario where either of these clocks could or would be
->>> disabled in both SM and Linux.
->>>
->>> If enabling or disabling CLK_GPUAPB in Linux was wanted, the same shall apply to CLK_GPU
->>> to make this approach reasonable.
->>> Also, OPP framework shall be adjusted to meet these changes too.
->>
->> You can not depend on the state in which bootloader or any other prior stage
->> left the platform. If the clock can be turned off, you must make sure they
->> are turned on for correct hardware operation.
->>
->> CLK_GPU is enabled as parent clock of CLK_GPUCGC already.
-> Hi Marek,
-> I'm afraid it's not what you expected, the CLK_GPUCGC patch already based on the CLK_GPU is
-> always-on, you can disable the CLK_GPU in SM, then run any gles application, the board will reboot.
-Which kernel version are you testing ?
+On Sat, 2025-12-27 at 00:04 +0000, Amit Sunil Dhamne via B4 Relay wrote:
+> From: Amit Sunil Dhamne <amitsd@google.com>
+>=20
+> TCPCI maxim driver directly writes to the charger's register space to
+> set charger mode depending on the power role. As MAX77759 chg driver
+> exists, this WAR is not required.
+>=20
+> Instead, use a regulator interface to source vbus when typec is in
+> source power mode. In other power modes, this regulator will be turned
+> off if active.
+>=20
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> ---
+> =C2=A0drivers/usb/typec/tcpm/tcpci_maxim.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+|=C2=A0 1 +
+> =C2=A0drivers/usb/typec/tcpm/tcpci_maxim_core.c | 54 +++++++++++++++++++-=
+-----------
+> =C2=A02 files changed, 34 insertions(+), 21 deletions(-)
 
-Also, can you share your /sys/kernel/debug/clk/clk_summary ? The clock 
-relationship should be visible there.
+Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
