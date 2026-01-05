@@ -1,118 +1,105 @@
-Return-Path: <devicetree+bounces-251687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B323CF58BD
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 21:40:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65104CF5914
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 21:50:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 606CA30B2391
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 20:40:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 48C84302E611
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 20:50:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB8742DE715;
-	Mon,  5 Jan 2026 20:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35F0722E406;
+	Mon,  5 Jan 2026 20:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qByPEqYv"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="iMF6KrQb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2BF82DC787;
-	Mon,  5 Jan 2026 20:40:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D27471E885A;
+	Mon,  5 Jan 2026 20:50:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.119.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767645603; cv=none; b=dFOKRf/bFJh7JhOmfLZ1GdvWmkIEyksKjwmdSlhabiK344cACDbn3DaCJPyEMDwpAzVfojacoA4Ekoo4x1z94f38Uoilskb1G0ox92g+dhZO1Tlyf7sWOuGaMWWF/tnyOOkKMP7UlVkvIn02eG9ZScVmEAV8AJF0lu3vZWWssGY=
+	t=1767646214; cv=none; b=O2Gc3KKYiffCOvdefCcFbTx+mAts+UJht0XeCgxCd7S8ghqgLqkmnbHtpH3leZI7pUElrQc+BpHCOHMbDbkKrfIsSWFDfM4GcPm+UKMSorlFJzFT20ILBr9XNd5h3/t8xK8KwwqKhOXcA+pGohJwgjaZ/9TENsQ/jgi7bFdbnco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767645603; c=relaxed/simple;
-	bh=CVpX/S7y+WNjSJw8sgxQxlG0GBmMDerBsAHYJiDcp9s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ecxb9kgnkvHGMQyXImeo9fvKC0KTDZTkYQCb+CD/BiLdSbKEzroYuIlEdsbYYfDcNQf0W4cS2/TkB11VjxurxTue5GJwvbo5hk8MYFOuIRF2O05jG7W5UKi/mx+CegRKuClFCM5qo+8PIfS5GPzPlhhO2a60U3nun+KQBcnMnv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qByPEqYv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2ED5CC2BCB4;
-	Mon,  5 Jan 2026 20:40:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767645603;
-	bh=CVpX/S7y+WNjSJw8sgxQxlG0GBmMDerBsAHYJiDcp9s=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=qByPEqYvaB7LBc7uaE/5hoTWyqF8gLJCp/tKeL3+VPLAbCTgGwFmZ5lZ9abh5dnDE
-	 7KmT9dcsiYJPMh1wbkVGatFpFlgwcL66rGDQIJsHyWb6+lq1lfJnj20HOKaUljicOp
-	 Av58siTae8YN5c0CLzz0UcoQTQoyeDgnMH21aFp9VGf31i1ge8HRekrz2IXLCZLbEl
-	 mxZmRNs59b/Mx13sAq7UBOXopPSZjox6YggEltM8eCtENyFsk1bbDZbGUJf8Vt+ZKP
-	 t5H3IdYlRId99sQHx+ca+UvrU3SCeUroW4xi86TRofZkughWmfv8M7NYLCYq3R6oa0
-	 QGN7qHbxJ/9Xw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27363C9833D;
-	Mon,  5 Jan 2026 20:40:03 +0000 (UTC)
-From: Sebastian Krzyszkowiak via B4 Relay <devnull+sebastian.krzyszkowiak.puri.sm@kernel.org>
-Date: Mon, 05 Jan 2026 21:39:43 +0100
-Subject: [PATCH 6/6] arm64: dts: imx8mq-librem5: Don't set mic-cfg for
- wm8962
+	s=arc-20240116; t=1767646214; c=relaxed/simple;
+	bh=1m32XVTn9PTwbQZ19KkaXp3WJn3ox8LXqJA53gvvgME=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S3A/3WbC3+mPxTB6lCwNq1DtHVcO8FvmWQIB9Pa3IITPK72lcXP3bDeqJw3Ssu7z6xu3aBH66VnoGa4KUtwPHhq91hRunRx/bG1Hp7aNY4UslnJOVpFMqgDWX+5ncaYo1ck2pmtRWc4YBkTZSInvEahEp3w/bHu7Lb2pJkq9gOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=iMF6KrQb; arc=none smtp.client-ip=195.154.119.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=xd6KbORI5C80YA+1rjUt8VpP88PP6HIea14IxMA48y8=; b=iMF6KrQb7WMVBPZK/fQsdq66U9
+	F9guszU3ckpXtau7b48YHL1+HRcnXMC6rqjd5eWsJl0SNoZL7awZOKTmjXvNb5Cb+lZTi5iJD0yx9
+	1JusZiFHKw3ZzSV8m13LMdU2zFIRbT39ZL2ejVorKsHCmLLSHWgVs37UzI2arqDu7Q5avI3wQRJWa
+	ZcoZOVVZleDKPurxVNPTl0omEid0JIuAE9bRLOD0XBxu7plR4NAWhdGNZskOHBJtbY3tP+BlWewu1
+	C+GWCJjEStGQuwHCHuZXZMbfhUHbQettgceYt0wPjhoETuoZ7PtZAOMBMEO1cXJo3X1GwCFU7nJaV
+	atSe+Heg==;
+Received: from [2a01:e34:ec5d:a741:1ee1:92ff:feb4:5ec0] (helo=ohm.rr44.fr)
+	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1vcrWO-0000000CcNc-1Gfx;
+	Mon, 05 Jan 2026 21:49:48 +0100
+Date: Mon, 5 Jan 2026 21:49:47 +0100
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: Ze Huang <huang.ze@linux.dev>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] riscv: dts: spacemit: Add USB 3.0 support for K1
+Message-ID: <aVwj6xm28wG7IYtG@aurel32.net>
+Mail-Followup-To: Ze Huang <huang.ze@linux.dev>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+References: <20251101-k1-usb3dts-v1-0-dd2660e5740b@linux.dev>
+ <aVLhQQrYQ0T2rBeq@aurel32.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260105-l5-dtb-fixes-v1-6-f491881a7fe7@puri.sm>
-References: <20260105-l5-dtb-fixes-v1-0-f491881a7fe7@puri.sm>
-In-Reply-To: <20260105-l5-dtb-fixes-v1-0-f491881a7fe7@puri.sm>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- kernel@puri.sm, Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=847;
- i=sebastian.krzyszkowiak@puri.sm; h=from:subject:message-id;
- bh=iFYwHw0xgQRdhe+3vnkoxkuFJ0xjTKuaUaWtu79bHaw=;
- b=owEBbQKS/ZANAwAKAejyNc8728P/AcsmYgBpXCGhzVlyX3SOiwl0zjSkdqxo5SJDUEfUGn+Yx
- cg4R3ha+9SJAjMEAAEKAB0WIQQi3Z+uAGoRQ1g2YXzo8jXPO9vD/wUCaVwhoQAKCRDo8jXPO9vD
- /xOLD/9WUc6hoI0nps0Y5JE1FvDpvYojnUw7HY8XWbPpo0MCODdQzM7mFlqnoJCcRwezi11j2SR
- atDjtGdYpFlyVhU+erBM+5kwCoQulFI/+wb0Gu/qIsUJaOkAvHZ5e+xjMo6EBg4E74K7PuQn4A7
- J7+E9xo9Hl07CNGhcs5xQ9QqdoaYs+/3z5VIrKA2DK3fXXEs32VXoN9vohnAhM6G1B26edOWMIw
- 9BPHoLtX0x/m0FsniLRUsCLtuyLI7YGNgIqP0xjnBO5eiqDYQn0RvwD1GM1CfL6xBF+P/JlEIOZ
- Lj/COX0MjnTXSuPr5OSBjJ5cKWbQZsSGRjy8ZjA3JY25PmSvD5pWfiiKiNCRuST+bBHe/7X2lfa
- EHmaB17AOBnQe3VngkSZztCwzcTbRrbN0fage/BfdKfuSKAQ4lQoBOT9IGUtIGebdrwlzwivFsA
- 9ejJ7g8+98PJeu8o2zsSsOVg7AcrAdpDZmFxp4zMpmMs6ravcMAIHQWAnt34V9C+z76w4YsNSDa
- vfCkOGe5huJXv/Co1zedudRe4npKTANU9+38stpyDbSSpVRsP9nl1q6p+5xfRcma0w4kIUduH0U
- i3j+1kIK1SjJGYTmNKucPVu7kAXqP1mvBuY1JYpN+F1rhI1CsKG0jDbARViuowdSOm8QDxE5Roz
- AjqXxh4SWLby+2Q==
-X-Developer-Key: i=sebastian.krzyszkowiak@puri.sm; a=openpgp;
- fpr=22DD9FAE006A11435836617CE8F235CF3BDBC3FF
-X-Endpoint-Received: by B4 Relay for sebastian.krzyszkowiak@puri.sm/default
- with auth_id=32
-X-Original-From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Reply-To: sebastian.krzyszkowiak@puri.sm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aVLhQQrYQ0T2rBeq@aurel32.net>
+User-Agent: Mutt/2.2.13 (2024-03-09)
 
-From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+Hi,
 
-The default values are fine, and MICDET_ENA is handled by the driver on
-its own anyway.
+On 2025-12-29 21:14, Aurelien Jarno wrote:
+> Hi,
+> 
+> On 2025-11-01 17:03, Ze Huang wrote:
+> > This patch series enables the DWC3 USB 3.0 host controller on the
+> > Spacemit K1 SoC, and enables it for the Banana Pi F3 board.
+> > 
+> > To make USB 3.0 work on the K1, we need patches for the USB2 PHY [1],
+> > ComboPHY [2], and DWC3 [3] driver, also, ensure enabling the following
+> 
+> Note that the ComboPHY part got merged in the meantime.
 
-Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
----
- arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+The USB2 PHY part also got merged, so you might want to send a rebased 
+version against https://github.com/spacemit-com/linux k1/for-next
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index 22b1a29ad440..b6f7daebadf2 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -1085,7 +1085,6 @@ codec: audio-codec@1a {
- 		assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1_OUT>;
- 		assigned-clock-rates = <24576000>;
- 		#sound-dai-cells = <0>;
--		mic-cfg = <0x200>;
- 		DCVDD-supply = <&reg_aud_1v8>;
- 		DBVDD-supply = <&reg_aud_1v8>;
- 		AVDD-supply = <&reg_aud_1v8>;
+Regards
+Aurelien
 
 -- 
-2.52.0
-
-
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
