@@ -1,55 +1,59 @@
-Return-Path: <devicetree+bounces-251693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D473CF5AA2
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 22:29:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C8DCF5AA5
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 22:29:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 85BBC3020CEF
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 21:29:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5F31030268FC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 21:29:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E1B30FC25;
-	Mon,  5 Jan 2026 21:29:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73EEC30FC3C;
+	Mon,  5 Jan 2026 21:29:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MyLU7TVX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N5IZreI6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24F0930DEA6;
-	Mon,  5 Jan 2026 21:29:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C98A30FC09;
+	Mon,  5 Jan 2026 21:29:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767648546; cv=none; b=pZYjIp1JViOaJxVddREXGp/XaIJwg3DRez8RvnHaMkeflJFESCtZ1OZQ4Oqr2JnpjxXbRlb2EIYwLwelUIY8W9zHgEulDWAJyt7nPPssCbReiVj8WfguOrCqSMJjErt26Oq7yOwWZv3FrCG6QKXuuOlYJYGcjORYf8omeEoSXLY=
+	t=1767648555; cv=none; b=LcnwdQ088OzzWeF+jaUDbVy5IiOgAczMrWv74XDuPQ6AT+9jyh841LY4S38Sa6ObnuAcBOWgWAOrRNTXVTlGFH5GUmY3mlhUkIghsfjyOT0z+kDKepOW6I9FIe0xC1gHPFgXOsba6dCVh9IcpWK1OAsNBjG1v+riwvVe3fflh4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767648546; c=relaxed/simple;
-	bh=CiTuVwc7tscmiNNKi7o7qvreD6DS7hi3dLd5+IdW8AE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rnxBtjnwP8iK24YVqTEzWTLJLYRGbcSeEC5KuHecdDuPhFFA3uMXlp3nFHmpeye0VJYvKCvhi6w5geASKkZbfLbXWsydFWwgOMC5jJH2Wts3lSi3B4VyoLeYGxYFqgy7x9D4im13rc/oSh0APGBM4dDaqZviLaaHJNiAA3wsoEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MyLU7TVX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BC31C116D0;
-	Mon,  5 Jan 2026 21:29:05 +0000 (UTC)
+	s=arc-20240116; t=1767648555; c=relaxed/simple;
+	bh=v0iLNjXRbKOhcLt6AHcmqsxeTt/bDlNtovVlwPMyNOk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KvNvEXYaOv4RJvafM66allM/udHbiQ6e6cnPTO5TjsV6Ym+8Z+dBpqVlYZR9hYjeHQDoAGy1N9wg2WB6fFx6tVq9V5SBodj1eThRt9XrzTSFXJTzooPugOCSMyHOF439mpd3UZTeirdZYlnC2r9AWqAqNSuUyBe1Gm64YuziKTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N5IZreI6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C47D6C116D0;
+	Mon,  5 Jan 2026 21:29:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767648545;
-	bh=CiTuVwc7tscmiNNKi7o7qvreD6DS7hi3dLd5+IdW8AE=;
+	s=k20201202; t=1767648553;
+	bh=v0iLNjXRbKOhcLt6AHcmqsxeTt/bDlNtovVlwPMyNOk=;
 	h=From:To:Cc:Subject:Date:From;
-	b=MyLU7TVXqWVP5cnxK1llZYdSGPFcHXVDkIaK6cEz0jWGVt6PVc2HuKr65Rf65xa9y
-	 HPon11mTgb3MwMvfMSi/ncp2OU0BzqDsoZRanpcE2JEpGJGZeoizBLp7ZtA2iOcHVA
-	 RR3p/KNp/l6dZc4NksRlwp5Qsu+gbIJLgv3UyPH1TEL2tcrsrBBt3HA2UKDnyqruI8
-	 sCENthzAmZ7kzr0WOqdnum/kEFLuDdKKK6Pc7N3VsFaGM3f0SUtFT6xmD5BaByf3Yt
-	 gOpW4SA2gGNR9gTEElaYTmp65QBIgWZRH1r3diBfepk4Ufc/GY16/6CTJ1lOPMrSLT
-	 FWVM03VRspHWQ==
+	b=N5IZreI6Z4MpkjQ53rDYo9dksHuvPSP0yTqnQ8vndIM2K7uXp/FpMyIF3CCcGJLkx
+	 84+RNEHWxPjKpbAJAZ7R3S6EDVjY1ROlqhCMV9X0loGh6iNV3gOKZCqH6MHxdmsQ1W
+	 Zw7CId0kE82hahW+rDp62SyUBSAEx9fgA7T4fEISZPHUODg7Sxv8K9rqS0U4OqXjZZ
+	 TOFO+yc/kmlsqk4x61aPmE/GAU2sS06Sq7wszMlk5A8c9yl9IXopZXbsl6n0cb1AC+
+	 LkIjuUGTehI955/catKrmq5K2G9Mh2AmeveU9Gqyi0hqWw9cKg3SG4Myy5l2isfVzF
+	 DD4XZuuZnOr3A==
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@sifive.com>,
+	Conor Dooley <conor@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: soc: samsung: exynos-pmu: Drop unnecessary select schema
-Date: Mon,  5 Jan 2026 15:28:57 -0600
-Message-ID: <20260105212858.3454174-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: riscv: extensions: Drop unnecessary select schema
+Date: Mon,  5 Jan 2026 15:29:09 -0600
+Message-ID: <20260105212910.3454517-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -59,47 +63,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The "select" schema is not necessary because "syscon" compatible is already
-excluded from the default select logic.
+The "select" schema is not necessary because this schema is referenced by
+riscv/cpus.yaml schema.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../bindings/soc/samsung/exynos-pmu.yaml      | 22 -------------------
- 1 file changed, 22 deletions(-)
+ Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-index 6de47489ee42..bc2f83aec42b 100644
---- a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-+++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-@@ -9,28 +9,6 @@ title: Samsung Exynos SoC series Power Management Unit (PMU)
- maintainers:
-   - Krzysztof Kozlowski <krzk@kernel.org>
+diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+index 565cb2cbb49b..29e8b50851ed 100644
+--- a/Documentation/devicetree/bindings/riscv/extensions.yaml
++++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+@@ -24,12 +24,6 @@ description: |
+   ratified states, with the exception of the I, Zicntr & Zihpm extensions.
+   See the "i" property for more information.
  
--# Custom select to avoid matching all nodes with 'syscon'
 -select:
 -  properties:
 -    compatible:
 -      contains:
--        enum:
--          - google,gs101-pmu
--          - samsung,exynos3250-pmu
--          - samsung,exynos4210-pmu
--          - samsung,exynos4212-pmu
--          - samsung,exynos4412-pmu
--          - samsung,exynos5250-pmu
--          - samsung,exynos5260-pmu
--          - samsung,exynos5410-pmu
--          - samsung,exynos5420-pmu
--          - samsung,exynos5433-pmu
--          - samsung,exynos7-pmu
--          - samsung,exynos850-pmu
--          - samsung-s5pv210-pmu
--  required:
--    - compatible
+-        const: riscv
 -
  properties:
-   compatible:
-     oneOf:
+   riscv,isa:
+     description:
 -- 
 2.51.0
 
