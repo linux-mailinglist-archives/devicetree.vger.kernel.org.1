@@ -1,139 +1,152 @@
-Return-Path: <devicetree+bounces-251451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D61E2CF3158
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:56:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84E63CF326D
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 12:07:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D8C5A3008CA7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:56:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 46818303CF71
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 11:03:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72A45330671;
-	Mon,  5 Jan 2026 10:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kPaJmSLr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E743168E9;
+	Mon,  5 Jan 2026 11:03:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 456DC32ED42
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 10:55:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31C71313280
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 11:03:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767610557; cv=none; b=uL1qZ/vMuhWogSDDfeqvG5wXIPCuDVK4q+PW+HfnNDL7jassxx125mkn6I2MjyQQ2szxxIi4uKs5i2RyfbUwg6lorQH52VUrga8dzUBbBhGzWVA3JpgJjBDeEs96dbWsNpogwEgO8b5GWdu34uKZOzUxx+fZwMTTXt7lUmggxjA=
+	t=1767610988; cv=none; b=Jeq5tXO53sOS6oa0QIUUX29EemOtX7DSheaUTwW0zb9UcX3uWXpkjV1YiUB8mhX1pxt1yR6yN4ebSUE1RRsVj3FqiXBpNCyT3QbBVta8o7SqS5I9ToTOTSO4lvCkXVw7ECwVlr4k4fz0LACFKk2LdBzrO4fE6+qyyNDdBzJgYG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767610557; c=relaxed/simple;
-	bh=gwAM3gYozmj68G3BkMYx4yPS500ChdCcsRj5wEpBaOM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EKEHLm86buUZJEMrsLrCw0CXF3dAhEyWROGv/X0KhGsSjvfoycQ3Oor9R0KFIBma88gv/yQ6eqYg9VrVJNGOtLciQqMaadBg6ylW8MPOhDCjm464R2/cQ3inOUePyRSdRIa1ON+RTF2caKTE+o3ig2pGlm1s6Xcdn0IyKZ7Cmvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=kPaJmSLr; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47bdbc90dcaso88994265e9.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 02:55:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1767610554; x=1768215354; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JnIbT9EGamTtHAub2XVlZI7RjkEaaQIsimhhYGKZi4M=;
-        b=kPaJmSLrheOj5Iku9kftAyjUtf9BIpLLuLEeijhDt9TIujariUoxdZ15vsa82Zbg/+
-         YfLlQQOwZtAU5P4eJnddD9OYqDR0e5ovONUFpvlFsqBuA+C+ABwwkQMoFLxYdmx/gbGv
-         htFtIz4WBDEgntI/0/9G/H3S6/EazJi0H/GKs=
+	s=arc-20240116; t=1767610988; c=relaxed/simple;
+	bh=hAms7IKyqam6rNOoqdYp7LLOeRfAUy6pwyvcxDno2zY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=K5ivm5CRPgT0Q0BRLTNYs3prJkJZs1H4OiS1bD/19tLiEP6wqIOYLjXunEYFIRK2V+UBhkeJ1JqcR1bdQ2IIqXIyDz3ELabMKIBJzOT+tHvYCENHioJ6rKqlGCrdReA9KbOQh7bZUlDVvDW/+BRaKd1A2Rlfr+ClD8EGyGjgODo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-93a9f6efe8bso3208563241.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 03:03:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767610554; x=1768215354;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JnIbT9EGamTtHAub2XVlZI7RjkEaaQIsimhhYGKZi4M=;
-        b=bZuVKsyVtlszDx7TKrnd5L6JekaPbCYx+NBU9KLvChfqSyBHza9NJmaPrifehvT73Z
-         eM9eAH4ziFpnLyL5gDwuXq/5/wB1RJEc+alExpWrMYsS2k1t108AN+ZTaANU87wf74IM
-         7OlkVzyDVamQhkqqmQteJc3Q4XHRq8NjbkKBSoPVdrpFJaluDWRsK4Wxo4qZw9QpMpzo
-         VtkBSa8DC8iUt7iHjFAxo4OdBTTw3PNoL6DD8y6DFDvbZv2O2h5wE9eyQXKRtk/nj4KA
-         RwQ4BGsGtyZIULKcMD/LSHLDoDXs6Zk9aeAQmBcoiTGuN4HLNZdCjN4rzOu4BvVF+fmU
-         NGNg==
-X-Forwarded-Encrypted: i=1; AJvYcCW69pSwpQTsiBdJfDOJ3d3bEy8RgWSmkakYD8B+ZHWgGLXRSzWLDwc+ziwUiCb8nUtE5pMq0zkkyqap@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYSz+ai3wr4BdYCO+rz3zoaJMyBD7hH59rFkxW4GZshSMePCVm
-	6BX0QLyNS22J/1LZoJhLwk3fRyyzTkvl9A1PS5FexTcsupLEhvkFse5rFmTHuHP//w==
-X-Gm-Gg: AY/fxX5d6JRbeJySH03H7SebhZpU/+h/xpUC/iNApH/3dU5ry6e/ZS7VOc/AGgusRU/
-	rPTMM2S4QkOFRrWiuBfyH4l2I2axUKB0wVZ3jqDom6QF+2OGvq4C7MDaJ0dn3oGAUTagklU+XQi
-	qQxwg0uFP6rIfwFJL8/dKT76OjI4pn12jM299wDKLZ8nO8JtziWQmv7mZHg5hywmS/3IQhLrAbr
-	udR9BhBWFEofP1f1QqjdqszgF0a4Z6x/NhbIGcCDqksh+VI9NqB8bqeZanonhWFy7v0eGtZB0jW
-	Vijd8mIWQ4xvWFWPr823/vbzydF45snkUEh0ytlLC8CwPrPKsRskVuUojQJ7wqYnttSQ3SycXOv
-	468MnXw3FuKM3SV9LdgYq/V7bdNlR8dWNkYBNfe7HMzZlOfLaIeHpvnYZ3GW9luh49PoUZDLBU/
-	LCd/7iaRjK3SRQaSiqBA==
-X-Google-Smtp-Source: AGHT+IFA865YiL/SGKYZvDw31gF6v3vjD/bgpQhTY+81CJ5vFnSIbiTZ9Gkdx9EH+BTrotYpNM83Zw==
-X-Received: by 2002:a05:600c:c1c8:10b0:47d:403c:e5a0 with SMTP id 5b1f17b1804b1-47d403ce6e0mr358741175e9.12.1767610553632;
-        Mon, 05 Jan 2026 02:55:53 -0800 (PST)
-Received: from google.com ([37.228.206.31])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d6da2425esm146867955e9.12.2026.01.05.02.55.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 02:55:53 -0800 (PST)
-Date: Mon, 5 Jan 2026 10:55:51 +0000
-From: Fabio Baltieri <fabiobaltieri@chromium.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Simon Glass <sjg@chromium.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: google,cros-ec-keyb: add has-fn-map
- prop
-Message-ID: <aVuYt24q6nihC4t0@google.com>
-References: <20251231143538.37483-1-fabiobaltieri@chromium.org>
- <20251231143538.37483-2-fabiobaltieri@chromium.org>
- <20260105-helpful-ocelot-of-eternity-6bb1ee@quoll>
+        d=1e100.net; s=20230601; t=1767610984; x=1768215784;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5HVxxcSl5ZUgm/OiTpMLt/jnUpdmkmBIJiQ/3TY5I8k=;
+        b=M8Ra2I7LxM+MdTDm241KO+HDnlnSKYAn7E4PIPyJP8D0syZ6LsWmi7DXyBo2shXh10
+         NmZbxmThk3XHbrIxSUh890/w5rXDQcI3rFfoKM1ugqlJtdbu87EzJ54srL9QozYa3rvf
+         YaVaGPFCQIHeUF40txAEmZuT6qYmVtH4XPZIdqYQ5rfQJ4nx9ZEc5opFPlDRLiHtEWWf
+         +dCG+eRJYwtGxgRoP3PsIAorMLKbn2v6967e2eRqpDmcD2zNeg7QDPfeOtdHn5ZYsdhC
+         bJg0ZmV4aE1tEA4Bi1jQgBQzvfs0I9kzomCw4WmryPbSIBstQvcJEfYpP0TBBYP68wxQ
+         UfXw==
+X-Forwarded-Encrypted: i=1; AJvYcCVkS8hRwqNrNKR8xFpc+2uWbZTmA7fOdX6rATYD4WubfThJreyhNJvxhbSuGF6IzhPLOpVGCQBX8m0c@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvORmpEp7D2AEFhxBm1QduyR3N9/HFUbymZV4UaMJRtkcFO2tm
+	huLETqBiNUX4IlC4LSzqOcATeGj1pnaEBqh+09Yfz8rzGYAzPDhhXG0/dJUb753k
+X-Gm-Gg: AY/fxX78VIh/gQPZ1kyV83TonxGthVpXgiHBOm8bqfmrws8EXRu8mOBV8VThMBLvstY
+	KA6q0GFtObxWTNf7AlBroZyeI8Qo0smg5w9bSvCp0xgqOevpyqHZGvnPuz5Hnwuj0iUpX1Wr8Of
+	vqG7YhxWTFo+mLucLY/fW5sppX5n1cAKqNw2En3CC+FpEBy+LOWKgt2SsKrlpHM2jyw86E9v6zz
+	hQ06izI51EZeLm9qTYZ9ELoVqXKLuUxkPn6ne2fpcxhzXQIRjyvWNXFwNlV8lDYwPA0QcDn01Qu
+	qhpcFdKKQAq434HM35z6/53VkeTCEp3+bglw/YpsFb6cxHfstHUbbSy6Ck31Yqt78HKiB/ho2VU
+	jA8+xVv0YxlJnG557OCPAwtVzIatTW/wbKwEgiKR/2wmUF6a2aV6kupMXXp1gatj34TXoOl1Kdz
+	Ulu7uxdj3aVVdPA+FpIwJV7OcKIBikotiwZWDYwI4KgP80pDYhWg8Z9CYaWVA=
+X-Google-Smtp-Source: AGHT+IE1nkHGqaTZXPLpEciPMUJN0GKg7Zq7TokDWhsCvOmGvPd3fEvgNG4IW5h6OuXNmMA5Ys00lw==
+X-Received: by 2002:a05:6102:8023:b0:5d5:dbbb:5b86 with SMTP id ada2fe7eead31-5eb1a7cfce2mr14672303137.25.1767610983821;
+        Mon, 05 Jan 2026 03:03:03 -0800 (PST)
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5eb1aa4f55dsm15016563137.2.2026.01.05.03.03.03
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jan 2026 03:03:03 -0800 (PST)
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-5dfd2148bf3so4928704137.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 03:03:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX2f7oVNdhVD8W/TMRJOOtJ0GFlngR2Fwd3tSn+8Lxp6b18JZiDgH2Y8v0VKxNRtCEDkSyOThWzHKOj@vger.kernel.org
+X-Received: by 2002:a05:6102:c90:b0:5df:c15b:4feb with SMTP id
+ ada2fe7eead31-5eb1a7d3c4fmr13074222137.26.1767610982990; Mon, 05 Jan 2026
+ 03:03:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260105-helpful-ocelot-of-eternity-6bb1ee@quoll>
+References: <20251217080843.70621-1-shorne@gmail.com> <20251217080843.70621-3-shorne@gmail.com>
+ <CAMuHMdVCY=5UypK65Ver6UZM_m6DZuw9mhfANMx4+Y6PgNAdmA@mail.gmail.com> <aVi0W6syzK6buL_v@antec>
+In-Reply-To: <aVi0W6syzK6buL_v@antec>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 5 Jan 2026 12:02:52 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUP3z4Os=3XC6Nuzx8QAap=LTcuJrGZsy71GO=NFTOjZg@mail.gmail.com>
+X-Gm-Features: AQt7F2psihV0yZwb9Ig62dHZ18S-t-DpkRavD32vIkfcb25fPGFgWjTlZzYQH6k
+Message-ID: <CAMuHMdUP3z4Os=3XC6Nuzx8QAap=LTcuJrGZsy71GO=NFTOjZg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] openrisc: dts: Add de0 nano config and devicetree
+To: Stafford Horne <shorne@gmail.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, 
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonas Bonn <jonas@southpole.se>, 
+	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Jan 05, 2026 at 08:52:56AM +0100, Krzysztof Kozlowski wrote:
-> On Wed, Dec 31, 2025 at 02:35:37PM +0000, Fabio Baltieri wrote:
-> > Add binding documentation for the has-fn-map property.
-> > 
-> > Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
-> > ---
-> >  .../devicetree/bindings/input/google,cros-ec-keyb.yaml    | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > index fefaaf46a240..fa24b1cbc788 100644
-> > --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > @@ -44,6 +44,14 @@ properties:
-> >        where the lower 16 bits are reserved. This property is specified only
-> >        when the keyboard has a custom design for the top row keys.
-> >  
-> > +  google,has-fn-map:
-> > +    description: |
-> > +      The keymap has function key layer. This allows defining an extra set of
-> > +      codes that are sent if a key is pressed while the KEY_FN is held pressed
-> > +      as well. The function codes have to be defined in the linux,keymap
-> > +      property with an offset of keypad,num-rows from the normal ones.
-> > +    type: boolean
-> 
-> You still did not answer to my previous question, why this is not
-> deducible from the key map (presence of KEY_FN in the map).
+Hi Stafford,
 
-The driver behaves differently with the fn layer is present, has to make
-extra space for the extra codes and enable the logic to use it. I can
-certainly detect it in runtime, would have to always allocate the extra
-space even if not needed and check not only that there is an FN key but
-if there's anything in the second half of the map.
+On Sat, 3 Jan 2026 at 07:17, Stafford Horne <shorne@gmail.com> wrote:
+> On Thu, Dec 18, 2025 at 07:36:08PM +0100, Geert Uytterhoeven wrote:
+> > On Wed, 17 Dec 2025 at 09:23, Stafford Horne <shorne@gmail.com> wrote:
+> > > The de0 nano from Terasic is an FPGA board that we use in the OpenRISC
+> > > community to test OpenRISC configurations.  Add a base configuration for
+> > > the board that runs an OpenRISC CPU at 50Mhz with 32MB ram, UART for
+> > > console and some GPIOs for LEDs and switches.
+> > >
+> > > There is an older version of this floating around that defines all of
+> > > the hardware on the board including SPI's, flash devices, sram, ADCs
+> > > etc.  Eventually it would be good to get the full version upstream
+> > > but for now I think a minimal board is good to start with.
+> > >
+> > > Link: https://openrisc.io/tutorials/de0_nano/
+> > > Link: https://github.com/olofk/de0_nano
+> > >
+> > > Signed-off-by: Stafford Horne <shorne@gmail.com>
 
-I'm not overly enthusiastic about it, it's a bit wasteful on memory
-(probably no big deal, half a kb of RAM I guess) and somewhat less
-defensive to misconfigurations and in general I don't like the new logic
-to be enabled magically, as a side effect. It'd be extra complexity for
-the sake of saving one boolean property, but sure if you think that's
-the way to go then I guess I can implement it that way.
+> > > --- /dev/null
+> > > +++ b/arch/openrisc/boot/dts/de0-nano.dts
+> > > @@ -0,0 +1,54 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +
+> > > +/dts-v1/;
+> > > +
+> > > +#include "de0-nano-common.dtsi"
+> > > +
+> > > +/ {
+> > > +       model = "Terasic DE0 Nano";
+> > > +       compatible = "opencores,or1ksim";
+> > > +       #address-cells = <1>;
+> > > +       #size-cells = <1>;
+> > > +       interrupt-parent = <&pic>;
+> > > +
+> > > +       aliases {
+> > > +               uart0 = &serial0;
+> > > +       };
+> > > +
+> > > +       chosen {
+> > > +               bootargs = "earlycon";
+> >
+> > Do you need this?
+>
+> What do you mean here? I want to keep "earlycon", and it is not supplied in
+> de0-nano-common.dtsi.
+
+Why do you want to keep it? "earlycon" is a typical debug option,
+and should not be needed during normal use.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
