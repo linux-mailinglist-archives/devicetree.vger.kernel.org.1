@@ -1,83 +1,77 @@
-Return-Path: <devicetree+bounces-251330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99EB3CF1A23
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 03:34:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6865BCF1A85
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 03:40:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3FA14300215D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 02:33:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0CE713009F33
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 02:39:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F987316189;
-	Mon,  5 Jan 2026 02:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A236031AF1E;
+	Mon,  5 Jan 2026 02:39:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="DFzzrRUQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HX7vnZzp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AA9230F541;
-	Mon,  5 Jan 2026 02:33:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B1C931AA90;
+	Mon,  5 Jan 2026 02:39:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767580434; cv=none; b=kC+qO13OZtL+Kj2CsdfEIMyva9Yu+DTRF66feIV6dRRZg4UvKK2B1LVpQaVCFgj2RKFqk/pDX150Dpogmy6n1NHMBkfJe/tAQ/8F1OUeBWP/okGrDYkB4h+x/vbmrGHOWxkxvnG2fVnx69CVoNFDSY1o26YKGv/2b/59GU94OgI=
+	t=1767580768; cv=none; b=ehphu2gh88VjOLYOyaUgO/ksWtlyQri3bMrQC3r8UrQARuQZIQrwfmGMrGeY612+p1L4AMQV7E7NRJnOlHAvR4tZrCUzqTA6MqEOlsoxRaLnhqpJxUir5XT0oUkajovPuLf7/jqVHGtVGtBF6DdoyiTaUHkuQ+bp7ckpQua5xN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767580434; c=relaxed/simple;
-	bh=Y5/bn7VFLTPKVaHoanyjExDYS1J5nNKjCLzRIm69R90=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DTZDx2tANnpYhh+mpSmZXZZk66Wa3XPyPVv3yahwazlSt8mReaYbqaBS+QU5NcCal9RtCR1vYozQRjGB1rhwjKCMjaOZf9eoR+ygW5FbVO2x5GtrvsQH57jdVv3FAPzVsJEMVid+LzYlp0A/3/lSWKLMpneuNEz69susuKJSuCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=DFzzrRUQ; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 6052UpUmA1923969, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1767580251; bh=Y5/bn7VFLTPKVaHoanyjExDYS1J5nNKjCLzRIm69R90=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=DFzzrRUQIMbZfynfgMuGy8sSG9luT5oPyW2+9fwOS7EN+1WVww870cw2T3bDtnrkD
-	 VtQAHdlV/KndhrIeWqM8D9WrHQw0yEtgNFWJFJnRM7aYXM9xqOJSp9x8x2s5CBJiC6
-	 CJfJ2pumYYTjYfpLh6eBwhvRcw4ID5VqdwBbYE/SeX6/jSTbYalPmIn1x0BymcSxgt
-	 IlSshTJzpdhOqBkxcio/xGyEKEeOCmzwkfUBZOt0z+Z//xjnty79fEdyZORjbwpLHp
-	 YN/2VKL2W8NZh9qjmrOsM31BaQ04swNIdd8znxLsYlg/DFy/yjzY0G8ItCSHiQ6Fs/
-	 A8ug9GiYrrTrw==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 6052UpUmA1923969
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 5 Jan 2026 10:30:51 +0800
-Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 5 Jan 2026 10:30:50 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS04.realtek.com.tw
- (10.21.1.54) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Mon, 5 Jan 2026 10:30:50 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <eleanor.lin@realtek.com>
-CC: <afaerber@suse.de>, <conor+dt@kernel.org>, <cy.huang@realtek.com>,
-        <devicetree@vger.kernel.org>, <james.tai@realtek.com>,
-        <krzk+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-realtek-soc@lists.infradead.org>, <robh@kernel.org>,
-        <stanley_chang@realtek.com>
-Subject: Re: [PATCH v3 0/2 RESEND] arm64: dts: Add support for Kent SoC family
-Date: Mon, 5 Jan 2026 10:30:50 +0800
-Message-ID: <20260105023050.26864-1-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20251215103157.27039-1-eleanor.lin@realtek.com>
-References: <20251215103157.27039-1-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1767580768; c=relaxed/simple;
+	bh=96kop0wz6xrV3yb1zmVPWGnn4+H0O9EWQwc0AXCRXWk=;
+	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=Iit4Mn5UkdAWlcBO5v4txhHuNqZ6Ov5TpgIWUTZIHAgl9u1HxnJd6MZJb0O8W1sQ4NLizJrG/70baCyl9mZ2/+Q/CVYPa+mUnSg/aX7QXmjAMr9mLVgugQBGPpioaGnVD09Jw/XrkWwKy7maG6ZWaH3KSERFAQVUGW3nnlLI//c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HX7vnZzp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D78B8C4CEF7;
+	Mon,  5 Jan 2026 02:39:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767580767;
+	bh=96kop0wz6xrV3yb1zmVPWGnn4+H0O9EWQwc0AXCRXWk=;
+	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+	b=HX7vnZzp9A9sY4I57eZOHndz9T2Xi/44A5xYypqE4eEWALyafwpvFOe7GH4Fv52O6
+	 i/wgQQVG5vbQIWrg3QfMCf9WZGBkOImpxfqnfTMVOZYa3LjTF1dhPAZFMbCH6zbeMG
+	 T3Gld+TY4Bkim2MGKzkMzKlrJqUfktXo7/MDwtdp9QM4GIbGBnPFPtlad7kOMjo/LP
+	 wjtZxTc9xJr1SmPlJmloVLQ517A5F4PnPv1HHDb0oABTnJebyHR+2j9y5pkK+3lQRC
+	 qzpKTyb1T+yhSKYdYRF6Gs9Cv53VFPa5vKSMeMM3hsvK+I37QNf1Gfcmrmh0oggRZp
+	 AkqAieDzTNMDg==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id B5B10380AA42;
+	Mon,  5 Jan 2026 02:36:07 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v6.19, part 2
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <20260104234335.GA827897-robh@kernel.org>
+References: <20260104234335.GA827897-robh@kernel.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20260104234335.GA827897-robh@kernel.org>
+X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.19-2
+X-PR-Tracked-Commit-Id: 235a1eb8d2dcc49a6cf0a5ee1aa85544a5d0054b
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 3609fa95fb0f2c1b099e69e56634edb8fc03f87c
+Message-Id: <176758056626.596235.8892481794470352310.pr-tracker-bot@kernel.org>
+Date: Mon, 05 Jan 2026 02:36:06 +0000
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-Hi all,
+The pull request you sent on Sun, 4 Jan 2026 17:43:35 -0600:
 
-Just checking if there are any comments on this? Thanks.
+> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.19-2
 
-Best regards,
-Yu-Chun
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/3609fa95fb0f2c1b099e69e56634edb8fc03f87c
+
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
 
