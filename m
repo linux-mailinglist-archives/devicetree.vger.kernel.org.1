@@ -1,204 +1,181 @@
-Return-Path: <devicetree+bounces-251709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0B0CF5C9A
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 23:14:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 514AFCF5CB4
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 23:16:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A9870302D386
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 22:14:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1859630581F4
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 22:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC363311C2C;
-	Mon,  5 Jan 2026 22:14:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D45FB283FC4;
+	Mon,  5 Jan 2026 22:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Vs2wmBBO"
+	dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b="2z/aTDhH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012068.outbound.protection.outlook.com [40.107.209.68])
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C04310764;
-	Mon,  5 Jan 2026 22:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767651270; cv=fail; b=ZazaINYTDyRZQv+5qDwej59Jj01xgr9nv6jZ0v3r6Q8g+HuR/N+FBvalQVswX05SfFR4EBzBvchaRQY3IRr4Sy6m+KFHea7tSh4VFYSU99KV6nOhO4Ryj6wOaf17WOz8Vfaqod/h/nQmF5FT77QM/KLKmSLf6UQlL/xk3c9sHsU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767651270; c=relaxed/simple;
-	bh=sRoufsTKyyIJyvqwJLyOLPssfQzTTmlzAR4RKcDGgxc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gk+XS3qB2EyTTCovg2BhL35dTK4q0dK6SZM2S8f+GTdVhUBuQaeGoqd3w4iinf+HhdskTOr1lydM7E6udpC0z2QimGUwsNW90qOw1TW4iorn7tYzC2zJSEYRF2X1V1bTj6LxFjyJlsn/eAz0LEIuKNyjdW1UsLN28aPFvue8UMM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Vs2wmBBO; arc=fail smtp.client-ip=40.107.209.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OvKvKYcwTCQ8Ueaua5g3xL/VuDh2TcPBlva97LdUmtLwwSBPU0O0w32r148UxAbXmUFlMHj+AtNmkrF5di+Qsm67A5BzXuRRIjpF+3VSZiyPXgeT0l+IecEJAWDmtlf8y7mxAw5MDhtNuPU/lHVwP31N9QBCFapDP2os2F+nUzhXIq/wBEca2bLpj1DaKfXY0e6YSRjAwfM18FlWuOnyLMBecEWCuV8Hj0WYXXcDmfD+IZuecnXbHO0CIbCEe938SR1tig6TeRjoBEwO0p7ZhbAUzaGKpUVsrMTAWFAkSA3AN4RtOvFd5g5D9Hb7c+K92ci5l5lMhASegvmnaHk0LA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0AYcEVELS6bk/o08w1DNN/aZSOkiS8/qtk1xy1i3nuU=;
- b=vZxxaFYXywWEhXtscp/oxntuMMTq9hDvYjcVvyNTlkqnDgy4ekUflzeyxzSif4dPUKKal3+YVE7d4l6JDnOn/Zpqi+ybBV9jL/T+dM19YYof5jDS57JWtzFOMXtySh9GP3gqMr7Os81KRAMdvta2YgP3eAC4WeHnxA9loL4UkjZYVnMPSny1+W9DseXnqbFwUykIqJx5CaA12LvHFjIB1zCiq6T0N+9Oze0fPsVMum97eAnGjmJGch3K9UaptCQHhpyxTCpM+OhyUriqvJ5HR+GMm/FO0br2smsDhPYKvSpwD5e4UsjktOhnk+uyjG/GwnemabcIjOEO8VLttRNXwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0AYcEVELS6bk/o08w1DNN/aZSOkiS8/qtk1xy1i3nuU=;
- b=Vs2wmBBOW+nBZNi4qLjLtgOpBYwDyKImPdDM1FhzpB+snjAbo5fSoEKaSqH9xf5KWAATj05nyYV7uqzTJgfb5q+egEuegKBpvPCqTJIEaxuk07FmEbJMJ5cL1zw4+YwW/tkg/4xuGXPyZlMLQLgl6GPIkjslayCJ60fPHSnBLYs=
-Received: from BY3PR10CA0011.namprd10.prod.outlook.com (2603:10b6:a03:255::16)
- by DS7PR10MB4911.namprd10.prod.outlook.com (2603:10b6:5:3a8::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Mon, 5 Jan
- 2026 22:14:26 +0000
-Received: from SJ5PEPF000001ED.namprd05.prod.outlook.com
- (2603:10b6:a03:255:cafe::1b) by BY3PR10CA0011.outlook.office365.com
- (2603:10b6:a03:255::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9478.4 via Frontend Transport; Mon, 5
- Jan 2026 22:14:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- SJ5PEPF000001ED.mail.protection.outlook.com (10.167.242.201) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9499.1 via Frontend Transport; Mon, 5 Jan 2026 22:14:25 +0000
-Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 5 Jan
- 2026 16:14:23 -0600
-Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 5 Jan
- 2026 16:14:23 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE205.ent.ti.com
- (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 5 Jan 2026 16:14:22 -0600
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 605MENB01977329;
-	Mon, 5 Jan 2026 16:14:23 -0600
-Message-ID: <a2e87f32-b8a0-4a91-9db3-fae7d43b2ca4@ti.com>
-Date: Mon, 5 Jan 2026 16:14:23 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED5320DD72;
+	Mon,  5 Jan 2026 22:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.208.4.194
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767651376; cv=none; b=PiVoRvrraqPyXWJfsJaCCfV8RdWJvhGsYDkoiUR2ytOP1X6MC6PaH9J79RGoxn2niT2did/PLSHpu7DSJpwTIN2dQ3RCRMTLBS1YgDaFpfj6eLjOQBgcxfPXjodnbd0ebE+FlwiPjfDU3S22ttqWQiXHx1gcIZ8SOnBRMh3enfY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767651376; c=relaxed/simple;
+	bh=8e2dZgeyhJlSkCTzL1IOjiKmTNcjngu01WsSxCQbR10=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=MqYhr64VCKNPJ5IPt+KFbeQyymztFD0tuYIHp1F7895SUyLzCLNqLx1tSi1z4dG7HSKuTtr59Ye5jdAVv3Z2gjaZt5afbtIGX35VFlquX0TMdvZhQpl0Ow5HY6Fe/hKkMKeQE/l62gRqIRyhBcNzLMH3mgN0bIQngE7FGO0VIqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziswiler.com; spf=pass smtp.mailfrom=ziswiler.com; dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b=2z/aTDhH; arc=none smtp.client-ip=74.208.4.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziswiler.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziswiler.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziswiler.com;
+	s=s1-ionos; t=1767651337; x=1768256137; i=marcel@ziswiler.com;
+	bh=Y6HJq4OhR0K8CkEt79OYGigmyf/NkQlnBfoQsVERq6c=;
+	h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+	 References:Content-Type:Content-Transfer-Encoding:MIME-Version:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=2z/aTDhHrB0X0/fYaSsDmHDINo8EABmBj+xXRDWIizKlBKqLmbQQqnAZEw8rq4TU
+	 qC2IsYVIYX+IWHXHlXOtltr0HkbmgZwXseU5eqOhumQsuMo3PNN+WvprNWHB0RRzG
+	 SQxRjuiFd96fi8iprBZy9Ypp7DY2jB9/0cOJA+lGsQlEb36W++H0kx8mDSMkB4k2T
+	 0UhZ238koYktLPcSgws8r8uW3lYZpiFO9sP/m8/Py/OkpbW9y7WVs/En9gl1RSVii
+	 GJY9joPHQEd8MynHf/ofJ2njqaXOKp/9QBy6CNDzW+6wULvtNlaNpK+YYay8hfF9k
+	 +vJn3vibCFmDhaZniA==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [10.13.73.253] ([213.55.223.158]) by mrelay.perfora.net
+ (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MQgyx-1vR5iH12pJ-00K0zY;
+ Mon, 05 Jan 2026 23:15:36 +0100
+Message-ID: <819b2f6e5db5411b3ea923bca70482617464594c.camel@ziswiler.com>
+Subject: Re: Re: [PATCH v9 2/3] clock: eswin: Add eic7700 clock driver
+From: Marcel Ziswiler <marcel@ziswiler.com>
+To: Xuyang Dong <dongxuyang@eswincomputing.com>, mturquette@baylibre.com, 
+	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, troy.mitchell@linux.dev, bmasney@redhat.com
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, 
+	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com, 
+	ganboing@gmail.com
+Date: Mon, 05 Jan 2026 23:15:29 +0100
+In-Reply-To: <480d671d.1db1.19b8707eb98.Coremail.dongxuyang@eswincomputing.com>
+References: <20251229105844.1089-1-dongxuyang@eswincomputing.com>
+	 <20251229105949.1202-1-dongxuyang@eswincomputing.com>
+	 <a7f4cf00b396096512d6947612031207c4d4459b.camel@ziswiler.com>
+	 <480d671d.1db1.19b8707eb98.Coremail.dongxuyang@eswincomputing.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 (by Flathub.org) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: boot: dts: ti: k3-am62l3-evm: enable WKUP UART
- wakeup from LPM
-To: Bryan Brattlof <bb@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Dhruva
- Gole" <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
-	<msp@baylibre.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
-	<s-kochidanadu@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20251230-wkup-uart-wakeup-v1-0-cd6e15f8d956@ti.com>
- <20251230-wkup-uart-wakeup-v1-3-cd6e15f8d956@ti.com>
- <20260105140128.bd5tiheg3k6y2tyd@bryanbrattlof.com>
-Content-Language: en-US
-From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20260105140128.bd5tiheg3k6y2tyd@bryanbrattlof.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001ED:EE_|DS7PR10MB4911:EE_
-X-MS-Office365-Filtering-Correlation-Id: 01e7bac4-b7a3-4665-77f3-08de4ca7c9b5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?bG56T0hBVWVKRTRYdmhrK3RhNllTRUlKK3JXT3hCQVV4ZytjQmNDMm5qSkYy?=
- =?utf-8?B?OUZsbWp5UFBYd3lPSmY0VW5JSTU3VjFlMCtrZ2hVQlhmNEtsWkxxb1BzQmJ1?=
- =?utf-8?B?TW5aeitRMFJVWWYrcHZrRXF3OHVOK0lSQzBUcWs0UWlhSXdiTnVvZmJXOE5l?=
- =?utf-8?B?a2d5NHNWSWtoYnZjUjVLUGMwQlBPTXd5MmhwQXN3QUp2YUlYQ0YwUUlMYVRE?=
- =?utf-8?B?dHhjSk9UODZ4TE9vQVNKYTJoRnlEeEZaVFA5Q3RWSHdzVzFPV05xRWZMc29M?=
- =?utf-8?B?WlVqeUxCeUh4QmxTcVNGOWNFd3lWSmU4NFh3Ums3L3BKTTVWTThWQ2FyNnZQ?=
- =?utf-8?B?YzBHMmRhdi9mdkNjdnJuSGhiL01GMG13TkU2bGNDVEZ4Y01EYWR4TVJ0SW5l?=
- =?utf-8?B?Y1BwOHVnSDZQTU42NmdMMU1JbkxSWHBnYi8yMXhIWWNVL1JTcHVUV2RCbXZW?=
- =?utf-8?B?aERXaFhlWTMwQXBtZGtDeTJGa1cydnNvYlFOOHh2OWhXYkdpa1BWV2pSSkp2?=
- =?utf-8?B?WWd5Z1c4dFhneXFZdnMwVG84UXJybVFzWUEzOGZqWDVyVUk5ak1NZEYwSXA4?=
- =?utf-8?B?aGFBQ1BQZytPQ1JDbmNFYkZwNkxzVjR1L0g3cjU1L3IrcWovQXg1ZUtueWVG?=
- =?utf-8?B?MXZvSTkvOXpnSXZaaDQ2dklOb21MN3laKzJ2dkJGT3RYQUZMN25KelVvS1hY?=
- =?utf-8?B?Q0RMdFR5eThHOGJzUjgzc1RKSHBNZWdUSEg5dHNKWjNMa2ttZlFIOWVURWJW?=
- =?utf-8?B?SEF0bXRFTHR6Zy9uQkZBVmoxSm84VjdLblZhWFVVajBRV2UxVjFzNlpOdG5v?=
- =?utf-8?B?REMwQVpVcmVCektLQXF3THllWlB2TmJ0UzJBM2lMYVZGUTJKWElDV1NIOFow?=
- =?utf-8?B?QldrRkNDby9aRCt6dDZWRGJzL0Qwa1k0RUdmM3lHb0VZU0VvTnVjRlI4NmpR?=
- =?utf-8?B?RlI2bVpyUk40S25LS3BPeEN0VGpEK3A3dTlOVzV1NzZpamV6R1RKcjNGYklv?=
- =?utf-8?B?TUFnc1Z1SUtqZWU2WHBEeHM2emFaM2NzTUlJR2FVZWEyR3BVbG8rZDRveXpT?=
- =?utf-8?B?Q3lzRTJDczI3TXp2Tlk2cWR3dDVOTUY2R3JlNUp1QzYvVVZ6NG8xSFF0akFF?=
- =?utf-8?B?aE12d1RjMnJPSzdnSUVZRzJqd2xJNStGbXVDNm03VTRmc1NEaGNGc0ZWcUhr?=
- =?utf-8?B?UjMvRmZEWXBIYzdLK1JvNXJkdUhaS0Z2NnYwV0lCcXRFbi8yM2lSYTBENGJM?=
- =?utf-8?B?d05GUWZzUU1YTXNLd3JJYTFNVklaU0VKNFNYTG56azlDYlhJaHczblZnVHZG?=
- =?utf-8?B?dU1oRERTRG1YUWN1MUlYc2VjaTVheGJJVmgya09iaGFMSk9qdFYyR3hCbjBa?=
- =?utf-8?B?eTUrUXpKZGtGZmZyVnBnMUJmS3pvelpPT3BDS0d4eXdFaVYyNit5NXpJdjN2?=
- =?utf-8?B?TldsQ3dTR08xQWVDa3l5UEgybnNaaXVMOWtUcnBGLzE2ZHVCc1JtQVprVHVV?=
- =?utf-8?B?K0M0b0Q1bVlsVUpHS2FVWDVuR1VnS0pYOEt2a1RzVzVTMVBCVXVwMUtKQTRm?=
- =?utf-8?B?YStHbElGNDgwYTFFRWovZmVFQmhxSC93b0xWaXBENGF0SC8rZ0Vyc0ZqVHoz?=
- =?utf-8?B?bDFVSFR2dmJzeWp0RHN0MTI2SStGS3N2cDlKQVJFc0lld3dzN2MyTHZnalph?=
- =?utf-8?B?dlpaT0M0QVp3aHNjbWRIZGl5eXdiMnZNQ0VJanRiamdpVlNFTEl3WnR4Z0hW?=
- =?utf-8?B?enl1eEF6RytYS3dkUVB0Vk9WNnU5K3Znd1hHVFZoSnByMlc4NzY1cXhXUFZM?=
- =?utf-8?B?S2R6ekx2TjlKbzczV012RENsR2hNTXRVOVRlZWpvM2F5cVRIWjlzZzFNd2FG?=
- =?utf-8?B?bXpaczFWWll0YklDSXF4OXNuY0RSdzhkcjRrZmFteUdPcytRcmhNdFFaaDRq?=
- =?utf-8?B?eXdEV3R4emIvOTNIZzJ3MXhJRlpyWmpmVG5lb3VMMHJ2Wk41TUFKVFBleTJY?=
- =?utf-8?B?Wlp3WTB6UXVRR2ZuNWhSNEJ5RHMraElNK2RqL2JUcHhmeUhVRUJXbWVIck10?=
- =?utf-8?B?bG00VkZhUmE1VTMycDFxay9ieVRwUysxSHJuYjR4M1A5Nm5QajhBYWtvMHhK?=
- =?utf-8?Q?tb0o=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2026 22:14:25.9910
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01e7bac4-b7a3-4665-77f3-08de4ca7c9b5
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001ED.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB4911
+X-Provags-ID: V03:K1:/nB+dkILdDoZDzC9GCjB3kbknd63+3kWkUoF4DEeqF9TQrt+RP+
+ 3It2QgjW0hPs1HN0A9zU6vvVI8AKgWKEQId4iwwnZwX+rFGVUg+PPUSbw3ut+cD2a2EtMDl
+ c3nwyWl/ByYLOb+dcIVG+aygRLBDCEm3L4DhQhrd22FQ1Zhua15ClrbU6mRooGpwQsxmy2y
+ lxuA+0kXl30zZvEXkNFIw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:zCdJ8JVYXbM=;yohgFPbjlABC+ZJhh//NVoJg9qA
+ klY98Einnj0+/so1FJ95GDJSZ2eg1sW0ibF6p4bxrdq7CSN15EZfjKow2Mo5UIU8C2B8wlmX9
+ M/1ZBXqR6PiTDpVNmOfjDLzxyx5fraeaSKIGeYW3Y8ogy1XveovpPAKqTR+cjtsfEjpKnERo0
+ ANIMWXS2anoxd7wfH0xfrMDDt+/9jbLBPRE0j3Fa1dXc6oCu0sSdVJqKL0+jMD2FBgKfMY2tn
+ 4MFCVNXhx6i6bAaIK3q225lITHUA4/yXLakdP6ni+MBVgauKkM3ry+ukpPqLmuSCINtK9CbDj
+ Mz1+UdVOjgNYfF1448EjBM4f3YYrjvEPse7z9M8w1BCWspbWd9y8CrNgK9gUGfP0La85uvvFa
+ PP2fvuClC26wuHBMSYgjjqKKqIuwX+f2UsX3pDhXFrpv554jVJDqqzVUPuKse6mKJM8m27yi9
+ NgZ652y2RHemVfZlWZoqG4PknhYjfYCNwJdYC+st3P1ssE42veoS86hwuc1aNnPOoAF1bPf2W
+ mAdRGHwZZ13FkEY9UgRjaxS/fUIprNaXZBvkd9AAromgGvYFf5mdK9b+Rdpo4rPi7Udsw/amY
+ QXBsNIGmuD4JNRLF5nEA+ZBEIJqAkF3ebOmfkfag7tSSVWiaN1FAigVJW9NZwZG6uhZ4NjSM6
+ A/W+6S6EQwKJ4oZSsfp84vdXgiueG/qAUhE1p8Rli/qvsuSpitexy43dHifaO3g5fm3l2AUPA
+ Nw9pyYeAObHa+/kjz6WbKgXwARPc2BanOhlbrXhETU8zJPwzs8n1scxww6hZGs9ATg0T7L71y
+ L35lHv23i3/kSAz6C2R1a1KZTGLfcfPHwTx2VNzTi0v5aDHSwrLGssTnc73+5/zX600YGFPR2
+ 8uNm3sU4yU2mMb7n4q1szI0dpfJMl7OiOlH8Wi5tVvLfm8uVgSbl/zxZIm7/4I/3gU6cda0zb
+ VuoYANKcgXF/YfwU2ZlRBvH9ed4nxrbkqlM6vvOpzL39S5KOvy4Wmf2ooUvrccUXqBGuNTj/4
+ 3RaAm6z9Qtb031881wGNyeMTnJyoUyi2fYmtLOBk/xzRfda1R8M4WIHnA9EGSnlviXPxRkUYy
+ MKkm+tzSAvBdbIWjQB2VxvB/9LeOeere1+X7kgivdXUUp3lzvx4JSPlDxHdFIanKBH+OHziFQ
+ OSjM7cv0xvYM9y5EA5v9OgunuiHQJHmgbXfebgZ7PUzg0f4vJ6bzpnXiA/B/BNnDELHsBaR7Q
+ hK72F3woYwd8cYWoABLfAWqr28QMDovlb8ya87Ta44DI6b0QMyIBJkgSDPb0vQJnUb7aV6fpF
+ 9CXOv6SBsbWiWmWnC+HQ2Wx6odf6GcEZdDfAYqT0eCNpX0mblI0/cXzD9w9mb10zCgwmtsAO8
+ oUjVjSqh8EeOliNYl29PrroFJMI8RUKepultkde9lJdhU+Ai9Yq12V9x/We8H7lw66IZb1Idu
+ 31DhrLHxazYthfOehKI6t2BqJoGCpcO+JFLAnDxhhibXi32x9j2gUofWm51VvNSAf2hjy9Lj9
+ QKbXfj/nAapgEfhTMAYNsrSyZThspQJYN1abHqU+FGj9T04v5vE38MPTrhyjeAYjh8RqVBTV9
+ QbXMFm7ZpLiIYy1L1k4kyNlLPclkh8KG3R4CzQVKhYAOg167L+f5KJUkD5L1xTZvcfrDdKIcR
+ X4D5474X4KF/ij+ssRS0WMRqyMp9oZxM1eaWtbkStAx5TdMsJV4A/Y5ZVa2TM3eNV9Po3gBDO
+ 2DOEqQAtV97Rl7kdvmLCI7ezdKinEknLqS5xmK/3ywlK4U90ikdvWkQHxQUt3AiGRQkBr3xM6
+ 87iy
 
-On 1/5/26 08:01, Bryan Brattlof wrote:
-> On December 30, 2025 thus sayeth Kendall Willis:
->> Change the status of the wkup_uart0_interconnect node to enabled. The
->> target-module node sets the UART SYSC and SYSS registers to allow wakeup
->> from WKUP UART in DeepSleep low power mode.
->>
->> Signed-off-by: Kendall Willis <k-willis@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62l3-evm.dts | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
->> index cae04cce337366b50928d39b0c888550b14e43d3..02b1a1c76b2ee05d49cd69d199a6aacdb1973fa0 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
->> @@ -359,3 +359,7 @@ &usb1 {
->>   	pinctrl-names = "default";
->>   	pinctrl-0 = <&usb1_default_pins>;
->>   };
->> +
->> +&wkup_uart0_interconnect {
->> +	status = "okay";
->> +};
-> 
-> Does the UART need to be enabled as well?
-> 
-> ~Bryan
+Hi Xuyang Dong
 
-The UART does not need to be enabled because the interconnect target 
-module manages the SYSC register which configures the WKUP_UART to be 
-able to wakeup the SoC from system suspend. This allows the WKUP_UART to 
-be wakeup capable for the SoC even if it is disabled by Linux.
+On Sun, 2026-01-04 at 11:23 +0800, Xuyang Dong wrote:
+> > > +
+> > > +/* divider clocks */
+> > > +static struct eswin_divider_clock eic7700_div_clks[] =3D {
+> > > +	EIC7700_DIV(EIC7700_CLK_DIV_SYS_CFG_DYNM, "divider_sys_cfg_div_dynm=
+",
+> > > +		=C2=A0=C2=A0=C2=A0 "fixed_rate_clk_spll0_fout3", 0,
+> > > +		=C2=A0=C2=A0=C2=A0 EIC7700_REG_OFFSET_SYSCFG_CTRL, 4, 3,
+> > > +		=C2=A0=C2=A0=C2=A0 CLK_DIVIDER_ONE_BASED),
+> > > +	EIC7700_DIV(EIC7700_CLK_DIV_NOC_NSP_DYNM, "divider_noc_nsp_div_dynm=
+",
+> > > +		=C2=A0=C2=A0=C2=A0 "fixed_rate_clk_spll2_fout1", 0,
+> > > +		=C2=A0=C2=A0=C2=A0 EIC7700_REG_OFFSET_NOC_CTRL, 0, 3, CLK_DIVIDER_=
+ONE_BASED),
+> > > +	EIC7700_DIV(EIC7700_CLK_DIV_BOOTSPI_DYNM, "divider_bootspi_div_dynm=
+",
+> > > +		=C2=A0=C2=A0=C2=A0 "gate_clk_spll0_fout2", 0, EIC7700_REG_OFFSET_B=
+OOTSPI_CTRL,
+> > > +		=C2=A0=C2=A0=C2=A0 4, 6, CLK_DIVIDER_ONE_BASED),
+> > > +	EIC7700_DIV(EIC7700_CLK_DIV_SCPU_CORE_DYNM,
+> > > +		=C2=A0=C2=A0=C2=A0 "divider_scpu_core_div_dynm", "fixed_rate_clk_s=
+pll0_fout1",
+> > > +		=C2=A0=C2=A0=C2=A0 0, EIC7700_REG_OFFSET_SCPU_CORE_CTRL, 4, 4,
+> > > +		=C2=A0=C2=A0=C2=A0 CLK_DIVIDER_ONE_BASED),
+> > > +	EIC7700_DIV(EIC7700_CLK_DIV_LPCPU_CORE_DYNM,
+> > > +		=C2=A0=C2=A0=C2=A0 "divider_lpcpu_core_div_dynm", "fixed_rate_clk_=
+spll0_fout1",
+> > > +		=C2=A0=C2=A0=C2=A0 0, EIC7700_REG_OFFSET_LPCPU_CORE_CTRL, 4, 4,
+> > > +		=C2=A0=C2=A0=C2=A0 CLK_DIVIDER_ONE_BASED),
+> >=20
+> > During testing on top of next-20251219 I got the following:
+> >=20
+> > [=C2=A0=C2=A0=C2=A0 0.126102] divider_lpcpu_core_div_dynm: Zero divisor=
+ and CLK_DIVIDER_ALLOW_ZERO not set
+> > [=C2=A0=C2=A0=C2=A0 0.126194] WARNING: drivers/clk/clk-divider.c:145 at=
+ divider_recalc_rate+0x8a/0x9c, CPU#0: swapper/0/1
+> >=20
+> > Therefore I suggest for above line needing to be:
+> >=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CLK_DIVIDER_ONE_BASED | CLK_DIVIDER=
+_ALLOW_ZERO),
+>=20
+> Hi Marcel,
+>=20
+> Thank you! This is indeed a bug and will be fixed in the next version.=C2=
+=A0
+> Could you please share the detailed testing methods with me so that I=C2=
+=A0
+> can reproduce this issue on my side?
 
-Best,
-Kendall
+Sure, this was first tested on top of next-20251219, then I re-based it on =
+top of next-20260105 and finally I
+ported it to v6.19-rc4 as part of the yocto project integration for the esw=
+in-ebc77-mainline machine [1].
+
+I will further refine this for one of my talks at FOSDEM'26 [2].
+
+Let me know if you have any further questions.
+
+Thanks!
+
+[1] https://github.com/ziswiler/meta-riscv/tree/add-eswin-ebc77-support
+[2] https://fosdem.org/2026/schedule/event/LX3NNU-upstream-embedded-linux-o=
+n-risc-v-sbcs
+
+> Best regards,
+> Xuyang Dong
+
+Cheers
+
+Marcel
 
