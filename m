@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-251666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC131CF56CC
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:48:15 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E6C8CF56C0
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:47:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E67E230046FD
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:46:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0795F3008F54
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CBEB27467F;
-	Mon,  5 Jan 2026 19:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B0F27FD6E;
+	Mon,  5 Jan 2026 19:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wg7l7fbq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvPttCa0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43CFE10FD;
-	Mon,  5 Jan 2026 19:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96F422D7B0;
+	Mon,  5 Jan 2026 19:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767642410; cv=none; b=D6vYCpt4DzQFz/iZgvnHXGrDR0g8fcQpeks95Ftc3lK/vud06ecvnyAD3/bt6NFUkBRHl9rZLerIHEZhZf9rElDmGGoDlhK7AVzqcwefRnEyJB3uzse815qM5kXO1aDSTZWuDeEJRBR4vu1JmKZe/dWc6zd4odhyq3oYfe31UjI=
+	t=1767642415; cv=none; b=nfFhCZZwaUzK1me8bj8BPbVcE+dBUetd2l+vzR0J6ItrO03jjxqu9FMBHr9pUcwtVW77V4NQ2IKB+LDE13ALLCS2IWl7O8nsaFS04chG0bn/hXBFvcTwjuJcs57wL6y85YMN2k2hEOEWfMa52kzuEBy/lQsy5s6KdxvTv21SOFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767642410; c=relaxed/simple;
-	bh=4d4Kz6wZLKZJMC8dluV+ZOL4eRSU5mD/Cf1EU5faObM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=phknfBgS9iblykvOJvL1HLNlcWnQYP82ViR7uxUIprStNCohSsARLsqEhqOO0v3tdLbLyX+L60aNYbEX6yFAaPJVvVaZzjKxvka8nbqbyx1yPnMsDyfTt9+ShaIScXMUOlBZ0AnwObeWSiCV3nIvlVUlfHfKfoUXqAd4WAOpY+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wg7l7fbq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D011FC19422;
-	Mon,  5 Jan 2026 19:46:49 +0000 (UTC)
+	s=arc-20240116; t=1767642415; c=relaxed/simple;
+	bh=1iZEURVnC5EHBu7RqBBmRA9ws4DI038EuiShk+6L6ak=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=spxEJJW18ZZsmeZZMrTofRWFuDY5bKbHFeub4iGQmm+NQhMVHwXVTu7ldojV9eyGlWOG0HiNWPtRjZRgIcARfV8Nmv90CxVy+yvnLWmReoq9/gLnAHqNZzDpx1clJSxYLy9Nn/wj2vGManYlJLcUdCAn4HvxzXdkX59X9rhZdmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvPttCa0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E0DEC116D0;
+	Mon,  5 Jan 2026 19:46:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767642410;
-	bh=4d4Kz6wZLKZJMC8dluV+ZOL4eRSU5mD/Cf1EU5faObM=;
+	s=k20201202; t=1767642415;
+	bh=1iZEURVnC5EHBu7RqBBmRA9ws4DI038EuiShk+6L6ak=;
 	h=From:To:Cc:Subject:Date:From;
-	b=Wg7l7fbqsWe80PFqqn4VUq0vZtdUwGnvQS9QbiP7DUTk94SKY1E+fwVG4gnrz6AEH
-	 ro5ezLrCNnlEsQhHiZ8I14DukAC4Sl6azVsGb+v+umGYRyAO0Pjmfm1ki5TuvV45DO
-	 yp+4pMb3uKr/JgLJ5nMINwaCx7Isvi4/tlhD5agaTqg7sU7NGR1cl6y9jndMdLwHbO
-	 Qh3Z78IF6c+pH4ROlNvoy9WwXumBesesDKO37xux6429RQJ4B8UtTkAadoD70EN3Bg
-	 /+u4mHTAiszhyI3NoCZiVN5UEvRFujop5QGGbxsIWWVl9Km0fYBgdnQhxWc2qBWy1l
-	 ro+orBsttd94A==
+	b=XvPttCa0iUhdJKH1lrTp45IYnscelYmdPBYoAOUheFKu85kDzl4aNNNcDVIAF+xQs
+	 o714Lsu8J8IhefgiLzEUpOSVCaamuNHhcgUG/8NAqkk5TrAWH5Oj8Au49r6L/nLr6x
+	 6bfKoXBR6X7ohBQDKHA2VWBmKCWfiNgQhn1pRC10PF0X6J/IxVbAJlSE8NOo7YYAXx
+	 +LPuud+fgAygUa/MzIu3k9X+MiC580Trksqedx+fLZt53kkpao3SllRQnaYDV/XWRY
+	 EnDhsGojwSraPGlc30iVhw/0E4wN9O+x6aqjNI5Ht4j4vp5EGdLFAhZRwbx09xdZfs
+	 AWoGqYkVMHveg==
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Andrew Lunn <andrew@lunn.ch>,
 	Gregory Clement <gregory.clement@bootlin.com>,
@@ -47,9 +47,9 @@ To: Andrew Lunn <andrew@lunn.ch>,
 Cc: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: marvell: cn9131-cf-solidwan: Add missing GPIO properties on "nxp,pca9536"
-Date: Mon,  5 Jan 2026 13:46:46 -0600
-Message-ID: <20260105194647.3189303-1-robh@kernel.org>
+Subject: [PATCH] arm64: dts: marvell: change regulator-gpio to regulator-fixed
+Date: Mon,  5 Jan 2026 13:46:52 -0600
+Message-ID: <20260105194653.3189515-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -59,26 +59,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The PCA9536 is always a GPIO provider, so add the missing properties.
+A "regulator-gpio" must have a GPIO control, hence the name. There's no
+GPIO on a couple of Marvell platforms at least as far as the DT is
+defined, so change the regulator type from GPIO to fixed.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts | 9 ++-------
+ arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi | 3 ++-
+ 2 files changed, 4 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts b/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
-index 338853d3b179..b6aeba7d0a61 100644
---- a/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
-+++ b/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
-@@ -202,6 +202,8 @@ fan-controller@18 {
- 	expander0: gpio@41 {
- 		compatible = "nxp,pca9536";
- 		reg = <0x41>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
+index 9f4bafeddd82..a881a3326dba 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
+@@ -26,16 +26,11 @@ memory@0 {
+ 	};
  
- 		usb-a-vbus0-ilimit-hog {
- 			gpio-hog;
+ 	vcc_sd_reg1: regulator {
+-		compatible = "regulator-gpio";
++		compatible = "regulator-fixed";
+ 		regulator-name = "vcc_sd1";
+-		regulator-min-microvolt = <1800000>;
++		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		regulator-boot-on;
+-
+-		gpios-states = <0>;
+-		states = <1800000 0x1
+-			3300000 0x0>;
+-		enable-active-high;
+ 	};
+ 
+ 	keys {
+diff --git a/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi b/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
+index 6f3914bcfd01..71c225221617 100644
+--- a/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
++++ b/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
+@@ -15,8 +15,9 @@ / {
+ };
+ 
+ &ap0_reg_sd_vccq {
++	compatible = "regulator-fixed";
+ 	regulator-max-microvolt = <1800000>;
+-	states = <1800000 0x1 1800000 0x0>;
++	/delete-property/ states;
+ 	/delete-property/ gpios;
+ };
+ 
 -- 
 2.51.0
 
