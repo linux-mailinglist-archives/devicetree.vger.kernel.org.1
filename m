@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-251348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA0CBCF22D2
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 08:16:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B583CF2318
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 08:23:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C55433009860
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 07:16:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2EF983038304
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 07:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0012C21FC;
-	Mon,  5 Jan 2026 07:10:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014EB285CA7;
+	Mon,  5 Jan 2026 07:12:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EIrJDduF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aoMDbZbp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F73F286409;
-	Mon,  5 Jan 2026 07:10:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC9226B741;
+	Mon,  5 Jan 2026 07:12:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767597039; cv=none; b=hoCHOGhq45ACEgC5R0nlPF7gX8H4HcBaswnBPE6uwJN6WaxHQNXJ0nKeKSDNJZ1hn6g9oWp4K/XwAZ/OGAInP7R4m1+vznx+v82l5OQ2Skr8Jn8MfF4RPwkLlKGMlzsa5fNwPyo+T9vZXrQhPNFSAuZsRB6FLpaqmi1MauyTbms=
+	t=1767597137; cv=none; b=DLt7LRZxV1yvciGQGJOq6Obvs3ldEZV/1pINOPtaYDfch1DeP5Scu7PpVCMj68lzTczzZrgcJEQh/YjEGfjv7yM2pBdJ14HXJoUhhtuLfPQXxT+wPwCeDuUrffpGZYPgh5b27FyGmARfO2uN4qIpBS7p6ladxbd3J3RXEFlv3XM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767597039; c=relaxed/simple;
-	bh=Jq6lC7J1hp5isWtbeLH+lVSu/0ovVR2aVFoAtsWHH3Q=;
+	s=arc-20240116; t=1767597137; c=relaxed/simple;
+	bh=l0YX2y6vxc+U6hQS0ZR85jVgKROtnAllep264vlUulg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DX8bgMaXE3Dz6YDbFZUiSfLgdysbF/pRvcLXSC3zZR+JLwJWCdF5+FMGwiQnMnOM/wMsDwVIkLv6FEy/KdmXTKAaY/VUPQCWnqUZL+SrVIRl8ZjjbWsxc3jWY4LHV2cLnbAHauP9VslONBGJorTN4ITm5SHiKFSEws/sQZo6BeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EIrJDduF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E02D4C116D0;
-	Mon,  5 Jan 2026 07:10:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nYmqdPqkeHNMnsrm53frK/Dy2/SqCS+WpaEHo4UXfq0hWeaJjU3OjFZW8Z0BoEvrfENSxnYlV+Ry5x1LhZTlvaV4PO9V3dI0uYdYlqyliFuwCdo7iYsvBQ01dgrm7HYnIOvf9Is3PP4B8hSWQKtuUWBeR97CpHBYmBVEP+p0NnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aoMDbZbp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A273C116D0;
+	Mon,  5 Jan 2026 07:12:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767597039;
-	bh=Jq6lC7J1hp5isWtbeLH+lVSu/0ovVR2aVFoAtsWHH3Q=;
+	s=k20201202; t=1767597137;
+	bh=l0YX2y6vxc+U6hQS0ZR85jVgKROtnAllep264vlUulg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EIrJDduFhLWhg1BM1TN2AQlXlsxTSjDz4N4CXdR3QuIjWvZlV6FwdqH/YFwbNchx2
-	 dHFePLtKlY6n1kyDznCUVq4d1cbK7PsHQ/fROGkFls890LXlDRfD7gneHzWjGFJmgv
-	 yWy2iv8q1Si9pBEgqr+4HJH62IYkYyPoLI2vKltjgBFsOzbccjK8CqkazMskiSj9nY
-	 wI/SxyH4bHtBK8VBhMsh7QRtGv5lEt0+3oxzS6X72eKg9nw1pLY5olmw+Ii2yvjyfs
-	 MjyBQwkvVCZuMCEXH7M1YyPSj7F1S+Y0PNG1Q+zP1iACKVhvkoqxURIUFoF228ZLkU
-	 /CSHuWuQKzTCQ==
-Message-ID: <18a350ed-bf1d-4700-81b0-02e1c2b85493@kernel.org>
-Date: Mon, 5 Jan 2026 08:10:34 +0100
+	b=aoMDbZbpjRZXpMmZ8qnRHXT5SXbpMmaxrLyPWnzKuc62YMlC1Z+EIUoJEjJ/1v0c0
+	 bWOblFJ+W8wAZbGWLQNiC1fp0G9zYFfXPdPq5yzZjte0QvN65EnWv0hEW8iPFhl12g
+	 WpW4UK2szyQbvmNavAookdiUHqXZPhqlA8+wBJxr8r0hoBBgY5GWa2v8c4Y3Lom0sp
+	 JJTysKSfO3Nm982+WbvJ/OQ0gtKv7suyClJ2Oe4K2Ezg5GyQeiaGOodY/Ftm849aOy
+	 S4D3VB6QZRp3BrWWqOssomuByn41OT0zGN7AM2qkCvuq9BgXomoHhxlWaQkOdsV+UJ
+	 Ub/2B9frP4ydQ==
+Message-ID: <6e1d7e2e-9585-4b4e-8c82-004a613bdb39@kernel.org>
+Date: Mon, 5 Jan 2026 08:12:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,18 +48,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: Add bindings for HSM core on
- TI K3 SoCs
-To: "Padhi, Beleswar" <b-padhi@ti.com>
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, afd@ti.com, u-kumar1@ti.com, hnagalla@ti.com,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20251231165102.950644-1-b-padhi@ti.com>
- <20251231165102.950644-2-b-padhi@ti.com>
- <20260102-shrewd-unnatural-lynx-b7d214@quoll>
- <3ac93229-3c37-4800-8e56-cbab13d4299d@ti.com>
+Subject: Re: [PATCH v5 0/7] arm64: dts: add description for solidrun imx8mp
+ hummingboard-iiot
+To: Josua Mayer <josua@solid-run.com>, Rob Herring <robh@kernel.org>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, Shawn Guo <shawnguo@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+References: <20260101-imx8mp-hb-iiot-v5-0-b369b2e0c07f@solid-run.com>
+ <176736452823.3671482.4196945570874126466.robh@kernel.org>
+ <9369989.DvuYhMxLoT@josua-pc>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,48 +108,39 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <3ac93229-3c37-4800-8e56-cbab13d4299d@ti.com>
+In-Reply-To: <9369989.DvuYhMxLoT@josua-pc>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/01/2026 06:56, Padhi, Beleswar wrote:
-> 
-> On 1/2/2026 6:00 PM, Krzysztof Kozlowski wrote:
->> On Wed, Dec 31, 2025 at 10:21:00PM +0530, Beleswar Padhi wrote:
->>> Some of the TI K3 family of SoCs have a HSM (High Security Module) M4F
->>> core in the Wakeup Voltage Domain which could be used to run secure
->>> services like Authentication. Add the device tree bindings document for
->>> this HSM M4F core.
->>>
->>> The added example illustrates the DT node for the HSM core present on K3
->>> J722S SoC.
->> A nit, subject: drop second/last, redundant "bindings for". The
->> "dt-bindings" prefix is already stating that these are bindings.
->> See also:
->> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+On 04/01/2026 14:46, Josua Mayer wrote:
+> On Friday, 2 January 2026 16:43:35 IST Rob Herring wrote:
 >>
->>> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
->>> ---
->>>   .../bindings/remoteproc/ti,k3-hsm-rproc.yaml  | 79 +++++++++++++++++++
->>>   1 file changed, 79 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-hsm-rproc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-hsm-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-hsm-rproc.yaml
->>> new file mode 100644
->>> index 0000000000000..f61e4046843af
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-hsm-rproc.yaml
->> Filename must match the compatible. Are you sure you are following
->> internal TI guidelines? Did you read them?
+>> This patch series was applied (using b4) to base:
+>>  Base: 8f0b4cce4481fb22653697cced8d0d04027cb1e8 (use --merge-base to
+>> override)
+>>
+>> If this is not the correct base, please add 'base-commit' tag
+>> (or use b4 which does this automatically)
+>>
+>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/'
+>> for 20260101-imx8mp-hb-iiot-v5-0-b369b2e0c07f@solid-run.com:
+>>
+>> scripts/Makefile.dtbs:20: .dtbo is not applied to any base:
+>> imx8mp-hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtbo
+>> imx8mp-hummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtbo
+>> imx8mp-hummingboard-iiot-rs485-a.dtbo imx8mp-hummingboard-iiot-rs485-b.dtbo
 > 
+> These overlays are not applied to anything on purpose,
+> as we don't want to create a dtb for each possible combination.
+
+But we want to validate applying DTB.
+
+
 > 
-> Will address all comments in v2. Most of these issues exist with other
-> upstreamed TI dt-bindings as well, will send out a separate cleanup
-> series for those too.
+> Is there any advice what to do in this case?
 
-This was not my question. Are you following carefully internal TI
-guidelines to avoid common mistakes?
-
+If you don't want to follow upstream rules, I think we cannot take that
+code, so don't upstream code...
 
 Best regards,
 Krzysztof
