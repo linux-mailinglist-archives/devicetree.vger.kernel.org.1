@@ -1,269 +1,162 @@
-Return-Path: <devicetree+bounces-251607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 425BDCF4A81
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 17:24:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38189CF4BAA
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 17:36:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 356B0303D93E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:20:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 35905300B897
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:36:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8EC5332EB3;
-	Mon,  5 Jan 2026 16:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB75A28541A;
+	Mon,  5 Jan 2026 16:26:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SjyOu1jv"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="FTSl9nhG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B473491C2
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 16:20:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2F01F4CB3;
+	Mon,  5 Jan 2026 16:26:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767630054; cv=none; b=uF6mvAattlqutmKEBAf5p/X/CuTPus2L7mkvpq/IkZtSAmD6u0/nbljsY4Wq/puZ4L5FTdzj2gyEtnVLdKa+6m3x0nK/nbnj+700YSiKwWUfxC+1YbaxXgAIwa2asMH9YgJLCJlC+NjdvxcsnP9/SxpPHGgCw/eMUi7pGtvHngU=
+	t=1767630417; cv=none; b=eroHT4t9EV1xApDg8w3XRHg0dU4BtKB8fKnGsu/WP/3y0znkiaRVEG8GVXpSxOaYscZQLWOFOkVJ8RkwF22S5/VoDrUO2DaNBKZ/5j8+eSFRlcN72qGhQOKbfboXf95hhtL3G33V9aLTjYRFdbQft8sMNoL3+Xs7Z1XCnPAdQyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767630054; c=relaxed/simple;
-	bh=NukNRG8cCLvj5Dx0ePjiHo3AWT0zmoJjI8U969/fmiI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tcvRhT3mHhbkpAiqQCkpTYRnkTq+xQ7KZa9BydrbvdfFVqTntsGg0+RWbMHo7CuYj84tioqV2y7TN+SiVH4oTBrTgbjPpbjd+vzpEtU+M50tTWw2ECML4cYp4KTu4CLbKpdwqV4c/sqTbOGO6ZavJBZUrDt6ifmAhLE5wMt5KAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SjyOu1jv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FF63C2BCAF
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 16:20:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767630054;
-	bh=NukNRG8cCLvj5Dx0ePjiHo3AWT0zmoJjI8U969/fmiI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=SjyOu1jvthRV9iPD3okrpQgPnFncuaPsY1hr9SnI7Ch8xzMwhiy7mIEVFPJD2mrw2
-	 uEtJLmwp2RjVVjGQ2xLywBbbYJEcPMn/6IxEgVJozoCgKMW1o8M7SqohH7I69Laz6x
-	 EIJHsD1Z8u60ko9N95OJ1FX7eUJ3iTfG4HTUjIi2t0BhJgt/kGYuXS477RtkuzHPOX
-	 IRpt5z+YnVeWjNkQ/taYoJk2Pu80ryyp1sgf33b68rMmTLzG+1mK0DXg6gr1SaDjsH
-	 Qwaiz39WyH6ICAfK+NR1WFMpQ7kuxFOhaSWAE0hAYonS+3ahB59o1ttbbQZcZx0Pdw
-	 MFJ58bG+f1XTA==
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-64b9b0b4d5dso114231a12.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 08:20:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXCqdOpp1WKR4Ea0W2DVtGkNXr6oDlAs09K2TlEn7MNPGuT1zaZZy8GSKGJKQyn7n30oZe6zj2uUGB6@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywt2sTLxc5lwGO6w2MdfGZv/PnKjmVg71Khy0FwgRPTICBU9PCO
-	qZUK/cktqCR78sXrohHvxTZrkzh/1yR/57CWgEgKs8KYni+H4IYcaEMhf5ZzCWqLge2xKwBUcMi
-	aScFkfCPO81NDpEoCzFeKSmFbQ40Uxw==
-X-Google-Smtp-Source: AGHT+IFDcsB9cGrXZS17et5spTanzSuiDv2eXGriYKQ2r+jnoBl/BbFbMkXpScUjSnJR1b4zlgjELg50ZXxfiQwZwR0=
-X-Received: by 2002:a17:907:97cf:b0:b84:206f:c0e1 with SMTP id
- a640c23a62f3a-b8426a743d0mr38798366b.18.1767630052751; Mon, 05 Jan 2026
- 08:20:52 -0800 (PST)
+	s=arc-20240116; t=1767630417; c=relaxed/simple;
+	bh=5Wc9sInLDKoQ8ZQovSeuGk9hGRb7jTE2yi9yCvC/awg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OyFQV4+72vP65pg9Q03tNkoWmPdRhVDLYyo7x3HMcXlGNyEwCh1Wo1h8EeiPvDbFIYsjyJCY4OzM3f5e5eoKE+vFqvyDfVRP9WHHNtxY6BKZCCXQfZbBllQkbrW5mLTz2x9ZeSWImWcHhoUjif3luYrTtu0tgJkgAYaJMFqXk5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=FTSl9nhG; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
+	:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=0m/ogoMH86peXHoclOtU2pOxK+47SyNwKWpbIlyEMO4=; b=FTSl9nhGlqB9Aal6Bdz+gSerX6
+	4S6dsus+CfM0AsQde8QzUPMUVwSxVn1yZlwdTcwcjeblGzFQZut0ubdUupSrPt7++pj0JzfOyVYz0
+	DCwLDqSObO7NYva5JsN7z+rabXOjxkfOs8u+qslwc++2NfGbogkK9nxWWORs6W+3rDfkTlHa14oDI
+	3xe1ZtZRbu3hjBLzGBKjDC5xgP0lmvANWCAIZ4i84RuPzWVjb1buVqBuePObP+suNypeyxSTYh6X8
+	SovTkLh1qD/JS28Fdy6EUnxBljlFF2tFpwYE/elOcuk+BvnRnJffk8DvgoqgQlMKTfX9ZkCKytg+M
+	CqdxwOyw==;
+Received: from [122.175.9.182] (port=19826 helo=cypher.couthit.local)
+	by server.couthit.com with esmtpa (Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1vcnPw-0000000F4as-1bUm;
+	Mon, 05 Jan 2026 11:26:52 -0500
+From: Parvathi Pudi <parvathi@couthit.com>
+To: nm@ti.com,
+	vigneshr@ti.com,
+	afd@ti.com,
+	khilman@baylibre.com,
+	rogerq@kernel.org,
+	tony@atomide.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	richardcochran@gmail.com,
+	aaro.koskinen@iki.fi,
+	andreas@kemnade.info
+Cc: andrew@lunn.ch,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	danishanwar@ti.com,
+	pratheesh@ti.com,
+	j-rameshbabu@ti.com,
+	praneeth@ti.com,
+	srk@ti.com,
+	rogerq@ti.com,
+	krishna@couthit.com,
+	mohan@couthit.com,
+	pmohan@couthit.com,
+	basharath@couthit.com,
+	parvathi@couthit.com
+Subject: [PATCH v4 0/2] Add support for ICSSM Ethernet on AM57x, AM437x, and AM335x
+Date: Mon,  5 Jan 2026 21:51:18 +0530
+Message-ID: <20260105162546.1809714-1-parvathi@couthit.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251224161205.1132149-1-zhengxingda@iscas.ac.cn>
- <20251224161205.1132149-3-zhengxingda@iscas.ac.cn> <20260105154656.GA2585570-robh@kernel.org>
- <a838dc0f8bd39c6d9da95f5fd137eba8c131c58a.camel@icenowy.me>
-In-Reply-To: <a838dc0f8bd39c6d9da95f5fd137eba8c131c58a.camel@icenowy.me>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 5 Jan 2026 10:20:40 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKC6FaJZubvxQaX-uQBhWFNs2EHuTG8JK1FJaD1tPOaSw@mail.gmail.com>
-X-Gm-Features: AQt7F2o9BFJZ8sc5_YNuKcdmxDzwwUg67C6I3vE6DTXNMYGUxygNfRHDV7MRa8k
-Message-ID: <CAL_JsqKC6FaJZubvxQaX-uQBhWFNs2EHuTG8JK1FJaD1tPOaSw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/9] dt-bindings: display: add verisilicon,dc
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, 
-	Yao Zi <ziyao@disroot.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: parvathi@couthit.com
+X-Authenticated-Sender: server.couthit.com: parvathi@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Mon, Jan 5, 2026 at 10:13=E2=80=AFAM Icenowy Zheng <uwu@icenowy.me> wrot=
-e:
->
-> =E5=9C=A8 2026-01-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 09:46 -0600=EF=
-=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
-> > On Thu, Dec 25, 2025 at 12:11:58AM +0800, Icenowy Zheng wrote:
-> > > From: Icenowy Zheng <uwu@icenowy.me>
-> > >
-> > > Verisilicon has a series of display controllers prefixed with DC
-> > > and
-> > > with self-identification facility like their GC series GPUs.
-> > >
-> > > Add a device tree binding for it.
-> > >
-> > > Depends on the specific DC model, it can have either one or two
-> > > display
-> > > outputs, and each display output could be set to DPI signal or "DP"
-> > > signal (which seems to be some plain parallel bus to HDMI
-> > > controllers).
-> > >
-> > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> > > ---
-> > > Changes in v4:
-> > > - Added a comment for "verisilicon,dc" that says the ID/revision is
-> > >   discoverable via registers.
-> > > - Removed clock minItems constraint w/o specific compatible
-> > > strings.
-> > >
-> > > Changes in v3:
-> > > - Added SoC-specific compatible string, and arm the binding with
-> > > clock /
-> > >   port checking for the specific SoC (with a 2-output DC).
-> > >
-> > > Changes in v2:
-> > > - Fixed misspelt "versilicon" in title.
-> > > - Moved minItems in clock properties to be earlier than items.
-> > > - Re-aligned multi-line clocks and resets in example.
-> > >
-> > >  .../bindings/display/verisilicon,dc.yaml      | 144
-> > > ++++++++++++++++++
-> > >  1 file changed, 144 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > > b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > > new file mode 100644
-> > > index 0000000000000..fe64cc1466690
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > > @@ -0,0 +1,144 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/verisilicon,dc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Verisilicon DC-series display controllers
-> > > +
-> > > +maintainers:
-> > > +  - Icenowy Zheng <uwu@icenowy.me>
-> > > +
-> > > +properties:
-> > > +  $nodename:
-> > > +    pattern: "^display@[0-9a-f]+$"
-> > > +
-> > > +  compatible:
-> > > +    items:
-> > > +      - enum:
-> > > +          - thead,th1520-dc8200
-> > > +      - const: verisilicon,dc # DC IPs have discoverable
-> > > ID/revision registers
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: DC Core clock
-> > > +      - description: DMA AXI bus clock
-> > > +      - description: Configuration AHB bus clock
-> > > +      - description: Pixel clock of output 0
-> > > +      - description: Pixel clock of output 1
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: core
-> > > +      - const: axi
-> > > +      - const: ahb
-> > > +      - const: pix0
-> > > +      - const: pix1
-> > > +
-> > > +  resets:
-> > > +    items:
-> > > +      - description: DC Core reset
-> > > +      - description: DMA AXI bus reset
-> > > +      - description: Configuration AHB bus reset
-> > > +
-> > > +  reset-names:
-> > > +    items:
-> > > +      - const: core
-> > > +      - const: axi
-> > > +      - const: ahb
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: The first output channel , endpoint 0 should
-> > > be
-> >
-> > No space before comma. Or perhaps should be a period instead.
->
-> Well I don't know why I inserted such a space, will remove it.
->
-> >
-> >
-> > > +          used for DPI format output and endpoint 1 should be used
-> > > +          for DP format output.
-> > > +
-> > > +      port@1:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: The second output channel if the DC variant
-> > > +          supports. Follow the same endpoint addressing rule with
-> > > +          the first port.
-> > > +
-> > > +    required:
-> > > +      - port@0
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - ports
-> > > +
-> > > +allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            const: thead,th1520-dc8200
-> > > +    then:
-> > > +      properties:
-> > > +        clocks:
-> > > +          minItems: 5
-> >
-> > That's already implicitly the min. Perhaps you wanted 'minItems: 4'
-> > on
-> > the clocks and clock-names definitions for versions with only 1
-> > output?
->
-> Previously I specified minItems: 4 in the general part, however this
-> does not play well when some of core/axi/ahb clocks are not present.
+Hi,
 
-I don't understand. That would only make pix1 optional. There of
-course is no way we can check that 'clocks' entries are pointing to
-the correct clocks.
+This series adds support for ICSSM Ethernet on Texas Instruments AM57x,
+AM437x and AM335x platforms.
 
-> > > +        ports:
-> > > +          required:
-> > > +            - port@0
-> > > +            - port@1
-> >
-> > It is valid to omit these if the output is present, but unused.
->
-> Well this sounds reasonable, although my driver does not play well if
-> only a port@1 is defined w/o port@0 .
+The AM57x and AM437x IDKs support two PRU-ICSS instances, each consisting
+of two PRU cores, with each PRU-ICSS instance capable of handling two
+Ethernet ports. For the AM57x platforms, the PRU-ICSS2 node has been added
+to the am57xx-idk-common.dtsi, while for the AM437x platform, the PRU-ICSS1
+node has been added to the am437x-idk-evm.dts.
 
-Sounds like your driver should be fixed.
+The AM335x ICE features a single PRU-ICSS instance. A new device tree overlay
+source file, am335x-icev2-prueth-overlay.dtso, has been introduced to define the
+PRU-ICSS node for the AM335x platform.
 
-> Considering the previous two snippets, should I just remove this if
-> part?
+This is v4 of the patch series [v1]. It has no changes from [v3].
+This series is based on the latest next-20260105 linux-next.
 
-I would, yes.
+Changes from v3 to v4 :
 
-Rob
+*) No code changes were made, only the version was updated.
+*) Rebased the series on latest linux-next.
+
+Changes from v2 to v3 :
+
+*) Addressed Andrew Davis's comment by placing PRUETH nodes in a new overlay file
+am335x-icev2-prueth-overlay.dtso.
+*) Rebased the series on latest linux-next.
+
+Changes from v1 to v2 :
+
+*) Addressed Andrew Lunn's comment on patch 1 of the series.
+*) Addressed MD Danish Anwar comment on patch 1 of the series.
+*) Rebased the series on latest linux-next.
+
+[v1] https://lore.kernel.org/all/20251013125401.1435486-1-parvathi@couthit.com/
+[v2] https://lore.kernel.org/all/20251103124820.1679167-1-parvathi@couthit.com/
+[v3] https://lore.kernel.org/all/20251217130715.1327138-1-parvathi@couthit.com/
+
+Thanks and Regards,
+Parvathi.
+
+Roger Quadros (2):
+  arm: dts: ti: Adds device tree nodes for PRU Cores, IEP and eCAP
+    modules of PRU-ICSS2 Instance.
+  arm: dts: ti: Adds support for AM335x and AM437x
+
+ arch/arm/boot/dts/ti/omap/Makefile            |   5 +
+ .../ti/omap/am335x-icev2-prueth-overlay.dtso  | 190 ++++++++++++++++++
+ arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi      |  11 +
+ arch/arm/boot/dts/ti/omap/am4372.dtsi         |  11 +
+ arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts  | 137 ++++++++++++-
+ arch/arm/boot/dts/ti/omap/am57-pruss.dtsi     |  11 +
+ arch/arm/boot/dts/ti/omap/am571x-idk.dts      |   8 +-
+ arch/arm/boot/dts/ti/omap/am572x-idk.dts      |  10 +-
+ arch/arm/boot/dts/ti/omap/am574x-idk.dts      |  10 +-
+ .../boot/dts/ti/omap/am57xx-idk-common.dtsi   |  61 ++++++
+ 10 files changed, 444 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm/boot/dts/ti/omap/am335x-icev2-prueth-overlay.dtso
+
+-- 
+2.43.0
+
 
