@@ -1,149 +1,312 @@
-Return-Path: <devicetree+bounces-251609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29BCBCF4AD8
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 17:28:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EC4DCF4A6C
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 17:24:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AC004302FCFE
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:24:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0CB74300A93C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 16:24:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD461330313;
-	Mon,  5 Jan 2026 16:24:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83118334C09;
+	Mon,  5 Jan 2026 16:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="fbjlcouJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="wiwfgUos"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B464F32D0C4
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 16:24:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0692733291A;
+	Mon,  5 Jan 2026 16:24:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767630246; cv=none; b=rheVrlDifNX+X/38cyRnHaf6ez2PXwYKOwDjmBnz8qDw8mlilYWqceBD3RqZoWn7ZKUKDaY9s/5m6mcfUPjSJq2JbDuFK1N5N7bz6b6g11YkKtN8jvhLuoj1loNPiKE0/gQCMfgqsVxkUFwFfaKlAJ2acvbblRAHSlfnjFT7HTI=
+	t=1767630264; cv=none; b=QMcaDaBk4DNMJinPrg9lWj4lo3EnW6q+EitUAMy7biU1JC/oPiGAmiCIev6kmoH2qmUEYcxx9g6D/Rrg+fms645V6pdneT2Yv8G29BWnKke0OjeyxlDqNdEBcnmiOwEdmX75y29e4wm1JwqK2Unp3ufxVSmPAVSElrRmMXjso3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767630246; c=relaxed/simple;
-	bh=41PDqGT/J89UTl4bu3bwe45Dw8kT1aCfLaGp+kS+sX4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LSn6N8BO5bovqAcY2Uwt1NljQ/hj7qsbOXXHSKmyrC06CPRHkxbr7TJamlNqhmmxx6tJ5jKKixokiBmS1nnyy3ctqr2kssmS8ZI5NDVFkY0q7pG46PTdXXzUt4qQm5NDHYSHRL81n0PAXlFPEypIgNKrwLqkoJbL7eOw4nRa9uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=fbjlcouJ; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1767630243;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=46dE8wQn1HVL0x3WTf36oZBc8LAD4VTY8ItMtpTUnY8=;
-	b=fbjlcouJm3yQi7P7iMdlXD9Tc9fgxKSm9cszc0JiT7F5bmKgypTIkDuQtzX3VOudNSPjFX
-	MwskC8zeHA74zvdqZybyvdUxjB6cQOfdvcMM8un37UEgTnU39/AKoKB3viEiT0woMkVIeK
-	AFoK31aVOsf6OkYUrCCQOI2tiat1qEg=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-612-qAfVWpaVPVmwinV2Ig6kOw-1; Mon,
- 05 Jan 2026 11:24:00 -0500
-X-MC-Unique: qAfVWpaVPVmwinV2Ig6kOw-1
-X-Mimecast-MFC-AGG-ID: qAfVWpaVPVmwinV2Ig6kOw_1767630236
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id C443F1956050;
-	Mon,  5 Jan 2026 16:23:55 +0000 (UTC)
-Received: from [10.44.32.50] (unknown [10.44.32.50])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 982321956048;
-	Mon,  5 Jan 2026 16:23:44 +0000 (UTC)
-Message-ID: <5db81f5b-4f35-46e4-8fec-4298f1ac0c4e@redhat.com>
-Date: Mon, 5 Jan 2026 17:23:42 +0100
+	s=arc-20240116; t=1767630264; c=relaxed/simple;
+	bh=ZF375abMaqPcCosbr7HThENC1dI3rMKv9Td3V3QBTUc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=DCUXHHSiPPtuqByqHzUm7QQ48cyR2inSHtPIQeR9I6UdyWRCLnj5NG7RKNsUPIB9csQMPklrRY957tIvUdm3I8L8mDy8O6JZ4jzphkms0CEpdLo5N3uXqdU7q6x+Sl4+XtJmkSKU4OLBk7zLEk7Jvnfv7eNB54/AN0keP6dBqVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=wiwfgUos; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 2C093C1E48A;
+	Mon,  5 Jan 2026 16:23:51 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1F2BD60726;
+	Mon,  5 Jan 2026 16:24:17 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 04C34103C84AA;
+	Mon,  5 Jan 2026 17:24:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767630255; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=wmAT0T9ABuwHAf6f+472JmLmotK1cUNIQRvscL78Si8=;
+	b=wiwfgUos9MN+41ojRE2Afdk860+ixAWP0mMipfgftY8bfriiGODeIcNdsxpSEyxSzZuFJa
+	/ainyHboytM31BdO6DwPeUAdCWVwmTT2dmK1QgCmhf1rblhzkcKWE34hWiu4CZCaBzpA4k
+	zvYPutcJjurtbcSdNtsSf5IxXetg/3xZ9i6XBgqQ9GzGrOj1A41xb/1AfYHG4l5vSLjtg8
+	bAgrdxFHJsFVQztX8r+3KfCNYlP9TP0gLQ5N+OvP2QC1uszibhEe5U/Vi3CZV4pQ3ADf2A
+	GbZdubbRrJ3aTaVd1bVKNCKFbyDfTtjVDECyFrqQtuMpK3UtzTLVLQPw9fHe2g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC net-next 01/13] dt-bindings: net: ethernet-controller:
- Add DPLL pin properties
-To: Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Grzegorz Nitka <grzegorz.nitka@intel.com>, Jiri Pirko <jiri@resnulli.us>,
- Petr Oros <poros@redhat.com>, Michal Schmidt <mschmidt@redhat.com>,
- Prathosh Satish <Prathosh.Satish@microchip.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>,
- Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Jonathan Lemon <jonathan.lemon@gmail.com>, Simon Horman <horms@kernel.org>,
- Alexander Lobakin <aleksander.lobakin@intel.com>,
- Willem de Bruijn <willemb@google.com>, Stefan Wahren <wahrenst@gmx.net>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org,
- Horatiu Vultur <Horatiu.Vultur@microchip.com>
-References: <20251211194756.234043-1-ivecera@redhat.com>
- <20251211194756.234043-2-ivecera@redhat.com>
- <2de556f0-d7db-47f1-a59e-197f92f93d46@lunn.ch>
- <20251217004946.GA3445804-robh@kernel.org>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <20251217004946.GA3445804-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 05 Jan 2026 17:24:11 +0100
+Message-Id: <DFGSMN8268O0.33TYCQDBVHUHZ@bootlin.com>
+Subject: Re: [PATCH v5 2/7] phy: Add driver for EyeQ5 Ethernet PHY wrapper
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Kishon Vijay Abraham I"
+ <kishon@kernel.org>, "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, "Thomas Bogendoerfer"
+ <tsbogend@alpha.franken.de>, "Neil Armstrong" <neil.armstrong@linaro.org>,
+ <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <linux-clk@vger.kernel.org>, =?utf-8?q?Beno=C3=AEt_Monin?=
+ <benoit.monin@bootlin.com>, "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>, "Luca Ceresoli"
+ <luca.ceresoli@bootlin.com>
+To: "Vinod Koul" <vkoul@kernel.org>, =?utf-8?q?Th=C3=A9o_Lebrun?=
+ <theo.lebrun@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251215-macb-phy-v5-0-a9dfea39da34@bootlin.com>
+ <20251215-macb-phy-v5-2-a9dfea39da34@bootlin.com> <aUq7E4yh0OgTfdxF@vaman>
+In-Reply-To: <aUq7E4yh0OgTfdxF@vaman>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 12/17/25 1:49 AM, Rob Herring wrote:
-> On Thu, Dec 11, 2025 at 08:56:52PM +0100, Andrew Lunn wrote:
->> On Thu, Dec 11, 2025 at 08:47:44PM +0100, Ivan Vecera wrote:
->>> Ethernet controllers may be connected to DPLL (Digital Phase Locked Loop)
->>> pins for frequency synchronization purposes, such as in Synchronous
->>> Ethernet (SyncE) configurations.
->>>
->>> Add 'dpll-pins' and 'dpll-pin-names' properties to the generic
->>> ethernet-controller schema. This allows describing the physical
->>> connections between the Ethernet controller and the DPLL subsystem pins
->>> in the Device Tree, enabling drivers to request and manage these
->>> resources.
->>
->> Please include a .dts patch in the series which actually makes use of
->> these new properties.
-> 
-> Actually, first you need a device (i.e. a specific ethernet
-> controller bindings) using this and defining the number of dpll-pins
-> entries and the names.
+Hello Vinod,
 
-The goal of this patch is to define properties that allow referencing
-dpll pins from other devices. I included it in this series to allow
-implementing helpers that use the property names defined in the schema.
+On Tue Dec 23, 2025 at 4:53 PM CET, Vinod Koul wrote:
+> On 15-12-25, 17:26, Th=C3=A9o Lebrun wrote:
+>> EyeQ5 embeds a system-controller called OLB. It features many unrelated
+>> registers, and some of those are registers used to configure the
+>> integration of the RGMII/SGMII Cadence PHY used by MACB/GEM instances.
+>>=20
+>> Wrap in a neat generic PHY provider, exposing two PHYs with standard
+>> phy_init() / phy_set_mode() / phy_power_on() operations.
+>>=20
+>> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+>> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+>> ---
+>>  MAINTAINERS                 |   1 +
+>>  drivers/phy/Kconfig         |  13 +++
+>>  drivers/phy/Makefile        |   1 +
+>>  drivers/phy/phy-eyeq5-eth.c | 249 +++++++++++++++++++++++++++++++++++++=
++++++++
+>>  4 files changed, 264 insertions(+)
+>>=20
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 5b11839cba9d..2f67ec9fad57 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -17605,6 +17605,7 @@ F:	arch/mips/boot/dts/mobileye/
+>>  F:	arch/mips/configs/eyeq5_defconfig
+>>  F:	arch/mips/mobileye/board-epm5.its.S
+>>  F:	drivers/clk/clk-eyeq.c
+>> +F:	drivers/phy/phy-eyeq5-eth.c
+>>  F:	drivers/pinctrl/pinctrl-eyeq5.c
+>>  F:	drivers/reset/reset-eyeq.c
+>>  F:	include/dt-bindings/clock/mobileye,eyeq5-clk.h
+>> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+>> index 678dd0452f0a..1aa6eff12dbc 100644
+>> --- a/drivers/phy/Kconfig
+>> +++ b/drivers/phy/Kconfig
+>> @@ -101,6 +101,19 @@ config PHY_NXP_PTN3222
+>>  	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
+>>  	  Speed and High Speed.
+>> =20
+>> +config PHY_EYEQ5_ETH
+>
+> sorted please
 
-This series implements the dpll pin consumer in the ice driver. This is
-usually present on ACPI platforms, so the properties are stored in _DSD
-ACPI nodes. Although I don't have a DT user right now, isn't it better
-to define the schema now?
+I wouldn't mind, but entries are currently (v6.19-rc4) not sorted:
 
-Thinking about this further, consumers could be either an Ethernet
-controller (where the PHY is not exposed and is driven directly by the
-NIC driver) or an Ethernet PHY.
+$ diff -U100 <(grep ^config drivers/phy/Kconfig) \
+             <(grep ^config drivers/phy/Kconfig | sort)
+--- /dev/fd/63 2026-01-05 15:55:53.891922890 +0100
++++ /dev/fd/62 2026-01-05 15:55:53.891922890 +0100
+@@ -1,11 +1,11 @@
+ config GENERIC_PHY
+ config GENERIC_PHY_MIPI_DPHY
++config PHY_AIROHA_PCIE
++config PHY_CAN_TRANSCEIVER
++config PHY_EYEQ5_ETH
+ config PHY_LPC18XX_USB_OTG
++config PHY_NXP_PTN3222
+ config PHY_PISTACHIO_USB
+ config PHY_SNPS_EUSB2
+ config PHY_XGENE
+ config USB_LGM_PHY
+-config PHY_CAN_TRANSCEIVER
+-config PHY_AIROHA_PCIE
+-config PHY_NXP_PTN3222
+-config PHY_EYEQ5_ETH
 
-For the latter case (Ethernet PHY), I have been preparing a similar
-implementation for the Micrel phy driver (lan8814) on the Microchip EDS2
-board (pcb8385). Unfortunately, the DTS is not upstreamed yet [1], so I
-cannot include the necessary bindings here.
+This is why I appended. In V2, I'll send a first patch to reorder
+entries to then be able to add PHY_EYEQ5_ETH in the correct location.
 
-Since there can be multiple consumer types (Ethernet controller or PHY),
-would it be better to define a dpll-pin-consumer.yaml schema instead
-(similar to mux-consumer)?
+>> +	tristate "Ethernet PHY Driver on EyeQ5"
+>> +	depends on OF
+>> +	depends on MACH_EYEQ5 || COMPILE_TEST
+>> +	select AUXILIARY_BUS
+>> +	select GENERIC_PHY
+>> +	default MACH_EYEQ5
+>
+> hmmm why should it be default? Maybe add this is respective defconfig for
+> platform instead..?
 
-Thanks for the advice,
-Ivan
+We have been doing this for other parts of OLB. If you are doing a
+config for EyeQ5, most probably you want this enabled.
 
-[1] 
-https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=1031294&state=*
+One example usecase this default field makes config easier: when you
+migrate an eyeq* config to eyeq5 without resetting the full config by
+applying eyeq5_defconfig. With default field you get this driver
+enabled, otherwise you don't and Ethernet doesn't work.
+
+I'd prefer keeping this default but we can drop it if you lean strongly
+against it.
+
+>> +	help
+>> +	  Enable this to support the Ethernet PHY integrated on EyeQ5.
+>> +	  It supports both RGMII and SGMII. Registers are located in a
+>> +	  shared register region called OLB. If M is selected, the
+>> +	  module will be called phy-eyeq5-eth.
+>> +
+>>  source "drivers/phy/allwinner/Kconfig"
+>>  source "drivers/phy/amlogic/Kconfig"
+>>  source "drivers/phy/broadcom/Kconfig"
+>> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
+>> index bfb27fb5a494..8289497ece55 100644
+>> --- a/drivers/phy/Makefile
+>> +++ b/drivers/phy/Makefile
+>> @@ -13,6 +13,7 @@ obj-$(CONFIG_PHY_SNPS_EUSB2)		+=3D phy-snps-eusb2.o
+>>  obj-$(CONFIG_USB_LGM_PHY)		+=3D phy-lgm-usb.o
+>>  obj-$(CONFIG_PHY_AIROHA_PCIE)		+=3D phy-airoha-pcie.o
+>>  obj-$(CONFIG_PHY_NXP_PTN3222)		+=3D phy-nxp-ptn3222.o
+>> +obj-$(CONFIG_PHY_EYEQ5_ETH)		+=3D phy-eyeq5-eth.o
+>
+> sorted please
+
+Same as for Kconfig. Will do it in two steps: first sort, then add the
+CONFIG_PHY_EYEQ5_ETH line.
+
+$ diff -U100 <(grep ^obj-\\$ drivers/phy/Makefile) \
+             <(grep ^obj-\\$ drivers/phy/Makefile | sort)
+--- /dev/fd/63 2026-01-05 16:11:10.977537425 +0100
++++ /dev/fd/62 2026-01-05 16:11:10.978537396 +0100
+@@ -1,11 +1,11 @@
+-obj-$(CONFIG_GENERIC_PHY)              +=3D phy-core.o
+ obj-$(CONFIG_GENERIC_PHY_MIPI_DPHY)    +=3D phy-core-mipi-dphy.o
++obj-$(CONFIG_GENERIC_PHY)              +=3D phy-core.o
++obj-$(CONFIG_PHY_AIROHA_PCIE)          +=3D phy-airoha-pcie.o
+ obj-$(CONFIG_PHY_CAN_TRANSCEIVER)      +=3D phy-can-transceiver.o
++obj-$(CONFIG_PHY_EYEQ5_ETH)            +=3D phy-eyeq5-eth.o
+ obj-$(CONFIG_PHY_LPC18XX_USB_OTG)      +=3D phy-lpc18xx-usb-otg.o
+-obj-$(CONFIG_PHY_XGENE)                +=3D phy-xgene.o
++obj-$(CONFIG_PHY_NXP_PTN3222)          +=3D phy-nxp-ptn3222.o
+ obj-$(CONFIG_PHY_PISTACHIO_USB)        +=3D phy-pistachio-usb.o
+ obj-$(CONFIG_PHY_SNPS_EUSB2)           +=3D phy-snps-eusb2.o
++obj-$(CONFIG_PHY_XGENE)                +=3D phy-xgene.o
+ obj-$(CONFIG_USB_LGM_PHY)              +=3D phy-lgm-usb.o
+-obj-$(CONFIG_PHY_AIROHA_PCIE)          +=3D phy-airoha-pcie.o
+-obj-$(CONFIG_PHY_NXP_PTN3222)          +=3D phy-nxp-ptn3222.o
+-obj-$(CONFIG_PHY_EYEQ5_ETH)            +=3D phy-eyeq5-eth.o
+
+[...]
+
+>> +static int eq5_phy_exit(struct phy *phy)
+>> +{
+>> +	struct eq5_phy_inst *inst =3D phy_get_drvdata(phy);
+>> +	struct eq5_phy_private *priv =3D inst->priv;
+>> +	struct device *dev =3D priv->dev;
+>> +
+>> +	dev_dbg(dev, "phy_exit(inst=3D%td)\n", inst - priv->phys);
+>> +
+>> +	writel(0, inst->gp);
+>> +	writel(0, inst->sgmii);
+>> +	udelay(5);
+>
+> this is same patter in init as well...?
+
+Yes! phy_ops::init() must reinit the HW to ensure its config fields
+are well taken into account. We might inherit an already initialised
+PHY from the bootloader.
+
+We could in theory move those three ops (writel+writel+udelay) into a
+helper function but I feel like it would decrease readability without
+increasing code quality.
+
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int eq5_phy_set_mode(struct phy *phy, enum phy_mode mode, int su=
+bmode)
+>> +{
+>> +	struct eq5_phy_inst *inst =3D phy_get_drvdata(phy);
+>> +	struct eq5_phy_private *priv =3D inst->priv;
+>> +	struct device *dev =3D priv->dev;
+>> +
+>> +	dev_dbg(dev, "phy_set_mode(inst=3D%td, mode=3D%d, submode=3D%d)\n",
+>> +		inst - priv->phys, mode, submode);
+>
+> these are good for debug but not for upstream, please drop
+
+Ah this is surprising! They helped me debug this driver and fix one bug
+or two so I thought I'd leave them in. They get compiled out by
+default. And there is no ftrace events equivalent which would make
+those dev_dbg() moot.
+
+=E2=9F=A9 git grep -F dev_dbg\( drivers/ | wc -l
+25174
+=E2=9F=A9 git grep -F dev_dbg\( drivers/phy/ | wc -l
+260
+
+[...]
+
+>> +static int eq5_phy_probe(struct auxiliary_device *adev,
+>> +			 const struct auxiliary_device_id *id)
+>> +{
+>> +	struct device *dev =3D &adev->dev;
+>> +	struct phy_provider *provider;
+>> +	struct eq5_phy_private *priv;
+>> +	void __iomem *base;
+>> +	int ret;
+>> +
+>> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+>> +	if (!priv)
+>> +		return -ENOMEM;
+>> +
+>> +	priv->dev =3D dev;
+>> +	dev_set_drvdata(dev, priv);
+>> +
+>> +	base =3D (void __iomem *)dev_get_platdata(dev);
+>
+> no need to cast for void *
+
+Yes! My initial goal was to prevent a sparse warning about the implicit
+cast from `void *` as returned by dev_get_platdata() and
+`void __iomem *base`.
+
+But it does not matter in our case (and the correct solution for
+explicit cast would have implied __force).
+
+--
+
+I'll wait for feedback on `default MACH_EYEQ5` and `dev_dbg()` before
+sending the next revision.
+
+Thanks for the review!
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
