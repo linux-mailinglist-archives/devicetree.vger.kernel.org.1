@@ -1,231 +1,483 @@
-Return-Path: <devicetree+bounces-251434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DD12CF2EDB
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:12:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 483DFCF2EF3
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:14:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C6BD630054B3
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:09:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1BFD930155ED
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:12:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2F192F25FD;
-	Mon,  5 Jan 2026 10:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99282F3C19;
+	Mon,  5 Jan 2026 10:12:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="c0+7lofq"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="qWUESvLK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B032F25F5
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 10:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA0F12F1FEE;
+	Mon,  5 Jan 2026 10:11:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767607797; cv=none; b=NXbdMfTaN5tdV9GVzKdILu0Eqqi+zDSs02xnSjEbWUHJnEgsD1QH5b0Ky2HzPz+s2/KPfumsLQcC4TMVBXm16kWlKEE119qqPMcReJIqdHmBqhZtyN9oVJyPy5g2E4FRVgQQllE0GvRT1IX8wH2BRTJ73sOZZ8OvJUqUBTzxsss=
+	t=1767607922; cv=none; b=eL6XEYe2b7PM3aHUSV8JCgRUhy41zDEzHsdgiyenJBb7k81ittyhZkZUTS5l9C9SB2+ijYlh8L8zXE9MUfsW4wuXti3yEcXkpsfjuxSMbNvi2yIk6n0e5tVjJvDvN3vqOxcVRmzAXrXxkMZCYaCXvm15uh/A5asWNIwlIh+pBbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767607797; c=relaxed/simple;
-	bh=ICOP+8Za83UzCsn5kdwRY8IkW7lPTMB1vK8m7RWky24=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VwXfaGR4A/ab2y+yaq6KTI35Kcd96msT4LBD+xVpjX/H37cqSY6XyWSMjLlcSq8fNTxCUg7EzC/nCt3M/h2niVMTJErqBl+CQrvEuPkOZa7+GBzDyGpyX3KaW4wyn4VI4GNoV3kNAr8oSlhyWYOQKszUlbNy3xk81updLCujMg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=c0+7lofq; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47d1d8a49f5so69145815e9.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 02:09:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767607794; x=1768212594; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NvKDos4fJsou+PSfhxPxHl5xgEuLiCmh0jj1etHYyZs=;
-        b=c0+7lofqKzRH+51D5Evl9eKmSFpCd46cftezD96WfH8SdDgCmLrINPBnEQjT0QZBGa
-         PIwKg1fLMyOg53E8eyyo8PAHaGHQ40EsxeiIBklEQgIskhrZW39LwBuZ9xLNvBjzmulA
-         sm9RzEv784pM5qg/4x9ImpOQWr20KBmr2C/bpFnCuDu5/QctFSbkaw8YNfJqhyPfCD64
-         Jr17pGzx/+UdugnGEWim+7PM7qrOy5RCri1tTO38bPEJlsa3R8EE6Qe7VBF8ffDOUvrY
-         PGTalnEob3gI5eVXWvs0ugNpApaX97fNfrvtlgDYYkMjgwLIe3Iz6uWfKMdfVK0fksfE
-         zr2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767607794; x=1768212594;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NvKDos4fJsou+PSfhxPxHl5xgEuLiCmh0jj1etHYyZs=;
-        b=u7H3HvgHqx56PS0FHFZkpiGcaf1rOD4T03zpASGEEPIWEvG6G8YoL8+9yMI7KFhRu9
-         YaIxPNS1bflfKufhLwTCud7Jrsw5JLAXw+OH8K6xEQbfEdd/HyfmrX8FufjfdpF/Olyz
-         IHfpgg2eFIGsiAevnN40R3EkgUUfBP5pkRfnzaWIlSveDJ1I+HQ7TUTWevV7/ZKCmH2e
-         nx9HUfE3NovmFQ4mB9iuwsaODr2RBSxTOfid/HMIaPcSYTwmrmZwh2vCQcoWcYxYx/4U
-         u64LWzdEfeqez7xNGZ1QfW4IXnkqMaJcazrLCVtMGfVr/9xXt8d8LQHTQUdhnypXg21C
-         9Vbw==
-X-Forwarded-Encrypted: i=1; AJvYcCXEVRaGcfYrzIyDrud08CgQWEyvoNkXTamWowl1P3txO3YjeTPTPTmzFUqXxKlKYpLxpp2pMm9X1wlZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPItHPWVA/J4YCcaYRKmkOFUGhIgQ4tE8AH3EfLWcYam/WJDj3
-	M5Pp3YKEBcde18K5YTShsQQnbM74jDP+5sD0DcAgFnuXpvU21EhnbyJuV6ez2ubH4no=
-X-Gm-Gg: AY/fxX6dGhyY4SioUxyBqS8ZA/cZFHKtCUW/AeaDqTtMEgWj3sRQeLvc3j1+0IY4fMt
-	L+ESWpFChVbzKAVZjH+ytB9Pzj2fAgapzTv80VhtIXA1RkcQgTBAL0dfgbvYL4WY5WYoFpunBPJ
-	FZSNc39xFS6/demSRXsWR/xC+IWM3JwD3lTia7y3cKvKmBtNuBVKnuMkfOK64fF8sW3rmzeMfPO
-	1F+G2sNoydm9P0nQMknHD8oMQ7/TI8EjBe+y7nR5gjcbZQF0mJlW2+3gHQ1FjE8dYSE2tAeprN4
-	fUjp/w+qCtyHnZGqPNPehPutgcUzrXlhjCE3TdFHkdvD2rOH5hciO/F39ZWeFFoL84BIwz/2WEB
-	alX4BhctFHKgtUU+ylR/R/p1u9JWqHYxn/SKBIQl82vKMuBLcmmn/drZMfnHuJRlAlYLUd4nwg4
-	YrAiJgz6KhOAJ90z49fsz4jPhEgt584V7DQ0xMw8dQjguit1FdyYHOzyY2XXMt96x8Mb6aYS9R3
-	Yj40KDq6pfKci/AVrzeXpyc3J/Di4GvNEJFGHVAF0+6GGVmYGYzQur3sVLnRNrpF5BZefki
-X-Google-Smtp-Source: AGHT+IGE2qcg6xcM7QfR3K1EbPQJ77qbf+cnZNCN9Ov6K1/H31yxXIcb9M1Xw2mnMf6vzDPPoCfzWA==
-X-Received: by 2002:a05:600c:4e90:b0:46e:4e6d:79f4 with SMTP id 5b1f17b1804b1-47d19557183mr677320615e9.15.1767607794105;
-        Mon, 05 Jan 2026 02:09:54 -0800 (PST)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d6d13e2e0sm176557595e9.1.2026.01.05.02.09.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 02:09:53 -0800 (PST)
-Date: Mon, 5 Jan 2026 10:09:51 +0000
-From: Daniel Thompson <daniel@riscstar.com>
-To: Sudarshan Shetty <tessolveupstream@gmail.com>
-Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
-	pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
-	linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] backlight: gpio: add support for multiple GPIOs
- for backlight control
-Message-ID: <aVuN7zVUWJ1qsVh8@aspen.lan>
-References: <20260105085120.230862-1-tessolveupstream@gmail.com>
- <20260105085120.230862-3-tessolveupstream@gmail.com>
+	s=arc-20240116; t=1767607922; c=relaxed/simple;
+	bh=iaxCfWTu79QIfYhKC98bg3+oxT5P4uZAd9qhnmaekgs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hqeGjg2cSPto1WtNFw6blic6B4urfcqnur5NVcwZfr2rrZsJ3XVI8qv5z4xDCYruOWIWwTuqZ4rnxAYBUjJ9qFczsMFVz8lJNLzkM1W8zOkRMoWzZieEBSkNL6z5ZOyK8OmoDXtuSPbueaROk0l7gmvfC84YrXvmEvDNqUKI/vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=qWUESvLK; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 22D6D4E41F63;
+	Mon,  5 Jan 2026 10:11:57 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E53AD60726;
+	Mon,  5 Jan 2026 10:11:56 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F2AEA103C8458;
+	Mon,  5 Jan 2026 11:11:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767607915; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=UBGLtAPCxRqGUd7drHdDfykkh+GZIgiO84U/jh43uJo=;
+	b=qWUESvLKN7V9RWBXqcnVWvK+4zNS4oKo+Kkc2PlmwPrU+4luInMk/VXJcwzy82kYY3Kcf9
+	WkA9eD65plD4AsW1mOeyC53BixoMID1N3X4ayUZe8jDV7httrl1elZxWkgOY/zaabPRUOa
+	ixuDqd7tnSa1pPwFuM+ujHpBF/2hQiOVugtUc6tiXGyeovtWEWR2W7W3RIx7rzNObtcvnT
+	YwzLTCfQfucoC3NIn0PKt6WeT4usy3hMBcKnIY8Co5gAx/msMaLd5c4+JghEviPurEMg60
+	elvy53198Zt8jf2YE8qIencBrExUrp2KE/81rCz/04fkTKrBWVXbqJPlNz4G2w==
+Message-ID: <bec3a0be-56a1-4eb0-bb77-c1786f00e7b3@bootlin.com>
+Date: Mon, 5 Jan 2026 11:11:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260105085120.230862-3-tessolveupstream@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] iio: adc: add driver for Texas Instruments TLA2528
+ adc
+To: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
+ <jic23@kernel.org>, nuno.sa@analog.com, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Angelo Dureghello <adureghello@baylibre.com>,
+ Tobias Sperling <tobias.sperling@softing.com>,
+ Eason Yang <j2anfernee@gmail.com>,
+ Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+ Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
+ duje@dujemihanovic.xyz, herve.codina@bootlin.com,
+ Rodolfo Giometti <giometti@enneenne.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com
+References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
+ <20251223155534.220504-3-maxime.chevallier@bootlin.com>
+ <5832d047-e93f-497e-aa23-6f67aeb00a99@baylibre.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <5832d047-e93f-497e-aa23-6f67aeb00a99@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Jan 05, 2026 at 02:21:20PM +0530, Sudarshan Shetty wrote:
-> Extend the gpio-backlight driver to handle multiple GPIOs instead of a
-> single one. This allows panels that require driving several enable pins
-> to be controlled by the backlight framework.
->
-> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
-> ---
->  drivers/video/backlight/gpio_backlight.c | 61 +++++++++++++++++-------
->  1 file changed, 45 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
-> index 728a546904b0..037e1c111e48 100644
-> --- a/drivers/video/backlight/gpio_backlight.c
-> +++ b/drivers/video/backlight/gpio_backlight.c
-> @@ -17,14 +17,18 @@
->
->  struct gpio_backlight {
->  	struct device *dev;
-> -	struct gpio_desc *gpiod;
-> +	struct gpio_desc **gpiods;
-> +	unsigned int num_gpios;
+Hi David,
 
-Why not use struct gpio_descs for this?
+On 23/12/2025 19:26, David Lechner wrote:
+> On 12/23/25 9:55 AM, Maxime Chevallier wrote:
+>> This adds a new driver for the TI TLA2528 ADC chip. It ha 8 12-bit
+> 
+> s/This adds/Add/
+> 
+> s/ha/has/
+> 
+>> channels, that can also be configured as 16-bit averaging channels.
+>>
+>> Add a very simple driver for it, allowing reading raw values for each
+> 
+> Don't need to say we are adding a driver twice.
 
-Once you do that, then most of the gbl->num_gpios loops can be replaced with
-calls to the array based accessors.
+I'll reword accordingly, thanks :)
 
+> 
+>> channel.
+>>
+>> Signed-off-by: Rodolfo Giometti <giometti@enneenne.com>
+>> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> ---
+>>  MAINTAINERS                  |   7 ++
+>>  drivers/iio/adc/Kconfig      |  10 ++
+>>  drivers/iio/adc/Makefile     |   1 +
+>>  drivers/iio/adc/ti-tla2528.c | 209 +++++++++++++++++++++++++++++++++++
+>>  4 files changed, 227 insertions(+)
+>>  create mode 100644 drivers/iio/adc/ti-tla2528.c
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index dc731d37c8fe..5c382ae216c7 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -25866,6 +25866,13 @@ F:	include/dt-bindings/soc/ti,sci_pm_domain.h
+>>  F:	include/linux/soc/ti/ti_sci_inta_msi.h
+>>  F:	include/linux/soc/ti/ti_sci_protocol.h
+>>  
+>> +TEXAS INSTRUMENTS' TLA2528 ADC DRIVER
+>> +M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> +L:	linux-iio@vger.kernel.org
+>> +S:	Supported
+>> +F:	Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
+> 
+> This part can be included in the dt-bindings patch since that is where
+> the file is introduced.
+> 
+>> +F:	drivers/iio/adc/ti-tla2528.c
+> 
+> And just keep this line in this patch.
 
->  };
->
->  static int gpio_backlight_update_status(struct backlight_device *bl)
->  {
->  	struct gpio_backlight *gbl = bl_get_data(bl);
-> +	unsigned int i;
-> +	int br = backlight_get_brightness(bl);
->
-> -	gpiod_set_value_cansleep(gbl->gpiod, backlight_get_brightness(bl));
-> +	for (i = 0; i < gbl->num_gpios; i++)
-> +		gpiod_set_value_cansleep(gbl->gpiods[i], br);
->
->  	return 0;
->  }
-> @@ -52,6 +56,7 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->  	struct backlight_device *bl;
->  	struct gpio_backlight *gbl;
->  	int ret, init_brightness, def_value;
-> +	unsigned int i;
->
->  	gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
->  	if (gbl == NULL)
-> @@ -62,10 +67,22 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->
->  	def_value = device_property_read_bool(dev, "default-on");
->
-> -	gbl->gpiod = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
-> -	if (IS_ERR(gbl->gpiod))
-> -		return dev_err_probe(dev, PTR_ERR(gbl->gpiod),
-> -				     "The gpios parameter is missing or invalid\n");
-> +	gbl->num_gpios = gpiod_count(dev, NULL);
-> +	if (gbl->num_gpios == 0)
-> +		return dev_err_probe(dev, -EINVAL,
-> +			"The gpios parameter is missing or invalid\n");
-> +	gbl->gpiods = devm_kcalloc(dev, gbl->num_gpios, sizeof(*gbl->gpiods),
-> +				   GFP_KERNEL);
-> +	if (!gbl->gpiods)
-> +		return -ENOMEM;
+ACK, no problem
 
-This is definitely easier if you simply use devm_get_array().
+> 
+>> +
+>>  TEXAS INSTRUMENTS' TMP117 TEMPERATURE SENSOR DRIVER
+>>  M:	Puranjay Mohan <puranjay@kernel.org>
+>>  L:	linux-iio@vger.kernel.org
+>> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+>> index 58da8255525e..67376de410bf 100644
+>> --- a/drivers/iio/adc/Kconfig
+>> +++ b/drivers/iio/adc/Kconfig
+>> @@ -1803,6 +1803,16 @@ config TI_LMP92064
+>>  	  This driver can also be built as a module. If so, the module will be called
+>>  	  ti-lmp92064.
+>>  
+>> +config TI_TLA2528
+>> +	tristate "Texas Instruments TLA2528 ADC driver"
+>> +	depends on I2C
+>> +	help
+>> +	  Say yes here to build support for Texas Instruments TLA2528
+>> +	  12-Bit 8-Channel ADC.
+>> +
+>> +	  To compile this driver as a module, choose M here: the module will be
+>> +	  called ti-tla2528.
+>> +
+>>  config TI_TLC4541
+>>  	tristate "Texas Instruments TLC4541 ADC driver"
+>>  	depends on SPI
+>> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+>> index 7cc8f9a12f76..941606defbf7 100644
+>> --- a/drivers/iio/adc/Makefile
+>> +++ b/drivers/iio/adc/Makefile
+>> @@ -157,6 +157,7 @@ obj-$(CONFIG_TI_ADS8344) += ti-ads8344.o
+>>  obj-$(CONFIG_TI_ADS8688) += ti-ads8688.o
+>>  obj-$(CONFIG_TI_AM335X_ADC) += ti_am335x_adc.o
+>>  obj-$(CONFIG_TI_LMP92064) += ti-lmp92064.o
+>> +obj-$(CONFIG_TI_TLA2528) += ti-tla2528.o
+>>  obj-$(CONFIG_TI_TLC4541) += ti-tlc4541.o
+>>  obj-$(CONFIG_TI_TSC2046) += ti-tsc2046.o
+>>  obj-$(CONFIG_TWL4030_MADC) += twl4030-madc.o
+>> diff --git a/drivers/iio/adc/ti-tla2528.c b/drivers/iio/adc/ti-tla2528.c
+>> new file mode 100644
+>> index 000000000000..9c572e730ffb
+>> --- /dev/null
+>> +++ b/drivers/iio/adc/ti-tla2528.c
+>> @@ -0,0 +1,209 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Driver for Texas Instruments TLA2528 ADC
+>> + *
+>> + * Copyright (C) 2020-2021 Rodolfo Giometti <giometti@enneenne.com>
+>> + * Copyright (C) 2025 Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> + */
+>> +
+>> +#include <linux/delay.h>
+> 
+> Check the headers to see what is actually used. For example,
+> I don't seen any delays/sleeps. And we have a mutex, but no
+> mutex header.
 
+I'll give another pass at the includes, thanks :)
 
-> +
-> +	for (i = 0; i < gbl->num_gpios; i++) {
-> +		gbl->gpiods[i] =
-> +			devm_gpiod_get_index(dev, NULL, i, GPIOD_ASIS);
-> +		if (IS_ERR(gbl->gpiods[i]))
-> +			return dev_err_probe(dev, PTR_ERR(gbl->gpiods[i]),
-> +					"Failed to get GPIO at index %u\n", i);
-> +	}
->
->  	memset(&props, 0, sizeof(props));
->  	props.type = BACKLIGHT_RAW;
-> @@ -78,22 +95,34 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->  	}
->
->  	/* Set the initial power state */
-> -	if (!of_node || !of_node->phandle)
-> +	if (!of_node || !of_node->phandle) {
->  		/* Not booted with device tree or no phandle link to the node */
->  		bl->props.power = def_value ? BACKLIGHT_POWER_ON
-> -					    : BACKLIGHT_POWER_OFF;
-> -	else if (gpiod_get_value_cansleep(gbl->gpiod) == 0)
-> -		bl->props.power = BACKLIGHT_POWER_OFF;
-> -	else
-> -		bl->props.power = BACKLIGHT_POWER_ON;
-> +						    : BACKLIGHT_POWER_OFF;
-> +	} else {
-> +		bool all_high = true;
-> +
-> +		for (i = 0; i < gbl->num_gpios; i++) {
-> +			if (gpiod_get_value_cansleep(gbl->gpiods[i]) != 0) {
+> 
+>> +#include <linux/i2c.h>
+>> +#include <linux/module.h>
+>> +#include <linux/mod_devicetable.h>
+>> +#include <linux/regulator/consumer.h>
+>> +
+>> +#include <linux/iio/iio.h>
+>> +
+>> +#define TLA2528_OP_WRITE_REG		0x08
+>> +
+>> +#define TLA2528_DATA_CFG_ADR		0x02
+>> +
+>> +/* Datasheet says [5:4] sets the append status, but only bit 4 is used */
+>> +#define TLA2528_DATA_CFG_APPEND_STATUS	BIT(4)
+>> +#define TLA2528_PIN_CFG_ADR		0x05
+>> +#define TLA2528_SEQUENCE_CFG_ADR	0x10
+>> +#define TLA2528_CHANNEL_SEL_ADR		0x11
+>> +
+>> +struct tla2528 {
+>> +	struct i2c_client *client;
+>> +	int vref_uv;
+>> +
+>> +	/* Protects manual channel selection, i.e. last_read_channel */
+>> +	struct mutex lock;
+>> +	u8 last_read_channel;
+>> +};
+>> +
+>> +static s32 tla2528_write_reg(const struct i2c_client *client, u8 reg, u8 val)
+> 
+> Usually type is just "int" for error code returns.
 
-Why is there a != here?
+yeah int makes sense, that's a leftover form the rewriting i've made...
 
+> 
+>> +{
+>> +	u8 data[3] = {TLA2528_OP_WRITE_REG, reg, val};
+>> +	int ret;
+>> +
+>> +	ret = i2c_master_send(client, data, 3);
+>> +
+>> +	return ret < 0 ? ret : 0;
+>> +}
+>> +
+> 
+> Would it make sense to use regmap instead?
 
-> +				all_high = false;
-> +				break;
-> +			}
-> +		}
-> +
-> +		bl->props.power =
-> +			all_high ? BACKLIGHT_POWER_ON :  BACKLIGHT_POWER_OFF;
-> +	}
->
->  	bl->props.brightness = 1;
->
->  	init_brightness = backlight_get_brightness(bl);
-> -	ret = gpiod_direction_output(gbl->gpiod, init_brightness);
-> -	if (ret) {
-> -		dev_err(dev, "failed to set initial brightness\n");
-> -		return ret;
-> +
-> +	for (i = 0; i < gbl->num_gpios; i++) {
-> +		ret = gpiod_direction_output(gbl->gpiods[i], init_brightness);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					"failed to set gpio %u direction\n",
-> +					i);
->  	}
->
->  	platform_set_drvdata(pdev, bl);
+I think so yeah, let me add that to the next iteration. Based on your
+comments further down, it should really be worth it.
 
+> 
+> 
+>> +static int tla2528_read_sample(const struct i2c_client *client)
+>> +{
+>> +	__be16 data;
+>> +	int ret;
+>> +
+> 
+> Don't we need to set the CNVST bit in GENERAL_CFG register to trigger
+> a conversion in manual mode?
 
-Daniel.
+Let me double-check. From what I've tested, it seems to work without
+this, but this may be out of luck.
+
+> 
+>> +	ret = i2c_master_recv(client, (char *)&data, 2);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	return be16_to_cpu(data) >> 4;
+>> +}
+>> +
+>> +static int tla2528_read(struct tla2528 *tla2528, u8 channel, int *val)
+>> +{
+>> +	struct i2c_client *client = tla2528->client;
+>> +	int ret;
+>> +
+>> +	if (channel != tla2528->last_read_channel) {
+>> +		ret = tla2528_write_reg(client, TLA2528_CHANNEL_SEL_ADR, channel);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +
+>> +		tla2528->last_read_channel = channel;
+>> +	}
+> 
+> If we implemented regmap with cache, then we could avoid having to
+> track last_read_channel. We could just call regmap_write() unconditionally
+> and the regmap framework would decide if it needs to actually do the write
+> or not.
+
+True, that would simplify code so much ! I'll add that
+
+>> +
+>> +	ret = tla2528_read_sample(client);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	*val = ret;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int tla2528_read_raw(struct iio_dev *indio_dev,
+>> +			    struct iio_chan_spec const *chan,
+>> +			    int *val, int *val2, long mask)
+>> +{
+>> +	struct tla2528 *tla2528 = iio_priv(indio_dev);
+>> +	int ret;
+>> +
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_RAW:
+>> +		mutex_lock(&tla2528->lock);
+>> +		ret = tla2528_read(tla2528, chan->channel, val);
+>> +		mutex_unlock(&tla2528->lock);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +
+>> +		return IIO_VAL_INT;
+>> +
+>> +	case IIO_CHAN_INFO_SCALE:
+>> +		*val = tla2528->vref_uv / 1000;
+> 
+> Why not just store vref_mV?
+
+heh very good point :)
+
+> 
+>> +		*val2 = 12;
+>> +
+>> +		return IIO_VAL_FRACTIONAL_LOG2;
+>> +
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>> +#define TLA2528_CHAN(_chan, _name) { \
+>> +	.type = IIO_VOLTAGE,					\
+>> +	.channel = (_chan),					\
+>> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
+>> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
+>> +	.datasheet_name = _name,				\
+>> +	.indexed = 1,						\
+>> +}
+>> +
+>> +static const struct iio_chan_spec tla2528_channel[] = {
+>> +	TLA2528_CHAN(0, "AIN0"),
+>> +	TLA2528_CHAN(1, "AIN1"),
+>> +	TLA2528_CHAN(2, "AIN2"),
+>> +	TLA2528_CHAN(3, "AIN3"),
+>> +	TLA2528_CHAN(4, "AIN4"),
+>> +	TLA2528_CHAN(5, "AIN5"),
+>> +	TLA2528_CHAN(6, "AIN6"),
+>> +	TLA2528_CHAN(7, "AIN7"),
+>> +};
+>> +
+>> +static const struct iio_info tla2528_info = {
+>> +	.read_raw = tla2528_read_raw,
+>> +};
+>> +
+>> +static int tla2528_probe(struct i2c_client *client)
+>> +{
+>> +	struct iio_dev *indio_dev;
+>> +	struct tla2528 *tla2528;
+>> +	int ret;
+>> +
+>> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
+>> +				     I2C_FUNC_SMBUS_WRITE_WORD_DATA))
+>> +		return -EOPNOTSUPP;
+> 
+> Perhaps we should also fail if the adapter has I2C_AQ_NO_CLK_STRETCH?
+> It looks like clock stretching is required for the conversion time.
+
+Good point indeed, I'll add that
+
+> 
+>> +
+>> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*tla2528));
+>> +	if (!indio_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	tla2528 = iio_priv(indio_dev);
+> 
+>> +	i2c_set_clientdata(client, indio_dev);
+> 
+> Not sure this is needed if there is no i2c_get_clientdata() anywhere.
+
+Ah yeah this is a leftover from the devm_* conversion, thanks !
+
+> 
+>> +	tla2528->client = client;
+>> +
+> 
+>> +	indio_dev->name = client->name;
+> 
+> This should be the chip name ("tla2528"), not the I2C device name.
+
+Fair, I'll change that
+
+> 
+>> +	indio_dev->info = &tla2528_info;
+>> +	indio_dev->modes = INDIO_DIRECT_MODE;
+>> +	indio_dev->channels = tla2528_channel;
+>> +	indio_dev->num_channels = ARRAY_SIZE(tla2528_channel);
+>> +
+>> +	mutex_init(&tla2528->lock);
+> 
+> Use dem_mutex_init().
+
+right :)
+
+> 
+>> +
+>> +	tla2528->vref_uv = devm_regulator_get_enable_read_voltage(&client->dev,
+>> +								  "vref");
+>> +	if (tla2528->vref_uv < 0)
+>> +		return tla2528->vref_uv;
+>> +
+> 
+>> +	/* Set all inputs as analog */
+>> +	ret = tla2528_write_reg(tla2528->client, TLA2528_PIN_CFG_ADR, 0x00);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	ret = tla2528_write_reg(tla2528->client, TLA2528_DATA_CFG_ADR,
+>> +				TLA2528_DATA_CFG_APPEND_STATUS);
+> 
+> Why? It doesn't appear to be used.
+> 
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	/* Set manual mode */
+>> +	ret = tla2528_write_reg(tla2528->client, TLA2528_SEQUENCE_CFG_ADR, 0x00);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+> 
+> 
+> Perhaps simpler to just write the RST bit GENERAL_CFG to reset everything
+> to a known state?
+
+Alright, I'll clean-up that init sequence
+
+> 
+> 
+>> +	/* Init private data */
+>> +	tla2528->last_read_channel = ~0;
+>> +
+>> +	return devm_iio_device_register(&client->dev, indio_dev);
+>> +}
+>> +
+>> +static const struct i2c_device_id tla2528_id[] = {
+>> +	{ "tla2528", 0 },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(i2c, tla2528_id);
+>> +
+>> +static const struct of_device_id tla2528_of_match[] = {
+>> +	{ .compatible = "ti,tla2528", },
+>> +	{  },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, tla2528_of_match);
+>> +
+>> +static struct i2c_driver tla2528_driver = {
+>> +	.driver = {
+>> +		.name = "tla2528",
+>> +		.of_match_table = tla2528_of_match,
+>> +	},
+>> +	.probe = tla2528_probe,
+>> +	.id_table = tla2528_id,
+>> +};
+>> +module_i2c_driver(tla2528_driver);
+>> +
+>> +MODULE_AUTHOR("Maxime Chevallier <maxime.chevallier@bootlin.com>");
+>> +MODULE_AUTHOR("Rodolfo Giometti <giometti@enneenne.com>");
+>> +MODULE_DESCRIPTION("Texas Instruments TLA2528 ADC driver");
+>> +MODULE_LICENSE("GPL");
+> 
+
+Thank you very much for the thourough review !
+
+Maxime
+
 
