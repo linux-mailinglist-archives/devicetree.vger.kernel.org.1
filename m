@@ -1,143 +1,149 @@
-Return-Path: <devicetree+bounces-251479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBE78CF3780
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 13:16:34 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7332ACF3721
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 13:12:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 574D4305F663
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 12:13:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8EAB4300DB0B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 12:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7EF73346B6;
-	Mon,  5 Jan 2026 12:01:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A733332914;
+	Mon,  5 Jan 2026 12:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=orlitzky.com header.i=@orlitzky.com header.b="PCwvHKav"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EQu7mXCc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.viabit.com (mail2.viabit.com [65.246.80.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2098331215
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 12:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.246.80.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8F6331229;
+	Mon,  5 Jan 2026 12:01:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767614510; cv=none; b=kP0huWfUBCIN9edjfWeSMhD1q7KDyguhgNE+PKLcUeBPB6Z3I+jsFpExlJp4oVOFgOUedqDKXRw5brDh1l3J/EF81OXu5ydr8VR5hg/FPsZDYlxuqPzt5nIeo3bUYioLPouBwFsjp1//etiqDFfoHt3TIsCd+HozQcYcCm+UEsw=
+	t=1767614509; cv=none; b=XvRPSCdf1JlqX62mP2hiERB/BTSKV6NFXsyodIVIVj7zs6vOwwvQa/3DZFTT7umkZvbT0JWkPqPQqg7bl+PtlIhxt3Y4kOSHuyrXmqQK0C362+iBi9PlvIc/QKk6QYbDsuWpgEvLEwYSPAqFv3EwsDGB5MTsi/++jiVxXyOI8PA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767614510; c=relaxed/simple;
-	bh=wOznH8tcG4pWKmi1lvz/2d6jYX4HB03leXAPBFA1+qI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nQV9hrfmy9BKP74XDRbaM8eXS7BSx3edkqCd1WkN/7N5FBcEGumC475sM4RuId1K7rGUiFoVcllaTqBTBQi/DQfAVCrkXF3dwT1I6mrqGUM7mVGkufGNfWA5trsbX1sa7msBPxziJOK1ohkRYgXHpUM4H+ErV0T9VUpu2Q7gOMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=orlitzky.com; spf=pass smtp.mailfrom=orlitzky.com; dkim=pass (1024-bit key) header.d=orlitzky.com header.i=@orlitzky.com header.b=PCwvHKav; arc=none smtp.client-ip=65.246.80.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=orlitzky.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=orlitzky.com
-Received: from mertle.michael.orlitzky.com (vpn1.metro-data.com [65.213.236.242])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail2.viabit.com (Postfix) with ESMTPSA id 4dlCZV2JbDz3wpJ;
-	Mon, 05 Jan 2026 07:01:38 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=orlitzky.com; s=mail2;
-	t=1767614500; bh=wOznH8tcG4pWKmi1lvz/2d6jYX4HB03leXAPBFA1+qI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=PCwvHKav9UcLxTfVP+tMg2OxUMKawmog2KuOEsEuWMyfqcEjD9yneSC/3LRz58+HA
-	 rh85cmWcpcfBiMBFI6wKdtuUNj2iSiGFO/sDBx4XUY2bulZbh+jFsg5UsFuuN+R06f
-	 MO+XR6HsXPPLxST842C4gBi2wGjjKRIV+Wo54tzg=
-From: Michael Orlitzky <michael@orlitzky.com>
-To: unicorn_wang@outlook.com,
-	inochiama@gmail.com
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH 1/1] riscv: dts: sophgo: enable hardware clock (RTC) on the Milk-V Pioneer
-Date: Mon,  5 Jan 2026 07:01:29 -0500
-Message-ID: <20260105120129.58895-2-michael@orlitzky.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260105120129.58895-1-michael@orlitzky.com>
-References: <20260105120129.58895-1-michael@orlitzky.com>
+	s=arc-20240116; t=1767614509; c=relaxed/simple;
+	bh=QcdmxJz4FP4+VSOW9Ieo3rRgPZujTkh5eFBKn03FmFU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fg6oTlAFL0jCsteEke6un69j74Yu/gWNoPuv/Kp/hARlVN3CHCsw++lM8n52wvKwV+Lq/q+ZE+ygtj8hwLyQIOMJk0GFPed15mpWml0slXeP0inSa4ahSLlLo0Wuv2s1yrZlRb2dbmJrpzmI7lvSM9Oz8YpFHpqmwPJ9gOQNwLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EQu7mXCc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AD86C116D0;
+	Mon,  5 Jan 2026 12:01:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767614507;
+	bh=QcdmxJz4FP4+VSOW9Ieo3rRgPZujTkh5eFBKn03FmFU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EQu7mXCcbF90YAVH7COQe0U9cVh3koQB9aPQTjrwtZ/SZ3SO1/ghYPoRwmyp++M2J
+	 8c94pvPszY8IUsUIIbg7Zu7RDKskHnjuJntOGjhjbzp/2VrobAkmFUoGliMK833jqQ
+	 FgRayhSnu0M4irDiFukrY0u4jZ98xaFoQH73FKZRqEkNi/oYizf6WRou1Fp+VYyw62
+	 hfQTgtvcjmydXjzQ2nmQaqMqyXwfxm8DqbRbrTnKzVmY3YiMi5NIh8XYEIrMLF5MxW
+	 bu+RaPGZhfsy1q6yts5RhqSo4BhC1fFp1rnixr86+KJiVpog2NuBQGPyTjZoghU/oY
+	 XWmrEmGuhibgQ==
+Message-ID: <96e317a1-d564-4c66-b71c-ea03acc20ce7@kernel.org>
+Date: Mon, 5 Jan 2026 13:01:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: arm: qcom: add Acer Swift SFA14-11
+To: weifu wu <wwfu06@163.com>, andersson@kernel.org, konradybcio@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260105110431.2596253-1-wwfu06@163.com>
+ <20260105110431.2596253-3-wwfu06@163.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260105110431.2596253-3-wwfu06@163.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-These boards have a working hardware clock if you put a CR-1220
-battery in them. Let's enable it:
+On 05/01/2026 12:04, weifu wu wrote:
+> Add DT binding documentation for Acer Swift SFA14-11 laptop based on Qualcomm X1E78100 SoC.
 
-1. Enable the (already defined) i2c0 by overriding the default
-   status = "disabled" with "okay".
+Can you please slow down and address the feedback? EACH one.
 
-2. Define the rtc on &i2c0. This is more or less the example from the
-   documentation (devicetree/bindings/rtc/rtc-ds1307.yaml), and it was
-   present in the same form in an earlier 6.1.x vendor kernel.
+> This introduces a new compatible string for the Acer Swift SFA14-11 board.
 
-3. Copy the pinctrl stuff from &i2c1 and update the PINMUX constants
-   with the IIC0 values from dt-bindings/pinctrl/pinctrl-sg2042.h.
+Drop, redundant.
 
-Afterwards, the new I2C and RTC can be enabled with,
+> 
+> Eliminate duplicate data and add the device model to the compatible entry.
 
-  * CONFIG_I2C_DESIGNWARE_CORE=y
-  * CONFIG_I2C_DESIGNWARE_PLATFORM=y
-  * CONFIG_RTC_DRV_DS1307=y
+Not relevant.
 
-The new I2C should appear under /sys/devices/platform/soc, and with
-any luck you'll have a clock the next time you boot:
+> 
+> Signed-off-by: weifu wu <wwfu06@163.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ------
+>  1 file changed, 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 55d4afa9a70e..09c488973961 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -1068,12 +1068,6 @@ properties:
+>        - items:
+>            - enum:
+>                - acer,swift-sfa14-11
+> -          - const: acer,swift-sfa14-11
+> -          - const: qcom,x1e78100
+> -          - const: qcom,x1e80100
 
-  [  T367] rtc-ds1307 5-0068: registered as rtc0
-  [  T367] rtc-ds1307 5-0068: setting system clock to ...
+There is no such hunk.
 
-Signed-off-by: Michael Orlitzky <michael@orlitzky.com>
----
- .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+Please organize the patch documenting the compatible (DT bindings)
+before the patch using that compatible.
+See also:
+https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-index 54d8386bf9c0..ecf8c1e29079 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-+++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-@@ -52,6 +52,17 @@ &emmc {
- 	status = "okay";
- };
- 
-+&i2c0 {
-+	pinctrl-0 = <&i2c0_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	rtc: rtc@68 {
-+		compatible = "dallas,ds1307";
-+		reg = <0x68>;
-+	};
-+};
-+
- &i2c1 {
- 	pinctrl-0 = <&i2c1_cfg>;
- 	pinctrl-names = "default";
-@@ -89,6 +100,16 @@ sdhci-emmc-rst-pwr-pins {
- 		};
- 	};
- 
-+	i2c0_cfg: i2c0-cfg {
-+		i2c0-pins {
-+			pinmux = <PINMUX(PIN_IIC0_SDA, 0)>,
-+				 <PINMUX(PIN_IIC0_SCL, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <26800>;
-+			input-schmitt-enable;
-+		};
-+	};
-+
- 	i2c1_cfg: i2c1-cfg {
- 		i2c1-pins {
- 			pinmux = <PINMUX(PIN_IIC1_SDA, 0)>,
--- 
-2.52.0
 
+Best regards,
+Krzysztof
 
