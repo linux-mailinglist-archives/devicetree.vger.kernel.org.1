@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-251355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 409A1CF23BF
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 08:37:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82844CF23CE
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 08:40:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C8B8F3000DE7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 07:37:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 493463014604
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 07:40:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0572B254B18;
-	Mon,  5 Jan 2026 07:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0824C2C0281;
+	Mon,  5 Jan 2026 07:40:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AQARnNlf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DfmW3yBd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC23412B143;
-	Mon,  5 Jan 2026 07:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFFB254B18;
+	Mon,  5 Jan 2026 07:40:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767598634; cv=none; b=mf5xeIjeEQ58B+zGnnclBSb5RA72h487j2bSU6uuH2NLGQPPOtWl97I00DtvgGSIlf3l1AB8tlah9HBny9eqJO2adUiLnZVtTpzjpn3E3ItNjIAdKxnnq8Q5j8WnDvVOo1dVK/Fr5s8U2anwQfgpz86cPI3gHKu56sm0N+4YVB4=
+	t=1767598805; cv=none; b=bH0M6h0x4PzI4ATWHr+NdaPCbRtqYYNU0Qafvy4foBUCLkgE9DbwRNsDj4QEDt/kNpXhdpG2FYhkPXkH+7BoOsUBNjhxCoh3gW8g0uY1ZpTk2ren/dFhOejI9rEtc28EnCI3v+fbLxZkdX5v1pdIcVAVe2JAgkq7FEECmUP0Jq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767598634; c=relaxed/simple;
-	bh=xZXhNGf8vmrb3CmFuHN4pbqIFbluYGuFSRI363D+f+E=;
+	s=arc-20240116; t=1767598805; c=relaxed/simple;
+	bh=PpycFFVo6d67uW2ow6i4VxbFkB3D1IT1U43lxSm7wyI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Np5Kd2gMKPcK7KryDHhgAeIax0nNitEzp+CNOWYXDMIZLGDkZlZvKpj8yULhTtKdgA6bWCdEFPD8g5AdaWrza0HK2NuUJ/02l27Q9OzRh2MXQoUEVeLnFb68yamptnlM7c7MJlQPhCl+78VmURo2fPSxUlsc7gz989Um+1A8+H8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AQARnNlf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 126D3C116D0;
-	Mon,  5 Jan 2026 07:37:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BBAnGsEpa6dHU+PqkTYP/ZncuVB6vByXJ/oRVtfoIQk3Xv8Nb94itGuEoKQJTwAUXSXMM+YMZgjf9p45kPdu4Mhz9cE6g3WCr97gXHsHFyarQP6PvnIFrFQYbeV1SrMOsZeA5tou3SUZGJFtsy2cdFcYfUy954nbPZdubScBMpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DfmW3yBd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CED5CC116D0;
+	Mon,  5 Jan 2026 07:40:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767598634;
-	bh=xZXhNGf8vmrb3CmFuHN4pbqIFbluYGuFSRI363D+f+E=;
+	s=k20201202; t=1767598805;
+	bh=PpycFFVo6d67uW2ow6i4VxbFkB3D1IT1U43lxSm7wyI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AQARnNlfezTetrzJA3Ray5fzyIVC7UjBIgH+mtbm6iAII3CHO5cPZ/tTo2CFVCyR+
-	 DVcS7Kf+SULOiiEUwHK+zBr3c6t2RDNvqWFx0g8IMhzcLPIxBvGTxj9LSdH7/gQfnh
-	 jg3ZcE+6SAgF8GcJTDyHVjo6e6aizljBqBpNZrOSUX2A01xZv6E2RPv86uFsE4ADdl
-	 kUccWGdUJQp9rs4iGzgVns76/lKBxKlJRY6rmVuu6woz1a+lXQYu8T8a+HSihzBCuG
-	 esf0xbDHDWkpCIoxrL3ngYar990BhCFJs0hiZlu6koA1zN0bTHNUeoFavPAK2Yl9i9
-	 T+Zhy5zaQHyZg==
-Date: Mon, 5 Jan 2026 13:07:05 +0530
-From: Sumit Garg <sumit.garg@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v20 1/6] dt-bindings: firmware: Add TEE remoteproc
- service binding
-Message-ID: <aVtqITUxy--E8HJt@sumit-xelite>
-References: <20251217153917.3998544-1-arnaud.pouliquen@foss.st.com>
- <20251217153917.3998544-2-arnaud.pouliquen@foss.st.com>
- <20251229232530.GA2753472-robh@kernel.org>
- <aVOzHWmlJ-eneS-2@sumit-xelite>
- <CAL_Jsq+_S8UY7s7WQg9jXuBXCYMBWVCy=kVDMdkKTx6RctqQJA@mail.gmail.com>
+	b=DfmW3yBdeIvQmgnN9TGVTTvCcg6+b7eQPcT9mmTXwQwhcKULc796jY5y+eIP8bWOt
+	 6C9mojhFOdZAwLjTHhogh1yN1so+rHLXmiHkzUdHTdcY3C15EvvtfekHuVpJtjNXe1
+	 zhl6tFaF5zV9Xi0otmT67DWcXX+tJSjZB1Z9W/xA9xyvW+ufyg+JJxh0RHw/Xedmfu
+	 yaVFroXhPQ//dt2vaHxaoDZESfv5PZqgtVaaEzg7pVvMeMQKWaTFqetLv99lhEVqzp
+	 AaiRASeY6QQxNEEhFVTTA0g7+Pn5Uj/ESaqWJEVnGXt2quDm19rGdOtArk+LmPXMPm
+	 ADBHHiu28L8cg==
+Date: Mon, 5 Jan 2026 08:40:02 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	robdclark@gmail.com, dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run, 
+	marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org, robh+dt@kernel.org, 
+	krzk+dt@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org, 
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonathan@marek.ca, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com
+Subject: Re: [PATCH v5 2/5] dt-bindings: msm: dsi-controller-main: document
+ the QCS8300 DSI CTRL
+Message-ID: <20260105-enchanted-overjoyed-caracal-1c8ff4@quoll>
+References: <20260104134442.732876-1-quic_amakhija@quicinc.com>
+ <20260104134442.732876-3-quic_amakhija@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,76 +63,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_Jsq+_S8UY7s7WQg9jXuBXCYMBWVCy=kVDMdkKTx6RctqQJA@mail.gmail.com>
+In-Reply-To: <20260104134442.732876-3-quic_amakhija@quicinc.com>
 
-On Fri, Jan 02, 2026 at 04:17:27PM -0600, Rob Herring wrote:
-> On Tue, Dec 30, 2025 at 5:10 AM Sumit Garg <sumit.garg@kernel.org> wrote:
-> >
-> > On Mon, Dec 29, 2025 at 05:25:30PM -0600, Rob Herring wrote:
-> > > On Wed, Dec 17, 2025 at 04:39:12PM +0100, Arnaud Pouliquen wrote:
-> > > > Add a device tree binding for the TEE-based remote processor control
-> > > > service implemented as an OP-TEE Trusted Application identified by
-> > > > UUID 80a4c275-0a47-4905-8285-1486a9771a08.
-> > > >
-> > > > The TEE service node is a child of the "linaro,optee-tz" firmware node and
-> > > > acts as a container for remoteproc devices that are controlled via TEE.
-> > >
-> > > Is this generic for any remoteproc device or just ST's remoteproc. Looks
-> > > like the latter to me.
-> >
-> > That's true, the DT description of the remoteproc subnode is very
-> > specific to the vendor which in this case is ST.
-> >
-> > >
-> > > > In addition, the "linaro,optee-tz" binding is updated to specify the
-> > > > '#address-cells' and '#size-cells' values used for child TEE service
-> > > > nodes.
-> > >
-> > > I'm pretty sure I already rejected per service/app child nodes for
-> > > OP-TEE when its binding was submitted.
-> >
-> > That was the reason to have discoverable TEE bus in first place and I
-> > have been motivating people to dynamically discover firmware properties
-> > rather than hardcoding in the DT.
-> >
-> > > If we do need something in DT
-> > > to define some resources, then can't we have some sort of
-> > > standard/common communications channel? I don't care to see some sort of
-> > > free-for-all where we have every vendor doing their own thing. OP-TEE
-> > > needs to standarize this.
-> >
-> > I suppose this requires a wider scope work as you can see the DT resource
-> > dependence from here [1]. By standardize communication channel, do you
-> > mean to say if adding an alternative backend to fwnode for TEE in
-> > parallel to DT, ACPI or swnode is the way to go for discovering fw
-> > properties?
+On Sun, Jan 04, 2026 at 07:14:39PM +0530, Ayushi Makhija wrote:
+> QCS8300 MDSS DSI controller reuses the same IP as SA8775P, with
+> identical register layout and programming model. Introduce a
+> QCS8300-specific compatible with a fallback to
+> `qcom,sa8775p-dsi-ctrl` to reflect this hardware reuse.
 > 
-> No, not at all.
-> 
-> > Or do you have any other suggestion here?
-> 
-> What I mean is why doesn't the TEE define the communication channel
-> (mailbox+shmem and notification interrupt) rather than each TEE app?
+> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+> ---
 
-The synchronous communication channel is already there for each TEE app
-based on (invoke commands + TEE shared memory). OP-TEE does support
-notification interrupts too but those haven't been exposed to TEE client
-drivers yet. I suppose this remoteproc use-case can be a good example to
-expose that as a generic TEE notification interface too.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-> 
-> More generally, is having TEE apps depending on random DT resources
-> really a box we want to open? Is the next thing going to be a TEE
-> clock/reset/gpio/power provider? Where do we draw the line?
+Best regards,
+Krzysztof
 
-This is really a hard line to draw since silicon/OEM vendors based on their
-hardware security architecture partition various resources among TEE and
-the Linux world. And one general principle we try to follow for the TEE
-is to keep it's Trusted Computing Base (TCB) to a minimal too.
-
-IMHO, if the threat model is well understood then we should allow for
-this hetrogenous partitioning of system resources.
-
--Sumit
 
