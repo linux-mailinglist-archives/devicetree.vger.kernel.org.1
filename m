@@ -1,59 +1,56 @@
-Return-Path: <devicetree+bounces-251694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75C8DCF5AA5
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 22:29:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 152F3CF5AB1
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 22:30:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5F31030268FC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 21:29:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 19C0030443FE
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 21:29:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73EEC30FC3C;
-	Mon,  5 Jan 2026 21:29:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2EBE3101AB;
+	Mon,  5 Jan 2026 21:29:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N5IZreI6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P2MaALHz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C98A30FC09;
-	Mon,  5 Jan 2026 21:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79C930DEC7;
+	Mon,  5 Jan 2026 21:29:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767648555; cv=none; b=LcnwdQ088OzzWeF+jaUDbVy5IiOgAczMrWv74XDuPQ6AT+9jyh841LY4S38Sa6ObnuAcBOWgWAOrRNTXVTlGFH5GUmY3mlhUkIghsfjyOT0z+kDKepOW6I9FIe0xC1gHPFgXOsba6dCVh9IcpWK1OAsNBjG1v+riwvVe3fflh4A=
+	t=1767648561; cv=none; b=USHJXxWUg+HGuTRUYUnfR1xFQHpQsWgkmZZIu6d2jvvI/yyTG3EImeA3XYp48s3EbQk6UtSKChoYGF63A7lax708RHBxALN59Y+xwIj8ENqIZyFaLKzKmdqRYFJnNbd1+ZI1hBNRc5pI2M1wMDJ2N9JQ4Q+PGPxFN3XF1IbQnio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767648555; c=relaxed/simple;
-	bh=v0iLNjXRbKOhcLt6AHcmqsxeTt/bDlNtovVlwPMyNOk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KvNvEXYaOv4RJvafM66allM/udHbiQ6e6cnPTO5TjsV6Ym+8Z+dBpqVlYZR9hYjeHQDoAGy1N9wg2WB6fFx6tVq9V5SBodj1eThRt9XrzTSFXJTzooPugOCSMyHOF439mpd3UZTeirdZYlnC2r9AWqAqNSuUyBe1Gm64YuziKTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N5IZreI6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C47D6C116D0;
-	Mon,  5 Jan 2026 21:29:13 +0000 (UTC)
+	s=arc-20240116; t=1767648561; c=relaxed/simple;
+	bh=gVYsL4/DFgpYAuvKQiFU66WvWBX/KhYn1bwiAZv3A6o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HeiQ2tkuojQJTIJbJ1aOJwlSbs4ChEMVb3ZMQ5vSCIWha0jWGQS9aYiHixLfYZ3G0xtsMZrkNnxrdVTM4egJp+A1eprrwwpPPr7Vhd3nCCRXB0s2k+a8CSABB4WC5do/CI4oZ8FGmF01eCRsaDWwlsHE62rcjDleTJV5e3ZGO14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P2MaALHz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ADFEC116D0;
+	Mon,  5 Jan 2026 21:29:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767648553;
-	bh=v0iLNjXRbKOhcLt6AHcmqsxeTt/bDlNtovVlwPMyNOk=;
+	s=k20201202; t=1767648561;
+	bh=gVYsL4/DFgpYAuvKQiFU66WvWBX/KhYn1bwiAZv3A6o=;
 	h=From:To:Cc:Subject:Date:From;
-	b=N5IZreI6Z4MpkjQ53rDYo9dksHuvPSP0yTqnQ8vndIM2K7uXp/FpMyIF3CCcGJLkx
-	 84+RNEHWxPjKpbAJAZ7R3S6EDVjY1ROlqhCMV9X0loGh6iNV3gOKZCqH6MHxdmsQ1W
-	 Zw7CId0kE82hahW+rDp62SyUBSAEx9fgA7T4fEISZPHUODg7Sxv8K9rqS0U4OqXjZZ
-	 TOFO+yc/kmlsqk4x61aPmE/GAU2sS06Sq7wszMlk5A8c9yl9IXopZXbsl6n0cb1AC+
-	 LkIjuUGTehI955/catKrmq5K2G9Mh2AmeveU9Gqyi0hqWw9cKg3SG4Myy5l2isfVzF
-	 DD4XZuuZnOr3A==
+	b=P2MaALHzgyu5BOYP8S6XMsC6kOsCyqV0pSu3/nwrwME5psqvM+Q4O0o1D5bmLn5dP
+	 9SDN6onVb7YGORXrlKfhSVr5R3X+ilU0+BRJqujWGMi2tjSrcdVfjAPYZLN2ESjAZj
+	 MAbrbBJTqGG6gITJSaYf3FHgkadqN2s4/Zjmarff2r7ILeZTKT0b8pcKgExJ0iaf+y
+	 ZpSAkkEKGJVLT5nT+dWVQgVNYvhD5beVG5P01+9BrMhmUVHnhA6Sx0if7JTIuscaOl
+	 woSXyxGk7gkyaC1hUMx9jNOdawb0XpZo3qI+1MiETuusSR79fppWr/UY5RgRjuhtnS
+	 bsAc4J4vmNN0g==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@sifive.com>,
-	Conor Dooley <conor@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Jens Axboe <axboe@kernel.dk>
+Cc: linux-ide@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: riscv: extensions: Drop unnecessary select schema
-Date: Mon,  5 Jan 2026 15:29:09 -0600
-Message-ID: <20260105212910.3454517-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: ata: ahci-platform: Drop unnecessary select schema
+Date: Mon,  5 Jan 2026 15:29:16 -0600
+Message-ID: <20260105212917.3454753-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,31 +60,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The "select" schema is not necessary because this schema is referenced by
-riscv/cpus.yaml schema.
+The "select" schema is not necessary. It looks like it is there to prevent
+matching on "generic-ahci" compatible, but that's not necessary because
+this is the only place "generic-ahci" compatible is present.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ------
- 1 file changed, 6 deletions(-)
+ .../bindings/ata/ahci-platform.yaml           | 20 -------------------
+ 1 file changed, 20 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index 565cb2cbb49b..29e8b50851ed 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -24,12 +24,6 @@ description: |
-   ratified states, with the exception of the I, Zicntr & Zihpm extensions.
-   See the "i" property for more information.
+diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+index cc35cdc02840..cd67926aae41 100644
+--- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
++++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+@@ -18,26 +18,6 @@ maintainers:
+   - Hans de Goede <hdegoede@redhat.com>
+   - Jens Axboe <axboe@kernel.dk>
  
 -select:
 -  properties:
 -    compatible:
 -      contains:
--        const: riscv
+-        enum:
+-          - brcm,iproc-ahci
+-          - cavium,octeon-7130-ahci
+-          - hisilicon,hisi-ahci
+-          - ibm,476gtr-ahci
+-          - marvell,armada-3700-ahci
+-          - marvell,armada-8k-ahci
+-          - marvell,berlin2q-ahci
+-          - qcom,apq8064-ahci
+-          - qcom,ipq806x-ahci
+-          - socionext,uniphier-pro4-ahci
+-          - socionext,uniphier-pxs2-ahci
+-          - socionext,uniphier-pxs3-ahci
+-  required:
+-    - compatible
 -
  properties:
-   riscv,isa:
-     description:
+   compatible:
+     oneOf:
 -- 
 2.51.0
 
