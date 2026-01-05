@@ -1,213 +1,180 @@
-Return-Path: <devicetree+bounces-251408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28E66CF2C98
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 10:35:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D93FACF2C86
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 10:34:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 15DA6307764E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 09:31:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE0C03007974
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 09:31:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A861C335070;
-	Mon,  5 Jan 2026 09:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1840F2BDC1C;
+	Mon,  5 Jan 2026 09:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oeMHuG5Q"
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="mcs1xwLw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A2D33506E;
-	Mon,  5 Jan 2026 09:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBBB8275AE4
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 09:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767603964; cv=none; b=eMtY/IUuJ7JqqkuLgpKWDUU3pAlbkEbeVi+cHLz96puqDjyDk+r54wyotFvEMDsu+bORJA/1iy8UX8CTAyYzjmNTkEfGLkPJaLWuabqeqjob+Yz4kdRnxKAIh4Y+sRzMypjaOU7M9NF4rOKAhX2t18xKJN06+qnohE1C6YrCeSY=
+	t=1767603996; cv=none; b=mnjTX26VJgk00TFwnrMElq2zCdGte8svoG4opub9Ilk4g9Ry8wp/G95oRsu3qLuJNJu+gFUiF0NjEgLxHSyWThDju0SEurfrbG6gIJReCUqQGj0Tv0Xkmgg2FFo0T4Ag4yoTd4xesDWTJgBhzhXZ6lvW+iwrgL0t3A+R6ye/+jA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767603964; c=relaxed/simple;
-	bh=PIUAxzm6ZXlE1kyz9ABajDveVbl+5hOSYiaXnizUZcA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JNDy66ld4HrKyomHxC9/nJiVfw1m6MOXlhGNpr9ohp2RcKMsWA3Uv7fRTLi3fsGXtG8IklXfbVhUcsXMbV/p4kV1wyuedkJxFyWfyxvUeSix8hXXdg4Wo1qaUvbIhEfgagx3OcQl0XuTtk0rMLfzOa9pA6q5DYlMt59oEv36aKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oeMHuG5Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AFACC4E694;
-	Mon,  5 Jan 2026 09:06:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767603963;
-	bh=PIUAxzm6ZXlE1kyz9ABajDveVbl+5hOSYiaXnizUZcA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oeMHuG5QJpnkdebai3T5unWtYHvukCc5t39w0lkr9Qle0ljCPPxYs1h6NML8S3eHR
-	 UUF7YhhbrtjTVTi1i8qEdP6Cnhu/ZsXV3ZVUakpmZHBpla5HcLSFzt+SG9HhNwk6Qf
-	 4RjfyP3tXDuzU2hxveci/DQ3ImKLj8wQhM8iipCK/YeR/qvTWvuWcmJBCq3uaOZTHr
-	 Q9vpSmwILfn0olVptPoChyyBgJ1XmS9P5Z9U36Jto/pcbixEYzE18VaZMmVkkmSLkP
-	 uIvcLvk4vcpdyHNTa0whwSmAy+FwasFk3SNeSSeToru+D+gP5PNCoO0leKPbwlOxh4
-	 G1byazgOne/Ww==
-Message-ID: <63454553-01df-4c40-aad3-7ea64bef685e@kernel.org>
-Date: Mon, 5 Jan 2026 10:05:59 +0100
+	s=arc-20240116; t=1767603996; c=relaxed/simple;
+	bh=MLxZuPSMtRL816eTodfHWi9P1buz0/azYjgJOrc0bYY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SXkU9ElADVIonkaKDD1g2TqsWybYCgu2WivEBUM+IPH2N0dR7hKBrkTXPVNgYsRt8WsBMKwXgCEC1XgzoxJ1R7eWn5U1flvohZ0DA5g4jnGCVLWIIoIjFxmRlvVLd3VyTuE36cE4j4d3rvd16hg8lgPXJFsmq8SmrzbYUFNvBXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=mcs1xwLw; arc=none smtp.client-ip=209.85.160.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-3f0c93ecf42so956199fac.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 01:06:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1767603982; x=1768208782; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rx0r6U43GKweZQq7AZ8Mrd0bllWyzHYWweaavwJCSZc=;
+        b=mcs1xwLwhsIyjQKWusMeSRxxBCfEfEKeH1GSy7vdEfmI3S+TLkluEZA/5AWeiY7mJB
+         ob/xJH1Gc2zqulIBljXRl/6RVJ2Q+b1ZXUx/t6Hcrzs6Uf970Hj8y6O5op3742Tu/qC0
+         w0suuMcVDL3vztkZv5ZY+tlxiIR5EqHGTEGwiX7e3oQFVWxSYCpJqI2a7ym/dgE44Iyh
+         ZwN7/pBp3O3+TT9TZ5hVoodyzVYC9erSguz4o2ThxkwWJ//ReRqGAWX7odYILmUYDo+l
+         ipHtQDBVicszpBZfYdUDnQp5EPOE6Ux52iioAnz5z8HZXegXtk68/pBy3uvPNC3BHTf1
+         Wc+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767603982; x=1768208782;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=rx0r6U43GKweZQq7AZ8Mrd0bllWyzHYWweaavwJCSZc=;
+        b=effdDxryMfGK8QUuL4QzctBVLNP0N2O3LkKcFhwabrEQ5wvCrdFfhNW+zzA2t9Ofwa
+         emnTuHMIXdlJKzEj563lstmvKeOU+MMbCHiLTaUGVZRBeUFsouNrJ0imi/b5IIgsvaPn
+         4ezloAU9SziP1bIHK7G/Jp7/wIxg0iFOBVQ5BIyl/LbrO8MZuHnnfDM2gLYp3CglSPnq
+         IRI3txx2xharemL+CL9LaOJfmI1wjpLlzilnQCHQhrVbmtcnibnc9AAvdAWBHnOt76z8
+         u4WAADKwNF9AgWCv0/hGiIWeSEy7dIahIGFivKitTxWY+hQbKNIKHiXOoY1S8awLdsOj
+         t7KA==
+X-Forwarded-Encrypted: i=1; AJvYcCW27trd8hAj5xIh+mX/px8qbf87rJbiuAbuG9V+v+tLw+2dTl5NgyC0bpDDwp/RtlMnhoYqKsAn4h0C@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8drSRNhB3l3e9VkTsVSWoB0KC2cxZVUKE/aG9IFuJHVcybkDZ
+	NmKrmwYmDD9jAzuDPPRLhMDVZ0vdS5Sbsuxs5SZlQkKnI413+mW3AnNK/AgXdxzcWmXhfjkliwm
+	JUOUT6tOJgqWJHVNGH9vL/sc50tRPuJLe2gG5tVLzZQ==
+X-Gm-Gg: AY/fxX5cLiRKcYnxrr3LeviERqi2KYb7h4hJXD4ZRqFbZcUOoAqiuxXCRebbHnL6wss
+	fj+ihE0MuBIruUREFCXRp+hBLcXuVe7srt0qDlfR0E+/9KKZrKAErKpv30cwd7OkzHbiIyrQeKk
+	YYwOAbL0Wzf7BgPJo/HM9G8RchnSnnIS16p1pBlhwGBvp/GyvZL9bVW91ULX4v0mkx9tkuIR0SK
+	4Rh0iYCjs0Efv/5owdsBEb8jSmxTNWSp3oJGZN5OSvAUx8LJH/7Ks0LtXHSmmBOHdxylkrZCnSy
+	ai7qIsdxDp5VQt4zC3zwMFIjtaEYsy9TXlty7rAjFM3LdC0mmp+4QLR2Xw==
+X-Google-Smtp-Source: AGHT+IEmhIQ5RKOo2b6b7OL5O1/QlwNjLPOmq/Ngn48EMDTkEYgit3hHMFtHAFIg6wOswhZTAnGu6/YK4U65b6YmqR4=
+X-Received: by 2002:a05:6820:a245:b0:65b:295f:ee08 with SMTP id
+ 006d021491bc7-65f2684a98emr2359335eaf.10.1767603982348; Mon, 05 Jan 2026
+ 01:06:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIHYzIDEvMl0gZHQtYmluZGluZ3M6IGFy?=
- =?UTF-8?Q?m=3A_cix=3A_add_OrangePi_6_Plus_board?=
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: Peter Chen <peter.chen@cixtech.com>, Fugang Duan
- <fugang.duan@cixtech.com>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-cix-kernel-upstream@cixtech.com"
- <linux-cix-kernel-upstream@cixtech.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20260104075400.1673101-1-gary.yang@cixtech.com>
- <20260104075400.1673101-2-gary.yang@cixtech.com>
- <20260105-excellent-uakari-of-joy-f0dfa4@quoll>
- <PUZPR06MB588755A9FB6B42AAA870E30BEF86A@PUZPR06MB5887.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <PUZPR06MB588755A9FB6B42AAA870E30BEF86A@PUZPR06MB5887.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250826162939.1494021-1-pincheng.plct@isrc.iscas.ac.cn> <20250826162939.1494021-6-pincheng.plct@isrc.iscas.ac.cn>
+In-Reply-To: <20250826162939.1494021-6-pincheng.plct@isrc.iscas.ac.cn>
+From: Anup Patel <anup@brainfault.org>
+Date: Mon, 5 Jan 2026 14:36:11 +0530
+X-Gm-Features: AQt7F2o7aUCslFOKh9Z8QzWPpfr1ehdXhDGDtgLd_0uBy1pmifoh4VGOHYQoZdM
+Message-ID: <CAAhSdy3OXBexhB_csqJasQoQJ8QnsE=q7dHXgWtyig28eJGL3g@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] KVM: riscv: selftests: add Zilsd and Zclsd
+ extension to get-reg-list test
+To: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	pbonzini@redhat.com, shuah@kernel.org, cyan.yang@sifive.com, 
+	cleger@rivosinc.com, charlie@rivosinc.com, cuiyunhui@bytedance.com, 
+	samuel.holland@sifive.com, namcao@linutronix.de, jesse@rivosinc.com, 
+	inochiama@gmail.com, yongxuan.wang@sifive.com, ajones@ventanamicro.com, 
+	parri.andrea@gmail.com, mikisabate@gmail.com, yikming2222@gmail.com, 
+	thomas.weissschuh@linutronix.de, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+	devicetree@vger.kernel.org, kvm@vger.kernel.org, 
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 05/01/2026 09:49, Gary Yang wrote:
-> Hi Krzysztof:
-> 
-> Thanks for your comments
-> 
->> EXTERNAL EMAIL
->>
->> On Sun, Jan 04, 2026 at 03:53:59PM +0800, Gary Yang wrote:
->>> OrangePi 6 Plus adopts CIX CD8180/CD8160 SoC, built-in 12-core 64-bit
->>> processor + NPU processor,integrated graphics processor, equipped with
->>> 16GB/32GB/64GB LPDDR5, and provides two M.2 KEY-M interfaces 2280 for
->>> NVMe SSD,as well as SPI FLASH and TF slots to meet the needs of fast
->>> read/write and high-capacity storage
->>>
->>> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/cix.yaml | 11 +++++++++--
->>>  1 file changed, 9 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/cix.yaml
->>> b/Documentation/devicetree/bindings/arm/cix.yaml
->>> index 114dab4bc4d2..9e132e609b7b 100644
->>> --- a/Documentation/devicetree/bindings/arm/cix.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/cix.yaml
->>> @@ -16,9 +16,16 @@ properties:
->>>    compatible:
->>>      oneOf:
->>>
->>> -      - description: Radxa Orion O6
->>> +      - description: Radxa Orion O6 board
->>>          items:
->>> -          - const: radxa,orion-o6
->>> +          - enum:
->>> +              - radxa,orion-o6
->>> +          - const: cix,sky1
->>> +
->>> +      - description: Xunlong orangepi 6 plus board
->>> +        items:
->>> +          - enum:
->>> +              - xunlong,orangepi-6-plus
->>
->> Previous patch was correct, not this one.
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
->> of patchset, under or above your Signed-off-by tag, unless patch changed
->> significantly (e.g. new properties added to the DT bindings). Tag is "received",
->> when provided in a message replied to you on the mailing list. Tools like b4 can
->> help here. However, there's no need to repost patches *only* to add the tags.
->> The upstream maintainer will do that for tags received on the version they
->> apply.
->>
->> Please read:
->> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/sub
->> mitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->> </form letter>
->>
->> Read last sentence and linked documentation. Where did you explain
->> ignoring/dropping my tag?
->>
-> 
-> Yes, the previous version was acked by you before.
+On Tue, Aug 26, 2025 at 10:00=E2=80=AFPM Pincheng Wang
+<pincheng.plct@isrc.iscas.ac.cn> wrote:
+>
+> The KVM RISC-V allows Zilsd and Zclsd extensions for Guest/VM so add
+> this extension to get-reg-list test.
+>
+> Signed-off-by: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
+> ---
+>  tools/testing/selftests/kvm/riscv/get-reg-list.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/tes=
+ting/selftests/kvm/riscv/get-reg-list.c
+> index a0b7dabb5040..477bd386265f 100644
+> --- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> +++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> @@ -78,7 +78,9 @@ bool filter_reg(__u64 reg)
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZCB:
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZCD:
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZCF:
+> +       case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZCLSD:
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZCMOP:
+> +       case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZILSD:
 
-I stressed what I expect twice. In form letter and later explicitly. You
-still ignored it.
+KVM_RISCV_ISA_EXT_ZILSD case must be inserted in alphabetical order.
 
-> 
-> When apply it, we found that orangepi 6 plus and Radxa Orion O6 belongs the different boards.
-> 
-> So we need to add a new item for it. Like these from qcom.yaml
-> 
->       - description: Qualcomm Technologies, Inc. Distributed Unit 1000 platform
->         items:
->           - enum:
->               - qcom,qdu1000-idp
->               - qcom,qdu1000-x100
->           - const: qcom,qdu1000
-> 
->       - description: Qualcomm Technologies, Inc. Radio Unit 1000 platform
->         items:
->           - enum:
->               - qcom,qru1000-idp
->           - const: qcom,qru1000
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZFA:
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZFH:
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZFHMIN:
+> @@ -530,7 +532,9 @@ static const char *isa_ext_single_id_to_str(__u64 reg=
+_off)
+>                 KVM_ISA_EXT_ARR(ZCB),
+>                 KVM_ISA_EXT_ARR(ZCD),
+>                 KVM_ISA_EXT_ARR(ZCF),
+> +               KVM_ISA_EXT_ARR(ZCLSD),
+>                 KVM_ISA_EXT_ARR(ZCMOP),
+> +               KVM_ISA_EXT_ARR(ZILSD),
+>                 KVM_ISA_EXT_ARR(ZFA),
+>                 KVM_ISA_EXT_ARR(ZFH),
+>                 KVM_ISA_EXT_ARR(ZFHMIN),
 
-No, look at SoCs. Different SocS.
+KVM_ISA_EXT_ARR(ZILSD) must be inserted in alphabetical order.
 
+> @@ -1199,7 +1203,9 @@ struct vcpu_reg_list *vcpu_configs[] =3D {
+>         &config_zcb,
+>         &config_zcd,
+>         &config_zcf,
+> +       &config_zclsd,
+>         &config_zcmop,
+> +       &config_zclsd,
 
-Best regards,
-Krzysztof
+Both config_zclsd and config_zclsd must be defined before
+vcpu_configs[] using KVM_ISA_EXT_SIMPLE_CONFIG().
+
+Also, config_zilsd is not added in alphabetical order.
+
+>         &config_zfa,
+>         &config_zfh,
+>         &config_zfhmin,
+> --
+> 2.39.5
+>
+
+I have taken care of the above comments at the time of merging.
+
+Reviewed-by: Anup Patel <anup@brainfault.org>
+
+Queued this patch for Linux-6.20
+
+Thanks,
+Anup
 
