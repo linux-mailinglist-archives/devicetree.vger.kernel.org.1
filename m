@@ -1,126 +1,194 @@
-Return-Path: <devicetree+bounces-251596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CAD4CF479A
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:45:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A533CF4758
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:42:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 37D1F304D484
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:40:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EC30C301D5ED
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20DEA33D6FA;
-	Mon,  5 Jan 2026 15:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C378B33DEED;
+	Mon,  5 Jan 2026 15:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ugFszdCz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ANTOsH7t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E45613009ED;
-	Mon,  5 Jan 2026 15:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1236633E367
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 15:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767627645; cv=none; b=hViV5lk79HY1Fu/xvmD2keFUecOyFpLf4WLNUCeziwJXCNtWSVDliF/dpSAbtlthNmx7BEHoc7Zu+gihc85dNp07xDpd9ePeNVMMREAPHPSDrbbDAYD25L0qCnFZViw08h47ezQwN5ydekWJr/e3V7aoQ6fwCxpHGABYYkWQRng=
+	t=1767627680; cv=none; b=uJ/jU5VFjZdR/WXZO9AJgoKw1zyt/idVdmxbdO4f3oPaHXgkFHQCJjk6W77Y5Jz28Rjh+4KTFmuaTvjF3NYxIuU7LsdGeDBXAoxtBOSEgABZP1Pja/XilxiFVmxNsilEI/Uyh76TuvLKT+GddyVKjthkoPva/uHWltNi3RScy8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767627645; c=relaxed/simple;
-	bh=V+2+7tNp7fZ6ex40aAPjqtyVDQr0hvz1lvoYxLAaV5w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A8GoSxGswpeVX9lvbROIFbKWDXmU3TFjmjOfpdtHOcNFQqDRhXHx6L+TNTXw6Ry3Z2PWZi7nNOB6QTAfh7JssOAvQ2VoonKNjMFczASdz8njT/93Om4RN+7l7M2qsEs1txdm0vrIWmUCsgIC7TP6gifFGoxiAhu8Va7x+MLzj98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ugFszdCz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60D1CC116D0;
-	Mon,  5 Jan 2026 15:40:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767627644;
-	bh=V+2+7tNp7fZ6ex40aAPjqtyVDQr0hvz1lvoYxLAaV5w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ugFszdCzRHfEWRb2LmsasjNepfNAziQ1X28VK49eUOb5lDkKT8FrFmfgNc3/fmBag
-	 evBbeco7JkOnzSeqdJN8o/FlC9y/q50aDyVzMnlYbmumc+3toZbReLSxOV200b9mcv
-	 4q1mPsGuSBdBiHLD2ouiYa6SZW4zSnaa69LcgTwNDhql8kHIv68s3G9gRQv67TbaoF
-	 ZQyxhXDZfJ4WjIQnOkC+BkdEt4cerGoNWwT6lhOH1Ncjc9qy6oTbEM97rdec5/kW6y
-	 rV8f+RL0tliTgM4z/1cMVJKHpN16bvQK0z09TH8KEhmdohODmpXfLwkvTcF+2mAk9b
-	 02c+lBlyKUD1w==
-Message-ID: <fd5ad5a4-32c1-4614-9056-e78924950e41@kernel.org>
-Date: Mon, 5 Jan 2026 16:40:39 +0100
+	s=arc-20240116; t=1767627680; c=relaxed/simple;
+	bh=7XOckaOqG/PMRqT76fU8qmeyL4hEz8+C+ksukJDZjK4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=on51xBw8Qs94EtA+muMWc4S1YVA9JfTiIM84E39re0I4U7HNrtD7LiJ4exvczKYx63xr59IyFLO42Dt6Tepws2eBBkqq5dQ+zvivqkoSdFzd9H8EHnasD+N/bkufh7U1AJjwBaYWeJw6wIIeV1N230DgysHSEv1FcepGvgW+Klg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ANTOsH7t; arc=none smtp.client-ip=209.85.219.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-88a2f2e5445so183058116d6.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 07:41:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767627678; x=1768232478; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r6BA1g1a3pdykyjLkvUREMTVpM7/WCPoUOv36P4M2nY=;
+        b=ANTOsH7tPDcPS8CmZzOHNm0S+V/mWI0bFCqEFpOAekO1YJgBqpiHZRaKgcbvfWofGS
+         hkM8D+8SEd6n4+gGjSAsdsohNibziUL5avRF2LPZbvycxOZzY88dlebGTDgG5NJH4pvF
+         KbbVPq3zkMqpLzgtJikFPIuttRZCac4SxO5QeTWzOo0UM8z3jhcgvaa3X/pNVaz1vfVe
+         xJI28IlTfCVcObZZTJYscPtRojUpRuUhe2X5x6XpEUBNpLc+jSX9QB3fA7pMWfkRDOBL
+         B9eaErOp+Z+JCIwR3VJVMkTYEWmNvKxg0m93Kv5ej+Wff+QC2UEJC81jHLGQ0NHq2xSQ
+         hycQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767627678; x=1768232478;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:feedback-id:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=r6BA1g1a3pdykyjLkvUREMTVpM7/WCPoUOv36P4M2nY=;
+        b=kmu7No7xZcvP24aMCfOcN9oNhkLqOhUj+OPHdI4+xM7XsLpP4MXYNk+8nSXAo7YZIS
+         qzrM4yfrqLQMYlKz338fVhEDwx0NeNFnAnw6zhq4T5jY7mkmEuygO/CBLPUkzw/HxTSY
+         ENFuMalloAkBIykg/DkX5jXnyEG+bYvhRX+jVFRQwGkHbNzeUizE6YhIiKHbsj6W7fVL
+         jjnOjQ12kNHihBOhJ7Kmz5cNe83KfJXHszzGENHqVLqQBGcNT/uD9jjJeWSsQzIBjSU7
+         Oq0tsFs7z/ER1Hg2oQOBh1eJE41GXpXGbFFn5nWVD2ICvVBwqzVCT73GGOAbr0SzX+xd
+         dXDg==
+X-Forwarded-Encrypted: i=1; AJvYcCXDH5uAfpXxm8mQrfMto9tEpjHmO5caslalIg851KUZib2YW71RezLchiNHXrZMjDMBDsMmcnwtO0Ld@vger.kernel.org
+X-Gm-Message-State: AOJu0YypUPsRQwoivhobSouYMLMZq+tZC6Cf1dE8Kt7HGH4pt8Bh00Kk
+	hSqH2hsGlBnnWt3LzvjK5NOPkA+WxHW8uW2mEKbovt8GBpUzVuAqK6lT
+X-Gm-Gg: AY/fxX5H7PTSqrr8NxAxT7gj+UB8k8CNzV6X73juf+DBDPywsS3RlJdYLVy5y0lS4kW
+	wpY1uaxpvNolVx31T620BNrFm6z9oQNLGU6PyI6/qUK1LSZyzdLy1a+6bDXCIs+9BwG65fVyJ2o
+	Wz7onMU9VCzudTUjNRT5T1+eoy/8P9FInMDJHAy833T4E/FWHOYl8WN2hGBGHvbbQD4gIbvCbVn
+	iQ61L5kIO7JZSkJIRqHhlSOWgfxAHbsCV2JW1gUpw+Fc0CGpLpVff6WFhkdtFcFDbeaiqiB4yhW
+	C0/9yUiteaIP/sfTAm7tQ+8pTKOh9V3HW3RkWfJjC46KmwJ5cW5w15/0laWdAt+Zxjgg6FVz9t3
+	8hDgCrYkDmdq/HXUDmGMPgRajeeOvRngWerGRAAWzhDY8BPRqATP+JfsbVFRo364Y+vqzMpkFAb
+	dOYENvdJUGOlnIgsQJNFQI2KuMI9QusuzVWLd3nttRx9p/C2wfcoC8TCULbwognbrs/Wbn/GYwP
+	utP3RzPw1Ah2yU=
+X-Google-Smtp-Source: AGHT+IFcWhopwSaKjTCty9xmTi8J6nU5610w9dE8RcpeTOSxGCXk1EYPkRdikqmONExTL9dAEe+Esw==
+X-Received: by 2002:a05:6214:1249:b0:890:4f86:495e with SMTP id 6a1803df08f44-8904f8649bamr161313626d6.39.1767627677769;
+        Mon, 05 Jan 2026 07:41:17 -0800 (PST)
+Received: from fauth-a1-smtp.messagingengine.com (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-890753ef0f8sm1464776d6.14.2026.01.05.07.41.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jan 2026 07:41:17 -0800 (PST)
+Received: from phl-compute-11.internal (phl-compute-11.internal [10.202.2.51])
+	by mailfauth.phl.internal (Postfix) with ESMTP id 8F0F5F40068;
+	Mon,  5 Jan 2026 10:41:11 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-11.internal (MEProxy); Mon, 05 Jan 2026 10:41:11 -0500
+X-ME-Sender: <xms:l9tbaQl8adq_q8oemVdp9py9aCB5rEYMUXGPUHOfxSENDh0M6SOSiw>
+    <xme:l9tbaVrCyG7LEDf5sozj9kkhyLQ0sPqK87jUAC_qJfbekq6ICe_xe5QMuMoTjEKUA
+    tB0zjAhiqSBWufmhb_KP365bDbxKmKQ-BUeRDG7AXs90zPIyqpX-w>
+X-ME-Received: <xmr:l9tbaTuvJMNXCwyVLLEQxwAkDuZHya194bV4WrOdHwOVBYRN60UCxK-j>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdeljeeilecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeeuohhquhhnucfh
+    vghnghcuoegsohhquhhnrdhfvghnghesghhmrghilhdrtghomheqnecuggftrfgrthhtvg
+    hrnhephedugfduffffteeutddvheeuveelvdfhleelieevtdeguefhgeeuveeiudffiedv
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsghoqh
+    hunhdomhgvshhmthhprghuthhhphgvrhhsohhnrghlihhthidqieelvdeghedtieegqddu
+    jeejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepghhmrghilhdrtghomhesfhhigihmvg
+    drnhgrmhgvpdhnsggprhgtphhtthhopeehkedpmhhouggvpehsmhhtphhouhhtpdhrtghp
+    thhtoheprghlihgtvghrhihhlhesghhoohhglhgvrdgtohhmpdhrtghpthhtoheprhhush
+    htqdhfohhrqdhlihhnuhigsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
+    lhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
+    epghgrrhihsehgrghrhihguhhordhnvghtpdhrtghpthhtohepphgvthgvrhiisehinhhf
+    rhgruggvrggurdhorhhgpdhrtghpthhtohepvghllhgvseifvggrthhhvghrvgguqdhsth
+    gvvghlrdguvghvpdhrtghpthhtoheprgdrhhhinhgusghorhhgsehkvghrnhgvlhdrohhr
+    ghdprhgtphhtthhopehlihhnuhigqdgslhhotghksehvghgvrhdrkhgvrhhnvghlrdhorh
+    hgpdhrtghpthhtohepfhhujhhithgrrdhtohhmohhnohhrihesghhmrghilhdrtghomh
+X-ME-Proxy: <xmx:l9tbabmkDu5goAML_Vw6wQks5sr1-oqWVGEVyl7SpncPG41qLq8PqQ>
+    <xmx:l9tbaZEvXpCwph3gfl5iq-kHa4fsrJ-e6g21CjltgBbR441YOY405w>
+    <xmx:l9tbaa8pxEfCJ2_idKerH3733Rocx35rGJlDBn4X7HlKs2MkaFUX5A>
+    <xmx:l9tbaW7nR-qjUaIEByc4-kPNbC8tpKXp-OM_EvS1h_evQ7bx_68mJA>
+    <xmx:l9tbaS4UkZJm3L0Tu3phQb3ItLU_OD6WXZGJ8xIIxpleNVBlr6HjnmTP>
+Feedback-ID: iad51458e:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 5 Jan 2026 10:41:10 -0500 (EST)
+Date: Mon, 5 Jan 2026 23:41:08 +0800
+From: Boqun Feng <boqun.feng@gmail.com>
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Gary Guo <gary@garyguo.net>, Peter Zijlstra <peterz@infradead.org>,
+	Elle Rhumsaa <elle@weathered-steel.dev>,
+	Andreas Hindborg <a.hindborg@kernel.org>,	linux-block@vger.kernel.org,
+	FUJITA Tomonori <fujita.tomonori@gmail.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+	Benno Lossin <lossin@kernel.org>,	Danilo Krummrich <dakr@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,	Paul Moore <paul@paul-moore.com>,
+ Serge Hallyn <sergeh@kernel.org>,	linux-security-module@vger.kernel.org,
+	Josh Poimboeuf <jpoimboe@kernel.org>,	Jason Baron <jbaron@akamai.com>,
+	Steven Rostedt <rostedt@goodmis.org>,	Ard Biesheuvel <ardb@kernel.org>,
+	Andrew Ballance <andrewjballance@gmail.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	maple-tree@lists.infradead.org, linux-mm@kvack.org,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Uladzislau Rezki <urezki@gmail.com>,
+	Vitaly Wool <vitaly.wool@konsulko.se>,	Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,	linux-pwm@vger.kernel.org,
+ "Paul E. McKenney" <paulmck@kernel.org>,	rcu@vger.kernel.org,
+ Will Deacon <will@kernel.org>,	Fiona Behrens <me@kloenk.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Vlastimil Babka <vbabka@suse.cz>, Christoph Lameter <cl@gentwo.org>,
+	David Rientjes <rientjes@google.com>,	Ingo Molnar <mingo@redhat.com>,
+ Waiman Long <longman@redhat.com>,
+	Mitchell Levy <levymitchell0@gmail.com>,
+	Frederic Weisbecker <frederic@kernel.org>,	Lyude Paul <lyude@redhat.com>,
+	Anna-Maria Behnsen <anna-maria@linutronix.de>,
+	John Stultz <jstultz@google.com>, linux-usb@vger.kernel.org,
+	Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
+	Matthew Wilcox <willy@infradead.org>,
+	Tamir Duberstein <tamird@gmail.com>, linux-fsdevel@vger.kernel.org
+Subject: Re: [PATCH v2 00/27] Allow inlining C helpers into Rust when using
+ LTO
+Message-ID: <aVvblLp8sjFB7JvB@tardis-2.local>
+References: <20260105-define-rust-helper-v2-0-51da5f454a67@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom,glymur-tlmm: Document
- Mahua TLMM block
-To: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>, Linus Walleij <linusw@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Rajendra Nayak <rajendra.nayak@oss.qualcomm.com>,
- Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
- Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
- linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260105-pinctrl-qcom-mahua-tlmm-v2-0-7ac036f700de@oss.qualcomm.com>
- <20260105-pinctrl-qcom-mahua-tlmm-v2-1-7ac036f700de@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260105-pinctrl-qcom-mahua-tlmm-v2-1-7ac036f700de@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260105-define-rust-helper-v2-0-51da5f454a67@google.com>
 
-On 05/01/2026 14:21, Gopikrishna Garmidi wrote:
-> Update DeviceTree binding for Mahua SoC TLMM block
+On Mon, Jan 05, 2026 at 12:42:13PM +0000, Alice Ryhl wrote:
+> This patch series adds __rust_helper to every single rust helper. The
+> patches do not depend on each other, so maintainers please go ahead and
+> pick up any patches relevant to your subsystem! Or provide your Acked-by
+> so that Miguel can pick them up.
 > 
 
-So I will just repeat myself.
+I queued the following into rust-sync:
 
-"2. Why they are not compatible? You have entire commit msg to say
-something useful instead stating obvious and repeating the diff."
+       rust: barrier: add __rust_helper to helpers
+       rust: blk: add __rust_helper to helpers
+       rust: completion: add __rust_helper to helpers
+       rust: cpu: add __rust_helper to helpers
+       rust: processor: add __rust_helper to helpers
+       rust: rcu: add __rust_helper to helpers
+       rust: refcount: add __rust_helper to helpers
+       rust: sync: add __rust_helper to helpers
+       rust: task: add __rust_helper to helpers
+       rust: time: add __rust_helper to helpers
+       rust: wait: add __rust_helper to helpers
 
+Thanks!
 
-Best regards,
-Krzysztof
+Regards,
+Boqun
+
+> These changes were generated by adding __rust_helper and running
+> ClangFormat. Unrelated formatting changes were removed manually.
+> 
+[...]
 
