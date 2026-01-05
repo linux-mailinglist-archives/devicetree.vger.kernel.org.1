@@ -1,221 +1,252 @@
-Return-Path: <devicetree+bounces-251379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7204CCF288B
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 09:53:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19706CF28F3
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 10:01:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E3A2C302DCA5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 08:51:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 862FF3002B84
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 09:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 545AD32862B;
-	Mon,  5 Jan 2026 08:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B030632ABC7;
+	Mon,  5 Jan 2026 09:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fVKa/TFv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DqWXDejQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690E5328634
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 08:51:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32DE432AACE
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 09:01:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767603111; cv=none; b=inKYHxTgZA5CglrjlTPVSsCIoOivstGF1ghGMwr50Tr78/yOqDCSiS5uKS5nhs0aS/FGe82f0JxybwJzMn5a04fzOx6C7H/gYNFxZSw43ftJUjm1aGJHNNLc7WISLyVHp9fvPj43g4odtPwkmXItTr2OFoFNXrzvCwJofhbIWiM=
+	t=1767603704; cv=none; b=BGnuVdX+87RHm9oda4PCRhBtCYLWIn2lN5fkpNVu9Oykfeuc914/RpkwBWDavSYibzox6H8vJ8ZruVuGa6Wu7w3zP8+F6yNabEcUNexog7DusJelqwVnlnUSDlvTiNz7+x5Xw/NRqPI/rGvRLNjpIOVs6+Bsyxv4SyLVNRWyOwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767603111; c=relaxed/simple;
-	bh=ZQ6Y7IFZTaEd6ktsVoxdPOs72CPIs+7PsUG1QLPNjHU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=V6ppMc15cQL9r1Su66r1WLCJ2wDfIbjs8gdtzVsloE9nle7DWO07tOqNkvmsFWj8LTjqsl//n+O0y6tnmQdiCeY2oAVbvsGxCWdQgh07ClVsCxatlHp4OHesdERKZtJkW1JUVNpGfBC2ui15wx2dtEcM78bNWRr7v5UHksWObWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fVKa/TFv; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-34c2f52585fso12463488a91.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 00:51:46 -0800 (PST)
+	s=arc-20240116; t=1767603704; c=relaxed/simple;
+	bh=JNGRYavRZBxKgAHPEtLRD8r+l4yFNVT+msivM0VogR4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YPg9fJecrtb4dXFQcfv1LLy7hzwqbtuQkoka9bv8pC/BflvWovZPUWbaRgSTfqLRIuv/3w4nRA+yq6NlMqGejnYEIYZ8uglfbk5rF8k/YzRIbBpMgKf9MFO+mZg/o/i9CXYmuf0u5t6aS2V4ZAY5/yu2In/mr4VlxyQvlQdbqTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DqWXDejQ; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b79d6a70fc8so2418262166b.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 01:01:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767603104; x=1768207904; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bFt+oA/6TnGUcf1mQLhvyTPCz7K2SXMiNJhoCpH+0PQ=;
-        b=fVKa/TFvf8XIfjlirfLhfwDttkkYRLbl0EB2WfX0NiEgjrgaMKeUci0BORuosejzsW
-         v4AXvruwrwxC5Bi1VpHCv/B2VswHBLIa4YYYvVDXUYqcADYjqUkLvtrVM73RLhh9WygU
-         CgBNmGEjTF2R4Zs+VnjT17r/4Ho6gWCukz3bbOPmtio0Vkqp1sE34w8ElpkagVKeKKkX
-         cqfJ+kMW0hwzDViK0RNQVHGOADhuHeZve/cDTzI3zSYgvxDs+2EwSbBGONCRqnpONzj1
-         x/ceBlTCPwdtjxVGhbwg1sso0UNuLevOceR9akSqgLBScHnAMVjI74ywOxCEjQsl8kUD
-         U3LA==
+        d=linaro.org; s=google; t=1767603700; x=1768208500; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1JfLZgFeLXPduNyA8WJiqUlNVpPxf0/ctAEAqsxUYpE=;
+        b=DqWXDejQOvNxOSv4fIgNtSAuWcDCpzWDusW5xYZda+IsvyT10G2c9h1H+Ke1iCGZhn
+         22GebvZ1KYDxi3B7G3ufm4XGei7qrD55NAeSHcFOSLxJRN4MOf7tnqf4bsTEzEwBi4+B
+         ZkV7RJ+1KEnAwBNoGLj9jrgDsJkqTqE4BXAurPSFelezhD+3Xx+kdMQj/iCXHMZ1Np0/
+         E1h05qVe7p6JEg3aUzzjnWib+es7NbCmkyUfo8lDQnVWdU2aa7D53CIP0vAPm+OHzgHp
+         SY/5uPGnEQ4f6xLevxBY6tsHkJD4eCLAQh5p3H64LVxvh+TYOYFsCP/dacI2BerYMN+4
+         afPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767603104; x=1768207904;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=bFt+oA/6TnGUcf1mQLhvyTPCz7K2SXMiNJhoCpH+0PQ=;
-        b=Bl6SFC3xyAGIItRCiYW2zPhSIEt4S5PtxuIQ6m0S1RSku76kzfqgu4wr5eeWCPqOpn
-         MS7dXbTPjS1K9yahdT4z9zvxiNXtEz/EgrI0P9IZFlpEVef0RrLhxWlOygl54zcbvGe0
-         ycdonUECW2G61iHoiH/fossA8+J4MaYaotjBw9+Hw5IhzK4tKuiiW4kgbwtrFOYzeBt8
-         zaZHic0VdtHZtxoW/Csh2UDl0YdMs3IyZ22fefFbrdx+EqV5AMFr8U4vCT6BjwtG2neB
-         jJamSxIsBXD6J8Huen5Jum0+aYKqkpaUD9ijKI8OwwbE2HIU/G5qwjq/PpR+2voglSq4
-         nDIw==
-X-Forwarded-Encrypted: i=1; AJvYcCXohU8HR0uLli3OKdJKFHWjU8dWX0/B4vB16Ra3b3U2Y4jj0sVxpytMwC0/PyArMU+xMo0AgGcyKnew@vger.kernel.org
-X-Gm-Message-State: AOJu0YyG2WcUr5fSyBu7O6XXxd9ur9RR1p1u2gXuCSqFmLk/XZ5E2yz8
-	LQjAmfbIj4UjbNmMrAnBAHzVPwjUtd/zNnrS6o7HGgB3HYQwoHB0XQ98
-X-Gm-Gg: AY/fxX4y3qNwKStQo0Fan08Khwetv9mw5Bw0bvsvSRBdnumcmB1itL0nIzo7/5aY8Fs
-	npxGbpSV2pN8gr4R8+qE74Xw1V2D3uusZTdHp0G9Co5f3eK+HbVkcvNwYxfj7r/OReOqglPYNbB
-	HghDFq2q/8dZmDNfGPOlGUT5h6chnKtBWOMdsr3BZzNZNyPEU4uPGirjG3sgYwJtno4hBt7cRtH
-	yB0Fmu1AqJnalHPdUkVuBBbLTav2FDztUED/wKJu67lTs7/EVcRwgEkhGzFflBPOaTymXiOUdw8
-	woEWr/mAAGF9t2lM9UOVkcYSlETTeQzcncbOCI78tc23NRtHoJ0eNc2IcKD6hjjP9cQ1IsbUcoL
-	wDXTAqSWDtDvvy83WYIr5kKUGHn+xSoe/VXkV5NI7hEl5/zH0DuznqStYj01ghVHE3oYsEZbHJ4
-	HI3WMJAcRDTbnMtxkUK6GTpR2fl+J5oj4c327C
-X-Google-Smtp-Source: AGHT+IE9h/a5pga/RcO3GaC9CZMJm/hBktjxAoM256+iS35FTfAipE1WuhDdgjBTuxYdSkDNtweQhg==
-X-Received: by 2002:a17:90a:d60c:b0:34c:4c6d:ad0f with SMTP id 98e67ed59e1d1-34e921f0e35mr38658346a91.37.1767603103621;
-        Mon, 05 Jan 2026 00:51:43 -0800 (PST)
-Received: from test-HP-Desktop-Pro-G3.. ([103.218.174.23])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34f476fab12sm5631951a91.5.2026.01.05.00.51.39
+        d=1e100.net; s=20230601; t=1767603700; x=1768208500;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1JfLZgFeLXPduNyA8WJiqUlNVpPxf0/ctAEAqsxUYpE=;
+        b=hYzCK9TqBbD2BvW6y/wJMy32k2Xrf/4RUNg4LazreJvxduL/9CFotZYbHx4LR6BLLF
+         DZZsMig5P0DMc8N7qwyh1duxmLzq3z/NsmzJiT5ge74uNmVOe4mIHYaO9LKamJ/mqkK7
+         V6obR50jPCBXnNuJZTwTToQjDhQFDiPI+ZfK1p+8vEO8yXaFhVWpK89aRgDMMgDuG344
+         NVGcGPq9STJwVvvu0wBNonZOkMOeOTjA5jQbraR9gwtO+0/L1x1sYUSuyeY+0gvyrpq8
+         ccyPgcex1laYGCmUmOzIRN6hL6hWTOU7eQNee5SVbCqHDR1M75qKYaxYZN+idMSAuil+
+         Ym8g==
+X-Forwarded-Encrypted: i=1; AJvYcCUrKqFrNcxw893zmqaMlboVp/PqZU014p1LZ4r4LN1D3PPILGXV6OXT9x31/JlJK31EplWTOb3xwkuk@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrbmW0jEDhmgO4buxBalbXDGWcf5iaFJdukZHUonikHFzljuXF
+	sfmYM8QYrXPKjnE2n6JWXiaOD3JYibIHxEnVV00aOw0/szwJNVfYQamBoshJMQBgf4J4Ta9P7Zk
+	GpB8HOZE=
+X-Gm-Gg: AY/fxX79c44r7s4poPtxOAlaVix++Dek9wKPSsR40DcF35mlNx8xJIvqREAuMI0av27
+	kiNPMkZAf5NOTldWaPUiePm6tuyBWuQwB4Orzrci0c7FJ5fJnzbRsSfVh7bKK4e8FDgXVP3lNON
+	osDVxgTplL8uVKCXSvtQ2XQyfwp6k7Zfv2YE2CsACIE/1aS8dDaOm9HzKWciDXM8z2AKpxCLUj9
+	v3E9AEWkIYALMDQUCPloPZwdrxVBUYEk9dFzSPMmrXDnYUpP2hl8gTTC3Lc4rrz6IBXspArtP/O
+	V6cT+5VURS+Kk3QefwRvT6HbrXZWp/njlphbZw/PevV5yZqpzdcEqpX38PYhCanPqdSZEQ8DPu4
+	fHWWDrdeet7Qc5k2Ylve0IiKI+YyixA0n7lG3FLe7lnh0tn1SBIG54y9VI+Av7gH7cqz0Jb851Q
+	dwJ2+UJVjT0coZb61KfMSYHnl3WyoopANBxiyQUTMHtvyqTWoDTG7NIS/CeGiYO9ebhmp6xA6rH
+	fN8kg==
+X-Google-Smtp-Source: AGHT+IHP5oCWNvPtWpmIQhSRNr9jqpeHiO4m3R/bdfj1JALvF4+NtlK6zSTfWgvQ44F1fPJT/l9oOQ==
+X-Received: by 2002:a17:907:7ea2:b0:b76:f090:777b with SMTP id a640c23a62f3a-b8036f13dfbmr4506409166b.22.1767603700255;
+        Mon, 05 Jan 2026 01:01:40 -0800 (PST)
+Received: from puffmais2.c.googlers.com (244.175.141.34.bc.googleusercontent.com. [34.141.175.244])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f0ecb9sm5384010466b.56.2026.01.05.01.01.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 00:51:43 -0800 (PST)
-From: Sudarshan Shetty <tessolveupstream@gmail.com>
-To: lee@kernel.org,
-	danielt@kernel.org,
-	jingoohan1@gmail.com
-Cc: deller@gmx.de,
-	pavel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-fbdev@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Sudarshan Shetty <tessolveupstream@gmail.com>
-Subject: [PATCH v1 2/2] backlight: gpio: add support for multiple GPIOs for backlight control
-Date: Mon,  5 Jan 2026 14:21:20 +0530
-Message-Id: <20260105085120.230862-3-tessolveupstream@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260105085120.230862-1-tessolveupstream@gmail.com>
-References: <20260105085120.230862-1-tessolveupstream@gmail.com>
+        Mon, 05 Jan 2026 01:01:39 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v6 00/20] Samsung S2MPG10 regulator and S2MPG11 PMIC
+ drivers
+Date: Mon, 05 Jan 2026 09:01:36 +0000
+Message-Id: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAPF9W2kC/23R227DIAwG4FepuB6TOQTCrvYe0y4gMSlSl3TQR
+ p2qvPuc7tQpXP4W/iybKyuYExb2tLuyjHMqaRopmIcd6/Z+HJCnnjKTIBswoHiRb8dBXHjG4Xz
+ wpykXbr0WXauc8yEyajxmjOlyQ19eKe9ToXcftxmzWKs/nK5xs+DAaVRrNUTtPD4f0ujz9Djlg
+ a3eLO8NUzUkGQFUxBh7aaTYGOrXEKK+1qxWow3OBOsQmnZj6DtDQNXQZDjdObTS9Dr4jdH8GVL
+ aqtGQAR3ooAwEsv4Zy9fBM76f6fNO31dflk/yyOgf2gEAAA==
+X-Change-ID: 20250603-s2mpg1x-regulators-7a41c8399abf
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Lee Jones <lee@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>, Linus Walleij <linusw@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, Juan Yescas <jyescas@google.com>, 
+ kernel-team@android.com, linux-kernel@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
 
-Extend the gpio-backlight driver to handle multiple GPIOs instead of a
-single one. This allows panels that require driving several enable pins
-to be controlled by the backlight framework.
+This series extends the existing S2MPG10 PMIC driver to add support for
+the regulators, and adds new S2MPG11 core and regulator drivers.
 
-Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+--- dependency note ---
+This series must be applied in-order, due to the regulator drivers
+depending on headers & definitions added by the bindings and core
+drivers. I would expect them all to go via the MFD tree.
+
+The MFD patches in this series also depend on my Samsung MFD patches
+due to patch context:
+https://lore.kernel.org/all/20251217-s5m-alarm-v2-0-b7bff003e94c@linaro.org/
+
+While these patches compile, regulator probe will only be successful
+with my deferrable regulators patches from
+https://lore.kernel.org/r/20251227-regulators-defer-v1-0-3104b22d84cb@linaro.org
+--- end ---
+
+The patches are kept together in one series, due to S2MPG11 and its
+regulators being very similar to S2MPG10.
+
+The Samsung S2MPG11 PMIC is a Power Management IC for mobile
+applications with buck converters, various LDOs, power meters, and
+additional GPIO interfaces. It typically complements an S2MPG10 PMIC in
+a main/sub configuration as the sub-PMIC and both are used on the
+Google Pixel 6 and 6 Pro (oriole / raven).
+
+A DT update for Oriole / Raven to enable these is required which I will
+send out separately.
+
+Cheers,
+Andre'
+
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- drivers/video/backlight/gpio_backlight.c | 61 +++++++++++++++++-------
- 1 file changed, 45 insertions(+), 16 deletions(-)
+Changes in v6:
+- merge patch 21 into 15 (Bartosz)
+- merge 'con-id' handling into patch 15
+- collect tags
+- Link to v5: https://lore.kernel.org/r/20251227-s2mpg1x-regulators-v5-0-0c04b360b4c9@linaro.org
 
-diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
-index 728a546904b0..037e1c111e48 100644
---- a/drivers/video/backlight/gpio_backlight.c
-+++ b/drivers/video/backlight/gpio_backlight.c
-@@ -17,14 +17,18 @@
- 
- struct gpio_backlight {
- 	struct device *dev;
--	struct gpio_desc *gpiod;
-+	struct gpio_desc **gpiods;
-+	unsigned int num_gpios;
- };
- 
- static int gpio_backlight_update_status(struct backlight_device *bl)
- {
- 	struct gpio_backlight *gbl = bl_get_data(bl);
-+	unsigned int i;
-+	int br = backlight_get_brightness(bl);
- 
--	gpiod_set_value_cansleep(gbl->gpiod, backlight_get_brightness(bl));
-+	for (i = 0; i < gbl->num_gpios; i++)
-+		gpiod_set_value_cansleep(gbl->gpiods[i], br);
- 
- 	return 0;
- }
-@@ -52,6 +56,7 @@ static int gpio_backlight_probe(struct platform_device *pdev)
- 	struct backlight_device *bl;
- 	struct gpio_backlight *gbl;
- 	int ret, init_brightness, def_value;
-+	unsigned int i;
- 
- 	gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
- 	if (gbl == NULL)
-@@ -62,10 +67,22 @@ static int gpio_backlight_probe(struct platform_device *pdev)
- 
- 	def_value = device_property_read_bool(dev, "default-on");
- 
--	gbl->gpiod = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
--	if (IS_ERR(gbl->gpiod))
--		return dev_err_probe(dev, PTR_ERR(gbl->gpiod),
--				     "The gpios parameter is missing or invalid\n");
-+	gbl->num_gpios = gpiod_count(dev, NULL);
-+	if (gbl->num_gpios == 0)
-+		return dev_err_probe(dev, -EINVAL,
-+			"The gpios parameter is missing or invalid\n");
-+	gbl->gpiods = devm_kcalloc(dev, gbl->num_gpios, sizeof(*gbl->gpiods),
-+				   GFP_KERNEL);
-+	if (!gbl->gpiods)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < gbl->num_gpios; i++) {
-+		gbl->gpiods[i] =
-+			devm_gpiod_get_index(dev, NULL, i, GPIOD_ASIS);
-+		if (IS_ERR(gbl->gpiods[i]))
-+			return dev_err_probe(dev, PTR_ERR(gbl->gpiods[i]),
-+					"Failed to get GPIO at index %u\n", i);
-+	}
- 
- 	memset(&props, 0, sizeof(props));
- 	props.type = BACKLIGHT_RAW;
-@@ -78,22 +95,34 @@ static int gpio_backlight_probe(struct platform_device *pdev)
- 	}
- 
- 	/* Set the initial power state */
--	if (!of_node || !of_node->phandle)
-+	if (!of_node || !of_node->phandle) {
- 		/* Not booted with device tree or no phandle link to the node */
- 		bl->props.power = def_value ? BACKLIGHT_POWER_ON
--					    : BACKLIGHT_POWER_OFF;
--	else if (gpiod_get_value_cansleep(gbl->gpiod) == 0)
--		bl->props.power = BACKLIGHT_POWER_OFF;
--	else
--		bl->props.power = BACKLIGHT_POWER_ON;
-+						    : BACKLIGHT_POWER_OFF;
-+	} else {
-+		bool all_high = true;
-+
-+		for (i = 0; i < gbl->num_gpios; i++) {
-+			if (gpiod_get_value_cansleep(gbl->gpiods[i]) != 0) {
-+				all_high = false;
-+				break;
-+			}
-+		}
-+
-+		bl->props.power =
-+			all_high ? BACKLIGHT_POWER_ON :  BACKLIGHT_POWER_OFF;
-+	}
- 
- 	bl->props.brightness = 1;
- 
- 	init_brightness = backlight_get_brightness(bl);
--	ret = gpiod_direction_output(gbl->gpiod, init_brightness);
--	if (ret) {
--		dev_err(dev, "failed to set initial brightness\n");
--		return ret;
-+
-+	for (i = 0; i < gbl->num_gpios; i++) {
-+		ret = gpiod_direction_output(gbl->gpiods[i], init_brightness);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					"failed to set gpio %u direction\n",
-+					i);
- 	}
- 
- 	platform_set_drvdata(pdev, bl);
+Changes in v5:
+- rebase against mfd/sec alarm IRQ rework
+  https://lore.kernel.org/all/20251217-s5m-alarm-v2-0-b7bff003e94c@linaro.org/
+- switch to async probe for mfd
+- Mark: one MFD cell per PMIC, not per PMIC rail - drop or update
+        related patches
+  - making the series runtime depend on
+    https://lore.kernel.org/r/20251227-regulators-defer-v1-0-3104b22d84cb@linaro.org
+- new patch:
+  - mfd: sec: s2mpg10: reorder regulators for better probe performance
+- collect tags
+- Link to v4: https://lore.kernel.org/r/20251110-s2mpg1x-regulators-v4-0-94c9e726d4ba@linaro.org
+
+Changes in v4:
+- Krzysztof:
+  - s2mpg10-regulator.yaml: move additionalProperties to after allOf
+  - s2mpg10-regulator.yaml: use $defs, not definitions
+  - split samsung,s2mpg10-pmic.yaml and samsung,s2mpg11-pmic.yaml
+  - add full example for samsung,s2mpg10-pmic.yaml and 11
+  - acpm binding: commit message update
+  - acpm binding: pmic -> pmic-1, pmic2 -> pmic-2
+- ensure binding file names match bindings
+- fix typos in s2mpg11-regulator.yaml description text
+- collect tags
+- Link to v3: https://lore.kernel.org/r/20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org
+
+Changes in v3:
+- Krzysztof:
+  - split s2mpg10 core binding into separate file
+  - drop PCTRLSEL values that can be described using standard
+    properties, and update remaining macro names (self)
+  - drop maxItems:1 where not needed (Krzysztof)
+  - samsung,ext-control-gpios -> enable-gpios
+- fix LDO20M_EN pin name -> VLDO20M_EN
+- move all binding patternProperties to top-level
+- one (driver) instance per actual rail, not per rail type (LDO or
+  buck)
+- new macro REGULATOR_LINEAR_VRANGE() (patch 10)
+- address some (pre-existing) checkpatch warnings
+- various updates to regulator driver (patch 16 & 19).See footer there
+- more descriptive commit messages
+- Link to v2: https://lore.kernel.org/r/20250606-s2mpg1x-regulators-v2-0-b03feffd2621@linaro.org
+
+Changes in v2:
+- s2mpg11 also exposes additional GPIOs, update all relevant commit
+  messages (nevertheless, GPIOs are out of scope in this series)
+- fix some commit message typos: s2mp1 -> s2mpg1
+- patch2: drop | (literal style mark) from samsung,ext-control-gpios
+- patch5: add | to vinb*-supply description for better formatting
+- patch13: update ::of_parse_cb assignment
+- patch15: drop duplicated ::of_parse_cb assignment
+- Link to v1: https://lore.kernel.org/r/20250604-s2mpg1x-regulators-v1-0-6038740f49ae@linaro.org
+
+---
+André Draszik (20):
+      dt-bindings: firmware: google,gs101-acpm-ipc: convert regulators to lowercase
+      regulator: dt-bindings: add s2mpg10-pmic regulators
+      regulator: dt-bindings: add s2mpg11-pmic regulators
+      dt-bindings: mfd: samsung,s2mps11: Split s2mpg10-pmic into separate file
+      dt-bindings: mfd: samsung,s2mpg10-pmic: Link to its regulators
+      dt-bindings: mfd: Add samsung,s2mpg11-pmic
+      dt-bindings: firmware: google,gs101-acpm-ipc: add S2MPG11 secondary PMIC
+      mfd: sec: s2mpg10: reorder regulators for better probe performance
+      mfd: sec: Add support for S2MPG11 PMIC via ACPM
+      regulator: add REGULATOR_LINEAR_VRANGE macro
+      regulator: s2mps11: drop two needless variable initialisations
+      regulator: s2mps11: use dev_err_probe() where appropriate
+      regulator: s2mps11: place constants on right side of comparison tests
+      regulator: s2mps11: update node parsing (allow -supply properties)
+      regulator: s2mps11: refactor handling of external rail control
+      regulator: s2mps11: add S2MPG10 regulator
+      regulator: s2mps11: refactor S2MPG10  ::set_voltage_time() for S2MPG11 reuse
+      regulator: s2mps11: refactor S2MPG10 regulator macros for S2MPG11 reuse
+      regulator: s2mps11: add S2MPG11 regulator
+      regulator: s2mps11: more descriptive gpio consumer name
+
+ .../bindings/firmware/google,gs101-acpm-ipc.yaml   |   54 +-
+ .../bindings/mfd/samsung,s2mpg10-pmic.yaml         |  120 ++
+ .../bindings/mfd/samsung,s2mpg11-pmic.yaml         |   88 ++
+ .../devicetree/bindings/mfd/samsung,s2mps11.yaml   |   29 +-
+ .../regulator/samsung,s2mpg10-regulator.yaml       |  158 +++
+ .../regulator/samsung,s2mpg11-regulator.yaml       |  136 +++
+ MAINTAINERS                                        |    1 +
+ drivers/mfd/sec-acpm.c                             |  171 ++-
+ drivers/mfd/sec-common.c                           |   17 +-
+ drivers/mfd/sec-irq.c                              |   85 +-
+ drivers/regulator/s2mps11.c                        | 1186 ++++++++++++++++++--
+ .../regulator/samsung,s2mpg10-regulator.h          |   53 +
+ include/linux/mfd/samsung/core.h                   |    1 +
+ include/linux/mfd/samsung/irq.h                    |  105 ++
+ include/linux/mfd/samsung/s2mpg10.h                |   44 +-
+ include/linux/mfd/samsung/s2mpg11.h                |  434 +++++++
+ include/linux/regulator/driver.h                   |    5 +
+ 17 files changed, 2526 insertions(+), 161 deletions(-)
+---
+base-commit: 5b108312d3874f2fc3d6e5ed119017b45c2eb092
+change-id: 20250603-s2mpg1x-regulators-7a41c8399abf
+
+Best regards,
 -- 
-2.34.1
+André Draszik <andre.draszik@linaro.org>
 
 
