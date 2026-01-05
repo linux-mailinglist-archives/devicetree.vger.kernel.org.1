@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-251552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49076CF4302
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 15:41:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E5D2CF41FA
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 15:32:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CCD5D3059A5C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 14:36:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 008883031D76
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 14:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2078432F747;
-	Mon,  5 Jan 2026 14:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42DE4331229;
+	Mon,  5 Jan 2026 14:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EoHR01Sf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hEJz46gO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA608286425;
-	Mon,  5 Jan 2026 14:08:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1869A288C25;
+	Mon,  5 Jan 2026 14:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767622087; cv=none; b=F6awM7hbUOoeqsmAAk3hpLIKmX4FLnQoCCMESSuJp4K6Ua2VhHtWHjs3CgIFex+Md/IU3YqRyD4OzrZGR9iOymi7zUtlHDn4VMBnqqKKphN+1i0hcXd98e10a/QcGGK2NVcJKXroLg8rElRABxMSu2PVDpTf0smFpL4ltWy/YnU=
+	t=1767622088; cv=none; b=utFuZqACAqRUaHLhZbDM93wfZxAfta8DBar6XvYfQfSjXWh1Cvw/kp/V8ONhaax2AZNCUPBRotlDAGG6/Vb2vObZy5wjQMBnhdyEDRvBHc7HreX1abbJ2YB9OSo9bge/MsCPOyELz8fIcWiT6G4yCrrFeRGkIKVq9JVGuBrRaHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767622087; c=relaxed/simple;
-	bh=NJfFoE5aAGC1zpRIhR1swBjICgCuC1HQ68jCCk88IWk=;
+	s=arc-20240116; t=1767622088; c=relaxed/simple;
+	bh=XSddrkZ1CdHCkdLJv/GVNPL+EjDuWpH5SJGqeLOR/9o=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rMJMMkbhPnoyzZGVZF3XSNFUCKII4WydH+gS9SY2+jbpFPwg9S9Bq9xu80Zsn5QS01hOTUXeQI+xbT/Zi4DeTvi+DVebbw9uIwkebHtlK9zpSfwar8yWcTScXaRCDQS2UPPETIpN4HANrTG2vAj67UB9Kea5zWbTyyyKVPZOoF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EoHR01Sf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86675C16AAE;
-	Mon,  5 Jan 2026 14:08:04 +0000 (UTC)
+	 MIME-Version:Content-Type; b=N8Km0RMn68Ru47AsGC1WIRwOX/wm9tNndw9bnP1xcX0vBzKH4v/K7pAR9CWoZT1wf3/J08o722cXKtdBT8t1nlnzIBn98vHqp5H8SMwCjVgfcUvyrL2lHKZrFWMVhQU8Q8n6EHIDFTt64IIhFkSBPltP8lvzwT1Uj42/DAhPeEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hEJz46gO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11DFCC2BC9E;
+	Mon,  5 Jan 2026 14:08:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767622085;
-	bh=NJfFoE5aAGC1zpRIhR1swBjICgCuC1HQ68jCCk88IWk=;
+	s=k20201202; t=1767622087;
+	bh=XSddrkZ1CdHCkdLJv/GVNPL+EjDuWpH5SJGqeLOR/9o=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=EoHR01Sf5sZ8NXJyRfpg305MjmGKjBb4iLh5LLzVjXimWDOdx0fH87RB1GnlxxUSb
-	 GtczR43OFynjUS9YV6ddL/JQW4Akd8ovKspv+bxoRskpocagexdrE17VRyOEmW6ISZ
-	 rWnKTlTAhPFn5opPlnsDa5RGe+SUfppVlI81JWTykFpcOUVhXHHxazYeWQaPk9hAOp
-	 jr5QpZ+GXbqQl1zu+WG6JYarvgtV5y1U5KwUzTmofBa26OwEskpdr0NN0YatWZmE6l
-	 vFM0/XhUK1vbblbx9bDk/E09KaV4e0XW0qbYbYFBi4c/QGyv4ZyQhfx3Q5ITGLSqsC
-	 9ZRXBIn3YRvjw==
+	b=hEJz46gOxBt81ilMGHkGwNDqNcVtsq1hF7INltvXszJk1uYqWG/QgJ64ejtd9nXd0
+	 KokdMMwAD728Qb29uc0hWBn4nD/uDXkj+BcN/LIfmUniuXxaX7TAus0EetiGStGYlQ
+	 YUqL/ZGFo0SVv51mNlLDPc81Mj0YbsZrt7Qey7YtIZmED1E+mu7dnOZlJEGcHSLErt
+	 n8wfmcdrw03cKx67Dye9tHMzxzkOq99ESMnVMBB07BanEpDWGRoewE+ZaQIDZuoYXU
+	 q8DbJuq+Xt5MYVVgZNW3ypjP/qA8KXwSlSLnpAwCu6yj4S9hrhmwsGhRcKegQBqeKv
+	 mNzYQ874WaVcQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexey Minnekhanov <alexeymin@postmarketos.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@gmail.com>,
-	linux-arm-msm@vger.kernel.org,
+To: konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm630: fix gpu_speed_bin size
-Date: Mon,  5 Jan 2026 08:07:17 -0600
-Message-ID: <176762206377.2923194.8079190393031358291.b4-ty@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: monaco: Enable cpufreq cooling devices
+Date: Mon,  5 Jan 2026 08:07:19 -0600
+Message-ID: <176762206383.2923194.4293149972330719499.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251211-sdm630-fix-gpu-v2-1-92f0e736dba0@oss.qualcomm.com>
-References: <20251211-sdm630-fix-gpu-v2-1-92f0e736dba0@oss.qualcomm.com>
+In-Reply-To: <20251208114558.2343462-1-gaurav.kohli@oss.qualcomm.com>
+References: <20251208114558.2343462-1-gaurav.kohli@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +64,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 11 Dec 2025 03:27:45 +0200, Dmitry Baryshkov wrote:
-> Historically sdm630.dtsi has used 1 byte length for the gpu_speed_bin
-> cell, although it spans two bytes (offset 5, size 7 bits). It was being
-> accepted by the kernel because before the commit 7a06ef751077 ("nvmem:
-> core: fix bit offsets of more than one byte") the kernel didn't have
-> length check. After this commit nvmem core rejects QFPROM on sdm630 /
-> sdm660, making GPU and USB unusable on those platforms.
+On Mon, 08 Dec 2025 17:15:58 +0530, Gaurav Kohli wrote:
+> Add cooling-cells property to the CPU nodes to support cpufreq
+> cooling devices.
 > 
-> [...]
+> 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sdm630: fix gpu_speed_bin size
-      commit: e814796dfcae8905682ac3ac2dd57f512a9f6726
+[1/1] arm64: dts: qcom: monaco: Enable cpufreq cooling devices
+      commit: 0f15cbbf315c12a9c1004196d5beed8cce9dcf6d
 
 Best regards,
 -- 
