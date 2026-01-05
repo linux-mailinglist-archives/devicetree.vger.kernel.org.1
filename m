@@ -1,132 +1,170 @@
-Return-Path: <devicetree+bounces-251456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7691DCF33C7
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 12:26:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64D78CF34FC
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 12:42:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 64055304D006
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 11:23:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 081A630B81AD
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 11:36:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ABB23375DD;
-	Mon,  5 Jan 2026 11:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BA7933F8C2;
+	Mon,  5 Jan 2026 11:16:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="eqMlEBR8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78509336ECD
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 11:15:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875E433F8BA
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 11:16:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767611715; cv=none; b=dZU6WAWRHq3N7hlbW/y3mIpKZHjNKO2Q1EyaXvWc/RQGe4Ajc+S7wlonG0AzSKzVVVFmImdDk8hJFvLmK9UrOxQSi2PeXSIhYOiaxa3vI3bmONpxddf2dqZ7EvDDSsYa2JmJI+uuRRO2K+eJ39+THmoqIv9oBOn+3/+Q1rtKK/I=
+	t=1767611787; cv=none; b=MGTjGw+VD9jf5SgLShMl+dR3XB/At2pU7sf43FXCVntYhcERMC1Aq3WclPBfip+ibMwP2TCu2imLREJorQFPGvrYST8ZlBEEKPQMPYOtdiqy/LJwNXrukHmLvi40tBZVkIOK8EWHUY885ezbCWhgMbbyb32FVcFwBRP1iC6xWqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767611715; c=relaxed/simple;
-	bh=3TiAhp9+bFrltt5FUytvkR8rwwCQaS9SxQuRjEvWYqQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FYHBdN1HhE2uhUXhDSQ+iC0K7gUFs5Y9T+sIOad8tyYLMj2mG/cLxZOqHBJhIKNpMggk3g17MNdqUtTcx/Z1ztBmS0fQGbcgVrJgiVz6dMhWfvUAGRckqu/7Yf4lnTTXIXLUFHDdFG62cuEykSPKlS9htatUHFJP0+7UYJOp054=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vciXx-0004Q0-Gn; Mon, 05 Jan 2026 12:14:49 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vciXx-0099sn-02;
-	Mon, 05 Jan 2026 12:14:49 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vciXw-00CR1k-2s;
-	Mon, 05 Jan 2026 12:14:48 +0100
-Date: Mon, 5 Jan 2026 12:14:48 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mp-skov: add pinctrl-name 'reset' to
- fix CHECK_DTB warning
-Message-ID: <20260105111448.slm2yqiwivx2t3vh@pengutronix.de>
-References: <20251229165127.4006134-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1767611787; c=relaxed/simple;
+	bh=jIYdpOYohHpzOw2rr8oL4LfsXYMgfwWHy4yrWd5JEfM=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=EaTx0NK+bxC1+ecYd8yxtxVoaMVpqaX5kJAN5sQwdHzij9UQK9Jw1l250AKTZh6fOqG86SF3qPJUSyz3MtooAH046JUT9CujCgNB9cY5K7h/fUNtTm6jV7hhk4U5+NeLFUxK7qqv8VCy4PDSWUuoJqjmgeqDjf3BNK2OpWOQkuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=eqMlEBR8; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260105111623epoutp0265a346981da23bf79101ce21700bcd30~H0Y06t-Ju0459604596epoutp02H
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 11:16:23 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260105111623epoutp0265a346981da23bf79101ce21700bcd30~H0Y06t-Ju0459604596epoutp02H
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1767611783;
+	bh=exmRwuE3H60PBAfP7giHoY+OJrbqno0dZ6dVxdCiUeg=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=eqMlEBR8yOXbCkHJAZlAEv+nUMIPi+dMNilurU0uR9Z4bZPUWHfjcvPlAO0EjVrUg
+	 dpl0D3EFU+PJGY4kAJ+gwhyXVeuip0TEPdhoK6LebLP1D8G4nM+ywyrQXofLShPl12
+	 zbtfUn3rvi4BzLKTO9vsh9Q4Vp3/mtjEmebc0iVk=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20260105111622epcas5p1383de210931da80ab45999c9261978ed~H0Y0VivxP3117331173epcas5p1x;
+	Mon,  5 Jan 2026 11:16:22 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.92]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4dlBZF4XcBz6B9m9; Mon,  5 Jan
+	2026 11:16:21 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20260105111620epcas5p4b639a27284272dd7432cb4b957d5e523~H0YydzdWK1918219182epcas5p4w;
+	Mon,  5 Jan 2026 11:16:20 +0000 (GMT)
+Received: from INBRO000519 (unknown [107.122.1.150]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20260105111618epsmtip25fda3d6ff52d0d1f8ab4b76a122827d4~H0YwpBgK00868908689epsmtip2N;
+	Mon,  5 Jan 2026 11:16:18 +0000 (GMT)
+From: "Faraz Ata" <faraz.ata@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Andi Shyti'"
+	<andi.shyti@kernel.org>
+Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<alim.akhtar@samsung.com>, <linux-i2c@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>,
+	<pritam.sutar@samsung.com>
+In-Reply-To: 
+Subject: RE: [PATCH v2] arm64: dts: exynosautov920: Add DT node for all I2C
+ ports
+Date: Mon, 5 Jan 2026 16:46:09 +0530
+Message-ID: <000001dc7e34$b809a030$281ce090$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251229165127.4006134-1-Frank.Li@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFOiGH9IZBP/MALtVgmdgdp0NuXDgFMvpOsAcCx1FYC93HaobXRSjbAgF3h61A=
+Content-Language: en-us
+X-CMS-MailID: 20260105111620epcas5p4b639a27284272dd7432cb4b957d5e523
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20251014111455epcas5p30731028365023e101dad3b9ba1f90bec
+References: <CGME20251014111455epcas5p30731028365023e101dad3b9ba1f90bec@epcas5p3.samsung.com>
+	<20251014112338.2023223-1-faraz.ata@samsung.com>
+	<2knbzksxobg2kl3aexuiwluctgafgzxblsqc5q5rcikuruuegr@cqlizryhhx4s>
+	<7ba31fb7-8f1b-4277-a3cf-649a76c7dda5@kernel.org> 
 
-Hi Frank,
+HI Krzysztof
 
-On 25-12-29, Frank Li wrote:
-> Add pinctrl-name 'reset' to fix below CHECK_DTB warnings:
->   arch/arm64/boot/dts/freescale/imx8mp-skov-basic.dtb: switch@5f (microchip,ksz9893): pinctrl-names: ['default'] is too short
-> 	from schema $id: http://devicetree.org/schemas/net/dsa/microchip,ksz.yaml#
-> 
-> The commit (e469b87e0fb0d dt-bindings: net: dsa: microchip: Add strap
-> description to set SPI mode" force use two pinctrl-name 'default' and
-> 'reset'. switch@5f doesn't use SPI, so it is safe to use the same pinctrl
-> setting for both.
+I want to follow up on my I2C patches submitted.
+Please let me know if anything else needs to be done or do I have to resend=
+ the patches
 
-please see:
-- https://lore.kernel.org/all/20251112084717.ea7fchu7jcz6dzsi@pengutronix.de/
 
-I stumbled over the same warning, but came to the conclusion, that the
-dt-bindings should be fixed instead of workaround broken bindings within
-the dtb.
 
-Regards,
-  Marco
+> -----Original Message-----
+> From: Faraz Ata <faraz.ata=40samsung.com>
+> Sent: Thursday, November 6, 2025 10:49 PM
+> To: 'Krzysztof Kozlowski' <krzk=40kernel.org>; 'Andi Shyti'
+> <andi.shyti=40kernel.org>
+> Cc: 'robh=40kernel.org' <robh=40kernel.org>; 'krzk+dt=40kernel.org'
+> <krzk+dt=40kernel.org>; 'conor+dt=40kernel.org' <conor+dt=40kernel.org>;
+> 'alim.akhtar=40samsung.com' <alim.akhtar=40samsung.com>; 'linux-
+> i2c=40vger.kernel.org' <linux-i2c=40vger.kernel.org>;
+> 'devicetree=40vger.kernel.org' <devicetree=40vger.kernel.org>; 'linux-arm=
+-
+> kernel=40lists.infradead.org' <linux-arm-kernel=40lists.infradead.org>; '=
+linux-
+> samsung-soc=40vger.kernel.org' <linux-samsung-soc=40vger.kernel.org>;
+> 'linux-kernel=40vger.kernel.org' <linux-kernel=40vger.kernel.org>;
+> 'rosa.pila=40samsung.com' <rosa.pila=40samsung.com>;
+> 'dev.tailor=40samsung.com' <dev.tailor=40samsung.com>;
+> 'pritam.sutar=40samsung.com' <pritam.sutar=40samsung.com>
+> Subject: RE: =5BPATCH v2=5D arm64: dts: exynosautov920: Add DT node for a=
+ll I2C
+> ports
+>=20
+> HI  Krzysztof
+>=20
+> > -----Original Message-----
+> > From: Krzysztof Kozlowski <krzk=40kernel.org>
+> > Sent: Thursday, October 30, 2025 9:11 PM
+> > To: Andi Shyti <andi.shyti=40kernel.org>; Faraz Ata
+> > <faraz.ata=40samsung.com>
+> > Cc: robh=40kernel.org; krzk+dt=40kernel.org; conor+dt=40kernel.org;
+> > alim.akhtar=40samsung.com; linux-i2c=40vger.kernel.org;
+> > devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;
+> > linux- samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> > rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> > pritam.sutar=40samsung.com
+> > Subject: Re: =5BPATCH v2=5D arm64: dts: exynosautov920: Add DT node for
+> > all I2C ports
+> >
+> > On 30/10/2025 16:34, Andi Shyti wrote:
+> > > Hi Faraz,
+> > >
+> > > On Tue, Oct 14, 2025 at 04:53:38PM +0530, Faraz Ata wrote:
+> > >> Universal Serial Interface (USI) supports three serial protocol
+> > >> like uart, i2c and spi. ExynosAutov920 has 18 instances of USI.
+> > >> Add i2c nodes for all the instances.
+> > >>
+> > >> Signed-off-by: Faraz Ata <faraz.ata=40samsung.com>
+> > >
+> > > what happened to patch 1/1?
+> >
+> > Different patchset, no?
+>=20
+> In order to address your below comment
+> https://lore.kernel.org/all/000001dc39a2=242cf5e570=2486e1b050=24=40samsu=
+ng.co
+> m/
+>=20
+> I added the lore link to dt binding in v2
+> https://lore.kernel.org/all/176044840242.3094524.6549941972513295895.rob
+> h=40kernel.org/
+>=20
+> Please suggest if anything else need to be done  and via which tree this =
+patch
+> set will go
+> >
+> > Best regards,
+> > Krzysztof
 
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
-> index 020f20c8ce667..7d2fc5fdd3bd1 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
-> @@ -373,8 +373,8 @@ &i2c4 {
->  
->  	switch: switch@5f {
->  		compatible = "microchip,ksz9893";
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&pinctrl_switch>;
-> +		pinctrl-names = "default", "reset";
-> +		pinctrl-0 = <&pinctrl_switch>, <&pinctrl_switch>;
->  		reset-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
->  		reg = <0x5f>;
->  
-> -- 
-> 2.34.1
-> 
-> 
-> 
-
--- 
-#gernperDu 
-#CallMeByMyFirstName
-
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
