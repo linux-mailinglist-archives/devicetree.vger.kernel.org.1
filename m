@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-251349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B583CF2318
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 08:23:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9AF3CF232A
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 08:23:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2EF983038304
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 07:21:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5704D3041CE8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 07:21:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014EB285CA7;
-	Mon,  5 Jan 2026 07:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19EEC2D979D;
+	Mon,  5 Jan 2026 07:12:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aoMDbZbp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t7gRpLBw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC9226B741;
-	Mon,  5 Jan 2026 07:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33CD2D877B;
+	Mon,  5 Jan 2026 07:12:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767597137; cv=none; b=DLt7LRZxV1yvciGQGJOq6Obvs3ldEZV/1pINOPtaYDfch1DeP5Scu7PpVCMj68lzTczzZrgcJEQh/YjEGfjv7yM2pBdJ14HXJoUhhtuLfPQXxT+wPwCeDuUrffpGZYPgh5b27FyGmARfO2uN4qIpBS7p6ladxbd3J3RXEFlv3XM=
+	t=1767597163; cv=none; b=F9D60PSoYx8fVDUrmwoh9pZhxTxGKK3GVoYS+xwpr+6y1ljvNiBOQQWi3ocy+mpkuzN1+C6Px4m9mamlTYlEASrW/swbqHPqLjCtz5VaIOytQluBjuw9W+4heuHKafcXD3HJ+FFhBtuG4QPAFkR5lEQ1/ODw+q7F7sQRAd9HnTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767597137; c=relaxed/simple;
-	bh=l0YX2y6vxc+U6hQS0ZR85jVgKROtnAllep264vlUulg=;
+	s=arc-20240116; t=1767597163; c=relaxed/simple;
+	bh=FxcdmuAJ47cI2JgjreAlchdQ8G9yMT+8kZy14zoIbXk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nYmqdPqkeHNMnsrm53frK/Dy2/SqCS+WpaEHo4UXfq0hWeaJjU3OjFZW8Z0BoEvrfENSxnYlV+Ry5x1LhZTlvaV4PO9V3dI0uYdYlqyliFuwCdo7iYsvBQ01dgrm7HYnIOvf9Is3PP4B8hSWQKtuUWBeR97CpHBYmBVEP+p0NnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aoMDbZbp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A273C116D0;
-	Mon,  5 Jan 2026 07:12:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=trMx2lBoz9aogy5dhFsoZDvBobEdKcyfkN955S/SVf/BbriT5CGztQX7U7evY1KYwDJ/MhihOP2cDU0mWp0bkwlJmXvuQfE8KFSLoFIZXkdzZGYBt0jqwpmUwtEGRPtHwBjB8R3CGyEC9QF993j4l1u9HZ9ZtAWADxYanl5WXuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t7gRpLBw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F20DC116D0;
+	Mon,  5 Jan 2026 07:12:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767597137;
-	bh=l0YX2y6vxc+U6hQS0ZR85jVgKROtnAllep264vlUulg=;
+	s=k20201202; t=1767597162;
+	bh=FxcdmuAJ47cI2JgjreAlchdQ8G9yMT+8kZy14zoIbXk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aoMDbZbpjRZXpMmZ8qnRHXT5SXbpMmaxrLyPWnzKuc62YMlC1Z+EIUoJEjJ/1v0c0
-	 bWOblFJ+W8wAZbGWLQNiC1fp0G9zYFfXPdPq5yzZjte0QvN65EnWv0hEW8iPFhl12g
-	 WpW4UK2szyQbvmNavAookdiUHqXZPhqlA8+wBJxr8r0hoBBgY5GWa2v8c4Y3Lom0sp
-	 JJTysKSfO3Nm982+WbvJ/OQ0gtKv7suyClJ2Oe4K2Ezg5GyQeiaGOodY/Ftm849aOy
-	 S4D3VB6QZRp3BrWWqOssomuByn41OT0zGN7AM2qkCvuq9BgXomoHhxlWaQkOdsV+UJ
-	 Ub/2B9frP4ydQ==
-Message-ID: <6e1d7e2e-9585-4b4e-8c82-004a613bdb39@kernel.org>
-Date: Mon, 5 Jan 2026 08:12:12 +0100
+	b=t7gRpLBwBIT7ymRn49qU7vwOjdN7EBKuF7Xt7kB757jX+KJGG/0uB32IatMsH3rvU
+	 8nnBLti6hhA3qRr7ia5ujGi5RJtuath+6XRxbcpCbAwvo6QGRM3OGDPG+ulCP5o49L
+	 I+9KRadrUtk5IwaBTyCWFjwzYBnLnT/9kgHtdYA56s7ibG0bqyJHWK7/TvYPDCObVP
+	 9oQre+3f7J2YpV67r9U20/ojgMiFHIQiTZt9bqhNNIRwNHxfQVqYgtm+YVQrsHbfsE
+	 J8lBbE3ogJGA3o7IBMPlsDpSV+kJCyPG6iGdwMwkC8ZYUMtFGKbHWD9dQBHgYW9QeW
+	 YGjjAE42I84mg==
+Message-ID: <d23e3693-0cf8-4b31-a3e4-e562621911d5@kernel.org>
+Date: Mon, 5 Jan 2026 08:12:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,21 +48,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/7] arm64: dts: add description for solidrun imx8mp
- hummingboard-iiot
-To: Josua Mayer <josua@solid-run.com>, Rob Herring <robh@kernel.org>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, Shawn Guo <shawnguo@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-References: <20260101-imx8mp-hb-iiot-v5-0-b369b2e0c07f@solid-run.com>
- <176736452823.3671482.4196945570874126466.robh@kernel.org>
- <9369989.DvuYhMxLoT@josua-pc>
+Subject: Re: [PATCH v10 1/5] dt-bindings: arm: qcom: talos-evk: Add QCS615
+ Talos EVK SMARC platform
+To: tessolveupstream@gmail.com, andersson@kernel.org, konradybcio@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251230130227.3503590-1-tessolveupstream@gmail.com>
+ <20251230130227.3503590-2-tessolveupstream@gmail.com>
+ <2e533b51-399a-47e8-bc3e-ab61797d6762@kernel.org>
+ <f6ff2086-19f2-46cc-ac89-d8ef3847b9f0@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,39 +103,53 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <9369989.DvuYhMxLoT@josua-pc>
+In-Reply-To: <f6ff2086-19f2-46cc-ac89-d8ef3847b9f0@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/01/2026 14:46, Josua Mayer wrote:
-> On Friday, 2 January 2026 16:43:35 IST Rob Herring wrote:
->>
->> This patch series was applied (using b4) to base:
->>  Base: 8f0b4cce4481fb22653697cced8d0d04027cb1e8 (use --merge-base to
->> override)
->>
->> If this is not the correct base, please add 'base-commit' tag
->> (or use b4 which does this automatically)
->>
->> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/'
->> for 20260101-imx8mp-hb-iiot-v5-0-b369b2e0c07f@solid-run.com:
->>
->> scripts/Makefile.dtbs:20: .dtbo is not applied to any base:
->> imx8mp-hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtbo
->> imx8mp-hummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtbo
->> imx8mp-hummingboard-iiot-rs485-a.dtbo imx8mp-hummingboard-iiot-rs485-b.dtbo
+On 04/01/2026 14:11, tessolveupstream@gmail.com wrote:
 > 
-> These overlays are not applied to anything on purpose,
-> as we don't want to create a dtb for each possible combination.
-
-But we want to validate applying DTB.
-
-
 > 
-> Is there any advice what to do in this case?
+> On 30-12-2025 20:33, Krzysztof Kozlowski wrote:
+>> On 30/12/2025 14:02, Sudarshan Shetty wrote:
+>>> Add binding support for the Qualcomm Technologies, Inc. Talos EVK
+>>> SMARC platform based on the QCS615 SoC.
+>>>
+>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+>>> ---
+>>
+>>
+>> Why did you decide to drop the tag and where did you explain that?
+>>
+>> <form letter>
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
+>>
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+>> of patchset, under or above your Signed-off-by tag, unless patch changed
+>> significantly (e.g. new properties added to the DT bindings). Tag is
+>> "received", when provided in a message replied to you on the mailing
+>> list. Tools like b4 can help here. However, there's no need to repost
+>> patches *only* to add the tags. The upstream maintainer will do that for
+>> tags received on the version they apply.
+>>
+>> Please read:
+>> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+>> </form letter>
+>>
+> 
+> I apologize for missing the Acked-by tag in this version.
 
-If you don't want to follow upstream rules, I think we cannot take that
-code, so don't upstream code...
+How missing? It WAS THERE ALREADY!
+
+You had to explicitly remove it.
+
+> I will make sure to include all received tags in the next patch
+> as per the submission guidelines.
 
 Best regards,
 Krzysztof
