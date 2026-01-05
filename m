@@ -1,209 +1,210 @@
-Return-Path: <devicetree+bounces-251588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8C7CF4586
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:17:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70866CF4546
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 16:14:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CF3EF3009691
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:17:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB7BE303A086
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 15:09:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683D22FF679;
-	Mon,  5 Jan 2026 15:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D283093BC;
+	Mon,  5 Jan 2026 15:09:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HDUpFEkW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iS2ZqRMe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB6D2EBB8D
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 15:08:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17B603090E0;
+	Mon,  5 Jan 2026 15:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767625690; cv=none; b=GI1yAcZoB86wDN3mJTe1ma3JiZ0lgg57LySBGokyZM88wq1rVKt6R0u+j8TmrKk0Av+V/ovAEg6qzFm4k69s5IRcokhIA3cuiIUtR8nIu5A1OcVo7Y74hpZW/aQJFt6fjjjUuv9GjM2VxdyMUbOrvL8pXRPMO5n7qLakcZcmYrc=
+	t=1767625752; cv=none; b=XWy0K328F+zuOIcgVHs4U7e6E/tNc9TyFMY6+UqQOofJ6ojY6lt9zez0ktqAvAU6HoAwVwUHa18u8wajh7ThiWTwP+0l4AzPNHvbDbzvRj4lE1CcLE3MozNTa89pYpEUsu6dUD5cUdE224PgZWaZyd0xDyOL862wB3bBnlCnkT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767625690; c=relaxed/simple;
-	bh=sK0+CEa3/0lm980jOiRWYW7FRiBLHWMNCdfDPIq6EJ4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YEbtH5QX3Hzhy9zU8EkaHf8mtClmjS2igt6NWvY7KJTeCTnCaSn+Oz8siuH+9bfRr+RMQCZ//kB3Fea+zBHbXx4Oqr/c+4B/0dvQ6DX4psqL6izgOb4vJZ4hdH/fYtpvd4hZBud+eXRLF/P2P+E5NguOXeuCYNXE7PcDRYmwU+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HDUpFEkW; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2a12ebe4b74so251164105ad.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 07:08:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767625688; x=1768230488; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=x1jKy4PLpiDv5jQtyPtMkgdBDMPguDaYeUut8IL2qu0=;
-        b=HDUpFEkWuoBNyF+TWO317q7GmWWOWWnR4BMPLYkjJIIulXWw5dI6YkddSLBhgf4vEU
-         e7VOxk2cozF6GNsvh+zTWWjC24T+A7o4h1yK/oWJGHowkXB8cskRybgifVRdPUJSsWxI
-         DC0hKvxF9YjFeKNzH+YnWYprcPrr3sNGeWFqGitmClisCUPSwebWMt8i96cnvfv/f3+9
-         HiCi/J7QZpHEjHyUWWniPSE5v/I+f7gzA7d2awH8xLS0PLzOwm8Cs/OOyTMRTZUfndKB
-         nY/plz3xgjPLTEv0EiozAMqVHnpmhuQyjAB55ZqO/8iRZxAquudW6c3CbfV2WxhdbfNz
-         8irw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767625688; x=1768230488;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x1jKy4PLpiDv5jQtyPtMkgdBDMPguDaYeUut8IL2qu0=;
-        b=vpKGiRQ08rUKEaJmoB9tDz7A7eshoHUg6nZiy08nbR3RMRxYGvqvGQH7jSZ9VcapfK
-         n2HDBsW90wdqcziernUP13KrEga3+zazaspvzpuCRhkTlDB4AlQ4auXTmfpwvcOPlIEm
-         Ianuul3ox2qzWlur2bR1fO1tS2FMeHAaJTzwz8Waxc1kyqjeUzrNfb0Mj5EgZuA0tliW
-         af/DivJEB24N8j4qUGpoyoiiAw054NoFsbD7CKXL1yraC1K6ykHHZKCxRIVSs81Ohr+O
-         9aVXFKiH/lXxDekweClG5l+CY0yLH2LazTptBi5A6aNKQMEtcgYOJhx/067ZJ3svzGi+
-         Z7oQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW1FrEAZtZdwVYVhgoDx/LawhV9y7k7KEpWg6tEFkV8frrrtIch0dv9Lm9OPkFsZx64G/eeOoRtdhVt@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLm4aZmFWRJeMgvTtUNhnI6OP27mY0k6qxid6ck4saGyR37e2i
-	DOBCUdgZwkK6FJW9q2lyOtSglK0m4ltQP/TJYYxnz/QFhp+xP/jwy0mOkraceA==
-X-Gm-Gg: AY/fxX6eLNIFqT0sJWIS652GzyMM9ETRg+Uf7pIhUxH0lrMvk0paKKxv9662abiodnQ
-	tBhXIwcMd208cS1+3UlCSPUT+DL4YuWEZNIAwyhXoz/N/eyUPtzqtvYUMefrKv0ifwqsqTPdAtp
-	VqYr5FdKdFEtxay/lZ91xMiNzKksxRQ1Gx93m3n/yQm8wU+0BlKOk5sBxG1zT/E45ABhlfhbVeD
-	5dwNylg08rZDuGRNThwv5vOmo1m6/zF4gze4UVYglOIrpPuXySe8ScgmC7ZeQOdxYQQgoHLphE4
-	RMeTlL/0GGH7Mxz1ZI0REoIBVsw9MSi6zD1Ytl169E0YJQJ3UqdqTKQp6RsKGQ0+3h+YTSNTgLU
-	i454RnNMz0DIkwGWB0SKwIHKd7RU6UIzQV0oQAQwkTS0UncoH1kxypLjcAwHsCeGeZplm1eRidB
-	W9gq/UJYQ3augMsepM2/Y0UowOoCUHni9D8/ArMA==
-X-Google-Smtp-Source: AGHT+IGhkCdU2DgtXw80a0qwTPN/B41vQB1JkqB9e8jnObox0EpIMbkYAzguoHeMXBySPLMGasdaPQ==
-X-Received: by 2002:a17:902:ea07:b0:29e:fd60:2cf9 with SMTP id d9443c01a7336-2a3e2e1e31fmr105955ad.54.1767625687767;
-        Mon, 05 Jan 2026 07:08:07 -0800 (PST)
-Received: from LAPTOP-872M7T80.localdomain ([223.181.104.101])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a3e2ab1a0esm1174215ad.16.2026.01.05.07.08.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 07:08:07 -0800 (PST)
-From: Akhila YS <akhilayalmati@gmail.com>
-Date: Mon, 05 Jan 2026 15:08:00 +0000
-Subject: [PATCH v3] dt-bindings: mtd: microchip,mchp23k256: convert to DT
- schema
+	s=arc-20240116; t=1767625752; c=relaxed/simple;
+	bh=I1d5FxAgc09CV6iIiWDT/isaABPEFpxSuyY5Qrewv68=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KKUuIltUZquwbaWy+hDune+FOF8DgqrDeHPbPgamFjItPAiAQN81SOJ0pUzXOdtF/JFbgaeaz8PoL9w0SDLLAvYfgpDg0Uk0TPhd3GN1llQwHkwOrQMIdTy+8n27+GdnFTpmO98Q4sUc/n3o8a4Sv7zFwoYpKY7ZSDGQrwP48/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iS2ZqRMe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A3A9C116D0;
+	Mon,  5 Jan 2026 15:09:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767625751;
+	bh=I1d5FxAgc09CV6iIiWDT/isaABPEFpxSuyY5Qrewv68=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iS2ZqRMea5KagLUR55CU1bqkMjCePFWmxTVYGizGXLOH//MWvGjVbOLyAH9/fE/wk
+	 mdsv0lOh1XdCevSUfmBnBeILfhd/IOfvJhXZpqloeVjaGuPkVlpai+9yHYywHuAxKn
+	 ThCFx0m6P1A7W1wr8/TEVQeMz81JLzSGM2YzRBDzxWQXBI7ouuV/5TKmacx3nZLsaT
+	 UJKQznLn3wDQnZqIyZ9YSsmaLK+QerHhSWKJowznAhJlyc69jLTu4SQKNqajlvaVPu
+	 CIszaQ7QtNy+YX8TeDLKZrFPpat2l4DITEMpGQCiVQALXYUAqNSQmjfGDSo3DuRuuu
+	 +e1El6ABiCBkA==
+Message-ID: <f54dc011-1796-4088-8bfe-be19e8bd9157@kernel.org>
+Date: Mon, 5 Jan 2026 16:09:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260105-nxp-v3-1-05af634831ef@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAM/TW2kC/1XMTQrCMBCG4auUWRtJxqY2rryHuAjNpB2wPyQSK
- qV3N60IunyHeb4FIgWmCJdigUCJI49DjtOhgKazQ0uCXW5AiVohGjHMk9BYERpnjUcD+XMK5Hn
- eV2733B3H5xhe+2hS2/XfJyWUsKXSnqSspa2vbW/5cWzGHjaf8GsqqSR+DGYjtdfOmfJcavNr1
- nV9A+DUilDKAAAA
-X-Change-ID: 20251229-nxp-526e29da9f29
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Akhila YS <akhilayalmati@gmail.com>
-X-Mailer: b4 0.14.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: Commonize IQ-X-IOT DTSI
+To: Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Yijie Yang <yijie.yang@oss.qualcomm.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com>
+ <20251222060335.3485729-3-yijie.yang@oss.qualcomm.com>
+ <20251222-fluorescent-turkey-of-gallantry-df0906@quoll>
+ <b8f0e8d9-449e-4f32-832e-f1d5597ff496@oss.qualcomm.com>
+ <6421f044-2b07-4518-9edc-b9b2ef49f4fb@kernel.org>
+ <8bcf058f-5bf9-46ce-a188-e94954101f2f@oss.qualcomm.com>
+ <4f79d090-7d1c-4fb3-a835-a7e4ff96f79c@oss.qualcomm.com>
+ <448f2efa-5b1e-4855-a62d-2e375938b36f@kernel.org>
+ <c7983b8c-5085-43a0-bd5e-1194df2f0ee5@oss.qualcomm.com>
+ <a2b62af6-fe17-4c4b-9dea-4ba9cf312765@kernel.org>
+ <j7i2oryel7d5u6gsbb54iaer7amqre2vzwkb6fieybascvonwi@bmt7zmcvg7yi>
+ <36cb7d6e-ece4-42c7-bc11-b66837df5fc4@kernel.org>
+ <469d89c9-8f6c-4abe-9d9f-b6a47f8cefd8@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <469d89c9-8f6c-4abe-9d9f-b6a47f8cefd8@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Convert Microchip 23K256 SPI SRAM MTD binding to YAML format.
-Changes during conversion:
-- Remove "address-cells" and "size-cells" from properties and
-  required sections as there is no child node for sram.
+On 05/01/2026 06:36, Tingwei Zhang wrote:
+> 
+> 
+> On 12/30/2025 3:21 PM, Krzysztof Kozlowski wrote:
+>> On 29/12/2025 21:08, Dmitry Baryshkov wrote:
+>>> On Mon, Dec 29, 2025 at 09:47:05AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 29/12/2025 08:38, Yijie Yang wrote:
+>>>>>
+>>>>> On 12/29/2025 3:21 PM, Krzysztof Kozlowski wrote:
+>>>>>> On 29/12/2025 02:23, Tingwei Zhang wrote:
+>>>>>>>
+>>>>>>> On 12/24/2025 8:12 AM, Tingwei Zhang wrote:
+>>>>>>>> On 12/23/2025 9:41 PM, Krzysztof Kozlowski wrote:
+>>>>>>>>> On 23/12/2025 04:38, Tingwei Zhang wrote:
+>>>>>>>>>> On 12/22/2025 5:11 PM, Krzysztof Kozlowski wrote:
+>>>>>>>>>>> On Mon, Dec 22, 2025 at 02:03:28PM +0800, YijieYang wrote:
+>>>>>>>>>>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>>>>>>>>>>
+>>>>>>>>>>>> HAMOA-IOT-EVK and PURWA-IOT-EVK share a similar board design. Extract
+>>>>>>>>>>>> the common components into separate files for better maintainability.
+>>>>>>>>>>> SoMs do not share actual hardware. DTSI does not represent what looks
+>>>>>>>>>>> similar to you, but actually common parts.
+>>>>>>>>>> Purwa SOM board and Hamoa SOM board share same design. They share same PCB.
+>>>>>>>>>> The difference is only on chip. Purwa SOM board has Purwa and Hamoa SOM board
+>>>>>>>>>> has Hamoa on it.
+>>>>>>>>> I do not speak about boards. Read carefully feedback and respond to the
+>>>>>>>>> actual feedback, not some other arguments.
+>>>>>>>>>
+>>>>>>>>> NAK
+>>>>>>>> In this change, the SoM hardware except SoC is described by iq-x-iot-som.dtsi since it's common between Hamoa and Purwa. Hamoa and Purwa SoC hardware is described in hamoa.dtsi and purwa.dtsi. Hamoa-iot-som.dtsi includes iq-x-iot-som.dtsi and hamoa.dtsi. This change could reduce the duplicate code and review effort on a totally new purwa-iot-som.dtsi. If we found any bug, it can be fixed in one common file instead of two separate files. Same idea is used in x1-crd.dtsi. X1e80100-crd.dts include x1-crd.dtsi and hamoa.dtsi.
+>>>>>>> Krzysztof,
+>>>>>>> Please let me know your opinion on this. This could be a common case for
+>>>>>>> Hamoa/Purwa boards share same PCB. Share same dtsi file like x1-crd.dtsi
+>>>>>> It's not the same PCB.  You did not really respond to my first message,
+>>>>>> so I responded to you - I do not speak about boards. Then again you did
+>>>>>> not respond to it and brought some irrelevant arguments.
+>>>>>>
+>>>>>>> would reduce maintenance effort.
+>>>>>> Does not matter, I do not question this. Why are you responding to some
+>>>>>> questions which were never asked?
+>>>>>>
+>>>>>> DTSI represents actual shared physical aspect and you cannot share SoM
+>>>>>> physically. It's not the same PCB, because you do not have a socket on
+>>>>>> the SoM.
 
-Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
----
-Changes in v3:
-- Changed commit description to document changes during yaml conversion.
-- Corrected indentation for example.
-- Link to v2: https://lore.kernel.org/r/20260102-nxp-v2-1-05f5dd947459@gmail.com
+HERE - socket.
 
-Changes in v2:
-- Removed "#address-cells" and "#size-cells" from the required, properties
-  and example. 
-- Changed description and title for yaml.
-- Link to v1: https://lore.kernel.org/r/20251229-nxp-v1-1-a415fe0080a8@gmail.com
----
- .../bindings/mtd/microchip,mchp23k256.txt          | 18 --------
- .../bindings/mtd/microchip,mchp23k256.yaml         | 49 ++++++++++++++++++++++
- 2 files changed, 49 insertions(+), 18 deletions(-)
+>>>>> x1e80100-crd and x1p42100-crd are different boards, yet they share the 
+>>>>> same x1-crd.dtsi. Why can’t we apply the same approach here?
+>>>>
+>>>> You should ask the authors there, not me. I presume that the baseboard
+>>>> is the same or very similar. Or pieces of the baseboard are re-used
+>>>> which could be visible in the schematics (same MCN numbers etc).
+>>> For me this sounds like a new rule, which didn't exist beforehand. We
+>>> have enough foo-common.dtsi fragments, covering similar phones, but we
+>>> never required the knowledge of those phones having the same PCB.
+>> I am speaking about it since 2020? 2021? So how new? Other people in
+>> other SoCs were sometimes speaking about it in 2016 or something
+> There’s no doubt that using a common DTSI makes sense when the boards
+> share the same baseboard.
+> I think the real question is whether the baseboards are defined so
+> similarly that they can be treated as the same.
+> For example, would swapping to a different SoC—similar to the
+> Hamoa/Purwa CRD scenario—still be acceptable?
+> Would exchanging components such as the display panel, a single camera
+> lens (not the sensor, as far as I can tell), or removing the 3D iToF
+> module[1] still qualify as the “same” board?
+> In other words, can we consider two boards identical if the underlying
+> circuit board is the same but a few parts are swapped out?
 
-diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.txt b/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.txt
-deleted file mode 100644
-index 7328eb92a03c..000000000000
---- a/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--* MTD SPI driver for Microchip 23K256 (and similar) serial SRAM
--
--Required properties:
--- #address-cells, #size-cells : Must be present if the device has sub-nodes
--  representing partitions.
--- compatible : Must be one of "microchip,mchp23k256" or "microchip,mchp23lcv1024"
--- reg : Chip-Select number
--- spi-max-frequency : Maximum frequency of the SPI bus the chip can operate at
--
--Example:
--
--	spi-sram@0 {
--		#address-cells = <1>;
--		#size-cells = <1>;
--		compatible = "microchip,mchp23k256";
--		reg = <0>;
--		spi-max-frequency = <20000000>;
--	};
-diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.yaml b/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.yaml
-new file mode 100644
-index 000000000000..32e9124594ac
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/microchip,mchp23k256.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/microchip,mchp23k256.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip 23K256 SPI SRAM
-+
-+maintainers:
-+  - Richard Weinberger <richard@nod.at>
-+
-+description:
-+  The Microchip 23K256 is a 256 Kbit (32 Kbyte) serial SRAM with an
-+  SPI interface,supporting clock frequencies up to 20 MHz. It features
-+  a 32-byte page size for writes and supports byte, page, and
-+  sequential access modes.
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,mchp23k256
-+      - microchip,mchp23lcv1024
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - reg
-+  - compatible
-+  - spi-max-frequency
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        sram@0 {
-+            compatible = "microchip,mchp23k256";
-+            reg = <0>;
-+            spi-max-frequency = <20000000>;
-+        };
-+    };
-+...
+I received IDs of the schematics for these boards, but they are called
+"IPC BGA module" and what I saw usually is that BGA modules are not
+mountable but solderable. This does not matter that much but should have
+been said, because it might mean this is not even a SoM. There are many
+SoMs which are BGA, not pluggable or pin-based, but I have just doubts
+that authors share everything...
 
----
-base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
-change-id: 20251229-nxp-526e29da9f29
+Anyway the BGA modules for Hamoa and Purwa have almost the same
+schematics, indeed, except differences in PCI, APC supply and lack of
+one PMIC.
+
+If this was the same SoM, just with different SoC soldered, it would
+have the same PMICs. Different PMICs means different SoM...
+
+Anyway, I shared my opinion and I am not going to spend more time on
+this. It should not be my task to go through schematics and prove that
+PMICs differ. Authors should.
 
 Best regards,
--- 
-Akhila YS <akhilayalmati@gmail.com>
-
+Krzysztof
 
