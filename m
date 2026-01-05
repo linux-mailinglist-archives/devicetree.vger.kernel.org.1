@@ -1,171 +1,123 @@
-Return-Path: <devicetree+bounces-251368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7EB7CF25C4
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 09:20:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D8ACF25F7
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 09:23:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5BD6830057C5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 08:17:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7314C301B831
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 08:21:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA2132D73A0;
-	Mon,  5 Jan 2026 08:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5FD312836;
+	Mon,  5 Jan 2026 08:21:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XbB9k9Aw";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TzKjKviT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VSJLZexM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CB03115A1
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 08:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 947A1311975;
+	Mon,  5 Jan 2026 08:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767601018; cv=none; b=J5oH9oX2ijahc0gCzVJ8g313tBPD96IkkwDCzp4lmymBr2JXuX6CHEPqbO8dpDCUSl7KsupAgsaEQ1jJBo+8qf26AJu7ukC6QluLRHtqtHlFObZvylZ1zR4OR1z8t24SQU8Hc1131bHQzVBTx7idcaTaXh3NpnbOLWuVF2rXhQ4=
+	t=1767601271; cv=none; b=Z1aoWEKpnIhP0AP2TgeiWO63wnMu3lEp7IesAee2/HD1elAr6w+ULm+O6x14A/SnoKRKBDSAfFT4CoQcqGq+L3BSv1b77w1D5AfH9h83hxh/pRFAx/j9h3magJgYa+lJxxLbead8lvOnZj2u1t6E3V56/BIrvnRcqI78HVB4EqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767601018; c=relaxed/simple;
-	bh=H9aUv+PLL/BVXBiXpLMoneeBQKadXbm8uYfCo/k+wKg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wzq+DsWzA41ZDIb9eGaSX4tAZe77Q3vCng3uyaOJ+0GGEJ/IoPIIz3TrjSAkIzDLVKJ18gUKlMpNzXvOT7iWTgQuaXKimCvXuqblg0DNy1n14kgEhvEAg5X9POh+xkccExxXTpo+8ANJ96RKRFVjzKvQSneePL3FwRzc5JeWqbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XbB9k9Aw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TzKjKviT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 604LK0DN3469746
-	for <devicetree@vger.kernel.org>; Mon, 5 Jan 2026 08:16:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	18YCrzwPnslDtu4eM53n+j4KlC4xTSp3NlQu11JmA68=; b=XbB9k9Awf9GqhO4a
-	z6V8XueCPy1PhrktQj/sYEz07Mu2xic3Upzyht/H3t/ZYzp3OfNA3ugaIxhEJ4Om
-	ETV5bSTL+M8vFCHMU+B/wRBE9T4KsFgFN5YQiTjalHc1Ykg7akzukbnEjLPiw1G3
-	wvQy4sakpoPvKT1E93Y+yafUS+Zx4zJhEUCDw4a7TCvLnbQJuIW7jA53fMwOIwtB
-	lt+G2sL0Mko41/BkLMP697zl1byKBAQPcehd+mL3rMWnyH6eEhfa7wmFrYEjtJIH
-	6OAuMF1Ilh2Qazy1GnqOOrRgqqZD+MqZ35+6IeqcJyv9QRE2f1Q0ukmcmYanAMt7
-	7ssw8Q==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4beu6t3p5g-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 08:16:53 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2a0b7eb0a56so335762495ad.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 00:16:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767601013; x=1768205813; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=18YCrzwPnslDtu4eM53n+j4KlC4xTSp3NlQu11JmA68=;
-        b=TzKjKviTEV15t3XeLltleVJu+ZYu1e7V0sJ95hkcI4ru2nDAuH7ouC5kPbjkxw2O5n
-         Zlr8FVNIfHM87WiLcpzfZhh18yfb/U6+o4AQNrC85Nmn2kGXE2LxYbmt1b2RBI9M+NO8
-         /nVf7y4vkgKznKA7ZJ9qk0E5rOne6jIdFNzB3+OR467PihUMCRFnuRVIO8+yFIgFtXBg
-         mWVWZvXWiAW1cw+Obh+FTN+MoiK9gTd0xQSO/dVB4pqlQTuQ9xbwcLLdX36pu9G5NP24
-         vxW5ZVqbGMxtS+MgCotF2ZuOCZKpulhehOTF9eZNfq8yexvFEBEiEI2XbZJKDTTXN2DJ
-         Ojzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767601013; x=1768205813;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=18YCrzwPnslDtu4eM53n+j4KlC4xTSp3NlQu11JmA68=;
-        b=TkZ5OiwuQv6Su1KYJn0j8LuYDmyVzSXPl5TAE59VmJ5VbffOAsZFruWZ+AZ/ay5i5t
-         l+tERB511Ink7L7F6IpMHP7ijzByONIkUEYMHZ8iE8GFGBkb09L5O6iT+Y98zV76Cqkb
-         W5+xwpqCeBWFcdsZLUscKvxk/Vf+lQlXq6H4LY/fSV/4Uq7DYON3ZwNQZWCHegNx/E2Y
-         9RJK3IOdiB+V1LMqkJfnTuMJLS3Hr5XZ2HGCVi8MqSuTSkFqJHLD8K1iC+E4/9IY8tIY
-         4MVMyVwRjVrQf1jYRvPSqFuePxr85NsgbPYmeuAw7MQZXyytu8OiFvrs6hIZeKVAPKf/
-         yLWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrLNp+7neItEvJRa2YMKuIebEeDOxg2Uyjayfh2uIb4uEC+INdj6nmy+mwYKwVZ55vPnr4XFPcM/Jw@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHSwqHHQM2jvk3SFfzFvh4YY0P7p6sHlimq0YsbL3iL4/DPl/p
-	Dnj7qz5bBmInGDQsXjnQEGzY3DPyowzFJoSQL9+UBiRtWW9i1KylCTU8i9BNcJAj7eItWakOIW/
-	US/HhiEJmVG3K58ED6lETqmNSIcJwsTslrF1NzjUWG31gpDrC6E26jR7kwZuWz06A
-X-Gm-Gg: AY/fxX5A+5CeEFyXqCoEeIXEGuz+DelA5oA9nnoSK/tpfsPXpL6yTbPv3XYV5L90/9p
-	LZgFodtqJ7XWSkUkr7SzwAVMuN1W+s42YRaFkxRyPLjBQx1E7wYhjERavhyU0pF7KUni5yeFoUm
-	jN67w/2fmxEg8SyzgBQDAmnvFqT0seIYkY8+yb5E8HGb2vzPGvJMbAzqgk4+/TY5ZZ9Jj/scIk9
-	VMxX/3VxRNW92YQV5R4SbKONEQj5dGzBPs4fzFv8m2ExIYX8IVh1k5arsNSw7yIa8JwnDadxBet
-	jHFUZGoaM0HxI4yYCYRRBXu4AxPSp48yN/Usv29617vDuwDHaUKRe/lobhq02aNzP+4K6/BmmCC
-	j76n7Tg5vrpXaNSTZqrCY0qnsaw6BkqQjdxRW80NIvJJICWdKLxc=
-X-Received: by 2002:a17:902:fc46:b0:2a0:9411:e8c0 with SMTP id d9443c01a7336-2a2f272bd84mr472738255ad.32.1767601012914;
-        Mon, 05 Jan 2026 00:16:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF47iCpRyTshsyeLrz78/zIsz21oTS5Aj3RsHakwta124JthwB46ioZMbAIB4ET4fXUvBd3Og==
-X-Received: by 2002:a17:902:fc46:b0:2a0:9411:e8c0 with SMTP id d9443c01a7336-2a2f272bd84mr472738045ad.32.1767601012449;
-        Mon, 05 Jan 2026 00:16:52 -0800 (PST)
-Received: from [10.217.216.105] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c1e7c5307c7sm41443575a12.28.2026.01.05.00.16.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jan 2026 00:16:52 -0800 (PST)
-Message-ID: <336fff92-c3b5-4214-9a78-56098769062d@oss.qualcomm.com>
-Date: Mon, 5 Jan 2026 13:46:44 +0530
+	s=arc-20240116; t=1767601271; c=relaxed/simple;
+	bh=kQa1JNevuS+WPQwMFKC10iMoFprepPCs6UnztP+Yvm0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WxKiSLq2T9+K3U+usczDNpcDkhVANiBwRICfxqMS7whm6kKAyctvHd7wv2pxKFUuIpQedUoiabeznkKYhH8Od8XYBO7w2jp5SGpwzxbFCzTeYDW/wU/CsjqDy4TDrccp46cBIjK9KezO2CoWjcUP/LV25Be64716cGokXZeQTiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VSJLZexM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D598C116D0;
+	Mon,  5 Jan 2026 08:21:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767601271;
+	bh=kQa1JNevuS+WPQwMFKC10iMoFprepPCs6UnztP+Yvm0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VSJLZexM6M27vNabMDwaDO1NI+4+jaFTCFv1S1ArgSojVwRubHSepKOec7c3E1QLE
+	 V3W5euo9MAEUKY/EZXB2QDRIBCOAyZYBpgZhVg3p9TL9RcXoAzx270lVGCO28cOCwz
+	 MMsf0wnPv4P53gZAKmSncBJs8xvU6CO3rLmiqRG/kI3PUN8ttNGCy8VtfVm4qFfIeF
+	 RoXXf23TuexE2Ttso1YexVK6IOLn4JGG4fxGdzi0S7KsoxLpmkJ/CmLs+Woqsas5p1
+	 5ZhW0i93eICmzzjOqwK4H/LaZTQm4+YmfwA/V9sozZwXGInl3wxrW3a0Xmss4ShJrL
+	 OMl5xX9eMSItA==
+Date: Mon, 5 Jan 2026 09:21:08 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: peter.chen@cixtech.com, fugang.duan@cixtech.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-cix-kernel-upstream@cixtech.com, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: cix: add OrangePi 6 Plus board
+Message-ID: <20260105-excellent-uakari-of-joy-f0dfa4@quoll>
+References: <20260104075400.1673101-1-gary.yang@cixtech.com>
+ <20260104075400.1673101-2-gary.yang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/4] scsi: ufs: qcom: dt-bindings: Document UFSHC
- compatible for x1e80100
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, martin.petersen@oracle.com,
-        andersson@kernel.org, konradybcio@kernel.org,
-        taniya.das@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com,
-        manivannan.sadhasivam@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
-        nitin.rawat@oss.qualcomm.com
-References: <20251231101951.1026163-1-pradeep.pragallapati@oss.qualcomm.com>
- <20251231101951.1026163-3-pradeep.pragallapati@oss.qualcomm.com>
- <20260102-logical-frigatebird-of-elegance-8abd82@quoll>
-Content-Language: en-US
-From: Pradeep Pragallapati <pradeep.pragallapati@oss.qualcomm.com>
-In-Reply-To: <20260102-logical-frigatebird-of-elegance-8abd82@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA1MDA3MyBTYWx0ZWRfX0zjMzWAMYNDR
- PRFFz+FfaxFbHCWvH/mInpP/os5/+E24l9S+pDoe54IvbWigqtZjMY/zac0y0VrPfOJyqXFk5mi
- yn+r1mbIPUifPWEgI96W+wmxEG6CBOV9reVnA+73WC7c/Zz+d8Jz+Ltwo+qBWT8U7Rr1ijFncFA
- kCfyHKraS3LVnPKTb0vlcbT342NTkJOt0hVMeUef7C1UA59HSq/iiqp6CC+pYjShwGP32VvdTEw
- Sj68OD1BpgydI/mC0vbW/u8Ik5tHTKGLcRsrtJIPZ38mNLHPbriK/jhUGjufs9eIZsf3ixGAbGL
- TbK0sO/bZFJjmyx+p770sHWTPN3wAuRjeMr5ZD0pUCjIzJ1UYaHjES2MpbTZ7U0nMDBVKFaHBJH
- /H9GgHWSu1Ou/WcwoX6p6aywbP4b/WC7Pbu026zhXlJfLUDhaA3Kyydr0uHHC6c4gowjn95Msxo
- LQNkUEhxZQqcoNcl5Dg==
-X-Authority-Analysis: v=2.4 cv=HLbO14tv c=1 sm=1 tr=0 ts=695b7375 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=TyPWlNIwSm5TisNF1W4A:9
- a=QEXdDO2ut3YA:10 a=i6qsmYmKKdoA:10 a=csto0wWSG80A:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-GUID: JgFih_bC4WHvlv-7D39ml2DOCHfQDpQr
-X-Proofpoint-ORIG-GUID: JgFih_bC4WHvlv-7D39ml2DOCHfQDpQr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-05_01,2025-12-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0 impostorscore=0
- spamscore=0 priorityscore=1501 adultscore=0 phishscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601050073
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260104075400.1673101-2-gary.yang@cixtech.com>
 
+On Sun, Jan 04, 2026 at 03:53:59PM +0800, Gary Yang wrote:
+> OrangePi 6 Plus adopts CIX CD8180/CD8160 SoC, built-in 12-core 64-bit
+> processor + NPU processor,integrated graphics processor, equipped with
+> 16GB/32GB/64GB LPDDR5, and provides two M.2 KEY-M interfaces 2280 for NVMe
+> SSD,as well as SPI FLASH and TF slots to meet the needs of fast read/write
+> and high-capacity storage
+> 
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> ---
+>  Documentation/devicetree/bindings/arm/cix.yaml | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/cix.yaml b/Documentation/devicetree/bindings/arm/cix.yaml
+> index 114dab4bc4d2..9e132e609b7b 100644
+> --- a/Documentation/devicetree/bindings/arm/cix.yaml
+> +++ b/Documentation/devicetree/bindings/arm/cix.yaml
+> @@ -16,9 +16,16 @@ properties:
+>    compatible:
+>      oneOf:
+>  
+> -      - description: Radxa Orion O6
+> +      - description: Radxa Orion O6 board
+>          items:
+> -          - const: radxa,orion-o6
+> +          - enum:
+> +              - radxa,orion-o6
+> +          - const: cix,sky1
+> +
+> +      - description: Xunlong orangepi 6 plus board
+> +        items:
+> +          - enum:
+> +              - xunlong,orangepi-6-plus
 
+Previous patch was correct, not this one.
 
-On 1/2/2026 4:56 PM, Krzysztof Kozlowski wrote:
-> On Wed, Dec 31, 2025 at 03:49:49PM +0530, Pradeep P V K wrote:
->> Add the UFS Host Controller (UFSHC) compatible for Qualcomm x1e80100
->> SoC.  Use SM8550 as a fallback since x1e80100 shares compatibility
->> with SM8550 UFSHC, enabling reuse of existing support.
->>
-> 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-> 
-sure, i will update the subject prefix to directory path in my next 
-patchset.
-> 
-> Best regards,
-> Krzysztof
-> 
+<form letter>
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
+
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
+
+Read last sentence and linked documentation. Where did you explain
+ignoring/dropping my tag?
+
+Best regards,
+Krzysztof
 
 
