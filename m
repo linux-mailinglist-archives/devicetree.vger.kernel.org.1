@@ -1,238 +1,145 @@
-Return-Path: <devicetree+bounces-251439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 624E9CF2F1A
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:17:30 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB49ECF2F7D
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 11:24:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9D60B3014636
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:16:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A9EFB3002699
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 10:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A1792F0C7E;
-	Mon,  5 Jan 2026 10:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA0212F2605;
+	Mon,  5 Jan 2026 10:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gi8UZXsi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R9MlBATh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C19110E3
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 10:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4FAC2F0C7E
+	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 10:24:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767608209; cv=none; b=do4y/bKEP+erkXfgZrSwG8qx0lMmMqCkSOOxbYppKn4kuE1/p2dkIDremYwb7/fBnYkiwmF9Gte0TUJIhNS03iH/d7ouRK9msxV86xlusCLCvgkdIwVdtZRPvm6cQxRO9qYhzbW9xKXQsb9BqSRGDIt+uwZq+RM/Ft9667gSP9g=
+	t=1767608682; cv=none; b=XXMcmdKYbkGqqnk0G9MUaPDASGGun2rMGsWLug9Lb+n61gqkAlAgHEuiZhzhXu+EdfWq+S6tbrwka9HMASxEkU7WdcJIM9MtSSbSbzHykxLdICPKRxVqy3hcsaIS/qYCenOxK2YhO/Ywtzam+Z3jw9vpJbCRACHbjVHnQRvoVaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767608209; c=relaxed/simple;
-	bh=zhwiU7+UFM3MuARK2xUVYw5YaqIrTK76opBr5mY9Op8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CPpbZBpzkS8OoNYTzBtcGSNqRI4uThCTeIo4xEmrbkkCJFPuqL2lK39G/bT/bnz7Slsg622izzLk9V/f9VlIHTW6UocYq8WMIVqLmDEpfk7+HERNYx/0yqCJ00agOApaq4KjF/8YBWaCtCTsjya1WafpmUdaDbxZmaXNNv+ar00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gi8UZXsi; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 987911A2655;
-	Mon,  5 Jan 2026 10:16:45 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6162C60726;
-	Mon,  5 Jan 2026 10:16:45 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DA8DE103C83C7;
-	Mon,  5 Jan 2026 11:16:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767608204; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=o0Dw7c1k+THI2TwhCkTngwgqRsYS8Yp0bFJ1g1p/qdw=;
-	b=gi8UZXsiDQX1xyf9fMQeKGEh91wgT4fZ3LCvz57qJyzKPYEGP1A8xxdspExt4CRmzqZYcq
-	ckNRMzAQAxEsh3wLjDscqBZeCX8wKDc4pn4RrsNuQgdrNKMLefmRy3wh5tX7Jl8tysOIGD
-	9725TxbIzSy2p2LueqZakP59xUUqNlP0zAvl2T1hQi79XhuU1W9Pf2OZ/lKhnNvEf6zCOG
-	OcxFHTtDi4xFZqmDrfPFF3z1QI68yQulhfGx28um5GLBsMppRMdJN9KQ3/oTkalfSAt7zm
-	fCbvveokLMMx0+GQW+8X0/trsedkewn/X7vt+u19tbF9ACJF7+mYnmXQ3bxP4w==
-Message-ID: <6b7bf02e-d016-4d2b-a409-6cd378d409fb@bootlin.com>
-Date: Mon, 5 Jan 2026 11:16:39 +0100
+	s=arc-20240116; t=1767608682; c=relaxed/simple;
+	bh=SVZiyApNgvZG9HDs/b2smpla49hxwIvoRNlQkDM0jqo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=l5N1NoFRrUEWYbTesEwcBs4tDwBD+WnskV+MoC4nNdWJa1wcDNZrLNgDiJltrTDRMU2LeTsaWZ6PQspEFmjM/05Be6Qec5q4to8x3idav8ShBlYUQ2PoJIias1jTkzbTOwFOLPsVSD1tBuehnsTsl2F8hDfk2dUTTD4pGOTvMhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R9MlBATh; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso131073775e9.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 02:24:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767608679; x=1768213479; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IN6vRkNKEVxOczX1saJPQdmukp5i6BLBmJn4SGM91Z0=;
+        b=R9MlBAThDJAZUcc70gBMli2mJHvRo/N7m7jkYQqqYOV9JIA8PQ0GmOHx0E07y9KIhF
+         3fwTR75mJFdoeZPT1uCab0ALeIlzrqRP6qVTLCEdohH/pNNM0/UGRg1P/DOvXjDpU9vb
+         SgOlqDjgXwfGUYifAshFTs1d+TqrbknqSOCohJk/iB9XWvFNZ97WL+JBdkizq/Jw/Rj+
+         89Nvf4zouiS78+gLwBChYXFvKXeai28XFCVbqnZ2MPmF8FaayBqnfnLwAKqOsdzVkEdo
+         oS/XIP3XHpDFqb5cqSVMMiA62MigJtMSJ0WWH2JCkDcjLCY9pjpSKTfS/+lehlEygRXa
+         kSbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767608679; x=1768213479;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IN6vRkNKEVxOczX1saJPQdmukp5i6BLBmJn4SGM91Z0=;
+        b=wGanK7Et7ojH146Okf60MZbzcGKEPyqEnwLcgSF1MY3ZK0dYBKx+nYyVf42kmV/wcv
+         d0ooU+quabzGTwQC8wEis7pExP7KrhzkRmL1YIPU5QjD6tkN7OaRzRXcm4WtqgnrCr61
+         Dt3ry1G5gEVdD6xeB/Q5cH0TznaPsRerAp16nd4fsytqYSTHD1lAUje0G19t3OyRauOf
+         as18ITswMHKpbxdhTT3tHG0dZ7F3TwMMLTkKwNHKfqCImwBUZuGnRVFec1uP+vcfRs2M
+         9UeQroPHKx6j7NOb/kRmhdUNv0rmMqCmSZSkkanGpa8TgwMZvhwPhTJ3w2ZqxhXmXUeb
+         ociA==
+X-Gm-Message-State: AOJu0Yyh2umzvZIzxpfB5xMIJ7ynPsIYQ44p9hxW3Ks/kDerMGfxxvUZ
+	NocD4IhF3/FpAmrioMGbvxu1HIwiTxs2CCDEl/Yfun8xGoZM62/3E/WCn1FiJXyS
+X-Gm-Gg: AY/fxX6pBRXl+kt2dTmhR2JHkjE+cFApJOA4szJL7ls5lldH70IkY8iTppIYvC7hLG0
+	8NGr2r+nGzJP+5B1tBQEfzEq8yLaAg7lqsXBpw0GK29afjrcexMivy/sUnTB1XkvEpEcUl3j1d3
+	ozZKmyC+DMDampSS3in3HSppGaAA+01AMxXEgWTwI7YVCHnIl/6zZHej7rVH6QEpfQfdD48ekVB
+	zFX0nXHqjRyAykw9iQuTNJySqsc5JHyZbqXkKSTqct73GtV8XTkrluaJ9Hjf1TTQy/zlHws+vUN
+	d39u7qAg4rrvx3zeL//GdlQC2FpGReSYaKVDBzYa5cFKAsw8xhNs43InDqUSkJauUiSgAkQTHQ9
+	mLjb6ZLNsx0s0W26ac3c+WcRIOYtObpgJNgBp7mEtyEAc7p81KafdR+HuqK8F1zhpHI1SoY52vf
+	bq9pqDMBbnX5O5IArOZzniyzaAU4Bup5kEXBxitM2cdGWuS4MnsAGa1YoKOLD+vYk6z8nJE2cZe
+	FO0C0h3NIVkArz6JLviKu4s4w==
+X-Google-Smtp-Source: AGHT+IE6Ut/zBvkgGiDfA9fqbiDTp9MkLewGpq779KdJeWNbVM5HNW0RBNC8pVKNFd6A70hzt18tlg==
+X-Received: by 2002:a05:600c:4ed2:b0:477:af07:dd21 with SMTP id 5b1f17b1804b1-47d195b3c08mr635442425e9.25.1767608678952;
+        Mon, 05 Jan 2026 02:24:38 -0800 (PST)
+Received: from Lord-Beerus.station (net-93-151-204-73.cust.vodafonedsl.it. [93.151.204.73])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d6d452be4sm145607205e9.10.2026.01.05.02.24.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jan 2026 02:24:38 -0800 (PST)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Markus Niebel <Markus.Niebel@tq-group.com>,
+	Primoz Fiser <primoz.fiser@norik.com>,
+	Yannic Moog <y.moog@phytec.de>,
+	Josua Mayer <josua@solid-run.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/3] Add support for Variscite DART-MX95 and Sonata board
+Date: Mon,  5 Jan 2026 11:24:00 +0100
+Message-ID: <20260105102412.6674-1-stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: adc: add driver for Texas Instruments TLA2528
- adc
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, nuno.sa@analog.com,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Angelo Dureghello <adureghello@baylibre.com>,
- Tobias Sperling <tobias.sperling@softing.com>,
- Eason Yang <j2anfernee@gmail.com>,
- Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
- Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
- duje@dujemihanovic.xyz, herve.codina@bootlin.com,
- Rodolfo Giometti <giometti@enneenne.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- thomas.petazzoni@bootlin.com
-References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
- <20251223155534.220504-3-maxime.chevallier@bootlin.com>
- <20251227184204.6815a3b4@jic23-huawei>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20251227184204.6815a3b4@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
-Hi Jonathan,
+From: Stefano Radaelli <stefano.r@variscite.com>
 
-On 27/12/2025 19:42, Jonathan Cameron wrote:
-> On Tue, 23 Dec 2025 16:55:33 +0100
-> Maxime Chevallier <maxime.chevallier@bootlin.com> wrote:
-> 
->> This adds a new driver for the TI TLA2528 ADC chip. It ha 8 12-bit
->> channels, that can also be configured as 16-bit averaging channels.
->>
->> Add a very simple driver for it, allowing reading raw values for each
->> channel.
->>
->> Signed-off-by: Rodolfo Giometti <giometti@enneenne.com>
->> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> 
-> Hi Maxime,
-> 
-> A few extra bits from me
-> 
-> Thanks,
-> 
-> Jonathan
-> 
-> 
->> diff --git a/drivers/iio/adc/ti-tla2528.c b/drivers/iio/adc/ti-tla2528.c
->> new file mode 100644
->> index 000000000000..9c572e730ffb
->> --- /dev/null
->> +++ b/drivers/iio/adc/ti-tla2528.c
->> @@ -0,0 +1,209 @@
-> 
->> +
->> +static s32 tla2528_write_reg(const struct i2c_client *client, u8 reg, u8 val)
->> +{
->> +	u8 data[3] = {TLA2528_OP_WRITE_REG, reg, val};
-> 
-> Style wise. Prefer { TLA25... val };
+This patch series adds support for the Variscite DART-MX95 system on
+module and the Sonata carrier board.
 
-Sure thing, I'll address that.
+The series includes:
+- Device tree bindings documentation for both SOM and carrier board
+- SOM device tree with on-module peripherals
+- Sonata carrier board device tree with board-specific features
 
-> 
-> - couple of spaces next to the brackets.
-> 
->> +	int ret;
->> +
->> +	ret = i2c_master_send(client, data, 3);
->> +
->> +	return ret < 0 ? ret : 0;
->> +}
->> +
->> +static int tla2528_read_sample(const struct i2c_client *client)
->> +{
->> +	__be16 data;
->> +	int ret;
->> +
->> +	ret = i2c_master_recv(client, (char *)&data, 2);
-> 
-> sizeof(data)
-> 
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	return be16_to_cpu(data) >> 4;
->> +}
-> 
->> +
->> +#define TLA2528_CHAN(_chan, _name) { \
-> 
-> The _ aren't adding anything here, so I'd drop them.
-> 
->> +	.type = IIO_VOLTAGE,					\
->> +	.channel = (_chan),					\
->> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
->> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
->> +	.datasheet_name = _name,				\
->> +	.indexed = 1,						\
->> +}
+The implementation follows the standard SOM + carrier board pattern
+where the SOM dtsi contains only peripherals mounted on the module,
+while carrier-specific interfaces are enabled in the board dts.
 
-Absolutely :)
+v3:
+- Fix specific node names with generic ones
+- Remove fixed-link property for SFP
+- Audio regulator cleanup
+v2:
+- Add SFP cage node for enetc_port2 following sff,sfp.yaml binding
 
->> +
->> +static int tla2528_probe(struct i2c_client *client)
->> +{
->> +	struct iio_dev *indio_dev;
->> +	struct tla2528 *tla2528;
->> +	int ret;
->> +
->> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
->> +				     I2C_FUNC_SMBUS_WRITE_WORD_DATA))
->> +		return -EOPNOTSUPP;
->> +
->> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*tla2528));
->> +	if (!indio_dev)
->> +		return -ENOMEM;
->> +
->> +	tla2528 = iio_priv(indio_dev);
->> +	i2c_set_clientdata(client, indio_dev);
-> 
-> Ever used? If not don't set it.
+Stefano Radaelli (3):
+  dt-bindings: arm: fsl: add Variscite DART-MX95 Boards
+  arm64: dts: freescale: Add support for Variscite DART-MX95
+  arm64: dts: imx95-var-dart: Add support for Variscite Sonata board
 
-David mentionned that as well, I'll drop this as this is no longer
-required. It used to be required before switching to devm_ helpers.
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx95-var-dart-sonata.dts   | 590 ++++++++++++++++++
+ .../boot/dts/freescale/imx95-var-dart.dtsi    | 461 ++++++++++++++
+ 4 files changed, 1058 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx95-var-dart-sonata.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx95-var-dart.dtsi
 
-> 
->> +	tla2528->client = client;
->> +
->> +	indio_dev->name = client->name;
-> 
-> Prefer to see it hard coded as a string.  If we added extra firmware
-> types in future the content of client->name can become something other
-> than the part number.
 
-True, I'll change that
+base-commit: 40fbbd64bba6c6e7a72885d2f59b6a3be9991eeb
+-- 
+2.47.3
 
-> 
-> 
->> +	indio_dev->info = &tla2528_info;
->> +	indio_dev->modes = INDIO_DIRECT_MODE;
->> +	indio_dev->channels = tla2528_channel;
->> +	indio_dev->num_channels = ARRAY_SIZE(tla2528_channel);
->> +
->> +	mutex_init(&tla2528->lock);
->> +
->> +	tla2528->vref_uv = devm_regulator_get_enable_read_voltage(&client->dev,
->> +								  "vref");
->> +	if (tla2528->vref_uv < 0)
->> +		return tla2528->vref_uv;
->> +
->> +	/* Set all inputs as analog */
->> +	ret = tla2528_write_reg(tla2528->client, TLA2528_PIN_CFG_ADR, 0x00);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	ret = tla2528_write_reg(tla2528->client, TLA2528_DATA_CFG_ADR,
->> +				TLA2528_DATA_CFG_APPEND_STATUS);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	/* Set manual mode */
->> +	ret = tla2528_write_reg(tla2528->client, TLA2528_SEQUENCE_CFG_ADR, 0x00);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	/* Init private data */
->> +	tla2528->last_read_channel = ~0;
->> +
->> +	return devm_iio_device_register(&client->dev, indio_dev);
->> +}
-
-Thanks for the reviews :)
-
-Maxime
 
