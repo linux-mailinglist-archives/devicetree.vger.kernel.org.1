@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-251560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CE0DCF4257
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 15:36:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57EE1CF420F
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 15:33:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CCFB8302FCD6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 14:32:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4F4B5303ADE5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 14:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D808B336EDB;
-	Mon,  5 Jan 2026 14:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 438EA3385B9;
+	Mon,  5 Jan 2026 14:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mgAa9DbC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QkOlDxSW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACB43336ED8;
-	Mon,  5 Jan 2026 14:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19BC2255F3F;
+	Mon,  5 Jan 2026 14:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767622096; cv=none; b=sIqcOy8ei1NmPRifWGLZkTVRQYm8A3KosSq6yRvgLPxa5gmIrR0ANJBIl2iIIeAJA7BE8R8/BBzE0+ffRhBXxbsBngyQcNLhOjmJW43nJepYtYjh7zrKO3KwxBhEcGTasZ6rI88/nIuDuYNEGHUv2zjtk+avWpXjaPHz/5qeMTM=
+	t=1767622101; cv=none; b=k+TruaSC6PM2bbiWOloG5vENytH8W3JS67AG3BcWYQB+hu/nmVPS8qCJREDdVtPq2wvoL6/mFQjCp5XSUcvceHA95ZT4bO4WpFziGGLEJAxhXjCjdnILy/W0MC5RF/jFjxqI8KqW2vIIcMtMvqnQYaZ5Cxn8kZFBdIX6N+INvPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767622096; c=relaxed/simple;
-	bh=1iEpIgfmiv8+8wcsozdpc7FpCTnyQlRSWfi93/1ZTSI=;
+	s=arc-20240116; t=1767622101; c=relaxed/simple;
+	bh=to8eUGgU5EWZAgOuezn8x6O8LJS981ABlZcMFiTj9eA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ox1M+/qGzgxig5L6x47y8cDvnXjaaaUWBJzkYerifGR6e/mCmiF22WWCMAVXN/hkji5FTeSalANK7hUrxFra+gWhD8uFCA3cH9UgHRNi2XMcPtqvcwm/zRUivOcXb7QmV0acvk5wzsLhKVl4//WzE0/O4UMUJnAjulJwwki7o7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mgAa9DbC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9126DC116D0;
-	Mon,  5 Jan 2026 14:08:15 +0000 (UTC)
+	 MIME-Version:Content-Type; b=NRGdJR8VudwVfOMEcygUXWeyhH+osTJ8ZU7VX9t6oJOLHO0uFRw905u4wpfTpveR6+p7VUwFxZGP/KZpgJEVOel3npH0KkwHHrKWcjCbSiW0jyg2bYB0W8XF6Ma9F0fI0qdc29bO3Ss4a41dYpaVi2uaoKe95lUQRQsZYGT3OZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QkOlDxSW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB2F1C16AAE;
+	Mon,  5 Jan 2026 14:08:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767622096;
-	bh=1iEpIgfmiv8+8wcsozdpc7FpCTnyQlRSWfi93/1ZTSI=;
+	s=k20201202; t=1767622100;
+	bh=to8eUGgU5EWZAgOuezn8x6O8LJS981ABlZcMFiTj9eA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mgAa9DbCtk5T8cX1liD5jZ9lLokI0iwq66Ep0sanigoQ+32CQ0tyhx7gLdqf75fyx
-	 fehrjkly/SxP5EE68JbNu9GMWb7wtmHG0px96FyUZTW/zjvUhc1Sate8NlFOXQzQ9P
-	 oZEtArhX8+tJWUUW1q4JzdUgpmDQMgo0Lk4S02KaQmDWmYRnIE/x8btRlLXtzH/Gua
-	 WdhVPisXNUEWjtvQz3zhzUCRR8wrxB7yRITTBFm/lXUDt5SZWZ0C50t0npy5+U4eA4
-	 QZSelONdYgs72E8t9yR4HfJzSs884kyrjPq3lAcLx30aXqrBm3FXgsQX2C9JOvIczh
-	 ASPOl3/h1GCDg==
+	b=QkOlDxSWXUUyKCP9uNk+abQz2nPiWIwu2ZjYHmuvbfTeIdEL73FkVYogM72EYxMe2
+	 XDNZ4Y+eZcDcA1vv9rd1ao4EPLbzQdQuXgmskVhUSOS+hK/16InmszmnBUZ5huDPx6
+	 St/ahnG17FZ1ejmWQ8PBPfloVgGHLyxXvz4eF55zSfFjG+HZHUyV/t05mhu54pxZQI
+	 mHzAsfzTVOPsfkO0Vbapwt+uUEWo6TkFbt/LMRcZLnl6OZ7Dcli1ER0/CdI9HFRodf
+	 nenHJ2OEucMZOo/c/c0X6RdR0R7pfnjEUt2D5y8xDh9uICylFVLTBcelotokaFiZUf
+	 zWK2u0p9teJ5w==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: monaco-evk: Enable TPM (ST33)
-Date: Mon,  5 Jan 2026 08:07:25 -0600
-Message-ID: <176762206386.2923194.409123689159947082.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v2 1/2] arm64: dts: qcom: hamoa: Add sound DAI prefixes for DP
+Date: Mon,  5 Jan 2026 08:07:29 -0600
+Message-ID: <176762206364.2923194.15000641449194582431.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251114-enable-tpm-monaco-v1-1-4ed566838698@oss.qualcomm.com>
-References: <20251114-enable-tpm-monaco-v1-1-4ed566838698@oss.qualcomm.com>
+In-Reply-To: <20251217120051.98198-3-krzysztof.kozlowski@oss.qualcomm.com>
+References: <20251217120051.98198-3-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,16 +65,19 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 14 Nov 2025 15:47:37 +0530, Khalid Faisal Ansari wrote:
-> Enable ST33HTPM TPM over SPI10 on the Monaco IoT EVK by adding the
-> required SPI and TPM nodes.
+On Wed, 17 Dec 2025 13:00:52 +0100, Krzysztof Kozlowski wrote:
+> Sound DAI devices exposing same set of mixers, e.g. each DisplayPort
+> controller, need to add dedicated prefix for these mixers to avoid
+> conflicts and to allow ALSA to properly configure given instance.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: monaco-evk: Enable TPM (ST33)
-      commit: dce54bba172e351777d3ddcec9f7d03bea99ddf7
+[1/2] arm64: dts: qcom: hamoa: Add sound DAI prefixes for DP
+      commit: d12cd85a4ff494bb73e2e8f8af7ed66851241941
+[2/2] arm64: dts: qcom: x1e78100-t14s: Add audio playback over DisplayPort
+      commit: ba439ad9134c8b9ce033056c059cd161d30afec7
 
 Best regards,
 -- 
