@@ -1,253 +1,92 @@
-Return-Path: <devicetree+bounces-251659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 996B6CF5609
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:30:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3C2DCF5627
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 20:32:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E0D62300A921
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:30:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8BD7A30092A4
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 19:32:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0685233ADA9;
-	Mon,  5 Jan 2026 19:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A490B299A8A;
+	Mon,  5 Jan 2026 19:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a0lSVVHR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oWGXp6aL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D6731ED86
-	for <devicetree@vger.kernel.org>; Mon,  5 Jan 2026 19:30:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7639D23184F;
+	Mon,  5 Jan 2026 19:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767641423; cv=none; b=f+0PexanDZ0fU34aZ7ga3Y3q4M8OeC/ycsgF1qNFPju5mcqmfEg8kP6bWP3xisXaC6JXexERgsHjXxJbF2FXWS0KC7DrZZqRlwNR8XWucQutf5qqmSdugqsKPWxcbAYFIUGEOz7+chPfsD0P7zl7isb3sv41nc88rcXsekVe4Kc=
+	t=1767641533; cv=none; b=ttmTA6y0zRSA5PbyHW+uofGqBWwmVaPOIaocHy7zM6C3Ds0WQoaNkZmXqSeoQ90quc/UTbhuNbgcnxiuHbUJtaSq34Qgq1YA6AIwWVgCv2o3pWGnr1bU+YQhmD43SMbiaoOqwMBYhygkmY9v09J62RLCv7C4yi5viz0xrN14MqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767641423; c=relaxed/simple;
-	bh=jk017enyCY0MubT0YFx9+1GhXlNdXEhZMuEWdoIF9dw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rc83KBJn3e9wABS6c/f+zfuH6+R93YJI/p51yyF0ZGDiEMS8LWxFSCeXxRGpmDY3CiYD8I8bUtUZEVNEbcmYI6T3fhQOUXHMoGw4V/PP9BsPM9zMjUeeBr+ExO0GzxSSJAqGu1IfD3aDmthg5UQcpmZFGImyW5ocgcB2LZXwZq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a0lSVVHR; arc=none smtp.client-ip=209.85.128.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-47798f4059fso392995e9.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 11:30:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767641420; x=1768246220; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zNW0iCCo5tpZtmL9/mWOiumOafwQ/3mQ8ApPqR8WIss=;
-        b=a0lSVVHRpKfWO0Vo1rqnH4c4Hu9duJUWOtwV12JYu2KCAku+wDi8q1UfP06BST+Mns
-         +bh9/dCf3mGL8S7bNcm6Y8qnPnuzZA64HqlgPHXMmYdRP/5LnZNUg8vCcz1ODvRJcY2I
-         2WkfvWl6bh9PAAgfQ8khiREJ7B/XLqAdlMY+X27wLcKVpsUdr9w+kMQMzOlp6iiKdeXn
-         hBdREvNnleH4VJjp0hip5FaHs6rr3bDHzUoKiOPeqogNgzLIHpH+1YauG6tAvQwbRUCQ
-         DTW+E1RL4tEQpCQg037XbBHFyqANdnhN5arpNVugJZrE+wCPWhIOf9kr+Da6QQFGG7eb
-         69fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767641420; x=1768246220;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zNW0iCCo5tpZtmL9/mWOiumOafwQ/3mQ8ApPqR8WIss=;
-        b=YdFz0RApPtsMCk+bfhEzQWBxz7Av5kFrjhEUiJod8jPT0a+8Q+wkMmUxD/G9Ua8cbd
-         Ha0jkBqG/dde6lHlqZwYcxr4j2a/teped83uEhi191ekvnM4jQ00yG8L0Qm3Yoliwoa5
-         C5RmxKPf1M4CzXM1LB0ij+3hEugwv/Z8Nl2aBjUdd2lVSf14laHnl1ez1nRAR5BvRMvu
-         PufdIWPN9ortscnpMQuB+ckInZy87gUmLy2BEuFU7hE0aGulGba1d/K2GJBwfjVz5bvp
-         eY4DwCK4Uzbm3jhl3iSRWFf3O1k+CTxtAi54hZPjDe0sXlOI7XnAJbekagJBZ2f7u9/g
-         miOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXju3bHXvHwIlEMAKFJkrk+WNRN67xqYRWHM0q258GhN3fN+zuDtE5dtry3FI8TPbi8p1ggDWH+NofQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YypdShN7qFgELLA/65ZTdSjyN/xcS7KHx0Q0bFtW8NgQR+c+x7N
-	dCQ/Ifm1zcD/nzGEuPDNMhAcc6JFuzk21jA2glqApi254++KkiIw8+W5
-X-Gm-Gg: AY/fxX6b/FCWFJ5ds796CivGa6A0cRIfIdwTwNuMptWwDW2XZeBD2KGKos8Fh/aIJ1t
-	55hFgQnTVLuXtyURE0xTyUhDuBsJMhufzQVFAD3OqD/UT23q5ZShxUHnfCcbusGdydYIPw4BtLw
-	8ERgFM6AoR1iLofVcub8RH14XrROwWo23gLu2F8Wy76nn1qr+9dhAheToHHpaAm3IsVaLuX+GmR
-	u5GW1+gwfnvTgpqxeLF2MH4UhTS24ObTOHzmx0gfonlpC/Rz8v9vO0g366pJEsD/gm9pjawzbUB
-	ZsIsz2s1bAQnusxqjHbTisnS/OOLysL8P/2mU0Zp4xSS/TUaAagiq2x38JhxJbFX8duoO4wMIwG
-	6GZqlv3tc5hdZOG+R+2ERFRUVyjVYPd6SpZCAZnAmuID6F19nts6Y58JPO25j8HDpt3hq1fI0WU
-	QJ5A==
-X-Google-Smtp-Source: AGHT+IHwZzU5FZzh6NQxafc7OaAUsOfBFPnuTk0t/DBCRISPJiemadkoEI7ZUKSbKxXi6Ztaw7wmOg==
-X-Received: by 2002:a05:6000:144c:b0:42b:3ad7:fdbb with SMTP id ffacd0b85a97d-432bc9ef071mr678765f8f.3.1767641420066;
-        Mon, 05 Jan 2026 11:30:20 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d804:300:888b:7b37:c8bc:6130])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd0dad8bsm218672f8f.8.2026.01.05.11.30.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 11:30:18 -0800 (PST)
-Date: Mon, 5 Jan 2026 21:30:16 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: "A. Sverdlin" <alexander.sverdlin@siemens.com>
-Cc: netdev@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-	Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1767641533; c=relaxed/simple;
+	bh=KBG4rviyS0j6Xo5va6SbAcnrxZBfIhv+e+OgRAYM6TM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DhncB2Iamw8j/j7jUcotJTb7O4mD9+JC/mhr/ouZiTX2iYyxL+pZVWaZDSvDWINBBfLQg7JAK5wSUwF07MLfUgvv+bk9/cXmpQw3943KPhMp9FYhq2QwIhvUV4SFJAbu2HCEJ+YarohXgf44wP9c73wbqqCa7pavF9dwzBIZsRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oWGXp6aL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA9B2C116D0;
+	Mon,  5 Jan 2026 19:32:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767641532;
+	bh=KBG4rviyS0j6Xo5va6SbAcnrxZBfIhv+e+OgRAYM6TM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=oWGXp6aLh47mBISayyU2wHoYxDZ/UzjaKt5m9A7587BJC2tchvadf+BHwutJ9N88S
+	 dGpFgGd+KETpeHR0G1xdajsjbvxdWt0oX2CIkuJ+k+9t0MUUAFuhCE6tXJOqd/CRKm
+	 NmVqwEL18z7T2Z2NsNHqFwIeJxpxhar5iHh9JnXImgWVa6ybr1cQuQWv4Lsuqj8T28
+	 9bp3mgIK4lcu7QetNGdovj2FVWzJjmGEwPy5bG9Q7ACVNwJsRhFBB/Q5EfpoK/fYD7
+	 0FDzCL8SY9fZPq0haIHPzx6fX14uV42UPkHv0UB+N498lb66iUzTOnGCo3exlQEzgG
+	 cE+5E4kebsy5g==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH v3 2/2] net: dsa: mxl-gsw1xx: Support R(G)MII slew rate
- configuration
-Message-ID: <20260105193016.jlnsvgavlilhync7@skbuf>
-References: <20260105175320.2141753-1-alexander.sverdlin@siemens.com>
- <20260105175320.2141753-3-alexander.sverdlin@siemens.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Drake <drake@endlessm.com>,
+	Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+	Matteo Martelli <matteomartelli3@gmail.com>,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: everest,es8316: Add interrupt support
+Date: Mon,  5 Jan 2026 13:32:03 -0600
+Message-ID: <20260105193203.3166320-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260105175320.2141753-3-alexander.sverdlin@siemens.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Alexander,
+The Everest ES8316 has interrupt capability on its GPIO3 pin for
+headphone detection. Several of the RockPi 4 variants are using it
+already.
 
-On Mon, Jan 05, 2026 at 06:53:11PM +0100, A. Sverdlin wrote:
-> From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
-> 
-> Support newly introduced slew-rate device tree property to configure
-> R(G)MII interface pins slew rate. It might be used to reduce the radiated
-> emissions.
-> 
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
-> ---
-> Changelog:
-> v3:
-> - use [pinctrl] standard "slew-rate" property as suggested by Rob
->   https://lore.kernel.org/all/20251219204324.GA3881969-robh@kernel.org/
-> - better sorted struct gswip_hw_info initialisers as suggested by Daniel
-> v2:
-> - do not hijack gsw1xx_phylink_mac_select_pcs() for configuring the port,
->   introduce struct gswip_hw_info::port_setup callback
-> - actively configure "normal" slew rate (if the new DT property is missing)
-> - properly use regmap_set_bits() (v1 had reg and value mixed up)
-> 
->  drivers/net/dsa/lantiq/lantiq_gswip.h        |  1 +
->  drivers/net/dsa/lantiq/lantiq_gswip_common.c |  6 ++++
->  drivers/net/dsa/lantiq/mxl-gsw1xx.c          | 31 ++++++++++++++++++++
->  drivers/net/dsa/lantiq/mxl-gsw1xx.h          |  2 ++
->  4 files changed, 40 insertions(+)
-> 
-> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip.h b/drivers/net/dsa/lantiq/lantiq_gswip.h
-> index 2e0f2afbadbbc..8fc4c7cc5283a 100644
-> --- a/drivers/net/dsa/lantiq/lantiq_gswip.h
-> +++ b/drivers/net/dsa/lantiq/lantiq_gswip.h
-> @@ -263,6 +263,7 @@ struct gswip_hw_info {
->  				 struct phylink_config *config);
->  	struct phylink_pcs *(*mac_select_pcs)(struct phylink_config *config,
->  					      phy_interface_t interface);
-> +	int (*port_setup)(struct dsa_switch *ds, int port);
->  };
->  
->  struct gswip_gphy_fw {
-> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip_common.c b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> index e790f2ef75884..17a61e445f00f 100644
-> --- a/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> +++ b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> @@ -425,6 +425,12 @@ static int gswip_port_setup(struct dsa_switch *ds, int port)
->  	struct gswip_priv *priv = ds->priv;
->  	int err;
->  
-> +	if (priv->hw_info->port_setup) {
-> +		err = priv->hw_info->port_setup(ds, port);
-> +		if (err)
-> +			return err;
-> +	}
-> +
->  	if (!dsa_is_cpu_port(ds, port)) {
->  		err = gswip_add_single_port_br(priv, port, true);
->  		if (err)
-> diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.c b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-> index f8ff8a604bf53..6c290bac537ad 100644
-> --- a/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-> +++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-> @@ -559,6 +559,34 @@ static struct phylink_pcs *gsw1xx_phylink_mac_select_pcs(struct phylink_config *
->  	}
->  }
->  
-> +static int gsw1xx_port_setup(struct dsa_switch *ds, int port)
-> +{
-> +	struct dsa_port *dp = dsa_to_port(ds, port);
-> +	struct gsw1xx_priv *gsw1xx_priv;
-> +	struct gswip_priv *gswip_priv;
-> +	u32 rate;
-> +	int ret;
-> +
-> +	if (dp->index != GSW1XX_MII_PORT)
-> +		return 0;
-> +
-> +	gswip_priv = ds->priv;
-> +	gsw1xx_priv = container_of(gswip_priv, struct gsw1xx_priv, gswip);
-> +
-> +	ret = of_property_read_u32(dp->dn, "slew-rate", &rate);
-> +	/* Optional property */
-> +	if (ret == -EINVAL)
-> +		return 0;
-> +	if (ret < 0 || rate > 1) {
-> +		dev_err(&gsw1xx_priv->mdio_dev->dev, "Invalid slew-rate\n");
-> +		return (ret < 0) ? ret : -EINVAL;
-> +	}
-> +
-> +	return regmap_update_bits(gsw1xx_priv->shell, GSW1XX_SHELL_RGMII_SLEW_CFG,
-> +				  RGMII_SLEW_CFG_DRV_TXD | RGMII_SLEW_CFG_DRV_TXC,
-> +				  (RGMII_SLEW_CFG_DRV_TXD | RGMII_SLEW_CFG_DRV_TXC) * rate);
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/sound/everest,es8316.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-I don't have a particularly strong EE background, but my understanding
-is this:
+diff --git a/Documentation/devicetree/bindings/sound/everest,es8316.yaml b/Documentation/devicetree/bindings/sound/everest,es8316.yaml
+index 81a0215050e0..fe5d938ca310 100644
+--- a/Documentation/devicetree/bindings/sound/everest,es8316.yaml
++++ b/Documentation/devicetree/bindings/sound/everest,es8316.yaml
+@@ -49,6 +49,10 @@ properties:
+     items:
+       - const: mclk
+ 
++  interrupts:
++    maxItems: 1
++    description: Headphone detect interrupt
++
+   port:
+     $ref: audio-graph-port.yaml#
+     unevaluatedProperties: false
+-- 
+2.51.0
 
-RGMII MACs provide individual slew rate configuration for TXD[3:0] and
-for TX_CLK because normally, you'd want to focus on the TX_CLK slew rate
-(in the sense of reducing EMI) more than on the TXD[3:0] slew rate.
-This is for 2 reasons:
-(1) the EMI noise produced by TX_CLK is in a much narrower spectrum
-    (runs at fixed 125/25/2.5 MHz) than TXD[3:0] (pseudo-random data).
-(2) reducing the slew rate for TXD[3:0] risks introducing inter-symbol
-    interference, risk which does not exist for TX_CLK
-
-Your dt-binding does not permit configuring the slew rates separately,
-even though the hardware permits that. Was it intentional?
-
-> +}
-> +
->  static struct regmap *gsw1xx_regmap_init(struct gsw1xx_priv *priv,
->  					 const char *name,
->  					 unsigned int reg_base,
-> @@ -707,6 +735,7 @@ static const struct gswip_hw_info gsw12x_data = {
->  	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
->  	.phylink_get_caps	= &gsw1xx_phylink_get_caps,
->  	.supports_2500m		= true,
-> +	.port_setup		= gsw1xx_port_setup,
->  	.pce_microcode		= &gsw1xx_pce_microcode,
->  	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
->  	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-> @@ -720,6 +749,7 @@ static const struct gswip_hw_info gsw140_data = {
->  	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
->  	.phylink_get_caps	= &gsw1xx_phylink_get_caps,
->  	.supports_2500m		= true,
-> +	.port_setup		= gsw1xx_port_setup,
->  	.pce_microcode		= &gsw1xx_pce_microcode,
->  	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
->  	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-> @@ -732,6 +762,7 @@ static const struct gswip_hw_info gsw141_data = {
->  	.mii_port_reg_offset	= -GSW1XX_MII_PORT,
->  	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
->  	.phylink_get_caps	= gsw1xx_phylink_get_caps,
-> +	.port_setup		= gsw1xx_port_setup,
->  	.pce_microcode		= &gsw1xx_pce_microcode,
->  	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
->  	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-> diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.h b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-> index 38e03c048a26c..8c0298b2b7663 100644
-> --- a/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-> +++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-> @@ -110,6 +110,8 @@
->  #define   GSW1XX_RST_REQ_SGMII_SHELL		BIT(5)
->  /* RGMII PAD Slew Control Register */
->  #define  GSW1XX_SHELL_RGMII_SLEW_CFG		0x78
-> +#define   RGMII_SLEW_CFG_DRV_TXC		BIT(2)
-> +#define   RGMII_SLEW_CFG_DRV_TXD		BIT(3)
->  #define   RGMII_SLEW_CFG_RX_2_5_V		BIT(4)
->  #define   RGMII_SLEW_CFG_TX_2_5_V		BIT(5)
->  
-> -- 
-> 2.52.0
-> 
 
