@@ -1,256 +1,202 @@
-Return-Path: <devicetree+bounces-251704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56368CF5C4B
-	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 23:06:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D4E3CF5C5D
+	for <lists+devicetree@lfdr.de>; Mon, 05 Jan 2026 23:09:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 640E8300BFA7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 22:06:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 61226302CDD0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jan 2026 22:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEF31212549;
-	Mon,  5 Jan 2026 22:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C98B72D7D42;
+	Mon,  5 Jan 2026 22:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="W0T9l7oi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rl12Ov2n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010030.outbound.protection.outlook.com [52.101.56.30])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFAD384A35;
-	Mon,  5 Jan 2026 22:06:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.30
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767650797; cv=fail; b=jTHpBejbFpXRS2Jo/6k+OK8JLy8NXGTEyGIv41Ren+fEB4p3GpffEj3zj/lqoiEZvWMbpGMRN0b7nkLPK2jQtscBqtaWqxbMyZIgOQRNutYJ5ltis/oVAxHuGY0w0dTQKqa+q+R7DAPK6QjlP2Sxxr4qsucPnL+7bhwqBs85cYM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767650797; c=relaxed/simple;
-	bh=l4RwKm7rBEU/422fw3bul00+8FRHB7nuJS/T0GwctNk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Iy5bS3rQwR0SyIeDoyfoGzxeoxHlTQF8rzQ7IDhoP5HgsCzapj8zMYPQbo6lrLxxHVG4sZeujweRkCK3xLlkFogIoN5xNLhWDhSlf2gXUI6dmZWGz6IF776cGTjXOvwiNRHTuXvx/zxIXwo+s9ssetRI5e95yK6rmMNf+zkGSkU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=W0T9l7oi; arc=fail smtp.client-ip=52.101.56.30
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I7TkZXMLTxfzJ/jO4vyQHu5bg6BIUQqANPDZCltN/sgY7xcbnXyTatqpZx8GEA/3IgfDmPp4yRtDMb1tK7ZiJ0yb6hWuBBtUfdxlhG8z9kiXeVbOFHsCkplbb27HOrznhYCaTgakd5GhkfqHSKgPds1IaLnT57//j//oRSvEI8C/jnjcbiULyneBss6iF6w82432fsECQiBCNTmU04YWyP/+DLrqTwl1yPE8xXUv9EtBfuK+LqIm/3iKvxqWxCq0TYa/WpirJlSuDnRiRBvdUF0DI+CNZDx5OoKPYMqXSsRb6uN635cp046y3Lif/y2+ZuXV2VuNMfmTFhFtoEQUgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tzR/8Jr9iJoLQLJ+E5Be+gCE5v9t2E6EMxXhuLLH02M=;
- b=uyuiOe5uM4ysmNybsMvo9mG7lQ7t2D2uRIP+cgIieu5Nz0Q6vnV+b8OTxKamCHK2GJ5Yk4kzHl26FUAlegKUnuWt6/HOyXFabHAATPw9BNayPs5VStGtg0cO5eoKC77nPPX1b/4DcjKx/WtCH++/Ige8ojtbhPEJeC/t/PH3qXfYb/ZKgnHqUBNJkU+pIFIb1jLv/a8LhLilFFFRbRr0g7lrcQmzNlclmcnsxj/jK95TCdq68MuBj9mZPexhD7+CrsrVwbj8bD0304DKR/9Oi6U+UXS5nLcBcvtP/kXoyaKiUtMMsj9SS90V8X0ZUejOByfZamw/RfOdJN0RltdNBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tzR/8Jr9iJoLQLJ+E5Be+gCE5v9t2E6EMxXhuLLH02M=;
- b=W0T9l7oiQoZoqkhdE//ot5tsEII0bmyy2w500t/CB3Vs+GLeTMmDxWe6aumwTEFzB4pKRDXeZ628XnImHaFXHlD3NHEmRxZlVxl1Y0C1seex7IXdRaFL6R8ifbMC/5bzcZrxh8LEUFe7XLWHbZzhPHnSQ2oK+KQqLrztcmsGkEY=
-Received: from MN0P222CA0011.NAMP222.PROD.OUTLOOK.COM (2603:10b6:208:531::17)
- by BL3PR10MB6236.namprd10.prod.outlook.com (2603:10b6:208:38f::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Mon, 5 Jan
- 2026 22:06:32 +0000
-Received: from MN1PEPF0000F0E1.namprd04.prod.outlook.com
- (2603:10b6:208:531:cafe::d2) by MN0P222CA0011.outlook.office365.com
- (2603:10b6:208:531::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9478.4 via Frontend Transport; Mon, 5
- Jan 2026 22:06:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- MN1PEPF0000F0E1.mail.protection.outlook.com (10.167.242.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9499.1 via Frontend Transport; Mon, 5 Jan 2026 22:06:30 +0000
-Received: from DFLE204.ent.ti.com (10.64.6.62) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 5 Jan
- 2026 16:06:30 -0600
-Received: from DFLE214.ent.ti.com (10.64.6.72) by DFLE204.ent.ti.com
- (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 5 Jan
- 2026 16:06:30 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE214.ent.ti.com
- (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 5 Jan 2026 16:06:30 -0600
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 605M6Tug1848998;
-	Mon, 5 Jan 2026 16:06:30 -0600
-Message-ID: <44b21f10-2ad4-4c88-a8e8-f485ecb53af9@ti.com>
-Date: Mon, 5 Jan 2026 16:06:29 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FD4A212549;
+	Mon,  5 Jan 2026 22:09:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767650940; cv=none; b=KkjQqn/Cjy1cvKlEf0+ymJijNyTh2TQoH1gpAGZEOs7qXhT6KnqKJt4TWUtNSkFfyF9O91aLWmjTKWVMNaFkPnEFg6QQD3E2HOddJOZeHBb/y7Y8LsMJp/GHCGLq9pTWgaGvBTwWdPHiKhoGZFbJU9RTYn+qhYuR3Z4c5dZUoIE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767650940; c=relaxed/simple;
+	bh=OT7qGR+zPTIDPXBVfIEPEdBknDEX6cYQwoyWhOvgpVo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dOJBknanpXYLmjSSWHjhVDBR0SkNjwqPUxsDzu1NHT57UMwybZLIA82RL9gSnnCkfYl4A7T1v5CwBv7sjG6LR/u91mqFLSmSwDTm2Sozi3uwV0VZPAWA+lIPvYLqNGeaDkDo+TrwpGWqyC/OED7/nRQ6XSrB9mdqiSJOuFshBL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rl12Ov2n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50B8FC116D0;
+	Mon,  5 Jan 2026 22:09:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767650940;
+	bh=OT7qGR+zPTIDPXBVfIEPEdBknDEX6cYQwoyWhOvgpVo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Rl12Ov2n1zZn5IpgQf2V965rF2qfv63NLcwKpCEBvkX1HCgORPIw6DXEnZ4JAzQHS
+	 c0SbqcRq6RwxFRiCRjRc2OQs4+Xfn3z2a1yKY0vqODfTjvRn1CQ0kpR2kzZQc6K0bn
+	 /0sxQBI82R0uZ2GzeKu1BS4pf1r+T6Bu4PCIeGbMk7JDicPSXhCoWCbmyzxR+Jm+kF
+	 8l5+YnFuwcJxe/CDDpH7hqUMJCZ9qJM2mpOIC5ZV3wxbDPgb7Onc6ckfKTt9kqpeVu
+	 PC7a1CKEnM7tPxN8UoqTwT2WALVL0SD04Pgmor851AefmwCMMdK9wqnLo4AffBF5kd
+	 jZ7zAtFQgnedg==
+Date: Mon, 5 Jan 2026 16:08:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: phy: ti,control-phy-otghs: convert to DT
+ schema
+Message-ID: <20260105220859.GA3498531-robh@kernel.org>
+References: <20260103-ti-phy-v1-1-8c3f5e2cbd63@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] arm64: dts: ti: k3-am62p5-sk: Enable Main UART
- wakeup
-To: Nishanth Menon <nm@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <d-gole@ti.com>, <vishalm@ti.com>,
-	<sebin.francis@ti.com>, <msp@baylibre.com>, <khilman@baylibre.com>,
-	<a-kaur@ti.com>, <s-kochidanadu@ti.com>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-References: <20251230-b4-uart-daisy-chain-dts-v2-0-fa5257ec54bb@ti.com>
- <20251230-b4-uart-daisy-chain-dts-v2-4-fa5257ec54bb@ti.com>
- <20260105135202.vnamexwl3afdt4cw@deferral>
-Content-Language: en-US
-From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20260105135202.vnamexwl3afdt4cw@deferral>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E1:EE_|BL3PR10MB6236:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0dedb78d-82af-44a3-4160-08de4ca6ae9e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?L216Z0g1SE1pa0VwVmx1L2lwVHFib1FFTWR6b2pVRjVIUkFBNVp0aHF3TE8w?=
- =?utf-8?B?TEZ5Q3Bxc1lIMjE2ZEZPVzNQenFOaTlFZUZVdHJwOVZLSUhOZ3hETHlseHV5?=
- =?utf-8?B?Q213Vm0vMC9tNUd2MkRqR282SzBCZzJud1cwU2tTUUtQWVZrcXlyemJvOFVw?=
- =?utf-8?B?YWpCNnJ2V2JqQnhkWFJONzc5b3M1U3R6MTNFMkh5a1ZnUDVCTTRZZjYwTmI1?=
- =?utf-8?B?T2xQNDBKZG53eGZNTXNEM2tTdm5XREMwRlFWMlNTVVZ5RkREc2dPNCtIeEtW?=
- =?utf-8?B?QVNEUmduNkV1MmZiTVpCOUNsNWpMdlFoTms3UlFoYy9uVzRFWjZ3YXZWSElS?=
- =?utf-8?B?ZG1UTUh2VWtBSUFNS0F0cGhNRWcvcTJsajJjVmwzV09wOVlDMWUxUE41N29Y?=
- =?utf-8?B?UGNTalArZGhkaHB3b2k4UHAwQnJQbGJvZlVhWGkyZU1XeDlWZ1VSSDYvVUhl?=
- =?utf-8?B?d2F1SWFlcjYwTU5SelV3YzdzK0cxenJwaWEzdFhzcyswRTd2a3JqcUdOV1I1?=
- =?utf-8?B?ZjhqczlVVjhLTVJBdkF0QUdwcmlQMHUrdHJuWC9ORGtVRjRHUHUyU1F0QTVi?=
- =?utf-8?B?MVBoOXdHYndnQ1FpbGhLcG56NTcyNE9nM1ByN25zeWU1MkV4Yi81RHV5Q0dZ?=
- =?utf-8?B?N0dkbHBORkd3U2dHTHdpY3Y2VVFKeVVXZWVWZkw4QnJXZzBCSlNScUhxT24v?=
- =?utf-8?B?M1BZSklBK2tFVzZkUDFZMXoyVVNNS21EUktCS2h0Ykd0ZFdtZDd2eEZZMnBV?=
- =?utf-8?B?RWYwdVIzUWxWR09pVEV4YjNYN24xZk5DUDhTWG5zcnJ0OG5sd040T3hqZVRk?=
- =?utf-8?B?RDVDUkxtYTg4SFVrbjYvVjRzcXZVTW01WEdCZjFCL2U4Ukl1MnVjRVJPVkla?=
- =?utf-8?B?bS8wYTEydjIxRWtiUzhMRWlmaXNtdXJNdi9paktXRGlnYWh0YWd0ZnI5WkhW?=
- =?utf-8?B?MnBub1czb2RCWW5wWUxQTHduOWJpdHBLVlNrUXE0NjRtYktOaTBmaTJtOURV?=
- =?utf-8?B?WW5qT0Q5WmdvbFRhSitOOUxsY0I4Nm8zUzR3YUxmNUxMTTZrME1kejJjWnYr?=
- =?utf-8?B?cFhQNnJaZjkxd2N1eGR2TTlZQ2RWOXdMS3V0SXVydlZJbHE5dHA3eW1GUVhi?=
- =?utf-8?B?YU5ua0tIdzdaVWgvc01QZ3VkaUVHNit2UDZXTllRU2Q4RDlYSldkcjlsK1p1?=
- =?utf-8?B?OU5uU1g3Mmg4WktJSUplVEtmWURkV1RlUHhwY0U5YmlqOXd6NUZ2bk1ON3dn?=
- =?utf-8?B?eEZEK21VTVlvZGtiL3ZmbmYrZFU2Skh3aFVIdDVwOXJmYklveVJrbGdac2Jz?=
- =?utf-8?B?NFFudGU2ZUVuUE5Pa1dwSGEvd1ZYZ00yM0t2QnhrNWxxK3hydVhQakRWSlRn?=
- =?utf-8?B?cXlEa2RSeDJlS3orNmpLRzlQMzhUOUY2UmZrYVNWOWtDWnZkZjJ2T0wxa01I?=
- =?utf-8?B?T01LVHZSQzRNYjNUT25wbTdrZEQ1L3A5UTVqMGN6aWlZSnJrdXRDdFBXbHlv?=
- =?utf-8?B?Tjl2MEQ0OWRDNDRFWXlRUnUzOENuMTFBQkZMdUJ6dW5MbE5vODhRWDhkd09K?=
- =?utf-8?B?VVVkeDhYQjRHMWZzTEs1bWErTENpNWh4d1dvU1F4bEErcTc1UHpQMUxncUNp?=
- =?utf-8?B?ZzU0dTI4cmpMWXpYajkyYkk0bDVaSjdNOTlycTYyYjliNzA5MzFSYlFsNWhw?=
- =?utf-8?B?bGplZE9zUUNibXdmWUNITTllNTJGd01DcTlOQjFNVnRwTTdkQVRvcWFaUjQ3?=
- =?utf-8?B?VkxmT0lzVzhiRnFpT1FDZ1A4Y00rcW50QU9MRjRETnljNjVjbUtxUUtUSFpL?=
- =?utf-8?B?SG5rTnFiMjl1VTFCZjBVdFhkSTBtVnpqa2s4Vk4zdHN5dTRjQ0g5SUZ2cEFJ?=
- =?utf-8?B?WFZsdjgva1FnWGpLLzJldzVxd1p1WjNFU2pWNnJldmNqVjNHVFArMEVhOERs?=
- =?utf-8?B?cHNlSm9ueGVwWE1lUEF4UlRSYm1jOTFOTE9LSnM2S2R1aUZKdEVDM2RkWVJE?=
- =?utf-8?B?YTc0LzAxRzNxODh6RUhIN2c2VC9vZEM3OTdLaFFLQ2ZLQXRlMjZUODVFUjNU?=
- =?utf-8?B?bG91QmlZWTJlaEZETHlOaTBiZFlMRWhRd3RBZmE0V1JZNlEvdEs4RUZJSnZq?=
- =?utf-8?Q?W2kk=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2026 22:06:30.9811
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0dedb78d-82af-44a3-4160-08de4ca6ae9e
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000F0E1.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR10MB6236
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260103-ti-phy-v1-1-8c3f5e2cbd63@gmail.com>
 
-On 1/5/26 07:52, Nishanth Menon wrote:
-> On 20:38-20251230, Kendall Willis wrote:
->> The Main UART can resume from suspend to RAM states when PIN_WKUP_EN
->> is enabled. Add the necessary pins needed to wakeup the system. Add the
->> system idle states that the Main UART can wakeup the system from.
+On Sat, Jan 03, 2026 at 11:06:10AM +0000, Charan Pedumuru wrote:
+> Convert TI OMAP Control PHY and PIPE3 PHY binding to YAML format.
+> Changes during conversion:
+> - Define a new pattern 'pciephy'and 'control-phy' to match nodes
+>   defined in DT.
 > 
-> Is the tx and rx pin register states both lost? I wonder why during
-> "wakeup" we set PIN_WKUP_EN ? is'nt that supposed to be set while
-> entering "suspend" state?
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> ---
+>  .../bindings/phy/ti,control-phy-otghs.yaml         | 206 +++++++++++++++++++++
+>  Documentation/devicetree/bindings/phy/ti-phy.txt   |  98 ----------
+>  2 files changed, 206 insertions(+), 98 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/phy/ti,control-phy-otghs.yaml b/Documentation/devicetree/bindings/phy/ti,control-phy-otghs.yaml
+> new file mode 100644
+> index 000000000000..830be2af5fb6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/ti,control-phy-otghs.yaml
+> @@ -0,0 +1,206 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/ti,control-phy-otghs.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI PHYs for TI Platforms (OMAP Control PHY and PIPE3 PHY)
+> +
+> +maintainers:
+> +  - Vinod Koul <vkoul@kernel.org>
 
-The UART driver uses the default pinctrl state when the system is 
-active. During the process of suspend, the wakeup pinctrl state is 
-selected by the UART driver in order to allow wakeup. Upon resume, the 
-default pinctrl state is selected again.
+No, this should be a TI person or someone with the h/w.
 
-> if the tx pin register state is not lost, then all we need to do is
-> play with the rx pin state (and leave pinctrl-0 as is)?
-> 
+> +
+> +description:
+> +  This device tree binding describes the TI PHYs used in TI platforms.
+> +  Two types of PHYs are supported.
+> +  1. OMAP Control PHY - Simple control PHYs for power control
+> +  2. PIPE3 PHY - High-speed PIPE3 PHYs for USB3, SATA, PCIe
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^(pciephy|control-phy|usb3phy|phy)(@[0-9a-fA-F]+)?$"
 
-Yes, it can be done where the pinctrl-0 does not change, and there is an 
-additional pinctrl pins that has the TX and RX with PIN_WKUP_EN. The 
-logic behind both implementations are the same, just a different approach.
+Only phy, pcie-phy, or usb3-phy are valid node names.
 
->>
->> Signed-off-by: Kendall Willis <k-willis@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 24 ++++++++++++++++++++----
->>   1 file changed, 20 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
->> index ef719c6334fc094f01d9e8185992f2f58320e17d..96bba65f4f16792834567324db6f7f2bdee7bc06 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
->> @@ -328,14 +328,26 @@ AM62PX_IOPAD(0x0164, PIN_INPUT, 0) /* (A20) RGMII2_TX_CTL */
->>   		bootph-all;
->>   	};
->>   
->> -	main_uart0_pins_default: main-uart0-default-pins {
->> +	main_uart0_tx_pins_default: main-uart0-tx-default-pins {
->>   		pinctrl-single,pins = <
->> -			AM62PX_IOPAD(0x1c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
->>   			AM62PX_IOPAD(0x1cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
->>   		>;
->>   		bootph-all;
->>   	};
->>   
->> +	main_uart0_rx_pins_default: main-uart0-rx-default-pins {
->> +		pinctrl-single,pins = <
->> +			AM62PX_IOPAD(0x1c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
->> +		>;
->> +		bootph-all;
->> +	};
->> +
->> +	main_uart0_rx_pins_wakeup: main-uart0-rx-wakeup-pins {
->> +		pinctrl-single,pins = <
->> +			AM62PX_IOPAD(0x1c8, PIN_INPUT | PIN_WKUP_EN, 0)	/* (A22) UART0_RXD */
->> +		>;
->> +	};
->> +
->>   	main_uart1_pins_default: main-uart1-default-pins {
->>   		pinctrl-single,pins = <
->>   			AM62PX_IOPAD(0x0194, PIN_INPUT, 2) /* (D25) MCASP0_AXR3.UART1_CTSn */
->> @@ -692,8 +704,12 @@ partition@3fc0000 {
->>   };
->>   
->>   &main_uart0 {
->> -	pinctrl-names = "default";
->> -	pinctrl-0 = <&main_uart0_pins_default>;
->> +	pinctrl-names = "default", "wakeup";
->> +	pinctrl-0 = <&main_uart0_tx_pins_default>, <&main_uart0_rx_pins_default>;
->> +	pinctrl-1 = <&main_uart0_tx_pins_default>, <&main_uart0_rx_pins_wakeup>;
->> +	wakeup-source = <&system_deep_sleep>,
->> +			<&system_mcu_only>,
->> +			<&system_standby>;
->>   	status = "okay";
->>   	bootph-all;
->>   };
->>
->> -- 
->> 2.34.1
->>
-> 
+A-F is not valid for unit-addresses either.
 
-Best,
-Kendall
+> +
+> +  compatible:
+> +    oneOf:
+> +      - description: OMAP Control PHY compatibles
+> +        items:
+> +          enum:
+> +            - ti,control-phy-otghs
+> +            - ti,control-phy-usb2
+> +            - ti,control-phy-pipe3
+> +            - ti,control-phy-pcie
+> +            - ti,control-phy-usb2-dra7
+> +            - ti,control-phy-usb2-am437
+> +      - description: PIPE3 high-speed PHY compatibles
+> +        items:
+> +          enum:
+> +            - ti,phy-usb3
+> +            - ti,phy-pipe3-sata
+> +            - ti,phy-pipe3-pcie
+> +            - ti,omap-usb3
 
+IMO, these 2 bindings are completely unrelated and should be split to 2 
+schema files.
+
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  reg-names:
+> +    oneOf:
+> +      - description: OMAP Control PHY
+> +        items:
+> +          enum: [otghs_control, power, pcie_pcs, control_sma]
+> +      - description: PIPE3 high-speed PHY
+> +        items:
+> +          enum: [phy_rx, phy_tx, pll_ctrl]
+
+Here's one example why.
+
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 7
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 7
+> +    items:
+> +      enum: [wkupclk, sysclk, refclk, dpll_ref,
+> +             dpll_ref_m2, phy-div, div-clk]
+> +
+> +# Optional Properties
+> +  id:
+> +    description:
+> +      Instance ID for multiple instances of same PHY type.
+> +      Used for multi-lane PCIe PHYs.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 1
+
+There aren't any users of this that I see. Drop it (and note that in the 
+commit msg).
+
+> +
+> +  syscon-phy-power:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Phandle/offset pair to system control module register for PHY
+> +      power on/off.
+> +
+> +  syscon-pllreset:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Phandle/offset pair to CTRL_CORE_SMA_SW_0 register containing
+> +      SATA_PLL_SOFT_RESET bit (SATA PHY only).
+> +
+> +  syscon-pcs:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Phandle/offset pair to system control module for writing PCS delay value.
+> +
+> +  ctrl-module:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle of control module for PHY power on.
+> +    deprecated: true
+
+I believe all these phandle props only apply to the PIPE3 binding.
+
+Rob
 
