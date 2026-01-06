@@ -1,355 +1,665 @@
-Return-Path: <devicetree+bounces-252113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D7FCFB0DB
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 22:11:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEEF7CFB18A
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 22:37:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C7EA1304B4C3
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 21:11:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 37D363005E86
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 21:31:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886F32DA776;
-	Tue,  6 Jan 2026 21:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 220522FFF8C;
+	Tue,  6 Jan 2026 21:31:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="BZd2o/pU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jL0mkEce"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2E129BDBD
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 21:11:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE99D224B15;
+	Tue,  6 Jan 2026 21:31:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767733905; cv=none; b=VrGTtu8FeUb97PvOUqjUvWx7x2tCMY0fjJ5zs2OKWH0RZEqG16uIiM8FddtnKmVKeTP9oz7sFXVVJRIvp2VSNHez5lqnAYvqOCo91k2bm2t04OvRDn2phSsxu28HAFZjueWgco6cMU6gPvWT8g+u0WTCz4o1NQfdVb/B+5wA1QA=
+	t=1767735118; cv=none; b=uCXE97ivUvZrtLOEotAdHtKvfii7nFYwHqVywsQibOS5PLQ66npUTBX0cnU4zfUNoxqG6/kPcaljRkwbwlENM6QCk3zvgzg7tCwBYzXmFeMQhVksyS0y+lU9P5NsAG0WwnONrW9VXCr8Lu8h8UnphOHeyCdx2yEZ2XhzPBrAGEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767733905; c=relaxed/simple;
-	bh=rhCOm1dYgXC082yhaNw3lvg0VrdND0R4ZLKYpr3qYzc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZTT4oCWz/85oRhT7MbA76wH635tkrp6Av3g8xdIkdbcuEPi30EkWMcPnyzEZP24YZyecSfSUQC2BSqo8Y/JLD+QXRl1tUjVBYMUXXIyZ0sJkqTz9+kKQRluXmADWzLQ7yhD73+5LwV2lhwVxSfnZgMfPW9dqiGwGRjprYYmkp+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=BZd2o/pU; arc=none smtp.client-ip=209.85.219.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-88a288811a4so13772976d6.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 13:11:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1767733901; x=1768338701; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QhN1WAuMMr05B3KPSfvPQnFSaJ788oFx+QDIhlRIVYE=;
-        b=BZd2o/pU+5/KCd4RVg4pTLxhS9G99oA3pLzzXJamGRT0S0pADv7Qcy1c89Ilpf4gqi
-         qzUOkvuHTj7NgoKFd4BVU6NR+cSrxvDosMPzKaaqcQyBJUFUuZT5ljS7lAuYYRV6c4EF
-         hRaJl4+k0LY8O9fQz/ysn3zLVZYTdLn/2XlyUK0fgtqXp1O/Dxme139RsVArRfkCDrCh
-         VXm86QudFRCknH0grwHWKtC27SVjlXH1M0Gkh8UbHGlX/inzo9UpYtIKW6hjcYwo7YA8
-         WxGFX5ycZMG/KMo1IMjCwpCNwUFipjB1Pm4yqBQciLC6VwR34uSEilnL2C3PjQ7acHUF
-         n7uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767733901; x=1768338701;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QhN1WAuMMr05B3KPSfvPQnFSaJ788oFx+QDIhlRIVYE=;
-        b=Lqw3zT9hmFRojpMnL6iA/HlzxvsYocwzPTTFkAKxqGr6ER9tKU6+kQ8BBzlKLFUuDQ
-         3gPKivMSppvwGnm5xbk2AuuHJ50Btwt2fyJXIBfvuS7Q7dHaHgM9dhJq4flpDfBVr1mr
-         e20B1qgYAXxA0IwRAXfyXdxCj3DIA4POfnDspud3Wg1kPJP5b/ZBvOmk1e0qpH/K1N+u
-         3V9YlM6i/Nl5kRlWd5T7/auFkmw02FAoHwiblGWSlAjZg0C7y2keLn25+sdI5p5qYzNY
-         B/dnoblPLlxaiY8Ypd1+LBUw7GLqJdI0AIVRYpAi+ly5y8zLBnZLx6/TiVEnu8vTgzqg
-         KaGg==
-X-Gm-Message-State: AOJu0YyjRs8iVFcOirbAlh4ne2l3JP4BioPsCw0ICikoSqxeHIIiIzm8
-	Z8kQ1G/pn5JE5uvDsHBjv8tlCt6k+s2P63HMTdEvWbma8+UlBmBZ++Dt2q/YqjhRpPM=
-X-Gm-Gg: AY/fxX5EH++PRDaOo/O7t2kvYxgUh20HvLjCq1sX0+fQ3Ag2unthgEESBh0qC3F/BEG
-	WLifMpIrLRIAcZ+bSM587V4PC/M/T4+Vf1m4fT5wSJk64KJULwCLYnC5kUu8r1H5rBncAIi/Zfo
-	9PR0Zb+uXWf5PQrDCD4m7/eujoTuGYxq4mJLQX3dURPZz+9WEvuUFGIUm10k2T5rTrvZxqC7SBx
-	GYAR2YPUU1CSb15cndW5VWKPx1QEmtDYij48GszkW3lcnDnLvUh9l+n4mBlnI8hT1JIWZpfvwcr
-	g49YznedNvLqOackeV43iqODFhthGE/8PeIys+aIz8UiheDj3xX/EE4FSFm1TqJnmfnhqObXnwK
-	FG3ZCuakHXpXXsD2s8SznBtAHEAOIcRP9x3EonmkOfO4xlW/qax8lA4BYDfogzptZeXLKpAkU8c
-	4oSMxl0KaS6NmCpPIR
-X-Google-Smtp-Source: AGHT+IGkuyCRu/Q0Kl0G1KNS2qkhBKE92qfOqtUSoW0GG/DuxCV7QpwSsCvsAQoK2tmgoaaLEgC0Kw==
-X-Received: by 2002:a05:6214:3c8f:b0:88a:2c78:d625 with SMTP id 6a1803df08f44-89084257197mr4038516d6.48.1767733901288;
-        Tue, 06 Jan 2026 13:11:41 -0800 (PST)
-Received: from ?IPv6:2606:6d00:17:7b4b::5ac? ([2606:6d00:17:7b4b::5ac])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89077234c96sm20302746d6.27.2026.01.06.13.11.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jan 2026 13:11:40 -0800 (PST)
-Message-ID: <e792da7b15eb4f58820f4c44dc695ddfe40d5007.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 2/4] dt-bindings: media: mediatek-jpeg-decoder: add
- MT8189 compatible string
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Jianhua Lin <jianhua.lin@mediatek.com>, mchehab@kernel.org,
- robh@kernel.org, 	krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, 	angelogioacchino.delregno@collabora.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
- sirius.wang@mediatek.com, 	vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
-Date: Tue, 06 Jan 2026 16:11:38 -0500
-In-Reply-To: <20251224031721.9942-3-jianhua.lin@mediatek.com>
-References: <20251224031721.9942-1-jianhua.lin@mediatek.com>
-	 <20251224031721.9942-3-jianhua.lin@mediatek.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-eEh22EQQUYjPOaWs78RQ"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+	s=arc-20240116; t=1767735118; c=relaxed/simple;
+	bh=c0S+UPILWQZ/bfTmY0vB12LguAXEd/SuBL+v3igeD1U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G+EYG1qR7AJfBNiKF6s05+RqUvWsrUpWWiYQiFlxFzhZO0o7B54HJ+e1eNebmbQlWWQKPnslSzs05U2bbUe3WGoyWLlnTRwxRLj0T3+lHIR23G1KBsjcRPHIR93a/BDbK+magaBJmf+WprbR35gSlIAGSj8Q33uCO9OPtrnZCEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jL0mkEce; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C3B4C116C6;
+	Tue,  6 Jan 2026 21:31:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767735117;
+	bh=c0S+UPILWQZ/bfTmY0vB12LguAXEd/SuBL+v3igeD1U=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jL0mkEceaEmkQMi7RsnupTDbuwGDxnHWFEKBV4+1cihn6nHCd/hFhNNB1wWCV9Ms4
+	 P9jdDj+Wd8VqHCbvQC70qQtN87CwUjSn5VBRysgkS3WD6zj1DvVLO0V/Lcgw6pSbEP
+	 7WOfcUjN4vzFaG+RAs3lt5z5OUHopp0yTgnmQ6a91LATBLhEpOpjSiREDn5/pjsm/U
+	 xwNjsv+xwgWse8vlOQq1uY5ssLSoyUApBxTrcuVzs5NYxrW44qFLBQXME/MA5qBua5
+	 DkO+SWgfJshZc36iavjQOJCw9cBWHO3EBrrQyyBwfgoLj6UngEpB3WZ3vgxOqjULUy
+	 8UvbOFtZN+znQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Eddie James <eajames@linux.ibm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: aspeed: ibm: Use non-deprecated AT25 properties
+Date: Tue,  6 Jan 2026 15:31:51 -0600
+Message-ID: <20260106213153.2766411-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
+The at25,* properties have been deprecated since 2012. These platforms
+weren't upstream until 2020 and 2023, so it should be safe to switch
+over to the "new" properties and just drop the deprecated ones.
 
---=-eEh22EQQUYjPOaWs78RQ
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Le mercredi 24 d=C3=A9cembre 2025 =C3=A0 11:17 +0800, Jianhua Lin a =C3=A9c=
-rit=C2=A0:
-> Compared to the previous generation IC, the MT8189 uses 34-bit iova
-> address-space (16GB) and requires a single clock configuration.
-> Therefore, add "mediatek,mt8189-jpgdec" compatible to the binding documen=
-t.
-> Additionally, it corrects the inheritance for MT8188, aligning it
-> with MT8189 due to their shared architecture and 34-bit iova address
-> space (16GB) and singlesingle clock requirement.
-
-singlesingle -> single
-
-> Previously, MT8188 was incorrectly defined alongside SoCs with 32-bit
-> iova address-space (4GB), such as "mediatek,mt2701-jpgdec". This mismatch
-> results in an ABI break, as MT8188 cannot function correctly under
-> the 32-bit iova address-space (4GB) configuration.
-
-Was already mentioned earlier, badly introduce DT code create an ABI, and f=
-ixing
-it is the ABI break, not the other way around. The MT8188 issue should be f=
-ixed
-on its own, with proper Fixes: tag.
-
->=20
-> Key changes include:
-> - Introducing "mediatek,mt8189-jpgdec" as a new compatible string to
-> =C2=A0 represent the correct architecture.
-> - Updating MT8188 to inherit from MT8189, ensuring proper support for
-
-It is odd to have older chips inherit from newer one, should be reversed
-assuming you can fix MT8188. See more comment below.
-
-> =C2=A0 34-bit iova address-space (16GB) and simplifying clock configurati=
-on.
-> - Add property "mediatek,larb" for MT8189 requirements.
-> - Improved formatting for better readability and consistency.
-
-Do style change in it own commit, I don't mixing reformating, with fixed an=
-d new
-feature in one patch will create much interest in your set from the DT
-maintainers. So please break this into at least 3 patches.
-
-> These changes ensure that both MT8188 and MT8189 are correctly supported
-> with the necessary 34-bit iova address-space (16GB), while maintaining
-> compatibility with their shared architecture.
->=20
-> Extensive internal review and testing have been conducted to validate
-> these changes and ensure compliance with DT binding standards.
-
-This last paragraph does not seem relevant as a commit message. Consider re=
-ading
-this message in 5 years, would it be useful, and answer is not, since we ca=
-n't
-see the review and testing process.
-
->=20
-> Signed-off-by: Jianhua Lin <jianhua.lin@mediatek.com>
-> ---
-> =C2=A0.../bindings/media/mediatek-jpeg-decoder.yaml | 50 ++++++++++++++++=
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
-> =C2=A01 file changed, 44 insertions(+), 6 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decode=
-r.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-> index a4aacd3eb189..814b53ef46e7 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-> @@ -17,13 +17,19 @@ properties:
-> =C2=A0=C2=A0=C2=A0=C2=A0 oneOf:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 - mediatek,mt8173-jpgdec
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 - mediatek,mt2701-jpgdec
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 - mediatek,mt8173-jpgdec
+ .../dts/aspeed/aspeed-bmc-ibm-everest.dts     | 128 +++++++++---------
+ .../arm/boot/dts/aspeed/ibm-power10-dual.dtsi |  64 ++++-----
+ .../arm/boot/dts/aspeed/ibm-power10-quad.dtsi |  64 ++++-----
+ 3 files changed, 128 insertions(+), 128 deletions(-)
 
-I guess you sorted these, this is the type of style change that makes revie=
-wer
-unhappy, do this cleanup on it own.
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+index 5a0975d52492..561633d31039 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
+@@ -2806,13 +2806,13 @@ cfam4_spi0: spi@0 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -2823,13 +2823,13 @@ cfam4_spi1: spi@20 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -2840,13 +2840,13 @@ cfam4_spi2: spi@40 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -2857,13 +2857,13 @@ cfam4_spi3: spi@60 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 		};
+@@ -3181,13 +3181,13 @@ cfam5_spi0: spi@0 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -3198,13 +3198,13 @@ cfam5_spi1: spi@20 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -3215,13 +3215,13 @@ cfam5_spi2: spi@40 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -3232,13 +3232,13 @@ cfam5_spi3: spi@60 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 		};
+@@ -3556,13 +3556,13 @@ cfam6_spi0: spi@0 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -3573,13 +3573,13 @@ cfam6_spi1: spi@20 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -3590,13 +3590,13 @@ cfam6_spi2: spi@40 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -3607,13 +3607,13 @@ cfam6_spi3: spi@60 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 		};
+@@ -3931,13 +3931,13 @@ cfam7_spi0: spi@0 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -3948,13 +3948,13 @@ cfam7_spi1: spi@20 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -3965,13 +3965,13 @@ cfam7_spi2: spi@40 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -3982,13 +3982,13 @@ cfam7_spi3: spi@60 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 		};
+diff --git a/arch/arm/boot/dts/aspeed/ibm-power10-dual.dtsi b/arch/arm/boot/dts/aspeed/ibm-power10-dual.dtsi
+index 06fac236773f..79eaf442c5bf 100644
+--- a/arch/arm/boot/dts/aspeed/ibm-power10-dual.dtsi
++++ b/arch/arm/boot/dts/aspeed/ibm-power10-dual.dtsi
+@@ -88,13 +88,13 @@ cfam0_spi0: spi@0 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -105,13 +105,13 @@ cfam0_spi1: spi@20 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -122,13 +122,13 @@ cfam0_spi2: spi@40 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -139,13 +139,13 @@ cfam0_spi3: spi@60 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 		};
+@@ -257,13 +257,13 @@ cfam1_spi0: spi@0 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -274,13 +274,13 @@ cfam1_spi1: spi@20 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -291,13 +291,13 @@ cfam1_spi2: spi@40 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -308,13 +308,13 @@ cfam1_spi3: spi@60 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 		};
+diff --git a/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi b/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
+index 9501f66d0030..a54be7d0af0b 100644
+--- a/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
++++ b/arch/arm/boot/dts/aspeed/ibm-power10-quad.dtsi
+@@ -739,13 +739,13 @@ cfam2_spi0: spi@0 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -756,13 +756,13 @@ cfam2_spi1: spi@20 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -773,13 +773,13 @@ cfam2_spi2: spi@40 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -790,13 +790,13 @@ cfam2_spi3: spi@60 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 		};
+@@ -1114,13 +1114,13 @@ cfam3_spi0: spi@0 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -1131,13 +1131,13 @@ cfam3_spi1: spi@20 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -1148,13 +1148,13 @@ cfam3_spi2: spi@40 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 
+@@ -1165,13 +1165,13 @@ cfam3_spi3: spi@60 {
+ 				#size-cells = <0>;
+ 
+ 				eeprom@0 {
+-					at25,byte-len = <0x80000>;
+-					at25,addr-mode = <4>;
+-					at25,page-size = <256>;
+-
+ 					compatible = "atmel,at25";
+ 					reg = <0>;
+ 					spi-max-frequency = <1000000>;
++
++					address-width = <24>;
++					pagesize = <256>;
++					size = <0x80000>;
+ 				};
+ 			};
+ 		};
+-- 
+2.51.0
 
-One thing the driver implementation tells me is that mediatek,mt8173-jpgdec=
- is
-not different from mediatek,mt2701-jpgdec, so in theory, the DTS should hav=
-e
-aimed for the second item and an implementation of:
-
-  compatible =3D "mediatek,mt8173-jpgdec", "mediatek,mt2701-jpgdec";
-
-That just shows the screw-up started a while ago, I'm not saying to change =
-that
-now.
-
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 - mediatek,mt8189-jpgdec
-
-That one make no sense, if you want to allow this compatible alone, put it =
-the
-very first item, its meant for that. Though, considering the chronology, it
-would be logical to say that MT8189 is based on MT8188. If we go that way,
-MT8188 should get added into the single item choice and the enum/const pair
-shoudl be reversed.
-
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 - mediatek,mt7623-jpgdec
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 - mediatek,mt8188-jpgdec
-
-This must be kept, its unfortunate, but its in the ABI.
-
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: med=
-iatek,mt2701-jpgdec
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 - mediatek,mt8188-jpgdec
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
-,mt8189-jpgdec
-
-This would be reversed.
-
-On the implementation side, in code, you'd introduce a variants that matche=
-s
-mediatek,mt8188-jpgdec, this will ensure the driver now works properly with=
- past
-DTS.
-
-Then in DTS, which is not my domain here at all, what is appropriate will d=
-epend
-on what happens if you assume MT8188 is same as MT2701. In my personal opin=
-ion,
-if that is unusable or worse crash or hang the systems, I'd drop the broken
-"mediatek,mt2701-jpgdec" so it won't probe anymore on older drivers. If its
-usable / used in some ways, e.g. if it work on 4GB systems, you'll have to =
-leave
-it this way, since you'd regress some users.
-
-The rest is a bit over my head, I've a simple users of DT like you, but
-hopefully these hints are good enough to un-lock the situation. Notice the
-chronology logic needs to be applied down below too.
-
-> =C2=A0
-> =C2=A0=C2=A0 reg:
-> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
-> @@ -32,13 +38,16 @@ properties:
-> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
-> =C2=A0
-> =C2=A0=C2=A0 clocks:
-> +=C2=A0=C2=A0=C2=A0 minItems: 1
-> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 2
-> -=C2=A0=C2=A0=C2=A0 minItems: 2
-> =C2=A0
-> =C2=A0=C2=A0 clock-names:
-> -=C2=A0=C2=A0=C2=A0 items:
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: jpgdec-smi
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: jpgdec
-
-So what happened once the driver on MT8188 tried to enable jpgdec-smi clock=
- ?
-This is relevant to what can and cannot be changed, was it completely unusa=
-ble ?
-
-regards,
-Nicolas
-
-> +=C2=A0=C2=A0=C2=A0 minItems: 1
-> +=C2=A0=C2=A0=C2=A0 maxItems: 2
-> +
-> +=C2=A0 mediatek,larb:
-> +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/phandle
-> +=C2=A0=C2=A0=C2=A0 description: a phandle to the smi_larb node.
-> =C2=A0
-> =C2=A0=C2=A0 power-domains:
-> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
-> @@ -51,6 +60,35 @@ properties:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Documentation/devicetree/bindings/io=
-mmu/mediatek,iommu.yaml for details.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ports are according to the HW.
-> =C2=A0
-> +allOf:
-> +=C2=A0 - if:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 - mediatek,mt2701-jpgdec
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 - mediatek,mt8173-jpgdec
-> +
-> +=C2=A0=C2=A0=C2=A0 then:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - con=
-st: jpgdec-smi
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - con=
-st: jpgdec
-> +
-> +=C2=A0 - if:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 - mediatek,mt8189-jpgdec
-> +
-> +=C2=A0=C2=A0=C2=A0 then:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - con=
-st: jpgdec
-> +
-> =C2=A0required:
-> =C2=A0=C2=A0 - compatible
-> =C2=A0=C2=A0 - reg
-
---=-eEh22EQQUYjPOaWs78RQ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaV16iwAKCRDZQZRRKWBy
-9IFvAP9gJU9igmAjidakuJKz0akdpOjt4yNcvs8FjB1MMY98fQEA1nsKZhTWxs1n
-ad7uFPYE7mdheCU2tU4bBl/ournlIQs=
-=cORP
------END PGP SIGNATURE-----
-
---=-eEh22EQQUYjPOaWs78RQ--
 
