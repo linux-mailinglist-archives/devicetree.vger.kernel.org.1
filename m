@@ -1,191 +1,138 @@
-Return-Path: <devicetree+bounces-252051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54018CFA7D2
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:07:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC9DCFA847
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:12:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6C59C3065975
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 19:07:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DF55E312B318
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60AF6380141;
-	Tue,  6 Jan 2026 18:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LLPPreo1";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="g6ol/unq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C48D3009E2;
+	Tue,  6 Jan 2026 18:17:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B393AA1B6
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 18:05:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EC862D8792
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 18:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767722729; cv=none; b=AqxLA1HxaPZ9F/IUNJXlgw6s01BIEtuwp+3yYU6hnYd5sdQ35Ves0mh3QYTp0b5lY3IAN/zV6oQ/JG9AhpGM1wBW18JwqvnnJHmKW7VINz1dKlAN6CC+BEWmpVOypm5HQaYYoSQElJWiW6YKZ3xV/Pqt+ltSxVcGPiWn7ZJ0xUE=
+	t=1767723469; cv=none; b=bSSe5LKMy82SbMxIe0W8omn6frPwBVn5w078tvoaiNoHlj/vPFhjAquYexspd3LBG/9TX1uHtsIF4rX1L3HYPYCDbyk1RUCNIjR/OyTZX8PzkHK6jhn4qC/vUGItPT3NQndxJ9cY1S7x+gdeVl//VoOj0GN9L40u6dr9uxfDZGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767722729; c=relaxed/simple;
-	bh=u4Ucw346p0LskE2Agd4cJRPVq6GJdLEmyHn4EWRgWi8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PHT7/poMB+DBN179vGYLMzcPCEmSgR57e4xFLGybY133EhmM50LfWVi05djXRkQhJ5cUG6/UAWYZrY/oWu/jKrRGYdepP30gWt0EUsr9374IXyFC42VeNZqRqOys0iG3lDxm+YEoHGKikguN9Lmr3pNfUuxE53O2unqNYQKF/N0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LLPPreo1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=g6ol/unq; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 606GiiAK4137181
-	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 18:05:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AxdnYtkQsJk/Nx0EcAu08x9Bd7auZ3nLxm9/Y46BzGo=; b=LLPPreo1Kq+ql8mD
-	gM6JoQxZI4oP6sphNDmzjcS9c1t2Bhtn8vF3N72RlhkOKE42YkZsWwBcBl1UHcCc
-	TWsRS/PjzFE8jDl66XcFusU7bd+8FY84RAEXW6ngcLQuupdFGzHqk//cH011f8El
-	qc2lOcN5Ia4GhFX4KJJGSkB5h+/sFXJ4HPh1zqHdMv1ixFuG3GKYFj1N/pl1yqF9
-	wbzFstqXR2jgoUd0dSRaUvS+t86HqdqcR7msoypInpYqpEcO3mjXKHuh9ltA6XMI
-	RUHg2nWXrafh9ILhzD+4FezlBIyEnRZ6dyF7iPzOOl5nM38M/L6Gtd8pLH0XO8O5
-	68nPvA==
-Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bh66e0847-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 18:05:26 +0000 (GMT)
-Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-2b050acf07dso1229887eec.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 10:05:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767722726; x=1768327526; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AxdnYtkQsJk/Nx0EcAu08x9Bd7auZ3nLxm9/Y46BzGo=;
-        b=g6ol/unq+u6bx7yIbfBIBtkBFAic09bPPjdSAXyVqAYLEURuehBBmUzHruIKis0uuV
-         8wUDoEASfEibGlQPFQoEpNXIxXQx13DWNdq2zA+SOQTrWpMdLvtEOZ9a0vPM+nqtaHnS
-         74LqoSqLxuf5y5+M/ShjXx9/gJOleFaSM1pYBj3034F6zunu+g7qkb7PZUBhrVw3Jh5f
-         czPDvRoDQ+F+Y25MNobb5s3wrQu2kAOc0MqEoQkKopHaqgC5G3k5JRNFUDbFTCcbO2IH
-         XDdOWm6l1KWfG8oufz7jEsB8GEXUy7jH1Jx7heEQ8tTdNwu3ht3wktINelRPOPnzs6hu
-         XNXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767722726; x=1768327526;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AxdnYtkQsJk/Nx0EcAu08x9Bd7auZ3nLxm9/Y46BzGo=;
-        b=Yk3QZ8UEZjkePj/mDthYk+QLTbFMv+gsDVoKIvSTrswcRZIs31xeUPWyCigKp547Vt
-         S4BfimACc5Q4aYt7fZQLeyPW0JpWWsV8ztc9HF7V37dCragLC5VR5BqgB//j8k7VG3cj
-         L9fH++lj/yopBM3rZhZVk9xu9QfNmz/4cAraW5yEokjvMXtDniRxm32UwWxG1VAKBqkI
-         1aBD8ucOUNTuiw1BIfCHiHsnj4Z6Z9s5de6fdLgg1JssmMtUTox3pP1CraQLvPkesEhU
-         Pv4sV4sNd0IpQHjHt51Lb/BNtzoMn5vY3b1e2Rz6a/FHl2a8KyVmnATO3r8QDdGE5Rgg
-         ASBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXZPnQPrDTlzRaMm8tYY4gMCKe35xfZhd3PR/OL6OhFm1UQVR37Kstf8PcS67s+TLaZvCiiTxRer4TW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3xZQM5umIxdd8auCmOv5PGY7PC4Fwdu4UPy/Ex0O+46T2LzHv
-	7Gd87aOktwGrYO0TS/6uVSW5IvblaLrnxHdnElGTrevBDeQ6+rpAN6Nl2TcD3dXRaiCQRAjkQRh
-	YzdN5xxJEGrwg+Gb12Zne9CaFVEC18RwsY0BClQ1et2bcxvz5j+LE0Gp+QlI56bED
-X-Gm-Gg: AY/fxX5sVfg7QICkrpXd3gZnJJ6reCoHsuZx5U/KoE/qtMgOTkNdU0CRHxRLYYLKGkh
-	wdMYzilg6QkufJ2a7u0rkxgjNYobeJHSmL4uFIV5ArAmsbLOz0rJdPZp1Ci6tkZUG8/fL77or6/
-	fUPjtbh8G/5Py48G762HxmJ7NXKDkwSCYHqwf9IGroA6keCXrtVnUd0UDybvT9HlzCFHCEJ6ekI
-	RvRfe6j411uqqBOswy9CgwmNKaZpvcsVP9gUjWE1XO96IxPKDUb7FhypC7YKWGCt+Yvood1oXD2
-	m0Yk1HQMLP1swVaJbqgsB3jLDWMwbxnT2dN1G7VrW3JU/UluIxeRpSscgkQyyNgEtq8/7mpGNdf
-	/kO1OS0B1ta3KkEFWTJ1sLiHYR33FWgSl75gEPVcr1WmR
-X-Received: by 2002:a05:7301:4715:b0:2a4:3593:646a with SMTP id 5a478bee46e88-2b16f906b28mr2324261eec.26.1767722725814;
-        Tue, 06 Jan 2026 10:05:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGPmT/G9mHw1vDU2raXA+OeKBLh9EW3Uit++Kb5XbJqJTvaJem5/JDrr8t0ZlJgydfxs/Tk0w==
-X-Received: by 2002:a05:7301:4715:b0:2a4:3593:646a with SMTP id 5a478bee46e88-2b16f906b28mr2324233eec.26.1767722725225;
-        Tue, 06 Jan 2026 10:05:25 -0800 (PST)
-Received: from [172.20.10.12] ([172.56.240.157])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b1707b0b2bsm4208772eec.23.2026.01.06.10.05.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jan 2026 10:05:24 -0800 (PST)
-Message-ID: <ece56115-12be-47f4-bb50-106a10aa5b42@oss.qualcomm.com>
-Date: Tue, 6 Jan 2026 10:05:22 -0800
+	s=arc-20240116; t=1767723469; c=relaxed/simple;
+	bh=bDXC/eyAziU5WRmH59aN0683PeXKIoE2Lzs6+pte/LM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Mt0po13s/iUW7UKoffp3HIsb2eZmgz06v+bkZggrGqPrSS5vzGvc+hN8C7zmDKme/Nr6blbhK5flBHzjj6as5C7WcNS2keafJVVXOpdUPJoEbtjTzOMj2cUTfvIRJ1+4Cw+v/04BIDjL8b/zdcnR6gkUGm1T1XoltWthZzGMycg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <m.felsch@pengutronix.de>)
+	id 1vdBcf-0007cp-Aa; Tue, 06 Jan 2026 19:17:37 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+Subject: [PATCH v4 0/4] Input: Add support for TouchNetix aXiom touchscreen
+Date: Tue, 06 Jan 2026 19:17:07 +0100
+Message-Id: <20260106-v6-10-topic-touchscreen-axiom-v4-0-9e9b69c84926@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] media: qcom: camss: csiphy: Add support for v2.3.0
- two-phase CSIPHY
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        jeyaprakash.soundrapandian@oss.qualcomm.com
-References: <20251126-add-support-for-camss-on-sm8750-v1-0-646fee2eb720@oss.qualcomm.com>
- <20251126-add-support-for-camss-on-sm8750-v1-4-646fee2eb720@oss.qualcomm.com>
- <20251127-terrestrial-arboreal-bird-5a6d9b@kuoka>
-Content-Language: en-US
-From: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
-In-Reply-To: <20251127-terrestrial-arboreal-bird-5a6d9b@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDE1NyBTYWx0ZWRfXzItzSvuHkwa5
- DDDWKCvlhXA7QFlPxtcZkVV9WTyO2/hqjYeOprZcA2poQxuOA4IPy1hkTQa/23zTB/1XdQbO1bN
- QUi29waG6PBu1Zt8OBYLUkjgi2xTpqedfvUVDZdBJwuFC2ze3FKIIGTRTDFb2siC/M01kLtwL+S
- G8nu9JzeOZ1sZJ8lKAk1KlF9KPb4T6TgWTskVISDj16YofKjsUSbjQBt+X/J9u5B8sO4sQv+lW0
- 5IpaPVEdpx3sPAxdbVyzk2tctBdcDvaQnSdD4NQyknC2T0SHgT+1l7UE4g9JdLCUW8xeK49FlQR
- wiTA6Yvbxi7HmRnLlOpQx52SccG3ej8W53KxZn5wE3F5V9le/Vf4KwB+bBGO8/1mLVrzLknp2OX
- umcYKPD9dNXo+wbJ0BeK//EFGv74p5ep/QTVIK5APwpMVBskIkPb3TiDTudFpOxgWl46PrXfhok
- FraMrjePdIu/oONkEgg==
-X-Proofpoint-GUID: VDXVdim00eEMHo1pDOfn4YjK-qoDqyzz
-X-Proofpoint-ORIG-GUID: VDXVdim00eEMHo1pDOfn4YjK-qoDqyzz
-X-Authority-Analysis: v=2.4 cv=evHSD4pX c=1 sm=1 tr=0 ts=695d4ee6 cx=c_pps
- a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=J3Fo5nLEaHaPiRlpdRcYgw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=pAwv9sAArZx2eUU7DzAA:9
- a=QEXdDO2ut3YA:10 a=bBxd6f-gb0O0v-kibOvt:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-06_01,2026-01-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0 priorityscore=1501
- impostorscore=0 bulkscore=0 suspectscore=0 malwarescore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601060157
+X-B4-Tracking: v=1; b=H4sIAKNRXWkC/4XOwWrDMAwG4FcpPs9Fcmwn2WnvUXZwHK3xYXawU
+ 5NS8u5TA2OHDnIR/Prhkx6iUA5UxPvpITLVUEKKHPTbSfjJxSvJMHIWCpSGFrSsViLIJc3B87z
+ 5qfhMFKVbQ/rmyrQWqUNAFGzMmb7CuvuXT85TKEvK9/1cxed2lxGxP5ArSpAWle6VGfoWu4+Z4
+ vW25BTDeh5JPPmqfkkDRh2SiklnaBz4bWcB/iWbP7JTeEQ2TPYavCey4+CaF3Lbth8lNLHWdQE
+ AAA==
+X-Change-ID: 20240704-v6-10-topic-touchscreen-axiom-105761e81011
+To: Luis Chamberlain <mcgrof@kernel.org>, 
+ Russ Weight <russ.weight@linux.dev>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Kamel Bouhara <kamel.bouhara@bootlin.com>, 
+ Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>, 
+ Danilo Krummrich <dakr@kernel.org>, Danilo Krummrich <dakr@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-input@vger.kernel.org, kernel@pengutronix.de, 
+ Marco Felsch <m.felsch@pengutronix.de>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi,
 
-On 11/27/2025 12:14 AM, Krzysztof Kozlowski wrote:
-> On Wed, Nov 26, 2025 at 01:38:37AM -0800, Hangxiang Ma wrote:
->> Add more detailed resource information for CSIPHY devices in the camss
->> driver along with the support for v2.3.0 in the 2 phase CSIPHY driver
->> that is responsible for the PHY lane register configuration, module
->> reset and interrupt handling.
->>
->> Additionally, generalize the struct name for the lane configuration that
->> had been added for Kaanapali and use it for SM8750 as well as they share
->> the settings.
->>
->> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
->> ---
->>   .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     |  11 ++-
->>   drivers/media/platform/qcom/camss/camss.c          | 107 +++++++++++++++++++++
->>   2 files changed, 114 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
->> index f9db7e195dfe..157e946f67db 100644
->> --- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
->> +++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
->> @@ -684,9 +684,9 @@ csiphy_lane_regs lane_regs_sm8650[] = {
->>   	{0x0c10, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
->>   };
->>   
->> -/* 3nm 2PH v 2.4.0 2p5Gbps 4 lane DPHY mode */
->> +/* 3nm 2PH v 2.3.0/2.4.0 2p5Gbps 4 lane DPHY mode */
->>   static const struct
->> -csiphy_lane_regs lane_regs_kaanapali[] = {
-> There is no such line in next. Your cover letter does not explain
-> dependencies.
-Will do. Thanks.
->
->> +csiphy_lane_regs lane_regs_v_2_3[] = {
-> Best regards,
-> Krzysztof
->
+this adds the support for the TouchNetix aXiom touchcontroller family.
+
+The following features are added:
+ - I2C communication
+ - Input event handling
+ - Touchcontroller firmware (AXFW or ALC) updates
+ - Touchcontroller config (TH2CFGBIN) updates
+
+Regards,
+  Marco
+
+Changes in v4:
+- Link to v3: https://lore.kernel.org/r/20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de
+- rebased on top of v6.19-rc1
+- collect r-b tags
+
+Changes in v3:
+- Link to v2: https://lore.kernel.org/r/20250529-v6-10-topic-touchscreen-axiom-v2-0-a5edb105a600@pengutronix.de
+- firmware: fix commit message (Russ)
+- dt-bindings: Add ack from Krzysztof
+- dt-bindings: make use of GPIO_ACTIVE_LOW (Krzysztof)
+- dt-bindings: drop 'panel: true' property (Krzysztof)
+- driver: make use of sysfs_emit (Greg)
+- driver: s/WARN()/dev_warn()/ to not take down the system (Greg)
+- driver: fix build dependency error by adding "depends on DRM || !DRM"
+- driver: harmonize usage printing to u%02X
+
+Changes in v2:
+- Link to v1: https://lore.kernel.org/r/20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de
+- Rework the firmware-duplicate handling -> expose the error to the
+  userspace
+- Drop Krzysztof Kozlowski ACK and RB
+- Add panel-follower support
+- Add sysfs-driver-input-touchnetix-axiom documentation
+- Add support for new firmware 4.8.9
+- Add support to handle 2D and 3D firmware
+
+---
+Kamel Bouhara (2):
+      dt-bindings: vendor-prefixes: Add TouchNetix AS
+      dt-bindings: input: Add TouchNetix axiom touchscreen
+
+Marco Felsch (2):
+      firmware_loader: expand firmware error codes with up-to-date error
+      Input: Add TouchNetix aXiom I2C Touchscreen support
+
+ .../testing/sysfs-driver-input-touchnetix-axiom    |   74 +
+ .../input/touchscreen/touchnetix,ax54a.yaml        |   62 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ drivers/base/firmware_loader/sysfs_upload.c        |    1 +
+ drivers/input/touchscreen/Kconfig                  |   17 +
+ drivers/input/touchscreen/Makefile                 |    1 +
+ drivers/input/touchscreen/touchnetix_axiom.c       | 2974 ++++++++++++++++++++
+ include/linux/firmware.h                           |    2 +
+ lib/test_firmware.c                                |    1 +
+ 9 files changed, 3134 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20240704-v6-10-topic-touchscreen-axiom-105761e81011
+
+Best regards,
+-- 
+Marco Felsch <m.felsch@pengutronix.de>
+
 
