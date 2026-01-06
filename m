@@ -1,120 +1,106 @@
-Return-Path: <devicetree+bounces-252071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B036CFAD52
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:59:07 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9B1CFA7DB
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:07:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 09ECA302104E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 19:51:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BEE96300E42E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 19:07:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56523002BA;
-	Tue,  6 Jan 2026 18:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD1E355020;
+	Tue,  6 Jan 2026 18:42:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tvWl1oMz"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="RJ/MqWrL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD012FF66B;
-	Tue,  6 Jan 2026 18:34:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B18354AC8;
+	Tue,  6 Jan 2026 18:42:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767724482; cv=none; b=QYLLTEX4fATZk5r+nMK49IPAiPpneX/6rAAVYorV+1DsEr+F6rAPw2EwzalMlTBb4BTNegvTPOg673ePpzoCkgkmMSmGS9J/a9C7ih5cgQwqY5ZQ1THFU2ID0Nidc4pZ+O5Xp0x3Xsoo6bIsyC0nl7CSgklsa7c0QwaJ9oQWag4=
+	t=1767724934; cv=none; b=cyT/Bb2KV82mYt+VjIIQ3EzdmaM9RMaElesS3XYny29BtIacTfj0IfjXmOMB0DrpWHINonyuY4aXtnCxbRzLGnLCVW5MaszCvQLpnvtBvdPIc7Sq7YPopOI/I4iJNLTLEczl1pjywVB14O2CkJJ+vRMRZaV8lKXQ0ci5crhEnkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767724482; c=relaxed/simple;
-	bh=H2v0nUt8N0vGGdbmlYiAAvAo4Pe4F33fRgeEAFY94/w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PZH0vKXHEbAKXuLQjpuopDYaMRs8LgZrFdiVr+H6OKmMDXc3wVm8xQfWKtiBseLgUWFuAs19OgYOTCemdNh9hDiAFaMtXLRVyl9WzN4zNYKIFHsRl2HBN7KQdC5n7beo+Dx2aqoCcXj1QyKKlWTA9vtmKiipZHXpb/+CxSQ009Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tvWl1oMz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 152C5C19423;
-	Tue,  6 Jan 2026 18:34:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767724482;
-	bh=H2v0nUt8N0vGGdbmlYiAAvAo4Pe4F33fRgeEAFY94/w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tvWl1oMzdgHT/lp0TV4rEcJ8KSAX5uz4aKUNJUZM/9Fw2AhxQvWxlDCsW9dkPhYuG
-	 kGtfrzLYii0Dcs1IFsDE/r35PWpspaWSHEmpmKHAfQJqfDhPXGzXN+AcQX8FhIqlLr
-	 S2GlvwkqAR3eWJn5OSXGBcUlSVjtK1ySUFYR4Kgo65YrR5qEKgsHgrkkR2f7wo7gAc
-	 NZkIgfrl/22DVK+m33EFyTZD7ElvUBBegC0B1jErirr8Pd+5OcPFoF8AW/bmY+Xn3F
-	 +Cdh7YwsMaezrL2EGPygsauQDaw4lqwaPo/WVcRONNnDOBN1dCWVBK8U4GCSoWgqiD
-	 dMz6zwvCP1HZA==
-Date: Tue, 6 Jan 2026 12:34:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1767724934; c=relaxed/simple;
+	bh=USLm1RPTdRWKKtLUQd/VpTuZjZAG4oRDPtFv3d/c894=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jT3fr5fZBMCr89Y73bfxUPx2H4OPnN/vOg9pQYn95NjofkAXjcfv34Vj20HVz8MA1e2yRr0BLGoKVMvFPobUdPK2B/nIgS77+ZpfpyDmDCZlslO1hbaK1N77H5wrxILJBEA906m0tILhnnhfdt8eehRCIObp40tF7yYEE/ij74Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=RJ/MqWrL; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=eKSy9T80IKDTUT4rJm6tF29ciu71tA8nroiwuv6DMCM=; b=RJ/MqWrLOj3blZgZ7htOadqicN
+	tTP7/qvr8cLEDE9L1jjdeSlUL6gLRZkSzxKKxq1JtHURzoX8d5lyC/qVxPAoNy0usHl83q8xkyxZ8
+	bvBETxsWQVdBxjW5vZirNK+axS4MIViu8DMhKOg9gaGqNVGWkk2mDjO3GeItHNtDWnfMxQr2t2yOD
+	Djr+Ndf2NQsM7vDNVZ57CPLvhP3zhPQ+3YUemzXyg/RYk5Vnqwey2Umejuh7ugVpCFAgWQH0/D9HS
+	mOFPZ4czXuuqk23b2J7mQwT3DkbbholHInMvjIfmVMNnPkEdM/9QYu+LH+UVK3tFx7IUAUA6auUqV
+	gBUfdbww==;
+Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vdC0M-001Hfs-Dm; Tue, 06 Jan 2026 19:42:07 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: airoha: npu: Add BA
- memory region
-Message-ID: <20260106183441.GA2514063-robh@kernel.org>
-References: <20260105-airoha-ba-memory-region-v1-0-5b07a737c7a7@kernel.org>
- <20260105-airoha-ba-memory-region-v1-1-5b07a737c7a7@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	John Clark <inindev@gmail.com>,
+	Alexey Charkov <alchark@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 0/7] arm64: dts: rockchip: Sound fixes and additions on RK3576 boards
+Date: Tue,  6 Jan 2026 19:41:55 +0100
+Message-ID: <176772487188.3029798.5459621815338520362.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20251229-rk3576-sound-v1-0-2f59ef0d19b1@gmail.com>
+References: <20251229-rk3576-sound-v1-0-2f59ef0d19b1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260105-airoha-ba-memory-region-v1-1-5b07a737c7a7@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 05, 2026 at 10:02:56AM +0100, Lorenzo Bianconi wrote:
-> Introduce Block Ack memory region used by NPU MT7996 (Eagle) offloading.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> index 59c57f58116b568092446e6cfb7b6bd3f4f47b82..b3a2b36f6a121f90acf88a07b0f1733fa6da08a8 100644
-> --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> @@ -50,6 +50,12 @@ properties:
->            - description: NPU wlan offload RX buffers region
->            - description: NPU wlan offload TX buffers region
->            - description: NPU wlan offload TX packet identifiers region
-> +      - items:
-> +          - description: NPU firmware binary region
-> +          - description: NPU wlan offload RX buffers region
-> +          - description: NPU wlan offload TX buffers region
-> +          - description: NPU wlan offload TX packet identifiers region
-> +          - description: NPU wlan Block Ack buffers region
 
-This oneOf can be simplified to just this last entry plus 'minItems: 1'. 
-Sure that allows 2 or 3 entries, but nothing defines when 1, 4, or 5 
-entries is valid or not.
+On Mon, 29 Dec 2025 14:11:57 +0400, Alexey Charkov wrote:
+> Here are some device tree updates to improve sound output on RK3576
+> boards.
+> 
+> The first two patches fix analog audio output on FriendlyElec NanoPi M5,
+> as it doesn't work with the current device tree.
+> 
+> The third one is purely cosmetic, to present a more user-friendly sound
+> card name to the userspace on NanoPi M5.
+> 
+> [...]
 
->  
->    memory-region-names:
->      items:
-> @@ -57,6 +63,7 @@ properties:
->        - const: pkt
->        - const: tx-pkt
->        - const: tx-bufid
-> +      - const: ba
->  
->  required:
->    - compatible
-> @@ -93,7 +100,7 @@ examples:
->                       <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
->          memory-region = <&npu_firmware>, <&npu_pkt>, <&npu_txpkt>,
-> -                        <&npu_txbufid>;
-> -        memory-region-names = "firmware", "pkt", "tx-pkt", "tx-bufid";
-> +                        <&npu_txbufid>, <&npu_ba>;
-> +        memory-region-names = "firmware", "pkt", "tx-pkt", "tx-bufid", "ba";
->        };
->      };
-> 
-> -- 
-> 2.52.0
-> 
+Applied, thanks!
+
+[1/7] arm64: dts: rockchip: Fix headphones widget name on NanoPi M5
+      commit: 5ab3dd9d0a63af66377f58633fec9dad650e6827
+[2/7] arm64: dts: rockchip: Configure MCLK for analog sound on NanoPi M5
+      commit: 3e4a81881c0929b21a0577bc6e69514c09da5c3f
+[3/7] arm64: dts: rockchip: Use a readable audio card name on NanoPi M5
+      commit: 309598fca339abd4e8eef0efe0d630714ca79ac9
+[4/7] arm64: dts: rockchip: Enable HDMI sound on FriendlyElec NanoPi M5
+      commit: bde555926b61740c6256a38a9cf5a4833be345cc
+[5/7] arm64: dts: rockchip: Enable HDMI sound on Luckfox Core3576
+      commit: 87af7643234a2b4cb49a97dfe7fb455633b3185d
+[6/7] arm64: dts: rockchip: Enable HDMI sound on RK3576 EVB1
+      commit: f5c9549964adbac931e163693bd17db872976679
+[7/7] arm64: dts: rockchip: Enable analog sound on RK3576 EVB1
+      commit: d8872b9dd9208c493f1f3811d42997fb968de064
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
