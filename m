@@ -1,143 +1,134 @@
-Return-Path: <devicetree+bounces-251871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37679CF7CDE
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 11:33:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03099CF7C96
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 11:27:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BCE97301E158
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 10:32:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F030E301B2EE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 10:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60581343201;
-	Tue,  6 Jan 2026 10:32:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="PbBGpai/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC0DB30FC2C;
+	Tue,  6 Jan 2026 10:21:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F3333431E7
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 10:32:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B940A31B815;
+	Tue,  6 Jan 2026 10:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767695542; cv=none; b=H5viKCuSQ+Hr+ckBZavrR1C5w37+Vfg5L/1Xi44QB9QBemBS5AkNJ3JE5hCaWkBKZL9YbBWK4Dgp5wY7oXzSE1OP1E9GA7a/V7znhOVPAzdUqAeq/45KxD5BWRM64HwN/k92f6czss58y69JjvrAFgPZfFA4uyh7NT2iDg6bppc=
+	t=1767694915; cv=none; b=X0wlP4ydXEB07B2cTnGgV60kw/hMDXPjZqOyX3waPnvlWm9kQ2KZO2TIgkQQPoq+SAUP2F63AiarpLmyvsicv8Sgbei/J1srkPtQ2ZZtH9cNTG/ZaAfWKDN5VyrQ/qIw9QYdYM/IJ0VCkW26U73s4qQQlytXnUWiiXbX0BwFpPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767695542; c=relaxed/simple;
-	bh=1tJ20MUicuvH4v8hMDH2EWMUgmh+Fi8PvbTruBetC+s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hjLLWXALBUVpxphQmwJ1lGG+r0xEqMctLXGaQdbw06GyT88ByM6Jw2lZKYih62VBjLD/ImA7eZSFjCOSOqvhu0CmlI1ZxWJzVvM8YSp4umXsU/t1BvgCrczQzXdeTiIY0y0K9S9dS+UFEmVklb4aWscjXXZHy24E+xajq08n5Wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=PbBGpai/; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1767695539;
- bh=x+Xak7wAR/JIg71hAoKMeJB5ByPewgiifbgu+4ypQ9g=;
- b=PbBGpai/AjNVoY+3AvbHLunLEIz1hnQM/YxJKe+w9H6oiXYrDj7eB4K67nOxJc9sZ26WLoips
- QGX/GPY+FHW4/eLzBL3T3+WAgK8ZMSVd/ewhMIFejo9HEwJVU0BjrrDzCCHary0hQi5AUSN35m6
- lIaejn+T2BdBcsW9Sjymoo35aExn4sNPlJgZdUJ7bWAQ7w6gRwC6u9lpjEgFQXay+bFjY6J1TJe
- prICIj+piDA/eLwg20pz9DqWpyaaj7K7TYw6bJ9h/2sygVaHWJ7I7aIPHIFlj7XJqupAGM1ZGmb
- BDqaob93XsRPkDDwNKjhu28fCFeMWLcO28l36ngv3qOA==
-X-Forward-Email-ID: 695ce216a05bf2602ae3708a
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 2.2.1
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <1c5005b7-ceb9-4915-ad58-a9aa86cce394@kwiboo.se>
-Date: Tue, 6 Jan 2026 11:21:06 +0100
+	s=arc-20240116; t=1767694915; c=relaxed/simple;
+	bh=7Xx+0iwbRindj1ZupjQwR4wGNm7qkHz7BPNgzMJcmtQ=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tQwKmAf9IDyFkeUsF6W0w9dHXDKpsAuQKSW1iACNehuhQgQt6MTYJuy0DVZItt9MSp16JFrj/gcFt1pfSL/P3CoWHwduHGl5CVSwkcUK93AazR991BvSKnLiQqfWYJT/NA5U88JvxxkEkBFk3rN7BLidsjzH8NjBrB3tE5G8Oo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.224.107])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4dlnJs33ywzJ46sy;
+	Tue,  6 Jan 2026 18:21:49 +0800 (CST)
+Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
+	by mail.maildlp.com (Postfix) with ESMTPS id CBDD740570;
+	Tue,  6 Jan 2026 18:21:50 +0800 (CST)
+Received: from localhost (10.48.149.114) by dubpeml100005.china.huawei.com
+ (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.36; Tue, 6 Jan
+ 2026 10:21:48 +0000
+Date: Tue, 6 Jan 2026 10:21:46 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+CC: Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>, "Saravana
+ Kannan" <saravanak@google.com>, Nathan Chancellor <nathan@kernel.org>, "Nick
+ Desaulniers" <nick.desaulniers+lkml@gmail.com>, Bill Wendling
+	<morbo@google.com>, Justin Stitt <justinstitt@google.com>, Russell King
+	<linux@armlinux.org.uk>, Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, Krzysztof Kozlowski <krzk@kernel.org>, "Alim
+ Akhtar" <alim.akhtar@samsung.com>, Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>, "Nicholas Piggin" <npiggin@gmail.com>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Nipun Gupta
+	<nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>, Abel Vesa
+	<abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Michael Turquette
+	<mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>, "Rafael J. Wysocki"
+	<rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<llvm@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
+	<linux-clk@vger.kernel.org>, <imx@lists.linux.dev>,
+	<dmaengine@vger.kernel.org>, <linux-media@vger.kernel.org>,
+	<linux-pm@vger.kernel.org>
+Subject: Re: [PATCH 07/11] clk: imx: imx27: Simplify with scoped for each OF
+ child loop
+Message-ID: <20260106102146.00005bfb@huawei.com>
+In-Reply-To: <20260105-of-for-each-compatible-scoped-v1-7-24e99c177164@oss.qualcomm.com>
+References: <20260105-of-for-each-compatible-scoped-v1-0-24e99c177164@oss.qualcomm.com>
+	<20260105-of-for-each-compatible-scoped-v1-7-24e99c177164@oss.qualcomm.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: Enable PCIe for ArmSoM Sige1
-To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260106100000.225445-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20260106100000.225445-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100010.china.huawei.com (7.191.174.197) To
+ dubpeml100005.china.huawei.com (7.214.146.113)
 
-Hi Chukun,
+On Mon, 05 Jan 2026 14:33:45 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com> wrote:
 
-On 1/6/2026 11:00 AM, Chukun Pan wrote:
-> Enable the RTL8125 network controller and corresponding PHY
-> connected via PCIe on the ArmSoM Sige1.
+> Use scoped for-each loop when iterating over device nodes to make code a
+> bit simpler.
 > 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+This is one that had me thinking for a (short) while about what pattern
+required this double match was there for.  A comment would have been useful!
 
-This matches what I currently have in my pending to do final test and
-then sent out branch at [1], so this is:
+Ah well, nothing to do with your patch which is good.
 
-Reviewed-by: Jonas Karlman <jonas@kwiboo.se>
+Jonathan
 
-For the remaining RK3528 boards we should split up the pciemX_pins
-pinctrl group similar to how it has been done for RK3588, as there are
-freeze issues in U-Boot or problem using strict GPIO usage in Linux if
-we do not property configure the reset-gpios pin to GPIO func.
-
-[1] https://github.com/Kwiboo/linux-rockchip/commits/next-20251219-rk3528/
-
-Regards,
-Jonas
-
+> 
 > ---
->  .../boot/dts/rockchip/rk3528-armsom-sige1.dts  | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dts b/arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dts
-> index 6e21579365a5..c41af8fc0c8d 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dts
-> @@ -232,6 +232,10 @@ sdio_pwrseq: sdio-pwrseq {
->  	};
->  };
+> Depends on first patch.
+> ---
+>  drivers/clk/imx/clk-imx27.c | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/clk/imx/clk-imx27.c b/drivers/clk/imx/clk-imx27.c
+> index 99618ded0939..f2f0d3fe5c52 100644
+> --- a/drivers/clk/imx/clk-imx27.c
+> +++ b/drivers/clk/imx/clk-imx27.c
+> @@ -171,17 +171,14 @@ static void __init _mx27_clocks_init(unsigned long fref)
 >  
-> +&combphy {
-> +	status = "okay";
-> +};
-> +
->  &cpu0 {
->  	cpu-supply = <&vdd_arm>;
->  };
-> @@ -293,6 +297,14 @@ rgmii_phy: ethernet-phy@1 {
->  	};
->  };
+>  static void __init mx27_clocks_init_dt(struct device_node *np)
+>  {
+> -	struct device_node *refnp;
+>  	u32 fref = 26000000; /* default */
 >  
-> +&pcie {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie20_perstn>;
-> +	reset-gpios = <&gpio4 RK_PA4 GPIO_ACTIVE_HIGH>;
-> +	vpcie3v3-supply = <&vcc_3v3>;
-> +	status = "okay";
-> +};
-> +
->  &pinctrl {
->  	bluetooth {
->  		bt_reg_on_h: bt-reg-on-h {
-> @@ -324,6 +336,12 @@ r_led: r-led {
->  		};
->  	};
+> -	for_each_compatible_node(refnp, NULL, "fixed-clock") {
+> +	for_each_compatible_node_scoped(refnp, NULL, "fixed-clock") {
+>  		if (!of_device_is_compatible(refnp, "fsl,imx-osc26m"))
+>  			continue;
 >  
-> +	pcie {
-> +		pcie20_perstn: pcie20-perstn {
-> +			rockchip,pins = <4 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +
->  	rtc {
->  		rtc_int_l: rtc-int-l {
->  			rockchip,pins = <4 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
+> -		if (!of_property_read_u32(refnp, "clock-frequency", &fref)) {
+> -			of_node_put(refnp);
+> +		if (!of_property_read_u32(refnp, "clock-frequency", &fref))
+>  			break;
+> -		}
+>  	}
+>  
+>  	ccm = of_iomap(np, 0);
+> 
 
 
