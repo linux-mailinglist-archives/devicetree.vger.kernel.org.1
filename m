@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-252074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B9B1CFA7DB
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:07:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F45CFAB2A
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:33:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BEE96300E42E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 19:07:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5AE9B33036C8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:53:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD1E355020;
-	Tue,  6 Jan 2026 18:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C7A33570C6;
+	Tue,  6 Jan 2026 18:42:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="RJ/MqWrL"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="wjrYTKmA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B18354AC8;
-	Tue,  6 Jan 2026 18:42:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C31B355801;
+	Tue,  6 Jan 2026 18:42:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767724934; cv=none; b=cyT/Bb2KV82mYt+VjIIQ3EzdmaM9RMaElesS3XYny29BtIacTfj0IfjXmOMB0DrpWHINonyuY4aXtnCxbRzLGnLCVW5MaszCvQLpnvtBvdPIc7Sq7YPopOI/I4iJNLTLEczl1pjywVB14O2CkJJ+vRMRZaV8lKXQ0ci5crhEnkg=
+	t=1767724937; cv=none; b=m8XfgeMGDvdni66iQgpHYZV1zhmU8f8N5qHYMSuj98NndfXPZDW9bN0vyyAkyOT/l/9hGCuHe4uVEDghw9KD1XjHogNt7bppg9SCMaI8VDMroox/8cZwuP4TYZB7EqZf+tsUuNcPtGvmzco018TLi+o/71pSHsv1qwlhY9+48kg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767724934; c=relaxed/simple;
-	bh=USLm1RPTdRWKKtLUQd/VpTuZjZAG4oRDPtFv3d/c894=;
+	s=arc-20240116; t=1767724937; c=relaxed/simple;
+	bh=Bvmyld1MDDzxZY17qWx0acZrPwre2Y9ooTNMk8Ch794=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jT3fr5fZBMCr89Y73bfxUPx2H4OPnN/vOg9pQYn95NjofkAXjcfv34Vj20HVz8MA1e2yRr0BLGoKVMvFPobUdPK2B/nIgS77+ZpfpyDmDCZlslO1hbaK1N77H5wrxILJBEA906m0tILhnnhfdt8eehRCIObp40tF7yYEE/ij74Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=RJ/MqWrL; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=Ujg4p4PNWjCKyXgOvYBsFf49vjMant5zUSGLls8p/rnM0RevdRCgkbcOEJJkj4Dipi5+lFVtQuDwtSqfhL33zEhAHKunGZKhJvQ01/RCOom32U+Us4FeOUP+rv8ReJWOssMGztPjUZ7lyNVKkrDdVyLOq1pVHShH/fTVxhNndUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=wjrYTKmA; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=eKSy9T80IKDTUT4rJm6tF29ciu71tA8nroiwuv6DMCM=; b=RJ/MqWrLOj3blZgZ7htOadqicN
-	tTP7/qvr8cLEDE9L1jjdeSlUL6gLRZkSzxKKxq1JtHURzoX8d5lyC/qVxPAoNy0usHl83q8xkyxZ8
-	bvBETxsWQVdBxjW5vZirNK+axS4MIViu8DMhKOg9gaGqNVGWkk2mDjO3GeItHNtDWnfMxQr2t2yOD
-	Djr+Ndf2NQsM7vDNVZ57CPLvhP3zhPQ+3YUemzXyg/RYk5Vnqwey2Umejuh7ugVpCFAgWQH0/D9HS
-	mOFPZ4czXuuqk23b2J7mQwT3DkbbholHInMvjIfmVMNnPkEdM/9QYu+LH+UVK3tFx7IUAUA6auUqV
-	gBUfdbww==;
+	bh=p2zwHgmmmKUQpUt0JZaXJQukZ0E+S2rrXrmJMYEwXC0=; b=wjrYTKmAi9lDZF3scqG6qGYveo
+	xA2yrj5/FBeCJW1myXSeXowszmG8+o0FBwJ+rRFGO98C8mzMibMq/7Cxjen4z/ztBE2aJIVId9tR7
+	6Q4lfAvvKgvI3kTiTDJ42DkRbtYTguHL4WcMmM3jC6oN0fOA0jOu9FSIoo5Bbom3xRD9No7/H0htA
+	rjnDjdKFc7pf8SMirrs4yP+ESBpRz1fnJfLzGoJWWUomDrpGhPI8GCXPYu6EpTDj3mPMBepD/V+JQ
+	Uov/uQ8O9ttrRbX4ht+UqAGJQTBfWnBJvPcBM0zBQrClDSRKeCa45/OTF0MWqqc6LowAw/u0VbtS5
+	mg6dWU/w==;
 Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1vdC0M-001Hfs-Dm; Tue, 06 Jan 2026 19:42:07 +0100
+	id 1vdC0M-001Hfs-Ve; Tue, 06 Jan 2026 19:42:07 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	John Clark <inindev@gmail.com>,
-	Alexey Charkov <alchark@gmail.com>
+To: Chukun Pan <amadeus@jmu.edu.cn>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH 0/7] arm64: dts: rockchip: Sound fixes and additions on RK3576 boards
-Date: Tue,  6 Jan 2026 19:41:55 +0100
-Message-ID: <176772487188.3029798.5459621815338520362.b4-ty@sntech.de>
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] arm64: dts: rockchip: Enable PCIe for ArmSoM Sige1
+Date: Tue,  6 Jan 2026 19:41:57 +0100
+Message-ID: <176772487181.3029798.17129671560253140548.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251229-rk3576-sound-v1-0-2f59ef0d19b1@gmail.com>
-References: <20251229-rk3576-sound-v1-0-2f59ef0d19b1@gmail.com>
+In-Reply-To: <20260106100000.225445-1-amadeus@jmu.edu.cn>
+References: <20260106100000.225445-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,34 +70,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 29 Dec 2025 14:11:57 +0400, Alexey Charkov wrote:
-> Here are some device tree updates to improve sound output on RK3576
-> boards.
+On Tue, 06 Jan 2026 18:00:00 +0800, Chukun Pan wrote:
+> Enable the RTL8125 network controller and corresponding PHY
+> connected via PCIe on the ArmSoM Sige1.
 > 
-> The first two patches fix analog audio output on FriendlyElec NanoPi M5,
-> as it doesn't work with the current device tree.
 > 
-> The third one is purely cosmetic, to present a more user-friendly sound
-> card name to the userspace on NanoPi M5.
-> 
-> [...]
 
 Applied, thanks!
 
-[1/7] arm64: dts: rockchip: Fix headphones widget name on NanoPi M5
-      commit: 5ab3dd9d0a63af66377f58633fec9dad650e6827
-[2/7] arm64: dts: rockchip: Configure MCLK for analog sound on NanoPi M5
-      commit: 3e4a81881c0929b21a0577bc6e69514c09da5c3f
-[3/7] arm64: dts: rockchip: Use a readable audio card name on NanoPi M5
-      commit: 309598fca339abd4e8eef0efe0d630714ca79ac9
-[4/7] arm64: dts: rockchip: Enable HDMI sound on FriendlyElec NanoPi M5
-      commit: bde555926b61740c6256a38a9cf5a4833be345cc
-[5/7] arm64: dts: rockchip: Enable HDMI sound on Luckfox Core3576
-      commit: 87af7643234a2b4cb49a97dfe7fb455633b3185d
-[6/7] arm64: dts: rockchip: Enable HDMI sound on RK3576 EVB1
-      commit: f5c9549964adbac931e163693bd17db872976679
-[7/7] arm64: dts: rockchip: Enable analog sound on RK3576 EVB1
-      commit: d8872b9dd9208c493f1f3811d42997fb968de064
+[1/1] arm64: dts: rockchip: Enable PCIe for ArmSoM Sige1
+      commit: f01f0e0700740dc7a2e5ed1af89d9770c1127d2e
 
 Best regards,
 -- 
