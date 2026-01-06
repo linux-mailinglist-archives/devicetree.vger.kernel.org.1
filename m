@@ -1,165 +1,119 @@
-Return-Path: <devicetree+bounces-251955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748C8CF8B51
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 15:14:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1DEBCF8CED
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 15:35:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E1349300A51A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 14:14:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 70BA4303CF6C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 14:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69E7287247;
-	Tue,  6 Jan 2026 14:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEAFE31281C;
+	Tue,  6 Jan 2026 14:27:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Go8Gbhse"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mail-m49232.qiye.163.com (mail-m49232.qiye.163.com [45.254.49.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC43B283FDC
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 14:14:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48BCC309EF5;
+	Tue,  6 Jan 2026 14:27:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767708867; cv=none; b=AcIQGcmzcqNJXTnqek4Fz3xbGhXoMwj3OQ7FIaqxkIXUHHCxqnfCloipHQSibdpH9xKIeFVvCqwcG+6xAZOAQk6xxPwOebD36c3u1DSNbs4SQVZ8V1uIgQ20FLiFA52acX1Dv+ZlbUkee7gOXDQeBGFZxiK/1J2yjzQaoaMxfNM=
+	t=1767709660; cv=none; b=IVic8MIesZM9FbGoIdM6CDMHK3x1iyhY1gIh+8fjftc2e71sQeRtVcabzgAZ9eb1MVXMMlIROUhq/ORl2AqGLnUcR5ki2enAq0hh4tKrUL1Z3HcOZUXXl5N9tJ2z+ltcCV2xJfim1o2fEC5fQg2MAWXpgXwdqn2R6aT52yQm/8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767708867; c=relaxed/simple;
-	bh=J5D3AxYk/KGiW51uGhMznr9BjtqXn7rl5KAiX9QfyT8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J43TlHr2tZRKozXSc0X+SEvd/RwOV8UzdQ5/89yGRmXSQDub3YaSmehnUWaMcREwhUKDljWoZUq3R9R7FSQ8G4wjlsBX4qgqhX+hQRjDTZkz8Vlsk6O/bfFtkaGWzR94jWog7F7EgCaM+QJSay3eTb66xSm4QXqwsmybIskkBew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vd7or-0004tZ-MH; Tue, 06 Jan 2026 15:13:57 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vd7or-009ML8-0u;
-	Tue, 06 Jan 2026 15:13:57 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vd7or-00EKca-0X;
-	Tue, 06 Jan 2026 15:13:57 +0100
-Date: Tue, 6 Jan 2026 15:13:57 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mp-skov: add pinctrl-name 'reset' to
- fix CHECK_DTB warning
-Message-ID: <20260106141357.a7jsmligapumcfau@pengutronix.de>
-References: <20251229165127.4006134-1-Frank.Li@nxp.com>
- <20260105111448.slm2yqiwivx2t3vh@pengutronix.de>
- <aVzhhH4BRFC7XlAL@shlinux89>
+	s=arc-20240116; t=1767709660; c=relaxed/simple;
+	bh=ToE8gyk4FirfJyMrhReTabCaLN2Uo5Ev0/HcD6mg0DI=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=iFzG3etV8BA0YDlDWA+pYJje1CgWimXhp2bwgqMdkdkf5hrR1VoMFnIUaoJzKd0W4XI8sHp+msLYxUBWYy+IzB1ReojwcKiNRo7yGETDPOcK7uu/nxa8XE3h5883kuYQwF3z6YKz9xlaqdxXfUILE5KjTOVe4gVkv0f7ZSTG2DE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Go8Gbhse; arc=none smtp.client-ip=45.254.49.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.14] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2fb2159b3;
+	Tue, 6 Jan 2026 22:27:31 +0800 (GMT+08:00)
+Message-ID: <7547e933-1cbd-4bf9-bc8a-fb0c78b11337@rock-chips.com>
+Date: Tue, 6 Jan 2026 22:27:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aVzhhH4BRFC7XlAL@shlinux89>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, linux-arm-msm@vger.kernel.org,
+ linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 3/4] scsi: ufs: core Enforce minimum pm level for sysfs
+ configuration
+To: Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>, mani@kernel.org,
+ alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com
+References: <20260106134008.1969090-1-ram.dwivedi@oss.qualcomm.com>
+ <20260106134008.1969090-4-ram.dwivedi@oss.qualcomm.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20260106134008.1969090-4-ram.dwivedi@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9b93b4b0c409cckunm3f97de73835c7b
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQh1PQlYdSUMeSBhJT08dHhpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=Go8GbhseksVywX5IMKvUb6TcqeN5YAKAtngAXPwLywNpt8Lphfzfoichif0aoh7Vsc2bodV2yZTXLzQ3U9vieavxPuhsGYGYaI1TdaYihLYvwSR0bhhbTI1KPojWg6hoJ93jf5WHw6VK+T/smhVRMcFLBrklthvqoPXjHGjwE4M=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=r39NgvTJsx9tvCPQ4R1VMYjGBJfIwI59kCIM14n3iXQ=;
+	h=date:mime-version:subject:message-id:from;
 
-Hi Peng,
-
-On 26-01-06, Peng Fan wrote:
-> Hi Marco,
+在 2026/01/06 星期二 21:40, Ram Kumar Dwivedi 写道:
+> Some UFS platforms only support a limited subset of power levels.
+> Currently, the sysfs interface allows users to set any pm level
+> without validating the minimum supported value. If an unsupported
+> level is selected, suspend may fail.
 > 
-> On Mon, Jan 05, 2026 at 12:14:48PM +0100, Marco Felsch wrote:
-> >Hi Frank,
-> >
-> >On 25-12-29, Frank Li wrote:
-> >> Add pinctrl-name 'reset' to fix below CHECK_DTB warnings:
-> >>   arch/arm64/boot/dts/freescale/imx8mp-skov-basic.dtb: switch@5f (microchip,ksz9893): pinctrl-names: ['default'] is too short
-> >> 	from schema $id: http://devicetree.org/schemas/net/dsa/microchip,ksz.yaml#
-> >> 
-> >> The commit (e469b87e0fb0d dt-bindings: net: dsa: microchip: Add strap
-> >> description to set SPI mode" force use two pinctrl-name 'default' and
-> >> 'reset'. switch@5f doesn't use SPI, so it is safe to use the same pinctrl
-> >> setting for both.
-> >
-> >please see:
-> >- https://lore.kernel.org/all/20251112084717.ea7fchu7jcz6dzsi@pengutronix.de/
-> >
-> >I stumbled over the same warning, but came to the conclusion, that the
-> >dt-bindings should be fixed instead of workaround broken bindings within
-> >the dtb.
+> Introduce an pm_lvl_min field in the ufs_hba structure and use it
+> to clamp the pm level requested via sysfs so that only supported
+> levels are accepted. Platforms that require a minimum pm level
+> can set this field during probe.
 > 
-> If reset is optional, the dt-bindings should include "minItems:1" per my
-> understanding.
-
-Not sure, since the pinctrl-names is just an enum list. That beeing
-said, I don't see it as required since the strapping may not be required
-for systems which do already has correct ext. strapping options.
-Therefore the binding should be always optional and the driver should be
-adapted.
-
-> But..
+> Signed-off-by: Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>
+> ---
+>   drivers/ufs/core/ufs-sysfs.c | 2 +-
+>   include/ufs/ufshcd.h         | 1 +
+>   2 files changed, 2 insertions(+), 1 deletion(-)
 > 
-> >
-> >> -		pinctrl-names = "default";
-> >> -		pinctrl-0 = <&pinctrl_switch>;
-> >> +		pinctrl-names = "default", "reset";
-> >> +		pinctrl-0 = <&pinctrl_switch>, <&pinctrl_switch>;
-> 
-> Per checking
-> https://elixir.bootlin.com/linux/v6.18.3/source/drivers/net/dsa/microchip/ksz_common.c#L5372
-> 
-> seems "reset" is required in driver.
+> diff --git a/drivers/ufs/core/ufs-sysfs.c b/drivers/ufs/core/ufs-sysfs.c
+> index b33f8656edb5..02e5468ad49d 100644
+> --- a/drivers/ufs/core/ufs-sysfs.c
+> +++ b/drivers/ufs/core/ufs-sysfs.c
+> @@ -141,7 +141,7 @@ static inline ssize_t ufs_sysfs_pm_lvl_store(struct device *dev,
+>   	if (kstrtoul(buf, 0, &value))
+>   		return -EINVAL;
+>   
+> -	if (value >= UFS_PM_LVL_MAX)
+> +	if (value >= UFS_PM_LVL_MAX || value < hba->pm_lvl_min)
 
-For the ksz8463 but not for the ksz9893 which is used by the
-imx8mp-skov-reva.dtsi (here).
+It makes sense that some platform support a limited subset of power
+levels. But each level is in increasing order of power savings, and you
+set it to UFS_PM_LVL_5. Don't you support UFS_PM_LVL_0 the full active
+mode?
 
-Regards,
-  Marco
+>   		return -EINVAL;
+>   
+>   	if (ufs_pm_lvl_states[value].dev_state == UFS_DEEPSLEEP_PWR_MODE &&
+> diff --git a/include/ufs/ufshcd.h b/include/ufs/ufshcd.h
+> index 19154228780b..ac8697a7355b 100644
+> --- a/include/ufs/ufshcd.h
+> +++ b/include/ufs/ufshcd.h
+> @@ -972,6 +972,7 @@ struct ufs_hba {
+>   	enum ufs_pm_level rpm_lvl;
+>   	/* Desired UFS power management level during system PM */
+>   	enum ufs_pm_level spm_lvl;
+> +	enum ufs_pm_level pm_lvl_min;
+>   	int pm_op_in_progress;
+>   
+>   	/* Auto-Hibernate Idle Timer register value */
 
-
-
-
-> 
-> Regards
-> Peng
-> 
-> >>  		reset-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
-> >>  		reg = <0x5f>;
-> >>  
-> >> -- 
-> >> 2.34.1
-> >> 
-> >> 
-> >> 
-> >
-> >-- 
-> >#gernperDu 
-> >#CallMeByMyFirstName
-> >
-> >Pengutronix e.K.                           |                             |
-> >Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-> >31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> >Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
-> 
-
--- 
-#gernperDu 
-#CallMeByMyFirstName
-
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
