@@ -1,103 +1,212 @@
-Return-Path: <devicetree+bounces-251978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DB93CF929B
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 16:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09060CF93CA
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 17:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DD33F301B2E1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 15:45:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B4E03061295
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 15:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2A2346A01;
-	Tue,  6 Jan 2026 15:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M8aqSayh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4ECC1E1DFC;
+	Tue,  6 Jan 2026 15:56:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3E56345CA1
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 15:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FAEC3B28D;
+	Tue,  6 Jan 2026 15:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767714293; cv=none; b=YTwmyeVg0+8kwLWqJTHoLbn/iHtMWoEV0GbyPK4Kxy9LEOc0hXe/K+c1lvV1JiqLU0/DIpmqdIfuz1PKO7VPE7NunbBRXUuMYumBYN6o7OXT6FxYKoA/gd760oZPpsLB06FZSFyefoyopDDreyn2v7tFUaKy1wDFD+liyUB5c44=
+	t=1767714965; cv=none; b=Qp+F6JmMlkHEA97aNS61tuQNTS1Pp+8e0Nvg/4rGPpmludniaSVtuCdqJc3v45uA2N7NNflhTakdVY9S1ys1jGP647imUzrOuyly7L9NKzh6BaiKWO0kpUmf2q6LRfDEKIR++Ez4wUU5gJI8AiCUxMQcTABMVh+Sm0nZvq4zLUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767714293; c=relaxed/simple;
-	bh=46IA74TgsYCX1Wdt8aKcLKb4RYOUhDJz4Bq8eqM3rvM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ivij3L/izn9RSVZCVQwKq7plZLhX5Q6ExwnA/cqpO/cSXMKL3Jud/Q6+XGnaSr/LSrnBAA53IHBarhBQtCdpIzWxe2NctbPRHyN4E8Zrr4UdaGjQBZUxpI4HSRpp1r4WUl/k/ZRxB6aodoDBaGRlKDQ3z+9Q/Rv173ph469cb7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M8aqSayh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B564BC116C6
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 15:44:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767714290;
-	bh=46IA74TgsYCX1Wdt8aKcLKb4RYOUhDJz4Bq8eqM3rvM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=M8aqSayh9x7eugOCav2bUStC3irU102ypWSH1a6+VxK2JM94lSG/3mPDBBxdNg9dB
-	 9caq4toXi+Ry3NHUpkGyP1fQsyXrE/u/eg6vxmWii3ry1BRwJeD/GYRdrDlQYq3p8b
-	 blArfXe2ZBxKN9qSAGwjrnmeGrKQoLrpyXvsBlgJ0C1U1koKUQuVL2I0Da2AHS9/2Q
-	 nHmJYt5vnHBuYlKzJja8nOpzuFBgsi3KUjttuiq5obuTJOTtU9Er9Jap/arRWt7EYL
-	 B95bFMEQ5Gj9f72+BsMunNYp1hqO/Cs/89rPiVCyWV5ZtDeuHGPqu9dw1Tqrr7VgMi
-	 Pbm03B+uBiMsA==
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b76b5afdf04so206491966b.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 07:44:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVsEk42wxb306Xxs3Ze83qYhPtB3r3m7iHJTnksWIe9tXhGj3jF2PxPZdbDhXGYdQ5b+K4A1H8vdVAN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw75BmiMxeEJ8cNj+qskyly7OIdA79hO5ty08tvu2TWzgLu3+PQ
-	ZnREopmq5Xogn3e/oNnSOpCw6UEH15UZ9MVOk7PXTAvLHNpdYwWtqBlWAVCRGY3MfS7dTCc8m1Q
-	HExaaZXcEg4kpAY6xS+9vJxn5IWwfDQ==
-X-Google-Smtp-Source: AGHT+IHFeow7GaX738Pcre7r5od5Yqad8UB8G/TYGPsM6GH9pPZ2ShOPoXiLIEj59XKYnsYmNR7ZxCR17dGzQ8eR6p8=
-X-Received: by 2002:a17:907:d7c9:b0:b84:1fef:32a0 with SMTP id
- a640c23a62f3a-b8426a422femr330026266b.6.1767714289311; Tue, 06 Jan 2026
- 07:44:49 -0800 (PST)
+	s=arc-20240116; t=1767714965; c=relaxed/simple;
+	bh=T2uGbtWx6bDmY/1ikp3WDsc86XTjx3XhYtdjuLxBTlY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MZQJKRlmIEfOHX6g1Fiu6YhpgXHDwKBQVxB808wnSVoofoL80844tAcDv6g0bJjo1/RoF3XcuvnT/nMArWtMi2j+gS07do68YGVYCfdzr/KXC79JqxRCP283bDlUo0Mgi+Znp0m8KxIt2In9Tsseol1BRc+bPbAuxDR/Irg5+ek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2605FC16AAE;
+	Tue,  6 Jan 2026 15:56:02 +0000 (UTC)
+Message-ID: <a2149736-a0e5-44a4-916f-c8a915f7c38b@nxsw.ie>
+Date: Tue, 6 Jan 2026 15:56:01 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251226141116.1379601-1-coxu@redhat.com>
-In-Reply-To: <20251226141116.1379601-1-coxu@redhat.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 6 Jan 2026 09:44:37 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLEsUV34tMZWSMc6w-xDV=M0JpOmS95TxrtbbBMRoD3Jw@mail.gmail.com>
-X-Gm-Features: AQt7F2oZXv_EGI4J1ibbdla2HKndc4TqmJiiAssIWbaMzvfSFkjDSKLgEAqcVKc
-Message-ID: <CAL_JsqLEsUV34tMZWSMc6w-xDV=M0JpOmS95TxrtbbBMRoD3Jw@mail.gmail.com>
-Subject: Re: [PATCH] arm64/kdump: pass dm-crypt keys to kdump kernel
-To: Coiby Xu <coxu@redhat.com>
-Cc: kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>, Baoquan he <bhe@redhat.com>, 
-	Dave Young <dyoung@redhat.com>, Kairui Song <ryncsn@gmail.com>, Pingfan Liu <kernelfans@gmail.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	open list <linux-kernel@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: sm8750: Add Iris VPU v3.5
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260106-b4-sm8750-iris-dts-v4-0-97db1d1df3dd@oss.qualcomm.com>
+ <Hxa0Kxik05DGidPKFVzZPdG8DOWufi_Cmt8Z7t3nbNq76GDa3jd-oH1o0zJ53ftFq8vofPdUbRUP18HjiPOF6A==@protonmail.internalid>
+ <20260106-b4-sm8750-iris-dts-v4-1-97db1d1df3dd@oss.qualcomm.com>
+From: Bryan O'Donoghue <bod.linux@nxsw.ie>
+Content-Language: en-US
+In-Reply-To: <20260106-b4-sm8750-iris-dts-v4-1-97db1d1df3dd@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Dec 26, 2025 at 8:11=E2=80=AFAM Coiby Xu <coxu@redhat.com> wrote:
->
-> Based on the CONFIG_CRASH_DM_CRYPT feature, this patch adds
-> LUKS-encrypted device dump target support to ARM64 by addressing two
-> challenges [1],
->  - Kdump kernel may not be able to decrypt the LUKS partition. For some
->    machines, a system administrator may not have a chance to enter the
->    password to decrypt the device in kdump initramfs after the 1st kernel
->    crashes
->
->  - LUKS2 by default use the memory-hard Argon2 key derivation function
->    which is quite memory-consuming compared to the limited memory reserve=
-d
->    for kdump.
->
-> 1st kernel will add device tree property dmcryptkeys as similar to
-> elfcorehdr to pass the memory address of the stored info of dm-crypt
-> keys to the kdump kernel.
+On 06/01/2026 09:07, Krzysztof Kozlowski wrote:
+> Add Iris video codec to SM8750 SoC, which comes with significantly
+> different powering up sequence than previous SM8650, thus different
+> clocks and resets.  For consistency keep existing clock and clock-names
+> naming, so the list shares common part.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8750.dtsi | 121 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 121 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> index 0a6f2a449c20..a76bf5193a70 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> @@ -6,6 +6,7 @@
+>   #include <dt-bindings/clock/qcom,rpmh.h>
+>   #include <dt-bindings/clock/qcom,sm8750-gcc.h>
+>   #include <dt-bindings/clock/qcom,sm8750-tcsr.h>
+> +#include <dt-bindings/clock/qcom,sm8750-videocc.h>
+>   #include <dt-bindings/dma/qcom-gpi.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/interconnect/qcom,icc.h>
+> @@ -2811,6 +2812,126 @@ usb_dwc3_ss: endpoint {
+>   			};
+>   		};
+> 
+> +		iris: video-codec@aa00000 {
+> +			compatible = "qcom,sm8750-iris";
+> +			reg = <0x0 0x0aa00000 0x0 0xf0000>;
+> +
+> +			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0C_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0_CLK>,
+> +				 <&gcc GCC_VIDEO_AXI1_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0C_FREERUN_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0_FREERUN_CLK>;
+> +			clock-names = "iface",
+> +				      "core",
+> +				      "vcodec0_core",
+> +				      "iface1",
+> +				      "core_freerun",
+> +				      "vcodec0_core_freerun";
+> +
+> +			dma-coherent;
+> +			iommus = <&apps_smmu 0x1940 0>,
+> +				 <&apps_smmu 0x1947 0>;
+> +
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+> +					 &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
+> +					<&mmss_noc MASTER_VIDEO_MVP QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+> +			interconnect-names = "cpu-cfg",
+> +					     "video-mem";
+> +
+> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			memory-region = <&video_mem>;
+> +
+> +			operating-points-v2 = <&iris_opp_table>;
+> +
+> +			power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
+> +					<&videocc VIDEO_CC_MVS0_GDSC>,
+> +					<&rpmhpd RPMHPD_MXC>,
+> +					<&rpmhpd RPMHPD_MMCX>;
+> +			power-domain-names = "venus",
+> +					     "vcodec0",
+> +					     "mxc",
+> +					     "mmcx";
+> +
+> +			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
+> +				 <&gcc GCC_VIDEO_AXI1_CLK_ARES>,
+> +				 <&videocc VIDEO_CC_MVS0C_FREERUN_CLK_ARES>,
+> +				 <&videocc VIDEO_CC_MVS0_FREERUN_CLK_ARES>;
+> +			reset-names = "bus0",
+> +				      "bus1",
+> +				      "core",
+> +				      "vcodec0_core";
+> +
+> +			/*
+> +			 * IRIS firmware is signed by vendors, only
+> +			 * enable in boards where the proper signed firmware
+> +			 * is available.
+> +			 */
+> +			status = "disabled";
+> +
+> +			iris_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-240000000 {
+> +					opp-hz = /bits/ 64 <240000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs_d1>,
+> +							<&rpmhpd_opp_low_svs_d1>;
+> +				};
+> +
+> +				opp-338000000 {
+> +					opp-hz = /bits/ 64 <338000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>,
+> +							<&rpmhpd_opp_low_svs>;
+> +				};
+> +
+> +				opp-420000000 {
+> +					opp-hz = /bits/ 64 <420000000>;
+> +					required-opps = <&rpmhpd_opp_svs>,
+> +							<&rpmhpd_opp_svs>;
+> +				};
+> +
+> +				opp-444000000 {
+> +					opp-hz = /bits/ 64 <444000000>;
+> +					required-opps = <&rpmhpd_opp_svs_l1>,
+> +							<&rpmhpd_opp_svs_l1>;
+> +				};
+> +
+> +				opp-533333334 {
+> +					opp-hz = /bits/ 64 <533333334>;
+> +					required-opps = <&rpmhpd_opp_nom>,
+> +							<&rpmhpd_opp_nom>;
+> +				};
+> +
+> +				opp-570000000 {
+> +					opp-hz = /bits/ 64 <570000000>;
+> +					required-opps = <&rpmhpd_opp_nom_l1>,
+> +							<&rpmhpd_opp_nom_l1>;
+> +				};
+> +
+> +				opp-630000000 {
+> +					opp-hz = /bits/ 64 <630000000>;
+> +					required-opps = <&rpmhpd_opp_turbo>,
+> +							<&rpmhpd_opp_turbo>;
+> +				};
+> +			};
+> +		};
+> +
+> +		videocc: clock-controller@aaf0000 {
+> +			compatible = "qcom,sm8750-videocc";
+> +			reg = <0x0 0x0aaf0000 0x0 0x10000>;
+> +			clocks = <&bi_tcxo_div2>,
+> +				 <&gcc GCC_VIDEO_AHB_CLK>;
+> +			power-domains = <&rpmhpd RPMHPD_MMCX>,
+> +					<&rpmhpd RPMHPD_MXC>;
+> +			required-opps = <&rpmhpd_opp_low_svs>,
+> +					<&rpmhpd_opp_low_svs>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+>   		pdc: interrupt-controller@b220000 {
+>   			compatible = "qcom,sm8750-pdc", "qcom,pdc";
+>   			reg = <0x0 0x0b220000 0x0 0x10000>, <0x0 0x164400f0 0x0 0x64>;
+> 
+> --
+> 2.51.0
+> 
+> 
 
-Is there not any security issue with putting the key into the DT? The
-DT is provided to userspace. There's provisions already to not expose
-"security-*" properties to userspace (see __of_add_property_sysfs).
-Though I think that has a hole in that the FDT is also provided as-is.
-However, I don't even know who or what uses these properties.
-
-Rob
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
