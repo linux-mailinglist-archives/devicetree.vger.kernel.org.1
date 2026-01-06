@@ -1,178 +1,211 @@
-Return-Path: <devicetree+bounces-252016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB280CFA24B
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 19:28:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57AF1CF9D9D
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 18:51:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F314D3158178
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:40:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7F5AD304CACC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32DA2EFD95;
-	Tue,  6 Jan 2026 17:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE0A305976;
+	Tue,  6 Jan 2026 17:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jh0WVdvT";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Nz4sZcfa"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SjLtBEZT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAAE629B8FE
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 17:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53E62FFDF8;
+	Tue,  6 Jan 2026 17:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767720875; cv=none; b=msQ7bb2drPPU4zQDTGEAA/dtymBQTGiDNX95gAMwSJwxWV5UCGFyjvGPsbFYrpr+V56OVqifwd1d01xm9JL6shy6/w4Pw7GxTmO1BoDAaPJu4hTalLOyJhhjJyYiY8/e8cU+OX59ApWHhyvzszgXsfT3/ISo9XbfV7/cTJuf53k=
+	t=1767721404; cv=none; b=MRM/6J/3CtPlJazhJW4JYkSNmws+FSnPfg5a6XmJ9awLYCdgYW2mwmoL86YnF5B6rqsBntnC0l2s+a/bHLbOdrdacJCrJu8i+LoE9Gkiwn9Gexp8JpMf819oNGOZB9PyJpNKTlKzf+QBVSVmHE/2Fk88YIPq5LwgdGtRu2CVE6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767720875; c=relaxed/simple;
-	bh=4uAAVaBUqR7XbgPYM+b3TErNU92wyGwrj6qD+m/4Eys=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OtawLGHSi4BHxuGcM25MUuQYQ0xZ2smQ/fcRyqlmIm6xupqacaNu+K6Q2j0FGI404Sug1Yy6L5cLiWoD4NcYikYFKA02HXN7/gSArr0FG3ag23c+2L2e21xRjb1YeTjanJs6dfQyYdEFjzoj92PcFJDOKz7YVATDj65TqFrNi4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jh0WVdvT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Nz4sZcfa; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 606GqUMn3889122
-	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 17:34:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=jzSTS8fbRs1wSAGF7WUmIraz
-	4oEVJgEJtLyxFPfHdeY=; b=jh0WVdvT/iHJCW9ccrMMRQSXa8S7RznjJF2rwsEN
-	YKwyXrzMt1PfUGji8KYBTIfsqkOYc3GpQakVO9XP2+xjmyL6iXyXAFfb71sInSdv
-	kWR7WbHq4o4RAv6mIDMxZHsbokci3U62YI6Paaf3X2NngzaBz4EKYYB4U667tyq7
-	fn1r6oK0Nid52Eg2ESQNbj+OEW++qF/UfR9bcvHyZIrWkZcaUrFsLyPAiE/LR2Pd
-	sydRPjtTZOWB7NNLg+Yzs9VHBMmrEhJ8R9K14MnudQhdrTihKF8rlaiHEKxKmnro
-	t1+GLHOBC15gk5klSTnDod8Ij2r5Jn4z9szjZqTb4BWpoQ==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bh6a0g4b4-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 17:34:32 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4edaf9e48ecso35209061cf.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 09:34:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767720872; x=1768325672; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jzSTS8fbRs1wSAGF7WUmIraz4oEVJgEJtLyxFPfHdeY=;
-        b=Nz4sZcfadxHAci8TJaPY7PKYE2OPXJu9G0hJXPaa4bTg6uE4Ezd9zERwAKNQa4lBTR
-         6LATPjCSwvJYDdd7GHGAh5ZbuyUeZDYQzcCe0tKaVSWjDAZaTKZYjwg7IbaY0C59JJg4
-         60jtQqTPYnQVgzR8cRk5eJHh9M/bCuT7k+WeN9YNwFTtMBY1jZtlgaybbBcXzmWOS3k3
-         84sB1Cw1OmKumjscHgQPSzZ4jhMosQJn6YLafe8GqAoufxLhp0lZcvj6lrp4+5XsgKIt
-         GK4fctpw3GyoiZ/jR3PEmwsBEY39Jd0ZyzOAGJBALWIS04MF/7JiotqCHd0hUPfLJ/Dv
-         ZxqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767720872; x=1768325672;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jzSTS8fbRs1wSAGF7WUmIraz4oEVJgEJtLyxFPfHdeY=;
-        b=ZMH2Le5a6fcszvLThyWWE+JHxmf2ieyhxUwsg/0fbkhSw7huY0pR1H2B1CggIZzHeH
-         IAeYgDkdSmsODwvGxUkwlZmUOdPnZ7dEyYN2LZ4b6y3qoemIOQEW8utPw5qSjXdRFqJW
-         KmUVornluNjQ68YQDdOQWsBGxfxiD637WW/KMDFELh7qdsFpUx0g9iLGynEXXKVbc8rS
-         Roxm+pm7R8JyvMMrOG6/r7pHnOv5i4JfxFUT/fmu43XifXuCKObSY/4PKfiaicRpFI5o
-         N7ERfAqrHtNs6aLp7x9TUl17M5oFTqMp7xM7EQzHfMWqBettUOoucgHNQ8YkUKWagyCr
-         vCgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU4uS9L8/a3NFvk64ic1AyfV+FySMVqVcw5omEz8olGrVJ5OlJLqUPVSEK0kSglxYremgZ15RvgatUc@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIiCTUKB8zhEA8kE5ZqBIlLcM2KAgiV7en+JWSSXvOM5PAPOjp
-	xqdw82s4y9UEw/1Myly3mGNKPmvSEbTV1Q+5C893lEcVQMWCiZpVYZql8c5jAlKXxE6OfCQ+j6g
-	WJor3LWnKBH/iVBoxdoC7oxBm6WYh6vBobZ1DADj8fl+aa8RRTO97qDglKtb+dvel
-X-Gm-Gg: AY/fxX4ttBIDv4U6ixbnO3j6/3JSaDSDDAVz7tye7qQebcx6vkUEEgi47n6m2bdIdj/
-	jUYNpIhLQIXIc529guNR8PfQuDfYYCRnju08IE0PoPWr3iRtqulzkVyBrpmg5eLtgB7w508yAbt
-	nDLZYndcQCLBFUu7/VonNiLf5kQOGaJFDLG8mzuJaXyWa2jBqf62h5MSPw2DsWeBOmA+mGTdjhd
-	/V+QjYC2/LMnrKPjlxfc7YBh3WlSYJWkw/6/vlJaawaSVqDEaeLw0STvPnQnI2shJ4mHwS5c2FM
-	PO9cfAjRCOPMefPSe+hyV5+4S0c3xLmh+KtDfU45i8AP4tzgX8ESdDdExXdludYMYQ14toB99zx
-	AV0BBtM1O17MV6JCFLi3M
-X-Received: by 2002:ac8:57cb:0:b0:4f1:b9fc:eeda with SMTP id d75a77b69052e-4ffa77597abmr57403081cf.37.1767720871981;
-        Tue, 06 Jan 2026 09:34:31 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFsS5Q8M4Ax4uLqCekfjuM/TS7dC5bAY2/2l4KJvBIfjf+72ZUp+kPt+lte2C5fe//DuAlvyA==
-X-Received: by 2002:ac8:57cb:0:b0:4f1:b9fc:eeda with SMTP id d75a77b69052e-4ffa77597abmr57402111cf.37.1767720871283;
-        Tue, 06 Jan 2026 09:34:31 -0800 (PST)
-Received: from oss.qualcomm.com ([86.121.7.10])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507bf6d5absm2551707a12.33.2026.01.06.09.34.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jan 2026 09:34:30 -0800 (PST)
-Date: Tue, 6 Jan 2026 19:34:28 +0200
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
-        Bill Wendling <morbo@google.com>,
-        Justin Stitt <justinstitt@google.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Madhavan Srinivasan <maddy@linux.ibm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-        Nipun Gupta <nipun.gupta@amd.com>,
-        Nikhil Agarwal <nikhil.agarwal@amd.com>,
-        Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Vinod Koul <vkoul@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, llvm@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-clk@vger.kernel.org, imx@lists.linux.dev,
-        dmaengine@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 07/11] clk: imx: imx27: Simplify with scoped for each
- OF child loop
-Message-ID: <pbmxwpyohpq3pi552pjwwgfe5wcj7qq7fx6lofpod5mq4bvmwj@sn4yfn74sgiz>
-References: <20260106-of-for-each-compatible-scoped-v2-0-05eb948d91f2@oss.qualcomm.com>
- <20260106-of-for-each-compatible-scoped-v2-7-05eb948d91f2@oss.qualcomm.com>
+	s=arc-20240116; t=1767721404; c=relaxed/simple;
+	bh=pkc/3FbnSRiYfLotqXlNBQMs9NKxwUN3haOJGCuzTu8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XFHiLFlmVjwEN6KavmKCkI6BLwfs6suH7L3qkgib6rqC6rNv2yHiRFhbzMkmPCKQGPGH0KqH43a1pI9IkvRze+gZdFbTH2Sdll4i8WJSw2jvOFhKzBLRKDcJHJJH6v1fLikSjR8iRLlecFupLvLDBHrC8I4BVZ87UeU2XWz31DM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SjLtBEZT; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id D76644E41FB2;
+	Tue,  6 Jan 2026 17:43:18 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 9CFC160739;
+	Tue,  6 Jan 2026 17:43:18 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9DD3A103C81A7;
+	Tue,  6 Jan 2026 18:43:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767721396; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=kLqSTVzvhTVRG4lWNvpKEN50rxP50IjnuD1ETy7eXSQ=;
+	b=SjLtBEZTy4fTHk7397dU3Qzb6DSsjhjQXC8Tq89jUf+sjDL/aRLuTcioBrIXBei7HxG9EY
+	ep8sNudYtfI+HYM33zkHt8KrvcsVwBWfe07ApP7aYtCnpzmFbrcJqgrxQVx0K1oUEG1Zdb
+	I1YjFyBr0lKUY19QnnmpA/AMF8Rnv90iWeMfNo2jUvgpL/E4d2YVtevoZJBbqT1lLdoQgE
+	wvHdKUgJmZcVrg6olUJPQxjRKU/5I3t6OF1il0Te70y8TU/XF2/rUfDyAXC+LJXgKvTju1
+	kwI6yV3jjGDx3VbpcvWnv8ePyqwllEndfVolKT/xDslWmFeuqfz63ULJiJ9T1g==
+From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
+Subject: [PATCH v3 00/22] Clean and update tilcdc driver to support
+ DRM_BRIDGE_ATTACH_NO_CONNECTOR
+Date: Tue, 06 Jan 2026 18:42:16 +0100
+Message-Id: <20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260106-of-for-each-compatible-scoped-v2-7-05eb948d91f2@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: aFjzs2Mm9qCX79tQ1XRWWElkcdl2O92y
-X-Proofpoint-GUID: aFjzs2Mm9qCX79tQ1XRWWElkcdl2O92y
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDE1MiBTYWx0ZWRfXw+nocrYmcHh6
- wqCaqQBlzkKud3udpPUCHqTXf2zkfQZnzRl3O8qVtHar0qo6o3fgLn8XZlsuM0lv1kt+HSaHOqz
- hZbysR83V7Q00ebG8ev+pNMEY57YxWBFU5I1ncJAlNxnL0LzKSaADI+A0X7fM8M4rfq+3pnZtAc
- B74TdWJbWFPPoAm9qJaWBDnmrqpWz/ifyKbNtm0rfCkDZ2XlwHPKsT9nvxyAJBv/OkLRTzjbIAj
- 8TXYcam0X4BT1wz8ShGhRyNDCSItguciYRPRLGaWtffZI2Oi0h5Efze5vUoc3/D1JHxnN8j2sgB
- dLocraq/Nl1mw7HLoz8+pCjWqiVBOWKkek3L2Jfiz19/AZaz+ZzG83SCyeTEajL/IIybneuDV//
- NDsmM3OZkCANiqVqwIwDpVF46zMcf5Q4ivhuxWTnANdmJrMBb4unmNQndE/MilIo/PQRVNOXMKt
- 8o4JtVmjz32cE/8bkzg==
-X-Authority-Analysis: v=2.4 cv=MtdfKmae c=1 sm=1 tr=0 ts=695d47a8 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=hZ5Vz02otkLiOpJ15TJmsQ==:17
- a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=8AirrxEcAAAA:8 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
- a=_Ixbbux_C5oTi3JCwyIA:9 a=CjuIK1q_8ugA:10 a=dawVfQjAaf238kedN5IG:22
- a=ST-jHhOKWsTCqRlWije3:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-06_01,2026-01-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 phishscore=0 adultscore=0 bulkscore=0
- priorityscore=1501 clxscore=1015 impostorscore=0 spamscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601060152
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAHhJXWkC/2XMSwrCMBSF4a2UjI3kZWscuQ8RyePGBrSRJAald
+ O+mdSDq8D9wvhEliB4S2jUjilB88mGowVcNMr0azoC9rY0YYRtKqMAOVL5HOGV/MdbgThorJLS
+ ddhLV0y2C848FPBxr9z7lEJ+LX+i8vinK2l+qUEywkFqCY8CVInsdQr74YW3CFc1YYR+AUfoHs
+ Ao4sdXKcGM5h29gmqYXiU9Ryu8AAAA=
+X-Change-ID: 20251014-feature_tilcdc-79cd49e67bf9
+To: Jyri Sarha <jyri.sarha@iki.fi>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Tony Lindgren <tony@atomide.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Markus Schneider-Pargmann <msp@baylibre.com>, 
+ Bajjuri Praneeth <praneeth@ti.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Louis Chauvet <louis.chauvet@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Miguel Gazquez <miguel.gazquez@bootlin.com>, 
+ Herve Codina <herve.codina@bootlin.com>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, 
+ "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 26-01-06 10:15:17, Krzysztof Kozlowski wrote:
-> Use scoped for-each loop when iterating over device nodes to make code a
-> bit simpler.
-> 
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+The starting point for this work was adding support for the HDMI cape:
+https://www.seeedstudio.com/Seeed-Studio-BeagleBone-Green-HDMI-Cape.html
+This will be sent in a later series.
 
-Acked-by: Abel Vesa <abelvesa@kernel.org>
+Initially, Miguel proposed modifying the ite-it66121 bridge to support
+the legacy behavior without the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag:
+https://lore.kernel.org/lkml/20250909-it66121-fix-v1-1-bc79ca83df17@bootlin.com/
+This patch was NAK'd as we don't want to add more legacy code. Maxime
+requested that the tilcdc driver be updated to use
+DRM_BRIDGE_ATTACH_NO_CONNECTOR instead.
+
+While working on this update, I discovered that the tilcdc driver
+contained significant amounts of legacy code that needed cleaning.
+Since this driver was developed alongside the tda998x driver for
+several AM335x boards, the tda998x driver also required cleanup and
+support for the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
+
+A new tilcdc_panel_legacy driver replaces the old tilcdc_panel driver.
+It modifies the devicetree at boot time to properly bind the tilcdc driver
+with the standard panel-simple driver.
+
+This series is based on the tilcdc fix sent to mainline:
+https://lore.kernel.org/lkml/20251125090546.137193-1-kory.maincent@bootlin.com/
+
+This series has been tested on:
+- BeagleBone Black (tilcdc + tda998x bridge)
+- BeagleBone Black with LCD cape (tilcdc + ti,tilcdc,panel binding)
+- BeagleBone Green Eco with HDMI cape (tilcdc + it66121 bridge)
+
+The following mainline devicetrees still use ti,tilcdc,panel binding.
+I believe this series maintains compatibility, but I cannot test without
+hardware:
+- da850-evm.dts
+- am335x-guardian.dts
+- am335x-pdu001.dts
+- am335x-pepper.dts
+- am335x-sbc-t335.dts
+- am335x-sl50.dts
+
+Patches 1-2: Convert tilcdc binding to YAML and set the ti,tilcdc,panel
+	     sub-binding as legacy.
+Patches 3-6: Replace tilcdc_panel driver to the new tilcdc_panel_legacy
+	     driver which is tweaking the devicetree at boot time.
+Patches 7-17: Clean up tilcdc driver.
+Patches 18-20: Clean up tda998x driver.
+Patch 21: Add DRM_BRIDGE_ATTACH_NO_CONNECTOR support for tda998x driver.
+Patch 22: Add DRM_BRIDGE_ATTACH_NO_CONNECTOR support for tilcdc driver.
+
+Changes in v3:
+- Split patch 13 and patch 14 into two for better readability and git
+  history clarity.
+- Update patch 5 to use OF changeset and __free() macro. Made also few
+  small improvements as requested by Luca.
+- Rename binding file to ti,am33xx-tilcdc.yaml, use generic node name and
+  drop unused label.
+- Link to v2: https://lore.kernel.org/r/20251211-feature_tilcdc-v2-0-f48bac3cd33e@bootlin.com
+
+Changes in v2:
+- Remove patch 2 that add fifo-threshold property. Use FIFO threshold
+  value from SoC id instead.
+- Remove the part that breaks DTB compatibility.
+- Add tilcdc_panel_legacy to modify the devicetree at boot time to properly
+  bind the tilcdc driver with the standard panel-simple driver.
+- Link to v1: https://lore.kernel.org/r/20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com
+
+Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+---
+Kory Maincent (TI.com) (22):
+      dt-bindings: display: tilcdc: Convert to DT schema
+      dt-bindings: display: tilcdc: Mark panel binding as deprecated
+      drm/tilcdc: Remove simulate_vesa_sync flag
+      drm/tilcdc: Add support for DRM bus flags and simplify panel config
+      drm/tilcdc: Convert legacy panel binding via DT overlay at boot time
+      drm/tilcdc: Remove tilcdc panel driver
+      drm/tilcdc: Remove component framework support
+      drm/tilcdc: Remove tilcdc_panel_info structure
+      drm/tilcdc: Remove redundant #endif/#ifdef in debugfs code
+      drm/tilcdc: Remove unused encoder and connector tracking arrays
+      drm/tilcdc: Rename external_encoder and external_connector to encoder and connector
+      drm/tilcdc: Rename tilcdc_external to tilcdc_encoder
+      drm/tilcdc: Remove the useless module list support
+      drm/tilcdc: Use drm_module_platform_driver() helper
+      drm/tilcdc: Move tilcdc_init/fini closer to probe/remove
+      drm/tilcdc: Modernize driver initialization and cleanup paths
+      drm/tilcdc: Remove the use of drm_device private_data
+      drm/bridge: tda998x: Remove component support
+      drm/bridge: tda998x: Move tda998x_create/destroy into probe and remove
+      drm/bridge: tda998x: Remove useless tda998x_connector_destroy wrapper
+      drm/bridge: tda998x: Add support for DRM_BRIDGE_ATTACH_NO_CONNECTOR
+      drm/tilcdc: Add support for DRM_BRIDGE_ATTACH_NO_CONNECTOR
+
+ .../devicetree/bindings/display/tilcdc/panel.txt   |   1 +
+ .../bindings/display/tilcdc/ti,am33xx-tilcdc.yaml  | 100 +++++
+ .../devicetree/bindings/display/tilcdc/tilcdc.txt  |  82 ----
+ drivers/gpu/drm/bridge/tda998x_drv.c               | 251 +++++------
+ drivers/gpu/drm/tilcdc/Kconfig                     |  16 +
+ drivers/gpu/drm/tilcdc/Makefile                    |   5 +-
+ drivers/gpu/drm/tilcdc/tilcdc_crtc.c               | 117 ++---
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c                | 479 ++++++++-------------
+ drivers/gpu/drm/tilcdc/tilcdc_drv.h                |  88 +---
+ drivers/gpu/drm/tilcdc/tilcdc_encoder.c            |  91 ++++
+ .../tilcdc/{tilcdc_external.h => tilcdc_encoder.h} |   5 +-
+ drivers/gpu/drm/tilcdc/tilcdc_external.c           | 179 --------
+ drivers/gpu/drm/tilcdc/tilcdc_panel.c              | 408 ------------------
+ drivers/gpu/drm/tilcdc/tilcdc_panel.h              |  15 -
+ drivers/gpu/drm/tilcdc/tilcdc_panel_legacy.c       | 185 ++++++++
+ drivers/gpu/drm/tilcdc/tilcdc_panel_legacy.dtso    |  29 ++
+ drivers/gpu/drm/tilcdc/tilcdc_plane.c              |   2 +-
+ drivers/gpu/drm/tilcdc/tilcdc_regs.h               |   8 +-
+ 18 files changed, 768 insertions(+), 1293 deletions(-)
+---
+base-commit: 3617933603dd15db33ae9a0200734480682025b8
+change-id: 20251014-feature_tilcdc-79cd49e67bf9
+
+Best regards,
+-- 
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
 
