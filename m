@@ -1,88 +1,101 @@
-Return-Path: <devicetree+bounces-252073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6FDBCFA529
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 19:52:37 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 876B7CFA4C7
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 19:49:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AAEE8302D6C1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:52:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6EF9E3017863
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:49:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAEF354AF1;
-	Tue,  6 Jan 2026 18:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3DD62C15AB;
+	Tue,  6 Jan 2026 18:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="jPNC0wMU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fpejQQ+R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A98354AC6;
-	Tue,  6 Jan 2026 18:42:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A19AC2376E4;
+	Tue,  6 Jan 2026 18:49:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767724934; cv=none; b=AYcpPsSxW5SnX49ad/d0nj2yDJ/m8eDNc+qleR9roJnsNPcow24Qm5X4eYw+p6itHA1YBrJVUXLygaLSHMbQ8G9IihnugncoU8G1i00oXO/RLdjW0n8G2PuXKzhvbiNQE8AcPTxzA7dHYnXz+6k4wJ5xyslzPg2a6dkClgsAn0k=
+	t=1767725377; cv=none; b=qVKMZPWqP9VacNws8o5WCoOwgQepo1GT7e4RWNB6ojfBkYaSfd4mfJTPIpRwNyd8NdOewch29NdJQR+KS8PgtRqP/HzDnlP9NC9weh3GPPhqQ6gNOCaSR6tK76mnxQJgiL/dok0oyj3nsGMwk0KdBUrgBMwDoKBl0YAJSOwmhIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767724934; c=relaxed/simple;
-	bh=crjUT4EK61RedBYhQq2ZFsvS7uaJJEc6FaL4ttnmhSE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M39An75FkZ9z/UMfE/RdkB3vjG25plsthyzAed5Iw0NlfaDTu9w9cLxnID34fJQH40BoX+TF4NmWGOGxUWVRWFjTs+aSiInzq88696gcj/6P7urN8vhaqe2555s6ndatY7JBArbsqH+/eQ4K/flaUFbWCCH6qjF+ff3ORCQxdnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=jPNC0wMU; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=L8UU7UO9MTvtaN16IxhFCoptZI6QmiDvDm1zHHC4rIs=; b=jPNC0wMUS0zykPN5u7wzbD6aOj
-	w+0L5kxSN5K6G3nUzqfV6/GuzriuSHa7CgHPhY00nMWoXwPVgO7lqiyeScCpN0njSAQMwSiIKNoda
-	G/zcBF56mhAJbCm33tGML60fJpDknuHsxGRFOl/zUzowUvAaTdoa/0jLRRAnMZyE8QB9MeRM5tmFP
-	EPQ5E7ovXZfoP2clvW1vJVFBlHeI7mJwyuNHYwK4zG2+iW0mJBakV7GLA+Z3ls8YTD6ZDYb+XMS8B
-	QJpSEx4oGA+X/xk5aKy8a+nSdaNq5AS8Di1fP1MKHEdkbC8VaMCn0uxBbylcymqO3A57m7khgZTvR
-	GL2yBJ2g==;
-Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vdC0M-001Hfs-MM; Tue, 06 Jan 2026 19:42:07 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexey Charkov <alchark@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] arm64: dts: rockchip: enable UFS controller on FriendlyElec NanoPi M5
-Date: Tue,  6 Jan 2026 19:41:56 +0100
-Message-ID: <176772487184.3029798.254333001425735239.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251230-nanopi-m5-ufs-v3-1-ed188ae34fdb@gmail.com>
-References: <20251230-nanopi-m5-ufs-v3-1-ed188ae34fdb@gmail.com>
+	s=arc-20240116; t=1767725377; c=relaxed/simple;
+	bh=MZ6Svd55ZlvCBunB4Zjt4d4jZj4xwy6MqwTUDZTbSH8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Af1CklPZGj6esfY9cEKu11OFxjYBY/1PFocefCw4FJCFFh9HBQMxzXGz8SrI06LR99p4Sqrba9pClgvnDAOgDqEWZbUh5f5jNtI0L3rNMa0TglxVprYjj6/8dqs1iKhi8uNOaD+2t3+i60ew3qtFOZcoolJweOrc8zIyik3Vmx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fpejQQ+R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECE50C116C6;
+	Tue,  6 Jan 2026 18:49:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767725377;
+	bh=MZ6Svd55ZlvCBunB4Zjt4d4jZj4xwy6MqwTUDZTbSH8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fpejQQ+RbBFS0gKJd342pmqkJ53TqJCXziTA0dATTdKT2WcO22woVpKCokFdvzHU0
+	 1FVQEiNt5+2duZ5VWC9rFifJiZPra8QfuNWL1Bm2NBijOPJqu5BuqqmsHmtGEt7NfN
+	 jxio8l3mmlrMVYHBbshPdJUmnU7O8PF2WeMS0GsCRLPqKsB8JFx43sydz9J8X2nnVk
+	 a0KAc4zpDXiopdnNxG9znfMma0JxDLnaoUfrsE+weCMtCD5O75zYBNQyGfXnMczagK
+	 AWDkwbhufXFfZzIDdZe+arr7kMRhFTYA2TmdJEmN3UOZpCrQDDcdcTjuCFlG/P++oc
+	 /dL/ldLeiZybw==
+Date: Tue, 6 Jan 2026 12:49:36 -0600
+From: Rob Herring <robh@kernel.org>
+To: Zhang Yi <zhangyi@everest-semi.com>
+Cc: broonie@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org,
+	conor+dt@kernel.org, lgirdwood@gmail.com,
+	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+	perex@perex.cz, krzk+dt@kernel.org,
+	amadeuszx.slawinski@linux.intel.com, krzk@kernel.org
+Subject: Re: [PATCH 1/5] ASoC: dt-bindings: ES8389: Add property about power
+ supply
+Message-ID: <20260106184936.GA2517797-robh@kernel.org>
+References: <20260105091548.4196-1-zhangyi@everest-semi.com>
+ <20260105091548.4196-2-zhangyi@everest-semi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260105091548.4196-2-zhangyi@everest-semi.com>
 
-
-On Tue, 30 Dec 2025 17:23:34 +0400, Alexey Charkov wrote:
-> The NanoPi M5 board supports pluggable UFS modules using the UFSHC
-> inside its Rockchip RK3576 SoC.
+On Mon, Jan 05, 2026 at 05:15:44PM +0800, Zhang Yi wrote:
+> Add VDDA supply and VDDD supply
 > 
-> Enable the respective devicetree node and add its supply regulators.
+> Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
+> ---
+>  .../devicetree/bindings/sound/everest,es8389.yaml    | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> 
+> diff --git a/Documentation/devicetree/bindings/sound/everest,es8389.yaml b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
+> index a673df485ab3..75ce0bc48904 100644
+> --- a/Documentation/devicetree/bindings/sound/everest,es8389.yaml
+> +++ b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
+> @@ -30,10 +30,20 @@ properties:
+>    "#sound-dai-cells":
+>      const: 0
+>  
+> +  vdda-supply:
+> +    description:
+> +      Analogue power supply.
+> +
+> +  vddd-supply:
+> +    description:
+> +      Interface power supply.
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - "#sound-dai-cells"
+> +  - vddd-supply
+> +  - vdda-supply
 
-Applied, thanks!
+New required properties is an ABI change. That's fine if you know there 
+are no users without the supplies, but you need to state that in the 
+commit message.
 
-[1/1] arm64: dts: rockchip: enable UFS controller on FriendlyElec NanoPi M5
-      commit: cd50298ffc5f98872ddf0ac05c51a014003a34b7
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Rob
 
