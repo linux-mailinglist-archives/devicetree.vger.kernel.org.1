@@ -1,119 +1,149 @@
-Return-Path: <devicetree+bounces-251722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE7C8CF6142
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 01:24:43 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E37ECF61FC
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 01:55:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5C39A3074446
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 00:22:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1D11E3008F37
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 00:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A31117081A;
-	Tue,  6 Jan 2026 00:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 096971F0E29;
+	Tue,  6 Jan 2026 00:55:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H/SvbIrY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j74sl45r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 154A045948
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 00:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2B9A1F4CBC
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 00:55:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767658956; cv=none; b=GU4MIpwzd0M5wfqDpjZz0HYK0M4at5bXovN8G1mkYnZMKC60LTKI8zPTf5nk6hQ+GYw8EPtQSLnxNUSSiFhiB8GKvXwTwrzPGv3xd1XPdeV12hwo1BkVAYXFnhnkgmB5IQIkqiLoIs/8308Tq+OW1ru2IcnwflPr4J7/53oXNNs=
+	t=1767660904; cv=none; b=LtYvQolHY0d+MvFZ4Dz1UfgOZhOgwt7GLpufFn8ADHXkc/zYiKlHBzgtIQE842seazzMLLBA+g9fR6gIwqNxnaP+cFP6MWRvmGGQl2V8GH+b4u4uSN91u2YmmFYLDSJxxMNh9OLRnx2kZjcNqk6cFK4MwVih0bhKk3f9tKZOfxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767658956; c=relaxed/simple;
-	bh=lb3xJIU4cAmbEjQ2ijfZs7/ulk+CeXUUgu5VW+5oj1M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JKIJSeFOQyaDc9Ho2cdy8KtN7EDfl325y+ACrceLR//UVu2fyklrM2xQE4Exh1DKiEs9ACangi++yXSahKt/HyS16V/eSVYOyeW8JF6rEoVRI09NFHgX0pQO+8phF2nXTafBxZ8xHE+DWrX438fXGx46Y5Hrm9DlimNWUTGVGLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H/SvbIrY; arc=none smtp.client-ip=209.85.160.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-3fa11ba9ed5so337787fac.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 16:22:34 -0800 (PST)
+	s=arc-20240116; t=1767660904; c=relaxed/simple;
+	bh=PQyafS4r9bueZ+5O2gfE7pkljY2Ij6CGy5ABtviIEw4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=u3oRQRZoEPc3GVbmnqwVTVE426J/RlYXn89IemyStnBx06CGsW9fbPHMF7fV79JKeim0Hy/i3F5eEr7EKd27S9WzGx8eQFJRVb3UO5kjOcwdFWWqSxtkVzlaHm3OjloawDzPQRNjQP7tiiGVlhgRheBdqrkf8eyYK9XwZ6DjPPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j74sl45r; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-37b9879f5e2so701591fa.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 16:55:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767658954; x=1768263754; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1767660901; x=1768265701; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YC8atWW2lGqULd3ro6INkH8g+UL/Nl4BSDsA9fMDcQc=;
-        b=H/SvbIrY2k1Dolk4qNEs8j36pZDuPRXFMuSyBAPpfTgW9L7u6BKF5+OBT9E6k7Bv34
-         if9lPXEj9MV92e4ek31LYNT2Qpsih+oK+0xtnEKrgauSi69SoN+ezU7bfXpYyi6LDACP
-         2HPlG+S99rPrTB+bqGHH5hLkYKhvuahEKrigAWf2pfvHnaKnv/zHbARImp3XhxqSB2jI
-         JTntc3KWEgh2ioSDBwmNftPz3EqmimO0sLoP92QvP8ywXaGdQZO6i2Xsf0YL9x1rtQxY
-         V/lvUwXRdLGqISeBgHaV+pA7FsbKR3x5AonYZcLd9ljyoeQ7zXNYB4zITKlZ52hZXs80
-         Goyg==
+        bh=iOVE9Djm+VI8eLyAhm3qz2g6Vm8wktIAJcPE+KPknjs=;
+        b=j74sl45r0Hw2JP2GJu//oOg3L3F9Ca3Z1cFUTdplW3DFzO0dlvoG9g1wl2t1wHQgKe
+         MHleSD8rf6mAJvMVWiZnfO4DoWyiT+Np0X46+F5zL4F9jZqVZg8r9TbeBSoYtqazXK9K
+         2JREz0Ytgj9g/0ugUi9w6HpNODusYQ7oHuBCYCVUoQ83WMP2ev3JDS8gSENaFgna91uB
+         fvDUrZMDF4ynoXV4x9BAXwjs7t0YeA4P4tdN0adyVlFf9iPzZU6wfX+tuRxU1oVYXQk5
+         mBXTcyud/Ph0Ehotf30JRDtPeJu8LkqyVg8cX0XuCdMAs+bxkhQG60CdPktlLlb3X6sy
+         z3xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767658954; x=1768263754;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=YC8atWW2lGqULd3ro6INkH8g+UL/Nl4BSDsA9fMDcQc=;
-        b=QnbwPkDo3k5Hk10C/txpp90lcNNM0VUkwTSIJc1ev7P9LPHOIIFmq5fyupWNfYykbF
-         Ytr/xgIhQRP5ee8aVNG30/esq31HM9h+Gl7zTQtwMhbUwjdox1xciF/wgz/gF5WmpgIm
-         80KPK9sWvAB1qUtBYk0F4z4Wj1O10CuMMOYvt7youVrY2MrkUfwg+/Q93kby7SG/OGfX
-         qMVyjkAo4AzQcrkjcnbsJuhX6mVP2LNBCIYrsTy1qG6gGXmF+b6sHgp4g+CgH8/pziIZ
-         HGDVL0Dby2uHqDcMuRNjnCOt+DwEL7Zsx7XwQnBZKRD6bpYFGs3xDeLM/RVFSGU4oi1J
-         GvSw==
-X-Forwarded-Encrypted: i=1; AJvYcCXjOVZ1ejfTCzApwpWxv0kz9d2KFxHYoFtDl6j5l7qkotdZ3wLReAXyQkx+R7VgF0IFlTPmFCpHOXnz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA73/zSxByZ90t9Vwi9fSR8uPEFL9T/6GuCqHryV3La9uCE1Lr
-	wW3Rqo+2vSiEmJQ79q+lgU1lDFdzHs+tbUIbzkGxK5aL7AXWNyXXZdrSxqzM5xrBLaKlp1Hc0Ud
-	FouDELgXwBTf/eARy4zPhRQk7AJkl/ODWkA==
-X-Gm-Gg: AY/fxX6IAdhxKE5I1ZnB2+vRX9Tjn7YaeAYEvAiXV3EGfB/F2fo/RpfcjYQCsmOf0BN
-	MMMzdyRd/p+Vm2KuUvQSxfA+7/zYGgxqj+HVbRIvYjNwbUWu/+7hzBju1DHSblkCxCh562dobZW
-	wuSRO+q6aKgzKjRLZAA3LIP1Qzgvza7zUz5TCbSoyfb1uyG+L3zx+sxYYKRmhR5nUqJjj4SY7h7
-	++8Bhl9RT+bkdEd+sbppyg/wO9Z+SwOUYRHycAyKI3YKt0YlErGWujHDwsIIJYxoxex2/6i
-X-Google-Smtp-Source: AGHT+IEm7hCUhWtFwN6YzHtA5nFPcfeQ36GI07C9MBBxxAd69Jxyx12c7XQ7l9P6hBfFsBQF6DJTPyUIF+knef1O6WQ=
-X-Received: by 2002:a05:6870:5a9:b0:3f5:4172:25 with SMTP id
- 586e51a60fabf-3ffa0d66408mr667490fac.58.1767658953869; Mon, 05 Jan 2026
- 16:22:33 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767660901; x=1768265701;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iOVE9Djm+VI8eLyAhm3qz2g6Vm8wktIAJcPE+KPknjs=;
+        b=fZDjsQsoweM1n2/jPPHDYwCC59f4Cfl7PfJCIaMJZUYCMaULbmNLmpDnEe/TpTed3/
+         CexpFPzlGtYyDdGc3Dos8oe6h1tUviRK1xEYFnux3V1POsI5g192Z1M8C+uD2ncsKZC/
+         YsjASFETsXwo4OY2KtI6gSjqC3F+KdXqneXakG+NREEC4VtxSo3eVAx+fsFLcQvqL9c4
+         gmogI0mRJyESViJ16xhc5s/RQILXuHm/6qPY0HyOnHwiMuHMetrI2vNCTv3VqbgP+FMv
+         gWNSzF5zk0tDuYwJ0BcUrwfNEgmKNSoVR/f7KA0XPyBB4kXh3pZOSglTzoynErR/DktG
+         Yppg==
+X-Forwarded-Encrypted: i=1; AJvYcCXLLJ16/HxYjsd2YEEikuJXLU6WFvRWcToE6ulIZFOkpndJO+s3LbFOmgovtjgdrJ0IO1ioOfVmP6Dc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3IvePojeZ4cV2Vkczue5kd5lvV3qoMN8ejqIhIZR925thQfH5
+	nPiJPysJT2g6K5AtoXJn7RRdLCjl2TyTj5tavaC5bfEMAr7Edyflaii8l6e5InruwbA=
+X-Gm-Gg: AY/fxX4f9Xgmnac+WWc45e0BztfTaL2NScFEMIdXJreIIXDwbw2dXDPDDalzs65mEDG
+	s3qOSifG68j+/MChbbZZ2mZ8S1ticY7jNilr+tyK0DNjZR57oA8BY861fzZBqESkeW+Vm1HiRPu
+	G8pXPFFE2IYxGCpzneSmJKyOLuvYFKC6qN6FS80pQvlPcGfKKK3fJu7fmXJM39lke3pNL2/nyD1
+	1YCEApVXz5v123YQaxrtAxj+FV0EyJL17T8gQ1215aNDIJfapuhx5//NzUxN9FUUS1IBYqVN/Sh
+	Tz/RjsbHX0yOM23oYOyHBQB/5jekA90x08sceA3xsZ/CQaQfL/WcUGpZK7CGJri0+SpbWMq2d9Z
+	KA9kJEZchGhEezM/ol6tY3G+5ccVBGNWWILmbCV4Rk8WVYyBIuTC17YECwglDuFIc1lCvt4qu2o
+	XNGW2tWABSoevnO72dYeQ9E1eewRJRajj2ChBLtDtFBdyYtNzYjeHBvecLnULx0exP0Q==
+X-Google-Smtp-Source: AGHT+IHC/duOmQ+zt3AcbVWsYdFh+VT+t8MI6iZRXfzwdOci9FOkfNN1NdasVjBEh3f1S9ijpf6tNg==
+X-Received: by 2002:a05:6512:3d0f:b0:594:33db:2836 with SMTP id 2adb3069b0e04-59b65261885mr297993e87.6.1767660900684;
+        Mon, 05 Jan 2026 16:55:00 -0800 (PST)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b65cea50bsm180639e87.10.2026.01.05.16.54.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jan 2026 16:54:59 -0800 (PST)
+Message-ID: <718f3a1d-fd55-4a1f-a9c8-0778a3f8caac@linaro.org>
+Date: Tue, 6 Jan 2026 02:54:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
- <87ldkvsl1k.wl-kuninori.morimoto.gx@renesas.com> <CAL_Jsq+sJrFcAu3AZ7jhL9kUMTBOWOfeirVRdbTcgELtZDus0A@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+sJrFcAu3AZ7jhL9kUMTBOWOfeirVRdbTcgELtZDus0A@mail.gmail.com>
-From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Mon, 5 Jan 2026 18:22:22 -0600
-X-Gm-Features: AQt7F2pVhTJ2_t8N0e1tVdWYM4KeOZy3_JnFAaFG_N_YqpgwdFmOcC9QbI3URdU
-Message-ID: <CABb+yY17qrCppYZoXDrw8adgBqEpa3UKnN8aipmA6yLNTqx1zQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] mailbox: renesas: Support MFIS mailbox driver
-To: Rob Herring <robh@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: sm8650: Enable S5KJN1 image sensor
+To: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251023025913.2421822-1-vladimir.zapolskiy@linaro.org>
+ <176745617446.2631416.7464905538168539576.b4-ty@kernel.org>
+ <v2ju7tu2cuedk6rnpidjrgkj7viz3dznwrlsu73w3ayon4mnx7@yacrjyyizhro>
+ <ppak5acapxe2ih4cy6gjfqfftagpukcbtezeetljuf3ocaen7q@gnxdalhu2ndv>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <ppak5acapxe2ih4cy6gjfqfftagpukcbtezeetljuf3ocaen7q@gnxdalhu2ndv>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 5, 2026 at 3:49=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Oct 27, 2025 at 11:33=E2=80=AFPM Kuninori Morimoto
-> <kuninori.morimoto.gx@renesas.com> wrote:
-> >
-> > Add Renesas MFIS mailbox driver for R8A78000 (X5H)
-> >
-> > Signed-off-by: Masashi Ozaki <masashi.ozaki.te@renesas.com>
-> > Signed-off-by: Vinh Nguyen <vinh.nguyen.xz@renesas.com>
-> > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > ---
-> >  drivers/mailbox/Kconfig             |   9 ++
-> >  drivers/mailbox/Makefile            |   2 +
-> >  drivers/mailbox/rcar-mfis-mailbox.c | 168 ++++++++++++++++++++++++++++
-> >  3 files changed, 179 insertions(+)
-> >  create mode 100644 drivers/mailbox/rcar-mfis-mailbox.c
->
-> Seems this was applied even though there were review comments on the
-> driver and binding (affecting the driver)? And the binding was not
-> applied, so now there's a new undocumented compatible.
->
-I wasn't aware of pening review on bindings. The comments on driver
-were purely for whitespace, so I picked.
-Actually the whole mailbox pr for 6.19 was not pulled, so this is not
-merged but only in the mailbox for-next. I think I should recreate
-that branch (with this dropped).
+Hi Bjorn.
 
-thanks
+On 1/5/26 18:09, Bjorn Andersson wrote:
+> On Mon, Jan 05, 2026 at 09:58:33AM -0600, Bjorn Andersson wrote:
+>> On Sat, Jan 03, 2026 at 10:02:59AM -0600, Bjorn Andersson wrote:
+>>>
+>>> On Thu, 23 Oct 2025 05:59:10 +0300, Vladimir Zapolskiy wrote:
+>>>> Enable Samsung S5KJN1 image sensor on SM8650-QRD and SM8650-HDK/RCC boards.
+>>>>
+>>>> The changeset is based and tested on v6.18-rc2 and it has two dependencies:
+>>>> 1) added Qualcomm SM8650 CAMSS support:
+>>>> - https://lore.kernel.org/linux-media/20251017031131.2232687-1-vladimir.zapolskiy@linaro.org
+>>>>
+>>>> 2) a new Samsung S5KJN1 camera sensor driver:
+>>>> - https://lore.kernel.org/linux-media/20251023025356.2421327-1-vladimir.zapolskiy@linaro.org
+>>>>
+>>>> [...]
+>>>
+>>> Applied, thanks!
+>>>
+>>> [1/3] arm64: dts: qcom: sm8650: Add description of MCLK pins
+>>>        commit: 0ddb0d63453f320806727604702b6f6636a645c3
+>>> [2/3] arm64: dts: qcom: sm8650-qrd: Enable CAMSS and Samsung S5KJN1 camera sensor
+>>>        commit: 328407ba89ae6656c143967ba65465c50150aaf8
+>>> [3/3] arm64: dts: qcom: sm8650-hdk: Add support for the Rear Camera Card overlay
+>>>        commit: 1c20a021de58a23bdc264b91d75e944d19e49ba2
+>>>
+>>
+>> Not sure how I missed Konrad's requests for the additional adjustments.
+>> @Vladimir, please send follow up patches to correct the content that was
+>> merged into linux-next.
+>>
+> 
+> Sorry, it seems rather that b4 produced a thank-you letter for both v1
+> and v2, as I applied v2.
+> 
+> Please help me double check the content of the branch, I'll try to
+> figure out how to use b4.
+
+Everything on qcom-linux/arm64-for-6.20 seems to be in fine order, the v2 of dts
+changes is properly applied, and nothing else is needed to be done here.
+
+The sensor drivers found on SM8x50 boards are expected to be merged into v6.20:
+*  https://git.linuxtv.org/sailus/media_tree.git/log/?h=devel
+
+-- 
+Best wishes,
+Vladimir
 
