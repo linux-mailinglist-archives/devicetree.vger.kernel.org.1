@@ -1,89 +1,134 @@
-Return-Path: <devicetree+bounces-251756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89D20CF688A
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 03:58:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3925BCF6AF7
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 05:43:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0047F3007534
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 02:58:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CA00A302B118
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 04:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02F52253EF;
-	Tue,  6 Jan 2026 02:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0751286D70;
+	Tue,  6 Jan 2026 04:43:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="KJKNHdO8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from mail-m1973181.qiye.163.com (mail-m1973181.qiye.163.com [220.197.31.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03EDA22172C;
-	Tue,  6 Jan 2026 02:58:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAE11286405;
+	Tue,  6 Jan 2026 04:43:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767668292; cv=none; b=Pnt2yD87QilXHHv/5BBeImp8xoAEFQNMNKBl2Woap3Hvudx6A/9t1+2uvv91G7isq1MRiJ0UkjYv1xvuBuFi7Y203LPSMtbhjokR/v9bQPk56Z8oJaMv2wBhjLfihyMHDNA2fI52JCzWqw1BdS2aPqEAahIL8wsxo59NO7cT89Y=
+	t=1767674587; cv=none; b=UibGCefNC+e6u9m7np4YcoHc4ZJoZATVapHQAhU8XrSJzMxMNmIWLQ6h9B3c9FA9JN/CzOhQiEnZo1tQuhtK4AudbiYFu5833XIU+RZlxNkGtPG2J5E3OLeD3NZqb/UhrB2OAcnEBnxbOKzqYwpw16p7cEEa6Wnvwm95WQpS2PU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767668292; c=relaxed/simple;
-	bh=piHqaYT/Pg5JffobCD10YogGqPLXFXxpF9+T+W0urKg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j7d83mXJ44X3MuYQZKnKnUXuOG9ReGilhJy4SsdF9RoiLxahMIXTGsPC+r5Kg0dBfDHxrSfG/fUzAj659NHQG3xbSTtBRbiLvH9EL5dYWmJ7AN8HyUD0Q5W/VYGbaEiPy86zoc1f9dYMUaUrUDJ9xJE/J57GPFM2CbQcnOBS1ZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vcxGi-000000003tJ-1qgp;
-	Tue, 06 Jan 2026 02:58:00 +0000
-Date: Tue, 6 Jan 2026 02:57:56 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH RFC net-next v3 2/4] net: dsa: add tag formats for
- MxL862xx switches
-Message-ID: <aVx6NABI_8gEEysQ@makrotopia.org>
-References: <cover.1765757027.git.daniel@makrotopia.org>
- <de01f08a3c99921d439bc15eeafd94e759688554.1765757027.git.daniel@makrotopia.org>
- <20251216203935.z5ss4sxbt6xc2444@skbuf>
+	s=arc-20240116; t=1767674587; c=relaxed/simple;
+	bh=g6f/7TtHAR7PQn2A8th5touzmE5jZeU1J6AOSl3iW5Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iNFQHDVj1+A8x+pk/NluGSOXsmpzK3nHqWTFjnH4Hzh+wCar0uiHog0CCN6CwoXp6RuUkCQ3BE4SrUhXnrLO1vH+kgz5MSDDXPmuMTaqfzlP3ZSG20lC44LOhAeHRHI7o73ohoD2+F1svqwNir+3izE0anp+q8WXwIejJszrkLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=KJKNHdO8; arc=none smtp.client-ip=220.197.31.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.51] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2f99dbbaf;
+	Tue, 6 Jan 2026 09:13:44 +0800 (GMT+08:00)
+Message-ID: <04e32805-fe8c-43d6-831a-ae79d39dcd7b@rock-chips.com>
+Date: Tue, 6 Jan 2026 09:13:42 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251216203935.z5ss4sxbt6xc2444@skbuf>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix wrong register range of rk3576
+ gpu
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Chaoyi Chen <kernel@airkyi.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Frank Wang <frank.wang@rock-chips.com>, Alexey Charkov <alchark@gmail.com>,
+ Liang Chen <cl@rock-chips.com>, Finley Xiao <finley.xiao@rock-chips.com>,
+ Elaine Zhang <zhangqing@rock-chips.com>,
+ Yifeng Zhao <yifeng.zhao@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20251230090246.46-1-kernel@airkyi.com> <aVwIukddZTukxH_8@venus>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <aVwIukddZTukxH_8@venus>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9b90ddf73403abkunm320fd065c0ed6b
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxpIHVZJGkJKGkhPS04fGB9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=KJKNHdO8zd5QpFKLyPRseVQdRnjRcXTeUWRdEp8cXUzLye5TzE7wQKb1CgZ8tlsclIHzau975iQjEN9zgpf4vs5trW297tbMsPVNz6+yp6cVHD6A49n3WtoZjCUAwWR+MbZvUVMr62ufbVy6/pyiGSVYA44nAuRhBhhYOan8RwU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=PDL61oCstf3etehVdwrYEki4PJaxTvOdDdF6kgLRUsk=;
+	h=date:mime-version:subject:message-id:from;
 
-On Tue, Dec 16, 2025 at 10:39:35PM +0200, Vladimir Oltean wrote:
-> On Mon, Dec 15, 2025 at 12:11:43AM +0000, Daniel Golle wrote:
-> > the actual tag format differs significantly, hence we need a dedicated
-> > tag driver for that.
+Hi Sebasitian,
+
+On 1/6/2026 3:24 AM, Sebastian Reichel wrote:
+> Hi,
 > 
-> Reusing the same EtherType for two different DSA tagging protocols is
-> very bad news, possibly with implications also for libpcap. Is the
-> EtherType configurable in the MXL862xx family?
+> On Tue, Dec 30, 2025 at 05:02:46PM +0800, Chaoyi Chen wrote:
+>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>
+>> According to RK3576 TRM part1 page13, the size of the GPU registers
+>> is 128 KB.
+> 
+> RK3576 TRM V1.2 has the address mapping on page 15. Maybe just
+> reference "Table 1-1 Address Mapping" instead of giving a page
+> number?
+> 
+> I think it makes sense to add the following extra text:
+> 
+> The current mapping incorrectly includes the addresses of multiple
+> following IP like the eInk interface at 0x27900000. This has not
+> been detected by the DT tooling as none of the extra mapped IP is
+> described in the upstream RK3576 DT so far.
+>
 
-Only the egress EtherType can be configured, there is currently no way
-to configure the ingress EtherType the switch expects to receive on
-special-tag packets on the CPU port. MaxLinear, however, said they could
-in theory release a new firmware changing the EtherType to any suggested
-value, but it would be incompatible with existing downstream drivers in
-the field, obviously.
+I will add these info in v2. Thank you :)
+
+>> Fixes: 57b1ce903966 ("arm64: dts: rockchip: Add rk3576 SoC base DT")
+>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>> ---
+> 
+> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> 
+> Greetings,
+> 
+> -- Sebastian
+> 
+>>  arch/arm64/boot/dts/rockchip/rk3576.dtsi | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+>> index 6284e7bdc442..b375015f0662 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+>> @@ -1271,7 +1271,7 @@ power-domain@RK3576_PD_VO1 {
+>>  
+>>  		gpu: gpu@27800000 {
+>>  			compatible = "rockchip,rk3576-mali", "arm,mali-bifrost";
+>> -			reg = <0x0 0x27800000 0x0 0x200000>;
+>> +			reg = <0x0 0x27800000 0x0 0x20000>;
+>>  			assigned-clocks = <&scmi_clk SCMI_CLK_GPU>;
+>>  			assigned-clock-rates = <198000000>;
+>>  			clocks = <&cru CLK_GPU>;
+>> -- 
+>> 2.51.1
+>>
+
+-- 
+Best, 
+Chaoyi
 
