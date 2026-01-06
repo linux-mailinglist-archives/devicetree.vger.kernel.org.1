@@ -1,302 +1,137 @@
-Return-Path: <devicetree+bounces-252001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C266CF9876
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 18:05:15 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91E2DCF98A3
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 18:08:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 36EF9302C10F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 16:58:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 83F933008174
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550723321B0;
-	Tue,  6 Jan 2026 16:58:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BB8D3431E4;
+	Tue,  6 Jan 2026 17:08:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JYvtqPyv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E55932936E
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 16:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8013B33B6C6
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 17:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767718723; cv=none; b=HN0FRYi5iatX/LzelNGPZdgwp6THMIeW3rAuFZ5fHvVxVFOqmWT49N8GTwLYQcsyEeklSlN2R5sOvY+SVayUQiGOSeE5UGjAzX6HhjhORFSt/l13PIvPHUmm+mAlnK9csZGmAAs4/Bb1G05zimTQldjDwnKwnAm3RtHyvNES6OI=
+	t=1767719286; cv=none; b=Wduv1dA9MYdBI9+8U4xCUimvx8TyvF2dDDnWRv04EWkpXVyTsoutWkbhL+Yirha75YLUu2bJy9vBz0AeG4SwUirhNgaKvBU25INevswgY3oAFqEp1JiFbQeINGCZQyvW+XW1soMI2PQ6XzDcogRBjq/UYhqmySxQtDQwa9YRETg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767718723; c=relaxed/simple;
-	bh=8AfHxkM9Ujg4QHDORz3CiFTGW0rgNoxWeH6HcWXHCq8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KSvWrFxXiQ8pyDpNrCtOQpPUVEP+4UyRBmoAenOJZyI8YR7gr9dPQCQZZ5y385MF0WIqulR+G9I75RwA131uufXuw6j8/e60pTiFHmJjErs5B9bnOk7NgBGH/fFEb0e69g6AMQYucm0C7sCMFiuQixd//46HbD82kcxdC770mFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-597d712c0a7so1211200e87.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 08:58:40 -0800 (PST)
+	s=arc-20240116; t=1767719286; c=relaxed/simple;
+	bh=Da1+z6b8uGHwUBBD5JI63a5JdnmV5MD64hW+WWvh91Q=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=LdDfsGEsdB70v4RKGoyaZsF8WkB8JX2xcLc7IE3Kk+cRW1wfg0wsFrtztGFRXPRizCV9Qkbjtn1yLF0prrkYcX1KvnyZ01Q54keuQ4etZ+jd34POr8oYTFFKssTQ8a5LqMO2jrrDQGSO6Z3fANb3XCkjZu69xNW/O0s3v+MGr1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JYvtqPyv; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-34be2be4b7cso876575a91.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 09:08:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1767719284; x=1768324084; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Da1+z6b8uGHwUBBD5JI63a5JdnmV5MD64hW+WWvh91Q=;
+        b=JYvtqPyvSAFsBI+eLNYw67akcbkLUgTHpKj5D0BZ8GJIf+UEkAALvEhWUgP2EtiBmH
+         Jkp6+b7koZYOXhURIx436inPpylOR9cdzl/05F3yx/rxch4QWmpP4/4ets/0su2EDv4u
+         BiW3i633+GeFJEyzCvgl/PQxBS5tQqRZyQoYzcAWHabDQs+oYu6qBywWZkrJQnqTKZ2j
+         2E+Y5llzojFAcRTsfCGoPqJg7QXDTG+nfTG2qqdN8T1gnPRK2L6VMZyO+CiJtjUuxtWq
+         X6Fss19hoh6V7QcX+WzQfFGZpqnyqlxKk5PTq2v4fq++KnHAa4dquF3vwzhBm936tOwq
+         JnNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767718716; x=1768323516;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20230601; t=1767719284; x=1768324084;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W+yaMBdttipWH+qCj6rq+qhgb8Gvgy18kNC7/oWi2sk=;
-        b=uVPyRMON73HiKbB3/4k9CEFiDzYqF0k6lSlhm/tRf8cZSPC9GSEXPhlpa1/KqkdZJT
-         DBIwl2+PIzyBDvsXb8Hlr3xLMBsm2zoqUOJpSrjhWmq/DN4T8LwPGE6KxTa8U14Ysy6S
-         lhP+p+2eeyt34+9+rSqemfPuFBOwOGTR9r2e/EwFieURI+hI3LVsoh91xDNMotJCpj1a
-         AR0eHLNP2Ds777wJJ3s/9WAXmE5GF/G2Ho9nqu1K+y5JpV1guvjReVdkyahbvrrMVIWD
-         gM+BH/M49NVwDEUKAc+EihaFSzRsXOVBh1IWExViPLgpmHOQjvp/cu6/96y8t1lxotUB
-         Fx6w==
-X-Forwarded-Encrypted: i=1; AJvYcCXP5riahdGMG++5kYUjA/aWnowLytOaM1LR3NhlegtTLyMVfc54vqIT2OqhfMKbrXn7EfCabJDs+BH7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxw81Hqpf299OHeVTYnv4b/6+4ThTvBLgMQ4I8x6/aJUDxyM2WO
-	kAi9yfvtcuWaep/m0qz7dZhkEr20dZzvUACDCfBuZ52dqycqvxaaFVKZY2evB6Cn
-X-Gm-Gg: AY/fxX4yzeeTwy0qmVqzd/NO+fkdzDnyoY0B1WKWE7arhRIEKjEEk5X3JhWp2VOe2oQ
-	pfKNSsQlUj2F6UK/9QrpGiapNik3Tn8QSLmG0DxSnSWhtgX5gn5ICu9hUzYKiF3T+oH/oGMuUaq
-	M7eSOlsoDO7WzQ3+xopg8w125l3yHISP3mM1/bVW7Jq9FT/r7g1TFWIRdC0AhXbmXA4rt+f3B98
-	GXDRV6QPmdkLNAzLvRa6ZWZbXwy+ZxzDGYc/Rbx7HwPN8vqjvc4LXsgdNriIaTgAxUgvaS8/Xw3
-	7Iu7bJIOhqZ/dg7xr2MSgVMhj2TL6F0h2nQqdhLexEHaY9k+jiFXLb3Z3R84cEJXxo1C8n0xqeJ
-	zEThyfX5kKJf9y2zxXq3h+6pUJQdA490wfRnh9iB3a+mVzSw6vMy4+RKD7LSa0O6GHfOl4l8Cbl
-	e+7FYVzUZgsmtFKercbgRHrLwTrj5VYzq99ALVwdZ6HME=
-X-Google-Smtp-Source: AGHT+IFoo1ij9OUso83MhVEdg5PZCugbeWLpiL4G7jM6cP4rf6tq2ixk31pOe91HV3haCc9lrm2U9Q==
-X-Received: by 2002:ac2:4e04:0:b0:598:f262:165b with SMTP id 2adb3069b0e04-59b65279df4mr1123294e87.8.1767718716233;
-        Tue, 06 Jan 2026 08:58:36 -0800 (PST)
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b65d697d4sm675479e87.73.2026.01.06.08.58.33
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jan 2026 08:58:34 -0800 (PST)
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-382fe06aa94so448681fa.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 08:58:33 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVJft3ateKHq+H8MCSb8Vemcm9STqMQLec/vkpptuW6s8f83BTqEiJV/p3RuzqbGMSorD+aQS+/ibY9@vger.kernel.org
-X-Received: by 2002:a05:651c:154a:b0:382:fb5b:391a with SMTP id
- 38308e7fff4ca-382fb5b3d74mr3007881fa.39.1767718713265; Tue, 06 Jan 2026
- 08:58:33 -0800 (PST)
+        bh=Da1+z6b8uGHwUBBD5JI63a5JdnmV5MD64hW+WWvh91Q=;
+        b=C5ne81uB8JemkWp+gkCJsRWmeeYJp/oG74n0TIzgLSLyR/4v40wQjKNji1z/SiRb21
+         EbSwe55NNNz1x+IRUmPPsc+Te+GTq4pcrPz0cEfX14qW28MdzssnOVBklnQAy41dcHq5
+         NIlgzHfETx1iW6q1RTLFDjHIAbzHQNMmgynCiFVRgXvM/Y78bfPVG9qszmglgxbbdPAg
+         LhvDjV+zoL+O0AExK5lq+QVYoDM+4dS4U4V2epzuqG9h3FwZ5ZbWo5LNYpqKVbBH52Ug
+         65f8W3EiL+QLlkiOC9/VYquAKpE2KbxRkMawKKhut430nmilAIUB/aoKiwTDGLc4Hd43
+         IXxA==
+X-Forwarded-Encrypted: i=1; AJvYcCWfUGyLzl6Mk/V1qQPQ9zOXELMpsGaIoiQk0c/Y51GPXjaQpuMIv018SXrTyA3MtbtNQN25110nS6fb@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywh2b6RzbDHqfMPUB2KzRGTFeR1sPdReNrF18bsd0WrQA/f3Ktv
+	swzlslUFuptQq53Nf2PhDR6GROPAF2l8RmiZv9+lnAa+RQl13nhKpqE611eELnFKukk=
+X-Gm-Gg: AY/fxX7CttuDmFg3bQR/NT1Q0zj2f196zmfJvsWt9k0L7u8pHiBb406oiOQ2HxXZRm0
+	sUXecrsxVwdsOVpnQR0u6Xg7R05wV1yaiPZes2qoQFRltb3FJ1vv7CATONmmDGOCLeXJMj/iwLX
+	MV2P/Q5EupD7dcVdksJeC2dOuKjXMsLfSnYpYzBOZdBs+2ZakdNCg8AMnv5f7XrUxZqWCXYJeD9
+	jeb0DQERkffpUz8ULAX/wSCouOUkDv2hK5uENGa3fyIR9CBpVP5Yy0HVYF8XxYf7sK2QtzBrK/9
+	egL5jfBbRO6++Xm+NLk5sWI0yAAlSDaS3C6RPPJ7JH5KyF22dTScgIVoHJBDee4q5ZGgTxG77xY
+	6Cp+GKebDSrECL7glzymW7ADDn8L2vtPfBECRB1I6WGdkLyWjiMlfC10P2IV2bUY8+Q3kopFUgJ
+	FIi0gp0WdlsbcU4wnv
+X-Google-Smtp-Source: AGHT+IF/YyPky1JmsX8trR5QA82S375cVcq4PGyCdARaly/JqyN2JQRlvVwmKUH1OrX5HSLct3ppWg==
+X-Received: by 2002:a17:90b:1646:b0:343:7714:4cab with SMTP id 98e67ed59e1d1-34f5f2f8b2cmr2485923a91.22.1767719283665;
+        Tue, 06 Jan 2026 09:08:03 -0800 (PST)
+Received: from draszik.lan ([212.129.74.10])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34f5fb7442asm2746281a91.15.2026.01.06.09.07.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jan 2026 09:08:03 -0800 (PST)
+Message-ID: <cd07660f196ce5686b32a67fa5a4edf5dd70dbc2.camel@linaro.org>
+Subject: Re: [PATCH v6 0/2] MAX77759 Fuel Gauge driver support
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Thomas Antoine <t.antoine@uclouvain.be>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Peter Griffin	 <peter.griffin@linaro.org>, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Date: Tue, 06 Jan 2026 17:08:32 +0000
+In-Reply-To: <a6f5c448-d0ab-4119-94ee-201bc3027e84@uclouvain.be>
+References: <20250915-b4-gs101_max77759_fg-v6-0-31d08581500f@uclouvain.be>
+	 <8385a4fbb6c10cfe643c2f310f6a67150e260cf4.camel@linaro.org>
+	 <a6f5c448-d0ab-4119-94ee-201bc3027e84@uclouvain.be>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251217082504.80226-1-richard.genoud@bootlin.com>
- <20251217082504.80226-3-richard.genoud@bootlin.com> <en7wscywn3xpw7cxvc2ngwrmjfciglzxgaje5qc5ngiehrjufh@jbvgp2neyzzx>
- <9c55d591-a280-4ed7-91b1-0c867cfff658@bootlin.com> <mu3ciykmtxoaa24mdw7mofpdapbii23qrubw6uzptszok43tta@tq3rguupehwe>
-In-Reply-To: <mu3ciykmtxoaa24mdw7mofpdapbii23qrubw6uzptszok43tta@tq3rguupehwe>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Wed, 7 Jan 2026 00:58:20 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67O8xKUfXg2Xr0+G72upPsp6V=OpXeej8T8JeJf5sWk=A@mail.gmail.com>
-X-Gm-Features: AQt7F2oUlgvIASVJbB18PqSaF_gWeVAJrv7ZCEFYwIRXVXpnDHSC_HjANB0daRE
-Message-ID: <CAGb2v67O8xKUfXg2Xr0+G72upPsp6V=OpXeej8T8JeJf5sWk=A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] pwm: sun50i: Add H616 PWM support
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Richard GENOUD <richard.genoud@bootlin.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, Joao Schim <joao@schimsalabim.eu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 7, 2026 at 12:27=E2=80=AFAM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@baylibre.com> wrote:
->
-> Hello Richard,
->
-> On Tue, Jan 06, 2026 at 12:19:59PM +0100, Richard GENOUD wrote:
-> > Le 24/12/2025 =C3=A0 10:54, Uwe Kleine-K=C3=B6nig a =C3=A9crit :
-> > > this patch isn't checkpatch clean.
-> >
-> > Yes, I've seen that.
-> > It's because checkpatch doesn't detect that PWM_XY_SRC_MUX/GATE/DIV are
-> > structures
-> > If I unwrap PWM_XY_SRC_MUX/GATE/DIV and PWM_X_DIV, checkpatch doesn't
-> > complain anymore (indeed, do/while loops are not allowed at file-scope)
->
-> At least add parenthesis around usages of _reg. (And if you know that
-> checkpatch points out things that you don't agree to, preempting the
-> critic in the cover letter is a good idea.)
->
-> > I can drop PWM_XY_SRC_MUX/GATE/DIV PWM_X_DIV and declare the structures
-> > directly under PWM_XY_CLK_SRC() and PWM_X_CLK() if you prefer, but I
-> > find it less readable than the current form.
->
-> No strong feeling here.
->
-> > > On Wed, Dec 17, 2025 at 09:25:02AM +0100, Richard Genoud wrote:
-> > > > +#define PWM_XY_SRC_GATE(_pair, _reg)                     \
-> > > > +struct clk_gate gate_xy_##_pair =3D {                      \
-> > > > + .reg =3D (void *)_reg,                            \
-> > > > + .bit_idx =3D PWM_XY_CLK_CR_GATE_BIT,              \
-> > > > + .hw.init =3D &(struct clk_init_data){             \
-> > > > +         .ops =3D  &clk_gate_ops,                  \
-> > > > + }                                               \
-> > >
-> > > I would consider
-> > >
-> > >     .hw.init.ops =3D ...;
-> > >
-> > > and
-> > >
-> > >     .hw =3D {
-> > >             .init =3D {
-> > >                     .ops =3D ...;
-> > >             },
-> > >     },
-> > >
-> > > natural here. The middleway you chose looks strange to me.
-> >
-> > Actually, it's:
-> >       .hw.init->ops =3D ... ;
-> > That's why I used this middleway construct.
->
-> Ah I see. Then it's fine for me.
->
-> > > > +#define PWM_XY_SRC_MUX(_pair, _reg)                      \
-> > > > +struct clk_mux mux_xy_##_pair =3D {                        \
-> > > > + .reg =3D (void *)_reg,                            \
-> > > > + .shift =3D PWM_XY_CLK_CR_SRC_SHIFT,               \
-> > > > + .mask =3D PWM_XY_CLK_CR_SRC_MASK,                 \
-> > >
-> > > Huh, why does this structure has both a shift and a mask value? What =
-is
-> > > the difference between
-> > >
-> > >     .shift =3D 7,
-> > >     .mask =3D 1,
-> > >
-> > > and
-> > >
-> > >     .shift =3D 0,
-> > >     .mask =3D 1 << 7,
-> > >
-> > > ? If the latter is equivalent, you could just pass
-> > > H616_PWM_XY_CLK_CR_SRC and get rid of the extra definitions for _SHIF=
-T
-> > > and _MASK.
-> > >
-> > Unfortunately, struct clk_mux wants a shift and an unshifted mask, and
-> > according to:
-> > https://elixir.bootlin.com/linux/v6.18.3/source/drivers/clk/clk-mux.c#L=
-93-L94
-> > using a 0 shift and mask =3D 1 << 7 won't work.
->
-> How annoying, I put that on my todo list ...
->
-> > > > +static inline struct h616_pwm_chip *to_h616_pwm_chip(struct pwm_ch=
-ip *chip)
-> > >
-> > > It probably doesn't help much, but conceptually this could be
-> > >
-> > >     static inline struct h616_pwm_chip *to_h616_pwm_chip(const struct=
- pwm_chip *chip)
-> > >
-> > Indeed, I'll add that.
->
-> If you rename it to h616_pwm_from_chip it even has the driver specific
-> prefix.
->
-> > > > +
-> > > > + return 0;
-> > > > +}
-> > > > +
-> > > > +static int h616_pwm_calc(struct pwm_chip *chip, unsigned int idx,
-> > > > +                  const struct pwm_state *state)
-> > > > +{
-> > > > + struct h616_pwm_chip *h616chip =3D to_h616_pwm_chip(chip);
-> > > > + struct h616_pwm_channel *chan =3D &h616chip->channels[idx];
-> > > > + unsigned int cnt, duty_cnt;
-> > > > + unsigned long max_rate;
-> > > > + long calc_rate;
-> > > > + u64 duty, period, freq;
-> > > > +
-> > > > + duty =3D state->duty_cycle;
-> > > > + period =3D state->period;
-> > > > +
-> > > > + max_rate =3D clk_round_rate(chan->pwm_clk, UINT32_MAX);
-> > >
-> > > Huh, is this an artificial limitation? Do you rely on how clk_round_r=
-ate
-> > > picks the return value? (I.e. nearest value? nearest time? round up?
-> > > round down?)
-> >
-> > What I want to achieve here is to handle the lowest possible period cas=
-e.
-> > Without the bypass, the lowest period is build with the highest clock,
-> > duty cycle =3D 1 and period cycle =3D 2 (0x10001 in period register)
-> > So, if the input clock is 100MHz, we have a lowest period of 20ns.
-> > Now, if we enable the bypass, the period register is ignored and we dir=
-ectly
-> > have the 100MHz clock as PWM output, that can act as a 10ns period with=
- 5ns
-> > duty
-> > So the logic here is to detect this specific lowest period case that ca=
-n be
-> > achieved by enabling the bypass.
-> > For that, the highest clock is retrieved and compared to the wanted per=
-iod
-> > and duty.
-> >
-> > Now, I learned the hard way that clk_round_rate() is actually limited t=
-o a
-> > 32 bits value:
-> > clk_round_rate() calls at one point clk_divider_bestdiv() that uses
-> > DIV_ROUND_UP_ULL() which in turn uses do_div(n,base):
-> >   do_div - returns 2 values: calculate remainder and update new dividen=
-d
-> >   @n: uint64_t dividend (will be updated)
-> >   @base: uint32_t divisor
-> > So, in order to get the exact highest clock rate, I use clk_round_rate(=
-)
-> > with U32_MAX.
->
-> IMHO this should be addressed in the clk framework. And until this
-> happend the code in the pwm driver needs a verbose comment.
->
-> > > > + dev_dbg(pwmchip_parent(chip), "period=3D%llu cnt=3D%u duty=3D%llu=
- duty_cnt=3D%u\n",
-> > > > +         period, cnt, duty, duty_cnt);
-> > >
-> > > This is little helpful without the input parameters.
-> > >
-> > as
-> >       duty =3D state->duty_cycle;
-> >       period =3D state->period;
-> > The input parameters are there, right?
-> > But I can add the missing idx.
->
-> Today I agree, don't know why I missed that. It would be nice to stick
-> to the format that e.g. pwm-stm32 uses for the input parameters to make
-> me notice even on busy days that the input parameters are there :-)
->
-> > > > + for (unsigned int i =3D 0; i < data->npwm; i++) {
-> > >
-> > > Huh, AFAIK we're not using declarations in for loops in the kernel.
-> >
-> > Actually, I've read somewhere (in LWN I guess) that Linus seems ok with=
- that,
-> > but I'll remove it if you prefer.
->
-> If you find your source again, I'd be interested.
+Hi Thomas,
 
-IIRC Linus said this is the one case that made sense for "declare anywhere"=
-.
+On Tue, 2026-01-06 at 17:54 +0100, Thomas Antoine wrote:
+> Hi,
+>=20
+> > [...]=20
+> > Are you still working on this? Are you planning to send out a new versi=
+on?
+>=20
+> Really sorry for the long time since I sent anything. I had some personal
+> issues and had to focus on work so I could not work on this.
+>=20
+> Moreover, after rechecking the files, I noticed that the support for the
+> MAX77759 should most likely go in the max17042_battery.c file. There is
+> already support for multiple chips (e.g. max77705, max7779849) and when
+> I looked into it a while ago, most of the support of my last patch was
+> present with some things more.
+> I don't know how I did not notice this when I first started working on th=
+is.
+>=20
+> I can rework this patch and send it by the end of the week as the change
+> requests were pretty light.
+> However, I think the cleaner course of action is for me to attempt to
+> integrate changes into the max17042 file and see if anything causes
+> problems which would warrant a new driver. I think I can take the free
+> time to do this by the end of the month.
+>=20
+> What do you think?
 
-I dug up this one:
+Thanks for the detailed answer, much appreciated!
 
-https://lore.kernel.org/all/CAHk-=3DwgLYqYcw0xv65xrLSR7KDpS_6M+S9737m6NQorH=
-GWsXYQ@mail.gmail.com/
+I'm always up for cleaner solutions, and unless somebody else has a
+compelling reason to not follow your new outlined approach, I'd
+say go for it :-)
 
- - quote -
+Happy new year to you too!
 
-The actual C99 version is the sane one which actually makes it easier
-and clearer to have loop iterators that are clearly just in loop
-scope.
-
-That's a good idea in general, and I have wanted to start using that
-in the kernel even aside from some of the loop construct macros.
-Because putting variables in natural minimal scope is a GoodThing(tm).
-
- - end quote -
-
-If you look around the kernel, you will see many for loops that are in
-this style now.
-
-
-ChenYu
+Cheers,
+Andre'
 
