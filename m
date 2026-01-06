@@ -1,196 +1,164 @@
-Return-Path: <devicetree+bounces-252013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 795D0CF9E60
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 18:59:14 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04F06CF9AB9
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 18:27:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 98F4E32BA8D0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:46:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0017130299EB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:27:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A3633C50A;
-	Tue,  6 Jan 2026 17:26:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B4A34F278;
+	Tue,  6 Jan 2026 17:27:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HA1WiDHb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lRGd2Lkx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1793733985B
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 17:26:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8010A34F251;
+	Tue,  6 Jan 2026 17:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767720409; cv=none; b=Jk4ZwafErqZyh6btZcyWqcIllFUgA8S8WnAYpEgfUA6XFaKm70MXaw42UJ/GLReyEqhYd9NyYdQCszD1jq/msvTCFRXnwUac1dbsl9U9IIHRhHEOpY472rErvsMOsWStVOsQu+3QMddc2DpsPyPe6uhdefWb+b90pjRbw6aN81w=
+	t=1767720470; cv=none; b=a4bEcXROd94u3B80LyzchMwhk3RM0C4VfATetmbH7DuHOCiYecejX2kBWx/AGonStD0P1RDck77cRdM8iWQd1NS0+0I/t2jJo2aMG0cOsfX1lJGEIr3wPMZqZPj1Mbu3Za129GbZ+HrWFzUg76I4aYn655OxxzMwmL8zNzOdS6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767720409; c=relaxed/simple;
-	bh=jIERsNeLWsCMRsQUhVUyTdjFaVz1btYgxR4tH7uHWbs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oTJ3iz8Y9Aute9yO9QUOig4Rxd91p1L5AsGSxuEi3Kd7p9W9bhms/ugSEE9+V32iyRtWTN9pArWxs7sU0GEkxes0GGqEswX3SQ99WE5FUI0VBU2sPOs2sUf2l3jhGFdBca1svyZi15VBjYIc5SytutynoHWxiQu8Mzk6Mi8PykY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HA1WiDHb; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4779ce2a624so10119955e9.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 09:26:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767720405; x=1768325205; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2pMHpVSuzSyUl3NaYsDNZbwWy9/z4ne3LRaPNYd9gtY=;
-        b=HA1WiDHblkzmbBh+R3ra8Vi0u3Y+Hl7+/3c0w1xec3HDYnK/dh35FFm9ns9faoksmB
-         pvhLb2DEYD1yfJThms691VLJAN+tmwllhkkRuGFxQad44rO3kd3WiNB0YcGP8HAkLout
-         gBBp+ZiSCSLoDz61BiUbwdWnbu7ur6269vecvNBUNuLZuLrqVbgQsSehVunl0xeVNkAA
-         0yzRf2tBrZPtRM1I31NrkWZXnWpnDFVAO1cBLwcD5jEokR1E8g2xaGNkFWhhuPh4/ozJ
-         sO/XI/uWOduQx0C4LB/LS5ODbLaIIipekDBdIcRCn1SIwgyg3l2ED8mIoYeLbqJf02nG
-         HoDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767720405; x=1768325205;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2pMHpVSuzSyUl3NaYsDNZbwWy9/z4ne3LRaPNYd9gtY=;
-        b=CqTPk+MvOmY06Hh2BDDrKShGBMnKL0XIQl0qsKQiX/T2p8lsnurU5coyQxirZEJPMS
-         4sVTWorFyIVuY2kFbBslTaJpFL8NlxpmQkOhbdOXvOh8X4jzfyOt+2OSNtc7nOXhSwnp
-         3Fyjf/lnBYpB4dxJHkcYlxLRW+yDmtOWG5KXyaa9WtKrsRtJQnsS633bDAKh2qhyyAwU
-         tmWF2MTr65sPgQsNoHhn439RgYyrU/MTYhx6I8lLeXCZvACwWfQ/9/4XQmMoKP1eQdys
-         jNmdy8hXfOyyB79nHqta/P+enTIxG76oxSnxUUuY6DfSCxAUtge9K3YEI6LPlO8O5Ezp
-         d/Qg==
-X-Forwarded-Encrypted: i=1; AJvYcCWjpdZT7ttgmjCqlfDVsAtKy+iQ3n3NQz20ZLNbSELqQo7cC2hynm87rkodlBmQ9sNYlMCevE5fens+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSvfy5H4JIIXN09dVmtmUGtCE0084ss/vXUIYT3av8UDy0RuOv
-	DckGHeY22rxJu4nbyWtZOJfWZZsNpx94YHbyppxJf+lkfZqBWCbtKsUBiLDtxXkR7Pe1eS7s1AB
-	XO1L5OcocHLe0sc3O1qCaeAVyw+Tbdxg=
-X-Gm-Gg: AY/fxX78qBBEAyjcX6AZx+D4gVvZMHRbGdYB3wuIhmXLAxUpAVvq/spA6zkZiQeK17e
-	HjwiI7f6l61D5Aw3l5fZOTRZ0BKhWna7+P1Dm9Mb56uBY++J3GPCTK0MHcejcT62u80oIeLHfTO
-	6KgPD1Plun937xBplLVNG5gUVASm9ChOMOUls2PkNmHPX1w8edUT0FDSWrdopa92SbC2Q5RE4uQ
-	8Iy7DhNyiV9ChXWtzZZyb5gzeE/vcqJrN5lvPLODEWh4rbq6Z6jtT69AySzq/pv0TLJiP+d9U+i
-	+oOehHy8L8AfWB4+r4M4tCNn3jsPwQAGxsf4J2CMca8JeKYzDnNw5z7h9VNr5xa6ItbM+400Nq1
-	jEPYXRXfR97Eq1lVzDEvacO4=
-X-Google-Smtp-Source: AGHT+IE8gvKCbSJq1z8Cd0vdaqEHelQJRB7VUwu1Y6OV1SxZq84Rtw9xQvuGr69PPYzoTYxNGWtVKyAC81y0wEosCQQ=
-X-Received: by 2002:a05:600c:154c:b0:477:6374:6347 with SMTP id
- 5b1f17b1804b1-47d7f098beamr41642405e9.22.1767720405159; Tue, 06 Jan 2026
- 09:26:45 -0800 (PST)
+	s=arc-20240116; t=1767720470; c=relaxed/simple;
+	bh=LJEzhFJJgshI64B7E/9xKLjZ/zb5hIwrwDMYuCJ3w5s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KNyP+aJ/nBetUhAB/RZPTIWGxQJGjdtBT9UUfE2SyJHVO7zJxicGaDmvSfjrseftqKdA/E0n4nFXa/KdIk3//xV14662h5XuxbP99dJKZmB08zF7G0wKlW6wqgm05gc8yGls6YvVFqWrC7OABpP+QJWXHWebicPHnbHs7pRfSoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lRGd2Lkx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93515C19424;
+	Tue,  6 Jan 2026 17:27:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767720470;
+	bh=LJEzhFJJgshI64B7E/9xKLjZ/zb5hIwrwDMYuCJ3w5s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lRGd2Lkxh2D1ONWqr4YnEVh3M6/a7fKFce+62x+7c7b/8RupwUjJuq+t1Ols3BkWc
+	 Sf/0/MTiDE6c1I0ycnUvXRITQBOoukegCxk6C46GHcbTSJJG+i7nxv5lWel6xttYBg
+	 PQI5vooo+tZcRfoKLRfmxE8dfUwZkZkwMe8mQ84b2W0NqKQ7CnlHbBucJVITnBJcYr
+	 RxbqdmoytUoIkT/Yt5b0rMxZ/sx9R48iTN7uy4ZYZDM9c5bwaWoDCZgDH57F5cwe37
+	 M90UusMHTp2+YjF7pvXJfKUOICvwO53LqXpnaHoFgeZOq/KWpKzxD85r9JwjHi/Qvb
+	 j78vMoWNi3bFA==
+Date: Tue, 6 Jan 2026 11:27:47 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Le Qi <le.qi@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	kernel@oss.qualcomm.com
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: talos-evk: Add sound card
+ support with DA7212 codec
+Message-ID: <tujqzohs2vmfezrqt7cag252zboypk2sksu4cjoycxsscf7yd2@h7dlc5vuwqyg>
+References: <20251204083225.1190017-1-le.qi@oss.qualcomm.com>
+ <20251204083225.1190017-3-le.qi@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251230115814.53536-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260102-petite-gentle-wasp-81bbb8@quoll>
-In-Reply-To: <20260102-petite-gentle-wasp-81bbb8@quoll>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 6 Jan 2026 17:26:19 +0000
-X-Gm-Features: AQt7F2oLYuXOHzsB0MroBEn6dGAE93yUvo9CAwzUHg627WTSLy-aKKnPg1k6phQ
-Message-ID: <CA+V-a8sryz1f_woi_r8jx_4x7TczrWPyjZoo+P9p=tG8KyK8YA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: can: renesas,rcar-canfd: Document
- RZ/T2H and RZ/N2H SoCs
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251204083225.1190017-3-le.qi@oss.qualcomm.com>
 
-Hi Krzysztof,
+On Thu, Dec 04, 2025 at 04:32:25PM +0800, Le Qi wrote:
+> Add the sound card node for QCS615 Talos EVK with DA7212 codec
+> connected over the Primary MI2S interface. The configuration enables
+> headphone playback and headset microphone capture, both of which have
+> been tested to work.
+> 
+> Signed-off-by: Le Qi <le.qi@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/talos-evk.dts | 54 ++++++++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/talos-evk.dts b/arch/arm64/boot/dts/qcom/talos-evk.dts
 
-Thank you for the review.
+I don't have this file. Please rebase, retest, and resubmit once this
+exists in linux-next.
 
-On Fri, Jan 2, 2026 at 11:20=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Tue, Dec 30, 2025 at 11:58:13AM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Document the CAN-FD controller used on the RZ/T2H and RZ/N2H SoCs. The
-> > CAN-FD IP is largely compatible with the R-Car Gen4 block, but differs
-> > in that AFLPN and CFTML are different, there is no reset line for the I=
-P,
-> > and it only supports two channels.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > v1->v2:
-> > - No changes made.
-> > ---
-> >  .../bindings/net/can/renesas,rcar-canfd.yaml  | 26 ++++++++++++++++++-
-> >  1 file changed, 25 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-can=
-fd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > index fb709cfd26d7..4a83e9e34d67 100644
-> > --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > @@ -50,6 +50,12 @@ properties:
-> >                - renesas,r9a09g057-canfd     # RZ/V2H(P)
-> >            - const: renesas,r9a09g047-canfd
-> >
-> > +      - const: renesas,r9a09g077-canfd      # RZ/T2H
->
->
-> That's part of other enum with single compatibles.
->
-There is no enum with single compatibles as of in next [0], there is
-only one compatible `renesas,r9a09g047-canfd`. I can club this with
-RZ/T2H one.
+Thank you,
+Bjorn
 
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tre=
-e/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml?h=3Dnex=
-t-20260106
-
-> > +
-> > +      - items:
-> > +          - const: renesas,r9a09g087-canfd  # RZ/N2H
-> > +          - const: renesas,r9a09g077-canfd
-> > +
-> >    reg:
-> >      maxItems: 1
-> >
-> > @@ -179,7 +185,6 @@ required:
-> >    - clocks
-> >    - clock-names
-> >    - power-domains
-> > -  - resets
-> >    - assigned-clocks
-> >    - assigned-clock-rates
-> >    - channel0
-> > @@ -243,11 +248,30 @@ allOf:
-> >            minItems: 2
-> >            maxItems: 2
-> >
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: renesas,r9a09g077-canfd
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          maxItems: 8
-> > +
-> > +        interrupt-names:
-> > +          maxItems: 8
-> > +
-> > +        resets: false
-> > +    else:
-> > +      required:
-> > +        - resets
->
-> Why is this de-synced with reset-names? Properties are supposed to
-> behave the same way, not once requiring resets other time requiring
-> reset-names.
->
-There are SoCs that have a single reset and others that require two
-resets. For SoCs that require two resets, the reset-names property is
-marked as required, while for SoCs with a single reset it is not.
-Apart from the RZ/T2H SoC, all SoCs have either one or two resets.
-This difference is why the properties became de-synced. Let me know if
-this can be handled differently.
-
-Cheers,
-Prabhakar
+> index 02656bc3cdcb..7e8f7e7f1d5e 100644
+> --- a/arch/arm64/boot/dts/qcom/talos-evk.dts
+> +++ b/arch/arm64/boot/dts/qcom/talos-evk.dts
+> @@ -5,6 +5,7 @@
+>  /dts-v1/;
+>  
+>  #include "talos-evk-som.dtsi"
+> +#include <dt-bindings/sound/qcom,q6afe.h>
+>  
+>  / {
+>  	model = "Qualcomm QCS615 IQ 615 EVK";
+> @@ -40,6 +41,46 @@ hdmi_con_out: endpoint {
+>  		};
+>  	};
+>  
+> +	sound {
+> +		compatible = "qcom,qcs615-sndcard";
+> +		model = "TALOS-EVK";
+> +
+> +		pinctrl-0 = <&mi2s1_pins>;
+> +		pinctrl-names = "default";
+> +
+> +		pri-mi2s-capture-dai-link {
+> +			link-name = "Primary MI2S Capture";
+> +
+> +			codec {
+> +				sound-dai = <&codec_da7212>;
+> +			};
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai PRIMARY_MI2S_TX>;
+> +			};
+> +
+> +			platform {
+> +				sound-dai = <&q6apm>;
+> +			};
+> +		};
+> +
+> +		pri-mi2s-playback-dai-link {
+> +			link-name = "Primary MI2S Playback";
+> +
+> +			codec {
+> +				sound-dai = <&codec_da7212>;
+> +			};
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai PRIMARY_MI2S_RX>;
+> +			};
+> +
+> +			platform {
+> +				sound-dai = <&q6apm>;
+> +			};
+> +		};
+> +	};
+> +
+>  	vreg_v1p8_out: regulator-v1p8-out {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "vreg-v1p8-out";
+> @@ -107,6 +148,19 @@ adv7535_out: endpoint {
+>  	};
+>  };
+>  
+> +&i2c5 {
+> +	status = "okay";
+> +
+> +	codec_da7212: codec@1a {
+> +		compatible = "dlg,da7212";
+> +		reg = <0x1a>;
+> +		#sound-dai-cells = <0>;
+> +		VDDA-supply = <&vreg_v1p8_out>;
+> +		VDDIO-supply = <&vreg_v1p8_out>;
+> +		VDDMIC-supply = <&vreg_v3p3_out>;
+> +	};
+> +};
+> +
+>  &mdss_dsi0_out {
+>  	remote-endpoint = <&adv7535_in>;
+>  	data-lanes = <0 1 2 3>;
+> -- 
+> 2.34.1
+> 
 
