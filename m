@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-252032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 039BFCF9FE0
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 19:13:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB468CFA4E7
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 19:51:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 78B13304A8CC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:09:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8F56B32BDAD3
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1997834D937;
-	Tue,  6 Jan 2026 17:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C55834D4FA;
+	Tue,  6 Jan 2026 17:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Nm1WG/KW"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Sj0NKrJv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6764D34D4DF;
-	Tue,  6 Jan 2026 17:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC3F34B683
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 17:44:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767721449; cv=none; b=vGlRRnD9ZEQuC11kv44dRZbSUYLyPWElzKwQh8PgPKmt4lvbEm4Vvyjp+Dg6f37fceE7SBo633oBxMHAXr8PNeuM9OzrdJdEXGFH8FaWSKicilibZXTM/f1HCm3LkrQW8I+HqX066FavUEaIYOkhfUpW4KZjWPE0cFWXsoUtAHQ=
+	t=1767721460; cv=none; b=cNYlz7/AdCDyw95UkOxNaPa1XBkMICch0GAqvvz1VeI/rPXUYpu9e1k+g/rJ9ErNM1FRP+PoCH9qJpdLZi2DkQOHhklzIguYDgF0f1vEOsKUm2TnE8bNT//F7EaDDA5YsjGg1TE0AhM0mGleSHPRn4X5mlfBsGdIXmAsawHeb4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767721449; c=relaxed/simple;
-	bh=yMmN9oITyZStmDLb4t6J3Qiai8QacAQA3RsUXMEuyDc=;
+	s=arc-20240116; t=1767721460; c=relaxed/simple;
+	bh=sVIIWiddC2GObJ55h7JpMsCaAPT9r5w9pLJ/2lk7eSw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aX01K5K9IaGDPAxw+ysijrUG3pmmRwdoAwDyDGkj1TjjUaSt+klIVZ1sm+4LYgXTs4teass8hUxqI4V5K0fB9Th6mkQRaa4myb8P1yoaUy9kzJEgYUo+S6BCaUwVcNBtSVb+OzsV1usfXBbimknu0UqgOAkofW2W/EQ6Zffj2gI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Nm1WG/KW; arc=none smtp.client-ip=185.171.202.116
+	 In-Reply-To:To:Cc; b=ZDDe2CmQwzj/LkT32kKu/J+nRcUtnGFYMc/gtwVRB9APuqAz+A8HWDt7M5IJAJc02f0f6u3Npi0vjdN/G4YIA1WdujgrpaQUX48tfycW3FtkRJNvdy0otlBV8Ixd6ts8xaSGuThF4G4g7vMEuPeil/7aC0nF/5ztLd78nDLIqw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Sj0NKrJv; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id D74E8C1E4AB;
-	Tue,  6 Jan 2026 17:43:39 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 50AF21A26A6;
+	Tue,  6 Jan 2026 17:44:17 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E8A6B60739;
-	Tue,  6 Jan 2026 17:44:05 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D898E103C85AC;
-	Tue,  6 Jan 2026 18:44:00 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 2560860739;
+	Tue,  6 Jan 2026 17:44:17 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E9A8B103C85D5;
+	Tue,  6 Jan 2026 18:44:11 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767721444; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1767721455; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=XIaFCPOaQ6EWQyuZhWQAS2J/gIaRsVFGu4wZ6cg0uhQ=;
-	b=Nm1WG/KWkI8SapQjNn9Oo+YHqX8Z9oVneNBr31Q5duHrM7bQQYOxEtbFKzzy/mtHwUuw7M
-	d9sPoU7sdMhcRqRcAUBQPbnxB/M5WFQKliLphnYOnSipLaZq0PTGdiwqIpLhF+LW999E4Q
-	2ScifT32ZyLNA/LTEiqsEe6o15QWX/2/fghbZqnkOFUw1BDcsH80Gk1FrrdFUX0diYunnq
-	DeNxi8cQ5zYWF72M9hzRHaaJNVHT6eIL0Q/5PKtDTUNZlO3KABs7/X6NYAPfFUANlcdJXi
-	2d07SjaGdfJ1JUaG6h1cHlUYjL5HAqy1e7nDkECRrf4oxjYYGAAj613MeC7K3A==
+	bh=86uD/TZTv84PLQ1XJXf+TfRW/ckjofOVWcN3ccYwmA0=;
+	b=Sj0NKrJvhaZYV9X5VMCGDcjShsVZmfHBzq1KlV+3ytKBwPWxvihWkXrcl3SkFoy6hcXrw7
+	0Adqcm5fhDWiNqrCkqgxaGtqOHDZAsr6Jnhzw7TIWOF8kBI4Jz56Ga3Z7cQAJmPR5matMc
+	E5AKWaObk0abHVda4Jb1P2Tt2pFVtX2QG/RQEbnNHsagfPviukQZ8khJy3sorKcfpTnP5i
+	rpzSV7s8tBNrwz605XVFcWq5FFe/rEmA3JnzKKsxw6MI+fYi0Fwj9Hj1PQ4hDu9xr+e1iD
+	D6GPchd54a1+XLimFAYM+xcrTSjroc24eKKPHXD5VvS594XhZw7EHY89yc1H3g==
 From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Date: Tue, 06 Jan 2026 18:42:28 +0100
-Subject: [PATCH v3 12/22] drm/tilcdc: Rename tilcdc_external to
- tilcdc_encoder
+Date: Tue, 06 Jan 2026 18:42:31 +0100
+Subject: [PATCH v3 15/22] drm/tilcdc: Move tilcdc_init/fini closer to
+ probe/remove
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260106-feature_tilcdc-v3-12-9bad0f742164@bootlin.com>
+Message-Id: <20260106-feature_tilcdc-v3-15-9bad0f742164@bootlin.com>
 References: <20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com>
 In-Reply-To: <20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com>
 To: Jyri Sarha <jyri.sarha@iki.fi>, 
@@ -86,66 +86,277 @@ Cc: Markus Schneider-Pargmann <msp@baylibre.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 
-The tilcdc_external module describes the encoder part of the tilcdc
-driver. Rename it to tilcdc_encoder for better clarity and to make
-the naming more consistent with DRM subsystem conventions, where
-encoder-related files typically use "encoder" in their names.
+Move tilcdc_init/fini functions adjacent to the probe and remove functions
+in preparation for cleanup and modernization. This improves readability
+for subsequent commits that will refactor these functions.
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+No functional changes, only code reorganization.
+
 Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
 ---
- drivers/gpu/drm/tilcdc/Makefile                                | 2 +-
- drivers/gpu/drm/tilcdc/tilcdc_drv.c                            | 2 +-
- drivers/gpu/drm/tilcdc/{tilcdc_external.c => tilcdc_encoder.c} | 2 +-
- drivers/gpu/drm/tilcdc/{tilcdc_external.h => tilcdc_encoder.h} | 0
- 4 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/tilcdc/Makefile b/drivers/gpu/drm/tilcdc/Makefile
-index b78204a65ce29..c6b484dad711a 100644
---- a/drivers/gpu/drm/tilcdc/Makefile
-+++ b/drivers/gpu/drm/tilcdc/Makefile
-@@ -6,7 +6,7 @@ endif
- tilcdc-y := \
- 	tilcdc_plane.o \
- 	tilcdc_crtc.o \
--	tilcdc_external.o \
-+	tilcdc_encoder.o \
- 	tilcdc_drv.o
- 
- obj-$(CONFIG_DRM_TILCDC)	+= tilcdc.o
+Change in v3:
+- New patch.
+---
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c | 238 ++++++++++++++++++------------------
+ 1 file changed, 119 insertions(+), 119 deletions(-)
+
 diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-index bf6cd763ecd0f..6a08f50762af9 100644
+index a82a2494e23d9..c306fc3ae2784 100644
 --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
 +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-@@ -26,7 +26,7 @@
+@@ -140,6 +140,125 @@ static void tilcdc_irq_uninstall(struct drm_device *dev)
+  * DRM operations:
+  */
  
++#if defined(CONFIG_DEBUG_FS)
++static const struct {
++	const char *name;
++	uint8_t  rev;
++	uint8_t  save;
++	uint32_t reg;
++} registers[] =		{
++#define REG(rev, save, reg) { #reg, rev, save, reg }
++		/* exists in revision 1: */
++		REG(1, false, LCDC_PID_REG),
++		REG(1, true,  LCDC_CTRL_REG),
++		REG(1, false, LCDC_STAT_REG),
++		REG(1, true,  LCDC_RASTER_CTRL_REG),
++		REG(1, true,  LCDC_RASTER_TIMING_0_REG),
++		REG(1, true,  LCDC_RASTER_TIMING_1_REG),
++		REG(1, true,  LCDC_RASTER_TIMING_2_REG),
++		REG(1, true,  LCDC_DMA_CTRL_REG),
++		REG(1, true,  LCDC_DMA_FB_BASE_ADDR_0_REG),
++		REG(1, true,  LCDC_DMA_FB_CEILING_ADDR_0_REG),
++		REG(1, true,  LCDC_DMA_FB_BASE_ADDR_1_REG),
++		REG(1, true,  LCDC_DMA_FB_CEILING_ADDR_1_REG),
++		/* new in revision 2: */
++		REG(2, false, LCDC_RAW_STAT_REG),
++		REG(2, false, LCDC_MASKED_STAT_REG),
++		REG(2, true, LCDC_INT_ENABLE_SET_REG),
++		REG(2, false, LCDC_INT_ENABLE_CLR_REG),
++		REG(2, false, LCDC_END_OF_INT_IND_REG),
++		REG(2, true,  LCDC_CLK_ENABLE_REG),
++#undef REG
++};
++
++static int tilcdc_regs_show(struct seq_file *m, void *arg)
++{
++	struct drm_info_node *node = (struct drm_info_node *) m->private;
++	struct drm_device *dev = node->minor->dev;
++	struct tilcdc_drm_private *priv = dev->dev_private;
++	unsigned i;
++
++	pm_runtime_get_sync(dev->dev);
++
++	seq_printf(m, "revision: %d\n", priv->rev);
++
++	for (i = 0; i < ARRAY_SIZE(registers); i++)
++		if (priv->rev >= registers[i].rev)
++			seq_printf(m, "%s:\t %08x\n", registers[i].name,
++					tilcdc_read(dev, registers[i].reg));
++
++	pm_runtime_put_sync(dev->dev);
++
++	return 0;
++}
++
++static int tilcdc_mm_show(struct seq_file *m, void *arg)
++{
++	struct drm_info_node *node = (struct drm_info_node *) m->private;
++	struct drm_device *dev = node->minor->dev;
++	struct drm_printer p = drm_seq_file_printer(m);
++	drm_mm_print(&dev->vma_offset_manager->vm_addr_space_mm, &p);
++	return 0;
++}
++
++static struct drm_info_list tilcdc_debugfs_list[] = {
++		{ "regs", tilcdc_regs_show, 0, NULL },
++		{ "mm",   tilcdc_mm_show,   0, NULL },
++};
++
++static void tilcdc_debugfs_init(struct drm_minor *minor)
++{
++	drm_debugfs_create_files(tilcdc_debugfs_list,
++				 ARRAY_SIZE(tilcdc_debugfs_list),
++				 minor->debugfs_root, minor);
++}
++#endif
++
++DEFINE_DRM_GEM_DMA_FOPS(fops);
++
++static const struct drm_driver tilcdc_driver = {
++	.driver_features    = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
++	DRM_GEM_DMA_DRIVER_OPS,
++	DRM_FBDEV_DMA_DRIVER_OPS,
++#ifdef CONFIG_DEBUG_FS
++	.debugfs_init       = tilcdc_debugfs_init,
++#endif
++	.fops               = &fops,
++	.name               = "tilcdc",
++	.desc               = "TI LCD Controller DRM",
++	.major              = 1,
++	.minor              = 0,
++};
++
++/*
++ * Power management:
++ */
++
++static int tilcdc_pm_suspend(struct device *dev)
++{
++	struct drm_device *ddev = dev_get_drvdata(dev);
++	int ret = 0;
++
++	ret = drm_mode_config_helper_suspend(ddev);
++
++	/* Select sleep pin state */
++	pinctrl_pm_select_sleep_state(dev);
++
++	return ret;
++}
++
++static int tilcdc_pm_resume(struct device *dev)
++{
++	struct drm_device *ddev = dev_get_drvdata(dev);
++
++	/* Select default pin state */
++	pinctrl_pm_select_default_state(dev);
++	return  drm_mode_config_helper_resume(ddev);
++}
++
++static DEFINE_SIMPLE_DEV_PM_OPS(tilcdc_pm_ops,
++				tilcdc_pm_suspend, tilcdc_pm_resume);
++
+ static void tilcdc_fini(struct drm_device *dev)
+ {
+ 	struct tilcdc_drm_private *priv = dev->dev_private;
+@@ -384,125 +503,6 @@ static int tilcdc_init(const struct drm_driver *ddrv, struct device *dev)
+ 	return ret;
+ }
  
- #include "tilcdc_drv.h"
--#include "tilcdc_external.h"
-+#include "tilcdc_encoder.h"
- #include "tilcdc_regs.h"
- 
- enum {
-diff --git a/drivers/gpu/drm/tilcdc/tilcdc_external.c b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-similarity index 98%
-rename from drivers/gpu/drm/tilcdc/tilcdc_external.c
-rename to drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-index 11ac9673ba98a..b1c7b2257df30 100644
---- a/drivers/gpu/drm/tilcdc/tilcdc_external.c
-+++ b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-@@ -12,7 +12,7 @@
- #include <drm/drm_simple_kms_helper.h>
- 
- #include "tilcdc_drv.h"
--#include "tilcdc_external.h"
-+#include "tilcdc_encoder.h"
- 
- static
- struct drm_connector *tilcdc_encoder_find_connector(struct drm_device *ddev,
-diff --git a/drivers/gpu/drm/tilcdc/tilcdc_external.h b/drivers/gpu/drm/tilcdc/tilcdc_encoder.h
-similarity index 100%
-rename from drivers/gpu/drm/tilcdc/tilcdc_external.h
-rename to drivers/gpu/drm/tilcdc/tilcdc_encoder.h
+-#if defined(CONFIG_DEBUG_FS)
+-static const struct {
+-	const char *name;
+-	uint8_t  rev;
+-	uint8_t  save;
+-	uint32_t reg;
+-} registers[] =		{
+-#define REG(rev, save, reg) { #reg, rev, save, reg }
+-		/* exists in revision 1: */
+-		REG(1, false, LCDC_PID_REG),
+-		REG(1, true,  LCDC_CTRL_REG),
+-		REG(1, false, LCDC_STAT_REG),
+-		REG(1, true,  LCDC_RASTER_CTRL_REG),
+-		REG(1, true,  LCDC_RASTER_TIMING_0_REG),
+-		REG(1, true,  LCDC_RASTER_TIMING_1_REG),
+-		REG(1, true,  LCDC_RASTER_TIMING_2_REG),
+-		REG(1, true,  LCDC_DMA_CTRL_REG),
+-		REG(1, true,  LCDC_DMA_FB_BASE_ADDR_0_REG),
+-		REG(1, true,  LCDC_DMA_FB_CEILING_ADDR_0_REG),
+-		REG(1, true,  LCDC_DMA_FB_BASE_ADDR_1_REG),
+-		REG(1, true,  LCDC_DMA_FB_CEILING_ADDR_1_REG),
+-		/* new in revision 2: */
+-		REG(2, false, LCDC_RAW_STAT_REG),
+-		REG(2, false, LCDC_MASKED_STAT_REG),
+-		REG(2, true, LCDC_INT_ENABLE_SET_REG),
+-		REG(2, false, LCDC_INT_ENABLE_CLR_REG),
+-		REG(2, false, LCDC_END_OF_INT_IND_REG),
+-		REG(2, true,  LCDC_CLK_ENABLE_REG),
+-#undef REG
+-};
+-
+-static int tilcdc_regs_show(struct seq_file *m, void *arg)
+-{
+-	struct drm_info_node *node = (struct drm_info_node *) m->private;
+-	struct drm_device *dev = node->minor->dev;
+-	struct tilcdc_drm_private *priv = dev->dev_private;
+-	unsigned i;
+-
+-	pm_runtime_get_sync(dev->dev);
+-
+-	seq_printf(m, "revision: %d\n", priv->rev);
+-
+-	for (i = 0; i < ARRAY_SIZE(registers); i++)
+-		if (priv->rev >= registers[i].rev)
+-			seq_printf(m, "%s:\t %08x\n", registers[i].name,
+-					tilcdc_read(dev, registers[i].reg));
+-
+-	pm_runtime_put_sync(dev->dev);
+-
+-	return 0;
+-}
+-
+-static int tilcdc_mm_show(struct seq_file *m, void *arg)
+-{
+-	struct drm_info_node *node = (struct drm_info_node *) m->private;
+-	struct drm_device *dev = node->minor->dev;
+-	struct drm_printer p = drm_seq_file_printer(m);
+-	drm_mm_print(&dev->vma_offset_manager->vm_addr_space_mm, &p);
+-	return 0;
+-}
+-
+-static struct drm_info_list tilcdc_debugfs_list[] = {
+-		{ "regs", tilcdc_regs_show, 0, NULL },
+-		{ "mm",   tilcdc_mm_show,   0, NULL },
+-};
+-
+-static void tilcdc_debugfs_init(struct drm_minor *minor)
+-{
+-	drm_debugfs_create_files(tilcdc_debugfs_list,
+-				 ARRAY_SIZE(tilcdc_debugfs_list),
+-				 minor->debugfs_root, minor);
+-}
+-#endif
+-
+-DEFINE_DRM_GEM_DMA_FOPS(fops);
+-
+-static const struct drm_driver tilcdc_driver = {
+-	.driver_features    = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+-	DRM_GEM_DMA_DRIVER_OPS,
+-	DRM_FBDEV_DMA_DRIVER_OPS,
+-#ifdef CONFIG_DEBUG_FS
+-	.debugfs_init       = tilcdc_debugfs_init,
+-#endif
+-	.fops               = &fops,
+-	.name               = "tilcdc",
+-	.desc               = "TI LCD Controller DRM",
+-	.major              = 1,
+-	.minor              = 0,
+-};
+-
+-/*
+- * Power management:
+- */
+-
+-static int tilcdc_pm_suspend(struct device *dev)
+-{
+-	struct drm_device *ddev = dev_get_drvdata(dev);
+-	int ret = 0;
+-
+-	ret = drm_mode_config_helper_suspend(ddev);
+-
+-	/* Select sleep pin state */
+-	pinctrl_pm_select_sleep_state(dev);
+-
+-	return ret;
+-}
+-
+-static int tilcdc_pm_resume(struct device *dev)
+-{
+-	struct drm_device *ddev = dev_get_drvdata(dev);
+-
+-	/* Select default pin state */
+-	pinctrl_pm_select_default_state(dev);
+-	return  drm_mode_config_helper_resume(ddev);
+-}
+-
+-static DEFINE_SIMPLE_DEV_PM_OPS(tilcdc_pm_ops,
+-				tilcdc_pm_suspend, tilcdc_pm_resume);
+-
+ static int tilcdc_pdev_probe(struct platform_device *pdev)
+ {
+ 	/* bail out early if no DT data: */
 
 -- 
 2.43.0
