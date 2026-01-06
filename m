@@ -1,113 +1,95 @@
-Return-Path: <devicetree+bounces-251977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24E60CF92F5
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 16:55:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7117ECF92BF
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 16:52:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E61A73062CCF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 15:51:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 66FEA301E93C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 15:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A5C34405B;
-	Tue,  6 Jan 2026 15:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAEFF24BD1A;
+	Tue,  6 Jan 2026 15:45:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ePgiS/tZ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ObIFVDXE"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="LUmjK8/x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970033446B5
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 15:42:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4AC23EA87
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 15:45:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767714164; cv=none; b=rm2Pt21Xraqh2vurVo7RvI9JHPJ2Y/45u2txlPyHP68QaYgwXoItYwx3oWUGXCro9TCquDuK1hREpOonpN3pmacy1tMwQCEK2c9IZarDDWufiFt0ZUYkyt90PasU4FF9chZTeRp/3Kbh1V4onP/2CmFGMOptMRF73peBt5JiAeM=
+	t=1767714313; cv=none; b=cSxHJnHM+RDXPjMaDaGVrJM0iJr+CHCy27lXCF2fvvLxWMImvZBB0Q+VxIHtCG1IiMvLfpfSgraeHgAJHhD8pgAwB/oyOExCVpzZ+Jii0CLuHAurwO3C0O5JY6tE+QFJtZ+ytqDIwl5vllag43NYGUyqqq3hj0GyT7i9Wl97+po=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767714164; c=relaxed/simple;
-	bh=3LB0cITSfH4Noq7m1s58c2osN7yIye+Lx3PTEFp67co=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JWejS6EI7a01Z27gsQs1yLCtpx1m3u78uwlqI2uB8f++Tidnp8maJ5M3ltvwG1yOmksMiH+Zo8thC+qZ+9WwCXkB2Y+CwO4M+B91g4myVlndinS1YcDj8O7sPDmfqbcZBMF99LyWBQRsJnFO2RlbgD1ZRb1LKtxhqBPOAOS+LoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ePgiS/tZ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ObIFVDXE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 606Efor4322965
-	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 15:42:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=Mty9CPP7Jsu
-	pHUVUgRA6WjTGLkSoSb22qlCPdm1xAOg=; b=ePgiS/tZBFbikeLjSU9HogSMWFk
-	XlDRXeV1rtYk3U+ALiJtQPVKfC0Zc9yeNzS5ImKK3/s3mSFA27O7MceSlbbFvJsS
-	sk/CvnISTKzDfOREzOgN8CA3OoFSVkCcYCE1nGl1BIxkHgHFCtFXwVSDcaqchprt
-	bM9xJAkp22LNu2Q3B669WD6SC/7dyPD2tDk/yyeSa5h9LapK613dT2anMFgaXB1B
-	Wlu7XTF0gpJL6vcuhM6K1yhKqEM9QvjsFRi1QLMk4npZ+Hsv0rC2j97CFUbqKiIC
-	Z/9xUgVc55VzVYMExb8aNLzX707+6uUJvBBnFJ0kI14Y6JqpagTSKpYN80Q==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bh4crg62c-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 15:42:40 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2a351686c17so23371775ad.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 07:42:40 -0800 (PST)
+	s=arc-20240116; t=1767714313; c=relaxed/simple;
+	bh=X1LkhQwAhXLtl18hTxnoPCjt3k1+fSSV82rJT0sLA/4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ggAdZBv2WqjZIKRrULcPXCudPaNlOtiUhHWT5uq6x1K8aLZRxyfm1T2NFSVOyaMd7ijSxsG9ombcIBpTbcxekxf56UOeHd4m73u/aEOz/7TLRUDrtnavuMhPGes253uEjYU1efknp/h97+eJlHyLgqTc1KyB+yF+z9qHPD4MeeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=LUmjK8/x; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64b9dfc146fso1886175a12.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 07:45:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767714160; x=1768318960; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Mty9CPP7JsupHUVUgRA6WjTGLkSoSb22qlCPdm1xAOg=;
-        b=ObIFVDXE5WotAMVJ9dTW+rtkjRZSpMwo6C8vknKWlHYV8Q24cKXlbFt+x5gndseMbo
-         JXDl5esnhv6kJbg74kguaTaqVZJQXXR16yxZ0wEkbi2V4VA21VEMglgu7UWJPNHUT8Xs
-         ZBEYRDUNFJP8CpaSuCG71LJKn+vKMech5njisp2Ub7gE6py63VGpUcCnyILE6SGOoEk2
-         /cAIQHMV21iGlbeTi6yKtO5CzqEf2Hb117TTSErADHLvUWrKkBfdKD67KT1yMbPhAsYs
-         2sP/T8JVMHl8ijYvcrtVHpKmIi6uWzdFwuGsgUf6rx76ZAyczYxGkRZQ600x/yJlKTrs
-         B1QA==
+        d=amarulasolutions.com; s=google; t=1767714304; x=1768319104; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UaGEaTeet5VDnDbky4KTpjLHpw6d3GXYeQzFusAWapo=;
+        b=LUmjK8/xxzdDC2hq/HGkbRXuwNQNgQtwMpiqbX782uuQh23EI4nhKUKqSPVKhufLq7
+         GMEJ099KR8AE9JxFTmkccssmkwuNZz+gcNXP57npPJmlWITHS3yRonrvSiGNTtDA4Wpx
+         2zGi4sTocpUSTOlh4g5VE7A60dajlUmb231FI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767714160; x=1768318960;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Mty9CPP7JsupHUVUgRA6WjTGLkSoSb22qlCPdm1xAOg=;
-        b=lBPgF0crPA0g7Eo9I5GQPHh4zy4IZU+ajrueKZE9/GWmpntl/5eDD74ro2NEl9feB0
-         vpYBa3lZinAa0tvSChX327B5m/PoiGYXn4bgaJGpc58Z7H85o+ir/kZNaucRlbpTOVxD
-         5ckDKjbOm9SspezQIYX6DIZDy9UlTWGBlObGEgtfo1ZJof2TaXtAa+zT93xSLK/75hJe
-         8m9E0ARaINftsTLL+QjZegJSJX1tG5qZ4sif2yFJAlaEy62RbxA1nUH07XklXUoEJT9t
-         v4AbC4Nl2hPdKvC7gCc4nTcf2IvHKAdjpy6OcrVXV2Zj+jWb39HuLFm7oHunfmSplMzV
-         JwUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXJEwzrMzN0G/J/yqiRbvG5QgjutT2AoXbE4Hy9H/MMNOMmLMlSEz8ojnuAzf5K+qvryJA7q6s2/KHr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzX8564wQzD5RA/w1T+qe+6jdPJWZ2kbfeOaaePU3ZoVS5J3Z51
-	SrtMH06LNxNvEQpULf0aGC1cxq7N1CWmy0Bas1dtCvNBl2P9joG5Z+qEFsRbkPMpd4IKtKFMoj7
-	6cirI0yZ41FeME9RoXxafJn+jW4JY72c6Lgx4sLieLMYxX/9dGy+8+ltfEA9M/lc4
-X-Gm-Gg: AY/fxX4+Ty5z9091eRtn2bjFBfm3aZhSjMnjs800pqDIiPEgTDAIpZpaEbQd7m0DWYL
-	98ikuUtmy0uRvjvAXJPh6apWFMru+MV6/0ma0Y08JXwdANrawqmkFalgdfqQz6USxP0bcZO3qFR
-	3FnRaXSYlgflsVUzOTh4xVzuWzA6SymI2UVNUOVJgip1ONIbWl215ObhpDrYwOACxorq0rWbpOu
-	K67F+xBIvZk2OpyGFQbSOiSOqUo0QH0k23RQdfELThG4Je+zde+xpgXnTjXEvF6z5yWqj/PtBhz
-	HPbQqRA7NnOuzNoM+XfBMWJaa/ti8WoYzvJ72p3JJVjkF9EZU+h/0GvrSn7jP0iGDOgAh6ooKP5
-	o7McakpDrpeTEyf/VayluLoX7LWwqc+hohSJqfjq8dkaxOW2sKef2
-X-Received: by 2002:a17:902:c40f:b0:2a0:c5b6:67de with SMTP id d9443c01a7336-2a3e2e1e671mr35426935ad.52.1767714159744;
-        Tue, 06 Jan 2026 07:42:39 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG667pmkGDth+EgwS5JLYw269C1+n+LtMnapVQaOfdQaxrvpwZx4BYdJ10YbUoQ+a3wnQQjaA==
-X-Received: by 2002:a17:902:c40f:b0:2a0:c5b6:67de with SMTP id d9443c01a7336-2a3e2e1e671mr35426545ad.52.1767714159218;
-        Tue, 06 Jan 2026 07:42:39 -0800 (PST)
-Received: from hu-pragalla-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cd492esm26606395ad.98.2026.01.06.07.42.34
+        d=1e100.net; s=20230601; t=1767714304; x=1768319104;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UaGEaTeet5VDnDbky4KTpjLHpw6d3GXYeQzFusAWapo=;
+        b=hkWG9eatDav00OqbwedP6T7C9ZZ+mqIaOs7rdU+2KcUdyo0XyxHxMnNHhVkHggY1vA
+         V/cTWM2Qywuv4geQhpL63IhtINyM49xRsvoYhsoEOobcu3/4291pi/nvbsUiEf0maxCC
+         om/vkvbGuqez1bU2RTiu8QYEYJn1zl4PhJD7HbVubJGioIc7JfpzHn6zE7lQ6NpJMowU
+         ysddXZ7hcvCorvKSVU6DY8XpLcRklHpe4RpBcjYM5cQvkPEb04zpMeJFtgHVld/FkrZV
+         WI5mti+HsfGkXtu7qiAvhY6Z6iPirE37JkM4DfoOHcDKz/RsdkDneymiiAeCPtH0DMsb
+         Iqmw==
+X-Forwarded-Encrypted: i=1; AJvYcCWCykHUwsJ9I5M3nBdc18tBdJpJJ2bPZfEAoviYIAFeofGaU/5nyIwFVffIMbYhWgDjAiuuy4L+MWBa@vger.kernel.org
+X-Gm-Message-State: AOJu0YyR2J08Vx7Lr2XLquWVmCF2+rD+AJc97K1wBHKSBY7Ad9fCxFQB
+	k4rQv2Qm4xD/weAHtIV8SQrKqlAeJ2ETplffibodl2XoJ/fjlGLXT/5X3x5SHaPEPZA=
+X-Gm-Gg: AY/fxX6Fre5UXvYLN/SOv4toojYe1kpTO8zr6I5EXtZZefkJjz9Wb5bBRz7J1kzmcos
+	lYaheLbckBtXcgSzWORK2u74cF+ia/KTbuvbLIUePU14Nzko5U1zsp+pIBimffgTxy8xDjDZS31
+	nu7+2TT75wF0lRqIh+Y3CSnVrbJ3ZBfSVscHsPER3ot/teVWmy3IHRwlMlpAEJKO/iXu+L+uXXE
+	pKTJIT8BBmL6Cs7zaRTpParsnmXnaRWTTtgIupHyT2koovFO/h5Oqv3I7msg5mZ5xU1A/MpJT4l
+	TnRJbIcFcz2e7JZxQufqjixlADa8z46YNoexs1PDxtXxvcXj3US99xn4UmrEeNpC1siR/sY1QAQ
+	1axthRHYdBIYevaLsa7dS9JSZGpz2IG5qbpJWhau2Vnc/pIuX3ercUaaLLtrJGto9XtRAWXrQeQ
+	RpsSvfmg87TB06yca2Z2CrmM/x/4UEJa9HMf8VaG0whLPmbFOb2pdYm4dvcY7lS/IMqxHIcktyB
+	HjC1qeUQmY89vBBKlOC39RRS3jAUyFwWPeSpyMwnXbZbK43ilvoiTMvhPYkSs3t/IHXMb5b3RyG
+	mGtlMZkMs8g=
+X-Google-Smtp-Source: AGHT+IEhJj76/ixR7gbOhq5xfUe3t/bDrv2uRRYPD/P4N5pDYTo/+VYMZwWAdEUPIQ/gXZSeiPURWA==
+X-Received: by 2002:a05:6402:294:b0:644:fc07:2d08 with SMTP id 4fb4d7f45d1cf-6507bc3d3c6mr2408057a12.2.1767714303654;
+        Tue, 06 Jan 2026 07:45:03 -0800 (PST)
+Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-95-248-31-95.retail.telecomitalia.it. [95.248.31.95])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507be64efasm2349767a12.21.2026.01.06.07.45.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jan 2026 07:42:38 -0800 (PST)
-From: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
-To: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, martin.petersen@oracle.com,
-        andersson@kernel.org, konradybcio@kernel.org,
-        taniya.das@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com,
-        manivannan.sadhasivam@oss.qualcomm.com
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org, nitin.rawat@oss.qualcomm.com,
-        Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH V4 4/4] arm64: dts: qcom: hamoa-iot-evk: Enable UFS
-Date: Tue,  6 Jan 2026 21:12:07 +0530
-Message-Id: <20260106154207.1871487-5-pradeep.pragallapati@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260106154207.1871487-1-pradeep.pragallapati@oss.qualcomm.com>
-References: <20260106154207.1871487-1-pradeep.pragallapati@oss.qualcomm.com>
+        Tue, 06 Jan 2026 07:45:03 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH 0/3] drm/panel: ilitek-ili9806e: add Rocktech RK050HR345-CT106A support
+Date: Tue,  6 Jan 2026 16:43:13 +0100
+Message-ID: <20260106154446.2735701-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,67 +97,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=V9FwEOni c=1 sm=1 tr=0 ts=695d2d70 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=cMKPt8sKVRzp0kMMbBYA:9 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-ORIG-GUID: eoTULuG-Q1S_OqhK4wji-tXmnUoFnuDv
-X-Proofpoint-GUID: eoTULuG-Q1S_OqhK4wji-tXmnUoFnuDv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDEzNiBTYWx0ZWRfXx3v8LRvxNs4u
- dN9jQ8/yPSm6myfbegOGVqwypwrbLqxnY03BIVkXK95djwJnpzBoHZc1iNWXZpthfkB8mV+90r4
- g4YFvfdjvgk8MUAWMgPX1PvMPmohWnK+zZfXkX8vJ3H+OnkutmLzC1UO8oAYGEZPjO9/bBSKAGe
- fYamCN1v5Piw5jdp5IAYBCNKWc/BfV9bHhmzoKfd4gQ6QV+FKISPv/lnCKi+RukAP2B9MnahlfG
- YuUMyRsieE4RMPYBppwMGSNf0vmTeGLilCl5tY/X5dWOdqft2TB3WheXcV2DkhSIeE5FZ7C+fSy
- xDYwrbJEsJJE3ZU2cXve2PLWcf3IoN5FuP3SnJlsOzef+HHTTsERb9uQtJ8xrWdEDJb9W2a8oe1
- lM2BZqtP4EUN0KeWeEZ/4DJFzAcu3aLybpV0txqatYNhHxe25Qa7ekSC2lKRu8WbjSaUL8aJ/8w
- SGwDb2WnuwmDJf97ZnQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-06_01,2026-01-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 suspectscore=0 phishscore=0 bulkscore=0
- adultscore=0 malwarescore=0 spamscore=0 clxscore=1015 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601060136
 
-Enable UFS for HAMOA-IOT-EVK board.
+This series extends the Ilitek ILI9806E panel driver to support the
+Rocktech RK050HR345-CT106A model via SPI.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+To achieve this, the current driver (previously restricted to DSI) is
+refactored to support both DSI and SPI variants independently.
 
-diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-index 88e3e7bed998..23cd913b05f5 100644
---- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-@@ -1253,6 +1253,24 @@ &uart21 {
- 	status = "okay";
- };
- 
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l3i_0p8>;
-+	vdda-pll-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 238 GPIO_ACTIVE_LOW>;
-+
-+	vcc-supply = <&vreg_l17b_2p5>;
-+	vcc-max-microamp = <1300000>;
-+	vccq-supply = <&vreg_l2i_1p2>;
-+	vccq-max-microamp = <1200000>;
-+
-+	status = "okay";
-+};
-+
- &usb_1_ss0_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_ss0_hs_in>;
- };
+The series includes:
+ 1. A refactoring of the existing driver and Kconfig to support
+    multiple buses.
+ 2. DT binding documentation for the Rocktech RK050HR345-CT106A.
+ 3. The implementation of the SPI-based driver for the Rocktech panel.
+
+
+Dario Binacchi (3):
+  drm/panel: ilitek-ili9806e: prepare for multiple bus support
+  dt-bindings: ili9806e: add Rocktech RK050HR345-CT106A display
+  drm/panel: ilitek-ili9806e: add Rocktech RK050HR345-CT106A SPI panel
+
+ .../display/panel/ilitek,ili9806e.yaml        |  43 ++-
+ MAINTAINERS                                   |   4 +-
+ drivers/gpu/drm/panel/Kconfig                 |  23 +-
+ drivers/gpu/drm/panel/Makefile                |   3 +-
+ ...ili9806e.c => panel-ilitek-ili9806e-dsi.c} |   2 +-
+ .../gpu/drm/panel/panel-ilitek-ili9806e-spi.c | 327 ++++++++++++++++++
+ 6 files changed, 394 insertions(+), 8 deletions(-)
+ rename drivers/gpu/drm/panel/{panel-ilitek-ili9806e.c => panel-ilitek-ili9806e-dsi.c} (99%)
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e-spi.c
+
 -- 
-2.34.1
+2.43.0
 
+base-commit: 7f98ab9da046865d57c102fd3ca9669a29845f67
+branch: rk050hr345-ct106a
 
