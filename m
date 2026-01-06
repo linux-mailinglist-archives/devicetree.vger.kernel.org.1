@@ -1,77 +1,61 @@
-Return-Path: <devicetree+bounces-252045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6B5DCF9FB8
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 19:11:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A66ACFA09B
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 19:17:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1EF3533DF3EA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:59:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 918D23068BFD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BCD4350D63;
-	Tue,  6 Jan 2026 17:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFAC3357A59;
+	Tue,  6 Jan 2026 17:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQiYK3UX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rbXdr+70"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F226234574B;
-	Tue,  6 Jan 2026 17:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6E5357A50;
+	Tue,  6 Jan 2026 17:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767721979; cv=none; b=MoYkwKsy6VuJf+bBnbd7ugDTgemeacn3rzFYftByqRKscuIch55KSprVJyJD7glDA2yVj9nyYMIOK3NRclII7xdqQ5T3r9zWeXavtXVuSg2wVaWe+XZ6AoJzeuxZlqHRB00ByKBNVbLJOW7eBj3iLlMUlqbDHBpZoXl9GZCpwms=
+	t=1767722227; cv=none; b=kAx4Rfu/qL3DnWdt0d95GwTBoT0YYfd2WFv/SfahkrwcT5ESbEX5vgufyBNZPm7ykYrJHjl7nRvpCMuVKMzdc6tHpcYRAqDLP359IqvEOl4yb3+BkLMVf9aJh0gUeAOpIGhTtxor4zOp4J07PYOQ05GHYQxrN2ehgcDZU4//V9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767721979; c=relaxed/simple;
-	bh=J49Ah6r3ppiaT0Ccz51lpd4pEOWs7B7UD75ItEoFIzE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oE0mtt7ueMVro9/Zl6VlMU3WqQqUjD3pbeytgQkuJLw8cHBYfT7sa2yqBgLfP6wqoLOEe1fH4OHd7iUedGNwwpymAi5zqQbn2261Y9MyLeAKq0TBF1S3+X1nIDGNYC0gYLwo2EBQgyuoIWTRKoSDdOzvbJBBv/gv3mzHcsKTy9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tQiYK3UX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C66F5C116C6;
-	Tue,  6 Jan 2026 17:52:56 +0000 (UTC)
+	s=arc-20240116; t=1767722227; c=relaxed/simple;
+	bh=hQcVkxR/o5ATUWcW4CuQXwOu/rw6WdzBdJ24sxfFynw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=l3rzjLmHCsdKtzFCW5TBqOIlzNxDla10LrhI9BdBhi2R4L821uNA2+Cf0lYf2c34pyXAKK+PL8AvexWwamYsyRPtdbVG/t5VkjYKStTP3pfyjzSxQKA9D3ffQNeURp+Nhgww4RUnr4O5q5Q6JgZGz4UH18/5W4jABEK79VnXW7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rbXdr+70; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3422BC116C6;
+	Tue,  6 Jan 2026 17:57:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767721978;
-	bh=J49Ah6r3ppiaT0Ccz51lpd4pEOWs7B7UD75ItEoFIzE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=tQiYK3UXUjhruabV0TEB87eqcDD8yGQHz/zC5Qr6s9pFNQMNkOrM2Gu5bIL9b7dgl
-	 eoQr5tItFOr4rqvdfUbcoXExCZE2DqcXquPXXkQj+ZhlZo5+PMJMNWqP59Ud+NqmBc
-	 UUjeIiSMbVzoz/eYmAgkxHosjp7HjYXJfO4wfareJzA/LNN3sOu4w0DzHR3bU0QiSD
-	 nHbiI24Dv4FYKUawiWsFHdxVyHJGPAHzdEBSlNKBvwChhcvg8uq8bKUgAUz5FMtdHg
-	 Nu0ZUFDI53GPBDxqKyvXG1GzLm5D3RBBWGHGOZkj0fP4RKmXjH99KtPMHDquLdv+r1
-	 7XaURL/dJMkiw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Clark <robin.clark@oss.qualcomm.com>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	fange.zhang@oss.qualcomm.com,
-	yongxing.mou@oss.qualcomm.com,
-	li.liu@oss.qualcomm.com,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v7 0/4] Add DisplayPort support to QCS615 devicetree
-Date: Tue,  6 Jan 2026 11:52:52 -0600
-Message-ID: <176772196932.3106040.4674734843475910105.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251104-add-displayport-support-to-qcs615-devicetree-v7-0-e51669170a6f@oss.qualcomm.com>
-References: <20251104-add-displayport-support-to-qcs615-devicetree-v7-0-e51669170a6f@oss.qualcomm.com>
+	s=k20201202; t=1767722227;
+	bh=hQcVkxR/o5ATUWcW4CuQXwOu/rw6WdzBdJ24sxfFynw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=rbXdr+70VG7WegNXGbgtvzz3Hdi4UhZ+S8QqG2bFZdG5khjaOy2vfDgKeya1MP3qp
+	 yiwpkemEeOVn+qtMkZYlV4S6hvTb6s2PnWfhn52QU4/1u2TNskkzQ2oQaPaBb8xPif
+	 XbVy2+JlbvLQFPWRp+T/rUjmkWp08r970AC3SARu/E6WrtdsecznTfnOxL58bx2Meg
+	 lm57eJEV1/C5VnVNdDZTtVycThxkrPLJACd4iMpwZjQ8lxCKGf83NwUpuXD4mk3tsE
+	 nKpYCo1HZOgH/6Tzr6nndDVsaEEBXDgeDV+HHI2o+/FnJog54h48nImOH91AEKARmj
+	 xTd/k3ML+9JPg==
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 758D15FC25;
+	Wed, 07 Jan 2026 01:57:04 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej@kernel.org>, 
+ Samuel Holland <samuel@sholland.org>, Linus Walleij <linusw@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-gpio@vger.kernel.org, linux-media@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20251225103616.3203473-1-wens@kernel.org>
+References: <20251225103616.3203473-1-wens@kernel.org>
+Subject: Re: (subset) [PATCH 0/4] ARM: dts: allwinner: Fix remaining DT
+ validation errors
+Message-Id: <176772222440.2799087.10450816532517235383.b4-ty@kernel.org>
+Date: Wed, 07 Jan 2026 01:57:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,29 +63,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-
-On Tue, 04 Nov 2025 09:33:22 +0800, Xiangxu Yin wrote:
-> This series enables DisplayPort functionality on QCS615 platforms.
-> It introduces the required bindings, updates SM6150 dtsi for DP controller
-> and QMP USB3-DP PHY, and enables DP on the QCS615 Ride board with
-> connector and link configuration.
+On Thu, 25 Dec 2025 18:36:11 +0800, Chen-Yu Tsai wrote:
+> This series gets rid of the remaining DT validation errors for Allwinner
+> (sunxi) ARM 32-bit device trees. The patches are self explaining.
 > 
-> Depends-on:
-> https://lore.kernel.org/all/20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com/
-> https://lore.kernel.org/all/20250926-add-displayport-support-for-qcs615-platform-v7-1-dc5edaac6c2b@oss.qualcomm.com/
+> I plan to take all four patches through the sunxi tree.
+> 
+> 
+> ChenYu
 > 
 > [...]
 
-Applied, thanks!
+Applied to sunxi/dt-for-6.20 in local tree, thanks!
 
-[3/4] arm64: dts: qcom: talos: Add DisplayPort and QMP USB3-DP PHY
-      commit: b7ad04269d6825b1c88de17e698a356bac5f3197
-[4/4] arm64: dts: qcom: qcs615-ride: Enable DisplayPort
-      commit: b5a3112bfd5742a5d831c0bdfac2cf6e6796ac9d
+[3/4] ARM: dts: allwinner: sun5i-a13-utoo-p66: delete "power-gpios" property
+      commit: 0b2761eb1287bd9f62367cccf6626eb3107cef6f
+[4/4] ARM: dts: allwinner: Replace status "failed" with "fail"
+      (no commit info)
 
 Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Chen-Yu Tsai <wens@kernel.org>
+
 
