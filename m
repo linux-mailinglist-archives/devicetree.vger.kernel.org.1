@@ -1,135 +1,112 @@
-Return-Path: <devicetree+bounces-251861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E1AACF7BFD
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 11:20:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1D92CF7BE5
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 11:18:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C196330C9E4D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 10:17:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E696C3011ABE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 10:18:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9BAB320CBC;
-	Tue,  6 Jan 2026 10:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99389322C80;
+	Tue,  6 Jan 2026 10:18:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65E2B30F7FE;
-	Tue,  6 Jan 2026 10:17:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F9B315D21
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 10:18:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767694663; cv=none; b=keA7XdjJleOdCsKEsjVYq24DnIFyqDcl2gDsLi6s5hencjsKQ510Ex+/ppW87oKo8uZCjNT7nw3yRXrBmwyr+s+kRaYzFob3RQ0Rw/3hcEqLx1ThCH+qPEtBAfR86gmQ5lYb9F3udGm1ZB28Qxx3tvnDT15R+TIaIXt5FdzybI8=
+	t=1767694695; cv=none; b=Cw0hUZ0K0FHKuuCj8gec8bz4ztXtYv9SrlEqhDfFJ5tm6OThOtzEA32j4Iv/aLMDD7hu4ZcixxvTHvMwmB0DX/puiTGDiT/4p6/ZoQF14EXCKBIQndF2QU3q+JUk1uWLJMxpe4S8PFUE6n7jYkjH7VFiOhoW3AqzgpIkp3pLGrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767694663; c=relaxed/simple;
-	bh=WQ8hmn+buMgJNRJVF+xXil3IKBQiymPevLTWOD3c11s=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iqaw0kUp9Pe3oyFForK9RAIitPUJIDY4TsFul7b40X5GkMCLilYKt7zjhxsC+x+o6KUXJQMkGkdxh7S4ky4itC8+pLnak2sRl7k+9uUpj9EfsB0Pc7/2GHohUEgBs66e8InE0UMG4pAKds4uDBm3mqpj0TO+i/mRqPuW5244fTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.224.150])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4dlnCz32yTzHnHX4;
-	Tue,  6 Jan 2026 18:17:35 +0800 (CST)
-Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
-	by mail.maildlp.com (Postfix) with ESMTPS id 5D87E4056A;
-	Tue,  6 Jan 2026 18:17:39 +0800 (CST)
-Received: from localhost (10.48.149.114) by dubpeml100005.china.huawei.com
- (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.36; Tue, 6 Jan
- 2026 10:17:37 +0000
-Date: Tue, 6 Jan 2026 10:17:33 +0000
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-CC: Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>, "Saravana
- Kannan" <saravanak@google.com>, Nathan Chancellor <nathan@kernel.org>, "Nick
- Desaulniers" <nick.desaulniers+lkml@gmail.com>, Bill Wendling
-	<morbo@google.com>, Justin Stitt <justinstitt@google.com>, Russell King
-	<linux@armlinux.org.uk>, Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, Krzysztof Kozlowski <krzk@kernel.org>, "Alim
- Akhtar" <alim.akhtar@samsung.com>, Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>, "Nicholas Piggin" <npiggin@gmail.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Nipun Gupta
-	<nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>, Abel Vesa
-	<abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Michael Turquette
-	<mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, Shawn Guo
-	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
-	Vinod Koul <vkoul@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>, "Rafael J. Wysocki"
-	<rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<llvm@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
-	<linux-clk@vger.kernel.org>, <imx@lists.linux.dev>,
-	<dmaengine@vger.kernel.org>, <linux-media@vger.kernel.org>,
-	<linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 06/11] cdx: Simplify with scoped for each OF child loop
-Message-ID: <20260106101733.000059e9@huawei.com>
-In-Reply-To: <20260105-of-for-each-compatible-scoped-v1-6-24e99c177164@oss.qualcomm.com>
-References: <20260105-of-for-each-compatible-scoped-v1-0-24e99c177164@oss.qualcomm.com>
-	<20260105-of-for-each-compatible-scoped-v1-6-24e99c177164@oss.qualcomm.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1767694695; c=relaxed/simple;
+	bh=0Ztuh7rnBiKd72hyuNM3eRD+wBpJ29KQ1CLiziiADm0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iBWsYew0VBfjBwLpCTg+XMltCFW5C4znnGi4H/59fE8bW0Ax02oDCMcgiKA7KX4wPPzB3V8KIwOsM7GcGH+ZU7/9rpU8nSbvlI/30NqBP5yXJkdId+gn4slZQF15IlAEZjaE49QDFZ7NQ1InoSE8QqCw8za/EwOpTvaRf4/wJro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-55b104727c8so278222e0c.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 02:18:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767694693; x=1768299493;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iaNnR+PjYtdzuiF4fm8ih7gsuLQAM4qtZPBAO6P24MQ=;
+        b=jXPQzRpKPwgwHgQs1Rmildd/9zS9ZCA28MSpTu6XMQTt1MMuBfJV/qAFnI5Te73mJC
+         in4gUcy8zQjfeeETT3BuLNmeth11ypx3wlVVrYha2tyLrqtRRAFLyhxPidwPvWl6vtWT
+         jOILUJ0TgGr8R8u7WUWh2pPyEAL4AQXHXIjfrAt91793TS3EScBFTnuw3u+D7s4Jdmc5
+         QJO2oSUGLjVMiZYQgXQJpzXvImBOwsFQ9oVqQxQ5R74kEFDWi/WEZ5BY6mHnb3xPZR38
+         Vh2PtZnuNV9GIvbbqLZp51cpCBacErxniSZgVvyg5FIxTy5LDAnOVXFu+cFbBdGhBTOy
+         20Dg==
+X-Forwarded-Encrypted: i=1; AJvYcCWEErGI4z7crXMhAkIZj6256uF1dV24BCA5NKheuroZ3SGxzQAwcPXzfASj4/u2v60nrKO8XFmZbioK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbuTWLs30Ztvg+7Qm3QOh2qgSOsFg+7D52LBcrvOoY2fBrxJAj
+	4HYQPJ9dLGSNKq7qxCFY0XlCPLcWrugm1zns9NgCRyXVcI/Mx82Gx/dI3W0ZrWIT
+X-Gm-Gg: AY/fxX5rtWWbf3aPsfmVI1DEQ7cznPUic6dzANlja1gsYUxHwvmN6jsAUI4oEQhgG1C
+	1C3wMGl9zEZtsZpA/5Ni2eEzU2OLqnu7Fv9O1HEyajj+vHhhGt9/AfSn6v0CYNpELm3T4IusJoZ
+	c1MY+xumQ4LyDlMC8oWi4w35bEUSGv7lqe45v1ZWKJXF4RsyyBpBrqSOJfdn6PJedJ5/2Vh6Z6u
+	Q7Ojs7arDVSoM+mMrAkGPeyy60/9HO6j1YNteihxUvWRW4FuaAboyb5lAqNNl5B5mvvg6/+wYao
+	F1pYAvXvbqLMmum5fAIAe+o1rt7JR7B/9Jwwi8HRifgey/Aeldp5JN5HGLzTBlE51Wpf0RBHSKa
+	VoioFYttwyyapO8pYb4PQ2gj9yfV7e8lwntZsM4uV3XTeK5BISi2U6KYueMLBE5JyU3u6+dCGQe
+	sGOVwvgPR6jawzw3qq+IfIrsEaD44O3ZOO+9+XYSt0cOY5JV08v94XA5gmrGHYHBk=
+X-Google-Smtp-Source: AGHT+IELevIzttB/CmICPM2FaQ9maoYOscywZ6OjH8vimHc+CN7ITpQTiXgQ9FeAhcreNsKObKoFSw==
+X-Received: by 2002:a05:6122:903:b0:54a:a048:45a4 with SMTP id 71dfb90a1353d-563395db965mr712727e0c.16.1767694693020;
+        Tue, 06 Jan 2026 02:18:13 -0800 (PST)
+Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com. [209.85.221.172])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5633a1ea753sm541769e0c.4.2026.01.06.02.18.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jan 2026 02:18:12 -0800 (PST)
+Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-55b104727c8so278218e0c.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 02:18:12 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCViboMauJ/+0YMhi4ngvJpsKxBcYyLM1ms0SXcRj8OVd8g9uMbTI21wBse7P5wMhWqs54SVTYmyfWRr@vger.kernel.org
+X-Received: by 2002:a05:6122:903:b0:54a:a048:45a4 with SMTP id
+ 71dfb90a1353d-563395db965mr712718e0c.16.1767694692317; Tue, 06 Jan 2026
+ 02:18:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100010.china.huawei.com (7.191.174.197) To
- dubpeml100005.china.huawei.com (7.214.146.113)
+References: <20251217080843.70621-1-shorne@gmail.com> <20251217080843.70621-3-shorne@gmail.com>
+ <CAMuHMdVCY=5UypK65Ver6UZM_m6DZuw9mhfANMx4+Y6PgNAdmA@mail.gmail.com>
+ <aVi0W6syzK6buL_v@antec> <CAMuHMdUP3z4Os=3XC6Nuzx8QAap=LTcuJrGZsy71GO=NFTOjZg@mail.gmail.com>
+ <aVzb6pStdagr3IUX@antec>
+In-Reply-To: <aVzb6pStdagr3IUX@antec>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 6 Jan 2026 11:18:01 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXr7H_M-QO-3ty4mpycMfDHsxrDWejjw7u3RPcUqioapw@mail.gmail.com>
+X-Gm-Features: AQt7F2prYcJ7L1GJNnSBejlil5cH1_t_no9UN8DCBmtBcG7ug7lF61xNlYnmN9o
+Message-ID: <CAMuHMdXr7H_M-QO-3ty4mpycMfDHsxrDWejjw7u3RPcUqioapw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] openrisc: dts: Add de0 nano config and devicetree
+To: Stafford Horne <shorne@gmail.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, 
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonas Bonn <jonas@southpole.se>, 
+	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 05 Jan 2026 14:33:44 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com> wrote:
+Hi Stafford,
 
-> Use scoped for-each loop when iterating over device nodes to make code a
-> bit simpler.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-I'd be tempted to make one more tweak in this one to bring
-it inline with the suggestions around not combining scoped cleanups
-with gotos (see the comments in cleanup.h)
+On Tue, 6 Jan 2026 at 10:54, Stafford Horne <shorne@gmail.com> wrote:
+> Just curious, Do you have a quick way to enable out of tree debug patches i.e.
+> to dts and defconfigs?
 
-No bug here, just nice to have.
-> 
-> ---
-> 
-> Depends on the first patch.
-> ---
->  drivers/cdx/cdx.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/cdx/cdx.c b/drivers/cdx/cdx.c
-> index b39af2f1937f..bbde529aaa93 100644
-> --- a/drivers/cdx/cdx.c
-> +++ b/drivers/cdx/cdx.c
-> @@ -608,7 +608,6 @@ static ssize_t rescan_store(const struct bus_type *bus,
->  {
->  	struct cdx_controller *cdx;
->  	struct platform_device *pd;
-> -	struct device_node *np;
->  	bool val;
->  
->  	if (kstrtobool(buf, &val) < 0)
-> @@ -623,10 +622,9 @@ static ssize_t rescan_store(const struct bus_type *bus,
->  	cdx_unregister_devices(&cdx_bus_type);
->  
->  	/* Rescan all the devices */
-> -	for_each_compatible_node(np, NULL, compat_node_name) {
-> +	for_each_compatible_node_scoped(np, NULL, compat_node_name) {
->  		pd = of_find_device_by_node(np);
->  		if (!pd) {
-> -			of_node_put(np);
->  			count = -EINVAL;
->  			goto unlock;
-break instead.
-Or better yet a follow up patch to use guard() for the mutex allowing a
-direct return here.
+Keep them in your local working branch, and rebase that when upgrading?
+/me has +1200 local patches :-(
 
+Gr{oetje,eeting}s,
 
->  		}
-> 
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
