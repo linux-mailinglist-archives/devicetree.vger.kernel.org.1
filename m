@@ -1,117 +1,195 @@
-Return-Path: <devicetree+bounces-252105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 515AACFABFC
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:44:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F79CFAC29
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:45:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 03DA930146D1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 19:44:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9D36F300FD43
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 19:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAEDC2D77E6;
-	Tue,  6 Jan 2026 19:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD31B2F747F;
+	Tue,  6 Jan 2026 19:43:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B1oloWF2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UgHlRvwi";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GmR+fs5X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A030F2C11CA;
-	Tue,  6 Jan 2026 19:42:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 332B62FD69B
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 19:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767728553; cv=none; b=Nfaou/17bO4B5Iapk+uOY2pMUWRhCbS+Iv2XmNhsmBELthxscRC2S786c8F8RARclTw6yvrTaLaOTanAfbxtkt3BFK1vpZSXfJte576+BVegP9F72APqbVi3ldQVOWEW2YrzWVQ1Y8XjePzBZzby8JNm+rcCpN2gUjvvMqGbDzI=
+	t=1767728594; cv=none; b=fU0kvImKvhbv9mD1FYHR1WqC2I4Zvrsvv9fy4lo2cI+MIz2UoT56G6Y0Z6Pdjod7THE/iAdJpZ6a8x6krxavjm+iBDs59yDMmrjkorV33PtXN7ngD1EI4Q+EFDpg5pYl97BTosNWZz+og6WsaZTTjsTmlsfeelPYy4EKiSudaCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767728553; c=relaxed/simple;
-	bh=s+1JedlIyWeQqbDvglfgq6oP3kT0MW4kLflc5hfg6E0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=qWNBKPGDWKhzUJeQyShL2J8n8B2iwWxeh/OcTAMv8uqiISH4ypClqUGctS/cllazlq3/weQXM8YAyn8FqcOoJ3nZ5dg49HPoe/gp0xsw8SC3+eh/HZZfhnz7lKfG6rcIcNpR7v5zmGHzejKkl78y4MQsJPQK2YNHHvXvaoSPmZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B1oloWF2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0E92C19422;
-	Tue,  6 Jan 2026 19:42:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767728553;
-	bh=s+1JedlIyWeQqbDvglfgq6oP3kT0MW4kLflc5hfg6E0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=B1oloWF2QRAYBT24LurkPclFX8FBgMjCnDDwa6f/qv+XyNFyULTFn8d5TisBXnXDR
-	 HDj5Nds9SgH4a6LWjtt+B+5rR4jpqActkBtTLLEZwvAQHBvMZMO7jEDlDdSRzJhFyu
-	 v7g69obHF/EpvjxP/EUhkJYSgK1aBHQvbxw7R+FaW1yvBxLACFPxO0+lEMzROF4V51
-	 TBdXG+ag6L1uUsLs1oFtYiKXky5wwIvU/lWg+9cSksZmPb2p0c2j0plNmiAubiSTWN
-	 yq3pPlZddZ2uh4spsHBce1u2VV2Kz4C7xVShR3ygXSxfgMPyAKo15mS5gWuqcFw4fi
-	 ST/ZY/qOwmLaw==
-From: Mark Brown <broonie@kernel.org>
-To: cezary.rojewski@intel.com, lgirdwood@gmail.com, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, 
- Oder Chiou <oder_chiou@realtek.com>
-Cc: linux-spi@vger.kernel.org, perex@perex.cz, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, alsa-devel@alsa-project.org, flove@realtek.com, 
- shumingf@realtek.com, jack.yu@realtek.com, derek.fang@realtek.com
-In-Reply-To: <cover.1767148150.git.oder_chiou@realtek.com>
-References: <cover.1767148150.git.oder_chiou@realtek.com>
-Subject: Re: [PATCH v11 0/4] ASoC: rt5575: Add the codec driver for the
- ALC5575
-Message-Id: <176772855067.328192.13240221041944953554.b4-ty@kernel.org>
-Date: Tue, 06 Jan 2026 19:42:30 +0000
+	s=arc-20240116; t=1767728594; c=relaxed/simple;
+	bh=XfX+b6dLCq2w3dZ+DVIExRn/Lhy7ELFfs4bDhfz5P58=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uChNe9NC47+QZmt+sd8lmRDBRF7wqkJcrqHzrwIy+0utGGSCxbxReWR10lfHCo6tL4rixDrj4RbPduPm/h/WKomrak9kY8QABw4uYT7A3f+r6aORQSDhjDuU0w3nF17qzFYgs9guh3E6e4FphflP9CxIk1FiXbaojwi4qHPDsFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UgHlRvwi; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GmR+fs5X; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 606HRw2j4090701
+	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 19:43:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DZDTYeigK/sfx0x25w6qJIS+ZT6X8Spw4/Jf9zAiFq4=; b=UgHlRvwiBVU1UiER
+	MjTonP4NnLN281cVbJMepEz6xjVuQZi/mvBTl1Snz1NHRbsL6R6pvi5SaQ2iPH4M
+	OtxXVE5S/PtYxPn231jPz8E8HEd8mQaImdqJ+4E7NJwASXwTy1kQ5AfCXXVwyKU4
+	YPsWlFOQXajzB0PVL1SRMm6WAGdQMLgxGKRFnTy7kHfmndl3QctN9UT6daMK5K4E
+	lw0MTjC6rI/A7t3tJaH1PixgmIJsjtideRJ3ifvLWYTrjWyDF662JT0shsuTrZIm
+	X/wCz0U22GRoU65BZdy764oVTggZSsiDaM9jy3JhCEU4aN3RorvyHl8LLC+Yh87y
+	26zCew==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgyun9rxg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 19:43:10 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-34c66cb671fso1573856a91.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 11:43:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767728589; x=1768333389; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DZDTYeigK/sfx0x25w6qJIS+ZT6X8Spw4/Jf9zAiFq4=;
+        b=GmR+fs5XrokSfIOVQZud8YGXh6TweJblk9L+MYm3T6MevxBd2/dd9aegxmHVa55rnN
+         fuzZBzn9E3r+Fw0sIaBpHAEWixxKSTR6WEp2w5bEUr47IJiAwejIL/nv4Cy628oiAibh
+         zFaXTABhXrIBnbCYSmlISOOJFKduy+VVQemw/8ebpC/2bAsJ5GHzmwtV84/19fWQ9div
+         65PFKJ2w70sY6GukDAKLYioy/8SnCF9GInTv0xwcdpXjtq1Q43wOSfCQ53ypoDWECgMP
+         ojKGNAlh4RDFxFm6xsbX4Rrn3UlCS7+yvhUc4vLy9iYchz90pf/be/Kpo4Fmo1ssCvgF
+         F7IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767728589; x=1768333389;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DZDTYeigK/sfx0x25w6qJIS+ZT6X8Spw4/Jf9zAiFq4=;
+        b=XCq5oSnGo4Ep/agpc1IwPr40YqJMsz8lG3z5dRHWH+hX8vcpHB0PdahRKlnD9tF1az
+         MQaqmdCEZXCeDfjm2J5tgQKDmdSopAqR/i8uBNzb2/PHfjek+yXVFGSMReb7icwx3rru
+         yh4D/W8HH5nC6oU3XoaX0+tNlcJveZ6xltXn24IuxzrHBxQW1T6ifnVmdsuxdGsdsOX3
+         XbcxP0Ow1pjcFdW0bxkBCchoCWALCNU5vSqMcBPzsCw1j0jbyNtOyYuYVmB0LBhpXmOi
+         81XqZCbK9fCOeueH2nPywxy5uxMStQJ51bJyTTaszqw4KcTA8VM5l7M4WjEGZY8UT+g0
+         cIag==
+X-Forwarded-Encrypted: i=1; AJvYcCVtUwov5nL/UbdsVnw8rm229uGnf5oxgTB6z2UWFqwIpMulvC/KaFfo26Y1iVBQCqWjyFLwR87V6OU/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYiDl0kZyV2jOFiUzVWiWu2P+/992au5bkfpP8eb9MsLRCofkh
+	nfp8FlyLdUOgrRIzRzj6QxJvFMm1lRYrqD9WNS1RO57IA0SMfLY4K6xTOzjZq8ZtZbV65lVZTzs
+	5r2PpAcTuXa/BtKZEcF9UzghuuWmX5d624p4l0YeDqoyteijrbuYhw/qmGDTFpQDv
+X-Gm-Gg: AY/fxX5T0pDWiTLi9CVvftrn7svQc7A2OQg8a+9PDdiF77zreXZQ0mM4VGU2bUrGcOg
+	U7VH78becKTac/C+/WGX0S4MGrDXEUpPhtJaz3E5A8HEnm3+pDSFDv1HLiHkAx6wJaq7zuWm6jg
+	Pkg61yc1LWj6USPvhoGuTr1XPpZT1H0cB6T7XSHOd7RS6luFwVjZAScvDYX/ihGng167RWg9i7R
+	gd2cS+CDYDOoh89woD0fJ3jTZP2R1b4dny7NJyI3yDzL/usjCBBrE/VPr9H21P1421/qT/gYdPb
+	PATTkp8NjIVFsFBlvC4nAswNXz7u3yPXzEq1PXZFkFrwHt49QAsbt1BQEB9v1cyfi+lzrNKHgiS
+	KR2zwb8U0/kqXDdacQjbRmhlZljucqZv1oOVr9b/kgDDoBjP88cnAPH7d76+jSno0rw==
+X-Received: by 2002:a17:90b:4acb:b0:349:7f0a:381b with SMTP id 98e67ed59e1d1-34f68b4c603mr228435a91.8.1767728589199;
+        Tue, 06 Jan 2026 11:43:09 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGR7diURQX5/IXX/QMdmcVn16iPBI2ko8itYSY30OsuI6Gy/ChZZ4MFegFlC2SaEMUsbJ5HFg==
+X-Received: by 2002:a17:90b:4acb:b0:349:7f0a:381b with SMTP id 98e67ed59e1d1-34f68b4c603mr228406a91.8.1767728588676;
+        Tue, 06 Jan 2026 11:43:08 -0800 (PST)
+Received: from [10.62.37.112] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34f601351bcsm1113023a91.5.2026.01.06.11.43.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jan 2026 11:43:08 -0800 (PST)
+Message-ID: <a76bb340-cf78-4e5f-afd2-b6d43f3119d1@oss.qualcomm.com>
+Date: Tue, 6 Jan 2026 11:43:06 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8750: Add support for camss
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        jeyaprakash.soundrapandian@oss.qualcomm.com
+References: <20251126-add-support-for-camss-on-sm8750-v1-0-646fee2eb720@oss.qualcomm.com>
+ <20251126-add-support-for-camss-on-sm8750-v1-7-646fee2eb720@oss.qualcomm.com>
+ <20251127-steadfast-red-koel-8c9bc8@kuoka>
+ <6aa8ffc4-2fe5-44ad-8ac8-581e0697360f@oss.qualcomm.com>
+ <a228d38d-9fb9-4e61-9a02-e70593c69dac@kernel.org>
+ <355c3ae0-9603-4750-b83d-64447b6581ce@kernel.org>
+Content-Language: en-US
+From: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
+In-Reply-To: <355c3ae0-9603-4750-b83d-64447b6581ce@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDE3MCBTYWx0ZWRfX9qyH3YfanP+f
+ 1R6v1Y6uKKsuJAIMH7uoE+RRzLvPbcl1C2hCQJQL5w/D43Shv80uPxB4hDrTgZfDY/MKdKRTB+V
+ puHii/l7JZa9U+j4u9O5HMVK4Bneu276WZk1QjNRP2aNvTRW9ILg+NMhn1UwdpdVOkztr5GAbqh
+ DLgh49pOMcOf/pLHyR3vZTqdZeORzC5HGMsO/t6SRlA3CbJV6cZJJlQaXzQOsiN39G1bR1qlcv/
+ uty+KpSTr1XPS1FrEeiwgeiB4vbaFV2UluBU7MQrSUltoFuKVS2afSPBKm9veYjIaPCE3xek7xD
+ 27LVcJI0cXCq9rfsFW+d+qtjfCJeOdpUVL7Ob9hSECHtMPuQJHSPutcnxyip6gi2C11C7PbLX4G
+ lgQ+JniszRSJu9veZSXCNzlhzix0+Twf7kIr3RtGZ8lCOUZv3DBRuUUKtak3tBEv8LZpLArY52F
+ L8j3Ya5xg6zUCtIJIVg==
+X-Authority-Analysis: v=2.4 cv=YqIChoYX c=1 sm=1 tr=0 ts=695d65ce cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=vtVd1KKryTdkyhPdPdsA:9 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-GUID: ISiL5V7AKBfoecvYiYxFKoCgUS1mDoLQ
+X-Proofpoint-ORIG-GUID: ISiL5V7AKBfoecvYiYxFKoCgUS1mDoLQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-06_01,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 impostorscore=0 bulkscore=0 malwarescore=0
+ phishscore=0 adultscore=0 clxscore=1015 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601060170
 
-On Wed, 31 Dec 2025 10:35:01 +0800, Oder Chiou wrote:
-> This patch series adds support for the Realtek ALC5575 audio codec.
-> 
-> Changes in v11:
-> - Patch 1/4:
->   - minor fixes
-> - Patch 2/4:
->   - change of_find_spi_controller_by_node() gating to CONFIG_OF
-> - Patch 3/4:
->   - nothing
-> - Patch 4/4:
->   - achieve reverse-christmas-tree notation
->   - remove formal version check
->   - revise check whether the firmware boots from SPI or not
->   - minor fixes
-> 
-> [...]
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/4] spi: export of_find_spi_controller_by_node()
-      commit: ee69f55eb183efb43da14cdad72910b1b1cc2932
-[2/4] spi: change of_find_spi_controller_by_node() gating to CONFIG_OF
-      commit: 037f8d896688bf3384eb6bf34e24e8fbc9f6e02d
-[3/4] ASoC: dt-bindings: realtek,rt5575: add support for ALC5575
-      commit: af4c0b951b18a8af73fa8541fabf1bf2484bba9b
-[4/4] ASoC: rt5575: Add the codec driver for the ALC5575
-      commit: c7ac7499ac5bb50ab3e00add121822c5c904bc91
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+On 1/6/2026 11:20 AM, Krzysztof Kozlowski wrote:
+> On 06/01/2026 20:18, Krzysztof Kozlowski wrote:
+>> On 06/01/2026 19:40, Vijay Kumar Tumati wrote:
+>>> On 11/27/2025 12:12 AM, Krzysztof Kozlowski wrote:
+>>>> On Wed, Nov 26, 2025 at 01:38:40AM -0800, Hangxiang Ma wrote:
+> Look here^
+>
+>>>>> +		};
+>>>>> +
+>>>>> +		cci0: cci@ac7b000 {
+>>>> Looks completely mis-ordered/sorted. What are the nodes above and below?
+>>> Hi Krzysztof, sorry, not sure how you mean exactly. The ones above are
+>>> the pinctrl nodes. Each CCI has two masters using two GPIOs each, one
+>> Why would pinctrl nodes matter anyhow? Please read how DTS syntax works.
+>>
+>>> for clk and one for data. The ones below are the actual CCI HW nodes
+>>> that make use of the pinctrls. I believe this is inline with previous
+>>> generations. Have I missed something? Thanks.
+>> I wrote what is wrong. Is this maintaining proper sorting? Did you read
+>> DTS coding style?
+>>
+>
+> Heh, you received my review 1 day after your posting.
+>
+> You replied to my review 5-6 weeks after, yet you still expect me to
+> understand the context and provide clarifications.
+>
+> There is simpler way: NAK.
+>
+> You will not get your patches merged with such latency and such replies
+> not even trying to address the problem or learn about it.
+Agreed. Apologies for the delay. It was partly caused by the dependency 
+that these patches have on Kaanapali patches and partly by vacations 
+during Christmas. We will explore and address your concerns reg CCI 
+nodes and push the next revision ASAP. Thanks for your understanding, 
+Krzysztof.
+>
+> Best regards,
+> Krzysztof
 
