@@ -1,126 +1,124 @@
-Return-Path: <devicetree+bounces-252018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAC08CF9D91
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 18:51:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 024C8CF9DC4
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 18:52:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3259F3065F48
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:50:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6F5733044856
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DA812FF669;
-	Tue,  6 Jan 2026 17:43:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7479334887E;
+	Tue,  6 Jan 2026 17:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fm19qNEu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tzeXvbfh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F832FE59C;
-	Tue,  6 Jan 2026 17:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A9F347FFB;
+	Tue,  6 Jan 2026 17:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767721396; cv=none; b=jHC5s934380KbgG9Hz0kCd+zlW4sZzLaji6SXnjGZrkXwZvOITyON7qz29Zc264BJhEIQMCITes9Z3ufqam1Yv72eQHosStGqqXdENReNJTUFWG11fojp+iKx0d8a96MSanfpj6rPYHYnkPDUC/cupdaKKAyJz7RzN75bxrOb/o=
+	t=1767721430; cv=none; b=ljMElKukkMcvRI1gEa/LHihahr/0fafpTmmaW73LSEM2P9P02muoG0Nqh8AsSHVojyDKEnWJZX28Jc0oW6EOjndI0YaCQANINXG7/s8DdoH3w/ca88w3wLrTY3KKI0jslkJ3HX+ET9/UV8CWUEFtChM5Zzcrt8So8MYOYpBaJHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767721396; c=relaxed/simple;
-	bh=knYO0dVBtKILflMNQYIaYPLoiqqfWTfUH8gCTse05RE=;
-	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=OBF5Vdwa6nYTeCSaUXGH9NFNf7Lrg6tIs13NZhUuLpKwap/9fv0OpfzzeMSG4gchuRxWZIRjEup/G4vmkfwmInPrmSmkekevFWFDjmdQpACdAwf7wApKx+VI/tkhgE8OC6XHTfoGGJnsFM1ccHIFygiUpGVmC6qP9KjPit8xVwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fm19qNEu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF69C116C6;
-	Tue,  6 Jan 2026 17:43:15 +0000 (UTC)
+	s=arc-20240116; t=1767721430; c=relaxed/simple;
+	bh=NMRzBgPMATlkTm0f50YVEsRzDjIrZY2oM6Hy3objjVs=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=oNpBRFL+bP4EcHk4prZNZfu75e83PmBt0BV20GnXTEhecZigpDF76WJ4dDx6C2ad2jlv0O03UeR8p9JzUP8tjM+XzHzGXu1/TAtw7YmKjzJPKu+fRX4vV7qWUqUuFOjZmQS6XYwzVNoByBWDE+35FiCNM+/ducHfwImKotHa9AY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tzeXvbfh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3B77C2BC87;
+	Tue,  6 Jan 2026 17:43:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767721395;
-	bh=knYO0dVBtKILflMNQYIaYPLoiqqfWTfUH8gCTse05RE=;
-	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=Fm19qNEumPDXY1AVuxiNPc5H1ZrdFIFe8+BXOsTcO9NopdwkpsjKcrZNt+VSKzafn
-	 2IvPjQvnzJQpfvS5aTgE2Y2ckiVpWI2hRJEnQs0Pg0dhz6u8nJhNIB2jcUvOAQrTIf
-	 kH5zIH9uZYdd47qG99G6513q0kEM795b1yo3JMXldLM2GmN+6btkrOxR0EbbAZ1FCY
-	 f0cazx/FvGVgIP9L1Ct9UAVDsXLWVXPdfV6BMmFHH4ze0dX3tkPAhJbksx9Pauzf1d
-	 Xa96eiHRr/HvLuZD/onk+lo2+/E/NxA/dhg2QbJpAE8glTfO8qdt0KSV10PWE5fuZ8
-	 5r7xcMcvU0Bmg==
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 06 Jan 2026 11:43:14 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1767721430;
+	bh=NMRzBgPMATlkTm0f50YVEsRzDjIrZY2oM6Hy3objjVs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=tzeXvbfhmHVkjq0VbUefLPWiz/RWjpWtNr7seZ7zbVbxKXqvnMsc4FVfYGDbroS7c
+	 JT2/4Eg5gnjcF0XmT8xc5FgmYwrfJvCLuM+Yyt9VG7MFluY1j90+LV+to2gqRIW/bJ
+	 +3JkhEJVbvWldHKg+ra9OizdFyxscvugTiYs1k3bBALyMXWw4gsSYvduz2crPDKQvZ
+	 rg6d6eWeG+X8bCZYvdAS6xuk8lohfQSmAICIsfe7oA1EZOrhLujLDLG8tE8M8Y4oJA
+	 CkGLngJp74qXAk6So1os/WrFST3fQW6sSM8X1jLzTCOKt9qXFTVOM6FhP0hslLGtzS
+	 U2SD0Z2MR5Y2g==
+Date: Tue, 6 Jan 2026 11:43:48 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: zhangsenchuan <zhangsenchuan@eswincomputing.com>, bhelgaas@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de,
+	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, christian.bruel@foss.st.com,
+	mayank.rana@oss.qualcomm.com, shradha.t@samsung.com,
+	krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com,
+	inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	ouyanghui@eswincomputing.com, Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller
+ driver
+Message-ID: <20260106174348.GA365798@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260106-mtk-fix-mt7623-pinctl-name-v1-0-33817c7f78ee@baylibre.com>
-References: <20260106-mtk-fix-mt7623-pinctl-name-v1-0-33817c7f78ee@baylibre.com>
-Message-Id: <176772122105.2350532.2584006959358435109.robh@kernel.org>
-Subject: Re: [PATCH 0/2] arm: dts: mediatek: fix pinctl node names
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4f3rhkrlp3jypajh77rohqgpoujivpxq6g3o6vrt6u7u5j2atd@gd5o3vtlhapp>
 
+On Tue, Jan 06, 2026 at 06:49:58PM +0530, Manivannan Sadhasivam wrote:
+> On Tue, Jan 06, 2026 at 08:43:11PM +0800, zhangsenchuan wrote:
+> > > On Mon, Dec 29, 2025 at 07:32:07PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> > > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> > > > 
+> > > > Add driver for the Eswin EIC7700 PCIe host controller, which is based on
+> > > > the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
+> > > > supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
+> > > > interrupts.
+> > > 
+> > > > +config PCIE_EIC7700
+> > > > +	tristate "Eswin EIC7700 PCIe controller"
+> > > 
+> > > > +/* Vendor and device ID value */
+> > > > +#define PCI_VENDOR_ID_ESWIN		0x1fe1
+> > > > +#define PCI_DEVICE_ID_ESWIN		0x2030
+> > > 
+> > > Usually the device name is a little more than just the vendor.  What
+> > > if Eswin ever makes a second device?
+> > 
+> > Okey, thanks.
+> > Perhaps it's a problem. Maybe PCI_DEVICE_ID_EIC7700 is better?
 
-On Tue, 06 Jan 2026 09:20:54 -0600, David Lechner wrote:
-> While passing by, I noticed that the pinctrl nodes in a couple of dtsi
-> files did not match the addresses in their reg properties. Here are some
-> patches to fix that.
+Check pci_ids.h and follow the style used there.  Device ID macros
+typically include both the vendor and the device.
+
+> > > > +static struct platform_driver eic7700_pcie_driver = {
+> > > > +	.probe = eic7700_pcie_probe,
+> > > 
+> > > This driver is tristate but has no .remove() callback.  Seems like it
+> > > should have one?
+> > 
+> > In v2 patch, I referred to Mani's comments and removed the .remove()
+> > callback, as follows:
+> > "Since this controller implements irqchip using the DWC core driver,
+> > it is not safe to remove it during runtime."
+> > https://lore.kernel.org/linux-pci/jghozurjqyhmtunivotitgs67h6xo4sb46qcycnbbwyvjcm4ek@vgq75olazmoi/
+> > 
+> > In addition, remove .remove() callback, because this driver has been 
+> > modified to builtin_platform_driver and does not support HotPlug, 
+> > therefore, the .remove() callback is not needed. Do you have any
+> > better suggestions?
 > 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
-> David Lechner (2):
->       arm: dts: mediatek: mt7623: fix pinctrl node name
->       arm: dts: mediatek: mt8135: fix pinctrl node name
-> 
->  arch/arm/boot/dts/mediatek/mt7623.dtsi | 2 +-
->  arch/arm/boot/dts/mediatek/mt8135.dtsi | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 6cd6c12031130a349a098dbeb19d8c3070d2dfbe
-> change-id: 20260106-mtk-fix-mt7623-pinctl-name-f8593953bed7
-> 
-> Best regards,
-> --
-> David Lechner <dlechner@baylibre.com>
-> 
-> 
-> 
+> Yes, builtin_platform_driver() wouldn't allow the users to remove
+> the module. So remove() callback will become useless. The reason why
+> this driver is tristate is that it could be loaded from rootfs and
+> not always statically built to the kernel image.
 
+This .remove() vs IRQ thing is a perennial issue and it's hard to know
+what style new drivers should copy.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: 6cd6c12031130a349a098dbeb19d8c3070d2dfbe (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/mediatek/' for 20260106-mtk-fix-mt7623-pinctl-name-v1-0-33817c7f78ee@baylibre.com:
-
-arch/arm/boot/dts/mediatek/mt7623a-rfb-emmc.dtb: pinctrl@1000b000 (mediatek,mt7623-pinctrl): 'cir-default', 'i2c0-default', 'i2c1-alt', 'i2c1-default', 'i2c2-alt', 'i2c2-default', 'i2s0-default', 'i2s1-default', 'keys-alt', 'leds-alt', 'mmc0', 'mmc0default', 'mmc1', 'mmc1default', 'nanddefault', 'pcie_pin_default', 'pwm-default', 'spi0-default', 'spi1-default', 'spi2-default', 'uart0-default', 'uart1-default', 'uart2-alt', 'uart2-default' do not match any of the regexes: '^pinctrl-[0-9]+$', 'pins$'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml
-arch/arm/boot/dts/mediatek/mt7623a-rfb-nand.dtb: pinctrl@1000b000 (mediatek,mt7623-pinctrl): 'cir-default', 'i2c0-default', 'i2c1-alt', 'i2c1-default', 'i2c2-alt', 'i2c2-default', 'i2s0-default', 'i2s1-default', 'keys-alt', 'leds-alt', 'mmc0', 'mmc0default', 'mmc1', 'mmc1default', 'nanddefault', 'pcie_pin_default', 'pwm-default', 'spi0-default', 'spi1-default', 'spi2-default', 'uart0-default', 'uart1-default', 'uart2-alt', 'uart2-default' do not match any of the regexes: '^pinctrl-[0-9]+$', 'pins$'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml
-arch/arm/boot/dts/mediatek/mt7623n-rfb-emmc.dtb: pinctrl@1000b000 (mediatek,mt7623-pinctrl): 'cir-default', 'hdmi-default', 'hdmi_ddc-default', 'i2c0-default', 'i2c1-alt', 'i2c1-default', 'i2c2-alt', 'i2c2-default', 'i2s0-default', 'i2s1-default', 'keys-alt', 'leds-alt', 'mmc0', 'mmc0default', 'mmc1', 'mmc1default', 'nanddefault', 'pcie_pin_default', 'pwm-default', 'spi0-default', 'spi1-default', 'spi2-default', 'uart0-default', 'uart1-default', 'uart2-alt', 'uart2-default' do not match any of the regexes: '^pinctrl-[0-9]+$', 'pins$'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml
-arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dtb: pinctrl@1000b000 (mediatek,mt7623-pinctrl): 'cir-default', 'hdmi-default', 'hdmi_ddc-default', 'i2c0-default', 'i2c1-alt', 'i2c1-default', 'i2c2-alt', 'i2c2-default', 'i2s0-default', 'i2s1-default', 'keys-alt', 'leds-alt', 'mmc0', 'mmc0default', 'mmc1', 'mmc1default', 'musb', 'nanddefault', 'pcie_pin_default', 'pwm-default', 'spi0-default', 'spi1-default', 'spi2-default', 'uart0-default', 'uart1-default', 'uart2-alt', 'uart2-default' do not match any of the regexes: '^pinctrl-[0-9]+$', 'pins$'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml
-
-
-
-
-
+There are lots of DWC-based drivers that are tristate, implement
+.remove(), and use module_platform_driver() (e.g., bt1, kirin,
+tegra194, rcar-gen4, exynos, k1, stm32).  Is there something different
+about the way they implement irqchip that makes .remove() safe?
 
