@@ -1,198 +1,103 @@
-Return-Path: <devicetree+bounces-251980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96460CF92A4
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 16:51:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB93CF929B
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 16:51:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 56240301955B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 15:51:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DD33F301B2E1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 15:45:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B873D242D95;
-	Tue,  6 Jan 2026 15:45:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2A2346A01;
+	Tue,  6 Jan 2026 15:44:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="Tb2Jicvw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M8aqSayh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 083EC23EABF
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 15:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3E56345CA1
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 15:44:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767714314; cv=none; b=rTcB8Uvt8ben0qQMldXmA2IQWgQWL4RuqhsRY7Ok/PZ6VPJ+J7UVqxOp0XI6e2aVm7h9G9SSA43an3aXdumwbAC0bjwK1Q+Tg+OW/RnmbQpgYEPrDx7bQDIZahhIErwomVBtPaOpk3nTtVMjxJw8qqRc0qvf1Qs2qDLAmrHUzpc=
+	t=1767714293; cv=none; b=YTwmyeVg0+8kwLWqJTHoLbn/iHtMWoEV0GbyPK4Kxy9LEOc0hXe/K+c1lvV1JiqLU0/DIpmqdIfuz1PKO7VPE7NunbBRXUuMYumBYN6o7OXT6FxYKoA/gd760oZPpsLB06FZSFyefoyopDDreyn2v7tFUaKy1wDFD+liyUB5c44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767714314; c=relaxed/simple;
-	bh=7yjUW234xE85Kc0mvJGivXeVPnY9Wkx2sefWSY439L8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=M2w4UdREJKeKBG4+h2YLuJI33u0Gn1jWrHlUjCEn4JTpchhfZ3Y98N1LggEaCpShv1Bi0L60jEd3B28vIkTCOCk9YVnZFrbo0hrF5RbVb2nW32LIzixsNVLFLImMUKFco+RKUnKt933XAOZHcO1H38cADFQftFFOqUwHs6/2Z4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=Tb2Jicvw; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b7ce5d6627dso235060866b.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 07:45:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1767714307; x=1768319107; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SUqd8zwvUyTysDgnHLfVeULZAfl79gEI4Fn/LX5yuDs=;
-        b=Tb2JicvwOuf+PGsckxsE5u8vmTphqM7cHdbkWLM7iPCZ1AVp62geWkvS9xh5VIdc7f
-         9dSP/vQeVYQVfurOtWhmFx5UnRNxcwRp3l/c1SYKour6hY5uDFO+yW12Kuv99Tf5dVzg
-         nE1F9NJR1PEC8q79zXD5FBDEB9cnJ8hpIoTmk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767714307; x=1768319107;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=SUqd8zwvUyTysDgnHLfVeULZAfl79gEI4Fn/LX5yuDs=;
-        b=mDmHAw46qOW2DY2r7Z2kbsR5I44e8czTP3NiL3o8i+5SL/7Xi12yaSw9bInPzow+nn
-         sz1u2Ufo9Ga0xnyXmw1h3zkpiof3IW+Kf+fTv2XyeF6uf0B+6pA3SuWf6Sn1lIF6SULS
-         bPgSw7BuTXx2YQ7eJMFOAlpC08iLSOepecj+nhZW0gN19HdEqNHWzdY376RCqAAZ+aCq
-         t3EsRkjZwp0TcLtXZ708d/CbuGw3OrDIZofTPDkShPqQi9bSE4MNUWbQn63hMQ3BWIeV
-         NHCPl50lrdSNViB15zsT3Wgc9JlcRtGDasAvNl/GPL/Huc5tXwvtyp84RFvc+qOnPPZ9
-         eAsg==
-X-Forwarded-Encrypted: i=1; AJvYcCWqcJsn5SCo59lTWtOcBAUzNOs22cZOiz8z+mT7Gn93ypphE6/QFVxicYUmXm6tynuMP7iYN9EuN32C@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEjzij+EwDke7KzzrYvt3XyCFY1La4TMOtTtT16G65RMWwjBil
-	jdne9v701efu3znk7KqPc6TufeOzAHouGmeTIQt+yjZ+9Zs1lcf/voCOpk0eyVNpbx0=
-X-Gm-Gg: AY/fxX50sTKMH+OT6yBtb51+bJ8fuywkpOOuKIX+vOI5isXj6XqxX9QPgDGa2IPsnHG
-	NcTsX6sjiNgbADjHOb0vYRwSWSZigXdYl9NPc6KWCaSgJpg4ozNSvffKJmyVrL5E0+9CEdyQJtP
-	aZLppzckHijIvlFYxtOVvdcg8NHehBwaTux1yN80+Zjh+QDPMMC6zHxydrjUr3/WfyE0A7SYKwz
-	ybBu27mqLZq/O9UC/q2IyJ44hKTn//HYr3XTvsS6C12D4lz+ZFmt13FJb7Bgwaif6UMbNCbIMTJ
-	aVb9vMR4TfwCRL/123Q9qYny+WzwgGpwuWu1cjqRKmLPoP21H1ZTPWe6JYzudHd6oqLgUoS3Yg2
-	o7ffuBOMXOtAggR9g74z1icuiYe0ddVs9IOceL0UFeJFleEU49rXXKmaipOn+bNhYvYCyviX1F2
-	9vR/+uzE5ies4mIVp9AJGPpl87kP9208rvR5v0M/T70RJ1arHU/JpWtgkCt8ey9zbJMEXUaJ4ol
-	nDVqM9uWKxZYXR3kAMCrKlqWF8ir5IndBH/CXlnQlAl/2xA/AHseWYihDP5AtVasO8WcSYWkwL8
-	ViNvF9BBweI=
-X-Google-Smtp-Source: AGHT+IGrVItVM6BcSqra8HjonvfKxfn/bFxw+ItzUUs2ixDuM6Fu7oEkOvvelQp+Xzgp9Nlh1+6vzQ==
-X-Received: by 2002:a17:907:a03:b0:b83:95d7:9d50 with SMTP id a640c23a62f3a-b8426bb9409mr308850266b.38.1767714306604;
-        Tue, 06 Jan 2026 07:45:06 -0800 (PST)
-Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-95-248-31-95.retail.telecomitalia.it. [95.248.31.95])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507be64efasm2349767a12.21.2026.01.06.07.45.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jan 2026 07:45:06 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH 2/3] dt-bindings: ili9806e: add Rocktech RK050HR345-CT106A display
-Date: Tue,  6 Jan 2026 16:43:15 +0100
-Message-ID: <20260106154446.2735701-3-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260106154446.2735701-1-dario.binacchi@amarulasolutions.com>
-References: <20260106154446.2735701-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1767714293; c=relaxed/simple;
+	bh=46IA74TgsYCX1Wdt8aKcLKb4RYOUhDJz4Bq8eqM3rvM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ivij3L/izn9RSVZCVQwKq7plZLhX5Q6ExwnA/cqpO/cSXMKL3Jud/Q6+XGnaSr/LSrnBAA53IHBarhBQtCdpIzWxe2NctbPRHyN4E8Zrr4UdaGjQBZUxpI4HSRpp1r4WUl/k/ZRxB6aodoDBaGRlKDQ3z+9Q/Rv173ph469cb7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M8aqSayh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B564BC116C6
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 15:44:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767714290;
+	bh=46IA74TgsYCX1Wdt8aKcLKb4RYOUhDJz4Bq8eqM3rvM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=M8aqSayh9x7eugOCav2bUStC3irU102ypWSH1a6+VxK2JM94lSG/3mPDBBxdNg9dB
+	 9caq4toXi+Ry3NHUpkGyP1fQsyXrE/u/eg6vxmWii3ry1BRwJeD/GYRdrDlQYq3p8b
+	 blArfXe2ZBxKN9qSAGwjrnmeGrKQoLrpyXvsBlgJ0C1U1koKUQuVL2I0Da2AHS9/2Q
+	 nHmJYt5vnHBuYlKzJja8nOpzuFBgsi3KUjttuiq5obuTJOTtU9Er9Jap/arRWt7EYL
+	 B95bFMEQ5Gj9f72+BsMunNYp1hqO/Cs/89rPiVCyWV5ZtDeuHGPqu9dw1Tqrr7VgMi
+	 Pbm03B+uBiMsA==
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b76b5afdf04so206491966b.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 07:44:50 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVsEk42wxb306Xxs3Ze83qYhPtB3r3m7iHJTnksWIe9tXhGj3jF2PxPZdbDhXGYdQ5b+K4A1H8vdVAN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw75BmiMxeEJ8cNj+qskyly7OIdA79hO5ty08tvu2TWzgLu3+PQ
+	ZnREopmq5Xogn3e/oNnSOpCw6UEH15UZ9MVOk7PXTAvLHNpdYwWtqBlWAVCRGY3MfS7dTCc8m1Q
+	HExaaZXcEg4kpAY6xS+9vJxn5IWwfDQ==
+X-Google-Smtp-Source: AGHT+IHFeow7GaX738Pcre7r5od5Yqad8UB8G/TYGPsM6GH9pPZ2ShOPoXiLIEj59XKYnsYmNR7ZxCR17dGzQ8eR6p8=
+X-Received: by 2002:a17:907:d7c9:b0:b84:1fef:32a0 with SMTP id
+ a640c23a62f3a-b8426a422femr330026266b.6.1767714289311; Tue, 06 Jan 2026
+ 07:44:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251226141116.1379601-1-coxu@redhat.com>
+In-Reply-To: <20251226141116.1379601-1-coxu@redhat.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 6 Jan 2026 09:44:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLEsUV34tMZWSMc6w-xDV=M0JpOmS95TxrtbbBMRoD3Jw@mail.gmail.com>
+X-Gm-Features: AQt7F2oZXv_EGI4J1ibbdla2HKndc4TqmJiiAssIWbaMzvfSFkjDSKLgEAqcVKc
+Message-ID: <CAL_JsqLEsUV34tMZWSMc6w-xDV=M0JpOmS95TxrtbbBMRoD3Jw@mail.gmail.com>
+Subject: Re: [PATCH] arm64/kdump: pass dm-crypt keys to kdump kernel
+To: Coiby Xu <coxu@redhat.com>
+Cc: kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>, Baoquan he <bhe@redhat.com>, 
+	Dave Young <dyoung@redhat.com>, Kairui Song <ryncsn@gmail.com>, Pingfan Liu <kernelfans@gmail.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	open list <linux-kernel@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Document the Rocktech 5" 480x854 panel based on the Ilitek ILI9806E
-controller.
+On Fri, Dec 26, 2025 at 8:11=E2=80=AFAM Coiby Xu <coxu@redhat.com> wrote:
+>
+> Based on the CONFIG_CRASH_DM_CRYPT feature, this patch adds
+> LUKS-encrypted device dump target support to ARM64 by addressing two
+> challenges [1],
+>  - Kdump kernel may not be able to decrypt the LUKS partition. For some
+>    machines, a system administrator may not have a chance to enter the
+>    password to decrypt the device in kdump initramfs after the 1st kernel
+>    crashes
+>
+>  - LUKS2 by default use the memory-hard Argon2 key derivation function
+>    which is quite memory-consuming compared to the limited memory reserve=
+d
+>    for kdump.
+>
+> 1st kernel will add device tree property dmcryptkeys as similar to
+> elfcorehdr to pass the memory address of the stored info of dm-crypt
+> keys to the kdump kernel.
 
-This panel uses SPI for control and an RGB interface for display
-data, so adjust the binding requirements accordingly.
+Is there not any security issue with putting the key into the DT? The
+DT is provided to userspace. There's provisions already to not expose
+"security-*" properties to userspace (see __of_add_property_sysfs).
+Though I think that has a hole in that the FDT is also provided as-is.
+However, I don't even know who or what uses these properties.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
----
-
- .../display/panel/ilitek,ili9806e.yaml        | 43 +++++++++++++++++--
- 1 file changed, 40 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-index f80307579485..61d035419126 100644
---- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/display/panel/ilitek,ili9806e.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Ilitek ILI9806E based MIPI-DSI panels
-+title: Ilitek ILI9806E based panels
- 
- maintainers:
-   - Michael Walle <mwalle@kernel.org>
-@@ -18,6 +18,7 @@ properties:
-       - enum:
-           - densitron,dmt028vghmcmi-1d
-           - ortustech,com35h3p70ulc
-+          - rocktech,rk050hr345-ct106a
-       - const: ilitek,ili9806e
- 
-   reg:
-@@ -29,12 +30,29 @@ properties:
- required:
-   - compatible
-   - reg
--  - vdd-supply
--  - vccio-supply
-   - reset-gpios
-   - backlight
-   - port
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - rocktech,rk050hr345-ct106a
-+then:
-+  $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+  properties:
-+    spi-max-frequency: true
-+
-+  required:
-+    - spi-max-frequency
-+else:
-+  required:
-+    - vdd-supply
-+    - vccio-supply
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -60,5 +78,24 @@ examples:
-             };
-         };
-     };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
- 
-+        panel@0 {
-+            compatible = "rocktech,rk050hr345-ct106a", "ilitek,ili9806e";
-+            reg = <0>;
-+            spi-max-frequency = <10000000>;
-+            reset-gpios = <&gpiob 6 GPIO_ACTIVE_LOW>;
-+            backlight = <&backlight>;
-+            port {
-+                panel_in_rgb: endpoint {
-+                    remote-endpoint = <&ltdc_out_rgb>;
-+                };
-+            };
-+        };
-+    };
- ...
--- 
-2.43.0
-
+Rob
 
