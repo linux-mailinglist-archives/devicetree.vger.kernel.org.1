@@ -1,120 +1,130 @@
-Return-Path: <devicetree+bounces-252088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0609DCFA728
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:02:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD31CFA9C8
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:22:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 732D7300096E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 19:02:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A8DEC32D2DBD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77EA2339862;
-	Tue,  6 Jan 2026 19:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3FE02D3EEA;
+	Tue,  6 Jan 2026 17:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s6+H7MW4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j7gmMuN8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C8D527FD74;
-	Tue,  6 Jan 2026 19:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F57270540;
+	Tue,  6 Jan 2026 17:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767726088; cv=none; b=VWNrZTzjNWbRrIg6MNfxQJsm7gYnspYsJALw26DOZlyGLEZhWXhIOAgmh8qjxY0+aFIPUGoi0ay373vi4MbiL37+rAk05tO1PcKjeh1ZbnxcG/BZWUsEGBkWElUc1dmFWmbME8WGm8REhktn12yD8FA7TAsTjyDlozsGjVtE008=
+	t=1767721177; cv=none; b=AUOUjCZ6TRw6W4yS6Yqm/ssxRkBW9hsnUM31tT7uzKwOluAwGTwbaEbBEuGyCKcpFfI0soxICtJuN/c7Zu7sdOwiY93RgRUM2NXx354pT53sRAmGTysqei3p6q2WhThuh54NPc4t0BcR7cxBmjaMR024A6s/L1OiPAY0ixsDS34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767726088; c=relaxed/simple;
-	bh=mnBxn/Rz2DfcOBFabd4WdQGJtGWiMmCwwVsL6cusnNo=;
+	s=arc-20240116; t=1767721177; c=relaxed/simple;
+	bh=UeQThee7Jg0GXveKVrE4HC5sJTaTObfyhIxsWJAiOhI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GruRtKNnfamM5S5tgzcfi20Ffqy2YPqmnJSz+7W7GAhqY4yNlJYPUgmNwU4Q6r4cwbs+9avUzRQ6Mg+Gsr8NvUJIA9JPxo8Du7zUrf/mz4G9TbjP45lBdR0Q7d9tq+DqN2ksnCaGoVzZTIMMKjQkLc7wb+hlMkvS6guO8i4t4z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s6+H7MW4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A64BEC116C6;
-	Tue,  6 Jan 2026 19:01:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RQM/SnQtMfogDmjl/6mIyjaWkBorfM7LjehqCtnP2F/KrneN5Cy7l4MVprn91nY2/Uy1/AxAZYN7dxSFVC5eDs4MxKxhfaStP9b8iD7aAi7JmOq8NJ2FQvA3k2By8Ae6lJPOLjgulOxdEZMiEUy+IRE4n9HK8Mti9VT8BDnyeXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j7gmMuN8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45B30C116C6;
+	Tue,  6 Jan 2026 17:39:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767726087;
-	bh=mnBxn/Rz2DfcOBFabd4WdQGJtGWiMmCwwVsL6cusnNo=;
+	s=k20201202; t=1767721177;
+	bh=UeQThee7Jg0GXveKVrE4HC5sJTaTObfyhIxsWJAiOhI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s6+H7MW4loyEJscRG5Psbu3gmX/Y5UgpqbgG7ATxtlOOdKw3U2y1JPyCyAxtKvEMN
-	 UTG2O49hKxgvG+Avk6OJbu4iI2ziQpA8kyUMqIGJA9Wk0YfGcy0EEASCYgVjortKCp
-	 F2cfdPwkllaLtN/xkYVdTKTrukryLKs3bIQFutNFv4vrlitPlIBCwPn3rGzd2v8g6f
-	 UDcErOxPY0jUl5Ovlb2ke4XAZrxC40h8K3zCXVE+FVOjnz+SqdI3J5xzLi3cbdtxXH
-	 WTB12R7tX6mmA0Y1mP9piXA4nfT2EfIfmXd040rjb5QASLy87QZFvcrX1UaVPwXceg
-	 dg4w7k9xliGOg==
-Date: Tue, 6 Jan 2026 13:01:26 -0600
+	b=j7gmMuN8anFcz7RQ7re6oQHbHF67Z98w65+9ey825G5ZzVqGaI7oDP2EXqTNWbs47
+	 VrbvaZPZ5Xniw5bTLl9yT5UcCEOKqOLSB3dG8nr2ahFc5MO1W1gV3ac89vKnKZgxzu
+	 5XcJZ2zFkRtjETyvD1teebQY2dLfNznR3rzrh6prhtkoK3xQyuDXaJi5pAHhRnRyrT
+	 wtTqIX1VeYSlL3BA9LES3wmBK7EYGfJzIP7Uqxwi1tOWOxPGA5Q28VMOoHuz6Vkm5h
+	 934f23hPxZ5Bs3fTVoCl9i6j3ummJEV7SAQ2ex+aMItu9NuXxr5ogMChwZGNs+qFNW
+	 A6GJTV9a5Jhkg==
+Date: Tue, 6 Jan 2026 11:39:36 -0600
 From: Rob Herring <robh@kernel.org>
-To: Dinh Nguyen <dinguyen@kernel.org>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Mamta Shukla <mamta.shukla@leica-geosystems.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	bsp-development.geo@leica-geosystems.com,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: net: altr,socfpga-stmmac: deprecate
- 'stmmaceth-ocp'
-Message-ID: <20260106190126.GA2537154-robh@kernel.org>
-References: <20260105-remove_ocp-v2-0-4fa2bda09521@kernel.org>
- <20260105-remove_ocp-v2-3-4fa2bda09521@kernel.org>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-can@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: can: renesas,rcar-canfd: Specify
+ reset-names
+Message-ID: <20260106173936.GA2345468-robh@kernel.org>
+References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251230115814.53536-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260102-quirky-hornet-of-downpour-ddda69@quoll>
+ <CA+V-a8sY0QneUWQ4A0XCKUGPL8VYkU5NQE2h_cOK=06JG_1c2g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260105-remove_ocp-v2-3-4fa2bda09521@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+V-a8sY0QneUWQ4A0XCKUGPL8VYkU5NQE2h_cOK=06JG_1c2g@mail.gmail.com>
 
-On Mon, Jan 05, 2026 at 06:08:22AM -0600, Dinh Nguyen wrote:
-> Make the reset name 'stmmaceth-ocp' as deprecated and to use 'ahb' going
-> forward.
+On Tue, Jan 06, 2026 at 05:17:17PM +0000, Lad, Prabhakar wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> ---
->  .../devicetree/bindings/net/altr,socfpga-stmmac.yaml          | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
+> Thank you for the review.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-> index fc445ad5a1f1..4ba06a955fe2 100644
-> --- a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-> @@ -13,8 +13,6 @@ description:
->    This binding describes the Altera SOCFPGA SoC implementation of the
->    Synopsys DWMAC for the Cyclone5, Arria5, Stratix10, Agilex5 and Agilex7
->    families of chips.
-> -  # TODO: Determine how to handle the Arria10 reset-name, stmmaceth-ocp, that
-> -  # does not validate against net/snps,dwmac.yaml.
->  
->  select:
->    properties:
-> @@ -84,6 +82,15 @@ properties:
->        - sgmii
->        - 1000base-x
->  
-> +  resets:
-> +    minItems: 1
+> On Fri, Jan 2, 2026 at 11:16 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > On Tue, Dec 30, 2025 at 11:58:11AM +0000, Prabhakar wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Specify the expected reset-names for the Renesas CAN-FD controller on
+> > > RZ/G2L and RZ/G3E SoCs.
+> >
+> > You should explain here from where you got the actual names.
+> >
+> > Otherwise you got following review:
+> >
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > ---
+> > > v1->v2:
+> > > - Moved reset-names to top-level properties.
+> > > ---
+> > >  .../bindings/net/can/renesas,rcar-canfd.yaml  | 33 +++++++++++--------
+> > >  1 file changed, 19 insertions(+), 14 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> > > index e129bdceef84..9bfd4f44e4d4 100644
+> > > --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> > > @@ -122,6 +122,11 @@ properties:
+> > >
+> > >    resets: true
+> > >
+> > > +  reset-names:
+> > > +    items:
+> > > +      - const: rstp_n
+> > > +      - const: rstc_n
+> >
+> > rst seems redundant. _n as well. Are these names from datasheet? How are
+> > they called in this device (not the soc) datasheet exactly? Because it
+> > feels you use pin or SoC names which is not useful.
+> >
+> rstp_n/rstc_n are coming from the SoC HW manual and is already used by
+> the driver (since commit 76e9353a80e9 "can: rcar_canfd: Add support
+> for RZ/G2L family"). The reset-names existed previously but were
+> dropped as of commit 466c8ef7b66b "dt-bindings: can:
+> renesas,rcar-canfd: Simplify the conditional schema". Let me know if
+> you want me to rename them but the driver will have to maintain the
+> backward compatibility or do you want me to drop this patch.
 
-That's already the min in the referenced schema.
-
-> +
-> +  reset-names:
-> +    deprecated: true
-> +    items:
-> +      - const: stmmaceth-ocp
-
-This says stmmaceth-ocp is the 1st entry, but it is the 2nd.
-
-You can't really fix this to validate a DT using stmmaceth-ocp. I would 
-just drop this. So that leaves this with just dropping the TODO.
+The names are fine. The above is useful information that should be in 
+the commit msg. Please help us if we've already reviewed something.
 
 Rob
 
