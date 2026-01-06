@@ -1,130 +1,219 @@
-Return-Path: <devicetree+bounces-252017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD31CFA9C8
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:22:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC6ACFB011
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 21:50:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A8DEC32D2DBD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:36:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 29C3730BBA18
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 20:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3FE02D3EEA;
-	Tue,  6 Jan 2026 17:39:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B3134D39C;
+	Tue,  6 Jan 2026 17:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j7gmMuN8"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="218m2JFA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F57270540;
-	Tue,  6 Jan 2026 17:39:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B39534DB5C;
+	Tue,  6 Jan 2026 17:44:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767721177; cv=none; b=AUOUjCZ6TRw6W4yS6Yqm/ssxRkBW9hsnUM31tT7uzKwOluAwGTwbaEbBEuGyCKcpFfI0soxICtJuN/c7Zu7sdOwiY93RgRUM2NXx354pT53sRAmGTysqei3p6q2WhThuh54NPc4t0BcR7cxBmjaMR024A6s/L1OiPAY0ixsDS34=
+	t=1767721452; cv=none; b=lBemFH3oM2N7EIAuwk23L0V+mh4I8oG2hfXHcRKZiItDFvqvq7CVPKsQvbMlY+NDRBW4rDl2SJq07nfxB5vsZCgecpJsZDw/bQKS+Ngfrpcv1u1MxTamiX6vrZiI+s6Qm5WyDguCnlw6Ncv/UnpNQr5tuQ0Zs6yhf2cFMRIRQDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767721177; c=relaxed/simple;
-	bh=UeQThee7Jg0GXveKVrE4HC5sJTaTObfyhIxsWJAiOhI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RQM/SnQtMfogDmjl/6mIyjaWkBorfM7LjehqCtnP2F/KrneN5Cy7l4MVprn91nY2/Uy1/AxAZYN7dxSFVC5eDs4MxKxhfaStP9b8iD7aAi7JmOq8NJ2FQvA3k2By8Ae6lJPOLjgulOxdEZMiEUy+IRE4n9HK8Mti9VT8BDnyeXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j7gmMuN8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45B30C116C6;
-	Tue,  6 Jan 2026 17:39:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767721177;
-	bh=UeQThee7Jg0GXveKVrE4HC5sJTaTObfyhIxsWJAiOhI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j7gmMuN8anFcz7RQ7re6oQHbHF67Z98w65+9ey825G5ZzVqGaI7oDP2EXqTNWbs47
-	 VrbvaZPZ5Xniw5bTLl9yT5UcCEOKqOLSB3dG8nr2ahFc5MO1W1gV3ac89vKnKZgxzu
-	 5XcJZ2zFkRtjETyvD1teebQY2dLfNznR3rzrh6prhtkoK3xQyuDXaJi5pAHhRnRyrT
-	 wtTqIX1VeYSlL3BA9LES3wmBK7EYGfJzIP7Uqxwi1tOWOxPGA5Q28VMOoHuz6Vkm5h
-	 934f23hPxZ5Bs3fTVoCl9i6j3ummJEV7SAQ2ex+aMItu9NuXxr5ogMChwZGNs+qFNW
-	 A6GJTV9a5Jhkg==
-Date: Tue, 6 Jan 2026 11:39:36 -0600
-From: Rob Herring <robh@kernel.org>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-can@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: can: renesas,rcar-canfd: Specify
- reset-names
-Message-ID: <20260106173936.GA2345468-robh@kernel.org>
-References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251230115814.53536-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260102-quirky-hornet-of-downpour-ddda69@quoll>
- <CA+V-a8sY0QneUWQ4A0XCKUGPL8VYkU5NQE2h_cOK=06JG_1c2g@mail.gmail.com>
+	s=arc-20240116; t=1767721452; c=relaxed/simple;
+	bh=k4dIiayHY+3fQFoVlD/gTbiIPus9xFdi2n1KjW+WW0g=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=IaejZEIhjx1XXjBj2g6Q7qHyJx3zeQgJ26Cl/cYZ+//HUYtDUwZU8zeZtLOJh/G6TsRYVI/Gq6B51fu/1UAJlxz1b0jKQEaaocp6y7EqTZfRzQmpdzBH1TS2DZ500PL/qGAxDjMjNoap7NteJA5bwPn9nH0pLOC0D2Pa611u+RQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=218m2JFA; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 683031A26A6;
+	Tue,  6 Jan 2026 17:44:09 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 3231460739;
+	Tue,  6 Jan 2026 17:44:09 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B1AFE103C81A7;
+	Tue,  6 Jan 2026 18:44:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767721447; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=RSAb30vPwta0L6j5mRlEyTeFIJd6lPuoibY+qgqO0Dk=;
+	b=218m2JFAFbKKWUlQUsn2Wm6w3yVK4viodOWXVZp2fFlwZ445/2JYDQ82c4nchEP1Wc7BEj
+	KOwFsCAfbuLy3cfxgnPZWsaeGn5iU6kuZuZdSZzFqmbHUazQ/Jjb0faP+8EA2XXy54s5Lc
+	aEQr0KVGF+jGmWVwWL3n61fKG5LyfTA/iOzDLdrYO6mmNQAbokLYsPopsmeHJ2UeOer3hx
+	t5NnU4ggEPcb6O8N8a/p1s+sdfIvJ+2CG3BbFah4qebfqmxw30jOhbYJgI3mhtG2VFqa7y
+	OZe6t4UTq383p1fVjwr9S80ZQlSHlfg104GcSYOlJ/da8CDiGeLs+zyhHNotuw==
+From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
+Date: Tue, 06 Jan 2026 18:42:29 +0100
+Subject: [PATCH v3 13/22] drm/tilcdc: Remove the useless module list
+ support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8sY0QneUWQ4A0XCKUGPL8VYkU5NQE2h_cOK=06JG_1c2g@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260106-feature_tilcdc-v3-13-9bad0f742164@bootlin.com>
+References: <20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com>
+In-Reply-To: <20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com>
+To: Jyri Sarha <jyri.sarha@iki.fi>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Tony Lindgren <tony@atomide.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Markus Schneider-Pargmann <msp@baylibre.com>, 
+ Bajjuri Praneeth <praneeth@ti.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Louis Chauvet <louis.chauvet@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Miguel Gazquez <miguel.gazquez@bootlin.com>, 
+ Herve Codina <herve.codina@bootlin.com>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, 
+ "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Jan 06, 2026 at 05:17:17PM +0000, Lad, Prabhakar wrote:
-> Hi Krzysztof,
-> 
-> Thank you for the review.
-> 
-> On Fri, Jan 2, 2026 at 11:16 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > On Tue, Dec 30, 2025 at 11:58:11AM +0000, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Specify the expected reset-names for the Renesas CAN-FD controller on
-> > > RZ/G2L and RZ/G3E SoCs.
-> >
-> > You should explain here from where you got the actual names.
-> >
-> > Otherwise you got following review:
-> >
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > ---
-> > > v1->v2:
-> > > - Moved reset-names to top-level properties.
-> > > ---
-> > >  .../bindings/net/can/renesas,rcar-canfd.yaml  | 33 +++++++++++--------
-> > >  1 file changed, 19 insertions(+), 14 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > > index e129bdceef84..9bfd4f44e4d4 100644
-> > > --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > > @@ -122,6 +122,11 @@ properties:
-> > >
-> > >    resets: true
-> > >
-> > > +  reset-names:
-> > > +    items:
-> > > +      - const: rstp_n
-> > > +      - const: rstc_n
-> >
-> > rst seems redundant. _n as well. Are these names from datasheet? How are
-> > they called in this device (not the soc) datasheet exactly? Because it
-> > feels you use pin or SoC names which is not useful.
-> >
-> rstp_n/rstc_n are coming from the SoC HW manual and is already used by
-> the driver (since commit 76e9353a80e9 "can: rcar_canfd: Add support
-> for RZ/G2L family"). The reset-names existed previously but were
-> dropped as of commit 466c8ef7b66b "dt-bindings: can:
-> renesas,rcar-canfd: Simplify the conditional schema". Let me know if
-> you want me to rename them but the driver will have to maintain the
-> backward compatibility or do you want me to drop this patch.
+The tilcdc driver previously supported a sub-module system where
+external display drivers (panels, encoders) could register themselves
+through tilcdc_module_init() and be automatically initialized through
+a module list. This infrastructure became unused after the component
+framework support and panel driver was removed.
 
-The names are fine. The above is useful information that should be in 
-the commit msg. Please help us if we've already reviewed something.
+Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+---
 
-Rob
+Change in v3:
+- Move the removal of module_init/exit in a following patch.
+---
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c | 29 -----------------------------
+ drivers/gpu/drm/tilcdc/tilcdc_drv.h | 27 ---------------------------
+ 2 files changed, 56 deletions(-)
+
+diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+index 6a08f50762af9..34d0e81552912 100644
+--- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
++++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+@@ -7,7 +7,6 @@
+ /* LCDC DRM driver, based on da8xx-fb */
+ 
+ #include <linux/mod_devicetable.h>
+-#include <linux/module.h>
+ #include <linux/pinctrl/consumer.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_runtime.h>
+@@ -34,8 +33,6 @@ enum {
+ 	DA850_TILCDC,
+ };
+ 
+-static LIST_HEAD(module_list);
+-
+ static const u32 tilcdc_rev1_formats[] = { DRM_FORMAT_RGB565 };
+ 
+ static const u32 tilcdc_straight_formats[] = { DRM_FORMAT_RGB565,
+@@ -50,20 +47,6 @@ static const u32 tilcdc_legacy_formats[] = { DRM_FORMAT_RGB565,
+ 					     DRM_FORMAT_RGB888,
+ 					     DRM_FORMAT_XRGB8888 };
+ 
+-void tilcdc_module_init(struct tilcdc_module *mod, const char *name,
+-		const struct tilcdc_module_ops *funcs)
+-{
+-	mod->name = name;
+-	mod->funcs = funcs;
+-	INIT_LIST_HEAD(&mod->list);
+-	list_add(&mod->list, &module_list);
+-}
+-
+-void tilcdc_module_cleanup(struct tilcdc_module *mod)
+-{
+-	list_del(&mod->list);
+-}
+-
+ static int tilcdc_atomic_check(struct drm_device *dev,
+ 			       struct drm_atomic_state *state)
+ {
+@@ -97,12 +80,6 @@ static const struct drm_mode_config_funcs mode_config_funcs = {
+ static void modeset_init(struct drm_device *dev)
+ {
+ 	struct tilcdc_drm_private *priv = dev->dev_private;
+-	struct tilcdc_module *mod;
+-
+-	list_for_each_entry(mod, &module_list, list) {
+-		DBG("loading module: %s", mod->name);
+-		mod->funcs->modeset_init(mod, dev);
+-	}
+ 
+ 	dev->mode_config.min_width = 0;
+ 	dev->mode_config.min_height = 0;
+@@ -474,15 +451,9 @@ static struct drm_info_list tilcdc_debugfs_list[] = {
+ 
+ static void tilcdc_debugfs_init(struct drm_minor *minor)
+ {
+-	struct tilcdc_module *mod;
+-
+ 	drm_debugfs_create_files(tilcdc_debugfs_list,
+ 				 ARRAY_SIZE(tilcdc_debugfs_list),
+ 				 minor->debugfs_root, minor);
+-
+-	list_for_each_entry(mod, &module_list, list)
+-		if (mod->funcs->debugfs_init)
+-			mod->funcs->debugfs_init(mod, minor);
+ }
+ #endif
+ 
+diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.h b/drivers/gpu/drm/tilcdc/tilcdc_drv.h
+index dafb00908d1d4..60e85e29b1063 100644
+--- a/drivers/gpu/drm/tilcdc/tilcdc_drv.h
++++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.h
+@@ -81,33 +81,6 @@ struct tilcdc_drm_private {
+ 	bool irq_enabled;
+ };
+ 
+-/* Sub-module for display.  Since we don't know at compile time what panels
+- * or display adapter(s) might be present (for ex, off chip dvi/tfp410,
+- * hdmi encoder, various lcd panels), the connector/encoder(s) are split into
+- * separate drivers.  If they are probed and found to be present, they
+- * register themselves with tilcdc_register_module().
+- */
+-struct tilcdc_module;
+-
+-struct tilcdc_module_ops {
+-	/* create appropriate encoders/connectors: */
+-	int (*modeset_init)(struct tilcdc_module *mod, struct drm_device *dev);
+-#ifdef CONFIG_DEBUG_FS
+-	/* create debugfs nodes (can be NULL): */
+-	int (*debugfs_init)(struct tilcdc_module *mod, struct drm_minor *minor);
+-#endif
+-};
+-
+-struct tilcdc_module {
+-	const char *name;
+-	struct list_head list;
+-	const struct tilcdc_module_ops *funcs;
+-};
+-
+-void tilcdc_module_init(struct tilcdc_module *mod, const char *name,
+-		const struct tilcdc_module_ops *funcs);
+-void tilcdc_module_cleanup(struct tilcdc_module *mod);
+-
+ #define DBG(fmt, ...) DRM_DEBUG(fmt"\n", ##__VA_ARGS__)
+ 
+ int tilcdc_crtc_create(struct drm_device *dev);
+
+-- 
+2.43.0
+
 
