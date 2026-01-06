@@ -1,169 +1,159 @@
-Return-Path: <devicetree+bounces-251768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF308CF6B60
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 05:57:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50EF2CF6B72
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 05:59:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 13BB2301B82C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 04:56:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1B7E5304F8BC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 04:57:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D610B2BE7BA;
-	Tue,  6 Jan 2026 04:56:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7DE32C027B;
+	Tue,  6 Jan 2026 04:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="Ss7ckk8R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aeQ2T6sO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2381429D293
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 04:56:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E041729C33F
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 04:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767675408; cv=none; b=ee26ehoqN6bggthnQ9edLlUav6+dNDPJUuVu8rXqZcEKMLna9UCBHWkJLExruhj7ZCmc6mJyq1RV38ZzCPKXtsvq3byu0ycxvp0SyvwEPHXYtGC3GlaZg3IPDxuSXa9MGwhxXgDV1IyCu6CtOU2bmIz41cxFGgLa7YLFicASd3E=
+	t=1767675437; cv=none; b=JZWSQMF1PLekRPM5jM3NGq5A4/NAVvgpp2OJvpiGw/m5qPQRitvGa3qr/y7JcW1s1j0lQojO6E/WNy9ixMl0KQoFu+piYiCEa6vssm5QxBy1V4FWL9RNAVVenSKTMfpjNE1vtTJFdXUif2rB8E9nCHmVwuVL16eWS+lnYBIUWwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767675408; c=relaxed/simple;
-	bh=bPMuOyUg+pCFEpuN7CwHcwhs5rNIMbrQeGA0HQmyckk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Nd9rCv63PHB/EnEXS+kcorLB2lScediOAR+Q6DOAPED1WUJrIOu+PLTCjbmhnk0Ex2LQ1oHcHVQaxjQq+dB1+s/k25YIg6Ii1aw76F0cxjCof0HL8mQerJpdeY3hQS3X2UZSDr1sxoxPD+ofw5Haaw19uxOJ4UU/sr++NAFlTGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=Ss7ckk8R; arc=none smtp.client-ip=209.85.167.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-4510974a8cdso368792b6e.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 20:56:46 -0800 (PST)
+	s=arc-20240116; t=1767675437; c=relaxed/simple;
+	bh=p/jbSDGwTWmm/8mvuCIwU/V1ZevpiU/zQiFsYrx82/U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h0khPLojLNSCgus0BqBrIUIgbN3jrUkpnp8iRHFHyH8OOiHABW62GruaoNT/vKM5RkiJEXMXUKobzkqlEmSgrx8uTlv9SEH+f2FyDKAeVbi0LEan/D4XRPsZq398yEWUirDia2S0Tn/XXacsDHRCrWbgfSGBz5PIMojcIbku4Mo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aeQ2T6sO; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7aa2170adf9so544865b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 20:57:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1767675406; x=1768280206; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bXCgyGXdfFw2jhIVzlU19gmITjYf/onAsSkhutvgS3M=;
-        b=Ss7ckk8RVUlxwrFyuqelWPLqIIJuk2Uj4IEjWUM8dXuPOkWWm+lixB4Muz12tiyLpz
-         mH4Vap32W+6b6n/STLcTzIjbzDLaNbuiPZCTCRxGrpbFOQJCn1ZCkEZ7UbWgPQhtnw8B
-         oXpSumQ1Yeu/eSGxc5lYEgzDskB7hoTS0SMh5PbOGqICGpJP6+kmy0264h1lfjUv10B8
-         qA62nRtRXUYA/ElO5yxDxVyWo2HgxNSGMFKoMiTrA9jAeoe5mjKnHjy41nFUnD1Df5/N
-         aIdq/HaNUaJJ62hgsfOMcg+OWc5Xva5wuuO5pfe4/OfigXsOFHkOEuO8NTE04Fv8SXyG
-         8QFw==
+        d=linaro.org; s=google; t=1767675435; x=1768280235; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oOlNWZ1ASjDiM8/EVArPiKc25ePbXneuyrH70Dm1FmA=;
+        b=aeQ2T6sOEkR1IaNfr8UXMfSjh5qNK9MAaImJemXo/+yaLOlWUpH96nV3QHper9tI34
+         rStl3Qqi/+bJGF/tWh6e7blPBEVBGE5/J8w+1bJwzmGFyCvyRAB2yJ4z7k+QSDJYoVjh
+         ZAZBdYid28yGTZiwlQ9yzvAODUwazplO3gt0p/5TaEiUgixO19rVgQiwOme1hiNf3j2v
+         yj9nm7qQKzJ2lggijzxUa58ddpfA7DfBv9F4SvJPBQ/44tNXZRnFbcouUl8PC3u2qiiO
+         bgesopMTThGZA9EhIY/ib3a7wH2eh1cElOLZtXJDAzo0jujY3tJsyxbi7E2/WFB0ZbWX
+         oQHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767675406; x=1768280206;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=bXCgyGXdfFw2jhIVzlU19gmITjYf/onAsSkhutvgS3M=;
-        b=bnyGXeXtl48beKZNhyWDtd1fc0dRbbxnaRSl8/4iWZQuQPCrTt1Ktikp1MdpKUHJJd
-         5c1ihcXjAlVqe7Pg/MggWo2uXaK4tH7pSoWfBEo6FNHgXaRQvEa3mU0cBQCHIJOWxJg2
-         pMIGQQX083tJVJ9CpTMCctmBbJlLGXz+GtlaSlPyK0ijYnTBbra7adyXalFyrDKKSZtk
-         CP7jMut6DGyYQuKXXpWLj1Vf0ZRVTFUOA42P+1gc0spPFCH3IDS5473/SpMnMJF6NSdn
-         mZ0lvLJm50mZBbrW+tDRmaLetNwnWUjfYbkgQ01B86yBWjUwdj0FcBelkpHTV7NnfHAm
-         Nabg==
-X-Forwarded-Encrypted: i=1; AJvYcCVbqNET31fSWe1UYbsaUvojoXFLZNjNi7dEdhRVO32FFlx4tJ54J54xDrvuVzKnwd11vUVcIei3joBG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZ/bRYcyBPxHZNVWORs0Os/y65I+uRiAePQ58a8FPAC/IUQZVe
-	6+LsGVHsVxl46hN2ifb4nUkdNiU3sYkt6o90QFSvnaQmc+IXandswdzOp6mMw1EGp9JqYEXuSxs
-	Gkla0h0AIezjkqzZlaVOchya1v+uRH+80KZNnJGRRCQ==
-X-Gm-Gg: AY/fxX4iTzMnUVhC1kg0Rf8I70YM8ZUhDhaVMVZ8BV+UltdnBeymsb8YuDBFaCGV0Kc
-	I5Hywusua7kWmOkVwOHE71tvZSnFV1w3vezKa7U7npE7KU0lexeCiZaaTVW/tnuH4z2GkO/Mrzy
-	rq/F0kYz4LRXjrkiKB72ulNY9HNMbedIMrsJ/Q9RKkfEf7fZDhIBBpabFF171vhKCWE2/KqBLDR
-	4NQk8PNXfc8iPdFzQhFzgY4odV2w8qQZd9+TDbx3p3Otrls5B1l7XIsPEmoqdCpo/TZOVhso+KS
-	qdYYz9MWD6nbFmPqYczEAsDqJ8BNUB+S9puQyVczmoSW6KesxDh/EUvcZA==
-X-Google-Smtp-Source: AGHT+IGq83xsWiBnk8S8Wan7SqZp6GnFrv0pdr0Nor1LjDGkvPMfuowdAk7rc0hTsmwGhsAqXr8Xk0551qnx4JMiq/Y=
-X-Received: by 2002:a05:6820:2202:b0:65e:f37f:93a4 with SMTP id
- 006d021491bc7-65f479d332fmr1135768eaf.8.1767675405972; Mon, 05 Jan 2026
- 20:56:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767675435; x=1768280235;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oOlNWZ1ASjDiM8/EVArPiKc25ePbXneuyrH70Dm1FmA=;
+        b=kKpV5NLLQUpbkpgjq/rybgvpuL6vCgFdOFvp0JLHKgvDlceTHoCUpevH2FQpn9FGBq
+         XCeQTtKR9fxM6yE/rIKFDTUf0FvKJOeUHbmYwFLFpvbF0Dc1J2fmjTzj3po8zfv5/qu9
+         5PRwkQFoytnc41o9lRzPnV2bBHK2dQqQvdzT23zZFETEr0PKhnjRKC/2qC8TxmrVP1tB
+         hD0RYuhQH2Rzx+JMWvE2sltFdbATvaHY+Hfi++F3n8DhovILmV57kS1as0zGrrtkB3d4
+         Y62kZ4D9UqxewR3ZU5qBKGYC/Tnx58CMdDk737bcHvftKKK9GtMzUIaqKEnWt83rJVSH
+         3/eg==
+X-Forwarded-Encrypted: i=1; AJvYcCV85BR6HvSAjXL0dIdXSkB+Bk6w+oQXY959s5MhhtdAtqKcsFL3daAq/53Wv+VybQ7oIk+v84IyX5sQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRVO1PhLCWe7sWBkFb22xVJqDXGjvWDM88pEsIqan4u3QFjTkn
+	7pCUpOYzcCPVS6IzE0WDnYz6jWs5FVqm2VOlidAqyR522QGeQXbsgDaRxiFcy13LMPw=
+X-Gm-Gg: AY/fxX6TzhLGB1DTHicgpZ2EQVqO4p52WzXWsDP/7Yg7THjLgMj8hYDn2eEn3NJfLl0
+	8gGHpQYPnYN4tY0oGb2n5ad/HX2k2TF2q76WvTSGjnwSgW00U+GI5Baa7NccQfgevcG9yO+0+O6
+	5hNwCQPsUuU25rkDcCQskw7DI44qiHYfogcf0vEZLL5s8qt75/CboVQQ0VxBuk8mjnrSQnNOZN8
+	2p0xXDMqdG8P6WYG3gMsd3dAP899ir16Rw2ReXNm4n13H2NDOrb+sgYaoLJKnodNW80lgj2SefT
+	yfdEF249EVklQUEncUheHJ+KnH+VCEq9OOjvXTiZdZv6QAIREWXlqfcY1ahMeU6eYEgRvz+qYT6
+	JGA4eMGi/6qzV29H/u/7JLFAfbmtaAz7R0DOrbU5xfLD6ZyydzgQqsIXT0drgomHlU3xDvvN3XB
+	qMCePAdYBeTcREA+PNICvAvQ==
+X-Google-Smtp-Source: AGHT+IH1HIV++y2p498uUKeXICIqTonP/XkL+xU6dt4xBDj6CXKEeUOGv7lJojUw920KVFSDaG10IA==
+X-Received: by 2002:a05:6a00:ad86:b0:7e8:43f5:bd3e with SMTP id d2e1a72fcca58-8187f78d9fdmr1867900b3a.42.1767675434866;
+        Mon, 05 Jan 2026 20:57:14 -0800 (PST)
+Received: from localhost ([122.172.80.63])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819baa1936dsm727051b3a.12.2026.01.05.20.57.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jan 2026 20:57:14 -0800 (PST)
+Date: Tue, 6 Jan 2026 10:27:12 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Nathan Chancellor <nathan@kernel.org>, 
+	Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, Bill Wendling <morbo@google.com>, 
+	Justin Stitt <justinstitt@google.com>, Russell King <linux@armlinux.org.uk>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Madhavan Srinivasan <maddy@linux.ibm.com>, 
+	Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Nipun Gupta <nipun.gupta@amd.com>, 
+	Nikhil Agarwal <nikhil.agarwal@amd.com>, Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
+	Sylwester Nawrocki <s.nawrocki@samsung.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	llvm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, linux-clk@vger.kernel.org, 
+	imx@lists.linux.dev, dmaengine@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH 11/11] cpufreq: s5pv210: Simplify with scoped for each OF
+ child loop
+Message-ID: <g4k2qdsihxfawfsi5ie3w2fhbsd2x6z5heifkcte75c2w3sjg3@cofrjgaiilta>
+References: <20260105-of-for-each-compatible-scoped-v1-0-24e99c177164@oss.qualcomm.com>
+ <20260105-of-for-each-compatible-scoped-v1-11-24e99c177164@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251020042904.32096-1-luxu.kernel@bytedance.com>
-In-Reply-To: <20251020042904.32096-1-luxu.kernel@bytedance.com>
-From: Anup Patel <anup@brainfault.org>
-Date: Tue, 6 Jan 2026 10:26:34 +0530
-X-Gm-Features: AQt7F2rV_3WZCrB_VJwYGn79psT6Smtly97t591oPSUibomNxLFKeK19i9dMZfQ
-Message-ID: <CAAhSdy3M8NMF0ojJdoSvtate6FRjS5hno2Wc5i=TeCF84yOK3Q@mail.gmail.com>
-Subject: Re: [PATCH v4 10/10] RISC-V: KVM: selftests: Add Zalasr extensions to
- get-reg-list test
-To: Xu Lu <luxu.kernel@bytedance.com>
-Cc: corbet@lwn.net, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, will@kernel.org, peterz@infradead.org, 
-	boqun.feng@gmail.com, mark.rutland@arm.com, atish.patra@linux.dev, 
-	pbonzini@redhat.com, shuah@kernel.org, parri.andrea@gmail.com, 
-	ajones@ventanamicro.com, brs@rivosinc.com, guoren@kernel.org, 
-	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kvm@vger.kernel.org, 
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org, 
-	apw@canonical.com, joe@perches.com, lukas.bulwahn@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260105-of-for-each-compatible-scoped-v1-11-24e99c177164@oss.qualcomm.com>
 
-On Mon, Oct 20, 2025 at 9:59=E2=80=AFAM Xu Lu <luxu.kernel@bytedance.com> w=
-rote:
->
-> The KVM RISC-V allows Zalasr extensions for Guest/VM so add these
-> extensions to get-reg-list test.
->
-> Signed-off-by: Xu Lu <luxu.kernel@bytedance.com>
-
-LGTM.
-
-Reviewed-by: Anup Patel <anup@brainfault.org>
-
-Queued this patch for Linux-6.20
-
-Thanks,
-Anup
-
-
+On 05-01-26, 14:33, Krzysztof Kozlowski wrote:
+> Use scoped for-each loop when iterating over device nodes to make code a
+> bit simpler.  Note that there is another part of code using "np"
+> variable, so scoped loop should not shadow it.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
 > ---
->  tools/testing/selftests/kvm/riscv/get-reg-list.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/tes=
-ting/selftests/kvm/riscv/get-reg-list.c
-> index a0b7dabb50406..3020e37f621ba 100644
-> --- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-> +++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-> @@ -65,6 +65,7 @@ bool filter_reg(__u64 reg)
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZAAMO:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZABHA:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZACAS:
-> +       case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZALASR:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZALRSC:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZAWRS:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZBA:
-> @@ -517,6 +518,7 @@ static const char *isa_ext_single_id_to_str(__u64 reg=
-_off)
->                 KVM_ISA_EXT_ARR(ZAAMO),
->                 KVM_ISA_EXT_ARR(ZABHA),
->                 KVM_ISA_EXT_ARR(ZACAS),
-> +               KVM_ISA_EXT_ARR(ZALASR),
->                 KVM_ISA_EXT_ARR(ZALRSC),
->                 KVM_ISA_EXT_ARR(ZAWRS),
->                 KVM_ISA_EXT_ARR(ZBA),
-> @@ -1112,6 +1114,7 @@ KVM_ISA_EXT_SIMPLE_CONFIG(svvptc, SVVPTC);
->  KVM_ISA_EXT_SIMPLE_CONFIG(zaamo, ZAAMO);
->  KVM_ISA_EXT_SIMPLE_CONFIG(zabha, ZABHA);
->  KVM_ISA_EXT_SIMPLE_CONFIG(zacas, ZACAS);
-> +KVM_ISA_EXT_SIMPLE_CONFIG(zalasr, ZALASR);
->  KVM_ISA_EXT_SIMPLE_CONFIG(zalrsc, ZALRSC);
->  KVM_ISA_EXT_SIMPLE_CONFIG(zawrs, ZAWRS);
->  KVM_ISA_EXT_SIMPLE_CONFIG(zba, ZBA);
-> @@ -1187,6 +1190,7 @@ struct vcpu_reg_list *vcpu_configs[] =3D {
->         &config_zabha,
->         &config_zacas,
->         &config_zalrsc,
-> +       &config_zalasr,
->         &config_zawrs,
->         &config_zba,
->         &config_zbb,
-> --
-> 2.20.1
->
+> 
+> Depends on the first patch.
+> ---
+>  drivers/cpufreq/s5pv210-cpufreq.c | 10 ++++------
+>  1 file changed, 4 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/cpufreq/s5pv210-cpufreq.c b/drivers/cpufreq/s5pv210-cpufreq.c
+> index ba8a1c96427a..e64e84e1ee79 100644
+> --- a/drivers/cpufreq/s5pv210-cpufreq.c
+> +++ b/drivers/cpufreq/s5pv210-cpufreq.c
+> @@ -629,19 +629,17 @@ static int s5pv210_cpufreq_probe(struct platform_device *pdev)
+>  		goto err_clock;
+>  	}
+>  
+> -	for_each_compatible_node(np, NULL, "samsung,s5pv210-dmc") {
+> -		id = of_alias_get_id(np, "dmc");
+> +	for_each_compatible_node_scoped(dmc, NULL, "samsung,s5pv210-dmc") {
+> +		id = of_alias_get_id(dmc, "dmc");
+>  		if (id < 0 || id >= ARRAY_SIZE(dmc_base)) {
+> -			dev_err(dev, "failed to get alias of dmc node '%pOFn'\n", np);
+> -			of_node_put(np);
+> +			dev_err(dev, "failed to get alias of dmc node '%pOFn'\n", dmc);
+>  			result = id;
+>  			goto err_clk_base;
+>  		}
+>  
+> -		dmc_base[id] = of_iomap(np, 0);
+> +		dmc_base[id] = of_iomap(dmc, 0);
+>  		if (!dmc_base[id]) {
+>  			dev_err(dev, "failed to map dmc%d registers\n", id);
+> -			of_node_put(np);
+>  			result = -EFAULT;
+>  			goto err_dmc;
+>  		}
+> 
+
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+
+-- 
+viresh
 
