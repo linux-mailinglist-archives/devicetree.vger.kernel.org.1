@@ -1,79 +1,83 @@
-Return-Path: <devicetree+bounces-252112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE35CFB03B
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 21:53:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A094CFB0EE
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 22:12:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D511530FCC4F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 20:47:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B90C2304C2B2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 21:11:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69BE2E8B94;
-	Tue,  6 Jan 2026 20:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F7CD364E9D;
+	Tue,  6 Jan 2026 17:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Mh7GjfYC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="nAl+7afP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0A718E025;
-	Tue,  6 Jan 2026 20:47:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1044364E8A;
+	Tue,  6 Jan 2026 17:53:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767732445; cv=none; b=oqQDsr11y1WsxLViybbViK4PYW+kVPi651kmCy5gKyQP4C5WqX6i2Rg+D/7IzKmI1VTbixZB0WwNXTyhye1G7dqEAf/uyI8AiGIdK6RqFb4QhmuS37qb3AEoCI2WV9iKeNj9Jy/IL/y+yGz48sW1WO+OqKuvt9bLlUbGWrvRxbQ=
+	t=1767722028; cv=none; b=aq/GxQc1A/PuE9Ilrsb6sz65OEWFviR3XHNe+bjStWq9uvVBB10vYL2Czm75lRu3fJdZWq2pkBpP9nXEO+O2n5Xo4rcPMKJQ1GH2oUBdf4JdGYLMrn+h0tlgDp72ilfB8MyQP3XXU24IRcwyKwFWiVPA0iErDVvmF43DcFReszY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767732445; c=relaxed/simple;
-	bh=VfVOPlfZdPaSK69myuoZQ0HV45tCixoJy8KBQlltID4=;
+	s=arc-20240116; t=1767722028; c=relaxed/simple;
+	bh=LKWPitbcGrd3Rpd+vyUqksGir5Ob6WW1z1gEt7mAFzk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VKdY365p1bgrAAELufMfI7Jly9+iUmD5jmXGexTfS2YNv7uL9jJjX9Ic6wG3Bab//ll9PLuYThYTU0PzKYP96vlGhvGLgIeObAiErb+jdBJLM080b3jz4n1B9hyLF0XIpZPYVLqUM7ydO61eZO/AW6Of88mWZfRiPrla1cwp4O0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Mh7GjfYC; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767732444; x=1799268444;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VfVOPlfZdPaSK69myuoZQ0HV45tCixoJy8KBQlltID4=;
-  b=Mh7GjfYCMWSzUV9bDJEV7xaPSBrHAs3Y3d7j5k5S90jKjxtFSFCahiws
-   fpYPkAsWMIEms+U28DsEnmhgzgMTDgf7mSD+Mu7uBb+3pRVQh/x0hc+Cz
-   /XHVJcSEYLcDsQ3rsu3oFHSvIBwY1fxY9bnfx+CUYNxnREX9kNWmmI4zv
-   F+n4QYUTdYA4H7qXeaFDrivb3qxI84KOqK1zU4npqXKdHRHUXCQT7/rgt
-   KKIetyf84bCulMv3Hv11W842kFmLp1hJ3hp3dCtAAthfqROqjnasYjcgc
-   WkbrtrVzRgNCpj2D2o8Ee0UxmQDvtwOfIg7u0/muRGR/hAzS5Cwt6dXSh
-   Q==;
-X-CSE-ConnectionGUID: TeSmvydgQZ+4fipTfPwEoQ==
-X-CSE-MsgGUID: dOqFRqLXRzaXUDyCYzNYwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="72960208"
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; 
-   d="scan'208";a="72960208"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jan 2026 12:47:23 -0800
-X-CSE-ConnectionGUID: lh4zqpUPTmuaW15F/hEKtw==
-X-CSE-MsgGUID: SygAw2PXQeOR6D2N33ZOoA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; 
-   d="scan'208";a="207292320"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost) ([10.245.245.67])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jan 2026 12:47:20 -0800
-Date: Tue, 6 Jan 2026 22:47:17 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Shrikant <raskar.shree97@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=DRZKTaBVFJiM6XOZYX6SF9fZSX4+r/h/LG1z8L9mx9LxzlAYvGDLvmWexnpzm+00kuXVdByJfyKQv/ZN+lBJR8f79BWlOBir7x/ZfpHTpaI2RXx1ewNFtl2QP7hAZ5+5iQPZbBQEjXztMAbFvrUugYx5oX19i6AqcSSWBrq9Bns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=nAl+7afP; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=NeRc65GgtPKha3VBPc75CE2yju7Fvs2u23mVuFJS94M=; b=nAl+7afPDn0GKI0lv6drLUgXh5
+	Sv+T406urwiNXaZ5hXTQCgxv6OmLgra0PRGIpHxfhfoSnpX/f4WCivJiWex/WzHTw0jfrzZouHZpd
+	Z0PWml4rxKHQQu7TOoUZiHUQ9g5WKg6sYxuf++B/H9YVH7a2k42sh7li+vFWctRUb2DpxrhnGQVMl
+	2e6a6/yRQ95N5sPnwEBFsV80q1o1eMgf3wkyY4qdAMUR1Ts9T2K82mpkCMWsmzPt4A5yFst5CJKKu
+	Y3rWDk8wPcVBrUAJz9iGSgDrP3ddxwXwieutAolLMp0RN4Mk/sze2Jni8fQvf1mEM8DQecClK95Hk
+	gZnwDj+Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56880)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vdBFN-000000000sa-1PL4;
+	Tue, 06 Jan 2026 17:53:33 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vdBFK-000000000c6-0NYK;
+	Tue, 06 Jan 2026 17:53:30 +0000
+Date: Tue, 6 Jan 2026 17:53:29 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, skhan@linuxfoundation.org,
-	david.hunter.linux@gmail.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] iio: proximity: rfd77402: Add interrupt handling
- support
-Message-ID: <aV101TrC5hB_nHJM@smile.fi.intel.com>
-References: <20260101-b4-rfd77402_irq-v4-0-42cd54359e9f@gmail.com>
- <20260101-b4-rfd77402_irq-v4-4-42cd54359e9f@gmail.com>
- <aVe7SP914oI-jAam@smile.fi.intel.com>
- <CAHc1_P4dCdt6QFgfZ8OUZGT+UfLqiP_ect7pOsd_HeQaDe8jTg@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH RFC net-next v4 3/4] net: mdio: add unlocked mdiodev C45
+ bus accessors
+Message-ID: <aV1MGQirTHyFdv7Q@shell.armlinux.org.uk>
+References: <cover.1767718090.git.daniel@makrotopia.org>
+ <36fbca0aaa0ca86450c565190931d987931ab958.1767718090.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,61 +86,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHc1_P4dCdt6QFgfZ8OUZGT+UfLqiP_ect7pOsd_HeQaDe8jTg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <36fbca0aaa0ca86450c565190931d987931ab958.1767718090.git.daniel@makrotopia.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Tue, Jan 06, 2026 at 05:39:29AM +0530, Shrikant wrote:
+On Tue, Jan 06, 2026 at 05:14:57PM +0000, Daniel Golle wrote:
+> +static inline int __mdiodev_c45_write(struct mdio_device *mdiodev, u32 devad,
+> +				      u16 regnum, u16 val)
+> +{
+> +	return __mdiobus_c45_write(mdiodev->bus, mdiodev->addr, devad, regnum,
+> +				 val);
 
-...
-
-> > >  #include <linux/module.h>
-> > >  #include <linux/i2c.h>
-> > >  #include <linux/delay.h>
-> > > +#include <linux/interrupt.h>
-> > > +#include <linux/completion.h>
-> > >  #include <linux/iopoll.h>
-> >
-> > Same comment as per previous patch. Do not add even more misordering, please.
-> Will it be okay if I re-order the includes as below ?
-> #include <linux/completion.h>
-> #include <linux/delay.h>
-> #include <linux/i2c.h>
-> #include <linux/interrupt.h>
-> #include <linux/iopoll.h>
-> #include <linux/module.h>
-
-Just try to squeeze the new inclusions in the longest chain of the sorted ones
-(yes, some original ones may be left untouched and hence unordered).
-
-> #include <linux/iio/iio.h>
-
-...
-
-> > > +/**
-> > > + * struct rfd77402_data - device-specific data for the RFD77402 sensor
-> > > + * @client: I2C client handle
-> > > + * @lock: mutex to serialize sensor reads
-> > > + * @completion: completion used for interrupt-driven measurements
-> > > + * @irq_en: indicates whether interrupt mode is enabled
-> > > + */
-> > >  struct rfd77402_data {
-> > >       struct i2c_client *client;
-> > > -     /* Serialize reads from the sensor */
-> > >       struct mutex lock;
-> > > +     struct completion completion;
-> > > +     bool irq_en;
-> > >  };
-> >
-> > The kernel-doc conversion can be a separate patch, but I'm not insisting.
-> I can split this into a separate patch within the same series.
-> Please let me know if you would prefer it to be handled differently.
-
-It's up to maintainers.
+Something doesn't look right here - missing a couple of spaces to
+correctly align? I suspect checkpatch would spot it?
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
