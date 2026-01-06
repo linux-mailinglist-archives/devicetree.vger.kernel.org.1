@@ -1,85 +1,92 @@
-Return-Path: <devicetree+bounces-252093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49213CFABB7
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:42:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58990CFA808
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:09:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DDD1F33FA7AA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 19:05:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1B8453069609
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 19:08:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E23935A942;
-	Tue,  6 Jan 2026 19:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A382C027E;
+	Tue,  6 Jan 2026 19:08:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mVClewuW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFQ5SAei"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43F44350A2B;
-	Tue,  6 Jan 2026 19:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44142274FDF;
+	Tue,  6 Jan 2026 19:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767726313; cv=none; b=J1QnqwhTc/2y8YRlJSq3SEWf4vsEyd1EVmY0tRt7vmLaFiesrsdjzhi+YpJ8IXd+qQW+6EkC4IWgseHrHf2gSJZc3U+FaO1gXwHpXglJVHr3aqQosfWPb2mg1tKs4Aw9r0/DLpezsFSEqedYLPTnF8/T09RiyeTTjo5+F7u4IEk=
+	t=1767726482; cv=none; b=jgp0ZmZjYCm907l9u+JrKp696He5b5lNPrd8NUrlGR0SwCHq4GHiknR6JLnER4/6PDD7QUih6Gp/Ypmuggm4yoFMnqOK9MAJoS6RFoLbUiezwO6WmfjnYBDcnfOllZ+0NQaS7bwYRJ4pzzzCSaE9Y/av3gDSfchSDnJ1yOmTVok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767726313; c=relaxed/simple;
-	bh=6T16q4mVBWUHrgd/3cDG5y57Q1mWojginmhCDBOAyMk=;
+	s=arc-20240116; t=1767726482; c=relaxed/simple;
+	bh=u9DkmJtck8Gc8X7zOPBHUnDaOOBZacRpl9q/C06riN0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r6dlL/s4CQ6Z5Rq+mK+Ha03aq+y3UM+WfVagwt7sJBNH6wLezwbWuhtNbjVDmgFMp3kY6FdWDqvU+vq1yc3QAXt8vKQ0AQurCM8gxn/iCqItu4PjlNuU8EoV3cyaCIUBVq1s6QquFsA3AeyXNH5UpKlTxYm35t4cJhQ65uJmB/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mVClewuW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF5FDC116C6;
-	Tue,  6 Jan 2026 19:05:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mKHOt4nXzG2lDoZZ5dsMK97qBFc8Gxn+M2uE6j0sXbB/7EW2iJBCWD/C0bbZZQFtMBOUXWzSBztT1e8kRneVQZpFB3WOZ2+68wxWFuiafxfNBipjQxIA4k3nbt4ubqp0VoPb8JB5ri4IWM1rj9dTdTVxY+hDQSDo8rpVUP8BZTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFQ5SAei; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BCBBC19422;
+	Tue,  6 Jan 2026 19:08:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767726311;
-	bh=6T16q4mVBWUHrgd/3cDG5y57Q1mWojginmhCDBOAyMk=;
+	s=k20201202; t=1767726481;
+	bh=u9DkmJtck8Gc8X7zOPBHUnDaOOBZacRpl9q/C06riN0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mVClewuWoVNaWDk0kCEx2259CUTGGPANExnKfWcHWR+b+2A7b3IA5mUhO0DupgJ+0
-	 IjtGcNcnBcntVQLUc1/xhPzAalNQV6uED/+FM5lLxtEuu2NW9DnKRj1JRiAWYv9QW5
-	 S6WSR0M4cILeM0rtU4cSXfV0P9RmB7y9BW+7z/t+qe60OzHAvcuf5lRHXBdQZAMLgL
-	 lEWIiJdLFHZlTlxX8r+lJ1bm4V/0OudJX2dydGMLlGtVMhF/11BmvhShEOd3xRXCXo
-	 1yu8ZZ1VNthnR4u9VvEO25K3huI503hlU15F7kBW8MSLXMeAkoxNNtv2JvynOlxlb0
-	 Dd5h19YaSBRjw==
-Date: Tue, 6 Jan 2026 13:05:10 -0600
-From: Rob Herring <robh@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Peter Rosin <peda@axentia.se>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] mux: adg2404: add support for ADG2404 multiplexer
-Message-ID: <20260106190510.GA2546640-robh@kernel.org>
-References: <20260105120117.57607-1-antoniu.miclaus@analog.com>
+	b=JFQ5SAeiBqjiwrJGCO0B7KsJHn/6wn0GLVEQG4Rl16FaTkv8L/Od3KLBU6TrweBG7
+	 2cqKgSdU8YQyshLZP4ZFg2WuN3Dw53KkGNFUCtk1NoQaqfVhv6Rvt0RHflV33LQ2B6
+	 BTw6e4rWTdVIf/4n28ye+uDgMU7kBZ1LoWDQUXjhqS7jMElwB0t7UN4RYe55ZqlOLg
+	 zAQD0YhaLu7D560lJVbOljv5INF/IlDEOdJAAJv+0YMVhyB3hV4kzgCP8IapNwBOdt
+	 cS6OxwoNZiblSwool7IVY89R68Aoa47PjrpjEfF5Dy0G+7ph5Vmreg3wwLmcx9eKLF
+	 HOA4qTQVmi9GA==
+Date: Tue, 6 Jan 2026 13:08:00 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "A. Sverdlin" <alexander.sverdlin@siemens.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
+	Daniel Golle <daniel@makrotopia.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+	netdev@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Hauke Mehrtens <hauke@hauke-m.de>,
+	Vladimir Oltean <olteanv@gmail.com>
+Subject: Re: [PATCH net-next v3 1/2] dt-bindings: net: dsa: lantiq,gswip: add
+ MaxLinear R(G)MII slew rate
+Message-ID: <176772648028.2565771.5663023472968969071.robh@kernel.org>
+References: <20260105175825.2142205-1-alexander.sverdlin@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260105120117.57607-1-antoniu.miclaus@analog.com>
+In-Reply-To: <20260105175825.2142205-1-alexander.sverdlin@siemens.com>
 
-On Mon, Jan 05, 2026 at 02:00:29PM +0200, Antoniu Miclaus wrote:
-> This series adds support for the Analog Devices ADG2404, a 4:1 analog
-> multiplexer with low 0.62Ω on-resistance.
+
+On Mon, 05 Jan 2026 18:58:21 +0100, A. Sverdlin wrote:
+> From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 > 
-> The ADG2404 features:
-> - Low RON of 0.62Ω
-> - Flat RON across signal range (0.003Ω)
-> - Dual supply operation (±15V, ±5V)
-> - Single supply operation (+12V)
-> - Asymmetric supply support (+5V/-12V)
-> - 1.8V/3.3V/5V logic compatibility
-> - Break-before-make switching
+> Add new slew-rate uint32 property. This property is only applicable for
+> ports in R(G)MII mode and allows for slew rate reduction in comparison to
+> "normal" default configuration with the purpose to reduce radiated
+> emissions.
 > 
-> Applications include automatic test equipment, data acquisition,
-> instrumentation, audio/video switching, and communication systems.
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+> ---
+> Changelog:
+> v3:
+> - use [pinctrl] standard "slew-rate" property as suggested by Rob
+>   https://lore.kernel.org/all/20251219204324.GA3881969-robh@kernel.org/
+> v2:
+> - unchanged
+> 
+>  .../devicetree/bindings/net/dsa/lantiq,gswip.yaml          | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-Isn't this just a gpio-mux with the addition of an enable GPIO line? 
-Wouldn't adding enable-gpios and support for it in the gpio-mux driver 
-work?
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
