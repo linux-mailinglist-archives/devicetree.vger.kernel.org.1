@@ -1,252 +1,120 @@
-Return-Path: <devicetree+bounces-251741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1574CF63E7
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 02:24:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FA45CF644D
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 02:30:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 350E93008F22
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 01:24:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 936C13060A76
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 01:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12A11E9B12;
-	Tue,  6 Jan 2026 01:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE7911EA7CE;
+	Tue,  6 Jan 2026 01:29:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Efv8DDhc";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gEDiEwZH"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="TSC2nlgN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail-10628.protonmail.ch (mail-10628.protonmail.ch [79.135.106.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 669BF2AD16
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 01:24:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52D019005E
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 01:29:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.28
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767662687; cv=none; b=MnPaJrTaYnbCVufqwNRLOayFZqlKHCNAKqqW2x3sbZNRTeTwnzKrn5l0oOkOV0eloqUxXFzZPGuCBqgDdTzfnedl08XV+b/In4jHha7VwcdWEpsUKjwvaA5mLsOShH91/Dn8Nza/5YF8puavcIdCTNADgpM0ueeptE0Q90c8ies=
+	t=1767662978; cv=none; b=aFDieRdaycWe4qAzZJ4pO4ActttepR48duryiROiX0Lmttb5x/OGk9Ew2r1lEFWRx8UpvtZMv24nBmy2IANZzxFdICnrBszelLk1CUNQmf0ToNmCYd7DxM2GKK8kskEMoCuN+TG+xKvPl/hTnySFibE3GBhqSkY0pDr41j3dXs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767662687; c=relaxed/simple;
-	bh=Zi91t+yDAGBNj0Wf+xn51Qwt2DFUmcMLUYGn67KjtPY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=umMxw7lUcyo9DEqxfZ/je9W3UTZMJQM+Yiy/GwQrH1uP9ql5RC57FvxpatGFGqAl5B6QCGICh1gVE36LItyd4Kauuzay+aYpBKgraBaWIZkfR6vQIr6vCAWDHjBDQv757BHP3NH7mRZBQMpaUH+L/NB3poJe9+xPi+U6+5KGDAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Efv8DDhc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gEDiEwZH; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6060nQtU2528144
-	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 01:24:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Rgdj9JVSXam/U0sf7Dh+VmV41kCy2PTQBaLABR0ltjg=; b=Efv8DDhcATSDw88E
-	83MPiIxbNj2aaL9oQ6irxlPvb5sa9FVwoCJcBgLpPCZh43xHKKkHbkTHtYbI/s58
-	opwD6OnD66WdspbBUAcOMa29YX3Vfw2sh9SvyLOgAR/wU8lZLKIAntuL/xSad2Qs
-	mbo4A3vHPXF9hgbhu/QaDU3jO+eRO43aRcZKwNLzx4d9Iwb5XjUoE4PRSaohI2mb
-	ZPPdt3WIfv5LNBKL4sLL/Myzu/ouN4+5BXzLjV2xfunlO4mjg5IJF5QaH47Lepsc
-	5ku/NwaZ8NHAcKnC2PJmQ3Z7aHh9FlBNE9cjo+ba7GErciFfU7cpr7qF+CeXqpcs
-	WaFmUw==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgaus2d37-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 01:24:44 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7f89d880668so942800b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 17:24:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767662684; x=1768267484; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Rgdj9JVSXam/U0sf7Dh+VmV41kCy2PTQBaLABR0ltjg=;
-        b=gEDiEwZHtGz9tWXjNPySFt7pMyT08ih4lq56WW7Ro3xLYmA3qG+Sz4XN9SjEQsVpKJ
-         S+FyYgOi6D8QB0w7vvHPuVrO4hNGfJ0Thw6sKj9JZsrTScKPK/WyAIuU7vMfdBtBlPlp
-         zGW8nmrhdGczcthXlQGJspRnASXwIRzd2wTCQHuSAOUQiiiQ/JI4ZTcJhwIQiAZIQZzA
-         e0+RNourn8tqu2PDzKnhYhxn0md8v5c8l5encXLBpZUa9aJNBRVyF7CNZer6G4pRW58v
-         KjfRNjy4/MZtwDrztkzk9kc7KsEs/t22LwvoUdOyXy6QBSIIVtzeHQEoZwaC+TyoDxn4
-         AUvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767662684; x=1768267484;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Rgdj9JVSXam/U0sf7Dh+VmV41kCy2PTQBaLABR0ltjg=;
-        b=YNyL4pwAeFhsJotMhoh9yUago4qiQ5z5XCOvAGRaQZf888PKKoP67POSCGWsgTES/C
-         7IUB2AfTEcLfwfnhDZVmBlYbiYhvs9jP5LJt+d+m0QIaO9s/YVwZ9fSFl1smwZzyqX39
-         BHdbblpzOLm/uvR7QiXFStCtX+kkLoZdg5b1REbrB6OykBJKfgGpK+D0nyMlPA8n4aqN
-         0py9hQyUyMJYBc4VldnuAkhOXAFmzkqyEP19ej3Jo0v3spnVXtUtHn654PQTpsYtjh6e
-         ae664PvXXJCbhbvQO3RhKsrx14Rw5/zxuWat5QAbRx5ih8oqMicnB3iY6JQCSE/a+H7X
-         uVEA==
-X-Forwarded-Encrypted: i=1; AJvYcCWQh68hImYMfRqRcZDYIpqTd7oEqJgonZBK1qxQIJPaqgp1FnDxR3O91IMEL9X15n48nC4qBJfEjpp4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5sc/ofFaXS+EOj1QGSQP+K8+Ss/bjA12/80weX85dlNYH9uLR
-	gFasXJlL7HXY0/W6Rwv1NyWAouw9h9Kl15iuRe4FKo9fYb5kbFL8TCkWDeYJBliBtmDZgzPzNZv
-	3cZzP1BhIvmqiep+X3g0ISBIxoK2uwEFbCMU7ltp1JOfFrrLJJjKjDgVZJYZhI6ft
-X-Gm-Gg: AY/fxX4X6LpgUXFQs86GBlT3mt4aCulHOGIXH4gKDatzciaFH0mKnfMP6jQql4CPCJq
-	DnNlxBykHA3oo16K0cSVUjHhgYaE12nxw/N84mlk0+aySGL6BQ6YZyqH/h9DY+WsKiKQqsVK8qL
-	MFhL85Tn5bXhpyX2atYlLDpFHUe/2o5+UiFRW0bpGxZxZ4oqVvs3o668NPG5PKkR3ITDf/F7NFg
-	TReveackZdW9ayd4yOFzZzDHSsQ6daiyCSS90EcJ5ptad5+2mXHLmMJ7Pp1BE3ln5mYdi6hpPNf
-	UUYz4vcNIUwobUvDg4dQL4rC6D5pCZ7c4srDg458kjIPp1j2YygkPCR/0seAN4EuD2TSjBF8QTN
-	Ltw+y9M8vyscPuuCK1lOMUqC/dX7rcvhB3KfkX8yrUOa66fUKLZz/4YqvPOvN42dp5dybp/m2Vc
-	3YBpOhMg==
-X-Received: by 2002:a05:6a00:4ac9:b0:7f1:7b2a:ab5b with SMTP id d2e1a72fcca58-8187dcd0629mr1271704b3a.27.1767662683767;
-        Mon, 05 Jan 2026 17:24:43 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF3urWCguYaYUeKZrZEm5CcNDL24/JpPF3uSutfTy7tGULB2dLbAC87YGfsLVPwZYeU19kHEQ==
-X-Received: by 2002:a05:6a00:4ac9:b0:7f1:7b2a:ab5b with SMTP id d2e1a72fcca58-8187dcd0629mr1271687b3a.27.1767662683158;
-        Mon, 05 Jan 2026 17:24:43 -0800 (PST)
-Received: from [10.133.33.108] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819c5302c61sm345100b3a.42.2026.01.05.17.24.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jan 2026 17:24:42 -0800 (PST)
-Message-ID: <bab3794d-d7f8-492a-82a2-6a8a6f80a708@oss.qualcomm.com>
-Date: Tue, 6 Jan 2026 09:24:38 +0800
+	s=arc-20240116; t=1767662978; c=relaxed/simple;
+	bh=BOcCNMp1INqjcXwIO4bDUoob4UpdQuZ592biX8sY/Aw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MH1ShLMvo288FGObg/WI9Bzc7zolpjhZcQWcDznb/WR2mBVku6vp1L06bhPyu4qYAa493XI4MhIikU71bo2ADF8awI9JscQGWreEgSmZdEbjmiofz0eg3Ou1EUBiG2hKsqNHKCfvjCVsbBK2nri3jeFzS+6U57QWGbABKPL8avk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=TSC2nlgN; arc=none smtp.client-ip=79.135.106.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1767662967; x=1767922167;
+	bh=4uzkSMQRSAW1nzDN/n5W806VDwJ13cISuBlGwWWQkLY=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=TSC2nlgNyplw+OmXAPsM91lKCJhKyQCqgTI1zY6qd+xV05HxQOc5AJc6aB9Eg8iUy
+	 r2KS1yDgN0I5GvoP7Za9n+2mxlLoSQrD8R/5+iEF0fxknMQ2W28Jqq9P2ZOQAUTxre
+	 1pp17lVBor9h7f0jiA1ms92U62YCnmqO+eCKIfzKKDvx19yF8JrWETKcxzjGl0GQhY
+	 BdB+YmPJbW47jlD9LaZiv8XlYK/S8opI4FMkNvEyBAmBuHMJKc96CTx397vItoQ6Ht
+	 UVelqv771clcHZM9NE6FBJM6q+MxxzgLhUzDY1JYHGTQNTKFzt/qwBj/qZon5I99be
+	 YLwmNcqIqxYvg==
+Date: Tue, 06 Jan 2026 01:29:25 +0000
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+From: Alexander Koskovich <AKoskovich@pm.me>
+Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, hrishabh.rajput@oss.qualcomm.com, Konrad Dybcio <konradybcio@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
+Message-ID: <ABmlNqg6uJXJLkDZo3uaZLdrTCFIjRXOJ68Hrx1MnHHYMnPJ9_g7GW0HGRhZBKv4--_PANfXgTV7h-n7HFC51zKNW6JkmEhpB6_EhFQ27Rw=@pm.me>
+In-Reply-To: <e469548a-8d74-4d3b-9617-2b06f36013e2@oss.qualcomm.com>
+References: <b105810a-63a8-4d81-9ad8-b0788e2e1431@pm.me> <e469548a-8d74-4d3b-9617-2b06f36013e2@oss.qualcomm.com>
+Feedback-ID: 37836894:user:proton
+X-Pm-Message-ID: 8b02b851afc68cfce49efce818cc7f562f6297d6
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: Commonize IQ-X-IOT DTSI
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Yijie Yang <yijie.yang@oss.qualcomm.com>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com>
- <20251222060335.3485729-3-yijie.yang@oss.qualcomm.com>
- <20251222-fluorescent-turkey-of-gallantry-df0906@quoll>
- <b8f0e8d9-449e-4f32-832e-f1d5597ff496@oss.qualcomm.com>
- <6421f044-2b07-4518-9edc-b9b2ef49f4fb@kernel.org>
- <8bcf058f-5bf9-46ce-a188-e94954101f2f@oss.qualcomm.com>
- <4f79d090-7d1c-4fb3-a835-a7e4ff96f79c@oss.qualcomm.com>
- <448f2efa-5b1e-4855-a62d-2e375938b36f@kernel.org>
- <c7983b8c-5085-43a0-bd5e-1194df2f0ee5@oss.qualcomm.com>
- <a2b62af6-fe17-4c4b-9dea-4ba9cf312765@kernel.org>
- <j7i2oryel7d5u6gsbb54iaer7amqre2vzwkb6fieybascvonwi@bmt7zmcvg7yi>
- <36cb7d6e-ece4-42c7-bc11-b66837df5fc4@kernel.org>
- <469d89c9-8f6c-4abe-9d9f-b6a47f8cefd8@oss.qualcomm.com>
- <f54dc011-1796-4088-8bfe-be19e8bd9157@kernel.org>
-Content-Language: en-US
-From: Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>
-In-Reply-To: <f54dc011-1796-4088-8bfe-be19e8bd9157@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 9g8OC6pwEGI1-lyRFk4ktXvMGk452yxt
-X-Authority-Analysis: v=2.4 cv=DP6CIiNb c=1 sm=1 tr=0 ts=695c645c cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=xUmP3_sUEaRp8AZHE-AA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
-X-Proofpoint-GUID: 9g8OC6pwEGI1-lyRFk4ktXvMGk452yxt
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDAxMCBTYWx0ZWRfX/VTXgr16ZB6t
- wIRZdJ9B9YwlYhI8NSlrDk5hmNR1ose6fSwa78PUZWtfsc2urYiSkLq8h80IuYVnb8owhRpK7Z5
- hSM3UlCeQWqRcKUEz6EA0dLp0WEpZ04LTYF0FYK3giowsoc6mem8RA/Vj9aipymxO8nX5SbxNEo
- Tl7osgTYzmFA/15PKDi0zD+/G+bG2TIv+7/IFnuUEFe/4W/RUa61eurOPDvIUaEtgm2hyRlvMxc
- 6/Rn204DnI2ju/n1nv8L/LrE4vLxu+vHKFBrEqTtcARQWbBCPah8ZAB2HRw5ZEKRIrpf+E8S5kZ
- aKKRfOQ+bE73FkLIh6dBa3Vg0/Lkl9I/NMxzJAUGS800A7pjJWyzVbS2uQ9F0/7CYE5IzQ84MAZ
- WFyyiHoyhuTHNq3hgfGuKlwNNR4f4enV6eidapH/gKzISnmB7JnLr0l040DnDfYBV4HbF/20fCy
- HEK/KAGjn/EEMj9W5BA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-05_02,2026-01-05_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 clxscore=1015 impostorscore=0
- malwarescore=0 phishscore=0 adultscore=0 spamscore=0 suspectscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601060010
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+Hey Konrad,
 
+My device's EDK2 should be on 'KERNEL.PLATFORM.3.0.r1-12700-kernel.0', unfo=
+rtunately the device I'm working with is secure boot on so I can't modify b=
+ootloader to resolve this issue, though I'm not really sure why it's happen=
+ing when I looked at BootLinux. It seems the hyp dtb handling is the same i=
+n both the "dtbo img valid" and "dtbo img invalid" cases, so not sure how i=
+t's only happening in the latter case.
 
-On 1/5/2026 11:09 PM, Krzysztof Kozlowski wrote:
-> On 05/01/2026 06:36, Tingwei Zhang wrote:
->>
->> On 12/30/2025 3:21 PM, Krzysztof Kozlowski wrote:
->>> On 29/12/2025 21:08, Dmitry Baryshkov wrote:
->>>> On Mon, Dec 29, 2025 at 09:47:05AM +0100, Krzysztof Kozlowski wrote:
->>>>> On 29/12/2025 08:38, Yijie Yang wrote:
->>>>>> On 12/29/2025 3:21 PM, Krzysztof Kozlowski wrote:
->>>>>>> On 29/12/2025 02:23, Tingwei Zhang wrote:
->>>>>>>> On 12/24/2025 8:12 AM, Tingwei Zhang wrote:
->>>>>>>>> On 12/23/2025 9:41 PM, Krzysztof Kozlowski wrote:
->>>>>>>>>> On 23/12/2025 04:38, Tingwei Zhang wrote:
->>>>>>>>>>> On 12/22/2025 5:11 PM, Krzysztof Kozlowski wrote:
->>>>>>>>>>>> On Mon, Dec 22, 2025 at 02:03:28PM +0800, YijieYang wrote:
->>>>>>>>>>>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
->>>>>>>>>>>>>
->>>>>>>>>>>>> HAMOA-IOT-EVK and PURWA-IOT-EVK share a similar board design. Extract
->>>>>>>>>>>>> the common components into separate files for better maintainability.
->>>>>>>>>>>> SoMs do not share actual hardware. DTSI does not represent what looks
->>>>>>>>>>>> similar to you, but actually common parts.
->>>>>>>>>>> Purwa SOM board and Hamoa SOM board share same design. They share same PCB.
->>>>>>>>>>> The difference is only on chip. Purwa SOM board has Purwa and Hamoa SOM board
->>>>>>>>>>> has Hamoa on it.
->>>>>>>>>> I do not speak about boards. Read carefully feedback and respond to the
->>>>>>>>>> actual feedback, not some other arguments.
->>>>>>>>>>
->>>>>>>>>> NAK
->>>>>>>>> In this change, the SoM hardware except SoC is described by iq-x-iot-som.dtsi since it's common between Hamoa and Purwa. Hamoa and Purwa SoC hardware is described in hamoa.dtsi and purwa.dtsi. Hamoa-iot-som.dtsi includes iq-x-iot-som.dtsi and hamoa.dtsi. This change could reduce the duplicate code and review effort on a totally new purwa-iot-som.dtsi. If we found any bug, it can be fixed in one common file instead of two separate files. Same idea is used in x1-crd.dtsi. X1e80100-crd.dts include x1-crd.dtsi and hamoa.dtsi.
->>>>>>>> Krzysztof,
->>>>>>>> Please let me know your opinion on this. This could be a common case for
->>>>>>>> Hamoa/Purwa boards share same PCB. Share same dtsi file like x1-crd.dtsi
->>>>>>> It's not the same PCB.  You did not really respond to my first message,
->>>>>>> so I responded to you - I do not speak about boards. Then again you did
->>>>>>> not respond to it and brought some irrelevant arguments.
->>>>>>>
->>>>>>>> would reduce maintenance effort.
->>>>>>> Does not matter, I do not question this. Why are you responding to some
->>>>>>> questions which were never asked?
->>>>>>>
->>>>>>> DTSI represents actual shared physical aspect and you cannot share SoM
->>>>>>> physically. It's not the same PCB, because you do not have a socket on
->>>>>>> the SoM.
-> HERE - socket.
+Note, that I do have a blair secure boot off device that I flashed with  th=
+e same tag (KERNEL.PLATFORM.3.0.r1-12700-kernel.0) since I noticed it happe=
+ned to support the chipset, but was unable to reproduce the issue there, DT=
+BO gets applied even with a basically empty base DTB. Guessing it may be du=
+e to some change in hyp with recent SoCs.
+
+Alex
+
+On Tuesday, December 23rd, 2025 at 12:50 PM, Konrad Dybcio <konrad.dybcio@o=
+ss.qualcomm.com> wrote:
+
 >
->>>>>> x1e80100-crd and x1p42100-crd are different boards, yet they share the 
->>>>>> same x1-crd.dtsi. Why can’t we apply the same approach here?
->>>>> You should ask the authors there, not me. I presume that the baseboard
->>>>> is the same or very similar. Or pieces of the baseboard are re-used
->>>>> which could be visible in the schematics (same MCN numbers etc).
->>>> For me this sounds like a new rule, which didn't exist beforehand. We
->>>> have enough foo-common.dtsi fragments, covering similar phones, but we
->>>> never required the knowledge of those phones having the same PCB.
->>> I am speaking about it since 2020? 2021? So how new? Other people in
->>> other SoCs were sometimes speaking about it in 2016 or something
->> There’s no doubt that using a common DTSI makes sense when the boards
->> share the same baseboard.
->> I think the real question is whether the baseboards are defined so
->> similarly that they can be treated as the same.
->> For example, would swapping to a different SoC—similar to the
->> Hamoa/Purwa CRD scenario—still be acceptable?
->> Would exchanging components such as the display panel, a single camera
->> lens (not the sensor, as far as I can tell), or removing the 3D iToF
->> module[1] still qualify as the “same” board?
->> In other words, can we consider two boards identical if the underlying
->> circuit board is the same but a few parts are swapped out?
-> I received IDs of the schematics for these boards, but they are called
-> "IPC BGA module" and what I saw usually is that BGA modules are not
-> mountable but solderable. This does not matter that much but should have
-> been said, because it might mean this is not even a SoM. There are many
-> SoMs which are BGA, not pluggable or pin-based, but I have just doubts
-> that authors share everything...
-Thanks for taking the time and review the schematics. That's soldered BGA 
-modules. It's SoM since that's a module with minimal system including
-SoC, PMIC, DDR. This module is available for customer to order so customer
-can focus on carrier board. The hardware and software of SoM can be
-reused.
-> Anyway the BGA modules for Hamoa and Purwa have almost the same
-> schematics, indeed, except differences in PCI, APC supply and lack of
-> one PMIC.
-Yes. These two modules are very similar.
-> If this was the same SoM, just with different SoC soldered, it would
-> have the same PMICs. Different PMICs means different SoM...
-I agree. It's not same SoM, but they are very similar with same circuit board.
-> Anyway, I shared my opinion and I am not going to spend more time on
-> this. It should not be my task to go through schematics and prove that
-> PMICs differ. Authors should.
-We will make it more clear in the description about PMIC difference.
-Since we have the agreement that Hamoa/Purwa modules are very similar,
-we will use common dtsi in next version. Please let me know if you think
-that's not correct thing to do.
-> Best regards,
-> Krzysztof
-
+>
+> On 12/22/25 8:02 PM, Alexander Koskovich wrote:
+>
+> > On 9/4/25 1:05 PM, Pavan Kondeti wrote:
+> >
+> > > Thanks for asking this question. I believe the overlay part needs som=
+e
+> > > discussion here.
+> > >
+> > > I have tried this series on 8550 MTP. The overlay failed, so watchdog
+> > > device did not probe. same is the case with 8750 too. It works only
+> > > after applying this patch. I will test and report my observation on 8=
+650
+> > > later.
+> >
+> > Hi Pavan, was linked this thread after seeing what I think to be the
+> > same issue on another platform,
+> > but issue is a bit more serious here since bootloader fails to find a
+> > DTB at all, not just overlay fails.
+> > When the "arch_timer" label is missing from the base DTB on Milos,
+> > ufdt_apply_overlay in bootloader
+> > will fail and it looks like the DTB memory gets corrupted. If you are
+> > booting without a dtbo image,
+> > then you don't see the issue. Couple logs from bootloader when it happe=
+ns:
+> >
+> > ApplyOverlay: ufdt apply overlay failed
+>
+>
+> FWIW this comes from ABL, which is open source
+>
+> https://git.codelinaro.org/clo/la/abl/tianocore/edk2/
+>
+> You can probably deduce the correct tag from the boot logs
+>
+> Konrad
 
