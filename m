@@ -1,142 +1,209 @@
-Return-Path: <devicetree+bounces-251935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18AC9CF86FF
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 14:13:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83F20CF876A
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 14:20:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6E00230188E6
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 13:13:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4B4783015839
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 13:20:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F7513168F7;
-	Tue,  6 Jan 2026 13:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A56A2DF13F;
+	Tue,  6 Jan 2026 13:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HGg7dzc9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iWGCj8Vk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3FB530ACEB
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 13:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D614A33;
+	Tue,  6 Jan 2026 13:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767705209; cv=none; b=SmZOumhLO6FNMkC/nhknYJ0jspuzw19nXQup5hPBeBJw3V03vWNfO+feIdwCXZwatWAdUaWxHBDB0vWXhJ+1uFqNjABaLhE4YPJAZ132/XblMIl42ciVaEj9YwY+8zgo1MWB0JJH7gikp51V7pCkZy22AqUlgI3ojfJqHeWktBM=
+	t=1767705610; cv=none; b=KEnblpdNaZKwSXnJ2KZ2tTAZULQg1CJhg2yhqkR5L41SD4U6QHlay90cWMkSWYkUSgbNfC7mFGUwctOzlwOa6mDfqaXCy1N8PgbL55Qjun5p4BvJ+oC64waxRMYegO4qjsA5DFLHp4UKRCIVhmupzORJbp38WSgSdbfE+ce337U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767705209; c=relaxed/simple;
-	bh=CnrWL5jxLBtsPQPzTImnrD6+ygHOBaEgz9tcXcYP7w0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CyIgUz1KUpI9qw3zJp9oODFeQ7Jbxq/RtI7FsIQhFNZu4V1MX+ox/QmsWwc9kQ0bSFJc6uDcbOruvqfV/faWUIQTX9CqR4vuDpB3STL29iI1mPTS/sF0FBgLh8xJAdNIix06ObqfmmriOIgy4S+RbCNqkIsKecCF5/MQXhh5fyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HGg7dzc9; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47d5e021a53so6989305e9.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 05:13:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767705206; x=1768310006; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=JFcROr4jX4jERoJicZp1BEaBPn597lFbf82O5xGWRGE=;
-        b=HGg7dzc94gVTmwdLKVSNUpZypNqKkoJD/NjlwccDH7Vg9ybt7YYfUPk0x57omBsLPB
-         /qbsQ13yNBY1meaw22Ev9qvH8OB2RZAhGTtaR/AKVDEedbDbEk/K2x2eg7AM2KCPgC8A
-         H7xQ/+wH8uvlVkZwUaaAv4WXhhy9KHu6JBbFtDPcAvqWPzDxS9PqwFBRI9GkEKVKdHJZ
-         DCevX1LqhtRT51vsO4Rn5lmLg80mHKbY7BhTJXMlVoqs3t+xZ6eTBtc/tQy6Op7H5JHc
-         6AnnTrLjF6Ed6+G5NzxaYjuBHwV0KHMtaNFbledpPlLeShh2ow5ydRr6Wa7vjqP8ZopS
-         X5Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767705206; x=1768310006;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JFcROr4jX4jERoJicZp1BEaBPn597lFbf82O5xGWRGE=;
-        b=QLXzB/Erju2P/JhbIXwxttfl148hEsKEp0UhPaEpW449iU1+TcH1iCa5gmt1HTBDN/
-         dh6z3mscVATznIW9jM9AjG1000oLhLwxFSSeVUjL6xBRZGKI55fwa4frMRJyK5PWGJYF
-         JK9c2Mg2uo17AQYy0XBk90Ea8fLYKUT33JRrWwTBWFtx8z/R94FoTvemab9m/25wv+KC
-         SxtWuvbj486iE4E2y1J9GI9Tuhy9TRLt4ZLGup737ETSmhMASoOVXznXf3cfeLjlQ7Dc
-         uVGvkj5W98h7UyQYyZ3m/BeiR/n/B179nA7fABhnLoyIeAqSE384UeGUaZW8BYA4zMGY
-         oMPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXsTlA3A347rgv650GaUyYQcZvqMtKJ2soetUYY8ugVK5tgPmNfMr3vKQE+0xMaNW/FtNVN0ZL/1kya@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz94qjRsRIe+h4hpo5CJ38jKdL/MnzW5DCFQ5V+5kuPIAnk1PGB
-	OOp1QzMOexFUeqMrsGbzT79CNCWU1ehjsRs/hPZ4a5n2skG3LA8l2STq
-X-Gm-Gg: AY/fxX7AW6VZf9+01xrjVZ9+qH6ILogwQ+VPG3IKaKd6bKP9avAZnG6Ca40A4HMNMJ8
-	GLdXYf9+SD5uvMjLBUHXFoO/mCM7TFqAUoz75KlHI+fu3LCMkQThxHM2ZnpAYAX8HEs3dsxBGGz
-	LPufi+sYOgu8eJYKyMDyGzZVnW9Xd/zihg//9v1p8CG/e441pvd6zeLBOC5KlRU2gcXBHR3cjLk
-	MWTo4jOQqg1UftkbADHrkV5k+7A43uSrMRBMPdXvhn1jgUg+Nf7Qwi1TSTf1JSXNuM2OE5+82d7
-	TiTap+uJbesMG5d5xI0U3zPiqpTGqbez8NOoU40kgR5MH4sw7dtttKi6FUQW//to7/o7/iOnLjf
-	knjilJ3n9xBvkScWAa43yg4RtzAn/jHlKl5x/I1QXOahCI6D5pwU1FFj7q1fwsXPouuiO0KH28X
-	W9a7gi/6WnkcBs+BZ2neg4ciQX2gygHi1wC2yiL/FRU4Us4uCuvqwwNXzUlZQa+trxNgva/YmZZ
-	AFpGT/zLO8sNzzWPNOd//Q=
-X-Google-Smtp-Source: AGHT+IFjV5LDHgJ+1K9BD5N4MoCfpd10KLhluqcuTGK1HP8OZNwU7NwI0OtnTG36Agt1J+dQV1sa7A==
-X-Received: by 2002:a05:600c:3b27:b0:47a:75b6:32c with SMTP id 5b1f17b1804b1-47d7f06cf41mr30284955e9.2.1767705205831;
-        Tue, 06 Jan 2026 05:13:25 -0800 (PST)
-Received: from iku.Home ([2a06:5906:61b:2d00:bb5c:1e3d:b053:da0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f653cd6sm45796855e9.9.2026.01.06.05.13.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jan 2026 05:13:25 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: rzt2h-n2h-evk-common: Use GPIO for SD0 write protect
-Date: Tue,  6 Jan 2026 13:13:19 +0000
-Message-ID: <20260106131319.643084-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.52.0
+	s=arc-20240116; t=1767705610; c=relaxed/simple;
+	bh=MuVRz0gF/Cpqd4cD8o89lE06Oy/dzT/jMTVa/IbLnfI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H9nyqhmYUcsjWdi9Aq5dwneEIds7Tl+mpwKBDiQHx5m9CZ3oT5otYMeAja6B8knkWYUpFqGFxhqQXqqGEK4WkTMtAOjCQct3I2n5/Sw+FuyZqa+mE5NR57rRZiGeAeWR6GcIeBGsDalEYNtk4cfWAPMpUH7bkCdS4//xXnJy3iQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iWGCj8Vk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5883AC116C6;
+	Tue,  6 Jan 2026 13:20:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767705609;
+	bh=MuVRz0gF/Cpqd4cD8o89lE06Oy/dzT/jMTVa/IbLnfI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iWGCj8Vkgf58gqzgwixHcGFzBvCcqx2QP8gKV6ksowmbkNibVrX3HexO75OzQf4Ff
+	 YV0+hYEgvQt9/esvHxTFb85jvxJmjQ6doYerjsjacngDV5sX4T2U6dRdVXgztbErD7
+	 6bn4JH5EHtkKRozGmcWSwgy5IO95pVY5h47hjYKyA/MK9Q1fOaGVo+7YBUNLbt3wyc
+	 3gh97olD97OeTaQ/uZwSXJXBJ6mG1Qk2CE8Umh4wuU4sg8wtjPc5uK4GT4wyq3FwiA
+	 sRZINwl74UqfjGamlZYyYCGiqKQTUwVpC5Na5ox53U08fWoZfXoToW/QIcQMDm+Azc
+	 BGPs2enJFnvtQ==
+Date: Tue, 6 Jan 2026 18:49:58 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, bhelgaas@google.com, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com, 
+	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com, 
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com, 
+	inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, 
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com, 
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller
+ driver
+Message-ID: <4f3rhkrlp3jypajh77rohqgpoujivpxq6g3o6vrt6u7u5j2atd@gd5o3vtlhapp>
+References: <20260105223037.GA332950@bhelgaas>
+ <3c8d6749.1f49.19b93552d97.Coremail.zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <3c8d6749.1f49.19b93552d97.Coremail.zhangsenchuan@eswincomputing.com>
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue, Jan 06, 2026 at 08:43:11PM +0800, zhangsenchuan wrote:
+> > Subject: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller driver
+> > 
+> > [+cc Niklas, list vs array of ports]
+> > 
+> > On Mon, Dec 29, 2025 at 07:32:07PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> > > 
+> > > Add driver for the Eswin EIC7700 PCIe host controller, which is based on
+> > > the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
+> > > supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
+> > > interrupts.
+> > 
+> > > +config PCIE_EIC7700
+> > > +	tristate "Eswin EIC7700 PCIe controller"
+> > 
+> > > +/* Vendor and device ID value */
+> > > +#define PCI_VENDOR_ID_ESWIN		0x1fe1
+> > > +#define PCI_DEVICE_ID_ESWIN		0x2030
+> > 
+> > Usually the device name is a little more than just the vendor.  What
+> > if Eswin ever makes a second device?
+> 
+> Okey, thanks.
+> Perhaps it's a problem. Maybe PCI_DEVICE_ID_EIC7700 is better?
+> 
+> > 
+> > > +static int eic7700_pcie_parse_port(struct eic7700_pcie *pcie,
+> > > +				   struct device_node *node)
+> > > +{
+> > > +	struct device *dev = pcie->pci.dev;
+> > > +	struct eic7700_pcie_port *port;
+> > > +
+> > > +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
+> > > +	if (!port)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	port->perst = of_reset_control_get_exclusive(node, "perst");
+> > > +	if (IS_ERR(port->perst)) {
+> > > +		dev_err(dev, "Failed to get PERST# reset\n");
+> > > +		return PTR_ERR(port->perst);
+> > > +	}
+> > > +
+> > > +	/*
+> > > +	 * TODO: Since the Root Port node is separated out by pcie devicetree,
+> > > +	 * the DWC core initialization code can't parse the num-lanes attribute
+> > > +	 * in the Root Port. Before entering the DWC core initialization code,
+> > > +	 * the platform driver code parses the Root Port node. The EIC7700 only
+> > > +	 * supports one Root Port node, and the num-lanes attribute is suitable
+> > > +	 * for the case of one Root Port.
+> > > +	 */
+> > > +	if (!of_property_read_u32(node, "num-lanes", &port->num_lanes))
+> > > +		pcie->pci.num_lanes = port->num_lanes;
+> > > +
+> > > +	INIT_LIST_HEAD(&port->list);
+> > > +	list_add_tail(&port->list, &pcie->ports);
+> > 
+> > Niklas raised an interesting question about whether a list or an array
+> > is the best data structure for the set of Root Ports:
+> > 
+> >   https://lore.kernel.org/r/aVvkmkd5mWPmxeiS@ryzen
+> > 
+> > Might have to iterate over the child nodes twice (once to count, again
+> > for eic7700_pcie_parse_port()), but otherwise the array is probably
+> > simpler code.
+> 
+> After reading patch's comments, lists and arrays seem to be good choices,
+> I don't have any particularly good ideas for the time being. Anyway, this
+> is a very good patch that supports multiple Root Ports resolutions.
+> 
 
-Switch SD0 write-protect detection to a GPIO on the RZ/T2H and RZ/N2H
-EVKs. Both boards use a full-size SD card slot on the SD0 channel with
-a dedicated WP pin.
+I still prefer using lists for the reasons mentioned in that thread.
 
-The RZ/T2H and RZ/N2H SoCs use of_data_rcar_gen3, which sets
-MMC_CAP2_NO_WRITE_PROTECT and causes the core to ignore the WP signal
-unless a wp-gpios property is provided. Describe the WP pin as a GPIO
-to allow the MMC core to evaluate the write-protect status correctly.
+> > 
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int eic7700_pcie_parse_ports(struct eic7700_pcie *pcie)
+> > > +{
+> > > +	struct eic7700_pcie_port *port, *tmp;
+> > > +	struct device *dev = pcie->pci.dev;
+> > > +	int ret;
+> > > +
+> > > +	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+> > > +		ret = eic7700_pcie_parse_port(pcie, of_port);
+> > > +		if (ret)
+> > > +			goto err_port;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +
+> > > +err_port:
+> > > +	list_for_each_entry_safe(port, tmp, &pcie->ports, list)
+> > > +		list_del(&port->list);
+> > 
+> > Is some kind of reset_control_put() needed to match the
+> > of_reset_control_get_exclusive() above?
+> 
+> I only considered that there is currently only one Root Port. Maybe 
+> there will be multiple Root Ports in the future.
+> 
+> Perhaps this is the best:
+> list_for_each_entry_safe(port, tmp, &pcie->ports, list){
+>         if (!IS_ERR_OR_NULL(port->perst))
 
-Fixes: d065453e5ee0 ("arm64: dts: renesas: rzt2h-rzn2h-evk: Enable SD card slot")
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+You don't need this check since reset_control_put() does it for you.
 
-diff --git a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-index 04e45f560eef..02bcefda6c99 100644
---- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-@@ -380,8 +380,7 @@ data-pins {
- 		ctrl-pins {
- 			pinmux = <RZT2H_PORT_PINMUX(12, 0, 0x29)>, /* SD0_CLK */
- 				 <RZT2H_PORT_PINMUX(12, 1, 0x29)>, /* SD0_CMD */
--				 <RZT2H_PORT_PINMUX(22, 5, 0x29)>, /* SD0_CD */
--				 <RZT2H_PORT_PINMUX(22, 6, 0x29)>; /* SD0_WP */
-+				 <RZT2H_PORT_PINMUX(22, 5, 0x29)>; /* SD0_CD */
- 		};
- 	};
- 
-@@ -491,6 +490,7 @@ &sdhi0 {
- 	pinctrl-names = "default", "state_uhs";
- 	vmmc-supply = <&reg_3p3v>;
- 	vqmmc-supply = <&vqmmc_sdhi0>;
-+	wp-gpios = <&pinctrl RZT2H_GPIO(22, 6) GPIO_ACTIVE_HIGH>;
- 	bus-width = <4>;
- 	sd-uhs-sdr50;
- 	sd-uhs-sdr104;
+>             reset_control_put(port->perst);
+>         list_del(&port->list);
+> }
+> 
+> > 
+> > > +static struct platform_driver eic7700_pcie_driver = {
+> > > +	.probe = eic7700_pcie_probe,
+> > 
+> > This driver is tristate but has no .remove() callback.  Seems like it
+> > should have one?
+> 
+> In v2 patch, I referred to Mani's comments and removed the .remove()
+> callback, as follows:
+> "Since this controller implements irqchip using the DWC core driver,
+> it is not safe to remove it during runtime."
+> https://lore.kernel.org/linux-pci/jghozurjqyhmtunivotitgs67h6xo4sb46qcycnbbwyvjcm4ek@vgq75olazmoi/
+> 
+> In addition, remove .remove() callback, because this driver has been 
+> modified to builtin_platform_driver and does not support HotPlug, 
+> therefore, the .remove() callback is not needed. Do you have any
+> better suggestions?
+> 
+
+Yes, builtin_platform_driver() wouldn't allow the users to remove the module. So
+remove() callback will become useless. The reason why this driver is tristate is
+that it could be loaded from rootfs and not always statically built to the
+kernel image.
+
+- Mani
+
 -- 
-2.52.0
-
+மணிவண்ணன் சதாசிவம்
 
