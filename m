@@ -1,189 +1,260 @@
-Return-Path: <devicetree+bounces-252109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50ED0CFADCA
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 21:07:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22689CFAEA9
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 21:25:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BE8A83012A87
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 20:07:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 68132302F6AC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 20:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72422877E8;
-	Tue,  6 Jan 2026 20:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B350F3081B8;
+	Tue,  6 Jan 2026 20:25:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BaPnK1Nx"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="B4sVgwLT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 128A918FDDE;
-	Tue,  6 Jan 2026 20:07:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A50303C88
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 20:25:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767730050; cv=none; b=BO0K2IDuy4MS+nXQFAVBNpWEIbR1d64cJhzvFV9aUHKBNj5HzIglZu7JXQRqS78sWAemWftUhYg+yi7H4nf7veQokzYHioT+gM9vZ62PiJkXc9PxwRdI89jZ3EVRp/lw5dvgzUwzMRkaRYlnUoPBhjBaBrY852bcXJb3hV5iMaI=
+	t=1767731144; cv=none; b=cstJwpCa4CBYzHxjoXHJx2Rv9Ao/ZR5FG95817fe9ZCgdIDQFVvyAPPXvtf1kWK1wi5Zx6UGUb9UUp2/CeseM1v8I700B3+D7WiZnriMjDOu/2wTkeUWSc2gLnr2cZGTWtcqNE6e2XaXidTWXDNTH3CK3axiRPB9w0worh2SiO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767730050; c=relaxed/simple;
-	bh=6vCvCpWevWY66jWQqRM/QOQ6GVMd9id6Itqb4gvVzdk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=RVjnoI12Ib4xLvI7K3DMuGJQoaZDR2yhqzhW0GYgg8dhEDf3QzRu+wVQPTiWYOCUaEePccbMOLqOKV3ssS2yrZiYGMZxapHTwncQ7AyOrGTTcI56EhI/qm+q4QINLVfgFCxIFJ/bO+6DDis6fdZ9dbNTLwLZTNDkpcqoPYPoY+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BaPnK1Nx; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1767730040;
-	bh=6vCvCpWevWY66jWQqRM/QOQ6GVMd9id6Itqb4gvVzdk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=BaPnK1NxjtdpF/Dn8oFg1gj90KZdYCLea3LJNrpuGZCgmLRknjkeOjF/QJTfGFURT
-	 3GmViWfd7J6vyutO1xSqDHXjV7iPuxKsfkBNRVcKsSgS4hsOKPZZ/vLSv4PFs094g2
-	 9jFf3FJyU2TbcTvs8pB2aGoLSFFJDJM/EaH9oDb8sHvUd6Hh76xPcxpJdNPQERW6st
-	 HfWDvgzJcViZ8DpFyg+IIyI9tq8bmgsHfpIFu1vAJiEQuDPLplkA5vP4SAeOUDsCkO
-	 c0YvGwUmZKMcxNavo6S7071ui01HsryQ1U2slYKErDImJXwpsP9P9mN5pg3EjTMQZs
-	 rAQF284RmGF6w==
-Received: from [IPv6:2606:6d00:17:7b4b::5ac] (unknown [IPv6:2606:6d00:17:7b4b::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3C17C17E0CB0;
-	Tue,  6 Jan 2026 21:07:18 +0100 (CET)
-Message-ID: <70d2b73a4ec06bef75d7f4ad415ad654cf80ecf6.camel@collabora.com>
-Subject: Re: [PATCH v10 5/7] media: verisilicon: AV1: Restore IOMMU context
- before decoding a frame
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>, joro@8bytes.org, 
-	will@kernel.org, robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org,
- 	conor+dt@kernel.org, heiko@sntech.de, p.zabel@pengutronix.de,
- mchehab@kernel.org
-Cc: iommu@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org, 
-	kernel@collabora.com
-Date: Tue, 06 Jan 2026 15:07:15 -0500
-In-Reply-To: <20251215085349.10155-6-benjamin.gaignard@collabora.com>
-References: <20251215085349.10155-1-benjamin.gaignard@collabora.com>
-	 <20251215085349.10155-6-benjamin.gaignard@collabora.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-NsLgZPrOWbKHfJXnykTm"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+	s=arc-20240116; t=1767731144; c=relaxed/simple;
+	bh=4VJiQTxa7PtrsDjtxpG4+7kDp0RAbcK3Jts1P7QEKlc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=U1f/03xpzipnpmxL5IEHb3bS4BG97/g5WkdD+9UoPMHkD+lhfE0kMMptWo9x1fRS8pdntMX9LgYe/WiqtqucEj/VV9vEJmoEuhWqTdaFzHvH5ELZW2G5/IaXfEmBlzaMFsNs9SD8F9z8fSG91esCZxpddif8OtDY4BPWNyOb75Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=B4sVgwLT; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-42fb5810d39so784466f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 12:25:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1767731139; x=1768335939; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=InpRCJH4Ts9JhFLpum27mQzhd0pB52v3DryP5nM70Ok=;
+        b=B4sVgwLTqCaGYDe0ZE0CJO8HhfcDqMvPsoOD6DKmrnPqXHu7+T4Agj26RwT4M79mYc
+         UQY3vUY65V1/kIu9FX9+/a+sHdd0VjhKUQZ0YPB+mfQS97/GEMPNqJ2NTTbTM3IH/tew
+         70n5aG3tj+qb2La+pNIJ+MGhFCxvtTRI9IGv4sdLulzCyGx9nhixMOBee0gSXrPupMr2
+         9Ntf8tk8nWN4FrqTmIE3JRHz7oKOHj32TYCDmObuMCwdiKk31cunhWmQ8mV19z0/lj2H
+         uTNlGGtBCPfFVnuvdzElhyC3WDNotocFM6k8HrEbquSg9Q1Lv724SjtCFGhgu6l8qkqC
+         6cIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767731139; x=1768335939;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=InpRCJH4Ts9JhFLpum27mQzhd0pB52v3DryP5nM70Ok=;
+        b=cRaZhgEkAXOtq0C219C4N8KtyRdQEPSyPZxlqSnAvJ01Nw9In2bjpOl3VQw6g5UwPd
+         XLeANfcITW6D0/AEsnysQ7ftV3af24apHuvwmzigJZuNful51aGUclJtT2ph+WE8ZWV1
+         FaaDUFUpndfbXQJoGYDQfi1qOeZ7Jmb+tH1VlTqApazCM18JvYVyX5xHITH1ppD4L70Y
+         ts4HQwd/OSu0mdD4A2wEyWt02wq1i3vsDGal0GjujojHTKQjA5mBylXMOw1wc5qVcvTo
+         CfcAtYot4axPqrCI7h0x0XwDHjDQk3BFcBT97GTqfCX7yD7zvWxUOoyaWH59Xakt5yoM
+         Ou7w==
+X-Forwarded-Encrypted: i=1; AJvYcCXeyrpfoGq1iNRyS10rBXPAzrcQE2HZw0+DXcxd14ZzLe0imZAIvWUPZ5LC3ZaFl9Vi/4QnglxdMrIT@vger.kernel.org
+X-Gm-Message-State: AOJu0YweY1MZprkU0Xp4FPEx16rO0QaoiUpDYlPgAOtr0QR4Cyt8fE4G
+	pcZeta9u/+wAgS+R6hc+otMjnyWZWdI2Dx3jogrRSetsi/l/xd6wp73HPjLf5BHDqxI=
+X-Gm-Gg: AY/fxX59Y7zO3qSG9V/cgPqMMLkIOdWbq5d1YY17WQURXamEQD/KXICz4YP6vymhUf9
+	YDpPahOJHJXQP/7kXkqy/h/Zpcm/DK7bOOcx07ug5nKVcoIndsrzdceImPWJ6zavUPpt3F96uAD
+	tKzfL6Nh2kSFOJ/Ap7XGU7bnemI8gqZNIus0DL6E/nQKWvK+b4laKGiPJ/8YCeQr7yyoYBvezKR
+	dRte65afKaG8g3Rw8C0o/+E9UGMZKSVf/slU0W0y3vLql2BBou04QfSJcBvMpq03z+R6SkeMVdv
+	RFGtdTkrK/JIjHHlx6bYNNXMPDYOLzch76n4R+AT7gnmvcXKW/L/IQrWXnqqioGFAZavdZcrgkX
+	/FnK23o86EDXZVwRSSqgkJzmRVa8pMzDlrJiSEjIz64a0Db3D7SDk0BvJWKKqRmMNo1x3bAuDX8
+	l7GmJp
+X-Google-Smtp-Source: AGHT+IF2eFD4qqiNSfi8TwKianKXVDZdxvtrCaDoHkxKfUBqtaeXICo1xMsMfKjQgmu0rURXgO0oVw==
+X-Received: by 2002:a05:6000:2512:b0:431:a50:6e97 with SMTP id ffacd0b85a97d-432c374ff11mr435166f8f.34.1767731139002;
+        Tue, 06 Jan 2026 12:25:39 -0800 (PST)
+Received: from localhost ([195.52.160.197])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5ff0b2sm6200416f8f.42.2026.01.06.12.25.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jan 2026 12:25:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=5148a380f6f7e57f68a4497ee98a33d6cccc4f9c818445a72768aefddb6f;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Tue, 06 Jan 2026 21:25:29 +0100
+Message-Id: <DFHSDXTVL4AU.2OQ9VB9TEJ75G@baylibre.com>
+Cc: "Vishal Mahaveer" <vishalm@ti.com>, "Kevin Hilman"
+ <khilman@baylibre.com>, "Dhruva Gole" <d-gole@ti.com>, "Sebin Francis"
+ <sebin.francis@ti.com>, "Kendall Willis" <k-willis@ti.com>, "Akashdeep
+ Kaur" <a-kaur@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt
+ Trigger
+From: "Markus Schneider-Pargmann" <msp@baylibre.com>
+To: "Alexander Sverdlin" <alexander.sverdlin@gmail.com>, "Markus
+ Schneider-Pargmann (TI.com)" <msp@baylibre.com>, "Nishanth Menon"
+ <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo"
+ <kristo@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.21.0
+References: <20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com> <979eb1054dbe116c2c8bb9920e94e3a93db5346c.camel@gmail.com>
+In-Reply-To: <979eb1054dbe116c2c8bb9920e94e3a93db5346c.camel@gmail.com>
 
-
---=-NsLgZPrOWbKHfJXnykTm
-Content-Type: text/plain; charset="UTF-8"
+--5148a380f6f7e57f68a4497ee98a33d6cccc4f9c818445a72768aefddb6f
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+Hi Alexander,
 
-Le lundi 15 d=C3=A9cembre 2025 =C3=A0 09:53 +0100, Benjamin Gaignard a =C3=
-=A9crit=C2=A0:
-> AV1 is a stateless decoder which means multiple AV1 bitstreams could be
-> decoded at the same time using the same hardware block. Before decoding
-> a frame it is needed to restore the iommu tables to avoid mixing decode
-> contexts.
->=20
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+On Tue Jan 6, 2026 at 6:25 PM CET, Alexander Sverdlin wrote:
+> Hi Markus,
+>
+> I'm sorry my patch has caused regression for your use-case!
+>
+> I think we would need to discuss this with TI via our FAE, because the ch=
+ange
+> in question has both been discussed with former FAE and the technical tea=
+m
+> behind, and adopted in TI SDK.
+>
+> Or have you already discused this with corresponding TI HW team?
+>
+> Which hardware is affected, is it the official SK-AM62A-LP?
+> Is MMC2 the SD-card?
 
-With the config fix you mentioned earlier, you can add my Rb in the next
-revision please.
+I only tested my am62a board on u-boot v2026.01. It is a SK-AM62A-LP.
+MMC2 is the SD-card and mmc1 in the devicetree.
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+I am using u-boot's am62ax_evm_r5_defconfig and am62ax_evm_a53_defconfig
+as defconfigs.
 
-> ---
-> changes in version 10:
-> - Fix build as module issue when Verisilicon video decoder is built-in.
->=20
-> =C2=A0drivers/media/platform/verisilicon/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
-> =C2=A0.../verisilicon/rockchip_vpu981_hw_av1_dec.c=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 15 +++++++++++++++
-> =C2=A02 files changed, 16 insertions(+)
->=20
-> diff --git a/drivers/media/platform/verisilicon/Kconfig b/drivers/media/p=
-latform/verisilicon/Kconfig
-> index 3272a24db71d..e64bc8b55235 100644
-> --- a/drivers/media/platform/verisilicon/Kconfig
-> +++ b/drivers/media/platform/verisilicon/Kconfig
-> @@ -49,6 +49,7 @@ config VIDEO_HANTRO_ROCKCHIP
-> =C2=A0	bool "Hantro VPU Rockchip support"
-> =C2=A0	depends on VIDEO_HANTRO
-> =C2=A0	depends on ARCH_ROCKCHIP || COMPILE_TEST
-> +	select VSI_IOMMU
-> =C2=A0	default y
-> =C2=A0	help
-> =C2=A0	=C2=A0 Enable support for RK3288, RK3328, and RK3399 SoCs.
-> diff --git a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_de=
-c.c b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-> index e4703bb6be7c..d9e68e0ded68 100644
-> --- a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-> +++ b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-> @@ -5,6 +5,9 @@
-> =C2=A0 * Author: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> =C2=A0 */
-> =C2=A0
-> +#include <linux/iommu.h>
-> +#include <linux/vsi-iommu.h>
-> +
-> =C2=A0#include <media/v4l2-mem2mem.h>
-> =C2=A0#include "hantro.h"
-> =C2=A0#include "hantro_v4l2.h"
-> @@ -2095,12 +2098,24 @@ rockchip_vpu981_av1_dec_set_output_buffer(struct =
-hantro_ctx *ctx)
-> =C2=A0	hantro_write_addr(vpu, AV1_TILE_OUT_MV, mv_addr);
-> =C2=A0}
-> =C2=A0
-> +static void rockchip_vpu981_av1_restore_iommu(struct hantro_ctx *ctx)
-> +{
-> +	struct iommu_domain *domain;
-> +
-> +	/* Before decoding any frame iommu context need to be restored */
-> +	domain =3D iommu_get_domain_for_dev(ctx->dev->v4l2_dev.dev);
-> +	if (domain)
-> +		vsi_iommu_restore_ctx(domain);
-> +}
-> +
-> =C2=A0int rockchip_vpu981_av1_dec_run(struct hantro_ctx *ctx)
-> =C2=A0{
-> =C2=A0	struct hantro_dev *vpu =3D ctx->dev;
-> =C2=A0	struct vb2_v4l2_buffer *vb2_src;
-> =C2=A0	int ret;
-> =C2=A0
-> +	rockchip_vpu981_av1_restore_iommu(ctx);
-> +
-> =C2=A0	hantro_start_prepare_run(ctx);
-> =C2=A0
-> =C2=A0	ret =3D rockchip_vpu981_av1_dec_prepare_run(ctx);
+>
+> On Tue, 2026-01-06 at 17:22 +0100, Markus Schneider-Pargmann (TI.com) wro=
+te:
+>> Remove Schmitt Trigger from mmc pins. With Schmitt Trigger enabled
+>> u-boot SPL is not able to read u-boot from mmc:
+>>=20
+>> =C2=A0=C2=A0=C2=A0 Trying to boot from MMC2
+>> =C2=A0=C2=A0=C2=A0 Error reading cluster
+>> =C2=A0=C2=A0=C2=A0 spl_load_image_fat: error reading image u-boot.img, e=
+rr - -22
+>> =C2=A0=C2=A0=C2=A0 Error: -22
+>> =C2=A0=C2=A0=C2=A0 SPL: Unsupported Boot Device!
+>> =C2=A0=C2=A0=C2=A0 SPL: failed to boot from all boot devices
+>> =C2=A0=C2=A0=C2=A0 ### ERROR ### Please RESET the board ###
+>>=20
+>> I bisected this issue between u-boot v2025.10 and v2026.01 and found the
+>> devicetree merge to be the problem. At a closer look I found the
+>> k3-pinctrl.h changes. Disabling the Schmitt Trigger fixes the u-boot SPL
+>> failure to read from mmc.
+>>=20
+>> Fixes: 5b272127884b ("arm64: dts: ti: k3-pinctrl: Enable Schmitt Trigger=
+ by default")
+>> Signed-off-by: Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
+>> ---
+>> =C2=A0arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 36 ++++++++++++++++-----=
+------------
+>> =C2=A01 file changed, 18 insertions(+), 18 deletions(-)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/d=
+ts/ti/k3-am62a7-sk.dts
+>> index e99bdbc2e0cbdf858f1631096f9c2a086191bab3..9129045c8bbd3a83dba6ff6f=
+2148a3624b91b546 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>> @@ -315,30 +315,30 @@ AM62AX_IOPAD(0x0b4, PIN_INPUT_PULLUP, 1) /* (K24) =
+GPMC0_CSn3.I2C2_SDA */
+>> =C2=A0
+>> =C2=A0	main_mmc0_pins_default: main-mmc0-default-pins {
+>> =C2=A0		pinctrl-single,pins =3D <
+>> -			AM62AX_IOPAD(0x220, PIN_INPUT, 0) /* (Y3) MMC0_CMD */
+>> -			AM62AX_IOPAD(0x218, PIN_INPUT, 0) /* (AB1) MMC0_CLKLB */
+>> -			AM62AX_IOPAD(0x21c, PIN_INPUT, 0) /* (AB1) MMC0_CLK */
+>
+> according to datasheet, MMC0_CLK should have address 0x218 and it's the b=
+all AB7.
+> MMC0_CLKLB is not present in the datasheet and AB1 is actually VSS. 0x21C=
+ address
+> is not documented.
+>
+> Something is not right here...
+>
+> OK, grepping TRM for CLKLB, one can conclude that 0x21c is actually MMC0_=
+CLKLB.
+>
+> Could you please try to modify 0x21c address only? Does it solve the boot=
+ problem?
+>
+>> -			AM62AX_IOPAD(0x214, PIN_INPUT, 0) /* (AA2) MMC0_DAT0 */
+>> -			AM62AX_IOPAD(0x210, PIN_INPUT_PULLUP, 0) /* (AA1) MMC0_DAT1 */
+>> -			AM62AX_IOPAD(0x20c, PIN_INPUT_PULLUP, 0) /* (AA3) MMC0_DAT2 */
+>> -			AM62AX_IOPAD(0x208, PIN_INPUT_PULLUP, 0) /* (Y4) MMC0_DAT3 */
+>> -			AM62AX_IOPAD(0x204, PIN_INPUT_PULLUP, 0) /* (AB2) MMC0_DAT4 */
+>> -			AM62AX_IOPAD(0x200, PIN_INPUT_PULLUP, 0) /* (AC1) MMC0_DAT5 */
+>> -			AM62AX_IOPAD(0x1fc, PIN_INPUT_PULLUP, 0) /* (AD2) MMC0_DAT6 */
+>> -			AM62AX_IOPAD(0x1f8, PIN_INPUT_PULLUP, 0) /* (AC2) MMC0_DAT7 */
+>
+> All the rest actually have ST enabled on PoR according to TRM and I suppo=
+se BootROM
+> would have had hard times booting from the affected MMC device if it woul=
+d not be
+> the correct setting?
+>
+>> +			AM62AX_IOPAD(0x220, PIN_INPUT_NOST, 0) /* (Y3) MMC0_CMD */
+>> +			AM62AX_IOPAD(0x218, PIN_INPUT_NOST, 0) /* (AB1) MMC0_CLKLB */
+>> +			AM62AX_IOPAD(0x21c, PIN_INPUT_NOST, 0) /* (AB1) MMC0_CLK */
+>> +			AM62AX_IOPAD(0x214, PIN_INPUT_NOST, 0) /* (AA2) MMC0_DAT0 */
+>> +			AM62AX_IOPAD(0x210, PIN_INPUT_PULLUP_NOST, 0) /* (AA1) MMC0_DAT1 */
+>> +			AM62AX_IOPAD(0x20c, PIN_INPUT_PULLUP_NOST, 0) /* (AA3) MMC0_DAT2 */
+>> +			AM62AX_IOPAD(0x208, PIN_INPUT_PULLUP_NOST, 0) /* (Y4) MMC0_DAT3 */
+>> +			AM62AX_IOPAD(0x204, PIN_INPUT_PULLUP_NOST, 0) /* (AB2) MMC0_DAT4 */
+>> +			AM62AX_IOPAD(0x200, PIN_INPUT_PULLUP_NOST, 0) /* (AC1) MMC0_DAT5 */
+>> +			AM62AX_IOPAD(0x1fc, PIN_INPUT_PULLUP_NOST, 0) /* (AD2) MMC0_DAT6 */
+>> +			AM62AX_IOPAD(0x1f8, PIN_INPUT_PULLUP_NOST, 0) /* (AC2) MMC0_DAT7 */
+>> =C2=A0		>;
+>> =C2=A0		bootph-all;
+>> =C2=A0	};
+>> =C2=A0
+>> =C2=A0	main_mmc1_pins_default: main-mmc1-default-pins {
+>> =C2=A0		pinctrl-single,pins =3D <
+>> -			AM62AX_IOPAD(0x23c, PIN_INPUT, 0) /* (A21) MMC1_CMD */
+>> -			AM62AX_IOPAD(0x234, PIN_INPUT, 0) /* (B22) MMC1_CLK */
+>> -			AM62AX_IOPAD(0x230, PIN_INPUT, 0) /* (A22) MMC1_DAT0 */
+>> -			AM62AX_IOPAD(0x22c, PIN_INPUT, 0) /* (B21) MMC1_DAT1 */
+>> -			AM62AX_IOPAD(0x228, PIN_INPUT, 0) /* (C21) MMC1_DAT2 */
+>> -			AM62AX_IOPAD(0x224, PIN_INPUT, 0) /* (D22) MMC1_DAT3 */
+>> -			AM62AX_IOPAD(0x240, PIN_INPUT, 0) /* (D17) MMC1_SDCD */
+>
+> All of these have ST enabled on PoR, according to TRM.
+>
+>> +			AM62AX_IOPAD(0x23c, PIN_INPUT_NOST, 0) /* (A21) MMC1_CMD */
+>> +			AM62AX_IOPAD(0x234, PIN_INPUT_NOST, 0) /* (B22) MMC1_CLK */
+>> +			AM62AX_IOPAD(0x230, PIN_INPUT_NOST, 0) /* (A22) MMC1_DAT0 */
+>> +			AM62AX_IOPAD(0x22c, PIN_INPUT_NOST, 0) /* (B21) MMC1_DAT1 */
+>> +			AM62AX_IOPAD(0x228, PIN_INPUT_NOST, 0) /* (C21) MMC1_DAT2 */
+>> +			AM62AX_IOPAD(0x224, PIN_INPUT_NOST, 0) /* (D22) MMC1_DAT3 */
+>> +			AM62AX_IOPAD(0x240, PIN_INPUT_NOST, 0) /* (D17) MMC1_SDCD */
 
---=-NsLgZPrOWbKHfJXnykTm
+My board is setup to boot from SD card for easier u-boot testing. So
+only the mmc1 is relevant for my setup. I just tested which pins need
+NOST here for the boot to work, all DAT pins need the NOST variants,
+otherwise it does not boot here. Not sure if this is just my board or it
+fails on other boards as well.
+
+Best
+Markus
+
+
+--5148a380f6f7e57f68a4497ee98a33d6cccc4f9c818445a72768aefddb6f
 Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaV1rcwAKCRDZQZRRKWBy
-9D3iAP4vmq6NU5wkVXjJbhK2nVtJnaeTvw32c9vlufHhZ1L3FQD/YCmEiCWo2Nbq
-RsSiwxIPnq6ptHDWPcgpHrAsxpfPuw0=
-=mryd
+iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaV1vuRsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMSwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlNB
+7QEA+fNdxGsI7MEgje1RhFzgNhDzAEC+9JsbotuUWDJyF44BAKqWmNM7DgUAdP6H
+2khSJFPWlKuRNiBljEo4WVwfei4C
+=32OF
 -----END PGP SIGNATURE-----
 
---=-NsLgZPrOWbKHfJXnykTm--
+--5148a380f6f7e57f68a4497ee98a33d6cccc4f9c818445a72768aefddb6f--
 
