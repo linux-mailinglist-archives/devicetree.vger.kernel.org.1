@@ -1,86 +1,87 @@
-Return-Path: <devicetree+bounces-251767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A30CF6B54
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 05:57:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF308CF6B60
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 05:57:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ABCA9304C6EF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 04:56:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 13BB2301B82C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 04:56:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659672C027B;
-	Tue,  6 Jan 2026 04:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D610B2BE7BA;
+	Tue,  6 Jan 2026 04:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="AdxepRR3"
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="Ss7ckk8R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E35A41B4244
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 04:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2381429D293
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 04:56:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767675404; cv=none; b=aw89v/VTiyqf92st6Kj6u+sVnwEjeSxh0+rLVPdyA+mnLhxOCipxpBUabRvw7SSjMArtE1yau/SxFg9ZOfEZjTph6RVN/Dj7Ip3aDNCjeeS5UO5OiYBO4Mj12P7dtCQoZ3FFp0jUPFUTon2scfkAIe0zuvs5YtL4pbb4efECGAA=
+	t=1767675408; cv=none; b=ee26ehoqN6bggthnQ9edLlUav6+dNDPJUuVu8rXqZcEKMLna9UCBHWkJLExruhj7ZCmc6mJyq1RV38ZzCPKXtsvq3byu0ycxvp0SyvwEPHXYtGC3GlaZg3IPDxuSXa9MGwhxXgDV1IyCu6CtOU2bmIz41cxFGgLa7YLFicASd3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767675404; c=relaxed/simple;
-	bh=fbOChfkZbXOq4bWAzF7RfS77y5AjBtfElT9+lVK8jhg=;
+	s=arc-20240116; t=1767675408; c=relaxed/simple;
+	bh=bPMuOyUg+pCFEpuN7CwHcwhs5rNIMbrQeGA0HQmyckk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JglLMUyCaBed0i37xOqZNbEd6cFsM5N+Sc+IbaXEvxC2VcVRq2mx9TqQD19XpAlLzeH3E4CXbHsVxlA+MigYaIEpiViZGk1iu1Xj8leF3dyaBe1IrlBmRd0ypiGq7FKYAnUof/lRhAHf0Wggwm6ykW76syOJBII8K3P8l94gtsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=AdxepRR3; arc=none smtp.client-ip=209.85.167.171
+	 To:Cc:Content-Type; b=Nd9rCv63PHB/EnEXS+kcorLB2lScediOAR+Q6DOAPED1WUJrIOu+PLTCjbmhnk0Ex2LQ1oHcHVQaxjQq+dB1+s/k25YIg6Ii1aw76F0cxjCof0HL8mQerJpdeY3hQS3X2UZSDr1sxoxPD+ofw5Haaw19uxOJ4UU/sr++NAFlTGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=Ss7ckk8R; arc=none smtp.client-ip=209.85.167.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-45a3145faddso234587b6e.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 20:56:41 -0800 (PST)
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-4510974a8cdso368792b6e.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 20:56:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1767675401; x=1768280201; darn=vger.kernel.org;
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1767675406; x=1768280206; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WA+vnv3FR+Z4SF0lY1aYTXYOVt37m8c4DjPEA2hxbj8=;
-        b=AdxepRR32ZRfNXuAeeUizo+CnwLitQ7zhXMGkWNX+ePYeR8Edb8n82yNZ0WtZmeyVn
-         RjGoMQ5RFebtp9D2clL1nAiKpmFEKNTAN3ui5gMmE0rD1LPLpiE+RLtRQH3jMzLAtVoM
-         fq8D4n7rM4Xj4pp4q6ZMji5Lw9yxCMk2R66PmNkxDKxUd5v6jV6U8uG9wtzY24vCk8ZF
-         Wn/Ntf3/VIShSc2WA6rOrmkZMmyJb4M73uaCM/KJbdRp2ap1VP4tKRc94YjTLJVGbp4N
-         j8R2wNdf42iuSkEuZAAGMlAQNr0F4ulHSiRscM8Qk9fVMd7VWslEpFA8Msf1eTODs3Ex
-         uqDg==
+        bh=bXCgyGXdfFw2jhIVzlU19gmITjYf/onAsSkhutvgS3M=;
+        b=Ss7ckk8RVUlxwrFyuqelWPLqIIJuk2Uj4IEjWUM8dXuPOkWWm+lixB4Muz12tiyLpz
+         mH4Vap32W+6b6n/STLcTzIjbzDLaNbuiPZCTCRxGrpbFOQJCn1ZCkEZ7UbWgPQhtnw8B
+         oXpSumQ1Yeu/eSGxc5lYEgzDskB7hoTS0SMh5PbOGqICGpJP6+kmy0264h1lfjUv10B8
+         qA62nRtRXUYA/ElO5yxDxVyWo2HgxNSGMFKoMiTrA9jAeoe5mjKnHjy41nFUnD1Df5/N
+         aIdq/HaNUaJJ62hgsfOMcg+OWc5Xva5wuuO5pfe4/OfigXsOFHkOEuO8NTE04Fv8SXyG
+         8QFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767675401; x=1768280201;
+        d=1e100.net; s=20230601; t=1767675406; x=1768280206;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=WA+vnv3FR+Z4SF0lY1aYTXYOVt37m8c4DjPEA2hxbj8=;
-        b=YNxSodm8GZ/vDL3ZuifYdaYcCyZTmvOmCBJxtCHkZIKSYZYd6SNgBCr26ZsHj+dAwf
-         ifT3sB1lTH931TQ930V5+0G0+37ONMORZeSLLKIBlnjkEG8aZxk/SdL+UGvSlZt1h8NA
-         KACOz2iepcYfps0Msgc3hcUxFYUHa3DVTPJtlq4lHDLdZZ5ZWXVKagmLXjEkxKQstXXO
-         XNdfBEQah3fc8wdTldjF4bEoflVGz3K5t23pjLajldyXG08M5uYIEtyE+9z7YDKYGpMT
-         3irFjif4/Yz7/WNaGrrc3iNayPKyk2YPN0KfCUlmLJUEQ+E8Y0BodPDigZ/3xWt61um9
-         5lLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBayIRpOeBIJG3haGzWJkx/aFI62sThwDTjnbMTaPxCGaPgU45ShE0XS6isDF490C99ioTTFeWkXEy@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywg+w/nVFdNYv+A8yjphcHPncN1hYLVn8J2uoa2hQBZ0DKOFXyL
-	sdYs8MVSdcciqXNPZLWSduVUqtmT5aAuP9kz4lQFLZo5MXfmVL15tMXsqCAMdEz7T/gKtovvQq0
-	3FB8aMnkL3EmSUhFQOOehNfr8ff+dSS8xhch2kn4tZQ==
-X-Gm-Gg: AY/fxX5hQ+5OwxrCzPITAhWEyENxRJH5H30QvzwJPqNbYs1IaGSkflz4GBM+63VHkIz
-	fhr/0/wyGvH2+zOAa1cj6YqWl5CmdosylHtqg93VbhtUbw23xOHpBezIohHupxubP8Mx+3YBSzs
-	lw6YnfTXdtf+/dKg68ZEfU3K3o4Mc0RfpOmJ+cwEZIU5bZ3MkIDzThfT4dRYD7HH2WFZhpTxEbu
-	ZouOb+67oj7DZO86bPtoJkv17Vqy3END8GcrmZauVvXm5c3SCQesHDyWoEFWhmFKRnveuliUpuR
-	jFfPgjG+m/r66K2inK6WcuospKHq3n6mdHk89UCw9mUab5+VfxQ3aH0EJg==
-X-Google-Smtp-Source: AGHT+IFYFZIDuKpjkDS72Ef6JCpoBzzGRuIzZj1eYSMd9ZLPsEbeYPPSGa4zpnzJp7w6utOo445xI/OFNWfh52Uwiq4=
-X-Received: by 2002:a05:6820:f006:b0:65d:a21:d1f9 with SMTP id
- 006d021491bc7-65f4799cc06mr1525576eaf.5.1767675400701; Mon, 05 Jan 2026
- 20:56:40 -0800 (PST)
+        bh=bXCgyGXdfFw2jhIVzlU19gmITjYf/onAsSkhutvgS3M=;
+        b=bnyGXeXtl48beKZNhyWDtd1fc0dRbbxnaRSl8/4iWZQuQPCrTt1Ktikp1MdpKUHJJd
+         5c1ihcXjAlVqe7Pg/MggWo2uXaK4tH7pSoWfBEo6FNHgXaRQvEa3mU0cBQCHIJOWxJg2
+         pMIGQQX083tJVJ9CpTMCctmBbJlLGXz+GtlaSlPyK0ijYnTBbra7adyXalFyrDKKSZtk
+         CP7jMut6DGyYQuKXXpWLj1Vf0ZRVTFUOA42P+1gc0spPFCH3IDS5473/SpMnMJF6NSdn
+         mZ0lvLJm50mZBbrW+tDRmaLetNwnWUjfYbkgQ01B86yBWjUwdj0FcBelkpHTV7NnfHAm
+         Nabg==
+X-Forwarded-Encrypted: i=1; AJvYcCVbqNET31fSWe1UYbsaUvojoXFLZNjNi7dEdhRVO32FFlx4tJ54J54xDrvuVzKnwd11vUVcIei3joBG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZ/bRYcyBPxHZNVWORs0Os/y65I+uRiAePQ58a8FPAC/IUQZVe
+	6+LsGVHsVxl46hN2ifb4nUkdNiU3sYkt6o90QFSvnaQmc+IXandswdzOp6mMw1EGp9JqYEXuSxs
+	Gkla0h0AIezjkqzZlaVOchya1v+uRH+80KZNnJGRRCQ==
+X-Gm-Gg: AY/fxX4iTzMnUVhC1kg0Rf8I70YM8ZUhDhaVMVZ8BV+UltdnBeymsb8YuDBFaCGV0Kc
+	I5Hywusua7kWmOkVwOHE71tvZSnFV1w3vezKa7U7npE7KU0lexeCiZaaTVW/tnuH4z2GkO/Mrzy
+	rq/F0kYz4LRXjrkiKB72ulNY9HNMbedIMrsJ/Q9RKkfEf7fZDhIBBpabFF171vhKCWE2/KqBLDR
+	4NQk8PNXfc8iPdFzQhFzgY4odV2w8qQZd9+TDbx3p3Otrls5B1l7XIsPEmoqdCpo/TZOVhso+KS
+	qdYYz9MWD6nbFmPqYczEAsDqJ8BNUB+S9puQyVczmoSW6KesxDh/EUvcZA==
+X-Google-Smtp-Source: AGHT+IGq83xsWiBnk8S8Wan7SqZp6GnFrv0pdr0Nor1LjDGkvPMfuowdAk7rc0hTsmwGhsAqXr8Xk0551qnx4JMiq/Y=
+X-Received: by 2002:a05:6820:2202:b0:65e:f37f:93a4 with SMTP id
+ 006d021491bc7-65f479d332fmr1135768eaf.8.1767675405972; Mon, 05 Jan 2026
+ 20:56:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251020042457.30915-1-luxu.kernel@bytedance.com> <20251020042457.30915-5-luxu.kernel@bytedance.com>
-In-Reply-To: <20251020042457.30915-5-luxu.kernel@bytedance.com>
+References: <20251020042904.32096-1-luxu.kernel@bytedance.com>
+In-Reply-To: <20251020042904.32096-1-luxu.kernel@bytedance.com>
 From: Anup Patel <anup@brainfault.org>
-Date: Tue, 6 Jan 2026 10:26:29 +0530
-X-Gm-Features: AQt7F2pAUL7KOytVD0mr7jwpoQ61NGCRNrXweF7HHu0OAcu7_RUK7gg5_B9FCMI
-Message-ID: <CAAhSdy3btmd-G_335XjJ6O_+WFNyrq5wWYSEtEQHUeP1yKmLog@mail.gmail.com>
-Subject: Re: [PATCH v4 09/10] RISC-V: KVM: Allow Zalasr extensions for Guest/VM
+Date: Tue, 6 Jan 2026 10:26:34 +0530
+X-Gm-Features: AQt7F2rV_3WZCrB_VJwYGn79psT6Smtly97t591oPSUibomNxLFKeK19i9dMZfQ
+Message-ID: <CAAhSdy3M8NMF0ojJdoSvtate6FRjS5hno2Wc5i=TeCF84yOK3Q@mail.gmail.com>
+Subject: Re: [PATCH v4 10/10] RISC-V: KVM: selftests: Add Zalasr extensions to
+ get-reg-list test
 To: Xu Lu <luxu.kernel@bytedance.com>
 Cc: corbet@lwn.net, paul.walmsley@sifive.com, palmer@dabbelt.com, 
 	aou@eecs.berkeley.edu, alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org, 
@@ -95,11 +96,11 @@ Cc: corbet@lwn.net, paul.walmsley@sifive.com, palmer@dabbelt.com,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 20, 2025 at 9:55=E2=80=AFAM Xu Lu <luxu.kernel@bytedance.com> w=
+On Mon, Oct 20, 2025 at 9:59=E2=80=AFAM Xu Lu <luxu.kernel@bytedance.com> w=
 rote:
 >
-> Extend the KVM ISA extension ONE_REG interface to allow KVM user space
-> to detect and enable Zalasr extensions for Guest/VM.
+> The KVM RISC-V allows Zalasr extensions for Guest/VM so add these
+> extensions to get-reg-list test.
 >
 > Signed-off-by: Xu Lu <luxu.kernel@bytedance.com>
 
@@ -112,45 +113,56 @@ Queued this patch for Linux-6.20
 Thanks,
 Anup
 
+
 > ---
->  arch/riscv/include/uapi/asm/kvm.h | 1 +
->  arch/riscv/kvm/vcpu_onereg.c      | 2 ++
->  2 files changed, 3 insertions(+)
+>  tools/testing/selftests/kvm/riscv/get-reg-list.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 >
-> diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/=
-asm/kvm.h
-> index ef27d4289da11..4fbc32ef888fa 100644
-> --- a/arch/riscv/include/uapi/asm/kvm.h
-> +++ b/arch/riscv/include/uapi/asm/kvm.h
-> @@ -185,6 +185,7 @@ enum KVM_RISCV_ISA_EXT_ID {
->         KVM_RISCV_ISA_EXT_ZICCRSE,
->         KVM_RISCV_ISA_EXT_ZAAMO,
->         KVM_RISCV_ISA_EXT_ZALRSC,
-> +       KVM_RISCV_ISA_EXT_ZALASR,
->         KVM_RISCV_ISA_EXT_MAX,
->  };
->
-> diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
-> index cce6a38ea54f2..6ae5f9859f25b 100644
-> --- a/arch/riscv/kvm/vcpu_onereg.c
-> +++ b/arch/riscv/kvm/vcpu_onereg.c
-> @@ -50,6 +50,7 @@ static const unsigned long kvm_isa_ext_arr[] =3D {
->         KVM_ISA_EXT_ARR(ZAAMO),
->         KVM_ISA_EXT_ARR(ZABHA),
->         KVM_ISA_EXT_ARR(ZACAS),
-> +       KVM_ISA_EXT_ARR(ZALASR),
->         KVM_ISA_EXT_ARR(ZALRSC),
->         KVM_ISA_EXT_ARR(ZAWRS),
->         KVM_ISA_EXT_ARR(ZBA),
-> @@ -184,6 +185,7 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsign=
-ed long ext)
->         case KVM_RISCV_ISA_EXT_ZAAMO:
->         case KVM_RISCV_ISA_EXT_ZABHA:
->         case KVM_RISCV_ISA_EXT_ZACAS:
-> +       case KVM_RISCV_ISA_EXT_ZALASR:
->         case KVM_RISCV_ISA_EXT_ZALRSC:
->         case KVM_RISCV_ISA_EXT_ZAWRS:
->         case KVM_RISCV_ISA_EXT_ZBA:
+> diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/tes=
+ting/selftests/kvm/riscv/get-reg-list.c
+> index a0b7dabb50406..3020e37f621ba 100644
+> --- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> +++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> @@ -65,6 +65,7 @@ bool filter_reg(__u64 reg)
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZAAMO:
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZABHA:
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZACAS:
+> +       case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZALASR:
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZALRSC:
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZAWRS:
+>         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
+_ISA_EXT_ZBA:
+> @@ -517,6 +518,7 @@ static const char *isa_ext_single_id_to_str(__u64 reg=
+_off)
+>                 KVM_ISA_EXT_ARR(ZAAMO),
+>                 KVM_ISA_EXT_ARR(ZABHA),
+>                 KVM_ISA_EXT_ARR(ZACAS),
+> +               KVM_ISA_EXT_ARR(ZALASR),
+>                 KVM_ISA_EXT_ARR(ZALRSC),
+>                 KVM_ISA_EXT_ARR(ZAWRS),
+>                 KVM_ISA_EXT_ARR(ZBA),
+> @@ -1112,6 +1114,7 @@ KVM_ISA_EXT_SIMPLE_CONFIG(svvptc, SVVPTC);
+>  KVM_ISA_EXT_SIMPLE_CONFIG(zaamo, ZAAMO);
+>  KVM_ISA_EXT_SIMPLE_CONFIG(zabha, ZABHA);
+>  KVM_ISA_EXT_SIMPLE_CONFIG(zacas, ZACAS);
+> +KVM_ISA_EXT_SIMPLE_CONFIG(zalasr, ZALASR);
+>  KVM_ISA_EXT_SIMPLE_CONFIG(zalrsc, ZALRSC);
+>  KVM_ISA_EXT_SIMPLE_CONFIG(zawrs, ZAWRS);
+>  KVM_ISA_EXT_SIMPLE_CONFIG(zba, ZBA);
+> @@ -1187,6 +1190,7 @@ struct vcpu_reg_list *vcpu_configs[] =3D {
+>         &config_zabha,
+>         &config_zacas,
+>         &config_zalrsc,
+> +       &config_zalasr,
+>         &config_zawrs,
+>         &config_zba,
+>         &config_zbb,
 > --
 > 2.20.1
 >
