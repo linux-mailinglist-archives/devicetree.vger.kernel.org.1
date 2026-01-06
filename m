@@ -1,80 +1,114 @@
-Return-Path: <devicetree+bounces-251794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBCA3CF70BD
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 08:34:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17724CF70C6
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 08:35:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8AB88303C9B1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 07:34:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3BBB9304A58F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 07:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC929309F0D;
-	Tue,  6 Jan 2026 07:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7591330AAC2;
+	Tue,  6 Jan 2026 07:34:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yt24FCGb"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QA9jJ/P9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98CA6308F05;
-	Tue,  6 Jan 2026 07:34:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1730C3093CB
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 07:34:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767684856; cv=none; b=Nl6AvkzyjpWhOPfCMF9pWtssiaa2zhHXd6o66rHYkI/6aeplv907/8f/b5fOguV/LfLJm7Z0WrbgYRmWlPXYEcNrYyK/j+0UD3Zpd0aC7QcZqm+OQdXLhNzcWySDMemFa9YSmNLfWGAlX9MFQqRd/ZiETUniy2nBit8jbuVNW1E=
+	t=1767684882; cv=none; b=NO6MjTH+mTk4hBG+dADHBK2jSnnw6Vv48fYYTZwvC9XHf2ce467vzvlbatvMOIwhwgqKIPZEDOlA/tYT18xd5JrpWGmvDqYmda9Mmh+Bm1wCCyycei0YfNIPUge2csWQCvK2TjDudKL/Px9o0qzDB8M3AQxnlagduTlXSkACRfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767684856; c=relaxed/simple;
-	bh=1+5IaY7xoiAk/BM78Y40LMMDGt+LUOh1ShmSFG/Nggo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rp/hwVCe/bV0NnoL7tAZ7pL3ArdHBj44R4icUSXfNkpx15R7CJ3dSuXmBlG2Qjjh+AKgBlkODSr0bcyuyx+hJvoPQ+bRdMPkd6ciplU316RL/BoYwp0AX4gPXvHaZdDQIKeKFO/2ERMC5YHZc0pRI9s/oOzdGGjWBqUH9Ic8SQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yt24FCGb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A48DAC116C6;
-	Tue,  6 Jan 2026 07:34:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767684856;
-	bh=1+5IaY7xoiAk/BM78Y40LMMDGt+LUOh1ShmSFG/Nggo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yt24FCGb+SPbEogUgJcbYcAkNOOKzMeoSOR9/1e82dbOnQF2uEH7wEVz0obGkHGaD
-	 tT63R300p/k3veRzL6aImLBESVGyZFTxCLjZOzqLEXuh9MlIWHKVIdwWmgAKl6jGym
-	 tQTBxvyTHue+KtrxXqD3Spe151Dxab+BtuoRX6litdbCvohQRzBXk8j8VjhLDMENL1
-	 AH4r9ViKUtqrIo5Aus+gUTIilzXIeWMY2E4Ixuw3TjwTo0+hcSGVxClU7/3IR6R7je
-	 eIbF5F7nc714BcZGRa4/OjOE1oSi5do7QaNb4xsIY0I+qvxQ4xvC6UcMizLlTroP1r
-	 JKIdzZsmj25YQ==
-Date: Tue, 6 Jan 2026 08:34:13 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, martin.petersen@oracle.com, 
-	andersson@kernel.org, konradybcio@kernel.org, taniya.das@oss.qualcomm.com, 
-	dmitry.baryshkov@oss.qualcomm.com, manivannan.sadhasivam@oss.qualcomm.com, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, nitin.rawat@oss.qualcomm.com
-Subject: Re: [PATCH V3 2/4] dt-bindings: ufs: qcom,sc7180-ufshc: Add UFSHC
- compatible for x1e80100
-Message-ID: <20260106-tremendous-tuscan-boobook-fbfa20@quoll>
-References: <20260105144643.669344-1-pradeep.pragallapati@oss.qualcomm.com>
- <20260105144643.669344-3-pradeep.pragallapati@oss.qualcomm.com>
+	s=arc-20240116; t=1767684882; c=relaxed/simple;
+	bh=IJ1h3fEZv1s32cLhY4DdaKissfaetz3NYCz8X/5XBMo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WUAMkd+6n0s0LB1k2k870l1gQ4P0q2XA5jjQq3lMmJwRQIN9hoh1AAjLAJsxTg4CRk/2bbP75+OmrrZH6NqlRqHHmI6lkwhEvRaXYlENatxPMe/mXCx3aYcq+S96yesY9V7GLjohdmoTu7iMzXdd9l/auc7AiwZOYdIaEdr6lHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QA9jJ/P9; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 3A0211A2690;
+	Tue,  6 Jan 2026 07:34:38 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 01C3560739;
+	Tue,  6 Jan 2026 07:34:38 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B79E1103C8092;
+	Tue,  6 Jan 2026 08:34:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767684876; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=/ihofIBxFPwXzfBzLTBtqfZNBkL8peU6izBU5CnFXCQ=;
+	b=QA9jJ/P9eRhkdrxb0HptLgAtibWjUt8jFktKgN/YWUb+JLe+KkcDoyyEQD2Ppn5+/jwo5o
+	9PuhkdKrKHCFJmwvVHHrNuIRKapqHvtfMGKFtPfB8JkUZq7apk7/qR0ykO/WlNWhf7kDVi
+	Bl/ifnbmCGIsRzIc4uM0olnGsE4sW3ojxqibPYiiCO3NDqYB2afR4RvGjjLapoi56PC66n
+	5HJ/fOFerReyEAfARTdLDLeTJDoRQlIofWvp4plIFdiL3u195e1w/IEB3kmwrWJz73Gj1E
+	uQIdi3lYtAHnUwekMK3xvZVQnq9ev3kSCj8zKXKrEixDRgt59+RNM9n5WrdQ1g==
+Date: Tue, 6 Jan 2026 08:34:26 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: "Luca Ceresoli" <luca.ceresoli@bootlin.com> (by way of Kory Maincent
+ <kory.maincent@bootlin.com>), "Jyri Sarha" <jyri.sarha@iki.fi>, "Tomi
+ Valkeinen" <tomi.valkeinen@ideasonboard.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Russell King" <linux@armlinux.org.uk>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony Lindgren" <tony@atomide.com>,
+ "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
+ <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Markus
+ Schneider-Pargmann" <msp@baylibre.com>, "Bajjuri Praneeth"
+ <praneeth@ti.com>, "Louis Chauvet" <louis.chauvet@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
+ <miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
+Subject: Re: [PATCH v2 05/20] drm/tilcdc: Convert legacy panel binding via
+ DT overlay at boot time
+Message-ID: <20260106083426.6916d687@bootlin.com>
+In-Reply-To: <20260105181838.1f307964@kmaincent-XPS-13-7390>
+References: <20251211-feature_tilcdc-v2-0-f48bac3cd33e@bootlin.com>
+	<20251211-feature_tilcdc-v2-5-f48bac3cd33e@bootlin.com>
+	<DF0K5UFX46JA.OH85T6IPC5MW@bootlin.com>
+	<20260105172220.2d2edd28@bootlin.com>
+	<20260105181838.1f307964@kmaincent-XPS-13-7390>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260105144643.669344-3-pradeep.pragallapati@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Jan 05, 2026 at 08:16:41PM +0530, Pradeep P V K wrote:
-> Add UFS Host Controller (UFSHC) compatible for x1e80100 SoC. Use
-> SM8550 as a fallback since x1e80100 is fully compatible with it.
+Hi Köry,
+
+On Mon, 5 Jan 2026 18:18:38 +0100
+Kory Maincent <kory.maincent@bootlin.com> wrote:
+
+...
+> >
+> > Modifying some properties after applying the overlay could be not seen by the
+> > driver.  
 > 
-> Signed-off-by: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
-> ---
->  .../bindings/ufs/qcom,sc7180-ufshc.yaml       | 37 +++++++++++--------
->  1 file changed, 22 insertions(+), 15 deletions(-)
+> I disagree here. This driver is loaded at subsys_initcall (initcall 4) while
+> the panel is loaded at device_initcall (initcall 6) so the panel driver won't
+> probe in-between.
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+You're right. the driver registers at device_initcall().
+You can modify your node at subsys_initcall(), the driver will see modified
+values.
 
 Best regards,
-Krzysztof
+Hervé
 
 
