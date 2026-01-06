@@ -1,55 +1,54 @@
-Return-Path: <devicetree+bounces-252034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C64FACFAA1C
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 20:25:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E62CFAFFC
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 21:49:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E854631E891F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:38:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1175030A1305
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 20:46:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F89434F253;
-	Tue,  6 Jan 2026 17:44:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 048AB350280;
+	Tue,  6 Jan 2026 17:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="zsJiNwip"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VhL7Q/dS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573A034EEEF;
-	Tue,  6 Jan 2026 17:44:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5711134FF45
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 17:44:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767721456; cv=none; b=PbA5lc9Jj+v1knEches9NadAMWrGSoJXI+HIVEJCdqpblx2lnQpciVlaZsJefIZQPgYa5cCgaDX0XsdjwInaQZuOMRcVYczfSvH7+RAUZUQ+Z0GnZrFMiCIXRco9NPcaxe4jH9mESGsQNAnyI6Zhn5IDlAzFeH23GYEnT6qtqyU=
+	t=1767721471; cv=none; b=nbOsbI0at0mS2mvMTBjGhgds/uk5mjR36AxhH2e4vIp5nVfm6NDXdqstWBFqS/lWj8MEzOr+qvEbJybpQUcOdcjyyokylOtkTnmCghp639bO+/n3qQwaS8ixqpf1EWsU61L939yG8WHYVhutD+/5oobOvYmOEgBM9oVCiGv2RME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767721456; c=relaxed/simple;
-	bh=j08qLQEXp+SQQXsofhNfJOLWt7nik/L25iLXQsDNBUw=;
+	s=arc-20240116; t=1767721471; c=relaxed/simple;
+	bh=0Dz7WYB/xo76JBC2J/NRCmjCPmag6QximCXoAjrF93Q=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iBrD6Xq+DvOhjN+uve5ku565fQX64pBlOfrdVfD5qCX1xqAXnF0VH6acf2PCmmnk8L23tVZpMDBibfkc3MCCqviOa8EZhgDJZ49qMi5pK4esolSzREwoDDcwj1PbRuDhIPyBDxj/IWNeN+BdGhfw2V6KPqahnoBQ/VGDiXKa/Ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zsJiNwip; arc=none smtp.client-ip=185.171.202.116
+	 In-Reply-To:To:Cc; b=aPz5EnZQp3uEDF1/cuAiL9dKc4ufXMg3InAYEhfFHrh41IAPNp3KNLVVi/ca30BbEbRdroR79gLpqFv7Dc0E2/QYBRj8p2FpXPcTQwVwYyoE/jH1byPYf649lE/NL3maUQmBHSXrxfzXxaCPhy334CR20PukJUa2hZpO0+RT6iw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VhL7Q/dS; arc=none smtp.client-ip=185.171.202.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 1220BC1E4B2;
-	Tue,  6 Jan 2026 17:43:47 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id C3477C1E4B2;
+	Tue,  6 Jan 2026 17:44:02 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2365560739;
-	Tue,  6 Jan 2026 17:44:13 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 16BC3103C830C;
-	Tue,  6 Jan 2026 18:44:07 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C690160739;
+	Tue,  6 Jan 2026 17:44:28 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9F8A0103C833E;
+	Tue,  6 Jan 2026 18:44:23 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767721451; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1767721466; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=r9TuuH3jGf5ZbOx4MF98tfbStt80GEUYcg9MPLUsmUM=;
-	b=zsJiNwipAGjaEXP65DHeV68VH1CIMFLKCpm7p5t7Yup1WQrCxfZ3LgGGxsOPiwscgKL7g4
-	l6zXSC7jdjfKI/0Lyq0UYbGFU3zDUACmIlUdZSUPH6ijESjxWv+nxFHT9xlhEU6Yd+rYUG
-	fPkcZU9ZrlT/fLdbAb/BNo1RLhAk5xJgFii135Ko84SykZxH+JUzXoRHDh2ipOA+GIob2X
-	VHyK4PTH3jMgdo36daQ1Rf28m3XlDfzbc1ZmahKBe6vmumirNCE2HzNbKtY7IiMMRsDnJP
-	BwqWscamvHHvhyvtFA+HtI7v2UeeenI16lRWDFHQbkmjxwyoUrvkr3q1RHl8IQ==
+	bh=YHbKPaDVZD9oIsFLb8cqetcEgclBnBCWZdurRGChSkw=;
+	b=VhL7Q/dSj2dcihWHP71l2JbQyZSCNQ131KaaZ7hivnBM3lcBpma7Nc9EYLfUZgTlGeGBI/
+	VKF29eiJEj8s2qOc+OVovgsC2hETa6OIj33qmkbjFIPD06HerznXQ8Ut9jTDrzQ9GAyTes
+	T4kI0GKJ3+andQSbunb5kB9Pts+fjM+afDLP4JjzyDaKr5E/VX6fjAoKbWjO0/W4+KFM7E
+	rdaTFIKwm55gDsLThc4TL6+3MXvHAhoCxnZVPLl2A5F+W67bZzTZUPl0xDXtaAi6nPpXPh
+	D+XbOF1sfg+aNUaWalHEXG2YiGWo94ifa+tKyydp8VltNFBkd6u84s5eJfInOw==
 From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Date: Tue, 06 Jan 2026 18:42:30 +0100
-Subject: [PATCH v3 14/22] drm/tilcdc: Use drm_module_platform_driver()
- helper
+Date: Tue, 06 Jan 2026 18:42:34 +0100
+Subject: [PATCH v3 18/22] drm/bridge: tda998x: Remove component support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260106-feature_tilcdc-v3-14-9bad0f742164@bootlin.com>
+Message-Id: <20260106-feature_tilcdc-v3-18-9bad0f742164@bootlin.com>
 References: <20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com>
 In-Reply-To: <20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com>
 To: Jyri Sarha <jyri.sarha@iki.fi>, 
@@ -86,57 +85,115 @@ Cc: Markus Schneider-Pargmann <msp@baylibre.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 
-Use the drm_module_platform_driver() helper macro to simplify driver
-registration. This macro handles both the platform driver registration
-and the drm_firmware_drivers_only() check, making the custom init/exit
-functions unnecessary.
+The tilcdc driver no longer uses the component framework to bind the
+tda998x bridge driver. The component bind/unbind operations and the
+encoder initialization code are now dead code and can be safely removed.
 
+Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
 ---
+ drivers/gpu/drm/bridge/tda998x_drv.c | 69 +-----------------------------------
+ 1 file changed, 1 insertion(+), 68 deletions(-)
 
-Change in v3:
-- New patch split from previous patch of the series.
----
- drivers/gpu/drm/tilcdc/tilcdc_drv.c | 19 ++-----------------
- 1 file changed, 2 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-index 34d0e81552912..a82a2494e23d9 100644
---- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-+++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-@@ -20,6 +20,7 @@
- #include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_mm.h>
-+#include <drm/drm_module.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_vblank.h>
+diff --git a/drivers/gpu/drm/bridge/tda998x_drv.c b/drivers/gpu/drm/bridge/tda998x_drv.c
+index e636459d91857..865285ba2bd8c 100644
+--- a/drivers/gpu/drm/bridge/tda998x_drv.c
++++ b/drivers/gpu/drm/bridge/tda998x_drv.c
+@@ -4,7 +4,6 @@
+  * Author: Rob Clark <robdclark@gmail.com>
+  */
  
-@@ -534,23 +535,7 @@ static struct platform_driver tilcdc_platform_driver = {
- 	},
- };
+-#include <linux/component.h>
+ #include <linux/gpio/consumer.h>
+ #include <linux/hdmi.h>
+ #include <linux/i2c.h>
+@@ -1963,85 +1962,19 @@ static int tda998x_create(struct device *dev)
+ 	return ret;
+ }
  
--static int __init tilcdc_drm_init(void)
--{
--	if (drm_firmware_drivers_only())
--		return -ENODEV;
+-/* DRM encoder functions */
 -
--	DBG("init");
--	return platform_driver_register(&tilcdc_platform_driver);
+-static int tda998x_encoder_init(struct device *dev, struct drm_device *drm)
+-{
+-	struct tda998x_priv *priv = dev_get_drvdata(dev);
+-	u32 crtcs = 0;
+-	int ret;
+-
+-	if (dev->of_node)
+-		crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
+-
+-	/* If no CRTCs were found, fall back to our old behaviour */
+-	if (crtcs == 0) {
+-		dev_warn(dev, "Falling back to first CRTC\n");
+-		crtcs = 1 << 0;
+-	}
+-
+-	priv->encoder.possible_crtcs = crtcs;
+-
+-	ret = drm_simple_encoder_init(drm, &priv->encoder,
+-				      DRM_MODE_ENCODER_TMDS);
+-	if (ret)
+-		goto err_encoder;
+-
+-	ret = drm_bridge_attach(&priv->encoder, &priv->bridge, NULL, 0);
+-	if (ret)
+-		goto err_bridge;
+-
+-	return 0;
+-
+-err_bridge:
+-	drm_encoder_cleanup(&priv->encoder);
+-err_encoder:
+-	return ret;
 -}
 -
--static void __exit tilcdc_drm_fini(void)
+-static int tda998x_bind(struct device *dev, struct device *master, void *data)
 -{
--	DBG("fini");
--	platform_driver_unregister(&tilcdc_platform_driver);
+-	struct drm_device *drm = data;
+-
+-	return tda998x_encoder_init(dev, drm);
 -}
 -
--module_init(tilcdc_drm_init);
--module_exit(tilcdc_drm_fini);
-+drm_module_platform_driver(tilcdc_platform_driver);
+-static void tda998x_unbind(struct device *dev, struct device *master,
+-			   void *data)
+-{
+-	struct tda998x_priv *priv = dev_get_drvdata(dev);
+-
+-	drm_encoder_cleanup(&priv->encoder);
+-}
+-
+-static const struct component_ops tda998x_ops = {
+-	.bind = tda998x_bind,
+-	.unbind = tda998x_unbind,
+-};
+-
+ static int
+ tda998x_probe(struct i2c_client *client)
+ {
+-	int ret;
+-
+ 	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
+ 		dev_warn(&client->dev, "adapter does not support I2C\n");
+ 		return -EIO;
+ 	}
  
- MODULE_AUTHOR("Rob Clark <robdclark@gmail.com");
- MODULE_DESCRIPTION("TI LCD Controller DRM Driver");
+-	ret = tda998x_create(&client->dev);
+-	if (ret)
+-		return ret;
+-
+-	ret = component_add(&client->dev, &tda998x_ops);
+-	if (ret)
+-		tda998x_destroy(&client->dev);
+-	return ret;
++	return tda998x_create(&client->dev);
+ }
+ 
+ static void tda998x_remove(struct i2c_client *client)
+ {
+-	component_del(&client->dev, &tda998x_ops);
+ 	tda998x_destroy(&client->dev);
+ }
+ 
 
 -- 
 2.43.0
