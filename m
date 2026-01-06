@@ -1,197 +1,196 @@
-Return-Path: <devicetree+bounces-251777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C34CBCF6E7B
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 07:31:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C94F8CF6E75
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 07:31:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 15E53301459A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 06:30:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 783AD30194E2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 06:31:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71487303A05;
-	Tue,  6 Jan 2026 06:30:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D526F305E01;
+	Tue,  6 Jan 2026 06:31:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="n0QJ4LOz";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FLJdTeiy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 075D72C08A8;
-	Tue,  6 Jan 2026 06:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592812BAF7
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 06:31:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767681043; cv=none; b=UzJ0HC0khrZR96Z4bzMuAjNQ8HUNaUP7MXKnnq306eQuiK55xNuJ1iZjU1VZ38JGR/uq9CyGjVNZga9jppLdrPec8cZdREeMR26Ad7PUlORUQNtBdDuvsZ6jd2oJ/4zS5/bY4rEuMf2iug8ubUZsQEcmodi5ehWnVomHS4mwEK4=
+	t=1767681072; cv=none; b=nlZQJXGrM63ckb6iRaEonY6DTqBxhee+BVWloQuxJD5tMlXJ79t6IJjzxvFueYjcNvp6AZSTCqn9065vUNHJ7/C5cEved0Vq7qhbbktWDXg3jNzoC+Gxo0/6in2oWLhegDsxpZmpZKjGCBE9twdUFS5hkdniK4qH3CZ/5sVFx5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767681043; c=relaxed/simple;
-	bh=VR8KSbqFRDcUk7Gr/zvLlihUjI7aYb2Wr+AV6jjjyfI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=WguFTNSGLmZAaD+4BOx19hb+QQcfpyAGjHN+8Wbqr+KNzQOJaZ8Sq+iLsPRI0EhEZIPI54+i2NIpr0WiOzJzD6SkXtDYdim8BIzaM/lKV1hEZugWXmtYshmLMYkcbHKOb+kxnLlq4deISK7CewLGgvyWB2NTi4+vFGqdRjzWx3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0006800LT.eswin.cn (unknown [10.12.96.77])
-	by app1 (Coremail) with SMTP id TAJkCgDX0Wn6q1xp+JqQAA--.64521S2;
-	Tue, 06 Jan 2026 14:30:20 +0800 (CST)
-From: Yulin Lu <luyulin@eswincomputing.com>
-To: vkoul@kernel.org,
-	neil.armstrong@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	zhengyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	fenglin@eswincomputing.com,
-	lianghujun@eswincomputing.com,
-	Yulin Lu <luyulin@eswincomputing.com>
-Subject: [PATCH v7 0/2] Add driver support for Eswin EIC7700 SoC SATA PHY
-Date: Tue,  6 Jan 2026 14:29:44 +0800
-Message-Id: <20260106062944.1529-1-luyulin@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
+	s=arc-20240116; t=1767681072; c=relaxed/simple;
+	bh=Wov/qB67vp8gz1l2fIooRnUAV2nxx01QDhoiDuwqOdo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AFYPQMGdRZCqPhRIgV6nAK7FgHQDUHH/Ua8jfIMC1zo2lwrIkX9DO5CuwTjv/+tofIObN7/HQFEplQ9qowkN/6+lTcAwzL7hDcMzceQg8rgxgZIlWU7Q5WuqhElXGytcPQ4gy+7uHqXfh8JEBrnSrNbXecqOyV4NprLhXFBhcps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=n0QJ4LOz; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FLJdTeiy; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6063QBxq3073062
+	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 06:31:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	RDWKmfMAAIQKR/wtVg52c2k7p6H/btOMvPSVN3ySifc=; b=n0QJ4LOzR4aY0S7E
+	CAsIkrc+bylTq/cjMlqCNsdZwO/wIphHWiSxSIGsv3xEsz+M9hBPHtzFwHSFwUH/
+	1sDbZ5cgrjRlbpFDhPk9VpTCxrz5Vee+sOEq0z49NUkp0ke+heuvhwGoz+kHOH5Z
+	0HTOo4P7KIjA1hgfw56bnWHDPfyHTBlE75eLmpRgtDOAsDmzlItTUy7nJ/Nbz+gZ
+	XfPOeAQPm1vZTKXIEGHRuUZqETIgIBfUKiUOKc57b/lg7Is2rfjpvvE5alzk0L5J
+	CcnYYrnjDrnKqg5KJyZTSm39U03bfrEkq/i1jwokIPk3/JRP+zB5Pn7uSqOSiP5P
+	GPmNHg==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgrf7grce-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 06:31:10 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7b82c2c2ca2so1514863b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 22:31:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767681070; x=1768285870; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RDWKmfMAAIQKR/wtVg52c2k7p6H/btOMvPSVN3ySifc=;
+        b=FLJdTeiyOO1ORDTxbTSgb0qJgWJooWLqZnI+w8bkBTrADfUwE6NykLlODPKQqFqadt
+         WsaUCDTlOkS+DCqTEo9cneWFAjM/ekt8GG4N8zcjlrGbkfNVVvLtEpBvgl4/e4HGp72w
+         o9i3ag/TyajMgVSLJH8GYbFrAW6drR2+T5qDGqZvq+SOe7baqJSrLJfLP+litlm9Yw6R
+         etIKnV8jQurjx4NFxLjX3kutjPvpngmQQMz5iZR8yF4AbhMTJWIsF14NO0cIwJss47MV
+         zhc0ow48/EQnJP2smjxPfTuXk6sSKnSmsonF9uY/9hFzgjEs2QjKzwciC32Ff9BtKuEL
+         FSJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767681070; x=1768285870;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RDWKmfMAAIQKR/wtVg52c2k7p6H/btOMvPSVN3ySifc=;
+        b=az0w7s0wS2P6YBmfIENmHKIDRU2cd+8sebNJcG36qxS3paiOLwPVss5FBbspFSMXH0
+         CRVnKmLSGHvdSSuCt3Lxyox+gh/4vVRVdRMd3YSje55ZnmFku63/EVkZAVgQDvtSYqiX
+         e6EFQBse5t2MVykaCi1doGvhztXCgWDK9XRh2jAyHjtQc+trZFfkNkurwHxiVd3Kye6n
+         3NpKBX4oBHmlzWKpb6NHd4k01k4EDqErlVVPjQhoBFNkUggZD/Ba+YpDclBhlJw+g+Un
+         OYJB3WH8XUn06tmwd1jo2uXebNohtORzosk0DqLMZFphzENWElxNGN1+CvCUI3m3B4SL
+         MLGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWm2ZE8IoLAMpjZSxC1FQt8juTpkD7iHQW8EZm0rtzjrUhea4lJTse+g25ra+jCTpuwclq5mfbDxZgt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzV2i4weQX4MmDKVqS2lqSXFhjinroXZtGYOFnC/I4USuVKV3eH
+	XjBUjn71dHMFM59XSaoOIloc+6pZ/VYZNnaa4hZtdHn3yiyRmWE7EfAF/vjCN/qWp9nMjzzig9Y
+	Qr+DEaxOHlL0DPf7G8nfwm8bMkDcfsxmJ0nK9c7juGJd1bGJ/NbvThAgKCB9Hr2Hh
+X-Gm-Gg: AY/fxX7SBv9Ysy5zfcJgOfPAQ2kInIR6klW7vtvgBcXC9DMSbMrPI5wtF+Fs1Y0hqYv
+	14IPZHmh1Wu3H7tgBHLraOJ+qkJ8/6flovGpWjrzTrjcXKWZnfsgTl8IJzW/Y0DM+uT7/pKeIwk
+	RVelxx+fQD5JOgVo/VnHWpI3SOvDDWnJzkaoD8kG4eLqSjw0h4PE2SPTRZm4rVVnihl8QrbS9NY
+	3YZOfy5a26M/K9p/sWtT8Uo6e+tLOLJEtAkfPYJhkG6kFLkU6n8OA48QQMLeemwebFg9oERBLDC
+	q8QtCY7QGuPtN5RAONoy7XSym9L9ty8z65aOi2N43D0RYxbr4XAM8xE/eA6CMmlNyaNWfmx1euf
+	qr06LC222IV1G3SsnnAx+pNDFlLloDoyjDWsfx0hbWiBU
+X-Received: by 2002:a05:6a00:44cc:b0:7ff:b07d:d4fa with SMTP id d2e1a72fcca58-81882be1209mr1870837b3a.56.1767681069752;
+        Mon, 05 Jan 2026 22:31:09 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF/vpXsfwuFIlKNlWeDvpXegR4zTXn7c2rAirDsOY7syntOF57m7Ik/8zN1pNoMFJhmyuAbiQ==
+X-Received: by 2002:a05:6a00:44cc:b0:7ff:b07d:d4fa with SMTP id d2e1a72fcca58-81882be1209mr1870798b3a.56.1767681069241;
+        Mon, 05 Jan 2026 22:31:09 -0800 (PST)
+Received: from [10.219.56.177] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819c59e755bsm992670b3a.48.2026.01.05.22.31.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jan 2026 22:31:08 -0800 (PST)
+Message-ID: <e4b01dc7-02dc-060e-d1a6-abd2c801a78a@oss.qualcomm.com>
+Date: Tue, 6 Jan 2026 12:01:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v19 01/10] power: reset: reboot-mode: Remove devres based
+ allocations
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bartosz Golaszewski <brgl@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Andy Yan
+ <andy.yan@rock-chips.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Moritz Fischer <moritz.fischer@ettus.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Andre Draszik <andre.draszik@linaro.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Srinivas Kandagatla <srini@kernel.org>
+References: <20251228-arm-psci-system_reset2-vendor-reboots-v19-0-ebb956053098@oss.qualcomm.com>
+ <20251228-arm-psci-system_reset2-vendor-reboots-v19-1-ebb956053098@oss.qualcomm.com>
+ <CAMRc=McEB+yVYxropzsqLExZCU5Pd_iy_=5N3pTxu28-ZX=7_w@mail.gmail.com>
+ <acbb37a1-3189-4d4e-5c05-55b13cd40a7f@oss.qualcomm.com>
+ <cvmtn335gwnl6rvmlm4vgyablsj735rknga4ffv53gpk4k7d6g@tt7ebuyusocu>
+Content-Language: en-US
+From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+In-Reply-To: <cvmtn335gwnl6rvmlm4vgyablsj735rknga4ffv53gpk4k7d6g@tt7ebuyusocu>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgDX0Wn6q1xp+JqQAA--.64521S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxKF1rAryUAw1rur4UZF43Jrb_yoW7KF4fpa
-	ykCry7Grn5tryIqaykA3WI9FySvan7JFW3ur4fJw1Uuws8ZFyvvrsak3WYvF9rAr4kK34Y
-	qF4aqF98CFyUAFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9G14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
-	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
-	wI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
-	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v2
-	0xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxV
-	W8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbGQ6JUUUUU==
-X-CM-SenderInfo: pox13z1lq6v25zlqu0xpsx3x1qjou0bp/
+X-Proofpoint-ORIG-GUID: yfVYfbU9gNWyNRVQlaiEV6M-dJoN3l84
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDA1NCBTYWx0ZWRfX6boua63hZhyy
+ N2p5nE0XHAeJyPigV5LYfBc2Gu65O5eOEq7BgheH+3iDNKwhSEkB9hSFufZn3exZVFTl9g112pp
+ UL9n3FJG4L9Zg2CXr3e7b1woc5HuFANIYSDX6K7TIYtYfRV8GwZ78XrinXtIo3cNgPmOo4PtOOw
+ 8gYbOSfaMGi/jLr3yu2uTXPvL16BbJ+9GnsFXhKeDtUGcTx2GxOzFDGuE0lGlZ91+wtHHqoJ6fl
+ rBFrZCxvRjhAtrgQet+8jd2BRItUVw5x0IB7wh8twEqUoecR91fQj8NDqNsgMUH+sBiUsfGiKYQ
+ A1fX7HnIT9ksVJmUWOOAN46u6AVfftkFptSWb7hLig22q6shjbPqLUnTmNO7tI9+otheQzV1a0S
+ QPnzUq22A9PxtcGTJ6l0X6j2FYDKZaDDkRIxL2EoU7hKD2/bHGITKCpcdIsiQ4bYXcOsEYemt8Q
+ K/FReuKL3528k4uEcgg==
+X-Proofpoint-GUID: yfVYfbU9gNWyNRVQlaiEV6M-dJoN3l84
+X-Authority-Analysis: v=2.4 cv=FK0WBuos c=1 sm=1 tr=0 ts=695cac2e cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=KAb_rDcQEDUYZVoDp1sA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-05_02,2026-01-05_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 impostorscore=0 bulkscore=0 malwarescore=0
+ lowpriorityscore=0 phishscore=0 priorityscore=1501 clxscore=1015 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601060054
 
-Updates:
-  v7 -> v6:
-    - phy-eic7700-sata.c
-      - Rename PHY_READY_TIMEOUT to PLL_LOCK_TIMEOUT_US with value 1000.
-      - Add macro PLL_LOCK_SLEEP_US set to 10.
-      - Add "goto disable_clk" in the eic7700_sata_phy_init function.
-      - Modify Copyright year from 2024 to 2026.
-    - Link to v6: https://lore.kernel.org/lkml/20251201060737.868-1-luyulin@eswincomputing.com/
 
-  v6 -> v5:
-    - eswin,eic7700-ahci.yaml
-      - Delete this file and it has already been applied in reply[1].
-    - eswin,eic7700-sata-phy.yaml
-      - Add clock and reset related properties.
-    - phy-eic7700-sata.c
-      - Map the io resource with platform_get_resource and devm_ioremap instead of
-        devm_platform_ioremap_resource API. Because the address region of sata-phy falls
-        into the region of hsp clock&reset which has been got by hsp clock&reset driver.
-      - Use regmap_read_poll_timeout in wait_for_phy_ready to replace the while loop check.
-      - Use devm_regmap_init_mmio and regmap_write to replace writel.
-      - Adapt to the clock and reset driver framework, replacing the original readl and writel.
-        Because we are implementing the HSP layer clock and reset drivers, the corresponding
-        clock and reset registers can be registered into the driver framework. And I have tested
-        on the Sifive HiFive Premier P550 board.
-    - Link to v5: https://lore.kernel.org/lkml/20250930083754.15-1-luyulin@eswincomputing.com/
 
-  v5 -> v4:
-    - eswin,eic7700-ahci.yaml
-      - Add "dt-bindings: ata:" prefix to the subject.
-      - Wrap at 80 characters in the YAML description field.
-    - Link to v4: https://lore.kernel.org/lkml/20250915125902.375-1-luyulin@eswincomputing.com/
+On 1/6/2026 3:01 AM, Dmitry Baryshkov wrote:
+> On Mon, Jan 05, 2026 at 11:46:40PM +0530, Shivendra Pratap wrote:
+>>
+>>
+>> On 1/2/2026 3:35 PM, Bartosz Golaszewski wrote:
+>>> On Sun, Dec 28, 2025 at 6:20 PM Shivendra Pratap
+>>> <shivendra.pratap@oss.qualcomm.com> wrote:
+>>
+>> [snip]
+>>
+>>>
+>>>> +                       pr_err("reboot mode %s without magic number\n", prop->name);
+>>>
+>>> If this is an error, shouldn't we bail out?
+>>>
+>>>> +                       continue;
+>>
+>> This is not an error as per original design of reboot-mode framework.
+>> The code as of now says, if the reboot-mode node has an entry without
+>> proper magic value, ignore it, and, process the next.
+> 
+> Then why are you using error level for the message printout?
 
-  v4 -> v3:
-    - eswin,eic7700-ahci.yaml
-      - Fix grammatical errors in patch subject and commit message
-      - Add an explanation in the commit message of patch 1 for retaining the
-        "ports-implemented" field, which Rob Herring suggested to remove
-        in the review comments on v2.
-        Link to Rob Herring's review:
-        https://lore.kernel.org/lkml/CAL_JsqKFotNLZZXwiy7S6K8qXLdGRAnsa-1zvZRDQBE39Gf5kg@mail.gmail.com/
-        Link to my question and Niklas Cassel's reply:
-        https://lore.kernel.org/lkml/aLBUC116MdJqDGIJ@flawful.org/
-        In this reply, Niklas Cassel mentioned his view:
-        If the ports-implemented register gets reset from
-        ahci_platform_assert_rsts(), then it seems acceptable to
-        retain the ports-implemented property in the device tree.
-        This aligns with our design.
-        Link to my reply:
-        https://lore.kernel.org/lkml/4ab70c6a.8be.198f47da494.Coremail.luyulin@eswincomputing.com/
-        Link to Niklas Cassel's question and my further explanation:
-        https://lore.kernel.org/lkml/aLlYkZWBaI5Yz6fo@ryzen/
-        https://lore.kernel.org/lkml/7206383a.d98.19918c22570.Coremail.luyulin@eswincomputing.com/
-    - eswin,eic7700-sata-phy.yaml
-      - Fix grammatical errors in patch subject and commit message
-      - Adjust the position of reg in the properties and required arrays
-      - Add reviewed-by tag of Krzysztof Kozlowski
-    - phy-eic7700-sata.c
-      - Correct the loop condition in wait_for_phy_ready() to use the current
-        jiffies instead of the fixed start time
-      - Change the return value from -EFAULT to -ETIMEDOUT to correctly
-        indicate a timeout condition
-      - Remove redundant clock disable handling in probe error path, as
-        SATA_SYS_CLK_EN is managed in phy_init() and phy_exit()
-      - Use dev_err_probe return in probe
-      - Reorder local variables to follow reverse Xmas tree order
-      - Wrap each line in the extended comments to 80 columns before splitting lines
-      - Adjust the position of `#include <linux/io.h>` for proper ordering
-    - Link to v3: https://lore.kernel.org/lkml/20250904063427.1954-1-luyulin@eswincomputing.com/
+I have changed from dev_err to pr_err. Can make it pr_info. Will
+that change need a mention in commit text?
 
-  v2 -> v3:
-    - Use full name in "From" and "Signed-off-by" fields information
-    - eswin,eic7700-ahci.yaml
-      - Remove the introduction to the reg, interrupts, phys, and phy-names fields
-      - Modify the usage of the clocks field in the examples
-      - Correct the order of dt properties
-    - phy-eic7700-sata.c
-      - Register operations use the GENMASK macro and FIELD_PREP instead of
-        the original bit offset method, and add "#include <linux/bitfield.h>"
-      - Modify some macro definition names.
-      - Remove the redundant initialization assignments for "ret" and "val"
-      - Delete ".suppress_bind_attrs = true"
-      - Modify the driver name
-      - Add "#include <linux/io.h>" to fix the robot test issue
-    - Link to v2: https://lore.kernel.org/lkml/20250819134722.220-1-luyulin@eswincomputing.com/
-
-  v2 -> v1:
-    - Delete the original controller driver and use ahci_dwc.c instead
-    - Add eswin,eic7700-ahci.yaml
-      - Correct the descriptions of reset, interrupt and other
-        hardware resources for the sata controller on EIC7700 SoC
-      - The clocks for both sata controller and sata PHY are controlled
-        via a register bit in the HSP bus and are not registered in the
-        clock tree. Clock are managed within the PHY driver, therefore
-        it is not described in this document
-      - Add $ref: snps,dwc-ahci-common.yaml#.
-    - Add eswin,eic7700-sata-phy.yaml
-      - Add this file to include the description of the PHY on EIC7700 SoC
-    - Add an eswin directory under the PHY driver path, and include the SATA
-      PHY driver code for EIC7700 SoC
-    - Link to v1: https://lore.kernel.org/all/20250515085114.1692-1-hehuan1@eswincomputing.com/
-
-Yulin Lu (2):
-  dt-bindings: phy: eswin: Document the EIC7700 SoC SATA PHY
-  phy: eswin: Create eswin directory and add EIC7700 SATA PHY driver
-
- .../bindings/phy/eswin,eic7700-sata-phy.yaml  |  58 +++++
- drivers/phy/Kconfig                           |   1 +
- drivers/phy/Makefile                          |   1 +
- drivers/phy/eswin/Kconfig                     |  14 ++
- drivers/phy/eswin/Makefile                    |   2 +
- drivers/phy/eswin/phy-eic7700-sata.c          | 221 ++++++++++++++++++
- 6 files changed, 297 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/eswin,eic7700-sata-phy.yaml
- create mode 100644 drivers/phy/eswin/Kconfig
- create mode 100644 drivers/phy/eswin/Makefile
- create mode 100644 drivers/phy/eswin/phy-eic7700-sata.c
-
--- 
-2.25.1
-
+thanks,
+Shivendra
 
