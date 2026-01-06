@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-251919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E8DCF85D5
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 13:44:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0840CF85EA
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 13:46:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B746B315EF01
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 12:32:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED9A53009828
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 12:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC0FC2F1FEA;
-	Tue,  6 Jan 2026 12:31:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51815326D69;
+	Tue,  6 Jan 2026 12:34:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mOujkwb6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pzD/gsgz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9694A2F0C78
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 12:31:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C6E74A3C
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 12:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767702713; cv=none; b=HHo6qTFFaxsbqhBGMj0IHx5dyffJuOL/04rYWs2oi3qNKyJVJmHYYM46dh8I6RaV+fUu/6q6URAYfi9NZjDrq1funs0VyT49J3tQ+oaNCO/nLRNcR4GD5hx80pcN/nfHLZnv0Sah9UZKldleYnuU5uiYBRCyKnnBjOC2xrXy41g=
+	t=1767702881; cv=none; b=alT9o9eFuZZ6AJNReKR651utsqgYoJN8wUsdkqJB6ZCI8MvprZ+jD/y7nAcGGCPZ3bFSIGUKP2hc3nU70gShz6tQYoGiJAD1YpxGsBbZF/L0KA5jPIc/wPSxjL7Qca2jYZkERNWKvLL70qwF9VXST9EH1IcZ65mneINqwU5eVGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767702713; c=relaxed/simple;
-	bh=hkToN4ECsG3MudPOwQYTR0U4TyBoX8kGNtWHmfV4Vbc=;
+	s=arc-20240116; t=1767702881; c=relaxed/simple;
+	bh=4+orIZPsoech51NuQIOn2Zg7FT06+LCoqm268lCdbzw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cG9en1C8MVAsqkUWyrwlj9rn6OCWhZi/8Xx6b5zM4Iyf9md40vsxz+rYvWd0+2LvRNTmZj9UOr/JEJqDkACie1fow0sSr9tJZrN4q+xawlDjJQez5VmwMGPO6CVcxYLaqmK7Y7ADqQaKUoa+NLmWeka+tbGmXSYHpxivmZzCVqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mOujkwb6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E7FBC4AF0B
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 12:31:53 +0000 (UTC)
+	 To:Cc:Content-Type; b=dt85h3iTiyFsepPGYts2VxrcE6s4p/CVXh/9fS+BTV9YSUbU8/OOOnBL0hR8iGC9jzYaqWGzIuWxCdcM6tuO6AuvlDJnwT33VnxF2RIX77S87/197yFth5R09gLppZLNy3O0jdzVv+wRhFlCNLdf2pJlUp7chODem+XpB+ZpV3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pzD/gsgz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD929C2BCB8
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 12:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767702713;
-	bh=hkToN4ECsG3MudPOwQYTR0U4TyBoX8kGNtWHmfV4Vbc=;
+	s=k20201202; t=1767702880;
+	bh=4+orIZPsoech51NuQIOn2Zg7FT06+LCoqm268lCdbzw=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=mOujkwb6bMD8rzDaSHSkYx8OjwEInrJxUuBRj1PQtwd2iVuOFj95TFLz/HIe5m6b4
-	 JFCtSlFDE6EI2w0ZVIbDJ1otvSnulYNoVUf+NRkWGcoFoX8nn36gYVzlRQa8qiUtsT
-	 chJE0COSzraPDn3y+bL4oqPwwnh3W6TFe/TDY2TKMIY3o/cLyofSgpW0Z2kG+Yvs67
-	 l79HG1GTvtrUkxCOt92LR1WXhnZ+Rr5BYxkzarDZ4hC7cnVCXK6RYFnuVp0u5Z1LAV
-	 mgC7wC2iudZM316pRGDMnehBsd9/ci4mnjW8XIBPXQxyqrLAMvAuLq6sHRsEfIo3O7
-	 qcjJakQbt4f3A==
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-37fdb95971eso7107641fa.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 04:31:53 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUo0eu3g641Q0wPOijbr+AzYD+0SGmtya9fNK3BKVqLeoRlYlfrsOvBEkUkXnPLzUx5hFJTUwWyV8fu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0shEFZpVLXFo30Od1mgw0ezffGGLbjhdsET1SCLDSziHxukq2
-	e3hfT9L9X4sfMfeTbXy+LL0XadEsTY8/9dfusAQyEsaTocfWwsYp4d4hxfF/L1tN2qXfFFmR9OO
-	sU1XGEznGXr6NRJMlm54lXH61xT16WWLNoEE3yZUyqw==
-X-Google-Smtp-Source: AGHT+IGAgUkYHb6c2adQeG89MGXDusPgXEG8AgpWKhx2YWzaObHsgiKa1FY1iLZX9m/J51WaZQMV+gh52Wy4JNwMhjo=
-X-Received: by 2002:a2e:a555:0:b0:37f:cb34:2144 with SMTP id
- 38308e7fff4ca-382eaa6025cmr8054501fa.2.1767702712063; Tue, 06 Jan 2026
- 04:31:52 -0800 (PST)
+	b=pzD/gsgzPaN2+8Vg6YMcHPXA+JBo6AqP8aE+V/hrryAm72KZBlyybKeOsk8GpCJLc
+	 /OwwPgNuT+tr1MuTEcauYNO31PLU317uJTjPgSLYrvXktcI+h5f0Hs80lLOeKs9sGM
+	 ciwXJAnTpx4Ol5ZhZ6LIYZmypDAe62kL9SHaCofqM7rgMj1r6GgZvqiUed+HFtVzmd
+	 mEEwzbB1mbo7m+HZF5peJhAPf08lx5Ad92myryoGgW1ErlT94xACWRxOn07LYk9KSt
+	 W6Kl2+jXiM5VKJsd0Nq1W5mJactRPGyTX9NOARLqxZ8qEjiMduLwWiU5+oNgRvgU3W
+	 +z4UFsDnjXqxA==
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-37bac34346dso7066991fa.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 04:34:40 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVMz9Cu/t0y903hBwe1rdVOOPyUCOifw1IJaquAmKFni+IhGItfuhE64gTgfTCyL+3gAQoXtD5jh583@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhGJyKzisR24glgu4p7okD01aG1pCPJ1YhYiH1EPy1vZ4H14Si
+	/20awfjvHVBOZH7MAnh+yuGUdxd7v943HbGzDT1IDJhaK2UGMCydH/PWiwncRONA12Vn+07uwDU
+	tYTxRP8wlD8CTQLAVz53psr5vkigLXEK4h0EuLUaeVA==
+X-Google-Smtp-Source: AGHT+IFlaA7Jb0UAvj2/ADx9U7kF+/J52SI2sl5w+0mIAGkNff+OpGPevDWqlcbK5aCbGbh5tDkw5EZ2yIDJMwYezoc=
+X-Received: by 2002:a2e:a543:0:b0:37b:8d78:e4bf with SMTP id
+ 38308e7fff4ca-382eaaff24cmr7493291fa.43.1767702879378; Tue, 06 Jan 2026
+ 04:34:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,15 +56,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20251228-arm-psci-system_reset2-vendor-reboots-v19-0-ebb956053098@oss.qualcomm.com>
- <20251228-arm-psci-system_reset2-vendor-reboots-v19-1-ebb956053098@oss.qualcomm.com>
- <CAMRc=McEB+yVYxropzsqLExZCU5Pd_iy_=5N3pTxu28-ZX=7_w@mail.gmail.com> <06619e53-7260-7bd2-1954-dd10b92dc354@oss.qualcomm.com>
-In-Reply-To: <06619e53-7260-7bd2-1954-dd10b92dc354@oss.qualcomm.com>
+ <20251228-arm-psci-system_reset2-vendor-reboots-v19-6-ebb956053098@oss.qualcomm.com>
+ <CAMRc=Me8WQ=aMd-NJ1yzzHzqU8fT1u4eb7as=EjSpZ+Rpv9+rg@mail.gmail.com> <87f25d02-2805-9da7-0d7f-05ce8a022d25@oss.qualcomm.com>
+In-Reply-To: <87f25d02-2805-9da7-0d7f-05ce8a022d25@oss.qualcomm.com>
 From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Tue, 6 Jan 2026 13:31:39 +0100
-X-Gmail-Original-Message-ID: <CAMRc=MfaS=zAXj_YMOyV0DJBULbtysF5VU_mx3BFmhPWSYTnHw@mail.gmail.com>
-X-Gm-Features: AQt7F2pN4gC2sUo7-pfcb6UAcqBXjb_7kw1NmqpeCuPqNOQAqpYTTP5tEx92_QA
-Message-ID: <CAMRc=MfaS=zAXj_YMOyV0DJBULbtysF5VU_mx3BFmhPWSYTnHw@mail.gmail.com>
-Subject: Re: [PATCH v19 01/10] power: reset: reboot-mode: Remove devres based allocations
+Date: Tue, 6 Jan 2026 13:34:26 +0100
+X-Gmail-Original-Message-ID: <CAMRc=McH6jsaKROyMGAhH_gGSiQtqvuVmrUODgtSp0hX8g06=A@mail.gmail.com>
+X-Gm-Features: AQt7F2ofSXIpLVNOI-neQtNGPzXdFSY34QulJ5QeYug3Q7OJAdE6o0yIqoiRcKk
+Message-ID: <CAMRc=McH6jsaKROyMGAhH_gGSiQtqvuVmrUODgtSp0hX8g06=A@mail.gmail.com>
+Subject: Re: [PATCH v19 06/10] power: reset: Add psci-reboot-mode driver
 To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
 Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
 	Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -83,28 +83,35 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 5, 2026 at 6:54=E2=80=AFPM Shivendra Pratap
+On Mon, Jan 5, 2026 at 7:06=E2=80=AFPM Shivendra Pratap
 <shivendra.pratap@oss.qualcomm.com> wrote:
 >
-> >>
-> >>         INIT_LIST_HEAD(&reboot->head);
-> >> @@ -82,19 +87,17 @@ int reboot_mode_register(struct reboot_mode_driver=
- *reboot)
-> >>                 if (strncmp(prop->name, PREFIX, len))
-> >>                         continue;
-> >>
-> >> -               info =3D devm_kzalloc(reboot->dev, sizeof(*info), GFP_=
-KERNEL);
-> >> +               if (of_property_read_u32(np, prop->name, &magic)) {
+> >> +static int __init psci_reboot_mode_init(void)
+> >> +{
+> >> +       struct faux_device *fdev;
+> >> +
+> >> +       fdev =3D faux_device_create("psci-reboot-mode", NULL, &psci_re=
+boot_mode_ops);
+> >> +       if (!fdev)
+> >> +               return -ENODEV;
 > >
-> > Please use device_property_read_u32() if you have access to a device st=
-ruct.
+> > This will always create this device for everyone who includes this
+> > module. Move the of_find_compatible_node(NULL, NULL, "arm,psci-1.0")
+> > call from probe() here instead and don't create the device if it
+> > fails.
 >
-> Ack. Can it go in same patch with the fixes tag?
+> Ack.
+> Will move both calls to init before creating the faux device.
+>
+> psci_np =3D of_find_compatible_node(NULL, NULL, "arm,psci-1.0");
+> and
+> np =3D of_find_node_by_name(psci_np, "reboot-mode");
+> --
 >
 
-I would be fine with it but it's more a question to Sebastian as the mainta=
-iner.
+On a second glance - and I may be totally wrong - would it be possible
+to switch to using the auxiliary bus and create this device from
+drivers/firmware/psci/psci.c? That would be even cleaner.
 
 Bart
 
