@@ -1,152 +1,233 @@
-Return-Path: <devicetree+bounces-252011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1264BCF99BF
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 18:17:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 652A6CF9B64
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 18:33:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0912D3029802
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:17:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2C19030A27FE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:25:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5981347FD8;
-	Tue,  6 Jan 2026 17:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4B535505A;
+	Tue,  6 Jan 2026 17:25:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hiMocbuo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fFFxiKYl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C0A346A15
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 17:17:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 249E435504A
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 17:25:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767719866; cv=none; b=ZrRWYyf1E1c770oqfYZu4fOJjpoeimUSwwqSNFC+r8sQbvmHAIsvFAFekrrOPquX/rYUXyIEMBe17emr14E/ucrvI4Uqj5w+K7j92PlSIrfJdlQmXlfWST64NVLgs5y9xzRmj7HSbKjPOtfoTU09HklREgaiFtrN+PU7+KBUIkE=
+	t=1767720319; cv=none; b=f7ffi7nnsx5gh7S1d2y9jqn+enW7zg/jjam+RFbLcdzwhheoWc+krvGwrkzx7jgvqmZyluJ0rceyXKgCcp4z9Mx9TmZJ+i7fB626zl+bGkyTiBKvU1QbC0kh/61weht9t3mFFqBjHql6ZYiSj+OKogMB89KgcK5bF/VlC//qO2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767719866; c=relaxed/simple;
-	bh=+i4yQ/J32R+PT8plwqXy9nxZsppdLI6MyqOJOxsX0UA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=C3F/f+SXIMmHh5FyRv1otm8gW5sw2vo/7us4BQb7+Q/6V8xtCXD76EolPaYMG2ltsUeeccUwNsPHcFl/2ktkYsmpYnY2sexhmqhdj2lkuwWZ2nX63Ij6SAuDRcALFe61xk9830xNbIDZ5LeFRPY0xGfxN2yq3vkyKBAsJpGJomk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hiMocbuo; arc=none smtp.client-ip=209.85.221.41
+	s=arc-20240116; t=1767720319; c=relaxed/simple;
+	bh=tCcT9CuvsYtUpH4bRca2Hk46wOMgoQvoRGaq1aAAZ5A=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Wm5tB2KKxgIxbFKsHLxSUPzpjz120P4XplxnQe7vK3rLv6/9vsf+ixM+iRqSWCdlZyPEHG8UzfvlsK9xzxEC739KG6DE72FVlpLNZHaO/rspVC/fn6rc8HpqebFA6OEYYxr9xf/P+fTwFoE2ejYRrZCN9e3Wt3SBtgvUyWJnYdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fFFxiKYl; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-42fbc544b09so796876f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 09:17:44 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-47d63594f7eso7635355e9.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 09:25:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767719863; x=1768324663; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=omNJI0np8/A37o5k8AFHebpXKnjsjMZumbvdbisQAi0=;
-        b=hiMocbuouq20a4E84kkzcpFy0wTyvjxkb19fqNq8MeOt0YbWw8Q0kVDMst9zcNlhc5
-         DSXmXs1jxCyxMGdojaqqNr96jmonOFPiBRV/8oXllmH6MTbdRnQZXOcol8Hsp6IwmMFj
-         MDFxHZCVakbJof1/o8Z45cKHCFzRCAp7tqS0ZETyLsbsef32GQ8+M6nRR0V+CuNphKD7
-         D5KrlwJx9S2es9QnZgLQl2YPIUS8PukX6U7D5+CLkgcsrbzSnXTXSGrH2VGKSnkcec1u
-         zNI47TMwOnGIKFkqXZjZYe3BK2cXq+ihYKfME1Kw3surlyM1kaGNpjSspwP9zEUeXRs+
-         wC8A==
+        d=gmail.com; s=20230601; t=1767720316; x=1768325116; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8xb4A0lF/nE9BbVopKVIphYtrXelnEWlhg1lys9zj5g=;
+        b=fFFxiKYlZ91hsOA/ZqruLYKEiJCPnZ1bkaxK18lvOwudoOrpCEh5curf2ntLPhxOBB
+         W9fdX8q4AvhHR8gMHcNuOvKlRgLlfENgJAgCZ2eoyMuS2R4n9NKzsr/51MmhHboW3sn+
+         b0dppmBiTbfQs+otgtSP6lxumdogRcZMlb+xnwE0qrBYhc6w+ta+jt3b+3j8k9htx4xb
+         7gLAJBL/JR1+fuVsf6pS2jXro0gpIwSA78HfFtx0wsgpN/c6/fS9X1WvlIxR0XU3to0h
+         onmE3zM8cquqRpyfxg+FxBVVruCN6PtTxQHH6V2Gjc5v3SlRNfLYF56rjD/jSpCvghi5
+         +ICg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767719863; x=1768324663;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=omNJI0np8/A37o5k8AFHebpXKnjsjMZumbvdbisQAi0=;
-        b=jwfRtcPEeQoN+f0rYPI1DcBlNV5ngUk5stFHJvamo+isycKeSBhuzyP2nXmFd7L4w6
-         dekE9e+FFwH7Qc8uJ5Jmi9D8GocjxbncnFSnquUzBfRQkze8bgIUVxMirQzilpiGsyyT
-         QqleMiI66EdbIKBzPvTY+8wg3JGFr9Lbi/IMnjmE0+8eu1av9JpzcU3eydmE6+QECowT
-         ltI1gCW8IBAscJW/+nLeOkiMFUj0HdVJ14uh9L7Hw83dSWC4fTOQxmKe1aYypifTEyGI
-         9s1xH2yhcYa3h4lX6jE6xZ9c44c1LhQnbd12Kx0p8vloyJMRSBq2s+ckGacfcllHp813
-         uiUw==
-X-Forwarded-Encrypted: i=1; AJvYcCUvk1UrB9Fy07j2k0FW7fdribQaACreFgEnJh74NJs9tkPj7XCdxJFB8fUGe2U2IS4gDDcRmG0ddCVv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXeEIKZ783hNoZdvE4G2+XJrt4Pw3mw9fQbAU3Zi83u2yoI7ib
-	SnBsVq5LL1R3k4eViwHgeF9wfe5PG8XtdyigRc0YxyDLY8CUqkLIXHPni9QiWry4zSU49cGtttV
-	6plzGFpVOMfUd7MN/EG/2sTvl7PWQHzo=
-X-Gm-Gg: AY/fxX7e+v/s7acXSR2qXiRoojXm6kGd0qoKWRAQuY0vnujyehrNHX0XghK79IwPBd/
-	IZ06TkuOepSU2aH8+FvgBKUE2RdLZ6G03bbELlkvvs2Sw/EgliOXm4iz3h1YGVXBg11obe/KSFB
-	rVkB+r1Ox7Cltw0FbGONBCrGOE5Pwb1PiViLn0XUGUcyeWTBszgz01to0fcaiioEbMZ7s8N3qqY
-	5Ibl2ssetHC1fM0c3vSKvVL1XQG+AlPCFcUtgmH1z9rYG4xl8ppvMTEzOIX4Jn+CX8MZrvC0eHh
-	DfrVjAonvrlYjfn70BnmgpY+NWIBrv3eSBGJ7gJswappvM+oSo2nylQwDz76RIUbf9bLZu2JlnK
-	3NP4iUWpHkjgD
-X-Google-Smtp-Source: AGHT+IGQllKLGXZw9XFWVTR0oSm/60fESFM2NQBn5PGd7ftNxtYras13avla7VpSZwBYhVejhwO84IWLhs7cyffC9Hk=
-X-Received: by 2002:a05:6000:604:b0:430:fc5a:40ac with SMTP id
- ffacd0b85a97d-432bca566d2mr5730225f8f.54.1767719863134; Tue, 06 Jan 2026
- 09:17:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767720316; x=1768325116;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8xb4A0lF/nE9BbVopKVIphYtrXelnEWlhg1lys9zj5g=;
+        b=Jq6ZeKFWdlxCX+yJsATyAqr5I5TqR1WIHf+2WItu55TQVueCkFPAp+WCGyQxjeczEI
+         PpN8ah9FHic8nhfH+BHy+ZDke5N4Zg7OTombKxeA8HQZSoTIOlAw2BwEMX0v5S5LFL35
+         QopVa2q/kb/TqdHUCo4uASo587525diPDA3Jt5Q+8lO7xn8eTRRTue9GK7Xzn5Hu2paA
+         BSP0TCC0Xg601/T5y7+ihrGnSpbogohq8KN2f2OVUfi/Uye6HeoPTrqcqT/12EodxrNM
+         XEtOhOcITg0y2gUF2HNeM02Llmjgs3eyxF1WgNPjyxjK7BkmoI/CrT5CrZOWXDtv9cQF
+         ZIDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV4jaDCg4bFQewJD+uKT+WLM8QMXmC1IpLR5wcSKXRFzyhYrOnGcI/CFdFI5r9oN8ELNciPkmK3CXb3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdfU6p8vZ8SMvRq5iwc9QLkwrr6B+tiegwegpOhVMu84RS2DtH
+	xf4lqFX0poTpV7ZubgGM0NUzHxcvzFGknYoJjpU8PITbgRuZcrN1hdaF
+X-Gm-Gg: AY/fxX4gQDV/FtkQWPGIMW17+v7cc5wtf4aq+X0R/7/bwHt1HE5Qlal+Hmf3LLpuf7A
+	6rN3EpjbCjHm/A4aAxdvvCQi+PdI/k3GvnuopLZO7YkD+yj/bbjPmf1GOjt3DdCOb+8XomQKrCu
+	/oW0uqiIOts743/1uDEYyfF7Ki5tTBXJ/QBqGXGspLp9uxd1VjqOzXJWQ+wLfdf771n/2Ci0E0z
+	GBQoOZ6ODxjKCsd46MhMPaoAoE70k5sVizMo4Jo1E74nEvlaIHldNZ7wwP8lhdxuJ8WHS6gFu9a
+	R2pW5Ea933GFH5ufolrzeyACe5gX19UdMPeb4R0KR8CpqsMIAq8DFS8s8ipvNLPTWU6LiZUZpBT
+	0ZGtv33qpnRX6M8giZ47LJ0X4wPQDVR96UiKtlcS5KWY2gz+9rZvUDAWXF4623MR+Ke2riOiIHB
+	GcMxfk3TLL9+Tb/pOXX8hdjGKfdppb/xMcbJaOqKp8cUxPBzRB8iXYD21QSk3KiCi+Ne8=
+X-Google-Smtp-Source: AGHT+IEvK8nZQ8Bc8MX50o5ptPX6sBLi3/yAGjyPkCLCTY4+WRgF1rxL2hZZbDdIz4icxskuPIqEFQ==
+X-Received: by 2002:a05:600c:1d24:b0:479:2a09:9262 with SMTP id 5b1f17b1804b1-47d7f077676mr42759535e9.9.1767720316324;
+        Tue, 06 Jan 2026 09:25:16 -0800 (PST)
+Received: from 0.1.2.1.2.0.a.2.dynamic.cust.swisscom.net ([2a02:1210:8642:2b00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f9d8576sm24429935e9.1.2026.01.06.09.25.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jan 2026 09:25:15 -0800 (PST)
+Message-ID: <979eb1054dbe116c2c8bb9920e94e3a93db5346c.camel@gmail.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt
+ Trigger
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>, Nishanth Menon
+	 <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
+	 <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Dhruva Gole <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>, Kendall
+ Willis <k-willis@ti.com>,  Akashdeep Kaur	 <a-kaur@ti.com>,
+ linux-arm-kernel@lists.infradead.org, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Date: Tue, 06 Jan 2026 18:25:15 +0100
+In-Reply-To: <20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
+References: 
+	<20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251230115814.53536-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260102-quirky-hornet-of-downpour-ddda69@quoll>
-In-Reply-To: <20260102-quirky-hornet-of-downpour-ddda69@quoll>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 6 Jan 2026 17:17:17 +0000
-X-Gm-Features: AQt7F2q6b-vi36w4beMQgm0yTXwRcoRzoZCOAWuXYi8o96TqepqD1zW847R3kRw
-Message-ID: <CA+V-a8sY0QneUWQ4A0XCKUGPL8VYkU5NQE2h_cOK=06JG_1c2g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: can: renesas,rcar-canfd: Specify reset-names
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+Hi Markus,
 
-Thank you for the review.
+I'm sorry my patch has caused regression for your use-case!
 
-On Fri, Jan 2, 2026 at 11:16=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Tue, Dec 30, 2025 at 11:58:11AM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Specify the expected reset-names for the Renesas CAN-FD controller on
-> > RZ/G2L and RZ/G3E SoCs.
->
-> You should explain here from where you got the actual names.
->
-> Otherwise you got following review:
->
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > v1->v2:
-> > - Moved reset-names to top-level properties.
-> > ---
-> >  .../bindings/net/can/renesas,rcar-canfd.yaml  | 33 +++++++++++--------
-> >  1 file changed, 19 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-can=
-fd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > index e129bdceef84..9bfd4f44e4d4 100644
-> > --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > @@ -122,6 +122,11 @@ properties:
-> >
-> >    resets: true
-> >
-> > +  reset-names:
-> > +    items:
-> > +      - const: rstp_n
-> > +      - const: rstc_n
->
-> rst seems redundant. _n as well. Are these names from datasheet? How are
-> they called in this device (not the soc) datasheet exactly? Because it
-> feels you use pin or SoC names which is not useful.
->
-rstp_n/rstc_n are coming from the SoC HW manual and is already used by
-the driver (since commit 76e9353a80e9 "can: rcar_canfd: Add support
-for RZ/G2L family"). The reset-names existed previously but were
-dropped as of commit 466c8ef7b66b "dt-bindings: can:
-renesas,rcar-canfd: Simplify the conditional schema". Let me know if
-you want me to rename them but the driver will have to maintain the
-backward compatibility or do you want me to drop this patch.
+I think we would need to discuss this with TI via our FAE, because the chan=
+ge
+in question has both been discussed with former FAE and the technical team
+behind, and adopted in TI SDK.
 
-Cheers,
-Prabhakar
+Or have you already discused this with corresponding TI HW team?
+
+Which hardware is affected, is it the official SK-AM62A-LP?
+Is MMC2 the SD-card?
+
+On Tue, 2026-01-06 at 17:22 +0100, Markus Schneider-Pargmann (TI.com) wrote=
+:
+> Remove Schmitt Trigger from mmc pins. With Schmitt Trigger enabled
+> u-boot SPL is not able to read u-boot from mmc:
+>=20
+> =C2=A0=C2=A0=C2=A0 Trying to boot from MMC2
+> =C2=A0=C2=A0=C2=A0 Error reading cluster
+> =C2=A0=C2=A0=C2=A0 spl_load_image_fat: error reading image u-boot.img, er=
+r - -22
+> =C2=A0=C2=A0=C2=A0 Error: -22
+> =C2=A0=C2=A0=C2=A0 SPL: Unsupported Boot Device!
+> =C2=A0=C2=A0=C2=A0 SPL: failed to boot from all boot devices
+> =C2=A0=C2=A0=C2=A0 ### ERROR ### Please RESET the board ###
+>=20
+> I bisected this issue between u-boot v2025.10 and v2026.01 and found the
+> devicetree merge to be the problem. At a closer look I found the
+> k3-pinctrl.h changes. Disabling the Schmitt Trigger fixes the u-boot SPL
+> failure to read from mmc.
+>=20
+> Fixes: 5b272127884b ("arm64: dts: ti: k3-pinctrl: Enable Schmitt Trigger =
+by default")
+> Signed-off-by: Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
+> ---
+> =C2=A0arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 36 ++++++++++++++++------=
+-----------
+> =C2=A01 file changed, 18 insertions(+), 18 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dt=
+s/ti/k3-am62a7-sk.dts
+> index e99bdbc2e0cbdf858f1631096f9c2a086191bab3..9129045c8bbd3a83dba6ff6f2=
+148a3624b91b546 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> @@ -315,30 +315,30 @@ AM62AX_IOPAD(0x0b4, PIN_INPUT_PULLUP, 1) /* (K24) G=
+PMC0_CSn3.I2C2_SDA */
+> =C2=A0
+> =C2=A0	main_mmc0_pins_default: main-mmc0-default-pins {
+> =C2=A0		pinctrl-single,pins =3D <
+> -			AM62AX_IOPAD(0x220, PIN_INPUT, 0) /* (Y3) MMC0_CMD */
+> -			AM62AX_IOPAD(0x218, PIN_INPUT, 0) /* (AB1) MMC0_CLKLB */
+> -			AM62AX_IOPAD(0x21c, PIN_INPUT, 0) /* (AB1) MMC0_CLK */
+
+according to datasheet, MMC0_CLK should have address 0x218 and it's the bal=
+l AB7.
+MMC0_CLKLB is not present in the datasheet and AB1 is actually VSS. 0x21C a=
+ddress
+is not documented.
+
+Something is not right here...
+
+OK, grepping TRM for CLKLB, one can conclude that 0x21c is actually MMC0_CL=
+KLB.
+
+Could you please try to modify 0x21c address only? Does it solve the boot p=
+roblem?
+
+> -			AM62AX_IOPAD(0x214, PIN_INPUT, 0) /* (AA2) MMC0_DAT0 */
+> -			AM62AX_IOPAD(0x210, PIN_INPUT_PULLUP, 0) /* (AA1) MMC0_DAT1 */
+> -			AM62AX_IOPAD(0x20c, PIN_INPUT_PULLUP, 0) /* (AA3) MMC0_DAT2 */
+> -			AM62AX_IOPAD(0x208, PIN_INPUT_PULLUP, 0) /* (Y4) MMC0_DAT3 */
+> -			AM62AX_IOPAD(0x204, PIN_INPUT_PULLUP, 0) /* (AB2) MMC0_DAT4 */
+> -			AM62AX_IOPAD(0x200, PIN_INPUT_PULLUP, 0) /* (AC1) MMC0_DAT5 */
+> -			AM62AX_IOPAD(0x1fc, PIN_INPUT_PULLUP, 0) /* (AD2) MMC0_DAT6 */
+> -			AM62AX_IOPAD(0x1f8, PIN_INPUT_PULLUP, 0) /* (AC2) MMC0_DAT7 */
+
+All the rest actually have ST enabled on PoR according to TRM and I suppose=
+ BootROM
+would have had hard times booting from the affected MMC device if it would =
+not be
+the correct setting?
+
+> +			AM62AX_IOPAD(0x220, PIN_INPUT_NOST, 0) /* (Y3) MMC0_CMD */
+> +			AM62AX_IOPAD(0x218, PIN_INPUT_NOST, 0) /* (AB1) MMC0_CLKLB */
+> +			AM62AX_IOPAD(0x21c, PIN_INPUT_NOST, 0) /* (AB1) MMC0_CLK */
+> +			AM62AX_IOPAD(0x214, PIN_INPUT_NOST, 0) /* (AA2) MMC0_DAT0 */
+> +			AM62AX_IOPAD(0x210, PIN_INPUT_PULLUP_NOST, 0) /* (AA1) MMC0_DAT1 */
+> +			AM62AX_IOPAD(0x20c, PIN_INPUT_PULLUP_NOST, 0) /* (AA3) MMC0_DAT2 */
+> +			AM62AX_IOPAD(0x208, PIN_INPUT_PULLUP_NOST, 0) /* (Y4) MMC0_DAT3 */
+> +			AM62AX_IOPAD(0x204, PIN_INPUT_PULLUP_NOST, 0) /* (AB2) MMC0_DAT4 */
+> +			AM62AX_IOPAD(0x200, PIN_INPUT_PULLUP_NOST, 0) /* (AC1) MMC0_DAT5 */
+> +			AM62AX_IOPAD(0x1fc, PIN_INPUT_PULLUP_NOST, 0) /* (AD2) MMC0_DAT6 */
+> +			AM62AX_IOPAD(0x1f8, PIN_INPUT_PULLUP_NOST, 0) /* (AC2) MMC0_DAT7 */
+> =C2=A0		>;
+> =C2=A0		bootph-all;
+> =C2=A0	};
+> =C2=A0
+> =C2=A0	main_mmc1_pins_default: main-mmc1-default-pins {
+> =C2=A0		pinctrl-single,pins =3D <
+> -			AM62AX_IOPAD(0x23c, PIN_INPUT, 0) /* (A21) MMC1_CMD */
+> -			AM62AX_IOPAD(0x234, PIN_INPUT, 0) /* (B22) MMC1_CLK */
+> -			AM62AX_IOPAD(0x230, PIN_INPUT, 0) /* (A22) MMC1_DAT0 */
+> -			AM62AX_IOPAD(0x22c, PIN_INPUT, 0) /* (B21) MMC1_DAT1 */
+> -			AM62AX_IOPAD(0x228, PIN_INPUT, 0) /* (C21) MMC1_DAT2 */
+> -			AM62AX_IOPAD(0x224, PIN_INPUT, 0) /* (D22) MMC1_DAT3 */
+> -			AM62AX_IOPAD(0x240, PIN_INPUT, 0) /* (D17) MMC1_SDCD */
+
+All of these have ST enabled on PoR, according to TRM.
+
+> +			AM62AX_IOPAD(0x23c, PIN_INPUT_NOST, 0) /* (A21) MMC1_CMD */
+> +			AM62AX_IOPAD(0x234, PIN_INPUT_NOST, 0) /* (B22) MMC1_CLK */
+> +			AM62AX_IOPAD(0x230, PIN_INPUT_NOST, 0) /* (A22) MMC1_DAT0 */
+> +			AM62AX_IOPAD(0x22c, PIN_INPUT_NOST, 0) /* (B21) MMC1_DAT1 */
+> +			AM62AX_IOPAD(0x228, PIN_INPUT_NOST, 0) /* (C21) MMC1_DAT2 */
+> +			AM62AX_IOPAD(0x224, PIN_INPUT_NOST, 0) /* (D22) MMC1_DAT3 */
+> +			AM62AX_IOPAD(0x240, PIN_INPUT_NOST, 0) /* (D17) MMC1_SDCD */
+> =C2=A0		>;
+> =C2=A0		bootph-all;
+> =C2=A0	};
+>=20
+> ---
+> base-commit: 6cd6c12031130a349a098dbeb19d8c3070d2dfbe
+> change-id: 20260106-topic-am62a-mmc-pinctrl-v6-19-next-2f3e5563fbb5
+>=20
+> Best regards,
+
+--=20
+Alexander Sverdlin.
 
