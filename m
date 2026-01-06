@@ -1,214 +1,254 @@
-Return-Path: <devicetree+bounces-251775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72511CF6D2D
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 06:56:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66433CF6E2A
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 07:23:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5AD7330185D3
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 05:56:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7D7523002D3D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 06:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A9702C21C2;
-	Tue,  6 Jan 2026 05:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B57C3019B2;
+	Tue,  6 Jan 2026 06:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fM3e38tu";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aCSvtNRJ"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="jMlTMMwH";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="XdFvttLg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A13EB274B3B
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 05:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C583A1E9F
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 06:22:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767678959; cv=none; b=oyHl3P2McT2yng4AQFZHpOo/s+b8NYE7510T3Q+4A5Wh788q0tC3/SNObCmUFSrwsP/pDpNFjnTVoAuElPIvB3TEEq4JKEiG/R7VGTbwfupTdprqXaZFOVWlUzoWo1wIl3Onijn7F9NIeMldrcw7+MxERRcUV48lEJ7sqrmTFqs=
+	t=1767680561; cv=none; b=TMz5mV+aalehcrUF/7bQtxOJN/IcVXHZ5RB3Jnbxk/JJ2VrOhfytOFxocTaPPvke0wXwzdb9HgorySGifSLWpE9/sai0r5ebUJ32N83FGGzRHmc5TArpMRRvHR1dNvWxEu00tPWkcawy+z87o/tqirsMl0ABzS6RtbyLDc0e3Fw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767678959; c=relaxed/simple;
-	bh=rt/LoXHXTMlaubi2OtDu5txWrkRlBcz3naFRv0gOz+o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=drJtCyoODQZKM7RGt4mu0TiZmnegkfYi+Kjs7FxYi4k2ykCYIQ1xCbHYdaDmq97I4VwJ0yvBxNgOeSol3Hdj7ctcGhrMo8yTRLpKyPbNQxO2lxwTYP+3jaSAdaD7npK/FTRUO5DqXF15whIyk28FiK99nJrGWdp4sPgV9E130Zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fM3e38tu; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aCSvtNRJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6063Q1D42429743
-	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 05:55:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=/q01XhRxVgeVnOfeWGaC7t9O
-	fwilPcF4MbNkT1jVGw4=; b=fM3e38tuPq8eNzH7IGqgaOcFuq1Ld0sw5pr/PtWh
-	Z2Hgs7Y3vn1gYCd1svr6f9FRy1N7haoDLWgoJGz78yaiErdX8gSgAL4So/wjRHUY
-	Lpyufyt8VlqtnXXBnwKmgMotHeNfNpUQvPInuzamCV/g3s+5AKRJ14cGTJZum9rS
-	ahGH+5X0qMA3oGG8P5Lq3Q+raFWLNlDyBX6Bb7wOQ41QRAlF/ekDKbeNSKaDdKEZ
-	VNUqHWyzuLNmPE64G59VKbuNy6Pc6zJQagrzdVhFBaaTVO5aSuoUKmxlr+zG2MNY
-	t/0eyf0+9eT3kD3k9wwzQ6eNHaSTqnc+dDfCF5yNBQvODA==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgr738pyy-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 05:55:56 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-34c43f8ef9bso2230175a91.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 21:55:56 -0800 (PST)
+	s=arc-20240116; t=1767680561; c=relaxed/simple;
+	bh=WatYTnosXf5wTqbVsuOqKj6mILafMiKiMkLhYzWwNkI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=goMrQSs9tsTqOswItRaU907X84vgjfRl65kowLp7SdXhqHG4O1STVQgLzT0JDoxgmbYNktu5RPafb+ht/FNgZPmiwMMDq465lDH7kfU249o58v9U9HQo+LEtV03uuCLYWyizwHq4/cuKw04ueipoCjITiTZ9mrO0qwJ8Jt9sZYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=jMlTMMwH; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=XdFvttLg; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1767680558;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=G1iCm8y4kbWCIcgUpU9S1KPoq4Lc5Fqr5q19Pt4lfz4=;
+	b=jMlTMMwHY5qlBu137aLsy+gU5Z6UdXQMZPTYlSLO7GSImr+LTyo8mv2FNJjvcDL9UmtH+i
+	VHs8qq5Oeot4EswNBABocagCXch1E1CGKmH4m4sqztgtuXlk+TDltHehBPWuaGAEhf769+
+	XGr6cIexQ5OcHXkcbdPMvdG31yPCCXA=
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
+ [209.85.214.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-649-5OeXrF0dOBSOhc6VuvyhtA-1; Tue, 06 Jan 2026 01:22:37 -0500
+X-MC-Unique: 5OeXrF0dOBSOhc6VuvyhtA-1
+X-Mimecast-MFC-AGG-ID: 5OeXrF0dOBSOhc6VuvyhtA_1767680557
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2a0f0c7a06eso13426745ad.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 22:22:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767678956; x=1768283756; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/q01XhRxVgeVnOfeWGaC7t9OfwilPcF4MbNkT1jVGw4=;
-        b=aCSvtNRJULRXkCKjPoY84ip/lyzjCwtOGgRFx4SDQqTt84MSoNDRn4H/NKRQd067I6
-         HswQI30Bncth3qBFgIdaxJQ0MwNUEtpDJYbsH+s3DYzb7uKRJCoSpxugOGdfX5QqnolF
-         5o7psJyOPBrqJLIMWjRiWWRJfQ3oqRGtniwFCAZUO+cVerhvODMp25UTbU1yDFKa5a+q
-         YvUJDN9Ef+zv5l0Aed+LPFGh+YAV4sEz7Rp//5OvDAIOAjYatZq3oJ7WWY1rWnwWVTp4
-         E+kU9s1EZMN4IJR1G99s021+rV02IzdMC8RBVNwJxNmVMJAPPKfGHT9G+DJUem50/KP9
-         fWIg==
+        d=redhat.com; s=google; t=1767680556; x=1768285356; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G1iCm8y4kbWCIcgUpU9S1KPoq4Lc5Fqr5q19Pt4lfz4=;
+        b=XdFvttLgAtQ+cFZIXWcRZ2rqzLGhErVDnUXNM6JnIRlnJOcHBRJjnOHUAhku30G3pP
+         FKLH+I9cUTwzco7XqE6ODPEzUVFboOmMLS5mB0OZ82mX/RaEDUstvF1U8eAzxuJzKm8C
+         sv6As1nvxDz6nd7eFlNlPpyeK6lEmmZNSa1qPVoBK6lHyjQFoQxsS/I3qAkm7bRtUMWy
+         8daTAS6IBxJ0khfeLW8vZnJ02d6M4c6bbZhkPgdwIx1a5RRTLBw0xN1cTyl+vIcXh/oF
+         RPn9wuO/srpET6PlEIWyFVScGT3HJOV2IA+nVkorqLpWc2Yg/lW8u+I1LnoLZuQk00Wo
+         YWUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767678956; x=1768283756;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/q01XhRxVgeVnOfeWGaC7t9OfwilPcF4MbNkT1jVGw4=;
-        b=vkpEtv4nCC0PYvV7wARXGBM5mkTn2ni6IxIORmmsFjw/1uaab7WPpi5zYJTmRPMJ5c
-         yrL0njJm7FD59LdWXXt7ss/mLXxx9omuKYqxv9t7VsFvWPX5DoIQ6WrIE0QvCDVl/rKX
-         nrtxarDUpIj9g/yoZVvp1PlX0l8uxo8EpomSSwunKLjaPykhkCjspypkHVimkDZdj6vA
-         MH2XXDn3oKDz9XwUgSmigT+i9qGGuXoo/YXcOtOsmH0O4wJNeCSF3MXAa2Y8Zt555HZA
-         qfAE440y4aQzPSZpXgvLuCQyXEz32KRbLfyCT0TNAVgDb8P0GWDP5spNLMeltRkxdKeA
-         tQtA==
-X-Forwarded-Encrypted: i=1; AJvYcCXaxZZIOIIpW5wuc8zqUOAZtn7cN5fxGyhfx4gdjPc6VY0DU5VS0O06GI3l95AlIOo+nNS5GXYptVl5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSziaQKmXGxU8ZhV/gxMEjRyJdpVpWl49vYcXGpKx9OO11OjxP
-	ls0qIsWwIQ14vJCpBc+ACUKT5syt1ZPGw0K9Q6UzeZUFd97K7HSKUgcOkYO8+oFqjKtyv0KbXVM
-	cqjLQoLXz2WvDruASzdCR798JtohP9uAWbE9h9dQw00sXLLthTXS/wQsFEPbePuGo
-X-Gm-Gg: AY/fxX7eO30Rnga8TL+eGDR7hYYABWhmB/vZaMBT8yUe/T8Hf95zkoxYx5BZ0PYFVQ4
-	h4a0WIpEihELqi8c1BDZkSzVX5Ar4DCGsHKv6g6vR6MLW6RjRNcbcL97SJUle7DoJjKaudSr+PU
-	WGuda+o+I7Et1Y/5l2r2ZQ7ZdpigdD8WCvOpamXpjoyaA9qUOfR3u4MuFiq3Y0ORtbH/AENrjou
-	h92w85GkjWfhX2iZ5kESj4YWOEAq11OUA9EHA91L+Lgan8P73JKI6SHgAXbGzyazHg0oO7mKmP+
-	svZpiQQsKNpqj9OmC0A8TJrG3h2Dy0Y98lOTAdIJclA90ccrCDZ528ohb4CWMBDY1ESd6TucIvB
-	uNAmnUsC1E5rbpNWCasxFMoq4c5q3LRF4ZPuFWbGhFps=
-X-Received: by 2002:a05:6a21:7486:b0:366:14b0:4aff with SMTP id adf61e73a8af0-38982b715d1mr1734121637.38.1767678956163;
-        Mon, 05 Jan 2026 21:55:56 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFDN3Pd20TtRRi017rdEF4LM4VhLCzP58V1UhTLFTEXu903JedqbwdMGPxflYM6oezPUSGUpA==
-X-Received: by 2002:a05:6a21:7486:b0:366:14b0:4aff with SMTP id adf61e73a8af0-38982b715d1mr1734092637.38.1767678955647;
-        Mon, 05 Jan 2026 21:55:55 -0800 (PST)
-Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c4cbf28f678sm1171577a12.3.2026.01.05.21.55.51
+        d=1e100.net; s=20230601; t=1767680556; x=1768285356;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=G1iCm8y4kbWCIcgUpU9S1KPoq4Lc5Fqr5q19Pt4lfz4=;
+        b=LicuwfPLce8/pjH1nqF84CxEtET4dmvIVaISZOUXmhELM2YwrD+WgecnZU/hPpZm1l
+         mOqNn/VbPsH3oNTp4mal9sxeGzfh8nxio78Z5IzucveY9HBs3qBDcIoKzPmrzoXZxg7K
+         dd7R3ru8a4+UxkvlsxN+ERv8OolQ2yoT6PBYBdBnH4I5bDsJ9Gc4lHglXB8l2I7ystCO
+         76y9SaaAONnYPAbDbv5tu/jxtDj4tGzvTQY+WoPjuWETxdjAVbfX3O7vnt0rgdcJmG2Z
+         DWUswc+pq1PLGPCirWp7z4nsRMskd8/wRKMPjwqDyle/bE190HnnWEbEZk9D+rsNtnEy
+         /5OQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVBnrUe/+woxRMPvOtdSYMi2nv7c/12pFSrj6of7hrfRdkUTrTss3HKzXRbRZo+t/IQIhZ3fqzWn46Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzm4JSxhyXfPJk5JSiVXi7Hlhnu24LFbde+pDfibU7Qul89tQqA
+	zdn1iSyGz1fE2y1GAZ3DabGfNbNo4mdrphePXgektgzS0s7VhbrvPWBLast1dtTvSRa6r/enRch
+	rCHXOjB1UiPLz+Nqb4BAGvbCX0Y8staQbxI7ylTYqiuBdTKdL/5FMi8TbN6Tm/xulBe5Zbi/oEw
+	==
+X-Gm-Gg: AY/fxX4a4YiX9S+POYQsZxsb3CwJPXVYYQEfYrrUOp6VLSu45VlJkuji5af+K8TF2BC
+	+h5tp8dMq0M+Z3PjisK0bdKAJKlk/bzLeb5aCiYn6E20nvo5yNa+cDY0NRBizqKqHfkRmiLUZWb
+	f6ZHf6v0am0VRt9jX4Cq/ylHZukQJza1pHe6PJoClNuJb8iDW8ogQ9hSq9fMPPedk2Jb814o7B8
+	HYZBjUhs8aaN1zxQpSLYIIBHpr3fhFIqTUVBg6B84hom8kywCAIBolOxlEMImxXN497sx1lqdXW
+	O4iFTeG55+5rVm7ghCCDqVMv87Jhg1AbCbzzqKCPahfimTh2NfqPCXyM4/EDq7+bsfHuyA9xHaq
+	a
+X-Received: by 2002:a17:903:38cc:b0:295:fc0:5a32 with SMTP id d9443c01a7336-2a3e2c8edfemr18998195ad.3.1767680556204;
+        Mon, 05 Jan 2026 22:22:36 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHjkYzfagGmKLQPkTpXjihNKVxM4m77yLyUH+xkoj2AwvmqMvu52zZRrnKlXNZzGMaZuNwW/w==
+X-Received: by 2002:a17:903:38cc:b0:295:fc0:5a32 with SMTP id d9443c01a7336-2a3e2c8edfemr18997735ad.3.1767680555369;
+        Mon, 05 Jan 2026 22:22:35 -0800 (PST)
+Received: from localhost ([209.132.188.88])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cb2f8asm10548925ad.57.2026.01.05.22.22.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 21:55:55 -0800 (PST)
-Date: Tue, 6 Jan 2026 11:25:49 +0530
-From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
-        linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v8 0/2] Add support for Gunyah Watchdog
-Message-ID: <e9e7dbbf-f7f0-4b66-9e3f-7578441dfc5a@quicinc.com>
-References: <20251118-gunyah_watchdog-v8-0-e5de12e2eef5@oss.qualcomm.com>
- <6a8f5d62-f6ea-44b3-9baf-acfbc1e58efe@oss.qualcomm.com>
- <992d46b7-b053-4a9e-ba04-f5653525a891@kernel.org>
- <43e48560-2848-4474-b858-a3d15944e2ee@oss.qualcomm.com>
+        Mon, 05 Jan 2026 22:22:34 -0800 (PST)
+From: Coiby Xu <coxu@redhat.com>
+To: kexec@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>,
+	Baoquan he <bhe@redhat.com>,
+	Dave Young <dyoung@redhat.com>,
+	Kairui Song <ryncsn@gmail.com>,
+	Pingfan Liu <kernelfans@gmail.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	linux-kernel@vger.kernel.org (open list),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE)
+Subject: [PATCH v2] arm64/kdump: pass dm-crypt keys to kdump kernel
+Date: Tue,  6 Jan 2026 14:22:30 +0800
+Message-ID: <20260106062231.448170-1-coxu@redhat.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251226141116.1379601-1-coxu@redhat.com>
+References: <20251226141116.1379601-1-coxu@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <43e48560-2848-4474-b858-a3d15944e2ee@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=QrxTHFyd c=1 sm=1 tr=0 ts=695ca3ec cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=H7LiKOkp3v_ihm3-CiIA:9 a=CjuIK1q_8ugA:10
- a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-ORIG-GUID: LGdvBbQrS7lKGGD6Dsg4GYWCj4vKe62a
-X-Proofpoint-GUID: LGdvBbQrS7lKGGD6Dsg4GYWCj4vKe62a
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDA0OCBTYWx0ZWRfX4ey39aBD5O7J
- W1nIjxdauzLbknOstTSk1CmJQjEBKbOyJMSIaZh+0cUSrVmM0dvnalaMFEGMgb/zEeV0CYeVfSj
- LGJGutHVflmWmjxv/ARrfVJLQjeda/rdeqoFquiUWMaPD9OVVUHIHfTR1ou3/uysbMRXBWARooD
- lmQ2LtsPitON+7bEmlzwK3D3HF733rzORS90cmtyzXAQ3NY+sCszllDiRT7Faogu91mTLrEFlSr
- lsHnPv+f3cflGAvyeN8YUHIFAn3qpsZdXLohP00ar8ZrTJcJXFyw0v/7ULsPIdf78ZOCe6a08zh
- ynD408bcFbh90rOnmxEiYDvQkzUT5YFLT+aPgPnIWGiplu/S4flEcIFZVYnfOEPYXjU669HawuO
- lyrXUDzB7P0EKKevDa9AJztUbW/VM8jSkBWm9PG/WvWgtnd86M77V1/PGR1EOML3u0EfEAPzuWA
- AkgrV6KS15ZTmtZZoIA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-05_02,2026-01-05_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 malwarescore=0 suspectscore=0 spamscore=0
- adultscore=0 clxscore=1015 lowpriorityscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601060048
+Content-Transfer-Encoding: 8bit
 
-Hi Bjorn and Wim,
+CONFIG_CRASH_DM_CRYPT has been introduced to support LUKS-encrypted
+device dump target by addressing two challenges [1],
+ - Kdump kernel may not be able to decrypt the LUKS partition. For some
+   machines, a system administrator may not have a chance to enter the
+   password to decrypt the device in kdump initramfs after the 1st kernel
+   crashes
 
-On Mon, Dec 15, 2025 at 06:30:47PM +0530, Hrishabh Rajput wrote:
-> 
-> 
-> On 12/2/2025 9:29 PM, Krzysztof Kozlowski wrote:
-> > On 02/12/2025 12:23, Hrishabh Rajput wrote:
-> > > Hi Bjorn, Guenter, and Wim,
-> > > 
-> > > Just a gentle ping on this series.
-> > 
-> > It's merge window. There was no point in pinging just before merge
-> > window and is even worse to ping now. Nothing can happen with this
-> > patchset and such pings is only noise.
-> > 
-> 
-> Thanks for the guidance and apologies for the noise created during the merge
-> window.
-> 
-> > > 
-> > > Since the patches have received Reviewed-by tags from Dmitry and
-> > > Guenter, I wanted to confirm the merge strategy.
-> > > 
-> > > Bjorn: Are you planning to pick the QCOM SCM changes separately through
-> > > your tree, or would you prefer the whole series go through the Watchdog
-> > > tree?
-> > > If the latter, do we need an explicit Acked-by from you for QCOM SCM patch?
-> > 
-> > Where did you document dependencies between patches and any non-obvious
-> > merging? I open cover letter and there is NOTHING. I look at patch
-> > changelog and also NOTHING.
-> > 
-> > So if you tell us nothing, why would we care to think we need to do
-> > anything special here?
-> > 
-> > You must explicitly document every dependency, both external and between
-> > patches, in the cover letter. At least cover letter, some people (e.g.
-> > mostly me) don't even read them...
-> > 
-> 
-> This is a miss from my end. The following information should have been the
-> part of the cover letter:
-> ```
-> This series spans 2 subsystems and is split as follows:
-> - Patch 1: QCOM SCM - Register Gunyah Watchdog Platform device
-> - Patch 2: Watchdog - Add Gunyah Watchdog driver
-> 
-> Dependency:
-> There is no build-time dependency between the patches, but Patch 1 is
-> required for Patch 2 to function.
-> 
-> Merge strategies:
-> - Strategy 1: Take both patches via the Watchdog tree.
-> - Strategy 2: Take Patch 1 via QCM SCM maintainter's tree, Patch 2 via
-> Watchdog tree.
-> 
-> Since the patches concern primarily with the Watchdog, I suggest we go ahead
-> with Strategy 1. If this is acceptable, I request an Acked-by from QCOM SCM
-> maintainer for Patch 1.
-> ```
-> 
+ - LUKS2 by default use the memory-hard Argon2 key derivation function
+   which is quite memory-consuming compared to the limited memory reserved
+   for kdump.
 
-Is it possible to pick it up for v6.20? As mentioned above, both patches
-don't have compile time dependency, however the QCOM SCM patch is needed
-for probing the watchdog device.
+To also enable this feature for ARM64, we only need to add device tree
+property dmcryptkeys [2] as similar to elfcorehdr to pass the memory
+address of the stored info of dm-crypt keys to the kdump kernel.
 
-Thanks,
-Pavan
+[1] https://lore.kernel.org/all/20250502011246.99238-1-coxu@redhat.com/
+[2] https://github.com/devicetree-org/dt-schema/pull/181
+
+Cc: Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>
+Cc: Baoquan he <bhe@redhat.com>
+Cc: Dave Young <dyoung@redhat.com>
+Cc: Kairui Song <ryncsn@gmail.com>
+Cc: Pingfan Liu <kernelfans@gmail.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Coiby Xu <coxu@redhat.com>
+---
+v2
+- Krzysztof
+  - Use imperative mood for commit message
+  - Add dt-schema ABI Documentation
+- Don't print dm-crypt keys address via pr_debug
+
+
+ arch/arm64/kernel/machine_kexec_file.c |  9 +++++++++
+ drivers/of/fdt.c                       | 17 +++++++++++++++++
+ drivers/of/kexec.c                     | 19 +++++++++++++++++++
+ 3 files changed, 45 insertions(+)
+
+diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
+index 410060ebd86d..5f3bad8ca96d 100644
+--- a/arch/arm64/kernel/machine_kexec_file.c
++++ b/arch/arm64/kernel/machine_kexec_file.c
+@@ -134,6 +134,15 @@ int load_other_segments(struct kimage *image,
+ 
+ 		kexec_dprintk("Loaded elf core header at 0x%lx bufsz=0x%lx memsz=0x%lx\n",
+ 			      image->elf_load_addr, kbuf.bufsz, kbuf.memsz);
++
++		ret = crash_load_dm_crypt_keys(image);
++
++		if (ret == -ENOENT) {
++			kexec_dprintk("No dm crypt key to load\n");
++		} else if (ret) {
++			pr_err("Failed to load dm crypt keys\n");
++			goto out_err;
++		}
+ 	}
+ #endif
+ 
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 331646d667b9..9b6a6a402cb7 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -866,6 +866,22 @@ static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
+ 		 elfcorehdr_addr, elfcorehdr_size);
+ }
+ 
++static void __init early_init_dt_check_for_dmcryptkeys(unsigned long node)
++{
++	const __be32 *prop;
++
++	if (!IS_ENABLED(CONFIG_CRASH_DM_CRYPT))
++		return;
++
++	pr_debug("Looking for dmcryptkeys property... ");
++
++	prop = of_get_flat_dt_prop(node, "linux,dmcryptkeys", NULL);
++	if (!prop)
++		return;
++
++	dm_crypt_keys_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
++}
++
+ static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
+ 
+ /*
+@@ -1097,6 +1113,7 @@ int __init early_init_dt_scan_chosen(char *cmdline)
+ 
+ 	early_init_dt_check_for_initrd(node);
+ 	early_init_dt_check_for_elfcorehdr(node);
++	early_init_dt_check_for_dmcryptkeys(node);
+ 
+ 	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
+ 	if (rng_seed && l > 0) {
+diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+index 1ee2d31816ae..4bfb1ea5744e 100644
+--- a/drivers/of/kexec.c
++++ b/drivers/of/kexec.c
+@@ -432,6 +432,25 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
+ 		if (ret)
+ 			goto out;
+ 
++		if (image->dm_crypt_keys_addr != 0) {
++			ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
++						       "linux,dmcryptkeys",
++						       image->dm_crypt_keys_addr,
++						       image->dm_crypt_keys_sz);
++
++			if (ret)
++				goto out;
++
++			/*
++			 * Avoid dmcryptkeys from being stomped on in kdump kernel by
++			 * setting up memory reserve map.
++			 */
++			ret = fdt_add_mem_rsv(fdt, image->dm_crypt_keys_addr,
++					      image->dm_crypt_keys_sz);
++			if (ret)
++				goto out;
++		}
++
+ #ifdef CONFIG_CRASH_DUMP
+ 		/* add linux,usable-memory-range */
+ 		ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
+
+base-commit: ccd1cdca5cd433c8a5dff78b69a79b31d9b77ee1
+-- 
+2.52.0
+
 
