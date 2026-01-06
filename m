@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-251787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC984CF701D
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 08:15:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95FE2CF704A
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 08:20:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D96BC301720B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 07:15:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E49B830194E2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 07:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CAEB309F08;
-	Tue,  6 Jan 2026 07:15:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84CCA309F04;
+	Tue,  6 Jan 2026 07:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="A/exXuR9";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Tu4YHQFE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="T4jhs3gy";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GEq+3kAz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CD191E5B9E
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 07:15:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529382E0B58
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 07:20:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767683746; cv=none; b=YSuFo+X4Y9t7RKkxxihyE9V6mad/p0YviQi88zHx6zw8vMxDqBMtV3+eJ19gvR9VvUQCawUeKgXwmD5e0O70laHCB4Nsd8jjWO+elKcDFLHoSDIVQaTOzglik6+NlMQBD1KpyG+9+GNBFXg3F+BWi0pjsEhyeBBd1jjUZ9VOFz8=
+	t=1767684027; cv=none; b=DENGES9/xkIXY7OuNRcZ3kO+3+fs+YtGQ5O9nvlqVuXTsyo2PpL2k37YYih2+RxSxt5QOAqscD4vpsEnkQ+e7bpZweojqpmqLGVlU78jTh65x10PLqz6lxR2qqLba49vFCnskF1aZyQ/kJo1GOOWmAm6Nsuq748NhaXOUhqbS7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767683746; c=relaxed/simple;
-	bh=LhzZr6d5gdTfwWsSCX+9pdrVjJ+ifYQqt2dCU6U79Ts=;
+	s=arc-20240116; t=1767684027; c=relaxed/simple;
+	bh=ItmuxX+MzzvQfWCVopdfCIFDhkzg+TCMNMzEZ/jp2y8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YLuUsuyCWo88dI5x/9Z6ErT8yTTPnN2nGkHXmCgHY1zpTrRxDmF9qGJkci6I0CF4GKwiYfeJaEkJLaKsj9LgZHfhztC65R5zqIu88kJT+A/6zFi/HMVCF8ySrmARLRucJOJz9FBzRGmI75R4XPyjXpo7DA2k5wYg2Bcu2sRjkI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=A/exXuR9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Tu4YHQFE; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=uwgR9QMUKlOJHnP1y0dNYmPq1/k/8VxMTbVTP/hmZ0g2O1lj1d/RTVArPE7R2SU44TAJTgvgN9nM/O6W2wlSXh4QexEOFGIDT98YA67OSgY55HTb1psxO8Roe7t7rTPzTakraJsvISSbQLHy8J3jMD+zsqfcwsQGCgUK689fBOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=T4jhs3gy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GEq+3kAz; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6066t4RC3295007
-	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 07:15:43 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6063QYM53301307
+	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 07:20:24 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HNAp68+71SOrhc4XkrCjpRdxRU8+RksdS+2nj1HGzYA=; b=A/exXuR9w5k/orIa
-	JsSYfC712GVoCj/bNRtmJVs2urbVhzYRXqgpLz9/soP4/bgXdeDybZAR5dMzt3mu
-	cFvUzxv87aVs0g/re3MzDjkqNyFHOU+PE1VU4XAYQaPqscsCzdXZVhUnlDcf7nPg
-	zhFyIr0jqmRSbmpkDOmQUzz6iUiKF3E2gaMrRkdR/bKrgr63xGc/y6qhQuemG5nE
-	IZGDIeaFfQ1Ukp+xlism7+cfzqRubjLAdQ5IoiQRvoes4i5FrwZ9mnNUTOZUp6IU
-	TvIT5gK63oOY9K+jaQ11etfnd4B5YVUxRnTjP0VaZ810MRLOk3+FM86dz52NZSau
-	9bOuTw==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgwj001xx-1
+	Lrulz8LwVtMt0zjJZhAKMPpamefq1Mc97j2palpa/a8=; b=T4jhs3gy2qF+1hpV
+	yzbGul141ov2Lfxpayd6pKcg8Tw26FvaN6BOJn5won02XpvUDd4Vzv6zh2YUgq2j
+	NTJcCjMmLDJAg7y76jQM8wy6Xk8HKm8KGbTxPsNfFo5uGVK/DF5wZdMruJBH2x5O
+	qVcLgeyzIVq/MiM31J2cUyOQBOVCxECK1p7bQvS4MKrrc0mVyYrYAjZk59aMBBz7
+	eR8UpzCn35PC7XAb4p+xEGZX57G2YhVB0bkBj9h0gGUl7S9R2Zo0L699Et8mhdzf
+	E7Fbvwc/6uFr+xOeVtGCAJGc2vN3ODjme8IT5CIG1Zc46rVij4teJUiG/EdAP23/
+	8+LC4A==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bggsvt7jb-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 07:15:43 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-34e5a9de94bso1705990a91.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 23:15:43 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 07:20:24 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2a0f47c0e60so17673875ad.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 23:20:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767683743; x=1768288543; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1767684023; x=1768288823; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HNAp68+71SOrhc4XkrCjpRdxRU8+RksdS+2nj1HGzYA=;
-        b=Tu4YHQFEsBcVOu9yBvhDVAVd0QRoxoABN3e2DmYndTEYHwUQPSrCyOm2eZkT2USBR4
-         bVpHoC6cD14ALc5TZTvqweh2svOIR2s4ZL4qpKReiTGA7ggna9/Rok5gi6Awp2XCS6Lo
-         A8liQHHC44DBs7CN/rEMlzmtan8TjqUChu22QpF3da4aTiQ8eFF/bby5vUgp7m0RMhp9
-         Vhrc9Jc73BNFOUnDwwLHuql+6szy9C0tocStHoqXBaKlDAwlj+fYCc4oIx6KpRolrEDZ
-         zayDBRghHeSw/qwF8IVc8mQl80o34QMNnvxnob2aGd3TUbUGXE9IYEPKSD7o/PvuQkuS
-         Aecg==
+        bh=Lrulz8LwVtMt0zjJZhAKMPpamefq1Mc97j2palpa/a8=;
+        b=GEq+3kAzCGfT66xp5eTN8iAE9QL7xrY7Z0QErRH62fwCuMkrB7/NcZMrfa88GcW4DR
+         teB6+2Fj/giMulbT2WcUiKLyrJ3dsPCb6w/Jz05cBT+IVvM+Ypum5AOfRaNShjueH+Wb
+         Igce8E2Ka5gF47G52EDL5pqCSB1CkrqA5kzYu7bSb+TuHGIlzyKceg1ewGbiUyPO9Qwv
+         GzbSPRygd089zaVR4Y/ZmoCGeZzW8RAZkgBpQ4bqj/1LSGugiVwyPy4Obv7zCJbIlfe2
+         FO6abUS6U5h/oq0wJRtHsb4fk4LScx4nQsEOn8zPkpsw5LYe0CRaGOThUvASOaBDy1ms
+         noDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767683743; x=1768288543;
+        d=1e100.net; s=20230601; t=1767684023; x=1768288823;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HNAp68+71SOrhc4XkrCjpRdxRU8+RksdS+2nj1HGzYA=;
-        b=BXmwY7nkWD6q2yegwxMe6abN6FoAxmQMWlvYK/hGIjNnh7OH9A4Ul4HRS/m7R3Pmxc
-         EUAdjY/sAQmip2GW+0+qr/RJMhrtR6yQ4ewmEzGAQ/a5phjO9yELa68rjtABjtMXOnI4
-         mTqADn8prGro4/UF0aEvm/KcuuE34AmtCi4i729iy0wsNfQv6OeofSQD48Z93ZPDbPKs
-         7EkVpOeu8He8hSgttrp49NvaRHeaKN2hlNEqbrU3uRWpdFpa8QXBjqjPP3qzTk2eJdb6
-         tJwTmgMP6f8wuTGceHHFCF1IlXXymMIkUpJswIdv/0FHYPqLGriwBHEjtfmc3vN//X4m
-         kG0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV20trnCujIpp1sU3G2ZP3JrlnKqx7dCsAWbOEJzQ2pMdzdf5c9vt3BQYXAOSV19cxozjrqCFHl4wVi@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmmYKu7hd8wlgiwbJxOPnhx2LbAsAiMPLfRpfHm5paNRW9nPRe
-	vOaqNvo1cIzZgSXeRXAEhfha8vFlklryEUo3M90h49Ljs38/h0WOa8Fgsv8Tr598al3UoliRjjF
-	hhdeRTiY4eOVlCqIjZQiaMk6kEpjU4gCG5EfE8h4cZe2B6hwSUjKxt990N5k+1KSE
-X-Gm-Gg: AY/fxX6yzip5XE1hJjFphS4lpGwbqutqTl63lMjQsJMd+oLf6FuyopmCBT0PYcvCx/5
-	L2cXI9xucwCU27KiTpaQYBzjxZWJYAvql6DIjRKzZ2vFJBtUakvpaIZRnBdzXpZWm24VDYcRQXM
-	XHn4DUUjW0IarRvuMrHfmQy4jAlER8welVGPeRZLAcm4Nl+9mF1AYwtZjwyf1pq30D6n0SlOlBv
-	57QbYMKWynhyoY2y1d/C+gs8uNpeJFk7RjuUwMPOTCmURPbDOgNFv5ScKTn8h25gLwDHnvCLrZj
-	Z2+3jvfv7XapQ9YSTVoz2mOgoZ2WKWnbuu0O9MudDjWHVStYsJwGu/Nvi/bgXg4yB8X0JirLSzo
-	diraUeMxxn6C3dbHjooihzPsmVpzm2iDp9/FtyPgGuvNZUOyowLCZmq0j5mkowuw68JeNQrFWBg
-	==
-X-Received: by 2002:a17:90b:3d45:b0:345:badf:f1b7 with SMTP id 98e67ed59e1d1-34f5f2fb2a8mr1570056a91.28.1767683742935;
-        Mon, 05 Jan 2026 23:15:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHsY4a1SQtAYcnGDTYCjULHoa0MO6FMR3sJMo1brUZBDzVHDTbS9hjPkeveMU8haIG15gnKpQ==
-X-Received: by 2002:a17:90b:3d45:b0:345:badf:f1b7 with SMTP id 98e67ed59e1d1-34f5f2fb2a8mr1570032a91.28.1767683742389;
-        Mon, 05 Jan 2026 23:15:42 -0800 (PST)
-Received: from [10.133.33.93] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34f5fb64b3esm1298770a91.10.2026.01.05.23.15.36
+        bh=Lrulz8LwVtMt0zjJZhAKMPpamefq1Mc97j2palpa/a8=;
+        b=SNBCYC46SYWctpVx8ufDQRLp3gxj0C0rio+R3bPWdthI7XL79oWlFDL0ZfTtoV7rV1
+         WPSEersqjgB2evQdxs+jh4PaDNEJVfvmWCZdw/grLbDw0j4Fv66nACmlwVrlE89hcrAh
+         LjVzed1/T8ZEjfP9o/nJJlF6n/nZl+F6g0mFFQBW3He1dHWv+SdxoqoR/uJbspE9GKit
+         9qo8rWS5VTppmIP+Fwr3w61gatGJpkmXUgUa+ayMkqzZrKPcr0fUaqU3WVEEdc2y8zXD
+         +6ulO9+8zIes3muet0a/LFCjQmgNzzgiNr4ROL4+nnwW7l3xQMEAUymofKgU3GMLVZQg
+         0qiw==
+X-Forwarded-Encrypted: i=1; AJvYcCX8Knubpti8G4e7H6E5Gg66shdJBJbbeSq5PQI4nbkfCYsUbqAqa6tqUzt0NGiZafsBjogIcXKiQjb3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzB2ZyG2fC0jG0U/Jecg6uO/raDmai8Ox8Zb0FxZ0CrstDhroRv
+	oPAYHmR6CDJqQmhdNrWfY5rRGAAHIukHOtSZge7Fo3qYQSktri3wJqVKP1OK2rBYFw6SRnaQQXD
+	72OBeSFkCAEyUZApxUFtGE/Ybx0VwdXwx9yUJ5JA6id09dUetS2rfG5jnxwqf8+NE
+X-Gm-Gg: AY/fxX7dSrpzVJelBYbib2tM1la3DaAUt2mOV2kpzeoEfZtK4a3q+etp2C4FasB9AUf
+	yXhp0uUA44nLrv7RIU3SK4EIGG6L1mmHObG/4geO8T4g8/wa46gAfpzIITFwe9IX04AZjiIHaTt
+	sOk303o9I3Ox1gTbjP9X5/Hf5oxXoP7BQf2FKSojxSxtRGnjO+sk5jAzyKjFFXv9ClSiDveoHDP
+	TIzquiONrHCz33+310t+0ayimJJJRNCkHLPan/TODIiwVrpGGmFw7SgNUGRUCHUVYb42YXicO9w
+	2rFKUxjitBjKDEwiaAudSC+fje2vTr9BbS0fzJd7gyNT3tJ948Vk1kCN0nubHfJDVOT+DEEpVcn
+	gMrILA90JIpKM3dIdmDGBgyz7VyVmo9KSsNG1SmDGO/q6OfUNwZg7i91vSc/SMSueKqpEdKrqtc
+	hkQluYZA==
+X-Received: by 2002:a17:903:1c8:b0:2a0:d636:71e7 with SMTP id d9443c01a7336-2a3e2d5a303mr25527465ad.13.1767684022996;
+        Mon, 05 Jan 2026 23:20:22 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH/Ybnth0jFvRpmE9bjxCR9lB2cdPlawE3synhZ/jk6yqj3h+sD5LMECMtLLXddiQapzERarw==
+X-Received: by 2002:a17:903:1c8:b0:2a0:d636:71e7 with SMTP id d9443c01a7336-2a3e2d5a303mr25527265ad.13.1767684022453;
+        Mon, 05 Jan 2026 23:20:22 -0800 (PST)
+Received: from [10.133.33.154] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cb2e01sm12217905ad.46.2026.01.05.23.20.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jan 2026 23:15:41 -0800 (PST)
-Message-ID: <9464872c-fd87-42fe-bcc6-1b87a0b21843@oss.qualcomm.com>
-Date: Tue, 6 Jan 2026 15:15:35 +0800
+        Mon, 05 Jan 2026 23:20:22 -0800 (PST)
+Message-ID: <581df129-98a4-45bd-a705-7a0e34fcd885@oss.qualcomm.com>
+Date: Tue, 6 Jan 2026 15:20:17 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,192 +103,489 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 0/8] coresight: ctcu: Enable byte-cntr function for TMC
- ETR
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
-        Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-References: <20251224-enable-byte-cntr-for-ctcu-v9-0-886c4496fed4@oss.qualcomm.com>
+Subject: Re: [PATCH v9 3/7] qcom-tgu: Add signal priority support
+To: Jie Gan <jie.gan@oss.qualcomm.com>, andersson@kernel.org,
+        alexander.shishkin@linux.intel.com, mike.leach@linaro.org,
+        suzuki.poulose@arm.com, james.clark@arm.com, krzk+dt@kernel.org,
+        conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org
+References: <20251219065902.2296896-1-songwei.chai@oss.qualcomm.com>
+ <20251219065902.2296896-4-songwei.chai@oss.qualcomm.com>
+ <4ea62244-6bf5-46bc-b026-79806fa372af@oss.qualcomm.com>
 Content-Language: en-US
-From: Jie Gan <jie.gan@oss.qualcomm.com>
-In-Reply-To: <20251224-enable-byte-cntr-for-ctcu-v9-0-886c4496fed4@oss.qualcomm.com>
+From: Songwei Chai <songwei.chai@oss.qualcomm.com>
+In-Reply-To: <4ea62244-6bf5-46bc-b026-79806fa372af@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDA2MCBTYWx0ZWRfXwKhdQWPzk1D6
- CjY2WfLgODvaxAiQ8OWUMB02xY5ebagTyvIdJLR9HDpMoecj1HIxJtcyJLz3wa4BuchXH8IedpS
- XnB7bq16gg3Yb0As34nymqxD9UTkw7huIb70eSfJI++SHQw9XOCWGHYRGBpbVpFt1SsB+YfA2m7
- Q7YYRxJO07BoJO2hoJQCv4T971sc0IYgTWu7r8AdZkCAZpl2TOyQKRbK4Wmn0vxDN4MNPzh+ZNU
- dRI1Gk/qRsIfanDdJ6HhY2Wkwcu3X9rlz9Y5d397n56s8H3FYjoQz4N1G6S1XVDtFCf/1+kx0aF
- IkCOcXmIzex32yNJD2Zfmyfca6jX5lPgWKxmAu9HPnb1cLsUATOhg7Q5IUDTQCtB6MxmR8grnmV
- tMO7knXadBRnXA0pI+8FApfdo/vC60s0FVDRiwLI8R3VqE+wjOCH/FlZCLSwk0eQaUsJiQ4mRCt
- rQMxjOKMx39jMtAKqUQ==
-X-Authority-Analysis: v=2.4 cv=bdBmkePB c=1 sm=1 tr=0 ts=695cb69f cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: sHfsJkka7JhbWtpDRXaEN_0OlTrbTHtR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDA2MCBTYWx0ZWRfX4z1gSPPTgeca
+ 3gUfhb1s7/M4KtpOAWKeFEP98dkfYkMH2yNANDVpt2MiNxQ26MUDCz26cvupgSHEcLfnHCXzWtH
+ W6tsE5mKFUDEak1RoomGzApmUUcfr7wfY/wyQhNx16/e/mWJtgNlIVKC+oKST20FHP9HJyHLD6l
+ 7eThMDYb1dkE9X2nlhSZc1M350Ji9uCb9h5ZEC2lcozyGjefTmUOhUnKrWWXqb2ZSekq6ELvbQt
+ QUUeR2trHs/A/F2h1rrI+kogGamj9xroo+myb2AqaKABtV7HNGRYLQghzbgZmIlykIfsQPcMtnj
+ JtiWLrw2+ZhPjT5zIVY6hWrYHQnYtVt+1SddR7ngbO1+PdFCaSgOTiDRD7m9MHjd31CJF5vV2FL
+ lxCOoX6VqYbPbkjNUnS5mqHP/0/D2Y+wNMNMe4lic2HssUcKrtZXuFPMLnowFKlyC8zNir2s7xF
+ jydrrNFHRPRjZn26A9g==
+X-Proofpoint-ORIG-GUID: sHfsJkka7JhbWtpDRXaEN_0OlTrbTHtR
+X-Authority-Analysis: v=2.4 cv=Yv4ChoYX c=1 sm=1 tr=0 ts=695cb7b8 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
- a=hyi39RYjpJE5wifr7rwA:9 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: DIo7Vy-U2DzgbjYDiiHTB4c1rsW159oF
-X-Proofpoint-GUID: DIo7Vy-U2DzgbjYDiiHTB4c1rsW159oF
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=MiW3vxe8j8cGS_ehoDIA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2026-01-05_02,2026-01-05_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0 impostorscore=0 clxscore=1015 phishscore=0
- spamscore=0 suspectscore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0
+ malwarescore=0 phishscore=0 impostorscore=0 bulkscore=0 clxscore=1015
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601060060
 
 
 
-On 12/24/2025 5:06 PM, Jie Gan wrote:
-> The byte-cntr function provided by the CTCU device is used to count the
-> trace data entering the ETR. An interrupt is triggered if the data size
-> exceeds the threshold set in the BYTECNTRVAL register. The interrupt
-> handler counts the number of triggered interruptions.
+On 12/25/2025 11:20 AM, Jie Gan wrote:
 > 
-> Based on this concept, the irq_cnt can be used to determine whether
-> the etr_buf is full. The ETR device will be disabled when the active
-> etr_buf is nearly full or a timeout occurs. The nearly full buffer will
-> be switched to background after synced. A new buffer will be picked from
-> the etr_buf_list, then restart the ETR device.
 > 
-> The byte-cntr reading functions can access data from the synced and
-> deactivated buffer, transferring trace data from the etr_buf to userspace
-> without stopping the ETR device.
+> On 12/19/2025 2:58 PM, Songwei Chai wrote:
+>> Like circuit of a Logic analyzer, in TGU, the requirement could be
+>> configured in each step and the trigger will be created once the
+>> requirements are met. Add priority functionality here to sort the
+>> signals into different priorities. The signal which is wanted could
+>> be configured in each step's priority node, the larger number means
+>> the higher priority and the signal with higher priority will be sensed
+>> more preferentially.
+>>
+>> Signed-off-by: Songwei Chai <songwei.chai@oss.qualcomm.com>
+>> ---
+>>   .../ABI/testing/sysfs-bus-amba-devices-tgu    |   7 +
+>>   drivers/hwtracing/qcom/tgu.c                  | 156 ++++++++++++++++++
+>>   drivers/hwtracing/qcom/tgu.h                  | 113 +++++++++++++
+>>   3 files changed, 276 insertions(+)
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu b/ 
+>> Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
+>> index 24dcdf1d70cc..d04a01368089 100644
+>> --- a/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
+>> +++ b/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
+>> @@ -7,3 +7,10 @@ Description:
+>>           Accepts only one of the 2 values -  0 or 1.
+>>           0 : disable TGU.
+>>           1 : enable TGU.
+>> +
+>> +What:        /sys/bus/amba/devices/<tgu-name>/ 
+>> step[0:7]_priority[0:3]/reg[0:17]
+>> +Date:        December 2025
+>> +KernelVersion    6.19
+>> +Contact:    Jinlong Mao <jinlong.mao@oss.qualcomm.com>, Songwei Chai 
+>> <songwei.chai@oss.qualcomm.com>
+>> +Description:
+>> +        (RW) Set/Get the sensed signal with specific step and 
+>> priority for TGU.
+>> diff --git a/drivers/hwtracing/qcom/tgu.c b/drivers/hwtracing/qcom/tgu.c
+>> index dbd1acbd2fa5..447d7e68d132 100644
+>> --- a/drivers/hwtracing/qcom/tgu.c
+>> +++ b/drivers/hwtracing/qcom/tgu.c
+>> @@ -14,14 +14,121 @@
+>>   #include "tgu.h"
+>> +static int calculate_array_location(struct tgu_drvdata *drvdata,
+>> +                   int step_index, int operation_index,
+>> +                   int reg_index)
+>> +{
+>> +    return operation_index * (drvdata->max_step) * (drvdata->max_reg) +
+>> +        step_index * (drvdata->max_reg) + reg_index;
+>> +}
+>> +
+>> +static ssize_t tgu_dataset_show(struct device *dev,
+>> +                struct device_attribute *attr, char *buf)
+>> +{
+>> +    int index;
 > 
-> The byte-cntr read operation has integrated with the file node tmc_etr,
-> for example:
-> /dev/tmc_etr0
-> /dev/tmc_etr1
+> Prefer reverse Christmas tree order
+Will update.>
+>> +    struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
+>> +    struct tgu_attribute *tgu_attr =
+>> +            container_of(attr, struct tgu_attribute, attr);
+>> +
+>> +    index = calculate_array_location(drvdata, tgu_attr->step_index,
+>> +                     tgu_attr->operation_index,
+>> +                     tgu_attr->reg_num);
+>> +
+>> +    return sysfs_emit(buf, "0x%x\n",
+>> +              drvdata->value_table->priority[index]);
+>> +}
+>> +
+>> +static ssize_t tgu_dataset_store(struct device *dev,
+>> +                 struct device_attribute *attr,
+>> +                 const char *buf, size_t size)
+>> +{
+>> +    int index;
+>> +    unsigned long val;
 > 
-> There are two scenarios for the tmc_etr file node with byte-cntr function:
-> 1. BYTECNTRVAL register is configured and byte-cntr is enabled -> byte-cntr read
-> 2. BYTECNTRVAL register is reset or byte-cntr is disabled -> original behavior
+> Prefer reverse Christmas tree order
+Ditto.>
+>> +
+>> +    struct tgu_drvdata *tgu_drvdata = dev_get_drvdata(dev);
+>> +    struct tgu_attribute *tgu_attr =
+>> +        container_of(attr, struct tgu_attribute, attr);
+>> +
+>> +    if (kstrtoul(buf, 0, &val))
+>> +        return -EINVAL;
+>> +
+>> +    guard(spinlock)(&tgu_drvdata->lock);
+>> +    index = calculate_array_location(tgu_drvdata, tgu_attr->step_index,
+>> +                     tgu_attr->operation_index,
+>> +                     tgu_attr->reg_num);
+>> +
+>> +    tgu_drvdata->value_table->priority[index] = val;
+>> +    return size;
+>> +}
+>> +
+>> +static umode_t tgu_node_visible(struct kobject *kobject,
+>> +                struct attribute *attr,
+>> +                int n)
+>> +{
+>> +    struct device *dev = kobj_to_dev(kobject);
+>> +    struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
+>> +    int ret = SYSFS_GROUP_INVISIBLE;
+>> +
+>> +    struct device_attribute *dev_attr =
+>> +        container_of(attr, struct device_attribute, attr);
+>> +    struct tgu_attribute *tgu_attr =
+>> +        container_of(dev_attr, struct tgu_attribute, attr);
+>> +
+>> +    if (tgu_attr->step_index < drvdata->max_step) {
+>> +        ret = (tgu_attr->reg_num < drvdata->max_reg) ?
+>> +            attr->mode : 0;
+>> +    }
+>> +    return ret;
 > 
-> Shell commands to enable byte-cntr reading for etr0:
-> echo 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_threshold0
-> echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
-> echo 1 > /sys/bus/coresight/devices/etm0/enable_source
-> cat /dev/tmc_etr0
+> if ((tgu_attr->step_index < drvdata->max_step) &&
+>      (tgu_attr->reg_num < drvdata->max_reg)
+>      return attr->mode;
 > 
-> Reset the BYTECNTR register for etr0:
-> echo 0 > /sys/bus/coresight/devices/ctcu0/irq_threshold0
+> return 0;
+These two approaches are similar, but the original one might better 
+align with the directory organization logic in sysfs. At the same time, 
+centralizing the return operations in one place could be better.>
+>> +}
+>> +
+>>   static void tgu_write_all_hw_regs(struct tgu_drvdata *drvdata)
+>>   {
+>> +    int i, j, k, index;
+>> +
+>>       TGU_UNLOCK(drvdata->base);
+>> +    for (i = 0; i < drvdata->max_step; i++) {
+>> +        for (j = 0; j < MAX_PRIORITY; j++) {
+>> +            for (k = 0; k < drvdata->max_reg; k++) {
+>> +                index = calculate_array_location(
+>> +                            drvdata, i, j, k);
+>> +
+>> +                writel(drvdata->value_table->priority[index],
+>> +                    drvdata->base +
+>> +                    PRIORITY_REG_STEP(i, j, k));
+>> +            }
+>> +        }
+>> +    }
+>>       /* Enable TGU to program the triggers */
+>>       writel(1, drvdata->base + TGU_CONTROL);
+>>       TGU_LOCK(drvdata->base);
+>>   }
+>> +static void tgu_set_reg_number(struct tgu_drvdata *drvdata)
+>> +{
+>> +    int num_sense_input;
+>> +    int num_reg;
+>> +    u32 devid;
+>> +
+>> +    devid = readl(drvdata->base + TGU_DEVID);
+>> +
+>> +    num_sense_input = TGU_DEVID_SENSE_INPUT(devid);
+>> +    if (((num_sense_input * NUMBER_BITS_EACH_SIGNAL) % 
+>> LENGTH_REGISTER) == 0)
+>> +        num_reg = (num_sense_input * NUMBER_BITS_EACH_SIGNAL) / 
+>> LENGTH_REGISTER;
+>> +    else
+>> +        num_reg = ((num_sense_input * NUMBER_BITS_EACH_SIGNAL) / 
+>> LENGTH_REGISTER) + 1;
+>> +    drvdata->max_reg = num_reg;
+>> +
+>> +}
+>> +
+>> +static void tgu_set_steps(struct tgu_drvdata *drvdata)
+>> +{
+>> +    u32 devid;
+>> +
+>> +    devid = readl(drvdata->base + TGU_DEVID);
+>> +
+>> +    drvdata->max_step = TGU_DEVID_STEPS(devid);
+>> +}
+>> +
+>>   static int tgu_enable(struct device *dev)
+>>   {
+>>       struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
+>> @@ -106,6 +213,38 @@ static const struct attribute_group 
+>> tgu_common_grp = {
+>>   static const struct attribute_group *tgu_attr_groups[] = {
+>>       &tgu_common_grp,
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(0, 0),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(0, 1),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(0, 2),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(0, 3),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(1, 0),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(1, 1),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(1, 2),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(1, 3),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(2, 0),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(2, 1),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(2, 2),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(2, 3),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(3, 0),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(3, 1),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(3, 2),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(3, 3),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(4, 0),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(4, 1),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(4, 2),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(4, 3),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(5, 0),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(5, 1),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(5, 2),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(5, 3),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(6, 0),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(6, 1),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(6, 2),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(6, 3),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(7, 0),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(7, 1),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(7, 2),
+>> +    PRIORITY_ATTRIBUTE_GROUP_INIT(7, 3),
+>>       NULL,
+>>   };
+>> @@ -128,12 +267,29 @@ static int tgu_probe(struct amba_device *adev, 
+>> const struct amba_id *id)
+>>       spin_lock_init(&drvdata->lock);
+>> +    tgu_set_reg_number(drvdata);
+>> +    tgu_set_steps(drvdata);
+>> +
+>>       ret = sysfs_create_groups(&dev->kobj, tgu_attr_groups);
+>>       if (ret) {
+>>           dev_err(dev, "failed to create sysfs groups: %d\n", ret);
+>>           return ret;
+>>       }
+>> +    drvdata->value_table =
+>> +        devm_kzalloc(dev, sizeof(*drvdata->value_table), GFP_KERNEL);
+>> +    if (!drvdata->value_table)
+>> +        return -ENOMEM;
+>> +
+>> +    drvdata->value_table->priority = devm_kzalloc(
+>> +        dev,
+>> +        MAX_PRIORITY * drvdata->max_reg * drvdata->max_step *
+>> +            sizeof(*(drvdata->value_table->priority)),
+>> +        GFP_KERNEL);
 > 
-> Changes in v9:
-> 1. Drop the patch: add a new API to retrieve the helper device
-> 2. Add a new patch to refactor the tmc_etr_get_catu_device function,
->     making it generic to support all types of helper devices associated with ETR.
-> 3. Optimizing the code for creating irq_threshold sysfs node.
-> Link to v8: https://lore.kernel.org/r/20251211-enable-byte-cntr-for-ctcu-v8-0-3e12ff313191@oss.qualcomm.com
+> can we declare a pri_size for better reading?
 > 
+> size_t pri_size;
+> unsigned int *priority
+> 
+> pri_size = MAX_PRIORITY * drvdata->max_reg * drvdata->max_step *
+>          sizeof(*(drvdata->value_table->priority));
+> 
+> priority = devm_kzalloc(dev, pri_size, GFP_KERNEL)
+> if (!priority)
+>      return -ENOMEM;
+> 
+> drvdata->value_table->priority = priority;
+Will try.>
+>> +
+>> +    if (!drvdata->value_table->priority)
+>> +        return -ENOMEM;
+>> +
+>>       drvdata->enable = false;
+>>       pm_runtime_put(&adev->dev);
+>> diff --git a/drivers/hwtracing/qcom/tgu.h b/drivers/hwtracing/qcom/tgu.h
+>> index abc732f91dfc..2cf95c239ee7 100644
+>> --- a/drivers/hwtracing/qcom/tgu.h
+>> +++ b/drivers/hwtracing/qcom/tgu.h
+>> @@ -10,6 +10,113 @@
+>>   #define TGU_CONTROL 0x0000
+>>   #define TGU_LAR        0xfb0
+>>   #define TGU_UNLOCK_OFFSET    0xc5acce55
+>> +#define TGU_DEVID    0xfc8
+>> +
+>> +#define BMVAL(val, lsb, msb)    ((val & GENMASK(msb, lsb)) >> lsb)
+>> +#define TGU_DEVID_SENSE_INPUT(devid_val) ((int) BMVAL(devid_val, 10, 
+>> 17))
+>> +#define TGU_DEVID_STEPS(devid_val) ((int)BMVAL(devid_val, 3, 6))
+>> +#define NUMBER_BITS_EACH_SIGNAL 4
+>> +#define LENGTH_REGISTER 32
+>> +
+>> +/*
+>> + *  TGU configuration space                              Step 
+>> configuration
+>> + *  offset table                                         space layout
+>> + * x-------------------------x$                          
+>> x-------------x$
+>> + * |                         |$                          | 
+>>              |$
+>> + * |                         |                           |   
+>> reserve   |$
+>> + * |                         |                           | 
+>>              |$
+>> + * |coresight management     |                           
+>> |-------------|base+n*0x1D8+0x1F4$
+>> + * |     registe             |                     |---> | 
+>> prioroty[3]  |$
+>> + * |                         |                     |     
+>> |-------------|base+n*0x1D8+0x194$
+>> + * |                         |                     |     | 
+>> prioroty[2]  |$
+>> + * |-------------------------|                     |     
+>> |-------------|base+n*0x1D8+0x134$
+>> + * |                         |                     |     | 
+>> prioroty[1]  |$
+>> + * |         step[7]         |                     |     
+>> |-------------|base+n*0x1D8+0xD4$
+>> + * |-------------------------|->base+0x40+7*0x1D8  |     | 
+>> prioroty[0]  |$
+>> + * |                         |                     |     
+>> |-------------|base+n*0x1D8+0x74$
+>> + * |         ...             |                     |     |  
+>> condition  |$
+>> + * |                         |                     |     |   
+>> select    |$
+>> + * |-------------------------|->base+0x40+1*0x1D8  |     
+>> |-------------|base+n*0x1D8+0x60$
+>> + * |                         |                     |     |  
+>> condition  |$
+>> + * |         step[0]         |-------------------->      |   
+>> decode    |$
+>> + * |-------------------------|-> base+0x40               
+>> |-------------|base+n*0x1D8+0x50$
+>> + * |                         |                           | 
+>>              |$
+>> + * | Control and status space|                           |Timer/ 
+>> Counter|$
+>> + * |        space            |                           | 
+>>              |$
+>> + * x-------------------------x->base                     
+>> x-------------x base+n*0x1D8+0x40$
+>> + *
+>> + */
+>> +#define STEP_OFFSET 0x1D8
+>> +#define PRIORITY_START_OFFSET 0x0074
+>> +#define PRIORITY_OFFSET 0x60
+>> +#define REG_OFFSET 0x4
+>> +
+>> +/* Calculate compare step addresses */
+>> +#define PRIORITY_REG_STEP(step, priority, reg)\
+>> +    (PRIORITY_START_OFFSET + PRIORITY_OFFSET * priority +\
+>> +     REG_OFFSET * reg + STEP_OFFSET * step)
+>> +
+>> +#define tgu_dataset_rw(name, step_index, type, 
+>> reg_num)                  \
+>> +    (&((struct tgu_attribute[]){ {                                   \
+>> +        __ATTR(name, 0644, tgu_dataset_show, tgu_dataset_store), \
+>> +        step_index,                                              \
+>> +        type,                                                    \
+>> +        reg_num,                                                 \
+>> +    } })[0].attr.attr)
+>> +
+>> +#define STEP_PRIORITY(step_index, reg_num, 
+>> priority)                     \
+>> +    tgu_dataset_rw(reg##reg_num, step_index, TGU_PRIORITY##priority, \
+>> +            reg_num)
+>> +
+>> +#define STEP_PRIORITY_LIST(step_index, priority)  \
+>> +    {STEP_PRIORITY(step_index, 0, priority),  \
+>> +     STEP_PRIORITY(step_index, 1, priority),  \
+>> +     STEP_PRIORITY(step_index, 2, priority),  \
+>> +     STEP_PRIORITY(step_index, 3, priority),  \
+>> +     STEP_PRIORITY(step_index, 4, priority),  \
+>> +     STEP_PRIORITY(step_index, 5, priority),  \
+>> +     STEP_PRIORITY(step_index, 6, priority),  \
+>> +     STEP_PRIORITY(step_index, 7, priority),  \
+>> +     STEP_PRIORITY(step_index, 8, priority),  \
+>> +     STEP_PRIORITY(step_index, 9, priority),  \
+>> +     STEP_PRIORITY(step_index, 10, priority), \
+>> +     STEP_PRIORITY(step_index, 11, priority), \
+>> +     STEP_PRIORITY(step_index, 12, priority), \
+>> +     STEP_PRIORITY(step_index, 13, priority), \
+>> +     STEP_PRIORITY(step_index, 14, priority), \
+>> +     STEP_PRIORITY(step_index, 15, priority), \
+>> +     STEP_PRIORITY(step_index, 16, priority), \
+>> +     STEP_PRIORITY(step_index, 17, priority), \
+>> +     NULL                   \
+>> +    }
+>> +
+>> +#define PRIORITY_ATTRIBUTE_GROUP_INIT(step, priority)\
+>> +    (&(const struct attribute_group){\
+>> +        .attrs = (struct attribute*[])STEP_PRIORITY_LIST(step, 
+>> priority),\
+>> +        .is_visible = tgu_node_visible,\
+>> +        .name = "step" #step "_priority" #priority \
+>> +    })
+>> +
+>> +enum operation_index {
+>> +    TGU_PRIORITY0,
+>> +    TGU_PRIORITY1,
+>> +    TGU_PRIORITY2,
+>> +    TGU_PRIORITY3,
+>> +};
+>> +
+>> +/* Maximum priority that TGU supports */
+>> +#define MAX_PRIORITY 4
+>> +
+>> +struct tgu_attribute {
+>> +    struct device_attribute attr;
+>> +    u32 step_index;
+>> +    enum operation_index operation_index;
+>> +    u32 reg_num;
+>> +};
+>> +
+>> +struct value_table {
+>> +    unsigned int *priority;
+> 
+> priority here is an array? can we declare it as unsigned int array to 
+> limit the allocated memory?
+> 
+> With the declared array, we can avoid one more memory allocation.
+> 
+> priority[index] that is used in code looks like a trick.
+Yes, it should be an array, The reason it's defined as a pointer is that 
+its size is determined at runtime.>
+>> +};
+> 
+> only has one member, better integrate with tgu_drvdata with proper nameing.
+  Maybe this approach provides better scalability and enhances 
+structural clarity?
 
-Gentle reminder.
-
-> Changes in V8:
-> 1. Optimizing the patch 1 and patch 2 according to Suzuki's comments.
-> 2. Combine the patch 3 and patch 4 together.
-> 3. Rename the interrupt-name to prevent confusion, for example:etr0->etrirq0.
-> Link to V7 - https://lore.kernel.org/all/20251013-enable-byte-cntr-for-ctcu-v7-0-e1e8f41e15dd@oss.qualcomm.com/
 > 
-> Changes in V7:
-> 1. rebased on tag next-20251010
-> 2. updated info for sysfs node document
-> Link to V6 - https://lore.kernel.org/all/20250908-enable-byte-cntr-for-tmc-v6-0-1db9e621441a@oss.qualcomm.com/
+> Thanks,
+> Jie
 > 
-> Changes in V6:
-> 1. rebased on next-20250905.
-> 2. fixed the issue that the dtsi file has re-named from sa8775p.dtsi to
->     lemans.dtsi.
-> 3. fixed some minor issues about comments.
-> Link to V5 - https://lore.kernel.org/all/20250812083731.549-1-jie.gan@oss.qualcomm.com/
+>>   static inline void TGU_LOCK(void __iomem *addr)
+>>   {
+>> @@ -35,6 +142,9 @@ static inline void TGU_UNLOCK(void __iomem *addr)
+>>    * @dev: Pointer to the associated device structure
+>>    * @lock: Spinlock for handling concurrent access
+>>    * @enable: Flag indicating whether the TGU device is enabled
+>> + * @value_table: Store given value based on relevant parameters.
+>> + * @max_reg: Maximum number of registers
+>> + * @max_step: Maximum step size
+>>    *
+>>    * This structure defines the data associated with a TGU device,
+>>    * including its base address, device pointers, clock, spinlock for
+>> @@ -46,6 +156,9 @@ struct tgu_drvdata {
+>>       struct device *dev;
+>>       spinlock_t lock;
+>>       bool enable;
+>> +    struct value_table *value_table;
+>> +    int max_reg;
+>> +    int max_step;
+>>   };
+>>   #endif
 > 
-> Changes in V5:
-> 1. Add Mike's reviewed-by tag for patchset 1,2,5.
-> 2. Remove the function pointer added to helper_ops according to Mike's
->     comment, it also results the patchset has been removed.
-> 3. Optimizing the paired create/clean functions for etr_buf_list.
-> 4. Remove the unneeded parameter "reading" from the etr_buf_node.
-> Link to V4 - https://lore.kernel.org/all/20250725100806.1157-1-jie.gan@oss.qualcomm.com/
-> 
-> Changes in V4:
-> 1. Rename the function to coresight_get_in_port_dest regarding to Mike's
-> comment (patch 1/10).
-> 2. Add lock to protect the connections regarding to Mike's comment
-> (patch 2/10).
-> 3. Move all byte-cntr functions to coresight-ctcu-byte-cntr file.
-> 4. Add tmc_read_ops to wrap all read operations for TMC device.
-> 5. Add a function in helper_ops to check whether the byte-cntr is
-> enabkled.
-> 6. Call byte-cntr's read_ops if byte-cntr is enabled when reading data
-> from the sysfs node.
-> Link to V3 resend - https://lore.kernel.org/all/20250714063109.591-1-jie.gan@oss.qualcomm.com/
-> 
-> Changes in V3 resend:
-> 1. rebased on next-20250711.
-> Link to V3 - https://lore.kernel.org/all/20250624060438.7469-1-jie.gan@oss.qualcomm.com/
-> 
-> Changes in V3:
-> 1. The previous solution has been deprecated.
-> 2. Add a etr_buf_list to manage allcated etr buffers.
-> 3. Add a logic to switch buffer for ETR.
-> 4. Add read functions to read trace data from synced etr buffer.
-> Link to V2 - https://lore.kernel.org/all/20250410013330.3609482-1-jie.gan@oss.qualcomm.com/
-> 
-> Changes in V2:
-> 1. Removed the independent file node /dev/byte_cntr.
-> 2. Integrated the byte-cntr's file operations with current ETR file
->     node.
-> 3. Optimized the driver code of the CTCU that associated with byte-cntr.
-> 4. Add kernel document for the export API tmc_etr_get_rwp_offset.
-> 5. Optimized the way to read the rwp_offset according to Mike's
->     suggestion.
-> 6. Removed the dependency of the dts patch.
-> Link to V1 - https://lore.kernel.org/all/20250310090407.2069489-1-quic_jiegan@quicinc.com/
-> 
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
-> Jie Gan (8):
->        coresight: core: Refactoring ctcu_get_active_port and make it generic
->        coresight: tmc: add create/clean functions for etr_buf_list
->        coresight: tmc: Introduce sysfs_read_ops to wrap sysfs read operations
->        coresight: etr: refactor the tmc_etr_get_catu_device function
->        dt-bindings: arm: add an interrupt property for Coresight CTCU
->        coresight: ctcu: enable byte-cntr for TMC ETR devices
->        coresight: tmc: integrate byte-cntr's read_ops with sysfs file_ops
->        arm64: dts: qcom: lemans: add interrupts to CTCU device
-> 
->   .../ABI/testing/sysfs-bus-coresight-devices-ctcu   |   8 +
->   .../bindings/arm/qcom,coresight-ctcu.yaml          |  10 +
->   arch/arm64/boot/dts/qcom/lemans.dtsi               |   3 +
->   drivers/hwtracing/coresight/Makefile               |   2 +-
->   drivers/hwtracing/coresight/coresight-catu.c       |   3 +-
->   drivers/hwtracing/coresight/coresight-core.c       |  24 ++
->   .../hwtracing/coresight/coresight-ctcu-byte-cntr.c | 366 +++++++++++++++++++++
->   drivers/hwtracing/coresight/coresight-ctcu-core.c  | 122 +++++--
->   drivers/hwtracing/coresight/coresight-ctcu.h       |  77 ++++-
->   drivers/hwtracing/coresight/coresight-priv.h       |   2 +
->   drivers/hwtracing/coresight/coresight-tmc-core.c   | 104 ++++--
->   drivers/hwtracing/coresight/coresight-tmc-etr.c    | 144 +++++++-
->   drivers/hwtracing/coresight/coresight-tmc.h        |  40 ++-
->   13 files changed, 833 insertions(+), 72 deletions(-)
-> ---
-> base-commit: 47b7b5e32bb7264b51b89186043e1ada4090b558
-> change-id: 20251203-enable-byte-cntr-for-ctcu-5a4b88f2feb9
-> 
-> Best regards,
 
 
