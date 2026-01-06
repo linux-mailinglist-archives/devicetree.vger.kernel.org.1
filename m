@@ -1,193 +1,173 @@
-Return-Path: <devicetree+bounces-251908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C43CF8301
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 12:59:13 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D68CCCF834C
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 13:03:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 361FF306304D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 11:57:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4D6EE300EB9D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 12:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2FDB328241;
-	Tue,  6 Jan 2026 11:57:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462EE32B989;
+	Tue,  6 Jan 2026 12:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YxIOygXj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PejtpBFd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011023.outbound.protection.outlook.com [52.101.62.23])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8709132E152;
-	Tue,  6 Jan 2026 11:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.23
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767700656; cv=fail; b=NUA+oZQJn68fwAnRVxinzrGgl+BQRRZ0m3RYBte/xG0nbpDyvbQA1ZlnIhIfROtUEXYCbwrp/uGSRLm2Gregszu9rtk2+4zB3HuXeyHOLZS9UVL4iZdyc4T+TnJXyZ49sNbhFg2wzelIiIq0tqrVVb1arLIy/rWLPHdKbJokTLU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767700656; c=relaxed/simple;
-	bh=Mbe+apetgq4WIGNePAeoapDI9/dznbI8jUyVO+/2HJ0=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YOVWUkJea2NSIXaGp2aMTaAIGedzeFWtKtQVKBHRiUf+ecfuRZz6WBVbOFDfnDrlHLTqaHUSZYmMZNqDinIv8hQ7pFAA5UtyizJWKVL55ewLuXP55jqIADUQTkCTIL3lnkv7rV3WLN/DB1IeKd1H/SodSm9DOkqM+NKNiGuzu2Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YxIOygXj; arc=fail smtp.client-ip=52.101.62.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i/Gb3e2BDy8a4wv8Vz+9sZoHsJVWTqp4AlFNd20/mqFI76XsBUD+NME0eZijo94tqqzpp6WECwVy6qWmNhrFBpk9AMWu444Njqrd50fTnnhXYEbmxrEn+mRX4TgXIW/pE2fB/qHaKmWs4oBlJY8/pWPyTiv0CfY/jmB4jG4MKmySn0VGVpNhJdAWQ/6M8tOmRZpfd4B6t0jv4rySNci4cbss43USj+rVL+EqxqE8IJMhJfof6YxrO7lBIZLTMdjeEYWrlh/ZodVZOv/RjYIz5tnkKHeqM9dPNz/GrUPi35e0PvobfE7LXHkdzX6JTR0D94VbV1KCHAfeRrmU+igjVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uYsASLbwbm+fq/VMNQlfnKq23ZF0gXqWCY+BRgfBcE8=;
- b=vsq05J2ub9z0Nn5ntkRrfWRHQhefJGahXEYTFx2AsO76DDIDjs3frC+AOevvJ6X4ISdNYjB8UBTnJTBVdD7kbktJTaC1E3/JNoxkxBypSwEFW/SQqM0FfE3ne3v6FjgzIUQT+2s5XNixX8C1KWueutj5VbDKuZlhNoUcHirG6izOjJ7Wf6K2J1Z5do8wMQ/Xrw+KqI3uDVoTPc+QsBiOHfLHcpTdb2NzGuk8fD6d8XMrtvPpT0M/5LuVSn8SoFkez9NeJSFPLShmTPzGv6Flft0D9euR1+BxAv73jZLneKOXOz6x+P6alUijmf2NzNo3s+ioDfZ442K3WUbbW0DKGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uYsASLbwbm+fq/VMNQlfnKq23ZF0gXqWCY+BRgfBcE8=;
- b=YxIOygXjD5uFNwPgJ3mKWcyJ+ePkd18NbWHSMM2pRqwLZ1X1n9sX/YEdMdqUMVWok8i820RQcV53YAloU9aq3Pz3WuRoI1izRrNRjXCd2Ewuqgb6LH4ZWNtzvKWMIyUp2gu43Y8WMQUP5BVZdEgXHvyMfmIxEk140icfHgrbcFI=
-Received: from DM6PR14CA0040.namprd14.prod.outlook.com (2603:10b6:5:18f::17)
- by BN0PR10MB4902.namprd10.prod.outlook.com (2603:10b6:408:12a::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Tue, 6 Jan
- 2026 11:57:28 +0000
-Received: from CY4PEPF0000E9CD.namprd03.prod.outlook.com
- (2603:10b6:5:18f:cafe::5c) by DM6PR14CA0040.outlook.office365.com
- (2603:10b6:5:18f::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.2 via Frontend Transport; Tue, 6
- Jan 2026 11:57:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- CY4PEPF0000E9CD.mail.protection.outlook.com (10.167.241.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9499.1 via Frontend Transport; Tue, 6 Jan 2026 11:57:26 +0000
-Received: from DFLE206.ent.ti.com (10.64.6.64) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 6 Jan
- 2026 05:57:26 -0600
-Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 6 Jan
- 2026 05:57:25 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 6 Jan 2026 05:57:25 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 606BvPZD2963211;
-	Tue, 6 Jan 2026 05:57:25 -0600
-Date: Tue, 6 Jan 2026 05:57:25 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Kendall Willis <k-willis@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <d-gole@ti.com>, <vishalm@ti.com>,
-	<sebin.francis@ti.com>, <msp@baylibre.com>, <khilman@baylibre.com>,
-	<a-kaur@ti.com>, <s-kochidanadu@ti.com>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 4/5] arm64: dts: ti: k3-am62p5-sk: Enable Main UART
- wakeup
-Message-ID: <20260106115725.qqyg6isf5q7cg52g@renewable>
-References: <20251230-b4-uart-daisy-chain-dts-v2-0-fa5257ec54bb@ti.com>
- <20251230-b4-uart-daisy-chain-dts-v2-4-fa5257ec54bb@ti.com>
- <20260105135202.vnamexwl3afdt4cw@deferral>
- <44b21f10-2ad4-4c88-a8e8-f485ecb53af9@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D2D327204
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 12:03:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767701006; cv=none; b=o/+EIQKjOM+/Vjhqre7oDZs9kamy+B8nyYD+sZhKpyuuCE214+mWkVNS1QgPVUJx7fFN9QSP6TNvHOopNQFIUSmEZYlKRJYq48cVvpJqkXKQigXmiUhx5WTsiKHrbyoROxn9NnDQLqUlJpja9JW+zs59NO1CFOIQCjsZbSeoFT8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767701006; c=relaxed/simple;
+	bh=Uv82Eud2+qQYekf4jOxXEpCdWv9RuoIFOpRsSZ7Vu0Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GzJbQpSViyK4LSYpt7fDQgKT8gqFCAHf9gCt8gXb/zZavfOpa9Q65DZeDSN9Mg3ywbxKWcsMUUMd5Htamj/G13iANLV/zft4CHbIsHPAiUoJLTtPmbWzK5sTm4d+GgmfsdeOGVOGhbfe2qPFhqexiyGIYQoxzH42+QmgOqk2D/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PejtpBFd; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-59577c4c7c1so2899791e87.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 04:03:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767701002; x=1768305802; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=R24kDi7ycrD9dY59pwPxZ5h8zPUnSHdzoVoXCvf0GVU=;
+        b=PejtpBFdiyV86Oves1GoWsI2WIRx67M3gJiMJIh4YWlDKjwPDOhmLyWfE9FodWY05c
+         Fna3T+5wOBPZDjfZLRv1b6mvSLurqBu5nigCxivFY8ArbrNd0MLkPuUA7GIErI/7syLA
+         iXfMoWePdJHHExFyPBoJ92aMYL01C03RnyeqUcgCgvogo6rT9cHJXur9sEc8v4s21L/B
+         6owfpOf36fZM7r1LHSfrj6UU53jxzIkDAkbT6pyNq41hDbLVVAy3P1w03lJoNumQgJLq
+         +B/Cd4VcxLj7eyXxutuR2HDHDKJEBnS2pUU/+uEBlFGkm5MO+tS3lS8E1f0sldupGhV6
+         gUyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767701002; x=1768305802;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R24kDi7ycrD9dY59pwPxZ5h8zPUnSHdzoVoXCvf0GVU=;
+        b=vA4PV5crn4WSpvtwHeF7kMX6kpr5dtIXRToAMnGr8axwp7zlGlj17Tw9THk4WykF2t
+         FuIwBwz2p0VQgM4TdnQ2GFJLoX6HvaqpVd7Q/70ZzKgznLyhWONiQfGjtzhv9NKgvptc
+         tZRaWn4wAM8geBn5jgyu/1jVbuHKJkEEpU6/R1kJRn/jc/PL3KT3Y7XltMasuQv26Msv
+         QN4nhoCpkw/2ghMaKxb6w9YRrbbBibmEL5QIo5qvW8sHY5fHrconatA64KCoh8q1S3+F
+         zBCinW3fqCDkyIEOjQKHO3dlP+Al20dHCjYjaxw9TaKsILEb+Rh6V+84rYj4MofMS5GI
+         l3Tw==
+X-Forwarded-Encrypted: i=1; AJvYcCUH2+FJfTWGfjjFNm6Brzt4GjxKnW7DU3l9Boz0YNnV62HZn8Oklft1Yea9n0iGgP/9KSWeDesUJVf/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYj+2+QQRvpEDHD3xY4MMOqQ7V2utRY9ryseqPvzwXCABOBq5j
+	kXV38fjhZ63Aw+61zZilpGVvRsuh1FR42Ucdo5qe5rin85P0Ic9yBi4E
+X-Gm-Gg: AY/fxX7kiWDF/8HOZ4ndQBme9z6avcJXnVdZ2IsIb1YuDZM/X4GYfwVGTVI+O82woQd
+	s5ZufxLglcsgBh/5aiMzv0qo5nO/lEus4B4LRFg8Gw59IJm5HISfSaulTuFbMrYAG8lZMhqYFB1
+	WvunBlzQxe9Q1+H85tlSWIwR6U58PhkjyO8/t7Lu2S+f5O3AuW7szwdQ38d50A/P+zeVoX5kzhr
+	3rx5Mpe7BFyNZylURMK4F8K5neNAZP97fitIl3byycafdRjdR4LvC7DuPm7o7fU5g0FTQGz0GLs
+	6NP9NFRA28pm8EDjVtPki3SieAu7yAVfXbrMsntEFpROMn3MfruoQrnWR/nDrhsd/7aHBg3tTyC
+	D8IuceolhA70xWKSZjSC5cbDcYJBVYZbjsIeSW9V9iUTvJaVCax/pFtVywD9lWO6dBDOMBFWIeJ
+	3Cl5dkEB73jfPmxLOX8ZHjI0U=
+X-Google-Smtp-Source: AGHT+IFQ34mkfMwuZtHPU+EK43Z3U18GgFyWPUtQcLuGBqEmE4MawbvUoM0v/a/8F9LW9CHZvBDqvw==
+X-Received: by 2002:ac2:4c06:0:b0:595:7d7c:59a9 with SMTP id 2adb3069b0e04-59b65878424mr688495e87.22.1767701001878;
+        Tue, 06 Jan 2026 04:03:21 -0800 (PST)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b6addaab0sm185546e87.28.2026.01.06.04.03.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jan 2026 04:03:21 -0800 (PST)
+Message-ID: <3fe2eb05-f45d-4910-a9e5-8472c5c7f43f@gmail.com>
+Date: Tue, 6 Jan 2026 13:03:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <44b21f10-2ad4-4c88-a8e8-f485ecb53af9@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CD:EE_|BN0PR10MB4902:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8cd46461-ea10-467e-375a-08de4d1ac2cb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700013|82310400026|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?5c3hczwSb8QoIVjFRNeGmlXm/S+idiI8lwI5uxA6lXYm58k9qnR4XrmLQ6LJ?=
- =?us-ascii?Q?yBdfCt0OM8sl7z7tWfqJfuhgEk8K9Z+h6c1ss5e8esJgw1zkZMEKWXvUaYiu?=
- =?us-ascii?Q?CZ8DoAJA3+XltZRVH2UgCjtB7+i+M4c6FGx/RKAZ92whP4aOd3CT5lNvdFUw?=
- =?us-ascii?Q?iBgFHHMeXNgAutBjpj8R7nah7FR2VipYAV+YQi9d1fSDVWNQKtHv5fWNxQWU?=
- =?us-ascii?Q?mCO1ZPw9eNP8cIi7bX5SnFK+UzXiWgLfvwz+ItBZST8VBvxCAaKCodDHEc6G?=
- =?us-ascii?Q?6G2cAdg6TZJKwDRhlyKHeOfp+boGlQnVYOGzPeFl6xQ7xNeyNAPp3hQVAucv?=
- =?us-ascii?Q?2buivfo0+Xh9Htq3gYbuXqZmn7+SwHidahYHSavBGZnZN/2JOwd+JCLcj0lE?=
- =?us-ascii?Q?SQRLkL5OTiSr3etxqoNezYBqhFD4MV2/w9OtJylSy5xYBtjkJ+P5K6lltLSa?=
- =?us-ascii?Q?zN4JTTqk4R7rOTVbuAd87hbjLPFwoJb/ESVD6O4qJiw+KR7+LPSu3oxJ4SVG?=
- =?us-ascii?Q?n7+yrYAI+qBVRN90ajxubn1QlcEreEWUf5sEAZ7FEKQTKq5ga0uYX+CKVkoy?=
- =?us-ascii?Q?AZQCZP7zFcpYKWe2aG0toOPvyEBQXu0NjN0Mad7GWU4zvlFIOVdiPu1YpKyB?=
- =?us-ascii?Q?rTGBtd+TelsRv72OuqawYinqzmUxjjBv9VWhJh+9x+w1dzUR20Z/S1RTexAK?=
- =?us-ascii?Q?fXewr/SiWktJym+GnpvCkSQTnfDJFlQ0iQbb7gPcHmOhdAP0/fH2m5Is2sqe?=
- =?us-ascii?Q?IvHeHmuD1ASNByKzwK/1TEV4uhnT7PVOAh5/66lL9o2kspwVKQ+gE4afiwEE?=
- =?us-ascii?Q?TmPSSRV7Y+26NIuFTIWlr8o42ORPJp6E6L7QitDVPrf+O/BV4NCqOY1E6AT5?=
- =?us-ascii?Q?WL/J2Qw4dYf2OWP7FvNbl50G53Cv2HC5Wfy4PaCNbHdGrb0e7GJsjPAqR6a/?=
- =?us-ascii?Q?151xT6fwXKYqP+rwNQeACmOq3Y6CdYuEBrvGaDsoUZ508CD9huRLFHd4I0Gh?=
- =?us-ascii?Q?z4qE73UnWkLugRf+Av+6cpDaO9PZtiQPy2quLrEpmEGxbKYGllFHYFGGYk0a?=
- =?us-ascii?Q?B4nRxA6MNdiCh3Q+ujhZewIZkw0OyjIsqLWKr4I4f6yuE+Lccx4cqJ7gz0FG?=
- =?us-ascii?Q?rsTfUmWSxc9ecLFWiicRD8l35USUUKFyE3oqRDTUUuSfMMEQCV6Q782cO6gJ?=
- =?us-ascii?Q?bvLmSjEG6AcnThhITQWCBI0TtCMC6EroFlqBaNVbjek7fa97FE807TLjlyuw?=
- =?us-ascii?Q?Npy4WoRmUjgaO5t6s66yrm88ZsqSoe1gBgn6L7MDWgPVi6lpAnj2RreMY+m+?=
- =?us-ascii?Q?iGqw3O6zfdxbneqXmdHYK93TaUIfN84u9+RYp2llmcy430JY6gFGnPCkbptJ?=
- =?us-ascii?Q?hGtUynUfCwXJPUTtz2/BIpxV64GmffZ6xHq4g6tqrgwGo5IMeQHC4slam/Bw?=
- =?us-ascii?Q?MfuikuhgjAoJuFlZKTPx3JpD6N8De5UpyDxNAByi1cMhE8IR20EMtti+Af4n?=
- =?us-ascii?Q?ziX6Gl0X0bWkIN5reJqS7/aLnlSv4pRhLIoEf4ewcI2f61az9tQ/GUdEPylE?=
- =?us-ascii?Q?tX3QK2ukz2LsJBAdtaQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2026 11:57:26.4648
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8cd46461-ea10-467e-375a-08de4d1ac2cb
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9CD.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB4902
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] leds: ltc3220: add driver
+To: Edelweise Escala <edelweise.escala@analog.com>, Lee Jones
+ <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260106-ltc3220-driver-v1-0-73601d6f1649@analog.com>
+ <20260106-ltc3220-driver-v1-2-73601d6f1649@analog.com>
+Content-Language: en-US
+From: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+In-Reply-To: <20260106-ltc3220-driver-v1-2-73601d6f1649@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 16:06-20260105, Kendall Willis wrote:
-> On 1/5/26 07:52, Nishanth Menon wrote:
-> > On 20:38-20251230, Kendall Willis wrote:
-> > > The Main UART can resume from suspend to RAM states when PIN_WKUP_EN
-> > > is enabled. Add the necessary pins needed to wakeup the system. Add the
-> > > system idle states that the Main UART can wakeup the system from.
-> > 
-> > Is the tx and rx pin register states both lost? I wonder why during
-> > "wakeup" we set PIN_WKUP_EN ? is'nt that supposed to be set while
-> > entering "suspend" state?
-> > 
+On 1/6/26 06:27, Edelweise Escala wrote:
+> Add driver for ltc3220. LTC3220 18 Channel LED Driver
 > 
-> The UART driver uses the default pinctrl state when the system is active.
-> During the process of suspend, the wakeup pinctrl state is selected by the
-> UART driver in order to allow wakeup. Upon resume, the default pinctrl state
-> is selected again.
+> Signed-off-by: Edelweise Escala <edelweise.escala@analog.com>
+> ---
+>   MAINTAINERS                 |   1 +
+>   drivers/leds/Kconfig        |  10 +
+>   drivers/leds/Makefile       |   1 +
+>   drivers/leds/leds-ltc3220.c | 465 ++++++++++++++++++++++++++++++++++++++++++++
+>   4 files changed, 477 insertions(+)
 > 
-> > if the tx pin register state is not lost, then all we need to do is
-> > play with the rx pin state (and leave pinctrl-0 as is)?
-> > 
-> 
-> Yes, it can be done where the pinctrl-0 does not change, and there is an
-> additional pinctrl pins that has the TX and RX with PIN_WKUP_EN. The logic
-> behind both implementations are the same, just a different approach.
-> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d640c35d1f93..fda0d2963c4f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14961,6 +14961,7 @@ L:	linux-leds@vger.kernel.org
+>   S:	Maintained
+>   W:	https://ez.analog.com/linux-software-drivers
+>   F:	Documentation/devicetree/bindings/leds/leds-ltc3220.yaml
+> +F:	drivers/leds/leds-ltc3220.c
+>   
+[...]
+> +				     "Failed to set command\n");
+> +
+> +	device_for_each_child_node_scoped(&client->dev, child) {
+> +		struct led_init_data init_data = {};
+> +		struct ltc3220_uled_cfg *led;
+> +		u32 source;
+> +
+> +		ret = fwnode_property_read_u32(child, "reg", &source);
+> +		if (ret)
+> +			return dev_err_probe(&client->dev, ret,
+> +					     "Couldn't read LED address\n");
+> +
+> +		if (!source || source > LTC3220_NUM_LEDS)
+> +			return dev_err_probe(&client->dev, -EINVAL,
+> +					     "LED address out of range\n");
+> +
+> +		init_data.fwnode = child;
+> +		init_data.devicename = "ltc3220";
+> +		init_data.devname_mandatory = true;
 
-Keep the diff to as minimal as needed + update the commit message
-please.
+Why? Please get acquainted with the section "LED Device Naming" in [0],
+and the documentation of this property in [1].
+
+> +
+> +		/* LED node reg/index/address goes from 1 to 18 */
+> +		i = source - 1;
+> +		led = &ltc3220_state->uled_cfg[i];
+> +		led->led_index = i;
+> +		led->reg_value = 0;
+> +		led->ltc3220_state = ltc3220_state;
+> +		led->led_cdev.brightness_set_blocking = ltc3220_set_led_data;
+> +		led->led_cdev.brightness_get = ltc3220_get_led_data;
+> +		led->led_cdev.max_brightness = 255;
+> +		led->led_cdev.blink_set = ltc3220_blink_set;
+> +		led->led_cdev.pattern_set = ltc3220_pattern_set;
+> +		led->led_cdev.pattern_clear = ltc3220_pattern_clear;
+> +
+> +		ret = devm_led_classdev_register_ext(&client->dev,
+> +						      &led->led_cdev,
+> +						      &init_data);
+> +		if (ret)
+> +			return dev_err_probe(&client->dev, ret,
+> +					     "Failed to register LED class device\n");
+
+[0] Documentation/leds/leds-class.rst
+[1] include/linux/leds.h
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-https://ti.com/opensource
+Best regards,
+Jacek Anaszewski
+
 
