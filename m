@@ -1,125 +1,151 @@
-Return-Path: <devicetree+bounces-251925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8829CF8590
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 13:38:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BEA4CF863B
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 13:54:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 217EC30089AC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 12:38:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ABA1430987B6
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 12:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37E5E326D69;
-	Tue,  6 Jan 2026 12:38:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eBijw961"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C9F329E53;
+	Tue,  6 Jan 2026 12:43:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133FB22097
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 12:38:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.168.213])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DF71236A8B;
+	Tue,  6 Jan 2026 12:43:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.168.213
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767703119; cv=none; b=j7GnYReGA7zS3yTtKFrWs1UKsw5KiQAqx5mIJ+eaQ2+2kqAh0aIptkOBl5BrwlFw+zoSQXBw6616+HTEgYATHJ6693vrmdemJa3q0rxImDTQVyv72tcWyrTPRzauHf3eJflIJp7GKgetP9MgJxn2sr+BIqK+Ftw3BIqUFEsBSSg=
+	t=1767703437; cv=none; b=YW92l+UmGPpMokn75IugzudrcC3g8pwbBWnOr1EcQkdSYKJjLqig/oPFDeZWw0dCnoxU4FzcP0p620Z8T+tkw3PPCseNtImiKjAZl2RyLLnuPRLW5QITBzMTGGdKGIA9L7qxJMB0XwLPs8zOXavJvayTiyXjCkLE12TN6aKNocw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767703119; c=relaxed/simple;
-	bh=/WJ3FXylxb75JjfkAYrSDskdl0Pr5JcXSOfrWa9vX2M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=spvmHpEGqtjUTvf3jB0YLURKw3qQopJRNqODVDYhFySfjnCW8ZBU1ddihuF7cuk9lSYguqrYZbye0Ow9zIbyiahFTCBp2/ZYW4gP0qA65SRMZpb7WoUJIK/31GkEoTs1WJqYgzmggBlNbGk1Cpojw7eGkIc4IgJo3JFa1PPkdN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eBijw961; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB4DBC4AF09
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 12:38:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767703118;
-	bh=/WJ3FXylxb75JjfkAYrSDskdl0Pr5JcXSOfrWa9vX2M=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=eBijw961FdVqdQ5lzqU/ESM00AOiadOqx+ua0ZRGi8NdxZOi0LmsS4uMs8po6Cb0O
-	 5TMhTC1pqRmu5yMhNHRR+d9WYEpa5PYeh2yArJhCA70XzCJpBcWfx41mNkMu0g87H7
-	 xo89EoRPkf34wKF1WWhYht/GJw/1OcOhYW0wZp+ouQonriPSRbIJVqOczclQENQpIe
-	 N8Gjs/7c0iTXE66WYqZPBMwfi2/XNAtnLCMO3RPd6DP97ZzSdEoYSqQ4ZTSfsUnQ12
-	 xGnHMMTQLsb/EQJU/s/eAr+K2BKAJOufY6CAyLHUMxqYPkOXol0F+D/fjg/dimDcik
-	 qXCIufIZGv6/A==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-598eaafa587so1017041e87.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 04:38:38 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXgmq0jfuLEuNJ0ezzqCyArz1TL5zQzDBGSHL2H9IwVSlmekTPjSXyurz8STo/eT0p96qpn1Hi5BsH1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4esqYgLTPaGzIg1Sqtfu/bBoYdvRqj7bungJIKwZ3tXqTC2NH
-	reHZ4AqneKtCy4xa+902jkdAIBM5FbnyNJkpKjtKwJeeLEg0Fid0ywyny5G3FEHexdcx6npUYp9
-	1Ln7gzBe8JOi3lVsGD7sPkWe39Nfv/i00criS3xu4yw==
-X-Google-Smtp-Source: AGHT+IH/5oi/Mm4ylt/aH4A15j/ljVlSgxeG2MAOav7Sf6QITgCC+i0rM7ktFn11IEgwttpux/NAggqCjE5gcEsv344=
-X-Received: by 2002:a05:6512:4010:b0:598:f2e1:f616 with SMTP id
- 2adb3069b0e04-59b652b8202mr751335e87.29.1767703117392; Tue, 06 Jan 2026
- 04:38:37 -0800 (PST)
+	s=arc-20240116; t=1767703437; c=relaxed/simple;
+	bh=TMdZ5Mmr32jio4USdC4cUOR4V8rZ27kbMSvb+F4bHRg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=WIykkoy+p0g97EywJ9tBB38K1dNgtIN0THIAwW15uMGB9Zo2LIknltfyy1zU4+WnAo57bdiFCS1NjkbEdFfktl4HgsZXlWLagfr00wa9J2gUsYoxwgcFnB88nu6zppUefiMg1bFzNDcarbeEsZpq+JF2hBKOLdAyBiqCiNd0+/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.168.213
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
+ ajax-webmail-app2 (Coremail) ; Tue, 6 Jan 2026 20:43:11 +0800 (GMT+08:00)
+Date: Tue, 6 Jan 2026 20:43:11 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
+To: "Bjorn Helgaas" <helgaas@kernel.org>
+Cc: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com,
+	"Niklas Cassel" <cassel@kernel.org>
+Subject: Re: Re: [PATCH v9 2/2] PCI: eic7700: Add Eswin PCIe host controller
+ driver
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <20260105223037.GA332950@bhelgaas>
+References: <20260105223037.GA332950@bhelgaas>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260106-wcn3990-pwrctl-v2-0-0386204328be@oss.qualcomm.com> <20260106-wcn3990-pwrctl-v2-3-0386204328be@oss.qualcomm.com>
-In-Reply-To: <20260106-wcn3990-pwrctl-v2-3-0386204328be@oss.qualcomm.com>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Tue, 6 Jan 2026 13:38:25 +0100
-X-Gmail-Original-Message-ID: <CAMRc=McxGOejmegC9KaNLpCbxSL_CWmPC2PwfQGxQ+vaHg+rOw@mail.gmail.com>
-X-Gm-Features: AQt7F2rrsJVu7GLT96AFg8gb0rDx8lEL223Ap08R9PVwfe0DiaVCdXK84QTL9yQ
-Message-ID: <CAMRc=McxGOejmegC9KaNLpCbxSL_CWmPC2PwfQGxQ+vaHg+rOw@mail.gmail.com>
-Subject: Re: [PATCH v2 03/14] Bluetooth: qca: fix ROM version reading on
- WCN3998 chips
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Jeff Johnson <jjohnson@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Matthias Kaehlcke <mka@chromium.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, 
-	linux-pm@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Message-ID: <3c8d6749.1f49.19b93552d97.Coremail.zhangsenchuan@eswincomputing.com>
+X-Coremail-Locale: en_US
+X-CM-TRANSID:TQJkCgDnK69fA11psMOQAA--.6166W
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAgETBmlb5
+	-4lYAABs5
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VW3Jw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 
-On Tue, Jan 6, 2026 at 2:01=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> WCN3998 uses a bit different format for rom version:
->
-> [    5.479978] Bluetooth: hci0: setting up wcn399x
-> [    5.633763] Bluetooth: hci0: QCA Product ID   :0x0000000a
-> [    5.645350] Bluetooth: hci0: QCA SOC Version  :0x40010224
-> [    5.650906] Bluetooth: hci0: QCA ROM Version  :0x00001001
-> [    5.665173] Bluetooth: hci0: QCA Patch Version:0x00006699
-> [    5.679356] Bluetooth: hci0: QCA controller version 0x02241001
-> [    5.691109] Bluetooth: hci0: QCA Downloading qca/crbtfw21.tlv
-> [    6.680102] Bluetooth: hci0: QCA Downloading qca/crnv21.bin
-> [    6.842948] Bluetooth: hci0: QCA setup on UART is completed
->
-> Fixes: 523760b7ff88 ("Bluetooth: hci_qca: Added support for WCN3998")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->  drivers/bluetooth/btqca.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
-> index 7c958d6065be..86a48d009d1b 100644
-> --- a/drivers/bluetooth/btqca.c
-> +++ b/drivers/bluetooth/btqca.c
-> @@ -804,6 +804,8 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baud=
-rate,
->          */
->         if (soc_type =3D=3D QCA_WCN3988)
->                 rom_ver =3D ((soc_ver & 0x00000f00) >> 0x05) | (soc_ver &=
- 0x0000000f);
-> +       else if (soc_type =3D=3D QCA_WCN3998)
-> +               rom_ver =3D ((soc_ver & 0x0000f000) >> 0x07) | (soc_ver &=
- 0x0000000f);
->         else
->                 rom_ver =3D ((soc_ver & 0x00000f00) >> 0x04) | (soc_ver &=
- 0x0000000f);
->
->
-> --
-> 2.47.3
->
-
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+PiBTdWJqZWN0OiBSZTogW1BBVENIIHY5IDIvMl0gUENJOiBlaWM3NzAwOiBBZGQgRXN3aW4gUENJ
+ZSBob3N0IGNvbnRyb2xsZXIgZHJpdmVyCj4gCj4gWytjYyBOaWtsYXMsIGxpc3QgdnMgYXJyYXkg
+b2YgcG9ydHNdCj4gCj4gT24gTW9uLCBEZWMgMjksIDIwMjUgYXQgMDc6MzI6MDdQTSArMDgwMCwg
+emhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5jb20gd3JvdGU6Cj4gPiBGcm9tOiBTZW5jaHVh
+biBaaGFuZyA8emhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5jb20+Cj4gPiAKPiA+IEFkZCBk
+cml2ZXIgZm9yIHRoZSBFc3dpbiBFSUM3NzAwIFBDSWUgaG9zdCBjb250cm9sbGVyLCB3aGljaCBp
+cyBiYXNlZCBvbgo+ID4gdGhlIERlc2lnbldhcmUgUENJZSBjb3JlLCBJUCByZXZpc2lvbiA1Ljk2
+YS4gVGhlIFBDSWUgR2VuLjMgY29udHJvbGxlcgo+ID4gc3VwcG9ydHMgYSBkYXRhIHJhdGUgb2Yg
+OCBHVC9zIGFuZCA0IGNoYW5uZWxzLCBzdXBwb3J0IElOVHggYW5kIE1TSQo+ID4gaW50ZXJydXB0
+cy4KPiAKPiA+ICtjb25maWcgUENJRV9FSUM3NzAwCj4gPiArCXRyaXN0YXRlICJFc3dpbiBFSUM3
+NzAwIFBDSWUgY29udHJvbGxlciIKPiAKPiA+ICsvKiBWZW5kb3IgYW5kIGRldmljZSBJRCB2YWx1
+ZSAqLwo+ID4gKyNkZWZpbmUgUENJX1ZFTkRPUl9JRF9FU1dJTgkJMHgxZmUxCj4gPiArI2RlZmlu
+ZSBQQ0lfREVWSUNFX0lEX0VTV0lOCQkweDIwMzAKPiAKPiBVc3VhbGx5IHRoZSBkZXZpY2UgbmFt
+ZSBpcyBhIGxpdHRsZSBtb3JlIHRoYW4ganVzdCB0aGUgdmVuZG9yLiAgV2hhdAo+IGlmIEVzd2lu
+IGV2ZXIgbWFrZXMgYSBzZWNvbmQgZGV2aWNlPwoKT2tleSwgdGhhbmtzLgpQZXJoYXBzIGl0J3Mg
+YSBwcm9ibGVtLiBNYXliZSBQQ0lfREVWSUNFX0lEX0VJQzc3MDAgaXMgYmV0dGVyPwoKPiAKPiA+
+ICtzdGF0aWMgaW50IGVpYzc3MDBfcGNpZV9wYXJzZV9wb3J0KHN0cnVjdCBlaWM3NzAwX3BjaWUg
+KnBjaWUsCj4gPiArCQkJCSAgIHN0cnVjdCBkZXZpY2Vfbm9kZSAqbm9kZSkKPiA+ICt7Cj4gPiAr
+CXN0cnVjdCBkZXZpY2UgKmRldiA9IHBjaWUtPnBjaS5kZXY7Cj4gPiArCXN0cnVjdCBlaWM3NzAw
+X3BjaWVfcG9ydCAqcG9ydDsKPiA+ICsKPiA+ICsJcG9ydCA9IGRldm1fa3phbGxvYyhkZXYsIHNp
+emVvZigqcG9ydCksIEdGUF9LRVJORUwpOwo+ID4gKwlpZiAoIXBvcnQpCj4gPiArCQlyZXR1cm4g
+LUVOT01FTTsKPiA+ICsKPiA+ICsJcG9ydC0+cGVyc3QgPSBvZl9yZXNldF9jb250cm9sX2dldF9l
+eGNsdXNpdmUobm9kZSwgInBlcnN0Iik7Cj4gPiArCWlmIChJU19FUlIocG9ydC0+cGVyc3QpKSB7
+Cj4gPiArCQlkZXZfZXJyKGRldiwgIkZhaWxlZCB0byBnZXQgUEVSU1QjIHJlc2V0XG4iKTsKPiA+
+ICsJCXJldHVybiBQVFJfRVJSKHBvcnQtPnBlcnN0KTsKPiA+ICsJfQo+ID4gKwo+ID4gKwkvKgo+
+ID4gKwkgKiBUT0RPOiBTaW5jZSB0aGUgUm9vdCBQb3J0IG5vZGUgaXMgc2VwYXJhdGVkIG91dCBi
+eSBwY2llIGRldmljZXRyZWUsCj4gPiArCSAqIHRoZSBEV0MgY29yZSBpbml0aWFsaXphdGlvbiBj
+b2RlIGNhbid0IHBhcnNlIHRoZSBudW0tbGFuZXMgYXR0cmlidXRlCj4gPiArCSAqIGluIHRoZSBS
+b290IFBvcnQuIEJlZm9yZSBlbnRlcmluZyB0aGUgRFdDIGNvcmUgaW5pdGlhbGl6YXRpb24gY29k
+ZSwKPiA+ICsJICogdGhlIHBsYXRmb3JtIGRyaXZlciBjb2RlIHBhcnNlcyB0aGUgUm9vdCBQb3J0
+IG5vZGUuIFRoZSBFSUM3NzAwIG9ubHkKPiA+ICsJICogc3VwcG9ydHMgb25lIFJvb3QgUG9ydCBu
+b2RlLCBhbmQgdGhlIG51bS1sYW5lcyBhdHRyaWJ1dGUgaXMgc3VpdGFibGUKPiA+ICsJICogZm9y
+IHRoZSBjYXNlIG9mIG9uZSBSb290IFBvcnQuCj4gPiArCSAqLwo+ID4gKwlpZiAoIW9mX3Byb3Bl
+cnR5X3JlYWRfdTMyKG5vZGUsICJudW0tbGFuZXMiLCAmcG9ydC0+bnVtX2xhbmVzKSkKPiA+ICsJ
+CXBjaWUtPnBjaS5udW1fbGFuZXMgPSBwb3J0LT5udW1fbGFuZXM7Cj4gPiArCj4gPiArCUlOSVRf
+TElTVF9IRUFEKCZwb3J0LT5saXN0KTsKPiA+ICsJbGlzdF9hZGRfdGFpbCgmcG9ydC0+bGlzdCwg
+JnBjaWUtPnBvcnRzKTsKPiAKPiBOaWtsYXMgcmFpc2VkIGFuIGludGVyZXN0aW5nIHF1ZXN0aW9u
+IGFib3V0IHdoZXRoZXIgYSBsaXN0IG9yIGFuIGFycmF5Cj4gaXMgdGhlIGJlc3QgZGF0YSBzdHJ1
+Y3R1cmUgZm9yIHRoZSBzZXQgb2YgUm9vdCBQb3J0czoKPiAKPiAgIGh0dHBzOi8vbG9yZS5rZXJu
+ZWwub3JnL3IvYVZ2a21rZDVtV1BteGVpU0ByeXplbgo+IAo+IE1pZ2h0IGhhdmUgdG8gaXRlcmF0
+ZSBvdmVyIHRoZSBjaGlsZCBub2RlcyB0d2ljZSAob25jZSB0byBjb3VudCwgYWdhaW4KPiBmb3Ig
+ZWljNzcwMF9wY2llX3BhcnNlX3BvcnQoKSksIGJ1dCBvdGhlcndpc2UgdGhlIGFycmF5IGlzIHBy
+b2JhYmx5Cj4gc2ltcGxlciBjb2RlLgoKQWZ0ZXIgcmVhZGluZyBwYXRjaCdzIGNvbW1lbnRzLCBs
+aXN0cyBhbmQgYXJyYXlzIHNlZW0gdG8gYmUgZ29vZCBjaG9pY2VzLApJIGRvbid0IGhhdmUgYW55
+IHBhcnRpY3VsYXJseSBnb29kIGlkZWFzIGZvciB0aGUgdGltZSBiZWluZy4gQW55d2F5LCB0aGlz
+CmlzIGEgdmVyeSBnb29kIHBhdGNoIHRoYXQgc3VwcG9ydHMgbXVsdGlwbGUgUm9vdCBQb3J0cyBy
+ZXNvbHV0aW9ucy4KCj4gCj4gPiArCXJldHVybiAwOwo+ID4gK30KPiA+ICsKPiA+ICtzdGF0aWMg
+aW50IGVpYzc3MDBfcGNpZV9wYXJzZV9wb3J0cyhzdHJ1Y3QgZWljNzcwMF9wY2llICpwY2llKQo+
+ID4gK3sKPiA+ICsJc3RydWN0IGVpYzc3MDBfcGNpZV9wb3J0ICpwb3J0LCAqdG1wOwo+ID4gKwlz
+dHJ1Y3QgZGV2aWNlICpkZXYgPSBwY2llLT5wY2kuZGV2Owo+ID4gKwlpbnQgcmV0Owo+ID4gKwo+
+ID4gKwlmb3JfZWFjaF9hdmFpbGFibGVfY2hpbGRfb2Zfbm9kZV9zY29wZWQoZGV2LT5vZl9ub2Rl
+LCBvZl9wb3J0KSB7Cj4gPiArCQlyZXQgPSBlaWM3NzAwX3BjaWVfcGFyc2VfcG9ydChwY2llLCBv
+Zl9wb3J0KTsKPiA+ICsJCWlmIChyZXQpCj4gPiArCQkJZ290byBlcnJfcG9ydDsKPiA+ICsJfQo+
+ID4gKwo+ID4gKwlyZXR1cm4gMDsKPiA+ICsKPiA+ICtlcnJfcG9ydDoKPiA+ICsJbGlzdF9mb3Jf
+ZWFjaF9lbnRyeV9zYWZlKHBvcnQsIHRtcCwgJnBjaWUtPnBvcnRzLCBsaXN0KQo+ID4gKwkJbGlz
+dF9kZWwoJnBvcnQtPmxpc3QpOwo+IAo+IElzIHNvbWUga2luZCBvZiByZXNldF9jb250cm9sX3B1
+dCgpIG5lZWRlZCB0byBtYXRjaCB0aGUKPiBvZl9yZXNldF9jb250cm9sX2dldF9leGNsdXNpdmUo
+KSBhYm92ZT8KCkkgb25seSBjb25zaWRlcmVkIHRoYXQgdGhlcmUgaXMgY3VycmVudGx5IG9ubHkg
+b25lIFJvb3QgUG9ydC4gTWF5YmUgCnRoZXJlIHdpbGwgYmUgbXVsdGlwbGUgUm9vdCBQb3J0cyBp
+biB0aGUgZnV0dXJlLgoKUGVyaGFwcyB0aGlzIGlzIHRoZSBiZXN0OgpsaXN0X2Zvcl9lYWNoX2Vu
+dHJ5X3NhZmUocG9ydCwgdG1wLCAmcGNpZS0+cG9ydHMsIGxpc3QpewogICAgICAgIGlmICghSVNf
+RVJSX09SX05VTEwocG9ydC0+cGVyc3QpKQogICAgICAgICAgICByZXNldF9jb250cm9sX3B1dChw
+b3J0LT5wZXJzdCk7CiAgICAgICAgbGlzdF9kZWwoJnBvcnQtPmxpc3QpOwp9Cgo+IAo+ID4gK3N0
+YXRpYyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIGVpYzc3MDBfcGNpZV9kcml2ZXIgPSB7Cj4gPiAr
+CS5wcm9iZSA9IGVpYzc3MDBfcGNpZV9wcm9iZSwKPiAKPiBUaGlzIGRyaXZlciBpcyB0cmlzdGF0
+ZSBidXQgaGFzIG5vIC5yZW1vdmUoKSBjYWxsYmFjay4gIFNlZW1zIGxpa2UgaXQKPiBzaG91bGQg
+aGF2ZSBvbmU/CgpJbiB2MiBwYXRjaCwgSSByZWZlcnJlZCB0byBNYW5pJ3MgY29tbWVudHMgYW5k
+IHJlbW92ZWQgdGhlIC5yZW1vdmUoKQpjYWxsYmFjaywgYXMgZm9sbG93czoKIlNpbmNlIHRoaXMg
+Y29udHJvbGxlciBpbXBsZW1lbnRzIGlycWNoaXAgdXNpbmcgdGhlIERXQyBjb3JlIGRyaXZlciwK
+aXQgaXMgbm90IHNhZmUgdG8gcmVtb3ZlIGl0IGR1cmluZyBydW50aW1lLiIKaHR0cHM6Ly9sb3Jl
+Lmtlcm5lbC5vcmcvbGludXgtcGNpL2pnaG96dXJqcXlobXR1bml2b3RpdGdzNjdoNnhvNHNiNDZx
+Y3ljbmJid3l2amNtNGVrQHZncTc1b2xhem1vaS8KCkluIGFkZGl0aW9uLCByZW1vdmUgLnJlbW92
+ZSgpIGNhbGxiYWNrLCBiZWNhdXNlIHRoaXMgZHJpdmVyIGhhcyBiZWVuIAptb2RpZmllZCB0byBi
+dWlsdGluX3BsYXRmb3JtX2RyaXZlciBhbmQgZG9lcyBub3Qgc3VwcG9ydCBIb3RQbHVnLCAKdGhl
+cmVmb3JlLCB0aGUgLnJlbW92ZSgpIGNhbGxiYWNrIGlzIG5vdCBuZWVkZWQuIERvIHlvdSBoYXZl
+IGFueQpiZXR0ZXIgc3VnZ2VzdGlvbnM/CgpLaW5kIHJlZ2FyZHMsClNlbmNodWFuIFpoYW5nCgo+
+IAo+ID4gKwkuZHJpdmVyID0gewo+ID4gKwkJLm5hbWUgPSAiZWljNzcwMC1wY2llIiwKPiA+ICsJ
+CS5vZl9tYXRjaF90YWJsZSA9IGVpYzc3MDBfcGNpZV9vZl9tYXRjaCwKPiA+ICsJCS5zdXBwcmVz
+c19iaW5kX2F0dHJzID0gdHJ1ZSwKPiA+ICsJCS5wbSA9ICZlaWM3NzAwX3BjaWVfcG0sCj4gPiAr
+CQkucHJvYmVfdHlwZSA9IFBST0JFX1BSRUZFUl9BU1lOQ0hST05PVVMsCj4gPiArCX0sCj4gPiAr
+fTsKPiA+ICtidWlsdGluX3BsYXRmb3JtX2RyaXZlcihlaWM3NzAwX3BjaWVfZHJpdmVyKTsK
 
