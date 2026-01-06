@@ -1,102 +1,172 @@
-Return-Path: <devicetree+bounces-252116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0F5BCFB1F0
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 22:45:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E51CFB2C2
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 22:55:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1A40C300DD8D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 21:45:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 01C4E30780B1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 21:54:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B13321F39;
-	Tue,  6 Jan 2026 21:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88AD52D593E;
+	Tue,  6 Jan 2026 21:54:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dOvi6VBY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kw3oeS3m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB59E287511
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 21:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECD74C6C
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 21:53:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767735902; cv=none; b=uw0Ps9eefOdhsxnLjIyueXl4g3XJyFQGkgOysObD4Kr6Ral1IFJrdYl4vvHITn0rsSyfEkIl0TS+ZOymoswT6rL0HHsff3HqHwiXRp6gSdLyVAbXb3eYLDjOaxt2XnFikP5EIM4inP08EI4OMpzzmMKTgn1bhb8fuH2BCNCIM94=
+	t=1767736440; cv=none; b=PkZMNwSFY2Ccyfq5QDZ9aJ7D/qUVHK4X93/LPjhaAO4h+Sow1qAMz/ulufYxgMQCg2MlK/UmXa6e9Y40a9GJPu6FKf3WUngK6s/y0cYFb8VY39vpIqIABEOberwlxBCFVaxOb0/ydGqhBoexibNnGTRSDGLVt3SLRNs5gVRYNJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767735902; c=relaxed/simple;
-	bh=JttCpsSUeiclCS0amSNQoEaALqaunw0BGjw2O/ph5Qo=;
+	s=arc-20240116; t=1767736440; c=relaxed/simple;
+	bh=d4rGAO0U0TxZ9w2H/WEEN6FL/LfJ8AB9BuS6CwpoOYk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aHeUusI/7XC09O/MgVhPxd5BkvDA2X852dQM5hLm4ZinXDiIGfL3VqAMYL19gYa9LnAt/czXHbepBs0wmMKU3rxhjsL7qDv/9WA5XwT1DCDi1taVIrbm3VHEPbMVOAtZ2wt7bdlY7iEM+qZLymjuqP28BIrBpwv7tKQsGkVKF88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dOvi6VBY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AC5AC4AF0F
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 21:45:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767735902;
-	bh=JttCpsSUeiclCS0amSNQoEaALqaunw0BGjw2O/ph5Qo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=dOvi6VBYNuCATAepaLqU1eErybfMwAvZncQAeneeK/QJYVEgP95Q6ApZEFND0Ytxd
-	 K0beUQ7PVksZuOq8FvAXItri5X4Kq6/j0LpAHLyzOEBtHppod0/GrH+LNIFgbl6gmm
-	 pw64g3olZWWkYeHqLJzmub9IAflpt/pt3hbQutRJusiJXZ1tD9OW75+2PFgVaBzEzB
-	 DdBFRgANp3bKJ+k6IORg4s7g4NSN1OoQHV2VSeJBaAWDcohkys9FlxJcXKc28iV4qh
-	 lYl0wv14Skb343IP40zLeiAh4iaknfV0EO/c79KW3h8X3yH0mCCKWOH92zWLoTLNAa
-	 F39h3mRZVkw+A==
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b79e7112398so237927166b.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 13:45:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXRgjAq3SOGpbKwk1sO41qcYMhqaZlndVMXoF87sMiohcFW4w1cIkjA1jtmcabtGyW1YkC70u0XJPdN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbzSMeqXoRyg66cCB91NvjehFXK0UUFJqPcO5myf+1vywB16vG
-	F3dDAXRD/deDnUraPHY5NdznrOOU6/bSp6pg/tSVPUhI+jgv36tz0r2JE5xI/Xcvoe3MqZbWbZJ
-	t3BayEYueOAZAxTZuCDZkMiMXAEuwQA==
-X-Google-Smtp-Source: AGHT+IEjrvbEDUapgFRPfSRLcyQnp2+3eYc5vauPrFRqRHPMdnl9KlBHcpoL794w7RR12SXJM+/lcy7IprrngoUzQQ8=
-X-Received: by 2002:a17:907:7fa5:b0:b83:95c8:15d0 with SMTP id
- a640c23a62f3a-b84453eb335mr40051766b.52.1767735900967; Tue, 06 Jan 2026
- 13:45:00 -0800 (PST)
+	 To:Cc:Content-Type; b=FvQaXfx3KgRdQOtRl3tdup0V6b4oq1709ONUGJOHTFJpYXrf/IbNkOXUMYcUycv0Q69ZA70hbc690vryP+liN0TwfVJDA1c/30hR3v+EX987otPtyMveFWxFw0tAVGGNd2VAVf2N+D/m6pfSFQh8ofXtOnbd4+MxkkIR3L1J7hU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kw3oeS3m; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-47795f6f5c0so8857085e9.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 13:53:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767736437; x=1768341237; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6xyVxIYmy3wtOuQL/m2GM7dhtWyBgchh4pfGSSU0ZDI=;
+        b=kw3oeS3mJqcazWm7SyAXLOOvJaSZ3tX0DZDrKzDrPeZsSXXhtoC5Td/mvBfj775JN9
+         l0hAXbXF5LALQAbzCrdtR+fRQDOmUBQ6ovqIZssc3n7/Bb26ojdyNi6l6nH4w9eBIDje
+         bhGmpIkBq5SjRhEcw/F+BLo836kMXY4gz8VPrdCtpzJX2OahmtZ54QBnhRw51jlCDmKv
+         Nw84Del/xHzoY69uLPp4FDAG9yU3CoX4MMkh2Z2CYi1fIfKx+Ls3E7BMPPBKw56yyxqP
+         lU7nVW9g26FcDNUQNhNyyzHi537jS1+ajxaaNj1IIk9NBSWZdJ99nvs+iEX8PKB2l0wd
+         OYVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767736437; x=1768341237;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=6xyVxIYmy3wtOuQL/m2GM7dhtWyBgchh4pfGSSU0ZDI=;
+        b=t1ja0VZ9DviwOWbbhImlzjU+vJX5t9pHiQj/0SzLmhvf3MI3NwapHzJuDSk6RBTnqR
+         kmltpOWyUmpwSYglYzc8nrDHlXsPCLj5107aM9/B6pTyJBxn0Nl5gUuzebYCIcbtUgDq
+         eZLZpIfKNOtfGIDLNASaFbRrk454lQyCsj0i1XQGyAqUhUtuV38fFf6dHuOov24jnaib
+         Cq0VnwpsEqfxvyXhH0Nq9j20rzereiULYyRuqpJYGKZEgOh1JzeFcwJwhUD/VgrMsFuf
+         evklAl/FE3qdbsskt3IVYpwWZZfy6IhKAbv06YmB6USudvEexuK151Q7IS2ab69GggbH
+         J3Vg==
+X-Forwarded-Encrypted: i=1; AJvYcCWynkklhT7s9jbDc8Xc/bkLrrGPVp3BW/UbwKoFHrGMYxgH4wpcfXMVhgLmZw8OHCN4+GwuBS3VxBe1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyq0Ys2DeSYS4/idaz++CrrJ8Pp0clK//A3RshLRHPdfLVXip5W
+	IVdg8s+wvfO7Cf8Q5h/cruXuDSESlIErcFZ1RS4Ky6UM8nfWAdhLgDs1NSkjN4vIvFDHWmzbixK
+	SVS2Uej6vlK/Z0EKMYev3Ae0IXZI+8Kc=
+X-Gm-Gg: AY/fxX6i2dXz9d/MrBkEOaGi3V4toFPzgnf2YbzxBbQfgkP3ZkQ5woFd9VvGkBuRL/G
+	dgVF9SBPTJix6JCyI8n2HXfzpmV/BIe9ZKYZcyyYIPGRzIvzYvkXeivytt3YJe/Kl+SaBeScFsP
+	a1w2u4GgGYjmEtUtPAfYTDxRxSI2wjTtWufSQGRatYI3vdZd68Ou7KWizTvuPil6dqXnjSNcyIE
+	v9AgyNLOfjM8ke9obZRKfQwCdwZPqKsmukp1vXLuClXpfYYEMmcxZcFMGE7ZbLxs1JiVY2iVbpm
+	fNkEAcpKvkrcCfYhBzoG5D5kNd4YqULcRSYYOpwC48HshguruzhPwckXhV6I5eAPRQGKu0CDqP/
+	oa4EOTPViCxgH
+X-Google-Smtp-Source: AGHT+IHJYyf174/QsrKA4yj9izst/o67M12RhUcvLu8ST8wy8rthqncq05WjMVIhUNkdstK9csgrrZnrP63a4Kf6rMM=
+X-Received: by 2002:a05:600c:c491:b0:471:1774:3003 with SMTP id
+ 5b1f17b1804b1-47d84b5b5d4mr3073085e9.29.1767736436903; Tue, 06 Jan 2026
+ 13:53:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260106143620.126212-1-Frank.Li@nxp.com>
-In-Reply-To: <20260106143620.126212-1-Frank.Li@nxp.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 6 Jan 2026 15:44:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJxKvrOWq6Y=nRzPz+W0HYGR1Egy8qcGnd_6XDFOCfcFQ@mail.gmail.com>
-X-Gm-Features: AQt7F2rxYuRKfsW2A7MFdTtlHTPtCjOh90uCeuQyt55itPQ6SCq66xhFomktgUY
-Message-ID: <CAL_JsqJxKvrOWq6Y=nRzPz+W0HYGR1Egy8qcGnd_6XDFOCfcFQ@mail.gmail.com>
-Subject: Re: [PATCH 1/1] dt-bindings: net: dsa: microchip: Make pinctrl
- 'reset' optional
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Woojung Huh <woojung.huh@microchip.com>, 
-	"maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER" <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
-	"open list:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER" <netdev@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	m.felsch@pengutronix.de, imx@lists.linux.dev, shawnguo@kernel.org
+References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251230115814.53536-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260102-quirky-hornet-of-downpour-ddda69@quoll> <CA+V-a8sY0QneUWQ4A0XCKUGPL8VYkU5NQE2h_cOK=06JG_1c2g@mail.gmail.com>
+ <20260106173936.GA2345468-robh@kernel.org>
+In-Reply-To: <20260106173936.GA2345468-robh@kernel.org>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 6 Jan 2026 21:53:30 +0000
+X-Gm-Features: AQt7F2p1qSg94FMvdzlxCyc7AxN9JH-ov8zGg9NHMiITr64SSrfzG_NiapklzBU
+Message-ID: <CA+V-a8tOTrjzTvko7hg14pBmHMbxg7r2jWc-EkQFPtHbwXnaUg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: can: renesas,rcar-canfd: Specify reset-names
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 6, 2026 at 8:36=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrote:
->
-> Commit e469b87e0fb0d ("dt-bindings: net: dsa: microchip: Add strap
-> description to set SPI mode") required both 'default' and 'reset' pinctrl
-> states for all compatible devices. However, this requirement should be on=
-ly
-> applicable to KSZ8463.
->
-> Make the 'reset' pinctrl state optional for all other Microchip DSA
-> devices while keeping it mandatory for KSZ8463.
->
-> Fix below CHECK_DTBS warnings:
->   arch/arm64/boot/dts/freescale/imx8mp-skov-basic.dtb: switch@5f (microch=
-ip,ksz9893): pinctrl-names: ['default'] is too short
->         from schema $id: http://devicetree.org/schemas/net/dsa/microchip,=
-ksz.yaml#
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+Hi Rob.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+On Tue, Jan 6, 2026 at 5:39=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Jan 06, 2026 at 05:17:17PM +0000, Lad, Prabhakar wrote:
+> > Hi Krzysztof,
+> >
+> > Thank you for the review.
+> >
+> > On Fri, Jan 2, 2026 at 11:16=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> > >
+> > > On Tue, Dec 30, 2025 at 11:58:11AM +0000, Prabhakar wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Specify the expected reset-names for the Renesas CAN-FD controller =
+on
+> > > > RZ/G2L and RZ/G3E SoCs.
+> > >
+> > > You should explain here from where you got the actual names.
+> > >
+> > > Otherwise you got following review:
+> > >
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
+om>
+> > > > ---
+> > > > v1->v2:
+> > > > - Moved reset-names to top-level properties.
+> > > > ---
+> > > >  .../bindings/net/can/renesas,rcar-canfd.yaml  | 33 +++++++++++----=
+----
+> > > >  1 file changed, 19 insertions(+), 14 deletions(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar=
+-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.=
+yaml
+> > > > index e129bdceef84..9bfd4f44e4d4 100644
+> > > > --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.=
+yaml
+> > > > +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.=
+yaml
+> > > > @@ -122,6 +122,11 @@ properties:
+> > > >
+> > > >    resets: true
+> > > >
+> > > > +  reset-names:
+> > > > +    items:
+> > > > +      - const: rstp_n
+> > > > +      - const: rstc_n
+> > >
+> > > rst seems redundant. _n as well. Are these names from datasheet? How =
+are
+> > > they called in this device (not the soc) datasheet exactly? Because i=
+t
+> > > feels you use pin or SoC names which is not useful.
+> > >
+> > rstp_n/rstc_n are coming from the SoC HW manual and is already used by
+> > the driver (since commit 76e9353a80e9 "can: rcar_canfd: Add support
+> > for RZ/G2L family"). The reset-names existed previously but were
+> > dropped as of commit 466c8ef7b66b "dt-bindings: can:
+> > renesas,rcar-canfd: Simplify the conditional schema". Let me know if
+> > you want me to rename them but the driver will have to maintain the
+> > backward compatibility or do you want me to drop this patch.
+>
+> The names are fine. The above is useful information that should be in
+> the commit msg. Please help us if we've already reviewed something.
+>
+Sure, I'll add the above info in the commit message and re-spin the series.
+
+Cheers,
+Prabhakar
 
