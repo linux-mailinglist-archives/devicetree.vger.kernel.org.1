@@ -1,231 +1,224 @@
-Return-Path: <devicetree+bounces-251747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA6E7CF64D1
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 02:34:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D44BCCF6573
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 02:46:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F2FDB3025737
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 01:34:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8F4283025704
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 01:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 093A6312835;
-	Tue,  6 Jan 2026 01:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3D42253EC;
+	Tue,  6 Jan 2026 01:37:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="QReAPE7k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A81E72DF140;
-	Tue,  6 Jan 2026 01:34:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9876935950;
+	Tue,  6 Jan 2026 01:37:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767663252; cv=none; b=jJtFeU118LiBqFcY2VHoPXR1iQ7M5o/0VloigMxS1xXV8J+kji1icXF3HKAO8VsGkprxa0man0ejO5M4NOxnoyGY1yS3QDfoEBDz+3E8CDfQIrj/+WpYJht2uqbhFFAatUQem1IE9b3RAwEh56caax/ULjLc45A576iqgk6vXAQ=
+	t=1767663435; cv=none; b=QbWMkVh+ZZDvvlLrmhfGnkKyJDNtQogyVesSpG3QYhgcDkVKAyfZswH7ZizmNPCtcVCcdJSz/y7SnC/DZhcAJp0zQX/Byu6744DcefOQO0C9euoAAqiXWo43APotssOSy//mGvhJKewTOdPBl4xeeRwKe5mBgMZStG4HjxTtRYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767663252; c=relaxed/simple;
-	bh=QI85LElbAq1tL92g6/0uHLO0c8OPkd12NhBmQUKzMfQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kXeXRTLncjAhR7GGXm+4hjnVgc6fpobzqKx2pRy+nblM/zBN8z38NrOi9CM+L9kG98oSSG3tFik82arN1jsiL0RKejU6vLHFpRah8EOhIjxUYGheGdR7xEuPG9oqrGwPStZpjx+7zey2Epu+KEfi9NPjumSa+vWtc5p/M61KvRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.69.1])
-	by gateway (Coremail) with SMTP id _____8CxacKKZlxpEc4FAA--.18057S3;
-	Tue, 06 Jan 2026 09:34:02 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.69.1])
-	by front1 (Coremail) with SMTP id qMiowJBxKMF8ZlxpN4IPAA--.20395S5;
-	Tue, 06 Jan 2026 09:33:57 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-rtc@vger.kernel.org
-Cc: Xiaochuang Mao <maoxiaochuan@loongson.cn>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Keguang Zhang <keguang.zhang@gmail.com>,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v2 3/3] rtc: loongson: Add Loongson-2K0300 support
-Date: Tue,  6 Jan 2026 09:33:33 +0800
-Message-ID: <8ff00dfd68b24fb3261b98389af9ff66c6c25198.1767663073.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1767663073.git.zhoubinbin@loongson.cn>
-References: <cover.1767663073.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1767663435; c=relaxed/simple;
+	bh=RhrIKJ1phrF1B4sebXYrndvI9FyrAZYu/k9qmYytntg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Dszkd30cI3qm4mBo5v+PL8xFLGybMcKEs+j3PmnlJi27GLeFPCa1YMrSmTlTFXy+gj4y/iCSi4FKsqY8ApSDtR8biw2uYzV8u8E2yY8ZMsD9GgVhjtVWJJ3istcoc9ikfWCGG0ccWNZ3ANqR/fxyCo5L0E/nzev5++sm1m4w+yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=QReAPE7k; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dlYgR559sz9t8l;
+	Tue,  6 Jan 2026 02:37:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1767663427;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vZdZ6z94WkwXLP8aTircs4WcG7hRxfUszazs7DfQTcA=;
+	b=QReAPE7ke0wiZOzVxM3a+dKfeWMTiR+P+pxZJKx7eZrI6m3p9b4JzkT6PL8iTPFl0+fs8z
+	PetcKAB7TzuBlZsmok6+/WjeLB3cgzvhDxU17sxj1Rv+Sst7sjLimqPs2mCLrcFHvfvA94
+	Zt1C2XyL8R7kneUy6RN4xvOxQZa25ZERMcOBFCOXAjfAbdwNxEdhRZ3hVJ+fnzayfmUokX
+	kkCoJEqCB3tk8Oc+JJXYp3P8JCr1CqJDtkAzyiXPZIjQUswuHYH9EdZb7wZY2YYNc8QAje
+	FemL8DTDplAylFvImKRL0m/B4m4LQVK4GixZR/ntkLC/vQ3x6unQokSD8o71Jw==
+Message-ID: <9912e2dc-50cc-464d-8372-b3b79334ac67@mailbox.org>
+Date: Tue, 6 Jan 2026 02:36:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJBxKMF8ZlxpN4IPAA--.20395S5
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAgETCGlbUpoR9AAAsH
-X-Coremail-Antispam: 1Uk129KBj93XoWxuFW3uw1fKry8GF1kXw17twc_yoW7Xw4Dpw
-	43Aa45Kr4FqF15urs5JayUGF13CryfGa4IqF47K3s2g3sxA34DZr1kKFy3Z3y3AF98ZrW3
-	XFWkGFWfua1UCwbCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6r4j6r4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
-	Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_
-	WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
-	xGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWU
-	JVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4
-	vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IY
-	x2IY67AKxVW5JVW7JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26c
-	xKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAF
-	wI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j2MKZUUUUU=
+Subject: Re: [PATCH v4 07/14] drm/imx: dc: Add DPR channel support
+To: Liu Ying <victor.liu@oss.nxp.com>, Liu Ying <victor.liu@nxp.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+References: <20251016-imx8-dc-prefetch-v4-0-dfda347cb3c5@nxp.com>
+ <20251016-imx8-dc-prefetch-v4-7-dfda347cb3c5@nxp.com>
+ <174bdb5a-b5a8-4856-a0ac-8caaaefde136@mailbox.org>
+ <24f99c46-ca5d-43cc-a2eb-a6e5029e9f86@nxp.com>
+ <500852c9-2cd5-4897-a139-4e93988f5469@mailbox.org>
+ <df8751ba-7215-4635-98b0-ca659ec786cd@nxp.com>
+ <de695268-1241-4658-871c-30dbf068ad92@mailbox.org>
+ <3d622f3c-ddd4-4feb-bc88-a1eea7dd936d@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <3d622f3c-ddd4-4feb-bc88-a1eea7dd936d@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: o3msartdmiogq9p5x1ggudos8skw5gfh
+X-MBO-RS-ID: f3f8d579d449a7f2514
 
-The Loongson-2K0300's rtc hardware design is similar to that of the
-Loongson-1B, but it does not support the alarm feature.
+On 11/14/25 11:03 AM, Liu Ying wrote:
 
-Introduce `LOONGSON_RTC_ALARM_WORKAROUND`, which indicates a chip that
-does not support the alarm feature, and rewrite the related logic in
-`loongson_rtc_alarm_setting()`.
+Hello Liu,
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- drivers/rtc/rtc-loongson.c | 71 +++++++++++++++++++++++++-------------
- 1 file changed, 47 insertions(+), 24 deletions(-)
+sorry for my late reply.
 
-diff --git a/drivers/rtc/rtc-loongson.c b/drivers/rtc/rtc-loongson.c
-index 2ca7ffd5d7a9..066f0644d1c3 100644
---- a/drivers/rtc/rtc-loongson.c
-+++ b/drivers/rtc/rtc-loongson.c
-@@ -66,7 +66,8 @@
-  * According to the LS1C manual, RTC_CTRL and alarm-related registers are not defined.
-  * Accessing the relevant registers will cause the system to hang.
-  */
--#define LS1C_RTC_CTRL_WORKAROUND	BIT(0)
-+#define LOONGSON_RTC_CTRL_WORKAROUND	BIT(0)
-+#define LOONGSON_RTC_ALARM_WORKAROUND	BIT(1)
- 
- struct loongson_rtc_config {
- 	u32 pm_offset;	/* Offset of PM domain, for RTC alarm wakeup */
-@@ -89,7 +90,7 @@ static const struct loongson_rtc_config ls1b_rtc_config = {
- 
- static const struct loongson_rtc_config ls1c_rtc_config = {
- 	.pm_offset = 0,
--	.flags = LS1C_RTC_CTRL_WORKAROUND,
-+	.flags = LOONGSON_RTC_CTRL_WORKAROUND | LOONGSON_RTC_ALARM_WORKAROUND,
- };
- 
- static const struct loongson_rtc_config generic_rtc_config = {
-@@ -97,6 +98,11 @@ static const struct loongson_rtc_config generic_rtc_config = {
- 	.flags = 0,
- };
- 
-+static const struct loongson_rtc_config ls2k0300_rtc_config = {
-+	.pm_offset = 0x0,
-+	.flags = LOONGSON_RTC_ALARM_WORKAROUND,
-+};
-+
- static const struct loongson_rtc_config ls2k1000_rtc_config = {
- 	.pm_offset = 0x800,
- 	.flags = 0,
-@@ -153,7 +159,7 @@ static int loongson_rtc_set_enabled(struct device *dev)
- {
- 	struct loongson_rtc_priv *priv = dev_get_drvdata(dev);
- 
--	if (priv->config->flags & LS1C_RTC_CTRL_WORKAROUND)
-+	if (priv->config->flags & LOONGSON_RTC_CTRL_WORKAROUND)
- 		return 0;
- 
- 	/* Enable RTC TOY counters and crystal */
-@@ -167,7 +173,7 @@ static bool loongson_rtc_get_enabled(struct device *dev)
- 	u32 ctrl_data;
- 	struct loongson_rtc_priv *priv = dev_get_drvdata(dev);
- 
--	if (priv->config->flags & LS1C_RTC_CTRL_WORKAROUND)
-+	if (priv->config->flags & LOONGSON_RTC_CTRL_WORKAROUND)
- 		return true;
- 
- 	ret = regmap_read(priv->regmap, RTC_CTRL_REG, &ctrl_data);
-@@ -299,9 +305,41 @@ static const struct rtc_class_ops loongson_rtc_ops = {
- 	.alarm_irq_enable = loongson_rtc_alarm_irq_enable,
- };
- 
-+static int loongson_rtc_alarm_setting(struct platform_device *pdev, void __iomem *regs)
-+{
-+	int ret = 0, alarm_irq;
-+	struct device *dev = &pdev->dev;
-+	struct loongson_rtc_priv *priv = dev_get_drvdata(dev);
-+
-+	if (priv->config->flags & LOONGSON_RTC_ALARM_WORKAROUND) {
-+		/* Loongson-1C/Loongson-2K0300 RTC does not support alarm */
-+		clear_bit(RTC_FEATURE_ALARM, priv->rtcdev->features);
-+		return 0;
-+	}
-+
-+	/* Get RTC alarm irq */
-+	alarm_irq = platform_get_irq(pdev, 0);
-+	if (alarm_irq < 0)
-+		return alarm_irq;
-+
-+	ret = devm_request_irq(dev, alarm_irq, loongson_rtc_isr, 0, "loongson-alarm",
-+			       priv);
-+	if (ret < 0)
-+		return ret;
-+
-+	priv->pm_base = regs - priv->config->pm_offset;
-+	device_init_wakeup(dev, true);
-+
-+	if (has_acpi_companion(dev))
-+		acpi_install_fixed_event_handler(ACPI_EVENT_RTC,
-+						 loongson_rtc_handler, priv);
-+
-+	return ret;
-+}
-+
- static int loongson_rtc_probe(struct platform_device *pdev)
- {
--	int ret, alarm_irq;
-+	int ret;
- 	void __iomem *regs;
- 	struct loongson_rtc_priv *priv;
- 	struct device *dev = &pdev->dev;
-@@ -330,25 +368,9 @@ static int loongson_rtc_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(priv->rtcdev),
- 				     "devm_rtc_allocate_device failed\n");
- 
--	/* Get RTC alarm irq */
--	alarm_irq = platform_get_irq(pdev, 0);
--	if (alarm_irq > 0) {
--		ret = devm_request_irq(dev, alarm_irq, loongson_rtc_isr,
--				       0, "loongson-alarm", priv);
--		if (ret < 0)
--			return dev_err_probe(dev, ret, "Unable to request irq %d\n",
--					     alarm_irq);
--
--		priv->pm_base = regs - priv->config->pm_offset;
--		device_init_wakeup(dev, true);
--
--		if (has_acpi_companion(dev))
--			acpi_install_fixed_event_handler(ACPI_EVENT_RTC,
--							 loongson_rtc_handler, priv);
--	} else {
--		/* Loongson-1C RTC does not support alarm */
--		clear_bit(RTC_FEATURE_ALARM, priv->rtcdev->features);
--	}
-+	ret = loongson_rtc_alarm_setting(pdev, regs);
-+	if (ret)
-+		return ret;
- 
- 	/* Loongson RTC does not support UIE */
- 	clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, priv->rtcdev->features);
-@@ -379,6 +401,7 @@ static const struct of_device_id loongson_rtc_of_match[] = {
- 	{ .compatible = "loongson,ls1b-rtc", .data = &ls1b_rtc_config },
- 	{ .compatible = "loongson,ls1c-rtc", .data = &ls1c_rtc_config },
- 	{ .compatible = "loongson,ls7a-rtc", .data = &generic_rtc_config },
-+	{ .compatible = "loongson,ls2k0300-rtc", .data = &ls2k0300_rtc_config },
- 	{ .compatible = "loongson,ls2k1000-rtc", .data = &ls2k1000_rtc_config },
- 	{ /* sentinel */ }
- };
--- 
-2.47.3
+>>>>>>> +++ b/drivers/gpu/drm/imx/dc/Kconfig
+>>>>>>> @@ -1,6 +1,7 @@
+>>>>>>>      config DRM_IMX8_DC
+>>>>>>>          tristate "Freescale i.MX8 Display Controller Graphics"
+>>>>>>>          depends on DRM && COMMON_CLK && OF && (ARCH_MXC || COMPILE_TEST)
+>>>>>>> +    depends on IMX_SCU
+>>>>>> Can the SCU dependency be made optional,
+>>>>>
+>>>>> I don't think this can be done.  If you grep 'depends on IMX_SCU' in
+>>>>> kernel, you may find a handful of existing dependancies.
+>>>>
+>>>> Sure, I do not dispute this part.
+>>>>
+>>>> But the SCU dependency can be contained in a component of this driver,
+>>>> which is not used by MX95, and used only by MX8Q . Then there will be
+>>>> no problem.
+>>>
+>>> Which component?  You mean PRG and DPRC?
+>>>
+>>> If we add something like CONFIG_DRM_IMX8_DC_PRG and make CONFIG_DRM_IMX8_DC_PRG
+>>> depend on SCU, then should we make CONFIG_DRM_IMX8_DC depend on
+>>> CONFIG_DRM_IMX8_DC_PRG?  That's yet another dependency.
+>>
+>> I would say, if possible, put the SCU-dependent parts behind
+>> CONFIG_DRM_IMX8_DC_PRG symbol, and make that symbol configurable via
+>> Kconfig . Users of iMX95-only can turn it off, generic kernel config
+>> should keep it on.
+> 
+> Both i.MX8 and i.MX95 would use arm64 defconfig.  Most distros if not all
+> would use that to generate a single kernel image + modules for i.MX8 and
+> i.MX95.  We can't presume that __most__ users would change the configs
+> for i.MX95.
 
+That wasn't my point. My point was, make it possible to compile the PRG 
+parts out if they aren't needed (and with them, SCU support). If I build 
+the kernel for iMX95, I don't need iMX8Q support in, so I can turn MX8Q 
+support off alongside the SCU parts. The clean way to do that is to keep 
+the SCU-dependent parts in dedicated file(s), which may or may not be 
+compiled in. For generic kernel builds, they should be compiled in and 
+decide at runtime, whether or not they should be used of course.
+
+[...]
+
+>>>>> Like I replied to your i.MX95 DC patch series's cover letter, SCU accesses
+>>>>> registers via Cortex-M core instead of Cortex-A core IIUC.  I really don't
+>>>>> know how to abstract IMX_SCU out, especially via regmap.
+>>>>
+>>>> The simplest way would be to use regmap_config .reg_read and .reg_write ,
+>>>> if there is no better way.
+>>>
+>>> Can you shed more light on this?  Any examples?
+>>
+>> I'll just reply to this part, because that is probably the most relevant
+>> to this whole conversation.
+>>
+>> git grep '\.reg_write' drivers -> drivers/hwmon/aspeed-pwm-tacho.c as a
+>> simple example.
+>>
+>> Then such a reg_write implementation can do:
+>>
+>> if (SCU)
+>>    use SCU accessor
+>> else
+>>    use writel() or so
+> 
+> Thanks for the example, it makes regmap idea a bit more clear.  But, how
+> would you pass the SCU flag to .reg_write?  I hope i.MX95 code path won't
+> see any information about SCU.
+
+You could have one regmap for MX8Q and one regmap for MX95. For the 
+register IO in the driver which uses regmap, either regmap is still only 
+a generic regmap, no matter what the hardware accessor in that regmap 
+are. Therefore most of the code can be generic (use generic regmap) and 
+only the probe code decides which regmap (MX8Q SCU regmap or MX95 
+regmap) is going to be used by the driver.
+
+> Also, IMO, wrapping SCU with regmap is abusing the regmap API.
+> How would you pass the resource, ctrl and val parameters to .reg_write?
+> 
+> int imx_sc_misc_set_control(struct imx_sc_ipc *ipc, u32 resource,
+>                              u8 ctrl, u32 val)
+> 
+> Regarding the 'else' clause, I don't think we can use writel(), because
+> SCU accesses registers via Cortex-M core, not Cortex-A core(I mentioned
+> this before).  I don't see anything we can put under the 'else' clause.
+
+You could have one regmap definition for MX8Q/SCU and one for MX95, and 
+at probe time, select which of those is going to be used. That could 
+work I think ?
+
+>>>>>> so iMX95 support can be added into the driver easily too ?
+>>>>>
+>>>>> Like I replied to your i.MX95 DC patch series, I think i.MX95 DC support
+>>>>> can be in drivers/gpu/drm/imx/dc, but it should be in a separate module
+>>>>> (something like imx95_dc_drm) plus an additional common module(like
+>>>>> imx_dc_drm_common).
+>>>> This design part is something I do not fully understand. Sure, it can be
+>>>> two modules, but in the end, the result would have to be capable of being
+>>>> compiled into single kernel binary if both modules would be =y in Kconfig
+>>>> anyway.
+>>>
+>>> This is something like imx8qm_ldb, imx8qxp_ldb and imx_ldb_helper modules -
+>>> DRM_IMX8QM_LDB and DRM_IMX8QXP_LDB select DRM_IMX_LDB_HELPER.
+>>>
+>>> Note you may make CONFIG_DRM_IMX8QM_LDB=y and CONFIG_DRM_IMX8QXP_LDB=m with
+>>> CONFIG_DRM_IMX_LDB_HELPER=y.
+>> Do we have to make it this complicated right from the start ?
+> 
+> I don't think imx_dc_drm_common would make it complicated, but instead it
+> makes drivers simple and easy to maintain.
+> 
+>> Maybe we can start simple, with one module, and then split it up if it turns
+>> out to be unsuitable ?
+> 
+> Hmm, maybe it's time to split it up now, because:
+> 1) Your below patch has already been adding DB to CRTC function.
+>     See dc_db_shdtokgen() in dc_crtc_atomic_enable(), which certainly breaks
+>     i.MX8 DC.  To avoid that, you'll add branches to the atomic enable
+>     callback, which is something I don't want.
+
+Can we have separate atomic_enable() callback for MX8Q and MX95 for 
+example ?
+
+> https://patchwork.freedesktop.org/patch/680085/?series=155784&rev=1
+> 
+> 2) This patch series is trying to add i.MX8 DC prefetch engine support.
+>     i.MX95 really doesn't embed the prefetch engine.  And I hope i.MX95 code
+>     path doesn't need to know the prefetch engine/SCU existence or non-existence.
+I think the prefetch code can be contained in a single file and called 
+only if the SoC is MX8Q, that shouldn't be difficult to do ?
 
