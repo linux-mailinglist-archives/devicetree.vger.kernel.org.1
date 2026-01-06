@@ -1,178 +1,126 @@
-Return-Path: <devicetree+bounces-252042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D12CFA05E
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 19:16:48 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC08CF9D91
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 18:51:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C8D41342C9CA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 18:03:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3259F3065F48
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 17:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB23352F95;
-	Tue,  6 Jan 2026 17:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DA812FF669;
+	Tue,  6 Jan 2026 17:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GAVjxskH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fm19qNEu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4161635295A;
-	Tue,  6 Jan 2026 17:44:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F832FE59C;
+	Tue,  6 Jan 2026 17:43:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767721485; cv=none; b=PtbR35jr0/nKOu+nInYVVkhRAn/ZVZk0WYCWIWmFM0bJTgHSIKBCk42JqmzDCtaSf9TLCYoEcZgcwoyul2KGzPOyVz9BJSUDwCVOksZLJzlmOYywjeSG8+ilETMT/KDOGxt4lnJ5jWjp9NH6HBU0kL4CjKsBjRwyt0Wco7l2flY=
+	t=1767721396; cv=none; b=jHC5s934380KbgG9Hz0kCd+zlW4sZzLaji6SXnjGZrkXwZvOITyON7qz29Zc264BJhEIQMCITes9Z3ufqam1Yv72eQHosStGqqXdENReNJTUFWG11fojp+iKx0d8a96MSanfpj6rPYHYnkPDUC/cupdaKKAyJz7RzN75bxrOb/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767721485; c=relaxed/simple;
-	bh=m8Vd/UMx8obk02rF+xES0hdwx0fTedFK3Jp0PEafowA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ku5L1Ju1CU4rfYWd8xVR0cnOzz38tKiR+AABcrwn+Enjr3nIKIlitH0cDwVbu3guh6YtlaK88ozmS3Ho0UdWF7Yyh7An+CXN5zV079TxOGNWbohD2bZA7SPU4gKm8cuT3PC/Ue+AMYk/6E+HBZ//VT6hKakLDxUQeVph5eN/HfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GAVjxskH; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id C7A704E41FB4;
-	Tue,  6 Jan 2026 17:44:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 94DFF60739;
-	Tue,  6 Jan 2026 17:44:42 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2AD41103C81A7;
-	Tue,  6 Jan 2026 18:44:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767721481; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=C18nibWNbrI+mlm1MYTdBpxGmLeLHqkng45AdrWQivE=;
-	b=GAVjxskHueCGsVdYhSARKRMqD9OB1izcKujykW1+msy2vchK0YW/SEDdlWFIm0uu686jU3
-	b+xY8nJA+6GQNJLbOwDOGft5BGzxyF/e/aOh28ZHi7wadVQ7WWsOWyZKspu3SoO8rYwh8C
-	/T1L+tRQVxYrh4b6Q2E7w105ymJ/iOkhrYPC6ViKqJjao12MzCarZ91nArdEjTZgj+i7f0
-	ndThthTEM/TMFaB74Di7rez5oe4F+s7B5lBvqUA/1hqqdO9dUnuGlFQNkxQ6F8z3WJ5cLd
-	4mZk2WUHX3HWsxdbcEATaqGMZHdMeegUJqVnJz51Nv7W4dhaCTVS1mvbLsemsQ==
-From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Date: Tue, 06 Jan 2026 18:42:38 +0100
-Subject: [PATCH v3 22/22] drm/tilcdc: Add support for
- DRM_BRIDGE_ATTACH_NO_CONNECTOR
+	s=arc-20240116; t=1767721396; c=relaxed/simple;
+	bh=knYO0dVBtKILflMNQYIaYPLoiqqfWTfUH8gCTse05RE=;
+	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=OBF5Vdwa6nYTeCSaUXGH9NFNf7Lrg6tIs13NZhUuLpKwap/9fv0OpfzzeMSG4gchuRxWZIRjEup/G4vmkfwmInPrmSmkekevFWFDjmdQpACdAwf7wApKx+VI/tkhgE8OC6XHTfoGGJnsFM1ccHIFygiUpGVmC6qP9KjPit8xVwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fm19qNEu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF69C116C6;
+	Tue,  6 Jan 2026 17:43:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767721395;
+	bh=knYO0dVBtKILflMNQYIaYPLoiqqfWTfUH8gCTse05RE=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=Fm19qNEumPDXY1AVuxiNPc5H1ZrdFIFe8+BXOsTcO9NopdwkpsjKcrZNt+VSKzafn
+	 2IvPjQvnzJQpfvS5aTgE2Y2ckiVpWI2hRJEnQs0Pg0dhz6u8nJhNIB2jcUvOAQrTIf
+	 kH5zIH9uZYdd47qG99G6513q0kEM795b1yo3JMXldLM2GmN+6btkrOxR0EbbAZ1FCY
+	 f0cazx/FvGVgIP9L1Ct9UAVDsXLWVXPdfV6BMmFHH4ze0dX3tkPAhJbksx9Pauzf1d
+	 Xa96eiHRr/HvLuZD/onk+lo2+/E/NxA/dhg2QbJpAE8glTfO8qdt0KSV10PWE5fuZ8
+	 5r7xcMcvU0Bmg==
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 06 Jan 2026 11:43:14 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260106-feature_tilcdc-v3-22-9bad0f742164@bootlin.com>
-References: <20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com>
-In-Reply-To: <20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com>
-To: Jyri Sarha <jyri.sarha@iki.fi>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Tony Lindgren <tony@atomide.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Markus Schneider-Pargmann <msp@baylibre.com>, 
- Bajjuri Praneeth <praneeth@ti.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Louis Chauvet <louis.chauvet@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Miguel Gazquez <miguel.gazquez@bootlin.com>, 
- Herve Codina <herve.codina@bootlin.com>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, 
- "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260106-mtk-fix-mt7623-pinctl-name-v1-0-33817c7f78ee@baylibre.com>
+References: <20260106-mtk-fix-mt7623-pinctl-name-v1-0-33817c7f78ee@baylibre.com>
+Message-Id: <176772122105.2350532.2584006959358435109.robh@kernel.org>
+Subject: Re: [PATCH 0/2] arm: dts: mediatek: fix pinctl node names
 
-Convert the driver to use the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag when
-attaching bridges. This modernizes the driver by delegating connector
-creation to the bridge subsystem through drm_bridge_connector_init()
-instead of manually searching for connectors created by the bridge.
 
-The custom tilcdc_encoder_find_connector() function is removed and
-replaced with the standard drm_bridge_connector infrastructure, which
-simplifies the code and aligns with current DRM bridge best practices.
+On Tue, 06 Jan 2026 09:20:54 -0600, David Lechner wrote:
+> While passing by, I noticed that the pinctrl nodes in a couple of dtsi
+> files did not match the addresses in their reg properties. Here are some
+> patches to fix that.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+> David Lechner (2):
+>       arm: dts: mediatek: mt7623: fix pinctrl node name
+>       arm: dts: mediatek: mt8135: fix pinctrl node name
+> 
+>  arch/arm/boot/dts/mediatek/mt7623.dtsi | 2 +-
+>  arch/arm/boot/dts/mediatek/mt8135.dtsi | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> ---
+> base-commit: 6cd6c12031130a349a098dbeb19d8c3070d2dfbe
+> change-id: 20260106-mtk-fix-mt7623-pinctl-name-f8593953bed7
+> 
+> Best regards,
+> --
+> David Lechner <dlechner@baylibre.com>
+> 
+> 
+> 
 
-This change is safe as there are now no in-tree devicetrees that
-connect tilcdc to bridges which do not support the
-DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
----
- drivers/gpu/drm/tilcdc/tilcdc_encoder.c | 37 ++++++++++++++-------------------
- 1 file changed, 16 insertions(+), 21 deletions(-)
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-diff --git a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-index d42be3e16c536..61dbd90a62f70 100644
---- a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-+++ b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-@@ -8,45 +8,40 @@
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
-+#include <drm/drm_bridge_connector.h>
- #include <drm/drm_of.h>
- #include <drm/drm_simple_kms_helper.h>
- 
- #include "tilcdc_drv.h"
- #include "tilcdc_encoder.h"
- 
--static
--struct drm_connector *tilcdc_encoder_find_connector(struct drm_device *ddev,
--						    struct drm_encoder *encoder)
--{
--	struct drm_connector *connector;
--
--	list_for_each_entry(connector, &ddev->mode_config.connector_list, head) {
--		if (drm_connector_has_possible_encoder(connector, encoder))
--			return connector;
--	}
--
--	dev_err(ddev->dev, "No connector found for %s encoder (id %d)\n",
--		encoder->name, encoder->base.id);
--
--	return NULL;
--}
--
- static
- int tilcdc_attach_bridge(struct drm_device *ddev, struct drm_bridge *bridge)
- {
- 	struct tilcdc_drm_private *priv = ddev_to_tilcdc_priv(ddev);
-+	struct drm_connector *connector;
- 	int ret;
- 
- 	priv->encoder->possible_crtcs = BIT(0);
- 
--	ret = drm_bridge_attach(priv->encoder, bridge, NULL, 0);
-+	ret = drm_bridge_attach(priv->encoder, bridge, NULL,
-+				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
- 	if (ret)
- 		return ret;
- 
--	priv->connector = tilcdc_encoder_find_connector(ddev, priv->encoder);
--	if (!priv->connector)
--		return -ENODEV;
-+	connector = drm_bridge_connector_init(ddev, priv->encoder);
-+	if (IS_ERR(connector)) {
-+		dev_err(ddev->dev, "bridge_connector create failed\n");
-+		return PTR_ERR(connector);
-+	}
-+
-+	ret = drm_connector_attach_encoder(connector, priv->encoder);
-+	if (ret) {
-+		dev_err(ddev->dev, "attaching encoder to connector failed\n");
-+		return ret;
-+	}
- 
-+	priv->connector = connector;
- 	return 0;
- }
- 
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
--- 
-2.43.0
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: 6cd6c12031130a349a098dbeb19d8c3070d2dfbe (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/mediatek/' for 20260106-mtk-fix-mt7623-pinctl-name-v1-0-33817c7f78ee@baylibre.com:
+
+arch/arm/boot/dts/mediatek/mt7623a-rfb-emmc.dtb: pinctrl@1000b000 (mediatek,mt7623-pinctrl): 'cir-default', 'i2c0-default', 'i2c1-alt', 'i2c1-default', 'i2c2-alt', 'i2c2-default', 'i2s0-default', 'i2s1-default', 'keys-alt', 'leds-alt', 'mmc0', 'mmc0default', 'mmc1', 'mmc1default', 'nanddefault', 'pcie_pin_default', 'pwm-default', 'spi0-default', 'spi1-default', 'spi2-default', 'uart0-default', 'uart1-default', 'uart2-alt', 'uart2-default' do not match any of the regexes: '^pinctrl-[0-9]+$', 'pins$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml
+arch/arm/boot/dts/mediatek/mt7623a-rfb-nand.dtb: pinctrl@1000b000 (mediatek,mt7623-pinctrl): 'cir-default', 'i2c0-default', 'i2c1-alt', 'i2c1-default', 'i2c2-alt', 'i2c2-default', 'i2s0-default', 'i2s1-default', 'keys-alt', 'leds-alt', 'mmc0', 'mmc0default', 'mmc1', 'mmc1default', 'nanddefault', 'pcie_pin_default', 'pwm-default', 'spi0-default', 'spi1-default', 'spi2-default', 'uart0-default', 'uart1-default', 'uart2-alt', 'uart2-default' do not match any of the regexes: '^pinctrl-[0-9]+$', 'pins$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml
+arch/arm/boot/dts/mediatek/mt7623n-rfb-emmc.dtb: pinctrl@1000b000 (mediatek,mt7623-pinctrl): 'cir-default', 'hdmi-default', 'hdmi_ddc-default', 'i2c0-default', 'i2c1-alt', 'i2c1-default', 'i2c2-alt', 'i2c2-default', 'i2s0-default', 'i2s1-default', 'keys-alt', 'leds-alt', 'mmc0', 'mmc0default', 'mmc1', 'mmc1default', 'nanddefault', 'pcie_pin_default', 'pwm-default', 'spi0-default', 'spi1-default', 'spi2-default', 'uart0-default', 'uart1-default', 'uart2-alt', 'uart2-default' do not match any of the regexes: '^pinctrl-[0-9]+$', 'pins$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml
+arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dtb: pinctrl@1000b000 (mediatek,mt7623-pinctrl): 'cir-default', 'hdmi-default', 'hdmi_ddc-default', 'i2c0-default', 'i2c1-alt', 'i2c1-default', 'i2c2-alt', 'i2c2-default', 'i2s0-default', 'i2s1-default', 'keys-alt', 'leds-alt', 'mmc0', 'mmc0default', 'mmc1', 'mmc1default', 'musb', 'nanddefault', 'pcie_pin_default', 'pwm-default', 'spi0-default', 'spi1-default', 'spi2-default', 'uart0-default', 'uart1-default', 'uart2-alt', 'uart2-default' do not match any of the regexes: '^pinctrl-[0-9]+$', 'pins$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml
+
+
+
+
 
 
