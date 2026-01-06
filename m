@@ -1,117 +1,145 @@
-Return-Path: <devicetree+bounces-251790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BCE9CF7084
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 08:27:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57584CF7090
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 08:29:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7CB813004E13
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 07:27:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1E16F30285D5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 07:29:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F0F3093B6;
-	Tue,  6 Jan 2026 07:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3310E309F04;
+	Tue,  6 Jan 2026 07:29:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iC/KCDoY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T9Jmo4ec"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B26F4156237;
-	Tue,  6 Jan 2026 07:27:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B56F222CBF1
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 07:29:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767684433; cv=none; b=CAcnOedoEbjr/NwDy3nvgyVLnZ6yLPdAePemDfU7ztjPS6wHSymzu428CU5Bx5cSBZE+FSLuba/GwwNhsqCsTOnGukY2kJ04CMSAjegtbE9MELLYb6dMu0Umyu4riyC+IUkKHU5LeeKDQp1DPgiFeeukv7ZpAMxyTfWkgQDXl+c=
+	t=1767684596; cv=none; b=cppnnwAOhUvpA0v8UPGMTveT5Srm3YUvksYlmAK+NnzHyhkzQxhN0c3OnH95CltJcXAILGsxfTuhdVP9PZHvUfVfGNLnkfO4jem4irf6zRxP1bV58Zls5vfXJ0w+OK4MU5/QF3dDf7/uqh6aVoUWDblBbTOGr9xBbukUBe7hOE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767684433; c=relaxed/simple;
-	bh=nYzIn42DZW7rRGWW0FoycPOMIUvyxQY4Eb9ZJEz+3GU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SXnUl9J5h1x+KoF0VulQJ9vqo0w0vnCp+2YkKwri/5R9YoNXziPRx6ta12akmgJYEX9EL/6VA6/1ERuKxW27nNLQs7wDqkvTUWGR3H5qqRKZdGXmZd9FO2NR1LVeHj15nNdP8Z9NvPqTqHtkf1+nUUKjz4j+N2gfsm4Yhvo3ntA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iC/KCDoY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A89EAC116C6;
-	Tue,  6 Jan 2026 07:27:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767684433;
-	bh=nYzIn42DZW7rRGWW0FoycPOMIUvyxQY4Eb9ZJEz+3GU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iC/KCDoYYlicAdq0+QJUo4QYRoHr5E+8FPE9tUtnk4ESiNluPscTSaAhPJNbgyTf0
-	 8jPd88vsMEFfkpYr91AVUvEXJOYNeUL/YxpBjqLsKybt3NuzxfFdTR0z6T7mmcEKI5
-	 5Sx0XGAxjjspJvpozqCnjL52/L6yhrDbYqjmlPBoghye43Q7iN4JcV2sN7XVLSNtwR
-	 dBfAVJvzIw9hlPGKjibjjZbyAjXJ2rvk0s8lt72M7ktsvYfXVHKwGoY0WULh3suSf7
-	 e+PBx0k9C+VLqxkBbei2vEHpWi6Oj8eP0ufTDCHVvM8g9xm7L4QtuZCxmPCM1+yyyu
-	 heNbq+qZRRrnA==
-Date: Tue, 6 Jan 2026 08:27:10 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Fabio Baltieri <fabiobaltieri@chromium.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>, 
-	Guenter Roeck <groeck@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Simon Glass <sjg@chromium.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: google,cros-ec-keyb: add has-fn-map
- prop
-Message-ID: <20260106-oryx-of-major-protection-10c4e3@quoll>
-References: <20251231143538.37483-1-fabiobaltieri@chromium.org>
- <20251231143538.37483-2-fabiobaltieri@chromium.org>
- <20260105-helpful-ocelot-of-eternity-6bb1ee@quoll>
- <aVuYt24q6nihC4t0@google.com>
+	s=arc-20240116; t=1767684596; c=relaxed/simple;
+	bh=uwQMBGRBP0eBvM1mTA/eZvBph4jmcVJkihTxQLBFsGY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CJ3l4F6GA6PrtQMdKsrGcIljESkLEIMRkZ1JiBU65gTjVM0+8Btk6zCYR8NI2OgoamuKa6pW7fpdkPNDuRRpTN6KAXzMLf/ruIjejKMbCURYjql9DiqRWU0RSiYUVeq2BU9w6hPRRCLMS1R0GXeeFOkgk2TjhW/PiEmQVtZHavc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T9Jmo4ec; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a07fac8aa1so7933195ad.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 23:29:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767684594; x=1768289394; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NSjp2mll7hJXV1/dG5UrDm8t5mdq7BgvFVfOgQMOYa4=;
+        b=T9Jmo4ecR9VHH+MEfkILVLhUW7wA6jMFNVaA0p0fqy7fkMCLQJfH3mPDsaDHxdbLen
+         Hgqa0rQNqRVZnj8/pqmUuSFSjrz+JMR5m7SZyi5/QTs5QGOWROo/LsVbnhAeX+BpLHup
+         BKhfHO/i4lnJc7gUnUOcSgZAUJ7swM3u8bLbowzCB68OiwM1ua/VWt1odAeZvalYA+2r
+         16/xfiy8y/+n9QiTxfRb9jRP43PxL97YT9MlDx5PVCNhC1QPy26b6fs+vhldlgGjLjMm
+         pVZ2pr5fVR1y4JXEN/GYhysy/8SGga4kcfdvljrbTOAIBzZN7b03VJnYNquFsegBDVK0
+         iJbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767684594; x=1768289394;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NSjp2mll7hJXV1/dG5UrDm8t5mdq7BgvFVfOgQMOYa4=;
+        b=NsG6o/gTygomyfJixj3IGBVvDMp7SXp8ld00IWPJ/E+PBEP6B8SyQ2UGcSILVaBQAd
+         PKq9oWR9R3KAV1aFsmVBDqlFXoKo3DRwjA8h9ZGhPs0wuakoETnfKL4xlP/kMkjj2sG0
+         8K1F7esWfINz99MLi39U0sSyrYlqczqs2t3uvwbWN63+rY7nDg+k6DyvcU/iq3ssT7ky
+         4biuARCTQvsEgdVm9iVvJh+hD0vee2GgrczqSKRy0g2dC5BmwPQpMNjjGOz8a65Lw/Eo
+         YgY3nLWnb6y3ZpclkQRk9/g3bowV3+SOcC5F1kmI/DmWxkgRJTUoRusiQ6255rQ7w+wP
+         4r+w==
+X-Forwarded-Encrypted: i=1; AJvYcCUu6jvs6Nl1ydrH+sy6h9yEkAx3pB5uuuBLry51uBikfakjhnTwSxxAd6Qq/5bCt/VG7qorP+ImkRYc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7Brkcy7GkCp7Vf3ex1Mib6X99Ax0zoWXNH1e0X6kJJdsZ0jzN
+	2NTegyzrcDFLSiv+l0sLN/E5JvtK5BJP3G/ZZWvgv3Okatj9Ed+PyKIq
+X-Gm-Gg: AY/fxX7AnyY19O/IZqom0D46NTHCbKw/eZkCM634Lco96ImAWubG8cNFTCOGOxkt9Nn
+	Fg3cSyomJo4TW1Nwih4vwfd9H/pS8OJ1wqgkvuLFoi5OccFG6PWow0RH+XzjCMJotPXFVEGhYLJ
+	8pcrYzbqhxaJYRR+WG7mrDFyDm+kgBm6LqNx4ExYb+0IV6dHuH5HlFUFCqDrHn3FGi3dj8A1cpb
+	GrVzlspnd8gzsY0MCufLTaPS348GVbWUbAsAFyVTESCynkNpX4aq0vcsYh0uKRmiwMo9pFxh/ar
+	QNMDUOWLayYsnGyxqPdPsuDWfJ93OLoSqnEg6tJEZTdmOolK+g3FnLzMwKKPVyhbvmo9ItEJgxa
+	Vf5KI6MV3aunjbAWgs4wU1JgJNtUUk+mHRiHR9D1rtoHgDWm3KBqamsl6dZnlYHBmxSfXBb6NnA
+	BBMIFS44cuInIt0RA/e/2gZTrstmIOAbYOnRetH0WHMt1c
+X-Google-Smtp-Source: AGHT+IEmFA7FqxXfnfDtj2yBgazK16tv3f7oKGrryC4Cs3CVp2BbXQDLKd8tk4p65AZyJ4GR/Z7k8g==
+X-Received: by 2002:a17:902:c952:b0:295:86a1:5008 with SMTP id d9443c01a7336-2a3e2cf827cmr20031175ad.38.1767684593838;
+        Mon, 05 Jan 2026 23:29:53 -0800 (PST)
+Received: from [172.16.20.12] ([136.226.245.23])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819baa195fasm1201628b3a.1.2026.01.05.23.29.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jan 2026 23:29:53 -0800 (PST)
+Message-ID: <31907a16-1737-4269-92f3-ea998d684396@gmail.com>
+Date: Tue, 6 Jan 2026 13:00:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aVuYt24q6nihC4t0@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 5/5] arm64: dts: qcom: talos-evk: Add support for
+ QCS615 talos evk board
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251230130227.3503590-1-tessolveupstream@gmail.com>
+ <20251230130227.3503590-6-tessolveupstream@gmail.com>
+ <30ee8541-3ec2-49ac-8fe0-987cdc5b16e7@oss.qualcomm.com>
+ <14613f89-6be0-4eb3-beb5-375ab008a313@gmail.com>
+ <kfjogrtbwpk7mkg4fq2vyve6k6nwccguyxupdwhrcknf3qnahm@xyd545je6u77>
+Content-Language: en-US
+From: tessolveupstream@gmail.com
+In-Reply-To: <kfjogrtbwpk7mkg4fq2vyve6k6nwccguyxupdwhrcknf3qnahm@xyd545je6u77>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 05, 2026 at 10:55:51AM +0000, Fabio Baltieri wrote:
-> On Mon, Jan 05, 2026 at 08:52:56AM +0100, Krzysztof Kozlowski wrote:
-> > On Wed, Dec 31, 2025 at 02:35:37PM +0000, Fabio Baltieri wrote:
-> > > Add binding documentation for the has-fn-map property.
-> > > 
-> > > Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
-> > > ---
-> > >  .../devicetree/bindings/input/google,cros-ec-keyb.yaml    | 8 ++++++++
-> > >  1 file changed, 8 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > > index fefaaf46a240..fa24b1cbc788 100644
-> > > --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > > +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> > > @@ -44,6 +44,14 @@ properties:
-> > >        where the lower 16 bits are reserved. This property is specified only
-> > >        when the keyboard has a custom design for the top row keys.
-> > >  
-> > > +  google,has-fn-map:
-> > > +    description: |
-> > > +      The keymap has function key layer. This allows defining an extra set of
-> > > +      codes that are sent if a key is pressed while the KEY_FN is held pressed
-> > > +      as well. The function codes have to be defined in the linux,keymap
-> > > +      property with an offset of keypad,num-rows from the normal ones.
-> > > +    type: boolean
-> > 
-> > You still did not answer to my previous question, why this is not
-> > deducible from the key map (presence of KEY_FN in the map).
+
+
+On 06-01-2026 03:43, Dmitry Baryshkov wrote:
+> On Sun, Jan 04, 2026 at 07:16:20PM +0530, tessolveupstream@gmail.com wrote:
+>>
+>>
+>> On 30-12-2025 20:21, Konrad Dybcio wrote:
+>>> On 12/30/25 2:02 PM, Sudarshan Shetty wrote:
+>>>> Add the device tree for the QCS615-based Talos EVK platform. The
+>>>> platform is composed of a System-on-Module following the SMARC
+>>>> standard, and a Carrier Board.
+>>>>
+>>>> The Carrier Board supports several display configurations, HDMI and
+>>>> LVDS. Both configurations use the same base hardware, with the display
+>>>> selection controlled by a DIP switch.
+>>>
+>>> [...]
+>>>
+>>>> +		pinctrl-names = "default";
+>>>> +		pinctrl-0 = <&wifi_reg_en_pins_state>;
+>>>
+>>> property-n
+>>> property-names
+>>>
+>>> consistently, please
+>>>
+>>
+>> I didn’t fully understand your comment.
+>> Could you please elaborate a bit more so I can make the
+>> necessary changes correctly. >> +		regulator-boot-on;
 > 
-> The driver behaves differently with the fn layer is present, has to make
-> extra space for the extra codes and enable the logic to use it. I can
-> certainly detect it in runtime, would have to always allocate the extra
-> space even if not needed and check not only that there is an FN key but
-> if there's anything in the second half of the map.
+> What is the order of these two properties in most of the other DT files?
+> What is the order of them in your patch?
+>
+
+I got your point now. I will rearrange the order of the properties
+to be consistent with other DT files in the next patch series.
+ 
+>>>> +		regulator-always-on;
+>>>> +	};
 > 
-> I'm not overly enthusiastic about it, it's a bit wasteful on memory
-> (probably no big deal, half a kb of RAM I guess) and somewhat less
-> defensive to misconfigurations and in general I don't like the new logic
-> to be enabled magically, as a side effect. It'd be extra complexity for
-> the sake of saving one boolean property, but sure if you think that's
-> the way to go then I guess I can implement it that way.
-
-Driver logic is not an argument here, we don't care about it. You should
-answer why presence of google,has-fn-map in DT makes sense when none of
-the keymaps has KEY_FN. Why this is a valid and desired configuration?
-
-Best regards,
-Krzysztof
 
 
