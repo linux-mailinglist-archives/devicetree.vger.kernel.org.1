@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-251922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6185FCF8557
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 13:35:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A8DCCF85E7
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 13:45:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 775DB300E611
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 12:35:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D117D3037CCB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 12:35:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A7D030DEA4;
-	Tue,  6 Jan 2026 12:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E84032E68E;
+	Tue,  6 Jan 2026 12:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e/W1YzTl";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="esC/h1T0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nEMHp2w/";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UpDcsu4n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4483332BF3A
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 12:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5597B32E13A
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 12:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767702913; cv=none; b=RM1Ho9vYwYFcIWKu87KWxmM8aaWvH+qN491UHWxaju/90ySPfxE0mAx3kZHmk/qY8jRvSQtd9PU12cE5hsztAvrKxltH9ZCxdrlAKn96XqMKPqPBIBvLdzobcj6MzTNQIHBGDfZQopt2i/ZvAGCud2I8EG6tUNMHdqd17HIFDFE=
+	t=1767702920; cv=none; b=o/kEFiE46OKfy7GWOt+k1ZaifMUUEYz1LamD+VVXhVwX/J25yqcp72ooLnF+qjby0U+GO/yEjRmZZrakRiwxP/5dk5nq0EAUH4dEF8vjqmY2fjMw+NYwyEKan/5SfScrHE91C7eOx+GZ7piBKpuotWQ2hhbe8yhsNt/F8sgVaXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767702913; c=relaxed/simple;
-	bh=zUnjg5STwT2JcN7sapEyt9FKEu5Sav3x2pxp2wVNl+8=;
+	s=arc-20240116; t=1767702920; c=relaxed/simple;
+	bh=lpREkdKrYB0i9xOdYVwf95ZKijvVrCKLc5MhFmp5Mds=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lcZytPzP6FDJAi5ZAUMU211UqVoRTcx0pmFhqFLTladKQMFDDyoAyptEYRX/R1LFvwDhmbP3qQH7qUnyNuqKANAfJFg2eaFTA0QTXg30NEokbFU/qR2V3A+ugBeM1HgVIXWTsn/7FomQQPhBJoInY5uXsTtBf2Kf5dDw77S37ps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e/W1YzTl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=esC/h1T0; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=qGy3kJYQTycV13BT23SVE2JQiHIwf2HRgfl5+yibkQTz/7gi8s08go9oD5634rlOiQF90WrESkK409AuWWXDsAq9viXYv4lBZNVUTul6TpUE0EWVm/VVG4a40Jir3n7Yt/LWHKIcjcRSVX1ANFqrvpbSmUNdEZPPz73t1ckvVHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nEMHp2w/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UpDcsu4n; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 606AdEjX3214062
-	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 12:35:11 GMT
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 606AaVWt3052950
+	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 12:35:17 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yii7HJwaI90HAG/Tr2RZQ4/4GgSOzXggxzDrx1pXU7I=; b=e/W1YzTlmBX2mnVQ
-	bv8cMkcRXyjRMFDS7UBW9Qf+kKPE7u1+EHAsN6XJC8UAjHTcRS5uTHiMNF1niGjX
-	/Je8yATI6Fve7nKlyZwP4z8vugHBpaewXg1KMnM6Y1iQ36UfgH0ERp6COxArQcQI
-	w7XS91naTI0MvYqAhoH8dlvpK6sTRHHLMPpfDf0d0NM47mYZIMVf9334PmoPEo32
-	T0C30iRls7h1LoxMh8vmLLrsHY4U0vKsg3uvVp4HWUmFyX4j/HX6mQA0NoVx8PJk
-	pSYH4XpvSCyVq7ENIUsq57F1TEq4JLX6cS568ZCDKQJzLdaohKbrItshGaLze3nC
-	+McfPA==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgpnda1qc-1
+	eXweGIGQP+389eatYl/A0e37pEINDI7V0gdpqnXDHQE=; b=nEMHp2w/W++28fiy
+	jAg5IGg4HtnzAmqyQIvnIo5ghdnxF68byLUXy6xhgX5lw6wtNoHTMWbqW0QCfoAw
+	5jXvWXCTZjlfU+a3UHu9Stu8YCVAWbtaEq2kutC85Qj5nQezANKkjiOt8V/ruOS5
+	4M8aGl5l7//V27tSOsi/4xv63nL5rWyIrPHLZ1X6YhamtAksgVq984crmmPfmIjP
+	SOPZ9+WXmvtSclf29R8vKeGfMgqu8IhcUQJSrmyNMlu45pWohuDjDkgQkR7x3BNa
+	4ABgPKUROh+0tIqTJ0gcvlNug7kRvSQSsldiBErcnaXf7YMms13AUel0aytzHSOb
+	hrcPfA==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgpn9t0bm-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 12:35:11 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7b4933bc4aeso1203014b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 04:35:10 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 12:35:17 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7ae3e3e0d06so834920b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 04:35:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767702910; x=1768307710; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1767702916; x=1768307716; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yii7HJwaI90HAG/Tr2RZQ4/4GgSOzXggxzDrx1pXU7I=;
-        b=esC/h1T0EAWtDE366Nd8Un/+Wh1H9d1qR+8Ug1mAL7wWom2mUQ3pMRjMU7+hrdiM81
-         jFVp+T7OYt1BCqKcG4UBWzW2QwJGnEJQehFMyJ2R/MxVSY3rzrv8nTBhZvnoGjdCJmX1
-         5HilmTu8TYTO0PJq+AMBNQLbuQZtZWbWgf02mWq6KSq7RHYFyfusixHcrOk908ffbINM
-         p8F4khk4Qb4hRLQa3u5LFZWk1acHipmUzwnbyM7/NBGlxivxuP0UgVUMTZZj6xVXqcjp
-         p9lzoOBTKNei8LPEF+hwF0d6e7zCXuL8OdEhn8tEtMH7gqkLYNQN1v9n6hBTHmaLU9s0
-         1l/w==
+        bh=eXweGIGQP+389eatYl/A0e37pEINDI7V0gdpqnXDHQE=;
+        b=UpDcsu4n3DvgJrBiNompEop2U7bcBlk+SCr91g88aNrr6PoXaBZdDqehNWknhDVanh
+         TOMeFPMueBSN4rXVeMpHadk0G7UVP8mhviOYdISN+zp7n3z4eSa/hGQ0O92v3zOTZ+y0
+         tJUYOPakJJZQTKyZwJFfM2klQ14fUp1z6TYjtIZr/jEk/8MVZCX0VP/64zQeVZ9qRljg
+         QLhSv/y0PI4iavf6JXXL4N9CHOU4B+/bdC+DS/GlzY6+9ZC36zzKKQFJqnzHGmqORH7f
+         jCYj3wXveQk9KG296UpPcNKjKQzkQ2gL57M2xWnUQ0QQGVX5+f8G843dzSw2WiL1dFY4
+         doQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767702910; x=1768307710;
+        d=1e100.net; s=20230601; t=1767702916; x=1768307716;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=yii7HJwaI90HAG/Tr2RZQ4/4GgSOzXggxzDrx1pXU7I=;
-        b=PWufYv0JSmICmnDam+kbvislwlu1xzBFcv/Jty7refqCazK5lBllg9bCvPg90z6tOq
-         yiUMAi79XozRr09NIjVNth3/j3NVSA5NkuM+g2QsVFJ2OWjWDF8R67iD7mJ6E6TwE37d
-         LCgc3KX+bZdJqy65fgUN7BT2U5Hnl+Fp7YQuxFezGiR8HD1jTKT5Ds3Yh5cvn30d93MV
-         wzBJ7XQnYHovOiguIrWLrihkXNaMKR5C79E8Br8HHA0Di0eOyhMRDNKlD+rtEOlNNC8h
-         j4Tixp+slirzQgQj2boRx7H1ryl41lnUKpzNpkYqhKLmnoTCiEMJnUjUz49L5fEcqy4B
-         Q1YQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUcgrlff7rBBaBqB3uwu06sjuoHbRBlHFhlQmGV1ZFbtoGR6d5nuNJ9k4UaktG28ZUf3/ongTfankbB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRdJqSw93xYVbkuhvOdsw9Nx4VVBlV9gvWvCyVf+uoV4LlvGWR
-	ynNY9beB7jjiSqbUEUnfmLX2BeIWp/wV4wuNq4lrzSLPsWpiD7mjnxzEI3wLgAYW+DctTlJ9jT8
-	p+vOBANlhbh/OK4Pw1b6zjlp2YGazAnYc9pRkjVOEj11pf2J/l3XgGpCqEtjnyTAV
-X-Gm-Gg: AY/fxX45nvWZuLvs2nkfq3/h9GzwRF66NOBJzk82qHgA22cd4a2g21f9EcEf7dVnMnu
-	AfOmX2psgFghBvbsxZicsOac87jcdFp0HpAUXSQRFKLdxJZcxeEdDlb6FRZedx1vq5mYlko8ZA5
-	HF5QiC1uSA1h4yktl0g/vZF93kX6yBeJ6CFbZmkNdRhSHZLyYfaYNzQXm9z6CFXP8Zq5YcfEPWS
-	WsQJtaswJy8cBOaLkKlqzdg8nXOA+Mc4bfKvDynMHbdxkn7uBLHK/PFmwfQpqA4R8UZxVjX+jjD
-	eh2/tra/xqn7DlgxzhAzURCwmGbZGUMp//5dK8iAgbOo++CiF5feuzgXPR8ixxm3Od8LLbBZ3st
-	vVEropclTEWOtj9/ltFirBTCGz5BoYhyrbgt4T4kTc18=
-X-Received: by 2002:a05:6a00:288a:b0:7f6:2e6e:5289 with SMTP id d2e1a72fcca58-8187fd7a783mr2519524b3a.49.1767702909936;
-        Tue, 06 Jan 2026 04:35:09 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFz42Qofmrfiv1X0ozcVb2AMYtMVNQ33zWXO61I2220TjQ7Pyu2v1SgprAjnJpWs4sLmO6UgQ==
-X-Received: by 2002:a05:6a00:288a:b0:7f6:2e6e:5289 with SMTP id d2e1a72fcca58-8187fd7a783mr2519495b3a.49.1767702909406;
-        Tue, 06 Jan 2026 04:35:09 -0800 (PST)
+        bh=eXweGIGQP+389eatYl/A0e37pEINDI7V0gdpqnXDHQE=;
+        b=lfYCMGmOgnCub8UcPH2LZTu/5wtOpNJ+3jpxt73zo6l6IEa5t8nAdG7NPXIq0lzjMj
+         Ls3WAxfeim9tNqi30H9hSwH0FU0IzO3dDpGA8NCDsBfGCPHQ8uUgajz3D4eUM7me5Ton
+         nmrZzhKV55rr1HnkgLibgLJPAcNJK7V5jj6d21G+JlzQsL8WQKauRRqVgCTOETW5C27v
+         4JCyhO9WtXBMWP+Z4nAg0QHTfaam6ltVkag9zMCaNpTLCIOHqagZF90VL3a/sX2qxWpG
+         MI9J1QPzPVg5ZVQ/NwGjkB+Z0rkd5Ywh3VzN3/zGTTE3SkibBCfLD/znOEFos3e0qIpe
+         RFuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXyCKqGsu91Gth/o3OzwgGZqqkICJ1shBh8f+1PsRnz4+gdNWqijW13NtT6T6EGT8oDDGzz5sNtLjcI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+h9UqsjJKjgSgOW2WICf9r/wJr6wx9j9wU3aZAkNa8sMu+nGz
+	ztpsT4NlxtXY8pIP1ikGEJq4L5qK57e92ley1N0aFezyFigAT4VIpwR1mpmao3EGC2nypo7ngwx
+	8nT/Bt9JJpVtZED/in5cSMXcuMTibhTHvRCw5skIO83da2EyBHUbkResdOn9LgqJS
+X-Gm-Gg: AY/fxX4QCJqDadNX+zBF44gjPMcybMCpcMfM0j2qP4oyGEKfmW+EuC/AhLtARebAm31
+	G65muNE4JFVTBhREVSu5CvTbiV9myM0kY+MPmA5ow7L8sccvZNvNKrN7iPlxt7enUaUCFCFBbGF
+	Lc2Bdl/k93mjFmj6PcVE9WP4gTJcRz54c/TdA66ZcH4qEL1z9BIJvGVuXS13BnXUNIuju/pIjGj
+	TKekPC6dlnvkoJmDJpooygM0zdQ0xcLsHGzbK3u2fRn+SxfbEKsa6cS/bysJ/ia4XGWJB9qc6P5
+	nBRuaW08stmH+kaUyDOIlWd3d3ncw0IswNnYGdFt0eQ8VDSsmtUO9x8m1dPvg5xqXJZeJxCwNI5
+	D/vZUy8AzIt5hrmJNYLx6bQimV2zQn5/oqaqdhxWU4IE=
+X-Received: by 2002:a05:6a00:4295:b0:781:1f28:eadd with SMTP id d2e1a72fcca58-81880b6c513mr2696960b3a.20.1767702915949;
+        Tue, 06 Jan 2026 04:35:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHge5WmZqCBf8j+3Ngw9xkT9W1WtOx50n7DYYhwZyH4ZZwl7y63KFgminhgHunMQGCuKBeUeg==
+X-Received: by 2002:a05:6a00:4295:b0:781:1f28:eadd with SMTP id d2e1a72fcca58-81880b6c513mr2696923b3a.20.1767702915396;
+        Tue, 06 Jan 2026 04:35:15 -0800 (PST)
 Received: from hu-msarkar-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819c59e83bcsm2161583b3a.56.2026.01.06.04.35.03
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819c59e83bcsm2161583b3a.56.2026.01.06.04.35.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jan 2026 04:35:08 -0800 (PST)
+        Tue, 06 Jan 2026 04:35:15 -0800 (PST)
 From: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
-Date: Tue, 06 Jan 2026 18:04:45 +0530
-Subject: [PATCH v5 1/2] dt-bindings: PCI: qcom,sa8255p-pcie-ep: Document
- firmware managed PCIe endpoint
+Date: Tue, 06 Jan 2026 18:04:46 +0530
+Subject: [PATCH v5 2/2] PCI: qcom-ep: Add support for firmware-managed PCIe
+ Endpoint
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,7 +104,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260106-firmware_managed_ep-v5-1-1933432127ec@oss.qualcomm.com>
+Message-Id: <20260106-firmware_managed_ep-v5-2-1933432127ec@oss.qualcomm.com>
 References: <20260106-firmware_managed_ep-v5-0-1933432127ec@oss.qualcomm.com>
 In-Reply-To: <20260106-firmware_managed_ep-v5-0-1933432127ec@oss.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>,
@@ -124,166 +124,190 @@ Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         Mrinmay sarkar <mrinmay.sarkar@oss.qualcomm.com>,
         Rama Krishna <quic_ramkri@quicinc.com>,
         Ayiluri Naga Rashmi <quic_nayiluri@quicinc.com>,
-        Nitesh Gupta <quic_nitegupt@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+        Nitesh Gupta <quic_nitegupt@quicinc.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767702896; l=3941;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767702896; l=5344;
  i=mrinmay.sarkar@oss.qualcomm.com; s=20250423; h=from:subject:message-id;
- bh=zUnjg5STwT2JcN7sapEyt9FKEu5Sav3x2pxp2wVNl+8=;
- b=QSEE7qmRpM7Gu0Mt4F7bFfUXbtjAQo29ZDWpFjXTEdvMxo52IHpKZB+LfPBKtaGZ8Q4Y4XPGb
- eKquey+bKEWCF68VO65zCYbv/abEW8sxEoiJvZe1F5lm4jnbg4pRQxJ
+ bh=lpREkdKrYB0i9xOdYVwf95ZKijvVrCKLc5MhFmp5Mds=;
+ b=/huxLK/6VSsK0Qf6AxudDDmeD+PNnbOej5xqjM/S4amSM+KIbtPLCg8h1kfDJutFmYO4VJAvv
+ TnhVRiNI4l6DLI8A2ZIwZuAhx7PZ9q2e5z57FVhjR0URlbxZVUbk5Wr
 X-Developer-Key: i=mrinmay.sarkar@oss.qualcomm.com; a=ed25519;
  pk=5D8s0BEkJAotPyAnJ6/qmJBFhCjti/zUi2OMYoferv4=
-X-Proofpoint-ORIG-GUID: eCwyCpkPkZP0QPbVPMjQwYeA_rkmWGI9
-X-Proofpoint-GUID: eCwyCpkPkZP0QPbVPMjQwYeA_rkmWGI9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDEwOCBTYWx0ZWRfX7qPP3mSfStMh
- WJeG4KBmNsjgsLEpR2eQsnOde+I/phrR6z5vJKaud6/74pfTHjLNlbjbjZqTyav44bZwNWKVWR7
- b2lZZMhXJQ1GXYVWem02RMJiMxZT7B68W1RxUdwKx9RWmDuhZi8Z+F2K79FiXkV1aTnMW5gSVhG
- 4rNgUClpES453+jduo48mQWu8RZjl4QBSSNjfdHCf1dj0+MeVHZLeP6IOt1Y0MNcjJppc6EHISe
- 8dYwBK4wgpkhqABXTu8avaJHvQSBAdZXVtAOOuCB3ZZ40h4tHa5lklyGblzasm1fJB44NKQmNx8
- RRS2l7Rfc+jyKy6OeH9QtZZm0ifAZGTLV0jOo2ggwFTtgX8hRP9WPwCqR5TMIJHoKRu4I4lyqaz
- lkoFTl11KS6W8lD03GIXWp0UIwxOJlmGjy6kCYBbVMyBkcO8J0acI0AkaoHP7jUrDD6Yi5/OcgU
- 6jOViAmIR4BMpK4pO2g==
-X-Authority-Analysis: v=2.4 cv=Jpz8bc4C c=1 sm=1 tr=0 ts=695d017f cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+X-Proofpoint-ORIG-GUID: _ndgXU4ioXvFDsIFEwDy2y4ahlmdCHBB
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDEwOCBTYWx0ZWRfXxeKH8hYZn7Bd
+ 7WcqV1NK+e9/FJyXC4i7n4YgQaPy+sAwzV6dIlN41z7qJgaxJCOziLNbT868It4sAz+f0/Mk8AM
+ tWqkAAJCq2EZ6jwpsui+V7DSzrJCf1EOm2mLkACTjpOPWh2Sbg4uon+rm2arD6d0m5LKlJpCpyO
+ L4eAYGLpNH7UKMWmVXtUXhfog2m+7f4yR31FzwG95AcRLr+RQ0OXZgRZ7XawgzeOmEubnixgf+d
+ pJaelLnjUkNWgCHv1ltftVg4HMucn1qUAIQPvkvWFsC3lMUv7ECLHB4fgYAr5CzezDCW2pi5Uvf
+ yAgDlrVXgvMSfGQ3pcFMuGfxnRLn+LcRvM7abQOTe1L/UkFI6bJVeRlNtctMAigKfcW2T9gXWYA
+ yzDnvYtMD3kkBTq7XZgfhtf0+6q4TG5rfcyx7bRC0L/pPX16lHu60E8lfF5Af+d+X5aWrfJssg4
+ Cf4JfpD4+CDEQ9Pd3/Q==
+X-Proofpoint-GUID: _ndgXU4ioXvFDsIFEwDy2y4ahlmdCHBB
+X-Authority-Analysis: v=2.4 cv=KfnfcAYD c=1 sm=1 tr=0 ts=695d0185 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
  a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
- a=avnAaoOVoNrTWVjlPhgA:9 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
- a=sptkURWiP4Gy88Gu7hUp:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=2tdM-IJ1x2Ue4swjlzoA:9
+ a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2026-01-06_01,2026-01-06_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 malwarescore=0 bulkscore=0 clxscore=1015 adultscore=0
- phishscore=0 suspectscore=0 impostorscore=0 spamscore=0 priorityscore=1501
+ phishscore=0 priorityscore=1501 clxscore=1015 spamscore=0 adultscore=0
+ suspectscore=0 malwarescore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601060108
 
-Document the required configuration to enable the PCIe Endpoint controller
-on SA8255p which is managed by firmware using power-domain based handling.
+Some Qualcomm platforms use firmware to manage PCIe resources such as
+clocks, resets, and PHY through the SCMI interface. In these cases,
+the Linux driver should not perform resource enable or disable
+operations directly. Additionally, runtime PM support has been enabled
+to ensure proper power state transitions.
+
+This commit introduces a `firmware_managed` flag in the Endpoint
+configuration structure. When set, the driver skips resource handling
+and uses generic runtime PM calls to let firmware do resource management.
+
+A new compatible string is added for SA8255P platforms where firmware
+manages resources.
 
 Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- .../bindings/pci/qcom,sa8255p-pcie-ep.yaml         | 110 +++++++++++++++++++++
- 1 file changed, 110 insertions(+)
+ drivers/pci/controller/dwc/pcie-qcom-ep.c | 61 +++++++++++++++++++++++++++----
+ 1 file changed, 53 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,sa8255p-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,sa8255p-pcie-ep.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..e338797d5dc2f68e2ad658e7f2c073023c4aea75
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/qcom,sa8255p-pcie-ep.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/qcom,sa8255p-pcie-ep.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+index f1bc0ac81a928b928ab3f8cc7bf82558fc430474..38fcc241032b60e4c93574e4d759596ddf268efa 100644
+--- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
++++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+@@ -168,11 +168,13 @@ enum qcom_pcie_ep_link_status {
+  * @hdma_support: HDMA support on this SoC
+  * @override_no_snoop: Override NO_SNOOP attribute in TLP to enable cache snooping
+  * @disable_mhi_ram_parity_check: Disable MHI RAM data parity error check
++ * @firmware_managed: Set if the Endpoint controller is firmware managed
+  */
+ struct qcom_pcie_ep_cfg {
+ 	bool hdma_support;
+ 	bool override_no_snoop;
+ 	bool disable_mhi_ram_parity_check;
++	bool firmware_managed;
+ };
+ 
+ /**
+@@ -377,6 +379,14 @@ static int qcom_pcie_enable_resources(struct qcom_pcie_ep *pcie_ep)
+ 
+ static void qcom_pcie_disable_resources(struct qcom_pcie_ep *pcie_ep)
+ {
++	struct device *dev = pcie_ep->pci.dev;
 +
-+title: Qualcomm firmware managed PCIe Endpoint Controller
++	pm_runtime_put(dev);
 +
-+description:
-+  Qualcomm SA8255p SoC PCIe endpoint controller is based on the Synopsys
-+  DesignWare PCIe IP which is managed by firmware.
++	/* Skip resource disablement if Endpoint controller is firmware-managed */
++	if (pcie_ep->cfg && pcie_ep->cfg->firmware_managed)
++		return;
 +
-+maintainers:
-+  - Manivannan Sadhasivam <mani@kernel.org>
+ 	icc_set_bw(pcie_ep->icc_mem, 0, 0);
+ 	phy_power_off(pcie_ep->phy);
+ 	phy_exit(pcie_ep->phy);
+@@ -390,12 +400,24 @@ static int qcom_pcie_perst_deassert(struct dw_pcie *pci)
+ 	u32 val, offset;
+ 	int ret;
+ 
++	ret = pm_runtime_resume_and_get(dev);
++	if (ret < 0) {
++		dev_err(dev, "Failed to enable endpoint device: %d\n", ret);
++		return ret;
++	}
 +
-+properties:
-+  compatible:
-+    const: qcom,sa8255p-pcie-ep
++	/* Skip resource enablement if Endpoint controller is firmware-managed */
++	if (pcie_ep->cfg && pcie_ep->cfg->firmware_managed)
++		goto skip_resources_enable;
 +
-+  reg:
-+    items:
-+      - description: Qualcomm-specific PARF configuration registers
-+      - description: DesignWare PCIe registers
-+      - description: External local bus interface registers
-+      - description: Address Translation Unit (ATU) registers
-+      - description: Memory region used to map remote RC address space
-+      - description: BAR memory region
-+      - description: DMA register space
+ 	ret = qcom_pcie_enable_resources(pcie_ep);
+ 	if (ret) {
+ 		dev_err(dev, "Failed to enable resources: %d\n", ret);
++		pm_runtime_put(dev);
+ 		return ret;
+ 	}
+ 
++skip_resources_enable:
+ 	/* Perform cleanup that requires refclk */
+ 	pci_epc_deinit_notify(pci->ep.epc);
+ 	dw_pcie_ep_cleanup(&pci->ep);
+@@ -630,6 +652,17 @@ static int qcom_pcie_ep_get_resources(struct platform_device *pdev,
+ 		return ret;
+ 	}
+ 
++	pcie_ep->reset = devm_gpiod_get(dev, "reset", GPIOD_IN);
++	if (IS_ERR(pcie_ep->reset))
++		return PTR_ERR(pcie_ep->reset);
 +
-+  reg-names:
-+    items:
-+      - const: parf
-+      - const: dbi
-+      - const: elbi
-+      - const: atu
-+      - const: addr_space
-+      - const: mmio
-+      - const: dma
++	pcie_ep->wake = devm_gpiod_get_optional(dev, "wake", GPIOD_OUT_LOW);
++	if (IS_ERR(pcie_ep->wake))
++		return PTR_ERR(pcie_ep->wake);
 +
-+  interrupts:
-+    items:
-+      - description: PCIe Global interrupt
-+      - description: PCIe Doorbell interrupt
-+      - description: DMA interrupt
++	if (pcie_ep->cfg && pcie_ep->cfg->firmware_managed)
++		return 0;
 +
-+  interrupt-names:
-+    items:
-+      - const: global
-+      - const: doorbell
-+      - const: dma
+ 	pcie_ep->num_clks = devm_clk_bulk_get_all(dev, &pcie_ep->clks);
+ 	if (pcie_ep->num_clks < 0) {
+ 		dev_err(dev, "Failed to get clocks\n");
+@@ -640,14 +673,6 @@ static int qcom_pcie_ep_get_resources(struct platform_device *pdev,
+ 	if (IS_ERR(pcie_ep->core_reset))
+ 		return PTR_ERR(pcie_ep->core_reset);
+ 
+-	pcie_ep->reset = devm_gpiod_get(dev, "reset", GPIOD_IN);
+-	if (IS_ERR(pcie_ep->reset))
+-		return PTR_ERR(pcie_ep->reset);
+-
+-	pcie_ep->wake = devm_gpiod_get_optional(dev, "wake", GPIOD_OUT_LOW);
+-	if (IS_ERR(pcie_ep->wake))
+-		return PTR_ERR(pcie_ep->wake);
+-
+ 	pcie_ep->phy = devm_phy_optional_get(dev, "pciephy");
+ 	if (IS_ERR(pcie_ep->phy))
+ 		ret = PTR_ERR(pcie_ep->phy);
+@@ -874,6 +899,12 @@ static int qcom_pcie_ep_probe(struct platform_device *pdev)
+ 
+ 	platform_set_drvdata(pdev, pcie_ep);
+ 
++	pm_runtime_get_noresume(dev);
++	pm_runtime_set_active(dev);
++	ret = devm_pm_runtime_enable(dev);
++	if (ret)
++		return ret;
 +
-+  iommus:
-+    maxItems: 1
+ 	ret = qcom_pcie_ep_get_resources(pdev, pcie_ep);
+ 	if (ret)
+ 		return ret;
+@@ -894,6 +925,12 @@ static int qcom_pcie_ep_probe(struct platform_device *pdev)
+ 		goto err_disable_irqs;
+ 	}
+ 
++	ret = pm_runtime_put_sync(dev);
++	if (ret < 0) {
++		dev_err(dev, "Failed to disable endpoint device: %d\n", ret);
++		goto err_disable_irqs;
++	}
 +
-+  reset-gpios:
-+    description: GPIO used as PERST# input signal
-+    maxItems: 1
+ 	pcie_ep->debugfs = debugfs_create_dir(name, NULL);
+ 	qcom_pcie_ep_init_debugfs(pcie_ep);
+ 
+@@ -930,7 +967,15 @@ static const struct qcom_pcie_ep_cfg cfg_1_34_0 = {
+ 	.disable_mhi_ram_parity_check = true,
+ };
+ 
++static const struct qcom_pcie_ep_cfg cfg_1_34_0_fw_managed = {
++	.hdma_support = true,
++	.override_no_snoop = true,
++	.disable_mhi_ram_parity_check = true,
++	.firmware_managed = true,
++};
 +
-+  wake-gpios:
-+    description: GPIO used as WAKE# output signal
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  dma-coherent: true
-+
-+  num-lanes:
-+    default: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-names
-+  - reset-gpios
-+  - power-domains
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        pcie1_ep: pcie-ep@1c10000 {
-+            compatible = "qcom,sa8255p-pcie-ep";
-+            reg = <0x0 0x01c10000 0x0 0x3000>,
-+                  <0x0 0x60000000 0x0 0xf20>,
-+                  <0x0 0x60000f20 0x0 0xa8>,
-+                  <0x0 0x60001000 0x0 0x4000>,
-+                  <0x0 0x60200000 0x0 0x100000>,
-+                  <0x0 0x01c13000 0x0 0x1000>,
-+                  <0x0 0x60005000 0x0 0x2000>;
-+            reg-names = "parf", "dbi", "elbi", "atu", "addr_space", "mmio", "dma";
-+            interrupts = <GIC_SPI 518 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "global", "doorbell", "dma";
-+            reset-gpios = <&tlmm 4 GPIO_ACTIVE_LOW>;
-+            wake-gpios = <&tlmm 5 GPIO_ACTIVE_LOW>;
-+            dma-coherent;
-+            iommus = <&pcie_smmu 0x80 0x7f>;
-+            power-domains = <&scmi6_pd 1>;
-+            num-lanes = <4>;
-+        };
-+    };
+ static const struct of_device_id qcom_pcie_ep_match[] = {
++	{ .compatible = "qcom,sa8255p-pcie-ep", .data = &cfg_1_34_0_fw_managed},
+ 	{ .compatible = "qcom,sa8775p-pcie-ep", .data = &cfg_1_34_0},
+ 	{ .compatible = "qcom,sdx55-pcie-ep", },
+ 	{ .compatible = "qcom,sm8450-pcie-ep", },
 
 -- 
 2.25.1
