@@ -1,145 +1,139 @@
-Return-Path: <devicetree+bounces-251791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57584CF7090
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 08:29:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06482CF70B4
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 08:34:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E16F30285D5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 07:29:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 264F6305F310
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 07:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3310E309F04;
-	Tue,  6 Jan 2026 07:29:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC793093B2;
+	Tue,  6 Jan 2026 07:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T9Jmo4ec"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="d8njPqG4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B56F222CBF1
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 07:29:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B9230ACF0
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 07:33:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767684596; cv=none; b=cppnnwAOhUvpA0v8UPGMTveT5Srm3YUvksYlmAK+NnzHyhkzQxhN0c3OnH95CltJcXAILGsxfTuhdVP9PZHvUfVfGNLnkfO4jem4irf6zRxP1bV58Zls5vfXJ0w+OK4MU5/QF3dDf7/uqh6aVoUWDblBbTOGr9xBbukUBe7hOE0=
+	t=1767684783; cv=none; b=csOgSF3bVRQv9Ppob3nkDkWCZVREezfjViosA62MA9RKVtsCv/3g5ezHPB+IgMdKf0Jm0Tn7PVQtuF+lgWKPIIEaYqb5wzRm8fNGgXdCZERqEt+WIUO394u35Jye1/hKAH2Y1EPsYgIgpJAZ/2yTp/7O5nq2lCcRV1mMK9w8cn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767684596; c=relaxed/simple;
-	bh=uwQMBGRBP0eBvM1mTA/eZvBph4jmcVJkihTxQLBFsGY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CJ3l4F6GA6PrtQMdKsrGcIljESkLEIMRkZ1JiBU65gTjVM0+8Btk6zCYR8NI2OgoamuKa6pW7fpdkPNDuRRpTN6KAXzMLf/ruIjejKMbCURYjql9DiqRWU0RSiYUVeq2BU9w6hPRRCLMS1R0GXeeFOkgk2TjhW/PiEmQVtZHavc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T9Jmo4ec; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a07fac8aa1so7933195ad.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 23:29:54 -0800 (PST)
+	s=arc-20240116; t=1767684783; c=relaxed/simple;
+	bh=y4qwVpvdRzADYNSMvPVIQb0E7h4woHXVfUrKr1Z/PWk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jhe4QkD0eupSxHKFL8x4JXDyX7QOURSC6c8EpLMEyy/PT5ZCltaWBZ5nOOupNtyEYGGs0TMf0Gi3GNIwNYw3UzyRJTjZz6JvxmBIrY26aVppJ4yFnN2MBQXLRVuiwr32U4Bq+MDL0mBtr18YxOSiiWem5acsU1HR00koHJnTTf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=d8njPqG4; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-59583505988so1064043e87.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jan 2026 23:33:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767684594; x=1768289394; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NSjp2mll7hJXV1/dG5UrDm8t5mdq7BgvFVfOgQMOYa4=;
-        b=T9Jmo4ecR9VHH+MEfkILVLhUW7wA6jMFNVaA0p0fqy7fkMCLQJfH3mPDsaDHxdbLen
-         Hgqa0rQNqRVZnj8/pqmUuSFSjrz+JMR5m7SZyi5/QTs5QGOWROo/LsVbnhAeX+BpLHup
-         BKhfHO/i4lnJc7gUnUOcSgZAUJ7swM3u8bLbowzCB68OiwM1ua/VWt1odAeZvalYA+2r
-         16/xfiy8y/+n9QiTxfRb9jRP43PxL97YT9MlDx5PVCNhC1QPy26b6fs+vhldlgGjLjMm
-         pVZ2pr5fVR1y4JXEN/GYhysy/8SGga4kcfdvljrbTOAIBzZN7b03VJnYNquFsegBDVK0
-         iJbA==
+        d=chromium.org; s=google; t=1767684779; x=1768289579; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fqzY4iNsINolRoiuSHq4WTtx5oWDWFvmNdTLgX48a8Q=;
+        b=d8njPqG4zhaO8sA4Pe+0DjMOX2FL2QHvMlvLlnkkc3n3Sft0+Jlgo/rOva/UEBbJro
+         OyOuhQcCa1C2auDLk7V6zsS6710oDTM355e6z8AYZRz996jPeOzg081J80UMMr6rqFB5
+         xokEK4igZBZ1T6MP4MLIiRc1EWkIUURdBoJsM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767684594; x=1768289394;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NSjp2mll7hJXV1/dG5UrDm8t5mdq7BgvFVfOgQMOYa4=;
-        b=NsG6o/gTygomyfJixj3IGBVvDMp7SXp8ld00IWPJ/E+PBEP6B8SyQ2UGcSILVaBQAd
-         PKq9oWR9R3KAV1aFsmVBDqlFXoKo3DRwjA8h9ZGhPs0wuakoETnfKL4xlP/kMkjj2sG0
-         8K1F7esWfINz99MLi39U0sSyrYlqczqs2t3uvwbWN63+rY7nDg+k6DyvcU/iq3ssT7ky
-         4biuARCTQvsEgdVm9iVvJh+hD0vee2GgrczqSKRy0g2dC5BmwPQpMNjjGOz8a65Lw/Eo
-         YgY3nLWnb6y3ZpclkQRk9/g3bowV3+SOcC5F1kmI/DmWxkgRJTUoRusiQ6255rQ7w+wP
-         4r+w==
-X-Forwarded-Encrypted: i=1; AJvYcCUu6jvs6Nl1ydrH+sy6h9yEkAx3pB5uuuBLry51uBikfakjhnTwSxxAd6Qq/5bCt/VG7qorP+ImkRYc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7Brkcy7GkCp7Vf3ex1Mib6X99Ax0zoWXNH1e0X6kJJdsZ0jzN
-	2NTegyzrcDFLSiv+l0sLN/E5JvtK5BJP3G/ZZWvgv3Okatj9Ed+PyKIq
-X-Gm-Gg: AY/fxX7AnyY19O/IZqom0D46NTHCbKw/eZkCM634Lco96ImAWubG8cNFTCOGOxkt9Nn
-	Fg3cSyomJo4TW1Nwih4vwfd9H/pS8OJ1wqgkvuLFoi5OccFG6PWow0RH+XzjCMJotPXFVEGhYLJ
-	8pcrYzbqhxaJYRR+WG7mrDFyDm+kgBm6LqNx4ExYb+0IV6dHuH5HlFUFCqDrHn3FGi3dj8A1cpb
-	GrVzlspnd8gzsY0MCufLTaPS348GVbWUbAsAFyVTESCynkNpX4aq0vcsYh0uKRmiwMo9pFxh/ar
-	QNMDUOWLayYsnGyxqPdPsuDWfJ93OLoSqnEg6tJEZTdmOolK+g3FnLzMwKKPVyhbvmo9ItEJgxa
-	Vf5KI6MV3aunjbAWgs4wU1JgJNtUUk+mHRiHR9D1rtoHgDWm3KBqamsl6dZnlYHBmxSfXBb6NnA
-	BBMIFS44cuInIt0RA/e/2gZTrstmIOAbYOnRetH0WHMt1c
-X-Google-Smtp-Source: AGHT+IEmFA7FqxXfnfDtj2yBgazK16tv3f7oKGrryC4Cs3CVp2BbXQDLKd8tk4p65AZyJ4GR/Z7k8g==
-X-Received: by 2002:a17:902:c952:b0:295:86a1:5008 with SMTP id d9443c01a7336-2a3e2cf827cmr20031175ad.38.1767684593838;
-        Mon, 05 Jan 2026 23:29:53 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.245.23])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819baa195fasm1201628b3a.1.2026.01.05.23.29.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jan 2026 23:29:53 -0800 (PST)
-Message-ID: <31907a16-1737-4269-92f3-ea998d684396@gmail.com>
-Date: Tue, 6 Jan 2026 13:00:19 +0530
+        d=1e100.net; s=20230601; t=1767684779; x=1768289579;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=fqzY4iNsINolRoiuSHq4WTtx5oWDWFvmNdTLgX48a8Q=;
+        b=DeuKey+KZE2a4WyjmRP1yjAL073FFWUNQ8sF3goN367zuVReHWpAuA0HspzDXtdLng
+         7S8WqQnEuY+wik4YeNcYbOdZC0G+JCDu7tjPNgTK8AGpYOGpMzitykXtPMpIjj5pYfXd
+         opIsacAs8XTq76cWO1efPnCdT28spQUjohVsC/m2HfLNCBRsNz3KKi0ZdMw15yTDdqIN
+         uqzg+Fwm3sAC7NUEauPFURjOiWD4/RvPEsigYXNAlcSH4z8sn5OMmjz320LoSA9J/QVH
+         Sbhk+6RYg+GIl/fOUMzmX0eEGTjxHDhJ0DM2sZ6vqcDKkbfnhcoiyKID0AModRtHknpK
+         4VAw==
+X-Forwarded-Encrypted: i=1; AJvYcCVYuyof4BbdMhcqafgxuDG/dxToPl/pYKIZafACr8WqKuJ1qJ58UmoalXMRmDq6TGKYhFjiTKciFxpb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/R50c8S4zt0ENx2C7eJksqjxKtXMRPPCKzdoxJmu+Gj55XbtN
+	s1+klBwOI4CtVfbmd9RAypdIUeRnUjcfAZK5kTmTX5oxprz7dOd9DigFnZGi9l6DXrW7iETiOsN
+	HlonbiEPJ4QrRxafzlpKz8ot2I654Kb3n5LQfbDrT
+X-Gm-Gg: AY/fxX5U060Bwa0Di+FJceOsqeu0JWeoghBf3lEDd/DvbOp8Oyh2N+5teAcrKgBQ7/r
+	4OhKg+1dNZTV6etuRWDZ0ffoXQrxxQjiSStqusAvj7EKytEpUaLpNej8PmcSAutVqgTBxbJR6Vu
+	fqKO1cwRJCKkmX4oKkxxm8WUjDAsGLge5Ros8hvHaR25NBznLxtAJ0RxxV0+g9Fja3J7BcXZKLj
+	3h/dGOHnLxtOC8Op+tf+OXNZubiwltw3oayIl4eHn4EIRQ8HY85blcZ+h/8VZNfJuzNz9pyVRpw
+	RHlc6w3clS7xf2iGzWF7zZeRzg==
+X-Google-Smtp-Source: AGHT+IEAoJiu1UH67YXklgc9uvuOf1qJleDiwyIXSrIHeshyOtNKWRsImtZQBp/VYi3lIcNm+2tmz26j0NyKZvubb0Y=
+X-Received: by 2002:a05:6512:3e08:b0:59b:67cf:ac0c with SMTP id
+ 2adb3069b0e04-59b67cfac63mr326251e87.17.1767684779427; Mon, 05 Jan 2026
+ 23:32:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 5/5] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251230130227.3503590-1-tessolveupstream@gmail.com>
- <20251230130227.3503590-6-tessolveupstream@gmail.com>
- <30ee8541-3ec2-49ac-8fe0-987cdc5b16e7@oss.qualcomm.com>
- <14613f89-6be0-4eb3-beb5-375ab008a313@gmail.com>
- <kfjogrtbwpk7mkg4fq2vyve6k6nwccguyxupdwhrcknf3qnahm@xyd545je6u77>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <kfjogrtbwpk7mkg4fq2vyve6k6nwccguyxupdwhrcknf3qnahm@xyd545je6u77>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251206-mt8183-display-graph-v1-1-a30e54481f28@abscue.de>
+In-Reply-To: <20251206-mt8183-display-graph-v1-1-a30e54481f28@abscue.de>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 6 Jan 2026 15:32:48 +0800
+X-Gm-Features: AQt7F2oScs1nPo40H3ZrV8FDmqy_y-OidGavDVEUMs49HzaB-TFtZc3H2BO4VmE
+Message-ID: <CAGXv+5EXA5GF6+-_+SnqU1=Rq3Cv4_Uq+xHD55TO2CBtYans_A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8183: Add missing endpoint IDs to
+ display graph
+To: =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Evans Jahja <evansjahja13@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 06-01-2026 03:43, Dmitry Baryshkov wrote:
-> On Sun, Jan 04, 2026 at 07:16:20PM +0530, tessolveupstream@gmail.com wrote:
->>
->>
->> On 30-12-2025 20:21, Konrad Dybcio wrote:
->>> On 12/30/25 2:02 PM, Sudarshan Shetty wrote:
->>>> Add the device tree for the QCS615-based Talos EVK platform. The
->>>> platform is composed of a System-on-Module following the SMARC
->>>> standard, and a Carrier Board.
->>>>
->>>> The Carrier Board supports several display configurations, HDMI and
->>>> LVDS. Both configurations use the same base hardware, with the display
->>>> selection controlled by a DIP switch.
->>>
->>> [...]
->>>
->>>> +		pinctrl-names = "default";
->>>> +		pinctrl-0 = <&wifi_reg_en_pins_state>;
->>>
->>> property-n
->>> property-names
->>>
->>> consistently, please
->>>
->>
->> I didn’t fully understand your comment.
->> Could you please elaborate a bit more so I can make the
->> necessary changes correctly. >> +		regulator-boot-on;
-> 
-> What is the order of these two properties in most of the other DT files?
-> What is the order of them in your patch?
+On Sun, Dec 7, 2025 at 1:54=E2=80=AFAM Otto Pfl=C3=BCger <otto.pflueger@abs=
+cue.de> wrote:
 >
+> The endpoint IDs in the display graph are expected to match the
+> associated display path number, i.e. all endpoints connected to
+> mmsys_ep_main must have reg =3D <0> and all endpoints connected to
+> mmsys_ep_ext must have reg =3D <1>.
+>
+> Add the missing ID to all endpoints in the display graph, based on
+> mt8365.dtsi as an existing example that does this correctly.
+>
+> Fixes: e72d63fa0563 ("arm64: dts: mediatek: mt8183: Migrate to display co=
+ntroller OF graph")
+> Reported-by: Evans Jahja <evansjahja13@gmail.com>
+> Closes: https://lore.kernel.org/linux-mediatek/CAAq5pW9o3itC0G16LnJO7KMAQ=
+_XoqXUpB=3DcuJ_7e3-H11zKd5Q@mail.gmail.com/
+> Signed-off-by: Otto Pfl=C3=BCger <otto.pflueger@abscue.de>
 
-I got your point now. I will rearrange the order of the properties
-to be consistent with other DT files in the next patch series.
- 
->>>> +		regulator-always-on;
->>>> +	};
-> 
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
+Restores the display on my MT8183 Juniper device to normal.
+
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 122 +++++++++++++++++++++++++=
+------
+>  1 file changed, 98 insertions(+), 24 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8183.dtsi
+> index 4e20a8f2eb25803057955401a7737c7f029a1424..0c73043c67fd01147179e8f9b=
+065684f67749ec2 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1754,15 +1754,21 @@ ports {
+>                                 #size-cells =3D <0>;
+>
+>                                 port@0 {
+> +                                       #address-cells =3D <1>;
+> +                                       #size-cells =3D <0>;
+>                                         reg =3D <0>;
+
+"reg" (and "compatible") properties should come before all other ones,
+as documented in the device tree coding style. This applies to all the
+additions in this patch.
+
+
+ChenYu
 
