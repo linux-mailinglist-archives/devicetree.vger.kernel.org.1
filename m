@@ -1,242 +1,165 @@
-Return-Path: <devicetree+bounces-251954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6677CF8B5F
-	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 15:14:38 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 748C8CF8B51
+	for <lists+devicetree@lfdr.de>; Tue, 06 Jan 2026 15:14:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C343230515AD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 14:13:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E1349300A51A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jan 2026 14:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56BFE285CB9;
-	Tue,  6 Jan 2026 14:11:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LmNdD/gu";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GiBemit5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69E7287247;
+	Tue,  6 Jan 2026 14:14:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDAD28000A
-	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 14:11:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC43B283FDC
+	for <devicetree@vger.kernel.org>; Tue,  6 Jan 2026 14:14:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767708713; cv=none; b=cGep2Upx0abjOR9HTnJBGYXJQ2rQgpCy1f7wM6URGgPqBqj6LOhS3OQLPKI2VhnpG/JcnB0DlllLIGnz1JPPJ0S9ufg05DB4W4MHHr+DdB1lBT7pO0C6RV+viTjiM7077a/P6CUz6m6zkBQgxrQVF+TqDlDNJRLAQof1R1u3iuY=
+	t=1767708867; cv=none; b=AcIQGcmzcqNJXTnqek4Fz3xbGhXoMwj3OQ7FIaqxkIXUHHCxqnfCloipHQSibdpH9xKIeFVvCqwcG+6xAZOAQk6xxPwOebD36c3u1DSNbs4SQVZ8V1uIgQ20FLiFA52acX1Dv+ZlbUkee7gOXDQeBGFZxiK/1J2yjzQaoaMxfNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767708713; c=relaxed/simple;
-	bh=CrRAiIbO/vVnAvGROcns70SoLhi/4G0NRfHWFjMslls=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lWak1gde2LSagVOAfVOITtOtEjTAGpLl0GVssl42nH8YbWV4fik6O1Y0ptmgpfpJwOh4R+rOTKxZi32W/2WHKWeLNpJjrMXzTIrmgWwrrBBc7/z3JYZbkAW7j5Ky8DoSEm0yT0ojJboBEp2gQq5yzxtgLD+6rKiDO5GFamz0FF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LmNdD/gu; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GiBemit5; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 606B2DiT2684789
-	for <devicetree@vger.kernel.org>; Tue, 6 Jan 2026 14:11:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	C6oOMkFH1icyX+oG4Y2/26sOMMPItpGKJI0jnUs3F/U=; b=LmNdD/guSW5DSi4s
-	1w3S3tW1ZHT8h4PRC2IQEMhcklzJJTm4Zm4VQJdjFtQsMzyuXsNNAWQib8pEWAaW
-	VanOTmQyhxO38IdghxIGegGHgAKZbZY/CMwyRnEKjqmdkeSMhrMTPwKMp1dCMoDK
-	HcbNudAz5aiexv/ZYsIJhXcZ7/QgBmjAS1vd5Y04cR1VmdnXHffVWJLwY4R6PVXa
-	kK1uPA4eJumFcYDjzBsZsiRXd6IHgnM9p8aQjmcEIwlpruOn1cbu7tl4VMHJtwYm
-	am7gC1weHxGvRQQHaCLmZusYVlOhH8QYMeRvI7rQd3V5Fawzdehx37cE45kVKKs2
-	nabjRw==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgty5hn8r-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 14:11:50 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b99763210e5so1968845a12.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 06:11:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767708709; x=1768313509; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C6oOMkFH1icyX+oG4Y2/26sOMMPItpGKJI0jnUs3F/U=;
-        b=GiBemit5UYXcqRaRBkccbuJdDVHWczrDRGsB8yu9i7cLtpPg4K9jzXXAsWARGgzEuk
-         i65YLvUBjbZ+ix1r0OBB2tkzq+TAb/1m3AQnoCSBYxqOMWdXAZE23oSG8JLOZ6XTA/Lh
-         oVIWT1Be5cZh5QXh3IQ7rI42iX0+Aj09zCgSwQNh21zD9SbVAJeOxIIb5JPn2dNlecP0
-         I4pgtwA9ok3SmC98BkHmNfFKh4AeLrOq+T2pAuCTToLcWx1lufVERwAs4a5JLMRy2yM1
-         wrYViovl5/dW6NGSM8KcokGSG12LK5JeuNZwvnOTeirdJKHozSmKvNeB38f/wHwPuFmV
-         gVkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767708709; x=1768313509;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=C6oOMkFH1icyX+oG4Y2/26sOMMPItpGKJI0jnUs3F/U=;
-        b=sJeuGAHJCyMGmfDEXk+hrAHNtcawiV6btyg21A1O8abQlgFtTVQwe2WFpTCvbda3dR
-         5DIvgYcjJS1F+KHpdM5rxIAlDOux6DYHWRXBdQ+6s/0pfgaQxLRL8zCvPphunAZ+fFto
-         yn6T2nxoZWcORr9VrmXZ52m3aLKlLksLwYMpH4Ej5kcurS89+pigY1otb2bH0/O6NVE4
-         Hy1l1A5+O6Fc1WVTWsolLf/c0T7VIxadH231rJ+Bu9N868tJ7xh62k5QgaVYleuJ1JXH
-         yswtSVrjuV70PHnjIlMoh70vvnJvf9S0JEsRdbVutNJTdFhxT9ObOQ/3zMrImU47FGS9
-         9tiw==
-X-Forwarded-Encrypted: i=1; AJvYcCWjgYRV3SS4kq+iK6knqpAwji/fl0TVHeDvGZOLvZpPOQZFKPNRt0M3r1/fieJ/GkGc2Bq2J1+3TciG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUXS06IiD/9gmaz3TsDPfcEvn1UJNVy7adKj/r/QS9zAcvXs0L
-	s74PqgbfzZCKxFvQSIzc2jwiSfM3raly6U4U/KvRB4DzvhWoNUJB958SYcEn+PaEmS+R1NzC7y+
-	PMM9DMH19H8K9tozwhOPpjh08rMme4rmMqchcuOHzB+zxGcLWIGvlJwCdofZsHOKx
-X-Gm-Gg: AY/fxX6s3fzJSHHze7k/BL8rHehJZN7urE5Sigm9MeGjDrqSlP+GBBKdKnt/af4rpaC
-	5iUhAtggq/2zZ1I2+yBUa7kuKp0jV3t/uT9nws3P5hX5PcagpG+ASe4WgDaAp58baf6XrrWB9Ez
-	RNjTnB5Wh5GziTsev5M9a3qLnutJ+tzubLJf9bl87cJeUphCPwX0cRT++X1gt2eRFA6tYh+SeFQ
-	5gLnUP5n9UR/kUt8VmEzQiECoTaN97fU9jh9DeOKAfL8WVd3miR0Gh+kuxtRkzzhwMCYmOIgcjg
-	zCf43UcgZ6a33WIqhwCXfz7tA374wdYkvI+CD8+MceCiA6QkSwWj1IcxgXdufr0D/+75lf99dVi
-	gOax/OLP/Hruz2lMm0RSeOss+HpNDa0kzD209JmvyzYddjQLW2ws=
-X-Received: by 2002:a05:6a20:9193:b0:366:14af:9bb8 with SMTP id adf61e73a8af0-389823e669bmr2747147637.66.1767708709189;
-        Tue, 06 Jan 2026 06:11:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHkNJzHueZJopbOADbo0HQYswpQnnoxRAE8m7ARtjucQr/D5znXt4T4E4ZptoObFHwYrocHNw==
-X-Received: by 2002:a05:6a20:9193:b0:366:14af:9bb8 with SMTP id adf61e73a8af0-389823e669bmr2747114637.66.1767708708558;
-        Tue, 06 Jan 2026 06:11:48 -0800 (PST)
-Received: from [10.217.216.105] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c4cc9e7e8afsm2568498a12.29.2026.01.06.06.11.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jan 2026 06:11:48 -0800 (PST)
-Message-ID: <01468d87-0e2f-4328-89d7-d1fa6952d355@oss.qualcomm.com>
-Date: Tue, 6 Jan 2026 19:41:41 +0530
+	s=arc-20240116; t=1767708867; c=relaxed/simple;
+	bh=J5D3AxYk/KGiW51uGhMznr9BjtqXn7rl5KAiX9QfyT8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J43TlHr2tZRKozXSc0X+SEvd/RwOV8UzdQ5/89yGRmXSQDub3YaSmehnUWaMcREwhUKDljWoZUq3R9R7FSQ8G4wjlsBX4qgqhX+hQRjDTZkz8Vlsk6O/bfFtkaGWzR94jWog7F7EgCaM+QJSay3eTb66xSm4QXqwsmybIskkBew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vd7or-0004tZ-MH; Tue, 06 Jan 2026 15:13:57 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vd7or-009ML8-0u;
+	Tue, 06 Jan 2026 15:13:57 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vd7or-00EKca-0X;
+	Tue, 06 Jan 2026 15:13:57 +0100
+Date: Tue, 6 Jan 2026 15:13:57 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mp-skov: add pinctrl-name 'reset' to
+ fix CHECK_DTB warning
+Message-ID: <20260106141357.a7jsmligapumcfau@pengutronix.de>
+References: <20251229165127.4006134-1-Frank.Li@nxp.com>
+ <20260105111448.slm2yqiwivx2t3vh@pengutronix.de>
+ <aVzhhH4BRFC7XlAL@shlinux89>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 3/4] arm64: dts: qcom: hamoa: Add UFS nodes for
- x1e80100 SoC
-To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, martin.petersen@oracle.com,
-        andersson@kernel.org, konradybcio@kernel.org,
-        taniya.das@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org, nitin.rawat@oss.qualcomm.com,
-        Konrad Dybcio
- <konrad.dybcio@oss.qualcomm.com>,
-        Abel Vesa <abel.vesa@oss.qualcomm.com>
-References: <20260105144643.669344-1-pradeep.pragallapati@oss.qualcomm.com>
- <20260105144643.669344-4-pradeep.pragallapati@oss.qualcomm.com>
- <7gi7sh5psh5v4y5mrbgln6j2cjeu5mogdw2n3a6znjtqyjcyuk@kxpe566v57p3>
- <e396bef2-e5bf-4e6d-98f4-37977d5d93ec@oss.qualcomm.com>
- <dbkrbec6t2agwk2swe7olz6zkhyphpbcl7dpmlwie4esvbbvro@s7ybpmaod3d5>
-Content-Language: en-US
-From: Pradeep Pragallapati <pradeep.pragallapati@oss.qualcomm.com>
-In-Reply-To: <dbkrbec6t2agwk2swe7olz6zkhyphpbcl7dpmlwie4esvbbvro@s7ybpmaod3d5>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDEyMyBTYWx0ZWRfXzhSlWKU5DDDu
- vjHw1Sqy2aOAqqAV9rebnY0LFRht9y5SAl4UeH+c302st0tMBNX7FedeFzdOq1JnWHgwNv0l1Hv
- 78n4jW4sm2hslN9CVBUBKguQjLkSDMvaemll4+6scEWdweMUYpwyaMi/fevn766F4uEpNgf1TPx
- jNghmOuO4LwnpXeGeUBc3rVRgEodFZYSCRFp2cAkzXXUlNuXvYAk8InOf4Hs5tJXJBuvI9Oye9w
- OVO5Meoq9xpN/BHXKsTcRk1gvg8FF8Ig8u0BTF9/3bitlVXx4UdxRUupl9MMyWO0HLwCaP00+cA
- Pe9IAEKXzQN98nkmK5EkaNdcHUFsQlKtP6ja4ehJxxIg2tSjGExToecjBqSv+YKxqW0Og+ar8Mz
- 1qodoymyYaxKftLBAdGtxyakR76NxGvEBzT/NojI3RfrafEIoG6uzdB1JSxSDb0/Pkf8aklzZcx
- nig4Dv+K0JkpIH6GqCg==
-X-Authority-Analysis: v=2.4 cv=Rfidyltv c=1 sm=1 tr=0 ts=695d1826 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=i9k5oBss9a2rpNCq0dQA:9 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-GUID: Au47N_LYT5oSDaJdvWSZbZbkv9bHDAQX
-X-Proofpoint-ORIG-GUID: Au47N_LYT5oSDaJdvWSZbZbkv9bHDAQX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-06_01,2026-01-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015
- suspectscore=0 adultscore=0 bulkscore=0 spamscore=0 impostorscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601060123
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aVzhhH4BRFC7XlAL@shlinux89>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi Peng,
 
-
-On 1/6/2026 7:22 PM, Manivannan Sadhasivam wrote:
-> On Tue, Jan 06, 2026 at 06:30:05PM +0530, Pradeep Pragallapati wrote:
->>
->>
->> On 1/6/2026 1:36 PM, Manivannan Sadhasivam wrote:
->>> On Mon, Jan 05, 2026 at 08:16:42PM +0530, Pradeep P V K wrote:
->>>> Add UFS host controller and PHY nodes for x1e80100 SoC.
->>>>
->>>
->>> Minor nits below. With those fixed,
->>>
->>> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
->>>
->>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>>> Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
->>>> Reviewed-by: Taniya Das <taniya.das@oss.qualcomm.com>
->>>> Signed-off-by: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/hamoa.dtsi | 123 +++++++++++++++++++++++++++-
->>>>    1 file changed, 120 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
->>>> index f7d71793bc77..33899fa06aa4 100644
->>>> --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
->>>> @@ -835,9 +835,9 @@ gcc: clock-controller@100000 {
->>>>    				 <0>,
->>>>    				 <0>,
->>>>    				 <0>,
->>>> -				 <0>,
->>>> -				 <0>,
->>>> -				 <0>;
->>>> +				 <&ufs_mem_phy 0>,
->>>> +				 <&ufs_mem_phy 1>,
->>>> +				 <&ufs_mem_phy 2>;
->>>>    			power-domains = <&rpmhpd RPMHPD_CX>;
->>>>    			#clock-cells = <1>;
->>>> @@ -3848,6 +3848,123 @@ pcie4_phy: phy@1c0e000 {
->>>>    			status = "disabled";
->>>>    		};
->>>> +		ufs_mem_phy: phy@1d80000 {
->>>> +			compatible = "qcom,x1e80100-qmp-ufs-phy",
->>>> +				     "qcom,sm8550-qmp-ufs-phy";
->>>> +			reg = <0x0 0x01d80000 0x0 0x2000>;
->>>> +
->>>> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
->>>> +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
->>>> +				 <&tcsr TCSR_UFS_PHY_CLKREF_EN>;
->>>> +
->>>> +			clock-names = "ref",
->>>> +				      "ref_aux",
->>>> +				      "qref";
->>>> +			resets = <&ufs_mem_hc 0>;
->>>> +			reset-names = "ufsphy";
->>>> +
->>>> +			power-domains = <&gcc GCC_UFS_MEM_PHY_GDSC>;
->>>> +
->>>> +			#clock-cells = <1>;
->>>> +			#phy-cells = <0>;
->>>> +
->>>> +			status = "disabled";
->>>> +		};
->>>> +
->>>> +		ufs_mem_hc: ufs@1d84000 {
->>>
->>> ufshc@
->> ok, i will update in the next patchset.
->>>
->>>> +			compatible = "qcom,x1e80100-ufshc",
->>>> +				     "qcom,sm8550-ufshc",
->>>> +				     "qcom,ufshc",
->>>> +				     "jedec,ufs-2.0";
->>>
->>> Drop jedec compatible as Qcom UFS controller cannot fallback to generic ufshc
->>> driver.
->> "jedec,ufs-2.0" was set to const in dt-bindings, dropping now will lead to
->> dtbs_check failures. is it ok, if i continue with it ?
+On 26-01-06, Peng Fan wrote:
+> Hi Marco,
 > 
-> I was implying that you need to drop it from both binding and dts. It was
-> incorrect from the start anyway, so there is no ABI breakage. But make sure you
-> justify it in the description.
+> On Mon, Jan 05, 2026 at 12:14:48PM +0100, Marco Felsch wrote:
+> >Hi Frank,
+> >
+> >On 25-12-29, Frank Li wrote:
+> >> Add pinctrl-name 'reset' to fix below CHECK_DTB warnings:
+> >>   arch/arm64/boot/dts/freescale/imx8mp-skov-basic.dtb: switch@5f (microchip,ksz9893): pinctrl-names: ['default'] is too short
+> >> 	from schema $id: http://devicetree.org/schemas/net/dsa/microchip,ksz.yaml#
+> >> 
+> >> The commit (e469b87e0fb0d dt-bindings: net: dsa: microchip: Add strap
+> >> description to set SPI mode" force use two pinctrl-name 'default' and
+> >> 'reset'. switch@5f doesn't use SPI, so it is safe to use the same pinctrl
+> >> setting for both.
+> >
+> >please see:
+> >- https://lore.kernel.org/all/20251112084717.ea7fchu7jcz6dzsi@pengutronix.de/
+> >
+> >I stumbled over the same warning, but came to the conclusion, that the
+> >dt-bindings should be fixed instead of workaround broken bindings within
+> >the dtb.
 > 
-sure, i will update in my next patchset.
+> If reset is optional, the dt-bindings should include "minItems:1" per my
+> understanding.
 
-> - Mani
+Not sure, since the pinctrl-names is just an enum list. That beeing
+said, I don't see it as required since the strapping may not be required
+for systems which do already has correct ext. strapping options.
+Therefore the binding should be always optional and the driver should be
+adapted.
+
+> But..
+> 
+> >
+> >> -		pinctrl-names = "default";
+> >> -		pinctrl-0 = <&pinctrl_switch>;
+> >> +		pinctrl-names = "default", "reset";
+> >> +		pinctrl-0 = <&pinctrl_switch>, <&pinctrl_switch>;
+> 
+> Per checking
+> https://elixir.bootlin.com/linux/v6.18.3/source/drivers/net/dsa/microchip/ksz_common.c#L5372
+> 
+> seems "reset" is required in driver.
+
+For the ksz8463 but not for the ksz9893 which is used by the
+imx8mp-skov-reva.dtsi (here).
+
+Regards,
+  Marco
+
+
+
+
+> 
+> Regards
+> Peng
+> 
+> >>  		reset-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
+> >>  		reg = <0x5f>;
+> >>  
+> >> -- 
+> >> 2.34.1
+> >> 
+> >> 
+> >> 
+> >
+> >-- 
+> >#gernperDu 
+> >#CallMeByMyFirstName
+> >
+> >Pengutronix e.K.                           |                             |
+> >Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+> >31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> >Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 > 
 
+-- 
+#gernperDu 
+#CallMeByMyFirstName
+
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
