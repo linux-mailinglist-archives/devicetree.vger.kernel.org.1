@@ -1,129 +1,175 @@
-Return-Path: <devicetree+bounces-252524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E99D005B7
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 23:57:59 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08F4CD00638
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 00:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A89B0302BA8D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 22:57:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 29DEC30010CD
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 23:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 494542C2368;
-	Wed,  7 Jan 2026 22:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A0912EC0A6;
+	Wed,  7 Jan 2026 23:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O6xA+n14"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="frEZaBmQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C240278E47
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 22:57:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE1FF2E7F11;
+	Wed,  7 Jan 2026 23:23:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767826676; cv=none; b=T9K0JjcXXXVIt5BSytEnVW0c1uuMsM+ANbz89iPxs6iw5ZnZ1b4F66MSojtXnvY1YDaE28YkUmcwQlJ5vnJesCkh/+nYI2iARX/3k4uKqurrQ5VfoQSvcMKiZwUDfCZ+WsatuOpS0e1YYN52iKlvMFSaAYyGCcu2NTtcGYWKfk8=
+	t=1767828233; cv=none; b=Z9D4ZaRPncGhmSMyWfGqs/btlAvdhg1PfG63I8CjlVyXXWRgX6nixU1Oude/aN/CB8ZVGXmInkBn4caAR7hWXUn1xhsnzIWaZWuWfyO5eIhoyoc3KdraLhnMWKSkjpezaEolPC1BBUVvipLNe4yZnR0FPQFCi4BFXF1aS4ZyxyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767826676; c=relaxed/simple;
-	bh=1TGTeidiGCvqOZ4bsoKIlueH1jfD2bKXwBQBBP/tjm0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=EYS5323zrPqouWj034ZofrYbwLwjoRDy6oMfFReD/tQPxq/PgnMyyYj5AkWtZTQ55G0z44sKaK3OtoHi3U7sWSvpSWuvsMhG719kjS4QxoM2AliIgMC24tHE+1eMpSujLkBVbvyV8Wy9KpZp5+Bh7LHJzGKTBugetMcHbRaW1/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O6xA+n14; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-477a219dbcaso21517275e9.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 14:57:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767826673; x=1768431473; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=1TGTeidiGCvqOZ4bsoKIlueH1jfD2bKXwBQBBP/tjm0=;
-        b=O6xA+n14Nl9Tz9WEXLr8X6WC002UwBj8CMCuO20uyG8NS6vK4fvhaNa8prkRR7OUgb
-         TH4JkcfK7392XNlJoM+WvyzOjiKrxHREE/yg8PlXnK3J/cQBpsnH5Vnpn+NqKcBABaLB
-         41cMS3m6ZdgOiCNDN1g6B8Z6osbT5kRlm89EKg5AuizS50ar2CdKevX9uCD8YCAB/b5W
-         o9Xs9D/UW0ZX/BsJ+zF4dyi0LARqLCgu6qSO92rNd5mDJZfnR8nK0dK+NggX0V9sLhva
-         e76dGofuygHCZTxIVxK97ohHEHPo/Dyamnt+vhUCqhgNSfGMNhT5FgdFoTXod/rdsJTI
-         4JhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767826673; x=1768431473;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1TGTeidiGCvqOZ4bsoKIlueH1jfD2bKXwBQBBP/tjm0=;
-        b=NeOGznrAwJ7zgz80l14DaZ3YFDB0q/MAsXDN1jcdzRVSAjGbTgcGprIQ64MfeH1QNg
-         7ShYhy62vKID8taAEEOdp83+Oh01hKnvhG2Y5Vv7ZPBI5m0izvDHnRVwMbPXFKmzQnaL
-         R/7IXuAsKcpRY83Eefc3YSOIHEt9wRSkSkdakixNfOEjIFfIIWGhLM5o4DWtQ2NbU0RO
-         /R7nBP0lO/pywpy7jk+LTIcWrwZM4dqpBR1QxItCThcvy0ElO7AAr4N19f4dIO7D3G//
-         JAjxM9K3VQM8QX2MPP10jMo7iLbEwYl/pD7DdXJWNwlpt2iDovBKoWzgBjfw9NPUSRPv
-         OXAw==
-X-Forwarded-Encrypted: i=1; AJvYcCXVy53FxRc9Z1mgZ6w92ITWVsJ8GHvmrCekvcNYPFmH9zFIOsm/FDrCGtWwcPuS8o3CZnGyxoXgXjd6@vger.kernel.org
-X-Gm-Message-State: AOJu0YziF5TymIP092VBtuoMX6jnvoyholJGbpc7qbbgfpZGlOcqYBrX
-	JgQjPzS7BsNgYvooYUNfLxGe2svCcxGuT53Cb4jBwb2ZA8P2s/1Yzv9M
-X-Gm-Gg: AY/fxX7/Q+e1sqMMfv4kwK4MafDDVwopfb7hIE4I9alGA1AwqfLIQjr95D2POP3gPvo
-	douRN/lseAtcPxM/W0H3sss7FuT+50f9+mXtACK5/SwS/7vtC8ZV+1A7qTCgcXQM7FIaNwMlvHg
-	/fX5PtIVwngAW/Ia4L+TbhD1Ck3slFnB0VsIt79qIxc+PwWtcvHGucZ6+hJNBYGylWVsbDjHGXL
-	7wthOfETs7hdcEzPdRifFbIFRz2EmmoIh6nGJd92OT+OO6nGeiPrfBlYW8KZqEv3WBixdZY1rgg
-	yiZOgM3VlAbtjQOEPa96vJTJ0wCBjMy+Cv/B/vBwgnzbtfovKRTLjYklt2dc7EF46QwQS87xbJq
-	JFNUFkw00EhCy+mcZjCWgM42HNM+3Pct3SxvJdTyhw7o89ANBs2UoZ1zk0nC954YouYI321Eg5n
-	lO39oG4MP5/X1SpKewnDYIjz9S7FY7n3TFVfShdFoHpA==
-X-Google-Smtp-Source: AGHT+IGI92ZHCmtvBoQLlcOxARn6bJsuytihUD4BB7f9hJIHBDRWBS6xHjN7DFxYfdt7OJpxksqhhw==
-X-Received: by 2002:a05:600c:8119:b0:477:b0b9:3129 with SMTP id 5b1f17b1804b1-47d84b0a8dfmr47264595e9.3.1767826672807;
-        Wed, 07 Jan 2026 14:57:52 -0800 (PST)
-Received: from giga-mm-1.home ([2a02:1210:8642:2b00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d8715b5f7sm24574695e9.4.2026.01.07.14.57.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 14:57:52 -0800 (PST)
-Message-ID: <6c90102537c3e3f1712538ca0b165cd54d71d8c2.camel@gmail.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt
- Trigger
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Markus Schneider-Pargmann <msp@baylibre.com>, Nishanth Menon
- <nm@ti.com>,  Vignesh Raghavendra	 <vigneshr@ti.com>, Tero Kristo
- <kristo@kernel.org>, Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, 
- Dhruva Gole <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>, Kendall
- Willis <k-willis@ti.com>,  Akashdeep Kaur	 <a-kaur@ti.com>,
- linux-arm-kernel@lists.infradead.org, 	devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Date: Wed, 07 Jan 2026 23:57:53 +0100
-In-Reply-To: <DFHSDXTVL4AU.2OQ9VB9TEJ75G@baylibre.com>
-References: 
-	<20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
-	 <979eb1054dbe116c2c8bb9920e94e3a93db5346c.camel@gmail.com>
-	 <DFHSDXTVL4AU.2OQ9VB9TEJ75G@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 
+	s=arc-20240116; t=1767828233; c=relaxed/simple;
+	bh=e+qQukv/lAvUpGwmiJMqXp++Wy0mRudPO4bMP1qNW88=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=I/gB8OPNj5I9gdE1rlkI/tofSyOsbUL+UMuMImZvOnAh7LHWmSZoxCTbyTOEs5hZ84WQ/ZwRObvNTpAH/G+Np00lk5zl3hwBNQlmaGlxY4R9BHRzLZ+V6GzPpdC8QgRLmFCNOK2j+gdKlletUtdRhs1jfitEnXXug1UANjn6y1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=frEZaBmQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45A03C4CEF1;
+	Wed,  7 Jan 2026 23:23:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767828232;
+	bh=e+qQukv/lAvUpGwmiJMqXp++Wy0mRudPO4bMP1qNW88=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=frEZaBmQWGuwQ7NS+fZqDpBDfYmu20axZpIOnogQGbZnJ6lGMWj7n4KrWQqy5q3bm
+	 //tIghs/jyeTVJC8ra8iZEBlbdWxPK8446YqkI51b9vBpzTo2kOjZpcoLpoMG+a/w8
+	 uT1Q9zdgnqvjShmXqvxOD+AUGUF1FpzLCnYnCZHR1/MsdXQLHa5Cx9hYAPtVBOiwJA
+	 eTPvvDjCvzhiRma1VM7AunUhn1hB9x7tCaXVzamrD1RD8ZmTbo0w4s74GsSX6C8/lc
+	 mtG5NBn/4iDeRSMW8GRVW2uK6Pu7yr5Ld5np1Z4iLvLN04jFYwYu4lFPSO40R2iGIo
+	 mC4Kv5aJi+5aA==
+Date: Wed, 07 Jan 2026 17:23:51 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-acpi@vger.kernel.org, Chris Oo <cho@microsoft.com>, 
+ Dexuan Cui <decui@microsoft.com>, "K. Y. Srinivasan" <kys@microsoft.com>, 
+ Ricardo Neri <ricardo.neri@intel.com>, Wei Liu <wei.liu@kernel.org>, 
+ "Kirill A. Shutemov" <kas@kernel.org>, 
+ Saurabh Sengar <ssengar@linux.microsoft.com>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Yunhong Jiang <yunhong.jiang@linux.intel.com>, 
+ Michael Kelley <mhklinux@outlook.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ "Rafael J. Wysocki (Intel)" <rafael.j.wysocki@intel.com>, 
+ Haiyang Zhang <haiyangz@microsoft.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-hyperv@vger.kernel.org, 
+ x86@kernel.org, linux-kernel@vger.kernel.org
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+In-Reply-To: <20260107-rneri-wakeup-mailbox-v8-3-2f5b6785f2f5@linux.intel.com>
+References: <20260107-rneri-wakeup-mailbox-v8-0-2f5b6785f2f5@linux.intel.com>
+ <20260107-rneri-wakeup-mailbox-v8-3-2f5b6785f2f5@linux.intel.com>
+Message-Id: <176782823140.2300431.3081932954431387872.robh@kernel.org>
+Subject: Re: [PATCH v8 03/10] dt-bindings: reserved-memory: Wakeup Mailbox
+ for Intel processors
 
-Hi Markus,
 
-On Tue, 2026-01-06 at 21:25 +0100, Markus Schneider-Pargmann wrote:
-> > I think we would need to discuss this with TI via our FAE, because the =
-change
-> > in question has both been discussed with former FAE and the technical t=
-eam
-> > behind, and adopted in TI SDK.
-> >=20
-> > Or have you already discused this with corresponding TI HW team?
-> >=20
-> > Which hardware is affected, is it the official SK-AM62A-LP?
-> > Is MMC2 the SD-card?
->=20
-> I only tested my am62a board on u-boot v2026.01. It is a SK-AM62A-LP.
-> MMC2 is the SD-card and mmc1 in the devicetree.
+On Wed, 07 Jan 2026 13:44:39 -0800, Ricardo Neri wrote:
+> Add DeviceTree bindings to enumerate the wakeup mailbox used in platform
+> firmware for Intel processors.
+> 
+> x86 platforms commonly boot secondary CPUs using an INIT assert, de-assert
+> followed by Start-Up IPI messages. The wakeup mailbox can be used when this
+> mechanism is unavailable.
+> 
+> The wakeup mailbox offers more control to the operating system to boot
+> secondary CPUs than a spin-table. It allows the reuse of the same wakeup
+> vector for all CPUs while maintaining control over which CPUs to boot and
+> when. While it is possible to achieve the same level of control using a
+> spin-table, it would require specifying a separate `cpu-release-addr` for
+> each secondary CPU.
+> 
+> The operation and structure of the mailbox are described in the
+> Multiprocessor Wakeup Structure defined in the ACPI specification. Note
+> that this structure does not specify how to publish the mailbox to the
+> operating system (ACPI-based platform firmware uses a separate table). No
+> ACPI table is needed in DeviceTree-based firmware to enumerate the mailbox.
+> 
+> Nodes that want to refer to the reserved memory usually define
+> a `memory-region` property. /cpus/cpu* nodes would want to refer to the
+> mailbox, but they do not have such property defined in the DeviceTree
+> specification. Moreover, it would imply that there is a memory region per
+> CPU. Instead, add a `compatible` property that the operating system can use
+> to discover the mailbox.
+> 
+> Reviewed-by: Dexuan Cui <decui@microsoft.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Acked-by: Rafael J. Wysocki (Intel) <rafael.j.wysocki@intel.com>
+> Co-developed-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+> ---
+> Changes in v8:
+>  - None
+> 
+> Changes in v7:
+>  - Fixed Acked-by tag from Rafael to include the "(Intel)" suffix.
+> 
+> Changes in v6:
+>  - Reworded the changelog for clarity.
+>  - Added Acked-by tag from Rafael. Thanks!
+>  - Added Reviewed-by tag from Rob. Thanks!
+>  - Added Reviewed-by tag from Dexuan. Thanks!
+> 
+> Changes in v5:
+>  - Specified the version and section of the ACPI spec in which the
+>    wakeup mailbox is defined. (Rafael)
+>  - Fixed a warning from yamllint about line lengths of URLs.
+> 
+> Changes in v4:
+>  - Removed redefinitions of the mailbox and instead referred to ACPI
+>    specification as per discussion on LKML.
+>  - Clarified that DeviceTree-based firmware do not require the use of
+>    ACPI tables to enumerate the mailbox. (Rob)
+>  - Described the need of using a `compatible` property.
+>  - Dropped the `alignment` property. (Krzysztof, Rafael)
+>  - Used a real address for the mailbox node. (Krzysztof)
+> 
+> Changes in v3:
+>  - Implemented the mailbox as a reserved-memory node. Add to it a
+>    `compatible` property. (Krzysztof)
+>  - Explained the relationship between the mailbox and the `enable-mehod`
+>    property of the CPU nodes.
+>  - Expanded the documentation of the binding.
+> 
+> Changes in v2:
+>  - Added more details to the description of the binding.
+>  - Added requirement a new requirement for cpu@N nodes to add an
+>    `enable-method`.
+> ---
+>  .../reserved-memory/intel,wakeup-mailbox.yaml      | 50 ++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+> 
 
-just wanted to let you know, I was able to reproduce the problems with SD
-card access via MMC2 under Linux on AM623 with ST enabled.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-We will seek clarification from TI on why this happens, which peripherals
-are affected and what should be the course of actions.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/reserved-memory/intel,wakeup-mailbox.yaml:23:1: [warning] too many blank lines (2 > 1) (empty-lines)
 
---=20
-Alexander Sverdlin.
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260107-rneri-wakeup-mailbox-v8-3-2f5b6785f2f5@linux.intel.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
