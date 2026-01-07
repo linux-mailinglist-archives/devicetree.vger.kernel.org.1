@@ -1,72 +1,86 @@
-Return-Path: <devicetree+bounces-252304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17AE7CFD5E1
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 12:18:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A691BCFD59B
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 12:14:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 31350301A733
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 11:14:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AB0F330012C3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 11:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172953009DE;
-	Wed,  7 Jan 2026 11:14:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E3B62EBBBC;
+	Wed,  7 Jan 2026 11:14:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aXSGy+Xq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="t7tPg4O2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011054.outbound.protection.outlook.com [52.101.62.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4871A242D95;
-	Wed,  7 Jan 2026 11:14:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767784449; cv=none; b=hSxlRHnFbLp9cBOK7ibAYroafjNGLn8TOOjBAroNE1avD0gV9mDZHLBqXtaWBtRD89Mbd4abr8I+mwKp0KE3LrVchTGCVcqEYhbfPfKR16Ofr0xlaiVgOEC5TIZ16dUDtNZbI+Nn6s4XQglNBebbib/3Gntlhzk52LkSbufDbiE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767784449; c=relaxed/simple;
-	bh=bYV4b7T0FejKQSm2Ka3i212N2vKUTl8BqnnpMyHRYco=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=IpoyLxl9frR3GWGtGoh6CzURno9mLXMKQOxlwZ8bJtxLeg5mZpfmIjKOYck4VvDx7iQRHJPpE9JLRkl+sbBpulfKQtKT7Wt+YYBcdQqq3Qtp3xEVijWngEZ4+DYIA0N2Fdq6zPIKYKrwFLI5+i1E9meTnxNlLIire6lysHdsJ6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aXSGy+Xq; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1767784444;
-	bh=bYV4b7T0FejKQSm2Ka3i212N2vKUTl8BqnnpMyHRYco=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=aXSGy+XqWmFIXJ079nLZ72r8uoZg543EQKy5dd/R7opmW97D4eM+v8Xgxf0C7KltP
-	 qJvW5b1f+8TfJpvNIhJKWDTY7lg0kSvyM6VWgR/v4gDXvVV+mIQtDNI6hwEEVSiISo
-	 5WO/LQ0XNzMRkjUTstOOCdZvYcWmwClkPjhdd8FZ0MrLJoi0A3IUiE3PDr3ngYe2Sa
-	 6cfnHJWXTEDWHzc7LHa1TtHbyK4OUCQ/cmhSkqfnMiFReRay329LBBMVzzS2pbX3Wu
-	 nDoAY6DqfL8OgAiD8sNJ220sUS1nqAA8H1x82EWvYSGBnrxvCBrjBmZbhYIJg/m72s
-	 1rZ4857QRWLOw==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D7BC417E1340;
-	Wed,  7 Jan 2026 12:14:03 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Guillaume Ranquet <granquet@baylibre.com>, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: kernel@collabora.com, Krzysztof Kozlowski <krzk@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-In-Reply-To: <20251217-mtk-genio-evk-hdmi-support-v2-0-a994976bb39a@collabora.com>
-References: <20251217-mtk-genio-evk-hdmi-support-v2-0-a994976bb39a@collabora.com>
-Subject: Re: (subset) [PATCH v2 00/12] Add HDMI support for Mediatek Genio
- 510/700/1200-EVK and Radxa NIO-12L boards
-Message-Id: <176778444383.39787.7154377336276367704.b4-ty@collabora.com>
-Date: Wed, 07 Jan 2026 12:14:03 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C49A1F7916;
+	Wed,  7 Jan 2026 11:14:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767784482; cv=fail; b=E+vhNIxI2H96o2YvPZHLRGeYcy2B+drBcJLulOxasK79edl4izOczvVFT89GcWxuUvUgkG28ZTpyvKny+DW+oakZQ8r0n4MWlMy9uNhP9l/bqtjOkRBnFmu4vziuVGHFXYGaFBcLGncsoifU1DbMDRDkeu+YZhNowu7EC8iVBhs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767784482; c=relaxed/simple;
+	bh=pPcvIGTIGV6Uv6PoBjCOYsKIcDZRuaYofyBWUBZAtAQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=Ui2aUA3RdV5/cTQHjnBbQBY/C0KSqwouVBD7+eg8xjk52/N9Ob6GslZ/nef/Yxmmx+OFWyy9bK0CKr1D0W9nPU5Z3KOHmseJcBRy4IBv264wwu0aGlwHOtP+KEWwVcDvaGY4mWZTi+1MAUAIdin8wIXDLBcDeHjySqut/igxuw8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=t7tPg4O2; arc=fail smtp.client-ip=52.101.62.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sqXTVAIuGGxIMt65IAD88+9WeKsL2cgZRlcz9Hrwm5e9qdbVl+FYSu19Rr1RJ2QYlBahi0kJkf2ntZ3Qsg/plr2J/p7NbjURcMDAvRTEx8K9hcjYIJ9Y1Gk07yNr0Q7byVSHHI+AuJIzZqa8MJT1bxFpmhNdYVjOTzglx/EcHqC+lVCJINdtU1V3qst3vWo6dEM2s+vT4si8OsSmV9qJjjeKsCG98tf9UeqzVuAai8QoI7PV/rL/HSLPDsLa/+Ou5LPhs2Ll09JOPpd0AA+zV+YtQFqBS1V3+jMmQV1DN55/tDUmqib6TTliwmPvtCqMr6s4lVRIymOjyBXP8ZFGDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vgtfkIJFCFfdBIxZ1NacwLdBLzeQ4/rU5s7Xr3EbC8M=;
+ b=Z9qWkYuCK2KRBOAZ/Vw8JxVd5s8yG8/47a/gNXa0bJIpq1FBr91GgU43GAXM864C/3CXvgli8VJoJjr1lBEotRNHyEtza9jlIcATk0qXnMFMIK3f5E8MamZ37JwFcX7O4uDsDwlGNLj54wKJyobedermD/Alc6RyW6qrDRgkRNlrKGTRf2UnaDP+QJ6ZKcSe4PsqwNBTJe4+bnZurEsNFsJZZlecV08HgjHBFDS+VpUQ5vBO84tU2UQPPNQCcQfJQ6IAgQdF2L7fbuwCfY6GmVI+DKzl5DbIdiQ0hpB4SrongaM5sa3oC73G/pLI2uHb4aG6QqBu4bSetyEh5Zpofw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vgtfkIJFCFfdBIxZ1NacwLdBLzeQ4/rU5s7Xr3EbC8M=;
+ b=t7tPg4O2vbwTmzq1kTctWjeP3F9yHqgd5FnZcMdFsW7xcJxo3EztDn20sgmaU6Axt1TDU0R0GFRM6Aw7xW3VwjnTccpVNfNDUL3FaNChlbfujCH5+xZkFyUVFWhFysLi5kPUiZNQYND0mOgcLIIjAd949Aw2pz1T2YxV/pIuz9c=
+Received: from MN0P221CA0014.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:52a::34)
+ by SJ1PR10MB5953.namprd10.prod.outlook.com (2603:10b6:a03:48c::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Wed, 7 Jan
+ 2026 11:14:37 +0000
+Received: from BL6PEPF0001AB4E.namprd04.prod.outlook.com
+ (2603:10b6:208:52a:cafe::b8) by MN0P221CA0014.outlook.office365.com
+ (2603:10b6:208:52a::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.2 via Frontend Transport; Wed, 7
+ Jan 2026 11:14:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ BL6PEPF0001AB4E.mail.protection.outlook.com (10.167.242.72) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9499.1 via Frontend Transport; Wed, 7 Jan 2026 11:14:34 +0000
+Received: from DFLE208.ent.ti.com (10.64.6.66) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 7 Jan
+ 2026 05:14:27 -0600
+Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE208.ent.ti.com
+ (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 7 Jan
+ 2026 05:14:27 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 7 Jan 2026 05:14:27 -0600
+Received: from localhost (dhcp-172-24-233-105.dhcp.ti.com [172.24.233.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 607BEQSm610971;
+	Wed, 7 Jan 2026 05:14:26 -0600
+From: Anshul Dalal <anshuld@ti.com>
+Date: Wed, 7 Jan 2026 16:44:22 +0530
+Subject: [PATCH v7] dt-bindings: arm: keystone: add boot_* mboxes to ti,sci
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,25 +89,212 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-ID: <20260107-k3_syscon_add_boot_mailboxes-v7-1-d97a943f0a52@ti.com>
+X-B4-Tracking: v=1; b=H4sIAA1AXmkC/5XQTU7DMBAF4KtUXmOUGf+z4h6oiuzYphY0RnEUt
+ apy9zoVgmRDxPLN4ps3cyMlDCkU8nK4kSFMqaTc16CeDqQ72f490ORrJtigAGgE/WBtuZYu963
+ 1vnU5j+3Zpk+XL6FQzQU67402EkklvoYQ0+XBvx1rPqUy5uH62DbBMv2GAf6GJ6BABRqLKiI0S
+ r6O6bnLZ7KoE64l3JGQNtQG10HgyjEDG4n9R2K1k5QghOXIpO82Ev+VcO9tE6+SDggyOq0N33Y
+ SKwn2JLH8yeoYhFTRs60kVxLuXSer5Ayz3poInqsfaZ7nOzKhcME3AgAA
+X-Change-ID: 20251105-k3_syscon_add_boot_mailboxes-8452bdd98962
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, "Santosh
+ Shilimkar" <ssantosh@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Andrew
+ Davis" <afd@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+	"Anshul Dalal" <anshuld@ti.com>
 X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767784465; l=4166;
+ i=anshuld@ti.com; s=20251022; h=from:subject:message-id;
+ bh=pPcvIGTIGV6Uv6PoBjCOYsKIcDZRuaYofyBWUBZAtAQ=;
+ b=JNRVnC70cMWhFfA+wtfit5y/U58G/NBK+SxnL/WJ6K+b+MnZeusJEZrxEl2BhSfc3rfMaZFVV
+ 530q/r6o4v2AKw3ckCQXlUmJAfFK54TbSBDmYf2XqWArRRcWZGMBKH8
+X-Developer-Key: i=anshuld@ti.com; a=ed25519;
+ pk=Kv8FlQElcrR6efyEHmjtE83y8e0HKvqPyvVY+PJ4UFw=
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4E:EE_|SJ1PR10MB5953:EE_
+X-MS-Office365-Filtering-Correlation-Id: 49b6c3aa-8046-48fa-c08c-08de4dddf069
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?dEZKTHh5QktmL1dRMlJ6NnkrcnB5YktBYnp0ZHJzdEJjTDJWdGk3SmhEaFc4?=
+ =?utf-8?B?RDhjR1pBbFlyRjhNc3A4ZVovUTdIMWQ5TVhOa2FTTk5pcUVIU2JDR0tML3FW?=
+ =?utf-8?B?YUdmVUZ1bnpGYjRsRDdSOTBhd2t3ZTFVRWh1MGEzY0xFRWRYYk1mK09lNUJK?=
+ =?utf-8?B?V2JGamMxcWQyZWxSSDRJTzE2eWpzdmFrZkJhUElJc1hENXVtbjNmcEdDUFRy?=
+ =?utf-8?B?WnVqVkZuM1ZLeUd5cDZOVmczZTZkVWxRYmxxdUZya0xvMmtWbXFhZXdKSlow?=
+ =?utf-8?B?cEl6eTA3U2F2L1lYOVpITGw1SzlIWWQ1REt6KytMdG5vNSsxUUFzSEJ3c25Z?=
+ =?utf-8?B?NEhmTTdrRzdacGhvNDFUMU4vVTE0UG1KM0dCV1dkT0FWNFNSLzRKQUcvWVpH?=
+ =?utf-8?B?T2ZpZi8yb0FGbE1teWkxVkp5WU5qNzROV3ZIK2M1NERIN1JuZHZueFU1UDdV?=
+ =?utf-8?B?ck1laDJJRGlxei9wY2VlTG5sanBQM3RpR2tzYk5pMWVtVDN4NFRMdkV0aERM?=
+ =?utf-8?B?TngzelliejdKdGdYdFB4WG9XLzJ1T0REeFFqLzhkUTdCQ0l2WVZvWHVFRitT?=
+ =?utf-8?B?WHNSb3lteTh5eFVsVEl5SUhIaWNWUXJHeERVQnRLOTYydkFPNmNrYTJpZ21Y?=
+ =?utf-8?B?NERwelNiVzRScytCNytuc0c4b0tOcCtUQVl6RkhQdHBkWXc0QVRGdlRVY2Vn?=
+ =?utf-8?B?Z1gwWW9NVEJJakpvWEFBN3p3NVJBV3JSc1JaSDVnL0x1NDF6bFlVamQ2Qmx1?=
+ =?utf-8?B?MUl6dDJTc2p4ZXpyY0lZUTVEaUhRV0plQXoxS2hrQ2swSUhqUTUvQ1l1ZzF3?=
+ =?utf-8?B?bm1FRGZZa0pqczNXRHIvTG9QdHFEa1dDeVVhQW9XNk9EOEhDYzdubVB5aUVJ?=
+ =?utf-8?B?SmxCaEh4SlRRK3FLdTA3SG1WQkd6dnB4Y2lGa0dvQUUzQjAxZnVTRVR6Zktp?=
+ =?utf-8?B?eHo5Qm81WXVRclQzMDFpZnBkYUhnM2dyK3ZvVHdUV1hudE5YWEVpZWZtM2F1?=
+ =?utf-8?B?Rzd4U1drR0lDT1hWdS92TG12bW5yaGZHT2hiRVRESHBORml4aEV0K1pMOURN?=
+ =?utf-8?B?M1RWbXhLVnNabGRkZmFRcURwUjMvSldoSXZRRHBaWVNqWDFvRmdwbFBhL2Z1?=
+ =?utf-8?B?eGttaHFTNWh4L0xVZXVRRFN2aHlQR0NWamYzRTgxQ1E5ei9XMG80YlZzcHJw?=
+ =?utf-8?B?TmE0OEs4NXRQamZlT0IzdElyS1hWOWV0Um5vVUdMRjJEYXNqMHlKcEhYd0Iw?=
+ =?utf-8?B?QzBZby9GQjQxNk11dndpUGd0Sk5mS0dVeUZScXQvOU9Ja3ltWmhkK3d5VGJo?=
+ =?utf-8?B?cXRPM2FBNkdqNVg3ZldHM1U0SExiWXhNdE1WUmdScnVFQWZycEVla2loeEF6?=
+ =?utf-8?B?N2d3YUpWZjF4RENHVmRXZFJuL3Zxcjkzand4L1ZSSG13SDRjME42TzBLSFdK?=
+ =?utf-8?B?aEt3NHhMZGtyY1I3UzJJcXRtbUZsRGhJUmhGMTZlaU1CaklpUlFOQTV4cVVY?=
+ =?utf-8?B?TzR0eHFvOGU0QmVLKzJhcGVMOGlQbmhIM05YQ3I2TVdjaEdTeWtSdHdxL3ZD?=
+ =?utf-8?B?cjdXaGc3SlFyeDdtM2R5UFErSGROeVpDaTd6Z2RSdkc4eFp2VkJUUGZYMitv?=
+ =?utf-8?B?UFJNQ1RDUDc1ZVczUS9MWXd1bFZMLzdMWk1OaDd6NmpiMnIrRVRoNkRGZ2ts?=
+ =?utf-8?B?cW52ZlBHZ2FvMy9BdFFScFI1bXRNQnpzTjg0VUxRandrZWZVR2dwQk94enpN?=
+ =?utf-8?B?WTJ5ZnV6bkpRdXVyaWtjYnBIUVlXZzBEb0lpdHdEeEF5b2dTcVBZNDFMUW1T?=
+ =?utf-8?B?UVdENm04NjVkdUNXZkpJSldLZ01kdm5yWUhCYWkvbEV4VHZRZkhYenlvMGpl?=
+ =?utf-8?B?clNUZ3pMNGloOHlSRmZrQm95clYrQTJhTE5ROXFyaWNJbW9tekt0RGtkZ2Rn?=
+ =?utf-8?B?WjFOUUZjRlBVeFlQTGZKN2pzYXZtQlBITk5QbEpPb3R5WldqTFZwMVFIcGVw?=
+ =?utf-8?B?dVlYMGloNkVvRFZlcnl5dHkrQjhEWW9EUHNTTnVoc1NBSVFhV3V0UWZxSkRN?=
+ =?utf-8?B?TUt2dFoxL3RHc2FUcElvOURZem5mZldLanF5RTN3SlE0RGNOb0dBVjFBNXBI?=
+ =?utf-8?Q?jJipvM01th44ihcBA4It6DjlG?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 11:14:34.8550
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49b6c3aa-8046-48fa-c08c-08de4dddf069
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB4E.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR10MB5953
 
-On Wed, 17 Dec 2025 11:18:59 +0100, Louis-Alexis Eyraud wrote:
-> This patch series adds and enables the HDMI output support for the
-> following boards:
-> - Mediatek Genio 510-EVK (MT8370)
-> - Mediatek Genio 700-EVK (MT8390)
-> - Mediatek Genio 1200-EVK (MT8395)
-> - Radxa NIO-12L (MT8395)
-> 
-> [...]
+The bootloader on K3 devices makes use of mailboxes as per the ROM spec
+which might be different than one's available to the kernel (firmware
+spec).
 
-Applied to v6.19-next/defconfig, thanks!
+Therefore, this patch adds the missing mailbox entries to the DT binding
+if the matching compatible is ti,am654-sci to represent the mailboxes
+exposed by the hardware during boot for the purpose of loading the
+firmware.
 
-[12/12] arm64: defconfig: Enable Mediatek HDMIv2 driver
-        commit: 81841b41a8bcd024f77a15d0634bc229d4d44db1
+The newly added mboxes are made optional by keeping minItems as 2 to
+remain compliant with existing device-trees. The new 'notify' channel is
+not supported on all SoCs and is therefore kept at last in the list.
 
-Cheers,
-Angelo
+Signed-off-by: Anshul Dalal <anshuld@ti.com>
+---
+Changes in v7:
+- Removed ti,am642-sci compatible
+- Keep examples unchanged
+- Modify ti,am654-sci ordering to ensure compliance with SoCs without a notify channel
+- Link to v6: https://lore.kernel.org/r/20251222-k3_syscon_add_boot_mailboxes-v6-1-b93ada9f1d47@ti.com
 
+Changes in v6:
+- Added ti,am642-sci compatible to represent SoCs without a "notify" channel
+- Added new examples instead of editing existing ones
+- Link to v5: https://lore.kernel.org/r/20251215-k3_syscon_add_boot_mailboxes-v5-1-5a8fe567fd31@ti.com
+
+Changes in v5:
+- Added commit description for the optional mailboxes
+- Link to v4: https://lore.kernel.org/r/20251205-k3_syscon_add_boot_mailboxes-v4-1-8e216fb88941@ti.com
+
+Changes in v4:
+- Make new boot_* mboxes conditional on ti,am654-sci compatible
+- Link to v3: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mailboxes-v3-1-66155a4236dc@ti.com
+
+Changes in v3:
+- Drop [1/2] of the last patch series
+- Update existing example with boot_* mailboxes instead of adding a new one
+- Link to v2: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mailboxes-v2-0-aebc1e47b391@ti.com
+
+Changes in v2:
+- Remove maxItems entry
+- Remove RFC tag from patch (added by mistake in v1)
+- Document the new mailboxes in mboxes instead of mbox-names
+- Provide example with all the mailboxes set
+- Update commit title to have "ti,sci"
+- Split into two patches
+- Link to v1: https://lore.kernel.org/r/20251111-k3_syscon_add_boot_mailboxes-v1-1-529a27f21076@ti.com
+---
+ .../devicetree/bindings/arm/keystone/ti,sci.yaml   | 42 ++++++++++++++++++++--
+ 1 file changed, 39 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+index 25a2b42105e5..e3f3de0192aa 100644
+--- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
++++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+@@ -51,15 +51,15 @@ properties:
+     minItems: 1
+ 
+   mbox-names:
++    minItems: 2
++    maxItems: 6
+     description: |
+       Specifies the mailboxes used to communicate with TI-SCI Controller
+       made available from TI-SCI controller.
+-    items:
+-      - const: rx
+-      - const: tx
+ 
+   mboxes:
+     minItems: 2
++    maxItems: 6
+ 
+   ti,host-id:
+     $ref: /schemas/types.yaml#/definitions/uint32
+@@ -79,6 +79,42 @@ properties:
+     type: object
+     $ref: /schemas/reset/ti,sci-reset.yaml#
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        const: ti,am654-sci
++then:
++  properties:
++    mbox-names:
++      minItems: 2
++      items:
++        - const: rx
++        - const: tx
++        - const: boot_rx
++        - const: boot_tx
++        - const: boot_notify
++        - const: notify
++    mboxes:
++      minItems: 2
++      items:
++        - description: RX thread
++        - description: TX thread
++        - description: boot stage RX thread
++        - description: boot stage TX thread
++        - description: boot stage Notify thread
++        - description: Notify thread
++else:
++  properties:
++    mbox-names:
++      items:
++        - const: rx
++        - const: tx
++    mboxes:
++      items:
++        - description: RX thread
++        - description: TX thread
++
+ required:
+   - compatible
+   - mbox-names
+
+---
+base-commit: f96074c6d01d8a5e9e2fccd0bba5f2ed654c1f2d
+change-id: 20251105-k3_syscon_add_boot_mailboxes-8452bdd98962
+
+Best regards,
+-- 
+Anshul Dalal <anshuld@ti.com>
 
 
