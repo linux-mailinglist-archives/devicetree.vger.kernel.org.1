@@ -1,193 +1,199 @@
-Return-Path: <devicetree+bounces-252253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4BD5CFCD0B
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 10:20:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6496DCFCEB9
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 10:42:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B9A9130198D7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 09:13:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C5F9F3020CFF
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 09:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E79D2F2914;
-	Wed,  7 Jan 2026 09:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83A763112DA;
+	Wed,  7 Jan 2026 09:27:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="bSGxBXrm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PkNdO39Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011025.outbound.protection.outlook.com [52.101.62.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2679221FBD;
-	Wed,  7 Jan 2026 09:12:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.25
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767777181; cv=fail; b=EqdGv2Urn9XM7A3jmMI2hyMi0LRI5IOCM+Nit5wUgmFaF1dAJe++npsTLd8uXEShBTvOWQRu0fF2QNhP37x6IuDVIK7K0Rnm9Hv7amTMmtSy71mPjtmZd92V8ROc4om7Vz9BF4nwZM1fBAh6nlmtxw2sYm0OlO/BxuXI5V5HiU4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767777181; c=relaxed/simple;
-	bh=bKuxCdi4DAF2JtNHqMN4ZpZ+JKUPdciQlF+6eEoFEug=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hELSDZGjyM+/NYwXvNHRhMi4XMOcaQ70nOtPhG+G6cxpU6+Cw41DbCoZtF26ZTvB3yRZAXb3npFBskMQ0XXQh6KyJr1mgd6AEjxJ+1R3smoBLX5sMk82mo2TyQyPEcx8EKPaCG7kApv0hkZt8VsEgY9KMf2KxHxprYBdSovrkMw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=bSGxBXrm; arc=fail smtp.client-ip=52.101.62.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ENxaa/gghQGST3eWSGjthQffsts5E0Vuf0SWr73xsRbsAe7FmAmjIeoSCTWmwVt9mSABzheDwsps1Kvb/Pf4v5/HNIerJjjT9eh9Bte1PUnkEyZGue5aloBsCMZGnoANfABnyO3XEvB30Sbmbv9Az9D/nmfE83k9nXty6mWdBe4VoUSab34c2/0JpmM1msM0bTKPPamV1BN6XOmuztU/YWJX4VcIjGsbEsTqklRU7G9QFypyJpJ5u1nM+9De4Td9CdSbgSKzjqmMbyY30GZEsAD/iFqEhpRFZYpeNS5vs1uCr9lkWk7iiNkOPhaCk+WKtJvMuTs4PKCKefnqYiWUaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bKuxCdi4DAF2JtNHqMN4ZpZ+JKUPdciQlF+6eEoFEug=;
- b=mON+jmYNKphefBhObvrvYRt1mFT4V8iS8sTi5nwJyO2GpkO2LyuNjUvMPw49ysz/N+U73oBh0pqctEHof1lCZY2AmVcEme5tBznalfE1Ij1ZKXrVr2r3BJMEtooQaND98HJkaKIGkuuxyT/PPmKocoU+VC6cN0ua6o7eLfG/49Xu2vlwEpJ2U9x8doYWHM1InJpu0QfdusDUNjk+CoV4DCqVWFdL0CYQetUeiAzDFMWOBYYmWgfn00OZYweNonjP8dmTC09gi7FDnMBiuzK6Cx7a5oKFpx8M6dyL8oBD3MOXiPl4Xx0Wc3S1vHWjHWBqOMinlN5JI3Dcx80ja2dgpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
- pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bKuxCdi4DAF2JtNHqMN4ZpZ+JKUPdciQlF+6eEoFEug=;
- b=bSGxBXrmRJelGM9rtDu192lGytEquHD4+mr0oAJIeg2v0/gJCwb5ihxgiSJyZ52oEKxInfHn1aFI4+PPczhQQ2dl4dPxgYWHgmmMeRA5G2A5nhwQZJDIQ5Zjxxu6DVlbPSOyVMsDJRPy6uzqsVo3kz75z+DARKtdDQOr5z4BzPSRb/q6pxEq48fsGk640q6pZHV6Xl8sSij0xWG/IGgtfxg8dkVFYldK0b/fBM44HjF42V5NURvssoBxTVgXJ8I/wJB/283xVUOe68TF9cHbyyc7sw5xLZafiZSYo8EBDUnB6MGGmwUPLpSrhsa6FMA5yANFy1O4sz7vFDb08JZzhg==
-Received: from CH0PR03CA0049.namprd03.prod.outlook.com (2603:10b6:610:b3::24)
- by MW4PR22MB3738.namprd22.prod.outlook.com (2603:10b6:303:1b9::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Wed, 7 Jan
- 2026 09:12:55 +0000
-Received: from CH3PEPF0000000C.namprd04.prod.outlook.com
- (2603:10b6:610:b3:cafe::f3) by CH0PR03CA0049.outlook.office365.com
- (2603:10b6:610:b3::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.2 via Frontend Transport; Wed, 7
- Jan 2026 09:12:54 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
- smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
-Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
- not designate 165.85.157.49 as permitted sender)
- receiver=protection.outlook.com; client-ip=165.85.157.49;
- helo=atlrelay2.compute.ge-healthcare.net;
-Received: from atlrelay2.compute.ge-healthcare.net (165.85.157.49) by
- CH3PEPF0000000C.mail.protection.outlook.com (10.167.244.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9499.1 via Frontend Transport; Wed, 7 Jan 2026 09:12:54 +0000
-Received: from [127.0.0.1] (zoo10.fihel.lab.ge-healthcare.net [10.168.174.92])
-	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id A8EA9E57C8;
-	Wed,  7 Jan 2026 11:12:51 +0200 (EET)
-Message-ID: <e24ec822-4d13-4136-8fb6-1bc6cbaf8e20@gehealthcare.com>
-Date: Wed, 7 Jan 2026 11:12:35 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D2AC310636
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 09:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767778072; cv=none; b=QRD5+BBRnzmoBg1MRn2cIUhIpa4TnBVMCCazQG8lz5OdZD8nr5CmC2xKoeZU/QuuD8mUTXkyA8VF5z9WNC9QbSKBckyaqGWtJUnHCll3IzsUazQfRf5YxQOBMXYS3I0AZf/xqohsxaoc6Y97uu5Gpcf/TkJJIBCcq9atVycf8Ok=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767778072; c=relaxed/simple;
+	bh=s9kdm9Cpsfog1txHC6+3qJtrUIxz3gqYU88O+Wpev3k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XVx1Y7+wKu472S1Uxs+4KzXkhYxJa9b37nYbGT6IH35zo++BpVwyAxIaTRpEBJsyCOR7qIBIUwuftLciwSe8e+7QuHLCKLcClOu86DQEG0JHQUUQ8LXySZod9vDjvOdUPawQ1/FLN5nua6Zy9nM6f7/3L1dFdbVjiMos8PZUBss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PkNdO39Z; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-64d02c01865so2833503a12.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 01:27:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1767778069; x=1768382869; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rUQ2FZFamqfueQvHyQVTRqAwPzH7oh4++3k/htlzBQE=;
+        b=PkNdO39ZgazAU10Y2baWsh0/NQplwsXowmqRcpufCoGrCxU+Uznx1o6Vmr1RH630Su
+         XMjS5CQn9uAWu16ij7MZ6QLVMcwdANAxLoDYZH8/GGTlBdP2SltFIZU4A2DyL0kNIAnR
+         c4kI07MEW8mEpYW8q3UIYEmRdqwi+ns9MjBzKdO6BzKwtd0+ausYJMRH1On3UolCKngu
+         PiMG+6r4/yy9a+PACZioUEOQvSOZwyzS02hWmJ8HebMifWCJK9oOKPwCpoxjx4dmsjxY
+         0A1GSm8RN673qsE/JErFYmOX6ByMlEHt3xy8ASSRRPre90L7MEFw+rZSgbuJ3EU5ethP
+         sk+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767778069; x=1768382869;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=rUQ2FZFamqfueQvHyQVTRqAwPzH7oh4++3k/htlzBQE=;
+        b=F03wk4JY7WEO8uNCJlN8YWlImK+BjojJqI1xM//nY2k4xCznq7p3wwv4dGCerRx/XY
+         wvikyeQfRREdMh8niEeHmMlA7OO2Csc4bvVdX35wxZfFaKwx5r9XmfLhcfqAuybwXDft
+         94mg9oefcKj4jg7XTZaCC46Izmg2DBNxeo2hGFCuptrzgwPYYh7IzZ9hZ5Uhor3r38tw
+         9LJ6TNNozxalEAroIwMowrI6GUqDc9NKEtIjiBED2ueS5RxdnQgKLh5yuA0nWOQOK5BS
+         Q9QO2XXFg0cpVdVrMw76Icfk8vxfnyrS6mNU8mQtOi9pjKAr9eFSCs7KwsoNv86xh6zE
+         7wcA==
+X-Forwarded-Encrypted: i=1; AJvYcCW1LkUjpw+Hxohstyci4Q9qy0Lx9Fygj7WvBpjCfeqn1Rfstie5rTVzPhiA1PKM/WduFOmPEYEUbci5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBhTqUeaAWcPbjnKCnDiXGzVezZKl3cSmn5Hd4zeeTdx3Y8uzz
+	ZzC1UifnL8i13DZZRIFOJL/tKHTDoAlGSsWPfv/cB0CnJCXprEbeupBjORNfNTQMhsVPcO64DWx
+	fv5GeJ3CNh83nz/5b/XHQUf/DSKwX3nUwf3rO9m9SRQ==
+X-Gm-Gg: AY/fxX6f420MRL8IxDNqTnPs+j4APXvG9/ry4tIVV5HvPiN7BdXDdsGNKS0lB3+qV5v
+	ETQ3bXJMPA0TXKQkxue9RVeVQFLiU76D2Sq0b9pDgCdEH1uI+qeNTm83elWY7FfOXAdkGkIml8R
+	3kye1owUheCRLMhGjddesP+mlR6goBAk7PHt0KvebLeyO8LbkCMSGUenpzMReOySpqvhsBMpX5a
+	v0UqLHopWurA+upF35HvqHlK3xhrEfjMAcm03M5GKOf/BYeofepHSv82EOmnyIk8F2dDC4G
+X-Google-Smtp-Source: AGHT+IHiv/XFqOWBUi/CNmLl6EwV4ivEMM/garbS3U0jXJNjchmOMi1m/XfEc/owU/7EasgEeZaY3c7VeTK0LzQnHO8=
+X-Received: by 2002:a05:6402:4309:b0:64d:65d:2315 with SMTP id
+ 4fb4d7f45d1cf-65097e8e3b3mr1716117a12.30.1767778068941; Wed, 07 Jan 2026
+ 01:27:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: watchdog: fsl-imx: document continue in
- low power mode
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251229145000.421426-1-nandor.han@gehealthcare.com>
- <20251229145000.421426-3-nandor.han@gehealthcare.com>
- <20251230-hidden-okapi-of-reputation-6ef8be@quoll>
-Content-Language: en-US
-From: Nandor Han <nandor.han@gehealthcare.com>
-In-Reply-To: <20251230-hidden-okapi-of-reputation-6ef8be@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF0000000C:EE_|MW4PR22MB3738:EE_
-X-MS-Office365-Filtering-Correlation-Id: 215ffa03-7adc-4dc7-3c63-08de4dccf12d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?aFFPMlR4RnN6WUFOMlJpaGZEbDlrNlBZb1orRE9VV1lJQ00xUko0SXAxZW9u?=
- =?utf-8?B?a01Fc21pQXFmbmJqZEpKM0ZDbHUvdjU2eEN6OXZoVjYvWHFFenhWWkFQOGli?=
- =?utf-8?B?cHdDcmlYLzIrQ2pMNXF2MllJbG0rOHNnSHpiQndzK3Vwby9VaGdtTzAzeE1x?=
- =?utf-8?B?QVBrTDNYTndLUytjVHNJVVVWTFhtd01MUkI5d01xcWYyeFExTVJJOFZMZzlm?=
- =?utf-8?B?WFRleUsxMVI4QVpLbjBkMi9neUM4N3BPbUY2MmI5bEp6RDRnNVZHcXV3QWpQ?=
- =?utf-8?B?by81RnRkbXp3dG4wZE0vWFQxYnZrZG0yR3R4K0NBZDl0M2dZNy95SlFLYTFY?=
- =?utf-8?B?Z25yWUFiOFVYMkFjYU9VUG8rbkhJQy9WcEpteFFZdkxacThPYlh3TitqNTdY?=
- =?utf-8?B?N0ZiaGkyVy9xaWlVTjhYZytWN1BQVmd3amZ5MmZJM3ZnZGJ3U2RNT0dZeUlh?=
- =?utf-8?B?MEdoNWRHOHYvYUtHSUlSNVBKMkpYTmJwZUhDTFFkTDlNWEVUVGIyVHBhRE9Y?=
- =?utf-8?B?NlRIaW4yWStYT2hOZXY5Q2dzZlhoS3RDTkV2ZTBsWk1qb3ZBSlhWRHpvZnZv?=
- =?utf-8?B?c3VvNU9yOXZ2VThIUUp1SVRsNEpjL2NLUlA1b1hpZHp1NGpoSVRiYm1TckZC?=
- =?utf-8?B?Y1lIcnBTUjc5S0R0OFFIQjQzTkUvL1N1cko2Z1B4aEtXSjhXVGd3Y01ZeXd0?=
- =?utf-8?B?cFhJU3FMRDJ0WGlQLzNJN3hJeEJoQmVEOC9rNzZENy93Q2F3ZEg4SDZZdjlh?=
- =?utf-8?B?czZkMlBZelZ0cGhjSDlvU0ZtS28rNnFiODZVSVRYcnJlK0ZuamM1RUlXeXZI?=
- =?utf-8?B?a0JhdG9FTXFvY0tsRzJDbEQ3Tm1pSkFvbmpyMFhNUFNKdXpIbWVpSTh3dWhY?=
- =?utf-8?B?Q1A3aGJQekxTTVpPclUydHBBdEtiLytBVW54V1VCSExTOXdoMks4azdhSlJ6?=
- =?utf-8?B?YTZrRUFFaFkwSDRHbDdVdmZzVXQwVkhuRTRVa01kUHVSMXJrSFZNdzlzU3ht?=
- =?utf-8?B?MkVmOXliT2IyWjZHZHljV0xqSjhFQ29kWFZka29NcnoxUEVXWXM3WE5IVHJi?=
- =?utf-8?B?SzRHZ21MNk5xSVAwMEVBelRNcGFUM2lpVG42WUlPdmJQNThWc0pxSEM2NE5y?=
- =?utf-8?B?VW1WYUVFc0lSUTE0ZjhHcDNnMDhTeStvWnQvNVRPVngrSjV4aStwQVRNSGg1?=
- =?utf-8?B?Q3B4cVQyV3pkMXlIclQ5VkgwTEJGWDdmYmJRNEYwL1BFL3lBRWtudDJkMUFJ?=
- =?utf-8?B?M0daRm9ZQjRLdVNyb25Na3VJcWE2WTQyMUY0OThDWkR2WjhxTGJTYVN2UnBV?=
- =?utf-8?B?MDVyREd5L2RvOEhoQ3JhR3lMN1ROUXJSRk11SVg0bVNYWWkxYnV3emlNTktj?=
- =?utf-8?B?U0ROWWp3NFBUd2ZNeHhWSkZNc3RvdzFPcVBwY2l4S1lBbTRJRVluZUd1SWh2?=
- =?utf-8?B?MkV3UTJnNDFKR3RLYjgyTUMvU3ZRTUlDSVF6cXBwcFhlZXlnb1lkL2NIZXVY?=
- =?utf-8?B?dXFGeWljcEpqQXBjVmpNUnlldmpEWmROVVNRU2d5R2x0cE5jRVgyMEpFNm9r?=
- =?utf-8?B?anNkR002c3liR3V3dU9yU3pVd21TS1MyNmFjeENadXlnQUVUV1lGOFM4SG5x?=
- =?utf-8?B?ZFNMTU5aeVZjNE5zSCtEcWRMNFg3VEU4aWhiWFQ5cm1YVGhBenNvUlQ3Wnhv?=
- =?utf-8?B?d3d6UmE4UjhQVk0rYlZOY01PSUsxRGZWNmVPeWVHMUNxZ1R6eE0vcUlvUkt5?=
- =?utf-8?B?RjJZU3JBUzhJdXBzbWN2UzdPQTM1eFdrakRyNE12L3lMY2FJNmNSdlVxem1x?=
- =?utf-8?B?SVdtcG5KaGlEVzFnVDM1WVRyWTFyOTRkYmhYeWYrdis3ZFBYeTRzM1l1ZG1t?=
- =?utf-8?B?NmdKZDNiQ2QwalJFUVpuai93c3lrRWg3VGhackY0NTF0QmVMdlhZaFZoWXNl?=
- =?utf-8?B?QnlEc1YrUlVCNGU2UklyWXBtdmFHQSs4LzNadkhCYXlHMllyaytZcng4dkFI?=
- =?utf-8?B?RU11UzBqdVljalUrWThmKy9aTVcvOEVmS216RVY3dGQrVUFMREttaUxGNGk0?=
- =?utf-8?B?QmhLRnpkTVh0cytKcUdJV1I0Nk9uSTZUYTRya1JjYUZRRjVkaklBdDBQTk9z?=
- =?utf-8?Q?BaW0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:atlrelay2.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: gehealthcare.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 09:12:54.6208
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 215ffa03-7adc-4dc7-3c63-08de4dccf12d
-X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[atlrelay2.compute.ge-healthcare.net]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-CH3PEPF0000000C.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR22MB3738
+References: <20251222-automatic-clocks-v7-0-fec86fa89874@linaro.org>
+ <20251222-automatic-clocks-v7-3-fec86fa89874@linaro.org> <39019203631fdd183fb5ddaa7fada5da5f2a31ad.camel@linaro.org>
+In-Reply-To: <39019203631fdd183fb5ddaa7fada5da5f2a31ad.camel@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Wed, 7 Jan 2026 09:27:37 +0000
+X-Gm-Features: AQt7F2q63jqr_CpXwSvIXdsTqXahUYQlfSvLBPEss-eRzMgkwuCaYjXxjzncKeY
+Message-ID: <CADrjBPpZY9QfX7YEfM2tkAkt5qGpzYuJ0JkLMK0v4jujO3mRhQ@mail.gmail.com>
+Subject: Re: [PATCH v7 3/4] clk: samsung: Implement automatic clock gating
+ mode for CMUs
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
+	Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Will McVicker <willmcvicker@google.com>, Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	kernel-team@android.com, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Andr=C3=A9,
 
-On 12/30/25 14:34, Krzysztof Kozlowski wrote:
-> CAUTION: This email originated from outside of GE HealthCare. Only open links or attachments if you trust the sender. Report suspicious emails using Outlook’s “Report” button.
+On Wed, 7 Jan 2026 at 07:22, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
+wrote:
 >
-> On Mon, Dec 29, 2025 at 04:50:00PM +0200, Nandor Han wrote:
->> Property "fsl,wdt-continue-in-low-power" allows the watchdog to continue
->> running in low power modes (STOP and DOZE). By default, the watchdog is
->> suspended in these modes. This property provides the option to keep the
->> watchdog active during low power states when needed.
-> And why exactly would that be a DT property? If system is sleeping
-> (assuming this is what you meant by low power), no one will pet the dog,
-> thus watchdog makes no sense.
+> Hi,
+>
+> On Mon, 2025-12-22 at 10:22 +0000, Peter Griffin wrote:
+> > Update exynos_arm64_init_clocks() so that it enables the automatic cloc=
+k
+> > mode bits in the CMU option register if the auto_clock_gate flag and
+> > option_offset fields are set for the CMU. To ensure compatibility with
+> > older DTs (that specified an incorrect CMU reg size), detect this and
+> > fallback to manual clock gate mode as the auto clock mode feature depen=
+ds
+> > on registers in this area.
+> >
+> > The CMU option register bits are global and effect every clock componen=
+t in
+> > the CMU, as such clearing the GATE_ENABLE_HWACG bit and setting GATE_MA=
+NUAL
+> > bit on every gate register is only required if auto_clock_gate is false=
+.
+> >
+> > Additionally if auto_clock_gate is enabled the dynamic root clock gatin=
+g
+> > and memclk registers will be configured in the corresponding CMUs sysre=
+g
+> > bank. These registers are exposed via syscon, so the register
+> > samsung_clk_save/restore paths are updated to also take a regmap.
+>
+> The implementation described in this paragraph this causes pm-runtime to
+> stop working for the CMU if auto clock gating is enabled.
+>
+> See below.
+>
+> > [...]
+> > diff --git a/drivers/clk/samsung/clk.c b/drivers/clk/samsung/clk.c
+> > index c149ca6c221725195faeb76b0d73374c3b48261b..06ea5deef4ee2ffb87dcd14=
+102561886ea80b7bc 100644
+> > --- a/drivers/clk/samsung/clk.c
+> > +++ b/drivers/clk/samsung/clk.c
+> > [...]
+> > @@ -357,6 +489,37 @@ void __init samsung_cmu_register_clocks(struct sam=
+sung_clk_provider *ctx,
+> >               samsung_clk_register_cpu(ctx, cmu->cpu_clks, cmu->nr_cpu_=
+clks);
+> >  }
+> >
+> > +/* Each bit enable/disables DRCG of a bus component */
+> > +#define DRCG_EN_MSK  GENMASK(31, 0)
+> > +#define MEMCLK_EN    BIT(0)
+> > +
+> > +/* Enable Dynamic Root Clock Gating (DRCG) of bus components */
+> > +void samsung_en_dyn_root_clk_gating(struct device_node *np,
+> > +                                 struct samsung_clk_provider *ctx,
+> > +                                 const struct samsung_cmu_info *cmu)
+> > +{
+> > +     if (!ctx->auto_clock_gate)
+> > +             return;
+> > +
+> > +     ctx->sysreg =3D syscon_regmap_lookup_by_phandle(np, "samsung,sysr=
+eg");
+>
+> With this, the CMU driver (e.g. cmu_hsi0) now gets a reference to the res=
+pective
+> sysreg (sysreg_hsi0), which in turn creates a regmap with a clock handle
+> (CLK_GOUT_HSI0_SYSREG_HSI0_PCLK), and the clock is 'prepared'. Hence the =
+CMU
+> providing this clock (cmu_hsi0) is not idle anymore, and runtime PM for t=
+his
+> CMU can't kick in anymore
+>
+> I see two straight forward options to fix this:
+>
+> 1) The easiest fix is to just drop the clock from the sysreg DT node. The=
+ sysreg
+> clock shouldn't matter now, as the whole CMU is in auto mode now anyway.
+>
+> 2) change above code to use device_node_to_regmap() which ignores resourc=
+es (the
+> sysreg clock in the example case), and manage the clock manually during s=
+ave and
+> restore in samsung_clk_save() and samsung_clk_restore()
 
-Thanks for the feedback Krzysztof and Guenter.
+I think option 2 is likely better, as it isn't an ABI break. It would
+need a comment explaining why we use that API when a clock resource is
+defined in DT for the syscon though (we don't want the clock managed
+as it affects runtime PM). Maybe Krzysztof has other thoughts though.
 
-In our case, low-power mode is disabled. However, we have identified that under certain conditions,
-specifically during simulated high-load scenarios, the device becomes unresponsive because it enters
-one of these power states.
+runtime pm isn't currently enabled for gs101, so auto clock support
+hasn't regressed anything. But AIUI Andre was close to
+posting/enabling it, and this issue would block that.
 
-> Otherwise I fail to see how this is a hardware property and we do not
-> accept SW properties (see writing bindings, numerous presentations).
+> Any better ideas?
 
-Our system is based on the i.MX7D CPU and the watchdog peripheral supports the configuration:
+None I can think of currently.
 
-(From i.MX 7Dual Applications Processor Reference Manual, Rev. 1, 01/2018, page: 1174)
----
-WDZST
-Watchdog Low Power. Determines the operation of the WDOG during low-power modes. This bit is write
-once-only.
----
-Given that our system does not support low-power modes, we intend to enable the watchdog across all power
-states to ensure the device can recover properly under these conditions.
+Thanks,
 
-Regards,
-Nandor
-
+Peter.
 
