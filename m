@@ -1,73 +1,76 @@
-Return-Path: <devicetree+bounces-252498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9736FCFFD4B
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:48:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C93DACFFD4E
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:48:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 29B163027825
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 19:46:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 057AF3042759
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 19:46:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD92930CD91;
-	Wed,  7 Jan 2026 19:45:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBC322737F4;
+	Wed,  7 Jan 2026 19:45:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="r4y+dDdw"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="EUlpZrTH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B17E3A0B3E
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 19:45:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76631F3FEC
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 19:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767815151; cv=none; b=ToRazOmH5cHi6p7C717pdxIrEonPBP3z0ihqAJNG2swX9pFjulBrQHuXjmliJt6ejgYbfPiPy0+fG8B50tt8sRNv5AnioYZHdVKr+AzHvB7KqRLN7vEisyRW1cuA7iC1LhZaJeNmGCSm4z2wbbw4jN5PZos+Cluq+8iTbaZWH1c=
+	t=1767815153; cv=none; b=Qn4PFwRJz10WTX4yMO8/etgPGbmnvRA7/2Z0iWDieBcdsomP4Xezk+9okJJCV8tRLApQIZrNC2O3mld3Ue7hDDsRCwMhsHbaWN46mbEDjLZP3PCJqwulNQOEQFRQktDZ6zZxQGCBWh9oi+Atu/LSDEf1moKujz6w0fDK22jesoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767815151; c=relaxed/simple;
-	bh=XlS3l2ddno0xP1LY6X17Rv4cA5lyU23AwGOamYKZmdM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=raZUn+SFDNaw4OVzBnXuI5a2UFNjnAPolj6dYfXUQKI3tcdCZ1VUpfBzYC1HXBfDP7Cj6HyxceKOWb+ubPi9xKe6+grfPwRvINYFnQd6rsXKkSodq5pussECYcNq4bsO7xJqnJIR3GNwrnNAhsVTLPIz5XGrRD1WDDwGdtqkmBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=r4y+dDdw; arc=none smtp.client-ip=209.85.208.41
+	s=arc-20240116; t=1767815153; c=relaxed/simple;
+	bh=r/BIUPGN491wq1F9jJqPvZ1mtqt+apCeT/v1SoEWJy0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=gsgwRtjBSsLd6hSBYuBtLhy0jG+VQdYtw4XWpSQTvl4EJP+wnzspAj3KMilMVjeTBqGqdOzGvLBTFM20m9tO81W848i+EjVAu7lme/hwtrgjd7uhIu6t+mY9MV9mb8xZUO4Ij1rnaIGDqYnURB4b05llTODK2aq0lK7EqTu5Xjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=EUlpZrTH; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6505d3b84bcso3749680a12.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 11:45:47 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b7eff205947so332650766b.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 11:45:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1767815146; x=1768419946; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=quK5ciOPGpJvzJstcVp2ODwhOQdezz2oTPhzvAyikRU=;
-        b=r4y+dDdwLa2rgSDk1vEVbt7AvH3tEtpxoMYAGGO3MqYr77zTqPS6MmTYdGK8FK2uWS
-         CGmRVWj+Y71d/O60osYsp++fsUsvGqUufM2BPWqJWl9zfJ2u82XoSEzZITV+cBkm2Tcm
-         Svng6pQdp9eON0V2BV4K2PGZGXv4Y3rLtPfME=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767815146; x=1768419946;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=amarulasolutions.com; s=google; t=1767815147; x=1768419947; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=quK5ciOPGpJvzJstcVp2ODwhOQdezz2oTPhzvAyikRU=;
-        b=OA/Qawh8FYitPhstVhj8CldDKv2e7iXaNJw052EJLEf78koIJDKMRwFMEfw5fKPWRU
-         GBgPuPzaWvVYEkSre1c3zywL+kSSezfhT+Q3/f49Oj5KDeAE7hX3WJzS5c6FvysFsHk1
-         zX0wx8Mgtf8pqIofYgn7Z+74MxbQ2HBfLXDNmMm2EJkVAVranfvwxzHY/jJmQNyThqy+
-         PoQhqSQKakrcRCUONEB/GImd4S1xwYcCwuBkDgO0Yg+7facfIEIpWurCX3HjfyUAFZuR
-         LcdXPYpSH4t2CrOEw8nIIpZ5ryg5RxzTxU9XycuDFH3Uzd743+AZLVo9K/zU7NxHddnA
-         r6hA==
-X-Forwarded-Encrypted: i=1; AJvYcCXPajTDleHr/hWVKNVmAJKpE1sDr8+n6BFJLKILtthPXcFVbNuupuy502ot8kN/Um6+rVjnQpwH3OXD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy00q6c02YZdbgcAy3IInnnpqdQu10TkMg/dnRm3Nexq6BIMKbG
-	WrZJtOwK3+WU2L/RO0KZEIgmk2aCAymj5w+QcUHleaG3romLNXlH5tCiimKou1EEY9o=
-X-Gm-Gg: AY/fxX7tCVzEGVD1PfnHtQUgMLnNdbPtX4JfV1ONH9+jbzTuq/U9XcPCRTTbW1jxy/P
-	l/qBe3MQrnALbDMWdITqI9x22M6mLFneRrzJfpRZ26Xi8rClalhYhJNq47c2TFI3uIcO9vCFr7O
-	e9KH/c6GPqDYzitqNQjbnXKOt5UvduuBqGsDJ1XKmM8B3/6VSCLU46x5S8wLqDW++xb9WenU58p
-	P30fFEUW0vIj7v7SWhKWxHj7YvMjpuxWJ2K19ZbR1HnX8Om1kEB+JFX5Mr/4/UKXnl4cFfsbc/F
-	MtZhlXrbcgjoNZNDoRDeU8fZNfsJHl2Bc3T/KtfgSxpTzPqKkAgEa1+mdRKNpP5oGd9y16zJFKs
-	OYUQfgTIK0uMw94dmQjtK8W6QI1XDa8X0canlrayr+q7kNKEgbS2c2k/2wBb5/Dg3dxQqsxInev
-	dwQzQQnV2P7kYxrHcRbIf9zlr2DL/m3aTynsaV56EWOSYyOuD5fT5lf76fabRQRDNsXl3HkibBc
-	YJHQVV1HXFCE7WGPvSGq7yV86kkBzoHGBA=
-X-Google-Smtp-Source: AGHT+IGPqFKHO54fO/GR6RYjVaM2n4PRACshjmo9Oi88osBBrk9H6SPRXC5Q0NmPtbSj+MniyrTglA==
-X-Received: by 2002:a17:907:1b21:b0:b73:6f8c:6127 with SMTP id a640c23a62f3a-b8445031bf9mr384207966b.12.1767815145741;
-        Wed, 07 Jan 2026 11:45:45 -0800 (PST)
+        bh=CE3ABoMb+Vlizhz6kCziTM3FHPDucALbbiym7WlJ74E=;
+        b=EUlpZrTH8cvMvUNXT5zJHtT4mC3dIeXYAgPW1t1V8EotWfeQwCCt4EYCRK2+sbZT8a
+         nUe0VUStziFyPMcIehybxn3osvicwf0zdrxITfn/qev2/4rcfi5Hkl8mBas3u0wsGaXJ
+         j7H0Rrk3y7lHmxe8BwOSdA/r5wA63h7sdZxgE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767815147; x=1768419947;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=CE3ABoMb+Vlizhz6kCziTM3FHPDucALbbiym7WlJ74E=;
+        b=EboFSdDgWoJuuSPx9z382n/0N+1LnkbTfKwnp4Y/OooWM8bYDZ/st4bfzLy7u1aRhE
+         52r3Fqn04OeuItGb9iIP9ZqpYJd/8sCnRim0RobfaN8Kgt6aFY471e2Q4LKU6vDPKgTD
+         /B48ZWdaDn8ms3/ZPwkuoS8JXlVylQV9pEWztr/Jz/3Djk130cwBaD3TIOJJRnHGjq9s
+         J361BsobvarfFWVpigW+8yno09eUgWJU6TajX2//g62jpj5SZ/JTZ+jlocNij1g7tRI+
+         gALFS7Nf/QZakFZ7t4ptJnYN2cnIN8a3259dD+TEYwQCtpvwdotMGqDRASYh8Re+IuJB
+         GqJw==
+X-Forwarded-Encrypted: i=1; AJvYcCUg0TT+qfrRdz/aDcqbVfmreoqGtdMXsmkpxDqtZ+Pi8uO7R/qWwgWihiwhb3eNUu4JnDvmMHcM853n@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhtXJ0PsJ8oE9VGffCYgYgzLG7YQ0ca0o/K+pgBFh0hE/OdOqn
+	V78WmQNNKa2380d6t8KSSLcTzODr2Fb0IyuBsDruHXUL0rZi/+eKuFeOYlMJcVTCYu5nPn3yd7S
+	UaBrR
+X-Gm-Gg: AY/fxX4A+anxYRpZ2Ew7R+vTx6+O6LJtxYp6dB02q4Woy4jwo8KpRuttprVBGcTXORW
+	E3nULeItey0ITQTf6jl9Zzjw6cXjSnOjvAyZkWQZzZ3KM1F9/XcplUmMiL4lgqHhfpt6OWHuedC
+	N94VlLt9zjCdfY35rm4X+uePnq07b3LdoLRxy8GRjmYxShpbmYslnt5siZXf1nOHbJ1rQBI6F6X
+	cA4NUBd5rSk+dGMIL580NZna5kdneaBEgxNoYgLKRn/YO/9tJJTqkXiY5dCTH5FVSzlqaCasMZs
+	wyTg5iKoSaRcw16+dxVFEH75PNaIYpoVpEJClspJ7xhPjU/4tNor7udccRYGR609vDBMmd7Pvpx
+	+OhIuJ2fce2VAsLyP36YqywFs8vNXL89emwwuRPRlwLzTdaMILNqlxPJMwb5TbRmvk/Ubf/im3S
+	ucnIG6F9j+NjSklLf3GwGsyGm0FPe0vkfCtdc8Co6GdNgvFnFreaaE6vnIX4m083+1FKir4vYY6
+	vGfJj5jjzxWHTO+fiD07JsFCjzm1l2KTGo=
+X-Google-Smtp-Source: AGHT+IFQ1zeeMjHCI/Trkv1q4PKObKTS13+fRskV7eQs/QQ1YzbP9PGEh8tMjNP2uYGa5sBa/tjusQ==
+X-Received: by 2002:a17:907:d0a:b0:b76:d734:d459 with SMTP id a640c23a62f3a-b844506436fmr387336366b.57.1767815147362;
+        Wed, 07 Jan 2026 11:45:47 -0800 (PST)
 Received: from dario-ThinkPad-P14s-Gen-5.amarulasolutions.com ([2.196.41.122])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a233fb3sm591201066b.12.2026.01.07.11.45.44
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a233fb3sm591201066b.12.2026.01.07.11.45.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 11:45:45 -0800 (PST)
+        Wed, 07 Jan 2026 11:45:46 -0800 (PST)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: linux-amarula@amarulasolutions.com,
@@ -77,14 +80,15 @@ Cc: linux-amarula@amarulasolutions.com,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
 	Rob Herring <robh@kernel.org>,
-	Srinivas Kandagatla <srini@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 1/2] dt-bindings: nvmem: add STM32 TAMP NVRAM
-Date: Wed,  7 Jan 2026 20:45:32 +0100
-Message-ID: <20260107194541.1843999-1-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH 2/2] arm64: dts: st: add TAMP-NVRAM support for STM32MP25
+Date: Wed,  7 Jan 2026 20:45:33 +0100
+Message-ID: <20260107194541.1843999-2-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260107194541.1843999-1-dario.binacchi@amarulasolutions.com>
+References: <20260107194541.1843999-1-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,79 +97,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add devicetree bindings for TAMP backup registers. These 32-bit
-registers are retained in all low-power modes and in VBAT mode. As a
-result, they can also be used to store sensitive data because their
-content is protected by a tamper detection circuit.
+Add the TAMP node along with its NVRAM child node and define the
+fixed-layout for fwu_info and boot_mode registers.
+
+The TAMP (Tamper and backup registers) block is a system controller that
+provides access to backup registers as NVMEM storage that persists across
+reboots.
 
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+
 ---
 
- .../bindings/nvmem/st,stm32-tamp-nvram.yaml   | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/nvmem/st,stm32-tamp-nvram.yaml
+ arch/arm64/boot/dts/st/stm32mp251.dtsi | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/nvmem/st,stm32-tamp-nvram.yaml b/Documentation/devicetree/bindings/nvmem/st,stm32-tamp-nvram.yaml
-new file mode 100644
-index 000000000000..e03469fbe436
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/st,stm32-tamp-nvram.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/st,stm32-tamp-nvram.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+index a8e6e0f77b83..c7839e732f31 100644
+--- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+@@ -2084,6 +2084,32 @@ rtc: rtc@46000000 {
+ 			status = "disabled";
+ 		};
+ 
++		tamp: tamp@46010000 {
++			compatible = "st,stm32-tamp", "syscon", "simple-mfd";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			reg = <0x46010000 0x400>;
++			ranges;
 +
-+title: STMicroelectronics STM32 TAMP's NVRAM
++			nvram: nvram@46010100 {
++				compatible = "st,stm32mp25-tamp-nvram";
++				reg = <0x46010100 0x200>;
++				nvmem-layout {
++					compatible = "fixed-layout";
++					#address-cells = <1>;
++					#size-cells = <1>;
 +
-+description: |
-+  The TAMP peripheral integrates, amongst others, Non Volatile RAM
-+  (NVRAM) with 32/128 32-bit backup registers which can be used by
-+  software to store information or communicate with a boot loader.
++					fwu_info: tamp-bkp@c0 {
++						reg = <0xc0 0x4>;
++					};
 +
-+maintainers:
-+  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
++					boot_mode: tamp-bkp@180 {
++						reg = <0x180 0x4>;
++					};
++				};
++			};
++		};
 +
-+allOf:
-+  - $ref: nvmem.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - st,stm32mp15-tamp-nvram
-+      - st,stm32mp25-tamp-nvram
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    nvram: nvram@46010100 {
-+        compatible = "st,stm32mp25-tamp-nvram";
-+        reg = <0x46010100 0x200>;
-+
-+        nvmem-layout {
-+            compatible = "fixed-layout";
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+
-+            fwu_info: tamp-bkp@c0 {
-+                reg = <0xc0 0x4>;
-+            };
-+
-+            boot_mode: tamp-bkp@180 {
-+                reg = <0x180 0x4>;
-+            };
-+        };
-+    };
-+...
+ 		pinctrl_z: pinctrl@46200000 {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
 -- 
 2.43.0
 
