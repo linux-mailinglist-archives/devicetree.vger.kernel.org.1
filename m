@@ -1,97 +1,158 @@
-Return-Path: <devicetree+bounces-252417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 137F4CFE971
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 16:33:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D579ECFE8C0
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 16:23:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D5F4303E67E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:27:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C7CD83010FEC
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FFB36C5AA;
-	Wed,  7 Jan 2026 15:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17A9357728;
+	Wed,  7 Jan 2026 14:52:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A48E36B061;
-	Wed,  7 Jan 2026 15:17:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3587731AA8D
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 14:52:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767799066; cv=none; b=sNypw/OioIUyUuRSqF8iLJF8dXs68azQLYtagNAoz5rsV80M19ELF3Nr9w4Z5TNAAtgRokG/fHTOtFeVRYgdCU6yOzaoC9AxlHU7SLQ3dAcHslu+N7TqSD4iNu63zEs1I1ad7HeAqSQW3lHRKZFJUGRtoOQtVkWE73Rtyt9uY7U=
+	t=1767797545; cv=none; b=geru6Pus9OvlzgbQ6YwKY/PKnrqbrDhl2iEV1YvGTx7Hwg2lZgDJz2TdMv8/9JtQKv3Rxak3/1m96tBXxcaQWp6sS/9W7XLJm2OhMU1xWBJtmHFtxc3HKj+s8W9I//moUcyv38esAvYaCVK2m4WhWZAEKuvlG4ho2JOLM5ELDz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767799066; c=relaxed/simple;
-	bh=N0wFbXydq7vOdxwnTrUXHL3SEarqIdXmD9lvrxzhs9Y=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=r9lEeTJ08oML1rSAyf1h9qFd5KTyHmQMQ2CSYqpsOpOJQzXRoM3mA1vntx+sO8i0srcAAgiMXWbd6oHOR58Ee56aMM7hXufzELqq+nYfpN7lcjhJ010kiYWNWIZnVgxoa17gnNBpkRKCMptRL3j9I578xACpnzzk7tqUWdTDvYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from Atcsqr.andestech.com (localhost [127.0.0.2] (may be forged))
-	by Atcsqr.andestech.com with ESMTP id 607EqiZJ083236;
-	Wed, 7 Jan 2026 22:52:44 +0800 (+08)
-	(envelope-from cl634@andestech.com)
-Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
-	by Atcsqr.andestech.com with ESMTPS id 607EpTuO082985
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-	Wed, 7 Jan 2026 22:51:29 +0800 (+08)
-	(envelope-from cl634@andestech.com)
-Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
- (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 7 Jan
- 2026 22:51:29 +0800
-From: CL Wang <cl634@andestech.com>
-To: <cl634@andestech.com>, <wim@linux-watchdog.org>, <linux@roeck-us.net>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <tim609@andestech.com>
-Subject: [PATCH 3/3] MAINTAINERS: Add entry for Andes ATCWDT200
-Date: Wed, 7 Jan 2026 22:50:57 +0800
-Message-ID: <20260107145058.213334-4-cl634@andestech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260107145058.213334-1-cl634@andestech.com>
-References: <20260107145058.213334-1-cl634@andestech.com>
+	s=arc-20240116; t=1767797545; c=relaxed/simple;
+	bh=rEI4N32RTUkp6hm6LhzSfgzxDUsDYJqv7mwhnacev+0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rqSEBgMM/V+nk6emoeIMa+C+dRYjnl2oo+tR5yzZGhJBiixqI5PB7/0jLDwH5xz8gl4FpxJkmlQwo3ayfLfnQkAwhqBNM7vmsNnYqko/pLMoQ8v/Kc9RdhDXBV6BRfUi10O+i0hAWh2u5jEuBUAKn2jFLqZTwR4wM2wdMrMHE7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <s.pueschel@pengutronix.de>)
+	id 1vdUtK-0002O9-IV; Wed, 07 Jan 2026 15:52:06 +0100
+Message-ID: <1f4720ea-fa9c-41b7-9a6c-24abffa4bd77@pengutronix.de>
+Date: Wed, 7 Jan 2026 15:52:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 18/22] media: rockchip: rga: move rga_fmt to rga-hw.h
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Jacob Chen <jacob-chen@iotwrt.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kernel@pengutronix.de
+References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
+ <20251203-spu-rga3-v2-18-989a67947f71@pengutronix.de>
+ <de09023e7bdb1698c0bcdeb8d625101cbf647595.camel@ndufresne.ca>
+Content-Language: en-US
+From: =?UTF-8?Q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
+In-Reply-To: <de09023e7bdb1698c0bcdeb8d625101cbf647595.camel@ndufresne.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
- ATCPCS34.andestech.com (10.0.1.134)
-X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 607EqiZJ083236
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add a MAINTAINERS entry for the Andes ATCWDT200 watchdog driver and its
-associated Device Tree bindings.
+Hi,
 
-Signed-off-by: CL Wang <cl634@andestech.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+On 12/24/25 4:59 PM, Nicolas Dufresne wrote:
+> Le mercredi 03 décembre 2025 à 16:52 +0100, Sven Püschel a écrit :
+>> Move rga_fmt to rga-hw in preparation of the RGA3 addition, as the struct
+>> contains many RGA2 specific values. They are used to write the correct
+>> register values quickly based on the chosen format. Therefore the
+>> pointer to the rga_fmt struct is kept but changed to an opaque void
+>> pointer outside of the rga-hw.h.
+[...]
+>> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.h b/drivers/media/platform/rockchip/rga/rga-hw.h
+>> index fffcab0131225..3bc4b1f5acba2 100644
+>> --- a/drivers/media/platform/rockchip/rga/rga-hw.h
+>> +++ b/drivers/media/platform/rockchip/rga/rga-hw.h
+>> @@ -6,6 +6,8 @@
+>>   #ifndef __RGA_HW_H__
+>>   #define __RGA_HW_H__
+>>   
+>> +#include <linux/types.h>
+>> +
+>>   #define RGA_CMDBUF_SIZE 0x20
+>>   
+>>   /* Hardware limits */
+>> @@ -431,4 +433,14 @@ union rga_pat_con {
+>>   	} data;
+>>   };
+>>   
+>> +struct rga_fmt {
+>> +	u32 fourcc;
+>> +	int depth;
+>> +	u8 uv_factor;
+>> +	u8 y_div;
+>> +	u8 x_div;
+>> +	u8 color_swap;
+>> +	u8 hw_format;
+>> +};
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 12f49de7fe03..1a1c2b68252a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1817,6 +1817,12 @@ S:	Supported
- F:	drivers/clk/analogbits/*
- F:	include/linux/clk/analogbits*
- 
-+ANDES ATCWDT200 WATCHDOG DRIVER
-+M:	CL Wang <cl634@andestech.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/watchdog/andestech,ae350-wdt.yaml
-+F:	drivers/watchdog/atcwdt200_wdt.c
-+
- ANDROID DRIVERS
- M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
- M:	Arve Hjønnevåg <arve@android.com>
--- 
-2.34.1
+[...]
 
+>>   
+>> -struct rga_fmt {
+>> -	u32 fourcc;
+>> -	int depth;
+>> -	u8 uv_factor;
+>> -	u8 y_div;
+>> -	u8 x_div;
+>> -	u8 color_swap;
+>> -	u8 hw_format;
+>> -};
+> Ah! here's the removal of the unused variable. Not review friendly, but at last
+> removed.
+
+I've just moved it, so your review comments are still right. x_div/y_div 
+is still used at one place in rga_hw.c, but I'll remove it too in my v3 
+(and have these removals in the other commits to keep this reviewed-by).
+
+Sincerely
+     Sven
+
+>
+> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+>
+>> -
+>>   struct rga_frame {
+>>   	/* Crop */
+>>   	struct v4l2_rect crop;
+>>   
+>>   	/* Image format */
+>> -	struct rga_fmt *fmt;
+>> +	void *fmt;
+>>   	struct v4l2_pix_format_mplane pix;
+>>   };
+>>   
+>> @@ -145,8 +135,6 @@ static inline void rga_mod(struct rockchip_rga *rga, u32 reg, u32 val, u32 mask)
+>>   struct rga_hw {
+>>   	const char *card_type;
+>>   	bool has_internal_iommu;
+>> -	struct rga_fmt *formats;
+>> -	u32 num_formats;
+>>   	size_t cmdbuf_size;
+>>   	u32 min_width, min_height;
+>>   	u32 max_width, max_height;
+>> @@ -158,6 +146,9 @@ struct rga_hw {
+>>   		      struct rga_vb_buffer *src, struct rga_vb_buffer *dst);
+>>   	bool (*handle_irq)(struct rockchip_rga *rga);
+>>   	void (*get_version)(struct rockchip_rga *rga);
+>> +	void *(*adjust_and_map_format)(struct v4l2_pix_format_mplane *format,
+>> +				       bool is_output);
+>> +	int (*enum_format)(struct v4l2_fmtdesc *f);
+>>   };
+>>   
+>>   static inline bool rga_has_internal_iommu(const struct rockchip_rga *rga)
 
