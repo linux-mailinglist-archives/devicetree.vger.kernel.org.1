@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-252144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D23ACFBAB9
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 03:12:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD33DCFBABF
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 03:12:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8A5C330B23AF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 02:10:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CE75A30B716E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 02:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DF5F236A8B;
-	Wed,  7 Jan 2026 02:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1021A23B638;
+	Wed,  7 Jan 2026 02:10:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l+M5VrCT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+ZaIDIW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2605923507C;
-	Wed,  7 Jan 2026 02:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8B723AB9D;
+	Wed,  7 Jan 2026 02:10:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767751808; cv=none; b=eM7ASFSnROoXuc1llJ/O2MrLegaYinqiAYhHiItmy9SMEN+3P0jsjnOaMlGJoG7UC78uy48EIEtPUoNaJyrp+WHABb3sKcgLXd9yr/bRNzoNOwUADkxgL7i2R9CSlSyrCiNuYb8iq5lbC344QmKJ1dZvMcp/7J8lRPujFncLxvs=
+	t=1767751809; cv=none; b=OqmDpyUIX5jpCKw0tAkkDLTXY9UgjG2DI5w6cVHWKB5W4VP4ROFXxx9c4ciluju2JuexE7i35eiNJiRW71NpS2/6+mpmbVjxb2AET0zh2vsTCA8YVHjYFsr92B9V5Lqv0j1yfkkCHOxpFfnDqxTLZi6tQxXq3MFM215srLxj8Vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767751808; c=relaxed/simple;
-	bh=drRQe3NWFXClnpfXO5Sw+DqmbJPg9S9PQx1y8wKVjHY=;
+	s=arc-20240116; t=1767751809; c=relaxed/simple;
+	bh=bEeV9AIXgJUOiv5AAurKGQy27HtWNurlRvp9L2dNDu4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LO5bCuYxzeZW1lBRfNag5ZQp6K7zA3HZhjnyQx5gk3oFy3mAMGfHJren4gGmLDo4jpiWnJA5bIdfLeGtNchbqVS1W1e0lPaSqTBYGsOXrljYKVeBFQIaof4xIK2gA4MQUEOetbuYu2dk/IxM68wVaQGcIxnui+Jw2WMqb5tu1WI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l+M5VrCT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8883CC116C6;
-	Wed,  7 Jan 2026 02:10:07 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=LcDqjs8EPG9ewVj7VTcxKtMrZhvuxEH8Q1KN/mSWm+Y714E7unGJHSIGU8HcqXkCktShT7YRiWLyoiuE8gb9D+neJf23TVRByzO0nPddSS0JJYr/Fy1f22P5O21lMyChKMQBtPoZnG639j4hRUrRPlXtOvqTwFQmqYjVyn4dKJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+ZaIDIW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2AB1C19423;
+	Wed,  7 Jan 2026 02:10:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767751807;
-	bh=drRQe3NWFXClnpfXO5Sw+DqmbJPg9S9PQx1y8wKVjHY=;
+	s=k20201202; t=1767751808;
+	bh=bEeV9AIXgJUOiv5AAurKGQy27HtWNurlRvp9L2dNDu4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=l+M5VrCTEDKLEZ7wvlQIqCFRRUSETN+4aEp6xKWQrymDO3CDHQ9ANQeSnIfqbXAbt
-	 HLnMwBvgYy6JmP8mhhpH0MP0Yfyeh3UiIs2a/6qrMLjAsN5rvFlYbcLlLOSlU5FH1S
-	 1ojqukJ6hwg5hpIkMbbfr6N68ezkBPMfzVwntrrmjSmKVI7WFSOg+eWgKLdMPoo6BU
-	 vTOmIjAWm1aYVt1xwQUsLXcGAjq/rTTn8wwU0HKQwZZm2qrhj6bAaj0NvE8WQAfHx3
-	 aXWU2ss+3K7HupmvSS2yq/+66Wter123fjh2wOGnYj+UIN1ai7QOiim+6QN76Qmb2N
-	 8tWU+AS8CBfeA==
+	b=W+ZaIDIWVB7W1ksneiAra3uH9lBBnY5kdOY8CLWWRPa+3zEtRyhdRNpsmHHwnAOx/
+	 Eut9VJX+3RZnK7J6UMsNLlLUomPlnJVSg7c1i4NrgYJRv9auRibQ6H5a9lUvz0LPlw
+	 +cCLzlofTVDNtEJRRYIRymPn4eXUCgo94Hh0o8s9x78O4O10XAjcWobDVxzaHcI7Td
+	 Qqup66vbMj4s7IcwQpsXwGwUJ8pGMDN32QKkLvfzrlrovhBEy5I3OFWDYum7acsGaZ
+	 P7La+QY3HhtWMmk7vb+B9TL8lTJgXG8DKbSQmL0fKieIHp9wYStOLbfmS/KJQXXxMD
+	 vSas1R/oYVisQ==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Tue, 06 Jan 2026 20:09:40 -0600
-Subject: [PATCH 01/13] ARM: dts: broadcom: bcm2711: Fix 'simple-bus' node
- names
+Date: Tue, 06 Jan 2026 20:09:41 -0600
+Subject: [PATCH 02/13] ARM: dts: broadcom: bcm2835-rpi: Move non simple-bus
+ nodes to root level
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,7 +51,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260106-dt-dtbs-broadcom-fixes-v1-1-ba45874e4553@kernel.org>
+Message-Id: <20260106-dt-dtbs-broadcom-fixes-v1-2-ba45874e4553@kernel.org>
 References: <20260106-dt-dtbs-broadcom-fixes-v1-0-ba45874e4553@kernel.org>
 In-Reply-To: <20260106-dt-dtbs-broadcom-fixes-v1-0-ba45874e4553@kernel.org>
 To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -63,36 +63,70 @@ Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.15-dev
 
-Fix 'simple-bus' node names to follow the defined pattern. Nodes with 'reg'
-or 'ranges' addresses should also have a unit-address.
+The 'gpu' and 'firmware' nodes are not MMIO devices, so they should not be
+under a 'simple-bus'. Additionally, the "raspberrypi,bcm2835-power" node
+is part of the firmware, so move it under the /firmware node.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm/boot/dts/broadcom/bcm2711.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/broadcom/bcm2835-common.dtsi |  7 ++++---
+ arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi    | 16 ++++++++--------
+ 2 files changed, 12 insertions(+), 11 deletions(-)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-index c06d9f5e53c8..5e3b4bb39396 100644
---- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-@@ -415,7 +415,7 @@ ddc1: i2c@7ef09500 {
- 	 * The firmware will find whether the emmc2bus alias is defined, and if
- 	 * so, it'll edit the dma-ranges property below accordingly.
- 	 */
--	emmc2bus: emmc2bus {
-+	emmc2bus: emmc2-bus@fe000000 {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <1>;
-@@ -542,7 +542,7 @@ l2: l2-cache0 {
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
+index 9261b67dbee1..1e76b290510d 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
+@@ -141,9 +141,10 @@ v3d: v3d@7ec00000 {
+ 			interrupts = <1 10>;
  		};
- 	};
  
--	scb {
-+	scb-bus@fc000000 {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <1>;
+-		vc4: gpu {
+-			compatible = "brcm,bcm2835-vc4";
+-		};
++	};
++
++	vc4: gpu {
++		compatible = "brcm,bcm2835-vc4";
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi b/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
+index e9bf41b9f5c1..9ab70b519a63 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
+@@ -1,15 +1,13 @@
+ #include <dt-bindings/power/raspberrypi-power.h>
+ 
+ / {
+-	soc {
+-		firmware: firmware {
+-			compatible = "raspberrypi,bcm2835-firmware", "simple-mfd";
+-			mboxes = <&mailbox>;
++	firmware: firmware {
++		compatible = "raspberrypi,bcm2835-firmware", "simple-mfd";
++		mboxes = <&mailbox>;
+ 
+-			firmware_clocks: clocks {
+-				compatible = "raspberrypi,firmware-clocks";
+-				#clock-cells = <1>;
+-			};
++		firmware_clocks: clocks {
++			compatible = "raspberrypi,firmware-clocks";
++			#clock-cells = <1>;
+ 		};
+ 
+ 		power: power {
+@@ -17,7 +15,9 @@ power: power {
+ 			firmware = <&firmware>;
+ 			#power-domain-cells = <1>;
+ 		};
++	};
+ 
++	soc {
+ 		vchiq: mailbox@7e00b840 {
+ 			compatible = "brcm,bcm2835-vchiq";
+ 			reg = <0x7e00b840 0x3c>;
 
 -- 
 2.51.0
