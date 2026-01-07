@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-252461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9DC0CFFB98
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:25:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A2E5CFFBD4
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:26:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0A8133003FEF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 19:25:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 723603006451
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 19:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B213734EEEB;
-	Wed,  7 Jan 2026 16:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EAAF33EAEA;
+	Wed,  7 Jan 2026 16:51:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="b2MEexUc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DAzxLaZj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD1C9359FAD;
-	Wed,  7 Jan 2026 16:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B3B34D93A;
+	Wed,  7 Jan 2026 16:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767804680; cv=none; b=atqbz8JgVJ9C/OS+TrljfeJyiEBD8BVkJPT2HpuTr5RfY6X4+A9GNtJ5t9+30mobdjjNPTEHKz8gY+claYQYR7xA0jNNwDIQdLUcgGQVn/DeoHku8v4xDJhKTDrb/TZYv/iUrCrKXVCC/Tzuyb7OqBr1V0lCZGyz3h0oRGp5V8w=
+	t=1767804681; cv=none; b=MzR01FBxZD4Ni+ZSMq3/F11uxwCHFy8c8INfocOvCz4E9XI4q5v2Q/BT74hIfz3eKcsOYazadDV44kORYoSEIJMpCwI4zJdMdyWfS3r9R43iaMSlwFXG/xiAIyzPpy3B/X2aQAkyWUxHFFSeyPF+bGTBpMK/0S7YK7Z1b+k94sI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767804680; c=relaxed/simple;
-	bh=HFFf5+w3MgzzB3jJVGnSZtirn4PJbB5FqGmGi+wAaJQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=bPFxkKzqeVc9J6r6hlAvhAd2Dyx5lwj/GcYKGrFQd1l0hO8lvn/GIacLsKEQfsv25St1d9w2j8kTx8uXau/v0I50lL829fy1aIVB0Aso6mZYKUAJb9dDGA2+FdxDFHQm1cWW/BwMRJiX/7Vs6WVKaIxlQ07Fj53eilBdamVa5XQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=b2MEexUc; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id CCB224E41FC3;
-	Wed,  7 Jan 2026 16:51:09 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9A87F606F8;
-	Wed,  7 Jan 2026 16:51:09 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E688E103C87CB;
-	Wed,  7 Jan 2026 17:51:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767804668; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=M9pSGC/oLaDuML1ifdt7/iThN7wpM2Uqsbh75Zxu46w=;
-	b=b2MEexUcepyZzHGVNE1lLP45R9wV1vnWcS+VCUC3+WdY5OqnHVlfTORSBz5Zvai1fxlruG
-	VXE6vRSu5xGXRhsAAVUptZqfUJin3dG0YbPXgwwUhVVmiY8YhE8wQlSfgB65p/JLiRTgfw
-	PjiVphcfS5luAkkFOhvw4l5O78R4FZ30VoeN0FS+85CXFnEN/9iSPifdjnLMMPnKL01lS1
-	4qUAB52aZ6ev+P1eIY+u+zeQM2vEd4f4rcg6sR9ScJAmz1Djml5TWh/z/o7EtQaZzFYO4D
-	Rtq/1SEw9VD5oxWJW3qrvyUyMadCvOWjVavin5C0/hUFR/AbTtPWATUkChWz2A==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: change regulator-gpio to
- regulator-fixed
-In-Reply-To: <20260105194653.3189515-1-robh@kernel.org>
-References: <20260105194653.3189515-1-robh@kernel.org>
-Date: Wed, 07 Jan 2026 17:51:07 +0100
-Message-ID: <878qe9qsck.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1767804681; c=relaxed/simple;
+	bh=7vo3OqbSKQ+nBZ2yjy5ffdZQBlKltTm0UqmJZBQLtyw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e+Iyu/dcRkT91B271Q7cZDzTgLI6FjGkU7UdVTWgWNYnoHHqQOqUCF/HnYM+byaJknwDSOVeWaVh/905CTAAc+1MsR+dfvg6IG4JE0CUhvNrI6QNARFSxCjoyAe9xW0eEPBpPJLmUdv/wYera163NmnCoQOt3UUX6p54sLUBfbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DAzxLaZj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38997C4CEF1;
+	Wed,  7 Jan 2026 16:51:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767804679;
+	bh=7vo3OqbSKQ+nBZ2yjy5ffdZQBlKltTm0UqmJZBQLtyw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DAzxLaZjqOGAK4CTlUaMGFauRapzGCFPT8Iuo2BjgAOg2dWUnhMdXpV7DbGz5GO17
+	 SB97Ou3OgTAeEl5fnXFoumqDVowgREk9RSVid8qCPp0fu/FlYyPauV8Ym1vlMsHBXd
+	 nAzJ3O/hYWhcMe9VlfCAWP500kp/0L2C7p9tKAf7Anq6HLkQDTyNVzeBCaVkBZIe16
+	 NxHfgkF+KSXkGBVHCYhiOjQnipcWeaDMbDbrAKNqiR4OJgW3WcU5u95cB7/3ETGydT
+	 b0/Ze31wYj3MyAXQjsZhbIg2HPpvfiRIgvH/d50sVOGZBhqAIK0RKOTHDK3Qr1tCu+
+	 cP5JJkPWcdR4w==
+Date: Wed, 7 Jan 2026 22:21:11 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>, 
+	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, James.Bottomley@hansenpartnership.com, 
+	martin.petersen@oracle.com, linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 3/4] scsi: ufs: core Enforce minimum pm level for
+ sysfs configuration
+Message-ID: <p7icfbp2p6kpzcywfdgq6z33p3icrs3trtn2cmgf5lsgcxg34k@jtixkr6njmm5>
+References: <20260106134008.1969090-1-ram.dwivedi@oss.qualcomm.com>
+ <20260106134008.1969090-4-ram.dwivedi@oss.qualcomm.com>
+ <7547e933-1cbd-4bf9-bc8a-fb0c78b11337@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,73 +60,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7547e933-1cbd-4bf9-bc8a-fb0c78b11337@rock-chips.com>
 
-"Rob Herring (Arm)" <robh@kernel.org> writes:
+On Tue, Jan 06, 2026 at 10:27:29PM +0800, Shawn Lin wrote:
+> 在 2026/01/06 星期二 21:40, Ram Kumar Dwivedi 写道:
+> > Some UFS platforms only support a limited subset of power levels.
+> > Currently, the sysfs interface allows users to set any pm level
+> > without validating the minimum supported value. If an unsupported
+> > level is selected, suspend may fail.
+> > 
+> > Introduce an pm_lvl_min field in the ufs_hba structure and use it
+> > to clamp the pm level requested via sysfs so that only supported
+> > levels are accepted. Platforms that require a minimum pm level
+> > can set this field during probe.
+> > 
+> > Signed-off-by: Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>
+> > ---
+> >   drivers/ufs/core/ufs-sysfs.c | 2 +-
+> >   include/ufs/ufshcd.h         | 1 +
+> >   2 files changed, 2 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/ufs/core/ufs-sysfs.c b/drivers/ufs/core/ufs-sysfs.c
+> > index b33f8656edb5..02e5468ad49d 100644
+> > --- a/drivers/ufs/core/ufs-sysfs.c
+> > +++ b/drivers/ufs/core/ufs-sysfs.c
+> > @@ -141,7 +141,7 @@ static inline ssize_t ufs_sysfs_pm_lvl_store(struct device *dev,
+> >   	if (kstrtoul(buf, 0, &value))
+> >   		return -EINVAL;
+> > -	if (value >= UFS_PM_LVL_MAX)
+> > +	if (value >= UFS_PM_LVL_MAX || value < hba->pm_lvl_min)
+> 
+> It makes sense that some platform support a limited subset of power
+> levels. But each level is in increasing order of power savings, and you
+> set it to UFS_PM_LVL_5. Don't you support UFS_PM_LVL_0 the full active
+> mode?
+> 
 
-> A "regulator-gpio" must have a GPIO control, hence the name. There's no
-> GPIO on a couple of Marvell platforms at least as far as the DT is
-> defined, so change the regulator type from GPIO to fixed.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+These are the suspend levels, not runtime levels. So yes, our platform doesn't
+support full power mode when it is in suspend state.
 
-Applied on mvebu/dt64
+- Mani
 
-Thanks,
+> >   		return -EINVAL;
+> >   	if (ufs_pm_lvl_states[value].dev_state == UFS_DEEPSLEEP_PWR_MODE &&
+> > diff --git a/include/ufs/ufshcd.h b/include/ufs/ufshcd.h
+> > index 19154228780b..ac8697a7355b 100644
+> > --- a/include/ufs/ufshcd.h
+> > +++ b/include/ufs/ufshcd.h
+> > @@ -972,6 +972,7 @@ struct ufs_hba {
+> >   	enum ufs_pm_level rpm_lvl;
+> >   	/* Desired UFS power management level during system PM */
+> >   	enum ufs_pm_level spm_lvl;
+> > +	enum ufs_pm_level pm_lvl_min;
+> >   	int pm_op_in_progress;
+> >   	/* Auto-Hibernate Idle Timer register value */
+> 
 
-Gregory
-> ---
->  arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts | 9 ++-------
->  arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi | 3 ++-
->  2 files changed, 4 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts b/arch=
-/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-> index 9f4bafeddd82..a881a3326dba 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-> @@ -26,16 +26,11 @@ memory@0 {
->  	};
->=20=20
->  	vcc_sd_reg1: regulator {
-> -		compatible =3D "regulator-gpio";
-> +		compatible =3D "regulator-fixed";
->  		regulator-name =3D "vcc_sd1";
-> -		regulator-min-microvolt =3D <1800000>;
-> +		regulator-min-microvolt =3D <3300000>;
->  		regulator-max-microvolt =3D <3300000>;
->  		regulator-boot-on;
-> -
-> -		gpios-states =3D <0>;
-> -		states =3D <1800000 0x1
-> -			3300000 0x0>;
-> -		enable-active-high;
->  	};
->=20=20
->  	keys {
-> diff --git a/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi b/arch=
-/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
-> index 6f3914bcfd01..71c225221617 100644
-> --- a/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
-> @@ -15,8 +15,9 @@ / {
->  };
->=20=20
->  &ap0_reg_sd_vccq {
-> +	compatible =3D "regulator-fixed";
->  	regulator-max-microvolt =3D <1800000>;
-> -	states =3D <1800000 0x1 1800000 0x0>;
-> +	/delete-property/ states;
->  	/delete-property/ gpios;
->  };
->=20=20
-> --=20
-> 2.51.0
->
-
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-- 
+மணிவண்ணன் சதாசிவம்
 
