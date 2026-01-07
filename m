@@ -1,93 +1,118 @@
-Return-Path: <devicetree+bounces-252430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAAC7CFF156
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 18:24:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2FACFF165
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 18:28:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 54A1D3245642
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 16:06:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DF0A832EB835
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 16:11:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F266B3559F1;
-	Wed,  7 Jan 2026 15:57:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HgAKDX7H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8AF362157;
+	Wed,  7 Jan 2026 16:03:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f194.google.com (mail-vk1-f194.google.com [209.85.221.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FF9BA3F;
-	Wed,  7 Jan 2026 15:57:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C468E318BA0
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 16:02:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767801446; cv=none; b=fl0NhgHir7EbLIe98o0LuaFeKc9f948B6UDH17wGUDi7rwZoMzAv2tSE61pLzyIPYegh64rU+7ucXBQ4+rZKHEweXQ0HGbUm1iMWc6vVRCCBXvUFsf2TOfeNEDr8sA+g0M+aCrosrN3NpVwI/yRVGMwIzXa8gWqKhoVD6c2m9iM=
+	t=1767801784; cv=none; b=D3EeJXG/M+4xLOLBREuF60k3hGJrgohOYse5Jlv/mtTnzIxx4cPLXfgcWEjHADfo0d1HNbLteIbiMHFySYrWAgpj1jUKoXrLyAMwTNVWXM9RsA92i3QvreaSMquWZuN4EgRMpqhnCZJB8xIH63+Eu530B81S5c/3DHXt4lLe/Wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767801446; c=relaxed/simple;
-	bh=xWOFtg32OZw8Y8y9UrYrW6PJ2bzQbnugFJ29Z89+cnQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZjxC7r/KSmPBcOZmXFuFpQYf1RND+RietPKtoCJP8m3UDBMBDYYMjyON60xfKxT0XT6qKRhFZEjC7nToYssYBLk0qsOZ9JhtKeZgweQFxeWZSWvKn8ABKlJPc3NDm8Ob6UwkegpIzgqYN8QtwGtuCKZPPwuan9Ut5FbDYtU4OdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HgAKDX7H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DD0CC4CEF1;
-	Wed,  7 Jan 2026 15:57:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767801445;
-	bh=xWOFtg32OZw8Y8y9UrYrW6PJ2bzQbnugFJ29Z89+cnQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HgAKDX7HaH5WXezhfMQ8mA48bStcgu6CsBZN0QDdU6QBpfQt2dJ/Mn8Ch7ZqpzYuN
-	 sG4Wa/LRWWD+cVeivB199Ig2x7dnNTdQzIflHQqr/eulvx5rUYAweEYEwK2+jSjGcZ
-	 UG/lWNnZTZ+r0Gg1ad2u/mX7bXajAmg4wZEuxF6vDLILa/+wZV0wft6NicZ3ZP4jiG
-	 pDqyEcXzr9C7Z96up6qgIIfEwjjqILtS4Z/LE/G1vt6t31uvAQcAs+XbTtZrs1UiQi
-	 JHco+PTQ9R9uauskHFoD1dRSKhwvF6c1QAg/FbyZ14sVUpz6wdRvaP1Y8T75Q2OFFg
-	 8bS7fRv27GQaw==
-Date: Wed, 7 Jan 2026 09:57:22 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-	linux-spi@vger.kernel.org,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Michael Hennerich <michael.hennerich@analog.com>
-Subject: Re: [PATCH v4 2/9] spi: dt-bindings: add spi-{tx,rx}-lane-map
- properties
-Message-ID: <176780144202.1197510.11558178510570306104.robh@kernel.org>
-References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
- <20251219-spi-add-multi-bus-support-v4-2-145dc5204cd8@baylibre.com>
+	s=arc-20240116; t=1767801784; c=relaxed/simple;
+	bh=9lIABe66qX5B3ULWKN7dRGrBhHh5eVyA9SZWghC2qpw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RdzIbwW05XneQFn7Sr8bbwQvw0sCypAFvPHtuqAxCHQsgJUHT9Su/W3qzTtltwjGIrsTMHuAfMioUWUsM4WJsPCs4SJzC2J0sNO8gR6iPjozFtzCcDQes2FLir1NB5oW4B6A3rR9uQcPFHTxNZeASD7lDP67mQXAx9A2pkK5r5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f194.google.com with SMTP id 71dfb90a1353d-55b22d3b2a6so746045e0c.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 08:02:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767801770; x=1768406570;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8hrZyBiZ9cPjNxWra6rK3FeRhusMqxhmxYkDFplK87w=;
+        b=VHTOEheBT24CQf1zkxhDdbK7qPHdACrAlshRwuRnpjM2uTvd8ET83n3/AzeJ57dvSc
+         ZPgO8MucQcoi+Vrs4GCb2bP+qDiEgY++Mkl9VzQBbkRZ9eoYrwDujLGDZBrh2RAznn0n
+         4Krz/wTducGfwYQXOFzUh+atvqoApBzaCJ0np3bysqa3FKaQrFv4EUJJu6aAHRzvVo6b
+         MG4IrDDOdrn9HQJTtcEKULZS7DuN9UDhqCZ6fwbnD9ruFoqDJSgAm5hndqTF2QjqhQza
+         psrwsJVIel6ZzB+rtNQ0fr2bg9UMrUh1/isYRv9wM+WeOjqcSc2ud3xr2jldQHiKBduS
+         Bjmw==
+X-Forwarded-Encrypted: i=1; AJvYcCV58H9KDLT8TUYYnk+ZOebBmY5xe+q/N36dpJq+kfHDPUMxpMtMrXXGATpN2tUDWk+3jN45tePzBc4K@vger.kernel.org
+X-Gm-Message-State: AOJu0YwazYWUrlSCqsPjHGOZF+YMl++9pH4k8y2PIeCiI0/VLCMk7ZrA
+	1OVSNwdram2UtTEuhKjXN+jnB7iYey6SR0EPiyAyFhMuzcLE6B6YEPPpxHGTGmTD1e0=
+X-Gm-Gg: AY/fxX5jMe8PSgSW6nkI4Y2Vg9oBMf5rLVTFl0TQ+Tt3oFkEoeORmoODlx5S3dyZpuA
+	IEwHJyohuth2cohbdfCALIQ6cmq5Po2QOq3tbbMTXdqQfd3U+DDFLeRc4KOI6m4q9IzUSBsjFdI
+	UGd9rYxF01uxAF/OtgUIshwEVG8fG8H+g/z8xtfcxm+tNd/bwxPnXsEFSz2G1tKM77935HIZw0B
+	QzGcCLtI3dFFv4acghtqujeAydO8/1zFKDWFcScngYCC8jyJM6isRchrTioA/Sf3FS5c5Z+TsBK
+	B6yOAh0ybQ+L2rFYGVYUFkkCAB9zQfXN1PbwqjpRcLK6hAfEE0oCtdsNUyYtBfoy/aINfa2NNxC
+	uHayOkxr3YwUkINLhNBV+RWSG32MmHm+kz5oPg3Y0CAM1xUp071HmtfVZMt5/xI76ByEwlZIrsf
+	M99S8axLNxPUlffC9cwOUU9YEOfIW1SV1R8aG/KOU/Y/TAuyfg5urc
+X-Google-Smtp-Source: AGHT+IF/5ocOx/wv5yz4XXwFB98cmyJGxZ0pEOXiuoOAcjuA4RlVwH2jcnRZwQgoEvDjuHiVNL6ETQ==
+X-Received: by 2002:a05:6122:1d41:b0:559:6b7f:b0f4 with SMTP id 71dfb90a1353d-5634637da35mr1250419e0c.5.1767801765320;
+        Wed, 07 Jan 2026 08:02:45 -0800 (PST)
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com. [209.85.221.177])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5633a1ea753sm3416040e0c.4.2026.01.07.08.02.44
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 08:02:44 -0800 (PST)
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-55b22d3b2a6so745989e0c.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 08:02:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWMd5She6tiFrvJLDIVefII77UpKOS4LipBvH8Qd+Zqk4pvW6DrLbcK+M5HHwsSvI+N7aqlWKuVAaVd@vger.kernel.org
+X-Received: by 2002:a05:6122:3383:b0:55e:82c3:e1fb with SMTP id
+ 71dfb90a1353d-563466b1471mr1147392e0c.10.1767801764769; Wed, 07 Jan 2026
+ 08:02:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251219-spi-add-multi-bus-support-v4-2-145dc5204cd8@baylibre.com>
+References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251230115814.53536-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251230115814.53536-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 7 Jan 2026 17:02:33 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVQeO6NmrCESnKZkpHWLN6CzrWR-q3VNW7gYMePUP37ig@mail.gmail.com>
+X-Gm-Features: AQt7F2q12M6ufG9O3zwEr8RO6qBXtKdp_ZqxDQ3r9v7omAoAEJN2ATl2yMiroJE
+Message-ID: <CAMuHMdVQeO6NmrCESnKZkpHWLN6CzrWR-q3VNW7gYMePUP37ig@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: can: renesas,rcar-canfd: Document
+ RZ/V2H(P) and RZ/V2N SoCs
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+
+On Tue, 30 Dec 2025 at 12:58, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Document CANFD IP found on the Renesas RZ/V2H(P) (R9A09G057) and RZ/V2N
+> (R9A09G056) SoCs. The CANFD IP on these SoCs are identical to that found
+> on the RZ/G3E (R9A09G047) SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+After downloading RZ/V2H Hardware User Manual Rev.1.30, and noticing
+CFDCnNCFG.NSJW = 0 is no longer prohibited:
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
-On Fri, 19 Dec 2025 15:32:10 -0600, David Lechner wrote:
-> Add spi-tx-lane-map and spi-rx-lane-map properties to the SPI peripheral
-> device tree binding. These properties allow specifying the mapping of
-> peripheral data lanes to controller data lanes. This is needed e.g. when
-> some lanes are skipped on the controller side so that the controller
-> can correctly route data to/from the peripheral.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
-> 
-> v4 changes:
-> - This replaces the data-lanes property from the previous revision. Now
->   there are separate properties for tx and rx lane maps. And instead of
->   being the primary property for determining the number of lanes, this
->   is only needed in special cases where the mapping is non-trivial.
-> ---
->  .../devicetree/bindings/spi/spi-peripheral-props.yaml      | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
