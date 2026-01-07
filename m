@@ -1,326 +1,226 @@
-Return-Path: <devicetree+bounces-252500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F1E5CFFD90
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:51:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7D15CFFFE4
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 21:22:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 16FAD3004288
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 19:51:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DC6B93012CFC
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 20:22:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71EFA328247;
-	Wed,  7 Jan 2026 19:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F46318BA5;
+	Wed,  7 Jan 2026 20:22:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BV4JMtLA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HJu43v9l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20492263F4A
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 19:50:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA8526E6E8;
+	Wed,  7 Jan 2026 20:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767815455; cv=none; b=ZSlJg6y8ksVpsOfM5BUjIA7JL9Ack8Y5G6wtbx7e7bIsEs1GJyG/ba0BAgaKw7SKrrHgHBra6EuzsbVlBLgS+R/sTvoyYVxbZra7AwR6MGVe2xp4Gw5MDtZ5wd/XCll8GTByrtHKJXBTdNMTthQFKTvH8VNtCOBaoeSkoOX/SX4=
+	t=1767817358; cv=none; b=PDKN2LC6JxoL55iyahM79lNcIhzFapjrKudGCtuRIDpOwIF0xKkXFLDdoaRzN7/YrhkPM06uIOk+oTkH5Jog+7pJAvR2AWeAlfuLwO5B5VLmOuxqMQ8+BIIhdLILTWMtvhYNnoO9OId0CB2PVn+n7Bs4CKse4FFwvA13X/gohpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767815455; c=relaxed/simple;
-	bh=y2cPhch0gTQU9+1cj4Kf+EUu2HgHqe9oPNW2+Voe+8Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Zmgs6z34QiLBDLk9HvEikGqXmtKkSk43yVHCWh+Odw7JB0hTYPCly1VtWJerrtlZ/5HVRj0hke0I/EHgLJX2b8W44wWjuQ74KHqo3bTwSEcOxbOoSFTdA+zX96ZAEQN+eA+hfo5LBFdWHmM4JwheHwsNht7B/AmtRWmIjASBztw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BV4JMtLA; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-594270ec7f9so2858629e87.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 11:50:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767815448; x=1768420248; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UsStFACs3iGKkKtZ/RTorfyJ4c229hhuF3PKngzrS7Y=;
-        b=BV4JMtLAMCQifqzlJQbDH13NbPPEUnmimgkrtg+xlIuagadx5WE5NzcOwY6HGAXgG8
-         05uLN0cc0KD+W00eM8u6vFPj6f5ZaRyJTQAhrve5DSpOKyjwQInN+HTDeTf3eY/ZuR59
-         BTmtj1RhEivR+gJhM/fdhi3nw4K9NhV31m69DPrikqLy/wqrSitIiDYygWmYFu8z1W+e
-         8Cy3+j2U9QYVq/2Kg/TjiDuQcwPvV/aG6jiQi7bqtHNf/yhvSBUf2pwHZ93JgBDw3+Hy
-         2HadwV8qhhr/b16yxyAa75Ok3VVkGovUyPW3jtjtg0pYBIw+BXAc1voLotzgvnD2t4P7
-         I4uA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767815448; x=1768420248;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=UsStFACs3iGKkKtZ/RTorfyJ4c229hhuF3PKngzrS7Y=;
-        b=Yjb2gMbQ3tSotE13xhPjOQRAkPk0/Wu6raskYYOP5NdTJa9VKURi8XvJ4cYt37pEtH
-         6ZfKuf5PxwrcJU188n75dqOBJmyB2qZjDWitjfGFQQaoBUhUi6JmD3UhV6BxC89ElkpD
-         z9B0sxIcgjbhBJ0aEJYuQMtIbU9J4x1815Gvt1XZXBBR5OZ7QyJD5k0WGSLT0WVjiHhW
-         84AO+BPUmAB6yr7A7788hGxIQYnQDwXLbKIbOKlMKqlDUIF78DHMRbtib5in/jpVkPMr
-         pbAsCl74hQvUvdchWgHHkd82h4Nr/BLpY7UbcpoyBeSQOahjPJEmux3PcS2xRKX/S96b
-         vHsw==
-X-Forwarded-Encrypted: i=1; AJvYcCUpcUp2wxxTJMly/3XeMMcEUStl5t3aZlEhqGC9dEzWVCAQ1JDnzQJcqMkR1q5jrA8gdnjtE6JRxWbQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVVffv2SAqwzbNp4zcWMNuOX/Usf2TskrrphIze2Te80aoYF/u
-	87HRPJOpBUJ5XJ5HPHX8RyqrtsdidxP/sFlQc9dS/3MdSZCds5kwvM72aIUsVCNkf6DYwXSEhCF
-	1cjtOfWZODU7Nyn8enJrTFg5sJwEte5g=
-X-Gm-Gg: AY/fxX7FPXP7gYOqaqlfcz8z2z02JgCEQVFSwbv+JUKT2PuQ6YjEh1xjUADY8NWXuVA
-	ynioIgnIqXnnh22FlSYmFe7/Vus16tyeODIcKR7BtCeTKupNAdkrjmRnl2f6aCe139vCwJw0x6b
-	NDbCKgGrb8h8XwlVBmqnWDpmhqcgOfccKjYfLaMwFM9ZBdNhlxJXcpi3DDqJ6eLbXg4MPyfXbfE
-	sHkRMTLto8tA9tQ/gkFKA/q+ivzn0wJokv12wXv5C/poNd9lxQIvY2/FSZSo3WfUwdUA6toH7a6
-	EIiKOKJ1mhkbIFcyZJxa479697nhWqNuAEyEStmIl7xtC+5okW5eMPW2
-X-Google-Smtp-Source: AGHT+IGiBhHTB1tG7ggsMqwUtKIEXXDjb+IhM4su4rS0l/0So60Izvdrpm11ZfyT+pPmTB6EAbKhyFdUFAc79fR8erI=
-X-Received: by 2002:a05:6512:402a:b0:59a:18fc:c00 with SMTP id
- 2adb3069b0e04-59b6f02d186mr1461865e87.31.1767815447574; Wed, 07 Jan 2026
- 11:50:47 -0800 (PST)
+	s=arc-20240116; t=1767817358; c=relaxed/simple;
+	bh=2/uzGL1zT1yro75q+p65ljnyNxFlj+SJ9foPOMp4V3o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RUmPEYH+BB3KZEEK+XY32dTuNF2eW5km+uDV57izQui7mEYwIPY09r8220NBcoBPeIt4PsK+mOcUYtYc9AC+SWrbsmbsbEme5GTdq1A6f8F2JJQDvXCI4V8M5TTMF5cP9oO6UGAJ21hVPg/qhXVrhKmZAwgsUJ3o5nRcAkNHcqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HJu43v9l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DCA5C4CEF1;
+	Wed,  7 Jan 2026 20:22:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767817357;
+	bh=2/uzGL1zT1yro75q+p65ljnyNxFlj+SJ9foPOMp4V3o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HJu43v9lYCSA6ptpujSY9gLlG5Jcop8GNGbq9wRCp1cGKDOPIUnUvS6N4MPZ2olST
+	 32tUlG/PvdkUz9OgzSzKqXijl5FnIIEaNphLyHBGjIQqqzzcgjqJLA92NU5bq8iV8k
+	 HPLwnpwfnW2Pyv/A8QokJx9TuUY+FnRncUCV1xQ455OmsrcGZxrmeoRd6Mz658Kev7
+	 M63Aps1LZTZua5+9vgkhYJgppJJ9cgggAG+Gasr1UIxUDxE3Vu7bhwifdGCPZgTLTp
+	 FL+nrIoNvizV2tSaHEkBz5Er+/l7Uvrd9LnAVhCEHYJE3+hrJXh7VqbeUG9Dotb9m0
+	 1s18AmpHDUFQw==
+Message-ID: <68985605-1b18-4413-943d-c6af04c4a7f6@kernel.org>
+Date: Wed, 7 Jan 2026 21:22:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251217104744.184153-1-jonathanh@nvidia.com> <CALHNRZ8syS6F9W1ovw2Y-jkspQafCnLy0ynocn0sMLurShHnbA@mail.gmail.com>
- <CALHNRZ_vkw6Ns=PMa+x0SY64+Ov0FeA5tMKJr+-tY9_OasKUog@mail.gmail.com>
- <aUPsDeFmxAJ09Tk7@orome> <CALHNRZ_vjSy+A8ZW7E1A4B5yQJ=GgvbNmafU7gjtGv-xjdfhPg@mail.gmail.com>
- <0ed3d270-b0be-4431-8a46-a7eea29598f4@nvidia.com> <CABr+WTnyKz7y-KKv6yQOfPWDf4iB2MarcQPetZ+OT1=3WqdH5A@mail.gmail.com>
-In-Reply-To: <CABr+WTnyKz7y-KKv6yQOfPWDf4iB2MarcQPetZ+OT1=3WqdH5A@mail.gmail.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Wed, 7 Jan 2026 13:50:36 -0600
-X-Gm-Features: AQt7F2rjeq_ePos9uWPYiSSqPbtDRfdQoJ1cADeufnqXFi8qesuEFizzbLBCc_c
-Message-ID: <CALHNRZ9JTMEWy8qgfPiZOPbOC3BdK8UbB01ghG+jC7+DsQS8Xg@mail.gmail.com>
-Subject: Re: [PATCH] Revert "arm64: tegra: Add interconnect properties for Tegra210"
-To: Nicolas Chauvet <kwizart@gmail.com>
-Cc: Jon Hunter <jonathanh@nvidia.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/4] dt-bindings: mfd: Add sony,cronos-smc
+To: Timothy Pearson <tpearson@raptorengineering.com>
+Cc: devicetree <devicetree@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Lee Jones <lee@kernel.org>, Georgy Yakovlev <Georgy.Yakovlev@sony.com>,
+ Shawn Anastasio <sanastasio@raptorengineering.com>
+References: <20260107002136.3121607-1-tpearson@raptorengineering.com>
+ <20260107002136.3121607-2-tpearson@raptorengineering.com>
+ <20260107-spotted-swan-of-sufficiency-1bfc03@quoll>
+ <887779054.192722.1767805783381.JavaMail.zimbra@raptorengineeringinc.com>
+ <24a1839d-5c5d-4e59-bc42-403dbc8134a4@kernel.org>
+ <2068648185.192779.1767807665985.JavaMail.zimbra@raptorengineeringinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <2068648185.192779.1767807665985.JavaMail.zimbra@raptorengineeringinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 5, 2026 at 2:27=E2=80=AFPM Nicolas Chauvet <kwizart@gmail.com> =
-wrote:
->
-> Le ven. 19 d=C3=A9c. 2025 =C3=A0 11:59, Jon Hunter <jonathanh@nvidia.com>=
- a =C3=A9crit :
-> >
-> >
-> >
-> > On 18/12/2025 19:07, Aaron Kling wrote:
-> > > On Thu, Dec 18, 2025 at 6:00=E2=80=AFAM Thierry Reding <thierry.redin=
-g@gmail.com> wrote:
-> > >>
-> > >> On Wed, Dec 17, 2025 at 02:42:58PM -0600, Aaron Kling wrote:
-> > >>> On Wed, Dec 17, 2025 at 12:20=E2=80=AFPM Aaron Kling <webgeek1234@g=
-mail.com> wrote:
-> > >>>>
-> > >>>> On Wed, Dec 17, 2025 at 4:48=E2=80=AFAM Jon Hunter <jonathanh@nvid=
-ia.com> wrote:
-> > >>>>>
-> > >>>>> Commit 59a42707a094 ("arm64: tegra: Add interconnect properties f=
-or
-> > >>>>> Tegra210") populated interconnect properties for Tegra210 and thi=
-s is
-> > >>>>> preventing the Tegra DRM driver from probing successfully. The fo=
-llowing
-> > >>>>> error is observed on boot ...
-> > >>>>>
-> > >>>>>   drm drm: failed to initialize 54240000.dc: -517
-> > >>>>>
-> > >>>>> For now revert this change, until a fix is available.
-> > >>>>>
-> > >>>>> Fixes: 59a42707a094 ("arm64: tegra: Add interconnect properties f=
-or Tegra210")
-> > >>>>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> > >>>>> ---
-> > >>>>>   arch/arm64/boot/dts/nvidia/tegra210.dtsi | 24 -----------------=
--------
-> > >>>>>   1 file changed, 24 deletions(-)
-> > >>>>>
-> > >>>>> diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm6=
-4/boot/dts/nvidia/tegra210.dtsi
-> > >>>>> index 709da31d5785..137aa8375257 100644
-> > >>>>> --- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-> > >>>>> +++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-> > >>>>> @@ -202,19 +202,6 @@ dc@54200000 {
-> > >>>>>
-> > >>>>>                          nvidia,outputs =3D <&dsia &dsib &sor0 &s=
-or1>;
-> > >>>>>                          nvidia,head =3D <0>;
-> > >>>>> -
-> > >>>>> -                       interconnects =3D <&mc TEGRA210_MC_DISPLA=
-Y0A &emc>,
-> > >>>>> -                                       <&mc TEGRA210_MC_DISPLAY0=
-B &emc>,
-> > >>>>> -                                       <&mc TEGRA210_MC_DISPLAY0=
-C &emc>,
-> > >>>>> -                                       <&mc TEGRA210_MC_DISPLAYH=
-C &emc>,
-> > >>>>> -                                       <&mc TEGRA210_MC_DISPLAYD=
- &emc>,
-> > >>>>> -                                       <&mc TEGRA210_MC_DISPLAYT=
- &emc>;
-> > >>>>> -                       interconnect-names =3D "wina",
-> > >>>>> -                                            "winb",
-> > >>>>> -                                            "winc",
-> > >>>>> -                                            "cursor",
-> > >>>>> -                                            "wind",
-> > >>>>> -                                            "wint";
-> > >>>>>                  };
-> > >>>>>
-> > >>>>>                  dc@54240000 {
-> > >>>>> @@ -230,15 +217,6 @@ dc@54240000 {
-> > >>>>>
-> > >>>>>                          nvidia,outputs =3D <&dsia &dsib &sor0 &s=
-or1>;
-> > >>>>>                          nvidia,head =3D <1>;
-> > >>>>> -
-> > >>>>> -                       interconnects =3D <&mc TEGRA210_MC_DISPLA=
-Y0AB &emc>,
-> > >>>>> -                                       <&mc TEGRA210_MC_DISPLAY0=
-BB &emc>,
-> > >>>>> -                                       <&mc TEGRA210_MC_DISPLAY0=
-CB &emc>,
-> > >>>>> -                                       <&mc TEGRA210_MC_DISPLAYH=
-CB &emc>;
-> > >>>>> -                       interconnect-names =3D "wina",
-> > >>>>> -                                            "winb",
-> > >>>>> -                                            "winc",
-> > >>>>> -                                            "cursor";
-> > >>>>>                  };
-> > >>>>>
-> > >>>>>                  dsia: dsi@54300000 {
-> > >>>>> @@ -1052,7 +1030,6 @@ mc: memory-controller@70019000 {
-> > >>>>>
-> > >>>>>                  #iommu-cells =3D <1>;
-> > >>>>>                  #reset-cells =3D <1>;
-> > >>>>> -               #interconnect-cells =3D <1>;
-> > >>>>>          };
-> > >>>>>
-> > >>>>>          emc: external-memory-controller@7001b000 {
-> > >>>>> @@ -1066,7 +1043,6 @@ emc: external-memory-controller@7001b000 {
-> > >>>>>                  nvidia,memory-controller =3D <&mc>;
-> > >>>>>                  operating-points-v2 =3D <&emc_icc_dvfs_opp_table=
->;
-> > >>>>>
-> > >>>>> -               #interconnect-cells =3D <0>;
-> > >>>>>                  #cooling-cells =3D <2>;
-> > >>>>>          };
-> > >>>>>
-> > >>>>> --
-> > >>>>> 2.43.0
-> > >>>>>
-> > >>>>
-> > >>>> A little bit of documentation on this, should someone read the lis=
-t to
-> > >>>> see what happened. The original report of the failure is here [0] =
-and
-> > >>>> only occurred when the tegra210-emc driver fails to probe. After t=
-his
-> > >>>> report, the related code change [1] to tegra210-emc which register=
-s
-> > >>>> the driver to icc was silently dropped from -next, but these dt
-> > >>>> changes remained. So now these interconnect routes do cause tegra-=
-drm
-> > >>>> to universally fail on tegra210.
-> > >>>>
-> > >>>> Aaron
-> > >>>>
-> > >>>> [0] https://lore.kernel.org/all/56aed0ec-b104-4612-8901-3f6f95e0af=
-ab@nvidia.com/
-> > >>>> [1] https://lore.kernel.org/all/20251027-t210-actmon-p2-v6-1-1c4bd=
-227d676@gmail.com/
-> > >>>
-> > >>> There may be another option here. I'm beginning to think there will
-> > >>> not be any way to set the icc routes for the dc's while the emc dri=
-ver
-> > >>> can fail to probe. The next best thing looks to be just dropping th=
-e
-> > >>> interconnect nodes from the dc nodes and leaving the rest of the
-> > >>> original commit in place. Then reland the tegra210-emc driver chang=
-e.
-> > >>> This should put the no-emc case back to where it was, while allowin=
-g
-> > >>> actmon to do its scaling when emc is available. And I will move to =
-the
-> > >>> dc icc routes to downstream dt's, where I tightly control that emc =
-is
-> > >>> available.
-> > >>>
-> > >>> Does this sound reasonable? If so, I will go stage the changes and
-> > >>> verify that it works as intended.
-> > >>
-> > >> Let's go with the revert for now, since that clearly documents where
-> > >> things go wrong and it can be easily reapplied once the root cause h=
-as
-> > >> been resolved.
-> > >>
-> > >> It's a bit unfortunate that we don't have a way of making these
-> > >> interconnect properties optional. If EMC fails to probe for whatever
-> > >> reason, I think the assumption should be that it doesn't do any dyna=
-mic
-> > >> scaling of the EMC frequency and hence the entire ICC stuff isn't ne=
-eded
-> > >> and should just be no-ops.
-> > >>
-> > >> On the other hand, other than the patches getting reverted, there's
-> > >> really no good reason for the EMC driver to fail to provide them, he=
-nce
-> > >> I think once that's been restored we can apply this again and then t=
-hat
-> > >> should be the end of it.
-> > >
-> > > Except that the tegra210-emc driver fails to probe at all if the
-> > > bootloader does not copy reserved-memory table node? Which per Jon,
-> > > the Nvidia regression bench does not do. And neither will a normal L4=
-T
-> > > install using a mainline kernel and dt via extlinux or u-boot. I have
-> > > to put the mainline kernel on DTB and use a kernel in an android boot
-> > > image, which causes nvtboot-cpu to set the dt table reserved memory
-> > > node directly. Which is perfectly fine for my android use case, but
-> > > not so much for anyone just trying to boot a Linux distro.
-> >
-> > I am lost. I was not able to follow the above. Our current testing
-> > simply boots the upstream kernel + upstream DTB.
->
-> With this revert, I have tegra drm back on 6.19-rc4 kernel.
->
-> But I also have this error that did not appear on 6.18:
-> "tegra210-emc 7001b000.external-memory-controller: failed to get
-> nominal EMC table: -19"
+On 07/01/2026 18:41, Timothy Pearson wrote:
+> 
+> 
+> ----- Original Message -----
+>> From: "Krzysztof Kozlowski" <krzk@kernel.org>
+>> To: "Timothy Pearson" <tpearson@raptorengineering.com>
+>> Cc: "devicetree" <devicetree@vger.kernel.org>, "linux-kernel" <linux-kernel@vger.kernel.org>, "Rob Herring"
+>> <robh+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+>> "Lee Jones" <lee@kernel.org>, "Georgy Yakovlev" <Georgy.Yakovlev@sony.com>, "Shawn Anastasio"
+>> <sanastasio@raptorengineering.com>
+>> Sent: Wednesday, January 7, 2026 11:18:09 AM
+>> Subject: Re: [PATCH v6 1/4] dt-bindings: mfd: Add sony,cronos-smc
+> 
+>> On 07/01/2026 18:09, Timothy Pearson wrote:
+>>>
+>>>
+>>> ----- Original Message -----
+>>>> From: "Krzysztof Kozlowski" <krzk@kernel.org>
+>>>> To: "Timothy Pearson" <tpearson@raptorengineering.com>
+>>>> Cc: "devicetree" <devicetree@vger.kernel.org>, "linux-kernel"
+>>>> <linux-kernel@vger.kernel.org>, "Rob Herring"
+>>>> <robh+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Krzysztof
+>>>> Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+>>>> "Lee Jones" <lee@kernel.org>, "Georgy Yakovlev" <Georgy.Yakovlev@sony.com>,
+>>>> "Shawn Anastasio"
+>>>> <sanastasio@raptorengineering.com>
+>>>> Sent: Wednesday, January 7, 2026 1:25:10 AM
+>>>> Subject: Re: [PATCH v6 1/4] dt-bindings: mfd: Add sony,cronos-smc
+>>>
+>>>> On Tue, Jan 06, 2026 at 06:21:33PM -0600, Timothy Pearson wrote:
+>>>>> From: Shawn Anastasio <sanastasio@raptorengineering.com>
+>>>>>
+>>>>> The Sony Cronos Platform Controller is a multi-purpose platform controller
+>>>>> that provides both a watchdog timer and an LED controller for the Sony
+>>>>> Interactive Entertainment Cronos x86 server platform. As both functions
+>>>>> are provided by the same CPLD, a multi-function device is exposed as the
+>>>>> parent of both functions.
+>>>>>
+>>>>> Add a DT binding for this device.
+>>>>>
+>>>>> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
+>>>>> Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
+>>>>> ---
+>>>>>  .../bindings/mfd/sony,cronos-smc.yaml         | 128 ++++++++++++++++++
+>>>>
+>>>> How this can be a v6 with no changelog at all and still not tested?
+>>>>
+>>>> What happened with this patchset? Where is it explained?
+>>>
+>>> Changes have only been to fix issues identified in review and any posted
+>>> autotest failures.
+>>
+>> And where is this explained? Please always provide detailed changelog in
+>> the cover letter or individual patch.
+>>
+>>>
+>>> Please note that the tooling to check the DT bindings does NOT appear work
+>>> properly, we've wasted a lot of time and effort attempting to get it running
+>>> only to find that it's spitting out internal Python errors even for other
+>>> drivers that are *already* in the kernel source tree.  This obviously creates a
+>>> situation where it's difficult to pre-check the patch set for compliance; if
+>>> you want to see this first hand, spin up a Debian Sid VM (which has a very
+>>> recent version of the DT tooling from late 2025) and try to check any of the
+>>> in-tree MFD drivers using the documented methods.
+>>
+>> I am using DT schema on multiple distros, including Debian but not Sid
+>> but Trixie
+>> (https://krzk.eu/#/builders/91/builds/116/steps/13/logs/stdio). Works
+>> without problem...
+> 
+> Good to know.  There is next to no documentation on the required software versions to make this work, which complicates
+> 
+>> On regular Debian based distro this is just few commands - pix install
+>> and them make dt_binding_check - so I am surprised you spent a lot of
+>> time on setting this up.
+>>
+>> What is the problem exactly?
+> 
+> Good to know.  There is next to no documentation on the required software
+> versions to make this work, which complicates setup.  Bookworm's DT package was
+> too old when it was tried pre-Trixie release, and at the time Sid didn't work
+> either for some other reason.  The assumption was that the kernel needed a very
+> recent version of the DT tooling, so Sid was tried again this year.  Will try
+> Trixie before the next patch update.
 
-I'm not sure what between 6.18 and -next would change this. I would
-expect your setup to see this on older kernel versions too. Does the
-emc driver fully probe and does scaling work for you on 6.18?
+So you mean from distro? We don't use it from the distro because it's
+heavily outdated. It makes no sense. That's why I wrote - pipx.
 
-> My boot flow is the latest L4T 32.7.6, upstream U-Boot 2025.01 and EFI bo=
-ot.
-> U-Boot mentions:
-> Found DTB: nvidia/tegra210-p2371-2180.dtb
-> copying carveout for /host1x@50000000/dc@54200000...
-> copying carveout for /host1x@50000000/dc@54240000...
-> copying carveout for /external-memory-controller@7001b000..
->
-> That said, comparing in-tree dtb and runtime only shows few diffs.
-> (are more changes expected ?)
->
-> dtdiff /boot/dtbs/nvidia/tegra210-p2371-2180.dtb /proc/device-tree
-> --- /dev/fd/63    2026-01-05 21:20:39.956415634 +0100
-> +++ /dev/fd/62    2026-01-05 21:20:39.956415634 +0100
-> @@ -2207,6 +2207,12 @@
->      };
->
->      chosen {
-> +        bootargs =3D "BOOT_IMAGE=3D(hd0,msdos2)/vmlinuz-arm64
-> root=3DUUID=3D9bdc914f-f5c9-42cb-a4e9-9f3387f8d480 ro
-> rootflags=3Dsubvol=3Droot console=3DttyS0,115200 selinux=3D0 fbcon=3Drota=
-te:3";
-> +        linux,uefi-mmap-desc-size =3D <0x28>;
-> +        linux,uefi-mmap-desc-ver =3D <0x01>;
-> +        linux,uefi-mmap-size =3D <0x528>;
-> +        linux,uefi-mmap-start =3D <0x00 0xfb568068>;
-> +        linux,uefi-system-table =3D <0x00 0xfed2bf80>;
->          stdout-path =3D "serial0:115200n8";
->
->          framebuffer {
 
-For emc scaling to work with the current tegra210-emc driver, a
-memory-region property needs added by the bootloader to
-external-memory-controller@7001b000, pointing to emc-table regions
-that it added to the reserved-memory node.
+> 
+> Here is example output against an in-tree driver, using an up to date Sid system
+> (word wrap not applied so as to make the errors easier to read):
+> 
+> dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+> 
+>   CHKDT   ./Documentation/devicetree/bindings
+> Traceback (most recent call last):
+>   File "/usr/bin/dt-doc-validate", line 8, in <module>
+>     sys.exit(main())
+>              ~~~~^^
+>   File "/usr/lib/python3/dist-packages/dtschema/doc_validate.py", line 66, in main
 
-Aaron
+Feels liks distro package. Never saw this, but again I have never used
+distro and have absolutely never recommended even trying that. There
+were problems with matching jsonschema package, but regardless - if you
+use distro you will use very old schemas, so you will hit another
+problem. It's just pointless to rely on distro here - no benefits for
+you, but only stale/old package, especially that installing via pipx is
+easy.
+
+Best regards,
+Krzysztof
 
