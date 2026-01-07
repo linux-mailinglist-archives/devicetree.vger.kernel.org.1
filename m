@@ -1,287 +1,398 @@
-Return-Path: <devicetree+bounces-252428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B4BDCFEB5D
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 16:54:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D16BCCFEC9B
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 17:10:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DF54630006F8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:54:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C397F315B3B6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:54:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB3638E124;
-	Wed,  7 Jan 2026 15:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1532E21C173;
+	Wed,  7 Jan 2026 15:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jyGN+sHp"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="Ew7TQNjw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011008.outbound.protection.outlook.com [40.107.130.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE1938E10F;
-	Wed,  7 Jan 2026 15:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767800784; cv=none; b=M6ymuwbK7ullSh/QN2MLe17Fi8/2jSUffLSNfs8ngnGt2F8wBZg5dtv2pylV3ptIKZ7kTuDMbCEcEIN2LHhdXfwwWnnhNZlrFMU7v8CtXg7SzF6rAK3VUEME/omNlEdG02HWIWt3lYvP/zGHxo7Uo24CwSDwl9aZOJbfbHAQQ04=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767800784; c=relaxed/simple;
-	bh=8wdUCNJatHyfAYeD8UVlkIkMO60J2rFkEA2xK/Lz7ug=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tWCRNBkz/k7ZgChprKfDewxz+lkwcSGjgOXK3CWT2hcgwl9EyW1LmXsKr1kGZpy/JWSCHGX0auQjyn+JxeuYQ/F1iQnsR9+M7RF/FArSlkbAKA4fOvFdPVGN7+fjJDCHSKPbkOTJbNwaPMQKeJ6r2pxPwPkHHS+QjA1UoVUX43c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jyGN+sHp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91912C4CEF1;
-	Wed,  7 Jan 2026 15:46:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767800782;
-	bh=8wdUCNJatHyfAYeD8UVlkIkMO60J2rFkEA2xK/Lz7ug=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jyGN+sHplI8A2IL1DbjvgggmKgWe8nq+HlLmCcifk29QZPIsV2C2t+f89HhtyxJwH
-	 OyEb03xy5OQ1J0mPUSEhv+KSW5elAcQCDQS6O5RCj2FKslQU0AzsMVrvd7AwDX1DeI
-	 lGBodHRqPRTtI1YV6Cs8oteOfrRQ2bTxZBcY5Mjz8E/okCIa0aR4Nfsf0LzvFB/isv
-	 V1pk43HPJmD3rC4sr6uehXCPOgu1zWSC7586Gcn2G1DaZyTL9U82bdGSzIf6dDec3l
-	 ONoIQWm/1cjV6cMpPIZqQHP9Xt4TewLSa1F2noEacX0RE2wW23jklG4eAREkIY2w3o
-	 f2l2BhXqaLzZw==
-Message-ID: <f6499c9a-4ec8-4c9e-b9b5-e679e0f913a4@kernel.org>
-Date: Wed, 7 Jan 2026 16:46:18 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25214238166;
+	Wed,  7 Jan 2026 15:46:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.8
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767800801; cv=fail; b=u3ggwWvb2NgZuWLXX0j1yEsfQu+zJYRQxGO4H7k6O3lbbHneKc4lXWxJo096+EBYJlUi5BrtZ2X/1O8s93CSF2dQ6WrDhhJ9xm+opMj58L06+bCqZ/R3B3aJGoBV4YZK/InXEe5/HGr/xzILxu9aCIeqzpvV8ydbOl3hKSA8tHQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767800801; c=relaxed/simple;
+	bh=CXWNTJXx7IPaaTQrpjAZCxfSVI9NI6VS//AT3em1ZIU=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=DEGbMZbnAazfBqFJ2hU4gjonDfyXfycZFTlEdvWWmY1Nbd8mpAOaLCaLbrt5zNXM9ZEr3Z3aewEbud7eVPETNvIAgYsTlkbL8gODPzVEDe+VhxjNfZznQFgv6uuF5beyxvJCHAsU0vtKBbZacBz1W/z9HDpP9xETm4pCD0k+5ew=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=Ew7TQNjw; arc=fail smtp.client-ip=40.107.130.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P6rTd3nrnefT7Aby6bnRC3+utU0FU9Km2K5c6lKGOSPILTAnpnk4PiXeXeOBxI4sIw+p+nAiD1tytwhCwMpoF626YB9eLh25LHE4/FnEpy+N9QRI+P8jSDR/NXvJutryQzr1yE25qYyf74dTru6u4rast6fLHrf1USGbnKJfJb1mAup0bsye+WjRQcZmqWizYYeOyfYuYZJ5klq1vsEXwKKhR+oj6245YDedL+yhwaDvIgEzcT7/92vipg2vZvt3cxCdbjBjwp3oHp7JbmZa6G3x57niAl6Qf963g5qL2AxdQ8k5v6DI/wIV9IoSRZuoj2f9FXqdUyauhxKRJhfV2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=puc1BwmcETixSXKMf1wR7AcOxYjn5jqQsjs/9wNLMW4=;
+ b=knG903OS3xPVXP+nubOIXBJlws/zQfADkBY3ZKZnFeI+TctyElVhUjckLJ7wszThbzLOa4hVQXLX31YZiYR3KEeEi9bENCIlpuVePklO7Lloy+GgU24BTmfo77u/4r4CPk3bZM5M3NoCaS9kUgB0VKVlOxPFCUZfZLou4VuIfeXtYAoWPDb0ff019ZMKd/0ILqc1wQnxbBJxLqYqOLqqxC+wSmyNnmK3gTYXOdi7dYtoyEAuFQ7JTIIP/w+nWfSGI3NsgfvDpeSLldYP3VjiYL+1oVT7VUlXHltSvcuSagzBENzXIfj5LUQarf5OvX5frJ24NC99dO/6/BdENcLV1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=puc1BwmcETixSXKMf1wR7AcOxYjn5jqQsjs/9wNLMW4=;
+ b=Ew7TQNjw2kkTBg8jl0gEO24nmIjJbQwivc3stioGcYru4LrQgUBfxlP+BSg46IWzprXRNDR4vA1mOlwk9YQGjfNkoIllmQ/WjVFQkIkn+KQXPFb+xB36d1LZAZ/Z2T/VPkLmOGRlhNuIaG7uYDIzHCry92qhP8mhGBJqSVUW2cU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from GVXPR04MB12038.eurprd04.prod.outlook.com (2603:10a6:150:2be::5)
+ by GVXPR04MB10563.eurprd04.prod.outlook.com (2603:10a6:150:221::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Wed, 7 Jan
+ 2026 15:46:31 +0000
+Received: from GVXPR04MB12038.eurprd04.prod.outlook.com
+ ([fe80::1033:5a9a:dc18:dad]) by GVXPR04MB12038.eurprd04.prod.outlook.com
+ ([fe80::1033:5a9a:dc18:dad%4]) with mapi id 15.20.9499.002; Wed, 7 Jan 2026
+ 15:46:31 +0000
+Message-ID: <afe968a0-f14b-423d-81a7-c1046d2b32bb@cherry.de>
+Date: Wed, 7 Jan 2026 16:46:22 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
+To: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+ Kever Yang <kever.yang@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>,
+ John Clark <inindev@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Alexey Charkov <alchark@gmail.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260107070322.323-1-kernel@airkyi.com>
+ <20260107070322.323-3-kernel@airkyi.com>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <20260107070322.323-3-kernel@airkyi.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR0P281CA0151.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b3::19) To GVXPR04MB12038.eurprd04.prod.outlook.com
+ (2603:10a6:150:2be::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] watchdog: atcwdt200: Add driver for Andes ATCWDT200
-To: CL Wang <cl634@andestech.com>, wim@linux-watchdog.org,
- linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org, tim609@andestech.com
-References: <20260107145058.213334-1-cl634@andestech.com>
- <20260107145058.213334-3-cl634@andestech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260107145058.213334-3-cl634@andestech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXPR04MB12038:EE_|GVXPR04MB10563:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3590b287-fd17-4692-bf77-08de4e03edad
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|366016|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?M1ZNZndnTnMxQXlRZlVrU00yTnFmR0pvVlBSQmhzd2FHMTloN08rT2Mya3ZP?=
+ =?utf-8?B?NUprOEpObHFEQnBYRHF4T2lZQmlKa293MDM0MDhRZ0E0ZXBGMzNSa2hzb1U1?=
+ =?utf-8?B?MHVxREJ4bDJCYVc2MnJxWXZoMmRXMmkzbDV3aEVIeERKVjd4czA5cFo0dFNU?=
+ =?utf-8?B?ZlB0d0o3SkxkOUVrUmVCeWtJWmRvV3Bid2VTdHpUa1Qwem5TNldENWpKWDMr?=
+ =?utf-8?B?S1FmQlpWenNTN1UzTmE4ZXhrOG5FS251emo2eFBqREtabUlRZjFyZ2toTWVz?=
+ =?utf-8?B?SXNvbXFwRVVJeTlzb25JeU9QK0kzNjhNc28raVZyRWs2L0M0VXdhVzRRVnY3?=
+ =?utf-8?B?YW94UHJDeFFwUi9sekN0cTJuVDFRR2NpblBoQS9KNythbXh2UTRHN21sdThl?=
+ =?utf-8?B?T3BZUUc4M1Q4K041MG0xYXcrY0c1a3RCRlZsRG56SExRaUlVSEVMT1BXTWs3?=
+ =?utf-8?B?NnNRWGw0TEJXdWtScjdwa1psZE5NN2xDVUtDYVEzTzh3eFZtUjFLVkxTSko2?=
+ =?utf-8?B?NEp1Z01nYzlLaTBNYzRVbjdZdk13d2t4N0xmdml5eHNlUFFubG1vcTRBOE5n?=
+ =?utf-8?B?K2tXMEpJejJhSzY0SWt1VlRlQWhHaE94UERQVmZOTFUzc245ZkJTbFczWktw?=
+ =?utf-8?B?WW5wTGNLditXZm05R0ZVd3VlNnZCM1E5aGg2c1BTTWVmdG1DQnkvL05oWkpn?=
+ =?utf-8?B?RVVnSWtXVWswME82TlVmV3NqazRVRnU1TUpEQXZ0VUpxZWc1RXJqTVNicjBs?=
+ =?utf-8?B?bW1YVHF5MTYveGMxUkJMeGlUVmZsRzFZeGVJSmR4UDRYWEdzd1ZINUk2NStq?=
+ =?utf-8?B?OUwwWnRHWWttTkFCOEJsUGIrRHV6WkU1eFBENXdaUlgzeldHSjhNb3VVc01X?=
+ =?utf-8?B?ZzZSeWk0NW13bWgyS3NmTXppbTlaZlFwT2s0Wi9TUXQ5YUw1V20zUFdrS3g4?=
+ =?utf-8?B?VUdFVnlzK3B0ZXlXZzliSlgwWDJjVkRlaGl1dmYvQzBFSDZPRCt3dldvT01z?=
+ =?utf-8?B?ZjZmc0JJR0VwVHRDZGMyOXBPQ2tmMWJmZC9DWm1TeEV0RWpuOUdKVFBmN1FQ?=
+ =?utf-8?B?alJwY3RhM1E4VnUxeStMQTI4amM0bmZmalVYc3BtY1R1di82VmRWdW9lRU83?=
+ =?utf-8?B?UWp1K3NUdDRHeHM2N2R4MnYwTHZLTjdxbXE5RkJ6UDg4UFBvdFlEYVRXcEFG?=
+ =?utf-8?B?cVdxbnpQY0RtTUdsOTlxWXdnWk1DeEpIaFp1azYrOUFWWWRmc3ZkWlBlUjZz?=
+ =?utf-8?B?UjBWMWFkbm1uMWFPTW8vSVJPMmZiY1VqNHJyakgxL25nSkhBcXIyWDBUc0hB?=
+ =?utf-8?B?Myt1ZjlFcFNLUUdRRUdMVGlOd1EvbTk0Rm9uUlk0ejhPZGo4OHU1UkdpL2VB?=
+ =?utf-8?B?MThwU2dYK1BNVHpIOU9DczZSTFNyN2o3N3hqblM4bTNyK0dXeUI2ZEtaZHc1?=
+ =?utf-8?B?L3NKQXFDVFFNQXFBOWhyRk0rSVpuWU5SalVKOHBIRXZabmFGMFRJNXhONXMz?=
+ =?utf-8?B?R1o3MllHK3BSWnJSUENZdmc1ZFdpVU9lMXFFenZHekdMejZJWlJiOFpuWitU?=
+ =?utf-8?B?L0w5YitHb054RUlKOFdSS1F5WnNtU28renRXN0NieGJZMk9jTVl0dGZCc0RK?=
+ =?utf-8?B?NXJlZVVCdzFCdzVqa2ZKQnVMS0VWeFNqUVgyeXRwbFpKVkhubi9MY05aOThM?=
+ =?utf-8?B?djRrWFFXb3VtdFBMdWVMUGZZdzdmcHZCM1lKL0hSYWgwNGg1WEhNUWprQWNN?=
+ =?utf-8?B?OGpjTU9VeWN3VlpXQ3B6UnQycCtEb0VWSFhhbmZtT2JKVHBEd2kyS1ZKVEpp?=
+ =?utf-8?B?cEF5Y0VOdm9FZDJxNUwyaWY5aDMvN2tKV05HeWorcFM1YmFrb0dJTjduMUdz?=
+ =?utf-8?B?Y3p2dGIrM1dGSjRKYnBBb0pCU1dRaFhiUGpYVVVsVWdndTFwd2xFUE50YTVh?=
+ =?utf-8?B?WE5uditMKzVyVDdDWkdVQnhDVlhoU2tMWXdkOTU0R2dMV1MzQzJpRUs3OTE4?=
+ =?utf-8?Q?HZGrJGion6yOvttUTIn+R+nUWs9tZM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12038.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Wk4yRFpOZ29pblVOSzdPb2s2TkNTeWtMNnNrRVBYQkxwdXdFd2hsT3VYOWU4?=
+ =?utf-8?B?R0l3amUyY2dFblBQM3pCb3NuUGxRazNrWEhvU2MxQkU3a094Vm0yZ0Z4Z1pE?=
+ =?utf-8?B?aHFQaDJKazJTaTU4QkdIWVIycy9yVVZ1TzBjRytuRHNJMG1LeEh1QnV1RTNC?=
+ =?utf-8?B?MW42THg5QTFHMUcwa2J6eFI0U3FuOXh5bU9IdlMvenVES3Q1YzV0N2FzYThE?=
+ =?utf-8?B?Y3ZpMjhxdnZLOXZQaktwb0Z5STQwZGlwUEhMVmw4eXVMMEltMVN5R2xyVGZY?=
+ =?utf-8?B?eTRMc3JDR2l6U3VOcVF6OXFkeWcwQzYxek1KK3NtdzFUcWtSMU1iZFZodjF2?=
+ =?utf-8?B?ckY3K0NCME02V045MmF3TTNDZGVzNEFHTnova1MyMklBT2VNbml3TnVMdjZ6?=
+ =?utf-8?B?RmxDM0dTV1djY0tKSnJvbUoyTHE4ZURsQmJqcURHR2JpV3lnaTZpY2t5YjVY?=
+ =?utf-8?B?MzltemhhYXl1UmJ4NG8yQ3QyTkovZFNRQTQvbmdjMWJOTGg3SmFrT0tVVUNt?=
+ =?utf-8?B?RjFpaTdHOGU3OWVDcXVMSlAvTW5uWENLVHZBY2xEZ3lxd3VxM21ZQVBFR0lI?=
+ =?utf-8?B?Q3JhTG5RaFQxT082cmxzLzhNTW9veXNSTFpmdzBzS0E5T0UwQTlTamZWN0hG?=
+ =?utf-8?B?V2p2RjgySVh5RStXMkgzblQ5bUxkcG00TzZFYTMvb09id3FRRGsvYUFSbXU1?=
+ =?utf-8?B?UnlqeFE4NHNTb0Zoa0YzeVJJU1c3QTNHZGpNUEh5MDdEeDk4U0RYak0wZUpr?=
+ =?utf-8?B?RTFHeFZYS0hHZnZMWlVTSWc4UFFwRWtIVnlRaFhKMnJIVlZleC9vWkY3TS8r?=
+ =?utf-8?B?WGdtSUFMWmNyeFFhU3Z1c3U4bjdVdUgwbDErMXFGdkVGUE5GRU5CZ1BMdGZR?=
+ =?utf-8?B?TStvaHBSSkxSdWJTR2NGN05wYUh5czAreW9pZThpTDFHNTFhL0EzU0pqOVpK?=
+ =?utf-8?B?eUE5dTlmcEQ3ejY1UnVXdjMvMEJiS04xcGlLNHZ6azJZVWk4czZqQkZXaUht?=
+ =?utf-8?B?TzA2bE43UjZVVVZxOVlXak9UTzBOalVpQ2swaUV0NktUMzd4M2Y3UDdNSEN2?=
+ =?utf-8?B?ZG0vUUxUSks4VDVNM3phZlZ1cDRMMkFkVU9qYlFqTW8yL1p3MjU3Ly8vSnNn?=
+ =?utf-8?B?SGNMeWdDbnhPZEN6YnpMVWU3WkpkT2l4WHFFQmdBdnNpOS8yWk5FYkhsZ2xG?=
+ =?utf-8?B?eFpQVFh6NUp1aHdIY0NOVVhzTnhURnZvSkUzdUNhbjNHVVF2TlltQXZPam5m?=
+ =?utf-8?B?QW1ueVJXVlZZY3lZV1R1MFlaRXlRMGpsZXBjQzRlS2s4YmNwMzVVZkQvT2NC?=
+ =?utf-8?B?WkpoemJFOU5NaHdWNTJTTXhXcTBtWStBUWRpY1ZVTzBib3Z1cW93TWdxUWIz?=
+ =?utf-8?B?UDRFalNTQzdIR2RMWlVkZE04WUdST2xyUkVmSVBXVklNWDBpVlZ5SzZZNExQ?=
+ =?utf-8?B?dll4cC95VCtwQi9DTE5nekV2QTJHUkcvRWpvczZGQWJyZFBJcEhlOGkyVjM5?=
+ =?utf-8?B?ZFpBNTZJZWZnUXk0enRDK1NLclNIbUdBam5TcURjY2gvUmlzK3NRNTU2VlNH?=
+ =?utf-8?B?SnJTdzBSMTI5VXZ6RE45UDJnQyt0a081SW9VWjFDczlTZUhaSlA2emhETWJO?=
+ =?utf-8?B?ei8vN2NZT3g5b3oxaXJMSERzVStkQ1plRnVFRjRrRWFoRXhBeWpuR0hTZlZ4?=
+ =?utf-8?B?aGhYS3BGdjIxWVU3WDdSRGlRdXNZLzN6M0pscUlMSndqejZ0a29CNStqc1lW?=
+ =?utf-8?B?bklVM1lyd1BZRGVmN05NeWRsMW1TbG1wdFFreUgzNllmWnpMS1pRcTFGdXJ1?=
+ =?utf-8?B?VTFXZkQzVkpVSHJrR2tONzdFUEkvU2ZqUGlubTVONk5mL2YyMW9kMzlhSlhr?=
+ =?utf-8?B?TEZ3MUp0RU5RQzlmWXNtRGduOWh3V0hRdk0raGxqL2RyZ2pzVC9oV1JraEQx?=
+ =?utf-8?B?ci9zc1d6cWVRUGM0Y0lrd1c4SEpZTlU5bWFxOVBiWVhORlVZV0FVdDVnQ3JL?=
+ =?utf-8?B?ckY2U2Y3VldiSi9CV29QcFpZUjRmZmhCSy9jMWRJTU1uYWMwYlRUWC9WUTJD?=
+ =?utf-8?B?NHpEZDlWSHMvMlg3dk9rY1lYNWZjUmtZM1ppdVArN2hXMzFwQUFrWnVQcCtX?=
+ =?utf-8?B?aytQZkduQWMwVGJSbFlua1NoS1BscFFEd2hJdzN5QXYxRFQvMkVXdnZpZitP?=
+ =?utf-8?B?WlA5d3JteER4aE9wTHgyVDNQWm15a2NNUlZWUkNlUjIxZUI1d3JpUTIrWEFa?=
+ =?utf-8?B?eE9FdnlpRkRJWTM3YmY1aTI5d0FSNExBWHNVRkF2ampvMEZLQ042dzJhUER0?=
+ =?utf-8?B?bmxZWUlaYU50TWJxNGorQnFBcktyZFJCY0ZPZDNXQjRkWk1VM05ldz09?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3590b287-fd17-4692-bf77-08de4e03edad
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12038.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 15:46:31.3615
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hEkTrW80//Dpyy//gI5ZPeQhZrXxUbOB4OmGxEeEQRLrTfE+yYYrLXP2sj50pSQhmO0M36rBEvaisUEt4nZ3fZdGmPMkELTHU+AlS0EfClQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10563
 
-On 07/01/2026 15:50, CL Wang wrote:
-> +
-> +static int atcwdt_enable_clk(struct atcwdt_drv *drv_data)
-> +{
-> +	struct device *dev = drv_data->wdt_dev.parent;
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	drv_data->clk = devm_clk_get(dev, NULL);
+Hi Chaoyi,
 
-Just use API for getting enabled clock.
+On 1/7/26 8:03 AM, Chaoyi Chen wrote:
+[...]
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb2-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb2-v10.dts
+> new file mode 100644
+> index 000000000000..52788c514ec0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576-evb2-v10.dts
+> @@ -0,0 +1,997 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2025 Rockchip Electronics Co., Ltd.
+> + *
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/soc/rockchip,vop2.h>
+> +#include "rk3576.dtsi"
+> +
+> +/ {
+> +	model = "Rockchip RK3576 EVB2 V10 Board";
+> +	compatible = "rockchip,rk3576-evb2-v10", "rockchip,rk3576";
+> +
+> +	aliases {
+> +		ethernet0 = &gmac0;
+> +		ethernet1 = &gmac1;
+> +	};
+> +
+> +	chosen: chosen {
 
-> +	if (IS_ERR(drv_data->clk))
-> +		return dev_err_probe(dev, PTR_ERR(drv_data->clk),
-> +				     "Failed to get watchdog clock\n");
-> +
-> +	ret = clk_prepare_enable(drv_data->clk);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to enable clock\n");
-> +
-> +	drv_data->clk_freq = clk_get_rate(drv_data->clk);
-> +	if (!drv_data->clk_freq)
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "Failed to get clock rate\n");
-> +
-> +	ret = device_property_read_u32(dev, "andestech,clock-source", &val);
+Why a label here?
 
-No, read your binding. You said it is a list... list of phandles?
+There are also many other instances of nodes being labelled but whose 
+label is never used. I would understand for some if you want to have 
+DTSOs working with this DTB, but here chosen really doesn't make much 
+sense to me?
 
-> +	drv_data->clk_src = (!ret && val != 0) ? CTRL_CLK_SEL_PCLK : 0;
+> +		stdout-path = "serial0:1500000n8";
+> +	};
 > +
-> +	return 0;
-> +}
-> +
-> +static int atcwdt_init_wdt_device(struct device *dev,
-> +				  struct atcwdt_drv *drv_data)
-> +{
-> +	struct watchdog_device *wdd = &drv_data->wdt_dev;
-> +
-> +	wdd->parent = dev;
-> +	wdd->info = &atcwdt_info;
-> +	wdd->ops = &atcwdt_ops;
-> +	wdd->timeout = ATCWDT_TIMEOUT;
-> +	wdd->min_timeout = 1;
-> +
-> +	watchdog_set_nowayout(wdd, nowayout);
-> +	watchdog_set_drvdata(wdd, drv_data);
-> +
-> +	return 0;
-> +}
-> +
-> +static void atcwdt_calc_max_timeout(struct atcwdt_drv *drv_data)
-> +{
-> +	unsigned char rst_idx = atcwdt_get_index(0xFF, TMR_RST);
-> +	unsigned char int_idx = atcwdt_get_index(0xFF,
-> +						 drv_data->int_timer_type);
-> +
-> +	drv_data->wdt_dev.max_timeout =
-> +		((1U << rst_idx) + (1U << int_idx)) / drv_data->clk_freq;
-> +}
-> +
-> +static int atcwdt_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct atcwdt_drv *drv_data;
-> +	int ret;
-> +
-> +	drv_data = devm_kzalloc(dev, sizeof(*drv_data), GFP_KERNEL);
-> +	if (!drv_data)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, drv_data);
-> +	spin_lock_init(&drv_data->lock);
-> +
-> +	ret = atcwdt_init_wdt_device(dev, drv_data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = atcwdt_init_resource(pdev, drv_data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = atcwdt_enable_clk(drv_data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = atcwdt_get_int_timer_type(drv_data);
-> +	if (ret)
-> +		goto disable_clk;
-> +
-> +	atcwdt_calc_max_timeout(drv_data);
-> +
-> +	ret = devm_watchdog_register_device(dev, &drv_data->wdt_dev);
-> +	if (ret)
-> +		goto disable_clk;
-> +
-> +	return 0;
-> +
-> +disable_clk:
-> +	clk_disable_unprepare(drv_data->clk);
-> +
-> +	return ret;
-> +}
-> +
-> +static int atcwdt_suspend(struct device *dev)
-> +{
-> +	struct atcwdt_drv *drv_data = dev_get_drvdata(dev);
-> +
-> +	if (watchdog_active(&drv_data->wdt_dev)) {
-> +		atcwdt_stop(&drv_data->wdt_dev);
-> +		clk_disable_unprepare(drv_data->clk);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int atcwdt_resume(struct device *dev)
-> +{
-> +	struct atcwdt_drv *drv_data = dev_get_drvdata(dev);
-> +	int ret = 0;
-> +
-> +	if (watchdog_active(&drv_data->wdt_dev)) {
-> +		ret = clk_prepare_enable(drv_data->clk);
-> +		if (ret)
-> +			goto clk_prepare_err;
+> +	adc_keys: adc-keys {
 
-Just return.
+Are we expecting to extend this node from another DT? Why the label?
 
-> +
-> +		atcwdt_start(&drv_data->wdt_dev);
-> +		atcwdt_ping(&drv_data->wdt_dev);
-> +	}
-> +
-> +clk_prepare_err:
-> +	return ret;
-> +}
-> +
-> +static const struct of_device_id atcwdt_match[] = {
-> +	{ .compatible = "andestech,qilai-wdt" },
+Won't comment on all other labeled-but-no-phandle-use instances, please 
+check.
 
-Drop, not needed.
+> +	vcc3v3_rtc_s5: regulator-vcc3v3-rtc-s5 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_rtc_s5";
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc_sys>;
 
-> +	{ .compatible = "andestech,ae350-wdt" },
-> +	{ /* sentinel */ },
+If this is for the rtc, shouldn't we declare this dependency in the RTC 
+device node and not have it always-on?
+
+> +	};
+> +
+> +	vcc3v3_sata_pwren: vcc3v3-sata-pwren {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_sata_pwren";
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+
+Why do we have this always-on? Seems like we're missing a dependency on 
+this regulator in the SATA controller?
+
+> +		gpio = <&gpio4 RK_PC7 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&satapm_pwren>;
+> +	};
+> +
+> +	vcc5v0_device: regulator-vcc5v0-device {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0_device";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vcc12v_dcin>;
+> +	};
+> +
+> +	vcc5v0_host: regulator-vcc5v0-host {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0_host";
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		enable-active-high;
+> +		gpio = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+> +		vin-supply = <&vcc5v0_device>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&usb_host_pwren>;
+> +	};
+> +
+
+I assume both of the above are related to USB operating in host or 
+device mode? Maybe there's a way to have something more useful to the 
+user in regulator-name (and possibly the regulator node name) so that 
+they have an idea what this pertains to?
+
+Additionally, why is this always-on? I would assume the USB controller 
+is capable of controlling its regulator(s)?
+
+[...]
+
+> +	vcc_ufs_s0: regulator-vcc-ufs-s0 {
+
+We also have another regulator for UFS that is mentioned in the UFS 
+controller node but not this one, why?
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_ufs_s0";
+> +		regulator-boot-on;
+> +		regulator-always-on;
+
+Why always on?
+
+[...]
+
+> +&mdio0 {
+> +	rgmii_phy0: ethernet-phy@1 {
+> +		compatible = "ethernet-phy-id4f51.e91b";
+
+Is MDIO auto-detection broken such that you need to specify the PHY 
+vendor and product id? Which PHY is that? Why can't you use c22 or c45 
+compatible? A comment would be nice.
+
+> +		reg = <0x1>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&rgmii_phy0_rst>;
+> +		reset-assert-us = <20000>;
+> +		reset-deassert-us = <100000>;
+> +		reset-gpios = <&gpio3 RK_PD3 GPIO_ACTIVE_LOW>;
+> +	};
 > +};
-> +MODULE_DEVICE_TABLE(of, atcwdt_match);
 > +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(atcwdt_pm_ops, atcwdt_suspend, atcwdt_resume);
-> +
-> +static struct platform_driver atcwdt_driver = {
-> +	.probe		= atcwdt_probe,
-> +	.driver		= {
-> +		.name	= DRV_NAME,
-> +		.owner	= THIS_MODULE,
+> +&mdio1 {
+> +	rgmii_phy1: ethernet-phy@1 {
+> +		compatible = "ethernet-phy-id4f51.e91b";
 
-From where did you get this?
+Ditto.
 
-> +		.of_match_table = atcwdt_match,
-> +		.pm = pm_sleep_ptr(&atcwdt_pm_ops),
-> +	},
+[...]
+
+> +&sdhci {
+> +	bus-width = <8>;
+> +	full-pwr-cycle-in-suspend;
+> +	max-frequency = <200000000>;
+
+Already that value in rk3576.dtsi.
+
+> +	mmc-hs400-1_8v;
+> +	mmc-hs400-enhanced-strobe;
+> +	no-sdio;
+> +	no-sd;
+> +	non-removable;
+> +	status = "okay";
 > +};
 > +
-> +module_platform_driver(atcwdt_driver);
-> +
-> +module_param(timeout, uint, 0);
-> +MODULE_PARM_DESC(timeout, "Watchdog timeout in seconds (default="
-> +		 __MODULE_STRING(ATCWDT_TIMEOUT) ")");
-> +
-> +module_param(nowayout, bool, 0);
-> +MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-> +		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("CL Wang <cl634@andestech.com>");
-> +MODULE_DESCRIPTION("Andes ATCWDT200 Watchdog timer driver");
+> +&sdmmc {
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	disable-wp;
+> +	max-frequency = <200000000>;
 
+Already that value in rk3576.dtsi.
 
-Best regards,
-Krzysztof
+> +	no-sdio;
+> +	no-mmc;
+> +	sd-uhs-sdr104;
+> +	vqmmc-supply = <&vccio_sd_s0>;
+> +	status = "okay";
+> +};
+> +
+> +&saradc {
+
+This is not alphabetically sorted, it should be before &sata0.
+
+[...]
+
+> +	bluetooth {
+> +		compatible = "brcm,bcm43438-bt";
+> +		clocks = <&hym8563>;
+> +		clock-names = "lpo";
+> +		device-wakeup-gpios = <&gpio1 RK_PD4 GPIO_ACTIVE_HIGH>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <RK_PB1 IRQ_TYPE_LEVEL_HIGH>;
+> +		pinctrl-0 = <&bt_reg_on &bt_wake_host &host_wake_bt>;
+> +		pinctrl-names = "default";
+> +		shutdown-gpios = <&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>;
+
+Is this GPIO only controlling Bluetooth or also WiFi? I've seen a few 
+combo chips where there's a common GPIO that controls both WiFi and 
+Bluetooth. Making this bluetooth-specific means we need Bluetooth on for 
+WiFi to work, a bit unexpected and should probably be modeled another way.
+
+Cheers,
+Quentin
 
