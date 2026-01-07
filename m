@@ -1,247 +1,239 @@
-Return-Path: <devicetree+bounces-252191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3A58CFC206
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 06:57:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8417ECFC378
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 07:46:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 222CD3002BBB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 05:57:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EE3BE305C42C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 06:44:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F92C25D53C;
-	Wed,  7 Jan 2026 05:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3CB6279334;
+	Wed,  7 Jan 2026 06:44:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ONf2ZUpe"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="ueVYkQ+Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazon11012058.outbound.protection.outlook.com [40.93.195.58])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A74B8248B
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 05:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767765441; cv=none; b=XxT+ggBLqdjhYgk8uCBMM4VR6nm+JSFOGE3UHIoDVU5xwhSAvDDc2jbfp5U3w+2o95MteY6Y8GCU4iU8p35hgidzXAa92ebI1RwU5tEMKt4ZaWtidgOE4HKQTYgP9FkAoJccTvVMPqdWRqIw488BsV5ZRt/kA6VHvh2vHdIK5zk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767765441; c=relaxed/simple;
-	bh=WzuoTu/RQDutR6UUXPFNt/y24uyOreNEZoXFLF1KmnM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JRYt9kcTsC9rTqvMFFqQs3DvjQmBSQNCINxrUeBBUMAhJ5wXD+5G9q9Y3pimpxr7Z72RCRgCivL9W7qxc4qn7XAJP0QUxPXroU42/9/eAD43fkL5EffzaJwmoVptG45fanA3U8HsIwi6GXLf4uqIEHP7lsClvIbOVWUmgmNzAZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ONf2ZUpe; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2a0a95200e8so11740195ad.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 21:57:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767765439; x=1768370239; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FCAOaMP6GeMEUNG9hb1gXak7l2iA5WuTKFQobc/JUxM=;
-        b=ONf2ZUpeUiV8crUlzknvpXFGIrdAgS7io1jcWcgWLCIvravDs/qM2o7kW08iDeTuxF
-         e6x1Hez+ZJkGYVS9qvgzOBPnw8vts5qL4LKhorCnZ0sOHpD8fC0bTsTv8MmafIFVg4lo
-         +28xngcbNwgqt86SHsqKJyv+2Trv+Xk0J6Fm7t786c+n3stJR9UwDKoEwDphMe35NFn9
-         HKN9jDkcZIxpdlGyUNjc6DVjf3Gd+fL2noaTOlXYDBRYzhaSNQ7ChMW/8XjzA1N06FA0
-         zfMz/wySlikaD1O2Pd2pDtpBlw8fA2/ZzevmCgfb+qnvdoPOUYFn8XyqK/vwFzPNawPR
-         8CKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767765439; x=1768370239;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FCAOaMP6GeMEUNG9hb1gXak7l2iA5WuTKFQobc/JUxM=;
-        b=xNajW7HAfb5PJdTYgjBolBVdM2kbNTIQ2tl9r1GygdJMA2ZwR4Q/xSNUqrRI87/eML
-         bHhcJdDet8PVrcGhsHiFmaB2Lb80bh9CY8EaLgYxl0Z0MGRk/UXbbaeZWpR/tSXrm+Oy
-         gom6UYNJonp/F+GKBU5pznixAwcGmh0XezGksAVvtp4VrPLKZLgI3Bse0ZbipNpF2NQc
-         Kq+5NSOeTWyYZn8U30JfcJFcnTtHY2R789jltYO3rpgq1RPBqJkflLdMY7NlCKP/Wy4B
-         JN7bv95n1rfJX9SgtVwGGQGGpKPWFZ9BO7JMJDn77umQJP+o62xjlNnHd689kvIpyPXp
-         g1rg==
-X-Forwarded-Encrypted: i=1; AJvYcCVhY5+sGgQ4IGhx8fAXIGU/11adN746Ejr4tBgk8jeLlVVX/KA3RsNYvu2AKEoeHEC9BtVfoKylY3Y5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvfvphHmASTKp+rgiUJzhSUeZ7UaWW4CKvIRhdp6pD5IbA9lV/
-	zChnjc7zLjPFvJgZxumwPuCJLe6ragi5rBmT0CqJg8bCOZRFDC3hl6VpfIuS7w==
-X-Gm-Gg: AY/fxX7vxiQi5H7r3tbTvjSoDM13UlEbW6LMHkIbkNdIu92Wgw/W3tWzQs9sNmRMtev
-	iJsHFofu4S7Bx6BhUeh3D7LT87EyFLjMIG782a5aABu1k8p1RghxtoPgrR7jpsbdMrg32aE2oQx
-	6HBPfkbfCEVv0R/mJzwgeP06Z4CRt98xO8RmPR5hILYihzx0Kukh1cz/kdqnZ0lBMMp/suLcvhN
-	+itkpJpDxBHwaLyK7GkAwOdQKGhaTfIz6F/fgO5g6f56Gt5Xo/8MdMPSH39OBJZFWC3vBX8vhRh
-	offzzP45KVm8fNYUsnl/Tpsw9+6T2bwKoO90Cc2mjiusU10IMyEwnxf06kvQVphY4ueld2B3mVy
-	/fZ3WN19utXhzWMGdH9LcaRWZ54MtH2whfgYJqkdpQ5pQy3PhHSb+/4WKBwOvlmy1vC8fDdQ2Ti
-	W6qaJZJiRkFa2UnQ+nVw6tWopUkT8Ej+HgUg==
-X-Google-Smtp-Source: AGHT+IGfcdGVJZSkWDo21K1vU9MUUBWQ+IBES3Tajafe9cDt1j1Q79XvwK3ZwVKUzIzLH8b7b08n2g==
-X-Received: by 2002:a17:903:b07:b0:295:b46f:a6c2 with SMTP id d9443c01a7336-2a3ee4aaebamr12781305ad.37.1767765438802;
-        Tue, 06 Jan 2026 21:57:18 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.245.14])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cc7912sm38766625ad.67.2026.01.06.21.57.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jan 2026 21:57:18 -0800 (PST)
-Message-ID: <10848ac4-4b2a-4e1e-b6b8-d99cbf54c28c@gmail.com>
-Date: Wed, 7 Jan 2026 11:27:44 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AFB926E6F3;
+	Wed,  7 Jan 2026 06:44:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.195.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767768285; cv=fail; b=JqwpcGOcevwrBWBvRZ3eeBgP/jATDz99fQx1Iz/cdtW2p3TAWofL4QRV8nzA2syJ02f5yQekIXeJZ6wEYIpp0P0TnD9PULsk29DiQaszqX+yw+fqzAxE3Y/bH4gFlZ5HiF+WttGgC/eVJWbUCj34g16rm0fvcTny43uoMNtGOwY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767768285; c=relaxed/simple;
+	bh=LLlROvYoKfYDKqGIs5V+gfxkYxHDsZQmdIwM2ZcTGgg=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=KGe8gMIc+nZKFeC3vlHUN+jeyRBW6AZx5BiPDA+bVaAxrk8o7bDQ+9wLLTEIwOiF38nu82F+TFhAhMFwMZrDW25hX2GRgTinrN4M0NopBPshjSmXdjP/Udd6hIihhUYv6QpTGI5L0scNpJ7mipHLoILMzJBCV3kcM9dC8aGXYJw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=ueVYkQ+Y; arc=fail smtp.client-ip=40.93.195.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=q/4rrhOam4bZl3GKfrJj6j+RkJluuyVbuupERVsj965iOL14tpIFyuQjjppB5b9KqdBxjDl9L7YYCzXepKNhKk0xG0vnokS31XgYVtDT4PHg1HH1RerC8FP691n9UyrN2PQG4aFPLBQ2V2loOKZjf/aZQFLeps4zclnxtKg/WxTlnQby0/K38CsK3r4jybliR5FvjYZAxjkXfYclwVHmva2OwT+IWHtE1CTRgojmf/j1Re06esyhUa/Yx/mmEAziVdM4c22x355BRNYG7WxazG1zB43RLYrDH7DTbfWZxtdMPgnAEtePUartbBT2IRRFUIvy2T/v4CIOgllsBzanyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kO5XU+Dy0eTKigpKZ87+OcBHKhy2me7OvPbcCg9U7Rc=;
+ b=QzMu0UnkWeaRVtv4K07vr0h+MgUYmbspuzsLwiAYDxu0z3Vlk2U6+4yit+c+aIXvaAPvaOXeiXNKZ9fYSUW+w/SM+Ped3dPkpMN4s2bCJaEgyapSkAXjM5xGsbqIY108QEsO5doeLeMiPyXrOAFUNpo49aCAxA3caxDqTZOrYT8vYDcwhdW2o2vCOl9/WU7UXsOf7Aa+040ARPMmyTQ/ufqzu+d2uI6Yal4A8MC6gWGhD1wQI6f8XyT+GxxLsvjzfp6+hb3HVQfKx4HymAGKXaVEbbaZshxIKH/hV7kQ95fHKWI6TWevQ8wmuelmd6/WHzawTnr1b82jn+Effosjtg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kO5XU+Dy0eTKigpKZ87+OcBHKhy2me7OvPbcCg9U7Rc=;
+ b=ueVYkQ+YujnuAk9EziyqPorUkh0ZtmGNTiogY7p5UH3PfHTaiz+th3tD53hS3hW0nw7Tkhx+S5rL0av5X2VQE5XX5SOJL42cWJW9Qco8w6qh4uRSASy/q/bGRpDkfP2JIj0wa+sXHpnHoDNJol2hJB3uJZHq+yxVTxRTklscm/TQzjyy1Af0PDtwH+PLn2jnZDx5FNKS/7VSRKC5NYc6FhWImgVQwDfZI4OzVxkV5qeXannLyS3dTme5Uc98Vu9cFCSpVz+A+FJaQMRJ6vJ2CxHStowIeU+20gg0sLNb+p43c+b5vJ4ZwHXNZsKHOmoiVoOT8CUdARvoTGP05GMguA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BN5PR12MB9511.namprd12.prod.outlook.com (2603:10b6:408:2a9::14)
+ by SA1PR12MB7410.namprd12.prod.outlook.com (2603:10b6:806:2b4::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
+ 2026 06:44:41 +0000
+Received: from BN5PR12MB9511.namprd12.prod.outlook.com
+ ([fe80::4d8d:5f91:6c3c:dc8c]) by BN5PR12MB9511.namprd12.prod.outlook.com
+ ([fe80::4d8d:5f91:6c3c:dc8c%4]) with mapi id 15.20.9478.004; Wed, 7 Jan 2026
+ 06:44:40 +0000
+Message-ID: <69e11fa5-558f-4fbd-ab3e-e8f3b8197df6@nvidia.com>
+Date: Wed, 7 Jan 2026 12:14:31 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V7 2/4] iommu/arm-smmu-v3: Add device-tree support for
+ CMDQV driver
+To: Nicolin Chen <nicolinc@nvidia.com>, Jon Hunter <jonathanh@nvidia.com>
+Cc: will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
+ vdumpa@nvidia.com, jgg@ziepe.ca, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20251215064819.3345361-1-amhetre@nvidia.com>
+ <20251215064819.3345361-3-amhetre@nvidia.com>
+ <23df682e-6d08-4827-994e-1bbd89e5c903@nvidia.com>
+ <5e9a0ce1-a0ba-4a31-be95-99f349ec6028@nvidia.com>
+ <e7d3e95f-a885-4b13-ab4d-bc82793c5396@nvidia.com>
+ <aUROk0jRQoLmBRo3@Asurada-Nvidia>
+ <b2df8ce6-d336-457a-8169-f2eccec3c12e@nvidia.com>
+ <aUWeUapsFo3KZP7i@Asurada-Nvidia>
+Content-Language: en-US
+From: Ashish Mhetre <amhetre@nvidia.com>
+In-Reply-To: <aUWeUapsFo3KZP7i@Asurada-Nvidia>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN4P287CA0130.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:2b1::10) To BN5PR12MB9511.namprd12.prod.outlook.com
+ (2603:10b6:408:2a9::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 3/5] backlight: gpio: add support for multiple GPIOs
- for backlight control
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251230130227.3503590-1-tessolveupstream@gmail.com>
- <20251230130227.3503590-4-tessolveupstream@gmail.com>
- <pbbqct3a7ft466aerdkm6k5kmwstfgpbegrakfvdxzj2tdpdyu@pws3zzu4sfiq>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <pbbqct3a7ft466aerdkm6k5kmwstfgpbegrakfvdxzj2tdpdyu@pws3zzu4sfiq>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN5PR12MB9511:EE_|SA1PR12MB7410:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ca5531e-e96d-4579-61dd-08de4db83bc3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ckVTQnMzVHR0Q3ppWHVQSmRlRWJiTGh3YlJNTDQ2RC9iM1BBUDhrZTNpcTBn?=
+ =?utf-8?B?WVgzZjhjWG5tNkp4TExORTBIc2RsaWtZdUNPVXVSa1RObTNLNHd4aGlCVjdS?=
+ =?utf-8?B?eDBOa3E4V3paT05oNW5qQUw0VFNtMjV6c1BIOHVJT3hQaGRYam1LbHRYbzFo?=
+ =?utf-8?B?K2NnVEtvYWtLRmhaZjVzVnB1R0dMSkg4MGQ0QURWZ3VWcExiYW9DNUJxMEp2?=
+ =?utf-8?B?TjJjWDJmelVsWWlkLy93YUdLNnVrbnp3L05VSEZXQzlwbVBTY3BXd3UrRlky?=
+ =?utf-8?B?b25CaWtYTzRFTDFXaCt5M0RuS1A3eGlFaEZwUkwwOVJuRUhEd2gwd3RqaFZo?=
+ =?utf-8?B?eERUMTZzb2hVWTRLQXZHdVVLR0gvOCtLT2FyYzM1NU4rNzh0V3JVVnM0Tlpi?=
+ =?utf-8?B?Zlo2ZnhOMjRsWjNvNjNaSlpWSEdWKzUydFBrMFJNMkhiMW5JRldCeHo2eDhk?=
+ =?utf-8?B?dnhpYVo0VVlKYmFSditqV0dFL2F2c1JKK0tCUExTNCs3NWRtZDVRVDhocnNR?=
+ =?utf-8?B?d1RmdEp2b1VuaGNQbEQyM0FmT0QwK2FQeUxYRHRiUDBSOGE0TWxjbXc5WE9Z?=
+ =?utf-8?B?elRtcjlrcDhvK0lQbGdMakd5S1dqRGMvbThLbTQ2UG12eXcvbmk3bDlIOHZK?=
+ =?utf-8?B?TFVzd1dKeTRjYldJcXdlMGFnNUxaYkNCVTVwWnJVYjU0dG05NkVRVnRlUzJz?=
+ =?utf-8?B?b2F6bjJPaTljQUxDMTdNNENuWUI1ajdDMGZIUjBma25UeGgrRGRJa2FSU1VE?=
+ =?utf-8?B?ak81dFBROXYvQ3JaaGhsUEwxaXo3WnJPOXNiOHZKN005dnRDeG95ZTY4MElu?=
+ =?utf-8?B?VWZrT3FSZDh4c0NZTmVhL1MyVUNIL1FUQ05ld2x1S21McG85QzlLZk1WWElU?=
+ =?utf-8?B?eXExN3VKTWNPdnlpZUZSVUMyM2ZRQTZOQ2h4RWlQTCtRUTV1Nk5ZSU1SSjlh?=
+ =?utf-8?B?WXlRRTdZNERpaTlvRGttSmltaTVJcmRxRXZuZHArY21jNHB3bGFFVEp3L2xC?=
+ =?utf-8?B?ejRrZXBSVGVZSmU3VUJDOThsdDQxRFFkV2VLNHlSK1ZxQm13VG5FTGlSb1l6?=
+ =?utf-8?B?WWdyNCsza0tlazBDSWpHMmFqQXh6em5HVDNYZWsrZElXa3hpV0wrN0tITFI3?=
+ =?utf-8?B?OG9ueXRmb1Bhd0R1WDFKalh1OElXR1pTK2tFTjBuRU5LYVh2QUVLYzhqMnpP?=
+ =?utf-8?B?Y0V0aGJXUGxvQi9tSFk4MG45NkVMZGp2bWhHZHJpT2xoY2t5R0Y5UEdDb2Fz?=
+ =?utf-8?B?Ulp5bWNSM3Nka2xGYzlqYTRqTHUrNHRsMVE0NjVMOS96K1lUKzVlTGc3Vkh4?=
+ =?utf-8?B?RzJkWWlXcVh4K1FWMy9ZenUvZk5FZHZwTWlUbWJ5SE5Za3duUGt2bGdSdTlP?=
+ =?utf-8?B?WE5QY09FZ2IyU2JlMFF6SVZYYWpXdUdaZkFZK0pVcTVvZ1d0bXZ5QzUreTV5?=
+ =?utf-8?B?WlR1UGd4TXpveXQyVGRVc0tHMVJaYUVNM3BCd3VJOEllUG1SU1ZBNkFLQmtE?=
+ =?utf-8?B?ZWpJZ1JVRm10QVcwSWJBRms4TXA3ZERQTytlSHZKbElGUEtGVFNRbmJYaG1m?=
+ =?utf-8?B?TkNObk43ZytTRXFYeWFQRFJSbEZPSmEvNEVPWTltRFZXQXdkQWFjMk1lL05R?=
+ =?utf-8?B?WktTZ2hkUmY3M2lVOXNLZWFxM052WDNPeFZ3NlV5QW12WWlmelhiV0M2OWVp?=
+ =?utf-8?B?NFFvZy9qYnFUVmpzZGlqZVE1R2tUTU93cXA0MllnWnh4Y1VNYkQxd2dRT0w0?=
+ =?utf-8?B?SUhvZ3FRbyt4SXJwTmhrbmQ1b2QxRzN4RUUxSW1hSnEwWUJ3MFo4RnFBd1hU?=
+ =?utf-8?B?SWo3UFhPR2NUc1dnUWJFSE1SZzFqYnR0Q0U2dGxjMkRGRy9QNE5WdEhyZVpF?=
+ =?utf-8?B?c1BHTndwYTNRSzE5TW44UDEydHI0cGF6amJ2Y2Z3WVhXUVNxcERueUx3MXFz?=
+ =?utf-8?Q?s2488NCyufozalbj0tMt6cqnm3TQPS7R?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN5PR12MB9511.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?aGRUT0I3MTJCTGZ5RTVhbkpsVE1YZTdmU2tUTm9wVnhzK1RlNFg5OVltUDNn?=
+ =?utf-8?B?a1NoQ1EraTEzcE82aXpReUt2WFlhMEdneDE0bG1zQktHSDU3ZldyMzRKQTN0?=
+ =?utf-8?B?QVhJcStoUG81a0FsUHhJN3NlY3lqRGVkTnpJSzVQTlJYZU10aWNvc0l0Qi84?=
+ =?utf-8?B?cVRGbUsxdGR3NVdEY0ZQODA4d3JKRlROVk1YZkV5WGhyWmhLajJicXV6SUhC?=
+ =?utf-8?B?anRWN1FnK1I1WTd5R1BsWkZWbnAzZXlvN3ROUUZlRVhnbHdPRUE0T0JLZ1NN?=
+ =?utf-8?B?M3ZIdDlBTk1udmxCRWZ4STFxVkZoRWo0RVpwY25tN0JDMHNkQWpIdGNsSUVl?=
+ =?utf-8?B?YXljVTJ6aXF6MGRiTzFaYVlCbWh2U2xIVWVkT3JycE9iOE9jYm94eDgyTHNX?=
+ =?utf-8?B?NXlXa1B6R3htL2tzQVArb3MrQXlkWUNUQldiY0pDaVZmVW9VVFpUd3U4cCtm?=
+ =?utf-8?B?dGJBQlBYMlJnNHVJcXBaTC9wOU53c1NQdGpYQ043YkdWdTN3SHJyb3ZEQzkw?=
+ =?utf-8?B?TnZCcTJTeFFxOG9kTzJTSHU3ZW13ay9SU1dtUDNhUjN6T2JxM0M3OG90OGJs?=
+ =?utf-8?B?VFRadkg5eC80ejRaWmEwbmtHV0M1SE11YVFCT015RDZEV3RORVB5MUxCOThl?=
+ =?utf-8?B?YzVJbXk2SHdPM0hhK1BRRktnM3pJQXhHZ3VJbjFZVFVXM1g4dzcrallCNUlT?=
+ =?utf-8?B?RVk2ZitvTkJ1U2NFdHZSRXN2Y1FFKy9YeTR5U0doRkdXa1hhVnNNa1hVajgr?=
+ =?utf-8?B?WmZWYmxlM094SzIzZjUrUGE2b2h4KzFYU1g5QjB4QlVKaHpCY0pMSVd4VitH?=
+ =?utf-8?B?QWozK2xXdE0vY2ZpaEpwUWZWRjllcXV4MnY1VzhqODVhamNNR1RGTjUrZjEw?=
+ =?utf-8?B?dDJnMTNSaTlvWEFiZFB3a3FIUmRocTVkWTNYU1BpVnVqZm1aUHY2alUzT01u?=
+ =?utf-8?B?aGxwSXBEUDc3VUtPNUp6SS96cG9xOXVDOEdQRUxtZ2ovYUZNcGtJOU5MemVT?=
+ =?utf-8?B?UlVibEtmdDJRbGJlclRabnR5RTQvQ1c2NGhWcjEvQngzdmE5R2JKakZ3eW85?=
+ =?utf-8?B?REE1aUp6dm93TmRPT1JjNEJQdXo5Y2lUbVVDWjlHdEZVK3hkWUtGdjNBUmxS?=
+ =?utf-8?B?aW5qUnU0QldEYnFrSGE1blN0Y3lqSTZ0bDZaZS83NzBTTDg5QW1UZUpMRlUx?=
+ =?utf-8?B?cThuMExCdkZUQ0RzSklaQjRwa2ZVUlBKcEtJajVRWFlnM1laK2lDV0tuNUNN?=
+ =?utf-8?B?WFdleGc2Uy9ESlBIbzlhOHFNUU1QUWZ5RjRNaDlBZXg4dGlhMDdqdldtWmVP?=
+ =?utf-8?B?eEU0WUxIdEsrZUlONXdkUDNEWWRMUFcvc1pqaXN3NVdTSkhFeWJGM0Fpc21B?=
+ =?utf-8?B?WEpqYWpJM1RwbVpJQUs0U2xiakxGcnQyNklsT2tQYkRPSVJQQTlhS0xvYkNI?=
+ =?utf-8?B?eTEyb242a1J6MGx5VkNLT1k2cGJmOUlwMFlWWEtsRHJlRHFGUHhHbzRiVG96?=
+ =?utf-8?B?cnBFVWJHKzVQdW9Ec1pNQ3VDMURMVDkvU01VdjZ5VkVTeWZDTkluVTViRzhi?=
+ =?utf-8?B?VGJvZEx2UVFsRk8xd2JhKzRPV0dPbklQc3R2Qm42MExTb2hoYlg4QTNndTRJ?=
+ =?utf-8?B?emNocmZXTCtSekM4Z0twS2Q0cS9NKzNTR2xNWGtTRHd6SER5eTBPWG5UanpK?=
+ =?utf-8?B?bFI2eUxpVHg3MnEzVzVmMXRKaWNZbE9xMy9QMGxBRXZvM21tcEZoakNJYSs5?=
+ =?utf-8?B?bzduRndxTjREMmJ1Rk01Qi9hbFU1MlUzaXlSRXp5UTh2cW1zb2JNR0dSYUFq?=
+ =?utf-8?B?aFR4VDVjdlNjSllEZlFaYmpRTVdJQlVESEcrcmIxRHNHWVd4R1hOZUU4Uklx?=
+ =?utf-8?B?RStJVUdTOUEwLzFsbXh3QWhtbUU0Z1ZhaDh4Q2drR3JvRFpvV3FXMlF3MDlL?=
+ =?utf-8?B?Y2NoZGQ1b00zSUE5KytWR3FRbmxVQ3lMUXJ3M004NTRValZCWVYzWGU4UDlr?=
+ =?utf-8?B?UVJSTEVOZ0RnUytXWCtuZDAwZUNrbVYveFFkeXJlbVhTdGxGQ1RwN2p5THlZ?=
+ =?utf-8?B?eTV6T3Z5RW0vWVlpV2N5Vkp2T1BzZFkxKzFVRWFZYUF1VUNiUlk4aTdqWFdB?=
+ =?utf-8?B?cE1ldE9PT1M5cXhqcUQrMEZJRG9SL1pwOE8wemxNZGtmT2VyVXBOck4vRDNK?=
+ =?utf-8?B?Qnhua0pjYjdVMEZienhtSDdQaEtaYkR0TGxjb3hua2Q1UFJnK3hCaWYwZjFo?=
+ =?utf-8?B?bmpzWVp5S1U3Zk55WHRFeGhNNitaNy9pRUtscnlFVVg5VmorUWVTbXhLUDNT?=
+ =?utf-8?B?V3dIZTBDdURqNkpjRXpYYndzWHFTSUhFRXBheTV6Qk40WEhmVkhyZz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ca5531e-e96d-4579-61dd-08de4db83bc3
+X-MS-Exchange-CrossTenant-AuthSource: BN5PR12MB9511.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 06:44:40.6186
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0VnuISZhZRhaT6AQ763zChIAz/hkFc8pQcxWdPb7CVWF/kHiSRU1MoXotg26FaLlekAwlq90ni34EwX8ezZi2w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7410
 
 
 
-On 05-01-2026 21:08, Bjorn Andersson wrote:
-> On Tue, Dec 30, 2025 at 06:32:25PM +0530, Sudarshan Shetty wrote:
->> Extend the gpio-backlight driver to handle multiple GPIOs instead of a
->> single one. This allows panels that require driving several enable pins
->> to be controlled by the backlight framework.
-> 
-> Can you please elaborate on the problem described here. Preferrably in
-> the form described in
-> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes,
-> i.e. start with your problem description, then a description of your
-> solution.
-> 
-> What does it mean for a backlight device to have multiple enable GPIOs?
-> 
-> 
-> PS. The associated binding patch needs to be merged before the
-> DeviceTree (dts) changes can be merged, but it would be more efficient
-> to upstream them separately - as each set of reviewers could focus on
-> their part and you could update the patches based on the feedback from
-> each part.
+On 12/20/2025 12:19 AM, Nicolin Chen wrote:
+> On Fri, Dec 19, 2025 at 10:48:22AM +0000, Jon Hunter wrote:
+>> On 18/12/2025 18:57, Nicolin Chen wrote:
+>>> On Thu, Dec 18, 2025 at 08:48:32AM +0000, Jon Hunter wrote:
+>>>> On 18/12/2025 06:32, Ashish Mhetre wrote:
+>>>>> On 12/18/2025 2:13 AM, Jon Hunter wrote:
+>>>>>>> +    smmu->impl_dev = &pdev->dev;
+>>>>>>> +    smmu->options |= ARM_SMMU_OPT_TEGRA241_CMDQV;
+>>>>>>> +    dev_info(smmu->dev, "found companion CMDQV device: %s\n",
+>>>>>>> +         dev_name(smmu->impl_dev));
+>>>>>> This seems a bit noisy. dev_dbg?
+>>>>>>
+>>>>> This info print is similar to what is there in ACPI path as well.
+>>>>> It's only a single print per SMMU at boot time. Should I still change
+>>>>> it to dev_dbg?
+>>>> Yes, I would.
+>>> It's really not that bad IMHO, I am not against that though..
+>>>
+>>> If we have to change that, we'd need another patch changing the
+>>> one in the ACPI path as well to keep things aligned.
+>> Regardless of what is already present, does not mean we need add more prints
+>> to just say everything is OK.
+> This is how it looks like for each instance probe():
 >
+> [    2.709269] arm-smmu-v3 arm-smmu-v3.10.auto: found companion CMDQV device: NVDA200C:00
+> [    2.709273] arm-smmu-v3 arm-smmu-v3.10.auto: option mask 0x10
+> [    2.709618] arm-smmu-v3 arm-smmu-v3.10.auto: ias 48-bit, oas 48-bit (features 0x001e1fbf)
+> [    2.716236] arm-smmu-v3 arm-smmu-v3.10.auto: allocated 524288 entries for cmdq
+> [    2.719432] arm-smmu-v3 arm-smmu-v3.10.auto: allocated 524288 entries for evtq
+> [    2.725898] arm-smmu-v3 arm-smmu-v3.10.auto: allocated 524288 entries for priq
+> [    2.736051] arm-smmu-v3 arm-smmu-v3.10.auto: allocated 524288 entries for vcmdq0
+> [    2.742553] arm-smmu-v3 arm-smmu-v3.10.auto: allocated 524288 entries for vcmdq1
+> [    2.742586] arm-smmu-v3 arm-smmu-v3.10.auto: msi_domain absent - falling back to wired irqs
+> [    2.742759] arm-smmu-v3 arm-smmu-v3.10.auto: no priq irq - PRI will be broken
+>
+> On a second thought: The CMDQV device has a very unclear naming in
+> ACPI path: "NVDA200C:00". So, printing it gives us a hint for any
+> later warning/error tagged with "NVDA200C:00".
+>
+> Now, for DT, it might be okay to not print it. But making the two
+> paths asymmetric feels odd. So, is it really worth nitpicking here
+> given that each SMMU already prints quite a few lines on probe()?
+>
+> Nicolin
 
-Initially, I had included the gpio-backlight driver and binding changes 
-together in the v10 patch series. Later I separated these 
-gpio-backlight changes and submitted them as individual patches to the respective maintainers.Here is the link to the updated patch series:
-https://lore.kernel.org/all/20260105085120.230862-1-tessolveupstream@gmail.com/T/#t
- 
-> Regards,
-> Bjorn
-> 
->>
->> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
->> ---
->>  drivers/video/backlight/gpio_backlight.c | 61 +++++++++++++++++-------
->>  1 file changed, 45 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
->> index 728a546904b0..037e1c111e48 100644
->> --- a/drivers/video/backlight/gpio_backlight.c
->> +++ b/drivers/video/backlight/gpio_backlight.c
->> @@ -17,14 +17,18 @@
->>  
->>  struct gpio_backlight {
->>  	struct device *dev;
->> -	struct gpio_desc *gpiod;
->> +	struct gpio_desc **gpiods;
->> +	unsigned int num_gpios;
->>  };
->>  
->>  static int gpio_backlight_update_status(struct backlight_device *bl)
->>  {
->>  	struct gpio_backlight *gbl = bl_get_data(bl);
->> +	unsigned int i;
->> +	int br = backlight_get_brightness(bl);
->>  
->> -	gpiod_set_value_cansleep(gbl->gpiod, backlight_get_brightness(bl));
->> +	for (i = 0; i < gbl->num_gpios; i++)
->> +		gpiod_set_value_cansleep(gbl->gpiods[i], br);
->>  
->>  	return 0;
->>  }
->> @@ -52,6 +56,7 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->>  	struct backlight_device *bl;
->>  	struct gpio_backlight *gbl;
->>  	int ret, init_brightness, def_value;
->> +	unsigned int i;
->>  
->>  	gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
->>  	if (gbl == NULL)
->> @@ -62,10 +67,22 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->>  
->>  	def_value = device_property_read_bool(dev, "default-on");
->>  
->> -	gbl->gpiod = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
->> -	if (IS_ERR(gbl->gpiod))
->> -		return dev_err_probe(dev, PTR_ERR(gbl->gpiod),
->> -				     "The gpios parameter is missing or invalid\n");
->> +	gbl->num_gpios = gpiod_count(dev, NULL);
->> +	if (gbl->num_gpios == 0)
->> +		return dev_err_probe(dev, -EINVAL,
->> +			"The gpios parameter is missing or invalid\n");
->> +	gbl->gpiods = devm_kcalloc(dev, gbl->num_gpios, sizeof(*gbl->gpiods),
->> +				   GFP_KERNEL);
->> +	if (!gbl->gpiods)
->> +		return -ENOMEM;
->> +
->> +	for (i = 0; i < gbl->num_gpios; i++) {
->> +		gbl->gpiods[i] =
->> +			devm_gpiod_get_index(dev, NULL, i, GPIOD_ASIS);
->> +		if (IS_ERR(gbl->gpiods[i]))
->> +			return dev_err_probe(dev, PTR_ERR(gbl->gpiods[i]),
->> +					"Failed to get GPIO at index %u\n", i);
->> +	}
->>  
->>  	memset(&props, 0, sizeof(props));
->>  	props.type = BACKLIGHT_RAW;
->> @@ -78,22 +95,34 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->>  	}
->>  
->>  	/* Set the initial power state */
->> -	if (!of_node || !of_node->phandle)
->> +	if (!of_node || !of_node->phandle) {
->>  		/* Not booted with device tree or no phandle link to the node */
->>  		bl->props.power = def_value ? BACKLIGHT_POWER_ON
->> -					    : BACKLIGHT_POWER_OFF;
->> -	else if (gpiod_get_value_cansleep(gbl->gpiod) == 0)
->> -		bl->props.power = BACKLIGHT_POWER_OFF;
->> -	else
->> -		bl->props.power = BACKLIGHT_POWER_ON;
->> +						    : BACKLIGHT_POWER_OFF;
->> +	} else {
->> +		bool all_high = true;
->> +
->> +		for (i = 0; i < gbl->num_gpios; i++) {
->> +			if (gpiod_get_value_cansleep(gbl->gpiods[i]) != 0) {
->> +				all_high = false;
->> +				break;
->> +			}
->> +		}
->> +
->> +		bl->props.power =
->> +			all_high ? BACKLIGHT_POWER_ON :  BACKLIGHT_POWER_OFF;
->> +	}
->>  
->>  	bl->props.brightness = 1;
->>  
->>  	init_brightness = backlight_get_brightness(bl);
->> -	ret = gpiod_direction_output(gbl->gpiod, init_brightness);
->> -	if (ret) {
->> -		dev_err(dev, "failed to set initial brightness\n");
->> -		return ret;
->> +
->> +	for (i = 0; i < gbl->num_gpios; i++) {
->> +		ret = gpiod_direction_output(gbl->gpiods[i], init_brightness);
->> +		if (ret)
->> +			return dev_err_probe(dev, ret,
->> +					"failed to set gpio %u direction\n",
->> +					i);
->>  	}
->>  
->>  	platform_set_drvdata(pdev, bl);
->> -- 
->> 2.34.1
->>
+Hi Jon, Nic,
 
+Shall I keep this print or send a new version removing it?
+
+Thanks,
+Ashish Mhetre
 
