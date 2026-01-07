@@ -1,152 +1,106 @@
-Return-Path: <devicetree+bounces-252219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0DD8CFC87C
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 09:12:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0157BCFC8AC
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 09:14:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5D9A830DEDD4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 08:06:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 327123081E44
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 08:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9B429ACFD;
-	Wed,  7 Jan 2026 08:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CAC027FD59;
+	Wed,  7 Jan 2026 08:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="JFD6WeeV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VRKfMx6v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B61F27FD76
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 08:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72FEC275B15;
+	Wed,  7 Jan 2026 08:09:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767773197; cv=none; b=pFcbNwsYf1RRB1vXrF09zQqzm0HRYKHz0YdsxuLv2vW9LzADENLEBhBMHT7USdZb1dd281RMdU0qKMS8kXrjLLtiMMqfpXsayqtfRN0HUmRLBmXxuCLxJPnFd8RyJQdNFD5FUHxWv56Y3ews6nq3PX8Lz6BlC2PM67LFLsjAmSo=
+	t=1767773395; cv=none; b=bSXfsP5APhXWEqtAV97ItW6zA99Huf9IJIWAJicS7Y0ZInFeI7Ph7enrouakADwsL4FSxcOZyxnuoE8fJqHlPjBtmzrFFqmxCebiTyps1tMfjRdsv86SCW4g4Rn9dAlviiN1LdHMcZdN3M7AJWSHL5ugkiXnauXs8RXEn0yqSzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767773197; c=relaxed/simple;
-	bh=0ExZVYfM/y4rcjDL5laO5mxUp+YApKspdR42MpTi6T0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ubvgifPIYWKNHTQiXvLBQjvPsEUmH313MI/D5c3IuZMGlk7Xmjc7+fnuJmHGH3oH2MxEvq7tcSENi7AZxmu3PBiTIlcT2p1QAdTzDWHXy1LWdRmaEi9OH/dHXJp4Ar40YJzgnEWUw9AXcc5xR9QsIsO/2g898MhM/H1Xc0Dw75E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=JFD6WeeV; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-64d4d8b3ad7so2753106a12.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 00:06:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1767773193; x=1768377993; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/i8ATthAaWuqmGUIVSIUdUu3CIf2MrTEFPyEW8I+YrY=;
-        b=JFD6WeeVsFMBOGz7dNWZffHEu9YeEdCbhr8+r+9/XMya77+zQxQJPftHbue7TRHe3T
-         2A2UEkbV0aCs76MspJywpM2hmQKRFs4ECoCB/YGTMZ8gd/5GR5+h9vU+blUgnz9ZO+qe
-         /W9zqCTKSnbS4VhMCdePv3kx5tz/den15GnzKfZaCw7dchw8q3GcBAPXGc2BZmyaQ69g
-         cvZuQzR6XNI4ITKLNI9aXjoGj7yFuj1qfb5MH2TYt14z7c5RYTpM0+m7yzwoPvPa+BBa
-         lHuLTYjowkCckedrFJEobiUp9lD9Z7FvMvZlU5KmrH+MxXCdKd5O+JygiwU14kXyIG6M
-         WH2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767773193; x=1768377993;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/i8ATthAaWuqmGUIVSIUdUu3CIf2MrTEFPyEW8I+YrY=;
-        b=OJAZNyPef8DOPvlQK0XjRhJwSoXqVLE1saoi5Q2D+exg3gS5phaMunvQX36ax2UuZq
-         vNzaFO5o8+bjf8jX+NakVWcSP4rJel5UdrFXY3naTsGtqM9XISUHVrJ26hsYYrvEeuR5
-         A3pHFz7PzU4onFeznEDQautIg1KTCDrzKmbmwi8MRYo87EqV37/Z9C9zVpJr/dfDgqBl
-         rRlruYpmty9hNHgTINfGoeyWlGjkQQ/yZPKrZlxmb0NZTnv+ljNfsANeiT6aHAYY8cQ4
-         KZETo6EnMEEeI6zkFekIDrked2CdPg1fxaaNFz4UcnU1TIsc9Z8ezry4gMOqGcSBKL19
-         Nyjw==
-X-Forwarded-Encrypted: i=1; AJvYcCXcJCj/FmmKGsMQbSBBanz96FSoT2LTrbNRVvk3pqd1aPRMGMoTaW6m+66DiTEaNRgzd4K/YLaZosZ+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUlIAipy5JhEN1pzIVSrrjBBjGNahgll1QNuDoMVZPtjioeMAt
-	vJsQejGO7HoIJguU78vAZnTT5UHP9sLwSz8RmxFAdsjeryqWWYPJ6qn2Fi/TXBzeoJk=
-X-Gm-Gg: AY/fxX7ec0oUt6P2hPB8ZrbmhOomXyF3mHkXCn45FMHMQenSWyN+4bkMuKbIQl6+x8b
-	eIHK2I1mtEHGXHYZTmor12sr7Ss1/5EZtpuzebLZO8GBNlISMDLM5Ksy6zPiS1Un42Yp0i/W3BP
-	/C1BvBylEtbvtPur5uoKisDYPvJqa+lXfbpI5+i55IHN/j33J2EvGv/T2JnlFHaz8jV1jh86as6
-	losJM472/zLaS5hw4HQVflmBjxxpVIMXS/sFAxhbNhvarOZ5dodQMsqjyRrfPt1NQPaqkKuERDn
-	cfPzi8ZUsItZXkfp5Uo6cI+KS+LMt8+ttQ9Ft+nGpUvxHcwq+5hxr9nvArL+U9mHDwVAqXvnVnA
-	bsrnFG6Taf+8Lseoii0o1DstDSMjFXtpr2V+LgEppZkEw/Ztoxv7XJpfZx+KASRA1f0qO4nSPnu
-	339123tbhbw8xfHOnBLf//4polDA==
-X-Google-Smtp-Source: AGHT+IHJ+kf1Owv26cSF28vuEM1MMU6N6BChtOdWOK1Y0tMkxyy7by9CzZtm/qgGX2Td8KERFqr5yw==
-X-Received: by 2002:a05:6402:2554:b0:64b:946a:4a3a with SMTP id 4fb4d7f45d1cf-65097e75079mr1338292a12.31.1767773193114;
-        Wed, 07 Jan 2026 00:06:33 -0800 (PST)
-Received: from [192.168.224.78] ([213.208.157.247])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507bf6d5absm3941299a12.33.2026.01.07.00.06.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 00:06:32 -0800 (PST)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Wed, 07 Jan 2026 09:05:56 +0100
-Subject: [PATCH 6/6] arm64: dts: qcom: milos-fairphone-fp6: Enable UFS
+	s=arc-20240116; t=1767773395; c=relaxed/simple;
+	bh=ajQh5xwyIUiPk6njRYV0Vzjv0iajQSfQ2ZGc3atANlE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OUFGGA9OFvPLO/tBVQV+qxxcp3k2ONqXkzE6MRU2d7xhITybeCLptwTqk5RaoehAa0PUpjRJipyTl9/MpAYO6NqlAsXjDymikB3emBZz/mTjv6bf+D7HpXZoisuH22YvOHpopFiNYBtyfZd8kVfaIjy+anlUKznCo/lUZ9jri1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VRKfMx6v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 832A8C19421;
+	Wed,  7 Jan 2026 08:09:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767773395;
+	bh=ajQh5xwyIUiPk6njRYV0Vzjv0iajQSfQ2ZGc3atANlE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VRKfMx6vjOo9h9yhZpDZqZdJSD70uRbJ3GK7RNu+8rRz1c6riOdQ1tix5PE6CImPj
+	 7oLxRouZI+GcNIsdW5o1SXm/WlHKFOaISXFKYwGLlcj7xgf0tDR5Ye5vh7ZgAlu2Zl
+	 TRP7bSm52duRKcVQHOy9g9bedtmCWrySS09hBjC3Ed3Yue0ERduiWTtfyTmIS/hJ2o
+	 KuG9FTddpis3C5DfcRWRBmV+jvyHG9tx1VJI9m1DX/HYuSnMHnWMJxluomPcSAxMFn
+	 6ghN6ZUGQbRIA6GMiiYijFt37KmXzJtKD4KhhD5ktbezENAT5hMP56zDQ8BPpOyRog
+	 QuJffmEZQfi7g==
+Date: Wed, 7 Jan 2026 09:09:52 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
+	Jessica Zhang <jesszhan0024@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Michael Walle <mwalle@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 2/3] dt-bindings: ili9806e: add Rocktech
+ RK050HR345-CT106A display
+Message-ID: <20260107-remarkable-wildebeest-of-maturity-0aac66@quoll>
+References: <20260106154446.2735701-1-dario.binacchi@amarulasolutions.com>
+ <20260106154446.2735701-3-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260107-milos-ufs-v1-6-6982ab20d0ac@fairphone.com>
-References: <20260107-milos-ufs-v1-0-6982ab20d0ac@fairphone.com>
-In-Reply-To: <20260107-milos-ufs-v1-0-6982ab20d0ac@fairphone.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>, 
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
- Bart Van Assche <bvanassche@acm.org>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767773155; l=971;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=0ExZVYfM/y4rcjDL5laO5mxUp+YApKspdR42MpTi6T0=;
- b=OuUeeB9WBtMh0NzBeD2CtxzVjBzIAGe/EJcU8G/bdiV/SxKNG4rjbhcWGJctZTKikNOCzM2jj
- leav4MG9O16CTfjnQYITZkPwM5W6n1oQkcroJQw5KKq7O3xx2gAleXB
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260106154446.2735701-3-dario.binacchi@amarulasolutions.com>
 
-Configure and enable the nodes for UFS, so that we can access the
-internal storage.
+On Tue, Jan 06, 2026 at 04:43:15PM +0100, Dario Binacchi wrote:
+> @@ -29,12 +30,29 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - vdd-supply
+> -  - vccio-supply
+>    - reset-gpios
+>    - backlight
+>    - port
+>  
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - rocktech,rk050hr345-ct106a
+> +then:
+> +  $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +  properties:
+> +    spi-max-frequency: true
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+This two lines are not needed.
 
-diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-index 3a7f2f2b3a59..7629ceddde2a 100644
---- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-+++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-@@ -819,6 +819,24 @@ &uart5 {
- 	status = "okay";
- };
- 
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 167 GPIO_ACTIVE_LOW>;
-+
-+	vcc-supply = <&vreg_l12b>;
-+	vcc-max-microamp = <800000>;
-+	vccq-supply = <&vreg_l5f>;
-+	vccq-max-microamp = <750000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l2b>;
-+	vdda-pll-supply = <&vreg_l4b>;
-+
-+	status = "okay";
-+};
-+
- &usb_1 {
- 	dr_mode = "otg";
- 
+> +
+> +  required:
+> +    - spi-max-frequency
 
--- 
-2.52.0
+How does it work without any supplies?
+
+> +else:
+> +  required:
+> +    - vdd-supply
+> +    - vccio-supply
+
+Best regards,
+Krzysztof
 
 
