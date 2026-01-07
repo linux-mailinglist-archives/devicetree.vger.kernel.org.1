@@ -1,39 +1,100 @@
-Return-Path: <devicetree+bounces-252276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C502CFD13A
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 11:03:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56527CFD1F7
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 11:12:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 26BA330012DF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 10:03:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 409F1300B9AA
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 10:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A562F657C;
-	Wed,  7 Jan 2026 10:03:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B81F3081BA;
+	Wed,  7 Jan 2026 10:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="CbuHjoAK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ypk1jSHw";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Une8yqh+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973180.qiye.163.com (mail-m1973180.qiye.163.com [220.197.31.80])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EEE42F5A09;
-	Wed,  7 Jan 2026 10:03:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6877306486
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 10:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767780186; cv=none; b=of8qsxswvbsoSghoNIvoWrvad97KqQmN86iOgJkjbENGK8CGXVfSFBGzFO/tsezuHm5AeUzUJuczGNLrAS5cXiRusNB7hfcgOcGWTRbe828Ic17QCZbUTWw3u8pVYEAJUyOfE9npu9Hh6oN6RuZa3ag0TZ/+uEXjb8jrG9zDnsE=
+	t=1767780486; cv=none; b=hTqH7fQaXI7A4FSN9vnVFN38A+/kfhykRJkMtGQrhZMu8QNx3LJAHlivvInbqY33EtHErB8LGIg57YuTXTUEowIia8m7Nn8/zon8nxDZF5lstYjDp9W7pi7vzcatnp1MfbuEdVyuV5TRLBuLnle//pDH1SRsSL7Obofo674emGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767780186; c=relaxed/simple;
-	bh=12U2jnPd3isqFAA2O53vNuisMvqfO02OvunAPN3gNjg=;
+	s=arc-20240116; t=1767780486; c=relaxed/simple;
+	bh=L69VkYdJmsTIClgxVnQFqU6KGnt9Tyfdb9oAJudyy7o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hWnlQB/P0C63qxe5jO3UUX9LACs8yr3HdEipTixtUYuyeTydMqREsDACInLfHmTGUtZHxCOGxb8DoDdrFotQAt0sTyg0YDfvDPD0Jo1sPy8v09RSfKhfk4FywLOnKnQFboILtlEjdeIa4+F4WNaZxrRCXgqzYs/RL/DCZIhIp+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=CbuHjoAK; arc=none smtp.client-ip=220.197.31.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2fcf9f2ae;
-	Wed, 7 Jan 2026 17:57:49 +0800 (GMT+08:00)
-Message-ID: <881548f1-7dd9-40bb-9267-e5a03fb97820@rock-chips.com>
-Date: Wed, 7 Jan 2026 17:57:48 +0800
+	 In-Reply-To:Content-Type; b=i1b0h4UhtyMnC2cUku8+znKveRP0x9mPtUFwCXtBqt7bfxD7wKBXBg2jo3BIxVlDBD6N0yobNZkLOissot6lGSVSQoADJqnzGRIgDyqARb0j/4LPQAbgI3JePM7wcG9foWz09MBCXRBwyF8qRwiQPsAb8blaIpr3U2B2BQvHj1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ypk1jSHw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Une8yqh+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6078dp4d2577889
+	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 10:08:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iCZy5ZimfodLcwbOaVLFHW7iZbjkqH8ixo5lKjkcUd8=; b=Ypk1jSHwl/b00Pfk
+	2AOrICYvkLZD5SxoBmRjodjR59meIdRymT11tyO6PLPzHHDfYptjq25kVnf17a3t
+	vm58JPvgWMlm5At1d3rhW0pgnN3QgWSPFl7tzpUIFoDK5QhId7dmn0VCxefXqyaj
+	2+Jnm+kW2OuX5V0PjyYiunkEg7aQVeBv7zbNO0T2MW5B6X8pOlLG6+KNqZflbqgK
+	U2lH/zUfGhrg3D44O/coBCe+B+Al8BWnPNnAXbbbiUtYemzAuIvltnhITH3MRWFv
+	HdP61BcSANtI5mTgQNwGSi1GNT/Q6xs7zuk/sTbVUrbVR+VqKDrQw75NWry0C5F0
+	DQynHA==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhm6589wc-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 10:08:03 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b22d590227so257951585a.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 02:08:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767780483; x=1768385283; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iCZy5ZimfodLcwbOaVLFHW7iZbjkqH8ixo5lKjkcUd8=;
+        b=Une8yqh+WD/C5bg8CpP3Mzj3aL1KzV/eUx19vWVqyAIIryLD580oqo787wp56Y4JqH
+         HlmpacHF6uogs5ShylLo8EiKyQVQSp8IL5pOrkCgz8TzQ7ETQ6njgzYP7p/CqQsKQBuy
+         tlMm7kAcxOT5Zzx0Ohtn4CJ6J6sxEm/kXRiO9K+eEtxmPHZkP/hgXmyLNuTDaQmv3gyk
+         w/FFiqUpnRwVVWsp79swFrwrOzRVkpvrziQfz0c9KwsE+v+3LiZd5zXpd/WE2UKWZDLF
+         Kx+FhCiU/OBI+ZlT8iyTr/SCcYgKNnnMqGfGYE15yR7UxmkcCvyr47fmXIhAPtinVkji
+         FBPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767780483; x=1768385283;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iCZy5ZimfodLcwbOaVLFHW7iZbjkqH8ixo5lKjkcUd8=;
+        b=NKvPBpjnBtbf4+SOUUSD/o/zIQNjT+DrYdkuLWlSz5m9GjEkphCBnlpTb3QJiklTqR
+         RGGwf0Aas/rie+mlXuSXEp64DBFMELNbYGQ3TRRAzYT7SZaCVFv/El8pVR0WotHjxIo/
+         kCdWDqTnK2C7kPzcyvcHgTHJ+jccwHd9qxGhJ2aXtXm5JNHFw3hKjIvhi97PA+U1D/S8
+         xFl0H+CMpQPJ3XLDrq+cJcl2GFufq0HCoxU6qJFjY+jUBhwSzfiuXaTw97KUdA0rmCmz
+         EcHckXA9VckrQVdTNLGqt9HPrQyJvClb8FGm8VPX3Un1YFbDrBrBGNIkbPKRyWH29Nuy
+         BYDw==
+X-Forwarded-Encrypted: i=1; AJvYcCXyzJd9jwJBpEWZo3COxQ711JsLTSYrDJz//IUkfHaEAvC4Nl6Y07BFf3b5ZCDBl9Ht/DRhCgqOfLiX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhSpW7azayUeruMIkgPyaFc2QrHfQ5xBVeYL30vp25EfB6tlkG
+	XvSExcK6XhhRDS3zA9ph3mcbdprPPnZLOeqvX+55xa42k95NFv1JzUKd9f5zd/rh4DsocqkWLWG
+	i9kuYi8zBzRMDpb/VkLMpJhhse10X9+uDBr5WlTsoxLtSlkK/SMFykeqW/k4dURu4
+X-Gm-Gg: AY/fxX6hn/nmaja9mxlpYQyX+4+Wvp4nfzNFo5aoCz+4gGoU2MhwzhEpnH7AJ86IxHK
+	xtBCu5gdSMob09U7vBs8uDOlpOUzk2cTtnmgb+FStI/H4nQbZsKt9dhO1rIRw7Of5O2PIR7j86U
+	eV2iYcXbjfLcYfkv7d1ZNkYLvMe7GQl+Mz8HmozdSv2YhydYJA7oAXyg8Cl6VkmkQPyHV5WTV1N
+	IvBiv/Mp0yR+WS0xuy5TMMUD/Y68WR7dhbgskbYjWw/E24Tb15p0IJ3FzAwPZW3wrRQ1qzNQLsx
+	NHwoPmeyNJBGnyBHiL2EV/YRC3POTl/+JC4Z1BO1msGUnwjjy61o7D6DmXv3AQY/GD5kHgw71vW
+	7ORU7jnoKE6V2tcwLVZzokPTHkfkLRaMr4QGlkKMHKMjDw8kSollOqY3WNYCWAVypFdsdfQ1P
+X-Received: by 2002:a05:620a:290d:b0:8b2:edc8:13cc with SMTP id af79cd13be357-8c38938b5d4mr225851485a.40.1767780483220;
+        Wed, 07 Jan 2026 02:08:03 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEYzNjbE4AMTRaewbQHl+ZKSYZkDqR+2I4qrIYfJq5OvqY9hClxKzkE7h9e9jyTqreaqFI0Xw==
+X-Received: by 2002:a05:620a:290d:b0:8b2:edc8:13cc with SMTP id af79cd13be357-8c38938b5d4mr225848585a.40.1767780482751;
+        Wed, 07 Jan 2026 02:08:02 -0800 (PST)
+Received: from [10.38.247.225] (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c37f540650sm347290185a.47.2026.01.07.02.07.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 02:08:02 -0800 (PST)
+Message-ID: <674b8615-dcd3-4ae8-8433-cda6e8347048@oss.qualcomm.com>
+Date: Wed, 7 Jan 2026 18:07:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,171 +102,112 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Chaoyi Chen <kernel@airkyi.com>, Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Quentin Schulz
- <quentin.schulz@cherry.de>, Kever Yang <kever.yang@rock-chips.com>,
- Jonas Karlman <jonas@kwiboo.se>, John Clark <inindev@gmail.com>,
- FUKAUMI Naoki <naoki@radxa.com>, Jimmy Hon <honyuenkwun@gmail.com>,
- Dragan Simic <dsimic@manjaro.org>,
- Michael Riesch <michael.riesch@collabora.com>,
- Peter Robinson <pbrobinson@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260107070322.323-1-kernel@airkyi.com>
- <20260107070322.323-3-kernel@airkyi.com>
- <CABjd4Yw1Dqsa9EsMRFT8LOvyU8QN1C8VP+j0tY6h1uJhhXRSSw@mail.gmail.com>
- <2437891.BjyWNHgNrj@diego>
+Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: qcom-cci: Document sm6150
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+References: <20260106-sm6150_evk-v2-0-bb112cb83d74@oss.qualcomm.com>
+ <20260106-sm6150_evk-v2-1-bb112cb83d74@oss.qualcomm.com>
+ <20260107-tungsten-barracuda-of-management-5edb0b@quoll>
+ <6a74e675-b011-4e1d-860c-4c3232beb2a2@oss.qualcomm.com>
+ <7fc7c14c-a305-422e-8755-22e7c28bcfb3@kernel.org>
 Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <2437891.BjyWNHgNrj@diego>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9b97e423ab03abkunmdf9f022cdcc062
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh1PQlYYGUkZHh9LHkNCSEpWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=CbuHjoAKF1SH96bKLC8UN9zFsIJgDGedN5XXHY37NWuC2kSyT7v5dhrpqzEvCVpym2t8xWMmM2flcSJofP9kdHC5FkX/A67WVuKVS0oggSbtgMPFHrWGjxC4KNZtWK2kJcoplHV6f4gK3t6x2ivOAsshiocTHzDBTFLdHZ2su0E=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=ZpI7ixf6pE65MWX/ISGsLaSM7+uU0I5nnjsyA1XGxI4=;
-	h=date:mime-version:subject:message-id:from;
+From: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+In-Reply-To: <7fc7c14c-a305-422e-8755-22e7c28bcfb3@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=XpL3+FF9 c=1 sm=1 tr=0 ts=695e3083 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=tqjSdkmDS9pqd0uHxZsA:9 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: 8aL3v1yAF_MSC0oHzf8_IZYt2oah6Ie_
+X-Proofpoint-GUID: 8aL3v1yAF_MSC0oHzf8_IZYt2oah6Ie_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDA4MSBTYWx0ZWRfX/dFJLopKuWZu
+ ymXfX5QvJ7GTVkFeeoSbtY1ag6Wgwnzyf40Dr84V4XoT+1CRt/vn+L8Ma9L10eCri+BWZnn1nRG
+ 9JTPxcqjFs0KOm7Zl0BuNPMDoI9An/xRRVnQYg0FrWd3GFSAvQRn6qmoVcCZlh0xeFBG2sImAWJ
+ GwmrTLUaPw/Nres6mkoTRvYyBdLZr2I/9Y/U7PuWG9Ua9EL6HCSEQLjXM2GYYeeIAkA+zLzWtmk
+ 55bSjxIpuE2JZuYpjr6eawmWX3LR98DD9P+jgk0gMniagTvZuTu+uegmBd/MdcK1/sHlzY7NtrB
+ rj7zX9D7Nl7b3s7LKfwpL5pZ4Akq8abOULc3cxHtNnq7wXhVZTceDzNRe0ZO6NOrn0lVT6wnnth
+ 9OoCPYZSCBpTR7jaZ687tdGaaafgELVSoYJjcSN9wOi9ATwSiBsBvW3a8XkzKGyJqwW+x1HR7nv
+ l0hKGmFQvg/FLxOzCKg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-06_03,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 bulkscore=0 clxscore=1015 suspectscore=0 priorityscore=1501
+ adultscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601070081
 
-Hi Heiko,
 
-On 1/7/2026 4:21 PM, Heiko Stübner wrote:
-> Am Mittwoch, 7. Januar 2026, 08:56:04 Mitteleuropäische Normalzeit schrieb Alexey Charkov:
->> Hi Chaoyi,
+
+On 1/7/2026 4:34 PM, Krzysztof Kozlowski wrote:
+> On 07/01/2026 09:17, Wenmeng Liu wrote:
 >>
->> On Wed, Jan 7, 2026 at 11:04 AM Chaoyi Chen <kernel@airkyi.com> wrote:
+>>
+>> On 1/7/2026 4:00 PM, Krzysztof Kozlowski wrote:
+>>> On Tue, Jan 06, 2026 at 05:39:53PM +0800, Wenmeng Liu wrote:
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            enum:
+>>>> +              - qcom,sm6150-cci
+>>>> +    then:
+>>>> +      properties:
+>>>> +        clocks:
+>>>> +          minItems: 3
+>>>> +          maxItems: 3
+>>>> +        clock-names:
+>>>> +          items:
+>>>> +            - const: soc_ahb
 >>>
->>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>> Same question as before. I did not see any resolution of this in
+>>> changelog or commit msg.
 >>>
->>> General features for rk3576 evb2 board:
->>>     - Rockchip RK3576
->>>     - LPDDR4/4X
->>>     - eMMC5.1
->>>     - RK806-2x2pcs + DiscretePower
->>>     - 1x HDMI2.1 TX / HDMI2.0 RX
->>>     - 1x full size DP1.4 TX (Only 2 Lanes)
->>>     - 2x 10/100/1000M Ethernet
->>>     - 5x SATA3.0 7Pin Slot
->>>     - 2x USB3.2 Gen1 Host
->>>     - 3x USB2.0 Host
->>>     - WIFI/BT
->>>     - ...
->>>
->>> Tested with eMMC/SDMMC/HDMI/USB/Ethernet/WIFI/BT module.
->>>
->>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> 
-> [...]
-> 
->>> +       vbus5v0_typec: regulator-vbus5v0-typec {
->>> +               compatible = "regulator-fixed";
->>> +               regulator-name = "vbus5v0_typec";
+>> Will update commit msg in next version:
 >>
->> This might better be renamed, given that last time you mentioned this
->> board doesn't have a Type-C connector. Perhaps regulator-vbus5v0-otg?
+>> For this platform, it uses soc_ahb instead of camnoc_axi.
 > 
-> Alternatively a comment above it.
+> That was not my question from v1. AHB and AXI are both bus clocks,
+> meaning for this device the same. You again name the clocks how you
+> called them in clock controller which is wrong. You name here CLOCK
+> INPUTS. What is the role of this clock FOR THIS DEVICE?
 > 
-> I.e. regulator-naming should always follow the naming used in the
-> schematics, so that it gets easier to reference between schematics
-> and devicetree.
+> I already asked to pay attention to this difference.
 > 
+> Best regards,
+> Krzysztof
 
-Thanks for the explanation. I will fix this in v3.
+Ok, i got it, just feel a bit confused.
 
-> 
->>> +               regulator-min-microvolt = <5000000>;
->>> +               regulator-max-microvolt = <5000000>;
->>> +               enable-active-high;
->>> +               gpio = <&gpio0 RK_PD1 GPIO_ACTIVE_HIGH>;
->>> +               vin-supply = <&vcc5v0_device>;
->>> +               pinctrl-names = "default";
->>> +               pinctrl-0 = <&usb_otg0_pwren>;
->>> +       };
->>> +
->>> +       vcc12v_dcin: regulator-vcc12v-dcin {
->>> +               compatible = "regulator-fixed";
->>> +               regulator-name = "vcc12v_dcin";
->>> +               regulator-always-on;
->>> +               regulator-boot-on;
->>> +               regulator-min-microvolt = <12000000>;
->>> +               regulator-max-microvolt = <12000000>;
->>> +       };
->>> +
->>> +       vcc1v2_ufs_vccq_s0: regulator-vcc1v2-ufs-vccq-s0 {
->>> +               compatible = "regulator-fixed";
->>> +               regulator-name = "vcc1v2_ufs_vccq_s0";
->>> +               regulator-boot-on;
->>> +               regulator-always-on;
->>> +               regulator-min-microvolt = <1200000>;
->>> +               regulator-max-microvolt = <1200000>;
->>> +               vin-supply = <&vcc_sys>;
->>> +       };
->>> +
->>> +       vcc1v8_ufs_vccq2_s0: regulator-vcc1v8-ufs-vccq2-s0 {
->>> +               compatible = "regulator-fixed";
->>> +               regulator-name = "vcc1v8_ufs_vccq2_s0";
->>> +               regulator-boot-on;
->>> +               regulator-always-on;
->>> +               regulator-min-microvolt = <1800000>;
->>> +               regulator-max-microvolt = <1800000>;
->>> +               vin-supply = <&vcc_1v8_s3>;
->>> +       };
->>> +
->>> +       vcc3v3_hubreset: vcc3v3-hubreset {
->>> +               compatible = "regulator-fixed";
->>> +               regulator-name = "vcc3v3_hubreset";
->>> +               regulator-boot-on;
->>> +               regulator-always-on;
->>
->> If this regulator supplies a soldered-on discrete hub and is required
->> to power it up, won't it be better to describe the hub in the device
->> tree (see binding at [1]), make the regulator its supply, and perhaps
->> drop the "regulator-boot-on/regulator-always-on" annotation here,
->> letting the regulator core deal with its enabling instead?
->>
->> [1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/usb/usb-device.yaml
-> 
-> Yep, it would be nicer to it this way.
-> A live example can be found in the Rock 5 ITX [2]
-> 
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts#n1266
++			clocks = <&camcc CAM_CC_SOC_AHB_CLK>,
++				 <&camcc CAM_CC_CPAS_AHB_CLK>,
++				 <&camcc CAM_CC_CCI_CLK>;
++			clock-names = "camnoc_axi",
++				      "cpas_ahb",
++				      "cci";
 
-Thank you for the great example. BTW the hub used here is CH344. It
-looks like we need to add a new binding :)
 
-> 
-> 
-> Heiko
-> 
-> 
->> [snip]
->>
->> Other than these, LGTM - thanks for addressing my comments from v1!
->> Feel free to include my:
->>
->> Reviewed-by: Alexey Charkov <alchark@gmail.com>
->>
->> Best regards,
->> Alexey
->>
-> 
-> 
-> 
-> 
-> 
-> 
+	clocks = <&camcc CAM_CC_SOC_AHB_CLK>,
+	clock-names = "camnoc_axi";
 
--- 
-Best, 
-Chaoyi
+If this is acceptable, I will update it this way in the next version.
+
+Thanks,
+Wenmeng
+
 
