@@ -1,193 +1,100 @@
-Return-Path: <devicetree+bounces-252519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C527CD0046F
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 23:08:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B28DDD00503
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 23:30:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 686F53029B97
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 22:06:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5F53D303A18C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 22:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85683261B9B;
-	Wed,  7 Jan 2026 22:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81724298CAF;
+	Wed,  7 Jan 2026 22:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fuqFCbHU"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="kRXDm2xR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 792F5277C9A;
-	Wed,  7 Jan 2026 22:06:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A270277CB8;
+	Wed,  7 Jan 2026 22:29:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767823617; cv=none; b=OD3hgrjPTokImTJlWC3GIIdkXtpOCqZbPy5MwxZVScVZ7BsUbgH80YJ5u8Iq3iYAEazbg3VN72RdLHj7MUS3H4bDYg+Aptt8OX2vBbodGYFRlLSfNbHiq+2N/zI1Sn49Zm+ZGy7ek/fHZ7cCdOPbWD0le80TeOwsydPZh2AORW8=
+	t=1767824977; cv=none; b=mGjdgbgW/q+ZjFfmChOkq5tUVprFxqikhl+rDeprzIEx8nndf6mwMxWPUgTj8Nn6LOjMpOCZ3ouLy36V8R+8wqqjsX+Cp78L+Ifqx92flNVj2XWWPFFcqNdFqXv9qjZ6ZhgeUU34mWj9TMYCJR3Ulmo69iMMqzmza+kNBS8Isrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767823617; c=relaxed/simple;
-	bh=UadDQpXth2y08Ep29A4mQN6A1BcwKvCecGr4DwD/CGQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ftTKuG3rWmRw/gCX/uS2x8AiugFju+wRLhwKhd6+iHLSmMp1WHA4WDcrRLGdcmbAM8xPC9QLk+EL/MWA5hqjtcyrenqg0jOQImUd5eRUnGhOdFOa19pRAr2zQBj3NXn0gDT9PdR1iPVv6/pb0/2MJ6jUt1HYI6tu29nAx40X5zM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fuqFCbHU; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767823616; x=1799359616;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UadDQpXth2y08Ep29A4mQN6A1BcwKvCecGr4DwD/CGQ=;
-  b=fuqFCbHUFM0OY0GqjrrA96JqXjLC7m2yH/dSb+oPoK+xJyF2/NgovzGj
-   DuGhG5Av/R0hhWDls2Ul+KLwNRyyjC+hFd9FlT10zuJMblkvc3F6x5UUh
-   77MjElf2SGZOYePoBd/4zT3Ht9MhNPL4uz7g3mAMPV4gJEEE8CdgRUBOO
-   lYOUnVZtebJf3SqxmpNxWMgYgKy9QOs3oR3wW8/AGxRJYU8tQrvKT2uvQ
-   0e5frT1vXRvf+wQcIT/lPPANTMTMsV5VPGEcGahFbgyS17xOx2U+Wg4ky
-   TxbozH5kDG27SM8p+ETQZ07hJaIknjq/KU8tv+3mTnCUjH13VcfUMmIF7
-   Q==;
-X-CSE-ConnectionGUID: /zWvaBF8ScG3wAj+e9zumQ==
-X-CSE-MsgGUID: y3/joV3vTD+5KrEciaiLkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="72835494"
-X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; 
-   d="scan'208";a="72835494"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 14:06:55 -0800
-X-CSE-ConnectionGUID: i+VpkJMJQcWu7S8Hdgej2A==
-X-CSE-MsgGUID: 5TvqWzfHQq2Zk5px1uV2TA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; 
-   d="scan'208";a="207884628"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.174])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 14:06:50 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 9D9F912074E;
-	Thu, 08 Jan 2026 00:07:03 +0200 (EET)
-Date: Thu, 8 Jan 2026 00:07:03 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-Cc: robh@kernel.org, krzk+dt@kernel.org,
-	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	Svyatoslav Ryhel <clamor95@gmail.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v9 2/2] media: i2c: add os05b10 image sensor driver
-Message-ID: <aV7ZB40s7L2PdW21@kekkonen.localdomain>
-References: <20260105093420.110973-1-himanshu.bhavani@siliconsignals.io>
- <20260105093420.110973-3-himanshu.bhavani@siliconsignals.io>
+	s=arc-20240116; t=1767824977; c=relaxed/simple;
+	bh=FX5BOtEvn9cZ88R4XqQ80tigsQ3WQC+/Lk6Iehc7AVs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fmnMIaJgeLEQmj4DC7i1iNIVq0bSdxzybCoSAIXhkMNC0nOxqXkVCk4hOx6sBXA0E8aFo3auKj/joCHBshtZvD2tAUTpd1LDfcsM4lU7JCssZqwqBL7jKHOJyqaF81L3bv2WMqYve33F4rE8FHcDidMC9Rfr3asRiwPNe/7240s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=kRXDm2xR; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id D3DA53D84AB3;
+	Wed,  7 Jan 2026 17:19:49 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id k2N2unnhSoyv; Wed,  7 Jan 2026 17:19:49 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 1ACAD3D8517C;
+	Wed,  7 Jan 2026 17:19:49 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 1ACAD3D8517C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1767824389; bh=hwV7fPPT4Vumrcd5EA84SEtjdIDKKs2BX246mO0E9IA=;
+	h=From:To:Date:Message-ID:MIME-Version;
+	b=kRXDm2xR9LXR1YGRTu+W/JWDR/Oc3Te0A2cmXeEli7lJnof4iNA2Uggg/NIAL+KAL
+	 Afyg/eXxcSqum/gFekC95OjwvFkz5eI6tVSJnmoN+yjQFwjcFeD/rMDH2VHSXYBAMa
+	 RWZQ0MH/EtmR8mJfwcYq76uYfQKY9+XlDwaEBdq4ITLBg6VtcmLImM/i4KLYjYtGLv
+	 4A7XbCIxuo8F/5uiKvxR65rhfLcb8NN7zzH97XkFxwN3HtQV4i4HkJqVtDgDOG3djc
+	 ZnBUNOC09m+DrUkRwdcZ13CALkl44eQuN6NvrHEXn0s6HkWfB4sX4QDK9fDG9eCdqb
+	 BkcGMB4Fi0Wrg==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 9CkhaMTdnD1X; Wed,  7 Jan 2026 17:19:48 -0500 (EST)
+Received: from oitua-pc.mtl.sfl (unknown [192.168.51.254])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id E25103D84AB3;
+	Wed,  7 Jan 2026 17:19:48 -0500 (EST)
+From: Osose Itua <osose.itua@savoirfairelinux.com>
+To: netdev@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	michael.hennerich@analog.com,
+	jerome.oufella@savoirfairelinux.com,
+	Osose Itua <osose.itua@savoirfairelinux.com>
+Subject: [PATCH v3 0/2] net: phy: adin: enable configuration of the LP Termination Register
+Date: Wed,  7 Jan 2026 17:16:51 -0500
+Message-ID: <20260107221913.1334157-1-osose.itua@savoirfairelinux.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260105093420.110973-3-himanshu.bhavani@siliconsignals.io>
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: quoted-printable
 
-Hi Himanshu,
+Changes in v3:
+- put bindings patch first in the patchset
+- update commit message of the bindings patch and improve the bindings
+  description to better explain why the added property is needed (as
+  suggested by Nuno S=C3=A1 and Andrew Lunn)
+- rework bit clearing to use phy_clear_bits_mmd() instead of
+  phy_write_mmd() since only a single bit needs to be cleared (as noted
+  by Subbaraya Sundeep)
+- remove redundant phy_read_mmd() and error checking (as suggested by
+  Nuno S=C3=A1)
+- remove unnecessary C++ <cerrno> include that was causing build issues
 
-Thanks for the update.
+Changes in v2:
+- rework phy_read_mmd() error handling
 
-A few comments below... please post a patch on top.
+Osose Itua (2):
+  dt-bindings: net: adi,adin: document LP Termination property
+  net: phy: adin: enable configuration of the LP Termination Register
 
-On Mon, Jan 05, 2026 at 03:04:14PM +0530, Himanshu Bhavani wrote:
-
-...
-
-> +static int os05b10_disable_streams(struct v4l2_subdev *sd,
-> +				   struct v4l2_subdev_state *state,
-> +				   u32 pad, u64 streams_mask)
-> +{
-> +	struct os05b10 *os05b10 = to_os05b10(sd);
-> +	int ret;
-> +
-> +	ret = cci_write(os05b10->cci, OS05B10_REG_CTRL_MODE,
-> +			OS05B10_MODE_STANDBY, NULL);
-> +	if (ret)
-> +		dev_err(os05b10->dev, "failed to set stream off\n");
-> +
-> +	pm_runtime_put(os05b10->dev);
-> +
-> +	return ret;
-
-I'd return 0 here: there's nothing the caller can really do about this.
-
-
-...
-
-> +static u64 os05b10_pixel_rate(struct os05b10 *os05b10,
-> +			      const struct os05b10_mode *mode)
-> +{
-> +	u64 link_freq = link_frequencies[os05b10->link_freq_index];
-> +	const unsigned int lanes = os05b10->data_lanes;
-> +	u64 numerator = link_freq * 2 * lanes;
-> +	unsigned int bpp = mode->bpp;
-> +
-> +	do_div(numerator, bpp);
-> +
-> +	dev_info(os05b10->dev,
-> +		 "link_freq=%llu bpp=%u lanes=%u pixel_rate=%llu\n",
-> +		 link_freq, bpp, lanes, numerator);
-
-Use dev_dbg() if you print this at all. I wouldn't: it looks like a
-development time leftover.
-
-You can also make this more simple by using div_u64(). Also, there's no
-really point for have a local variable for everything.
-
-...
-
-> +static int os05b10_probe(struct i2c_client *client)
-> +{
-> +	struct os05b10 *os05b10;
-> +	unsigned int xclk_freq;
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	os05b10 = devm_kzalloc(&client->dev, sizeof(*os05b10), GFP_KERNEL);
-> +	if (!os05b10)
-> +		return -ENOMEM;
-> +
-> +	os05b10->client = client;
-> +	os05b10->dev = &client->dev;
-> +
-> +	v4l2_i2c_subdev_init(&os05b10->sd, client, &os05b10_subdev_ops);
-> +
-> +	os05b10->cci = devm_cci_regmap_init_i2c(client, 16);
-> +	if (IS_ERR(os05b10->cci))
-> +		return dev_err_probe(os05b10->dev, PTR_ERR(os05b10->cci),
-> +				     "failed to initialize CCI\n");
-> +
-> +	os05b10->xclk = devm_v4l2_sensor_clk_get(os05b10->dev, NULL);
-> +	if (IS_ERR(os05b10->xclk))
-> +		return dev_err_probe(os05b10->dev, PTR_ERR(os05b10->xclk),
-> +				     "failed to get xclk\n");
-> +
-> +	xclk_freq = clk_get_rate(os05b10->xclk);
-> +	if (xclk_freq != OS05B10_XCLK_FREQ)
-> +		return dev_err_probe(os05b10->dev, -EINVAL,
-> +				     "xclk frequency not supported: %d Hz\n",
-> +				     xclk_freq);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(os05b10_supply_name); i++)
-
-You could declare i here -- as unsigned int.
-
-> +		os05b10->supplies[i].supply = os05b10_supply_name[i];
-> +
-
--- 
-Kind regards,
-
-Sakari Ailus
+ .../devicetree/bindings/net/adi,adin.yaml     | 14 +++++++++++++
+ drivers/net/phy/adin.c                        | 20 +++++++++++++++++++
+ 2 files changed, 34 insertions(+)
 
