@@ -1,184 +1,111 @@
-Return-Path: <devicetree+bounces-252328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94B2CFD870
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 13:03:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C22B6CFD913
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 13:11:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2B69F30080F7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 12:03:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 24A983043F27
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 12:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F8BF30ACE5;
-	Wed,  7 Jan 2026 12:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11352308F3A;
+	Wed,  7 Jan 2026 12:05:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="H839W9pn";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZT/xmK37"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="DCaA+9pw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E532F99AD
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 12:03:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378B71DA55
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 12:05:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767787412; cv=none; b=EXedJKe5DIiSPDlOvR5pBvipbnf8lJcERrtRhpuHtKFOOpny4fRk70fPw0PwQ67l9ddkPJBE6+gNy37Uq/tQcqe+ctfdr9ROl6wgZo/3aGHHqf76KOmFSWjCMrEFpl4NZvOVFXYiiiUWXdW6swEhZ6vohfeoGv41yt1DlZRxIjo=
+	t=1767787558; cv=none; b=hpBPBjCms0AEMTZYvaQzE8ydsjbRDdKtglUJZ7Us4AGl23+kp1pP3anio/8vMPvbgwE2/XMrUSchIyfDkZp3ilZ6ucord2KmRDGWYR6MZHIKS93jfjdQKHdwyJ8nyNDWHbNWxp5Gi41ZF+2XCuRo8lSdjiwJdBkWgRVxVn0QCis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767787412; c=relaxed/simple;
-	bh=oMhk/Xq2aC3Aag3B5Yh6Uo35K9uJs0+HxKtSjP1ZhrI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VpBTlN4k/xKXMRBOCEntpewXTkquIXeh+KleKzh1Y5OUvUsAmStFYA88WCyWNHdFzkc4d9oqzANXaBYfc7XKlijewR/GgkYM3pVvQI3Lc80OGjmkXN/Q3Tmt84K+gVBI/o/2RWIbKFfq5Nio78o1RkC75D3VZSBRmg9u9ECGtr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=H839W9pn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZT/xmK37; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6079erI02988834
-	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 12:03:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5OYIuWlfNmnER+pgxQN0927vrOsdUT6g48em04i5dIM=; b=H839W9pnQG6eZ8c1
-	HTH66kEY0wsIqHxHKei1nAj7N3xuiARn0lGM1HgyVtqsGtfy+GSFpSnFPjy/GH77
-	jdbitQjZyhKAVp1OEK3jtcRdJ4wdu74J9zHSZ96EadBezXuqkIQCvCTieRp5HIVD
-	n2H5U5QRR1rdD/T84PwDQrP49Q6evMGf+hbREh7S+mY5i1r/2rsWw5O+CC7fP+7n
-	faf3i4D569aMHHIg9WRsFLZW4fwQ1wDqo4V702ZeXT+vTGN+RCUxnTISkthLi2aw
-	mhK/bpjw4DCo4LZ9/NlJ4kpQhDIEu+jNfDvLBYxklJezx1uM3x8m0tDjfMnI/5sJ
-	59+J8A==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhn2nrdm6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 12:03:28 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88a26989018so3531066d6.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 04:03:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767787408; x=1768392208; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5OYIuWlfNmnER+pgxQN0927vrOsdUT6g48em04i5dIM=;
-        b=ZT/xmK37O8q2ZM3pH36dmgOQoCmLWt9FiIIVKrEwle0J5ckY8C4m60ev0UMmPj9vNW
-         ac8VtufDmvdpBt8j4HbD5iFpXXqYySEet/wkV3iETioEL7j3BbCDLQYnni1dW89BcGAY
-         9V9WyhMHMEVifebv88p0l/Gp47ppXZOx8Zcie/1nbenB7C/R2q2btyx8JFokDTfAZ9k0
-         rJb8Ea4Sv+NTHZ8gLBNBcKN0PAMmxBW2FSj4Hzuc1r24dI9KEfvGpWzoZyQQ6553k41U
-         r3PXqheXvNZJbJQIeoKch1bjQujUg1yn+oj3J+Dzhe/ukQUoRtl7CtPn5NAThjB8VItt
-         dwVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767787408; x=1768392208;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5OYIuWlfNmnER+pgxQN0927vrOsdUT6g48em04i5dIM=;
-        b=dccW0Qq1Rybh/PHmXdGGNvHte2YMDYQeOToQcmmo5WMoPfBq4zZlIZYY9hMATGsr8g
-         /Au+7/Q6+YnujEKZCCsOx5drR5PH/taJRJCUJU1QwZ7X/aFD6ddOtwffpRFcEw8NVQKJ
-         noVY+1ddH9FR5Ct/CpVGHv35ZyFElnM9uDJmkVRSuRlk3UdkYzxIeMTs8a080HlcUyo0
-         /5JTCThrkk0OjoYehDSxQ9jVCmsS3KbSZjrZDudgBv4OLju886x1P5V+XmujbkiLk7G4
-         lV204bff+F65hTCLz0o9ASRj4zhDXWjJgtgoHiUsA6kNhJBvk9M77xgrrSaccrKriL5r
-         BRTw==
-X-Forwarded-Encrypted: i=1; AJvYcCUh/HIZnjy4QtsU9ligGEyst+iYKIUdS1YIZwL49R0+myhK/DkqFGjlgBQzciZxPu7qJOPYgco9duCr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyC1Nte2GGOxwynpxYPltWdODIIQ3xMAz8aWXMo/+iUwLgKwK9V
-	K9qgHy7OAfDxRQhDg2PIkma8CuZ0jnwH+/eEmg5ZHG+LWGhB0MgHS5LNQs0+oJXFQfuuxhDeVdd
-	y7u0e39N/i1rExaYn8Je8a3nwTM8jA6cmXkwiV3UOogXrvpO/z7kAwoxOPqfpj52K
-X-Gm-Gg: AY/fxX4nCH4ZH7S+OIUXNerA4C5IWQ7XuvhLHao8bAJA3075wwtjfuxjAEhEVThfMGs
-	x+hkH2dWz6LfCX6nJ0bQw403QdzL17Q/rt2PLR5g0Ia6Y951O3Kxe1AktqLGaGisIFhR1OVdvAs
-	JaDwJ20zap1EWn2ZTfQoFgj/Ng277nh6xXWww3FiqofmqHFR7VUMmeNFQy/PaASuhgU4G/pMKgp
-	y8l1QPqpNGWOXYsBWWG8jeDAVRoZ+C+gQumjyivHBG0VxAsQdoGu0rwIkXVcGOwMdGW+U53rhVU
-	OGZgWhOjcQuGrG56KWIcht9yVB0CqfBNB2Ju6KokF6bQhRbqH2i7nwe+SKeBpEXDtQYpbAz27ka
-	xUyN0Vkk29s/pG0OhJNgU2CA1+INAayHuIvRDRr/+asD7KS9IMppx3UXT0NuJlfPUrk4=
-X-Received: by 2002:a05:622a:8a:b0:4f1:840a:c90f with SMTP id d75a77b69052e-4ffb47e3b0dmr22957201cf.2.1767787407861;
-        Wed, 07 Jan 2026 04:03:27 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHIUGxjnQgE4PgHsYyrjWsDHfJ6IeypN42Z/YRU+rG2QsfHWIVu19VW4NAlWcg80kdk86FAHg==
-X-Received: by 2002:a05:622a:8a:b0:4f1:840a:c90f with SMTP id d75a77b69052e-4ffb47e3b0dmr22956801cf.2.1767787407325;
-        Wed, 07 Jan 2026 04:03:27 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a23432dsm482678666b.11.2026.01.07.04.03.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jan 2026 04:03:26 -0800 (PST)
-Message-ID: <84799abd-3b30-4772-b716-37f97a28a8f7@oss.qualcomm.com>
-Date: Wed, 7 Jan 2026 13:03:23 +0100
+	s=arc-20240116; t=1767787558; c=relaxed/simple;
+	bh=Eo2jae2+EaOsg4QRLr6rm46ZFCeUQs8342559mK0nzU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=o69pD3jb5c9r6iNHLNKpGLAqN3DkJYF3pODPO+JydD6zNCLBvXb95Pqoyu130lSdpCG2GtaFr3OMja0HUjO6Bw8KXH/Z8v5YdduO6lwyPVdHIS7/ErjZ0JmezC52sMIMttsZXXXST6DerlX5gLEu686+9MUUAokyyI+lYLIH/O0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=DCaA+9pw; arc=none smtp.client-ip=91.218.175.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1767787544;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=qIBZpkr3zGOGkYn0Srs3lb3/uwtfOhZkPU6oiwFvGgQ=;
+	b=DCaA+9pwAtKAxIIvlt3COCRV0Zbl+tvj00ZDBjI2qcUA9R9dRd5Q9YThMTr+PpfMpML39D
+	Lb6HMKHgbWzyD9GzgWUakZ7u6PdZCej9oHjyCUkIgBPXdo93O+cGJ/oYo2X7dO7d9MeHhB
+	kgxgwFFrk5PJHv4JpxZF//pqt1VEOHM=
+From: Ze Huang <huang.ze@linux.dev>
+Subject: [PATCH v2 0/3] riscv: dts: spacemit: Add USB 3.0 support for K1
+Date: Wed, 07 Jan 2026 20:05:29 +0800
+Message-Id: <20260107-k1-usb3dts-v2-v2-0-e659b0f8fe1a@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: milos-fairphone-fp6: Enable UFS
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Vinod Koul <vkoul@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20260107-milos-ufs-v1-0-6982ab20d0ac@fairphone.com>
- <20260107-milos-ufs-v1-6-6982ab20d0ac@fairphone.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260107-milos-ufs-v1-6-6982ab20d0ac@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDA5NCBTYWx0ZWRfX0loUN5xB57hy
- sotJrcE26ls4f5FMoiSXPFKcobM0pa4OdEgjR6OUNTuFYFhIYU0QCzGt6iu3K1UYBCH3DcYvc05
- yCvGWT4ST9V/fIqF7N02fGXwYySg6MD6fjpSmFNJGI494k9qXJFve4kxpKjvvv8c67I2J/xm1CD
- NDHGXBz7Bu9RWrPTOdpk+CQ09YOlfrFQX/T5pDcHVP4MR/jR0YoZl5latlV0o6sgZ5xaZhOegBE
- xbtZs4mjtN2URfb62yP58spLoooDcTZnYqt/ngGIGr7j1oeLzcyuP8hB7GCn9oYP0epBykej4eC
- TwCON592Nwnkan/YO0rRZpYY6bBthTxFTg644kDMNVJZhCcbgSLfaqr6GbrosFEupGiwkxVxLLT
- ex2FllZB1wR9KeLZxeThEnJtykO3Td1bOX/yMKCC82Y11uYpFm2rxMpnbHfAuMq/tdqIBFa2kpM
- KuAfHk5J7u2Kd1JPDLQ==
-X-Authority-Analysis: v=2.4 cv=CYEFJbrl c=1 sm=1 tr=0 ts=695e4b90 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8
- a=STFXn1ACf7ZPQ-DneOQA:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
- a=1HOtulTD9v-eNWfpl4qZ:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-GUID: DBmh72vYW8CbG4uloyK7jMR7iOgwgBRu
-X-Proofpoint-ORIG-GUID: DBmh72vYW8CbG4uloyK7jMR7iOgwgBRu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-07_01,2026-01-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 suspectscore=0 clxscore=1015
- impostorscore=0 malwarescore=0 phishscore=0 spamscore=0 adultscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601070094
+X-B4-Tracking: v=1; b=H4sIAAlMXmkC/yXMywqDMBCF4VeRWTcwGdtM9FWKi1zbUNQ2USmI7
+ 95Ql9+B8+9QQk6hQN/skMOWSpqnCro04J5megSRfDUQkkKJLF5SrMW2filiI0GEDqNhRjJQP+8
+ cYvr+e/fhdA6ftWaXcwRrShBuHse09M01Knaa2XSoOqfQRytZMbY6WnOTGq2T5JWG4Th+pRoK2
+ KsAAAA=
+X-Change-ID: 20260107-k1-usb3dts-v2-220c0fa7702a
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Ze Huang <huang.ze@linux.dev>, Aurelien Jarno <aurelien@aurel32.net>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767787540; l=1166;
+ i=huang.ze@linux.dev; s=20250705; h=from:subject:message-id;
+ bh=Eo2jae2+EaOsg4QRLr6rm46ZFCeUQs8342559mK0nzU=;
+ b=L06nVBpo3SmSV4k5dBFhCbzGFMO4igTy7hGMMXmNxyzqsIUm1covIT4CWlJAQ82meoEHMfVqX
+ ngIqUxUEU0NDxsDNbWR281VCVDgs7dDOj/qPHOYDUfu6tfHXvMZzqzX
+X-Developer-Key: i=huang.ze@linux.dev; a=ed25519;
+ pk=Kzc4PMu5PTo8eZZQ5xmTNL9jeXcQ9Wml0cs+vlQpBkg=
+X-Migadu-Flow: FLOW_OUT
 
-On 1/7/26 9:05 AM, Luca Weiss wrote:
-> Configure and enable the nodes for UFS, so that we can access the
-> internal storage.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-> index 3a7f2f2b3a59..7629ceddde2a 100644
-> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-> @@ -819,6 +819,24 @@ &uart5 {
->  	status = "okay";
->  };
->  
-> +&ufs_mem_hc {
-> +	reset-gpios = <&tlmm 167 GPIO_ACTIVE_LOW>;
-> +
-> +	vcc-supply = <&vreg_l12b>;
-> +	vcc-max-microamp = <800000>;
-> +	vccq-supply = <&vreg_l5f>;
-> +	vccq-max-microamp = <750000>;
+This patch series enables the DWC3 USB 3.0 host controller on the
+Spacemit K1 SoC and enables it for the Banana Pi F3 board.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+For testing, the following kernel configurations should be enabled:
 
-Konrad
+CONFIG_PHY_SPACEMIT_K1_USB2=y
+CONFIG_PHY_SPACEMIT_K1_PCIE=y
+CONFIG_USB_DWC3=y
+CONFIG_USB_ONBOARD_DEV=y
+
+This series is based on the spacemit k1/for-next branch.
+
+Link: https://github.com/spacemit-com/linux
+
+Signed-off-by: Ze Huang <huang.ze@linux.dev>
+---
+Changes in v2:
+- rebased on spacemit k1/for-next
+- Link to v1: https://lore.kernel.org/all/20251101-k1-usb3dts-v1-0-dd2660e5740b@linux.dev/
+
+---
+Ze Huang (3):
+      riscv: dts: spacemit: Add USB2 PHY node for K1
+      riscv: dts: spacemit: Add DWC3 USB 3.0 controller node for K1
+      riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
+
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 48 +++++++++++++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi            | 32 +++++++++++++++++
+ 2 files changed, 80 insertions(+)
+---
+base-commit: 4f67c877a9069c60dfb1767038fba5180bc12d68
+change-id: 20260107-k1-usb3dts-v2-220c0fa7702a
+
+Best regards,
+-- 
+Ze Huang <huang.ze@linux.dev>
 
 
