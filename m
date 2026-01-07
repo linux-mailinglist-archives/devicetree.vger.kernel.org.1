@@ -1,177 +1,156 @@
-Return-Path: <devicetree+bounces-252503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 818AFD00253
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 22:21:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA9F9D00287
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 22:26:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 100FB3070D7A
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 21:18:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2C1F83004B96
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 21:24:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43DDF2D979C;
-	Wed,  7 Jan 2026 21:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD23832D0EF;
+	Wed,  7 Jan 2026 21:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OlOF02yC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a5nxX0hI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EFE2D7DC0
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 21:16:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F27ED329E6D
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 21:24:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767820579; cv=none; b=Dusn8r3guDm9Nb3anUaEPmc8P+UM7DZIZ/swVdyHZodM+8Whf8WcD/MTQGwsV0m2cyViPKcdZxic0tq3P54ye57ThySsMUadGTUQ7MNsyYyRmcNashkZxSex78e7vC7mL09DFdgWF/Uvm+aaNpouFFyJGOH0zQAYk/YCvjVQiLA=
+	t=1767821066; cv=none; b=kfdlnmjFL+YAQG3YOWJy/26udPzy3o+hg8nG+sHNY9hvSt0qVkLejTrTgk4T1o6XArqxS/osvwBBTL1YEeE4cRjhGtxrb6dWI2D5mu6KYaxZyZ9X5jgw7YlW+qIqbL/KC6apuZvyrO9M3UuPRAyJLCxSZMtRFtCAxrlg0FgKQCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767820579; c=relaxed/simple;
-	bh=Y2hxfStZTU5bifGNtZaCaokJ7qeOXiwJTbYrpCk8+h4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZF/O4bTr49b/+EVIPDoFLRsN1bhHBefh4uaEO5TrRXlMTWhDcG9X3WV+BS9HrNYbBnkJI7OibTINJFb7dLTlslFwCgweS55egUcKCl8h0XIJHMtm/xo1d0denU1dP/A/DmU03JSJMKjCbQoT+NYp3vmskHMBM4VtjgOC0OdNsP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OlOF02yC; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4779ce2a624so20756275e9.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 13:16:15 -0800 (PST)
+	s=arc-20240116; t=1767821066; c=relaxed/simple;
+	bh=xuhPSFxHT5dicps+AzXUc5xZwOnIs5QdImrqvGMjdcY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cz7QBZ65wuQ97KtfeJIFbeiJuwbFlySOrPNf/uy03JN6yL8ITSKxHc/m+sRsUoG9vc0O/EWhuq/vex3d1IjXWSqvFNTqm6p6z93FQJNjRTpiR3Ys8Vw/l0OrC4qU8dNIeSJzD/9SMXRHbPqwKY4CAdXsT9d3OpyDnZo4G/UdN3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a5nxX0hI; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-37a33bd356fso2262831fa.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 13:24:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767820573; x=1768425373; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1767821063; x=1768425863; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dCitwE55o8IqWyri41ymTAwTLamoPm8KtfcEJm7bnsM=;
-        b=OlOF02yCmV7wS+7sjWPowc0qIgq+xFi+QiFFxJ6pvolXCPHLHl0/VzZky2vP0cVAZG
-         YiRbXc9pEE1IOIcYTKlcqDyFZ/CuCIO6d4ZXy/VkpfpT58uGCSmSY5F0SHVc35gkw1g9
-         Op0ZvLp4UMVoltdNUqGNzasc4v5gdOCaS1zA8bMMZk+ZXy0+8hUG9r57RbdaDMTfIXai
-         B492xcLAOICMPSJcAS6yF3j6nZ0b0HsQbKZwoZ62g6Ao6whrj+5QBU6eZkdvC/QTrRZB
-         +EDuOC7uImhF+Pt6W19K0p1eRvbz42hjUCSzM7CpaNV9pAjfKVwQe8jFdnuaVKADIGUV
-         h9tA==
+        bh=f/TDnZeMqywPB6R9BWNPYGT+EayXhfAhq0K6Z+LpKaw=;
+        b=a5nxX0hIAJ7aPbLMg7vlyFUOibQiu4qYt8ZBwnIxOwZ8k9dR7oCCCp1EyKKsSrXeq1
+         B11XTAWscz6iDk0WdBAzV369nddJIYyibBLDzoov3b/neArkP+UkFujLlkdyU+m6/gCq
+         R0+lKQkQtOBpCx4uokSDMUJroxyBGtPbjy5W7uPjw25NWyG2ze1JlzziWQ8f8n4ts2rJ
+         7bLc9ePxZo60ovhicFtEMmvKJfZGxZ/PB+mKPKRMnly6QL9PI/6RxrM0cMxdhjxP2wWS
+         4Zqo/NCH3w28WQaKZFr5QufFwkzGyZFjWrwIapHE30F4Ftfr2D0EvTeQLS18OKayaP90
+         5Ijw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767820573; x=1768425373;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=dCitwE55o8IqWyri41ymTAwTLamoPm8KtfcEJm7bnsM=;
-        b=eqHX0AbLbLr7dAnExmURIhPF6GOm3ktmPUmC06Jwhd18JeWzs5+S9VY6UKVZUdPkd4
-         +ctoyFp3iQjstti+qTXyeN3s8SMKD5CTAxHnlXHw5Y6fetN0F0lHyZZveHyG5eS6/Vz5
-         fBm2U+isW9+GDCLxfLxrrsefjuUne9MfiKqKbMX3cX6cHnPJipcgDQShj9C0T9nrebWt
-         5O7OneMOYNwsCPjdXBv4JUlOyqKwav9CaW9uXs9sy4ELocaBcbti4Yzf1j1xWdYW4BGs
-         B79XcW6EP0AX8qb6ErGCDNjjJ/bdlrvbp7wiOCzAzmZlEXOulvgcM/dV7XotGeiZj/IG
-         9zfw==
-X-Forwarded-Encrypted: i=1; AJvYcCUi+3Awk2zVahwWKdPX8VS0WkLLa1MdFiXhCDBO9r76DK9FlV0DaC3bru5oNi7tbHY2Wch4nhTpRQi+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCA+cxPlgQKQLG2jRkKXktcDv22nKyOKNzw3R8Kspog16gsQnO
-	dzuSqiGDGTbqoGxPg3vqRYbZADMpu7IVdUyEcGpghrCPsOgN0S2dywIe/OMtsfYovQqO6QNRnbp
-	/PqoH8lRfsQ3U2wKt8DRKPiRneAErIuc=
-X-Gm-Gg: AY/fxX4JWQEvO4tIc9FPTTBBUndZ2TKPoTRe7qp7WG4/2fhf5GlrCXmd1i72WlXuKsn
-	HypBtWKM0r3me1fkFpKP0GXDiMApB0xCX3BHzWZts/dgbHtsCmSfJYkjw53GcW594eQt0LBYbv5
-	eaCe2H7jrEO1xIpQW9T7YltgoJG7jwGbYumk/e4OxlSA2fnANnMS6mvkC+dZxBJpCdV98QM0UWE
-	TqXi4IppKw4kN3F7wBgQMAQfz6L+MouX2iCoS0aMStl4KuR9WIoIZrfJX4aB3DLae/maSEj3Fll
-	W2lmZ6XxwHQKzJylpkMIwCSf1xUC5XXAddFnyDl1aMeuN70qw0/Fx4HxLQITTtD+KsoZeIQhicU
-	R7ggthe+sYwluiw==
-X-Google-Smtp-Source: AGHT+IGve208ZokXE/8tqVsqRpRaLA6g/AVfp11AspT3v34uPzJmUuLmgL0Vxdkq3s+EP2zdeokZvc4oYXJlvNhydjM=
-X-Received: by 2002:a05:600c:4709:b0:479:1348:c614 with SMTP id
- 5b1f17b1804b1-47d84b41b2dmr47018015e9.26.1767820573184; Wed, 07 Jan 2026
- 13:16:13 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767821063; x=1768425863;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f/TDnZeMqywPB6R9BWNPYGT+EayXhfAhq0K6Z+LpKaw=;
+        b=PB4rt6o0pBpWinIhHwbFZoYzMioFFLaMnKZXWuW3m85XXjqAFkUxuFyf8QK2hurFTp
+         BQImcAGzkvMEvCilHJg7E8HHahLkLHGjdGdX6OntMo7kd7RBYjEB/+VKmuTAwRNrlNES
+         fLbXqL/L9W/kAJi6KjbJCkc+fQ7FRoXUcO3uzMMkRwwohCfF8aV83nTkI4C+iPM7Ysut
+         CnS4P1zhAzBn+CfZIOAL5wdJ7UGLfjWI3JX7wH5yyu49huK7RPfTyRjuv91ogIAd9m6l
+         n46x+7jA+RltpIAW5c7+4QJasFMl05LwdNIOCU5qHdcKmROXvLkvpqBhVKXCjHJFHz1p
+         V4Ug==
+X-Forwarded-Encrypted: i=1; AJvYcCWfCD6hnO5alNVRvB59k7ZZJLEYTHktc5TJaFy7gTyny13OfAIh/sp04YLKEA/HkvjV/5V+c3h3dy5U@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbGDv133WU6eUzqJ28XkISAU8mh8to84nmszWTeAc8GPTIF0g2
+	odSdknUPXkqRYlLH78o6kVsJI9C3Z6cYCd0cmPo5OJkP1VY+HQWSilNCWd55hs1ZVBA=
+X-Gm-Gg: AY/fxX4KUIw0XNL8cD2yp0ZTvrJckWsipfVv+kxAcBvRObehCALWTKD8F6PxdzEPy11
+	K3xQt3qUfgbgh2BmauF39MGYvPAq7B0+PL3Z3cpV8ekq/WHLVqWw0boU6+Vc3uAmgIdr+MHXIiJ
+	uZp2/CMRWfl0GZXXqJmy5f3vxCSLImsM2oNFBQcH1zr0gi8PqVcWTuLEB22W64GPMYsn1iEfLWT
+	f+oMJYUMpJnkCfFB1NkoreMKQxnUKooyPPf+opnGbz6WuIeggYVfArB+TkK+5K9cOpmrNNWVd2O
+	z0eVRTxUxZPoJk0mJM37nez7fm0oXjrbp1I90bAtJTmFtsi5YPJw5qcHw6pwBgMeS4nNXuyz04v
+	ItFEzus+u8BXKK8YHpRYzEPgNmrakIRP412uTzutG5P2YMWi1+OHCms68OVmpaJCr5510/0frTw
+	VABnFGn70uohJyqstn6pAAvNGV5Aa0z7ZxpP+v5XjCePQ0pG4CDUTrhyUVHCnSnwPlrQ==
+X-Google-Smtp-Source: AGHT+IFfcRWxAkywDeN2SZBwl0HWgo5W5lepeGrLd7xnmJgoH3TiNoELSgeJNH2HwayG/aI4gRkMSw==
+X-Received: by 2002:a2e:bc15:0:b0:37e:6e31:c9bc with SMTP id 38308e7fff4ca-382ff8256famr6465671fa.8.1767821062911;
+        Wed, 07 Jan 2026 13:24:22 -0800 (PST)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-382eb3a0039sm11811641fa.4.2026.01.07.13.24.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 13:24:21 -0800 (PST)
+Message-ID: <6d2a582d-a738-4f1e-97c1-d8ee6d9b0882@linaro.org>
+Date: Wed, 7 Jan 2026 23:24:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251230115814.53536-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260102-quirky-hornet-of-downpour-ddda69@quoll> <CA+V-a8sY0QneUWQ4A0XCKUGPL8VYkU5NQE2h_cOK=06JG_1c2g@mail.gmail.com>
- <e49bca1a-7fc7-4213-b4e0-6b6ed08fdedd@kernel.org>
-In-Reply-To: <e49bca1a-7fc7-4213-b4e0-6b6ed08fdedd@kernel.org>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 7 Jan 2026 21:15:46 +0000
-X-Gm-Features: AQt7F2o45GC9wvdTVWt_M5nbtcntmbiN2eZaPfQPJ_GZHvGZEjLVr_yjo4DTGW8
-Message-ID: <CA+V-a8uFnm0oJqbkHZURi9vGXxnfG7cvxgZ2GH5b8nYOUohXDw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: can: renesas,rcar-canfd: Specify reset-names
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: talos-evk-camera: Add DT overlay
+To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+ Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux-i2c@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+References: <20260106-sm6150_evk-v2-0-bb112cb83d74@oss.qualcomm.com>
+ <20260106-sm6150_evk-v2-4-bb112cb83d74@oss.qualcomm.com>
+ <ndexzb5bo2rxjsj7jkf3bevbb6vmtjpuuhxbonpf3v5csxnjtu@sotufkkvfc4r>
+ <f09670ed-1aba-4622-94b2-85ade831f7fa@oss.qualcomm.com>
+ <e91414c6-fc89-4b38-a5be-f282c8601b5f@linaro.org>
+ <3a8e8327-1a55-4822-885a-86fec029952d@oss.qualcomm.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <3a8e8327-1a55-4822-885a-86fec029952d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+On 1/7/26 07:55, Wenmeng Liu wrote:
+> On 1/7/2026 1:16 PM, Vladimir Zapolskiy wrote:
+>> On 1/7/26 05:05, Wenmeng Liu wrote:
+>>> On 1/7/2026 2:23 AM, Dmitry Baryshkov wrote:
+>>>> On Tue, Jan 06, 2026 at 05:39:56PM +0800, Wenmeng Liu wrote:
+>>>>> Enable IMX577 via CCI on Taloss EVK Core Kit.
+>>>>>
+>>>>> The Talos EVK board does not include a camera sensor
+>>>>> by default, this overlay reflects the possibility of
+>>>>> attaching an optional camera sensor.
+>>>>> For this reason, the camera sensor configuration is
+>>>>> placed in talos-evk-camera.dtso, rather than
+>>>>> modifying the base talos-evk.dts.
+>>>>>
+>>>>> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+>>>>> ---
+>>>>>     arch/arm64/boot/dts/qcom/Makefile              |  2 +
+>>>>>     arch/arm64/boot/dts/qcom/talos-evk-camera.dtso | 63 +++++++++++++
+>>>>> +++++++++++++
+>>>>
+>>>> Is it possible to attach other sensors? If so, overlay name should
+>>>> depicit which sensors are attached (compare this to the RBn boards where
+>>>> specifying "vision kit" defines all sensors attached to the device).
+>>>
+>>> Okay, we previously had a discussion on this. I will rename the file to
+>>> talos-evk-camera-imx577.dtso.
+>>>
+>>
+>> Other camera or display .dtso names commonly repeat the name given by
+>> the vendor, and the bare minimum is to name it the commit message or in
+>> the code. Is it Arducam 12.3MP IMX577 Mini Camera Module or something else?
+>>
+> 
+> I believe that modifications for the sensor do not need to include
+> Arducam descriptions, because this DTS is intended to support this
+> sensor module. Even if it is replaced with another vendor`s IMX577
+> sensor, it should still work.
+> 
 
-On Wed, Jan 7, 2026 at 8:25=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 06/01/2026 18:17, Lad, Prabhakar wrote:
-> > Hi Krzysztof,
-> >
-> > Thank you for the review.
-> >
-> > On Fri, Jan 2, 2026 at 11:16=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On Tue, Dec 30, 2025 at 11:58:11AM +0000, Prabhakar wrote:
-> >>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >>>
-> >>> Specify the expected reset-names for the Renesas CAN-FD controller on
-> >>> RZ/G2L and RZ/G3E SoCs.
-> >>
-> >> You should explain here from where you got the actual names.
-> >>
-> >> Otherwise you got following review:
-> >>
-> >>>
-> >>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
-> >>> ---
-> >>> v1->v2:
-> >>> - Moved reset-names to top-level properties.
-> >>> ---
-> >>>  .../bindings/net/can/renesas,rcar-canfd.yaml  | 33 +++++++++++------=
---
-> >>>  1 file changed, 19 insertions(+), 14 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-c=
-anfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.ya=
-ml
-> >>> index e129bdceef84..9bfd4f44e4d4 100644
-> >>> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.ya=
-ml
-> >>> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.ya=
-ml
-> >>> @@ -122,6 +122,11 @@ properties:
-> >>>
-> >>>    resets: true
-> >>>
-> >>> +  reset-names:
-> >>> +    items:
-> >>> +      - const: rstp_n
-> >>> +      - const: rstc_n
-> >>
-> >> rst seems redundant. _n as well. Are these names from datasheet? How a=
-re
-> >> they called in this device (not the soc) datasheet exactly? Because it
-> >> feels you use pin or SoC names which is not useful.
-> >>
-> > rstp_n/rstc_n are coming from the SoC HW manual and is already used by
-> > the driver (since commit 76e9353a80e9 "can: rcar_canfd: Add support
-> > for RZ/G2L family"). The reset-names existed previously but were
-> > dropped as of commit 466c8ef7b66b "dt-bindings: can:
-> > renesas,rcar-canfd: Simplify the conditional schema". Let me know if
-> > you want me to rename them but the driver will have to maintain the
->
-> No, I want to follow my first comment in my reply.
->
-Ok. As replied to Rob earlier I'll include the below info in the commit mes=
-sage:
+Most probably yes, if the connector type and its pads are one-to-one equal,
+but before such another camera sensor module appears, it makes sense to
+mention at least in the commit message the exact type of the sensor module,
+which has been tested and supported by your change.
 
-The reset names rstp_n and rstc_n are defined in the SoC hardware
-manual and are already used by the driver (since commit 76e9353a80e9
-"can: rcar_canfd: Add support for RZ/G2L family"). The reset-names
-property existed previously but was dropped in commit 466c8ef7b66b
-"dt-bindings: can: renesas,rcar-canfd: Simplify the conditional
-schema".
+Hopefully, it should not be too complicated to add a line into the commit
+message, that the change supports Arducam 12.3MP IMX577 Mini Camera Module.
 
-Cheers,
-Prabhakar
+-- 
+Best wishes,
+Vladimir
 
