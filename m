@@ -1,87 +1,95 @@
-Return-Path: <devicetree+bounces-252482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 473B4CFFC6A
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:36:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AA28CFFCD9
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:41:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 040C7344644B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 18:43:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 92730316CBB7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 18:50:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6933B369977;
-	Wed,  7 Jan 2026 18:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87DD734F483;
+	Wed,  7 Jan 2026 18:38:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="S6jwNDPK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FyYIkfaF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE8A369970;
-	Wed,  7 Jan 2026 18:18:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5501834E772;
+	Wed,  7 Jan 2026 18:38:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767809905; cv=none; b=DXImbnPDn4ASa/xW3bSqyK80WKLl1f1WzJbtUhAOUW1BhT85X8zokHBuuMda0nnlPGn/Sjmy1ChHbYNkrg4Ks/eoPKbaZ2Y+dtyw6nKOOceSwObma4EwYGoqnJ7oS2mcrJhbzXWOJC6Py4RKZKOW5YBIHlXyvTqhwLD6H+u5APU=
+	t=1767811111; cv=none; b=U0IfCmxgtsV/E89ZR3krGrRkM6YDvLery329sEon3A89EK0YGyhy0C/ItMuXIth9H1xrqrH3Fg76Ki6B9J5LhzaTZUxh942NG3mW4Nkqxmx+h699lB8VR+6KZ3IlZVSRfUpZ8EDOcmjzNbEAocfFgnbpx0+BHEidg7Qi54Y8DfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767809905; c=relaxed/simple;
-	bh=NKYmaaQaNBGFe0ny8yyUhGv32e3qDV9ZR+GNHTsI2VY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W/a7JdzPEv+AtkdVJ4cBm4tgF9McmYr1YbXXveus0fFOlGXNBAr2+wDRCumuBbqigVdVPzwPadW6YswICtMuZetzoFFYdaJrZqMQ5lBekO3diu3CKbxIRFN5XiHbHD98sJ/nTvqJ6lyXMfUArbC1VSoRd/KCUTmN41PeGx+C9R8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=S6jwNDPK; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=NLxJzEAuCES3geMqNvzFCMY6goF2EGqYqOkgiIUgsAU=; b=S6jwNDPK2SZ61UorwD/NvWswSi
-	BxM8CrcEXgskDOl2oXdOG6EdiBXrBNAS9WcwjeiqLoJ2ZItdWcXZkpRsjYv8F7EjBVoZUvzSh5U3G
-	pgGd8gCiCmWoapbpGZUsQBCSg67jXnq/KMey+NR3mPGF3oSv0zBiydCw1Z52G8KP5ees=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vdY6V-001qIX-6H; Wed, 07 Jan 2026 19:17:55 +0100
-Date: Wed, 7 Jan 2026 19:17:55 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Chaoyi Chen <kernel@airkyi.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1767811111; c=relaxed/simple;
+	bh=giwVjXZaInPGem3clXozi1NVnQJ6c/GXXvkKUWc/mdg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kNgdlhgK7lHfmMFeRzLqG1tcSVSMb/4zrifYB7sfr7SBt1bhC6vF4vt35sfK5DWzp1GWadV4T9tlIr6rm29lBgJ5azYudAmws4BpEkS7VIBuCHnRok0OUHgINbg7k3Fna1qCSBlJbBZX1x+4/RHrJ6My4d+6rpyZ8ACM1xvjPjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FyYIkfaF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D27B8C19423;
+	Wed,  7 Jan 2026 18:38:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767811111;
+	bh=giwVjXZaInPGem3clXozi1NVnQJ6c/GXXvkKUWc/mdg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=FyYIkfaFNbrooZvS1bn+upWyNOkmpmanoQJKjmWVyJGSPv7YnzQheRu4wn8uQz8AW
+	 T6+mnsZ3Mhl1bFTJoO6+7N9LCrGW0CJVK2s16lwq4Irg9NlTUjXkiBepUnmw2r8018
+	 nvXBEvvET+svEA76HYqZgg8wS28wTxjfbV444ObhSh+5zy1PNLGb2X9ZzjaY/QUErp
+	 PNZC+SlFWClZAWOPLwFmrrDwFmfVKXIXjVRvHRxqN4NEWHkJogs86UlqeRQ10+ttS3
+	 Hq/CcqtPOvsU0WOfo2UHnMd+DqAk9K2D3acqINZC3uBnjvzEEpxpWbKBSSie0nWtwW
+	 uj2qrOe+WvoPA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Jonas Karlman <jonas@kwiboo.se>, John Clark <inindev@gmail.com>,
-	FUKAUMI Naoki <naoki@radxa.com>, Jimmy Hon <honyuenkwun@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Michael Riesch <michael.riesch@collabora.com>,
-	Peter Robinson <pbrobinson@gmail.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
-Message-ID: <b5a3470c-aa03-42d0-a575-b705f709f8e6@lunn.ch>
-References: <20260107070322.323-1-kernel@airkyi.com>
- <20260107070322.323-3-kernel@airkyi.com>
+	Georgi Djakov <djakov@kernel.org>,
+	Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-clk@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH 0/4] Bring the IP0 resource from ICC to clk-rpmh on QCS615
+Date: Wed,  7 Jan 2026 12:38:19 -0600
+Message-ID: <176781109957.3262943.14829046212346314366.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20250627-topic-qcs615_icc_ipa-v1-0-dc47596cde69@oss.qualcomm.com>
+References: <20250627-topic-qcs615_icc_ipa-v1-0-dc47596cde69@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260107070322.323-3-kernel@airkyi.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-> +&gmac0 {
-> +	clock_in_out = "output";
-> +	phy-mode = "rgmii-rxid";
 
-rgmii-rxid is odd. Does the PCB really have an extra long TX clock
-line, but a short RX clock line?
+On Fri, 27 Jun 2025 21:37:54 +0200, Konrad Dybcio wrote:
+> This is how it should have been right from the beginning, but it seems
+> like nobody took a good look at the initial submission.
+> 
+> This series is essentially the same as the previous [1] again.
+> 
+> Compile-tested only.
+> 
+> [...]
 
-Try changing this to rgmii-id, and drop the tx_delay property.
+Applied, thanks!
 
-	Andrew
+[1/4] arm64: dts: qcom: qcs615: Drop IPA interconnects
+      commit: 8b7f2aa05c02c13aa017a70401b5f8a3ce0c0f57
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
