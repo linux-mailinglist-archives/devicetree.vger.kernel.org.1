@@ -1,100 +1,80 @@
-Return-Path: <devicetree+bounces-252190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBACCFC1F4
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 06:55:42 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3A58CFC206
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 06:57:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2D65930373A7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 05:55:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 222CD3002BBB
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 05:57:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 720CA259CB2;
-	Wed,  7 Jan 2026 05:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F92C25D53C;
+	Wed,  7 Jan 2026 05:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MVSQ6MxO";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CDm3kqhH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ONf2ZUpe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F2D227E82
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 05:55:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A74B8248B
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 05:57:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767765339; cv=none; b=k1FY4fDP+JLsfRMrmAQ3nGEaVZ/YCa3lqiJe9pt36+sDbZrXjSd8uy1vzIt0o6g7XbXFAC7vnhJL6IrtCUAYFUD+wkYhiG66hMqnj4ohRSQ0ORbwjF2T8v2bPL56zNpRfrWnAbdmV/SrXF3P2S0lba5gg3sFvt2UHFAWi1AcXpM=
+	t=1767765441; cv=none; b=XxT+ggBLqdjhYgk8uCBMM4VR6nm+JSFOGE3UHIoDVU5xwhSAvDDc2jbfp5U3w+2o95MteY6Y8GCU4iU8p35hgidzXAa92ebI1RwU5tEMKt4ZaWtidgOE4HKQTYgP9FkAoJccTvVMPqdWRqIw488BsV5ZRt/kA6VHvh2vHdIK5zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767765339; c=relaxed/simple;
-	bh=ajQwZ/LzxLqpctIDxzAewFSle0iQFzYAz8P0hw0+13M=;
+	s=arc-20240116; t=1767765441; c=relaxed/simple;
+	bh=WzuoTu/RQDutR6UUXPFNt/y24uyOreNEZoXFLF1KmnM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=myVEUWWpQMWCba8eHKpGA1I0OWLEEdDXhVZ1j6wwKP+U+ESLOCMMyt3QH0i31TAK/beSayZJbysREnWRKzJcScDR4A6CIxAQROofi80z2dBePHe/AJuhc+qtYyN7bqRReYMW/oYgNHzRzKXdv0sG2aXptnXU/YpMsfnsPOyJFE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MVSQ6MxO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CDm3kqhH; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6074mDM81643107
-	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 05:55:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	er1TnH0vnBAkpPLGNXZ6F8aqsczeGg4g5uAkB5IxfcI=; b=MVSQ6MxO6sZovrEx
-	oc5LIrGX1/59PN9ymXw3IICyQcNFaXRrSgYZv8H0ie3Y8JqY+WScbckHthUxWHXh
-	BPKwNJlexiztd+uQmFtYk7PrQJs3KYzkzaGBxb2JzcYD6itW/wYhjkvWqFi5sROZ
-	gK0bTpV8EKmoPCvlSmu2N4vfFY0EwvRxBNqD459n8OFA9KReDSAmq6Piu2bxv4yb
-	wE+Y6AYX3lHCG75z5bEaSsw+iADJH7obtRgf/VrBxqa6M7ZDyOaXJ+d5BdlP8l0D
-	Pus3kRVw6Xm37UlFcPGYFE6vOAdOVly8T5cM/ttsvizwKXcmhHiHCBhibjMH0LTD
-	BDGtpg==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhgsfg5wx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 05:55:36 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-88a25a341ebso41889966d6.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 21:55:36 -0800 (PST)
+	 In-Reply-To:Content-Type; b=JRYt9kcTsC9rTqvMFFqQs3DvjQmBSQNCINxrUeBBUMAhJ5wXD+5G9q9Y3pimpxr7Z72RCRgCivL9W7qxc4qn7XAJP0QUxPXroU42/9/eAD43fkL5EffzaJwmoVptG45fanA3U8HsIwi6GXLf4uqIEHP7lsClvIbOVWUmgmNzAZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ONf2ZUpe; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2a0a95200e8so11740195ad.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 21:57:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767765336; x=1768370136; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1767765439; x=1768370239; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=er1TnH0vnBAkpPLGNXZ6F8aqsczeGg4g5uAkB5IxfcI=;
-        b=CDm3kqhHhJugEWKuJCCISecNd+JjXxXJNDpK6zAVEn7JNkIN+aZt5spvY+9o1mnKVb
-         fG4AiYKIR/C/UC9x96QvgsHbUIeS+yK8f10MqKBXI/k1B3gwlc249HsNCPBoIBidyzTO
-         f3gP0qDgiTE+docMOrTJLsCflNEFhr7+sTGqylQYcOPLrkpa3IXnmyWlo8ivec/POrzy
-         iaIKS2ZOhliEID91W+okf1xsN+NKISQjEGVGRhFwQt7yvFm9KPjPOiRE9SeELHgy9brr
-         KeAN6ODKGLbTJl60gPj9DprSbSn0ilGSbjBBHA+xrFz4a3AB8/wMe1QOAKbTYpDl++Ny
-         P+Pg==
+        bh=FCAOaMP6GeMEUNG9hb1gXak7l2iA5WuTKFQobc/JUxM=;
+        b=ONf2ZUpeUiV8crUlzknvpXFGIrdAgS7io1jcWcgWLCIvravDs/qM2o7kW08iDeTuxF
+         e6x1Hez+ZJkGYVS9qvgzOBPnw8vts5qL4LKhorCnZ0sOHpD8fC0bTsTv8MmafIFVg4lo
+         +28xngcbNwgqt86SHsqKJyv+2Trv+Xk0J6Fm7t786c+n3stJR9UwDKoEwDphMe35NFn9
+         HKN9jDkcZIxpdlGyUNjc6DVjf3Gd+fL2noaTOlXYDBRYzhaSNQ7ChMW/8XjzA1N06FA0
+         zfMz/wySlikaD1O2Pd2pDtpBlw8fA2/ZzevmCgfb+qnvdoPOUYFn8XyqK/vwFzPNawPR
+         8CKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767765336; x=1768370136;
+        d=1e100.net; s=20230601; t=1767765439; x=1768370239;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=er1TnH0vnBAkpPLGNXZ6F8aqsczeGg4g5uAkB5IxfcI=;
-        b=E6Wr+cobZmNvIS4zrLcqCjKdUlIO+L6MCtrdZ1JZMLuvl1GFxboNCHxx5YXM0KVOGc
-         Vr8rtCqyhQtqnRPK3z2VK5R2A4CawuaWtbYEKGkmk0kkeBMYV/n7x2Xmlm8zfj1VCzOX
-         yiCYwxmCCdcHNTaOnyIta1+t76BKXR7RlUsQsj7h3OgVTPdmIrxIes1Upv25wWTrT4zE
-         Yfe51syoxFVqiJKesxptTWoq9UDb36M7Rky1+Q/nQVpKjKvXLZKMinWltPfJtXti5Kbc
-         EKNsm9mtcbFA3PpjQIhDnjzHUkDOk7Df+v/BRyXbD1J+rmVa31IJ1GBR8PJIDTzbf4Sa
-         RH/A==
-X-Forwarded-Encrypted: i=1; AJvYcCWLz+aM0R2JSAXF0zR+3+Fpe6uzXwQWV0bpnGVPEPJUBxLWWLtatgd9pms+ZlDFwdVCiFyL6c6G3NOz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJWHnvbbS7m8v/QisM/Ly7jROTs9J7L15SA5I5KclQ2AKvIEIL
-	erxVJ649uif3fOSFcF9cQYvGaKjsG/dgdfTMtIK0f/D6xH/LnsQKiVvJnkVu+lV53LlVzk+XgFK
-	MiFYg3Mgs6/FKIQ8/eMyb2ym9+z0FeZCl0juCfPHjnMNmV9SZju5NCitTHZnuxmSk
-X-Gm-Gg: AY/fxX6EW0xr0gb9UDRyFJAM5tDQ1EzmhQC6QYiGz1wIH6B1bN3FV/VWgUREtANuJua
-	uSviZ5Me1092zO6hBoCFJIgoMxIZidbWcmDBMFBa3ANXTejt+XO4OwEHWYqA0jjKLfU48QGbRTX
-	ruS0OJLN+kyUYY8Bpq69V8uMO84e/DrG/rpr1P4WdNHFxDgTo3J8OBUJuw+nadR64k2bOLfWShl
-	ol/5dlseAOaXmJxt80G/ai6+zT3aLD2x2Yl1kM47O17AWBvKuDEfzsLgYRkg5Dr0BsO9BNT2fyC
-	YSJqHBAAU72frtvQ1Z7GSS+qCfSOuXG1sQdA9N0Ev8ijzH9jVa9Azhu1+P1+1Qr8mRWMbpU29qf
-	WUo9OqB5ecgURIvnBqSNOSJRIuZrxcgdgCWqkRNTrmzP5A1eWqwualO0EA3j8Ac2fcEvRgma8
-X-Received: by 2002:a05:6214:3109:b0:880:5851:3c49 with SMTP id 6a1803df08f44-890840e46afmr18081886d6.0.1767765335827;
-        Tue, 06 Jan 2026 21:55:35 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGId3S6qgfVCmVX9I4t7HNwXWrG8zNNbcqsDGTUcKogjqRiedSS4NBeYruM6dqNkd9MGNhRbQ==
-X-Received: by 2002:a05:6214:3109:b0:880:5851:3c49 with SMTP id 6a1803df08f44-890840e46afmr18081696d6.0.1767765335437;
-        Tue, 06 Jan 2026 21:55:35 -0800 (PST)
-Received: from [10.38.247.225] (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-890770e91d8sm27388856d6.22.2026.01.06.21.55.29
+        bh=FCAOaMP6GeMEUNG9hb1gXak7l2iA5WuTKFQobc/JUxM=;
+        b=xNajW7HAfb5PJdTYgjBolBVdM2kbNTIQ2tl9r1GygdJMA2ZwR4Q/xSNUqrRI87/eML
+         bHhcJdDet8PVrcGhsHiFmaB2Lb80bh9CY8EaLgYxl0Z0MGRk/UXbbaeZWpR/tSXrm+Oy
+         gom6UYNJonp/F+GKBU5pznixAwcGmh0XezGksAVvtp4VrPLKZLgI3Bse0ZbipNpF2NQc
+         Kq+5NSOeTWyYZn8U30JfcJFcnTtHY2R789jltYO3rpgq1RPBqJkflLdMY7NlCKP/Wy4B
+         JN7bv95n1rfJX9SgtVwGGQGGpKPWFZ9BO7JMJDn77umQJP+o62xjlNnHd689kvIpyPXp
+         g1rg==
+X-Forwarded-Encrypted: i=1; AJvYcCVhY5+sGgQ4IGhx8fAXIGU/11adN746Ejr4tBgk8jeLlVVX/KA3RsNYvu2AKEoeHEC9BtVfoKylY3Y5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvfvphHmASTKp+rgiUJzhSUeZ7UaWW4CKvIRhdp6pD5IbA9lV/
+	zChnjc7zLjPFvJgZxumwPuCJLe6ragi5rBmT0CqJg8bCOZRFDC3hl6VpfIuS7w==
+X-Gm-Gg: AY/fxX7vxiQi5H7r3tbTvjSoDM13UlEbW6LMHkIbkNdIu92Wgw/W3tWzQs9sNmRMtev
+	iJsHFofu4S7Bx6BhUeh3D7LT87EyFLjMIG782a5aABu1k8p1RghxtoPgrR7jpsbdMrg32aE2oQx
+	6HBPfkbfCEVv0R/mJzwgeP06Z4CRt98xO8RmPR5hILYihzx0Kukh1cz/kdqnZ0lBMMp/suLcvhN
+	+itkpJpDxBHwaLyK7GkAwOdQKGhaTfIz6F/fgO5g6f56Gt5Xo/8MdMPSH39OBJZFWC3vBX8vhRh
+	offzzP45KVm8fNYUsnl/Tpsw9+6T2bwKoO90Cc2mjiusU10IMyEwnxf06kvQVphY4ueld2B3mVy
+	/fZ3WN19utXhzWMGdH9LcaRWZ54MtH2whfgYJqkdpQ5pQy3PhHSb+/4WKBwOvlmy1vC8fDdQ2Ti
+	W6qaJZJiRkFa2UnQ+nVw6tWopUkT8Ej+HgUg==
+X-Google-Smtp-Source: AGHT+IGfcdGVJZSkWDo21K1vU9MUUBWQ+IBES3Tajafe9cDt1j1Q79XvwK3ZwVKUzIzLH8b7b08n2g==
+X-Received: by 2002:a17:903:b07:b0:295:b46f:a6c2 with SMTP id d9443c01a7336-2a3ee4aaebamr12781305ad.37.1767765438802;
+        Tue, 06 Jan 2026 21:57:18 -0800 (PST)
+Received: from [172.16.20.12] ([136.226.245.14])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cc7912sm38766625ad.67.2026.01.06.21.57.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jan 2026 21:55:34 -0800 (PST)
-Message-ID: <3a8e8327-1a55-4822-885a-86fec029952d@oss.qualcomm.com>
-Date: Wed, 7 Jan 2026 13:55:27 +0800
+        Tue, 06 Jan 2026 21:57:18 -0800 (PST)
+Message-ID: <10848ac4-4b2a-4e1e-b6b8-d99cbf54c28c@gmail.com>
+Date: Wed, 7 Jan 2026 11:27:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,95 +82,166 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: talos-evk-camera: Add DT overlay
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-References: <20260106-sm6150_evk-v2-0-bb112cb83d74@oss.qualcomm.com>
- <20260106-sm6150_evk-v2-4-bb112cb83d74@oss.qualcomm.com>
- <ndexzb5bo2rxjsj7jkf3bevbb6vmtjpuuhxbonpf3v5csxnjtu@sotufkkvfc4r>
- <f09670ed-1aba-4622-94b2-85ade831f7fa@oss.qualcomm.com>
- <e91414c6-fc89-4b38-a5be-f282c8601b5f@linaro.org>
+Subject: Re: [PATCH v10 3/5] backlight: gpio: add support for multiple GPIOs
+ for backlight control
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251230130227.3503590-1-tessolveupstream@gmail.com>
+ <20251230130227.3503590-4-tessolveupstream@gmail.com>
+ <pbbqct3a7ft466aerdkm6k5kmwstfgpbegrakfvdxzj2tdpdyu@pws3zzu4sfiq>
 Content-Language: en-US
-From: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-In-Reply-To: <e91414c6-fc89-4b38-a5be-f282c8601b5f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDA0NiBTYWx0ZWRfX9s1jOp14lotp
- m5UgC1ayq6gab06HJi4Q+CK/3bZpPIoIqn9uXFh3cSY7EgQadyqp7tS1NGap5LfQgpjSsmYnp9e
- W+AClDU/ZxjobGuAQIU9Xzy4KZxi8j/E/YLzsz/lTcmsN/VpLKOFDNv6yBuJ9+IqFPh9lFtZld3
- gJCHM9tbwbewCRa00bcsGY+Qn64uUYDAnqzdoipfrkhwdNx4ELzr9CHR/XOHT5zTg6+BtD5tqDq
- kRPH9HofTAes2knKYjccdBJbM+8r0nmK7cg9Id/oKMpKm3LEKSsUCpvqEiIqElQD7phwGQ6MoPw
- T1ljvrXa+0z+i5jThzcu4kLn/EzYnmHw3TM0M5zTWoOzmgfZqsFJZ05pzBPaJT3IY0v58cBXCqo
- U7shEgbVyZTP+JrkNhc4JLGlhjDWYIBzwL2L8fXOmTL4uXSjdbtZYfbQvl45cS+XuMssSuSwqfJ
- vQPaAeO/T7aQArXxkGg==
-X-Proofpoint-GUID: YeG_xFHEzXc5MT7qWa17foZxy0dWRkNC
-X-Proofpoint-ORIG-GUID: YeG_xFHEzXc5MT7qWa17foZxy0dWRkNC
-X-Authority-Analysis: v=2.4 cv=Abi83nXG c=1 sm=1 tr=0 ts=695df558 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=FqtGTYOm0bbIGPRGAl4A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-06_03,2026-01-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 suspectscore=0 phishscore=0 impostorscore=0 adultscore=0
- malwarescore=0 clxscore=1015 lowpriorityscore=0 spamscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601070046
+From: tessolveupstream@gmail.com
+In-Reply-To: <pbbqct3a7ft466aerdkm6k5kmwstfgpbegrakfvdxzj2tdpdyu@pws3zzu4sfiq>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
 
-On 1/7/2026 1:16 PM, Vladimir Zapolskiy wrote:
-> On 1/7/26 05:05, Wenmeng Liu wrote:
->> On 1/7/2026 2:23 AM, Dmitry Baryshkov wrote:
->>> On Tue, Jan 06, 2026 at 05:39:56PM +0800, Wenmeng Liu wrote:
->>>> Enable IMX577 via CCI on Taloss EVK Core Kit.
->>>>
->>>> The Talos EVK board does not include a camera sensor
->>>> by default, this overlay reflects the possibility of
->>>> attaching an optional camera sensor.
->>>> For this reason, the camera sensor configuration is
->>>> placed in talos-evk-camera.dtso, rather than
->>>> modifying the base talos-evk.dts.
->>>>
->>>> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/Makefile              |  2 +
->>>>    arch/arm64/boot/dts/qcom/talos-evk-camera.dtso | 63 +++++++++++++ 
->>>> +++++++++++++
->>>
->>> Is it possible to attach other sensors? If so, overlay name should
->>> depicit which sensors are attached (compare this to the RBn boards where
->>> specifying "vision kit" defines all sensors attached to the device).
->>
->> Okay, we previously had a discussion on this. I will rename the file to
->> talos-evk-camera-imx577.dtso.
->>
+On 05-01-2026 21:08, Bjorn Andersson wrote:
+> On Tue, Dec 30, 2025 at 06:32:25PM +0530, Sudarshan Shetty wrote:
+>> Extend the gpio-backlight driver to handle multiple GPIOs instead of a
+>> single one. This allows panels that require driving several enable pins
+>> to be controlled by the backlight framework.
 > 
-> Other camera or display .dtso names commonly repeat the name given by
-> the vendor, and the bare minimum is to name it the commit message or in
-> the code. Is it Arducam 12.3MP IMX577 Mini Camera Module or something else?
+> Can you please elaborate on the problem described here. Preferrably in
+> the form described in
+> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes,
+> i.e. start with your problem description, then a description of your
+> solution.
 > 
+> What does it mean for a backlight device to have multiple enable GPIOs?
+> 
+> 
+> PS. The associated binding patch needs to be merged before the
+> DeviceTree (dts) changes can be merged, but it would be more efficient
+> to upstream them separately - as each set of reviewers could focus on
+> their part and you could update the patches based on the feedback from
+> each part.
+>
 
-I believe that modifications for the sensor do not need to include 
-Arducam descriptions, because this DTS is intended to support this 
-sensor module. Even if it is replaced with another vendor`s IMX577 
-sensor, it should still work.
+Initially, I had included the gpio-backlight driver and binding changes 
+together in the v10 patch series. Later I separated these 
+gpio-backlight changes and submitted them as individual patches to the respective maintainers.Here is the link to the updated patch series:
+https://lore.kernel.org/all/20260105085120.230862-1-tessolveupstream@gmail.com/T/#t
+ 
+> Regards,
+> Bjorn
+> 
+>>
+>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+>> ---
+>>  drivers/video/backlight/gpio_backlight.c | 61 +++++++++++++++++-------
+>>  1 file changed, 45 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
+>> index 728a546904b0..037e1c111e48 100644
+>> --- a/drivers/video/backlight/gpio_backlight.c
+>> +++ b/drivers/video/backlight/gpio_backlight.c
+>> @@ -17,14 +17,18 @@
+>>  
+>>  struct gpio_backlight {
+>>  	struct device *dev;
+>> -	struct gpio_desc *gpiod;
+>> +	struct gpio_desc **gpiods;
+>> +	unsigned int num_gpios;
+>>  };
+>>  
+>>  static int gpio_backlight_update_status(struct backlight_device *bl)
+>>  {
+>>  	struct gpio_backlight *gbl = bl_get_data(bl);
+>> +	unsigned int i;
+>> +	int br = backlight_get_brightness(bl);
+>>  
+>> -	gpiod_set_value_cansleep(gbl->gpiod, backlight_get_brightness(bl));
+>> +	for (i = 0; i < gbl->num_gpios; i++)
+>> +		gpiod_set_value_cansleep(gbl->gpiods[i], br);
+>>  
+>>  	return 0;
+>>  }
+>> @@ -52,6 +56,7 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+>>  	struct backlight_device *bl;
+>>  	struct gpio_backlight *gbl;
+>>  	int ret, init_brightness, def_value;
+>> +	unsigned int i;
+>>  
+>>  	gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
+>>  	if (gbl == NULL)
+>> @@ -62,10 +67,22 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+>>  
+>>  	def_value = device_property_read_bool(dev, "default-on");
+>>  
+>> -	gbl->gpiod = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
+>> -	if (IS_ERR(gbl->gpiod))
+>> -		return dev_err_probe(dev, PTR_ERR(gbl->gpiod),
+>> -				     "The gpios parameter is missing or invalid\n");
+>> +	gbl->num_gpios = gpiod_count(dev, NULL);
+>> +	if (gbl->num_gpios == 0)
+>> +		return dev_err_probe(dev, -EINVAL,
+>> +			"The gpios parameter is missing or invalid\n");
+>> +	gbl->gpiods = devm_kcalloc(dev, gbl->num_gpios, sizeof(*gbl->gpiods),
+>> +				   GFP_KERNEL);
+>> +	if (!gbl->gpiods)
+>> +		return -ENOMEM;
+>> +
+>> +	for (i = 0; i < gbl->num_gpios; i++) {
+>> +		gbl->gpiods[i] =
+>> +			devm_gpiod_get_index(dev, NULL, i, GPIOD_ASIS);
+>> +		if (IS_ERR(gbl->gpiods[i]))
+>> +			return dev_err_probe(dev, PTR_ERR(gbl->gpiods[i]),
+>> +					"Failed to get GPIO at index %u\n", i);
+>> +	}
+>>  
+>>  	memset(&props, 0, sizeof(props));
+>>  	props.type = BACKLIGHT_RAW;
+>> @@ -78,22 +95,34 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+>>  	}
+>>  
+>>  	/* Set the initial power state */
+>> -	if (!of_node || !of_node->phandle)
+>> +	if (!of_node || !of_node->phandle) {
+>>  		/* Not booted with device tree or no phandle link to the node */
+>>  		bl->props.power = def_value ? BACKLIGHT_POWER_ON
+>> -					    : BACKLIGHT_POWER_OFF;
+>> -	else if (gpiod_get_value_cansleep(gbl->gpiod) == 0)
+>> -		bl->props.power = BACKLIGHT_POWER_OFF;
+>> -	else
+>> -		bl->props.power = BACKLIGHT_POWER_ON;
+>> +						    : BACKLIGHT_POWER_OFF;
+>> +	} else {
+>> +		bool all_high = true;
+>> +
+>> +		for (i = 0; i < gbl->num_gpios; i++) {
+>> +			if (gpiod_get_value_cansleep(gbl->gpiods[i]) != 0) {
+>> +				all_high = false;
+>> +				break;
+>> +			}
+>> +		}
+>> +
+>> +		bl->props.power =
+>> +			all_high ? BACKLIGHT_POWER_ON :  BACKLIGHT_POWER_OFF;
+>> +	}
+>>  
+>>  	bl->props.brightness = 1;
+>>  
+>>  	init_brightness = backlight_get_brightness(bl);
+>> -	ret = gpiod_direction_output(gbl->gpiod, init_brightness);
+>> -	if (ret) {
+>> -		dev_err(dev, "failed to set initial brightness\n");
+>> -		return ret;
+>> +
+>> +	for (i = 0; i < gbl->num_gpios; i++) {
+>> +		ret = gpiod_direction_output(gbl->gpiods[i], init_brightness);
+>> +		if (ret)
+>> +			return dev_err_probe(dev, ret,
+>> +					"failed to set gpio %u direction\n",
+>> +					i);
+>>  	}
+>>  
+>>  	platform_set_drvdata(pdev, bl);
+>> -- 
+>> 2.34.1
+>>
 
-Thanks,
-Wenmeng
 
