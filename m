@@ -1,319 +1,112 @@
-Return-Path: <devicetree+bounces-252489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4017BCFFA08
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:03:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2D08CFFC67
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:36:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F2A8B306ECC6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 19:01:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 953E431A3C4D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 18:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 989F8369979;
-	Wed,  7 Jan 2026 18:48:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IIrPrKE5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE84334C08;
+	Wed,  7 Jan 2026 15:21:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C02DD36997A;
-	Wed,  7 Jan 2026 18:48:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54B23396F0
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 15:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767811738; cv=none; b=HkFJykhG+32PajZWrvalmOEbWhWG3VCYFnm21aBVtEsI01YxbT+x+RLSitQ6giT64y1MaV9SVyfdR6NzLD4oVMvvgTOp/6r5ABvZtPPO694jamhNeOYoAToMnsbuakyOhQfg7n/lUMwdeHI8DkWwZ5oX1aKZjNuhifi/9F2F9FA=
+	t=1767799319; cv=none; b=ihoWaTxd3a1rJsC3aoIYXNrGFIPyTRicKT4dX4v8p2Rn3z2wcDH8r3kBxcdkPJAvpGxWLiCa/Z6JuK7P07wXXW523fXqNsbUJDAe1BskYX5gaAd3A7O+FrMk/eKE8ZkVI4/6xEjmc0BZkUt3dJGYV2AwraW2O7BYyIcgNGyaT1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767811738; c=relaxed/simple;
-	bh=vaeG3xc6jCP6hjj49N80j1QcDpc1ofD6MRUXdytVnD8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BZrYNFsYI5Y5osRasjV3troV91J2ybYuYmn1mLmaIpf/q+SvJ9/OED20Ljth9zoGlhCWY962o1X5L2/Vu1l3wkESggO3L0hC8tv1fcqAXuhVWUrzUldUhVVOqItm0rLts15JKPbpwQXDzvyjr0I19ZxJrqoBNWK7Y6r+Bo/ecq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IIrPrKE5; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767811734; x=1799347734;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vaeG3xc6jCP6hjj49N80j1QcDpc1ofD6MRUXdytVnD8=;
-  b=IIrPrKE5qSGgmXGsJhIb2QxVAB+iZpHqV2H+GdRpiPYWAFNg8sAlcn75
-   TAaqyiuvao2M3I2Lb2mtHsnzw9g66WjuLZyZsDwl5QA6p9sZJgptWSIrp
-   bHQj5J9qTgl2TZm0Ed1FUBn1dVqVj4pPsGwUAjLGLL/EyRaXjgBu3VCkV
-   5Ji/xLF6QO9jGa6Y7nDY9S1MVcLdZwd6khsqWLLpAnO4pXhE7qGkACu6W
-   y89mjA7d/0v/f7uZJdcNdksRMIMexIHxjXhRL4Wahi52Qs/nZ3XICCVc8
-   EJQ2fH2bSkEMvMKIWRYY+EraYrb199UdJ39Tb5QcXCUPtCiPm0pYyv9/T
-   w==;
-X-CSE-ConnectionGUID: TjBNkFjKQAG2buNYaI57yw==
-X-CSE-MsgGUID: FMFgA6yJTOCHsnTHcfF8lg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="69264750"
-X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; 
-   d="scan'208";a="69264750"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 10:48:52 -0800
-X-CSE-ConnectionGUID: 3NtLCHnfQO+JJ91zg81Veg==
-X-CSE-MsgGUID: U/m8+RsGTIS39SOnLa+i+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; 
-   d="scan'208";a="202907090"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.174])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 10:48:49 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id B84D612020E;
-	Wed, 07 Jan 2026 20:49:02 +0200 (EET)
-Date: Wed, 7 Jan 2026 20:49:02 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Robert Mader <robert.mader@collabora.com>,
-	Bryan O'Donoghue <bod@kernel.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v6 2/5] media: i2c: imx355: Support devicetree and power
- management
-Message-ID: <aV6qnjyXV-yTLqVl@kekkonen.localdomain>
-References: <20260107043044.92485-1-mailingradian@gmail.com>
- <20260107043044.92485-3-mailingradian@gmail.com>
+	s=arc-20240116; t=1767799319; c=relaxed/simple;
+	bh=xirnzd+sOTLBfOoqrKyZ5orvmCZslNDx5L/n4t/ve2s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qXmxVe2Y073kQ2OO/tOdYTAhU/TWD9mzvCW4Ff3q07MfnaS4DsnJmAKfw+5LvSS4l7U32+AVVOoZqIy8dSSuhHQvPIAf/WlmzEMetkh2x0Tho3Sb4ddl8Wucng6S/4DkM8hn0PzoLObkn7XKm9Q37muMxTQtqIChwF0gamHbX9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5ecddf73062so482462137.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 07:21:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767799307; x=1768404107;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VGXfYeh3k2PdpEfY5u5umPkWwmBYjzfyvyHueENf/WA=;
+        b=wLel5hXUZVElO03YoUzb+rGTKbF6yXU4XYW275kIaVKY0TH4/Xbm0P9NJRTXgzvY05
+         DfH13Bl4kkxRZaDLA1x+Itj6oWuax2v1q3LGb9FecOEuyAoiRVwS5QAf/3Jwhr8uVmyb
+         9RLuEAoC/R3Fvm/B4Cg1AomFz9Mxn8WDVJvxCXMjcTJyWBuKes7VpdtDLB3F/+vO9miB
+         O1Ir03OhSMrHTFErV7W1RNM/K//nfEa8tOZY8Tl5jBkhBRDicTP99MQpbEJ/HFKt5puF
+         T/BpBcMiEVCGWfkFrbM1y53UXJka6/hmkr4X/QRVc/lEvL+Qz4pfhSL9hFGeWGzVXyBZ
+         7Tug==
+X-Forwarded-Encrypted: i=1; AJvYcCWHBepVZ0Y6Op3ddYKFbbyohGFgGn9qOPYy9RforeLz5mh6C1kZDQs0bnlldND3/BRyLr/N2ocjBbdc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7Ldy2gr0v1KeeTEmxqS+AxOjqzOmJ4si0xW1sYpXN0KFCwChq
+	cJPt8gcLtu2RJw+5f0HHaNyqJbXjw62CFNRQHLktdOxnPT4LtglWPbT8LNitT/ak
+X-Gm-Gg: AY/fxX7KEk2A6IfmJHJCuMrHomwh2p6Y3Ad/VEY6PGsuZJPxsTW+Ei/DN359hH9V/09
+	MAKccn2zP7qGvcgRzsU0+RcJE2czH5JcupXLxN56h8nmQUuJTnI0G6xS0PqPukDdfyE+/rAyk1v
+	gSmYxloaRJ1IhQGrQDyunvvPJKV7/189F30ebaRlTVy+YYX0/4buTzf62OHh7k7et0KpOEshlqT
+	nG2vmUSGdBbelbDXDeva5O0NQraDfjYs5HP9e5GLZqB3yco75eMWiN6YloF9eOk15W6GdfUkFuB
+	YfjISNgsteJaRCD4vcPYnXJnbtwcKVC7rql/Ptt1kBLuHENXHuUIz6qxaCHiGgQadOg9RSclY82
+	Yyfbcu4cqcsJXNszKaS6Hnxst00cjRRYx1Qs8dqBsRfNAIOcraElwrMr03lInAP4S+f6kqB8yjR
+	RvnFaxUAgGl0hsU/zZXk//FCMNLg2yAj56Pc8opWEz4cO5Xb1F
+X-Google-Smtp-Source: AGHT+IE+twxx5fGvrwuUmyFu+jBwPsXmIlHSakh9WzEFoATTovlRa7Phb6Sa3e40HFledY7qk1yiuA==
+X-Received: by 2002:a05:6102:944:b0:5dd:37a3:c389 with SMTP id ada2fe7eead31-5ec75566566mr2627274137.2.1767799306934;
+        Wed, 07 Jan 2026 07:21:46 -0800 (PST)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-944122ad97esm3021628241.3.2026.01.07.07.21.46
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 07:21:46 -0800 (PST)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-5ecddf73062so482455137.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 07:21:46 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVcuFVOrDwHxbXpXauOtYrO+RKUlahXO6mYzjHv6rR+eyx675PcUOb9gAAhzbzVnybAJQKkDfuhWj9g@vger.kernel.org
+X-Received: by 2002:a05:6102:f0a:b0:5db:cfff:fd66 with SMTP id
+ ada2fe7eead31-5ec75774023mr2670446137.22.1767799305872; Wed, 07 Jan 2026
+ 07:21:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260107043044.92485-3-mailingradian@gmail.com>
+References: <20251224165049.3384870-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251224165049.3384870-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251224165049.3384870-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 7 Jan 2026 16:21:34 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWAbdVfTGtAdVCfq31yTNYVgmXoVB5JvPOHde-ZsVMBhw@mail.gmail.com>
+X-Gm-Features: AQt7F2o6g6AUCQi8FFgmNntpDHUQy0QJrCdwxLZBZDunb38OI9ggwtqmRVYkm64
+Message-ID: <CAMuHMdWAbdVfTGtAdVCfq31yTNYVgmXoVB5JvPOHde-ZsVMBhw@mail.gmail.com>
+Subject: Re: [PATCH 3/4] clk: renesas: r9a09g057: Add entries for CANFD
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Richard,
+On Wed, 24 Dec 2025 at 17:51, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add clock and reset entries for the CANFD IP.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Tue, Jan 06, 2026 at 11:30:41PM -0500, Richard Acayan wrote:
-> A device tree compatible makes it possible for this driver to be used on
-> Open Firmware devices. Initialization of power-managed resources such as
-> the reset GPIO and voltage regulators can be specified in the device
-> tree and handled by the driver. Add support for this so the Pixel 3a can
-> use the driver.
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> Nacked-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk for v6.20.
 
-Uh-oh.
+Gr{oetje,eeting}s,
 
-> ---
->  drivers/media/i2c/imx355.c | 116 ++++++++++++++++++++++++++++++++++---
->  1 file changed, 108 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/imx355.c b/drivers/media/i2c/imx355.c
-> index 776107efe386..4ac8495d1a3d 100644
-> --- a/drivers/media/i2c/imx355.c
-> +++ b/drivers/media/i2c/imx355.c
-> @@ -3,9 +3,13 @@
->  
->  #include <linux/acpi.h>
->  #include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/i2c.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/unaligned.h>
->  
->  #include <media/v4l2-ctrls.h>
-> @@ -125,6 +129,15 @@ struct imx355 {
->  	 * Protect access to sensor v4l2 controls.
->  	 */
->  	struct mutex mutex;
-> +
-> +	struct gpio_desc *reset_gpio;
-> +	struct regulator_bulk_data *supplies;
-> +};
-> +
-> +static const struct regulator_bulk_data imx355_supplies[] = {
-> +	{ .supply = "avdd" },
-> +	{ .supply = "dvdd" },
-> +	{ .supply = "dovdd" },
->  };
->  
->  static const struct imx355_reg imx355_global_regs[] = {
-> @@ -1515,6 +1528,55 @@ static const struct v4l2_subdev_internal_ops imx355_internal_ops = {
->  	.open = imx355_open,
->  };
->  
-> +static int imx355_power_off(struct device *dev)
-> +{
-> +	struct i2c_client *client = container_of(dev, struct i2c_client, dev);
-> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> +	struct imx355 *imx355 = to_imx355(sd);
-> +
-> +	gpiod_set_value_cansleep(imx355->reset_gpio, 1);
-> +
-> +	regulator_bulk_disable(ARRAY_SIZE(imx355_supplies), imx355->supplies);
-> +	clk_disable_unprepare(imx355->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx355_power_on(struct device *dev)
-> +{
-> +	struct i2c_client *client = container_of(dev, struct i2c_client, dev);
-> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> +	struct imx355 *imx355 = to_imx355(sd);
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(imx355->clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable clocks: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(imx355_supplies),
-> +				    imx355->supplies);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable regulators: %d\n", ret);
-> +		goto error_disable_clocks;
-> +	}
-> +
-> +	gpiod_set_value_cansleep(imx355->reset_gpio, 1);
-> +	usleep_range(5000, 5100);
-> +	gpiod_set_value_cansleep(imx355->reset_gpio, 0);
-> +	usleep_range(8000, 8100);
-
-Where do these values come from? Apparently 1 ms is required (after lifting
-xshutdown) before reading identification register and 10 ms is required
-(from the same point of time) before streaming can be enabled.
-
-> +
-> +	return 0;
-> +
-> +error_disable_clocks:
-> +	clk_disable_unprepare(imx355->clk);
-> +	return ret;
-> +}
-> +
-> +static DEFINE_RUNTIME_DEV_PM_OPS(imx355_pm_ops, imx355_power_off,
-> +				 imx355_power_on, NULL);
-> +
->  /* Initialize control handlers */
->  static int imx355_init_controls(struct imx355 *imx355)
->  {
-> @@ -1689,16 +1751,26 @@ static int imx355_probe(struct i2c_client *client)
->  				     "external clock %lu is not supported\n",
->  				     freq);
->  
-> -	/* Initialize subdev */
-> -	v4l2_i2c_subdev_init(&imx355->sd, client, &imx355_subdev_ops);
-> -
-> -	/* Check module identity */
-> -	ret = imx355_identify_module(imx355);
-> +	ret = devm_regulator_bulk_get_const(imx355->dev,
-> +				      ARRAY_SIZE(imx355_supplies),
-> +				      imx355_supplies,
-> +				      &imx355->supplies);
->  	if (ret) {
-> -		dev_err(imx355->dev, "failed to find sensor: %d", ret);
-> +		dev_err_probe(imx355->dev, ret, "could not get regulators");
->  		goto error_probe;
->  	}
->  
-> +	imx355->reset_gpio = devm_gpiod_get_optional(imx355->dev, "reset",
-> +						     GPIOD_OUT_LOW);
-
-s/LOW/HIGH/
-
-> +	if (IS_ERR(imx355->reset_gpio)) {
-> +		ret = dev_err_probe(imx355->dev, PTR_ERR(imx355->reset_gpio),
-> +				    "failed to get gpios");
-> +		goto error_probe;
-> +	}
-> +
-> +	/* Initialize subdev */
-> +	v4l2_i2c_subdev_init(&imx355->sd, client, &imx355_subdev_ops);
-> +
->  	imx355->hwcfg = imx355_get_hwcfg(imx355->dev);
->  	if (!imx355->hwcfg) {
->  		dev_err(imx355->dev, "failed to get hwcfg");
-> @@ -1706,13 +1778,26 @@ static int imx355_probe(struct i2c_client *client)
->  		goto error_probe;
->  	}
->  
-> +	ret = imx355_power_on(imx355->dev);
-> +	if (ret) {
-> +		dev_err(imx355->dev, "failed to power on sensor: %d", ret);
-> +		goto error_probe;
-> +	}
-> +
-> +	/* Check module identity */
-> +	ret = imx355_identify_module(imx355);
-> +	if (ret) {
-> +		dev_err(imx355->dev, "failed to find sensor: %d", ret);
-> +		goto error_power_off;
-> +	}
-> +
->  	/* Set default mode to max resolution */
->  	imx355->cur_mode = &supported_modes[0];
->  
->  	ret = imx355_init_controls(imx355);
->  	if (ret) {
->  		dev_err(imx355->dev, "failed to init controls: %d", ret);
-> -		goto error_probe;
-> +		goto error_power_off;
->  	}
->  
->  	/* Initialize subdev */
-> @@ -1752,6 +1837,9 @@ static int imx355_probe(struct i2c_client *client)
->  error_handler_free:
->  	v4l2_ctrl_handler_free(imx355->sd.ctrl_handler);
->  
-> +error_power_off:
-> +	imx355_power_off(imx355->dev);
-> +
->  error_probe:
->  	mutex_destroy(&imx355->mutex);
->  
-> @@ -1768,7 +1856,11 @@ static void imx355_remove(struct i2c_client *client)
->  	v4l2_ctrl_handler_free(sd->ctrl_handler);
->  
->  	pm_runtime_disable(imx355->dev);
-> -	pm_runtime_set_suspended(imx355->dev);
-> +
-> +	if (!pm_runtime_status_suspended(imx355->dev)) {
-> +		imx355_power_off(imx355->dev);
-> +		pm_runtime_set_suspended(imx355->dev);
-> +	}
->  
->  	mutex_destroy(&imx355->mutex);
->  }
-> @@ -1779,10 +1871,18 @@ static const struct acpi_device_id imx355_acpi_ids[] __maybe_unused = {
->  };
->  MODULE_DEVICE_TABLE(acpi, imx355_acpi_ids);
->  
-> +static const struct of_device_id imx355_match_table[] __maybe_unused = {
-
-Please drop __maybe_unused; it's redundant.
-
-> +	{ .compatible = "sony,imx355", },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx355_match_table);
-> +
->  static struct i2c_driver imx355_i2c_driver = {
->  	.driver = {
->  		.name = "imx355",
->  		.acpi_match_table = ACPI_PTR(imx355_acpi_ids),
-> +		.of_match_table = imx355_match_table,
-> +		.pm = &imx355_pm_ops,
->  	},
->  	.probe = imx355_probe,
->  	.remove = imx355_remove,
+                        Geert
 
 -- 
-Kind regards,
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Sakari Ailus
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
