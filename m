@@ -1,127 +1,99 @@
-Return-Path: <devicetree+bounces-252303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95565CFD5BF
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 12:16:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17AE7CFD5E1
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 12:18:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4195630B2BAF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 11:13:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 31350301A733
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 11:14:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E815E30CD99;
-	Wed,  7 Jan 2026 11:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172953009DE;
+	Wed,  7 Jan 2026 11:14:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="GRFfT5q7"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aXSGy+Xq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E43AB2FC876;
-	Wed,  7 Jan 2026 11:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4871A242D95;
+	Wed,  7 Jan 2026 11:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767784379; cv=none; b=TfN0h4OqoaPq+HkCsGdHr+pCWLoFNvYtqeScEEvBY8ylTO+kZvseFkHiXZA/nRniDyyPl5GmV2xmRmry8sipc7qLj/SMog9SdhwxYM9zYv+Be8BjmMJeCm7zEb6efaTLYcNLUlWdy8wMOCCriRHekVw5qJOpZQRqh35FEgMY+a4=
+	t=1767784449; cv=none; b=hSxlRHnFbLp9cBOK7ibAYroafjNGLn8TOOjBAroNE1avD0gV9mDZHLBqXtaWBtRD89Mbd4abr8I+mwKp0KE3LrVchTGCVcqEYhbfPfKR16Ofr0xlaiVgOEC5TIZ16dUDtNZbI+Nn6s4XQglNBebbib/3Gntlhzk52LkSbufDbiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767784379; c=relaxed/simple;
-	bh=8FREetWQYfqgzhDiO9WBTIlqJFhiC73BzMP7I3w1vQc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bMkjWqFNmj7X41QjLidLCk/9JTdYWmS6WqS2oNwerSutAI9bwCmcYvShHdGtP2OMyn095R8A1culxQ0EQw4bJEOTHWmNRxiCj7IboWfz6PrPIra9mkoeWmwpSUt/hQ6XJDuB81YnZiRPSzw0K7OboMRcjWxLnRqXMh0gzgApAaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=GRFfT5q7; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1767784449; c=relaxed/simple;
+	bh=bYV4b7T0FejKQSm2Ka3i212N2vKUTl8BqnnpMyHRYco=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=IpoyLxl9frR3GWGtGoh6CzURno9mLXMKQOxlwZ8bJtxLeg5mZpfmIjKOYck4VvDx7iQRHJPpE9JLRkl+sbBpulfKQtKT7Wt+YYBcdQqq3Qtp3xEVijWngEZ4+DYIA0N2Fdq6zPIKYKrwFLI5+i1E9meTnxNlLIire6lysHdsJ6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aXSGy+Xq; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1767784376;
-	bh=8FREetWQYfqgzhDiO9WBTIlqJFhiC73BzMP7I3w1vQc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GRFfT5q7chGTiJfUlB0pDh1C0QfcIXq0VIpGD486V4WCNjYPtUCBK2n4z8cK/+gJg
-	 AXu+aPT0e1AI8x39N3DehXiiPKzEBTHGe8vF+QYTuWmi/eMgxLTijgE4Ij1SV61oXJ
-	 JQILbpQWZSmIevaa7U71+9xVJzb9AtYMaqdbH5oPE0pI9E4pOyRVYyD5JQhpYU6T5T
-	 7CIXHUXlqmBwQZU1FleXw/R/QABRaWCo1gArUqm8NUaGYKOcuLHuZ8UmfdAOLA4/dR
-	 jLX6m91ad4A6+MChEJXsrg5CrFM5wi3qyoqO6xOpg/GCeZJT1eAsBi5jKj6qCzd1+0
-	 O0N3TRJDRYhZw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	s=mail; t=1767784444;
+	bh=bYV4b7T0FejKQSm2Ka3i212N2vKUTl8BqnnpMyHRYco=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=aXSGy+XqWmFIXJ079nLZ72r8uoZg543EQKy5dd/R7opmW97D4eM+v8Xgxf0C7KltP
+	 qJvW5b1f+8TfJpvNIhJKWDTY7lg0kSvyM6VWgR/v4gDXvVV+mIQtDNI6hwEEVSiISo
+	 5WO/LQ0XNzMRkjUTstOOCdZvYcWmwClkPjhdd8FZ0MrLJoi0A3IUiE3PDr3ngYe2Sa
+	 6cfnHJWXTEDWHzc7LHa1TtHbyK4OUCQ/cmhSkqfnMiFReRay329LBBMVzzS2pbX3Wu
+	 nDoAY6DqfL8OgAiD8sNJ220sUS1nqAA8H1x82EWvYSGBnrxvCBrjBmZbhYIJg/m72s
+	 1rZ4857QRWLOw==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3E06217E152C;
-	Wed,  7 Jan 2026 12:12:55 +0100 (CET)
-Message-ID: <98320300-04dc-4575-9e8b-22b85374b663@collabora.com>
-Date: Wed, 7 Jan 2026 12:12:54 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D7BC417E1340;
+	Wed,  7 Jan 2026 12:14:03 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Guillaume Ranquet <granquet@baylibre.com>, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: kernel@collabora.com, Krzysztof Kozlowski <krzk@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+In-Reply-To: <20251217-mtk-genio-evk-hdmi-support-v2-0-a994976bb39a@collabora.com>
+References: <20251217-mtk-genio-evk-hdmi-support-v2-0-a994976bb39a@collabora.com>
+Subject: Re: (subset) [PATCH v2 00/12] Add HDMI support for Mediatek Genio
+ 510/700/1200-EVK and Radxa NIO-12L boards
+Message-Id: <176778444383.39787.7154377336276367704.b4-ty@collabora.com>
+Date: Wed, 07 Jan 2026 12:14:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/8] dt-bindings: PCI: mediatek-gen3: Add MT7981 PCIe
- compatible
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Ryder Lee <ryder.lee@mediatek.com>,
- Jianjun Wang <jianjun.wang@mediatek.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Lee Jones <lee@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- linux-pci@vger.kernel.org
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
- netdev@vger.kernel.org, Daniel Golle <daniel@makrotopia.org>,
- Bryan Hinton <bryan@bryanhinton.com>,
- Conor Dooley <conor.dooley@microchip.com>,
- Sjoerd Simons <sjoerd@collabora.com>
-References: <20251223-openwrt-one-network-v5-0-7d1864ea3ad5@collabora.com>
- <20251223-openwrt-one-network-v5-1-7d1864ea3ad5@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251223-openwrt-one-network-v5-1-7d1864ea3ad5@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-Il 23/12/25 13:37, Sjoerd Simons ha scritto:
-> Add compatible string for MediaTek MT7981 PCIe Gen3 controller.
-> The MT7981 PCIe controller is compatible with the MT8192 PCIe
-> controller.
+On Wed, 17 Dec 2025 11:18:59 +0100, Louis-Alexis Eyraud wrote:
+> This patch series adds and enables the HDMI output support for the
+> following boards:
+> - Mediatek Genio 510-EVK (MT8370)
+> - Mediatek Genio 700-EVK (MT8390)
+> - Mediatek Genio 1200-EVK (MT8395)
+> - Radxa NIO-12L (MT8395)
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
+> [...]
 
-I picked all of the DTS patches in this series, because this is ready to merge.
+Applied to v6.19-next/defconfig, thanks!
 
-PCI maintainers, please, can you pick this one?
+[12/12] arm64: defconfig: Enable Mediatek HDMIv2 driver
+        commit: 81841b41a8bcd024f77a15d0634bc229d4d44db1
 
-Thanks,
+Cheers,
 Angelo
-
-> ---
-> V1 -> V2: Improve commit subject
-> ---
->   Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> index 0278845701ce..4db700fc36ba 100644
-> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> @@ -48,6 +48,7 @@ properties:
->       oneOf:
->         - items:
->             - enum:
-> +              - mediatek,mt7981-pcie
->                 - mediatek,mt7986-pcie
->                 - mediatek,mt8188-pcie
->                 - mediatek,mt8195-pcie
-> 
-
 
 
 
