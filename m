@@ -1,91 +1,96 @@
-Return-Path: <devicetree+bounces-252163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE2E6CFBCF5
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 04:10:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B032FCFBEE3
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 05:24:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C3F9A30AA6F9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 03:08:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F1658302559F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 04:24:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D7C2260580;
-	Wed,  7 Jan 2026 03:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF0522A4EE;
+	Wed,  7 Jan 2026 04:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thingy.jp header.i=@thingy.jp header.b="Qfv24pqE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F9tCHjd/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2E425CC74
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 03:07:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 174701ADFE4
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 04:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767755273; cv=none; b=IFfkIbzs9hJ+uVoI1af10T7cu5s605s0VzadwkudjuPRRRspGsRdwXzzTCvGJk1Wt5rz23gmI6T9J4xx/Kc2Ncwhu2oaAHEHriaoHvo+FKElKPn1UBZoxJZ8rfEBhQq8PN/h50PO/6WJAur+YooW5h4uyoXlitMPDQhT0dqpHoE=
+	t=1767759874; cv=none; b=tFKOmfwZ11OJzQVzn+fLfAAS4b8m3uR4uHbDGHzpcUz1gYq8tVTf/zyfxJYUMMsfJWCc3OhZg8nXHEMpjaRSgopVcwUGsF1B+ZzLOhJGVkgRKM/MH74T2N/CuiD2OTAdQjOMiykJaIkjq31NG90ql7JXohKptaYocw4DvTDvgGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767755273; c=relaxed/simple;
-	bh=YCtL7XIQ2elQSXG/uJJP3S0gGTQbILzmG4WP4VYHMLY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mc/MFxkIuwzEuusOM4QIJhXQVUBR5bxho/oCPmmuNSEEzqAk+RLb0lEYXeHKKx3OKJUz04MwDPVgoYq054x/COINczyalzXw3oeUrjNeuGOJlTatA8NZVMwVy3azCJetVhs6yxDMmSNZTbUcwC2mX2IyP8aPE8/H+e3EjT6q6Nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thingy.jp; spf=pass smtp.mailfrom=0x0f.com; dkim=pass (1024-bit key) header.d=thingy.jp header.i=@thingy.jp header.b=Qfv24pqE; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thingy.jp
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0x0f.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2a0d52768ccso14585045ad.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 19:07:51 -0800 (PST)
+	s=arc-20240116; t=1767759874; c=relaxed/simple;
+	bh=QoEydU6h2r0D0PwDBN8+9gzv4tzYc8b9zBCcJbvkw1E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fST1tosYyBwoXaMY5WntoyC8dtdRVWOLgK6XOC+rVQdGIj/UcCbLlytvAK8TQ27fOcErBhc1SsiovwMnPilVkAOiXyJfcRnmCDaq1jInhYV2P4lyfEOW8UBl27+ydjCpn0mGFG4NOW69mGqY+ubfj7yc/AqdryZQVPGlD9wFG5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F9tCHjd/; arc=none smtp.client-ip=209.85.219.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-8888a1c50e8so20482586d6.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 20:24:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thingy.jp; s=google; t=1767755271; x=1768360071; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R7ZFdLTnDvnIrydUNeznKuyxON1SPga3Daneut3hK8I=;
-        b=Qfv24pqEWgseRlnjw4P1mHrXUDrBpTvLmsenXQiyWWzG22HUvMRrurXJBzybeyo7bq
-         /TPNkH8vSWsVnQdjDoKIvyaM3w7OTplNWXt0RBSBbPz65/nvPOGskK+h0bYzG7PMFlmg
-         jwrxyDMSGwnJ6pICFK8Gs2wS9hFJ9kpUcCX6o=
+        d=gmail.com; s=20230601; t=1767759872; x=1768364672; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=foLR2dTcYP4XS4NpABZxr5kZsIpw5l3lYiCp5Kd5N30=;
+        b=F9tCHjd/T2dUKdBmEZyjwrxPrzEGH+q472E6QgXTQ6IskzWEgtJ/5rSywo/JIghcpB
+         yxCZTo2LN3ZoHt0O8wBrlVJovOddOrb6hMJLVrML5IjIOQdv9IM02PwJpqO7txrZQ8Ar
+         TH22kW6MpuJzrU7bwtCupTV+Kdmo25DvdTr6eafIvb0dlsRmz7Kygvf506KN4YVT4hRC
+         YAZyRt4fNbHLNxhZH9XjllYDW31vDaVIQzFV3JYWLhuXxyXWSPj0UCELHNX9YZRlTaNx
+         z6sXyF8CoGI8xcGrxIRB+dgTN7tluzezgLCSWPrLti7aPmqYDHoJwMXW/HyuPeOJt0OE
+         RW5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767755271; x=1768360071;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=R7ZFdLTnDvnIrydUNeznKuyxON1SPga3Daneut3hK8I=;
-        b=SucYKO7y3S8i3qeiV1a0ZpP0ZuBJM8uNXn43ghCPi3jWtNgypPw4LE4xEZ25SPrn4c
-         1QC7q70qJ84oNNvtvjoZbTOILtsTSSVEFi9VqHe4jfO3zjk8DJdcW+hospRJJ8fnZayc
-         Q7Y/snXc3tJMyFvlSbvnYf8W0gTIAbkUoPUYoEP4sAxwdhnyYvpvbWGf/scS5kYIpwro
-         HH6tPb1KBEVF7rrfFFDhISlGXSdzz1NHaIWFvJ923yrbynP10z6nJQi5Xo5H/vSHXCoC
-         dQ+JYGUB67s+6XGMhgXafom4vm7gTfAVuIgBe1OSD9nXAz72gUykKkqlhDHJp5chnrQz
-         m5Pg==
-X-Forwarded-Encrypted: i=1; AJvYcCVAO76qE0VnvHbtYduZx838QcSUj812DxGKT9TW9KslCVavOqGxRL8/e5YgRDnqQW4NRH6tQmRVgeYy@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLShCIJg9BK+6HImYV5xukAGCK1Gquo81SCYDBln/V+Zik4XdE
-	1++sRzZgPO/TqAfKEdaGKP4G/cLl92WAKuqmsmO6uMwr1FPFnTf5+Yb+n01KBYlkiv6Z9Khusjv
-	bTL8mA1U=
-X-Gm-Gg: AY/fxX77PHfxZEl56H0rjlP0kXYz3nk6CQgcTSCsOpGldsdEhEcPK4kr565/GYaMkiG
-	+G9A4IFRJSHBe3ryQqDfyByE1YssQITw8UhZ2tTC0VyJ0rNoW4QSmlV83cICbMC6A6e2Gt63G6X
-	Gu4CtQqRj0w2UQ9XNvcDdCsE9ThSziiX4wFHqG+21cMfC33iHnhFlvBVrDeRSNVDp/qQga55Umg
-	fB+51IDoXH//poScZn30xis8YsyBruRcuYfdZCoiFT8d5+waNGqXL/owqlT2bm+VdnNUvKJL1K0
-	O0Foc4PZd7BUcfmAClW9FL7Oi8Zmzi4d6DakqPxX7RG2bevVwbkzjTTagqUR7pL3prPmOFWM23K
-	DMoHaNJ9v2hbjymro9U2zdUKcFFq6AeHzky6AG4SBhIEZug+5oQfe7vKqe29r15jBX3K1RfO8qq
-	K/UWdPLgu8l3UXDoRrkHsTcnMwnQmVuOF9lBtKX5FI2d8BKLDdvRFr8PnRxLZK+hE2q519hkSjW
-	/E=
-X-Google-Smtp-Source: AGHT+IEdpj9FBlTpGGiP4vWM+VPJOIFZzgRKvhnaBLXZwRM5iwazxSKJvIV2JHH5i9DicVEy3eXR5Q==
-X-Received: by 2002:a17:902:f60d:b0:2a0:daa7:8a3d with SMTP id d9443c01a7336-2a3ee47f15amr10294815ad.23.1767755271138;
-        Tue, 06 Jan 2026 19:07:51 -0800 (PST)
-Received: from kinako.work.home.arpa (p1536247-ipxg00c01sizuokaden.shizuoka.ocn.ne.jp. [122.26.212.247])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a3e3cd4bd8sm33694165ad.102.2026.01.06.19.07.48
+        d=1e100.net; s=20230601; t=1767759872; x=1768364672;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=foLR2dTcYP4XS4NpABZxr5kZsIpw5l3lYiCp5Kd5N30=;
+        b=I6jntRb1ubg+nQnECwifBfQBMgkHAheIo1Vy6kcZcNSXxvq2yNzUGWuzV5D86aGySV
+         9eB4M9jZj6NwIFrPxHobJHODPGFjNFll7Rao/Cchnqe9SxP0C8/2usKLErxVRTmyoNUz
+         XFFggYgLHI2/8JyEYjUPDdfbbuVK9UJosQkLzGMGRB3696Y+gnLdZ48tnbJhCDA5iNGv
+         SuvHQvQxPCdMNAS+EUVqqORcz2RYx9gNeNJIT6xlL2NlF5pqFiV8/iVW85IRcjKIZQSO
+         lcYi6zBMpeeZLzDlmBuSN0VbU7xfkKifETwj3JlvYnM7XjxvUTnzFZuXAVP3RJpGGwk6
+         Iusw==
+X-Forwarded-Encrypted: i=1; AJvYcCVUK9n6OVbPR95lefujEi3LBWHZ9V2o87m7nXZl3uBJS7umGWYRq32zTaZi5cPl11+57MeXuxkm4ZgE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyi7ainYh0dqdqTEjrZr4Mwnn4Mhrs8fQoCr2CBNVPKZEeofnz4
+	Ux45ngqYZUhrCAQVqa+fMTTUQnUVNJeaUhm9GHj/iYbm1m/BHq6RR3tb
+X-Gm-Gg: AY/fxX4y8k2PLJRrj4EFZm/W1Z/eiezeu1zir5Ui+0q98mo1Dleq1cF5ZKakOHm1xIz
+	FYGriHd02Gv9eEdqnw++YvRtWIjqc17236/Dxs9+c408ggFnT05haaFDkUJyvoIG9nB+Ku+iV1g
+	UFUoxuecaTSqrdYkWOpLqjLwzdLFr8j5Ctbfwaw75mm+Et/4SFLbMVOlnVrwqYPs9vqgWABiqGc
+	710DSynyauMU9PUyFTL/MVvg/7Rl0ugiiy9F2/HwOXCC2ASZBXZ86jiyPPWdOlspXMfmenFENkP
+	gkxJU5ttE8GqQvANSprERtZI2Ogm8zTC88twWp+tr0CS1P0GyDKGove/XzCvPUTXESIbpmWORFO
+	bYGrEBsq3FVCLZamClhLxsMdRppI3CcbbqCYsazyUuyJw0f90FY6YHf5P3wyFo512lURx82yyG9
+	jsM4v9AOML3Lc85A==
+X-Google-Smtp-Source: AGHT+IFMcPjHVkeZMdl9Hl8GA7wGzaPseWw7WxemviJhy/p7asvPmy59KOUjV7qnXWUC1pZBy673aQ==
+X-Received: by 2002:a05:6214:5f03:b0:880:4eac:8689 with SMTP id 6a1803df08f44-890842709cfmr17306166d6.57.1767759871920;
+        Tue, 06 Jan 2026 20:24:31 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-890770e472csm26596296d6.23.2026.01.06.20.24.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jan 2026 19:07:50 -0800 (PST)
-From: Daniel Palmer <daniel@thingy.jp>
-To: linusw@kernel.org,
-	brgl@kernel.org,
-	robh@kernel.org,
-	saravanak@kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	Daniel Palmer <daniel@thingy.jp>
-Subject: [RFC PATCH 2/2] gpiolib: of: Remove a bunch of compatible checks for spi controllers you don't have
-Date: Wed,  7 Jan 2026 12:07:31 +0900
-Message-ID: <20260107030731.1838823-3-daniel@thingy.jp>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260107030731.1838823-1-daniel@thingy.jp>
-References: <20260107030731.1838823-1-daniel@thingy.jp>
+        Tue, 06 Jan 2026 20:24:31 -0800 (PST)
+From: Richard Acayan <mailingradian@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Robert Mader <robert.mader@collabora.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	David Heidelberg <david@ixit.cz>,
+	phone-devel@vger.kernel.org,
+	Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH v5 0/5] media: i2c: IMX355 for the Pixel 3a
+Date: Tue,  6 Jan 2026 23:24:46 -0500
+Message-ID: <20260107042451.92048-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,33 +99,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Use of_device_is_possible_and_compatible() + The kconfig symbols that should indicate
-if the compatibles being checked are even possible to allow the compiler to totally
-remove the code for most users.
+This adds support for the IMX355 in devicetree and adds support for the
+Pixel 3a front camera.
 
-Signed-off-by: Daniel Palmer <daniel@thingy.jp>
----
- drivers/gpio/gpiolib-of.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Changes since v4 (https://lore.kernel.org/r/20251211014846.16602-1-mailingradian@gmail.com):
+- add NAK from Krzysztof (2/5)
+- label the camss ports (3/5, 5/5)
+- define endpoint properties correctly (1/5)
+- use devm_regulator_bulk_get_const (2/5)
+- remove clock-names (1/5, 5/5)
+- set reset GPIO as active low (1/5, 2/5, 5/5)
+- explicitly drive reset low at start of sequence (2/5)
+- make data-lanes in endpoint optional and start at 1 (1/5, 5/5)
+- add mclk3 pin (4/5)
+- add Reviewed-by's (4/5)
 
-diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-index 8657379e9165..2c87f1fa1f95 100644
---- a/drivers/gpio/gpiolib-of.c
-+++ b/drivers/gpio/gpiolib-of.c
-@@ -93,9 +93,9 @@ static int of_gpio_spi_cs_get_count(const struct device_node *np,
- 		return 0;
- 	if (!con_id || strcmp(con_id, "cs"))
- 		return 0;
--	if (!of_device_is_compatible(np, "fsl,spi") &&
--	    !of_device_is_compatible(np, "aeroflexgaisler,spictrl") &&
--	    !of_device_is_compatible(np, "ibm,ppc4xx-spi"))
-+	if (!of_device_is_possible_and_compatible(CONFIG_SPI_FSL_SPI, np, "fsl,spi") &&
-+	    !of_device_is_possible_and_compatible(CONFIG_SPI_FSL_SPI, np, "aeroflexgaisler,spictrl") &&
-+	    !of_device_is_possible_and_compatible(CONFIG_SPI_PPC4xx, np, "ibm,ppc4xx-spi"))
- 		return 0;
- 	return of_gpio_named_count(np, "gpios");
- }
+Changes since v3 (https://lore.kernel.org/r/20250905215516.289998-6-mailingradian@gmail.com):
+- separate camera mclk pins and move to different patch (4/5, 5/5)
+- remove polarity from rear camera pin (5/5)
+- remove output-low from front camera pins (5/5)
+- mention effects of dcf6fb89e6f7 ("media: qcom: camss: remove a check for unavailable CAMSS endpoint") (3/5)
+- specify single clock-name without items nesting (1/5)
+- rebase on 49c6ac166cf7 ("media: i2c: imx355: Replace client->dev
+  usage") and eaa7d46d9654 ("media: i2c: imx335: Use V4L2 sensor clock
+  helper") (2/5)
+- do not use of_match_ptr for OF match table (2/5)
+- remove redundant GPIO validity checks (2/5)
+- describe endpoint data-lanes (1/5)
+
+Changes since v2 (https://lore.kernel.org/r/20250714210227.714841-6-mailingradian@gmail.com):
+- use devm_v4l2_sensor_clk_get (2/4)
+- require supplies and clock-names (1/4)
+- move unevaluatedProperties down (1/4)
+- disable clocks as last power-off action (2/4)
+- use 0 in gpio pin power-supply (4/4)
+
+Changes since v1 (https://lore.kernel.org/r/20250630225944.320755-7-mailingradian@gmail.com):
+- too much to have a complete list (1-4/4)
+- squash camera orientation patch (4/4, previously 5/5)
+- squash driver changes (2/4, previously 3/5)
+- remove labelled endpoint node in sdm670.dtsi (3/4, 4/4)
+- change init sequence to match other similar drivers (2/4)
+- retrieve clock frequency from devicetree-defined clock (4/4)
+- remove clock-frequency from dt-bindings (1/4)
+- remove redundant descriptions of child nodes (1/4)
+- switch initial drive of the reset GPIO to low (2/4)
+- set mclk frequency to 19.2 MHz (4/4)
+- add vdda-pll supply for camss (4/4)
+- use common power on and off functions (2/4)
+- use devm_clk_get_optional (2/4)
+- remove extra layer when describing mclk pin (4/4)
+- rename regulators (1/4, 2/4, 4/4)
+
+Richard Acayan (5):
+  dt-bindings: media: i2c: Add Sony IMX355
+  media: i2c: imx355: Support devicetree and power management
+  arm64: dts: qcom: sdm670: label the camss ports instead of endpoints
+  arm64: dts: qcom: sdm670: add camera mclk pins
+  arm64: dts: qcom: sdm670-google-sargo: add imx355 front camera
+
+ .../bindings/media/i2c/sony,imx355.yaml       | 115 +++++++++++++++++
+ .../boot/dts/qcom/sdm670-google-sargo.dts     | 104 ++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          |  46 ++++---
+ drivers/media/i2c/imx355.c                    | 116 ++++++++++++++++--
+ 4 files changed, 358 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
+
 -- 
-2.51.0
+2.52.0
 
 
