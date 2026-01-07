@@ -1,142 +1,199 @@
-Return-Path: <devicetree+bounces-252232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A26FCFC973
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 09:25:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ED39CFC93A
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 09:21:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 429F9300E039
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 08:20:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 216373004D12
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 08:21:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6746627FB3E;
-	Wed,  7 Jan 2026 08:20:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B8C026ED5C;
+	Wed,  7 Jan 2026 08:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PT2KrZ+p"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DLwSKyLY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3329C275861;
-	Wed,  7 Jan 2026 08:20:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B14D923372C;
+	Wed,  7 Jan 2026 08:21:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767774019; cv=none; b=qCsYQYxDYs5YD+felES3CIU5GjIcPhNyC2TlFzQ1upUardDE3tV5pr9JPqjr4EpkJnAL0l/NDry4E3YSGRru/oPrpez+djhx1bhqdgRP9nqIaiVWXFci4nFf+MrlbvuhyT4QZ8U8lyDaUAt29kUC3i9xwatRZzHHRwGyKcqXcLE=
+	t=1767774091; cv=none; b=d11adMkBnRgTq0S307+75GwUuAPFvQAH+Smn2SIAt3qOshYcX2DIEOTVK814pObs0F9BzYk0Yat3I7cFJkdLuWoT6zm389rbZk1HO7M6StCS0ldBS0zqvpq29lKTwuLRu4OH9zlZyN83L4fChsxxccoXl60vWKtoy7dBqVbd17Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767774019; c=relaxed/simple;
-	bh=WCbeW1bpn87qif8FFWkiBawGLmbFs524ju/8yNAvbFI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AX8EtXQZz7jWqdo6qzYHLsFCRF87j08Skj2F4R0G+rWkNzqDru6HIgXbk6eX4AGw5ft6xI04pY1DNs5tjpA6c2wbhgBI2WR5MxQk6cQqVayDBOgn51CmvhNuBUxQbLkGEsjsX09wit3OIDlON3v3k6pyFr91m8wXhP6+jHm9V2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PT2KrZ+p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7461DC4CEF7;
-	Wed,  7 Jan 2026 08:20:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767774018;
-	bh=WCbeW1bpn87qif8FFWkiBawGLmbFs524ju/8yNAvbFI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PT2KrZ+pEATACSkbs3D0/FGQJF36QYNdAdslTFEEv3fl90O48kjdL9bQjwzgvpBW0
-	 pdwjaY36HO0YRqBue7TW9/djpMMgElVCRMO944JYBfX14igdQu4VN9Mxil2rQhGMhI
-	 G2liSqMEO0qSHgcfkc8SlLtDFa1EsdXMhCL7MHeeO0LS1lDNRnmSB4kG4E6FobJYAv
-	 EXHpHdnbyz6yo9fZXk2LE92zx3UwVYJzEGjUlTZopL1J74F0+hvXCUfC+tirJP3/qJ
-	 SriQoAvFPAZWFYftp0TTRnCuCtEivqJtVVJt6dytv8iRSgvb3M/W8MnCR3vJPSbpJl
-	 PzXa3ihkF0Z3w==
-Message-ID: <b724795f-1a76-4cc2-9417-2e4dd7dc7305@kernel.org>
-Date: Wed, 7 Jan 2026 09:20:13 +0100
+	s=arc-20240116; t=1767774091; c=relaxed/simple;
+	bh=07vtpQCZ1nyZ6nweruQaSaZK+68zjtGLXbToHDx0ocE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=R1MMAFxZgd3AC100kmNBlyMDuf5472LBPmPK3tnKUT8IriH4YqGpgX5nhL7rWybBxb5xHJpGp4/m9JFmj6+g01a1mHCUYkNSB030AjV0sv/ai7p/qxLjtXWkA1XAFYgUWFce2IEq1gVGjnQ0Jp3T30c5q3SbYlYZRYoZf8rhP9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DLwSKyLY; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=usWnJ1Rw5KKtaFN+POFS8USjtMWUxqAVJ7bixsDUg8k=; b=DLwSKyLYN/LdD0/WXvn2Rs89I5
+	2v7J+yhxRIWB39YOFf9Z+MLBFr6j7l8KJ+dLztW8zknXyw1d3LrDfPZB3BuY84D3bzkkdpyk8AjQy
+	YJmOSlFVD2/f+HDCpi1g/GZ/NbzkX2IZUPmXQXjIWA5bDSdFo2XSXs2Hakx4vKYeRPWll2qfWdOBA
+	GWrbX6AG6PJfWD4krWsr8ycofxnY4W3Mhp2T4+FK3u9A10m1XHWobrxfIozmM81w+xbj3eW8PbHLa
+	GTbii7pEW7P88JsVaZKUVyb7XW69PpO+fygTz9GcFYKOPPz+xAMELdWfL17wdp4+oBedV9vOneaX/
+	PiinqkuA==;
+Received: from i53875b57.versanet.de ([83.135.91.87] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vdOmx-001Lir-9F; Wed, 07 Jan 2026 09:21:07 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Chaoyi Chen <kernel@airkyi.com>, Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Quentin Schulz <quentin.schulz@cherry.de>,
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+ Kever Yang <kever.yang@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>,
+ John Clark <inindev@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
+Date: Wed, 07 Jan 2026 09:21:06 +0100
+Message-ID: <2437891.BjyWNHgNrj@diego>
+In-Reply-To:
+ <CABjd4Yw1Dqsa9EsMRFT8LOvyU8QN1C8VP+j0tY6h1uJhhXRSSw@mail.gmail.com>
+References:
+ <20260107070322.323-1-kernel@airkyi.com>
+ <20260107070322.323-3-kernel@airkyi.com>
+ <CABjd4Yw1Dqsa9EsMRFT8LOvyU8QN1C8VP+j0tY6h1uJhhXRSSw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: leds-qcom-lpg: Add support for
- PMH0101 PWM
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Fenglin Wu <quic_fenglinw@quicinc.com>, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
- kamal.wadhwa@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
- jingyi.wang@oss.qualcomm.com
-References: <20251215-knp-pmic-leds-v3-0-5e583f68b0e5@oss.qualcomm.com>
- <20251215-knp-pmic-leds-v3-1-5e583f68b0e5@oss.qualcomm.com>
- <20251217-quiet-wandering-gaur-c9c6fe@quoll>
- <f6ca8c43-9f00-4dd8-9e11-90f2a4e8d18e@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <f6ca8c43-9f00-4dd8-9e11-90f2a4e8d18e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 22/12/2025 14:06, Jishnu Prakash wrote:
-> Hi Krzysztof,
-> 
-> On 12/17/2025 1:45 PM, Krzysztof Kozlowski wrote:
->> On Mon, Dec 15, 2025 at 04:41:04PM +0530, Jishnu Prakash wrote:
->>> Add support for PMH0101 PWM modules which are compatible with the PM8350c
->>> PWM modules.
->>>
->>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->>> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
->>> ---
->>>  Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>
->> So how many nvmem entries it has? You need to define it in schema.
->>
-> 
-> PMH0101 PWM has 2 nvmem entries, the same as PM8350C. But I see that
-> PM8550 PWM was earlier added under the "if:then" condition for the number
-> of nvmem entries and you made this change which removed that line:
+Am Mittwoch, 7. Januar 2026, 08:56:04 Mitteleurop=C3=A4ische Normalzeit sch=
+rieb Alexey Charkov:
+> Hi Chaoyi,
+>=20
+> On Wed, Jan 7, 2026 at 11:04=E2=80=AFAM Chaoyi Chen <kernel@airkyi.com> w=
+rote:
+> >
+> > From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> >
+> > General features for rk3576 evb2 board:
+> >     - Rockchip RK3576
+> >     - LPDDR4/4X
+> >     - eMMC5.1
+> >     - RK806-2x2pcs + DiscretePower
+> >     - 1x HDMI2.1 TX / HDMI2.0 RX
+> >     - 1x full size DP1.4 TX (Only 2 Lanes)
+> >     - 2x 10/100/1000M Ethernet
+> >     - 5x SATA3.0 7Pin Slot
+> >     - 2x USB3.2 Gen1 Host
+> >     - 3x USB2.0 Host
+> >     - WIFI/BT
+> >     - ...
+> >
+> > Tested with eMMC/SDMMC/HDMI/USB/Ethernet/WIFI/BT module.
+> >
+> > Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-Right, code is fine.
+[...]
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> > +       vbus5v0_typec: regulator-vbus5v0-typec {
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "vbus5v0_typec";
+>=20
+> This might better be renamed, given that last time you mentioned this
+> board doesn't have a Type-C connector. Perhaps regulator-vbus5v0-otg?
 
-Best regards,
-Krzysztof
+Alternatively a comment above it.
+
+I.e. regulator-naming should always follow the naming used in the
+schematics, so that it gets easier to reference between schematics
+and devicetree.
+
+
+> > +               regulator-min-microvolt =3D <5000000>;
+> > +               regulator-max-microvolt =3D <5000000>;
+> > +               enable-active-high;
+> > +               gpio =3D <&gpio0 RK_PD1 GPIO_ACTIVE_HIGH>;
+> > +               vin-supply =3D <&vcc5v0_device>;
+> > +               pinctrl-names =3D "default";
+> > +               pinctrl-0 =3D <&usb_otg0_pwren>;
+> > +       };
+> > +
+> > +       vcc12v_dcin: regulator-vcc12v-dcin {
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "vcc12v_dcin";
+> > +               regulator-always-on;
+> > +               regulator-boot-on;
+> > +               regulator-min-microvolt =3D <12000000>;
+> > +               regulator-max-microvolt =3D <12000000>;
+> > +       };
+> > +
+> > +       vcc1v2_ufs_vccq_s0: regulator-vcc1v2-ufs-vccq-s0 {
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "vcc1v2_ufs_vccq_s0";
+> > +               regulator-boot-on;
+> > +               regulator-always-on;
+> > +               regulator-min-microvolt =3D <1200000>;
+> > +               regulator-max-microvolt =3D <1200000>;
+> > +               vin-supply =3D <&vcc_sys>;
+> > +       };
+> > +
+> > +       vcc1v8_ufs_vccq2_s0: regulator-vcc1v8-ufs-vccq2-s0 {
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "vcc1v8_ufs_vccq2_s0";
+> > +               regulator-boot-on;
+> > +               regulator-always-on;
+> > +               regulator-min-microvolt =3D <1800000>;
+> > +               regulator-max-microvolt =3D <1800000>;
+> > +               vin-supply =3D <&vcc_1v8_s3>;
+> > +       };
+> > +
+> > +       vcc3v3_hubreset: vcc3v3-hubreset {
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "vcc3v3_hubreset";
+> > +               regulator-boot-on;
+> > +               regulator-always-on;
+>=20
+> If this regulator supplies a soldered-on discrete hub and is required
+> to power it up, won't it be better to describe the hub in the device
+> tree (see binding at [1]), make the regulator its supply, and perhaps
+> drop the "regulator-boot-on/regulator-always-on" annotation here,
+> letting the regulator core deal with its enabling instead?
+>=20
+> [1] https://github.com/torvalds/linux/blob/master/Documentation/devicetre=
+e/bindings/usb/usb-device.yaml
+
+Yep, it would be nicer to it this way.
+A live example can be found in the Rock 5 ITX [2]
+
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts#n1266
+
+
+Heiko
+
+
+> [snip]
+>=20
+> Other than these, LGTM - thanks for addressing my comments from v1!
+> Feel free to include my:
+>=20
+> Reviewed-by: Alexey Charkov <alchark@gmail.com>
+>=20
+> Best regards,
+> Alexey
+>=20
+
+
+
+
 
