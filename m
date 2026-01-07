@@ -1,139 +1,176 @@
-Return-Path: <devicetree+bounces-252382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4C68CFE270
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 15:06:43 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AB27CFE2B6
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 15:08:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5229A30028AB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 14:06:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 17C56300503E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 14:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F276324713;
-	Wed,  7 Jan 2026 14:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D6032937D;
+	Wed,  7 Jan 2026 14:08:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mbVG6R73"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UBmKmXa8";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NkOEhDSK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EF2F315D23
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 14:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21EC9315D23
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 14:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767794800; cv=none; b=UIw02ZI5jQkfiaWDyOyyeDcQ24V0XoTde8245m+k5BrD7PwiTMV5XduItzPyL1qME5NSUncVPedyVYc7MR2R5PU7hVUPT64/gGFHDGJ3V/Ich458EnQAMu3NJQqGX9rV8JyWwwMahdOPGmtIyhINnBgqhBlvNXxlTLmOGimgHPo=
+	t=1767794891; cv=none; b=osDE5BwHeq/41HY3tB5MbNifY/Ceb8Bcz+cpKFbbxeOpCZPk519C7ned0kl/WDn8RsMT1fZxSP7mai9u/2xRzVQ7OwRsYxoJrCPO1ZrRQS/bAsdMV7nhLJgrWVpxRqBlES7CgsznW0I4XU8PIhtR9q4tdpdAWVG9GJCTu5UkF9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767794800; c=relaxed/simple;
-	bh=sVgIFV5OaloedJAgFQSTQKJcQ+P4UMFml8A9Z5egtIE=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=l7MYbr64rH32iKuoZUeK6kNvaT/shjX6A/ZNmBVzxFzv8e1sn6amS2RJ0DNEivc6shcaUrQ3jiaCCjBcDcV/7vHxo+SosBtBL//x2Jclo+RU6DiBqAdzFBh+0Tmdfe1xLubeBU76ShkgtcyTQ+mEk/lRCqTMHXmMhNuuHiPd9yA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mbVG6R73; arc=none smtp.client-ip=209.85.128.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f67.google.com with SMTP id 5b1f17b1804b1-47bdbc90dcaso15381755e9.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 06:06:34 -0800 (PST)
+	s=arc-20240116; t=1767794891; c=relaxed/simple;
+	bh=mCbn5kuKUVOa7StqdNfdgtoPVjIvEhpYuWWE9PJhHbI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N2T6FC+TXMlh8Xsyd5RRX9X4VYHWHUgxHF1+CYVtkVJcCb5n4UFb9RXOnZ1zYyXqjYAcWK43dRsoIG4JTmLKu3WPqmwUpZsexHVCYn7+1y+p4C6veDp4PU3HlB9ITTRPFdwweLF2BIqtaZp+kya4rRgcDldCvjfRL4d8I9IeSWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UBmKmXa8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NkOEhDSK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6078UfEJ1979560
+	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 14:08:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mCbn5kuKUVOa7StqdNfdgtoPVjIvEhpYuWWE9PJhHbI=; b=UBmKmXa8lJdanWPk
+	9kQMooo71A92HE7SGebPQ9STM8M+9pq6NRg8hbacBluETQb8u+OeIvIxmi5QV1Jr
+	PPJdfU+cqC24l9Ui5QXrV8HaJWZmBMNoge3SDtRbrJNE4HUPdYuKhXIEComH/kSZ
+	ZnhYEQ7tTCAp6G+VtP/I5N7zVGPQ9+bew655fML/x62frlELdJzEj/T7Y7Pr8W4j
+	+6BtDdiCIzQzxFA77rKgy/Wm1hyR48d4HPmcPVkRzJGwjpMmxbFcMLvd8YLzLmPQ
+	3nm0I42bAyVexV9CKB79GExN/2KYdHL/O9gl4baTg83yDBqG04DgH+YNuoCP39+I
+	A+qYtw==
+Received: from mail-yx1-f72.google.com (mail-yx1-f72.google.com [74.125.224.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhdavja54-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 14:08:08 +0000 (GMT)
+Received: by mail-yx1-f72.google.com with SMTP id 956f58d0204a3-644773463e8so464236d50.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 06:08:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767794792; x=1768399592; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uPpS2fnpM+6YueRvKfiaJ+0mjmZ9bEndFXFtCoDO1IQ=;
-        b=mbVG6R73R+NYFe/RmdlC3HqFjuF/qYFtrRfPxPDMh1tBBO/+2Tj+aAygsHbC5sJ5r/
-         fL0oV7R47/31iZRE5oZd0EniYGvrFZEVsIim9lh4GiESnae/MMpWVM7uRaEKqIcpRb+4
-         /99CLkwXfO0WmLkp+hFYQUfFonMpdFOh5zSg5WlhNzNN9aN8jK4fREMza1GFsvoiDgJd
-         IyRehG3x4y03EQsd4BGkE8FMa7CqL7q3Dp3+RNB6KCphYvkozItTR4Xot/uO0AKKF1di
-         jW1EcY7R/V3dsqe573JI5+QxvVSRmzgOAJ2sPZaZPKGuTyjcVRO0r7aUh+Ch8PXCseNY
-         XYtg==
+        d=oss.qualcomm.com; s=google; t=1767794888; x=1768399688; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mCbn5kuKUVOa7StqdNfdgtoPVjIvEhpYuWWE9PJhHbI=;
+        b=NkOEhDSKta21OHf6Ejf5UQXtSiR7lSkd0De4rUEE2GSlULWXNqaZNenOVoJFbAqh7+
+         YXXaTli55uq7Raysvais9CwIhv45iBdV1Vv970fqxvzRfIkO3y4PGC5Q5ijNnQs6cSoX
+         BNm5W6y7CZBSZiRxDPENQMQWYhIl2C1Z1SdxgCto4roePMkRuQXLS9iMlpk1qGkA2aK2
+         jmmizSKLkDUCN7ETd1l/9GxX5NRfSzwxlEYMAZSF7KUoppXG2E3cU2JT6AGQ7qSHEc0x
+         JOoELehuUkm5JJq/O7uygGMcO25SHnXJGUjmllyMiFvzC2jSVNou37lN8mQL9Msq7Or7
+         eRBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767794792; x=1768399592;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uPpS2fnpM+6YueRvKfiaJ+0mjmZ9bEndFXFtCoDO1IQ=;
-        b=KPWthr9+w9x4s7M+KQFId6FQ29XdYKjSNbMssTPkmdkCxd9Br1LAetN7d3DaiUALXg
-         KnByaHk8satqPIc0ufrZsSKPrl10GzwBUWDWv9aOA8FA0mQvQAkUcinRTgxt1mGYUxiT
-         cJewkcdxoOgfKvXsDwhbCVw3xLPgfZzPOp8CZ3s2z1HQEPvRYDdjt3FTRN6bB1y1Ik1D
-         4PnYZ+SQKfwevSjqvIq96X5ChO12tFIF7NsuEcIeCkPoFet5LgNjZaXFeevxdQ0wVTEj
-         OG5mBZsvQJzVJqB9I5RHsrbiRKZpXbWeQYydgKrJtOJZUhXHbzDl8ijY4ctJwnHyjkg+
-         5/Iw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYnN7YkiHU0F4qDhDthaRKmg5jHHjr/McKvd1FdBtGhgCmNCtlqx7XdWcTKtRhe7+rDzNewPR9Z6zw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpfPdTyfJBws80N+wSmrMbHfgHywQ+cKgQZS0UOwHPco1soSwR
-	mCqYpgKVkK0e8f8ZWxDvySsI72aQyZ/ITZnJ1dIN/G+vXtnDOaxgJdqGQt4ifWMIbkA=
-X-Gm-Gg: AY/fxX7LugPkklhhgK9Pt0XlAwk46WwyFWpyoIeNrvgjWOCpY34TIt1Naq0OOuiIULA
-	v1oPOWeTf8lGNIceNhU3CcUGwcrWmQAPo6hT2L3gOFyZRTuv1FgEYP7YCskCdDNx+P6jDYqYLJF
-	Ygk59lCqo8xZYkjr7E6H1ERq80qTfVzjoffOW0fNo/XCXte7Knr7KpbvIMZyNulI6oQac1Ab/kf
-	fPhios2+jJZ3CZYCkXTB9pmOn5afUXlrwHmWY0/UrqgZqcUdoYZXZo97M3Vucb9FoOIRTyHKy9K
-	IihlecIRBeRHklCUhVYaFE+ObE1XyxnKEroVYPdz5n3xLx+WdvtvgoLVXqQqfPD5K4bZr+NVsnC
-	dnZW3YVBGjg60tpsea/uCxwUSY5FzXrhNQnG1TnC4GmM6DFSmWLm3HXm59U7Zj/XpmNc0UU8Mc7
-	BNZ1Dw7vqmVoCZOJTUApPSL+2kl2NEdpU=
-X-Google-Smtp-Source: AGHT+IFKKkF2rQrNfKVm0xBIrXitMatKB3NKMQ4oAhrZw28JMRyqxQxPGMYW7R/yZLTYz1Z5w5dWTw==
-X-Received: by 2002:a05:600c:a08:b0:479:3a86:dc1f with SMTP id 5b1f17b1804b1-47d84b41012mr26925205e9.37.1767794791482;
-        Wed, 07 Jan 2026 06:06:31 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f41eb3bsm102686685e9.7.2026.01.07.06.06.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 06:06:30 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20251223152510.155463-3-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20251223152510.155463-3-krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH 1/2] arm64: dts: amlogic: Use hyphen in node names
-Message-Id: <176779479041.1564227.9998045080717551889.b4-ty@linaro.org>
-Date: Wed, 07 Jan 2026 15:06:30 +0100
+        d=1e100.net; s=20230601; t=1767794888; x=1768399688;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mCbn5kuKUVOa7StqdNfdgtoPVjIvEhpYuWWE9PJhHbI=;
+        b=fYcqhBo2uOznZLUG+md6B5VFWBO+UXe9QglvmzHfnEBYTC/yD2DjhLOWua4xj2UwPF
+         yyndHnKrjW8vi8Vln3sllDT/taAaMuJmhtx12UCKxXNp2gUBWRLIyWDyEYVzSd/62MuE
+         xo4Mjf76dGODp9TEt/w5gxwV22OiQbKJFriQbKSFwEFC3KOSU1XIa/DL91w/edr2l+xM
+         2S5qoX3plI6NKoqSzIsVvt348iK2b05zqOie823dOUq7B0z8JJwuUTxBN/oowWun8HFq
+         c3KfOKWZexMhximTeCA775kOhH4z8D3hS2LRC4ALWnZwgdCQbBiAfjxVH3cKYdFaGg4Y
+         yGdw==
+X-Forwarded-Encrypted: i=1; AJvYcCXib8/CPp2InUDcvmH8Guo8m6noOvFc6O8mjl2vH+JDGpS/pI5vzUY8kZgUvdFsYjST5PQsvB7ZYIyb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZN1yaJQwb2scGFyXsxmcENLAxW9zdsGGR1UDhY5cL/dR8Qgxj
+	HilyEmlH5ETyCYdl6urWr2vBv+pkpa9deKKhDdOoObbodarb/nCY+QE+5YNv0tzRKtSl5YehhVG
+	vppHiVhMrmjZldPEczfhrjhGOdMRbyjcAVeZttUdAbWM8WM9Kq03qCeZARs3uISec
+X-Gm-Gg: AY/fxX5NPIKGdgyzp8GtCG5XY7Mjdn8EBGCa3QJjWgWKQUwPfHUYQS4I+YxSxyVE5P/
+	lK9IuomaPrE1CwFY3lo22P1stXvWxnKVnTxyjxS2MIq+99JIIvd9lBTaT2zm+QbzqYj6O5m3gDa
+	bVZ5lYYWk+o42IscPOXazTwwHZWfbySJjvqoMU74iQJKLmMBWZf443rsjAFT1/Uzc7mabr/mngN
+	p6/6NDgJL/tBv/oHY92qRDb6VX7qKStPdY8FJ6HAUnI8fwwS0z5COm2LsmUBXtyN3pPXURsVhVR
+	9HcrgF90nudiZLiRBVcg2tYEHDNFeU41rSidw+eLllhCJUIZIApieNzTlJH8IblGic6YMwIdXF1
+	LgYSqq2E4Db/OMMR8Tv7AACL3k5uuhvws/OYhzdrqYIkGCE+VlkrYAFiKiND9IkxPtEc=
+X-Received: by 2002:a05:690c:9:b0:78c:2c4d:3df9 with SMTP id 00721157ae682-790b54b5af8mr27270547b3.0.1767794888341;
+        Wed, 07 Jan 2026 06:08:08 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHyUpA3k3b3g5qtKWK7Tl1X2D7wG2aBAVLD35CZGCs0GMhgDfMQ+H933I+o6Rq2dV0QTyPUnQ==
+X-Received: by 2002:a05:690c:9:b0:78c:2c4d:3df9 with SMTP id 00721157ae682-790b54b5af8mr27270177b3.0.1767794887752;
+        Wed, 07 Jan 2026 06:08:07 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a56962esm529552466b.66.2026.01.07.06.08.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 06:08:07 -0800 (PST)
+Message-ID: <09a4642a-3552-44e7-97bd-b26e6937ad8b@oss.qualcomm.com>
+Date: Wed, 7 Jan 2026 15:08:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: msm8953-xiaomi-vince: correct wled
+ ovp value
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+        Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Kiran Gunda <quic_kgunda@quicinc.com>, Helge Deller <deller@gmx.de>,
+        Luca Weiss <luca@lucaweiss.eu>, Konrad Dybcio <konradybcio@kernel.org>,
+        Eugene Lepshy <fekz115@gmail.com>,
+        Gianluca Boiano <morf3089@gmail.com>,
+        Alejandro Tafalla <atafalla@dnyon.com>
+Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
+References: <20260107-pmi8950-wled-v1-0-5e52f5caa39c@mainlining.org>
+ <20260107-pmi8950-wled-v1-3-5e52f5caa39c@mainlining.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260107-pmi8950-wled-v1-3-5e52f5caa39c@mainlining.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDEwOSBTYWx0ZWRfX4tPHC6+QA9XO
+ XETIMrAS/gkoXCXZBijJl6UsXv58/FybQSIse7r599wWYan2JsC87kX6xXGCDGzJfMXDk+8xNeQ
+ EXd2Tt8SeBhr/6LyyL3ztwW2a+0q2v4TNZVZosL80OBTBfnvsKEK10s7e7T7iZEziraotiGaZf0
+ FRSdzuH6eXA+j7eFQe2UXR/G33nsTBbIESS9SmpyCnLfNb/X0JM1Dahl2F4M9Rw2QqFxaN+t5Sy
+ LTnOQ/PEY/f7w4y0jS9JaOr+jEOgV5/coliu/vWWOSR47xckzK1I3DfzHqibeTl3lPryNPbkQso
+ QGUkzn9TCMQE5hIC0WA9DUCk4pTt4M79kEjdQj4CU8VYrIbMmjKYyx3Vuz7zjuQXyGJqMUAekE1
+ FRS7l5BUJDisN79ySEofqSPmafDfrsi6jTI6KAgDD2uQBxlCSW+wiGq1YRyv4noT434D19aSshF
+ cJhHzJRAY5vbm9gbjEA==
+X-Proofpoint-ORIG-GUID: VJxUn_JdpTidoktT-m6izVMHJJURvErM
+X-Authority-Analysis: v=2.4 cv=comWUl4i c=1 sm=1 tr=0 ts=695e68c8 cx=c_pps
+ a=VEzVgl358Dq0xwHDEbsOzA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=cwWn7d2NfpHSwl1uxIYA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uujmmnXaIg8lM0-o0HFK:22
+X-Proofpoint-GUID: VJxUn_JdpTidoktT-m6izVMHJJURvErM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-07_02,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 adultscore=0 priorityscore=1501
+ phishscore=0 malwarescore=0 bulkscore=0 clxscore=1015 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601070109
 
-Hi,
+On 1/7/26 2:31 PM, Barnabás Czémán wrote:
+> Correct wled ovp value from 29600 to 29500.
 
-On Tue, 23 Dec 2025 16:25:11 +0100, Krzysztof Kozlowski wrote:
-> DTS coding style prefers hyphens instead of underscores in the node
-> names.  Change should be safe, because node names are not considered an
-> ABI.
-> 
-> 
+This tells us what the fix is, but not why the fix needs to be made.
+We can infer the former from the patch contents, but it's really
+important that the next reader, perhaps in 5 years, can find out the
+reason it was made.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.20/arm64-dt)
+How about:
 
-[1/2] arm64: dts: amlogic: Use hyphen in node names
-      https://git.kernel.org/amlogic/c/125c3ceadfe02cd4917c5e0bb6707b37870449f2
-[2/2] arm64: dts: amlogic: Use lowercase hex
-      https://git.kernel.org/amlogic/c/7bcbedd64ecf5624583140faebfdb0e2e2f6b43e
+"""
+PMI8950 doesn't actually support setting an OVP threshold value of
+29.6 V. The closest allowed value is 29.5 V. Set that instead.
+"""
 
-These changes has been applied on the intermediate git tree [1].
+With this or similar commit message:
 
-The v6.20/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+Konrad
 
 
