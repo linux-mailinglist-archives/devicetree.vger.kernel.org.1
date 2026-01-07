@@ -1,176 +1,187 @@
-Return-Path: <devicetree+bounces-252350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DD6CCFE142
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 14:52:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F293DCFE21E
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 15:02:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5585F300C340
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 13:47:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A9DF530E13B8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 13:53:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10C14332EAE;
-	Wed,  7 Jan 2026 13:23:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69FD533D6C4;
+	Wed,  7 Jan 2026 13:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jewxP7Nm";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EnfZ1kzj"
+	dkim=pass (2048-bit key) header.d=amazon.es header.i=@amazon.es header.b="PliNvngO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fra-out-010.esa.eu-central-1.outbound.mail-perimeter.amazon.com (fra-out-010.esa.eu-central-1.outbound.mail-perimeter.amazon.com [63.178.143.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE73332EA1
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 13:22:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0349133D515;
+	Wed,  7 Jan 2026 13:26:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.178.143.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767792180; cv=none; b=Z3PPMqecLHVdj7ARLWYJV6Kiu0Caec2ag6fgjkDInpMz8uKqUE3yP6YfzN53EZbv2f4HFXFG9HBpq4h5gpmlC1laIiThU9CqXqW3WTu/YvzuYnqjS0yf5yP6Ya4+m0R1GcNrCwG+PyYB20bwVW2c9CtsT15ZXvH8rxnGMCaxiEM=
+	t=1767792406; cv=none; b=m3oIG4uNuqjOGOk+dTPoi05UIX+S2ntXIvlWIjbRiAlLJHI5OOWxj7xynoIrHtrOAvZ0eHklJuFTXgvIzsnfduWOUHlawvZGsBlHcZZ13G+Pkgwmi0GBG5Y5fkbiPE8itL+e7qmJ5G46rhwSiHmIBGxGNmgoSxSw41Y9L72e5KE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767792180; c=relaxed/simple;
-	bh=lhOHDEWr0lZrLkS8CuJKO4fQjRWNIOOdDs4KVEFrNRI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lszRTRhEE7ZyeZZVKDg2HCpjeBd/d+em/J+Wsx6TfBGBbIM1GoAX0WP767HQDWuG09o/NoICgcG0PLTOCZ/8kVkZdDLNaH8KRDd6ImCf08N2nINC1uoE9jjvvq06fp7xTF1yPn575HVRjeF00uYy/rndlsmbPWervi679vkofWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jewxP7Nm; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EnfZ1kzj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 607BMTPX3152745
-	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 13:22:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=8aSQf8yithmmMPGLpE92xbDOF4T5JbspQB0
-	vu6FqB1I=; b=jewxP7NmKmIBfQkp8b+QQsxMEUFR4dVOfHoTargw5d7M3A8IGEO
-	J+3xBpdsCaOO8odysgT9BPFnKG1q96WfwjTBO+FRQ7DLi90MCBoOG+V4iQF9yhIM
-	tkc9GNnOxRXgNPPP4lzAZ0adpKZRtaLJVqqagUAsxtVSzz1ddXH3NxyLCDy8if+4
-	nFubzMvqV739MLvxEZCbDUy1JjZsCrcf+nd2rWzu4gmpXdYObthi3oMp4WCNC6Nc
-	xOqX33HO0ezkxPbNrMgADVysqCORxFXEnqAj7LZ5dR4ZqK1cuieFaEziksEuoR2N
-	B6dvnS6vhjIOsKYN56uguthX92a3/fJGrEg==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhpjar9uq-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 13:22:57 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed6ceab125so57983831cf.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 05:22:57 -0800 (PST)
+	s=arc-20240116; t=1767792406; c=relaxed/simple;
+	bh=/rZBpO52xXxuoQQPkKXOrNVD4n+k/Zjfwbo5z10uqxg=;
+	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=JPfDMULNyFWurcJOW3HYTTTtoZVOs8ww7S7oGURymRCHNjq2NEgKHPhO3hxn2J+zx5oRcoQsqPYmmRZsLrUTYK2ROgWDQZyOUxsmKDyAyujZL/uzXdBfVeGy07t8t5vIQNJc5Nem3iJreGklY/S0m+36C53RyNyq6rrXA+OmvBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.es; spf=pass smtp.mailfrom=amazon.es; dkim=pass (2048-bit key) header.d=amazon.es header.i=@amazon.es header.b=PliNvngO; arc=none smtp.client-ip=63.178.143.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.es
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.es
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767792177; x=1768396977; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8aSQf8yithmmMPGLpE92xbDOF4T5JbspQB0vu6FqB1I=;
-        b=EnfZ1kzjbOnurlG4iojWQ+CVgzpwTLueSfGSS1xa9I3iQpBSOxcUOoAfgcaoCIZxrY
-         TW/WmhVGqZPgQ854dE4d0DggDzuiDCHKXxUT9juHZTVvSS4GpzhUzsNaOHykDRNjqbGn
-         Tu0gFwWALQRFxPjVo58EvXAdsiCjcaI7t33Tjn0T6ZNWHSSO2E7/pwIYzk7AyF2LSlrb
-         5NktbWgwsG9Vr5Iw7ZPz3EjkOFAtoxjtQpZ8SoTFu+RxwvUhQWHjdo3pdQblZmmy4mR2
-         hk8L8RuxwauuHFqRNjLek5C8sZ0HocLIJOsXZKbTlMToVrmm11kJsNIYa2Opfz9v9PT+
-         7lsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767792177; x=1768396977;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8aSQf8yithmmMPGLpE92xbDOF4T5JbspQB0vu6FqB1I=;
-        b=PyCu3LOnws8JO6K0o/qveTlqP9+t2kvq/JMOXUYGNn51uyzc9EILimT+TdlnKhL0IY
-         z2TZV6fgGlK5X4xfqY8c0Syz36RBr4MGDSfpU+DkgiP06Fz8wKl51Xv0IZH5QxRZgheQ
-         kd3hrLsuLTHK4bd+9Hm0RolTuIZP8UNzbjAWCOVG2vXhBiW98oblOJkrScKkqjtEr3fG
-         3TGlF0PLQvoDEIwvh9NBJwVHHbywZK36ZnrAK5fTSmVT/QvvdazzRveSEpM0h7oDOLDL
-         7fOiYmG8oU9empeIaDItzG+7iPizb/khepGGAWl/1JpxCnGXCZnP0AGEFbZXKfRrtXtL
-         /RHw==
-X-Forwarded-Encrypted: i=1; AJvYcCVteFEhedWXZjVf6IYX8jNW5hApRm8i1kILk+yXPGWC0kemj13XWZZB//hYkkEyP/qZJ/93p/dBDcY+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKwH+OTdpXx9VbKrUYwmyhkVzzS4h/gQmCHpIxCWVjD5JXXM4o
-	ejZZtNilgGdGgX05QVPox9etNvR55zlk57/T1Bt6qxHh9/um/3uh7zWXD+mUX1VgZ69LSY4nZ72
-	DUmsK0jOJ+n052rhngGFotFpN5siU2l2t0CLNF6bLYCRrTsFkzaN57sFfipTz+nFe
-X-Gm-Gg: AY/fxX4DIxhLZTASaxIl+8GyVhx8ybL8ehnlkgBP8WMlSC+cRchHOmw3P8EORv1XrkT
-	U43TuXE18+hYO/ICJGKqhDtGjNvcyO1EBlIV7knDGR/zDvECAIWRUzqOasZ51LMqmkNjnWcpMD6
-	yKFbURQf76fIKL3Isphx2o0uoun9W3ysGDcsyS/x8UgP9EIgLHtNOBe12WBDXX1GPcXcoMBAfzz
-	hHU7/l0Cve4zhQiOhdvwQafG+3auL7jbpvTn73gIYAsK+kS0aGxX1fVSXNPBrs3a10w1Q00mhir
-	sELmP6TYrAQmeXPel7yEZS+DOPmyy3dav/M1V3oVo6VCcpAQgZyR9Ez0VfNWoTHMLCqetf7ALlM
-	pIkY63x4goA7KxBChpYh14gbpKQ==
-X-Received: by 2002:a05:622a:283:b0:4ee:1fbe:80de with SMTP id d75a77b69052e-4ffb49e621cmr28206951cf.63.1767792176724;
-        Wed, 07 Jan 2026 05:22:56 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG8UKAJDIiXreWApaYxxazzcQWyseBXz1P/FQy4nAnTZWI+XJhEs+c8pTlBLLMESDZhGAKr+g==
-X-Received: by 2002:a05:622a:283:b0:4ee:1fbe:80de with SMTP id d75a77b69052e-4ffb49e621cmr28206641cf.63.1767792176355;
-        Wed, 07 Jan 2026 05:22:56 -0800 (PST)
-Received: from quoll ([178.197.218.229])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f653c78sm101844395e9.11.2026.01.07.05.22.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 05:22:55 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        linux-scsi@vger.kernel.org
-Subject: [PATCH] docs: dt: submitting-patches: Document prefixes for SCSI and UFS
-Date: Wed,  7 Jan 2026 14:22:49 +0100
-Message-ID: <20260107132248.47877-2-krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: git-send-email 2.51.0
+  d=amazon.es; i=@amazon.es; q=dns/txt; s=amazoncorp2;
+  t=1767792404; x=1799328404;
+  h=from:to:cc:subject:date:message-id:
+   content-transfer-encoding:mime-version;
+  bh=RMIophZlxEgjfa3KqgxSCBF+iO3l+zbvvXo+LD3V8BU=;
+  b=PliNvngOAbEToECEPSXzMkzTFdFYZMQMEprDhkKTxbBrm/eqR0lJe8qH
+   qmpXYSXzMLRPnAbr5X7ZC2zbLyQiphOYP0Y5+D19y2GA1sR0OPjLiyvC9
+   60H7bfPAVool6XAfXTgvC+sypIMUB8hRNSGxjdhQxJ/Ofc7/LuWRcNQiR
+   OFa6A2Wzs2u5jq41ObEvyKiS/0i6YiVllrWI9QaninV36+OQSFfUlD2WL
+   sgnEqQ2Rq+v8qA9oq8NN+S8O6UYPaUMv0F3PcupSx/rrX8b5+QdDj2Ia0
+   HfFFYtSVBV7kgQLKOzaNfhZR2Yr6JXGMZTSMFy34ADx5oQEnsvBw1tDPJ
+   A==;
+X-CSE-ConnectionGUID: NzmdXprxT6acyEg2nq96gw==
+X-CSE-MsgGUID: NCbr6197RUKoTawg1ZzxpA==
+X-IronPort-AV: E=Sophos;i="6.21,208,1763424000"; 
+   d="scan'208";a="7478796"
+Received: from ip-10-6-6-97.eu-central-1.compute.internal (HELO smtpout.naws.eu-central-1.prod.farcaster.email.amazon.dev) ([10.6.6.97])
+  by internal-fra-out-010.esa.eu-central-1.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 13:25:17 +0000
+Received: from EX19MTAEUA001.ant.amazon.com [54.240.197.233:25205]
+ by smtpin.naws.eu-central-1.prod.farcaster.email.amazon.dev [10.0.35.222:2525] with esmtp (Farcaster)
+ id a21d1c4b-5ea1-4cd6-9863-0fabfd08ba92; Wed, 7 Jan 2026 13:25:17 +0000 (UTC)
+X-Farcaster-Flow-ID: a21d1c4b-5ea1-4cd6-9863-0fabfd08ba92
+Received: from EX19D012EUA001.ant.amazon.com (10.252.50.122) by
+ EX19MTAEUA001.ant.amazon.com (10.252.50.50) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.35;
+ Wed, 7 Jan 2026 13:25:16 +0000
+Received: from EX19D012EUA001.ant.amazon.com (10.252.50.122) by
+ EX19D012EUA001.ant.amazon.com (10.252.50.122) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.35;
+ Wed, 7 Jan 2026 13:25:16 +0000
+Received: from EX19D012EUA001.ant.amazon.com ([fe80::b7ea:84f7:2c4b:2719]) by
+ EX19D012EUA001.ant.amazon.com ([fe80::b7ea:84f7:2c4b:2719%3]) with mapi id
+ 15.02.2562.035; Wed, 7 Jan 2026 13:25:16 +0000
+From: "Chalios, Babis" <bchalios@amazon.es>
+To: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"richardcochran@gmail.com" <richardcochran@gmail.com>, "dwmw2@infradead.org"
+	<dwmw2@infradead.org>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
+	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Chalios,
+ Babis" <bchalios@amazon.es>, "Graf (AWS), Alexander" <graf@amazon.de>,
+	"mzxreary@0pointer.de" <mzxreary@0pointer.de>, "Cali, Marco"
+	<xmarcalx@amazon.co.uk>
+Subject: [PATCH v5 0/7] ptp: vmclock: Add VM generation counter and ACPI
+ notification
+Thread-Topic: [PATCH v5 0/7] ptp: vmclock: Add VM generation counter and ACPI
+ notification
+Thread-Index: AQHcf9kPVyPtWnY4eUqCg4Dkevi9Nw==
+Date: Wed, 7 Jan 2026 13:25:16 +0000
+Message-ID: <20260107132514.437-1-bchalios@amazon.es>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1083; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=lhOHDEWr0lZrLkS8CuJKO4fQjRWNIOOdDs4KVEFrNRI=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpXl4o2Aqf42/CcWEhCu4gAEeEqGw5hTU8w8u7r
- SfFeB/DiRaJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaV5eKAAKCRDBN2bmhouD
- 1zL7D/0YDGK3yLNDrfYzgLcBgAwxOxIPue+wrGRCIZ/n2myBNp8/gPPn6XSNepLOYKu2AQCRwFj
- bIxCuMFFFEPHM77n7I1kgMzq8Y5caYqUqUSobmhSFs6w9+ErZLvELqkqhT3Khm8AzIcATW/AJcx
- xKK7rzel9j969qiVR50pD361sb8hHAtz5xdSAhaMyIiPaonieG+1vRiYVOvs8LUCmAe1p4rIB29
- yVlov3p3rB/jYvXiknPzZzHbaCRTCf2nVPB26xkoEl1dM9flcyyD8sYxvkKBf+TTvUc3WBpY2b1
- GDMKiHdj+bF9AgnZ5cEZl0XimvSJl7201JzPqfWSnGyCxT3wVJOUZY/vnwCyBIMUpD94F9fSbe3
- vdbRBnRKl6sYtpUEslY5y4T2qiXkQbDtoafUUCtjumvziY2s9lCRfRi+IsKKti0hCI6b3UzXY3C
- MA+p7rHAmt25KK+BKydORgjuxqtxDpMkE90l1DIVcBZnQfjdddURmeWo+sJURAtWVZt9+SS7/8L
- 6d8HcNr6mnLezWAdwUY4LDP+B46/ps1KjEEn/yEihib6zOAOK7lwlH4IJqHH6JS6H621+DWr+fk
- XsblBViPtDgPp9u57JsI78Mj6z15obS0ajcXg2b5v4im0/tzuZcx6qhW0hiKxjouRtwxypcFrWp 290S09sP7jFH9ww==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=efMwvrEH c=1 sm=1 tr=0 ts=695e5e31 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=yPCof4ZbAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=Psxmm-6NwcIMtDS5Qv8A:9
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-ORIG-GUID: KzO6WtHSZqYMPWeotJ2jli2gXcnrgCZF
-X-Proofpoint-GUID: KzO6WtHSZqYMPWeotJ2jli2gXcnrgCZF
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDEwMiBTYWx0ZWRfX9tIcHo6E+iUH
- K9K4y8afbX1m7XcEQniSOdEbUuso/vL3RhyhRhg9dntmaudZxMKwsCTk/euAmL4OD6EnHS0aomc
- 5LZg5V/MpDJ/Rf7M5U6r8i9IaS5ToAWhd40oygrquAZiijDdMDe1rplb5NHfZhBAmaacKSGCkT9
- b+gTZHlyU/wTI3hWfSEbsaixxKB4Rx26pyFAavBpQe2nK2xVcTDtLCJnW9Hq3e7jNAYMEJdlSEQ
- cBOWDyVWQ9FqotLAZBUqa6ZaUN6hvPpgqLbt6Xr4yPSHVqivflGJktq/GPJ+w0qb1lPuF8ZiFIl
- PTDUyAUwC/tsXRMJyi8N91ICuuwLdm0RN8e4WlQsJgtIW5W7MLecx0LyMYyPWWLUU6GzRT2f9xh
- 0JxdTBstUDaiyz1bfvn2gifdr6k3bmJezThEmZelZFhU6v8z5bYXxTROJ/8JrVTWOdQuF6/JWs2
- YX/wjAE+yuQFqix3NeQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-07_01,2026-01-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 lowpriorityscore=0 spamscore=0 priorityscore=1501
- adultscore=0 phishscore=0 malwarescore=0 clxscore=1015 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601070102
 
-Devicetree bindings patches going through SCSI/UFS trees also use
-reversed subject prefix.
-
-Cc: Martin K. Petersen <martin.petersen@oracle.com>
-Cc: linux-scsi@vger.kernel.org
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- Documentation/devicetree/bindings/submitting-patches.rst | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
-index ce767b1eccf2..81e27e50f905 100644
---- a/Documentation/devicetree/bindings/submitting-patches.rst
-+++ b/Documentation/devicetree/bindings/submitting-patches.rst
-@@ -15,8 +15,8 @@ I. For patch submitters
- 
-        "dt-bindings: <binding dir>: ..."
- 
--     Few subsystems, like ASoC, media, regulators and SPI, expect reverse order
--     of the prefixes::
-+     Few subsystems, like ASoC, media, regulators, SCSI, SPI and UFS, expect
-+     reverse order of the prefixes, based on subsystem name::
- 
-        "<binding dir>: dt-bindings: ..."
- 
--- 
-2.51.0
-
+Similarly to live migration, starting a VM from some serialized state=0A=
+(aka snapshot) is an event which calls for adjusting guest clocks, hence=0A=
+a hypervisor should increase the disruption_marker before resuming the=0A=
+VM vCPUs, letting the guest know.=0A=
+=0A=
+However, loading a snapshot, is slightly different than live migration,=0A=
+especially since we can start multiple VMs from the same serialized=0A=
+state. Apart from adjusting clocks, the guest needs to take additional=0A=
+action during such events, e.g. recreate UUIDs, reset network=0A=
+adapters/connections, reseed entropy pools, etc. These actions are not=0A=
+necessary during live migration. This calls for a differentiation=0A=
+between the two triggering events.=0A=
+=0A=
+We differentiate between the two events via an extra field in the=0A=
+vmclock_abi, called vm_generation_counter. Whereas hypervisors should=0A=
+increase the disruption marker in both cases, they should only increase=0A=
+vm_generation_counter when a snapshot is loaded in a VM (not during live=0A=
+migration).=0A=
+=0A=
+Additionally, we attach an ACPI notification to VMClock. Implementing=0A=
+the notification is optional for the device. VMClock device will declare=0A=
+that it implements the notification by setting=0A=
+VMCLOCK_FLAG_NOTIFICATION_PRESENT bit in vmclock_abi flags. Hypervisors=0A=
+that implement the notification must send an ACPI notification every=0A=
+time seq_count changes to an even number. The driver will propagate=0A=
+these notifications to userspace via the poll() interface.=0A=
+=0A=
+Changes:=0A=
+=0A=
+* RFC -> v1:=0A=
+  - Made the notification support optional. Hypervisor needs to=0A=
+    advertise support for the notification via a flag in vmclock_abi.=0A=
+    Subsequently, poll() will return POLLHUP when the feature is not=0A=
+    supported, to avoid having userspace blocking indefinitely waiting=0A=
+    for events that won't arrive=0A=
+  - Reworded the comment around vm_generation_counter field to avoid=0A=
+    speaking about "jumping forward in time".=0A=
+* v1 -> v2:=0A=
+  - Correctly handle failures when calling vmclock_setup_notification to=0A=
+    setup notifications.=0A=
+  - Use atomic_t for fst->seq and handle the case of concurrent=0A=
+    read()/poll() accesses.=0A=
+  - Initialize fst->seq to 0 rather than what is currently stored in the=0A=
+    shared page. This is to avoid reading odd numbers.=0A=
+  - Add DT bindings similar to existing VMGenID ones.=0A=
+* v2 -> v3:=0A=
+  - Include missing header file and drop unused variables in PATH 2/4.=0A=
+  - Include missing Reviewed-by in PATCH 1/4.=0A=
+  - Fix DT node name to be generic (s/vmclock/ptp).=0A=
+  - Include missing maintainers.=0A=
+* v3 -> v4:=0A=
+  - Added bindings file as maintained by David as part for PTP VMCLOCK=0A=
+    SUPPORT.=0A=
+  - Use le64_to_cpu() to access clk->flags.=0A=
+  - Reference public specification.=0A=
+  - Pass struct vmclock_state * in the of IRQ handler=0A=
+  - Included three new patches from David:=0A=
+    * Making ACPI optional for the driver.=0A=
+    * Adding "VMCLOCK" to ACPI match.=0A=
+    * Return TAI instead of UTC.=0A=
+* v4 -> v5:=0A=
+  - Use IF_ENABLED instead of #ifdef=0A=
+  - Use reverse christmas tree order in variable declaration=0A=
+  - Fix empty changelog=0A=
+=0A=
+Babis Chalios (2):=0A=
+  ptp: vmclock: add vm generation counter=0A=
+  ptp: vmclock: support device notifications=0A=
+=0A=
+David Woodhouse (5):=0A=
+  dt-bindings: ptp: Add amazon,vmclock=0A=
+  ptp: ptp_vmclock: Add device tree support=0A=
+  ptp: ptp_vmclock: add 'VMCLOCK' to ACPI device match=0A=
+  ptp: ptp_vmclock: remove dependency on CONFIG_ACPI=0A=
+  ptp: ptp_vmclock: return TAI not UTC=0A=
+=0A=
+ .../bindings/ptp/amazon,vmclock.yaml          |  46 ++++=0A=
+ MAINTAINERS                                   |   1 +=0A=
+ drivers/ptp/Kconfig                           |   2 +-=0A=
+ drivers/ptp/ptp_vmclock.c                     | 197 ++++++++++++++++--=0A=
+ include/uapi/linux/vmclock-abi.h              |  20 ++=0A=
+ 5 files changed, 252 insertions(+), 14 deletions(-)=0A=
+ create mode 100644 Documentation/devicetree/bindings/ptp/amazon,vmclock.ya=
+ml=0A=
+=0A=
+-- =0A=
+2.34.1=0A=
+=0A=
 
