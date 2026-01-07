@@ -1,166 +1,168 @@
-Return-Path: <devicetree+bounces-252374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E31CCFE1A2
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 14:56:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3A82CFE1B9
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 14:57:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F06E030B4CAB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 13:49:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3D55430BD6B2
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 13:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74796322B7B;
-	Wed,  7 Jan 2026 13:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCF8332B983;
+	Wed,  7 Jan 2026 13:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JQTCSVDg"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lWviJchN";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ReiK0p8r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC44731A7F2
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 13:45:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A7AE32C926
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 13:47:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767793554; cv=none; b=Pe5EVOatKQ7a4rNLHYAt9e0M6uvUM42wVJjqwsBz7BU9SqqKIreyFapYZ3IvEv4vCGUAOBFE7F3VlWSdcCiqaSrY9/QqDDpTNlXhfY7HvdCbeBEgpVDTSrBaGTUb+MEONdOa23zszAui9rfq+C/MDbia3tkUu444nXoNY+meoIM=
+	t=1767793655; cv=none; b=lBo0z3sVL55R1Pnn6RG7YxEPolvjxMTJWwg5qTwyI3HY+37gQZNDiFeB/gW/QW2xZvPt1D1AZjQCOWzI+UaIP55YawhiRwKkOOobHf9U1dJD0Q2OGJzm7JyZUxFArPWPTpTTdHELsegL/8+fg44+NbNboWjc0gXGl+cEQ0wm8Is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767793554; c=relaxed/simple;
-	bh=Mo5zQFUvZgfbiFA5jz8xgr54ypO2nOCMgs6MX83smjw=;
-	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
-	 MIME-Version:Content-Type; b=DRxLjHQjh9uMbGxy8+FRgqXBK5BeibOZcCQ3ypKCtvllcaPnHJdhRp2/611bim+3+FGznUrBFmW6IrKEhz+0IT3iFui5S5AUQgSUb87Q4AaQz3/qJQcs0o+ga6YAv2L8xylh94iD+ySZ8++eA6mCS7mXc6FglAx4Pofzg+9epGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JQTCSVDg; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-59b6c89d306so1293996e87.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 05:45:48 -0800 (PST)
+	s=arc-20240116; t=1767793655; c=relaxed/simple;
+	bh=VGE45WNxQDTO014blHHjIi5tZVWuHW3PG7dXHce6NLg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fpSHDkPDbRADsP81GgwJpBdLoSBd8w0l2VIIeTsLheIrwcK2yoABOKcMS1UpYCZL4bDbncln6Yuf5kVQh1iyYflr6WHBw1fC3eesfzt6CdTOCwuF5ZqY0/VJED7+JCfkl3iD/Y+jNnZp8+mjXAyiGQLxpbkBNaWEtiWM1wzZ93Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lWviJchN; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ReiK0p8r; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6078gxQU1980411
+	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 13:47:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UgZSlnstuL+bWNOM3fLTFdzNQEvh4E0HKjNHVKtgJqc=; b=lWviJchNA/PsdJa2
+	68HBFGAAEZATXJ31rW+2RG6l43QqyyRaxzF684XJltEXQSM/ozKObb9cw4aBVQpH
+	aWTUCpkY7u9lVShSCiU8NyIbZtzl+Kb5NljkVbDKlx3x6xLL3ZME8NFKgL2XZNHz
+	XWqL3dpqT74RhVzHVCJyvzBDMRPw2zZhrXr1qGLIPo04Htpt+kHmU7pzXK121ySt
+	46ymjU6S0c79H1QjB4Qn33d/6CC1z1vlTugIxOV6l9O+WuApMaVjuEbkYi1VJN2d
+	sLswJmRgRDpritd/ExnaDdVPkFVGh3WOHJxQD42tNFMuka43qg7ikNffbNf8XaD6
+	YpCB/Q==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhdavj8as-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 13:47:32 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4f34c24e2cbso4409801cf.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 05:47:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767793546; x=1768398346; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=zbg60yhotFqS4lYQ4SPbRRNfljX1PZuvfnI5dpwkZJ8=;
-        b=JQTCSVDgtatkBFRNvr4BBUEVN/fPmYFca9a7gH1f4cdl98ymQ/RvuUbbXlIFbGpKvO
-         qed+KYFdgPvLtqSevr61usZx4cUgrlZLbQQEw6dSkQznr1oJZW6yyY/9swM4ukDNbRI/
-         x7VrNAWqwUqGgqWZcxbDm6LrmJlgMyH+3Mi8I4PasJKfDbp0a+cA3L4ltS/q/6bBq44l
-         ha+od8yY814+GO3yyZd+MoIzApfeSZS9ktHX5F+q1rRRGD/Bx7+gJyhGn4cakrlj1UlQ
-         ZkEzZaDTadm68WfK6wOOIJ7rgYX6PZgDVPKvL8UsEC2srAXjXW89lKlBHQg2xVNPKF4E
-         AZNQ==
+        d=oss.qualcomm.com; s=google; t=1767793652; x=1768398452; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UgZSlnstuL+bWNOM3fLTFdzNQEvh4E0HKjNHVKtgJqc=;
+        b=ReiK0p8rv6lbD4R1+H4CcSbkWKoBEZEQNOz7h5ZTQiuh41UBCPzS9p1/KiRx/nEar3
+         KMwiGmXLRR5AC18mK8Osi3xUwh1sQkzaDYt5gmiHzb8MHg9lha0O+5uzRpaB8so5X8IZ
+         XuLcD+UBFYXE96gjcxccFSkBd3Bd4m0t+Jd0mf/O+Um8w7lggIueVoOzug30GnCu4yfq
+         XAWg7rIhP6sD1FFzau/xX9CIIr45q7SHRVyJ3nMsaYzq6CwjilW6TWIPwuTJY203MJth
+         Tvw5aDOnNcOiLNYU50rjkwlTyQt0jcMNRJjMwPe6uWUj5IXKFQpKOb0Pi+AcDg+QtHQB
+         9Obg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767793546; x=1768398346;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=zbg60yhotFqS4lYQ4SPbRRNfljX1PZuvfnI5dpwkZJ8=;
-        b=laxsIOM3nD6HDArzMGGYlA/VET7/x2N9HdDTUHqJPX6NnX9gFuTSZUMrxA1Mv5gvN3
-         0C2PEmP1tXGJQ2b40106g95pJgp9FNE3uR1VIN46urQ3Txo3hKO5+ECRs6jAKc00Ek6i
-         A2T5XpICSes+mi/5Lefe31yJ6ijl7+3rXvhkfzrhYma9nOZ6YQjhsdpLyMT20w4tfCCe
-         cHO5P0AwFxGsF2tJMjroZOMgSMlbAvIhpmyYweGiVj4SvWSaI/rRHh7LdUNhkJU+wFuD
-         bHFqe9gK2S8VxRpHSru+cOaixt+ajfe7j7L8mIhbpY1JewyIL31a8nQjxPm3OID/+1In
-         lK+A==
-X-Forwarded-Encrypted: i=1; AJvYcCVmBTIjDtC1ZqxFTvpWTl3gUS4wUQrHqZRfcNUP8Jfp/rl3r1Y6nAfCdIZnPYIpJkYm7gRiKU7Ue6CH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZMB1gz3rsoj2V5RqZNZXXo+++j/Fcy449QtQ7DvJV6h62eT93
-	t4ymLwcLqjFJAL+606eNcWGnTT265nyrjdlZANDq9TtpMkSdmGoYuc5n
-X-Gm-Gg: AY/fxX7rsVvdt8bcpcjIU2L6h+06zU8ndIXctahXnm4oMsh+gqdoxiaIBvnNKcG6fa6
-	iewJlsaMeLxDVpakY7OpegXncn8m5k6gMJjsR9LjtdRYciTsEOi2AnSzNRJC63ExLGQll+QNjb7
-	oNsrCHLXPSV0GEgLMI1I2h56pA/mc6m1IEsrpP/k1MV1BfVH4Ae7xMISXSbNwnxMnRxXsgiU0l0
-	j82ARVPqXJqW4cNXRqOk6owNelpKYD4JBPxBBFfBFTkR89Qm0Um59yZHtMsOptzwME/hFv1V3Ej
-	n+CXg3IdvqYSaULhJ+FMM5ph3hyT8OluVqaZgdSRGY+NB4MQAD/7YV2PKpXs7tNLXiQ4YtJ1tu/
-	FwPpSDSyxMEhswRMOSVc0odWgoMfiPCu0IsOKE7kXHLMeb3v5ZzVTPaYLvth8fADuqgCcK/PD
-X-Google-Smtp-Source: AGHT+IFBvFdbxlKvEOgpHQQ8YktwaenfQmmG9RkrtS+47ehkEyiqafqKukfyFwzDbyon83pp4CA81A==
-X-Received: by 2002:a05:6512:2399:b0:59b:730d:4a57 with SMTP id 2adb3069b0e04-59b730d4b44mr510415e87.39.1767793545398;
-        Wed, 07 Jan 2026 05:45:45 -0800 (PST)
-Received: from razdolb ([77.220.204.220])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b669418b6sm1224545e87.20.2026.01.07.05.45.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 05:45:45 -0800 (PST)
-References: <20251216-upstream_pcie_rc-v7-0-4aeb0f53c4ce@aspeedtech.com>
- <875x9fuj7i.fsf@gmail.com>
- <SEYPR06MB513404EB419B7850159F3CC29D84A@SEYPR06MB5134.apcprd06.prod.outlook.com>
-User-agent: mu4e 1.10.9; emacs 30.2
-From: Mikhail Rudenko <mike.rudenko@gmail.com>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
- <joel@jms.id.au>, Andrew  Jeffery <andrew@codeconstruct.com.au>, Bjorn
- Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Manivannan
-  Sadhasivam
- <mani@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
- "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v7 0/7] Add ASPEED PCIe Root Complex support
-Date: Wed, 07 Jan 2026 16:40:09 +0300
-In-reply-to: <SEYPR06MB513404EB419B7850159F3CC29D84A@SEYPR06MB5134.apcprd06.prod.outlook.com>
-Message-ID: <875x9dcz9c.fsf@gmail.com>
+        d=1e100.net; s=20230601; t=1767793652; x=1768398452;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UgZSlnstuL+bWNOM3fLTFdzNQEvh4E0HKjNHVKtgJqc=;
+        b=OFOfl/G6bpuRHORPpn+EsbgdfFZnA7kKCW9GGt7jRy9VD8L9QncMv8l/doCGaWnpOB
+         4AeO/2DiWEkGUW7bP7c1PhTAp47KeSBC6zhC12KuxzorWgviH4KioOynUFnFwu/ytT7b
+         OifWrSXOC7QVLVUx+tbft9paehCAVJMeiEIEDPtDvMv7FcivgxYNPC0Xj9RDc5U8Gueu
+         yggAv0yDhDmg3DJVrr1sepeCQ5pG+slK9o+XSjLcHtAtzxQtGYDbGk/xLzSHncbTuif7
+         VZ7qh+yq8A2v1zYjO4SpGexuWRhOopUh8Qn1POXcUxtdOUqHcjijEyiYXUaC1sw9lLMW
+         RH8A==
+X-Forwarded-Encrypted: i=1; AJvYcCWYjsQ6AR7Q287FODfeaZzYBLMGtbVe6rmGhDhY5UGX+9wxb3eI2gZgoS+T7nwwi5bPmGMJSN4Hu4Ja@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxqqUnxvZeLpDPtnc5cF3ECTy6xTxHNDNxr8r9ssY+xv8PwvC7
+	z8gvlswGtR+vgdiTc9yXgJcVur1A5FCT7OvLGdwinv2cbrOKt1z0tKTluVhM5ATMFifHj0B8Uf8
+	iQ0+0lkZyfWwu4z10LkELqdOArmEaRzfowJrNLzMNltZBeR9MOs+tyQqLVo+gT3BV
+X-Gm-Gg: AY/fxX4iUsGNf4i15m+8J/sztpRQAqk+GCjJ3SzllnSAOdhuhN+lRcI6qOqCQq7r48Q
+	VEXzFUIwMEByHg/4YDzpCXzZ0rJeasnndvUMx73LilyAmEUkDl4PGSNSufdS8H2uvQ5XKesIWNe
+	XXXtlCXeuPuhu6Fuh7VX3l5lSg/i+7diQYA8IA3Eh1p3K0Cqsrd9jjNeS8rPoSX8X/84lhvZpwZ
+	17pZMhec0a8o3gL8j8HbjZJEkU2+pwlxL4S+HoXeepmFlX9zoHsuZftTNQf3aMzGR4cgWyxekOr
+	zUhuhv7I1tT6lIMUArQk/H5WsHcybkUl4BZVDH1aKQJN5pUoegLnSvOCcJ4hSRb3VN3RTJTOKmw
+	5IPMY8WwG8WL+m0Hx/DG4NA8UJ5GFYvW7FDhSuhHxsJL2hVenR1S3PgEnfwZCT+NPldc=
+X-Received: by 2002:a05:622a:143:b0:4f1:b3c0:2ae7 with SMTP id d75a77b69052e-4ffb49a0042mr24372131cf.6.1767793652374;
+        Wed, 07 Jan 2026 05:47:32 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEqSd85JPwhEJMYgx6YhAsjKJYD9xSuGfuAYyKuY5Za86pnaJzUy8cquRaa93zxCj87b0H2UA==
+X-Received: by 2002:a05:622a:143:b0:4f1:b3c0:2ae7 with SMTP id d75a77b69052e-4ffb49a0042mr24371741cf.6.1767793651855;
+        Wed, 07 Jan 2026 05:47:31 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507bf6d5e0sm4665696a12.31.2026.01.07.05.47.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 05:47:31 -0800 (PST)
+Message-ID: <0b27c56c-3aac-4b26-80f5-f8cc52abb66d@oss.qualcomm.com>
+Date: Wed, 7 Jan 2026 14:47:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/6] phy: qcom-qmp-ufs: Add Milos support
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, Vinod Koul <vkoul@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20260107-milos-ufs-v1-0-6982ab20d0ac@fairphone.com>
+ <20260107-milos-ufs-v1-4-6982ab20d0ac@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260107-milos-ufs-v1-4-6982ab20d0ac@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDEwMyBTYWx0ZWRfXwo2LpV1aAXF7
+ mF1KItZVueXYs1hoYD9EY4L98mx8A+1MraORRUm20s4Pf7WJ4z3pZc4VlUdqnhm2TjQ4LyQ2YLW
+ i9Hi1859ppY6rSgkWJjwRtNxQ6El4ozbxM2tFDWJuLYyuSObLi2ZUym++q8vjfiXPGhmQ4aEEyo
+ FPTfVHtoA4TithI9CguadYJa2vq/6V9LhuF2bDH+DPqs4oP8js/jxma+BLUHhW+/6vKnTvXnmX6
+ ntemc8cvlAA/Mt5djotbc6taBnTujoseGWivAZs/+XEXg35YM09pZqQW8SaT7AhJ3qWhRzV9F9M
+ uYmKFXww1bJzErejevcsjbLqzN/hw7R4ugPhhLEA1w93hI7f4PQMsIySuVKVoIN8tXqwXP3VYBF
+ 9WN2v5ziECjO7/6wkADQmptVAPb1rldyz4g2y7D+sR78XouDj7DXpfxg2w84pnAM5nKVW83WPUs
+ fB2HtPgfGRiSKCnKyrA==
+X-Proofpoint-ORIG-GUID: x6v7sQQWT4lGJXH_qEcUE6TWKuN_Qs0L
+X-Authority-Analysis: v=2.4 cv=comWUl4i c=1 sm=1 tr=0 ts=695e63f5 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8
+ a=RTUAgidmgk2qeza8I2cA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-GUID: x6v7sQQWT4lGJXH_qEcUE6TWKuN_Qs0L
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-07_01,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 adultscore=0 priorityscore=1501
+ phishscore=0 malwarescore=0 bulkscore=0 clxscore=1015 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601070103
 
+On 1/7/26 9:05 AM, Luca Weiss wrote:
+> Add the init sequence tables and config for the UFS QMP phy found in the
+> Milos SoC.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
 
-Hi Jacky,
+Matches the latest hw team recommendations!
 
-On 2026-01-07 at 02:28 GMT, Jacky Chou <jacky_chou@aspeedtech.com> wrote:
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> Hi Mikhail Rudenko,
->
->> First of all, thank you for your efforts in getting this driver upstreamed! I am
->> trying to understand whether this driver supports PCIe devices that have an I/O
->> port BAR, where CPU access to I/O ports is required for proper device
->> operation.
->>
->> If I understand correctly, this line in the Aspeed 2600 dtsi file declares the I/O
->> port range:
->>
->>     ranges = <0x01000000 0x0 0x00018000 0x00018000 0x0 0x00008000
->>
->> During system initialization, the pci_remap_iospace() function in
->> arch/arm/mm/ioremap.c maps the physical address range
->> 0x00018000-0x00020000 to the virtual address PCI_IO_VIRT_BASE
->> (0xfee00000). After this mapping, inb() and outb() calls work by converting I/O
->> port addresses to virtual addresses starting at PCI_IO_VIRT_BASE, then
->> performing reads and writes to those virtual addresses.
->>
->> What I don't understand is this: according to the Aspeed 2600 datasheet, the
->> address range 0x00000000-0x0fffffff (which contains
->> 0x00018000-0x00020000) is mapped to Firmware SPI Memory. This would
->> mean that outb() operations get routed to memory-mapped SPI flash instead of
->> PCIe.
->>
->> It seems like there's a missing piece to this puzzle. Could you help clarify how
->> this is supposed to work?
->>
->
-> Thank you for pointing this out, and sorry for the confusion.
->
-> You are correct that, as things stand, this does not make sense from a real hardware perspective.
->
-> In fact, the I/O addressing support you noticed was something we experimented with internally
-> only. There is no actual hardware design on AST2600 that supports PCIe I/O port addressing in
-> this way. To enable those experiments, we modified our internal kernel accordingly, but this was
-> never intended to represent real, supported hardware behavior.
->
-> This is our mistake for leaving this description in the DTS, as it can indeed be misleading. We
-> will remove this part to avoid further confusion.
->
-> Thank you again for your careful review and for bringing this to our attention.
+Konrad
 
-Thank you for prompt reply and for getting this clarified!
-
-> Thanks,
-> Jacky
-
-
---
-Kind regards,
-Mikhail
 
