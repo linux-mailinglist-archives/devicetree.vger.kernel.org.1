@@ -1,439 +1,251 @@
-Return-Path: <devicetree+bounces-252130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9F2ACFB7A9
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 01:31:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F332DCFB80C
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 01:47:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 716B530AA6CE
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 00:29:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8A09A30A6527
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 00:42:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B971F0E34;
-	Wed,  7 Jan 2026 00:29:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456A91F1932;
+	Wed,  7 Jan 2026 00:42:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="Ds98jNGR"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gjtv7AyI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (mail-southcentralusazon11011061.outbound.protection.outlook.com [40.93.194.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E60199931;
-	Wed,  7 Jan 2026 00:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.155.224.40
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767745791; cv=none; b=i0Z/A1A5AXzWH2HR13pQCMZfo/KagtQf3muizwHlHG08Q7SZEkMe/xXj2honemamBM+wCXiKd+RituP8ALl6IoupSDygzebOcLncMwK6+2LT4OTu49TO/sS1nbRnz7zm93Wf6+bdUUCVXr6hKnS+77XdTVIJU4FrX/ZpPWnKn1g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767745791; c=relaxed/simple;
-	bh=0Rw+pnDOTx6IXx2Wj1uiIWU+rkffVu6bgJaT2d6yuDg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=bVUgaTg1KrkCLSIop7PASM5Jew5EdhjgR4z2F7ChJw/xCIfngLpBDDDZU2ZGVeUuKfhh16ebn9B+YWBe8U2OsNOkalHSlVc1+rKhyRRsQotKbPxFxtf6UeZ5PnpuHtYFgPj7QHdFENSBDIe08tvgV7JzVe3skYI6VQt0fd0QkKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=Ds98jNGR; arc=none smtp.client-ip=23.155.224.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raptorengineering.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 3A1327790ECC;
-	Tue,  6 Jan 2026 18:21:49 -0600 (CST)
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id EYjX8IAdMBva; Tue,  6 Jan 2026 18:21:48 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id EBDF87791BDA;
-	Tue,  6 Jan 2026 18:21:47 -0600 (CST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com EBDF87791BDA
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1767745308; bh=x7Jl269MPnTGVh+oawTEvlijbkfUsn1ILrEkuSLx78M=;
-	h=From:To:Date:Message-Id:MIME-Version;
-	b=Ds98jNGRHWDFl05PClkGzDL7+3LMqcnYwY6M08rL5RpqDXbppffJwwSW2+7paUpaH
-	 6MkwrV5jD06eFT1CelJ5u6di2UfvRb+gfX2eUiJ8SdoqtTLauzbTvKdYVmN28rqkL8
-	 6FDK7pCJHCRQOc09KadT55VkYc7A49KfLqewlAJs=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id qMTKWv_u0aRs; Tue,  6 Jan 2026 18:21:47 -0600 (CST)
-Received: from rcs-ewks-005.starlink.edu (unknown [192.168.20.42])
-	by mail.rptsys.com (Postfix) with ESMTPSA id BF6477790ECB;
-	Tue,  6 Jan 2026 18:21:47 -0600 (CST)
-From: Timothy Pearson <tpearson@raptorengineering.com>
-To: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	lee@kernel.org,
-	Georgy.Yakovlev@sony.com,
-	sanastasio@raptorengineering.com,
-	Timothy Pearson <tpearson@raptorengineering.com>
-Subject: [PATCH v6 4/4] watchdog: sony-cronos-smc: Add watchdog driver for Sony Cronos SMC
-Date: Tue,  6 Jan 2026 18:21:36 -0600
-Message-Id: <20260107002136.3121607-5-tpearson@raptorengineering.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20260107002136.3121607-1-tpearson@raptorengineering.com>
-References: <20260107002136.3121607-1-tpearson@raptorengineering.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EEDD1DDC3F;
+	Wed,  7 Jan 2026 00:42:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.194.61
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767746572; cv=fail; b=Sbnwt188mgQvTXnRjgWxzyHzVMNTlsxdcIfIYqAKMtXx0+ivwKRSzhkcdPzJaWiQhN+iP78p+uTCc3P3y1KeyIz1Qo3qGdDlNESyF/fqpNuGV8Rh1oF2b8AIUEoqvut5f9KhBG+W6xnTz+bLALX1+VuLHAnZ7u7zUuN3LXCfFjc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767746572; c=relaxed/simple;
+	bh=YbyAcZHoCJC1sioEFS+4N9K5pa2kOECmO2VEVZMXmQQ=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=iyARASG6UOb22xaRhQuocWjWOb1xaykJ6bu+bXTmIjj5kvyxlHYA+muoktiL+xiGN4zzfR7/FaMbeCjsgs0MeDyA4dHwX4MYEWysuHmoGQMCf8unPOIEzTmsZkUUjM+kebD691nK2YiXRVf43sSI7qxT8g5RJ8/pLUE8lqXotlI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gjtv7AyI; arc=fail smtp.client-ip=40.93.194.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yuoQ+dYn/lXDyQBY9CysNQTdRmEwMmpzdpvcm0j0ufR19H8fOAgXhCGse5cmnzO9pnD/NU35yQotEl6MIvnO12ZAyNiKPLVM9fOWDpC5dtYFAbaEU/Zea0BhJfdU6CztVdDcSbLlj2sy79a0msuIAANzoA9NitZ11Jk9/VF7krcPi0d9pjLWTtbAbGTSLd/69OXEHPMVk1IEsWLO6yxX8ihf60NQr9WFcypw2KIYVRElreAqiv8kKTovF2fdeHXloU0567QrNOKLPdBqE80Ypu7jVlL1DZvnDKAY3LxbpKsMBLLt3Ds2SoPTEWVe7/2Gem7sAhI44h5kdnvBVdaW3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=i1MUXHd25FC+a2RvmYJ4/KaXizY38zHqhcZUTckdJcE=;
+ b=e07hCPhsiDRYEbpIYbo0LIBV76nXX5B1LwL6pjSLuJTlP7rl6KoaIz3cLwdvCUj7OiHuh8NkSBbdkODYrR5JoCHrR7YZTe8V1p3eZfnOIb2iHslpDrZ/NWeDr9hgsrrFkV3e4duYLXs4R4qYP7PbR37SV5acS6Wp460xf3TV8HMckOShXjyuvQuL5/Qwl6oIEKNibB9dhHELqhi+XT24eVLwBP4L+vrL8Axv+XIf3dYSu4iKMgwPlehK1ngusaYMr/H2wIgles1poJvwS+tZP+fLwfsCMdgDcLeOSAD4RYA3vSoLtrF47M12TM3sMK9qDAUnS128PUkGJJdWoYeatA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i1MUXHd25FC+a2RvmYJ4/KaXizY38zHqhcZUTckdJcE=;
+ b=gjtv7AyIKyvi5JcdxPKLyR+MYI1mWZwgTUfb9v+bIYS8u1x1Lw+9a6dRAh7LPAJzFXMMsatoGUQ4D78ibXGO9noZ4SWe3yv1ywXnAnHxMkDKIiDzve9ca/9ilfd6YHiiNft/aWJD0uPC83yX4y9YlSgXwQhSAQgYeJWKTCx4pN4=
+Received: from SJ0PR03CA0245.namprd03.prod.outlook.com (2603:10b6:a03:3a0::10)
+ by IA0PR10MB7602.namprd10.prod.outlook.com (2603:10b6:208:488::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Wed, 7 Jan
+ 2026 00:42:41 +0000
+Received: from SJ1PEPF0000231A.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a0:cafe::ad) by SJ0PR03CA0245.outlook.office365.com
+ (2603:10b6:a03:3a0::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9478.4 via Frontend Transport; Wed, 7
+ Jan 2026 00:42:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ SJ1PEPF0000231A.mail.protection.outlook.com (10.167.242.231) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9499.1 via Frontend Transport; Wed, 7 Jan 2026 00:42:39 +0000
+Received: from DFLE204.ent.ti.com (10.64.6.62) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 6 Jan
+ 2026 18:42:26 -0600
+Received: from DFLE203.ent.ti.com (10.64.6.61) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 6 Jan
+ 2026 18:42:25 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE203.ent.ti.com
+ (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 6 Jan 2026 18:42:25 -0600
+Received: from [127.0.1.1] (uda0506412.dhcp.ti.com [128.247.81.19])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6070gPrI3856461;
+	Tue, 6 Jan 2026 18:42:25 -0600
+From: Kendall Willis <k-willis@ti.com>
+Subject: [PATCH v3 0/5] arm64: dts: ti: k3-am62: Support Main UART wakeup
+Date: Tue, 6 Jan 2026 18:42:17 -0600
+Message-ID: <20260106-b4-uart-daisy-chain-dts-v3-0-398a66258f2c@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOmrXWkC/4XOQQ6CMBCF4auYrh0ynbairryHYVGgyEQF01aUE
+ O5uIdGtyz+Z+fImEZxnF8RxMwnvBg7cdynUdiOq1nYXB1ynFoRkJCmEUsPT+gi15TBCuuEO6hi
+ gRmmtRrPDkkT6fnjX8HuVz0Xqxvd3iK139ufhATVJ2lOeqVyhkhokXOHFtxuHU+Ss6u8L1XKIv
+ R/XjQMt4P85AwFCYw2Z3FVGl+XXK+Z5/gC0SNSF9gAAAA==
+X-Change-ID: 20251230-b4-uart-daisy-chain-dts-d01aa40560b2
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<d-gole@ti.com>, <msp@baylibre.com>
+CC: <vishalm@ti.com>, <sebin.francis@ti.com>, <khilman@baylibre.com>,
+	<a-kaur@ti.com>, <s-kochidanadu@ti.com>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Kendall Willis <k-willis@ti.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767746545; l=3264;
+ i=k-willis@ti.com; s=20251230; h=from:subject:message-id;
+ bh=YbyAcZHoCJC1sioEFS+4N9K5pa2kOECmO2VEVZMXmQQ=;
+ b=bmPGjh4t4vhZQM/EXgE/BIJ7HjH4epJH7LDCSu9aFYBWCiwId9HWdhNGyt2O9nSc9pcftYl8m
+ FOSSC4GOhINBMUn0B49L0mZaA1+Nj8kBK9hK13FQjxBBEpDf88RC2SW
+X-Developer-Key: i=k-willis@ti.com; a=ed25519;
+ pk=fQiPVFwmogfDAKdaAKq163RWSfgHZVE/MrsDzp0Xo1k=
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF0000231A:EE_|IA0PR10MB7602:EE_
+X-MS-Office365-Filtering-Correlation-Id: d2d77c88-fe0a-409c-d534-08de4d85a8c8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RDc2eDRvYUZKSHJHZ0lFVm5FUXdBUmM3QlBVWHJTUE4xM2d6ZnVZVU1XbUNB?=
+ =?utf-8?B?dWpPVEZ3ZEpMSFFFUHJIYjNLYjlCbUtNUFR2eXNFNkhUUHhzaUwyZitLVUM5?=
+ =?utf-8?B?MDVNTGdpVFlHb2xSbi9IMlE1WSsvOFFaK2ZUS2swbEZVQ0Nrd2llZTRnQXJG?=
+ =?utf-8?B?cjcycER4YlJjVEltQStFc3dWeWZaamo1MzlPc0J3M3lqT3pKakRLNnY5VFRC?=
+ =?utf-8?B?azlzUFdRdlVYdmFyaTYwNllhTVdpazdKenBnVU05QS9qek9QOVU5ak0xdGlG?=
+ =?utf-8?B?Y05PR1RLaFVNUWttZlNTalZhUmlNUGRGdzBwdE1mYXVuN0FBZ1EzMWlFdWlE?=
+ =?utf-8?B?TUV4U0JIczNnMGd2K3dMc04rckc1cjc2czlPSzdtK3dBS2tNRDFFeHY0RU0r?=
+ =?utf-8?B?ZTJGTVpEbXdTejkrS0hCZC9raEJOQmpqSnp5R1plNW9qNFNMV3BRVzc0QXd6?=
+ =?utf-8?B?TkxRMGIzSDdRR3VLRWpKTHZxUmhxOTBLcGh2aE94cmFscW10K0d2SXkreDJU?=
+ =?utf-8?B?L1pXdzl4andnUTJnOHVtOC91RVZkTkJMckNJY1UrZ0o0MVpQRlZaY2oyZFJG?=
+ =?utf-8?B?L3pXVlNNTy9pbXZPckQxZnJPMHZSMzhIM09NMjAxbTJGQUJFM3lXN1FxNmo1?=
+ =?utf-8?B?KzNEU2FNK0xnOUpsWTdERXJIclgwdFN3Wm5wZkM3WTZtZEVnZmZ1MXduUkJY?=
+ =?utf-8?B?R255Zmc1NFA2NjVhNVU1UUNBUVA0UzU2M2toNjNoOEpzajJDTndIR1NyM3lv?=
+ =?utf-8?B?TUtDbFp5czdCZUNBRHJuZ1hFOHFjYXdpdWlzaXBOZjJ6cExzRmR6NktEWktE?=
+ =?utf-8?B?OXQyaGVWbTBLWmxGUlB4Mmd5ZTVnSHorYW5QSEx2WEp4WHVSTHVkZnFtRE5O?=
+ =?utf-8?B?TElEL2VjTVAzOHJrWUJsOS82RkZsQzVjNWlFRExJV2s3SFl1cXU2ZHRPUmNp?=
+ =?utf-8?B?bnBtU2oyMU9vQ0hQcVJLYkhXd2krNENZQy9HWlpTZ1R5cHJXL3pkWUx4Q210?=
+ =?utf-8?B?NldWOTI4YlowZ2FHSWdpZEZaL0hyTU5FLzVzYXR0eHM4ZHlSaUZMblVrcmJR?=
+ =?utf-8?B?dWxEM3RXU04xWGg1ak95Q05kL0FZNmRMb1lVS2NURU5yQklkTEdEK1Jtd25W?=
+ =?utf-8?B?ZnJDWTNEakhvWHh2NlZ0cW93aHJRUVBQbVBlbnBxZUc1M1M3TFRFQ1hjdi9j?=
+ =?utf-8?B?eTR0Y29GZkFSUFJ1SkpRZEpsWGxJRWQrMEVKbnpUcy9DUXh2OTZTcFBvT1dU?=
+ =?utf-8?B?MXRINXM0QTRwdDJWUjdDcDZaVkVXbTUwOEVKTGZUVHBjNFJHcmxvNHB3L2Y3?=
+ =?utf-8?B?NFFGR1JCbUJTSzhlcGNiL0x5ancxYWQ2M294NkQrUHlqUDRGYmc1cEhJaFVT?=
+ =?utf-8?B?a1JadTd4RnQ5VWptbktvQlBHOVZ4RHg3VG8zR1ErSUdNL3c3aFdGdnZUOXpo?=
+ =?utf-8?B?TVRNeHk0aW1DL2ZnYVhBRk5sL2ZGZ2wrOUlxRC9ZZ3VnRTlxZEtQanNnS2lG?=
+ =?utf-8?B?UFlOMkVmbzBQeEk2YjZ4dStac0J1ZVYyMVZrYlRySWZJVkcrM0lXcnpVWW1r?=
+ =?utf-8?B?RlRGUU1kUDIzV2ZkZ3NLSjZYb3lDdmh1cU9ZOVlrM3hES01TWVBucndISkNU?=
+ =?utf-8?B?a3JmVmxObUhJL0JueVkxc1U2ekRpSGVEM29lWXlOK1FhZDBES2FjOXpsc04v?=
+ =?utf-8?B?bVdYOVpxd3JjRXJtRXJDK0g2L0h1czE1Sk8rcU11Lyt5VHFmRlVZdXRiS21k?=
+ =?utf-8?B?bEx3bDBPejUzZE1keXJIVHI3dm5EZFFYMmdSbmV2M3JpcC92ZXJrTzhaREdv?=
+ =?utf-8?B?SWh5TDlyckxrWXdybXVZaHBuTWpkR2RwQ3NKRzdrVlNidmgzV0VRVWcwMmRv?=
+ =?utf-8?B?elYyMVBKQjgrci9Memw3c2hhT1BxZk1SeHkrSzRCaDhSZ3ZUNWFCNzc5ZmNS?=
+ =?utf-8?B?QmxVclUzdnVrQ1ZPRWYxTGxLZFdhNUlLck5ybmdta2xMS1ZqTnNQNk0vdWVE?=
+ =?utf-8?B?V2pqcGl2SiswUUR3ZzZHWW1LUEFHYXdtRnhRRlQrQW9JS3l1UFR6M2J3Uklt?=
+ =?utf-8?B?bTFEeHhvZnMrbUppL2ZJanBPanN3QXJZNFN1QnJpbGRMeGovQ3NjNEo0Y1ZL?=
+ =?utf-8?Q?GvbM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 00:42:39.0247
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2d77c88-fe0a-409c-d534-08de4d85a8c8
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF0000231A.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR10MB7602
 
-The Sony Cronos Platform Controller is a multi-purpose platform controlle=
-r with
-an integrated watchdog.  Add the watchdog driver for the Cronos SMC.
+This series adds wakeup support for the Main UART in the device tree of
+the TI AM62 family of devices. It defines the specific pins and pinctrl
+states needed to wakeup the system from the Main UART via I/O
+daisy-chaining. The wakeup-source property is configured to describe the
+low power modes the system can wakeup from using the Main UART.
 
-Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
+Implementation
+--------------
+This series is intended to be implemented along with the following
+series:
+
+1. [MERGED] "pmdomain: ti_sci: handle wakeup constraint for out-of-band
+   wakeup" [1]: Skips setting constraints for wakeup sources that have
+   out-of-band wakeup capability.
+
+2. "serial: 8250: omap: set out-of-band wakeup if wakeup pinctrl exists"
+   [2]: Implements out-of-band wakeup from the UARTs for TI K3 SoCs.
+
+3. "arm64: dts: ti: k3-am62: Support Main UART wakeup": (this series)
+   implements the functionality to wakeup the system from the Main UART.
+
+Testing
+-------
+Tested on a AM62P SK EVM board and a AM62L EVM board with all the above
+mentioned series implemented. Suspend/resume verified with the Main UART
+wakeup source by entering a keypress on the console.
+
+This github branch has all the necessary patches to test the series
+using v6.19-rc1:
+https://github.com/kwillis01/linux/tree/v6.19/uart-daisy-chain/all
+
+[1] https://lore.kernel.org/all/20251230-pmdomain-v1-1-3a009d1ff72e@ti.com/
+[2] https://lore.kernel.org/all/20251230-uart-wakeup-v1-1-13f1bb905f14@ti.com/
+
 ---
- drivers/watchdog/Kconfig           |  17 ++
- drivers/watchdog/Makefile          |   1 +
- drivers/watchdog/sony-cronos-wdt.c | 283 +++++++++++++++++++++++++++++
- 3 files changed, 301 insertions(+)
- create mode 100644 drivers/watchdog/sony-cronos-wdt.c
+Changes in v3:
+- Reword commits to include the logic of how the "default" and "wakeup"
+  pinctrl states are used.
+- Revert pin logic so that main_uart0_pins_default and uart0_pins_default
+  are untouched.
+- Remove main_uart0_rx_pins_default and uart0_rx_pins_default.
+- Combine main_uart0 RX wakeup pin and main_uart0 TX pin into one group of
+  pins called main_uart0_pins_wakeup or uart0_pins_wakeup.
+- Revert pinctrl-0 to only include main_uart0_pins_wakeup or
+  uart0_pins_wakeup.
+- Change pinctrl-1 to only include main_uart0_pins_wakeup or
+  uart0_pins_wakeup.
+- Link to v2: https://lore.kernel.org/r/20251230-b4-uart-daisy-chain-dts-v2-0-fa5257ec54bb@ti.com
 
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index d3b9df7d466b..9001e4184e9d 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -416,6 +416,23 @@ config SL28CPLD_WATCHDOG
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called sl28cpld_wdt.
-=20
-+config SONY_CRONOS_WATCHDOG
-+	tristate "Sony Cronos CPLD Watchdog"
-+	depends on ARCH_ASPEED || COMPILE_TEST
-+	depends on I2C
-+	select WATCHDOG_CORE
-+	help
-+	  Say Y here to include support for the watchdog timer
-+	  for the Sony Cronos control CPLD.
-+
-+	  All known Cronos systems use the ASpeed AST2600 SoC,
-+	  therefore the configuration option is gated on
-+	  ARCH_ASPEED selection.  If this changes, add the new
-+	  SoCs to the selection list.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called sony-cronos-wdt.
-+
- # ALPHA Architecture
-=20
- # ARM Architecture
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index ba52099b1253..aa4d7aa15613 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -244,3 +244,4 @@ obj-$(CONFIG_MENZ069_WATCHDOG) +=3D menz69_wdt.o
- obj-$(CONFIG_RAVE_SP_WATCHDOG) +=3D rave-sp-wdt.o
- obj-$(CONFIG_STPMIC1_WATCHDOG) +=3D stpmic1_wdt.o
- obj-$(CONFIG_SL28CPLD_WATCHDOG) +=3D sl28cpld_wdt.o
-+obj-$(CONFIG_SONY_CRONOS_WATCHDOG) +=3D sony-cronos-wdt.o
-diff --git a/drivers/watchdog/sony-cronos-wdt.c b/drivers/watchdog/sony-c=
-ronos-wdt.c
-new file mode 100644
-index 000000000000..650fcee28885
---- /dev/null
-+++ b/drivers/watchdog/sony-cronos-wdt.c
-@@ -0,0 +1,283 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Watchdog device driver for Sony Cronos SMCs
-+ * Copyright (C) 2015 Dialog Semiconductor Ltd.
-+ * Copyright (C) 2022-2025 Raptor Engineering, LLC
-+ *
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/jiffies.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/sony-cronos.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+#include <linux/uaccess.h>
-+#include <linux/watchdog.h>
-+
-+static const unsigned int wdt_timeout[] =3D { 10, 80 };
-+static const unsigned int wdt_timeout_ctl_bits[] =3D { 0x1, 0x0 };
-+#define CRONOS_TWDSCALE_DISABLE 0
-+#define CRONOS_TWDSCALE_MIN 1
-+#define CRONOS_TWDSCALE_MAX (ARRAY_SIZE(wdt_timeout) - 1)
-+#define CRONOS_WDT_MIN_TIMEOUT wdt_timeout[CRONOS_TWDSCALE_MIN]
-+#define CRONOS_WDT_MAX_TIMEOUT wdt_timeout[CRONOS_TWDSCALE_MAX]
-+#define CRONOS_WDG_DEFAULT_TIMEOUT wdt_timeout[CRONOS_TWDSCALE_MAX]
-+
-+struct sony_cronos_watchdog {
-+	struct sony_cronos_smc *hw;
-+	struct watchdog_device wdtdev;
-+};
-+
-+static unsigned int sony_cronos_wdt_read_timeout(struct sony_cronos_watc=
-hdog *wdt)
-+{
-+	unsigned int i;
-+	unsigned int val;
-+
-+	regmap_read(wdt->hw->regmap, CRONOS_WDT_CTL_REG, &val);
-+
-+	for (i =3D CRONOS_TWDSCALE_MIN; i <=3D CRONOS_TWDSCALE_MAX; i++) {
-+		if (wdt_timeout_ctl_bits[i] =3D=3D (val & CRONOS_WDT_TIMEOUT_MASK))
-+			return wdt_timeout[i];
-+	}
-+
-+	dev_err(wdt->hw->dev, "Invalid configuration data present in watchdog c=
-ontrol register!\n");
-+	return wdt_timeout[CRONOS_WDT_MIN_TIMEOUT];
-+}
-+
-+static unsigned int sony_cronos_wdt_timeout_to_sel(unsigned int secs)
-+{
-+	unsigned int i;
-+
-+	for (i =3D CRONOS_TWDSCALE_MIN; i <=3D CRONOS_TWDSCALE_MAX; i++) {
-+		if (wdt_timeout[i] >=3D secs)
-+			return wdt_timeout_ctl_bits[i];
-+	}
-+
-+	return wdt_timeout_ctl_bits[CRONOS_TWDSCALE_MAX];
-+}
-+
-+static int sony_cronos_reset_watchdog_timer(struct sony_cronos_watchdog =
-*wdt)
-+{
-+	return regmap_write(wdt->hw->regmap, CRONOS_WDT_CLR_REG, CRONOS_WDT_CLR=
-_VAL);
-+}
-+
-+static int sony_cronos_wdt_update_timeout_register(struct sony_cronos_wa=
-tchdog *wdt,
-+						   unsigned int regval)
-+{
-+	int ret;
-+
-+	struct sony_cronos_smc *chip =3D wdt->hw;
-+
-+	ret =3D sony_cronos_reset_watchdog_timer(wdt);
-+	if (ret) {
-+		dev_err(wdt->hw->dev, "Watchdog failed to reset (err =3D %d)\n", ret);
-+		goto done;
-+	}
-+
-+	return regmap_update_bits(chip->regmap, CRONOS_WDT_CTL_REG, CRONOS_WDT_=
-TIMEOUT_MASK,
-+				  regval);
-+
-+done:
-+	return ret;
-+}
-+
-+static int sony_cronos_wdt_start(struct watchdog_device *wdd)
-+{
-+	struct sony_cronos_watchdog *wdt =3D watchdog_get_drvdata(wdd);
-+	struct sony_cronos_smc *chip =3D wdt->hw;
-+	unsigned int selector;
-+	int ret;
-+
-+	selector =3D sony_cronos_wdt_timeout_to_sel(wdt->wdtdev.timeout);
-+	ret =3D sony_cronos_wdt_update_timeout_register(wdt, selector);
-+	if (ret) {
-+		dev_err(wdt->hw->dev, "Watchdog prestart configuration failed (err =3D=
- %d)\n", ret);
-+		goto done;
-+	}
-+
-+	ret =3D regmap_update_bits(chip->regmap, CRONOS_WDT_CTL_REG, CRONOS_WDT=
-_ENABLE_MASK, 1);
-+
-+	if (ret)
-+		dev_err(wdt->hw->dev, "Watchdog failed to start (err =3D %d)\n", ret);
-+
-+done:
-+	return ret;
-+}
-+
-+static int sony_cronos_wdt_stop(struct watchdog_device *wdd)
-+{
-+	struct sony_cronos_watchdog *wdt =3D watchdog_get_drvdata(wdd);
-+	struct sony_cronos_smc *chip =3D wdt->hw;
-+	int ret;
-+
-+	ret =3D regmap_update_bits(chip->regmap, CRONOS_WDT_CTL_REG, CRONOS_WDT=
-_ENABLE_MASK, 1);
-+	if (ret)
-+		dev_err(wdt->hw->dev, "Watchdog failed to stop (err =3D %d)\n", ret);
-+
-+	return ret;
-+}
-+
-+static int sony_cronos_wdt_ping(struct watchdog_device *wdd)
-+{
-+	struct sony_cronos_watchdog *wdt =3D watchdog_get_drvdata(wdd);
-+	int ret;
-+
-+	/*
-+	 * Prevent pings from occurring late in system poweroff/reboot sequence
-+	 * and possibly locking out restart handler from accessing i2c bus.
-+	 */
-+	if (system_state > SYSTEM_RUNNING)
-+		return 0;
-+
-+	ret =3D sony_cronos_reset_watchdog_timer(wdt);
-+	if (ret)
-+		dev_err(wdt->hw->dev, "Failed to ping the watchdog (err =3D %d)\n", re=
-t);
-+
-+	return ret;
-+}
-+
-+static int sony_cronos_wdt_set_timeout(struct watchdog_device *wdd, unsi=
-gned int timeout)
-+{
-+	struct sony_cronos_watchdog *wdt =3D watchdog_get_drvdata(wdd);
-+	unsigned int selector;
-+	int ret;
-+
-+	selector =3D sony_cronos_wdt_timeout_to_sel(timeout);
-+	ret =3D sony_cronos_wdt_update_timeout_register(wdt, selector);
-+	if (ret)
-+		dev_err(wdt->hw->dev, "Failed to set watchdog timeout (err =3D %d)\n",=
- ret);
-+	else
-+		wdd->timeout =3D wdt_timeout[selector];
-+
-+	return ret;
-+}
-+
-+static int sony_cronos_wdt_restart(struct watchdog_device *wdd, unsigned=
- long action, void *data)
-+{
-+	struct sony_cronos_watchdog *wdt =3D watchdog_get_drvdata(wdd);
-+	struct i2c_client *client =3D to_i2c_client(wdt->hw->dev);
-+	int ret;
-+
-+	/* Don't use regmap because it is not atomic safe */
-+	ret =3D i2c_smbus_write_byte_data(client, CRONOS_WDT_CTL_REG, CRONOS_WD=
-T_CTL_RESET_VAL);
-+	ret =3D i2c_smbus_write_byte_data(client, CRONOS_BMC_RESET_REG, CRONOS_=
-BMC_RESET_VAL);
-+	if (ret < 0)
-+		dev_alert(wdt->hw->dev, "Failed to shutdown (err =3D %d)\n", ret);
-+
-+	/* wait for reset to assert... */
-+	mdelay(500);
-+
-+	return ret;
-+}
-+
-+static const struct watchdog_info sony_cronos_watchdog_info =3D {
-+	.options =3D WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING,
-+	.identity =3D "Sony Cronos WDT",
-+};
-+
-+static const struct watchdog_ops sony_cronos_watchdog_ops =3D {
-+	.owner =3D THIS_MODULE,
-+	.start =3D sony_cronos_wdt_start,
-+	.stop =3D sony_cronos_wdt_stop,
-+	.ping =3D sony_cronos_wdt_ping,
-+	.set_timeout =3D sony_cronos_wdt_set_timeout,
-+	.restart =3D sony_cronos_wdt_restart,
-+};
-+
-+static const struct of_device_id sony_cronos_compatible_id_table[] =3D {
-+	{
-+		.compatible =3D "sony,cronos-watchdog",
-+	},
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(of, sony_cronos_compatible_id_table);
-+
-+static int sony_cronos_wdt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev =3D &pdev->dev;
-+	unsigned int timeout;
-+	struct sony_cronos_smc *chip;
-+	struct sony_cronos_watchdog *wdt;
-+
-+	chip =3D dev_get_drvdata(dev->parent);
-+	if (!chip)
-+		return -EINVAL;
-+
-+	wdt =3D devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
-+	if (!wdt)
-+		return -ENOMEM;
-+
-+	wdt->hw =3D chip;
-+
-+	wdt->wdtdev.info =3D &sony_cronos_watchdog_info;
-+	wdt->wdtdev.ops =3D &sony_cronos_watchdog_ops;
-+	wdt->wdtdev.min_timeout =3D CRONOS_WDT_MIN_TIMEOUT;
-+	wdt->wdtdev.max_timeout =3D CRONOS_WDT_MAX_TIMEOUT;
-+	wdt->wdtdev.min_hw_heartbeat_ms =3D 0;
-+	wdt->wdtdev.timeout =3D CRONOS_WDG_DEFAULT_TIMEOUT;
-+	wdt->wdtdev.status =3D WATCHDOG_NOWAYOUT_INIT_STATUS;
-+	wdt->wdtdev.parent =3D dev;
-+
-+	watchdog_set_restart_priority(&wdt->wdtdev, 128);
-+
-+	watchdog_set_drvdata(&wdt->wdtdev, wdt);
-+	dev_set_drvdata(dev, &wdt->wdtdev);
-+
-+	timeout =3D sony_cronos_wdt_read_timeout(wdt);
-+	if (timeout)
-+		wdt->wdtdev.timeout =3D timeout;
-+
-+	/* Set timeout from DT value if available */
-+	watchdog_init_timeout(&wdt->wdtdev, 0, dev->parent);
-+
-+	if (timeout) {
-+		sony_cronos_wdt_set_timeout(&wdt->wdtdev, wdt->wdtdev.timeout);
-+		set_bit(WDOG_HW_RUNNING, &wdt->wdtdev.status);
-+	}
-+
-+	return devm_watchdog_register_device(dev, &wdt->wdtdev);
-+}
-+
-+static int __maybe_unused sony_cronos_wdt_suspend(struct device *dev)
-+{
-+	struct watchdog_device *wdd =3D dev_get_drvdata(dev);
-+
-+	if (watchdog_active(wdd))
-+		return sony_cronos_wdt_stop(wdd);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused sony_cronos_wdt_resume(struct device *dev)
-+{
-+	struct watchdog_device *wdd =3D dev_get_drvdata(dev);
-+
-+	if (watchdog_active(wdd))
-+		return sony_cronos_wdt_start(wdd);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(sony_cronos_wdt_pm_ops, sony_cronos_wdt_suspend=
-, sony_cronos_wdt_resume);
-+
-+static struct platform_driver sony_cronos_wdt_driver =3D {
-+	.probe =3D sony_cronos_wdt_probe,
-+	.driver =3D {
-+		.name =3D "sony-cronos-watchdog",
-+		.pm =3D &sony_cronos_wdt_pm_ops,
-+		.of_match_table =3D sony_cronos_compatible_id_table,
-+	},
-+};
-+module_platform_driver(sony_cronos_wdt_driver);
-+
-+MODULE_AUTHOR("Raptor Engineering, LLC <tpearson@raptorengineering.com>"=
-);
-+MODULE_DESCRIPTION("WDT device driver for Sony Cronos SMCs");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:sony-cronos-watchdog");
---=20
-2.39.5
+Changes in v2:
+- Define AM62L system idle states
+- Enable Main UART wakeup for AM62L SoC
+- Rebase to v6.19-rc3
+- Link to v1: https://lore.kernel.org/all/20250904212827.3730314-1-k-willis@ti.com/
+
+---
+Kendall Willis (5):
+      arm64: dts: ti: k3-am62l: Define possible system states
+      arm64: dts: ti: k3-am62x-sk-common: Enable Main UART wakeup
+      arm64: dts: ti: k3-am62a7-sk: Enable Main UART wakeup
+      arm64: dts: ti: k3-am62p5-sk: Enable Main UART wakeup
+      arm64: dts: ti: k3-am62l3-evm: Enable Main UART wakeup
+
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts        | 13 ++++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62l.dtsi           | 12 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62l3-evm.dts       | 11 ++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts        | 13 ++++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 13 ++++++++++++-
+ 5 files changed, 58 insertions(+), 4 deletions(-)
+---
+base-commit: 6cd6c12031130a349a098dbeb19d8c3070d2dfbe
+change-id: 20251230-b4-uart-daisy-chain-dts-d01aa40560b2
+
+Best regards,
+-- 
+Kendall Willis <k-willis@ti.com>
 
 
