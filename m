@@ -1,69 +1,70 @@
-Return-Path: <devicetree+bounces-252484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA28CFFCD9
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:41:49 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F676CFFA29
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:05:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 92730316CBB7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 18:50:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 94D7C3008CAF
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 19:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87DD734F483;
-	Wed,  7 Jan 2026 18:38:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6E0359F80;
+	Wed,  7 Jan 2026 18:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FyYIkfaF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zjtv75C8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5501834E772;
-	Wed,  7 Jan 2026 18:38:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD770358D2A;
+	Wed,  7 Jan 2026 18:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767811111; cv=none; b=U0IfCmxgtsV/E89ZR3krGrRkM6YDvLery329sEon3A89EK0YGyhy0C/ItMuXIth9H1xrqrH3Fg76Ki6B9J5LhzaTZUxh942NG3mW4Nkqxmx+h699lB8VR+6KZ3IlZVSRfUpZ8EDOcmjzNbEAocfFgnbpx0+BHEidg7Qi54Y8DfQ=
+	t=1767811114; cv=none; b=Y7/e21abYvLtVQR7sf6Ygb0aTHxJWgR4uzuOId/L99QwL/GjT+YBpe6kiSQOyJGboHj0w1yxwLDx+z7hO7nlGoYr5Ew/opm/Caaso9DJDQ/t0jJXm6badicWkarav61HDx6DmFoqWSW+r3TRU/F2QRKxap/oK8laQqCJg1WaXYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767811111; c=relaxed/simple;
-	bh=giwVjXZaInPGem3clXozi1NVnQJ6c/GXXvkKUWc/mdg=;
+	s=arc-20240116; t=1767811114; c=relaxed/simple;
+	bh=UnoGgK3rZulvQ7+7qKRL2PAUxy2h9dm7tc2RPR5H5pk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kNgdlhgK7lHfmMFeRzLqG1tcSVSMb/4zrifYB7sfr7SBt1bhC6vF4vt35sfK5DWzp1GWadV4T9tlIr6rm29lBgJ5azYudAmws4BpEkS7VIBuCHnRok0OUHgINbg7k3Fna1qCSBlJbBZX1x+4/RHrJ6My4d+6rpyZ8ACM1xvjPjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FyYIkfaF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D27B8C19423;
-	Wed,  7 Jan 2026 18:38:29 +0000 (UTC)
+	 MIME-Version:Content-Type; b=RZXn4e5wkWfwEJVsnKFhnQvRVKu/l+HwmDyUj+moJDDVGFBC9Z9B3RydeC/AnRzozbKTMjOzZXgyQwYQnqgCLQyJH85POV/gHxoVPui8haBoaGXK8qRfeERPZ/uKGENV3mroWNEqA7g8uy8Ymu9IjyEyGEr+C92SDFBWYOm8x9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zjtv75C8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11763C19423;
+	Wed,  7 Jan 2026 18:38:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767811111;
-	bh=giwVjXZaInPGem3clXozi1NVnQJ6c/GXXvkKUWc/mdg=;
+	s=k20201202; t=1767811114;
+	bh=UnoGgK3rZulvQ7+7qKRL2PAUxy2h9dm7tc2RPR5H5pk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FyYIkfaFNbrooZvS1bn+upWyNOkmpmanoQJKjmWVyJGSPv7YnzQheRu4wn8uQz8AW
-	 T6+mnsZ3Mhl1bFTJoO6+7N9LCrGW0CJVK2s16lwq4Irg9NlTUjXkiBepUnmw2r8018
-	 nvXBEvvET+svEA76HYqZgg8wS28wTxjfbV444ObhSh+5zy1PNLGb2X9ZzjaY/QUErp
-	 PNZC+SlFWClZAWOPLwFmrrDwFmfVKXIXjVRvHRxqN4NEWHkJogs86UlqeRQ10+ttS3
-	 Hq/CcqtPOvsU0WOfo2UHnMd+DqAk9K2D3acqINZC3uBnjvzEEpxpWbKBSSie0nWtwW
-	 uj2qrOe+WvoPA==
+	b=Zjtv75C8bU6LOSZ3PZHsIZhImci8OB9N3l4n+g4QJw9+EZUskkZVAM1UPtmIWq8qD
+	 9y/QTHTfTxYeOHOawoKRbbL6WzEkQNUcZ9t+s6O58Apsi/7VGvWziIs5WaDXdB3xIT
+	 ZZ4PTBLu72sZtSwmLEO3QscMYE8XJSixFJRNEqmKAKNd+EAEgG7e2pE1qc+hBXwn3x
+	 7R8UKQBuL2Q0mUw7X6NTXCKWmje4q8fy/C+ZG61+QtwTbCNWAZOHIOYRNySKRWDYn1
+	 iIPWudv/JqxQTi8ZwuwCYId8saayD+UOlRFVcAhLT7cLWzNCC0xoZEU1dm//iCbSlV
+	 khtt+7PhnJH5g==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>,
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Georgi Djakov <djakov@kernel.org>,
-	Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+	Imran Shaik <imran.shaik@oss.qualcomm.com>,
+	Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
 	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>,
 	linux-clk@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH 0/4] Bring the IP0 resource from ICC to clk-rpmh on QCS615
-Date: Wed,  7 Jan 2026 12:38:19 -0600
-Message-ID: <176781109957.3262943.14829046212346314366.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH 0/3] Add the support for SM8750 Camera clock controller
+Date: Wed,  7 Jan 2026 12:38:21 -0600
+Message-ID: <176781109968.3262943.4143830345398842895.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20250627-topic-qcs615_icc_ipa-v1-0-dc47596cde69@oss.qualcomm.com>
-References: <20250627-topic-qcs615_icc_ipa-v1-0-dc47596cde69@oss.qualcomm.com>
+In-Reply-To: <20251202-sm8750_camcc-v1-0-b3f7ef6723f1@oss.qualcomm.com>
+References: <20251202-sm8750_camcc-v1-0-b3f7ef6723f1@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,20 +75,23 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 27 Jun 2025 21:37:54 +0200, Konrad Dybcio wrote:
-> This is how it should have been right from the beginning, but it seems
-> like nobody took a good look at the initial submission.
-> 
-> This series is essentially the same as the previous [1] again.
-> 
-> Compile-tested only.
+On Tue, 02 Dec 2025 15:56:24 +0530, Taniya Das wrote:
+> Support the Camera clock controller for SM8750 Qualcomm SoC.
+>  - The camera MCLK BIST clock controller, which is required
+>    for functional MCLKs.
+>  - The camera CC (clock controller) for managing camera-related
+>     clocks.
+>   - Additionally, the Rivian ELU PLL is utilized within the
+>     SM8750 clock controller, so support for this PLL is also added.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] arm64: dts: qcom: qcs615: Drop IPA interconnects
-      commit: 8b7f2aa05c02c13aa017a70401b5f8a3ce0c0f57
+[1/3] clk: qcom: clk-alpha-pll: Add support for Rivian ELU PLL
+      (no commit info)
+[3/3] clk: qcom: camcc: Add camera clock controller driver for SM8750 SoC
+      commit: f9580bafd39cff31bd51031e8784ea44acddf20e
 
 Best regards,
 -- 
