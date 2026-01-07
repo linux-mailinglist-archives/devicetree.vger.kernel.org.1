@@ -1,99 +1,118 @@
-Return-Path: <devicetree+bounces-252485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F676CFFA29
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:05:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 165C2CFFCFA
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 20:44:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 94D7C3008CAF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 19:05:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AD53730A651F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 18:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6E0359F80;
-	Wed,  7 Jan 2026 18:38:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0385A350D7B;
+	Wed,  7 Jan 2026 18:54:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zjtv75C8"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="UYCXmkKI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD770358D2A;
-	Wed,  7 Jan 2026 18:38:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95FB352FA4;
+	Wed,  7 Jan 2026 18:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767811114; cv=none; b=Y7/e21abYvLtVQR7sf6Ygb0aTHxJWgR4uzuOId/L99QwL/GjT+YBpe6kiSQOyJGboHj0w1yxwLDx+z7hO7nlGoYr5Ew/opm/Caaso9DJDQ/t0jJXm6badicWkarav61HDx6DmFoqWSW+r3TRU/F2QRKxap/oK8laQqCJg1WaXYY=
+	t=1767812062; cv=none; b=mXjcHJsDKUZMGr1A+C05nCeD+cKp35isUpb8vNmXsBTwbZ8++Fi0QI3KqdFYEXHw3BM98e9V9yeuFdXfDnfwYqR3J90i7+RpDDxXXAOuaVLpfdJfYV1Dq/4okJN5rFnWtHEj13GQ7/V+2ZliDsCRTk+/uJOBkRPiblWRctLq1sQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767811114; c=relaxed/simple;
-	bh=UnoGgK3rZulvQ7+7qKRL2PAUxy2h9dm7tc2RPR5H5pk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RZXn4e5wkWfwEJVsnKFhnQvRVKu/l+HwmDyUj+moJDDVGFBC9Z9B3RydeC/AnRzozbKTMjOzZXgyQwYQnqgCLQyJH85POV/gHxoVPui8haBoaGXK8qRfeERPZ/uKGENV3mroWNEqA7g8uy8Ymu9IjyEyGEr+C92SDFBWYOm8x9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zjtv75C8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11763C19423;
-	Wed,  7 Jan 2026 18:38:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767811114;
-	bh=UnoGgK3rZulvQ7+7qKRL2PAUxy2h9dm7tc2RPR5H5pk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Zjtv75C8bU6LOSZ3PZHsIZhImci8OB9N3l4n+g4QJw9+EZUskkZVAM1UPtmIWq8qD
-	 9y/QTHTfTxYeOHOawoKRbbL6WzEkQNUcZ9t+s6O58Apsi/7VGvWziIs5WaDXdB3xIT
-	 ZZ4PTBLu72sZtSwmLEO3QscMYE8XJSixFJRNEqmKAKNd+EAEgG7e2pE1qc+hBXwn3x
-	 7R8UKQBuL2Q0mUw7X6NTXCKWmje4q8fy/C+ZG61+QtwTbCNWAZOHIOYRNySKRWDYn1
-	 iIPWudv/JqxQTi8ZwuwCYId8saayD+UOlRFVcAhLT7cLWzNCC0xoZEU1dm//iCbSlV
-	 khtt+7PhnJH5g==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>,
-	Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-	Imran Shaik <imran.shaik@oss.qualcomm.com>,
-	Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH 0/3] Add the support for SM8750 Camera clock controller
-Date: Wed,  7 Jan 2026 12:38:21 -0600
-Message-ID: <176781109968.3262943.4143830345398842895.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251202-sm8750_camcc-v1-0-b3f7ef6723f1@oss.qualcomm.com>
-References: <20251202-sm8750_camcc-v1-0-b3f7ef6723f1@oss.qualcomm.com>
+	s=arc-20240116; t=1767812062; c=relaxed/simple;
+	bh=4oUiglibFG4afDebq+S2P2CesQFe49jxQ2qTxawnztM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LC9e0b/7jkzUQ/kYC7omhwWZEJAAZTXwr9gxJQm7zi7fGCYAZxAqFY30zL9SojHq+AqadE0api+nVTdysVO3Wb7/cBEXGIfVwx1NNc5EHS3fDLKIXIOs4Ajz/wTtzM7wHpqPiLvrROS6/kCjsltRhv9XwWX17/fT76A0AiprUu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=UYCXmkKI; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=uuSJqpZaH2QhA3iIANu4E7xN2malXmvke17n9OdaCSs=; b=UYCXmkKIK+FFoJqcmLQSEeOBVP
+	yLg8/B4kpjdrbXH1J/zYC8gu+b0/s7zVldWHMfFPjxK9s9c4rFiFCNUDiiS+XZwZ9VtRnbdtU1BQL
+	dXvnbDET5hCrlNu79yXYxPt3ZowrHlGENuxtsL5R7F3oMBTTMc3cp6fuKs1ZKuQ8m9tu9CSfWVXnh
+	ROcrZht9x9ZlUPI4jhTF4ttb+oWAVnyJ2FKQWBGfZ9tIBU5FVe/IN1cv7nBojR+fBV7GGx4Tlc++d
+	0tXx9YI/OfCXpcEmVj5kCCwrXzXPgCDGfaB5N58QIVULeMXWi3RGA1r8c4vytZLYnPDsFhgkp+xRz
+	plZrRg3Q==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vdYff-0000000FV2K-03q8;
+	Wed, 07 Jan 2026 18:54:15 +0000
+Message-ID: <df12062e-27ef-454d-b35b-526a88b5c7fa@infradead.org>
+Date: Wed, 7 Jan 2026 10:54:13 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] virt: bao: Add Bao IPC shared memory driver
+To: joaopeixoto@osyx.tech, linux-kernel@vger.kernel.org
+Cc: ajd@linux.ibm.com, alex@ghiti.fr, aou@eecs.berkeley.edu,
+ bagasdotme@gmail.com, catalin.marinas@arm.com, conor+dt@kernel.org,
+ corbet@lwn.net, dan.j.williams@intel.com, davidmcerdeira@osyx.tech,
+ devicetree@vger.kernel.org, dev@kael-k.io, gregkh@linuxfoundation.org,
+ haren@linux.ibm.com, heiko@sntech.de, jose@osyx.tech,
+ kever.yang@rock-chips.com, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+ linux-riscv@lists.infradead.org, maddy@linux.ibm.com, mani@kernel.org,
+ nathan@kernel.org, neil.armstrong@linaro.org, palmer@dabbelt.com,
+ pjw@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, robh@kernel.org,
+ will@kernel.org
+References: <20251224135217.25350-1-joaopeixoto@osyx.tech>
+ <20260107162829.416885-1-joaopeixoto@osyx.tech>
+ <20260107162829.416885-3-joaopeixoto@osyx.tech>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20260107162829.416885-3-joaopeixoto@osyx.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-On Tue, 02 Dec 2025 15:56:24 +0530, Taniya Das wrote:
-> Support the Camera clock controller for SM8750 Qualcomm SoC.
->  - The camera MCLK BIST clock controller, which is required
->    for functional MCLKs.
->  - The camera CC (clock controller) for managing camera-related
->     clocks.
->   - Additionally, the Rivian ELU PLL is utilized within the
->     SM8750 clock controller, so support for this PLL is also added.
-> 
-> [...]
 
-Applied, thanks!
+On 1/7/26 8:28 AM, joaopeixoto@osyx.tech wrote:
+> diff --git a/drivers/virt/bao/ipcshmem/Kconfig b/drivers/virt/bao/ipcshmem/Kconfig
+> new file mode 100644
+> index 000000000000..966bb75aa495
+> --- /dev/null
+> +++ b/drivers/virt/bao/ipcshmem/Kconfig
+> @@ -0,0 +1,8 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +config BAO_SHMEM
+> +	tristate "Bao hypervisor shared memory support"
+> +	help
+> +	This enables support for Bao shared memory communication.
+> +	It allows the kernel to interface with guests running under
+> +	the Bao hypervisor, providing a character device interface
+> +	for exchanging data through dedicated shared-memory regions.
 
-[1/3] clk: qcom: clk-alpha-pll: Add support for Rivian ELU PLL
-      (no commit info)
-[3/3] clk: qcom: camcc: Add camera clock controller driver for SM8750 SoC
-      commit: f9580bafd39cff31bd51031e8784ea44acddf20e
+Please follow Documentation/process/coding-style.rst:
 
-Best regards,
+10) Kconfig configuration files
+-------------------------------
+
+For all of the Kconfig* configuration files throughout the source tree,
+the indentation is somewhat different.  Lines under a ``config`` definition
+are indented with one tab, while help text is indented an additional two
+spaces.  Example::
+
+  config AUDIT
+	bool "Auditing support"
+	depends on NET
+	help
+	  Enable auditing infrastructure that can be used with another
+	  kernel subsystem, such as SELinux (which requires this for
+	  logging of avc messages output).  Does not do system-call
+	  auditing without CONFIG_AUDITSYSCALL.
+
+
 -- 
-Bjorn Andersson <andersson@kernel.org>
+~Randy
+
 
