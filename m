@@ -1,105 +1,210 @@
-Return-Path: <devicetree+bounces-252166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17411CFBF88
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 05:32:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54666CFBF28
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 05:28:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 85F31306A936
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 04:28:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 49CAC3031D68
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 04:28:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5606E22FDE6;
-	Wed,  7 Jan 2026 04:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2223A240611;
+	Wed,  7 Jan 2026 04:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KyLJ+Civ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mIk2hFqY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4DA6A33B
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 04:28:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4055223D7F5
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 04:28:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767760089; cv=none; b=UUaLyKXgEXXqpXXAEwGZB7gVILRUQplLvuW4TaKcmGyxOi298MD+JjO6jby45lL996duYitl4DSheN1bQsmGWs99CG2DHoBxuIx4MyuikSXH5to/z8vIhrIsnaLERpq2eQ0YxTbkFK4De8n8H356OOx8Qi8329XNPw0QtyhQNNg=
+	t=1767760115; cv=none; b=Z1O/VnGmLGm5IETinoecTm08kLiKtGmdh7d+PURu/bUJfzjtqyQu+Rqw6jhHHTzKx4qGpBAX9PwZ038VzBSBqevuCsBxsFrlGCDdqprtPXFsJH/hcGSzUr151ZadOY8Hnz7qTppYECMAUzefpiq2HoxDKkrrIYy0aOlKuWuiwm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767760089; c=relaxed/simple;
-	bh=NzR3V+hWLebEkE3+SsGGOtJ3Aw3p/n8XHCAiexT6GGM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YIuECBQDp90z8DwUmJDq1J4d3Y4aNJQw5I/SD9aH/n+AKentoTEhGcnGhChO/LG5lCUpPWxOQ8myubUejD2JuQykBV58h77sleLvWaWujyHti7lbzcRZyjS8iR4TX0v3Ss+mF3ihVMVfON5PC8xXS1TR4UwFLfai1JAwpzhBnRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KyLJ+Civ; arc=none smtp.client-ip=209.85.160.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4ee257e56aaso6057541cf.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 20:28:04 -0800 (PST)
+	s=arc-20240116; t=1767760115; c=relaxed/simple;
+	bh=srOqe4eFRPtpweRyP1S1bgmYqoSW0uhY2pL3ISZa9eg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bZpjQRaqIU1C1HgkDK1LN8JJiS7JMp0B10MIW/pqYVY2RlrjgRlRGAj+U8XEbbNEXEyNaDk4d6qWxZ4h2xHSpAyBamKQKwpDgmyJjR5xGsndkOSJGiRYD1377E0fOAwK3xPQ+MIv2mSPpOz+Dp3GPtSBiyXfOguxiKOFC2LTeqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mIk2hFqY; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5942708701dso127094e87.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 20:28:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767760083; x=1768364883; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NzR3V+hWLebEkE3+SsGGOtJ3Aw3p/n8XHCAiexT6GGM=;
-        b=KyLJ+CivbXZtxvCp8TF/x8Sev5yuK/HFr9tUIpwDrj7CKceBHqz4UD1skJzvjzBKRA
-         7KeoTys6IH9TyhDXY1nz2JnggQuzNo9T4pAuRTsdFdyA7gH4dsP79Du5DNhM6LlWjNfr
-         3yAjPMvVtlGWFCaCIAr5E5b4lN3/x5br9HusnNiQ6l1Mr6ljc39/ABNKWPOyaItuXAjU
-         Xqv4fQruvD0cQX4PSGabVvwEq/azJfXiQhguv/wkZoS3Q+8EYnM6liAC3DD+xdeSEtDw
-         ibsOy+3qTg62AErYoWV5GWSfo3LQZ3WEK1bkuvI5MJrK8K6ScmCCTEMZREpNylk4TUY8
-         NZsg==
+        d=linaro.org; s=google; t=1767760111; x=1768364911; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FE+2YmvPFSDvLHiA5oySCSRiMBW6t3izoKb4GQ+6LTE=;
+        b=mIk2hFqY/xt8bmgZ5ySVYY8RRIdD9cbapUpc3kOq+JraXWC0I6Ph2DwucqWFJWAznd
+         r9AV4k6jvlhVhhBwa4Ms0RI2h06Ideulxq3Qs4rHgFIBaV+CVUaxF3yidVtxbAIMktlr
+         lyxdiZE6s5OBJ92qRvt7W5A8DuotlPMMViCHSeDdB/Ki+/25QlTDrnc6jnPZIdmLCKA+
+         gITFsQ62RKLvPoA5jQuM26e7V/E5bNp2VJU5OAMil1zJbhmHoNxjNVjpVeg6kbS71jD3
+         IOU+p7FoIq3qaY4V5x4gQCBoU0KAivBSFaIBZWBtxsSiAm6P7TEJuKZ1P6UWDk+APME0
+         qDcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767760083; x=1768364883;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NzR3V+hWLebEkE3+SsGGOtJ3Aw3p/n8XHCAiexT6GGM=;
-        b=XMTW0q2Vj0eKXRMHMXRko2c9amm4+a8NzafmUyMpxVc7JsCMcyS6Lva7BYnY7aw1qz
-         1K3vCl666Uhhj6OBDTNkGuhUb7nDKV3TxDRXrCLjbxniaoGJkm07Ksb4uczb8cnJ+yYV
-         EwgXG0nFREj5Q/qxwAM88TUc3JwLhdLp8gY4fdFRqHV+sATEdD5esJ4DvRTUdEspqoBl
-         stXMvMSQgAUowV8A0zdhZ/w3OzzGrwg51Bei6eWRaX0bpvPnIblPBIlUwkf+fvBQITbw
-         EMHtENvkWAUOwV9jq1rfgAuPSSqvwKlzaJDf7SXxXVfLM7G2bsjKDWeEOiWjBx4zcBdw
-         pAlw==
-X-Forwarded-Encrypted: i=1; AJvYcCWKo5xWGV7Wy454+VpbGpvwSscDyN28xfHS4qeWMZbjPe2fFj98BkL4VqyNnfqdCsSQehVUgnwKESzq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzI7tRwYEQF8kYmKcDG/4bEBMHCktBL5yZXnVxZTQOTxz9G2Pyn
-	gFx+r0EQhaOoyzPbyvMqpz1HZqtTJ74O3vzxe0yEoX8Q3bpsDQb7J673q1XC5w==
-X-Gm-Gg: AY/fxX7V0r1TE0t5cUkAQJWYWI0xv7zsWpqXs3rQSUni0M/BS8MVH4JhqqRNC3Aroet
-	4jiPu+4zrhe+EmEK6demuLHXa8ejpkayn3j1PdDLI92lUIhfXvt9ZoqIj0yAv/gKJal8lgbyOF9
-	KZ+XTWtHbSGHGaQcjLh+YaBPAI/7fOdUuV9jQcAN4fcVqZo3Xgijj0pxm+Ea7cELbDpTMGdxtXR
-	vK0mxVQ//TDo14UMtFBssL56943/8sJTGPgks2HcGbUex/Sb/zVsj4q3k4Fb/hhCq3Jlzvy6APw
-	LYd691Rq38QExQZu7Y2YvhLVLWrJ8owTpcYIsjwJaAMu5i/wEgoRcqa2NIY+y7YTWB9L3jCmgYv
-	IfTIPQWm2za4spKHDTOvSh7oOhfjzl9MDUdP6iDPtooLQ0XsNBkAkI8YZl2NET999qVz3KCj1LI
-	FbKmuIzUdPgGJy7w==
-X-Google-Smtp-Source: AGHT+IHnQfsj1iawjyhOVxIptrkGxNIYYfdvLPM+KbPfYJZ1Sz8qmIQNy0qNULXQA+Vaduz8APOYjw==
-X-Received: by 2002:ac8:5984:0:b0:4ee:17d8:b583 with SMTP id d75a77b69052e-4ffa84d51bbmr67296861cf.27.1767760083612;
-        Tue, 06 Jan 2026 20:28:03 -0800 (PST)
-Received: from localhost ([184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-890770ce985sm26075736d6.11.2026.01.06.20.28.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jan 2026 20:28:03 -0800 (PST)
-Date: Tue, 6 Jan 2026 23:28:24 -0500
-From: Richard Acayan <mailingradian@gmail.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Robert Mader <robert.mader@collabora.com>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v5 0/5] media: i2c: IMX355 for the Pixel 3a
-Message-ID: <aV3g6NT2JiLX6ELd@rdacayan>
-References: <20260107042451.92048-1-mailingradian@gmail.com>
+        d=1e100.net; s=20230601; t=1767760111; x=1768364911;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FE+2YmvPFSDvLHiA5oySCSRiMBW6t3izoKb4GQ+6LTE=;
+        b=sOJhrb78M2jcTvoOMS164dh84/nGy2koOIyEZGgSRLXXb0hcs++ZOYXGQWdanWrsgE
+         v1O+jO7Z7tErugzrkjhq6c6ZVumPaNbJbvktENVO6pZOWK0+0l3H4gyreptfS4DnULov
+         qaUMxiy23b/akNYAqpSfaIUs7ulyoD04VVXFNq6CCBDDtp8l/5zhKJ4db7bwOOW/mqF5
+         RFMgmkrzY7tS0t8evxAyWr9Ey/HzRv31m7LF8Mk9bv72ki0G8B1xFUQnRe2OdAIp5axV
+         nxkL3iOcg0G4F4l1OGw9RtYm+Iwv6xfXqIRHNl0haTkpMd5hQDMawOvh9CqcF2YCJ98t
+         2R9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXGKT/DozpKwzDciFPIVHUBrwqpFQuH2NeK2AP2BmJKKbO27m/3kf6DUq8p8GngFD0SE+n5rGPM8zYe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw69CQv4QZ0LgNUDdKS49+1etYWEsUETrmv4gSyU479cDqohGk+
+	iWbtz+YbhWEFvS4MA+oOlwv3B1rFzJ9vAJENRlqRdsMIkSkfRs+uRB2ywOuF5eMdyCg=
+X-Gm-Gg: AY/fxX5gghuls8AAwPCT/wsW1en5FLdUjpSd3Z2aQWPJrLczX2w+Fe24rLwf8UlLq84
+	7y5elR8wmPgWlyybJamT9TdlMBjaGiabgBSF29Gjxq19+fd0alTNMGnbTF8YcDCPY5urUVD2Gli
+	7uXLDnsI8UigO+vRwZyCO8/BFXWAO+GKrZSdHLqypt+l+zCq/fuTsnkBrLTCSvYMUunIYvGXPuW
+	Ky6K6AsZ3ti4sVhD2VPFoPIBtthRh0lBInJV/10Y7HIurAPU+amrlDGEED/FNl3zIkcOE0dSRNW
+	Rglx+5YyOGh2IxOmcCktQTOCo5mlrr6v2ZTvdDWZiL46GmwCQoN2SVXnPXLjuOdAvposGA8eTos
+	slMjdgNdyRMOyWjiGRaWX9b6gue3T6qgFmWZU2cp3Aq1+HfUa2ADJRO32O8uB/2cMdC9Za7Am4x
+	W8oBSEhdlZANJNEDUIb7XHWScEt/TLX77Q22cSTPFvl6b+j8HZjAT7mvD4LzeSeFIhyA==
+X-Google-Smtp-Source: AGHT+IEqxF6cQijW4ECigSDx+3+M10m8yd167msij/oEGUdxXWEYagAH3B736atxjGFlwKDWDwqLiw==
+X-Received: by 2002:a05:6512:3d1c:b0:59b:1d24:7db7 with SMTP id 2adb3069b0e04-59b6ebd30d8mr228697e87.0.1767760111195;
+        Tue, 06 Jan 2026 20:28:31 -0800 (PST)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b65d5dd1fsm1012485e87.48.2026.01.06.20.28.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jan 2026 20:28:29 -0800 (PST)
+Message-ID: <663e3d61-1be3-4342-9dc0-a07d2b9c238e@linaro.org>
+Date: Wed, 7 Jan 2026 06:28:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260107042451.92048-1-mailingradian@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: talos: Add CCI definitions
+To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20260106-sm6150_evk-v2-0-bb112cb83d74@oss.qualcomm.com>
+ <20260106-sm6150_evk-v2-2-bb112cb83d74@oss.qualcomm.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20260106-sm6150_evk-v2-2-bb112cb83d74@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jan 06, 2026 at 11:24:46PM -0500, Richard Acayan wrote:
-> This adds support for the IMX355 in devicetree and adds support for the
-> Pixel 3a front camera.
+On 1/6/26 11:39, Wenmeng Liu wrote:
+> Qualcomm Talos SoC contains single controller,
+> containing 2 I2C hosts.
+> 
+> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+> ---
+>   arch/arm64/boot/dts/qcom/talos.dtsi | 72 +++++++++++++++++++++++++++++++++++++
+>   1 file changed, 72 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
+> index e1dfaff9b6bf8641b19a685e74d60ad4e1e99d41..461a39968d928260828993ff3549aa15fd1870df 100644
+> --- a/arch/arm64/boot/dts/qcom/talos.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/talos.dtsi
+> @@ -1549,6 +1549,42 @@ tlmm: pinctrl@3100000 {
+>   			#interrupt-cells = <2>;
+>   			wakeup-parent = <&pdc>;
+>   
+> +			cci_default: cci0-default-state {
+> +				cci_i2c0_default: cci-i2c0-default-pins {
+> +					/* SDA, SCL */
+> +					pins = "gpio32", "gpio33";
+> +					function = "cci_i2c";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				cci_i2c1_default: cci-i2c1-default-pins {
+> +					/* SDA, SCL */
+> +					pins = "gpio34", "gpio35";
+> +					function = "cci_i2c";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +			};
+> +
+> +			cci_sleep: cci-sleep-state {
+> +				cci_i2c0_sleep: cci-i2c0-sleep-state {
+> +					/* SDA, SCL */
+> +					pins = "gpio32", "gpio33";
+> +					function = "cci_i2c";
+> +					drive-strength = <2>;
+> +					bias-pull-down;
+> +				};
+> +
+> +				cci_i2c1_sleep: cci-i2c1-sleep-state {
+> +					/* SDA, SCL */
+> +					pins = "gpio34", "gpio35";
+> +					function = "cci_i2c";
+> +					drive-strength = <2>;
+> +					bias-pull-down;
+> +				};
+> +			};
+> +
+>   			qup_i2c1_data_clk: qup-i2c1-data-clk-state {
+>   				pins = "gpio4", "gpio5";
+>   				function = "qup0";
+> @@ -3785,6 +3821,42 @@ videocc: clock-controller@ab00000 {
+>   			#power-domain-cells = <1>;
+>   		};
+>   
+> +		cci: cci@ac4a000 {
+> +			compatible = "qcom,sm6150-cci", "qcom,msm8996-cci";
+> +
+> +			reg = <0x0 0x0ac4a000  0x0 0x4000>;
+> +			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
+> +			power-domains = <&camcc TITAN_TOP_GDSC>;
+> +			clocks = <&camcc CAM_CC_SOC_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
+> +				 <&camcc CAM_CC_CCI_CLK>;
+> +			clock-names = "soc_ahb",
+> +				      "cpas_ahb",
+> +				      "cci";
+> +			pinctrl-0 = <&cci_default>;
+> +			pinctrl-1 = <&cci_sleep>;
+> +			pinctrl-names = "default", "sleep";
+> +
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			status = "disabled";
+> +
+> +			cci_i2c0: i2c-bus@0 {
+> +				reg = <0>;
+> +				clock-frequency = <1000000>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +			};
+> +
+> +			cci_i2c1: i2c-bus@1 {
+> +				reg = <1>;
+> +				clock-frequency = <1000000>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +			};
+> +		};
+> +
+>   		camss: isp@acb3000 {
+>   			compatible = "qcom,sm6150-camss";
+>   
+> 
 
-Oops, I need to resend this. This version is empty with no real patches.
+After making the changes asked by Dmitry
+
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+
+-- 
+Best wishes,
+Vladimir
 
