@@ -1,154 +1,122 @@
-Return-Path: <devicetree+bounces-252358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A8ACFDEEE
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 14:28:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECFF4CFDFAC
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 14:37:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 026883002D30
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 13:28:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0E58830B7AF8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 13:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB5933F8A0;
-	Wed,  7 Jan 2026 13:28:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBC8E33F8A8;
+	Wed,  7 Jan 2026 13:28:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amazon.es header.i=@amazon.es header.b="jX/LC4+o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LfLxdgSL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fra-out-011.esa.eu-central-1.outbound.mail-perimeter.amazon.com (fra-out-011.esa.eu-central-1.outbound.mail-perimeter.amazon.com [52.28.197.132])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DE0329370;
-	Wed,  7 Jan 2026 13:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.28.197.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5F633F38B
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 13:28:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767792494; cv=none; b=kZ6MmlVW7isF6pfKRETpb7d3YegDel38R0zNDIt3bMvAoB9ZB2b5C0saLAjU/H6wX8qMOCkUp7fkx82tkCvtFRaIr0WklBCW3ScIk+lEXlyUqJKAx+7BRekZzDJ7+APaQ7n0iiUpuTVZ6Vl2hxDfny+XBRpzRt/s6FkMjGpBTIU=
+	t=1767792511; cv=none; b=SCY+OqcU1P35qcOvY/GUOa3hpOamIsA2CX89Y9rJHLCH6EX30XJDdVd4IU7fcvhdWA3CaEYu75mfMbUy9qj0NalF6biHG6sCelg5GTvvNCWlE/rARli0ZH5AedG28W3xo61KB1r6Xt/xmqmdiYNwqvnyDOLMAE43cU7OJhySZzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767792494; c=relaxed/simple;
-	bh=56SPx3NZaWqlHf55gYEDxW0QrPTbwVfjYUEYtgxt3gU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=DLB/2PchS1a340vCt2EMdAB5Vllogg32spSigct9hBs/qESQa2Lc+cta0wh1xog07OHMVzqGDQg08k/XJJzZipcwHB3p4Vp6iRzgTr8Hn7lvPPY0vEw6KYgiHvG+MNdQ452BLeFtburiFMvLOHYMNM8ZQJnuJa+kzlDYdQ6sUW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.es; spf=pass smtp.mailfrom=amazon.es; dkim=pass (2048-bit key) header.d=amazon.es header.i=@amazon.es header.b=jX/LC4+o; arc=none smtp.client-ip=52.28.197.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.es
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.es
+	s=arc-20240116; t=1767792511; c=relaxed/simple;
+	bh=4043nn6qswbC3R1CDYRZmMZVB+UZoK9L+jeskiyq/IQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rnPXY8SWKJCztbNzglrVptHt+pVfTdcG4k/GIyVOmQbtP4VyYipolSv/sUUN0yurBjOGRvlTSAYAMfEH7see+LjgDIEx77IZ2vcZ5VWKx+KPU/fb3h59qLidEAM7yZAl2KGFfv+uk3CkCfqxFwWpvafIeWCPuG+QPNmozUg/gkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LfLxdgSL; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4779aa4f928so21788585e9.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 05:28:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.es; i=@amazon.es; q=dns/txt; s=amazoncorp2;
-  t=1767792492; x=1799328492;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=pWYlCloEqq1s81ftN7VRIRBv2cT68kwmWTOv6VQBqlU=;
-  b=jX/LC4+o39lZiTvGSXRl3XAGSlwUPKgjzSpR0l8o8DsmYX/qHdrmDe6y
-   MC79qhnGoDfB4q5Tb1QNsvNjba9larkw0EMXTAQNTWcd2YoWQiUVS6FNZ
-   QDoPEo5WZgVsLr4inLA5luuDrJUufbxe5u4BmN5Z/NlIVzkV80WkxyTZu
-   /Upvv34CBPRZuZUPYIZXN/7r/SwhLhVZxhAaMc4mX38tfh/1ae9tzrc5A
-   F3yAPoGuAgyFRR/kWQcwkpfqE0swKnMJkemeyZ7StE9TPPZJAr24jlIty
-   cKzGth0q558bNAqKBrTvNOaCMQlEzlKRJsFTa48/e6yHy/evucXM/u0s4
-   Q==;
-X-CSE-ConnectionGUID: uwteCHfpQNGxT0P7GCHsMQ==
-X-CSE-MsgGUID: 7dsqaItRQpGThU2mZZ1i+g==
-X-IronPort-AV: E=Sophos;i="6.21,208,1763424000"; 
-   d="scan'208";a="7469563"
-Received: from ip-10-6-11-83.eu-central-1.compute.internal (HELO smtpout.naws.eu-central-1.prod.farcaster.email.amazon.dev) ([10.6.11.83])
-  by internal-fra-out-011.esa.eu-central-1.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 13:26:45 +0000
-Received: from EX19MTAEUA001.ant.amazon.com [54.240.197.233:26223]
- by smtpin.naws.eu-central-1.prod.farcaster.email.amazon.dev [10.0.29.28:2525] with esmtp (Farcaster)
- id 3cd3cefa-1156-46e5-b73f-a3f1871c1613; Wed, 7 Jan 2026 13:26:44 +0000 (UTC)
-X-Farcaster-Flow-ID: 3cd3cefa-1156-46e5-b73f-a3f1871c1613
-Received: from EX19D012EUA002.ant.amazon.com (10.252.50.32) by
- EX19MTAEUA001.ant.amazon.com (10.252.50.223) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.35;
- Wed, 7 Jan 2026 13:26:35 +0000
-Received: from EX19D012EUA001.ant.amazon.com (10.252.50.122) by
- EX19D012EUA002.ant.amazon.com (10.252.50.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.35;
- Wed, 7 Jan 2026 13:26:35 +0000
-Received: from EX19D012EUA001.ant.amazon.com ([fe80::b7ea:84f7:2c4b:2719]) by
- EX19D012EUA001.ant.amazon.com ([fe80::b7ea:84f7:2c4b:2719%3]) with mapi id
- 15.02.2562.035; Wed, 7 Jan 2026 13:26:35 +0000
-From: "Chalios, Babis" <bchalios@amazon.es>
-To: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"richardcochran@gmail.com" <richardcochran@gmail.com>, "dwmw2@infradead.org"
-	<dwmw2@infradead.org>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
-	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Chalios,
- Babis" <bchalios@amazon.es>, "Graf (AWS), Alexander" <graf@amazon.de>,
-	"mzxreary@0pointer.de" <mzxreary@0pointer.de>, "Cali, Marco"
-	<xmarcalx@amazon.co.uk>, "Woodhouse, David" <dwmw@amazon.co.uk>
-Subject: [PATCH v5 7/7] ptp: ptp_vmclock: return TAI not UTC
-Thread-Topic: [PATCH v5 7/7] ptp: ptp_vmclock: return TAI not UTC
-Thread-Index: AQHcf9k+JQEWfJl2KUO9UtZeCJ/L7w==
-Date: Wed, 7 Jan 2026 13:26:35 +0000
-Message-ID: <20260107132514.437-8-bchalios@amazon.es>
-References: <20260107132514.437-1-bchalios@amazon.es>
-In-Reply-To: <20260107132514.437-1-bchalios@amazon.es>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        d=linaro.org; s=google; t=1767792508; x=1768397308; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=N8DjhrIBjxiw5uwIMKqO1RXHujHZ57yqKGJRAwZxaGU=;
+        b=LfLxdgSLHowF9BD93MXtMEea6vhrKlX9yuQ7UjaPTJY+5BoMYyRcbTvNavC3tf4QFN
+         0EGaUHQLNyZRcGcZj8u02jtc2WkJDzpoARR1i4ING/6nVvXjztt6KvNlIhjrBWF6MJYL
+         7AEDfWrSDewXpwqyd5nFyE/bJpHWxfnIRJyRyZbSvXwBSfKchcI/Q7ASIqEipcAVeFKx
+         tiXKqVcpg6eRdeZug4rTz9SagXaYb8le66NjQBq63iYXCP7MHaLMBAhOAD9BnRXkPtu3
+         4FU7GZZ5U03d8QJuOsFQWA+AUWOBnZlsRHr7aXuzKDmz9rR8d4mJLTbGTmeVFp+7CryV
+         wUWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767792508; x=1768397308;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N8DjhrIBjxiw5uwIMKqO1RXHujHZ57yqKGJRAwZxaGU=;
+        b=RZkqbTNkqzJeL3Xm0WMT+r98/VAQ6U5ZLOo0ClgCPPO519poQ1JYsTEIKoVUNWhoBk
+         r/KNa15KgQsQK8xkkNtzI8JmdvA+lpWPZxZ/sFHPzC13S3EcfmFjXWg2aW4Ls3+LxLAy
+         u+3TY2GK6Ofl3NJYrhx4/7RSg7GBh6Xj9NFbb/dz3eOQSVs0gJZQbunwUl2i4THC1Msh
+         NRCiZ0791To6uRijlVMYVxBDUDRQg0oZ3j2IsOwZw8NmFL9KPXeWdz0Il+yB7zPv5eUs
+         y6priHFTlhumAsGBvADur9XKfkT+CtL3D/O9z6eqxkO3toowv3XFTiktR2Kpe8g71bmT
+         CzGg==
+X-Forwarded-Encrypted: i=1; AJvYcCWs6YuP+SNkNIsIERbRsDvwsmlD1m2i/8GW9ksaH6AUifUuow+x/p1eHlxjLhjuVuJHgPFz5WjgRZKx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0uoeUe1hfACQaMn2VHEDfIbLAP68P9rtbIAbcBoPTh169U/Ck
+	Ytq+B+5/beDxZCH0+wv5NH20M+qSNO4T3OjSIGVQfUohJHUAnb+1onvqKhLQ15zBvOY=
+X-Gm-Gg: AY/fxX6BWacehkw3kS6cHZDS+X/gPlgvW6/EFm0VYpgEqNXaq0d5SGMfuhX6Q7vv55M
+	MMVnW9QcVAh/T75KV1148UE5F2h0soLAuC4V6rkEWmumFf1yWF+F5Y5gRkzvk3x0aSYSzS4qq5n
+	pxZPsrZKBf1HgYyzBGfDLGT7YlOR2kmWpMXbNTCB45TvBdIz9tskWjyQQu145Ls+gKlNo+H/IFs
+	X2sqPpGmw4jiEnRKPnyH6FXOUc63aLMPqUQAHCZB8U8duTNKxGbT2hNVqq/nmvKyxOEhcaS623S
+	CI8Oj11SMPOoKkZlv7WO91dKq0JpzftODTTCb2Wl0HPtRV0sKR8ILphLv/7FfYkZbdiKOIuIz49
+	rHx2uRyVRrIP+YMxVyQ801CL58lOupNSXNA+mpf79Cjy7XBpn69XyW33pt0ZaEzlZnQI7ZLRVt2
+	kzX86UaKazNkgBDw47AYjCiYCrTKWdlmdcRfVWr/lQrzYN3hIQp1S116StbwulFL0=
+X-Google-Smtp-Source: AGHT+IF+Nsaoa5Avs43YfgZgEUZD/BpbPQ3IhAdlo4fic+DilL/m+MXb7BEEQIQBujANzszqHLm1rA==
+X-Received: by 2002:a05:600c:3b90:b0:45d:d8d6:7fcc with SMTP id 5b1f17b1804b1-47d84b3864cmr32189615e9.27.1767792508026;
+        Wed, 07 Jan 2026 05:28:28 -0800 (PST)
+Received: from [192.168.0.40] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d865f84besm14380385e9.1.2026.01.07.05.28.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 05:28:27 -0800 (PST)
+Message-ID: <87c2ac96-5c30-40e2-8f89-55b7c3417db8@linaro.org>
+Date: Wed, 7 Jan 2026 13:28:26 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: talos-evk-camera: Add DT overlay
+To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20260106-sm6150_evk-v2-0-bb112cb83d74@oss.qualcomm.com>
+ <20260106-sm6150_evk-v2-4-bb112cb83d74@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20260106-sm6150_evk-v2-4-bb112cb83d74@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: David Woodhouse <dwmw@amazon.co.uk>=0A=
-=0A=
-To output UTC would involve complex calculations about whether the time=0A=
-elapsed since the reference time has crossed the end of the month when=0A=
-a leap second takes effect. I've prototyped that, but it made me sad.=0A=
-=0A=
-Much better to report TAI, which is what PHCs should do anyway.=0A=
-And much much simpler.=0A=
-=0A=
-Signed-off-by: David Woodhouse <dwmw@amazon.co.uk>=0A=
-Signed-off-by: Babis Chalios <bchalios@amazon.es>=0A=
----=0A=
- drivers/ptp/ptp_vmclock.c | 10 +++++-----=0A=
- 1 file changed, 5 insertions(+), 5 deletions(-)=0A=
-=0A=
-diff --git a/drivers/ptp/ptp_vmclock.c b/drivers/ptp/ptp_vmclock.c=0A=
-index 9f17f4a1b2be..ef5c2a66d9b8 100644=0A=
---- a/drivers/ptp/ptp_vmclock.c=0A=
-+++ b/drivers/ptp/ptp_vmclock.c=0A=
-@@ -83,13 +83,13 @@ static uint64_t mul_u64_u64_shr_add_u64(uint64_t *res_h=
-i, uint64_t delta,=0A=
- =0A=
- static bool tai_adjust(struct vmclock_abi *clk, uint64_t *sec)=0A=
- {=0A=
--	if (likely(clk->time_type =3D=3D VMCLOCK_TIME_UTC))=0A=
-+	if (clk->time_type =3D=3D VMCLOCK_TIME_TAI)=0A=
- 		return true;=0A=
- =0A=
--	if (clk->time_type =3D=3D VMCLOCK_TIME_TAI &&=0A=
-+	if (clk->time_type =3D=3D VMCLOCK_TIME_UTC &&=0A=
- 	    (le64_to_cpu(clk->flags) & VMCLOCK_FLAG_TAI_OFFSET_VALID)) {=0A=
- 		if (sec)=0A=
--			*sec +=3D (int16_t)le16_to_cpu(clk->tai_offset_sec);=0A=
-+			*sec -=3D (int16_t)le16_to_cpu(clk->tai_offset_sec);=0A=
- 		return true;=0A=
- 	}=0A=
- 	return false;=0A=
-@@ -350,9 +350,9 @@ static struct ptp_clock *vmclock_ptp_register(struct de=
-vice *dev,=0A=
- 		return NULL;=0A=
- 	}=0A=
- =0A=
--	/* Only UTC, or TAI with offset */=0A=
-+	/* Accept TAI directly, or UTC with valid offset for conversion to TAI */=
-=0A=
- 	if (!tai_adjust(st->clk, NULL)) {=0A=
--		dev_info(dev, "vmclock does not provide unambiguous UTC\n");=0A=
-+		dev_info(dev, "vmclock does not provide unambiguous time\n");=0A=
- 		return NULL;=0A=
- 	}=0A=
- =0A=
--- =0A=
-2.34.1=0A=
-=0A=
+On 06/01/2026 09:39, Wenmeng Liu wrote:
+> Enable IMX577 via CCI on Taloss EVK Core Kit.
+> 
+> The Talos EVK board does not include a camera sensor
+> by default, this overlay reflects the possibility of
+> attaching an optional camera sensor.
+> For this reason, the camera sensor configuration is
+> placed in talos-evk-camera.dtso, rather than
+> modifying the base talos-evk.dts.
+I'm not sure how many headers there are on this board but could you 
+include in the commit log which one of those ports the sensor should be 
+attached to.
+
+As I look at the RB5 board for example we have CAM1, CAM2 where as it 
+happens CAM2 == imx577 for that mezzanine.
+
+---
+bod
 
