@@ -1,119 +1,142 @@
-Return-Path: <devicetree+bounces-252231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8881DCFC91F
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 09:19:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A26FCFC973
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 09:25:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A35D5306CA66
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 08:17:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 429F9300E039
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 08:20:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CC927FB26;
-	Wed,  7 Jan 2026 08:17:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6746627FB3E;
+	Wed,  7 Jan 2026 08:20:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kc12Rdla"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PT2KrZ+p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD4522652D
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 08:17:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3329C275861;
+	Wed,  7 Jan 2026 08:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767773859; cv=none; b=XHWZW+00X4wOOP2i17d3I0Hnxbef8hcw19WfbxkwhpVC5woANNU2jYKYJqNduDxuKYAaTZAgxbm1kgPj54t9rAZxNQDaw+suSLE+5pD1o6A5fB92cK0y4J0JTxysemQfM0Q17biBSy67Ij2Sa50+K3icmJpU3lS9aNMpkgVgeOw=
+	t=1767774019; cv=none; b=qCsYQYxDYs5YD+felES3CIU5GjIcPhNyC2TlFzQ1upUardDE3tV5pr9JPqjr4EpkJnAL0l/NDry4E3YSGRru/oPrpez+djhx1bhqdgRP9nqIaiVWXFci4nFf+MrlbvuhyT4QZ8U8lyDaUAt29kUC3i9xwatRZzHHRwGyKcqXcLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767773859; c=relaxed/simple;
-	bh=yHvZxYU5euKC7OvX/H86k4MTqK0gyY3mkHGyE1CbFsk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J2XTgP2QS7vpiFqc27LKSjqUye+E595mbgus8Qwop5/lxPGf6hKltwyahPxEyUeUUxTxkt9E+Nzqj998DqQG5/o571QD0MBYrmBJaCh2nDmwzQV70T9W3EN/gVuzJ56IwNKI870fBA/lVwPSzdg9YFgQmG0jaDAwWC9IHixSEOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kc12Rdla; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78758C19424
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 08:17:39 +0000 (UTC)
+	s=arc-20240116; t=1767774019; c=relaxed/simple;
+	bh=WCbeW1bpn87qif8FFWkiBawGLmbFs524ju/8yNAvbFI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AX8EtXQZz7jWqdo6qzYHLsFCRF87j08Skj2F4R0G+rWkNzqDru6HIgXbk6eX4AGw5ft6xI04pY1DNs5tjpA6c2wbhgBI2WR5MxQk6cQqVayDBOgn51CmvhNuBUxQbLkGEsjsX09wit3OIDlON3v3k6pyFr91m8wXhP6+jHm9V2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PT2KrZ+p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7461DC4CEF7;
+	Wed,  7 Jan 2026 08:20:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767773859;
-	bh=yHvZxYU5euKC7OvX/H86k4MTqK0gyY3mkHGyE1CbFsk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=kc12RdlajmgBp4VO28xfAGu3TmO9Rb5u1Ttnoy1AIYK7ZOZcS+Jth+Icp0DZaFFHr
-	 ptyc8E+e+uux97lrpYp4OvR5Miootp7oinxo4gosWklt3dpn7qBGuVccNNekdUdhot
-	 ycu7rnh+/DDFc/uMAw/5wV5V40TGkQ86wOECiwzmnA25iUG2lad+uV24bRHc/kP3EP
-	 tCi85c65fjud1i3zPbfXrHU9ahYKusJ7Lrev+XdEDN8UeLE++gn1xnLS8xjTzsed24
-	 8Ke7C33H0pZ7C6EVxL7iN+oN1eZiXXzyz1e283PqexGAqxivQ3eJ5/mXJ/o59Lhgg9
-	 NZQ4DhPmdk+GQ==
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-594270ec7f9so2070110e87.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 00:17:39 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU50VHZoSrs+93Ryyh1/oCiDi5iwv4j/852880/3Mdx/PhZvdKgb8rjnYZz1iFkicuyVAXOe6Egjmxt@vger.kernel.org
-X-Gm-Message-State: AOJu0YySBgXe+kvApSNH/GXwEQbQAjCyX6qRYYZWvCDCeCzMYd81oFm6
-	h0Cgd1mxH+9vso6BtexGYeopAbMIeUgFLd1tZbPbw462yV56nbkl82HjlkEKY0s16C3Gup5W+s/
-	+5Ubo5a7jeKhRhV/mm/mgUHjRnJMm2bmdjCpotGHkrQ==
-X-Google-Smtp-Source: AGHT+IGhjfpRX5tYf4QtZIp/XXzxXAS586FOU8Nn1xmktkPSATl9LqL0Cc9yw++6v82PHuyDotuvatMbvwRYOzVdzHI=
-X-Received: by 2002:a05:6512:304c:b0:595:81ba:fb4 with SMTP id
- 2adb3069b0e04-59b6f040ef1mr506257e87.47.1767773858013; Wed, 07 Jan 2026
- 00:17:38 -0800 (PST)
+	s=k20201202; t=1767774018;
+	bh=WCbeW1bpn87qif8FFWkiBawGLmbFs524ju/8yNAvbFI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PT2KrZ+pEATACSkbs3D0/FGQJF36QYNdAdslTFEEv3fl90O48kjdL9bQjwzgvpBW0
+	 pdwjaY36HO0YRqBue7TW9/djpMMgElVCRMO944JYBfX14igdQu4VN9Mxil2rQhGMhI
+	 G2liSqMEO0qSHgcfkc8SlLtDFa1EsdXMhCL7MHeeO0LS1lDNRnmSB4kG4E6FobJYAv
+	 EXHpHdnbyz6yo9fZXk2LE92zx3UwVYJzEGjUlTZopL1J74F0+hvXCUfC+tirJP3/qJ
+	 SriQoAvFPAZWFYftp0TTRnCuCtEivqJtVVJt6dytv8iRSgvb3M/W8MnCR3vJPSbpJl
+	 PzXa3ihkF0Z3w==
+Message-ID: <b724795f-1a76-4cc2-9417-2e4dd7dc7305@kernel.org>
+Date: Wed, 7 Jan 2026 09:20:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260107030731.1838823-1-daniel@thingy.jp>
-In-Reply-To: <20260107030731.1838823-1-daniel@thingy.jp>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Wed, 7 Jan 2026 09:17:26 +0100
-X-Gmail-Original-Message-ID: <CAMRc=Me4HTLTVDG8Z3iZhep3hi+_1C8=mwDG5Rpnq+zAX1HG+g@mail.gmail.com>
-X-Gm-Features: AQt7F2oJ-7wyysYKAA5jVn8TKqxVcqPv50T0XTlelsLEgxwvdpPFOZWBlXpW4dU
-Message-ID: <CAMRc=Me4HTLTVDG8Z3iZhep3hi+_1C8=mwDG5Rpnq+zAX1HG+g@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/2] Let the compiler remove unneeded compatible checks.
-To: Daniel Palmer <daniel@thingy.jp>
-Cc: linusw@kernel.org, robh@kernel.org, saravanak@kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: leds-qcom-lpg: Add support for
+ PMH0101 PWM
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Fenglin Wu <quic_fenglinw@quicinc.com>, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+ kamal.wadhwa@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ jingyi.wang@oss.qualcomm.com
+References: <20251215-knp-pmic-leds-v3-0-5e583f68b0e5@oss.qualcomm.com>
+ <20251215-knp-pmic-leds-v3-1-5e583f68b0e5@oss.qualcomm.com>
+ <20251217-quiet-wandering-gaur-c9c6fe@quoll>
+ <f6ca8c43-9f00-4dd8-9e11-90f2a4e8d18e@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <f6ca8c43-9f00-4dd8-9e11-90f2a4e8d18e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 7, 2026 at 4:07=E2=80=AFAM Daniel Palmer <daniel@thingy.jp> wro=
-te:
->
-> I like devicetree but I dislike the way it removes the compiler's ability
-> to remove dead code because the compiler can't know what is in the runtim=
-e
-> devicetree.
->
-> One common pattern is checking if a node is compatible with some compatib=
-le
-> string that should never happen on the target machine. i.e checking for
-> something that only exists on a very specific PPC platform on ARM etc.
->
-> For weird people like me that want to run Linux on FPGA softcores, proces=
-sors
-> from 1979 etc it is better to have the most minimal kernel config possibl=
-e and
-> for the compiler to strip out as much unneeded code and data as possible.
->
-> The following is my quick hack to add a way to hint to the compiler wheth=
-er
-> a specific compatible check is even possible or not so it can remove dead=
-code
-> and then an example usecase.
->
-> I think this is cleaner than #ifdef..#endif all over the place but maybe
-> someone has a nicer way to do it.
->
-> Daniel Palmer (2):
->   of: Add a variant of of_device_is_compatible() that can be build time
->     culled
->   gpiolib: of: Remove a bunch of compatible checks for spi controllers
->     you don't have
->
->  drivers/gpio/gpiolib-of.c | 6 +++---
->  include/linux/of.h        | 2 ++
->  2 files changed, 5 insertions(+), 3 deletions(-)
->
-> --
-> 2.51.0
->
+On 22/12/2025 14:06, Jishnu Prakash wrote:
+> Hi Krzysztof,
+> 
+> On 12/17/2025 1:45 PM, Krzysztof Kozlowski wrote:
+>> On Mon, Dec 15, 2025 at 04:41:04PM +0530, Jishnu Prakash wrote:
+>>> Add support for PMH0101 PWM modules which are compatible with the PM8350c
+>>> PWM modules.
+>>>
+>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>>> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>
+>> So how many nvmem entries it has? You need to define it in schema.
+>>
+> 
+> PMH0101 PWM has 2 nvmem entries, the same as PM8350C. But I see that
+> PM8550 PWM was earlier added under the "if:then" condition for the number
+> of nvmem entries and you made this change which removed that line:
 
-That is an awesome idea, let's hear what Rob says but for GPIO I'll be
-happy to take it.
+Right, code is fine.
 
-Bart
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
+Best regards,
+Krzysztof
 
