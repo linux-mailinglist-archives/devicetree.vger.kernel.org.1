@@ -1,156 +1,175 @@
-Return-Path: <devicetree+bounces-252168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18263CFBFA0
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 05:34:25 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 232FFCFBF40
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 05:30:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3647D30B7366
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 04:29:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 91D6930031A0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 04:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8293244667;
-	Wed,  7 Jan 2026 04:29:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066BE24A078;
+	Wed,  7 Jan 2026 04:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cn6yA1Fp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rj2aSXGQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4326B23ABA7
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 04:28:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CFFD24501B
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 04:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767760140; cv=none; b=WQTGGZFGJ7aqTwz32Ghc0EYNJMWS5Y4qWovcnwc2ipR9jc8HmsYJPA59P2oFwDZAM2onSS459xZak2fwD7+Np47PYXCFmSQC3eGpSmqXIkmyy/ixi+eRCJ9ocWuUhgfwUhfG2tIHdJQA9EIbNSX8lacOuOoNeyo3r/fnfRj0VO0=
+	t=1767760227; cv=none; b=L5ssz3Mn9xbxjU2vk0OOibQnqajgwgDj2lYgTJLpLgpiHURhsXlEf5HssUaoJpRCKcYT0AU4QY8Vkg6tvbn/wDb7Na5bRZQJJIkxQfj6MOfJuuFqyZhYv9pU0ooMfGLlCSwp00SMQ8cKWcQT0OqnZ2bcUDRsoijIJgdBv5C5ens=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767760140; c=relaxed/simple;
-	bh=haiB8Tt+8pZM04gZvK2wNWt/dPyIDOm+drx3AQALCHg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BZZEiBbUbmakEmXBKPTXs5HrKOi2jxoX7Ssj5iDLBDN4GAu+GF+sGCAu+1bOYm17SzZwWk88VyMhc8KHfiWYdl5waMzt7IjDg3pCzz5rO7TniUFRLe5rshPkWu9ipvqdaJpm3nneXmC/Mma1zbYRLYCbu15DCoPbPlVcuwuEhzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cn6yA1Fp; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-59b72c87109so2077e87.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 20:28:57 -0800 (PST)
+	s=arc-20240116; t=1767760227; c=relaxed/simple;
+	bh=mFBlVTtzp00BaXoK2yZTxbIFjITCpDcTZf7YqipLQh8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DjbocV8MvG27KMVsS7HxweJ0Spr/QXy9fGc0anKaTm7iLHO3SWL0udLSELytYHPM1I4mUzkBXXt23PMjDS8NjgTkiXKb88Wukk3GBB57oZvpR88q/m4BqxWowMhxuwdpSUQWatkmSLVGwkvG4wqHrlXs8k/lZhNtoEnQZTRcXdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rj2aSXGQ; arc=none smtp.client-ip=209.85.222.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-8b2ec756de0so172954585a.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 20:30:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767760136; x=1768364936; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jvcoTCO8VwPdehmxlS2rnFhrCL/5WSs/bRyMtF/vO1w=;
-        b=cn6yA1FpWam7e5OM4uK9jnnosDnNZJ8FZokv+Cyfp1+skVKgMpy+8j2XTj0A3h+OrW
-         /X5pYeQcC4uIwCgN1kSVBkc2OTjLqsX73g3MYGe7OOH0Q8+iqlfJgSIl24vYmuOB8kVM
-         VoyNxHC0pHAec2kZe1TMwS4XjRjyXGw25dIGqPJfpaSRzaaVrHPgCrRU+Qe9YGg/im9f
-         CkmVgz1MkMh2L/H/fcMZQazdZrdGaB8U/0EWZTNl6Gkvm6dG4w0d565B1L3/GBQzmi5G
-         DJEj+D3mPljwqJE/pR3NCJywS7/9AG+qE0N6NcVET75MscbHBGbJY+ir8JelrmC2LbVn
-         YBJA==
+        d=gmail.com; s=20230601; t=1767760225; x=1768365025; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vjqmy0z0jiJgb0IP9VPWG/UxXGi+niYlzDLBBTv0BGA=;
+        b=Rj2aSXGQ7IbYUdl5c6kHvGiivmF40dU8AF9z+yCvu8AQaBoJ9LCJ7ieVfhjTYwuARx
+         tw4ceQG+OoXBKUvhA3zmBNcDPQ3P6uNABQTbMTnUTuIuVBj9KkUaIvHRo3F/dIvWiHfO
+         vozJyOZZQuNr0oI4lIGVk+WZU+d0GJ018pTuHCIGHZJAdo4AKZg2vh9ZsAcoVSa3DkL1
+         DVLV6ajn+YlDmFDN2JYBu/oRtQsYw/gNKCVcTnWxexAO8PWYFWNRhGau18rzqHy6js9S
+         t9lg41gPsO+ESFDcy9Rt+OBCm8GC9rwgpQWaw4ZBrs0yuFZ/QsX5G8i0QF5eCMG4r8iE
+         qf0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767760136; x=1768364936;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jvcoTCO8VwPdehmxlS2rnFhrCL/5WSs/bRyMtF/vO1w=;
-        b=lXcS+9SXZ+RRsATbR5EByd94feEZ6F8MdEGy9tvcN/6bpqxuDV67JfQSXflB3/JKcf
-         jy0EaTD+eImCgtzpmkmu+OzVAvwclqyiOmM0K88eSRfFTDuOkwEkspUxeeC0wKfm1eLx
-         wZ6WxwPmSihY4SZa2BwKo6WAEYgv7oSx3Nrdjm3zDcTU8RVApO7p7Zou8B/fnYLp0c+U
-         xZIy4wa6nTKP5M1O/3B+LIlqM3v/q0ztbUxqZojwfNYuQHmwI0dCJ1Ae9Rr57yc+O593
-         bSLmErO0mq+qIGH0iMBxvyrYxO6kAcN30PAHFx186ZCu7Ah1SNxceaQh/hJV69IsRVn/
-         KSBw==
-X-Forwarded-Encrypted: i=1; AJvYcCWvdXfhXiH94XdZrXAq2AKYCVXKEipeYhzEzmmdMIr1n2FfHO8j49EECse0Ih2pm+QRXBXMWosDDUqr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZ//QNEG0baJ96OFTAoowKW9Kxzl1AXi/p8peKSj75phHxPaV/
-	Ps6Ag4Lig7CUOKp3Co/pwHGJPBuDZoWfQSdjw9JGwOegHZZNHDft2EPhSi5kxi3a/Mw=
-X-Gm-Gg: AY/fxX5hmzFMv7RLsaofRrO4hlgOlsEYBXdb1rECAi5LnwCBeBzl/W76h/2etAKoYpI
-	JM7OjDXLLx6Gcnlnxhti6YtRupG8+l/YBjaSGflPzTm0KCgLh5dJ5vYO/ngmo9uv5J6m1MJm56v
-	vy71pMCym5JYYGkXbymBBCoIeesA90PYWbW0+2VMVbjCofApgsSurRddJlOzPNvF0G5P5d7c2xN
-	kdWlK2ZrUiY8FVlFgrxzk6Z6kvdRh2ZQ/XnegBqn8yHsc5BUhEcHcWgMGbdY8J/RhfzjYciVbnp
-	DO9FTyvjCBC7FaA608/SpNoXSjmEX1NAYzW7C0ORD13C6YHbIYzl8kfJm+AnyucngJJHEQZW98m
-	V8szgoiBvxjfGLYQJkfsNLQwk84j4kHuYaKYKyjcxnRCeloE6gQid9UER2bP+xDA2T8/JYHWR5z
-	WBu5gYuoO1YS4ELHW9lbB3Ef9tIurrMpWgl+PnFUQrC+5VdylFiEjGI/mPjCwNIFXCFQ==
-X-Google-Smtp-Source: AGHT+IF9hWgMq5ozizyKkYLFKj41duoqsihD4rtshBdk9J75mRrvbI9bzZFNP1DazvK48vDl2rVU5g==
-X-Received: by 2002:a05:6512:3b25:b0:59b:7291:9cd8 with SMTP id 2adb3069b0e04-59b72919e55mr25847e87.7.1767760136292;
-        Tue, 06 Jan 2026 20:28:56 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b6f3caba8sm271002e87.8.2026.01.06.20.28.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jan 2026 20:28:55 -0800 (PST)
-Message-ID: <b0b629d5-33de-41c1-90d5-b64cc29e5511@linaro.org>
-Date: Wed, 7 Jan 2026 06:28:53 +0200
+        d=1e100.net; s=20230601; t=1767760225; x=1768365025;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Vjqmy0z0jiJgb0IP9VPWG/UxXGi+niYlzDLBBTv0BGA=;
+        b=YgF8T60Itagr7UqDhpjhiZ+0dodBlx/NS06H6QsZkAIztOHYPNdNMX7wZJhKBovSKg
+         YCs62UxEB8lnGDIkvv4KxkRQVghEIRq0q6xXqCxNxO5FdMGJqIAmxZhyqowhp313ocyg
+         u/YZB19jE7hasOQdVN9N65cA8NEclVsRON0O5unPfLG1dkKEqiG3MWy7FfYuuivod78n
+         CqB45/rLWRmZRBWRUc7XFb7VHON62gykDN+l0UtyStBxwxXnnZiO6I0E6teO7qvcvsb6
+         63bvSm73DEEZKjNJALwQSPomjtcGJED85stUSH3o1tJ5+RP/EEjmo9m1dLj6jzB8Qf46
+         bmWg==
+X-Forwarded-Encrypted: i=1; AJvYcCV6rdpCm8Eiu15i2hRAiF4SFgM1XtWAqSBdwgQnDgohO2vhgG2PPeetAZjI5fpJDGRT5bNCXKVxqbcc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIWcSatvJqbT9zF4FzX5HHpiXSM5PrrjV7wGMx27qotgRsYnd0
+	B248GywLc+Xzlya+ABdSkPywjggVpRagRlASMZXHYDaCHnzh6CqSeow3
+X-Gm-Gg: AY/fxX6uNop8xpr/+qPjP3edzYreSeUEMaeJd91Mv4lnjfDT0DxyfETJckpZcf9disY
+	0lJt6O+MGTl88n7vYEGi//TCUGvZBPtjup9oqij/Ov7hDyEDBjCwOAc+rBImgnDZWY7rtjH/RVX
+	/Bp/jPeLw0DrkaBoV49ZzyiN+v4GQqzX80ZiMlSp32mBYWtXuACPrMdT5MHCSZriBNjZDETCxX6
+	RcDv4lAF1ErjJKewRq5afzwDFT0bZA5t2roCA8WU1VqeKUv268rXz8Yx5DoodebtN0pk+MGZHrT
+	0RFy6wsaEcjdiNIXd/Q2RO8aYvLj9o6ZDaog6DicnXaX9j1BUirK4hvb992qLUQZi4Jjc/Fc8JA
+	WkFijeSN5xA9eRDeDCNs7cFyCbo3QOXuU7qL/iJWvv0Kwh04f1FYF+bVBt48wSb+QdTAnwY+c80
+	Nf0bDQC+QKiUg4DdoAPJPhDkxg
+X-Google-Smtp-Source: AGHT+IGroQiMgOTUWnCeLErhMAgP9MbRM3nadgyOKKV/oSklxmSYLQYknud4NgaDkU9+xNTfkN7kEg==
+X-Received: by 2002:a05:620a:2807:b0:8b2:77aa:73c8 with SMTP id af79cd13be357-8c389368b60mr165162485a.16.1767760225160;
+        Tue, 06 Jan 2026 20:30:25 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c37f51cee9sm300492285a.27.2026.01.06.20.30.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jan 2026 20:30:24 -0800 (PST)
+From: Richard Acayan <mailingradian@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Robert Mader <robert.mader@collabora.com>,
+	Bryan O'Donoghue <bod@kernel.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	David Heidelberg <david@ixit.cz>,
+	phone-devel@vger.kernel.org,
+	Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH v6 0/5] media: i2c: IMX355 for the Pixel 3a
+Date: Tue,  6 Jan 2026 23:30:39 -0500
+Message-ID: <20260107043044.92485-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: talos: Add camera MCLK pinctrl
-To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org
-References: <20260106-sm6150_evk-v2-0-bb112cb83d74@oss.qualcomm.com>
- <20260106-sm6150_evk-v2-3-bb112cb83d74@oss.qualcomm.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20260106-sm6150_evk-v2-3-bb112cb83d74@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 1/6/26 11:39, Wenmeng Liu wrote:
-> Define pinctrl definitions to enable camera master clocks on Talos.
-> 
-> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-> ---
->   arch/arm64/boot/dts/qcom/talos.dtsi | 28 ++++++++++++++++++++++++++++
->   1 file changed, 28 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
-> index 461a39968d928260828993ff3549aa15fd1870df..880fa10a2db993a82d31faf868195944128237c9 100644
-> --- a/arch/arm64/boot/dts/qcom/talos.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/talos.dtsi
-> @@ -1549,6 +1549,34 @@ tlmm: pinctrl@3100000 {
->   			#interrupt-cells = <2>;
->   			wakeup-parent = <&pdc>;
->   
-> +			cam0_default: cam0-default-state {
-> +				pins = "gpio28";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +
-> +			cam1_default: cam1-default-state {
-> +				pins = "gpio29";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +
-> +			cam2_default: cam2-default-state {
-> +				pins = "gpio30";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +
-> +			cam3_default: cam3-default-state {
-> +				pins = "gpio31";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +
->   			cci_default: cci0-default-state {
->   				cci_i2c0_default: cci-i2c0-default-pins {
->   					/* SDA, SCL */
-> 
+This adds support for the IMX355 in devicetree and adds support for the
+Pixel 3a front camera.
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Changes since v5 (https://lore.kernel.org/r/20260107042451.92048-1-mailingradian@gmail.com):
+- add Bryan to CC who added a Reviewed-by
+
+Changes since v4 (https://lore.kernel.org/r/20251211014846.16602-1-mailingradian@gmail.com):
+- add NAK from Krzysztof (2/5)
+- label the camss ports (3/5, 5/5)
+- define endpoint properties correctly (1/5)
+- use devm_regulator_bulk_get_const (2/5)
+- remove clock-names (1/5, 5/5)
+- set reset GPIO as active low (1/5, 2/5, 5/5)
+- explicitly drive reset low at start of sequence (2/5)
+- make data-lanes in endpoint optional and start at 1 (1/5, 5/5)
+- add mclk3 pin (4/5)
+- add Reviewed-by's (4/5)
+
+Changes since v3 (https://lore.kernel.org/r/20250905215516.289998-6-mailingradian@gmail.com):
+- separate camera mclk pins and move to different patch (4/5, 5/5)
+- remove polarity from rear camera pin (5/5)
+- remove output-low from front camera pins (5/5)
+- mention effects of dcf6fb89e6f7 ("media: qcom: camss: remove a check for unavailable CAMSS endpoint") (3/5)
+- specify single clock-name without items nesting (1/5)
+- rebase on 49c6ac166cf7 ("media: i2c: imx355: Replace client->dev
+  usage") and eaa7d46d9654 ("media: i2c: imx335: Use V4L2 sensor clock
+  helper") (2/5)
+- do not use of_match_ptr for OF match table (2/5)
+- remove redundant GPIO validity checks (2/5)
+- describe endpoint data-lanes (1/5)
+
+Changes since v2 (https://lore.kernel.org/r/20250714210227.714841-6-mailingradian@gmail.com):
+- use devm_v4l2_sensor_clk_get (2/4)
+- require supplies and clock-names (1/4)
+- move unevaluatedProperties down (1/4)
+- disable clocks as last power-off action (2/4)
+- use 0 in gpio pin power-supply (4/4)
+
+Changes since v1 (https://lore.kernel.org/r/20250630225944.320755-7-mailingradian@gmail.com):
+- too much to have a complete list (1-4/4)
+- squash camera orientation patch (4/4, previously 5/5)
+- squash driver changes (2/4, previously 3/5)
+- remove labelled endpoint node in sdm670.dtsi (3/4, 4/4)
+- change init sequence to match other similar drivers (2/4)
+- retrieve clock frequency from devicetree-defined clock (4/4)
+- remove clock-frequency from dt-bindings (1/4)
+- remove redundant descriptions of child nodes (1/4)
+- switch initial drive of the reset GPIO to low (2/4)
+- set mclk frequency to 19.2 MHz (4/4)
+- add vdda-pll supply for camss (4/4)
+- use common power on and off functions (2/4)
+- use devm_clk_get_optional (2/4)
+- remove extra layer when describing mclk pin (4/4)
+- rename regulators (1/4, 2/4, 4/4)
+
+Richard Acayan (5):
+  dt-bindings: media: i2c: Add Sony IMX355
+  media: i2c: imx355: Support devicetree and power management
+  arm64: dts: qcom: sdm670: label the camss ports instead of endpoints
+  arm64: dts: qcom: sdm670: add camera mclk pins
+  arm64: dts: qcom: sdm670-google-sargo: add imx355 front camera
+
+ .../bindings/media/i2c/sony,imx355.yaml       | 115 +++++++++++++++++
+ .../boot/dts/qcom/sdm670-google-sargo.dts     | 104 ++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          |  46 ++++---
+ drivers/media/i2c/imx355.c                    | 116 ++++++++++++++++--
+ 4 files changed, 358 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
 
 -- 
-Best wishes,
-Vladimir
+2.52.0
+
 
