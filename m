@@ -1,979 +1,220 @@
-Return-Path: <devicetree+bounces-252282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55AA3CFD5F9
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 12:20:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 342E5CFD54A
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 12:07:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E469F3101203
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 11:15:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E31393111BA3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 11:01:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72649315777;
-	Wed,  7 Jan 2026 10:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FBD3126DF;
+	Wed,  7 Jan 2026 10:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UD4MHm5m"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LlTHrkok";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="h44kNqfP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63AAD30E84F;
-	Wed,  7 Jan 2026 10:10:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DBF330CDBB
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 10:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767780621; cv=none; b=UJbG34Lp2lg4BhYZI+Vr3YRKy+dzROdGh81s2B/Y46Krz+JMGF6zzHO9jDlbiptDJOYuMluqN3SoB7wvZuFiCpF7cwt4u6eUr+fYbVuCOViq9x+GkdAXMnvmjEawJzqsdVpa7H+55RK+rkrVTCd/BRZ26QuwGwObB013u/Myy1w=
+	t=1767782153; cv=none; b=cTXYPEV3ZZ6qWTIYnefwfjbvxqz2kpTYkKdwAcEjjcDdc8U426hDpVnzhQ25Te7EZ7Q9S+lKTnz6nE+UykM5CVwSbGo5tCLFyTo/858jUVkq6rLe8bS3bMUCsjt71B/i5mhRrMSPXLjwFoMtNkT/2W/5nDCr1Z5IEBU6KDA8QLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767780621; c=relaxed/simple;
-	bh=1gUxopDmpQN0G3OhZcXI7pJkp6ahwGOkOhGsvSACd7k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eMTzdWZfYaruLstoEbXng5GHhOxqhkSwPqgW6i6nVhWmruvCseG5xPdiw/sIsT8jtrgMOA4P4HsI9wu7e5L162rBLnyHP7fV37umvviZfVLeJywrnFNLjh2OSa7yqDeQuHJme+bFSWw47zGjBCkN5yWElsWeAB2cIjIGoK1jGEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UD4MHm5m; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1767780616;
-	bh=1gUxopDmpQN0G3OhZcXI7pJkp6ahwGOkOhGsvSACd7k=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=UD4MHm5mfVq1xORnIWxl8W3m85+8nO1VL6wbvO5VcnHmx1ImEQkPQi7Dh9PIduc8E
-	 ApKLNEuJPMhtNJ2FLqjiiWn7l1bPw6AwUQSqd5GYENH7KfIjiNGuYNC5WLPZHVWzTh
-	 wZHcmPqt4f/zf58MgQWni8CVchPXh+n3agRyLUVuNX1oDH2wumQap0/SLi4J6vzWFv
-	 tLfKiKFWVSIGP4rfRZr0o/DtHryouLvJVJiDTuy1yfF4VorUwex7PD2WTL1lXttj10
-	 ufCj+h8Plyyk7fsvus+0x0yKNSq7pj4yt0V9i/AWvX8AsxveCJcPdswWiEtNH8LmKv
-	 boEK5k+TExJuQ==
-Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:7e36:2305:d47f:6e43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: benjamin.gaignard)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4103117E15C9;
-	Wed,  7 Jan 2026 11:10:16 +0100 (CET)
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To: joro@8bytes.org,
-	will@kernel.org,
-	robin.murphy@arm.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	nicolas.dufresne@collabora.com,
-	p.zabel@pengutronix.de,
-	mchehab@kernel.org
-Cc: iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-media@vger.kernel.org,
-	kernel@collabora.com,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
-Date: Wed,  7 Jan 2026 11:09:53 +0100
-Message-ID: <20260107101005.84039-4-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
-References: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
+	s=arc-20240116; t=1767782153; c=relaxed/simple;
+	bh=m2f9qkXUrqcRe4pmfW5ApotX9bq879iYIj7ImYA1T5Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fCxxHWqSjHF4/lB90S0cbi6Y58AjtoIzaL8AnwOKilvIK29GdXUZT84o6yY9tYHJ6RMCbBMZtpmxx16UONMx/SiXmsvb8WnN0lsvREyOqjURXfNCBbajb80pRlxdAbz2eloLniQfpfKQXyfhrtQDaLpS22D2CqpErTLRVbzQ3b8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LlTHrkok; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=h44kNqfP; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6079q5Og218415
+	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 10:35:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Jlry1Vt5+KLz/mDBAc5xuvGeW/Uag/fDuxJsNP+G8jQ=; b=LlTHrkok8A9sgGCV
+	mRimEoA/16f3JZHGzlRtlX+w4/WyjcmA7odAvRHJgJ0f5nAYN4eI8BNKxjTf3jio
+	jtRFQ4CO4NvFFBJsNV+DgvzsBd174k/Vp5Xwlq2C1qaRXGx0ZqD0enTuZn5I8ryt
+	OFxnFzQ7qamK57C2RI0w8lXoi9mkEP7Qttoh3B6sIqsttzwCu6dNBjnl1rXRnRO1
+	3Kt4QcaJ3lterl6yqlrW51YVWExzXkWDErwFU/LG6+9BcDG1fyU/ISO0Fa6xia1E
+	wYl0RKK07u509+nY9eYxItNdEO9rGZGxTJRkaqYRfY/HwR3PcZdzwcSaVctmJow8
+	UhpLmQ==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhn8084fn-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 10:35:50 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88233d526baso68399656d6.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 02:35:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767782149; x=1768386949; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Jlry1Vt5+KLz/mDBAc5xuvGeW/Uag/fDuxJsNP+G8jQ=;
+        b=h44kNqfPFks6S37NU6rcuk29GMVezQEkjw67woPRA+ZnJUxjFOnqzAqbzg9ygTf/G0
+         5kxruaUWocwuKwaR0HcqDlOG4rL4Qkmnev7Qp5FHeeG6kvFsnNI4i/j4hxuM+OvZWX3Y
+         gdh3aeTsmMjv7StExCQs7mUjMyNLBdjLf7Y21DdVXvqsmN6ciwRPRwYR1mc8du2nZ4Oa
+         5ynHKDKjYfmUeme8BLXB8QA+C45TfrecFxZn/Ky1mOITFIUbiziktTThlxl0ZI4OZcLh
+         wl0qEOzTr5DSDg7IUXnN3zZ/Q32ivcoDD5nbi4r218qGzI1xyNkofnfbK/GVzA4NnlDG
+         rN2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767782149; x=1768386949;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Jlry1Vt5+KLz/mDBAc5xuvGeW/Uag/fDuxJsNP+G8jQ=;
+        b=EkhOeM1rqzxXZUDzqY66LhXzDygq7cLnpnJDGD5dA1B2OfbHdIkpzKbAEA3eWvJlsm
+         +0iKL3ciQrfvVYXvKowctoCZAbgfw1M0T+w1uPujry24Hm8ADHqh37Zu0PQpXR8YH+Ya
+         qoiLhOU3OIP2ajvezjiL5Vgh/uR0gVsvrJ1S5F75HkVVJ2J5fNN1iZ5W/QaWT7Rgd0xi
+         tvhu/6NRwlfcnglONSbBLs/tM3OW1cgADCr5MBKooTyc9lguMcIUZtavceaDR63pxQP+
+         gKtoNnqoz+8CoOcDOo/9boEbt35+L+WUrRHiFUIveB+kYq2nG5qgHJg17cbES9dfq2lM
+         OjjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVY9SLYSoTnacWghyO19A82wOeiaLPp5ahZItv8ReOOPPVR6vGOugiurBop19bqcfhEEnPmeB9IpbB7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbbryWZr1a8V/PKG6//8dMeMqF6D3ch6mqRIP1QnmbCHDd34zx
+	CrWh36a50WLA+81t1mWYn89EA/JjEpq5rNUoxjj5+o9gATFtsc0bWmihIEi12gGxZ2tmCfwhBIC
+	lTYr6JVMqE/srovjLmCh8SJhAyti7xn1lv/SB6lWEi+NcMFA8C5xS0P0GEWt2LhwIEmT6tvjseb
+	86O7vaHNVuwsPTzsdPb5ZEmUTRaq9/UgXAHv3cqc1qm9cAGojxTA==
+X-Gm-Gg: AY/fxX4LbCQkvfLalYXL49v5T3gWOhNgPQvu9aQ4MCmIWuBQbf7mjZPmOfMH+Lddv2D
+	4PRoeDNv3hHX6mjEYT8L5VGmS4J0TvW670wzrj7VWEt9YV2YXgvVXr9J0tNkulbKBZue6y6T7gy
+	0gUKSYn5vXRi4koUBkJEnwJCe7wSOr8ldDKVDKPD3AudFU5fSLXEh0y4dmzDzH5IR/5jFKG3EqQ
+	DrqCUeC6IRvWlhW6+hCrJKEt5E=
+X-Received: by 2002:a05:6214:3bc2:b0:882:4b1f:a812 with SMTP id 6a1803df08f44-890842a26bbmr24451076d6.51.1767782148965;
+        Wed, 07 Jan 2026 02:35:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHV2bQVnOOkUfKi9YLuyJCwO/xFnCEJJVbcyuS2T9YeMsjnl+BzdxTNWnJToYbvGC4KTHNdu8uA2RXyTo97TPs=
+X-Received: by 2002:a05:6214:3bc2:b0:882:4b1f:a812 with SMTP id
+ 6a1803df08f44-890842a26bbmr24450806d6.51.1767782148542; Wed, 07 Jan 2026
+ 02:35:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260106-sm6150_evk-v2-0-bb112cb83d74@oss.qualcomm.com>
+ <20260106-sm6150_evk-v2-1-bb112cb83d74@oss.qualcomm.com> <20260107-tungsten-barracuda-of-management-5edb0b@quoll>
+ <6a74e675-b011-4e1d-860c-4c3232beb2a2@oss.qualcomm.com> <7fc7c14c-a305-422e-8755-22e7c28bcfb3@kernel.org>
+ <674b8615-dcd3-4ae8-8433-cda6e8347048@oss.qualcomm.com>
+In-Reply-To: <674b8615-dcd3-4ae8-8433-cda6e8347048@oss.qualcomm.com>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Wed, 7 Jan 2026 11:35:37 +0100
+X-Gm-Features: AQt7F2qkT7aMmhrEGPvM2Y2e-bOqSDMUhFEImzULpOu1Lheg37dfANazadn-rZQ
+Message-ID: <CAFEp6-2qtws+Zhz7yFHCGK_M4RnBz1_ium2=HkdS4=A6JYeX2g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: qcom-cci: Document sm6150 compatible
+To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Robert Foss <rfoss@kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Authority-Analysis: v=2.4 cv=OtJCCi/t c=1 sm=1 tr=0 ts=695e3706 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=DP5Y6ZztmILrlu424yMA:9 a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-GUID: CjKgx7E8hkVgjiIipkZrZGZVaUVpfA3f
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDA4NiBTYWx0ZWRfX5Pfg1akfZFu9
+ nABz813S1LMmGdHVLHPJEG7XnmaSaHCpSwzohUW4I5si/pfIHkFgig4ShauhDxNHXyyLNMtONhF
+ 9BqfN23/VD71nnU09FOxY4I1a199WjrXmGOz855LSh8B5A+7uvZsHAyiUHN6KgTCz0Dgb9QMX5Z
+ 0EoJAD9YAyH+9AfsQu76Si3VndM5nKCQ+oz7OhfpN17mSGoz/VQNgMiYvSlj8bXYZq35/kbhRmG
+ jfma30HT5wmuakGcem6+tAiBFt3B2Jfwjppz/nc6jy8IuheCBoMms9EX4JgW+fCy6af3Y46yuo1
+ nLndlp4kPewPIYn8kvM6kd0cfYhf+d90hsQEdDj75dYB9FlsDj4Nf6pV9dv/FiA6vqJ1Ef6+8Oy
+ mJVQjaxj8j28IlYtdjgtER00q3ZB2fAp3INmtH2BwblGH2JGyhuip0vmkgltDHfvPub9NW6E0i4
+ 5KivrW+MqKxYtvZ3+qg==
+X-Proofpoint-ORIG-GUID: CjKgx7E8hkVgjiIipkZrZGZVaUVpfA3f
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-07_01,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 phishscore=0 malwarescore=0 priorityscore=1501
+ adultscore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601070086
 
-The Verisilicon IOMMU hardware block can be found in combination
-with Verisilicon hardware video codecs (encoders or decoders) on
-different SoCs.
-Enable it will allow us to use non contiguous memory allocators
-for Verisilicon video codecs.
-If both decoder and this iommu driver are compiled has modules
-there is undefined symboles issues so this iommu driver could
-only be compiled has built-in.
+On Wed, Jan 7, 2026 at 11:08=E2=80=AFAM Wenmeng Liu
+<wenmeng.liu@oss.qualcomm.com> wrote:
+>
+>
+>
+> On 1/7/2026 4:34 PM, Krzysztof Kozlowski wrote:
+> > On 07/01/2026 09:17, Wenmeng Liu wrote:
+> >>
+> >>
+> >> On 1/7/2026 4:00 PM, Krzysztof Kozlowski wrote:
+> >>> On Tue, Jan 06, 2026 at 05:39:53PM +0800, Wenmeng Liu wrote:
+> >>>> +  - if:
+> >>>> +      properties:
+> >>>> +        compatible:
+> >>>> +          contains:
+> >>>> +            enum:
+> >>>> +              - qcom,sm6150-cci
+> >>>> +    then:
+> >>>> +      properties:
+> >>>> +        clocks:
+> >>>> +          minItems: 3
+> >>>> +          maxItems: 3
+> >>>> +        clock-names:
+> >>>> +          items:
+> >>>> +            - const: soc_ahb
+> >>>
+> >>> Same question as before. I did not see any resolution of this in
+> >>> changelog or commit msg.
+> >>>
+> >> Will update commit msg in next version:
+> >>
+> >> For this platform, it uses soc_ahb instead of camnoc_axi.
+> >
+> > That was not my question from v1. AHB and AXI are both bus clocks,
+> > meaning for this device the same. You again name the clocks how you
+> > called them in clock controller which is wrong. You name here CLOCK
+> > INPUTS. What is the role of this clock FOR THIS DEVICE?
+> >
+> > I already asked to pay attention to this difference.
+> >
+> > Best regards,
+> > Krzysztof
+>
+> Ok, i got it, just feel a bit confused.
+>
+> +                       clocks =3D <&camcc CAM_CC_SOC_AHB_CLK>,
+> +                                <&camcc CAM_CC_CPAS_AHB_CLK>,
+> +                                <&camcc CAM_CC_CCI_CLK>;
+> +                       clock-names =3D "camnoc_axi",
+> +                                     "cpas_ahb",
+> +                                     "cci";
+>
+>
+>         clocks =3D <&camcc CAM_CC_SOC_AHB_CLK>,
+>         clock-names =3D "camnoc_axi";
+>
+> If this is acceptable, I will update it this way in the next version.
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
----
-changes in version 11:
-- Fix dependency issue when decoder driver is build as module.
+No, the idea is to name the clock from the device=E2=80=99s perspective.
+For example, from the CCI perspective, you typically have:
+- A core clock, clocking the logic, which could be named 'core' (but
+'cci' here is ok)
+- Clocks related to the bus interfaces (such as AHB or AXI), which
+could be named 'iface...' or 'bus...'.
 
- drivers/iommu/Kconfig     |  11 +
- drivers/iommu/Makefile    |   1 +
- drivers/iommu/vsi-iommu.c | 808 ++++++++++++++++++++++++++++++++++++++
- include/linux/vsi-iommu.h |  21 +
- 4 files changed, 841 insertions(+)
- create mode 100644 drivers/iommu/vsi-iommu.c
- create mode 100644 include/linux/vsi-iommu.h
+This approach clearly identifies the role of each clock and keeps
+naming consistent, without depending on where the clock originates or
+its source name.
 
-diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-index 99095645134f..cfa712d2d035 100644
---- a/drivers/iommu/Kconfig
-+++ b/drivers/iommu/Kconfig
-@@ -384,6 +384,17 @@ config SPRD_IOMMU
- 
- 	  Say Y here if you want to use the multimedia devices listed above.
- 
-+config VSI_IOMMU
-+	bool "Verisilicon IOMMU Support"
-+	depends on (ARCH_ROCKCHIP && ARM64) || COMPILE_TEST
-+	select IOMMU_API
-+	help
-+	  Support for IOMMUs used by Verisilicon sub-systems like video
-+	  decoders or encoder hardware blocks.
-+
-+	  Say Y here if you want to use this IOMMU in front of these
-+	  hardware blocks.
-+
- endif # IOMMU_SUPPORT
- 
- source "drivers/iommu/generic_pt/Kconfig"
-diff --git a/drivers/iommu/Makefile b/drivers/iommu/Makefile
-index 8e8843316c4b..f4043350d023 100644
---- a/drivers/iommu/Makefile
-+++ b/drivers/iommu/Makefile
-@@ -36,3 +36,4 @@ obj-$(CONFIG_IOMMU_SVA) += iommu-sva.o
- obj-$(CONFIG_IOMMU_IOPF) += io-pgfault.o
- obj-$(CONFIG_SPRD_IOMMU) += sprd-iommu.o
- obj-$(CONFIG_APPLE_DART) += apple-dart.o
-+obj-$(CONFIG_VSI_IOMMU) += vsi-iommu.o
-diff --git a/drivers/iommu/vsi-iommu.c b/drivers/iommu/vsi-iommu.c
-new file mode 100644
-index 000000000000..ea961adf5eb9
---- /dev/null
-+++ b/drivers/iommu/vsi-iommu.c
-@@ -0,0 +1,808 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/* Copyright (C) 2025 Collabora Ltd.
-+ *
-+ * IOMMU API for Verisilicon
-+ *
-+ * Module Authors:	Yandong Lin <yandong.lin@rock-chips.com>
-+ *			Simon Xue <xxm@rock-chips.com>
-+ *			Benjamin Gaignard <benjamin.gaignard@collabora.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/compiler.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/errno.h>
-+#include <linux/init.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/iommu.h>
-+#include <linux/list.h>
-+#include <linux/mm.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_iommu.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/slab.h>
-+#include <linux/spinlock.h>
-+#include <linux/vsi-iommu.h>
-+
-+#include "iommu-pages.h"
-+
-+struct vsi_iommu {
-+	struct device *dev;
-+	void __iomem *regs;
-+	struct clk_bulk_data *clocks;
-+	int num_clocks;
-+	struct iommu_device iommu;
-+	struct list_head node; /* entry in vsi_iommu_domain.iommus */
-+	struct iommu_domain *domain; /* domain to which iommu is attached */
-+	spinlock_t lock; /* lock to protect vsi_iommu fields */
-+	int irq;
-+};
-+
-+struct vsi_iommu_domain {
-+	struct list_head iommus;
-+	struct device *dev;
-+	u32 *dt;
-+	dma_addr_t dt_dma;
-+	struct iommu_domain domain;
-+	u64 *pta;
-+	dma_addr_t pta_dma;
-+	spinlock_t lock; /* lock to protect vsi_iommu_domain fields */
-+};
-+
-+static struct iommu_domain vsi_identity_domain;
-+
-+#define NUM_DT_ENTRIES	1024
-+#define NUM_PT_ENTRIES	1024
-+#define PT_SIZE		(NUM_PT_ENTRIES * sizeof(u32))
-+
-+#define SPAGE_SIZE	BIT(12)
-+
-+/* vsi iommu regs address */
-+#define VSI_MMU_CONFIG1_BASE			0x1ac
-+#define VSI_MMU_AHB_EXCEPTION_BASE		0x380
-+#define VSI_MMU_AHB_CONTROL_BASE		0x388
-+#define VSI_MMU_AHB_TLB_ARRAY_BASE_L_BASE	0x38C
-+
-+/* MMU register offsets */
-+#define VSI_MMU_FLUSH_BASE		0x184
-+#define VSI_MMU_BIT_FLUSH		BIT(4)
-+
-+#define VSI_MMU_PAGE_FAULT_ADDR		0x380
-+#define VSI_MMU_STATUS_BASE		0x384	/* IRQ status */
-+
-+#define VSI_MMU_BIT_ENABLE		BIT(0)
-+
-+#define VSI_MMU_OUT_OF_BOUND		BIT(28)
-+/* Irq mask */
-+#define VSI_MMU_IRQ_MASK		0x7
-+
-+#define VSI_DTE_PT_ADDRESS_MASK		0xffffffc0
-+#define VSI_DTE_PT_VALID		BIT(0)
-+
-+#define VSI_PAGE_DESC_LO_MASK		0xfffff000
-+#define VSI_PAGE_DESC_HI_MASK		GENMASK_ULL(39, 32)
-+#define VSI_PAGE_DESC_HI_SHIFT		(32 - 4)
-+
-+static inline phys_addr_t vsi_dte_pt_address(u32 dte)
-+{
-+	return (phys_addr_t)dte & VSI_DTE_PT_ADDRESS_MASK;
-+}
-+
-+static inline u32 vsi_mk_dte(u32 dte)
-+{
-+	return (phys_addr_t)dte | VSI_DTE_PT_VALID;
-+}
-+
-+#define VSI_PTE_PAGE_WRITABLE		BIT(2)
-+#define VSI_PTE_PAGE_VALID		BIT(0)
-+
-+static inline phys_addr_t vsi_pte_page_address(u64 pte)
-+{
-+	return ((pte << VSI_PAGE_DESC_HI_SHIFT) & VSI_PAGE_DESC_HI_MASK) |
-+	       (pte & VSI_PAGE_DESC_LO_MASK);
-+}
-+
-+static u32 vsi_mk_pte(phys_addr_t page, int prot)
-+{
-+	u32 flags = 0;
-+
-+	flags |= (prot & IOMMU_WRITE) ? VSI_PTE_PAGE_WRITABLE : 0;
-+
-+	page = (page & VSI_PAGE_DESC_LO_MASK) |
-+	       ((page & VSI_PAGE_DESC_HI_MASK) >> VSI_PAGE_DESC_HI_SHIFT);
-+
-+	return page | flags | VSI_PTE_PAGE_VALID;
-+}
-+
-+#define VSI_DTE_PT_VALID	BIT(0)
-+
-+static inline bool vsi_dte_is_pt_valid(u32 dte)
-+{
-+	return dte & VSI_DTE_PT_VALID;
-+}
-+
-+static inline bool vsi_pte_is_page_valid(u32 pte)
-+{
-+	return pte & VSI_PTE_PAGE_VALID;
-+}
-+
-+static u32 vsi_mk_pte_invalid(u32 pte)
-+{
-+	return pte & ~VSI_PTE_PAGE_VALID;
-+}
-+
-+#define VSI_MASTER_TLB_MASK	GENMASK_ULL(31, 10)
-+/* mode 0 : 4k */
-+#define VSI_PTA_4K_MODE	0
-+
-+static u64 vsi_mk_pta(dma_addr_t dt_dma)
-+{
-+	u64 val = (dt_dma & VSI_MASTER_TLB_MASK) | VSI_PTA_4K_MODE;
-+
-+	return val;
-+}
-+
-+static struct vsi_iommu_domain *to_vsi_domain(struct iommu_domain *dom)
-+{
-+	return container_of(dom, struct vsi_iommu_domain, domain);
-+}
-+
-+static inline void vsi_table_flush(struct vsi_iommu_domain *vsi_domain, dma_addr_t dma,
-+				   unsigned int count)
-+{
-+	size_t size = count * sizeof(u32); /* count of u32 entry */
-+
-+	dma_sync_single_for_device(vsi_domain->dev, dma, size, DMA_TO_DEVICE);
-+}
-+
-+#define VSI_IOVA_DTE_MASK	0xffc00000
-+#define VSI_IOVA_DTE_SHIFT	22
-+#define VSI_IOVA_PTE_MASK	0x003ff000
-+#define VSI_IOVA_PTE_SHIFT	12
-+#define VSI_IOVA_PAGE_MASK	0x00000fff
-+#define VSI_IOVA_PAGE_SHIFT	0
-+
-+static u32 vsi_iova_dte_index(u32 iova)
-+{
-+	return (iova & VSI_IOVA_DTE_MASK) >> VSI_IOVA_DTE_SHIFT;
-+}
-+
-+static u32 vsi_iova_pte_index(u32 iova)
-+{
-+	return (iova & VSI_IOVA_PTE_MASK) >> VSI_IOVA_PTE_SHIFT;
-+}
-+
-+static u32 vsi_iova_page_offset(u32 iova)
-+{
-+	return (iova & VSI_IOVA_PAGE_MASK) >> VSI_IOVA_PAGE_SHIFT;
-+}
-+
-+static void vsi_iommu_flush_tlb_all(struct iommu_domain *domain)
-+{
-+	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
-+	struct list_head *pos;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&vsi_domain->lock, flags);
-+
-+	list_for_each(pos, &vsi_domain->iommus) {
-+		struct vsi_iommu *iommu;
-+		int ret;
-+
-+		iommu = list_entry(pos, struct vsi_iommu, node);
-+		ret = pm_runtime_resume_and_get(iommu->dev);
-+		if (ret < 0)
-+			continue;
-+
-+		spin_lock(&iommu->lock);
-+
-+		writel(VSI_MMU_BIT_FLUSH, iommu->regs + VSI_MMU_FLUSH_BASE);
-+		writel(0, iommu->regs + VSI_MMU_FLUSH_BASE);
-+
-+		spin_unlock(&iommu->lock);
-+		pm_runtime_put_autosuspend(iommu->dev);
-+	}
-+
-+	spin_unlock_irqrestore(&vsi_domain->lock, flags);
-+}
-+
-+static irqreturn_t vsi_iommu_irq(int irq, void *dev_id)
-+{
-+	struct vsi_iommu *iommu = dev_id;
-+	unsigned long flags;
-+	dma_addr_t iova;
-+	u32 status;
-+
-+	if (pm_runtime_resume_and_get(iommu->dev) < 0)
-+		return IRQ_NONE;
-+
-+	spin_lock_irqsave(&iommu->lock, flags);
-+
-+	status = readl(iommu->regs + VSI_MMU_STATUS_BASE);
-+	if (status & VSI_MMU_IRQ_MASK) {
-+		dev_err(iommu->dev, "unexpected int_status=%08x\n", status);
-+		iova = readl(iommu->regs + VSI_MMU_PAGE_FAULT_ADDR);
-+		report_iommu_fault(iommu->domain, iommu->dev, iova, status);
-+	}
-+	writel(0, iommu->regs + VSI_MMU_STATUS_BASE);
-+
-+	spin_unlock_irqrestore(&iommu->lock, flags);
-+	pm_runtime_put_autosuspend(iommu->dev);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static struct vsi_iommu *vsi_iommu_get_from_dev(struct device *dev)
-+{
-+	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-+	struct device *iommu_dev = bus_find_device_by_fwnode(&platform_bus_type,
-+							     fwspec->iommu_fwnode);
-+
-+	put_device(iommu_dev);
-+
-+	return iommu_dev ? dev_get_drvdata(iommu_dev) : NULL;
-+}
-+
-+static struct iommu_domain *vsi_iommu_domain_alloc_paging(struct device *dev)
-+{
-+	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
-+	struct vsi_iommu_domain *vsi_domain;
-+
-+	vsi_domain = kzalloc(sizeof(*vsi_domain), GFP_KERNEL);
-+	if (!vsi_domain)
-+		return NULL;
-+
-+	vsi_domain->dev = iommu->dev;
-+	spin_lock_init(&vsi_domain->lock);
-+
-+	/*
-+	 * iommu use a 2 level pagetable.
-+	 * Each level1 (dt) and level2 (pt) table has 1024 4-byte entries.
-+	 * Allocate one 4 KiB page for each table.
-+	 */
-+	vsi_domain->dt = iommu_alloc_pages_sz(GFP_KERNEL | GFP_DMA32,
-+					      SPAGE_SIZE);
-+	if (!vsi_domain->dt)
-+		goto err_free_domain;
-+
-+	vsi_domain->dt_dma = dma_map_single(vsi_domain->dev, vsi_domain->dt,
-+					    SPAGE_SIZE, DMA_TO_DEVICE);
-+	if (dma_mapping_error(vsi_domain->dev, vsi_domain->dt_dma)) {
-+		dev_err(dev, "DMA map error for DT\n");
-+		goto err_free_dt;
-+	}
-+
-+	vsi_domain->pta = iommu_alloc_pages_sz(GFP_KERNEL | GFP_DMA32,
-+					       SPAGE_SIZE);
-+	if (!vsi_domain->pta)
-+		goto err_unmap_dt;
-+
-+	vsi_domain->pta[0] = vsi_mk_pta(vsi_domain->dt_dma);
-+	vsi_domain->pta_dma = dma_map_single(vsi_domain->dev, vsi_domain->pta,
-+					     SPAGE_SIZE, DMA_TO_DEVICE);
-+	if (dma_mapping_error(vsi_domain->dev, vsi_domain->pta_dma)) {
-+		dev_err(dev, "DMA map error for PTA\n");
-+		goto err_free_pta;
-+	}
-+
-+	INIT_LIST_HEAD(&vsi_domain->iommus);
-+
-+	vsi_domain->domain.geometry.aperture_start = 0;
-+	vsi_domain->domain.geometry.aperture_end   = DMA_BIT_MASK(32);
-+	vsi_domain->domain.geometry.force_aperture = true;
-+	vsi_domain->domain.pgsize_bitmap	   = SZ_4K;
-+
-+	return &vsi_domain->domain;
-+
-+err_free_pta:
-+	iommu_free_pages(vsi_domain->pta);
-+err_unmap_dt:
-+	dma_unmap_single(vsi_domain->dev, vsi_domain->dt_dma,
-+			 SPAGE_SIZE, DMA_TO_DEVICE);
-+err_free_dt:
-+	iommu_free_pages(vsi_domain->dt);
-+err_free_domain:
-+	kfree(vsi_domain);
-+
-+	return NULL;
-+}
-+
-+static phys_addr_t vsi_iommu_iova_to_phys(struct iommu_domain *domain,
-+					  dma_addr_t iova)
-+{
-+	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
-+	phys_addr_t pt_phys, phys = 0;
-+	unsigned long flags;
-+	u32 dte, pte;
-+	u32 *page_table;
-+
-+	spin_lock_irqsave(&vsi_domain->lock, flags);
-+	dte = vsi_domain->dt[vsi_iova_dte_index(iova)];
-+	if (!vsi_dte_is_pt_valid(dte))
-+		goto unlock;
-+
-+	pt_phys = vsi_dte_pt_address(dte);
-+	page_table = (u32 *)phys_to_virt(pt_phys);
-+	pte = page_table[vsi_iova_pte_index(iova)];
-+	if (!vsi_pte_is_page_valid(pte))
-+		goto unlock;
-+
-+	phys = vsi_pte_page_address(pte) + vsi_iova_page_offset(iova);
-+
-+unlock:
-+	spin_unlock_irqrestore(&vsi_domain->lock, flags);
-+	return phys;
-+}
-+
-+static size_t vsi_iommu_unmap_iova(struct vsi_iommu_domain *vsi_domain,
-+				   u32 *pte_addr, dma_addr_t pte_dma,
-+				   size_t size)
-+{
-+	unsigned int pte_count;
-+	unsigned int pte_total = size / SPAGE_SIZE;
-+
-+	for (pte_count = 0;
-+	     pte_count < pte_total && pte_count < NUM_PT_ENTRIES; pte_count++) {
-+		u32 pte = pte_addr[pte_count];
-+
-+		if (!vsi_pte_is_page_valid(pte))
-+			break;
-+
-+		pte_addr[pte_count] = vsi_mk_pte_invalid(pte);
-+	}
-+
-+	vsi_table_flush(vsi_domain, pte_dma, pte_total);
-+
-+	return pte_count * SPAGE_SIZE;
-+}
-+
-+static int vsi_iommu_map_iova(struct vsi_iommu_domain *vsi_domain, u32 *pte_addr,
-+			      dma_addr_t pte_dma, dma_addr_t iova,
-+			      phys_addr_t paddr, size_t size, int prot)
-+{
-+	unsigned int pte_count;
-+	unsigned int pte_total = size / SPAGE_SIZE;
-+
-+	for (pte_count = 0;
-+	     pte_count < pte_total && pte_count < NUM_PT_ENTRIES; pte_count++) {
-+		u32 pte = pte_addr[pte_count];
-+
-+		if (vsi_pte_is_page_valid(pte))
-+			return (pte_count - 1) * SPAGE_SIZE;
-+
-+		pte_addr[pte_count] = vsi_mk_pte(paddr, prot);
-+
-+		paddr += SPAGE_SIZE;
-+	}
-+
-+	vsi_table_flush(vsi_domain, pte_dma, pte_total);
-+
-+	return 0;
-+}
-+
-+static size_t vsi_iommu_unmap(struct iommu_domain *domain, unsigned long _iova,
-+			      size_t size, size_t count, struct iommu_iotlb_gather *gather)
-+{
-+	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
-+	dma_addr_t pte_dma, iova = (dma_addr_t)_iova;
-+	unsigned long flags;
-+	phys_addr_t pt_phys;
-+	u32 dte;
-+	u32 *pte_addr;
-+	size_t unmap_size = 0;
-+
-+	spin_lock_irqsave(&vsi_domain->lock, flags);
-+
-+	dte = vsi_domain->dt[vsi_iova_dte_index(iova)];
-+	/* Just return 0 if iova is unmapped */
-+	if (!vsi_dte_is_pt_valid(dte))
-+		goto unlock;
-+
-+	pt_phys = vsi_dte_pt_address(dte);
-+	pte_addr = (u32 *)phys_to_virt(pt_phys) + vsi_iova_pte_index(iova);
-+	pte_dma = pt_phys + vsi_iova_pte_index(iova) * sizeof(u32);
-+	unmap_size = vsi_iommu_unmap_iova(vsi_domain, pte_addr, pte_dma, size);
-+
-+unlock:
-+	spin_unlock_irqrestore(&vsi_domain->lock, flags);
-+
-+	return unmap_size;
-+}
-+
-+static u32 *vsi_dte_get_page_table(struct vsi_iommu_domain *vsi_domain,
-+				   dma_addr_t iova, gfp_t gfp)
-+{
-+	u32 *page_table, *dte_addr;
-+	u32 dte_index, dte;
-+	phys_addr_t pt_phys;
-+	dma_addr_t pt_dma;
-+	gfp_t flags;
-+
-+	dte_index = vsi_iova_dte_index(iova);
-+	dte_addr = &vsi_domain->dt[dte_index];
-+	dte = *dte_addr;
-+	if (vsi_dte_is_pt_valid(dte))
-+		goto done;
-+
-+	/* Do not allow to sleep while allocating the buffer */
-+	flags = (gfp & ~GFP_KERNEL) | GFP_ATOMIC | GFP_DMA32;
-+	page_table = iommu_alloc_pages_sz(flags, PAGE_SIZE);
-+	if (!page_table)
-+		return ERR_PTR(-ENOMEM);
-+
-+	pt_dma = dma_map_single(vsi_domain->dev, page_table, PAGE_SIZE, DMA_TO_DEVICE);
-+	if (dma_mapping_error(vsi_domain->dev, pt_dma)) {
-+		dev_err(vsi_domain->dev, "DMA mapping error while allocating page table\n");
-+		iommu_free_pages(page_table);
-+		return ERR_PTR(-ENOMEM);
-+	}
-+
-+	dte = vsi_mk_dte(pt_dma);
-+	*dte_addr = dte;
-+
-+	vsi_table_flush(vsi_domain,
-+			vsi_domain->dt_dma + dte_index * sizeof(u32), 1);
-+done:
-+	pt_phys = vsi_dte_pt_address(dte);
-+	return (u32 *)phys_to_virt(pt_phys);
-+}
-+
-+static int vsi_iommu_map(struct iommu_domain *domain, unsigned long _iova,
-+			 phys_addr_t paddr, size_t size, size_t count,
-+			 int prot, gfp_t gfp, size_t *mapped)
-+{
-+	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
-+	dma_addr_t pte_dma, iova = (dma_addr_t)_iova;
-+	u32 *page_table, *pte_addr;
-+	u32 dte, pte_index;
-+	unsigned long flags;
-+	int ret;
-+
-+	spin_lock_irqsave(&vsi_domain->lock, flags);
-+
-+	page_table = vsi_dte_get_page_table(vsi_domain, iova, gfp);
-+	if (IS_ERR(page_table)) {
-+		spin_unlock_irqrestore(&vsi_domain->lock, flags);
-+		return PTR_ERR(page_table);
-+	}
-+
-+	dte = vsi_domain->dt[vsi_iova_dte_index(iova)];
-+	pte_index = vsi_iova_pte_index(iova);
-+	pte_addr = &page_table[pte_index];
-+	pte_dma = vsi_dte_pt_address(dte) + pte_index * sizeof(u32);
-+	ret = vsi_iommu_map_iova(vsi_domain, pte_addr, pte_dma, iova,
-+				 paddr, size, prot);
-+	if (!ret)
-+		*mapped = size;
-+	spin_unlock_irqrestore(&vsi_domain->lock, flags);
-+
-+	return ret;
-+}
-+
-+static void vsi_iommu_disable(struct vsi_iommu *iommu)
-+{
-+	writel(0, iommu->regs + VSI_MMU_AHB_CONTROL_BASE);
-+}
-+
-+static int vsi_iommu_identity_attach(struct iommu_domain *domain,
-+				     struct device *dev, struct iommu_domain *old)
-+{
-+	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
-+	unsigned long flags;
-+	int ret;
-+
-+	ret = pm_runtime_resume_and_get(iommu->dev);
-+	if (ret < 0)
-+		return ret;
-+
-+	spin_lock_irqsave(&iommu->lock, flags);
-+	if (iommu->domain == domain)
-+		goto unlock;
-+
-+	vsi_iommu_disable(iommu);
-+	list_del_init(&iommu->node);
-+
-+	iommu->domain = domain;
-+
-+unlock:
-+	spin_unlock_irqrestore(&iommu->lock, flags);
-+	pm_runtime_put_autosuspend(iommu->dev);
-+	return 0;
-+}
-+
-+static const struct iommu_domain_ops vsi_identity_ops = {
-+	.attach_dev = vsi_iommu_identity_attach,
-+};
-+
-+static struct iommu_domain vsi_identity_domain = {
-+	.type = IOMMU_DOMAIN_IDENTITY,
-+	.ops = &vsi_identity_ops,
-+};
-+
-+static void vsi_iommu_enable(struct vsi_iommu *iommu, struct iommu_domain *domain)
-+{
-+	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
-+
-+	if (domain == &vsi_identity_domain)
-+		return;
-+
-+	writel(vsi_domain->pta_dma, iommu->regs + VSI_MMU_AHB_TLB_ARRAY_BASE_L_BASE);
-+	writel(VSI_MMU_OUT_OF_BOUND, iommu->regs + VSI_MMU_CONFIG1_BASE);
-+	writel(VSI_MMU_BIT_ENABLE, iommu->regs + VSI_MMU_AHB_EXCEPTION_BASE);
-+	writel(VSI_MMU_BIT_ENABLE, iommu->regs + VSI_MMU_AHB_CONTROL_BASE);
-+}
-+
-+void vsi_iommu_restore_ctx(struct iommu_domain *domain)
-+{
-+	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
-+	struct list_head *pos;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&vsi_domain->lock, flags);
-+
-+	list_for_each(pos, &vsi_domain->iommus) {
-+		struct vsi_iommu *iommu;
-+
-+		iommu = list_entry(pos, struct vsi_iommu, node);
-+		if (!iommu)
-+			continue;
-+
-+		spin_lock(&iommu->lock);
-+
-+		writel(VSI_MMU_BIT_FLUSH, iommu->regs + VSI_MMU_FLUSH_BASE);
-+		writel(0, iommu->regs + VSI_MMU_FLUSH_BASE);
-+
-+		spin_unlock(&iommu->lock);
-+	}
-+
-+	spin_unlock_irqrestore(&vsi_domain->lock, flags);
-+}
-+EXPORT_SYMBOL_GPL(vsi_iommu_restore_ctx);
-+
-+static int vsi_iommu_attach_device(struct iommu_domain *domain,
-+				   struct device *dev, struct iommu_domain *old)
-+{
-+	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
-+	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
-+	unsigned long flags, flags2;
-+	int ret = 0;
-+
-+	ret = pm_runtime_resume_and_get(iommu->dev);
-+	if (ret < 0)
-+		return ret;
-+
-+	spin_lock_irqsave(&vsi_domain->lock, flags);
-+	spin_lock_irqsave(&iommu->lock, flags2);
-+
-+	vsi_iommu_enable(iommu, domain);
-+	writel(VSI_MMU_BIT_FLUSH, iommu->regs + VSI_MMU_FLUSH_BASE);
-+	writel(0, iommu->regs + VSI_MMU_FLUSH_BASE);
-+
-+	list_del_init(&iommu->node);
-+	list_add_tail(&iommu->node, &vsi_domain->iommus);
-+
-+	iommu->domain = domain;
-+
-+	spin_unlock_irqrestore(&iommu->lock, flags2);
-+	spin_unlock_irqrestore(&vsi_domain->lock, flags);
-+	pm_runtime_put_autosuspend(iommu->dev);
-+	return ret;
-+}
-+
-+static void vsi_iommu_domain_free(struct iommu_domain *domain)
-+{
-+	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
-+	unsigned long flags;
-+	int i;
-+
-+	spin_lock_irqsave(&vsi_domain->lock, flags);
-+
-+	WARN_ON(!list_empty(&vsi_domain->iommus));
-+
-+	for (i = 0; i < NUM_DT_ENTRIES; i++) {
-+		u32 dte = vsi_domain->dt[i];
-+
-+		if (vsi_dte_is_pt_valid(dte)) {
-+			phys_addr_t pt_phys = vsi_dte_pt_address(dte);
-+			u32 *page_table = phys_to_virt(pt_phys);
-+
-+			dma_unmap_single(vsi_domain->dev, pt_phys,
-+					 SPAGE_SIZE, DMA_TO_DEVICE);
-+			iommu_free_pages(page_table);
-+		}
-+	}
-+
-+	dma_unmap_single(vsi_domain->dev, vsi_domain->dt_dma,
-+			 SPAGE_SIZE, DMA_TO_DEVICE);
-+	iommu_free_pages(vsi_domain->dt);
-+
-+	dma_unmap_single(vsi_domain->dev, vsi_domain->pta_dma,
-+			 SPAGE_SIZE, DMA_TO_DEVICE);
-+	iommu_free_pages(vsi_domain->pta);
-+
-+	spin_unlock_irqrestore(&vsi_domain->lock, flags);
-+
-+	kfree(vsi_domain);
-+}
-+
-+static struct iommu_device *vsi_iommu_probe_device(struct device *dev)
-+{
-+	struct vsi_iommu *iommu = vsi_iommu_get_from_dev(dev);
-+	struct device_link *link;
-+
-+	link = device_link_add(dev, iommu->dev,
-+			       DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME);
-+	if (!link)
-+		dev_err(dev, "Unable to link %s\n", dev_name(iommu->dev));
-+
-+	dev_iommu_priv_set(dev, iommu);
-+	return &iommu->iommu;
-+}
-+
-+static void vsi_iommu_release_device(struct device *dev)
-+{
-+	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
-+
-+	device_link_remove(dev, iommu->dev);
-+}
-+
-+static int vsi_iommu_of_xlate(struct device *dev, const struct of_phandle_args *args)
-+{
-+	return iommu_fwspec_add_ids(dev, args->args, 1);
-+}
-+
-+static const struct iommu_ops vsi_iommu_ops = {
-+	.identity_domain = &vsi_identity_domain,
-+	.release_domain = &vsi_identity_domain,
-+	.domain_alloc_paging = vsi_iommu_domain_alloc_paging,
-+	.of_xlate = vsi_iommu_of_xlate,
-+	.probe_device = vsi_iommu_probe_device,
-+	.release_device = vsi_iommu_release_device,
-+	.device_group = generic_single_device_group,
-+	.owner = THIS_MODULE,
-+	.default_domain_ops = &(const struct iommu_domain_ops) {
-+		.attach_dev		= vsi_iommu_attach_device,
-+		.map_pages		= vsi_iommu_map,
-+		.unmap_pages		= vsi_iommu_unmap,
-+		.flush_iotlb_all	= vsi_iommu_flush_tlb_all,
-+		.iova_to_phys		= vsi_iommu_iova_to_phys,
-+		.free			= vsi_iommu_domain_free,
-+	}
-+};
-+
-+static const struct of_device_id vsi_iommu_dt_ids[] = {
-+	{
-+		.compatible = "verisilicon,iommu-1.2",
-+	},
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, vsi_iommu_dt_ids);
-+
-+static int vsi_iommu_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct vsi_iommu *iommu;
-+	int err;
-+
-+	iommu = devm_kzalloc(dev, sizeof(*iommu), GFP_KERNEL);
-+	if (!iommu)
-+		return -ENOMEM;
-+
-+	iommu->dev = dev;
-+	spin_lock_init(&iommu->lock);
-+	INIT_LIST_HEAD(&iommu->node);
-+
-+	iommu->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(iommu->regs))
-+		return -ENOMEM;
-+
-+	iommu->num_clocks = devm_clk_bulk_get_all(dev, &iommu->clocks);
-+	if  (iommu->num_clocks < 0)
-+		return iommu->num_clocks;
-+
-+	err = clk_bulk_prepare(iommu->num_clocks, iommu->clocks);
-+	if (err)
-+		return err;
-+
-+	iommu->irq = platform_get_irq(pdev, 0);
-+	if (iommu->irq < 0)
-+		return iommu->irq;
-+
-+	err = devm_request_irq(iommu->dev, iommu->irq, vsi_iommu_irq,
-+			       IRQF_SHARED, dev_name(dev), iommu);
-+	if (err)
-+		goto err_unprepare_clocks;
-+
-+	dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
-+	platform_set_drvdata(pdev, iommu);
-+
-+	pm_runtime_set_autosuspend_delay(dev, 100);
-+	pm_runtime_use_autosuspend(dev);
-+	pm_runtime_enable(dev);
-+
-+	err = iommu_device_sysfs_add(&iommu->iommu, dev, NULL, dev_name(dev));
-+	if (err)
-+		goto err_runtime_disable;
-+
-+	err = iommu_device_register(&iommu->iommu, &vsi_iommu_ops, dev);
-+	if (err)
-+		goto err_remove_sysfs;
-+
-+	return 0;
-+
-+err_remove_sysfs:
-+	iommu_device_sysfs_remove(&iommu->iommu);
-+err_runtime_disable:
-+	pm_runtime_disable(dev);
-+err_unprepare_clocks:
-+	clk_bulk_unprepare(iommu->num_clocks, iommu->clocks);
-+	return err;
-+}
-+
-+static void vsi_iommu_shutdown(struct platform_device *pdev)
-+{
-+	struct vsi_iommu *iommu = platform_get_drvdata(pdev);
-+
-+	disable_irq(iommu->irq);
-+	pm_runtime_force_suspend(&pdev->dev);
-+}
-+
-+static int __maybe_unused vsi_iommu_suspend(struct device *dev)
-+{
-+	struct vsi_iommu *iommu = dev_get_drvdata(dev);
-+
-+	vsi_iommu_disable(iommu);
-+
-+	clk_bulk_disable(iommu->num_clocks, iommu->clocks);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused vsi_iommu_resume(struct device *dev)
-+{
-+	struct vsi_iommu *iommu = dev_get_drvdata(dev);
-+	unsigned long flags, flags2;
-+	int ret;
-+
-+	ret = clk_bulk_enable(iommu->num_clocks, iommu->clocks);
-+	if (ret)
-+		return ret;
-+
-+	if (iommu->domain) {
-+		struct vsi_iommu_domain *vsi_domain = to_vsi_domain(iommu->domain);
-+
-+		spin_lock_irqsave(&vsi_domain->lock, flags);
-+		spin_lock_irqsave(&iommu->lock, flags2);
-+		vsi_iommu_enable(iommu, iommu->domain);
-+		spin_unlock_irqrestore(&iommu->lock, flags2);
-+		spin_unlock_irqrestore(&vsi_domain->lock, flags);
-+	}
-+
-+	return 0;
-+}
-+
-+static DEFINE_RUNTIME_DEV_PM_OPS(vsi_iommu_pm_ops,
-+				 vsi_iommu_suspend, vsi_iommu_resume,
-+				 NULL);
-+
-+static struct platform_driver rockchip_vsi_iommu_driver = {
-+	.probe = vsi_iommu_probe,
-+	.shutdown = vsi_iommu_shutdown,
-+	.driver = {
-+		   .name = "vsi_iommu",
-+		   .of_match_table = vsi_iommu_dt_ids,
-+		   .pm = pm_sleep_ptr(&vsi_iommu_pm_ops),
-+		   .suppress_bind_attrs = true,
-+	},
-+};
-+module_platform_driver(rockchip_vsi_iommu_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Benjamin Gaignard <benjamin.gaignard@collabora.com>");
-+MODULE_DESCRIPTION("Verisilicon IOMMU driver");
-diff --git a/include/linux/vsi-iommu.h b/include/linux/vsi-iommu.h
-new file mode 100644
-index 000000000000..81a80f9219f4
---- /dev/null
-+++ b/include/linux/vsi-iommu.h
-@@ -0,0 +1,21 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * verisilicon iommu: simple virtual address space management
-+ *
-+ * Copyright (c) 2025, Collabora
-+ *
-+ * Written by Benjamin Gaignard <benjamin.gaignard@collabora.com>
-+ */
-+
-+#ifndef _VSI_IOMMU_H_
-+#define _VSI_IOMMU_H_
-+
-+struct iommu_domain;
-+
-+#if IS_ENABLED(CONFIG_VSI_IOMMU)
-+void vsi_iommu_restore_ctx(struct iommu_domain *domain);
-+#else
-+static inline void vsi_iommu_restore_ctx(struct iommu_domain *domain) {}
-+#endif
-+
-+#endif
--- 
-2.43.0
+From that standpoint, some of the existing bus clock names defined in
+qcom,i2c-cci.yaml are not ideal. You can find better naming in bindings
+like qcom,i2c-qup.yaml or qcom,i2c-geni-qcom.yaml.
 
+Regards,
+Loic
 
