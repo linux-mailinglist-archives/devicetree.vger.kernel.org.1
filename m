@@ -1,199 +1,193 @@
-Return-Path: <devicetree+bounces-252507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2EABD00394
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 22:48:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C527CD0046F
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 23:08:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0079B300C293
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 21:45:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 686F53029B97
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 22:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4100B2E7653;
-	Wed,  7 Jan 2026 21:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85683261B9B;
+	Wed,  7 Jan 2026 22:06:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sI1n6Dfp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fuqFCbHU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010009.outbound.protection.outlook.com [40.93.198.9])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5F272E0914;
-	Wed,  7 Jan 2026 21:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.9
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767822301; cv=fail; b=rNyh6DVLaoXTqFj+vlGq8JHtQpAVvWT1OwmJLN+dn21zoLqgvSyXp1FcmYeHXsc+VYXodLS03Czi3JuMUd6cTfR3Aj/599L28fPqx3HwwlOGhC3U5Je5O1YcgtYfPXCzzfaAaBtAerNa2a/L9vO9sLEh6QFfWcey3uUsmTC4eQ8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767822301; c=relaxed/simple;
-	bh=U8GjPg+RTGtpniJ8SBF6SRMVtCFYDvVFA7/mqVRst8I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KOdggXeMobbKdCmZtgUyoJb7zL1LIN1kLu7ibbIPiPcwh3f8F2V93ZHtw0EJ9SiYf9mvTZrP/onMTyYX3zfTT0V91R4njInF09XCw0fOtLnXStL4aLyStHqQ7ygF0xpzEnDyN0Aez3HBb4qvDhiMbJBaOZPORsQo01cY2GUnYUQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sI1n6Dfp; arc=fail smtp.client-ip=40.93.198.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VZj9hZXBei5urA2rnxF0jNI4uJqq5EDaGldTVoQOHcAwBPnJWc8mICBRJZTqJt97rZ3fOit5nZPzDOJRqfVnYQVN5VTzp8YQaL3HeEZ9tXDH4D42RH1SDQBz19jFwHxABZbQq1VQR19EdKI4HmPfB2UsOmRrZuNugfp5PkTKMbvoHCS9nqmwbwObdeUQ21Um5SzHpnw/FZyBP3fylwGrqfatkGXVgg6ZMyv9xJOK84PW+t20B336NB0tJqxWKIovdwO0NnYAoAgBHCV4NUXTq3/IxKiKL6SRMOjX2dtulcwMbzJGOtkNX6dwizgOfRb9VuUBnts6pG/fUhoRTgYYGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+5GrSwV93wyzCmfyY+CfgJ/wayiOSfDT9fXhh8GQkUU=;
- b=KAK3RgzZzYD1nKKYLaNw+3mgdDEPcydCyfxhLZmf96zExaXz/lzo6/s5R2YysECCVxHQGlCaO+eig9+DT771LXZQX1/yNzlZgg6Cn8wROKpDao8IkQ8Js/13+N/BuChn2vNUVlyENonzPFnobfyhj8CrnswKmc3jQ03Q4KMpbL7wMadsA85A5KtHlUu61Vdupp1HuBYMKxS8TVL/0p8EsHPA9Ak2QFHlOGi/JuBy9baxx532X5aK8we6g8rzq/AKPB6Bbj9hKDSw8jB8o33tRaaQRQiW5PEd8GNPI3UTpjlGkOhPNDCmTodoU3dTWQhvRLBSrEr5fJkkmemgxj/BEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+5GrSwV93wyzCmfyY+CfgJ/wayiOSfDT9fXhh8GQkUU=;
- b=sI1n6DfppPfJMp1C7UCGQUWArepCBjFz/1MQb+n8WmU41EDOptSa+qZvP+KBJdQELp1b56tdguL+sLnUgtGf6RlwwIZHSSgKj3oOGDsi+wudmpVFNU4KppxLOdeREejJxtGzBvzO0TvFOPdLQUovpAROlVcu3TvLRWZAbSZEhCQ=
-Received: from BN9PR03CA0654.namprd03.prod.outlook.com (2603:10b6:408:13b::29)
- by BN0PR10MB5047.namprd10.prod.outlook.com (2603:10b6:408:12a::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
- 2026 21:44:57 +0000
-Received: from BN3PEPF0000B370.namprd21.prod.outlook.com
- (2603:10b6:408:13b:cafe::ec) by BN9PR03CA0654.outlook.office365.com
- (2603:10b6:408:13b::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.2 via Frontend Transport; Wed, 7
- Jan 2026 21:44:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- BN3PEPF0000B370.mail.protection.outlook.com (10.167.243.167) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.0 via Frontend Transport; Wed, 7 Jan 2026 21:44:55 +0000
-Received: from DFLE200.ent.ti.com (10.64.6.58) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 7 Jan
- 2026 15:44:55 -0600
-Received: from DFLE201.ent.ti.com (10.64.6.59) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 7 Jan
- 2026 15:44:55 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE201.ent.ti.com
- (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 7 Jan 2026 15:44:55 -0600
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 607LisWB1271943;
-	Wed, 7 Jan 2026 15:44:54 -0600
-Message-ID: <c7dfe4a3-1bf5-4e50-b4b7-8752aa9ef1f5@ti.com>
-Date: Wed, 7 Jan 2026 15:44:54 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 792F5277C9A;
+	Wed,  7 Jan 2026 22:06:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767823617; cv=none; b=OD3hgrjPTokImTJlWC3GIIdkXtpOCqZbPy5MwxZVScVZ7BsUbgH80YJ5u8Iq3iYAEazbg3VN72RdLHj7MUS3H4bDYg+Aptt8OX2vBbodGYFRlLSfNbHiq+2N/zI1Sn49Zm+ZGy7ek/fHZ7cCdOPbWD0le80TeOwsydPZh2AORW8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767823617; c=relaxed/simple;
+	bh=UadDQpXth2y08Ep29A4mQN6A1BcwKvCecGr4DwD/CGQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ftTKuG3rWmRw/gCX/uS2x8AiugFju+wRLhwKhd6+iHLSmMp1WHA4WDcrRLGdcmbAM8xPC9QLk+EL/MWA5hqjtcyrenqg0jOQImUd5eRUnGhOdFOa19pRAr2zQBj3NXn0gDT9PdR1iPVv6/pb0/2MJ6jUt1HYI6tu29nAx40X5zM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fuqFCbHU; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1767823616; x=1799359616;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UadDQpXth2y08Ep29A4mQN6A1BcwKvCecGr4DwD/CGQ=;
+  b=fuqFCbHUFM0OY0GqjrrA96JqXjLC7m2yH/dSb+oPoK+xJyF2/NgovzGj
+   DuGhG5Av/R0hhWDls2Ul+KLwNRyyjC+hFd9FlT10zuJMblkvc3F6x5UUh
+   77MjElf2SGZOYePoBd/4zT3Ht9MhNPL4uz7g3mAMPV4gJEEE8CdgRUBOO
+   lYOUnVZtebJf3SqxmpNxWMgYgKy9QOs3oR3wW8/AGxRJYU8tQrvKT2uvQ
+   0e5frT1vXRvf+wQcIT/lPPANTMTMsV5VPGEcGahFbgyS17xOx2U+Wg4ky
+   TxbozH5kDG27SM8p+ETQZ07hJaIknjq/KU8tv+3mTnCUjH13VcfUMmIF7
+   Q==;
+X-CSE-ConnectionGUID: /zWvaBF8ScG3wAj+e9zumQ==
+X-CSE-MsgGUID: y3/joV3vTD+5KrEciaiLkw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="72835494"
+X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; 
+   d="scan'208";a="72835494"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 14:06:55 -0800
+X-CSE-ConnectionGUID: i+VpkJMJQcWu7S8Hdgej2A==
+X-CSE-MsgGUID: 5TvqWzfHQq2Zk5px1uV2TA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; 
+   d="scan'208";a="207884628"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.174])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 14:06:50 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 9D9F912074E;
+	Thu, 08 Jan 2026 00:07:03 +0200 (EET)
+Date: Thu, 8 Jan 2026 00:07:03 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+Cc: robh@kernel.org, krzk+dt@kernel.org,
+	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Svyatoslav Ryhel <clamor95@gmail.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v9 2/2] media: i2c: add os05b10 image sensor driver
+Message-ID: <aV7ZB40s7L2PdW21@kekkonen.localdomain>
+References: <20260105093420.110973-1-himanshu.bhavani@siliconsignals.io>
+ <20260105093420.110973-3-himanshu.bhavani@siliconsignals.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] arm64: boot: dts: ti: k3-am62l: allow WKUP UART
- wakeup from LPM
-To: Bryan Brattlof <bb@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Dhruva
- Gole" <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
-	<msp@baylibre.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
-	<s-kochidanadu@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20260106-wkup-uart-wakeup-v2-0-fb4cbd56c827@ti.com>
- <20260107164504.ehvbfizg7ybbvv2e@bryanbrattlof.com>
-Content-Language: en-US
-From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20260107164504.ehvbfizg7ybbvv2e@bryanbrattlof.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B370:EE_|BN0PR10MB5047:EE_
-X-MS-Office365-Filtering-Correlation-Id: bddb9b1c-85d8-4824-e634-08de4e35ff64
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cm1GdVFPa3JpR1dhZXV1RmdXRSsveG9jTUx6Wkt5dDVyUGMzeVlqb0lIN08x?=
- =?utf-8?B?TUp6R0o3RHhlREFjQmw2VytDSm9iY3Q3V0s0QVNrdE10MlV6U1NvMTBHb2tS?=
- =?utf-8?B?M3F3LzBRYXhFb0dJakUyYmpBSUZjMjVlTFZBZU9UNUxoTlhvQkJSVjlHTWpM?=
- =?utf-8?B?a0NwRm4xR0JWN0JqS1lET2xXYnFONzhrK2ZpaW0rcnpzV0ZlWVRYUVNIRXBP?=
- =?utf-8?B?NWRZRnJPRTNETWhVSjVRTDlCcG5ySTF2WStPdDBSU0MyWDVLZ0NnQ1gveWJC?=
- =?utf-8?B?MExKc0x5ZzZidVlZbGZHYmlFTWFzaCthU0RWd2F3bkQ0RjMvdm5rOVBsdmFh?=
- =?utf-8?B?S2tnck5hZ2xYYThjREdxV1lUd0IxYS9EWUlkS1FMQTk0ekF0Y0VMSTRTQWhG?=
- =?utf-8?B?Ykk4UVJ4aXRqZzVQOGxYZm9kZDJQbGtIeTRoT0ZENnpGODJIaWNVbmNTL0hi?=
- =?utf-8?B?MzZtKzk3QUU5RVU4K25ESkN2RWp4UEZxR1pWdGwrK0xxYlJGVCtNMFFBZ3pW?=
- =?utf-8?B?VW5UYkF0cEgrNU93ZUh4bzVraGdZUlFXVlhOUDloNnIzU0NnWWxDZ2tReUQ3?=
- =?utf-8?B?MVRyUysrTmVXZHZyeDNiNnEzcW5aM2lnNUVndmxRWXUraHZrb093eGdMWWg0?=
- =?utf-8?B?RUlLREI2ejlia1lVN0xFM3RtZUgzUkFwd0lNWXFTbHZJREZCYlRGdnBnMWM1?=
- =?utf-8?B?WWFycFdSRmVzcXRyeHA2Q0U3ZWNHSmE3b24vU3Jmc24yeE9yWVlrZUx6NDFJ?=
- =?utf-8?B?ZmdLWHFhTEp4bUkxdXBLcndJK1Y2ekExUTg3Z0o4M084TVBDeHR1dy83UEwz?=
- =?utf-8?B?M055bjJrU2h0UlQ4NlREbzlkcXcyZmYwQ3dmcFhtZUdCMUNxODliSUx1U3o5?=
- =?utf-8?B?K3BSR1ZyZlI3N2FNN1ZnR3pJb1RXaTdQQVp3Skg1YmRRQ1JNYm1Xa29lMENL?=
- =?utf-8?B?T1FXMFlMeFlSTFlURDZyZDl2d0JpcWNWTzZHR2t6akMvRk1vRGV4ZVoyOFl6?=
- =?utf-8?B?N1hLVktDcTg3VnMvMFBQcXBMMVU1YkVJam03QThLZ0kyUys1Z2ZqUzZXQkpX?=
- =?utf-8?B?Rk1KSjNoQlZqVXF3Vmo3bzhVVlQ4T1BEd29Qb08rTFQ0bnRTZVlLZktJUWZt?=
- =?utf-8?B?WXU0MzFxZkQvZUZEUVRGQTVLa3RRa3Fvdm51alBrcUlvQ0Q4UVlKR1JWeXhF?=
- =?utf-8?B?VVhWTzdXU21ub2tWTUNETWVqRjFrcm5QdUFManU3b1R4M0tuekZVR1ltNHJZ?=
- =?utf-8?B?eXVLdEFUc0hxSWtyV2pDMWQxK3FseVYvQ3lUSU9wVXIxc0JQRnhzSzhub2J2?=
- =?utf-8?B?V0g1YytXUXpETzRFUlNnSXNrbGw3RzRkUkp2RDRCeGJmSU8rVm1nL1JhN0tj?=
- =?utf-8?B?aDFPMjE2ekRGVm5ETmZJYzE5S2JyT20yZ3owMHEzTzJ5OW1ZRjlSOXFuVUZ6?=
- =?utf-8?B?R1B4ekZIamVEK3RXVFh4WStZSTJCRFVoMXdXTk5iTmljQUU2d0k4VGd0LzVG?=
- =?utf-8?B?YmprbXhpWEZ1US9YMW8wdG5pU0hUWFMwcFpoNWpHY2p2bDhEOTZLMkZzVnB4?=
- =?utf-8?B?M3A1aHhoWTNpblZLWVJOQXNHSzZpdXpWbURzR0N5SjlMK0RBY0RxUThpQlZn?=
- =?utf-8?B?VmJSQU5YMGozTjZ0clNMMEpBbmZjQjBVR05Cc0J0dFkwQnFkcElVRlJzNnNq?=
- =?utf-8?B?M2tldTRxVnFGV1I5QXEvUFJSV25adXdqc2Z0aWZSSVlrSkFNMWJQQ0Fva0hw?=
- =?utf-8?B?T0hUUm5DUUhhaTRBUXh5M1ZhRUZOa2RRR0dOMXVkMTFCYUFjYU1xNERXYmla?=
- =?utf-8?B?TEkyM0VsRU5mY2QzU1BBbExOWEFseGZmYU81dVcwNEp6aUx3S3hlQlNpdk1N?=
- =?utf-8?B?RFVoUVU0bW52dVZ3a0luVUlYcmtKMk15TEJCWWxMUnRxT3h4bHM0cXRyenpv?=
- =?utf-8?B?U2tFVUtFVmpOVmIzRk03MFVzVEx5eVVBbGdTbW11aXc4M0tML3BiT1FIR1N0?=
- =?utf-8?B?a1NOOExWS2hBeWoyWHdlQ1cwZ1ZPVEU2d2hESTJ1ZnZvajBVcGEwM291ajZ4?=
- =?utf-8?B?b01TbEQ4RW1QbVZSaTVRNzZkNGM2bG1CeGgxK25HUG1TNTMrR01LSDVFcERF?=
- =?utf-8?Q?k4sw=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 21:44:55.7110
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bddb9b1c-85d8-4824-e634-08de4e35ff64
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN3PEPF0000B370.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB5047
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260105093420.110973-3-himanshu.bhavani@siliconsignals.io>
 
-On 1/7/26 10:45, Bryan Brattlof wrote:
-> On January  6, 2026 thus sayeth Kendall Willis:
->> K3 TI AM62L SoC supports wakeup from WKUP UART when the SoC is in the
->> DeepSleep low power mode. To allow wakeup from WKUP UART the target-module
->> device tree node is enabled. The ti-sysc interconnect target module driver
->> is used to configure the the SYSCONFIG related registers. In this case,
->> the interconnect target module node configures the WKUP UART to be able to
->> wakeup from system suspend. The SYSC register is used to enable wakeup
->> from system suspend for the WKUP UART. Refer to 14.7.2.5 UART in the
->> AM62L Techincal Reference Manual for registers referenced [1].
->>
->> Previous TI SoCs configure the WKUP UART to wakeup from system suspend
->> using the ti-sysc interconnect target module driver. Refer to commit
->> ce27f7f9e328 ("arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc for
->> wkup_uart0") for an example of this.
-> 
-> I think I may be confused. What is setting the pinmux for the wkup_uart
-> to allow us to trigger the wake event? It looks like they reset to GPIO
-> pins if not set. Is firmware doing this?
+Hi Himanshu,
 
-On AM62L, the WKUP UART pinmux is initially set by TFA so that it is set 
-to the UART pins, not GPIO. The target-module node sets the WKUP UART 
-SYSC register so that wakeup is enabled.
+Thanks for the update.
 
-Best,
-Kendall
+A few comments below... please post a patch on top.
 
-> 
-> ~Bryan
+On Mon, Jan 05, 2026 at 03:04:14PM +0530, Himanshu Bhavani wrote:
+
+...
+
+> +static int os05b10_disable_streams(struct v4l2_subdev *sd,
+> +				   struct v4l2_subdev_state *state,
+> +				   u32 pad, u64 streams_mask)
+> +{
+> +	struct os05b10 *os05b10 = to_os05b10(sd);
+> +	int ret;
+> +
+> +	ret = cci_write(os05b10->cci, OS05B10_REG_CTRL_MODE,
+> +			OS05B10_MODE_STANDBY, NULL);
+> +	if (ret)
+> +		dev_err(os05b10->dev, "failed to set stream off\n");
+> +
+> +	pm_runtime_put(os05b10->dev);
+> +
+> +	return ret;
+
+I'd return 0 here: there's nothing the caller can really do about this.
 
 
+...
+
+> +static u64 os05b10_pixel_rate(struct os05b10 *os05b10,
+> +			      const struct os05b10_mode *mode)
+> +{
+> +	u64 link_freq = link_frequencies[os05b10->link_freq_index];
+> +	const unsigned int lanes = os05b10->data_lanes;
+> +	u64 numerator = link_freq * 2 * lanes;
+> +	unsigned int bpp = mode->bpp;
+> +
+> +	do_div(numerator, bpp);
+> +
+> +	dev_info(os05b10->dev,
+> +		 "link_freq=%llu bpp=%u lanes=%u pixel_rate=%llu\n",
+> +		 link_freq, bpp, lanes, numerator);
+
+Use dev_dbg() if you print this at all. I wouldn't: it looks like a
+development time leftover.
+
+You can also make this more simple by using div_u64(). Also, there's no
+really point for have a local variable for everything.
+
+...
+
+> +static int os05b10_probe(struct i2c_client *client)
+> +{
+> +	struct os05b10 *os05b10;
+> +	unsigned int xclk_freq;
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	os05b10 = devm_kzalloc(&client->dev, sizeof(*os05b10), GFP_KERNEL);
+> +	if (!os05b10)
+> +		return -ENOMEM;
+> +
+> +	os05b10->client = client;
+> +	os05b10->dev = &client->dev;
+> +
+> +	v4l2_i2c_subdev_init(&os05b10->sd, client, &os05b10_subdev_ops);
+> +
+> +	os05b10->cci = devm_cci_regmap_init_i2c(client, 16);
+> +	if (IS_ERR(os05b10->cci))
+> +		return dev_err_probe(os05b10->dev, PTR_ERR(os05b10->cci),
+> +				     "failed to initialize CCI\n");
+> +
+> +	os05b10->xclk = devm_v4l2_sensor_clk_get(os05b10->dev, NULL);
+> +	if (IS_ERR(os05b10->xclk))
+> +		return dev_err_probe(os05b10->dev, PTR_ERR(os05b10->xclk),
+> +				     "failed to get xclk\n");
+> +
+> +	xclk_freq = clk_get_rate(os05b10->xclk);
+> +	if (xclk_freq != OS05B10_XCLK_FREQ)
+> +		return dev_err_probe(os05b10->dev, -EINVAL,
+> +				     "xclk frequency not supported: %d Hz\n",
+> +				     xclk_freq);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(os05b10_supply_name); i++)
+
+You could declare i here -- as unsigned int.
+
+> +		os05b10->supplies[i].supply = os05b10_supply_name[i];
+> +
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
