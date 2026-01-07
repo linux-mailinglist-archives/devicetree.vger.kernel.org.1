@@ -1,119 +1,293 @@
-Return-Path: <devicetree+bounces-252256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98052CFD0D4
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 11:00:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E63ECFD0F8
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 11:01:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DAA5230076B3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 10:00:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CD25C301CA01
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 10:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB18304BBC;
-	Wed,  7 Jan 2026 09:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0D1F2F5A13;
+	Wed,  7 Jan 2026 09:39:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eJVtBzDD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YOu4RDFH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC788305E05
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 09:37:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9513C2139C9;
+	Wed,  7 Jan 2026 09:39:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767778636; cv=none; b=FegSTT4DoaJqzGWyTJ3Neq7woWTCj4rgNTSfQocRDTeJ2wdFFv5lQu3arOeZlTBWlS4QSajFCjReCugWz3Rs4O7CYdZmaqF1rTw8qoa0BioL09RCBvxuFJsLV0lkzXaWxpI0KnOExQ9aWCq52bJbwA5bAcc7piVdnj1HLw74BD0=
+	t=1767778744; cv=none; b=JrxG3X1j/FZvYLQ4UTMi5pA3T6demUX8MFgL3h8I8+sTGeKUgyvRag0dmY4iQ7RMYf6wxGFwEI6/NmTEBaMHpPTqE+A8z9yfztK+KoerifZAGojHtNMV/UpyTBLh/TWNgjj/YWtLvXMHHSrBhmYuOG/ey/YdC10Axc3xz06498Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767778636; c=relaxed/simple;
-	bh=IGbQtndseA99jDxBELG5W91MnVIu8zXlNOcTJSF/q8E=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HRvN/Kf4xa61RodnqV5V4VOLLKNtrk+oJ+VxlLUGUG665fuY0VhSpn/fYCLuYatkln2Qjht9Ut/Bb4WNs6F0Y4djTijF5J8Ph4JVUpQ0CxqTcEyql0ltVwhxv2Ko1nMMTheS0SnbfRN83+QJsxibhs+/m7YjJWn4+qpa2KUJfGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eJVtBzDD; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 7133E4E41FCA;
-	Wed,  7 Jan 2026 09:37:11 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3A77F606F8;
-	Wed,  7 Jan 2026 09:37:11 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 438FD103C86E9;
-	Wed,  7 Jan 2026 10:36:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767778628; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Jw9fYqtCDXfPtT+8UOX2Xqrz6As8LIZX/uUf/suEIp4=;
-	b=eJVtBzDDN9p/slaW/fBHnk6sVTQesibf2sguJrNYrWaLClMnA9NKlPA4Ehezr7dp/2Wuke
-	TtkA9rGEI3kgx5Up+CjRj68avMbdok0rWTvevos1bkIUmBtsEc3fEQAZZNRjssRPAloNrC
-	VfxUf5Z15TAE+A3Jw8pC2+6bVzQsAaV+4oOVdZHc8zL4SSQ9M3QGpLQjsSiKDMF3meKpSN
-	YPF2lEeX7O9RW27hBkGMeIALtYqJ6aPxfiYjy+nR4V04yL93puBZHruosW7nlE02Kh9nWH
-	Bq1tRPOh8ZxhL8aaB7bxftYzP2XBxLgSOURHpSrQZbKVffuOe3IhbgOhgwE4BA==
-Date: Wed, 7 Jan 2026 10:36:55 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Andrew Davis <afd@ti.com>
-Cc: Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen
- <tomi.valkeinen@ideasonboard.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Russell
- King <linux@armlinux.org.uk>, "Bartosz Golaszewski" <brgl@bgdev.pl>, Tony
- Lindgren <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, Markus
- Schneider-Pargmann <msp@baylibre.com>, Bajjuri Praneeth <praneeth@ti.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Louis Chauvet
- <louis.chauvet@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Miguel Gazquez
- <miguel.gazquez@bootlin.com>, Herve Codina <herve.codina@bootlin.com>,
- <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-omap@vger.kernel.org>
-Subject: Re: [PATCH v3 04/22] drm/tilcdc: Add support for DRM bus flags and
- simplify panel config
-Message-ID: <20260107103655.2d25bcc3@kmaincent-XPS-13-7390>
-In-Reply-To: <f9fb8050-89f9-4449-bc2c-ff284873be79@ti.com>
-References: <20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com>
-	<20260106-feature_tilcdc-v3-4-9bad0f742164@bootlin.com>
-	<f9fb8050-89f9-4449-bc2c-ff284873be79@ti.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1767778744; c=relaxed/simple;
+	bh=PsRf4pbDc1e82R0yxHCIvKZeRq20Nnsceo97LxRmP58=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q0KE4/6QGL4vQ5UUWzX6EdR4kWd/eZUgZdOcRrrSb3G8UJAWnYV25U8u4JNfvbDvMKSnpLfkAmMuEM70T4oaO5OmxCGj2uFrTJeXHagx7rzY6RTwP1PtolEEWK7hmyOUIZXpl4Z66H6HOsdylANg4t//glmj7xDhhDmn9Bh20I0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YOu4RDFH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FC1AC16AAE;
+	Wed,  7 Jan 2026 09:38:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767778744;
+	bh=PsRf4pbDc1e82R0yxHCIvKZeRq20Nnsceo97LxRmP58=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YOu4RDFHf4wy5wSuEt+UhwBF5CwWPIHrRgshqFqBIKGVzkEMooQ1yg1R+tMajri1V
+	 j1J5Lhlkv1u5qEl/0qQ06I228mrRrKIKvnlLuDOLwg/+uY/9d3cqKdEWWkemNUG1pG
+	 X/SVbM/M+CGZQzoiW4vjqf+5yqwFBXZj29+L3tL6Ct222wvVVi9H+GBPL062XkDtr+
+	 lz+l6laIzipwYJGdL5X6ytgLWNiLRERvLfA+EwnrSS/ScTqr42/CCaij6fIjjKMD1P
+	 4B6GuTMTyVxEzKfGPfEyv8HYLeay6PPH63K/U3Q9lWoVN7oncd8eUioN7oRM2uIwcg
+	 pdEpqXaPj0izA==
+Date: Wed, 7 Jan 2026 15:08:55 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	linux-pm@vger.kernel.org, linux-ide@vger.kernel.org
+Subject: Re: [PATCH v4 5/5] power: sequencing: Add the Power Sequencing
+ driver for the PCIe M.2 connectors
+Message-ID: <z33axfsiox73f2lklhiaulekjnqxnqtkycfylybwqnqxtx2fck@3qtas4u6mfnz>
+References: <20251228-pci-m2-v4-0-5684868b0d5f@oss.qualcomm.com>
+ <20251228-pci-m2-v4-5-5684868b0d5f@oss.qualcomm.com>
+ <CAMRc=MfPq7+ZbWTp7+H388hqHoX27qbbHsLHO+xeLaceTwZLVA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=MfPq7+ZbWTp7+H388hqHoX27qbbHsLHO+xeLaceTwZLVA@mail.gmail.com>
 
-On Tue, 6 Jan 2026 13:30:40 -0600
-Andrew Davis <afd@ti.com> wrote:
-> >   static int tilcdc_init(const struct drm_driver *ddrv, struct device *=
-dev)
-> >   {
-> >   	struct drm_device *ddev;
-> >   	struct platform_device *pdev =3D to_platform_device(dev);
-> >   	struct device_node *node =3D dev->of_node;
-> > +	const struct of_device_id *of_id;
-> >   	struct tilcdc_drm_private *priv;
-> >   	u32 bpp =3D 0;
-> >   	int ret;
-> > @@ -209,6 +222,10 @@ static int tilcdc_init(const struct drm_driver *dd=
-rv,
-> > struct device *dev) if (IS_ERR(ddev))
-> >   		return PTR_ERR(ddev);
-> >  =20
-> > +	of_id =3D of_match_node(tilcdc_of_match, node); =20
->=20
-> You should be able to use `device_get_match_data()` here, then you would
-> also be able to keep the tilcdc_of_match table down were it was before.
+On Fri, Jan 02, 2026 at 12:26:21PM +0100, Bartosz Golaszewski wrote:
+> On Sun, Dec 28, 2025 at 6:01 PM Manivannan Sadhasivam
+> <manivannan.sadhasivam@oss.qualcomm.com> wrote:
+> >
+> > This driver is used to control the PCIe M.2 connectors of different
+> > Mechanical Keys attached to the host machines and supporting different
+> > interfaces like PCIe/SATA, USB/UART etc...
+> >
+> > Currently, this driver supports only the Mechanical Key M connectors with
+> > PCIe interface. The driver also only supports driving the mandatory 3.3v
+> > and optional 1.8v power supplies. The optional signals of the Key M
+> > connectors are not currently supported.
+> >
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > ---
+> >  MAINTAINERS                               |   7 ++
+> >  drivers/power/sequencing/Kconfig          |   8 ++
+> >  drivers/power/sequencing/Makefile         |   1 +
+> >  drivers/power/sequencing/pwrseq-pcie-m2.c | 160 ++++++++++++++++++++++++++++++
+> >  4 files changed, 176 insertions(+)
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 5b11839cba9d..2eb7b6d26573 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -20791,6 +20791,13 @@ F:     Documentation/driver-api/pwrseq.rst
+> >  F:     drivers/power/sequencing/
+> >  F:     include/linux/pwrseq/
+> >
+> > +PCIE M.2 POWER SEQUENCING
+> > +M:     Manivannan Sadhasivam <mani@kernel.org>
+> > +L:     linux-pci@vger.kernel.org
+> > +S:     Maintained
+> > +F:     Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
+> > +F:     drivers/power/sequencing/pwrseq-pcie-m2.c
+> > +
+> >  POWER STATE COORDINATION INTERFACE (PSCI)
+> >  M:     Mark Rutland <mark.rutland@arm.com>
+> >  M:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+> > diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequencing/Kconfig
+> > index 280f92beb5d0..f5fff84566ba 100644
+> > --- a/drivers/power/sequencing/Kconfig
+> > +++ b/drivers/power/sequencing/Kconfig
+> > @@ -35,4 +35,12 @@ config POWER_SEQUENCING_TH1520_GPU
+> >           GPU. This driver handles the complex clock and reset sequence
+> >           required to power on the Imagination BXM GPU on this platform.
+> >
+> > +config POWER_SEQUENCING_PCIE_M2
+> > +       tristate "PCIe M.2 connector power sequencing driver"
+> > +       depends on OF || COMPILE_TEST
+> > +       help
+> > +         Say Y here to enable the power sequencing driver for PCIe M.2
+> > +         connectors. This driver handles the power sequencing for the M.2
+> > +         connectors exposing multiple interfaces like PCIe, SATA, UART, etc...
+> > +
+> >  endif
+> > diff --git a/drivers/power/sequencing/Makefile b/drivers/power/sequencing/Makefile
+> > index 96c1cf0a98ac..0911d4618298 100644
+> > --- a/drivers/power/sequencing/Makefile
+> > +++ b/drivers/power/sequencing/Makefile
+> > @@ -5,3 +5,4 @@ pwrseq-core-y                           := core.o
+> >
+> >  obj-$(CONFIG_POWER_SEQUENCING_QCOM_WCN)        += pwrseq-qcom-wcn.o
+> >  obj-$(CONFIG_POWER_SEQUENCING_TH1520_GPU) += pwrseq-thead-gpu.o
+> > +obj-$(CONFIG_POWER_SEQUENCING_PCIE_M2) += pwrseq-pcie-m2.o
+> > diff --git a/drivers/power/sequencing/pwrseq-pcie-m2.c b/drivers/power/sequencing/pwrseq-pcie-m2.c
+> > new file mode 100644
+> > index 000000000000..4835d099d967
+> > --- /dev/null
+> > +++ b/drivers/power/sequencing/pwrseq-pcie-m2.c
+> > @@ -0,0 +1,160 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> > + * Author: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > + */
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_graph.h>
+> > +#include <linux/of_platform.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pwrseq/provider.h>
+> > +#include <linux/regulator/consumer.h>
+> > +#include <linux/slab.h>
+> > +
+> > +struct pwrseq_pcie_m2_pdata {
+> > +       const struct pwrseq_target_data **targets;
+> > +};
+> > +
+> > +struct pwrseq_pcie_m2_ctx {
+> > +       struct pwrseq_device *pwrseq;
+> > +       struct device_node *of_node;
+> > +       const struct pwrseq_pcie_m2_pdata *pdata;
+> > +       struct regulator_bulk_data *regs;
+> > +       size_t num_vregs;
+> > +       struct notifier_block nb;
+> > +};
+> > +
+> > +static int pwrseq_pcie_m2_m_vregs_enable(struct pwrseq_device *pwrseq)
+> > +{
+> > +       struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
+> > +
+> > +       return regulator_bulk_enable(ctx->num_vregs, ctx->regs);
+> > +}
+> > +
+> > +static int pwrseq_pcie_m2_m_vregs_disable(struct pwrseq_device *pwrseq)
+> > +{
+> > +       struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
+> > +
+> > +       return regulator_bulk_disable(ctx->num_vregs, ctx->regs);
+> > +}
+> > +
+> > +static const struct pwrseq_unit_data pwrseq_pcie_m2_vregs_unit_data = {
+> > +       .name = "regulators-enable",
+> > +       .enable = pwrseq_pcie_m2_m_vregs_enable,
+> > +       .disable = pwrseq_pcie_m2_m_vregs_disable,
+> > +};
+> > +
+> > +static const struct pwrseq_unit_data *pwrseq_pcie_m2_m_unit_deps[] = {
+> > +       &pwrseq_pcie_m2_vregs_unit_data,
+> > +       NULL
+> > +};
+> > +
+> > +static const struct pwrseq_unit_data pwrseq_pcie_m2_m_pcie_unit_data = {
+> > +       .name = "pcie-enable",
+> > +       .deps = pwrseq_pcie_m2_m_unit_deps,
+> > +};
+> > +
+> > +static const struct pwrseq_target_data pwrseq_pcie_m2_m_pcie_target_data = {
+> > +       .name = "pcie",
+> > +       .unit = &pwrseq_pcie_m2_m_pcie_unit_data,
+> > +};
+> > +
+> > +static const struct pwrseq_target_data *pwrseq_pcie_m2_m_targets[] = {
+> > +       &pwrseq_pcie_m2_m_pcie_target_data,
+> > +       NULL
+> > +};
+> > +
+> > +static const struct pwrseq_pcie_m2_pdata pwrseq_pcie_m2_m_of_data = {
+> > +       .targets = pwrseq_pcie_m2_m_targets,
+> > +};
+> > +
+> > +static int pwrseq_pcie_m2_match(struct pwrseq_device *pwrseq,
+> > +                                struct device *dev)
+> > +{
+> > +       struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
+> > +       struct device_node *endpoint __free(device_node) = NULL;
+> > +
+> > +       /*
+> > +        * Traverse the 'remote-endpoint' nodes and check if the remote node's
+> > +        * parent matches the OF node of 'dev'.
+> > +        */
+> > +       for_each_endpoint_of_node(ctx->of_node, endpoint) {
+> > +               struct device_node *remote __free(device_node) =
+> > +                               of_graph_get_remote_port_parent(endpoint);
+> > +               if (remote && (remote == dev_of_node(dev)))
+> > +                       return PWRSEQ_MATCH_OK;
+> > +       }
+> > +
+> > +       return PWRSEQ_NO_MATCH;
+> > +}
+> > +
+> > +static int pwrseq_pcie_m2_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device *dev = &pdev->dev;
+> > +       struct pwrseq_pcie_m2_ctx *ctx;
+> > +       struct pwrseq_config config = {};
+> > +       int ret;
+> > +
+> > +       ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> > +       if (!ctx)
+> > +               return -ENOMEM;
+> > +
+> > +       ctx->of_node = dev_of_node(dev);
+> 
+> Since you're storing the node address for later, I'd suggest using
+> of_node_get() to get a real reference.
+> 
 
-Indeed. Didn't know this helper.
-Thanks you!
+If CONFIG_OF_DYNAMIC is not enabled, then of_node_get() will just return the
+passed pointer. I always prefer using dev_of_node() since it has the CONFIG_OF
+and NULL check. Though, the checks won't apply here, I used it for consistency.
 
---
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+> > +       ctx->pdata = device_get_match_data(dev);
+> > +       if (!ctx->pdata)
+> > +               return dev_err_probe(dev, -ENODEV,
+> > +                                    "Failed to obtain platform data\n");
+> > +
+> > +       /*
+> > +        * Currently, of_regulator_bulk_get_all() is the only regulator API that
+> > +        * allows to get all supplies in the devicetree node without manually
+> > +        * specifying them.
+> > +        */
+> > +       ret = of_regulator_bulk_get_all(dev, dev_of_node(dev), &ctx->regs);
+> > +       if (ret < 0)
+> > +               return dev_err_probe(dev, ret,
+> > +                                    "Failed to get all regulators\n");
+> > +
+> > +       ctx->num_vregs = ret;
+> > +
+> > +       config.parent = dev;
+> > +       config.owner = THIS_MODULE;
+> > +       config.drvdata = ctx;
+> > +       config.match = pwrseq_pcie_m2_match;
+> > +       config.targets = ctx->pdata->targets;
+> > +
+> > +       ctx->pwrseq = devm_pwrseq_device_register(dev, &config);
+> > +       if (IS_ERR(ctx->pwrseq)) {
+> > +               regulator_bulk_free(ctx->num_vregs, ctx->regs);
+> 
+> You're freeing it on error but not on driver detach? Maybe schedule a
+> devm action if there's no devres variant?
+> 
+
+Ok!
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
