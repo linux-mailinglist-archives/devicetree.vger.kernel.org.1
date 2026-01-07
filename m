@@ -1,80 +1,99 @@
-Return-Path: <devicetree+bounces-252175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77DACCFBFEA
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 05:42:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23F81CFC042
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 05:52:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0AB343028FEE
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 04:42:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 989CE3026519
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 04:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B468F1A0712;
-	Wed,  7 Jan 2026 04:42:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5BFF21FF35;
+	Wed,  7 Jan 2026 04:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cRIG66WO"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ovlL2MeO";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gmOXpqaC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88131ADFE4
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 04:42:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 096AA35959
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 04:52:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767760928; cv=none; b=dg/qFlLlEp1YuwqYombpX1dNNvaxj6Ah29hKdKgEgWcYszzoTbBbctfUIWquF3QKvJVUWkDLakjo2uCYgW1HEdbULX5cNyFMHCf8g/UExBZs4QXT7001YW9WAkBx2vNUnXB50kr5wEcPtom8EJpViQxRXLyTPoLjvDOOJoT3Zrk=
+	t=1767761530; cv=none; b=tpKv4JFsbOPmB6GbJ/CJpLwrBTkbiT+PJg1aOzBmP7IRf1O0x+Dvfd6TtETeDSTOH0FvVVsxQ4cv2zpp5aWEn/QkTBP1I2wbh7VHCRNxud1vjvb+abwouFU5AOd31k6hcYY7DCOqSmeS//+DizW4GRkY+H5+9kJ1BRvSXN4+NTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767760928; c=relaxed/simple;
-	bh=G+lJppHttUXeF/evLjii3rbMw6q86usTSMy6wwMLUz0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pTzyuCCqhV0XaZohAeeJzi+XCEcykvclduPmDfixkvYS9CAOiox5UikuQbdw7bqoKeq0V6Fu7OlRzBjctf17Cgl14fT0l2vm3u8I5FZQLTlXwd/Kiuc0HsApznCp+SVoBGCTcGbNaRUg9L6rep1cTGJ7gXIuk50H5yJlkiuwoy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cRIG66WO; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-382fc524cf3so1409751fa.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 20:42:04 -0800 (PST)
+	s=arc-20240116; t=1767761530; c=relaxed/simple;
+	bh=hOaF1kLzkfJRtvn7I+M9WG6yJE4HAillJiqCOWvLUR0=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=YwI5oy1YnCslzz4pWbYijnRb/6tfGWi9yWbSkypg3v8WH+ZgXIu227UYEwdM8GYQsN/OD8r672JWnUAmTLimcLeLhKUZmtxJFl0Fz4eZH1xTvPqLnhlwZFBmjXh0Od4x/pqYrsAcxKVRGJVibTMZ4/qs3M7p3UWQVEpxryrZbCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ovlL2MeO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gmOXpqaC; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6074mW4N1462299
+	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 04:52:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	GS2n8F6W62wUwW8q/efhA1XshLJHulz0DdGZ7wxXKlk=; b=ovlL2MeOifZmOPyO
+	eYyNzpN3WQVUO4HfbLbQnqzKrx1cpzKqu+vJ2fpPGGbyio2Q6/PWA1Dm/zL1HQGV
+	5UY0m/LE4j9ZLAAQp56OJAriL+rudsZPNTkmVFkv1cSKbKzKdfXBULn9xWPoehls
+	E60sYnxL51rcQ6TR/sz11IHicOyVEdqPGNaVr64QgBhB7wgllU88ez2bzMN2YmKd
+	lQO0SCjJt9ONJg+0AsarJhBUb2h1uWI7hwjjjC+fyNrHbKS/KHd109d6ak4hILOD
+	Lxi2yOZxW+YSxa2+w7tTCOwp1lyOoaQxJryXo6ZBJbwRoCmNtTFNQ7wXm2ySy3dr
+	Rt5ozA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bh0vm2v7s-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 04:52:08 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-29f2381ea85so36429665ad.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 20:52:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767760923; x=1768365723; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YkfCVyd53/ucNy9M3nl2k9rQ6JcMrMCnqE4mBt0wduk=;
-        b=cRIG66WOs+/PB1MILgK+JM+FyyIqfnRFld+voZ2EWjUV28RABeJpWd8oA/Cs3R91bo
-         r5FJTbfUYoea97SQsYQ+oWPH7FkWCAsBW7oFDID6QlmzRxMGFZTZkQFSqk56OxJkSq+f
-         ob3mF+EWopRyaGnV8G0WeiWZn2I5cr1DtUgmPGdXVVi9KvvcbBkzoyUMk5KQH6lOCf4L
-         Y8Mj02u0rY/jzzuwyRbrteo2myffJxrghiXUbBjkuIlicZmE1zw9DQUnFQQfUD10JURH
-         bvBQe2Kyl4F4XI/3y39C0O+c4B92McD0NtD34QJr1GYVFRD4LHga3IDujmV47Eeh1hOp
-         ByQg==
+        d=oss.qualcomm.com; s=google; t=1767761527; x=1768366327; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GS2n8F6W62wUwW8q/efhA1XshLJHulz0DdGZ7wxXKlk=;
+        b=gmOXpqaCCDo7ickWmw28w9cQKpOW+AMvG+lr1hFieKMM24SYbRBnFXC3IX1dYVVT+F
+         Un69z+58x7mxSqF5lKKrIFYExP33c3sqImi5hvJw3WqVN9hm3VOeUsRJzkbnfDzFsROz
+         9NJCBr0LA2Xeq/6TKBpLSNJvRrpJmIb37/ULmm4uFXWXEmL58meSohj1jmFCp+QOYYXA
+         remzp+9JIk92Dcf7aAgim5a6unKgpypAAbvMyvgxMRBZ/wJz7Nuw9Mpsu9IqRn4xGvCZ
+         CYvDxB/qP1TWztK1Gji2NP9xzMSYF5g6f7mEr5nmRA5oNto0DtmwcQMLZGf6BomMkTC6
+         v0nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767760923; x=1768365723;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YkfCVyd53/ucNy9M3nl2k9rQ6JcMrMCnqE4mBt0wduk=;
-        b=j57/Z808Qrq/4kpHPDv1da6IMXq1KErgmZgIC6H3s3qLbLenKcRadYb8FHboayH19J
-         cZDdT8XL1cVSDGMBsauJD9Yb4fyGJbXiw+ic68dsTV6hsC2EFLeyErQZ6kQzOMb35b4f
-         0AR5qAxbRXwZoKNpJYxx/pBtxXtU0FZ82sjFYzWQCrQLGI0SF829gdfnW18KeCiJSw8m
-         YWyIvIFbjCOtWlSZ51BJziFHNp4U3ayDjkBkV6n3zL1gmy/KAYWQ8Q1ELsGCqnBF+lz8
-         Pwhqb25AOwtgIz1cG79ti+A0u3NQifno+Q0S3yMCMCwrGc6ZOBJDX0S5TbSnLm1rK4MS
-         WK/w==
-X-Forwarded-Encrypted: i=1; AJvYcCWAqvPwQJWqxDDIOkAX1qCsoO9BfIFl1mieGJvedC7aAfcpybzdeaopbK3F8YKNIwRrGuZ+F/ZbmVnw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHx0JRBqb72xmWmyxdkQUzz8iQXeyUq1iijmLs/yv6SNCbELaX
-	HHOqjJIN53SoO+DI88x5a37yx7Hc4EiAcn9yfEV0H8C7YYvAHB7YmJ/dgKw/m6R8jP+BILtqyqv
-	iNAPN
-X-Gm-Gg: AY/fxX6IYL9JKhkzUDnerfBpKxv7e3xfRiverh2PPmxmWEyqnGOYUtH3lZY7lLvou0h
-	YhjVfzSn3ImnYlJWDwd8hFldtd7XU14RUD9dogib/U+akqHnVb5rEFnaNTZQ1YLPczL1qQ8Rs6o
-	06n4lAUUZcxq6A1NUmZgxHhi818miSaEthXrQuT4DpLGyAHHnvvWv3GFJCUW1FKF5KTbiTdMc9r
-	H+V/4ISeWyZPxIG9XHyZSSB+o3A200ximfIFVoyN5LWL69OTC7SLHbn4u0cGwDyanaFVb8szDiz
-	hDIB2nGCTAZNQI5QcE/DqhS/hCVjlt6Tmh3/OKFrcxMqXAiyDXCrDIvVwpQ36ZHM9UsCbA8tCN+
-	/YRi+An1nnJ7kABduzvcT5EbshaTq7PuSFzBChKwxI1Z3RLZ12gov4SUg6v8DqjtSt9bYFhKwZ9
-	IHdzEp70I4x556aTBMTQ2KIvf+p0Ls0FLEfR2gsvvMlq9DJ4mdq1y701l1fa4Y8AXGlQ==
-X-Google-Smtp-Source: AGHT+IFuxyEOJSsVILPAwetJUmHD+jF6p5U6vU9/JjiGrP44p16/Cr5nFrGos/EVs9geMZQAqG0x9Q==
-X-Received: by 2002:a2e:b8c8:0:b0:37f:c5ca:7428 with SMTP id 38308e7fff4ca-382ff5ae8a2mr1609001fa.0.1767760922695;
-        Tue, 06 Jan 2026 20:42:02 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-382eb8f146bsm8786921fa.36.2026.01.06.20.41.59
+        d=1e100.net; s=20230601; t=1767761527; x=1768366327;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GS2n8F6W62wUwW8q/efhA1XshLJHulz0DdGZ7wxXKlk=;
+        b=NM0EUxGe685cEyoHwahFzukKpAcWTbsyv5Nub1k4AM62LhqUtTvm1G1RpA8vVzgGqJ
+         RY9C5rMVOt5BnFx7hOT7SifraTtshBMaI18SXXYq27kU5J4EZLt/3Vo2BXTwH5YRmJ7f
+         7QLuQR87otfwK2wL052c4O6TNX1v4IDSvDzSwHdv/1uQKpIdRUm2WC0SqucwRR2I32Vw
+         KvEco3boCD9/o1rZIBlfZwo30Pijws0/XPjyg7aUEKKdt9neRI3WDTiVn99eR0yjeWPO
+         v7o8fepTxIM5qBgNsaTYi/O8iFUnQxD6/059rioos7U47Ctzf+c7iVL9+40wJ6O+bX+y
+         4q+g==
+X-Forwarded-Encrypted: i=1; AJvYcCUVrSQnAB9mHUqKHe09q0yzdB0qcLRROAF5yIh7jHbv/8FKrNfts/p4VNsEbuexo2xeNiU0rxuzwDOo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzomf/X6jEuPBZwhG5P/jdIDaPNZrPSNq1V1Xsm5oTkBtyF/44A
+	9MkSn+GGiOz96ui/TKHBbEq3oNbRBM0NkN7j76FP2P/KeJt60ph0j4IVOCPLEym72rrZxCwr/ch
+	ziw0cUD98Ka3xq/LXqJskhCP7gZ/cssxvKzqWZvIYHh906eTIllOzUtRIyCmv6S7R
+X-Gm-Gg: AY/fxX5YWtfW1/ZwpHF9AjpGaI6Sxn6l5RpXSSF3r6BZPAF1AdFCgEPkyfO17I4dlHH
+	+pM7xQXZmBr35QuDosv6G0NsHIoYe8phFvYAPBAWgvkvUVjIQoHbx7vO8/V92BzL2o1aDiZASUG
+	dmCQGMBDHMBJom1qIIb+fC0ZcVelzIYPZGg75uDRKv80dZFbqLZEHCmfhW1TPBkBxB0GlM4p4i0
+	cIuld4sMaBgh2HBDHlFHDdhY9goWP2pLK9erFzoTQIjcuMHs85uXhhtF2uI9XMPCru1fkZmtTUh
+	U1yApfgFOTurS3V6pMz232tvi0ohiCe19mmgw5QiR8xcQKlMC7Y+4Cr3MOwjjPvMxzxNzXAsjp3
+	vAMEOSYXxoDt2ZlsL2iSToBKcx9xGZppNl4LUjjl5Mw==
+X-Received: by 2002:a17:902:d507:b0:2a0:9081:8a6 with SMTP id d9443c01a7336-2a3ee437d3dmr12351305ad.20.1767761527324;
+        Tue, 06 Jan 2026 20:52:07 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFwQaSZV7LEOISvZzlRWnJiqWwwrpfByogVkRGL2DJo0/sCiP6BYzdWZvO2BY/XfKIJ2lY+Fw==
+X-Received: by 2002:a17:902:d507:b0:2a0:9081:8a6 with SMTP id d9443c01a7336-2a3ee437d3dmr12350955ad.20.1767761526806;
+        Tue, 06 Jan 2026 20:52:06 -0800 (PST)
+Received: from [10.218.4.221] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3c49037sm36655895ad.36.2026.01.06.20.52.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jan 2026 20:42:01 -0800 (PST)
-Message-ID: <e5c52f0c-a5bb-49d9-a673-9dbaffe3e689@linaro.org>
-Date: Wed, 7 Jan 2026 06:41:59 +0200
+        Tue, 06 Jan 2026 20:52:06 -0800 (PST)
+Message-ID: <6a94eb00-3a1a-4806-a739-0adc8e6f05c6@oss.qualcomm.com>
+Date: Wed, 7 Jan 2026 10:22:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,162 +101,126 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/5] dt-bindings: media: i2c: Add Sony IMX355
-To: Richard Acayan <mailingradian@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Robert Mader <robert.mader@collabora.com>, Bryan O'Donoghue
- <bod@kernel.org>, David Heidelberg <david@ixit.cz>,
- phone-devel@vger.kernel.org
-References: <20260107043044.92485-1-mailingradian@gmail.com>
- <20260107043044.92485-2-mailingradian@gmail.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20260107043044.92485-2-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: talos: Drop opp-shared from QUP OPP
+ table
+From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@oss.qualcomm.com, mukesh.savaliya@oss.qualcomm.com
+References: <20251111170350.525832-1-viken.dadhaniya@oss.qualcomm.com>
+ <ivinuu2ofm2hf7jvnw67gjfwo46bepunconf5g4kzdcaxs4jvm@6dm5btokf2zi>
+ <efec8f09-8bb7-9739-5a1f-ce4a1c54771e@oss.qualcomm.com>
+ <nm4hiy6vd5b3t65dagjx5m5qjfjdcnehz2s5w4lyu44eaqnwkc@hnmyhokxufz5>
+ <13ea5fd7-b28b-b6c0-752f-a7d4b4677298@oss.qualcomm.com>
+ <e5cef414-912e-4387-9a47-494567fe2360@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <e5cef414-912e-4387-9a47-494567fe2360@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=Pa3yRyhd c=1 sm=1 tr=0 ts=695de678 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=SUBiSVQ8Hk_AOeo-gBoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-GUID: XwICGBf9vfbmI53EC3kkAEH0czOkUUTg
+X-Proofpoint-ORIG-GUID: XwICGBf9vfbmI53EC3kkAEH0czOkUUTg
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDAzNyBTYWx0ZWRfX9hF9OjlZrsS+
+ 1qRUR1T09iX9Ecni+jONoDcgB9zwijdZ+YlzbHByXYdUaPQgPhDJSLWVlsR/dxwpjyFoL/cYWxS
+ JJOTTavz6L11B36QGEbecHem69UhsgaI28Tc2TzOP1QRe/XaE7LOzlLKriDVMgT0z8zfnyayehT
+ CicBmfkblrvZWhYz9PjDEzO5iZSht3WYjlYTpJaVYWByJrVhW/1d37CTlTlGg6FWsndf6xBYZza
+ khd+D2xfx1nSDeG1f2eFVlCn3qnMB/MUYmNg+YBUTg6m0yMiiLecZnydYmGLqqKQAACThvW+7Rs
+ CRexpjQ/xVVB+coBNrBLISx5jphrAOgiZSnWUHtdmeIOzXYsxhr1VhpmCEBEn1vBdXYUwSu3SUN
+ Ns660slz/iV8clIkT0H0JTPYEIYe9KUUhnFd9AyVM9rbmLn1g0yykKZrllYjjPsYZOTu2I7kQy+
+ WejW2HZx2cNRQkfaBhA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-06_03,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1015 priorityscore=1501 lowpriorityscore=0
+ spamscore=0 adultscore=0 suspectscore=0 phishscore=0 malwarescore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601070037
 
-On 1/7/26 06:30, Richard Acayan wrote:
-> The IMX355 camera sensor is a camera sensor that can be found as the
-> front camera in some smartphones, such as the Pixel 3, Pixel 3 XL, Pixel
-> 3a, and Pixel 3a XL. It already has a driver, but needs support for
-> device tree. Document the IMX355 to support defining it in device tree.
+Hi Bjorn,
+
+Just a quick reminder to pick this change if there are no other open items.
+Please let me know if you need any additional details.
+
+Thanks
+Viken.
+
+On 12/17/2025 9:20 PM, Viken Dadhaniya wrote:
+> Hi Bjorn and Dmitry,
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->   .../bindings/media/i2c/sony,imx355.yaml       | 115 ++++++++++++++++++
->   1 file changed, 115 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
+> On 11/24/2025 3:10 PM, Viken Dadhaniya wrote:
+>>
+>>
+>> On 11/21/2025 5:33 PM, Dmitry Baryshkov wrote:
+>>> On Fri, Nov 21, 2025 at 03:37:21PM +0530, Viken Dadhaniya wrote:
+>>>>
+>>>>
+>>>> On 11/12/2025 1:25 AM, Bjorn Andersson wrote:
+>>>>> On Tue, Nov 11, 2025 at 10:33:50PM +0530, Viken Dadhaniya wrote:
+>>>>>> QUP devices are currently marked with opp-shared in their OPP table,
+>>>>>> causing the kernel to treat them as part of a shared OPP domain. This
+>>>>>> leads to the qcom_geni_serial driver failing to probe with error
+>>>>>> -EBUSY (-16).
+>>>>>>
+>>>>>> Remove the opp-shared property to ensure the OPP framework treats the
+>>>>>> QUP OPP table as device-specific, allowing the serial driver to probe
+>>>>>> successfully
+>>>>>>
+>>>>>> Fixes: f6746dc9e379 ("arm64: dts: qcom: qcs615: Add QUPv3 configuration")
+>>>>>
+>>>>> This was merged 11 months ago, and Yu Zhang added bluetooth support 3
+>>>>> months ago. What changed to break the QUP users? I think it's reasonable
+>>>>> to use this "Fixes", but we should document - at least on the mailing
+>>>>> list, where the regression happened.
+>>>>>
+>>>>> Regards,
+>>>>> Bjorn
+>>>>
+>>>> I’ve checked the older Linux versions and found that this issue started occurring after the following change:
+>>>> https://lore.kernel.org/linux-devicetree/20250630064338.2487409-1-viken.dadhaniya@oss.qualcomm.com/
+>>>
+>>> Hmm, but it's your patch. How was it tested?
+>>
+>> For this patch, I had verified only the I²C instance and compared it against other SoCs (like sc7280.dtsi). But missed to validate all other instances from  SPI/Serial.
+>> I realized now and will make sure to test all possible nodes in future changes to avoid such gap.
+>>
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
-> new file mode 100644
-> index 000000000000..33d253ca0e4f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/sony,imx355.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sony IMX355 Sensor
-> +
-> +maintainers:
-> +  - Richard Acayan <mailingradian@gmail.com>
-> +
-> +description:
-> +  The IMX355 sensor is a 3280x2464 image sensor, commonly found as the front
-> +  camera in smartphones.
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: sony,imx355
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  avdd-supply:
-> +    description: Analog power supply.
-> +
-> +  dvdd-supply:
-> +    description: Digital power supply.
-> +
-> +  dovdd-supply:
-> +    description: Interface power supply.
-> +
-> +  reset-gpios:
-> +    description: Reset GPIO (active low).
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            items:
-> +              - const: 1
-> +              - const: 2
-> +              - const: 3
-> +              - const: 4
-> +
-> +        required:
-> +          - link-frequencies
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - avdd-supply
-> +  - dvdd-supply
-> +  - dovdd-supply
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,camcc-sdm845.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera@1a {
-> +            compatible = "sony,imx355";
-> +            reg = <0x1a>;
-> +
-> +            clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +
-> +            assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +            assigned-clock-rates = <24000000>;
-> +
-> +            reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
-> +
-> +            avdd-supply = <&cam_front_ldo>;
-> +            dvdd-supply = <&cam_front_ldo>;
-> +            dovdd-supply = <&cam_vio_ldo>;
-> +
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&cam_front_default>;
-> +
-> +            rotation = <270>;
-> +            orientation = <0>;
-> +
-> +            port {
-> +                cam_front_endpoint: endpoint {
-> +                    data-lanes = <1 2 3 4>;
-> +                    link-frequencies = /bits/ 64 <360000000>;
-> +                    remote-endpoint = <&camss_endpoint1>;
-> +                };
-> +            };
-> +        };
-> +    };
-
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-
--- 
-Best wishes,
-Vladimir
+> I hope the above information addresses your question. 
+> The current change has been validated for the SPI, Serial, and I2C drivers,
+> and it is functioning as expected.
+> Please let us know if you have any further queries.
+> 
+>>>
+>>>>
+>>>>>
+>>>>>> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+>>>>>> ---
+>>>>>>  arch/arm64/boot/dts/qcom/talos.dtsi | 1 -
+>>>>>>  1 file changed, 1 deletion(-)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
+>>>>>> index eb6f69be4a82..ed89d2d509d5 100644
+>>>>>> --- a/arch/arm64/boot/dts/qcom/talos.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/talos.dtsi
+>>>>>> @@ -536,7 +536,6 @@ cdsp_smp2p_in: slave-kernel {
+>>>>>>  
+>>>>>>  	qup_opp_table: opp-table-qup {
+>>>>>>  		compatible = "operating-points-v2";
+>>>>>> -		opp-shared;
+>>>>>>  
+>>>>>>  		opp-75000000 {
+>>>>>>  			opp-hz = /bits/ 64 <75000000>;
+>>>>>> -- 
+>>>>>> 2.34.1
+>>>>>>
+>>>
 
