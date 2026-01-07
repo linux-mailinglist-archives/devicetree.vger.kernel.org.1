@@ -1,186 +1,288 @@
-Return-Path: <devicetree+bounces-252453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15BBDCFF0E6
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 18:18:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91CDBCFF6B2
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 19:22:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5EB2136CD3D3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 17:06:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0033A30754A1
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 18:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B2B34A773;
-	Wed,  7 Jan 2026 16:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66CBC34A77F;
+	Wed,  7 Jan 2026 16:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JVRxTFbS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IU0dLCEP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010021.outbound.protection.outlook.com [40.93.198.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A65A228134C;
-	Wed,  7 Jan 2026 16:45:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.21
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767804325; cv=fail; b=nvW1kwyAtQ/tBOWWMqRYDikKjegdK00DEdGMYDv5Tcpv1Pe9QWWsY8nwNxoaciEzlLQwAqnnC0QcrR1Yzl2QURVQJbW9T3hVfLltgIXZboI5BVl8caKIKPJOPS3a5wdqAO3eBnVFImNqjhSKVzryH60BJIbUw2SrDtDhDZLJcEA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767804325; c=relaxed/simple;
-	bh=gKjZSUwaptCxRX9BJKKzLm7kZ0mCN1nu+6XpesWA3PU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WJBgKBEvgFr8yBYj8cbKG3SLuwQGhBmGq3+tRJBDeL1c0REUtV6XaTK0QlOb7QLGyldPL9UqFP0Bgcue7LygDGYE2fXCTJWd1D4PhD/MluU0QTKET6GQF2zgoKVG8dRy2p1iTgbrA6NE+nSudbSM0DoOwNA5JOjGoooOg8AOmK0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JVRxTFbS; arc=fail smtp.client-ip=40.93.198.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tWLuQzauuu7WqsIe328nwB0Onmgnr5gG1KoIULfWhcYkjKhMY5k0d611qa9dId2ju0SDhqUJbYnrcOcCXvL2uWztQsxXi7SxdNrSedNgfslQTsOEiVW2BXfhCKo11fqTkj/ZVzHoL5np9yud5JS8XLxfKcu4dzrEdJJSa+JRp90gctg683LFk/p0umtgwfwqChGF2WRakTp9nZUie/5utnuA5yT/M4H/nN17ylsX8eDrXTTq7ipIfBjxuezunRaH6WbkPtwcen7nH+iuIvfzOz3nSKATteHJgzCID+KTy0VPiCxj36bsvQjDLPOLpOhrS72OWE9lhAdYuX0b2e+PQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qLkvOO+qC3zK0iKw1gp+kVwwYm0NKQXVyrT9aghy2UI=;
- b=vzM4/aXBA5x6puubSVjyAOvwfpfHTi7nEDXN8Z6WaYIbJ4eIyqXNFrSkuOBE8YXVlQ5kR5t3yXFNuhZpFHmh0nE0SdcT/hY6nL3pESYSWbbfEskEdXlBH6Ci6LDWUAbE6aWopRuJaA5jdEfyBPISwqUWVDG4WcaWzQfvxKJy2JQOb0J5+XYVTf1raIkBkd+dYx7ztTqJYgm9Hm2+oq1TWKAP4TV8cadrpDL9n7/iV4yPKb+M7M/DZvrlEKr4p54wvlnsVvQNs/YUJ8angjt4NonFMYBrbqDshFkKHTWOFIv/Z4tkU1/oWPduJ7fdhg+1mGAdncjMNC9h0kkOKSMaCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qLkvOO+qC3zK0iKw1gp+kVwwYm0NKQXVyrT9aghy2UI=;
- b=JVRxTFbSuEpT03ch4YqI4efTwcXb3xipCTMOwSKD/N61W70ZZ9OPkjUQViZSPsA5Y9M5Eg5rAaLQ68rl6hMIsn2bWA+LtZmpRhgY2FWl8rkj41nT7fYmdvFEfcluTHbciIXu84R7Q5114omAFtISwhrs0btS8CebdqzDJdfwVt0=
-Received: from BYAPR02CA0037.namprd02.prod.outlook.com (2603:10b6:a03:54::14)
- by BN0PR10MB5144.namprd10.prod.outlook.com (2603:10b6:408:127::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
- 2026 16:45:11 +0000
-Received: from SJ1PEPF00001CDD.namprd05.prod.outlook.com
- (2603:10b6:a03:54:cafe::17) by BYAPR02CA0037.outlook.office365.com
- (2603:10b6:a03:54::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.2 via Frontend Transport; Wed, 7
- Jan 2026 16:45:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- SJ1PEPF00001CDD.mail.protection.outlook.com (10.167.242.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9499.1 via Frontend Transport; Wed, 7 Jan 2026 16:45:10 +0000
-Received: from DFLE205.ent.ti.com (10.64.6.63) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 7 Jan
- 2026 10:45:05 -0600
-Received: from DFLE209.ent.ti.com (10.64.6.67) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 7 Jan
- 2026 10:45:04 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 7 Jan 2026 10:45:04 -0600
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 607Gj4XL910213;
-	Wed, 7 Jan 2026 10:45:04 -0600
-Date: Wed, 7 Jan 2026 10:45:04 -0600
-From: Bryan Brattlof <bb@ti.com>
-To: Kendall Willis <k-willis@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Dhruva
- Gole" <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
-	<msp@baylibre.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
-	<s-kochidanadu@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/3] arm64: boot: dts: ti: k3-am62l: allow WKUP UART
- wakeup from LPM
-Message-ID: <20260107164504.ehvbfizg7ybbvv2e@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20260106-wkup-uart-wakeup-v2-0-fb4cbd56c827@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62531346A01;
+	Wed,  7 Jan 2026 16:46:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767804397; cv=none; b=Dk6UBXVlUPT5zYcBu5jxHyZmvIXngwIIC9tUHbfEiMJtDIiTwHqU6Y2SfGbYtClunadLv1wctoUwPMbHMChZuNkp+iFFTedElpy3Yx8Z52mYpeSAU5AAyq9cW8z3PbEvO7Y4dO2E10vrHVQ+6QuidArHYU0QcsocuJiBHsBXbxg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767804397; c=relaxed/simple;
+	bh=/SBqPx/EU0Ra0r1lSHOAFbtaicp7N+NevaXS9/9ljWY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E0t1NwsGMlxx3s+9MjmgEub6ykpsuF1yMY5YnFpPFkmdpyfMMQuf4CadTfdLIq1S/a1hbZzAPAfHx8+UsiCnGE8/ixpqlgrTWOYyNrIH2elAb1jVrMsPYkqEuQPb/RiDNwYwrx+6fLugjq4LrnqMhMXD9aPy+979eYplSv4/4Dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IU0dLCEP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AF57C4CEF1;
+	Wed,  7 Jan 2026 16:46:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767804396;
+	bh=/SBqPx/EU0Ra0r1lSHOAFbtaicp7N+NevaXS9/9ljWY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IU0dLCEPHd1+6jawwi7Fj3rHd7vW85ypZBAOnMqE/0POs39BCwIAbTYJTysYuvDue
+	 AdXgdGTptCWecugylfGlJQwzAYC+GAvWer09E0Fk6VksqsGQG3JFqfXVYtI/04qlW0
+	 kLdPZC1qKh2qJvmZ2rdyAF1H+cRdnFscmUnFtIe01e56EDHViefBupYBhnBrmmkM43
+	 MFd8ahXv0jA8cycTcmonUJ+3Tyo4Rs+/8FUJm/rg8dg3ehSXciHBA4bJmVfVbH4+qQ
+	 fLMjWoJ3iEje+GlPxhBd8Fh3J77XkpzM+MwgNd8T2Ak0yOmy6XSzJon3OHW9LmGFEe
+	 6KbkGVV0EfvjQ==
+Message-ID: <8a1a9ebf-a3ed-4077-aa07-48cc98e071f9@kernel.org>
+Date: Wed, 7 Jan 2026 17:46:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20260106-wkup-uart-wakeup-v2-0-fb4cbd56c827@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDD:EE_|BN0PR10MB5144:EE_
-X-MS-Office365-Filtering-Correlation-Id: e2665969-bda0-4318-4bdc-08de4e0c1f1a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?aFFQZFhoSVFkd21VQy9YTXZhV09UTnRuMjdUcVhKamhGN2JBV3dVTWZHdmZo?=
- =?utf-8?B?czhNL3M4MlFVaEwxK2Y5K01KcjhLZ0IwaDlCZnJjOUpzbDJ6UXlmd3ZLZmJP?=
- =?utf-8?B?cGtUYmxsY0JEckFuTEFmTEs5SDBmR21DUldZalBFYUlKRXRkbG5JMC9lcEF5?=
- =?utf-8?B?ZTMwZjNGTk43Y3ZIb09aekNQQXlBaVRvb3F0ZVZPbTFYOHRBM2pxdlcwT0dx?=
- =?utf-8?B?bWNVaCszdnlMVk04T0NRdUkrbURHb1V0QkNLRDhjb1RQWkI3bGV5R0hZVkVJ?=
- =?utf-8?B?ek5mZ2ZlUUxFL29Lam9pRG5XSnMycWtLZ1ZDYUJhZEszQlhKcFRlU2tURkNi?=
- =?utf-8?B?VGlWWTZWZm1ncUVXamZmRHppUlpnUHk1aDUwbnUyT1NLUWs5ekxJMnQ4aXJz?=
- =?utf-8?B?Ujd4Y3pOMFB4Um1kQXV4Z2pXVnJ6ZFQwRXhuWGVsWi95a0FVZWZudzZQREhk?=
- =?utf-8?B?WlJMclVqbk42MHZvaThzVlhicGFLZUJTNzNDYkRJWVZuSjRzQzdFWWtvNE5a?=
- =?utf-8?B?cm9WWWo0eUQrSUtCS3JEak5RUDhGWEMzRzRhL2RHOCtwMFd1YjlXMXljWlpW?=
- =?utf-8?B?L09xSWpLQ3dkUktYTmFYWXF1cUhVQjBsbExHdmhGOUlnSUJ6Z3RDeWhjWHhl?=
- =?utf-8?B?b1AxdVJmekE0c3hFWnJXRE95ZkFjOVBqb3lNUk00SWRjcS8wdG9LL2d4Z2Za?=
- =?utf-8?B?ejI1d1h1ekdLTnRIT2ZPdGJFa3FBMjJEOVdpNGdTZ29Gb1ByYmkrTDRjUHNI?=
- =?utf-8?B?Ri9zc0FqQ0h2K0JINVMra3lWU2I2ck9VaDF3Z2l6Mk9OcnBDWE92U1l2R2JN?=
- =?utf-8?B?djR4OHhYN1JlcXFiaFhWOXFBZXZuWE9RWUw0dDdTWjA0cjVWZDRWemJjZmU1?=
- =?utf-8?B?cXJDR0J3VEZKbWVvQW12b1h2QTFNMENYS0J0YnIrZUpMQldKOWtJL3BpdWdm?=
- =?utf-8?B?L2dtV3Y4SnVGUGlwOTc3eTVuVmlEQ21ROHU0TytvYm11eWFjeTBTNVdncld2?=
- =?utf-8?B?NnZQSEo2S2tIQWpRbTVqMDV0bm5hS1E3eGQ5MHNyYUVkSlRBQXY3RFFNUjlU?=
- =?utf-8?B?KzZMbWRJZFBoT0lqUlVMQ05NSDdiTEZhUnNMOHhGNDRHU21ENEt6OXdOZDBJ?=
- =?utf-8?B?RU9CcDM2NGFXZmJEby9jaU1rMmZxU0xQSE1VRFB6ajVYZTVwM1cvU0l2RnN1?=
- =?utf-8?B?WTV1aDBiMGtkRUFZd2puaHRHMGxLckN3N0pCQithMUd0SnMzME50YVN1cHdD?=
- =?utf-8?B?NTRLTkRRUUxFb3owdmZuNnI0VUVuS1FzMlZLV2tjeEtEN2FaWmhBaWFrZDNT?=
- =?utf-8?B?c3FiOXh6eGx3b3NoQmtkMStvekt3MUE2V1dqZ1R2N2doVkFLdnhyMCtUTnVV?=
- =?utf-8?B?M1BkeVlTdmxadWtjL0hJeXdoMVB4Z1lzRjl5SUlzSCtmbEFua0JiRTNURGFT?=
- =?utf-8?B?YnpucnRuQlp2QXNtVHV5OWRVQmgxY3BWQ2hWY29FM0p4S2dSQ3Q0eGMwamNY?=
- =?utf-8?B?TXdRZXFMcy92WWJUSStqY0FTNjNVNC80VHRjbHdtQzlNWk90NGoxVHlJT3o1?=
- =?utf-8?B?QW5yRWJJT0swSmMxeDVJTmtXTzc5ZmVxSnR2K3c5a0hUc0FQODZ2TWk3d1lJ?=
- =?utf-8?B?dG5Lb3ZFOTh0ZDExMWxzbm1qL0RZYWpRbFI1aStGL0w1OXlLK0Z3SUpBZGlh?=
- =?utf-8?B?VDc3K2NTRG95VDRGaGtKTU93S01sN0UxMXJaZjkyNU9mdFpwcW5iRHJmaTd4?=
- =?utf-8?B?Kzg5U1orTFBBdDQraGJjZSt2UTJSNDNwUisyTmlPSUhMOXRsOE03SlNHZEhn?=
- =?utf-8?B?eXBPNncvM21xdkI3RHJFNjFSaU02dEZYejdad0NxS0ZQSEtrOWtzNytKcHcv?=
- =?utf-8?B?K1doR0wybDBRWjE1S1RVTHF4K2ZIM3ExU1NRQ0xCKzZtdHZaTnZXUVZEVXgx?=
- =?utf-8?B?Y0xQSUlBMEQyemFyWlZjVTBWSm1UclhNSGVUWXV0T2tWaTZPZE11R0ZPRnN2?=
- =?utf-8?B?VWNLYml5dkYyTXNpQzgvcEJwTEc2TmIrd2liTjQ1d3QrdnN2Smk0TnZ3eWJS?=
- =?utf-8?B?RGtraC9PRjIyb1BsYmVVVEtuekRhbVBQNUp6VjFKQWQyL2c0aTN2UXk5SXh6?=
- =?utf-8?Q?mQQo=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 16:45:10.0311
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2665969-bda0-4318-4bdc-08de4e0c1f1a
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF00001CDD.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB5144
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: Add Bao IPC shared memory driver binding
+To: joaopeixoto@osyx.tech, linux-kernel@vger.kernel.org
+Cc: ajd@linux.ibm.com, alex@ghiti.fr, aou@eecs.berkeley.edu,
+ bagasdotme@gmail.com, catalin.marinas@arm.com, conor+dt@kernel.org,
+ corbet@lwn.net, dan.j.williams@intel.com, davidmcerdeira@osyx.tech,
+ devicetree@vger.kernel.org, dev@kael-k.io, gregkh@linuxfoundation.org,
+ haren@linux.ibm.com, heiko@sntech.de, jose@osyx.tech,
+ kever.yang@rock-chips.com, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+ linux-riscv@lists.infradead.org, maddy@linux.ibm.com, mani@kernel.org,
+ nathan@kernel.org, neil.armstrong@linaro.org, palmer@dabbelt.com,
+ pjw@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, robh@kernel.org,
+ will@kernel.org
+References: <20251224135217.25350-1-joaopeixoto@osyx.tech>
+ <20260107162829.416885-1-joaopeixoto@osyx.tech>
+ <20260107162829.416885-2-joaopeixoto@osyx.tech>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260107162829.416885-2-joaopeixoto@osyx.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On January  6, 2026 thus sayeth Kendall Willis:
-> K3 TI AM62L SoC supports wakeup from WKUP UART when the SoC is in the
-> DeepSleep low power mode. To allow wakeup from WKUP UART the target-module
-> device tree node is enabled. The ti-sysc interconnect target module driver
-> is used to configure the the SYSCONFIG related registers. In this case,
-> the interconnect target module node configures the WKUP UART to be able to
-> wakeup from system suspend. The SYSC register is used to enable wakeup
-> from system suspend for the WKUP UART. Refer to 14.7.2.5 UART in the
-> AM62L Techincal Reference Manual for registers referenced [1].
+On 07/01/2026 17:28, joaopeixoto@osyx.tech wrote:
+> From: João Peixoto <joaopeixoto@osyx.tech>
 > 
-> Previous TI SoCs configure the WKUP UART to wakeup from system suspend
-> using the ti-sysc interconnect target module driver. Refer to commit
-> ce27f7f9e328 ("arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc for
-> wkup_uart0") for an example of this.
+> This patch introduces a device tree binding for the Bao IPC Shared Memory
+> device, which enables communication between Bao hypervisor guests through
+> dedicated shared-memory regions.
+> 
+> Signed-off-by: João Peixoto <joaopeixoto@osyx.tech>
 
-I think I may be confused. What is setting the pinmux for the wkup_uart 
-to allow us to trigger the wake event? It looks like they reset to GPIO 
-pins if not set. Is firmware doing this?
+Respond to feedback instead of ignoring it. I don't see any changelog
+either.
 
-~Bryan
+Last posting was LLM junk so I will not spend much time on this.
+
+A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
+prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets. See also:
+https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
+
+
+> ---
+>  .../devicetree/bindings/bao/bao,ipcshmem.yaml | 82 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  2 files changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bao/bao,ipcshmem.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/bao/bao,ipcshmem.yaml b/Documentation/devicetree/bindings/bao/bao,ipcshmem.yaml
+> new file mode 100644
+> index 000000000000..fa91800db99a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bao/bao,ipcshmem.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bao/bao,ipcshmem.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bao IPC Shared Memory Device
+
+Nothing here is suitable for bindings, really. Simplified node for
+establishing channel of communication to hypervisor would be allowed.
+But multiple devices for that? No point. Develop proper interface with
+your hypervisor for all this.
+
+> +
+> +maintainers:
+> +  - José Martins <jose@osyx.tech>
+> +  - David Cerdeira <davidmcerdeira@osyx.tech>
+> +  - João Peixoto <joaopeixoto@osyx.tech>
+> +
+> +description: |
+> +  Shared memory based communication device for Bao hypervisor guests.
+> +
+> +  The device describes a set of shared-memory regions used for
+> +  communication between Bao guests. Each guest instantiating this
+> +  device uses one region for reading data produced by a peer guest
+> +  and another region for writing data consumed by that peer.
+> +
+> +properties:
+> +  compatible:
+> +    const: bao,ipcshmem
+> +
+> +  reg:
+> +    description:
+> +      Shared memory region used for IPC.
+> +    minItems: 2
+> +    maxItems: 2
+
+Look at other bindings.
+
+> +
+> +  read-channel:
+> +    description: |
+> +      Shared-memory sub-region that this guest reads from.
+> +
+> +      This region is written by the peer Bao guest and read by the
+> +      guest instantiating this device.
+> +
+> +      Consists of two cells:
+> +        - offset into the shared-memory region defined by `reg`
+> +        - size in bytes
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 2
+> +    maxItems: 2
+
+Drop property, reg defines it.
+
+> +
+> +  write-channel:
+
+Drop property, reg defines it.
+
+
+> +    description: |
+> +      Shared-memory sub-region that this guest writes to.
+> +
+> +      This region is written by the guest instantiating this device and
+> +      read by the peer Bao guest.
+> +
+> +      Consists of two cells:
+> +        - offset into the shared-memory region defined by `reg`
+> +        - size in bytes
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 2
+> +    maxItems: 2
+
+
+> +
+> +  id:
+> +    description:
+> +      Driver instance ID.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+NAK, not allowed. Read writing bindings.
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - read-channel
+> +  - write-channel
+> +  - id
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    bao-ipc@f0000000 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+> +        compatible = "bao,ipcshmem";
+> +        reg = <0x0 0xf0000000 0x0 0x00010000>;
+> +        read-channel = <0x0 0x2000>;
+> +        write-channel = <0x2000 0x2000>;
+> +        id = <0>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index c7591b2aec2a..c047fbd6b91a 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -223,6 +223,8 @@ patternProperties:
+>      description: Shenzhen AZW Technology Co., Ltd.
+>    "^baikal,.*":
+>      description: BAIKAL ELECTRONICS, JSC
+> +  "^bao,.*":
+> +    description: Bao Hypervisor
+
+Vendor prefixes are for companies. What is the company here? What is
+stock ticker or website?
+
+
+>    "^bananapi,.*":
+>      description: BIPAI KEJI LIMITED
+>    "^beacon,.*":
+
+
+Best regards,
+Krzysztof
 
