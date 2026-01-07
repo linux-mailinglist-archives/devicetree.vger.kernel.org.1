@@ -1,46 +1,38 @@
-Return-Path: <devicetree+bounces-252396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFB7BCFE441
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 15:24:27 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE70BCFE3FF
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 15:20:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A8786308C38C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 14:19:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 480D9300E7D7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 14:20:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C98BE33F8BB;
-	Wed,  7 Jan 2026 14:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ff2XA2uk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9454F34165E;
+	Wed,  7 Jan 2026 14:20:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D4C3081AD;
-	Wed,  7 Jan 2026 14:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7E73081AD
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 14:20:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767795559; cv=none; b=KY+SUv9Gse9qhJlKgDDjEdYv5QBHtTv/a6Qk16qS5jc1N6PejDU9tJXJ9m1JvOG3eqDuVLx6bsSE09x7vF73pUvd+bnL6s4gyuqcKp7ZENpB+6So9oCxT+915OaR/etGVnG3h82fOVMAr5uZdY08T52UeVWK86xtPXRPMCByg3s=
+	t=1767795623; cv=none; b=DKBZ8Djy8Bke+5HiDBeVEUAYFoqRNK10YYMWQsTQQrJB4jmxT9d47QJntBAwexZy5V2NfWONmI2gskmC+iWiCTJE09taMo/HU5M15eKLWWuvkKZ862e8hl1nY5BNfH/IYZ9SwmOvao5Lfr5u3ewCTwVshNdlR9Zr54eIs71qEgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767795559; c=relaxed/simple;
-	bh=NrKcL0K9ADZrDd40Kubu2XrKTn83JBz7p/hudoTIFHw=;
+	s=arc-20240116; t=1767795623; c=relaxed/simple;
+	bh=WVCWhmkT1n7wl3cPNOcNOjcXWQPvqaIOLhJ2zLVZfBk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iPbVr0V6yjwBTbvcawTgZpLcntcYp32213UJFMoCHUBO48bGua0LyGDc+hhrHVAfPdYYIBC2k9sibDXwZNSnQqqp0xXT17QZVZRkz9X/5j1mFoeXwSL2csGCfPeasNILFObxM+G0LvECLSxmoRujwvjQgFvol7IYYX70fMP/U0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ff2XA2uk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05293C4CEF1;
-	Wed,  7 Jan 2026 14:19:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767795559;
-	bh=NrKcL0K9ADZrDd40Kubu2XrKTn83JBz7p/hudoTIFHw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ff2XA2uknvs1WDIcNLPV/0KOKg+KJ9M5ydg9C31mg/NhaMX4Q6vujWS/UcJ1WTfTm
-	 w+QAjvsHC/Xo+q8f8RUmE9n+gF5XpwvTfjj2IQKfK0k8GUmFyGFsBhVn14qpmbZMUV
-	 b0tnzuyS/g0dXndOU9iIkpxUK32DWcQ20//a0GUYo1WPvw4O6Dnci/YRSV3WnuNMR8
-	 /1sBiqfEw1Rfz7pRg26G2ObP1ASzp201ffnIJsfAGno2G22ajMsMa2K008S5lF9bbu
-	 nP84YrGX0g4oqfQSu6mAohVZjchDtoui2kiLSd2N4rduxy2DDsQ6QoC4DZhZ3bxiPC
-	 5J4RbQdCgYNQA==
-Message-ID: <00cbcb95-2bd4-4a15-a250-963af30076b6@kernel.org>
-Date: Wed, 7 Jan 2026 15:19:13 +0100
+	 In-Reply-To:Content-Type; b=FjZeQ7Nz7ejmazrdhMad1Wf5cpNWcA1FcH5V+v8Pwl8NCKm0i4T7XFNrAkM1Ga3o55cVV/7WI96oIlWeRDy0/X9y9I2V5ZWrdtOydN7t/SGkJOKCP7rVDrHSDFrlVS31uwYyfEsJj43ncDi47bA/NaCnZA/ZnAlQmX6cow9rT1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <s.pueschel@pengutronix.de>)
+	id 1vdUO9-0007DI-H7; Wed, 07 Jan 2026 15:19:53 +0100
+Message-ID: <b4b1a113-a8dc-4ed7-b395-eaa0deb6a957@pengutronix.de>
+Date: Wed, 7 Jan 2026 15:19:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,84 +40,230 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy: document
- the Milos QMP UFS PHY
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Vinod Koul <vkoul@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20260107-milos-ufs-v1-0-6982ab20d0ac@fairphone.com>
- <20260107-milos-ufs-v1-3-6982ab20d0ac@fairphone.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 14/22] media: rockchip: rga: support external iommus
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Jacob Chen <jacob-chen@iotwrt.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kernel@pengutronix.de
+References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
+ <20251203-spu-rga3-v2-14-989a67947f71@pengutronix.de>
+ <c5b6707e3e6748bf923aaf34db1ae231c7e121ad.camel@ndufresne.ca>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260107-milos-ufs-v1-3-6982ab20d0ac@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: =?UTF-8?Q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
+In-Reply-To: <c5b6707e3e6748bf923aaf34db1ae231c7e121ad.camel@ndufresne.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 07/01/2026 09:05, Luca Weiss wrote:
-> Document the QMP UFS PHY on the Milos SoC.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+Hi,
 
+On 12/24/25 4:50 PM, Nicolas Dufresne wrote:
+> Le mercredi 03 décembre 2025 à 16:52 +0100, Sven Püschel a écrit :
+>> In preparation for the RGA3 add support for external iommus. This is a
+>> transition step to just disable the RGA2 specific mmu table setup code.
+>>
+>> Currently a simple rga_hw struct field is used to set the internal iommu.
+>> But to handle the case of more sophisticated detection mechanisms
+>> (e.g. check for an iommu property in the device tree), it is abstracted
+>> by an inline function.
+>>
+>> Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
+>> ---
+>>   drivers/media/platform/rockchip/rga/rga-buf.c | 46 ++++++++++++++++-----------
+>>   drivers/media/platform/rockchip/rga/rga-hw.c  |  1 +
+>>   drivers/media/platform/rockchip/rga/rga.c     | 11 +++++--
+>>   drivers/media/platform/rockchip/rga/rga.h     |  6 ++++
+>>   4 files changed, 43 insertions(+), 21 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/rockchip/rga/rga-buf.c b/drivers/media/platform/rockchip/rga/rga-buf.c
+>> index 8845e1f894f29..e8d1e2e579140 100644
+>> --- a/drivers/media/platform/rockchip/rga/rga-buf.c
+>> +++ b/drivers/media/platform/rockchip/rga/rga-buf.c
+>> @@ -12,6 +12,7 @@
+>>   #include <media/v4l2-ioctl.h>
+>>   #include <media/v4l2-mem2mem.h>
+>>   #include <media/videobuf2-dma-sg.h>
+>> +#include <media/videobuf2-dma-contig.h>
+>>   #include <media/videobuf2-v4l2.h>
+>>   
+>>   #include "rga.h"
+>> @@ -79,14 +80,16 @@ static int rga_buf_init(struct vb2_buffer *vb)
+>>   	struct rga_frame *f = rga_get_frame(ctx, vb->vb2_queue->type);
+>>   	size_t n_desc = 0;
+>>   
+>> -	n_desc = DIV_ROUND_UP(f->size, PAGE_SIZE);
+>> +	if (rga_has_internal_iommu(rga)) {
+>> +		n_desc = DIV_ROUND_UP(f->size, PAGE_SIZE);
+> n_desc is not used outside of this scope, perhap drop the definition with the 0
+> init, and use:
+>
+> 		const size_t n_desc = DIV_ROUND_UP(f->size, PAGE_SIZE);
+> 		
+>>   
+>> -	rbuf->n_desc = n_desc;
+>> -	rbuf->dma_desc = dma_alloc_coherent(rga->dev,
+>> -					    rbuf->n_desc * sizeof(*rbuf->dma_desc),
+>> -					    &rbuf->dma_desc_pa, GFP_KERNEL);
+>> -	if (!rbuf->dma_desc)
+>> -		return -ENOMEM;
+>> +		rbuf->n_desc = n_desc;
+>> +		rbuf->dma_desc = dma_alloc_coherent(rga->dev,
+>> +						    rbuf->n_desc * sizeof(*rbuf->dma_desc),
+>> +						    &rbuf->dma_desc_pa, GFP_KERNEL);
+>> +		if (!rbuf->dma_desc)
+>> +			return -ENOMEM;
+>> +	}
+>>   
+>>   	return 0;
+>>   }
+>> @@ -133,17 +136,21 @@ static int rga_buf_prepare(struct vb2_buffer *vb)
+>>   	for (i = 0; i < vb->num_planes; i++) {
+>>   		vb2_set_plane_payload(vb, i, f->pix.plane_fmt[i].sizeimage);
+>>   
+>> -		/* Create local MMU table for RGA */
+>> -		n_desc = fill_descriptors(&rbuf->dma_desc[curr_desc],
+>> -					  rbuf->n_desc - curr_desc,
+>> -					  vb2_dma_sg_plane_desc(vb, i));
+>> -		if (n_desc < 0) {
+>> -			v4l2_err(&ctx->rga->v4l2_dev,
+>> -				 "Failed to map video buffer to RGA\n");
+>> -			return n_desc;
+>> +		if (rga_has_internal_iommu(ctx->rga)) {
+>> +			/* Create local MMU table for RGA */
+>> +			n_desc = fill_descriptors(&rbuf->dma_desc[curr_desc],
+>> +						  rbuf->n_desc - curr_desc,
+>> +						  vb2_dma_sg_plane_desc(vb, i));
+>> +			if (n_desc < 0) {
+>> +				v4l2_err(&ctx->rga->v4l2_dev,
+>> +					 "Failed to map video buffer to RGA\n");
+>> +				return n_desc;
+>> +			}
+>> +			dma_addrs[i] = curr_desc << PAGE_SHIFT;
+>> +			curr_desc += n_desc;
+>> +		} else {
+>> +			dma_addrs[i] = vb2_dma_contig_plane_dma_addr(vb, i);
+>>   		}
+>> -		dma_addrs[i] = curr_desc << PAGE_SHIFT;
+>> -		curr_desc += n_desc;
+>>   	}
+>>   
+>>   	/* Fill the remaining planes */
+>> @@ -173,8 +180,9 @@ static void rga_buf_cleanup(struct vb2_buffer *vb)
+>>   	struct rga_ctx *ctx = vb2_get_drv_priv(vb->vb2_queue);
+>>   	struct rockchip_rga *rga = ctx->rga;
+>>   
+>> -	dma_free_coherent(rga->dev, rbuf->n_desc * sizeof(*rbuf->dma_desc),
+>> -			  rbuf->dma_desc, rbuf->dma_desc_pa);
+>> +	if (rga_has_internal_iommu(rga))
+>> +		dma_free_coherent(rga->dev, rbuf->n_desc * sizeof(*rbuf->dma_desc),
+>> +				  rbuf->dma_desc, rbuf->dma_desc_pa);
+>>   }
+>>   
+>>   static void rga_buf_return_buffers(struct vb2_queue *q,
+>> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media/platform/rockchip/rga/rga-hw.c
+>> index fe6f518aedd4e..fb0389ae8e132 100644
+>> --- a/drivers/media/platform/rockchip/rga/rga-hw.c
+>> +++ b/drivers/media/platform/rockchip/rga/rga-hw.c
+>> @@ -617,6 +617,7 @@ static struct rga_fmt formats[] = {
+>>   
+>>   const struct rga_hw rga2_hw = {
+>>   	.card_type = "rga2",
+>> +	.has_internal_iommu = true,
+>>   	.formats = formats,
+>>   	.num_formats = ARRAY_SIZE(formats),
+>>   	.cmdbuf_size = RGA_CMDBUF_SIZE,
+>> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
+>> index c9719c7bcfc1c..f28ec88c186fa 100644
+>> --- a/drivers/media/platform/rockchip/rga/rga.c
+>> +++ b/drivers/media/platform/rockchip/rga/rga.c
+>> @@ -23,6 +23,7 @@
+>>   #include <media/v4l2-ioctl.h>
+>>   #include <media/v4l2-mem2mem.h>
+>>   #include <media/videobuf2-dma-sg.h>
+>> +#include <media/videobuf2-dma-contig.h>
+>>   #include <media/videobuf2-v4l2.h>
+>>   
+>>   #include "rga.h"
+>> @@ -95,13 +96,16 @@ queue_init(void *priv, struct vb2_queue *src_vq, struct vb2_queue *dst_vq)
+>>   	src_vq->io_modes = VB2_MMAP | VB2_DMABUF;
+>>   	src_vq->drv_priv = ctx;
+>>   	src_vq->ops = &rga_qops;
+>> -	src_vq->mem_ops = &vb2_dma_sg_memops;
+>> +	src_vq->mem_ops = &vb2_dma_contig_memops;
+> That's a bit I'm less knowledgeable here, since I never used the sg_memops in
+> any of my work, but what is the consequence ? (appart from gaining external
+> iommu support)
 
+This is only for the external iommu support, which uses the 
+vb2_dma_contig_plane_dma_addr function to get a single linear address 
+(instead of vb2_dma_sg_plane_desc used for the manual iommu mapping).
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Without an external iommu the value is overridden afterwards to 
+vb2_dma_sg_memops. I probably should move the if up to make clear that 
+this is only set for the external iommu case.
 
-Best regards,
-Krzysztof
+Or did I misunderstand your question?
+
+>>   	src_vq->gfp_flags = __GFP_DMA32;
+>>   	src_vq->buf_struct_size = sizeof(struct rga_vb_buffer);
+>>   	src_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
+>>   	src_vq->lock = &ctx->rga->mutex;
+>>   	src_vq->dev = ctx->rga->v4l2_dev.dev;
+>>   
+>> +	if (rga_has_internal_iommu(ctx->rga))
+>> +		src_vq->mem_ops = &vb2_dma_sg_memops;
+>> +
+>>   	ret = vb2_queue_init(src_vq);
+>>   	if (ret)
+>>   		return ret;
+>> @@ -110,13 +114,16 @@ queue_init(void *priv, struct vb2_queue *src_vq, struct vb2_queue *dst_vq)
+>>   	dst_vq->io_modes = VB2_MMAP | VB2_DMABUF;
+>>   	dst_vq->drv_priv = ctx;
+>>   	dst_vq->ops = &rga_qops;
+>> -	dst_vq->mem_ops = &vb2_dma_sg_memops;
+>> +	dst_vq->mem_ops = &vb2_dma_contig_memops;
+>>   	dst_vq->gfp_flags = __GFP_DMA32;
+>>   	dst_vq->buf_struct_size = sizeof(struct rga_vb_buffer);
+>>   	dst_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
+>>   	dst_vq->lock = &ctx->rga->mutex;
+>>   	dst_vq->dev = ctx->rga->v4l2_dev.dev;
+>>   
+>> +	if (rga_has_internal_iommu(ctx->rga))
+>> +		dst_vq->mem_ops = &vb2_dma_sg_memops;
+>> +
+>>   	return vb2_queue_init(dst_vq);
+>>   }
+>>   
+>> diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/platform/rockchip/rga/rga.h
+>> index 772f7dff9a8e5..fc81bc5562792 100644
+>> --- a/drivers/media/platform/rockchip/rga/rga.h
+>> +++ b/drivers/media/platform/rockchip/rga/rga.h
+>> @@ -148,6 +148,7 @@ static inline void rga_mod(struct rockchip_rga *rga, u32 reg, u32 val, u32 mask)
+>>   
+>>   struct rga_hw {
+>>   	const char *card_type;
+>> +	bool has_internal_iommu;
+>>   	struct rga_fmt *formats;
+>>   	u32 num_formats;
+>>   	size_t cmdbuf_size;
+>> @@ -163,6 +164,11 @@ struct rga_hw {
+>>   	void (*get_version)(struct rockchip_rga *rga);
+>>   };
+>>   
+>> +static inline bool rga_has_internal_iommu(const struct rockchip_rga *rga)
+>> +{
+>> +	return rga->hw->has_internal_iommu;
+>> +}
+>> +
+>>   extern const struct rga_hw rga2_hw;
+>>   
+>>   #endif
 
