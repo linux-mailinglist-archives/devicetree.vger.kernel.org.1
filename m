@@ -1,212 +1,176 @@
-Return-Path: <devicetree+bounces-252435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C3ACFF4C2
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 19:09:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70E20CFF29D
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 18:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8BCA3358A459
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 17:00:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 327E632D9468
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 16:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 058603624C8;
-	Wed,  7 Jan 2026 16:15:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C51E35FF40;
+	Wed,  7 Jan 2026 16:18:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PNbybd76"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pEqxtVM7";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="N58qm9DT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC3831A56B;
-	Wed,  7 Jan 2026 16:14:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A371A341077
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 16:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767802497; cv=none; b=u61zT5eF9Xa7IFPrrD6CxfOl/kKyB8MWPYjY60LktKGbPO9vLRJXcNp/Pp4DkYyEgJ7al0xwa3KqMe2QsvztU8gw8OgomabaCdTw+LFLeLesMxa2O0HV12n+lM6gtCKwLVLFe/81dLcx0yB6o++x+pagFZu3s9b823nYAajB2eM=
+	t=1767802737; cv=none; b=ukHvRPajA6LstLDgCx6u7t0TVwQ91JjyWrISvWkJvnVojGvyflECrcH7NQTRldPebI6xuDYuPsE0zU5GGHSbp6QubfHi6UtbVKYcI+cGaWkSjMe0uG6CD0QwTidrnn6Mb7REBSf9ZW+x3KckSWtmxukENL2jgXrI7+7U63NdXww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767802497; c=relaxed/simple;
-	bh=GuxFc4xkGa7Z7cKfyhvJuI0lTHahCkaf/jELlyRcIrc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ma/HdNdbHQHA9erZA40275XWwrMQ3GHsS3cqVaCeCZsW32b5vNYaSJKT3KLfnVL+s0s+NCJvRGXZJ404Tqdud9CdX69K0PYP+OGf51ZTuZ4hklDReHQ3z/oIkHU3uNSIRAcGd9lJmHARlF+msplnmwTWMLrcvrg1TE+UbPpriAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PNbybd76; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6DB2C4CEF1;
-	Wed,  7 Jan 2026 16:14:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767802497;
-	bh=GuxFc4xkGa7Z7cKfyhvJuI0lTHahCkaf/jELlyRcIrc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PNbybd76KrOij1n1aUe+p9EmMjeMjF6nwzacMyAJrjUaI9P7XM/NO/hRhuzpjrSkR
-	 a7d+UV0cJ8sxYl+Rc1PfzW5UpXYobFzZy92m8fEJ+A2pMshdckRkCqrYR1I9iSPzGM
-	 +s4OqFUV4RKIHJ2iFYQ984SHcf0iAVTlErfPWnbIUIK0ccq7hhHT1UYWhd8AidYVxt
-	 cdQ+jFDVej4EmkA8SrIPbeQqrNNhS/kZmkXM/6Muh3I6QFk62/O3Jl0gZ0627VVQay
-	 dPboEjzsdPJGY+6MhzJj11GK9Zm38ICnfJwKExCYSG+5Vkq/3tTHVrKvUtNigmu8Bb
-	 P9Qd2f2OMXAeA==
-Message-ID: <7bf30b16-c98e-4c18-816c-58f632fcf939@kernel.org>
-Date: Wed, 7 Jan 2026 17:14:53 +0100
+	s=arc-20240116; t=1767802737; c=relaxed/simple;
+	bh=1pDR5v6cY7VSTmp4cJaRlX88gPqHH4JLmaZ7icbCC0I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HYCl/mM7uJM5ir7FHMjeX/AD9RwH/VtoheUQqSHX8XiWYmn3xCZbZPu8dqlsmy+L50fp60C48KNH5Uh/fuMLkLLOkRR873ytgWmLLlgJQAeW89cqZih5HfRfuDs70dsLet3q8Y1qL/SOnLqT0fh4JiEPCJEU656ZQ5ulwwT4+Jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pEqxtVM7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=N58qm9DT; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6079efDn2988464
+	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 16:18:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=HwZBs/pI4tqrM+YdLcnJrTnM
+	DuBq2S6J78a0HWSkjHk=; b=pEqxtVM7ihUy+zNFC6MGh7WxN7cbgbo08zA/hynY
+	4qHlzmqRIEP0uOC/QZOS03kyXGH5cV6Jg1Zs7DorHDtEsn0pmksseXi9TztcuRcz
+	HFPBO+TTEU1Gnn6x5m4n2gwHD97Qb0AYcPFYKpv/prYihzGuaHkWbGECD3AwA8YM
+	hiuQ/x2DQg9FmXWIk3V+jB8rYHeA3S2OhQBI5+7mslQFkWvaG2HKPwWA4rmbB1Yz
+	Ra7FvnhBpgzwyhxD2jxvUV4l8utAzuJszDeEqpfnZabgaz+OIHGPgEWeXvBGAeMf
+	e1rQPyb225OO+q0LrD2i9CW+DPXQ2nljlVewAoQl6AikJg==
+Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com [209.85.217.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhn2ns7rp-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 16:18:45 +0000 (GMT)
+Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-5dfc092492eso2111641137.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 08:18:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767802725; x=1768407525; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HwZBs/pI4tqrM+YdLcnJrTnMDuBq2S6J78a0HWSkjHk=;
+        b=N58qm9DTElmWlFTUW29T77LCuMGqK0gS1noMO3ChRybzH39bdIahIAIa0QihFVNUQA
+         6j1eVU6zd1O1ZpVbHXTss8ar8vEgQ2g68AHTyufxcMUoHusuuFM8tCjafkU6eRj7o+Ky
+         z0wOLcPCEqVYEt82kdZ4BmBeRfwH7reZ9M53Fe8xvCceXZ3/T9GK76e8IFYTj5F1bvrd
+         9U93DQHC5UO1Uj25wV1+6Q6jTDLqbrXp0BwLs7DaTmXGvpBH0WZNMEA765xF/UBzQ4Qt
+         RaHfxkhw4dfZf/rsSzSvWL75m/SzqPlnPHNS/TgBcwMhmjrkwSpRRp5khyi+1Zd4jXMj
+         8Dbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767802725; x=1768407525;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HwZBs/pI4tqrM+YdLcnJrTnMDuBq2S6J78a0HWSkjHk=;
+        b=kwdX2MA0P+Nl5dBve8a73MAoYIoHcT4IrOmD0Zs2a7wnAzXVZlbYjTYgM0wGxmXgXT
+         c9i7BhWkrC6NnA6E27iXF40LHOMK6cO4iqhFCOa0WkSz3gJZujRm/iouQfL7zX5hatlj
+         G8lJbk20Dep7Fu/cM1RDcEH+ImCoQe04Hoii70VufES2hEs2yhpLHZp1kmdKgiZiofn4
+         z2Zup92dczRGOWTT7mRXr6tOFtwx/Azunsovx9xtBZ47thpS1Xr7ewq3Xxbnzyle0k6X
+         4FEtGD3tkPdDxyMpvHscqOo/kTm2siUrLoPDIhaxcbPbXu79w7iNRfkXz+T4UjOztbs8
+         zyug==
+X-Forwarded-Encrypted: i=1; AJvYcCWAyPQH3gNpcU7M9aH/tAoH6kQa8fVQHCP3j686b7Lv5VV6ynmdj0YjMN/VCvu8WdQRGhtAd4uQhkAR@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsteENPyRribpQUYMSDIs1vb7DUy1xAzFyh+sCcDf+KMHS738m
+	qi4IemNhQI1mZ3MvwpycjzogAqDnyiKXP/rwbczTjDMG+5WgzCoEvq8HvLaliX2QLXsUdurSkRo
+	D68HTMS1W4/VnoupTlc3e7EatgCAEPJF4/ffL2YxcdPYthtGw42IL4dwAbXzMfmBn
+X-Gm-Gg: AY/fxX6GAMveLDCd/GQkY3gmuLoVelDkXLcgCUEVJ7IEHW+/0Tw14gstA85NpD7XNOG
+	EVxpz/m6EFLiuJtn/TWtg0VzKkG2z3IruOzITkcYkyGtc1sIQ5HGKwIgzBJhCosrZ7rLExJ48yy
+	UNXFiBnTUVeDQnqYs4DrTCJJdghjRZZXDFI5+rH3sGCzHOvT+rb8dyiwLbnOr33i8FnkywQC9P/
+	OzNKEhDEly7RbjlLgzxgP6FvFNbZ1ppKG52f1QlY5JT/1ztY1tZyeV3O0KEEksxPsV6GjUap/i8
+	NxtSrhs5goa+x19UsF9/2XRhx0XxeNm9OztTusiBxSkjfbSQjKuwrVWK1KUFT1NlykKjHf7UXIN
+	Bm4pVFNwg/cpGHl0v5vdm4NA9jj9KBX91srWHSqNI9cpTEqxLay7clEJcjIdBv8y2f7YmVfn8Bb
+	F022qh35tbBnDjAEQ5w3BAzYo=
+X-Received: by 2002:a05:6102:fa5:b0:5df:b2cd:12b4 with SMTP id ada2fe7eead31-5ecb694854bmr888621137.24.1767802724703;
+        Wed, 07 Jan 2026 08:18:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGHB5ZRn1QY/K6daz0KlPYsnYXAnz+5ET9h4x0F463Jjq+1VY5FCZCLE1JA9Bad2LVDmCS3+A==
+X-Received: by 2002:a05:6102:fa5:b0:5df:b2cd:12b4 with SMTP id ada2fe7eead31-5ecb694854bmr888602137.24.1767802723486;
+        Wed, 07 Jan 2026 08:18:43 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-382eb8a9c39sm12016941fa.23.2026.01.07.08.18.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jan 2026 08:18:42 -0800 (PST)
+Date: Wed, 7 Jan 2026 18:18:41 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 11/11] clk: qcom: Add support for GPUCC and GXCLK for
+ Kaanapali
+Message-ID: <lsvn2xjz6zxefs772tg26jg2cvfohbjcetrlxfn7mtq6ag5aig@ep6ofq4mrfrh>
+References: <20260107-kaanapali-mmcc-v3-v3-0-8e10adc236a8@oss.qualcomm.com>
+ <20260107-kaanapali-mmcc-v3-v3-11-8e10adc236a8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon/pmbus: Add Infineon TDA38740A
-To: ASHISH YADAV <ashishyadav78@gmail.com>, Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ASHISH YADAV <Ashish.Yadav@infineon.com>
-References: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
- <20260107144507.46491-2-Ashish.Yadav@infineon.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260107144507.46491-2-Ashish.Yadav@infineon.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260107-kaanapali-mmcc-v3-v3-11-8e10adc236a8@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDEyNyBTYWx0ZWRfX2kD+uV8xMnGw
+ aPRn1tFlAF/rbuTprFXN4gdH5LijAwM8yHW8488OvcIjUR7KEAs00uxPInNea1UGvRm6jxrCxcl
+ 1ilnqXNtmmASQ37vV1suaeUKcPrw1WkFOe1jHkIgMdrCFU4kbD41qY1nz5l2icMvpfwUOfqq2B2
+ WWh1NrvS9I/AFrpB7qJNtwQfNKuJ272pAEq57zhNSUFa+0s0C5gMHv3UFdodFnB5Wf+azVljjJe
+ D/fxAP55SHifC9iMHu40efqXC7lmH8QwzfqM3EVgtfhfRuA5vGq6s11NGMxZoUKEE/cfU9BQGw7
+ S7PrQKSkDxR7Tl5+Y+ivfPw4TzRBeBu/nsBmK+BVJwB+CKwW5ofNkmRrCVlH0n5kgesMT8i8184
+ aD9Ijq+y/B35PY+VwYTne5A4HjMzbiNqv92YRfGCNdkuP6rJUriqtH+PsOxVMOhz4AFA4hbShKR
+ zq0CbdXAH4jWSdf65hw==
+X-Authority-Analysis: v=2.4 cv=CYEFJbrl c=1 sm=1 tr=0 ts=695e8765 cx=c_pps
+ a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=-momvpiiut8LGs_r7JQA:9 a=CjuIK1q_8ugA:10
+ a=crWF4MFLhNY0qMRaF8an:22
+X-Proofpoint-GUID: _rMaCdZ_d-OIKMD_Jd6Ab2uHTwdxKnv-
+X-Proofpoint-ORIG-GUID: _rMaCdZ_d-OIKMD_Jd6Ab2uHTwdxKnv-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-07_02,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 suspectscore=0 clxscore=1015
+ impostorscore=0 malwarescore=0 phishscore=0 spamscore=0 adultscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601070127
 
-On 07/01/2026 15:45, ASHISH YADAV wrote:
-> Document the TDA38740A/25A device tree binding.
+On Wed, Jan 07, 2026 at 03:13:14PM +0530, Taniya Das wrote:
+> Support the graphics clock controller for Kaanapali for Graphics SW
+> driver to use the clocks. GXCLKCTL (Graphics GX Clock Controller) is a
+> block dedicated to managing clocks for the GPU subsystem on GX power
+> domain. The GX clock controller driver manages only the GX GDSC and the
+> rest of the resources of the controller are managed by the firmware.
 > 
-> Signed-off-by: ASHISH YADAV <Ashish.Yadav@infineon.com>
-> 
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 > ---
-> Changes in v2:
->  - Review comments address:
-
-You need to write here what you exactly changed.
-
-
-> https://lore.kernel.org/all/2ee75453-0869-4348-ad92-f7ff71aca75d@kernel.org/
+>  drivers/clk/qcom/Kconfig              |   9 +
+>  drivers/clk/qcom/Makefile             |   1 +
+>  drivers/clk/qcom/gpucc-kaanapali.c    | 482 ++++++++++++++++++++++++++++++++++
+>  drivers/clk/qcom/gxclkctl-kaanapali.c |  76 ++++++
+>  4 files changed, 568 insertions(+)
 > 
-> Driver code in review process:
-> https://www.spinics.net/lists/kernel/msg5985470.html
-> ---
->  .../hwmon/pmbus/infineon,tda38740a.yaml       | 81 +++++++++++++++++++
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38740a.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38740a.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38740a.yaml
-> new file mode 100644
-> index 000000000000..cd4102350a15
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38740a.yaml
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38740a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Infineon TDA38740A and TDA38725A Synchronous Buck Regulator with I2C
-> +
-> +maintainers:
-> +  - ASHISH YADAV <Ashish.Yadav@infineon.com>
-> +
-> +description: |
-> +  The Infineon TDA38740A/TDA38725A is a 40A/25A Single-voltage Synchronous
-> +  Buck Regulator with I2C designed for Industrial use.
-> +
-> +  Datasheet:
-> +  https://www.infineon.com/assets/row/public/documents/24/49/infineon-tda38740a-tda38725a-datasheet-en.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - infineon,tda38725a
-> +      - infineon,tda38740a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  infineon,vout-voltage-multiplier:
 
-vout of what? Of input supply? But there is no input supply... Maybe you
-just want to set output regulator supply?
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 
-> +    description: |
-> +      TDA38740/25 pin strap parts are available in two flavors of 1:1 & 1:2
-> +      vout scale loop.
-> +      For the 1:1 vout_scale_loop version, there is no need for any resistor
-> +      divider as output voltage sense pins are directly connected to
-> +      the output.
-> +
-> +      For a 1:2 scale loop version, it is recommended to use 499 ohms each for
-> +      top and bottom across the feedback path.
-> +      However, in some applications customers tend to use an intentional
-> +      resistor divider across the output with a different divider ratio other
-> +      than 1:1 or 1:2 to alter the actual output voltage.
-> +
-> +      For example, if pin strap part is set to Vboot of 0.7V,they use a
-> +      resistor divider to generate 0.75V using the equation provided in
-> +      Section 13.3 of the datasheet.In this case, as there are only two
-> +      vout_scale_loop options of 1:1 and 1:2 that the IC can identify,
-> +      Read_Vout would still read as 0.7V in the telemetry and the baseboard
-> +      management controllers would use this telemetry data to monitor the
-> +      rail parameters leading to false tripping of the system.
-> +      This multiplier is used to offset the telemetry output voltage Read_Vout
-> +      so that the telemetry data is reported correctly to the monitoring
-> +      controller,in this example the multiplier would be 0.75/0.7 = 1.071.
-> +
-> +      This multiplier is required only for any external monitoring of the rail
-> +      output voltage. All the other Vout related parameters are used
-> +      internally by the IC and there is only a slight impact on the fault
-> +      thresholds.The impact can be calculated using equations in Section 13.3
-> +      of the datasheet.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 2
-> +    maxItems: 2
-> +
-
-
-So this was a regulator before, now it is not. Confusing... Parts of the
-description are saying this is regulator, so you miss regulator.yaml
-reference in top-level. Anyway, I am not doing full review with such
-incomplete changelog.
-
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
