@@ -1,159 +1,125 @@
-Return-Path: <devicetree+bounces-252449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3CACFF357
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 18:53:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E7A7CFF46B
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 19:06:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CCBAE3437CFD
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 16:42:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1371534F30BC
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 16:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF9B37F116;
-	Wed,  7 Jan 2026 16:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=osyx-tech.20230601.gappssmtp.com header.i=@osyx-tech.20230601.gappssmtp.com header.b="G0AV5DUC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D01D38A2A0;
+	Wed,  7 Jan 2026 16:37:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5B53803CC
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 16:29:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6DCF36214A
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 16:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767803404; cv=none; b=m8AT4a+kOf5yV1VS0CIhW6kDlm4CbSFQzX06ftlkM2PSbYClVvldoZ0+Vl/7OOgbjCiaATI5UKzKEFXO01aL+m0rCKhcLIoSwdk+1+YNreYjF5MoWTmSJ4S3T8j2XFyDgW7EFeK7D3UcORJFKqmeRndtCAySqSqZoqHSXrqz/To=
+	t=1767803875; cv=none; b=evriCig+9mod+acTGo1bLvb6okAl6Jlj7wJ7BdNlZteaTtbIqK7NLWVouQbU1/gbcHbynkxA9frGmkuj3hzCT9OXzlrcbfYyNnFjNFjRrwzHrKSeAOKJDMeGpgqE+34fPf5bZpLmKKz1POKnhf7+nAmKSBGQaPIGhBPKFFnVQRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767803404; c=relaxed/simple;
-	bh=9BATtieLEYCpEcZj+GM/kP3Ja9/0f7Z989r6IWgQnPo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gcyH7gfJ3HTD/cBCqzEe+mf9Jq5LfVbAlsLGGzFZ8xzZS7UdeiC0LSv0iYlv52YaSqzuE7HQ8y0XSFKTUlFG0Q/ctiuJnIfYljDLGJubsguHyknfxvZocoIadXQ5P8Qgpxu3khKhQqWpoheHGzWaCW7g1KAxJ+DGG0WetQWAtd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=osyx.tech; spf=fail smtp.mailfrom=osyx.tech; dkim=pass (2048-bit key) header.d=osyx-tech.20230601.gappssmtp.com header.i=@osyx-tech.20230601.gappssmtp.com header.b=G0AV5DUC; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=osyx.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=osyx.tech
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4779a4fc95aso5162495e9.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 08:29:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=osyx-tech.20230601.gappssmtp.com; s=20230601; t=1767803386; x=1768408186; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WihJclLNTP76N6hz6eqMpZoD5cMEZ14VPXp1pd6gG3I=;
-        b=G0AV5DUCkIVoAqpgQWEX/9lUB5kktqCgXbewIHqswqeS6vW1szpPhKDO3upN7mluJJ
-         YXpPKekVDudKt9P8u1LKtkd5th+etFVxOu1jKq12ZzSdCOZ33eCnErhUnHdfUs5A1CM1
-         fvmu3UjQz06XXV6T5cWVO1TuJZunEg4p0Mv3KeMnNerMb2JyW95c17WLAD7ag9Fkflnu
-         vS4zM6fVM2D78ht+VFybuqzm6p19BuplW9EiQuu/TYK5rbOa8se1vV3KMSZrtBQFHVbk
-         q+AVdORefAHg6G1d2lFuWoy1X2BzsSE/SKyQxY3kv5aXtxqCPfrXhLJCaoD7WG5pfpuL
-         57UQ==
+	s=arc-20240116; t=1767803875; c=relaxed/simple;
+	bh=lUkjukYyPvno8s3BJtqS71STl5+uBWJ649WSJU0Z1ms=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=m8bm7kkdZGKBE7WCI7ad6h/5nAcbCx8Qh52y8EHmiPzzvZGho+oYPAH0c5LX+Wshdr5Lib5qPV1a0oMcSJo9M9/EPVSXFV0YvvPUeaglRqwPa5oXPO1dx9Ak0L5fo8hu+jeVx4B9hEJVe4f9RmJAYflBVkqpBiKU6nV7MYklaIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-5634feea416so356709e0c.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 08:37:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767803386; x=1768408186;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=WihJclLNTP76N6hz6eqMpZoD5cMEZ14VPXp1pd6gG3I=;
-        b=aI1mRnFiSk+vXMVmgD5CGIF3wvUipoVbYubnELqPa8tQ89HBbgn8rnPVhQG5/HPHId
-         g+XB10r14Wf49UfLM/BenRluFhN24sKnykuNvLdtgo9pwXEoViI6lhHou2BD8AMJKGWL
-         nRimzpC7SVOKmA5UfimBcuwETvuFI5X5y574oOCyFQc74TnowNhyKLlDi0v+YZbv6zUe
-         jo2mAA6HcRAl7rXbVac4KOR+sQIEn2XcjU6qxF+/fZDQ3Z1dZRMr5A+x9MiB1CImj8Zg
-         luvUmd+HDV+mri3uR03+AzHdp/XFnBxeeMwXhSSNzrBYFOUxJUrv0/GAIRBkGYT0lL8i
-         kGtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVZw3wUTd1HLIy2ownqGT3JxxqBF+ZKwM+RBLLKaE8VyDLTlVYuRj4QDZirnPWx5ZD+OBQ3YTXvA/oD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyuRotldn+7FEfdjbhR/JeBRcGTnJxUfFYQpjCbF0nL26CPezy
-	mztT8Ue1ww5L69i6E+NJKwqPoSDXHR+jK4FnG1M+sAcqJU1HISabnH/JXFGC3Ch78I8W
-X-Gm-Gg: AY/fxX6T6bkorl0ZcVOR+Kh4BT1QZVpyzQlC9WPTn76On1X1DqvGKO8x14iajSGvlge
-	g0j/jmfkd6rMKx0XtTSG6j8NqDmaug82hrIq/uVh1iJ9S0Z3pOxA61IrX0CuGVQQseeDpBkOi5N
-	H4Hqckh55TUdnjNxH9SL9U6MbxhR/zgzGt74T5gnAtR+hMiR9qEHKXCGMvT7ASsaoYsSpyCcRXt
-	SVH41KVpzWquNCfdEoe4uN/kj/tkrZ7KtSYOwTcEZ3rBAtVztz4JPUyyQK0cv1PXSTmLv8h4m6r
-	CnxIRtaQTb749DlbE/N41yV6DXdqLbnkPOAwMDv75sy1EmZsA6tVEL/bNq/+EVnm2MkqhWS05nU
-	q3MpVAc222Jl4qXUtMXIlpSeItJWifSfHlXA7EZ61ZyNJNR9rSO1w3uCT+h3oKZ6VHPl7hKVkPS
-	jI0kLBtBsgJSwnlhJwkg==
-X-Google-Smtp-Source: AGHT+IFKD1+c7SUjD7a/gByTTs7FpF1prAJlqO9osr5dmkMQRiIqO+8yFt3RtGpmL0uKFm0/tPDRBQ==
-X-Received: by 2002:a05:6000:a88:b0:432:c0b8:ee42 with SMTP id ffacd0b85a97d-432c0b8ef25mr5297882f8f.11.1767803385887;
-        Wed, 07 Jan 2026 08:29:45 -0800 (PST)
-Received: from jp-linux.Home ([2001:8a0:f59c:a900:4a3c:13be:a1c0:7b9f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5ff0b2sm11117030f8f.42.2026.01.07.08.29.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 08:29:45 -0800 (PST)
-From: joaopeixoto@osyx.tech
-To: linux-kernel@vger.kernel.org
-Cc: ajd@linux.ibm.com,
-	alex@ghiti.fr,
-	aou@eecs.berkeley.edu,
-	bagasdotme@gmail.com,
-	catalin.marinas@arm.com,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	dan.j.williams@intel.com,
-	davidmcerdeira@osyx.tech,
-	devicetree@vger.kernel.org,
-	dev@kael-k.io,
-	gregkh@linuxfoundation.org,
-	haren@linux.ibm.com,
-	heiko@sntech.de,
-	joaopeixoto@osyx.tech,
-	jose@osyx.tech,
-	kever.yang@rock-chips.com,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	maddy@linux.ibm.com,
-	mani@kernel.org,
-	nathan@kernel.org,
-	neil.armstrong@linaro.org,
-	palmer@dabbelt.com,
-	pjw@kernel.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	robh@kernel.org,
-	will@kernel.org
-Subject: [PATCH 6/6] MAINTAINERS: Add entries for Bao hypervisor drivers, headers, and DT bindings
-Date: Wed,  7 Jan 2026 16:28:29 +0000
-Message-ID: <20260107162829.416885-7-joaopeixoto@osyx.tech>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260107162829.416885-1-joaopeixoto@osyx.tech>
-References: <20251224135217.25350-1-joaopeixoto@osyx.tech>
- <20260107162829.416885-1-joaopeixoto@osyx.tech>
+        d=1e100.net; s=20230601; t=1767803865; x=1768408665;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UosJZ8iJR6qWLllsBRVQrPIUMjEsIPO/Cc8wz2jLzzw=;
+        b=jKcmhwnwJfWGLRsj/hj5CW4/hAwm12L78CHo1vLbGedu4ZZWIM+vF1lNDpY/9yhFlL
+         LHgoJ5jiKoUPBFmAPH7ULDGaMDc63MCwhAMnDiS//sDhXlW8ZqFDSBXH7r0ucqLhzLMM
+         7YUcpLqEVGXK/hpmfhqrsaC7ICy0ztfhTqDSw4L3Uj04rvqXu4k338MFiKFxuZzhkRcc
+         GeZQ7tdeqKOi4OmwDYesQgWo7DCQ5/JdfGz5GM5UvMnvKM5YGdOgOROI7NrEtOcc0cAi
+         hlulwK78eB+OAlwH0oOkIsghPfrYDuz4qT4dR1J1oY12WJkpZlI7RR81wywQ0W/OIXX3
+         Fh5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUQWRw7NOelF/CiXmBh8zhS1cQqIWDUxeqZnH8V+X369/IhaC9uK1MC11zfinhm4IGV2cE/eQfRAeSo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlnTuO0ucMxOSNGBWLGtGdB60/tdlUCao6Zi0nERrAQmxH+T1Y
+	ZnCC47DXW0nDBJbtjpyKw4QPIZKVpVePnGf20lE7yaQ3leKALXKYkG491H8wVuLS
+X-Gm-Gg: AY/fxX6i23SsCvzZ0kSeSrffQfqgzC7/EBRgFqJE+1Oi8s5OHfRAwML/llpYUHsGfSO
+	GGq94rhBKLFb/iYAQG09NchHive9YlOBDPI2Jsc+5uGR6jrG54BlQly/zTMHAm95CRbeLUaQmZc
+	x/ev4aXcFEEvV64cuqHqUYrz190+5UYMi3i/2QldpUBbxgotBfIhNeYBTbsYlAeGyr7updP4F7u
+	0k3vq+ZyMMoT0kf1scZjlcz8V08h8/UVUon8hMi19LaSdgVk1TPF7p3cfrsHzGKHKLv297IdZFC
+	ST7tp434x678EfNyepfyNhX1icZVW0Ec32OY09CzOH30NIASt+sURTxkLgby+CX7hog2l788EpZ
+	DGzGmJajcBPoJQpzN94O5tsBhoS4xkHQ70xDPJjDDJow613KWu8LlU9MefM88V/Pm+F+H0yFI3X
+	Gfah5J1LYWURNeLWrfK6SAMiWRToyawDd67Lu8f5gI4NohYgip
+X-Google-Smtp-Source: AGHT+IGt3wOdm6YaYriH8P+C0XmXl2eEzbAQUUdjHIDHX/Tbf6AZMGA3/qJEe7SJKQ91Rb0+ns3v+A==
+X-Received: by 2002:a05:6122:4885:b0:559:79d8:27a5 with SMTP id 71dfb90a1353d-5634735ce03mr1203763e0c.0.1767803865560;
+        Wed, 07 Jan 2026 08:37:45 -0800 (PST)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5634d9162a4sm1670798e0c.15.2026.01.07.08.37.44
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 08:37:45 -0800 (PST)
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-5ec8781f5c9so587428137.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 08:37:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXug2My+UydRubuo/fkMDkM08e14EuCXnW0331hbXBZ/9DZc2PMRez5tM28A/L102YHIgkcTslSWxMp@vger.kernel.org
+X-Received: by 2002:a05:6102:9d4:b0:5dd:b2ee:4423 with SMTP id
+ ada2fe7eead31-5ecb1e904bamr1400550137.11.1767803863532; Wed, 07 Jan 2026
+ 08:37:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251230115814.53536-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251230115814.53536-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 7 Jan 2026 17:37:32 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX5_TkFmgqv29Nddo4bZzEWQrL87kwqTdiLwfq+qMtsXg@mail.gmail.com>
+X-Gm-Features: AQt7F2p4l0yE7BHZfa9XEcOswGFhJAJZ7XFevRuwZFhhiVQ4xn01o825gjpFphg
+Message-ID: <CAMuHMdX5_TkFmgqv29Nddo4bZzEWQrL87kwqTdiLwfq+qMtsXg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] can: rcar_canfd: Add RZ/T2H support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-From: João Peixoto <joaopeixoto@osyx.tech>
+Hi Prabhakar,
 
-Add MAINTAINERS entries for all the Bao hypervisor components.
+On Tue, 30 Dec 2025 at 12:58, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> The CAN-FD IP on the RZ/T2H SoC is similar to R-Car Gen4, but differs in
+> the AFLPN and CFTML bits and supports two channels with eight interrupts.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: João Peixoto <joaopeixoto@osyx.tech>
----
- MAINTAINERS | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Thanks for your patch!
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dc731d37c8fe..4286efb307b8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4321,6 +4321,19 @@ F:	drivers/video/backlight/
- F:	include/linux/backlight.h
- F:	include/linux/pwm_backlight.h
- 
-+BAO HYPERVISOR
-+M:	José Martins <jose@osyx.tech>
-+M:	David Cerdeira <davidmcerdeira@osyx.tech>
-+M:	João Peixoto <joaopeixoto@osyx.tech>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/bao/
-+F:	arch/arm/include/asm/bao.h
-+F:	arch/arm64/include/asm/bao.h
-+F:	arch/riscv/include/asm/bao.h
-+F:	drivers/virt/bao
-+F:	include/linux/bao.h
-+F:	include/uapi/linux/bao.h
-+
- BARCO P50 GPIO DRIVER
- M:	Santosh Kumar Yadav <santoshkumar.yadav@barco.com>
- M:	Peter Korsgaard <peter.korsgaard@barco.com>
+LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+However, compared to other SoCs, CFDCnNCFG.NSJW[6:0] has:
+
+    0x00: Setting prohibited
+
+Perhaps this is a documentation issue, as the same limitation was
+dropped in RZ/V2H Hardware User Manual Rev.1.30?
+Linux also has no can_bittiming_const.sjw_min field.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.43.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
