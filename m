@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-252443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4397DCFEF2E
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 17:50:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28C1DCFEF3A
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 17:51:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2165A337F0C0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 16:41:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EDF0830DB485
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 16:41:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B698374163;
-	Wed,  7 Jan 2026 16:29:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A141D38757F;
+	Wed,  7 Jan 2026 16:29:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=osyx-tech.20230601.gappssmtp.com header.i=@osyx-tech.20230601.gappssmtp.com header.b="jNLALy1v"
+	dkim=pass (2048-bit key) header.d=osyx-tech.20230601.gappssmtp.com header.i=@osyx-tech.20230601.gappssmtp.com header.b="iLvx/tSg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com [209.85.221.68])
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com [209.85.221.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69CFF374177
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 16:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25B437516F
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 16:29:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767803384; cv=none; b=nUhBq43z4ARapTQbOdhxyuH24HQN4pleL6Za4q8kKfmwfqjzggoiMw4xdPSrORvWP94LfO0hUPanAZFjjhMw9VljhCqR0GHcA1MZaguEFiicdI8olzIXVePfhK2Xj8w23pfsCnHdBTo8zAiqELJ2w3ETDzENpPeer2G7BU7Oksk=
+	t=1767803393; cv=none; b=WV902umvMVvMx9N8JvyJTvwzchnEBC22Jt60uVkUFlNukKPPL/OS0BiwwfPw3jJVSm3jTKHzRCRcm4QtefPLPJWTocjLV1Bx51KDPlS/qUPy72Wm0kktFjGHpEctmCeuMJbuJ/ibOELcqmO/mGUrvDsfibBgM+GiXpY8Q2riXmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767803384; c=relaxed/simple;
-	bh=Z9NPeRHS4rn7DDQ52PT6sOTFVwDSGgbpSlaXM0N4slM=;
+	s=arc-20240116; t=1767803393; c=relaxed/simple;
+	bh=rLPl1zE7Upmz6OuVCre9yIxlCuXxDlH9iwpLAwe5XqA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lizVWOmgNxxpggGOWRsf8GW76Uyz2lkbpIFh95SBMGiySEf3myC2/I9iUbh8q18XNv1iWoBnfHRLZF/HXG5LFctmPbcMkaSa1nvXnCEFeMWIUzUHJu3wuE7k7AKqxD1NoLIwuO49KEv0vLYJz/vLVhSyCJAx0VmL1wfu16nqTwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=osyx.tech; spf=fail smtp.mailfrom=osyx.tech; dkim=pass (2048-bit key) header.d=osyx-tech.20230601.gappssmtp.com header.i=@osyx-tech.20230601.gappssmtp.com header.b=jNLALy1v; arc=none smtp.client-ip=209.85.221.68
+	 MIME-Version:Content-Type; b=C1ulGM85avdoqL01enZbyqfXx1SYszAKV1wFqm/X5Og0uLV6cMZuVny2gz8F9N47srUrv59ohvRBKTCvZbtEfTUyopVfUZgAKYId4vZixKCVWW728NCturC45W7VguiioP0/jcr5vw5UlK9mvuBDVT3q7f/GusxBkkU3XYY/Z4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=osyx.tech; spf=fail smtp.mailfrom=osyx.tech; dkim=pass (2048-bit key) header.d=osyx-tech.20230601.gappssmtp.com header.i=@osyx-tech.20230601.gappssmtp.com header.b=iLvx/tSg; arc=none smtp.client-ip=209.85.221.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=osyx.tech
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=osyx.tech
-Received: by mail-wr1-f68.google.com with SMTP id ffacd0b85a97d-42fb5810d39so1264718f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 08:29:31 -0800 (PST)
+Received: by mail-wr1-f65.google.com with SMTP id ffacd0b85a97d-4327790c4e9so1108280f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 08:29:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=osyx-tech.20230601.gappssmtp.com; s=20230601; t=1767803366; x=1768408166; darn=vger.kernel.org;
+        d=osyx-tech.20230601.gappssmtp.com; s=20230601; t=1767803377; x=1768408177; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=utTQM12vp3HfC7wPK2LBUo4jmtAYzgNAcmtNUG5Yv4o=;
-        b=jNLALy1vJxBl4weOk5FIJlTyqM6A2tyaDoaeTirbmOtblWFPIGDD4WlQes7jkbVMu5
-         rCbLvaVKxHvD3LF1PSBFlZ6UY4bASfHQuvwcYKDoc4ICPsbmug8Qit7+VVeN1lfqfpxq
-         SsXBOpyR8B8xRAExlFsLDKmwNfa0KtUmVHIkSJfWeyHy2pnVQjR4tfpUgu7h2GNkInit
-         pdPwUP2nFrdQtNWkgo0c53F33x28Iy4LF5WHXUMHCzoo34l97ZmTt/WOMaE7g10JQjwB
-         alg9B789IfxeYbgQdmGpiVubwtD+YiTldOvAYt9ybcKrfA69TE4MMkIdd2S8mHHlpZeF
-         sIOw==
+        bh=NUMimnmdXF+2lmQCSaKYy80Xx8SLq3LRSYV8Quqc2EA=;
+        b=iLvx/tSgpPTvGL+P9DpQHrzJo6RPGDMNLhBbwyw+AMJwYO9hhcH5yyM+w1SY7/27fP
+         W9gNXX/WNbQvGhECwUai6NdO3bLN8RJl/dT9NWbcJdZ3zEDMvkRKwRfNCj2IkkHmx/Gj
+         /2ncCfJEpeUL4EaxYfLAwZ8Q9gH41bx6xYlCkltYg6ZXij3ShPGZaEtRxa9K4GHVayVi
+         JYnEjcdcD6Xpz1fw122nbrth0gMIkWTayG7rZpHhfO+l5+GrEfsJ3YHyUMo+FCEumUBy
+         4hnB2Zm7Xzs/yzVowYBVu5REU6zsPwjJFbmc0znU5eGUkJG0aJUnwuqGEsTqEToOGz20
+         zxKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767803366; x=1768408166;
+        d=1e100.net; s=20230601; t=1767803377; x=1768408177;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=utTQM12vp3HfC7wPK2LBUo4jmtAYzgNAcmtNUG5Yv4o=;
-        b=IZd17RpMt1481WgX4LWaD5CdaFdywiuYTLD51VmIfxSjmVVxbDlzwI0/cuvbdlPwEi
-         GFvfbTsJXqpvU80eYE2m5MI/jkq1iM2ALlXLNnGcbEPfk/zM1bFGFVM1mLBqQ97Txqek
-         F1Lx1KnBTHmB6fjPonv2t0UfuybacF7nvS9zwIvGgeR6gXyMMxA2O6VzjN0uveb5+1j5
-         533CI3xPBX5gXksaPYuQPd8z3SuuJxU4uQAtA4dQbT9Cud1uhkUnct/dndEVkG+r5MZO
-         fasweIm/n3b4YgVfAVZRpCtHRnUTqfVCrcg2g3O0uTXtckdK1ItX3PMxgX8vnLU2XAFS
-         B8lw==
-X-Forwarded-Encrypted: i=1; AJvYcCVsSybC8c+bW/sKTGpadWtcNGGTyk37npQRLA7Kh0PI3CiSwBx4UNCgWh83sPUxGHU/Q55hKd9mkgaL@vger.kernel.org
-X-Gm-Message-State: AOJu0YywRWLKvb5XTQ/2yQDBMb/xhWURgGwB8EDIQsNG28PGaGghKucr
-	BpzRoMACIbbr3Y1EqZSy5cNWXO63LAp4DPoi18xjk6sQVFbsSC4jINAmigxPnVNsLDTi
-X-Gm-Gg: AY/fxX5IlSB8jVaUX66Qclphoi3rlX5mi4/pK4y2HQVTg4YVybOcRnS9xkaD2uBlMLs
-	LzX3Is4M3OTpoS5IICxDb//rjiwwljSKVSA5SgBlKU9tHM91E1IL7qy200JphAHHSZ3EEAMJCxf
-	qSX0CjbKLVnbe4Bb54xr7hJZ4HkCU7yDl6SVbNsGdGJ1orndQmJcNJ+8qCko/w2InCA0eVNq2JP
-	QDcM11lEzI+tD46QzaEmo82CTMWwUzppseH41HIchtRQ/xOHHr4Kte6rl1DcX9IHG1jXVRRA3mZ
-	+XyU0b22kug3O7jxUOSnIyqJBOeT6p0rodbYwcmzPoVjTlAOuFJ7OJC8HiW44pvGdziyejKaUH4
-	6PTHIoptnH31GbTVqxp469amytef59Ci0PK6JMvckjpyTa7xeylpI5Tla08oCzPK99M7Zk068kA
-	zbATsoiXS4qsArzBu67g==
-X-Google-Smtp-Source: AGHT+IEsJtA8N1N6cQme/xrsmcYvUfGO3yfitzXA9dloqZIoULK1bllqhEJTvQbGnSNhB8OYA3C0wg==
-X-Received: by 2002:a05:6000:2085:b0:431:104:6dc2 with SMTP id ffacd0b85a97d-432c362811cmr3267285f8f.8.1767803366422;
-        Wed, 07 Jan 2026 08:29:26 -0800 (PST)
+        bh=NUMimnmdXF+2lmQCSaKYy80Xx8SLq3LRSYV8Quqc2EA=;
+        b=N2WZ5FA8e32AzhGAqD/5mdUDCtdZZv85RTd+ITNaO+6EJYVqYvYlNfUJT2fRixnk/U
+         ZhwSLkq3gedmWBPP4CCmlDl8k5z7gQCYxtk9lwNYmf4WdUtqQRXg9ANimaQKIxphgmo7
+         WgqKrrLEHbJj42YUOxo+ZZlavw7CxineDJP6eZ9BqvGDuvp7cqq3T4sJSo+/h9uUnp9x
+         vVTh5dyZB8Nrq/yC6r1xRW9VMOuD4nIZaYCOY89dRu2Zm2jDDAFQ6YZNDPP5EuzSOBcU
+         0JIwVEJSrmOjDMBBBgikl3XaLUU2oifQj5hn4pQKxBvCq4/7e3I/NleRV3p8+FYDlTlu
+         xncQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWwaYalgzshcgqTF3KjW6NvUpVQqU31/07mhKGjyNd/Xp87B6TH+DfvLimT38mdRdJ8A3Olpx1MPBz6@vger.kernel.org
+X-Gm-Message-State: AOJu0YywlP6B8yBrCaotWNxLChge4veqS+Ow8Wsx5K+iQbE8Ohw/kTON
+	anzM7mPW41b9T0y/JZK9clyQlOAZPI7DR7lE/qkdIcl3rJQPDylFwkfho1O86z3iVWGO
+X-Gm-Gg: AY/fxX7kBXb8wVd5gcmCmcVZYHMDxNwLze9U+eT7qiNeCYpoOLsJG9Id3bIo5ceUu50
+	ntwRwK/lUQ33w24XCJDjWrelfe2gZZRMCdT/VKfutIakju6YA7nyw6Emzvrgs/YHkhM2LR+r/fK
+	pn+9ag9azsBHKe+lNnApvK1usoml+JJLGBhKQ6W2tR7Ot29qEViCcaoLaZJLjsQFk2QOOHjySG/
+	ULvngdM9CUraZ4khcvrxOjb2jAw13u8JTLr9yuf47k6I0pTnk+L5kNVVrvyVoksMplQNI8VsTCr
+	Ht1KFMyesZRTcyErXuXlRs1ftmp3LfcSnyD9SVGHCwpdIV6auoZnnSZnD2U96LcaQJGNKDTsfKt
+	zTU5tGmG+FTQxEoRLAHk8rVnVvAICzWK25uCYYEL1rQeOT1HHncstSe8g7CtzFcCNp0cO2oeM6s
+	oZbHM+4CR+nqvsAEMyoQ==
+X-Google-Smtp-Source: AGHT+IHbte2Z9gfsJb68imADTi55zsYUmZZE1DMqWC4ozVwMek+FiE+B/1QJjWhTUxGd71ZKE6jVRA==
+X-Received: by 2002:a05:6000:310b:b0:432:5bac:3914 with SMTP id ffacd0b85a97d-432c374f46cmr3857592f8f.40.1767803376686;
+        Wed, 07 Jan 2026 08:29:36 -0800 (PST)
 Received: from jp-linux.Home ([2001:8a0:f59c:a900:4a3c:13be:a1c0:7b9f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5ff0b2sm11117030f8f.42.2026.01.07.08.29.24
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5ff0b2sm11117030f8f.42.2026.01.07.08.29.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 08:29:26 -0800 (PST)
+        Wed, 07 Jan 2026 08:29:36 -0800 (PST)
 From: joaopeixoto@osyx.tech
 To: linux-kernel@vger.kernel.org
 Cc: ajd@linux.ibm.com,
@@ -104,12 +104,13 @@ Cc: ajd@linux.ibm.com,
 	prabhakar.mahadev-lad.rj@bp.renesas.com,
 	robh@kernel.org,
 	will@kernel.org
-Subject: [PATCH v2 0/6] virt: Add Bao hypervisor IPC and I/O dispatcher drivers
-Date: Wed,  7 Jan 2026 16:28:23 +0000
-Message-ID: <20260107162829.416885-1-joaopeixoto@osyx.tech>
+Subject: [PATCH 3/6] dt-bindings: Add Bao I/O dispatcher driver binding
+Date: Wed,  7 Jan 2026 16:28:26 +0000
+Message-ID: <20260107162829.416885-4-joaopeixoto@osyx.tech>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251224135217.25350-1-joaopeixoto@osyx.tech>
+In-Reply-To: <20260107162829.416885-1-joaopeixoto@osyx.tech>
 References: <20251224135217.25350-1-joaopeixoto@osyx.tech>
+ <20260107162829.416885-1-joaopeixoto@osyx.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -121,99 +122,96 @@ Content-Transfer-Encoding: 8bit
 
 From: João Peixoto <joaopeixoto@osyx.tech>
 
-This series introduces support for Bao hypervisor guest-side drivers
-under drivers/virt/bao, along with the associated Device Tree bindings,
-UAPI headers, and MAINTAINERS entries.
+This patch introduces a device tree binding for the Bao I/O Dispatcher,
+a device used in backend VMs running virtualized devices (e.g., VirtIO).
 
-Bao is a lightweight static-partitioning hypervisor for embedded and
-safety-critical systems. This series adds:
-- Bao IPC shared memory driver: Enables Linux guests to communicate
-with each other via shared memory regions.
-- Bao I/O Dispatcher driver: Allows Bao VMs to share I/O devices using
-device paravirtualization (VirtIO).
-
-Key updates in this version to align with upstream requirements:
-1. Switched to misc device API: Removed all cdev, class, and
-alloc_chrdev_region code in favor of misc_register() for simpler,
-standard device management.
-2. Clean kernel style and formatting: All code passes checkpatch.pl,
-with consistent variable declaration, function naming, and comment style.
-3. Architecture abstraction: Consolidated ARM, ARM64, and RISC-V hypercall
-logic into architecture-specific headers, removing in-driver #ifdefs.
-4. Commit messages: Now concise and Linux-kernel-style, describing
-behavior and impact clearly.
-5. Device Tree compliance: Fixed all make dt_binding_check errors to
-ensure DT binding correctness.
-
-This series has been validated on Linux guests running under Bao
-hypervisor, confirming correct initialization, IPC shared-memory
-read/write operations, and I/O Dispatcher functionality for
-backend VMs.
-
-Feedback and review from maintainers of virtualization,
-architecture-specific code (ARM, ARM64, RISC-V), Device Tree
-bindings, and UAPI are welcome.
-
-João Peixoto (6):
-  dt-bindings: Add Bao IPC shared memory driver binding
-  virt: bao: Add Bao IPC shared memory driver
-  dt-bindings: Add Bao I/O dispatcher driver binding
-  virt: bao: Add Bao I/O dispatcher driver
-  virt: bao: Move BAO_IPCSHMEM_HYPERCALL_ID to common header
-  MAINTAINERS: Add entries for Bao hypervisor drivers, headers, and DT
-    bindings
-
- .../bindings/bao/bao,io-dispatcher.yaml       |  75 ++++
- .../devicetree/bindings/bao/bao,ipcshmem.yaml |  82 ++++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- .../userspace-api/ioctl/ioctl-number.rst      |   2 +
- MAINTAINERS                                   |  13 +
- arch/arm/include/asm/bao.h                    |  60 +++
- arch/arm64/include/asm/bao.h                  |  60 +++
- arch/riscv/include/asm/bao.h                  |  60 +++
- drivers/virt/Kconfig                          |   2 +
- drivers/virt/Makefile                         |   2 +
- drivers/virt/bao/Kconfig                      |   5 +
- drivers/virt/bao/Makefile                     |   4 +
- drivers/virt/bao/io-dispatcher/Kconfig        |  15 +
- drivers/virt/bao/io-dispatcher/Makefile       |   4 +
- drivers/virt/bao/io-dispatcher/bao_drv.h      | 361 ++++++++++++++++
- drivers/virt/bao/io-dispatcher/dm.c           | 405 ++++++++++++++++++
- drivers/virt/bao/io-dispatcher/driver.c       | 185 ++++++++
- drivers/virt/bao/io-dispatcher/intc.c         |  64 +++
- drivers/virt/bao/io-dispatcher/io_client.c    | 405 ++++++++++++++++++
- .../virt/bao/io-dispatcher/io_dispatcher.c    | 179 ++++++++
- drivers/virt/bao/io-dispatcher/ioeventfd.c    | 323 ++++++++++++++
- drivers/virt/bao/io-dispatcher/irqfd.c        | 314 ++++++++++++++
- drivers/virt/bao/ipcshmem/Kconfig             |   8 +
- drivers/virt/bao/ipcshmem/Makefile            |   3 +
- drivers/virt/bao/ipcshmem/ipcshmem.c          | 252 +++++++++++
- include/linux/bao.h                           |  44 ++
- include/uapi/linux/bao.h                      |  98 +++++
- 27 files changed, 3027 insertions(+)
+Signed-off-by: João Peixoto <joaopeixoto@osyx.tech>
+---
+ .../bindings/bao/bao,io-dispatcher.yaml       | 75 +++++++++++++++++++
+ 1 file changed, 75 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/bao/bao,io-dispatcher.yaml
- create mode 100644 Documentation/devicetree/bindings/bao/bao,ipcshmem.yaml
- create mode 100644 arch/arm/include/asm/bao.h
- create mode 100644 arch/arm64/include/asm/bao.h
- create mode 100644 arch/riscv/include/asm/bao.h
- create mode 100644 drivers/virt/bao/Kconfig
- create mode 100644 drivers/virt/bao/Makefile
- create mode 100644 drivers/virt/bao/io-dispatcher/Kconfig
- create mode 100644 drivers/virt/bao/io-dispatcher/Makefile
- create mode 100644 drivers/virt/bao/io-dispatcher/bao_drv.h
- create mode 100644 drivers/virt/bao/io-dispatcher/dm.c
- create mode 100644 drivers/virt/bao/io-dispatcher/driver.c
- create mode 100644 drivers/virt/bao/io-dispatcher/intc.c
- create mode 100644 drivers/virt/bao/io-dispatcher/io_client.c
- create mode 100644 drivers/virt/bao/io-dispatcher/io_dispatcher.c
- create mode 100644 drivers/virt/bao/io-dispatcher/ioeventfd.c
- create mode 100644 drivers/virt/bao/io-dispatcher/irqfd.c
- create mode 100644 drivers/virt/bao/ipcshmem/Kconfig
- create mode 100644 drivers/virt/bao/ipcshmem/Makefile
- create mode 100644 drivers/virt/bao/ipcshmem/ipcshmem.c
- create mode 100644 include/linux/bao.h
- create mode 100644 include/uapi/linux/bao.h
 
+diff --git a/Documentation/devicetree/bindings/bao/bao,io-dispatcher.yaml b/Documentation/devicetree/bindings/bao/bao,io-dispatcher.yaml
+new file mode 100644
+index 000000000000..8ca450e4b9d5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/bao/bao,io-dispatcher.yaml
+@@ -0,0 +1,75 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/bao/bao,io-dispatcher.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Bao I/O Dispatcher Device
++
++maintainers:
++  - João Peixoto <joaopeixoto@osyx.tech>
++  - José Martins <jose@osyx.tech>
++  - David Cerdeira <davidmcerdeira@osyx.tech>
++
++description: |
++  I/O Dispatcher device for Bao hypervisor guests that run virtualized
++  devices (e.g., VirtIO).
++
++  This device is only required in backend VMs, which are responsible for
++  performing the actual I/O operations on physical hardware. Frontend
++  VMs, which only consume I/O services, do not require this device.
++
++  The I/O Dispatcher provides access to one or more backend devices.
++  Each backend device is associated with a contiguous shared-memory
++  region used to exchange I/O buffers with the respective frontend
++  driver, and an interrupt used by the Bao hypervisor to notify the
++  backend VM of pending I/O requests.
++
++properties:
++  compatible:
++    const: bao,io-dispatcher
++
++  reg:
++    description: |
++      Contiguous memory-mapped regions for each VirtIO backend device
++      managed by the I/O Dispatcher.
++
++      Each region is used to exchange I/O buffers between the backend
++      and frontend devices. A single region corresponds to one
++      backend device.
++    minItems: 1
++    maxItems: 64
++
++  interrupts:
++    description: |
++      Interrupts associated with the VirtIO backend devices.
++
++      Each interrupt corresponds to a backend device and is used
++      by the Bao hypervisor to notify the backend VM of pending
++      I/O requests from the associated frontend driver.
++    minItems: 1
++    maxItems: 64
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    bao-io-dispatcher@50000000 {
++        compatible = "bao,io-dispatcher";
++        reg = <0x0 0x50000000 0x0 0x01000000
++               0x0 0x51000000 0x0 0x01000000
++               0x0 0x52000000 0x0 0x01000000
++               0x0 0x53000000 0x0 0x01000000
++               0x0 0x54000000 0x0 0x01000000>;
++        interrupts = <0x0 0x08 0x1
++                      0x0 0x09 0x1
++                      0x0 0x0a 0x1
++                      0x0 0x0b 0x1
++                      0x0 0x0c 0x1>;
++        interrupt-parent = <&gic>;
++    };
 -- 
 2.43.0
 
