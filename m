@@ -1,577 +1,211 @@
-Return-Path: <devicetree+bounces-252425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CA08CFE944
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 16:30:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7973CFEB30
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 16:52:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D712D306C432
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:28:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DCE1A310D14A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02E97392800;
-	Wed,  7 Jan 2026 15:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F3839C62C;
+	Wed,  7 Jan 2026 15:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UGPuL6md"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ifWwwKe8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263AB392837
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 15:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8251E39C62D
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 15:35:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767799721; cv=none; b=bgHK2xNItDxlkwEhhXcT39KI4GICgMbqC5C2Oa/LThgAARMn89Y4UhY7lp6uvf5ucHO10aDBKxbTJuZusji7to+RhcNsim45kwPJkgnEXiTobfkPElHQuF+cRluXwhqZJat4fFk1CiCURfy5Y4krg6BgszEecmryI/M2JvXpfqI=
+	t=1767800143; cv=none; b=PGdkWn4dAIyVSTmYlaiv1rsWw22NkegSBl/eAuD7aBE3ZILuT2Ig2PWSZugelALGPQeE0DXHbNNjZ7iWqNGZMSUF1V/TlcyBb9vXRA3pXWydpxYDgshB8XBG12/Y2aw7DJrU/Zd0VCO5t7paUYV4Imvj6211PS8TEIXwKiYAaLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767799721; c=relaxed/simple;
-	bh=mUZ7kfMbkoroVbIoeEWCejtFU9nuCrw7RndVi8OlCbM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CL/spR1BF0NKp4Ts5mV23Q803AnQ5KWawIojVYe+XaqSQiBTTX55PbInR2bYC79fFzs9iGAFCstwfUO4AjpBoW+i1Scg26QsS3uGmb0kQMIQ4Q/ZAAKFcNaIM5GpzLIWZP4Kmd+94CC0ZttH+1XM7+5LfGL6x6LpGcYrNuhWheM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UGPuL6md; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-47a8195e515so15939785e9.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 07:28:37 -0800 (PST)
+	s=arc-20240116; t=1767800143; c=relaxed/simple;
+	bh=mGN3GgnNdoOqT5ttldrfgrxqNaE1p+uWyAokSQ+Gslc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cazU2lDAN4LEq8NGczvtoLuFRSqYzN07yITLIZWI1Rn+6BA4EUEQqxOjpm4Qwv7eaAWp5Jsi/gDOpZmEQaakqWRqQXnWC39qvBeIii7eVf+9MxanBZ5mMvpWUuSiZNhGiR2mHRM+dkaqVXNDkCj6Pa3CE/heJI0RYW3t3djZ0A0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ifWwwKe8; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2a0bb2f093aso18084095ad.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 07:35:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767799716; x=1768404516; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VqRhayTUmyhcODArXKcjmj0UBcZxmD7IfqP56ekElK0=;
-        b=UGPuL6mdwXXMZJRVRs4NKLCTwqEkjJZmp7xbygkQswtGPrIyTr8pWgrdO4xfqwhO4E
-         7y43GSoyAuB2TSABQSNdUR5L4iScgU6fl5NKySKV7lOIyCfIdLh5/mi1zDFQTOxDcMaj
-         Cc5mXj5ODyxoaA/lQGSnbZyvoArW7oBfyCTKfPCEQzeOCVIpTu0P2Xh87Cu4SeskP1g0
-         5BKv5LNMoZD2Y145vR2fSMkxPsik3EPj/kyzrrGVKvobrIsDYmEEnjPeBdPmTYLMZf41
-         7KhjMKPVLwP9r23ItwEilrjp+yAnqLAanEA+6e3mpYAiWajEZkpV2S1LoNj8U3ANs2wL
-         cDGg==
+        d=linaro.org; s=google; t=1767800141; x=1768404941; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/SR2gLuU1H5541mPq9C4V04vstpLOPeBOnMkn3dWO/g=;
+        b=ifWwwKe8Smrr+FnksjcqI7m3i0DzMT42h55P22D+IGaBM9R4AkK2fH4dCWaF0NwVFU
+         o8m8nLX1z3yDt//AXNOqZRzBgcfDg6JYhrORAJNGpQEDAdd2hRocNBjWfRCCPAeofP2G
+         YEopQMIRkGx51d8JBfRkC6f6e619oFDLCtUbNlBYuVQ+G/JNRZ0SS+cbTfmyIy7k4PiF
+         TaNiZcm7ZF/vRlTbaPgvnf8vhZah+UzfRJ99ryZRsMfzzn6K/HoI3G+vKethHRnxFbFN
+         p9a5Z45Nx7KlhDWQz9lCA8594yQ/tipXAYNMaEiUEaXnuDevULIvw9/tATwzw8lCw8iy
+         nxKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767799716; x=1768404516;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VqRhayTUmyhcODArXKcjmj0UBcZxmD7IfqP56ekElK0=;
-        b=UO1g3drlpYhcCoe5NfxL+rMpiOxNOLwJxB5xxcZHzEmKnpIDE0rl3yA88/KwYLTs4s
-         64TBVsSx+Dxh1Wswn3Nyj5QYgYocKvN79tT5G7tBXOT72dWNuPz3jWmEnMIugb/ayvQ2
-         FELFaXt6bUvyD9+78h8bVto//pUhKtJeCBXCAJV6AZaeqpVvhG0OBk3DQCeN3PAqUMzl
-         YmPAKfDGHSl4o/WJSWGPfcr0zyfjyOCjdhIrU5tT2p16hEzNxGYe3AMlEA49+MeTjdxC
-         BpX7SVrlhgtV5DDuYfZPg7qFVvKFOnftAmQKS/g8fZjJwGnoiKc+n2MxNyQK7oqNMQ7b
-         xWYg==
-X-Forwarded-Encrypted: i=1; AJvYcCWeZ/E9PjmvUxdoeTz03tCzj+dI4KG5k5Wqi/BD501BIZ5nTCavBAP99LG7k6uIHbWvg09DOS2+2hC4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMihIXlQ3QRxZr72Y6X7FsB1pv7mGnUHtmssyCpIxWC7oPcZEb
-	k2FaK5loOhv4sqqMJilEj/u7BZuIQGd8vNcjIzFy7Gk8Hrj2rQH6PcG0
-X-Gm-Gg: AY/fxX7fo4XR3Ka8zKq376jfWwg7hnl5s0JUqHDAq98fMh/RXbfjYA9JW3S9JwbAoUW
-	Kiz1DcuOQoEqga7iun6JBK5zsBbdjvKLY50eGmAT4kEMxv6d4isL65fmLNAjljC6ajARWJQKCrW
-	lmCx7fN3VPgGiDC4Sar8YZZKvNwTZNX7SQeD76iuUf2UvGsZiZiqqBcVhKirUkdgb7OoNY37wC4
-	6UTXNKRWoYkr60jMGvpOYQBwvVQv6xF45i3XWGkFGUXnqCu4gk4/R2QFK+MXyrIyYTBCMHqZ5M0
-	zE4UUp0PV8SNiSyipYNPZ/8Gw+q6USAqOoLwVbj/M+6LwL9wxw0Usjv4D0o1KYnTq1KsWGyISAt
-	VCgLu7WyGfvujkD7aZ+llBTIavnkkweaywB3Sg5odEM+ljXXF+PxKGXFvxcVQ+luVywzgUzwM2Z
-	laq9q3unEXC26gRHAAWHXp5Y9ocA==
-X-Google-Smtp-Source: AGHT+IFQCEz86nZFe/ZN6aj6TRT9W61fn3p7PqlYbuzvjwXbuJGztbbCFvGYekjehJsKR8Xcz4GdVw==
-X-Received: by 2002:a05:600c:470c:b0:475:da13:2568 with SMTP id 5b1f17b1804b1-47d84b39626mr31843425e9.25.1767799715282;
-        Wed, 07 Jan 2026 07:28:35 -0800 (PST)
-Received: from [172.24.138.145] ([137.71.226.102])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f653cd6sm109017225e9.9.2026.01.07.07.28.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jan 2026 07:28:34 -0800 (PST)
-Message-ID: <013a144f-101e-49dd-9865-79dd6181f43a@gmail.com>
-Date: Wed, 7 Jan 2026 16:28:31 +0100
+        d=1e100.net; s=20230601; t=1767800141; x=1768404941;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/SR2gLuU1H5541mPq9C4V04vstpLOPeBOnMkn3dWO/g=;
+        b=VQbg1323x64kFoEPR2hioThMHpfojo0eExAwUlE26diHzJE46chVlkdLzjc3WezWgO
+         ejwMUsx/vFfrQ9uYVEG4zffcVrnXmqb2N0ibPGWE40tCHpeT6eeyK5yvetCggDZlTfBz
+         ArtoHnKmEhm87KxxtTpa++nerfpZE1mr3sSS7MbS7Ns0eo1upWkjZDnG/qGmNYNDOO/J
+         E2WYkYxEAeWv3VlZprASHOoMYCf2spKSwYFPw/yeSuwiZZUDXWDJYS/q8vjse9xBzEbu
+         J6nMLA7Iel7OEBg0nXAAOCT8+n769inuvu9j2IPDFCpbEcb+XnK3ZlbFZCLYjxVyuepr
+         knWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXht4OYmOd3pO/1yjhWz8WozuAxXxF0GzluABkdcEI+4bvwmOWUf3afgReLhC4Z+Q/6Hd2oQtBMDrEg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzujWOQN85dmzXjHILYb2HMCF7NQlnmHM6m2uhVJWrtWcLcPmRx
+	0bXFJ/4wfTrXPU0rvSXLohoMEd4W2Dg5TCfx/iDbdjGgaEbSlADlEk0IPxd13FmsSWs=
+X-Gm-Gg: AY/fxX6iOcl1zEs3Z6Syz+T0DNIb8bTi77BqU8koNgaFCR29vmxMkIbMvajAiIvLhbg
+	aoNU0bB2NWF+zWKvIpxpQLTnT6Lc8wtptouKaWaVHTSo3ubRacAiRaN7r0Q8HDywkEPp+lfybxD
+	jSWertOw8FKhzworTbiZPI4Ci0CQhKzU/pPSZv04FbCoBJyuPTGIJht+yL0BZKUi9TFOXkUWySI
+	JBBX2eYNGW0I9MYaIZa2xS3v2gt+ZsSNz8UI/ON1gd7CozidCF/myOGD5EdwMqIXFQUzJWyS2C8
+	aGIddVQ2TrbDh7QWq0JdkyZMl2K1nSdRho7FCVZzMB+EdCn+xqrvPICJ2BEVSLL+oAzdK22Uqx/
+	By/14kK2O+4PX67MeTkM4/ncrrwNFBTbuiUV6R/D+a2beqcleFmn17tlH2b63w0iK471djdxV6b
+	ta7snf/0RpAOl2Uw==
+X-Google-Smtp-Source: AGHT+IGBvG5WmQSIVwy8pD5KbvRQIOMKna1wirHJXxpWkWLnZtjO89ZkOS60V0d1bqeYUMlW/GSgnw==
+X-Received: by 2002:a17:903:1105:b0:2a0:cb8d:2ed6 with SMTP id d9443c01a7336-2a3ee4d9b4bmr18514405ad.51.1767800140725;
+        Wed, 07 Jan 2026 07:35:40 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:9510:cc09:7589:5527])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819c52f88casm5317448b3a.34.2026.01.07.07.35.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jan 2026 07:35:40 -0800 (PST)
+Date: Wed, 7 Jan 2026 08:35:37 -0700
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Beleswar Padhi <b-padhi@ti.com>
+Cc: andersson@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, nm@ti.com, vigneshr@ti.com, kristo@kernel.org,
+	afd@ti.com, u-kumar1@ti.com, hnagalla@ti.com,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: remoteproc: Add HSM M4F core on TI
+ K3 SoCs
+Message-ID: <aV59SdFU15HpLHeO@p14s>
+References: <20260106104755.948086-1-b-padhi@ti.com>
+ <20260106104755.948086-2-b-padhi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] iio: dac: Add MAX22007 DAC driver support
-To: Jonathan Cameron <jonathan.cameron@huawei.com>,
- Janani Sunil <janani.sunil@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Alexandru Ardelean <alexandru.ardelean@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- jan.sun97@gmail.com, gastmaier@gmail.com
-References: <20251219-max22007-dev-v1-0-242da2c2b868@analog.com>
- <20251219-max22007-dev-v1-3-242da2c2b868@analog.com>
- <20251219172510.00007208@huawei.com>
-Content-Language: en-US
-From: Janani Sunil <jan.sun97@gmail.com>
-In-Reply-To: <20251219172510.00007208@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260106104755.948086-2-b-padhi@ti.com>
 
-Hi Jonathan,
+On Tue, Jan 06, 2026 at 04:17:53PM +0530, Beleswar Padhi wrote:
+> Some of the TI K3 family of SoCs have a HSM (High Security Module) M4F
+> core in the Wakeup Voltage Domain which could be used to run secure
+> services like Authentication. Add the device tree bindings document for
+> this HSM M4F core.
+> 
+> The added example illustrates the DT node for the HSM core present on K3
+> J722S SoC.
+> 
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+> ---
+> v2: Changelog:
+> [Krzysztof Kozlowski]:
+>  1. Update commit msg to remove redundant "bindings".
+>  2. Update filename to match compatible.
+>  3. Remove "address-cells" & "size-cells" property. These belong to the
+>     device's parent node.
+>  4. Drop description from firmware-name property.
+>  5. Fix indentation for DT example.
+> 
+> Link to v1:
+> https://lore.kernel.org/all/20251231165102.950644-2-b-padhi@ti.com/
+> 
+>  .../bindings/remoteproc/ti,hsm-m4fss.yaml     | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,hsm-m4fss.yaml
+> 
 
-Thank you for your review.
+I have applied this patch- Nishanth and Vignesh should handle the .dsti files.
 
-On 12/19/25 18:25, Jonathan Cameron wrote:
-> On Fri, 19 Dec 2025 16:31:17 +0100
-> Janani Sunil <janani.sunil@analog.com> wrote:
->
->> Add support for the MAX22007 4 channel DAC
->> that drives a voltage or current output on each channel.
-> wrap to 75 chars rather than 50-60ish
+Thanks,
+Mathieu
 
-Noted. Will correct this.
-
->> Signed-off-by: Janani Sunil <janani.sunil@analog.com>
-> Hi Janani
->
-> A few minor things inline.  Also add turning on any required
-> power supplies.  See how other drivers do it with a single call
-> in in probe. If your board is using always on supplies it will just
-> work as a stub regulator will be provided by the regulator core.
->
->
-> Thanks,
->
-> Jonathan
-
-Will take a reference from the other drivers and add the power supply configurations.
-
->> diff --git a/drivers/iio/dac/max22007.c b/drivers/iio/dac/max22007.c
->> new file mode 100644
->> index 000000000000..0d57fee27367
->> --- /dev/null
->> +++ b/drivers/iio/dac/max22007.c
->> @@ -0,0 +1,487 @@
->> +
->> +#define MAX22007_NUM_CHANNELS				4
->> +#define MAX22007_REV_ID_REG				0x00
->> +#define MAX22007_STAT_INTR_REG				0x01
->> +#define MAX22007_INTERRUPT_EN_REG			0x02
->> +#define MAX22007_CONFIG_REG				0x03
->> +#define MAX22007_CONTROL_REG				0x04
->> +#define MAX22007_CHANNEL_MODE_REG			0x05
->> +#define MAX22007_SOFT_RESET_REG				0x06
->> +#define MAX22007_DAC_CHANNEL_REG(ch)			(0x07 + (ch))
->> +#define MAX22007_GPIO_CTRL_REG				0x0B
->> +#define MAX22007_GPIO_DATA_REG				0x0C
->> +#define MAX22007_GPI_EDGE_INT_CTRL_REG			0x0D
->> +#define MAX22007_GPI_INT_STATUS_REG			0x0E
->> +
->> +/* Channel mask definitions */
->> +#define     MAX22007_CH_MODE_CH_MASK(channel)		BIT(12 + (channel))
-> maybe use x or ch rather than channel to shorten the defines a little.
-
-Right, shall take up the change.
-
->
->> +#define     MAX22007_CH_PWR_CH_MASK(channel)		BIT(8 + (channel))
->> +#define     MAX22007_DAC_LATCH_MODE_MASK(channel)	BIT(12 + (channel))
->> +#define     MAX22007_LDAC_UPDATE_MASK(channel)		BIT(12 + (channel))
->> +#define     MAX22007_SW_RST_MASK			BIT(8)
->> +#define     MAX22007_SW_CLR_MASK			BIT(12)
->> +#define     MAX22007_SOFT_RESET_BITS_MASK		(MAX22007_SW_RST_MASK | \
->> +	    MAX22007_SW_CLR_MASK)
-> Align after (
-
-Right. Shall take up the change.
-
->
->> +#define     MAX22007_DAC_DATA_MASK			GENMASK(15, 4)
->> +#define     MAX22007_DAC_MAX_RAW			GENMASK(11, 0)
->> +#define     MAX22007_CRC8_POLYNOMIAL			0x8C
->> +#define     MAX22007_CRC_EN_MASK			BIT(0)
->> +#define     MAX22007_RW_MASK				BIT(0)
->> +#define     MAX22007_CRC_OVERHEAD			1
->> +
->> +/* Field value preparation macros with masking */
->> +#define     MAX22007_CH_PWR_VAL(channel, val)	(((val) & 0x1) << (8 + (channel)))
->> +#define     MAX22007_CH_MODE_VAL(channel, val)	(((val) & 0x1) << (12 + (channel)))
->> +#define     MAX22007_DAC_LATCH_MODE_VAL(channel, val)	(((val) & 0x1) << (12 + (channel)))
->> +
->> +static u8 max22007_crc8_table[256];
->> +
->> +enum max22007_channel_mode {
->> +	MAX22007_VOLTAGE_MODE,
->> +	MAX22007_CURRENT_MODE
-> Add trailing comma. Not obvious there will never be more if other devices are supported
-> by the driver.
->
-> I'd also give these explicit values given they are written to HW.
-> = 0,
-> = 1,
-
-Agreed. Shall take up the change.
-
->
->> +};
->> +
->> +enum max22007_channel_power {
->> +	MAX22007_CH_POWER_OFF,
->> +	MAX22007_CH_POWER_ON,
-> This isn't bringing value over renaming the field mask define
-> to MAX22007_CH_PWRON_CH_MASK()
-> and using 0 / 1 as appropriate.
-
-Got your point. Shall take this up.
-
->
->> +};
->> +
->> +struct max22007_state {
->> +	struct spi_device *spi;
->> +	struct regmap *regmap;
->> +	struct iio_chan_spec *iio_chan;
-> I'd go with iio_chans just to make it clear there can be multiple.
-
-I shall take this up.
-
->
->> +	u8 tx_buf[4] __aligned(IIO_DMA_MINALIGN);
->> +	u8 rx_buf[4];
->> +};
->> +
->> +static int max22007_spi_read(void *context, const void *reg, size_t reg_size,
->> +			     void *val, size_t val_size)
->> +{
->> +	struct max22007_state *st = context;
->> +	u8 calculated_crc, received_crc;
->> +	u8 crc_data[3];
->> +	int ret;
->> +	struct spi_transfer xfer = {
->> +		.tx_buf = st->tx_buf,
->> +		.rx_buf = st->rx_buf,
->> +	};
->> +
->> +	xfer.len = reg_size + val_size + MAX22007_CRC_OVERHEAD;
->> +
->> +	memcpy(st->tx_buf, reg, reg_size);
->> +
->> +	ret = spi_sync_transfer(st->spi, &xfer, 1);
->> +	if (ret) {
->> +		dev_err(&st->spi->dev, "SPI transfer failed: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	crc_data[0] = st->tx_buf[0];
->> +	crc_data[1] = st->rx_buf[1];
->> +	crc_data[2] = st->rx_buf[2]
-> The use of only the first byte for tx and later for rx suggest this a
-> spi_write_then_read()
->
-> Using that should simplify your code a little particularly as it doesn't need
-> dma safe buffers (bounces anyway).
->
-> I'd be tempted to check reg_size == 1 then hard code that through this function.
-
-You are right. Shall implement this.
-
->
->> +
->> +	calculated_crc = crc8(max22007_crc8_table, crc_data, 3, 0x00);
->> +	received_crc = st->rx_buf[3];
->> +
->> +	if (calculated_crc != received_crc) {
->> +		dev_err(&st->spi->dev, "CRC mismatch on read register %02x:\n", *(u8 *)reg);
->> +		return -EIO;
->> +	}
->> +
->> +	/* Ignore the dummy byte 0 */
->> +	memcpy(val, &st->rx_buf[1], val_size);
->> +
->> +	return 0;
->> +}
->> +
->> +static int max22007_spi_write(void *context, const void *data, size_t count)
->> +{
->> +	struct max22007_state *st = context;
->> +	struct spi_transfer xfer = {
->> +		.tx_buf = st->tx_buf,
->> +		.rx_buf = st->rx_buf,
->> +	};
->> +
->> +	memset(st->tx_buf, 0, sizeof(st->tx_buf));
->> +
->> +	xfer.len = count + MAX22007_CRC_OVERHEAD;
->> +
->> +	memcpy(st->tx_buf, data, count);
->> +	st->tx_buf[count] = crc8(max22007_crc8_table, st->tx_buf,
->> +				 sizeof(st->tx_buf) - 1, 0x00);
->> +
->> +	return spi_sync_transfer(st->spi, &xfer, 1);
->> +}
->> +static int max22007_write_channel_data(struct max22007_state *state, unsigned int channel,
->> +				       unsigned int data)
->> +{
->> +	unsigned int reg_val;
->> +
->> +	if (data > MAX22007_DAC_MAX_RAW)
->> +		return -EINVAL;
->> +
->> +	reg_val = FIELD_PREP(MAX22007_DAC_DATA_MASK, data);
->> +
->> +	return regmap_write(state->regmap, MAX22007_DAC_CHANNEL_REG(channel), reg_val);
->> +}
->> +
->> +static int max22007_read_channel_data(struct max22007_state *state, unsigned int channel,
-> Where it doesn't hurt readability my preference is still to stay nearer to 80 chars.
-
-Noted your point. Shall apply the readability preferences as said.
-
->
->> +				      int *data)
->> +{
->> +	int ret;
->> +	unsigned int reg_val;
->> +
->> +	ret = regmap_read(state->regmap, MAX22007_DAC_CHANNEL_REG(channel), &reg_val);
->> +	if (ret)
->> +		return ret;
->> +
->> +	*data = FIELD_GET(MAX22007_DAC_DATA_MASK, reg_val);
->> +
->> +	return 0;
->> +}
->> +
->> +static int max22007_read_raw(struct iio_dev *indio_dev,
->> +			     struct iio_chan_spec const *chan,
->> +			     int *val, int *val2, long mask)
->> +{
->> +	struct max22007_state *st = iio_priv(indio_dev);
->> +	int ret;
->> +
->> +	switch (mask) {
->> +	case IIO_CHAN_INFO_RAW:
->> +		ret = max22007_read_channel_data(st, chan->channel, val);
->> +		if (ret)
->> +			return ret;
->> +		return IIO_VAL_INT;
->> +	case IIO_CHAN_INFO_SCALE:
->> +		if (chan->type == IIO_VOLTAGE) {
->> +			*val = 5 * 2500;  /* 5 * Vref(2.5V) in mV */
->> +			*val2 = 12;  /* 12-bit DAC resolution (2^12) */
-> Given resolution is the same either way, drop that out of the if / else
-> 		if (chan->type == IIO_VOLTAGE)
-> 			*val = ...
-> 		else
-> 			*val = ...
-> 		val2 = 12; /* 12-bit DAC resolution */
->
-> The 2^12 is a bit confusing so I'd drop that bit.
-
-Yes, it can be confusing. I shall drop the redundant explanation.
-
->
->> +		} else {
->> +			*val = 25;  /* Vref / (2 * Rsense) = 2500mV / 100 */
->> +			*val2 = 12;  /* 12-bit DAC resolution (2^12) */
->> +		}
->> +		return IIO_VAL_FRACTIONAL_LOG2;
->> +	default:
->> +		return -EINVAL;
->> +	}
->> +}
->
->> +static const struct iio_chan_spec_ext_info max22007_ext_info[] = {
->> +	{
->> +		.name = "powerdown",
->> +		.read = max22007_read_dac_powerdown,
->> +		.write = max22007_write_dac_powerdown,
->> +		.shared = IIO_SEPARATE,
->> +	},
->> +	{ },
-> No trailing comma for a 'terminating' entry like this. We don't want
-> to make it easy to add stuff after.
-
-Sure, will remove them.
-
->> +};
->> +
->> +static const struct iio_chan_spec max22007_channel_template = {
->> +	.output = 1,
->> +	.indexed = 1,
->> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),
->> +	.ext_info = max22007_ext_info,
->> +};
->> +
->> +static int max22007_parse_channel_cfg(struct max22007_state *st, u8 *num_channels)
->> +{
->> +	struct device *dev = &st->spi->dev;
->> +	struct iio_chan_spec *iio_chan;
->> +	int ret, num_chan = 0, i = 0;
-> Please don't mix declarations that assign with those that don't. It makes
-> it to easy to miss which ones are in which category.
-> 	int num_chan = 0, i = 0;
-> 	int ret;
-> Noted on this. I will separate them accordingly.
->> +	u32 reg;
->> +
->> +	num_chan = device_get_child_node_count(dev);
->> +	if (!num_chan)
->> +		return dev_err_probe(dev, -ENODEV, "no channels configured\n");
->> +
->> +	st->iio_chan = devm_kcalloc(dev, num_chan, sizeof(*st->iio_chan), GFP_KERNEL);
->> +	if (!st->iio_chan)
->> +		return -ENOMEM;
->> +
->> +	device_for_each_child_node_scoped(dev, child) {
->> +		const char *channel_type_str;
->> +		enum max22007_channel_mode mode;
->> +
->> +		ret = fwnode_property_read_u32(child, "reg", &reg);
->> +		if (ret)
->> +			return dev_err_probe(dev, ret,
->> +					     "failed to read reg property of %pfwP\n", child);
->> +
->> +		if (reg >= MAX22007_NUM_CHANNELS)
->> +			return dev_err_probe(dev, -EINVAL,
->> +					     "reg out of range in %pfwP\n", child);
->> +
->> +		iio_chan = &st->iio_chan[i];
->> +
->> +		*iio_chan = max22007_channel_template;
-> The template is only used here so I'd be tempted to just do
-> 		*iio_chan = (struct iio_chan_spec) {
-> 			.output = 1,
-> 			.indexed = 1,
-> 			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> 					      BIT(IIO_CHAN_INFO_SCALE),
-> 			.ext_info = max22007_ext_info,
-> 			.channel = reg,
-> 		};
-> inline here.
-> Or after other changes suggested below you can do
->
-> 		st->iio_chan[i++] = (struct iio_chan_spec) {
-> 			.output = 1,
-> 			.indexed = 1,
-> 			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> 					      BIT(IIO_CHAN_INFO_SCALE),
-> 			.ext_info = max22007_ext_info,
-> 			.channel = reg,
-> 			.type = chan_type,
-> 		}
-
-This is a great idea. I will take this up.
-
->> +		iio_chan->channel = reg;
->> +
->> +		ret = fwnode_property_read_string(child, "adi,type", &channel_type_str);
->> +		if (ret)
->> +			return dev_err_probe(dev, ret,
->> +					     "missing adi,type property for %pfwP\n", child);
->> +
->> +		if (strcmp(channel_type_str, "current") == 0) {
->> +			mode = MAX22007_CURRENT_MODE;
->> +			iio_chan->type = IIO_CURRENT;
->> +		} else if (strcmp(channel_type_str, "voltage") == 0) {
->> +			mode = MAX22007_VOLTAGE_MODE;
->> +			iio_chan->type = IIO_VOLTAGE;
->> +		} else {
->> +			return dev_err_probe(dev, -EINVAL,
->> +					     "invalid adi,type '%s' for %pfwP\n",
->> +					     channel_type_str, child);
->> +		}
-> If you do this to set a local type variable before the *iio_chan =
-> suggestion above, can assign it when filling in the rest of the chan_spec
-
-I will take this up.
-
->
->> +
->> +		ret = regmap_update_bits(st->regmap, MAX22007_CHANNEL_MODE_REG,
->> +					 MAX22007_CH_MODE_CH_MASK(reg),
->> +					 MAX22007_CH_MODE_VAL(reg, mode));
->> +		if (ret)
->> +			return ret;
->> +
->> +		/* Set DAC to transparent mode (immediate update) */
->> +		ret = regmap_update_bits(st->regmap, MAX22007_CONFIG_REG,
->> +					 MAX22007_DAC_LATCH_MODE_MASK(reg),
->> +					 MAX22007_DAC_LATCH_MODE_VAL(reg, 1));
->> +		if (ret)
->> +			return ret;
->> +
->> +		i++;
-> With other changes suggested above, i will only be used in one place I think
-> so you can do the ++ inline at that point. See above for details.
-
-Got your point here.
-
->> +	}
->> +
->> +	*num_channels = num_chan;
->> +
->> +	return 0;
->> +}
->> +
->> +static int max22007_probe(struct spi_device *spi)
->> +{
->> +	struct iio_dev *indio_dev;
->> +	struct max22007_state *state;
->> +	struct gpio_desc *reset_gpio;
->> +	u8 num_channels;
->> +	int ret;
->> +
->> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*state));
-> Use a local
-> 	struct device *dev = &spi->dev;
-> to shorten all the places you have &spi->dev currently in this function.
-
-Will implement this.
-
->
->> +	if (!indio_dev)
->> +		return -ENOMEM;
->> +
->> +	state = iio_priv(indio_dev);
->> +	state->spi = spi;
->> +
->> +	crc8_populate_lsb(max22007_crc8_table, MAX22007_CRC8_POLYNOMIAL);
->> +
->> +	state->regmap = devm_regmap_init(&spi->dev, &max22007_regmap_bus, state,
->> +					 &max22007_regmap_config);
->> +	if (IS_ERR(state->regmap))
->> +		return dev_err_probe(&spi->dev, PTR_ERR(state->regmap),
->> +				     "Failed to initialize regmap\n");
->> +
->> +	reset_gpio = devm_gpiod_get_optional(&spi->dev, "reset", GPIOD_OUT_LOW);
-> What sets the gpio high? I'd expect a transition from what is requested here
-> to what is set in the set_value() below.
-
-It needs to be toggled within the probe. Will add proper implementation for this.
-
->
->> +	if (IS_ERR(reset_gpio))
->> +		return dev_err_probe(&spi->dev, PTR_ERR(reset_gpio),
->> +				     "Failed to get reset GPIO\n");
->> +
->> +	if (reset_gpio) {
->> +		gpiod_set_value_cansleep(reset_gpio, 0);
->> +	} else {
->> +		ret = regmap_write(state->regmap, MAX22007_SOFT_RESET_REG,
->> +				   MAX22007_SOFT_RESET_BITS_MASK);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	ret = regmap_update_bits(state->regmap, MAX22007_CONFIG_REG,
->> +				 MAX22007_CRC_EN_MASK,
->> +				 MAX22007_CRC_EN_MASK);
-> regmap_set_bits() saves repeating the mask.
-
-That's a good point. I will take this up.
-
->
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = max22007_parse_channel_cfg(state, &num_channels);
->> +	if (ret)
->> +		return ret;
->> +
->> +	indio_dev->info = &max22007_info;
->> +	indio_dev->modes = INDIO_DIRECT_MODE;
->> +	indio_dev->channels = state->iio_chan;
->> +	indio_dev->num_channels = num_channels;
->> +	indio_dev->name = "max22007";
->> +
->> +	return devm_iio_device_register(&spi->dev, indio_dev);
->> +}
->
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,hsm-m4fss.yaml b/Documentation/devicetree/bindings/remoteproc/ti,hsm-m4fss.yaml
+> new file mode 100644
+> index 0000000000000..9244e60acee37
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/ti,hsm-m4fss.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/ti,hsm-m4fss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI K3 HSM M4F processor subsystems
+> +
+> +maintainers:
+> +  - Beleswar Padhi <b-padhi@ti.com>
+> +
+> +description: |
+> +  Some K3 family SoCs have a HSM (High Security Module) M4F core in the
+> +  Wakeup Voltage Domain which could be used to run secure services like
+> +  Authentication. Some of those are J721S2, J784S4, J722S, AM62X.
+> +
+> +$ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,hsm-m4fss
+> +
+> +  reg:
+> +    items:
+> +      - description: SRAM0_0 internal memory region
+> +      - description: SRAM0_1 internal memory region
+> +      - description: SRAM1 internal memory region
+> +
+> +  reg-names:
+> +    items:
+> +      - const: sram0_0
+> +      - const: sram0_1
+> +      - const: sram1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  firmware-name:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - resets
+> +  - firmware-name
+> +  - ti,sci
+> +  - ti,sci-dev-id
+> +  - ti,sci-proc-ids
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        remoteproc@43c00000 {
+> +            compatible = "ti,hsm-m4fss";
+> +            reg = <0x00 0x43c00000 0x00 0x20000>,
+> +                  <0x00 0x43c20000 0x00 0x10000>,
+> +                  <0x00 0x43c30000 0x00 0x10000>;
+> +            reg-names = "sram0_0", "sram0_1", "sram1";
+> +            resets = <&k3_reset 225 1>;
+> +            firmware-name = "hsm.bin";
+> +            ti,sci = <&sms>;
+> +            ti,sci-dev-id = <225>;
+> +            ti,sci-proc-ids = <0x80 0xff>;
+> +        };
+> +    };
+> -- 
+> 2.34.1
+> 
 
