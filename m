@@ -1,38 +1,100 @@
-Return-Path: <devicetree+bounces-252327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 097B5CFD8A1
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 13:06:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A94B2CFD870
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 13:03:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6A04C301F8F5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 12:00:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2B69F30080F7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 12:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B12E2E8B75;
-	Wed,  7 Jan 2026 12:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F8BF30ACE5;
+	Wed,  7 Jan 2026 12:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="H839W9pn";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZT/xmK37"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21DF1189BB6
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 12:00:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E532F99AD
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 12:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767787254; cv=none; b=VDkbNZg0dv28gbyW2TURlFdjh9ImTwHlY8CumGV0ndtBKDHvaDMz7qP4rnq/5KRBx5f9a+zklNJ+UvyuwRxGggJ74sFDoDl2Clo6WPZIrfN4ulkKO3akugGfQSQEn26qWg0L4G0igi9XM9xxfyCq4ry4SSHFcuadjsmgjqWdhcQ=
+	t=1767787412; cv=none; b=EXedJKe5DIiSPDlOvR5pBvipbnf8lJcERrtRhpuHtKFOOpny4fRk70fPw0PwQ67l9ddkPJBE6+gNy37Uq/tQcqe+ctfdr9ROl6wgZo/3aGHHqf76KOmFSWjCMrEFpl4NZvOVFXYiiiUWXdW6swEhZ6vohfeoGv41yt1DlZRxIjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767787254; c=relaxed/simple;
-	bh=27rhPW3MP4eU0e2itCVUIx9cr9HNkv4aaM76XmQAuoo=;
+	s=arc-20240116; t=1767787412; c=relaxed/simple;
+	bh=oMhk/Xq2aC3Aag3B5Yh6Uo35K9uJs0+HxKtSjP1ZhrI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XzHTFIshhRFxwULNicsna7Os3azX7Is8FIt8YAeR6Rp1ub5vXQLK3VxyBzjyyhdCt57p+kz0aJKAAwMr7HZY4zxrKBiNZUpYseLDQs4Yx753aZQGQCZ8rScIBYhKY+kc+n88k+96I48MnH6zlyHHFQ4TQD+3y07MYNK0V6mDatE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1vdSDH-0006cS-Jw; Wed, 07 Jan 2026 13:00:31 +0100
-Message-ID: <0dbdad63-df04-4220-96b6-b6af7e6e5a5f@pengutronix.de>
-Date: Wed, 7 Jan 2026 13:00:28 +0100
+	 In-Reply-To:Content-Type; b=VpBTlN4k/xKXMRBOCEntpewXTkquIXeh+KleKzh1Y5OUvUsAmStFYA88WCyWNHdFzkc4d9oqzANXaBYfc7XKlijewR/GgkYM3pVvQI3Lc80OGjmkXN/Q3Tmt84K+gVBI/o/2RWIbKFfq5Nio78o1RkC75D3VZSBRmg9u9ECGtr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=H839W9pn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZT/xmK37; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6079erI02988834
+	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 12:03:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5OYIuWlfNmnER+pgxQN0927vrOsdUT6g48em04i5dIM=; b=H839W9pnQG6eZ8c1
+	HTH66kEY0wsIqHxHKei1nAj7N3xuiARn0lGM1HgyVtqsGtfy+GSFpSnFPjy/GH77
+	jdbitQjZyhKAVp1OEK3jtcRdJ4wdu74J9zHSZ96EadBezXuqkIQCvCTieRp5HIVD
+	n2H5U5QRR1rdD/T84PwDQrP49Q6evMGf+hbREh7S+mY5i1r/2rsWw5O+CC7fP+7n
+	faf3i4D569aMHHIg9WRsFLZW4fwQ1wDqo4V702ZeXT+vTGN+RCUxnTISkthLi2aw
+	mhK/bpjw4DCo4LZ9/NlJ4kpQhDIEu+jNfDvLBYxklJezx1uM3x8m0tDjfMnI/5sJ
+	59+J8A==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhn2nrdm6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 12:03:28 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88a26989018so3531066d6.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 04:03:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767787408; x=1768392208; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5OYIuWlfNmnER+pgxQN0927vrOsdUT6g48em04i5dIM=;
+        b=ZT/xmK37O8q2ZM3pH36dmgOQoCmLWt9FiIIVKrEwle0J5ckY8C4m60ev0UMmPj9vNW
+         ac8VtufDmvdpBt8j4HbD5iFpXXqYySEet/wkV3iETioEL7j3BbCDLQYnni1dW89BcGAY
+         9V9WyhMHMEVifebv88p0l/Gp47ppXZOx8Zcie/1nbenB7C/R2q2btyx8JFokDTfAZ9k0
+         rJb8Ea4Sv+NTHZ8gLBNBcKN0PAMmxBW2FSj4Hzuc1r24dI9KEfvGpWzoZyQQ6553k41U
+         r3PXqheXvNZJbJQIeoKch1bjQujUg1yn+oj3J+Dzhe/ukQUoRtl7CtPn5NAThjB8VItt
+         dwVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767787408; x=1768392208;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5OYIuWlfNmnER+pgxQN0927vrOsdUT6g48em04i5dIM=;
+        b=dccW0Qq1Rybh/PHmXdGGNvHte2YMDYQeOToQcmmo5WMoPfBq4zZlIZYY9hMATGsr8g
+         /Au+7/Q6+YnujEKZCCsOx5drR5PH/taJRJCUJU1QwZ7X/aFD6ddOtwffpRFcEw8NVQKJ
+         noVY+1ddH9FR5Ct/CpVGHv35ZyFElnM9uDJmkVRSuRlk3UdkYzxIeMTs8a080HlcUyo0
+         /5JTCThrkk0OjoYehDSxQ9jVCmsS3KbSZjrZDudgBv4OLju886x1P5V+XmujbkiLk7G4
+         lV204bff+F65hTCLz0o9ASRj4zhDXWjJgtgoHiUsA6kNhJBvk9M77xgrrSaccrKriL5r
+         BRTw==
+X-Forwarded-Encrypted: i=1; AJvYcCUh/HIZnjy4QtsU9ligGEyst+iYKIUdS1YIZwL49R0+myhK/DkqFGjlgBQzciZxPu7qJOPYgco9duCr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyC1Nte2GGOxwynpxYPltWdODIIQ3xMAz8aWXMo/+iUwLgKwK9V
+	K9qgHy7OAfDxRQhDg2PIkma8CuZ0jnwH+/eEmg5ZHG+LWGhB0MgHS5LNQs0+oJXFQfuuxhDeVdd
+	y7u0e39N/i1rExaYn8Je8a3nwTM8jA6cmXkwiV3UOogXrvpO/z7kAwoxOPqfpj52K
+X-Gm-Gg: AY/fxX4nCH4ZH7S+OIUXNerA4C5IWQ7XuvhLHao8bAJA3075wwtjfuxjAEhEVThfMGs
+	x+hkH2dWz6LfCX6nJ0bQw403QdzL17Q/rt2PLR5g0Ia6Y951O3Kxe1AktqLGaGisIFhR1OVdvAs
+	JaDwJ20zap1EWn2ZTfQoFgj/Ng277nh6xXWww3FiqofmqHFR7VUMmeNFQy/PaASuhgU4G/pMKgp
+	y8l1QPqpNGWOXYsBWWG8jeDAVRoZ+C+gQumjyivHBG0VxAsQdoGu0rwIkXVcGOwMdGW+U53rhVU
+	OGZgWhOjcQuGrG56KWIcht9yVB0CqfBNB2Ju6KokF6bQhRbqH2i7nwe+SKeBpEXDtQYpbAz27ka
+	xUyN0Vkk29s/pG0OhJNgU2CA1+INAayHuIvRDRr/+asD7KS9IMppx3UXT0NuJlfPUrk4=
+X-Received: by 2002:a05:622a:8a:b0:4f1:840a:c90f with SMTP id d75a77b69052e-4ffb47e3b0dmr22957201cf.2.1767787407861;
+        Wed, 07 Jan 2026 04:03:27 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHIUGxjnQgE4PgHsYyrjWsDHfJ6IeypN42Z/YRU+rG2QsfHWIVu19VW4NAlWcg80kdk86FAHg==
+X-Received: by 2002:a05:622a:8a:b0:4f1:840a:c90f with SMTP id d75a77b69052e-4ffb47e3b0dmr22956801cf.2.1767787407325;
+        Wed, 07 Jan 2026 04:03:27 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a23432dsm482678666b.11.2026.01.07.04.03.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 04:03:26 -0800 (PST)
+Message-ID: <84799abd-3b30-4772-b716-37f97a28a8f7@oss.qualcomm.com>
+Date: Wed, 7 Jan 2026 13:03:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,153 +102,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/22] media: rockchip: rga: prepare cmdbuf on streamon
-To: Nicolas Dufresne <nicolas@ndufresne.ca>,
- Jacob Chen <jacob-chen@iotwrt.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, kernel@pengutronix.de
-References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
- <20251203-spu-rga3-v2-10-989a67947f71@pengutronix.de>
- <8c3a3299036dd1bab158bdcd589abd027d2864b6.camel@ndufresne.ca>
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: milos-fairphone-fp6: Enable UFS
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, Vinod Koul <vkoul@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20260107-milos-ufs-v1-0-6982ab20d0ac@fairphone.com>
+ <20260107-milos-ufs-v1-6-6982ab20d0ac@fairphone.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-In-Reply-To: <8c3a3299036dd1bab158bdcd589abd027d2864b6.camel@ndufresne.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260107-milos-ufs-v1-6-6982ab20d0ac@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDA5NCBTYWx0ZWRfX0loUN5xB57hy
+ sotJrcE26ls4f5FMoiSXPFKcobM0pa4OdEgjR6OUNTuFYFhIYU0QCzGt6iu3K1UYBCH3DcYvc05
+ yCvGWT4ST9V/fIqF7N02fGXwYySg6MD6fjpSmFNJGI494k9qXJFve4kxpKjvvv8c67I2J/xm1CD
+ NDHGXBz7Bu9RWrPTOdpk+CQ09YOlfrFQX/T5pDcHVP4MR/jR0YoZl5latlV0o6sgZ5xaZhOegBE
+ xbtZs4mjtN2URfb62yP58spLoooDcTZnYqt/ngGIGr7j1oeLzcyuP8hB7GCn9oYP0epBykej4eC
+ TwCON592Nwnkan/YO0rRZpYY6bBthTxFTg644kDMNVJZhCcbgSLfaqr6GbrosFEupGiwkxVxLLT
+ ex2FllZB1wR9KeLZxeThEnJtykO3Td1bOX/yMKCC82Y11uYpFm2rxMpnbHfAuMq/tdqIBFa2kpM
+ KuAfHk5J7u2Kd1JPDLQ==
+X-Authority-Analysis: v=2.4 cv=CYEFJbrl c=1 sm=1 tr=0 ts=695e4b90 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8
+ a=STFXn1ACf7ZPQ-DneOQA:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
+ a=1HOtulTD9v-eNWfpl4qZ:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-GUID: DBmh72vYW8CbG4uloyK7jMR7iOgwgBRu
+X-Proofpoint-ORIG-GUID: DBmh72vYW8CbG4uloyK7jMR7iOgwgBRu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-07_01,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 suspectscore=0 clxscore=1015
+ impostorscore=0 malwarescore=0 phishscore=0 spamscore=0 adultscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601070094
 
-Hi,
+On 1/7/26 9:05 AM, Luca Weiss wrote:
+> Configure and enable the nodes for UFS, so that we can access the
+> internal storage.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+> index 3a7f2f2b3a59..7629ceddde2a 100644
+> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+> @@ -819,6 +819,24 @@ &uart5 {
+>  	status = "okay";
+>  };
+>  
+> +&ufs_mem_hc {
+> +	reset-gpios = <&tlmm 167 GPIO_ACTIVE_LOW>;
+> +
+> +	vcc-supply = <&vreg_l12b>;
+> +	vcc-max-microamp = <800000>;
+> +	vccq-supply = <&vreg_l5f>;
+> +	vccq-max-microamp = <750000>;
 
-On 12/24/25 4:29 PM, Nicolas Dufresne wrote:
-> Hi,
->
-> Le mercredi 03 décembre 2025 à 16:52 +0100, Sven Püschel a écrit :
->> Prepare the command buffer on streamon to reuse it's contents instead of
->> completely writing it for every frame. Due to the stream settings being
->> fixed after a streamon we only need to replace the source and destination
->> addresses for each frame. This reduces the amount of CPU and memory
->> operations done in each frame.
-> My speculation is that flushing to device is usually more expensive then this,
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Yeah, it was an idea to maybe get a bit more performance. I didn't see a 
-performance improvement after implementing it.
+Konrad
 
-But I thought that it could be beneficial when the CPU is fully loaded 
-(instead of my small test with an idle CPU). Therefore I've left it in.
-
-Sincerely
-     Sven
-
-> but I didn't check closely if you have enabled the caches. That being said, this
-> is good change. It highlight the inflexible nature of V4L2 imho, which in this
-> case can be used to optimize.
->
-> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
->
->> Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
->> ---
->>   drivers/media/platform/rockchip/rga/rga-hw.c | 13 +++++++++----
->>   drivers/media/platform/rockchip/rga/rga.c    | 13 ++++++++++++-
->>   drivers/media/platform/rockchip/rga/rga.h    |  1 +
->>   3 files changed, 22 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media/platform/rockchip/rga/rga-hw.c
->> index 56a2558539bfb..8cdfe089fd636 100644
->> --- a/drivers/media/platform/rockchip/rga/rga-hw.c
->> +++ b/drivers/media/platform/rockchip/rga/rga-hw.c
->> @@ -408,8 +408,6 @@ static void rga_cmd_set(struct rga_ctx *ctx,
->>   {
->>   	struct rockchip_rga *rga = ctx->rga;
->>   
->> -	memset(ctx->cmdbuf_virt, 0, RGA_CMDBUF_SIZE * 4);
->> -
->>   	rga_cmd_set_src_addr(ctx, src->dma_desc_pa);
->>   	/*
->>   	 * Due to hardware bug,
->> @@ -418,11 +416,9 @@ static void rga_cmd_set(struct rga_ctx *ctx,
->>   	rga_cmd_set_src1_addr(ctx, dst->dma_desc_pa);
->>   
->>   	rga_cmd_set_dst_addr(ctx, dst->dma_desc_pa);
->> -	rga_cmd_set_mode(ctx);
->>   
->>   	rga_cmd_set_src_info(ctx, &src->offset);
->>   	rga_cmd_set_dst_info(ctx, &dst->offset);
->> -	rga_cmd_set_trans_info(ctx);
->>   
->>   	rga_write(rga, RGA_CMD_BASE, ctx->cmdbuf_phy);
->>   
->> @@ -431,6 +427,14 @@ static void rga_cmd_set(struct rga_ctx *ctx,
->>   				   PAGE_SIZE, DMA_BIDIRECTIONAL);
->>   }
->>   
->> +static void rga_hw_setup_cmdbuf(struct rga_ctx *ctx)
->> +{
->> +	memset(ctx->cmdbuf_virt, 0, RGA_CMDBUF_SIZE * 4);
->> +
->> +	rga_cmd_set_mode(ctx);
->> +	rga_cmd_set_trans_info(ctx);
->> +}
->> +
->>   static void rga_hw_start(struct rockchip_rga *rga,
->>   			 struct rga_vb_buffer *src,  struct rga_vb_buffer *dst)
->>   {
->> @@ -622,6 +626,7 @@ const struct rga_hw rga2_hw = {
->>   	.max_height = MAX_HEIGHT,
->>   	.stride_alignment = 4,
->>   
->> +	.setup_cmdbuf = rga_hw_setup_cmdbuf,
->>   	.start = rga_hw_start,
->>   	.handle_irq = rga_handle_irq,
->>   	.get_version = rga_get_version,
->> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
->> index 592c977a07cf3..f02ae02de26ca 100644
->> --- a/drivers/media/platform/rockchip/rga/rga.c
->> +++ b/drivers/media/platform/rockchip/rga/rga.c
->> @@ -523,6 +523,17 @@ static int vidioc_s_selection(struct file *file, void *priv,
->>   	return ret;
->>   }
->>   
->> +static int vidioc_streamon(struct file *file, void *priv,
->> +			   enum v4l2_buf_type type)
->> +{
->> +	struct rga_ctx *ctx = file_to_rga_ctx(file);
->> +	const struct rga_hw *hw = ctx->rga->hw;
->> +
->> +	hw->setup_cmdbuf(ctx);
->> +
->> +	return v4l2_m2m_streamon(file, ctx->fh.m2m_ctx, type);
->> +}
->> +
->>   static const struct v4l2_ioctl_ops rga_ioctl_ops = {
->>   	.vidioc_querycap = vidioc_querycap,
->>   
->> @@ -547,7 +558,7 @@ static const struct v4l2_ioctl_ops rga_ioctl_ops = {
->>   	.vidioc_subscribe_event = v4l2_ctrl_subscribe_event,
->>   	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
->>   
->> -	.vidioc_streamon = v4l2_m2m_ioctl_streamon,
->> +	.vidioc_streamon = vidioc_streamon,
->>   	.vidioc_streamoff = v4l2_m2m_ioctl_streamoff,
->>   
->>   	.vidioc_g_selection = vidioc_g_selection,
->> diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/platform/rockchip/rga/rga.h
->> index 0aef348dddb95..93162b118d069 100644
->> --- a/drivers/media/platform/rockchip/rga/rga.h
->> +++ b/drivers/media/platform/rockchip/rga/rga.h
->> @@ -154,6 +154,7 @@ struct rga_hw {
->>   	u32 max_width, max_height;
->>   	u8 stride_alignment;
->>   
->> +	void (*setup_cmdbuf)(struct rga_ctx *ctx);
->>   	void (*start)(struct rockchip_rga *rga,
->>   		      struct rga_vb_buffer *src, struct rga_vb_buffer *dst);
->>   	bool (*handle_irq)(struct rockchip_rga *rga);
 
