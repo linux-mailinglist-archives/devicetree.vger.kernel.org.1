@@ -1,232 +1,160 @@
-Return-Path: <devicetree+bounces-252369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56713CFE036
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 14:41:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 953CFCFE079
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 14:44:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8C9A23083538
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 13:37:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1B337300BA2B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 13:40:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1457733EB0A;
-	Wed,  7 Jan 2026 13:37:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 739C933F385;
+	Wed,  7 Jan 2026 13:40:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mouWI9Zf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IMXnTQJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D867724397A;
-	Wed,  7 Jan 2026 13:37:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D82326D55
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 13:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767793029; cv=none; b=XSVntW+iERaRzZ7i6pSK0VM4R9OT6lWTe0VWoRxI+02uGXZhAATy2blvtlAS96ZusheWE45sXONccdsVd3fLNF+v1RLPZzsAPiuAaeIOaJBuHb54nVYc3Gd2KTM48QzDorg4dTtlMVafPUobq8SDYNLLwcClpYY64SRoDQPgr6I=
+	t=1767793201; cv=none; b=S2IVQPbUAFN2ota32HtbAngN3ukW26qC6NkWo+eohb8pKwVAMMlKoV4USOBUTRBwd+PJ+7PA2JhYr0q4pSeVvWtkkKRl4jhPPNVF1rPK5MGMsF9L5uGb8Rll9anyK7HkofA6UqBNzz3EF7jA4nIWTdQWII8iESBVXxjWzLOCLX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767793029; c=relaxed/simple;
-	bh=LEUoa7l62g+TJDfOSn+FtDTHetT0GTOmCxQjZ+1AEjE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DYcbvKQnfHSfMdcO5qcXZsDyDWefqjN7rcSA4Ho0m5LUtzPl1aFI51LMRCokUdzuV+XYkNxROXvjGBchQ9rzzVp+R9gjDnj5ZycfUVQUrpgwMej7RuO/6MMdJQzqK/aCUNmmAIzp9OGWA52vUcVBkkqnpS5WzJjpoyHEgaaI3+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mouWI9Zf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18926C4CEF7;
-	Wed,  7 Jan 2026 13:37:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767793026;
-	bh=LEUoa7l62g+TJDfOSn+FtDTHetT0GTOmCxQjZ+1AEjE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mouWI9Zf32XLOQEelSa+xFNC/a0QZxxOxrNj1fDX69KtJEaIDyhDaRz+5vrWE8bup
-	 dLARXI52uUwF1Uj/hQNk05OMMzTtvh4Ain9n6i29PkSabkkV08dmyqidZ/NX/hbh6M
-	 XpYHRTuJi65V/B/GsNj13w9At+O7Cy79BhshquL/WZzRkayDWoNgZNNfO/P6L9qbZb
-	 tx+96BiTOS0SLxMeFzn71n1LBC46Gcji3Dt84L0ySNF2t/E0qhDEGqLFSEJdi+oMbq
-	 7vwIT3idtOyr3LO8L0dC580q0yO0B4joAY0sPvqo4EdVOTPL1ljGbR5sHOC+z47xwb
-	 lCUZ4FNwmd7nA==
-Message-ID: <a352539e-13a2-44f2-802c-f92747115732@kernel.org>
-Date: Wed, 7 Jan 2026 13:37:00 +0000
+	s=arc-20240116; t=1767793201; c=relaxed/simple;
+	bh=b4JPiwYZZNZVEP0BvLqcWwbe/rsB9saevx47a301FVA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JbKaaRidNCD7847FixhJpwy80ANd/J44OiI3ZobR9qdasORRxPSc44R0AK0O85yl4rnX0HamJCF1cCoYWtB7YEzjJaLFG5wcH3tunV3RWfk0dX3DOJY7FYLVDF30gkVgDQc1AFORRPSNufGSqyvFB8pnGFi9Y417p8Qyu/7HjlQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IMXnTQJa; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-42fb5810d39so1148581f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 05:39:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1767793198; x=1768397998; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=essmEBOdYZvlb56f47cnSD8phUDtBzvO/hiGaoERCfE=;
+        b=IMXnTQJaBvrujm3qT28MiKfy9kVPWjq/7nSb8GKZBIR8an2W63BoU2BDsC7WvDTC0z
+         LQJMzHVdn8EyhcfxgZc15KqxOWOvqFTZ4fUrS8f4jWz6LDs2ixi61oDLJ3R3+F9Sry2t
+         dm3rv46URR/1pYuDZLhzwuWdmdBU/ydv4gk2+cYihfqxma9hBGUETeHJr/elH4UT8qnd
+         4XNlTNo22VxNC6JdDBfMN7TEfYVBpPltYBZCuc4uifZDm6tySvVp5BKfyXsCj3tdhXRG
+         abHWcSRFTjlqTX5QsSTSdHo/83d3mnJ9bgDKBp8mViMfPREu3cIRjoWU5xXh0Zq0D0eW
+         dkeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767793198; x=1768397998;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=essmEBOdYZvlb56f47cnSD8phUDtBzvO/hiGaoERCfE=;
+        b=daa7TGwacLPXkZVBpWbPFgLjDZYZ6GhDzP1DUIhzrRUSNXiI/PYgiT552cq+m9lkPi
+         KJ5+wCiVRKVkdd+pp86IGJyXmlN2TGcdD4i5JLtTSJ3eB/VMwINrxHmiDmykLkmWQFDl
+         U/+k76jqzNyhrYoaOAVdTgSfB1P2CM7057aJR9yMapEEoyTTS8l/YXMdVbvCcQIzliUS
+         vIsWUafbibgyCcKdZn9XRI9iWEwbJtzhoojxoa8ZDHbB8GrxptbZkYGUonl5eu4Cq3XJ
+         mGCnnKWE5dXNE6Gpbt0wKtPEVZNQ9cyXiZsdDcN0DCtYPCQ4dQpRGfIsieNOzdIXms5y
+         LOnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXC1Y1nOb9isEv1C8S98P5HiFyXVUzieohZpNOhGHEu4Gk2EZuy5sxQSzUtUpl/pw6VJnhe+VvJPaS5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/0QL46EGA+zaY1UVB72Q88Kh5HUIt1z8eIX9EYe5k9DEzIZlz
+	v560xZzdfs0vbLM/KftdHXiX2zDQ39tAJQhsQbvW56AIc+2xxiad2ktZZN3Rls2wmIg=
+X-Gm-Gg: AY/fxX4VWp4CI9eYWV6s9Yw5ZSytpJgC+ouDobmKh695gUlJ4/CrdCFNltjIA5Dtwn4
+	th7qb8fMgKocxAuxc6kBd/mPlMN3kvqGukQF1JXyHgv0b2P9C5G4FuuMAYQP7TwO2F0dfT8l1JL
+	Zs+er5pi3iB5uG0+r9oHsT0oS0a1vVobs1fYFAMLgQfeeYTbmfBuKqQyZSQAa3Oltic7VE2wHN9
+	7xxJHczNRGhzIKD5eoIQFh7Aim5HUPJnnvfzaXPpjf959biG+6xgNjOxWCysGCdJa1A+Au9ykRI
+	1AUtn4MX9/tRxMRMnyGVzJp7QrzPVyDHg+IOgevIBaJXeq17wyVuHiMZnweFu27GBeV+U9IAdfk
+	mlv8knWZT92QQ0vUez4zvLls0NuBKrpeZkGGlRPVaNKfTi0q/ur5J0Adk+KV28+YfV1OwjirBo0
+	FpfYaJ4fpdfwUiaVEUMsHlper7rFDdwbs=
+X-Google-Smtp-Source: AGHT+IG5yiUMmsBELFqzl5e0cwWDO08ZlCwN7eYh8sJJ//HcdWLe6zUmYURWf7nvq3DOf61gkk+LhA==
+X-Received: by 2002:a5d:64c6:0:b0:42f:b581:c69d with SMTP id ffacd0b85a97d-432c3628323mr2941135f8f.3.1767793197720;
+        Wed, 07 Jan 2026 05:39:57 -0800 (PST)
+Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:39ee:bc4c:aafe:6bd0])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd0dade5sm10595542f8f.9.2026.01.07.05.39.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jan 2026 05:39:57 -0800 (PST)
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: wbg@kernel.org
+Cc: robh@kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	s32@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: [PATCH v4 0/3] Add the System Timer Module counter
+Date: Wed,  7 Jan 2026 14:39:49 +0100
+Message-ID: <20260107133953.2094015-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/5] arm64: dts: qcom: sdm670-google-sargo: add imx355
- front camera
-To: Richard Acayan <mailingradian@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Robert Mader <robert.mader@collabora.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
-References: <20260107043044.92485-1-mailingradian@gmail.com>
- <EH_uOtpcVsNitfFOqaxIc6mwDxTGSTrk6KihkoFf_tDOuglAxp2x9I70hChJgfC43qZUQKje80MW4gngc29-Mw==@protonmail.internalid>
- <20260107043044.92485-6-mailingradian@gmail.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20260107043044.92485-6-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/01/2026 04:30, Richard Acayan wrote:
-> The Sony IMX355 is the front camera on the Pixel 3a, mounted in portrait
-> mode. It is connected to CSIPHY1 and CCI I2C1, and uses MCLK2. Add
-> support for it.
-> 
-> Co-developed-by: Robert Mader <robert.mader@collabora.com>
-> Signed-off-by: Robert Mader <robert.mader@collabora.com>
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->   .../boot/dts/qcom/sdm670-google-sargo.dts     | 104 ++++++++++++++++++
->   1 file changed, 104 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> index ed55646ca419..ec447fe3959a 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> @@ -172,6 +172,34 @@ vreg_s2b_1p05: vreg-s2b-regulator {
->   		regulator-min-microvolt = <1050000>;
->   		regulator-max-microvolt = <1050000>;
->   	};
-> +
-> +	cam_front_ldo: cam-front-ldo-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "cam_front_ldo";
-> +		regulator-min-microvolt = <1352000>;
-> +		regulator-max-microvolt = <1352000>;
-> +		regulator-enable-ramp-delay = <135>;
-> +
-> +		gpios = <&pm660l_gpios 4 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-0 = <&cam_front_ldo_pin>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-> +	cam_vio_ldo: cam-vio-ldo-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "cam_vio_ldo";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-enable-ramp-delay = <233>;
-> +
-> +		gpios = <&pm660_gpios 13 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-0 = <&cam_vio_pin>;
-> +		pinctrl-names = "default";
-> +	};
->   };
-> 
->   &apps_rsc {
-> @@ -392,6 +420,61 @@ vreg_bob: bob {
->   	};
->   };
-> 
-> +&camss {
-> +	vdda-phy-supply = <&vreg_l1a_1p225>;
-> +	vdda-pll-supply = <&vreg_s6a_0p87>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&camss_port1 {
-> +	camss_endpoint1: endpoint {
-> +		clock-lanes = <7>;
-> +		data-lanes = <0 1 2 3>;
-> +		remote-endpoint = <&cam_front_endpoint>;
-> +	};
-> +};
-> +
-> +&cci {
-> +	pinctrl-0 = <&cci1_default>;
-> +	pinctrl-1 = <&cci1_sleep>;
-> +	pinctrl-names = "default", "sleep";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&cci_i2c1 {
-> +	camera@1a {
-> +		compatible = "sony,imx355";
-> +		reg = <0x1a>;
-> +
-> +		clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +
-> +		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +		assigned-clock-rates = <19200000>;
-> +
-> +		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
-> +
-> +		avdd-supply = <&cam_front_ldo>;
-> +		dvdd-supply = <&cam_front_ldo>;
-> +		dovdd-supply = <&cam_vio_ldo>;
-> +
-> +		pinctrl-0 = <&cam_front_default &cam_mclk2_default>;
-> +		pinctrl-names = "default";
-> +
-> +		rotation = <270>;
-> +		orientation = <0>;
-> +
-> +		port {
-> +			cam_front_endpoint: endpoint {
-> +				data-lanes = <1 2 3 4>;
-> +				link-frequencies = /bits/ 64 <360000000>;
-> +				remote-endpoint = <&camss_endpoint1>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->   &gcc {
->   	protected-clocks = <GCC_QSPI_CORE_CLK>,
->   			   <GCC_QSPI_CORE_CLK_SRC>,
-> @@ -490,6 +573,14 @@ &pm660_charger {
->   	status = "okay";
->   };
-> 
-> +&pm660_gpios {
-> +	cam_vio_pin: cam-vio-state {
-> +		pins = "gpio13";
-> +		function = "normal";
-> +		power-source = <0>;
-> +	};
-> +};
-> +
->   &pm660_rradc {
->   	status = "okay";
->   };
-> @@ -508,6 +599,12 @@ led-0 {
->   };
-> 
->   &pm660l_gpios {
-> +	cam_front_ldo_pin: cam-front-state {
-> +		pins = "gpio4";
-> +		function = "normal";
-> +		power-source = <0>;
-> +	};
-> +
->   	vol_up_pin: vol-up-state {
->   		pins = "gpio7";
->   		function = "normal";
-> @@ -547,6 +644,13 @@ &sdhc_1 {
->   &tlmm {
->   	gpio-reserved-ranges = <0 4>, <81 4>;
-> 
-> +	cam_front_default: cam-front-default-state {
-> +		pins = "gpio9";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
->   	panel_default: panel-default-state {
->   		te-pins {
->   			pins = "gpio10";
-> --
-> 2.52.0
-> 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+The NXP S32 family provides a System Timer Module (STM), a 32-bit
+free-running counter clocked from a peripheral clock. The STM includes
+a prescaler and one or more compare channels generating optional
+interrupts. When used as a generic hardware counter, only the main
+free-running counter is required, while the compare channels are
+typically unused.
+
+On S32G2 devices, the STM is exposed as a simple counter block that
+can operate continuously and be shared across subsystems such as the
+Linux kernel, firmware components running on Cortex-M7 cores, or other
+co-processors. The counter can be read atomically and provides a
+stable timestamp source to correlate events occurring in different
+execution contexts.
+
+The Linux kernel controls the STM through a memory-mapped interface,
+configuring the prescaler, enabling or disabling the counter, and
+accounting for wrap-arounds. Other subsystems access the counter in
+read-only mode, making it a shared timestamp reference across the
+platform.
+
+This driver adds support for the STM when used as a counter on S32G2
+platforms. The device is described in the device tree using the
+following compatible:
+
+compatible = "nxp,s32g2-stm-cnt";
+
+The driver exposes basic counter functionality: start, stop, reset,
+prescaler configuration, and overflow handling.
+
+Changelog:
+	* v4
+	  - Split context structure to suspend/resume
+	  - Converted counter to a u64 to accumulate the time
+	  - Replaced 'reset' to a count write to reset (William Breathitt Gray)
+	  - Added events for userspace (William Breathitt Gray)
+	  - Added action COUNTER_SYNAPSE_ACTION_RISING_EDGE for signal (William Breathitt Gray)
+	  - Renamed counter name to "System Timer Module Counter" (William Breathitt Gray)
+
+	* v3
+	  - Fixed compatible typo "nxp,s32g2-stm" to "nxp,s32g2-stm-cnt"
+
+	* v2
+	  - Added Rob's tag
+	  ** kbuild
+	  - Reordered alphabetically the headers
+	  - Added bitfield.h header
+	  - Use DEFINE_SIMPLE_DEV_PM_OPS() and pm_sleep_ptr()
+
+Daniel Lezcano (3):
+  counters: Reorder the Makefile
+  dt-bindings: counter: Add NXP System Timer Module Counter
+  counter: Add STM based counter
+
+ .../bindings/counter/nxp,s32g2-stm-cnt.yaml   |  64 +++
+ arch/arm64/boot/dts/freescale/s32g2.dtsi      |   6 +-
+ .../boot/dts/freescale/s32g274a-rdb2.dts      |  10 +-
+ drivers/counter/Kconfig                       |  10 +
+ drivers/counter/Makefile                      |  21 +-
+ drivers/counter/nxp-stm-cnt.c                 | 433 ++++++++++++++++++
+ 6 files changed, 525 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/counter/nxp,s32g2-stm-cnt.yaml
+ create mode 100644 drivers/counter/nxp-stm-cnt.c
+
+-- 
+2.43.0
+
 
