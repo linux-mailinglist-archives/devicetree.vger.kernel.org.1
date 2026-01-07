@@ -1,158 +1,139 @@
-Return-Path: <devicetree+bounces-252409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D579ECFE8C0
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 16:23:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8615FCFECB3
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 17:12:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C7CD83010FEC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:18:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 822C3318486C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17A9357728;
-	Wed,  7 Jan 2026 14:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA387359711;
+	Wed,  7 Jan 2026 14:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Lom2AXd9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3587731AA8D
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 14:52:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AAC035970E;
+	Wed,  7 Jan 2026 14:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767797545; cv=none; b=geru6Pus9OvlzgbQ6YwKY/PKnrqbrDhl2iEV1YvGTx7Hwg2lZgDJz2TdMv8/9JtQKv3Rxak3/1m96tBXxcaQWp6sS/9W7XLJm2OhMU1xWBJtmHFtxc3HKj+s8W9I//moUcyv38esAvYaCVK2m4WhWZAEKuvlG4ho2JOLM5ELDz0=
+	t=1767797721; cv=none; b=stMs74e9Dpolh/7cmnyAqtY0ZZFqGLf1plrXH5hZDNaQS/UgKqbMRzoT3lKBF6RU28odJyCaub/RFACpzzR3ld8VYjaRXvNjbHYWceiwfX3G+5oBz/TAFp0Z/ekyVpV8XUE20HvuggxSfDFLNjlFK1JwZzpy88XkIVSVtZuaiWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767797545; c=relaxed/simple;
-	bh=rEI4N32RTUkp6hm6LhzSfgzxDUsDYJqv7mwhnacev+0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rqSEBgMM/V+nk6emoeIMa+C+dRYjnl2oo+tR5yzZGhJBiixqI5PB7/0jLDwH5xz8gl4FpxJkmlQwo3ayfLfnQkAwhqBNM7vmsNnYqko/pLMoQ8v/Kc9RdhDXBV6BRfUi10O+i0hAWh2u5jEuBUAKn2jFLqZTwR4wM2wdMrMHE7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1vdUtK-0002O9-IV; Wed, 07 Jan 2026 15:52:06 +0100
-Message-ID: <1f4720ea-fa9c-41b7-9a6c-24abffa4bd77@pengutronix.de>
-Date: Wed, 7 Jan 2026 15:52:04 +0100
+	s=arc-20240116; t=1767797721; c=relaxed/simple;
+	bh=CQ2R9hx4iRtCSEQFYUBJblRA8XsIgkKG1Q94np/DI1A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XWWUcdkYoaXqasiAsiiMKoazVD2+3ltaSozFXklp5HcVQRCBY+vdoYK+yhRqWgsvs83feiexM+mmCUERA+qtb3baJd6HE0/U+A05b5Hxq5stzP6IMCkZDoFfIhIrENhmE3M+nytX2zfXbcgaDdkZ0j1L59zcNGgZvWJ6xYZY+tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Lom2AXd9; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=hcBGP+YEL31N0blv4+v2NuEIpQB28RQ0vx0uWq2aRTo=; b=Lom2AXd9dsigseGn1s7xGCiVIv
+	/EKODcuzWY/SjvFU0VEexo4xSmkY3YpL0HexQ+CmXrKIj2FBvXUERsSewPX8Dkc9eOfezvxMjo4eP
+	E0iaq9ntdXmolmGytsP1JO0eUXm+c1N3m+ukKzzpN2HkDMZn3+85miVMd1YWGx0qeD53/SF1TiRwd
+	UE+PXSFjn03XEOJV46iM7T7gXDmzTpyYs+vCtw6/6RI0Tt7Ld8fse94tNPlCrEU5UpYIhPS+8j5XZ
+	yg7EyF15l1tC9Ys9ftCUaWnWCeWqt1tb8J6QPaS4YRhFr/nAD8WouPjrqTFxLr1Pa/caNp6mD7hFT
+	zWRAP3zQ==;
+Received: from i53875b57.versanet.de ([83.135.91.87] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vdUvw-001OJ9-Fm; Wed, 07 Jan 2026 15:54:49 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Chaoyi Chen <kernel@airkyi.com>, Alexey Charkov <alchark@gmail.com>,
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Quentin Schulz <quentin.schulz@cherry.de>,
+ Kever Yang <kever.yang@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>,
+ John Clark <inindev@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
+Date: Wed, 07 Jan 2026 15:54:47 +0100
+Message-ID: <1956308.1xdlsreqCQ@diego>
+In-Reply-To: <daa61083-ddc6-4454-9bea-d4ea2a4a9d91@rock-chips.com>
+References:
+ <20260107070322.323-1-kernel@airkyi.com>
+ <881548f1-7dd9-40bb-9267-e5a03fb97820@rock-chips.com>
+ <daa61083-ddc6-4454-9bea-d4ea2a4a9d91@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 18/22] media: rockchip: rga: move rga_fmt to rga-hw.h
-To: Nicolas Dufresne <nicolas@ndufresne.ca>,
- Jacob Chen <jacob-chen@iotwrt.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, kernel@pengutronix.de
-References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
- <20251203-spu-rga3-v2-18-989a67947f71@pengutronix.de>
- <de09023e7bdb1698c0bcdeb8d625101cbf647595.camel@ndufresne.ca>
-Content-Language: en-US
-From: =?UTF-8?Q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-In-Reply-To: <de09023e7bdb1698c0bcdeb8d625101cbf647595.camel@ndufresne.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hi,
-
-On 12/24/25 4:59 PM, Nicolas Dufresne wrote:
-> Le mercredi 03 décembre 2025 à 16:52 +0100, Sven Püschel a écrit :
->> Move rga_fmt to rga-hw in preparation of the RGA3 addition, as the struct
->> contains many RGA2 specific values. They are used to write the correct
->> register values quickly based on the chosen format. Therefore the
->> pointer to the rga_fmt struct is kept but changed to an opaque void
->> pointer outside of the rga-hw.h.
-[...]
->> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.h b/drivers/media/platform/rockchip/rga/rga-hw.h
->> index fffcab0131225..3bc4b1f5acba2 100644
->> --- a/drivers/media/platform/rockchip/rga/rga-hw.h
->> +++ b/drivers/media/platform/rockchip/rga/rga-hw.h
->> @@ -6,6 +6,8 @@
->>   #ifndef __RGA_HW_H__
->>   #define __RGA_HW_H__
->>   
->> +#include <linux/types.h>
->> +
->>   #define RGA_CMDBUF_SIZE 0x20
->>   
->>   /* Hardware limits */
->> @@ -431,4 +433,14 @@ union rga_pat_con {
->>   	} data;
->>   };
->>   
->> +struct rga_fmt {
->> +	u32 fourcc;
->> +	int depth;
->> +	u8 uv_factor;
->> +	u8 y_div;
->> +	u8 x_div;
->> +	u8 color_swap;
->> +	u8 hw_format;
->> +};
+Am Mittwoch, 7. Januar 2026, 11:04:42 Mitteleurop=C3=A4ische Normalzeit sch=
+rieb Chaoyi Chen:
+> On 1/7/2026 5:57 PM, Chaoyi Chen wrote:
+> > On 1/7/2026 4:21 PM, Heiko St=C3=BCbner wrote:
+> >> Am Mittwoch, 7. Januar 2026, 08:56:04 Mitteleurop=C3=A4ische Normalzei=
+t schrieb Alexey Charkov:
+> >>> On Wed, Jan 7, 2026 at 11:04=E2=80=AFAM Chaoyi Chen <kernel@airkyi.co=
+m> wrote:
 
 [...]
 
->>   
->> -struct rga_fmt {
->> -	u32 fourcc;
->> -	int depth;
->> -	u8 uv_factor;
->> -	u8 y_div;
->> -	u8 x_div;
->> -	u8 color_swap;
->> -	u8 hw_format;
->> -};
-> Ah! here's the removal of the unused variable. Not review friendly, but at last
-> removed.
+> >>>> +       vcc3v3_hubreset: vcc3v3-hubreset {
+> >>>> +               compatible =3D "regulator-fixed";
+> >>>> +               regulator-name =3D "vcc3v3_hubreset";
+> >>>> +               regulator-boot-on;
+> >>>> +               regulator-always-on;
+> >>>
+> >>> If this regulator supplies a soldered-on discrete hub and is required
+> >>> to power it up, won't it be better to describe the hub in the device
+> >>> tree (see binding at [1]), make the regulator its supply, and perhaps
+> >>> drop the "regulator-boot-on/regulator-always-on" annotation here,
+> >>> letting the regulator core deal with its enabling instead?
+> >>>
+> >>> [1] https://github.com/torvalds/linux/blob/master/Documentation/devic=
+etree/bindings/usb/usb-device.yaml
+> >>
+> >> Yep, it would be nicer to it this way.
+> >> A live example can be found in the Rock 5 ITX [2]
+> >>
+> >> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git=
+/tree/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts#n1266
+> >=20
+> > Thank you for the great example. BTW the hub used here is CH344. It
+> > looks like we need to add a new binding :)
+> >
+>=20
+> Typo... It is WCH CH334.
 
-I've just moved it, so your review comments are still right. x_div/y_div 
-is still used at one place in rga_hw.c, but I'll remove it too in my v3 
-(and have these removals in the other commits to keep this reviewed-by).
+I don't think you need a new compatible at all :-)=20
 
-Sincerely
-     Sven
+When you look at the usb-device.yaml linked above you'll the compatible
+already defined as a pattern:
 
->
-> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
->
->> -
->>   struct rga_frame {
->>   	/* Crop */
->>   	struct v4l2_rect crop;
->>   
->>   	/* Image format */
->> -	struct rga_fmt *fmt;
->> +	void *fmt;
->>   	struct v4l2_pix_format_mplane pix;
->>   };
->>   
->> @@ -145,8 +135,6 @@ static inline void rga_mod(struct rockchip_rga *rga, u32 reg, u32 val, u32 mask)
->>   struct rga_hw {
->>   	const char *card_type;
->>   	bool has_internal_iommu;
->> -	struct rga_fmt *formats;
->> -	u32 num_formats;
->>   	size_t cmdbuf_size;
->>   	u32 min_width, min_height;
->>   	u32 max_width, max_height;
->> @@ -158,6 +146,9 @@ struct rga_hw {
->>   		      struct rga_vb_buffer *src, struct rga_vb_buffer *dst);
->>   	bool (*handle_irq)(struct rockchip_rga *rga);
->>   	void (*get_version)(struct rockchip_rga *rga);
->> +	void *(*adjust_and_map_format)(struct v4l2_pix_format_mplane *format,
->> +				       bool is_output);
->> +	int (*enum_format)(struct v4l2_fmtdesc *f);
->>   };
->>   
->>   static inline bool rga_has_internal_iommu(const struct rockchip_rga *rga)
+  compatible:
+    contains:
+      pattern: "^usb[0-9a-f]{1,4},[0-9a-f]{1,4}$"
+    description: Device nodes or combined nodes.
+      "usbVID,PID", where VID is the vendor id and PID the product id.
+      The textual representation of VID and PID shall be in lower case
+      hexadecimal with leading zeroes suppressed. The other compatible
+      strings from the above standard binding could also be used,
+      but a device adhering to this binding may leave out all except
+      for "usbVID,PID".
+
+Which will match everything VID + PID combination, so you just need
+to use the VID+PID from your hub.
+
+
+Heiko
+
+
 
