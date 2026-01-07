@@ -1,248 +1,188 @@
-Return-Path: <devicetree+bounces-252251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3146CFCBAC
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 10:08:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F5BACFCC0D
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 10:10:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9E2F23032FFB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 09:04:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6143530D1C4D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 09:05:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDA5285C8D;
-	Wed,  7 Jan 2026 09:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27FE2F747D;
+	Wed,  7 Jan 2026 09:05:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ar1LR0qY"
+	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="AGsmLxQp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010037.outbound.protection.outlook.com [52.101.56.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C9BD17DFE7;
-	Wed,  7 Jan 2026 09:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 505F32F60A7;
+	Wed,  7 Jan 2026 09:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.37
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767776661; cv=fail; b=ETdHe5u8CxYFSoMlYPih//nDgvUfdgw1cYxurXRy5rpDzGJ4SLti+JSBwB2p4O5doGCYEbzd3mheFeyrUxIMl7yB1kwjSbWrXyHnQ2aJiGcB/FpPuyz+/Ju5brE+EGNG4Aq39KjCYjxgs8NpEvLgUfjeqLdjVps19WDBq9MSKNU=
+	t=1767776705; cv=fail; b=RXBZPpsJ8ZAw+2Ogk6c6JhKh3b7jp84brN64AnGt5yXNaeXDK9wogt9yQ7jqmKFD48tIJozD1hj6LzXyu5J3YsdnDW2qM6sytgVVo3jT+kwvQklr1VTdWpqHbSeUURjpL8l7nGKGK+EBYuUhQtRJpvoDej5xCLPeAh7crlRcIKA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767776661; c=relaxed/simple;
-	bh=Q+XG0VExhjZWeyGKV3WSLQcrWD5wUzvRNtTEkITYgjE=;
-	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=HM+459laVyHgkALWVfkvjQlEwsOui1wIPYPqhMZiWHjjGCS2sDHoIei7iH9eTgequkjV7DQrvHbjqoCQbBjm23k+CPdzc5lPUZBQmgpiD0LWfVjBHi9M+RE48Gt8QC/3Q7zdNLJeB/SzZQWFAXRC8JKGeTDFhnpW3qFE90F4fYs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ar1LR0qY; arc=fail smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767776660; x=1799312660;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=Q+XG0VExhjZWeyGKV3WSLQcrWD5wUzvRNtTEkITYgjE=;
-  b=Ar1LR0qYLm8ZwN68ssXpiYkGgCW6oPJB6KB5j1Z0TkOJfdHPB55yu8ct
-   lGt5Bd7TcSXeTrn9sJlbar3Y8ru4CNttlnMyjTYsmYgK65Uvd/Ftg+rRE
-   kyrwOwn/+Pe4lQCLSfMMvx8DHE6bt6BJaA+z6vG4QLyYOo3ESlK6JdP+9
-   pZx0fxTMk1lUuiJz76Mnn33bXw3ke/yTrI3H8scLKZO0JHa6OQFthtMA6
-   vyDwVwaIbRdP5+hN+WT9yK7VuwqNMTFbvb8Hpxv7hO4/aBh8EOiOBpBox
-   VLUjVosbRHKIU150uhJJpaaoi91wXkx2cmpCrpy27obucMTNbPiPW56Be
-   Q==;
-X-CSE-ConnectionGUID: S3VXCb8WSE2Y1L3JL9bwUw==
-X-CSE-MsgGUID: g9nP8TfnS8e9iCkuLqYvUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="79775929"
-X-IronPort-AV: E=Sophos;i="6.21,207,1763452800"; 
-   d="scan'208";a="79775929"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 01:04:19 -0800
-X-CSE-ConnectionGUID: 6mqqnsIWSj6xp3Psc4XIxA==
-X-CSE-MsgGUID: uB/Xvz19Qsy+OrScvQ4Zfg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,207,1763452800"; 
-   d="scan'208";a="203319351"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
-  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 01:04:18 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 7 Jan 2026 01:04:18 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Wed, 7 Jan 2026 01:04:18 -0800
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.1) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 7 Jan 2026 01:04:18 -0800
+	s=arc-20240116; t=1767776705; c=relaxed/simple;
+	bh=p39iNntMLOx9UO7KZPFUtfRegxn2BFsNmVKOlVvoshY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=epGGcszugsCkjTFL8cFrDbhtIgyvfokeBUuuBdDRe0bcwytoluCjDQkuMrwQ2ex3XoIUYPSudPhFIOO7XtYbIBRVSi7rrDITFd4YxvahE4lqCCBbiFBmU3QuJxBUIzzgUKEvkSP3f8ZJ7+rcYcupWCIC5SVwKLDTieicI1XrAHg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=AGsmLxQp; arc=fail smtp.client-ip=52.101.56.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kD+CREp4UHgwBgpALc/V/Qp7L9VHXQfR6vgrf3rt2/k7wXuOFLE0xrM9mehuc9F20jP39yu8eUDU2rgmN5/oJ1bza+SzcXZcqXnRKoBCbwRYxxMmSexcVfRKq2iW4NbKUAEe3TxBDH+m+ZoectW/8QlpX4Q774+TNJQ32s32f/9ojEyUpjxUNZlhWhfmY92fHPciXIEd1MmpvGKXkbYw31eGWzkYG7PhLiK28rOaVcAnyG3vf+vXXnhP9OW/Rd9+AE3YemVNlK5FFh/EYAdLlLJL1xeBjb9U0MFiydkX2g5IXXoGZTevrctyI5waI2q8xrjfCATbqfxlK4Z218+Vzw==
+ b=EUGoiUP8cyvsp21mlf6qV9DBHL3tUZ/uw9QFIpzFBewQ4Eso58XunOrW3xqadWGFaTtxEp20neNfKaz8AzZybYB3kvvuWzjkYZTOW/aT0yS+y3ViWT/mq4cnfjRjSYdzUIVkak+mK2ikkm+aV8Dp0Ygf/bUJTXdDP8Yj2ubmA00opCiOpbm5KUs8g98VyCVbDnlWq2bL4rlhiN6i6Y7wYutUcfA1lZHjdYg1et/af7bP/kBKNW2gQYzaF70BYCCTIC8tG+zgJfzZPkSWZTe2RkUlqxtUIjgIyCKgQRO5IFhPDrZ+0l8WJlHrwUQYcrREgcVfUVgxxIYw8K7Om4dKLQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xXDUXJA1dB85aOpKykxml3ys9kDlDEvyhAkCct2bdnQ=;
- b=UO443iLie7LTmUXAluurmSfeli4acPs5R8nELkStyCUf9gpSb/28AEa5TjoSeqh9wlVc4I77EOOOwW9kKkUiXhavz8PZqGtFEElEj5MYN66jLfN97tXarzRzUj4n6mm0617dHGygSOZgQBuxF84+wD8KEtrjNLYkapT3LST3VC5uCP1uWReYXORVgY+XT+6twllUjmHB8VHfftqzaYyyzIMSGXGZGWYGu51pwij5Izz9xFoN9Lo9gzBO4wfmv9Symvqia+Ogge0IBkja4rL9nQsh5csVc5acjXUckDVKkWQfdTWJCJ8pjMsXWDb5vOq5HKqtz6g/NcIVSRke04OElg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SN7PR11MB8283.namprd11.prod.outlook.com (2603:10b6:806:26c::16)
- by SJ2PR11MB8586.namprd11.prod.outlook.com (2603:10b6:a03:56e::12) with
+ bh=p39iNntMLOx9UO7KZPFUtfRegxn2BFsNmVKOlVvoshY=;
+ b=YmHgP3wYQVbcMpr1sLPgPfhKp0kPL1oPBqJPcx+psRwIV7bcNopU0CceLUteOvEs/Zr3527FD71VZGq4Xd+R7pagIKBjCLVl02Xp0/79SYJSVnzIlN9auEDQ/nbuQui5QG+HGyxWq32ZSRleTTDF0u2s6Vmm31LNkr0f5C/8sieRhDeXh/pTc8tNBSK/7Mht59llloeam26vrDm3tODXuxLUrV/Td9A6yZsnJyUIgBy6o7CJrp8ccvN5ZK1WKqwzSIM4v6+k5M8D5UTVWVVnNoxWJMJihX0HI4GPWVhfWDpQ2mOuMXRsdadUgjD0jI2vmpufJUgepgcGgauHOw1KIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
+ pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p39iNntMLOx9UO7KZPFUtfRegxn2BFsNmVKOlVvoshY=;
+ b=AGsmLxQpYVd6XyOiGhckWRqH0geYVxryYZ6fIa8AZw7TmrDWINJZNqcSG+2pvtQyP5Jkp4XQ4sQogCVsEMr9kOPu0x7OdIUooTCmVB9jFDrkEheH5fx24U1Q0usaVi179ipL4LUetYoX8XfQaDNioLdjYPynvMhB4m2tK6Nj50VdmTKbul/Zf/xsAm/G9rz4TZaDzFYrFDJkCUY2b9IvWvWp8409ZMWr9O9JrYoYufu7Y7iTpD/jr+QRoYfnwzNEeIaryiSJnBj5H6REDwFefN1p/ZdAirXDtfVaF7hWeYHXfQ67V9MEv1QhIUqBkuZUsPrbI4Pf1fJZ7T34PcjrDg==
+Received: from CH0PR03CA0276.namprd03.prod.outlook.com (2603:10b6:610:e6::11)
+ by CO6PR22MB2947.namprd22.prod.outlook.com (2603:10b6:303:14e::8) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
- 2026 09:04:16 +0000
-Received: from SN7PR11MB8283.namprd11.prod.outlook.com
- ([fe80::d18f:6b38:584a:214]) by SN7PR11MB8283.namprd11.prod.outlook.com
- ([fe80::d18f:6b38:584a:214%4]) with mapi id 15.20.9478.004; Wed, 7 Jan 2026
- 09:04:15 +0000
-Message-ID: <5afcc981-4cdc-4040-bc30-e91e8a4c5993@intel.com>
-Date: Wed, 7 Jan 2026 10:04:11 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 0/4] ASoC: rt5575: Add the codec driver for the
- ALC5575
-To: Mark Brown <broonie@kernel.org>
-CC: <linux-spi@vger.kernel.org>, <perex@perex.cz>,
-	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<alsa-devel@alsa-project.org>, <flove@realtek.com>, <shumingf@realtek.com>,
-	<jack.yu@realtek.com>, <derek.fang@realtek.com>, <lgirdwood@gmail.com>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>, Oder Chiou
-	<oder_chiou@realtek.com>
-References: <cover.1767148150.git.oder_chiou@realtek.com>
- <176772855067.328192.13240221041944953554.b4-ty@kernel.org>
-Content-Language: en-US
-From: Cezary Rojewski <cezary.rojewski@intel.com>
-In-Reply-To: <176772855067.328192.13240221041944953554.b4-ty@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR04CA0136.eurprd04.prod.outlook.com
- (2603:10a6:803:f0::34) To SN7PR11MB8283.namprd11.prod.outlook.com
- (2603:10b6:806:26c::16)
+ 2026 09:04:59 +0000
+Received: from CH3PEPF0000000D.namprd04.prod.outlook.com
+ (2603:10b6:610:e6:cafe::ac) by CH0PR03CA0276.outlook.office365.com
+ (2603:10b6:610:e6::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.2 via Frontend Transport; Wed, 7
+ Jan 2026 09:04:52 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
+ smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
+Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
+ not designate 165.85.157.49 as permitted sender)
+ receiver=protection.outlook.com; client-ip=165.85.157.49;
+ helo=atlrelay2.compute.ge-healthcare.net;
+Received: from atlrelay2.compute.ge-healthcare.net (165.85.157.49) by
+ CH3PEPF0000000D.mail.protection.outlook.com (10.167.244.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9499.1 via Frontend Transport; Wed, 7 Jan 2026 09:04:59 +0000
+Received: from [127.0.0.1] (zoo10.fihel.lab.ge-healthcare.net [10.168.174.92])
+	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id 3A05BE57C8;
+	Wed,  7 Jan 2026 11:04:56 +0200 (EET)
+Message-ID: <0c3ebcfe-dc45-4e52-a86e-cc776b3bcae2@gehealthcare.com>
+Date: Wed, 7 Jan 2026 11:04:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] watchdog: imx2_wdt: Allow to continue in low power
+ mode
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20251229145000.421426-1-nandor.han@gehealthcare.com>
+ <20251229145000.421426-2-nandor.han@gehealthcare.com>
+ <20251230-pastoral-enigmatic-chamois-b65343@quoll>
+Content-Language: en-US
+From: Nandor Han <nandor.han@gehealthcare.com>
+In-Reply-To: <20251230-pastoral-enigmatic-chamois-b65343@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR11MB8283:EE_|SJ2PR11MB8586:EE_
-X-MS-Office365-Filtering-Correlation-Id: f7482048-7e27-427e-1bb9-08de4dcbbbb3
+X-MS-TrafficTypeDiagnostic: CH3PEPF0000000D:EE_|CO6PR22MB2947:EE_
+X-MS-Office365-Filtering-Correlation-Id: aeec31df-95f8-43c1-8805-08de4dcbd5cc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ekpzejBLUVVkbzlxUDIxNzJVOGx0ek9FeHdLZTFVdVpsRi9mMWdYMnRBS1Fj?=
- =?utf-8?B?bkdISjArbWkyWWJGNjdsMWx6SWlKRmhST1BtQ2xrVzRjKy9USTdyeHExZUlU?=
- =?utf-8?B?d1o0VCs3eWJYODRrZDVGOCtSUE1STk1ocTBPL3MwS2JFU25oN1RHRnFjRkc1?=
- =?utf-8?B?enU1OWV4RXFkazFoSURzdmxEV2dZM2FVYTJUQ2ozUXJQdVJTVnZiWnNtQ2ta?=
- =?utf-8?B?cHh1TnBpY2RiMU5SMWphamNGY0xrc2kzanJrOG91cVVGeE1OK0JlSkpUZU04?=
- =?utf-8?B?YlEwL1FZVWo2ZDY2b0txMXh2d213WlJ4WFl3ZVhia1k0cUZkOEk0bDdnZm1w?=
- =?utf-8?B?dEpoLzR2WVhZN1p6YkIzSXg1TVpFdjhJTmM0aWhKM2F6Z09DcHlySFQ2c0Jv?=
- =?utf-8?B?OEFXUXlBT2NYOWFIU2U0UTNzdW1KRXhIVDdKWjF2TnM5aHFvM2QzcDJiaXhq?=
- =?utf-8?B?TzdKRkw3ek5QZHlYaU8rbkhicUtyVC9vc3o1M1NVRjZueXpFV3NTK3o3OHJH?=
- =?utf-8?B?RHV5RkdOSXJPQTFaeTd4TkJsTktqdTBmaERRREQ3Vkk5MGNldExidlFFNXBi?=
- =?utf-8?B?SFNmeUhnMlU5NHJ2WG9Vd2VlbEc1bWFwTE16TVVaaXhkdzBIdjhrTGdEZ0lv?=
- =?utf-8?B?Q2hlZUQwYXJQaXV1V2drT0ZSRzl3Uk5SS0N5RW91NkVRdWxsNklqRHgzdm9q?=
- =?utf-8?B?WndwZTQ2Q0J0UkNsR3VyNjM5NTJnQTMybWJIMmhVTGk4ZmJmTk14V3lGR0Vs?=
- =?utf-8?B?Y0w0OERNMUtIc0l4aTFjUWo2SjcvUXlJS2hrL3cyMStVakVqOC9xVjd1Snkx?=
- =?utf-8?B?bDBsVnRNeTdGQkZ6RWYvMmRKT2xLY29FK1hDVlZKVjlCelg0NnJuVnRLQjEr?=
- =?utf-8?B?YVlFVjZmVVl3NVhDNVc0Mjc0VFdyUWFISlhUYStMWlMxUnFPZi9DSXFic2hF?=
- =?utf-8?B?ZGl3MUxLYmkrSERiZDlvK2M5N1dFdnpXZnF1NlVFa1JOd0gxcHlmbm5zTm13?=
- =?utf-8?B?TGRTYWtkRXJlbXJ0cE95SFkwR2FTZzh4MDQ4VHIwRTlUUzFPWW9UM3NFemFC?=
- =?utf-8?B?SXpuT2dMN3F6TFo5enhEMGpneFV6ak9vQ2l0TFdkVUtHMjh6eWVWYkt0Y0RX?=
- =?utf-8?B?VjVud1gwU01WeElmcFpEdElVcHdURDFPT2MwNkJkOVo1blRCR0JadTRaOXhn?=
- =?utf-8?B?OU9VM05YQWp2ZmZvTVJaaTR6T3RmRHNaUW9mVWYzVENSaTZYUmxCdUU2TW5V?=
- =?utf-8?B?NDl3cWRiUUVqM2ZkMHRNTjZhcFdUdW0yUWdnelIybVZjcXZpV3lWdS9QOU9Y?=
- =?utf-8?B?SDJ3WUg1M2lSVXFaeWpNZGVwbXBkT3lKWThzamlQNytxZjJ3ckFhTmlDaUNB?=
- =?utf-8?B?R1pSeGZxWFdTNzFlY05oaGlEYTdUNXpRaUFIbDZaUDNzZyswZ2phZWV3cFV5?=
- =?utf-8?B?YUlZL3d4MzZPZytObExhNm53S0x0YWZ4S1Q1QmdoZThnV0lJMDJsMlNUNHBK?=
- =?utf-8?B?RHRqajBTaGdSeWx1U2lJMmdmZHBTQmVsY3hqaGFsMWo2RUxoOSs0dzZ5RktP?=
- =?utf-8?B?QzNXU3Vob0o0dzAyUnNlU3hGdXpNWFFzcWZKN0k5RjdVZEZvbGl6NlBxSzcv?=
- =?utf-8?B?TkdIT21ZMHVsd2NaYy9hdmY3NkV2TThmTE5MRmxuOTVpd2RNNThUNTJFb3Bj?=
- =?utf-8?B?MkFrcDF3Z3RCTE1CdlhHMXdVWThpSHBUb29ydHgwYTNnT0VJT2NqT1lzSmF6?=
- =?utf-8?B?YUdNUTFiSzl3ZUd2Ni9sSitrcTZ6RitySWlXWis4K3pPKzg1VHpkU3Fsckdu?=
- =?utf-8?B?eU1lS2pPZmgvOEVXSkJaaGJHcXRjVVcxbEtQT3lhSUk2ZDhaTWZVWmY2UGhD?=
- =?utf-8?B?RHF4ZGttS0l2RnpJMHhYK3E1WEZrQm1lNVFUcm9HYXBONVlyOGpxVlpEbVM1?=
- =?utf-8?B?SGRsUGpQU1VIZDlPakdNb3d2MkRLU24xN09XWE1KOWp4Nmpvb1lqYzBxdEVN?=
- =?utf-8?B?dW5mcHlLb1RnPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR11MB8283.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K3ZsMmcrNjFINk9aMkhHU2NWdTVHN1cyQUJmNWFtTC81RzhCSDd1MnZPSmRV?=
- =?utf-8?B?azdjRVZoK0RsRWhWOFNjdHE4M01taTZTcDF3dWRlaS90aGY3SVpQa1k0K09K?=
- =?utf-8?B?Zy93VmtRNWJzcVFFbGhSNFVTbmd5UjJLTjZyYnllL3N0d3p6c1JkOUhBTHl6?=
- =?utf-8?B?RnRTTHJTcHl1UlZqMzVJbkREUnJZdmdYWmcwTmdTd1dmYU9pL3RmRlowME9z?=
- =?utf-8?B?OVhzQ0VQUEd4Y3NsRzFFYlc5TlFYSW05bHZHZkFtK241SlpxVDlnaXJnK0Rp?=
- =?utf-8?B?VzRGTkVKVzBsV2gvTGovaDVhTzdFazdOUURKUSsxUHQrYWxpM3gxYTVrckRv?=
- =?utf-8?B?V3JTSHZDby9jMGRPWkdFdmFONVk2QVRPYU9lK0xXT0JreEdINnZ4eXNPM29S?=
- =?utf-8?B?VGpwQU9rTENHa1dxbklhWUs4Mmp3MnpzVWd3RGpwM2VCcGMwU2daN2Y1K1lo?=
- =?utf-8?B?OEZvVWpOSnFOY2Rqbk5aeURrSmlzRVNtTlhVbEEyMHNncnRsRitIaGd1czY3?=
- =?utf-8?B?NC9LRGZqdFo5VHJJSG5NUG52dHJOb1grallsT2toWERYdUdKQ1hiY2srWFo3?=
- =?utf-8?B?bnNxSDErYVB1anhHUUV0Sy9tSURZSlJBSXpncjZaMXl6eU9HY3dIMkRxekNp?=
- =?utf-8?B?blBWMFlUSklOK2ZqeGlhbjlIOUxXUW0vV2VtWUlBVXFFSEJHOWk5a3RjQ004?=
- =?utf-8?B?M25LdUNLN1ZjQW5mY0UrSSsrY3lybUY4QkdIR2gzUEJYVDhOV0YvZktZcm00?=
- =?utf-8?B?dlRYajRVZjB6K1htcjR6RkgvU1ZPZGJHeDRtdUFPU2ppVTE0T1lKZHFvSXh3?=
- =?utf-8?B?VDVJOUFLRmZBQWgra3AybkRBMXJBcTdoSlRGRm5PRGQ3ZElSK3pSRGdTMEp6?=
- =?utf-8?B?SmlYLzlJR1BPOWl1ZE5sZGF3TUlUL00vR2JHQjQ1QVJvSEplbG9vL3pXWHRh?=
- =?utf-8?B?SnBnVmtjb3NxTUVBL2NTOHgzVDRoU3U3WXBYR25tZzN6U0hlenZZVlFXSWVa?=
- =?utf-8?B?UmxrSXhqMS96SzhYZnlBQytkYTlxQnF0dFdOcmJCWDlNNWdjOXFxdEh4aEJj?=
- =?utf-8?B?UDhYak5pK2Z5cXZBMVpTbXV4RXpBejZnUk5jWFRPNTV1UXBncmVLZFJ0Q0dU?=
- =?utf-8?B?cXBnMVo4Uk9kVnBMN2wzWGpZUm12ZUxIVTJsY3RZZ3IyeEtYUjVNNjlkL0ZM?=
- =?utf-8?B?aFhHbzVJZGwwSVoxZlJGY1ZOMXJkNFJMOWp3aDlDYUNvTmtoMzVLUUtoWFlh?=
- =?utf-8?B?ZVkxaCtoeE5oa0dHb0NxQnVyQU9SVElOQVowNmxSYlNjUVVMNGxJbVpqeW4r?=
- =?utf-8?B?eHI3QUd6VVl0UU40ajJNcnNrK3NicXR0blpMZVZ0RklOcE0zOWtmUXhYaUsv?=
- =?utf-8?B?V2p0NFpub3NlSjl2d0FCeEE2Y1E5Z2VFSEFNM3M1WHRFQ0lZcm1yTjZHQ0E2?=
- =?utf-8?B?eTdDMXNmRWRvKzdjdEhNNkNORFVrdU5VY3RraDF1bEY0b1U5R1kwQ0FmRG1v?=
- =?utf-8?B?MENLU0tPblhsZElRTC9HZVlaeUEzRENjVmk1SzN5Q2Y3cDBEaXU1L2xLbkNl?=
- =?utf-8?B?d0d3YkFJbHdoMzlUa2k3S3FYSWZmREtyUHZxbUVTQlJKNkNaa3V2QW5aaE1a?=
- =?utf-8?B?QmhuVldKSEFUeWpCbnB1YTJHTUJjRXdoZUlIb3pCbGdOU3FqcjU1VTBoYyt4?=
- =?utf-8?B?aUlNNm54VGh1em5iQ3FvanpOcUovTlAvcVVNdUpDMUpvMVJmeFZya2pZT21F?=
- =?utf-8?B?SThPMFgvM3N0Q1JveDcxbDJQTUdVZU9yb0xuQUtzYlVrM1hqUkVBZnAwbGtO?=
- =?utf-8?B?UTFsOEg5bHJpSFVYdjd6RlZlK3U0clI1bmVkSEhyT2NpY0dBYTVsWG1Wd0Q4?=
- =?utf-8?B?ajQ1ajkvcStXdnVTdjVSaWlXODQ0bFlvMEdEbDRhZy9GWE5rNlRaSlROeFVl?=
- =?utf-8?B?MDMyUWxXbXJLY0g3b0dqa2o2L0JHdWNjT2p0SkNkQUw1SzZtSHhCY2Z1NFZJ?=
- =?utf-8?B?Q0VoZGcwTmhWK1FiSGM1Rjd1TjJPVUlITzVvd0hXVDFBOHg2KysvR250N05m?=
- =?utf-8?B?T0t2TG9nUkJkYThYRWQySUNUZ2xnNm9qU2lYV3B5NEJWWFQvNWQ5MjhmalQ2?=
- =?utf-8?B?a0dGUmhKY093eW5VeGVINnZSOFlvbnlPcnF1WDEvSjZ4bjgrMGJURzJKaExF?=
- =?utf-8?B?U2xoNE4vR2ozZ1JlQ2Vmck5ucGNVVE1BQlVGaXdRblRuck5tMmw1U015RXR5?=
- =?utf-8?B?UUxNbGlwOTRHYVFjcFBmRWVMUlN0a0UrZFFaK2ZmVW45TGdMaEkzTUl1cGJy?=
- =?utf-8?B?eVVieEZRTUt5Z1NseHhTazMvYmxKblJQMlNZaHhJQXQ2TUlHdjdORHI2Tm91?=
- =?utf-8?Q?9gd4nFNvF6Q6T07E=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f7482048-7e27-427e-1bb9-08de4dcbbbb3
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB8283.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 09:04:15.8241
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700013|82310400026|1800799024|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ZmhycFVlR0htTk8yeTNZSHZMVDFGMnNHSmo0R01oM2NkOUtxWkxVUnkvdExR?=
+ =?utf-8?B?bXFGSll1VXRMRHZqVkN2NFJsdnNVOEI0dmFJZXZVOE16eG9yK1JLa3Bpc2dj?=
+ =?utf-8?B?QWpIY0ZmbUJMdENhdGNYRUdVbnBLWWhyZW5sV25LbHhwMmxMdlRJdnhiM0Fy?=
+ =?utf-8?B?cmdWMElHQWNoaUVNSkR0U3VJalArWFoyMlZJYSt4aUhIdnQ1RVB5ZWJFWG95?=
+ =?utf-8?B?NGVHWXprZ2IwcGx6Z0FyeVZ3Tk50VGR0U1VJbWVELzJhMG1mTUhwUXAybG1s?=
+ =?utf-8?B?eFhza2JrWHF3dkhVNkNYUFhPZnQ1UlROUzV6cXM3NUl4WmlXZlFMSlN5SndQ?=
+ =?utf-8?B?YzJzdkNXaUhUVEoxZlc3amU0dm5QQTZPcUNhQ0pyNGxjaEtHVEhLQUQweFYx?=
+ =?utf-8?B?NEZKOGIzMVRvWStrR1VRN3RvYWdDeUI5RDU1emsxaXJQZkdXdFdTdXVuY0tk?=
+ =?utf-8?B?SkFJekRkSUtBTEpZajBwc3Nhamx4Z25YNytyWjRRYlFTdU93M1poYk4yUDU2?=
+ =?utf-8?B?YkVtQzAyRFNmMUpiRlNRT3gzdXYrV2NEOGkrSnU4L29oSVhGYmV5L0gvTVFM?=
+ =?utf-8?B?NHlmR0d3ZGh4bkxGbVd6RkFFU3VSRDBZdU5JTmtsd1JDRjh1WnJGamVXZ3lX?=
+ =?utf-8?B?MklsTEtHTGNkM3JaSFlBZ2svTWJhSTNSelpZL2ZpZHBWZHlhQkZXZE5PZDFU?=
+ =?utf-8?B?U21Lc0VkQXFvTHh6aWVRUkRUb1l3b3BtM0M2RkJTb1BxN3RXR3JISWZBNWFo?=
+ =?utf-8?B?VEk0Y2ZQYjN0K2lZWUpLQ0p5UTJvRmVWaTJ3aXUxSlRNY3pSVGV4Z1hyNjJQ?=
+ =?utf-8?B?ZXNuMUpjUHRtMk51RTFDWGNGZ0lWZnBSTEJzUmVFbkxuRHN4eVFRUnlmYUFt?=
+ =?utf-8?B?MTNKMDQrYkpBejZOKzI2aWFMUjZvQ3c1MzNoUXM2WDFxWXptVE9ENDJNMzFa?=
+ =?utf-8?B?T1h5Qm8rRUlIYmhXUFRZR0NibGxtN2pyNVFuYnJnaUpxQ2Q5aTVZWFMwSDJ2?=
+ =?utf-8?B?bnBjVHdRdFZpTnI5UmxOZ0dJMFgwdWdFeEpTaSt0cGlMRU5kZUJSMzJ3NnF6?=
+ =?utf-8?B?Y3pPREVDNmVpWDAxY25aQVZhSVVmTENrQjgvRkZlbWhLNEcvajdGMWxXb1N1?=
+ =?utf-8?B?T0llcVhtQmtta3I2eUtONEpGazFBWVI1OWVQM0RZdTBTcDBGN0VRSGRjdHBa?=
+ =?utf-8?B?ZGdldk01anFhZDZoeFNjNEdMMENuOWxSTXNCTENlU00vazlqbEI1Mkk4SlR3?=
+ =?utf-8?B?eEo2dmZTQmJNZ3VRT2dUL3ZGQTdWVDNMWnZ6Qkt5M3lJVHNTZnJ0cVdZUEJl?=
+ =?utf-8?B?ZzMwNUNvZWkvUTdySnpJMHZScktieWc0QzRnTWVRM1hLd1VsVGdBa3dPMmY4?=
+ =?utf-8?B?blQzMVRDTmhqM0srR0tUNGpEcXNQZURYNVd0d0EvS3NsUHFNYWpXTTFwNmEv?=
+ =?utf-8?B?bUZsK1BOVXI3dUNGbUZ1bzJ2L01wTlhMZitJQkVvbmhPQTM1c2ZJWGFGVEli?=
+ =?utf-8?B?UzdvbFRSb0RhV0dMMTlTREdYOFIxWFBvK2xxQVdXSmtsMWZqYzZMRmhUWStv?=
+ =?utf-8?B?V28wZFd3MFB4SlgrSG5aZlhmTWJ0c1c5K0xrSFZTTVNMNTFwZHNrTWxSM0Z1?=
+ =?utf-8?B?NTJEenpkcm9uQytjcnZMdzFPZGFJWklmTHZOWFBzQXVuejYyZkF3dkxQOVA5?=
+ =?utf-8?B?c25sQ0lMdEg1aHVTRk5CenR0VUtncllhZjM3RXRnUUppSW5iM3RLczZjT1Bt?=
+ =?utf-8?B?YWpLcDZkNC9yQ1lOd01qSFVUb1FRZFBPeDI4KzdCeEYxV2ZEcG8zR1dISFU2?=
+ =?utf-8?B?VTJ2YU9ZU08ySmNyNGNDZzR2RjA5S3dKSDQ2dmVIMXFsMVVWNlZ5NldlY2I5?=
+ =?utf-8?B?T3ZBa2cxQ2hmbFAybmNMblFNTjh2bWRQTi8yQ3NKK2ZIOUlrUU9aTkhWQnk3?=
+ =?utf-8?B?aVRsQ2h3aVpwZXJIWlZ0RFBrQk1mdE02T1RuL3hONC93dVcyQ0JUVVNPWjBO?=
+ =?utf-8?B?am8xY05rUU45UTI4aEZObHhDUGRXOXlidnppdjUxb1NhRkd3a3g1ck9OZVMr?=
+ =?utf-8?B?RG5zNjUxYW1RYktGUmpmTDB2OXcrb1VDYTlFc00zaVdxZnd6UUN1RTBZQ3B5?=
+ =?utf-8?Q?Km6s=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:atlrelay2.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024)(13003099007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: gehealthcare.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 09:04:59.1860
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CBdUhPqC5/W+pf/+lWzyUPw70fDVYq3AErRLDTGYUzGjBo3Dopbc5SkPweRYXbpXiu80MMBJ59CY+gjrWH1p6t3oXBe9m1VMW6W+L9CS/ts=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8586
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aeec31df-95f8-43c1-8805-08de4dcbd5cc
+X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[atlrelay2.compute.ge-healthcare.net]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-CH3PEPF0000000D.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR22MB2947
 
-On 2026-01-06 8:42 PM, Mark Brown wrote:
-> On Wed, 31 Dec 2025 10:35:01 +0800, Oder Chiou wrote:
->> This patch series adds support for the Realtek ALC5575 audio codec.
+
+On 12/30/25 14:35, Krzysztof Kozlowski wrote:
+> CAUTION: This email originated from outside of GE HealthCare. Only open links or attachments if you trust the sender. Report suspicious emails using Outlook’s “Report” button.
+>
+> On Mon, Dec 29, 2025 at 04:49:59PM +0200, Nandor Han wrote:
+>> By default, the driver suspends the watchdog in low power modes (STOP
+>> and DOZE). In some situations this is not desired.
 >>
->> Changes in v11:
->> - Patch 1/4:
->>    - minor fixes
->> - Patch 2/4:
->>    - change of_find_spi_controller_by_node() gating to CONFIG_OF
->> - Patch 3/4:
->>    - nothing
->> - Patch 4/4:
->>    - achieve reverse-christmas-tree notation
->>    - remove formal version check
->>    - revise check whether the firmware boots from SPI or not
->>    - minor fixes
+>> Add the possibility to configure the continuation of the watchdog timer
+>> in the above mentioned low power modes.
 >>
->> [...]
-> 
-> Applied to
-> 
->     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+>> Note:
+>> Please be advised that the difference between the variable name and the
+>> device tree option has been intentionally selected to uphold the
+>> prevailing driver functionality. This ensures that the watchdog remains
+>> suspended by default in low power mode, while also facilitating a clear
+>> and intelligible device tree option name.
+>>
+> Please organize the patch documenting the compatible (DT bindings)
+> before the patch using that compatible.
+> See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+>
+> Best regards,
+> Krzysztof
 
-...
+Thanks Krzysztof for the suggestion, I will take a look over the doc.
 
-> [4/4] ASoC: rt5575: Add the codec driver for the ALC5575
->        commit: c7ac7499ac5bb50ab3e00add121822c5c904bc91
-Due to Christmas break I wasn't able to continue the review during that 
-time, back at work today :)  To be honest, I believe there are still 
-some comments (not related to nitpicks) left uncovered.  However, the 
-code in v11 (more like v12) is still a large improvement when compared 
-to v1. For that reason, if it is still feasible you can add my tag:
+Regards,
+Nandor
 
-Reviewed-by: Cezary Rojewski <cezary.rojewski@intel.com>
+
 
