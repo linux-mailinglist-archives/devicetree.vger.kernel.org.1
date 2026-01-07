@@ -1,247 +1,152 @@
-Return-Path: <devicetree+bounces-252414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC93ACFE88A
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 16:20:48 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 903D3CFE863
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 16:18:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BB92C30081A7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:20:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2BF1730019E6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02C833F8BE;
-	Wed,  7 Jan 2026 15:13:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D5B34B19F;
+	Wed,  7 Jan 2026 15:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H2uAo2Vi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B/6zdPLU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16BE347FED
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 15:13:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E753D34AB13
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 15:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767798831; cv=none; b=DiEPwGbD8gTgRjH4zRcvKncojhBGPzmqrp7OnseYZu+EwPpIgeu9sqhH4M367dtzSNgneCaXgy1YoI9muLSzwgeZSEGvno7VnlFhcG5npSy5hBnDgxFYeUVvzIIclK5D2pe0LTLTxu8esblLiADnTFecmdfhn0mX/n0k886d/qw=
+	t=1767798951; cv=none; b=L1vJY6fRH72ZRvp+D1fFZbbHShTkel/wmxfiEzNJ3vs9zTv/SlnwrbHY/VHI35KE7hghbADFe3R3OZq5Sa85wayYNQT6fRiYt3eUjZUypR/NdVn2YuEMqaNtatZLsHb4BpXr1cdy9i7uO4MYWqb2NOp+q5KdRx5F/Oz7YxZrZa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767798831; c=relaxed/simple;
-	bh=8W3cviQ5GbInToBhBoY7C9vmqNIvn2QZQdxWo3XW2/A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X5kdiG++D19ZhK2jyZcO5TLX42JhwT+CjaAZR2XPZcPTT6bTSFlcGoUc8gFCUqL+mHpkgTf9lq4zlXFYBJcrG775d8ysL0NyzGnsM9pbSz8vVUHa0O0WCFHyDG2/A0HgBVltGaeWlstQCB86/WefjlWjfVS48fGwUKJfr7YyMEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H2uAo2Vi; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47d3ba3a4deso12528885e9.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 07:13:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767798828; x=1768403628; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8Ereg+lemriroCRpjwkDWgDnQDqYfpC800QB/08JPJM=;
-        b=H2uAo2Vi7HDA+JaG3BZ23dN6BQ4d6kE27XLtJqrbleeBukrWUS88/hYo+GnpOe+z/D
-         8WKHf70YpwOcri6FRMhvYE7ieyOsWvnxDNMoEdQ4t6GDjPJPqKfAgNRD/hcqE/l4J11g
-         cGwrHq1gsBXbfHVn6VaC7ZsHmbg6xCHQ/7vOu6fuq8eAadIDv86BEzvVYpSgqtXquX8M
-         vBq8g8mYMVHgeVasZz99HpgonsJU4dclU3FembZ1IRt5h1Mr/zD04FWv0TIa6i1FAmr7
-         1L5a8AZtj47KbU0uj6+Z0weRwAsK4C+71kh7+w/zYufpAiVd3DTxEvr13ogJ8C1dbUwo
-         XZiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767798828; x=1768403628;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8Ereg+lemriroCRpjwkDWgDnQDqYfpC800QB/08JPJM=;
-        b=LW6AenaxeR7t+bR8V6lkIYfcqLYFN8rwVOOd7R1kZBqRLmAUmioXxYWd1ZUD1BcZZo
-         UJ3tMzOvGTD9MBI3Z94CIxDrJkw+kq34bEYzpgQjM/kAvwqx4LLk/BjF74Y+/eGqIY31
-         0qNb5w5BbQgHtmerzIkecp6uGtBM5dKuSq3/545uotWpH4TpOBZ1PnXxU3xxjQwlRvjs
-         u7lTtn3iq8D0WGlg6Jm0JlNtycnKPVixkhyYZDkHXx/nBJuChwG39x6DaKTnFWYcnQdd
-         JjLu5QDHw77+VxzJE6xF7ep9A1aX+hW72OVBRW4AY6l0R6cRiubcs2BMTgtbRqk3RSjK
-         D9xw==
-X-Forwarded-Encrypted: i=1; AJvYcCUuASyqYC7oBxl9jdzA1hE/vW6T8lUPvPi3+YqDIgCXM8uU+i3ntVsOxQr2lHnV9NbCKgoaR+jUdifU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRzlg1QoosYb4+LWwy27rkMRN2ZzA81Jsjjh4q/upNIrrpJZ/6
-	2iL4Ys57uk/HLiD3Oc/GYqmaPkumxmvzWjdb66XeLHHCEqwoJDj4bium
-X-Gm-Gg: AY/fxX61yKXBUFRkGkaeBjQjBmg9q/3LDUYOdViBiGmbOlQC/HDc6e4XyHjOcFk2T/L
-	sKSZE0t1oXzOrSo8eyodn/p9PivE39Z6pXbOdZXktSebSCVJU2F1nZ06jCR40OacDm796lwDtTm
-	wi6PYnHcowISpnnEPsszoO7rWR5lgWi+JYX3apIUJCoQW/UPxj6/mK+hLZ06zzyksmfxbWXcr+5
-	10f0BQhui8qi6GNJoJOSZUDIyz4rw/lc627fym30EtTNhw7ke0J9ZJhnUTlC9mp0X5OpT+gQM4z
-	jR0KoK1ueukkDqX9QJCB+2tY5s2SJ05e03n6LjgYH0g3tthkid/aW6n22QYCV23RPXVVLJ5PWn/
-	plMiS/Xx/Wsf2KdDtq3W19ueohuuHdDiIxswuwUH4Zcu/9TJVBaACzKV/r3xSRLzqei8nkn4d3L
-	N0hnn0RQn5OqiVZ8dLgwUBHEnisA==
-X-Google-Smtp-Source: AGHT+IHXEer8ATdFHJ3hctOBJ1LLmHpzbXID1qbtLy4x8gGW16EIKN6E9TqiON2GnaulMGyPUWYlDA==
-X-Received: by 2002:a05:600c:8485:b0:477:55ce:f3c2 with SMTP id 5b1f17b1804b1-47d84b182c3mr31029125e9.14.1767798828047;
-        Wed, 07 Jan 2026 07:13:48 -0800 (PST)
-Received: from [172.24.138.145] ([137.71.226.102])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d86c6ff40sm31996415e9.2.2026.01.07.07.13.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jan 2026 07:13:46 -0800 (PST)
-Message-ID: <f2537281-f2e0-4194-bc05-cea41ceeba7d@gmail.com>
-Date: Wed, 7 Jan 2026 16:13:43 +0100
+	s=arc-20240116; t=1767798951; c=relaxed/simple;
+	bh=btRszEfDKT0eYItv1CyxkQzic7zsq25d8SD2XhT7Hog=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BECA+NllgYvoxmq0mTfw0AXj0kv45OMryYe+frNbpQWx2ZLQbZCluqnb2b+lI0HO4UQp9TpQlU6K0Fzl6FgtVOuEtSj6AlP6Tg8vSWniyyIpK/c7Sq0LB6PBm8TA4t0ULfv7e94mvTLYXlWzHpZjOU5G0HLDknD5sHvjctGm66M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B/6zdPLU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79F6AC2BCB6
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 15:15:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767798950;
+	bh=btRszEfDKT0eYItv1CyxkQzic7zsq25d8SD2XhT7Hog=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=B/6zdPLUrFsRfFIILoc6ihh2pnTBRCgUDg6kHie7ruTF5G+SqykR4KeEajNF7nilE
+	 3dTq+EsHHIs4uOWxUr14XcsCol9PWpVCjYXW9jNtLGg5Wrjkmpm5O3mwes/g41d/O7
+	 49gGSQEh1SIMqPI1c7flLRZZeMMA7gyNGg5mUy2EKTEbjcO1Uh7b5F81xiXscQMzis
+	 GRXaQrSthfxBjO8/iktetAn9b2vu/Ybqb7E8zPXNSiafFqHy198G28Elp0PYSLqR9m
+	 5x/k6bKczDAJ3MKr7GfZ60PJ/AbIm4Steb24xrz5EfvFPgr9PhNQiTNr/MkLYzgNXd
+	 u4MrBJYRVHWEA==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-64b7318f1b0so2949344a12.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 07:15:50 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXjYRSdiKHUJtAAWvbckEJYv+ixeGmrvgPakUtc8woHLxNRjZU/lUiqljUencMMtCKPFBG5aWL8uf54@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHmYCwwnZp13WXFPbvA4one5XjnzY1dUJlrMolIcLs1XntbXlo
+	T3ttSAFgPqsh06RvrTB2B38DT7uRW9I4pIn57/tIjWG2R455yEO7X8fImfsSuPwZOPNTguFZ/WR
+	I/dtcT3lOFebLGZkqY/stL+93AcunJg==
+X-Google-Smtp-Source: AGHT+IHTu0IXdc7TRfyMIYF+QpCpK6DkoNxBGd6TkBQLccFk0QYJOtERX/Fnx/bdwmh+ZYEKzBXy6b/YHmlBglI6/fk=
+X-Received: by 2002:a05:6402:524e:b0:649:aa2b:d34e with SMTP id
+ 4fb4d7f45d1cf-65097e6eb29mr2485631a12.34.1767798947742; Wed, 07 Jan 2026
+ 07:15:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: iio: dac: Add max22007
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Janani Sunil <janani.sunil@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
- Alexandru Ardelean <alexandru.ardelean@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- jan.sun97@gmail.com, gastmaier@gmail.com
-References: <20251219-max22007-dev-v1-0-242da2c2b868@analog.com>
- <20251219-max22007-dev-v1-1-242da2c2b868@analog.com>
- <7ea6cb11-b9a7-4944-bfa1-63c063eb421e@kernel.org>
-Content-Language: en-US
-From: Janani Sunil <jan.sun97@gmail.com>
-In-Reply-To: <7ea6cb11-b9a7-4944-bfa1-63c063eb421e@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251211194756.234043-1-ivecera@redhat.com> <20251211194756.234043-2-ivecera@redhat.com>
+ <2de556f0-d7db-47f1-a59e-197f92f93d46@lunn.ch> <20251217004946.GA3445804-robh@kernel.org>
+ <5db81f5b-4f35-46e4-8fec-4298f1ac0c4e@redhat.com>
+In-Reply-To: <5db81f5b-4f35-46e4-8fec-4298f1ac0c4e@redhat.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 7 Jan 2026 09:15:36 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJoybgJTAbSjGbTBxo-v=dbYY68tT309CV98=ohWhnC=w@mail.gmail.com>
+X-Gm-Features: AQt7F2pnzqJSJSW6Fy5D7MtV-9H8Kn_aFTARkU6M2TNlskQ2igYg-G95nQ8JUTs
+Message-ID: <CAL_JsqJoybgJTAbSjGbTBxo-v=dbYY68tT309CV98=ohWhnC=w@mail.gmail.com>
+Subject: Re: [PATCH RFC net-next 01/13] dt-bindings: net: ethernet-controller:
+ Add DPLL pin properties
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Grzegorz Nitka <grzegorz.nitka@intel.com>, 
+	Jiri Pirko <jiri@resnulli.us>, Petr Oros <poros@redhat.com>, 
+	Michal Schmidt <mschmidt@redhat.com>, Prathosh Satish <Prathosh.Satish@microchip.com>, 
+	Tony Nguyen <anthony.l.nguyen@intel.com>, Przemek Kitszel <przemyslaw.kitszel@intel.com>, 
+	Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>, Tariq Toukan <tariqt@nvidia.com>, 
+	Mark Bloch <mbloch@nvidia.com>, Richard Cochran <richardcochran@gmail.com>, 
+	Jonathan Lemon <jonathan.lemon@gmail.com>, Simon Horman <horms@kernel.org>, 
+	Alexander Lobakin <aleksander.lobakin@intel.com>, Willem de Bruijn <willemb@google.com>, 
+	Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org, 
+	Horatiu Vultur <Horatiu.Vultur@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
-
-Thank you for reviewing the patch.
-
-On 12/19/25 16:50, Krzysztof Kozlowski wrote:
-> On 19/12/2025 16:31, Janani Sunil wrote:
->> Devicetree bindings for MAX22007 4-channel
->> 12-bit DAC that drives a voltage or current
->> output on each channel
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-Noted on the coding guidelines. Shall update the commit message.
-
->> Signed-off-by: Janani Sunil <janani.sunil@analog.com>
->> ---
->>   .../devicetree/bindings/iio/dac/adi,max22007.yaml  | 116 +++++++++++++++++++++
->>   MAINTAINERS                                        |   7 ++
->>   2 files changed, 123 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml b/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml
->> new file mode 100644
->> index 000000000000..c2f65d9e42d4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml
->> @@ -0,0 +1,116 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/dac/adi,max22007.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Analog Devices MAX22007 DAC device driver
-> Bindings are for hardware, drop all device driver references.
-
-Right. Shall remove the references.
-
->> +
->> +maintainers:
->> +  - Janani Sunil <janani.sunil@analog.com>
->> +
->> +description:
->> +  The MAX22007 is a quad-channel, 12-bit digital-to-analog converter (DAC)
->> +  with integrated precision output amplifiers and current output capability.
->> +  Each channel can be independently configured for voltage or current output.
->> +  Datasheet available at https://www.analog.com/en/products/max22007.html
->> +
->> +$ref: /schemas/spi/spi-peripheral-props.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: adi,max22007
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  spi-max-frequency:
->> +    maximum: 500000
->> +
->> +  '#address-cells':
->> +    const: 1
->> +
->> +  '#size-cells':
->> +    const: 0
->> +
->> +  vdd-supply:
->> +    description: Low-Voltage Power Supply from +2.7V to +5.5V.
->> +
->> +  hvdd-supply:
->> +    description:
->> +      Positive High-Voltage Power Supply from +8V to (HVSS +24V) for
->> +      the Output Channels.
->> +
->> +  hvss-supply:
->> +    description:
->> +      Negative High-Voltage Power Supply from -2V to 0V for the Output Channels.
->> +
->> +  reset-gpios:
->> +    maxItems: 1
->> +    description:
->> +      GPIO used for hardware reset of the device.
-> Drop description, redundant, because not saying anything other than
-> schema already said. You could say whether it is active low for example
-> if you wanted to add something useful.
-
-Agreed. Will add some information about the GPIO.
-
->> +
->> +patternProperties:
->> +  "^channel@[0-3]$":
->> +    allOf:
->> +      - $ref: /schemas/iio/dac/dac.yaml#
->> +      - type: object
-> Drop allOf. I don't get where did you get this syntax, it's not needed.
-
-Shall remove it.
-
->> +        description:
->> +          Represents the external channels which are connected to the DAC.
->> +          Channels not specified in the device tree will be powered off.
->> +
->> +        properties:
->> +          reg:
->> +            description: Channel number
->> +            maxItems: 1
->> +
->> +          adi,type:
->> +            description: Channel output type.
->> +            $ref: /schemas/types.yaml#/definitions/string
->> +            enum: [voltage, current]
-> Why would it matter if this is voltage or current? That's the first time
-> this property appears. Why none of existing fit?
-
-The DAC allows configuring the outputs to be a current/voltage type. The IIO channel names need to change depending on that.
-But as per Johnathan's suggestions, I shall reuse the adi,ch-func instead of introducing a new property here.
-
->> +
->> +        required:
->> +          - reg
->> +          - adi,type
->> +
->> +        unevaluatedProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +anyOf:
->> +  - required: [channel@0]
->> +  - required: [channel@1]
->> +  - required: [channel@2]
->> +  - required: [channel@3]
->> +
->> +unevaluatedProperties: false
+On Mon, Jan 5, 2026 at 10:24=E2=80=AFAM Ivan Vecera <ivecera@redhat.com> wr=
+ote:
 >
-> Best regards,
-> Krzysztof
+> On 12/17/25 1:49 AM, Rob Herring wrote:
+> > On Thu, Dec 11, 2025 at 08:56:52PM +0100, Andrew Lunn wrote:
+> >> On Thu, Dec 11, 2025 at 08:47:44PM +0100, Ivan Vecera wrote:
+> >>> Ethernet controllers may be connected to DPLL (Digital Phase Locked L=
+oop)
+> >>> pins for frequency synchronization purposes, such as in Synchronous
+> >>> Ethernet (SyncE) configurations.
+> >>>
+> >>> Add 'dpll-pins' and 'dpll-pin-names' properties to the generic
+> >>> ethernet-controller schema. This allows describing the physical
+> >>> connections between the Ethernet controller and the DPLL subsystem pi=
+ns
+> >>> in the Device Tree, enabling drivers to request and manage these
+> >>> resources.
+> >>
+> >> Please include a .dts patch in the series which actually makes use of
+> >> these new properties.
+> >
+> > Actually, first you need a device (i.e. a specific ethernet
+> > controller bindings) using this and defining the number of dpll-pins
+> > entries and the names.
+>
+> The goal of this patch is to define properties that allow referencing
+> dpll pins from other devices. I included it in this series to allow
+> implementing helpers that use the property names defined in the schema.
+>
+> This series implements the dpll pin consumer in the ice driver. This is
+> usually present on ACPI platforms, so the properties are stored in _DSD
+> ACPI nodes. Although I don't have a DT user right now, isn't it better
+> to define the schema now?
 
+I have no idea what makes sense for ACPI and little interest in
+reviewing ACPI bindings. While I think the whole idea of shared
+bindings is questionable, really it's a question of review bandwidth
+and so far no one has stepped up to review ACPI bindings.
 
-> Best regards,
-> Janani Sunil
+> Thinking about this further, consumers could be either an Ethernet
+> controller (where the PHY is not exposed and is driven directly by the
+> NIC driver) or an Ethernet PHY.
+>
+> For the latter case (Ethernet PHY), I have been preparing a similar
+> implementation for the Micrel phy driver (lan8814) on the Microchip EDS2
+> board (pcb8385). Unfortunately, the DTS is not upstreamed yet [1], so I
+> cannot include the necessary bindings here.
+>
+> Since there can be multiple consumer types (Ethernet controller or PHY),
+> would it be better to define a dpll-pin-consumer.yaml schema instead
+> (similar to mux-consumer)?
+
+The consumer type doesn't matter for that. What matters is you have
+specific device bindings and if they are consumers of some
+provider/consumer style binding, then typically each device binding
+has to define the constraints if there can be multiple
+entries/connections (e.g. how many interrupts, clocks, etc. and what
+each one is).
+
+Hard to say what's needed for DPLL exactly because I know next to
+nothing about it.
+
+Rob
 
