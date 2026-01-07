@@ -1,166 +1,165 @@
-Return-Path: <devicetree+bounces-252322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16AE3CFD705
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 12:40:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CD54CFD7CE
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 12:51:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CF4623016929
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 11:40:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CFB3B3034361
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 11:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C626328B58;
-	Wed,  7 Jan 2026 11:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1CCA30CD91;
+	Wed,  7 Jan 2026 11:48:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="fl4TJ9c8";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="XFzFNzze"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cR/ZEDFw";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dq6ViWG8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE8E328627
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 11:40:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31B76189BB6
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 11:48:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767786018; cv=none; b=phwdnBzPmHsmGaEiog2KyqDZcI/UWxAEQvOxykvCXYBDyroq9sCZdwmNq1J7Z2WhfBTzEN2nIHOxFfo7Iewpq4VhcbYos0G1ZiSPa/IPoY/sjGHFQ9gCA+ZDpz6Yj2I3xtkGXgRwLSRsAvpCaN7UxE1Q0wPKLF3oEGranJXiI1c=
+	t=1767786496; cv=none; b=JdEOOoJCE7QaJP01bWtXZQcwPLsh39/rdlaxvepUA4O6dVvzdaoYI9LpVOqAaXCKXbq2aPxeyoOcDO8Rwox6eBeO4L62m7/iUFxYDJKaAE/oG/+lQ5FUdwSqc9/47xx543+trcHbZFZgBYQIDLgjzSTOK8GuypkpQYGX6rlHOdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767786018; c=relaxed/simple;
-	bh=GUZ4Wx6kNbC4KqlRAQsAUWRwHERRG4ZUa5WYxp23ABc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ufk+f2m3Re/ncVNCmuCE84F//T5OSblQabXxunzPYDSOe9nB4SpVsFJFGXojLNT7Y2IFtAonqxm4YVvuPEEbsjOLfnUGG7HBXyYCoocvA90W/W4A5SJIGE72PbosEWF1C5y/8/7xJKDzRpOjsIaA9QIftzrWGJR9hcPBAS3IVv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=fl4TJ9c8; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=XFzFNzze; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1767786014;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+eDzB+NxPTMSfU1QkUTyVqhC+G+UiTkNvq2nlq1j3r4=;
-	b=fl4TJ9c88cVfIbj1z+RhJWdisHHY/qnM78jMvPF4IcGiUQTNS4xOs5aZRwwOEbORkSu+0G
-	9rrdvzU4qeUKg+PsE9SBuhw0LYAeakFsYMcNsE8TgnSuVA9vd/LLEBrCzvwx9AGsreq0vt
-	airY3mFK2cZ2xhmWzAJlyCLI2Xt5FeQ=
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com
- [209.85.210.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-336-Fqq_LzxJMJSI3GVjONdQHA-1; Wed, 07 Jan 2026 06:40:13 -0500
-X-MC-Unique: Fqq_LzxJMJSI3GVjONdQHA-1
-X-Mimecast-MFC-AGG-ID: Fqq_LzxJMJSI3GVjONdQHA_1767786012
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7b952a966d7so4232702b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 03:40:12 -0800 (PST)
+	s=arc-20240116; t=1767786496; c=relaxed/simple;
+	bh=NRPqCnq+bAxi08NrdzH+fJbdsb30br232ITCEdo39WM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=q9Hy2WdmUg76lcxz73wyTitf12q1JQ5JNvAZ7dN155CZiX4mTwbEFctAlaDTATkoIERy+JGPzC6s3JBdn0DFfLCo5It7dNyogpgsgXSLfF2e6CojCnUKGS+akVpPoJNjpaasF+ItZ2yTR6+mwIx9F5bl1tBbFYx+GT0WhkLdv5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cR/ZEDFw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dq6ViWG8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6079q5Wg218415
+	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 11:48:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oGpzHT3oLL/fLY3xKQef70iNFay52DCte5QHMJsrv4E=; b=cR/ZEDFwIerULcGT
+	ngAQ/B3xIWQRkgrdGuaTrIEXlmuSnyFBrM+/gW5Cc3/K2WicLq5g3lTBVPaB63Dq
+	cfON72+6URJqq0YOBCDytaKT00B9qD762M7Ngvj2fLlemwJnKCnmI/gTMN23gCi8
+	ytx83ZnfMfjM1zUPRdlxdrDhgpmjR1kJVu+468T/aPV2q5BBLW21qWddlZsLbIRM
+	ZKZIDzbm4f25ZshCw90BdwPiamc8HHKIcinr7kDypOHfZXJ9QdMH2r3YGmqaXU/v
+	OLMekt1ThVtp1ZZItjtyEEcRGlM//2OLLQqMd2XEJPgPq8uhYuZfKR06N85SCj9X
+	TtnpBg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhn808att-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 11:48:14 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ee409f1880so5084651cf.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 03:48:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1767786012; x=1768390812; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+eDzB+NxPTMSfU1QkUTyVqhC+G+UiTkNvq2nlq1j3r4=;
-        b=XFzFNzzeNfXZZTOKpttSnlTmHJK44fcGjIDuYbBISI0jwy4l7meCpQcwjUHsA0dB7R
-         5uJlRcI9VZlKUPLmvBqnUSr8FMCUZ/rmwkmFEMYPFRwzLTCx64HlDMi+j/T+eNWfgVhe
-         BPm2aaPgTaA2g9LNTpyfmE9+nKcKVfupZO3xoHuA+kelzLVbCftFmCvFh6Nnanwpr5rK
-         mStZOD84Lf5iWeCXXzI56pMREMpDI53CyDCMp51KdhiLxV3yupzDZfY1pmVIAnMzzh34
-         euneEsbXtzsk6JD3yQe8IA3fFruFIBu1gHIuGEAl5DsAxtWRva4jOPvvemRN9szEsw/t
-         SekA==
+        d=oss.qualcomm.com; s=google; t=1767786493; x=1768391293; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oGpzHT3oLL/fLY3xKQef70iNFay52DCte5QHMJsrv4E=;
+        b=dq6ViWG8J4OarF2SVCQlAiibD843OZanLgIWYsfheTbDvN2b3FcCQHrYdLwZE34P19
+         K0RNkgt1WPugKiHnq/tNWi5d5ac84XTlSrxCrw+Vwo3PA1uzb8rjAp8zOd6Hhifp5WD+
+         YhKvRR8upZHYtgXfSZkuRr2A5KZ6u69/XrrgIyxzFn91R4Wsvst0PWx1GUabYypJXZ5j
+         MOoT/AN9IxLNXR8CW1ExgGZtB8kegLtZ9FRaIUXh72bEmeg5GN0mRuwmAUvlCj+eAJcH
+         sp2Euo3Eu2Q8U0EtZrVZVLSGm6m/uyNtM9LyNgfhziCa1yVzjoRcL1DxecUZMfOoS9cn
+         N6Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767786012; x=1768390812;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+eDzB+NxPTMSfU1QkUTyVqhC+G+UiTkNvq2nlq1j3r4=;
-        b=LB+cBpF4HUNVlPKvQmW4MIsDofV9hQPAfJGWHXLAJ1rMoDboWgRs9BT8kXvJDKFJtS
-         hknQm8cURHJmTjY0lp6oysAcdMLHf+AWPK1we6I/Up7ee8xMJQhaW87RCHRo9zmzw13C
-         ZkgmWAqcoecnFXlC0LZD9q25hGzL+NDPOB0An+6D4+dlazRXhPX5b9cRtSpYqwzw6zs+
-         sPgTWBF58MGxyBB4lLkBVL5t2iIon8eUcOLMP2IdCTox/QfcO5VC8pr8Ljn7UjmMy28G
-         HKSPKOd/Q58CfDhoDAYFor2lVdE0VVD+8onRLBq8ioC26RbJcQ+lLNekzwPs0aMy3q0D
-         gK5w==
-X-Forwarded-Encrypted: i=1; AJvYcCWIGkst5xXphVgZb5arFQhjU9EC4CqgkNpoIz74dFbKBed8iUCCEUEgbvM4OFE1Wmrah5weWbbgoim9@vger.kernel.org
-X-Gm-Message-State: AOJu0YyM61XLUwvUZ1pBduOk7laKj4EXYe9uF4lmAigGzXfz45qZVm4i
-	Rj+78llgQeRVQyQLjgTzJb+SmcjpOz1fTQjfEOQkwToZldGMA+p2FzX2fz+3+EL9xug4Bgpt3Fu
-	PYwI8CWmhZlSt1YBnmUom8vsdGbdb+aeCjf3U6BkL5nSiViLdizFgkrxBoDZmVRc=
-X-Gm-Gg: AY/fxX4zTotb12xVgaJkjhoHMkvWFgjLC5P8W12wDiF3QwoeyEjsIzom0rkoXMPgZ58
-	IIUB5v6zcyL5w1J1RjVLONW3Mqux/UhpDlK6L0ST77qLVIDuezFZXGuT02xfoxDmKFh817/n3wb
-	IYo62CShPPW2gh9GwIpO3PwHkwplPljsAIeQcRKs1XbVo6FgwFX7JnOVdfaAtthvFotiM6x72cu
-	rrVF6j5h6YozRO/vW485/yauyl2qM2tZKsHzjChfajoFLnKQ+OiT6UdibWHI385IiGQu3NI5A/V
-	MTvE8QW5BI5PZGFbQ43PX8rEO/7S/ynNK5kvRrN6JGDr9WBmxR4VzGCOZez+RoBweYvU+Tvn3MJ
-	Q
-X-Received: by 2002:a05:6a00:1d20:b0:7aa:3642:2173 with SMTP id d2e1a72fcca58-81b7de5a491mr2214379b3a.31.1767786011726;
-        Wed, 07 Jan 2026 03:40:11 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEGXM4qkZ9fSQv6m8Rd/JdXyBCGgbb2bJvKNCFco+IWIxgyQ+1wvGxJ3YwuXhQ9Ytpo9HhqWA==
-X-Received: by 2002:a05:6a00:1d20:b0:7aa:3642:2173 with SMTP id d2e1a72fcca58-81b7de5a491mr2214356b3a.31.1767786011263;
-        Wed, 07 Jan 2026 03:40:11 -0800 (PST)
-Received: from localhost ([209.132.188.88])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819c59df961sm4792767b3a.47.2026.01.07.03.40.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 03:40:10 -0800 (PST)
-Date: Wed, 7 Jan 2026 19:39:24 +0800
-From: Coiby Xu <coxu@redhat.com>
-To: Rob Herring <robh@kernel.org>
-Cc: kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>, Baoquan he <bhe@redhat.com>, Dave Young <dyoung@redhat.com>, 
-	Kairui Song <ryncsn@gmail.com>, Pingfan Liu <kernelfans@gmail.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	open list <linux-kernel@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] arm64/kdump: pass dm-crypt keys to kdump kernel
-Message-ID: <aV49pPV3OViTDe8c@Rk>
-References: <20251226141116.1379601-1-coxu@redhat.com>
- <CAL_JsqLEsUV34tMZWSMc6w-xDV=M0JpOmS95TxrtbbBMRoD3Jw@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1767786493; x=1768391293;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oGpzHT3oLL/fLY3xKQef70iNFay52DCte5QHMJsrv4E=;
+        b=EiB5KelPLv06UjZYdMuMT1U7Po/PGSdmFJ8Dk84WQfiSl7IgaHsquW5jvXvY1IQcW0
+         mkCIOyK/QoOVXkO9uMHFuAfmTNTNTZ/Gmx0HH8QMHbJICgVoSuMHzRmjVsaaYQfU8gks
+         KCFU0eO8Kld4NAMkV90oXQYjbRqw9lERkjptX7n9t1i/VY2MEQNxCZjFJqUUZ4U1xbeS
+         GW8IrATuAyFfum+CmW/cqMLy/OeDUQLiF0kGN5wIjn4UMGGWxTX3YZbfNi3MvzVSIhXn
+         kL3x2yBFuLssD/PoXWZRkHcvech4Rc310TVzrkM/Ty7ix/RInipanMPZvwFyQkvhzSlH
+         EXpA==
+X-Forwarded-Encrypted: i=1; AJvYcCWQULyyXh/Joyi6Cqh1XGFZ1F/CvrvZ46qc7wVe+Ys6K2Ob2z53Yf/W06OLgSxTaeMYhK/R7O5SMQtc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyI0fuh8YcEqpg++dlYaoiuDyh2i8E/MFpBBpSn0Y3cGM1mlAHj
+	CWGT62inX8vWOPrDRRcZWtYlufBWkVV275RttDjzbEyl9iOR9ywTSLXZHJOKKTXXPhzEIJ34Ecw
+	Tsuz4sRZY3gP7WJwo/bsqG89NWDSWh/sGWkG0jZmtpxAHaL4RTrRuN/uuwD9TAlWy
+X-Gm-Gg: AY/fxX68oIecfF5Qvt2qHr7qPRHmO3h3aRFE50wjDjKQ41TGsF4J9T1kUuC9eVFAsA4
+	fTUDXhpQKoRIu9hgDZclQoeYsNM6ENVo3JJwR2j2cev+9cBjEt3LinzASRo9lMJN2aVVtbv51aC
+	VQjGaXLzxw3VXsjCYdZDyzY71v2CjiSsITtrXpwMnmhwiYN1OWnRjEQE9GOr4YLeHfmIAkeSyUj
+	8pFUBDYlEMaEshRMz7K2hYl+Ub+f3EkbOwszTMJhs+go5t4Jy0sXGpehitgn+2JZLQAz7z5PRF7
+	QewoyDc8lGbLgUhdaz0XCCEuC/S4m2oZqbvTjtFhmUbIc7wcaSnZ/Z3dyeBrCgtYPgqvqVaCx81
+	wXw9KGpB+liBASw6Cu0dJzJaKOCmYDl6oLNg2h96IFh10okv/1oEiV2bRkz7zZ0hbUEE=
+X-Received: by 2002:a05:622a:143:b0:4f1:96c5:b592 with SMTP id d75a77b69052e-4ffb4a9a78bmr21357801cf.10.1767786493504;
+        Wed, 07 Jan 2026 03:48:13 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEebjouS1vhnyClFzjTQUpWuxPqpjDOfa/93dLe3B4HBkvbfO+6dWv3OQW/2rAvjdmz+Go6VQ==
+X-Received: by 2002:a05:622a:143:b0:4f1:96c5:b592 with SMTP id d75a77b69052e-4ffb4a9a78bmr21357651cf.10.1767786493042;
+        Wed, 07 Jan 2026 03:48:13 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a4d0290sm484352766b.32.2026.01.07.03.48.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jan 2026 03:48:12 -0800 (PST)
+Message-ID: <34c13225-efc4-410d-bc47-21efc262a078@oss.qualcomm.com>
+Date: Wed, 7 Jan 2026 12:48:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqLEsUV34tMZWSMc6w-xDV=M0JpOmS95TxrtbbBMRoD3Jw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: glymur: add coresight nodes
+To: Jie Gan <jie.gan@oss.qualcomm.com>,
+        Bjorn Andersson
+ <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251230-add-coresight-nodes-for-glymur-v1-1-103b6d24f1ca@oss.qualcomm.com>
+ <785daa0f-c9e7-4e6d-8140-dd16afdf2674@oss.qualcomm.com>
+ <b949779e-5b9b-45a8-a505-03168afc057c@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <b949779e-5b9b-45a8-a505-03168afc057c@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=OtJCCi/t c=1 sm=1 tr=0 ts=695e47fe cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=64o_WFQJoLfARPdmrdAA:9
+ a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-GUID: 8cfxtyKwRulDyfv8iIkoD-upvKWq_X1J
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDA5MyBTYWx0ZWRfXxTstNi1ST25u
+ sUf62DvVLlNl9qVpHxrYMPN8w//lRVL4yP6zNxjH644kDbUGsWrSUiHPKTBhawomC/Ryw6W6hDM
+ WPHsf/VPjSQEN45szehtiAs1aPcxCso5k16kZnmns3yK+0O4XdJjhXiAwn2s14B8QNVWmUhPGtI
+ GtdROAxVTqwHdD8xXWCD02DOYqbYSZJi40lHMifqstLq08g1tgRlPK8noAu7QwBhaf+986Plo4Q
+ aUVd0v6EkiIdSdrlp/2P8DobPfis19eVnOdOmdNJZlGKHCOumZmTGV0Sc8lRYf9diGszQp0/O3g
+ cXNx8kxYtFQ9EX8SJ/fkj0cCjJ/AB5Iv8ytN9s/UOP0HARbv0uCOy4F3NNcJZEW/pMbF+InxwFR
+ 7AZDjeYPXwxKslIP0QGmz+XcwkHccUJbupCrtlB+SefqL9J4AYz+lvTu0Y6R2gavxjbG5uCZfGn
+ 45Sxm3JJVPSmNZNfyYA==
+X-Proofpoint-ORIG-GUID: 8cfxtyKwRulDyfv8iIkoD-upvKWq_X1J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-07_01,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 phishscore=0 malwarescore=0 priorityscore=1501
+ adultscore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601070093
 
-On Tue, Jan 06, 2026 at 09:44:37AM -0600, Rob Herring wrote:
->On Fri, Dec 26, 2025 at 8:11 AM Coiby Xu <coxu@redhat.com> wrote:
+On 1/5/26 2:34 AM, Jie Gan wrote:
+> 
+> 
+> On 1/2/2026 8:20 PM, Konrad Dybcio wrote:
+>> On 12/30/25 3:10 AM, Jie Gan wrote:
+>>> Add CoreSight nodes to enable trace paths like TPDM->ETF/STM->ETF.
+>>> These devices are part of the AOSS, CDSP, QDSS, PCIe5, TraceNoc and
+>>> some small subsystems, such as GCC, IPCC, PMU and so on.
+>>>
+>>> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+>>> ---
 >>
->> Based on the CONFIG_CRASH_DM_CRYPT feature, this patch adds
->> LUKS-encrypted device dump target support to ARM64 by addressing two
->> challenges [1],
->>  - Kdump kernel may not be able to decrypt the LUKS partition. For some
->>    machines, a system administrator may not have a chance to enter the
->>    password to decrypt the device in kdump initramfs after the 1st kernel
->>    crashes
->>
->>  - LUKS2 by default use the memory-hard Argon2 key derivation function
->>    which is quite memory-consuming compared to the limited memory reserved
->>    for kdump.
->>
->> 1st kernel will add device tree property dmcryptkeys as similar to
->> elfcorehdr to pass the memory address of the stored info of dm-crypt
->> keys to the kdump kernel.
->
->Is there not any security issue with putting the key into the DT? The
->DT is provided to userspace. There's provisions already to not expose
->"security-*" properties to userspace (see __of_add_property_sysfs).
->Though I think that has a hole in that the FDT is also provided as-is.
->However, I don't even know who or what uses these properties.
->
->Rob
+>> 0x1121f000 - 0x1121f000 seem to have different/wrong names
 
-Hi Rob,
+For the record, Jie notified me offline that the documentation I was
+referring to was misleading..
 
-Thanks for raising the concern! If I understand DT correctly, this
-property is only accessible to the kexec'ed kdump kernel. A new DT is
-allocated and set up by of_kexec_alloc_and_setup_fdt. Btw, to be
-precise, it's putting the memory address where the key is stored but
-not the key itself into DT. The key is stored in the memory exclusively
-reserved for kdump. For more info on by who and how this property will
-used, I've created a dt-schema pull request as suggested by Krzysztof,
-https://github.com/devicetree-org/dt-schema/pull/181
-
-And yes, there is no need for even userspace of the kdump kernel to
-access it. So this idea of "security-*" properties/__of_add_property_sysfs
-seems desirable. Thanks for bringing it up! I'll give it a try.
-
-
--- 
-Best regards,
-Coiby
-
+Konrad
 
