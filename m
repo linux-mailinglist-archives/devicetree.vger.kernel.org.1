@@ -1,143 +1,233 @@
-Return-Path: <devicetree+bounces-252197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26153CFC46C
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 08:05:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F660CFC4F2
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 08:20:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 40DAA3054B14
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 07:04:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 318C4302EA30
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 07:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC06A26560D;
-	Wed,  7 Jan 2026 07:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13B927603A;
+	Wed,  7 Jan 2026 07:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="j9HL/Vjo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cV6ye+US";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="S7u78Vc5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.197.177])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39BA92690D5;
-	Wed,  7 Jan 2026 07:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=43.154.197.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 297AE27C162
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 07:20:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767769497; cv=none; b=b7ZmFk6v5RVxq6OheWoD9j+8tay8Sv1h0mOaT1sXGdjYvOsCFWdpEJ+iQ7mO7nLQHSFZq21lMLh3IHO9GwZ77kz2cSVeoobP+8Bsv8LucBBENUJVfOMUJgi3ofKYakLwJ/Lclh6nkLsQqmOVzMBHtEuCxqkguNIGMtZjW6HevIs=
+	t=1767770429; cv=none; b=XbG+l3NHkyRND9HkNSCMkrovx8vVV/a0jEHZx6WUck4wekmpYE2Cnw4FwTNphkTknvo5vfUFGM0z4VXIlTUSOtpX6heaj5RrFshTwSgAYJyRm6E6KAhsgQPmrkHzf4nki6cFWn9xmVbs+gKjt53w7+iIYF7eOU+9Fjiqe3xnxRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767769497; c=relaxed/simple;
-	bh=KdOGg7u0DD2zembTDgDnw0at7ML+RxJk9sid6T5MfOA=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=LShlDrSnoO46GI8vIIGigpkVLPGZLxYFkY7rhYM028OH18SD03c2IDxkKuVRwoHOIWyuJ7AXcrUttXOFcTKD+8vgO9J1rTNtefeBYAFBubrj+ayLB29pcHv3Or3BGAh2pvMmcZsYTU5+Rg3wB8in7sCCQNKvBQpt/8ZJMpH3ZTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=j9HL/Vjo; arc=none smtp.client-ip=43.154.197.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1767769416;
-	bh=nuKYj0Y1wUuUMoOaJ5Zpda3+a6WcEYKPz2uufgZ8dNM=;
-	h=From:To:Subject:Date:Message-Id;
-	b=j9HL/VjoUj1mXYP+4FNGnQ6+dj3eo8U8KcPV0KqK7hbEPBiOohLxjv5jETCdBI2go
-	 wvv+8oytcCACiZ6oN6vfxg4XnvnrsRxIF9LznHAUOLEybgK8cwDCnQ4b5yfPOBKsfy
-	 kNMdoN1YxIVc+cQZplEPcA0VMAoQMJQGewjkRod8=
-X-QQ-mid: zesmtpsz4t1767769409tae6e7355
-X-QQ-Originating-IP: oRYRdMTC6Kb1CbKXxp7jJ8XO4tRaEvz24K2T1J6H2Tg=
-Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 07 Jan 2026 15:03:26 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 1533395504835066326
-EX-QQ-RecipientCnt: 22
-From: Chaoyi Chen <kernel@airkyi.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	John Clark <inindev@gmail.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Jimmy Hon <honyuenkwun@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Michael Riesch <michael.riesch@collabora.com>,
-	Peter Robinson <pbrobinson@gmail.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Andy Yan <andy.yan@rock-chips.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/2] arm64: dts: rockchip: Add rk3576 evb2 board
-Date: Wed,  7 Jan 2026 15:03:20 +0800
-Message-Id: <20260107070322.323-1-kernel@airkyi.com>
-X-Mailer: git-send-email 2.17.1
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
-X-QQ-XMAILINFO: NFxyVI7Mb0/F3uMhF03SIqCSYPlyME6Smbp7Yj71Y+Q3s/Se14BSq/T8
-	CBmYFHnnozx766WE9Lwumpy2TlnEFDODUrf/MCuSGH1BKa2SUAWz4v605IVYpkK/VWCcF6t
-	rSowTFB7o4bxkPNPH9R9wH3Vkw2Uc1SMDPswmwxenoE0GFtCZM6hBrqSG8J3djavPtYEdyX
-	SvZJJAb5UWD7J6oIrDnid7qBtqScPIpMlLK3S9gOGCmtHb5pV/g5NwOPqRcVZhIvPtYCwoi
-	eOqKDM0EzGFJpiM51d1c5ifyxiYmotY9CA1SnKCgs/uc2V/aKrFI/mPkGZ/A+OOqDfAj+Vz
-	GLbqRLkTIG/wcXbfIL/puekAL9eaXM/uOxrqCosGZMErG12jr28IF12FXjCJe+40K7GLq3f
-	APQu1WNeqd5FeDYNcleKeiU7q5TonHhsFHmZDgiXZtgnct5nazxGWKi+1o6dUnHeVWlLUdT
-	uel7tvudfo/ze9+5md3j+8y71gMFlcDLM7f6eLHatlTyhwdmTYUf1GJqmNGXRegFyceRA+t
-	cgGTh+1celMHCanfbzbcnKvac8khEeknOddqb9WmpTM0r3JSrFiovcOx5CruD8G5FmgE+2g
-	+6g071hY6YUcCurqLuqzVQZJCk+00VvVs+D+L5z0nKmF+OvkdVXKjZTE68RqaJPS9tvtTRJ
-	Cl1WuQCrxAoBp4F15ys2VZbYUUawLmo+whaOhr18X7u7TsffmSqs96msGjaVnzDeGmBBCIf
-	S93DELYUwU+/UBpW5QUpfeuDTHusIZqQxscHHggxH8DIkJj36+4Jy5DQTm3DU+OVGt6vDO9
-	zZ94A2PUb9D0zBETC+mlYuBd3jOfsVOo02W/18vmbmGIBmjKJ1JV2mElF8QYhQoY93o3D1x
-	Y3OJwfVYVnrKDxTvKU4kmt1AWajdwSC/vsL5nrUvOr4/kbSNI1hPSS3dFr5wJETzMEARlZO
-	rKn9/I/pD6UyhF7ImumHEJm707q2KM2X6OfkK5yr0pr6NPtXvQCPcfdRT6eyM0n7EhW0X/5
-	3GWPIe3f2nGONZIaVFwT5FF9cdVPQ=
-X-QQ-XMRINFO: MSVp+SPm3vtSI1QTLgDHQqIV1w2oNKDqfg==
-X-QQ-RECHKSPAM: 0
+	s=arc-20240116; t=1767770429; c=relaxed/simple;
+	bh=hn3kVdb4aa9sWrqJzNBczdYj2m7KfDYePW/W0GkFT+I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
+	 In-Reply-To:Content-Type; b=ORA/wIZ5F14Hl68+DATWjPGptRXvLc1r6Wl7UQHLLruDNLmcehbU9LJHxgVMUcwRvdj45+EOKdlZI/4PEzbqINrnd9/WD9QX5tH3iOy24+YLwk4gSgfLHauv1L7HSPhFjhvOW+KA2KSGNjLFLhuFBNh2mQvqIwarKKD6g4YY4Gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cV6ye+US; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=S7u78Vc5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6074D84Q4090703
+	for <devicetree@vger.kernel.org>; Wed, 7 Jan 2026 07:20:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	I5rtVm8kNFSFhoT2yKf6mXo3wnmnNY7xaHa+NsjBgro=; b=cV6ye+USs5P5wt1n
+	k6ys4SVj7O8Aajl7GmFu2o5gdDl0dgVeNOisVrkiWZnO66i2ac5YG0w7mWm21X/Y
+	E5/7EkUEUPPjqoUIs10tfcHVgM5kuuJFoygriBJZ9DMn1k9zFFJKUS34sna5IX7c
+	Rwf7TsuxovPqI8sSgsYZSOS1bWq2T8dfl7WPyU56z9T1bU7D/qsS0p0Yp71RH5k1
+	gL8qEe1rIAfqZMEUA9Cb3entCGBsS7I8+wyPx2nO5kXfq1tkBKJUYD3YnGjl6r5E
+	nFMD1GmCMsGcGNupdC3bk14edWQ0Alhjz09YcL6Y9xuO6O2QQBccVZOsR/SF5aRl
+	ii8bWA==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgyunbg93-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 07:20:26 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-34ac814f308so3132660a91.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jan 2026 23:20:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767770426; x=1768375226; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:cc:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=I5rtVm8kNFSFhoT2yKf6mXo3wnmnNY7xaHa+NsjBgro=;
+        b=S7u78Vc5HNKt6kc0T/k+DE2fKWj/1WnGiSl8P06T/RWxIGfrMaDaeHFvmIGHGARUfr
+         D7VbV/xNYg2pT4rxrIlo6ifNJgKvVJ+uqOmvr56n340+RarbQu9OmZfazX8H0NggjQCR
+         kvu3jT/m9bwoNXod+yATeC+yee0VuucFC83bAXJQOo51iZv2ADOaeWjN75cZQ4uRVPhn
+         PtNFmfmxkYN9X66E+Co2xnszX1t3w8Msl8AtC4h1hZ59urkWO8PnjfelFki/smazmkTi
+         JamrNfrwiEyrvv4T4jO0CeCsvB5qmlOO41iIJkMl9dTx8VDx3zhheogv5JOuG8MTiybT
+         2GaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767770426; x=1768375226;
+        h=content-transfer-encoding:in-reply-to:from:cc:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I5rtVm8kNFSFhoT2yKf6mXo3wnmnNY7xaHa+NsjBgro=;
+        b=bC96s8fF69BOfv9O0hDNaAPrk/5hGzMNx/CKAeuOSykgsFeJ+TRuans3lfxKmnvjeF
+         ermeZ+yEGMStddVT/4ItRuQOHxCljZ557EVC+1uGbt1zN6Xe38/8ZisOOTNi72ZQoJy8
+         3PiEumOWfmSSSYLHOYQQNIuVtPaQWXwScGyLKhHYMwWhNd5e4mzk5KQK9ZzJOEwUMoXK
+         eQYThEFqAd+oyosTQDcyVTEiWreQIeG/DDe9nD+AACRYfrM+Ce/aIOY7aHo+E8lAb3l3
+         E6sBTRvLQw6AdJVMJYlfHHmUrQi4JC/kmXhzev4KG8C81qtntQIdk0y7yowRwXfJuVV+
+         DkWw==
+X-Forwarded-Encrypted: i=1; AJvYcCWZQxY83IwS6eNTSCOTiBFb7KK7i1MXeK9Rqu0DZXS4cnKym6NIYnUPtWBsI9XNKrVubq/m00CkL/dZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXc1PD26HSMePfJav2qQKrjcnILGioT8/ASxn8XPCjsYR1r30h
+	/s+yVMEcb1DGV9qDz9L7chzR/xucTVn+IGVo0M1kuYViBdFyfnNfpHcIj8DcufiUVsS5Wn6Ia1G
+	fMWV8diWC4xxhR6PZ6HnZeoG4gekXe1GKadYS4Kl7pDlc8RZdG2spWLkkx3XG42xI
+X-Gm-Gg: AY/fxX632eZTJw9hFl4Az3N0zzIyIlZMt0UM7EzrYSRSVXf8xHMcU8mdlGmu1oys8oa
+	acSPqvMfuLO5v0D832VkeBwOpQKPr7OjTMgyY2JLxqp6+ESKhKeVszk9Qvvuiqkz739ByTz3ivA
+	txbZsTCCeHuaDP8kFqieE6UfDwft24PFU91sQvLuT2FQMTYo1MZrIRqMA9eJ8AcJ9BrjIjJpAIe
+	zDH4LuFtGdjweSOc3/Ews8HKowjURHJSlODsEX6odOG0mF9/JxYYnbchaI2xJbkEA310HbrMBEP
+	yM/rKGt2OacqkFYmJ6aQi03DqguwWRwImxbuDOrDKM1HixA5SmLHvNVCHmdkE4DxNDTQ9+hAhYb
+	RpwMoDqja56MeymiF8ZHq9mo9TQZMkh564IgH
+X-Received: by 2002:a17:90b:2692:b0:34c:99d6:175d with SMTP id 98e67ed59e1d1-34f68c30794mr1329883a91.2.1767770425985;
+        Tue, 06 Jan 2026 23:20:25 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHG16DMkcL/CSNKiRMdoKO6+UgbIG597U/d9qnrM/4cda0X/Fn3XSdRKRhGTTuG7Yiy/hqTtA==
+X-Received: by 2002:a17:90b:2692:b0:34c:99d6:175d with SMTP id 98e67ed59e1d1-34f68c30794mr1329869a91.2.1767770425544;
+        Tue, 06 Jan 2026 23:20:25 -0800 (PST)
+Received: from [10.218.16.122] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34f5f7c4118sm4089665a91.7.2026.01.06.23.20.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Jan 2026 23:20:25 -0800 (PST)
+Message-ID: <baa1a047-0866-4e5f-b550-97d43d825c8c@oss.qualcomm.com>
+Date: Wed, 7 Jan 2026 12:50:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Fw: [PATCH 2/2] Bluetooth: hci_qca: QCC2072 enablement
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20251217112850.520572-1-vivesahu@qti.qualcomm.com>
+ <20251217112850.520572-2-vivesahu@qti.qualcomm.com>
+ <xv7zlaoymcuq5kirrgu3thp3trmbdry5maraz34v4tkekinyaf@wgrfk7ukiilk>
+ <BY5PR02MB69467A78CA2F2929B6618343F186A@BY5PR02MB6946.namprd02.prod.outlook.com>
+Content-Language: en-US
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Rob Herring
+ <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        "Balakrishna Godavarthi (QUIC)" <quic_bgodavar@quicinc.com>,
+        "Rocky Liao (QUIC)" <quic_rjliao@quicinc.com>,
+        "Mohammed Sameer Mulla (QUIC)" <quic_mohamull@quicinc.com>,
+        "Harish Bandi (QUIC)" <quic_hbandi@quicinc.com>,
+        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        quic_janathot@quicinc.com
+From: Vivek Sahu <vivek.sahu@oss.qualcomm.com>
+In-Reply-To: <BY5PR02MB69467A78CA2F2929B6618343F186A@BY5PR02MB6946.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA3MDA1NyBTYWx0ZWRfXweU6olgbRnbT
+ 2GDjYYpb2Vc0E/UPbGTNdMe3ueN4M7Hjb1S8OixhQ5W1PLuPnYbQ2pOA9/DwO9m8Dhx9XBl1vNu
+ 9HTwW2d1u1X3ZIPi6wZXx4LY6P8AJ6ky/WO+uh7wc6gG/xN3kiAzpaJRT50mFemAtyt0zN+/KXF
+ SRlb6eYIJHi3BbEBux5B9YSqvzWNMfqHpzMmHKCvU+0YUWF96JfcF3OsUmlEBgte19hTvCQgWZZ
+ fTP6XCueXM86IQ9c8fKXZtacjK/WAYGZ6wFPKzBIXN7Uhmu4Tg7sfI4UHdAUkp7084cstmDhF5W
+ 06CagH4mTaW13LTb89Ur/ERsMQPmXa6T1zz/HRApvJpSBjF7GqgNI3uq3s4rql+DIQf0Su+s5CN
+ 0+AW3eDrzHOvi9z1ItgIffX4NSjHtPS4zJFMAJVBRjeGBjf27PHMekNMqU5gg4OdXRXWNbechoy
+ rTrf/SwH2SKLd8SDvKg==
+X-Authority-Analysis: v=2.4 cv=YqIChoYX c=1 sm=1 tr=0 ts=695e093a cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=Dei6p5SHAAAA:8 a=pGLkceISAAAA:8
+ a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=-uHN8is5J-lzmrAJaG4A:9 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22 a=M-Yerj1wOn-OpK7r_3ei:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 8068laqiOppCTkUlgvqntbeyHgXFptNZ
+X-Proofpoint-ORIG-GUID: 8068laqiOppCTkUlgvqntbeyHgXFptNZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-06_03,2026-01-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 impostorscore=0 bulkscore=0 malwarescore=0
+ phishscore=0 adultscore=0 clxscore=1011 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601070057
 
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Sent: 17 December 2025 19:59
+> To: Vivek Sahu <vivesahu@qti.qualcomm.com>
+> Cc: Marcel Holtmann <marcel@holtmann.org>; Luiz Augusto von Dentz <luiz.dentz@gmail.com>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Bartosz Golaszewski <brgl@bgdev.pl>; Balakrishna Godavarthi (QUIC) <quic_bgodavar@quicinc.com>; Rocky Liao (QUIC) <quic_rjliao@quicinc.com>; Mohammed Sameer Mulla (QUIC) <quic_mohamull@quicinc.com>; Harish Bandi (QUIC) <quic_hbandi@quicinc.com>; linux-bluetooth@vger.kernel.org <linux-bluetooth@vger.kernel.org>; devicetree@vger.kernel.org <devicetree@vger.kernel.org>; linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>; linux-arm-msm@vger.kernel.org <linux-arm-msm@vger.kernel.org>
+> Subject: Re: [PATCH 2/2] Bluetooth: hci_qca: QCC2072 enablement
+>
+> On Wed, Dec 17, 2025 at 04:58:50PM +0530, Vivek Kumar Sahu wrote:
+>> Adding support for BT SoC QCC2072.
+>> Set appropriate configurations for BT UART
+>> transport.
+> Read Documentation/process/submitting-patches.rst
 
-Hi,
 
-This series add support for rk3576 evb2 board.
+I'll make the commit message more clear in the next patch set of this 
+commit.
 
-General features for rk3576 evb2 board:
-    - Rockchip RK3576
-    - LPDDR4/4X
-    - eMMC5.1
-    - RK806-2x2pcs + DiscretePower
-    - 1x HDMI2.1 TX / HDMI2.0 RX
-    - 1x full size DP1.4 TX (Only 2 Lanes)
-    - 2x 10/100/1000M Ethernet
-    - 5x SATA3.0 7Pin Slot
-    - 2x USB3.2 Gen1 Host
-    - 3x USB2.0 Host
-    - WIFI/BT
-    - ...
 
-Changes in v2:
-- Link to v1: https://lore.kernel.org/all/20260104023703.118-1-kernel@airkyi.com/
-- Enable hdmi_sound and sai6.
-- Add more cpu-supply.
-- Use regulator to control sata power.
-- Remove "cap-mmc-highspeed" prop in sdmmc.
-- Add regulator supply for ufshc.
-- Add the missing vcc3v3_hubreset regulator.
-- Add otg capability for usb_drd0_dwc3.
+>
+>> Signed-off-by: Vivek Kumar Sahu <vivesahu@qti.qualcomm.com>
+>> ---
+>>   drivers/bluetooth/btqca.c   |  8 ++++++++
+>>   drivers/bluetooth/btqca.h   |  1 +
+>>   drivers/bluetooth/hci_qca.c | 17 +++++++++++++++++
+>>   3 files changed, 26 insertions(+)
+>>
+>> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
+>> index 7c958d6065be..7eb095db4a1d 100644
+>> --- a/drivers/bluetooth/btqca.c
+>> +++ b/drivers/bluetooth/btqca.c
+>> @@ -854,6 +854,10 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>>                         snprintf(config.fwname, sizeof(config.fwname),
+>>                                  "qca/hmtbtfw%02x.tlv", rom_ver);
+>>                         break;
+>> +             case QCA_QCC2072:
+> Please keep the file sorted. Find a correct place to insert your changes
+> rather than randomly sticking them to the end. This applies to _all_ the
+> changes you've made here.
 
-Chaoyi Chen (2):
-  dt-bindings: arm: rockchip: Add rk3576 evb2 board
-  arm64: dts: rockchip: Add rk3576 evb2 board
 
- .../devicetree/bindings/arm/rockchip.yaml     |   4 +-
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3576-evb2-v10.dts     | 997 ++++++++++++++++++
- 3 files changed, 1001 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-evb2-v10.dts
+I'll address this in the next patch set of this commit.
 
--- 
-2.51.1
+>
+>> +                     snprintf(config.fwname, sizeof(config.fwname),
+>> +                              "qca/ornbtfw%02x.tlv", rom_ver);
+> I hope to see the firmware being submitted to linux-firmware.
 
+
+"YES", firmware is being submitted.
+
+
+>
+>> +                     break;
+>>                 default:
+>>                         snprintf(config.fwname, sizeof(config.fwname),
+>>                                  "qca/rampatch_%08x.bin", soc_ver);
+>> @@ -929,6 +933,10 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>>                         qca_get_nvm_name_by_board(config.fwname, sizeof(config.fwname),
+>>                                  "hmtnv", soc_type, ver, rom_ver, boardid);
+>>                         break;
+>> +             case QCA_QCC2072:
+>> +                     snprintf(config.fwname, sizeof(config.fwname),
+>> +                              "qca/ornnv%02x.bin", rom_ver);
+> No board-specific NVMEM dumps?
+
+
+"NO", for this BT SoC there is no board specific NVM.
+
+
+>
+>> +                     break;
+>>                 default:
+>>                         snprintf(config.fwname, sizeof(config.fwname),
+>>                                  "qca/nvm_%08x.bin", soc_ver);
+> --
+> With best wishes
+> Dmitry
 
