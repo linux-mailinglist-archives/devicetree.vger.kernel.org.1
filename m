@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-252424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF117CFE9CB
-	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 16:37:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CA08CFE944
+	for <lists+devicetree@lfdr.de>; Wed, 07 Jan 2026 16:30:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ECC4A30F7391
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:30:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D712D306C432
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jan 2026 15:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D43134B1A1;
-	Wed,  7 Jan 2026 15:22:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02E97392800;
+	Wed,  7 Jan 2026 15:28:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EJ90yvpn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UGPuL6md"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3DBE349AF7
-	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 15:22:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263AB392837
+	for <devicetree@vger.kernel.org>; Wed,  7 Jan 2026 15:28:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767799346; cv=none; b=Mzxvg45iTowbqDnQcss7A1wuASCrMlAQERmRXyXG8//04kF+t+FRrDmGZ356Qn9DpO2dXy/7TTdEX0rO/3p04BIEHrYKFdu1+zaRu5rTFvraLrvaBveGHXLvaT99FD/egutdwcQ027NAvmnG0K/U/MZ90HfygPKP4RenOmSp2so=
+	t=1767799721; cv=none; b=bgHK2xNItDxlkwEhhXcT39KI4GICgMbqC5C2Oa/LThgAARMn89Y4UhY7lp6uvf5ucHO10aDBKxbTJuZusji7to+RhcNsim45kwPJkgnEXiTobfkPElHQuF+cRluXwhqZJat4fFk1CiCURfy5Y4krg6BgszEecmryI/M2JvXpfqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767799346; c=relaxed/simple;
-	bh=znS0H056E/v2kwrr8OxM/wqoJ6IIsieC5aogSj+oibQ=;
+	s=arc-20240116; t=1767799721; c=relaxed/simple;
+	bh=mUZ7kfMbkoroVbIoeEWCejtFU9nuCrw7RndVi8OlCbM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mof+JZpuqzK/FiWF13dQNtCKHuU2mAAZtuC20a98me61/3iqEGafhZStJooTlRFNPIPJZqXMtiZEOrfoERqQMCPLga8Wx98HMxIkax6vXJ8WGXBNLIZRd6QCniwYBubEJEMSBIZ9WNf/HF5W3GcduoXVgIf23nr2PZfdoXW1i+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EJ90yvpn; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477632d9326so13391795e9.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 07:22:23 -0800 (PST)
+	 In-Reply-To:Content-Type; b=CL/spR1BF0NKp4Ts5mV23Q803AnQ5KWawIojVYe+XaqSQiBTTX55PbInR2bYC79fFzs9iGAFCstwfUO4AjpBoW+i1Scg26QsS3uGmb0kQMIQ4Q/ZAAKFcNaIM5GpzLIWZP4Kmd+94CC0ZttH+1XM7+5LfGL6x6LpGcYrNuhWheM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UGPuL6md; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-47a8195e515so15939785e9.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 07:28:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767799342; x=1768404142; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1767799716; x=1768404516; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=J0Pws4NtPsPRxukEoeD3BXEjgSe94jnWPW/vfPUBfDg=;
-        b=EJ90yvpnaSBC/vgUurK//0JRtkM+wQG2L2Cxq4JyewXXO1/LXYs7DLh/+8sMPBmu+Z
-         ACFR0Wdxq3ara1QNJggk8BVIL5ioNodBaIUUULB8rHFRKFDQtWWuzWfabTYMI9En7CcY
-         kl1aCIN0jMY2iEIhSWGQ4KOKjg9Q1n8gDUFMSU0vvmfojBrJQsjJAHylxHBQI4oDuPk3
-         Yngy4fvDqM5gSVXzgzAeUXlYshBv4ES475s7zv1dKx0xUMwVovwTJgEMbLEzxgOVdAin
-         EeIJBc+acOddCjeWFJ/UQ/7rPU6JstgBA5TUSeE1IL/5lCwiOOCDGuo+cKZRb0G/39H9
-         GprA==
+        bh=VqRhayTUmyhcODArXKcjmj0UBcZxmD7IfqP56ekElK0=;
+        b=UGPuL6mdwXXMZJRVRs4NKLCTwqEkjJZmp7xbygkQswtGPrIyTr8pWgrdO4xfqwhO4E
+         7y43GSoyAuB2TSABQSNdUR5L4iScgU6fl5NKySKV7lOIyCfIdLh5/mi1zDFQTOxDcMaj
+         Cc5mXj5ODyxoaA/lQGSnbZyvoArW7oBfyCTKfPCEQzeOCVIpTu0P2Xh87Cu4SeskP1g0
+         5BKv5LNMoZD2Y145vR2fSMkxPsik3EPj/kyzrrGVKvobrIsDYmEEnjPeBdPmTYLMZf41
+         7KhjMKPVLwP9r23ItwEilrjp+yAnqLAanEA+6e3mpYAiWajEZkpV2S1LoNj8U3ANs2wL
+         cDGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767799342; x=1768404142;
+        d=1e100.net; s=20230601; t=1767799716; x=1768404516;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=J0Pws4NtPsPRxukEoeD3BXEjgSe94jnWPW/vfPUBfDg=;
-        b=dLPaa3ub2Bd72wQz7C6Q1KVYy3Gr9sJ1fDF86lHdHZuMski/NkyHMETmljm6Hexxb5
-         JrZoUNqaCuNMWiiiKQ5drTKYw1rLiIE8VfgRryIK+sIl29Af0vG7sJMz7K7TQ31xwYu7
-         /AvXZZTOdKMbncRkW6mz/tkuTcd5QxJxy/H0kUTdxL/YUtF5nYUWCtdx3fiELrEEv9Kj
-         BWpGb+EEV1L4BEZc9QT9CyS8h11WT2yLRiI6V/O7jJZYN/qbmNXK5NjzBrcocLgE8jtM
-         wQlWbvWTKyB+ba5wXNCCa09UyoELg4lKR4ZMQj0RC5rtC4sFLFnMhRRDZWPmErurx41Z
-         NUow==
-X-Forwarded-Encrypted: i=1; AJvYcCW3nHvcOGjeqg/ZOUA+NjXZvaI5I8tI1i9WIMpM65RIdVFg180WvfhouqsCyyf88h5RmPsuiMiJmWb6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwB8BWq1LriCXL7078tgcLN30tKtXxba1lkFslHk3bkw0M6W5CU
-	QrgYFCBUpSp8PXk8++U/XIgNH+KNriyrq+KQExS/DqsguP3Q9HzAcBgCOzlvgsEn//k=
-X-Gm-Gg: AY/fxX6L70gM3OkljVJcbPKC1J1xbnEqnl4bzfREDsrfTPpAxQBy5WD+nSZubHVrNfa
-	Soof9tZWPFrtJryerMUrtc5K0smZQHA/eRXUxisJZktu4A3x2hwGddyunAyEdU9iiSry6bwTY12
-	wSjMgPn9TEqbfDeKTuiOaHw4CDCbGUpUhLHSToLMefSdR3fcmh9dqu4Ko0CbdNCaL/15SphNQCG
-	56ueixwa5lM3w+8NehtvdEACxXBD6jHR+gv7kz5ktpfMd2iT8cNqbITZDTg+O1s56dgvyVCqhVS
-	3TCIF9EWZWSXlQiRP9iOm5NL2VGr3AqbGpvfYggPwsQ0Tr+PPk9oNiCFgG5TekiiTgCvB1VAflI
-	xSbr3GsDPVKX1jF4UQ/u+hbj8rGSHy8SgGEoV0pPHo+A34dQxXLdIAIpIy28KsHSy6/6g4RH3LA
-	lUjGh8TR7Ocrx23lknQ2PIm1eOxC2LOGDb9JruPcHNuMun98TRKpIrpIuKOgLb1Y3LRQ==
-X-Google-Smtp-Source: AGHT+IFoLsxtQi0WIUi1v3LIMML3pRO8IdEjUBUo95e82dMoSm2M06CCFS48DLPXjrbdM1PsiseKLw==
-X-Received: by 2002:a05:600c:4e16:b0:477:df3:1453 with SMTP id 5b1f17b1804b1-47d84b3a064mr36947125e9.28.1767799342054;
-        Wed, 07 Jan 2026 07:22:22 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:edca:100f:ed11:66f2? ([2a05:6e02:1041:c10:edca:100f:ed11:66f2])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-47d8702534dsm16861105e9.2.2026.01.07.07.22.20
+        bh=VqRhayTUmyhcODArXKcjmj0UBcZxmD7IfqP56ekElK0=;
+        b=UO1g3drlpYhcCoe5NfxL+rMpiOxNOLwJxB5xxcZHzEmKnpIDE0rl3yA88/KwYLTs4s
+         64TBVsSx+Dxh1Wswn3Nyj5QYgYocKvN79tT5G7tBXOT72dWNuPz3jWmEnMIugb/ayvQ2
+         FELFaXt6bUvyD9+78h8bVto//pUhKtJeCBXCAJV6AZaeqpVvhG0OBk3DQCeN3PAqUMzl
+         YmPAKfDGHSl4o/WJSWGPfcr0zyfjyOCjdhIrU5tT2p16hEzNxGYe3AMlEA49+MeTjdxC
+         BpX7SVrlhgtV5DDuYfZPg7qFVvKFOnftAmQKS/g8fZjJwGnoiKc+n2MxNyQK7oqNMQ7b
+         xWYg==
+X-Forwarded-Encrypted: i=1; AJvYcCWeZ/E9PjmvUxdoeTz03tCzj+dI4KG5k5Wqi/BD501BIZ5nTCavBAP99LG7k6uIHbWvg09DOS2+2hC4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMihIXlQ3QRxZr72Y6X7FsB1pv7mGnUHtmssyCpIxWC7oPcZEb
+	k2FaK5loOhv4sqqMJilEj/u7BZuIQGd8vNcjIzFy7Gk8Hrj2rQH6PcG0
+X-Gm-Gg: AY/fxX7fo4XR3Ka8zKq376jfWwg7hnl5s0JUqHDAq98fMh/RXbfjYA9JW3S9JwbAoUW
+	Kiz1DcuOQoEqga7iun6JBK5zsBbdjvKLY50eGmAT4kEMxv6d4isL65fmLNAjljC6ajARWJQKCrW
+	lmCx7fN3VPgGiDC4Sar8YZZKvNwTZNX7SQeD76iuUf2UvGsZiZiqqBcVhKirUkdgb7OoNY37wC4
+	6UTXNKRWoYkr60jMGvpOYQBwvVQv6xF45i3XWGkFGUXnqCu4gk4/R2QFK+MXyrIyYTBCMHqZ5M0
+	zE4UUp0PV8SNiSyipYNPZ/8Gw+q6USAqOoLwVbj/M+6LwL9wxw0Usjv4D0o1KYnTq1KsWGyISAt
+	VCgLu7WyGfvujkD7aZ+llBTIavnkkweaywB3Sg5odEM+ljXXF+PxKGXFvxcVQ+luVywzgUzwM2Z
+	laq9q3unEXC26gRHAAWHXp5Y9ocA==
+X-Google-Smtp-Source: AGHT+IFQCEz86nZFe/ZN6aj6TRT9W61fn3p7PqlYbuzvjwXbuJGztbbCFvGYekjehJsKR8Xcz4GdVw==
+X-Received: by 2002:a05:600c:470c:b0:475:da13:2568 with SMTP id 5b1f17b1804b1-47d84b39626mr31843425e9.25.1767799715282;
+        Wed, 07 Jan 2026 07:28:35 -0800 (PST)
+Received: from [172.24.138.145] ([137.71.226.102])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f653cd6sm109017225e9.9.2026.01.07.07.28.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jan 2026 07:22:21 -0800 (PST)
-Message-ID: <86748f89-8bed-4435-98c4-991e649e5b87@linaro.org>
-Date: Wed, 7 Jan 2026 16:22:20 +0100
+        Wed, 07 Jan 2026 07:28:34 -0800 (PST)
+Message-ID: <013a144f-101e-49dd-9865-79dd6181f43a@gmail.com>
+Date: Wed, 7 Jan 2026 16:28:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,547 +82,496 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/3] thermal: imx91: Add support for i.MX91 thermal
- monitoring unit
-To: Frank Li <Frank.Li@nxp.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Pengfei Li <pengfei.li_1@nxp.com>,
- Marco Felsch <m.felsch@pengutronix.de>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, ye.li@nxp.com, joy.zou@nxp.com,
- Peng Fan <peng.fan@nxp.com>
-References: <20251020-imx91tmu-v7-0-48d7d9f25055@nxp.com>
- <20251020-imx91tmu-v7-2-48d7d9f25055@nxp.com>
+Subject: Re: [PATCH 3/3] iio: dac: Add MAX22007 DAC driver support
+To: Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Janani Sunil <janani.sunil@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Alexandru Ardelean <alexandru.ardelean@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ jan.sun97@gmail.com, gastmaier@gmail.com
+References: <20251219-max22007-dev-v1-0-242da2c2b868@analog.com>
+ <20251219-max22007-dev-v1-3-242da2c2b868@analog.com>
+ <20251219172510.00007208@huawei.com>
 Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20251020-imx91tmu-v7-2-48d7d9f25055@nxp.com>
+From: Janani Sunil <jan.sun97@gmail.com>
+In-Reply-To: <20251219172510.00007208@huawei.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 10/20/25 21:00, Frank Li wrote:
-> From: Pengfei Li <pengfei.li_1@nxp.com>
-> 
-> Introduce support for the i.MX91 thermal monitoring unit, which features a
-> single sensor for the CPU. The register layout differs from other chips,
-> necessitating the creation of a dedicated file for this.
-> 
-> This sensor provides a resolution of 1/64°C (6-bit fraction). For actual
-> accuracy, refer to the datasheet, as it varies depending on the chip grade.
-> Provide an interrupt for end of measurement and threshold violation and
-> Contain temperature threshold comparators, in normal and secure address
-> space, with direction and threshold programmability.
-> 
-> Datasheet Link: https://www.nxp.com/docs/en/data-sheet/IMX91CEC.pdf
-> 
-> Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Change in v7
-> - remove enable field because framework already check mode before call
-> get_temp();
-> - only call runtime_pm_get(put) in set_mode function
-> - remove enable irq at get_temp.
-> - Enable GE compare irq at set_trip() call back
-> - Config GE irq at set_mode() when start measure to avoid issue unnecessary
-> irq when clear Compare mask (generate one LE irq).
-> 
-> Change from v5 to v6
-> - remove Macro's review tag
-> - remove mutex lock
-> - use set_trips callback
-> 
-> Change from v4 to v5
-> - add irq support
-> - use period mode
-> - Marco, if need drop review tag, let me know
-> 
-> Change from v3 to v4
-> - Add Macro's review tag
-> - Use devm_add_action()
-> - Move pm_runtim_put before thermal_of_zone_register()
-> 
-> change from v2 to v3
-> - add IMX91_TMU_ prefix for register define
-> - remove unused register define
-> - fix missed pm_runtime_put() at error path in imx91_tmu_get_temp()
-> - use dev variable in probe function
-> - use pm_runtime_set_active() in probe
-> - move START to imx91_tmu_get_temp()
-> - use DEFINE_RUNTIME_DEV_PM_OPS()
-> - keep set reset value because there are not sw "reset" bit in controller,
-> uboot may change and enable tmu.
-> 
-> change from v1 to v2
-> - use low case for hexvalue
-> - combine struct imx91_tmu and tmu_sensor
-> - simplify imx91_tmu_start() and imx91_tmu_enable()
-> - use s16 for imx91_tmu_get_temp(), which may negative value
-> - use reverse christmas tree style
-> - use run time pm
-> - use oneshot to sample temp
-> - register thermal zone after hardware init
-> ---
->   drivers/thermal/Kconfig         |  10 ++
->   drivers/thermal/Makefile        |   1 +
->   drivers/thermal/imx91_thermal.c | 384 ++++++++++++++++++++++++++++++++++++++++
->   3 files changed, 395 insertions(+)
-> 
-> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> index a09c188b9ad11377afe232d89c60504eb7000417..b10080d618604ddd90295bff973e337ae0509059 100644
-> --- a/drivers/thermal/Kconfig
-> +++ b/drivers/thermal/Kconfig
-> @@ -296,6 +296,16 @@ config IMX8MM_THERMAL
->   	  cpufreq is used as the cooling device to throttle CPUs when the passive
->   	  trip is crossed.
->   
-> +config IMX91_THERMAL
-> +	tristate "Temperature sensor driver for NXP i.MX91 SoC"
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	depends on OF
-> +	help
-> +	  Include one sensor and six comparators. Each of them compares the
-> +	  temperature value (from the sensor) against the programmable
-> +	  threshold values. The direction of the comparison is configurable
-> +	  (greater / lesser than).
-> +
->   config K3_THERMAL
->   	tristate "Texas Instruments K3 thermal support"
->   	depends on ARCH_K3 || COMPILE_TEST
-> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-> index d7718978db245faffba98ff95a07c7bcbc776fd2..bb21e7ea7fc6b70aa84e5fed7cfdc7096e3fb1f7 100644
-> --- a/drivers/thermal/Makefile
-> +++ b/drivers/thermal/Makefile
-> @@ -51,6 +51,7 @@ obj-$(CONFIG_ARMADA_THERMAL)	+= armada_thermal.o
->   obj-$(CONFIG_IMX_THERMAL)	+= imx_thermal.o
->   obj-$(CONFIG_IMX_SC_THERMAL)	+= imx_sc_thermal.o
->   obj-$(CONFIG_IMX8MM_THERMAL)	+= imx8mm_thermal.o
-> +obj-$(CONFIG_IMX91_THERMAL)	+= imx91_thermal.o
->   obj-$(CONFIG_MAX77620_THERMAL)	+= max77620_thermal.o
->   obj-$(CONFIG_QORIQ_THERMAL)	+= qoriq_thermal.o
->   obj-$(CONFIG_DA9062_THERMAL)	+= da9062-thermal.o
-> diff --git a/drivers/thermal/imx91_thermal.c b/drivers/thermal/imx91_thermal.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..9b20be03d6dec18553967548d0ca31d1c1fb387c
-> --- /dev/null
-> +++ b/drivers/thermal/imx91_thermal.c
-> @@ -0,0 +1,384 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2025 NXP.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/err.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/nvmem-consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/thermal.h>
-> +#include <linux/units.h>
-> +
-> +#define REG_SET					0x4
-> +#define REG_CLR					0x8
-> +#define REG_TOG					0xc
-> +
-> +#define IMX91_TMU_CTRL0				0x0
-> +#define   IMX91_TMU_CTRL0_THR1_IE		BIT(9)
-> +#define   IMX91_TMU_CTRL0_THR1_MASK		GENMASK(3, 2)
-> +#define   IMX91_TMU_CTRL0_CLR_FLT1		BIT(21)
-> +
-> +#define IMX91_TMU_THR_MODE_LE			0
-> +#define IMX91_TMU_THR_MODE_GE			1
-> +
-> +#define IMX91_TMU_STAT0				0x10
-> +#define   IMX91_TMU_STAT0_THR1_IF		BIT(9)
-> +#define   IMX91_TMU_STAT0_THR1_STAT		BIT(13)
-> +#define   IMX91_TMU_STAT0_DRDY0_IF_MASK		BIT(16)
-> +
-> +#define IMX91_TMU_DATA0				0x20
-> +
-> +#define IMX91_TMU_CTRL1				0x200
-> +#define IMX91_TMU_CTRL1_EN			BIT(31)
-> +#define IMX91_TMU_CTRL1_START			BIT(30)
-> +#define IMX91_TMU_CTRL1_STOP			BIT(29)
-> +#define IMX91_TMU_CTRL1_RES_MASK		GENMASK(19, 18)
-> +#define IMX91_TMU_CTRL1_MEAS_MODE_MASK		GENMASK(25, 24)
-> +#define   IMX91_TMU_CTRL1_MEAS_MODE_SINGLE	0
-> +#define   IMX91_TMU_CTRL1_MEAS_MODE_CONTINUES	1
-> +#define   IMX91_TMU_CTRL1_MEAS_MODE_PERIODIC	2
-> +
-> +#define IMX91_TMU_THR_CTRL01			0x30
-> +#define   IMX91_TMU_THR_CTRL01_THR1_MASK	GENMASK(31, 16)
-> +
-> +#define IMX91_TMU_REF_DIV			0x280
-> +#define IMX91_TMU_DIV_EN			BIT(31)
-> +#define IMX91_TMU_DIV_MASK			GENMASK(23, 16)
-> +#define IMX91_TMU_DIV_MAX			255
-> +
-> +#define IMX91_TMU_PUD_ST_CTRL			0x2b0
-> +#define IMX91_TMU_PUDL_MASK			GENMASK(23, 16)
-> +
-> +#define IMX91_TMU_TRIM1				0x2e0
-> +#define IMX91_TMU_TRIM2				0x2f0
-> +
-> +#define IMX91_TMU_TEMP_LOW_LIMIT		-40000
-> +#define IMX91_TMU_TEMP_HIGH_LIMIT		125000
-> +
-> +#define IMX91_TMU_DEFAULT_TRIM1_CONFIG		0xb561bc2d
-> +#define IMX91_TMU_DEFAULT_TRIM2_CONFIG		0x65d4
-> +
-> +#define IMX91_TMU_PERIOD_CTRL			0x270
-> +#define   IMX91_TMU_PERIOD_CTRL_MEAS_MASK	GENMASK(23, 0)
-> +
-> +#define IMX91_TMP_FRAC				64
-> +
-> +struct imx91_tmu {
-> +	void __iomem *base;
-> +	struct clk *clk;
-> +	struct device *dev;
-> +	struct thermal_zone_device *tzd;
-> +};
-> +
-> +static void imx91_tmu_start(struct imx91_tmu *tmu, bool start)
-> +{
-> +	u32 val = start ? IMX91_TMU_CTRL1_START : IMX91_TMU_CTRL1_STOP;
-> +
-> +	writel_relaxed(val, tmu->base + IMX91_TMU_CTRL1 + REG_SET);
+Hi Jonathan,
 
-Why do you need the 'relaxed' version of the readl / writel ?
+Thank you for your review.
 
-> +}
-> +
-> +static void imx91_tmu_enable(struct imx91_tmu *tmu, bool enable)
-> +{
-> +	u32 reg = IMX91_TMU_CTRL1;
-> +
-> +	reg += enable ? REG_SET : REG_CLR;
-> +
-> +	writel_relaxed(IMX91_TMU_CTRL1_EN, tmu->base + reg);
-> +}
+On 12/19/25 18:25, Jonathan Cameron wrote:
+> On Fri, 19 Dec 2025 16:31:17 +0100
+> Janani Sunil <janani.sunil@analog.com> wrote:
+>
+>> Add support for the MAX22007 4 channel DAC
+>> that drives a voltage or current output on each channel.
+> wrap to 75 chars rather than 50-60ish
 
-Can you explain the register layout ? It is unclear how it starts / 
-stops / is enabled ...
+Noted. Will correct this.
 
-For instance doing reg += enable ? REG_SET : REG_CLR is confusing
+>> Signed-off-by: Janani Sunil <janani.sunil@analog.com>
+> Hi Janani
+>
+> A few minor things inline.  Also add turning on any required
+> power supplies.  See how other drivers do it with a single call
+> in in probe. If your board is using always on supplies it will just
+> work as a stub regulator will be provided by the regulator core.
+>
+>
+> Thanks,
+>
+> Jonathan
 
+Will take a reference from the other drivers and add the power supply configurations.
 
-> +static int imx91_tmu_to_mcelsius(int x)
+>> diff --git a/drivers/iio/dac/max22007.c b/drivers/iio/dac/max22007.c
+>> new file mode 100644
+>> index 000000000000..0d57fee27367
+>> --- /dev/null
+>> +++ b/drivers/iio/dac/max22007.c
+>> @@ -0,0 +1,487 @@
+>> +
+>> +#define MAX22007_NUM_CHANNELS				4
+>> +#define MAX22007_REV_ID_REG				0x00
+>> +#define MAX22007_STAT_INTR_REG				0x01
+>> +#define MAX22007_INTERRUPT_EN_REG			0x02
+>> +#define MAX22007_CONFIG_REG				0x03
+>> +#define MAX22007_CONTROL_REG				0x04
+>> +#define MAX22007_CHANNEL_MODE_REG			0x05
+>> +#define MAX22007_SOFT_RESET_REG				0x06
+>> +#define MAX22007_DAC_CHANNEL_REG(ch)			(0x07 + (ch))
+>> +#define MAX22007_GPIO_CTRL_REG				0x0B
+>> +#define MAX22007_GPIO_DATA_REG				0x0C
+>> +#define MAX22007_GPI_EDGE_INT_CTRL_REG			0x0D
+>> +#define MAX22007_GPI_INT_STATUS_REG			0x0E
+>> +
+>> +/* Channel mask definitions */
+>> +#define     MAX22007_CH_MODE_CH_MASK(channel)		BIT(12 + (channel))
+> maybe use x or ch rather than channel to shorten the defines a little.
 
-	(short x)
+Right, shall take up the change.
 
-> +{
-> +	return x * MILLIDEGREE_PER_DEGREE / IMX91_TMP_FRAC;
-> +}
-> +
-> +static int imx91_tmu_from_mcelsius(int x)
-> +{
-> +	return x * IMX91_TMP_FRAC / MILLIDEGREE_PER_DEGREE;
-> +}> +static int imx91_tmu_get_temp(struct thermal_zone_device *tz, int *temp)
-> +{
-> +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
-> +	s16 data;
-> +
-> +	/* DATA0 is 16bit signed number */
-> +	data = readw_relaxed(tmu->base + IMX91_TMU_DATA0);
+>
+>> +#define     MAX22007_CH_PWR_CH_MASK(channel)		BIT(8 + (channel))
+>> +#define     MAX22007_DAC_LATCH_MODE_MASK(channel)	BIT(12 + (channel))
+>> +#define     MAX22007_LDAC_UPDATE_MASK(channel)		BIT(12 + (channel))
+>> +#define     MAX22007_SW_RST_MASK			BIT(8)
+>> +#define     MAX22007_SW_CLR_MASK			BIT(12)
+>> +#define     MAX22007_SOFT_RESET_BITS_MASK		(MAX22007_SW_RST_MASK | \
+>> +	    MAX22007_SW_CLR_MASK)
+> Align after (
 
-Does the routine works for a negative value ?
+Right. Shall take up the change.
 
-> +	*temp = imx91_tmu_to_mcelsius(data);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx91_tmu_set_trips(struct thermal_zone_device *tz, int low, int high)
-> +{
-> +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
-> +	int val;
-> +
-> +	if (high >= IMX91_TMU_TEMP_HIGH_LIMIT)
-> +		return -EINVAL;
-> +
-> +	writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
-> +
-> +	/* Comparator1 for temperature threshold */
-> +	writel_relaxed(IMX91_TMU_THR_CTRL01_THR1_MASK, tmu->base + IMX91_TMU_THR_CTRL01 + REG_CLR);
-> +	val = FIELD_PREP(IMX91_TMU_THR_CTRL01_THR1_MASK, imx91_tmu_from_mcelsius(high));
-> +
-> +	writel_relaxed(val, tmu->base + IMX91_TMU_THR_CTRL01 + REG_SET);
-> +
-> +	writel_relaxed(IMX91_TMU_STAT0_THR1_IF, tmu->base + IMX91_TMU_STAT0 + REG_CLR);
-> +
-> +	writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_SET);
-> +
+>
+>> +#define     MAX22007_DAC_DATA_MASK			GENMASK(15, 4)
+>> +#define     MAX22007_DAC_MAX_RAW			GENMASK(11, 0)
+>> +#define     MAX22007_CRC8_POLYNOMIAL			0x8C
+>> +#define     MAX22007_CRC_EN_MASK			BIT(0)
+>> +#define     MAX22007_RW_MASK				BIT(0)
+>> +#define     MAX22007_CRC_OVERHEAD			1
+>> +
+>> +/* Field value preparation macros with masking */
+>> +#define     MAX22007_CH_PWR_VAL(channel, val)	(((val) & 0x1) << (8 + (channel)))
+>> +#define     MAX22007_CH_MODE_VAL(channel, val)	(((val) & 0x1) << (12 + (channel)))
+>> +#define     MAX22007_DAC_LATCH_MODE_VAL(channel, val)	(((val) & 0x1) << (12 + (channel)))
+>> +
+>> +static u8 max22007_crc8_table[256];
+>> +
+>> +enum max22007_channel_mode {
+>> +	MAX22007_VOLTAGE_MODE,
+>> +	MAX22007_CURRENT_MODE
+> Add trailing comma. Not obvious there will never be more if other devices are supported
+> by the driver.
+>
+> I'd also give these explicit values given they are written to HW.
+> = 0,
+> = 1,
 
-IMO, it is a good practice to wrap those calls into single line 
-functions with a self-explanatory name
+Agreed. Shall take up the change.
 
-> +	return 0;
-> +}
-> +
-> +static int imx91_init_from_nvmem_cells(struct imx91_tmu *tmu)
-> +{
-> +	struct device *dev = tmu->dev;
-> +	u32 trim1, trim2;
-> +	int ret;
-> +
-> +	ret = nvmem_cell_read_u32(dev, "trim1", &trim1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = nvmem_cell_read_u32(dev, "trim2", &trim2);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (trim1 == 0 || trim2 == 0)
-> +		return -EINVAL;
-> +
-> +	writel_relaxed(trim1, tmu->base + IMX91_TMU_TRIM1);
-> +	writel_relaxed(trim2, tmu->base + IMX91_TMU_TRIM2);
-> +
-> +	return 0;
-> +}
-> +
-> +static void imx91_tmu_action_remove(void *data)
-> +{
-> +	struct imx91_tmu *tmu = data;
-> +
-> +	/* disable tmu */
-> +	imx91_tmu_enable(tmu, false);
-> +}
-> +
-> +static irqreturn_t imx91_tmu_alarm_irq(int irq, void *data)
-> +{
-> +	struct imx91_tmu *tmu = data;
-> +	u32 val;
-> +
-> +	val = readl_relaxed(tmu->base + IMX91_TMU_STAT0);
-> +
-> +	/* Check if comparison interrupt occurred */
-> +	if (val & IMX91_TMU_STAT0_THR1_IF) {
-> +		/* Clear irq flag and disable interrupt until reconfigured */
-> +		writel(IMX91_TMU_STAT0_THR1_IF, tmu->base + IMX91_TMU_STAT0 + REG_CLR);
-> +		writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
-> +
-> +		return IRQ_WAKE_THREAD;
-> +	}
-> +
-> +	return IRQ_NONE;
+>
+>> +};
+>> +
+>> +enum max22007_channel_power {
+>> +	MAX22007_CH_POWER_OFF,
+>> +	MAX22007_CH_POWER_ON,
+> This isn't bringing value over renaming the field mask define
+> to MAX22007_CH_PWRON_CH_MASK()
+> and using 0 / 1 as appropriate.
 
-Why is this routine needed ? Is it a shared interrupt ?
+Got your point. Shall take this up.
 
-> +}
-> +
-> +static irqreturn_t imx91_tmu_alarm_irq_thread(int irq, void *data)
-> +{
-> +	struct imx91_tmu *tmu = data;
-> +
-> +	thermal_zone_device_update(tmu->tzd, THERMAL_EVENT_UNSPECIFIED);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int imx91_tmu_change_mode(struct thermal_zone_device *tz, enum thermal_device_mode mode)
-> +{
-> +	struct imx91_tmu *tmu = thermal_zone_device_priv(tz);
-> +	int ret;
-> +
-> +	if (mode == THERMAL_DEVICE_ENABLED) {
-> +		ret = pm_runtime_get(tmu->dev);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		writel_relaxed(IMX91_TMU_CTRL0_THR1_IE | IMX91_TMU_CTRL0_THR1_MASK,
-> +			       tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
-> +
-> +		writel_relaxed(FIELD_PREP(IMX91_TMU_CTRL0_THR1_MASK, IMX91_TMU_THR_MODE_GE),
-> +			       tmu->base + IMX91_TMU_CTRL0 + REG_SET);
-> +		imx91_tmu_start(tmu, true);
-> +	} else {
-> +		writel_relaxed(IMX91_TMU_CTRL0_THR1_IE, tmu->base + IMX91_TMU_CTRL0 + REG_CLR);
-> +		imx91_tmu_start(tmu, false);
-> +		pm_runtime_put(tmu->dev);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static struct thermal_zone_device_ops tmu_tz_ops = {
-> +	.get_temp = imx91_tmu_get_temp,
-> +	.change_mode = imx91_tmu_change_mode,
-> +	.set_trips = imx91_tmu_set_trips,
-> +};
-> +
-> +static int imx91_tmu_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct imx91_tmu *tmu;
-> +	unsigned long rate;
-> +	int irq, ret;
-> +	u32 div;
-> +
-> +	tmu = devm_kzalloc(dev, sizeof(struct imx91_tmu), GFP_KERNEL);
-> +	if (!tmu)
-> +		return -ENOMEM;
-> +
-> +	tmu->dev = dev;
-> +
-> +	tmu->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(tmu->base))
-> +		return dev_err_probe(dev, PTR_ERR(tmu->base), "failed to get io resource");
-> +
-> +	tmu->clk = devm_clk_get_enabled(dev, NULL);
-> +	if (IS_ERR(tmu->clk))
-> +		return dev_err_probe(dev, PTR_ERR(tmu->clk), "failed to get tmu clock\n");
-> +
-> +	platform_set_drvdata(pdev, tmu);
-> +
-> +	/* disable the monitor during initialization */
-> +	imx91_tmu_enable(tmu, false);
-> +	imx91_tmu_start(tmu, false);
-> +
-> +	ret = imx91_init_from_nvmem_cells(tmu);
-> +	if (ret) {
-> +		dev_warn(dev, "can't get trim value, use default settings\n");
-> +
-> +		writel_relaxed(IMX91_TMU_DEFAULT_TRIM1_CONFIG, tmu->base + IMX91_TMU_TRIM1);
-> +		writel_relaxed(IMX91_TMU_DEFAULT_TRIM2_CONFIG, tmu->base + IMX91_TMU_TRIM2);
-> +	}
-> +
-> +	/* The typical conv clk is 4MHz, the output freq is 'rate / (div + 1)' */
-> +	rate = clk_get_rate(tmu->clk);
-> +	div = (rate / (4 * HZ_PER_MHZ)) - 1;
-> +	if (div > IMX91_TMU_DIV_MAX)
-> +		return dev_err_probe(dev, -EINVAL, "clock divider exceed hardware limitation");
-> +
-> +	/* Set divider value and enable divider */
-> +	writel_relaxed(IMX91_TMU_DIV_EN | FIELD_PREP(IMX91_TMU_DIV_MASK, div),
-> +		       tmu->base + IMX91_TMU_REF_DIV);
-> +
-> +	/* Set max power up delay: 'Tpud(ms) = 0xFF * 1000 / 4000000' */
-> +	writel_relaxed(FIELD_PREP(IMX91_TMU_PUDL_MASK, 100U), tmu->base + IMX91_TMU_PUD_ST_CTRL);
-> +
-> +	/*
-> +	 * Set resolution mode
-> +	 * 00b - Conversion time = 0.59325 ms
-> +	 * 01b - Conversion time = 1.10525 ms
-> +	 * 10b - Conversion time = 2.12925 ms
-> +	 * 11b - Conversion time = 4.17725 ms
-> +	 */
-> +	writel_relaxed(FIELD_PREP(IMX91_TMU_CTRL1_RES_MASK, 0x3),
-> +		       tmu->base + IMX91_TMU_CTRL1 + REG_CLR);
-> +	writel_relaxed(FIELD_PREP(IMX91_TMU_CTRL1_RES_MASK, 0x1),
-> +		       tmu->base + IMX91_TMU_CTRL1 + REG_SET);
-> +
-> +	writel_relaxed(IMX91_TMU_CTRL1_MEAS_MODE_MASK, tmu->base + IMX91_TMU_CTRL1 + REG_CLR);
-> +	writel_relaxed(FIELD_PREP(IMX91_TMU_CTRL1_MEAS_MODE_MASK,
-> +				  IMX91_TMU_CTRL1_MEAS_MODE_PERIODIC),
-> +		       tmu->base + IMX91_TMU_CTRL1 + REG_SET);
-> +
-> +	/*
-> +	 * Set Periodic Measurement Frequency to 25Hz:
-> +	 * tMEAS_FREQ = tCONV_CLK * PERIOD_CTRL[MEAS_FREQ]
-> +	 */
-> +	writel_relaxed(FIELD_PREP(IMX91_TMU_PERIOD_CTRL_MEAS_MASK, 4 * HZ_PER_MHZ / 25),
-> +		       tmu->base + IMX91_TMU_PERIOD_CTRL);
-> +
-> +	imx91_tmu_enable(tmu, true);
-> +	ret = devm_add_action(dev, imx91_tmu_action_remove, tmu);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failure to add action imx91_tmu_action_remove()\n");
-> +
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_get_noresume(dev);
-> +	ret = devm_pm_runtime_enable(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	tmu->tzd = devm_thermal_of_zone_register(dev, 0, tmu, &tmu_tz_ops);
-> +	if (IS_ERR(tmu->tzd))
-> +		return dev_err_probe(dev, PTR_ERR(tmu->tzd),
-> +				     "failed to register thermal zone sensor\n");
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return irq;
-> +
-> +	ret = devm_request_threaded_irq(dev, irq, imx91_tmu_alarm_irq,
-> +					imx91_tmu_alarm_irq_thread,
-> +					IRQF_ONESHOT, "imx91_thermal", tmu);
-> +
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "failed to request alarm irq\n");
-> +
-> +	pm_runtime_put(dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx91_tmu_runtime_suspend(struct device *dev)
-> +{
-> +	struct imx91_tmu *tmu = dev_get_drvdata(dev);
-> +
-> +	/* disable tmu */
-> +	imx91_tmu_enable(tmu, false);
-> +
-> +	clk_disable_unprepare(tmu->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx91_tmu_runtime_resume(struct device *dev)
-> +{
-> +	struct imx91_tmu *tmu = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(tmu->clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	imx91_tmu_enable(tmu, true);
-> +
-> +	return 0;
-> +}
-> +
-> +static DEFINE_RUNTIME_DEV_PM_OPS(imx91_tmu_pm_ops, imx91_tmu_runtime_suspend,
-> +				 imx91_tmu_runtime_resume, NULL);
-> +
-> +static const struct of_device_id imx91_tmu_table[] = {
-> +	{ .compatible = "fsl,imx91-tmu", },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, imx91_tmu_table);
-> +
-> +static struct platform_driver imx91_tmu = {
-> +	.driver = {
-> +		.name	= "imx91_thermal",
-> +		.pm	= pm_ptr(&imx91_tmu_pm_ops),
-> +		.of_match_table = imx91_tmu_table,
-> +	},
-> +	.probe = imx91_tmu_probe,
-> +};
-> +module_platform_driver(imx91_tmu);
-> +
-> +MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
-> +MODULE_DESCRIPTION("i.MX91 Thermal Monitor Unit driver");
-> +MODULE_LICENSE("GPL");
-> 
+>
+>> +};
+>> +
+>> +struct max22007_state {
+>> +	struct spi_device *spi;
+>> +	struct regmap *regmap;
+>> +	struct iio_chan_spec *iio_chan;
+> I'd go with iio_chans just to make it clear there can be multiple.
 
+I shall take this up.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+>
+>> +	u8 tx_buf[4] __aligned(IIO_DMA_MINALIGN);
+>> +	u8 rx_buf[4];
+>> +};
+>> +
+>> +static int max22007_spi_read(void *context, const void *reg, size_t reg_size,
+>> +			     void *val, size_t val_size)
+>> +{
+>> +	struct max22007_state *st = context;
+>> +	u8 calculated_crc, received_crc;
+>> +	u8 crc_data[3];
+>> +	int ret;
+>> +	struct spi_transfer xfer = {
+>> +		.tx_buf = st->tx_buf,
+>> +		.rx_buf = st->rx_buf,
+>> +	};
+>> +
+>> +	xfer.len = reg_size + val_size + MAX22007_CRC_OVERHEAD;
+>> +
+>> +	memcpy(st->tx_buf, reg, reg_size);
+>> +
+>> +	ret = spi_sync_transfer(st->spi, &xfer, 1);
+>> +	if (ret) {
+>> +		dev_err(&st->spi->dev, "SPI transfer failed: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	crc_data[0] = st->tx_buf[0];
+>> +	crc_data[1] = st->rx_buf[1];
+>> +	crc_data[2] = st->rx_buf[2]
+> The use of only the first byte for tx and later for rx suggest this a
+> spi_write_then_read()
+>
+> Using that should simplify your code a little particularly as it doesn't need
+> dma safe buffers (bounces anyway).
+>
+> I'd be tempted to check reg_size == 1 then hard code that through this function.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+You are right. Shall implement this.
+
+>
+>> +
+>> +	calculated_crc = crc8(max22007_crc8_table, crc_data, 3, 0x00);
+>> +	received_crc = st->rx_buf[3];
+>> +
+>> +	if (calculated_crc != received_crc) {
+>> +		dev_err(&st->spi->dev, "CRC mismatch on read register %02x:\n", *(u8 *)reg);
+>> +		return -EIO;
+>> +	}
+>> +
+>> +	/* Ignore the dummy byte 0 */
+>> +	memcpy(val, &st->rx_buf[1], val_size);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int max22007_spi_write(void *context, const void *data, size_t count)
+>> +{
+>> +	struct max22007_state *st = context;
+>> +	struct spi_transfer xfer = {
+>> +		.tx_buf = st->tx_buf,
+>> +		.rx_buf = st->rx_buf,
+>> +	};
+>> +
+>> +	memset(st->tx_buf, 0, sizeof(st->tx_buf));
+>> +
+>> +	xfer.len = count + MAX22007_CRC_OVERHEAD;
+>> +
+>> +	memcpy(st->tx_buf, data, count);
+>> +	st->tx_buf[count] = crc8(max22007_crc8_table, st->tx_buf,
+>> +				 sizeof(st->tx_buf) - 1, 0x00);
+>> +
+>> +	return spi_sync_transfer(st->spi, &xfer, 1);
+>> +}
+>> +static int max22007_write_channel_data(struct max22007_state *state, unsigned int channel,
+>> +				       unsigned int data)
+>> +{
+>> +	unsigned int reg_val;
+>> +
+>> +	if (data > MAX22007_DAC_MAX_RAW)
+>> +		return -EINVAL;
+>> +
+>> +	reg_val = FIELD_PREP(MAX22007_DAC_DATA_MASK, data);
+>> +
+>> +	return regmap_write(state->regmap, MAX22007_DAC_CHANNEL_REG(channel), reg_val);
+>> +}
+>> +
+>> +static int max22007_read_channel_data(struct max22007_state *state, unsigned int channel,
+> Where it doesn't hurt readability my preference is still to stay nearer to 80 chars.
+
+Noted your point. Shall apply the readability preferences as said.
+
+>
+>> +				      int *data)
+>> +{
+>> +	int ret;
+>> +	unsigned int reg_val;
+>> +
+>> +	ret = regmap_read(state->regmap, MAX22007_DAC_CHANNEL_REG(channel), &reg_val);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	*data = FIELD_GET(MAX22007_DAC_DATA_MASK, reg_val);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int max22007_read_raw(struct iio_dev *indio_dev,
+>> +			     struct iio_chan_spec const *chan,
+>> +			     int *val, int *val2, long mask)
+>> +{
+>> +	struct max22007_state *st = iio_priv(indio_dev);
+>> +	int ret;
+>> +
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_RAW:
+>> +		ret = max22007_read_channel_data(st, chan->channel, val);
+>> +		if (ret)
+>> +			return ret;
+>> +		return IIO_VAL_INT;
+>> +	case IIO_CHAN_INFO_SCALE:
+>> +		if (chan->type == IIO_VOLTAGE) {
+>> +			*val = 5 * 2500;  /* 5 * Vref(2.5V) in mV */
+>> +			*val2 = 12;  /* 12-bit DAC resolution (2^12) */
+> Given resolution is the same either way, drop that out of the if / else
+> 		if (chan->type == IIO_VOLTAGE)
+> 			*val = ...
+> 		else
+> 			*val = ...
+> 		val2 = 12; /* 12-bit DAC resolution */
+>
+> The 2^12 is a bit confusing so I'd drop that bit.
+
+Yes, it can be confusing. I shall drop the redundant explanation.
+
+>
+>> +		} else {
+>> +			*val = 25;  /* Vref / (2 * Rsense) = 2500mV / 100 */
+>> +			*val2 = 12;  /* 12-bit DAC resolution (2^12) */
+>> +		}
+>> +		return IIO_VAL_FRACTIONAL_LOG2;
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>
+>> +static const struct iio_chan_spec_ext_info max22007_ext_info[] = {
+>> +	{
+>> +		.name = "powerdown",
+>> +		.read = max22007_read_dac_powerdown,
+>> +		.write = max22007_write_dac_powerdown,
+>> +		.shared = IIO_SEPARATE,
+>> +	},
+>> +	{ },
+> No trailing comma for a 'terminating' entry like this. We don't want
+> to make it easy to add stuff after.
+
+Sure, will remove them.
+
+>> +};
+>> +
+>> +static const struct iio_chan_spec max22007_channel_template = {
+>> +	.output = 1,
+>> +	.indexed = 1,
+>> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),
+>> +	.ext_info = max22007_ext_info,
+>> +};
+>> +
+>> +static int max22007_parse_channel_cfg(struct max22007_state *st, u8 *num_channels)
+>> +{
+>> +	struct device *dev = &st->spi->dev;
+>> +	struct iio_chan_spec *iio_chan;
+>> +	int ret, num_chan = 0, i = 0;
+> Please don't mix declarations that assign with those that don't. It makes
+> it to easy to miss which ones are in which category.
+> 	int num_chan = 0, i = 0;
+> 	int ret;
+> Noted on this. I will separate them accordingly.
+>> +	u32 reg;
+>> +
+>> +	num_chan = device_get_child_node_count(dev);
+>> +	if (!num_chan)
+>> +		return dev_err_probe(dev, -ENODEV, "no channels configured\n");
+>> +
+>> +	st->iio_chan = devm_kcalloc(dev, num_chan, sizeof(*st->iio_chan), GFP_KERNEL);
+>> +	if (!st->iio_chan)
+>> +		return -ENOMEM;
+>> +
+>> +	device_for_each_child_node_scoped(dev, child) {
+>> +		const char *channel_type_str;
+>> +		enum max22007_channel_mode mode;
+>> +
+>> +		ret = fwnode_property_read_u32(child, "reg", &reg);
+>> +		if (ret)
+>> +			return dev_err_probe(dev, ret,
+>> +					     "failed to read reg property of %pfwP\n", child);
+>> +
+>> +		if (reg >= MAX22007_NUM_CHANNELS)
+>> +			return dev_err_probe(dev, -EINVAL,
+>> +					     "reg out of range in %pfwP\n", child);
+>> +
+>> +		iio_chan = &st->iio_chan[i];
+>> +
+>> +		*iio_chan = max22007_channel_template;
+> The template is only used here so I'd be tempted to just do
+> 		*iio_chan = (struct iio_chan_spec) {
+> 			.output = 1,
+> 			.indexed = 1,
+> 			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> 					      BIT(IIO_CHAN_INFO_SCALE),
+> 			.ext_info = max22007_ext_info,
+> 			.channel = reg,
+> 		};
+> inline here.
+> Or after other changes suggested below you can do
+>
+> 		st->iio_chan[i++] = (struct iio_chan_spec) {
+> 			.output = 1,
+> 			.indexed = 1,
+> 			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> 					      BIT(IIO_CHAN_INFO_SCALE),
+> 			.ext_info = max22007_ext_info,
+> 			.channel = reg,
+> 			.type = chan_type,
+> 		}
+
+This is a great idea. I will take this up.
+
+>> +		iio_chan->channel = reg;
+>> +
+>> +		ret = fwnode_property_read_string(child, "adi,type", &channel_type_str);
+>> +		if (ret)
+>> +			return dev_err_probe(dev, ret,
+>> +					     "missing adi,type property for %pfwP\n", child);
+>> +
+>> +		if (strcmp(channel_type_str, "current") == 0) {
+>> +			mode = MAX22007_CURRENT_MODE;
+>> +			iio_chan->type = IIO_CURRENT;
+>> +		} else if (strcmp(channel_type_str, "voltage") == 0) {
+>> +			mode = MAX22007_VOLTAGE_MODE;
+>> +			iio_chan->type = IIO_VOLTAGE;
+>> +		} else {
+>> +			return dev_err_probe(dev, -EINVAL,
+>> +					     "invalid adi,type '%s' for %pfwP\n",
+>> +					     channel_type_str, child);
+>> +		}
+> If you do this to set a local type variable before the *iio_chan =
+> suggestion above, can assign it when filling in the rest of the chan_spec
+
+I will take this up.
+
+>
+>> +
+>> +		ret = regmap_update_bits(st->regmap, MAX22007_CHANNEL_MODE_REG,
+>> +					 MAX22007_CH_MODE_CH_MASK(reg),
+>> +					 MAX22007_CH_MODE_VAL(reg, mode));
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		/* Set DAC to transparent mode (immediate update) */
+>> +		ret = regmap_update_bits(st->regmap, MAX22007_CONFIG_REG,
+>> +					 MAX22007_DAC_LATCH_MODE_MASK(reg),
+>> +					 MAX22007_DAC_LATCH_MODE_VAL(reg, 1));
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		i++;
+> With other changes suggested above, i will only be used in one place I think
+> so you can do the ++ inline at that point. See above for details.
+
+Got your point here.
+
+>> +	}
+>> +
+>> +	*num_channels = num_chan;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int max22007_probe(struct spi_device *spi)
+>> +{
+>> +	struct iio_dev *indio_dev;
+>> +	struct max22007_state *state;
+>> +	struct gpio_desc *reset_gpio;
+>> +	u8 num_channels;
+>> +	int ret;
+>> +
+>> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*state));
+> Use a local
+> 	struct device *dev = &spi->dev;
+> to shorten all the places you have &spi->dev currently in this function.
+
+Will implement this.
+
+>
+>> +	if (!indio_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	state = iio_priv(indio_dev);
+>> +	state->spi = spi;
+>> +
+>> +	crc8_populate_lsb(max22007_crc8_table, MAX22007_CRC8_POLYNOMIAL);
+>> +
+>> +	state->regmap = devm_regmap_init(&spi->dev, &max22007_regmap_bus, state,
+>> +					 &max22007_regmap_config);
+>> +	if (IS_ERR(state->regmap))
+>> +		return dev_err_probe(&spi->dev, PTR_ERR(state->regmap),
+>> +				     "Failed to initialize regmap\n");
+>> +
+>> +	reset_gpio = devm_gpiod_get_optional(&spi->dev, "reset", GPIOD_OUT_LOW);
+> What sets the gpio high? I'd expect a transition from what is requested here
+> to what is set in the set_value() below.
+
+It needs to be toggled within the probe. Will add proper implementation for this.
+
+>
+>> +	if (IS_ERR(reset_gpio))
+>> +		return dev_err_probe(&spi->dev, PTR_ERR(reset_gpio),
+>> +				     "Failed to get reset GPIO\n");
+>> +
+>> +	if (reset_gpio) {
+>> +		gpiod_set_value_cansleep(reset_gpio, 0);
+>> +	} else {
+>> +		ret = regmap_write(state->regmap, MAX22007_SOFT_RESET_REG,
+>> +				   MAX22007_SOFT_RESET_BITS_MASK);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	ret = regmap_update_bits(state->regmap, MAX22007_CONFIG_REG,
+>> +				 MAX22007_CRC_EN_MASK,
+>> +				 MAX22007_CRC_EN_MASK);
+> regmap_set_bits() saves repeating the mask.
+
+That's a good point. I will take this up.
+
+>
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = max22007_parse_channel_cfg(state, &num_channels);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	indio_dev->info = &max22007_info;
+>> +	indio_dev->modes = INDIO_DIRECT_MODE;
+>> +	indio_dev->channels = state->iio_chan;
+>> +	indio_dev->num_channels = num_channels;
+>> +	indio_dev->name = "max22007";
+>> +
+>> +	return devm_iio_device_register(&spi->dev, indio_dev);
+>> +}
+>
 
