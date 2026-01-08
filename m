@@ -1,118 +1,240 @@
-Return-Path: <devicetree+bounces-252621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B93DED01E2E
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C64BD01CEE
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:23:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 554D4340C085
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:34:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C908B3127DC3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:17:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2179537BE63;
-	Thu,  8 Jan 2026 07:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0867938FF12;
+	Thu,  8 Jan 2026 08:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nkZt0S9C"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="W1bIN75R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3C9637BE8B
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 07:50:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D8A438F930
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:01:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767858640; cv=none; b=MA2z0xcdeCHFlVEKy77BeX4WobtMs8l3W6013a3v+wP6AfFeP0YnXmlNtcnUudaseO+PbHp8gc+JuAiiOkU3KCMeGz1xfcSkaeD5xki+8N3EbKao0D8d0LtCo9U+U0E+TjY7LB34dHOaIXQgDdnNo+iQ7IufFKIiC5xw/b+aVXY=
+	t=1767859274; cv=none; b=UjXarciT4UYbSvxKYGbMh+J1oBekA0eS2izQciOOmcCVgR7eWdoB9k/q4bCDLmzco+zBDxgguKVm34ogWF2O8pLgDv1hkgrg6CP+fj6d5cuqYzVu4NZwrXxyMBLDAxuayUD4ynADhMhEOMdhwj+THCGsZfUbqyGuhpid/HVtV3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767858640; c=relaxed/simple;
-	bh=kRy7DNw+fulZHF6KL6RSdTY4oFE4rQkK/b/b5F2abBg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=THBCjbVkDXm/KS8UeBFQ6cr2zlmVGS9cBVOcx7T+9/9E7SJnAmSNYPv1Cz8ceXBC4AKNNzaW5gNGl165CD2Eje46Ev5VUba1nOqArHd0FhWyLzS5NrRtgHNoeVYw1+eZOPDjTsFqZAWKF/nAc1KIDB3zLksy5+SXDAlhdfJbdKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nkZt0S9C; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47d59da3d81so7570215e9.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 23:50:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767858630; x=1768463430; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VFk3K6PIfFKKeMfxjlBdSwZqQED8HkDY5r3p5jOG4Bk=;
-        b=nkZt0S9CNQkM4KswXRGOt4dFk0qApsuwZeMjTupOt+g8g4vkmVMILICnhmhm+AbFaB
-         xYY/GdUL+1klkQIRVTK9LGvspHyviczRqLYaeel2XWUpDyeSynvN3SmXkiBjlwawee0Y
-         zTVBy7V71cSQ+3WgAKqFGYjObbjLFC2Q9b/C1o90Z2s9oES4+SILRElc/1PUgMhmjbVS
-         K39ker4397iZyl6aaDuVftZvyr09j1HX69Etsu1kKjr2/iwswIY0rEPWs0Ie1oNmbqED
-         nD0zMQqy/33Uhbhfor6NbQmTIayJ82lYwJDyMOs0B80hllJhuVdW5t20sB/CietXBlWL
-         296A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767858630; x=1768463430;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VFk3K6PIfFKKeMfxjlBdSwZqQED8HkDY5r3p5jOG4Bk=;
-        b=O21KI/PUj471ET+rT+d6Gz29BgM5KV5zXnNZhP0uFjECjPv04Hxw6WNgnGsW9QKtrz
-         VQ7L4jz8Ga4eJzAzDAmMt5dflF4gU/Ctn8qLj9eCCF3BuA2wRWrTB4JV9meLnN6brvEo
-         CAOtPTmej278Gia3EXTdNSD7nVr3nGfCO+s5RXtYrx1IncMxtX4z8fPVQnVSXRVrPxq1
-         +FTALJdkf3ooGAE+Y3CkdlzMFhskemNTDU8hHiZOfLb06bnk70iey8GngRq9lYVsMD12
-         NdYyDmZD60wjWGEuhJfTw4mM7s/h1uuoS4CdlOFk8SRg3wObBk0jV2ACJPi2XekahzKf
-         sP+g==
-X-Forwarded-Encrypted: i=1; AJvYcCVOlgGqwJ1xrM4jL86Pm9pXFKElHZWgHCqgqB2N+iFYwXXWughbPTfCn1FhiOuvvgxRyV9ONv3gZEU8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+f7CY6gmyRVKKezMCHGowa4Ij/eWxRYDNRO2bu/O46KeG7poE
-	ofPrhHQDfmdonf+ZVP2B3Hku1vnsKu/YGY4I8JxCHTmWTHyg7Q2L+2Qi
-X-Gm-Gg: AY/fxX5EL7rHdUxUY7pSflzjfgU1nALi8bVdQfM03BsQ84liTbnO66Tb2URxb1BqWgZ
-	gsAavOic7vnf64cDQ8z099EANXIIC5Acr/dMdBCTIrPLn3RtuYHuSVQixt1ipIApjNaGeWIXtIw
-	wz8axrdm1y/Th6U7hINbtD9NYtkK7JUyM7aWYiygz2hex5e/ySZD4DJG0e1HRpIobonqgD+Dp3q
-	Id2+bBf+pDzNNHuHQgLxkT5tX2fhQ4CG2vPLHs+YoXsFobMTvF73JZEIv7Xvk1altcDbd1tQMe1
-	e8NGOwbYrIv1ot92riTLhjRb9Mtt5UqPuwKcHNgBIJrWHwofjD330oYd4bU2MATN1b6wD4TXuwC
-	WFXtyyHYLnXaTei3GqXD4B/8X1ERfQKCj6DFKY1leIM7PKXyhIOp3VXWrZljY7u6+yKYpP2IMPw
-	oY4K6KWaP7oJKTBdJ7YZuHSRmne2EbRXS98fdPc+kcuXWXRC6INNKa4mHjKITSawPq
-X-Google-Smtp-Source: AGHT+IFyoRt2dNQOmJxXYPgtoHsx+IUK5C9FJ9EM4O+p7P4XzBFb87PUvms2YVvujmSmeqx+2jAPFg==
-X-Received: by 2002:a05:600c:1792:b0:47d:7004:f488 with SMTP id 5b1f17b1804b1-47d7f6163f8mr74389625e9.10.1767858630018;
-        Wed, 07 Jan 2026 23:50:30 -0800 (PST)
-Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd0dad8bsm15257199f8f.8.2026.01.07.23.50.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 23:50:29 -0800 (PST)
-Date: Thu, 8 Jan 2026 07:50:28 +0000
-From: Stafford Horne <shorne@gmail.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
-	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1767859274; c=relaxed/simple;
+	bh=wtjYKSm0VitCRmzBe0g+meOa0FLKzhzDX42U4HjgOW0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=l77nJ53IumbbrcibROm/uFJ7ozCMAImBa7a/RpBEJuDjqr03m9iQqMOEgn35KXUMcuvx93paUaKmrrham5YALXyxe1DBxf6LxqlUEOGcxi98jnKzzAPvGun4S24LqYP2OuCtW1cfnbf23BYyD+lFKb/oI1PrYlGNd9vEqM9OMBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=W1bIN75R; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 3F9C91A26F8;
+	Thu,  8 Jan 2026 08:00:58 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0CF23606B6;
+	Thu,  8 Jan 2026 08:00:58 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EBDC8103C86C8;
+	Thu,  8 Jan 2026 09:00:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767859256; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Wcv1FNWPv9KBz1eSig7z4zxf2TbFU4dvgeo99rkjZMU=;
+	b=W1bIN75RBzFu/Hp+SiJ7o6AVYBJMIpoHSKrm26jQtdBGBx5Sa5cLL1+lzZ1PF1IKnIIMFu
+	LYHpzfU6lZ1NhOKK/sbez2QwIf2Tvt3IutpgxlUv5Xpku4GV1n/Q51Hk/iRno8iWXJSeBL
+	V4GVa77H7LK55e+hRkhgOFKGJBQSgdEWjr4eDgZezNfqoXpCR7300gEEnvvps460KKjsZh
+	JjTSdLb4dYvCJsmum9t6G/F5U6ZtBGXeSUqXWT09o54BroJze9NFXSo3vnxoDo0tUreZgU
+	sxV88+NI1RkJUo1vIGf7B7etUR5YFCizddg1ZoHAXIkaFzhUoIJEXBwiB2nGPA==
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: davem@davemloft.net
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jonas Bonn <jonas@southpole.se>,
-	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] openrisc: dts: Add de0 nano config and devicetree
-Message-ID: <aV9hxM_YnV5P-l_R@antec>
-References: <20251217080843.70621-1-shorne@gmail.com>
- <20251217080843.70621-3-shorne@gmail.com>
- <CAMuHMdVCY=5UypK65Ver6UZM_m6DZuw9mhfANMx4+Y6PgNAdmA@mail.gmail.com>
- <aVi0W6syzK6buL_v@antec>
- <CAMuHMdUP3z4Os=3XC6Nuzx8QAap=LTcuJrGZsy71GO=NFTOjZg@mail.gmail.com>
- <aVzb6pStdagr3IUX@antec>
- <CAMuHMdXr7H_M-QO-3ty4mpycMfDHsxrDWejjw7u3RPcUqioapw@mail.gmail.com>
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+	Tariq Toukan <tariqt@nvidia.com>
+Subject: [PATCH net-next v22 01/14] dt-bindings: net: Introduce the ethernet-connector description
+Date: Thu,  8 Jan 2026 09:00:26 +0100
+Message-ID: <20260108080041.553250-2-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
+References: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXr7H_M-QO-3ty4mpycMfDHsxrDWejjw7u3RPcUqioapw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Jan 06, 2026 at 11:18:01AM +0100, Geert Uytterhoeven wrote:
-> Hi Stafford,
-> 
-> On Tue, 6 Jan 2026 at 10:54, Stafford Horne <shorne@gmail.com> wrote:
-> > Just curious, Do you have a quick way to enable out of tree debug patches i.e.
-> > to dts and defconfigs?
-> 
-> Keep them in your local working branch, and rebase that when upgrading?
-> /me has +1200 local patches :-(
+The ability to describe the physical ports of Ethernet devices is useful
+to describe multi-port devices, as well as to remove any ambiguity with
+regard to the nature of the port.
 
-I see :)
+Moreover, describing ports allows for a better description of features
+that are tied to connectors, such as PoE through the PSE-PD devices.
 
-I am going to play with mini.config's using KCONFIG_ALLCONFIG.
+Introduce a binding to allow describing the ports, for now with 2
+attributes :
 
--Stafford
+ - The number of pairs, which is a quite generic property that allows
+   differentating between multiple similar technologies such as BaseT1
+   and "regular" BaseT (which usually means BaseT4).
+
+ - The media that can be used on that port, such as BaseT for Twisted
+   Copper, BaseC for coax copper, BaseS/L for Fiber, BaseK for backplane
+   ethernet, etc. This allows defining the nature of the port, and
+   therefore avoids the need for vendor-specific properties such as
+   "micrel,fiber-mode" or "ti,fiber-mode".
+
+The port description lives in its own file, as it is intended in the
+future to allow describing the ports for phy-less devices.
+
+Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+---
+ .../bindings/net/ethernet-connector.yaml      | 56 +++++++++++++++++++
+ .../devicetree/bindings/net/ethernet-phy.yaml | 18 ++++++
+ MAINTAINERS                                   |  1 +
+ 3 files changed, 75 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/ethernet-connector.yaml
+
+diff --git a/Documentation/devicetree/bindings/net/ethernet-connector.yaml b/Documentation/devicetree/bindings/net/ethernet-connector.yaml
+new file mode 100644
+index 000000000000..9ad7a00d4d01
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/ethernet-connector.yaml
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/ethernet-connector.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Generic Ethernet Connector
++
++maintainers:
++  - Maxime Chevallier <maxime.chevallier@bootlin.com>
++
++description:
++  An Ethernet Connector represents the output of a network component such as
++  a PHY, an Ethernet controller with no PHY, or an SFP module.
++
++properties:
++
++  pairs:
++    description:
++      Defines the number of BaseT pairs that are used on the connector.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2, 4]
++
++  media:
++    description:
++      The mediums, as defined in 802.3, that can be used on the port.
++    enum:
++      - BaseT
++      - BaseK
++      - BaseS
++      - BaseC
++      - BaseL
++      - BaseD
++      - BaseE
++      - BaseF
++      - BaseV
++      - BaseMLD
++
++required:
++  - media
++
++allOf:
++  - if:
++      properties:
++        media:
++          const: BaseT
++    then:
++      required:
++        - pairs
++    else:
++      properties:
++        pairs: false
++
++additionalProperties: true
++
++...
+diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+index bb4c49fc5fd8..58634fee9fc4 100644
+--- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
++++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+@@ -281,6 +281,17 @@ properties:
+ 
+     additionalProperties: false
+ 
++  mdi:
++    type: object
++
++    patternProperties:
++      '^connector-[0-9]+$':
++        $ref: /schemas/net/ethernet-connector.yaml#
++
++        unevaluatedProperties: false
++
++    additionalProperties: false
++
+ required:
+   - reg
+ 
+@@ -317,5 +328,12 @@ examples:
+                     default-state = "keep";
+                 };
+             };
++            /* Fast Ethernet port, with only 2 pairs wired */
++            mdi {
++                connector-0 {
++                    pairs = <2>;
++                    media = "BaseT";
++                };
++            };
+         };
+     };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 765ad2daa218..c0e79c324c62 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9394,6 +9394,7 @@ R:	Russell King <linux@armlinux.org.uk>
+ L:	netdev@vger.kernel.org
+ S:	Maintained
+ F:	Documentation/ABI/testing/sysfs-class-net-phydev
++F:	Documentation/devicetree/bindings/net/ethernet-connector.yaml
+ F:	Documentation/devicetree/bindings/net/ethernet-phy.yaml
+ F:	Documentation/devicetree/bindings/net/mdio*
+ F:	Documentation/devicetree/bindings/net/qca,ar803x.yaml
+-- 
+2.49.0
+
 
