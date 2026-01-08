@@ -1,104 +1,553 @@
-Return-Path: <devicetree+bounces-252552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECE3AD00F73
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 05:28:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C76FD00FA0
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 05:38:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6BB393001FF3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 04:28:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0AC49301FC37
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 04:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C392417FB;
-	Thu,  8 Jan 2026 04:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0421728FFE7;
+	Thu,  8 Jan 2026 04:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Y+4sqjh7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E8447494;
-	Thu,  8 Jan 2026 04:27:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF750292918;
+	Thu,  8 Jan 2026 04:38:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767846479; cv=none; b=ZUV28KNiJfYpBF0Hm0C9RyWqjZveA4lyxOAwdP1yvZwDYtsDMd31cURUNk647tKoWN/su+kauatTccnixFb94sfVpJcxZi7YJo57Ew4FJqsT0Wk5RSDgwOF3FR8LhsLDmEeW17AFpDK8YH4PnRTFIQFoWW7sayycMtnaiMMcW5k=
+	t=1767847085; cv=none; b=JVDcNT61IW2zxl+L+Fif8Mi9a4m3dI3KxspMRiUObmOYZUXtlDt6h2oWGx+1L9SP5QsJw/gQh5YE2dFbRwUHg95PGKRMCfK7mXdkWKVP2HKvuK1ARKir+Au/zZFVOh6MFOuybKt+z5Y3l9Gjf6WeYy0Czy9VuHwFVZzIlleTNNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767846479; c=relaxed/simple;
-	bh=zHZWIQePIvKiK5JQEBsXYdgWrN8v6sC165KGtecy9ac=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lVD/slj57gE4LPTT53dCOs6yRfDdCQ1KRumWITrjEjgpChK9LhxvNjAlBygfXWkJd/c6yUW4ihDRvaNb9m5q+i5/tjkL+md0JrcPhOap8YBr0VXz3Ls2G5251lTmx5mv620NbqKf5KGhClr9+mPX0f+HHWrt3GUFLc9UrfxSAtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.18.222])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 76CDF341E9C;
-	Thu, 08 Jan 2026 04:27:57 +0000 (UTC)
-Date: Thu, 8 Jan 2026 12:27:53 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Linus Walleij <linusw@kernel.org>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 2/2] pinctrl: spacemit: support I/O power domain
- configuration
-Message-ID: <20260108042753-GYA2796@gentoo.org>
-References: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-0-5f1090a487c7@linux.spacemit.com>
- <20251223-kx-pinctrl-aib-io-pwr-domain-v1-2-5f1090a487c7@linux.spacemit.com>
- <20251227-pastel-certain-orca-4b53cf@quoll>
+	s=arc-20240116; t=1767847085; c=relaxed/simple;
+	bh=Sq+yu4MO9kmUqBD2/t11C9rA7w5EBSJw0BUX/3vkyYU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RDU6eqZGt72d50/GF5GpJ/nK/M+xqPxql8WfvnbetGhc6VbUGGRWKlmbMi+2wc2nAV4HPlv3l8lDRx7SM/1vLQxqArO8jR0Qwt7/msdjCJNWsoUnkP+58kkFweCt2KHA6nXyBNK/JfFtQq5UT1mzFSMdiQqn0xZt7VDsc0gGHkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Y+4sqjh7; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1767847080;
+	bh=8w+4kS8oviIJ1/b1qQY5a5+JdYhA96gyY7sZoMxlfMA=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=Y+4sqjh7NQpfRBHAH2pqggJOoc0Ka3hgEv8VB89PR6jhWoSGcIUvp2F9Nsw3AIBoi
+	 za1MHiStDrgGOUif7LAivufaHT5LBmrSufhMWecXMp/d/QAoJQVT0e36/riX1HHM4E
+	 6Xyf4xH3U/6ZUaphkUJqfHzpojV5jHcqrbWwlcue8EEqyZiYb4ePiFkKAWzucU68ke
+	 kDKoCHBa1gHpanV7R06mzD9b7ExkhFyGrLt10OBvnCqTmAyq2Nwk6/qTu2KH3Zj9G2
+	 7oXw+rTYU/mUuLvlagR/8rJ2HKQsJiNWpNSGceBipC3kmpSpd1wJJ9D79jxx4O/GqC
+	 zQnQzg3VS6MMA==
+Received: from [192.168.68.115] (unknown [180.150.112.60])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E1E4979F8C;
+	Thu,  8 Jan 2026 12:37:58 +0800 (AWST)
+Message-ID: <baa2e4e86b0b6851a56ef97501f6cad67d7970e6.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Kyle Hsieh <kylehsieh1995@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	 <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Thu, 08 Jan 2026 15:07:58 +1030
+In-Reply-To: <20251224-ventura2_initial_dts-v2-2-f193ba5d4073@gmail.com>
+References: <20251224-ventura2_initial_dts-v2-0-f193ba5d4073@gmail.com>
+	 <20251224-ventura2_initial_dts-v2-2-f193ba5d4073@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251227-pastel-certain-orca-4b53cf@quoll>
 
-Hi Troy, Krzysztof, 
+On Wed, 2025-12-24 at 14:44 +0800, Kyle Hsieh wrote:
+> Add linux device tree entry related to the Meta(Facebook) rmc-node.
+> The system use an AT2600 BMC.
+> This node is named "ventura2".
+>=20
+> Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
+> ---
+> =C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0=C2=A0 1 +
+> =C2=A0.../dts/aspeed/aspeed-bmc-facebook-ventura2.dts=C2=A0=C2=A0=C2=A0 |=
+ 2945 ++++++++++++++++++++
+> =C2=A02 files changed, 2946 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed=
+/Makefile
+> index 9adf9278dc94..6b96997629d4 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -32,6 +32,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
+> =C2=A0	aspeed-bmc-facebook-minipack.dtb \
+> =C2=A0	aspeed-bmc-facebook-santabarbara.dtb \
+> =C2=A0	aspeed-bmc-facebook-tiogapass.dtb \
+> +	aspeed-bmc-facebook-ventura2.dtb \
+> =C2=A0	aspeed-bmc-facebook-wedge40.dtb \
+> =C2=A0	aspeed-bmc-facebook-wedge100.dtb \
+> =C2=A0	aspeed-bmc-facebook-wedge400-data64.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts b/=
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
+> new file mode 100644
+> index 000000000000..e22bbaf519ea
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
+> @@ -0,0 +1,2945 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2023 Facebook Inc.
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/i2c/i2c.h>
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +
+> +/ {
+> +	model =3D "Facebook ventura2 RMC";
+> +	compatible =3D "facebook,ventura2-rmc", "aspeed,ast2600";
+> +	aliases {
+> +		serial4 =3D &uart5;
+> +
+> +	=09
 
-On 14:00 Sat 27 Dec     , Krzysztof Kozlowski wrote:
-> On Tue, Dec 23, 2025 at 05:11:12PM +0800, Troy Mitchell wrote:
-> > IO domain power control registers are used to configure the operating
-> > voltage of dual-voltage GPIO banks. By default, these registers are
-> > configured for 3.3V operation. As a result, even when a GPIO bank is
-> > externally supplied with 1.8V, the internal logic continues to
-> > operate in the 3.3V domain, which may lead to functional failures.
-> > 
-..
-> > +	pctrl->io_pd_reg = devm_platform_ioremap_resource(pdev, 1);
-> > +	if (IS_ERR(pctrl->io_pd_reg))
-> > +		return PTR_ERR(pctrl->io_pd_reg);
-> > +
-> > +	pctrl->regmap_apbc =
-> > +		syscon_regmap_lookup_by_phandle_args(np, "spacemit,apbc", 1,
-> > +						     &pctrl->regmap_apbc_offset);
-> > +
-> > +	if (IS_ERR(pctrl->regmap_apbc))
-> > +		return dev_err_probe(dev, PTR_ERR(pctrl->regmap_apbc),
-> > +				     "failed to get syscon\n");
-> 
-> Actual ABI break.
-> 
-Indeed, there will be a ABI break.
+*snip*
 
-so, how about not abort in probe() if no "spacemit,apbc" phandle found?
-and then do it in a compatible way as old behevior
+> +	};
+> +
+> +	chosen {
+> +		stdout-path =3D "serial4:57600n8";
+> +	};
+> +
+> +	iio-hwmon {
+> +		compatible =3D "iio-hwmon";
+> +		io-channels =3D <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
+> +		<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
+> +		<&adc1 2>;
+> +	};
+> +
+> +	leds {
+> +		compatible =3D "gpio-leds";
+> +
+> +		led-0 {
+> +			label =3D "bmc_heartbeat_amber";
+> +			gpios =3D <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger =3D "heartbeat";
+> +		};
+> +
+> +		led-1 {
+> +			label =3D "fp_id_amber";
+> +			default-state =3D "off";
+> +			gpios =3D <&gpio0 ASPEED_GPIO(B, 5) GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		led-2 {
+> +			label =3D "bmc_ready_noled";
+> +			default-state =3D "on";
+> +			gpios =3D <&gpio0 ASPEED_GPIO(B, 3) (GPIO_ACTIVE_HIGH|GPIO_TRANSITORY=
+)>;
+> +		};
+> +
+> +		led-3 {
+> +			label =3D "power_blue";
+> +			default-state =3D "off";
+> +			gpios =3D <&gpio0 ASPEED_GPIO(P, 4) GPIO_ACTIVE_HIGH>;
+> +		};
+> +	};
+> +
+> +	fan_leds {
 
-We may still need to drop this property from "required" section in DT
+Can you please order these unit-address-less nodes (iio-hwmon, leds,
+fan_leds, etc) alphabetically?
 
-> Best regards,
-> Krzysztof
-> 
-> 
+> +		compatible =3D "gpio-leds";
+> +
+> +		led-0 {
+> +			label =3D "fcb0fan0_ledd1_blue";
+> +			default-state =3D "off";
+> +			gpios =3D <&fan_io_expander0 0 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-1 {
+> +			label =3D "fcb0fan1_ledd2_blue";
+> +			default-state =3D "off";
+> +			gpios =3D <&fan_io_expander0 1 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-2 {
+> +			label =3D "fcb0fan2_ledd3_blue";
+> +			default-state =3D "off";
+> +			gpios =3D <&fan_io_expander1 0 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-3 {
+> +			label =3D "fcb0fan3_ledd4_blue";
+> +			default-state =3D "off";
+> +			gpios =3D <&fan_io_expander1 1 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-4 {
+> +			label =3D "fcb0fan0_ledd1_amber";
+> +			default-state =3D "off";
+> +			gpios =3D <&fan_io_expander0 4 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-5 {
+> +			label =3D "fcb0fan1_ledd2_amber";
+> +			default-state =3D "off";
+> +			gpios =3D <&fan_io_expander0 5 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-6 {
+> +			label =3D "fcb0fan2_ledd3_amber";
+> +			default-state =3D "off";
+> +			gpios =3D <&fan_io_expander1 4 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-7 {
+> +			label =3D "fcb0fan3_ledd4_amber";
+> +			default-state =3D "off";
+> +			gpios =3D <&fan_io_expander1 5 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type =3D "memory";
+> +		reg =3D <0x80000000 0x80000000>;
+> +	};
+> +
+> +	p1v8_bmc_aux: regulator-p1v8-bmc-aux {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "p1v8_bmc_aux";
+> +		regulator-min-microvolt =3D <1800000>;
+> +		regulator-max-microvolt =3D <1800000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	p2v5_bmc_aux: regulator-p2v5-bmc-aux {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "p2v5_bmc_aux";
+> +		regulator-min-microvolt =3D <2500000>;
+> +		regulator-max-microvolt =3D <2500000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	p5v_dac_aux: regulator-p5v-bmc-aux {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "p5v_dac_aux";
+> +		regulator-min-microvolt =3D <5000000>;
+> +		regulator-max-microvolt =3D <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	spi1_gpio: spi {
+> +		compatible =3D "spi-gpio";
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		sck-gpios =3D <&gpio0 ASPEED_GPIO(Z, 3) GPIO_ACTIVE_HIGH>;
+> +		mosi-gpios =3D <&gpio0 ASPEED_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
+> +		miso-gpios =3D <&gpio0 ASPEED_GPIO(Z, 5) GPIO_ACTIVE_HIGH>;
+> +		cs-gpios =3D <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
+> +		num-chipselects =3D <1>;
+> +
+> +		tpm@0 {
+> +			compatible =3D "infineon,slb9670", "tcg,tpm_tis-spi";
+> +			spi-max-frequency =3D <33000000>;
+> +			reg =3D <0>;
+> +		};
+> +	};
+> +};
+> +
+> +&fmc {
+> +	status =3D "okay";
+> +	flash@0 {
+> +		status =3D "okay";
+> +		m25p,fast-read;
+> +		label =3D "bmc";
+> +		spi-max-frequency =3D <50000000>;
+> +		#include "openbmc-flash-layout-128.dtsi"
+> +	};
+> +	flash@1 {
+> +		status =3D "okay";
+> +		m25p,fast-read;
+> +		label =3D "alt-bmc";
+> +		spi-max-frequency =3D <50000000>;
+> +	};
+> +};
+> +
+> +&peci0 {
+> +	status =3D "okay";
+> +};
+> +
+> +&mac2 {
 
--- 
-Yixun Lan (dlan)
+Same for all the phandle-referenced nodes throughout: please order them
+alphabetically. Another possible ordering is in unit address order, but
+I prefer alphabetical in the dts because there's no unit address in
+sight (it's in the corresponding dtsi).
+
+> +	status =3D "okay";
+> +	phy-mode =3D "rmii";
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_rmii3_default>;
+> +	fixed-link {
+> +		speed =3D <100>;
+> +		full-duplex;
+> +	};
+
+Andrew Lunn asked for a comment justifying the fixed-link node in [1]
+and you said you'd add it in [2], but there's no comment? Can you
+please add it?
+
+[1]: https://lore.kernel.org/all/32ff7ca8-9cb0-4889-adb0-a6dae735630b@lunn.=
+ch/
+[2]: https://lore.kernel.org/all/CAF7HswMRrs9hwKo_uHCLMtx7+h46-DPEJRcEqu0-z=
+EG4CVvvjg@mail.gmail.com/
+
+> +};
+> +
+> +&mac3 {
+> +	status =3D "okay";
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_rmii4_default>;
+> +	use-ncsi;
+> +};
+>=20
+
+*snip*
+
+> +
+> +&sgpiom0 {
+> +	status =3D "okay";
+> +	ngpios =3D <128>;
+> +	bus-frequency =3D <2000000>;
+> +	gpio-line-names =3D
+> +	/*"input pin","output pin"*/
+> +	/*A0 - A7*/
+> +	"power-chassis-good","FM_PLD_HEARTBEAT_LVC3_R",
+> +	"host0-ready","",
+> +	"CONTROL_VT2_SUPPLY1_CLOSE","FM_MDIO_SW_SEL_PLD",
+> +	"CONTROL_VT2_SUPPLY2_CLOSE","FM_88E6393X_BIN_UPDATE_EN_N",
+> +	"CONTROL_VT2_SUPPLY3_CLOSE","Sequence_TransFR_Alert",
+> +	"RETURN_CNTL1_FB","WATER_VALVE1_OPEN",
+> +	"RETURN_CNTL2_FB","WATER_VALVE2_OPEN",
+> +	"RETURN_CNTL3_FB","WATER_VALVE3_OPEN",
+> +	/*B0 - B7*/
+> +	"IT_STOP_PUMP_R_CPLD","WATER_VALVE1_CLOSE",
+> +	"IT_STOP_PUMP_SPARE_R_CPLD","WATER_VALVE2_CLOSE",
+> +	"IT_STOP_PUMP_2_R_CPLD","WATER_VALVE3_CLOSE",
+> +	"IT_STOP_PUMP_SPARE_2_R_CPLD","REPORT_VT2_SUPPLY1_CLOSE",
+> +	"RPU_2_READY_SPARE_PLD_R","REPORT_VT2_SUPPLY2_CLOSE",
+> +	"RPU_2_READY_PLD_R","REPORT_VT2_SUPPLY3_CLOSE",
+> +	"RPU_READY_SPARE_PLD_R","PCIE_SSD1_PRSNT_N",
+> +	"RPU_READY_PLD_R","",
+> +	/*C0 - C7*/
+> +	"IOEXP8_INT_N","",
+> +	"SUPPLY_CNTL1_FB","",
+> +	"SUPPLY_CNTL2_FB","",
+> +	"SUPPLY_CNTL3_FB","",
+> +	"PRSNT_TRAY1_TO_40_R_BUF_N","",
+> +	"PWRGD_TRAY1_TO_40_R_BUF","",
+> +	"SMALL_LEAK_TRAY1_TO_40_R_BUF_N","",
+> +	"LEAK_DETECT_TRAY1_TO_40_R_BUF_N","",
+> +	/*D0 - D7*/
+> +	"PRSNT_CANBUSP1_TRAY1_TO_32_N","",
+> +	"PWRGD_CANBUSP1_TRAY1_TO_32_PWROK","",
+> +	"SMALL_LEAK_CANBUSP1_TRAY1_TO_32_N","",
+> +	"LEAK_DETECT_CANBUSP1_TRAY1_TO_32_N","",
+> +	"PRSNT_CANBUSP2_TRAY1_TO_32_N","",
+> +	"PWRGD_CANBUSP2_TRAY1_TO_32_PWROK","",
+> +	"SMALL_LEAK_CANBUSP2_TRAY1_TO_32_N","",
+> +	"LEAK_DETECT_CANBUSP2_TRAY1_TO_32_N","",
+> +	/*E0 - E7*/
+> +	"PRSNT_CANBUSP3_TRAY1_TO_32_N","",
+> +	"PWRGD_CANBUSP3_TRAY1_TO_32_PWROK","",
+> +	"SMALL_LEAK_CANBUSP3_TRAY1_TO_32_N","",
+> +	"LEAK_DETECT_CANBUSP3_TRAY1_TO_32_N","",
+> +	"PRSNT_CANBUSP4_TRAY1_TO_32_N","",
+> +	"PWRGD_CANBUSP4_TRAY1_TO_32_PWROK","",
+> +	"SMALL_LEAK_CANBUSP4_TRAY1_TO_32_N","",
+> +	"LEAK_DETECT_CANBUSP4_TRAY1_TO_32_N","",
+> +	/*F0 - F7*/
+> +	"PRSNT_CANBUSP5_TRAY1_TO_32_N","",
+> +	"PWRGD_CANBUSP5_TRAY1_TO_32_PWROK","",
+> +	"SMALL_LEAK_CANBUSP5_TRAY1_TO_32_N","",
+> +	"LEAK_DETECT_CANBUSP5_TRAY1_TO_32_N","",
+> +	"PRSNT_CANBUSP6_TRAY1_TO_32_N","",
+> +	"PWRGD_CANBUSP6_TRAY1_TO_32_PWROK","",
+> +	"SMALL_LEAK_CANBUSP6_TRAY1_TO_32_N","",
+> +	"LEAK_DETECT_CANBUSP6_TRAY1_TO_32_N","",
+> +	/*G0 - G7*/
+> +	"PRSNT_CANBUSP7_TRAY1_TO_32_N","",
+> +	"PWRGD_CANBUSP7_TRAY1_TO_32_PWROK","",
+> +	"SMALL_LEAK_CANBUSP7_TRAY1_TO_32_N","",
+> +	"LEAK_DETECT_CANBUSP7_TRAY1_TO_32_N","",
+> +	"PRSNT_CANBUSP8_TRAY1_TO_32_N","",
+> +	"PWRGD_CANBUSP8_TRAY1_TO_32_PWROK","",
+> +	"SMALL_LEAK_CANBUSP8_TRAY1_TO_32_N","",
+> +	"LEAK_DETECT_CANBUSP8_TRAY1_TO_32_N","",
+> +	/*H0 - H7*/
+> +	"wCHASSIS0_LEAK_Q_N_R","",
+> +	"wCHASSIS1_LEAK_Q_N_R","",
+> +	"wCHASSIS2_LEAK_Q_N_R","",
+> +	"wCHASSIS3_LEAK_Q_N_R","",
+> +	"wCHASSIS4_LEAK_Q_N_R","",
+> +	"wCHASSIS5_LEAK_Q_N_R","",
+> +	"wCHASSIS6_LEAK_Q_N_R","",
+> +	"wCHASSIS7_LEAK_Q_N_R","",
+> +	/*I0 - I7*/
+> +	"wCHASSIS8_LEAK_Q_N_R","",
+> +	"wCHASSIS9_LEAK_Q_N_R","",
+> +	"wCHASSIS10_LEAK_Q_N_R","",
+> +	"wCHASSIS11_LEAK_Q_N_R","",
+> +	"wAALC_RPU_READY","",
+
+Out of curiosity, what's going on with the lower-case 'w' prefix here
+(and again below)?
+
+> +	"","",
+> +	"","",
+> +	"","",
+> +	/*J0 - J7*/
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	/*K0 - K7*/
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	/*L0 - L7*/
+> +	"wIT_GEAR_RPU_2_LINK_PRSNT_SPARE_N_R","",
+> +	"wIT_GEAR_RPU_2_LINK_PRSNT_N_R","",
+> +	"wIT_GEAR_RPU_LINK_PRSNT_SPARE_N_R","",
+> +	"wIT_GEAR_RPU_LINK_PRSNT_N_R","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	/*M0 - M7*/
+> +	"","",
+> +	"","",
+> +	"wPRSNT_SENSOR_N","",
+> +	"wPRSNT3_VT2_PLD_N","",
+> +	"wPRSNT2_VT2_PLD_N","",
+> +	"wPRSNT1_VT2_PLD_N","",
+> +	"wPRSNT3_RETURN_PLD_N","",
+> +	"wPRSNT2_RETURN_PLD_N","",
+> +	/*N0 - N7*/
+> +	"wPRSNT1_RETURN_PLD_N","",
+> +	"wPRSNT3_SUPPLY_PLD_N","",
+> +	"wPRSNT2_SUPPLY_PLD_N","",
+> +	"wPRSNT1_SUPPLY_PLD_N","",
+> +	"wPRSNT_LEAK11_SENSOR_R_PLD_N","",
+> +	"wPRSNT_LEAK10_SENSOR_R_PLD_N","",
+> +	"wPRSNT_LEAK9_SENSOR_R_PLD_N","",
+> +	"wPRSNT_LEAK8_SENSOR_R_PLD_N","",
+> +	/*O0 - O7*/
+> +	"wPRSNT_LEAK7_SENSOR_R_PLD_N","",
+> +	"wPRSNT_LEAK6_SENSOR_R_PLD_N","",
+> +	"wPRSNT_LEAK5_SENSOR_R_PLD_N","",
+> +	"wPRSNT_LEAK4_SENSOR_R_PLD_N","",
+> +	"wPRSNT_LEAK3_SENSOR_R_PLD_N","",
+> +	"wPRSNT_LEAK2_SENSOR_R_PLD_N","",
+> +	"wPRSNT_LEAK1_SENSOR_R_PLD_N","",
+> +	"wPRSNT_LEAK0_SENSOR_R_PLD_N","",
+> +	/*P0 - P7*/
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","",
+> +	"","";
+> +};
+>=20
+>=20
+
+*snip*
+
+> +
+> +&i2c6 {
+> +	status =3D "okay";
+> +
+> +	eeprom@50 {
+> +		compatible =3D "atmel,24c64";
+> +		reg =3D <0x50>;
+> +	};
+> +
+> +	io_expander0: gpio@20 {
+> +		compatible =3D "nxp,pca9555";
+> +		reg =3D <0x20>;
+> +		gpio-controller;
+> +		#gpio-cells =3D <2>;
+> +	};
+> +
+> +	io_expander1: gpio@21 {
+> +		compatible =3D "nxp,pca9555";
+> +		reg =3D <0x21>;
+> +		gpio-controller;
+> +		#gpio-cells =3D <2>;
+> +	};
+> +
+> +	io_expander2: gpio@22 {
+> +		compatible =3D "nxp,pca9555";
+> +		reg =3D <0x22>;
+> +		gpio-controller;
+> +		#gpio-cells =3D <2>;
+> +	};
+> +
+> +	io_expander7: gpio@23 {
+> +		compatible =3D "nxp,pca9555";
+> +		reg =3D <0x23>;
+> +		gpio-controller;
+> +		#gpio-cells =3D <2>;
+> +	};
+> +
+> +	rtc@51 {
+> +		compatible =3D "nxp,pcf8563";
+> +		reg =3D <0x51>;
+> +	};
+> +};
+> +
+
+*snip*
+
+> +
+> +&io_expander0 {
+
+io_expander0 is a label you've defined in this same dts, just above.
+Please just include the properties in the original node directly, don't
+separate them like this.
+
+Same applies to all other cases of the same pattern.
+
+Andrew
+
+> +	gpio-line-names =3D
+> +	"RST_POE_BMC_N", "POE_DISABLE_BMC_N_R",
+> +	"RST_FT4232_1_BMC_N_R", "RST_FT4232_2_BMC_N_R",
+> +	"RST_FT4232_3_BMC_N_R", "PRSNT_FANBP_0_PWR_N",
+> +	"PRSNT_FANBP_0_SIG_N", "PRSNT_POE_PWR_N",
+> +	"PRSNT_POE_SIG_N", "IRQ_POE_BMC_N_R",
+> +	"PWRGD_P3V3_ISO_POE_BMC_R", "88E6393X_INT_N_R",
+> +	"P48V_HSC_ALERT_N", "SMB_TMC75_TEMP_ALERT_N_R",
+> +	"DEV_DIS_N", "PCI_DIS_N";
+> +};
+> +
 
