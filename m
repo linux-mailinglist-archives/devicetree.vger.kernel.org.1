@@ -1,150 +1,148 @@
-Return-Path: <devicetree+bounces-252783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EBDBD041CB
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 17:00:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA19AD03BBD
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:18:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F41A7303BFDC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:53:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1F4BC32A001B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE497487083;
-	Thu,  8 Jan 2026 12:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506854A22DF;
+	Thu,  8 Jan 2026 12:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="UV8AvzP1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yf7Ccz9z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49214.qiye.163.com (mail-m49214.qiye.163.com [45.254.49.214])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0FA43C045;
-	Thu,  8 Jan 2026 12:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.214
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44ED480325;
+	Thu,  8 Jan 2026 12:15:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767874454; cv=none; b=PVS7sAuaYafrtG1dbmyeP4ZzgESn6EcAI1e2J0yXrG3Z75bGbiuYnA961tUiqEKBWvPDr7yLFy7dxW9JCR0TSFA1ZjMmQTEbxiLwAc32TZleY7osMAiXXdQVlYq0kQaFZucimeUlo8M/UdpNyl6uiJQx5QrF8GVIAwkLZ3QonbQ=
+	t=1767874516; cv=none; b=QyXFhSTtbq4vP2tjzxntBEeIyv3A0Ql6OGD5IBSQgNMsKydYIa5r4E/eamqLnTInEpcgIys1PcTECPUHOvFzUyeE5A7ctWlWigRC4HTjqoZEW4aKPk3RYCw0oBiV8TZfYslQOetYUKx20ZwMOgSweIrlZ9pQkDXzIeMhOQGXjy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767874454; c=relaxed/simple;
-	bh=Ilk2WGvg3Kck0HZM3LZ+QljxkpJY4ZY3QQ5L2/KjwmI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L0xzfj1sNzt3PdSjJ65YHdoEeln8h92+RbG/RrC4rCPh85HT33JSH6KlVGDg1p145TQiaWh8GRwXxu20aBopOQYjhSTtvI9/ct9cpybkjd/JNC/kjv/ci5CSoHeh6NlzbLmAx4kYvTWmOJLlZwjoIxN4I/6XzYawBTLpw6iKN4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=UV8AvzP1; arc=none smtp.client-ip=45.254.49.214
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.16] (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2ff5af838;
-	Thu, 8 Jan 2026 20:13:52 +0800 (GMT+08:00)
-Message-ID: <a2f5c2b3-2168-41b4-917f-183ab72a4499@rock-chips.com>
-Date: Thu, 8 Jan 2026 20:13:51 +0800
+	s=arc-20240116; t=1767874516; c=relaxed/simple;
+	bh=oBDZinY9Nh5D84J1Ns4d7Wu4t/l25XNvaZ8UJ6362WI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=L9AI0hDH+pw3cgOEiHvY0zf+ry9IyoekXnsAbBUaNV6nvQwg/pOLvZrZgo4LjBHcYh1hEI2KzvJKlEgHFTxGgibKNKIc5ymW0uURbfW1fe9rqOibbkfrxRDdMstnMXk3nTw3AKW3GjBh2iYnQBjoPUEx2BIA7ll/IZqo6jPIyPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yf7Ccz9z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1C7AEC116C6;
+	Thu,  8 Jan 2026 12:15:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767874515;
+	bh=oBDZinY9Nh5D84J1Ns4d7Wu4t/l25XNvaZ8UJ6362WI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Yf7Ccz9zhSKaJnsXZOc6qcXEwG1mOb+vBWFcfQOGl9DrepkBwqufe1TH1Hd9z3tcn
+	 TlcYPqyi7Lrdj6etZq0G4dC7nv84gjee3Np0XAJEdaCy6qjkzF71VssYCaQQ8VQvs8
+	 EaU+C7hgdSgb29gpR9E8NYLWLccWZBaqFBdVO73wrYs/STTxT0arHktD/opZJurXO2
+	 AtowHdgccloFDSomAczkY0T6PnyaBCH6F5Zw3dIL6hSZpI/3MmD6xD+49m6k/35Njm
+	 V/iPOk08g+jQNos7h4SCitWsYlkxikqr666FuKih94sDMarUhYPTWazC8ZUY1twTyp
+	 tA+c8/ngkv6pw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 117E1D185EB;
+	Thu,  8 Jan 2026 12:15:15 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH v3 0/6] ADF41513/ADF41510 PLL frequency synthesizers
+Date: Thu, 08 Jan 2026 12:14:49 +0000
+Message-Id: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/7] dt-bindings: pinctrl: rockchip: Add RMIO
- controller binding
-To: Linus Walleij <linusw@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner
- <heiko@sntech.de>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- tao.huang@rock-chips.com
-References: <20251216112053.1927852-1-ye.zhang@rock-chips.com>
- <20251216112053.1927852-7-ye.zhang@rock-chips.com>
- <CAD++jLntu4LY=VHOMSXeLKXOBD9MTNziv47B0qkDjxUa1xAsng@mail.gmail.com>
- <85032ae4-4d82-4884-aa7c-b69fee76d509@rock-chips.com>
- <CAD++jLnH2vLNxTLj8Lw8RnOHxfitwi3G_8WCBtu+_=XL3ryH_w@mail.gmail.com>
-From: Ye Zhang <ye.zhang@rock-chips.com>
-In-Reply-To: <CAD++jLnH2vLNxTLj8Lw8RnOHxfitwi3G_8WCBtu+_=XL3ryH_w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9b9d870e4309d8kunm04506d9976d9ca
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkoZT1YaHh1MTktNHUgZH0JWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=UV8AvzP1G+MxRLfAXtJtmMOMR0xcdDJUv3mojtqaLqKD+Z5/M3TRVtZjk3TfzxuWQYa3jqB77SY4oVsFjc5DjUX4G2ETFwmBWpscdhdvUh8j3EUCwEdcuzXbkpI2mBU2hvzcc+HqdPGhZ1DrjbsNfaRZRdUdW6NzmEOva4rFhc4=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=qKUPfb6RjX38dUPs0zWmKo6fI+2s9bZCTUhRH83gC7Y=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALmfX2kC/33NQQrCMBCF4atI1kYyibWpK+8hLqbNpB3QRhIJS
+ undTbsRQVz+D+abSSSKTEkcN5OIlDlxGEuY7UZ0A449SXalhVa6AgAl0fk9VGAkc5AucqYoETu
+ 0WHurLIlyeY/k+bmq50vpgdMjxNf6JMOy/vcySCW187Yl5V13oBOOeA39rgs3sYBZfxANzW9EF
+ 6Ql3aA1rqob84XM8/wGS2mnQ/wAAAA=
+X-Change-ID: 20251110-adf41513-iio-driver-aaca8a7f808e
+To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767874513; l=2780;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=oBDZinY9Nh5D84J1Ns4d7Wu4t/l25XNvaZ8UJ6362WI=;
+ b=Qd5KgcRRfQJFn4BzMgxYGSE4nES+ykF2gna/smPyX12Jj5WkQUVtNM8YXlBzFEXzfY9QpuV0y
+ /77qAjE0E94CEoFN8lJBYjbTmTYBhkxEZFm1pQXbI3MTlqHGoCdSi4X
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
 
+This patch series adds support for the Analog Devices ADF41513 and ADF41510
+ultralow noise PLL frequency synthesizers. These devices are designed for
+implementing local oscillators (LOs) in high-frequency applications.
+The ADF41513 covers frequencies from 1 GHz to 26.5 GHz, while the ADF41510
+operates from 1 GHz to 10 GHz.
 
-在 2026/1/4 19:44, Linus Walleij 写道:
-> On Sat, Dec 27, 2025 at 3:46 AM Ye Zhang <ye.zhang@rock-chips.com> wrote:
->
->> I understand your preference for standard bindings.  However, there is a
->> specific constraint here: the RMIO acts as a secondary layer of muxing,
->> sitting behind the primary IOMUX controller.
->>
->> The existing Rockchip pinctrl binding uses the vendor-specific
->> rockchip,pins property for the primary IOMUX configuration.  If I were
->> to use the standard pinmux property for RMIO, the node would contain
->> mixed bindings like this:
->>
->> node {
->>       /* Primary IOMUX (existing binding) */
->>       rockchip,pins = <1 RK_PB1 16 &pcfg_pull_none>;
->>       /* Secondary RMIO  */
->>       pinmux = <(RMIO_ID << 16) | (RMIO_PIN << 8) | RMIO_FUNC>;
->> };
->>
->> Since this node describes a single hardware pin configuration that
->> requires two separate hardware settings (Primary Mux + Secondary RMIO),
->> I thought keeping the secondary config as a vendor-specific property
->> (rockchip,rmio) alongside rockchip,pins would be more consistent and
->> less confusing than mixing legacy custom bindings with standard pinmux.
-> I see the concern but I would say two wrongs doesn't make one right.
->
-> The DT binding people will have to say what to do here, but ideally
-> I would say the primary IOMUX should be modified to *also* *additionally*
-> support the standard bindings and deprecating the old rockchip,pins,
-> and then you can consistently use the pinmux=<>; binding in new
-> trees for both pinmuxes.
->
-> I understand that maybe you are only working on this other controller
-> and might feel that the primary IOMUX is none of your concern,
-> but someone has to stand up and take the responsibility for the system
-> as a whole, if no-one else then the Rockchip SoC maintainer, else
-> we get throw-over-the-wall-engineering.
-Hi Linus,
+Key features supported by this driver:
+- Integer-N and fractional-N operation modes
+- High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
+- 25-bit fixed modulus or 49-bit variable modulus fractional modes
+- Digital lock detect functionality
+- Phase resync capability for consistent output phase
+- Load Enable vs Reference signal syncronization
 
-We have discussed this internally, and we fully agree with your suggestion:
-the driver should be modified to *additionally* support the standard
-bindings, allowing us to eventually deprecate the old `rockchip,pins`.
+The series includes:
+1. PLL driver implementation
+2. Device tree bindings documentation
+3. IIO ABI documentation
 
-**Regarding the RMIO support in this series:**
-I am willing to implement the standard `pinmux` binding for the
-**RMIO** part immediately in this v5. This ensures that the new feature
-starts with the correct, standard binding.
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+---
+Changes in v3:
+- Use FIELD_MODIFY macro in driver implementation
+- Drop refin_frequency iio attribute
+- Drop muxout-select property from dt-bindings (and rename logic-level property)
+- Use -mhz suffix in power-up frequency property
+- Address documentation issues
+- Link to v2: https://lore.kernel.org/r/20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com
 
-**Regarding the primary IOMUX:**
-However, the RK3506 pinctrl support is built upon the existing
-`pinctrl-rockchip` driver infrastructure, which was originally designed 
-around
-the `rockchip,pins` property. Refactoring the driver to support the standard
-`pinmux` binding (and the suggested nested node structure) is a significant
-undertaking that involves core logic changes and regression risks for older
-SoCs. Mandating this refactoring as a prerequisite for RK3506 support
-would effectively block this SoC from being supported upstream for a 
-long time.
+Changes in v2:
+- separate driver implementation from extra features and improve commit messages
+- use macros from units.h
+- explanation of custom parse function: adf41513_parse_uhz
+- reorganize driver data structures
+- drop clock framework support for now
+- reorganize documentation
+- Link to v1: https://lore.kernel.org/r/20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com
 
-Could we allow RK3506 to follow the existing driver's style for now to 
-ensure
-consistency and timely support? We agree that migrating to standard pinmux
-bindings is the right direction, but we believe it should be handled as a
-separate, dedicated project in the future rather than part of this 
-enablement series.
+---
+Rodrigo Alencar (6):
+      dt-bindings: iio: frequency: add adf41513
+      iio: frequency: adf41513: driver implementation
+      iio: frequency: adf41513: handle LE synchronization feature
+      iio: frequency: adf41513: features on frequency change
+      docs: iio: add documentation for adf41513 driver
+      Documentation: ABI: testing: add common ABI file for iio/frequency
 
-Hi Heiko,
-Do you agree with this?
-1.        Use standard `pinmux` for RMIO in this series.
-2.        Keep `rockchip,pins` for the primary IOMUX for now.
-3.        Plan a future refactoring to migrate the primary IOMUX to 
-standard bindings.
+ Documentation/ABI/testing/sysfs-bus-iio-frequency  |   11 +
+ .../bindings/iio/frequency/adi,adf41513.yaml       |  234 ++++
+ Documentation/iio/adf41513.rst                     |  199 +++
+ Documentation/iio/index.rst                        |    1 +
+ MAINTAINERS                                        |   10 +
+ drivers/iio/frequency/Kconfig                      |   10 +
+ drivers/iio/frequency/Makefile                     |    1 +
+ drivers/iio/frequency/adf41513.c                   | 1295 ++++++++++++++++++++
+ 8 files changed, 1761 insertions(+)
+---
+base-commit: fb2f4eb29a258145b0336601f00509cab6e93e7c
+change-id: 20251110-adf41513-iio-driver-aaca8a7f808e
 
 Best regards,
-Ye Zhang
+-- 
+Rodrigo Alencar <rodrigo.alencar@analog.com>
+
+
 
