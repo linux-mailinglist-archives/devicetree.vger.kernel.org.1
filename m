@@ -1,85 +1,96 @@
-Return-Path: <devicetree+bounces-252550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC109D00F39
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 05:07:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C125D00F5D
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 05:15:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 855B2300C0EF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 04:07:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 56AEB3013570
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 04:14:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3981218AAB;
-	Thu,  8 Jan 2026 04:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F040288C3D;
+	Thu,  8 Jan 2026 04:14:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C9St3MjR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QjObOs85"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22026BA21;
-	Thu,  8 Jan 2026 04:07:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B99FBA21
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 04:14:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767845228; cv=none; b=HbmxEL+p5ikH8U1DunIhGxU6AkWvkKDnSXZulVi3XtspAqxaksHfNaiKj1aQh2PViOE1ZpXWmc6xes7qx+AuDED8xuk/GEwe8PMlaAZv0chnmkxjc72GC0bItA6mN2EruUhCUscoqvfnrHZ0Nr4DwLu98fRt1jl67deH+m+W48M=
+	t=1767845689; cv=none; b=GvPzS1aV+zPBvues/XBJjwIyGj2flppZbwRYYc4vxrUsNoHotY2OMix8jBtkLpE+Z3QRj6/FKljQwq/15K2lPQ70CaHhwSSSYxntC8cvxLeMBCaMeFNkSAiJX2VX4vjvUF2JP73dnQmsCXI4scwge0eN0jboF5dXbOtCB7Ea2hs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767845228; c=relaxed/simple;
-	bh=9SMcQcVKDqK4arLsjjtZ9E8UQHUt37+fKvIrTdc9Ijw=;
+	s=arc-20240116; t=1767845689; c=relaxed/simple;
+	bh=5v+QV2skJk4921XwaaCIdZfyxCtahUKTYMsazQJoUKw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nU4ZnF+zI7uzSu/c2qUA4BZegdRzdGal8yy8CNHNkrsEhGAUlcQKd/L93sjYd2J3MEojJg/LN9SPSBYn0jW/2/3pHnRIoWBOBdcy0eTXts4rF0cemfJK5nWVlsKKaSE+yWdxRiTBXrQ2kWbyB12GZ/WN7Dpxmci1HJxQXGrJjTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C9St3MjR; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767845226; x=1799381226;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9SMcQcVKDqK4arLsjjtZ9E8UQHUt37+fKvIrTdc9Ijw=;
-  b=C9St3MjRuw81VT0GAIBtTM2JjjXFC46gmMdFEJCbpp4DEpZ4PkP99jPK
-   i8ZR8XBKvb5SLGOi0Qh5eVRmSWEnhBKCaDVI1ZSEzmp3sTF2W/63vC8S4
-   aOHqxqIFqk00xf7d3UYgTZdihgIk758VT5Ytf8fw2DRqCPt38qF4dT1nQ
-   j2dRDaQq9DBtX1G9nXLs4W5qaa3+zLnTzvnjb65PaV7cMM29Vvfoust37
-   bFHGh1AXD9Xv1b+4+o8Zum7esrWZWTbh6GDBKvBsBAXjU7CCO+z+66Vh/
-   d3UcODpqaUF2o3+UVNeenGUAJPTeql0aTXuI+xxOKeu/4vqoC5P2mbkfV
-   A==;
-X-CSE-ConnectionGUID: z0ANQf6bRHaXV/HFwwqVNg==
-X-CSE-MsgGUID: EptWV4pqQymViviztQ127Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="80672305"
-X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; 
-   d="scan'208";a="80672305"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 20:07:05 -0800
-X-CSE-ConnectionGUID: isuqpZW6Rfad1A8Ia+gdhQ==
-X-CSE-MsgGUID: dQ1ygzaJQqO7IIojS0WvQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; 
-   d="scan'208";a="207577195"
-Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
-  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2026 20:07:05 -0800
-Date: Wed, 7 Jan 2026 20:13:32 -0800
-From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-acpi@vger.kernel.org, Chris Oo <cho@microsoft.com>,
-	Dexuan Cui <decui@microsoft.com>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Ricardo Neri <ricardo.neri@intel.com>, Wei Liu <wei.liu@kernel.org>,
-	"Kirill A. Shutemov" <kas@kernel.org>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Yunhong Jiang <yunhong.jiang@linux.intel.com>,
-	Michael Kelley <mhklinux@outlook.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	"Rafael J. Wysocki (Intel)" <rafael.j.wysocki@intel.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=kcEdsNrO34ngLZ+znhozaD46eDEKqs3OtMPPLtMA9TcBnc56gAAgav2ewcDZG9ss/ou0aP7EHDmV2g+FKDw2GGT7ECy0jWH+I7I9dwCGSD2bspPuDO8VRl2lSH+wCnCUd2atXZRQDOswiWxs0Rj5F9G2uHmmI7Tb/vmhCrUX/Nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QjObOs85; arc=none smtp.client-ip=209.85.222.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-8b2ea2b9631so313238985a.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 20:14:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767845686; x=1768450486; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2yAjFIwjl4VMJZ1+V1C6pz96OIbw8JbCPoa9P5fH03s=;
+        b=QjObOs85/sJzp7tOXRyN7XC9v6hjIbf3RFCh4drQXSL23apYWZLl7XKZrp10+OPmM0
+         nYwlwkXUnEQ0kkmegsFl1PV0FQd5D6hZbWihISb4vUnf+u/TW9GgR7PMcrXLecbMU8s0
+         2dt5NH0wNNON148WOnic3bj7J6SFGWblXysL6wicEI18dhkmveIurjEOHLTZt5HtgPgH
+         E1JhnSBe+yAOHCDhD+I6oq8IKJ3pkuYPai49DpZeD+tTfPj6sTXzsfaIwVUTDCoL/cOA
+         PdzLJpbLt1/nVS62HWi+B1XLkKdf9sUmzuC5+Yy/K1IuKdzywlxPpS59Nht9WdyAELG/
+         XmSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767845686; x=1768450486;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2yAjFIwjl4VMJZ1+V1C6pz96OIbw8JbCPoa9P5fH03s=;
+        b=qasK3sqonQrOGYgHCWYW6yWtUgTId/j241uHnKQUjCjbNTOz/4OjHf1LhxJJOUt2iu
+         Lz9yr5z+C1dpIivQ1OwFNE/PYLSIIMBJrrbCKsPd8qfP90VRqdV1SwICM0iNAReevPlf
+         5soPH664bh7ZyxvE/8sIo6fC23F+i7Xs2NDVXi9TW9nQ0aNbHEBn+X+XWtlJ649Eg/9L
+         XKl5MHcP847IXGvynqlc8M6xHL30OQXWkgqwABbwgf7PnNobMUoZFjjEKNuFSegKkvIi
+         +1TJtQemFz10SNA+Qnp5LJagmBxy9+IHwGThE1xQL88NBRsJB9DTxAgapHYARddh7kB+
+         gglA==
+X-Forwarded-Encrypted: i=1; AJvYcCU+AplNmjpCZYuXdHz8wjc7sIWd7JlU5yuN3yXS39ryN7RYf837VGfgX6wsOYhkh+87y3KStxTBzExV@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvmdGapFYjeP/Mtnape/Wbww3cI15AxVNfZrBNaoxS7Zyfkh+F
+	020VaDyqNFy9FgF7FhlQAbJlbp23gUeoADuxtDbLJdNdBU6f/1ywsDb0
+X-Gm-Gg: AY/fxX6WpGpbFThFJtVSjo967iyFd/2hwxlpcNSIabbA7ZQVS9HELLlK5LmttWCtT7Z
+	IIJWfjx4noyxWzOy7isMTLHzpk7GtpxUN6weHUVHzRMJ1Ngg1NcCA92Rv5dokf15wFbBjuaQG5c
+	VPjP6Jyi6ziDmvGvbe2Z6mqmGgBW8S5L3ReYu1/cQBcFiHq/4DoKNRrMIkAHrbuhq8qGAKXVNn2
+	+qRitXkMtdh66DHdcyNBhvucxqGonOAHcuGVkaX/EPvwaFZGp7oGq88H+ChD6+KA5qBwyOO5n2J
+	ClSo9PK3fgeykG0t9aM5ylFxEPGGZfGZ2IubEmDGhVjR2ae/a4BrnUoJpqzkELLNzyq8knEppUQ
+	UHXRjJ0B7kAm0KPyTCDUmqgq7xbHR1Ck2iqOr/4uH5eXEh7NrWXjyKFPISVQrCyAQ/m3LbXnrVO
+	/dnmv8zdKfBYpurw==
+X-Google-Smtp-Source: AGHT+IF3KLEAoIR6iLJwpBg2iAqPNGhRNw28m2GAujrjVEQ/ioKoivK+pFkCUvt4wmrDlxfnphqTjA==
+X-Received: by 2002:a05:620a:1a01:b0:8b2:e922:5282 with SMTP id af79cd13be357-8c389384396mr587730185a.26.1767845685882;
+        Wed, 07 Jan 2026 20:14:45 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c37f4a7962sm499071885a.11.2026.01.07.20.14.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jan 2026 20:14:45 -0800 (PST)
+Date: Wed, 7 Jan 2026 23:15:06 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-hyperv@vger.kernel.org, x86@kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 03/10] dt-bindings: reserved-memory: Wakeup Mailbox
- for Intel processors
-Message-ID: <20260108041332.GA3378@ranerica-svr.sc.intel.com>
-References: <20260107-rneri-wakeup-mailbox-v8-0-2f5b6785f2f5@linux.intel.com>
- <20260107-rneri-wakeup-mailbox-v8-3-2f5b6785f2f5@linux.intel.com>
- <176782823140.2300431.3081932954431387872.robh@kernel.org>
+	Robert Mader <robert.mader@collabora.com>,
+	Bryan O'Donoghue <bod@kernel.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v6 2/5] media: i2c: imx355: Support devicetree and power
+ management
+Message-ID: <aV8vSuCDhqCcuwuL@rdacayan>
+References: <20260107043044.92485-1-mailingradian@gmail.com>
+ <20260107043044.92485-3-mailingradian@gmail.com>
+ <aV6qnjyXV-yTLqVl@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,100 +99,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <176782823140.2300431.3081932954431387872.robh@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <aV6qnjyXV-yTLqVl@kekkonen.localdomain>
 
-On Wed, Jan 07, 2026 at 05:23:51PM -0600, Rob Herring (Arm) wrote:
+On Wed, Jan 07, 2026 at 08:49:02PM +0200, Sakari Ailus wrote:
+> Hi Richard,
+> On Tue, Jan 06, 2026 at 11:30:41PM -0500, Richard Acayan wrote:
+> > A device tree compatible makes it possible for this driver to be used on
+> > Open Firmware devices. Initialization of power-managed resources such as
+> > the reset GPIO and voltage regulators can be specified in the device
+> > tree and handled by the driver. Add support for this so the Pixel 3a can
+> > use the driver.
+> > 
+> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> > Nacked-by: Krzysztof Kozlowski <krzk@kernel.org>
 > 
-> On Wed, 07 Jan 2026 13:44:39 -0800, Ricardo Neri wrote:
-> > Add DeviceTree bindings to enumerate the wakeup mailbox used in platform
-> > firmware for Intel processors.
-> > 
-> > x86 platforms commonly boot secondary CPUs using an INIT assert, de-assert
-> > followed by Start-Up IPI messages. The wakeup mailbox can be used when this
-> > mechanism is unavailable.
-> > 
-> > The wakeup mailbox offers more control to the operating system to boot
-> > secondary CPUs than a spin-table. It allows the reuse of the same wakeup
-> > vector for all CPUs while maintaining control over which CPUs to boot and
-> > when. While it is possible to achieve the same level of control using a
-> > spin-table, it would require specifying a separate `cpu-release-addr` for
-> > each secondary CPU.
-> > 
-> > The operation and structure of the mailbox are described in the
-> > Multiprocessor Wakeup Structure defined in the ACPI specification. Note
-> > that this structure does not specify how to publish the mailbox to the
-> > operating system (ACPI-based platform firmware uses a separate table). No
-> > ACPI table is needed in DeviceTree-based firmware to enumerate the mailbox.
-> > 
-> > Nodes that want to refer to the reserved memory usually define
-> > a `memory-region` property. /cpus/cpu* nodes would want to refer to the
-> > mailbox, but they do not have such property defined in the DeviceTree
-> > specification. Moreover, it would imply that there is a memory region per
-> > CPU. Instead, add a `compatible` property that the operating system can use
-> > to discover the mailbox.
-> > 
-> > Reviewed-by: Dexuan Cui <decui@microsoft.com>
-> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > Acked-by: Rafael J. Wysocki (Intel) <rafael.j.wysocki@intel.com>
-> > Co-developed-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> > Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> > Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> > ---
-> > Changes in v8:
-> >  - None
-> > 
-> > Changes in v7:
-> >  - Fixed Acked-by tag from Rafael to include the "(Intel)" suffix.
-> > 
-> > Changes in v6:
-> >  - Reworded the changelog for clarity.
-> >  - Added Acked-by tag from Rafael. Thanks!
-> >  - Added Reviewed-by tag from Rob. Thanks!
-> >  - Added Reviewed-by tag from Dexuan. Thanks!
-> > 
-> > Changes in v5:
-> >  - Specified the version and section of the ACPI spec in which the
-> >    wakeup mailbox is defined. (Rafael)
-> >  - Fixed a warning from yamllint about line lengths of URLs.
-> > 
-> > Changes in v4:
-> >  - Removed redefinitions of the mailbox and instead referred to ACPI
-> >    specification as per discussion on LKML.
-> >  - Clarified that DeviceTree-based firmware do not require the use of
-> >    ACPI tables to enumerate the mailbox. (Rob)
-> >  - Described the need of using a `compatible` property.
-> >  - Dropped the `alignment` property. (Krzysztof, Rafael)
-> >  - Used a real address for the mailbox node. (Krzysztof)
-> > 
-> > Changes in v3:
-> >  - Implemented the mailbox as a reserved-memory node. Add to it a
-> >    `compatible` property. (Krzysztof)
-> >  - Explained the relationship between the mailbox and the `enable-mehod`
-> >    property of the CPU nodes.
-> >  - Expanded the documentation of the binding.
-> > 
-> > Changes in v2:
-> >  - Added more details to the description of the binding.
-> >  - Added requirement a new requirement for cpu@N nodes to add an
-> >    `enable-method`.
-> > ---
-> >  .../reserved-memory/intel,wakeup-mailbox.yaml      | 50 ++++++++++++++++++++++
-> >  1 file changed, 50 insertions(+)
-> > 
+> Uh-oh.
+(snip)
+> > +static int imx355_power_on(struct device *dev)
+> > +{
+> > +	struct i2c_client *client = container_of(dev, struct i2c_client, dev);
+> > +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> > +	struct imx355 *imx355 = to_imx355(sd);
+> > +	int ret;
+> > +
+> > +	ret = clk_prepare_enable(imx355->clk);
+> > +	if (ret) {
+> > +		dev_err(dev, "failed to enable clocks: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = regulator_bulk_enable(ARRAY_SIZE(imx355_supplies),
+> > +				    imx355->supplies);
+> > +	if (ret) {
+> > +		dev_err(dev, "failed to enable regulators: %d\n", ret);
+> > +		goto error_disable_clocks;
+> > +	}
+> > +
+> > +	gpiod_set_value_cansleep(imx355->reset_gpio, 1);
+> > +	usleep_range(5000, 5100);
+> > +	gpiod_set_value_cansleep(imx355->reset_gpio, 0);
+> > +	usleep_range(8000, 8100);
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/reserved-memory/intel,wakeup-mailbox.yaml:23:1: [warning] too many blank lines (2 > 1) (empty-lines)
+> Where do these values come from? Apparently 1 ms is required (after lifting
+> xshutdown) before reading identification register and 10 ms is required
+> (from the same point of time) before streaming can be enabled.
 
-This got triggered by an empty line in an patch already reviewed by the DT
-binding maintainers. Previous versions did not trigger this warning since
-the check to allow at most 1 empty line is rather recent.
+I don't have the hardware specification. The sequence seemed to last
+12-13 ms. Dividing the delays are a guess and the camera can usually
+open at least a few times.
 
-Would it be possible for the review proceed? I am happy to post a new version
-fixing this after the rest of the patches have been reviewed.
+The final 8 ms wait can be extended to 10 ms (assuming xshutdown is the
+same as the reset line). Is there a minimum time for asserting the reset
+(currently 5 ms), or can it be reduced to 1 ms?
 
-Thanks and BR,
-Ricardo
+New sequence (maybe, if the docs support it):
+
+	gpiod_set_value_cansleep(imx355->reset_gpio, 1);
+	usleep_range(1000, 2000);
+	gpiod_set_value_cansleep(imx355->reset_gpio, 0);
+	usleep_range(10000, 11000);
 
