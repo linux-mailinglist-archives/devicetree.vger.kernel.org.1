@@ -1,107 +1,192 @@
-Return-Path: <devicetree+bounces-252673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABF75D0208F
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:10:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04D21D02212
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:32:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8A511312C569
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:54:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BBCE1337EFF3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:50:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85AAA37F0EB;
-	Thu,  8 Jan 2026 08:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAB237F749;
+	Thu,  8 Jan 2026 08:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="NtX6E90V"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="WRwvQoOl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com [74.125.82.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 430F637C0EA;
-	Thu,  8 Jan 2026 08:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 766E937F72B
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:58:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767862722; cv=none; b=ojM5zPjJiFvsD/TFSSaUTL2VJQRUArYXST96sHdf8wD4b0CeZkkRUQNkG6fLM+NNFBcsmubxPLpKLRNehIQhf3UprTa7WG3yWMS6BvyV3kpURxgyiW/PlrwjHAj6ndnuZDreo78yUNEThPKjErdPheJFxhEAdPfPhVuzDtzg3gc=
+	t=1767862731; cv=none; b=MJ3vKcL+/2ucm/02sxbGB+dNkmAHveKy6MWzPs42eLWdEl9PubRypLhnIi88e612ekCsNRVnCwEdPJhVLJ8GGeGLzvCoO/ebBqXxq4KIhTpjAxy6U8HFejlsT1MwKpeWY56tMQurNlhr300bp677cnVqh6HCvnuS2Rlla/EpbEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767862722; c=relaxed/simple;
-	bh=z1B+1oi4CAD0tQkvKmKLiIb5U2yqfEVUHlDrA4aF1s8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=J5NCQjPqX2hH3tu6rkVrabBLltNeELSZTJAFc022OMXLo61G/HteBzMsndLsIEXXJ5jY0LePXINEFlWkZQyDml2gxWcNclna3lnjxeIEdfmPS6otJOoddjTyMKWCwaYcNUaxofi0T3Inc2tonIyOe2lM2OLEmDTTuh50HNi4t8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=NtX6E90V; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1767862731; c=relaxed/simple;
+	bh=g6bPLC0uhgJGfGzdr7jciYO1TYQnfhcR7gx4FwvNLV0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=bnRVLfkH5t6rnYZTftUKBZjhqbmkNmXuDUtIJcn+zfqBsJb85uAdR+i13DKUCq6o9UcuWldPI1+VDyZyhj56uH2EJsrZI/0XbOnEc6JUGzscnzwhU+AyJuWej1aUCIZdvb4gvYqQAx8gxZEKS/6i2pYVDmdatRkH5VSizQ7OoBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=WRwvQoOl; arc=none smtp.client-ip=74.125.82.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-dy1-f174.google.com with SMTP id 5a478bee46e88-2ae53df0be7so3786021eec.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:58:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1767862706;
-	bh=R1YVWqFT14aajrU8NomY7blt6pzz0A0j+Gh5vTz+QFo=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=NtX6E90VRts1BpslEkR/LrcMeLsX9mJCEl0PbGdIGjzqq3QgZSl8BWv+uHesGem5r
-	 cmcgNipH1BccS8u9WolVMloXsT+yhR1eTGrqiX14w+kMai29bSXomqM06yb8IgR01z
-	 W7zzbUrfOLwmRxHt2Um7UIQBbR27nrIyck667oQa7Sz1HfhtOHTPiomqX66JtQnnff
-	 2FA4q1jxoQAyiOXEF6skiSqEaCrbYbrRZjuvpEJutJ8GBma7pTEi7x25J/mu0zhuLw
-	 6HyRjbbv/WTrBKgOUFwjinVXrkTgUDJ0/hAo4yCNCCpYg7ihKMHaMRulrlb6dfZYig
-	 PK+iQ9g1WacRQ==
-Received: from [192.168.68.115] (unknown [180.150.112.60])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 747BE79F8C;
-	Thu,  8 Jan 2026 16:58:25 +0800 (AWST)
-Message-ID: <909110018686854d129ec579cd3852d29ab60be6.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] arm64: dts: nuvoton: Add missing "device_type" property
- on memory node
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Avi Fishman <avifishman70@gmail.com>, Tomer
- Maimon	 <tmaimon77@gmail.com>, Tali Perry <tali.perry1@gmail.com>, Patrick
- Venture	 <venture@google.com>, Nancy Yuen <yuenn@google.com>, Benjamin Fair
-	 <benjaminfair@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>
-Date: Thu, 08 Jan 2026 19:28:24 +1030
-In-Reply-To: <7e20473324c8da16fa86f72af950b8e8eac92a1b.camel@codeconstruct.com.au>
-References: <20260105193232.3167128-1-robh@kernel.org>
-	 <7e20473324c8da16fa86f72af950b8e8eac92a1b.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+        d=sifive.com; s=google; t=1767862720; x=1768467520; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OPMKY7Ve7//uye45o8kcyRKc3naps5DDhGu7uTz/qYs=;
+        b=WRwvQoOlSBPKAnSmbospln+srPGi8OdXfmt+UX42zam33NA29NOmRIGR3x2nAfiWRp
+         xCdbjmTUpJtn7RUn9oUPkTQZea7xVpUifZ5F7ymYrSE1vZY98Ux/ej8ou9RoH/sFpsG6
+         z8lh8GHzWPP3ZZID67LdlkfoSn6FPaOsSFHf25BS3rbA7sL3EEXisb8uGhnldxE2/OPO
+         6T/Dwba/IpRRGhxG3Tvxh/64dOv5euUbmdwQkG9VW52J0d00vaAx3kRuuTyIVAYRdW3S
+         Ig1lbN/jMeMjwcuWhdEmyqsUU8xueOhCMXpEbr7gpakoDmnkdCsYAmAt1QJrSYka1UKX
+         R6ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767862720; x=1768467520;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=OPMKY7Ve7//uye45o8kcyRKc3naps5DDhGu7uTz/qYs=;
+        b=kfnupfacF1e7sBvdqkK5PDC9kGBvvz5P+4PRmEr41O7nLJ5JtUe+4noBK9O1DgNdCr
+         f4fN1FqgeiIM1XmApKsOKC5WFl228Z28vJqFYcwnXtu0oJZ4v9RGWw0T2+1Zos0GLp0c
+         qt3tlFKfj3bDACXLWpyen5vluNJVf7fe7QHOBb3WU6YCK3BUMVrkR1nGSdu3JKpm73lU
+         xEmZNy6PFS/PGOaYB9rehA68ZA5lQLX6fugwXK0g5tUpwHaH6/IA2PMrCa5W/JD15ROK
+         SXKHZYw8eesB9KSK56GL+B/c1QD1llyS0rmFvlD379LkMMEcAJ+r5X4R/fh/usaTWeom
+         NjfA==
+X-Forwarded-Encrypted: i=1; AJvYcCVV3EZBKS8a2GiVHAG3aQp3S7ShrlSy0oxqp3hPnPlhZMEjagLP4uHhZ+2mLOTt/jL0hElU1RZaiH+H@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAn0/7+O1BVYrn4FoYZXu+Rhjoba3S0PXQiurO8mMCQhCCu1QJ
+	LgLZzoMGb1MwN6k4D3RmNO+HXSOmEBCMqChSBzRhNWLwEqS3WP7nPIXLbh1GtB0XLb0=
+X-Gm-Gg: AY/fxX72LnaABbfAiGf07cnhzTvQ1aSlLj7+/1lO41DklWsArPoB2tqbsER+HsBLILl
+	B/mVXjEG77UrkBhcv4OIagtyA5zjV2VKKG/GZ9ANhKVxj+2mmTHwWGcXQKrk5N/yCiNR4lyn61g
+	mKbjaYNSEX6s3sDLXmfA5FnOoeEpKAGR7K9Dw/gllftCq7Ttn51Px5+6ixsi7PwsjjaR/akgfsy
+	XjtQLRqY8cwdEiGDOKeyMzUWBvMlmZ7lCWolJQKZDa5ZF+9xf24n0QSTyd50yh3KR22T9+90UQJ
+	zM5DOdyuo2E39J42O2qquSv5cnFNgNc8IuXrdVmVEk/TRFztSZeK95VbU5O1nFe85t0UZB/mkoQ
+	79NzA69PcKurE+DLO7kaMadQ5YOdY4ZknjKVXxT8PUg2kL+PWmES7eqWxXW05Y9ePOQRNMFFRdB
+	yw9BdXR6brGuaGxO1GHRWXjeY=
+X-Google-Smtp-Source: AGHT+IGeM165oEvyVrh+jJ+fHeTSLxMLf2ir5ZaGZt7O8WdBQ16xZQI4McJDAnPHI+CXjXuTmYlcRg==
+X-Received: by 2002:a05:7300:b09c:b0:2b0:4e86:8163 with SMTP id 5a478bee46e88-2b17d240aeamr3454843eec.13.1767862719638;
+        Thu, 08 Jan 2026 00:58:39 -0800 (PST)
+Received: from sw07.internal.sifive.com ([4.53.31.132])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b170675076sm8833634eec.2.2026.01.08.00.58.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jan 2026 00:58:39 -0800 (PST)
+From: Nick Hu <nick.hu@sifive.com>
+Date: Thu, 08 Jan 2026 00:58:25 -0800
+Subject: [PATCH v4 2/3] dt-bindings: power: Add SiFive Domain Management
+ controllers
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260108-sifive-pd-drivers-v4-2-2a523d7d51a0@sifive.com>
+References: <20260108-sifive-pd-drivers-v4-0-2a523d7d51a0@sifive.com>
+In-Reply-To: <20260108-sifive-pd-drivers-v4-0-2a523d7d51a0@sifive.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Anup Patel <anup@brainfault.org>, 
+ Samuel Holland <samuel.holland@sifive.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Cyan Yang <cyan.yang@sifive.com>, 
+ Nick Hu <nick.hu@sifive.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.14.3
 
-On Thu, 2026-01-08 at 17:39 +1030, Andrew Jeffery wrote:
-> On Mon, 2026-01-05 at 13:32 -0600, Rob Herring (Arm) wrote:
-> > "device_type" is required for memory nodes, but is missing on Nuvoton
-> > npcm845-evb.
-> >=20
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> > =C2=A0arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts | 1 +
-> > =C2=A01 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts b/arch=
-/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-> > index 2638ee1c3846..5edf5d13342d 100644
-> > --- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-> > +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-> > @@ -17,6 +17,7 @@ chosen {
-> > =C2=A0	};
-> > =C2=A0
-> > =C2=A0	memory@0 {
-> > +		device_type =3D "memory";
-> > =C2=A0		reg =3D <0x0 0x0 0x0 0x40000000>;
-> > =C2=A0	};
-> > =C2=A0
->=20
-> Hmm, we have quite a few other offenders under arch/arm/boot/dts/aspeed
-> too. I expect this should be caught by CHECK_DTBS=3Dy?
->=20
-> Digging back through my build archives, warnings have cropped up, but
-> only for when I'm building the arm64 or arm multi_v{5,7} defconfigsm
-> and seemingly not the aspeed_g5 defconfig.
+SiFive Domain Management controller includes the following components
+- SiFive Tile Management Controller
+- SiFive Cluster Management Controller
+- SiFive Core Complex Management Controller
 
-Ah the aspeed dtsis define a memory node with it and some zero-length
-memory, and the node properties are updated by the dts files.
+These controllers control the clock and power domain of the
+corresponding domain.
 
-False alarm.
+Add `- {}` for the first entry [1][2]. Once the SoCs are ready, we will
+add the SoC compatible string at that time.
 
-Andrew
+Links:
+- [1] https://lore.kernel.org/lkml/20250311195953.GA14239-robh@kernel.org/
+- [2] https://lore.kernel.org/lkml/CAKddAkAzDGL-7MbroRqQnZzPXOquUMKNuGGppqB-d_XZXbcvBA@mail.gmail.com/T/#t
+
+Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Nick Hu <nick.hu@sifive.com>
+---
+ .../devicetree/bindings/power/sifive,tmc.yaml      | 58 ++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/power/sifive,tmc.yaml b/Documentation/devicetree/bindings/power/sifive,tmc.yaml
+new file mode 100644
+index 000000000000..4ab2b94785f4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/sifive,tmc.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/sifive,tmc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: SiFive Domain Management Controller
++
++maintainers:
++  - Cyan Yang <cyan.yang@sifive.com>
++  - Nick Hu <nick.hu@sifive.com>
++  - Samuel Holland <samuel.holland@sifive.com>
++
++description: |
++  SiFive Domain Management Controllers includes the following components
++    - Tile Management Controller (TMC)
++    - Cluster Management Controller (CMC)
++    - Subsystem Management Controller (SMC)
++  These controllers manage both the clock and power domains of the
++  associated components. They support the SiFive Quiet Interface Protocol
++  (SQIP) starting from Version 1. The control method differs from Version
++  0, making them incompatible.
++
++allOf:
++  - $ref: power-domain.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - {} # Leave a empty for future SoC specific compatible string
++          - const: sifive,cmc2
++      - items:
++          - {} # Leave a empty for future SoC specific compatible string
++          - const: sifive,smc0
++      - items:
++          - {} # Leave a empty for future SoC specific compatible string
++          - const: sifive,smc1
++      - items:
++          - {} # Leave a empty for future SoC specific compatible string
++          - const: sifive,tmc0
++      - items:
++          - {} # Leave a empty for future SoC specific compatible string
++          - const: sifive,tmc1
++
++  reg:
++    maxItems: 1
++
++  "#power-domain-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++# The example will be added once the SoCs are ready
+
+-- 
+2.43.7
+
 
