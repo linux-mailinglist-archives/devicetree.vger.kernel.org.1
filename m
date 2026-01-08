@@ -1,253 +1,112 @@
-Return-Path: <devicetree+bounces-253026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F266D065AC
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 22:44:58 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A058D065EC
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 22:50:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6C8E8301265E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 21:44:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F3159300EDAC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 21:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5331D32E72F;
-	Thu,  8 Jan 2026 21:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 370B83033CA;
+	Thu,  8 Jan 2026 21:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pAJAts5X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PUT2l1JC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC902877ED;
-	Thu,  8 Jan 2026 21:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 123607494;
+	Thu,  8 Jan 2026 21:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767908696; cv=none; b=TmANL1W8AAyWZwy7Rjl/k4pxiWna8KrkxN1kHnsjl2LS554MJdlqSpo7wDytFsI2lra8rWVz+uf9SaYFpA8b+TC/FxJqCrlV9xZOy4kwvpQEsA2HbcAfEwAnwkg0ryU4GQovETAKY3Z/JMMECVHN1qp+2JVb15cy7Cv8yGQCppc=
+	t=1767909008; cv=none; b=TYpCVExIUpQ54hGIZN8kmKc3n8frDXroGTWkq92VddYjqLM+Za3XPclDh8VL7LfinVNmZFSHusXzNkdzbAsA0donmRViEPZH0+OxtTnsf2tHjaaAk3y2spiftfb/r7fYK7TPt95Xj2XpFDx6ma8O9bj+ztxnLg6uqBytcZYAGGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767908696; c=relaxed/simple;
-	bh=jPgaoKZmf9AHRO1v8o/u/y0GBmowQtKzLFIWM9FbQQw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RalOJaYPlUlfvsSLNLkKMRCmrxjBwJ+eVGgV3T7NAGz9zkCa4GQn7QCPnz265LOT1uyDGUM44syO9/h/EMswtvfG9jVyQpIybQtMlKhf61ZB5V47i6IjmLbGT1wo+5QIxs6JcFnsdn7iMjfxqaEZO7RUHdgoZxoNtUykTILAI68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pAJAts5X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1AA9C116C6;
-	Thu,  8 Jan 2026 21:44:55 +0000 (UTC)
+	s=arc-20240116; t=1767909008; c=relaxed/simple;
+	bh=ujqWTzFk9nolBdZNDjtupYATI3vdeJZCz+XdzgKg28s=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=QnQdD3ecY7vX2GVUoKwprPsLbUa8ZzZfSm/vnLnDgnbEK4+AOG9BZ1gKnUBfwSlnqS48/WaqmC7DQw4nul2TP7Sad0llL60oprXYfenggm/JXdAmUrkYn8OoM5NAhqATJtYX+xZCoOlNmKmOuJsgfgi8Cg3bpF7k2ZCr0Jsd4U8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PUT2l1JC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82C72C116C6;
+	Thu,  8 Jan 2026 21:50:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767908695;
-	bh=jPgaoKZmf9AHRO1v8o/u/y0GBmowQtKzLFIWM9FbQQw=;
-	h=From:To:Cc:Subject:Date:From;
-	b=pAJAts5XVOZpRcTGGX91TE901Cmuy7296Ixjxq2+2pn7QJ9B5cxkF2UccIv0Fp2DL
-	 LPAOA6b3WFaxhOhtUBiX+p/NfuiOgkgcNzGq20HAeHb9dFwNgPjXjkQVeKQAL+KgT+
-	 Uy+nBKS+64xobFVKs9JDk8uSa4AdtAx2TzJyZMEkb7P1/b6sLWqVsrK5PYAinqrbQ2
-	 E3v53aEi5wLzyVte0b7zJMWC+lfe3uOHDRB47b1lGQrhVocVqo9F/8+akXZLipM1TS
-	 CJHn5YII4xxCq8VzLTW2j2TvBc8N7nBBWl7is/FIhfg4/AFmJyDcVTvIX21jRDB1Yy
-	 ZiObGcE7x7GjA==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bard Liao <bardliao@realtek.com>
-Cc: linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: Convert realtek,rt5651 to DT schema
-Date: Thu,  8 Jan 2026 15:44:40 -0600
-Message-ID: <20260108214443.1127685-1-robh@kernel.org>
-X-Mailer: git-send-email 2.51.0
+	s=k20201202; t=1767909007;
+	bh=ujqWTzFk9nolBdZNDjtupYATI3vdeJZCz+XdzgKg28s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=PUT2l1JCTusoAIgJ7ZrrASS1i+Aj7iPocBvdiYs3Gk/NMz7wzH31SJLr0//KsOHEm
+	 z5KjxU7jHoCbmXMSc/jvBBDbUHjLWmaPAz4eKTYO19rmFBGjNXLHEFzJSWE3qKSoxR
+	 IpQ+zl8laZ7+vF1vMcYWWdQiu1qeYgeytokrU6sam5BDnirzsqRK6Q4bX7Dx3BR9Xs
+	 manamF5HmsOmVjeVljuWYUDvfX9p0EHWVIplpC/1E/2XRj7TfxNEAmw2PMz2pLwL3E
+	 W1FKIX4cJc2F/aR6sRRvei/r/Xuhl6yjzi8OT52PQ6gnOgs1EBccvvcoE5Kdk9vXVN
+	 QPSFgOMLtAMlA==
+Date: Thu, 8 Jan 2026 15:50:06 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: frank.li@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 08/11] PCI: dwc: Invoke post_init in
+ dw_pcie_resume_noirq()
+Message-ID: <20260108215006.GA500164@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251015030428.2980427-9-hongxing.zhu@nxp.com>
 
-Convert the Realtek RT5661 codec binding to DT schema format. Add
-missing clocks/clock-names for MCLK which is in use already. Also add
-the standard "#sound-dai-cells" property.
+On Wed, Oct 15, 2025 at 11:04:25AM +0800, Richard Zhu wrote:
+> If the ops has post_init callback, invoke it in dw_pcie_resume_noirq().
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/sound/realtek,rt5651.yaml        | 100 ++++++++++++++++++
- .../devicetree/bindings/sound/rt5651.txt      |  63 -----------
- 2 files changed, 100 insertions(+), 63 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5651.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/rt5651.txt
+I'm trying to write the merge commit log for this branch, and I don't
+quite understand this.
 
-diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5651.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5651.yaml
-new file mode 100644
-index 000000000000..dc4f2eef7cf9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/realtek,rt5651.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/realtek,rt5651.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Realtek RT5651 audio CODEC
-+
-+maintainers:
-+  - Bard Liao <bardliao@realtek.com>
-+
-+description: >
-+  This device supports I2C only.
-+
-+  Pins on the device (for linking into audio routes) for RT5651:
-+
-+    * DMIC L1
-+    * DMIC R1
-+    * IN1P
-+    * IN2P
-+    * IN2N
-+    * IN3P
-+    * HPOL
-+    * HPOR
-+    * LOUTL
-+    * LOUTR
-+    * PDML
-+    * PDMR
-+
-+allOf:
-+  - $ref: /schemas/sound/dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: realtek,rt5651
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: mclk
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  realtek,in2-differential:
-+    type: boolean
-+    description: Indicate MIC2 input are differential, rather than single-ended.
-+
-+  realtek,dmic-en:
-+    type: boolean
-+    description: Indicates DMIC is used.
-+
-+  realtek,jack-detect-source:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Select jack-detect input pin.
-+    enum: [1, 2, 3]
-+
-+  realtek,jack-detect-not-inverted:
-+    type: boolean
-+    description:
-+      Normal jack-detect switches give an inverted (active-low) signal. Set this
-+      bool in the rare case you've a jack-detect switch which is not inverted.
-+
-+  realtek,over-current-threshold-microamp:
-+    description: Micbias over-current detection threshold in µA.
-+    enum: [600, 1500, 2000]
-+
-+  realtek,over-current-scale-factor:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: >
-+      Micbias over-current detection scale factor:
-+
-+        0: scale current by 0.5
-+        1: scale current by 0.75
-+        2: scale current by 1.0
-+        3: scale current by 1.5
-+    enum: [0, 1, 2, 3]
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@1a {
-+            compatible = "realtek,rt5651";
-+            reg = <0x1a>;
-+            realtek,dmic-en;
-+            realtek,in2-differential;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/rt5651.txt b/Documentation/devicetree/bindings/sound/rt5651.txt
-deleted file mode 100644
-index 56e736a1cba9..000000000000
---- a/Documentation/devicetree/bindings/sound/rt5651.txt
-+++ /dev/null
-@@ -1,63 +0,0 @@
--RT5651 audio CODEC
--
--This device supports I2C only.
--
--Required properties:
--
--- compatible : "realtek,rt5651".
--
--- reg : The I2C address of the device.
--
--Optional properties:
--
--- realtek,in2-differential
--  Boolean. Indicate MIC2 input are differential, rather than single-ended.
--
--- realtek,dmic-en
--  Boolean. true if dmic is used.
--
--- realtek,jack-detect-source
--  u32. Valid values:
--  1: Use JD1_1 pin for jack-detect
--  2: Use JD1_2 pin for jack-detect
--  3: Use JD2 pin for jack-detect
--
--- realtek,jack-detect-not-inverted
--  bool. Normal jack-detect switches give an inverted (active-low) signal,
--  set this bool in the rare case you've a jack-detect switch which is not
--  inverted.
--
--- realtek,over-current-threshold-microamp
--  u32, micbias over-current detection threshold in µA, valid values are
--  600, 1500 and 2000µA.
--
--- realtek,over-current-scale-factor
--  u32, micbias over-current detection scale-factor, valid values are:
--  0: Scale current by 0.5
--  1: Scale current by 0.75
--  2: Scale current by 1.0
--  3: Scale current by 1.5
--
--Pins on the device (for linking into audio routes) for RT5651:
--
--  * DMIC L1
--  * DMIC R1
--  * IN1P
--  * IN2P
--  * IN2N
--  * IN3P
--  * HPOL
--  * HPOR
--  * LOUTL
--  * LOUTR
--  * PDML
--  * PDMR
--
--Example:
--
--rt5651: codec@1a {
--	compatible = "realtek,rt5651";
--	reg = <0x1a>;
--	realtek,dmic-en = "true";
--	realtek,in2-diff = "false";
--};
--- 
-2.51.0
+The effect is to apply the GEN3_ZRXDC_NONCOMPL workaround for the
+ERR051586 erratum, and Mani added the hint that this enables REFCLK
+during resume.  But it seems weird that we apply a REFCLK workaround
+after the link is already up.
 
+During probe, .post_init() is run after pci_host_probe(), so we apply
+the workaround after enumerating all the devices, which means REFCLK
+must already be valid and the link is already up.
+
+Is "enabling REFCLK" actually what imx_pcie_host_post_init() does?
+
+Could the workaround be done in imx_pcie_host_init() before the link
+is brought up?  If it could, it looks like we wouldn't need
+imx_pcie_host_post_init() at all.
+
+For now, I put this in the merge commit log:
+
+  - Apply i.MX95 ERR051586 erratum workaround for REFCLK issue during
+    resume (Richard Zhu)
+
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index 20c9333bcb1c4..2b59e7d2e6179 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -1199,6 +1199,9 @@ int dw_pcie_resume_noirq(struct dw_pcie *pci)
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (pci->pp.ops->post_init)
+> +		pci->pp.ops->post_init(&pci->pp);
+> +
+>  	return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(dw_pcie_resume_noirq);
+> -- 
+> 2.37.1
+> 
 
