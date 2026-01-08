@@ -1,92 +1,97 @@
-Return-Path: <devicetree+bounces-252539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 119D7D00DE9
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 04:30:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47E9ED00DEF
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 04:31:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 137CA3021E51
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 03:27:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A50103011FBD
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 03:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520CB27B358;
-	Thu,  8 Jan 2026 03:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66752773F9;
+	Thu,  8 Jan 2026 03:28:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="onH5rYAO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cu+/GE6g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15006EAC7
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 03:27:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411CD19C546
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 03:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767842837; cv=none; b=e7Lzh/JEj8MTkIDzXxvrgxwt2hPx2UkfRVMvcLJr70aExxSURjgONWTKNbmft2Xwcmn+6eBuJ1uT3ptKFvpogDQy0cwPvpu9qyGnepOG+TkkOCY7YRNz/lUO93tO5SxDwC2grGjlv9s5YgQ2DSVd4sL9A7Q7wc4ly7dzhixn1n4=
+	t=1767842895; cv=none; b=g07/OjCg9ih2RiVRuC8Uzh+Yh3Af80KZ6x/AVcdP1SR/oyrtPz1Y3M8nPAAWXP7wyP+RF1J3mA8I7/yb8QOnJ4Ody+RzbSAImysr5vrdK1EY7vVPhSJQ60ZDY8VinpAs0TUfJW9sW4MnJqiC8DDS9siV6jNo0IpMqYnO9wGJUaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767842837; c=relaxed/simple;
-	bh=uRRzFOarmIqei7630HqvPZpSNuM3xX6E9wa8HXF9jBc=;
+	s=arc-20240116; t=1767842895; c=relaxed/simple;
+	bh=VGk454ttZIdzpsHMCIxZieV3Y0Q+sd63A46nmYZNR9M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XZS43jWkFo1bg8sseQEoReMyO0YAi3mP4ZIurBj0gQpAAJS7ewIF7q3NTA1bmhz9C1kwaiNg/s8goAXK+n4iY8CDb6PP38YvfWlNhUfuNCiUrqUCU5HcuHtolsTr/vOpwBNIvP218zqf4UBAMuv8KZJeVEjAOwZjA6QuF6u3lew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=onH5rYAO; arc=none smtp.client-ip=209.85.214.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-2a09a3bd9c5so19423075ad.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 19:27:14 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ruGeSoyPy0mjE26KYOHmCQ3kTBUcRxFG+rrEexAaG/BUWXujaBXT5qFp4InPVZopxgiu5Bj+/0L6oxcOrpuHu3eaaOkosyMq0UDsEwbEvjNPOMIRiLoPMRkR4vfZl6tRzKYo9y7T4QkvoNrJ88mpa2uRAD/ATX4yOZhy3KHFwX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cu+/GE6g; arc=none smtp.client-ip=209.85.160.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4ee14ba3d9cso28566611cf.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 19:28:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767842834; x=1768447634; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1767842893; x=1768447693; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mu7Pr1Fsv537lLh/d+ZgA1WZ3a8Wch+LwtiH0stf88o=;
-        b=onH5rYAOwB/Awl326lldisXnyp7F5KUCpioL61/tZlPYtxZIs8Sv0d2quZJMD4oD3k
-         IWK4H3D0NkIfu+BLvLZCCrMFJLDyfcSaXiQ4EdRuFO3rWVg/If4/NYUHwjacb1c77FjA
-         N7dg3NpeZotD5Jz+n8O5ju+k2Wuzb6vJQnmJcIh6y2YOhMMXX0pDm8IQUlnpc0YPcSL1
-         fONBcDDBEDFMIwRTfAH6JjL1fF3LAmaooYioJZo5qM75scaYrwfJd4eltpBPGe2oUN5X
-         8E8/Asm2WRkRi8iZI2sMYH3xB9rwxTntGG5YVdnaQLEH94rNIOAkQYu8Ul+q83ghK3Du
-         Gxrg==
+        bh=vofKUnypKUICeBkcdQzN2mTABpjUkxfzwfH7Xyfr7fo=;
+        b=Cu+/GE6gQ/VWFSZ9sgXaSJoBGq81/pcafRxekyHJO9dCL97P5+wmyQRXqBgvxYfxnP
+         q44CdN0zO2/yaPYCJDfXCj14+TW56YghiERkOgU0jnQ92eRqh83O/zeq+AfiEEWpg1dV
+         GeoRO0sqx4JrAwpvz9KyDJx46eHY/c4Rauz9QZScu3MklURpASuSvT1a7UBAsa2GW85+
+         SoaGH9xWnghMyLRiSqAuz2wJAFC9Gcbh8s12s2T1Gz5+Njjk0JNEGA8fToN+a+yIYY54
+         k0NpRzIO0uVPDva8HHznlQFZPUm3S/alDj/TqUsfm2yd/xgXYLRbpWgFSEVkeSBZGayZ
+         QICQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767842834; x=1768447634;
+        d=1e100.net; s=20230601; t=1767842893; x=1768447693;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Mu7Pr1Fsv537lLh/d+ZgA1WZ3a8Wch+LwtiH0stf88o=;
-        b=R/hVik2NVfsvN5meU13OurHsmSez8+vFFxTFmVdf2zdrl/spBckv5EqEMPRQt2DRCZ
-         VAzydcYS+IyCbltTfUVpYJSMs31zpEx2QPhsXTQBYyXd3CVsT6L84DhJgxxL6Ry4trhW
-         26NIsWnQYiS641qnXgAEu6wAUTA0tlY0GyiQTGGx+S1KxcOeWUYf+rl2qOshN0kUCZwO
-         Rc5Qk2rrd2X1YvWtGzwX2yHFBna9tpMS4FqVVIfUDMEZfh9zE6NdfgfmfGGXrJu9v4id
-         T9XE69T6K68H2PmRuhNvg+6BQCxiUGx1kevxm4gwYAWyiZFJaOkwwVpdmWd5wEkzXo8y
-         uN9w==
-X-Forwarded-Encrypted: i=1; AJvYcCVcSSSl/MKzL1+gcY4Mo73AHwKVvRJbpU8EDTxMgbxfo0BT3jXtMv+e3vMZxm/HWPk9mYw+jqseiPPS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVSaNFc4ksVyrfUGhb6Mo/4WST3S5bYrjPZzp2+CGwe5ZVfZCr
-	DpRiV+vHIpRWEbLTiC5wjpLSLDNlwhtPa7fCKCaH5qChvFsrYkpw0rj4dWo+rF8Y+Zs=
-X-Gm-Gg: AY/fxX5Um1TMRuYFxHwL/lShIXHuXtzR1HjrTuYayvjhvoJZUvZNWyE95Ek9MCJymVQ
-	i7DM9W7gYzGVn+E5/Nmu+iedb8T/eY0NABrrqn92XjrL3EFCI6q2Mfb5tH1LkTyi+TmGAdgvtMj
-	5KLwdLiwj0k/b1gD8pspbZtf9jmH7PQc0S3eSJQEyV/6b221IgEWnrNiDKPvemYIdA7irGwLeJJ
-	Za7VEJSTb8mjkukXr46/ZYcoGX5sSaridcpBYxk9kFbDwUxK3Rv5isUKdI/gz9xmrhsav3rrN5g
-	12izYEl/R7HBeuZQg7Mg0LloCY5w9fSWg/s6VpY6tRwPbKEpfJQ1qs9QmNPZVh3mBDMBtBcbLKU
-	iY1wPJqCKnE3HLJXxGJAp6YW2IaTRbbrfa5LEEATgG4PdfDFML7USFlIZsfNPNKsObZj7pgVIB0
-	mgGzCPcWI6o2k=
-X-Google-Smtp-Source: AGHT+IGWi0WECARHC8sh1t7xnHsqYiwxnwYeP+AKv4h6c8GciQupJD36kPRYTo6CbK8YPrm4jsg9uw==
-X-Received: by 2002:a17:903:1b4c:b0:26c:2e56:ec27 with SMTP id d9443c01a7336-2a3ee43653cmr44865905ad.19.1767842834139;
-        Wed, 07 Jan 2026 19:27:14 -0800 (PST)
-Received: from localhost ([122.172.80.63])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819bb0dfd29sm6063479b3a.25.2026.01.07.19.27.13
+        bh=vofKUnypKUICeBkcdQzN2mTABpjUkxfzwfH7Xyfr7fo=;
+        b=kf6I/oYUOwvgwGbg5chWmG7jZy6qWGwLig/aQ6+P61Gz59ZZvuz3/AI+MV8OVXh2jw
+         21qLDTr04RrSYFJ59jgZ4vXHl7LelKUnk/U/xMbcPDvoioI0OD3wAR3A7MAo9lGXIBod
+         jIJfk7Ag+G0zE0muUyM/LbpK7TjCDV6ZK9BqbeRsgYr3wO4CbxKodov4DindFN+Z0PRd
+         sXkx4Nhf/ela5NHZ/Q304wX+ybJQNlHYOlzpH8I31/U3t2T88m4fXs6ZmfGSqxeg095k
+         CRE9jUzxwda5yxBW8TeBlNeLp15v6QrI8NBHNcrPnb08pdAXuDWm3s3oaMBFGeqeMmxg
+         5j9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUGn2Jf6PeFK9HGPqEITKKYKjKN9r9uivha+3lp9xynNr4GfoF7Dkhlqfnrb94yoDAhOcksU4DLL4Bp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZHxM7OyogrD3d6LI+oV17EWfkWr+tHxrKH+X5aancIi1MGYkv
+	dFk4+LUt0kPAabuFWzWTYzktxiABlKdW2aGST+O/SyhJhE+AJDPJ+ZzE
+X-Gm-Gg: AY/fxX7Xh38HeX8M5aaZe31VJCL5Hpg+sP7y8rkxZQ5XAJ7zVfpeBYmiNxNLVt3a8r5
+	D/+biXwUc3K5C64HKi1NICj1JZGLbwqIS4iYMX/WGOdzTatIXqmfNVNtzAD4R1PU4jOEqRJvp23
+	Qy/d7rpb/iDtiYr+saLnXnZWEAbq2UlRMVoEVyUDB+Dgz0+kbG3iWjF0u9pLe8xV4/mz9HEm7Vj
+	fw7Z1TmSFcNjHnz/YrNr+8lXC77gV1nwFSArO4NP3fmUC5QfnPzFNXC6Mf0XtahlM+iD9tefGW1
+	72kM+fskO/BRLEvMQml0Rw9aq7tWZHDnmHKWO4J85M0ki6UtX3Mle/kVbmLtky3TyrcRIDUb1ER
+	bXt0h+wtSSO0kytzy275YKKRRus8csDcg/042xA/1EuT/rciUytknPk3EXRzUO0VDZnunyu78Fm
+	O27xC0b4lUzx/WJQ==
+X-Google-Smtp-Source: AGHT+IEjSoUYkF14Ssyk5oRE7aJzB2JoaALD5N+ldr3oo6bP0R6LXqMtXCQczf07mSQIpjrUbtFTyQ==
+X-Received: by 2002:a05:622a:1811:b0:4ee:213b:3391 with SMTP id d75a77b69052e-4ffb482f716mr64003111cf.20.1767842893142;
+        Wed, 07 Jan 2026 19:28:13 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4ffa8d39950sm42659431cf.1.2026.01.07.19.28.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 19:27:13 -0800 (PST)
-Date: Thu, 8 Jan 2026 08:57:11 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Joshua Yeong <joshua.yeong@starfivetech.com>
-Cc: rahul@summations.net, anup@brainfault.org, 
-	leyfoon.tan@starfivetech.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
-	rafael@kernel.org, sboyd@kernel.org, jms@oss.tenstorrent.com, 
-	darshan.prajapati@einfochips.com, charlie@rivosinc.com, dfustini@oss.tenstorrent.com, 
-	michal.simek@amd.com, cyy@cyyself.name, jassisinghbrar@gmail.com, 
-	andriy.shevchenko@linux.intel.com, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 4/5] cpufreq: Add cpufreq driver for the RISC-V RPMI
- performance service group
-Message-ID: <5nfljdaewlmafydt5a3jijjlr2krszbnadmjkpkgo7in364yzy@tiejhive2siv>
-References: <20260106092117.3727152-1-joshua.yeong@starfivetech.com>
- <20260106092117.3727152-5-joshua.yeong@starfivetech.com>
+        Wed, 07 Jan 2026 19:28:11 -0800 (PST)
+Date: Wed, 7 Jan 2026 22:28:32 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Robert Mader <robert.mader@collabora.com>,
+	Bryan O'Donoghue <bod@kernel.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v6 2/5] media: i2c: imx355: Support devicetree and power
+ management
+Message-ID: <aV8kYJm7nUM3A5jf@rdacayan>
+References: <20260107043044.92485-1-mailingradian@gmail.com>
+ <20260107043044.92485-3-mailingradian@gmail.com>
+ <20260107-masterful-ermine-of-cubism-e5d5e1@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,78 +100,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260106092117.3727152-5-joshua.yeong@starfivetech.com>
+In-Reply-To: <20260107-masterful-ermine-of-cubism-e5d5e1@quoll>
 
-On 06-01-26, 17:21, Joshua Yeong wrote:
-> diff --git a/drivers/cpufreq/Kconfig b/drivers/cpufreq/Kconfig
-> index 78702a08364f..9aaa1f71000e 100644
-> --- a/drivers/cpufreq/Kconfig
-> +++ b/drivers/cpufreq/Kconfig
-> @@ -4,8 +4,8 @@ menu "CPU Frequency scaling"
->  config CPU_FREQ
->  	bool "CPU Frequency scaling"
->  	help
-> -	  CPU Frequency scaling allows you to change the clock speed of 
-> -	  CPUs on the fly. This is a nice method to save power, because 
-> +	  CPU Frequency scaling allows you to change the clock speed of
-> +	  CPUs on the fly. This is a nice method to save power, because
->  	  the lower the CPU clock speed, the less power the CPU consumes.
->  
->  	  Note that this driver doesn't automatically change the CPU
-> @@ -65,7 +65,7 @@ config CPU_FREQ_DEFAULT_GOV_USERSPACE
->  	select CPU_FREQ_GOV_USERSPACE
->  	help
->  	  Use the CPUFreq governor 'userspace' as default. This allows
-> -	  you to set the CPU frequency manually or when a userspace 
-> +	  you to set the CPU frequency manually or when a userspace
->  	  program shall be able to set the CPU dynamically without having
->  	  to enable the userspace governor manually.
->  
-> @@ -134,7 +134,7 @@ config CPU_FREQ_GOV_USERSPACE
->  	help
->  	  Enable this cpufreq governor when you either want to set the
->  	  CPU frequency manually or when a userspace program shall
-> -	  be able to set the CPU dynamically, like on LART 
-> +	  be able to set the CPU dynamically, like on LART
->  	  <http://www.lartmaker.nl/>.
->  
->  	  To compile this driver as a module, choose M here: the
-> @@ -147,11 +147,11 @@ config CPU_FREQ_GOV_ONDEMAND
->  	select CPU_FREQ_GOV_COMMON
->  	help
->  	  'ondemand' - This driver adds a dynamic cpufreq policy governor.
-> -	  The governor does a periodic polling and 
-> +	  The governor does a periodic polling and
->  	  changes frequency based on the CPU utilization.
->  	  The support for this governor depends on CPU capability to
->  	  do fast frequency switching (i.e, very low latency frequency
-> -	  transitions). 
-> +	  transitions).
->  
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called cpufreq_ondemand.
-> @@ -367,4 +367,18 @@ config ACPI_CPPC_CPUFREQ_FIE
->  
->  endif
+On Wed, Jan 07, 2026 at 08:34:29AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Jan 06, 2026 at 11:30:41PM -0500, Richard Acayan wrote:
+> > A device tree compatible makes it possible for this driver to be used on
+> > Open Firmware devices. Initialization of power-managed resources such as
+> > the reset GPIO and voltage regulators can be specified in the device
+> > tree and handled by the driver. Add support for this so the Pixel 3a can
+> > use the driver.
+> > 
+> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> > Nacked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> You did not receive such tag. You cannot construct tags, just because
+> of ... what exactly? Why do you think to use this or other email?
 
-Unrelated changes ?
+I interpret "NAK" as a request to stop working on the patch. I assumed
+you wanted this for process reasons, since I didn't specifically address
+your review of the reset sequence for 3 revisions (v2-v4). I can't go
+back and follow the submission process differently.
 
-> +++ b/drivers/cpufreq/riscv-rpmi-cpufreq.c
-> +static int rpmi_cpufreq_probe(struct platform_device *pdev)
-> +{
+Original complaint (https://lore.kernel.org/r/ff9d571a-9b47-4f39-8589-d4c7b190d3bd@kernel.org):
 
-> +fail_free_channel:
-> +	mbox_free_channel(mpxy_ctx->chan);
-> +
-> +	return ret;
-> +}
-> +
-> +static void rpmi_cpufreq_remove(struct platform_device *pdev)
-> +{
-> +	cpufreq_unregister_driver(&rpmi_perf_cpufreq_driver);
+	I already told you this at v1 and you ignored the problem and never
+	responded.
 
-Don't need to free mpxy_ctx->chan ?
+	NAK
 
--- 
-viresh
+The path forward is usually to give up, or keep the NAK and hope that
+the other maintainers accept the patch anyway. I see 17 cases of the
+latter since the kernel started using Git until v6.19-rc1.
+
+> You received only NAK as disagreement of this patch, but I did not allow
+> to merge it with my NAK.
+
+Ok, I will remove the Nacked-by in the next revision unless you
+communicate that you actually want work on this patch to stop.
+
+
 
