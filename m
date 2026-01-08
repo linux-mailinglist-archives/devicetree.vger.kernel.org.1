@@ -1,145 +1,153 @@
-Return-Path: <devicetree+bounces-253001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2985DD05B4C
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 20:02:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 774ACD05B9D
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 20:05:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9D7BA30074AD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 19:02:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E2BB93018EAE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 19:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DA4B2882B7;
-	Thu,  8 Jan 2026 19:02:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gds6PdVt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA91E328613;
+	Thu,  8 Jan 2026 19:03:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ADD917C77;
-	Thu,  8 Jan 2026 19:02:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E8E9320CD9
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 19:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767898925; cv=none; b=beM8/m2aruXKEqwwIjmmnXnS6efmExghBi0dQOVXoJn/h0maYOYurYe6P2t1niEJN5eeW9+rKPK36aqcpNEMNVWvBk4WZkc81YsiyFiZnV2u0vdMFcuuXrRoOct91OsKBC7BoWYCTOq1b3W7Qd80vd3Yk5NzJ8ngeRN5UY1+ftI=
+	t=1767899039; cv=none; b=OKdzAJQICiO7fIAxkvpjIY3v3gZMEgG4vx+O1xy7T6VBJoHxLf3nwWji4vsJYQVnDw54rAjx9sSRh5tN3QlXl9t7vcDWLYSKcK+oemJNjioh3a5rssM6STvdSubfqVBAmO+7TKXpAFFa01tyr+AtGaCZVQqKBfCVcoeHC6qWNU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767898925; c=relaxed/simple;
-	bh=cGVPGNzS5dackujqgZ6gZ4apORen6+dbC4SXpFIwMX8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cpDR2WGSjyKQZ49RbF6zQ3tdoBzeYmfcPED+ed2lLKvqXid1NatHTfBwsG9XWZSvqLXXQ0ErNmvpSl3BJNdyWdwAyhSD3+BqMCFeex5ziOBfZ8azjF8g7Xu1dsClyZiAny3lAENak/jhuKoRbp6YXSUlDnmfyUoZ2vavNuWeIG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gds6PdVt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4478C116C6;
-	Thu,  8 Jan 2026 19:02:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767898924;
-	bh=cGVPGNzS5dackujqgZ6gZ4apORen6+dbC4SXpFIwMX8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gds6PdVtl7nh9hqOKIShu4yNF5qDmklyNOic3poXva+cTt8kxVAIOWhkFHV2Xa5pj
-	 bpx1EvHsEoP3H8+Cs9/i7L+ndXn+UEnKbVjOI1V4pCLxRwsc0VdWav/A308DJB3tfJ
-	 qluxPbP6gsQX3M0vIW6GTkQ/Ogb3KlROpvCNtc9aDsRfPVs3kgddj5+OimSy9hgu8m
-	 OIsykjiXH5OlQp2WNLD9mmY+GGRCtmOgOziJN0g0AX0oVqlgTwf3xwgjgtg6642HRN
-	 THiJlE9WyGfKTcj+8NR0M7HkQp2wM3OODPhvGngwmozWB8VsPIC/0pU1VHOvoG6oav
-	 CfldgY+DC16Cg==
-Date: Thu, 8 Jan 2026 13:02:03 -0600
-From: Rob Herring <robh@kernel.org>
-To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Cc: Qiang Zhao <qiang.zhao@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linuxppc-dev@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH 2/2] dt-bindings: soc: fsl: qe: Add an interrupt
- controller for QUICC Engine Ports
-Message-ID: <20260108190203.GA780464-robh@kernel.org>
-References: <63f19db21a91729d91b3df336a56a7eb4206e561.1767804922.git.chleroy@kernel.org>
- <7708243d6cca21004de8b3da87369c06dbee3848.1767804922.git.chleroy@kernel.org>
+	s=arc-20240116; t=1767899039; c=relaxed/simple;
+	bh=xkdhuC4s+3mOYP0yOIF0uzVtjPP7M61rCMLgQ0C6+CE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ps4GnTMYLuq9Hd3OwgzwxLbj1w1UXceBN9lPaXP1s7gbEMyqBJMtkZb0CsfdTSseMt4hShPsZ2ZBIeAzEwNH4RcpleZ4H9jAAd/KBO+nogJpZVPAu+HF0Mcxf7rUXM0kKIVuzPX6NwojDAI5pfKPczCY6fVrEeoPZRsS/tbaZww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-5eea31b5cb7so248787137.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 11:03:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767899037; x=1768503837;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l4POSF/G2AiiMzhu15VytRAuNKvteZUdBLrFSKMZB68=;
+        b=hJQZb9tnMCWrd+prJWgEUMp4v5VjwXluoUo0MChnarbSj5abzLTSytF+MFaVXVbBUj
+         2Cnkg2qJuX8TewnVtIedJghgNkeBIp8VHge7Cw4JhhzFtFDZzC8Sy0XxPizmx7PURgxX
+         ujurivhiBUuRCfxz/FFHX7se1Wm4RSQvjdFnI4Goq1HwfUhdLFOHKypWSvY6dn1GASPx
+         c38s+rYsb+E2SUA9VchBOwi54zXMrnNTvR719nNRGtWMnVoslMdzMo/nSFGZCoo6KaMJ
+         Zz3HtXz7nckaQooZfX2m/LQdP7W4xVhKLHt3OCEJUBE/pWJo9NAieLbykVMx9RAumsAc
+         toSw==
+X-Forwarded-Encrypted: i=1; AJvYcCX0awmmfxpJcv3hqy3niN050W/BnS0Eewr+Qlgen4yhmjKHPc6Aif/suAY6jjvBHAmEEpzFxyeI1hFM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzITvwlY+J15GAwGDH/+9TyNSsgvkxfFg6FCkGCI0T/c7HlUqBy
+	4R8F2ObABJ42qfeLNlvbcTJ/sguNGRKvLgZNe0OGnIzTYEpTNsB9oOAWyGCTcERH
+X-Gm-Gg: AY/fxX7BNQb5Y9QUU5g5jxgPYQuXMMWLegjij0kfwPMN7P11G5vr6l6vXGeDqfd/zOb
+	ldUG2k1tpTUl6lOwSAJ2Wq7QMIv2g6O4zQ9L6Gx8doXqgDLHKPOVSc48DrZWBb1/GprXeLozO0Z
+	pB0HRJYuYgX90JbS9T9zJ2bgp61o2mnK7SpxOg8Xi/VsvOg8AO4rhO1FQv1ymVMK2Z6b33dpI4o
+	1VQv6nNg3hh5/1HwBRKDQr+tkuR0H8gMOmnm44dLszV3L4w6P/ngWuptc3OLA9GMInrSEgBANcS
+	L8kBSDK6xJbQu8tm3y6LkVmo9FF9ho6GNV5fc0+hg+BWHqESVjno7crOfLuq22ES+9xW3njV/pF
+	AbIUiWmsRxuqgXiL+myUkPN2TA7qvZ8yKdsP5bivVZTf7yG759z/Fofy8kJHjiN9ZcE3OYdPWtd
+	5Nt1ZUL8R//aoGrcfHOQ1T+BeKvDqeCrhgiwbLuJHYo9QV3lB8
+X-Google-Smtp-Source: AGHT+IE1SV0nqTj3izrUFFffYPsGiqIRNedLM2dqHxURFtyN/ytW1Xj6DrThTRR1UpmKDl8iBR/Gfg==
+X-Received: by 2002:a05:6102:b09:b0:5db:cc92:26e7 with SMTP id ada2fe7eead31-5ecb8bea935mr2670618137.38.1767899037218;
+        Thu, 08 Jan 2026 11:03:57 -0800 (PST)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-944123fca44sm6688664241.7.2026.01.08.11.03.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jan 2026 11:03:56 -0800 (PST)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-93f5b804d4aso1207225241.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 11:03:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWBXWre0D+hOY5yOhcUh/5zIzma5BwthOe/RmkWNOa24SRE6sjFMqO3h0/Vb5GcORJbnyljHJJzal/g@vger.kernel.org
+X-Received: by 2002:a67:e115:0:b0:5ee:9df0:a5f4 with SMTP id
+ ada2fe7eead31-5ee9df0a818mr1083422137.31.1767899035850; Thu, 08 Jan 2026
+ 11:03:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7708243d6cca21004de8b3da87369c06dbee3848.1767804922.git.chleroy@kernel.org>
+References: <20251205150234.2958140-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20251205150234.2958140-8-cosmin-gabriel.tanislav.xa@renesas.com>
+ <CAMuHMdWSB=9d7jwFcLjJY3zJjs7neFJ+tr+GtTDAU85=o8xK1A@mail.gmail.com> <TYRPR01MB156196B6A2C6808841B5BAF818585A@TYRPR01MB15619.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYRPR01MB156196B6A2C6808841B5BAF818585A@TYRPR01MB15619.jpnprd01.prod.outlook.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 8 Jan 2026 20:03:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXJ-zC0kWViGTbdyRifNKB5R1DRpLcgyk0_zr=XTjx9tA@mail.gmail.com>
+X-Gm-Features: AZwV_QiG1FTx5__3lAFmUWj9TP06IZp1Z3Zx_MjG3bA3hF9KZ0sDQDS0nL8rtcc
+Message-ID: <CAMuHMdXJ-zC0kWViGTbdyRifNKB5R1DRpLcgyk0_zr=XTjx9tA@mail.gmail.com>
+Subject: Re: [PATCH v2 7/8] arm64: dts: renesas: r9a09g077m44-rzt2h-evk: add
+ GPIO keys
+To: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"magnus.damm" <magnus.damm@gmail.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Jan 07, 2026 at 05:59:10PM +0100, Christophe Leroy (CS GROUP) wrote:
-> The QUICC Engine provides interrupts for a few I/O ports. This is
-> handled via a separate interrupt ID and managed via a triplet of
-> dedicated registers hosted by the SoC.
-> 
-> Implement an interrupt driver for it so that those IRQs can then
-> be linked to the related GPIOs.
-> 
-> Signed-off-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Hi Cosmin,
 
-Already? On a v1?
+On Thu, 8 Jan 2026 at 19:28, Cosmin-Gabriel Tanislav
+<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
+> > From: Geert Uytterhoeven <geert@linux-m68k.org>
+> > On Fri, 5 Dec 2025 at 16:04, Cosmin Tanislav
+> > <cosmin-gabriel.tanislav.xa@renesas.com> wrote:
+> > > The Renesas RZ/T2H Evaluation Kit has three user buttons connected to
+> > > GPIOs that can be used as input keys.
+> > >
+> > > Add support for them.
+> > >
+> > > Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 
-> ---
->  .../soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml       | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
-> new file mode 100644
-> index 0000000000000..1f3c652b1569d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale QUICC Engine I/O Ports Interrupt Controller
-> +
-> +maintainers:
-> +  - Christophe Leroy (CS GROUP) <chleroy@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,mpc8323-qe-ports-ic
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#address-cells':
-> +    const: 0
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - '#address-cells'
-> +  - '#interrupt-cells'
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    interrupt-controller@c00 {
-> +      compatible = "fsl,mpc8323-qe-ports-ic";
-> +      reg = <0xc00 0x18>;
-> +      interrupt-controller;
-> +      #address-cells = <0>;
-> +      #interrupt-cells = <1>;
-> +      interrupts = <74 0x8>;
-> +      interrupt-parent = <&ipic>;
+> > > --- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> > > +++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> > > @@ -7,6 +7,8 @@
+> > >
+> > >  /dts-v1/;
+> > >
+> > > +#include <dt-bindings/input/input.h>
+> > > +
+> > >  #include "r9a09g077m44.dtsi"
+> > >
+> > >  /*
+> > > @@ -60,6 +62,37 @@ / {
+> > >         model = "Renesas RZ/T2H EVK Board based on r9a09g077m44";
+> > >         compatible = "renesas,rzt2h-evk", "renesas,r9a09g077m44", "renesas,r9a09g077";
+> > >
+> > > +       keys {
+> > > +               compatible = "gpio-keys";
+> > > +
+> > > +#if (!SD1_MICRO_SD)
+> > > +               /* SW2-3: ON */
+> >
+> > Shouldn't that be OFF?
+>
+> Good catch! Yes, it should be OFF, as it's ON for SD Card.
 
-This doesn't look like a separate block, but just part of its parent. So 
-just add interrupt-controller/#interrupt-cells to the parent.
+Thanks for the confirmation, I will fix it why applyig.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.20.
 
-Rob
+> I will fix it for the next version.
+
+Hence no need to resend.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
