@@ -1,93 +1,97 @@
-Return-Path: <devicetree+bounces-252961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70EF0D056FB
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 19:17:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E21CD058E4
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 19:32:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D917D3020B56
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:43:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9BED53133052
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:33:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7662D2EB85E;
-	Thu,  8 Jan 2026 17:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426EF2BF00B;
+	Thu,  8 Jan 2026 17:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="k8u42McT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OcO32ZHR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.231])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5874D2EBBB2;
-	Thu,  8 Jan 2026 17:43:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4601C3BFC;
+	Thu,  8 Jan 2026 17:33:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767894221; cv=none; b=IV7eyB1pNJM8H0FhYF3muW+90n3snJHJoNo2WD2ChB76db/KIoNgkMscK0WTfsPEAyyjZZ99zJbhB01dyVxQ2EwQxbtmor6j5NVBN6yroTDcGqeKC+uGX0Z4YZymsCapQTPqkIfOLm3xQQEVcEDlP/FEsk7dWSE3Nobkwz46uQg=
+	t=1767893638; cv=none; b=P+PHQtuNlaTECtLYXBwLMCZ6Qlsuz2TAVQUAS5zj18BwdecmxTOIMeLUwgcAU6lhxB7C7kwrul/5magR1Qmav6EhDgXn2dt823jbt7nRkJi8CyCxVMDcXf/QrhQfWGNxFSRKirZSS2wl0zYPKOSTH63JTTDgtkuuZE3HJvuTjFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767894221; c=relaxed/simple;
-	bh=0dYNCLP+iLu9aUT3nOreZPUXXZNRN/UbIGDKR9EQhcM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LOvscSO7DIZ4vg5KHeD1KaoTnXJlj2BHIwDlN/NM4BPe+0F6YNCYIQkomcCLYUwdP5oQ/qKh1n5f8GM1UFVE6k8eDq0eEZq6BpNtjULm/uZ50qVyYFIE7KjKBfLToRrCz90RpLfAin/y77JiEAnIBfGafXKrWBlkABMvFRIAm+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=k8u42McT; arc=none smtp.client-ip=192.19.166.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 9291DC05F2B6;
-	Thu,  8 Jan 2026 09:33:51 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 9291DC05F2B6
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1767893631;
-	bh=0dYNCLP+iLu9aUT3nOreZPUXXZNRN/UbIGDKR9EQhcM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=k8u42McTENLIPQAqPdsfDpPiRmh5w0VFOpee+ZLJzgbR3C0HzuSRALpcjm6HECNMp
-	 P5tTn5cjdugSjOpXT5+v1o1/8uIjvaOTzjxYpWCalZR0k7mcvMjkVR0eodO3fASJ6z
-	 gYMXiGrI5qJf1x0vnauFt2N7jxmecpwDPGZ86thk=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 675891CAF4;
-	Thu,  8 Jan 2026 09:33:51 -0800 (PST)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 04/13] arm64: dts: broadcom: Remove unused and undocumented nodes
-Date: Thu,  8 Jan 2026 09:33:51 -0800
-Message-ID: <20260108173351.3784288-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260106-dt-dtbs-broadcom-fixes-v1-4-ba45874e4553@kernel.org>
-References: <20260106-dt-dtbs-broadcom-fixes-v1-0-ba45874e4553@kernel.org> <20260106-dt-dtbs-broadcom-fixes-v1-4-ba45874e4553@kernel.org>
+	s=arc-20240116; t=1767893638; c=relaxed/simple;
+	bh=YfdOM3X+dex2GwYPDQAVwZhy1TpxzRQTxxNf8pg3MnA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=UFFbElTRk0ti3nF0EWohIiRj0YWserMiDto4Myig1Sx1oJQLvGuK5UfZvYOBbkIh6DH6dM82NdIpP3zyNlWYTxuq/JA5LwKfd1H3fh+w7FgCQLhG93p600YmMGLEI42t3QYTQEAxk/AVip5I9QN2Di+oKvNUdQmlzKUa55M4O3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OcO32ZHR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4428C116D0;
+	Thu,  8 Jan 2026 17:33:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767893638;
+	bh=YfdOM3X+dex2GwYPDQAVwZhy1TpxzRQTxxNf8pg3MnA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=OcO32ZHR/2IhxRSLh73aJSqfw4ev5w92PgmyVkS9acY6s1BNqiCddFZlIMKHwLVm7
+	 E5wvykFVKq4LNCipDJ5PzpOWxIFuFb9aH9TwYNK6Gehhdc7ofszL9H0HeGafNdcwuh
+	 2YpjVUdWrXMjZ9RBm7bS2mme7ftRAH6e1Tj5+fN/D5vTv89OaW5hd1FIel6lEbSshK
+	 BR/XETisXLw4KzHJaiDgufVQ74MgEUmYN/dfsSJ2kRrJE5hhy9r7fvCLrkK9W6VBge
+	 VhLjMdVDgJEA2IdvJDRdZUB8ipVF7E4HGiS/8a+pWpEOg6oQEOAfVpLT6y6mCczPG9
+	 xFk5Dw5fKnRvQ==
+From: Lee Jones <lee@kernel.org>
+To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Jonathan Corbet <corbet@lwn.net>, 
+ James Calligeros <jcalligeros99@gmail.com>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-rtc@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+ linux-input@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Hector Martin <marcan@marcan.st>
+In-Reply-To: <20251215-macsmc-subdevs-v6-0-0518cb5f28ae@gmail.com>
+References: <20251215-macsmc-subdevs-v6-0-0518cb5f28ae@gmail.com>
+Subject: Re: (subset) [PATCH v6 0/7] mfd: macsmc: add rtc, hwmon and hid
+ subdevices
+Message-Id: <176789363340.1116194.12135010190762961915.b4-ty@kernel.org>
+Date: Thu, 08 Jan 2026 17:33:53 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-52d38
 
-From: Florian Fainelli <f.fainelli@gmail.com>
-
-On Tue, 06 Jan 2026 20:09:43 -0600, "Rob Herring (Arm)" <robh@kernel.org> wrote:
-> The "silabs,si3226x" and "brcm,bdc-v0.16" nodes have no documentation
-> and no driver in the kernel, so remove them. They can be added back with
-> proper documentation if there is a need for them.
+On Mon, 15 Dec 2025 19:37:44 +1000, James Calligeros wrote:
+> This series adds support for the remaining SMC subdevices. These are the
+> RTC, hwmon, and HID devices. They are being submitted together as the RTC
+> and hwmon drivers both require changes to the SMC DT schema.
 > 
-> Note that if both USB ports have similar memory maps in relationship to
-> their USB PHY nodes, it looks like the device controller should have
-> been at 0x12000, not 0x21000?
+> The RTC driver is responsible for getting and setting the system clock,
+> and requires an NVMEM cell. This series replaces Sven's original RTC driver
+> submission [1].
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
+> [...]
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+Applied, thanks!
+
+[2/7] mfd: macsmc: Wire up Apple SMC RTC subdevice
+      commit: a13cc4981449b9108921981a5e7c8824eaaa7604
+[3/7] mfd: macsmc: Wire up Apple SMC hwmon subdevice
+      commit: fb90c90aec3a9b7212a243f383f73a01bc653672
+[5/7] mfd: macsmc: Wire up Apple SMC input subdevice
+      commit: 3e9271dcb2dfdc4a98e9f6dc35c9be13276c3cfd
+
 --
-Florian
+Lee Jones [李琼斯]
+
 
