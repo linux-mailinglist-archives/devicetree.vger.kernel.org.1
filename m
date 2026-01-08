@@ -1,225 +1,355 @@
-Return-Path: <devicetree+bounces-252623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342F3D018E6
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 09:19:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09BE8D0190A
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 09:23:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A32253188C5D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:14:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D67683129EA3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:17:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4918359FA0;
-	Thu,  8 Jan 2026 07:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80D2738FF05;
+	Thu,  8 Jan 2026 08:01:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="YPa+fs7x"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="qGk5sPyZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazon11012059.outbound.protection.outlook.com [40.93.195.59])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1633F33D4EE;
-	Thu,  8 Jan 2026 07:58:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.195.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767859162; cv=fail; b=n4wV2MEPmQkGg5ZG59sCSXDD3nrB67uxc0c9/Cy6oAZDlpETZbarE+qjzIvVUXcDq2Tc6J0A3ncrlHU2Nti1oyYE2P6teS0U3lfEnj97pUOIMI3Q3vhylvIKxyDJ0T4U+jxWFLuoOe20C9Z4D0Bygwt+oiUfb5BaxFPGnCEbhoI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767859162; c=relaxed/simple;
-	bh=TnydipJ7ouDrwBkxE4iPSeuhP1ih673IRhgHIT8+qXM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h+VUE5SVVDvAxFhxQ0CSeEfvuJ9yWyQ8rRo5HbP4SZ9D1hZFgHc4d0/P+cF688R8eTKls0OuDMFsbLM4YyGo2JA3eI4+fica8CvQyKfMX1T+yrTOv36S165tcaVQCht7TuX6a/X0J+92a5zxk0eJJUNhT9gDkuXeT4VU1eOnhmI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=YPa+fs7x; arc=fail smtp.client-ip=40.93.195.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AfItQrya7HU9Fxx/49nwLUU1Tflt98b79FzpbsWmKack5VlzVhYcnk/i6+9JFscR5vDoQ73B67VkN6kIlWIefhmyssR68P9EDGFfWoX+UFVWmtQMNUay6E5GRj/62ms8J4KJQCf6l9LvaIah0lEL3hAaJOdkUANdPpFF5/lM7FfM0qzYnXWFDVkPmZsuKdmDxcJWCMNejrkFSjYdrwEFcpqOt0opmp2Q4GFsJj2wigubHf8Yt764DOHG/cfs9bz+NJ+GLVKBThJNSWywq0T8QbYp3ZBQ1Ooy01OYdW85FIwrw8WH4AQ6IWm89jKod5QGJGi0V/JSOBMC+1F8tfYobw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TnydipJ7ouDrwBkxE4iPSeuhP1ih673IRhgHIT8+qXM=;
- b=fqsSw8SiLzr9Zg3X+SBfgOvo9b05czLg5GpSNVWeA5h0ZUV4WoZZyQQSGtbGjgq9TGEiaP9K9vGPtOOQRQVWr85bPBN9i+eSySQVWT5UsCnjXMWQHqBnhEgX1M5AOgrdmDK/XB1CdlBic81ntsl+McjMuvdFbEQr+cCStEGF7CqN5JcwzQUiTukyFK3YiIUk1PWLkiVeKGIjcUrxA3/TZLf/qZrZUWROm4rYnwz18AXuZv7bZm9r4sgl0VMB3nVjCxQj4jxT4lZ1FriB0NloSZ/jOtPk73/aLb1Chrs9kIAN/UZI7gJytt+I+mbGwBf20XIZIG0zcnynS2iK6SQ15Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
- pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TnydipJ7ouDrwBkxE4iPSeuhP1ih673IRhgHIT8+qXM=;
- b=YPa+fs7xA704B2t+bInj3xVr1PzkM0jlSXZfuYgEH5c7hVhA2zfAdDqGQ5ckSkf4o1Hy7lbw2SuQzJbAhDHqVyPRR4aMtuPyNczOn546IP0hsLaOg4Dis29EUQAFuM/Sl64nogaJ6G38gfW3a8auchcXIb44y6SPWy5xyvr33p8BzcGA3kT6wFUPi2OqrJI5tIwJBC8jLffbudNfo6JvcGC/G5lDbwuKH88689TVg4BTUOog8TqoQRj5ygw6/yfm3QyzIQg252zbP/WtBeS0qD6h9ISrv3FiuejYM71SFq9d4+TlR4l3nanPODMLoRB3b9OUNv4SBKavX3u2rg+vyQ==
-Received: from CH2PR15CA0011.namprd15.prod.outlook.com (2603:10b6:610:51::21)
- by SJ0PR22MB3480.namprd22.prod.outlook.com (2603:10b6:a03:443::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Thu, 8 Jan
- 2026 07:58:40 +0000
-Received: from DS3PEPF0000C37F.namprd04.prod.outlook.com
- (2603:10b6:610:51:cafe::b) by CH2PR15CA0011.outlook.office365.com
- (2603:10b6:610:51::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.2 via Frontend Transport; Thu, 8
- Jan 2026 07:58:38 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
- smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
-Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
- not designate 165.85.157.49 as permitted sender)
- receiver=protection.outlook.com; client-ip=165.85.157.49;
- helo=atlrelay2.compute.ge-healthcare.net;
-Received: from atlrelay2.compute.ge-healthcare.net (165.85.157.49) by
- DS3PEPF0000C37F.mail.protection.outlook.com (10.167.23.9) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Thu, 8 Jan 2026 07:58:39 +0000
-Received: from [127.0.0.1] (zoo10.fihel.lab.ge-healthcare.net [10.168.174.92])
-	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id D10DF1A2CC;
-	Thu,  8 Jan 2026 09:58:36 +0200 (EET)
-Message-ID: <493b1bac-2eae-4c78-9c07-801eaf954b04@gehealthcare.com>
-Date: Thu, 8 Jan 2026 09:58:19 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D32D52FBE02;
+	Thu,  8 Jan 2026 08:00:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767859263; cv=none; b=m55H37q8VahfsFzBeJE4lhiNoP1anqcuRczzIFryxg7sCZP+UG8bJjqK4buAgyfe8Bk3IP9SoD2aA0HPe36l4qMUSMIF6iOLqcpKQnquBQ8h0Fxy3md24h0i33gi+6p2/MBuirJI+c/0zvbjyqfXjuLv7p+7mEuwmybIg77xxzg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767859263; c=relaxed/simple;
+	bh=Y0/DlcIcvj51rhEJJzgqqx15uc5MydQxybGXptrbVc4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kvMhAnQlOkquzYVl9epZyl4D1a8CwczRSRCxmnhn6wELP8+6VuEMp+QOb9OU2WNXZQ/QDWdt2Cz/OYka1B3dp+QKz6vACQiLUt6+eaZkxZ6vFkg/BgBdC+y17Yix1dHpkrMO3JRJ5BFE/NUjKTd9B2X66SUaWcYkIa0R3NUyulE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=qGk5sPyZ; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 5C79D4E41FED;
+	Thu,  8 Jan 2026 08:00:54 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 2ECF0606B6;
+	Thu,  8 Jan 2026 08:00:54 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7337D103C84E2;
+	Thu,  8 Jan 2026 09:00:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767859252; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=OlYVlM16PAGaUnTav0SYLhyhYluF+11pbMgNtp51dBk=;
+	b=qGk5sPyZH3HcgTFB5BUDOm+K522QJ4CteqH4eAIvI7U5LY2nQuLvN2vC63e65kyLJBX2YJ
+	6wT3EzbkEIUuhzQa7wrfI44LfOaRMWsNG9X4m5DEGgeOA8hQ9RC+ROmvu5DjAb5Q6jLedU
+	TIx6MhPOy19DiXEek+cfn/a05S5Ru8oJtmFKciz+CpmTDq/bJKXI4AAZBEkjvla+8CiZ2n
+	vqefhKdoxhIi5aXftPxZzvPZpGs2M8GND38WM1vOw0rz4MzH/TWdd3ZPW6QWuRcxrA061l
+	yazB41jU3OsXAWqvopzZ0G38q5yOGpdO/KNekG3ZbXtc/HBkqFXQ/IsEdXy3rg==
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: davem@davemloft.net
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+	Tariq Toukan <tariqt@nvidia.com>
+Subject: [PATCH net-next v22 00/14]  net: phy: Introduce PHY ports representation
+Date: Thu,  8 Jan 2026 09:00:25 +0100
+Message-ID: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: watchdog: fsl-imx: document continue in
- low power mode
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251229145000.421426-1-nandor.han@gehealthcare.com>
- <20251229145000.421426-3-nandor.han@gehealthcare.com>
- <20251230-hidden-okapi-of-reputation-6ef8be@quoll>
- <e24ec822-4d13-4136-8fb6-1bc6cbaf8e20@gehealthcare.com>
- <04d8766f-0f79-409b-9290-3170e99e9750@kernel.org>
-Content-Language: en-US
-From: Nandor Han <nandor.han@gehealthcare.com>
-In-Reply-To: <04d8766f-0f79-409b-9290-3170e99e9750@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37F:EE_|SJ0PR22MB3480:EE_
-X-MS-Office365-Filtering-Correlation-Id: 88ad5ca2-437c-43b0-9a2c-08de4e8bbc77
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cmxzdDNvVW1zNFVUZHdPZnJ2UmNFODRKUDRhWi9paHpHS0IwUloyR2J6aGdq?=
- =?utf-8?B?MmpYZ0RxUXdkbGZOWjlNZUluRThYVFgyMENidEFKeldqRU54YUxBV2toUlpx?=
- =?utf-8?B?WWM4L28ycnpJZ1dsanBBMWFBazE2REhTeStmcnM2cktZYTRqZ0lwZ0ZhZnVa?=
- =?utf-8?B?djBJTjJBWEtnaC8xVzJSZHBlbGczaCtCR3h1bWt0UCtITlRrVS9YUG9FbkZO?=
- =?utf-8?B?a0kxU0lqRENUUmlrWUFYcXlHYWxLRHRYRHEvbFN4OHpHem81QnRWQkdDMTBt?=
- =?utf-8?B?OHd4OXJ6WDJQay9YczZEeDl0RllIS1p5bGNFOU5aSjhORmJHYWRiWExrYlBP?=
- =?utf-8?B?UW5qc1ZZeE1XMHRlU0lDanV0M0d6S0FyWlhaamFPSkNsMHJjR2VScGppMW9x?=
- =?utf-8?B?L0VWMFgzUnU0UnB4eW9IcEIrd1RCSkduWGt5Rjk2cDNlVW11MWpEeWVpdWhi?=
- =?utf-8?B?QWdIWnhuYjVFQ0hFNThLZ3VqekN6dDNiUENqeTNLY0FHNTlsU0ozdlovQ1FK?=
- =?utf-8?B?QVRoV1AvUXgzSmtyQkswYUNGbzNGdFhPWW12UjNUb0J1Q3ZyNjBKL2lyVjNQ?=
- =?utf-8?B?WmxkTHhpZTdnQ0JuNndsZ1Q4SHlnalhuMXV4cCtJUnpqTENCUjZROElUSEhw?=
- =?utf-8?B?dWJaTmxJcUJxSEFlazdTU2w0NG9rZmw1b2MycHlkUWRBQ0dyOUdxSGdqWkFm?=
- =?utf-8?B?cng0Nm5GbUlGeGdPa3p6MXBvWVlqYm0yM1g3YWRtYjZ5M1BUZjV4MGpkOTR0?=
- =?utf-8?B?M3dUck9pc3ZhTUxLSmFqWUpFdHFMZ1RSUjd2NkQ5OHIreHZ1dXhtOEV0RTJS?=
- =?utf-8?B?bnF2QjM2TWx4MTBWdEZqb21qNU93WDNJSTdieDFYbFl1RzZMSDZDUWcxUUEx?=
- =?utf-8?B?MzhCeVhjYmNFVHJ2bXJvdjFXQUF1bG9KMUdqV3FucVM3WG83S2RuQzRUNWVE?=
- =?utf-8?B?Ujd1NmU1ZFNHcURoK3Q4UUtsTUUvVlRqS0VDNmF5UGV6OFYzYi9kdUdpa0tG?=
- =?utf-8?B?ZDU1V3FuVzF3dXRZTTdnSmxnZGxtNHRLbFd4ZTQzS0tHOTREeEk3RWFmcGlw?=
- =?utf-8?B?d2pXeTFqeHg4ZUk1c25NNmhJdU5GeTVHQWd5ejFBbERORHdjZ1ladTFobHd4?=
- =?utf-8?B?L0pvVzFKQm9jK3czeVRVWEg4QWpwL2JqWUVvVFZnMVZNRmkyVzZhMVdPdE1k?=
- =?utf-8?B?VTFQeEFsSUYyZ0F6dG0zRlBwUHZ6WHZPSG8wT1ZpdkRYZG1CQzZ6bjlSVTRh?=
- =?utf-8?B?UzA4Z284UGovS0M1ZlJKL1JLbUtuU0s0NUJWODBXc0h4NGV2Tlp2c01za1dE?=
- =?utf-8?B?eDFjQXdNQjJwbm9GY01Ra0tJdVJnU1d5NVpRWllaVEpUYkFvMkRlZnJJMm8r?=
- =?utf-8?B?c1RuaG1KNmE4cmxvM2I1UENLVE80OVZRWlVNellSOWNjRzZReHZkYXY0eXFN?=
- =?utf-8?B?d25MK1hZbjd3cGg1ZExNK3BCaExjRTZTbEIyejRQeEZqUk5CYjVYMTBjUFN6?=
- =?utf-8?B?cUwzTlZ1TER4MEhSWnVxRjV5Z2pxYlg4VFd0S0NpVitldkVJMDBrTTFHNDJi?=
- =?utf-8?B?RDVidFFpWklwMEJLN3V1Y1Fvc2lWRUdIanVha3A3TURZV1hLVnhVeEsyU0NS?=
- =?utf-8?B?dnBubit1Q3R5ZmtkRCtGQmNPdGJEUm16TzVtdHNZVDEyelBhOExQeFZJcERK?=
- =?utf-8?B?cXNYTHpuVFBPRmZLQW9qNElCNTlsS21wMUJQYU53Y2tpSUhNM0RmVlBqek5H?=
- =?utf-8?B?ZVZhK1VFYVJDaS9LWFhCTzdrMFZoVUI1T21wRkRTaGV3VGxlcE94TVpvNHZv?=
- =?utf-8?B?c1lnK2w5UUtoc1ErRXA3bnV3Snhod1hmdVV1WFdRdXRMeVJRaCtTK2U5ejdS?=
- =?utf-8?B?V2xtOG00RXdUN2dwUWJRdy85ckQwQVRnMmtvdk96ZHhKczBGV3hoYzljZmZa?=
- =?utf-8?B?TGxBK2ZqWDVneVk5RVorYnhDY3N5ZHo1N3U0YjlmZy9CbDl4OUJuTW1SYXp1?=
- =?utf-8?B?MFV4eXdQSktpd2lnd3lmMW1PUDZWNG9aT0RER3Q0R3NBUXFsenhrQWo2OHJx?=
- =?utf-8?B?RzRQQk40dS9meEk2bkZ2bzBDUDdWUHR4akhJeHA2OFczamZNeHdNWkJ3N1Fy?=
- =?utf-8?Q?Fvac=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:atlrelay2.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: gehealthcare.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 07:58:39.9541
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88ad5ca2-437c-43b0-9a2c-08de4e8bbc77
-X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[atlrelay2.compute.ge-healthcare.net]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-DS3PEPF0000C37F.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR22MB3480
+X-Last-TLS-Session-Version: TLSv1.3
+
+Hi everyone,
+
+This is v22 of the phy_port work. Main items from this versions are :
+
+ - Rebase on net-next :)
+ - Removed a "contains" keyword in the binding
+ - Added a comment for phy_port SFP implementation
+
+Patch 1 now lacks DT maintainer ACK,
+Patches 2 and 3 lack PHY maintainer ACK
+
+As a remainder, a few important notes :
+
+ - This is only a first phase. It instantiates the port, and leverage
+   that to make the MAC <-> PHY <-> SFP usecase simpler.
+
+ - Next phase will deal with controlling the port state, as well as the
+   netlink uAPI for that.
+
+ - The end-goal is to enable support for complex port MUX. This
+   preliminary work focuses on PHY-driven ports, but this will be
+   extended to support muxing at the MII level (Multi-phy, or compo PHY
+   + SFP as found on Turris Omnia for example).
+
+ - The naming is definitely not set in stone. I named that "phy_port",
+   but this may convey the false sense that this is phylib-specific.
+   Even the word "port" is not that great, as it already has several
+   different meanings in the net world (switch port, devlink port,
+   etc.). I used the term "connector" in the binding.
+
+A bit of history on that work :
+
+The end goal that I personnaly want to achieve is :
+
+            + PHY - RJ45
+            | 
+ MAC - MUX -+ PHY - RJ45
+
+After many discussions here on netdev@, but also at netdevconf[1] and
+LPC[2], there appears to be several analoguous designs that exist out
+there.
+
+[1] : https://netdevconf.info/0x17/sessions/talk/improving-multi-phy-and-multi-port-interfaces.html
+[2] : https://lpc.events/event/18/contributions/1964/ (video isn't the
+right one)
+
+Take the MAchiatobin, it has 2 interfaces that looks like this :
+
+ MAC - PHY -+ RJ45
+            |
+	    + SFP - Whatever the module does
+
+Now, looking at the Turris Omnia, we have :
 
 
-On 1/7/26 12:48, Krzysztof Kozlowski wrote:
-> CAUTION: This email originated from outside of GE HealthCare. Only open links or attachments if you trust the sender. Report suspicious emails using Outlook’s “Report” button.
->
-> On 07/01/2026 10:12, Nandor Han wrote:
->> On 12/30/25 14:34, Krzysztof Kozlowski wrote:
->>> CAUTION: This email originated from outside of GE HealthCare. Only open links or attachments if you trust the sender. Report suspicious emails using Outlook’s “Report” button.
->>>
->>> On Mon, Dec 29, 2025 at 04:50:00PM +0200, Nandor Han wrote:
->>>> Property "fsl,wdt-continue-in-low-power" allows the watchdog to continue
->>>> running in low power modes (STOP and DOZE). By default, the watchdog is
->>>> suspended in these modes. This property provides the option to keep the
->>>> watchdog active during low power states when needed.
->>> And why exactly would that be a DT property? If system is sleeping
->>> (assuming this is what you meant by low power), no one will pet the dog,
->>> thus watchdog makes no sense.
->> Thanks for the feedback Krzysztof and Guenter.
->>
->> In our case, low-power mode is disabled. However, we have identified that under certain conditions,
-> If your system has low power mode disabled, then you do not need this
-> property - you already know that watchdog must continue (or whatever you
-> want to achieve here).
->
->> specifically during simulated high-load scenarios, the device becomes unresponsive because it enters
->> one of these power states.
-> Device as watchdog? I really do not understand your explanations, but
-> for sure system load is not relevant to DT property.
->
->>> Otherwise I fail to see how this is a hardware property and we do not
->>> accept SW properties (see writing bindings, numerous presentations).
->> Our system is based on the i.MX7D CPU and the watchdog peripheral supports the configuration:
->>
->> (From i.MX 7Dual Applications Processor Reference Manual, Rev. 1, 01/2018, page: 1174)
->> ---
->> WDZST
->> Watchdog Low Power. Determines the operation of the WDOG during low-power modes. This bit is write
->> once-only.
->> ---
->> Given that our system does not support low-power modes, we intend to enable the watchdog across all power
->> states to ensure the device can recover properly under these conditions.
-> That's not what your property said. Your property said watchdog should
-> continue in low power modes. So when system enters low power mode, how
-> the watchdog petting would work?
->
-> Now you claim you want to enable it in low power mode but you do not
-> have low power mode? Does not make sense to me at all.
->
-> Best regards,
-> Krzysztof
->
-Sorry if anything is unclear. I would try to explain the change from the driver's point of view.
+ MAC - MUX -+ PHY - RJ45
+            |
+	    + SFP - Whatever the module does
 
-According to i.MX7D Reference Manual, the watchdog controller allows, via the WDOGx_WCR register, control over whether the watchdog continues or suspends in:
+We can find more example of this kind of designs, the common part is
+that we expose multiple front-facing media ports. This is what this
+current work aims at supporting. As of right now, it does'nt add any
+support for muxing, but this will come later on.
 
-a)WAIT power state (bit 7: WDW)
-b)STOP and DOSE power state(bit 0: WDZST).
+This first phase focuses on phy-driven ports only, but there are already
+quite some challenges already. For one, we can't really autodetect how
+many ports are sitting behind a PHY. That's why this series introduces a
+new binding. Describing ports in DT should however be a last-resort
+thing when we need to clear some ambiguity about the PHY media-side.
 
-The current driver implementation provides a Device Tree binding `fsl,suspend-in-wait` for configuring case (a) and forces the watchdog to be suspended in case (b).
+The only use-cases that we have today for multi-port PHYs are combo PHYs
+that drive both a Copper port and an SFP (the Macchiatobin case). This
+in itself is challenging and this series only addresses part of this
+support, by registering a phy_port for the PHY <-> SFP connection. The
+SFP module should in the end be considered as a port as well, but that's
+not yet the case.
 
-My patch adds the ability to configure case (b) as well.
+However, because now PHYs can register phy_ports for every media-side
+interface they have, they can register the capabilities of their ports,
+which allows making the PHY-driver SFP case much more generic.
+
+Let me know what you think, I'm all in for discussions :)
 
 Regards,
-Nandor
 
+Changes in v22:
+ - remove 'contains' in DT binding, as per AI review
+ - Added a comment indicating that phy_port parameters will be
+   initialized eventually, as per AI review.
 
+Changes in v21:
+ - Drop unused variable in marvell10g.c
+ - Address Russell's comments on 100BaseTX and 1000BaseX in commit logs
+
+Changes in V20:
+ - Drop dp83822 SFP support, untested for too long
+ - Fix some cleanup sequences following claude's review
+
+Changes in v19:
+ - Rebase on net-next, add the 4 new 1600G linkmodes
+
+Changes in v18:
+ - Added a missing 'static' when declaring the medium names.
+
+Changes in v17:
+ - Moved the medium names to patch 3
+ - Moved some mediums helpers out of uapi, and the logic into
+   net/ethtool/common.c instead of inline functions in headers
+ - Added a MAINTAINERS entry
+ - Aggregated reviews/tests
+ - Rebased on net-next
+
+Changes in v16:
+ - From Andrew, relaxed the check on the number of pairs so that we only
+   fail when baseT is missing pairs
+ - Add a check for either 1, 2 or 4 pairs
+ - Lots of typos (mostly lanes -> pairs)
+ - Added Andrew's review tags (thanks again)
+ - From Rob, added an "else" statement in the ethernet-connector binding
+ - Changed the node name for ethernet connectors to be decimal
+
+Changes in V15:
+ - Update bindings, docs and code to use pairs instead of lanes
+ - Make pairs only relevant for BaseT
+
+Changes in V14:
+ - Fixed kdoc
+ - Use the sfp module_caps feature.
+
+Changes in V13:
+ - Added phy_caps support for interface selection
+ - Aggregated tested-by tags
+
+Changes in V12:
+ - Moved some of phylink's internal helpers to phy_caps for reuse in
+   phylib
+ - Fixed SFP interface selection
+ - Added Rob's review and changes in patch 6
+
+Changes in V11:
+ - The ti,fiber-mode property was deprecated in favor of the
+   ethernet-connector binding
+ - The .attach_port was split into an MDI and an MII version
+ - I added the warning back in the AR8031 PHY driver
+ - There is now an init-time check on the number of lanes associated to
+   every linkmode, making sure the number of lanes is above or equal to
+   the minimum required
+ - Various typos were fixed all around
+ - We no longer use sfp_select_interface() for SFP interface validation
+
+Changes in V10:
+ - Rebase on net-next
+ - Fix a typo reported by Köry
+ - Aggregate all reviews
+ - Fix the conflict on the qcom driver
+
+Changes in V9:
+ - Removed maxItems and items from the connector binding
+ - Fixed a typo in the binding
+
+Changes in V8:
+ - Added maxItems on the connector media binding
+ - Made sure we parse a single medium
+ - Added a missing bitwise macro
+
+Changes in V7:
+ - Move ethtool_medium_get_supported to phy_caps
+ - support combo-ports, each with a given set of supported modes
+ - Introduce the notion of 'not-described' ports
+
+Changes in V6:
+
+ - Fixed kdoc on patch 3
+ - Addressed a missing port-ops registration for the Marvell 88x2222
+   driver
+ - Addressed a warning reported by Simon on the DP83822 when building
+   without CONFIG_OF_MDIO
+
+Changes in V5 :
+
+ - renamed the bindings to use the term "connector" instead of "port"
+ - Rebased, and fixed some issues reported on the 83822 driver
+ - Use phy_caps
+
+Changes in V4 :
+
+ - Introduced a kernel doc
+ - Reworked the mediums definitions in patch 2
+ - QCA807x now uses the generic SFP support
+ - Fixed some implementation bugs to build the support list based on the
+   interfaces supported on a port
+
+V21: https://lore.kernel.org/netdev/20251129082228.454678-1-maxime.chevallier@bootlin.com/
+V20: https://lore.kernel.org/r/20251127171800.171330-1-maxime.chevallier@bootlin.com
+V19: https://lore.kernel.org/r/20251122124317.92346-1-maxime.chevallier@bootlin.com
+V18: https://lore.kernel.org/r/20251120205508.553909-1-maxime.chevallier@bootlin.com
+V17: https://lore.kernel.org/all/20251119195920.442860-1-maxime.chevallier@bootlin.com/
+V16: https://lore.kernel.org/all/20251113081418.180557-2-maxime.chevallier@bootlin.com/
+V15: https://lore.kernel.org/all/20251106094742.2104099-1-maxime.chevallier@bootlin.com/
+V14: https://lore.kernel.org/netdev/20251013143146.364919-1-maxime.chevallier@bootlin.com/
+V13: https://lore.kernel.org/netdev/20250921160419.333427-1-maxime.chevallier@bootlin.com/
+V12: https://lore.kernel.org/netdev/20250909152617.119554-1-maxime.chevallier@bootlin.com/
+V11: https://lore.kernel.org/netdev/20250814135832.174911-1-maxime.chevallier@bootlin.com/
+V10: https://lore.kernel.org/netdev/20250722121623.609732-1-maxime.chevallier@bootlin.com/
+V9: https://lore.kernel.org/netdev/20250717073020.154010-1-maxime.chevallier@bootlin.com/
+V8: https://lore.kernel.org/netdev/20250710134533.596123-1-maxime.chevallier@bootlin.com/
+v7: https://lore.kernel.org/netdev/20250630143315.250879-1-maxime.chevallier@bootlin.com/
+V6: https://lore.kernel.org/netdev/20250507135331.76021-1-maxime.chevallier@bootlin.com/
+V5: https://lore.kernel.org/netdev/20250425141511.182537-1-maxime.chevallier@bootlin.com/
+V4: https://lore.kernel.org/netdev/20250213101606.1154014-1-maxime.chevallier@bootlin.com/
+V3: https://lore.kernel.org/netdev/20250207223634.600218-1-maxime.chevallier@bootlin.com/
+RFC V2: https://lore.kernel.org/netdev/20250122174252.82730-1-maxime.chevallier@bootlin.com/
+RFC V1: https://lore.kernel.org/netdev/20241220201506.2791940-1-maxime.chevallier@bootlin.com/
+
+Maxime Chevallier (14):
+  dt-bindings: net: Introduce the ethernet-connector description
+  net: ethtool: Introduce ETHTOOL_LINK_MEDIUM_* values
+  net: phy: Introduce PHY ports representation
+  net: phy: dp83822: Add support for phy_port representation
+  dt-bindings: net: dp83822: Deprecate ti,fiber-mode
+  net: phy: Create a phy_port for PHY-driven SFPs
+  net: phy: Introduce generic SFP handling for PHY drivers
+  net: phy: marvell-88x2222: Support SFP through phy_port interface
+  net: phy: marvell: Support SFP through phy_port interface
+  net: phy: marvell10g: Support SFP through phy_port
+  net: phy: at803x: Support SFP through phy_port interface
+  net: phy: qca807x: Support SFP through phy_port interface
+  net: phy: Only rely on phy_port for PHY-driven SFP
+  Documentation: networking: Document the phy_port infrastructure
+
+ .../bindings/net/ethernet-connector.yaml      |  56 +++
+ .../devicetree/bindings/net/ethernet-phy.yaml |  18 +
+ .../devicetree/bindings/net/ti,dp83822.yaml   |   9 +-
+ Documentation/networking/index.rst            |   1 +
+ Documentation/networking/phy-port.rst         | 111 ++++++
+ MAINTAINERS                                   |  10 +
+ drivers/net/phy/Makefile                      |   2 +-
+ drivers/net/phy/dp83822.c                     |  71 ++--
+ drivers/net/phy/marvell-88x2222.c             |  94 ++---
+ drivers/net/phy/marvell.c                     |  92 ++---
+ drivers/net/phy/marvell10g.c                  |  49 ++-
+ drivers/net/phy/phy-caps.h                    |   5 +
+ drivers/net/phy/phy-core.c                    |   6 +
+ drivers/net/phy/phy_caps.c                    |  65 ++++
+ drivers/net/phy/phy_device.c                  | 345 +++++++++++++++++-
+ drivers/net/phy/phy_port.c                    | 212 +++++++++++
+ drivers/net/phy/qcom/at803x.c                 |  77 ++--
+ drivers/net/phy/qcom/qca807x.c                |  72 ++--
+ include/linux/ethtool.h                       |  36 +-
+ include/linux/phy.h                           |  63 +++-
+ include/linux/phy_port.h                      |  99 +++++
+ net/ethtool/common.c                          | 287 +++++++++------
+ 22 files changed, 1394 insertions(+), 386 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ethernet-connector.yaml
+ create mode 100644 Documentation/networking/phy-port.rst
+ create mode 100644 drivers/net/phy/phy_port.c
+ create mode 100644 include/linux/phy_port.h
+
+-- 
+2.49.0
 
 
