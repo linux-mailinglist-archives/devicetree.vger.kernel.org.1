@@ -1,124 +1,123 @@
-Return-Path: <devicetree+bounces-252577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28917D01322
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 07:08:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E57D012F5
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 07:05:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 09D573058A23
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 06:06:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5597A30217B6
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 06:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6EAC302176;
-	Thu,  8 Jan 2026 06:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A1528504D;
+	Thu,  8 Jan 2026 06:05:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="Iqvu07/O"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="FPvChj9Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 460602641D8;
-	Thu,  8 Jan 2026 06:06:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A072D4B40;
+	Thu,  8 Jan 2026 06:05:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767852365; cv=none; b=WQI2UdFpTXVPpJTpJFiFRC5Najhu6uW+5fms8Og8hbm+87nQQOU644f057wOquNX2QHJdS5f91NpYb5o8kleklY1XIXq1WnMByj1n74JgoVBOwgVDnJhAmmbPggUGHEGDuTr2MKXIngo0Ka6God58n8fqX2j9fbebXEUFC+Lq+Q=
+	t=1767852301; cv=none; b=TH20P8B61Ufe6usjobY4PiyYzFWgy8nL6uhrNL0ID7jo0YLuNIMJVDRg8xw9pTpz6lWEZB47K15OCiaif+nxLCAOu+v2BCNW9ciNW6pJmkQXyVHuSwTRgzG11k5xs2U0+TQPAUX7vwmBSQMJNK3GGiyUFH62Q/jVFgeYui2qjjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767852365; c=relaxed/simple;
-	bh=F9bgMHjWCtw9COwvVnYwRZ2ASNpIkArfUg6YDe4p0DY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lEclO6+xBG0AR0DUn8dvaNH9jYJLAVoddTP1vSA/HgQpFplJtDx97N5q37GLnavWgqcYnt6JFNZJNfOAQ8RcPxSm2ZI0kLlyaqcAeg9QJwVkL/119i4Jny8Xnd3MlIqnnR506O99xat9no0FcIKodzMa5wI39HcgmxzhzFf+DA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=Iqvu07/O; arc=none smtp.client-ip=54.254.200.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1767852296;
-	bh=Kb5K0iHmhVo6j8LIgQJwjRVhLZwxwVD0tXIimEEYGb0=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=Iqvu07/OMbvyV0bzDliIc/xPa9f/6yVQtZw+ol7kseaqR17G34lZEUsHEbK5eZDzj
-	 leFVxvggLW/zCLHPqSHhqBcuFF4UCywJ9NdUjA/IiQc6d9Aa2blYXW4D0JbKJQwh9F
-	 TOacrv4rT/Z7H/sFKXV0cFF412kfTfhOh8rehnoQ=
-X-QQ-mid: esmtpgz11t1767852294t43f90bb5
-X-QQ-Originating-IP: HffZ7RlcyMDrYxCv2ae82zj8z6cmAht2vrfhsveVQHU=
-Received: from = ( [120.239.196.107])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 08 Jan 2026 14:04:53 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 3767647049890093468
-EX-QQ-RecipientCnt: 16
-Date: Thu, 8 Jan 2026 14:04:52 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Linus Walleij <linusw@kernel.org>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: add syscon property
-Message-ID: <16661E5F43A23979+aV9JBP2EbX0iBE9T@kernel.org>
-References: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-0-5f1090a487c7@linux.spacemit.com>
- <20251223-kx-pinctrl-aib-io-pwr-domain-v1-1-5f1090a487c7@linux.spacemit.com>
- <20251227-lavender-turkey-from-camelot-ab6aec@quoll>
+	s=arc-20240116; t=1767852301; c=relaxed/simple;
+	bh=Jt4KV6fnkMfvidLzWMEWYpXAg344LKA5CXQ+qNFDYQI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=uSYkWMSuNOPWt5CGrQFUiYC5UFFnvHzi+GwBfUqY+H7X4x2oS3wMV/pjAXaoSntp02vH+/eu8ptqJYeRRVjtp6jY65cEGvzXUQGO5OWwGtllTeaEnii9TUHcllALKL6AW8N8fgCAWomMwaQBxiNoK8NK4GfmjNRZH17cDBi68Zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=FPvChj9Q; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1767852298;
+	bh=Lzc+HCU/UMiCZqanaq1/Hyk80NttsM3prspmFkSZ1dM=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=FPvChj9QFoYELv4NmJ0HWX4qTD4n8uT2clQe2BuBk2aDz3PVF8Ry8moGU6xwAI7H5
+	 MMH5yumSsONLqGEgMIiqfxAh9Dn4CdPhwzQeP3gi6/T3aHhCr27XkY95VVg4xUezQV
+	 QGKMyyzP5v+/xq/b4u+QROxP7YbForn4nLzIsXArRg/z+VwzcUI58n2TwjMt5vkdRX
+	 Ac4cAXty41G8FHnWcWF7jU8eoyGu61VaBx6z1K8IEreEIRCxQ4AHB/uJ/cHlqggX9a
+	 6GOg9qnkpB0b2RAXEWf13igTQnR4S0UUAg/fZACzLE9iNmDS9ZfU/DyYZpgBj4dw7E
+	 i6vlPPAuW0yYQ==
+Received: from [192.168.68.115] (unknown [180.150.112.60])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id B16BA7C834;
+	Thu,  8 Jan 2026 14:04:57 +0800 (AWST)
+Message-ID: <3d6aaf558fd8b60ec7010f976a747d9f0a727f98.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2 1/2] arm: dts: aspeed: add an alt 128M flash layout
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Marc Olberding <molberding@nvidia.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	 <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Thu, 08 Jan 2026 16:34:57 +1030
+In-Reply-To: <20251218-alt-128-v2-1-10499a0b7eb9@nvidia.com>
+References: <20251218-alt-128-v2-0-10499a0b7eb9@nvidia.com>
+	 <20251218-alt-128-v2-1-10499a0b7eb9@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251227-lavender-turkey-from-camelot-ab6aec@quoll>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: MHmS+iNcn8JXoEY7+Ai5LGVVDFRVb0VaCxkV25WDazznTQmYn5fkvl+E
-	cPqJcKLq+AkNHfuNJ/kmnbKpHd8ipHSsQXZ8cheexYrwjX/LOXgrPdbZwxkrnMhHufa6XlJ
-	AsxsjOsWyRs+zNGwpEds1zxzmGRpi8DGArLd0R7HGGpfEzkTl05MhquN/bF/Dl9uZbFl7VN
-	hfSTmCkKsS4m6owZPmPQfCJEueh1ALUqXK07CvTmtDKRIKYHbq8IG2cnWh0XNdMy2Aohv14
-	1IwyJp0MuySWikmwNrfnDAdR3aIoRnImoUvxqvB1hQg6FvN0Q0e42iNpttggiTUFnE3s9zr
-	6I5+5iwNgiELfbASmyEMQIgJUIHxlfxWiNASlyTGTPmemowSQevDiRvveyt1JcIVchcVKI2
-	LuoVEmyVBibLhzC/T4rIdRJ/eo4w5MabRZc0hgiBxp+Y9ZRHX13eRnb4/NCqQmW6iK7P04N
-	2i2Y9RDnV62VPHYZ4qIs3JskzAvt+91PmifOKBlXjEXjh+uW+B2ctSOBz0TmoaZAQ+3dCpS
-	XnvZddmgpHLoOf6CiHIVltrQAbp5Ts2MXMgLs6eG3gU+vJ2/1MyBlzpxH5W5jay6Iqv+zSp
-	8QnSFAuh04qpB7f8wEXUGHf0pI9Q+hQyrhpLhOe6ZA11U7H3thi75ycJ4IMmVjVJlDqdTAg
-	t+pmZkcaVEIRXW5nHLvCADvhEw2+iDYCpOlcnzc5Bg0v4U4mOcdMyVvvcrbfekS8MXSZ15u
-	xgrBo/95GT4rkwDcf5qMxQwq0vE28ehz19irc1GUipzmi4ZyoXaw8BGX/+l/FBsSoOe+8H0
-	3PYTgXZQczmYeajs+nR80sr1ertJaFz7B4HXaEzauYshitgRKwKXcMrH27OHuzW32NCjtt2
-	6UFVC57j9KXaAX2YT0dOZq0W7yZOzF7wO1NxDfIHPJUav3+A/Y0Qwfjl5hnRozcCU+LGSt7
-	l67AUw1xtk7duPnjn+BvO2nJ2ii4Q4N9VLD36QmtVrxgcZDETjVRXbgH5z2m+byDRfzu1i/
-	O6G+o6PzOAcxg4qskWiDpNtY1V+OIMX6zYXcVIftap+AxgZsNXY+93XdiF+4DuoY4qhBWtZ
-	6tMwluFAmX2nDmFrl4yDSeYqE/QWDKeuA==
-X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
-X-QQ-RECHKSPAM: 0
 
-On Sat, Dec 27, 2025 at 01:58:52PM +0100, Krzysztof Kozlowski wrote:
-> On Tue, Dec 23, 2025 at 05:11:11PM +0800, Troy Mitchell wrote:
-> > In order to access the protected IO power domain registers, a valid
-> > unlock sequence must be performed by writing the required keys to the
-> > AIB Secure Access Register (ASAR).
-> > 
-> > The ASAR register resides within the APBC register address space.
-> > A corresponding syscon property is added to allow the pinctrl driver
-> > to access this register.
-> >
-> 
-> Also:
-> 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-> 
-> You are not adding syscon to all pinctrls.
-I lost "spacemit" prefix. I'll add it in the next version.
-Thanks!
+Hi Marc,
 
-                        - Troy
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+Regarding the subject prefix, can you please capitalise the 'ARM' portion, =
+so:
+
+   ARM: dts: aspeed: add an alt 128M flash layout
+
+That way it's consistent with the rest of history.
+
+On Thu, 2025-12-18 at 10:48 -0800, Marc Olberding wrote:
+> Add a 128M layout for the BMC flash chip we didn't boot from. Including
+> this allows the user to write to each partition on the alternate spi
+> chip. This dtsi follows the existing standard of using the same layout
+> as non alt version and prepending `alt` to each partition's name.
+>=20
+> Testing: Include this in msx4 and cat size, offsets and name
+
+I think this would be better with s/Testing/Tested by/ and associated
+grammar fixes.
+
+> ```
+> for devdir in /sys/class/mtd/mtd*; do
+> > =C2=A0=C2=A0=C2=A0 [[ -d $devdir && -r $devdir/name ]] || continue
+> > =C2=A0=C2=A0=C2=A0 name=3D$(<"$devdir/name")
+> > =C2=A0=C2=A0=C2=A0 [[ $name =3D=3D alt* ]] || continue
+> >=20
+> > =C2=A0=C2=A0=C2=A0 size=3D$(<"$devdir/size")
+> > =C2=A0=C2=A0=C2=A0 offset=3D0
+> > =C2=A0=C2=A0=C2=A0 [[ -r $devdir/offset ]] && offset=3D$(<"$devdir/offs=
+et")
+> >=20
+> > =C2=A0=C2=A0=C2=A0 dev=3D$(basename "$devdir")
+> > =C2=A0=C2=A0=C2=A0 printf "%s name=3D%s offset=3D0x%X size=3D0x%X\n" "$=
+dev" "$name" \
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "$offset" "$size"
+> > done
+> mtd10 name=3Dalt-rofs offset=3D0xA00000 size=3D0x5600000
+> mtd11 name=3Dalt-rwfs offset=3D0x6000000 size=3D0x2000000
+> mtd7 name=3Dalt-u-boot offset=3D0x0 size=3D0xE0000
+> mtd8 name=3Dalt-u-boot-env offset=3D0xE0000 size=3D0x20000
+> mtd9 name=3Dalt-kernel offset=3D0x100000 size=3D0x900000
+> ```
+
+Can you rather remove the markdown codeblock and instead indent the
+code snippet (IMO 4 spaces is fine)?
+
+Also the shell continuation markers seem a little unfortunate. Maybe
+just drop them for clarity? You can separate the output from the
+script.
+
+I also found this helpful:
+
+    diff -u arch/arm/boot/dts/aspeed/openbmc-flash-layout-128{,-alt}.dtsi
+
+Andrew
 
