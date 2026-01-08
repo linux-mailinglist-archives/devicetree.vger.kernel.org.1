@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-252985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20993D05AA9
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 19:51:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B69D057E5
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 19:25:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7A3AC30E1A1A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 18:24:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 805F43071D3A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 18:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCD2311596;
-	Thu,  8 Jan 2026 18:24:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71613313282;
+	Thu,  8 Jan 2026 18:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="KFQjpAl2"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Cg9nW05S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7D33126DA
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 18:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E458031327D
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 18:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767896643; cv=none; b=QPgXwYTHIsNoXUjF5mTitBJv/LJOaXBFVqXBRSbF48Z7SF9rA8m+NW2VU5rJ0a6ddmZC3++62kQZVPnHQpy0eOF2x1xw+/6i+4JMQu+11W2bfq3B0tdB+2zf26lc+MGADvjr5Ool9DbCtECL1s+6F3za2DhZvGzMEujHc5kF5Y4=
+	t=1767896647; cv=none; b=ZSXEk+SwMRn4Ir913LdbTewEAgGw8WVuJs92TxjQLkFfG481dt7mJ9cICYlfj4EYi8ucEqA/oFo4jMyQ7WSUThmI3DoP9ZaE3D69C535W4rmauTtBty0qqzayShqBUx3qrrPveLS4+v6LVFeNRI8e43tY7ro3trBD242t0DHlmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767896643; c=relaxed/simple;
-	bh=cBXbBt7rAp+O28SxxCtNyupDcXA/6alarH+tSIwOj18=;
+	s=arc-20240116; t=1767896647; c=relaxed/simple;
+	bh=Ji/7obBxIwxWnOwq+oN0vBQphtdjofl8Y+5wfucnRns=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NtyHMv0Jmrg72jiAVlzYb5kvgElTXa7nsN2mTCqaKbSSS9OJMp5NIZfP3R8nqs2w3qFfXFofFA3CiLa7lzg6mHD0a+8d43D3TLvf7aLfBnZmcBb1VjbaxGZe+nMWexhCSMg/be6Z31O3CKNSiICtPVJMIkDvp3NLNcOblacVyTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=KFQjpAl2; arc=none smtp.client-ip=170.10.133.124
+	 MIME-Version; b=dHJbePPfccFGAMPXleieEcntb1GSDwo38RDYwfINfuJnUBRUaL4YrqChfi4Ok8uV7cGQnlfQdlzwy7jwuO7P1beiTYhCxZQjDK4WBNB17PJC/FBuXrh7QWk3/sOFWg/1D4fVxYqiDfHsoWO+YVAz6arhi0YGuf76OiphzpJUj10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Cg9nW05S; arc=none smtp.client-ip=170.10.133.124
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1767896641;
+	s=mimecast20190719; t=1767896644;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Fjnh3sw7EA2ytiRCBrNn8oycRpIfYmZ8yq78Z8T1zEk=;
-	b=KFQjpAl2NNvIA+HE3zAm2dEwXwNJjZkIjc7AMWFizAPuRxjjWmQKEpTNbl12xEFEXYe5QF
-	2hV6R8h7e3Qm3E+x1BSZ9iFzoAlrBFhdClQ6ccyz4oJfJz+RO4Lz72RYNBKX/GHGXEyy3h
-	9Bo3Z9xUzscHzHf/KF3Z60eNu76uTzs=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+	bh=00zDXOFdnxHwZE0nj9upG4j4/Uoy14VXfFS1/2UddLs=;
+	b=Cg9nW05SLhBaxX6nJ8hivkNini/xkQcSBuA7EoTihRLO7/ULi9RZ7cpcdpnHiB6rK1piio
+	6EPc0rmtQ9SO8ni1i70N/DvoH6BZ52EVZIIvzWiltC0nDCrF8YJjfDeaf8Ywt5jBMCuzET
+	pkNaxjX70YRatMiicY69NEPD247epMY=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-530-RZTwi0dTOTiE_d4K2pGnWg-1; Thu,
- 08 Jan 2026 13:23:55 -0500
-X-MC-Unique: RZTwi0dTOTiE_d4K2pGnWg-1
-X-Mimecast-MFC-AGG-ID: RZTwi0dTOTiE_d4K2pGnWg_1767896632
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-478-X_c3TkaZNQyg4WxORCdkXg-1; Thu,
+ 08 Jan 2026 13:24:02 -0500
+X-MC-Unique: X_c3TkaZNQyg4WxORCdkXg-1
+X-Mimecast-MFC-AGG-ID: X_c3TkaZNQyg4WxORCdkXg_1767896639
 Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id B4A5B1956088;
-	Thu,  8 Jan 2026 18:23:51 +0000 (UTC)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 3D48E1800359;
+	Thu,  8 Jan 2026 18:23:59 +0000 (UTC)
 Received: from p16v.luc.cera.cz (unknown [10.44.32.20])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 63B5F180009E;
-	Thu,  8 Jan 2026 18:23:44 +0000 (UTC)
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 27A5B1800285;
+	Thu,  8 Jan 2026 18:23:51 +0000 (UTC)
 From: Ivan Vecera <ivecera@redhat.com>
 To: netdev@vger.kernel.org
 Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
@@ -85,9 +85,9 @@ Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
 	Michal Schmidt <mschmidt@redhat.com>,
 	Petr Oros <poros@redhat.com>,
 	Grzegorz Nitka <grzegorz.nitka@intel.com>
-Subject: [PATCH net-next 03/12] dpll: Add helpers to find DPLL pin fwnode
-Date: Thu,  8 Jan 2026 19:23:09 +0100
-Message-ID: <20260108182318.20935-4-ivecera@redhat.com>
+Subject: [PATCH net-next 04/12] dpll: zl3073x: Associate pin with fwnode handle
+Date: Thu,  8 Jan 2026 19:23:10 +0100
+Message-ID: <20260108182318.20935-5-ivecera@redhat.com>
 In-Reply-To: <20260108182318.20935-1-ivecera@redhat.com>
 References: <20260108182318.20935-1-ivecera@redhat.com>
 Precedence: bulk
@@ -99,99 +99,31 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 
-Add helper functions to the DPLL core to retrieve a DPLL pin's firmware
-node handle based on the "dpll-pins" and "dpll-pin-names" properties.
+Associate the registered DPLL pin with its firmware node by calling
+dpll_pin_fwnode_set().
 
-* `fwnode_dpll_pin_node_get()`: matches the given name against the
-  "dpll-pin-names" property to find the correct index, then retrieves
-  the reference from "dpll-pins".
-* `device_dpll_pin_node_get()`: a wrapper around the fwnode helper for
-  convenience when using a `struct device`.
-
-These helpers simplify the process for consumer drivers (such as Ethernet
-controllers or PHYs) to look up their associated DPLL pins defined in
-the DT or ACPI, which can then be passed to the DPLL subsystem to acquire
-the pin object.
+This links the created pin object to its corresponding DT/ACPI node
+in the DPLL core. Consequently, this enables consumer drivers (such as
+network drivers) to locate and request this specific pin using the
+fwnode_dpll_pin_find() helper.
 
 Signed-off-by: Ivan Vecera <ivecera@redhat.com>
 ---
- drivers/dpll/dpll_core.c | 20 ++++++++++++++++++++
- include/linux/dpll.h     | 15 +++++++++++++++
- 2 files changed, 35 insertions(+)
+ drivers/dpll/zl3073x/dpll.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/dpll/dpll_core.c b/drivers/dpll/dpll_core.c
-index fb68b5e19b480..23d04a9d022d7 100644
---- a/drivers/dpll/dpll_core.c
-+++ b/drivers/dpll/dpll_core.c
-@@ -654,6 +654,26 @@ struct dpll_pin *fwnode_dpll_pin_find(struct fwnode_handle *fwnode)
- }
- EXPORT_SYMBOL_GPL(fwnode_dpll_pin_find);
+diff --git a/drivers/dpll/zl3073x/dpll.c b/drivers/dpll/zl3073x/dpll.c
+index 9879d85d29af0..d43e2cea24a67 100644
+--- a/drivers/dpll/zl3073x/dpll.c
++++ b/drivers/dpll/zl3073x/dpll.c
+@@ -1373,6 +1373,7 @@ zl3073x_dpll_pin_register(struct zl3073x_dpll_pin *pin, u32 index)
+ 		rc = PTR_ERR(pin->dpll_pin);
+ 		goto err_pin_get;
+ 	}
++	dpll_pin_fwnode_set(pin->dpll_pin, props->fwnode);
  
-+/**
-+ * fwnode_dpll_pin_node_get - get dpll pin node from given fw node and pin name
-+ * @fwnode: firmware node that uses the dpll pin
-+ * @name: dpll pin name from dpll-pin-names property
-+ *
-+ * Return: ERR_PTR() on error or a valid firmware node handle on success.
-+ */
-+struct fwnode_handle *fwnode_dpll_pin_node_get(struct fwnode_handle *fwnode,
-+					       const char *name)
-+{
-+	int index = 0;
-+
-+	if (name)
-+		index = fwnode_property_match_string(fwnode, "dpll-pin-names",
-+						     name);
-+
-+	return fwnode_find_reference(fwnode, "dpll-pins", index);
-+}
-+EXPORT_SYMBOL_GPL(fwnode_dpll_pin_node_get);
-+
- static int
- __dpll_pin_register(struct dpll_device *dpll, struct dpll_pin *pin,
- 		    const struct dpll_pin_ops *ops, void *priv, void *cookie)
-diff --git a/include/linux/dpll.h b/include/linux/dpll.h
-index f0c31a111c304..755c36d1ef45a 100644
---- a/include/linux/dpll.h
-+++ b/include/linux/dpll.h
-@@ -11,6 +11,7 @@
- #include <linux/device.h>
- #include <linux/netlink.h>
- #include <linux/netdevice.h>
-+#include <linux/property.h>
- #include <linux/rtnetlink.h>
- 
- struct dpll_device;
-@@ -176,6 +177,8 @@ int dpll_netdev_add_pin_handle(struct sk_buff *msg,
- 			       const struct net_device *dev);
- 
- struct dpll_pin *fwnode_dpll_pin_find(struct fwnode_handle *fwnode);
-+struct fwnode_handle *fwnode_dpll_pin_node_get(struct fwnode_handle *fwnode,
-+					       const char *name);
- #else
- static inline void
- dpll_netdev_pin_set(struct net_device *dev, struct dpll_pin *dpll_pin) { }
-@@ -197,8 +200,20 @@ fwnode_dpll_pin_find(struct fwnode_handle *fwnode)
- {
- 	return NULL;
- }
-+
-+static inline struct fwnode_handle *
-+fwnode_dpll_pin_node_get(struct fwnode_handle *fwnode, const char *name)
-+{
-+	return NULL;
-+}
- #endif
- 
-+static inline struct fwnode_handle *
-+device_dpll_pin_node_get(struct device *dev, const char *name)
-+{
-+	return fwnode_dpll_pin_node_get(dev_fwnode(dev), name);
-+}
-+
- struct dpll_device *
- dpll_device_get(u64 clock_id, u32 dev_driver_id, struct module *module);
- 
+ 	if (zl3073x_dpll_is_input_pin(pin))
+ 		ops = &zl3073x_dpll_input_pin_ops;
 -- 
 2.52.0
 
