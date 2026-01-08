@@ -1,293 +1,176 @@
-Return-Path: <devicetree+bounces-252782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD03BD02D12
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:02:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46160D02B90
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 13:47:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8783D3098457
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:56:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CB41F3030DB6
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:44:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164A748381F;
-	Thu,  8 Jan 2026 12:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C3F4A2893;
+	Thu,  8 Jan 2026 12:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="QCjcHtxj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KkXzmfKF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86087483817;
-	Thu,  8 Jan 2026 12:02:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69FF4A1A7D;
+	Thu,  8 Jan 2026 12:15:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767873767; cv=none; b=pfBlzyFovhmVGCV6CZ3GLJS7hv9udHo670vJPvLRUfoOcTOAFpT8WH1bpvRVg743Nd7iS3tKKMEXoTsMqOywn8j59fY7ZUUrW3CcUExHa2D53wMqHBZIPDWLNorfn4QORebD86sNMJyg2Yua/4Hv1PmOEYGsAthVgD5fsEkM/yM=
+	t=1767874517; cv=none; b=Mgv+7qT/MetqkymfCmSDQ0+2MupBeL0TX6Dn4yonNWBijphfpKtuEUD1mq363MVvC4ikhtu3nfLOCXSetLmTAjiKrUcvJaUv1GEDv/ccg6tfuFG2zgxDNxRWgnQdNtlJxbSlfXEbPMzrHzuyLpmKG/7azs8gW0EEG7xnQBFnBIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767873767; c=relaxed/simple;
-	bh=6H7El0KrlREwMD6n9HpCMSMKIilzMD7JYSAu1RPoHfs=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=vCdTrdYQcM/rSomwIboGNGLST+Cb5Ky2qkOm1hSRH5ICOgDv2nXk7c/SKuS+Wn3mszB7D3SJ1idCkyM4CnCeOvxkM2FuDC6xQCb2ZTSoHrCJRp+EXmBbLlqprXuGTjcis5IpnXIFP5rDl/fZ5kYIZQn/XtYA7ZxA4bmcIBHtEXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=QCjcHtxj; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=toBZ9wB9UjYA/F/GIAjEX8Vx9aqxKz7DvDgXm2wrmcU=; b=QCjcHtxjynL1ZuDv0nLAFrYa/d
-	8snQkIDaxAq8ev8Ibn03muSTZvU4o/lXLnhTHU3bwGWcY8YPkmLDIs08yPlXW1QolYmjVnNc7/Shz
-	JVqAO1Ph7Sg7FyF5wJU1YlPSJSYfkisQorYOXcC9Ic4m+A7Kb6A3Wk7x4aV+IIlmr4vHFsQGxXvTL
-	LQjAeLBtpyjI8EMGnEoMLAHzOkfBdbkFAMHx4o8yuYVWAzZEGvl2OUoeSQxYq0cOIfvQ2FRX5HnpS
-	DI3AjgGDLRI2oj1q61uAOgYNwDTiSVXJz930enom+Gwf4+54Rfdffew2QFyEmGcmdOLBVc3eLq43H
-	2g//Iiyg==;
-Received: from [122.175.9.182] (port=29271 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1vdoil-0000000036V-0S6z;
-	Thu, 08 Jan 2026 07:02:31 -0500
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 583AA1A80E0F;
-	Thu,  8 Jan 2026 17:32:24 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
- by localhost (zimbra.couthit.local [127.0.0.1]) (amavis, port 10032)
- with ESMTP id mAcZArUnjiuA; Thu,  8 Jan 2026 17:32:23 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 5AD781A80E27;
-	Thu,  8 Jan 2026 17:32:23 +0530 (IST)
-X-Virus-Scanned: amavis at couthit.local
-Received: from zimbra.couthit.local ([127.0.0.1])
- by localhost (zimbra.couthit.local [127.0.0.1]) (amavis, port 10026)
- with ESMTP id ouwfcrParFdQ; Thu,  8 Jan 2026 17:32:23 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 3387F1A80E0F;
-	Thu,  8 Jan 2026 17:32:23 +0530 (IST)
-Date: Thu, 8 Jan 2026 17:32:23 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: Andrew Davis <afd@ti.com>
-Cc: Parvathi Pudi <parvathi@couthit.com>, nm <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, rogerq <rogerq@kernel.org>, 
-	tony <tony@atomide.com>, robh <robh@kernel.org>, 
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	aaro koskinen <aaro.koskinen@iki.fi>, andreas <andreas@kemnade.info>, 
-	Andrew Lunn <andrew@lunn.ch>, 
-	linux-omap <linux-omap@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	netdev <netdev@vger.kernel.org>, danishanwar <danishanwar@ti.com>, 
-	pratheesh <pratheesh@ti.com>, j-rameshbabu <j-rameshbabu@ti.com>, 
-	praneeth <praneeth@ti.com>, srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, mohan <mohan@couthit.com>, 
-	pmohan <pmohan@couthit.com>, basharath <basharath@couthit.com>, 
-	Murali Karicheri <m-karicheri2@ti.com>
-Message-ID: <2110802326.88645.1767873743162.JavaMail.zimbra@couthit.local>
-In-Reply-To: <84b08398-5622-45c9-a8fa-54639c1cf0b3@ti.com>
-References: <20260105162546.1809714-1-parvathi@couthit.com> <20260105162546.1809714-3-parvathi@couthit.com> <84b08398-5622-45c9-a8fa-54639c1cf0b3@ti.com>
-Subject: Re: [PATCH v4 2/2] arm: dts: ti: Adds support for AM335x and AM437x
+	s=arc-20240116; t=1767874517; c=relaxed/simple;
+	bh=d+AUQ+0Q0G7xnUBpM4myxGc7BPezAhRHEHHX4yBWl6w=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=VCDAREF+IdZ8zTGIgntgDCkqOdOU991rvTcjRmGn+kONZiAfTKOteECFK9wiSSKiLrCd2q6fKQHi17BrNJ1iOnPZcclAn/t63vvSzHjThIBO24iyj5qqIRVnu7F2x4dkLz+C295KsffQQLgtKYEjsgX/qTtXCFVsjpBm7O1V8fE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KkXzmfKF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5264DC19424;
+	Thu,  8 Jan 2026 12:15:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767874515;
+	bh=d+AUQ+0Q0G7xnUBpM4myxGc7BPezAhRHEHHX4yBWl6w=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=KkXzmfKFx0WXPrZ0YnCwyvOmjtkAZy5e84sSn6pRvt9Ewd6u0u6m3K10p+hhHOx/v
+	 tT5oX64jadziVPozT2YHyTd1KJ92/KXY8SVhdP3ksKLxg6M+niwV/v4ziZOEuYNwWg
+	 Gb5hROkHxjeaAj6iidLQtkq1daCq/mCY1ts+JsI2XINWH1+X4lUmq7z9142haD9mpj
+	 X/s734CFsrWvXd9yhjQ9iz85EYIbJPK8rHQlKse58PAtvUQlVU888Zi1tKLjGeo5hM
+	 exBbAtKxoYNXsRtLhf+8flHi8neiHS5zoHAffBTCuWHdpJCdVx+UoCUPeT6DeFxrG+
+	 JjfYWsezGwAJw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46FE5D185E7;
+	Thu,  8 Jan 2026 12:15:15 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Date: Thu, 08 Jan 2026 12:14:52 +0000
+Subject: [PATCH v3 3/6] iio: frequency: adf41513: handle LE synchronization
+ feature
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 9.0.0_ZEXTRAS_20240927 (ZimbraWebClient - GC143 (Mac)/9.0.0_ZEXTRAS_20240927)
-Thread-Topic: Adds support for AM335x and AM437x
-Thread-Index: q8z9cKWgO4NEoGv8PQwa5viWNmn8ow==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Message-Id: <20260108-adf41513-iio-driver-v3-3-23d1371aef48@analog.com>
+References: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
+In-Reply-To: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
+To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767874513; l=2933;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=X9/n4zTkaJgPCbGxxfeWNVQxYgRQ+AOLCLzn3Kd+1lY=;
+ b=M9/lJEnRdexE2rLI5Z5cDbipXXX0TqcrPlQoA7EnXZJ05UYVJBYVtmi3lFqeJhmglc4JTmqKP
+ TLwxh4na/e/ABporUU3NF4DSnkInPtizdOs7vh+2d8jTBFKb9zPxtjK
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
 
-Hi,
+From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-> On 1/5/26 10:21 AM, Parvathi Pudi wrote:
->> From: Roger Quadros <rogerq@ti.com>
->> 
->> PRU-ICSS instance consists of two PRU cores along with various
->> peripherals such as the Interrupt Controller (PRU_INTC), the Industrial
->> Ethernet Peripheral(IEP), the Real Time Media Independent Interface
->> controller (MII_RT), and the Enhanced Capture (eCAP) event module.
->> 
->> The TI Sitara AM335x ICE-V2 consists of single PRU-ICSS instance,
->> This patch adds the new device tree overlay file in-order to enable
->> PRU-ICSS instance, along with makefile changes.
->> 
->> The TI Sitara AM437x series of devices consists of 2 PRU-ICSS instances
->> (PRU-ICSS0 and PRU-ICSS1). This patch adds the device tree nodes for the
->> PRU-ICSS1 instance to support DUAL-MAC mode of operation. Support for
->> Ethernet over PRU is available only for ICSS1 instance.
->> 
->> am33xx-l4.dtsi, am4372.dtsi - Adds IEP and eCAP peripheral as child nodes
->> of the PRUSS subsystem node.
->> 
->> am335x-icev2-prueth.dtso, am437x-idk-evm.dts - Adds PRU-ICSS
->> instance node along with PRU eth port information and corresponding
->> port configuration. It includes interrupt mapping for packet reception,
->> HW timestamp collection, and PRU Ethernet ports in MII mode,
->> 
->> GPIO configuration, boot strapping along with delay configuration for
->> individual PRU Ethernet port and other required nodes.
->> 
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Signed-off-by: Andrew F. Davis <afd@ti.com>
->> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
->> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
->> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
->> ---
->>   arch/arm/boot/dts/ti/omap/Makefile            |   5 +
->>   .../ti/omap/am335x-icev2-prueth-overlay.dtso  | 190 ++++++++++++++++++
->>   arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi      |  11 +
->>   arch/arm/boot/dts/ti/omap/am4372.dtsi         |  11 +
->>   arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts  | 137 ++++++++++++-
->>   5 files changed, 353 insertions(+), 1 deletion(-)
->>   create mode 100644 arch/arm/boot/dts/ti/omap/am335x-icev2-prueth-overlay.dtso
->> 
->> diff --git a/arch/arm/boot/dts/ti/omap/Makefile
->> b/arch/arm/boot/dts/ti/omap/Makefile
->> index 14e500846875..c68948035eca 100644
->> --- a/arch/arm/boot/dts/ti/omap/Makefile
->> +++ b/arch/arm/boot/dts/ti/omap/Makefile
->> @@ -82,6 +82,10 @@ dtb-$(CONFIG_ARCH_OMAP4) += \
->>   	omap4-var-stk-om44.dtb \
->>   	omap4-xyboard-mz609.dtb \
->>   	omap4-xyboard-mz617.dtb
->> +
->> +am335x-icev2-prueth-dtbs := am335x-icev2.dtb \
->> +	am335x-icev2-prueth-overlay.dtbo
->> +
->>   dtb-$(CONFIG_SOC_AM33XX) += \
->>   	am335x-baltos-ir2110.dtb \
->>   	am335x-baltos-ir3220.dtb \
->> @@ -100,6 +104,7 @@ dtb-$(CONFIG_SOC_AM33XX) += \
->>   	am335x-evmsk.dtb \
->>   	am335x-guardian.dtb \
->>   	am335x-icev2.dtb \
->> +	am335x-icev2-prueth.dtb \
->>   	am335x-lxm.dtb \
->>   	am335x-mba335x.dtb \
->>   	am335x-moxa-uc-2101.dtb \
->> diff --git a/arch/arm/boot/dts/ti/omap/am335x-icev2-prueth-overlay.dtso
->> b/arch/arm/boot/dts/ti/omap/am335x-icev2-prueth-overlay.dtso
->> new file mode 100644
->> index 000000000000..abde5119875f
->> --- /dev/null
->> +++ b/arch/arm/boot/dts/ti/omap/am335x-icev2-prueth-overlay.dtso
->> @@ -0,0 +1,190 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * DT overlay for IDK AM335x
->> + *
->> + * Copyright (C) 2018 Texas Instruments Incorporated - http://www.ti.com/
->> + */
->> +
->> +/*
->> + * AM335x ICE V2 board
->> + * http://www.ti.com/tool/tmdsice3359
->> + */
->> +
->> +/dts-v1/;
->> +/plugin/;
->> +
->> +#include <dt-bindings/bus/ti-sysc.h>
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/pinctrl/am33xx.h>
->> +#include <dt-bindings/clock/am3.h>
->> +
->> +&{/} {
->> +        /* Dual-MAC Ethernet application node on PRU-ICSS */
->> +        pruss_eth: pruss-eth {
->> +                compatible = "ti,am3359-prueth";
->> +                ti,prus = <&pru0>, <&pru1>;
->> +                sram = <&ocmcram>;
->> +                ti,mii-rt = <&pruss_mii_rt>;
->> +                ti,iep = <&pruss_iep>;
->> +                ti,ecap = <&pruss_ecap>;
->> +                interrupts = <20 2 2>, <21 3 3>;
->> +                interrupt-names = "rx_hp", "rx_lp";
->> +                interrupt-parent = <&pruss_intc>;
->> +
->> +                pinctrl-0 = <&pruss_eth_default>;
->> +                pinctrl-names = "default";
->> +
->> +                ethernet-ports {
->> +                        #address-cells = <1>;
->> +                        #size-cells = <0>;
->> +                        pruss_emac0: ethernet-port@0 {
->> +                                reg = <0>;
->> +                                phy-handle = <&pruss_eth0_phy>;
->> +                                phy-mode = "mii";
->> +                                interrupts = <20 2 2>, <26 6 6>, <23 6 6>;
->> +                                interrupt-names = "rx", "emac_ptp_tx",
->> +                                                  "hsr_ptp_tx";
->> +                                /* Filled in by bootloader */
->> +                                local-mac-address = [00 00 00 00 00 00];
->> +                        };
->> +
->> +                        pruss_emac1: ethernet-port@1 {
->> +                                reg = <1>;
->> +                                phy-handle = <&pruss_eth1_phy>;
->> +                                phy-mode = "mii";
->> +                                interrupts = <21 3 3>, <27 9 7>, <24 9 7>;
->> +                                interrupt-names = "rx", "emac_ptp_tx",
->> +                                                  "hsr_ptp_tx";
->> +                                /* Filled in by bootloader */
->> +                                local-mac-address = [00 00 00 00 00 00];
->> +                        };
->> +                };
->> +        };
->> +};
->> +
->> +&am33xx_pinmux {
->> +	/* MDIO node for PRU-ICSS */
->> +        pruss_mdio_default: pruss_mdio_default {
->> +                pinctrl-single,pins = <
->> +                        /* gpmc_clk.pr1_mdio_mdclk */
->> +                        AM33XX_PADCONF(0x88c, PIN_OUTPUT, MUX_MODE5)
->> +                        /* gpmc_csn3.pr1_mdio_data */
->> +                        AM33XX_PADCONF(0x888, PIN_INPUT, MUX_MODE5)
-> 
-> Have you regenerated this list lately? The pinmux tool usually puts the
-> comment after the PADCONF entry. It also now also shows the pin number
-> in the comment which is nice:
-> 
->	AM33XX_IOPAD(0x88c, PIN_OUTPUT, MUX_MODE5) /* (V12) gpmc_clk.pr1_mdio_mdclk */
->	AM33XX_IOPAD(0x888, PIN_INPUT, MUX_MODE5) /* (T13) gpmc_csn3.pr1_mdio_data */
-> 
-> I'd recommend regenerating these nodes to match the latest pinmux tool output.
-> 
+When LE sync is enabled, it is must be set after powering up and must be
+disabled when powering down. It is recommended when using the PLL as
+a frequency synthesizer, where reference signal will always be present
+while the device is being configured.
 
-Sure, we will check and regenerate these nodes using the pinmux tool and
-update accordingly.
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+---
+ drivers/iio/frequency/adf41513.c | 32 +++++++++++++++++++++++++++++---
+ 1 file changed, 29 insertions(+), 3 deletions(-)
 
->> +                        /* gpmc_ben0_cle.gpio2_5 */
->> +                        AM33XX_PADCONF(0x89c, PIN_INPUT_PULLUP, MUX_MODE7)
->> +                        /* disable CPSW MDIO */
-> 
-> Is this needed? If you disable the CPSW MDIO node the pinmux should be unset,
-> so not sure why you are muxing these to GPIO pins.
-> 
+diff --git a/drivers/iio/frequency/adf41513.c b/drivers/iio/frequency/adf41513.c
+index 69dcbbc1f393..0cdf24989c93 100644
+--- a/drivers/iio/frequency/adf41513.c
++++ b/drivers/iio/frequency/adf41513.c
+@@ -220,6 +220,7 @@ struct adf41513_data {
+ 	bool phase_detector_polarity;
+ 
+ 	bool logic_lvl_1v8_en;
++	bool le_sync_en;
+ };
+ 
+ struct adf41513_pll_settings {
+@@ -697,13 +698,25 @@ static int adf41513_set_frequency(struct adf41513_state *st, u64 freq_uhz, u16 s
+ static int adf41513_suspend(struct adf41513_state *st)
+ {
+ 	st->regs[ADF41513_REG6] |= FIELD_PREP(ADF41513_REG6_POWER_DOWN_MSK, 1);
++	st->regs[ADF41513_REG12] &= ~ADF41513_REG12_LE_SELECT_MSK;
+ 	return adf41513_sync_config(st, ADF41513_SYNC_DIFF);
+ }
+ 
+ static int adf41513_resume(struct adf41513_state *st)
+ {
++	int ret;
++
+ 	st->regs[ADF41513_REG6] &= ~ADF41513_REG6_POWER_DOWN_MSK;
+-	return adf41513_sync_config(st, ADF41513_SYNC_DIFF);
++	ret = adf41513_sync_config(st, ADF41513_SYNC_DIFF);
++	if (ret < 0)
++		return ret;
++
++	if (st->data.le_sync_en) {
++		st->regs[ADF41513_REG12] |= ADF41513_REG12_LE_SELECT_MSK;
++		ret = adf41513_sync_config(st, ADF41513_SYNC_DIFF);
++	}
++
++	return ret;
+ }
+ 
+ static ssize_t adf41513_read_uhz(struct iio_dev *indio_dev,
+@@ -994,6 +1007,8 @@ static int adf41513_parse_fw(struct adf41513_state *st)
+ 		st->data.lock_detect_count = tmp;
+ 	}
+ 
++	/* load enable sync */
++	st->data.le_sync_en = device_property_read_bool(dev, "adi,le-sync-enable");
+ 	st->data.freq_resolution_uhz = MICROHZ_PER_HZ;
+ 
+ 	return 0;
+@@ -1001,6 +1016,7 @@ static int adf41513_parse_fw(struct adf41513_state *st)
+ 
+ static int adf41513_setup(struct adf41513_state *st)
+ {
++	int ret;
+ 	u32 tmp;
+ 
+ 	memset(st->regs_hw, 0xFF, sizeof(st->regs_hw));
+@@ -1034,8 +1050,18 @@ static int adf41513_setup(struct adf41513_state *st)
+ 					      st->data.logic_lvl_1v8_en ? 0 : 1);
+ 
+ 	/* perform initialization sequence with power-up frequency */
+-	return adf41513_set_frequency(st, st->data.power_up_frequency_hz * MICROHZ_PER_HZ,
+-				      ADF41513_SYNC_ALL);
++	ret = adf41513_set_frequency(st,
++				     st->data.power_up_frequency_hz * MICROHZ_PER_HZ,
++				     ADF41513_SYNC_ALL);
++	if (ret < 0)
++		return ret;
++
++	if (st->data.le_sync_en) {
++		st->regs[ADF41513_REG12] |= ADF41513_REG12_LE_SELECT_MSK;
++		ret = adf41513_sync_config(st, ADF41513_SYNC_DIFF);
++	}
++
++	return ret;
+ }
+ 
+ static void adf41513_power_down(void *data)
 
-We will review and get back with more details on this.
-
-> Also, this patch is a bit busy, might be easier to review if you split it
-> into one for AM335x and one for AM437x changes.
-> 
-
-We will split the changes into two patches, one for AM335x
-and one for AM437x, and address this in the next version.
+-- 
+2.43.0
 
 
-Thanks and Regards,
-Parvathi.
 
