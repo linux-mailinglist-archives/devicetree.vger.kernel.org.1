@@ -1,126 +1,93 @@
-Return-Path: <devicetree+bounces-252847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 820B4D03557
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 15:27:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D170D03666
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 15:37:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 117E831CC4F6
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 13:59:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6044F31304E6
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 14:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2397A3EFD1F;
-	Thu,  8 Jan 2026 13:47:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82CBF4A28B2;
+	Thu,  8 Jan 2026 13:53:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vk/0VyX7"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="JVUG4h8h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76DFA34F490
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 13:47:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F1B487587;
+	Thu,  8 Jan 2026 13:53:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767880048; cv=none; b=OBnex/NqhedzgM6ExnsOJtH1TmfL+/LqZLIhdFzB1IV4w5qLKtHF8Br/Md7ze+0up6uA7qrbqSEAN6lPsf8SVODhCJVbRAh92hi3UAp98EAZh0DXRTz/lsRl3ErHZuUgqEcTOYI+bGtG+adM2rmAWxTVs5/16VXSA2lsZtjOHK8=
+	t=1767880425; cv=none; b=NFdDqu8df3s8ijn/mgE9qI/1+Fzjwt/Cpnv3DgWIdTTd2HaJ3V7w72zNJdbcZv5F3ddiEW0B3P+Q3epq8puDis1+GuKZ/yW+ccq0c3YiMYrZzAX0ro4I1CdXASeyhBKcHtF+TOWnkdpsjlJxjCHV9ALEy/BGxPfVySjVyYb1pQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767880048; c=relaxed/simple;
-	bh=AsTBs1zplB9PE0EemI+IzF5HTdMDYfpXC1Vio8/7U1c=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=S4N96BBXpbFNsi0ONPkGBKpZVEXIaWcwfr8GalybQoQoALvrnDmP5CvVrYho5SPg18HLw7U/kWSAAjgXSrKa7KqhME4lodmdR0mIyK4T/rwSIOaSKkzsnu1kfdeD3cFMxMXu/hrBSQuoDqLd7MUPSm2wZiWBjZCrpOcutyyU78U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vk/0VyX7; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42fed090e5fso1692547f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 05:47:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767880040; x=1768484840; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=AsTBs1zplB9PE0EemI+IzF5HTdMDYfpXC1Vio8/7U1c=;
-        b=Vk/0VyX7DNb30bEhvxtc7jAbXkpOLSUHrv3jOQhhKiT9CTqhiZdDU4bI1KkpUu6zl4
-         MmsHDkpCURk3dBky3eMQtOMwaKHafT/evDK6UsGozbSHbblgl3SbUGoegu+EzmfO8v/v
-         Y8i7WES5mNbYQtbfXny40+V7jjTxMSn1w0rrnPOS6OVaJrpxpNYHxoz1oRDiBpls0Bqd
-         dHdPvaE8Wq6dl1C7ePXkpEB5AZlpIsEi1tO40xI12xtrlJKgpFQQHydBjPFVD6bkDhjK
-         R//9msup3ANjCs4ITJHZiNxe6osYiQnSo/ktwCPxSGX/N+5/Ds/JB1QQ6R/a0kq2Mi8h
-         zQpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767880040; x=1768484840;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AsTBs1zplB9PE0EemI+IzF5HTdMDYfpXC1Vio8/7U1c=;
-        b=DkuMDjctSutjdHzZawd9c+sNkYnh8fCNKjPQ7DHFc+nsjROtTm073dYcRm6LjNYjeY
-         gr1gw9nBuv7va0FUWhwY0FVx7/nx7+AsXaG7FnJaqyrtIBLiwbFykmL/0oDetsB8nvbe
-         Sh+5I7kkURgPnacy21GwDJ5MnZVMCxU8+MiLoteLmQ3SXXQx864Z87/50agPLpdA1cRl
-         +d28f9lLdOkKNGwn8ZOFVaPdq8ujStm3UDjv9csFsHlhW/U0nN2lFuEYZ/SjsxjEcCRq
-         GkBpTUAGGxvhMle/l0KhbwEpvB2Sh0hlXAeBiZKtkU8OW5XMe/gImISDHIGkpM5GBBPQ
-         t8FA==
-X-Gm-Message-State: AOJu0YzQEvRwGoi9r/gdANGUoN2+5OsmahbK2+gBi57KHnJYXbwtW+O6
-	ZoILMlD2JRvnlc5kxTpp8Qyg2iWaDui0x+h6dvJLk28u359CQQt08QLD9mlzcMrpGss=
-X-Gm-Gg: AY/fxX7kqRSmlOoDxzshqo4fug3FgppIqkLUSYuu+JsySxi9VuVNKCoN8VNZ4kJKBuF
-	sD3Q2768QjgSix27DUxuJV69yvBXOxpkDE1cDLfkalHwmWr1/Kwsh8udzjf+nvqMW5Cozpiapfd
-	LelKm4Hk9r71k93ej8SYstV12qlT2NJH8yybMHJO9H8KdbM6a7w7KQnW7t6FRjAsIj8ktQi7k1f
-	pq1u8AMA99VIvjuL6j8R+kihdbd9l2mebijTZphNOzOXnCfg54oGvy4+4NkEAkSbL4T4488/RhX
-	14hZh5qSUnm1JiFj3lxEa4yHVFxpxZDCZyXG/pZ6DdzNipSVHfJQrXyabiZwKDtTslZ9CnZlKyB
-	3CnPLMTtfj+u1N2AvCuoNx162y7yXcfM7fXaCh5bMpJryrvVG3i1tmeMZwg/HdaMvx60OiX2Ywo
-	MeyrydPcgw2lgxlF+l1/I=
-X-Google-Smtp-Source: AGHT+IHpcRhjJIaGs9/3XPwm5P4jdWGxU0k62+y4o2BsG+/ugCwsW+GDh8vsVkFK1Y8CIzRz/D5Ksw==
-X-Received: by 2002:a05:6000:2509:b0:431:327:5dc2 with SMTP id ffacd0b85a97d-432c3761063mr7732078f8f.51.1767880039952;
-        Thu, 08 Jan 2026 05:47:19 -0800 (PST)
-Received: from [192.168.1.187] ([161.230.67.253])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5ee893sm16185509f8f.37.2026.01.08.05.47.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 05:47:19 -0800 (PST)
-Message-ID: <a5e6003b7e81abeaca4f57fe07d2974cf4eb7a8f.camel@gmail.com>
-Subject: Re: [PATCH v3 0/2] net: phy: adin: enable configuration of the LP
- Termination Register
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Osose Itua <osose.itua@savoirfairelinux.com>, netdev@vger.kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	michael.hennerich@analog.com, jerome.oufella@savoirfairelinux.com
-Date: Thu, 08 Jan 2026 13:48:02 +0000
-In-Reply-To: <20260107221913.1334157-1-osose.itua@savoirfairelinux.com>
-References: <20260107221913.1334157-1-osose.itua@savoirfairelinux.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 
+	s=arc-20240116; t=1767880425; c=relaxed/simple;
+	bh=ONar0DycYYdtOJ7wAW4Prs02Jposl7jlvubE68+UZ2c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kyjd9dysMFYtqnLX7OkaGwZ+S6OkIDHj40I6iLUNuEUq5iNBUk/TuyeRoZM4Df9LHHvkjyDlk7S8NWJjYRCVr5AcAdU19dC4gWnv5VDc/JaSCOj30XsTgxy58tlpsTf0ZZBqiayxwsJqMDa0mtzJT9AbPpsQVc8EpcWHwc43F/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=JVUG4h8h; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=uaMs/qkebgishDrmE9uiVaCxWBWh/yvp5BcZyYxgF5o=; b=JVUG4h8hOR453YcHmXwM0S6LpA
+	fhoxhP4UM8B7PuVPllxJlG0L/lZ9n9sjmAh91HpRPdZNR+ICv9vsP+Hsotoyk+Qvq7vxJY3aAJp46
+	IWulTz4OZHB83nVO3iO2zfeWDKz2zqbfcqMhrFstgibhj9+xnExXF+Geu7FAEa0zNJfs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vdqS2-001xJY-QQ; Thu, 08 Jan 2026 14:53:22 +0100
+Date: Thu, 8 Jan 2026 14:53:22 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Chaoyi Chen <kernel@airkyi.com>
+Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Alexey Charkov <alchark@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Jonas Karlman <jonas@kwiboo.se>, John Clark <inindev@gmail.com>,
+	FUKAUMI Naoki <naoki@radxa.com>, Jimmy Hon <honyuenkwun@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Michael Riesch <michael.riesch@collabora.com>,
+	Peter Robinson <pbrobinson@gmail.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
+Message-ID: <7728d9e5-f8c4-4289-9f87-3928314c712c@lunn.ch>
+References: <20260107070322.323-1-kernel@airkyi.com>
+ <20260107070322.323-3-kernel@airkyi.com>
+ <b5a3470c-aa03-42d0-a575-b705f709f8e6@lunn.ch>
+ <CABjd4YzsjZXe16XWgrHRG5shNA_DQJF45i1roahvfAfV4xdU0Q@mail.gmail.com>
+ <a545fec0-cb30-489a-b5e6-4ee87dcab41c@rock-chips.com>
+ <5FFFBA7FAF5745A7+e0381969-800a-4bf6-9aac-81cffa3469a1@airkyi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5FFFBA7FAF5745A7+e0381969-800a-4bf6-9aac-81cffa3469a1@airkyi.com>
 
-On Wed, 2026-01-07 at 17:16 -0500, Osose Itua wrote:
-> Changes in v3:
-> - put bindings patch first in the patchset
-> - update commit message of the bindings patch and improve the bindings
-> =C2=A0 description to better explain why the added property is needed (as
-> =C2=A0 suggested by Nuno S=C3=A1 and Andrew Lunn)
-> - rework bit clearing to use phy_clear_bits_mmd() instead of
-> =C2=A0 phy_write_mmd() since only a single bit needs to be cleared (as no=
-ted
-> =C2=A0 by Subbaraya Sundeep)
-> - remove redundant phy_read_mmd() and error checking (as suggested by
-> =C2=A0 Nuno S=C3=A1)
-> - remove unnecessary C++ <cerrno> include that was causing build issues
->=20
-> Changes in v2:
-> - rework phy_read_mmd() error handling
->=20
-> Osose Itua (2):
-> =C2=A0 dt-bindings: net: adi,adin: document LP Termination property
-> =C2=A0 net: phy: adin: enable configuration of the LP Termination Registe=
-r
->=20
-> =C2=A0.../devicetree/bindings/net/adi,adin.yaml=C2=A0=C2=A0=C2=A0=C2=A0 |=
- 14 +++++++++++++
-> =C2=A0drivers/net/phy/adin.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 20 +++++++++++++++++++
-> =C2=A02 files changed, 34 insertions(+)
+> I've also see some dt that use {tx,rx}_internal_delay_ps inside the PHY,
+> and compared to doing it in the MAC, which one is the better choice?
 
-LGTM!
+As pointed out in another email, we prefer the PHY does the
+delay. That preference is to try to make all Linux systems the same.
 
-Acked-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+And since the required delay is so close to the standard 2ns, you
+should just say rgmii-id, and let the PHY add the RGMII standard
+required 2ns, and it should just work, no need for any other DT
+properties.
+
+       Andrew
 
