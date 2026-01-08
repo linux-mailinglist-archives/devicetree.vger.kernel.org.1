@@ -1,184 +1,154 @@
-Return-Path: <devicetree+bounces-252810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B85BDD03CEE
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:25:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 225DFD04672
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 17:32:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3B0FD307C2BB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:16:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 86B3A35252DF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E682C4A571B;
-	Thu,  8 Jan 2026 12:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1D748C3F6;
+	Thu,  8 Jan 2026 12:28:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="LGFo2/fR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S646laUd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2DD48A2C8
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:28:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED65487576
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:28:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767875298; cv=none; b=flp3jVONr9ImG96twC5rpquXxodETXhOnPf6knq35z328KfBrPK6oMEtBkfLheiLzmxHXsKuc6Lg6sSXmegXKPG9HKqLPbhteJUbNfWo3Sa8jg+oJPAGYkCZ9DOjw3cd4hGlBDiBCx2hO9bqhAliKcFAAVOfFtpDvy/CpriBj3w=
+	t=1767875290; cv=none; b=iFpGPCgvihRX7CpLUCKBJuMv1FpuXp7K3drM2TF9E+nvx7jqy6tF3d7JXf8T4eFbr/6ekOFRguu92Ch6EOOZ+N5ue2iiE6n+boG7DyebCPWNtDqJ1oCmA36Hhq008z0z9pgsnREjJepZ2JX4+ifKFHviq9Qi0/sFESd3HGMQ4A8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767875298; c=relaxed/simple;
-	bh=B/xJC06ouJTSzqoVe1zpf/ArcrN3kkBBh4pRafmC2q0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=K3+2OCDQBVgW7BAebyEUBtWEQEssVMK8naJDeCN/nNBo6rB04GM6wvTQbWuuoxtH805rms3w3KxNy4fznFhTv/JUFOokyshcP1fyfDz4vmsd45mxzMUJt647MuJPzu2AT7eYd6VsQ4WpE4x5a1UKRd0aYxgs5NwNRnoicXn0Atk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=LGFo2/fR; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7aab7623f42so2733254b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:28:16 -0800 (PST)
+	s=arc-20240116; t=1767875290; c=relaxed/simple;
+	bh=BvQS2360feeTza8DE/YrVlEdtvUQg36GrpyVjPLlASA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bzW4uoh5ube42dahOofzT2wJEYMfKX+ASTVHLf0eVGk/XoKb11+ShumXdlIXX6Ljd+nuJ4zuo2NvkZ0pNlLtuLMPKBHyswVvhmI1c03QpC7xtIvJzcm4rydcMZVfC07XC4pRaLhv0jE0h9pkDAUbWl105KL/F/HSwYs7bcWLznk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S646laUd; arc=none smtp.client-ip=209.85.222.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-9371f6f2813so998208241.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:28:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767875296; x=1768480096; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vr6lqGLFQ3xLUl/SLHoUY02BcAcuWIW3ayvn+T++ix8=;
-        b=LGFo2/fRBmL5A6dlnvfDDmng5HIJHiDGpUisu28uSY07QrHT/tocdpGwS94Gk3FWZp
-         +1CWEu4nNaa+p1Y9l0Usu98yca9nkL3q3QFWsXiuPz164+l+AHVKzmMgTWc13oPu75Gy
-         2XqiMMxgwpLYDw7bQchMh+Is4EhJ3P1Mu5N4MVDhP7GuihEkf2D6waVxCoS/+s/hTSL0
-         LxIFeQsQg/eo+1hRBhVBXDJZB9GfGzr5WI/ZvcXGpAzHm8rVxpg1RfBw6lAKYTAUr/h9
-         QuxCxiZ542+CYXt6RBCAXlKAicmUHEfYS523iZGYonGgaXDVcpYW5Q9HPxeljqhuQ+Nw
-         SBlA==
+        d=gmail.com; s=20230601; t=1767875287; x=1768480087; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=H9S8tc6VoR4ctabPhilr7FUP40tlzBUwrCfmoiHtz9U=;
+        b=S646laUdsGJyIv+b1hw5rsVaDzdj01FE2hsbhwEh/cSZilr/YuM49XcK6o1fm7RWnm
+         ii1aZUvPKsxESmlEKrUP3IHjLNaK9wY5ITQDQnjegcsr3dGhuv5n9lCx6eSVflDh67GN
+         dT5x+uQntg16yuj7cLJ5KsBI7EZUH2rfTvGRXriCOFsYO5hvwKertfwsE2sRcWN1SbZe
+         BByVdKTsM4P3sLxWDdSq0s/fZT4c9yEqtFlkyQzxOw1R/I4I6y8Sh4mBFirppTLyMdEp
+         NlS1JC/u3cahMWysdS3pbSmSErYCLAuvh6gj7VhYWL6e+48sWUm/D4d87rnGeCgNQIFQ
+         EAsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767875296; x=1768480096;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Vr6lqGLFQ3xLUl/SLHoUY02BcAcuWIW3ayvn+T++ix8=;
-        b=wTDqEgIqWdt4c9DrMlb7+HumYwQ5YZUeIBHXS97prWbQgr/68ldFNLP520uM+Uv04n
-         yDcWE4lSwvgU5XAZE/uJ0wzuxKqpOMsDU9pWJ8krl+5PAdWuNRaVJDboYdDrh5YcJ1hc
-         ON8KZMzyuxx8qG4grjJOw61MI5pttKBJsRks4QW5jFKr+0GxZ0YJFOaGcJ/srpvPKDrw
-         KoIYaJoPfUhrwKpMMG7bu2N5Hq3QYfCuLmbGsKb5MuRqmH9fvQYBhwx9dKE2xi5S6yWk
-         IK8b4QJKJrLbr9nzfNG4bmujxM6P/IYoWXRnH8+TpJqclk1ZyxH0nAsRx6L5WZyjUFOV
-         jtBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAnVDp3jFZp8gc1bcPbRm7zI3sJ0GD72IXQf1fP1KjmZz4kSS9+fgz2dVqD/8h4FzUybPQVG1oxuta@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYd8qmoXvOYZ0ryDWAOFhu6LE6sKMEX+gDuLaUTz4jl5AR8q8v
-	k5FLrQSYsSh0UXAPcFfC38opY5wXEMorfSotgJ2EGzt8w8wtF2+Vx9FgR7OXHk2nWHc=
-X-Gm-Gg: AY/fxX5WKxiRIEyOx3q+nnQ2F/w/uoiKCLQ/ei1JnpoD3s0ffX3KzQLGDs+MKi2J3CB
-	vg82xaszQ6+uVjigrzluYdvam8N10AIRiHGa7L64yrxx9sF3FVvH9FIdmmxiy++c9HJiN9v92B3
-	TxS3pkbL0wW6odHCdZGHnMjijxaDDLlYuXergownUoOZ88kxOuhMOqw7sRbA/HQD2418j5x/Xo6
-	b8fgzL5okhEuG2TVMRCP6LQ2bNoKw2u60OrbZMX89wcrRDaxdSqw27EJqGmZfvX8P4+/gKIqW1t
-	yxpsTgm9fKhgI2tYWnAYOQXgTkJjW6BSYca2G7SYb0VwCbM6Ajw37jY+/l09YPIxoPQjQc6mkvu
-	8/Wo+Aus9Bp7EkbQfkLuY4jYwARPeV2nimk2H35T+NndNHXFejZfSNBP0L2/QSKuJyEFq6XeBLy
-	tlFB6/j2e06a11lwpf5apudhmRnkrh0sI=
-X-Google-Smtp-Source: AGHT+IEp3lIqQRQ8F/+xV31qGFYy3RxmeX8QufC32EgJpFKkC8v8rt/OnKylZz/xtgAcQ5aWbSQxCQ==
-X-Received: by 2002:a05:6a00:3688:b0:819:bad0:1002 with SMTP id d2e1a72fcca58-81b801ce2e1mr5550278b3a.66.1767875295662;
-        Thu, 08 Jan 2026 04:28:15 -0800 (PST)
-Received: from [127.0.1.1] ([2a12:a305:4::40df])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819bafe991dsm7656401b3a.16.2026.01.08.04.28.04
+        d=1e100.net; s=20230601; t=1767875287; x=1768480087;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=H9S8tc6VoR4ctabPhilr7FUP40tlzBUwrCfmoiHtz9U=;
+        b=mDKc06mFgfoj9ZKquxR9tIDr6Oa5owlqld8b1R9Aapg2QJi9CCzCAvw5ZJ+pYsfdpZ
+         4GoR/x1WdlR1g6QI18pw2UivCufdRYNQLNYlam0edk7pJHiPkgjtFDk5N8vUMUJhHSq8
+         bOQNd6bZ+lvpUGfcP+GAWHz+CaFI4ToGNeLH4SQrzYr9bqR7KCzvw08YhWmjMrAnf+pu
+         fyfOxuEJm4x2Oz3vYo+BiAzlR/gxTZnXwSRdMnanTwWs76EudHk6Y/7lvvZXJjeMFZMx
+         SzitrDFJ5ayeLFPAjAjsgbB++QfQYZ+SpZIVrglefVrYak4xgcwBWA8V9yh9qjtmNW2b
+         m1rQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU8ZDzLdYxWGZdm8ZFFSYvmvGgylqBDpknqN2kKHnyjfSJjrbDFL2V0cOFk/u3mZhOd+RrNENMkhE1G@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSpb7DKr6vrNpNK69wrTF+YGx9Gi1yncNIDJ4PiXcDBCkNs4d3
+	V857NBodeL5EKFlYYD10vjtC6AkMVx0PEEJ9wBtHlU6Y4XWQP92yI8xo
+X-Gm-Gg: AY/fxX7QJRDlgAf1OXyiswbJ1UtMaS2IAavmZBhdYttkIFQ8QE+9eVqEqQUIlJC22Zy
+	dXjPdFETSbX70GafRNLieoeKxuUJeLQSdsqhkC3TBeszbH4PuQECu5gy5k0bSWgANp2lIOFw7VI
+	Wxa8SFRDcPm5a6YQxmtI1NW7cBCGjjKf7AJ34KlZHHsBCjw5NFA4t1DIVj/fcKzMfJ6MiXimQ6l
+	Vex8JXZ2IB6OXP20QSxo7hr/foJ/EhGVEcFuStOdR7NEIMUulkw6SDE+62kZYHyhuy1CavjEQIK
+	+jETwVgqxLvWr0BeoIoHZzvEFWLs0JuWxL2pxS9vUq3W0HeIftsaYfpnqDfGcmKXlS5LJestJ5E
+	T8Z6lZG/6nGcSQYABnbCa1EOmAzQT8dNleoAyJOXCf9lVhJqqRZw2FHhBX2IiKDnkgD8ZRVQ72G
+	sN43GcgWFQcwqV3XairgI=
+X-Google-Smtp-Source: AGHT+IGTB3XDlXgQY840gBEBSdFTlkqqqTvmyuMzepMgpXMZdXcNFo9y6KtrPk5n+BTlSCi4IzSK9w==
+X-Received: by 2002:a05:6102:1594:b0:5e1:866c:4f8e with SMTP id ada2fe7eead31-5ecb698cac0mr1848863137.39.1767875286647;
+        Thu, 08 Jan 2026 04:28:06 -0800 (PST)
+Received: from localhost ([2804:30c:2766:a500:b70:8c42:f792:bef6])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ec772e3300sm6068771137.14.2026.01.08.04.28.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 04:28:15 -0800 (PST)
-From: Guodong Xu <guodong@riscstar.com>
-Date: Thu, 08 Jan 2026 20:26:02 +0800
-Subject: [PATCH v3 11/11] riscv: dts: spacemit: add SpacemiT K3 Pico-ITX
- board device tree
+        Thu, 08 Jan 2026 04:28:05 -0800 (PST)
+Date: Thu, 8 Jan 2026 09:29:52 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH v4 2/9] spi: dt-bindings: add spi-{tx,rx}-lane-map
+ properties
+Message-ID: <aV-jQImroXxFqj3Z@debian-BULLSEYE-live-builder-AMD64>
+References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
+ <20251219-spi-add-multi-bus-support-v4-2-145dc5204cd8@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260108-k3-basic-dt-v3-11-ed99eb4c3ad3@riscstar.com>
-References: <20260108-k3-basic-dt-v3-0-ed99eb4c3ad3@riscstar.com>
-In-Reply-To: <20260108-k3-basic-dt-v3-0-ed99eb4c3ad3@riscstar.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Anup Patel <anup@brainfault.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
- Yangyu Chen <cyy@cyyself.name>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
- Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
- Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
- Anup Patel <anup@brainfault.org>, Andrew Jones <ajones@ventanamicro.com>, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
- linux-serial@vger.kernel.org, Guodong Xu <guodong@riscstar.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251219-spi-add-multi-bus-support-v4-2-145dc5204cd8@baylibre.com>
 
-K3 Pico-ITX is a 2.5-inch single-board computer equipted with a SpacemiT
-K3 SoC.
+On 12/19, David Lechner wrote:
+> Add spi-tx-lane-map and spi-rx-lane-map properties to the SPI peripheral
+> device tree binding. These properties allow specifying the mapping of
+> peripheral data lanes to controller data lanes. This is needed e.g. when
+> some lanes are skipped on the controller side so that the controller
+> can correctly route data to/from the peripheral.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+> 
+> v4 changes:
+> - This replaces the data-lanes property from the previous revision. Now
+>   there are separate properties for tx and rx lane maps. And instead of
+>   being the primary property for determining the number of lanes, this
+>   is only needed in special cases where the mapping is non-trivial.
+> ---
+>  .../devicetree/bindings/spi/spi-peripheral-props.yaml      | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> index 59ddead7da14..2f278f145f78 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> @@ -75,6 +75,13 @@ properties:
+>        enum: [0, 1, 2, 4, 8]
+>      default: [1]
+>  
+> +  spi-rx-lane-map:
+> +    description: Mapping of peripheral RX lanes to controller RX lanes.
+> +      Each index in the array represents a peripheral RX lane, and the value
+> +      at that index represents the corresponding controller RX lane.
+These are peripheral props so I guess RX is from peripheral perspective.
+In that case, those would be routed to controller TX lanes, no?
+Could maybe use MISO/MOSI or COPI/CIPO (Controller Out Peripheral In)
+nomenclature but that might become too verboragic.
 
-This minimal device tree enables booting into a serial console with UART
-output.
-
-Signed-off-by: Guodong Xu <guodong@riscstar.com>
----
-v3: No change.
-v2: Add aliases node in this board DT.
-    Update the memory node to reflect the hardware truth. Address
-     starts at 0x100000000 (4G) boundary.
----
- arch/riscv/boot/dts/spacemit/Makefile        |  1 +
- arch/riscv/boot/dts/spacemit/k3-pico-itx.dts | 38 ++++++++++++++++++++++++++++
- 2 files changed, 39 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
-index 95889e7269d1bae679b28cd053e1b0a23ae6de68..7e2b877025718113a0e31917eadf7562f488d825 100644
---- a/arch/riscv/boot/dts/spacemit/Makefile
-+++ b/arch/riscv/boot/dts/spacemit/Makefile
-@@ -4,3 +4,4 @@ dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-musepi-pro.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-r2s.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-rv2.dtb
-+dtb-$(CONFIG_ARCH_SPACEMIT) += k3-pico-itx.dtb
-diff --git a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..037ce757e5bcae0258a326ea6265185d761f2b52
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (c) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
-+ * Copyright (c) 2025 Guodong Xu <guodong@riscstar.com>
-+ */
-+
-+#include "k3.dtsi"
-+
-+/ {
-+	model = "SpacemiT K3 Pico-ITX";
-+	compatible = "spacemit,k3-pico-itx", "spacemit,k3";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+		serial4 = &uart4;
-+		serial5 = &uart5;
-+		serial6 = &uart6;
-+		serial7 = &uart7;
-+		serial8 = &uart8;
-+		serial9 = &uart9;
-+		serial10 = &uart10;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	memory@100000000 {
-+		device_type = "memory";
-+		reg = <0x1 0x00000000 0x4 0x00000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-
--- 
-2.43.0
-
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    default: [0, 1, 2, 3, 4, 5, 6, 7]
+> +
+>    spi-rx-delay-us:
+>      description:
+>        Delay, in microseconds, after a read transfer.
+> @@ -99,6 +106,13 @@ properties:
+>        enum: [0, 1, 2, 4, 8]
+>      default: [1]
+>  
+> +  spi-tx-lane-map:
+> +    description: Mapping of peripheral TX lanes to controller TX lanes.
+> +      Each index in the array represents a peripheral TX lane, and the value
+> +      at that index represents the corresponding controller TX lane.
+Similar thoughts about the tx side.
 
