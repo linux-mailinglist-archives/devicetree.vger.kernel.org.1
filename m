@@ -1,229 +1,100 @@
-Return-Path: <devicetree+bounces-252749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0D66D024A8
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:05:06 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C40D0246C
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:03:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A91FA3006466
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:05:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2A8AB30814AF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:03:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF3E49B3FB;
-	Thu,  8 Jan 2026 10:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDA17496906;
+	Thu,  8 Jan 2026 10:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="IBVfvApm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X8V3/0EL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A820749C208;
-	Thu,  8 Jan 2026 10:51:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767869491; cv=pass; b=GdHsoF2T+6WmqslBf3/GfxNYtWwv9MpuIwPmDZ7lCS5UMl/brP843mazjjQz+oUIOJXBLJvmVcvK5h6k43PFN5Ubun7PVbSxdBOh+VECd/EgUo7Gv9loLRnKuPCD6YH9kTLQH/rlcp0Nyvuia8K5bM3vP1RlsylZvS2gqdPQCIk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767869491; c=relaxed/simple;
-	bh=7rqevkmcYA1yLF7/xhPzfzPI81cortTnhV25h5gfo4E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gwT2erDSW1uNqV6L0eF6AHku9p84vQ6AnvJDBGhpauggF3AZKYbJeNdwZNEUyXmNrVdsO3Z8z2cH39KPB1iNLPJqNlBSnvzRmdUO98WhQ3YLqOBj9m5LEXRtfDEzWarKYM7s8Bq2OPF3RuxYD1WtUUi8qHo3X/SyU/wJk6qwMa0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=IBVfvApm; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1767869449; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=HZpJzK7he38WDMsR6txOYANSg01It0c9FlaeBpXG8nRZPl7+gqeZLfEXBuBIerEzmqXkPJdcoMIbZ+7MAC8jcZxXKBniBAnnu538ShJMXfqWpqA64NGycXSoq/Nq/mjW6eZfTJ0EbxR33T1m2jxo0OkWUuexTgNR11Ygf75wAVQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1767869449; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=3Btq5ze3Dk+XwNnveSGIJE7cooTqyLjb6gxWgmCMTts=; 
-	b=R+9w6mMkpGRRfK8oMuVayZ8dotGJl7rMDKB0sz0D5tw833WkXe95L3wSMjE0KwDRFQpQZCGRDWf73lZd5m9Ni+7edNmgnYLtwOHLH53ohnOuQECzNDxrHi2vx2Adg4cVOeTuMZUMHsF4OiuU8EMJlQyfX3d80t1cwTjlzXVjmlE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767869449;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=3Btq5ze3Dk+XwNnveSGIJE7cooTqyLjb6gxWgmCMTts=;
-	b=IBVfvApm6rM1vutD2tIPjW6rdM4iRDoPS5/9nQOeV4AZSc5+Rmqm35+P8hr8yMDf
-	WrnmMNsC0CG5xakk7vElvouxy76OZPKrrUMTIQ91TlFBCVfTQlmnD2806BDHIElP3Lf
-	vqcSpC2vzffiY77HelWtsztDOoVhis13GujdmTpM=
-Received: by mx.zohomail.com with SMTPS id 1767869447792941.762730713929;
-	Thu, 8 Jan 2026 02:50:47 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 08 Jan 2026 11:49:28 +0100
-Subject: [PATCH v5 09/24] scsi: ufs: mediatek: Rework the crypt-boost stuff
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A44143A201;
+	Thu,  8 Jan 2026 10:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767869437; cv=none; b=ZmMT82O5vPl3hJqjSJwdDWv7uySb0SxAOkWhai7uKBe+gjmF9N21oCjfO7dGnDAh8HF60skmgPz42QOOpNHHvwBr+lCx94xWgm1Q7xH3rCxe6JJ+FeRk6tlkKEFuunPZdAp/VPwzVcOb4xWUmdio3ogvOKghRSSDsTMAC+AhfzY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767869437; c=relaxed/simple;
+	bh=SGpUDos42pBZDIMyyUzT0elvZpqutwatO6lXeABoE1w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mrwBiBVt9g7ujz6tQwfbkmNg+FAGhronAAdGLzH0NfAUjunScvbOMlxnqbbxpZuk2lok9oB+Y+R4P8YEc8fxZb9RspUjPSSbVCUqJsdlmrvKwzR20ARdLbtbnMhcUo5dwsasKKwSAPidVh1oirJON4iixQVqXTxCOrPMrcwQzDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X8V3/0EL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A032C116C6;
+	Thu,  8 Jan 2026 10:50:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767869435;
+	bh=SGpUDos42pBZDIMyyUzT0elvZpqutwatO6lXeABoE1w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X8V3/0ELFHU1p07HAatOLM9KHplMMAJHZfTXP4fO0eibun/fUWca/MTCerJSSpvrs
+	 Fm9iA883hT3wdDe/N++UR+C9ggNJ1jwemGcc/rwHmB36hhxiYca5RDnZZ9arCCah/F
+	 cX9jZYvenEB9uknaOmefIzjJGzyJPWtNyxMzdePvvdyMMJ9AA4kWRE+LKGAYsFVVaL
+	 GVJGIGF7hLO11izUPGS7pMVf8/BVumuG1SsrTXarWh9ueQmQzWlKXK9HgNVTDJHIPL
+	 fJ0Bkd+TD/QQWdQkk7DfXNC/zUlvAMDcGjP1G+NtohPRJwd7CZ4q1a/9NARhIiFPwr
+	 6pzPVWMSzoFKQ==
+Date: Thu, 8 Jan 2026 16:20:27 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, akhilpo@oss.qualcomm.com,
+	vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
+	robin.clark@oss.qualcomm.com, lumag@kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sumit Garg <sumit.garg@oss.qualcomm.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: agatti: Address Gunyah memory
+ alignment needs
+Message-ID: <aV-L81f5NQg4leu8@sumit-xelite>
+References: <20251229071258.456254-1-sumit.garg@kernel.org>
+ <20251229071258.456254-2-sumit.garg@kernel.org>
+ <ahbbg3pffedrjzvksgz2jv7lwajwlcxc6nsmmtunwc4346eawa@xayff4ozvdbn>
+ <aVtQHftDmENIAxrb@sumit-xelite>
+ <73bcf4c8-3d49-4b55-a771-0c5c1ef54380@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260108-mt8196-ufs-v5-9-49215157ec41@collabora.com>
-References: <20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com>
-In-Reply-To: <20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com>
-To: Alim Akhtar <alim.akhtar@samsung.com>, 
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>, 
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Chaotian Jing <Chaotian.Jing@mediatek.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
- kernel@collabora.com, linux-scsi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-phy@lists.infradead.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <73bcf4c8-3d49-4b55-a771-0c5c1ef54380@oss.qualcomm.com>
 
-I don't know whether the crypt-boost functionality as it is currently
-implemented is even appropriate for mainline. It might be better done in
-some generic way. But what I do know is that I can rework the code to
-make it less obtuse.
+On Wed, Jan 07, 2026 at 12:29:02PM +0100, Konrad Dybcio wrote:
+> On 1/5/26 6:46 AM, Sumit Garg wrote:
+> > On Sat, Jan 03, 2026 at 09:49:04AM -0600, Bjorn Andersson wrote:
+> >> On Mon, Dec 29, 2025 at 12:42:58PM +0530, Sumit Garg wrote:
+> >>> From: Sumit Garg <sumit.garg@oss.qualcomm.com>
+> >>>
+> >>> Gunyah hypervisor requires it's memory start address to be 2MB aligned.
+> >>> So the address map for Agatti is updated to incorporate that requirement.
+> >>> This should be a backwards compatible DT change which should work with
+> >>> legacy QHEE based firmware stack too.
+> >>>
+> >>
+> >> How come this isn't conveyed to the operating system using the UEFI
+> >> memory map?
+> >>
+> > 
+> > I agree that with EFI boot, the information is getting conveyed via EFI
+> > memory map. But there will be non-EFI boot scenarios as well in case of
+> > U-Boot. And moreover I suppose we need to keep the reserved memory
+> > ranges in DT updated to reflect the actual memory map.
+> 
+> Can U-Boot not do the same by altering /reserved-memory or /memory/reg?
 
-Prefix the boost stuff with the appropriate vendor prefix, remove the
-pointless clock wrappers, and rework the function.
+I suppose you are referring to DT fixups here, we generally try to keep
+them to a minimum required in U-Boot.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Peter Wang (王信友) <peter.wang@mediatek.com>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/ufs/host/ufs-mediatek.c | 89 ++++++++++++++---------------------------
- 1 file changed, 30 insertions(+), 59 deletions(-)
+BTW, don't we want to keep reserved memory ranges updated in DT? Or we plan
+to drop them altogether?
 
-diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
-index 4cb1a1b400ac..0d8f4e542d47 100644
---- a/drivers/ufs/host/ufs-mediatek.c
-+++ b/drivers/ufs/host/ufs-mediatek.c
-@@ -562,21 +562,6 @@ static int ufs_mtk_mphy_power_on(struct ufs_hba *hba, bool on)
- 	return 0;
- }
- 
--static int ufs_mtk_get_host_clk(struct device *dev, const char *name,
--				struct clk **clk_out)
--{
--	struct clk *clk;
--	int err = 0;
--
--	clk = devm_clk_get(dev, name);
--	if (IS_ERR(clk))
--		err = PTR_ERR(clk);
--	else
--		*clk_out = clk;
--
--	return err;
--}
--
- static void ufs_mtk_boost_crypt(struct ufs_hba *hba, bool boost)
- {
- 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
-@@ -633,65 +618,51 @@ static void ufs_mtk_boost_crypt(struct ufs_hba *hba, bool boost)
- 	clk_disable_unprepare(cfg->clk_crypt_mux);
- }
- 
--static int ufs_mtk_init_host_clk(struct ufs_hba *hba, const char *name,
--				 struct clk **clk)
--{
--	int ret;
--
--	ret = ufs_mtk_get_host_clk(hba->dev, name, clk);
--	if (ret) {
--		dev_info(hba->dev, "%s: failed to get %s: %d", __func__,
--			 name, ret);
--	}
--
--	return ret;
--}
--
- static void ufs_mtk_init_boost_crypt(struct ufs_hba *hba)
- {
- 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
- 	struct ufs_mtk_crypt_cfg *cfg;
- 	struct device *dev = hba->dev;
--	struct regulator *reg;
--	u32 volt;
-+	int ret;
- 
--	host->crypt = devm_kzalloc(dev, sizeof(*(host->crypt)),
--				   GFP_KERNEL);
--	if (!host->crypt)
--		goto disable_caps;
-+	cfg = devm_kzalloc(dev, sizeof(*cfg), GFP_KERNEL);
-+	if (!cfg)
-+		return;
- 
--	reg = devm_regulator_get_optional(dev, "dvfsrc-vcore");
--	if (IS_ERR(reg)) {
--		dev_info(dev, "failed to get dvfsrc-vcore: %ld",
--			 PTR_ERR(reg));
--		goto disable_caps;
-+	cfg->reg_vcore = devm_regulator_get_optional(dev, "dvfsrc-vcore");
-+	if (IS_ERR(cfg->reg_vcore)) {
-+		dev_err(dev, "Failed to get dvfsrc-vcore: %pe", cfg->reg_vcore);
-+		return;
- 	}
- 
--	if (of_property_read_u32(dev->of_node, "boost-crypt-vcore-min",
--				 &volt)) {
--		dev_info(dev, "failed to get boost-crypt-vcore-min");
--		goto disable_caps;
-+	ret = of_property_read_u32(dev->of_node, "mediatek,boost-crypt-vcore-min",
-+				   &cfg->vcore_volt);
-+	if (ret) {
-+		dev_err(dev, "Failed to get mediatek,boost-crypt-vcore-min: %pe\n",
-+			ERR_PTR(ret));
-+		return;
- 	}
- 
--	cfg = host->crypt;
--	if (ufs_mtk_init_host_clk(hba, "crypt_mux",
--				  &cfg->clk_crypt_mux))
--		goto disable_caps;
-+	cfg->clk_crypt_mux = devm_clk_get(dev, "crypt_mux");
-+	if (IS_ERR(cfg->clk_crypt_mux)) {
-+		dev_err(dev, "Failed to get clock crypt_mux: %pe\n", cfg->clk_crypt_mux);
-+		return;
-+	}
- 
--	if (ufs_mtk_init_host_clk(hba, "crypt_lp",
--				  &cfg->clk_crypt_lp))
--		goto disable_caps;
-+	cfg->clk_crypt_lp = devm_clk_get(dev, "crypt_lp");
-+	if (IS_ERR(cfg->clk_crypt_lp)) {
-+		dev_err(dev, "Failed to get clock crypt_lp: %pe\n", cfg->clk_crypt_lp);
-+		return;
-+	}
- 
--	if (ufs_mtk_init_host_clk(hba, "crypt_perf",
--				  &cfg->clk_crypt_perf))
--		goto disable_caps;
-+	cfg->clk_crypt_perf = devm_clk_get(dev, "crypt_perf");
-+	if (IS_ERR(cfg->clk_crypt_perf)) {
-+		dev_err(dev, "Failed to get clock crypt_perf: %pe\n", cfg->clk_crypt_perf);
-+		return;
-+	}
- 
--	cfg->reg_vcore = reg;
--	cfg->vcore_volt = volt;
-+	host->crypt = cfg;
- 	host->caps |= UFS_MTK_CAP_BOOST_CRYPT_ENGINE;
--
--disable_caps:
--	return;
- }
- 
- static void ufs_mtk_init_host_caps(struct ufs_hba *hba)
-
--- 
-2.52.0
-
+-Sumit
 
