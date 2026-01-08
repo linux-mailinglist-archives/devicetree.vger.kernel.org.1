@@ -1,126 +1,199 @@
-Return-Path: <devicetree+bounces-252925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22606D04B6A
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:08:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D875D05463
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:59:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E375E3068CFD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:03:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EE8F0307BF6B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 925F5298CB2;
-	Thu,  8 Jan 2026 17:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E0826560D;
+	Thu,  8 Jan 2026 17:05:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YfynRAZm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f193.google.com (mail-vk1-f193.google.com [209.85.221.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012039.outbound.protection.outlook.com [40.107.200.39])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE20B29AAF7
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 17:01:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.193
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767891718; cv=none; b=L9ri4O3fxIYx6WLqT4spTgQfE0sOtElR5Y0Q2UANnXaeXNI3d5PMewKAjlU0XLvITazRjAyGDvqaqSvnap7EXnsCy0h1BTjAPXG208Ylhpzx/Q2dgPB6JcH4LBXfWQQ7KdzagsEhUaHJIffFMTN7/GRZaL4wHpxMogU1bCCvprE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767891718; c=relaxed/simple;
-	bh=l/hatv9g6YZh7Jedhcdf7GctsSHL9xJ16ZgcVa0bhbg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EHBgxR12hvwCFz2eZvmqcFbDRIfC4XW3UF8am9rXFenpamENSpVSc1hgcjBoOpGcVipMUg+lnmMQOI/NEhnTtfZFHQjh+eoeJ13I/Fq1zbhWnC3vYBegHxGwxtModA7POqw0GmhMgX+WAxgEN7ev8iCzJ4M7nhr0opKSfn96iQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f193.google.com with SMTP id 71dfb90a1353d-5598b58d816so2492320e0c.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 09:01:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767891714; x=1768496514;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3co9hJKBOyWFmQg9PlWXAOMJY35oVbLhgGmADuHFV00=;
-        b=t4PjWL9A4vxF0gPuinnGTlYKTkqLYEWAm84Cy+CuQqZARu47Ndl1GewiJRbYoh7Itw
-         An9wUi3noTJfE+NPHhBuoYPseTciPIiNCAKI2uRs3sDOXGpTS6GTciLK80a6rDKZYv7P
-         4CbH7LzNpMGjBNuWh8pq8t4XFaB2FFlV7bNbyNbuHWqMe8W/2NFBzpxcnICzJ6H7cPRB
-         6npuzz/uWBez3vmJliFW8DHJvKVuKOdkGUZDl7PY216X911KhZuQRQDOvi+GT8cciAIc
-         c87T5tKpdI3mnmeNS5TZO2H34pZhr2ah4VfJK5MHu4AEGW8FR+mZMIjFPWCn9VcsFsHm
-         S+Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCUvPaEp6U0TOQhBEgb4xH8lrs2eeRzMcR7Z7XEoG9pUl2ZZ4NYiQeCJQVcsulDiyYC0ZUNyfX0STMOc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCehpg1gwJFEoRI2hKohlkymjr7+GhBCp79tjx/1JxuVO/mC16
-	zEHFooA7zkXdBwgbMRE49J7k/EHmPhnqR//pJ92ViXxoKm2JQrY5koFUf+1JW8k0svQ=
-X-Gm-Gg: AY/fxX7sBfBIeuJPlQGnGMD1AHnGn9kY1y3GccZ1NeWeM3rYSA6Ymnd/hZ6mtFogC31
-	FKBnkCARJVSLyMVFINwAC95XK3ZTMGUPDNZriggy6Tn9Cy06DkRftehToGux20YXGF1TifZ0ATZ
-	HCYUq6Moxo3B/Bksh/jWy8rLjJ61skGioC/HriqVSTo6IDrk/OzONJN6BnReAIT8s1oeRhr8MSw
-	EsW2SqN0NIClRm/z10fsiBtPdmTkoJnkdiacJbmFN1GV8FZUgW1mrymU2l05SCtaEdy0UziZBDQ
-	69am8z7n2AN9mvM3PPVvR8CtFDf5v5wAwX8la0ZT1FEUSu/GkQhRC3tIyq/emc++r061CwVERCS
-	Cse/7uWM1QbQI0T2crPGiqS20am9WE4v2BQNzvoHSk+LGn6UyOl9/dAqwd9LHS0Oh+eJzoDEGzf
-	OTuoqQBG8X2RXSOpukzpO7qL+rntJrmmpF8x2CLCWEOfIwZxxBb0JB
-X-Google-Smtp-Source: AGHT+IGIT81ACPY6BDRYL7uwf/3uHDViq93XxkarUWY811Dd24Q9l1mx1fjZXjLx8jsEoXQTJ+Mepg==
-X-Received: by 2002:a05:6122:208a:b0:559:6960:be0d with SMTP id 71dfb90a1353d-56347fd744dmr2381409e0c.13.1767891705654;
-        Thu, 08 Jan 2026 09:01:45 -0800 (PST)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-944123dd29bsm6408924241.6.2026.01.08.09.01.45
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 09:01:45 -0800 (PST)
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-5598b58d816so2492121e0c.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 09:01:45 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWZvPsZtSlwHwkA3hLKzk7nM+OZDHchdZxTd2pvyMGb9ccvw62tamOzz9htRvtJwpNUVli4dESLv0qq@vger.kernel.org
-X-Received: by 2002:a05:6122:d26:b0:559:ef6b:1efb with SMTP id
- 71dfb90a1353d-56347fd756dmr2483847e0c.11.1767891705232; Thu, 08 Jan 2026
- 09:01:45 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71B1825392A;
+	Thu,  8 Jan 2026 17:05:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.39
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767891956; cv=fail; b=Ei6/TkiifLGEww7Y2ZwzNP/TBWuuKxVI66AAc9NBnwdVHqdQuQgLEubhqW4MZaLS1Yph3x/A7t/437G8VQ9ZPL2BP6mek/4/Sd7ukLPhZlC/FJNhNsKQ+HRvxZhcxM60A6hBwjNePqj3nB75XJdo0or/i8hp73uOw0X1/CCc87o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767891956; c=relaxed/simple;
+	bh=IxIG1J8UCRXaXb6HMVem4uWqwswi4JAMYxn2tNCk0a4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NtNkfZLaSgWlfu7jhmxejc0L6cJvMCO/CW3+db1zPN5JsvfRZFJXJz2ELK5DP/niWRvTsrbd4Kr58AYXDE+u4RYjX4LmjhYVXgzF3V9IIOwVxEVuUS/0POjGNL/e32G65RgarBtZ+FeKTMcFXT/7NYsCW4tCLXB1dmRRh2XbSg8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YfynRAZm; arc=fail smtp.client-ip=40.107.200.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P5V7+fJ4X7CWNu09qujjiUiDtStFCUJPUqKgR4w+MjunEnJgumU7o+J2Eq6jPokj21ed/mJs4q8Zya1pny+H8YPI9zMx8VdVFSrbmw1BKwwICMGFM0AkoSVaul/BdxglJKSrnjZdsyjuXSaaABV98jlSxGVSWpeKC12mNaiOIOe1Oi4BmH7u+flNrG4uzZo4D7zZxtD2WJxRE4TASEu9OyP1jq3iuKtS89mVabEDYCwvheF8/auTHXpkT6BC0Nvjh3CXkiejJj7mRYfhWixMsv8T7oJDmRj+mC+uO/nv4E4//2y3hbDAbWNQMbjGHFWsxIOO8fcHnyY11BHC6aDx7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UrfwfvAv2HDXKG0WaVq9sLaw+JKFPJ7A3yyPnqRN6xc=;
+ b=khP5bx4sC+lE/dkKVJkvj2DX1Oz15Xvw87UWCD92ySuM7WRcV+1B/WnCgsgOo3siXh3D4GjLJC/e4jYBaLhyHNrZ229NOIbTxyNK/IidSV8sFQ+BHzvQj1U9agZNOtfU2cEPm2QGN6/B/54eQpQG+iOj2SnrplEg9NvN+pIstio11O7Xs2PGKOqrfyV5/2DLqGAC3xXjKhyH59TSZruqmNw8lCPmWZcu2MSqh5gg/7dMtppLFGIATiHQGrfsZ91xSnac6bXlfmrFRfJTCx73Lq05rwzACmys3rMxbV5/L5oaI1YXswiUinDR3szwoOnIWBRD/oFvGbuSKpGpH6uAtQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UrfwfvAv2HDXKG0WaVq9sLaw+JKFPJ7A3yyPnqRN6xc=;
+ b=YfynRAZm6O2ZqC/fZy1lslSHueLU0HlBBDQQltTR33sZ+7EeavebsYo2qNPK7TIUkqmtBK4idkhyUNc9tg67X8hzvDU7zHj+QXNcXYk14B0hBGQbct+HPnUXSfsNmMK9g4AJoTrJVrGky5N3VFLM1Ca/t0I1W6UvwnkRi6ROVGI=
+Received: from MW4PR03CA0216.namprd03.prod.outlook.com (2603:10b6:303:b9::11)
+ by SJ5PPFA7D84DD83.namprd10.prod.outlook.com (2603:10b6:a0f:fc02::7c0) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.3; Thu, 8 Jan
+ 2026 17:05:52 +0000
+Received: from MWH0EPF000989E6.namprd02.prod.outlook.com
+ (2603:10b6:303:b9:cafe::c) by MW4PR03CA0216.outlook.office365.com
+ (2603:10b6:303:b9::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.4 via Frontend Transport; Thu, 8
+ Jan 2026 17:05:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ MWH0EPF000989E6.mail.protection.outlook.com (10.167.241.133) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.1 via Frontend Transport; Thu, 8 Jan 2026 17:05:50 +0000
+Received: from DFLE202.ent.ti.com (10.64.6.60) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 8 Jan
+ 2026 11:05:46 -0600
+Received: from DFLE209.ent.ti.com (10.64.6.67) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 8 Jan
+ 2026 11:05:45 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE209.ent.ti.com
+ (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 8 Jan 2026 11:05:45 -0600
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 608H5jC22820132;
+	Thu, 8 Jan 2026 11:05:45 -0600
+Date: Thu, 8 Jan 2026 11:05:45 -0600
+From: Bryan Brattlof <bb@ti.com>
+To: Kendall Willis <k-willis@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Dhruva
+ Gole" <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
+	<msp@baylibre.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
+	<s-kochidanadu@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/3] arm64: boot: dts: ti: k3-am62l: allow WKUP UART
+ wakeup from LPM
+Message-ID: <20260108170545.cfez6dvwkft2z3jh@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20260106-wkup-uart-wakeup-v2-0-fb4cbd56c827@ti.com>
+ <20260107164504.ehvbfizg7ybbvv2e@bryanbrattlof.com>
+ <c7dfe4a3-1bf5-4e50-b4b7-8752aa9ef1f5@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251205150234.2958140-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251205150234.2958140-4-cosmin-gabriel.tanislav.xa@renesas.com>
-In-Reply-To: <20251205150234.2958140-4-cosmin-gabriel.tanislav.xa@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 8 Jan 2026 18:01:34 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWg7Txe1fm0XOaT9FB0pDq0SehoXHWrx2g=j26g80vnHQ@mail.gmail.com>
-X-Gm-Features: AQt7F2rYWZ2Ei2cs0E8SVTZUjMSM-px_qYqN_ex3GD4Ez2BxiCY01zZUOkvmZgc
-Message-ID: <CAMuHMdWg7Txe1fm0XOaT9FB0pDq0SehoXHWrx2g=j26g80vnHQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/8] dt-bindings: pinctrl: renesas,r9a09g077-pinctrl:
- Document GPIO IRQ
-To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <c7dfe4a3-1bf5-4e50-b4b7-8752aa9ef1f5@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000989E6:EE_|SJ5PPFA7D84DD83:EE_
+X-MS-Office365-Filtering-Correlation-Id: d32eae13-3565-4617-689a-08de4ed82c9c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|34020700016|82310400026|36860700013|376014|34070700014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?NHpOaGRBUURZMG84ejN3R1NqeUhUanR1SGRIbGFwd1RtOVZJQm1kOHB4dnUx?=
+ =?utf-8?B?OWhxZUk4RXRvRll3T3p6SzU1YjBkUTN4c2dCWEp0WSswWDlGRTJua1hUb1RQ?=
+ =?utf-8?B?YUg5NGViRlJtbnFrbVFBQ1g1LzdoWFl4dnNvNFNYWlJzSzVITGw2TTR1b2Zn?=
+ =?utf-8?B?eEJ0Yy9NMUM3UmxCQkdXKzloc0tiQzhVNDkzQmRYRFNuRVdYWmNUbUVwRUtW?=
+ =?utf-8?B?Z0xrbTVKRk16bEpwUWRkbjRmSStscjBZZXhsdFlmRkp0RmZraGVrSlk2c0N1?=
+ =?utf-8?B?MDFRZHRoeUc2RHFheHdHeW0ra2p4QmpIMzFSUnE3NjRTZ1F2WEplc2REcEhn?=
+ =?utf-8?B?Z1o0Vk9xR3Z3Y1ZkQmFGcGMxL2wxMkswWDBwbmxYM1FZWDd0Mkc1bXVzdXJJ?=
+ =?utf-8?B?SUJYNm9aTUFZaDh5Sm55aGpncXIxSzlwdEg2dHd1RENweGZDRTN2dTF2dS90?=
+ =?utf-8?B?cGFRMVovK0o5WmRqS0crSVQrMHkvVVk2REdZWllFRnh2eDlQSUlxSklvdEI2?=
+ =?utf-8?B?emM2NWl1NWVJbE5PM242QlFpMlFGaXdzVXNSaEYwM1hUODdOR3ZEY2lKam0y?=
+ =?utf-8?B?VU5XVlFkbWF6dTdMdzNHNjJwVU1zUXY3UDk4QUhHU2RhcVlnSzNTeUZDRXJU?=
+ =?utf-8?B?aUp0aWw0THkxTjZQNUx6TTNsaGFCdFhyNVh5bHIrT0lZZTlobjlXc1FmdkVU?=
+ =?utf-8?B?TFMzc0tSbkJDQWVQMHd0STQ3eHU4a04yQXZhb1F6ZCsxSmJiTjBqTVVvSTJn?=
+ =?utf-8?B?V2V4WlE4R0k3aFQwZHB6MXpXQ05IMU5Mc3VEZG05VCtuQXBPNnM3b1VGTnBI?=
+ =?utf-8?B?VytIY0JUWjBuK29wdkc0dFBJMGY2K1h4TWc3cVZ2T0tkTStKZWdjeVlOd1Ey?=
+ =?utf-8?B?eVJkRW9aamJjaFBqUTdiYzRJcm1OS0dKdVA1TXNBRXJTQVpvQUxVVmtkOGNH?=
+ =?utf-8?B?Y1VWWllXT3NOTlJWWkZwUkZaTnZwM1dPVzZxVWpSNkMxSzI1bWIxVmRxVWRy?=
+ =?utf-8?B?YUZNUGdaV2tCSmVxSkZraS9DUDFvaVB2QW04MDB1UVhZZFZURXVDa1FLVUJ0?=
+ =?utf-8?B?TFZZZjBFZytaL1lCamFMSFp2WDFKWTlVRzZOVnRSd0gvRXZYWTA1K0F0QjBR?=
+ =?utf-8?B?VzlVSFFWV0xDSjBYQW1pTXltU1U4VTMyVUZJTlpMN0tXQzJxSGlDc1YwL2Qr?=
+ =?utf-8?B?aCtJZXVsakxtR0N4THR6T1F4a0NNZ2Q1allBUHc0OUlBcElEQVZjR3lySElB?=
+ =?utf-8?B?d09KaHU5UEY1aHVrc3piTTZXU21VRWkxbDlDaGk0V2lmNGxjY3lFVUl3bU9a?=
+ =?utf-8?B?TUhkK2hJV2FUai9hTzZxaW40Z3JmcDJ4Nm82SjJsbGs1aHp4OFEwS1BHb2VP?=
+ =?utf-8?B?UXZ3SkVjYi8za1ZKWUtTT21zVFNWbjN3WkM1emhMeWdCY1FZK3dicXFDYTJM?=
+ =?utf-8?B?Vy9WbzVhYkV3WWJ3WkwzckZScWFnS2RwNXNxaGRMOHZsQWRzYngwRmFNQkFx?=
+ =?utf-8?B?aVQ1Rk1PNWdHeGRRc3J6SHk5Wkh6a0dLNE43MUlKWk14MGt1aWVGMWVnUkVI?=
+ =?utf-8?B?dDNNTnpRS0JwOHZieGkzbk1ISXV3M202b1dSak96MWdFL2d1aTBYTzMzREVR?=
+ =?utf-8?B?UUU0UUNSTExvMkhTcVJFVmxFdFNWVnh5dk15czYvRVpUMElWM2xXTXdnWmEv?=
+ =?utf-8?B?S3ZVYlFSZUdrNm5kMWxlbWt3dmc3a3VrOE9OSGsxSTJuRXYrZDFXaHcyTE1z?=
+ =?utf-8?B?d3VXWlVGVFMxY3krMHVLcVc1V1N6SUltRG1zN0R0Z1FkNUlZZkd1aTVUQkEz?=
+ =?utf-8?B?WkxqRVh1MzcrTzdDRWhudEpZWGRBUnowSzZRMG52dFZrQURvWU9Gdno0QVZZ?=
+ =?utf-8?B?OW9yRFlXTlB5OXBEMmZ2VE1TWSt2M3h0dDA0YWt6Y0ROV3dKOUV2TEx3dFFQ?=
+ =?utf-8?B?eDRRQkJtZ2tmellsUWcyUnN0UTVjQnM1OXc2bDJnUjc1ZDN0bWtvQlM4QjZ5?=
+ =?utf-8?B?bktJdmVWVHBTVUVGNmkrckthTUFRZHR0WlprZ3ppTmV2elh6a2hVbkFzaTBS?=
+ =?utf-8?B?RVhzWC9HcmEwb3BNTFlIcHpjK1lmSkpCYXdrQWhmMVpYRE1yRWRkRWk5Z3Rp?=
+ =?utf-8?Q?ZeFA=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(34020700016)(82310400026)(36860700013)(376014)(34070700014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 17:05:50.0173
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d32eae13-3565-4617-689a-08de4ed82c9c
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MWH0EPF000989E6.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFA7D84DD83
 
-Hi Cosmin,
+On January  7, 2026 thus sayeth Kendall Willis:
+> On 1/7/26 10:45, Bryan Brattlof wrote:
+> > On January  6, 2026 thus sayeth Kendall Willis:
+> > > K3 TI AM62L SoC supports wakeup from WKUP UART when the SoC is in the
+> > > DeepSleep low power mode. To allow wakeup from WKUP UART the target-module
+> > > device tree node is enabled. The ti-sysc interconnect target module driver
+> > > is used to configure the the SYSCONFIG related registers. In this case,
+> > > the interconnect target module node configures the WKUP UART to be able to
+> > > wakeup from system suspend. The SYSC register is used to enable wakeup
+> > > from system suspend for the WKUP UART. Refer to 14.7.2.5 UART in the
+> > > AM62L Techincal Reference Manual for registers referenced [1].
+> > > 
+> > > Previous TI SoCs configure the WKUP UART to wakeup from system suspend
+> > > using the ti-sysc interconnect target module driver. Refer to commit
+> > > ce27f7f9e328 ("arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc for
+> > > wkup_uart0") for an example of this.
+> > 
+> > I think I may be confused. What is setting the pinmux for the wkup_uart
+> > to allow us to trigger the wake event? It looks like they reset to GPIO
+> > pins if not set. Is firmware doing this?
+> 
+> On AM62L, the WKUP UART pinmux is initially set by TFA so that it is set to
+> the UART pins, not GPIO. The target-module node sets the WKUP UART SYSC
+> register so that wakeup is enabled.
+> 
 
-On Fri, 5 Dec 2025 at 16:03, Cosmin Tanislav
-<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
-> The Renesas RZ/T2H (R9A09G077) and Renesas RZ/N2H (R9A09G087) SoCs have
-> IRQ-capable pins handled by the ICU, which forwards them to the GIC.
->
-> The ICU supports 16 IRQ lines, the pins map to these lines arbitrarily,
-> and the mapping is not configurable.
->
-> Document the required properties to handle GPIO IRQ.
->
-> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Nice however should we mark the UART in the board file as reserved for 
+TFA or is it free to be used by Linux and only during the low power 
+modes after Linux is asleep will it be used by TFA?
 
-Thanks for your patch!
-
-> V2:
->  * drop interrupt-controller and #interrupt-cells from required to keep
->    compatibility
-
-We can make these required once all pieces are upstream.
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-pinctrl for v6.20.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+~Bryan
 
