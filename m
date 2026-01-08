@@ -1,96 +1,96 @@
-Return-Path: <devicetree+bounces-253023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96A40D06341
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 22:06:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFB00D0634A
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 22:07:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 054A0305CA0A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 21:04:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7AC4A306325B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 21:04:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F97C3328F0;
-	Thu,  8 Jan 2026 21:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E3F13328EA;
+	Thu,  8 Jan 2026 21:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="ZDQLCXaL";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="N0yc+26l"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="KIb0ydk3";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="mYOPz8KQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fhigh-b5-smtp.messagingengine.com (fhigh-b5-smtp.messagingengine.com [202.12.124.156])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE283321B0;
-	Thu,  8 Jan 2026 21:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616D83328F8;
+	Thu,  8 Jan 2026 21:04:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.156
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767906283; cv=none; b=ev0Lu83guAWlHs+XWxhq3opVuvztB5xs2NKA2XHSdWx6lvvYjKqCnAi9NJ6M5DcMgODFlDRrAW0N5GnhFCx+/TOfxEkY9iMl4LOo0xvoBoiBctMyfyNJY0MX9EU0EwYIo6FizOywsPpvjZCNmLFc2ZziqhdRtx57TcUniIrDKbg=
+	t=1767906285; cv=none; b=nQs359GwdJ+vItgtODoRFx8Th/qbNMivumS9+DZPsXGYRpT3Nw0ROnI9C7ihq/b1PJPB4zTZUvHR0C+g6gJ71JtneQxfPcobpPpQaFO2XgA7U87LUA50pM+oZUDU6NLsblDsvScys/utI9/B9BcIhasPia8GUyBnLdUFy71+s/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767906283; c=relaxed/simple;
-	bh=nWa+h9+Kxvhc/pJdQJaqkBTx7CGfODqQM4FTFtlW9+Y=;
+	s=arc-20240116; t=1767906285; c=relaxed/simple;
+	bh=11AMcjryIBqasark3A35Cj68+orOKw83gXx0NA7gkZM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=G27S4xo644wEVPJ6w9I8DRTfG5WDV/5mRgc8D51poqPz8kRDvObZKXp43AyFv95FjMsHMUJ6/FkIYWIwlFEMp1wqIRspqEWDtyCYXxQjywaeAoHf+eOZfEitwpN/ZSzwoTaiwUmi2trKD+o0JIxlG/2lP2fAvlwykbtN37RJOD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=ZDQLCXaL; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=N0yc+26l; arc=none smtp.client-ip=202.12.124.156
+	 In-Reply-To:To:Cc; b=qbqT9DJSA7t7n2HVgnv9aBcmCUQ4IxprDuNHcFMHBsiQqqmvRDUw5L+eHqhy0mUKFcwVENQrr3Vn6DBnvNl9foHT3D7D5GHk7Bggkicf1ll9rBZOKTx336ZP1ZJDj45TRRUxNdJJ5wj3qkI3KkSG3Rn3Kv0YSQ1/WJAGXl/oD0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=KIb0ydk3; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=mYOPz8KQ; arc=none smtp.client-ip=202.12.124.156
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 7FBD07A0075;
-	Thu,  8 Jan 2026 16:04:40 -0500 (EST)
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id B0D047A0083;
+	Thu,  8 Jan 2026 16:04:43 -0500 (EST)
 Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-01.internal (MEProxy); Thu, 08 Jan 2026 16:04:40 -0500
+  by phl-compute-02.internal (MEProxy); Thu, 08 Jan 2026 16:04:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
 	:cc:content-transfer-encoding:content-type:content-type:date
 	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1767906280;
-	 x=1767992680; bh=QteEnV4Lmmr4kXq6459mdyhN7lvg8bT64d/57W2Zy3w=; b=
-	ZDQLCXaLlZ3ASL1Bdf/c1FUx2x8sfUejM+vTyCe3+K6+hgb7kkisKsNmZ9iT0z8f
-	92WUaYQ+XrqYgv7ZhXTxCpBCoxZW3LLwHhaQOllx3NX+Fqh96ZtE/HK5ve4dLujC
-	+CeLtkp41A8VwxpH2d8xdInu7gS1678EG2bnDw66AjZx4y7L9KT6K5mFveUf5cg/
-	NlIXQN1V8EU3WGsFW3dwjZl2vtlY71J6YvNKYA1MT/JOeHA/jVwyeNc+s8RZmuUJ
-	VkHi/HvHinvn/uQL1yq3duz7o87ZTuXV5OXtJqfp3/EhzVlxi1MRiq339G93/RzF
-	HARQqiqBG73799NpZL1Pyw==
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1767906283;
+	 x=1767992683; bh=4JrUdCLCllaRPN3JYqb8eFCos4vhC/0NreYSyVI4EHI=; b=
+	KIb0ydk3+5xc7DVnM/N+hI5Y/mKch2bI5ld0BYWSO9/6jTSf/7w/ZkX5HunbkjXL
+	eMXZ2LWGdxhpLcmFmNRE7yIrZ14PwuMPDqwZy/LhHlXRmGQ8Hy+L8iWS67XQZDO4
+	czH6XN2pxVgIx7TkLGp3jOf5605wCgqvM+eThI9dnGegfks3jZdn9bB3PEZOpVGv
+	4MoZ7F8rZjKW2RyQYgjKV4uMQpwFN6lGI0amWY2uR4Fx3t+2hJ5Tok90zBnj9NM0
+	bm9j2wL9TWCmxkW5xPCgSsmMGmKCZzfqUwyNofNH0Hb34UPuNuvQQvTpWMi1gnfF
+	k/1fl3rclAkmQVT5+Gf8aA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:content-type:date:date:feedback-id:feedback-id
 	:from:from:in-reply-to:in-reply-to:message-id:mime-version
 	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1767906280; x=
-	1767992680; bh=QteEnV4Lmmr4kXq6459mdyhN7lvg8bT64d/57W2Zy3w=; b=N
-	0yc+26lJBzFKE5oXelHZepPAT4qQKyuftKqr4i6d5qggDjv21ls4JdeLII7AVnk8
-	HFtIx5UXoCtQFRj67Lif+3/amMFcrzXBBP9JSZQW+QwaNWozygitwRaKz/ZVceiJ
-	oHb7F6/M7kPgrHBmx629lYx0KTKuWEWR+VrMK0NNJAdUdQQGwyxYhnuda3Pjiwi0
-	kISL0kPEIfbCRpwGSsy7P0wdaVrpL25Rj9PrpKDbiEbgdlj6Qh5uon8NfgH23GIT
-	HM764Kt0rzscKJWO8/O0N7SWiOE/0rZ9EskJD3piNCHIV4tBNdE46oyEArhl593/
-	JEphaayJ2+K34pMsxbzyw==
-X-ME-Sender: <xms:6Btgaex_cz8x_uSbYkTsKK6fBEEJatckrCIX-m2gG3otCaqw0MV8-A>
-    <xme:6Btgaeq4_Cba4sfwx_3zqL8-vpu1tZY-Qs-LoCwJGrxIVgghO3Rz2MO6wrg3fANu4
-    9yhdq0ZNjweIAClUFHehuY4VG-U_WRsGOZ2fZo6YrM97F50k3H871Y>
-X-ME-Received: <xmr:6BtgaeM0Iz5W0RJmopvKgbEJFYcv_v-ghhYxAqo-uMohhWlYCdW4jaSZhDiJNUqIW4JG59uDdymIj6HjD1mXBw1vT-cQ0x6QGXhebw>
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1767906283; x=
+	1767992683; bh=4JrUdCLCllaRPN3JYqb8eFCos4vhC/0NreYSyVI4EHI=; b=m
+	YOPz8KQYKVXfJ9ohQHzICnYaDB0q/1n5l4kOWFqEw3s5Nb11C3QH9F7yUeiXlpvY
+	Mz9s/wpxVuoVsMaKXsid6NSK4qnT/k8kOaviO0uDtzjTVVbSowTW8oByLrgELay+
+	PMmnMMRmux24DyAI7qN1YprccVNzc8Kvsd4OXPq7ZbpdArtmyGcgMd4JON9BaVoK
+	uqPcZO6ALZzVaEnKeweL0kiKurbkYp8nAvfEGhudXFDvai4KqyRgcTiCadwzy5KN
+	zfn9vo0sEU29LQSfWGMtLNnytOsz6mn7eoSM/+y4DuS8ETEPR3t9TiOzV+7cRnWO
+	ZoxRc1yJg9pcnwbWgC6lg==
+X-ME-Sender: <xms:6xtgadU5P8MgvY3Y1UsaUDzMjMWXXkBVvD939Pe_hFoQLJk58r8uIw>
+    <xme:6xtgadS_t3_7FABQ3Efaj-y1Ez2Byzf2A6GJs0kIWwc9wTRiKMaqm483N3znUBeZB
+    LGO5JOJrgxavphtQX8ff0z8JFFGTjThoacyNWKCWAbLHhMAbn8SQnY>
+X-ME-Received: <xmr:6xtgaVCrfYmI5A3jjAJPsbsv8IO_9ToKLKxEunDZXK_P2cO4SGb9ef3k71jbAfzntsFQ2DXiIadjQRBn0U1oLZo3VFL2aklXOoI1bA>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddutdeileekucetufdoteggodetrf
     dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
     rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
     gurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpeflrghnnhgv
     ucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepfe
     ehheeileduffehteeihfdvtdelffdutdeludduiedutedvfeffheekhefgtedtnecuvehl
-    uhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrg
-    hurdhnvghtpdhnsggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhhtpdhrtghp
+    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrg
+    hurdhnvghtpdhnsggprhgtphhtthhopedutddpmhhouggvpehsmhhtphhouhhtpdhrtghp
     thhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghsrghhih
-    eslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehmrghrtggrnhesmhgrrhgt
-    rghnrdhsthdprhgtphhtthhopehsvhgvnheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
-    epnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgv
-    rhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheptghonh
-    horhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgv
-    lhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvg
-    hlrdhorhhg
-X-ME-Proxy: <xmx:6BtgaScNUPjt762OBbrT5FLV9XLqsdgpZFg_-emiIC1buXQAoQV_5Q>
-    <xmx:6BtgaUV12cJ7BskigDtycOKa3Hv_0Gi9dzqFWWS1V-22FrutFRnbxA>
-    <xmx:6BtgaTD6JxGDHrFY9V4ObUZACW9-NAAcUuxdALb6_goa4YLl4FpLoA>
-    <xmx:6Btgaf4kd8-ctf3SdFpsbfy47rDB6S-vJ5SMrITINtcg2Epg1DTq5A>
-    <xmx:6Btgafs46Jp6awtYEBOaFq2gfdk5kd8c3y8sYb5dTEbh6XfSmamboY0_>
+    eslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehsvhgvnheskhgvrhhnvghl
+    rdhorhhgpdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtoheplh
+    hinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
+    pdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhope
+    hlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthho
+    pehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvse
+    hvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:6xtgacIUerewObi61QWufnWq_794MYhOzxy0-5a880GVrhZhOlmvYw>
+    <xmx:6xtgaYD1XSOeSmVLS1uvzOBhcMxfSOf4AQQ_iOymkZ6yCiCmWr4N-g>
+    <xmx:6xtgaZuiXZtJJldYMGgPBovsJc_wWiZqy4XQ-YIZ-b3A1xGywPX_fg>
+    <xmx:6xtgaeToClXqonVdSVO-0WVPstQKkJLSEF303XFZQwobf2_JSZgn9g>
+    <xmx:6xtgaVS-O3bI7_fJZuDjSIY4gn3_gxnZSxyeuBtkEFCeB24A7rQUF6ua>
 Feedback-ID: i47b949f6:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 8 Jan 2026 16:04:39 -0500 (EST)
+ 8 Jan 2026 16:04:42 -0500 (EST)
 From: Janne Grunau <j@jannau.net>
-Date: Thu, 08 Jan 2026 22:04:02 +0100
-Subject: [PATCH 2/3] arm64: dts: apple: t8103: Mark ATC USB AON domains as
- always-on
+Date: Thu, 08 Jan 2026 22:04:03 +0100
+Subject: [PATCH 3/3] arm64: dts: apple: t8103: Add ps_pmp dependency to
+ ps_gfx
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,7 +99,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260108-apple-dt-pmgr-fixes-v1-2-cfdce629c0a8@jannau.net>
+Message-Id: <20260108-apple-dt-pmgr-fixes-v1-3-cfdce629c0a8@jannau.net>
 References: <20260108-apple-dt-pmgr-fixes-v1-0-cfdce629c0a8@jannau.net>
 In-Reply-To: <20260108-apple-dt-pmgr-fixes-v1-0-cfdce629c0a8@jannau.net>
 To: Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>, 
@@ -107,53 +107,43 @@ To: Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>
+ Janne Grunau <j@jannau.net>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1408; i=j@jannau.net;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1072; i=j@jannau.net;
  s=yk2025; h=from:subject:message-id;
- bh=Tv265ezbKIPR4yKCBPnSeHHBwfskxmuu1jk3lNIHRZw=;
- b=owGbwMvMwCW2UNrmdq9+ahrjabUkhswE6btMrLF3EuXmZ12WK1aq2xm97mk8b5X3XX3JB/ek7
- RX8Sxw6SlkYxLgYZMUUWZK0X3YwrK5RjKl9EAYzh5UJZAgDF6cATGSVMyPD3YdiLZvci59U+kQf
- KAmYc+CvxHJ1jenXV+xt4P1/wufydEaGnXsW3Cg0OKLa0dt2LSxvzh6RqZv9lz2dLLGmZcXykxN
- i+QE=
+ bh=11AMcjryIBqasark3A35Cj68+orOKw83gXx0NA7gkZM=;
+ b=owGbwMvMwCW2UNrmdq9+ahrjabUkhswE6bu9W92P8dVtvz678tchX1OGOBHHS/2+GnNCHmxrC
+ P1xq+5IRykLgxgXg6yYIkuS9ssOhtU1ijG1D8Jg5rAygQxh4OIUgIkUbmP4H5Re5nT1+bdELTNv
+ VnWVBweesb8PvjZxQ6uE18+Ty9t/JTEyzJQXfuVZa8B+xLY2IEczf2fiutrzZ/jqz7HUfJ7tecS
+ NEwA=
 X-Developer-Key: i=j@jannau.net; a=openpgp;
  fpr=8B336A6BE4E5695E89B8532B81E806F586338419
 
-From: Hector Martin <marcan@marcan.st>
+AGX appears to have a hidden communication channel to pmp, a power
+management related co-processor already brought up by Apple's
+bootloader. As there is not driver for this co-processor its
+power-domain gets shut down after the initial boot.
+This crashes the firmware running on AGX immediately.
+Until there is a pmp driver and the dependency between AGX and pmp is
+understood keep "ps_pmp" as dependency of "ps_gfx".
 
-Shutting these down breaks dwc3 init done by the firmware. We probably
-never want to do this anyway. It might be possible remove this once
-a PHY driver is in place to do the init properly, but it may not be
-worth it. "always-on" is a plausible interpretation of the "aon" suffix.
-The t8112, t600x and t602x "ps_atc?_usb_aon" power-controller nodes are
-have already "apple,always-on" properties.
-
-Signed-off-by: Hector Martin <marcan@marcan.st>
 Signed-off-by: Janne Grunau <j@jannau.net>
 ---
- arch/arm64/boot/dts/apple/t8103-pmgr.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/apple/t8103-pmgr.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/boot/dts/apple/t8103-pmgr.dtsi b/arch/arm64/boot/dts/apple/t8103-pmgr.dtsi
-index c41c57d63997a59a9fe3c88de31fddb31781398e..4bfe0d2de30ad6f975b31d443b62ef0e74b14324 100644
+index 4bfe0d2de30ad6f975b31d443b62ef0e74b14324..fef8a4058f14159d953fdc1d47ed83950e30a37e 100644
 --- a/arch/arm64/boot/dts/apple/t8103-pmgr.dtsi
 +++ b/arch/arm64/boot/dts/apple/t8103-pmgr.dtsi
-@@ -1103,6 +1103,7 @@ ps_atc0_usb_aon: power-controller@88 {
+@@ -733,6 +733,7 @@ ps_gfx: power-controller@3f8 {
  		#power-domain-cells = <0>;
  		#reset-cells = <0>;
- 		label = "atc0_usb_aon";
-+		apple,always-on; /* Needs to stay on for dwc3 to work */
+ 		label = "gfx";
++		power-domains = <&ps_pmp>;
  	};
  
- 	ps_atc1_usb_aon: power-controller@90 {
-@@ -1111,6 +1112,7 @@ ps_atc1_usb_aon: power-controller@90 {
- 		#power-domain-cells = <0>;
- 		#reset-cells = <0>;
- 		label = "atc1_usb_aon";
-+		apple,always-on; /* Needs to stay on for dwc3 to work */
- 	};
- 
- 	ps_atc0_usb: power-controller@98 {
+ 	ps_dcs4: power-controller@320 {
 
 -- 
 2.52.0
