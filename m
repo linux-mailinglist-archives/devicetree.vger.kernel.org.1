@@ -1,162 +1,171 @@
-Return-Path: <devicetree+bounces-252639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DF7DD01DE6
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:38:22 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FBD5D022DB
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:45:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5A86F33B5B22
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:29:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E94DD30021C5
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 10:45:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA82F396D23;
-	Thu,  8 Jan 2026 08:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03AB38BDBB;
+	Thu,  8 Jan 2026 09:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="vNMIOFkc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T+JoVAKr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B06395DAE;
-	Thu,  8 Jan 2026 08:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778C2451DE8
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 09:57:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767859427; cv=none; b=GrUh0/SXH05hOv2KsqDeeRUimF1OWn4dc4aH/zM++7G0D2ueFxTUcny89+WnDJfkIen9p8SqO/9tOZ/c13NVu7/DYCIBs1B2DNH5Z7CbKdI4Dg4kcxvSOIfgAdAOfiZINAxn7k1l48YJGF4m2gggs7UV6eXn4mlysaOH3C4Zvek=
+	t=1767866253; cv=none; b=ruLr2weKm/bH10+M+oxBiU9xJFFzo46+uuDhIy8t+8hgeiIDx1Q0rSpdo4rGO70d611c0YdOrkSjQ4NOEx2i4Qctthhb8N0DsWhfXP/NoiI9FanBkKl1aWMdCC8bjVZl+3hQcruxASxr3RvGfkcJOieRP0z7tNOyDb6FsxMc9vE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767859427; c=relaxed/simple;
-	bh=MiTuTXmPYpXsxh2wM65BnAZkagPpcHAluq9scgeCvcY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NdOMqF9CvvwN65BLRSM8YQQO8HEsm1+TE2QEAAFePBXICQqERVq/TWI3fx0/Va6nM8YOUK7LIiDOqJBMJLcmHa6oo+sMkjZNfV68KKcbkr8NAZxkvO9KWqLGqwHmti7ASH4JoAYvexncYOxCTH1s8t63OvbuKnSLAsNoBQ0jSjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=vNMIOFkc; arc=none smtp.client-ip=54.207.19.206
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1767859313;
-	bh=8sPvtV6R5fOot1emRO6hT0bqnJhowoQAnBmNF7+RVj0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=vNMIOFkcOIGiTQbZfn9/XskYwltKjHkQHn15ZPykmee2zms9ZoxNsPlJ80mDOGfPK
-	 v6X4fjFWDNidB7V06WNQuvYztgTs/Xkn00m+Lw236mU8r5PPE9DOytlIBWSuM1WKMI
-	 k78p8FHNzsDSy/WfxiY4twrI4MEAxVL7AkYSIShY=
-X-QQ-mid: zesmtpgz9t1767859306t749baf49
-X-QQ-Originating-IP: WIhSujCjZ4exQ3XJHVOY0FYbufeEWfI1WXKa++9oDCY=
-Received: from [172.16.12.51] ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 08 Jan 2026 16:01:44 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 15587685843860407837
-EX-QQ-RecipientCnt: 23
-Message-ID: <5FFFBA7FAF5745A7+e0381969-800a-4bf6-9aac-81cffa3469a1@airkyi.com>
-Date: Thu, 8 Jan 2026 16:01:43 +0800
+	s=arc-20240116; t=1767866253; c=relaxed/simple;
+	bh=F+HI9weCrGvZqZdvGzT41fozcChUp0aiMuJIzq7Twlk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MH2ihbh3DekcHpwxaAZcCExILnBe3cV57TinikRzFTN9NXRN5sr5Y9NEuqal4OaC957bz2HxgzpOtGsmVQsL2+t0EVosKhbZnnjCXEEH5uuDne/B5XY4JEDVL2e8DkBpbHXwcQphmZ51LOwxrp0gPbxSEduzY1HUvyz6KF2RPeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T+JoVAKr; arc=none smtp.client-ip=209.85.217.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5dbde7f4341so1408514137.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 01:57:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767866245; x=1768471045; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mNWaW5uyJY39Ee5wA6GOpA1sGvgkAjuELUOx96wJt9s=;
+        b=T+JoVAKrb20L9hukfjfXzFloH+HfyGdN1Y7dMMLWbhci2rzPvp8h/tyIJ01DNNMLwH
+         snKTEKkrx8/lxqeflHCOnpXafRuOUVKafKsdebO2uLlBiTd+q3BOith1ho9W42ZrgWrf
+         XLJuuSu3SbMB2AeEcNXJ+WxJl9PANhlzMv8irN2VDNEFR/DzT+rbdE3eqWtyt4AdRhpf
+         TQA8BXul+xaZ/EtU1FYRePUyNh4xojj05gIrJBDPAqUyxfHkeDQBBndkYpMFl59WK875
+         fv/w0NuxmJXZLOMI0Ku5TzrkyD7G6XRN+zOlq37ZBQbcjvC+xBMF/53oEijYjGyVclcJ
+         bu0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767866245; x=1768471045;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mNWaW5uyJY39Ee5wA6GOpA1sGvgkAjuELUOx96wJt9s=;
+        b=UUEEi7l5jiNjUVH9FAJBqTmUJPtgRvIBJeWF39KSQH/HEYhBK37USGh9cxwwewSbS6
+         mAbT/XnCzzWliT1tYKRNWMuJvSr2Ud/0k7TSpRccMSd12n+UNvifEJBAonl6LqeGjVEs
+         FIj3K/PKmC4eDWF3YZ3SXTu+WNqNAIIN47+Tm9+579p9EORnncoytT8zahpyo+x/M9O4
+         z15tEb5T7swXf1sdwIfXMuJj4mwb+82+z//ZUJif3nJbsJDNCUgP27R0c8waCwC1Fd1B
+         j7Epbr2VbcKxTh/yJdlimjaF5qeZzy0tsiJB6ZEIbiHYzyQgBZZMFKsfNFPGI3Fq95CA
+         yRaw==
+X-Forwarded-Encrypted: i=1; AJvYcCVJoxpKBoBOIB/cyz2QfTwQ/x8ntJFc0zhlSwVRHIXVGVu9L2XhMcQ8VL62gy8cWh/1Ny9wqoCj+ifJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywd1TdMcuhHfJQ02b0bPCGFqbYP8PCO8g0K/YSpixlPTzs7uggM
+	k4fxm1UVi9Rq7E81fQvh+0RsLRbtWDFAIVeRqfbf0sWI0nt2thrV6nFErpfAxg==
+X-Gm-Gg: AY/fxX4ShRpTfeFdrQ+0erUpIbn1KpTCcHhBgQtg+hjr0uzZL54+5ajlcVA11E3j4qA
+	+bnbO1VoDOwvqRSN9R9YWq1Wu4ZEiTuTnjzeRqCu27ilL/OQSqiVGYXv5h36ts10xAUhfgHWHB1
+	7VRp0HIPB5TtH5pY5PMsp2c+ianjUoFlKLLkHjmhxrOpHzanMGO6EJ9V73dgrmMsgs2jeg+GKKy
+	GQIkHIxrGjHWmrO8Un5NjKOZfUblft8RkRfaFNRcLmyOr91YCkwQq0Zkuvnm6KICOFQK2+46Y6D
+	Wl1FSBb+bjLvWWbEitlhBLsThBc9vl0oxo3eCSUCNVUfz+ejchA655ubfqGI99/vyCA8vEa4rHi
+	fpbtbmI1ElFe4XqtL07L7eGGX7fFlsE9/mKjF56e/HyK13J31MsxHPzMaxSo/yZ4xNoem4RxV7d
+	+LhzQqtFDT6XLx6A1O84xZNDjIJBUfLhodM+dXHFylM4Sf08+peNL5GJrgTp0bfhQTwNDZU1QF3
+	vp/rUEvYdHK6cQyr9Kd2BZIcQFi8+0z
+X-Google-Smtp-Source: AGHT+IHWNlnOIQoHRnNghuP/KuzB06upezljxGJd8aibyns6gUrJ5zRj9QVDAk4WOeIpJQ1oogEYew==
+X-Received: by 2002:a17:90b:314a:b0:343:3898:e7c9 with SMTP id 98e67ed59e1d1-34f5f831c74mr8109800a91.2.1767859745886;
+        Thu, 08 Jan 2026 00:09:05 -0800 (PST)
+Received: from visitorckw-work01.c.googlers.com.com (25.118.81.34.bc.googleusercontent.com. [34.81.118.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819bafe991dsm6900582b3a.16.2026.01.08.00.09.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jan 2026 00:09:05 -0800 (PST)
+From: Kuan-Wei Chiu <visitorckw@gmail.com>
+To: airlied@gmail.com,
+	simona@ffwll.ch,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dmitry.torokhov@gmail.com,
+	sre@kernel.org,
+	gregkh@linuxfoundation.org,
+	jirislaby@kernel.org,
+	lgirdwood@gmail.com,
+	broonie@kernel.org
+Cc: jserv@ccns.ncku.edu.tw,
+	eleanor15x@gmail.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	krzysztof.kozlowski@oss.qualcomm.com,
+	Kuan-Wei Chiu <visitorckw@gmail.com>
+Subject: [PATCH v2 0/6] dt-bindings: goldfish: Convert to DT schema
+Date: Thu,  8 Jan 2026 08:08:30 +0000
+Message-ID: <20260108080836.3777829-1-visitorckw@gmail.com>
+X-Mailer: git-send-email 2.52.0.457.g6b5491de43-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
- Alexey Charkov <alchark@gmail.com>, Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Quentin Schulz <quentin.schulz@cherry.de>,
- Kever Yang <kever.yang@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>,
- John Clark <inindev@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
- Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Michael Riesch <michael.riesch@collabora.com>,
- Peter Robinson <pbrobinson@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260107070322.323-1-kernel@airkyi.com>
- <20260107070322.323-3-kernel@airkyi.com>
- <b5a3470c-aa03-42d0-a575-b705f709f8e6@lunn.ch>
- <CABjd4YzsjZXe16XWgrHRG5shNA_DQJF45i1roahvfAfV4xdU0Q@mail.gmail.com>
- <a545fec0-cb30-489a-b5e6-4ee87dcab41c@rock-chips.com>
-Content-Language: en-US
-From: Chaoyi Chen <kernel@airkyi.com>
-In-Reply-To: <a545fec0-cb30-489a-b5e6-4ee87dcab41c@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
-X-QQ-XMAILINFO: MhC1rXRaWvfnq4Vu+ns3dE6XXbeAdQVBQ0d0eNnfzAi7v1fVk2swrB/h
-	1rqyjZyWm7N+HVtn91hGaRttp5InlRRXm5O3rjgl/5m+kCzQe6o78Pevb7+7uepZQEtL0hX
-	8j2CnYyqGSYdrhGlAUcm2okbNVPVKVYPZrkHTdvUN+OdB361X0UMB+irpzR77c4++tRNx19
-	VG4/WRCxsE7WzrYYCVBIxJ7LeeG7tAbYnG96rQDLUZ7wJUzDk+xsC+31m/aCpSeBlzEaYm3
-	4eHtzXbEvUauzzl5DQTksL34evxTr8I/0PwfsAhq7ISDzp6LVQxkmH37n9dh25g8hAV6toT
-	XulTVFPT/tveCFyY0pMtkhwHs/a6pT+HDAquvvxOZHNnmxQO1HtG+0bXbr9qCLPZo6MzTym
-	U3mHIH9NFTYkr2D0LMLN1qSBNKzpOoPDksjNcJl/dbx/fuAT9TFe3/iQIr9aXDIre84Gyw2
-	gKFpD6AD3zHzItzsUKxjINkkvhRj4Q7qZdkz9IdzxhYetfYHDGyn2/LwS6k9z4M1CQVS+98
-	Ln59orzbt6Hgu0E6gzT1O75SwFli1AmdOSO6hFG05ZfU9QUnPKSvEMlJikoSncAnDfBw54I
-	oBAK3mn4+EQGqurkdFcoAbIYJjOwTea7Vhk/uNWOqjgHYyso1MjfNALoJhtgOQsE0vRKRy8
-	zJDrFL8qXOMUC7lrk3WL1UIBnTL4RF5CKsCIL+du7/Xgla8k/mea/6L3jdgK1KSP+j6zABh
-	jW8SC1RBJ918xjBcZjASLTFiN8PbJykv6+J7BtM/JfMhjdoBZU3p5C0WrXN7ElG5skrDxSg
-	G5z/RhCY6mBQXAdsvW5YOYM1sVmBfxFcbK5/wgN8loYv4ZKuf2PT9p4SED0dzyORjkEe1Up
-	tX0du1HR/hutsJs5wh4i6QJ8BvZtsE5Ukzo25zKFbvMz7bZs1t+iTys7kiAYN/uRDykjpm8
-	lZ4GyNXyNQ/zOvHANiSTLvLQmnzvUBPQCfoOMvnFu1UEiDKoOQwT6FK+0wWuLrPwSUWzyvZ
-	ppkJDEWYz9/p08OQq0yy9YHwxrulA/Kf31LgVPyl+B7AjSCOggw96I8PZhp7h+JRL55nI6M
-	g==
-X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
-X-QQ-RECHKSPAM: 0
 
-On 1/8/2026 3:42 PM, Chaoyi Chen wrote:
-> Hello Alexey, Andrew,
-> 
-> On 1/8/2026 2:53 PM, Alexey Charkov wrote:
->> On Wed, Jan 7, 2026 at 10:18 PM Andrew Lunn <andrew@lunn.ch> wrote:
->>>
->>>> +&gmac0 {
->>>> +     clock_in_out = "output";
->>>> +     phy-mode = "rgmii-rxid";
->>>
->>> rgmii-rxid is odd. Does the PCB really have an extra long TX clock
->>> line, but a short RX clock line?
->>>
->>> Try changing this to rgmii-id, and drop the tx_delay property.
->>
->> Actually it would be great if Rockchip could clarify the delay
->> duration introduced by a single delay element in GMAC-IOMUX delay
->> lines, which are controlled in the GMAC driver by the {tx,rx}_delay
->> properties. Maybe we could then switch to using
->> {tx,rx}_internal_delay_ps for fine-tuning the delays on the GMAC side
->> as envisaged in DT bindings [1], and use phy-mode = "rgmii-id"
->> throughout. Chaoyi, any chance you could ask around in your hardware
->> team?
->>
->> Currently though removing the delays at GMAC side altogether causes
->> unstable link operation - see [2] for example.
->>
->> [1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L342-L347
->> [2] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commit/372f3e9ae62cc62cdf2543391ea57be6bb548a0c
-> 
-> Sorry, this problem has been discussed many times before. It's because 
-> the gmac on the Rockchip platform currently relies on setting the 
-> corresponding delay via phy-mode [3].
-> 
-> [3] https://lore.kernel.org/all/mqoyjn7mnq6tmt6n6oev4wa3herjaxlupml2fmcampwiajvj4a@r5zs4d3jdm5p/
-> 
-> The delay introduced by the delay line is not absolute. In reality,
-> it depends on factors such as the chip's design and process technology.
-> 
-> And for RK3576, you can assume that:
-> 	
-> 	time(ns) = 0.0579 * delay_line_count + 0.105
-> 
-> For example, tx_delay = <0x20> means:
-> 
-> 	time = 0.0579 * 0x20 + 0.105 ns = 1.9578 ns
-> 
-> And I believe {tx,rx}_internal_delay_ps is indeed a good idea. 
-> I'll try to add them in v3. Thanks.
->
+Convert the Android Goldfish emulator platform bindings from text
+format to DT schema.
 
-I've also see some dt that use {tx,rx}_internal_delay_ps inside the PHY,
-and compared to doing it in the MAC, which one is the better choice?
+Most of these bindings are currently located in
+Documentation/devicetree/bindings/goldfish/. Move them to the
+appropriate subsystem directories (serial, input, power, sound, misc)
+to align with the kernel directory structure.
+
+Update the examples to use generic node names (e.g., 'serial' instead
+of 'goldfish_tty') and fix minor inconsistencies in the original
+documentation to comply with current DT specifications.
+---
+Changes in v2:
+- Add references to generic subsystem schemas (serial, input,
+  power-supply) where applicable.
+- Update property validation to use 'unevaluatedProperties: false' for
+  schemas referencing generic bindings.
+
+v1: https://lore.kernel.org/lkml/20251230181031.3191565-1-visitorckw@gmail.com/
+
+Kuan-Wei Chiu (6):
+  dt-bindings: serial: google,goldfish-tty: Convert to DT schema
+  dt-bindings: misc: google,android-pipe: Convert to DT schema
+  dt-bindings: input: google,goldfish-events-keypad: Convert to DT
+    schema
+  dt-bindings: power: supply: google,goldfish-battery: Convert to DT
+    schema
+  dt-bindings: sound: google,goldfish-audio: Convert to DT schema
+  dt-bindings: display: google,goldfish-fb: Convert to DT schema
+
+ .../bindings/display/google,goldfish-fb.txt   | 17 --------
+ .../bindings/display/google,goldfish-fb.yaml  | 38 +++++++++++++++++
+ .../devicetree/bindings/goldfish/audio.txt    | 17 --------
+ .../devicetree/bindings/goldfish/battery.txt  | 17 --------
+ .../devicetree/bindings/goldfish/events.txt   | 17 --------
+ .../devicetree/bindings/goldfish/pipe.txt     | 17 --------
+ .../devicetree/bindings/goldfish/tty.txt      | 17 --------
+ .../input/google,goldfish-events-keypad.yaml  | 41 +++++++++++++++++++
+ .../bindings/misc/google,android-pipe.yaml    | 38 +++++++++++++++++
+ .../power/supply/google,goldfish-battery.yaml | 41 +++++++++++++++++++
+ .../bindings/serial/google,goldfish-tty.yaml  | 41 +++++++++++++++++++
+ .../bindings/sound/google,goldfish-audio.yaml | 38 +++++++++++++++++
+ 12 files changed, 237 insertions(+), 102 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/google,goldfish-fb.txt
+ create mode 100644 Documentation/devicetree/bindings/display/google,goldfish-fb.yaml
+ delete mode 100644 Documentation/devicetree/bindings/goldfish/audio.txt
+ delete mode 100644 Documentation/devicetree/bindings/goldfish/battery.txt
+ delete mode 100644 Documentation/devicetree/bindings/goldfish/events.txt
+ delete mode 100644 Documentation/devicetree/bindings/goldfish/pipe.txt
+ delete mode 100644 Documentation/devicetree/bindings/goldfish/tty.txt
+ create mode 100644 Documentation/devicetree/bindings/input/google,goldfish-events-keypad.yaml
+ create mode 100644 Documentation/devicetree/bindings/misc/google,android-pipe.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/google,goldfish-battery.yaml
+ create mode 100644 Documentation/devicetree/bindings/serial/google,goldfish-tty.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/google,goldfish-audio.yaml
 
 -- 
-Best, 
-Chaoyi
+2.52.0.457.g6b5491de43-goog
 
 
