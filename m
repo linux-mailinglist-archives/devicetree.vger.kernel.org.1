@@ -1,136 +1,251 @@
-Return-Path: <devicetree+bounces-252912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAE3CD04932
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 17:55:27 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7892DD04A80
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:04:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 17B8E3065F46
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:47:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4F0BF30AFA9B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A5B2DB7BC;
-	Thu,  8 Jan 2026 16:47:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GoIU5kVN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88DE92FF14D;
+	Thu,  8 Jan 2026 16:55:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A0229827E;
-	Thu,  8 Jan 2026 16:47:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0635D2DB795;
+	Thu,  8 Jan 2026 16:55:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767890831; cv=none; b=XR5TGJ0eJmxMHEJXQGzjSiwuLmt0tEfnjD7/wD23rNOOOATX3CzsBBx9Wc+rFnFkNO2znANMpTeef6DYWqool2ep8NlqEhTStIQgIfk7OZLebd2xxrNIoPuorgQ4o9g9bQ6/k+e2f4+XZ9N4c/eygQ4yTfgfn6MMwJrTMxLuIvU=
+	t=1767891303; cv=none; b=HAtRJtR21EYGY8Mf2eZ/KpMFNPIEqAz/I9L7H1TYA3HtDrLWwKqEFcm5UJFkzCmAGzGNk5TiOHa8qHnadNOvudKdOPRUS4paOQjUuIRO1dsNR8a9Z4qLYEdcYizxo3vPu3zfBpteaPb5tKzLHtnHvFuDHEWhNyWpNwq1jWXVAl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767890831; c=relaxed/simple;
-	bh=kJClJX+0V06PtT2MwKiqkzjY9tj2YHDw8mvU6xDhD1Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DnYHuSU18CvvOKygNJnw7HzNuYAgU55XxgT+0sxyXMGfOt++Uc3AX8rSCKGJh6wwYfJlEMO+zPjjO7tsQE+I3zv++lOzeyJHc85iV8ZUFkpftGoKxUF8xI4ipEPjXOZEarvY/lqyZAlq4583OsWAsXTIak/cLqArIznCr7Hx25E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GoIU5kVN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94A89C116D0;
-	Thu,  8 Jan 2026 16:47:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767890829;
-	bh=kJClJX+0V06PtT2MwKiqkzjY9tj2YHDw8mvU6xDhD1Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GoIU5kVNsO/nyyxqDl5W5K/cEiUMdfaCK+ELslhSlReM75V+fj1YZ5CCbtCJrlxTR
-	 5o3lkNSc0qdMlUvNTZEsigdUK3NRcDajTDjHwKG09G1bTk3q9AiimIXaDsmlpEuC4e
-	 fAISSNx1aQUEI9ji2Vj4ZFt6YgHP0z8E7q27cSHAFRA3PI6oXubsJJriJ5cJMHxVWB
-	 nngSz4Ta5Y9J4783gxBzFcDyzBACT9bjqHmfJ/J6kPsaGIkMGgNIAUQtGZwltPv48y
-	 JsJWjxM8KsFvkLarp+Ev+wLIFnaOoqer5cXCNgwZEE8OVslPvTd0nprZcN3QIE7CDM
-	 LcOs2dkgrD8Pg==
-Date: Thu, 8 Jan 2026 22:16:59 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Cc: mkl@pengutronix.de, thomas.kopp@microchip.com, mailhol@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
-	konradybcio@kernel.org, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, mukesh.savaliya@oss.qualcomm.com, 
-	anup.kulkarni@oss.qualcomm.com
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: qcs6490-rb3gen2: Enable CAN bus
- controller
-Message-ID: <jlynppc5lspzcc2pkz7y6jgd6h2l7e6cparntvxnyx5rnfp54n@tymil62yg4go>
-References: <20260108125200.2803112-1-viken.dadhaniya@oss.qualcomm.com>
- <20260108125200.2803112-3-viken.dadhaniya@oss.qualcomm.com>
+	s=arc-20240116; t=1767891303; c=relaxed/simple;
+	bh=qPgWLu5x2TYu64EfPIuyJgReJb9fciGmvJD45c3S2cs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=an9Hy1GlQnwGD9M9FPsLk7PXQtIT8NUPrEfL8sci4dS5MT3pyn43lnATeNqVlIYOmIDlsNeoNBIkFu23fqGqjOPPoZlSRJ6mJXch2CzV8cXh5yfy8h1GNezWBfWE/ct+VVvU7Rxo8nz9YT4LSz8GI6Jh/NIfkduNz0xD4+9pMzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: ZIwlJsr/S46QsPTu9QABDQ==
+X-CSE-MsgGUID: mDE1Uq0FTW+pjCVZmEw0GQ==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 09 Jan 2026 01:54:58 +0900
+Received: from demon-pc.localdomain (unknown [10.226.92.68])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 1709840313E8;
+	Fri,  9 Jan 2026 01:54:53 +0900 (JST)
+From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+To: John Madieu <john.madieu.xa@bp.renesas.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Subject: [PATCH v4 3/5] thermal: renesas: rzg3e: make calibration value retrieval per-chip
+Date: Thu,  8 Jan 2026 18:53:22 +0200
+Message-ID: <20260108165324.11376-4-cosmin-gabriel.tanislav.xa@renesas.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260108165324.11376-1-cosmin-gabriel.tanislav.xa@renesas.com>
+References: <20260108165324.11376-1-cosmin-gabriel.tanislav.xa@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260108125200.2803112-3-viken.dadhaniya@oss.qualcomm.com>
 
-On Thu, Jan 08, 2026 at 06:22:00PM +0530, Viken Dadhaniya wrote:
-> Enable the MCP2518FD CAN controller on the QCS6490 RB3 Gen2 platform.
-> The controller is connected via SPI3 and uses a 40 MHz oscillator.
-> A GPIO hog for GPIO0 is included to configure the CAN transceiver in
-> Normal mode during boot.
-> 
+The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs expose the
+temperature calibration data via SMC SIP calls.
 
-It'd be worth mentioning how you tested the controller.
+To prepare for supporting these SoCs, do the following changes.
 
-- Mani
+Rename rzg3e_thermal_parse_dt() to rzg3e_thermal_get_syscon_trim().
 
-> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 30 ++++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> index e3d2f01881ae..f2f2925e645a 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -44,6 +44,14 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
->  
-> +	clocks {
-> +		mcp2518fd_osc: can-clk {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <40000000>;
-> +			#clock-cells = <0>;
-> +		};
-> +	};
-> +
->  	dp-connector {
->  		compatible = "dp-connector";
->  		label = "DP";
-> @@ -1151,6 +1159,28 @@ platform {
->  	};
->  };
->  
-> +&spi3 {
-> +	status = "okay";
-> +
-> +	can@0 {
-> +		compatible = "microchip,mcp2518fd";
-> +		reg = <0>;
-> +		interrupts-extended = <&tlmm 7 IRQ_TYPE_LEVEL_LOW>;
-> +		clocks = <&mcp2518fd_osc>;
-> +		spi-max-frequency = <10000000>;
-> +		vdd-supply = <&vreg_l11c_2p8>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +
-> +		gpio0-hog {
-> +			gpio-hog;
-> +			gpios = <0 GPIO_ACTIVE_LOW>;
-> +			output-high;
-> +			line-name = "mcp251xfd-gpio0";
-> +		};
-> +	};
-> +};
-> +
->  &swr2 {
->  	status = "okay";
->  
-> -- 
-> 2.34.1
-> 
+Move the syscon usage out of rzg3e_thermal_get_calibration() and into
+rzg3e_thermal_get_syscon_trim() and remove single-use variables from the
+private state.
 
+Place a pointer to rzg3e_thermal_get_syscon_trim() into the
+chip-specific struct, and use it in the probe function to retrieve the
+calibration values.
+
+Now that syscon usage has been moved out of
+rzg3e_thermal_get_calibration(), remove it and inline the calibration
+validation into the probe function.
+
+Also, reuse the TSU_CODE_MAX macro to mask the calibration values, as
+GEMASK(11, 0) and 0xFFF are equivalent.
+
+Reviewed-by: John Madieu <john.madieu.xa@bp.renesas.com>
+Tested-by: John Madieu <john.madieu.xa@bp.renesas.com>
+Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+---
+
+V4:
+ * pick up John's Reviewed-by and Tested-by
+ * replace new macro TSU_TEMP_MASK usage with existing macro
+   TSU_CODE_MAX
+ * remove "Validate calibration data" comments
+ * inline rzg3e_validate_calibration() into rzg3e_thermal_probe()
+
+V3:
+ * no changes
+
+V2:
+ * no changes
+
+ drivers/thermal/renesas/rzg3e_thermal.c | 79 +++++++++++--------------
+ 1 file changed, 33 insertions(+), 46 deletions(-)
+
+diff --git a/drivers/thermal/renesas/rzg3e_thermal.c b/drivers/thermal/renesas/rzg3e_thermal.c
+index 3c9ff5e43d7e..c1b586128fa6 100644
+--- a/drivers/thermal/renesas/rzg3e_thermal.c
++++ b/drivers/thermal/renesas/rzg3e_thermal.c
+@@ -70,7 +70,10 @@
+ #define TSU_POLL_DELAY_US	10	/* Polling interval */
+ #define TSU_MIN_CLOCK_RATE	24000000  /* TSU_PCLK minimum 24MHz */
+ 
++struct rzg3e_thermal_priv;
++
+ struct rzg3e_thermal_info {
++	int (*get_trim)(struct rzg3e_thermal_priv *priv);
+ 	int temp_d_mc;
+ 	int temp_e_mc;
+ };
+@@ -91,13 +94,11 @@ struct rzg3e_thermal_info {
+ struct rzg3e_thermal_priv {
+ 	void __iomem *base;
+ 	struct device *dev;
+-	struct regmap *syscon;
+ 	struct thermal_zone_device *zone;
+ 	struct reset_control *rstc;
+ 	const struct rzg3e_thermal_info *info;
+ 	u16 trmval0;
+ 	u16 trmval1;
+-	u32 trim_offset;
+ 	struct mutex lock;
+ };
+ 
+@@ -334,48 +335,30 @@ static const struct thermal_zone_device_ops rzg3e_tz_ops = {
+ 	.set_trips = rzg3e_thermal_set_trips,
+ };
+ 
+-static int rzg3e_thermal_get_calibration(struct rzg3e_thermal_priv *priv)
+-{
+-	u32 val;
+-	int ret;
+-
+-	/* Read calibration values from syscon */
+-	ret = regmap_read(priv->syscon, priv->trim_offset, &val);
+-	if (ret)
+-		return ret;
+-	priv->trmval0 = val & GENMASK(11, 0);
+-
+-	ret = regmap_read(priv->syscon, priv->trim_offset + 4, &val);
+-	if (ret)
+-		return ret;
+-	priv->trmval1 = val & GENMASK(11, 0);
+-
+-	/* Validate calibration data */
+-	if (!priv->trmval0 || !priv->trmval1 ||
+-	    priv->trmval0 == priv->trmval1 ||
+-	    priv->trmval0 == 0xFFF || priv->trmval1 == 0xFFF) {
+-		dev_err(priv->dev, "Invalid calibration: b=0x%03x, c=0x%03x\n",
+-			priv->trmval0, priv->trmval1);
+-		return -EINVAL;
+-	}
+-
+-	dev_dbg(priv->dev, "Calibration: b=0x%03x (%u), c=0x%03x (%u)\n",
+-		priv->trmval0, priv->trmval0, priv->trmval1, priv->trmval1);
+-
+-	return 0;
+-}
+-
+-static int rzg3e_thermal_parse_dt(struct rzg3e_thermal_priv *priv)
++static int rzg3e_thermal_get_syscon_trim(struct rzg3e_thermal_priv *priv)
+ {
+ 	struct device_node *np = priv->dev->of_node;
++	struct regmap *syscon;
+ 	u32 offset;
++	int ret;
++	u32 val;
+ 
+-	priv->syscon = syscon_regmap_lookup_by_phandle_args(np, "renesas,tsu-trim", 1, &offset);
+-	if (IS_ERR(priv->syscon))
+-		return dev_err_probe(priv->dev, PTR_ERR(priv->syscon),
++	syscon = syscon_regmap_lookup_by_phandle_args(np, "renesas,tsu-trim", 1, &offset);
++	if (IS_ERR(syscon))
++		return dev_err_probe(priv->dev, PTR_ERR(syscon),
+ 				     "Failed to parse renesas,tsu-trim\n");
+ 
+-	priv->trim_offset = offset;
++	/* Read calibration values from syscon */
++	ret = regmap_read(syscon, offset, &val);
++	if (ret)
++		return ret;
++	priv->trmval0 = val & TSU_CODE_MAX;
++
++	ret = regmap_read(syscon, offset + 4, &val);
++	if (ret)
++		return ret;
++	priv->trmval1 = val & TSU_CODE_MAX;
++
+ 	return 0;
+ }
+ 
+@@ -402,11 +385,20 @@ static int rzg3e_thermal_probe(struct platform_device *pdev)
+ 	if (IS_ERR(priv->base))
+ 		return PTR_ERR(priv->base);
+ 
+-	/* Parse device tree for trim register info */
+-	ret = rzg3e_thermal_parse_dt(priv);
++	ret = priv->info->get_trim(priv);
+ 	if (ret)
+ 		return ret;
+ 
++	if (!priv->trmval0 || !priv->trmval1 ||
++	    priv->trmval0 == priv->trmval1 ||
++	    priv->trmval0 == 0xFFF || priv->trmval1 == 0xFFF)
++		return dev_err_probe(priv->dev, -EINVAL,
++				     "Invalid calibration: b=0x%03x, c=0x%03x\n",
++				     priv->trmval0, priv->trmval1);
++
++	dev_dbg(priv->dev, "Calibration: b=0x%03x (%u), c=0x%03x (%u)\n",
++		priv->trmval0, priv->trmval0, priv->trmval1, priv->trmval1);
++
+ 	/* Get clock to verify frequency - clock is managed by power domain */
+ 	clk = devm_clk_get(dev, NULL);
+ 	if (IS_ERR(clk))
+@@ -423,12 +415,6 @@ static int rzg3e_thermal_probe(struct platform_device *pdev)
+ 		return dev_err_probe(dev, PTR_ERR(priv->rstc),
+ 				     "Failed to get/deassert reset control\n");
+ 
+-	/* Get calibration data */
+-	ret = rzg3e_thermal_get_calibration(priv);
+-	if (ret)
+-		return dev_err_probe(dev, ret,
+-				     "Failed to get valid calibration data\n");
+-
+ 	/* Get comparison interrupt */
+ 	irq = platform_get_irq_byname(pdev, "adcmpi");
+ 	if (irq < 0)
+@@ -533,6 +519,7 @@ static const struct dev_pm_ops rzg3e_thermal_pm_ops = {
+ };
+ 
+ static const struct rzg3e_thermal_info rzg3e_thermal_info = {
++	.get_trim = rzg3e_thermal_get_syscon_trim,
+ 	.temp_d_mc = -41000,
+ 	.temp_e_mc = 126000,
+ };
 -- 
-மணிவண்ணன் சதாசிவம்
+2.52.0
 
