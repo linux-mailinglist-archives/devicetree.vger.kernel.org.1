@@ -1,175 +1,131 @@
-Return-Path: <devicetree+bounces-252685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93DCD01CD0
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:22:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 307ACD01F3B
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:53:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 902FA3085A68
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:18:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2D530304C932
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17FE33AA19A;
-	Thu,  8 Jan 2026 09:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BAB0389DEC;
+	Thu,  8 Jan 2026 09:15:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZdQHdx4"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="kTicqGgq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A383806BE;
-	Thu,  8 Jan 2026 09:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767863093; cv=none; b=WVjdKWy+pVJuNWuGVa97e3V+T4l8JHiGPPdcyRaEXWONvVQDxurosnOpnDdOr8VKMK/A7kqPF+lguG/ZY0PMifpjVvzcAINqaezIu35OahQ0NZtxmzyhkxPXU1CoZRgNMOUZhq6yB38zzHWFYVtL0XeQftd7gsTtKsaAHY7F+1g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767863093; c=relaxed/simple;
-	bh=43HsA+1OXyUWr3mVZANSq6uxii1VuqzSvvFempqNf50=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J6s7jUzYvMIQBPKG/A5WDtEf+3SBkCihiMbg+K7QrzwHYBS487O+u0MSoEHbGXcQgr0dkfVuXWq1mqMcg67jizK9dLR35+PV6upErAYqDN8l742N3cB31TmiTIQKyaF7OdMqiJ0b8GT308dYuC6my7my0JdfAUwNfs5WWPv5VME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZdQHdx4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95E5AC16AAE;
-	Thu,  8 Jan 2026 09:04:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767863091;
-	bh=43HsA+1OXyUWr3mVZANSq6uxii1VuqzSvvFempqNf50=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tZdQHdx43glaOblk/H1NlkrIEfCgVhc9ixqj8kbFiMUqX7aVTE299Mp40oqArJUSZ
-	 kyhZWgNQN3uxMYQn2IfRo2RKMK4pDK8QiXf734qQV2+2HFDCZ5mrDC+c1YRJyU+v8t
-	 pZHbO3CIlPlOcKLnCA9bvFXZRNzkzIJTe9ODoa1q/fh97AN7MFPOlbVcSfmYO3s83h
-	 Li+f+GDArxZWQnZds67025iTikParUWNxhPZciqmO7+I9kAMNNkJzGCvYBUwKXL+Ca
-	 OljmmlIOv2MKdYTTR1KFTfF0PEcY0SulfOlvOmzk3AwUQDhvGADruz577Vc3A/DX8m
-	 FJD1T6e7PJOVQ==
-Date: Thu, 8 Jan 2026 10:04:48 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] pinctrl: qcom: sa8775p-lpass-lpi: Add SA8775P
- LPASS pinctrl
-Message-ID: <20260108-archetypal-potoo-of-felicity-8ac479@quoll>
-References: <20260107192007.500995-1-mohammad.rafi.shaik@oss.qualcomm.com>
- <20260107192007.500995-3-mohammad.rafi.shaik@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD373A0B2B;
+	Thu,  8 Jan 2026 09:15:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767863741; cv=pass; b=Ax+vHJ1+ffLF8LySD9aCQIshtJco5wW9CIPK+uL2Q9Y0yDCEUDGknvByBv42CFxUAvl0RW46vCkZqjYo3SmyCGmy1g6jaQnvOFzNgzJBeJ4ctMSeOMPW+dY4nyPUZGYZRiVltUhLtyYJnr5bzuI8FsGiinJfSfXiZRel73zMArY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767863741; c=relaxed/simple;
+	bh=5nTYfSaDPv2GdlELTogMY93wplFSokquqpOtJ7cePW8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gZdiVXGffxTlYtxdsxdNi7teGk4ph2Js+CykloyjZVI9qSMA4rqSi7KLRuNee6jhPrtbwuFY08TLyGpJWABGsxSMCBpst9wTfPmqmsliqHt/fPK8xyuZN1teqNtVbkaIxRvzmmYo3nT9rB1MzUMbMpnFpkZVNYx/zQVstnkP298=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=kTicqGgq; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1767863695; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=MmE5DKfbNllkayfuVfwm9GThSMFT+PX+Q2qcU+TqNiyd2ZutQKHKl2xQoLqUG3zsymi4xcpv2W0Cu9tMDT5XksV3frCCiyx15Nl4+t2Hkxfs5hbWrkeNSx7VctY6ioYBvzrNSkdw0NzytZvIYUK3mrk4XkTPnZ2epVMByddAHis=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1767863695; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=5nTYfSaDPv2GdlELTogMY93wplFSokquqpOtJ7cePW8=; 
+	b=F3KXU6Fwpvtrnw4tK2M8uHd68QIlsZU0jzBBulY/5zbSLW8Qrf28FYA0wd2yxBcYgoOaMEeK18uCW7KdWet9I74deKSEifIWq+EUU30svBPjFGIkJVBbfw2DNZE/6NGA16Sp0jSGt9YeaJCJeBmx8TtXclw63wW0XBnRRcP+srY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767863695;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=5nTYfSaDPv2GdlELTogMY93wplFSokquqpOtJ7cePW8=;
+	b=kTicqGgqsOzHMkeRBWfRNWGcx2mI153gK3zN0TKiLHNcsKpEIms6Z+TsAIQUolqD
+	ebLrshz40+ShAYSAlksHuN9vSpcazstbafyIfkzQAxFs9HaETySG1jl0PzLvVIvWvRP
+	btNeqbhgsP0TcoF6ytmZY/IIEnltagUCO5ehZxLs=
+Received: by mx.zohomail.com with SMTPS id 1767863693938487.4499614851069;
+	Thu, 8 Jan 2026 01:14:53 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ Chunfeng Yun =?UTF-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>,
+ "kishon@kernel.org" <kishon@kernel.org>,
+ "James.Bottomley@HansenPartnership.com"
+ <James.Bottomley@hansenpartnership.com>,
+ "bvanassche@acm.org" <bvanassche@acm.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ Chaotian Jing =?UTF-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "vkoul@kernel.org" <vkoul@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "avri.altman@wdc.com" <avri.altman@wdc.com>,
+ "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+ "broonie@kernel.org" <broonie@kernel.org>,
+ Peter Wang =?UTF-8?B?KOeOi+S/oeWPiyk=?= <peter.wang@mediatek.com>
+Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ "kernel@collabora.com" <kernel@collabora.com>
+Subject: Re: [PATCH v4 11/25] scsi: ufs: mediatek: Rework probe function
+Date: Thu, 08 Jan 2026 10:14:44 +0100
+Message-ID: <5992593.DvuYhMxLoT@workhorse>
+In-Reply-To: <213d3077835fc86d15579c0a0a91f64fd84b1059.camel@mediatek.com>
+References:
+ <20251218-mt8196-ufs-v4-0-ddec7a369dd2@collabora.com>
+ <20251218-mt8196-ufs-v4-11-ddec7a369dd2@collabora.com>
+ <213d3077835fc86d15579c0a0a91f64fd84b1059.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260107192007.500995-3-mohammad.rafi.shaik@oss.qualcomm.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Thu, Jan 08, 2026 at 12:50:07AM +0530, Mohammad Rafi Shaik wrote:
-> Add pin control support for Low Power Audio SubSystem (LPASS)
-> of Qualcomm SA8775P SoC.
-> 
-> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> ---
->  drivers/pinctrl/qcom/Kconfig                  |  10 +
->  drivers/pinctrl/qcom/Makefile                 |   1 +
->  .../pinctrl/qcom/pinctrl-sa8775p-lpass-lpi.c  | 216 ++++++++++++++++++
->  3 files changed, 227 insertions(+)
->  create mode 100644 drivers/pinctrl/qcom/pinctrl-sa8775p-lpass-lpi.c
-> 
-> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
-> index c480e8b78503..bb1524243906 100644
-> --- a/drivers/pinctrl/qcom/Kconfig
-> +++ b/drivers/pinctrl/qcom/Kconfig
-> @@ -60,6 +60,16 @@ config PINCTRL_LPASS_LPI
->  	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
->  	  (Low Power Island) found on the Qualcomm Technologies Inc SoCs.
->  
-> +config PINCTRL_SA8775P_LPASS_LPI
-> +	tristate "Qualcomm Technologies Inc SA8775P LPASS LPI pin controller driver"
-> +	depends on ARM64 || COMPILE_TEST
-> +	depends on PINCTRL_LPASS_LPI
-> +	help
-> +	  This is the pinctrl, pinmux, pinconf and gpiolib driver for the
-> +	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
-> +	  (Low Power Island) found on the Qualcomm Technologies Inc SA8775P
-> +	  platform.
-> +
->  config PINCTRL_SC7280_LPASS_LPI
->  	tristate "Qualcomm Technologies Inc SC7280 LPASS LPI pin controller driver"
->  	depends on ARM64 || COMPILE_TEST
-> diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-> index 748b17a77b2c..b2a23a824846 100644
-> --- a/drivers/pinctrl/qcom/Makefile
-> +++ b/drivers/pinctrl/qcom/Makefile
-> @@ -39,6 +39,7 @@ obj-$(CONFIG_PINCTRL_QCOM_SSBI_PMIC) += pinctrl-ssbi-gpio.o
->  obj-$(CONFIG_PINCTRL_QCOM_SSBI_PMIC) += pinctrl-ssbi-mpp.o
->  obj-$(CONFIG_PINCTRL_QDU1000)	+= pinctrl-qdu1000.o
->  obj-$(CONFIG_PINCTRL_SA8775P)	+= pinctrl-sa8775p.o
-> +obj-$(CONFIG_PINCTRL_SA8775P_LPASS_LPI) += pinctrl-sa8775p-lpass-lpi.o
->  obj-$(CONFIG_PINCTRL_SAR2130P)	+= pinctrl-sar2130p.o
->  obj-$(CONFIG_PINCTRL_SC7180)	+= pinctrl-sc7180.o
->  obj-$(CONFIG_PINCTRL_SC7280)	+= pinctrl-sc7280.o
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sa8775p-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sa8775p-lpass-lpi.c
-> new file mode 100644
-> index 000000000000..4579a079f7c6
-> --- /dev/null
-> +++ b/drivers/pinctrl/qcom/pinctrl-sa8775p-lpass-lpi.c
-> @@ -0,0 +1,216 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +#include <linux/gpio/driver.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "pinctrl-lpass-lpi.h"
-> +
-> +enum lpass_lpi_functions {
-> +	LPI_MUX_dmic1_clk,
-> +	LPI_MUX_dmic1_data,
-> +	LPI_MUX_dmic2_clk,
-> +	LPI_MUX_dmic2_data,
-> +	LPI_MUX_dmic3_clk,
-> +	LPI_MUX_dmic3_data,
-> +	LPI_MUX_dmic4_clk,
-> +	LPI_MUX_dmic4_data,
-> +	LPI_MUX_i2s1_clk,
-> +	LPI_MUX_i2s1_data,
-> +	LPI_MUX_i2s1_ws,
-> +	LPI_MUX_i2s2_clk,
-> +	LPI_MUX_i2s2_data,
-> +	LPI_MUX_i2s2_ws,
-> +	LPI_MUX_i2s3_clk,
-> +	LPI_MUX_i2s3_data,
-> +	LPI_MUX_i2s3_ws,
-> +	LPI_MUX_i2s4_clk,
-> +	LPI_MUX_i2s4_data,
-> +	LPI_MUX_i2s4_ws,
-> +	LPI_MUX_qua_mi2s_data,
-> +	LPI_MUX_qua_mi2s_sclk,
-> +	LPI_MUX_qua_mi2s_ws,
-> +	LPI_MUX_slimbus_clk,
-> +	LPI_MUX_slimbus_data,
-> +	LPI_MUX_swr_rx_clk,
-> +	LPI_MUX_swr_rx_data,
-> +	LPI_MUX_swr_tx_clk,
-> +	LPI_MUX_swr_tx_data,
-> +	LPI_MUX_wsa_swr_clk,
-> +	LPI_MUX_wsa_swr_data,
-> +	LPI_MUX_wsa2_swr_clk,
-> +	LPI_MUX_wsa2_swr_data,
-> +	LPI_MUX_ext_mclk1_a,
-> +	LPI_MUX_ext_mclk1_b,
-> +	LPI_MUX_ext_mclk1_c,
-> +	LPI_MUX_ext_mclk1_d,
-> +	LPI_MUX_ext_mclk1_e,
-> +	LPI_MUX_gpio,
-> +	LPI_MUX__,
-> +};
+On Tuesday, 6 January 2026 14:23:58 Central European Standard Time Peter Wa=
+ng (=E7=8E=8B=E4=BF=A1=E5=8F=8B) wrote:
+> On Thu, 2025-12-18 at 13:55 +0100, Nicolas Frattaroli wrote:
+> >=20
+> > Remove the ti,syscon-reset cruft.
+> >=20
+>=20
+> Hi Nicolas,
+>=20
+> Why do we need to remove the reset node? If an error occurs and the
+> host=20
+> does not perform a reset, it could lead to error recovery failure.
 
-Isn't this entire driver exactly the same as sm8450?
+Because it's not described by the binding, and appears to be a
+downstream hack to work around not having the reset controller
+properly described and referred to with a `resets` property.
 
-Best regards,
-Krzysztof
+Even if you were to use `ti,syscon-reset` to describe a reset
+controller, the UFS controller driver should not be searching
+for this compatible. It should access the reset through the
+reset API. The common reset code can then take care of probe
+ordering without every driver reinventing it.
+
+>=20
+> Thanks.
+> Peter
+>=20
+
+
+
 
 
