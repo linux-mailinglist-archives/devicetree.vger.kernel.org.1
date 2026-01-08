@@ -1,46 +1,80 @@
-Return-Path: <devicetree+bounces-253008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB7E1D05E0B
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 20:44:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27A1AD05E52
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 20:48:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 214DC3009233
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 19:44:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3912B30693CB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 19:45:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEF4A320A0A;
-	Thu,  8 Jan 2026 19:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F65332AABE;
+	Thu,  8 Jan 2026 19:45:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mM1BLJpo"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="Ct+HIpIR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f66.google.com (mail-oa1-f66.google.com [209.85.160.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3ED2D12F5;
-	Thu,  8 Jan 2026 19:44:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B381327C09
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 19:45:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767901479; cv=none; b=mWffr/7lds/GpMRz9BtdC1nhlHbzyCmZr06UESKMFl7aFi9zj/VWQ9ySfV/C1q6VsX9JwRUi2U+zjHFIn83HcupgZdxjjLQ430qle3jyriYimNi32uBKD+GlGDjlKH6Uig+zyFtopTtZIfwLbG16s1rrogRv7lt0jmVLHHE+vIQ=
+	t=1767901558; cv=none; b=eq38t/YFg8gmwAzO2NQcKqpfQmZonZ6/uixgeJkwTY2GEDzbgYK/opiPHxlIcTu4DhaXxV6ZuALPRtdRYqW3Ybie4PebvkGO7LrzkD9lZVYgXLghKVJ03b9+dxVjvxOZbzVhvBy912I9ogUrwbo9SdaNh6EbWIlf4dkefwfuUWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767901479; c=relaxed/simple;
-	bh=8RfRMlVDFkZfgKpt/lJTExflB5KKf8XGW+QQIfsHwe8=;
+	s=arc-20240116; t=1767901558; c=relaxed/simple;
+	bh=RFSoiJgF2IhE1d/U2C8Dz/1A18MDcqAJmwzPHJkEPn0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sBl6E5zmD2o4IMuRRkRWPtX7UG0oFu/lYEiW1vgQZiCNPabsQbdujaqKijM4Mk93y0e1/i9I2Z6X9YC3ulleZ3M/j+Xx5Rfq2w3NI2FZ8f+SNC5sm7ZSueUWm4JZd6wkHPT7gGkl8ImNkQJkT4Nz6RcXaCGo4ZohyOH/HkJLThg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mM1BLJpo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CC89C116C6;
-	Thu,  8 Jan 2026 19:44:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767901479;
-	bh=8RfRMlVDFkZfgKpt/lJTExflB5KKf8XGW+QQIfsHwe8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mM1BLJpogphrrcqUpZj74hD9Ac7HxV5e9VZs/CrMHciucDJVodVi25SN3HBOXmKKn
-	 VYAI1lJd5qRf5TioPPfl8e/bL1kK/IDbBWE1utghMWT48dN4dwF7c9eieKkxBVxWfr
-	 jIahpi5kVAcJJ6gfHgB5sXVXXvqHyNr89SBigaPx0x54WWTZSgdgQwidbT1EHR5zym
-	 dA9fVqO2W0fRgetwgPJnVRlpU/vtsbynDhzfSyfOCnSsSrbyrDO1zr186rNc2VDuWv
-	 imguLkVpMDIUhyT0Kr67Q+SIuH47rsmfEUC+eog35yBG6TJESR+j/qZrbdre6XS9hG
-	 P+pVPxyG+DJRg==
-Message-ID: <8a8c8a31-ebe8-48cb-9836-c69c6d65a545@kernel.org>
-Date: Thu, 8 Jan 2026 20:44:35 +0100
+	 In-Reply-To:Content-Type; b=i7ch5QWVQwNKP2ZrGTgptNC4BTr+IuGMXqtODz7RRsqGvUGCeE4uaASepRnyDpOVEUTNJiFNDIP/sW7JE73aHz+D0QO8nY5Ls4OaVKIak95SYd/I8WJD2Px+GV4Ry6n277J7u8IpHZnaQ7DKJIC9RGmtJSCwioYBkcuYZDWCW9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=Ct+HIpIR; arc=none smtp.client-ip=209.85.160.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-oa1-f66.google.com with SMTP id 586e51a60fabf-3f13043e2fdso1405759fac.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 11:45:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1767901556; x=1768506356; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n0eSk+8SweBNRYF6OiM3wD68xD/JtKcShoUz7XdjZrA=;
+        b=Ct+HIpIRy0AwEX7ZUxfaaVuJarIl/e3esaYx0kCp6sPDc74QMjmC/8FyYU5wsRv16c
+         r7SUur9BJzR0B6CJRJC1Iru3x4S616yASEesOklUJTYqfwWeWNoXDfsh75y6up4feP4r
+         SxezrFStgkJyYPsTEbdqR5tvSLDBTSI/2zj7m9dDpV26G3YsW0z7tUaXsSkpjwznl/PY
+         knKlxLBoqiPJd5bfp1kovhDo5W2cqkijy2ob4oxMbHz0YtwR8iCCdM74zxNz7G9qGdl0
+         5Hv6owq1jPWQEL5JFqQ6D/oNpnvUh9PgrK0BkKstggQBuwmOnQFwSs98/qBuq9d5G6Z3
+         iXNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767901556; x=1768506356;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n0eSk+8SweBNRYF6OiM3wD68xD/JtKcShoUz7XdjZrA=;
+        b=EwQ5DkG0UPk6kbPaq2E/dXWE7XDtQC1itIMQhtLSnxenj9W+D1jIBH1nnLmmzPpg59
+         v9wi8aNJ2tjCTQbKY+PNwqUYJ7hmkpV6deui30Ii+ZWJfEmuZeCEVVS2AAcUe3SDIMvR
+         pCYiaEZ+fBNemnmUJElY2/eSspDuNyVuh0iO3LUMXqgWNHa8tvCPEDTUwS37PL4L0fhL
+         VPJbkFcJHI7M5OYr/ZHsq6oGa4PeYZGCH+oM3zQawREtrmVAb8MPDgv5XMxky1nA/LUB
+         o5TWNDLsnGS/hwOgzkJU911FsmkFTe8RCb51RSRVUQ1O0YhmnwuZ91ohoGgEcEgh9mXg
+         KVOg==
+X-Forwarded-Encrypted: i=1; AJvYcCWZ+3r8c4uFrV0G4TrOe6t5SsysbCZ5AU933lsfz7KdPK+gSQPhSuPtwrM2vFZZuDbSUV7w6mn+GCdv@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEpaaMsrGQ3uVe5n686kRScPBmF9ZBziWHxIeA5E3zY6eqvgEX
+	OcIwhlVDNMBeGb0VEKkvUtH9I680lj6T39nQGPNcgNjvzUvTjtAnnAnMtDLtpfqFY1M=
+X-Gm-Gg: AY/fxX4BKrv2o8s0uCdpUrmq17SHKZAWdieRCjVsxNG0NZAK79SBsmV8/rHNrv/yQKs
+	hD0tKcLeCNEP+EKOrnIHEwRI/N1UBBGkuKfvnsTmbtClm7KLWLvgPg46FxxiYmXnnd2yBfCBuT5
+	c50bFWb8+V77+9IWO3jb1RUVss1wGywhop4hbtOR0xIU3C1wIfeW0cQPVCdx33i8gz4aVc+ccRt
+	CiMppz1DLiztfKgFYgePWB1CqD+vSmPZXwiSl2N/3O6IV9i4jsiB4taN46633yLnItIpjM9dfHX
+	yWVoy7CCE7uOaIi3u4SUDTAakrEii8YDgw8qOoGbta6znAcsbSym3ps4mtXF4ZdFjXulQJHBDyq
+	bFpWEgKvyjr+4DcxPCBjMuOGgsa8QZa+O89inLZhsfosAlSnRaJLlver4Ag+kygQz+T+qVGRWTZ
+	LMJgyoomNwrDv8Sm5dC+ZIt+jtGSw=
+X-Google-Smtp-Source: AGHT+IEnGj7j78QZ6mRN19R9+RwSyzrulyek7pG3baJMhDCtKMbdCTrHEffeVpATRadsKRk6i4mUUw==
+X-Received: by 2002:a05:6870:b3e9:b0:3d4:5a8:38ff with SMTP id 586e51a60fabf-3ffc09e5050mr3655803fac.18.1767901555789;
+        Thu, 08 Jan 2026 11:45:55 -0800 (PST)
+Received: from [100.64.0.1] ([170.85.11.86])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ffa507235fsm5688464fac.13.2026.01.08.11.45.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jan 2026 11:45:55 -0800 (PST)
+Message-ID: <4ebbe14b-2579-4ba6-808d-d50c24641d04@sifive.com>
+Date: Thu, 8 Jan 2026 13:45:52 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,147 +82,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: soc: fsl: qe: Add an interrupt
- controller for QUICC Engine Ports
-To: Rob Herring <robh@kernel.org>
-Cc: Qiang Zhao <qiang.zhao@nxp.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>
-References: <63f19db21a91729d91b3df336a56a7eb4206e561.1767804922.git.chleroy@kernel.org>
- <7708243d6cca21004de8b3da87369c06dbee3848.1767804922.git.chleroy@kernel.org>
- <20260108190203.GA780464-robh@kernel.org>
-Content-Language: fr-FR
-From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-In-Reply-To: <20260108190203.GA780464-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 11/13] dt-bindings: riscv: Add Supm extension
+ description
+To: Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>
+Cc: Rob Herring <robh@kernel.org>, Alex Elder <elder@riscstar.com>,
+ Guodong Xu <guodong@riscstar.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Anup Patel <anup@brainfault.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+ Yangyu Chen <cyy@cyyself.name>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+ Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ spacemit@lists.linux.dev, linux-serial@vger.kernel.org
+References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
+ <20251222-k3-basic-dt-v2-11-3af3f3cd0f8a@riscstar.com>
+ <fc719e92-10bc-455f-b402-c93bdbf878cf@riscstar.com>
+ <20251230021306.GA3094273-robh@kernel.org>
+ <80e18a32-543a-48f5-81f2-4fa64cb8bf8c@riscstar.com>
+ <CAL_JsqK8hRsVWV6WfbZ6hF1PwFfOJhyOrpWwoOhviAgv5ZxKUw@mail.gmail.com>
+ <20251230-budding-dimple-c34636b0ca4d@spud>
+ <05B0AE03-E7B1-4DCD-88D0-DCB9053F30BA@gmx.de>
+ <20251231-grew-abrasion-dc1a9d34e632@spud>
+From: Samuel Holland <samuel.holland@sifive.com>
+Content-Language: en-US
+In-Reply-To: <20251231-grew-abrasion-dc1a9d34e632@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi all,
 
+(Also replied to the v1 thread:
+https://lore.kernel.org/linux-riscv/9504b2f6-12f5-46c2-ac74-826dba3fb530@sifive.com/)
 
-Le 08/01/2026 à 20:02, Rob Herring a écrit :
-> On Wed, Jan 07, 2026 at 05:59:10PM +0100, Christophe Leroy (CS GROUP) wrote:
->> The QUICC Engine provides interrupts for a few I/O ports. This is
->> handled via a separate interrupt ID and managed via a triplet of
->> dedicated registers hosted by the SoC.
->>
->> Implement an interrupt driver for it so that those IRQs can then
->> be linked to the related GPIOs.
->>
->> Signed-off-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On 2025-12-31 6:08 PM, Conor Dooley wrote:
+>> Should supm be handled in the same way? Add it to the device-tree of
+>> RVA23U64 devices. If a kernel does not support pointer masking in user
+>> space, hide the extension in cpufeature.c.
 > 
-> Already? On a v1?
+> Perhaps.
+> Samuel opted not to add supm to dt when he introduced the other relevant
+> extensions, so the rationale from him would be helpful but I'd like to
+> get more opinions on how to deal with supm specifically. supm doesn't
+> really describe hardware capability, since the privilege specific
+> instructions are what does that, which makes me question if it should be
+> in dt at all. On the other hand, it could be argued that supm describes
+> a combination of hardware capability at the dt consumer's privilege level
+> and is valid on that basis. Some wording like Zkr will probably be needed,
+> specifically mentioning that having supm in the dt means that corresponding
+> version sxnpm for the privilege level that the devicetree is provided to
+> is supported.
 
-This is extracted from a previous series, here: 
-https://lore.kernel.org/all/67987bbf42344398709949cb53e3e8415260ec09.1758212309.git.christophe.leroy@csgroup.eu/
+Supm describes a combination of the hardware capability (Smnpm or Ssnpm), the
+consumer's privilege level (U), and the software at the next higher privilege
+level (M or S).
 
-Should I have called it v7 even if it is only a small part of the 
-initial series ?
+If the DT is targeting U-mode, then I can see a case for adding Supm to the DT
+either at runtime or based on the known capabilities of the
+next-higher-privilege-mode software. So it could make sense to add a binding for
+Supm. But we still shouldn't add Supm to this particular DT, because 1) this DT
+is not targeting U-mode, and 2) this DT is not bound to a particular version of
+S-mode software.
 
-Ack is here: 
-https://lore.kernel.org/all/20250818-babbling-studio-81a974afc169@spud/
+> Either way, we are going to need something in cpufeature.c to imply
+> supm so that it appears to userspace if the privilege specific extension
+> is detected and supm is enabled in the kernel. The kernel already does
+> the implication internally it just isn't reported as an extension to
+> userspace IIRC.
+> If we permit supm in dt, we're also going to have to turn supm off if
+> the Kconfig option is disabled, but that's relatively little effort
+> since it mostly (or maybe entirely) reuses code from implying supm.
 
-> 
->> ---
->>   .../soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml       | 51 +++++++++++++++++++
->>   1 file changed, 51 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
->> new file mode 100644
->> index 0000000000000..1f3c652b1569d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
->> @@ -0,0 +1,51 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fsoc%2Ffsl%2Fcpm_qe%2Ffsl%2Cqe-ports-ic.yaml%23&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C6e4c1b33836d4443b5c608de4ee86aff%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639034957294961534%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=mH5SPbAw48C6BGcazDPJMtoiM71TXswUGBvSZf15dUQ%3D&reserved=0
->> +$schema: https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C6e4c1b33836d4443b5c608de4ee86aff%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C639034957294990994%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=RhD807Jcx3MerOAXGWuwgwHkATpTzTkDIQC7lO3t1AA%3D&reserved=0
->> +
->> +title: Freescale QUICC Engine I/O Ports Interrupt Controller
->> +
->> +maintainers:
->> +  - Christophe Leroy (CS GROUP) <chleroy@kernel.org>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - fsl,mpc8323-qe-ports-ic
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupt-controller: true
->> +
->> +  '#address-cells':
->> +    const: 0
->> +
->> +  '#interrupt-cells':
->> +    const: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupt-controller
->> +  - '#address-cells'
->> +  - '#interrupt-cells'
->> +  - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    interrupt-controller@c00 {
->> +      compatible = "fsl,mpc8323-qe-ports-ic";
->> +      reg = <0xc00 0x18>;
->> +      interrupt-controller;
->> +      #address-cells = <0>;
->> +      #interrupt-cells = <1>;
->> +      interrupts = <74 0x8>;
->> +      interrupt-parent = <&ipic>;
-> 
-> This doesn't look like a separate block, but just part of its parent. So
-> just add interrupt-controller/#interrupt-cells to the parent.
+It's currently exposed to hwprobe() but not in /proc/cpuinfo. This was based on
+my understanding that hwprobe() was the right way to check for availability of
+extensions. I'm okay with adding it to /proc/cpuinfo if there's value in doing
+so, but I would recommend that the extension in cpufeature.c is _not_ parsed
+from the DT and only enabled synthetically.
 
-I don't understand what you mean, can you explain with the extract below ?
+Regards,
+Samuel
 
-Extract from device tree including the parent:
-
-	soc8321@b0000000 {
-		#address-cells = <1>;
-		#size-cells = <1>;
-		device_type = "soc";
-		compatible = "simple-bus";
-		ranges = <0x0 0xb0000000 0x00100000>;
-		reg = <0xb0000000 0x00000200>;
-		bus-frequency = <0>;
-
-		ipic:pic@700 {
-			interrupt-controller;
-			#address-cells = <0>;
-			#interrupt-cells = <2>;
-			reg = <0x700 0x100>;
-			device_type = "ipic";
-		};
-
-		qepic:interrupt-controller@c00 {
-			compatible = "fsl,mpc8323-qe-ports-ic";
-			reg = <0xc00 0x18>;
-			interrupt-controller;
-			#address-cells = <0>;
-			#interrupt-cells = <1>;
-			interrupts = <74 0x8>;
-			interrupt-parent = <&ipic>;
-		};
-	};
-
-
-Thanks
-Christophe
 
