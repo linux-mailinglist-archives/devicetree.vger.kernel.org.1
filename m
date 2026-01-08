@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-252809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 225DFD04672
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 17:32:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 941F5D0466F
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 17:32:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 86B3A35252DF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:22:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 63A33351CE3B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:22:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1D748C3F6;
-	Thu,  8 Jan 2026 12:28:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6388636E47C;
+	Thu,  8 Jan 2026 12:39:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S646laUd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L2c8qMWI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+Received: from mail-ua1-f65.google.com (mail-ua1-f65.google.com [209.85.222.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED65487576
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:28:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908E23659EB
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:39:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767875290; cv=none; b=iFpGPCgvihRX7CpLUCKBJuMv1FpuXp7K3drM2TF9E+nvx7jqy6tF3d7JXf8T4eFbr/6ekOFRguu92Ch6EOOZ+N5ue2iiE6n+boG7DyebCPWNtDqJ1oCmA36Hhq008z0z9pgsnREjJepZ2JX4+ifKFHviq9Qi0/sFESd3HGMQ4A8=
+	t=1767875942; cv=none; b=ItIaJu5qy6NGr9nrkbVkAh6UDZ2pW7vpxhlrBF9M1FnE27cuGPGw9yrFgxsJs7Vj2XFTVx/iKdrUk0egfAwcaPP4nYaYfXZm9sbrab3TbhatyfuTsrJKBEwchOP7hzsPX7sW9GOIXG8FbkCcibcbk8lW1yaEa9mrx9zRsE5YgtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767875290; c=relaxed/simple;
-	bh=BvQS2360feeTza8DE/YrVlEdtvUQg36GrpyVjPLlASA=;
+	s=arc-20240116; t=1767875942; c=relaxed/simple;
+	bh=+Hxr4ZiZBnsK37sucsF9sUC3x17Hr3pQoHDvwweLQw0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bzW4uoh5ube42dahOofzT2wJEYMfKX+ASTVHLf0eVGk/XoKb11+ShumXdlIXX6Ljd+nuJ4zuo2NvkZ0pNlLtuLMPKBHyswVvhmI1c03QpC7xtIvJzcm4rydcMZVfC07XC4pRaLhv0jE0h9pkDAUbWl105KL/F/HSwYs7bcWLznk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S646laUd; arc=none smtp.client-ip=209.85.222.42
+	 Content-Type:Content-Disposition:In-Reply-To; b=MOr8zdypZeL25NOgSrNSMKlpe8D4qltIUB1zoSv45APJM4yg5BiLRw6SkbKG/LvGMu9QfpYZSEauWPBAB3hJkHU7xT79GENZyMUaInm330pXzf5PHMvVuWaxVCCdazrAeIh/Pt/H2MpUAbDZ39krFEX6z3Z8E5r35rPOTIBRlDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L2c8qMWI; arc=none smtp.client-ip=209.85.222.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-9371f6f2813so998208241.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:28:07 -0800 (PST)
+Received: by mail-ua1-f65.google.com with SMTP id a1e0cc1a2514c-9412512e9f3so965411241.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:39:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767875287; x=1768480087; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1767875939; x=1768480739; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=H9S8tc6VoR4ctabPhilr7FUP40tlzBUwrCfmoiHtz9U=;
-        b=S646laUdsGJyIv+b1hw5rsVaDzdj01FE2hsbhwEh/cSZilr/YuM49XcK6o1fm7RWnm
-         ii1aZUvPKsxESmlEKrUP3IHjLNaK9wY5ITQDQnjegcsr3dGhuv5n9lCx6eSVflDh67GN
-         dT5x+uQntg16yuj7cLJ5KsBI7EZUH2rfTvGRXriCOFsYO5hvwKertfwsE2sRcWN1SbZe
-         BByVdKTsM4P3sLxWDdSq0s/fZT4c9yEqtFlkyQzxOw1R/I4I6y8Sh4mBFirppTLyMdEp
-         NlS1JC/u3cahMWysdS3pbSmSErYCLAuvh6gj7VhYWL6e+48sWUm/D4d87rnGeCgNQIFQ
-         EAsw==
+        bh=+iEE6Un0IiGnjVPgG1bXjl9grqm8623VhHGBXWZZQ/w=;
+        b=L2c8qMWIpZ4YE9Uq4klevuqCYYMfApJCbw8qwf2RQT4FooUGjAsSfWOOZ+f5KlZZfn
+         qM9rRl64ZFQkWgS8TDE4A8quMslcv7RarAtxJYwevRn3EOt4g19cI4Cvq8Myn98BQVlC
+         5xnssOV8wbRDyuBfZT1ASDCnrD1Yk5uD4gtCoGFd1gpyJMbczdcHUoYaszAGejRG2+TZ
+         STXfswc2y/kOgTgJYtqasKRko5mDIfF3jTnl+H6/gWLUTiEkQlaFgMBRK4osD+QLtUeh
+         g7+nTqhv4aD6CDEoeZ2ONL7T7ke9y7580AY3Y4EM/8uvgkwkQfYj0ktzNjYNISwPvXy2
+         tDXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767875287; x=1768480087;
+        d=1e100.net; s=20230601; t=1767875939; x=1768480739;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=H9S8tc6VoR4ctabPhilr7FUP40tlzBUwrCfmoiHtz9U=;
-        b=mDKc06mFgfoj9ZKquxR9tIDr6Oa5owlqld8b1R9Aapg2QJi9CCzCAvw5ZJ+pYsfdpZ
-         4GoR/x1WdlR1g6QI18pw2UivCufdRYNQLNYlam0edk7pJHiPkgjtFDk5N8vUMUJhHSq8
-         bOQNd6bZ+lvpUGfcP+GAWHz+CaFI4ToGNeLH4SQrzYr9bqR7KCzvw08YhWmjMrAnf+pu
-         fyfOxuEJm4x2Oz3vYo+BiAzlR/gxTZnXwSRdMnanTwWs76EudHk6Y/7lvvZXJjeMFZMx
-         SzitrDFJ5ayeLFPAjAjsgbB++QfQYZ+SpZIVrglefVrYak4xgcwBWA8V9yh9qjtmNW2b
-         m1rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU8ZDzLdYxWGZdm8ZFFSYvmvGgylqBDpknqN2kKHnyjfSJjrbDFL2V0cOFk/u3mZhOd+RrNENMkhE1G@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSpb7DKr6vrNpNK69wrTF+YGx9Gi1yncNIDJ4PiXcDBCkNs4d3
-	V857NBodeL5EKFlYYD10vjtC6AkMVx0PEEJ9wBtHlU6Y4XWQP92yI8xo
-X-Gm-Gg: AY/fxX7QJRDlgAf1OXyiswbJ1UtMaS2IAavmZBhdYttkIFQ8QE+9eVqEqQUIlJC22Zy
-	dXjPdFETSbX70GafRNLieoeKxuUJeLQSdsqhkC3TBeszbH4PuQECu5gy5k0bSWgANp2lIOFw7VI
-	Wxa8SFRDcPm5a6YQxmtI1NW7cBCGjjKf7AJ34KlZHHsBCjw5NFA4t1DIVj/fcKzMfJ6MiXimQ6l
-	Vex8JXZ2IB6OXP20QSxo7hr/foJ/EhGVEcFuStOdR7NEIMUulkw6SDE+62kZYHyhuy1CavjEQIK
-	+jETwVgqxLvWr0BeoIoHZzvEFWLs0JuWxL2pxS9vUq3W0HeIftsaYfpnqDfGcmKXlS5LJestJ5E
-	T8Z6lZG/6nGcSQYABnbCa1EOmAzQT8dNleoAyJOXCf9lVhJqqRZw2FHhBX2IiKDnkgD8ZRVQ72G
-	sN43GcgWFQcwqV3XairgI=
-X-Google-Smtp-Source: AGHT+IGTB3XDlXgQY840gBEBSdFTlkqqqTvmyuMzepMgpXMZdXcNFo9y6KtrPk5n+BTlSCi4IzSK9w==
-X-Received: by 2002:a05:6102:1594:b0:5e1:866c:4f8e with SMTP id ada2fe7eead31-5ecb698cac0mr1848863137.39.1767875286647;
-        Thu, 08 Jan 2026 04:28:06 -0800 (PST)
+        bh=+iEE6Un0IiGnjVPgG1bXjl9grqm8623VhHGBXWZZQ/w=;
+        b=K3tSJTPsKupDuamtsUKPk5r3pX8wr4A4QwKPYDsAql2V5vE4IP+swZ+dzbIwk+PQPg
+         IUijimk1OCjLSENUdrF68Zml8zSPtiTU/T50TlVETnBC1uDY72ReJ5ap8hxCQiRIVEsV
+         taFzD6Br0K7yt2inDhGzXJ3rdCrhXXhm9pQklgqYdbyyBJkz5lTqKFK5XZHkAt28o9qG
+         M85ZZq1WbsfFringsXkrjZCkOjWNR/DOXbW0Hecmja7W9SFWxk+xT9mvQ94auZbzNLLj
+         djEMXDG5tNcDdlP7UwNJz2n3C/5AYs7LgCxYUUqPrQV1PqVhT/ZI2+3VuuqEajvwXNEa
+         6FPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVv9qVH+Og7wM9ozIi5KeCOMv4E266t/GUQKwHDyiNdnOWoBJgOROQ9virs/gOg+iev5yqxSmSvuRlA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzsp1T3+rkqUkx9BDhxLS7vG5el7cw8JZWiT6owSQBKobvrG/Pc
+	5bwScHOph6bGoVmDsRCB0O5DfPGpgxSJuE0UvkU8ueDOdH7FXQ1iQ/Ly
+X-Gm-Gg: AY/fxX7xLwrqti4tl8EieAsT4a+7RrF93akDAF0TWil/6SrCH7YsIHxOscWF9Heh65M
+	cHXjIEy9BLhhiYmVzzmCBopf/g/jYhIOrB97/YdBUEOPvbWBT8Tqq/ExKNe0s1jcXuJbFKHqt+Z
+	xarH1Sn+vim6o4PU0RikJoGAbVLNCivCmQ4QNBhVM3ljfonbtpLYN0yS6aGtBPFcbDKtp6+huB+
+	XMZ98tcTfPQp/ZFurt+Qy+wvlsiiFhnWtRUxUv4hZrYnaT5nVOUZHSBgDE5N32Mj0DKhx4ZYFqm
+	K+73qEptvWPWSLmbyy9gKLs2mFwJCbJOgzcmtm7dwGtXmKgFi+8du31zhla8MqvfOv7uuhP97zG
+	h6+k/yUn1Ga+gPouiB7fbfrUFHGxPq13E9WFU6lQlk5xh1S+ZJydCRGeaY+ZzXHOYXW7ZDwZYZH
+	nLqUQvUw9XP7kb2OcM414=
+X-Google-Smtp-Source: AGHT+IEJZWHmh83mvzjHNX9jMW2jbT1DkYtWCUqXUYAhY01+DHpkl4E6/Inn6+oVCICuzwZk7UrX/w==
+X-Received: by 2002:a05:6102:6f07:b0:5ed:c98:37f1 with SMTP id ada2fe7eead31-5ed0c983b52mr1285108137.1.1767875939450;
+        Thu, 08 Jan 2026 04:38:59 -0800 (PST)
 Received: from localhost ([2804:30c:2766:a500:b70:8c42:f792:bef6])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ec772e3300sm6068771137.14.2026.01.08.04.28.05
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-944124a3386sm5633984241.11.2026.01.08.04.38.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 04:28:05 -0800 (PST)
-Date: Thu, 8 Jan 2026 09:29:52 -0300
+        Thu, 08 Jan 2026 04:38:58 -0800 (PST)
+Date: Thu, 8 Jan 2026 09:40:44 -0300
 From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
 To: David Lechner <dlechner@baylibre.com>
 Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -85,11 +85,10 @@ Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
 	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v4 2/9] spi: dt-bindings: add spi-{tx,rx}-lane-map
- properties
-Message-ID: <aV-jQImroXxFqj3Z@debian-BULLSEYE-live-builder-AMD64>
+Subject: Re: [PATCH v4 5/9] spi: Documentation: add page on multi-lane support
+Message-ID: <aV-lzD1BEVSkGjba@debian-BULLSEYE-live-builder-AMD64>
 References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
- <20251219-spi-add-multi-bus-support-v4-2-145dc5204cd8@baylibre.com>
+ <20251219-spi-add-multi-bus-support-v4-5-145dc5204cd8@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,57 +97,166 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251219-spi-add-multi-bus-support-v4-2-145dc5204cd8@baylibre.com>
+In-Reply-To: <20251219-spi-add-multi-bus-support-v4-5-145dc5204cd8@baylibre.com>
+
+Hi David,
+
+Thanks for adding a doc for the multi-lane stuff.
+Two minor comments inline.
+
+Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
 
 On 12/19, David Lechner wrote:
-> Add spi-tx-lane-map and spi-rx-lane-map properties to the SPI peripheral
-> device tree binding. These properties allow specifying the mapping of
-> peripheral data lanes to controller data lanes. This is needed e.g. when
-> some lanes are skipped on the controller side so that the controller
-> can correctly route data to/from the peripheral.
+> Add a new page to Documentation/spi/ describing how multi-lane SPI
+> support works. This is uncommon functionality so it deserves its own
+> documentation page.
 > 
 > Signed-off-by: David Lechner <dlechner@baylibre.com>
 > ---
-> 
 > v4 changes:
-> - This replaces the data-lanes property from the previous revision. Now
->   there are separate properties for tx and rx lane maps. And instead of
->   being the primary property for determining the number of lanes, this
->   is only needed in special cases where the mapping is non-trivial.
+> * New patch in v4.
 > ---
->  .../devicetree/bindings/spi/spi-peripheral-props.yaml      | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>  Documentation/spi/index.rst               |   1 +
+>  Documentation/spi/multiple-data-lanes.rst | 217 ++++++++++++++++++++++++++++++
+>  2 files changed, 218 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> index 59ddead7da14..2f278f145f78 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> @@ -75,6 +75,13 @@ properties:
->        enum: [0, 1, 2, 4, 8]
->      default: [1]
+> diff --git a/Documentation/spi/index.rst b/Documentation/spi/index.rst
+> index 824ce42ed4f0..2c89b1ee39e2 100644
+> --- a/Documentation/spi/index.rst
+> +++ b/Documentation/spi/index.rst
+> @@ -9,6 +9,7 @@ Serial Peripheral Interface (SPI)
 >  
-> +  spi-rx-lane-map:
-> +    description: Mapping of peripheral RX lanes to controller RX lanes.
-> +      Each index in the array represents a peripheral RX lane, and the value
-> +      at that index represents the corresponding controller RX lane.
-These are peripheral props so I guess RX is from peripheral perspective.
-In that case, those would be routed to controller TX lanes, no?
-Could maybe use MISO/MOSI or COPI/CIPO (Controller Out Peripheral In)
-nomenclature but that might become too verboragic.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    default: [0, 1, 2, 3, 4, 5, 6, 7]
+>     spi-summary
+>     spidev
+> +   multiple-data-lanes
+>     butterfly
+>     spi-lm70llp
+>     spi-sc18is602
+> diff --git a/Documentation/spi/multiple-data-lanes.rst b/Documentation/spi/multiple-data-lanes.rst
+> new file mode 100644
+> index 000000000000..b267f31f0bc8
+> --- /dev/null
+> +++ b/Documentation/spi/multiple-data-lanes.rst
+> @@ -0,0 +1,217 @@
+> +====================================
+> +SPI devices with multiple data lanes
+> +====================================
 > +
->    spi-rx-delay-us:
->      description:
->        Delay, in microseconds, after a read transfer.
-> @@ -99,6 +106,13 @@ properties:
->        enum: [0, 1, 2, 4, 8]
->      default: [1]
->  
-> +  spi-tx-lane-map:
-> +    description: Mapping of peripheral TX lanes to controller TX lanes.
-> +      Each index in the array represents a peripheral TX lane, and the value
-> +      at that index represents the corresponding controller TX lane.
-Similar thoughts about the tx side.
+> +Some specialized SPI controllers and peripherals support multiple data lanes
+> +that allow reading more than one word at a time in parallel. This is different
+> +from dual/quad/octal SPI where multiple bits of a single word are transferred
+> +simultaneously.
+> +
+> +For example, controllers that support parallel flash memories have this feature
+> +as do some simultaneous-sampling ADCs where each channel has its own data lane.
+> +
+> +---------------------
+> +Describing the wiring
+> +---------------------
+> +
+> +The ``spi-tx-bus-width`` and ``spi-rx-bus-width`` properties in the devicetree
+> +are used to describe how many data lanes are connected between the controller
+> +and how wide each lane is. The number of items in the array indicates how many
+> +lanes there are, and the value of each item indicates how many bits wide that
+> +lane is.
+> +
+> +For example, a dual-simultaneous-sampling ADC with two 4-bit lanes might be
+> +wired up like this::
+At first, I thought calling these '4-bit lanes' was a bit confusing. I was
+thinking about suggesting '4-wire lanes' but I guess 4-bit is more generic in
+case we ever see a setup where data navigates through something besides wires.
+
+> +
+> +    +--------------+    +----------+
+> +    | SPI          |    | AD4630   |
+> +    | Controller   |    | ADC      |
+> +    |              |    |          |
+> +    |          CS0 |--->| CS       |
+> +    |          SCK |--->| SCK      |
+> +    |          SDO |--->| SDI      |
+> +    |              |    |          |
+> +    |        SDIA0 |<---| SDOA0    |
+> +    |        SDIA1 |<---| SDOA1    |
+> +    |        SDIA2 |<---| SDOA2    |
+> +    |        SDIA3 |<---| SDOA3    |
+> +    |              |    |          |
+> +    |        SDIB0 |<---| SDOB0    |
+> +    |        SDIB1 |<---| SDOB1    |
+> +    |        SDIB2 |<---| SDOB2    |
+> +    |        SDIB3 |<---| SDOB3    |
+> +    |              |    |          |
+> +    +--------------+    +----------+
+> +
+> +It is described in a devicetree like this::
+> +
+> +    spi {
+> +        compatible = "my,spi-controller";
+> +
+> +        ...
+> +
+> +        adc@0 {
+> +            compatible = "adi,ad4630";
+> +            reg = <0>;
+> +            ...
+> +            spi-rx-bus-width = <4>, <4>; /* 2 lanes of 4 bits each */
+> +            ...
+> +        };
+> +    };
+> +
+> +In most cases, lanes will be wired up symmetrically (A to A, B to B, etc). If
+> +this isn't the case, extra ``spi-rx-bus-width`` and ``spi-tx-bus-width``
+> +properties are needed to provide a mapping between controller lanes and the
+> +physical lane wires.
+> +
+> +Here is an example where a multi-lane SPI controller has each lane wired to
+> +separate single-lane peripherals::
+> +
+> +    +--------------+    +----------+
+> +    | SPI          |    | Thing 1  |
+> +    | Controller   |    |          |
+> +    |              |    |          |
+> +    |          CS0 |--->| CS       |
+> +    |         SDO0 |--->| SDI      |
+> +    |         SDI0 |<---| SDO      |
+> +    |        SCLK0 |--->| SCLK     |
+> +    |              |    |          |
+> +    |              |    +----------+
+> +    |              |
+> +    |              |    +----------+
+> +    |              |    | Thing 2  |
+> +    |              |    |          |
+> +    |          CS1 |--->| CS       |
+> +    |         SDO1 |--->| SDI      |
+> +    |         SDI1 |<---| SDO      |
+> +    |        SCLK1 |--->| SCLK     |
+> +    |              |    |          |
+> +    +--------------+    +----------+
+> +
+> +This is described in a devicetree like this::
+> +
+> +    spi {
+> +        compatible = "my,spi-controller";
+> +
+> +        ...
+> +
+> +        thing1@0 {
+> +            compatible = "my,thing1";
+> +            reg = <0>;
+> +            ...
+> +        };
+> +
+> +        thing2@1 {
+> +            compatible = "my,thing2";
+> +            reg = <1>;
+> +            ...
+> +            spi-tx-lane-map = <1>; /* lane 0 is not used, lane 1 is used for tx wire */
+> +            spi-rx-lane-map = <1>; /* lane 0 is not used, lane 1 is used for rx wire */
+In this example, even though lane 0 is not used by thing2, it is being used by
+thing1, right?
+Just checking I understand it correctly.
+
+> +            ...
+> +        };
+> +    };
+> +
 
