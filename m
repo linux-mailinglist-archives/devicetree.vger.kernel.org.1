@@ -1,227 +1,81 @@
-Return-Path: <devicetree+bounces-252731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02728D028A0
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 13:08:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9120CD024C6
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:07:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 63B6A337D661
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:48:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9041D310FE2F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 10:55:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5E048AA8D;
-	Thu,  8 Jan 2026 10:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58EB83921E4;
+	Thu,  8 Jan 2026 10:37:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XKNkTeMK";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KI9Pt/zg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JWjrjKbu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8668843563B
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 10:23:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5737A3ECBC4;
+	Thu,  8 Jan 2026 10:37:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767867829; cv=none; b=dpr/+YpHJEbdFl3YTdnhHDYtFWq35nHvMRxhNwqt0U0DPPMyd/eHn2dIDhyUPnhEH4SqW+QwQZAzSwhSS6ys3tC6mxCH+/v0x97xkTxIb4rthlRxTzzGt7030oFOvRcscfkNC/pVDskRp2r5RuL2H7XAFKgkwjK2o5DKTgK2Thk=
+	t=1767868673; cv=none; b=IwEXifM0+StmUQ+su/Do29RNnIXHU5lxBv9vI2P9F7aZu90GQZCWN2HuClhgxOxh6HJw6MEe+VanCDy1sk6bVkCrIyZMusyAn0xMlptDLf6nyaDL9RlZSAPvQowHCDqqNdBV1V52CGJukvMjPfhXSD07ceDr38Et79sgS2jkiPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767867829; c=relaxed/simple;
-	bh=TUTWgpNm1TPO3rhQkPk8Rp5XfBeBRk/H26ZsFO0CRho=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lvvqU8ikQbZ+/d3NqPh5h1GmtiK3cAylfkWhPnJzNOUj0GqpO0h5+4b1qa2lcSBwGECQiLHJBwOolIjRy3s7sZM+ghHqYG9n+QXJgJRtwV1c4d6oF9oD8lHEjc29yiIDrJ23DXiNIvEuREJMCWubO1Db4FsPtFxhegQ4FRizrT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XKNkTeMK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KI9Pt/zg; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6083uOGO2593330
-	for <devicetree@vger.kernel.org>; Thu, 8 Jan 2026 10:23:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	87P6R0ap1kQ5Ug+b9yjjfz1CXJ5er0/QhW3Gccn4SkY=; b=XKNkTeMKZpuwgBbH
-	Kao9iWr68bd8ub/kxt1sk3r6XDVIfc1eLOdQSJpxhFgI+s8hIRrA8GWZyOAJmdp5
-	iqMvddwtwa7ZpsS/0dD/2NtzHPFEmop8sY5o7nD1LGEWK52X/V7G0/QS082/OTHt
-	Tw68LnJmibjiLq7bdIsLEMtmpvH+udU2teuPNJ8L+qmB5L2W+r5a3tdp5/9UrkWM
-	ix/x2TJ4fgWaDc7n6M8YM1EsoLOZqswgQDElUcKFKk/forAxIqTADbSb17dPMLdk
-	Vzy3t++FUrsSTkm4MCN14QSDmqIzxsgWxJYC5XeQgw0uYOy71jWm8hw2p9sKdLWm
-	aRQjIA==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bhn294ax7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 10:23:43 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b1be0fdfe1so96181685a.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 02:23:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767867822; x=1768472622; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=87P6R0ap1kQ5Ug+b9yjjfz1CXJ5er0/QhW3Gccn4SkY=;
-        b=KI9Pt/zgfjU7fpIylnYWDM7d6fZXbfQTSqCir0XaLoMikTpTKKE5ZNHL6Eu7mGNAnX
-         dML3aFSOGK/6pCQp5JCTg33FkIR+qxmm7U2Jj8QiGOEKI4/ntRpVALE6u5IQ2PaqCFHJ
-         ubzaXjD8bYGMHdvc3zBwDGPFlb3S9qD+qstQMaLl3uRajW66W89Ca9R11LhcmZUGfDzX
-         k9298j1wisKYdEnxtdIYXOm3rVBO9I2kAc1quToQ6DMfvqlw3Vt8nelUL1ZWgTRy6Wds
-         N2acWBM5ViBmiBnlfRVmY2kcaXB+zT2vm6ANd5HBG+xbMpgr2VwXZ7J8pvelTN+boFEJ
-         wFKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767867822; x=1768472622;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=87P6R0ap1kQ5Ug+b9yjjfz1CXJ5er0/QhW3Gccn4SkY=;
-        b=rvOnZcmNLKcQ0FD/fQMuDwvgTDg9t9ubgQAL1vwwhr/fdgMfohAPqHUhhRU+vE83FO
-         SwyqYCXjqPXXnAQ9+eQtSzb80ubPoJAbvkCY/EMGKfC7pbMIXfu1NHT0+glIWdFtvhrG
-         pFY955sPRczcymmDhCuNpcfB26GhuQ/FVPpmi8pDgYzrVmJ7dp54pzIQyp1wYoMzQlUq
-         PS2zEnr/kBE/0lR3UpLeows/REOCnQcLDfgEHvdyvjUww6mmtU0NniwpOKC7Fp0CLVa6
-         mwhU/lHd9ALL7JMiIcarQgW4FQHRO1cLtSHpaKB0bsN7wJj+ZvayftnKG6zkTomjXYQn
-         ybWg==
-X-Forwarded-Encrypted: i=1; AJvYcCUzvtUP4k30GP+ioO+90za2R7PX76lprE6E/QkJ0uIxvCzkXkl02HlwJwBrocvSQeYvXCsEloZJlars@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnjZfnqfVngpDdULdhPulSSZDNfChz1igbVjeZeojb46P8od4P
-	+fi5z7pHC2KEtq5RC2xfd8u+ypbv6R+AvHzHr5rpGWhQvbFEPbiNYlX9DHzpETY7GrZmRmrv5FE
-	4Oiro00uZbPt4zA+cPRuSAGdV0i0dYMCZ4mZnorSgzrmwqBlU7IKeWGX9ILhXGZD6
-X-Gm-Gg: AY/fxX5FRVsNRBrVbmhZCyMArXG6t+7HzPsZ22uLOCWHWJ9iO83+3HWb67Y5wzGJSyh
-	FsgvQzUA1mAxZ0va6PvzF64/rkTgiilR3PJlPsYSQ4EIK9tXEubbTSxqH5WpiSLD02HahMrTQkn
-	QAGVh5IvDo1zHtkni1dDs6cc3GWym06aisRZ5XjwxChARrnmdw3o37fKHieFcgSKGuwX2K8Xt3+
-	Cak2FEI6B4obFN/aVHIxcTrGYpIwpujKX9KlanNtngqpIuu/3fNWcrD2xdMaoAn49OOssvBOxkp
-	No6Z3iDdD5f1ccQ6yqNrz13vDvCysQecJhW7bHtOYIgJ2TWBzjo9/yCiXAZeeqxjMlmImuQ65kE
-	JskCdQT9Czq2YTVrTcVWLOjH4oLFP2NoBvRA0hNtMEfIFy6W39NInpzRSLnLwq2gmWu4=
-X-Received: by 2002:a05:620a:370a:b0:8b2:1f04:f8b with SMTP id af79cd13be357-8c3893e7e43mr552675185a.6.1767867822164;
-        Thu, 08 Jan 2026 02:23:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH0KFQ2Bsta73gDJBBrdKOWowFphVPDnjRGLBkPCmSRLk4U75oKm+O91pIOUnBTTCaQqi6q8g==
-X-Received: by 2002:a05:620a:370a:b0:8b2:1f04:f8b with SMTP id af79cd13be357-8c3893e7e43mr552672285a.6.1767867821686;
-        Thu, 08 Jan 2026 02:23:41 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507bf65c07sm7171853a12.23.2026.01.08.02.23.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 02:23:41 -0800 (PST)
-Message-ID: <d03335ba-2870-483b-aa35-89be284c219e@oss.qualcomm.com>
-Date: Thu, 8 Jan 2026 11:23:38 +0100
+	s=arc-20240116; t=1767868673; c=relaxed/simple;
+	bh=c4wiA7YvyvJfca2qi0XKmfUhdsKw9OEBKcoZcx9DyzA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=MfwtS3kXWtkTXvCZ/hHYjw3j+lBcyEeEGZ2mStisMGOdxes6xitaBVcmDduzFTQFyuwtDOFaHrgyrSskF+brQFfrZnrB11yLKqmlVUKjN9UPen4lftwCz4cPtBsGSdNeQnM1LkGLlnOXyRsa5VSEBN/juzX7RG81ndqoTAQhoDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JWjrjKbu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E29C4C19421;
+	Thu,  8 Jan 2026 10:37:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767868672;
+	bh=c4wiA7YvyvJfca2qi0XKmfUhdsKw9OEBKcoZcx9DyzA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=JWjrjKbuEeSrVTy8Mrw88yHSbVgYxx8g5vfae0Ovx+mVaJ59vVw4eJAaeb4Wn42e3
+	 Scc0aJNV897PZjQos1IrvuSVCLeFeOu6EQnJvP6I9q1c18st4mIBgNeYgzmNYCanXO
+	 f44GpTWT1sC4ee7SfKrQml82HJkdDBdrwadh29muPIApMyESb1SvyhIRu0+bVsOaSC
+	 6a9BEs93msz++EyljmlK1FqxxG5EQkjbV9Ei4W8NQWse/jFJg3tlY8GSMVcJRO2XiZ
+	 Wc6PGNqZJa72bbDE7AngM7vZ7evfVq9umJwKsFp+tS70sMqF27FXnoY97WU75UOgLV
+	 U0Ikwa7idzfTg==
+From: Lee Jones <lee@kernel.org>
+To: Lee Jones <lee@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org
+In-Reply-To: <7b9a4a355c5da3fe812ead663285d05b64b84857.1764320964.git.geert+renesas@glider.be>
+References: <7b9a4a355c5da3fe812ead663285d05b64b84857.1764320964.git.geert+renesas@glider.be>
+Subject: Re: (subset) [PATCH] mfd: core: Improve compile coverage of
+ mfd_match_of_node_to_dev()
+Message-Id: <176786867064.838936.14785742732975202808.b4-ty@kernel.org>
+Date: Thu, 08 Jan 2026 10:37:50 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] clk: qcom: cmnpll: Account for reference clock
- divider
-To: Jie Luo <jie.luo@oss.qualcomm.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-        quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
-        quic_suruchia@quicinc.com
-References: <20260106-qcom_ipq5332_cmnpll-v2-0-f9f7e4efbd79@oss.qualcomm.com>
- <20260106-qcom_ipq5332_cmnpll-v2-1-f9f7e4efbd79@oss.qualcomm.com>
- <0ff8041a-c876-419e-8f18-7656e29549a3@oss.qualcomm.com>
- <b132680b-5e85-4239-a42f-f6e79471486b@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <b132680b-5e85-4239-a42f-f6e79471486b@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 8CiP-wrlqKGSLpHefJNY1VZcQb6W4F7Y
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDA2OSBTYWx0ZWRfXzSR5XV/p241Z
- 6aryOpyVjqmJpXTpoCDye4eNQNlZOFzGIYbn8XtznQfdSzojCMYuZhRiE3WQYOoY64Tzyr0O8lD
- I0lC+p3/6kcRxbJfM0Air72gpfpSVGDmYxhxCNbPZfHufdDTLJtWrcWjCHeKoEdDUT5g8wGgg9Z
- 1Ns/S2qikE1HM0hvkmjec416i5eA5AtrMgvAvV+RdAvOBxX9OvoLsSWCpRSXC8xJNWiS+XJujPx
- urxEcD1a/fx8nS3dPPbo+fgKEXgyVvIIHGv3n8JKdqRL55WGKU3KoFKGbodfspyRzhXRrW8geif
- cmAfMBtKb++NqWKoZQ5+WLqUC7usow04xVM7XEmCOrczwstD1HIsucu6o9c9CEqkRIlP0YuP1ks
- baododETw8k1gYiJv1NV2Rp+8cxxQlEpstP5YeHtStxM6E/Om/ssRUbtKMqvZRKpqKtAEtiRTT/
- Qxjo1tCFrySgExDP6KA==
-X-Authority-Analysis: v=2.4 cv=P7k3RyAu c=1 sm=1 tr=0 ts=695f85af cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=1sg49MWMQMLtxiueOoAA:9
- a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: 8CiP-wrlqKGSLpHefJNY1VZcQb6W4F7Y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-08_02,2026-01-07_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 phishscore=0 clxscore=1015 malwarescore=0
- lowpriorityscore=0 impostorscore=0 adultscore=0 priorityscore=1501
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601080069
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-52d38
 
-On 1/8/26 7:39 AM, Jie Luo wrote:
+On Fri, 28 Nov 2025 10:11:27 +0100, Geert Uytterhoeven wrote:
+> As of commit c7fe3bbfd622b5ee ('mfd: core: Use of_property_read_reg() to
+> parse "reg"'), all code in mfd_match_of_node_to_dev() compiles fine when
+> CONFIG_OF is disabled.  As the sole caller of this function is
+> protected by IS_ENABLED(CONFIG_OF), the #ifdef inside the function can
+> be removed to increase build coverage, without impacting code size.
 > 
 > 
-> On 1/7/2026 8:16 PM, Konrad Dybcio wrote:
->> On 1/7/26 6:35 AM, Luo Jie wrote:
->>> The clk_cmn_pll_recalc_rate() function must account for the reference clock
->>> divider programmed in CMN_PLL_REFCLK_CONFIG. Without this fix, platforms
->>> with a reference divider other than 1 calculate incorrect CMN PLL rates.
->>> For example, on IPQ5332 where the reference divider is 2, the computed rate
->>> becomes twice the actual output.
->>>
->>> Read CMN_PLL_REFCLK_DIV and divide the parent rate by this value before
->>> applying the 2 * FACTOR scaling. This yields the correct rate calculation:
->>> rate = (parent_rate / ref_div) * 2 * factor.
->>>
->>> Maintain backward compatibility with earlier platforms (e.g. IPQ9574,
->>> IPQ5424, IPQ5018) that use ref_div = 1.
->>>
->>> Fixes: f81715a4c87c ("clk: qcom: Add CMN PLL clock controller driver for IPQ SoC")
->>> Signed-off-by: Luo Jie <jie.luo@oss.qualcomm.com>
->>> ---
->>>  drivers/clk/qcom/ipq-cmn-pll.c | 11 +++++++++--
->>>  1 file changed, 9 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/clk/qcom/ipq-cmn-pll.c b/drivers/clk/qcom/ipq-cmn-pll.c
->>> index dafbf5732048..369798d1ce42 100644
->>> --- a/drivers/clk/qcom/ipq-cmn-pll.c
->>> +++ b/drivers/clk/qcom/ipq-cmn-pll.c
->>> @@ -185,7 +185,7 @@ static unsigned long clk_cmn_pll_recalc_rate(struct clk_hw *hw,
->>>  					     unsigned long parent_rate)
->>>  {
->>>  	struct clk_cmn_pll *cmn_pll = to_clk_cmn_pll(hw);
->>> -	u32 val, factor;
->>> +	u32 val, factor, ref_div;
->>>  
->>>  	/*
->>>  	 * The value of CMN_PLL_DIVIDER_CTRL_FACTOR is automatically adjusted
->>> @@ -193,8 +193,15 @@ static unsigned long clk_cmn_pll_recalc_rate(struct clk_hw *hw,
->>>  	 */
->>>  	regmap_read(cmn_pll->regmap, CMN_PLL_DIVIDER_CTRL, &val);
->>>  	factor = FIELD_GET(CMN_PLL_DIVIDER_CTRL_FACTOR, val);
->>> +	if (WARN_ON(factor == 0))
->>> +		factor = 1;
->>
->> FWIW the docs tell me the value of this field is '192' on IPQ5332..
->>
->> Konrad
-> 
-> Although the register description lists the default value as 192, the
-> actual runtime value is 125 on IPQ5332, as shown in the dump below.
-> 
-> # devmem 0x9B794
-> 0x00006C7D
-> 
-> # cat /sys/kernel/debug/clk/clk_summary | grep cmn_pll -B 2
->  xo-clk                              1       1        0        48000000
->   0          0     50000      Y   deviceless
-> no_connection_id
->     ref-48mhz-clk                    2       2        0        48000000
->   0          0     50000      Y      deviceless
-> no_connection_id
->        cmn_pll                       3       3        0
-> 6000000000  0          0     50000      Y         deviceless
->          no_connection_id
+> [...]
 
-Aaah I totally forgot about the xo rate in the calculations.. 1 vs 2
-vs 100-something threw me off :)
+Applied, thanks!
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+[1/1] mfd: core: Improve compile coverage of mfd_match_of_node_to_dev()
+      commit: d0e9990ba058b25a3d8cf31ab0bb25571515ed34
 
-Konrad
+--
+Lee Jones [李琼斯]
 
 
