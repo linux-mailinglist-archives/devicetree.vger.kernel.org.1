@@ -1,353 +1,238 @@
-Return-Path: <devicetree+bounces-252973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 739ABD05A0A
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 19:45:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCB87D053D6
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:55:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 611223269AC3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:54:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 366B23024B9E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:55:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4899530103F;
-	Thu,  8 Jan 2026 17:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA482EACEF;
+	Thu,  8 Jan 2026 17:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nu/D6EP8"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="q/4mLzBX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010048.outbound.protection.outlook.com [52.101.84.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2421F3009D2;
-	Thu,  8 Jan 2026 17:53:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767894828; cv=none; b=sqHzve+xY5IUJlh0YO8E2nOIlciYEn7RKvCEEkluvDJndmQDJtqXxGlDiSYz+SRy7+YDzYIMJHuf0MdiPdZd8wpCAQNKkfwAHaKd5YQtX6bI9yrME5rIUiwhRsIP6CNSMKrE8P/AUa6LNkZhwQZNiGlHbltE4ZIon53kRHd6zBo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767894828; c=relaxed/simple;
-	bh=wdvUQM+8BY+Bt8JP0cCiids1upbUXbpsIS4p8ioPoGQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iY9uU3BqK0NmqeOjG+Tn1nI6GjJ79OLyZHV369+GuMYDBRcLHbnfwf/VJ51hledVv57kH8WWsg+Ck8s4w5qEfYpTudiSLxaWI1Yl94JCMuvFzowpOs6zfg99eC7tdxYsBOQSISX7QQjsxPER+HE/0WjWd2SXLKVHDWl5hKYDhXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nu/D6EP8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C30C6C19423;
-	Thu,  8 Jan 2026 17:53:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767894828;
-	bh=wdvUQM+8BY+Bt8JP0cCiids1upbUXbpsIS4p8ioPoGQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Nu/D6EP8B8dZxYKxKr5x/rm/zhljyecJZGPn4Yj8bGnBNizlJIIipdD99OsSI2Qh8
-	 1dz2DEnyApPbS7dKCxeOiFr5NcVsdbUJwnBK+rqNXWQDyNvMs9nu0vdtGFwmm1meR6
-	 GXk6nB2sz0boyPPqQqHU4DgTgAQ3UHMrePittHtQX/nhCIzjHYpezqDQw9jzugre9g
-	 DRPCzYKm2CdKvlVzX5K8wo+NG+/5S0W1QjuhWZLAXNdpDPSHlXfU8c3Um3iDVTCxqo
-	 gD1kiUc+UnuUtjVZ90xBds9ctGvnLb6g+Yie9m94BPwD+j6/6eiRc4A+84d2GbEXYy
-	 sJeurBCa06lLg==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Thu, 08 Jan 2026 11:53:19 -0600
-Subject: [PATCH 10/10] dt-bindings: mtd: partitions: Combine simple
- partition bindings
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E926D2EA172;
+	Thu,  8 Jan 2026 17:54:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767894886; cv=fail; b=MngHXrcriIgY1mC9lL5adPqyUq/r1FFhNoNfzZqSizFC2Us1jnKH/vm4XMDN3sGe0XLhipvMpf5VFEyQazIWXZv/dsZYrU925YK48M4U6XDaEYXZt2vzqxl6zXD/b4dGb4pIeUAnxKe1tZ4PoA4mQDwxZ4QMHT0g2SShP+TKvKs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767894886; c=relaxed/simple;
+	bh=bGefZzWNmvhNek8gIDG5hSklK834H8YYv5LE7a8Nh8g=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=XjZQsC//cnJ2Na6xh50gpWwkTdfYqlXBoPw9A9guAFDQj/4zH5aWDMQsb2SnXe9/A0KT1pkTTzK4dQrRNbCEAKEi2UhMQBiOEU44pjDOxbRW4QH+nZ0aCn4b0PM7RW8a2OHHM6UqFhW+iCxyhgS8IhY7Y8L4rv00swLhCuUg73c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=q/4mLzBX; arc=fail smtp.client-ip=52.101.84.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ARky+e8gI6WBHk3WevK7sFpYX1bzLO5qWwxXCrvX+Pu853qrR6rj2wMbjwcNqZxSMCnYW2hPYkZK44jcvOwa4Qsd1hjl7jkb2EiDw8gWPu042I6lphda52pVuYX2A4lQj24E/W1PIogkIdTRNEa7NwgxF3acITAxjIt0Jh/nN8+v+kTYNJyPr0HwkDigGOgN2vrTcW9roambleh7TUW9H7RqimxwKpw77nVrzn7vyRdDU2QXpAuaoCW5Fa4J8iFOSqfHoOs4A7UK7TJJPR7XwdxZPrhOl6wRAAIDD6kXK/LAsNUKyxeAhceh5URcFugh+b+S5mSlaDSDw1sWGUPbVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bGefZzWNmvhNek8gIDG5hSklK834H8YYv5LE7a8Nh8g=;
+ b=dnSarvDuTtaRBPVcafo3vkhkB0t40+JlOp2VoMUWnsGh0FBCdiJ9Qu2mUeU5iNKtX7d2AXkBpnKN0bYqIdIPMqfrx/3rkoA2bKSFCwv61qMSWfBqPTyuvUuXH7nEZV2p3OT7ZPpTCLDSrOpmLPVJPgl3FqYOf1nI8o9R+6oxeeSOpbkj9oTSrb3pLjQ8v82ckYF/KJyTtXg4jXAQIzJX+M58jMGb/onENQfky/8k75cu7nuP99nQF83OD4kmRznJm+TFttoJQIRunTlD7N+EsiMXa2HF9GXg3agWOs7LGM5JMVhGHUmf8VT4HY9aKcc6u1XTxB4XmfGUn/WE9nE+uA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bGefZzWNmvhNek8gIDG5hSklK834H8YYv5LE7a8Nh8g=;
+ b=q/4mLzBXjdrxVDt/8ZwseOg3eWvNyE9ULTYbN26VrUgydPidmn8tJMyyXdt3heRKlerXr8+qry9LhFze2t4NDBqHlNx13okHovLhRgHySIhGvhJcTivT4+PeC/3RdBPNQEnpA+fyPmhtAAYbWxllt85qdZzcvm81foJI6zYM6cAVtS5Q4kYlk/WwhpaGDXoDtBZVzuqpsNwRYtSWy5qCjAKQMFXx3BG3ojniXPEvVXI6tWl+ZWvMKjIrD/bo7ZHafAGdNiDGPLbp6SjTguxXq9SU5C2CMXgBXcPDqMta8SeGAizKqQAHf/a2Y6IBXqkvYgtHJGkpyB/WpjgUtswkoA==
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
+ by GVXPR10MB6323.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:16::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Thu, 8 Jan
+ 2026 17:54:22 +0000
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9126:d21d:31c4:1b9f]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9126:d21d:31c4:1b9f%3]) with mapi id 15.20.9499.002; Thu, 8 Jan 2026
+ 17:54:21 +0000
+From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
+To: "nm@ti.com" <nm@ti.com>, "alexander.sverdlin@gmail.com"
+	<alexander.sverdlin@gmail.com>
+CC: "d-gole@ti.com" <d-gole@ti.com>, "sebin.francis@ti.com"
+	<sebin.francis@ti.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "a-kaur@ti.com" <a-kaur@ti.com>,
+	"k-willis@ti.com" <k-willis@ti.com>, "vigneshr@ti.com" <vigneshr@ti.com>,
+	"vishalm@ti.com" <vishalm@ti.com>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "msp@baylibre.com" <msp@baylibre.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt Trigger
+Thread-Topic: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt
+ Trigger
+Thread-Index: AQHcgMfRv8NLvcx+EE++zWoSs7wclA==
+Date: Thu, 8 Jan 2026 17:54:21 +0000
+Message-ID: <f4100ee2c655df5394322bb167f62dfd0a6587b8.camel@siemens.com>
+References:
+ <20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
+	 <979eb1054dbe116c2c8bb9920e94e3a93db5346c.camel@gmail.com>
+	 <DFHSDXTVL4AU.2OQ9VB9TEJ75G@baylibre.com>
+	 <6c90102537c3e3f1712538ca0b165cd54d71d8c2.camel@gmail.com>
+	 <20260108164024.fodfklk7xayh4dqj@authentic>
+In-Reply-To: <20260108164024.fodfklk7xayh4dqj@authentic>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|GVXPR10MB6323:EE_
+x-ms-office365-filtering-correlation-id: 7ff543b9-4d88-4b20-e203-08de4edef42b
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|366016|376014|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?bHYrMDRmNjNpYnBaR254YnlrcTRuSUVzTzRVeWF5NUdzb3M2VDV6bTd4WFc4?=
+ =?utf-8?B?b3M3ckZ4ZTNTb3J1cXlBek5KcFdsWkVRL2VrV20zUmVob0YvRjdndER3RHk5?=
+ =?utf-8?B?cXBOdjk5U0t3M0RaUCs2RzMxUFUyODIzcTRlTHhKdHVoenRDL1o4b1VGaWx2?=
+ =?utf-8?B?cjhscjJONkFicnpucGJNbFhjdTluNVFsdmRlODVnVG5YN0VJbE1ZZ0t1THk3?=
+ =?utf-8?B?alptWUNmMHhKLzhhRGY1bTZHTUJwR1Yzalg3K0dnVzRzQ2lHQXVqM0xxUHZz?=
+ =?utf-8?B?TFJqaFFaZUsxQmNzalBFRHYzMllDQjdEQlcrQTJ5MEV0YXZxUFdsL2RPeURa?=
+ =?utf-8?B?ZWhNWGVNSnRtVncwdUdVWmtMQS9pVzBNMG16VmFubWdZR2J6NzJjSHVpZFAv?=
+ =?utf-8?B?SHN5UWd0RVpxT09ELytucHRRc1h2VE1WenIwOUFyOUUwL2VXQnlyOTRId0RK?=
+ =?utf-8?B?ZTh2STlianJxQlhxaDBvbXBOb3FESnUvS0YySXNaa205ZHkrbWZyQlpCdUdp?=
+ =?utf-8?B?TTlhdGxHYTlxKzlobHh5cE8wUm5ocE1EdXA5bVcyRzFDRjhFcEdTZ1V3MkI1?=
+ =?utf-8?B?MlZqczJyTUwyZlc2dGl3dFBOUXhnNVNDOXE2dUo0aldjSFY5dy85Y2ZyOHl3?=
+ =?utf-8?B?aDhDbzZsMGxxN3doQWZHTUJETiswNUJYbFFwYjlqL3dnVzdiVXdGcUFCNndz?=
+ =?utf-8?B?T2JIU1RCUllxd3BicFplU044S2NaRi9ycGtUc2F0eVRPYTFIc1RkTWlyYUdl?=
+ =?utf-8?B?VnVjbVUybUcvano5MlRVZm9scmthWHViSjNZSnRxUVRteVZUVE9vYzFpa0VY?=
+ =?utf-8?B?dHFaSWZTK1pjSnFIbENKNSsvRmp1SEE3eU00bEc3bHRXUzNuV0M5eGZzbFNK?=
+ =?utf-8?B?OFZheGtKck9WZXc5QWVJb0tkcVI2MEE5QlN0OEpoVUV1NGJZdTZ4UU1ORGVz?=
+ =?utf-8?B?MDA4N09RMjA2YWxqajk5MDFkdmRkdldxbGhrY29xVFV0Mjg0a2NxdE5Kb3BD?=
+ =?utf-8?B?M3pxVFVyZ0xreDZSTFJDWG1HMklZZDIxODNUZU5Rdm1yaGFnaVpMT2RBblZw?=
+ =?utf-8?B?TTZlZEpEZjVldGwwenNCR081OXpUNS95WjgyY2hOL3VHZFFqT2RZdTg2WFVO?=
+ =?utf-8?B?Z3E3YlFPUHNkMncrbjRMRUFtNjF1ZklaUmVGV2J0UDArSWdkQTVDcmUycEtx?=
+ =?utf-8?B?TkRoVEMvTEV0QVBGdnJsMEp5bzVkcHZBVmxsVFBZZTRvdUVtaGhmSG1VQWlT?=
+ =?utf-8?B?TkE2VHFXZE45SUlzM2I0cUVqc0x0ODI0MFpIOEhmcTlNUVdsMHo0UnVMeTBa?=
+ =?utf-8?B?WXljdGg0Wm9jM0I3WWk4VVR3WHhOTTRCMmM3MW40MkdlSjFsWHFWZThURDdH?=
+ =?utf-8?B?MCtrZ01PamFPVEl2ZUtTZldiTWFpNXkvd2tXVmNZaUhKR1Jyem00ZTV4a1Bx?=
+ =?utf-8?B?Rks2V255eXl3Q0pOK2pqeDZmUW1JMGw0T2VRQThQaVQ2MTdUajJVT09FOFkr?=
+ =?utf-8?B?d1FtWjJTYWhtN3BVZ1MreisrK3VNVHljbGsrc0FiUUFlbUZheUM3Z0JZSEhN?=
+ =?utf-8?B?S0lXVXN1VzJOZmJHYUdGVERyQTU1MVczbThWQm9tZnhpZEE4ZHhhWC9kSzRi?=
+ =?utf-8?B?Ym9RUU1WMzdvSDF1ejFzS3VWSEZtNXN5WlZJK3ZENnJ5Q2p3NDQ1UUNMaXZE?=
+ =?utf-8?B?Y0JFV2Q2ZER4MmNSbGlKN0JHSVh0b0l5SEhRQnVJV0J5SHFWcXhCMDdMalB3?=
+ =?utf-8?B?Y2ZkcXkzQ3o3WnluTXdHT0Z4SSt3VW1XeWlzY1pOTktFMEIyZmlrS1p0RXRC?=
+ =?utf-8?B?M3MzOVBDNWVUSTNiZVNTR1pCU1JxbXp5eitPb1RRTFVlSjVTN0dTVUNZZkZO?=
+ =?utf-8?B?Y3pQZStoZlBQdGdvWGl5aHZxNlQ1L0xrNkZqNWhUOEUvYlVJRmwrV09XS3dv?=
+ =?utf-8?B?anV1RWIyd1RqUVVnKy9NR1JZeUVZTElLSVBSQ1FybEpFTFhtVm4wU0c2aDJ3?=
+ =?utf-8?B?ZFE0anNiNkVnPT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?Vk9hMU9KQmJWb2JzTnl6VHVZN2pydVQ3L2tGSUN5cldTZlIrcnFVUmlMWG14?=
+ =?utf-8?B?TGRYV1NjcndSZ3laSmx5Wk5NQWNCaDJxbmtycmdiNUtST0szWXZCaTBRM1ZO?=
+ =?utf-8?B?Vk1sVzFSK3JTZEM2UmdRZFdmRjdHdmNud21Sd2FEcW9qdGxoYnhxT3RlYUdZ?=
+ =?utf-8?B?aEtIanFOa3Q5bUVtd3dwbGErZFVGRm1zYm10enBsWmc3NTc3dDhpNHE0Q2xN?=
+ =?utf-8?B?K0JWUlJFZS8xMnN0WXUzWmJJaHhHM0VBVE5tQWV1QmEvRkhnSTlyaEZkV2RI?=
+ =?utf-8?B?WndvWjBPVUIyeCtPdWRkZU1PVnJNQjlJRU1nN3d1VWFmbWFFaW5rQk5Eeldp?=
+ =?utf-8?B?Q2I1T3ZRZWpuK3NWcG1FM1dsMGdOT0ViT0d5L2VpazU2dGppKzRzWVhKTUlV?=
+ =?utf-8?B?M3VwQVN0UHBWZHphbHRyV3hKdDBKMll2d0o5SkpjNTdxMmhwUlM3UEpuUWxL?=
+ =?utf-8?B?cVNmK09GbGRiSlBHSC9HRFFpem1Fb0h5L243UlhqSGhZd2pzenVYQ1UzNzhi?=
+ =?utf-8?B?OEVoc2xXTnBLY25UQUd2b3ZXZFl4cERrR3dOL3lVLzJQWGlNTXBDdFp4RkNY?=
+ =?utf-8?B?RkQwMExnOGR0em1YQWl4dzhkcXpBNkplbkJIZzEwai9vbWNYSWt4Sml2amFq?=
+ =?utf-8?B?dUYxY21GU3o5aHY4bjhpY3F5eENRemZyYW5pMXgwNnFzNG5wT1Z1YzVsRldN?=
+ =?utf-8?B?emRGTkd0VmlFWEhqaHYrb3hGbXZZcDJ6a2xnQ2o3bmt3TlJrS0lRRnl0L3Fv?=
+ =?utf-8?B?am80cUNIdTczTERVU1JXWnRYRnUwZWsvSVNnSFI1M2FVTUVpN1lqZy90N0lz?=
+ =?utf-8?B?UHhQblJUQy95UmhFR0U0R3JoaUJiRXM3dzR3NHl6bHZ1aEtVekZWcXBvNElV?=
+ =?utf-8?B?RTlSVHk0OTdMMUpQYnA0TThNV0twbFR0MTJPUUw5ak5ac1FNa29LNkhRejlI?=
+ =?utf-8?B?TGxkK2tRT3lDc3dDRlhRMm8ya2ErMUozcmE5amZPeGxFVFlFNjJ1ckM3OXlS?=
+ =?utf-8?B?OFVWbDBPR0ErdkpsUEkyT0lWRGc1VDBraFNESlZQTEJSNkxSTDY4bFlpSTdt?=
+ =?utf-8?B?UzhYclBOODdaM2U1MFRCRWMvSU5Ka1MxeUJsUmpMV1JrdXJUbmpITFYzYWVI?=
+ =?utf-8?B?dnVoYVJmaXNieHlWQ3Z1b0RmUjFvS04yNGgzbUFka1p3U00zNWxOTzNlMUw5?=
+ =?utf-8?B?ZE9zMjZFYnpBb05GamlPMDJBR3FzK0dZUE85MXdoZWdjN0dOT0k5eVgvZzhp?=
+ =?utf-8?B?aVkxbWd6TDZaanFoTFRxTS9YKzdXdG1TTm5wRWlDV2c5TDVDbytYMHZ2YjJU?=
+ =?utf-8?B?MGVBSkFpQkpLTllTZFJIeERjUGlYSHdIUEtGYjlnOFV3Q3JMeTdDdGVIcHM5?=
+ =?utf-8?B?UStVd1FsR2pJM3RBdm5nZ3lvSWxtYVNjcm5pZDFHWTZJNW9oTVZ3K1FQT2wx?=
+ =?utf-8?B?SDVXNncwMTNqeG9uT0FmSHdwNXVzVWE4N0xkVGE4eHgrVW5NMWp4Z3F6TGJl?=
+ =?utf-8?B?dnhzNWl3VVMvakREN3JWdmNXUnNZNE5iQjdrUmtpdlZXVHh2TUFQTEZIUkth?=
+ =?utf-8?B?QitYaWxJMmVvUUlWQzlGMFVNYmF4d0V4RStrbGtmeDJFMllXV1Z2YXRsN0g2?=
+ =?utf-8?B?TytlcUZSQ0pxWm5USG1pZllVNzJRQlVRaHF6bDFIOEFMdDRFTjNjYnhIdHln?=
+ =?utf-8?B?M004bk1IY1dHSjlxclN1bmhxUFN6b1lYR1dtQ1h3ZjRoQjVockNLWjhNVm5m?=
+ =?utf-8?B?QXF6bS8ybzJZd21VVkpMUC9TZXN5dHR1UVJhZjZTRzduaUQ4elR4REUrYUxC?=
+ =?utf-8?B?c1RJZHlQbktYQVZsTWRRd0VkZEVqY011SDl0M1Rnb1lVVHJNbmxxdU9TQ012?=
+ =?utf-8?B?WVFHemNkQjJtMnRRT09KaFlYdG14WWtmRWRkOTlYOTlOVGduRnFUN3hMQTQ3?=
+ =?utf-8?B?dmtrVnAxTWFORlVFbzFlWUVpMExQNDFCczNMdnM1R0x1aDhWWGlnejVvZE91?=
+ =?utf-8?B?VnRBL0xWZlhNYkl6TzNidmFHK29ieHc1OFFoZ2NjTStkWXc4bjR1MEVWZkZn?=
+ =?utf-8?B?cXk3QmpCMW9wOWlJTzBTMEh3cm92Y2s5bkxHMUtVdU0rdXBULzBrYzV5emZK?=
+ =?utf-8?B?MjZsbE9wcVU5TEdEQmVwdFJ0cmlmUFpxM3pVWnpyMTlta3g3MmtzVUhzcitC?=
+ =?utf-8?B?Qi9LYnNhZGtJZ2k5S2ZZNUkvbGJiQmxpSkRWdmhYY2FhUElOMjJZQUNFd3Qr?=
+ =?utf-8?B?ZlhwNmFSSU53ZDdPZGl4TUdzc2RpMzU2TlY5ekpPU2JkVXZ3MDY3UGNTTTRZ?=
+ =?utf-8?B?M2cwdTd5bXpIOE9NVFQ0MloxSlFGWWY2RnkvU2pCOFFVRXNKREVBNU1XcnpI?=
+ =?utf-8?Q?NeiJk0riVJxpVwk0=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <53EAEC7671248D4BB24DDB9D86444B96@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260108-dt-mtd-partitions-v1-10-124a53ce6279@kernel.org>
-References: <20260108-dt-mtd-partitions-v1-0-124a53ce6279@kernel.org>
-In-Reply-To: <20260108-dt-mtd-partitions-v1-0-124a53ce6279@kernel.org>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Brian Norris <computersforpeace@gmail.com>, 
- Kamal Dasu <kdasu.kdev@gmail.com>, 
- William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, 
- David Sterba <dsterba@suse.com>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>, 
- Marcus Folkesson <marcus.folkesson@gmail.com>, 
- Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@kernel.org>, 
- Hauke Mehrtens <hauke@hauke-m.de>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-X-Mailer: b4 0.15-dev
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ff543b9-4d88-4b20-e203-08de4edef42b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jan 2026 17:54:21.8992
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: e7bentU+DG2eHyIuHYeYuFmLw8FHyIBiR1DRrtRfzaoBKiWjoYZSRauq+1wXTsXU0FHSZkreOIPl3pVX6sJWIFAQW0pL8108Aj0rdYM1ykM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR10MB6323
 
-Several partition node bindings are just a compatible plus properties
-defined in partition.yaml. Move all of these bindings to a single schema
-file.
-
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../devicetree/bindings/mtd/partitions/binman.yaml | 53 -------------------
- .../mtd/partitions/brcm,bcm4908-partitions.yaml    |  6 +--
- .../mtd/partitions/brcm,bcm963xx-imagetag.txt      | 45 ----------------
- .../devicetree/bindings/mtd/partitions/seama.yaml  | 44 ----------------
- .../bindings/mtd/partitions/simple-partition.yaml  | 61 ++++++++++++++++++++++
- MAINTAINERS                                        |  5 --
- 6 files changed, 62 insertions(+), 152 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-deleted file mode 100644
-index bb4b08546184..000000000000
---- a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-+++ /dev/null
-@@ -1,53 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Binman entries
--
--description: |
--  This corresponds to a binman 'entry'. It is a single partition which holds
--  data of a defined type.
--
--  Binman uses the type to indicate what data file / type to place in the
--  partition. There are quite a number of binman-specific entry types, such as
--  section, fill and files, to be added later.
--
--maintainers:
--  - Simon Glass <sjg@chromium.org>
--
--allOf:
--  - $ref: /schemas/mtd/partitions/partition.yaml#
--
--properties:
--  compatible:
--    enum:
--      - u-boot       # u-boot.bin from U-Boot project
--      - tfa-bl31     # bl31.bin or bl31.elf from TF-A project
--
--required:
--  - compatible
--
--unevaluatedProperties: false
--
--examples:
--  - |
--    partitions {
--        compatible = "fixed-partitions";
--        #address-cells = <1>;
--        #size-cells = <1>;
--
--        partition@100000 {
--            compatible = "u-boot";
--            reg = <0x100000 0xf00000>;
--            align-size = <0x1000>;
--            align-end = <0x10000>;
--        };
--
--        partition@200000 {
--            compatible = "tfa-bl31";
--            reg = <0x200000 0x100000>;
--            align = <0x4000>;
--        };
--    };
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
-index 159b32d12803..a6edf145df57 100644
---- a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
-+++ b/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
-@@ -29,11 +29,7 @@ properties:
- 
- patternProperties:
-   "^partition@[0-9a-f]+$":
--    $ref: partition.yaml#
--    properties:
--      compatible:
--        const: brcm,bcm4908-firmware
--    unevaluatedProperties: false
-+    type: object
- 
- required:
-   - "#address-cells"
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm963xx-imagetag.txt b/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm963xx-imagetag.txt
-deleted file mode 100644
-index f8b7418ed817..000000000000
---- a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm963xx-imagetag.txt
-+++ /dev/null
-@@ -1,45 +0,0 @@
--Broadcom BCM963XX ImageTag Partition Container
--==============================================
--
--Some Broadcom BCM63XX SoC based devices contain additional, non discoverable
--partitions or non standard bootloader partition sizes. For these a mixed layout
--needs to be used with an explicit firmware partition.
--
--The BCM963XX ImageTag is a simple firmware header describing the offsets and
--sizes of the rootfs and kernel parts contained in the firmware.
--
--Required properties:
--- compatible : must be "brcm,bcm963xx-imagetag"
--
--Example:
--
--flash@1e000000 {
--	compatible = "cfi-flash";
--	reg = <0x1e000000 0x2000000>;
--	bank-width = <2>;
--
--	partitions {
--		compatible = "fixed-partitions";
--		#address-cells = <1>;
--		#size-cells = <1>;
--
--		cfe@0 {
--			reg = <0x0 0x10000>;
--			read-only;
--		};
--
--		firmware@10000 {
--			reg = <0x10000 0x7d0000>;
--			compatible = "brcm,bcm963xx-imagetag";
--		};
--
--		caldata@7e0000 {
--			reg = <0x7e0000 0x10000>;
--			read-only;
--		};
--
--		nvram@7f0000 {
--			reg = <0x7f0000 0x10000>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/seama.yaml b/Documentation/devicetree/bindings/mtd/partitions/seama.yaml
-deleted file mode 100644
-index 4af185204b4b..000000000000
---- a/Documentation/devicetree/bindings/mtd/partitions/seama.yaml
-+++ /dev/null
-@@ -1,44 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/mtd/partitions/seama.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Seattle Image Partitions
--
--description: The SEAttle iMAge (SEAMA) partition is a type of partition
--  used for NAND flash devices. This type of flash image is found in some
--  D-Link routers such as DIR-645, DIR-842, DIR-859, DIR-860L, DIR-885L,
--  DIR890L and DCH-M225, as well as in WD and NEC routers on the ath79
--  (MIPS), Broadcom BCM53xx, and RAMIPS platforms. This partition type
--  does not have children defined in the device tree, they need to be
--  detected by software.
--
--allOf:
--  - $ref: partition.yaml#
--
--maintainers:
--  - Linus Walleij <linusw@kernel.org>
--
--properties:
--  compatible:
--    const: seama
--
--required:
--  - compatible
--
--unevaluatedProperties: false
--
--examples:
--  - |
--    partitions {
--        compatible = "fixed-partitions";
--        #address-cells = <1>;
--        #size-cells = <1>;
--
--        partition@0 {
--            compatible = "seama";
--            reg = <0x0 0x800000>;
--            label = "firmware";
--        };
--    };
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/simple-partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/simple-partition.yaml
-new file mode 100644
-index 000000000000..14f5006c54a8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/partitions/simple-partition.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/partitions/simple-partition.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Simple partition types
-+
-+description:
-+  Simple partition types which only define a "compatible" value and no custom
-+  properties.
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+  - Simon Glass <sjg@chromium.org>
-+
-+allOf:
-+  - $ref: partition.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: brcm,bcm4908-firmware
-+        description:
-+          Broadcom BCM4908 CFE bootloader firmware partition
-+
-+      - const: brcm,bcm963xx-imagetag
-+        description:
-+          The BCM963XX ImageTag is a simple firmware header describing the
-+          offsets and sizes of the rootfs and kernel parts contained in the
-+          firmware.
-+
-+      - const: seama
-+        description:
-+          The SEAttle iMAge (SEAMA) partition is a type of partition used for
-+          NAND flash devices. This type of flash image is found in some D-Link
-+          routers such as DIR-645, DIR-842, DIR-859, DIR-860L, DIR-885L, DIR890L
-+          and DCH-M225, as well as in WD and NEC routers on the ath79 (MIPS),
-+          Broadcom BCM53xx, and RAMIPS platforms. This partition type does not
-+          have children defined in the device tree, they need to be detected by
-+          software.
-+
-+      - const: u-boot
-+        description: >
-+          u-boot.bin from U-Boot project.
-+
-+          This corresponds to a binman 'entry'. It is a single partition which holds
-+          data of a defined type.
-+
-+          Binman uses the type to indicate what data file / type to place in the
-+          partition. There are quite a number of binman-specific entry types, such as
-+          section, fill and files, to be added later.
-+
-+      - const: tfa-bl31
-+        description: >
-+          bl31.bin or bl31.elf from TF-A project
-+
-+          This corresponds to a binman 'entry'. It is a single partition which holds
-+          data of a defined type.
-+
-+unevaluatedProperties: false
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d4b97d7181b5..032287c16cd7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4429,11 +4429,6 @@ F:	Documentation/filesystems/bfs.rst
- F:	fs/bfs/
- F:	include/uapi/linux/bfs_fs.h
- 
--BINMAN
--M:	Simon Glass <sjg@chromium.org>
--S:	Supported
--F:	Documentation/devicetree/bindings/mtd/partitions/binman*
--
- BITMAP API
- M:	Yury Norov <yury.norov@gmail.com>
- R:	Rasmus Villemoes <linux@rasmusvillemoes.dk>
-
--- 
-2.51.0
-
+SGkgTmlzaGFudGghDQoNCj4gPiA+ID4gSSB0aGluayB3ZSB3b3VsZCBuZWVkIHRvIGRpc2N1c3Mg
+dGhpcyB3aXRoIFRJIHZpYSBvdXIgRkFFLCBiZWNhdXNlIHRoZSBjaGFuZ2UNCj4gPiA+ID4gaW4g
+cXVlc3Rpb24gaGFzIGJvdGggYmVlbiBkaXNjdXNzZWQgd2l0aCBmb3JtZXIgRkFFIGFuZCB0aGUg
+dGVjaG5pY2FsIHRlYW0NCj4gPiA+ID4gYmVoaW5kLCBhbmQgYWRvcHRlZCBpbiBUSSBTREsuDQo+
+ID4gPiA+IA0KPiA+ID4gPiBPciBoYXZlIHlvdSBhbHJlYWR5IGRpc2N1c2VkIHRoaXMgd2l0aCBj
+b3JyZXNwb25kaW5nIFRJIEhXIHRlYW0/DQo+ID4gPiA+IA0KPiA+ID4gPiBXaGljaCBoYXJkd2Fy
+ZSBpcyBhZmZlY3RlZCwgaXMgaXQgdGhlIG9mZmljaWFsIFNLLUFNNjJBLUxQPw0KPiA+ID4gPiBJ
+cyBNTUMyIHRoZSBTRC1jYXJkPw0KPiA+ID4gDQo+ID4gPiBJIG9ubHkgdGVzdGVkIG15IGFtNjJh
+IGJvYXJkIG9uIHUtYm9vdCB2MjAyNi4wMS4gSXQgaXMgYSBTSy1BTTYyQS1MUC4NCj4gPiA+IE1N
+QzIgaXMgdGhlIFNELWNhcmQgYW5kIG1tYzEgaW4gdGhlIGRldmljZXRyZWUuDQo+ID4gDQo+ID4g
+anVzdCB3YW50ZWQgdG8gbGV0IHlvdSBrbm93LCBJIHdhcyBhYmxlIHRvIHJlcHJvZHVjZSB0aGUg
+cHJvYmxlbXMgd2l0aCBTRA0KPiA+IGNhcmQgYWNjZXNzIHZpYSBNTUMyIHVuZGVyIExpbnV4IG9u
+IEFNNjIzIHdpdGggU1QgZW5hYmxlZC4NCj4gPiANCj4gPiBXZSB3aWxsIHNlZWsgY2xhcmlmaWNh
+dGlvbiBmcm9tIFRJIG9uIHdoeSB0aGlzIGhhcHBlbnMsIHdoaWNoIHBlcmlwaGVyYWxzDQo+ID4g
+YXJlIGFmZmVjdGVkIGFuZCB3aGF0IHNob3VsZCBiZSB0aGUgY291cnNlIG9mIGFjdGlvbnMuDQo+
+IA0KPiANCj4gSSBoYXZlIHBhc3NlZCB0aGlzIHVwIHRoZSBjaGFpbiBoZXJlIGF0IFRJLiBXaGF0
+IGNvbmZ1c2VzIHRoZSBoZWNrIG91dA0KDQpHcmVhdCwgdGhhbmtzIE5pc2hhbnRoIQ0KDQo+IG9m
+IG1lIGlzIHRoaXM6IGZyb20gYW4gaW50ZXJuYWwgZW1haWwgY2hhaW4gSSBhbSBwcml2eSB0bywg
+aSBhbSBiZWluZw0KPiB0b2xkIHRoYXQgInRoZSBTVF9FTiBiaXQgaW4gZXZlcnkgUEFEQ09ORklH
+IHJlZ2lzdGVyIHNob3VsZCBuZXZlciBiZQ0KPiBjaGFuZ2VkIGZyb20gaXRzIHBvd2VyLW9uIGRl
+ZmF1bHQgc3RhdGUgb2YgMGIxIiBhbmQgdGhlIGZhY3QgdGhhdCBMaW51eA0KDQp0aGF0J3MgdGhl
+IGluZm8gd2UndmUgZ290IGZyb20gRkFFIGluaXRpYWxseSBhbmQuLi4NCg0KPiBrZXJuZWwgaGFz
+IGJlZW4gc3RhYmxlIHdpdGggdGhlIHNldHRpbmcgZm9yIGEgbG9uZyBwZXJpb2QsIFNvIEkgYW0N
+Cg0KLi4uIHJlYWxpemVkIHRoYXQgTGludXggYWN0dWFsbHkgZGlkIHRoZSBleGFjdCBvcHBvc2l0
+ZSBvZiBpdCBzaW5jZSB0aGUgZmlyc3QgSzNzDQooQU02NSkgYW5kIHRob3VnaCAiT3VjaCEiDQoN
+ClRoYXQncyBob3cgSSBxdWlja2x5IGNhbWUgdXAgd2l0aCA1YjI3MjEyNzg4NGIgYW5kIHRob3Vn
+aCAiZmluYWxseSB3ZSBhcmUgc2FmZSEiDQoNCkFuZCAic3RhYmxlIiBpcyByZWxhdGl2ZSwgd2Un
+dmUgZm91bmQgaXQgb3V0IGJlY2F1c2UgR1BJT3MgZGlkIHByb2R1Y2UNCnNwdXJpb3VzIGludGVy
+cnVwdHMsIGl0J3MganVzdCB0aGF0IG1vc3Qgb2YgdGhlIGRyaXZlcnMgY2FuIGhhbmRsZSBpdA0K
+Z3JhY2VmdWxseS4gRXhjZXB0IGludGVycnVwdCBldmVudCBjb3VudGVycy4uLg0KDQo+IGNvbmZ1
+c2VkIHdoeSBVLUJvb3Qgd291bGQgc2hvdyB0aGlzIGluc3RhYmlsaXR5Li4gSSBkb24ndCBoYXZl
+IGFuc3dlcnMNCj4gYXQgdGhlIG1vbWVudC4gdW50aWwgd2UgY2xhcmlmeSB0aGUgcmVhc29uaW5n
+LCBJIGFtIGdvaW5nIHRvIGhhdmUgdG8NCj4gaG9sZCBvZmYgdGhpcyBnaXZlbiB0aGF0IGtlcm5l
+bCBiZWhhdmlvciBoYXMgbm90IHJlZ3Jlc3NlZCB0aGF0IEkgYW0NCj4gYXdhcmUgb2YuDQoNCklu
+ZGVlZCwgSSd2ZSByZXByb2R1Y2VkIGl0IHdpdGggQU02MjMgaW4gTGludXggWzFdLCBldmVuIHRo
+b3VnaCBpdCdzIG5vdA0KVEkgZXZhbHVhdGlvbiBib2FyZCwgaXQncyBvdXIgSFcuIFdlIGRvIGhh
+dmUgb3RoZXIgSFcgZGVzaWduIHdoZXJlIHRoZQ0KcHJvYmxlbSBkb2Vzbid0IG1hbmlmZXN0IGl0
+c2VsZiwgc28gU1Qgc2VlbXMgdG8gcHV0IE1NQyBvbiB0aGUgZWRnZSBzb21laG93Lg0KDQpJIGNh
+biB0cnkgdG8gcmV0ZXN0IFRJIEFNNjI1IGJhc2VkIEVLcyBhdCBzb21lIHBvaW50LCBidXQgaXQg
+Y291bGQgdGFrZQ0Kc29tZSBkYXlzIG9uIG15IHNpZGUuLi4NCg0KWzFdIGh0dHBzOi8vbG9yZS5r
+ZXJuZWwub3JnL2FsbC82YzkwMTAyNTM3YzNlM2YxNzEyNTM4Y2EwYjE2NWNkNTRkNzFkOGMyLmNh
+bWVsQGdtYWlsLmNvbS8NCg0KLS0gDQpBbGV4YW5kZXIgU3ZlcmRsaW4NClNpZW1lbnMgQUcNCnd3
+dy5zaWVtZW5zLmNvbQ0K
 
