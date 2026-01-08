@@ -1,553 +1,245 @@
-Return-Path: <devicetree+bounces-252553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C76FD00FA0
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 05:38:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3E1DD00FD3
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 05:43:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0AC49301FC37
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 04:38:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 50DFB3018D79
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 04:42:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0421728FFE7;
-	Thu,  8 Jan 2026 04:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F36C7299A87;
+	Thu,  8 Jan 2026 04:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Y+4sqjh7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sJUKcP/4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF750292918;
-	Thu,  8 Jan 2026 04:38:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58B6298CA5;
+	Thu,  8 Jan 2026 04:42:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767847085; cv=none; b=JVDcNT61IW2zxl+L+Fif8Mi9a4m3dI3KxspMRiUObmOYZUXtlDt6h2oWGx+1L9SP5QsJw/gQh5YE2dFbRwUHg95PGKRMCfK7mXdkWKVP2HKvuK1ARKir+Au/zZFVOh6MFOuybKt+z5Y3l9Gjf6WeYy0Czy9VuHwFVZzIlleTNNg=
+	t=1767847366; cv=none; b=oytFZuJaBDzYHbstu/jrfKIrHh30l9JS3/bHk7Zi/OWKvxewVfDc48++IZc/0pn0lMszNuxl4CWgl3kAu41KkzDmJbE/5Gv8wurpFrWuZLTz6THTbPXp3CGGkvwbat2Ps+yoRU5ZICpyzWrkOanF57BG0VtSFDBDiYZilIETlss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767847085; c=relaxed/simple;
-	bh=Sq+yu4MO9kmUqBD2/t11C9rA7w5EBSJw0BUX/3vkyYU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=RDU6eqZGt72d50/GF5GpJ/nK/M+xqPxql8WfvnbetGhc6VbUGGRWKlmbMi+2wc2nAV4HPlv3l8lDRx7SM/1vLQxqArO8jR0Qwt7/msdjCJNWsoUnkP+58kkFweCt2KHA6nXyBNK/JfFtQq5UT1mzFSMdiQqn0xZt7VDsc0gGHkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Y+4sqjh7; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1767847080;
-	bh=8w+4kS8oviIJ1/b1qQY5a5+JdYhA96gyY7sZoMxlfMA=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Y+4sqjh7NQpfRBHAH2pqggJOoc0Ka3hgEv8VB89PR6jhWoSGcIUvp2F9Nsw3AIBoi
-	 za1MHiStDrgGOUif7LAivufaHT5LBmrSufhMWecXMp/d/QAoJQVT0e36/riX1HHM4E
-	 6Xyf4xH3U/6ZUaphkUJqfHzpojV5jHcqrbWwlcue8EEqyZiYb4ePiFkKAWzucU68ke
-	 kDKoCHBa1gHpanV7R06mzD9b7ExkhFyGrLt10OBvnCqTmAyq2Nwk6/qTu2KH3Zj9G2
-	 7oXw+rTYU/mUuLvlagR/8rJ2HKQsJiNWpNSGceBipC3kmpSpd1wJJ9D79jxx4O/GqC
-	 zQnQzg3VS6MMA==
-Received: from [192.168.68.115] (unknown [180.150.112.60])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E1E4979F8C;
-	Thu,  8 Jan 2026 12:37:58 +0800 (AWST)
-Message-ID: <baa2e4e86b0b6851a56ef97501f6cad67d7970e6.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Kyle Hsieh <kylehsieh1995@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	 <joel@jms.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Thu, 08 Jan 2026 15:07:58 +1030
-In-Reply-To: <20251224-ventura2_initial_dts-v2-2-f193ba5d4073@gmail.com>
-References: <20251224-ventura2_initial_dts-v2-0-f193ba5d4073@gmail.com>
-	 <20251224-ventura2_initial_dts-v2-2-f193ba5d4073@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1767847366; c=relaxed/simple;
+	bh=PiDWB5DtELjwIteo2F2lQ3194uoAdX1J/wX6/XGSmK8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m1euaqKruyEnAcyXuGFHTkBpOrItKnIRmyRw0wMDDLk4NpGF6E5gBcSK6itXHZraAyzTNZLejieftzEvmbMXBdfLEm4NH4AMQiUpHv6qetE7DLRUdnCFyWd0rw7G9aCdRj/WmD7fJ7xe3rtmOj9JqkMeddCkTSu9Kxer8FGQgOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sJUKcP/4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2A92C116C6;
+	Thu,  8 Jan 2026 04:42:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767847366;
+	bh=PiDWB5DtELjwIteo2F2lQ3194uoAdX1J/wX6/XGSmK8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sJUKcP/4DVWZnjujo6yZZ0BeUWY3t5pnmkqIEB6jk8SPA35Syp6hMs7GH4IGmObWF
+	 ZEv5JKWc2q6LDJLAOGgZYMwotlfGcC++bM7RzZ8a8MZJEWl17NE2pTN11hgjY2jFYQ
+	 ZrK7YqFpem6VPnzChn6nwOyxFwLEczEBEQ5jPYz2/U/gf4EiQ7xLeRvIWwkxP9n9u5
+	 YDOAsHm3fOz3X883zjV9yQpXHmVORjTkfX737v9L2sPw005QLxbGfykdO94sdwnuqp
+	 7WEHUiyn5jE+1afDTDw9TOWC5NfnxmcybthLHwWM6TND2cQg1YHDExwlrih3ZGM9eI
+	 WG4ipq9lLhYTQ==
+Date: Thu, 8 Jan 2026 10:12:37 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>
+Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com, linux-arm-msm@vger.kernel.org, 
+	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Anjana Hari <anjana.hari@oss.qualcomm.com>, Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+Subject: Re: [PATCH V4 4/4] ufs: ufs-qcom: Add support for firmware-managed
+ resource abstraction
+Message-ID: <c2cb45n5gg2zlwwwzffjb2ycsksguhykoi7gghmaq3gfr3lf5t@6kvcteqptskq>
+References: <20260106134008.1969090-1-ram.dwivedi@oss.qualcomm.com>
+ <20260106134008.1969090-5-ram.dwivedi@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260106134008.1969090-5-ram.dwivedi@oss.qualcomm.com>
 
-On Wed, 2025-12-24 at 14:44 +0800, Kyle Hsieh wrote:
-> Add linux device tree entry related to the Meta(Facebook) rmc-node.
-> The system use an AT2600 BMC.
-> This node is named "ventura2".
->=20
-> Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
+On Tue, Jan 06, 2026 at 07:10:08PM +0530, Ram Kumar Dwivedi wrote:
+> Add a compatible string for SA8255p platforms where resources such as
+> PHY, clocks, regulators, and resets are managed by firmware through an
+> SCMI server. Use the SCMI power protocol to abstract these resources and
+> invoke power operations via runtime PM APIs (pm_runtime_get/put_sync).
+> 
+> Introduce vendor operations (vops) for SA8255p targets to enable SCMI-
+> based resource control. In this model, capabilities like clock scaling
+> and gating are not yet supported; these will be added incrementally.
+> 
+> Co-developed-by: Anjana Hari <anjana.hari@oss.qualcomm.com>
+> Signed-off-by: Anjana Hari <anjana.hari@oss.qualcomm.com>
+> Co-developed-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+> Signed-off-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+> Signed-off-by: Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>
 > ---
-> =C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0=C2=A0 1 +
-> =C2=A0.../dts/aspeed/aspeed-bmc-facebook-ventura2.dts=C2=A0=C2=A0=C2=A0 |=
- 2945 ++++++++++++++++++++
-> =C2=A02 files changed, 2946 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed=
-/Makefile
-> index 9adf9278dc94..6b96997629d4 100644
-> --- a/arch/arm/boot/dts/aspeed/Makefile
-> +++ b/arch/arm/boot/dts/aspeed/Makefile
-> @@ -32,6 +32,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
-> =C2=A0	aspeed-bmc-facebook-minipack.dtb \
-> =C2=A0	aspeed-bmc-facebook-santabarbara.dtb \
-> =C2=A0	aspeed-bmc-facebook-tiogapass.dtb \
-> +	aspeed-bmc-facebook-ventura2.dtb \
-> =C2=A0	aspeed-bmc-facebook-wedge40.dtb \
-> =C2=A0	aspeed-bmc-facebook-wedge100.dtb \
-> =C2=A0	aspeed-bmc-facebook-wedge400-data64.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts b/=
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
-> new file mode 100644
-> index 000000000000..e22bbaf519ea
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
-> @@ -0,0 +1,2945 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +// Copyright (c) 2023 Facebook Inc.
-> +/dts-v1/;
+>  drivers/ufs/host/ufs-qcom.c | 164 +++++++++++++++++++++++++++++++++++-
+>  drivers/ufs/host/ufs-qcom.h |   1 +
+>  2 files changed, 164 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
+> index 8ebee0cc5313..ddca7b344642 100644
+> --- a/drivers/ufs/host/ufs-qcom.c
+> +++ b/drivers/ufs/host/ufs-qcom.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/of.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+>  #include <linux/reset-controller.h>
+>  #include <linux/time.h>
+>  #include <linux/unaligned.h>
+> @@ -619,6 +620,27 @@ static int ufs_qcom_hce_enable_notify(struct ufs_hba *hba,
+>  	return err;
+>  }
+>  
+> +static int ufs_qcom_fw_managed_hce_enable_notify(struct ufs_hba *hba,
+> +						 enum ufs_notify_change_status status)
+> +{
+> +	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
 > +
-> +#include "aspeed-g6.dtsi"
-> +#include <dt-bindings/i2c/i2c.h>
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +	switch (status) {
+> +	case PRE_CHANGE:
+> +		ufs_qcom_select_unipro_mode(host);
+> +		break;
+> +	case POST_CHANGE:
+> +		ufs_qcom_enable_hw_clk_gating(hba);
+> +		ufs_qcom_ice_enable(host);
+> +		break;
+> +	default:
+> +		dev_err(hba->dev, "Invalid status %d\n", status);
+> +		return -EINVAL;
+> +	}
 > +
-> +/ {
-> +	model =3D "Facebook ventura2 RMC";
-> +	compatible =3D "facebook,ventura2-rmc", "aspeed,ast2600";
-> +	aliases {
-> +		serial4 =3D &uart5;
+> +	return 0;
+> +}
 > +
-> +	=09
+>  /**
+>   * ufs_qcom_cfg_timers - Configure ufs qcom cfg timers
+>   *
+> @@ -789,6 +811,38 @@ static int ufs_qcom_resume(struct ufs_hba *hba, enum ufs_pm_op pm_op)
+>  	return ufs_qcom_ice_resume(host);
+>  }
+>  
+> +static int ufs_qcom_fw_managed_suspend(struct ufs_hba *hba, enum ufs_pm_op pm_op,
+> +				       enum ufs_notify_change_status status)
+> +{
+> +	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
+> +
+> +	if (status == PRE_CHANGE)
+> +		return 0;
+> +
+> +	if (hba->spm_lvl != UFS_PM_LVL_5) {
+> +		dev_err(hba->dev, "Unsupported spm level %d\n", hba->spm_lvl);
+> +		return -EINVAL;
 
-*snip*
+After the sysfs change, do you still need this check?
 
-> +	};
+> +	}
 > +
-> +	chosen {
-> +		stdout-path =3D "serial4:57600n8";
-> +	};
+> +	pm_runtime_put_sync(hba->dev);
 > +
-> +	iio-hwmon {
-> +		compatible =3D "iio-hwmon";
-> +		io-channels =3D <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-> +		<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-> +		<&adc1 2>;
-> +	};
+> +	return ufs_qcom_ice_suspend(host);
+> +}
 > +
-> +	leds {
-> +		compatible =3D "gpio-leds";
+> +static int ufs_qcom_fw_managed_resume(struct ufs_hba *hba, enum ufs_pm_op pm_op)
+> +{
+> +	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
+> +	int err;
 > +
-> +		led-0 {
-> +			label =3D "bmc_heartbeat_amber";
-> +			gpios =3D <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_LOW>;
-> +			linux,default-trigger =3D "heartbeat";
-> +		};
+> +	err = pm_runtime_resume_and_get(hba->dev);
+> +	if (err) {
+> +		dev_err(hba->dev, "PM runtime resume failed: %d\n", err);
+> +		return err;
+> +	}
 > +
-> +		led-1 {
-> +			label =3D "fp_id_amber";
-> +			default-state =3D "off";
-> +			gpios =3D <&gpio0 ASPEED_GPIO(B, 5) GPIO_ACTIVE_HIGH>;
-> +		};
+> +	return ufs_qcom_ice_resume(host);
+> +}
 > +
-> +		led-2 {
-> +			label =3D "bmc_ready_noled";
-> +			default-state =3D "on";
-> +			gpios =3D <&gpio0 ASPEED_GPIO(B, 3) (GPIO_ACTIVE_HIGH|GPIO_TRANSITORY=
-)>;
-> +		};
+>  static void ufs_qcom_dev_ref_clk_ctrl(struct ufs_qcom_host *host, bool enable)
+>  {
+>  	if (host->dev_ref_clk_ctrl_mmio &&
+> @@ -1421,6 +1475,55 @@ static void ufs_qcom_exit(struct ufs_hba *hba)
+>  	phy_exit(host->generic_phy);
+>  }
+>  
+> +static int ufs_qcom_fw_managed_init(struct ufs_hba *hba)
+> +{
+> +	struct device *dev = hba->dev;
+> +	struct ufs_qcom_host *host;
+> +	int err;
 > +
-> +		led-3 {
-> +			label =3D "power_blue";
-> +			default-state =3D "off";
-> +			gpios =3D <&gpio0 ASPEED_GPIO(P, 4) GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
+> +	host = devm_kzalloc(dev, sizeof(*host), GFP_KERNEL);
+> +	if (!host)
+> +		return -ENOMEM;
 > +
-> +	fan_leds {
+> +	host->hba = hba;
+> +	ufshcd_set_variant(hba, host);
+> +
+> +	ufs_qcom_get_controller_revision(hba, &host->hw_ver.major,
+> +					 &host->hw_ver.minor, &host->hw_ver.step);
+> +
+> +	err = ufs_qcom_ice_init(host);
+> +	if (err)
+> +		goto out_variant_clear;
+> +
+> +	ufs_qcom_get_default_testbus_cfg(host);
+> +	err = ufs_qcom_testbus_config(host);
+> +	if (err)
+> +		/* Failure is non-fatal */
+> +		dev_warn(dev, "Failed to configure the testbus %d\n", err);
+> +
+> +	hba->caps |= UFSHCD_CAP_WB_EN;
+> +
+> +	ufs_qcom_advertise_quirks(hba);
+> +	host->hba->quirks &= ~UFSHCD_QUIRK_REINIT_AFTER_MAX_GEAR_SWITCH;
+> +
+> +	hba->pm_lvl_min = UFS_PM_LVL_5;
+> +	hba->spm_lvl = hba->rpm_lvl = hba->pm_lvl_min;
 
-Can you please order these unit-address-less nodes (iio-hwmon, leds,
-fan_leds, etc) alphabetically?
-
-> +		compatible =3D "gpio-leds";
-> +
-> +		led-0 {
-> +			label =3D "fcb0fan0_ledd1_blue";
-> +			default-state =3D "off";
-> +			gpios =3D <&fan_io_expander0 0 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-1 {
-> +			label =3D "fcb0fan1_ledd2_blue";
-> +			default-state =3D "off";
-> +			gpios =3D <&fan_io_expander0 1 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-2 {
-> +			label =3D "fcb0fan2_ledd3_blue";
-> +			default-state =3D "off";
-> +			gpios =3D <&fan_io_expander1 0 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-3 {
-> +			label =3D "fcb0fan3_ledd4_blue";
-> +			default-state =3D "off";
-> +			gpios =3D <&fan_io_expander1 1 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-4 {
-> +			label =3D "fcb0fan0_ledd1_amber";
-> +			default-state =3D "off";
-> +			gpios =3D <&fan_io_expander0 4 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-5 {
-> +			label =3D "fcb0fan1_ledd2_amber";
-> +			default-state =3D "off";
-> +			gpios =3D <&fan_io_expander0 5 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-6 {
-> +			label =3D "fcb0fan2_ledd3_amber";
-> +			default-state =3D "off";
-> +			gpios =3D <&fan_io_expander1 4 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		led-7 {
-> +			label =3D "fcb0fan3_ledd4_amber";
-> +			default-state =3D "off";
-> +			gpios =3D <&fan_io_expander1 5 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type =3D "memory";
-> +		reg =3D <0x80000000 0x80000000>;
-> +	};
-> +
-> +	p1v8_bmc_aux: regulator-p1v8-bmc-aux {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "p1v8_bmc_aux";
-> +		regulator-min-microvolt =3D <1800000>;
-> +		regulator-max-microvolt =3D <1800000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	p2v5_bmc_aux: regulator-p2v5-bmc-aux {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "p2v5_bmc_aux";
-> +		regulator-min-microvolt =3D <2500000>;
-> +		regulator-max-microvolt =3D <2500000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	p5v_dac_aux: regulator-p5v-bmc-aux {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "p5v_dac_aux";
-> +		regulator-min-microvolt =3D <5000000>;
-> +		regulator-max-microvolt =3D <5000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	spi1_gpio: spi {
-> +		compatible =3D "spi-gpio";
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		sck-gpios =3D <&gpio0 ASPEED_GPIO(Z, 3) GPIO_ACTIVE_HIGH>;
-> +		mosi-gpios =3D <&gpio0 ASPEED_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
-> +		miso-gpios =3D <&gpio0 ASPEED_GPIO(Z, 5) GPIO_ACTIVE_HIGH>;
-> +		cs-gpios =3D <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
-> +		num-chipselects =3D <1>;
-> +
-> +		tpm@0 {
-> +			compatible =3D "infineon,slb9670", "tcg,tpm_tis-spi";
-> +			spi-max-frequency =3D <33000000>;
-> +			reg =3D <0>;
-> +		};
-> +	};
-> +};
-> +
-> +&fmc {
-> +	status =3D "okay";
-> +	flash@0 {
-> +		status =3D "okay";
-> +		m25p,fast-read;
-> +		label =3D "bmc";
-> +		spi-max-frequency =3D <50000000>;
-> +		#include "openbmc-flash-layout-128.dtsi"
-> +	};
-> +	flash@1 {
-> +		status =3D "okay";
-> +		m25p,fast-read;
-> +		label =3D "alt-bmc";
-> +		spi-max-frequency =3D <50000000>;
-> +	};
-> +};
-> +
-> +&peci0 {
-> +	status =3D "okay";
-> +};
-> +
-> +&mac2 {
-
-Same for all the phandle-referenced nodes throughout: please order them
-alphabetically. Another possible ordering is in unit address order, but
-I prefer alphabetical in the dts because there's no unit address in
-sight (it's in the corresponding dtsi).
-
-> +	status =3D "okay";
-> +	phy-mode =3D "rmii";
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_rmii3_default>;
-> +	fixed-link {
-> +		speed =3D <100>;
-> +		full-duplex;
-> +	};
-
-Andrew Lunn asked for a comment justifying the fixed-link node in [1]
-and you said you'd add it in [2], but there's no comment? Can you
-please add it?
-
-[1]: https://lore.kernel.org/all/32ff7ca8-9cb0-4889-adb0-a6dae735630b@lunn.=
-ch/
-[2]: https://lore.kernel.org/all/CAF7HswMRrs9hwKo_uHCLMtx7+h46-DPEJRcEqu0-z=
-EG4CVvvjg@mail.gmail.com/
-
-> +};
-> +
-> +&mac3 {
-> +	status =3D "okay";
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_rmii4_default>;
-> +	use-ncsi;
-> +};
->=20
-
-*snip*
+hba->spm_lvl = hba->rpm_lvl = hba->pm_lvl_min = UFS_PM_LVL_5; ?
 
 > +
-> +&sgpiom0 {
-> +	status =3D "okay";
-> +	ngpios =3D <128>;
-> +	bus-frequency =3D <2000000>;
-> +	gpio-line-names =3D
-> +	/*"input pin","output pin"*/
-> +	/*A0 - A7*/
-> +	"power-chassis-good","FM_PLD_HEARTBEAT_LVC3_R",
-> +	"host0-ready","",
-> +	"CONTROL_VT2_SUPPLY1_CLOSE","FM_MDIO_SW_SEL_PLD",
-> +	"CONTROL_VT2_SUPPLY2_CLOSE","FM_88E6393X_BIN_UPDATE_EN_N",
-> +	"CONTROL_VT2_SUPPLY3_CLOSE","Sequence_TransFR_Alert",
-> +	"RETURN_CNTL1_FB","WATER_VALVE1_OPEN",
-> +	"RETURN_CNTL2_FB","WATER_VALVE2_OPEN",
-> +	"RETURN_CNTL3_FB","WATER_VALVE3_OPEN",
-> +	/*B0 - B7*/
-> +	"IT_STOP_PUMP_R_CPLD","WATER_VALVE1_CLOSE",
-> +	"IT_STOP_PUMP_SPARE_R_CPLD","WATER_VALVE2_CLOSE",
-> +	"IT_STOP_PUMP_2_R_CPLD","WATER_VALVE3_CLOSE",
-> +	"IT_STOP_PUMP_SPARE_2_R_CPLD","REPORT_VT2_SUPPLY1_CLOSE",
-> +	"RPU_2_READY_SPARE_PLD_R","REPORT_VT2_SUPPLY2_CLOSE",
-> +	"RPU_2_READY_PLD_R","REPORT_VT2_SUPPLY3_CLOSE",
-> +	"RPU_READY_SPARE_PLD_R","PCIE_SSD1_PRSNT_N",
-> +	"RPU_READY_PLD_R","",
-> +	/*C0 - C7*/
-> +	"IOEXP8_INT_N","",
-> +	"SUPPLY_CNTL1_FB","",
-> +	"SUPPLY_CNTL2_FB","",
-> +	"SUPPLY_CNTL3_FB","",
-> +	"PRSNT_TRAY1_TO_40_R_BUF_N","",
-> +	"PWRGD_TRAY1_TO_40_R_BUF","",
-> +	"SMALL_LEAK_TRAY1_TO_40_R_BUF_N","",
-> +	"LEAK_DETECT_TRAY1_TO_40_R_BUF_N","",
-> +	/*D0 - D7*/
-> +	"PRSNT_CANBUSP1_TRAY1_TO_32_N","",
-> +	"PWRGD_CANBUSP1_TRAY1_TO_32_PWROK","",
-> +	"SMALL_LEAK_CANBUSP1_TRAY1_TO_32_N","",
-> +	"LEAK_DETECT_CANBUSP1_TRAY1_TO_32_N","",
-> +	"PRSNT_CANBUSP2_TRAY1_TO_32_N","",
-> +	"PWRGD_CANBUSP2_TRAY1_TO_32_PWROK","",
-> +	"SMALL_LEAK_CANBUSP2_TRAY1_TO_32_N","",
-> +	"LEAK_DETECT_CANBUSP2_TRAY1_TO_32_N","",
-> +	/*E0 - E7*/
-> +	"PRSNT_CANBUSP3_TRAY1_TO_32_N","",
-> +	"PWRGD_CANBUSP3_TRAY1_TO_32_PWROK","",
-> +	"SMALL_LEAK_CANBUSP3_TRAY1_TO_32_N","",
-> +	"LEAK_DETECT_CANBUSP3_TRAY1_TO_32_N","",
-> +	"PRSNT_CANBUSP4_TRAY1_TO_32_N","",
-> +	"PWRGD_CANBUSP4_TRAY1_TO_32_PWROK","",
-> +	"SMALL_LEAK_CANBUSP4_TRAY1_TO_32_N","",
-> +	"LEAK_DETECT_CANBUSP4_TRAY1_TO_32_N","",
-> +	/*F0 - F7*/
-> +	"PRSNT_CANBUSP5_TRAY1_TO_32_N","",
-> +	"PWRGD_CANBUSP5_TRAY1_TO_32_PWROK","",
-> +	"SMALL_LEAK_CANBUSP5_TRAY1_TO_32_N","",
-> +	"LEAK_DETECT_CANBUSP5_TRAY1_TO_32_N","",
-> +	"PRSNT_CANBUSP6_TRAY1_TO_32_N","",
-> +	"PWRGD_CANBUSP6_TRAY1_TO_32_PWROK","",
-> +	"SMALL_LEAK_CANBUSP6_TRAY1_TO_32_N","",
-> +	"LEAK_DETECT_CANBUSP6_TRAY1_TO_32_N","",
-> +	/*G0 - G7*/
-> +	"PRSNT_CANBUSP7_TRAY1_TO_32_N","",
-> +	"PWRGD_CANBUSP7_TRAY1_TO_32_PWROK","",
-> +	"SMALL_LEAK_CANBUSP7_TRAY1_TO_32_N","",
-> +	"LEAK_DETECT_CANBUSP7_TRAY1_TO_32_N","",
-> +	"PRSNT_CANBUSP8_TRAY1_TO_32_N","",
-> +	"PWRGD_CANBUSP8_TRAY1_TO_32_PWROK","",
-> +	"SMALL_LEAK_CANBUSP8_TRAY1_TO_32_N","",
-> +	"LEAK_DETECT_CANBUSP8_TRAY1_TO_32_N","",
-> +	/*H0 - H7*/
-> +	"wCHASSIS0_LEAK_Q_N_R","",
-> +	"wCHASSIS1_LEAK_Q_N_R","",
-> +	"wCHASSIS2_LEAK_Q_N_R","",
-> +	"wCHASSIS3_LEAK_Q_N_R","",
-> +	"wCHASSIS4_LEAK_Q_N_R","",
-> +	"wCHASSIS5_LEAK_Q_N_R","",
-> +	"wCHASSIS6_LEAK_Q_N_R","",
-> +	"wCHASSIS7_LEAK_Q_N_R","",
-> +	/*I0 - I7*/
-> +	"wCHASSIS8_LEAK_Q_N_R","",
-> +	"wCHASSIS9_LEAK_Q_N_R","",
-> +	"wCHASSIS10_LEAK_Q_N_R","",
-> +	"wCHASSIS11_LEAK_Q_N_R","",
-> +	"wAALC_RPU_READY","",
-
-Out of curiosity, what's going on with the lower-case 'w' prefix here
-(and again below)?
-
-> +	"","",
-> +	"","",
-> +	"","",
-> +	/*J0 - J7*/
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	/*K0 - K7*/
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	/*L0 - L7*/
-> +	"wIT_GEAR_RPU_2_LINK_PRSNT_SPARE_N_R","",
-> +	"wIT_GEAR_RPU_2_LINK_PRSNT_N_R","",
-> +	"wIT_GEAR_RPU_LINK_PRSNT_SPARE_N_R","",
-> +	"wIT_GEAR_RPU_LINK_PRSNT_N_R","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	/*M0 - M7*/
-> +	"","",
-> +	"","",
-> +	"wPRSNT_SENSOR_N","",
-> +	"wPRSNT3_VT2_PLD_N","",
-> +	"wPRSNT2_VT2_PLD_N","",
-> +	"wPRSNT1_VT2_PLD_N","",
-> +	"wPRSNT3_RETURN_PLD_N","",
-> +	"wPRSNT2_RETURN_PLD_N","",
-> +	/*N0 - N7*/
-> +	"wPRSNT1_RETURN_PLD_N","",
-> +	"wPRSNT3_SUPPLY_PLD_N","",
-> +	"wPRSNT2_SUPPLY_PLD_N","",
-> +	"wPRSNT1_SUPPLY_PLD_N","",
-> +	"wPRSNT_LEAK11_SENSOR_R_PLD_N","",
-> +	"wPRSNT_LEAK10_SENSOR_R_PLD_N","",
-> +	"wPRSNT_LEAK9_SENSOR_R_PLD_N","",
-> +	"wPRSNT_LEAK8_SENSOR_R_PLD_N","",
-> +	/*O0 - O7*/
-> +	"wPRSNT_LEAK7_SENSOR_R_PLD_N","",
-> +	"wPRSNT_LEAK6_SENSOR_R_PLD_N","",
-> +	"wPRSNT_LEAK5_SENSOR_R_PLD_N","",
-> +	"wPRSNT_LEAK4_SENSOR_R_PLD_N","",
-> +	"wPRSNT_LEAK3_SENSOR_R_PLD_N","",
-> +	"wPRSNT_LEAK2_SENSOR_R_PLD_N","",
-> +	"wPRSNT_LEAK1_SENSOR_R_PLD_N","",
-> +	"wPRSNT_LEAK0_SENSOR_R_PLD_N","",
-> +	/*P0 - P7*/
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","",
-> +	"","";
-> +};
->=20
->=20
-
-*snip*
-
+> +	ufs_qcom_set_host_params(hba);
+> +	ufs_qcom_parse_gear_limits(hba);
 > +
-> +&i2c6 {
-> +	status =3D "okay";
+> +	return 0;
 > +
-> +	eeprom@50 {
-> +		compatible =3D "atmel,24c64";
-> +		reg =3D <0x50>;
-> +	};
+> +out_variant_clear:
+> +	ufshcd_set_variant(hba, NULL);
+> +	return err;
+> +}
 > +
-> +	io_expander0: gpio@20 {
-> +		compatible =3D "nxp,pca9555";
-> +		reg =3D <0x20>;
-> +		gpio-controller;
-> +		#gpio-cells =3D <2>;
-> +	};
+> +static void ufs_qcom_fw_managed_exit(struct ufs_hba *hba)
+> +{
+> +	pm_runtime_put_sync(hba->dev);
+> +}
 > +
-> +	io_expander1: gpio@21 {
-> +		compatible =3D "nxp,pca9555";
-> +		reg =3D <0x21>;
-> +		gpio-controller;
-> +		#gpio-cells =3D <2>;
-> +	};
-> +
-> +	io_expander2: gpio@22 {
-> +		compatible =3D "nxp,pca9555";
-> +		reg =3D <0x22>;
-> +		gpio-controller;
-> +		#gpio-cells =3D <2>;
-> +	};
-> +
-> +	io_expander7: gpio@23 {
-> +		compatible =3D "nxp,pca9555";
-> +		reg =3D <0x23>;
-> +		gpio-controller;
-> +		#gpio-cells =3D <2>;
-> +	};
-> +
-> +	rtc@51 {
-> +		compatible =3D "nxp,pcf8563";
-> +		reg =3D <0x51>;
-> +	};
-> +};
-> +
+>  /**
+>   * ufs_qcom_set_clk_40ns_cycles - Configure 40ns clk cycles
+>   *
+> @@ -1950,6 +2053,39 @@ static int ufs_qcom_device_reset(struct ufs_hba *hba)
+>  	return 0;
+>  }
+>  
+> +/**
+> + * ufs_qcom_fw_managed_device_reset - Reset UFS device under FW-managed design
+> + * @hba: pointer to UFS host bus adapter
+> + *
+> + * In the firmware-managed reset model, cold boot power-on is handled
+> + * automatically by the PM domain framework during SCMI protocol init,
 
-*snip*
+No. genpd handles the power on for the power domain before UFS controller driver
+probes. SCMI protocol init has nothing to do with it.
 
-> +
-> +&io_expander0 {
+- Mani
 
-io_expander0 is a label you've defined in this same dts, just above.
-Please just include the properties in the original node directly, don't
-separate them like this.
-
-Same applies to all other cases of the same pattern.
-
-Andrew
-
-> +	gpio-line-names =3D
-> +	"RST_POE_BMC_N", "POE_DISABLE_BMC_N_R",
-> +	"RST_FT4232_1_BMC_N_R", "RST_FT4232_2_BMC_N_R",
-> +	"RST_FT4232_3_BMC_N_R", "PRSNT_FANBP_0_PWR_N",
-> +	"PRSNT_FANBP_0_SIG_N", "PRSNT_POE_PWR_N",
-> +	"PRSNT_POE_SIG_N", "IRQ_POE_BMC_N_R",
-> +	"PWRGD_P3V3_ISO_POE_BMC_R", "88E6393X_INT_N_R",
-> +	"P48V_HSC_ALERT_N", "SMB_TMC75_TEMP_ALERT_N_R",
-> +	"DEV_DIS_N", "PCI_DIS_N";
-> +};
-> +
+-- 
+மணிவண்ணன் சதாசிவம்
 
