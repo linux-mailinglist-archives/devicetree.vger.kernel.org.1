@@ -1,131 +1,118 @@
-Return-Path: <devicetree+bounces-252620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B59D1D01FD1
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:59:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B93DED01E2E
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:43:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D1486377883E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:51:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 554D4340C085
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31BEC3587A8;
-	Thu,  8 Jan 2026 07:48:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2179537BE63;
+	Thu,  8 Jan 2026 07:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Y8+YIwoH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nkZt0S9C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49228.qiye.163.com (mail-m49228.qiye.163.com [45.254.49.228])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB9A357718;
-	Thu,  8 Jan 2026 07:48:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.228
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3C9637BE8B
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 07:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767858507; cv=none; b=pKD2Zi0S16YqvkWE6poeMAM3WQy3XM8TSZdgjWbpdq3IhPzg6IURoUo7E9pM33KzuVfib+ZsBbYB4y35IthaIePFgH2pWxQVVzxxUPDlLHD4xGBr5yutLL1kaaX9x/6jGS3QPwe/ekyKxg+dtnYBm11MTUU9cF3cgRRPpNanz/A=
+	t=1767858640; cv=none; b=MA2z0xcdeCHFlVEKy77BeX4WobtMs8l3W6013a3v+wP6AfFeP0YnXmlNtcnUudaseO+PbHp8gc+JuAiiOkU3KCMeGz1xfcSkaeD5xki+8N3EbKao0D8d0LtCo9U+U0E+TjY7LB34dHOaIXQgDdnNo+iQ7IufFKIiC5xw/b+aVXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767858507; c=relaxed/simple;
-	bh=WIvm+g/bCBKAi01Sy7PTELuPpRKOvrB16zahvFvnfvQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S+NviMLEcJ5eu4HTEkbzFJDq64DuMXQXcNTEZmPQNUXmSNtEYe6IFZ+LoYaIVkwzMkAXeO5O8cF+KgeKv7HOnilLqQW6IgqCQrwgsSNixb+HjbuAoQgBw+6psqsG3mYHknHI24ob7xAEe2T20sLWYbOHEiOE0Zgln7g0hsYCXgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Y8+YIwoH; arc=none smtp.client-ip=45.254.49.228
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2fed15929;
-	Thu, 8 Jan 2026 15:42:55 +0800 (GMT+08:00)
-Message-ID: <a545fec0-cb30-489a-b5e6-4ee87dcab41c@rock-chips.com>
-Date: Thu, 8 Jan 2026 15:42:54 +0800
+	s=arc-20240116; t=1767858640; c=relaxed/simple;
+	bh=kRy7DNw+fulZHF6KL6RSdTY4oFE4rQkK/b/b5F2abBg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=THBCjbVkDXm/KS8UeBFQ6cr2zlmVGS9cBVOcx7T+9/9E7SJnAmSNYPv1Cz8ceXBC4AKNNzaW5gNGl165CD2Eje46Ev5VUba1nOqArHd0FhWyLzS5NrRtgHNoeVYw1+eZOPDjTsFqZAWKF/nAc1KIDB3zLksy5+SXDAlhdfJbdKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nkZt0S9C; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47d59da3d81so7570215e9.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 23:50:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767858630; x=1768463430; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VFk3K6PIfFKKeMfxjlBdSwZqQED8HkDY5r3p5jOG4Bk=;
+        b=nkZt0S9CNQkM4KswXRGOt4dFk0qApsuwZeMjTupOt+g8g4vkmVMILICnhmhm+AbFaB
+         xYY/GdUL+1klkQIRVTK9LGvspHyviczRqLYaeel2XWUpDyeSynvN3SmXkiBjlwawee0Y
+         zTVBy7V71cSQ+3WgAKqFGYjObbjLFC2Q9b/C1o90Z2s9oES4+SILRElc/1PUgMhmjbVS
+         K39ker4397iZyl6aaDuVftZvyr09j1HX69Etsu1kKjr2/iwswIY0rEPWs0Ie1oNmbqED
+         nD0zMQqy/33Uhbhfor6NbQmTIayJ82lYwJDyMOs0B80hllJhuVdW5t20sB/CietXBlWL
+         296A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767858630; x=1768463430;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VFk3K6PIfFKKeMfxjlBdSwZqQED8HkDY5r3p5jOG4Bk=;
+        b=O21KI/PUj471ET+rT+d6Gz29BgM5KV5zXnNZhP0uFjECjPv04Hxw6WNgnGsW9QKtrz
+         VQ7L4jz8Ga4eJzAzDAmMt5dflF4gU/Ctn8qLj9eCCF3BuA2wRWrTB4JV9meLnN6brvEo
+         CAOtPTmej278Gia3EXTdNSD7nVr3nGfCO+s5RXtYrx1IncMxtX4z8fPVQnVSXRVrPxq1
+         +FTALJdkf3ooGAE+Y3CkdlzMFhskemNTDU8hHiZOfLb06bnk70iey8GngRq9lYVsMD12
+         NdYyDmZD60wjWGEuhJfTw4mM7s/h1uuoS4CdlOFk8SRg3wObBk0jV2ACJPi2XekahzKf
+         sP+g==
+X-Forwarded-Encrypted: i=1; AJvYcCVOlgGqwJ1xrM4jL86Pm9pXFKElHZWgHCqgqB2N+iFYwXXWughbPTfCn1FhiOuvvgxRyV9ONv3gZEU8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+f7CY6gmyRVKKezMCHGowa4Ij/eWxRYDNRO2bu/O46KeG7poE
+	ofPrhHQDfmdonf+ZVP2B3Hku1vnsKu/YGY4I8JxCHTmWTHyg7Q2L+2Qi
+X-Gm-Gg: AY/fxX5EL7rHdUxUY7pSflzjfgU1nALi8bVdQfM03BsQ84liTbnO66Tb2URxb1BqWgZ
+	gsAavOic7vnf64cDQ8z099EANXIIC5Acr/dMdBCTIrPLn3RtuYHuSVQixt1ipIApjNaGeWIXtIw
+	wz8axrdm1y/Th6U7hINbtD9NYtkK7JUyM7aWYiygz2hex5e/ySZD4DJG0e1HRpIobonqgD+Dp3q
+	Id2+bBf+pDzNNHuHQgLxkT5tX2fhQ4CG2vPLHs+YoXsFobMTvF73JZEIv7Xvk1altcDbd1tQMe1
+	e8NGOwbYrIv1ot92riTLhjRb9Mtt5UqPuwKcHNgBIJrWHwofjD330oYd4bU2MATN1b6wD4TXuwC
+	WFXtyyHYLnXaTei3GqXD4B/8X1ERfQKCj6DFKY1leIM7PKXyhIOp3VXWrZljY7u6+yKYpP2IMPw
+	oY4K6KWaP7oJKTBdJ7YZuHSRmne2EbRXS98fdPc+kcuXWXRC6INNKa4mHjKITSawPq
+X-Google-Smtp-Source: AGHT+IFyoRt2dNQOmJxXYPgtoHsx+IUK5C9FJ9EM4O+p7P4XzBFb87PUvms2YVvujmSmeqx+2jAPFg==
+X-Received: by 2002:a05:600c:1792:b0:47d:7004:f488 with SMTP id 5b1f17b1804b1-47d7f6163f8mr74389625e9.10.1767858630018;
+        Wed, 07 Jan 2026 23:50:30 -0800 (PST)
+Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd0dad8bsm15257199f8f.8.2026.01.07.23.50.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jan 2026 23:50:29 -0800 (PST)
+Date: Thu, 8 Jan 2026 07:50:28 +0000
+From: Stafford Horne <shorne@gmail.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jonas Bonn <jonas@southpole.se>,
+	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] openrisc: dts: Add de0 nano config and devicetree
+Message-ID: <aV9hxM_YnV5P-l_R@antec>
+References: <20251217080843.70621-1-shorne@gmail.com>
+ <20251217080843.70621-3-shorne@gmail.com>
+ <CAMuHMdVCY=5UypK65Ver6UZM_m6DZuw9mhfANMx4+Y6PgNAdmA@mail.gmail.com>
+ <aVi0W6syzK6buL_v@antec>
+ <CAMuHMdUP3z4Os=3XC6Nuzx8QAap=LTcuJrGZsy71GO=NFTOjZg@mail.gmail.com>
+ <aVzb6pStdagr3IUX@antec>
+ <CAMuHMdXr7H_M-QO-3ty4mpycMfDHsxrDWejjw7u3RPcUqioapw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
-To: Alexey Charkov <alchark@gmail.com>, Andrew Lunn <andrew@lunn.ch>
-Cc: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Quentin Schulz <quentin.schulz@cherry.de>,
- Kever Yang <kever.yang@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>,
- John Clark <inindev@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
- Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Michael Riesch <michael.riesch@collabora.com>,
- Peter Robinson <pbrobinson@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260107070322.323-1-kernel@airkyi.com>
- <20260107070322.323-3-kernel@airkyi.com>
- <b5a3470c-aa03-42d0-a575-b705f709f8e6@lunn.ch>
- <CABjd4YzsjZXe16XWgrHRG5shNA_DQJF45i1roahvfAfV4xdU0Q@mail.gmail.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <CABjd4YzsjZXe16XWgrHRG5shNA_DQJF45i1roahvfAfV4xdU0Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9b9c8efda503abkunm2d36d937104d66
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh4dGFZNGU1DGExCHR0dQx5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUJNS0
-	pVSktLVUtZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=Y8+YIwoHc856GmeEMveVCfqT8KiQX1sselQNiwuq8B+h7JxTb9Q6cm+VsiJNeOGmlbJah+Ts55e0jhCk4PbqtrqwdlQcC0zWYdd+gcWRlE3aMubiYhePGU1YnPFkx4+hkYAussZWBv/V+aPUBgMS0yjHUgQaMbwRhZ2PCMXTLAA=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=V9rWjfplznBvilASYj5bEBiyrUdrnhQnLhBnfs2cv1g=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXr7H_M-QO-3ty4mpycMfDHsxrDWejjw7u3RPcUqioapw@mail.gmail.com>
 
-Hello Alexey, Andrew,
-
-On 1/8/2026 2:53 PM, Alexey Charkov wrote:
-> On Wed, Jan 7, 2026 at 10:18 PM Andrew Lunn <andrew@lunn.ch> wrote:
->>
->>> +&gmac0 {
->>> +     clock_in_out = "output";
->>> +     phy-mode = "rgmii-rxid";
->>
->> rgmii-rxid is odd. Does the PCB really have an extra long TX clock
->> line, but a short RX clock line?
->>
->> Try changing this to rgmii-id, and drop the tx_delay property.
+On Tue, Jan 06, 2026 at 11:18:01AM +0100, Geert Uytterhoeven wrote:
+> Hi Stafford,
 > 
-> Actually it would be great if Rockchip could clarify the delay
-> duration introduced by a single delay element in GMAC-IOMUX delay
-> lines, which are controlled in the GMAC driver by the {tx,rx}_delay
-> properties. Maybe we could then switch to using
-> {tx,rx}_internal_delay_ps for fine-tuning the delays on the GMAC side
-> as envisaged in DT bindings [1], and use phy-mode = "rgmii-id"
-> throughout. Chaoyi, any chance you could ask around in your hardware
-> team?
+> On Tue, 6 Jan 2026 at 10:54, Stafford Horne <shorne@gmail.com> wrote:
+> > Just curious, Do you have a quick way to enable out of tree debug patches i.e.
+> > to dts and defconfigs?
 > 
-> Currently though removing the delays at GMAC side altogether causes
-> unstable link operation - see [2] for example.
-> 
-> [1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L342-L347
-> [2] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commit/372f3e9ae62cc62cdf2543391ea57be6bb548a0c
+> Keep them in your local working branch, and rebase that when upgrading?
+> /me has +1200 local patches :-(
 
-Sorry, this problem has been discussed many times before. It's because 
-the gmac on the Rockchip platform currently relies on setting the 
-corresponding delay via phy-mode [3].
+I see :)
 
-[3] https://lore.kernel.org/all/mqoyjn7mnq6tmt6n6oev4wa3herjaxlupml2fmcampwiajvj4a@r5zs4d3jdm5p/
+I am going to play with mini.config's using KCONFIG_ALLCONFIG.
 
-The delay introduced by the delay line is not absolute. In reality,
-it depends on factors such as the chip's design and process technology.
-
-And for RK3576, you can assume that:
-	
-	time(ns) = 0.0579 * delay_line_count + 0.105
-
-For example, tx_delay = <0x20> means:
-
-	time = 0.0579 * 0x20 + 0.105 ns = 1.9578 ns
-
-And I believe {tx,rx}_internal_delay_ps is indeed a good idea. 
-I'll try to add them in v3. Thanks.
-
--- 
-Best, 
-Chaoyi
+-Stafford
 
