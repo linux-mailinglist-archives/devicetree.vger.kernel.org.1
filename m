@@ -1,142 +1,115 @@
-Return-Path: <devicetree+bounces-252540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47E9ED00DEF
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 04:31:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F23D00F24
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 04:57:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A50103011FBD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 03:28:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 09D8C3012BE7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 03:54:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66752773F9;
-	Thu,  8 Jan 2026 03:28:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cu+/GE6g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55F0326E70E;
+	Thu,  8 Jan 2026 03:54:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411CD19C546
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 03:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6A4E2868AD
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 03:54:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767842895; cv=none; b=g07/OjCg9ih2RiVRuC8Uzh+Yh3Af80KZ6x/AVcdP1SR/oyrtPz1Y3M8nPAAWXP7wyP+RF1J3mA8I7/yb8QOnJ4Ody+RzbSAImysr5vrdK1EY7vVPhSJQ60ZDY8VinpAs0TUfJW9sW4MnJqiC8DDS9siV6jNo0IpMqYnO9wGJUaU=
+	t=1767844447; cv=none; b=TYBH/c4E9RoIyc+wGZ5YwpWMtMstlhkA+d/KjQjITGSwNq1d6DESovuUDQd8NMmeQ1sTYT0xR7zo4Hu8DGZhtTMyt5dl6yQH/TYaRVUaqpAyusBd6ey+aZwKME/OpENzzXo6D8No1+NLaOMayBa4oljaNgRiHb2zfFiszX14EuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767842895; c=relaxed/simple;
-	bh=VGk454ttZIdzpsHMCIxZieV3Y0Q+sd63A46nmYZNR9M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ruGeSoyPy0mjE26KYOHmCQ3kTBUcRxFG+rrEexAaG/BUWXujaBXT5qFp4InPVZopxgiu5Bj+/0L6oxcOrpuHu3eaaOkosyMq0UDsEwbEvjNPOMIRiLoPMRkR4vfZl6tRzKYo9y7T4QkvoNrJ88mpa2uRAD/ATX4yOZhy3KHFwX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cu+/GE6g; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4ee14ba3d9cso28566611cf.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 19:28:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767842893; x=1768447693; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vofKUnypKUICeBkcdQzN2mTABpjUkxfzwfH7Xyfr7fo=;
-        b=Cu+/GE6gQ/VWFSZ9sgXaSJoBGq81/pcafRxekyHJO9dCL97P5+wmyQRXqBgvxYfxnP
-         q44CdN0zO2/yaPYCJDfXCj14+TW56YghiERkOgU0jnQ92eRqh83O/zeq+AfiEEWpg1dV
-         GeoRO0sqx4JrAwpvz9KyDJx46eHY/c4Rauz9QZScu3MklURpASuSvT1a7UBAsa2GW85+
-         SoaGH9xWnghMyLRiSqAuz2wJAFC9Gcbh8s12s2T1Gz5+Njjk0JNEGA8fToN+a+yIYY54
-         k0NpRzIO0uVPDva8HHznlQFZPUm3S/alDj/TqUsfm2yd/xgXYLRbpWgFSEVkeSBZGayZ
-         QICQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767842893; x=1768447693;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vofKUnypKUICeBkcdQzN2mTABpjUkxfzwfH7Xyfr7fo=;
-        b=kf6I/oYUOwvgwGbg5chWmG7jZy6qWGwLig/aQ6+P61Gz59ZZvuz3/AI+MV8OVXh2jw
-         21qLDTr04RrSYFJ59jgZ4vXHl7LelKUnk/U/xMbcPDvoioI0OD3wAR3A7MAo9lGXIBod
-         jIJfk7Ag+G0zE0muUyM/LbpK7TjCDV6ZK9BqbeRsgYr3wO4CbxKodov4DindFN+Z0PRd
-         sXkx4Nhf/ela5NHZ/Q304wX+ybJQNlHYOlzpH8I31/U3t2T88m4fXs6ZmfGSqxeg095k
-         CRE9jUzxwda5yxBW8TeBlNeLp15v6QrI8NBHNcrPnb08pdAXuDWm3s3oaMBFGeqeMmxg
-         5j9g==
-X-Forwarded-Encrypted: i=1; AJvYcCUGn2Jf6PeFK9HGPqEITKKYKjKN9r9uivha+3lp9xynNr4GfoF7Dkhlqfnrb94yoDAhOcksU4DLL4Bp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZHxM7OyogrD3d6LI+oV17EWfkWr+tHxrKH+X5aancIi1MGYkv
-	dFk4+LUt0kPAabuFWzWTYzktxiABlKdW2aGST+O/SyhJhE+AJDPJ+ZzE
-X-Gm-Gg: AY/fxX7Xh38HeX8M5aaZe31VJCL5Hpg+sP7y8rkxZQ5XAJ7zVfpeBYmiNxNLVt3a8r5
-	D/+biXwUc3K5C64HKi1NICj1JZGLbwqIS4iYMX/WGOdzTatIXqmfNVNtzAD4R1PU4jOEqRJvp23
-	Qy/d7rpb/iDtiYr+saLnXnZWEAbq2UlRMVoEVyUDB+Dgz0+kbG3iWjF0u9pLe8xV4/mz9HEm7Vj
-	fw7Z1TmSFcNjHnz/YrNr+8lXC77gV1nwFSArO4NP3fmUC5QfnPzFNXC6Mf0XtahlM+iD9tefGW1
-	72kM+fskO/BRLEvMQml0Rw9aq7tWZHDnmHKWO4J85M0ki6UtX3Mle/kVbmLtky3TyrcRIDUb1ER
-	bXt0h+wtSSO0kytzy275YKKRRus8csDcg/042xA/1EuT/rciUytknPk3EXRzUO0VDZnunyu78Fm
-	O27xC0b4lUzx/WJQ==
-X-Google-Smtp-Source: AGHT+IEjSoUYkF14Ssyk5oRE7aJzB2JoaALD5N+ldr3oo6bP0R6LXqMtXCQczf07mSQIpjrUbtFTyQ==
-X-Received: by 2002:a05:622a:1811:b0:4ee:213b:3391 with SMTP id d75a77b69052e-4ffb482f716mr64003111cf.20.1767842893142;
-        Wed, 07 Jan 2026 19:28:13 -0800 (PST)
-Received: from localhost ([184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4ffa8d39950sm42659431cf.1.2026.01.07.19.28.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 19:28:11 -0800 (PST)
-Date: Wed, 7 Jan 2026 22:28:32 -0500
-From: Richard Acayan <mailingradian@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Robert Mader <robert.mader@collabora.com>,
-	Bryan O'Donoghue <bod@kernel.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v6 2/5] media: i2c: imx355: Support devicetree and power
- management
-Message-ID: <aV8kYJm7nUM3A5jf@rdacayan>
-References: <20260107043044.92485-1-mailingradian@gmail.com>
- <20260107043044.92485-3-mailingradian@gmail.com>
- <20260107-masterful-ermine-of-cubism-e5d5e1@quoll>
+	s=arc-20240116; t=1767844447; c=relaxed/simple;
+	bh=WkIFi+VnVYMOijItGdSBELSC4J2NWhSuBd4C3hdJ6TQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BvbTc5DBenHJVKJGUlEr3BKKxPmcx5IvXaqzQET12UjeCdHgJ3LJCCrpDv51XB8yeEZdIv859EJXEYReYBN41/EQzqJZakWouxzUtlL31CU1cgtdMLaUmk5ILWKTeIbAowWjBHNLu1zbe7YOnN0kiWlskJZEwBvhqXklvSjThXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 6083h1iK008024;
+	Thu, 8 Jan 2026 12:43:01 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        dsimic@manjaro.org, sebastian.reichel@collabora.com,
+        kylepzak@projectinitiative.io, damon.ding@rock-chips.com,
+        alchark@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH v4] arm64: dts: rockchip: Make eeprom read-only for Radxa ROCK 3C/5A/5C
+Date: Thu,  8 Jan 2026 03:42:52 +0000
+Message-ID: <20260108034252.2713-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260107-masterful-ermine-of-cubism-e5d5e1@quoll>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jan 07, 2026 at 08:34:29AM +0100, Krzysztof Kozlowski wrote:
-> On Tue, Jan 06, 2026 at 11:30:41PM -0500, Richard Acayan wrote:
-> > A device tree compatible makes it possible for this driver to be used on
-> > Open Firmware devices. Initialization of power-managed resources such as
-> > the reset GPIO and voltage regulators can be specified in the device
-> > tree and handled by the driver. Add support for this so the Pixel 3a can
-> > use the driver.
-> > 
-> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> > Nacked-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> You did not receive such tag. You cannot construct tags, just because
-> of ... what exactly? Why do you think to use this or other email?
+The BL24C16 EEPROM implemented on the Radxa ROCK 3C, 5A, and 5C [1]
+[2] [3] is designed to have data written during factory programming
+(regardless of whether data is actually written or not), and we at
+Radxa permit users to read the data but not write to it. [4]
+Therefore, we will add a read-only property to the eeprom node.
 
-I interpret "NAK" as a request to stop working on the patch. I assumed
-you wanted this for process reasons, since I didn't specifically address
-your review of the reset sequence for 3 revisions (v2-v4). I can't go
-back and follow the submission process differently.
+[1] https://dl.radxa.com/rock3/docs/hw/3c/v1400/radxa_rock_3c_v1400_schematic.pdf p.13
+[2] https://dl.radxa.com/rock5/5a/docs/hw/radxa_rock5a_V1.1_sch.pdf p.19
+[3] https://dl.radxa.com/rock5/5c/docs/hw/v1100/radxa_rock_5c_schematic_v1100.pdf p.18
+[4] https://github.com/radxa/u-boot/blob/next-dev-v2024.10/drivers/misc/radxa-i2c-eeprom.c
 
-Original complaint (https://lore.kernel.org/r/ff9d571a-9b47-4f39-8589-d4c7b190d3bd@kernel.org):
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+---
+Changes in v4:
+- Drop Fixes tags (Chukun Pan)
+Changes in v3:
+- Reword commit message
+Changes in v2:
+- Reword commit message (Dragan Simic)
+---
+ arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts  | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 1 +
+ 3 files changed, 3 insertions(+)
 
-	I already told you this at v1 and you ignored the problem and never
-	responded.
-
-	NAK
-
-The path forward is usually to give up, or keep the NAK and hope that
-the other maintainers accept the patch anyway. I see 17 cases of the
-latter since the kernel started using Git until v6.19-rc1.
-
-> You received only NAK as disagreement of this patch, but I did not allow
-> to merge it with my NAK.
-
-Ok, I will remove the Nacked-by in the next revision unless you
-communicate that you actually want work on this patch to stop.
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+index 80ac40555e02..fa28b32f6910 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+@@ -466,6 +466,7 @@ eeprom: eeprom@50 {
+ 		compatible = "belling,bl24c16a", "atmel,24c16";
+ 		reg = <0x50>;
+ 		pagesize = <16>;
++		read-only;
+ 		vcc-supply = <&vcca1v8_pmu>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+index 045a853d39ec..0991f6a21190 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+@@ -233,6 +233,7 @@ eeprom: eeprom@50 {
+ 		compatible = "belling,bl24c16a", "atmel,24c16";
+ 		reg = <0x50>;
+ 		pagesize = <16>;
++		read-only;
+ 		vcc-supply = <&vcc_3v3_pmu>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
+index b837c4e08cec..7fe42f4ff827 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
+@@ -325,6 +325,7 @@ eeprom@50 {
+ 		compatible = "belling,bl24c16a", "atmel,24c16";
+ 		reg = <0x50>;
+ 		pagesize = <16>;
++		read-only;
+ 		vcc-supply = <&vcc_3v3_pmu>;
+ 	};
+ };
+-- 
+2.43.0
 
 
