@@ -1,203 +1,218 @@
-Return-Path: <devicetree+bounces-252824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24ABDD03009
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:26:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F94DD02F12
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:17:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1AA8A32F2891
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:59:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 97BC73148792
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 13:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942EA482D1D;
-	Thu,  8 Jan 2026 12:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9401387569;
+	Thu,  8 Jan 2026 12:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nSrtlj2S";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RJ4w3e7d"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="ALiTIn9x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10FE0480DE0
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0223FB23A;
+	Thu,  8 Jan 2026 12:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.139.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767876744; cv=none; b=uLXKQZffxJVqWiS7hHcanhKabMa6V6NmMHd14LgWalkg2HSFqTKmTALmf7TIhCGF3DwC9IwiUQyiwHKeh5Ua3oTU5vCrGLpdGS56qVNQIRbw+AlccS2/NmMRoGrcUsSw4V5xv+YD244JwnDu4OctXXeXkrSRMZWb6JMxDe2Lw7E=
+	t=1767877154; cv=none; b=tZBCL4qVOqfhbJZn7fCPnic7fwkYwrawwLWGTE4/1kZW6xIipJUCspvtQbd64TmPsj6PLrUvnELxFNi+zv/NOXZKzjb7qzAdGiAkDdg3tPL5XLmjqkVG0T0tHFe+Q+uH4hbn5QRde5FgTjT+XxX314t7ML+SM4/z0E8j/WdmnSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767876744; c=relaxed/simple;
-	bh=XlRMvPPKlAymX2hcc4TzJppfzzrPdib+qTdDXUHtTAo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bScR2463PxawAGY4j5Jdz7IHSUHfipLJEAS1dqgXCdeEeR2SLhXs03FLdBohjmN57khOSLvvAXqxQHJLFXo6cHjFW9+fTbe1h3ovi+z9vGoM0wnZw/fF3Q7WgIQXzPr1zX9mnlu530YZBlq4Bxg7Kl3alINMi95QFfNl8P9ezwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nSrtlj2S; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RJ4w3e7d; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 608B2nQN1970139
-	for <devicetree@vger.kernel.org>; Thu, 8 Jan 2026 12:52:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dqYeC64NCQvvq3+TQC/yLoL6U7dsEsommPyssm+Mo0A=; b=nSrtlj2SGTn/oJjV
-	l132+tO5pym+vjxdim2eZasRecvHTJ/XZWHfRQXoX+QQ2dBvw8tlLWFAX4645QSi
-	nplGN3/ZLNSCxresQ89Fo2jxfYYjrg6AHOGGFR1HZofzMkIr3Fymjm/CQLRs16ak
-	rbcpCpkXf9yiBVfqsWWBQCWjIbc8mR2/kxO5oq0xkhn0XRpFsKUMtOOfFFRVcu1u
-	N2oGHvlgxGXEiwo/qdHHaqWdSb8ckfk11IY0/zfrUgnQ4SRO55JIEpAbed9xxSfE
-	MGiZURjOP423KcOssJdO3xZfBtLnIRuxv5sHjxCbS5c+uebhuP6BvdkzbBu0QnQ8
-	XWvb4g==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bjbc4r9hd-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 12:52:22 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7fc82eff4adso1805842b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:52:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767876742; x=1768481542; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dqYeC64NCQvvq3+TQC/yLoL6U7dsEsommPyssm+Mo0A=;
-        b=RJ4w3e7dDVzgJ1kwOZG2Jzvi+Oq0JScQsVnrZPH7bpZiOS4LV8WCRPt7ijONn/gEfZ
-         AepBtrq9xgeXwj5zbGA10TgFeoGXDtfhuIbfsD5OHfOd5rNEfkhK9v6yNc9jWc498Ql+
-         ukVdinRpg9Z0kznTAnuMlkv+noCSSBpy4x6voEmDkFu8iSbaAdRlm6w+Le6WhAc+MCCb
-         faqbUufzJCg2wDW9Lme8xGfz5Vuj51Mlkad5dqmc97EdDVTEkkfnDjCPsf3K5igI0wUZ
-         GYmvDUe6k1NRBHrPXMwesXDc4FypmafcLZyeSiMpBbF+TgWL5Jfb7uhwP2pAGv7pO0Al
-         Ksug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767876742; x=1768481542;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=dqYeC64NCQvvq3+TQC/yLoL6U7dsEsommPyssm+Mo0A=;
-        b=i81MuoNqkbRn5m5v+a8888+DPK+rBHWpsE5Tm/KiPmG+/VhIn8sLtCLYJFjyRZsOPa
-         aijorh5czmx7M/TMIbcdwQSEo5RS0pjYCQJLb4JtrpRqKUaUAL7Pz9n2BIRHGWOo862c
-         +3aGgAgHTS9fHWQTJ5iJJSQpOoGcc/SUV62RzCacj4IICxFZe6F/jwWbbNO4IkINxACd
-         M6OOYuQMjvJD0Wrsiw7CCCMk8sE2bupgqr/nOGy9avobz+j1veHZQMUkDyAf4Rf6KvQ3
-         6vTw4bRniM9T4orpSRoXLP2/2K+s1c2C9/3TBCvLdLHxgR4RXGGx3Gs2oSX4IdjjVOOC
-         rhWA==
-X-Forwarded-Encrypted: i=1; AJvYcCV2WBykb+/e+wP+2i6zcDubrIfltEZviJtScVy4vNaf49G3LNoQIUGsYYc0eH2GEVoXJhgMN3iBf8J4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlhIHoygkbVu1O97rs/InyVaF0GmmPaF2InJRSUq2sxtT60wTW
-	rc/OKrnGQYqwafJjD9HoAx7yxherMrqpTjIyEVWLc6afgbOOYa/Vm8J6EtFly0qosr5oKUHf1Nl
-	mrnOBTjezPaZDj0KcLHNAC+kwhh4ReC7ZgffDq6wPRLNSQXYXBSxaflDQo1/OcXJW
-X-Gm-Gg: AY/fxX67h18z5KRt2/SQ3oNGSsuAR63tE99FKzxot4rdbSnTgr9mHl+lEZPHjZmVOLS
-	5sGlQOX5X0crcnp2sWiIo2H7elk21Z3dnxaVbA/k0Q2nmY1zxfjf6Vuif+OW2cYjbaPZ7Uz2Q3p
-	WPcXspvwd2bUXaq49W12s4dpqfyCEf9viKjCHkVxpjSbLds/zbQ9wZd8z7j8Tw3OubtgIRunMzm
-	gXx9E1RS7ifX51Eb8+K+7iPxEdQx3QmAnJt4DaEiTdKGqWLL8TF4NhBfOkCRWmoj6dRvFu9v/1p
-	WdbRcuFtt0G0IX5FwZSYAHElmvsy8hmMwYKOpBqexqdwS0OIPDAZUuS/AdaAIgF5tokSx9YtadG
-	DgeTQVc/HSKhs5zmtJBXGxDZ3s2jCxZKswzrjvV3aGAPCOQ==
-X-Received: by 2002:aa7:869a:0:b0:7e8:3fcb:9b01 with SMTP id d2e1a72fcca58-8194e130c64mr5945323b3a.23.1767876741690;
-        Thu, 08 Jan 2026 04:52:21 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH7fJWcSWnWEsA+4ccIsBSJbS+iZbKv78WluDAaYqqjbFF8xPa4rUh8bOAxTSVBtf4OiWxTCw==
-X-Received: by 2002:aa7:869a:0:b0:7e8:3fcb:9b01 with SMTP id d2e1a72fcca58-8194e130c64mr5945293b3a.23.1767876741179;
-        Thu, 08 Jan 2026 04:52:21 -0800 (PST)
-Received: from hu-vdadhani-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81dab89f2a5sm253302b3a.56.2026.01.08.04.52.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 04:52:20 -0800 (PST)
-From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-To: mkl@pengutronix.de, mani@kernel.org, thomas.kopp@microchip.com,
-        mailhol@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc: mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com,
-        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Subject: [PATCH v1 2/2] arm64: dts: qcom: qcs6490-rb3gen2: Enable CAN bus controller
-Date: Thu,  8 Jan 2026 18:22:00 +0530
-Message-Id: <20260108125200.2803112-3-viken.dadhaniya@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260108125200.2803112-1-viken.dadhaniya@oss.qualcomm.com>
-References: <20260108125200.2803112-1-viken.dadhaniya@oss.qualcomm.com>
+	s=arc-20240116; t=1767877154; c=relaxed/simple;
+	bh=GIGWmCOhSWxzlOF3iCBOFJmMnjV2NFQFhntQhDwwkQ4=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=I7zDGAMQmZbvh0eEKcR2+XJNuPV9bCTxPwsZJaBfQicJLPG2FfDDdY7LsiiE4xnF9XG8EOvSmX8VFQ/z8ex8ZAYJPhxOs2/rJ7u46Do7bF85AXsJl9HLWTWT7dVAk71wRUrGMFWf+6t3jg6HtPhISCAClHhn25WSrlI8P+XvKpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=ALiTIn9x; arc=none smtp.client-ip=148.163.139.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375854.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 608CWaev951792;
+	Thu, 8 Jan 2026 07:58:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=szLcsqzGtQNj3+aedKG4zimv4jM
+	XzNwJbbDdLzPdjMc=; b=ALiTIn9xC1XinBPrt/RFYpC9KIcvrinZs3e35UxEX9n
+	5xjRFTM15xlxfDPaFXgR5QgqCPcjPbmwAtWbXI9n9+9Q8MmFRRhuJ2Nd3skE9+XR
+	Gy6Z4qf+GK1oIAaOPK/CyLffg0LYZw/ija38b6ycVw1P9NX4i57FFKrUiGOVnDgq
+	f4jZ23Jr1cqTvz5XmV0ps0oWTZuQz+GqGU3RkLNPfgwh+NWEvxkMC1bouFkQ8Yvn
+	tLAl6Lqe8Rw5qxoAgRp+Ih4YWDnSg21JNwbu7SdEGwSVN92yc9koDViEvTDpjKVx
+	5H+MGkvyzjeVL+wC6gMXb0pBFsbLFoLo6XW/7oA3h5Q==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4bj7pm9nkw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 08 Jan 2026 07:58:43 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 608CwgRG033905
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 Jan 2026 07:58:42 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Thu, 8 Jan
+ 2026 07:58:41 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Thu, 8 Jan 2026 07:58:41 -0500
+Received: from HYB-e1y2fvUQ3cx.ad.analog.com (HYB-e1y2fvUQ3cx.ad.analog.com [10.44.3.88])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 608CwSiD012447;
+	Thu, 8 Jan 2026 07:58:31 -0500
+From: Janani Sunil <janani.sunil@analog.com>
+Subject: [PATCH v2 0/2] Subject: [PATCH v1 0/3] iio: dac: Add support for
+ MAX22007 DAC
+Date: Thu, 8 Jan 2026 13:58:22 +0100
+Message-ID: <20260108-max22007-dev-v2-0-2506c738784f@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-ORIG-GUID: S1B91DtBWlDmcUYn7YRcKQZniu41KBNW
-X-Proofpoint-GUID: S1B91DtBWlDmcUYn7YRcKQZniu41KBNW
-X-Authority-Analysis: v=2.4 cv=fdegCkQF c=1 sm=1 tr=0 ts=695fa886 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=XYn_8lXowKPdo-AIkF0A:9
- a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDA5MSBTYWx0ZWRfX/Li9hyNuhAIx
- aMp+eDgOGFgFdgLd2wrADt279rM0QwLCsJIlxStaPhMqtftHb1JPRo307pcRLTeUf1w37l0608K
- fD5G+8lXiG4dAnoG3PQAE4vqpXNbq00bJRIFMuab/EGUR8QsWk1RZJ41BzvABCTr25v3c22y5aj
- CJhX8Cwpk+F7Uh+qAnuRz8aer/sidBXVHeFN8e5hgkEs5JaiJUgiILi8uzjAiwXTerhTNqhGKkl
- yqwDuW6Dtpn3vJQ22Dl1XPIVn5hY7xjMttqcgDedL6ZF2Aw2ShxWQBb3HHYwVilmS7FFpShI7RZ
- d5w88gePRjoGArtR6YrXsace0D81nr3HdBrmRx1flVvQxsFRLc+Krvch6y8b8Q6Vic7Z+uF34YQ
- 28y/TiMjR6sUfS86tZ2S1IRmgXz9ROy2RDT9cmQgnsf1X8jl+sIcw8TJX0+UGnbxDDusZ7XtXqk
- fqBRwO4fJazR7hD4yTA==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO6pX2kC/3XMQQ7CIBCF4as0sxYDE7XUlfcwXUxh2pJYaMCQm
+ oa7i927/F/yvh0SR8cJ7s0OkbNLLvgaeGrAzOQnFs7WBpR4Vag6sdCGKGUrLGehiEap7dDqTkK
+ 9rJFHtx3cs689u/QO8XPoWf3WP1BWQgq8oCU0OOibfpCnV5jOJizQl1K+xxq+h6kAAAA=
+X-Change-ID: 20251219-max22007-dev-1aaf08db7890
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Alexandru Ardelean
+	<alexandru.ardelean@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <jan.sun97@gmail.com>, Janani Sunil <janani.sunil@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767877109; l=3836;
+ i=janani.sunil@analog.com; h=from:subject:message-id;
+ bh=GIGWmCOhSWxzlOF3iCBOFJmMnjV2NFQFhntQhDwwkQ4=;
+ b=KA6P//WcbQOQydE7OdpFRNCx/oMt81yj7lArqQ+RkO6hGB/UdlgjzlwVNrohDLDQ5BdCZ0zbr
+ f46lhSDKT7YD4i72uuUtxVWrw2PM6QRy9m/B9YkKPP/HjRoeeqo7dyZ
+X-Developer-Key: i=janani.sunil@analog.com; a=ed25519;
+ pk=e25MyjRLPY3RWrYm/LrJ+/+t1MZJUbkgIW5CZg+g+hA=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=EtnfbCcA c=1 sm=1 tr=0 ts=695faa03 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8 a=07d9gI8wAAAA:8 a=pGLkceISAAAA:8
+ a=hT07yNKm7YZZmlAkMzEA:9 a=QEXdDO2ut3YA:10 a=e2CUPOnPG4QKp8I52DXD:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDA5MiBTYWx0ZWRfXx+pC2a6i7XS3
+ qqLEGOr0HkDjO8GXvo85R9fBbveChP47c6oedAMg4ssoAR/uJPSErFtA5q0RFSw1Kpmob7BJrhA
+ lD7NBn8vvRUpxjvVOi1WZTUudBiPap7SQXAnZvJcLXuLnuvK9v5tVsP19j1BEVwh5QjYbT2hRAU
+ fiCl5lcrjTkffECW5ElK0PEvSo/fRFjOtUpS+gQCe4GzqUDelePofLZ+5u4fpXZynriGAK98eBY
+ Fzcv2TK4rp7FrqDF48u2KRGQH2+R3bRrOzptlwnPOcwj7uAWKaaQKvxAnb/ulargcyETHgx2Uyo
+ xjXHK3WwxPtQ2J8GvEoyb1P2ZmUMw+7zbke2Uw0/HU81E2Uo6oOSGmWkDJWCElWkCmj9aLSaFvw
+ upSyMf70gfVFOpZ7K2BLwHfmdgumffktCKlRLdYVB0k58SCjObvo0+bB2sa+D+ZJ4CAg6hJsLRh
+ wcjL/axBdqZETP9nMjw==
+X-Proofpoint-ORIG-GUID: CUId89ZVQB_0EcwhbbQQNlBPuNTM3w49
+X-Proofpoint-GUID: CUId89ZVQB_0EcwhbbQQNlBPuNTM3w49
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2026-01-08_02,2026-01-07_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 suspectscore=0 spamscore=0 adultscore=0
- impostorscore=0 clxscore=1015 phishscore=0 priorityscore=1501 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601080091
+ adultscore=0 bulkscore=0 suspectscore=0 spamscore=0 clxscore=1011
+ phishscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601080092
 
-Enable the MCP2518FD CAN controller on the QCS6490 RB3 Gen2 platform.
-The controller is connected via SPI3 and uses a 40=E2=80=AFMHz oscillator.
-A GPIO hog for GPIO0 is included to configure the CAN transceiver in
-Normal mode during boot.
+This patch series introduces support for the Analog Devices MAX22007, a
+quad-channel, 12-bit digital-to-analog converter (DAC) with integrated
+precision output amplifiers and configurable voltage/current output capability.
 
-Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+**Device Overview:**
+The MAX22007 features four independent DAC channels that can each be configured
+for either voltage output (0-12.5V) or current output (0-25mA) mode. The device
+communicates via SPI interface with built-in CRC8 error checking for data integrity.
+
+**Features Implemented:**
+- Support for all 4 DAC channels with 12-bit resolution
+- Per-channel voltage/current mode configuration via device tree
+  property `adi,ch-func = [voltage, current]`
+- Independent power control for each channel (attribute)
+- Hardware reset support via GPIO (during probe)
+- CRC8 error checking for SPI communication
+
+**Patch Summary:**
+1. dt-bindings: Binding documentation with channel configuration
+2. driver: Implement IIO DAC driver
+
+**Testing:**
+The driver was hardware tested on a Raspberry Pi4 on top of v6.12.y
+kernel using the MAX22007EVKIT evaluation board.
+
+Janani Sunil (3):
+
+dt-bindings: iio: dac: Add max22007
+iio: dac: Add MAX22007 DAC driver support
 ---
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 30 ++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+To: Lars-Peter Clausen <lars@metafoo.de>
+To: Michael Hennerich <Michael.Hennerich@analog.com>
+To: Alexandru Ardelean <alexandru.ardelean@analog.com>
+To: Jonathan Cameron <jic23@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Jonathan Corbet <corbet@lwn.net>
+Cc: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-doc@vger.kernel.org
+Cc: jan.sun97@gmail.com
+Signed-off-by: Janani Sunil <janani.sunil@analog.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot=
-/dts/qcom/qcs6490-rb3gen2.dts
-index e3d2f01881ae..f2f2925e645a 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -44,6 +44,14 @@ chosen {
- 		stdout-path =3D "serial0:115200n8";
- 	};
-=20
-+	clocks {
-+		mcp2518fd_osc: can-clk {
-+			compatible =3D "fixed-clock";
-+			clock-frequency =3D <40000000>;
-+			#clock-cells =3D <0>;
-+		};
-+	};
-+
- 	dp-connector {
- 		compatible =3D "dp-connector";
- 		label =3D "DP";
-@@ -1151,6 +1159,28 @@ platform {
- 	};
- };
-=20
-+&spi3 {
-+	status =3D "okay";
-+
-+	can@0 {
-+		compatible =3D "microchip,mcp2518fd";
-+		reg =3D <0>;
-+		interrupts-extended =3D <&tlmm 7 IRQ_TYPE_LEVEL_LOW>;
-+		clocks =3D <&mcp2518fd_osc>;
-+		spi-max-frequency =3D <10000000>;
-+		vdd-supply =3D <&vreg_l11c_2p8>;
-+		gpio-controller;
-+		#gpio-cells =3D <2>;
-+
-+		gpio0-hog {
-+			gpio-hog;
-+			gpios =3D <0 GPIO_ACTIVE_LOW>;
-+			output-high;
-+			line-name =3D "mcp251xfd-gpio0";
-+		};
-+	};
-+};
-+
- &swr2 {
- 	status =3D "okay";
-=20
---=20
-2.34.1
+---
+Changes in v2:
+- Wrap commit messages as per coding guidelines
+- Removed all driver references from the hardware
+- Update property description for reset-gpio
+- Removed allOf
+- Added minimum/maximum limits for channel number in the devicetree
+  binding
+- Replaced adi,type with adi,ch-func.
+- Added reference to required supplies in the binding, configured them
+  in the driver
+- Channels are not a required property anymore.
+- Replaced instances of 'channel' in macros to just 'ch'
+- Added trailing commas wherever necessary, removed them as per comments
+- Add explicit values for enum- max22007_channel_power
+- Replace channel spec structure member 'iio_chan' with 'iio_chans'
+- Use spi_write_then_read() API in the max22007_spi_read() API
+- Check for reg_size ==1 and hardcode the size otherwise
+- Wrap lines in the driver to 80 characters
+- Update in-line comment on the resolution
+- Separate declarations with assignment, from the ones that don't
+- Update the usage of channel template
+- Add a local device descriptor to point to the SPI device
+- Add a transition of the Reset GPIO from low to high in the probe
+- Make use of regmap_set_bits() instead of regmap_update_bits during CRC
+  Enable function call.
+- Remove the documentation commit, as it is not needed anymore.
+- Link to v1: https://lore.kernel.org/r/20251219-max22007-dev-v1-0-242da2c2b868@analog.com
+
+---
+Janani Sunil (2):
+      dt-bindings: iio: dac: Add max22007
+      iio: dac: Add MAX22007 DAC driver support
+
+ .../devicetree/bindings/iio/dac/adi,max22007.yaml  | 136 ++++++
+ MAINTAINERS                                        |   8 +
+ drivers/iio/dac/Kconfig                            |  13 +
+ drivers/iio/dac/Makefile                           |   1 +
+ drivers/iio/dac/max22007.c                         | 507 +++++++++++++++++++++
+ 5 files changed, 665 insertions(+)
+---
+base-commit: a7b10f0963c651a6406d958a5f64b9c5594f84da
+change-id: 20251219-max22007-dev-1aaf08db7890
+
+Best regards,
+-- 
+Janani Sunil <janani.sunil@analog.com>
 
 
