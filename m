@@ -1,80 +1,86 @@
-Return-Path: <devicetree+bounces-252892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C160AD04354
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 17:11:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85C5BD04552
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 17:25:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3913F3075E97
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:59:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DB7773019E35
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 015BD2DC774;
-	Thu,  8 Jan 2026 15:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C50E3B7A8;
+	Thu,  8 Jan 2026 16:01:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="G3j41mTi"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="gKH9AFL4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f65.google.com (mail-ot1-f65.google.com [209.85.210.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6592E2DB7AD
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767887852; cv=none; b=BAe8tNLbDk+QwbjqEEUjRoFmwhMueiATPsxhjuGbZmloNBaYO9NiRYM0K1JLMZNkVAcph1LkedE4ayD43AwOf3Yc1KmuSQ5swbz0d5CvSCqA3GWh4QC7Gc4/82eug21BsYVhX06IhiF58d7IOA5j2uArmZoQjBjekpOVjZ45oNg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767887852; c=relaxed/simple;
-	bh=XcIRTAb5PFlqniPMsUHB2MwKn3jJ/O2F2bHm2pJVK/4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pZJVxhn6wqn85l6MmiHRdy+e5Kcq6lI+GQ5P2dtxZZAdA+TXP9WMm4EbUwcus1joAJFzUcP/4kqT4ZjOto6baQuIj8UmtUlgvRJSZ9wEKShLn26liNnmY68yduLdDwX5n60HeiGB9efRoETvjriZvALDujDmR1Cxft+yIF+KzlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=G3j41mTi; arc=none smtp.client-ip=209.85.210.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f65.google.com with SMTP id 46e09a7af769-7c7533dbd87so2432928a34.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:57:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1767887850; x=1768492650; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ChbNYybDAN+PlLSGQ3kv1WrtIpPyDTfLMW7/iZLxLus=;
-        b=G3j41mTiH9RcwOYuX7LMffkbdVh5ol8NDyZn83UCLVsWLWe05zy9ilbTAvrSd2CZvh
-         t1E6eLILdeV1xwCZ8z2fPt2WPrdc3QH7zwhSbOsc8tDCLQPcoKWV0xmCjFSjDq1vEOVP
-         u1RF1y66OJ1TAWDptOcak8rpW8CNUBzy3in0XoPt0nstEVSn8KcbfADWwgzxh0VFQHWu
-         NdFq5NP0LXtUMNb6VQMrH74SIEw5yvJsJwIvZGkTLVJVD9jIbFvtpiasC+W6JZGNwv6m
-         jwjhd5hUcz5vjI16T8zOsDoN6F+w9ljMPTtWyt2pqmHJ8xricXwxBXvsiE6x1zaBCJzx
-         cqNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767887850; x=1768492650;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ChbNYybDAN+PlLSGQ3kv1WrtIpPyDTfLMW7/iZLxLus=;
-        b=vCNi2zsY33ItjOkT9gcgMmU5rN3CHqadPUzekh0ZaT9cu3J4NrUaLL+w7GQxhONZ1L
-         +H/l+T++oTBuyFzRAYXcrjLden+nWt0cS5e2PykKmm7QktnSC8g9ySqvStR2gNCYvmyh
-         8t/GzoSmar+AlY78AZ6p3/D46h6IxUoSFbTWRYUHAwe4/vegrVdSO9pJaZRjQPedKx3b
-         TkCkR1Kj9jz/f3DrsgPGMQ/xkCiYPDKLUX1kqzET/EcjHAtYs91WjXlOMxGSROy2ubz+
-         zqEDJdzZqLz3zEvp7sZmsNtoEgpZq5FJbO5zb+ZIPLtj5CITz9mH86ZUUlPxlbUxfskG
-         sbFA==
-X-Forwarded-Encrypted: i=1; AJvYcCX59mS3W7qIYWjUdGmLFEMg048ZbYTpj0dJ+ywErlKAALaTXoOpswWZmkrpU6cMJCstBiStneL5iNve@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxr+a4pszUloa0V84rGWk2vmJLJ5d1+GEcIB/JXZ0uhwOP4xCwQ
-	09moZ4OUKXDau/hbSdrWMwQ+uTKiPfWG7Ex9jtjI9bkIK/d5O3TbLnKl2oxWepEmE8M=
-X-Gm-Gg: AY/fxX4+3haJ9dY2ZKtK+xfhv69hwHAw7x4NVlodJ1XG2sWC7HyLrDtfgaluh+mr5yV
-	s/nkIJIkXsz7wxHHz3e6VOciGoHgG/+UMW2brujwiQng4ZR1uZMoVbFWX5MHiyOuaSY/Fc42f09
-	KaY7mRlBn0fBiJlhc9J/Vd+wL2tfadsjblwhYkAQ2rKt0NDmVnIvBn5iIaCvBySfYjYPZsO89t0
-	AyaUMDMNVz4OVsGGGF+O2BXR3vdyef42Yba9AwfKiUgT0oqNhKepHsirw2VeczhysuwzxtRq7uc
-	CTb38hZ5mPiS4Pf+ZQyy01FYa6mGjjMDQ0vU5t5dkRJPOR5JIrfSFmEvewwZahYcbXz2q4oRHwN
-	vgjM+uvoWq+gSldba/ykme2CQkCVSFYRZLraA1vyx59ZiLHoKBY/a0tV5LnljwntJrdDX2VhTJy
-	h4l1NMdq2MxgSMdMupWUKlNfak1k/Pj9r8dvrTXMmleryHYYXrKjFa+AoIg15V
-X-Google-Smtp-Source: AGHT+IEqkm4LvUk8v6PJn4dMOjcEAKptGcqeUy22nLPhpl6cUZVQsY3c5PT1cLF07hCu1ja1uiQnug==
-X-Received: by 2002:a05:6830:6f83:b0:7b7:59c5:766c with SMTP id 46e09a7af769-7ce50bec1b5mr3163482a34.33.1767887850382;
-        Thu, 08 Jan 2026 07:57:30 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:c69c:7b5c:ce9b:24be? ([2600:8803:e7e4:500:c69c:7b5c:ce9b:24be])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7ce478af813sm5732105a34.19.2026.01.08.07.57.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 07:57:29 -0800 (PST)
-Message-ID: <97096aa2-acf1-4e4b-b03b-b538c3c1cf27@baylibre.com>
-Date: Thu, 8 Jan 2026 09:57:29 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4350E39FCE;
+	Thu,  8 Jan 2026 16:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.182.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767888119; cv=fail; b=HDx41ZS1Wj0uAbVcnQKDJ+eXU5yD6l804VNHLb+c4+C/nWKRLSuNercPXN0ot+mH0XH290jMpG6d848+EL396Uz6oTODTEFUCrBN7qH4eF5pX4M5rHPJ/cYouyBeME95nOj2TOZoCXZfwRnN5h0gr/o6B9rYbViFNwNT59zpOas=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767888119; c=relaxed/simple;
+	bh=owi/ONhGVyNVqZq/hAETx0vuLwGsBihkcO6YcHGfrTQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OmX9jr4xjn7DXymO61OkNZK+cgXHB/iWue889GMtXqgN8wAhEaw5HpVtM29InnLheIxk5i/yN9/6WTEP5RTriCjeV2pbC6CLU0wF5Xndcu8MWg7LeB/4D+tk474xrfah3nvOxfJ8HyFs8maPPnbMqjZXjesZAZHaXb3iFwVWxbs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=gKH9AFL4; arc=fail smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 608FwgS33116119;
+	Thu, 8 Jan 2026 17:01:40 +0100
+Received: from gvxpr05cu001.outbound.protection.outlook.com (mail-swedencentralazon11013000.outbound.protection.outlook.com [52.101.83.0])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4bhb7pfxcw-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Thu, 08 Jan 2026 17:01:39 +0100 (CET)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QEmN14vChxV5MEiyYdkINGdb8F8tuixTUZuI0WTWwKmulHqdeRw9w6JY2SzI15DSyudIP1ARINUyAcKT5wiTx0mLZaDXzCIvWu9XblRbLN7IOZobVhqLo77sLYpUuKi9vxh2I4Xhh9yxEeX3DktSOSuYwlOJvwfzJQ9mcPjklfqrPYZUQGUujzYCbdGWtjIPp18YRLVG262nKeW/Z/U03EaimzExLaGH5Rrgw0oqE/p4j9dRGENBKXuNnEVhKIOa80H/ORDFJItxkL7xE6bQ8LLMteV5TxGqeb50TTE58sNvvRh+p0gahyVdLlWFqpWdtMuMAe0agvWbA1LS2ZpLNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/SF0UWeoSnacQTD8eAYQhk+ftRZOyKRuvl7KsAcW1dw=;
+ b=YsRzcsuE/mvqMtZFFX1Z43IJ2wq7Y3cfIQbiPei0ytzsgiMb7K6uSLNC45vGQAvLfrrPy7MXgW8vkbTZ46HszkFdkM2bu90CRmMDcx2MIILIu1wkXzCF0QY2fxrY/E69tlA3zVdIFQI8GTQLqvEWQgrSeaxv3IIC/2drhfp/Hc1JCNlWkwQkyJ9hdhduZdFdjSxOB1rod65KaF/kRtn5Xk9zD6ifIa7QItemr2JRrVa+mr5DjKWx018rF7gEXATcynOawZ0Ecf26qJX2MtLrDWeM8TevUgtOaNJFTU9AFgVyhrF07EKnGJdUCiwamGaE5vev6LNfTk9CPvuCO2VxwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/SF0UWeoSnacQTD8eAYQhk+ftRZOyKRuvl7KsAcW1dw=;
+ b=gKH9AFL4zMlvWSOrWbgBelw5gaHlfVuzrvyG0UKFKp5LLf5laNRHt7pZ7bdtSH8HobJnK/lk0oGzkGIOKWvjrgPgELASBVS93pQvwJ4SAeGETM33shdngi1xXEbD8bJUGE8HjGbpWgpiiqkrY9E3bDMZBDlWvfk4YpBn6h45VOBRpqNw6An/RHr9KnZJgdd4sE4zMSln72mf+ePoWKoDdleUwoTB+MaevS9eaSOMlLbcGKOWIXjftB1/e9tRB7HtBIgwN5yEReVB5Pu14TzzC4pVy7nkCyLPApPQDX9mU0S96bzdaCPuFJCCjeGfLGhch9U+CpVHMdWcElePiUr6wA==
+Received: from DB3PR08CA0022.eurprd08.prod.outlook.com (2603:10a6:8::35) by
+ PR3PR10MB3930.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:4a::24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9478.5; Thu, 8 Jan 2026 16:01:35 +0000
+Received: from DB5PEPF00014B9A.eurprd02.prod.outlook.com
+ (2603:10a6:8:0:cafe::fb) by DB3PR08CA0022.outlook.office365.com
+ (2603:10a6:8::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.3 via Frontend Transport; Thu, 8
+ Jan 2026 16:01:35 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DB5PEPF00014B9A.mail.protection.outlook.com (10.167.8.167) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.1 via Frontend Transport; Thu, 8 Jan 2026 16:01:35 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 8 Jan
+ 2026 17:02:51 +0100
+Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 8 Jan
+ 2026 17:01:34 +0100
+Message-ID: <d26f0460-78f3-4ac9-a4ad-1c6692dae167@foss.st.com>
+Date: Thu, 8 Jan 2026 17:01:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,189 +88,169 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/9] spi: Documentation: add page on multi-lane support
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
- <20251219-spi-add-multi-bus-support-v4-5-145dc5204cd8@baylibre.com>
- <aV-lzD1BEVSkGjba@debian-BULLSEYE-live-builder-AMD64>
+Subject: Re: [PATCH v2 00/16] Led update for STMicrolectronics boards
+To: Patrice Chotard <patrice.chotard@foss.st.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20251113-upstream_update_led_nodes-v2-0-45090db9e2e5@foss.st.com>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aV-lzD1BEVSkGjba@debian-BULLSEYE-live-builder-AMD64>
-Content-Type: text/plain; charset=UTF-8
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20251113-upstream_update_led_nodes-v2-0-45090db9e2e5@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5PEPF00014B9A:EE_|PR3PR10MB3930:EE_
+X-MS-Office365-Filtering-Correlation-Id: bdfd1dac-a2de-49d5-bd37-08de4ecf330e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RkVWaFNhTjRTS1RnaENWaUJUYVVRa0t5NjZvb3dETDlxQ295cWJyS1RLVU5o?=
+ =?utf-8?B?dkpoNmcwaGpOT2NhT2VBQVFFQlhBMlRtSjRTeDRBUDJaa2NBS0F2ckkyMlZ5?=
+ =?utf-8?B?dGIrdlh0aDNwRjlRLzlwMDVwOTRCb2lZWm81RVBycGg0cUxLUk1kaGJMMlZx?=
+ =?utf-8?B?aWw0bXVvN21wQlFtNzJFTXdWbk1ndnVudlRCUU5kQ3BLVVZzZzdvRm9Tc2Fs?=
+ =?utf-8?B?SjMrUEdQRysyWmxkWDlPei9tUkZJVEsrVTBuQkVOdkpQYzNobVBBMml3WkRt?=
+ =?utf-8?B?QmpOcDlYNzdLbXpRSFdqR1BQZzZyM2NqazVxRUgra1BRUkxRelk3OCtCUnUv?=
+ =?utf-8?B?VU0vVTEyNHhFejYycE1TRU4zVDBFenRFS1lSVUFyRHowaEI4RjYydXJFbWMr?=
+ =?utf-8?B?TlZ2OHZLQ25qa290dlUvREhVNk9qRXBmVFJ4L3dXWUZRTUpTS0ticm9LK0xv?=
+ =?utf-8?B?RUIyUGI1WlNVUW9qQmlJekdyRDFGdHE0MFJqOEpLWEFLYUlkQWFKT1krVnpW?=
+ =?utf-8?B?aUYzU204NXgwQ2NOSGFHVGxiSG5KYW9aMldEcmdvUEVGSS93RzB5U0loUENj?=
+ =?utf-8?B?UDJkMjY0bXVQNUtoZkNWNEc3eHJsZEJJT2thSjNhQ3VEc3BMNUpwYmlEUE5s?=
+ =?utf-8?B?cE1ETmdWc0FnaGlrN3NZbkxEVCsyV3JvUTFQQ0NydHl6TGNiWEhkQUMxZVhj?=
+ =?utf-8?B?RDNINXBqcWUrZ2hEcE1QUG1QSGFXc3N0b2tMWmhhYW5SakRxL0FFaW14WWEr?=
+ =?utf-8?B?MkIwek1BbGFxRVdZVzM5WG92eUkzZzUrYXVsSXNhbk9UM1hBRkJ1ZnpSQll4?=
+ =?utf-8?B?TEZEays5Y1hIc0hRSjZzd2RXYmtrREZJNU9zNUN1MlZiWGRSZEQ5bWJsWUVY?=
+ =?utf-8?B?TWhEZzJlRXpUZzZING1XUmwxbE55cFc3ek5obWRkR2FqMGMySDlFNFFpZ21X?=
+ =?utf-8?B?Y2Y4bmk3SHdSRHB1ZUFmYWhVenlsK0JSKzFtVmNqMldleXRpcVV5RUtQUUJS?=
+ =?utf-8?B?UUlvL2huVG1TVjFaa01ndUg1MFowbWdwQjZyOW5Bd3cyZkd1L2YvL2tlVUlk?=
+ =?utf-8?B?WUpRZmVrRHBpdVRjYzZ3OHpUYkZiQm53Mk04ak9nd1FvN2hKVTJRemo4WmdS?=
+ =?utf-8?B?SE8rWVBsbDl1VDcrT01FZGtINnRLbmNMN0o4c2VleW9hUVAxekU4ZDNreWI2?=
+ =?utf-8?B?MUgySnI1Q2UwSHphUEkvcWVFZC8yQ2VEY0Vrc1BicU10a3piSHNBSmFhTmtQ?=
+ =?utf-8?B?eTRzS05WZ3l2RVMwVWppWEJlWlRYWHUvdXVaTVdoN2RYamFRa2NoeE1aS2F3?=
+ =?utf-8?B?eWZIYzJITkZwb3ByTW5HQlVRcEU5WndBYXB5Z3BSajJ5L2JRN3pEV0NOWEZ0?=
+ =?utf-8?B?dTFvcDIwUVYvQTZXMzFaZjh6Tkpqa1Q3eUJOdmMyc1BNY3hNeklhRVI0SDcy?=
+ =?utf-8?B?dEtBQllPYmtrdnQwR0FVbnQzaXEyYzBuY1I4d1V6RjVsTS9JOGJIKzJaRzZK?=
+ =?utf-8?B?UDhWWStDaElKOUNCakVxTjZMWFNOWUY0VTRrU0YvN1lKOHJleUVkdEZRcHdn?=
+ =?utf-8?B?UkNuV3hQaDg2YjJmRkFVLy9kU3QrZy9nV0huN3ZIY085cWNvY0p0TlE1dW0r?=
+ =?utf-8?B?bFBldXBPOEZCTEJJTGVZWWVGVWRYUlZvMTVFaEUxY2FSazVmVmdnbGh3aFNW?=
+ =?utf-8?B?ZUd1NlYwSlZsWWRIbnc5WHY1VjFYaEljMW1QbXowOUd3U3o1M2lGcTRBRDVF?=
+ =?utf-8?B?dElvU3cvaUF3Z2ZQVzl6UjBtbjBEdWVENDRRcy9VSnlsK1F5VEVjYXFSUDM0?=
+ =?utf-8?B?MnRLbEVwZ242b2hNbVZCamZuVmxEZlBnTlduTUFtZjdVYzE4UXRaYzR4M3VN?=
+ =?utf-8?B?Y2tGSm5VM2oyWHdadmVVNWJuU0dIWFFUd1JnNm1GVHNnTUxwVzhVVDJ6bVQ4?=
+ =?utf-8?B?aFBselp1NUxlbzIwTmpZazgyS0RjOEhZMjZYZ1l1VWdDK09TWTJnZDE4K0Nz?=
+ =?utf-8?B?bFdCcGJVblc4M3RPYnpIOFd4YmdXSDdtSjVhS01YUGp5ZGxrRXkyL3hFVVBX?=
+ =?utf-8?B?Nmp0cStGUVR5UWNLNjhnODBwUVN6ODZqSytyaGNQdUFaUlJLajB4ZW15M3lS?=
+ =?utf-8?Q?vq4g=3D?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 16:01:35.3868
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bdfd1dac-a2de-49d5-bd37-08de4ecf330e
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB5PEPF00014B9A.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR10MB3930
+X-Proofpoint-GUID: 6pr-r_6GmFk8d7KXctGp9AFRkcZY1ncf
+X-Proofpoint-ORIG-GUID: 6pr-r_6GmFk8d7KXctGp9AFRkcZY1ncf
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDExNiBTYWx0ZWRfXwv6RnNelBDhI
+ JAQi1Gfl2I7JuXVvvlVyuKcLTCzuzlUFpx7NnNeVwDyViG9D/YzlQMJoy/3iIJ0/HU7nyPyoeyr
+ DlDGNB5PoKlQsqdKd3q5syvBPDKbxw/JD7MZKY88XFKGr49HOKHyvG9DqLgwndppWB4spX33ZkK
+ yD3QvdLnpDOKgrsGCs4fmpnEFo7k3Qb8j+bjuTiCUs26LLexIHsrR932a16XIjc7QkbjWBIvyt8
+ ydCYT2HOo3vxyYRCOahF7UxO+umerikuNbtPUJxCUAsZ9tFc+gK+5z4LE2icxSaRaujcYylEeOP
+ obW/4chppfF/x5EfH6NE4CUBg31Usa4ZPJ0usuYjHChGxgOpcJErNdBVTBg6C1I7L6mXGEOmeTI
+ jKYoGOA7Czg8zAf3UZ+4yD5bIaWVJSJUNR84SS+/XQlFxNduPsa+YFRDAU3BcopT9W7c3BVKzAl
+ xCm2jZSf71j6+Jy+2eQ==
+X-Authority-Analysis: v=2.4 cv=DZ8aa/tW c=1 sm=1 tr=0 ts=695fd4e3 cx=c_pps
+ a=nByTnSNBlmrEcbo/XTjLTw==:117 a=d6reE3nDawwanmLcZTMRXA==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=TP8aPCUxYTYA:10 a=IkcTkHD0fZMA:10
+ a=vUbySO9Y5rIA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=8b9GpE9nAAAA:8 a=z_SYt2vzrexs4cdNV_8A:9
+ a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-08_03,2026-01-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ bulkscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ phishscore=0 clxscore=1015 spamscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601080116
 
-On 1/8/26 6:40 AM, Marcelo Schmitt wrote:
-> Hi David,
-> 
-> Thanks for adding a doc for the multi-lane stuff.
-> Two minor comments inline.
-> 
-> Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> 
-> On 12/19, David Lechner wrote:
->> Add a new page to Documentation/spi/ describing how multi-lane SPI
->> support works. This is uncommon functionality so it deserves its own
->> documentation page.
->>
->> Signed-off-by: David Lechner <dlechner@baylibre.com>
->> ---
->> v4 changes:
->> * New patch in v4.
->> ---
->>  Documentation/spi/index.rst               |   1 +
->>  Documentation/spi/multiple-data-lanes.rst | 217 ++++++++++++++++++++++++++++++
->>  2 files changed, 218 insertions(+)
->>
->> diff --git a/Documentation/spi/index.rst b/Documentation/spi/index.rst
->> index 824ce42ed4f0..2c89b1ee39e2 100644
->> --- a/Documentation/spi/index.rst
->> +++ b/Documentation/spi/index.rst
->> @@ -9,6 +9,7 @@ Serial Peripheral Interface (SPI)
->>  
->>     spi-summary
->>     spidev
->> +   multiple-data-lanes
->>     butterfly
->>     spi-lm70llp
->>     spi-sc18is602
->> diff --git a/Documentation/spi/multiple-data-lanes.rst b/Documentation/spi/multiple-data-lanes.rst
->> new file mode 100644
->> index 000000000000..b267f31f0bc8
->> --- /dev/null
->> +++ b/Documentation/spi/multiple-data-lanes.rst
->> @@ -0,0 +1,217 @@
->> +====================================
->> +SPI devices with multiple data lanes
->> +====================================
->> +
->> +Some specialized SPI controllers and peripherals support multiple data lanes
->> +that allow reading more than one word at a time in parallel. This is different
->> +from dual/quad/octal SPI where multiple bits of a single word are transferred
->> +simultaneously.
->> +
->> +For example, controllers that support parallel flash memories have this feature
->> +as do some simultaneous-sampling ADCs where each channel has its own data lane.
->> +
->> +---------------------
->> +Describing the wiring
->> +---------------------
->> +
->> +The ``spi-tx-bus-width`` and ``spi-rx-bus-width`` properties in the devicetree
->> +are used to describe how many data lanes are connected between the controller
->> +and how wide each lane is. The number of items in the array indicates how many
->> +lanes there are, and the value of each item indicates how many bits wide that
->> +lane is.
->> +
->> +For example, a dual-simultaneous-sampling ADC with two 4-bit lanes might be
->> +wired up like this::
-> At first, I thought calling these '4-bit lanes' was a bit confusing. I was
-> thinking about suggesting '4-wire lanes' but I guess 4-bit is more generic in
-> case we ever see a setup where data navigates through something besides wires.
-> 
->> +
->> +    +--------------+    +----------+
->> +    | SPI          |    | AD4630   |
->> +    | Controller   |    | ADC      |
->> +    |              |    |          |
->> +    |          CS0 |--->| CS       |
->> +    |          SCK |--->| SCK      |
->> +    |          SDO |--->| SDI      |
->> +    |              |    |          |
->> +    |        SDIA0 |<---| SDOA0    |
->> +    |        SDIA1 |<---| SDOA1    |
->> +    |        SDIA2 |<---| SDOA2    |
->> +    |        SDIA3 |<---| SDOA3    |
->> +    |              |    |          |
->> +    |        SDIB0 |<---| SDOB0    |
->> +    |        SDIB1 |<---| SDOB1    |
->> +    |        SDIB2 |<---| SDOB2    |
->> +    |        SDIB3 |<---| SDOB3    |
->> +    |              |    |          |
->> +    +--------------+    +----------+
->> +
->> +It is described in a devicetree like this::
->> +
->> +    spi {
->> +        compatible = "my,spi-controller";
->> +
->> +        ...
->> +
->> +        adc@0 {
->> +            compatible = "adi,ad4630";
->> +            reg = <0>;
->> +            ...
->> +            spi-rx-bus-width = <4>, <4>; /* 2 lanes of 4 bits each */
->> +            ...
->> +        };
->> +    };
->> +
->> +In most cases, lanes will be wired up symmetrically (A to A, B to B, etc). If
->> +this isn't the case, extra ``spi-rx-bus-width`` and ``spi-tx-bus-width``
->> +properties are needed to provide a mapping between controller lanes and the
->> +physical lane wires.
->> +
->> +Here is an example where a multi-lane SPI controller has each lane wired to
->> +separate single-lane peripherals::
->> +
->> +    +--------------+    +----------+
->> +    | SPI          |    | Thing 1  |
->> +    | Controller   |    |          |
->> +    |              |    |          |
->> +    |          CS0 |--->| CS       |
->> +    |         SDO0 |--->| SDI      |
->> +    |         SDI0 |<---| SDO      |
->> +    |        SCLK0 |--->| SCLK     |
->> +    |              |    |          |
->> +    |              |    +----------+
->> +    |              |
->> +    |              |    +----------+
->> +    |              |    | Thing 2  |
->> +    |              |    |          |
->> +    |          CS1 |--->| CS       |
->> +    |         SDO1 |--->| SDI      |
->> +    |         SDI1 |<---| SDO      |
->> +    |        SCLK1 |--->| SCLK     |
->> +    |              |    |          |
->> +    +--------------+    +----------+
->> +
->> +This is described in a devicetree like this::
->> +
->> +    spi {
->> +        compatible = "my,spi-controller";
->> +
->> +        ...
->> +
->> +        thing1@0 {
->> +            compatible = "my,thing1";
->> +            reg = <0>;
->> +            ...
->> +        };
->> +
->> +        thing2@1 {
->> +            compatible = "my,thing2";
->> +            reg = <1>;
->> +            ...
->> +            spi-tx-lane-map = <1>; /* lane 0 is not used, lane 1 is used for tx wire */
->> +            spi-rx-lane-map = <1>; /* lane 0 is not used, lane 1 is used for rx wire */
-> In this example, even though lane 0 is not used by thing2, it is being used by
-> thing1, right?
+Hi Patrice
 
-Yes, I can improve the comments to make it more clear.
-
-> Just checking I understand it correctly.
+On 11/13/25 16:13, Patrice Chotard wrote:
+> This series adds/updates LED nodes for STMicroelectronics boards by
+> adding new LED nodes and function/color properties.
 > 
->> +            ...
->> +        };
->> +    };
->> +
+> On STM32 MCUs boards (F4/F7 and H7 series) green LED is
+> used as heartbeat.
+> 
+> On STM32MP1/2, blue LED is used as heartbeat.
+> 
+> On STM32MP1, red LED is used as status LED.
+> 
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> ---
+> Changes in v2:
+> - Fix compilation error for arch/arm/boot/dts/st/stm32429i-eval.dts
+> 
+> ---
+> Patrice Chotard (16):
+>        ARM: dts: stm32: reorder nodes for stm32429i-eval
+>        ARM: dts: stm32: Update LED nodes for stm32429i-eval
+>        ARM: dts: stm32: Update LED nodes for stm32f429-disco
+>        ARM: dts: stm32: Update LED nodes for stm32f469-disco
+>        ARM: dts: stm32: Update LED node for stm32f746-disco
+>        ARM: dts: stm32: Update LED nodes for stm32f769-disco
+>        ARM: dts: stm32: Update LED nodes for stm32746g-eval
+>        ARM: dts: stm32: Add LED support for stm32h743i-disco
+>        ARM: dts: stm32: Add LED support for stm32h743i-eval
+>        ARM: dts: stm32: Update LED nodes for stm32h747i-disco
+>        ARM: dts: stm32: Add red LED for stm32mp135f-dk board
+>        ARM: dts: stm32: Add red LED for stm32mp157c-ed1 board
+>        ARM: dts: stm32: Update LED node for stm32mp15xx-dkx board
+>        arm64: dts: st: Add green and orange LED for stm32mp235f-dk
+>        arm64: dts: st: Add green and orange LED for stm32mp257f-dk
+>        arm64: dts: st: Add green and orange LED for stm32mp235f-dk
+> 
+>   arch/arm/boot/dts/st/stm32429i-eval.dts    | 64 ++++++++++++++++--------------
+>   arch/arm/boot/dts/st/stm32746g-eval.dts    |  6 +++
+>   arch/arm/boot/dts/st/stm32f429-disco.dts   |  6 ++-
+>   arch/arm/boot/dts/st/stm32f469-disco.dts   |  6 +++
+>   arch/arm/boot/dts/st/stm32f746-disco.dts   |  3 ++
+>   arch/arm/boot/dts/st/stm32f769-disco.dts   |  5 +++
+>   arch/arm/boot/dts/st/stm32h743i-disco.dts  | 27 +++++++++++++
+>   arch/arm/boot/dts/st/stm32h743i-eval.dts   | 18 +++++++++
+>   arch/arm/boot/dts/st/stm32h747i-disco.dts  |  6 +++
+>   arch/arm/boot/dts/st/stm32mp135f-dk.dts    |  6 +++
+>   arch/arm/boot/dts/st/stm32mp157c-ed1.dts   |  6 +++
+>   arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi  | 10 ++++-
+>   arch/arm64/boot/dts/st/stm32mp235f-dk.dts  | 10 +++++
+>   arch/arm64/boot/dts/st/stm32mp257f-dk.dts  | 10 +++++
+>   arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 23 +++++++++++
+>   15 files changed, 175 insertions(+), 31 deletions(-)
+> ---
+> base-commit: 53c18dc078bb6d9e9dfe2cc0671ab78588c44723
+> change-id: 20251112-upstream_update_led_nodes-30e8ca390161
+> 
+> Best regards,
 
+Series applied as is on stm32-next. I'll probably squash those patches 
+for my PR.
+
+Regards
+Alex
 
