@@ -1,128 +1,86 @@
-Return-Path: <devicetree+bounces-252871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC1F6D0381A
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 15:49:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76715D039FC
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:01:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 10EB930325C3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 14:43:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 22235309887A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 14:55:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 883343E8C41;
-	Thu,  8 Jan 2026 14:41:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1769A2DAFD7;
+	Thu,  8 Jan 2026 14:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DlPEEBaV"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="sfgH9SDD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6366850094E
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 14:41:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B8ED1DE8A4;
+	Thu,  8 Jan 2026 14:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767883261; cv=none; b=M9RQTXRvsHfAqY65eO7cesJmsfJLao9G04MH5Az8iMFnKzOVAj3jSipDcJ5s8TpJqBWto0/HZRvtGH6S9/eUXGaizz28vD/Tlzt/WCxE0am/kc8pqUZm4MTLT+vdNxQZ3naoBS++REtR65IpWd4k0v+Bi2rXAvkhZlE1ZU4Rqak=
+	t=1767883966; cv=none; b=WXwhGS/3VqARYo42Yha3dWXx/L7pbJoiMOjf8PpjCnuy9teSnIZrApRJ3YRnBbL71D95XrxdqkqVr+7RL/UpLIQpGfX6YixXC4AFbY57tmahQhacT98VdLt/FXBTho6SMfnkRKEmtsrcuAKQBuXLl4KQHBh1HwqnUZxmbOyLhFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767883261; c=relaxed/simple;
-	bh=VCvoKljqX3kZKrg0wl5o7D7vP2IqS4NfiwwNUjNseAA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=thy3UGBzVh1Lhq8SXgOckQp7cc93a8OQiyNl7p6FyXxznL1BQIWYZdYEQEbg1J68joqHp2y8YJJSEhWPVIqIJPZq2idjIcCcMPmFQ6Jd8ok9pKk8eIh5VFPqJ4oOGCkX4Iwi/tQOcjhnxsFBhxYfQGyopl44XFUeFIXbu8BXZ7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DlPEEBaV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1864CC19422
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 14:41:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767883261;
-	bh=VCvoKljqX3kZKrg0wl5o7D7vP2IqS4NfiwwNUjNseAA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=DlPEEBaVI+xP7JjLfS9LR7e7TGlmyC5TXYpt0PNmPihe3YioXsrVmtrq1bDvAbAlr
-	 DGQBoe0/BBqPxEDAat093atVemL+rsMNoS4kC49Pg9BpmAZgGRFiEkQdkSTLecOfG+
-	 poB3TiqB3KlW5jq1VyvVP3hp3sorPJDtMbWrYvxFO8lusCSeJyKRcPIrCqDY3ofN3a
-	 j77fZG3Y/Wr/xsiaSXRnJzZlY2y9ukAD9v5DlTjUi4i7Sd7nHzz0KYnoANhj8k8luW
-	 A1jJFXxGdReXBvIrTVbgWB83BJbBPTv2KiA8ytRN+HMBPxWAg09+sQor/s3ENg9Znp
-	 H7nY7A1BD5mtA==
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b736d883ac4so606748666b.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 06:41:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUF2gt1ypZeRq2p6n57mP9ZUoGe3ReVvHYfVombmXYwn5/RfHAum58pzPCeUnspsY9Tl1MxAGt8mCcG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxtxif8JbbRUPzlI3sDSL/WsFoJZ7SHdAI5bugahb3eQUc9gKH6
-	SdeEfTl6cYf69g4OosnQbdkqxzoQc0pipbgZ85qNPUx2Bhh1bP429lkoO9hXqQkGTaqH7cnqPCz
-	a5qTVcHsjW+0tK/DPo2zo0npRJTm1QA==
-X-Google-Smtp-Source: AGHT+IHI33xhADwXbn0vf2H6UNw8erJbbT8WWPi8EUBJ/Ob7LvrmYmQ7U0+rDVaaapOIsNUCqxvWDN4KWUHOnOQ+6Dw=
-X-Received: by 2002:a17:907:72cd:b0:b83:f09f:4e56 with SMTP id
- a640c23a62f3a-b844516d7admr651521166b.63.1767883259450; Thu, 08 Jan 2026
- 06:40:59 -0800 (PST)
+	s=arc-20240116; t=1767883966; c=relaxed/simple;
+	bh=REctfFUcNFnjAlrVe1U10jUaKWccUMTijX0We6uL7+U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=enTrHAryQ7PpkmqgQhPcg7gbPKBD3aT3/RbdOFbsVoMgowwJjQ1gtWsuU8r3J+bZr8f0ZxuEMPzC+jrM61YiaI4D+mgFTi8hYNlNJ+Wu+RC/AXAoEzx+1Z0e2pBVyBbG4Qs2AQ0dOQTmwZOu+7rL5cyi5fSrRhl+vx0xBAVSedw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=sfgH9SDD; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=5RMxX8fLudzgzeaK8Hxa/jVqGVI3C6mJxtJKkvtOXWM=; b=sfgH9SDDp9NHn9HDL2Qa5RRGQb
+	aPYiNW/CMH3y50KuXB+F2eWH7m7hdmM0w52cPzR7Q1QsnMLcmcVPA7ahlWtSmWQUj+blZ58Vyb7si
+	sqBUI5kxMY7in/N15dSdqgbEKH6i+xi3qVaSVfTxcHlkOsdfrXYghOf4y73nwWWFlNrU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vdrNE-001xse-J5; Thu, 08 Jan 2026 15:52:28 +0100
+Date: Thu, 8 Jan 2026 15:52:28 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: krzk+dt@kernel.org, herbert@gondor.apana.org.au, davem@davemloft.net,
+	robh@kernel.org, conor+dt@kernel.org, gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com, matthias.bgg@gmail.com,
+	atenart@kernel.org, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH 1/4] dt-bindings: crypto: inside-secure,safexcel: Mandate
+ only ring IRQs
+Message-ID: <c65c2f98-7530-470c-b288-d135fd621005@lunn.ch>
+References: <20260108110223.20008-1-angelogioacchino.delregno@collabora.com>
+ <20260108110223.20008-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
- <20251219-spi-add-multi-bus-support-v4-2-145dc5204cd8@baylibre.com> <aV-jQImroXxFqj3Z@debian-BULLSEYE-live-builder-AMD64>
-In-Reply-To: <aV-jQImroXxFqj3Z@debian-BULLSEYE-live-builder-AMD64>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 8 Jan 2026 08:40:47 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+y86RJ3PwN1DSbw1zUgL-f-R98u7s+zfrKr99V+za1Zw@mail.gmail.com>
-X-Gm-Features: AQt7F2o2jGkKFch4Ba0iemfY8-pqG-ebcXF772c-dsVzMB7IP52XjuMQWCjxSCI
-Message-ID: <CAL_Jsq+y86RJ3PwN1DSbw1zUgL-f-R98u7s+zfrKr99V+za1Zw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/9] spi: dt-bindings: add spi-{tx,rx}-lane-map properties
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcelo Schmitt <marcelo.schmitt@analog.com>, 
-	Michael Hennerich <michael.hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>, 
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260108110223.20008-2-angelogioacchino.delregno@collabora.com>
 
-On Thu, Jan 8, 2026 at 6:28=E2=80=AFAM Marcelo Schmitt
-<marcelo.schmitt1@gmail.com> wrote:
->
-> On 12/19, David Lechner wrote:
-> > Add spi-tx-lane-map and spi-rx-lane-map properties to the SPI periphera=
-l
-> > device tree binding. These properties allow specifying the mapping of
-> > peripheral data lanes to controller data lanes. This is needed e.g. whe=
-n
-> > some lanes are skipped on the controller side so that the controller
-> > can correctly route data to/from the peripheral.
-> >
-> > Signed-off-by: David Lechner <dlechner@baylibre.com>
-> > ---
-> >
-> > v4 changes:
-> > - This replaces the data-lanes property from the previous revision. Now
-> >   there are separate properties for tx and rx lane maps. And instead of
-> >   being the primary property for determining the number of lanes, this
-> >   is only needed in special cases where the mapping is non-trivial.
-> > ---
-> >  .../devicetree/bindings/spi/spi-peripheral-props.yaml      | 14 ++++++=
-++++++++
-> >  1 file changed, 14 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props=
-.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > index 59ddead7da14..2f278f145f78 100644
-> > --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > @@ -75,6 +75,13 @@ properties:
-> >        enum: [0, 1, 2, 4, 8]
-> >      default: [1]
-> >
-> > +  spi-rx-lane-map:
-> > +    description: Mapping of peripheral RX lanes to controller RX lanes=
-.
-> > +      Each index in the array represents a peripheral RX lane, and the=
- value
-> > +      at that index represents the corresponding controller RX lane.
-> These are peripheral props so I guess RX is from peripheral perspective.
-> In that case, those would be routed to controller TX lanes, no?
+On Thu, Jan 08, 2026 at 12:02:20PM +0100, AngeloGioacchino Del Regno wrote:
+> Not all IP implementations of EIP97 and EIP197 have the EIP and
+> MEM interrupts hooked up to the SoC, and those are not required
+> for functionality as status for both can be polled (and anyway
+> there's even no real need to poll, but that's another story).
+> 
+> As an example of this, the MediaTek MT7968A and MT7986B SoCs do
+> not have those two interrupts hooked up to their irq controlller.
+> 
+> For this reason, make the EIP and MEM interrupt optional.
 
-I'm pretty sure it's the input to the controller like the other rx
-properties. Like rx-delay is for reads.
+It seems like the order of these patches is the wrong way around. You
+should first add the device specific compatibles, and then update the
+constrains based on those compatibles, so that the marvell variants
+continue to require 6 interrupts, but the mediatek versions only
+require 4.
 
-I guess "peripheral RX lanes to controller RX lanes" is a bit oddly worded.
-
-Rob
+	Andrew
 
