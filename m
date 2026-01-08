@@ -1,328 +1,130 @@
-Return-Path: <devicetree+bounces-252787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F62D02E78
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:12:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E49C9D02E6B
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:12:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8895C30D66CB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:46:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 16AC830E0663
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A261D4A2E17;
-	Thu,  8 Jan 2026 12:15:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACA3A4BDEB0;
+	Thu,  8 Jan 2026 12:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eh02+o44"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iy5+++A8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0165F480338;
-	Thu,  8 Jan 2026 12:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 891194BDE8B
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767874517; cv=none; b=mWMrv9OipFRjqaIkDHsg1asDSyuIsExdb3meTfawBazKevg3A/fgN021cPgHzDH7dGPnamH5QmZ9YkFo+0xq7z7DmeV+lWQaRJY1JnXvBnAgdwykLpty+8x52o/yZ9A4KMq5TwLezGnkDd6bktfZGEUSW6jJRJp7Tq9pj0nBY7U=
+	t=1767874527; cv=none; b=txACAzLFKtNA+4uyqQL931ew9EgQle9FQ1PhrMaegrWEIU4SUrxwaWmlWKuCeW6ShdIYgOzf2seWwTMPZqy/j4KihJ0zttQUTcs+EkPXMf3NZ2fqTFOLyMlhJz1poNlqfPVhTkkZw87nW+1fcgVkIg06fupdTSosKZufP3nSByg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767874517; c=relaxed/simple;
-	bh=fLWB07m1q1Xqg38v0MB74PfEXl4fphO0Q77TxkBUxUQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nKnVufZqfiUYcuJdWo8Zn4oRPCuL6J8Pujy0OvDV1P5SMVrpyQN3Mg1Pz4ryA1QcqWA90nLPsbLCV8l8hrpZ1mEFzDHLbbWfdi2pRvaNPpjSm2DqC/SaXB9Y44BqrXdMg25XDhvLDqiIbd0ODO/nQOlrIecTFjFtJk1xsJh/jwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eh02+o44; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 70F53C2BCB7;
-	Thu,  8 Jan 2026 12:15:15 +0000 (UTC)
+	s=arc-20240116; t=1767874527; c=relaxed/simple;
+	bh=oN3VJ81TR92t72IorUOGx+yYKZ6zgxZk9xFRV4q/Jvs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rPD8L17Ccf7qUycGM9mIQv8krT5wY+E4008AExuwIQKWUzhsXm7xT3APxpcZdnFeXwHCAwBwHcyGzCUKWH0SIijRuiBlJhbouIiRTNqHbYI40vQrA2fcac+OXCHSqYID/Ul5w/H/qsnBU+5mmXfDh9PXPCABqvJOV6kuGTyuvAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iy5+++A8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 325F3C2BC87
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:15:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767874515;
-	bh=fLWB07m1q1Xqg38v0MB74PfEXl4fphO0Q77TxkBUxUQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=eh02+o44isxYzdIn1AqW+vTOYQmdkEEZ6UjiLoo4mihKCR8svUXPUJgKQSTdnzcWe
-	 cWUJSjPBXP6RVzlC/DFAIACcYb2mBGfCXWs4FhZCp6yWP4738/zFuor2OscoCdy+VO
-	 BcciQwbJlKIJ6h5O+UyVm4gEOgpn7HTwcVIGEXlE1I1HzBAjUEPykCrFGIiZSaO8oG
-	 FcEKvUmAVvGcf1mgF2nBLtvpeM3LfcoIxSst+XVNZ5q2zr9r2dOcDDRNVPqDFRt8UW
-	 NZ3ybFjK/r90Lix27wyrUAVr4xURpOWEuSuKI8dY4o0coo28ZfDdZJNRzZh8/yAA1j
-	 puanQEBChqKXA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67B36D185EA;
-	Thu,  8 Jan 2026 12:15:15 +0000 (UTC)
-From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Thu, 08 Jan 2026 12:14:54 +0000
-Subject: [PATCH v3 5/6] docs: iio: add documentation for adf41513 driver
+	s=k20201202; t=1767874527;
+	bh=oN3VJ81TR92t72IorUOGx+yYKZ6zgxZk9xFRV4q/Jvs=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=iy5+++A86Sd4Opbng5Cpq18bXVkT5o3GMVfzsGGk+tSkDWzJntj1FB6j6rsTmvDV7
+	 htk5tpeZs7QIUTy1l81V0iwHwd+ld3bzRnlSLulPMLJgS5+BHEXo2cQsyv09Gs87c1
+	 6U6WuD9E4fHh9FTyCDiwOvTsfJCfMABaKvIEh/hxlznf66fal6a5ELJKAz+QYDHowm
+	 RSYmfVWwSOTYlMrwmhNGfnhOg87uRQ2rCIdg4Z746axEcP2smmEWDVmqa/Kjm2JKzd
+	 cTRPrW2m084iD5VJcJnB63d5nGR5SkqGE+jzjgNUCjYJgR3S/74C1Exn+71ksFN4o/
+	 YNS2z15g0sydA==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-59b679cff1fso2154807e87.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:15:27 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUTaEqJ78v2SixIti6MX62reDQ/RB8vxeuGA0R1qAxEOSdiCVJmJ3KhxCZrvNkx9krKwjr7FrHM6hoQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyP6ZatbVqr2U9PVVxLY+NaL3ljUrReX+UaHG09cgUuo/xcuJz8
+	7bUVT966nvxIsFGGSjW7+nDAYDSP/a8nX6uGiY6pe1UCtDVz4umjasQag+g+UuvWP+R/BDBjsJY
+	EaQJd1O52NCrLqDVWY4+RroZL/EO9Oh38y70BEFyt9A==
+X-Google-Smtp-Source: AGHT+IF/4koG/MN6sfNsURUrtRSXZrXyRHd0bqi6p5mzExxZBo2GY4yvcJpb3YE7lL2MK6UqIWbaGQBDGlnCB4B6bas=
+X-Received: by 2002:a05:6512:68f:b0:594:35c4:fed1 with SMTP id
+ 2adb3069b0e04-59b6ef03a2dmr1813240e87.13.1767874525775; Thu, 08 Jan 2026
+ 04:15:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260108-adf41513-iio-driver-v3-5-23d1371aef48@analog.com>
-References: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
-In-Reply-To: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
-To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Rodrigo Alencar <rodrigo.alencar@analog.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767874513; l=8999;
- i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=8oyk+0EMFPwmJHG1OC/3EQ4VesKU+46HXyz+yO6kPUA=;
- b=WEpjUjpcre2FmGpC6a2HuKhGvvpaJEh3FuH4dMCt8EtWyRFQabmSMD4z7cJYTu8xp0K6TIBxF
- e4nl885OJ3BCABOkuEU0vYH8oJpjotMZ3oqTuABifQHAE4smzdEA5Yk
-X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
- pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
-X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
- with auth_id=561
-X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-Reply-To: rodrigo.alencar@analog.com
+References: <20260107-pci-m2-v5-0-8173d8a72641@oss.qualcomm.com> <20260107-pci-m2-v5-5-8173d8a72641@oss.qualcomm.com>
+In-Reply-To: <20260107-pci-m2-v5-5-8173d8a72641@oss.qualcomm.com>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Thu, 8 Jan 2026 13:15:12 +0100
+X-Gmail-Original-Message-ID: <CAMRc=Md9TQiSX-gFa5q--JgaGyQ2ky4mOwjSpdxHhvHAj-X5Qw@mail.gmail.com>
+X-Gm-Features: AQt7F2puNlVWjbhiRoX8QQnOlbAAs4UdjLNY6ZTbm-vEXEFSeur6kT9w8kO5QSk
+Message-ID: <CAMRc=Md9TQiSX-gFa5q--JgaGyQ2ky4mOwjSpdxHhvHAj-X5Qw@mail.gmail.com>
+Subject: Re: [PATCH v5 5/5] power: sequencing: Add the Power Sequencing driver
+ for the PCIe M.2 connectors
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-pm@vger.kernel.org, 
+	linux-ide@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+On Wed, Jan 7, 2026 at 3:11=E2=80=AFPM Manivannan Sadhasivam via B4 Relay
+<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> wrote:
+>
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+>
+> This driver is used to control the PCIe M.2 connectors of different
+> Mechanical Keys attached to the host machines and supporting different
+> interfaces like PCIe/SATA, USB/UART etc...
+>
+> Currently, this driver supports only the Mechanical Key M connectors with
+> PCIe interface. The driver also only supports driving the mandatory 3.3v
+> and optional 1.8v power supplies. The optional signals of the Key M
+> connectors are not currently supported.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.=
+com>
 
-Add documentation for ADF41513 driver which describes the device
-driver files and shows how userspace may consume the ABI for various
-tasks
+This looks good to me, though there are some nits I may fix when applying.
 
-Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
----
- Documentation/iio/adf41513.rst | 199 +++++++++++++++++++++++++++++++++++++++++
- Documentation/iio/index.rst    |   1 +
- MAINTAINERS                    |   1 +
- 3 files changed, 201 insertions(+)
+I'll pick it up for v7.0 once the bindings are reviewed.
 
-diff --git a/Documentation/iio/adf41513.rst b/Documentation/iio/adf41513.rst
-new file mode 100644
-index 000000000000..4193c825b532
---- /dev/null
-+++ b/Documentation/iio/adf41513.rst
-@@ -0,0 +1,199 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+===============
-+ADF41513 driver
-+===============
-+
-+This driver supports Analog Devices' ADF41513 and similar SPI PLL frequency
-+synthesizers.
-+
-+1. Supported devices
-+====================
-+
-+* `ADF41510 <https://www.analog.com/ADF41510>`_
-+* `ADF41513 <https://www.analog.com/ADF41513>`_
-+
-+The ADF41513 is an ultralow noise frequency synthesizer that can be used to
-+implement local oscillators (LOs) as high as 26.5 GHz in the upconversion and
-+downconversion sections of wireless receivers and transmitters. The ADF41510
-+is a similar device that supports frequencies up to 10 GHz.
-+
-+Both devices support integer-N and fractional-N operation modes, providing
-+excellent phase noise performance and flexible frequency generation
-+capabilities.
-+
-+Key Features:
-+
-+- **ADF41510**: 1 GHz to 10 GHz frequency range
-+- **ADF41513**: 1 GHz to 26.5 GHz frequency range
-+- Integer-N and fractional-N operation modes
-+- Ultra-low phase noise (-235 dBc/Hz integer-N, -231 dBc/Hz fractional-N)
-+- High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
-+- 25-bit fixed modulus or 49-bit variable modulus fractional modes
-+- Programmable charge pump currents with 16x range
-+- Digital lock detect functionality
-+- Phase resync capability for consistent output phase
-+
-+2. Device attributes
-+====================
-+
-+The ADF41513 driver provides the following IIO extended attributes for
-+frequency control and monitoring:
-+
-+Each IIO device has a device folder under ``/sys/bus/iio/devices/iio:deviceX``,
-+where X is the IIO index of the device. Under these folders reside a set of
-+device files that provide access to the synthesizer's functionality.
-+
-+The following table shows the ADF41513 related device files:
-+
-++----------------------+-------------------------------------------------------+
-+| Device file          | Description                                           |
-++======================+=======================================================+
-+| frequency            | RF output frequency control and readback (Hz)         |
-++----------------------+-------------------------------------------------------+
-+| frequency_resolution | Target frequency resolution control (Hz)              |
-++----------------------+-------------------------------------------------------+
-+| powerdown            | Power management control (0=active, 1=power down)     |
-++----------------------+-------------------------------------------------------+
-+| phase                | RF output phase adjustment and readback (radians)     |
-++----------------------+-------------------------------------------------------+
-+
-+2.1 Frequency Control
-+----------------------
-+
-+The ``frequency`` attribute controls the RF output frequency with sub-Hz
-+precision. The driver automatically selects between integer-N and fractional-N
-+modes to achieve the requested frequency with the best possible phase noise
-+performance.
-+
-+**Supported ranges:**
-+
-+- **ADF41510**: 1,000,000,000 Hz to 10,000,000,000 Hz (1 GHz to 10 GHz)
-+- **ADF41513**: 1,000,000,000 Hz to 26,500,000,000 Hz (1 GHz to 26.5 GHz)
-+
-+The frequency is specified in Hz, for sub-Hz precision use decimal notation.
-+For example, 12.102 GHz would be written as "12102000000.000000".
-+
-+2.2 Frequency Resolution Control
-+--------------------------------
-+
-+The ``frequency_resolution`` attribute controls the target frequency resolution
-+that the driver attempts to achieve. This affects the choice between integer-N
-+and fractional-N modes, including fixed modulus (25-bit) and variable modulus
-+(49-bit) fractional-N modes:
-+
-+- **Integer-N**: Resolution = f_PFD
-+- **Fixed modulus**: Resolution = f_PFD / 2^25 (~3 Hz with 100 MHz PFD)
-+- **Variable modulus**: Resolution = f_PFD / 2^49 (µHz resolution possible)
-+
-+Default resolution is 1 Hz (1,000,000 µHz).
-+
-+2.3 Phase adjustment
-+--------------------
-+
-+The ``phase`` attribute allows adjustment of the output phase in radians.
-+Setting this attribute enables phase adjustment. It can be set from 0 to 2*pi
-+radians. Reading this attribute returns the current phase offset of the output
-+signal. To create a consistent phase relationship with the reference signal,
-+the phase resync feature needs to be enabled by setting a non-zero value to the
-+``adi,phase-resync-period-ns`` device property, which triggers a phase
-+resynchronization after locking is achieved.
-+
-+3. Operating modes
-+==================
-+
-+3.1 Integer-N Mode
-+------------------
-+
-+When the requested frequency can be achieved as an integer multiple of the PFD
-+frequency (within the specified resolution tolerance), the driver automatically
-+selects integer-N mode for optimal phase noise performance.
-+
-+In integer-N mode:
-+
-+- Phase noise: -235 dBc/Hz normalized floor
-+- Frequency resolution: f_PFD (same as PFD frequency)
-+- Maximum PFD frequency: 250 MHz
-+- Bleed current: Disabled
-+
-+3.2 Fractional-N Mode
-+---------------------
-+
-+When sub-integer frequency steps are required, the driver automatically selects
-+fractional-N mode using either fixed or variable modulus.
-+
-+**Fixed Modulus (25-bit)**:
-+
-+- Used when variable modulus is not required
-+- Resolution: f_PFD / 2^25
-+- Simpler implementation, faster settling
-+
-+**Variable Modulus (49-bit)**:
-+
-+- Used for maximum resolution requirements
-+- Resolution: f_PFD / 2^49 (theoretical)
-+- Exact frequency synthesis capability
-+
-+In fractional-N mode:
-+
-+- Phase noise: -231 dBc/Hz normalized floor
-+- Maximum PFD frequency: 125 MHz
-+- Bleed current: Automatically enabled and optimized
-+- Dithering: Enabled to reduce fractional spurs
-+
-+3.3 Automatic Mode Selection
-+----------------------------
-+
-+The driver automatically selects the optimal operating mode based on:
-+
-+1. **Frequency accuracy requirements**: Determined by frequency_resolution setting
-+2. **Phase noise optimization**: Integer-N preferred when possible
-+3. **PFD frequency constraints**: Different limits for integer vs fractional modes
-+4. **Prescaler selection**: Automatic 4/5 vs 8/9 prescaler selection based on frequency
-+
-+4. Usage examples
-+=================
-+
-+4.1 Basic Frequency Setting
-+----------------------------
-+
-+Set output frequency to 12.102 GHz:
-+
-+.. code-block:: bash
-+
-+    root:/sys/bus/iio/devices/iio:device0> echo 12102000000 > out_altvoltage0_frequency
-+
-+Read current frequency:
-+
-+.. code-block:: bash
-+
-+    root:/sys/bus/iio/devices/iio:device0> cat out_altvoltage0_frequency
-+    12101999999.582767
-+
-+4.2 High Resolution Frequency Control
-+-------------------------------------
-+
-+Configure for sub-Hz resolution and set a precise frequency:
-+
-+.. code-block:: bash
-+
-+    # Set resolution to 0.1 Hz (100,000 µHz)
-+    root:/sys/bus/iio/devices/iio:device0> echo 0.1 > out_altvoltage0_frequency_resolution
-+
-+    # Set frequency to 12.102 GHz (1 µHz precision)
-+    root:/sys/bus/iio/devices/iio:device0> echo 12102000000 > out_altvoltage0_frequency
-+    root:/sys/bus/iio/devices/iio:device0> cat out_altvoltage0_frequency
-+    12101999999.980131
-+
-+4.3 Monitor Lock Status
-+-----------------------
-+
-+When lock detect GPIO is configured, check if PLL is locked:
-+
-+.. code-block:: bash
-+
-+    # Read frequency - will return error if not locked
-+    root:/sys/bus/iio/devices/iio:device0> cat out_altvoltage0_frequency
-+
-+If the PLL is not locked, the frequency read will return ``-EBUSY`` (Device or
-+resource busy).
-diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-index ba3e609c6a13..605871765c78 100644
---- a/Documentation/iio/index.rst
-+++ b/Documentation/iio/index.rst
-@@ -30,6 +30,7 @@ Industrial I/O Kernel Drivers
-    ad7625
-    ad7944
-    ade9000
-+   adf41513
-    adis16475
-    adis16480
-    adis16550
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a5c5f76f47c6..3bb7d9fe7ed8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1616,6 +1616,7 @@ L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/frequency/adi,adf41513.yaml
-+F:	Documentation/iio/adf41513.rst
- F:	drivers/iio/frequency/adf41513.c
- 
- ANALOG DEVICES INC ADF4377 DRIVER
+> +++ b/drivers/power/sequencing/pwrseq-pcie-m2.c
+> @@ -0,0 +1,169 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + * Author: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com=
+>
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/of_platform.h>
 
--- 
-2.43.0
+It looks like this is a leftover from previous versions and you no
+longer need it?
 
+> +
+> +static void pwrseq_pcie_free_resources(void *data)
+> +{
+> +       struct pwrseq_pcie_m2_ctx *ctx =3D data;
+> +
+> +       regulator_bulk_free(ctx->num_vregs, ctx->regs);
+> +}
 
+I would call it pwrseq_pcie_m2_free_regulators() if you don't mind.
+
+Bart
 
