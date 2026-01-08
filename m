@@ -1,677 +1,203 @@
-Return-Path: <devicetree+bounces-252908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38D0CD04A32
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:02:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C69F1D04901
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 17:53:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 941C23045B21
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:41:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8DAFC3048BA4
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:42:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC492DB782;
-	Thu,  8 Jan 2026 16:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF2E2DB7AD;
+	Thu,  8 Jan 2026 16:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RaefIwf/"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sCgh/EaQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011023.outbound.protection.outlook.com [52.101.65.23])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azhn15010008.outbound.protection.outlook.com [52.102.149.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 257402D3231;
-	Thu,  8 Jan 2026 16:41:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214B22DB7A3;
+	Thu,  8 Jan 2026 16:42:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.149.8
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767890498; cv=fail; b=oe7BppXO+Nsz5ZRvFjyMNL171M+iQDu9c06d+0JPAmLDsLmTF9TVi+gFsNw9YvuqoldNv8VpCtE7DqDwkIAKqTUIAn6S10Pzes/stoff3QgwCsCdweUvEX8Oabkyl8yoe3NhYP76QeLYED3awspmqvb/QTPAebwpioWe7OfSwm8=
+	t=1767890565; cv=fail; b=EtQu+kUPdgRl3Ojadmq1d/PAOWc5yP+R/nwrOKO+e6GseZ1O+Vv1Mszs2+dQPJfcl+jdEoKG3WcVUHJl8acbUsFprG86spFpHeLu2Dh1m4tDQe42lWYkkuDjmQdKIK7pM6246tR/dstOOW4H3/r2RarwlE1eDx7wMKm9FJzNTfY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767890498; c=relaxed/simple;
-	bh=nBQjjDBi54G6CSeCVOU67YT6ykhzjHRhtJXMG3taNxY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=PWRF5VwdWY0uGHJLXtbqxuF8CxRbUjtVbI0i43vBFh+/7nhjfHKxlfK9HIc8/5Pe7ck227Rikx7cupN3FP9MxRgafrIphDyCSK623V6nFzWuPwoFLHOsIoJ/zw9u/9radfEef3EQP3gtFcQnM64SL1ltGjO0t0t88ySjRGNqSMU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RaefIwf/; arc=fail smtp.client-ip=52.101.65.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1767890565; c=relaxed/simple;
+	bh=pZzAD0TWpI+Dh/Q0hxer2FJKX5L3FmIAFCG2cjf9avU=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TrPEavvlAUe+bXosOHXyea/JavatORDImgoZYCZPHYIbljlrEA6vGkIul1rB8WJTi1/LQqU6vwC89p1AkDFgIbD4ZD4s4mYxPdRtHEgyAc0j/MpnF7sm97DmITtlIh2HqvsEK1DxQ5CnPOAYb7Z9Q17pWxMuHFKJvk1GNUnnWq8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=fail (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sCgh/EaQ reason="signature verification failed"; arc=fail smtp.client-ip=52.102.149.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=S+KvefBuCOqhl0uxYuxdm4jVinAeesbYI4F+AJEa6YXUjJMwuL33isrTVf+eCMh4tg6IyrgYNLCIczLvbp4pxUo02iTXdy+TT/gZl+7cvbXUAwMTmBppDrPLeepgmvXLZt3B5Ao3ZhLkws4UejTSBJe/j/U4ylRtrK/K0YgrLQ/8z3LHr5D77e6IofZZftnl/FQVMvx8azICDQHLAQ+gCnPBBSkgIbj/6C6lJPMM59djCPVLtw+5h2GXVQGo+oIbgmJnPlJFWeUgOXJUAwme5XLZuSo03Mxc8QpUayhs4xjkPr+ZG8qnYeSgXQX5pH9JiOHSkVrRUo/W6XwNtmLgBg==
+ b=t1gWqDsgVe02c3mLd8voYfTwWOq4mPGPC6GQhijFhOzEw44x1Ss7Z6X7gbbVc8gEPl7/s4IODSStZVhw5K5ADD8g4kWyw4CmiuAgce42tpbpR21LbJd8CTWY0WVRXtTAhxwP02CLw0Cfe21VN/UBgFTt6mS2zzXLxHdQDt2RkgRyN+xofxnhggRg/DPQkq1BiGIXdDWkAPuScpaNy1w0CNBML1yQxQ7riFiNj+EJ8pWnxZeT8ZOLIBhN1BcGEropWZXk3d++YhaHKmvxoNpIAcjvXAQm7400G8Lvufab7DKwi58i+oy2I0dScESDMVxtEE7L7MkazPUQhqBIJkshQw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2sRzl8KtQbRDalcktMRTCAiLGHuWKX2pU4wDOybYGD8=;
- b=tXHMvEm86OO2GSwdZiaa7rdgKgV6S1ok4dUhHUUNz7tjKaT+4Rixl86MldpS5l32xR57KQeYq9pq/caQ3Bk/OjYN5JGEzQEaccamrN7tiV52Uasyy95267I1hkREXgG2vQUOhUYSdjGPFBDYKAmAZnmTjIbSE+YekrLS8SBKXaYiipLw4dzisv6Ln50AYenehiml7ZBhAZmsf55szlfLQ+lsduTVxOhrKSBBI2viHrt906qVfmrjqdgeEQ3bC5u+WQ7VUDpdGxSIaJ1a7dS/ZQiVbJKvOTB2ubAq1562lvUZo0Or6/j3li33JggYENO44R80040khIAsXvgRhTVfBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ bh=O8gfuI4yVfipe+EUiqlVxwVUFRxmt7HdZweeji8dJVU=;
+ b=W0iem1BgH4dyVd7d78VKYafNd5xeJTbIPBCbjlrFt4kYqU1iMFxeFJ99ziRnWTD18YcnwKIKl8lUZNVhJ2ttW5h1cVQz4zSf8iXY0ec+GJpb+Xbxjlkz1bvdhLuWKJIP89REQWZTM5LW5cvZgpIibDVuncT1fDsU9IAB4VAfy7LeUPWJE+DtNQGiarpN7FYESnhEvswhUJkwbVNVQblhF5iM8RtQgYSdPof4VuXfbuuJAJrykG+TPkwlUpMtSZ4nru15hMEptPGIfVGHubH8UynMV1lDHcAXNvB5ObpZpGAA7nC7hBQ1cOuRj5qy34EOZ1JIiy5mV87fcRbepv0Cdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2sRzl8KtQbRDalcktMRTCAiLGHuWKX2pU4wDOybYGD8=;
- b=RaefIwf/0zd2iPCCDAEHR4OIp6pLpZP8d+6C0HW9nPLoGLpMi3CcTg4xNooo2EKBBia6dCI5yG9B1pXUWUHepe4EYsWsXjH22dF6h8C/knAoeOGotyHw6km5TCVph9UVetlF0ScpmCtxTC+0H/yWl2BJ+Ak/GC/FT2EagzZe6lJ5pnJh/+M5FaPCHbI9wIGvmXWo4Fv61UqNuKJ62iDnzb1SFzDYI7A1lTC8o9n9NNKBm8/mYAx6w8MPL65oOzXWDLhNkPxQFw55rOu2UzBxN4Jj1q4g7s1jgtBEEljSbC6XzBdNtHcYuOGe/tSftCQ+4q1YK3FdweyTKr8D52iSyA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8948.eurprd04.prod.outlook.com (2603:10a6:20b:42f::17)
- by AM8PR04MB7204.eurprd04.prod.outlook.com (2603:10a6:20b:1c4::11) with
+ bh=O8gfuI4yVfipe+EUiqlVxwVUFRxmt7HdZweeji8dJVU=;
+ b=sCgh/EaQBM+yxs0RQ3iwR+TU74dTTcdnvyaJAM9ulUYLhocJon5AHoY+LGjOz59DPw2vY8zDR0K6Em611bSOZUmh1JDDXxrufoUlRzGfQ3jew3JNKvTnIULfRbCu1sNfIHzyQn3RTEUWi05zV1WFo3RVaYVk5Eu3IRjUQpLdV7I=
+Received: from SJ0PR03CA0009.namprd03.prod.outlook.com (2603:10b6:a03:33a::14)
+ by IA1PR10MB6123.namprd10.prod.outlook.com (2603:10b6:208:3a9::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.3; Thu, 8 Jan
- 2026 16:41:33 +0000
-Received: from AS8PR04MB8948.eurprd04.prod.outlook.com
- ([fe80::843f:752e:60d:3e5e]) by AS8PR04MB8948.eurprd04.prod.outlook.com
- ([fe80::843f:752e:60d:3e5e%4]) with mapi id 15.20.9499.002; Thu, 8 Jan 2026
- 16:41:33 +0000
-Date: Thu, 8 Jan 2026 11:41:16 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: wbg@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	krzk+dt@kernel.org, s32@nxp.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] counter: Add STM based counter
-Message-ID: <aV/eLFO57v567Fwa@lizhi-Precision-Tower-5810>
-References: <20260107133953.2094015-1-daniel.lezcano@linaro.org>
- <20260107133953.2094015-4-daniel.lezcano@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260107133953.2094015-4-daniel.lezcano@linaro.org>
-X-ClientProxiedBy: BYAPR06CA0058.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::35) To DU2PR04MB8951.eurprd04.prod.outlook.com
- (2603:10a6:10:2e2::22)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Thu, 8 Jan
+ 2026 16:42:40 +0000
+Received: from SJ1PEPF0000231B.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a:cafe::b3) by SJ0PR03CA0009.outlook.office365.com
+ (2603:10b6:a03:33a::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.2 via Frontend Transport; Thu, 8
+ Jan 2026 16:42:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ SJ1PEPF0000231B.mail.protection.outlook.com (10.167.242.232) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.1 via Frontend Transport; Thu, 8 Jan 2026 16:42:38 +0000
+Received: from DFLE205.ent.ti.com (10.64.6.63) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 8 Jan
+ 2026 10:42:25 -0600
+Received: from DFLE210.ent.ti.com (10.64.6.68) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 8 Jan
+ 2026 10:42:25 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 8 Jan 2026 10:42:25 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 608GgP4i2677725;
+	Thu, 8 Jan 2026 10:42:25 -0600
+Date: Thu, 8 Jan 2026 10:42:25 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Vitor Soares <ivitro@gmail.com>
+CC: "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>, "Vignesh
+ Raghavendra" <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+	"Dhruva Gole" <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>, Kendall
+ Willis <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt Trigger
+Message-ID: <20260108164225.rtjhnkqzhehnji32@bunkhouse>
+References: <20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
+ <49bfb30f71eae0844676e6b545d67739b6d79539.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <49bfb30f71eae0844676e6b545d67739b6d79539.camel@gmail.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8948:EE_|AM8PR04MB7204:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd0b7c8a-0458-4e47-5e1b-08de4ed4c289
+X-MS-TrafficTypeDiagnostic: SJ1PEPF0000231B:EE_|IA1PR10MB6123:EE_
+X-MS-Office365-Filtering-Correlation-Id: 10370b15-46be-411e-573c-08de4ed4ef4a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|19092799006|376014|1800799024|366016|38350700014|7053199007;
+	BCL:0;ARA:13230040|82310400026|36860700013|7416014|376014|1800799024|34020700016|34070700014|12100799066;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?mIkKwlvkGBQfEzpp0p5HowLD1xIML5twICsTRywSgPTk1BTEeNVbVrdxLtTJ?=
- =?us-ascii?Q?H180NINf+ltmQmkiPGvuMTLUd9PZlIXT1671TpG9axraShOmvVGbS4XrIM5W?=
- =?us-ascii?Q?VNU6DmofvxB0O0pjeLrXwyQWCH4X3WZ0e1RLGiu7WH30/xzJHnNsn+HacfFl?=
- =?us-ascii?Q?6tG+Dp39dMgkfGxnKIH/KM6E9pWH5FHDWtVvNNH39tJELdwzlw1iyblLmzH9?=
- =?us-ascii?Q?TxwWvTIXbzAwH838kt6hR7jA5Sb/FaPlTbFi+HCZk8C3KJipb2wwGZUytkHs?=
- =?us-ascii?Q?GB3hyGCfBIowS/WqZtnR69OKJDrs8uYS4qVBuKIxJWn99g4Wh73cr2NP7RZD?=
- =?us-ascii?Q?5xxrugwzlxMvBxa33cc5hocVqymlX8cQrJPkbQ+1vYDEYoMGdbJGq9Oj6HnS?=
- =?us-ascii?Q?7+CJ2E+yHjSz/KhouDNdt2FAADA5yQEdincLTGjaApJ2o2u3rZFDZbBskBWJ?=
- =?us-ascii?Q?oVwnQ6t0lprL3Utxxv9bX2gMsj9THWD9Ofk3Ar6Vyh3QwJDRdqSbLrj3qHVD?=
- =?us-ascii?Q?Tldtywr0Tr87Fotl23dXvnwJSrvjy/NcBvyOl/porZtw+bj/drhe/5JKzllg?=
- =?us-ascii?Q?nuO2PxD+/M4QjuLC/1szuHLqCs2vl8XxWykYtx5Jbzfc+zxHe+1SA3SzQSXZ?=
- =?us-ascii?Q?aEPsqxij9MVQcZBevqDeVGL9A06rMKD2FdNUWIsc6vgkWadLv7CV7sHzyuXy?=
- =?us-ascii?Q?pSGnteMHi5RnnE5P0Fyc8QQaAzRDfDJYQnHI8MVPmNSifgaHVKX2FnrT4Acv?=
- =?us-ascii?Q?eq4YnEg7Lj4ggpIZCHN7lxAqz7mP8E3oZiOYKgZqxZcDLzHda2nZGmp+CgsM?=
- =?us-ascii?Q?JXdKvntI3c82lqtMvl+/6vx80RQnCpiUwIL2Bz1hFFowcvKRoOSrbFQc2Ncq?=
- =?us-ascii?Q?L8+hM9QxWUN3prRhhNHG9l8BgAKXkKwpyGCqXQCmlv+28znIMe0ssBPBLXKL?=
- =?us-ascii?Q?Rjf8sED24CPhULF4V+IZNU4p/8qiNHIROAImCq2NvD4aAIEB2a1puZXOtCTM?=
- =?us-ascii?Q?YmHwGLQ5vvLDgA+hATjAuHi7XoZyNrseRZ/b7eFwbvH2ja9j1OtSIR7U2kxN?=
- =?us-ascii?Q?dz9om+qPc+LUccpBbUglN5fMwQXzO8roQ+9HVwIbuQOHkP/w6si4K/VZy5wZ?=
- =?us-ascii?Q?kK0faxAmYTQouAYVy1NkA1rMJf2xUuT71Gtn/CTCoZiyvMRvh18E6puVbFD8?=
- =?us-ascii?Q?0pPu3yYKcHLKgLO7wYoVll4wSp+QDKkb85JfMbS3Kpp0GCBIuTnHt3eQgRqn?=
- =?us-ascii?Q?P+k/lhghWVnh3aqFanaYlklSlE2DGi/2mQfdNCFqHb9jP6KCqYvPpMriSFF1?=
- =?us-ascii?Q?6ccSiP5J9nJhKf0wwBTjc2oevEgz9g/EVt8mRTj8iizUf+TVQ5xaw4PbmqXu?=
- =?us-ascii?Q?qMCfPVvpdUXXm5vqRYKABBvD3J1nJ0A3eLOBMD3TqDIYwboBobI8lgj9+i/w?=
- =?us-ascii?Q?aIl2DK8shlA+Ok4S/O8cJHkIylpDzJZdR6JSkm/+HqEVlLc32bjGrjYIhfa2?=
- =?us-ascii?Q?LUkbtMyRJgVW/QFH+imGBW6zjF9Yy7raF1CG?=
+	=?iso-8859-1?Q?scHZpY9V+b4Np8KtXaMyhOFVq0iqA1pty1DOmT/AjhoGDB7gWvob4O+IcX?=
+ =?iso-8859-1?Q?oqjTGfwmRy5P863wGsc0Dp4q8hgMQUGKSU5tyZxO8CPD1S3To8UZv446dH?=
+ =?iso-8859-1?Q?MbprgBXQgwx8bLLsgav3DTz+6TENky/mDJ0aypZSTtpB5D0Ogdm+RfDX7y?=
+ =?iso-8859-1?Q?4X9l/orMvv2iWYv2tnIgK6SDMXXwbRT84I2XMt0CX47AZR7tBJYVaBQbXH?=
+ =?iso-8859-1?Q?akESK2jRLZwoQCulM+2Z7NbRTXsa6U6aN5ejWEFBI9dBdeuMsgofdN+qX2?=
+ =?iso-8859-1?Q?2Amvo1Oesn3wK/uTKIH5OoH+jKTegjxxBHtwdeynHLonEf/jQsvAB2BrUI?=
+ =?iso-8859-1?Q?zUMM7+uA42COudOQRTmQN6b2YE6vWsZ2cEEhvdrRHO0Gqw15tXXj5MgaBl?=
+ =?iso-8859-1?Q?VMS/Job+ieK6RyXcDv5jWqjt6aHQBOG8EDJT7R+IFueBi7fVqPrimASTan?=
+ =?iso-8859-1?Q?gal+t/v/bBYRiYLRKwLKzp3+yXIBl01cGOAAOkzQJOCLHaCf6FgW781Bgz?=
+ =?iso-8859-1?Q?0nTAJrTlKKkxq6a3OAn/NkN8dtehcfu77vPdLWXMibznT2DG7g687HyUcS?=
+ =?iso-8859-1?Q?ppuCcOELb6tn6iOx1+xKH9EmZQl4LuL5WMB0EVYjTCPLgDMDNw5plNqDA+?=
+ =?iso-8859-1?Q?xb5JQ7x9xIG9zeWLGB10OrPXE9tRYEZ6kz5lhOl8cDMuLA+Ongovi7ARmQ?=
+ =?iso-8859-1?Q?82KtenbwiD5S1FZf11xa5uAMRpKCgJZ+zm1vnn8eqvAuPQNGv5rYMrKEQg?=
+ =?iso-8859-1?Q?7JV0pBWnZsA/iFWQZ6Zwqsq7q87GBHHA1SSR56Kh1cWw1M9BowvCYcMODS?=
+ =?iso-8859-1?Q?LZVXDgioOrHjHrPcpVBUG+x8Wi7cjBfAGeO6rAnIDc5RL5mo1ImxPW/K8p?=
+ =?iso-8859-1?Q?7fE0J+kxDk6M8HkedFHCDTbwwTybjK6JhXIFW2q34XCZfvVdL3uamCXg4D?=
+ =?iso-8859-1?Q?5FDnijHzZH9AtYzYhw3XSr2i/fu0QEo9YM8mZUu23eNCzHZXkTsYcV+Wew?=
+ =?iso-8859-1?Q?yfmmNarNTB0slmROBSW0baHiGkF5mAmvjIgh1d/MDJ0O69SCKAvFW6HkIf?=
+ =?iso-8859-1?Q?m2G5OGvUS7mYpZ7BwV6DqjuqyEtQ96XIbJOl3GJiqVBW+0dF5nEC3maURV?=
+ =?iso-8859-1?Q?RHQ9f+477d1cAYbqO+pQQOa8YiiHD176Luvu4tOY9wyJVdfoRuY/4wFOsD?=
+ =?iso-8859-1?Q?P9joTC9UKkVU3BQwYyOQFsfmA0jFWTrcnINy6YVuIeeioCcGR9PkT1Su+W?=
+ =?iso-8859-1?Q?RzFS290eqm+2xBjMZHtvUjgMWSRkuWkX2+69+JJtrZxd/dTwT0zrZAsWMb?=
+ =?iso-8859-1?Q?syT3ga05RlabjTFSAWz2RF3jp5iVVV1Ab70Vxtnk7AnOJmR02FSTMbWGPb?=
+ =?iso-8859-1?Q?3KbR4oZKmbEc7YdeVeiOY1FocYIi8gTiK4FrgKjAkgzBD9lCI4F3ZwDIdG?=
+ =?iso-8859-1?Q?NsEnQSc1meG78VW1enQt6NKVmXRp5iivbgdLoolkziSUipFrDq/gTxF8WC?=
+ =?iso-8859-1?Q?HhMYjhOIxWbe5OYv6nfRsW9tcJwoOWWw3u1Pn8YT148Ie8o5Er+GMnUFkd?=
+ =?iso-8859-1?Q?tgxYBPFgS6UOjlNYJV/2u8bs3qgcHoq0mEnlK0lNccfrg6y6dWp4GOp5ts?=
+ =?iso-8859-1?Q?jmDuMzTh/TPjby5VZ7huX/F8NXwj6Owq36?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8948.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(19092799006)(376014)(1800799024)(366016)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?3/5PMGR+XAcfpmvj8o6uDltxJQ+jbV2r77UhdKbWimcs/TKCGv6gL4VbxzGO?=
- =?us-ascii?Q?prWiANCz5rJYgcDt8+/ZjIxV8QY3kPTqm0+VZXw44TH/2wShlez5cYUVC+hT?=
- =?us-ascii?Q?LtPVBs2bUc0hPj5vU8HEoJPQuPa7/xp5UsA/cGKQgbW8mn0O+838YUxNgKK7?=
- =?us-ascii?Q?+SgrhdsZndQN4LPBq5WQl6+E+i+IqWxmaRCbAr2BUea91GMIktcqVT0mzxga?=
- =?us-ascii?Q?oRxX0nvw4fqlxQ/thcLPCdz6SM53GuQGon7EpgbXBWQGKkDi7MlL+aBAvAkB?=
- =?us-ascii?Q?vwuUAq3opOLn7Tw5zAtPvfjjJABBxUNh1unkRPFf5R+hfTbpq2ybKG6yF1M/?=
- =?us-ascii?Q?FfCwOMmmWzU5hf7NsqIQDhqsNQ6AK3hb+NPN5v99c1d1Uf6pnS5VCcYdHLb0?=
- =?us-ascii?Q?CA7sC165xHA9eT8YwQzYkKKtbvOUHUJrQQVcV515ETZSG26pMWrYgntUBgNj?=
- =?us-ascii?Q?b20eJ9/bXfBrs3oBobSLp1+cww4/HmtfElS+XXQZ804tl55uBPrGu7EZH0Tc?=
- =?us-ascii?Q?nBytunUtP8/hSIA2nJzhZIP37HYS9nye20x8wZICJncbEREC67nlseqZ09oG?=
- =?us-ascii?Q?Yz0DavBvOrzTNCOhCH3KqaFBUv2/83Y/dmpecxQpXuzFTf7zm6X6niaFDQk7?=
- =?us-ascii?Q?6svDItj4setnmwKc665sfRKYhzPUC9+xGUSGRmYCDjT4blTyB2q/Qh4tefKw?=
- =?us-ascii?Q?0Ry+wWSU3Md42bNwoI6wc9ypVKu6YdEWpNIxubK6qjSeBulLt/XCpSDYuvas?=
- =?us-ascii?Q?wpr/s4ftJPF3ArGaARCNRyLyXrXr7c9Nu7gBaRvxJJK3PmVqgX2eLjT1ze2n?=
- =?us-ascii?Q?a5xGYZnw+gFeMv0eEgGCbf3AO2GzmPGzYK++F1hniV4at9Fxlon46nQn/IRv?=
- =?us-ascii?Q?YHNEYLZnYpdYFKGbCGjE0lqRSdPGl6HnXZlP/ki9TTdGiWg1KVXnVeubKzLe?=
- =?us-ascii?Q?KFK+a45Je09xGZvDJBSnLkmVPVF1WAAEvdLPUgWrl1jZT+0IF6371sNXD6Jv?=
- =?us-ascii?Q?ssdqa1GBs5D1El5Wdd5pAxrpJm1x/nDO8/9S5YhUpY5AjgYO0o0yYSdmlh7d?=
- =?us-ascii?Q?RgGbCsGmtIRyotBadNTPCVW1NKHXH5IxvULt6Aa8TDUtLLLFgOByDK+lX5sE?=
- =?us-ascii?Q?6/hbz4qpDzM0DjMXMO5AfA+9j9zO/QAGic4ILPaGZbCG5J3T5aXDYiCROY/t?=
- =?us-ascii?Q?So4+yeRFaVfrnbqmje9m8ZIS+K8lW9t4pbVWdD4ie1y2FeZx2G6hYwDQ57NH?=
- =?us-ascii?Q?WE3UWulKDjq1Ct/MgnEJXOHnnAc8WDZ87Nd7g4WjB2syhRlN17V37vofrhYm?=
- =?us-ascii?Q?PEwItZD8+Qcv5f1UljbBpIlhx9EJwRYtOJcc4u34ohKxWmLMhcA0jLYxhy42?=
- =?us-ascii?Q?zhS6vRiSRDhkz4YkqRM9LY8gaLwetquKSMg52XDfvaeUU8wPpm7KKbjFeOwH?=
- =?us-ascii?Q?3BhBJAOV8t2dUO/0N/QjdeAXvGZVh/KTdy9xIc7o3Pz/AJs4ZJoN9lAIWWpH?=
- =?us-ascii?Q?zv9UFqpo2s23nntg2vK8xs5t580pyfuEaOA8NUwGZ2IwbOPeurh8y8hMmoG6?=
- =?us-ascii?Q?3M+edSQBRrhahfBINqIftQab8cf5Qi3qwn7UgVklxdo5EFExCwrfCQCqDZql?=
- =?us-ascii?Q?Az5bxlsD6YAr/mPMXyt3A5ssGNFeOEMTaHHjzJHwMN21Pery7z6oeNrw/GtR?=
- =?us-ascii?Q?zicD5F8Xk7CT8tT35h2bJBTH+PSN7yEQAj3jJObGtD9Z4p/p?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd0b7c8a-0458-4e47-5e1b-08de4ed4c289
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 16:41:33.3152
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(7416014)(376014)(1800799024)(34020700016)(34070700014)(12100799066);DIR:OUT;SFP:1501;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 16:42:38.6835
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JbP1Q9GDsnwVy9YkddjZZcyrrFkIdx+5iE5Q0cCiFV3l9XRXe2YaW+zSOuCjVTJ4FQAN84b2mtzoYVELdNF5TA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7204
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10370b15-46be-411e-573c-08de4ed4ef4a
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF0000231B.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB6123
 
-On Wed, Jan 07, 2026 at 02:39:52PM +0100, Daniel Lezcano wrote:
-> The NXP S32G2 automotive platform integrates four Cortex-A53 cores and
-> three Cortex-M7 cores, along with a large number of timers and
-> counters. These hardware blocks can be used as clocksources or
-> clockevents, or as timestamp counters shared across the various
-> subsystems running alongside the Linux kernel, such as firmware
-> components. Their actual usage depends on the overall platform
-> software design.
->
-> In a Linux-based system, the kernel controls the counter, which is a
-> read-only shared resource for the other subsystems. One of its primary
-> purposes is to act as a common timestamp source for messages or
-> traces, allowing correlation of events occurring in different
-> operating system contexts.
->
-> These changes introduce a basic counter driver that can start, stop,
-> and reset the counter. It also handles overflow accounting and
-> configures the prescaler value.
->
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> ---
->  drivers/counter/Kconfig       |  10 +
->  drivers/counter/Makefile      |   1 +
->  drivers/counter/nxp-stm-cnt.c | 433 ++++++++++++++++++++++++++++++++++
->  3 files changed, 444 insertions(+)
->  create mode 100644 drivers/counter/nxp-stm-cnt.c
->
-> diff --git a/drivers/counter/Kconfig b/drivers/counter/Kconfig
-> index d30d22dfe577..bf5b281f194c 100644
-> --- a/drivers/counter/Kconfig
-> +++ b/drivers/counter/Kconfig
-> @@ -90,6 +90,16 @@ config MICROCHIP_TCB_CAPTURE
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called microchip-tcb-capture.
->
-> +config NXP_STM_CNT
-> +	tristate "NXP System Timer Module Counter driver"
-> +	depends on ARCH_S32 || COMPILE_TEST
-> +	help
-> +	  Select this option to enable the NXP System Timer Module
-> +	  Counter driver.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called nxp_stm_cnt.
-> +
->  config RZ_MTU3_CNT
->  	tristate "Renesas RZ/G2L MTU3a counter driver"
->  	depends on RZ_MTU3
-> diff --git a/drivers/counter/Makefile b/drivers/counter/Makefile
-> index 40e644948e7a..196b3c216875 100644
-> --- a/drivers/counter/Makefile
-> +++ b/drivers/counter/Makefile
-> @@ -12,6 +12,7 @@ obj-$(CONFIG_I8254)			+= i8254.o
->  obj-$(CONFIG_INTEL_QEP)			+= intel-qep.o
->  obj-$(CONFIG_INTERRUPT_CNT)		+= interrupt-cnt.o
->  obj-$(CONFIG_MICROCHIP_TCB_CAPTURE)	+= microchip-tcb-capture.o
-> +obj-$(CONFIG_NXP_STM_CNT)		+= nxp-stm-cnt.o
->  obj-$(CONFIG_RZ_MTU3_CNT)		+= rz-mtu3-cnt.o
->  obj-$(CONFIG_STM32_TIMER_CNT)		+= stm32-timer-cnt.o
->  obj-$(CONFIG_STM32_LPTIMER_CNT)		+= stm32-lptimer-cnt.o
-> diff --git a/drivers/counter/nxp-stm-cnt.c b/drivers/counter/nxp-stm-cnt.c
-> new file mode 100644
-> index 000000000000..9f2edd2161c8
-> --- /dev/null
-> +++ b/drivers/counter/nxp-stm-cnt.c
-> @@ -0,0 +1,433 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2018,2021-2025 NXP
-> + * Copyright 2025 Linaro Limited
-> + *
-> + * Author: Daniel Lezcano <daniel.lezcano@linaro.org>
-> + *
-> + * NXP S32G System Timer Module counters:
-> + *
-> + *  STM supports commonly required system and application software
-> + *  timing functions. STM includes a 32-bit count-up timer and four
-> + *  32-bit compare channels with a separate interrupt source for each
-> + *  channel. The timer is driven by the STM module clock divided by an
-> + *  8-bit prescale value (1 to 256). It has ability to stop the timer
-> + *  in Debug mode
-> + *
-> + */
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/counter.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm.h>
-> +#include <linux/slab.h>
-> +#include <linux/spinlock.h>
-> +
-> +#define STM_CR(__base)		(__base)
-> +#define STM_CR_TEN		BIT(0)
-> +#define STM_CR_FRZ		BIT(1)
-> +#define STM_CR_CPS_MASK         GENMASK(15, 8)
-> +
-> +#define STM_CCR0(__base)	((__base) + 0x10)
-> +#define STM_CCR_CEN		BIT(0)
-> +
-> +#define STM_CIR0(__base)	((__base) + 0x14)
-> +#define STM_CIR_CIF		BIT(0)
-> +
-> +#define STM_CMP0(__base)	((__base) + 0x18)
-> +
-> +#define STM_CNT(__base)		((__base) + 0x04)
-> +
-> +#define STM_ENABLE_MASK	(STM_CR_FRZ | STM_CR_TEN)
-> +
-> +struct nxp_stm_context {
-> +	u32 counter;
-> +	u8 prescaler;
-> +	bool is_started;
-> +};
-> +
-> +struct nxp_stm_cnt {
-> +	spinlock_t lock; /* Protects counter */
-> +	void __iomem *base;
-> +	u64 counter;
-> +	struct nxp_stm_context context;
-> +};
-> +
-> +static void nxp_stm_cnt_enable(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	u32 reg;
-> +
-> +	reg = readl(STM_CR(stm_cnt->base));
-> +
-> +	reg |= STM_ENABLE_MASK;
-> +
-> +	writel(reg, STM_CR(stm_cnt->base));
-> +}
-> +
-> +static void nxp_stm_cnt_disable(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	u32 reg;
-> +
-> +	reg = readl(STM_CR(stm_cnt->base));
-> +
-> +	reg &= ~STM_ENABLE_MASK;
-> +
-> +	writel(reg, STM_CR(stm_cnt->base));
-> +}
-> +
-> +static void nxp_stm_cnt_ccr_disable(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	writel(0, STM_CCR0(stm_cnt->base));
-> +}
-> +
-> +static void nxp_stm_cnt_ccr_enable(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	writel(STM_CCR_CEN, STM_CCR0(stm_cnt->base));
-> +}
-> +
-> +static void nxp_stm_cnt_cfg_overflow(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	/*
-> +	 * The STM does not have a dedicated interrupt when the
-> +	 * counter wraps. We need to use the comparator to check if it
-> +	 * wrapped or not.
-> +	 */
-> +	writel(0, STM_CMP0(stm_cnt->base));
-> +}
-> +
-> +static u32 nxp_stm_cnt_get_counter(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	return readl(STM_CNT(stm_cnt->base));
-> +}
-> +
-> +static void nxp_stm_cnt_set_counter(struct nxp_stm_cnt *stm_cnt, u32 counter)
-> +{
-> +	writel(counter, STM_CNT(stm_cnt->base));
-> +}
-> +
-> +static void nxp_stm_cnt_set_prescaler(struct nxp_stm_cnt *stm_cnt, u8 prescaler)
-> +{
-> +	u32 reg;
-> +
-> +	reg = readl(STM_CR(stm_cnt->base));
-> +
-> +	FIELD_MODIFY(STM_CR_CPS_MASK, &reg, prescaler);
-> +
-> +	writel(reg, STM_CR(stm_cnt->base));
-> +}
-> +
-> +static u8 nxp_stm_cnt_get_prescaler(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	u32 reg = readl(STM_CR(stm_cnt->base));
-> +
-> +	return FIELD_GET(STM_CR_CPS_MASK, reg);
-> +}
-> +
-> +static bool nxp_stm_cnt_is_started(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	u32 reg;
-> +
-> +	reg = readl(STM_CR(stm_cnt->base));
-> +
-> +	return !!FIELD_GET(STM_CR_TEN, reg);
-> +}
-> +
-> +static void nxp_stm_cnt_irq_ack(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	writel(STM_CIR_CIF, STM_CIR0(stm_cnt->base));
-> +}
-> +
-> +static irqreturn_t nxp_stm_cnt_irq(int irq, void *dev_id)
-> +{
-> +	struct counter_device *counter = dev_id;
-> +	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-> +
-> +	nxp_stm_cnt_irq_ack(stm_cnt);
-> +
-> +	counter_push_event(counter, COUNTER_EVENT_OVERFLOW, 0);
-> +
-> +	spin_lock(&stm_cnt->lock);
-> +	stm_cnt->counter += U32_MAX;
-> +	spin_unlock(&stm_cnt->lock);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static void nxp_stm_cnt_start(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	nxp_stm_cnt_cfg_overflow(stm_cnt);
-> +	nxp_stm_cnt_enable(stm_cnt);
-> +	nxp_stm_cnt_ccr_enable(stm_cnt);
-> +}
-> +
-> +static void nxp_stm_cnt_stop(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	nxp_stm_cnt_disable(stm_cnt);
-> +	nxp_stm_cnt_irq_ack(stm_cnt);
-> +	nxp_stm_cnt_ccr_disable(stm_cnt);
-> +}
-> +
-> +static int nxp_stm_cnt_prescaler_read(struct counter_device *counter,
-> +				      struct counter_count *count, u8 *val)
-> +{
-> +	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-> +
-> +	*val = nxp_stm_cnt_get_prescaler(stm_cnt);
-> +
-> +	return 0;
-> +}
-> +
-> +static int nxp_stm_cnt_prescaler_write(struct counter_device *counter,
-> +				       struct counter_count *count, u8 val)
-> +{
-> +	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-> +
-> +	nxp_stm_cnt_set_prescaler(stm_cnt, val);
-> +
-> +	return 0;
-> +}
-> +
-> +static int nxp_stm_cnt_count_enable_write(struct counter_device *counter,
-> +					  struct counter_count *count, u8 enable)
-> +{
-> +	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-> +
-> +	if (enable)
-> +		nxp_stm_cnt_start(stm_cnt);
-> +	else
-> +		nxp_stm_cnt_stop(stm_cnt);
-> +
-> +	return 0;
-> +}
-> +
-> +static int nxp_stm_cnt_count_enable_read(struct counter_device *counter,
-> +					 struct counter_count *count, u8 *enable)
-> +{
-> +	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-> +
-> +	*enable = nxp_stm_cnt_is_started(stm_cnt);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct counter_comp stm_cnt_count_ext[] = {
-> +	COUNTER_COMP_COUNT_U8("prescaler", nxp_stm_cnt_prescaler_read, nxp_stm_cnt_prescaler_write),
-> +	COUNTER_COMP_ENABLE(nxp_stm_cnt_count_enable_read, nxp_stm_cnt_count_enable_write),
-> +};
-> +
-> +static int nxp_stm_cnt_action_read(struct counter_device *counter,
-> +				   struct counter_count *count,
-> +				   struct counter_synapse *synapse,
-> +				   enum counter_synapse_action *action)
-> +{
-> +	*action = COUNTER_SYNAPSE_ACTION_RISING_EDGE;
-> +
-> +	return 0;
-> +}
-> +
-> +static int nxp_stm_cnt_count_read(struct counter_device *dev,
-> +				  struct counter_count *count, u64 *val)
-> +{
-> +	struct nxp_stm_cnt *stm_cnt = counter_priv(dev);
-> +	unsigned long irqflags;
-> +
-> +	spin_lock_irqsave(&stm_cnt->lock, irqflags);
-> +	*val = stm_cnt->counter + nxp_stm_cnt_get_counter(stm_cnt);
-> +	spin_unlock_irqrestore(&stm_cnt->lock, irqflags);
+On 14:07-20260108, Vitor Soares wrote:
+> On Tue, 2026-01-06 at 17:22 +0100, Markus Schneider-Pargmann (TI.com) wrote:
+> > Remove Schmitt Trigger from mmc pins. With Schmitt Trigger enabled
+> > u-boot SPL is not able to read u-boot from mmc:
+> > 
+> >     Trying to boot from MMC2
+> >     Error reading cluster
+> >     spl_load_image_fat: error reading image u-boot.img, err - -22
+> >     Error: -22
+> >     SPL: Unsupported Boot Device!
+> >     SPL: failed to boot from all boot devices
+> >     ### ERROR ### Please RESET the board ###
+> > 
+> > I bisected this issue between u-boot v2025.10 and v2026.01 and found the
+> > devicetree merge to be the problem. At a closer look I found the
+> > k3-pinctrl.h changes. Disabling the Schmitt Trigger fixes the u-boot SPL
+> > failure to read from mmc.
+> > 
+> > Fixes: 5b272127884b ("arm64: dts: ti: k3-pinctrl: Enable Schmitt Trigger by
+> > default")
+> > Signed-off-by: Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
+> > 
+> Hi Markus,
+> 
+> We're seeing a similar issue on Verdin AM62 with U-Boot 2026.01. The
+> board has complete SPL boot failure with no output at all.
+> 
+> This occurs in the same version you bisected (v2026.01 failing).
+> Could the Schmitt Trigger changes also affect Verdin AM62?
 
-It think there are still rise condition here.
+Side note:
 
-cpu 0                                            cpu 1
-1:  nxp_stm_cnt_get_counter(stm_cnt); (0)
-2: 						 irq_handle()
-					         counter += INT_MAX;
-3:
+There seem to be multiple issues playing around in U-boot regression.
+Please see
+https://lore.kernel.org/all/20260108141233.GQ3416603@bill-the-cat/ as
+well. There is chunk of discussions on #u-boot irc channel. I'd wait for
+U-boot folks to settle things down
 
-when wrap happen, nxp_stm_cnt_get_counter() return 0, but, irq still not
-handle yet.
-
-so nxp_stm_cnt_count_read() return 0 at 1.
-
-it return INT_MAX at 3 suddently.
-
-Frank
-> +
-> +	return 0;
-> +}
-> +
-> +static int nxp_stm_cnt_count_write(struct counter_device *dev,
-> +				   struct counter_count *count, u64 val)
-> +{
-> +	struct nxp_stm_cnt *stm_cnt = counter_priv(dev);
-> +	unsigned long irqflags;
-> +
-> +	spin_lock_irqsave(&stm_cnt->lock, irqflags);
-> +	stm_cnt->counter = 0;
-> +	nxp_stm_cnt_set_counter(stm_cnt, 0);
-> +	spin_unlock_irqrestore(&stm_cnt->lock, irqflags);
-> +
-> +	return 0;
-> +}
-> +
-> +static const enum counter_function nxp_stm_cnt_functions[] = {
-> +	COUNTER_FUNCTION_INCREASE,
-> +};
-> +
-> +static int nxp_stm_cnt_function_read(struct counter_device *counter,
-> +				     struct counter_count *count,
-> +				     enum counter_function *function)
-> +{
-> +	*function = COUNTER_FUNCTION_INCREASE;
-> +
-> +	return 0;
-> +}
-> +
-> +static int nxp_stm_cnt_watch_validate(struct counter_device *counter,
-> +				      const struct counter_watch *watch)
-> +{
-> +	switch (watch->event) {
-> +	case COUNTER_EVENT_OVERFLOW:
-> +		return 0;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static const struct counter_ops nxp_stm_cnt_counter_ops = {
-> +	.action_read = nxp_stm_cnt_action_read,
-> +	.count_read  = nxp_stm_cnt_count_read,
-> +	.count_write = nxp_stm_cnt_count_write,
-> +	.function_read = nxp_stm_cnt_function_read,
-> +	.watch_validate = nxp_stm_cnt_watch_validate,
-> +};
-> +
-> +static const enum counter_synapse_action nxp_stm_cnt_synapse_actions[] = {
-> +	COUNTER_SYNAPSE_ACTION_RISING_EDGE,
-> +};
-> +
-> +static struct counter_signal nxp_stm_cnt_signals[] = {
-> +	{
-> +		.id = 0,
-> +		.name = "Counter wrap signal"
-> +	},
-> +};
-> +
-> +static struct counter_synapse nxp_stm_cnt_synapses[] = {
-> +	{
-> +		.actions_list = nxp_stm_cnt_synapse_actions,
-> +		.num_actions = ARRAY_SIZE(nxp_stm_cnt_synapse_actions),
-> +		.signal = &nxp_stm_cnt_signals[0],
-> +	},
-> +};
-> +
-> +static struct counter_count nxp_stm_cnt_counts[] = {
-> +	{
-> +		.id = 0,
-> +		.name = "System Timer Module Counter",
-> +		.synapses = nxp_stm_cnt_synapses,
-> +		.num_synapses = ARRAY_SIZE(nxp_stm_cnt_synapses),
-> +		.ext = stm_cnt_count_ext,
-> +		.num_ext = ARRAY_SIZE(stm_cnt_count_ext),
-> +	},
-> +};
-> +
-> +static int nxp_stm_cnt_suspend(struct device *dev)
-> +{
-> +	struct nxp_stm_cnt *stm_cnt = dev_get_drvdata(dev);
-> +
-> +	stm_cnt->context.is_started = nxp_stm_cnt_is_started(stm_cnt);
-> +
-> +	if (stm_cnt->context.is_started) {
-> +		nxp_stm_cnt_stop(stm_cnt);
-> +		stm_cnt->context.prescaler = nxp_stm_cnt_get_prescaler(stm_cnt);
-> +		stm_cnt->context.counter = nxp_stm_cnt_get_counter(stm_cnt);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int nxp_stm_cnt_resume(struct device *dev)
-> +{
-> +	struct nxp_stm_cnt *stm_cnt = dev_get_drvdata(dev);
-> +
-> +	if (stm_cnt->context.is_started) {
-> +		nxp_stm_cnt_set_counter(stm_cnt, stm_cnt->context.counter);
-> +		nxp_stm_cnt_set_prescaler(stm_cnt, stm_cnt->context.prescaler);
-> +		nxp_stm_cnt_start(stm_cnt);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(nxp_stm_cnt_pm_ops, nxp_stm_cnt_suspend,
-> +				nxp_stm_cnt_resume);
-> +
-> +static int nxp_stm_cnt_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct counter_device *counter;
-> +	struct nxp_stm_cnt *stm_cnt;
-> +	struct clk *clk;
-> +	void __iomem *base;
-> +	int irq, ret;
-> +
-> +	base = devm_of_iomap(dev, np, 0, NULL);
-> +	if (IS_ERR(base))
-> +		return dev_err_probe(dev, PTR_ERR(base), "Failed to iomap %pOFn\n", np);
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return dev_err_probe(dev, irq, "Failed to get IRQ\n");
-> +
-> +	clk = devm_clk_get_enabled(dev, NULL);
-> +	if (IS_ERR(clk))
-> +		return dev_err_probe(dev, PTR_ERR(clk), "Clock not found\n");
-> +
-> +	counter = devm_counter_alloc(dev, sizeof(*stm_cnt));
-> +	if (!counter)
-> +		return -ENOMEM;
-> +
-> +	stm_cnt = counter_priv(counter);
-> +
-> +	stm_cnt->base = base;
-> +	stm_cnt->counter = 0;
-> +	spin_lock_init(&stm_cnt->lock);
-> +
-> +	counter->name       = "stm_counter";
-> +	counter->parent     = &pdev->dev;
-> +	counter->ops        = &nxp_stm_cnt_counter_ops;
-> +	counter->counts     = nxp_stm_cnt_counts;
-> +	counter->num_counts = ARRAY_SIZE(nxp_stm_cnt_counts);
-> +
-> +	ret = devm_request_irq(dev, irq, nxp_stm_cnt_irq, IRQF_TIMER | IRQF_NOBALANCING,
-> +			       dev_name(&counter->dev), counter);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Unable to allocate interrupt line\n");
-> +
-> +	ret = devm_counter_add(dev, counter);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register counter\n");
-> +
-> +	platform_set_drvdata(pdev, stm_cnt);
-> +
-> +	return 0;
-> +}
-> +
-> +static void nxp_stm_cnt_remove(struct platform_device *pdev)
-> +{
-> +	struct nxp_stm_cnt *stm_cnt = platform_get_drvdata(pdev);
-> +
-> +	if (nxp_stm_cnt_is_started(stm_cnt))
-> +		nxp_stm_cnt_stop(stm_cnt);
-> +}
-> +
-> +static const struct of_device_id nxp_stm_cnt_of_match[] = {
-> +	{ .compatible = "nxp,s32g2-stm-cnt", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, nxp_stm_cnt_of_match);
-> +
-> +static struct platform_driver nxp_stm_cnt_driver = {
-> +	.probe  = nxp_stm_cnt_probe,
-> +	.remove = nxp_stm_cnt_remove,
-> +	.driver = {
-> +		.name           = "nxp-stm-cnt",
-> +		.pm		= pm_sleep_ptr(&nxp_stm_cnt_pm_ops),
-> +		.of_match_table = nxp_stm_cnt_of_match,
-> +	},
-> +};
-> +module_platform_driver(nxp_stm_cnt_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Daniel Lezcano");
-> +MODULE_DESCRIPTION("NXP System Timer Module counter driver");
-> +MODULE_IMPORT_NS("COUNTER");
-> --
-> 2.43.0
->
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
