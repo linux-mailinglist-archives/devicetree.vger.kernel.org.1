@@ -1,201 +1,209 @@
-Return-Path: <devicetree+bounces-252713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93801D028EE
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 13:14:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63024D0266D
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:32:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2031730FDA5E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:53:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8C08230A66DA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:30:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0405F42849C;
-	Thu,  8 Jan 2026 09:54:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V+ARIHw2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837B134A3C1;
+	Thu,  8 Jan 2026 08:42:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+Received: from mail-vk1-f195.google.com (mail-vk1-f195.google.com [209.85.221.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56BFA428FDD
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 09:54:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3133342C93
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:41:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767866052; cv=none; b=NYdOgVxu8dXHWaB4yp09dXMS0Mo9Pqqm4xt6LHVPXtvIQm2EvkUoqIo2AOHY7iXVVe7rs1i726T5Uhww7BfTiMUNNvrwhAyIXGb1GZlcxYtvxW3HjUSrnBF2wrY3X4RADqJxu5/T4AkrC2e5soNL/lM762NXJo8umh+avkA2lqQ=
+	t=1767861717; cv=none; b=rDXRU1xlVoc5/WGQexcZogbqwmeIw5E7P0Ql2Rj+dLjJWp5yldweE6Yio4RqSrZVT5vkKPmGBIGET+6i5zxd55ETrfDXv4NVeVajzJsQlSLgz2Ki1j9i0HHa0zaqlyxE9CTgfSnbwvrQw5PO3OU6DEEHi0SzlPiQF+qI9upNj2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767866052; c=relaxed/simple;
-	bh=+em6k554hiEdgZ3gCIS3vNjm0IbnUUOfSriX33xjyhs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YYwsCi8qy0dSKIYpiGR8iihBYeSq2eyHKrFu6sqsNgYwx/3S4y0u3auwJZv+lq2axLys7ZDPmVk1ESOUxecLZnUuxAmV1T50+00s8Lmome5XX47KQVved8OjjIJLz6NWZg/PPxeM9U2/dMU5URxoHddy5Ui6pKXdUYWSFcVS5Bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V+ARIHw2; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1767861717; c=relaxed/simple;
+	bh=9X/r2vj38C7ckuEFNFkLLoQCe9ZxM5qmA8RkRgtPHu4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Kdo5nlPkoovBnhdto+qNzXPsNPBUW+ro1oBLrntYt9qmmIUL4gTvF8hqhVtS75HLrVnTYuLoZBu9tgRNfWjBcEVcaVwC3ekPsEcYNjCIeNElIz/KrZ/fT00ABawU3rTL9E/bZzVHBpbyTQLuR7BAXEpSY2M9lD9K85kj4hu+C7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-55b302b8369so2001939e0c.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 01:53:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767866036; x=1768470836; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s9Cv7mdPPcZ8e/4RiioRb+FP1zONlTuWhguDLBncdBY=;
-        b=V+ARIHw2mRav1wtLV6YWM/BefFHkmkw3cSOA8P8uEwBX0URJioD3hl20Dcf/EoB30I
-         t1lgsYf9hAhMfUphKVLpuQOSgzWHKu36VIvawKnFsQOdb8rNa2ZNkB/uPsgb7PGkkDzV
-         G/dVFYzHuLGzleWWCzst0vF7ei2opUbDRrRia+tzrzju8bMALtt9rTIa9xVKWr1G+aKl
-         Zgy6LE4cKtoDo68SJk8vSpcMmzWXzboadJoYpBNw/ziTrOuO6xSAxf0HfekdZt0n+C3p
-         qHz61hMOa0DDS3Kwl0M9iHqbTPKMJh9NXNcNC5KvVkx4TtKIC6AqUeeWpIDb3bpxlfrl
-         uEsw==
+Received: by mail-vk1-f195.google.com with SMTP id 71dfb90a1353d-55ad466ad1eso1010047e0c.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:41:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767866036; x=1768470836;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=s9Cv7mdPPcZ8e/4RiioRb+FP1zONlTuWhguDLBncdBY=;
-        b=HQXVq1Xg7ml9XvXANbbr1LOQGe3uIGsiNCnXPeAqt5KnSZlc6CaoT5KXPllR88JX3N
-         NFrguGz9weIM6matxuF7xTEtSK+T5aIRynQMRi2OFVkNTQRob/hzxA6HF32PozfHEs+a
-         YzVrnZL9ViGQtnYsDYgh4pwbTglMDyzXh0T1pgeeb1wgSSCKNcwKFp/jCl2fJ21C0Tta
-         9eVBYdK/Fc71lR2V2gNLge0smhDTWRygliXH65FfZ3Un+qFIbv7f7fbCyOipa5FjudVD
-         aYp7pdtYjy0TluaxwyhyeXTjiJI/pJoHr5e/HUEERvUuxl1SRq3Prmtb85GFuANF0owe
-         gu4w==
-X-Forwarded-Encrypted: i=1; AJvYcCUnpTfQUSDfHy0xZtr2gv5QUdp19vADWhwKHtVqVFhuOu7Kf3MmtCxPK6oJayMXfUw4ThT16Jptz8FH@vger.kernel.org
-X-Gm-Message-State: AOJu0YywL3sV9N3k565GbtNStCNexNdUpFEdvlr2pb2RxAagEsBSV6rt
-	xXM4yWSWHs2qGgR1GF16Ux/GoTJtoMQgAh3z4q0fE2dp4I2bLzY4Pms445jx5g==
-X-Gm-Gg: AY/fxX6q/RHRn7pdYVToEf9dYdbQnxO3SPUTUWo2F6RRSECbm9VNgbMqd/W92h0v+BG
-	63+ESiS7xP+vO6x1QCC2zol6xyzocfvHxg7nEAZluJa9DMfuiRDmLTD98dvURmZ3SRBH5Q2300K
-	VPU6A7ChfjrfUgs2n7MYMQGBaAlKqZ69pS/UCtdJOrt8Cr5KUUJ+t82DeAFU8juXJQIy4MLZoqk
-	XOzNXG1aMR0nQ6AHC0+9dlCh9pfmuaZKBXf1J0LqoyWUMv6dOMc8gNrnF5XsdKpVGgHO26TuWoa
-	birDa7wSZjVU6yses7k4yaqwinDq7SRbQ2iHuI2C2OHZYGkZg5nBnPotmIENBwg/b8vAg3R6KKE
-	k2iQW6duT992TmL3fb5s3TylJtZxLJmGoffxISDWcFBq9/AAKxfbf+q41BT7gZAlnSGsQEb2F3p
-	pudBnBoj1MM+04tFhNe0l8pJlbniYVnUAkJohhIZ3nC1ViLsnfQ7CvhIlFXnTS4sLzNesxRg1LD
-	V2vS38cPntTbC/tf3fcyQ==
-X-Google-Smtp-Source: AGHT+IE5lf3uPbw8VErEKzhFGGbzHGx8u/fDHReHMHASFjL4yvedLS17Wjxspaaf5SF45aWguaeksQ==
-X-Received: by 2002:a05:6a00:8c10:b0:7f7:497d:8118 with SMTP id d2e1a72fcca58-81b7eb26e99mr4452899b3a.7.1767859776927;
-        Thu, 08 Jan 2026 00:09:36 -0800 (PST)
-Received: from visitorckw-work01.c.googlers.com.com (25.118.81.34.bc.googleusercontent.com. [34.81.118.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819bafe991dsm6900582b3a.16.2026.01.08.00.09.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 00:09:36 -0800 (PST)
-From: Kuan-Wei Chiu <visitorckw@gmail.com>
-To: airlied@gmail.com,
-	simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dmitry.torokhov@gmail.com,
-	sre@kernel.org,
-	gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	lgirdwood@gmail.com,
-	broonie@kernel.org
-Cc: jserv@ccns.ncku.edu.tw,
-	eleanor15x@gmail.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	krzysztof.kozlowski@oss.qualcomm.com,
-	Kuan-Wei Chiu <visitorckw@gmail.com>
-Subject: [PATCH v2 6/6] dt-bindings: display: google,goldfish-fb: Convert to DT schema
-Date: Thu,  8 Jan 2026 08:08:36 +0000
-Message-ID: <20260108080836.3777829-7-visitorckw@gmail.com>
-X-Mailer: git-send-email 2.52.0.457.g6b5491de43-goog
-In-Reply-To: <20260108080836.3777829-1-visitorckw@gmail.com>
-References: <20260108080836.3777829-1-visitorckw@gmail.com>
+        d=1e100.net; s=20230601; t=1767861709; x=1768466509;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xns/JPqML0qCztDyyCuldpapQdflbeNCjFZrnYmJiTY=;
+        b=n0sw6tcW3LR4mVnE2bRpmTpMYRo0K3NP7O+W/304w2ltzmk1+uX9QyM6Jxx3s7xnyW
+         8BuTc+eTmxbwN/uXSUwCG0b5JJlYSQjvdwqx2SVNcMu3ZVBEjUliTZeEN55JB75nLdjS
+         IsiJqn+WOmykEx86I7CLOqD3pI0RVd6GbUP6fUpxASRGUK//vk6J1MRkrTqFj6Dnuvj9
+         V9lUP68EosdfDyQ048/SxsfSh/umluEl19LtFtff+nItpVwbEhVXExI30uR73pjMpRUv
+         IaGWroCfuGGsoz+tsao4ve+2tWsierpg36xo0ddOeWnCoZWRxAdOsBfIygRQMdsg7aja
+         8TQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW7CrCQiYwu1zHWILppzCaQs6DG8jLSePKV3ZS0VENyPlKaCu5Ohfrm6wbv+c3/8U4QWr0J4C9L8Yai@vger.kernel.org
+X-Gm-Message-State: AOJu0YzM49xEwMyjB6cAGdlIH9Mjyfx0H6nVQt0zOijvXcPG6F69KPqa
+	JEcjZxfswridMtrkuK/jUtnlM7BKo/GVztPBWYFCjdIvna0Sq9s5yiIrDBnCxWp6
+X-Gm-Gg: AY/fxX62JbtGExPkWg4K49AgnN6VCH/E1klYo3vi9ywOVtEhNOk/nXqz9g9fjZF/ap2
+	mD/NTD3s0+FbRn32uTi3OrSa6XUDRGn8TGc3dMKFCwiSOc+/gyck+SyHlfop+maXX3YHdvJyIyZ
+	XT51mNI6YkIJ6x5xARfmq2yisRaxRvlM2d/sbYMSXFyrxkIJtrYWIzjYTeqSMnSwJ85Xd+V73As
+	Gw/pYKunmgyXP2DdSt8DvJ7WVLXnkSx5vDMA5fEbbyhyRf3dWvv5n6VSE2T5dPUmMyB8b+FhTjj
+	X6MOh58Mcu2bJt+hTrRhTBrQMwqBeIaraOczQ6A0oFHvg3PS1MmUL926L7Bg/6AQNaxR/3IbHoJ
+	OmBwqO9Bdrc5F/z4WVrxxJXaQ2gBRDer62o+xU10jNnA/a8h3Jqgd3hMyaUE7nPdAKaiUw6TkcZ
+	P5F4H83FCY70JSikHDrz1Bgs4mfTGOHqdya/quBjUaRE/2Y6RA
+X-Google-Smtp-Source: AGHT+IHgOWUbXexdSBQ9+Hf86EOJ8RANmIT5tCszDvcxUvZEeAgy4sq1JKPBf6AMLGtPqon5mceuYg==
+X-Received: by 2002:a05:6122:ca9:b0:55b:305b:4e2d with SMTP id 71dfb90a1353d-56347ffa593mr1540503e0c.20.1767861709420;
+        Thu, 08 Jan 2026 00:41:49 -0800 (PST)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5634e959afbsm3473809e0c.1.2026.01.08.00.41.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jan 2026 00:41:49 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-93a9f700a8cso971060241.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:41:49 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUOmlblCe6K695rGRxP05xaDOYis+DU8m2WjY2GOGgThhvjy97op689PKyy6TErU+QF3kUc/keD99dJ@vger.kernel.org
+X-Received: by 2002:a05:6102:cc8:b0:5df:ac57:b0ea with SMTP id
+ ada2fe7eead31-5ecb68565afmr1696181137.10.1767861708843; Thu, 08 Jan 2026
+ 00:41:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251217080843.70621-1-shorne@gmail.com> <20251217080843.70621-2-shorne@gmail.com>
+ <CAMuHMdUaO_PwWygW8qss47W_ErB4pm1Z2HQ+edvw1-x7ce7oKw@mail.gmail.com> <aV9o1LL0Ahip0O3-@antec>
+In-Reply-To: <aV9o1LL0Ahip0O3-@antec>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 8 Jan 2026 09:41:37 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXYCNR0ANn152ghFExpWY_yZ5+kyFGGRwA+X-EFUvxZXw@mail.gmail.com>
+X-Gm-Features: AQt7F2qP9J__FZqrZLV9_WL7FjGfkbxAjWs5PQwA8dHfLG4zYdATwoLKEBlozis
+Message-ID: <CAMuHMdXYCNR0ANn152ghFExpWY_yZ5+kyFGGRwA+X-EFUvxZXw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: Add compatible string opencores,gpio
+ to gpio-mmio
+To: Stafford Horne <shorne@gmail.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, 
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Linus Walleij <linusw@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Convert the Android Goldfish Framebuffer binding to DT schema format.
-Update the example node name to 'display' to comply with generic node
-naming standards.
+Hi Stafford,
 
-Signed-off-by: Kuan-Wei Chiu <visitorckw@gmail.com>
----
-Changes in v2:
-- None.
+(reviving linusw)
 
- .../bindings/display/google,goldfish-fb.txt   | 17 ---------
- .../bindings/display/google,goldfish-fb.yaml  | 38 +++++++++++++++++++
- 2 files changed, 38 insertions(+), 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/google,goldfish-fb.txt
- create mode 100644 Documentation/devicetree/bindings/display/google,goldfish-fb.yaml
+On Thu, 8 Jan 2026 at 09:20, Stafford Horne <shorne@gmail.com> wrote:
+> On Wed, Jan 07, 2026 at 03:35:45PM +0100, Geert Uytterhoeven wrote:
+> > On Wed, 17 Dec 2025 at 09:15, Stafford Horne <shorne@gmail.com> wrote:
+> > > In FPGA Development boards with GPIOs we use the opencores gpio verilog
+> > > rtl.  This is compatible with the gpio-mmio.  Add the compatible string
+> > > to allow as below.
+> > >
+> > > Example:
+> > >
+> > >         gpio0: gpio@91000000 {
+> > >                 compatible = "opencores,gpio", "brcm,bcm6345-gpio";
+> > >                 reg = <0x91000000 0x1>, <0x91000001 0x1>;
+> > >                 reg-names = "dat", "dirout";
+> > >                 gpio-controller;
+> > >                 #gpio-cells = <2>;
+> > >                 status = "okay";
+> > >         };
+> > >
+> > > Link: https://opencores.org/projects/gpio
+> > > Signed-off-by: Stafford Horne <shorne@gmail.com>
+> >
+> > Thanks for your patch, which is now commit f48b5e8bc2e1344f
+> > ("dt-bindings: gpio-mmio: Add compatible string for opencores,gpio")
+> > in gpio/gpio/for-next.
+> >
+> > > --- a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> > > +++ b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> > > @@ -18,11 +18,16 @@ description:
+> > >
+> > >  properties:
+> > >    compatible:
+> > > -    enum:
+> > > -      - brcm,bcm6345-gpio
+> > > -      - ni,169445-nand-gpio
+> > > -      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
+> > > -      - intel,ixp4xx-expansion-bus-mmio-gpio
+> > > +    oneOf:
+> > > +      - enum:
+> > > +          - brcm,bcm6345-gpio
+> > > +          - ni,169445-nand-gpio
+> > > +          - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
+> > > +          - intel,ixp4xx-expansion-bus-mmio-gpio
+> > > +      - items:
+> > > +          - enum:
+> > > +              - opencores,gpio
+> > > +          - const: brcm,bcm6345-gpio
+> >
+> > What is the rationale behind using brcm,bcm6345-gpio?
+> > Given brcm,bcm6345-gpio has 32-bit registers, while opencores,gpio
+> > has 8-bit registers, I doubt the latter is compatible with the former...
 
-diff --git a/Documentation/devicetree/bindings/display/google,goldfish-fb.txt b/Documentation/devicetree/bindings/display/google,goldfish-fb.txt
-deleted file mode 100644
-index 751fa9f51e5d..000000000000
---- a/Documentation/devicetree/bindings/display/google,goldfish-fb.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--Android Goldfish framebuffer
--
--Android Goldfish framebuffer device used by Android emulator.
--
--Required properties:
--
--- compatible : should contain "google,goldfish-fb"
--- reg        : <registers mapping>
--- interrupts : <interrupt mapping>
--
--Example:
--
--	display-controller@1f008000 {
--		compatible = "google,goldfish-fb";
--		interrupts = <0x10>;
--		reg = <0x1f008000 0x100>;
--	};
-diff --git a/Documentation/devicetree/bindings/display/google,goldfish-fb.yaml b/Documentation/devicetree/bindings/display/google,goldfish-fb.yaml
-new file mode 100644
-index 000000000000..48b9c056d9ac
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/google,goldfish-fb.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/google,goldfish-fb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Android Goldfish Framebuffer
-+
-+maintainers:
-+  - Kuan-Wei Chiu <visitorckw@gmail.com>
-+
-+description:
-+  Android Goldfish framebuffer device used by Android emulator.
-+
-+properties:
-+  compatible:
-+    const: google,goldfish-fb
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    display@1f008000 {
-+        compatible = "google,goldfish-fb";
-+        reg = <0x1f008000 0x100>;
-+        interrupts = <0x10>;
-+    };
+> I was following what we did for uart, where we have
+> "opencores,uart16550-rtlsvn105", "ns16550a".
+
+I assume the former is a 100% compatible plug-in for the latter.
+
+> I am using brcm,bcm6345-gpio to match the drivers/gpio/gpio-mmio.c driver.
+> The opencores,gpio is compatible with the same driver as brcm,bcm6345-gpio but
+> not 100% the same as the brcm,bcm6345-gpio.  Since the device tree allows
+> configuring the gpio-mmio driver to make it compatible with opencore,gpio I
+> thought this would be OK.
+>
+> I switch the size from 32-bit to 8-bit using the reg = <* 0x1>, <* 0x1> setting.
+> Also the reg addresses of "dat" and "dirout" are different for the real
+> brcm,bcm6345-gpio.
+>
+> brcm,bcm6345-gpio. Example:
+>
+>        /* GPIOs 192 .. 223 */
+>        gpio6: gpio@518 {
+>                compatible = "brcm,bcm6345-gpio";
+>                reg = <0x518 0x04>, <0x538 0x04>;
+>                reg-names = "dirout", "dat";
+>                gpio-controller;
+>                #gpio-cells = <2>;
+>        };
+>
+> vs opencores,gpio Example:
+>
+>        gpio0: gpio@91000000 {
+>                compatible = "opencores,gpio", "brcm,bcm6345-gpio";
+>                reg = <0x91000000 0x1>, <0x91000001 0x1>;
+>                reg-names = "dat", "dirout";
+>                gpio-controller;
+>                #gpio-cells = <2>;
+>        };
+
+Exactly, the register space and register widths are different
+
+> The opencores,gpio setup does work.
+>
+> Now that I think about it, would it have been better to just add opencores,gpio
+> to gpio-mmio.c compatible list?
+
+I think that would be better.
+
+> If so I will can revise this patch and add patch to gpio-mmio.c.
+
+DT maintainers: Given gpio-mmio is that generic/simple, is there a
+specific reason there is no generic "gpio-mmio" compatible value that
+can be used as a fallback, avoiding the need to keep on adding new
+entries to gpio_mmio_of_match[]?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.52.0.457.g6b5491de43-goog
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
