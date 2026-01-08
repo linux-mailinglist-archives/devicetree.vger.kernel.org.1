@@ -1,174 +1,103 @@
-Return-Path: <devicetree+bounces-252895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D63BD04DAC
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:17:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AD28D04EC2
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:25:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BAB3B30E2CB3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:10:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED17831B2305
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:26:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6311F20B810;
-	Thu,  8 Jan 2026 16:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0964A2C1589;
+	Thu,  8 Jan 2026 16:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="MUkuf7d4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XrjTyWmG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F4081DFDB8;
-	Thu,  8 Jan 2026 16:10:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF79923C8A0;
+	Thu,  8 Jan 2026 16:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767888627; cv=none; b=lwBXx958Ya/lLcYOaeju4DCX8ifDdsD+dQbRJ3EOHxmOhitqKuErnSaCNF0/3wIypusn2PlOaQsIKIFBjDu6jdBgrZa7657EXNaMYfakZSqFPb/MXrNbooZBghwIj4ntjCs/pVH6ExgWwe1SmsFJQ7OjAHOxTwuIz0qcNAI2fGk=
+	t=1767889560; cv=none; b=EOzkhaFWAtt5CDH3boXsSFpgFIofuKHu3GycfitPqwDnoI8T9PNw0wMR+WfPwZFA+3j48VmAFzClN3g0GSHBbt65V2iByCYGrKoBgPNWRa03e2VxjxaS0DxYihl+ivsrCXxGw528WgMkupLFWoY/sh9btHh4rhrOOH4JX/S2hY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767888627; c=relaxed/simple;
-	bh=D1x7HLI267QUqo56DOxlQbkNFR+5LcpuiEHW6oCtj+0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VWW9MWu7QJbWtwCGNekpGsmhoyWF9zoINzOGKF968vj1FNJlLbF8F3kFJ0/H8daDHLX2pvYC13i45LJ6A61SdQSCeCp+8yPgoxN4iGUXAY7oR2FW/fE9rlG7bGjg12PtyP5dUYU9hdBxhs+H3TPzZUo8UGc/xtIEBqXCdoHMbqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=MUkuf7d4; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=9t7RCksMujyX8swqWhQFyBcp3/5sZoVMAXP5liIPnO4=; b=MUkuf7d4NGuYAxwkVk9mclIZTv
-	rQkxwMcTmvPhz/Kw12SRCpYrQqIrghTkAih2KJBlTQo1HL0t49AXbFxUMnWSEnYh8/au6xX3OgSm+
-	Gdz/GE2hMy9Q/PNkbAGPAdwXozpQpeqMwvm56lget2bUVOTy6JWwu2Rg0QB8whV/FgcnHdMDVCj9q
-	838POOGOoyKQPyiuetEPrUTs3m5GKgZJkcQS5I6SQVWtfkTm6pXayDHWOv7Ki+NPx9yTJ4emGhWji
-	KCOjGpln/bNT4P2649CWeMQkBW2X5bT4wfktefrIul/Yf3WGxZNHpDXBMe6KtKWyOoU7adosVGaHH
-	EmItGm0w==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:54696)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vdsaN-000000002ps-3OJZ;
-	Thu, 08 Jan 2026 16:10:07 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vdsaJ-000000002TW-45kC;
-	Thu, 08 Jan 2026 16:10:03 +0000
-Date: Thu, 8 Jan 2026 16:10:03 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Dinh Nguyen <dinguyen@kernel.org>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mamta Shukla <mamta.shukla@leica-geosystems.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	bsp-development.geo@leica-geosystems.com,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] net: stmmac: socfpga: add call to assert/deassert
- ahb reset line
-Message-ID: <aV_W2yLmnHrTvbTP@shell.armlinux.org.uk>
-References: <20260108-remove_ocp-v3-0-ea0190244b4c@kernel.org>
- <20260108-remove_ocp-v3-1-ea0190244b4c@kernel.org>
+	s=arc-20240116; t=1767889560; c=relaxed/simple;
+	bh=OQxDuNgfE6e5tF4qpwq4v6IWP64NBvnqK3wmGYcyRBU=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=nHRUeJRWbqFIj2phBtiWj9KjQydmQRiP3khS2H9TBvGPY+kTB+iHIJiVknEiKwROSK1YEWTiRNiKyS5jCa5VxK0IeRL7Jl9NN4862BD+mt9HS1+soF02CY2GTGUmL096cj24KCttyiOmXA4tHKgaxSxc9/uDAIBxFu1HbAhHud4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XrjTyWmG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A1C6C116C6;
+	Thu,  8 Jan 2026 16:25:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767889560;
+	bh=OQxDuNgfE6e5tF4qpwq4v6IWP64NBvnqK3wmGYcyRBU=;
+	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+	b=XrjTyWmGlM9ynS+kE26WK4jWibbKKPLMLH4CBpcdhpleY8DPE45SA/UTzeXmERy24
+	 mJ+bBrcHNSnuJqBMo+ZxKOtxxbkobRs0QELFpHk2Z7U3owKAcH3fcdtz0syeOcU61U
+	 z6dikvGvgVC7qTCzSXkLBy2Gjmac25yXoX7s7Y79wP8niEBFgC87wv5ceryJMxvtbQ
+	 PbUU9O8SUola85nvSNQju0ZcS+8OELA8AVILAo1bGJJHXBHP7pwHVwU5R7IuZVsKeG
+	 5NT85m/20ljCZqQrzL3XnjHB59ocPhq3OMPbh0ThCl2b812NDixOgLf0NFWIUrBAwy
+	 ijChpFvHraCQQ==
+Date: Thu, 8 Jan 2026 09:25:53 -0700 (MST)
+From: Paul Walmsley <pjw@kernel.org>
+To: Deepak Gupta <debug@rivosinc.com>
+cc: Paul Walmsley <pjw@kernel.org>, x86@kernel.org, 
+    Paul Walmsley <paul.walmsley@sifive.com>, 
+    Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+    Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+    Christian Brauner <brauner@kernel.org>, 
+    Peter Zijlstra <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>, 
+    Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+    Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
+    Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>, 
+    Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+    Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+    =?ISO-8859-15?Q?Bj=F6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+    Andreas Hindborg <a.hindborg@kernel.org>, 
+    Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+    Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org, 
+    linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+    linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+    linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+    linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+    richard.henderson@linaro.org, jim.shu@sifive.com, 
+    Andy Chiu <andybnac@gmail.com>, kito.cheng@sifive.com, 
+    charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com, 
+    cleger@rivosinc.com, alexghiti@rivosinc.com, samitolvanen@google.com, 
+    broonie@kernel.org, rick.p.edgecombe@intel.com, 
+    rust-for-linux@vger.kernel.org, Zong Li <zong.li@sifive.com>, 
+    Andreas Korb <andreas.korb@aisec.fraunhofer.de>, 
+    Valentin Haudiquet <valentin.haudiquet@canonical.com>, 
+    Charles Mirabile <cmirabil@redhat.com>, 
+    Jesse Huang <jesse.huang@sifive.com>
+Subject: Re: [PATCH v26 00/28] riscv control-flow integrity for usermode
+In-Reply-To: <CAKC1njQ-hS+kUJ0C_v0oqZW1EZw2zAXMp-SnnA-ZXh_H-SoVdQ@mail.gmail.com>
+Message-ID: <30f969d2-794f-937f-53b7-3af3f2b88ef7@kernel.org>
+References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com> <e052745b-6bf0-c2a3-21b2-5ecd8b04ec70@kernel.org> <aTxf7IGlkGLgHgI2@debug.ba.rivosinc.com> <CAKC1njQ-hS+kUJ0C_v0oqZW1EZw2zAXMp-SnnA-ZXh_H-SoVdQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260108-remove_ocp-v3-1-ea0190244b4c@kernel.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=US-ASCII
 
-On Thu, Jan 08, 2026 at 07:08:09AM -0600, Dinh Nguyen wrote:
-> The "stmmaceth-ocp" reset line of stmmac controller on the SoCFPGA
-> platform is essentially the "ahb" reset on the standard stmmac
-> controller. But since stmmaceth-ocp has already been introduced into
-> the wild, we cannot just remove support for it. But what we can do is
-> to support both "stmmaceth-ocp" and "ahb" reset names. Going forward we
-> will be using "ahb", but in order to not break ABI, we will be call reset
-> assert/de-assert both ahb and stmmaceth-ocp.
+Hi Deepak,
+On Thu, 8 Jan 2026, Deepak Gupta wrote:
+
+> I have a bugfix for a bug reported by Jesse Huang (thanks Jesse) in riscv
+> implementation of `map_shadow_stack`.
 > 
-> The ethernet hardware on SoCFPGA requires either the stmmaceth-ocp or
-> ahb reset to be asserted every time before changing the phy mode, then
-> de-asserted when the phy mode has been set.
+> Should I send a new series or only the bugfix-patch for implementation
+> of `map_shadow_stack`
 
-This is not SoCFPGA specific. The dwmac core only samples its
-phy_intf_sel_i signals when coming out of reset, and then latches
-that as the operating mode.
+If you just send the bugfix patch, I'll roll it in to the patches that I'm 
+applying.
 
-Currently, the dwmac core driver does not support dynamically changing
-plat_dat->phy_interface at runtime. That may change in the future, but
-as it requires a hardware reset which will clear out the PTP state, it
-would need consideration of that effect.
+Thanks for asking and happy new year,
 
-The SoCFPGA driver only calls the set_phy_mode() methods from
-socfpga_dwmac_init(), which in turn is called from the plat_dat->init
-hook. This will be called from:
 
-1. When stmmac_dvr_probe() is called, prior to allocating any
-   resources, and prior to the core driver's first call to:
-   reset_control_deassert(priv->plat->stmmac_ahb_rst);
-
-2. As plat_dat->resume is not populated by the glue driver, the init
-   hook will also be called when resuming from stmmac_resume().
-
-Lastly, nothing in the main driver corrently writes to ->phy_interface.
-
-I would like to see the platform glue drivers using more of what is
-in the core driver, rather than re-inventing it, so I support the
-idea of getting rid of dwmac->stmmac_ocp_rst.
-
-What I suggest is to get rid of dwmac->stmmac_ocp_rst now.
-devm_stmmac_probe_config_dt() will parse the device tree, looking for
-the "ahb" reset, and assigning that to plat->stmmac_ahb_rst. If it
-doesn't exist, then plat->stmmac-ahb_rst will be NULL.
-
-So, in socfpga_dwmac_probe(), do something like this:
-
-	struct reset_control *ocp_rst;
-...
-	if (!plat_dat->stmmac_ahb_rst) {
-		ocp_rst = devm_reset_control_get_optional(dev, "stmmaceth-ocp");
-		if (IS_ERR(ocp_rst))
-			return dev_err_probe(dev, PTR_ERR(ocp_rst),
-					     "failed to get ocp reset");
-
-		if (ocp_rst)
-			dev_warn(dev, "ocp reset is deprecated, please update device tree.\n");
-
-		plat_dat->stmmac_ahb_rst = ocp_rst;
-	}
-
-Then, change all remaining instances of dwmac->stmmac_ocp_rst to
-dwmac->plat_dat->stmmac_ahb_rst... and job done. You have compatibility
-with device trees that use "ahb", and with device trees that use
-"stmmaceth-ocp".
-
-Given that struct socfpga_dwmac contains the plat_dat pointer, rather
-than copying plat_dat->stmmac_rst to your private structure, please
-use the one in the plat_dat structure.
-
-The next question I have is - do you need to assert both the AHB reset
-and stmmac_rst to set the PHY interface mode? I don't see a dependency
-between these two resets in the socfpga code - the driver doesn't treat
-them as nested. It asserts the AHB reset _then_ the stmmac reset, and
-then releases them in the same order rather than reverse order. This
-suggests there's no interdependence between them, and probably it's
-only necessary to assert the stmmac core's reset (stmmac_rst).
-
-So, maybe the driver can leave the handling of plat_dat->stmmac_ahb_rst
-to the stmmac core code?
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+- Paul
 
