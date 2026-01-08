@@ -1,167 +1,193 @@
-Return-Path: <devicetree+bounces-252941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E376FD0506E
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:35:24 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC613D05574
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 19:05:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C8FFE3020580
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:26:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id ECDA431C2FEB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:29:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 825F82FD68B;
-	Thu,  8 Jan 2026 17:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E032F659F;
+	Thu,  8 Jan 2026 17:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="yLh1c9wD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N0FBovyG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f66.google.com (mail-ot1-f66.google.com [209.85.210.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8973C2DC792
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 17:22:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BBF02D8393;
+	Thu,  8 Jan 2026 17:27:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767892939; cv=none; b=EkLDLtSAlcj9RPqJwlJu0Zhf9cYLZOUyrbC3ik/HOWczfNVu3iRZjKHW9YFRSVOphm2ew/UJe2moEjZK4oAe7z3uA7o7wZ8jtvh8FiAVkZfcDb+k9hqGGd5hQsEbH3FUQ86RCkuc7ngNMpoJ20kdRTvvQHoOxYxKjdiSNRgIOlQ=
+	t=1767893264; cv=none; b=UAtbBT2HSc0BVxX6GNaFcGVvuOPGX7wrryVShUD0ualSY4M0qzZaD7uf1jK77OTKcBKZXwhWJMwez8ixov3kZD514CmeKqD5HmGsfFtDTg3ewA7WIuFOqA+LYn5paxi/POczZqE+aqi97+4BaVN+l2uYuITLnUnURglnawQ0MdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767892939; c=relaxed/simple;
-	bh=fiJ8Ak8N0DqPQ8hsWzUQi82t0f7UGQS8bWcCvsQoa5A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cdzkC5SE9tJAfXVypmN9jkqc/yqGyRZ0jj7s3LfseNhXrdpHd+v7KuRUUOo6VrqRqgCBuotI6P2z/4NMHibTYmaUcaHBlS+MieHzGY3hhg4VrMisEg8J8Me1b9FdbhJK74rzzgfljwUmDI6i1re9DZ7HrRiu7qWQdRPpXh+S/CM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=yLh1c9wD; arc=none smtp.client-ip=209.85.210.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f66.google.com with SMTP id 46e09a7af769-7c75a5cb752so2498363a34.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 09:22:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1767892935; x=1768497735; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1SW/oHrRyDwWCvM2w5SYFXON2YrLi1Jknrfxsd+G1Eg=;
-        b=yLh1c9wD42l5r1taw42wwJIkW0N5nWb9ffRJDNl51kj+14avKxbpQglKaPorAhdmNF
-         GsgRDJo5kKXrrfbZzFmfzduSZ677C0dVarrymXb3xVB8/l8f+dXLofj9WAFw0GN4jcPr
-         jujkftk24iCTqVrY8RI6MTc+NBLPph7wflkZ+exAyWbymoGmN/CIcZvx5InAqFbEK8VE
-         YfUmYbqn+cvLo4X98Bje/VoxuIKJWdTqX5xkzSOe5ZVMwoNP0C4IdTZon41nMHlk/Tyy
-         llSB5y9TMZAIOomjL/G2toq1oeaEnMeaL48i7iNvt4lyrK2fB/DkiMMXjXy81qd3Q7vN
-         /f+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767892935; x=1768497735;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1SW/oHrRyDwWCvM2w5SYFXON2YrLi1Jknrfxsd+G1Eg=;
-        b=UebWRLRGSlDusAQdkuo38+XBcbdEm1vUZYmG+oVnPu/KJFRu6G0rt5m4xs9jMcAdN5
-         YpETb6MZIorHBRa8s9WutCjnzRoK0KXspQrkv+uosPEb/hIc8y2yPkV39rntcKGZUokq
-         kNtw+7taOUC3+ADaKi+QFLc7v5Zy7Hlv3jhLYay9qA9397gzbMe+6bqENQSTLJhmBjOu
-         VciRRFdc7PF+M2LxkIlEUm3hSjtuJ4adHafI+T7RmrDthYAmnTtDqZjq5H7VB5QzcDZq
-         T2/GUPO8HcTZS+KFGPa1v/fP09pqBZx2QKPR6AkvfTGAkPfcLF7EKs8u+zsgWhFE77FA
-         BzJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+A3d2WCB0rwNpkB/w+vhYhiCgr8TH0sMB7SiCL9yj+oDDTMGgdFrZOxGbGBrIbHlF0+ur4oZa90ca@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6/BXLbzIqArS5iDDwD+91+CbbbsmRxC0uMFCeZH1red6bPiVD
-	JxqEwOpJGPDP/KPPqWiHiZBvlOkH/IM/lNyCyFO0ErrZ3ULK57wrjLYQyGhV6bl08fY=
-X-Gm-Gg: AY/fxX4TF0OyqcpD6dcH4Ah2chpHEdA//r6mLksqh67y2BgbhWJPwajqQRX89GdEbuL
-	VE3hjGZj+30I2v3YNm5NWTjwn0e7biLAaGzHs1Nf3SUxPG/ku0xXv4hWIYpTGcyjv16oykTGH+h
-	vQd7NUehxOn+cGwECZ4NcocZS9bESFgUt6eHe3IK9CNZXfnLVBlF3X5w7CWDL5ggyy2jovGL0gE
-	uXHY3m1Z/Wg4gSoFWKiBb+A7kSWwPokxaun67kbvPz/oKrTbp/So2jyPDnXjTSOJV1c5lzTdkl7
-	zG6gcRcmLhvIcKs0Kl/D13y+zXKjwtYqVPC1Ld911Bs5f8wlmAbuXCcTlaw4LQwYgVrS+NXXC9Y
-	gTCucJTgvxZLPKrThjR7ORxWO49AskSQ6xCnzgNUeFoyP9blN7Epk34bV90vVvbUbuuGxfrEgA7
-	aoSvyxh4IZBzthvulYwJ2QDoSy8+uGEl2tb2LIlHq0AExTReZD4Utd9CnOA59v
-X-Google-Smtp-Source: AGHT+IFcIehPB6t75nYK3BRZJmTmobwhwkMsK8zvaWPkYVOm935nzOxjpeFTmHIO1X54xoz0QSwGQg==
-X-Received: by 2002:a05:6830:2b0f:b0:7c9:5e2e:295b with SMTP id 46e09a7af769-7ce509e9b09mr4094630a34.24.1767892935467;
-        Thu, 08 Jan 2026 09:22:15 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:c69c:7b5c:ce9b:24be? ([2600:8803:e7e4:500:c69c:7b5c:ce9b:24be])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7ce478af813sm5880315a34.19.2026.01.08.09.22.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 09:22:15 -0800 (PST)
-Message-ID: <0266f80f-cff9-4a65-9c2c-3663edb13cd0@baylibre.com>
-Date: Thu, 8 Jan 2026 11:22:13 -0600
+	s=arc-20240116; t=1767893264; c=relaxed/simple;
+	bh=APV5ntxxphrtGu3GlOx83NQKoLOGqOjtVFfujzMMhq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fXRxKQTobV1mdIfFd7PZcuetylHr1s2CLB9SfAftksOfPX0ZQ89L21g/9MA6fRDoY7zgO7pDFW6P5nteXT8r3/JT67l1wIMIx4jq825k5WNzVEZe/joexItvMdMN/jRH/8Vw/hdoxW3grcB4wUYzkT/3rzdKhW5Xzz4iLxaceNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N0FBovyG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 815F9C19423;
+	Thu,  8 Jan 2026 17:27:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767893263;
+	bh=APV5ntxxphrtGu3GlOx83NQKoLOGqOjtVFfujzMMhq4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=N0FBovyGKwCwkTIJuCh1zGkP/oWG4lKPf6IiQfeuU2LN4kc976awuf3/X2D2xAAB7
+	 LSKRUoCxbPJZIwaqYn+C4npMd37Ve+nIRHg2x+BDFN0At0t2CktFKPwzBLBBeLQs14
+	 n3zbghAwkPFw2OXWcSJbp91R2QPQSe87Rf0aJgVlP1/MyTdeF5Xv2r7qne0jGycf6B
+	 CZV2OqJ9uIgwqtWpFnstWl06+WZsSpMniCdMKfk/f6YfWFYJaUU09mlbR0KtTEjXr0
+	 MmDGdC8QT3RwC+ep6naAsPhVG3dMR/xxB2oHYfq13lE77IqkkhY+QrIL1ZVFf1Zxix
+	 Ebid9/i+qEKrA==
+Date: Thu, 8 Jan 2026 17:27:35 +0000
+From: Lee Jones <lee@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
+Subject: Re: [PATCH RESEND v6 00/17] Support ROHM BD72720 PMIC
+Message-ID: <20260108172735.GK302752@google.com>
+References: <cover.1765804226.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/9] spi: Documentation: add page on multi-lane support
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
- <20251219-spi-add-multi-bus-support-v4-5-145dc5204cd8@baylibre.com>
- <aV-mpFCF_ET3AZ1B@debian-BULLSEYE-live-builder-AMD64>
- <c93a528c-39d6-4e29-b64a-ecf75032b60d@baylibre.com>
- <aV_em6a5vxi_AZGg@debian-BULLSEYE-live-builder-AMD64>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aV_em6a5vxi_AZGg@debian-BULLSEYE-live-builder-AMD64>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1765804226.git.mazziesaccount@gmail.com>
 
-On 1/8/26 10:43 AM, Marcelo Schmitt wrote:
-> On 01/08, David Lechner wrote:
->> On 1/8/26 6:44 AM, Marcelo Schmitt wrote:
->>> Actually, one more thing ...
->>>
->>> On 12/19, David Lechner wrote:
->>>> Add a new page to Documentation/spi/ describing how multi-lane SPI
->>>> support works. This is uncommon functionality so it deserves its own
->>>> documentation page.
->>>>
->>>> Signed-off-by: David Lechner <dlechner@baylibre.com>
->>>> ---
->>> ...
->>>> +- :c:macro:`SPI_MULTI_BUS_MODE_STRIPE`: Send or receive two different data words
->>>> +    at the same time, one on each lane. This means that the buffer needs to be
->>>> +    sized to hold data for all lanes. Data is interleaved in the buffer, with
->>>> +    the first word corresponding to lane 0, the second to lane 1, and so on.
->>>> +    Once the last lane is used, the next word in the buffer corresponds to lane
->>>> +    0 again. Accordingly, the buffer size must be a multiple of the number of
->>>> +    lanes. This mode works for both reads and writes.
->>>> +
->>>> +    Example::
->>>> +
->>>> +        struct spi_transfer xfer = {
->>>> +            .rx_buf = rx_buf,
->>>> +            .len = 2,
->>>> +            .multi_lane_mode = SPI_MULTI_BUS_MODE_STRIPE,
->>>> +        };
->>>> +
->>>> +        spi_sync_transfer(spi, &xfer, 1);
->>>> +
->>>> +    Each tx wire has a different data word sent simultaneously::
->>> In this example, the controller is reading data so the rx wires have different
->>> data word received?
->>
->> Yes, I tried to make that clear below by having a different value
->> for each.
+On Mon, 15 Dec 2025, Matti Vaittinen wrote:
+
+> Resending the v6
 > 
-> Yes, that part is clear. What came a bit odd when reading the doc is that the
-> first two examples ilustrate the controller writing data to the peripheral and
-> refer to buffers from controller's perspective ('sent over the tx wire', 
-> 'data is mirrored on each tx wire').
-> IIUC, in this third example, the controller is reading data so we would describe
-> it like 'Each rx read has a different data word read simultaneously', no?
+> Series is same as v6 _except_ being rebased on v6.19-rc1 - and adding rb
+> tags which were replied to v6.
+> 
+> The ROHM BD72720 is a new power management IC for portable, battery
+> powered devices. It integrates 10 BUCKs and 11 LDOs, RTC, charger, LEDs,
+> GPIOs and a clock gate. To me the BD72720 seems like a successor to the
+> BD71828 and BD71815 PMICs.
+> 
+> This series depends on
+> 5bff79dad20a ("power: supply: Add bd718(15/28/78) charger driver")
+> which is in power-supply tree, for-next. Thus, the series is based on
+> it.
+> 
+> The testing since v4 has suffered some hardware-issues after I
+> accidentally enabled charging while the PMIC's battery pin was connected
+> to the I/O domain. Some heat was generated, not terribly lot smoke
+> though...
+> 
+> After the incident I've had occasional I2C failures. I, however, suspect
+> the root cause is HW damage in I/O lines.
+> 
+> Revision history:
+>   v6 resend:
+>   - Rebased on v6.19-rc1 and collected rb-tags from v6.
+> 
+>   v5 => v6:
+>   - MFD fixes as suggested by Lee
+>     - Styling mostly
+>     - New patch to Fix comment style for MFD driver
+>   More accurate changelog in individual patches
+> 
+>   v4 => v5:
+>   - dt-binding fixes as discussed in v4 reviews.
+>     - Drop rohm,vdr-battery.yaml and add vdr properties to battery.yaml
+>     - Drop 'rohm,' -vendor-prefix from vdr properties
+>   - Link to v4:
+>     https://lore.kernel.org/all/cover.1763022807.git.mazziesaccount@gmail.com/
+>   More accurate changelog in individual patches
+> 
+>   v3 => v4:
+>   - dt-binding fixes to the BD72720 MFD example and regulator bindings
+>   More accurate changelog in individual patches
+> 
+>   v2 => v3:
+>   - rebased to power-supply/for-next as dependencies are merged to there
+>   - plenty of dt-binding changes as suggested by reviewers
+>   - add new patch to better document existing 'trickle-charging' property
+>   More accurate changelog in individual patches
+> 
+>   RFCv1 => v2:
+>   - Drop RFC status
+>   - Use stacked regmaps to hide secondary map from the sub-drivers
+>   - Quite a few styling fixes and improvements as suggested by
+>     reviewers. More accurate changelog in individual patches.
+>   - Link to v1:
+>     https://lore.kernel.org/all/cover.1759824376.git.mazziesaccount@gmail.com/
+> 
+> ---
+> 
+> Matti Vaittinen (17):
+>   dt-bindings: regulator: ROHM BD72720
+>   dt-bindings: battery: Clarify trickle-charge
+>   dt-bindings: battery: Add trickle-charge upper limit
+>   dt-bindings: battery: Voltage drop properties
+>   dt-bindings: mfd: ROHM BD72720
+>   dt-bindings: leds: bd72720: Add BD72720
+>   mfd: rohm-bd71828: Use regmap_reg_range()
+>   mfd: rohm-bd71828: Use standard file header format
+>   mfd: rohm-bd71828: Support ROHM BD72720
+>   regulator: bd71828: rename IC specific entities
+>   regulator: bd71828: Support ROHM BD72720
+>   gpio: Support ROHM BD72720 gpios
+>   clk: clk-bd718x7: Support BD72720 clk gate
+>   rtc: bd70528: Support BD72720 rtc
+>   power: supply: bd71828: Support wider register addresses
+>   power: supply: bd71828-power: Support ROHM BD72720
+>   MAINTAINERS: Add ROHM BD72720 PMIC
+> 
+>  .../bindings/leds/rohm,bd71828-leds.yaml      |    7 +-
+>  .../bindings/mfd/rohm,bd72720-pmic.yaml       |  339 ++++++
+>  .../bindings/power/supply/battery.yaml        |   33 +-
+>  .../regulator/rohm,bd72720-regulator.yaml     |  148 +++
+>  MAINTAINERS                                   |    2 +
+>  drivers/clk/Kconfig                           |    4 +-
+>  drivers/clk/clk-bd718x7.c                     |   10 +-
+>  drivers/gpio/Kconfig                          |    9 +
+>  drivers/gpio/Makefile                         |    1 +
+>  drivers/gpio/gpio-bd72720.c                   |  281 +++++
+>  drivers/mfd/Kconfig                           |   18 +-
+>  drivers/mfd/rohm-bd71828.c                    |  555 ++++++++-
+>  drivers/power/supply/bd71828-power.c          |  160 ++-
+>  drivers/regulator/Kconfig                     |    8 +-
+>  drivers/regulator/bd71828-regulator.c         | 1025 ++++++++++++++++-
+>  drivers/rtc/Kconfig                           |    3 +-
+>  drivers/rtc/rtc-bd70528.c                     |   21 +-
+>  include/linux/mfd/rohm-bd72720.h              |  634 ++++++++++
+>  include/linux/mfd/rohm-generic.h              |    1 +
+>  19 files changed, 3127 insertions(+), 132 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd72720-regulator.yaml
+>  create mode 100644 drivers/gpio/gpio-bd72720.c
+>  create mode 100644 include/linux/mfd/rohm-bd72720.h
+
+The MFD parts LGTM.
+
+What Acks are you waiting on?  What's the merge strategy?
+
+> -- 
+> 2.52.0
 > 
 
-Oh, I see. There is just a copy/paste typo.
 
-> 
->>>
->>>> +
->>>> +        controller    < data bits <     peripheral
->>>> +        ----------   ----------------   ----------
->>>> +            SDI 0    0-0-0-1-0-0-0-1    SDO 0
->>>> +            SDI 1    1-0-0-0-1-0-0-0    SDO 1
->>>> +
->>>> +    After the transfer, ``rx_buf[0] == 0x11`` (word from SDO 0) and
->>>> +    ``rx_buf[1] == 0x88`` (word from SDO 1).
->>
 
+-- 
+Lee Jones [李琼斯]
 
