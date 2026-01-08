@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-252590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ADD3D01401
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 07:35:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C158BD01410
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 07:36:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8D25C3002D2C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 06:35:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5718830433F3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 06:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0407833A9C2;
-	Thu,  8 Jan 2026 06:35:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0024133B6D5;
+	Thu,  8 Jan 2026 06:35:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="vJql1NFG"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="U8fhXp/P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5668B33A71C
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 06:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 655B633AD9E
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 06:35:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767854136; cv=none; b=MeIr2m4SkOmp10XQV6zohGi9Kd7aiAHtzTxgZJ731jaCU3w6zM6RSK9J7/LYTGJ7Y8hBGvk3EhxBIkL5oh99y7H1225aS7YBWww5P4VkQ323wyE6KNShhTtry1UJ+sELIWmLQN8v3vMaTu9EuymRKrN6sumhq1/mkPwqyccP19U=
+	t=1767854140; cv=none; b=jtGthC+hCAZ0HajiNy7P9F2O61zKEhey/Gy0BI/8QtJgwKZb22doYBNDfeLrGd7xHlyb/rgAFra4jGivncjcMfh/XjklLypB3Fkv5Dbr+sJUp4FNDbHvmhGcK2RZcMBpaJYMOX5Sb49j5Q2H13jboHzzEJRy69cdK3aombbyC+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767854136; c=relaxed/simple;
-	bh=xK/uY5dPDT/WYt2ovB3Su03oSdypjzmDFfJL7Y6Aluo=;
+	s=arc-20240116; t=1767854140; c=relaxed/simple;
+	bh=7eIBMYuPULsXRIE8uJPvolkz9VSkZKyrgJYAAANz20M=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pM7vma8eqH4DED6vSB68kKN5PCIssZn8WVi1T1Q+vlgrqDz0Yn9y4kghABaLQEdB/vEQcT5BYrrcCnIUqRUeJ/kSMnhHuRp+N766f+8eiPaI7i+qxtF6mnpjozzWjcWGQpg4tZLa6wU2qrRgVVoLQU/47ddaHZnc20yhhy8nYm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=vJql1NFG; arc=none smtp.client-ip=209.85.216.43
+	 MIME-Version; b=oj+9Yhgnoej7ihHVkuB9mX8hYG2X1x3rvMrvTAA5kA0mMHBZnUPAnJHUDWPWhVSsZA3+OloUm9vpnqh50R3uTa067t3EmZKc+JsEXfv83mioLic7V8Plx9uhbAJHeAmR16Ppdf8GPga6A4tsZUbUIRJNFqeDf6xL3VbSu+1imKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=U8fhXp/P; arc=none smtp.client-ip=209.85.216.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-34c93e0269cso956829a91.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 22:35:34 -0800 (PST)
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-34b75fba315so1988121a91.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 22:35:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1767854134; x=1768458934; darn=vger.kernel.org;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1767854136; x=1768458936; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CtqV3HNShNm2ULsU/XG89WUNwV7hWFWih/MmNNnjuJk=;
-        b=vJql1NFGW2cHz5FuGysqEkQ5LRRjDtEc4YFUAxVt7Wdubhx7ulxD1PELPwUYgLlpxG
-         znIbs6LASozSpt+uy+1RhsjgqlukhL4PVdJcrvu2QpDbIqFsftnMwUPjFdarKS0FiJOr
-         iGgUYCUWnlCAPmrc00/4S3TFIa24oTn9BR4gjiXgEmzSKzR3u6dtFBov6LgoBEM32c/n
-         vhfgKTwC5oR4C6KOL/XkNOZhV6OTtFr0IrZhKOiN/6dSL1ArDWGUnFKI0B2obSYqeiCz
-         zM5gdHFLDxrXQwoT5T4RUE6jbUBHKtdR2mpiwRE1938E6mBePQT9IS/MQ+mXX4gvN4h2
-         r2mQ==
+        bh=Gq89G3tOrOHNmszKr3q4hJ/s1N2xw+oE/TFVsExceXk=;
+        b=U8fhXp/PnBParMaVNRLdadFYBWAW0u76dtP4MeuOA+PYyrV2RD66WVPHPI2iDwzW0C
+         bW67SuuOQnlMfLaUoiKVGH1Lwf7pAssNATRBTZ2A8qf1Z/D1IXquv2G7+BjiqXC4qKGp
+         sr/2afA2s4TzWq/mB0xVR3kHZCrd7CNbR3s3vlXvYgqbU8A04jk2ZCYj4+iShy7oTvaG
+         vrujDvRIO7CSg/p3HKc1OWxTQJNYz3B2ZH5MwWo+bwpF5OQmspavYu1u8DCkthG+ro6u
+         Saqqzmx9QAcXmpacY0GszJB4TbqdGbytMKawN7wdzZXE0tv2uiwKrHXf7RBfSY3g9DNx
+         5vGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767854134; x=1768458934;
+        d=1e100.net; s=20230601; t=1767854136; x=1768458936;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=CtqV3HNShNm2ULsU/XG89WUNwV7hWFWih/MmNNnjuJk=;
-        b=V3sI1ZYnNPLUY9DyX8oMYkGPMFOQhnp6OxUeiY34F+U/h7K0ed+lyIYAnwXnxb2ezl
-         oc7Q5hPFl9Ks4rqGeUDMMBcIbwZgyUJ+bvdq2aIrken8CPxHVUuHsT+C9zADeo+SgoZi
-         yY+hLS+p+Vri+v1OmA4nDojxpQhTuKOB8GrP58sZqV4Tbpu3EZIUniADmsWZMSWQkH+k
-         vhQxL4koNkHEKOmZRCr1JgV+85GpuQWE4OnSNexu1K6m0F2lt8AOw6FQkl73BXwVv7bF
-         aI+XbRUhp3CNKFYQBOHbex2zYcsuSY+HSyok9TUzuW6UWyDXiRVZfDmRR34bQvvNBFMu
-         CtHg==
-X-Forwarded-Encrypted: i=1; AJvYcCXqq2lFUF9Z3x/yO6o2thLnuxq3C9W1tcNXPBibShaAKdCvMjvhv3fvt3m5fdkWdv0fJY7RJwKCEylS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzQrgmMkmCHpe41cATwZy7HDCFUqFbfFdJ8e5admmZ10rhyMYn
-	O75wpV7TCHnOyItYv27y6GiYavoCC+rmyn2HlbFrJrhgDHx12U+cPmUAmdtbASjy8ew=
-X-Gm-Gg: AY/fxX49CXwJmuKDMntUp5oVWj/l05jK4r3L1l9OhuPtTtRq4zha+1ng+QAZ5RlFWGL
-	XgndzKaH8Washk+++1fcQKePBxwlOKj2oBZ0/Ndx1206XVpI8WEGtxGf+obqsdDWqJ9w+i4uOHs
-	RpBWTXU1BEjKAIONXLihE2eAvRkDjvJs70R1Wrg0BSnJ6CtG2P0ApvB14y7AkTBztUR9ABxQ2N/
-	u1MzEagAV+5eJcYrMKsImhDvVKlScIkjWD+BBJPGLfL8S6+2HliSHQssN5f/Q4++H//doV/Rpru
-	bf14Qgs7uKEJW9dz1RiMDlnrYKUednb1LbBVZpKapyuv6YzQiWjvywvJRntCGkp8VFufY4Ff2wE
-	Ju/yBNM89LUB27qB7o/YCw/UNUCSqVwn/V0Ej52OaH5lkpqTh+0j02M4imFCJ6ZhZhmq1odURbs
-	3B2st9rGxXuOEMFEdrT7d2aVCmn/CX50WmIj2TNdRXooCZjYtJK5wLLzXFPA==
-X-Google-Smtp-Source: AGHT+IFKkxZzWLvjb3+PwNvGG7Bu25u9blNXCqhqGleG3FQQv9LAZ8QqgnZWMrwfabvbKHHbNyoWDA==
-X-Received: by 2002:a17:90b:568c:b0:34c:9cec:3898 with SMTP id 98e67ed59e1d1-34f5f928c3dmr7834991a91.13.1767854133622;
-        Wed, 07 Jan 2026 22:35:33 -0800 (PST)
+        bh=Gq89G3tOrOHNmszKr3q4hJ/s1N2xw+oE/TFVsExceXk=;
+        b=PfNtFcRqVkS4WvQGozY1U5bWsy38FesR1Gf2V2TWK+Mbl6h38ToLAay6eWz6LCf42p
+         WbXulJ3PYr0p6bWK5pgKL9iuKemWAaJqrZTsa5NOc7MCcYAvjDgfiKx23yBTmaO02K6C
+         7Z8/D+Hor3RJbONw8jnNWp53YWdbTY+//hQHgkiJoxUDW6xeMeeQMRFNTF0SWYOQ1Rj4
+         tRkXj9B+dfJA9D5FU+5D8Tf0g4h2cpcNzaHxR17dxxx4wxC9dvUVRTP3z0iR822yhoCf
+         OdS7HMP+e39xvgd/4Kk2Mux9vvDjHKJuWChTiLk8ZFj3bKWKS/K6e+DsFeTCEgjeKy+H
+         EVQg==
+X-Forwarded-Encrypted: i=1; AJvYcCXBMBRQigpGiGnHLgDj5tDB17LOFZ4gYDR/5WUMartRWluwBiW4v30FAtvEmukoz4/EMz8vd0M+UrEr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxChFdewwTZz7vt8Y6k9veKYJ06vfTSb//4BPUMO6TDeVQIGR2t
+	X4txLeUvnYu+/bFDHSGW9yNpLW+kcLKfMjlKygXqFgWnGoXPyBUVR2+KLp2r8siQ8Ds=
+X-Gm-Gg: AY/fxX4k4pWHCVEEwwqDV9VeZ3XsUfYbettwT17qvWq7ZOHH+xhb9Nk1ElkyPn90MkG
+	6Fg7iHgptCjm2T1IyriZCiDxPsGX1UEDGBfOC2gfevpjhQyxYbGWrDypJqiaBBDHnEoEaMyi7Iy
+	qeyxMTg5xp4Did3Mkda/4IsDE5MUqLWT31bWO4XQ3hY695RYXlcsLD/dNGCjWj8zCfYWUaBMgGJ
+	bLOrm45hbJy6iKGgKl6P7BX5NtqBKLgF/bbokN3TSHx70XmDslspOhdgdq9rLkUNj8SIVbcwtLE
+	XLme6Tsao+TNXRGHk4wZ5Dt54wi0+BxMcCIL0zhkJ20lKHG/0iYagHvzKpl86TWEV0m6FvGEDYu
+	TIte+7LNRoGwG/V3DXIZuvOhUw+3BBaLFJ5WXKnkspIwo0JGvPhY95OKPu5wDMeRNZ7/K7iXLoO
+	3Ybf6DHcPQtRKBQF85dkjyGADbJzRKkf5wrNDgUUAjRkVDTF6nO/0e0C9BHA==
+X-Google-Smtp-Source: AGHT+IHeaz5+O4p3iSfBbY4NUJEHhv7nMLACepGidjYvey52y26UaHJ9zeS93CMxI9QdYJzfL83WSA==
+X-Received: by 2002:a17:90b:5445:b0:32d:d5f1:fe7f with SMTP id 98e67ed59e1d1-34f68c2050cmr5000895a91.15.1767854136400;
+        Wed, 07 Jan 2026 22:35:36 -0800 (PST)
 Received: from dgp100339560-01.huaqin.com ([103.117.77.121])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34f5fa93ee7sm6712750a91.7.2026.01.07.22.35.31
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34f5fa93ee7sm6712750a91.7.2026.01.07.22.35.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Jan 2026 22:35:33 -0800 (PST)
+        Wed, 07 Jan 2026 22:35:36 -0800 (PST)
 From: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
 To: dmitry.torokhov@gmail.com,
 	robh@kernel.org,
@@ -83,11 +83,10 @@ Cc: dianders@chromium.org,
 	linux-input@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Langyan Ye <yelangyan@huaqin.corp-partner.google.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH V3 RESEND 1/2] dt-bindings: input: Add Parade TC3408 touchscreen controller
-Date: Thu,  8 Jan 2026 14:35:23 +0800
-Message-Id: <20260108063524.742464-2-yelangyan@huaqin.corp-partner.google.com>
+	Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Subject: [PATCH V3 RESEND 2/2] HID: i2c-hid: elan: Add parade-tc3408 timing
+Date: Thu,  8 Jan 2026 14:35:24 +0800
+Message-Id: <20260108063524.742464-3-yelangyan@huaqin.corp-partner.google.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260108063524.742464-1-yelangyan@huaqin.corp-partner.google.com>
 References: <20260108063524.742464-1-yelangyan@huaqin.corp-partner.google.com>
@@ -99,91 +98,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The tc3408 touch screen chip same as Elan eKTH6915 controller
-has a reset gpio. The difference is that they have different
-post_power_delay_ms.
+Parade-tc3408 requires reset to pull down time greater than 10ms,
+so the configuration post_power_delay_ms is 10, and the chipset
+initial time is required to be greater than 300ms,
+so the post_gpio_reset_on_delay_ms is set to 300.
 
 Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 ---
- .../bindings/input/parade,tc3408.yaml         | 68 +++++++++++++++++++
- 1 file changed, 68 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/parade,tc3408.yaml
+ drivers/hid/i2c-hid/i2c-hid-of-elan.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/input/parade,tc3408.yaml b/Documentation/devicetree/bindings/input/parade,tc3408.yaml
-new file mode 100644
-index 000000000000..30ffefb96c68
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/parade,tc3408.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/parade,tc3408.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+index 0215f217f6d8..2a6548fd234a 100644
+--- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
++++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+@@ -188,11 +188,19 @@ static const struct elan_i2c_hid_chip_data ilitek_ili2901_chip_data = {
+ 	.main_supply_name = "vcc33",
+ };
+ 
++static const struct elan_i2c_hid_chip_data parade_tc3408_chip_data = {
++	.post_power_delay_ms = 10,
++	.post_gpio_reset_on_delay_ms = 300,
++	.hid_descriptor_address = 0x0001,
++	.main_supply_name = "vcc33",
++};
 +
-+title: Parade TC3408 touchscreen controller
-+
-+maintainers:
-+  - Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-+
-+description: |
-+  Parade TC3408 is a touchscreen controller supporting the I2C-HID protocol.
-+  It requires a reset GPIO and two power supplies (3.3V and 1.8V).
-+
-+allOf:
-+  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    const: parade,tc3408
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  vcc33-supply:
-+    description: The 3.3V supply to the touchscreen.
-+
-+  vccio-supply:
-+    description: The 1.8V supply to the touchscreen.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - reset-gpios
-+  - vcc33-supply
-+  - vccio-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      touchscreen: touchscreen@24 {
-+        compatible = "parade,tc3408";
-+        reg = <0x24>;
-+
-+        interrupt-parent = <&pio>;
-+        interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
-+
-+        reset-gpios = <&pio 126 GPIO_ACTIVE_LOW>;
-+        vcc33-supply = <&pp3300_tchscr_x>;
-+        vccio-supply = <&pp1800_tchscr_report_disable>;
-+      };
-+    };
+ static const struct of_device_id elan_i2c_hid_of_match[] = {
+ 	{ .compatible = "elan,ekth6915", .data = &elan_ekth6915_chip_data },
+ 	{ .compatible = "elan,ekth6a12nay", .data = &elan_ekth6a12nay_chip_data },
+ 	{ .compatible = "ilitek,ili9882t", .data = &ilitek_ili9882t_chip_data },
+ 	{ .compatible = "ilitek,ili2901", .data = &ilitek_ili2901_chip_data },
++	{ .compatible = "parade,tc3408", .data = &parade_tc3408_chip_data },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, elan_i2c_hid_of_match);
 -- 
 2.34.1
 
