@@ -1,169 +1,128 @@
-Return-Path: <devicetree+bounces-252828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF94D030C5
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:33:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BC70D030D4
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:33:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EF38E30E962C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 13:10:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E025730F51EF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 13:10:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F9F92F9998;
-	Thu,  8 Jan 2026 13:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k7IwSznb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18CD53A9DAF;
+	Thu,  8 Jan 2026 13:04:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B422874F5
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 13:02:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 709803A9D99
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 13:04:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767877322; cv=none; b=KbOVcILQ+I0NTa+LTuyG9rTXRaMqMAZy0UqUYyUOAAhHDPMPOqIxsQsLQdGRIws5ptaYh8evejDKNzghliQd5JrAQY/DbTFQ1FF1HmP8iYFWUL4+pBc+BdZ4UcgMBe38Hfite53BkMF6qI3p11uQ0n4lg62RqgFXiTF3JIryldo=
+	t=1767877462; cv=none; b=Py9xpLdXFweDHGIhV1/noWPgPjQ19mik7zqciJoL7fZhntWZ58CBuvyfrgmOFRK9hEdI1d0UaK5qmNNYvyuFAVyBPNuOZayQT0rL3zU1WNqR7oR05N1i81K4MMVzDJa1hpcQpyvETyY1dCmf7+ryfRPY4Ftp5VHzaCkxbOdHnN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767877322; c=relaxed/simple;
-	bh=+2nlY4acJgu7h9Eenmr7hGs2bJ+9UO4JaRvnsRPVtgE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gaNMP+Ak8pTTZfc77pEzZqaLFk2yLmS2CNaiPl5eh7JDF5vzQL8g1Sf2Whh5/rhs7HkxMHiRWjw0C5nBTz9i5s4RBFogLtGFNDuCetoZSDTZ07zPbGoGUXByRmEwf42bT3XPLmTY+kXvo5zjvOZAdIvnKGq61XQhwybtmIgn7Hc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k7IwSznb; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1767877462; c=relaxed/simple;
+	bh=XZvwqS+jsAeIhALYdAWVKBMPWdSDj9aad1HrDxmlGGE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gJs2x8MQcBQijJDh6qn99omzJLXUTRRkREx3aAPErTo6vPKSjxuBz8JvBjhOaFvFaeYxJDWGEfLCLhTGlzsYMu58WPWZLktbQkdkxWhoahV0l25f5cLlAuqsbKVpvNqzs0bvWaf5UkIdOg+h/jn7fddnCS1E8eaXMy4tXwePm+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7b9387df58cso3454383b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 05:02:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767877320; x=1768482120; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zhMPSQHGQIzOorAJaD3RnY6gMKj70DgK1/kssz98Fqo=;
-        b=k7IwSznbIvqTH1MjWSyhSSx3YHtzB1HANiPQs/zd17a1UYgEw9fUajajoSN6fT3PyF
-         PZ8YL+Hfyqtp0aHtEfj3pmzlmcm9l/zkiT0A++CSUx5SoY+RiI5rukH+eDrLtBNByx9X
-         551AQBKyYyHjiJcUDnGRtM8GrXUrwutRF6QLQbjHfLMaw/qF0MEtEzYp9aMyg3tUf/T7
-         Y1Bz4weA5h88IfRXaVe9+ISJTpNFFwK1xAXl1N5xecT8Q21WNW9wDWEhiUfjl3WW6SHZ
-         PNB59E0m0mzAHbYIviLELcMt51nvz/uyLbrUHuxnxnMBqFA2qVdsLTIokU78j3k8p8Rd
-         vRZQ==
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-5dd6fbe5091so1283026137.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 05:04:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767877320; x=1768482120;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zhMPSQHGQIzOorAJaD3RnY6gMKj70DgK1/kssz98Fqo=;
-        b=jnmKR4F9UCTEZLSEODs3pY/EN94Rcfr0HLVaeQwGaL4DJOxGjwYCdSQtlfKszE+g7E
-         NqKQSMTkdAjJKmJMjO99CLBQUvoPLNVLSXHYv5RsT7HPlCYg3yhEeIQHmjbFgwBegYLu
-         5lz0G9wuSTP4x0M5/AKGpvLW/uwMBcrrj+jFryl2w5Z27wMrR+zH69lTf4pwvY2QLDBC
-         OyMQgA5SH/71Jpod5TpXPSDGGiKp2AA43l0obCGfEeXyj6bP0HFSO37N7cf2/Zk2938i
-         p4jFDoqB3yYUgihkC+JMvZ7NeRWYpmA/88wWgxyRkSImV0XtaaP+f9uLl4GuXzpJDIhv
-         ohpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV33r5u9YdBIyx0c2+3L1iFX5Bn+B71Yx7+TZlmpHnWMj7TQ/jr4abwqC7w5+Sna1XuZTNcMINZe++6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+LRWq0xyvnBgNIkzEGJ4dxRQVLYG5TSvGsT7ZxfkVY1gLzp6h
-	Al78dCSVH0Rd7x+Ynac0hDhCBB7d4FSAXQJ0Nqa2KNiI1fiKcAmcNrSt
-X-Gm-Gg: AY/fxX7VEvzFPKEgi7yIWSkhIhP4wHZaeW+f7up1yVT3Ln00pZiUmO7XJ1iQVa6W3AM
-	zgtadaYZgxFILjX+IR/WNPMnP4IbJVHCYtj0iDAEkxWHtBWPje2Rdb96aORmac4l+6rTlngh3MT
-	DYfIkZgbVaQW4JLqrOVURfDLOLv/HzrsvzilC1jgy2AM5DM4F2MPRrwL+XwUS4llAkq12Xffw+M
-	6rj878+FdolzHC7huv9pm1MaNgR7iptibG06Rf9DVxkuIprOqJviN0jWlpS8oOsZXBtQ4qPRy9W
-	VMIoy0x+l95aXHlg4DVh7SCwzkP4bVKrygvYomNcalW60mcLspC808GSc5SED3KPVaYAH+r5CUh
-	AOG9H9NhFuNAbHylyMAyZw3ndRCeQum6+lRc+SOX/R7qVVw/zZMxYls7yXEzlvoNVIO6UHB4FrK
-	JprISh6HxYaAkCzcQJTBR16PZFtoLifJuC
-X-Google-Smtp-Source: AGHT+IG58rlfxspn/kFapWi4+Z1BtMmNV4nYEmy6MgLlMRA9lzpBsFqdtqwbTBQvgAd11fXY7G7KKg==
-X-Received: by 2002:a05:6a20:a10e:b0:33c:2154:d4f4 with SMTP id adf61e73a8af0-3898f9975b1mr5814469637.49.1767877319352;
-        Thu, 08 Jan 2026 05:01:59 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.245.1])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c4cc05cd9d9sm8466111a12.16.2026.01.08.05.01.55
+        d=1e100.net; s=20230601; t=1767877459; x=1768482259;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SrO9zRt37GOdI5DNpGPAMnrfJ6NBOxJta+Tmw2fjNH8=;
+        b=tJ3k2DM4kgVex81EvwMc2vozuckV0zk4W7/xfYkWGF+OPKeC84IHgDTeoHbENUqWhH
+         Z2EJjFSIdF9l6qaQyOdiDlKk29zh8QyehWFOs2xsiKwq1TsWh0ABs4MtIXaO7PDhwUcl
+         k6vs71s7rmeNFe4vpryqxVpkfaSn3sV2QGT0pV4VZbn2KGMVvGCpi0XAoTg8RbAdZaZi
+         9nmV7tcZMZ/y+hsRSt1vK/F50eTl9NiGr7AEZqzOZZFO6M3wyKyHfLTWQ2br9epVFQAL
+         9bI+N+lDBMo0+CTzJCFFp5dA22YBDAwwWhYZWf2s7jCGN4lhR+0DqQ4soTi67Vh0fHFL
+         Zsdw==
+X-Forwarded-Encrypted: i=1; AJvYcCWrS551o9p2zt09OEYxNfUXEe7z6S4rF+Elx5nMjG3+FfDziGyzchFT/MicmJol0+wvCPU9e4/Lpmx1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGbScoG6mQGfvlvFiR+tT0WJZlXaMCikufAv6eZC+hkid5sEqs
+	lIChOklzYLQCONoAegFPR4KIGgmCSwtg5HKg7wLuEkrMwBrN5NpneUVJEz57qhac
+X-Gm-Gg: AY/fxX71d00KiIU+LJGj7kjw683Lz3BNbc9xMLL6Smj6y5czzDeHQ3G3hTlB+n/zHnV
+	+8gft6wh0chIJmRCzZbVbvQYa3ozyhk9ZFXiPw2/UcaBlbes0EgAfsSojmpr7k/Uc6qpaqt2iYG
+	rgUtSIosXPx2nfQqcGK8kAmcvtM2XgV5pfpsugmhKUpdHyAFmeRM4joZuPn4YjZwLqGm5iRsjzL
+	DB10g4gUJ1//VC1L/VXlW0FN9U70n8wmdCa+8S/MXcTJBpVitv4JrN9F9eQvfx9h+XpkmAmw9ng
+	cgeOvW568jL+Pe1IJFRgo6Xmb0vX93oaByd7fcjZ2Q0N346YWp8GNT25xgv0ZIAlHFSw/R7KFTb
+	dss122pls7yL7B7njv3NzeZaFCvmz74zwaJSXJVXFTJ8rJULdP0rPJups3TXs5GHC2lztzCeIUx
+	kfmn5zbTG0O4bvAIa8ncPXgKw0PaA/CedL6/Tku+UPHINzijMi7q2A
+X-Google-Smtp-Source: AGHT+IHsqiJLs4e7sQrVEcxbJJHW89vp1Mxl3FPrps496uLRHCktmdSYNKKy1/8GBviv12hsJVXMrw==
+X-Received: by 2002:a05:6102:38ca:b0:5db:e6bf:c4d7 with SMTP id ada2fe7eead31-5ecb6945990mr1985779137.21.1767877458662;
+        Thu, 08 Jan 2026 05:04:18 -0800 (PST)
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ec772afecasm6073888137.11.2026.01.08.05.04.18
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 05:01:58 -0800 (PST)
-Message-ID: <46fac652-e6bd-43c9-a57e-e76d66239407@gmail.com>
-Date: Thu, 8 Jan 2026 18:32:23 +0530
+        Thu, 08 Jan 2026 05:04:18 -0800 (PST)
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-55b2a09ff61so983738e0c.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 05:04:18 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUqLuf4gATR98Rt00mU8hd4esi5FHjN3Fb08KSfSGNh0Ga2Iug5/BGt7zGG/jWD0CLIU1plRCUHSWyP@vger.kernel.org
+X-Received: by 2002:a05:6122:459a:b0:55b:74ac:72cf with SMTP id
+ 71dfb90a1353d-56347ffe7d5mr1958171e0c.17.1767877457238; Thu, 08 Jan 2026
+ 05:04:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 5/5] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251230130227.3503590-1-tessolveupstream@gmail.com>
- <20251230130227.3503590-6-tessolveupstream@gmail.com>
- <30ee8541-3ec2-49ac-8fe0-987cdc5b16e7@oss.qualcomm.com>
- <14613f89-6be0-4eb3-beb5-375ab008a313@gmail.com>
- <c3492b90-bb48-4584-99fd-b1b6832d22ff@gmail.com>
- <4d95232c-f59a-42c3-9eb4-934b58429d25@oss.qualcomm.com>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <4d95232c-f59a-42c3-9eb4-934b58429d25@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251222164238.156985-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251222164238.156985-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251222164238.156985-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 8 Jan 2026 14:04:06 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWCskceV-qQiUsPtzy8U_c-rsoFzUHfm3fsrq3CkXtg_A@mail.gmail.com>
+X-Gm-Features: AQt7F2omPZfOymJvVL-98Gc9JkTT2LJ5zulg4drLZ1sGbSGINVgaTY7EjNWfHWk
+Message-ID: <CAMuHMdWCskceV-qQiUsPtzy8U_c-rsoFzUHfm3fsrq3CkXtg_A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a09g056: Add RSCI nodes
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
+On Mon, 22 Dec 2025 at 17:42, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add RSCI nodes to RZ/V2N ("R9A09G056") SoC DTSI.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.20.
 
-On 08-01-2026 14:06, Konrad Dybcio wrote:
->>>>> + */
->>>>> +/dts-v1/;
->>>>> +/plugin/;
->>>>> +
->>>>> +#include <dt-bindings/gpio/gpio.h>
->>>>> +
->>>>> +&{/} {
->>>>> +	backlight: backlight {
->>>>> +		compatible = "gpio-backlight";
->>>>> +		gpios = <&tlmm 59 GPIO_ACTIVE_HIGH>,
->>>>> +			<&tlmm 115 GPIO_ACTIVE_HIGH>;
->>>>> +		default-on;
->>>>> +	};
->>>>> +
->>>>> +	hdmi_connector: hdmi-out {
->>>>> +		status = "disabled";
->>>>> +	};
->>>> This should be a &label_reference
->>>>
->>> Okay, will add it in the next patch.
->> I noticed that in several existing .dtso files, the root node is
->> commonly referenced as &{/}. In your comment, you suggested using &label_reference. Could you please clarify which specific label or 
->> node you would like me to update here.
-> &{/} must be used for root nodes in a .dtso (for it to compile). I meant
-> using a &label_reference for hdmi_connector
+> ---
+>  arch/arm64/boot/dts/renesas/r9a09g056.dtsi | 220 +++++++++++++++++++++
+>  1 file changed, 220 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g056.dtsi b/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
+> index 5740f04a6222..35cd6b70856e 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
+> @@ -922,6 +922,226 @@ i2c8: i2c@11c01000 {
+>                         status = "disabled";
+>                 };
+>
+> +               rsci0: serial@12800c00 {
 
-Thank you for clarifying. I’ve updated the patch to move 
-hdmi_connector out of the root node and reference it using 
-&hdmi_connector instead of defining it under &{/} like below:
+I will move these up (between rspi2 and i2c0) while applying, to
+preserve sort order (by unit address, but grouped per type).
 
-git diff arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.
-diff --git a/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso b/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,
-index 5393d1dc7fea..bd1cbfc866b7 100644
---- a/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
-+++ b/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
-@@ -15,10 +15,6 @@ backlight: backlight {
-                default-on;
-        };
+Gr{oetje,eeting}s,
 
--       hdmi_connector: hdmi-out {
--               status = "disabled";
--       };
--
-        panel-lvds {
-                compatible = "auo,g133han01";
+                        Geert
 
-@@ -49,6 +45,10 @@ lvds_panel_out_b: endpoint {
-        };
- };
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-+&hdmi_connector {
-+       status = "disabled";
-+};
-+
- &i2c1 {
-        clock-frequency = <400000>;
-
-Could you please confirm if this change aligns with your 
-expectation.
-
-
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
