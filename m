@@ -1,193 +1,268 @@
-Return-Path: <devicetree+bounces-252942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC613D05574
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 19:05:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21FCCD055DA
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 19:08:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id ECDA431C2FEB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:29:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 18ABF31F00D9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:31:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E032F659F;
-	Thu,  8 Jan 2026 17:27:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N0FBovyG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7036329BD95;
+	Thu,  8 Jan 2026 17:31:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BBF02D8393;
-	Thu,  8 Jan 2026 17:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83AE22A4E8
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 17:31:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767893264; cv=none; b=UAtbBT2HSc0BVxX6GNaFcGVvuOPGX7wrryVShUD0ualSY4M0qzZaD7uf1jK77OTKcBKZXwhWJMwez8ixov3kZD514CmeKqD5HmGsfFtDTg3ewA7WIuFOqA+LYn5paxi/POczZqE+aqi97+4BaVN+l2uYuITLnUnURglnawQ0MdY=
+	t=1767893476; cv=none; b=urolOuGMJcxrfZVrzX8drX1vqouBm3N4TTtWN97yv40hphuHSsRuUoH6C1l2eXwtAZktuPW94B3nsNKVl1sl2ekcsGWNNsYsVi6EmOk3qguVXzeQkv09odQJzg2NRl/J8XSvXZFO67153wGZVk/AqOfxiye4z8d1cCNtU2Gy6dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767893264; c=relaxed/simple;
-	bh=APV5ntxxphrtGu3GlOx83NQKoLOGqOjtVFfujzMMhq4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fXRxKQTobV1mdIfFd7PZcuetylHr1s2CLB9SfAftksOfPX0ZQ89L21g/9MA6fRDoY7zgO7pDFW6P5nteXT8r3/JT67l1wIMIx4jq825k5WNzVEZe/joexItvMdMN/jRH/8Vw/hdoxW3grcB4wUYzkT/3rzdKhW5Xzz4iLxaceNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N0FBovyG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 815F9C19423;
-	Thu,  8 Jan 2026 17:27:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767893263;
-	bh=APV5ntxxphrtGu3GlOx83NQKoLOGqOjtVFfujzMMhq4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N0FBovyGKwCwkTIJuCh1zGkP/oWG4lKPf6IiQfeuU2LN4kc976awuf3/X2D2xAAB7
-	 LSKRUoCxbPJZIwaqYn+C4npMd37Ve+nIRHg2x+BDFN0At0t2CktFKPwzBLBBeLQs14
-	 n3zbghAwkPFw2OXWcSJbp91R2QPQSe87Rf0aJgVlP1/MyTdeF5Xv2r7qne0jGycf6B
-	 CZV2OqJ9uIgwqtWpFnstWl06+WZsSpMniCdMKfk/f6YfWFYJaUU09mlbR0KtTEjXr0
-	 MmDGdC8QT3RwC+ep6naAsPhVG3dMR/xxB2oHYfq13lE77IqkkhY+QrIL1ZVFf1Zxix
-	 Ebid9/i+qEKrA==
-Date: Thu, 8 Jan 2026 17:27:35 +0000
-From: Lee Jones <lee@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
-Subject: Re: [PATCH RESEND v6 00/17] Support ROHM BD72720 PMIC
-Message-ID: <20260108172735.GK302752@google.com>
-References: <cover.1765804226.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1767893476; c=relaxed/simple;
+	bh=6Y/PEiuX8F2nfVedwNRlHLJB8LCK+B2XWyMnAPnOdcw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y9196QxLg4d87Pr9UkzVdqP5PpRuFupFSXEJA5FtOrz8OJRtU9uKDihTk7l0pdVFDbED0O7iK9yI/8jYzocOiPPAoJltRhyFpfSr8N9m5HqK8Oz6S/WVI9Y031LP8Q4xayh4mSESa0vjbNPkJQmWYFmsgnhJGRfibMm4+U9TWTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-5636470c344so5905e0c.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 09:31:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767893474; x=1768498274;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ue0J1j0aj6DWC6mYUAkG3yhlZfjuLnCsNmeQNbfJJJs=;
+        b=K0l+Oxp3qu35fFQHeBmyEsX3gS185BUGVafvrBt1eHv/f0kUI3bkNyeO5CLMhvkrxA
+         +G9qQVvjjybUi+W/mm1jNN0HRqO36dvJOorIzJ0ECHCaxX+Sebs3z+l/JWkFEyzDIuUz
+         ryFMVcEyi8I1qN5b7tn/YI2dPl/CRslPIr97md0vC/Ndxy4+hzzIYA/AinuZrkUgIdRL
+         cg2fv6hN5Dq6/fSza0AqJuFebCt0GL9g9FNgrxfngs/O4z0j7p8jddg6pCsUkr3RbZNF
+         KdGxDDZ+a8hlmgDOjnd4CacjK0RzR3zwZ4CpYtyc9I9AlMBnx1BEFrGriGV9fXzZqsQj
+         wtmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWk45in2TDDQgGeI35dNiA/4JGp9UULgaHK3dSE0uNNtM4fnreRf1jW/jv1qj9/IARBTJ/1LFbBzBuV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMYDVPYnEydXms1Ti2OKa6b7HYZdW3M22DI1eIJFZz7S5Rfqgx
+	UWPkbF7makDoydzK7F4xfL3AUcmXy9YegpZJQ9eeCFQ0P3enGCg9AGG8u9VifR8h
+X-Gm-Gg: AY/fxX4fG6L9idxqwSaocgT/Oi5CcIk8pPVqOiIjH6kGI9BYHPglfScUFcYSU7eWMp5
+	3MHbJJiWzESsQxg/yXZFHI0DOCKPUc+vu5eC6nvH4uV8H1RFwMFwZr7ju1MIYMmKcCE2XoY9k9P
+	T4F3HRTo6Xlbr2186Z3ZG7fw6kwOhmOBO+Sw3wwmv1v+KzQYdyyxBzgApvif9bvn6EnCPZS7svv
+	tk4KmbMZv0jcCoRArN2taSFcQ5XRbBnWWP2u8CESWaanojE6R+GEgcrvI2DKS4SZQfaAsNKboho
+	2uVzyHFyjuP6Qk478G2IWwY1N4Z/ah7Au3icc43fw8vbj+YI34DN4IBGX5yXmro6SdG2MZrTi9n
+	E/+3bnImtgZTzeGgVc52g8lMM66/xCCEqEnN/KVrYQCtU5egAche5cBr6+iZtVHUu5jDrxJAUqX
+	6AkO/XMuHvSdtSbmwG74MCmPoRL1EyG+M2cv3B6oiIUpMxdmpy
+X-Google-Smtp-Source: AGHT+IFDWh1JZqvL1kjzEr/uAKXjDhndncS5wEbDXmroecnmyn/iz1gLLgp5uIKucU5ZGAx+5BvF2w==
+X-Received: by 2002:a05:6122:421b:b0:55e:452f:7af0 with SMTP id 71dfb90a1353d-56347d63649mr2452003e0c.2.1767893473836;
+        Thu, 08 Jan 2026 09:31:13 -0800 (PST)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5633a1ea48bsm6756741e0c.3.2026.01.08.09.31.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jan 2026 09:31:13 -0800 (PST)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-5eeaae0289bso114573137.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 09:31:12 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXYYaIysiI4PSgxjX052ws6ghSyEzY+yXJjhPGcDG6ShY+a+JGjYxGu9c7fWv8yy2IvmfF3tjFZutvg@vger.kernel.org
+X-Received: by 2002:a05:6102:2acd:b0:5df:a98f:ca85 with SMTP id
+ ada2fe7eead31-5ecb68d3054mr2835192137.21.1767893472628; Thu, 08 Jan 2026
+ 09:31:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1765804226.git.mazziesaccount@gmail.com>
+References: <20251205150234.2958140-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251205150234.2958140-5-cosmin-gabriel.tanislav.xa@renesas.com>
+In-Reply-To: <20251205150234.2958140-5-cosmin-gabriel.tanislav.xa@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 8 Jan 2026 18:31:01 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX_ezZMYc3BRJRLFVwir6NPnxNUPw1Z0+oQDZjx_unJjA@mail.gmail.com>
+X-Gm-Features: AQt7F2qqDC6QTfmP9u1liaa7gLEyyN7-59wLYd5yvmPeQ7bjaUsCdlwPUmuKCIA
+Message-ID: <CAMuHMdX_ezZMYc3BRJRLFVwir6NPnxNUPw1Z0+oQDZjx_unJjA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/8] pinctrl: renesas: rzt2h: add GPIO IRQ chip to
+ handle interrupts
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 15 Dec 2025, Matti Vaittinen wrote:
+Hi Cosmin,
 
-> Resending the v6
-> 
-> Series is same as v6 _except_ being rebased on v6.19-rc1 - and adding rb
-> tags which were replied to v6.
-> 
-> The ROHM BD72720 is a new power management IC for portable, battery
-> powered devices. It integrates 10 BUCKs and 11 LDOs, RTC, charger, LEDs,
-> GPIOs and a clock gate. To me the BD72720 seems like a successor to the
-> BD71828 and BD71815 PMICs.
-> 
-> This series depends on
-> 5bff79dad20a ("power: supply: Add bd718(15/28/78) charger driver")
-> which is in power-supply tree, for-next. Thus, the series is based on
-> it.
-> 
-> The testing since v4 has suffered some hardware-issues after I
-> accidentally enabled charging while the PMIC's battery pin was connected
-> to the I/O domain. Some heat was generated, not terribly lot smoke
-> though...
-> 
-> After the incident I've had occasional I2C failures. I, however, suspect
-> the root cause is HW damage in I/O lines.
-> 
-> Revision history:
->   v6 resend:
->   - Rebased on v6.19-rc1 and collected rb-tags from v6.
-> 
->   v5 => v6:
->   - MFD fixes as suggested by Lee
->     - Styling mostly
->     - New patch to Fix comment style for MFD driver
->   More accurate changelog in individual patches
-> 
->   v4 => v5:
->   - dt-binding fixes as discussed in v4 reviews.
->     - Drop rohm,vdr-battery.yaml and add vdr properties to battery.yaml
->     - Drop 'rohm,' -vendor-prefix from vdr properties
->   - Link to v4:
->     https://lore.kernel.org/all/cover.1763022807.git.mazziesaccount@gmail.com/
->   More accurate changelog in individual patches
-> 
->   v3 => v4:
->   - dt-binding fixes to the BD72720 MFD example and regulator bindings
->   More accurate changelog in individual patches
-> 
->   v2 => v3:
->   - rebased to power-supply/for-next as dependencies are merged to there
->   - plenty of dt-binding changes as suggested by reviewers
->   - add new patch to better document existing 'trickle-charging' property
->   More accurate changelog in individual patches
-> 
->   RFCv1 => v2:
->   - Drop RFC status
->   - Use stacked regmaps to hide secondary map from the sub-drivers
->   - Quite a few styling fixes and improvements as suggested by
->     reviewers. More accurate changelog in individual patches.
->   - Link to v1:
->     https://lore.kernel.org/all/cover.1759824376.git.mazziesaccount@gmail.com/
-> 
-> ---
-> 
-> Matti Vaittinen (17):
->   dt-bindings: regulator: ROHM BD72720
->   dt-bindings: battery: Clarify trickle-charge
->   dt-bindings: battery: Add trickle-charge upper limit
->   dt-bindings: battery: Voltage drop properties
->   dt-bindings: mfd: ROHM BD72720
->   dt-bindings: leds: bd72720: Add BD72720
->   mfd: rohm-bd71828: Use regmap_reg_range()
->   mfd: rohm-bd71828: Use standard file header format
->   mfd: rohm-bd71828: Support ROHM BD72720
->   regulator: bd71828: rename IC specific entities
->   regulator: bd71828: Support ROHM BD72720
->   gpio: Support ROHM BD72720 gpios
->   clk: clk-bd718x7: Support BD72720 clk gate
->   rtc: bd70528: Support BD72720 rtc
->   power: supply: bd71828: Support wider register addresses
->   power: supply: bd71828-power: Support ROHM BD72720
->   MAINTAINERS: Add ROHM BD72720 PMIC
-> 
->  .../bindings/leds/rohm,bd71828-leds.yaml      |    7 +-
->  .../bindings/mfd/rohm,bd72720-pmic.yaml       |  339 ++++++
->  .../bindings/power/supply/battery.yaml        |   33 +-
->  .../regulator/rohm,bd72720-regulator.yaml     |  148 +++
->  MAINTAINERS                                   |    2 +
->  drivers/clk/Kconfig                           |    4 +-
->  drivers/clk/clk-bd718x7.c                     |   10 +-
->  drivers/gpio/Kconfig                          |    9 +
->  drivers/gpio/Makefile                         |    1 +
->  drivers/gpio/gpio-bd72720.c                   |  281 +++++
->  drivers/mfd/Kconfig                           |   18 +-
->  drivers/mfd/rohm-bd71828.c                    |  555 ++++++++-
->  drivers/power/supply/bd71828-power.c          |  160 ++-
->  drivers/regulator/Kconfig                     |    8 +-
->  drivers/regulator/bd71828-regulator.c         | 1025 ++++++++++++++++-
->  drivers/rtc/Kconfig                           |    3 +-
->  drivers/rtc/rtc-bd70528.c                     |   21 +-
->  include/linux/mfd/rohm-bd72720.h              |  634 ++++++++++
->  include/linux/mfd/rohm-generic.h              |    1 +
->  19 files changed, 3127 insertions(+), 132 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd72720-regulator.yaml
->  create mode 100644 drivers/gpio/gpio-bd72720.c
->  create mode 100644 include/linux/mfd/rohm-bd72720.h
+On Fri, 5 Dec 2025 at 16:03, Cosmin Tanislav
+<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
+> The Renesas RZ/T2H (R9A09G077) and Renesas RZ/N2H (R9A09G087) SoCs have
+> IRQ-capable pins handled by the ICU, which forwards them to the GIC.
+>
+> The ICU supports 16 IRQ lines, the pins map to these lines arbitrarily,
+> and the mapping is not configurable.
+>
+> Add a GPIO IRQ chip to the pin controller that can be used to configure
+> these pins as IRQ lines.
+>
+> The pin controller places the requested pins into IRQ function,
+> disabling GPIO mode. A hierarchical IRQ domain is used to forward other
+> functionality to the parent IRQ domain, the ICU. The ICU does level
+> translation and then forwards other functionality to the GIC.
+>
+> Wakeup capability is implemented by placing the entire pin controller on
+> the wakeup path if any pins are requested to be wakeup-capable.
+>
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 
-The MFD parts LGTM.
+Thanks for your patch!
 
-What Acks are you waiting on?  What's the merge strategy?
+> --- a/drivers/pinctrl/renesas/pinctrl-rzt2h.c
+> +++ b/drivers/pinctrl/renesas/pinctrl-rzt2h.c
 
-> -- 
-> 2.52.0
-> 
+> @@ -644,14 +650,194 @@ static const char * const rzt2h_gpio_names[] = {
+>         "P35_0", "P35_1", "P35_2", "P35_3", "P35_4", "P35_5", "P35_6", "P35_7",
+>  };
+>
+> +/*
+> + * Interrupts 0-15 are for INTCPUn, which are not exposed externally.
+> + * Interrupts 16-31 are for IRQn. SEI is 32.
 
+Isn't SEI 406, and DMAC0_INT0 32?
 
+> + * This table matches the information found in User Manual's Table 17.2,
+> + * List of multiplexed pin configurations (5 of 51).
+
+3-6 of 51
+
+However, the mapping is much easier to derive from the "Interrupt" rows
+in the various tables in Section 17.5 ("Multiplexed Pin Configurations"),
+as these match the order in rzt2h_gpio_irq_map[].
+
+> + * RZ/N2H has the same GPIO to IRQ mapping, except for the pins which
+> + * are not present.
+> + */
+> +static const u8 rzt2h_gpio_irq_map[] = {
+> +       32, 16, 17, 18, 19,  0, 20, 21,
+
+s/32/406/, but that doesn't fit in u8, and would overflow .used_irqs[],
+so you probably should translate it in the code instead.
+
+> +       22,  0,  0,  0,  0,  0,  0,  0,
+> +       23, 24, 25, 26, 27,  0,  0,  0,
+> +        0,  0, 28, 29, 30, 31,  0,  0,
+> +        0,  0,  0,  0,  0, 32, 16, 17,
+> +       18, 19, 20, 21, 22,  0,  0,  0,
+> +        0,  0, 24, 25, 26, 27,  0, 28,
+> +       29, 30, 31,  0,  0,  0,  0,  0,
+> +        0,  0,  0,  0,  0, 24, 32, 16,
+> +        0,  0,  0,  0,  0,  0,  0,  0,
+> +       20, 23, 17, 18, 19,  0, 16, 25,
+> +       29, 20, 21, 22, 23,  0,  0,  0,
+> +        0,  0,  0,  0, 17,  0,  0, 18,
+> +        0,  0, 19,  0,  0, 20,  0, 30,
+> +       21,  0,  0, 22,  0,  0, 24, 25,
+> +        0,  0,  0,  0,  0, 16, 17,  0,
+> +       18,  0,  0, 26, 27,  0,  0,  0,
+> +       28, 29, 30, 31,  0,  0,  0,  0,
+> +       23, 31, 32, 16, 17, 18, 19, 20,
+> +        0,  0,  0,  0,  0,  0,  0,  0,
+> +        0,  0,  0,  0,  0,  0,  0,  0,
+> +        0,  0,  0,  0,  0,  0,  0,  0,
+> +       27,  0,  0, 21, 22, 23, 24, 25,
+> +       26,  0,  0,  0,  0,  0,  0,  0,
+> +       27, 28, 29, 30, 31,  0,  0,  0,
+> +        0,  0,  0,  0,  0,  0,  0,  0,
+> +        0,  0,  0,  0,  0, 28, 32, 16,
+> +       17, 18, 19,  0,  0,  0,  0, 20,
+> +       21, 22, 23,  0,  0,  0,  0,  0,
+> +        0,  0,  0,  0, 24, 25,  0,  0,
+> +        0,  0, 26, 27,  0,  0,  0, 30,
+> +        0, 29,  0,  0,  0,  0,  0,  0,
+> +        0,  0,  0,  0,  0,  0,  0,  0,
+> +        0,  0,  0, 28, 29, 30, 31,  0,
+> +        0,  0,  0,  0,  0,  0,  0, 30,
+> +        0,  0,  0,  0,  0,  0,  0,  0,
+> +};
+
+> +static int rzt2h_pinctrl_suspend_noirq(struct device *dev)
+> +{
+> +       struct rzt2h_pinctrl *pctrl = dev_get_drvdata(dev);
+> +
+> +       if (atomic_read(&pctrl->wakeup_path))
+> +               device_set_wakeup_path(dev);
+> +
+> +       return 0;
+> +}
+
+Please move this function closer to the location where it is used,
+i.e. just above rzt2h_pinctrl_pm_ops.
+
+>+ static int rzt2h_gpio_child_to_parent_hwirq(struct gpio_chip *gc,
+>+                                            unsigned int child,
+>+                                            unsigned int child_type,
+>+                                            unsigned int *parent,
+>+                                            unsigned int *parent_type)
+>+ {
+>+        struct rzt2h_pinctrl *pctrl = gpiochip_get_data(gc);
+>+        u8 port = RZT2H_PIN_ID_TO_PORT(child);
+>+        u8 pin = RZT2H_PIN_ID_TO_PIN(child);
+>+        u8 parent_irq;
+>+
+>+        parent_irq = rzt2h_gpio_irq_map[child];
+>+        if (parent_irq < RZT2H_INTERRUPTS_START)
+
+Or !parent_irq, cfr. the check in rzt2h_gpio_init_irq_valid_mask()?
+
+>+                return -EINVAL;
+>+
+>+        if (test_and_set_bit(parent_irq - RZT2H_INTERRUPTS_START,
+>+                             pctrl->used_irqs))
+>+                return -EBUSY;
+>+
+>+        rzt2h_pinctrl_set_pfc_mode(pctrl, port, pin, PFC_FUNC_INTERRUPT);
+>+
+>+        *parent = parent_irq;
+>+        *parent_type = child_type;
+>+
+>+        return 0;
+>+ }
+
+> +
+>  static int rzt2h_gpio_register(struct rzt2h_pinctrl *pctrl)
+>  {
+>         struct pinctrl_gpio_range *range = &pctrl->gpio_range;
+>         struct gpio_chip *chip = &pctrl->gpio_chip;
+> +       struct device_node *np = pctrl->dev->of_node;
+> +       struct irq_domain *parent_domain;
+>         struct device *dev = pctrl->dev;
+>         struct of_phandle_args of_args;
+> +       struct device_node *parent_np;
+> +       struct gpio_irq_chip *girq;
+>         int ret;
+>
+> +       parent_np = of_irq_find_parent(np);
+> +       if (!parent_np)
+> +               return -ENXIO;
+
+Despite your claim that the interrupts properties are optional,
+I think  this will abort probing when they are actually missing?
+
+> +
+> +       parent_domain = irq_find_host(parent_np);
+> +       of_node_put(parent_np);
+> +       if (!parent_domain)
+> +               return -EPROBE_DEFER;
+> +
+>         ret = of_parse_phandle_with_fixed_args(dev->of_node, "gpio-ranges", 3, 0, &of_args);
+>         if (ret)
+>                 return dev_err_probe(dev, ret, "Unable to parse gpio-ranges\n");
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Lee Jones [李琼斯]
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
