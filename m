@@ -1,166 +1,217 @@
-Return-Path: <devicetree+bounces-252960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31242D0526B
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:46:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33449D059F8
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 19:44:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B3E8F30787A9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:43:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 387C0307AFA6
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:52:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E07D302750;
-	Thu,  8 Jan 2026 17:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072312E7BB4;
+	Thu,  8 Jan 2026 17:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oeKkbQud"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011013.outbound.protection.outlook.com [52.101.62.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3C2E2FD7BC
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 17:43:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767894189; cv=none; b=SbEqOc5YWfzozsrhzP/P2Ce5yYVpTf8uWi2+GHZGgSq21IOJqqJBODyKKaU/KfBcj5Mxkn/dWS3Os+OMjPs389pLl8j2zfsIcIfbiifRAlrLvKusCJvWF+QviicYYyOM5gmpLjyWUqeyCFxHA/kIK13abd/sTE5o1VyCJzGayw4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767894189; c=relaxed/simple;
-	bh=GAMmRH8WG4SuwJpSk40B1/V0uVXYQJKFg56MoYwmk70=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HNHkFjF5uK6UlrOKAwRvpCe7Yx6mrXKWRIKDlqt36iPEM/9Z5Kt2RISjHW7VsI402JuHFvymXVQIa/hm0T+c+otMJZouh75La/cGAdcuw4vfQYPmyaK3IMV4YD+ngwbceg7tw/WMGDuFDGjEWfaZc3RrbmGFO1gv0UCzkd7mHKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-943d0cafe77so1143176241.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 09:43:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767894180; x=1768498980;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Pfe9XNi/Cjru8cNLH+ivGd+Nm2hyK8hmMgtx6v7K+ro=;
-        b=CKxwJGSte4nRXRAJAmaVKCZDIUApJtszxhh2kR6etpEEEIBQfZBoIXwJsuBdlEpuKX
-         CZeLJmxfMV7qYZ4hn9iQjorTHFtIwSvWYUUGG8rv8i3OCk73h8+7Pz5x1QGOgZNriDux
-         Mtg605zxsI5R0ERdzOUO3W+AFM5ZXbDRbAmhrsjpYAY7qmAV2v6TwSkXSnKgEAQmx+Jv
-         Onzw5VUQmMyVHXCylGGILWBt3B7j3KfaXd7xaMb/7XDrkjuqblfEaM8XNrc/gtSrF+wt
-         vPIl6vhen9K+OcfcQxIyr/a4Vh2AmpYUN+wrmd6fnukhaaYXl6ALJLSWmNj2lQUwfE9A
-         PqSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXTwqloUuetYJy7W6rrLwtWpbfStO168CQWQl+9GZ1dUnSBzXJEQ3sX75FBdZDMDr6+CEk6udpz0Hm3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw186kqpuqASiCnWmv7KtaTduxzBh0HfaSipxtgdSHU8sipIMgR
-	3Rfhj38Pl6v492CYNEalecgPx04wGP+XNVeyL2ZwHSB/QpyLy/e/dQnPMDiWm/kB
-X-Gm-Gg: AY/fxX62aoj16HKocQnzKtRGrOpzz/eiPsOYhENcz4qLRwiy5H5KLtiMY0FhFGxSoWk
-	gAA/k3PIMcwBRj/6i3RtMGbkOiNfwQ8deztLz4r/UIYy2PjsH48fYX3wFTjPMvhYRCVWt6FkrO6
-	KF14ohgzaFtdiKDKFootd6BuPOENC284TdQ20bhVHm2LIaODoE2pfoe0w5a/YFpj9EJt4ge8vGs
-	ftFp3SoHO72v5+X+Sf5A5NcA6N5kKNw0jAC3JzGfxSze14/Mge9YJuWsUhpREqwUHgms+aS8heV
-	m97Bq2fo1Nc2EeJCd8y7/tPozt7fXJOUlZ+Agj3jejx6XfRv3PGmnEETVbPIs1btzYB4EZE02Ue
-	1p8VQsRumNlpBCBN39Gp3E2R+AnNJ06UZsL1Q3gXsdv39ZLDC7Q4P0X19tqfTVKltM1TKJCgxXT
-	g5rza45nazIRWgno1f30Fva0sMBXs9L5SiEitFzjNdqGxkEXTd
-X-Google-Smtp-Source: AGHT+IGR7slCBs96tv6VNtnAk2TAHbcmoVm3SJX6J6Iz2vIZCht8pCuOaKBAAR7b0dKt8qE3c/UO4Q==
-X-Received: by 2002:a05:6102:d90:b0:5e5:6f1f:75ec with SMTP id ada2fe7eead31-5ecb6981b07mr2328360137.35.1767894179935;
-        Thu, 08 Jan 2026 09:42:59 -0800 (PST)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-944122d6132sm6837048241.5.2026.01.08.09.42.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 09:42:58 -0800 (PST)
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-93a9f700a8cso1170392241.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 09:42:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVoZ0n4VlUOLgWh0CsCb038GNrIDwepGzTXsTRzIM9igkMPigyWjQ0mTofk/EBVLimIbt2HOptvGWvR@vger.kernel.org
-X-Received: by 2002:a05:6102:5cc7:b0:5dd:89ad:1100 with SMTP id
- ada2fe7eead31-5ecb5cbb74bmr2376260137.6.1767894178396; Thu, 08 Jan 2026
- 09:42:58 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 094AF2E092E;
+	Thu,  8 Jan 2026 17:52:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.13
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767894763; cv=fail; b=iP1xmWLkOHWb343joTjzhQFvmfKR7sDIV/ApH5/rt5fOmPVduk2E/vI0nONqPIgb5ETTnIYH+Ypj/+YNkGgP9b+zW8G3oZGL/2dH/fODjnQYMZdZj0qDDGA0ABeXmGQlTYnBMqlK7oelOgOP+7ruQsk3CX23tfgSblJKA5d/iB4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767894763; c=relaxed/simple;
+	bh=wRsz42eYkYbYXTUhON0hpdf+w/WgH7TRkT2S+Y0FBbQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Q7CKLjMJq8HdGi5DOfrtQHef9SRRN+fHZJY37nKP7lSUiIztStNS+FQ3DJ18VRFvzvKoGZGObawVolZEY/Frx+fqFH8StUWuU5QHZemNbJpJU4pN1wqYhD2IXU8vW7fPI614vP8EfF9iCuTn1V/F1HLJTpGsPziIljLjgSLOjOs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oeKkbQud; arc=fail smtp.client-ip=52.101.62.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qAzBl4DMLh87nuEb/KI1SqJYw7iyv2T002zBHiqQwKUyxGspkJWo/BzUrIHkVNu+V3iWXnpLcmpI1n58fTczB89nWp9giUwwzBAxoEmaXwbGy+/52+Mjt8BW0dUaCIl7a1hrM8v+AYQzzAFkz9Vn4/u5qDU3GVTYskGrnyeHjWINQ58JmHBhWAXrtKA259Qbg8vKeYAYO7r99j2mAqU2SkxrG+gaaK3XT0WJ07dyKgC67XPK3zGmxPien3R6yinZp44GZ45XX8ttvZAnkkhF1mUsk5/ZOExBU4QZy6vsKeJMCZbMRMyfow8EM1840llidiuSEAv5mSh0eS/BmY+IIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3goFcKee4OUgmaWcAc7KDOw58mefuVRtDRqXl+x8zEU=;
+ b=WpuI+TcI4plsLPOzjuRAelHs4VDP4bIARTGuf5nW0vVq3jgNpPXkzqngTEScFOQj9C4L2i3EVz892T16LV5DNJdZpLWpKsdPyDBydG/twkU/dumgrAa/yktdKb+kiTQdt0YodDD4ia+G6UngnVqZ4n2TjDgkdecI4rqx5szOnoADafooFbxzKkPngkENUlyiY1FRTOX0gA+Z8MEl1LQo9Jrfk48QMJr76OjSPI5MtYo4hmJQyQ1QCGXg+JMHOo4FanawGkQxOXGkKL0wRIOr52BV2sxrQIpAFJ6p1kZ5Fg6CzLPRGYjPsax/H0WyO4rt4tN2f4fjrEO2ZmYZ+P8YaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3goFcKee4OUgmaWcAc7KDOw58mefuVRtDRqXl+x8zEU=;
+ b=oeKkbQudDSeMXwHGwPNvqKkBngIa9oJf013jQYh/+Z5cG+XSywMF990tnF68uCU5OhR09e7kdbGYo8ZQb4pKF8aOcqXAfs54uMF2KdC+zg1yMAs/Tzs7PED1jC6zWZfTilXlo13EH9b1UndWxADu3qPmP5AVbU+45uZDgkjIuFI=
+Received: from CH2PR08CA0024.namprd08.prod.outlook.com (2603:10b6:610:5a::34)
+ by DM4PR10MB7390.namprd10.prod.outlook.com (2603:10b6:8:10e::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.4; Thu, 8 Jan
+ 2026 17:52:34 +0000
+Received: from CH2PEPF0000009E.namprd02.prod.outlook.com
+ (2603:10b6:610:5a:cafe::2e) by CH2PR08CA0024.outlook.office365.com
+ (2603:10b6:610:5a::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.3 via Frontend Transport; Thu, 8
+ Jan 2026 17:52:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ CH2PEPF0000009E.mail.protection.outlook.com (10.167.244.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.1 via Frontend Transport; Thu, 8 Jan 2026 17:52:33 +0000
+Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 8 Jan
+ 2026 11:52:33 -0600
+Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 8 Jan
+ 2026 11:52:32 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 8 Jan 2026 11:52:32 -0600
+Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 608HqWWe2762413;
+	Thu, 8 Jan 2026 11:52:32 -0600
+Message-ID: <afac4fe3-1dbc-4c8a-a0f1-6e25666eabb4@ti.com>
+Date: Thu, 8 Jan 2026 11:52:32 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260108165324.11376-1-cosmin-gabriel.tanislav.xa@renesas.com> <20260108165324.11376-6-cosmin-gabriel.tanislav.xa@renesas.com>
-In-Reply-To: <20260108165324.11376-6-cosmin-gabriel.tanislav.xa@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 8 Jan 2026 18:42:47 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX0G92JmwneZp1h+AOF-Cit2scVGGWXCBZGwBVmJjUAVg@mail.gmail.com>
-X-Gm-Features: AQt7F2oaRcSSM-TJ2lzWvwve1kr4JhP9eX1Et_7XoG_piUmKankXGgTr0tEIJaU
-Message-ID: <CAMuHMdX0G92JmwneZp1h+AOF-Cit2scVGGWXCBZGwBVmJjUAVg@mail.gmail.com>
-Subject: Re: [PATCH v4 5/5] thermal: renesas: rzg3e: add support for RZ/T2H
- and RZ/N2H
-To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: John Madieu <john.madieu.xa@bp.renesas.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] arm64: boot: dts: ti: k3-am62l: allow WKUP UART
+ wakeup from LPM
+To: Bryan Brattlof <bb@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Dhruva
+ Gole" <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
+	<msp@baylibre.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
+	<s-kochidanadu@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20260106-wkup-uart-wakeup-v2-0-fb4cbd56c827@ti.com>
+ <20260107164504.ehvbfizg7ybbvv2e@bryanbrattlof.com>
+ <c7dfe4a3-1bf5-4e50-b4b7-8752aa9ef1f5@ti.com>
+ <20260108170545.cfez6dvwkft2z3jh@bryanbrattlof.com>
+Content-Language: en-US
+From: Kendall Willis <k-willis@ti.com>
+In-Reply-To: <20260108170545.cfez6dvwkft2z3jh@bryanbrattlof.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000009E:EE_|DM4PR10MB7390:EE_
+X-MS-Office365-Filtering-Correlation-Id: 61b533d5-7411-4f55-f587-08de4edeb39b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013|34020700016|34070700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?U212bnlLSFoxNGJHTURYdWpOTzJuMXdRSXlFeUxlZEJaZHN0b3czTk5Zb3B6?=
+ =?utf-8?B?c2RQNC91M2RGUG9JRmZ4WVdBbEVhZHNJeER6NkVNQWdkUVVXNUkrR1hLSnA3?=
+ =?utf-8?B?Zm9sdjhuSTRiQWpjSTBzM051MjZyYUFZMjN6REYzWXA4NjBoalZ5aTlGbEdl?=
+ =?utf-8?B?RVpjQjBmV1NwbjdHU1Q3ZndkcHQ5Z3A3NWhGRlVveDg0bXJaMjFEelBNUVVu?=
+ =?utf-8?B?dHowVTY1WG1yZWViSE5LdFpsK29UcmsvZWJrZXFSSVUwMnFnWUJ3eVhNckRu?=
+ =?utf-8?B?ZmlsYi94c3RGU2tmTFNlSVJTbE10V0ZJNlVnemNmd253Q0ZKVk1Bc0dhanNm?=
+ =?utf-8?B?eldCeUhsWno3eG1lblVxZHBnSHorU1V3QmhkcHVyUUh2SEhQNE52QlVKWXQ0?=
+ =?utf-8?B?OVlZa0hmUU4wenZKK2J3ejkwSTN0VG1JYWVCZEl4R0pKK3RIMStDZU9EOEc3?=
+ =?utf-8?B?VFdVMExHRlF1T3hiNmlwZFcxcjNmb2JTUmRpNVBLMGlkWElOblhFVmw0ZjRH?=
+ =?utf-8?B?QkRHaVg5Vktlc2VaMmtrUGRyRVJrWVp2Vkd2aUFHMDVDbU9lOTNZa05JaTlJ?=
+ =?utf-8?B?VitxZjlWOW1uVlQ0OGdCanBtZlFZV2xpM1JyZ0IrVUVQOTJtdnovZmFTSFN0?=
+ =?utf-8?B?cFdoS21zZ2Z2Y0FCT0VnUGppOWhESVFNYUR5UUdCbm5xTXQ4NXhtSzFmZ3Bi?=
+ =?utf-8?B?d1lmMjdtVkxWaUhvTVQvQ0tlKzI0NklqanNXemd5SmtEQlBjQ0pwSWVxNlBF?=
+ =?utf-8?B?ckhId05lUldBajRUNytZVzVFV0o3QTczQjdkK3NvU2V5RGJpZHJNZ1d1d3cy?=
+ =?utf-8?B?RXNVUlBiRGZsNUhGeDMyQmRDd1JsVGk2eGdFZU13cE9mSjNLZ3BWMmwwb2hI?=
+ =?utf-8?B?K2o2UG5XaXl4TkplUkU4TUIweVFXaG1UMHh2b3cvRzQ5UUtCSytvVllkNlFs?=
+ =?utf-8?B?bFBud3luVVZ2Nm1mSm5mUzMxOURRUzl3bDdGYmRmSkJZM0NPQk9QQ2txaWdo?=
+ =?utf-8?B?QSs3aXNZcnIrRVUyeGxmdFpudCtkVU43bVVQSWxWU2xBb3Uza3BtTWQ2N2pZ?=
+ =?utf-8?B?dm1YOXZvek1NRWxIZWdjZEl4UDN0bXBiSEhnc1UzMStXUTNDY3RQQll4OWFs?=
+ =?utf-8?B?dHVONHBESWp1ekk0TnZZdS9GUGc0WTJJQXhVREoxU1d2dUpSUHI3YnFoWmhq?=
+ =?utf-8?B?UUl1eXM3c2ErZGc4eE1YL1pYYjVseE9PWlUwbkkwd2lyTnYxbHBxeWtlQlFi?=
+ =?utf-8?B?Y0loRk9uc1lYYnE3U1k2NkRpQkFzVXk5TW5kT0YvNVp6ZUEyaHl4UEI1V1Ba?=
+ =?utf-8?B?ZTVOcXVBOEFld3NISWsySXZEdU01aXNFanVlT1VmYVRGdnJlZU84cmYwSWlk?=
+ =?utf-8?B?UDRXQm9zcFRiNGxOWHpQSDQxWTJleVVmaFhkUld0ZzVBOTZPTTBkTjVwKzJE?=
+ =?utf-8?B?QlI5ZzNCdC9aLy9UWENjdWpXVHBobmtNRUhMWk9meWdOUjViKzhSOWhDK0xI?=
+ =?utf-8?B?azBpVG1HbVRaN0htNk5hQldCMW9MK1BGUERiWWZvN3FaWlZUY1I5NjA2clhW?=
+ =?utf-8?B?MGZkSWZxTExlRjlxZnYwR3ZPaVh6MUtiWFE0UnBaai84T2FnTzhraUJaWFd1?=
+ =?utf-8?B?QWljTXF4Q0pPZUg3cmJUMm0rdlRNY1J2Y09sTWpLTFE1a2dJa3BwZk1qa1ll?=
+ =?utf-8?B?UGJSRHlSYzdQQU9PNDJHendreFRDaVRpcXNuRnVLRGVkamRGSnk0dXpSNnRW?=
+ =?utf-8?B?d3RSNVNjZmdIYUhtaVhLeUFTcTdGRlozTGxjVGtmT2F4cTRoZXhvUGcrTWNw?=
+ =?utf-8?B?L2JxVXkvVjZlZVFwQ0lmRkt0V3pialBCSi9XblFzdDV0NWVtcXVyRmQxaTU5?=
+ =?utf-8?B?SjMxcHllL0NDd2VHR3dpZ0hXM0lnQi9XWi83Y1I3SEJpQ0QxVFRBS21VdXJh?=
+ =?utf-8?B?UTZ3U1dDS0NiWkpUR3J1M0c1OVRJa09WcTNJWmo0NWFqd0ptUDMzMnpKU1pj?=
+ =?utf-8?B?U3V6b0dZV0l1dXZMYWZHSk80UEdvcmpQVTRiRTJ4VDYxUTdqMzl0Mmg4RHBz?=
+ =?utf-8?B?dFBHMG1XaVNOSzBkeno3TFlLZVd6WTVJNFd6V3NoQU1XaHZpLzFlQkRtbkdL?=
+ =?utf-8?Q?WwVA=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013)(34020700016)(34070700014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 17:52:33.5264
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61b533d5-7411-4f55-f587-08de4edeb39b
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH2PEPF0000009E.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR10MB7390
 
-Hi Cosmin,
+On 1/8/26 11:05, Bryan Brattlof wrote:
+> On January  7, 2026 thus sayeth Kendall Willis:
+>> On 1/7/26 10:45, Bryan Brattlof wrote:
+>>> On January  6, 2026 thus sayeth Kendall Willis:
+>>>> K3 TI AM62L SoC supports wakeup from WKUP UART when the SoC is in the
+>>>> DeepSleep low power mode. To allow wakeup from WKUP UART the target-module
+>>>> device tree node is enabled. The ti-sysc interconnect target module driver
+>>>> is used to configure the the SYSCONFIG related registers. In this case,
+>>>> the interconnect target module node configures the WKUP UART to be able to
+>>>> wakeup from system suspend. The SYSC register is used to enable wakeup
+>>>> from system suspend for the WKUP UART. Refer to 14.7.2.5 UART in the
+>>>> AM62L Techincal Reference Manual for registers referenced [1].
+>>>>
+>>>> Previous TI SoCs configure the WKUP UART to wakeup from system suspend
+>>>> using the ti-sysc interconnect target module driver. Refer to commit
+>>>> ce27f7f9e328 ("arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc for
+>>>> wkup_uart0") for an example of this.
+>>>
+>>> I think I may be confused. What is setting the pinmux for the wkup_uart
+>>> to allow us to trigger the wake event? It looks like they reset to GPIO
+>>> pins if not set. Is firmware doing this?
+>>
+>> On AM62L, the WKUP UART pinmux is initially set by TFA so that it is set to
+>> the UART pins, not GPIO. The target-module node sets the WKUP UART SYSC
+>> register so that wakeup is enabled.
+>>
+> 
+> Nice however should we mark the UART in the board file as reserved for
+> TFA or is it free to be used by Linux and only during the low power
+> modes after Linux is asleep will it be used by TFA?
+> 
+> ~Bryan
 
-On Thu, 8 Jan 2026 at 17:55, Cosmin Tanislav
-<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
-> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs expose the
-> temperature calibration via SMC SIP and do not have a reset for the
-> TSU peripheral, and use different minimum and maximum temperature values
-> compared to the already supported RZ/G3E.
->
-> Although the calibration data is stored in an OTP memory, the OTP itself
-> is not memory-mapped, access to it is done through an OTP controller.
->
-> The OTP controller is only accessible from the secure world,
-> but the temperature calibration data stored in the OTP is exposed via
-> SMC.
->
-> Add support for retrieving the calibration data using arm_smcc_smc().
->
-> Add a compatible for RZ/T2H, RZ/N2H can use it as a fallback.
->
-> Reviewed-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> Tested-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-> ---
->
-> V4:
->  * pick up John's Reviewed-by and Tested-by
->  * replace new macro TSU_TEMP_MASK usage with existing macro
->    TSU_CODE_MAX
+Sorry for the confusion, I said earlier that the WKUP UART could be used 
+by firmware, but that is not to say it is specifically reserved by the 
+firmware in general. TFA sets the WKUP UART pins, but it does not use 
+the WKUP UART for anything else. The only exception for TFA using the 
+WKUP UART is if the user chooses to use the WKUP UART for TFA debugging [1].
 
-Thanks for the update!
+All of this to say that the WKUP UART *can* be used by Linux, it does 
+not need to be reserved for firmware.
 
-Looks like Gmail blocked my review comments on v4 :-(
+[1] 
+https://software-dl.ti.com/processor-sdk-linux/esd/AM62LX/latest/exports/docs/linux/Foundational_Components/Power_Management/pm_am62lx_debug.html
 
-> index c1b586128fa6..ba13ca8cbb8c 100644
-> --- a/drivers/thermal/renesas/rzg3e_thermal.c
-> +++ b/drivers/thermal/renesas/rzg3e_thermal.c
-
-> @@ -362,6 +366,21 @@ static int rzg3e_thermal_get_syscon_trim(struct rzg3e_thermal_priv *priv)
->         return 0;
->  }
->
-> +static int rzg3e_thermal_get_smc_trim(struct rzg3e_thermal_priv *priv)
-> +{
-> +       struct arm_smccc_res local_res;
-
-Missing #include <linux/arm-smccc.h> (on e.g. arm and riscv).
-
-> +
-> +       arm_smccc_smc(RZ_SIP_SVC_GET_SYSTSU, OTP_TSU_REG_ADR_TEMPLO,
-> +                     0, 0, 0, 0, 0, 0, &local_res);
-
-Can this crash? E.g. if this SMC call is not supported by the firmware?
-
-> +       priv->trmval0 = local_res.a0 & TSU_CODE_MAX;
-> +
-> +       arm_smccc_smc(RZ_SIP_SVC_GET_SYSTSU, OTP_TSU_REG_ADR_TEMPHI,
-> +                     0, 0, 0, 0, 0, 0, &local_res);
-> +       priv->trmval1 = local_res.a0 & TSU_CODE_MAX;
-> +
-> +       return 0;
-> +}
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best,
+Kendall
 
