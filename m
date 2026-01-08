@@ -1,131 +1,142 @@
-Return-Path: <devicetree+bounces-252686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 307ACD01F3B
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:53:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 750B3D01D7A
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:31:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2D530304C932
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:48:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EB1D2307B38A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:26:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BAB0389DEC;
-	Thu,  8 Jan 2026 09:15:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D95542A136;
+	Thu,  8 Jan 2026 09:20:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="kTicqGgq"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="oeHpLZqE";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="GnPa3SU+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD373A0B2B;
-	Thu,  8 Jan 2026 09:15:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767863741; cv=pass; b=Ax+vHJ1+ffLF8LySD9aCQIshtJco5wW9CIPK+uL2Q9Y0yDCEUDGknvByBv42CFxUAvl0RW46vCkZqjYo3SmyCGmy1g6jaQnvOFzNgzJBeJ4ctMSeOMPW+dY4nyPUZGYZRiVltUhLtyYJnr5bzuI8FsGiinJfSfXiZRel73zMArY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767863741; c=relaxed/simple;
-	bh=5nTYfSaDPv2GdlELTogMY93wplFSokquqpOtJ7cePW8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gZdiVXGffxTlYtxdsxdNi7teGk4ph2Js+CykloyjZVI9qSMA4rqSi7KLRuNee6jhPrtbwuFY08TLyGpJWABGsxSMCBpst9wTfPmqmsliqHt/fPK8xyuZN1teqNtVbkaIxRvzmmYo3nT9rB1MzUMbMpnFpkZVNYx/zQVstnkP298=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=kTicqGgq; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1767863695; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=MmE5DKfbNllkayfuVfwm9GThSMFT+PX+Q2qcU+TqNiyd2ZutQKHKl2xQoLqUG3zsymi4xcpv2W0Cu9tMDT5XksV3frCCiyx15Nl4+t2Hkxfs5hbWrkeNSx7VctY6ioYBvzrNSkdw0NzytZvIYUK3mrk4XkTPnZ2epVMByddAHis=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1767863695; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=5nTYfSaDPv2GdlELTogMY93wplFSokquqpOtJ7cePW8=; 
-	b=F3KXU6Fwpvtrnw4tK2M8uHd68QIlsZU0jzBBulY/5zbSLW8Qrf28FYA0wd2yxBcYgoOaMEeK18uCW7KdWet9I74deKSEifIWq+EUU30svBPjFGIkJVBbfw2DNZE/6NGA16Sp0jSGt9YeaJCJeBmx8TtXclw63wW0XBnRRcP+srY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767863695;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=5nTYfSaDPv2GdlELTogMY93wplFSokquqpOtJ7cePW8=;
-	b=kTicqGgqsOzHMkeRBWfRNWGcx2mI153gK3zN0TKiLHNcsKpEIms6Z+TsAIQUolqD
-	ebLrshz40+ShAYSAlksHuN9vSpcazstbafyIfkzQAxFs9HaETySG1jl0PzLvVIvWvRP
-	btNeqbhgsP0TcoF6ytmZY/IIEnltagUCO5ehZxLs=
-Received: by mx.zohomail.com with SMTPS id 1767863693938487.4499614851069;
-	Thu, 8 Jan 2026 01:14:53 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>,
- Chunfeng Yun =?UTF-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>,
- "kishon@kernel.org" <kishon@kernel.org>,
- "James.Bottomley@HansenPartnership.com"
- <James.Bottomley@hansenpartnership.com>,
- "bvanassche@acm.org" <bvanassche@acm.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Chaotian Jing =?UTF-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "vkoul@kernel.org" <vkoul@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- Peter Wang =?UTF-8?B?KOeOi+S/oeWPiyk=?= <peter.wang@mediatek.com>
-Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- "kernel@collabora.com" <kernel@collabora.com>
-Subject: Re: [PATCH v4 11/25] scsi: ufs: mediatek: Rework probe function
-Date: Thu, 08 Jan 2026 10:14:44 +0100
-Message-ID: <5992593.DvuYhMxLoT@workhorse>
-In-Reply-To: <213d3077835fc86d15579c0a0a91f64fd84b1059.camel@mediatek.com>
-References:
- <20251218-mt8196-ufs-v4-0-ddec7a369dd2@collabora.com>
- <20251218-mt8196-ufs-v4-11-ddec7a369dd2@collabora.com>
- <213d3077835fc86d15579c0a0a91f64fd84b1059.camel@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF8C2387357;
+	Thu,  8 Jan 2026 09:19:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767864022; cv=none; b=K6ZHBNPJdMZ6M1K1PjOe06WYhqnZbJI2ASKp3cr5OiHPaoBYj5a8PVz52QVw8hMrYCvRrWJPDrR96fm78BmxktmA7XRqgiC2VhDgCvlfxWV4Oto2A5Vo+vLYiWzh98zQ7p+U5lDUkYfvT67nHQKc6osIxZhAwFn3FapX/JFs5Tw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767864022; c=relaxed/simple;
+	bh=LJtMgR38bkWvUchTlzy/NoVrUe6+UjJfYA4juR3YW98=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ahQ2CGQqbZNEGiGpbznkDarIRgNVbCcZoH8//dtXA1WTmsrtuph7I0G+kH4xTy5yBeLBxL6w1J8VdmkVUf72Eeua4f+mv93cf9In4EEy8zF/M2JShANv0PzQa6iiIgS3YVfgBGlGUQoUBYDqBaVjEATUNqDlziVE4cAjLDDDcnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=oeHpLZqE; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=GnPa3SU+; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1767863831; bh=z4ln/Zq/EvlaymR0blLFOBp
+	lOaJOGpOHDKqXZY4y8a4=; b=oeHpLZqEBNDpm7VXEpS3ews8h3auO46UyCzY13lWW+/xujy6j8
+	/vBBspN2cDXW91fwUGQ8lyGBSVD8DWm3o5711M4D5RZDXejq7ZrOR2BYWXWQizuZ515ogWBvPW4
+	0kSENW6cSdxtf/eam8hyR5OebJjZ2K8sJHXtwHQtwwkAmDAPrS8lnXNMpERZuAXLz1tY5BH45F3
+	Ygkfagw78+pGgwHrRtxzcom+buFppUaePa9/LIjUP6hEfUrPUxFeiaprIzNnBRir20b0V7orWPD
+	dSWJlFopcno1EAP+a83EzmB34gP4U4lD5pL2b1vML+ZsNf89vbga08zmvRd4c4ApqNw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1767863831; bh=z4ln/Zq/EvlaymR0blLFOBp
+	lOaJOGpOHDKqXZY4y8a4=; b=GnPa3SU+34/sBH74UPMPOLrHz2qYJEa8uyDGLLFSkFFbf9mXB2
+	krHxaMWFzqce+xCL6OaPUB7SJZ630hKKM8Dg==;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Date: Thu, 08 Jan 2026 10:17:10 +0100
+From: barnabas.czeman@mainlining.org
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, Jingoo
+ Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Kiran Gunda
+ <quic_kgunda@quicinc.com>, Helge Deller <deller@gmx.de>, Luca Weiss
+ <luca@lucaweiss.eu>, Konrad Dybcio <konradybcio@kernel.org>, Eugene Lepshy
+ <fekz115@gmail.com>, Gianluca Boiano <morf3089@gmail.com>, Alejandro Tafalla
+ <atafalla@dnyon.com>, dri-devel@lists.freedesktop.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] dt-bindings: backlight: qcom-wled: Document ovp
+ values for PMI8994
+In-Reply-To: <45a2b510-c825-4191-975a-1389f4f18903@oss.qualcomm.com>
+References: <20260108-pmi8950-wled-v2-0-8687f23147d7@mainlining.org>
+ <20260108-pmi8950-wled-v2-1-8687f23147d7@mainlining.org>
+ <45a2b510-c825-4191-975a-1389f4f18903@oss.qualcomm.com>
+Message-ID: <c7bca43b1b912a6a100d83229d78abde@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tuesday, 6 January 2026 14:23:58 Central European Standard Time Peter Wa=
-ng (=E7=8E=8B=E4=BF=A1=E5=8F=8B) wrote:
-> On Thu, 2025-12-18 at 13:55 +0100, Nicolas Frattaroli wrote:
-> >=20
-> > Remove the ti,syscon-reset cruft.
-> >=20
->=20
-> Hi Nicolas,
->=20
-> Why do we need to remove the reset node? If an error occurs and the
-> host=20
-> does not perform a reset, it could lead to error recovery failure.
-
-Because it's not described by the binding, and appears to be a
-downstream hack to work around not having the reset controller
-properly described and referred to with a `resets` property.
-
-Even if you were to use `ti,syscon-reset` to describe a reset
-controller, the UFS controller driver should not be searching
-for this compatible. It should access the reset through the
-reset API. The common reset code can then take care of probe
-ordering without every driver reinventing it.
-
->=20
-> Thanks.
-> Peter
->=20
-
-
-
-
+On 2026-01-08 09:54, Konrad Dybcio wrote:
+> On 1/8/26 4:43 AM, Barnabás Czémán wrote:
+>> Document ovp values supported by wled found in PMI8994.
+>> 
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> I reviewed a version of this that said PMI8950, which is very much
+> not the same..
+> 
+> Let me try and get some more docs to confirm or deny what you're
+> saying..
+I have sent it for the previous revision msm-4.4 contains the 
+documentation.
+https://lore.kernel.org/all/95f7c89fdf9b856f567a498cc56ecfa5@mainlining.org/T/#u
+> 
+> Konrad
+> 
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
+>>  .../bindings/leds/backlight/qcom-wled.yaml         | 22 
+>> ++++++++++++++++++++--
+>>  1 file changed, 20 insertions(+), 2 deletions(-)
+>> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml 
+>> b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
+>> index a8490781011d..19166186a1ff 100644
+>> --- a/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
+>> +++ b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
+>> @@ -98,8 +98,8 @@ properties:
+>>      description: |
+>>        Over-voltage protection limit. This property is for WLED4 only.
+>>      $ref: /schemas/types.yaml#/definitions/uint32
+>> -    enum: [ 18100, 19600, 29600, 31100 ]
+>> -    default: 29600
+>> +    minimum: 17800
+>> +    maximum: 31100
+>> 
+>>    qcom,num-strings:
+>>      description: |
+>> @@ -239,6 +239,24 @@ allOf:
+>>            minimum: 0
+>>            maximum: 4095
+>> 
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: qcom,pmi8994-wled
+>> +
+>> +    then:
+>> +      properties:
+>> +        qcom,ovp-millivolt:
+>> +          enum: [ 17800, 19400, 29500, 31000 ]
+>> +          default: 29500
+>> +
+>> +    else:
+>> +      properties:
+>> +        qcom,ovp-millivolt:
+>> +          enum: [ 18100, 19600, 29600, 31100 ]
+>> +          default: 29600
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> 
 
