@@ -1,93 +1,93 @@
-Return-Path: <devicetree+bounces-252604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A511D014F9
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 07:55:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 100ABD0153C
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 08:00:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0A77D30339AC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 06:55:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B5B39301BEB3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 06:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84AE033CE9D;
-	Thu,  8 Jan 2026 06:55:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7092333C183;
+	Thu,  8 Jan 2026 06:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lpOHVh90"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="En7ikmA4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C2433B6F7
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 06:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E04932D6401
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 06:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767855335; cv=none; b=llzkmgXkW5GuCbkMvyRSa8QPlACOHatIvRMpB7nx9tTQs2StUuafbejS0m3Dz3YKJQxlul5xWO0D9dVaIfuGRytTMMr8FqLJTFRciaeja36ZLYDnIgYiUqB39JnG+yv2s7V+upBr5NtEbUZfaYT0Qw55o8Dd8lRMivBZvE5clwk=
+	t=1767855375; cv=none; b=bkckPe81E3SykjrbfgLUWQt9f+EZ6lCML7hYim3Z7X9GZrNQhTM6i1cIWLDtFK6PDzE+5Fp0gvHwG4I1b/fldYcLJZtTTrOc6EjkykpHJKzl/4xqi581F+9eevdhB2AgD/47azJRuOzp5VXhANVYbMdOYLNcc/Rk95rkH5rwlIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767855335; c=relaxed/simple;
-	bh=x0oYpxGS7yS/ub4qA7RGQKP/jwnFykZn2neoyiEzTXg=;
+	s=arc-20240116; t=1767855375; c=relaxed/simple;
+	bh=CLuNuaHBE7AQTG9JoqDuI36Y6xRftgmEG4xqGTMqit4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NE+jsdmp/upBcaoaXWOFTgXRWNLH9fCjD00AAbQGolH/LEC0KsIb2E8cqLsW3WgzbZ5KNV0xeAkBLf4dGWGSAD/hHQOaBVw/ffI3VK3DhEMh6NQwxJoLpfN7yaIawxdQVKA629JR/EJOuQItEAsJosMq+61I5KPREx+4Cm4LWq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lpOHVh90; arc=none smtp.client-ip=209.85.208.53
+	 To:Cc:Content-Type; b=bBRq6CxF8naIHMAD1fQ7/yIOgF9W9rETTWvmbSD/OpFXkGX/JuK79e5pEGT6q9DRiYfllENHSpnN0zVMi+gSKjBHq2nFDshrjCE5wO0T63xgLxvYM+g7End9pCGQn3BJlHCvTHw2DoNnwJGCN+Nt7/6QXBFO2+coU29eLHXVRyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=En7ikmA4; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-65089cebdb4so2834762a12.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 22:55:32 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-6505d141d02so4470551a12.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 22:56:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767855331; x=1768460131; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1767855371; x=1768460171; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=z95RpMEmgNwl7YB+bCq/7uMHk15Sjdmwjz/1QwjCtwY=;
-        b=lpOHVh90+FWC3EHPigX+7FYcGHZ0V2pYULEVhTNNXUxU+bHcNjUcXC9Kh8QEgsGj+5
-         1wcXbHydCzbC9ASlIROHjY2lF1Q3oGAOkGqqXC8HgONvXhkBSrDrkedmK/XwgmIh8DLn
-         vGjfkzBzqpP1Vclvhoo/Y7nL6IvLF33Rh6Rgu7kBxrawr5hJH2jwZxsbi/FAO2TKKC8V
-         iMDoRtvhdjPi+SHi9kzEis51Cymp79/kbCn80TMM27NjPaH7xCuHFVapXhkCTZIJwynv
-         4qa1fquY/MaGWNEUT22LsbC9mk81urY849C/TU9e410+ao07TGeXJnxIXsbhFaBYYCH8
-         2ibA==
+        bh=Kz+I3TlvkqdtvqoAnUtxiFGmqULr8gJgkdFek+BL8Ks=;
+        b=En7ikmA45gTxqkG257d7ajuGbVGb11Ix/lsCwtaLkAlaCybc8MlXjO66Hs+zHExATW
+         XLPCuqvZ/TsN1IuRM/fX0oQvoEQxcX6d/EvzlC2tjYqMjvTqJRy0ZvrZraKc+B8Erh2h
+         llUgxfANBic/jT0Yw9OwLHUWtpLTaUBNz29+UKdSjle5BvYSUIU7j5hJlwBjdNZgDGSz
+         ubVzYYpreyin8f4aVlzjL5kc7ONTYtOfzZy4XbYq37oDZT8v3tPHOtM6c6ZF//hXT+Fi
+         JAak/pybO8cSY+LXOosNv6BipObfCD4qbnhBN5DoZcYNl9oIaB4PaZ2drCNPkCyFl+87
+         MbWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767855331; x=1768460131;
+        d=1e100.net; s=20230601; t=1767855371; x=1768460171;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=z95RpMEmgNwl7YB+bCq/7uMHk15Sjdmwjz/1QwjCtwY=;
-        b=CU87huSCptnPCv3LgiDslNpV7n/ofUMSfstL8OWxVNtI1CJ4lN0B9Fe8gVHNm6SHLz
-         hr/i2DiHhE9m1A8bL9fj2M6PCgzEVevp/x8A1hpd7aGXO0NwAWOyd7cAVJaDUV2s21CZ
-         JacgsamRcIECgKTBlq03qvsq+rU5ILLok9DEifbwewKm+7/dFdiOLIY9EsNY8DlmG+u4
-         1mQ/FIlQIG3MaTyzqIyr8SHCxjhoTTGWmjgsCOWYPoRuAZj3mWWSHNmJ+Nc5iBAwsMAG
-         tbqKdpMGT0ShXBDkoz+F7sCiXEiEPFrjFMsHlzCNC4JsO6rwgRzYpcxzPMDp1XB7KDHe
-         jNZA==
-X-Forwarded-Encrypted: i=1; AJvYcCWvoANcwlZjKzynfnZ1+x8ITxssVfyQeHotlcW/oNUX7NNBGKEHlRvbXH1oB763FokiCZlBdWG54gwD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyK8du0R0gY68lNrULZsr2x4z/oauxlmqvDCqaoxD3XCpI7lDn/
-	nVA+CWGUFkqCHn3RuPXZOF3WqOhq5JCFKLh1oU0k9ocAoYR9fjN42/EB4wdAvFRxAdL84bpkLJ4
-	Afu263urwHGFVDDu6P5vKvPbVO8RXh0Y=
-X-Gm-Gg: AY/fxX4iy6LrY4YPUSwVA1z8pwmU+AFWxfJC5tgbKzFDAbT3N25tIN2myPRfmGmO7M9
-	J49OxNB9g63Jv9lnPsGRNqwpOYI3aUsPncx1ZpUn21SHA48tgX0vM+sfUIqPG4s3Ke7oVhxPaNx
-	vl0Il3Z6pnfNi+g2ROQ/1JC+Phlk/FAZ8k2lnhR6oG3+e+Nc9AwdgkxTwln9R52SQFj7qQaamjb
-	b40ztqo6NIilW/FaeqfYlgc79JF7hs0ZrSw6rwEZbwVIhpYUov16qN7/vTRKGD3oJNu0WS2hlje
-	TQ==
-X-Google-Smtp-Source: AGHT+IG4U6kWECKctcFw6T4T3/RU4yz9c56j1F9uY6dHVa5DSvL+D+02G9vCcItZfsXHq6Ag8SriCCmYiwhyppBRQFI=
-X-Received: by 2002:a05:6402:358f:b0:649:2347:e15f with SMTP id
- 4fb4d7f45d1cf-65097e6e3cemr4114953a12.31.1767855331317; Wed, 07 Jan 2026
- 22:55:31 -0800 (PST)
+        bh=Kz+I3TlvkqdtvqoAnUtxiFGmqULr8gJgkdFek+BL8Ks=;
+        b=kkrXAjqsdjcpZcorIX0gSSQsVxrAAtJotUScDqTn+2tBW1jUmRPRmveDI0K9NzdvhM
+         a0T2fapMLp5IzV4HebfAp5I9ngsQMytLlfGCv5e/CSoijmYAvKyczGk1udBHMXIdzNAn
+         ocUgPcQgnyd/PVidYjh4/+CRwv/Zblh5nb6IgL/3fq7Z3vIm1mO4l1sJ/Q1qB8iX/FOd
+         UIASh0/zH8023+H7AIOG4v1qFbYOOwXXJ+M6XhzyhUtH/5DI80fXvcnv31aFpmH6weSR
+         0Velc8j/CFxJPJSFOef5MGgl+PWSoUDRfWMl1XKhBVscgGVuZIYhLKiqLaXT1DIFwjxZ
+         eYxA==
+X-Forwarded-Encrypted: i=1; AJvYcCVxFyG0oIfFW089W0Hg+kEOmrSnwpb1NQDPotmrErI1E0Cf1kMHfXCi5fV3djPDCaJu8+MekYB/0i3F@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiMABHiqjK83fVCFWFD6OU7eAc6aU+p6QwJ0LcJn1LAcorTYl5
+	VxDSSx/2zfXeDVBxvr8ckU/KXTL3o0ONWVZKcSNRz45i3notWuT06oI6SoxlL0BJdt/1nOLMMFg
+	PZQ/HGU/2eRTgxsY5iIVw66cAvAa27wg=
+X-Gm-Gg: AY/fxX6SdQv2Vcpa+wER0xAI4jEa8LP1mdc1B0aPGY/BZW4fFBJS14jbgKxNGYbmylc
+	psogDz1Ub9uaFqOZnv91tgdBiH+2lKNF4/jVly4obJ7XXxfYaeMmPrlnp3YWpE6Wtt2WHk36CbH
+	bEuan1ClCmjHyE1P38IHGeiuT8lMbTujZCvnXEkApWR4N2G3M5Hn/AcI+fbkhqqP31ScAMSWbro
+	86adH/piqqbwhNGD/4FYgC1QCkFwMACRgRfYdoDWbhWDycHmH2D5B//lz/p3oviRgsVWkf4H6+a
+	Pw==
+X-Google-Smtp-Source: AGHT+IF8dpj868EOsGJb+4D50v33yMK/G8PE2Tazbt1MvZq6b0GNtVU+VS/8Jx2HyWsCH96l8MkdkOx+6HRCMqq4N8E=
+X-Received: by 2002:a05:6402:1475:b0:64b:6a7b:5996 with SMTP id
+ 4fb4d7f45d1cf-65097e8b70cmr4694594a12.30.1767855371139; Wed, 07 Jan 2026
+ 22:56:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260103083232.9510-1-linux.amoon@gmail.com> <20260103083232.9510-3-linux.amoon@gmail.com>
- <aVkfNBUDUumzV0-X@venus>
-In-Reply-To: <aVkfNBUDUumzV0-X@venus>
+References: <20260103083232.9510-1-linux.amoon@gmail.com> <20260103083232.9510-4-linux.amoon@gmail.com>
+ <6f30a01c-8fc4-4368-88ef-7c513c505515@kernel.org>
+In-Reply-To: <6f30a01c-8fc4-4368-88ef-7c513c505515@kernel.org>
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 8 Jan 2026 12:25:12 +0530
-X-Gm-Features: AQt7F2qUzy3nVOhqisJzP2xjjJX_kUrGnrajstWtAcg0dioD3CSqLPjSWSgZj2Y
-Message-ID: <CANAwSgTmAbswY6scsxj40B7Y6QbnkqWPuCqyevRjdtHNemq0aQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] arm64: dts: rockchip: rk3588-rock-5b-5bp-5t: Fix
- USB host phy-supply on Rock 5b-5bp-5t SbC
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Date: Thu, 8 Jan 2026 12:25:52 +0530
+X-Gm-Features: AQt7F2p8dx0bZz2eHy8PaUQEvJMZHRzQalglH2FIV--KXLcHz9v3RkQ98BQ5OF4
+Message-ID: <CANAwSgSjCm+mXxdH5jgN==zfHSvFASxOy4dQkhhLs6hrXAtf-w@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] usb: typec: fusb302: Switch to threaded interrupt handler
+To: Hans de Goede <hansg@kernel.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
 	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, FUKAUMI Naoki <naoki@radxa.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, FUKAUMI Naoki <naoki@radxa.com>, 
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
 	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Yongbo Zhang <giraffesnn123@gmail.com>, 
 	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
 	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
@@ -96,61 +96,142 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	"open list:USB TYPEC CLASS" <linux-usb@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Sebastian,
+Hi Hans De,
 
 Thanks for your review comments.
-On Sat, 3 Jan 2026 at 19:35, Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
+
+On Sat, 3 Jan 2026 at 17:32, Hans de Goede <hansg@kernel.org> wrote:
 >
 > Hi,
 >
-> On Sat, Jan 03, 2026 at 02:01:18PM +0530, Anand Moon wrote:
-> > The USB host USB2 and USB3 on the Rock 5B, 5BP, and 5T is powered by the
-> > USB_HOST_PWREN_H gpio pin which is used to enable vcc5v0_host host
-> > regulator which ensures proper power sequencing and management for onboard
-> > Double-USB-HOST.
+> On 3-Jan-26 09:31, Anand Moon wrote:
+> > The fusb302 driver triggers a "BUG: Invalid wait context" lockdep warning
+> > under certain configurations (such as when CONFIG_PROVE_RAW_LOCK_NESTING
+> > is enabled). This occurs because the interrupt handler, fusb302_irq_intn,
+> > attempts to acquire a regular spinlock (&chip->irq_lock) while running
+> > in hardirq context can lead to invalid wait context reports if the lock is
+> > considered "sleepable" or has incompatible nesting levels with the
+> > underlying interrupt controller's locks.
 > >
-> > Update the u2phy2_host node to reference the correct phy-supply.
+> > lockdep warnings:
 > >
+> > [   38.935276] [      C0] =============================
+> > [   38.935690] [      C0] [ BUG: Invalid wait context ]
+> > [   38.936106] [      C0] 6.19.0-rc2-2-ARM64-GCC #2 Tainted: GT
+> > [   38.936716] [      C0] -----------------------------
+> > [   38.937129] [      C0] kworker/0:0/8 is trying to lock:
+> > [   38.937566] [      C0] ffff000112c04190 (&chip->irq_lock){....}-{3:3}, at: fusb302_irq_intn+0x38/0x98 [fusb302]
+> > [   38.938450] [      C0] other info that might help us debug this:
+> > [   38.938953] [      C0] context-{2:2}
+> > [   38.939247] [      C0] 2 locks held by kworker/0:0/8:
+> > [   38.939670] [      C0]  #0: ffff000100025148 ((wq_completion)events_freezable){+.+.}-{0:0}, at: process_one_work+0x224/0x4b8
+> > [   38.940645] [      C0]  #1: ffff8000800fbd90 ((work_completion)(&(&host->detect)->work)){+.+.}-{0:0}, at: process_one_work+0x24c/0x4b8
+> > [   38.941691] [      C0] stack backtrace:
+> > [   38.942010] [      C0] CPU: 0 UID: 0 PID: 8 Comm: kworker/0:0 Tainted: GT   6.19.0-rc2-2-ARM64-GCC #2 PREEMPT(full)  bd73c5afc1bd41f04ef9699c14f0381f835f4deb
+> > [   38.942017] [      C0] Tainted: [T]=RANDSTRUCT
+> > [   38.942019] [      C0] Hardware name: Radxa ROCK 5B (DT)
+> > [   38.942022] [      C0] Workqueue: events_freezable mmc_rescan
+> > [   38.942031] [      C0] Call trace:
+> > [   38.942033] [      C0]  show_stack+0x24/0x40 (C)
+> > [   38.942041] [      C0]  dump_stack_lvl+0x90/0xd8
+> > [   38.942047] [      C0]  dump_stack+0x1c/0x3c
+> > [   38.942051] [      C0]  __lock_acquire+0x5e8/0x9c8
+> > [   38.942059] [      C0]  lock_acquire+0x134/0x280
+> > [   38.942065] [      C0]  _raw_spin_lock_irqsave+0x80/0xb0
+> > [   38.942072] [      C0]  fusb302_irq_intn+0x38/0x98 [fusb302 634bac905a09c450b54f88b96019accd2820228f]
+> > [   38.942082] [      C0]  __handle_irq_event_percpu+0x138/0x3f0
+> > [   38.942088] [      C0]  handle_irq_event+0x58/0xd8
+> > [   38.942093] [      C0]  handle_level_irq+0x108/0x190
+> > [   38.942099] [      C0]  handle_irq_desc+0x4c/0x78
+> > [   38.942106] [      C0]  generic_handle_domain_irq+0x24/0x40
+> > [   38.942113] [      C0]  rockchip_irq_demux+0x128/0x240
+> > [   38.942120] [      C0]  handle_irq_desc+0x4c/0x78
+> > [   38.942127] [      C0]  generic_handle_domain_irq+0x24/0x40
+> > [   38.942133] [      C0]  __gic_handle_irq_from_irqson.isra.0+0x260/0x370
+> > [   38.942141] [      C0]  gic_handle_irq+0x68/0xa0
+> > [   38.942146] [      C0]  call_on_irq_stack+0x48/0x68
+> > [   38.942152] [      C0]  do_interrupt_handler+0x74/0x98
+> > [   38.942158] [      C0]  el1_interrupt+0x88/0xb0
+> > [   38.942165] [      C0]  el1h_64_irq_handler+0x1c/0x30
+> > [   38.942170] [      C0]  el1h_64_irq+0x84/0x88
+> > [   38.942175] [      C0]  arch_counter_get_cntpct+0x4/0x20 (P)
+> > [   38.942181] [      C0]  __const_udelay+0x30/0x48
+> > [   38.942187] [      C0]  mci_send_cmd.constprop.0+0x84/0xc8
+> > [   38.942194] [      C0]  dw_mci_setup_bus+0x60/0x210
+> > [   38.942200] [      C0]  dw_mci_set_ios+0x1c8/0x260
+> > [   38.942206] [      C0]  mmc_set_initial_state+0x110/0x140
+> > [   38.942211] [      C0]  mmc_rescan_try_freq+0x154/0x198
+> > [   38.942216] [      C0]  mmc_rescan+0x1cc/0x278
+> > [   38.942221] [      C0]  process_one_work+0x284/0x4b8
+> > [   38.942225] [      C0]  worker_thread+0x264/0x3a0
+> > [   38.942230] [      C0]  kthread+0x11c/0x138
+> > [   38.942236] [      C0]  ret_from_fork+0x10/0x20
+> > [   38.969307] [     T11] rockchip-dw-pcie a41000000.pcie: PCI host bridge to bus 0004:40
+> > [   38.969995] [     T11] pci_bus 0004:40: root bus resource [bus 40-4f]
+> >
+> > Following changes resolves the lockdep warnings and aligns the driver with best
+> > practices for I2C-based interrupt handling.
+> >
+> > Cc: Hans de Goede <hansg@kernel.org>
+> > Cc: Yongbo Zhang <giraffesnn123@gmail.com>
 > > Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > Fixes: 309b6341d557 ("usb: typec: fusb302: Revert incorrect threaded irq fix")
 > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
 >
-> u2phy2_host is connected to an onboard USB hub chip, which is
-> powered by &vcc5v0_sys as the comment says.
+> If you look closer at the code then you will see that
+> fusb302_irq_intn() is effectively doing its own threaded
+> interrupt handling this is done to be able to delay
+> the threaded part till after the i2c-controller is
+> resumed when a fusb302 irq wakes up the system.
 >
-> You can see this on page 9 of the v1.45 ROCK 5B schematics (page
-> name USB2HUB). The usb hub chip uses VCC5V0_SYS + VCC_3V3_S0 and is
-> connected to USB20_HOST0_DP, USB20_HOST0_DM. The related USB
-> controller for that in the upstream DT is &usb_host0_ehci, which
-> in turn is using &u2phy2_host. Thus at least for the ROCK 5B the
-> existing DT is correct. Properly describing the downstream port
-> VBUS regulator would require something like the following series:
+> See commit 207338ec5a27 ("usb: typec: fusb302: Improve
+> suspend/resume handling") for details.
 >
-> https://lore.kernel.org/all/20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de/
+> And if you look at the fusb302 git history then you'll
+> seen an earlier change the switch the interrupt handler
+> to a threaded IRQ which was reverted (mostly due to it
+> also making other undesirable changes).
 >
-Actually, the Radxa Rock 5 B doesn't have an onboard USB hub chip.
+Yes, I have gone through the change logs
+> This change is different though. This is actually quite
+> similar to commit cee3dba7b741 ("mei: vsc: Fix "BUG: Invalid
+> wait context" lockdep error"). Where I fixed more or less
+> the same issue in the same way. So I guess this change also
+> is ok.
+Yes, ideally, all the CPU cores should handle the IRQ.
 
-The USB_HOST_PWREN_H GPIO pin acts as the enable signal for both
-5V_USB1 and 5V_USB2 regulators.
+alarm@rockpi-5b:~$ cat  /proc/interrupts | grep fsc_interrupt_int_n
+ 59:         15          0          0          0          0          0
+         0          0 rockchip_gpio_irq  12 Level
+fsc_interrupt_int_n
 
-Data signals from the USB 2.0 Host 1 interface (USB20_HOST1_DM/DP)
-are routed through the CON20B chip to the Type-C controller's
-TYPEC1_OTG_DM/DP pins.
-Additionally, the schematic indicates that the Type-C controller's
-power delivery is managed
-by the USB2 host (5V_USB2) rail.
-
-From the schematic, I could see that the Type-C controller is controlled
-by USB1 host (5V_USB1) and USB2 host (5V_USB2) for power delivery.
-
-[1]  https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock_5b_v1450_schematic.pdf
-(page 27)
-
-> Greetings,
 >
-> -- Sebastian
+> Still ideally we would solve this in another way then
+> switching to a threaded IRQ handler.
+I don't know but this could be related to
 >
-Thanks
+> As the commit message of the mei-vsc fix mentions
+> the root cause of these errors is typically an interrupt
+> chip driver which uses IRQF_NO_THREAD disabling the auto
+> threading of all interrupt handlers in RT mode.
+>
+> So the first question here would be to see if that flag is
+> used in the interrupt chip and if yes, is that flag really
+> necessary ?
+
+No, I did not find this IRQF_NO_THREAD flag being used by Rockchip SoC
+i2c
+[1] https://github.com/torvalds/linux/blob/master/drivers/i2c/busses/i2c-rk3x.c#L1310-L1325
+gpio
+[2] https://github.com/torvalds/linux/blob/master/drivers/gpio/gpio-rockchip.c#L520-L582
+pinctrl
+[3] https://github.com/torvalds/linux/blob/master/drivers/pinctrl/pinctrl-rockchip.c
+pinctrl power management IC
+[4] https://github.com/torvalds/linux/blob/master/drivers/pinctrl/pinctrl-rk805.c
+>
+> Regards,
+>
+> Hans
+Thnaks
 -Anand
 
