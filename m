@@ -1,116 +1,125 @@
-Return-Path: <devicetree+bounces-252815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8643ED02C4A
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 13:55:52 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54F0CD02CC6
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 13:59:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 619D53081E1B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:50:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D200B3008F3A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:59:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8266B469203;
-	Thu,  8 Jan 2026 12:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5DE847200C;
+	Thu,  8 Jan 2026 12:52:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TMwjUTQ7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gQjlJSh6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f47.google.com (mail-dl1-f47.google.com [74.125.82.47])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E887B468BA0
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:43:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6FC472000
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:52:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767876208; cv=none; b=HYUx3QMsi15pNFCKZ2niKSm+YR0ZLf2UV0U8Cfqul5/XEEO40eAIXxPAq4XD2WhjbpV+V7E++RXAorvzNQwCqgJ//ZxtykJa5iyzH746NsMAim2p6rTtAE61A7/TnMBmTyZOMRz1NGhTAJqwqxruAI2jJqEo1KiW3c3j2s3L6wc=
+	t=1767876733; cv=none; b=lTl2aTqH2YTqIlIfLYzZ6Pvjp/jLBJXMVkrWtNbg5Y+1UDl0Q9k+8kkzBcPH3DM3ox7h1LGf9gqPLyG0la5txdpYtunS/BQsvJx5dENluqlwVo5JDy379v/HmgmgRjETqpGXEfOK/ikCAljlgLj2iyRSRJgl34kYJdXTdMiA9IY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767876208; c=relaxed/simple;
-	bh=z7zT9xKe1ldz6nAdF7ki6sqTjzVHOouLduI1GDfGhsI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WSCi64Rj+647a1zOXO7SHlMZv4GUq76iLUpFkehpw9wkTvT8ybsYgDqTxH8d82Pc7I9+m7+oyeRnTDixj5HM1sd7k/NPabVMXCWU414XWr/BebbW1QOIJQy8VY8ozLZr1YDJv+OR8dhJn8gukQd7UF6j5Vq6LOdLCIkjB5FXZV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TMwjUTQ7; arc=none smtp.client-ip=74.125.82.47
+	s=arc-20240116; t=1767876733; c=relaxed/simple;
+	bh=BNEfp4cAiOZAgWM/hLJqzjpC8TrLVyoCEd71vX8euV0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lbROInkzjw/j0I5gmNyXJ3vlreqc5ZVq4lAhNDiuyFCP1UIYr/+81HEc1EMmS8gsUhaF47XecqVO41lHqSPmKcjpoEdSlT9Vr9PlG63QW8AeqjTKiSQLfE8nIZj1JckxAtK4UiFl0rlKNtm4Jz93KgypNSbWEfIRAwuukMWuQ1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gQjlJSh6; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f47.google.com with SMTP id a92af1059eb24-11f36012fb2so3562560c88.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:43:26 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4775895d69cso15745575e9.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:52:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767876206; x=1768481006; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9P2Q5ai3Zs42eKrGWy8iPRExMHDLzwHYhJ4m6exqKKE=;
-        b=TMwjUTQ73LCWUeUa5kmB1Jegg/NwUY7TvyqjMs1qfe87RVVvQRUJnvdd7Tm3aae5Le
-         UImVT1ieyDojBqsqp/x38Ibyk7IFm1lFjn/AkbwcFEkdTIe0gIi6H7K8bssf4Z3rdlAX
-         YrE7moXZz7pWX291rj7tA9xdkUARVFC5S56bBtADjDp+dsd66GB8N2IUyMRtAJ1EOSIv
-         HeCjyoXUL4W/3h8HJBkWh81COR9voGEL/ywXu4R5Fp3ST2204he6xOI1XJKekuDpN+Ug
-         t3QcEGIZsWDfvJ6IL/xm9XYIxDcizuiHeMHeuo8KAHS4Ti+Pvc5uaUuQq0P6HN+LBO/B
-         3Plg==
+        d=gmail.com; s=20230601; t=1767876730; x=1768481530; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZjZnmMsZAmwj+u4MMhAdvmZKxkPC8GLrjW31jRJ78UA=;
+        b=gQjlJSh6vfEXAoLZ3cyS1eF7nD76Mt/vCMCbPX0Pdv+58uzfpfChd2xGtO7UL7fNrc
+         YJycuMJG6ztUYB9efg9cDISuGVDDTOAN7iYO0rLpMB2B5OmtW5dAU7+rPywpMe5o2kLm
+         slHes0XKAxswEuqPka1Hpa7ihV3gQOzj1GKvel6ztv6YddbREn5oyzXWp+8AnawULoIp
+         2W+K0zFmlWO1ju1P6Wcq9ILp9qrlKNGkgYUGTQF1eaE84LaCTQQYh779I6lYyq36kJzI
+         dDPKrVn5WZ1Qa+ukN18ti6IE6GQ4Yq9LjaIMfE38e9HMzhbPRBf0OS4KubvntgnT8fTc
+         x+PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767876206; x=1768481006;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9P2Q5ai3Zs42eKrGWy8iPRExMHDLzwHYhJ4m6exqKKE=;
-        b=EP2M39kzzPuEj2Bq200FMeNM9GGb0VHNagavlxzUGl0cWv/xwUUEfJQaTwuQk/4aXS
-         OUKNJnum+1dLOaAd0/mgYKqGuLF/o6aG/nvt4lSWMV4JyQknullttJCobP0YE76JE65W
-         u+WH6SB8L9diLEl09FhujEQhfc+t6boc/JGcyB6m7b0yqm7lxVKLUeZUgCQwOE+qoonj
-         n+rqWVf1SJOYQUezTSW+0fHsGJBSXPiwrRpK9beB6YxMeYegNCKdMDMw6bSONzZODqOh
-         5Oqx8DYbhvmFZGMzeV+FBvDQl9UUkOXAfyzXoGFkSXjGpHyUSyfAXDptFLfXrS/vPqEz
-         OpKA==
-X-Forwarded-Encrypted: i=1; AJvYcCVtymAWi+8JX3reOdt5DrFtJ02z2VgZf5C9Nu2RhpEdzL1Ph6KYSyqzX/cNjy6av8zco4XZVsDnnll/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVcBM7tay03eO8CbC/QtIIgA/qksZAilwxj2qkXSLRZcXzz79F
-	2M24OCg6PBK+MrlHWdcCsA+ghWk7/wfn4ApPxH6whGGe4pe1O5nRpLNW
-X-Gm-Gg: AY/fxX723ZrA+AgfIIOxTOynz9ynGjEL0REuylix6m4Z7P6VfFecp/zSt55wncCgE0v
-	n0Tuc9rlsyB0SoJeDn+spy5jzADWPUKDtPM8Kvn684WsuwU2VGn3CPgdze3SEbg6X5W6E1av3gQ
-	8Olfm+DHJEIaIP5B/UgGFjMVi9fs4NIqbRRQLSgK4qnTrUDXeYFaHwV48SRvCH5T7AiZvWwNUVG
-	ds3xIcc8eogBKfo5fUCWJl/6jvZJO1KHrtq+WVfrId1L0qhCOlgZw431q9ywIue9fxJMq6UjVbB
-	GvBn7I6NRuD5kplaXs04AmjNUqGzBZKS+8yxyvxZhLqR8j8HFZ8f1dGncQOlVV1lQttX70SXlHS
-	wlYrNYZAZtRcKaMBPWUA9dMC25p0Lznue7mxEs1+PsHxkuuaVwbWNrWM0gzsofGjR7XmWF3Ej7h
-	wnTyegsNpweZfJBlrPYKg=
-X-Google-Smtp-Source: AGHT+IFcqHdeQBlzUxRENKNW7abGlSOTFsAZXS0AEB4YmOtoPUwzEduwNrmBwXbKXhLN9NsnmA2wNw==
-X-Received: by 2002:a05:7022:6baa:b0:11a:2ec8:de1c with SMTP id a92af1059eb24-121f8b65af5mr5726561c88.36.1767876205789;
-        Thu, 08 Jan 2026 04:43:25 -0800 (PST)
-Received: from localhost ([2804:30c:2766:a500:b70:8c42:f792:bef6])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-121f243421esm13964538c88.2.2026.01.08.04.43.24
+        d=1e100.net; s=20230601; t=1767876730; x=1768481530;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZjZnmMsZAmwj+u4MMhAdvmZKxkPC8GLrjW31jRJ78UA=;
+        b=ppxTuEC+yl9Oc3/dF5w4oWkb/WacEck3KyAXJF7Cf3XqiHd7maj+j7P8HPBLL++y5+
+         3rDrNukiGo7c5YGcKupso5e/Da2JrhXeVxK5q2Mjjr24kEJP4L52Fu086N8+ckCxrJdC
+         wqSkCU4r9TEWzHJIND5OQqxazPksBdnuKtrZcOyFwqz1szuhQTNEEz+lxslDOVkE/EKc
+         e8dbbLW9w7miWNd8c6p7Lk2cipjSxRZMUevWLWIdGwatXuCvBEcFdKyp2w6fA8MZOThg
+         m65G9sUcV8Yba1efGqlBWjlIbHbe+PKes81hI8lbwjKJZq8ZznmoN5qE8yxkGDo0GUoa
+         aL/A==
+X-Forwarded-Encrypted: i=1; AJvYcCXcdkw3+PS8bnTdhqyALA8Y6As6B+v2EaOgC36LTB38aOA/Y+6CQ4eo7vcsK2+5FJo95HlYw2+mInL/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3x3MlkLxf9grKoz3QOiwjQBXCf/z+NlYv7NIO8SUkRCa43sY/
+	iBrXPnahFA0xJcfgskChallojVa2x6AiQgztBsLjjU5SWnbIU/zBG01D
+X-Gm-Gg: AY/fxX5I7IZ63zJ0qrhk+/cBn5NrbXxMxpfIWWdsNuYPuxLNfZ8cZ+NBCJWQvu6FoLZ
+	8/d70eWE396WIQO8JvWcbEIC2vIPplnsf9HZQMDz4jrLPVr5A9HwtwaGMGk2YxmwksFUCunW5LF
+	fc31ClkhuyJQGwZL5WtZfgUt1I8W8PsyW/TAjw1XK6uYiRy7kNB+c0pkmdeIDXi27FTaJA4oP00
+	DjZhxKRkgo930AWR07jI4FuQZqmAVITzH/VKVxWlXpjrSZA7BVzlZuYE2xd0Nz8FnzaC5SECooN
+	11BEMIPfknZA0FpbdB/AYtVR0jQu5gKcKhawQVyAJyQpBdF1ri6kisODqj7+G0xKkBihcnovvH3
+	IfCWnsfXhjXa7hYSBwi9OYDhicmS/pOn96bQmN7QZW6a9uqO6CDxVpMRUGi76YtAOTUp9JGQGFv
+	IzxeQo9GUDvwbCEGtxg+AdLCcX
+X-Google-Smtp-Source: AGHT+IEIsYHHhEprQ2ORDdeicbqmDQ5jEhfSg+KYvhUSTtYmMIW2K1iQ4OcbHgp/lPPdooMkrgrMIQ==
+X-Received: by 2002:a05:600c:4fd0:b0:477:7925:f7fb with SMTP id 5b1f17b1804b1-47d84b200d1mr76068675e9.10.1767876729909;
+        Thu, 08 Jan 2026 04:52:09 -0800 (PST)
+Received: from eichest-laptop.gad.local ([2a02:168:af72:0:58d0:2e00:f578:dd87])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd0dacd1sm16046623f8f.4.2026.01.08.04.52.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 04:43:25 -0800 (PST)
-Date: Thu, 8 Jan 2026 09:45:11 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v4 7/9] spi: axi-spi-engine: support
- SPI_MULTI_LANE_MODE_STRIPE
-Message-ID: <aV-m15qu9tt1_GjP@debian-BULLSEYE-live-builder-AMD64>
-References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
- <20251219-spi-add-multi-bus-support-v4-7-145dc5204cd8@baylibre.com>
+        Thu, 08 Jan 2026 04:52:09 -0800 (PST)
+From: Stefan Eichenberger <eichest@gmail.com>
+To: andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	eichest@gmail.com
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Convert the Micrel bindings to DT schema
+Date: Thu,  8 Jan 2026 13:51:26 +0100
+Message-ID: <20260108125208.29940-1-eichest@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251219-spi-add-multi-bus-support-v4-7-145dc5204cd8@baylibre.com>
+Content-Transfer-Encoding: 8bit
 
-On 12/19, David Lechner wrote:
-> Add support for SPI_MULTI_LANE_MODE_STRIPE to the AXI SPI engine driver.
-> 
-> The v2.0.0 version of the AXI SPI Engine IP core supports multiple
-> lanes. This can be used with SPI_MULTI_LANE_MODE_STRIPE to support
-> reading from simultaneous sampling ADCs that have a separate SDO line
-> for each analog channel. This allows reading all channels at the same
-> time to increase throughput.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
+Convert the device tree bindings for the Micrel PHYs and switches to DT
+schema.
 
-Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Changes since v1:
+ - Change ethernet to mdio node in examples (Andrew)
+ - Add table with skew values instead of a description (Andrew)
+ - Remove - where preserve formatting is not needed (Rob)
+ - Add blank lines (Rob)
+ - Drop line "supported clocks" (Rob)
+
+Stefan Eichenberger (2):
+  dt-bindings: net: micrel: Convert to DT schema
+  dt-bindings: net: micrel: Convert micrel-ksz90x1.txt to DT schema
+
+ .../bindings/net/micrel,gigabit.yaml          | 253 ++++++++++++++++++
+ .../bindings/net/micrel-ksz90x1.txt           | 228 ----------------
+ .../devicetree/bindings/net/micrel.txt        |  57 ----
+ .../devicetree/bindings/net/micrel.yaml       | 133 +++++++++
+ 4 files changed, 386 insertions(+), 285 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/micrel,gigabit.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/micrel-ksz90x1.txt
+ delete mode 100644 Documentation/devicetree/bindings/net/micrel.txt
+ create mode 100644 Documentation/devicetree/bindings/net/micrel.yaml
+
+-- 
+2.51.0
+
 
