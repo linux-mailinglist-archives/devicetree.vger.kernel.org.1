@@ -1,193 +1,105 @@
-Return-Path: <devicetree+bounces-252806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63591D02DAC
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:08:08 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C61D02E7F
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:12:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3D861300009C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 13:08:01 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A84F23010046
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 13:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A06B466238;
-	Thu,  8 Jan 2026 12:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0533D6043;
+	Thu,  8 Jan 2026 12:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="u5CAiVRa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hcn62jzy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com [209.85.210.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90A18461C5F
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:27:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DA083B9608;
+	Thu,  8 Jan 2026 12:40:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767875261; cv=none; b=oJlR/m5d7q01Yp8+UfbNFAi2mt9bNGO6XJ8rX1UF84uEQ85vIwxURhp9AIaWRPgYOQdaOaZXwYKc3uOBatPQ7I0JmpnVgx/jPzqLMKQaCdVK7DfS+LATen2aRpKaskQK6wWmeZA5g8gY9OvZyrMxn1OdB94EuR3X5HhEr01PK38=
+	t=1767876027; cv=none; b=WmAgoenqwx9ymiYMsOgkAx0WZ5TQIQNNzsZBmijs4SFFjrFfZIsA3zu2t9h1+CrnKIxz1iLEe4toL8vdK/3Z0nGZXBDeSWUiWMULW06unouET9nC5ivCEOj/0f+dZohml0czk+BhzM4ZdKWJJH5is00GvfuW1O8R7x4Di0xa/zY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767875261; c=relaxed/simple;
-	bh=bv9dzoM+qQXP0CaPNIJAe0gHl9Bs1Sb05T0zGPjfK/0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bw+OhnPUqDJy0aelBy2Ko7sPIEKAdZ6lfWDCY6+kVLCb/yQyxd83gSvTGzByiHK3xdjCpx95akoyM7VJjiv6/KtDXRn370qZp6Ct248/f+c2Yp1JpD1QqKTCx201kJlHl5922J7kh6jjOZdnMlnCROTpgUQw1paOf+Sw+yTD9nU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=u5CAiVRa; arc=none smtp.client-ip=209.85.210.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pf1-f195.google.com with SMTP id d2e1a72fcca58-81db1530173so18315b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:27:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767875259; x=1768480059; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FSlCL63bjlWI7Lu3zwai0kdDlIJMrGyFIXeM2/6yxPg=;
-        b=u5CAiVRau9oiXaKliRSTVDdoifngezTNqIFhNdz8ujuOmKCFsCzKQu6s0hJMyaBiwS
-         reiRU7wrIMoF4zTCdlwyrw0xaV1RU77EYzh31z09Mus2Vc1PLuEZP2GWIbl14HeJpuuJ
-         kkCcwOoTCRpZe6WDfOBUZNh14S2k199yciH8Il2/jNOmJu0wNRep66RwzDvqhjD11TFS
-         v1SM6X2FIvBT310zs5EOEOlbCnjsRq2CNrXLAtWaJfFuTPBtOVKbdjedMvIDky0u9rUV
-         SD/z7m5bV0ALb+ekMuOEeL0nVQc1FB5RlmYhhV9RrS5nuD9PowHHe3dg5hCJfz88lrOq
-         nXXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767875259; x=1768480059;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=FSlCL63bjlWI7Lu3zwai0kdDlIJMrGyFIXeM2/6yxPg=;
-        b=juwg7j19HMRuXON4hP+R5nAHy8IGR8PNticAQzSW5QJjg0NsRGtgc8tIVGnS0pGjtc
-         mOuxE1KD1/0GGqjt8YF27GiHTPrapb7WSA2cv0aa+MD1aTDMSTPLzLBBx8PplilO9hKg
-         QfgrHyZkDCDs24PuGjjviPMwhy3EERLb3GaUvzOcerZCr+BhT9vu82seExpUgFpbLOxw
-         fXRgq6MDWWfD1NgFxqa5lN//VO1xobsFxXWCs53ZS+4axc0n2Vwo8vnlgjT7CavZ5Gb6
-         sa553VMJ15sEHf/j6z48kd52c812Fu9q3fK+kjeI5pvsQUx5f7sg5+MztSwV44bL1qWX
-         wDvg==
-X-Forwarded-Encrypted: i=1; AJvYcCVKocBBAXIdceu/KJtlNJ4wWYM5OtOTU5umcOqM/v7YWCnfekBilC4Zuof+BzlIkNjuPXT+HFBj2oWF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZjIulyuyffXdUrXsoGIS/+G1lLqAqSsdJpWQe0hfXe8KiTZGA
-	JAEkHBeo98du79GHPZzg7/OxPXytIbTC9fjvSKx9TTO60Z/OiMbI4ivdAodfstr/fSo=
-X-Gm-Gg: AY/fxX6LU/RkaNws2Og6vF1ayw7xBcIDvgLdt7afe7gS89VpsLgYGBIUVz0NS8aTHBO
-	hGKaIw2/hrNq2UmqM/waCd7C1yPoUqye1iijlrJyzRQ786rHpqo2hZGwTA1c/e/BP9KmP7CjpVP
-	d4f8UrkXUnp+pew55y3kPnGfguAwSdugrQWx4Z/UOz59ZRsleoXPft8Ox11tmddQ6Xf8uQh1PMB
-	TDwceUAQLox+mCwyocJZjzYlhXl+IywkFj4usXGgHgg15qSAjQG79chP7/VRluZooaG6aF5m6xK
-	a+jkHOiQ+7KOA5q6fD8Y4M+XvYrv048tAczYnShwMXn//byDymUIYmACHjSx997BYc9py7Io6Ew
-	Df5g4WWaxX7mz/Ls6LTb/sHKpd5zzwYXcEzAKF7eynnJ59AK6S8aP7TGZrxLxTynadlsNjNdEfS
-	rwd62G2Gto9hs4BXRnWDgh6GaF/eWa8Vuu0IORR6O3Yw==
-X-Google-Smtp-Source: AGHT+IFkYm2SREYy+7WJ7uAuLhJAJVWSuC3ES+DlILkoTqpUr0EQ9J4ASyAuPfOv5z6+UGv+JulmOw==
-X-Received: by 2002:a05:6a20:3ca1:b0:366:58cc:b74b with SMTP id adf61e73a8af0-3898f91d2c1mr6221633637.21.1767875258815;
-        Thu, 08 Jan 2026 04:27:38 -0800 (PST)
-Received: from [127.0.1.1] ([2a12:a305:4::40df])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819bafe991dsm7656401b3a.16.2026.01.08.04.27.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 04:27:38 -0800 (PST)
-From: Guodong Xu <guodong@riscstar.com>
-Date: Thu, 08 Jan 2026 20:25:59 +0800
-Subject: [PATCH v3 08/11] dt-bindings: riscv: Add Ssccptr, Sscounterenw,
- Sstvala, Sstvecd, Ssu64xl
+	s=arc-20240116; t=1767876027; c=relaxed/simple;
+	bh=g8rW71nJKgp3ELmmfnnyuEMXLvCZWj1pOr+SOf92ZPc=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=UyzHV0KHlAVjwO29/G7Pz+EYbJCQdw46kR88xistx5xjBb2svvJmwLY58uj7Le7XsQVSkl5IzxBi9N8n4yM5dJs44c8QzH2t5nYpVvXMDe3ibHhr/vaUYKrc7B+DFKrMCEIfuU57AhefF7JL4z5LeWw+3kMJa8IUfjPDKtWDfow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hcn62jzy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55FE8C19421;
+	Thu,  8 Jan 2026 12:40:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767876026;
+	bh=g8rW71nJKgp3ELmmfnnyuEMXLvCZWj1pOr+SOf92ZPc=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Hcn62jzyajIv8HuVtK5cuHKrKkmRX+9TueZ6Zzaj/42oTxVwR/kO0Yt6AdPC8fHx1
+	 4JpNYRXT8Y8SCVGq4oadCZryu51+7wr4PCgX9DBMB9j+V6DVbgwaEZfd7siscVJTvA
+	 Bo2Ys4eP//eHIQoyazz9eBi68OiGKlSNogy44CAGdfNb+Ktm7amLfSnE05tnKiby0l
+	 vdUdXk2vC7mjIiCsu2Te2Ng2GwKH0Ap6gZV6oL/QUR9GY5EWObUh6wHxesRC7SX35y
+	 efOyz7yM44k0iaD5GHvi3zNt6vpMmsNMs48dfy+KsVQf28jgOEEZ1TCwZy0eBII+WN
+	 qmWuUW5QGZR4A==
+Date: Thu, 08 Jan 2026 06:40:25 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260108-k3-basic-dt-v3-8-ed99eb4c3ad3@riscstar.com>
-References: <20260108-k3-basic-dt-v3-0-ed99eb4c3ad3@riscstar.com>
-In-Reply-To: <20260108-k3-basic-dt-v3-0-ed99eb4c3ad3@riscstar.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Anup Patel <anup@brainfault.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
- Yangyu Chen <cyy@cyyself.name>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
- Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
- Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
- Anup Patel <anup@brainfault.org>, Andrew Jones <ajones@ventanamicro.com>, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
- linux-serial@vger.kernel.org, Guodong Xu <guodong@riscstar.com>
-X-Mailer: b4 0.14.2
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+ davem@davemloft.net, krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
+ herbert@gondor.apana.org.au, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, kernel@collabora.com, 
+ conor+dt@kernel.org, sebastian.hesselbarth@gmail.com, atenart@kernel.org, 
+ andrew@lunn.ch, matthias.bgg@gmail.com, gregory.clement@bootlin.com
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260108110223.20008-3-angelogioacchino.delregno@collabora.com>
+References: <20260108110223.20008-1-angelogioacchino.delregno@collabora.com>
+ <20260108110223.20008-3-angelogioacchino.delregno@collabora.com>
+Message-Id: <176787602550.3796160.16323970790591047960.robh@kernel.org>
+Subject: Re: [PATCH 2/4] dt-bindings: crypto: inside-secure,safexcel: Add
+ SoC compatibles
 
-Add descriptions for five new extensions: Ssccptr, Sscounterenw, Sstvala,
-Sstvecd, and Ssu64xl. These extensions are ratified in RISC-V Profiles
-Version 1.0 (commit b1d806605f87 "Updated to ratified state.").
 
-They are introduced as new extension names for existing features and
-regulate implementation details for RISC-V Profile compliance. According
-to RISC-V Profiles Version 1.0 and RVA23 Profiles Version 1.0, their
-requirement status are:
+On Thu, 08 Jan 2026 12:02:21 +0100, AngeloGioacchino Del Regno wrote:
+> Add SoC specific compatibles for the SafeXcel crypto engine,
+> including one for the EIP197B used by Marvell Armada CP110 and
+> and two for the EIP97IES used by Marvell Armada 3700 and by
+> MediaTek MT7986.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../bindings/crypto/inside-secure,safexcel.yaml           | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
 
- - Ssccptr: Mandatory in RVA20S64, RVA22S64, RVA23S64
- - Sscounterenw: Mandatory in RVA22S64, RVA23S64
- - Sstvala: Mandatory in RVA20S64, RVA22S64, RVA23S64
- - Sstvecd: Mandatory in RVA20S64, RVA22S64, RVA23S64
- - Ssu64xl: Optional in RVA20S64, RVA22S64; Mandatory in RVA23S64
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Signed-off-by: Guodong Xu <guodong@riscstar.com>
----
-v3: No change.
-v2: New patch.
----
- .../devicetree/bindings/riscv/extensions.yaml      | 32 ++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml:16:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml:19:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml:20:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
 
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index ee2cdd3856b91a5bbf486e8a2da0986269e82a2b..78b75ab0a473b60508f72fc30d4809a797a2c40a 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -160,12 +160,26 @@ properties:
-             behavioural changes to interrupts as frozen at commit ccbddab
-             ("Merge pull request #42 from riscv/jhauser-2023-RC4") of riscv-aia.
- 
-+        - const: ssccptr
-+          description: |
-+            The standard Ssccptr extension for main memory (cacheability and
-+            coherence) hardware page-table reads, as ratified in RISC-V
-+            Profiles Version 1.0, with commit b1d806605f87 ("Updated to
-+            ratified state.")
-+
-         - const: sscofpmf
-           description: |
-             The standard Sscofpmf supervisor-level extension for count overflow
-             and mode-based filtering as ratified at commit 01d1df0 ("Add ability
-             to manually trigger workflow. (#2)") of riscv-count-overflow.
- 
-+        - const: sscounterenw
-+          description: |
-+            The standard Sscounterenw extension for support writable enables
-+            in scounteren for any supported counter, as ratified in RISC-V
-+            Profiles Version 1.0, with commit b1d806605f87 ("Updated to
-+            ratified state.")
-+
-         - const: ssnpm
-           description: |
-             The standard Ssnpm extension for next-mode pointer masking as
-@@ -178,6 +192,24 @@ properties:
-             ratified at commit 3f9ed34 ("Add ability to manually trigger
-             workflow. (#2)") of riscv-time-compare.
- 
-+        - const: sstvala
-+          description: |
-+            The standard Sstvala extension for stval provides all needed values
-+            as ratified in RISC-V Profiles Version 1.0, with commit b1d806605f87
-+            ("Updated to ratified state.")
-+
-+        - const: sstvecd
-+          description: |
-+            The standard Sstvecd extension for stvec supports Direct mode as
-+            ratified in RISC-V Profiles Version 1.0, with commit b1d806605f87
-+            ("Updated to ratified state.")
-+
-+        - const: ssu64xl
-+          description: |
-+            The standard Ssu64xl extension for UXLEN=64 must be supported, as
-+            ratified in RISC-V Profiles Version 1.0, with commit b1d806605f87
-+            ("Updated to ratified state.")
-+
-         - const: svade
-           description: |
-             The standard Svade supervisor-level extension for SW-managed PTE A/D
+dtschema/dtc warnings/errors:
 
--- 
-2.43.0
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260108110223.20008-3-angelogioacchino.delregno@collabora.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
