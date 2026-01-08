@@ -1,87 +1,61 @@
-Return-Path: <devicetree+bounces-253018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2BD6D06049
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 21:18:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E9FAD060F1
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 21:29:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 89AA73031CD5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 20:18:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EACF63032AB8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 20:29:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3161B32936C;
-	Thu,  8 Jan 2026 20:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27EEE32C323;
+	Thu,  8 Jan 2026 20:29:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SsKB4duw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ALXoTppO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D2C29D26E;
-	Thu,  8 Jan 2026 20:18:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0423E32252D;
+	Thu,  8 Jan 2026 20:29:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767903498; cv=none; b=VoTL0QfZX2Newzw0TBPB4xFK6JQtSUkrZsjA/bzFwGp3BNvJTM9280VxGOXjs0IHhV4dkGERPswDWk9p+y6K1dvsPvceoqapS3tZnVsySl+1CbdzHFWlzkxnty2ZSC4TsEI+iVlbpj07BF/zwkJu41y5f+PEe6YDd62Y5xZtUeA=
+	t=1767904149; cv=none; b=uwdP5AU2niBbN6DjOuFOHtfsOato33rzcxQIdJYvZFIqoagLBU6CXmf0oCf/rYCfJn/gH+FtV3wOsqa2xpxi6BPUUWjjm0m7KFuYMpdgKSXmQgZiLz0dDZuMJ65uQEFIruIBUu6Z6xJjK7GbmUV8Y72etuYOlPd1RmTEmaQYqV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767903498; c=relaxed/simple;
-	bh=IaKwAwqUjEP/H4Uu8gktFLEcbWUv+03sgJ/aclvvRWs=;
+	s=arc-20240116; t=1767904149; c=relaxed/simple;
+	bh=J5zgVl3LofNAIZuTJWaMznkSwxB14toCZtKNTVHOZsw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HYMKUO1i3dQcDIm4MgWA5oW0z0GXsLqhhSslPNccdGGyD3c9FjtHEr7bIeNxT3vS/3gn2zt4akVR+VxUQ89QI5r9R5reANdaMyUfJPGf7jT9VWgRN206UOyXLF5E5GFv1NFtUjsImrMjsev+YCU8T5f5katalAp68vtXOlJ912I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SsKB4duw; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1767903497; x=1799439497;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IaKwAwqUjEP/H4Uu8gktFLEcbWUv+03sgJ/aclvvRWs=;
-  b=SsKB4duwqJt0YJZe0uVNcUrO0t+PNr2bAG+OY3CWZJ8995RX0pa2KDmn
-   9JjQDPqX6gBHHKvtk5XWV25oK3wvaZBB/2Yt3hD/YU2eOzT9z0OYLuaLu
-   7/u89599BVm4N6o9cvxKtuhAwWozKr0MOqNqGzTaynLEVug8RqI1/uWl0
-   CE3iDqvd4VzApLJ4iWAgWQ0OmrHT1VG2BxVmDkNNOwGpEo2t4A6lLI6Xg
-   8Ks9BZvRgarxDPA8xCLJ9gd5mdtU8mYTJJl9luTHI/AwD1/eNpOfS5OCW
-   f87ZvukCtcNMNoxuRkJEBop+NwLPR2EJF46VVS8Y6zsx/ifJFiL8MDo+z
-   g==;
-X-CSE-ConnectionGUID: hn0zPq0BTnCT4EXjqrW55g==
-X-CSE-MsgGUID: 0+hsDO4DQg6nBTzILD5hGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11665"; a="71864843"
-X-IronPort-AV: E=Sophos;i="6.21,211,1763452800"; 
-   d="scan'208";a="71864843"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2026 12:18:16 -0800
-X-CSE-ConnectionGUID: 3/ip24gkROmaKTCQQTshdw==
-X-CSE-MsgGUID: DuZ4Hk+7ThaHnBZosYVaaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,211,1763452800"; 
-   d="scan'208";a="203354211"
-Received: from igk-lkp-server01.igk.intel.com (HELO 92b2e8bd97aa) ([10.211.93.152])
-  by orviesa008.jf.intel.com with ESMTP; 08 Jan 2026 12:18:13 -0800
-Received: from kbuild by 92b2e8bd97aa with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vdwSQ-000000001qi-0t5E;
-	Thu, 08 Jan 2026 20:18:10 +0000
-Date: Thu, 8 Jan 2026 21:17:19 +0100
-From: kernel test robot <lkp@intel.com>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org,
-	Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: Re: [PATCH v3 2/4] of: reserved_mem: Support multiple 'reg' entries
- for memory-region
-Message-ID: <202601082105.TThX0916-lkp@intel.com>
-References: <20260107-mtd-memregion-v3-2-f9fc9107b992@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=s1GhSLfHjeMZYNH9cMWJnhWhsZtnG3qHtWCBzdDH7hTva+xYHs8aNSVPLu0ZNJRlYglNQ9jBoiUXb3UjKbzqImKkFo86jqs8tO+eWW0fqefLlq05cWPE2L9y8CVgpwDBXY/NJK8iKx1dBmIQd9nyi93F2TwrsuXqeCOChkAizM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ALXoTppO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76E57C116C6;
+	Thu,  8 Jan 2026 20:29:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767904148;
+	bh=J5zgVl3LofNAIZuTJWaMznkSwxB14toCZtKNTVHOZsw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ALXoTppOivts3pFHK9soFhROljIcDOP2H3TLu65MzlQVXcBqjj4DuhcCWw4gyzMxk
+	 n1g5ZtGVqvvphzyBvzMJ1OUuPdgB/ZpYIX2wxrlO82+nXoltyU2FS8ZJKw6Tu691n9
+	 OvMkaP6qUIhcH3uNKHXPm97+jKagMpLC+8hjOlXsyG+snjxr+RWcJcyf6Ch+uM3bTM
+	 ctx3Q35oB0ffEuzYyiSuK1D3K2+ZDVPoQYGxALu4x/TRK0jRyyOn7mt2ZMfOffL6Os
+	 RBZdGJZdATwahMxFsekknJEKQ+Cy1H8S2nIHzFQB8cC4ZN5Bk6wBKS685BU/IALrXJ
+	 u6Vag8ErB5Qvw==
+Date: Thu, 8 Jan 2026 14:29:07 -0600
+From: Rob Herring <robh@kernel.org>
+To: Luka Kovacic <luka.kovacic@sartura.hr>
+Cc: linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org, geert+renesas@glider.be,
+	Max.Merchel@tq-group.com, linux@rempel-privat.de, daniel@0x0f.com,
+	shawnguo@kernel.org, sam@ravnborg.org, arnd@arndb.de,
+	krzysztof.kozlowski@canonical.com, pavo.banicevic@sartura.hr,
+	corbet@lwn.net, lee.jones@linaro.org, pavel@ucw.cz,
+	linux@roeck-us.net, jdelvare@suse.com, goran.medic@sartura.hr,
+	luka.perkov@sartura.hr, robert.marko@sartura.hr
+Subject: Re: [PATCH v9 1/7] dt-bindings: Add IEI vendor prefix and IEI
+ WT61P803 PUZZLE driver bindings
+Message-ID: <20260108202907.GA998297-robh@kernel.org>
+References: <20210824124438.14519-1-luka.kovacic@sartura.hr>
+ <20210824124438.14519-2-luka.kovacic@sartura.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,34 +64,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260107-mtd-memregion-v3-2-f9fc9107b992@bootlin.com>
+In-Reply-To: <20210824124438.14519-2-luka.kovacic@sartura.hr>
 
-Hi Gregory,
+On Tue, Aug 24, 2021 at 02:44:32PM +0200, Luka Kovacic wrote:
+> Add the IEI WT61P803 PUZZLE Device Tree bindings for MFD, HWMON and LED
+> drivers. A new vendor prefix is also added accordingly for
+> IEI Integration Corp.
+> 
+> Signed-off-by: Luka Kovacic <luka.kovacic@sartura.hr>
+> Signed-off-by: Pavo Banicevic <pavo.banicevic@sartura.hr>
+> Cc: Luka Perkov <luka.perkov@sartura.hr>
+> Cc: Robert Marko <robert.marko@sartura.hr>
+> ---
+>  .../hwmon/iei,wt61p803-puzzle-hwmon.yaml      | 53 ++++++++++++
+>  .../leds/iei,wt61p803-puzzle-leds.yaml        | 39 +++++++++
+>  .../bindings/mfd/iei,wt61p803-puzzle.yaml     | 82 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  4 files changed, 176 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml
+>  create mode 100644 Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml
+>  create mode 100644 Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml
 
-kernel test robot noticed the following build warnings:
+I found this and applied it (with a couple of fixes for current checks). 
 
-[auto build test WARNING on 8f0b4cce4481fb22653697cced8d0d04027cb1e8]
+I guess working on the driver is abandoned, but we already have this 
+binding in use in armada-8040-puzzle-m801.dts. So it's either add the 
+schema or remove the nodes to fix the warnings.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Gregory-CLEMENT/of-reserved_mem-Fix-placement-of-__free-annotation/20260107-211455
-base:   8f0b4cce4481fb22653697cced8d0d04027cb1e8
-patch link:    https://lore.kernel.org/r/20260107-mtd-memregion-v3-2-f9fc9107b992%40bootlin.com
-patch subject: [PATCH v3 2/4] of: reserved_mem: Support multiple 'reg' entries for memory-region
-config: x86_64-rhel-9.4-kunit (https://download.01.org/0day-ci/archive/20260108/202601082105.TThX0916-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260108/202601082105.TThX0916-lkp@intel.com/reproduce)
+Or maybe the whole platform is not used and the entire .dts file can be 
+removed?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601082105.TThX0916-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: drivers/of/of_reserved_mem.c:746 function parameter 'rmem' not described in 'of_reserved_mem_array_lookup'
->> Warning: drivers/of/of_reserved_mem.c:902 expecting prototype for of_reserved_mem_region_count(). Prototype was for of_reserved_mem_region_total_count() instead
->> Warning: drivers/of/of_reserved_mem.c:746 function parameter 'rmem' not described in 'of_reserved_mem_array_lookup'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rob
 
