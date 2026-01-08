@@ -1,169 +1,169 @@
-Return-Path: <devicetree+bounces-252652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB665D01B8A
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:03:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82627D01B07
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 09:58:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 20BD13016DD5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:03:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 28715302E06F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:57:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B3B34D4EB;
-	Thu,  8 Jan 2026 08:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CDB73587D5;
+	Thu,  8 Jan 2026 08:57:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="f79xQ8sZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EEBYl6Kv";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PyZy7E1I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3286.qiye.163.com (mail-m3286.qiye.163.com [220.197.32.86])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517FA2DB7A4;
-	Thu,  8 Jan 2026 08:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69C4835773B
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:57:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767861506; cv=none; b=nM1y7VO4L1RQib91/HwknQ24DcQsEnCcxkjqeuJ9dki0ZZuswZQ0PuBEgmw7DDz6D/IRX/g+Ar8/BBAPr7Cqw0dt2IoVSoMu62g4L8znKYd2T03j9BCjHsjabr6+r9PODFRO19YDTlJXHUTXtStaRYb3pkbmKP5zSiHdvVnfTOU=
+	t=1767862662; cv=none; b=ukLvSrn0zGD3IVtE8rgYEkgWxNfOcb3XRAjfUGoCCNAAwaMXDQdrfK5JIkdWl/LlrhO74XgPXojp0bv596T/8LW4wwZb/NHuS8Fv69egEdWk6Urs0rKiDa1eqCp1q+fRYLauXmoJBYLaL27eKkVUn+Yz1mlOIBuicDoz11OBh/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767861506; c=relaxed/simple;
-	bh=rDWPX0bX4HT1JMOVogTfF7+/NJlcRhsXbIBHWUuxWQM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JqiDWQ9wccUc/e2ZC/OTxNOyWrncvUOUjxRGvhJB4F1Sgfr3Xo429eeczV18vE1VL8LqJkrW0sV6AfLtnxqzRYfyMB7U0yj2DHQgPoI6tUoaIdFa002Wzm0tMNvBRNRTUWpVh/X5dLWZ4e1gmg052cj8vIYppXmcF2LaeNjeoXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=f79xQ8sZ; arc=none smtp.client-ip=220.197.32.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2fef36141;
-	Thu, 8 Jan 2026 16:38:07 +0800 (GMT+08:00)
-Message-ID: <6f55c325-6b2a-4fe9-a487-5f1ae7969d9d@rock-chips.com>
-Date: Thu, 8 Jan 2026 16:38:06 +0800
+	s=arc-20240116; t=1767862662; c=relaxed/simple;
+	bh=lT56rcO/2wjclbI67SuJRUAAr4AVOFYX1OPiKxP0VqQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=OLvZycRM+H45isSrJf/2WKSCeADN6shdYYM30S0B5E8aKnS+Oc0fMuOJWeKcLbBR17U7enR5ku5/bey8/yIge8j2wbyKnHbt2PuAN1ohTWnaa2XbaXyetvH9If/sqRLDpEnFJT1UXRaxlEHUZw3lg7pWF4JV1DWOTCkJC/SWpsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EEBYl6Kv; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PyZy7E1I; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6088sbhV877405
+	for <devicetree@vger.kernel.org>; Thu, 8 Jan 2026 08:57:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=Z3dXAwZWQrX
+	iznkoQcO7REoUwgPXToMeXoe6XzLEAy4=; b=EEBYl6KvoIoXRs1gtt7AnVm2KvL
+	7QB60ZZCQAY83/RkQikpbqT81WdjFOfaIi7maOlknf8JZfjxJMb2b7ksj+uE75uz
+	6I8fKvDwDahSxLqemigUlAp35wQ5TVKUd7w34TrF//eFoSUlYz4G9cnXj2UaV8dL
+	ZuGA3mdCM1AdozYJWEPCTMom/BAqf3+Es23IywaReZIeCOkM9gKTEbHAX2gd9SAj
+	7gjsxVWaPhdw2XNlWfdABnnXSF8u4egnN1M2wZBjdNN+Q3++0nk0BtBCBc8FHZJx
+	CExANVrHuHbRpr1Fjn94ATa+8Ak2WDHO2lnugqQXYC4K3up3alM3yFu35Cw==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bj2r318fg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 08:57:33 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88888397482so81713896d6.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:57:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767862653; x=1768467453; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Z3dXAwZWQrXiznkoQcO7REoUwgPXToMeXoe6XzLEAy4=;
+        b=PyZy7E1IuNbn+ffOOzvZixmSL7e6Un9lNa5VFtKbNFj6dBhmWttUrc6RqAXpQqINe+
+         e8LKrTyRZgF+BhasMbd7JzyYp3dr5XyJiUrMUxSKFOqmh5PB9/PpOT7qeNkHU82JcxC9
+         7NLjNQhq+zPb+3JXb7QOH7djzAY87vMj+C358oEGZUhJaeTFXErRdAE854JPPJyYdrUO
+         +Eh5eulKJ/yiI7blRxmngltkCdxZ2zSgrpfHlc3OTnqgf7aGS3x301ma7SypUX2JStt6
+         KQ1bAynxVKu1QVSTmaiSEvyrxPRFnsRoXBduIRujjMYRb4lrd88RdM/xCg0Ybk3mTc9O
+         Ugpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767862653; x=1768467453;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Z3dXAwZWQrXiznkoQcO7REoUwgPXToMeXoe6XzLEAy4=;
+        b=VwQyrvxPSp9ykhFeVcz5GLsHf+dKU6Fza57bqCDjN6JxXspM+XcJqaMzQ6tTkHVmAD
+         HXLyZ8NSpvtZlFBqZp9w+aUM5e6ODa4HEXi8hLlzpSY3c5JGvZIgdJupG6p2BYyWQyl1
+         u6rlNXcpOUAackK9Py19YnPvQkmMmgPpsJ7ikVEpd2fHaO0UNYIPrviP2ywPaV1bo5Vg
+         wJB77E6VSW52sg5w+kplCrkL6RAOrNhus8TI11cXt37Hu8c87i5SIds0T1VPUI6sIasm
+         SN3bjFOThx6g/VmsjPah+RluUJXjJT+Avo22pK4iwWXT1rQVSjlt/CqbXjYefTZEsEwl
+         +N4w==
+X-Forwarded-Encrypted: i=1; AJvYcCXSB5eCwY/mOKswvAza9xdIoBWRZKh3d/NC3WrFLTAvNvhAx50EVjwMK0VD/jkWQ1+7OBzz1g3Ms4BK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwB09kO4U9uUtvEC6Lbaa2qmiQKF8KHGO8f71X3QdfnjMQh/uMH
+	WRn1CuW3LUHQaM61f9phPsO3xvYcr5yGsSfq5NdQ+opsIbRo1xI3nhBwdlIwxu4qOSLFzcT9wDq
+	0WhC/1SASb3WRXwv+1e+dzJhJ9vsb2HfJ8fWd3yJW+vN45OTV90mlldE9/LhSOB3h
+X-Gm-Gg: AY/fxX6mg4NwPoibjaQhHixXBo4IB4FvzgdShSfq7u7KyYZjGPNkgth/vGwYznLvGfk
+	vNYCKUX9tRPeCXC+ncxjpa1F30XjbKKKUMa57tOtNmT25vGBILTnS/JBQM0GeHmwYoodR+RpVSl
+	4ASVXRqxxtjSJnfZvNHVZRSc7+XgSimavbVNkESRy1D5dq0NQppPsR8A3oPYcHNNyPs6LJvvZbH
+	pmvRz5biVRzniXsms62yefP65sa22U4JlPd+SaGBD8/XhaJkq2mVbe9uQL0WtXJJD+5Z5YMDfX0
+	Rx4uadh+vLO5YBugN+YiJ14Y4ikv+NGzj8uNbuiF+W2qgq63YhjHrgCA5H5Nqo0cq7W0iuOKa9z
+	RJcEP0MfV02Lih6BSybLo6cQmbQrqJTn4E7ev9qZyR7g21dSQc9witAZQTHkLn4Rbsgw=
+X-Received: by 2002:a05:6214:4113:b0:890:8244:1eac with SMTP id 6a1803df08f44-890841af6d4mr74582976d6.29.1767862653065;
+        Thu, 08 Jan 2026 00:57:33 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE/Evr+b0nr4KGzD5p/6Wv1eoS+TOm0VkfP2EcZzyUCS11BVsI7wQRinfhjGKtU/zIVgywDBw==
+X-Received: by 2002:a05:6214:4113:b0:890:8244:1eac with SMTP id 6a1803df08f44-890841af6d4mr74582696d6.29.1767862652628;
+        Thu, 08 Jan 2026 00:57:32 -0800 (PST)
+Received: from yuanjiey.qualcomm.com (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-890770cc7eesm49680326d6.2.2026.01.08.00.57.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jan 2026 00:57:32 -0800 (PST)
+From: yuanjie yang <yuanjie.yang@oss.qualcomm.com>
+To: robin.clark@oss.qualcomm.com, lumag@kernel.org, jesszhan0024@gmail.com,
+        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
+        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, neil.armstrong@linaro.org,
+        konrad.dybcio@oss.qualcomm.com
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
+        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
+Subject: [PATCH v5 01/12] dt-bindings: display/msm: qcom,kaanapali-dpu: Add Kaanapali
+Date: Thu,  8 Jan 2026 16:56:48 +0800
+Message-Id: <20260108085659.790-2-yuanjie.yang@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260108085659.790-1-yuanjie.yang@oss.qualcomm.com>
+References: <20260108085659.790-1-yuanjie.yang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
-To: Alexey Charkov <alchark@gmail.com>, Chaoyi Chen <kernel@airkyi.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Quentin Schulz <quentin.schulz@cherry.de>,
- Kever Yang <kever.yang@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>,
- John Clark <inindev@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
- Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Michael Riesch <michael.riesch@collabora.com>,
- Peter Robinson <pbrobinson@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260107070322.323-1-kernel@airkyi.com>
- <20260107070322.323-3-kernel@airkyi.com>
- <b5a3470c-aa03-42d0-a575-b705f709f8e6@lunn.ch>
- <CABjd4YzsjZXe16XWgrHRG5shNA_DQJF45i1roahvfAfV4xdU0Q@mail.gmail.com>
- <a545fec0-cb30-489a-b5e6-4ee87dcab41c@rock-chips.com>
- <5FFFBA7FAF5745A7+e0381969-800a-4bf6-9aac-81cffa3469a1@airkyi.com>
- <CABjd4YxwD_q_FrEuPw_GY+vG6700Vd_weWqdcFn2C3V0fqpO-Q@mail.gmail.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <CABjd4YxwD_q_FrEuPw_GY+vG6700Vd_weWqdcFn2C3V0fqpO-Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9b9cc1866103abkunm0e048bb5117cfb
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxhJQlZKTElOQx1OQk0YS01WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUJNS0
-	pVSktLVUtZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=f79xQ8sZlvCVy2PFQxXZd70Z/gMMUfuu39/WzLEApaY/LtlnAlZLpyn8o0o7YdTMMF9rsFmxcNn+HU/BGHd8baUJbHmZ7Q7uLAgllFhWoZP56g9OZ17+f6gWldn6XDzL8XE03FG4Ba7H2AOQmequz04zyPDk5B86vAscguWQsL4=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=lHhK7J9UwVHyDp7OnI2aJtOUELVCPGvnzkrrcOsH38Q=;
-	h=date:mime-version:subject:message-id:from;
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDA1OSBTYWx0ZWRfX2xKnc4nnzkR/
+ IUf9DIgJiK1sM80LAUjB7x52MYh3nnxB2ley2H6f1Q6JcEpRW1Bz2I9d+Dumr1XgEGkh5C55Xv1
+ bhENBtEGDPbpgeEE3bpD/9uy4foAI1eImsz9IU8SH+pZDjOpYO+rlJp9ViO+mDIy8gifi8VEIJs
+ er9CcnjJW0ZRrt+/dMz4dcL6PflyM7zo14MlIYfhZ+N84GMhGrvkRC9cONesHPXrgeRrNiqMLVm
+ tpwTef4rfa0VrHTrqlectgF+ys7DBO8FlJZGNqZGYUFcz0KU/B43qEkA6A/gHa34gGfy3dqKBju
+ yD74eFrz3Zh9/b60EeQyX9Eq9Vp0uJ4Ru7yHyXRFjyUaHxSkCpGx4v4b75lpALdZRzC562EinCa
+ Bq7rm+RxSD2SkCmbA0r3qliDC1MyyWqsS3Jn6t7D9gBeoTrnNTAODGqmypn0jEpqzZj2Xq6UnhD
+ MoMSg7tpvv9wXwzPzdQ==
+X-Proofpoint-ORIG-GUID: -2GiLvmWnTDYCxa2NumSuOyfDqwrvxZj
+X-Proofpoint-GUID: -2GiLvmWnTDYCxa2NumSuOyfDqwrvxZj
+X-Authority-Analysis: v=2.4 cv=S4nUAYsP c=1 sm=1 tr=0 ts=695f717d cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=LEfPF28z9Y6gGZEU5FYA:9
+ a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-08_01,2026-01-07_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 clxscore=1015 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 adultscore=0 phishscore=0 bulkscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601080059
 
-On 1/8/2026 4:11 PM, Alexey Charkov wrote:
-> On Thu, Jan 8, 2026 at 12:02 PM Chaoyi Chen <kernel@airkyi.com> wrote:
->>
->> On 1/8/2026 3:42 PM, Chaoyi Chen wrote:
->>> Hello Alexey, Andrew,
->>>
->>> On 1/8/2026 2:53 PM, Alexey Charkov wrote:
->>>> On Wed, Jan 7, 2026 at 10:18 PM Andrew Lunn <andrew@lunn.ch> wrote:
->>>>>
->>>>>> +&gmac0 {
->>>>>> +     clock_in_out = "output";
->>>>>> +     phy-mode = "rgmii-rxid";
->>>>>
->>>>> rgmii-rxid is odd. Does the PCB really have an extra long TX clock
->>>>> line, but a short RX clock line?
->>>>>
->>>>> Try changing this to rgmii-id, and drop the tx_delay property.
->>>>
->>>> Actually it would be great if Rockchip could clarify the delay
->>>> duration introduced by a single delay element in GMAC-IOMUX delay
->>>> lines, which are controlled in the GMAC driver by the {tx,rx}_delay
->>>> properties. Maybe we could then switch to using
->>>> {tx,rx}_internal_delay_ps for fine-tuning the delays on the GMAC side
->>>> as envisaged in DT bindings [1], and use phy-mode = "rgmii-id"
->>>> throughout. Chaoyi, any chance you could ask around in your hardware
->>>> team?
->>>>
->>>> Currently though removing the delays at GMAC side altogether causes
->>>> unstable link operation - see [2] for example.
->>>>
->>>> [1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L342-L347
->>>> [2] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commit/372f3e9ae62cc62cdf2543391ea57be6bb548a0c
->>>
->>> Sorry, this problem has been discussed many times before. It's because
->>> the gmac on the Rockchip platform currently relies on setting the
->>> corresponding delay via phy-mode [3].
->>>
->>> [3] https://lore.kernel.org/all/mqoyjn7mnq6tmt6n6oev4wa3herjaxlupml2fmcampwiajvj4a@r5zs4d3jdm5p/
->>>
->>> The delay introduced by the delay line is not absolute. In reality,
->>> it depends on factors such as the chip's design and process technology.
->>>
->>> And for RK3576, you can assume that:
->>>
->>>       time(ns) = 0.0579 * delay_line_count + 0.105
->>>
->>> For example, tx_delay = <0x20> means:
->>>
->>>       time = 0.0579 * 0x20 + 0.105 ns = 1.9578 ns
->>>
->>> And I believe {tx,rx}_internal_delay_ps is indeed a good idea.
->>> I'll try to add them in v3. Thanks.
->>>
->>
->> I've also see some dt that use {tx,rx}_internal_delay_ps inside the PHY,
->> and compared to doing it in the MAC, which one is the better choice?
-> 
-> Your PHY defaults to 1950ps in rgmii-id [1], so adding anything on top
-> of that on GMAC side would land you with a longer total TX delay than
-> you currently get according to the coefficients you've just posted
-> (1784.1ps). I would say go for "tx-internal-delay-ps = <1800>" on the
-> PHY side for the closest match.
-> 
-> [1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/net/motorcomm%2Cyt8xxx.yaml#L36
+From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
 
-Ah, I thought it was something like this:
+Add DPU version 13.0 for Qualcomm Kaanapali Soc. The Kaanapali
+DPU and SM8750 have significant differences, including additions
+and removals of registers, as well as changes in register addresses.
 
-&gmac0 {
-	phy-mode = "rgmii";
-	tx-internal-delay-ps = <1784>;
-};
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+---
+ .../devicetree/bindings/display/msm/qcom,sm8650-dpu.yaml         | 1 +
+ 1 file changed, 1 insertion(+)
 
-But what you actually said was this:
-
-&mdio1 {
-	rgmii_phy: ethernet-phy@1 {
-		compatible = "ethernet-phy-ieee802.3-c22";
-		reg = <0x1>;
-		tx-internal-delay-ps = <1784>;
-	};
-};
-
-These two `tx-internal-delay-ps` things shouldn't be the same, right?
-
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8650-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8650-dpu.yaml
+index fe296e3186d0..e29c4687c3a2 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8650-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8650-dpu.yaml
+@@ -16,6 +16,7 @@ properties:
+     oneOf:
+       - enum:
+           - qcom,glymur-dpu
++          - qcom,kaanapali-dpu
+           - qcom,sa8775p-dpu
+           - qcom,sm8650-dpu
+           - qcom,sm8750-dpu
 -- 
-Best, 
-Chaoyi
+2.34.1
+
 
