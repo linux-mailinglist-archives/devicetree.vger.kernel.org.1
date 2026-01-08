@@ -1,204 +1,110 @@
-Return-Path: <devicetree+bounces-252612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9BEED0168D
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 08:36:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9B1D0191A
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 09:24:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F3D2B3011FB0
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 07:36:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BC4B1312594A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC1330ACF0;
-	Thu,  8 Jan 2026 07:36:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PVwIoei6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B210333C50F;
+	Thu,  8 Jan 2026 07:37:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40D2A1A23A0
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 07:36:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A41329E5E;
+	Thu,  8 Jan 2026 07:37:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767857780; cv=none; b=rqSSzOdC60aeMorzg8DW2DGlQ2ku3e2quZ8aLErMIT7Sz1O4MPDmq2Z1lc21kguVrUO2Xm3G4MztP6+AFFBBcG4o3qNcA6RqEktuq4jgsxdJjHypsfhTUZ/noW02zJ+S2mB3W41NMaQX/+rJhpqfCmDAkX7Nn3SMNPizIc4iZCw=
+	t=1767857848; cv=none; b=pw+Id4Xqhu24f6huIsxwNa6U/d06d5E1XBRvH5BbZIcKx+W0Ey3xVGcYzkLyoULTpUK42yKV3HZCfxxwjxaD6Oyd7seKlr8+Q7EKz7yUsvmYHfubEikr8dOBbzShIRg9V/04bd4AXGkSCsGv08QhxcMW/O0TrzGczyksjEPZnS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767857780; c=relaxed/simple;
-	bh=qRm6fe60g43t+3aop8VfXvEShhkPmEb+qMsIbWntVdM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Z6D3/k2jit5z5474hpZ1pb4ui/n18l6jRXPjccRArNtCm9N/qdl5adE1o7M42dPGUD76r2NfF8S3kEnRqiSyqwtJ1Bo3NY3EEEzkdug/wpDgvG21707B34MEtD9PpCMbU+y1tV3Dzoy45b2C9LibPWg/HKMx6s9mAZumHlPtRzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PVwIoei6; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-34ccdcbe520so820391a91.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 23:36:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767857778; x=1768462578; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Raf6rMxyKbtpGA0a0neUDVB8KhO13Yy7WiRRs10GZEs=;
-        b=PVwIoei6TgIlW7E6gsqP5aV0tytGsyqA6znnyqUbrt8hY3BDJX88NiKLcxbFTQnxG0
-         nq27/8LXaKoXYO4TVZTd5R5dwsM7eS6bR3JzqRN60WfgEoF6hQUi7QF+ig+BYeOPRAhb
-         5XV0yTJzQZXkpggx90jWmB7yHFSeKBQpDowCJ0uu9/BTsliI09Z89GNsNRNJUXMb5a3A
-         T/XxZZB2LrMdIocjbHMBSuWZunfiz8h6WNGGr4z0iRV3VxaQ4qK7q5YpwwVfkOamtsgi
-         gRCxm3NHE9BmW18Qyrjndl/kGLzkKngCt1Id1nLS2yQfLQBg24/bu59TziQi6shIwBc5
-         yalA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767857778; x=1768462578;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Raf6rMxyKbtpGA0a0neUDVB8KhO13Yy7WiRRs10GZEs=;
-        b=ATWeKT+WfxVoQgVl3iBAor7DRzg7bvaCfjie700Gaiz/TyuTRAsDUzfhUIO8N5sXvm
-         j3zduBSR2L8uJCffBVBfrcirTR7Z0IC2VRIneZhWpr3VekLL9n5uA+BlFuAyphFtlBKv
-         IBx73HZynl3RQnKm+sPbSbtO1fRMRS00ah0mEV5GQ5REO9R9DEmqxcri/idVFlTfYGqt
-         dncuSVl8uzHH/UBciJh447rdjOA/dtv3h9TIHQgLjnQdTOzR4zF2C1aEsReuIsOnTNIw
-         us/M9OQhJexuTnmnzX3cFe2d75/raJO27egjJuKTjYe9R8JOlWhx82j13agwm0WBnVdU
-         GzeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXPSViFbpiD7QkfUewzpcTGsL6MSMFbmgSTKfp69dsaKSao+E4imZjkqJi6wkZwaHs2ONgOiRs9Uug6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5iJ/kQCdLj8ygjMRLtB5DJCOCB70W6RMv6/4fwfDXMO9HDx11
-	oXBEAORVo7r/B12zQ185n43qdcUrA1P4DjOJHPBt1v7YZGF4Ffjj/dwI
-X-Gm-Gg: AY/fxX5n85fC46CwVw5L13q1mdh0u+u3LlexKKg6CZcGFWlHFnaSi2sbF4WLx6l6LH2
-	xiEU1xYnjuh+pSmWIgfuep4LqY+/PvxS4jeWxNXdUtGacnDIqoxndblXgI/lVVvDjhyEpMCnmk9
-	kaNfOGLoNr5SZ0dXmmbsTxwK6JrzOev5VGyg8/1WHRA9RE5qsVXA6jk6WMcEJWhCiB1zuIc6Jg1
-	bK4w4CJbMMzPKFFMLyo3nwq+GIvnMqU3FF4RLNT2/zX5QjhGiSf0J60FguujWgbewJ7Kon8i0Mw
-	9caVY3ZjBpBQWD23JvUQu7DILORoijBEAf4A38MDC4lyPk7NFBmUS3ZKJCaApi6BG+heiqyd4h0
-	CS2jFZqYY4f7ERRAgBH2DkICMXmvqpbV1xcjkxPrmBra9F5ObcBUnjxH7oSsqPwoGx6YEkDAwju
-	UCCDzNgRYWqcvn2brsXpvsZ/m+u8Wu+bRv
-X-Google-Smtp-Source: AGHT+IFwn+9pYeZHD6rKzeZEcx/p1yKt2xjGQQ57ur5fOKGbe8ThUndVkKFkwC5dqjKIev8DHMkOaw==
-X-Received: by 2002:a17:90a:e705:b0:340:6b6f:4bbf with SMTP id 98e67ed59e1d1-34f5f95a1damr8303062a91.18.1767857778424;
-        Wed, 07 Jan 2026 23:36:18 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.245.1])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34f5fb64d7asm6861454a91.11.2026.01.07.23.36.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jan 2026 23:36:18 -0800 (PST)
-Message-ID: <c3492b90-bb48-4584-99fd-b1b6832d22ff@gmail.com>
-Date: Thu, 8 Jan 2026 13:06:44 +0530
+	s=arc-20240116; t=1767857848; c=relaxed/simple;
+	bh=/g0Knk+PCNEBWe0CdzxrB8HOJijl1G9jpF3ofNoKGEI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M+9JL8KlIynzQiwdCHYYrGhaWgCxnPksjwlJVHemiEBUulLBwOB/V8nxJohXugA7NWFgH731LirZgJc7rSKZhoTMC2VYbRoJUVsvfNXi3s0Z+k1IsPId7Xozy7sUs+fYL6GmzgS/r2bQ4ILq+HpG9hxNhYc4oByfy5aeDChD5dg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 44324341EB7;
+	Thu, 08 Jan 2026 07:37:26 +0000 (UTC)
+Date: Thu, 8 Jan 2026 15:37:22 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Linus Walleij <linusw@kernel.org>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] riscv: dts: spacemit: modify pinctrl node in dtsi
+Message-ID: <20260108073722-GYA3634@gentoo.org>
+References: <20260108-kx-pinctrl-aib-io-pwr-domain-v2-0-6bcb46146e53@linux.spacemit.com>
+ <20260108-kx-pinctrl-aib-io-pwr-domain-v2-3-6bcb46146e53@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 5/5] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-From: tessolveupstream@gmail.com
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251230130227.3503590-1-tessolveupstream@gmail.com>
- <20251230130227.3503590-6-tessolveupstream@gmail.com>
- <30ee8541-3ec2-49ac-8fe0-987cdc5b16e7@oss.qualcomm.com>
- <14613f89-6be0-4eb3-beb5-375ab008a313@gmail.com>
-Content-Language: en-US
-In-Reply-To: <14613f89-6be0-4eb3-beb5-375ab008a313@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260108-kx-pinctrl-aib-io-pwr-domain-v2-3-6bcb46146e53@linux.spacemit.com>
 
+Hi Troy,
 
+  if there is one more iteration, I'd suggest to adjust the patch titile, 
+to make it slightly more specific
 
-On 04-01-2026 19:16, tessolveupstream@gmail.com wrote:
-> 
-> 
-> On 30-12-2025 20:21, Konrad Dybcio wrote:
->> On 12/30/25 2:02 PM, Sudarshan Shetty wrote:
->>> Add the device tree for the QCS615-based Talos EVK platform. The
->>> platform is composed of a System-on-Module following the SMARC
->>> standard, and a Carrier Board.
->>>
->>> The Carrier Board supports several display configurations, HDMI and
->>> LVDS. Both configurations use the same base hardware, with the display
->>> selection controlled by a DIP switch.
->>
->> [...]
->>
->>> +++ b/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
->>> @@ -0,0 +1,126 @@
->>> +// SPDX-License-Identifier: BSD-3-Clause
->>> +/*
->>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->>> + */
->>> +/dts-v1/;
->>> +/plugin/;
->>> +
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +
->>> +&{/} {
->>> +	backlight: backlight {
->>> +		compatible = "gpio-backlight";
->>> +		gpios = <&tlmm 59 GPIO_ACTIVE_HIGH>,
->>> +			<&tlmm 115 GPIO_ACTIVE_HIGH>;
->>> +		default-on;
->>> +	};
->>> +
->>> +	hdmi_connector: hdmi-out {
->>> +		status = "disabled";
->>> +	};
->>
->> This should be a &label_reference
->>
-> 
-> Okay, will add it in the next patch.
+  riscv: dts: spacemit: pinctrl: update register and IO power
 
-I noticed that in several existing .dtso files, the root node is
-commonly referenced as &{/}. In your comment, you suggested using &label_reference. Could you please clarify which specific label or 
-node you would like me to update here.
->> [...]
->>
->>> +	wifi_1p8v: regulator-wifi-1p8v {
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "wifi_1p8v";
->>> +		regulator-min-microvolt = <1800000>;
->>> +		regulator-max-microvolt = <1800000>;
->>> +		gpio = <&tlmm 91 GPIO_ACTIVE_HIGH>;
->>> +		enable-active-high;
->>> +		pinctrl-names = "default";
->>> +		pinctrl-0 = <&wifi_reg_en_pins_state>;
->>
->> property-n
->> property-names
->>
->> consistently, please
->>
+On 14:42 Thu 08 Jan     , Troy Mitchell wrote:
+> Change the size of the reg register to 0x1000 to match the hardware.
+> This register range covers the IO power domain's register addresses.
 > 
-> I didn’t fully understand your comment.
-> Could you please elaborate a bit more so I can make the
-> necessary changes correctly. >> +		regulator-boot-on;
->>> +		regulator-always-on;
->>> +	};
->>> +
->>> +	wifi_3p85v: regulator-wifi-3p85v {
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "wifi_3p85v";
->>> +		regulator-min-microvolt = <3850000>;
->>> +		regulator-max-microvolt = <3850000>;
->>> +		gpio = <&tlmm 91 GPIO_ACTIVE_HIGH>;
->>> +		enable-active-high;
->>> +		pinctrl-names = "default";
->>> +		pinctrl-0 = <&wifi_reg_en_pins_state>;
->>
->> ditto
->>
->> [...]
->>
->>> +&tlmm {
->>> +	bt_en_state: bt-en-state {
->>> +		pins = "gpio85";
->>> +		function = "gpio";
->>> +		bias-pull-down;
->>> +		output-low;
->>
->> output-low/high should be unnecessary as these pins are governed
->> by the kernel driver
->>
+> The IO power domain registers are protected. In order to access the
+> protected IO power domain registers, a valid unlock sequence must be
+> performed by writing the required keys to the AIB Secure Access Register
+> (ASAR).
 > 
-> Okay,got it. Will make the necessary change in the next patch.
->> lg otherwise
->>
->> Konrad
+> The ASAR register resides within the APBC register address space.
+> A corresponding syscon property `spacemit,apbc` is added to allow
+> the pinctrl driver to access this register.
+> 
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> ---
+>  arch/riscv/boot/dts/spacemit/k1.dtsi | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> index 7818ca4979b6a7755722919a5958512aa11950ab..f05429723d1bbbd718941549782461c49196ecef 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> @@ -565,10 +565,11 @@ i2c8: i2c@d401d800 {
+>  
+>  		pinctrl: pinctrl@d401e000 {
+>  			compatible = "spacemit,k1-pinctrl";
+> -			reg = <0x0 0xd401e000 0x0 0x400>;
+> +			reg = <0x0 0xd401e000 0x0 0x1000>;
+>  			clocks = <&syscon_apbc CLK_AIB>,
+>  				 <&syscon_apbc CLK_AIB_BUS>;
+>  			clock-names = "func", "bus";
+> +			spacemit,apbc = <&syscon_apbc>;
+>  		};
+>  
+>  		pwm8: pwm@d4020000 {
+> 
+> -- 
+> 2.52.0
 > 
 
+-- 
+Yixun Lan (dlan)
 
