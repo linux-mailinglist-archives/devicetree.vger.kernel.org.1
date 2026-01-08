@@ -1,250 +1,162 @@
-Return-Path: <devicetree+bounces-252636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0B36D01DBF
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:35:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DF7DD01DE6
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:38:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 55680340370E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:26:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5A86F33B5B22
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495F739340F;
-	Thu,  8 Jan 2026 08:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA82F396D23;
+	Thu,  8 Jan 2026 08:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gQEcftud"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="vNMIOFkc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8032236B069;
-	Thu,  8 Jan 2026 08:01:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B06395DAE;
+	Thu,  8 Jan 2026 08:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767859324; cv=none; b=KorwXkiAk3qjIjrjq6GogJLllz6QouECSEhadggVqOP/RNTP0l9UqPstedBTUyPUG0k1QyiUYCdgJE6St52bnZbCtf3akMG0YxKd9/KrkXXZSIRz+nYzoFIOkjcH0kMEKrQQXILbBWnnXdbP2Od5R7Sz6S1HUsm/bSPkhoCHLLw=
+	t=1767859427; cv=none; b=GrUh0/SXH05hOv2KsqDeeRUimF1OWn4dc4aH/zM++7G0D2ueFxTUcny89+WnDJfkIen9p8SqO/9tOZ/c13NVu7/DYCIBs1B2DNH5Z7CbKdI4Dg4kcxvSOIfgAdAOfiZINAxn7k1l48YJGF4m2gggs7UV6eXn4mlysaOH3C4Zvek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767859324; c=relaxed/simple;
-	bh=4N8v2KuuWJiFFdDvLQAu3AxJQTp2J6eEXtQhiOrOwUY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uwCIShb6Tu3EvDHVSxTizmyDAtRBy737LLLl9KkGCcDlp42Q6Bm12LGGvlgb2gtFv+VYkAqGkqcj9XGiD6bbF84YKFWhcHZ58LYj3e6Raen/p7pCUnpPdWs4AQ6Rjp5gbCbvDkDlrTIfoA/1gSHaZnopBakGstazjMnRue3vxlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gQEcftud; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id CBD891A26F8;
-	Thu,  8 Jan 2026 08:01:40 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9988E606B6;
-	Thu,  8 Jan 2026 08:01:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D72D7103C87CE;
-	Thu,  8 Jan 2026 09:01:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767859298; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=RwnFhKTWvcMiLm1Et/DfqdWvufrCtHepMfYsjNpJGhU=;
-	b=gQEcftudrV0p2NOZXWy5P1Mc/vzZGlFKsok/gtWSP2r4L4VDSfnlVX3UkeecICdCZz1dxS
-	lb3rTBIc9UnXIoGr/WfknipYTBQoC6Q2vq+yZFUnggEisop/ty+dHDEPH+J8iK92kOTiot
-	aWKShCoaBjRNNfbD36nO7HPrKRMtVBCtsB6O3+/sy8p/9I7PAdVnqz8LORTfgQm7+9YQYp
-	DouqCY7rTYVGKgjrWVjCjzyrpczJxIVIJWPj0k4lKri9QzcayQHZcHA11tHNN/JlWopFBu
-	YRdpgkn1+Xq5Kiy/YgC49P4n3Y8XvMisWWHQ6+vHK69XVO0lPcl9FyrvqfApTQ==
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: davem@davemloft.net
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
-	Tariq Toukan <tariqt@nvidia.com>
-Subject: [PATCH net-next v22 12/14] net: phy: qca807x: Support SFP through phy_port interface
-Date: Thu,  8 Jan 2026 09:00:37 +0100
-Message-ID: <20260108080041.553250-13-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
-References: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
+	s=arc-20240116; t=1767859427; c=relaxed/simple;
+	bh=MiTuTXmPYpXsxh2wM65BnAZkagPpcHAluq9scgeCvcY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NdOMqF9CvvwN65BLRSM8YQQO8HEsm1+TE2QEAAFePBXICQqERVq/TWI3fx0/Va6nM8YOUK7LIiDOqJBMJLcmHa6oo+sMkjZNfV68KKcbkr8NAZxkvO9KWqLGqwHmti7ASH4JoAYvexncYOxCTH1s8t63OvbuKnSLAsNoBQ0jSjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=vNMIOFkc; arc=none smtp.client-ip=54.207.19.206
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1767859313;
+	bh=8sPvtV6R5fOot1emRO6hT0bqnJhowoQAnBmNF7+RVj0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=vNMIOFkcOIGiTQbZfn9/XskYwltKjHkQHn15ZPykmee2zms9ZoxNsPlJ80mDOGfPK
+	 v6X4fjFWDNidB7V06WNQuvYztgTs/Xkn00m+Lw236mU8r5PPE9DOytlIBWSuM1WKMI
+	 k78p8FHNzsDSy/WfxiY4twrI4MEAxVL7AkYSIShY=
+X-QQ-mid: zesmtpgz9t1767859306t749baf49
+X-QQ-Originating-IP: WIhSujCjZ4exQ3XJHVOY0FYbufeEWfI1WXKa++9oDCY=
+Received: from [172.16.12.51] ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 08 Jan 2026 16:01:44 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 15587685843860407837
+EX-QQ-RecipientCnt: 23
+Message-ID: <5FFFBA7FAF5745A7+e0381969-800a-4bf6-9aac-81cffa3469a1@airkyi.com>
+Date: Thu, 8 Jan 2026 16:01:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+ Alexey Charkov <alchark@gmail.com>, Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Quentin Schulz <quentin.schulz@cherry.de>,
+ Kever Yang <kever.yang@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>,
+ John Clark <inindev@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260107070322.323-1-kernel@airkyi.com>
+ <20260107070322.323-3-kernel@airkyi.com>
+ <b5a3470c-aa03-42d0-a575-b705f709f8e6@lunn.ch>
+ <CABjd4YzsjZXe16XWgrHRG5shNA_DQJF45i1roahvfAfV4xdU0Q@mail.gmail.com>
+ <a545fec0-cb30-489a-b5e6-4ee87dcab41c@rock-chips.com>
+Content-Language: en-US
+From: Chaoyi Chen <kernel@airkyi.com>
+In-Reply-To: <a545fec0-cb30-489a-b5e6-4ee87dcab41c@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
+X-QQ-XMAILINFO: MhC1rXRaWvfnq4Vu+ns3dE6XXbeAdQVBQ0d0eNnfzAi7v1fVk2swrB/h
+	1rqyjZyWm7N+HVtn91hGaRttp5InlRRXm5O3rjgl/5m+kCzQe6o78Pevb7+7uepZQEtL0hX
+	8j2CnYyqGSYdrhGlAUcm2okbNVPVKVYPZrkHTdvUN+OdB361X0UMB+irpzR77c4++tRNx19
+	VG4/WRCxsE7WzrYYCVBIxJ7LeeG7tAbYnG96rQDLUZ7wJUzDk+xsC+31m/aCpSeBlzEaYm3
+	4eHtzXbEvUauzzl5DQTksL34evxTr8I/0PwfsAhq7ISDzp6LVQxkmH37n9dh25g8hAV6toT
+	XulTVFPT/tveCFyY0pMtkhwHs/a6pT+HDAquvvxOZHNnmxQO1HtG+0bXbr9qCLPZo6MzTym
+	U3mHIH9NFTYkr2D0LMLN1qSBNKzpOoPDksjNcJl/dbx/fuAT9TFe3/iQIr9aXDIre84Gyw2
+	gKFpD6AD3zHzItzsUKxjINkkvhRj4Q7qZdkz9IdzxhYetfYHDGyn2/LwS6k9z4M1CQVS+98
+	Ln59orzbt6Hgu0E6gzT1O75SwFli1AmdOSO6hFG05ZfU9QUnPKSvEMlJikoSncAnDfBw54I
+	oBAK3mn4+EQGqurkdFcoAbIYJjOwTea7Vhk/uNWOqjgHYyso1MjfNALoJhtgOQsE0vRKRy8
+	zJDrFL8qXOMUC7lrk3WL1UIBnTL4RF5CKsCIL+du7/Xgla8k/mea/6L3jdgK1KSP+j6zABh
+	jW8SC1RBJ918xjBcZjASLTFiN8PbJykv6+J7BtM/JfMhjdoBZU3p5C0WrXN7ElG5skrDxSg
+	G5z/RhCY6mBQXAdsvW5YOYM1sVmBfxFcbK5/wgN8loYv4ZKuf2PT9p4SED0dzyORjkEe1Up
+	tX0du1HR/hutsJs5wh4i6QJ8BvZtsE5Ukzo25zKFbvMz7bZs1t+iTys7kiAYN/uRDykjpm8
+	lZ4GyNXyNQ/zOvHANiSTLvLQmnzvUBPQCfoOMvnFu1UEiDKoOQwT6FK+0wWuLrPwSUWzyvZ
+	ppkJDEWYz9/p08OQq0yy9YHwxrulA/Kf31LgVPyl+B7AjSCOggw96I8PZhp7h+JRL55nI6M
+	g==
+X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
+X-QQ-RECHKSPAM: 0
 
-QCA8072/8075 may be used as combo-port PHYs, with Serdes (100/1000BaseX)
- and Copper interfaces. The PHY has the ability to read the configuration
-it's in.  If the configuration indicates the PHY is in combo mode, allow
-registering up to 2 ports.
+On 1/8/2026 3:42 PM, Chaoyi Chen wrote:
+> Hello Alexey, Andrew,
+> 
+> On 1/8/2026 2:53 PM, Alexey Charkov wrote:
+>> On Wed, Jan 7, 2026 at 10:18 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>>>
+>>>> +&gmac0 {
+>>>> +     clock_in_out = "output";
+>>>> +     phy-mode = "rgmii-rxid";
+>>>
+>>> rgmii-rxid is odd. Does the PCB really have an extra long TX clock
+>>> line, but a short RX clock line?
+>>>
+>>> Try changing this to rgmii-id, and drop the tx_delay property.
+>>
+>> Actually it would be great if Rockchip could clarify the delay
+>> duration introduced by a single delay element in GMAC-IOMUX delay
+>> lines, which are controlled in the GMAC driver by the {tx,rx}_delay
+>> properties. Maybe we could then switch to using
+>> {tx,rx}_internal_delay_ps for fine-tuning the delays on the GMAC side
+>> as envisaged in DT bindings [1], and use phy-mode = "rgmii-id"
+>> throughout. Chaoyi, any chance you could ask around in your hardware
+>> team?
+>>
+>> Currently though removing the delays at GMAC side altogether causes
+>> unstable link operation - see [2] for example.
+>>
+>> [1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L342-L347
+>> [2] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commit/372f3e9ae62cc62cdf2543391ea57be6bb548a0c
+> 
+> Sorry, this problem has been discussed many times before. It's because 
+> the gmac on the Rockchip platform currently relies on setting the 
+> corresponding delay via phy-mode [3].
+> 
+> [3] https://lore.kernel.org/all/mqoyjn7mnq6tmt6n6oev4wa3herjaxlupml2fmcampwiajvj4a@r5zs4d3jdm5p/
+> 
+> The delay introduced by the delay line is not absolute. In reality,
+> it depends on factors such as the chip's design and process technology.
+> 
+> And for RK3576, you can assume that:
+> 	
+> 	time(ns) = 0.0579 * delay_line_count + 0.105
+> 
+> For example, tx_delay = <0x20> means:
+> 
+> 	time = 0.0579 * 0x20 + 0.105 ns = 1.9578 ns
+> 
+> And I believe {tx,rx}_internal_delay_ps is indeed a good idea. 
+> I'll try to add them in v3. Thanks.
+>
 
-Register a dedicated set of port ops to handle the serdes port, and rely
-on generic phylib SFP support for the SFP handling.
+I've also see some dt that use {tx,rx}_internal_delay_ps inside the PHY,
+and compared to doing it in the MAC, which one is the better choice?
 
-Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Tested-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
- drivers/net/phy/qcom/qca807x.c | 72 ++++++++++++++--------------------
- 1 file changed, 30 insertions(+), 42 deletions(-)
-
-diff --git a/drivers/net/phy/qcom/qca807x.c b/drivers/net/phy/qcom/qca807x.c
-index 1be8295a95cb..d8f1ce5a7128 100644
---- a/drivers/net/phy/qcom/qca807x.c
-+++ b/drivers/net/phy/qcom/qca807x.c
-@@ -13,7 +13,7 @@
- #include <linux/phy.h>
- #include <linux/bitfield.h>
- #include <linux/gpio/driver.h>
--#include <linux/sfp.h>
-+#include <linux/phy_port.h>
- 
- #include "../phylib.h"
- #include "qcom.h"
-@@ -643,67 +643,54 @@ static int qca807x_phy_package_config_init_once(struct phy_device *phydev)
- 	return ret;
- }
- 
--static int qca807x_sfp_insert(void *upstream, const struct sfp_eeprom_id *id)
-+static int qca807x_configure_serdes(struct phy_port *port, bool enable,
-+				    phy_interface_t interface)
- {
--	struct phy_device *phydev = upstream;
--	const struct sfp_module_caps *caps;
--	phy_interface_t iface;
-+	struct phy_device *phydev = port_phydev(port);
- 	int ret;
- 
--	caps = sfp_get_module_caps(phydev->sfp_bus);
--	iface = sfp_select_interface(phydev->sfp_bus, caps->link_modes);
-+	if (!phydev)
-+		return -ENODEV;
- 
--	dev_info(&phydev->mdio.dev, "%s SFP module inserted\n", phy_modes(iface));
--
--	switch (iface) {
--	case PHY_INTERFACE_MODE_1000BASEX:
--	case PHY_INTERFACE_MODE_100BASEX:
-+	if (enable) {
- 		/* Set PHY mode to PSGMII combo (1/4 copper + combo ports) mode */
- 		ret = phy_modify(phydev,
- 				 QCA807X_CHIP_CONFIGURATION,
- 				 QCA807X_CHIP_CONFIGURATION_MODE_CFG_MASK,
- 				 QCA807X_CHIP_CONFIGURATION_MODE_PSGMII_FIBER);
-+		if (ret)
-+			return ret;
- 		/* Enable fiber mode autodection (1000Base-X or 100Base-FX) */
- 		ret = phy_set_bits_mmd(phydev,
- 				       MDIO_MMD_AN,
- 				       QCA807X_MMD7_FIBER_MODE_AUTO_DETECTION,
- 				       QCA807X_MMD7_FIBER_MODE_AUTO_DETECTION_EN);
--		/* Select fiber page */
--		ret = phy_clear_bits(phydev,
--				     QCA807X_CHIP_CONFIGURATION,
--				     QCA807X_BT_BX_REG_SEL);
--
--		phydev->port = PORT_FIBRE;
--		break;
--	default:
--		dev_err(&phydev->mdio.dev, "Incompatible SFP module inserted\n");
--		return -EINVAL;
-+		if (ret)
-+			return ret;
- 	}
- 
--	return ret;
-+	phydev->port = enable ? PORT_FIBRE : PORT_TP;
-+
-+	return phy_modify(phydev, QCA807X_CHIP_CONFIGURATION,
-+			  QCA807X_BT_BX_REG_SEL,
-+			  enable ? 0 : QCA807X_BT_BX_REG_SEL);
- }
- 
--static void qca807x_sfp_remove(void *upstream)
-+static const struct phy_port_ops qca807x_serdes_port_ops = {
-+	.configure_mii = qca807x_configure_serdes,
-+};
-+
-+static int qca807x_attach_mii_port(struct phy_device *phydev,
-+				   struct phy_port *port)
- {
--	struct phy_device *phydev = upstream;
-+	__set_bit(PHY_INTERFACE_MODE_1000BASEX, port->interfaces);
-+	__set_bit(PHY_INTERFACE_MODE_100BASEX, port->interfaces);
- 
--	/* Select copper page */
--	phy_set_bits(phydev,
--		     QCA807X_CHIP_CONFIGURATION,
--		     QCA807X_BT_BX_REG_SEL);
-+	port->ops = &qca807x_serdes_port_ops;
- 
--	phydev->port = PORT_TP;
-+	return 0;
- }
- 
--static const struct sfp_upstream_ops qca807x_sfp_ops = {
--	.attach = phy_sfp_attach,
--	.detach = phy_sfp_detach,
--	.module_insert = qca807x_sfp_insert,
--	.module_remove = qca807x_sfp_remove,
--	.connect_phy = phy_sfp_connect_phy,
--	.disconnect_phy = phy_sfp_disconnect_phy,
--};
--
- static int qca807x_probe(struct phy_device *phydev)
- {
- 	struct device_node *node = phydev->mdio.dev.of_node;
-@@ -744,9 +731,8 @@ static int qca807x_probe(struct phy_device *phydev)
- 
- 	/* Attach SFP bus on combo port*/
- 	if (phy_read(phydev, QCA807X_CHIP_CONFIGURATION)) {
--		ret = phy_sfp_probe(phydev, &qca807x_sfp_ops);
--		if (ret)
--			return ret;
-+		phydev->max_n_ports = 2;
-+
- 		linkmode_set_bit(ETHTOOL_LINK_MODE_FIBRE_BIT, phydev->supported);
- 		linkmode_set_bit(ETHTOOL_LINK_MODE_FIBRE_BIT, phydev->advertising);
- 	}
-@@ -824,6 +810,7 @@ static struct phy_driver qca807x_drivers[] = {
- 		.get_phy_stats		= qca807x_get_phy_stats,
- 		.set_wol		= at8031_set_wol,
- 		.get_wol		= at803x_get_wol,
-+		.attach_mii_port	= qca807x_attach_mii_port,
- 	},
- 	{
- 		PHY_ID_MATCH_EXACT(PHY_ID_QCA8075),
-@@ -851,6 +838,7 @@ static struct phy_driver qca807x_drivers[] = {
- 		.get_phy_stats		= qca807x_get_phy_stats,
- 		.set_wol		= at8031_set_wol,
- 		.get_wol		= at803x_get_wol,
-+		.attach_mii_port	= qca807x_attach_mii_port,
- 	},
- };
- module_phy_driver(qca807x_drivers);
 -- 
-2.49.0
+Best, 
+Chaoyi
 
 
