@@ -1,143 +1,96 @@
-Return-Path: <devicetree+bounces-252874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4C2FD03B0E
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:12:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD4A2D03D3C
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:27:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 35A103006983
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:06:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4FBBB335FDF0
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:07:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D740B34FF44;
-	Thu,  8 Jan 2026 15:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8390F333424;
+	Thu,  8 Jan 2026 15:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R66lN2kO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aU0hxsE9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E19350D77
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C2B530B536;
+	Thu,  8 Jan 2026 15:05:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767884552; cv=none; b=m+86ePvh1fKwD9ZoEyXQ+BtKo2bO3bJmS6dUEIqXigRSk22WuAYp9uxRyNfp+V1lncMWmLnTBWtmTbvwthcIPraiEXZds5s+5xNHKhwTX6SVd59ZCWzyJIg4OY99d3CC9MOF5foOsbZVDntA1F992OysuLvPs54qSFi9p2bpzTU=
+	t=1767884736; cv=none; b=CeCftNI9+YH4SllruqtzrGlQmMiRoTW8ymRqMM1zfpbBxUo6X0AZFo5qBmH1GoSt5ypxPr7D2RVmWGfpic4ERi5RlxcItTZ1y9B6airFI2DvuldsFdncNh63KzArxsJBA2HrpKsYFtDfhtA9mOGNQVXZJFuOfHLg8HcAqByHrLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767884552; c=relaxed/simple;
-	bh=6Ycbt0WRFOzd22dkj9KdYWmrxAjeojzg19QbPUzXTdw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q54lric67d1IAqtXMwHJKWhw9kKVos1mWQ7S1cLcHbEOsOHCrDLa4He69/p2hCMWde4qOeBcfU3ikg0ikjZT/xT6BxscQ+agYoHgHEJAQed8PQPXW4y6S/ciSat8NFMujYkderpl+a7J9PSMmDBbVmZEIjb44ctsJAhC/MXV8M4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R66lN2kO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EEF6C116C6
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:02:32 +0000 (UTC)
+	s=arc-20240116; t=1767884736; c=relaxed/simple;
+	bh=OhlOQ7KmGY1tCliVjuLQ3JOxdM6RT+MpKjYTQNq49QU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oCHlluJY6OCM8Dju0+9ihMVWV5I/E9MUMZA48QMny7ULz8YVaiLpdihc51D9qPyTGUEiRz1spV60cEch+aGoDfv5FEJtF7rNHJ6YDX3dso50ytq9nsw5lJE24UVrGK09HbVs3GCSZybBsWn1pq0/uKS6dtYu5w72/ImUNCwACXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aU0hxsE9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 826B3C116D0;
+	Thu,  8 Jan 2026 15:05:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767884552;
-	bh=6Ycbt0WRFOzd22dkj9KdYWmrxAjeojzg19QbPUzXTdw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=R66lN2kOn0m3kjtpf4js/FUoNmRiWyysVqdw6Bja37XbdWze50Mb1/CAR9uJTL0cl
-	 +NNzTZ0Y9jDATAVROnt0LTqQPaolCCEpyUYrMl35GvZ+j5jAF/yWt0M8OaRixi6Z7W
-	 7LmD+IhmJhmRTq5Q6bu19ssfcoHKHx70qJWRnfQiQPPT45CY/SdwC2kX4FG8BgKPEs
-	 yGI6y/BCYhu6/K04396oCCSCt0MflD8YqMVm3B8hfuuMNL72ZVKiRFvmOEgjwZNHMV
-	 OzHu+5To9H+aWn2Zz6HZ3OJWMjlRnQ6V+wHOpWvpS9nt8R0JMBkM7AiiTfIgtuT1b2
-	 7elgbwAnStWcw==
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b734fcbf1e3so639861166b.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:02:32 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXrejLd7dI4XcLCJqC1Q6tk6RdzzxFwmN6GoJtYeaeFoU6oz/+eRSylw+7sf8KCp89yQuJ37GudBDV4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNVUig7NSzLifkxZfCbGpfNWwjkElZOnPsF5vD7+pR7GFrmXUj
-	1/fw3a8H8WTpbvk0y9uX76PmLsXlEtm3j+mHiQvIpMNhnewf8DHIkKy/21fSKmb8tzpiVqEqyNY
-	hOvY3C931p1aFYlEcBjPxV3QhPp4wgQ==
-X-Google-Smtp-Source: AGHT+IE6a44nzxp8DKF3vBuQKICR2Q2Gpwy14zv/pqJi6o0PWzyZzpo8zWkR8xYUq2MVn/kk9ttnYyYiRvu/oXF2zto=
-X-Received: by 2002:a17:907:2d9f:b0:b4c:137d:89bb with SMTP id
- a640c23a62f3a-b8444d4eb3fmr605079566b.29.1767884545890; Thu, 08 Jan 2026
- 07:02:25 -0800 (PST)
+	s=k20201202; t=1767884735;
+	bh=OhlOQ7KmGY1tCliVjuLQ3JOxdM6RT+MpKjYTQNq49QU=;
+	h=From:Subject:Date:To:Cc:From;
+	b=aU0hxsE9w6KFlaqb5qfNSIS0DUG+I8lveyFHswoGwf3mTYDYF4JGhjA8Xo4I0ekOE
+	 8kTopEsog54rnEv1qIrHiBt0vuUvHR2dG+8Gk83Bh18EKcUMykBLaQz1osIyfDLngi
+	 p38i/YgRtfg+jLmOf7ND6ngyruPdVyx5pD2/wcek2KRZpVZGsd5DG4V740o32nXJAN
+	 HdInwQJlDhBAkx8NfvXocMYrbSPowlJMVmG5WWIWYyuJ2xvawU4W5EOYSj4SdBEvm2
+	 GjM+zSv5WGoIGARX9mctvsvCThR0cBtOovBQpzk4GB2YZ0ijRv/uTdtgmnjp5t+s4i
+	 d2hTYJy7un6wA==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH net-next v3 0/2] net: airoha: Init Block Ack memory region
+ for MT7996 NPU offloading
+Date: Thu, 08 Jan 2026 16:05:06 +0100
+Message-Id: <20260108-airoha-ba-memory-region-v3-0-bf1814e5dcc4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260105193232.3167128-1-robh@kernel.org> <7e20473324c8da16fa86f72af950b8e8eac92a1b.camel@codeconstruct.com.au>
-In-Reply-To: <7e20473324c8da16fa86f72af950b8e8eac92a1b.camel@codeconstruct.com.au>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 8 Jan 2026 09:02:14 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJsQR5JLMLQ=FnYWVsxmV+KQrpn20Juo=bZTBvwK9=AYw@mail.gmail.com>
-X-Gm-Features: AQt7F2oknbve6chvB-3ZyMwku6hZ0gM-vqN_na5ZgE6XABn1xxxvphnh0zHxrPg
-Message-ID: <CAL_JsqJsQR5JLMLQ=FnYWVsxmV+KQrpn20Juo=bZTBvwK9=AYw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: nuvoton: Add missing "device_type" property
- on memory node
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Avi Fishman <avifishman70@gmail.com>, 
-	Tomer Maimon <tmaimon77@gmail.com>, Tali Perry <tali.perry1@gmail.com>, 
-	Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>, 
-	Benjamin Fair <benjaminfair@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XNzw6CMAwG8FchO1uzP46BJ9/DeBhQYFGYKWbRE
+ N7dQmKiBy9Nvqbfr7OYkAJO4pjNgjCFKcSRg9llou792CGEhrPQUudSSQ0+UOw9VB4GHCK9gLD
+ jDtiiKfXBOGUKLbh9J2zDc5PPF859mB58vj1Kat1+TPvXTAok2Eo674yreZ6uSCPe9pE6saJJf
+ 0PuP6QZagpV2rbOc2fUD7Qsyxv+n74tCAEAAA==
+X-Change-ID: 20260102-airoha-ba-memory-region-58d924371382
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+X-Mailer: b4 0.14.2
 
-On Thu, Jan 8, 2026 at 1:09=E2=80=AFAM Andrew Jeffery
-<andrew@codeconstruct.com.au> wrote:
->
-> On Mon, 2026-01-05 at 13:32 -0600, Rob Herring (Arm) wrote:
-> > "device_type" is required for memory nodes, but is missing on Nuvoton
-> > npcm845-evb.
-> >
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> >  arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts b/arch=
-/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-> > index 2638ee1c3846..5edf5d13342d 100644
-> > --- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-> > +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-> > @@ -17,6 +17,7 @@ chosen {
-> >       };
-> >
-> >       memory@0 {
-> > +             device_type =3D "memory";
-> >               reg =3D <0x0 0x0 0x0 0x40000000>;
-> >       };
-> >
->
-> Hmm, we have quite a few other offenders under arch/arm/boot/dts/aspeed
-> too. I expect this should be caught by CHECK_DTBS=3Dy?
->
-> Digging back through my build archives, warnings have cropped up, but
-> only for when I'm building the arm64 or arm multi_v{5,7} defconfigsm
-> and seemingly not the aspeed_g5 defconfig.
->
-> executions/2024Y/2024Y08m/2024Y08m13d10H09M/20240812145816.3301570-1-tmai=
-mon77@gmail.com.md:      /home/andrew/src/kernel.org/linux/openbmc/build.np=
-cm/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /: memory: 'device_=
-type' is a required property
-> executions/2025Y/2025Y04m/2025Y04m03d21H04M/baseline-build:/home/andrew/s=
-rc/kernel.org/linux/origin/build.multi_v5/arch/arm/boot/dts/nuvoton/nuvoton=
--npcm750-evb.dtb: /: memory: False schema does not allow {'device_type': ['=
-memory'], 'reg': [[0, 536870912]]}
-> executions/2025Y/2025Y04m/2025Y04m04d00H57M/baseline-build:/home/andrew/s=
-rc/kernel.org/linux/origin/build.multi_v5/arch/arm/boot/dts/nuvoton/nuvoton=
--npcm750-evb.dtb: /: memory: False schema does not allow {'device_type': ['=
-memory'], 'reg': [[0, 536870912]]}
-> executions/2025Y/2025Y04m/2025Y04m04d01H10M/baseline-build:/home/andrew/s=
-rc/kernel.org/linux/origin/build.multi_v5/arch/arm/boot/dts/nuvoton/nuvoton=
--npcm750-evb.dtb: /: memory: False schema does not allow {'device_type': ['=
-memory'], 'reg': [[0, 536870912]]}
-> executions/2025Y/2025Y04m/2025Y04m08d10H18M/baseline-build:/home/andrew/s=
-rc/kernel.org/linux/origin/build.multi_v7/arch/arm/boot/dts/nuvoton/nuvoton=
--npcm750-evb.dtb: /: memory: False schema does not allow {'device_type': ['=
-memory'], 'reg': [[0, 536870912]]}
+This is a preliminary series in order to enable NPU offloading for
+MT7996 (Eagle) chipset.
 
-> executions/2025Y/2025Y07m/2025Y07m21d13H58M/baseline-build:/home/andrew/s=
-rc/kernel.org/linux/origin/build.arm.multi_v7/arch/arm/boot/dts/nuvoton/nuv=
-oton-npcm750-evb.dtb: / (nuvoton,npcm750-evb): memory: False schema does no=
-t allow {'device_type': ['memory'], 'reg': [[0, 536870912]]}
+---
+Changes in v3:
+- Add missing minItems for memory-region-names in airoha,en7581-npu.yaml
+- Link to v2: https://lore.kernel.org/r/20260107-airoha-ba-memory-region-v2-0-d8195fc66731@kernel.org
 
-There's a number of problems on arm32 /memory nodes. The main one is
-the lack of unit-address, but that can't necessarily be fixed because
-bootloaders may depend on finding a /memory node. That unfortunately
-includes our own ATAGS to FDT zImage code. If you know these platforms
-don't have those issues, then yes, please update them.
+Changes in v2:
+- Remork memory-region entry in airoha,en7581-npu.yaml
+- Link to v1: https://lore.kernel.org/r/20260105-airoha-ba-memory-region-v1-0-5b07a737c7a7@kernel.org
 
-Rob
+---
+Lorenzo Bianconi (2):
+      dt-bindings: net: airoha: npu: Add BA memory region
+      net: airoha: npu: Init BA memory region if provided via DTS
+
+ .../devicetree/bindings/net/airoha,en7581-npu.yaml  | 21 +++++++++++----------
+ drivers/net/ethernet/airoha/airoha_npu.c            |  8 ++++++++
+ 2 files changed, 19 insertions(+), 10 deletions(-)
+---
+base-commit: fd1de45ad24f24cf0aedee0f64e668674a9bd6c9
+change-id: 20260102-airoha-ba-memory-region-58d924371382
+
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo@kernel.org>
+
 
