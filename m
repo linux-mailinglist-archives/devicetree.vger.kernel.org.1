@@ -1,200 +1,224 @@
-Return-Path: <devicetree+bounces-252651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E19D0207A
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:08:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B65CD01F4D
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:54:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD8BA310120C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:52:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B5C74305E3EC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:48:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6101C365A07;
-	Thu,  8 Jan 2026 08:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4831346A1D;
+	Thu,  8 Jan 2026 08:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e39SOX3h";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JmKMQfko"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hzKqn4Fe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B39234D4DA
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7861E2DB7BB
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:49:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767861424; cv=none; b=AZc+oC4cItWQn7UR9T220SR4Kr//0iDA8zKq45fj3gtoUjBmWLZGAt8zHN/4eii+BG+mfbRa4gKQetofO1K/O+BberIG1wqyskc1zwbywR5oJFcVL63fR3RLBP7OaHZI0NhWNOUqcgKj/03lhr6/0TpunSKMQ7ArJVMmeCH1N/w=
+	t=1767862191; cv=none; b=NQqTLCyqZBQqjY6vG7W+6LphmfiLt7zJd+0klRSNSZ2+VdNOJPIAgJOz3bvglbypR/ueJEGS1C7YOy83cb0rA+AlzBkuiq3/9gAGr7eutK4quWfGIZBGIrsTMBKfBe5sDFcbyFvSngmm0ouGageYqvJCdmZcjwKtO0r+XPIrsBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767861424; c=relaxed/simple;
-	bh=ZWPQtEfuH8UxyooPW+VVMcCXbhPGC0MHcCoU9e8N7Xg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KbvQmTVYCAgQwN0ZZMR0GnE4J9+Ksca7695/VCBNm0QFuX6gYELC2lmMNoNdTGbst68Upz2u6b3iso8dAgKn7X8AeAD0azCcAcOebMGV0tgZE1jq07gLYkyyc3Z0UI3PKFLZ+WLgT5TPV7gCMKLp9/BFdqnf6t8zZ3sBg6oe08k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e39SOX3h; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JmKMQfko; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6087VOg91837908
-	for <devicetree@vger.kernel.org>; Thu, 8 Jan 2026 08:36:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	CTYkMR7xz3gkF8DeE6cwDcRKpU+RkFDd6XJYj6feXs8=; b=e39SOX3hqlhsgBov
-	2zhYNcpPw+K4LItv4gL2syck03pFC9BcijJbizIHCInq3bsOX90u/LePgEDitCvL
-	aYYJuqRoT8JEeXGOi2cWIFfrP3Iu+DBHThQHpblgr0m8a29qSv6bTURLVBUMPpxI
-	ejfSwHiSyV9S6/JdwwUAKN39RfRN6PGpvct4zPz8VvAArpSk1yK2jX9et+ouJOno
-	G+3dak7i5u0T6ip0avy3nM5+3+yCxIhEt4s+fPmYNgIEb+msSd1NJTRwPvpuSKCQ
-	TpvyDSXxqdRhEd7xtscEbawotXfZPgbeLPuNyMx6Wn5fa7anCXttjGeOJnA3VDh9
-	HFVrhw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bj89205v8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 08:36:53 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c231297839so103898485a.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:36:53 -0800 (PST)
+	s=arc-20240116; t=1767862191; c=relaxed/simple;
+	bh=8MGRzUW+GvDUSmQWdgJKcb/cSUFhK98oTyOJATHm2MI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UweAfXVYLCvpKvASM6Tc6kLW7Q/PwvEfYe8soU7cfPwb727XMTpgGtZELANLdrJsvBz62CQoKlzeG6mcXa2vVyDVbJu0zd/HGPuEMZVowLdXt0v6czum9md+j6no+tIMyaHXiTO+hQQvpIN+iEnLdfsJjNgr/PtHWnvgiCznSEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hzKqn4Fe; arc=none smtp.client-ip=209.85.160.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-4fc42188805so31204471cf.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:49:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767861413; x=1768466213; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CTYkMR7xz3gkF8DeE6cwDcRKpU+RkFDd6XJYj6feXs8=;
-        b=JmKMQfkoajDEyBmsujaOyLb0QsxFBzCBeBC0Jn5soZFOuR9MzId5a77IyWcaCPaSCQ
-         OfwBmMm8TW3dhfw9pMMWNED6ZnhdJMZmwYWfCk2wzTUHdicteUE+5B8xe5JDA55I3XNE
-         0owlebLIcG0Ye5lpCbshnN+6k0A7IS0LmZocN95vV+wPBxohHA9Ruxva+EyZlQMKOGQB
-         NasGZhrT1k92HN8YZGWvY/bOxZ4L+Lz7L8BglNflzJk3MSsATXZQ3IGqzbcqNVbjMbH4
-         KzXbbgo6cQjWGbRLwHdy1At7GFvkLLKFKXPJ2tsvEbfU472Rm/2l5MiKkAx5/G98vVV4
-         gxog==
+        d=gmail.com; s=20230601; t=1767862183; x=1768466983; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X+mR41nzWCIkR7vEalH2Z/Nd2Y2pgD8cS0T18/wjMnw=;
+        b=hzKqn4FeS6OJYAd2hKAEKiIoZTMAamzeQO9k4Ab5tl+FlK1ad2HpTUJLfysI6bPAqK
+         2lF/Y4xQXMVY7TwRnq65n6/OdicKr0sgvzdOm5yYB9PbNAKglcQCmfBRzPJLpgydPTng
+         RI1puUh+o5zG5NfVrbm403z5o/a9+vxvHlUt63rLYHNELYD2t18y6tTB1m6W2/LiVKpr
+         NqvsBQ+6D1X68kcjqKipIzLYzlTzhIGt+GsfLa8R61eXDb6bUaWe9LcnV4AtXiBjSm+w
+         LNXkjG4fOBBt9+owo9wBC8kERW6StQ3cZnRPEY10ORSiSPkWZ2Vw6TJC2w5IW7jqKN8Q
+         mWNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767861413; x=1768466213;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CTYkMR7xz3gkF8DeE6cwDcRKpU+RkFDd6XJYj6feXs8=;
-        b=kKU7Ep/c8A8q1ONfCwZhDl9rXEWlU4lSydfvjpNUIaUrtQ8qR9O0L/GkApoTFHpR96
-         979alYQTd6vOrMKcLMQakVrMjpNCkcBLmuQbekjKhVwW9h5Y2VIIgTu/ha4iTGbnZTOr
-         8iZ3WxCgD5R0evMBi6pvAAP/pQ/MIRYzPaa8KIA7AZrnmFRq+1nw+6vKLc9WahVeMXy6
-         F7+JkunsgpR+sWiFoob33DP/UlBvzcM4g76EWv+uoYvnR2fZB8byGfvqGMaFkoQwCfc9
-         eFWTImPoxeY1UN8nKyOs6KeZDWDkLbR6Ba83iJ8YoVBqFvFX+t4kfG2r0eNd85y0F202
-         m0EA==
-X-Forwarded-Encrypted: i=1; AJvYcCXPsDva2YA8sA3278lZmZsAYKy5w4Qm7q6L0Lq+Hrpb7xf59WZVJAgzuPbnPiMe1oOz+512mIyoVE3m@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWmbLAHCQJlcicakscV+v/u0wJtkkjENUzPlCICEukdAaKbKCN
-	yg112luVMTV9TPOPsFGjiNMGXU/cksSP9DFQvzYeSzOeljNnNV+xhCQCXkAs+4gkmS/BVXVhphl
-	5/xba5Xm1ADNOIHfabS/bUBu7DsUSx7QaLpp2dR7KY1CwTqFPT4rXAHH5+tTB8Zkv
-X-Gm-Gg: AY/fxX4t3+Uj5GR9LL0PPGNsH0sTO9Et6EGhw9vqsTrvBfcfGuxNsWm2U/XBNRSogCz
-	EF06ugUcQcHFAJANztBrruDpNPQrjmRwfrCxqybx3SgLWT/3XZsB9ditdXhOJgtUv6b8cYXWN/o
-	PkGtlpGwixcuhDCyTYUs+szrxT2xRv7nXV4rvav0PXI1dNU8MH+OgY9pw+KCQlS9qy/0efP2zhF
-	UdCMYl1i/HNpjXb1reCVjY0U0kzADyCB7t/I+ZUslhzcn6dkbbnYD0W2X5ZIzgltNOiFNcwdQCe
-	qeE+FR81wNMPFiGNgy3wY/Wt4O8M/krTPzAEOIFg37ZwoaYR4wtZVUaxaJW5yaa+Xc9EOcbC09D
-	RUBvZq3u/1a1poYvi3v81K30q6bkhi7Pb+JEtSYybs02W/XwlOSO6ug/Ugxbse9Gr3Eo=
-X-Received: by 2002:a05:620a:40c2:b0:8a3:d644:6930 with SMTP id af79cd13be357-8c3893a11a8mr526597785a.5.1767861412547;
-        Thu, 08 Jan 2026 00:36:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFD4aMxeE3c1H2Q2++mWBFTI86MgR9CL/2fTHJtpaEHuAcSdl7Wh34p2mHBfT46XOdc3dNojA==
-X-Received: by 2002:a05:620a:40c2:b0:8a3:d644:6930 with SMTP id af79cd13be357-8c3893a11a8mr526595785a.5.1767861412072;
-        Thu, 08 Jan 2026 00:36:52 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507bf6d683sm6954708a12.34.2026.01.08.00.36.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 00:36:51 -0800 (PST)
-Message-ID: <4d95232c-f59a-42c3-9eb4-934b58429d25@oss.qualcomm.com>
-Date: Thu, 8 Jan 2026 09:36:49 +0100
+        d=1e100.net; s=20230601; t=1767862183; x=1768466983;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=X+mR41nzWCIkR7vEalH2Z/Nd2Y2pgD8cS0T18/wjMnw=;
+        b=jgZvC4Gtsv2zMpw3R8NPhoQtitVmQvUHubD3FZxcIJZQMnvYiVK9X/cU7KvO5sQR+J
+         zpE1NC+yFumk/pMEymtKMXgEF7BdTJncuNPrYMJVC29WeLKEVTVj78P6wW3JSkYHEocZ
+         WQdQbnRJ1GFalOPiVdPDzCh/CpqUrpM+sRn3c810fxMJrT4Zo0pGWBJNfsfslx/CmaR5
+         G53fkxslJ/ZC0DLDbQyqthqJ+yZvMbEkfJEmodGNRDSLuxNOMakxj23Gfdmy0/dWCh+q
+         1fF4D8nemu5dR5xwxXOH5BXY8RBmFIMrUGfD6FppZEnUcsj3YQeJUlZwPCig8HVdL73s
+         D4WQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXYVSSEpKe/HWWn3KPIFxRsCYN/0u1UySLkFayrG+1p4K5fW7KdDplXyWv/l27pjgfpy+kRGP5mL3wY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbtzEMlHJvhzfUVUUaJZEUwomFSVTAtdS3ge+7/tGnsdtfAoyb
+	ykntYSlO72RvwJrCz1YR6r0E62ptZUjz1afn8Yu0hMKFj//w9o2Wm5dMSx4qBjqC4wL5q6NOMNH
+	6XgfPyZ3Z7C/rxhfN4QM7kwOXBQ9h0Kg=
+X-Gm-Gg: AY/fxX5V6zqpxQEVtZv40bumSeG2a5GfaTmoigFLWDQiWOUhn0u6mBv88FL/kBveuPY
+	RsoUem5P+kuUHQ88xXQqhJMELSlbvWY3m7xjwzlTr3NQnzhgv0Y+RFt3E1OhR8Oi/1aGqywZgCL
+	krlKQ/hYeqa4XolJMVKa1HlfOOZOvZtSasVaBfn/oupEndmMaC42N1WSDmmNnH8VujQ44fS2ZZf
+	QGXpvRD+/8OSTSqzfJ6/+2OBlCQlLaH82JG5fslYUPxSOgWwZbhs9fZK3hiIZ7Dagg8qy0a70mj
+	HX1w5ydk+lcSIZN40nsiuCJFtQht
+X-Google-Smtp-Source: AGHT+IE/YI18F1nhJhEFmTsO58DLq0QMKXZtevsfEeQsCPnd9cic8/shsfNP/db84QRndLqHAtrqtJq7ITmw6U4bhhE=
+X-Received: by 2002:a05:622a:156:b0:4f1:b3cc:2cec with SMTP id
+ d75a77b69052e-4ffb499cc01mr73331881cf.52.1767862182928; Thu, 08 Jan 2026
+ 00:49:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 5/5] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: tessolveupstream@gmail.com, andersson@kernel.org, konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251230130227.3503590-1-tessolveupstream@gmail.com>
- <20251230130227.3503590-6-tessolveupstream@gmail.com>
- <30ee8541-3ec2-49ac-8fe0-987cdc5b16e7@oss.qualcomm.com>
- <14613f89-6be0-4eb3-beb5-375ab008a313@gmail.com>
- <c3492b90-bb48-4584-99fd-b1b6832d22ff@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <c3492b90-bb48-4584-99fd-b1b6832d22ff@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=M45A6iws c=1 sm=1 tr=0 ts=695f6ca5 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=pGLkceISAAAA:8 a=qqEUINORgcf7CWWjMcEA:9
- a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-ORIG-GUID: o5d6sdHVwplp-tOGSMjxipFcyKLpVcU_
-X-Proofpoint-GUID: o5d6sdHVwplp-tOGSMjxipFcyKLpVcU_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDA1OCBTYWx0ZWRfX8OBJXF++HPLi
- uSnBqj/xXV0BI3eLga9rPOeG6ciCGSRKyG/92THlZJJojmNLDsvlryrD2wr3b3tJ8JpH3OnAY6V
- Fc1YQwgnYz3vDvQzBfsgUVwIjbzCl/F2tcv84HgAoWk3M29LZJJy2ICHoSB3Ey+mPM0C+hqAWYr
- 1SFZgPwbFBhoAQ6+vODLPNT8IMqNtsWAEe1pWdqITsUTJ1fH2XwxAbjEVPC3c7SuHTj0oiW5rX+
- Sc9uop166z6m0uhqr/GadU0eb54nFNTwue87/3DOWI9SkJpQu8ZMP18SblfeA1vefy4Q5A20iVx
- D5YZoWNtAJ8osPn/BHSSxdzpWwNtuarYYi1b9HqEab3ZLgch3wBTAiWwJQ5Xv9HBWtf5Fj4Ah0b
- P350HU7lE63tdcyLltJPMxO13GYtGewRv++fydDjHDXzIYoc8cTCpuyUqD8DO453H6uQO3Ncpsi
- ttQxzN+NwVUhfZplMzQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-08_01,2026-01-07_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 bulkscore=0
- phishscore=0 suspectscore=0 clxscore=1015 spamscore=0 malwarescore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601080058
+References: <20260107070322.323-1-kernel@airkyi.com> <20260107070322.323-3-kernel@airkyi.com>
+ <b5a3470c-aa03-42d0-a575-b705f709f8e6@lunn.ch> <CABjd4YzsjZXe16XWgrHRG5shNA_DQJF45i1roahvfAfV4xdU0Q@mail.gmail.com>
+ <a545fec0-cb30-489a-b5e6-4ee87dcab41c@rock-chips.com> <5FFFBA7FAF5745A7+e0381969-800a-4bf6-9aac-81cffa3469a1@airkyi.com>
+ <CABjd4YxwD_q_FrEuPw_GY+vG6700Vd_weWqdcFn2C3V0fqpO-Q@mail.gmail.com> <6f55c325-6b2a-4fe9-a487-5f1ae7969d9d@rock-chips.com>
+In-Reply-To: <6f55c325-6b2a-4fe9-a487-5f1ae7969d9d@rock-chips.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Thu, 8 Jan 2026 12:49:34 +0400
+X-Gm-Features: AQt7F2r_KkIckRFZ0j1WkhT1Wr9YTLBcdSnJhRs0ku47wXCJ9eTlpAtdn-fs5LY
+Message-ID: <CABjd4YyMj=1pQBwqo9suu0W_HD=MG=zb5wo9dheguMBxi+oNqA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Chaoyi Chen <kernel@airkyi.com>, Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Quentin Schulz <quentin.schulz@cherry.de>, 
+	Kever Yang <kever.yang@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	John Clark <inindev@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>, Jimmy Hon <honyuenkwun@gmail.com>, 
+	Dragan Simic <dsimic@manjaro.org>, Michael Riesch <michael.riesch@collabora.com>, 
+	Peter Robinson <pbrobinson@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, Andy Yan <andy.yan@rock-chips.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 1/8/26 8:36 AM, tessolveupstream@gmail.com wrote:
-> 
-> 
-> On 04-01-2026 19:16, tessolveupstream@gmail.com wrote:
->>
->>
->> On 30-12-2025 20:21, Konrad Dybcio wrote:
->>> On 12/30/25 2:02 PM, Sudarshan Shetty wrote:
->>>> Add the device tree for the QCS615-based Talos EVK platform. The
->>>> platform is composed of a System-on-Module following the SMARC
->>>> standard, and a Carrier Board.
->>>>
->>>> The Carrier Board supports several display configurations, HDMI and
->>>> LVDS. Both configurations use the same base hardware, with the display
->>>> selection controlled by a DIP switch.
->>>
->>> [...]
->>>
->>>> +++ b/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
->>>> @@ -0,0 +1,126 @@
->>>> +// SPDX-License-Identifier: BSD-3-Clause
->>>> +/*
->>>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->>>> + */
->>>> +/dts-v1/;
->>>> +/plugin/;
->>>> +
->>>> +#include <dt-bindings/gpio/gpio.h>
->>>> +
->>>> +&{/} {
->>>> +	backlight: backlight {
->>>> +		compatible = "gpio-backlight";
->>>> +		gpios = <&tlmm 59 GPIO_ACTIVE_HIGH>,
->>>> +			<&tlmm 115 GPIO_ACTIVE_HIGH>;
->>>> +		default-on;
->>>> +	};
->>>> +
->>>> +	hdmi_connector: hdmi-out {
->>>> +		status = "disabled";
->>>> +	};
->>>
->>> This should be a &label_reference
->>>
->>
->> Okay, will add it in the next patch.
-> 
-> I noticed that in several existing .dtso files, the root node is
-> commonly referenced as &{/}. In your comment, you suggested using &label_reference. Could you please clarify which specific label or 
-> node you would like me to update here.
+On Thu, Jan 8, 2026 at 12:38=E2=80=AFPM Chaoyi Chen <chaoyi.chen@rock-chips=
+.com> wrote:
+>
+> On 1/8/2026 4:11 PM, Alexey Charkov wrote:
+> > On Thu, Jan 8, 2026 at 12:02=E2=80=AFPM Chaoyi Chen <kernel@airkyi.com>=
+ wrote:
+> >>
+> >> On 1/8/2026 3:42 PM, Chaoyi Chen wrote:
+> >>> Hello Alexey, Andrew,
+> >>>
+> >>> On 1/8/2026 2:53 PM, Alexey Charkov wrote:
+> >>>> On Wed, Jan 7, 2026 at 10:18=E2=80=AFPM Andrew Lunn <andrew@lunn.ch>=
+ wrote:
+> >>>>>
+> >>>>>> +&gmac0 {
+> >>>>>> +     clock_in_out =3D "output";
+> >>>>>> +     phy-mode =3D "rgmii-rxid";
+> >>>>>
+> >>>>> rgmii-rxid is odd. Does the PCB really have an extra long TX clock
+> >>>>> line, but a short RX clock line?
+> >>>>>
+> >>>>> Try changing this to rgmii-id, and drop the tx_delay property.
+> >>>>
+> >>>> Actually it would be great if Rockchip could clarify the delay
+> >>>> duration introduced by a single delay element in GMAC-IOMUX delay
+> >>>> lines, which are controlled in the GMAC driver by the {tx,rx}_delay
+> >>>> properties. Maybe we could then switch to using
+> >>>> {tx,rx}_internal_delay_ps for fine-tuning the delays on the GMAC sid=
+e
+> >>>> as envisaged in DT bindings [1], and use phy-mode =3D "rgmii-id"
+> >>>> throughout. Chaoyi, any chance you could ask around in your hardware
+> >>>> team?
+> >>>>
+> >>>> Currently though removing the delays at GMAC side altogether causes
+> >>>> unstable link operation - see [2] for example.
+> >>>>
+> >>>> [1] https://github.com/torvalds/linux/blob/master/Documentation/devi=
+cetree/bindings/net/ethernet-controller.yaml#L342-L347
+> >>>> [2] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/l=
+inux/-/commit/372f3e9ae62cc62cdf2543391ea57be6bb548a0c
+> >>>
+> >>> Sorry, this problem has been discussed many times before. It's becaus=
+e
+> >>> the gmac on the Rockchip platform currently relies on setting the
+> >>> corresponding delay via phy-mode [3].
+> >>>
+> >>> [3] https://lore.kernel.org/all/mqoyjn7mnq6tmt6n6oev4wa3herjaxlupml2f=
+mcampwiajvj4a@r5zs4d3jdm5p/
+> >>>
+> >>> The delay introduced by the delay line is not absolute. In reality,
+> >>> it depends on factors such as the chip's design and process technolog=
+y.
+> >>>
+> >>> And for RK3576, you can assume that:
+> >>>
+> >>>       time(ns) =3D 0.0579 * delay_line_count + 0.105
+> >>>
+> >>> For example, tx_delay =3D <0x20> means:
+> >>>
+> >>>       time =3D 0.0579 * 0x20 + 0.105 ns =3D 1.9578 ns
+> >>>
+> >>> And I believe {tx,rx}_internal_delay_ps is indeed a good idea.
+> >>> I'll try to add them in v3. Thanks.
+> >>>
+> >>
+> >> I've also see some dt that use {tx,rx}_internal_delay_ps inside the PH=
+Y,
+> >> and compared to doing it in the MAC, which one is the better choice?
+> >
+> > Your PHY defaults to 1950ps in rgmii-id [1], so adding anything on top
+> > of that on GMAC side would land you with a longer total TX delay than
+> > you currently get according to the coefficients you've just posted
+> > (1784.1ps). I would say go for "tx-internal-delay-ps =3D <1800>" on the
+> > PHY side for the closest match.
+> >
+> > [1] https://github.com/torvalds/linux/blob/master/Documentation/devicet=
+ree/bindings/net/motorcomm%2Cyt8xxx.yaml#L36
+>
+> Ah, I thought it was something like this:
+>
+> &gmac0 {
+>         phy-mode =3D "rgmii";
 
-&{/} must be used for root nodes in a .dtso (for it to compile). I meant
-using a &label_reference for hdmi_connector
+phy-mode =3D "rgmii-id";
 
-Konrad
+>         tx-internal-delay-ps =3D <1784>;
+
+Drop this, as recommended in the lengthy note at the bottom of the
+binding doc [1] (the GMAC shouldn't be adding a delay that is close to
+2ns).
+
+[1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/net/ethernet-controller.yaml#L342-L354
+
+> };
+>
+> But what you actually said was this:
+>
+> &mdio1 {
+
+&mdio0 I guess (but same applies to gmac1+mdio1)
+
+>         rgmii_phy: ethernet-phy@1 {
+>                 compatible =3D "ethernet-phy-ieee802.3-c22";
+>                 reg =3D <0x1>;
+>                 tx-internal-delay-ps =3D <1784>;
+
+The PHY binding [2] says it can't accept arbitrary values here - only
+150ps increments. So you'll need either 1650 or 1800 to get close to
+your calculated value above.
+
+[2] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/net/motorcomm%2Cyt8xxx.yaml#L36
+
+>         };
+> };
+>
+> These two `tx-internal-delay-ps` things shouldn't be the same, right?
+
+They add up, which you don't need in this case AFAICT.
+
+Best regards,
+Alexey
 
