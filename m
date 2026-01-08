@@ -1,134 +1,158 @@
-Return-Path: <devicetree+bounces-252608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DE90D015A4
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 08:11:54 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D88FBD01598
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 08:09:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 18DDE300726E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 07:09:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 78CBB3000B75
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 07:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24FDC329E4F;
-	Thu,  8 Jan 2026 07:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6926D313264;
+	Thu,  8 Jan 2026 07:09:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SkW91Q6o"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="eGoDlgD/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA8A313264
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 07:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CBD239E80;
+	Thu,  8 Jan 2026 07:09:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767856142; cv=none; b=nqSGsbdCXWKxx4VrLI4A4mYEtLYyg77feSAEDAJ8TJwaG8Iv6KlMZo+jK9troxABXQXkqvi7I+loZkXlqCQ0IRs0Yz4biN/pXmlfAw0iVFPzaGbX2ERqJMVN8a/MwfAN1lWhzxUlc622FUTNf0yjJvQuXgQPaZLn/CHUA2fdJiI=
+	t=1767856164; cv=none; b=gaNWwpEmWTiS90mPTaB4nMJLljRV2HqqFZAtst4OpyPlvakJeAbsZqQCtfg6t6038uliu3IonGBWZQYByNxukurjtnqnYE7xPBbuiHtqmda0zRJiTR22x++3yyyO5UD2z7ek6Zo+Pggb3CyXjLCisp2U4sbjgoF1U2OTDKnWUB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767856142; c=relaxed/simple;
-	bh=QtBmZt6mefLBB29zYtfTxmMzVNAjncXXGV3XaqKxAUE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CZTiD8Uy1fYNHXQ3ejd1BLMZ2IjI4S2kOb3XrFD4+x9Ca1bA06RM2syhpCM7w71aHWEDOoiwwf8EJMgLO/Lh3gMjStJcP7MCWw5AnYlBZK7qfR58k2qKlRcYS4VCmOgTzPCfPcVN5MASqwLiUV+EcoWETdDUzvUWIZCt/flBPCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SkW91Q6o; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6505d141d02so4483656a12.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 23:09:00 -0800 (PST)
+	s=arc-20240116; t=1767856164; c=relaxed/simple;
+	bh=zbtJ0dIyTp50kbicmALCheWv8yqpjoI/Af++CVyyeU8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=OyFF/OeDG0gTwY1BgI3URTXczr8huilzmwhOIOpBPPs7IOazLwdqIlpYwi4eZfdh3UpfvKSVnkasoYBRhvkZHjsY1QvVA/2Gh8W4RQEN2Y5pZHlrEk+sHxK/aOIRM2fXvQiUGHVHm+KYKluBTrcBWTMIxcA+Js2a5kEz7gaYKzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=eGoDlgD/; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767856139; x=1768460939; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=thTQB76dgPyskB7sNYUZqWzvYQMMFkWo0xe6mJSSPOo=;
-        b=SkW91Q6op2P918bHOJRTdKYVa0FOfH2R7vJ0b7KDD3W3BItPUpAhG/Wd6m2mh6R9ca
-         6uApMZ7PGnT3aRs4NcisoEzqO1NPzWEcWph/H/9Ef9WDllxFcOReCApqPMJBLpi+icS0
-         iX02NT9OFMj6OKlXrnlAm3cXplFwq8DlpKKFR8P0W0r4Jbb8nbIJWdieigB0pNL/tBFP
-         Y7NDU4jV6T8EQfW74qe8iT9oa2MtRye0h+/D6EhHnIAhu/YJYil+9E2sJ4CAPmS8jcWt
-         FeFBrwOcJrzn3jJM4XjSEcFJqP8nbWMCG0DOOmYlXwSvDdf2yVM5HTq8XYclwS0mQ5Jc
-         ozww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767856139; x=1768460939;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=thTQB76dgPyskB7sNYUZqWzvYQMMFkWo0xe6mJSSPOo=;
-        b=n0NVIKHOwJgqubArEm4ir54xL8XJiTuCvjk3vIDm4EN/NTU2ctQBrgZTv0Ug8wPJuA
-         pouTHe8cGLyFUi/to2o4fqh22FhYNffilSt0nLKG8bsDrTfAeKyJHXEw166KSqwLlm6D
-         OcQhuuIEVVANIWXcdgve2j6vEUGKXWjqYJIffH8kWKJkGLJQ2Wr0XhhMmtdx2iNLBEWT
-         ZxQWjDe2xDWq8gHrk1KXnZxYJyuXg+mGjObRMMABs5VMi2gcUDlGpOTMy1+O0fOAlAKK
-         ceFkGx7iXsxp+X3VqbuWVKz7qv4lRCNmuv/Q27lVrbUG+6wlkzLgPQUwkmwXQrzzsbe9
-         +kow==
-X-Forwarded-Encrypted: i=1; AJvYcCUOxfGzjH+4gTxk/t8ZUIV9S5ANcKiJXjRaFOkdQOHXmhyy5IiejbEa6j7D6CrBa3lJREFO2tXw8LSc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHPTA8Bl1B0lFxvdpYoGA5+5PxvlQcY69gcaBcrHCtEHjt5DqE
-	rKG/2IjhC7Q+Z7EU03qYHVS3XTXklTnwURJwt/8kwgB86PbnMtsR7ETz+T1RruQOWKeSVk5LeoV
-	b7SqCkXhNqMeQrPowDGANPBE0vWvEbMQ=
-X-Gm-Gg: AY/fxX4y3t8hgBusP2LT/Zc8BR+e8cCqUL0Fl61cRMsiPdBxEH653zLem9skCPyrkIu
-	8h4NvfN37eLFQuAxPhWzb/ERaXQdwNGFlYU92W+Ratp6GIJkdy04Rp2AJLlueOGqfVXTODiTdUG
-	TuK8bGCwSqg7cFVEjHFXWZHOJuIbkrPH/n0emG9+d+mf43G0KK2nZYP2yQpHfoKxdWzLhOqrfLZ
-	3ObiPx3BVMtpnDN7Wdq7eEaZKdi9GohdzUEtTedoAbkNAvELTtd6iC8W5kDpbFVhjE=
-X-Google-Smtp-Source: AGHT+IFmXcT/RJ6HZubhWjedng+hHTPSueTKrHqpeVlNJ+ZGzEvFI4lHW+npR1I0poqnrowNdGccMsb7LKtXr6O/0Es=
-X-Received: by 2002:a05:6402:1e90:b0:64b:bb79:96bb with SMTP id
- 4fb4d7f45d1cf-65097e6c1c6mr4178545a12.24.1767856138583; Wed, 07 Jan 2026
- 23:08:58 -0800 (PST)
+	d=codeconstruct.com.au; s=2022a; t=1767856160;
+	bh=8GWW+6oLxMPHa9OT+guxLScbnYBJSApZwZQX2MPCbhk=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=eGoDlgD/wJwCazsW1UU8xf5aDf6Iq5drgT1i7SptqL7SQB5b+iBx8qaEmmsZzwnxd
+	 a7ZkPrv65KyAs5/PJk4AKrxIr6bCpbHY4b63WIzbp0VViWz2sTUsGnhheG0cwDG9s7
+	 HJnvLPEGptRR1IUh8dwxtIK+rKE1+rPH5di3/ct16NnxwTweusNxIptfvMtufUsdN5
+	 ASc+sjcf0EtmgtsmMO2dAPgIA7jvvbN9Nemlof92lASkQlUW/+eeeqvXSvddH85QW+
+	 /QN8TDervAO2ybd7LicBgRLzAX1piiLZDfC/1TSI3svXGXEzjcNG59N6FiMmv86Y5I
+	 2esM0IPBGjcCA==
+Received: from [192.168.68.115] (unknown [180.150.112.60])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id A8E077C834;
+	Thu,  8 Jan 2026 15:09:19 +0800 (AWST)
+Message-ID: <7e20473324c8da16fa86f72af950b8e8eac92a1b.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] arm64: dts: nuvoton: Add missing "device_type" property
+ on memory node
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Avi Fishman <avifishman70@gmail.com>, Tomer
+ Maimon	 <tmaimon77@gmail.com>, Tali Perry <tali.perry1@gmail.com>, Patrick
+ Venture	 <venture@google.com>, Nancy Yuen <yuenn@google.com>, Benjamin Fair
+	 <benjaminfair@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>
+Date: Thu, 08 Jan 2026 17:39:19 +1030
+In-Reply-To: <20260105193232.3167128-1-robh@kernel.org>
+References: <20260105193232.3167128-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251215141603.6749-1-linux.amoon@gmail.com> <20251215141603.6749-2-linux.amoon@gmail.com>
- <3cd7943c-4d35-4ec9-8826-c20a5d213626@kernel.org> <CANAwSgR7UPrPSHB9RL5newKgWksyn4MoP03ykRQcP2eRSK2SXg@mail.gmail.com>
- <f0344520-3234-4285-b971-f8cd9955ba90@nvidia.com>
-In-Reply-To: <f0344520-3234-4285-b971-f8cd9955ba90@nvidia.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 8 Jan 2026 12:38:40 +0530
-X-Gm-Features: AQt7F2oHeG785F7Uu0lJ2eS0VjzE4iO4B-6pef7igv9JbvhMFoJQu85PknHRyfo
-Message-ID: <CANAwSgQbvN4g6Z4RRTzXbfy-nf+Wiq1Hv5NAoJiR1BqBAT--Lw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: PCI: Convert nvidia,tegra-pcie to DT schema
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, 
-	"open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	Mikko Perttunen <mperttunen@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
 
-Hi Jon,
+On Mon, 2026-01-05 at 13:32 -0600, Rob Herring (Arm) wrote:
+> "device_type" is required for memory nodes, but is missing on Nuvoton
+> npcm845-evb.
+>=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+> =C2=A0arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts | 1 +
+> =C2=A01 file changed, 1 insertion(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts b/arch/a=
+rm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+> index 2638ee1c3846..5edf5d13342d 100644
+> --- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+> @@ -17,6 +17,7 @@ chosen {
+> =C2=A0	};
+> =C2=A0
+> =C2=A0	memory@0 {
+> +		device_type =3D "memory";
+> =C2=A0		reg =3D <0x0 0x0 0x0 0x40000000>;
+> =C2=A0	};
+> =C2=A0
 
-Thanks for your review comments.
+Hmm, we have quite a few other offenders under arch/arm/boot/dts/aspeed
+too. I expect this should be caught by CHECK_DTBS=3Dy?
 
-On Fri, 2 Jan 2026 at 23:55, Jon Hunter <jonathanh@nvidia.com> wrote:
->
->
-> On 24/12/2025 12:41, Anand Moon wrote:
-> > Hi Krzysztof,
-> >
-> > Thanks for your review comments.
-> > On Tue, 16 Dec 2025 at 11:08, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >>
-> >> On 15/12/2025 15:15, Anand Moon wrote:
-> >>> Convert the existing text-based DT bindings documentation for the
-> >>> NVIDIA Tegra PCIe host controller to a DT schema format.
-> >>
-> >> You dropped several properties from the original schema without
-> >> explanation. That's a no-go. I don't see any reason of doing that, but
-> >> if you find such reason you must clearly document any change done to the
-> >> binding with reasoning.
-> >>
-> > Well, I have tried to address the review comments from Rob
-> > [1] https://lkml.org/lkml/2025/9/26/704
-> >
-> > Actually  /schemas/pci/pci-pci-bridge.yaml# covers most of the PCIe binding
-> > So I had not included them, as it would duplicate
->
-> FWICT you are missing all the Tegra specific power supplies and so those
-> will not be found in the above file. I have not checked if you are
-> missing others too.
->
-I will include this update in the next version.
-Please review the pending driver changes..
-> Jon
->
-Thanks
--Anand
+Digging back through my build archives, warnings have cropped up, but
+only for when I'm building the arm64 or arm multi_v{5,7} defconfigsm
+and seemingly not the aspeed_g5 defconfig.
+
+executions/2024Y/2024Y08m/2024Y08m13d10H09M/20240812145816.3301570-1-tmaimo=
+n77@gmail.com.md:      /home/andrew/src/kernel.org/linux/openbmc/build.npcm=
+/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /: memory: 'device_ty=
+pe' is a required property
+executions/2025Y/2025Y04m/2025Y04m03d21H04M/baseline-build:/home/andrew/src=
+/kernel.org/linux/origin/build.multi_v5/arch/arm/boot/dts/nuvoton/nuvoton-n=
+pcm750-evb.dtb: /: memory: False schema does not allow {'device_type': ['me=
+mory'], 'reg': [[0, 536870912]]}
+executions/2025Y/2025Y04m/2025Y04m04d00H57M/baseline-build:/home/andrew/src=
+/kernel.org/linux/origin/build.multi_v5/arch/arm/boot/dts/nuvoton/nuvoton-n=
+pcm750-evb.dtb: /: memory: False schema does not allow {'device_type': ['me=
+mory'], 'reg': [[0, 536870912]]}
+executions/2025Y/2025Y04m/2025Y04m04d01H10M/baseline-build:/home/andrew/src=
+/kernel.org/linux/origin/build.multi_v5/arch/arm/boot/dts/nuvoton/nuvoton-n=
+pcm750-evb.dtb: /: memory: False schema does not allow {'device_type': ['me=
+mory'], 'reg': [[0, 536870912]]}
+executions/2025Y/2025Y04m/2025Y04m08d10H18M/baseline-build:/home/andrew/src=
+/kernel.org/linux/origin/build.multi_v7/arch/arm/boot/dts/nuvoton/nuvoton-n=
+pcm750-evb.dtb: /: memory: False schema does not allow {'device_type': ['me=
+mory'], 'reg': [[0, 536870912]]}
+executions/2025Y/2025Y05m/2025Y05m07d11H43M/03-diff-ref-curr: /home/andrew/=
+src/kernel.org/linux/origin/build.arm64.default/arch/arm64/boot/dts/nuvoton=
+/nuvoton-npcm845-evb.dtb: /: memory@0: 'device_type' is a required property
+executions/2025Y/2025Y05m/2025Y05m07d11H43M/baseline-build:/home/andrew/src=
+/kernel.org/linux/origin/build.arm64.default/arch/arm64/boot/dts/nuvoton/nu=
+voton-npcm845-evb.dtb: /: memory@0: 'device_type' is a required property
+executions/2025Y/2025Y06m/2025Y06m13d11H17M/03-diff-ref-curr: /home/andrew/=
+src/kernel.org/linux/origin/build.arm64.default/arch/arm64/boot/dts/nuvoton=
+/nuvoton-npcm845-evb.dtb: / (nuvoton,npcm845-evb): memory@0: 'device_type' =
+is a required property
+executions/2025Y/2025Y06m/2025Y06m13d11H17M/baseline-build:/home/andrew/src=
+/kernel.org/linux/origin/build.arm64.default/arch/arm64/boot/dts/nuvoton/nu=
+voton-npcm845-evb.dtb: / (nuvoton,npcm845-evb): memory@0: 'device_type' is =
+a required property
+executions/2025Y/2025Y07m/2025Y07m21d10H53M/baseline-build:/home/andrew/src=
+/kernel.org/linux/origin/build.arm64.default/arch/arm64/boot/dts/nuvoton/nu=
+voton-npcm845-evb.dtb: / (nuvoton,npcm845-evb): memory@0: 'device_type' is =
+a required property
+executions/2025Y/2025Y07m/2025Y07m21d10H53M/make-dtbs-check: /home/andrew/s=
+rc/kernel.org/linux/origin/build.arm64.default/arch/arm64/boot/dts/nuvoton/=
+nuvoton-npcm845-evb.dtb: / (nuvoton,npcm845-evb): memory@0: 'device_type' i=
+s a required property
+executions/2025Y/2025Y07m/2025Y07m21d12H20M/baseline-build:/home/andrew/src=
+/kernel.org/linux/origin/build.arm64.default/arch/arm64/boot/dts/nuvoton/nu=
+voton-npcm845-evb.dtb: / (nuvoton,npcm845-evb): memory@0: 'device_type' is =
+a required property
+executions/2025Y/2025Y07m/2025Y07m21d12H20M/make-dtbs-check: /home/andrew/s=
+rc/kernel.org/linux/origin/build.arm64.default/arch/arm64/boot/dts/nuvoton/=
+nuvoton-npcm845-evb.dtb: / (nuvoton,npcm845-evb): memory@0: 'device_type' i=
+s a required property
+executions/2025Y/2025Y07m/2025Y07m21d13H58M/baseline-build:/home/andrew/src=
+/kernel.org/linux/origin/build.arm.multi_v7/arch/arm/boot/dts/nuvoton/nuvot=
+on-npcm750-evb.dtb: / (nuvoton,npcm750-evb): memory: False schema does not =
+allow {'device_type': ['memory'], 'reg': [[0, 536870912]]}
+
+I don't yet understand why that is, but I'll do some digging. I expect
+there will be some fixes to send once I figure it out.
+
+Andrew
 
