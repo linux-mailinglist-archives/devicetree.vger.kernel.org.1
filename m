@@ -1,97 +1,175 @@
-Return-Path: <devicetree+bounces-252877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2E0D03C65
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:21:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D350FD03AB4
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:09:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 77857304EB80
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:17:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0B3543012EB7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D14343451D4;
-	Thu,  8 Jan 2026 15:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F233026FA60;
+	Thu,  8 Jan 2026 15:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gDEZETrQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G4s2YCTw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8452327BF6;
-	Thu,  8 Jan 2026 15:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C1D26C39E
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767884741; cv=none; b=skxY24NuVgLr0A2pkWnxtAogDeDeenolGBvdgcJCKDFtLePpMbqA5KHnU7AL6oQF0ns7l9yfGL3b9j4qRB0fJw2gUzG9K9kkDAiwe3pKJCg71PQuFB328uD1VstR26n50W2uozlIsEUsn8P4BZv4Rhr/w+wOCbvFrbe9Q6+ILWc=
+	t=1767884893; cv=none; b=d4zs06C/Ej8ddmOqnk7ETo+OwzKYvc0npUMLEg3PmEBRNInfxgD8JJDveE2c8KFeJpsqpKTRCPvpXLuNIZrhzv3/h+KUqM1ehmD+FmXc05bLpXTlh0zScTfSW1wvsOvgvZ/R6j79FE7fPEAP5ANmRgG1tMDan6mioyOJ7i10cNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767884741; c=relaxed/simple;
-	bh=JhbaVv1PdLdceMg/5l3s3xkAwxQ3DqsArTD5uFDz5Zw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DuZHC7Fj+RB3QtJef8sD+UScl7w9jjKz42j/PWt6yCQMyewZHjO+GxrpBD0sCpypiXityzDIdoBWK+pxGa0NdvgPEF/229N8ksY7WUfG5MZ52xmjetUg/z95J66EI2I1it3LVmShlTpT+Aje7buLapLFhh51jOMmKptKyohB9Ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gDEZETrQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A3FBC16AAE;
-	Thu,  8 Jan 2026 15:05:40 +0000 (UTC)
+	s=arc-20240116; t=1767884893; c=relaxed/simple;
+	bh=39Z9S4WdE/PvsD7g4HhaCFW2OPS03zLo06BGT58/Sdg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GCC3763smGIkgubGM8g8XabfKimoHwi/Ywdpse0AwzN+40XRRKC8Z4unOuH60OJZ9g77hHsPtWJjtJ6CWw/bCyKtWDdINtCNd5/EfQ6LgRC6KjVXLp+YkEKLYd9Sir0kXrrgspBr3VDa9vAEEyEHwF5cxSPAuMIMQSES7R2qu54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G4s2YCTw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77E8FC116D0
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:08:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767884741;
-	bh=JhbaVv1PdLdceMg/5l3s3xkAwxQ3DqsArTD5uFDz5Zw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=gDEZETrQ+Z9UPMytldJRovzTnLSjacFXt+Q+B+cfeE+T5YAwNxLbuBmm5nknDN4MH
-	 Rw3oTLL05HaAM2aBlgpZoz9qcS9HLs0A75NgCBSx+0qUpvbJUwQTIbpBXSSBDPsEMU
-	 tQ0eB3FB1ZVHuO3qjursuCtgYn3GGM3rcmd+JmG9xlEeElXrxRSUiiRM53XeTHhULz
-	 cEMd00ikEDxwN0+znh3T3oFeK3heIx+wK8kHlGP0goiSbzSC7Fi0VVz0WpTZCEWWng
-	 didFwhkUaSJ/RiyaKH3KXjQ9FktKJmNlSDStvejhEelIwyOblIeGa1YnR8Sh28AmlL
-	 K36vWk2VSQkBg==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Thu, 08 Jan 2026 16:05:08 +0100
-Subject: [PATCH net-next v3 2/2] net: airoha: npu: Init BA memory region if
- provided via DTS
+	s=k20201202; t=1767884893;
+	bh=39Z9S4WdE/PvsD7g4HhaCFW2OPS03zLo06BGT58/Sdg=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=G4s2YCTwalIIEOa5+zNpraynj/0tm4IP0B4nWh1B8yEFVsk2q/4Nwsv9udsyPMb/V
+	 c2DO2apYh/CjwSMjCs/GFKynWKqfctOOJP6KTPot1qppd7LbMrXROq0hxcvzwvQYug
+	 gbDa6i9pWATYUX1E67v6srC0L0rFGdb0qk2RXH+dPDqmYfqT2ULqYl2m7iJb8TvW22
+	 0Iv4ktk6Y54LOfGHWKdahqYrTTBH9vq6aJnCj8p4vWkSJl+TSizIs5myGfq2YeVxMD
+	 qU871L9PFs1zSFfmyBQZGNRSvkUNcOwVXUaUaOQ9oAi7VSMKLK5wPCr1O6DH+MZ5QT
+	 kdU2zU/LkS7rw==
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-7c701097a75so1883733a34.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:08:13 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV5OUEHOcFGh5KZfd7bz7TvQJAnOBUbW+tS6AnH9+WDoLkZRKy+7OPbuYmNTTmsNSQyx27nYoo2vZOQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+AO/PZ+TVrDvYyY0ePUjJ4rcsE6vItUK1vYzKgHjdkkUDk13y
+	M24ehY+y7lE9DCCdjWJfzsVe4joqFD8XcBU/OvnHID5oLVrCHZOo7uWpzD9JQj6I9hPDovzBNP4
+	wC36VJz5Ato1WhYePrUYXWF61dORnh9Q=
+X-Google-Smtp-Source: AGHT+IH/gnEZYqIaFUUN6qjbp6n1QUe5qlNXozvSo/LvWHOByHxaNwk2S8ODoFI4rDHWqv0owwBmLR26/u3UOEkO0ho=
+X-Received: by 2002:a05:6820:6181:b0:65f:5d31:2965 with SMTP id
+ 006d021491bc7-65f5d313701mr1029748eaf.47.1767884892592; Thu, 08 Jan 2026
+ 07:08:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260108-airoha-ba-memory-region-v3-2-bf1814e5dcc4@kernel.org>
-References: <20260108-airoha-ba-memory-region-v3-0-bf1814e5dcc4@kernel.org>
-In-Reply-To: <20260108-airoha-ba-memory-region-v3-0-bf1814e5dcc4@kernel.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-X-Mailer: b4 0.14.2
+References: <20251225103616.3203473-1-wens@kernel.org> <20251225103616.3203473-5-wens@kernel.org>
+ <13929653.uLZWGnKmhe@jernej-laptop>
+In-Reply-To: <13929653.uLZWGnKmhe@jernej-laptop>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Thu, 8 Jan 2026 23:07:52 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65LzhdXfX16HTgGbC7OYkuX=vqCzB65=BqD4i1SiCQeRw@mail.gmail.com>
+X-Gm-Features: AQt7F2r3aAZUypwXBa9lAFiH8eexcqiOW8WUO-M-nGoH39uZtjTr8DirPSqIr98
+Message-ID: <CAGb2v65LzhdXfX16HTgGbC7OYkuX=vqCzB65=BqD4i1SiCQeRw@mail.gmail.com>
+Subject: Re: [PATCH 4/4] ARM: dts: allwinner: Replace status "failed" with "fail"
+To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej@kernel.org>, 
+	Samuel Holland <samuel@sholland.org>, Linus Walleij <linusw@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, devicetree@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-gpio@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Initialize NPU Block Ack memory region if reserved via DTS.
-Block Ack memory region is used by NPU MT7996 (Eagle) offloading.
+On Fri, Dec 26, 2025 at 2:49=E2=80=AFAM Jernej =C5=A0krabec <jernej.skrabec=
+@gmail.com> wrote:
+>
+> Dne =C4=8Detrtek, 25. december 2025 ob 11:36:15 Srednjeevropski standardn=
+i =C4=8Das je Chen-Yu Tsai napisal(a):
+> > The device tree bindings specify using "fail", not "failed".
+> >
+> > Fix up all the ones that are wrong.
+>
+> While patch indeed fixes the issue, I wonder if "fail" is proper value?
+> According to specs, it means that device needs repair. What about just
+> keep "disabled"?
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/net/ethernet/airoha/airoha_npu.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+"disabled" isn't right either, as that means its disconnected or not used.
+These are definitely connected.
 
-diff --git a/drivers/net/ethernet/airoha/airoha_npu.c b/drivers/net/ethernet/airoha/airoha_npu.c
-index 22f72c146065998d5450477f664ed308b1569aa3..a56b3780bb627cc393b94210b6b5c72cc95baea3 100644
---- a/drivers/net/ethernet/airoha/airoha_npu.c
-+++ b/drivers/net/ethernet/airoha/airoha_npu.c
-@@ -519,6 +519,14 @@ static int airoha_npu_wlan_init_memory(struct airoha_npu *npu)
- 	if (err)
- 		return err;
- 
-+	if (of_property_match_string(npu->dev->of_node, "memory-region-names",
-+				     "ba") >= 0) {
-+		cmd = WLAN_FUNC_SET_WAIT_DRAM_BA_NODE_ADDR;
-+		err = airoha_npu_wlan_set_reserved_memory(npu, 0, "ba", cmd);
-+		if (err)
-+			return err;
-+	}
-+
- 	cmd = WLAN_FUNC_SET_WAIT_IS_FORCE_TO_CPU;
- 	return airoha_npu_wlan_msg_send(npu, 0, cmd, &val, sizeof(val),
- 					GFP_KERNEL);
+On the other hand we could fix these and describe the supplies for the
+external as supplies for the pin banks? But I doubt anyone has these
+devices around for testing.
 
--- 
-2.52.0
+ChenYu
 
+> Best regards,
+> Jernej
+>
+> >
+> > Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
+> > ---
+> >  arch/arm/boot/dts/allwinner/sun4i-a10-dserve-dsrv9703c.dts | 2 +-
+> >  arch/arm/boot/dts/allwinner/sun4i-a10-pov-protab2-ips9.dts | 2 +-
+> >  arch/arm/boot/dts/allwinner/sun6i-a31-hummingbird.dts      | 2 +-
+> >  arch/arm/boot/dts/allwinner/sun6i-a31s-primo81.dts         | 2 +-
+> >  4 files changed, 4 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/allwinner/sun4i-a10-dserve-dsrv9703c.dts=
+ b/arch/arm/boot/dts/allwinner/sun4i-a10-dserve-dsrv9703c.dts
+> > index 63e77c05bfda..f2413ba6a858 100644
+> > --- a/arch/arm/boot/dts/allwinner/sun4i-a10-dserve-dsrv9703c.dts
+> > +++ b/arch/arm/boot/dts/allwinner/sun4i-a10-dserve-dsrv9703c.dts
+> > @@ -112,7 +112,7 @@ axp209: pmic@34 {
+> >
+> >  &i2c1 {
+> >       /* pull-ups and devices require AXP209 LDO3 */
+> > -     status =3D "failed";
+> > +     status =3D "fail";
+> >  };
+> >
+> >  &i2c2 {
+> > diff --git a/arch/arm/boot/dts/allwinner/sun4i-a10-pov-protab2-ips9.dts=
+ b/arch/arm/boot/dts/allwinner/sun4i-a10-pov-protab2-ips9.dts
+> > index c32596947647..e0c7099015da 100644
+> > --- a/arch/arm/boot/dts/allwinner/sun4i-a10-pov-protab2-ips9.dts
+> > +++ b/arch/arm/boot/dts/allwinner/sun4i-a10-pov-protab2-ips9.dts
+> > @@ -96,7 +96,7 @@ axp209: pmic@34 {
+> >
+> >  &i2c1 {
+> >       /* pull-ups and devices require AXP209 LDO3 */
+> > -     status =3D "failed";
+> > +     status =3D "fail";
+> >  };
+> >
+> >  &i2c2 {
+> > diff --git a/arch/arm/boot/dts/allwinner/sun6i-a31-hummingbird.dts b/ar=
+ch/arm/boot/dts/allwinner/sun6i-a31-hummingbird.dts
+> > index 5bce7a32651e..5dfd36e3a49d 100644
+> > --- a/arch/arm/boot/dts/allwinner/sun6i-a31-hummingbird.dts
+> > +++ b/arch/arm/boot/dts/allwinner/sun6i-a31-hummingbird.dts
+> > @@ -170,7 +170,7 @@ hdmi_out_con: endpoint {
+> >
+> >  &i2c0 {
+> >       /* pull-ups and devices require AXP221 DLDO3 */
+> > -     status =3D "failed";
+> > +     status =3D "fail";
+> >  };
+> >
+> >  &i2c1 {
+> > diff --git a/arch/arm/boot/dts/allwinner/sun6i-a31s-primo81.dts b/arch/=
+arm/boot/dts/allwinner/sun6i-a31s-primo81.dts
+> > index b32b70ada7fd..fefd887fbc39 100644
+> > --- a/arch/arm/boot/dts/allwinner/sun6i-a31s-primo81.dts
+> > +++ b/arch/arm/boot/dts/allwinner/sun6i-a31s-primo81.dts
+> > @@ -90,7 +90,7 @@ hdmi_out_con: endpoint {
+> >
+> >  &i2c0 {
+> >       /* pull-ups and device VDDIO use AXP221 DLDO3 */
+> > -     status =3D "failed";
+> > +     status =3D "fail";
+> >  };
+> >
+> >  &i2c1 {
+> >
+>
+>
+>
+>
+>
 
