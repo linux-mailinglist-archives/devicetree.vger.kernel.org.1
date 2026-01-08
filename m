@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-252675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5068D020B1
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:11:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D06BD01F23
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 99CD3313BF24
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:55:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B657A3032A9B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B43037F751;
-	Thu,  8 Jan 2026 08:58:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5310637F75C;
+	Thu,  8 Jan 2026 08:58:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="N3bIEiry"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="DeRAOpHh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
+Received: from mail-dy1-f176.google.com (mail-dy1-f176.google.com [74.125.82.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09BB737F728
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0723E37E304
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:58:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767862727; cv=none; b=XnL+iSwadI1HWuz8zFiw4eyH3WjU6UGoLkE7FbOFI4rhxslGn9G+ALOR9TcyBFDuZVbV9+ypo5sz3ba/de6XrZR6Lt11fcsNKRRQ+/dYatOE+frQv6F4V0bImS0gyYmgoPEgTAr3fV4Uxh8CM6A/WXW/5CgYmXOK7X2uhjzubVU=
+	t=1767862732; cv=none; b=et/Kdzpk7aAHwu0nxfAGSFS5E6ipMF+YPXsBqTkszmcmKztbTtO585tTynS7g8xqSbzNLz/XX1m4NFkB3qmMqRmS/vQeQxsvjLvZ1ss92ahbjWid5xI5vSceIolwGuW03UFnZsXI0KS8W71J5kanJDZ4gPKLC03DXkH412Gdp0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767862727; c=relaxed/simple;
-	bh=GFHSD6T+yl7vb4jLNYxTvC5Cl/m0iAwSIwdgU2lJoFY=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Oso4myGDBfGFTjNRUyOPTW2Mw3lJQi+1iNrY+SofhuMpW8z1tE5wMuf6ygf7oYWk9kOee6c5MC/TVByedcME4aviP6UXuoV+yq8REvnN9zAenBrk9ByHUA5L1Ez3QtWq/hNpntOOF+GT71RXCG626hymVosqiuot/VsmW+m5H3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=N3bIEiry; arc=none smtp.client-ip=74.125.82.173
+	s=arc-20240116; t=1767862732; c=relaxed/simple;
+	bh=oBHErEHnkA1paCau1ARwAjUjnMxGWXWutTLtcVvMytk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=e72oQ9sd/SNzeqhA5Wax+l+neZsqGg4iEkIkB1dzJf0UCqTLPHKmE2PCqW2CjB/a+KocsrWCBDRiZxpGaMQykGL+oD+Ytss+0bydgNX7NSIogejuUOrYZcj1kXWSPrMoK0Jqyy23Kmtq+YREp3T7gvk7vS2m5PX/NHpWOwgyF2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=DeRAOpHh; arc=none smtp.client-ip=74.125.82.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-2ae255ac8bdso3533670eec.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:58:39 -0800 (PST)
+Received: by mail-dy1-f176.google.com with SMTP id 5a478bee46e88-2b04fcfc0daso2609721eec.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:58:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1767862717; x=1768467517; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0YLNYm7sDAJHbYjTNraEzX4Le1VPIWBSAnfsbzRwqAk=;
-        b=N3bIEiryc7rQfbvZKLr1VEBvHg01R9oj5UtEYrZUzEyAJBmbJEeDDRlPwYGNFcWAzz
-         JADfuveCJXTEHxKU7bFDDC6ltkSrehRh9qz0VZpafTURnTQLBpAGt16hREcqSnvldw3+
-         CCuXAyIAfdbvfFS55IK1lPPD/9yHGpnNHSIomiDfAJkKaBK5cY0Rxgq5wZ31zGal3fwB
-         hHZEfwBPuxAsqqXYuJdOhfRr3Em3tSlIWRjfGJfqiCZdlen4M/+l2GwYUCe6cH/Ip/TU
-         kJE/BqKoY0brWby26XqlbDpGEBl7yg3owhOEh6q25EQ0L9ip97vsALQStOda2f8VUA3/
-         a1iQ==
+        d=sifive.com; s=google; t=1767862719; x=1768467519; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YHgXYcn6j9hrIoVhqdjOMXkUH+ey28hNkJayufBoRxM=;
+        b=DeRAOpHhqS3ZvoI17I8zTfvIojGTJ495HqIPj56MxWS2457Ss6+G3+81H511y89JUs
+         Dr/h5aF75pZqQAzUB7S+ggQ0q/dxE+hKujNSoQxPLgss/pWpGWBIKb0gkzCOcG0FM5Np
+         y3W6Adg0evIDSCn+pkcz2RsptQ+q0+W9Vrc7dYqxeo5AgbZd/jy+B3+1DfoqWM5nxc9j
+         9DEjqWH8h8kvi2UJZTQ0lGz97uKmt4ia3iSrdTSOaRAXEIB06SOHoDwdoxQ2eJzNyYXr
+         rP8vUwV6AQd5Kek0CO59gU47tlRuv2ZoW5fsVMuiA21TzsUQHwnhq+xOQf941W6R30Vm
+         aSjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767862717; x=1768467517;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0YLNYm7sDAJHbYjTNraEzX4Le1VPIWBSAnfsbzRwqAk=;
-        b=BGQEvDQDOQbiPtAoBJt2oLOo2An800yRJUdOiAZlmZL/Pmi6y3LppB/qLvSkgIpvJs
-         D6t/5BLX+AIXayPV6VfO8+reynShgPZeWkib2nMe8cnQiZbwSQzR0NevvpcDCLmKNxLG
-         XaumpsKhm4C1q9wIs30vjEQs9N7+ffvMBcwQ+r3vIm8mk41dzX+2d3qZC6cP+1vcFdL3
-         YhncQt1L/k0H3z0ex3auzFh3AduHdRSxiEymwhMJAQghXiKyIn2RT2vl1nq2BMytZoh3
-         nH8Cl8L7J2cguC8rSCpXVwM0ockAnohEMzFskIIEGENbZDEqwDOgUyqnwJ3/f7KjQRkq
-         Gb0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXW+ptRjaiKKNqOZIHYu0s8QrY9m5P2c/F1Yzr6oHuYM/J9fT/NCxCDjmQPgfmNOTdwo5tK36hMGO8j@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8OfOG7EDWrYBRBzbVJV187YPF2gdW+2L5I+45JzEvlhMSSzFF
-	DhH4kRAvoQi+/mamwgM12V8u7Jcnwt2DDU6PaqyyjHRCDSKqoE2E6u2qbGIGqX1373y3IZI7BNH
-	APPAHi+N3vA==
-X-Gm-Gg: AY/fxX5MW2THP5Sa33zipqK+ICbkC7qNU7nPwLoos8+G6gIxCqiMgYD0GEReCV4eCk6
-	Ht7SdGMAAMOopYr+n/xaGFX+uCe+bg7QYvliK505k7jPtLoXnUcrf7loP+7vsmVxvSwKud7xV2M
-	lzfvEMkSmHqa+v1hzD6r3re30z50KkYFsrNpOKSNxF43yM5Aj5FanESab3N6ihT58HQj/1wn6SE
-	L/umTWe0YuLUb/L/Tdd2LdNu4D0yEc3Bx8ourT1GVAmYlmYyijUNz3iNxF44qi0cm6YYAk41nO1
-	frJX6R5vGcSKXL31hj7daDU/lrU9osV4Rdp0Ac+7F0bMWLIo0U96BHILCapKcJeW7RT3+keatDM
-	2fATW2r5xF0MMk88vlNMzFJI8w3AFAjnYtNETIC9N4D+ALTLep5e5hNpQ0+DQowh9AYHyoYOkwb
-	+qSI+k1xFDC3HzX1mWLHbu6Oc=
-X-Google-Smtp-Source: AGHT+IE8UPhQsz/7Gn8i+wwXqoBhoOITsJ3Hs7nIToFk4RFrh69fxx3eoriotXBWNMydajNNbAyQiQ==
-X-Received: by 2002:a05:7301:fd8b:b0:2ae:5b24:1cf6 with SMTP id 5a478bee46e88-2b17d30f886mr3883489eec.32.1767862717072;
-        Thu, 08 Jan 2026 00:58:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767862719; x=1768467519;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=YHgXYcn6j9hrIoVhqdjOMXkUH+ey28hNkJayufBoRxM=;
+        b=IpiCxSBwFF7vNagMSgpIkc+a77bKvRbxUFamDQB4nV+uBWppxuBHMtGB5xewD3+mwu
+         cNGcZskrzQt+LGGv/NXGennZWDnyiy9GmdLE8GDHZta+9N4ec6sxUs39ZwBHM7mKkZCp
+         aU/rh/nU9kqjKX+eQvScXmewp9fVjGCbIDUMrUSkt14WcD3WpiV+5mONRG5gXHisGM9L
+         k0TC+XYUb5IvHvW22nWYGja531xiCN0/lIMRAvoYyJHxIZFX/XPxj846BjotQmfU7o/M
+         UWWDAIzPOwR7MQJrpTgNHSTIdnuq1/S19wdyUx5/RumeMi3LV8eF08LTy2vXJUTKoIk+
+         onPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVUHwru7m3C3kVKIRIHf48XujBc2D22IXJDYigYFm2wbyGRDkQPjVh+KGX26Foc8e9tUgp1NJzLVsaa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqbzfiVT4K+fGxJ3JkVQn40XbXAQY4YBfuSYaGpSFZuiZf2SAZ
+	FuO1gsknqM73eXCTnnKMIk389wdaqAObOO4rJaAnM2cxfNhOm3Y/4iRHkQ5FoiyvpKptIWpOq4Q
+	R7h3fDBcDKw==
+X-Gm-Gg: AY/fxX7KNIvVHo8cy0mI8JQtUHkKnp9wHLKzbRF1doiCufPcCiC+h8MVt2f5HRjR/7o
+	lORwkfR6iVF0Tesk/gKIUXjymmMQ+/NLL3bMei0VPZRmTZPevir7nUVH3X3Rc14+WSfG/L/bo90
+	QZCpSGqHHpbTPPykas2jGi2ynn4wRAiI3qS6oWddwuuaedCTitPH1eGx8FguPCWUE3ykK8BX6L3
+	jglUkM6J7q3e7H4PWJ2tZtupeS5NYd1MmeXde/wkMlyVQBMTKbz8DFiBb+PK7UMyURwZAjpM//k
+	KZYlzMUFpQYdDwnpBMnXpCr2Foe/QOGbFIIBEmSFfTZdPN3LE9AMBsdhULBAAsz55XzwrieECet
+	7pGyc1sy8ZDJ7KGkn9fRLrbmMMCfrFMpq5E1rLnb4lcLz7+si8Q0pQGz4MdmTCRanmXA6inV5Hp
+	tumpt6P0exA7SjfdLXN2K+6Nk=
+X-Google-Smtp-Source: AGHT+IG+4Su03prYbt6n5qR1nTAfW+7RTrG8/tcfMCDl8OXrQiz833IsM6Hd3eTjjbNcqhMNkJD8+A==
+X-Received: by 2002:a05:7300:8290:b0:2ae:598e:abe5 with SMTP id 5a478bee46e88-2b17d321a6dmr2554912eec.35.1767862718478;
+        Thu, 08 Jan 2026 00:58:38 -0800 (PST)
 Received: from sw07.internal.sifive.com ([4.53.31.132])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b170675076sm8833634eec.2.2026.01.08.00.58.36
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b170675076sm8833634eec.2.2026.01.08.00.58.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 00:58:36 -0800 (PST)
+        Thu, 08 Jan 2026 00:58:37 -0800 (PST)
 From: Nick Hu <nick.hu@sifive.com>
-Subject: [PATCH v4 0/3] Add SiFive power provider driver
-Date: Thu, 08 Jan 2026 00:58:23 -0800
-Message-Id: <20260108-sifive-pd-drivers-v4-0-2a523d7d51a0@sifive.com>
+Date: Thu, 08 Jan 2026 00:58:24 -0800
+Subject: [PATCH v4 1/3] cpuidle: riscv-sbi: Split PM domain init out of the
+ cpuidle driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,10 +85,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAK9xX2kC/z3MQQrCMBCF4auUWTsliSatrryHuKjJxAzStEy0C
- KV3Nyi4e9/i/SsUEqYCp2YFoYULT7nisGvApyHfCTlUg1HGaqM6LBx5IZwDBqlDCjoXyFmt+pv
- 2UH+zUOT3t3m5VkeZRnwmoeFfUp0y6qjN3rXW9Bo1ZvaPNr3Ov3zrpxG27QPlXR2fngAAAA==
-X-Change-ID: 20251207-sifive-pd-drivers-66de65108b1c
+Message-Id: <20260108-sifive-pd-drivers-v4-1-2a523d7d51a0@sifive.com>
+References: <20260108-sifive-pd-drivers-v4-0-2a523d7d51a0@sifive.com>
+In-Reply-To: <20260108-sifive-pd-drivers-v4-0-2a523d7d51a0@sifive.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
  Daniel Lezcano <daniel.lezcano@linaro.org>, Paul Walmsley <pjw@kernel.org>, 
  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
@@ -99,78 +100,507 @@ Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
  linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
 X-Mailer: b4 0.14.3
 
-This patchset introduces the SiFive power provider driver, which sets up a
-generic power domain (genpd) provider to coordinate with the RISC-V SBI
-CPU idle driver.
+Move the PM domain initialization logic from the RISC-V SBI CPU idle
+driver into a separate driver. This decouples the power domain setup
+from cpuidle and allows the generic PM domain framework to be used
+independently. This change also enables external power domain drivers to
+operate with the RISC-V SBI CPU idle driver
 
-To enable this coordination, split the power domain initialization out
-of the RISC-V SBI CPU idle driver. This allows coordination between
-power domain management and CPU idle states on SiFive platforms.
-
-Changes in v4:
-- Split the power domain initialization out of the RISC-V SBI CPU idle
-  driver in PATCH 1
-- Refine the commit messages of PATCH 1 and PATCH 3
-- Rename cpuidle-sifive-dmc-pd.c to cpuidle-sifive-dmc-domain.c
-- Rename SIFIVE_DMC_PD_CPUIDLE to CONFIG_SIFIVE_DMC_CPUIDLE_DOMAIN
-
-Changes in v3:
-- Update the explanation for the absence of the SoC-specific compatible
-  string.
-- Drop the smc3/tmc3/cmc3 bindings.
-- Separate the genpd init and the idle driver init. The genpd remains
-  functional even when the idle state is absent.
-- Address the warning from the kernel test robot
-
-Changes in v2:
-- Add the driver for SiFive TMC, CMC and SMC
-- Drop the `sifive,feature-level` property
-
-Nick Hu (3):
-  dt-bindings: power: Add SiFive Domain Management controllers
-  cpuidle: riscv-sbi: Work with the external pmdomain driver
-  cpuidle: Add SiFive power provider
-
- .../devicetree/bindings/power/sifive,tmc.yaml |  58 ++++++++++
- drivers/cpuidle/Kconfig.riscv                 |  11 ++
- drivers/cpuidle/Makefile                      |   1 +
- drivers/cpuidle/cpuidle-riscv-sbi.c           |  46 ++++----
- drivers/cpuidle/cpuidle-riscv-sbi.h           |  20 ++++
- drivers/cpuidle/cpuidle-sifive-dmc-pd.c       | 102 ++++++++++++++++++
- 6 files changed, 220 insertions(+), 18 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/power/sifive,tmc.yaml
- create mode 100644 drivers/cpuidle/cpuidle-riscv-sbi.h
- create mode 100644 drivers/cpuidle/cpuidle-sifive-dmc-pd.c
-
---
-2.17.1
-
-_______________________________________________
-linux-riscv mailing list
-linux-riscv@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-riscv
-
+Signed-off-by: Nick Hu <nick.hu@sifive.com>
 ---
-Nick Hu (3):
-      cpuidle: riscv-sbi: Split PM domain init out of the cpuidle driver
-      dt-bindings: power: Add SiFive Domain Management controllers
-      cpuidle: Add SiFive power provider driver
+ MAINTAINERS                                |   2 +
+ drivers/cpuidle/Kconfig.riscv              |  13 ++-
+ drivers/cpuidle/Makefile                   |   1 +
+ drivers/cpuidle/cpuidle-riscv-sbi-domain.c | 176 ++++++++++++++++++++++++++++
+ drivers/cpuidle/cpuidle-riscv-sbi.c        | 178 ++---------------------------
+ drivers/cpuidle/cpuidle-riscv-sbi.h        |  29 +++++
+ 6 files changed, 228 insertions(+), 171 deletions(-)
 
- .../devicetree/bindings/power/sifive,tmc.yaml      |  58 +++++++
- MAINTAINERS                                        |   2 +
- drivers/cpuidle/Kconfig.riscv                      |  25 ++-
- drivers/cpuidle/Makefile                           |   2 +
- drivers/cpuidle/cpuidle-riscv-sbi-domain.c         | 176 ++++++++++++++++++++
- drivers/cpuidle/cpuidle-riscv-sbi.c                | 178 ++-------------------
- drivers/cpuidle/cpuidle-riscv-sbi.h                |  29 ++++
- drivers/cpuidle/cpuidle-sifive-dmc-domain.c        | 124 ++++++++++++++
- 8 files changed, 423 insertions(+), 171 deletions(-)
----
-base-commit: f0b9d8eb98dfee8d00419aa07543bdc2c1a44fb1
-change-id: 20251207-sifive-pd-drivers-66de65108b1c
+diff --git a/MAINTAINERS b/MAINTAINERS
+index a0dd762f5648..b52f11602271 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6632,7 +6632,9 @@ M:	Anup Patel <anup@brainfault.org>
+ L:	linux-pm@vger.kernel.org
+ L:	linux-riscv@lists.infradead.org
+ S:	Maintained
++F:	drivers/cpuidle/cpuidle-riscv-sbi-domain.c
+ F:	drivers/cpuidle/cpuidle-riscv-sbi.c
++F:	drivers/cpuidle/cpuidle-riscv-sbi.h
+ 
+ CPUMASK API [RUST]
+ M:	Viresh Kumar <viresh.kumar@linaro.org>
+diff --git a/drivers/cpuidle/Kconfig.riscv b/drivers/cpuidle/Kconfig.riscv
+index 78518c26af74..b813018ce401 100644
+--- a/drivers/cpuidle/Kconfig.riscv
++++ b/drivers/cpuidle/Kconfig.riscv
+@@ -8,8 +8,17 @@ config RISCV_SBI_CPUIDLE
+ 	depends on RISCV_SBI
+ 	select DT_IDLE_STATES
+ 	select CPU_IDLE_MULTIPLE_DRIVERS
+-	select DT_IDLE_GENPD if PM_GENERIC_DOMAINS_OF
+ 	help
+ 	  Select this option to enable RISC-V SBI firmware based CPU idle
+-	  driver for RISC-V systems. This drivers also supports hierarchical
++	  driver for RISC-V systems.
++
++config RISCV_SBI_CPUIDLE_DOMAIN
++	bool "RISC-V SBI CPU idle Domain"
++	depends on RISCV_SBI_CPUIDLE
++	depends on PM_GENERIC_DOMAINS_OF
++	select DT_IDLE_GENPD
++	default y
++	help
++	  Select this option to enable RISC-V SBI firmware based CPU idle
++	  driver to use PM domains, which is needed to support the hierarchical
+ 	  DT based layout of the idle state.
+diff --git a/drivers/cpuidle/Makefile b/drivers/cpuidle/Makefile
+index 1de9e92c5b0f..82595849b75d 100644
+--- a/drivers/cpuidle/Makefile
++++ b/drivers/cpuidle/Makefile
+@@ -42,3 +42,4 @@ obj-$(CONFIG_POWERNV_CPUIDLE)		+= cpuidle-powernv.o
+ ###############################################################################
+ # RISC-V drivers
+ obj-$(CONFIG_RISCV_SBI_CPUIDLE)		+= cpuidle-riscv-sbi.o
++obj-$(CONFIG_RISCV_SBI_CPUIDLE_DOMAIN)	+= cpuidle-riscv-sbi-domain.o
+diff --git a/drivers/cpuidle/cpuidle-riscv-sbi-domain.c b/drivers/cpuidle/cpuidle-riscv-sbi-domain.c
+new file mode 100644
+index 000000000000..24cb70700c22
+--- /dev/null
++++ b/drivers/cpuidle/cpuidle-riscv-sbi-domain.c
+@@ -0,0 +1,176 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * PM domains for CPUs via genpd - managed by cpuidle-riscv-sbi.
++ *
++ * Copyright (c) 2021 Western Digital Corporation or its affiliates.
++ * Copyright (c) 2022 Ventana Micro Systems Inc.
++ */
++
++#define pr_fmt(fmt) "cpuidle-riscv-sbi-domain: " fmt
++
++#include <linux/device.h>
++#include <linux/pm_domain.h>
++
++#include "cpuidle-riscv-sbi.h"
++#include "dt_idle_genpd.h"
++
++struct sbi_pd_provider {
++	struct list_head link;
++	struct device_node *node;
++};
++
++static LIST_HEAD(sbi_pd_providers);
++
++static int sbi_cpuidle_pd_power_off(struct generic_pm_domain *pd)
++{
++	struct genpd_power_state *state = &pd->states[pd->state_idx];
++	u32 *pd_state;
++
++	if (!state->data)
++		return 0;
++
++	/* OSI mode is enabled, set the corresponding domain state. */
++	pd_state = state->data;
++	sbi_set_domain_state(*pd_state);
++
++	return 0;
++}
++
++static int sbi_pd_init(struct device_node *np, bool use_osi)
++{
++	struct generic_pm_domain *pd;
++	struct sbi_pd_provider *pd_provider;
++	struct dev_power_governor *pd_gov;
++	int ret = -ENOMEM;
++
++	pd = dt_idle_pd_alloc(np, sbi_dt_parse_state_node);
++	if (!pd)
++		goto out;
++
++	pd_provider = kzalloc(sizeof(*pd_provider), GFP_KERNEL);
++	if (!pd_provider)
++		goto free_pd;
++
++	pd->flags |= GENPD_FLAG_IRQ_SAFE | GENPD_FLAG_CPU_DOMAIN;
++
++	/* Allow power off when OSI is available. */
++	if (use_osi)
++		pd->power_off = sbi_cpuidle_pd_power_off;
++	else
++		pd->flags |= GENPD_FLAG_ALWAYS_ON;
++
++	/* Use governor for CPU PM domains if it has some states to manage. */
++	pd_gov = pd->states ? &pm_domain_cpu_gov : NULL;
++
++	ret = pm_genpd_init(pd, pd_gov, false);
++	if (ret)
++		goto free_pd_prov;
++
++	ret = of_genpd_add_provider_simple(np, pd);
++	if (ret)
++		goto remove_pd;
++
++	pd_provider->node = of_node_get(np);
++	list_add(&pd_provider->link, &sbi_pd_providers);
++
++	pr_debug("init PM domain %s\n", pd->name);
++	return 0;
++
++remove_pd:
++	pm_genpd_remove(pd);
++free_pd_prov:
++	kfree(pd_provider);
++free_pd:
++	dt_idle_pd_free(pd);
++out:
++	pr_err("failed to init PM domain ret=%d %pOF\n", ret, np);
++	return ret;
++}
++
++static void sbi_pd_remove(void)
++{
++	struct sbi_pd_provider *pd_provider, *it;
++	struct generic_pm_domain *genpd;
++
++	list_for_each_entry_safe(pd_provider, it, &sbi_pd_providers, link) {
++		of_genpd_del_provider(pd_provider->node);
++
++		genpd = of_genpd_remove_last(pd_provider->node);
++		if (!IS_ERR(genpd))
++			kfree(genpd);
++
++		of_node_put(pd_provider->node);
++		list_del(&pd_provider->link);
++		kfree(pd_provider);
++	}
++}
++
++static int sbi_genpd_probe(struct device_node *np, bool use_osi)
++{
++	int ret = 0, pd_count = 0;
++
++	if (!np)
++		return -ENODEV;
++
++	/*
++	 * Parse child nodes for the "#power-domain-cells" property and
++	 * initialize a genpd/genpd-of-provider pair when it's found.
++	 */
++	for_each_child_of_node_scoped(np, node) {
++		if (!of_property_present(node, "#power-domain-cells"))
++			continue;
++
++		ret = sbi_pd_init(node, use_osi);
++		if (ret)
++			goto remove_pd;
++
++		pd_count++;
++	}
++
++	/* Bail out if not using the hierarchical CPU topology. */
++	if (!pd_count)
++		goto no_pd;
++
++	/* Link genpd masters/subdomains to model the CPU topology. */
++	ret = dt_idle_pd_init_topology(np);
++	if (ret)
++		goto remove_pd;
++
++	return 0;
++
++remove_pd:
++	sbi_pd_remove();
++	pr_err("failed to create CPU PM domains ret=%d\n", ret);
++no_pd:
++	return ret;
++}
++
++static int __init riscv_sbi_idle_init_domains(void)
++{
++	bool use_osi = true;
++	int cpu;
++
++	/* Detect OSI support based on CPU DT nodes */
++	for_each_possible_cpu(cpu) {
++		struct device_node *np __free(device_node) = of_cpu_device_node_get(cpu);
++		if (np &&
++		    of_property_present(np, "power-domains") &&
++		    of_property_present(np, "power-domain-names")) {
++			continue;
++		} else {
++			use_osi = false;
++			break;
++		}
++	}
++
++	sbi_set_osi_mode(use_osi);
++
++	/* Populate generic power domains from DT nodes */
++	struct device_node *pds_node __free(device_node) =
++			of_find_node_by_path("/cpus/power-domains");
++	if (!pds_node)
++		return 0;
++
++	return sbi_genpd_probe(pds_node, use_osi);
++}
++core_initcall(riscv_sbi_idle_init_domains);
+diff --git a/drivers/cpuidle/cpuidle-riscv-sbi.c b/drivers/cpuidle/cpuidle-riscv-sbi.c
+index 19be6475d356..95a837a1ba31 100644
+--- a/drivers/cpuidle/cpuidle-riscv-sbi.c
++++ b/drivers/cpuidle/cpuidle-riscv-sbi.c
+@@ -28,6 +28,7 @@
+ #include <asm/suspend.h>
+ 
+ #include "cpuidle.h"
++#include "cpuidle-riscv-sbi.h"
+ #include "dt_idle_states.h"
+ #include "dt_idle_genpd.h"
+ 
+@@ -46,7 +47,12 @@ static DEFINE_PER_CPU(struct sbi_domain_state, domain_state);
+ static bool sbi_cpuidle_use_osi;
+ static bool sbi_cpuidle_use_cpuhp;
+ 
+-static inline void sbi_set_domain_state(u32 state)
++void sbi_set_osi_mode(bool use_osi)
++{
++	sbi_cpuidle_use_osi = use_osi;
++}
++
++void sbi_set_domain_state(u32 state)
+ {
+ 	struct sbi_domain_state *data = this_cpu_ptr(&domain_state);
+ 
+@@ -188,7 +194,7 @@ static const struct of_device_id sbi_cpuidle_state_match[] = {
+ 	{ },
+ };
+ 
+-static int sbi_dt_parse_state_node(struct device_node *np, u32 *state)
++int sbi_dt_parse_state_node(struct device_node *np, u32 *state)
+ {
+ 	int err = of_property_read_u32(np, "riscv,sbi-suspend-param", state);
+ 
+@@ -345,177 +351,11 @@ static int sbi_cpuidle_init_cpu(struct device *dev, int cpu)
+ 	return ret;
+ }
+ 
+-#ifdef CONFIG_DT_IDLE_GENPD
+-
+-static int sbi_cpuidle_pd_power_off(struct generic_pm_domain *pd)
+-{
+-	struct genpd_power_state *state = &pd->states[pd->state_idx];
+-	u32 *pd_state;
+-
+-	if (!state->data)
+-		return 0;
+-
+-	/* OSI mode is enabled, set the corresponding domain state. */
+-	pd_state = state->data;
+-	sbi_set_domain_state(*pd_state);
+-
+-	return 0;
+-}
+-
+-struct sbi_pd_provider {
+-	struct list_head link;
+-	struct device_node *node;
+-};
+-
+-static LIST_HEAD(sbi_pd_providers);
+-
+-static int sbi_pd_init(struct device_node *np)
+-{
+-	struct generic_pm_domain *pd;
+-	struct sbi_pd_provider *pd_provider;
+-	struct dev_power_governor *pd_gov;
+-	int ret = -ENOMEM;
+-
+-	pd = dt_idle_pd_alloc(np, sbi_dt_parse_state_node);
+-	if (!pd)
+-		goto out;
+-
+-	pd_provider = kzalloc(sizeof(*pd_provider), GFP_KERNEL);
+-	if (!pd_provider)
+-		goto free_pd;
+-
+-	pd->flags |= GENPD_FLAG_IRQ_SAFE | GENPD_FLAG_CPU_DOMAIN;
+-
+-	/* Allow power off when OSI is available. */
+-	if (sbi_cpuidle_use_osi)
+-		pd->power_off = sbi_cpuidle_pd_power_off;
+-	else
+-		pd->flags |= GENPD_FLAG_ALWAYS_ON;
+-
+-	/* Use governor for CPU PM domains if it has some states to manage. */
+-	pd_gov = pd->states ? &pm_domain_cpu_gov : NULL;
+-
+-	ret = pm_genpd_init(pd, pd_gov, false);
+-	if (ret)
+-		goto free_pd_prov;
+-
+-	ret = of_genpd_add_provider_simple(np, pd);
+-	if (ret)
+-		goto remove_pd;
+-
+-	pd_provider->node = of_node_get(np);
+-	list_add(&pd_provider->link, &sbi_pd_providers);
+-
+-	pr_debug("init PM domain %s\n", pd->name);
+-	return 0;
+-
+-remove_pd:
+-	pm_genpd_remove(pd);
+-free_pd_prov:
+-	kfree(pd_provider);
+-free_pd:
+-	dt_idle_pd_free(pd);
+-out:
+-	pr_err("failed to init PM domain ret=%d %pOF\n", ret, np);
+-	return ret;
+-}
+-
+-static void sbi_pd_remove(void)
+-{
+-	struct sbi_pd_provider *pd_provider, *it;
+-	struct generic_pm_domain *genpd;
+-
+-	list_for_each_entry_safe(pd_provider, it, &sbi_pd_providers, link) {
+-		of_genpd_del_provider(pd_provider->node);
+-
+-		genpd = of_genpd_remove_last(pd_provider->node);
+-		if (!IS_ERR(genpd))
+-			kfree(genpd);
+-
+-		of_node_put(pd_provider->node);
+-		list_del(&pd_provider->link);
+-		kfree(pd_provider);
+-	}
+-}
+-
+-static int sbi_genpd_probe(struct device_node *np)
+-{
+-	int ret = 0, pd_count = 0;
+-
+-	if (!np)
+-		return -ENODEV;
+-
+-	/*
+-	 * Parse child nodes for the "#power-domain-cells" property and
+-	 * initialize a genpd/genpd-of-provider pair when it's found.
+-	 */
+-	for_each_child_of_node_scoped(np, node) {
+-		if (!of_property_present(node, "#power-domain-cells"))
+-			continue;
+-
+-		ret = sbi_pd_init(node);
+-		if (ret)
+-			goto remove_pd;
+-
+-		pd_count++;
+-	}
+-
+-	/* Bail out if not using the hierarchical CPU topology. */
+-	if (!pd_count)
+-		goto no_pd;
+-
+-	/* Link genpd masters/subdomains to model the CPU topology. */
+-	ret = dt_idle_pd_init_topology(np);
+-	if (ret)
+-		goto remove_pd;
+-
+-	return 0;
+-
+-remove_pd:
+-	sbi_pd_remove();
+-	pr_err("failed to create CPU PM domains ret=%d\n", ret);
+-no_pd:
+-	return ret;
+-}
+-
+-#else
+-
+-static inline int sbi_genpd_probe(struct device_node *np)
+-{
+-	return 0;
+-}
+-
+-#endif
+-
+ static int sbi_cpuidle_probe(struct platform_device *pdev)
+ {
+ 	int cpu, ret;
+ 	struct cpuidle_driver *drv;
+ 	struct cpuidle_device *dev;
+-	struct device_node *pds_node;
+-
+-	/* Detect OSI support based on CPU DT nodes */
+-	sbi_cpuidle_use_osi = true;
+-	for_each_possible_cpu(cpu) {
+-		struct device_node *np __free(device_node) = of_cpu_device_node_get(cpu);
+-		if (np &&
+-		    of_property_present(np, "power-domains") &&
+-		    of_property_present(np, "power-domain-names")) {
+-			continue;
+-		} else {
+-			sbi_cpuidle_use_osi = false;
+-			break;
+-		}
+-	}
+-
+-	/* Populate generic power domains from DT nodes */
+-	pds_node = of_find_node_by_path("/cpus/power-domains");
+-	if (pds_node) {
+-		ret = sbi_genpd_probe(pds_node);
+-		of_node_put(pds_node);
+-		if (ret)
+-			return ret;
+-	}
+ 
+ 	/* Initialize CPU idle driver for each present CPU */
+ 	for_each_present_cpu(cpu) {
+@@ -576,4 +416,4 @@ static int __init sbi_cpuidle_init(void)
+ 
+ 	return 0;
+ }
+-arch_initcall(sbi_cpuidle_init);
++device_initcall(sbi_cpuidle_init);
+diff --git a/drivers/cpuidle/cpuidle-riscv-sbi.h b/drivers/cpuidle/cpuidle-riscv-sbi.h
+new file mode 100644
+index 000000000000..f9a0e81d1417
+--- /dev/null
++++ b/drivers/cpuidle/cpuidle-riscv-sbi.h
+@@ -0,0 +1,29 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++
++#ifndef __CPUIDLE_RISCV_SBI_H
++#define __CPUIDLE_RISCV_SBI_H
++
++#ifdef CONFIG_RISCV_SBI_CPUIDLE
++
++void sbi_set_osi_mode(bool use_osi);
++void sbi_set_domain_state(u32 state);
++int sbi_dt_parse_state_node(struct device_node *np, u32 *state);
++
++#else
++
++static inline void sbi_set_osi_mode(bool use_osi)
++{
++}
++
++static inline void sbi_set_domain_state(u32 state)
++{
++}
++
++static inline int sbi_dt_parse_state_node(struct device_node *np, u32 *state)
++{
++	return 0;
++}
++
++#endif
++
++#endif /* __CPUIDLE_RISCV_SBI_H */
 
-Best regards,
 -- 
-Nick Hu <nick.hu@sifive.com>
+2.43.7
 
 
