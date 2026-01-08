@@ -1,614 +1,170 @@
-Return-Path: <devicetree+bounces-252823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8A2D02D82
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:06:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17B67D02D78
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:06:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 99B4D306C55C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:59:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 354B43052F7C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00CB7480DDD;
-	Thu,  8 Jan 2026 12:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A0247ECDF;
+	Thu,  8 Jan 2026 12:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nGZJmuwL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GZ41UKhT";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="h0tyttoB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D26047F2CD
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594EF47DFBA
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:52:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767876742; cv=none; b=nj7aIhyYNE5O0DjKDTNN6lfMzP+3HsveIEtRSoKR3CevEqXuzw5v9+wgeqJm1+G4bd4Lzid7Jy/GZAh6J4WiIaJ6OkYkPLOuTqSk+LL7zE4bmxVE6+OgfgU6G7MeQlXmTlQotVhDb9LqdKx2MhIhjcE9dp8zfR1BZAMjj4hF0jo=
+	t=1767876739; cv=none; b=mqU9AW7IeKKpRlFY9om/90NUGHjdve7r/1PxDh+uVildWomZMgWgxVrqqaSBOQBq7m+QMTQZ18/fQlhBUcy+tDP0q3M/JZQqWj2IEWt8TrF70fu2yAT0FPu7R3Uu5RgMP7K9WiE1oY2UIHQEbpBCUOGWnqdVOZFY8Dochf1JZhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767876742; c=relaxed/simple;
-	bh=8tLky8cGfuTMl3hdP4v8gOwf1svvBiDXAcSInnKEpFA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qDd5seruT67n4PDIgNTMST2cjKql6/KqlQaGVf+eZ0BP1S7gI7yBl8pOk3lXx9dE2e6D5+br+Pptv8HGd9MZhnbYq3kOBB1d2GcCLi0qabUw3WL5vnoH5HcsYo4duxpVD/77UshIJzIt4bMSfcAK5NReHcCQ9Sw3tZbAKDZF+uA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nGZJmuwL; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4779aa4f928so34083995e9.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:52:20 -0800 (PST)
+	s=arc-20240116; t=1767876739; c=relaxed/simple;
+	bh=jLmFH+cwbuNfENRFtA+4MMVYqROr3VN/PhNwAuOLUF0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=qJmYWx4hap46c8oy7ILIakYweXXavPbwTrsAYZBJZjD9Xl3KLV4DYVWAiL4ChZdmBQG7mslQ9E9EOz5SRzfBOJCv653P78IKusG9eEyBvkT3L1425G6tLs0LLeJ7P8lGhnnOifBr53zP8/fRzS5MGW+qCSjzQjJLsuHuofYU/EI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GZ41UKhT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=h0tyttoB; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 608B2lNs1970090
+	for <devicetree@vger.kernel.org>; Thu, 8 Jan 2026 12:52:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=/yf1Ue7amp8
+	9AOLm+XQspD5ZX2yuMeb8ho7pJFXOCxY=; b=GZ41UKhTfLAGZ2utKjKSDThnrh5
+	GHe3S7+SfGE+2bZzJFqS509jN3uTF548lOnHYonMS12A2Kr3gAhh7MZZVAkVHaX3
+	/f6i8IusG0Ec7i76W/YnCcCf+rPM3XHgx+0vRwgmFO7o46xF6od2Kh8vnRREDs9B
+	z2BxpEe/nCa82RcAIp2HzdQBTEuA0xKaT9x6icQ6UsPlde3izATtgWq96jpnpO1+
+	UITlxEZF+LIYaxeGf81HCCcmr+pGWW36ClMJA2QKIxA6wCXJro1YTETDm89Bp6AO
+	hEfGu0Bvk/DrnTPJJS2YEtbXKx8QsSRWRoydYeLI+Cs0incD81l08O00wiQ==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bjbc4r9h2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 12:52:16 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-c52d31fe88fso795003a12.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:52:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767876739; x=1768481539; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1767876736; x=1768481536; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kIstZzU86/SjhSvQE54j0+L/Q4mvCpfM+LWBKVPJ62E=;
-        b=nGZJmuwLQFyrC1iGeDZpdcgtjgQUSH5kybNqAOw/IcQmcdYPM5PLmY7s7s8bKPL6pH
-         SHZMvwPqXedQFadf88QJCG1JqmM3iow1a3XT54H3unCWThS8XiZtnMavoHqk8aGqUqUy
-         +mqoEgyBflrakg6icD8wTG7d2NFLNSNwWcTrGX2O2C8EPKvyg05gr7mudL+vAYobvrQ/
-         O27cGRahMDjtB7QgaPfGQSWq3ln7wOlsqDJLTfJ0RbpkAjKyCyS09zirEaxgLI2WzPp2
-         z/mO+kuo/rkhLjnJm4U2dkEouQqq5SZd6KusuhJhXd7YqLUgXI8/9chdsIBayanrV7Qi
-         ZflA==
+        bh=/yf1Ue7amp89AOLm+XQspD5ZX2yuMeb8ho7pJFXOCxY=;
+        b=h0tyttoB/4jqRMmZcYAztuPEQ78JcIUiV+gWMkYvDtpQVWjlcnju9cbIUoE7h7cBgD
+         iby4AbNG+hJzswv1BbiAMfENScTV7jRwBn4X4uJmxhinHSAlQwpf8O8sK76unA/9eJsC
+         wZvIE0VuUHoeHjqWI8P7/NXI+NSVpCjXLFEaelbyD6mnFzZy5MA5t9EZyc+8Tws2V6qp
+         OBC6rDidDuLMxLWgudW2sirp406VYqVWPEnAaOAYAIhjeeVG/Cg2GttltZ071i95J4a0
+         c6EZX3pHDd78ZVFbDWOhElC3r5J/m4ykOdwDZJW9Aks3K903f+b4rLYPdB9mwtvpQ2VO
+         xlXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767876739; x=1768481539;
+        d=1e100.net; s=20230601; t=1767876736; x=1768481536;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=kIstZzU86/SjhSvQE54j0+L/Q4mvCpfM+LWBKVPJ62E=;
-        b=LHIqslu4sm8msEJQTCsgjOu0m42gSvi2/XmHt8kMC8uP6ZYVbiWOrWY2BI8XGxZevX
-         5/8MeqKY+Axnnb4Wp1ZmZc1swkrKsPJNrAguTql8PutiR5B1Rzr0/9Rq7mdb/opIfNZI
-         qCmBpPePk2GsJDeFpCv2h8NVuurUK9RBrLX019V/CfAjANe8gQrUafzy5V2q3beq5KHT
-         /+lkuJISq8h7E4C3GHG/SdiDcsU7nXepkvjPmiexJ5wtkHcXgg6McZ2/pGqeJKtuM8at
-         sjMjrnFbakcSzssWZpJ6qLVx1Y2q2KVfPRFJVpbVVJfC41oiKzeCQ5JvF0XmstYag/E8
-         q21g==
-X-Forwarded-Encrypted: i=1; AJvYcCVZ6phaPNKHFjCiLsFHE7o6CAWq8WfckWavEwV69g13Otp0IOamOw/AwJ9ACDyKvb9dXKXLCN1E1e3a@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJllerNSviA+5nc6ScGIuleeEjPOzu7TbTRCw42c5rHGg+d7Ya
-	GpBRRmNuYTVqElrnbDF3TgUDjmHHIAAmntGRzB2OuCmaZO7E7gzSArN1
-X-Gm-Gg: AY/fxX5g+ljcmQSuDTtAb4T/TRGJaG6KeL3j8F+515IS9Bz9WxVT6x1kQOsHdE1h4vY
-	52G3p63mdM39j6MpUK8yXD5qURdEDQOWlXcY4xfd7rVYx45HBpF1iA+d9VH+PFlBHxJ5jf1R1ZC
-	rBgox7UO05zUpqNUEmtCm48Bc/BiQIiKVy0vqXXkVjmEc/Z6Slw4n3fz9IZUwosfgMPav1c68wx
-	54mnMPU3ThuIJ5DSuAuMJQRjGbdllfGIH1STSSBzUpNycFSLiO8xq30EkKKdg2K3v+Imy9cK3jZ
-	AjDi2CN2ndJGfDlEEB0Br2InKzqU62vU9yyes1ektNc0I32eSq3/a6UfHgacM2FCUAG7DWT86/X
-	zj/8LOAdMd5aH6FetUxHMYJUgXDJoQAxWM50LcM6AUhc0IQEHLmXViDLkzoj8Eiwr+FCVFciQIN
-	uM2+bV0kR7Pn3tE3bhu0IyhY/n
-X-Google-Smtp-Source: AGHT+IEWS4teGtHYWwJP1Had2Bd8y1QTBta0/OS0xt5o54qHWYfld7nfB/2oEEiZY54CLk0hHI9iMg==
-X-Received: by 2002:a05:600c:3b90:b0:45d:d8d6:7fcc with SMTP id 5b1f17b1804b1-47d84b3864cmr77126855e9.27.1767876738622;
-        Thu, 08 Jan 2026 04:52:18 -0800 (PST)
-Received: from eichest-laptop.gad.local ([2a02:168:af72:0:58d0:2e00:f578:dd87])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd0dacd1sm16046623f8f.4.2026.01.08.04.52.17
+        bh=/yf1Ue7amp89AOLm+XQspD5ZX2yuMeb8ho7pJFXOCxY=;
+        b=poTIxqGTu5TgrjL9SoU+mOZLLZqQuZEKaHNBWUweEsf/jc+Dg9JbJ6SWG/LyV/CilQ
+         ZnFfYt8Ral44wbQH5vTUeCaUphOw4NVphOM1Ubv0sdFW4eHSt8T99XsS+WoEwRPmqNEX
+         43+iFnPQYLxq5GD743mAIEyRRbBrpEMx4Br2bMIJqUic6qhC3tYhZN+YPjz8aXCzOcl3
+         EAahBs/mN3+Neg+cARJgfzqtY10GxIjS3E7N0p6rz+2AgPkfCFXxwvC/HkX7ZDwwSgPF
+         9/jcl9qBCdUWcu/nXhSOv9gFiKq+WFFY2jE4hqjKcJXk932V6ftJWhb63miNWc4D1v36
+         2Ndg==
+X-Forwarded-Encrypted: i=1; AJvYcCXz+Ff+DwMRHtpUz2cm+AWmZSiSiK4CEjqMfba/8VxyZE0vilALWYhApYEsMbLI9TG3tTxe+cywndmh@vger.kernel.org
+X-Gm-Message-State: AOJu0YycigjIMGpFOmR2qrguN9ez5b/9o4YlaUIkiR+MC0HJ7zGQvgZj
+	ExkDoYDRnWMV3KF6ybArYIPLRpeQvMzb5fDfqCeTuVqvMCbfz7esUYepRCXvf7Weqg+KrHdqJ7L
+	D2yCjvC+5RTxF/jkMyT3HAoCOaSZ2G/pt+APLl+6JqXu7FN/DlyiLAjc1KYgGHPT0
+X-Gm-Gg: AY/fxX6etYKHo0qI8p9Y99PmFNCOZNvgGzDMOOCXnfAQipXUA3OSYDMCLMyDABjjLAl
+	c7+vfXo3+R1gH6Arb7SGP2ortgI1sPvY4KJjZcWbnPsuMenhHMNQwzrtG61dAXgc7Cydo6x36PU
+	9dzFWbzQKUUcNDVoOyzEfttCKTx0H3Wkt0urH16A1XqaeZtXU+SOUaolwGHj/FjPCxxc3kCAdWH
+	ClxGevBgHDLbyHpI5Uh+WoaCsTtiR7JrH0/m3Yr8AzfJL8viF/i+W6GkxQhPRdQp5309QjR7yBw
+	yqOMhdFXqqVYLq0nzw9JlsuLf01xcI08OP2Nbe0nOlvBAbia+G0VOiRIJntG3GNX/BY9i0O3Vve
+	R6Om0Ml5kmSqFw+mZ/xXJa0WaYOuuhJ3wSG/jfDtDp0TAiw==
+X-Received: by 2002:a17:902:d541:b0:295:a1a5:baf7 with SMTP id d9443c01a7336-2a3ee4c0e9dmr61508215ad.37.1767876735878;
+        Thu, 08 Jan 2026 04:52:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG53g2osNOh+cy+7lSdXr7lutMU++eGlQD4ELNCeQpgL6083Zu9k/e5sJKKScvFL3iCNb90qw==
+X-Received: by 2002:a17:902:d541:b0:295:a1a5:baf7 with SMTP id d9443c01a7336-2a3ee4c0e9dmr61507915ad.37.1767876735439;
+        Thu, 08 Jan 2026 04:52:15 -0800 (PST)
+Received: from hu-vdadhani-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81dab89f2a5sm253302b3a.56.2026.01.08.04.52.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 04:52:18 -0800 (PST)
-From: Stefan Eichenberger <eichest@gmail.com>
-To: andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	eichest@gmail.com
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: [PATCH v2 2/2] dt-bindings: net: micrel: Convert micrel-ksz90x1.txt to DT schema
-Date: Thu,  8 Jan 2026 13:51:28 +0100
-Message-ID: <20260108125208.29940-3-eichest@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260108125208.29940-1-eichest@gmail.com>
-References: <20260108125208.29940-1-eichest@gmail.com>
+        Thu, 08 Jan 2026 04:52:15 -0800 (PST)
+From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+To: mkl@pengutronix.de, mani@kernel.org, thomas.kopp@microchip.com,
+        mailhol@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc: mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Subject: [PATCH v1 1/2] dt-bindings: can: microchip,mcp251xfd: allow gpio-hog child nodes
+Date: Thu,  8 Jan 2026 18:21:59 +0530
+Message-Id: <20260108125200.2803112-2-viken.dadhaniya@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260108125200.2803112-1-viken.dadhaniya@oss.qualcomm.com>
+References: <20260108125200.2803112-1-viken.dadhaniya@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-ORIG-GUID: VKhYlvqs4pmvKVtcYB_C5-PpuaU8rwyc
+X-Proofpoint-GUID: VKhYlvqs4pmvKVtcYB_C5-PpuaU8rwyc
+X-Authority-Analysis: v=2.4 cv=fdegCkQF c=1 sm=1 tr=0 ts=695fa880 cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=5Uki56Dm3_jOTjpcuNwA:9 a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDA5MSBTYWx0ZWRfXybMjt1FjNdoq
+ uPAgwu+WwMyvnobdlH6tgwDHYnYo6DL3Vmh7gd5/P57Z8EyBvpFQjG7IAj6DrmFfDJtdm4WvH3W
+ IREpZP1I/jZtQpo76s1RoPsuQHgc2X+xBtzoR7aSP93wUOF4GF4f2yjCEpby29/14aNAGAYefCj
+ 2QitLUFLuFrHO68pw1eMBEu/7YIVXGUf8bZJMGixVLfXL2j6k4YsRFdW3BYqAV4N/1AfNbxSGbh
+ RuKDF+6xfARLn4SacGQgm9OumTQAW+lytrbbWXEdmkJRLfsMSNSACE3yn/nUtULVPmYOG1TLiF8
+ 7HeV1s5aDJJRyqkvKj7jdShR5qwFK4GWQnLNAkoT3DyXjFcCzZHFOOP5/6btCd76Y18Def4UWRh
+ ss7Tpd1q7QRAoNky8/570NtXnZkMbPLSA4ORIBsl6rSwafGS+nVc/jHHlNjR9gO0RlEHPCUHARZ
+ dmh5NtWtHEnDyJ8HinA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-08_02,2026-01-07_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 lowpriorityscore=0 suspectscore=0 spamscore=0 adultscore=0
+ impostorscore=0 clxscore=1015 phishscore=0 priorityscore=1501 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601080091
 
-From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+The MCP251XFD can expose two pins as GPIOs. The binding already declares
+gpio-controller and #gpio-cells for the device. Whitelist GPIO hog child
+nodes using patternProperties so boards can set default GPIO states at
+boot via DT, consistent with other GPIO controllers
+(e.g. microchip,mpfs-gpio).
 
-Convert the micrel-ksz90x1.txt to DT schema. Create a separate YAML file
-for this PHY series. The old naming of ksz90x1 would be misleading in
-this case, so rename it to gigabit, as it contains ksz9xx1 and lan8xxx
-gigabit PHYs.
-
-Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
 ---
- .../bindings/net/micrel,gigabit.yaml          | 253 ++++++++++++++++++
- .../bindings/net/micrel-ksz90x1.txt           | 228 ----------------
- 2 files changed, 253 insertions(+), 228 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/micrel,gigabit.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/micrel-ksz90x1.txt
+ .../devicetree/bindings/net/can/microchip,mcp251xfd.yaml    | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/micrel,gigabit.yaml b/Documentation/devicetree/bindings/net/micrel,gigabit.yaml
-new file mode 100644
-index 000000000000..384b4ea6181e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/micrel,gigabit.yaml
-@@ -0,0 +1,253 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/micrel,gigabit.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Micrel series Gigabit Ethernet PHYs
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+  - Stefan Eichenberger <eichest@gmail.com>
-+
-+description:
-+  Some boards require special skew tuning values, particularly when it comes
-+  to clock delays. These values can be specified in the device tree using
-+  the properties listed here.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ethernet-phy-id0022.1610  # KSZ9021
-+      - ethernet-phy-id0022.1611  # KSZ9021RLRN
-+      - ethernet-phy-id0022.1620  # KSZ9031
-+      - ethernet-phy-id0022.1631  # KSZ9477
-+      - ethernet-phy-id0022.1640  # KSZ9131
-+      - ethernet-phy-id0022.1650  # LAN8841
-+      - ethernet-phy-id0022.1660  # LAN8814
-+      - ethernet-phy-id0022.1670  # LAN8804
-+
-+  micrel,force-master:
-+    type: boolean
-+    description: |
-+      Force phy to master mode. Only set this option if the phy reference
-+      clock provided at CLK125_NDO pin is used as MAC reference clock
-+      because the clock jitter in slave mode is too high (errata#2).
-+      Attention: The link partner must be configurable as slave otherwise
-+      no link will be established.
-+
-+  coma-mode-gpios:
-+    maxItems: 1
-+    description: |
-+      If present the given gpio will be deasserted when the PHY is probed.
-+
-+      Some PHYs have a COMA mode input pin which puts the PHY into
-+      isolate and power-down mode. On some boards this input is connected
-+      to a GPIO of the SoC.
-+
-+  micrel,led-mode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      LED mode value to set for PHYs with configurable LEDs.
-+
-+      Configure the LED mode with single value. The list of PHYs and the
-+      bits that are currently supported:
-+
-+      LAN8814: register EP5.0, bit 6
-+
-+      See the respective PHY datasheet for the mode values.
-+    minimum: 0
-+    maximum: 1
-+
+diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.=
+yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+index 2d13638ebc6a..49d6f6bbe193 100644
+--- a/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
++++ b/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+@@ -54,6 +54,12 @@ properties:
+   "#gpio-cells":
+     const: 2
+=20
 +patternProperties:
-+  '^([rt]xc)-skew-psec$':
-+    $ref: /schemas/types.yaml#/definitions/int32
-+    description:
-+      Skew control of the pad in picoseconds.
-+    minimum: -700
-+    maximum: 2400
-+    multipleOf: 100
-+    default: 0
++  "^.+-hog(-[0-9]+)?$":
++    type: object
++    required:
++      - gpio-hog
 +
-+  '^([rt]xd[0-3]|rxdv|txen)-skew-psec$':
-+    $ref: /schemas/types.yaml#/definitions/int32
-+    description: |
-+      Skew control of the pad in picoseconds.
-+    minimum: -700
-+    maximum: 800
-+    multipleOf: 100
-+    default: 0
-+
-+allOf:
-+  - $ref: ethernet-phy.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ethernet-phy-id0022.1610
-+              - ethernet-phy-id0022.1611
-+    then:
-+      patternProperties:
-+        '^([rt]xd[0-3]|[rt]xc|rxdv|txen)-skew-ps$':
-+          description: |
-+            Skew control of the pad in picoseconds.
-+            The actual increment on the chip is 120ps ranging from -840ps to
-+            960ps, this mismatch comes from a documentation error before
-+            datasheet revision 1.2 (Feb 2014).
-+
-+            The device tree value to delay mapping looks as follows:
-+            Device Tree Value   Delay
-+            --------------------------
-+            0                   -840ps
-+            200                 -720ps
-+            400                 -600ps
-+            600                 -480ps
-+            800                 -360ps
-+            1000                -240ps
-+            1200                -120ps
-+            1400                   0ps
-+            1600                 120ps
-+            1800                 240ps
-+            2000                 360ps
-+            2200                 480ps
-+            2400                 600ps
-+            2600                 720ps
-+            2800                 840ps
-+            3000                 960ps
-+          minimum: 0
-+          maximum: 3000
-+          multipleOf: 200
-+          default: 1400
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ethernet-phy-id0022.1620
-+    then:
-+      patternProperties:
-+        '^([rt]xc)-skew-ps$':
-+          description: |
-+            Skew control of the pad in picoseconds.
-+
-+            The device tree value to delay mapping is as follows:
-+            Device Tree Value   Delay
-+            --------------------------
-+            0                   -900ps
-+            60                  -840ps
-+            120                 -780ps
-+            180                 -720ps
-+            240                 -660ps
-+            300                 -600ps
-+            360                 -540ps
-+            420                 -480ps
-+            480                 -420ps
-+            540                 -360ps
-+            600                 -300ps
-+            660                 -240ps
-+            720                 -180ps
-+            780                 -120ps
-+            840                  -60ps
-+            900                    0ps
-+            960                   60ps
-+            1020                 120ps
-+            1080                 180ps
-+            1140                 240ps
-+            1200                 300ps
-+            1260                 360ps
-+            1320                 420ps
-+            1380                 480ps
-+            1440                 540ps
-+            1500                 600ps
-+            1560                 660ps
-+            1620                 720ps
-+            1680                 780ps
-+            1740                 840ps
-+            1800                 900ps
-+            1860                 960ps
-+          minimum: 0
-+          maximum: 1860
-+          multipleOf: 60
-+          default: 900
-+        '^([rt]xd[0-3]|rxdv|txen)-skew-ps$':
-+          description: |
-+            Skew control of the pad in picoseconds.
-+
-+            The device tree value to delay mapping is as follows:
-+            Device Tree Value   Delay
-+            --------------------------
-+            0                   -420ps
-+            60                  -360ps
-+            120                 -300ps
-+            180                 -240ps
-+            240                 -180ps
-+            300                 -120ps
-+            360                  -60ps
-+            420                    0ps
-+            480                   60ps
-+            540                  120ps
-+            600                  180ps
-+            660                  240ps
-+            720                  300ps
-+            780                  360ps
-+            840                  420ps
-+            900                  480ps
-+          minimum: 0
-+          maximum: 900
-+          multipleOf: 60
-+          default: 420
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - ethernet-phy-id0022.1640
-+                - ethernet-phy-id0022.1650
-+    then:
-+      patternProperties:
-+        '^([rt]xd[0-3]|[rt]xc|rxdv|txen)-skew-psec$': false
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: ethernet-phy-id0022.1620
-+    then:
-+      properties:
-+        micrel,force-master: false
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: ethernet-phy-id0022.1660
-+    then:
-+      properties:
-+        coma-mode-gpios: false
-+        micrel,led-mode: false
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-phy@7 {
-+            compatible = "ethernet-phy-id0022.1610";
-+            reg = <7>;
-+            rxc-skew-ps = <3000>;
-+            rxdv-skew-ps = <0>;
-+            txc-skew-ps = <3000>;
-+            txen-skew-ps = <0>;
-+        };
-+
-+        ethernet-phy@9 {
-+            compatible = "ethernet-phy-id0022.1640";
-+            reg = <9>;
-+            rxc-skew-psec = <(-100)>;
-+            txc-skew-psec = <(-100)>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/micrel-ksz90x1.txt b/Documentation/devicetree/bindings/net/micrel-ksz90x1.txt
-deleted file mode 100644
-index 6f7b907d5a04..000000000000
---- a/Documentation/devicetree/bindings/net/micrel-ksz90x1.txt
-+++ /dev/null
-@@ -1,228 +0,0 @@
--Micrel KSZ9021/KSZ9031/KSZ9131 Gigabit Ethernet PHY
--
--Some boards require special tuning values, particularly when it comes
--to clock delays. You can specify clock delay values in the PHY OF
--device node. Deprecated, but still supported, these properties can
--also be added to an Ethernet OF device node.
--
--Note that these settings are applied after any phy-specific fixup from
--phy_fixup_list (see phy_init_hw() from drivers/net/phy/phy_device.c),
--and therefore may overwrite them.
--
--KSZ9021:
--
--  All skew control options are specified in picoseconds. The minimum
--  value is 0, the maximum value is 3000, and it can be specified in 200ps
--  steps, *but* these values are in no way what you get because this chip's
--  skew values actually increase in 120ps steps, starting from -840ps. The
--  incorrect values came from an error in the original KSZ9021 datasheet
--  before it was corrected in revision 1.2 (Feb 2014), but it is too late to
--  change the driver now because of the many existing device trees that have
--  been created using values that go up in increments of 200.
--
--  The following table shows the actual skew delay you will get for each of the
--  possible devicetree values, and the number that will be programmed into the
--  corresponding pad skew register:
--
--  Device Tree Value	Delay	Pad Skew Register Value
--  -----------------------------------------------------
--	0   		-840ps		0000
--	200 		-720ps		0001
--	400 		-600ps		0010
--	600 		-480ps		0011
--	800 		-360ps		0100
--	1000		-240ps		0101
--	1200		-120ps		0110
--	1400		   0ps		0111
--	1600		 120ps		1000
--	1800		 240ps		1001
--	2000		 360ps		1010
--	2200		 480ps		1011
--	2400		 600ps		1100
--	2600		 720ps		1101
--	2800		 840ps		1110
--	3000		 960ps		1111
--
--  Optional properties:
--
--    - rxc-skew-ps : Skew control of RXC pad
--    - rxdv-skew-ps : Skew control of RX CTL pad
--    - txc-skew-ps : Skew control of TXC pad
--    - txen-skew-ps : Skew control of TX CTL pad
--    - rxd0-skew-ps : Skew control of RX data 0 pad
--    - rxd1-skew-ps : Skew control of RX data 1 pad
--    - rxd2-skew-ps : Skew control of RX data 2 pad
--    - rxd3-skew-ps : Skew control of RX data 3 pad
--    - txd0-skew-ps : Skew control of TX data 0 pad
--    - txd1-skew-ps : Skew control of TX data 1 pad
--    - txd2-skew-ps : Skew control of TX data 2 pad
--    - txd3-skew-ps : Skew control of TX data 3 pad
--
--KSZ9031:
--
--  All skew control options are specified in picoseconds. The minimum
--  value is 0, and the maximum is property-dependent. The increment
--  step is 60ps. The default value is the neutral setting, so setting
--  rxc-skew-ps=<0> actually results in -900 picoseconds adjustment.
--
--  The KSZ9031 hardware supports a range of skew values from negative to
--  positive, where the specific range is property dependent. All values
--  specified in the devicetree are offset by the minimum value so they
--  can be represented as positive integers in the devicetree since it's
--  difficult to represent a negative number in the devictree.
--
--  The following 5-bit values table apply to rxc-skew-ps and txc-skew-ps.
--
--  Pad Skew Value	Delay (ps)	Devicetree Value
--  ------------------------------------------------------
--  0_0000		-900ps		0
--  0_0001		-840ps		60
--  0_0010		-780ps		120
--  0_0011		-720ps		180
--  0_0100		-660ps		240
--  0_0101		-600ps		300
--  0_0110		-540ps		360
--  0_0111		-480ps		420
--  0_1000		-420ps		480
--  0_1001		-360ps		540
--  0_1010		-300ps		600
--  0_1011		-240ps		660
--  0_1100		-180ps		720
--  0_1101		-120ps		780
--  0_1110		-60ps		840
--  0_1111		0ps		900
--  1_0000		60ps		960
--  1_0001		120ps		1020
--  1_0010		180ps		1080
--  1_0011		240ps		1140
--  1_0100		300ps		1200
--  1_0101		360ps		1260
--  1_0110		420ps		1320
--  1_0111		480ps		1380
--  1_1000		540ps		1440
--  1_1001		600ps		1500
--  1_1010		660ps		1560
--  1_1011		720ps		1620
--  1_1100		780ps		1680
--  1_1101		840ps		1740
--  1_1110		900ps		1800
--  1_1111		960ps		1860
--
--  The following 4-bit values table apply to the txdX-skew-ps, rxdX-skew-ps
--  data pads, and the rxdv-skew-ps, txen-skew-ps control pads.
--
--  Pad Skew Value	Delay (ps)	Devicetree Value
--  ------------------------------------------------------
--  0000			-420ps		0
--  0001			-360ps		60
--  0010			-300ps		120
--  0011			-240ps		180
--  0100			-180ps		240
--  0101			-120ps		300
--  0110			-60ps		360
--  0111			0ps		420
--  1000			60ps		480
--  1001			120ps		540
--  1010			180ps		600
--  1011			240ps		660
--  1100			300ps		720
--  1101			360ps		780
--  1110			420ps		840
--  1111			480ps		900
--
--  Optional properties:
--
--    Maximum value of 1860, default value 900:
--
--      - rxc-skew-ps : Skew control of RX clock pad
--      - txc-skew-ps : Skew control of TX clock pad
--
--    Maximum value of 900, default value 420:
--
--      - rxdv-skew-ps : Skew control of RX CTL pad
--      - txen-skew-ps : Skew control of TX CTL pad
--      - rxd0-skew-ps : Skew control of RX data 0 pad
--      - rxd1-skew-ps : Skew control of RX data 1 pad
--      - rxd2-skew-ps : Skew control of RX data 2 pad
--      - rxd3-skew-ps : Skew control of RX data 3 pad
--      - txd0-skew-ps : Skew control of TX data 0 pad
--      - txd1-skew-ps : Skew control of TX data 1 pad
--      - txd2-skew-ps : Skew control of TX data 2 pad
--      - txd3-skew-ps : Skew control of TX data 3 pad
--
--    - micrel,force-master:
--        Boolean, force phy to master mode. Only set this option if the phy
--        reference clock provided at CLK125_NDO pin is used as MAC reference
--        clock because the clock jitter in slave mode is too high (errata#2).
--        Attention: The link partner must be configurable as slave otherwise
--        no link will be established.
--
--KSZ9131:
--LAN8841:
--
--  All skew control options are specified in picoseconds. The increment
--  step is 100ps. Unlike KSZ9031, the values represent picoseccond delays.
--  A negative value can be assigned as rxc-skew-psec = <(-100)>;.
--
--  Optional properties:
--
--    Range of the value -700 to 2400, default value 0:
--
--      - rxc-skew-psec : Skew control of RX clock pad
--      - txc-skew-psec : Skew control of TX clock pad
--
--    Range of the value -700 to 800, default value 0:
--
--      - rxdv-skew-psec : Skew control of RX CTL pad
--      - txen-skew-psec : Skew control of TX CTL pad
--      - rxd0-skew-psec : Skew control of RX data 0 pad
--      - rxd1-skew-psec : Skew control of RX data 1 pad
--      - rxd2-skew-psec : Skew control of RX data 2 pad
--      - rxd3-skew-psec : Skew control of RX data 3 pad
--      - txd0-skew-psec : Skew control of TX data 0 pad
--      - txd1-skew-psec : Skew control of TX data 1 pad
--      - txd2-skew-psec : Skew control of TX data 2 pad
--      - txd3-skew-psec : Skew control of TX data 3 pad
--
--Examples:
--
--	/* Attach to an Ethernet device with autodetected PHY */
--	&enet {
--		rxc-skew-ps = <1800>;
--		rxdv-skew-ps = <0>;
--		txc-skew-ps = <1800>;
--		txen-skew-ps = <0>;
--		status = "okay";
--	};
--
--	/* Attach to an explicitly-specified PHY */
--	mdio {
--		phy0: ethernet-phy@0 {
--			rxc-skew-ps = <1800>;
--			rxdv-skew-ps = <0>;
--			txc-skew-ps = <1800>;
--			txen-skew-ps = <0>;
--			reg = <0>;
--		};
--	};
--	ethernet@70000 {
--		phy = <&phy0>;
--		phy-mode = "rgmii-id";
--	};
--
--References
--
--  Micrel ksz9021rl/rn Data Sheet, Revision 1.2. Dated 2/13/2014.
--  http://www.micrel.com/_PDF/Ethernet/datasheets/ksz9021rl-rn_ds.pdf
--
--  Micrel ksz9031rnx Data Sheet, Revision 2.1. Dated 11/20/2014.
--  http://www.micrel.com/_PDF/Ethernet/datasheets/KSZ9031RNX.pdf
--
--Notes:
--
--  Note that a previous version of the Micrel ksz9021rl/rn Data Sheet
--  was missing extended register 106 (transmit data pad skews), and
--  incorrectly specified the ps per step as 200ps/step instead of
--  120ps/step. The latest update to this document reflects the latest
--  revision of the Micrel specification even though usage in the kernel
--  still reflects that incorrect document.
--- 
-2.51.0
+ required:
+   - compatible
+   - reg
+--=20
+2.34.1
 
 
