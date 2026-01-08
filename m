@@ -1,96 +1,96 @@
-Return-Path: <devicetree+bounces-252680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9AC6D02B2E
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 13:43:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08D17D02B40
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 13:43:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8261430AEA15
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:37:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 71B8A3057103
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:38:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0922A3803E6;
-	Thu,  8 Jan 2026 08:59:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89C003803F5;
+	Thu,  8 Jan 2026 08:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZwIoK9qS";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LkPZq7vL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lakzr7BG";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bSRGyagI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6772237C116
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:58:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5069737F8C8
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:59:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767862739; cv=none; b=ApKyeUZirJ+/xk+sqCs8el1rojWUjoXte09e6x9r2/PgMUqJO5vWQ6SUUamigNw6nFPRW1gP4o589NNiOp4/DezIxiY71+EE9yckygduot97/8tlt6XhAwZRWbchGIWciSPn9tgCINeIMltZriQhDlLAAlKvD/5jxAMvwh6gj4c=
+	t=1767862748; cv=none; b=nst18Gk6OCwIQVU+Syp0Opd+Bn5hYQcQr7WllqwIWc3Fb4imHdTrzm8f+m97FnsKy8l2QrSb7DHjIsZ154Ip0goFo1mdkD013TWR0dOM12QmEVFSrPJO4Ty+9oRdcX5B1D7l032KT79x0f1D5ygDMrpSscrgENz/2Qy8lNlzhk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767862739; c=relaxed/simple;
-	bh=+aoy9VbKUQ5MN/7utCKYoAu6Y/AmLQbnXgr8F3KRUPk=;
+	s=arc-20240116; t=1767862748; c=relaxed/simple;
+	bh=xddD2MNsv1s20DTlpMntWMruk2EwI1cqCCz4ydIMiDE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=HKy6d0tuVRN7zmdJBTCMFRkpnnt2/bfnr5TmBmpI5Gb170hNa3wfwxpmYfF4ovrP5v6DDqGpDmsDfGEZWnQFbzIIiAW8aPNA4D4frqmWdcmcchU+K96CbsXHlAHlMfSmhxRjz4QEskxSDwTFHxlnrDMvLdvGH2iqIsRtA8aBxMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZwIoK9qS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LkPZq7vL; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=UNBLkSaCZXXXKHN5fMSaCjbRlAAPrW+Y/c5574ab0RuV/Spl8uIYGWbchD5mFotydAo9QGkOrP6n7wLyISuxC+Z82u7LVR+VWuGWUwwbqPgbPyEjN4S3DFGMPwKBXUbLEXvAiNSdfW6Eesyv21s3aM7M1NxrUze+HEVnIUPJG5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lakzr7BG; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bSRGyagI; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6087Q0Zo1258369
-	for <devicetree@vger.kernel.org>; Thu, 8 Jan 2026 08:58:51 GMT
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60846QjY2782119
+	for <devicetree@vger.kernel.org>; Thu, 8 Jan 2026 08:58:59 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=whI4NgaikBf
-	H9jt/nnpSRtLLcXeeBH2QUKR2sOVuD/Q=; b=ZwIoK9qSYz8UIy9T7/VqVROWgJw
-	k1EANmwwJd7XnjCgGoh8NKwAZAshucvj/24EYeNJXH6o0IiNpKvywgjxRXcHySfY
-	GSEnizU3UbwhnaM8plK+4zwzNrxfU5rYSx7W2BR+NQW6DuRJyF6BEcx+HXq3CqdJ
-	iF4msr1hGyfNrtRtB5+AEPcbat22K9AIoMXOJutYVNqO7Y5aj7q53lri+C/DGwn1
-	8N4Ie/3BbpMfv/LAO0qhU9EeqWpEb81d5lanOVhkinYNK4NLkdVP/D5u+cpxFUhU
-	193KuWHJLjsIKhHCA1Jh7P+uzjgf3trLSarC948faxa/gHQSPYb9XgouMtQ==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bj86gr8r7-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=54GDJZyJzbH
+	Wm0MrtQpD7VyvgqcpHZYlLhoVJwL7bN4=; b=lakzr7BGXoXaqnX93ruFWQq4iMw
+	3FynUPGHYsM9mVzpgDdFf5pLpddwJ7GenZpP+ltZ4R8/3yzsRn+W308uFf1+qDTi
+	qo+f6bO2jmO98DR5VNctGhIURJEQIxjvZjlQGFOcOASOz6Rv8RwfzFVz94b9H9hy
+	4Biz/48eNGIECrYhhtgWjlv1zYYhkbe72412DBdoF3izvTHyNFunpb0vdfl2s75K
+	bHPP+QRzKaWkOgS2/q/NsTgjIxdlUbmfbIirV0p6aBTyPxgxYOsm7pyvcz/e5rQ4
+	m0/FF2eU3sdpFLG+Bm0RsOTpW82r83AAo454CTVFAMZOKIAPaR9pTRxHyCw==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bj58ugtax-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 08:58:51 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88a37ca7ffdso43671116d6.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:58:51 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 08:58:59 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8bb0ae16a63so346941885a.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:58:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767862731; x=1768467531; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1767862738; x=1768467538; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=whI4NgaikBfH9jt/nnpSRtLLcXeeBH2QUKR2sOVuD/Q=;
-        b=LkPZq7vLqeD68TjH/aC9RyOFSbvHM1bSIhpEZCMMfaM3ax4Q1dqTbq6O4Jci/EmSPN
-         WR5W2Z3LYH9PPtQq4d3IfOFwcsMJgVfxJAZ+XG9beICHeXBUEQISpkJwNiyo10oSGq68
-         zrWyaVLuzmAyiwV6qehUoci4Ggf9KEgouY6a5TLo4qZaoF01IUp7N5MgdO5kuZjkCjtu
-         /RJQAPfmapI17L1uwC5zH0NHZLxAsO9RUeCzDiI07R6nh04pAPvaJUutwcamzCPWC/F9
-         rN/7F9aETcm3miZOlVKYx03B7/S06sZ1Q4zg6HVvyuDQYebYSRsC1qxvSQx6x56ekN5p
-         rZqg==
+        bh=54GDJZyJzbHWm0MrtQpD7VyvgqcpHZYlLhoVJwL7bN4=;
+        b=bSRGyagI3H4krAO99E2ltUM4kktpE5tqaSmEYtY3V6vKGghDl0+k1rNwt2p25VFXB/
+         5ixvmHmPM4QdHHEOAwsW22krmw7qZZnB/5dunwWGe5SLrHO/dCnfGDXYdGpkkGT4LPO/
+         ggfDJZgzEvh+6++nDObwmv+GpPDTe3pgfKvvouch9ghuN4HbCyiUvYn0Meoy8I8g2DIx
+         T6//Qa4dx/YXp8u2QTSn3bV14h4sXiFTVzvUIchdzUEZ6i13GCbXBIeeZgr2GoU5qGXD
+         TZzkDiIFnDYRJj6+bO/dZaEbvUbpdfRqly294b6AvpsYAPSHmCdrIGFPmZsYzD56E1VA
+         sR7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767862731; x=1768467531;
+        d=1e100.net; s=20230601; t=1767862738; x=1768467538;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=whI4NgaikBfH9jt/nnpSRtLLcXeeBH2QUKR2sOVuD/Q=;
-        b=f7iHXMYEcl4Kqwt8+2o+2SRl7DBhXwzXKUbWVaAIs+3N5TBvfO3rZm2/hfeFsK/pIj
-         aCNaBJTBNsCb8C3Zy5qpn38PSV9iFCzgPIMv4XyzCr7dAZXOjCUpHwq6596ugLht7vjY
-         K4NRXtf5mYRzP3pA3gIjFvxuZX+6R1sBdZX3GKqU+gOW6AG4dQp/6x3GCWnTQ7N2i58L
-         hRXehZ7EWS4ndSmndu/GfnM2WLPfos7k0bkc/YDjCLnqpYZ/Fxv3ZhmAVnc2jqQYFJuf
-         N4IKElELIoRdfREKl8jUTe0+iC1T93bUd/pT7aj08+/cHTgpLhIPd6ejIuWj2Mv2akDK
-         bOiw==
-X-Forwarded-Encrypted: i=1; AJvYcCVYw4lrWsMiU97JDxD5KEc/56kykFUux5GtnQb7j0t9S/yDTJjr0wPWEMIUHLvGxud+w2xsXjx4hMYD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz287T0avvhhtnWdQWLVEdBQc1dI06autAa9WiSnmYSTzgZ80Ky
-	LOBeqBP7n2NBrFBK6YpnC+PjROhr8Th2SosIHRV/FxRh8QQisz/YiZypfxgghglcn2x+c9QrXFt
-	bkI1MyjsYrTJW0GohleugV4UIEVbq1/FGwiXBtJUwYxidu+4ZP4+G5fRbS+s2lSQh
-X-Gm-Gg: AY/fxX4n6wjfgGI6dQ8p7eiaQkLnZjzfN7zeVyGtmkuIbPh74gL0vbNc439XF0KWULm
-	tDnVKjNTgJZNAeZcz+jjPp1mzbpr7pdfyJl3jh8N4XwoaA4g+lGN1VkYMyQ39yHTVll1eTt1yh8
-	Zng9pL34NZ3xo7NtxzoddWWRjhDhU53TF8U5moajU2VrjpkBeFrfsI9MrjLn2w5ix+12ony3Q3q
-	kt0odqT6V/dW2JobezRwe1NMJM3S3xGdUXDmRGMYn60em1tLTGROD16BLZWP3QnR5ZzTsvWh7k2
-	u4qbWQjo1hYd4Fq7ntTPXU2zrQxJOM7hFPS5n4mhzXOt46Ezj0HTABoxx8V7DUpmVcVcAS0xDmk
-	f26GP4R4cwMnRStSE2CbvEGIKaIDXYw9YHhTmUKgHAnhoMv5DOxEHvSXhjCSuqtYv2dM=
-X-Received: by 2002:a05:6214:5184:b0:890:2df9:c6a5 with SMTP id 6a1803df08f44-890842a2364mr66683946d6.49.1767862730403;
-        Thu, 08 Jan 2026 00:58:50 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFtGZ+ORpobofbOVe6HX3/bYKadnPqWm63ghAfILfChu5HeGEUCVZEZvss6rhunnlTdLmsYxg==
-X-Received: by 2002:a05:6214:5184:b0:890:2df9:c6a5 with SMTP id 6a1803df08f44-890842a2364mr66683666d6.49.1767862729858;
-        Thu, 08 Jan 2026 00:58:49 -0800 (PST)
+        bh=54GDJZyJzbHWm0MrtQpD7VyvgqcpHZYlLhoVJwL7bN4=;
+        b=Pg7mZMM6AvpK4aUtv5/PSY3ibawlSts7FALTOmqfdNtmjb0x+EZk1OiKp4CsG579Pc
+         YwnPF7bPpUmarJ62eXB3XWFAplxdYkBoDCb7fSY35pv8mZWwSk6dFsMOGs/j+Vj+2QfF
+         ElENUvDt7pH8hpkU4bmaQQ/r3ngtsazjdYr58kIq8KLu4/MKngIXovOZ/6LGLJtMsHTl
+         eq71uW8sKQFBkzEXb6be/niDAMf78SgDaCZnWDaFGCot1pXJnoaDrKBncrGtR1HCxfL2
+         INtCY8r/6vIeE32R6e+Coz5gC+NO6dAyYo9P/SPx/qMUBopgXG/Vn8gE007VTet0eN5S
+         4WeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVnTKmPzsWLzKuLw8bKRiw1VDPhLV8VzqnNiFAvNmGnWbOPOcTwyK0MXyTfijPKeyK2xIMFov+MrRIO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyifesBBg19cwAvoGtc9vlnqQ46Bw7uyspWy+kcK5Jvw6537Id+
+	oLSiRnCB56ONFlafnq2bdm+ZaOMDrieR4N0Uf5rZs4ZOst7tn07LpfUOCYQVK/YRjGR5mhrcat8
+	Qe3w9ERbN8acdrppoAA3a1sKKasNa0bEbslE/Ro98fn0OjEiEAH1M3qBi/RibDK7h
+X-Gm-Gg: AY/fxX6YaQLZB19geb65qVDfA+4YHdF/wdaU3juLRctR2H6UUnhy0fhyBoLeiqthypk
+	xVYF1Yr/gMtLtaqdMX6El5zoFNPTTwIqoqu9ajGsymF6F2BQNzo6+l4PdhcbfJ5zV0fP3Nk2cYy
+	TiQ4c7gsnXQR+8hBAOQ+r929ykcIdrjwM/ZMzyE0BwgYrM5xDJOSwTCMsOTIt/dZjp2du7TJf09
+	DzlIJ40PHZB0ZXdyHsGordB4f6FUgHG+iRzfU6e+MJPHd9SxEjUMHzx0dTdm2O/h9L+W1qIwT/w
+	WMQ/iCCYRVCFSYWTWkVzYCIGR4YdclmQ8CrjLys6IEUrr1gtBpuk+cBn4xKRBIEhVtUEUbz2uNi
+	HsqvJHYo5Jt9at5nvU5x6uKwnMTNgXCzkaJjphswyIqMhqKcVN/UX+RtRBh0TVApZG/0=
+X-Received: by 2002:a05:620a:f0c:b0:8a9:ef98:6b34 with SMTP id af79cd13be357-8c3893cd9e6mr665634185a.56.1767862738335;
+        Thu, 08 Jan 2026 00:58:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFDPTpg2nfUyWmprD2xyTpkUnn0XmXeqUYRDeQUfDgMTzG3+mwfDEmQ/DqJk3PymsQw8p4x6g==
+X-Received: by 2002:a05:620a:f0c:b0:8a9:ef98:6b34 with SMTP id af79cd13be357-8c3893cd9e6mr665631685a.56.1767862737861;
+        Thu, 08 Jan 2026 00:58:57 -0800 (PST)
 Received: from yuanjiey.qualcomm.com (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-890770cc7eesm49680326d6.2.2026.01.08.00.58.41
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-890770cc7eesm49680326d6.2.2026.01.08.00.58.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 00:58:49 -0800 (PST)
+        Thu, 08 Jan 2026 00:58:57 -0800 (PST)
 From: yuanjie yang <yuanjie.yang@oss.qualcomm.com>
 To: robin.clark@oss.qualcomm.com, lumag@kernel.org, jesszhan0024@gmail.com,
         sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
@@ -102,9 +102,9 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
         aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
-Subject: [PATCH v5 10/12] drm/msm/dpu: Add Kaanapali SSPP sub-block support
-Date: Thu,  8 Jan 2026 16:56:57 +0800
-Message-Id: <20260108085659.790-11-yuanjie.yang@oss.qualcomm.com>
+Subject: [PATCH v5 11/12] drm/msm/dpu: Add Kaanapali WB support
+Date: Thu,  8 Jan 2026 16:56:58 +0800
+Message-Id: <20260108085659.790-12-yuanjie.yang@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260108085659.790-1-yuanjie.yang@oss.qualcomm.com>
 References: <20260108085659.790-1-yuanjie.yang@oss.qualcomm.com>
@@ -115,405 +115,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=ZNjaWH7b c=1 sm=1 tr=0 ts=695f71cb cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDA1OSBTYWx0ZWRfX+TZH5OWKb9Za
+ C3cIg6L73bNpluyrCUl8yy+Em9tyvShHx9or+X7XoR9FHEP35V8JZJVNRrUGINPP1GG133MaDBF
+ LSFGiiFmuGy8uZYaedpQg4j3f7hip1E+TgOPM1Fof4dVHpQC5TnkAgrYcCulNFw/XhxTsVUNvjP
+ 9hteyJftNX3BEvFmDbCM/61/OFbfUmJZDOsYDNjmXwymKZ+QoEZBc3BC64kDlWYHLT7ugAMguEY
+ K/THaTrG5csqjKNdzjQO7vZeWN09G6VgZL2kzFlzPEp0HhPyhhSoLiZRiG3o2hdNnvUiZ9Yo30d
+ bAiwcOP1tRcp8p+fEyEykvvud2Ue0BolJvMI9/mKFAkgrMiQtU26dHdr9dPBxo0b7EaxI7Nq4Yd
+ OTRXtm2tFBZmmMGSkXyUPEoqd9ildBt+YcajhVr1Sag5hNqoTM1PEC2uyrjvt6uJ6Kwo0KMdjM9
+ tY6e9ekeRvPJpRs79YA==
+X-Proofpoint-GUID: K9XGo1K3G7vmHLhDCeQtbh00vA1BKp9x
+X-Proofpoint-ORIG-GUID: K9XGo1K3G7vmHLhDCeQtbh00vA1BKp9x
+X-Authority-Analysis: v=2.4 cv=CMgnnBrD c=1 sm=1 tr=0 ts=695f71d3 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
  a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=IoldKcXwaph4SihcyF8A:9 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-ORIG-GUID: FfgcjqF2XHxOrB7hgILCVldky2Y2Eaff
-X-Proofpoint-GUID: FfgcjqF2XHxOrB7hgILCVldky2Y2Eaff
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDA1OSBTYWx0ZWRfX9Z0Smh+qAW2e
- tJ4f0swQOGhfRV8tJ6rnOuHQmXz0zjhSQItiWoM94/RBZ7ens476oRxcx6V74RFO10O06FlaI74
- LWOVyGA8bmn/0n11jjfGlv3ndH4MQr2z/D0k2BKopCYWU1P9jkobtsWt58CtpaCRbFrgkfwKjIP
- si8pZ4tZOzJR+sUiHtQdapKY0KjwwlaxXmUG2jxVCeyGZBf5LerUhkndRjEmjgnq9JKIiY1vqy5
- VNXXM22z5GkSePYlPic384rI3dY5YzAB4UEObiPiqQAT2T47NmwgO0f8NJJxH3XGnETFf0Xkvsn
- vbqCJxEy8HZ0rVKB4Owux5A0U0W0jd0I0bbCQRLc8COO2yf5ONphNoTdyVAFLbJ/+EdZa6I99Zv
- BcVam8bbl6wvxVhO+AEHLIOPeza7h2ssADKMazRA8e2GMTLI05PGxDCehTBkggNtto02+9/2Gzo
- an3zheOp2ZCpFNyyhEw==
+ a=EUspDBNiAAAA:8 a=kCfvZJGldO2mi53t-5YA:9 a=PEH46H7Ffwr30OY-TuGO:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2026-01-08_01,2026-01-07_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 impostorscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
- adultscore=0 clxscore=1015 phishscore=0 spamscore=0 lowpriorityscore=0
+ clxscore=1015 bulkscore=0 priorityscore=1501 malwarescore=0 phishscore=0
+ adultscore=0 suspectscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601080059
 
 From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
 
-Add support for Kaanapali platform SSPP sub-blocks, which
-introduce structural changes including register additions,
-removals, and relocations. Add the new common and rectangle
-blocks, and update register definitions and handling to
-ensure compatibility with DPU v13.0.
+Add support for Kaanapali WB, which introduce register
+relocations, use the updated registeri definition to ensure
+compatibility.
 
 Co-developed-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
 Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
 Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
 ---
- drivers/gpu/drm/msm/Makefile                  |   1 +
- .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  14 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c   |  14 +-
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h   |   4 +
- .../gpu/drm/msm/disp/dpu1/dpu_hw_sspp_v13.c   | 321 ++++++++++++++++++
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c   |  18 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h   |   3 +
- 7 files changed, 371 insertions(+), 4 deletions(-)
- create mode 100644 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp_v13.c
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
-index 8aa7d07303fb..8b94c5f1cb68 100644
---- a/drivers/gpu/drm/msm/Makefile
-+++ b/drivers/gpu/drm/msm/Makefile
-@@ -86,6 +86,7 @@ msm-display-$(CONFIG_DRM_MSM_DPU) += \
- 	disp/dpu1/dpu_hw_lm.o \
- 	disp/dpu1/dpu_hw_pingpong.o \
- 	disp/dpu1/dpu_hw_sspp.o \
-+	disp/dpu1/dpu_hw_sspp_v13.o \
- 	disp/dpu1/dpu_hw_dspp.o \
- 	disp/dpu1/dpu_hw_merge3d.o \
- 	disp/dpu1/dpu_hw_top.o \
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-index 4964e70610d1..a056920f890a 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-@@ -208,6 +208,18 @@ struct dpu_dsc_blk {
- 	u32 len;
- };
- 
-+/**
-+ * struct dpu_sspp_v13_rec_blk - SSPP REC sub-blk information
-+ * @name: string name for debug purposes
-+ * @base: offset of this sub-block relative to the block offset
-+ * @len: register block length of this sub-block
-+ */
-+struct dpu_sspp_v13_rec_blk {
-+	char name[DPU_HW_BLK_NAME_LEN];
-+	u32 base;
-+	u32 len;
-+};
-+
- /**
-  * enum dpu_qos_lut_usage - define QoS LUT use cases
-  */
-@@ -294,6 +306,8 @@ struct dpu_sspp_sub_blks {
- 	u32 qseed_ver;
- 	struct dpu_scaler_blk scaler_blk;
- 	struct dpu_pp_blk csc_blk;
-+	struct dpu_sspp_v13_rec_blk sspp_rec0_blk;
-+	struct dpu_sspp_v13_rec_blk sspp_rec1_blk;
- 
- 	const u32 *format_list;
- 	u32 num_formats;
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
-index 197a2c584c73..3a9a14291fff 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
-@@ -234,6 +234,12 @@ static void dpu_hw_sspp_setup_format(struct dpu_sw_pipe *pipe,
- 		format_off = SSPP_SRC_FORMAT_REC1;
- 	}
- 
-+	if (fmt->fetch_mode != MDP_FETCH_LINEAR) {
-+		DPU_REG_WRITE(&ctx->hw, SSPP_FETCH_CONFIG,
-+			      DPU_FETCH_CONFIG_RESET_VALUE |
-+			      ctx->ubwc->highest_bank_bit << 18);
-+	}
-+
- 	dpu_hw_setup_format_impl(pipe, fmt, flags, ctx, op_mode_off,
- 				 unpack_pat_off, format_off,
- 				 SSPP_UBWC_STATIC_CTRL, SSPP_UBWC_ERROR_STATUS);
-@@ -291,9 +297,6 @@ void dpu_hw_setup_format_impl(struct dpu_sw_pipe *pipe, const struct msm_format
- 		if (MSM_FORMAT_IS_UBWC(fmt))
- 			opmode |= MDSS_MDP_OP_BWC_EN;
- 		src_format |= (fmt->fetch_mode & 3) << 30; /*FRAME_FORMAT */
--		DPU_REG_WRITE(c, SSPP_FETCH_CONFIG,
--			DPU_FETCH_CONFIG_RESET_VALUE |
--			ctx->ubwc->highest_bank_bit << 18);
- 		switch (ctx->ubwc->ubwc_enc_version) {
- 		case UBWC_1_0:
- 			fast_clear = fmt->alpha_enable ? BIT(31) : 0;
-@@ -724,7 +727,10 @@ struct dpu_hw_sspp *dpu_hw_sspp_init(struct drm_device *dev,
- 
- 	hw_pipe->mdss_ver = mdss_rev;
- 
--	_setup_layer_ops(hw_pipe, hw_pipe->cap->features, mdss_rev);
-+	if (mdss_rev->core_major_ver >= 13)
-+		dpu_hw_sspp_init_v13(hw_pipe, hw_pipe->cap->features, mdss_rev);
-+	else
-+		_setup_layer_ops(hw_pipe, hw_pipe->cap->features, mdss_rev);
- 
- 	return hw_pipe;
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c
+index 478a091aeccf..006dcc4a0dcc 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c
+@@ -148,6 +148,15 @@ static void dpu_hw_wb_setup_qos_lut(struct dpu_hw_wb *ctx,
+ 			      cfg);
  }
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h
-index df3a320a9151..69d68cc916b2 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h
-@@ -384,5 +384,9 @@ void dpu_hw_setup_solidfill_impl(struct dpu_sw_pipe *pipe,
- void dpu_hw_sspp_setup_qos_ctrl_impl(struct dpu_hw_sspp *ctx,
- 				     bool danger_safe_en, u32 ctrl_off);
  
-+void dpu_hw_sspp_init_v13(struct dpu_hw_sspp *c,
-+			  unsigned long features,
-+			  const struct dpu_mdss_version *mdss_rev);
-+
- #endif /*_DPU_HW_SSPP_H */
- 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp_v13.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp_v13.c
-new file mode 100644
-index 000000000000..e78a20b45300
---- /dev/null
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp_v13.c
-@@ -0,0 +1,321 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+#include <linux/printk.h>
-+#include <linux/soc/qcom/ubwc.h>
-+
-+#include "dpu_hw_sspp.h"
-+
-+/* >= v13 DPU */
-+/* CMN Registers -> Source Surface Processing Pipe Common SSPP registers */
-+/*      Name                                  Offset */
-+#define SSPP_CMN_CLK_CTRL                0x0
-+#define SSPP_CMN_CLK_STATUS              0x4
-+#define SSPP_CMN_MULTI_REC_OP_MODE       0x10
-+#define SSPP_CMN_ADDR_CONFIG             0x14
-+#define SSPP_CMN_CAC_CTRL                0x20
-+#define SSPP_CMN_SYS_CACHE_MODE          0x24
-+#define SSPP_CMN_QOS_CTRL                0x28
-+
-+#define SSPP_CMN_FILL_LEVEL_SCALE                0x3c
-+#define SSPP_CMN_FILL_LEVELS                     0x40
-+#define SSPP_CMN_STATUS                          0x44
-+#define SSPP_CMN_FETCH_DMA_RD_OTS                0x48
-+#define SSPP_CMN_FETCH_DTB_WR_PLANE0             0x4c
-+#define SSPP_CMN_FETCH_DTB_WR_PLANE1             0x50
-+#define SSPP_CMN_FETCH_DTB_WR_PLANE2             0x54
-+#define SSPP_CMN_DTB_UNPACK_RD_PLANE0            0x58
-+#define SSPP_CMN_DTB_UNPACK_RD_PLANE1            0x5c
-+#define SSPP_CMN_DTB_UNPACK_RD_PLANE2            0x60
-+#define SSPP_CMN_UNPACK_LINE_COUNT               0x64
-+#define SSPP_CMN_TPG_CONTROL                     0x68
-+#define SSPP_CMN_TPG_CONFIG                      0x6c
-+#define SSPP_CMN_TPG_COMPONENT_LIMITS            0x70
-+#define SSPP_CMN_TPG_RECTANGLE                   0x74
-+#define SSPP_CMN_TPG_BLACK_WHITE_PATTERN_FRAMES  0x78
-+#define SSPP_CMN_TPG_RGB_MAPPING                 0x7c
-+#define SSPP_CMN_TPG_PATTERN_GEN_INIT_VAL        0x80
-+
-+/*RECRegisterset*/
-+/*Name        Offset*/
-+#define SSPP_REC_SRC_FORMAT                             0x0
-+#define SSPP_REC_SRC_UNPACK_PATTERN                     0x4
-+#define SSPP_REC_SRC_OP_MODE                            0x8
-+#define SSPP_REC_SRC_CONSTANT_COLOR                     0xc
-+#define SSPP_REC_SRC_IMG_SIZE                           0x10
-+#define SSPP_REC_SRC_SIZE                               0x14
-+#define SSPP_REC_SRC_XY                                 0x18
-+#define SSPP_REC_OUT_SIZE                               0x1c
-+#define SSPP_REC_OUT_XY                                 0x20
-+#define SSPP_REC_SW_PIX_EXT_LR                          0x24
-+#define SSPP_REC_SW_PIX_EXT_TB                          0x28
-+#define SSPP_REC_SRC_SIZE_ODX                           0x30
-+#define SSPP_REC_SRC_XY_ODX                             0x34
-+#define SSPP_REC_OUT_SIZE_ODX                           0x38
-+#define SSPP_REC_OUT_XY_ODX                             0x3c
-+#define SSPP_REC_SW_PIX_EXT_LR_ODX                      0x40
-+#define SSPP_REC_SW_PIX_EXT_TB_ODX                      0x44
-+#define SSPP_REC_PRE_DOWN_SCALE                         0x48
-+#define SSPP_REC_SRC0_ADDR                              0x4c
-+#define SSPP_REC_SRC1_ADDR                              0x50
-+#define SSPP_REC_SRC2_ADDR                              0x54
-+#define SSPP_REC_SRC3_ADDR                              0x58
-+#define SSPP_REC_SRC_YSTRIDE0                           0x5c
-+#define SSPP_REC_SRC_YSTRIDE1                           0x60
-+#define SSPP_REC_CURRENT_SRC0_ADDR                      0x64
-+#define SSPP_REC_CURRENT_SRC1_ADDR                      0x68
-+#define SSPP_REC_CURRENT_SRC2_ADDR                      0x6c
-+#define SSPP_REC_CURRENT_SRC3_ADDR                      0x70
-+#define SSPP_REC_SRC_ADDR_SW_STATUS                     0x74
-+#define SSPP_REC_CDP_CNTL                               0x78
-+#define SSPP_REC_TRAFFIC_SHAPER                         0x7c
-+#define SSPP_REC_TRAFFIC_SHAPER_PREFILL                 0x80
-+#define SSPP_REC_PD_MEM_ALLOC                           0x84
-+#define SSPP_REC_QOS_CLAMP                              0x88
-+#define SSPP_REC_UIDLE_CTRL_VALUE                       0x8c
-+#define SSPP_REC_UBWC_STATIC_CTRL                       0x90
-+#define SSPP_REC_UBWC_STATIC_CTRL_OVERRIDE              0x94
-+#define SSPP_REC_UBWC_STATS_ROI                         0x98
-+#define SSPP_REC_UBWC_STATS_WORST_TILE_ROW_BW_ROI0      0x9c
-+#define SSPP_REC_UBWC_STATS_TOTAL_BW_ROI0               0xa0
-+#define SSPP_REC_UBWC_STATS_WORST_TILE_ROW_BW_ROI1      0xa4
-+#define SSPP_REC_UBWC_STATS_TOTAL_BW_ROI1               0xa8
-+#define SSPP_REC_UBWC_STATS_WORST_TILE_ROW_BW_ROI2      0xac
-+#define SSPP_REC_UBWC_STATS_TOTAL_BW_ROI2               0xb0
-+#define SSPP_REC_EXCL_REC_CTRL                          0xb4
-+#define SSPP_REC_EXCL_REC_SIZE                          0xb8
-+#define SSPP_REC_EXCL_REC_XY                            0xbc
-+#define SSPP_REC_LINE_INSERTION_CTRL                    0xc0
-+#define SSPP_REC_LINE_INSERTION_OUT_SIZE                0xc4
-+#define SSPP_REC_FETCH_PIPE_ACTIVE                      0xc8
-+#define SSPP_REC_META_ERROR_STATUS                      0xcc
-+#define SSPP_REC_UBWC_ERROR_STATUS                      0xd0
-+#define SSPP_REC_FLUSH_CTRL                             0xd4
-+#define SSPP_REC_INTR_EN                                0xd8
-+#define SSPP_REC_INTR_STATUS                            0xdc
-+#define SSPP_REC_INTR_CLEAR                             0xe0
-+#define SSPP_REC_HSYNC_STATUS                           0xe4
-+#define SSPP_REC_FP16_CONFIG                            0x150
-+#define SSPP_REC_FP16_CSC_MATRIX_COEFF_R_0              0x154
-+#define SSPP_REC_FP16_CSC_MATRIX_COEFF_R_1              0x158
-+#define SSPP_REC_FP16_CSC_MATRIX_COEFF_G_0              0x15c
-+#define SSPP_REC_FP16_CSC_MATRIX_COEFF_G_1              0x160
-+#define SSPP_REC_FP16_CSC_MATRIX_COEFF_B_0              0x164
-+#define SSPP_REC_FP16_CSC_MATRIX_COEFF_B_1              0x168
-+#define SSPP_REC_FP16_CSC_PRE_CLAMP_R                   0x16c
-+#define SSPP_REC_FP16_CSC_PRE_CLAMP_G                   0x170
-+#define SSPP_REC_FP16_CSC_PRE_CLAMP_B                   0x174
-+#define SSPP_REC_FP16_CSC_POST_CLAMP                    0x178
-+
-+static inline u32 dpu_hw_sspp_calculate_rect_off(enum dpu_sspp_multirect_index rect_index,
-+						 struct dpu_hw_sspp *ctx)
-+{
-+	return (rect_index == DPU_SSPP_RECT_SOLO || rect_index == DPU_SSPP_RECT_0) ?
-+		ctx->cap->sblk->sspp_rec0_blk.base : ctx->cap->sblk->sspp_rec1_blk.base;
-+}
-+
-+static void dpu_hw_sspp_setup_multirect_v13(struct dpu_sw_pipe *pipe)
-+{
-+	struct dpu_hw_sspp *ctx = pipe->sspp;
-+
-+	if (!ctx)
-+		return;
-+
-+	dpu_hw_setup_multirect_impl(pipe, ctx, SSPP_CMN_MULTI_REC_OP_MODE);
-+}
-+
-+static void dpu_hw_sspp_setup_format_v13(struct dpu_sw_pipe *pipe,
-+					 const struct msm_format *fmt, u32 flags)
-+{
-+	struct dpu_hw_sspp *ctx = pipe->sspp;
-+	u32 op_mode_off, unpack_pat_off, format_off;
-+	u32 ubwc_ctrl_off, ubwc_err_off;
-+	u32 offset;
-+
-+	if (!ctx || !fmt)
-+		return;
-+
-+	offset = dpu_hw_sspp_calculate_rect_off(pipe->multirect_index, ctx);
-+
-+	op_mode_off = offset + SSPP_REC_SRC_OP_MODE;
-+	unpack_pat_off = offset + SSPP_REC_SRC_UNPACK_PATTERN;
-+	format_off = offset + SSPP_REC_SRC_FORMAT;
-+	ubwc_ctrl_off = offset + SSPP_REC_UBWC_STATIC_CTRL;
-+	ubwc_err_off = offset + SSPP_REC_UBWC_ERROR_STATUS;
-+
-+	dpu_hw_setup_format_impl(pipe, fmt, flags, ctx, op_mode_off,
-+				 unpack_pat_off, format_off, ubwc_ctrl_off, ubwc_err_off);
-+}
-+
-+static void dpu_hw_sspp_setup_pe_config_v13(struct dpu_hw_sspp *ctx,
-+					    struct dpu_hw_pixel_ext *pe_ext)
-+{
-+	struct dpu_hw_blk_reg_map *c;
-+	u8 color;
-+	u32 lr_pe[4], tb_pe[4];
-+	const u32 bytemask = 0xff;
-+	u32 offset = ctx->cap->sblk->sspp_rec0_blk.base;
-+
-+	if (!ctx || !pe_ext)
-+		return;
-+
-+	c = &ctx->hw;
-+	/* program SW pixel extension override for all pipes*/
-+	for (color = 0; color < DPU_MAX_PLANES; color++) {
-+		/* color 2 has the same set of registers as color 1 */
-+		if (color == 2)
-+			continue;
-+
-+		lr_pe[color] = ((pe_ext->right_ftch[color] & bytemask) << 24) |
-+			       ((pe_ext->right_rpt[color] & bytemask) << 16) |
-+			       ((pe_ext->left_ftch[color] & bytemask) << 8) |
-+			       (pe_ext->left_rpt[color] & bytemask);
-+
-+		tb_pe[color] = ((pe_ext->btm_ftch[color] & bytemask) << 24) |
-+			       ((pe_ext->btm_rpt[color] & bytemask) << 16) |
-+			       ((pe_ext->top_ftch[color] & bytemask) << 8) |
-+			       (pe_ext->top_rpt[color] & bytemask);
-+	}
-+
-+	/* color 0 */
-+	DPU_REG_WRITE(c, SSPP_REC_SW_PIX_EXT_LR + offset, lr_pe[0]);
-+	DPU_REG_WRITE(c, SSPP_REC_SW_PIX_EXT_TB + offset, tb_pe[0]);
-+
-+	/* color 1 and color 2 */
-+	DPU_REG_WRITE(c, SSPP_REC_SW_PIX_EXT_LR_ODX + offset, lr_pe[1]);
-+	DPU_REG_WRITE(c, SSPP_REC_SW_PIX_EXT_TB_ODX + offset, tb_pe[1]);
-+}
-+
-+static void dpu_hw_sspp_setup_rects_v13(struct dpu_sw_pipe *pipe,
-+					struct dpu_sw_pipe_cfg *cfg)
-+{
-+	struct dpu_hw_sspp *ctx = pipe->sspp;
-+	u32 src_size_off, src_xy_off, out_size_off, out_xy_off;
-+	u32 offset;
-+
-+	if (!ctx || !cfg)
-+		return;
-+
-+	offset = dpu_hw_sspp_calculate_rect_off(pipe->multirect_index, ctx);
-+
-+	src_size_off = offset + SSPP_REC_SRC_SIZE;
-+	src_xy_off = offset + SSPP_REC_SRC_XY;
-+	out_size_off = offset + SSPP_REC_OUT_SIZE;
-+	out_xy_off = offset + SSPP_REC_OUT_XY;
-+
-+	dpu_hw_setup_rects_impl(pipe, cfg, ctx, src_size_off,
-+				src_xy_off, out_size_off, out_xy_off);
-+}
-+
-+static void dpu_hw_sspp_setup_sourceaddress_v13(struct dpu_sw_pipe *pipe,
-+						struct dpu_hw_fmt_layout *layout)
-+{
-+	struct dpu_hw_sspp *ctx = pipe->sspp;
-+	int i;
-+	u32 offset, ystride0, ystride1;
-+
-+	if (!ctx)
-+		return;
-+
-+	offset = dpu_hw_sspp_calculate_rect_off(pipe->multirect_index, ctx);
-+
-+	for (i = 0; i < ARRAY_SIZE(layout->plane_addr); i++)
-+		DPU_REG_WRITE(&ctx->hw, offset + SSPP_REC_SRC0_ADDR + i * 0x4,
-+			      layout->plane_addr[i]);
-+
-+	ystride0 = (layout->plane_pitch[0]) | (layout->plane_pitch[2] << 16);
-+	ystride1 = (layout->plane_pitch[1]) | (layout->plane_pitch[3] << 16);
-+
-+	DPU_REG_WRITE(&ctx->hw, offset + SSPP_REC_SRC_YSTRIDE0, ystride0);
-+	DPU_REG_WRITE(&ctx->hw, offset + SSPP_REC_SRC_YSTRIDE1, ystride1);
-+}
-+
-+static void dpu_hw_sspp_setup_solidfill_v13(struct dpu_sw_pipe *pipe, u32 color)
-+{
-+	struct dpu_hw_sspp *ctx = pipe->sspp;
-+	u32 const_clr_off;
-+	u32 offset;
-+
-+	if (!ctx)
-+		return;
-+
-+	offset = dpu_hw_sspp_calculate_rect_off(pipe->multirect_index, ctx);
-+	const_clr_off = offset + SSPP_REC_SRC_CONSTANT_COLOR;
-+
-+	dpu_hw_setup_solidfill_impl(pipe, color, ctx, const_clr_off);
-+}
-+
-+static void dpu_hw_sspp_setup_qos_lut_v13(struct dpu_hw_sspp *ctx,
-+					  struct dpu_hw_qos_cfg *cfg)
++static void dpu_hw_wb_setup_qos_lut_v13(struct dpu_hw_wb *ctx,
++					struct dpu_hw_qos_cfg *cfg)
 +{
 +	if (!ctx || !cfg)
 +		return;
@@ -521,119 +168,24 @@ index 000000000000..e78a20b45300
 +	_dpu_hw_setup_qos_lut_v13(&ctx->hw, cfg);
 +}
 +
-+static void dpu_hw_sspp_setup_qos_ctrl_v13(struct dpu_hw_sspp *ctx,
-+					   bool danger_safe_en)
-+{
-+	if (!ctx)
-+		return;
-+
-+	dpu_hw_sspp_setup_qos_ctrl_impl(ctx, danger_safe_en, SSPP_CMN_QOS_CTRL);
-+}
-+
-+static void dpu_hw_sspp_setup_cdp_v13(struct dpu_sw_pipe *pipe,
-+				      const struct msm_format *fmt,
-+				      bool enable)
-+{
-+	struct dpu_hw_sspp *ctx = pipe->sspp;
-+	u32 offset = 0;
-+
-+	if (!ctx)
-+		return;
-+
-+	offset = dpu_hw_sspp_calculate_rect_off(pipe->multirect_index, ctx);
-+	dpu_setup_cdp(&ctx->hw, offset + SSPP_REC_CDP_CNTL, fmt, enable);
-+}
-+
-+static bool dpu_hw_sspp_setup_clk_force_ctrl_v13(struct dpu_hw_sspp *ctx, bool enable)
-+{
-+	static const struct dpu_clk_ctrl_reg sspp_clk_ctrl = {
-+		.reg_off = SSPP_CMN_CLK_CTRL,
-+		.bit_off = 0
-+	};
-+
-+	return dpu_hw_clk_force_ctrl(&ctx->hw, &sspp_clk_ctrl, enable);
-+}
-+
-+void dpu_hw_sspp_init_v13(struct dpu_hw_sspp *c,
-+			  unsigned long features, const struct dpu_mdss_version *mdss_rev)
-+{
-+		c->ops.setup_format = dpu_hw_sspp_setup_format_v13;
-+		c->ops.setup_rects = dpu_hw_sspp_setup_rects_v13;
-+		c->ops.setup_sourceaddress = dpu_hw_sspp_setup_sourceaddress_v13;
-+		c->ops.setup_solidfill = dpu_hw_sspp_setup_solidfill_v13;
-+		c->ops.setup_pe = dpu_hw_sspp_setup_pe_config_v13;
-+
-+		if (test_bit(DPU_SSPP_QOS, &features)) {
-+			c->ops.setup_qos_lut = dpu_hw_sspp_setup_qos_lut_v13;
-+			c->ops.setup_qos_ctrl = dpu_hw_sspp_setup_qos_ctrl_v13;
-+		}
-+
-+		if (test_bit(DPU_SSPP_CSC, &features) ||
-+		    test_bit(DPU_SSPP_CSC_10BIT, &features))
-+			c->ops.setup_csc = dpu_hw_sspp_setup_csc;
-+
-+		if (test_bit(DPU_SSPP_SMART_DMA_V1, &c->cap->features) ||
-+		    test_bit(DPU_SSPP_SMART_DMA_V2, &c->cap->features))
-+			c->ops.setup_multirect = dpu_hw_sspp_setup_multirect_v13;
-+
-+		if (test_bit(DPU_SSPP_SCALER_QSEED3_COMPATIBLE, &features))
-+			c->ops.setup_scaler = dpu_hw_sspp_setup_scaler3;
-+
-+		if (test_bit(DPU_SSPP_CDP, &features))
-+			c->ops.setup_cdp = dpu_hw_sspp_setup_cdp_v13;
-+
-+		c->ops.setup_clk_force_ctrl = dpu_hw_sspp_setup_clk_force_ctrl_v13;
-+}
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c
-index 486be346d40d..3cf22ec62792 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c
-@@ -81,6 +81,13 @@ static u32 dpu_hw_util_log_mask = DPU_DBG_MASK_NONE;
- #define QOS_CREQ_LUT_0                    0x14
- #define QOS_CREQ_LUT_1                    0x18
+ static void dpu_hw_wb_setup_cdp(struct dpu_hw_wb *ctx,
+ 				const struct msm_format *fmt,
+ 				bool enable)
+@@ -202,8 +211,12 @@ static void _setup_wb_ops(struct dpu_hw_wb_ops *ops,
+ 	if (test_bit(DPU_WB_XY_ROI_OFFSET, &features))
+ 		ops->setup_roi = dpu_hw_wb_roi;
  
-+/* CMN_QOS_LUT */
-+#define SSPP_CMN_QOS_CTRL                      0x28
-+#define SSPP_CMN_DANGER_LUT                    0x2c
-+#define SSPP_CMN_SAFE_LUT                      0x30
-+#define SSPP_CMN_CREQ_LUT_0                    0x34
-+#define SSPP_CMN_CREQ_LUT_1                    0x38
-+
- /* QOS_QOS_CTRL */
- #define QOS_QOS_CTRL_DANGER_SAFE_EN       BIT(0)
- #define QOS_QOS_CTRL_DANGER_VBLANK_MASK   GENMASK(5, 4)
-@@ -475,6 +482,17 @@ void _dpu_hw_setup_qos_lut(struct dpu_hw_blk_reg_map *c, u32 offset,
- 		      cfg->danger_safe_en ? QOS_QOS_CTRL_DANGER_SAFE_EN : 0);
- }
+-	if (test_bit(DPU_WB_QOS, &features))
+-		ops->setup_qos_lut = dpu_hw_wb_setup_qos_lut;
++	if (test_bit(DPU_WB_QOS, &features)) {
++		if (mdss_rev->core_major_ver >= 13)
++			ops->setup_qos_lut = dpu_hw_wb_setup_qos_lut_v13;
++		else
++			ops->setup_qos_lut = dpu_hw_wb_setup_qos_lut;
++	}
  
-+void _dpu_hw_setup_qos_lut_v13(struct dpu_hw_blk_reg_map *c,
-+			       const struct dpu_hw_qos_cfg *cfg)
-+{
-+	DPU_REG_WRITE(c, SSPP_CMN_DANGER_LUT, cfg->danger_lut);
-+	DPU_REG_WRITE(c, SSPP_CMN_SAFE_LUT, cfg->safe_lut);
-+	DPU_REG_WRITE(c, SSPP_CMN_CREQ_LUT_0, cfg->creq_lut);
-+	DPU_REG_WRITE(c, SSPP_CMN_CREQ_LUT_1, cfg->creq_lut >> 32);
-+	DPU_REG_WRITE(c, SSPP_CMN_QOS_CTRL,
-+		      cfg->danger_safe_en ? QOS_QOS_CTRL_DANGER_SAFE_EN : 0);
-+}
-+
- /*
-  * note: Aside from encoders, input_sel should be set to 0x0 by default
-  */
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h
-index 67b08e99335d..1822ac699757 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h
-@@ -360,6 +360,9 @@ void _dpu_hw_setup_qos_lut(struct dpu_hw_blk_reg_map *c, u32 offset,
- 			   bool qos_8lvl,
- 			   const struct dpu_hw_qos_cfg *cfg);
- 
-+void _dpu_hw_setup_qos_lut_v13(struct dpu_hw_blk_reg_map *c,
-+			       const struct dpu_hw_qos_cfg *cfg);
-+
- void dpu_hw_setup_misr(struct dpu_hw_blk_reg_map *c,
- 		u32 misr_ctrl_offset, u8 input_sel);
- 
+ 	if (test_bit(DPU_WB_CDP, &features))
+ 		ops->setup_cdp = dpu_hw_wb_setup_cdp;
 -- 
 2.34.1
 
