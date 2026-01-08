@@ -1,102 +1,178 @@
-Return-Path: <devicetree+bounces-252530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 289F6D0075B
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 01:25:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F98AD008BC
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 02:22:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7FBBE30024D9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 00:25:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 38BC7300EE4A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 01:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17817198E91;
-	Thu,  8 Jan 2026 00:25:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+iSKdWJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A47D81A01C6;
+	Thu,  8 Jan 2026 01:22:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E644213E02A
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 00:25:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0586A1D88AC;
+	Thu,  8 Jan 2026 01:22:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767831938; cv=none; b=uDXswCZy4Fhe5HECfZYyivRtFTaEL7dWUio5lmDU2TMFuXr82DZJgtzOkztp0kqZkc+Ev9HNyzV30IkJ/8oCiYdNPfgTy3ya6UpyoDUU56v/VS2GSM8trXeDAR8leFmbj+zoVYkp8vmc/kGWuac1OBddk44+oY7+xVEbgJJXrH4=
+	t=1767835332; cv=none; b=MTDgA/j0evCh2/MxVUZk113E3/k7jLy4hsbE7TiAg6ys1Itjh+CSUuDOd/eRLa6FLrIrNK0nz1oA4WAMceoDZgaYZZSdQKPd8ELsD8cmadkVedMUi3geoX7PIdN37vBhL+F0w9OQgJ55kQ354GRjs+hiutwZQmJIftMRmuls9Ck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767831938; c=relaxed/simple;
-	bh=dKpvfWhR+ao6SRp4kUICqTTWzO7/JiKNMNbKfPilDpc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=le2K4fV0HTUcMoosKPK8j7dgMs2xshIMPcl4eVukr7MnvwNcdTbf4RJhhuGKAWV6lfqlzTKG2Q9AZej6ZPkAZnc6xT14kfjyzos+yPHrtIk30seJblB9okJZ7d8rADCf0q8igSG83nkwVozhCd7nfDGajJTe6oHaL3ySjTEInF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o+iSKdWJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8924EC4AF09
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 00:25:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767831937;
-	bh=dKpvfWhR+ao6SRp4kUICqTTWzO7/JiKNMNbKfPilDpc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=o+iSKdWJNZubEaw2VairlWyVdJTSZcyFCq6bk1fo2xRjoOO5sT3i3hwWH2fmu6Rwk
-	 zijOFlsg3xed3WBwr3J33ccpgA8EnkIauMCZRzYwA7p6ESY6j2v42uUylZN7kfnRcP
-	 x7Pm0+Nq6PvglbBH2Rk4Vk5R9ssqaVpJn6x4NC9paLe6RdOoAecV6VgNO+xCrcXahN
-	 2RvoKIDI9NhhrwaN4tR3/WqqttK7IOSkF8cZ3KBIhLkhV+KdyT8v4wEA9s7YPavSoJ
-	 SNZGV4QUOgv6MINP1Ei3GgiAxpwpzZWIaBdxYW9ZdCRVSKiXvUJbWCULo8B8Ew0iW/
-	 +Ghf20BgfpCDw==
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b7ce5d6627dso534188366b.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Jan 2026 16:25:37 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWF6vCEtmKgrRn6jiP5V+k6Hvl9flVz/JQ1NHS9Vd4JiMKG3UuQvLXu5c5tz/JlSJxhbR3mRUPXUfx7@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCCWEqr/DDnez3ATGrn3LznYFxilspfErzHZUeUvCEeYrOqRIS
-	L+GIr8j7p6sIemncftuRzGF+LgzwL8UtuJItyWUdfxt+A/XE0qd3GTt5IKGex8b808AD1jdeRSe
-	zegST+g+f+MMSutW2XLzRr47STeLWng==
-X-Google-Smtp-Source: AGHT+IHGbdOq9A7ht9GwHXUB0lkTxrQU8h32ytsd60tIWq2VQbXNaEf7DbGEZB5drNoTLCE118ndwLzIrKNWa4uD3U8=
-X-Received: by 2002:a17:907:969e:b0:b76:4426:3a3a with SMTP id
- a640c23a62f3a-b8445218177mr472166366b.58.1767831936081; Wed, 07 Jan 2026
- 16:25:36 -0800 (PST)
+	s=arc-20240116; t=1767835332; c=relaxed/simple;
+	bh=DZsBbmGRz6FLXcZeeXDv2EWCFkufs+xSaKyxNkLTfOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HvYSXKEI+kjEMNGI1prs/hzdk68jLDetyvNQHMy7xw7SgHHhAI3adlhde51IESl6Wnuk6+VSuqxBBOOJ8bKO2MRnxoewa2h8dAWYvId/VNXDWak9NWEPY1Bi7K8yA+5OgA/0nUzwGZjKJ/WFM/K00FUV7nO4nE/gam95I6xfLUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id CE15134168D;
+	Thu, 08 Jan 2026 01:22:08 +0000 (UTC)
+Date: Thu, 8 Jan 2026 09:21:57 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Ze Huang <huang.ze@linux.dev>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Aurelien Jarno <aurelien@aurel32.net>
+Subject: Re: [PATCH v2 3/3] riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
+Message-ID: <20260108012157-GYA2355@gentoo.org>
+References: <20260107-k1-usb3dts-v2-v2-0-e659b0f8fe1a@linux.dev>
+ <20260107-k1-usb3dts-v2-v2-3-e659b0f8fe1a@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251119175124.48947-1-linux@fw-web.de> <176778436967.39195.1901837532049373497.b4-ty@collabora.com>
-In-Reply-To: <176778436967.39195.1901837532049373497.b4-ty@collabora.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 7 Jan 2026 18:25:24 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLdLaS+9q7_BgtjH-ezX6Bd0r9_GaOM59CyUctCm84kZg@mail.gmail.com>
-X-Gm-Features: AQt7F2of3BOU5fJm5dFNBkUc0jh06Bp6eZBJGWiAa-ihxq2BG_e8zm-MeY4S07E
-Message-ID: <CAL_JsqLdLaS+9q7_BgtjH-ezX6Bd0r9_GaOM59CyUctCm84kZg@mail.gmail.com>
-Subject: Re: [PATCH v1 0/2] build full dtbs for BananaPi R3/R4(Pro)
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Frank Wunderlich <linux@fw-web.de>, 
-	Frank Wunderlich <frank-w@public-files.de>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260107-k1-usb3dts-v2-v2-3-e659b0f8fe1a@linux.dev>
 
-On Wed, Jan 7, 2026 at 5:12=E2=80=AFAM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> On Wed, 19 Nov 2025 18:51:21 +0100, Frank Wunderlich wrote:
-> > From: Frank Wunderlich <frank-w@public-files.de>
-> >
-> > Build devicetree binaries for testing overlays and providing users
-> > full dtb without using overlays for Bananapi R4 (pro) variants.
-> >
-> > It is not required to build all possible combinations, only for
-> > common usecases and to test if all overlays can be applied.
-> >
-> > [...]
->
-> Applied to v6.19-next/dts64, thanks!
->
-> [1/2] arm64: dts: mediatek: mt7986: add dtbs with applied overlays for bp=
-i-r3
->       commit: 0516c548883bbe58a48d604e81e33b390986cdb6
-> [2/2] arm64: dts: mediatek: mt7988: add dtbs with applied overlays for bp=
-i-r4 (pro)
->       commit: d977b61d38030f50bae9f634049110af0a364d0d
+Hi Ze,
 
-These are already in Linus' tree. I picked them up because there was
-no movement and he was complaining about the warnings.
+  thanks for your patch, I have few comments, see below..
 
-Rob
+On 20:05 Wed 07 Jan     , Ze Huang wrote:
+> Enable the DWC3 USB 3.0 controller and its associated usbphy2 on the
+> Banana Pi F3 board.
+> 
+> The board utilizes a VLI VL817 hub, which requires two separate power
+> supplies: one VBUS and one for hub itself. Add two GPIO-controlled
+> fixed-regulators to manage this.
+> 
+> Tested-by: Aurelien Jarno <aurelien@aurel32.net>
+> Signed-off-by: Ze Huang <huang.ze@linux.dev>
+> ---
+>  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 48 +++++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> index 3f10efd925dc..013df91c6a4c 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> @@ -59,6 +59,26 @@ reg_vcc_4v: vcc-4v {
+>  		regulator-always-on;
+>  		vin-supply = <&reg_dc_in>;
+>  	};
+> +
+> +	usb3_vbus: regulator-vbus-5v {
+I've checked the schematics, the name is 5V_VBUS there, so for the consistency
+with previous naming convention, let's change to:
+	usb3_vbus_5v: usb3-vbus-5v 
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "USB30_VBUS";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+..
+> +		regulator-always-on;
+do you think the "always-on" property really necessary? it indicate the
+power regulator is critical, and should never been disabled even during
+suspend/resume state, for the case of USB, I think it should be totally
+fine to poweroff once the device is not used(suspended) or even disabled
+
+besides, the regulator is designed with a gpio enabling/disabling control
+which means it can be powered to on/off state?
+
+> +		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+> +	usb3_vhub: regulator-vhub-5v {
+why use vhub, but not hub? where does this name come from?
+
+and for same reason, the name in schematics is VCC5V0_HUB, so how about
+change it to:
+	usb3_hub_5v: usb3-hub-5v 
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "USB30_VHUB";
+                                    ~~~need to fix too, if above is valid
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+..
+> +		regulator-always-on;
+ditto
+> +		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+>  };
+>  
+>  &combo_phy {
+> @@ -67,6 +87,34 @@ &combo_phy {
+>  	status = "okay";
+>  };
+>  
+..
+> +&usbphy2 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_dwc3 {
+> +	dr_mode = "host";
+> +	vbus-supply = <&usb3_vbus>;
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	status = "okay";
+> +
+> +	hub_2_0: hub@1 {
+> +		compatible = "usb2109,2817";
+> +		reg = <0x1>;
+> +		vdd-supply = <&usb3_vhub>;
+> +		peer-hub = <&hub_3_0>;
+> +		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	hub_3_0: hub@2 {
+> +		compatible = "usb2109,817";
+> +		reg = <0x2>;
+> +		vdd-supply = <&usb3_vhub>;
+> +		peer-hub = <&hub_2_0>;
+> +		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+can you move these two after &uart0? I'd like to keep them sorted by 
+label alphabet order..
+
+>  &emmc {
+>  	bus-width = <8>;
+>  	mmc-hs400-1_8v;
+> 
+> -- 
+> 2.52.0
+> 
+
+-- 
+Yixun Lan (dlan)
 
