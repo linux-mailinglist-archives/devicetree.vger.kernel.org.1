@@ -1,216 +1,179 @@
-Return-Path: <devicetree+bounces-252854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7567D0364E
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 15:37:11 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4C4D03515
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 15:23:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2E8713249EAD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 14:24:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BCEAF300387D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 14:23:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8DD94D94DA;
-	Thu,  8 Jan 2026 14:11:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D574797F0;
+	Thu,  8 Jan 2026 14:22:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Xe1rwkCw";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Vds+4XLa"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="q+jLLYOt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F0E54D94D1
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 14:11:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FE744792E3
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 14:22:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767881463; cv=none; b=RISGKHvmrchBUsOXhOnUB+YoTRzqmLs5DzUEBEMImfLU3my7XPFq142Y4x6yQpQKdxBbXUYzDKFwEpC5ZTPUxYgKCMZxWNGszvNBYnar2tFlONNLRXHteuKd83xpjA7Wbdfuj109B7LJvc5vrzQrkUY2VxzZgNOb1ozMG1Sybrw=
+	t=1767882177; cv=none; b=POdkwZRquuEECWlKPegxw1OxaTIxghJ1vrUwLAddsamX7kAYb/x3rt4grhh7xOomwEBbIaNpc0ULMM718J8iqAHO45/5Q7lVnw/DD46tFahunS0C6gQBf6R+TZrjUUDnaLv5+RqzrjFGwn4TUr7MKkQ20873JIvQmyUv8MBQqK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767881463; c=relaxed/simple;
-	bh=l0e5f2jWVtuSG5EsoRmMeyrqbrKdMDocpuar/ayJUQ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r6tpvy4Bkn4VYqO8ds1r2s+c0DJlIQbDynwgALpLMlCUEJjb28YcfKbw9XoHu9ZNe5R9lxFQsivhTUblM4sxmTb7lf+4e9RCOMCL/KBHMLwxyYB53lYGFEGk5Vviz6KaVnL+7bv1J6E7kIPTuCqsm7xn6OvC673TgTi0wAz5Nqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Xe1rwkCw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Vds+4XLa; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6087VSsG1838190
-	for <devicetree@vger.kernel.org>; Thu, 8 Jan 2026 14:11:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zDj0SyrBKwtUZwnlbW0UelR8aNx3msiTcnFCXsLwInI=; b=Xe1rwkCwGckOz/a8
-	3so8x4aVDhwiZlkEaXxHAfVRb5wKbEEeZ7oFQchh0vDe/VCC1MuJb6kY8a5oS5Qu
-	1/xIQLviuBoUgLy/9gB3MuGRip+GWJRODp6NsAgsu195nTjXdfNmvm90AgX2+A7F
-	+nU1NkgVuxKDOsH6cQ2QPkinJzN1ZQ1jqkS4qt/wBzVvk/lIkp6s51aG+B/RpJwl
-	KFBW4kPNeNCITPRIVeNwAJvPIJzPsq9ubu/juO6YaBPpMMPMkI7jqvmO/IPk2sUt
-	6GTXmYiiPWCPDr3qcLd/nReuaXi9C/VnGmditW9zNHAj/3tfFK9eXv5ZKNT3incT
-	NsfzJg==
-Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bj89216qb-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 14:11:01 +0000 (GMT)
-Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-9414fc8eb29so718812241.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 06:11:01 -0800 (PST)
+	s=arc-20240116; t=1767882177; c=relaxed/simple;
+	bh=TZxwBPZMwUwAZyBoR4nzSuYjLpKcgODqlH52ROD/x78=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=D9g/tuyUcq3IXwMv20q857yoKuoSCpAJJLawFRWW9o2er7Yvsa8S+i0WT8+BVuS879RqaraR9sZoI4ZoSKPWwY5ZzLWXaEhNp1IlU5qth2j0SJTCrvHKpt3cLo9Bhf2YvHK5OolApSz/khv7HbKqJlpaenJdcv/IlXoC6gDGemo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=q+jLLYOt; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7b8bbf16b71so2155236b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 06:22:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1767881460; x=1768486260; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zDj0SyrBKwtUZwnlbW0UelR8aNx3msiTcnFCXsLwInI=;
-        b=Vds+4XLaBiqBdzr9iNezr3P6SrYoI38P0fFJEZMFXZ5JfN/WdpjQhPnkxZ3XbanfDd
-         YKDpbfO3t2uiQsAvlf5VG2lCGQHYw4No8RldvPlw7mpcf/bFMLJgAbtucvrE9EPJ/HAl
-         NZAbSWnIdlJ/U/L1VTg9UlBUmPYIPIO77wWLsnRP2pHQU0NrFySKKuGnuLO8k0ynQl7+
-         RNLJ7ZC13w6HVxMpDAbwRXuUYYfETiN1hGftKQBHJakxlOK6VDvXW4XXqB30vkn0PqTO
-         sPL3bAJgnop+axBj0YUTmC8lLJO8cTn/yhrQpUJYjiX5j+H0vjUabQ9Pnq24QmvZT2AP
-         gDlw==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767882173; x=1768486973; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vG0owjBEwvZUXN6LOKfNDq1Vj4x+0iuwUy6IyITQKNQ=;
+        b=q+jLLYOtXZJLbb4pwhTY1N5HrXxbwlnTTah2ql/HpHjWk2xcut+v9bDP/sqpP8lYsK
+         LIhOCeCCoaoiUaQPEk9vjfCRdWsEgXac+Bf3pEE9cCERrCHpDc1X50lF59vPyBQHiTpo
+         eop7XR1G5795jpQ2K/CPj5rtdRt1vReRY4tdb08rqKTh0+9IE3WjLtSGQKfJv1rzdXA+
+         hV5xOmAE9/avNcA1EGsUNhxbpWhiyT39YF+6NUas+DuUpBfUWvz8x1Yxnukb2NvM0z7f
+         jxcxHqJnhaaKDlajeO2jp19dAJLLIprwI61hYnVEhfi5+JKZn6gkORyWdKIZeOkCmdjb
+         kOQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767881460; x=1768486260;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zDj0SyrBKwtUZwnlbW0UelR8aNx3msiTcnFCXsLwInI=;
-        b=uPtOuzBCWLTTpWR7ODWYJbkle+sPx+Hlg6NQl2+nWpZLPFirbsaR707xLyWe/bxPp8
-         maBhTFap4q6Q3I+vcYwSQaltXHoAxESviqfxEVprhYEzZIdjfemNf4qfAbcA7BmjeCla
-         sg747SbCOxCZiDLQ/LmzPbSJ65m+uGq/ATtMQ3YJIyXYX6BBQXUFyX7ktQcMB0/vkLG2
-         80ohojFD/FWvjgzhIqVMUwS0N+BGlxgM3+Jfi2QB+UgGu6V9uhgDLuJW/Mlq6ea0eEJX
-         d0XRR2Y/SSl92/Vc7JZB/XSogp26IE0rwD/e9HVwtqp1pMCGbLvAI4OPnTNH59t7WtF6
-         l6LQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZ0FsfnkRkbQFFvMRpGmZIMhKXWP1MLo8trSuTBWtmUG9Kvrd4VU1ofmFjwNlm85s92h/4yubTAfZ3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTD6w+JeB1pMbGwm/QSRKbZuplWE0lnlVLZygKbrUcF2ZLV8m9
-	YzyyAV8LFfwg90sADk6Y/ZFssV12Ocu8oCkoUdsd272M/ozfHlYdK7fsu++k5jdg+EjTrPTId4L
-	smtIkpeEjdF22bvj5s2dHpbrwyoDVc1lYw1jV+Hk6dtLzjflIy+AmTI1jWqMUphAw
-X-Gm-Gg: AY/fxX6YNoSxXg/qyLkZXT3Dx19sSbpwAAHP8b3RJhxkRH3kMULBWYRcn7RiNYWDaZC
-	BzS7+QEBuNz9rz2hjNm3nD/JmH2KA9QFjI1kwvrOe/CGVyiFWQlDrqXw/J3khMVMqZqLWPd7Ls7
-	AXwD+rcFuB2diE83PI61/rlHTcTuVXozgaxj1Q/ROUVCpWkvz0jkltr55D3IwmawuHmCJ3mJyor
-	OXXqJFS/9bL8kmF/7vAtss1TdiZXHyeGBVZbynk3eKP4dx7LEl1qZq/jInnHJXI39t1/hnNi32R
-	tgp9tWIOfatTP09Za0C6KaOSOvj7NPUSiAf1HSRnaYIctj+iyj/78/swXpH27b039GSocFleapH
-	5+oLi65FmqC8UADh9tmecoroFl72u1sx5Pqr4bxUneNXomNNQiQA+1KkHhbdixJ0DP9U=
-X-Received: by 2002:ac5:c15a:0:b0:559:5ac3:4451 with SMTP id 71dfb90a1353d-56347fd3dbfmr1198683e0c.3.1767881460078;
-        Thu, 08 Jan 2026 06:11:00 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEijgO1jNR3691smMRceSnemB4rFBjC4LyZ/kq7RRolPPOrjZaN5nPFbUqww4SzQgZyOL1U9Q==
-X-Received: by 2002:ac5:c15a:0:b0:559:5ac3:4451 with SMTP id 71dfb90a1353d-56347fd3dbfmr1198644e0c.3.1767881459379;
-        Thu, 08 Jan 2026 06:10:59 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a27c0bfsm841928766b.22.2026.01.08.06.10.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 06:10:58 -0800 (PST)
-Message-ID: <328342d6-e833-4fe7-828f-6978ae17cf0a@oss.qualcomm.com>
-Date: Thu, 8 Jan 2026 15:10:56 +0100
+        d=1e100.net; s=20230601; t=1767882173; x=1768486973;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vG0owjBEwvZUXN6LOKfNDq1Vj4x+0iuwUy6IyITQKNQ=;
+        b=JxcUHOzICThDGC+oyYCM2thnv6TUSnsyF47Hb/PeXN115xqjOoGqsPemrtzLFurqpA
+         J01v/46Aq4qntCb28gWs00jApotDG1OUHhOg92q+izr2FtQXKECQyjjojTwDpN9a4H7p
+         LDp/8hIZS+5NS5JLoxbYQXV3pVpbz9O6YkTJTDEcOK5Ex2MNww02Duc/Dp4nn70pxZIH
+         apvojShUivrTfZ6McW24OQjYtJueDTB5KG3q0qumVeH5gKq8r5XDzV1ZzQ1R/xVhzE2U
+         pBVbhUTA3x2m75FaxqUC84xAOTWZG+QuLg6jDJsyd5y7qIryFj/y5xVd9DlJMfRhD9X7
+         mSGw==
+X-Forwarded-Encrypted: i=1; AJvYcCV7Yj/RfOfaxvt9TRP+QaAG6lQchNLGnm9FyGRxtRW1QSrA2vlPPxIC7d6Eke43hvVn2ekMRvtfODko@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7CdBuMJlTvtEkJRQnO2/WUXygFdPJd7vRra9CMwusFOh6hVzW
+	a1bMl+yIF8QLtsBJF28JVpyodaI9qZ3ufTudCePm4eKqn6Hy4T3SvrbSEGiVVHOw60Qxl8wDz18
+	TiajY0Aw0zoWJ
+X-Gm-Gg: AY/fxX7+sOxo9RSiDIhbHh5/w4oqXwIJskfH26DWszoTRlP3OYwJTPp2auAr0sdwyNJ
+	BR6dQwdv+dbq+sGiyBTxqN9O8a+US7mMsSgX7Qg1I7WHvVcjoTAh7UECgV+Iz9bK7t4OxyygGR5
+	BhZJhk8oCuafTu+jngHQa+tBRVTXri9fOVF65HA6I6D2m1oiNI5xoFfoiygflf2K5hUZhr9LVFq
+	hQy6IR+KsOn18trsvioFv4FLp6rKuOxKRMv138rdMRT4Emwpkze4WMbopek77C1gDDlCAARo5KU
+	Bodt0yxOvc/P+kntQxRUWirPSrjVh4WgRjF+9/j7kCA9h3h1V10nUsgrV61vh5F/bJFgJB4KCkT
+	ru5e/TJxoslfB1HapQ/nJdKZREmX6oXUQ5FSTAVuUFUjINcjdOoBHZ+y2DawGHJq4AbxbXvK1Oo
+	RQxOxsaCrX/znNKm1nPfmh4rJc7OjS5WQ=
+X-Google-Smtp-Source: AGHT+IGhx3A/wj4Hk+582JwjqSFzDkdpdx1sot8ZL2RVpGltKUxE6QM8Lk2cKloIC492Mbf2xP4Tng==
+X-Received: by 2002:a05:6a00:8c10:b0:7c2:60c6:8ca0 with SMTP id d2e1a72fcca58-81b7e92875emr4959062b3a.5.1767882173412;
+        Thu, 08 Jan 2026 06:22:53 -0800 (PST)
+Received: from [127.0.1.1] ([2a12:a305:4::40df])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819c59e7c16sm7927906b3a.53.2026.01.08.06.22.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jan 2026 06:22:52 -0800 (PST)
+From: Guodong Xu <guodong@riscstar.com>
+Subject: [PATCH v2 0/4] reset: spacemit: Add support for SpacemiT K3 SoC
+Date: Thu, 08 Jan 2026 22:22:13 +0800
+Message-Id: <20260108-k3-reset-v2-0-457df235efe9@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] clk: qcom: cmnpll: Add IPQ5332 SoC support
-To: Luo Jie <jie.luo@oss.qualcomm.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-        quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
-        quic_suruchia@quicinc.com
-References: <20260106-qcom_ipq5332_cmnpll-v2-0-f9f7e4efbd79@oss.qualcomm.com>
- <20260106-qcom_ipq5332_cmnpll-v2-3-f9f7e4efbd79@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260106-qcom_ipq5332_cmnpll-v2-3-f9f7e4efbd79@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=M45A6iws c=1 sm=1 tr=0 ts=695fbaf5 cx=c_pps
- a=KB4UBwrhAZV1kjiGHFQexw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=20ciNqFLEIM2uVeCJLoA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=o1xkdb1NAhiiM49bd1HK:22
-X-Proofpoint-ORIG-GUID: lIKsDbC2Yirbx8j26l0FY1Y53Tck-OMx
-X-Proofpoint-GUID: lIKsDbC2Yirbx8j26l0FY1Y53Tck-OMx
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDEwMSBTYWx0ZWRfX+Evz97Tu5RXE
- CskqNZ13yZMFXfxPEfq+befY1dOFmYWj2dk9MVzcBQHZ78fkKDdH1U2oX8AO2DplXVzE3C1E/xr
- 2AfcU9gLUnD9peJouHyGNlT52fyJXsfkq3g0NZ0df1JHvUACzxKeJ9TBChgTuRVysTXA2jYF5U/
- tMB3Jvhmrg/7r/TboV3kotQiWwSQhtkQCE20DfZK0TThX4VMPXJ/SKWrh5HpbgZas921xsK1LYd
- dE3bSwBJ2dSyHlfYTexTEGUTdFGyMHg/uwGw9roa+vA6HZAu+WBcPaYfQQu78zRJeH+u8nQjlYo
- +gKES/PrgH/mZ6zHIo4vgSODvyQKUJ3OpULdMWVMObRXWWZJds2CLJX6bBALPvjhV4+eQaWNjN+
- /vVEidAFd3XfGQIhYncbwfXJ3GPi6roGmVMfMQaafZ/T47lWzFf7LWaMKacT5LH9rhoS2mjQv+O
- K2y4RI4k+LR/1lSNYnA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-08_03,2026-01-07_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 bulkscore=0
- phishscore=0 suspectscore=0 clxscore=1015 spamscore=0 malwarescore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601080101
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJW9X2kC/32QzW6EMAyEXwXlXKM4hJ+gqtr3qPYQEgPRLqRNK
+ Gq14t0b4LaVehzL89kzDxYpOIqszR4s0Oqi83MS4iVjZtTzQOBs0kxwUaIQCm4FBIq0QGNVV5d
+ IfaGQpfWPQL37PlDv11MH+vxKxOUcsoli1AexzV5PICqOokGVS8lVLQDBzd6MTk/6Mkza3XPjp
+ 7cd/2yuOPIGeAU3BHO/Qdqb/AyrBA6dtn1VlEoVtrgMNC/e5z4M/3BSqh2ylskthUbsaqlt2Ty
+ 7Ox3pOOWWNlurHBUEI9med3Rx8eHnaHLFI/Df0lZMB8hqXsu6s5TeCy6auOiwB2XXbdt+AWxYk
+ mmTAQAA
+X-Change-ID: 20251229-k3-reset-8d9b751ef391
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Haylen Chu <heylenay@4d2.org>
+Cc: Alex Elder <elder@riscstar.com>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, Guodong Xu <guodong@riscstar.com>
+X-Mailer: b4 0.14.2
 
-On 1/7/26 6:35 AM, Luo Jie wrote:
-> The CMN PLL in IPQ5332 SoC produces different output clocks when compared
-> to IPQ9574. While most clock outputs match IPQ9574, the ethernet PHY/switch
-> (50 Mhz) and PPE clocks (200 Mhz) in IPQ5332 are different.
-> 
-> Add IPQ5332-specific clock definitions and of_device_id entry.
-> 
-> Signed-off-by: Luo Jie <jie.luo@oss.qualcomm.com>
-> ---
->  drivers/clk/qcom/ipq-cmn-pll.c | 19 ++++++++++++++++++-
->  1 file changed, 18 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/qcom/ipq-cmn-pll.c b/drivers/clk/qcom/ipq-cmn-pll.c
-> index 369798d1ce42..962462286837 100644
-> --- a/drivers/clk/qcom/ipq-cmn-pll.c
-> +++ b/drivers/clk/qcom/ipq-cmn-pll.c
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
-> - * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->   */
->  
->  /*
-> @@ -20,6 +20,11 @@
->   * and an output clock to NSS (network subsystem) at 300 MHZ. The other output
->   * clocks from CMN PLL on IPQ5424 are the same as IPQ9574.
->   *
-> + * On the IPQ5332 SoC, the CMN PLL provides a single 50 MHZ clock output to
-> + * the Ethernet PHY (or switch) via the UNIPHY (PCS). It also supplies a 200
-> + * MHZ clock to the PPE. The remaining fixed-rate clocks to the GCC and PCS
-> + * are the same as those in the IPQ9574 SoC.
-> + *
->   *               +---------+
->   *               |   GCC   |
->   *               +--+---+--+
-> @@ -51,6 +56,7 @@
->  
->  #include <dt-bindings/clock/qcom,ipq-cmn-pll.h>
->  #include <dt-bindings/clock/qcom,ipq5018-cmn-pll.h>
-> +#include <dt-bindings/clock/qcom,ipq5332-cmn-pll.h>
->  #include <dt-bindings/clock/qcom,ipq5424-cmn-pll.h>
->  
->  #define CMN_PLL_REFCLK_SRC_SELECTION		0x28
-> @@ -117,6 +123,16 @@ static const struct cmn_pll_fixed_output_clk ipq5018_output_clks[] = {
->  	{ /* Sentinel */ }
->  };
->  
-> +static const struct cmn_pll_fixed_output_clk ipq5332_output_clks[] = {
-> +	CLK_PLL_OUTPUT(IPQ5332_XO_24MHZ_CLK, "xo-24mhz", 24000000UL),
-> +	CLK_PLL_OUTPUT(IPQ5332_SLEEP_32KHZ_CLK, "sleep-32khz", 32000UL),
-> +	CLK_PLL_OUTPUT(IPQ5332_PCS_31P25MHZ_CLK, "pcs-31p25mhz", 31250000UL),
-> +	CLK_PLL_OUTPUT(IPQ5332_NSS_300MHZ_CLK, "nss-300mhz", 300000000UL),
-> +	CLK_PLL_OUTPUT(IPQ5332_PPE_200MHZ_CLK, "ppe-200mhz", 200000000UL),
-> +	CLK_PLL_OUTPUT(IPQ5332_ETH_50MHZ_CLK, "eth-50mhz", 50000000UL),
-> +	{ /* Sentinel */ }
+This series adds support for the reset controller found on the SpacemiT
+K3 SoC.
 
-Trusting you on these entries as I can't find a source
+The K3 reset controller shares the same architecture as the K1. To
+facilitate support for both and future SoCs, the existing K1 reset
+driver is refactored with the following changes:
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+1. The existing K1 driver is moved to a dedicated 'drivers/reset/spacemit/'
+   directory.
+2. Common reset operations are extracted into reset-spacemit-common.{c,h}
 
-Konrad
+The K3 driver is implemented using this common infrastructure.
 
+This patchset is based on v6.19-rc4 and depends on the K3 clock drirver
+patchset [3] and the K1 common clock work [2] and [1]:
+
+Link: https://lore.kernel.org/all/20251219012819.440972-1-inochiama@gmail.com/ [1]
+Link: https://lore.kernel.org/lkml/20260108-06-k1-clk-common-v4-0-badf635993d3@gentoo.org/ [2]
+Link: https://lore.kernel.org/lkml/20260108-k3-clk-v5-0-42a11b74ad58@gentoo.org/ [3]
+Link: https://lore.kernel.org/all/cc1cb833-2c4a-4e20-a50d-109a4919e274@riscstar.com/ [4]
+
+Changes in v2:
+ - Patch 1:
+     Update the commit message to explain the why.
+     Update the spacemit,k1-syscon.yaml to point to k3 reset IDs
+     header file.
+ - Patch 3:
+     Use dev->driver->owner for the reset controller owner instead of
+     THIS_MODULE to fix the module reference counting issue pointed out
+     by Krzysztof Kozlowski.
+ - Patch 3 and 4:
+     Update the K1_AUX_DEV_ID and K3_AUX_DEV_ID macros to a simpler but direct
+     form, one benefit is to improve the code readability. More discussion
+     can be found in Link [4].
+Link to v1: https://lore.kernel.org/r/20251229-k3-reset-v1-0-eda0747bded3@riscstar.com
+
+Signed-off-by: Guodong Xu <guodong@riscstar.com>
+---
+Guodong Xu (4):
+      dt-bindings: soc: spacemit: Add K3 reset support and IDs
+      reset: Create subdirectory for SpacemiT drivers
+      reset: spacemit: Extract common K1 reset code
+      reset: spacemit: Add SpacemiT K3 reset driver
+
+ .../bindings/soc/spacemit/spacemit,k1-syscon.yaml  |   8 +-
+ drivers/reset/Kconfig                              |  12 +-
+ drivers/reset/Makefile                             |   2 +-
+ drivers/reset/spacemit/Kconfig                     |  36 ++++
+ drivers/reset/spacemit/Makefile                    |   6 +
+ drivers/reset/spacemit/reset-spacemit-common.c     |  77 +++++++
+ drivers/reset/spacemit/reset-spacemit-common.h     |  42 ++++
+ .../reset-spacemit-k1.c}                           | 107 +---------
+ drivers/reset/spacemit/reset-spacemit-k3.c         | 233 +++++++++++++++++++++
+ include/dt-bindings/reset/spacemit,k3-resets.h     | 171 +++++++++++++++
+ 10 files changed, 584 insertions(+), 110 deletions(-)
+---
+base-commit: f10c325a345fef0a688a2bcdfab1540d1c924148
+change-id: 20251229-k3-reset-8d9b751ef391
+prerequisite-message-id: <20251219012819.440972-1-inochiama@gmail.com>
+prerequisite-patch-id: df430730ed961011cee5c5d47b7ace84b3c5ebb7
+prerequisite-patch-id: 64003618c33be925602e46b7543f2c13d3f36474
+prerequisite-message-id: <20260108-06-k1-clk-common-v4-0-badf635993d3@gentoo.org>
+prerequisite-patch-id: 96cd13293b888c05f400daf529c3cacf17ddf002
+prerequisite-patch-id: 5f6579799919c4e2e12c8c836ac4164b00ccaaa3
+prerequisite-patch-id: 11e8d5cbe6f3610aa362dc0051b3173001d0a5f4
+prerequisite-patch-id: 622d6606913609be04f66006609550e8c3e7f22b
+prerequisite-message-id: <20260108-k3-clk-v5-0-42a11b74ad58@gentoo.org>
+prerequisite-patch-id: 44a51fa6a6f0f9d2c5b7bf3295f3272d6bb7005a
+prerequisite-patch-id: dce85ac6e4e94b1d2622a8231ddab3de766373ff
+prerequisite-patch-id: af1fb571f0d19d72e69dd41d15fc2dbd730b17c7
+prerequisite-patch-id: 1318bffbbe6044cb4ef0f77c6756ff96d69ecdf3
+prerequisite-patch-id: 8856cecc299cdffcd18acf9a7476175a4d65e62e
+
+Best regards,
+-- 
+Guodong Xu <guodong@riscstar.com>
 
 
