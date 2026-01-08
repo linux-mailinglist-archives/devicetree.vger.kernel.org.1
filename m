@@ -1,162 +1,111 @@
-Return-Path: <devicetree+bounces-252718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9649D0226F
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:37:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C182FD023F3
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:59:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0CE6633FF730
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:59:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B272300C6EE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 10:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C333A961C;
-	Thu,  8 Jan 2026 09:58:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="D1FXVa++"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC7A3EFD27;
+	Thu,  8 Jan 2026 10:09:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281B33A961D;
-	Thu,  8 Jan 2026 09:58:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1D13D6664
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 10:09:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767866326; cv=none; b=oPNGKqSZFYM5G8KcDYL6Hk3H5ERk37FNe7x0AIn2OSLQy6lFc6YwTMowxXffPAH2krRH0EbXzXkErGasC6/IVCXkiN3G0XCwLm8pmNvarEzEV8vEfurklIhU1TSnVqrAFJkpENoVcdyHqO+lxhUr/2VkT51GRi0RW4ITQ3DIWfo=
+	t=1767866987; cv=none; b=N6Y15X3HIoGISLWHFvY6Z3fQADe40IcMDHCLFZ2B6bXaShtP303IIRYPHFH4IyASCzxJ8wEx00LeikNWCmBIuQrKjDR1FTb9CFpiEKZC7vduGqcETKW9IT8eKFDQ27DuETFAckX0xKu5upBs/Ng/GP4b4iWVWPS5nC2onrEfZlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767866326; c=relaxed/simple;
-	bh=1HLus0gTh6HnY5z+TPOce04w/1dZcg2TITZXXvEJlVg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IVIDAmppeGQmdulzHevAqTfuKCVzQpvO4m5Xi/LrMvPsazqCBwJcZ4lR1zefpGKHEVOM3sDVSGUUBshBMEnbpHEZVScXnK8vI+TI+MAyTHTdNi3iaObTc3CCYYpzXmr6rukFa/7J5NtCAoYTSmDFXtEf/8lyWaD2v6ABff80oEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=D1FXVa++; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1767866316;
-	bh=1HLus0gTh6HnY5z+TPOce04w/1dZcg2TITZXXvEJlVg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=D1FXVa++Qs4BCQAij0CNaHgFbcCTZNl9Vc0FcUIJ9Nl0DLkY+LgT6We4i1cd+rVbk
-	 wKV+FLM+EWFf1h3oFDjw5Xa2wj9M7p9SphujPZ1Rc+ukrLKCwX+3n7DjblSqhkbnUk
-	 IBYbkT1ovSbsc7/CrFvpteMuw8SSmqvco0z9uFuN13qMYfBe8g8KwhJIIefwRXUYOo
-	 hidffgXI8S0IW8tn6o+sE287/vb7pMi10So8rEg+xogb8pfP4bsYxRNLRtlFDxQ/vi
-	 lDI1oyNXdLkcH+k5deXK28sTa+ScoHsiTh9/InnH1jKi8scxrZegWs8jp2HZTKKusU
-	 hhlgjxj4j+N+g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5B95917E0181;
-	Thu,  8 Jan 2026 10:58:36 +0100 (CET)
-Message-ID: <a952746a-89f9-494e-bbb0-e4aed5c1cedc@collabora.com>
-Date: Thu, 8 Jan 2026 10:58:36 +0100
+	s=arc-20240116; t=1767866987; c=relaxed/simple;
+	bh=hkFV6sCHTP5qofsPaY/YbOdlIOAJzAyWAh6SnNrhtec=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RFMpDS0R5jOj5OeblAPMF11tBjVzge5tuXoFYdXStW+BFr3Fp05v5OYCvLC3LKovHOU0106DBB7zyfQuce0mo5vAFJt9XrEeMaEoNDjsTDUSzzV27gT4gcjqTRGUzHexmClwq3cwKsc29VIBuFCZ9/RTWnD5Wu4tavwlRDldbuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-5ed09471ab9so474601137.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 02:09:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767866983; x=1768471783;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gyrZyGcXAzKiCKUaV1wObD3EIrr2gqbfMM/IKLsGvno=;
+        b=rzG91N4vV83dCFnipShgc0hXT/b+/GlC5Zds4RTni/BHqlzow6ExLJvTli1Ts8l01x
+         jmRv9ecqtdeeFbJWVHsQx6nOz+7z/2ZhJzewOE+jP5qUtvCQLn8+xhCDr0fCK25ja544
+         Bgm9q1sy+hLqwIEe9RJjiwnRTqum5U48OS7OG+w8+RNzJ2/aFerSyYdOeq44UY148XjY
+         Lc4itQx6m4iFhDXHFUeX5MdyR8HooDSvymxlw52UYmB0aWkBkpp2+FpSwdHCEJD33RP1
+         U3UVR/6wBFYxl6m82BhxeGfeqyEKZB8EuRZaGVfBWVQ/sGURalXElBUA2vwjCZNu5++B
+         KJaA==
+X-Forwarded-Encrypted: i=1; AJvYcCVcZgEZvj9VmA4OPsziJVvRPLGjEfrtAnCEqIk+i2Tsslztdwor+6KmhDUp5mpMviYj/veAFp7oxGZ+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyItwsiSi6vmAX2mIk9dZtE1wq4ecjMvwAIwAFOr4xhungE2EZe
+	KQu7dUsi6yh7fvWs4PmNRRqHc1Tbow79wAlUAqk+9I7WFGwhrIw8xM2iV0MmYrDw
+X-Gm-Gg: AY/fxX5m0/UpbN81+MRYU9eGJc99LeeiDSE+0Q67OMnUCHrZsxPteAzb2s//bDewgCw
+	cIlauRO5QqFJKeoZqMn0g6jZz4mZM8csYKV94hfcc4lrBIxBYYLiDu2rjOIv699AUm337oL/tWC
+	4Trz6fGGDayGupPksGDBuUjLajyeXhDs+MjtLLTfU/pEWBaQoXDO9KQKNSPMVz217Ekjqti4NOm
+	gVg7I02vxR6N5pWBKsZaN/OLOSgE8Cpm5Dc+TltuHOueFf9F2XcrMJXTe/Azyf46P/HOhbEHX0/
+	l51FbNwmR0KlqiMGZsGtWC+n4bOBpT5U2WEeSO9mUycwtrBUpmMicff4BH0HDXEqrKzItnyiDoi
+	V9Dac0IeSr7zcBP8oC28wqgXZDo7i3bGPo7OqIKBYrbaxzjzJ1CqsKE5WE5ugyNm40Xjczqs+je
+	/zc2rajsWfEqzmky4pur63Hiuxwzsl4JgsOa+E1p3kcNB6ywhQ
+X-Google-Smtp-Source: AGHT+IEORjO9TOJllz6oZ5Dunu0Ocl4bOjZ2iqQKDhsatCcXu1+0UgYLZxNgvLPbx+UNw8/0M0gweQ==
+X-Received: by 2002:a05:6102:644d:b0:5db:ca19:f048 with SMTP id ada2fe7eead31-5ecb688bd07mr1744871137.16.1767866982698;
+        Thu, 08 Jan 2026 02:09:42 -0800 (PST)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-944124a3386sm5319005241.11.2026.01.08.02.09.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jan 2026 02:09:41 -0800 (PST)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-9412512e9f3so932080241.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 02:09:41 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVcVapGEj1l9IEC5DjAB+qdCStrtVmnctp8Wj3hPC4CRUgB7Jc+YgJVJklQ2VxrCLypj07qO1v9bEP6@vger.kernel.org
+X-Received: by 2002:a05:6102:334f:b0:5db:cc69:739c with SMTP id
+ ada2fe7eead31-5ecb688c1a6mr1774956137.17.1767866981047; Thu, 08 Jan 2026
+ 02:09:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] Add support for Ezurio MediaTek platforms
-To: Gary Bisson <bisson.gary@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20251203-review-v5-0-b26d5512c6af@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251203-review-v5-0-b26d5512c6af@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251224175204.3400062-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251224175204.3400062-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251224175204.3400062-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 8 Jan 2026 11:09:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUYSOw3SvDqYfYTEjBbe=jA3fsWWa+yEpuFsVk0J_SuDg@mail.gmail.com>
+X-Gm-Features: AQt7F2oOCBWKRpGjqkkzd6TZOmQAOeycJcWHvdzKUvJorqk3GvTHAiV3Se6S3gU
+Message-ID: <CAMuHMdUYSOw3SvDqYfYTEjBbe=jA3fsWWa+yEpuFsVk0J_SuDg@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: dts: renesas: r9a09g077: Add CANFD node
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Il 03/12/25 22:20, Gary Bisson ha scritto:
-> This series adds support for Ezurio MediaTek platforms called
-> "Tungsten". It includes support for MT8370-based Tungsten 510 and
-> MT8390-based Tungsten 700 SOMs.
-> 
+On Wed, 24 Dec 2025 at 18:52, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add support for the CANFD controller on the Renesas RZ/T2H Soc.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-All patches applied to v6.19-next/dts64 after fixing a merge issue in Makefile.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.20.
 
-Thanks!
+Gr{oetje,eeting}s,
 
+                        Geert
 
-> Changes in v2:
-> - Use b4 to cc all maintainers properly
-> - Squashed patches 2/3 together
-> - Updated dts node names to be generic
-> 
-> Changes in v3:
-> - Added per-commit changelog
-> - Added missing Acked-by on 1st patch
-> - Link to v2: https://lore.kernel.org/r/20251201-review-v2-0-dc2df44eec7e@gmail.com
-> 
-> Changes in v4:
-> - Fixed remaining DTB warnings
-> - Link to v3: https://lore.kernel.org/r/20251201-review-v3-0-07f9af7341fd@gmail.com
-> 
-> Changes in v5:
-> - Fixed DTB per Angelo's comments
-> - Added a MT8188 patch for easier mmc eint interrupt change
-> - Link to v4: https://lore.kernel.org/r/20251202-review-v4-0-93f5cd2a0d4a@gmail.com
-> 
-> Regards,
-> 
-> Gary Bisson (5):
->    dt-bindings: vendor-prefixes: Add Ezurio LLC
->    dt-bindings: arm: mediatek: Add Ezurio Tungsten entries
->    arm64: dts: mediatek: mt8188: switch mmc nodes to interrupts-extended
->    arm64: dts: mediatek: add device tree for Tungsten 510 board
->    arm64: dts: mediatek: add device tree for Tungsten 700 board
-> 
->   .../devicetree/bindings/arm/mediatek.yaml     |    2 +
->   .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
->   arch/arm64/boot/dts/mediatek/Makefile         |    2 +
->   arch/arm64/boot/dts/mediatek/mt8188.dtsi      |    6 +-
->   .../dts/mediatek/mt8370-tungsten-smarc.dts    |   14 +
->   .../dts/mediatek/mt8390-tungsten-smarc.dts    |   22 +
->   .../dts/mediatek/mt8390-tungsten-smarc.dtsi   | 1489 +++++++++++++++++
->   7 files changed, 1534 insertions(+), 3 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8370-tungsten-smarc.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dtsi
-> 
-> --
-> 2.43.0
-> 
-> ---
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Matthias Brugger <matthias.bgg@gmail.com>
-> To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> To: Sean Wang <sean.wang@mediatek.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-mediatek@lists.infradead.org
-> 
-> ---
-> Gary Bisson (5):
->        dt-bindings: vendor-prefixes: Add Ezurio LLC
->        dt-bindings: arm: mediatek: Add Ezurio Tungsten entries
->        arm64: dts: mediatek: mt8188: switch mmc nodes to interrupts-extended
->        arm64: dts: mediatek: add device tree for Tungsten 510 board
->        arm64: dts: mediatek: add device tree for Tungsten 700 board
-> 
->   .../devicetree/bindings/arm/mediatek.yaml          |    2 +
->   .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
->   arch/arm64/boot/dts/mediatek/Makefile              |    2 +
->   arch/arm64/boot/dts/mediatek/mt8188.dtsi           |    6 +-
->   .../boot/dts/mediatek/mt8370-tungsten-smarc.dts    |   14 +
->   .../boot/dts/mediatek/mt8390-tungsten-smarc.dts    |   22 +
->   .../boot/dts/mediatek/mt8390-tungsten-smarc.dtsi   | 1489 ++++++++++++++++++++
->   7 files changed, 1534 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
-> change-id: 20251201-review-750072579991
-> 
-> Best regards,
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
