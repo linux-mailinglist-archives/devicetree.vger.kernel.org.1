@@ -1,140 +1,128 @@
-Return-Path: <devicetree+bounces-252838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A2DFD02FD7
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:24:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 794D4D03113
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:37:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D94E0300418B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 13:18:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8A7C8305AF2C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 13:25:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35CD74CB38A;
-	Thu,  8 Jan 2026 13:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AEFD3ACA6F;
+	Thu,  8 Jan 2026 13:23:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D541480337
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 13:18:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB843033C0
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 13:23:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767878331; cv=none; b=SDFzIImMPCx6BvmNytA+btIES8gBQNnTNa1qrQxHTyMEcQrAQjOUYp/vCqVC+G33a8iv8mkpYUbskb8mKdD2i4iVLIhdsPVpjg3oNKddwEH5kOOI8D7sCbWtjrA27kB27DcRUaAU7u2osJclVz7fY4n8e3puGiZiKobCpNYWtYw=
+	t=1767878595; cv=none; b=Qse+7sgx2uy8vdPmGnBM0DNUJdEDLJPWALqq638qjJ5pa++jqN9OpNBHoKWhoCBb60S3MYx59D/iEaTKEcXteYKf6vnox/t5TMbTSFQ3VleXK04IhuJL2fOknpXGr1Tq43+p0ZDcvOgdTdjHcqyQmgTgJTsUTeuMPOLrVs9nFfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767878331; c=relaxed/simple;
-	bh=R/ik6RCHy0vcmDiWODgzb7fmBMuxgNZfDeNSBubH6j8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nFbYQZ3G68zTwKQ5yM/pEQE+Xk9MaNwTXLqX0/YXU69Zmeb9ycGhNbzf49NcwQxz8wCUUgct4Y2KvJDe1E79XJ8k9+u6tJ+dR8rS+r+Z/R3muMlDYxTGC9u8IjNL8fU2E+r6DlaysUvGLuL+aZNjt4CRFit8GLWsALKp9ajCVAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-56021f047d6so998971e0c.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 05:18:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767878327; x=1768483127;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FBcKWVGEhtiifVCFkRWBbtuXpQVZDUsacun0dIyCZSQ=;
-        b=Uu0npmaI3cqJRd6+06UbzRaEkVjQ2RLAp9OV/LEGZHkSx083UPmFri81W9NNR+91bc
-         kESoOM/hLI5zjdPH4UrgNhLaIwssKqI9KySrhZZmx9ZBI+aP3YiGiWa5Xk7/r642om4H
-         eV5n5TOF8K/q9a+LMdh2TjNOkGCQ9Qt9FUSbTD3tyzwvPBoZ+qo0O2afXrVD2KkVyMtE
-         As7B0Nw8kzOcygjfVe6bKXNJhEiXMLDRSnROxNGyXxZQm3BKXhUt9fx9zWsCf6kWIyUI
-         4qnKR3MvAnP14Uft94OfmXWHirvE1NgsAt5/VavJrUkqWlRlDpHdCt0Zt2O8/EG+a4JP
-         95yg==
-X-Forwarded-Encrypted: i=1; AJvYcCUhv2VNy2Icn4CP6giRu7WNy9792XXmwjVp+5c+K4X+Z1UKslvdzmrYuZvu5g4RtG6DVNeC9u/rT0Ch@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2MfTOLiQvZSgEWIejBumn9up3Jd9vEfx53cRtVbqJZyt/EnOQ
-	WRb8LsHiTH8kzFJv2nEUVECS3s+QyXVq7fEsDNEg40TgFAPl7nw1lz1zrrhzPTv4
-X-Gm-Gg: AY/fxX5+l/s9CqZnUT7gn8YJhWT0pIPv3hL04zTqoKGEjz5UQcyyzL1QwCSXwWYGHnA
-	oQKbhmIwgCNno5MhGrZ06m9mK/GhkTsKXDuZawNnfIw0sCmaIQGRU91zBBE4VwgcyTVX98GOHeT
-	qX6Q1wTvB4fvicvNRdVuSleJvQ0RtI+YlnRSEaCv0wywZkUzra2ZBSYorU8+vdUea6PvOyrz1Hq
-	tkIf0VD3zuQ/QJWUqVU820PzVfeZHscyugdqj9S+LR0Zi0gtfs5xNaLgR8SDh444hgcqdH1U9g7
-	v3pa6PyWSmXKCvyXf7zRsbdsojq+/2QxMPLpkOORJ1g4FU9rc71FEYWK5RD+Znm1nj2hQJ2+rss
-	uP+lZCHF02UXhV6IzIEg/p4Si/hyPT5QLJn7u2cGyWQb5psJoBdB9+8L5Wc6oUfWweP1QXzf5BG
-	s2ChuO1+0yKmhs8sxWurwZMwpoGFrLrNK8GocjF2DU1o27FhoJBM+1
-X-Google-Smtp-Source: AGHT+IFKEZHiYNk0PETWoY4lUd2nYQlEoRupqSQYKWLaDQkctffAKDuq0NwoTtbdxzsdEMFGFdKtvw==
-X-Received: by 2002:a05:6122:4909:b0:55b:9c3f:55f with SMTP id 71dfb90a1353d-56348006892mr1929736e0c.18.1767878327076;
-        Thu, 08 Jan 2026 05:18:47 -0800 (PST)
-Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com. [209.85.221.170])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-944124c087bsm5682228241.12.2026.01.08.05.18.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 05:18:46 -0800 (PST)
-Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-55b2a09ff61so989901e0c.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 05:18:46 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU1WZZbzwTcyC80aeYjzn7DeuOuJ3OdDi08SIWzXdE72tAtRh6yQhOYuaDeypx9HQqbMTymdGbpoej8@vger.kernel.org
-X-Received: by 2002:a05:6122:322b:b0:558:251:f0e8 with SMTP id
- 71dfb90a1353d-56347fd4810mr2027140e0c.11.1767878326461; Thu, 08 Jan 2026
- 05:18:46 -0800 (PST)
+	s=arc-20240116; t=1767878595; c=relaxed/simple;
+	bh=sushfq5GAYWdCXpDJKKEKFHV3Afei3pz/MnRjM3PDt4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=uPbUwXaVU5oi5wA+Mc2eCqlRjhVCfIZuMS7ayJwdxIJLMIdP+BDSbeOyHOpOi0CTNMEM82HgI+oQ33YiuUcQG5ke7oO6RkAGjYyGzdGtGojPPwZywPFrCdUvB/bF8FA0bjyNBejClHsCv59ldBgc/UIFFyIzy2WE9phS/BXa5zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vdpyU-0005cJ-PR; Thu, 08 Jan 2026 14:22:50 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vdpyS-009gXW-2F;
+	Thu, 08 Jan 2026 14:22:48 +0100
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vdpyS-000000007uP-1b8C;
+	Thu, 08 Jan 2026 14:22:48 +0100
+Message-ID: <1fe08251f091bd695f630b7b46ae8c8d85d664a3.camel@pengutronix.de>
+Subject: Re: [PATCH v3 1/3] net: stmmac: socfpga: add call to
+ assert/deassert ahb reset line
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Dinh Nguyen <dinguyen@kernel.org>, Maxime Chevallier	
+ <maxime.chevallier@bootlin.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni
+ <pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre
+ Torgue	 <alexandre.torgue@foss.st.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Mamta Shukla	 <mamta.shukla@leica-geosystems.com>,
+ Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: bsp-development.geo@leica-geosystems.com, Pengutronix Kernel Team	
+ <kernel@pengutronix.de>, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, 	linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Date: Thu, 08 Jan 2026 14:22:48 +0100
+In-Reply-To: <20260108-remove_ocp-v3-1-ea0190244b4c@kernel.org>
+References: <20260108-remove_ocp-v3-0-ea0190244b4c@kernel.org>
+	 <20260108-remove_ocp-v3-1-ea0190244b4c@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251215163230.227849-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251215163230.227849-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20251215163230.227849-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 8 Jan 2026 14:18:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVGaGcj2BU193+v8A4HQKVcaQtxi-aP=_3WwmYJTzLJYA@mail.gmail.com>
-X-Gm-Features: AQt7F2o6RT1uScZLN7knEWw7zzwRk-uVlCC2UoePmf-BfftnoFVhaLPZHDMkN-0
-Message-ID: <CAMuHMdVGaGcj2BU193+v8A4HQKVcaQtxi-aP=_3WwmYJTzLJYA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r9a09g057: Add DMA support for
- RSPI channels
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+On Do, 2026-01-08 at 07:08 -0600, Dinh Nguyen wrote:
+> The "stmmaceth-ocp" reset line of stmmac controller on the SoCFPGA
+> platform is essentially the "ahb" reset on the standard stmmac
+> controller. But since stmmaceth-ocp has already been introduced into
+> the wild, we cannot just remove support for it. But what we can do is
+> to support both "stmmaceth-ocp" and "ahb" reset names. Going forward we
+> will be using "ahb", but in order to not break ABI, we will be call reset
+> assert/de-assert both ahb and stmmaceth-ocp.
+>=20
+> The ethernet hardware on SoCFPGA requires either the stmmaceth-ocp or
+> ahb reset to be asserted every time before changing the phy mode, then
+> de-asserted when the phy mode has been set.
+>=20
+> With this change, we should be able to revert patch:
+> commit 62a40a0d5634 ("arm: dts: socfpga: use reset-name "stmmaceth-ocp"
+> instead of "ahb"")
+>=20
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c b/driver=
+s/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
+> index a2b52d2c4eb6f..79df55515c718 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
+> @@ -407,6 +407,7 @@ static int socfpga_gen5_set_phy_mode(struct socfpga_d=
+wmac *dwmac)
+> =20
+>  	/* Assert reset to the enet controller before changing the phy mode */
+>  	reset_control_assert(dwmac->stmmac_ocp_rst);
+> +	reset_control_assert(dwmac->plat_dat->stmmac_ahb_rst);
 
-On Mon, 15 Dec 2025 at 17:34, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Enable DMA support for RSPI channels.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Since these two are just different names for the same reset,
+I think it would be cleaner to rename dwmac->stmmac_ocp_rst to
+dwmac->stmmac_ahb_rst and assign this either to
+dwmac->plat_dat->stmmac_ahb_rst or to the stmmac-ocp reset during
+probe.
 
-Thanks for your patch!
+Also, a comment explaining that the dem_reset_control_get_optional(dev,
+"stmmaceth-ocp") is for backwards compatibility with legacy device
+trees could be helpful to future readers.
 
-> --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> @@ -705,6 +705,8 @@ rspi0: spi@12800000 {
->                         clock-names = "pclk", "pclk_sfr", "tclk";
->                         resets = <&cpg 0x7b>, <&cpg 0x7c>;
->                         reset-names = "presetn", "tresetn";
-> +                       dmas = <&dmac0 0x448c>, <&dmac0 0x448d>;
-> +                       dma-names = "rx", "tx";
 
-RZ/V2N does not seem to have restrictions about which DMA controllers
-can be used by which SPI instance.  Hence shouldn't these point to
-all five DMA controllers?
-
-    dmas = <&dmac0 0x448c>, <&dmac0 0x448d>,
-           <&dmac1 0x448c>, <&dmac1 0x448d>,
-           <&dmac2 0x448c>, <&dmac2 0x448d>,
-           <&dmac3 0x448c>, <&dmac3 0x448d>,
-           <&dmac4 0x448c>, <&dmac4 0x448d>;
-    dma-names = "rx", "tx", "rx", "tx", "rx", "tx",
-                "rx", "tx", "rx", "tx";
-
-Note that this requires updating the DT bindings, as they currently
-restrict dma to two entries.
-
-The actual DMA specifier values are OK, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+regards
+Philipp
 
