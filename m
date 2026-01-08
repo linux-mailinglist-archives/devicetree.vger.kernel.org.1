@@ -1,177 +1,128 @@
-Return-Path: <devicetree+bounces-252687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8CA6D01FD4
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:59:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90D23D0201F
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:05:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 598FD303753C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:52:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 532FA30D2D1A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 09:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D4D3BC4F2;
-	Thu,  8 Jan 2026 09:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FA04218B6;
+	Thu,  8 Jan 2026 09:18:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="DSCGezEd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kAujPoXa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D35C42884F
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 09:17:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6AAA39447E
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 09:17:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767863853; cv=none; b=k9GeIMyWFrsA4D9PI14v2NvaiumkK/psThiPYOkD0S8w0HVKyu4ZTsfrkrQnSiRH0PUHomS0tpogf1VghLQLaeaw24yMSF4/gyCddsR03Z8MmLNi8Mk/JTqdIogmkqWRsaDDT5rCN3A9j7WESp+dq0xk96ialgXB7mnv776LOoM=
+	t=1767863882; cv=none; b=vBmgmcJggc5F8llN72NXwl5e3NAiL9VOv2Nnl9EwiuFlsRME6Ay1sIf9GNhhCplWQEc/f4Y43y3BMQMUaGBUmIE7cKlSUQ4SQLP6Ar4Z+DmfU5FY7hpZSB5xIZ6EF1W6eKABqbzNe+9SCZamP/Y6pR02Jc/DHwG2EyBmKNYOZDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767863853; c=relaxed/simple;
-	bh=B+hE1zp+0cdPWIc8GokfyF2eQY9+MSW38I8xKZ2DL4c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lcXOl0I+t8TQMt21bMHvE8u4KVHx5ctnM8Gw7tppGOhHTr9K9ECImxkwNNMdLKAvO+Bg9+KEqwOnU+TLfF/MVai88kZlUVwIfazfCaYIJMayqHIW3kCyYq3+ItpxvAgCLo69ReEtwqvnmHAnQhVAemOosdrJrNJ5NQ1FzMCUPHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=DSCGezEd; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso27700335e9.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 01:17:25 -0800 (PST)
+	s=arc-20240116; t=1767863882; c=relaxed/simple;
+	bh=rJKlSCF9OU05jcuov22wvWuBsucLoLxar7+T5KXFJ4A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HSWEzZoAUNud2jqmemktdcXdoGHyEHhGvF0kB3lbf7UVjys3vms+8CGn42WbnkVlJOqdYVavZs8AAlcLIHWvkDDM5zQ+YG1Jk8N2Ut7q3mj/8AFX3xw3qp0301BoEHEFbPhDpVK6RhKHtG4UfKfUMW5ju+v8iHzW7K6Zp1P17No=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kAujPoXa; arc=none smtp.client-ip=74.125.82.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-2b04fb5c7a7so2458567eec.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 01:17:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1767863839; x=1768468639; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=R5S8zQ9e2sGnfnBt19hJ4W6t0YOug0PEiUPvQAC/cPY=;
-        b=DSCGezEdwl1KV9e2IOkJx1xGxrJg7ZlDAlN6RpdTKiNFje2uiajqGswPAvantgiTb2
-         WB8LESih/IlcDPIpurpz6IjVPTv5mbyx9QgJU5BoR0e4M6zwo7tVsRFzFQUpjDpa2P90
-         rFRpnk47EDOEAlKglsG9qvg+Pu5SARV5nhWvJn5zk6uPPbAdCDhfwY2WTfIuk7QTWoFV
-         hmARPWDH3WLG1ZDYNvmW6IHllSALdeXYdn1kMTVqK7pUA4Y9kS4zI9OJy5xiLzBgVfJR
-         1kJB6F7GGW9XkGhlRxpvd67e+0bIdzB3zwKtDE1L2A0dFIimJkCxHCwZ9L2O2MTfuA60
-         pRGg==
+        d=gmail.com; s=20230601; t=1767863869; x=1768468669; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eis8NHZnE9ri0RzqLaxUqcXpiZJ26AU6MwmGkm8dkog=;
+        b=kAujPoXapPgEDlqfiuC4dX0e2G8neTDWMNSNpvesLx8K3SFFkGzRc5Z5XHXpWFu+bx
+         TDGDRtZfPHuF3MdWfTSOE0kbFqd6pjL+sziQvZrvug00fk6uNm5yzdfuDQfb7JJYAEHC
+         poZfSkEJzM54BUOq1TwXWbRApEPizxSLfwT8eBrGb3ObKE/3/r0G+kvcpjsMb7op8kja
+         wdg4CbMxNe5S40aFployZSk9XbYBTDDhdRFjmQ4M2117dbPnJlHGB/KRHE9EaNm+nCiU
+         4mXPC23ChbinPENU0cm7iJEBkNWClqDRwgdgaCxa5c5wPkb65dNl6apOzUhu5/dT30CX
+         wIfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767863839; x=1768468639;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R5S8zQ9e2sGnfnBt19hJ4W6t0YOug0PEiUPvQAC/cPY=;
-        b=i//wwLCjDuns+0r8rvT0Ee4mZKr9bCVmKzdqLRUmQL72J4MpGKDtairUy2+pHnPynF
-         a/N9RUel4wybp2sPRcQrYRsDNWZnVeiBcNTzXxKTUOuWivSS7rGGFe9S2sCbKJEfDEW7
-         tILpqDNeUgZsXdmc4St/7mRRjj4lmZqpEnc0nkata9KTonG1/PTQeLpSSt/w7A1CcA5f
-         3QTXU6YbYlPz9xfhLjzQaczAu8c726df02fhQvz0u64sypnCTeGX/xGSiR/BvOqSwAj/
-         c72aoiAlIHK+A1mBKyqH9+AazN0ALWOdVNG2/2OD0SDo4UYMHss9doqa0kdF86A/MV2f
-         GLMg==
-X-Gm-Message-State: AOJu0Yx99iLtork7gYP++tbpxM3QabdVu4/oAT4KSH5aS6Yh8k6WRZVO
-	BrEsCHATpZAERHx5eRpe7hvKz6lI+Me8qM6pBRWkrU9XtLVYYHZkzFnpSJinqVFsf/w=
-X-Gm-Gg: AY/fxX5jBRPtWD3gM5ncUKXoBmoQX4uxOQUkm+OXqWLad08fvWJXXbgAMVIZQToaeYc
-	sffpES7HzTVNTLvMsUGvH208ai6RG2anwKoIBUinwwaTxy3RK/7dQjTws2JqeQwDDBrdISq4yBV
-	27maLl9izjEftxHJmTZniGCDeKvglRxDBPOR7PfBCi9QfUD3YeZjuFBQidDUDN3tJAyEya94Zp7
-	Uat64ISwpp/OF94VFvO8WxaN5CMbGtEpPoxZMKAH5GudLkcDDvDWCYzmglda7jgF65VHArVbX08
-	EhcGF779u2u6JxfUx2IRkE92/tquAwnEmkdIW79u7/qe7bsroZw+iS0eBMOc61kYdHXiz1IGdFZ
-	Eskx8Gd9L9bF0vIde6VDhS9tMEGviklR3d5g0Cw25dcQzoIb4mpNLMKv8xmx/BKGKvWaSnf5bzE
-	H7LbVe8VB4QcAtM85caw==
-X-Google-Smtp-Source: AGHT+IEhTW+XL3PZlPk8egAcp2/D9p50DS7jTT6A1e+Oq9/3ughseVDLhZT1N7KDmEogh4RRmDNh7w==
-X-Received: by 2002:a05:600c:c4a5:b0:477:95a0:fe95 with SMTP id 5b1f17b1804b1-47d84b347ebmr74042375e9.24.1767863838937;
-        Thu, 08 Jan 2026 01:17:18 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.17])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f6ef868sm140085435e9.11.2026.01.08.01.17.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 01:17:18 -0800 (PST)
-Message-ID: <eccf0609-562c-426d-b72e-97673a97f069@tuxon.dev>
-Date: Thu, 8 Jan 2026 11:17:17 +0200
+        d=1e100.net; s=20230601; t=1767863869; x=1768468669;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=eis8NHZnE9ri0RzqLaxUqcXpiZJ26AU6MwmGkm8dkog=;
+        b=YbtVoFUSrOAOrPnn2zrM4k0BsFysqGol/IpdmK7SFUz2tmb/ghU1bi7aVPLY4IGbmS
+         BDW8SzTg9aqMwg8n4QGRtOdl2NoR23mM4d/vfx75AvQpcpc2WiC7VhB3nWSP4WiVeHbI
+         77R9cft0HsiBb4bMOjdw2GWfQMaPLkzDhzq0OefEjlEsZzAMMBYDcEiqQriV9qdpfQwd
+         4CcYGBX8exqMxPjTsow3e4u+KXBjV8tLaAboLAHJozfm+v7eudRcAkZyg1oAP2rs82Ju
+         Eabm4yHnUGaK1wZGHnlEHWf6gpMNf1P69HiEK0MrXVl2nuYmv5Ohco4orqzE5n3FcoCi
+         nnzA==
+X-Forwarded-Encrypted: i=1; AJvYcCU+sF1GozhP/4609oymCsgpZcspEhde56HLgYNRJ0B+9PgPzfmteXosxeb2roBT50OMDBodU8v+4i3/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2PocEEYs0Dhub1z4ALHTBpjPOA19vX+3gSrjygoYh8RmWAw6u
+	t8y25I6jeapzXiS1IHVFE0/E0ydX5FkJ0YRHh/OSgJmq7qgtplRyi/WjM4HA0HOJPO5pHY5hdha
+	QVNvZtTemBwN+evCxXVolE1RDmnKkJhs=
+X-Gm-Gg: AY/fxX4eLeaGQr8bVIaGwKVTHNpvveQ5KJugKsB34xZvzrNT2Ld/8+spYTIHkqs/Olw
+	MXkW5dZBUh42gc7JBm5VKpQ2dl+z62dKul/1TMdZ1J3Pbd2rixVVKy7zQp5GjgImoVQ7edsRlnv
+	ZVv9RsheW3kWo2McoCow2fiEU4hp04LB4zGkXA2WSYvFZWnQJmP+4SSB90g1Ryi5W/BiEH94ay3
+	ApCuCVLK3L3Y3LILAITjpvayQrbNod1LkBpUwCHlj0UzjUtVoSOBDHBwMZg0IwMKeugJXT+
+X-Google-Smtp-Source: AGHT+IH6nPwC7iVGr8ZWD/P8maW1+qN5Wt5sp4QkGF3llNXAnUY+tgYrWnq/Xe4GoBfHf58pSc+2xzLcbL1nuE4LGLU=
+X-Received: by 2002:a05:7300:c99:b0:2b0:5342:e00a with SMTP id
+ 5a478bee46e88-2b17d251c0bmr4723716eec.15.1767863868438; Thu, 08 Jan 2026
+ 01:17:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] dt-bindings: timer: microchip,sam9x60-pit64b: convert
- to yaml
-To: Nicolas Ferre <nicolas.ferre@microchip.com>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor.dooley@microchip.com>
-Cc: devicetree@vger.kernel.org, alexandre.belloni@bootlin.com,
- linux-kernel@vger.kernel.org, conor+dt@kernel.org, conor@kernel.org,
- linux-arm-kernel@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org
-References: <20230525125602.640855-1-claudiu.beznea@microchip.com>
- <20230525125602.640855-4-claudiu.beznea@microchip.com>
- <20230525-straw-fidgeting-4c1099aa16fe@spud>
- <5edf3d3b-6f59-0af3-6414-940a278962bf@microchip.com>
- <20230526-knickers-aim-e01220e6a7cd@wendy>
- <5a5d25a2-e6b5-fd69-f615-cd3d6ed33b9f@microchip.com>
- <20230526-unsubtle-chowtime-ce329d7e5627@wendy>
- <20230608201707.GA3359628-robh@kernel.org>
- <276e53d3-46ae-46c6-ba64-f3337bb963d9@microchip.com>
-Content-Language: en-US
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <276e53d3-46ae-46c6-ba64-f3337bb963d9@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
+ <20260107144507.46491-2-Ashish.Yadav@infineon.com> <20260108-unbiased-kind-wasp-d8b61b@quoll>
+In-Reply-To: <20260108-unbiased-kind-wasp-d8b61b@quoll>
+From: ashish yadav <ashishyadav78@gmail.com>
+Date: Thu, 8 Jan 2026 14:47:37 +0530
+X-Gm-Features: AQt7F2q8VU-mhh9OIuBTA7LAs723KM2jw3_egypa_L2dUHh1z-sfScapuExH8iU
+Message-ID: <CAJKbuCagGJcjokdhejOiEsqyQ5Kc-uuqoCoFBikPF4UjiiFR=Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon/pmbus: Add Infineon TDA38740A
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ASHISH YADAV <Ashish.Yadav@infineon.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi, Nicolas,
+Hi Krzysztof,
 
-On 1/2/26 18:03, Nicolas Ferre wrote:
-> Hi,
-> 
-> On 08/06/2023 at 22:17, Rob Herring wrote:
->> On Fri, May 26, 2023 at 08:55:39AM +0100, Conor Dooley wrote:
->>> On Fri, May 26, 2023 at 06:41:39AM +0000, 
->>> Claudiu.Beznea@microchip.com wrote:
->>>> On 26.05.2023 09:23, Conor Dooley wrote:
->>>>> On Fri, May 26, 2023 at 04:47:28AM +0000, 
->>>>> Claudiu.Beznea@microchip.com wrote:
->>>>>> On 25.05.2023 20:14, Conor Dooley wrote:
->>>>>>>> Convert Microchip PIT64B to YAML. Along with it clock-names 
->>>>>>>> binding has
->>>>>>>> been added as the driver needs it to get PIT64B clocks.
->>>>>>> I don't think both of these PIT things need to have different 
->>>>>>> binding
->>>>>>> files. 90% of it is the same, just the clock-names/number - so 
->>>>>>> you can
->>>>>>
->>>>>> But these are different hardware blocks with different 
->>>>>> functionalities and
->>>>>> different drivers.
->>>>>
->>>>> Having different drivers doesn't preclude having them in the same
->>>>> binding provided the function/description etc are more or less
->>>>> identical. I was confused by:
->>>>>
->>>>> +description:
->>>>> +  The 64-bit periodic interval timer provides the operating system 
->>>>> scheduler
->>>>> +  interrupt. It is designed to offer maximum accuracy and 
->>>>> efficient management,
->>>>> +  even for systems with long response times.
->>>>>
->>>>> +description:
->>>>> +  Atmel periodic interval timer provides the operating system’s 
->>>>> scheduler
->>>>> +  interrupt. It is designed to offer maximum accuracy and 
->>>>> efficient management,
->>>>> +  even for systems with long response time.
->>>>>
->>>>> Those seemed like they do the same thing to me!
->>>>
->>>> They do the same thing, they are timers... But the way they do it (from
->>>> hardware perspective) is totally different. With this would you still
->>>> prefer to have them merged?
->>>
->>> Yeah, one binding would be my preference.
->>
->> I'd probably just leave them separate if they're pretty much unrelated.
->>
->> Rob
-> 
-> I'd love to see this (old) thread revived and I'm ready to help.
-> In particular this pit64b or WDT pending conversion to yaml which 
-> generate some errors while running dtbs_check on recent Microchip 
-> board .dts.
-> 
-> I tend to think like Claudiu and Rob here, hardware are so different 
-> from so different era, that... well... I would keep them separated for 
-> the sake of simplicity and future proof.
-> 
-> Claudiu, tell me if I need to help with this?
+Thanks for reviewing the patch and providing the valuable feedback.
+I will generate the next set of patches (v3) with the review comments addre=
+ss.
 
-Unfortunately, I don't have the bandwidth to look at this in the next 
-weeks. Any help would be appreciated.
+I try to address the review comments with current patch which were received=
+ in :
+https://lore.kernel.org/all/2ee75453-0869-4348-ad92-f7ff71aca75d@kernel.org=
+/
 
-Thank you,
-Claudiu
+The Driver code also submitted with this patch:
+https://lore.kernel.org/all/20260107144507.46491-1-Ashish.Yadav@infineon.co=
+m/
+
+With Best Regards
+   Ashish Yadav
+
+On Thu, Jan 8, 2026 at 2:24=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On Wed, Jan 07, 2026 at 08:15:07PM +0530, ASHISH YADAV wrote:
+> > Document the TDA38740A/25A device tree binding.
+> >
+> > Signed-off-by: ASHISH YADAV <Ashish.Yadav@infineon.com>
+>
+> Also, fails checkpatch on SoB difference.
+>
+> Please organize the patch documenting the compatible (DT bindings)
+> before the patch using that compatible.
+> See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation=
+/devicetree/bindings/submitting-patches.rst#L46
+>
+> Best regards,
+> Krzysztof
+>
 
