@@ -1,217 +1,202 @@
-Return-Path: <devicetree+bounces-252738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D79B3D027F4
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:50:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C299D0250C
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:12:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E4B4E30BB817
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:35:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9EEBC30A9F79
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:03:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D9848C8BD;
-	Thu,  8 Jan 2026 10:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F313642A11D;
+	Thu,  8 Jan 2026 10:50:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="L1nQBYyw"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="XR+A/lwN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15589.qiye.163.com (mail-m15589.qiye.163.com [101.71.155.89])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE3AA43565A;
-	Thu,  8 Jan 2026 10:42:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.89
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767868932; cv=none; b=WdJKJBiJvKmCWodSCVn0SeVfxlzUfMi11U1BvR+0ih5t0IdoV0zew/s1slOLGR4+cC6Lu4ixG03LNXzplxM9VhycVMTBMy0keO/yeNZIvhI0xRjcsWuBrGOlHjQiWkHXytzjmf9z8aEGEkpkDyyFBDaRFDlzQblUe0EB61dL3K0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767868932; c=relaxed/simple;
-	bh=0QYfDZsRXc6pdQXzmQrmJJrlwn/Q5Wfxc75cWxKHKcc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SMjmrvJypB/hjtjlDpzuSI1jNvJ4wSrVn53+0IcFRwdJoum21pWRiwavLR8PI5NsSZweVIOp5NbRxhCdx8e2SDUyvl/0wPix3y5vYAtH2Ce3vduTiU/2JhjrItUiRF0AZhga/7pHgtvbAWhAGB9IT3tM1nyAtx+WbVwik9iw9Xw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=L1nQBYyw; arc=none smtp.client-ip=101.71.155.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2ff3a2c57;
-	Thu, 8 Jan 2026 18:41:47 +0800 (GMT+08:00)
-Message-ID: <c6fac95c-dd7a-4fdc-a93f-8ebac731d499@rock-chips.com>
-Date: Thu, 8 Jan 2026 18:41:46 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7E1A399A55;
+	Thu,  8 Jan 2026 10:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767869434; cv=pass; b=nEmH4D6yDy0EE6c3GRmT60ZKuzLYyLNq6NUtkN319oe4kioo6zoCiaVaBo+5vFFmFUJ0T0sPhErDq6UYjqcZ6KyMqGIGwdCVYHVCW8ypMZTzDsGMzqtQ85Gc44tkilFQ72YKyVMIHK2hnCEko7g/XTFl5Lo+TWmK6WKeAH+L2bA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767869434; c=relaxed/simple;
+	bh=Yu/tDXfbnxjtcGjVtSMeXLTup5sGluWNQNIG+ykFTQg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FNpuv2+1c0tN5lqBP5WbESKEzaesYEFN/INYbUy1tAfSW5vPFoW0qcbMP78BDB+tSeTCSQOMQeYc0JRqCYlYXcTP6mBmYfx1dk0sFopE6Yf3ezjOSAjg0bE4yCNpKTjx3CkFbLiqLrwQTBdytWYruYo1/x+Ut4gS/bnZP5cyHJI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=XR+A/lwN; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1767869391; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=lDoj2AZ+pnPkLDjff1V5K0T/CuQXpQHMRAAkLAuYxEJJ3S2YdjJWn245Og3kWipgie9yG2ctGnHXMCc65cDnOiT9rH55SOeW2WLiLi6Koz45uWCtztQqr4+IuSLkC0a47+MGWOKAOvEiKwXS5ZW1hX0AjUfrjieUv1v6VTw1C+A=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1767869391; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=HjzZOKMtmr5OXSw60wisN4RzjTYqm3kpd1HPoAg+nfI=; 
+	b=GzewqjUaOxn1sqSk2WfB8CSystHIVJn/3yIKQIZYOBwvblIh9teQQjNZtic8ZpZjH8cYyfNnEdx4L1qmmbs+CZPt+6QPhx5QqNiocsSK2PVrEIHNYW2vv8fD7pAKi9Fsns0sh8/kzpYF/LJHmDT6ighT8htbjnpoCvNRE/1EqO8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767869390;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=HjzZOKMtmr5OXSw60wisN4RzjTYqm3kpd1HPoAg+nfI=;
+	b=XR+A/lwNX3bn0gME8y6BA+So3R9ml2DWRT1/JgAsq1tTDd+ak2yhoPapxCezSblx
+	Qk0KM79aYmLkrNUYy+WGNZnDks3FlaxTXBDtQRb8IR1tMaZYcEA+SyaF6SiHIL+7/De
+	GJCczGYAOvpxlkW0/x4zX3py+jWWtws0IodJlCeo=
+Received: by mx.zohomail.com with SMTPS id 1767869389982715.577362004158;
+	Thu, 8 Jan 2026 02:49:49 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v5 00/24] MediaTek UFS Cleanup and MT8196 Enablement
+Date: Thu, 08 Jan 2026 11:49:19 +0100
+Message-Id: <20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
-To: Quentin Schulz <quentin.schulz@cherry.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Kever Yang <kever.yang@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>,
- John Clark <inindev@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
- Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Michael Riesch <michael.riesch@collabora.com>,
- Peter Robinson <pbrobinson@gmail.com>, Alexey Charkov <alchark@gmail.com>,
- Shawn Lin <shawn.lin@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>, Chaoyi Chen <kernel@airkyi.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260107070322.323-1-kernel@airkyi.com>
- <20260107070322.323-3-kernel@airkyi.com>
- <afe968a0-f14b-423d-81a7-c1046d2b32bb@cherry.de>
- <1b08bc47-70be-48fb-a05e-1101e633a776@rock-chips.com>
- <0d99140e-8f57-4a7a-a492-92efa30292d8@cherry.de>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <0d99140e-8f57-4a7a-a492-92efa30292d8@cherry.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9b9d32bee703abkunmbf4c270613cd5e
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ09JSFYZGBkeHxgYQkJJSk1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=L1nQBYywUwxdSotoHvJ/6KJvzPK4O/1TyunGOLwEFOiieurKqEntt9HT5ltPIF6PQEJ0TivS0yH+cR1SqlPfp7wg1kmC9JDepjy84i4Q6LOOg++QM/3oPZl99+kefEJFdD74t8iWu1eDfnHc0JyHP8LvuWCDm4Mu29Hwkn0pC5k=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=rkQu0ywfCqJZE+WsNbm/KDvp35VhTZ7L4bvh8V9tH10=;
-	h=date:mime-version:subject:message-id:from;
+X-B4-Tracking: v=1; b=H4sIAK+LX2kC/23OS27DIBSF4a1YjEvF04aMuo8oAx6XBik2KRArV
+ eS9lzqDxpWHB+n7Lw9UIEco6NA9UIY5lpimNuRbh9zZTJ+Ao28bMcIkJVTgsSqqe3wLBTtwwmq
+ jB5AcNXDNEOJ9jR1Pz53h69aa9fmIrCmAXRrHWA/dBPeKW7cnlCj0C86x1JS/18/MdBV7d2eKC
+ aZaegdWcevUh0uXi7Epm/cWX1Mze+X9hrPGHR+44sIJGMwe5y+c8Q3njZNAhBVm0DKEPS7+OKN
+ qw0Xj3oMbDO+19+w/X5blB1NhY+OWAQAA
+X-Change-ID: 20251014-mt8196-ufs-cec4b9a97e53
+To: Alim Akhtar <alim.akhtar@samsung.com>, 
+ Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>, 
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Chaotian Jing <Chaotian.Jing@mediatek.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
+ kernel@collabora.com, linux-scsi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-phy@lists.infradead.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
 
-Hi Quentin,
+In this series, the existing MediaTek UFS binding is expanded and
+completed to correctly describe not just the existing compatibles, but
+also to introduce a new compatible in the from of the MT8196 SoC.
 
-On 1/8/2026 6:07 PM, Quentin Schulz wrote:
-> Hi Chaoyi,
-> 
-> On 1/8/26 7:27 AM, Chaoyi Chen wrote:
->> Hi Quentin,
->>
->> Thank you for your patient review.
->>
->> On 1/7/2026 11:46 PM, Quentin Schulz wrote:
->>> Hi Chaoyi,
->>>
->>> On 1/7/26 8:03 AM, Chaoyi Chen wrote:
-> 
-> [...]
-> 
->>>> +        stdout-path = "serial0:1500000n8";
->>>> +    };
->>>> +
->>>> +    adc_keys: adc-keys {
->>>
->>> Are we expecting to extend this node from another DT? Why the label?
->>>
->>> Won't comment on all other labeled-but-no-phandle-use instances, please check.
->>>
->>
->> I think one exception is the regulator labels. Even though their
->> phandles are unused, they match the names on the schematic, so it
->> seems meaningful to keep them.
->>
-> 
-> Can't you use the regulator-name property for that? Or a comment if you realllly want it to be somewhere in the DTS? If I remember correctly, labels make it to the DTB when building it with symbols (-@, enabled whenever there's a DTSO for the board; see __symbols__ node when decompiling), this will unnecessarily bloat the final DTB.
->
+The resets, which until now were completely absent from both the UFS
+host controller binding and the UFS PHY binding, are introduced to both.
+This also means the driver's undocumented and, in mainline, unused reset
+logic is reworked. In particular, the PHY reset is no longer a reset of
+the host controller node, but of the PHY node.
 
-Oh, it make sense.
+This means the host controller can reset the PHY through the common PHY
+framework.
 
->>>> +    vcc3v3_rtc_s5: regulator-vcc3v3-rtc-s5 {
->>>> +        compatible = "regulator-fixed";
->>>> +        regulator-name = "vcc3v3_rtc_s5";
->>>> +        regulator-boot-on;
->>>> +        regulator-always-on;
->>>> +        regulator-min-microvolt = <3300000>;
->>>> +        regulator-max-microvolt = <3300000>;
->>>> +        vin-supply = <&vcc_sys>;
->>>
->>> If this is for the rtc, shouldn't we declare this dependency in the RTC device node and not have it always-on?
->>>
->>
->> I checked other boards that use the hym8563 device and couldn't find
->> a similar approach. Could you give an example?
->>
-> 
-> If this is truly always on by hardware design, then I guess it's "fine". That other boards aren't doing isn't much of an argument, as they may not need it. Typically, you could need to update the driver (and its binding) to accept and control power supplies so that you can link the two together in the device tree. I'm assuming for an RTC it doesn't make much sense to have its power supply controllable as it likely needs to be powered even when the device is turned off (otherwise the RTC stops counting :) ).
->
+The resets remain optional.
 
-Yes, this seems unnecessary, which is why I'm asking if you've
-encountered similar designs before.
+Additionally, a massive number of driver cleanups are introduced. These
+were prompted by me inspecting the driver more closely as I was
+adjusting it to correspond to the binding.
 
->>>> +    };
->>>> +
->>>> +    vcc3v3_sata_pwren: vcc3v3-sata-pwren {
->>>> +        compatible = "regulator-fixed";
->>>> +        regulator-name = "vcc3v3_sata_pwren";
->>>> +        enable-active-high;
->>>> +        regulator-boot-on;
->>>> +        regulator-always-on;
->>>
->>> Why do we have this always-on? Seems like we're missing a dependency on this regulator in the SATA controller?
->>>
->>
->> In v1 we set the pinctrl inside the SATA node. To keep the pins from
->> being reused by mistake we added this regulator in v2.
->>
-> 
-> This is a controllable regulator, which seems to be dedicated to SATA (from the name of it). Why isn't it something that the SATA controller controls?
-> 
-> You have ahci-supply, target-supply and phy-supply in ahci-common.yaml DT binding that may be appropriate for this regulator.
->
+The driver still implements vendor properties that are undocumented in
+the binding. I did not touch most of those, as I neither want to
+convince the bindings maintainers that they are needed without knowing
+precisely what they're for, nor do I want to argue with the driver
+authors when removing them.
 
-Thank you for provide these info. I will try to add them in v3.
+Due to the "Marie Kondo with a chainsaw" nature of the driver cleanup
+patches, I humbly request that reviewers do not comment on displeasing
+code they see in the context portion of a patch before they've read the
+whole patch series, as that displeasing code may in fact be reworked in
+a subsequent patch of this series. Please keep comments focused on the
+changed lines of the diff; I know there's more that can be done, but it
+doesn't necessarily need to be part of this series.
 
-> The issue is if this regulator is probed *after* your SATA device, SATA probably won't work. Imagine REGULATOR_FIXED_VOLTAGE=m (or even =n, but then you likely have other issues) and your SATA controller driver is built-in, this will be broken.
-> 
-> Remove the always-on and set the proper link in the SATA controller device node so that this is handled properly.
->
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v5:
+- Drop "scsi: ufs: mediatek: Make scale_us in setup_clk_gating const" as
+  someone else already got a patch in for this into next.
+- Make mtk_init_boost_crypt void
+- Don't disable/enable misc regulators during suspend/resume, but enable
+  them once when acquiring with a devm helper.
+- Link to v4: https://lore.kernel.org/r/20251218-mt8196-ufs-v4-0-ddec7a369dd2@collabora.com
 
-Oh! I did overlook that point! I will try to do it in v3.
+Changes in v4:
+- bindings: Redo the supply situation, as the avdd pins don't describe
+  the vcc(q2) card supplies.
+- bindings: format clock in mt8196 example more tersely.
+- phy: use devm_reset_control_get_optional_exclusive directly
+- driver: get and enable/disable the aforementioned avdd supplies.
+- Link to v3: https://lore.kernel.org/r/20251023-mt8196-ufs-v3-0-0f04b4a795ff@collabora.com
 
->>>> +        gpio = <&gpio4 RK_PC7 GPIO_ACTIVE_HIGH>;
->>>> +        pinctrl-names = "default";
->>>> +        pinctrl-0 = <&satapm_pwren>;
->>>> +    };
->>>> +
->>>> +    vcc5v0_device: regulator-vcc5v0-device {
->>>> +        compatible = "regulator-fixed";
->>>> +        regulator-name = "vcc5v0_device";
->>>> +        regulator-always-on;
->>>> +        regulator-boot-on;
->>>> +        regulator-min-microvolt = <5000000>;
->>>> +        regulator-max-microvolt = <5000000>;
->>>> +        vin-supply = <&vcc12v_dcin>;
->>>> +    };
->>>> +
->>>> +    vcc5v0_host: regulator-vcc5v0-host {
->>>> +        compatible = "regulator-fixed";
->>>> +        regulator-name = "vcc5v0_host";
->>>> +        regulator-boot-on;
->>>> +        regulator-always-on;
->>>> +        regulator-min-microvolt = <5000000>;
->>>> +        regulator-max-microvolt = <5000000>;
->>>> +        enable-active-high;
->>>> +        gpio = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
->>>> +        vin-supply = <&vcc5v0_device>;
->>>> +        pinctrl-names = "default";
->>>> +        pinctrl-0 = <&usb_host_pwren>;
->>>> +    };
->>>> +
->>>
->>> I assume both of the above are related to USB operating in host or device mode? Maybe there's a way to have something more useful to the user in regulator-name (and possibly the regulator node name) so that they have an idea what this pertains to?
->>
->> It's a good idea. Actually, we have two regulators here, one for USB0
->> and another for USB1. I'll try to rename them in v2.
->>
-> 
-> Are you sure? vcc5v0_device is a supply for vcc5v0_host, so it'd be odd that in order for USB1 to work, you need USB0 powered?
+Changes in v3:
+- Split mediatek,ufs bindings change into two patches, one for
+  completing the existing binding, one for the MT8196
+- Add over a dozen driver cleanup patches
+- Add explicit support for the MT8196 compatible to the driver
+- Note: next-20251023, on which I based this, currently has a broken
+  build due to an unrelated OPP core change that was merged with no
+  build testing. I can't use next-20251022 either, as that lacks the
+  recent mediatek UFS changes. It is what it is.
+- Link to v2: https://lore.kernel.org/r/20251016-mt8196-ufs-v2-0-c373834c4e7a@collabora.com
 
-No, the "vcc5v0_device" serves as the vin-supply for both
-"VCC5V0_USB3_HOST0" and "VCC5V0_USB3_HOST1". 
-And "VCC5V0_USB3_HOSTx" is supply for USB VBUS.
+Changes in v2:
+- Reorder define in mtk_sip_svc.h
+- Use bulk reset APIs in UFS host driver
+- Link to v1: https://lore.kernel.org/r/20251014-mt8196-ufs-v1-0-195dceb83bc8@collabora.com
 
-All the names marked here are those shown in the schematic. As you
-suggested, it would be better to set regulator-name to the schematic
-name "VCC5V0_USB3_HOSTx" and use "usbx_vbus" for the label.
+---
+Nicolas Frattaroli (24):
+      dt-bindings: phy: Add mediatek,mt8196-ufsphy variant
+      dt-bindings: ufs: mediatek,ufs: Complete the binding
+      dt-bindings: ufs: mediatek,ufs: Add mt8196 variant
+      scsi: ufs: mediatek: Move MTK_SIP_UFS_CONTROL to mtk_sip_svc.h
+      phy: mediatek: ufs: Add support for resets
+      scsi: ufs: mediatek: Rework resets
+      scsi: ufs: mediatek: Rework 0.9V regulator
+      scsi: ufs: mediatek: Rework init function
+      scsi: ufs: mediatek: Rework the crypt-boost stuff
+      scsi: ufs: mediatek: Handle misc host voltage regulators
+      scsi: ufs: mediatek: Rework probe function
+      scsi: ufs: mediatek: Remove vendor kernel quirks cruft
+      scsi: ufs: mediatek: Use the common PHY framework
+      scsi: ufs: mediatek: Switch to newer PM ops helpers
+      scsi: ufs: mediatek: Remove mediatek,ufs-broken-rtc property
+      scsi: ufs: mediatek: Rework _ufs_mtk_clk_scale error paths
+      scsi: ufs: mediatek: Add vendor prefix to clk-scale-up-vcore-min
+      scsi: ufs: mediatek: Clean up logging prints
+      scsi: ufs: mediatek: Rework ufs_mtk_wait_idle_state
+      scsi: ufs: mediatek: Don't acquire dvfsrc-vcore twice
+      scsi: ufs: mediatek: Rework hardware version reading
+      scsi: ufs: mediatek: Back up idle timer in per-instance struct
+      scsi: ufs: mediatek: Remove ret local from link_startup_notify
+      scsi: ufs: mediatek: Add MT8196 compatible, update copyright
 
+ .../devicetree/bindings/phy/mediatek,ufs-phy.yaml  |  16 +
+ .../devicetree/bindings/ufs/mediatek,ufs.yaml      | 173 +++-
+ drivers/phy/mediatek/phy-mtk-ufs.c                 |  71 ++
+ drivers/ufs/host/ufs-mediatek-sip.h                |   9 -
+ drivers/ufs/host/ufs-mediatek.c                    | 966 +++++++++------------
+ drivers/ufs/host/ufs-mediatek.h                    |  17 +-
+ include/linux/soc/mediatek/mtk_sip_svc.h           |   3 +
+ 7 files changed, 661 insertions(+), 594 deletions(-)
+---
+base-commit: beff4beeeb2760405ad49de2a6a1bdab8fb1aec3
+change-id: 20251014-mt8196-ufs-cec4b9a97e53
+
+Best regards,
 -- 
-Best, 
-Chaoyi
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
 
