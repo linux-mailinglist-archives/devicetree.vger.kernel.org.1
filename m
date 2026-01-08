@@ -1,140 +1,138 @@
-Return-Path: <devicetree+bounces-252795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5367D02EDD
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:16:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 659D2D02E8B
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:13:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 21EBA3061FCD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:28:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 78C7F30CC86E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:46:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25FD4C69E8;
-	Thu,  8 Jan 2026 12:22:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32FA3E9F8F;
+	Thu,  8 Jan 2026 12:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iJ4EIuE3"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="tJ1Y8BMW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9276B4C69E4;
-	Thu,  8 Jan 2026 12:22:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2145D4DF3C9
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:26:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767874932; cv=none; b=Z4D9SkW5DdZkjmmhwKjYDZFOkj3sHst6kj8kM8KYaiwecy4etbPV0aeYMXxWqwkG3wT30RhvvMAUJiWAjjFfcrCyoyslnepDlNuMj1ObCJu8G9hIq8wPDl1bLzMCdk55I7XgyT/cYvq1WLgmridgrQzUJ+0q4v4vCqEHVADR2Pw=
+	t=1767875214; cv=none; b=AV/R185nf5qnxa7I6yCg8y2xWxJ47/QOx3sUeXKwMPKoe/UObO+2cv8h1dMaUsyNTTWykBZbj8WQ+fA2+xIKtyzv1hxOcpV9RDceyHOcMmIqWK6dbTYxohdcONBQfKYk6S7X9i3QYZuzU1DoDasR/RZesddo2dqApkZHagI5pG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767874932; c=relaxed/simple;
-	bh=KReDG0ObiRiuDDh5D/U3gEUgH7EEOt+MoyvPkfZEGTE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V5rnmziNhWJwtWk5PGrn08JPlxrgPzuQ7QgRXa3/BH2FMLPVT/+se76nLgHBG+m13Ir0Fg7KozTkR1UXNA+wN4FJXXMQl8NVxpEeLhc86slhiUIRBeLVSGaA3uMh2DVHOql64Zy9598LCEllqWRDRtsVzQWCjmz90q/9yNjnwHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iJ4EIuE3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2856C116C6;
-	Thu,  8 Jan 2026 12:22:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767874932;
-	bh=KReDG0ObiRiuDDh5D/U3gEUgH7EEOt+MoyvPkfZEGTE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iJ4EIuE3PGgXb4m9MMjUwF4obO8M8960KgR/Vw00s0LByGuCndpRgznyV9Upz7eca
-	 O8SnhJWlqI9Otnvrh7zYd9lDuh6CMYvCvPKd3sCn9yANbG/n1bf6Ium8Je+LqpUUno
-	 IMFYWVPCWVVrbhVXmBHB1diagUa0nnfwFL9G3jeq9roN4wLOscgYjXeLBWqcADrciw
-	 DaeSTabhqj2uxV8RIo5hdy9EOzJUHn52A6GJ8SeP5znN1LEOP5eCljYN2xCoidyxz7
-	 dVwncZT05hGTcuIpHuRfeJZJ202pnzYXlw7qxsuxZrScI3uFA9tKmGwlqxxZTP5fT6
-	 6vKGYHhPAgQqA==
-Message-ID: <f3bf5118-eb75-450f-85e2-6d3ee775c8c5@kernel.org>
-Date: Thu, 8 Jan 2026 13:22:04 +0100
+	s=arc-20240116; t=1767875214; c=relaxed/simple;
+	bh=K37CDQVk1qKhIlEnznd2RkcI254RHjk8sgFKmzbozCg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Fwm2FiA9uMGAp6R6xAiptd9jODfVkTHj1KB9pwmXuQXX1Pu7kGAmXiWn37bnR/vtzmF5FPECtBlXNXhkC1r+8si+0bCwWv1oWY6qW4GNkJmchNM/8IemDdNQnpDR25hWkfdgysiogaAnyjgvhT+J7ML8W9mJKofVsiLmWkRrxOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=tJ1Y8BMW; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7b8bbf16b71so2094922b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:26:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767875212; x=1768480012; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5Uu81D54FMEFR1KBiicj40Orv/JnpYImdvG8u4ALBqk=;
+        b=tJ1Y8BMWmTeZXSIQHNRsiO86Df87gXV3W3fIBUjSMbjxxIR3v5MGJBcKVFXe5Y21Ev
+         qyxHoOyJY+lDx8J2xUgT2q8bm8fJa0AiSuNBGvccLcKhA56976tHDCisWEDm0a+VKl42
+         m3y7yH14eS98BWV+aRXN+n7jeb0szkNfFzqnHe70LFPGNTRVo07SV9UXYRk2lNxqFBAd
+         eKC6KIqBMq6stpZpoysMWTWwuJKL+k3Vb/8Cnw4+SxxiDLGK4jKPUcgU826a9XO1lV09
+         Ufwv0ZymAKT7zwfHKOrxHFtsu+hCJ14YsycxSyJAQ6GSRgI056xT1WPEXTgFHkTza53X
+         9ebg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767875212; x=1768480012;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5Uu81D54FMEFR1KBiicj40Orv/JnpYImdvG8u4ALBqk=;
+        b=NhkPhMzpVu/DjIq9YJYrcineP/7I1mtj/2B5zEgZmQdbYuJcAvj9nc9GWuUSL/BN4L
+         4OzEHJ1bVGG+m/E0HL2Fu7T8jP5DTmjdUMp0YykDYZmyRPqzegw1hdnk7VlFb+TdRiOo
+         j5fsJNjzLzdat/6NEFRuwxa55C/CXP109ErwIBiJZBrTkJuxi4n/dF/gqXE25j4JiUEB
+         C0ycSKPCqV1q4YkUSxfgvygTzrSwQ8VKIYmdtPlDNPJ7roqVJLcja8QIDhjCO83UkSy1
+         92edM3T8mY28EVeteB4m82kAfbv6fiYV0GbDHDaYUReZ1yjNFt6bVGZZrNEaNbPTVKwx
+         DQOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXGXr9uBS3OEau6My7grvPAouz7xVQ/QkZijv1BDT8r5Ry40uekmFeRlLSzZWmtBBeuAylICluhA2TE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxX6TI8ytmzMHnMq0Dh/UAKnYKMDuzXlN9I6jn19g2GqDEVBMy
+	wi7Bes2pjCA43sE60JFxCUs8CV5rOyufYtewSlLazYZ6GG8BPSi0Y65siwsNKSNvqW4=
+X-Gm-Gg: AY/fxX5xwm5h+dSRcru6M2SWblslujUr7Y013zYwaJiNRwC7dgeMF4/yiz7vnWuLdBY
+	eLb3+VG/oJhBKELZB1KyBxjz5WmZMhuSc+NNZl/K0imArdD/Cjy4T8IlbzpA0QZTTq8aB4RIipm
+	JTLGxFZQfHOL4n9JA/yrWA01p9MUF7U+jlrDVK6SXiErqk1bcbdg+GSezmpYlcQJ/WUN26PVjSf
+	9ihSQFqbHJR4qm44Y05eBbk4Y3xkGJItGUifC0HbnHff0juhDthq9uKjKH6oevxNLsawxznzTGb
+	T953jHT3opdbn1vzU872QkTyANNefq/fjkr/b6aBMPbc85nzBvX9EaXDGAWKYOMJ8lwkB2QqIhs
+	jUZeo9DWZet+JTfOynvSmlixfXbdXFHmKZDi28gNO7+73FtCg7wXhgDbX4nY/3Xse6vxrtETeHH
+	OT40bgNfl4IPWP6wQWZj715UrKQYV2lsw=
+X-Google-Smtp-Source: AGHT+IGjXfsog98K9N9BmFt/146sG4w5oYOSz5QSQHD2sWVG91brHPM0hOS0kYWXqTMiNVr9IiT+oA==
+X-Received: by 2002:a05:6a00:3003:b0:7e8:450c:61c3 with SMTP id d2e1a72fcca58-81b80ac5a0cmr5573634b3a.51.1767875212553;
+        Thu, 08 Jan 2026 04:26:52 -0800 (PST)
+Received: from [127.0.1.1] ([2a12:a305:4::40df])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819bafe991dsm7656401b3a.16.2026.01.08.04.26.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jan 2026 04:26:52 -0800 (PST)
+From: Guodong Xu <guodong@riscstar.com>
+Date: Thu, 08 Jan 2026 20:25:55 +0800
+Subject: [PATCH v3 04/11] dt-bindings: interrupt-controller: add SpacemiT
+ K3 IMSIC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 17/24] scsi: ufs: mediatek: Add vendor prefix to
- clk-scale-up-vcore-min
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Chaotian Jing <Chaotian.Jing@mediatek.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- kernel@collabora.com, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-phy@lists.infradead.org
-References: <20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com>
- <20260108-mt8196-ufs-v5-17-49215157ec41@collabora.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260108-mt8196-ufs-v5-17-49215157ec41@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20260108-k3-basic-dt-v3-4-ed99eb4c3ad3@riscstar.com>
+References: <20260108-k3-basic-dt-v3-0-ed99eb4c3ad3@riscstar.com>
+In-Reply-To: <20260108-k3-basic-dt-v3-0-ed99eb4c3ad3@riscstar.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Anup Patel <anup@brainfault.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
+ Yangyu Chen <cyy@cyyself.name>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
+ Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
+ Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
+ Anup Patel <anup@brainfault.org>, Andrew Jones <ajones@ventanamicro.com>, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
+ linux-serial@vger.kernel.org, Guodong Xu <guodong@riscstar.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
 
-On 08/01/2026 11:49, Nicolas Frattaroli wrote:
-> Device Tree properties other than the standard properties must be
-> prefixed with the vendor's name. The "clk-scale-up-vcore-min" property,
-> which this driver uses, and the binding did not previously document,
-> lacked a vendor prefix.
-> 
-> Add the missing "mediatek," vendor prefix and clean up the error print.
+Add compatible string for SpacemiT K3 IMSIC.
 
-Sorry, but no, because it is still undocumented. You cannot add new
-undocumented API (at least according to git grep and first three patches
-here).
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Guodong Xu <guodong@riscstar.com>
+---
+v3: Add Acked-by from Krzysztof.
+v2: Fix the order to keep things alphabetically.
+---
+ Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Please instead drop the property completely. Mediatek is not allowed to
-push downstream code here.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+index c23b5c09fdb90baccece03708f4a381084b22049..feec122bddde1f82cbd29b8f3597d6af1a16cb23 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+@@ -48,6 +48,7 @@ properties:
+     items:
+       - enum:
+           - qemu,imsics
++          - spacemit,k3-imsics
+       - const: riscv,imsics
+ 
+   reg:
 
-Best regards,
-Krzysztof
+-- 
+2.43.0
+
 
