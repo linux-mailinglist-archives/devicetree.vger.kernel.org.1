@@ -1,111 +1,89 @@
-Return-Path: <devicetree+bounces-252724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2118ED0235C
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:52:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59BDDD02380
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:54:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3A7DA31133B4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 10:44:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D514130F07BD
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 10:45:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F2A42DFF2;
-	Thu,  8 Jan 2026 10:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4503EFD2E;
+	Thu,  8 Jan 2026 10:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LzZZOBOH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 083B3410D03
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 10:10:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC593F076D;
+	Thu,  8 Jan 2026 10:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767867013; cv=none; b=ruFJXhYtMFnd78hF/8DdQ4KLPAeFB1w5gOGVSlJexBd+V7seVtT8LxpQqUqGliK3mPxEF+ON5pJZjfgFqbwy1mPetR2DO+Usz1SIvLZxIniC5LL+dM3S/mX17AJ6ueGsMgXsws4Z0PJQdTp/ReUl3jZrXmKjdLb4IEc2CE2Cyl0=
+	t=1767867003; cv=none; b=UVZaN8EjTXGOSWvBTNV0iXVh1Eui/wGoGzXo1wQE9iQ3pwiKWzT6zdVuL1pdSYd/KtFsQbLzaHWOQADnxeh9bWcv0PL8TMGHK9OzVf4Vxerlf9q0BGjhblNb+5aYMhxZKNnhAg4dQaYORDVaWJZr0y0HDaHNgf+xH4iXZ4eTKGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767867013; c=relaxed/simple;
-	bh=0Qoyg6zJTiDIb6UdJA4hodeaRzpEp1Nh0FPVN+IVrds=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Llo61gsIeWoAdeap65nSoZHkOqTcEGMgLV5I2/KkVujlh8epYMPIllGSpEQfDnn1+0nrveNS6dEc8QhIkUn1JAQ8AqB0me5pfBJBXpanpzWKctfeIEqzDlU4WrXiJTQg0NKfFxGSr/98hianInlBgDu8qxgSCGaS1BLwdx8Z1Fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-94120e0acbeso1747716241.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 02:10:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767867009; x=1768471809;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jeKGajEqxk3IRl+qaAEOKYHPYyjFHsiFRTDk6Rz2dpk=;
-        b=GDCVJAIRjpgdMalmNeepHivUxW27StG/fclXUsNamwXfDVASNNqzsz/VGgWJ3oQUb3
-         jqh40M37YZNV2+/PpeXYXdOgVQx9Dmuyz1NF3CZLN9WQLmr34/PaeHaAObbVFsdscHMf
-         gl3fsAbsaVWV62gq16nDmSzhoix499PAfbN7RLCrRJzbRcqg64mROnjQ6BM+Msdsx4gs
-         jReQNh82qwKWX01MWAgSPbbF9X0c36YNU/qTUebbW/Tdkm3Ejkl3aQeI7uIINAGrXnFB
-         tsB98hph7PwPEvfWNS2DSiZ56n79NS4X8Jx9vPx8nYg/RDQG835qWMcLfdP3urYjK+6S
-         EfsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjYG+d2c1Zj3G0CVcblvpk2SODLbhmQTWjutgTSPfh/NvjAbLpdUtZBYYNA0YQVAweejFzCqfUXnAX@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywl1Tuar39T4vzY7cyxn2goaAJKIHLcbILABMdXhOTKdMq8n8h1
-	VzeUqPVhXMBH3aLajcHtwTtRIXa31X+MND1e3LS/kACHi2GGDjOtE8uqUQjNi4cB
-X-Gm-Gg: AY/fxX7qX99IPteGUEFWWQgaU37KG1sWNG8oLNWNsUDxrW/rSZCSlzP4h+WHrVggvol
-	SsSQrTfMoV7xDJx3xTupvoygNBLR8FjfBtdL+/wdD4w7cXDQS2cnpaL23NvdQCm/c14KNUNbLYv
-	Ol/ycUvPNz8oxa/fQyc+erbI5AFKce3MZc2ufA3SfaTwEr0MHCwTc5RNbQi+MLn0dSqtdvnN2Xg
-	gdqKwKFVzi42VGQHB74wUY7E+7MdG02NmEChcSwMRwE6qFHwzzgSy87tf8aQnxNs/6aT2yRSTBB
-	aY74wbzashFCJFqcCfscUjwwH23K2obmMmNzAHa0tC1h2XFyCfpjtCUMYo4+JHO2QZA4CfcCgVP
-	nECgbEWHcLBUiu/qGeEsK+UtgxWxOVQUybJkYDhGlluurXqX0cPD224o5xC8iNehQ2FmoSWm8vc
-	mS8Gix3K/dSVOBvQZzfgJXcAQiKSmS0jplBq4ro5pmzNyCdZIVPUlR
-X-Google-Smtp-Source: AGHT+IE8SgYWnNadeKvdcyskfVMsnDJJOasgzWKUlDD1mefGDRMF5s/ktTvfM841BagbJSSg9VtPHQ==
-X-Received: by 2002:a05:6102:6e88:b0:5ec:c528:4df9 with SMTP id ada2fe7eead31-5ecc5284f9dmr1930403137.42.1767867009174;
-        Thu, 08 Jan 2026 02:10:09 -0800 (PST)
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com. [209.85.221.177])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ec772af325sm5789287137.10.2026.01.08.02.10.08
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 02:10:08 -0800 (PST)
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-5634feea416so958821e0c.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 02:10:08 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX99lrYGrSHdW6fXX6yhmIIJgpPzpLcFWRnp988dTcdoaYtWWT0SqHIgjfxJGwPyD2/MVIpEmP8SYGK@vger.kernel.org
-X-Received: by 2002:a05:6122:421b:b0:54a:992c:815e with SMTP id
- 71dfb90a1353d-56347d7096amr1637864e0c.8.1767867008306; Thu, 08 Jan 2026
- 02:10:08 -0800 (PST)
+	s=arc-20240116; t=1767867003; c=relaxed/simple;
+	bh=jhGglnHR79yKqzMve8kZuUJdzdwyNEoqDK2d7uLN0qk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qk7cxevvkzZH1t5sRNiG+En9ARtCZJPx1espBui81a60e3NkNOwGSBMf0KeLRDbrln6eQR8L7f+l+6PC8uACmq122EoVd8aYTggiMYORTaIZbkZufh+nRpTcE/aJt1eBsuHc9G6eyphzgwnaXU1YVoFkcBrLhsAOjDZBYh8z4Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LzZZOBOH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62BF1C116C6;
+	Thu,  8 Jan 2026 10:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767867001;
+	bh=jhGglnHR79yKqzMve8kZuUJdzdwyNEoqDK2d7uLN0qk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LzZZOBOHwTd6nrl3/mbpOCHau0gCfmiYTDmWCyoFBGa4zofYuWFQz+EhZZL+46hGX
+	 bKrZAD4dVcQXwVVHAUS9Lf1fclm7MLcc7nuMWEHhn/bWIjO3zb3OBsF9VaWLAA59hz
+	 ioZoAOIPycOm3zpmADzhBEe+cMfNFw+VMNAuZjTxO8vmbhUs4sCuOFNub935V1fHSB
+	 wF/I3/cfExGbzozL6uhKb0aaD9Ou+linoMAj40L4CbOaFNbD6wzEUjz2T0uasVwU0E
+	 v0gqkJFm/Rxa/OR9Eclq2tXEuURfL+HxpFUlIkMpbrRY+rB/zVTlmudeGltnID8pC0
+	 4zlPsVHHIg5EQ==
+Date: Thu, 8 Jan 2026 11:09:59 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Kiran Gunda <quic_kgunda@quicinc.com>, 
+	Helge Deller <deller@gmx.de>, Luca Weiss <luca@lucaweiss.eu>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Eugene Lepshy <fekz115@gmail.com>, 
+	Gianluca Boiano <morf3089@gmail.com>, Alejandro Tafalla <atafalla@dnyon.com>, 
+	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: backlight: qcom-wled: Document ovp
+ values for PMI8994
+Message-ID: <20260108-illustrious-original-harrier-e93aaf@quoll>
+References: <20260108-pmi8950-wled-v2-0-8687f23147d7@mainlining.org>
+ <20260108-pmi8950-wled-v2-1-8687f23147d7@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251224175204.3400062-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251224175204.3400062-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20251224175204.3400062-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 8 Jan 2026 11:09:57 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWzypRKtdnWKO5iA3eHBr5dmP3ad4qCVK+h+JebqsfNCw@mail.gmail.com>
-X-Gm-Features: AQt7F2qond9IwDeaTsZ0UoAL7PnIQMXQXYC2yxlGKQfALMGZUMy1_0YpeTthHy4
-Message-ID: <CAMuHMdWzypRKtdnWKO5iA3eHBr5dmP3ad4qCVK+h+JebqsfNCw@mail.gmail.com>
-Subject: Re: [PATCH 2/6] arm64: dts: renesas: r9a09g087: Add CANFD node
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260108-pmi8950-wled-v2-1-8687f23147d7@mainlining.org>
 
-On Wed, 24 Dec 2025 at 18:52, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add support for the CANFD controller on the Renesas RZ/N2H Soc.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, Jan 08, 2026 at 04:43:19AM +0100, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wr=
+ote:
+> Document ovp values supported by wled found in PMI8994.
+>=20
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining=
+=2Eorg>
+> ---
+>  .../bindings/leds/backlight/qcom-wled.yaml         | 22 ++++++++++++++++=
+++++--
+>  1 file changed, 20 insertions(+), 2 deletions(-)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.20.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Gr{oetje,eeting}s,
+Best regards,
+Krzysztof
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
