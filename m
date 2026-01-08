@@ -1,156 +1,133 @@
-Return-Path: <devicetree+bounces-252922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F43DD0531C
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:51:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FFC5D05221
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:44:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4634A324085F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:56:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DEA0F33304BC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:54:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034C92E0418;
-	Thu,  8 Jan 2026 16:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F462F6910;
+	Thu,  8 Jan 2026 16:53:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="o6ybf19F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D2325392A;
-	Thu,  8 Jan 2026 16:55:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDF62DC792;
+	Thu,  8 Jan 2026 16:53:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767891317; cv=none; b=G9eB1vpbedZxmnEsIf6jL1c6UmSRLkqKMOGnPhokBOMJ7ssaG2S5golE6q50j07+t4GS5oYOwwj71namsgkZTVO6dhSScUHqwjb8qP+CUPS4vteS6jbaQTV2B37aZIdKnOpY+FHMZN56kS9g4DpQ8HIrU4ID0CE+zU3aIJBfOOA=
+	t=1767891228; cv=none; b=HQnDexXtm5vBZY+HC/Ot2vxjFNEImcWuuT/aIThMnKXpMwGjzi6cqqnw2t25upHXSZ9drUpbOnWiEqAqEOSPM10zvFU1bIHl3ZArNvwDx0E/k0G2oS6joItCmbUD6mIwFXDiXaBR9z7Kyfn4IV38rjKiVwgPRHvDMk9MTe1ueLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767891317; c=relaxed/simple;
-	bh=9GaYbDl06I3YClJ+EoXI5k8smm2kY0F6rU6kYhqu3VQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HOAGKlm+g/t2EGTZHHvrgzCJpD/Ayh8eHqtGD4wuRQgFKj1J9LO7c0fAE0H4iWTKIKn6UVzYXv09VqJKNtKbHjebePpoXTEpXhr/KtOzlEtZu1TueO11Yt2y8FYwhR+gc1dppn0O5AKGvkItdMhypA29Zsaw39IARTSmm6SiiLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: yiuLw3wxRL+xmaxlX4ENSw==
-X-CSE-MsgGUID: 2Fv8Ua9iTo2d+niJwQtFFw==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 09 Jan 2026 01:55:11 +0900
-Received: from demon-pc.localdomain (unknown [10.226.92.68])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 17FA240313E8;
-	Fri,  9 Jan 2026 01:55:06 +0900 (JST)
-From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-To: John Madieu <john.madieu.xa@bp.renesas.com>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1767891228; c=relaxed/simple;
+	bh=H6ZzK5qb8nWtFLSe4fdBJd3Sr6s7l07yqSi7M31fQTU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ewQnuSUfY7sWw/fd/aj+F93tCqDIhQfmm56/A4R2i97eCdPB491G0wFmQrLyCEXg+JTA240kTYDlroM+81sxRxUNgXDebTmVUCI/dvGHhhs4G3FQbuAj3DN7S6dYtsGkc4dZXhSxuifcd0mPcGtdUIU5lBy7WTDrDKaynmpCFks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=o6ybf19F; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=3siOpUNTPvOetSwU3kkXTXaIQvHOmBaMe0L2dosaTxU=; b=o6ybf19FQhA2/H0eXyYAWhtYCg
+	E8J7QNNibSepM+CpqXDcjTCEXSDmnR7+vAORpbZk4kTZVsegRNEgFkFKinfF9y0Z2M4cnpsdnuDzL
+	I2rpUSBEqhBNs9pXdH3OOo7nj6AT4CkgeTF8RlYKVLskcyCD3aEgYDT3wNANa9m+a3ws=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vdtGL-001zEW-Ds; Thu, 08 Jan 2026 17:53:29 +0100
+Date: Thu, 8 Jan 2026 17:53:29 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Subject: [PATCH v4 5/5] thermal: renesas: rzg3e: add support for RZ/T2H and RZ/N2H
-Date: Thu,  8 Jan 2026 18:53:24 +0200
-Message-ID: <20260108165324.11376-6-cosmin-gabriel.tanislav.xa@renesas.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260108165324.11376-1-cosmin-gabriel.tanislav.xa@renesas.com>
-References: <20260108165324.11376-1-cosmin-gabriel.tanislav.xa@renesas.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+	Tariq Toukan <tariqt@nvidia.com>
+Subject: Re: [PATCH net-next v22 02/14] net: ethtool: Introduce
+ ETHTOOL_LINK_MEDIUM_* values
+Message-ID: <b8da3ec2-0775-4d81-8867-4993325a1e6c@lunn.ch>
+References: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
+ <20260108080041.553250-3-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260108080041.553250-3-maxime.chevallier@bootlin.com>
 
-The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs expose the
-temperature calibration via SMC SIP and do not have a reset for the
-TSU peripheral, and use different minimum and maximum temperature values
-compared to the already supported RZ/G3E.
+On Thu, Jan 08, 2026 at 09:00:27AM +0100, Maxime Chevallier wrote:
+> In an effort to have a better representation of Ethernet ports,
+> introduce enumeration values representing the various ethernet Mediums.
+> 
+> This is part of the 802.3 naming convention, for example :
+> 
+> 1000 Base T 4
+>  |    |   | |
+>  |    |   | \_ pairs (4)
+>  |    |   \___ Medium (T == Twisted Copper Pairs)
+>  |    \_______ Baseband transmission
+>  \____________ Speed
+> 
+>  Other example :
+> 
+> 10000 Base K X 4
+>            | | \_ lanes (4)
+>            | \___ encoding (BaseX is 8b/10b while BaseR is 66b/64b)
+>            \_____ Medium (K is backplane ethernet)
+> 
+> In the case of representing a physical port, only the medium and number
+> of pairs should be relevant. One exception would be 1000BaseX, which is
+> currently also used as a medium in what appears to be any of 1000BaseSX,
+> 1000BaseCX, 1000BaseLX, 1000BaseEX, 1000BaseBX10 and some other.
+> 
+> This was reflected in the mediums associated with the 1000BaseX linkmode.
+> 
+> These mediums are set in the net/ethtool/common.c lookup table that
+> maintains a list of all linkmodes with their number of pairs, medium,
+> encoding, speed and duplex.
+> 
+> One notable exception to this is 100BaseT Ethernet. It emcompasses 100BaseTX,
+> which is a 2-pairs protocol but also 100BaseT4, that will also work on 4-pairs
+> cables. As we don't make a disctinction between these,  the lookup table
+> contains 2 sets of pair numbers, indicating the min number of pairs for a
+> protocol to work and the "nominal" number of pairs as well.
+> 
+> Another set of exceptions are linkmodes such 100000baseLR4_ER4, where
+> the same link mode seems to represent 100GBaseLR4 and 100GBaseER4. The
+> macro __DEFINE_LINK_MODE_PARAMS_MEDIUMS is here used to populate the
+> .mediums bitfield with all appropriate mediums.
+> 
+> Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 
-Although the calibration data is stored in an OTP memory, the OTP itself
-is not memory-mapped, access to it is done through an OTP controller.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-The OTP controller is only accessible from the secure world,
-but the temperature calibration data stored in the OTP is exposed via
-SMC.
-
-Add support for retrieving the calibration data using arm_smcc_smc().
-
-Add a compatible for RZ/T2H, RZ/N2H can use it as a fallback.
-
-Reviewed-by: John Madieu <john.madieu.xa@bp.renesas.com>
-Tested-by: John Madieu <john.madieu.xa@bp.renesas.com>
-Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
----
-
-V4:
- * pick up John's Reviewed-by and Tested-by
- * replace new macro TSU_TEMP_MASK usage with existing macro
-   TSU_CODE_MAX
-
-V3:
- * no changes
-
-V2:
- * no changes
-
- drivers/thermal/renesas/rzg3e_thermal.c | 26 +++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/drivers/thermal/renesas/rzg3e_thermal.c b/drivers/thermal/renesas/rzg3e_thermal.c
-index c1b586128fa6..ba13ca8cbb8c 100644
---- a/drivers/thermal/renesas/rzg3e_thermal.c
-+++ b/drivers/thermal/renesas/rzg3e_thermal.c
-@@ -70,6 +70,10 @@
- #define TSU_POLL_DELAY_US	10	/* Polling interval */
- #define TSU_MIN_CLOCK_RATE	24000000  /* TSU_PCLK minimum 24MHz */
- 
-+#define RZ_SIP_SVC_GET_SYSTSU	0x82000022
-+#define OTP_TSU_REG_ADR_TEMPHI	0x01DC
-+#define OTP_TSU_REG_ADR_TEMPLO	0x01DD
-+
- struct rzg3e_thermal_priv;
- 
- struct rzg3e_thermal_info {
-@@ -362,6 +366,21 @@ static int rzg3e_thermal_get_syscon_trim(struct rzg3e_thermal_priv *priv)
- 	return 0;
- }
- 
-+static int rzg3e_thermal_get_smc_trim(struct rzg3e_thermal_priv *priv)
-+{
-+	struct arm_smccc_res local_res;
-+
-+	arm_smccc_smc(RZ_SIP_SVC_GET_SYSTSU, OTP_TSU_REG_ADR_TEMPLO,
-+		      0, 0, 0, 0, 0, 0, &local_res);
-+	priv->trmval0 = local_res.a0 & TSU_CODE_MAX;
-+
-+	arm_smccc_smc(RZ_SIP_SVC_GET_SYSTSU, OTP_TSU_REG_ADR_TEMPHI,
-+		      0, 0, 0, 0, 0, 0, &local_res);
-+	priv->trmval1 = local_res.a0 & TSU_CODE_MAX;
-+
-+	return 0;
-+}
-+
- static int rzg3e_thermal_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -524,8 +543,15 @@ static const struct rzg3e_thermal_info rzg3e_thermal_info = {
- 	.temp_e_mc = 126000,
- };
- 
-+static const struct rzg3e_thermal_info rzt2h_thermal_info = {
-+	.get_trim = rzg3e_thermal_get_smc_trim,
-+	.temp_d_mc = -40000,
-+	.temp_e_mc = 125000,
-+};
-+
- static const struct of_device_id rzg3e_thermal_dt_ids[] = {
- 	{ .compatible = "renesas,r9a09g047-tsu", .data = &rzg3e_thermal_info },
-+	{ .compatible = "renesas,r9a09g077-tsu", .data = &rzt2h_thermal_info },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, rzg3e_thermal_dt_ids);
--- 
-2.52.0
+    Andrew
 
